@@ -1373,15 +1373,15 @@ Ha de tenir com a molt {{PLURAL:$1|un caràcter|$1 caràcters}}.',
 'userrights-lookup-user' => "Gestiona els grups d'usuari",
 'userrights-user-editname' => "Introduïu un nom d'usuari:",
 'editusergroup' => "Edita els grups d'usuaris",
-'editinguser' => "S'està canviant els permisos de l'usuari '''[[User:$1|$1]]''' $2",
+'editinguser' => "Modificació dels permisos de {{GENDER:$1|l’usuari|la usuària}} '''[[User:$1|$1]]''' $2",
 'userrights-editusergroup' => "Edita els grups d'usuaris",
 'saveusergroups' => "Desa els grups d'usuari",
 'userrights-groupsmember' => 'Membre de:',
 'userrights-groupsmember-auto' => 'Membre implícit de:',
-'userrights-groups-help' => "Podeu modificar els grups als quals pertany aquest usuari.
-* Els requadres marcats indiquen que l'usuari és dins del grup.
-* Els requadres sense marcar indiquen que l'usuari no hi pertany.
-* Un asterisc (*) indica que no el podreu treure del grup una vegada l'hàgiu afegit o viceversa.",
+'userrights-groups-help' => "Podeu modificar els grups als quals pertany {{GENDER:$1|aquest usuari|aquesta usuària}}.
+* Una casella marcada significa que {{GENDER:$1|l’usuari|la usuària}} pertany a aquest grup.
+* Una casella no marcada significa que {{GENDER:$1|l’usuari|la usuària}} no pertany a aquest grup.
+* Un asterisc (*) indica que no {{GENDER:$1|el|la}} podreu treure del grup una vegada l'hàgiu afegit o viceversa.",
 'userrights-reason' => 'Motiu:',
 'userrights-no-interwiki' => "No teniu permisos per a editar els permisos d'usuari d'altres wikis.",
 'userrights-nodatabase' => 'La base de dades $1 no existeix o no és local.',
@@ -2132,7 +2132,7 @@ i tenir una direcció electrònica vàlida en les vostres [[Special:Preferences|
 per enviar un correu electrònic a altres usuaris.",
 'emailuser' => 'Envia un missatge de correu electrònic a aquest usuari',
 'emailuser-title-target' => 'Enviar un correu electrònic a {{GENDER:$1|aquest usuari|aquesta usuària}}',
-'emailuser-title-notarget' => "Enviar un correu electrònic a l'usuari",
+'emailuser-title-notarget' => 'Enviar un correu electrònic a un usuari',
 'emailpage' => 'Correu electrònic a usuari',
 'emailpagetext' => "Podeu usar el següent formulari per a enviar un missatge de correu electrònic a {{GENDER:$1|aquest usuari|aquesta usuària}}.
 L'adreça electrònica que vau indicar a [[Special:Preferences|les vostres preferències d'usuari]] apareixerà com a remitent del correu electrònic, de manera que el destinatari us podrà respondre directament.",
@@ -2500,8 +2500,8 @@ quines pàgines en concret estan sent vandalitzades).",
 ** Abús de comptes d'usuari múltiples
 ** Nom d'usuari no acceptable",
 'ipb-hardblock' => "Impedeix que els usuaris registrats puguin editar des d'aquesta adreça IP",
-'ipbcreateaccount' => 'Evita la creació de comptes',
-'ipbemailban' => "Evita que l'usuari enviï correu electrònic",
+'ipbcreateaccount' => 'Impedeix la creació de comptes',
+'ipbemailban' => "Impedeix que l'usuari enviï correus electrònics",
 'ipbenableautoblock' => "Bloca l'adreça IP d'aquest usuari, i totes les subseqüents adreces des de les quals intenti registrar-se",
 'ipbsubmit' => 'Bloqueja aquesta adreça',
 'ipbother' => 'Un altre termini',
@@ -2772,7 +2772,7 @@ En el darrer cas, podeu fer servir un enllaç com ara [[{{#Special:Export}}/{{Me
 'thumbnail_image-missing' => 'Sembla que falta el fitxer: $1',
 
 # Special:Import
-'import' => 'Importa les pàgines',
+'import' => 'Importació de pàgines',
 'importinterwiki' => 'Importa interwiki',
 'import-interwiki-text' => "Trieu un web basat en wiki i un títol de pàgina per a importar.
 Es conservaran les dates de les versions i els noms dels editors.
@@ -2796,7 +2796,7 @@ Deseu-lo al vostre ordinador i carregueu-ne una còpia ací.",
 'importcantopen' => "No ha estat possible d'obrir el fitxer a importar",
 'importbadinterwiki' => "Enllaç d'interwiki incorrecte",
 'importnotext' => 'Buit o sense text',
-'importsuccess' => "S'ha acabat d'importar.",
+'importsuccess' => 'Importació completada!',
 'importhistoryconflict' => "Hi ha un conflicte de versions en l'historial (la pàgina podria haver sigut importada abans)",
 'importnosources' => "No s'ha definit cap font d'origen interwiki i s'ha inhabilitat la càrrega directa d'una còpia de l'historial",
 'importnofile' => "No s'ha pujat cap fitxer d'importació.",
@@ -2883,7 +2883,7 @@ Deseu-lo al vostre ordinador i carregueu-ne una còpia ací.",
 'tooltip-t-print' => "Versió per a impressió d'aquesta pàgina",
 'tooltip-t-permalink' => 'Enllaç permanent a aquesta versió de la pàgina',
 'tooltip-ca-nstab-main' => 'Vegeu el contingut de la pàgina.',
-'tooltip-ca-nstab-user' => "Vegeu la pàgina de l'usuari.",
+'tooltip-ca-nstab-user' => "Vegeu la pàgina d'usuari",
 'tooltip-ca-nstab-media' => "Vegeu la pàgina de l'element multimèdia",
 'tooltip-ca-nstab-special' => 'Aquesta és una pàgina especial, no podeu modificar-la',
 'tooltip-ca-nstab-project' => 'Vegeu la pàgina del projecte',

@@ -818,7 +818,7 @@ Várj egy kicsit, mielőtt újra próbálkozol.',
 # E-mail sending
 'php-mail-error-unknown' => 'Ismeretlen hiba a PHP mail() függvényében',
 'user-mail-no-addy' => 'E-mail üzenetet próbáltál küldeni e-mail cím megadása nélkül.',
-'user-mail-no-body' => 'Az email nem tartalmaz elég hosszúságú szöveget.',
+'user-mail-no-body' => 'Üres vagy nagyon rövid email-t próbáltál küldeni.',
 
 # Change password dialog
 'resetpass' => 'Jelszó módosítása',

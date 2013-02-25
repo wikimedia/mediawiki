@@ -4062,7 +4062,8 @@ In order to translate ''Unused categories'' and ''wanted categories'' see {{msg|
 'deletedcontributions-title' => 'Title of [[Special:DeletedContributions]] (extension), a special page with a list of edits to pages which were deleted. Only viewable by sysops.
 
 {{Identical|Deleted user contributions}}',
-'sp-deletedcontributions-contribs' => 'Link to user’s contributions on [[Special:DeletedContributions]]',
+'sp-deletedcontributions-contribs' => 'Link to user’s contributions on [[Special:DeletedContributions]].
+{{Identical|Contribution}}',
 
 # Special:LinkSearch
 'linksearch' => 'Title of [[Special:LinkSearch|special page]] and legend of fieldset on that page.

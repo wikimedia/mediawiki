@@ -2208,7 +2208,7 @@ Blokeo erregistroa azken sarrera ematen da azpian erreferentziarako:',
 # What links here
 'whatlinkshere' => 'Honanzko lotura duten orriak',
 'whatlinkshere-title' => '$1(e)ra lotura duten orriak',
-'whatlinkshere-page' => 'Orrialdea:',
+'whatlinkshere-page' => 'Orria:',
 'linkshere' => "Hauek dute '''[[:$1]]''' orrialderako lotura:",
 'nolinkshere' => "Ez dago '''[[:$1]]''' lotura duen orrialderik.",
 'nolinkshere-ns' => "Hautatutako izen-tartean ez dago '''[[:$1]]''' orrialderako lotura duenik.",

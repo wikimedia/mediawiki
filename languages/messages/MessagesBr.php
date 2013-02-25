@@ -974,10 +974,10 @@ A-gostez eo bet lezet an arventenn-se.',
 'converter-manual-rule-error' => 'Fazi dinodet  er reolenn cheñch yezh dre zorn',
 
 # "Undo" feature
-'undo-success' => "Gallout a reer disteurel ar c'hemmoù-mañ. Gwiriit, mar plij, gant ar geñveriadenn a-is evit bezañ sur eo an dra-se a fell deoc'h ober; goude-se enrollit ar c'hemmoù a-is a-benn echuiñ disteurel ar c'hemmoù.",
+'undo-success' => "Gallout a reer dizober ar c'hemmoù-mañ. Gwiriit, mar plij, gant ar geñveriadenn a-is evit bezañ sur eo an dra-se a fell deoc'h ober; goude-se enrollit ar c'hemmoù a-is a-benn echuiñ disteurel ar c'hemmoù.",
 'undo-failure' => "N'eus ket bet tu da zisteuler ar c'hemm-mañ abalamour d'un tabut gant kemmoù degaset e-keit-se.",
 'undo-norev' => "N'eus ket bet gallet degas ar c'hemmoù-mañ rak pe n'eus ket anezho pe int bet diverket.",
-'undo-summary' => 'Disteurel kemmoù $1 a-berzh [[Special:Contributions/$2|$2]] ([[User talk:$2|kaozeal]])',
+'undo-summary' => 'Dizober kemmoù $1 a-berzh [[Special:Contributions/$2|$2]] ([[User talk:$2|kaozeal]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Dibosupl krouiñ ar gont',
@@ -2284,8 +2284,8 @@ taolit evezh bras.",
 'rollback' => "disteuler ar c'hemmoù",
 'rollback_short' => 'Disteuler',
 'rollbacklink' => 'disteuler',
-'rollbacklinkcount' => 'terriñ $1 {{PLURAL:$1|kemm|kemmañ}}',
-'rollbacklinkcount-morethan' => 'terriñ ouzhpenn $1 {{PLURAL:$1|kemm|kemmoù}}',
+'rollbacklinkcount' => 'disteurel $1 {{PLURAL:$1|kemm}}',
+'rollbacklinkcount-morethan' => 'disteurel ouzhpenn $1 {{PLURAL:$1|kemm}}',
 'rollbackfailed' => "C'hwitet eo bet an distaoladenn",
 'cantrollback' => 'Dibosupl da zisteuler: an aozer diwezhañ eo an hini nemetañ da vezañ kemmet ar pennad-mañ',
 'alreadyrolled' => "Dibosupl eo disteuler ar c'hemm diwezhañ graet d'ar bajenn [[:$1]] gant [[User:$2|$2]] ([[User talk:$2|Kaozeal]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);

@@ -423,7 +423,7 @@ $messages = array(
 'namespaces' => 'ନେମସ୍ପେସ',
 'variants' => 'ନିଆରା',
 
-'navigation-heading' => 'ଦିଗବାରେଣୀ ମିନୁ',
+'navigation-heading' => 'ଦିଗବାରେଣି ମେନୁ',
 'errorpagetitle' => 'ଭୁଲ',
 'returnto' => '$1କୁ ଫେରିଯାନ୍ତୁ ।',
 'tagline' => '{{SITENAME}} ରୁ',

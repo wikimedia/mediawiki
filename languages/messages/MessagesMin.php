@@ -1405,18 +1405,31 @@ Berikut ko pengaturan yang balaku untuak laman '''$1''':",
 'protect-cascadeon' => 'Laman ko sedang dilindungi karano tamasuak dalam {{PLURAL:$1|laman|laman}} aktif perlindungan batingkek.
 Awak dapek maubah tingkek perlindungannyo, walaupun indak pangaruah pado perlindungan batingkeknyo.',
 'protect-default' => 'Semua pangguno diizinkan',
-'protect-fallback' => 'Memerlukan hak akses "$1"',
-'protect-level-autoconfirmed' => 'Blokir pangguno baru dan indak terdaftar',
-'protect-level-sysop' => 'Hanya pengurus',
+'protect-fallback' => 'Cumo untuak pangguno jo izin  "$1"',
+'protect-level-autoconfirmed' => 'Cumo untuak pangguno takonfirmasi otomatis',
+'protect-level-sysop' => 'Cumo untuak panguruih',
 'protect-summary-cascade' => 'batingkek',
-'protect-expiring' => 'kadaluwarsa $1 (UTC)',
-'protect-cascade' => 'Lindungi semua laman yang bakaik jo laman ko (perlindungan batingkek)',
-'protect-cantedit' => 'Awak indak dapek maubah tingkek perlindungan laman ko, karano awak indak berhak.',
+'protect-expiring' => 'sampai $1 (UTC)',
+'protect-expiring-local' => 'sampai $1',
+'protect-expiry-indefinite' => 'sataruihnyo',
+'protect-cascade' => 'Linduangi laman nan takaik jo laman ko (palinduangan batingkek)',
+'protect-cantedit' => 'Sanak indak dapek maubah tingkek palinduangan laman ko, karano indak ado izin untuak itu.',
+'protect-othertime' => 'Wakatu lain:',
+'protect-othertime-op' => 'wakatu lain',
+'protect-existing-expiry' => 'Alah sampai: $3, $2',
+'protect-otherreason' => 'Alasan lain/tambahan:',
+'protect-otherreason-op' => 'Alasan lain',
 'restriction-type' => 'Perlindungan:',
 'restriction-level' => 'Tingkek larangan:',
+'minimum-size' => 'Ukuran min',
+'maximum-size' => 'Ukuran max',
+'pagesize' => '(bita)',
 
 # Restrictions (nouns)
-'restriction-move' => 'Pindahan',
+'restriction-edit' => 'Suntiang',
+'restriction-move' => 'Pindah',
+'restriction-create' => 'Buek',
+'restriction-upload' => 'Muek',
 
 # Undelete
 'undeletelink' => 'caliak/cegakkan',
@@ -1501,20 +1514,21 @@ Awak dapek maubah tingkek perlindungannyo, walaupun indak pangaruah pado perlind
 'ipb-change-block' => 'Sakek baliak pangguno jo setelan ko',
 'ipb-confirm' => 'Konfirmasi sakek',
 'badipaddress' => 'Alamaik IP salah',
-'blockipsuccesssub' => 'Sakek berasil',
+'blockipsuccesssub' => 'Sakek barasil',
 'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] lah disakek.<br />
 Liek [[Special:BlockList|dafta sakek]] buek maninjaunyo.',
 'ipb-blockingself' => 'Angku ka manyakek diri surang! Lai yakin apo nan dikarajoan?',
 'ipb-edit-dropdown' => 'Suntiang alasan manyakek',
 'ipb-unblock-addr' => 'Lapeh sakek $1',
+'blocklist' => 'Pangguno tablokir',
 'ipblocklist' => 'Pangguno tablokir',
 'blocklink' => 'sakek',
-'unblocklink' => 'hilangkan blokir',
+'unblocklink' => 'hilangkan sakek',
 'change-blocklink' => 'ubah sakek',
 'contribslink' => 'jariah',
 'blocklogpage' => 'Log pamblokiran',
-'blocklogentry' => 'mamblokir [[$1]] dalam maso $2 $3',
-'unblocklogentry' => 'mahilangkan blokir $1',
+'blocklogentry' => 'Manyakek [[$1]] dalam maso $2 $3',
+'unblocklogentry' => 'mahilangkan sakek $1',
 'block-log-flags-nocreate' => 'mambuek akun dimatikan',
 'blockme' => 'Sakek denai',
 
@@ -1560,13 +1574,13 @@ Dalam kasus tu, kok amuah Angku dapek mamindahkan ataupun manggabuangkan laman s
 'thumbnail_error' => 'Gagal mambuek miniatur: $1',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage' => 'Laman pangguno sanak',
+'tooltip-pt-userpage' => 'Laman pangguno Sanak',
 'tooltip-pt-anonuserpage' => 'Laman pangguno IP Sanak',
-'tooltip-pt-mytalk' => 'Laman diskusi sanak',
-'tooltip-pt-anontalk' => 'Diskusi tantang suntiangan dari alamat IP ko',
+'tooltip-pt-mytalk' => 'Laman rundiang Sanak',
+'tooltip-pt-anontalk' => 'Parundiangan tantang suntiangan dari IP ko',
 'tooltip-pt-preferences' => 'Pangaturan denai',
 'tooltip-pt-watchlist' => 'Dafta laman nan dipantau.',
-'tooltip-pt-mycontris' => 'Daftar jariah Sanak',
+'tooltip-pt-mycontris' => 'Dafta jariah Sanak',
 'tooltip-pt-login' => 'Sanak disaranan untuak masuak log; walaupun indak wajib',
 'tooltip-pt-logout' => 'Kalua log',
 'tooltip-ca-talk' => 'Parudiangan tantang isi laman',
@@ -1576,6 +1590,7 @@ Dalam kasus tu, kok amuah Angku dapek mamindahkan ataupun manggabuangkan laman s
 Sanak hanyo buliah mancaliak sumbernyo sajo',
 'tooltip-ca-history' => 'Revisi sabalunnyo dari laman ko',
 'tooltip-ca-protect' => 'Linduangi laman ko',
+'tooltip-ca-unprotect' => 'Tuka palinduangan laman ko',
 'tooltip-ca-delete' => 'Hapuih laman ko',
 'tooltip-ca-move' => 'Pindahan laman ko',
 'tooltip-ca-watch' => 'Tambahkan laman ko ka dafta pantau sanak',
@@ -1633,6 +1648,7 @@ Sanak hanyo buliah mancaliak sumbernyo sajo',
 'anonymous' => '{{PLURAL:$1|Pangguno}} anonim {{SITENAME}}',
 'siteuser' => 'pangguno {{SITENAME}} $1',
 'anonuser' => 'pangguno anonim {{SITENAME}} $1',
+'others' => 'lainnyo',
 'siteusers' => '{{PLURAL:$2|pangguno}} {{SITENAME}} $1',
 'anonusers' => '{{PLURAL:$2|pangguno}} anonim {{SITENAME}} $1',
 'creditspage' => 'Panghargaan laman',
@@ -1660,6 +1676,11 @@ Sanak hanyo buliah mancaliak sumbernyo sajo',
 'skinname-modern' => 'Moderen',
 'skinname-vector' => 'Vektor',
 
+# Patrolling
+'markaspatrolleddiff' => 'Tandoi lah dipatroli',
+'markaspatrolledtext' => 'Tandoi laman ko lah dipatroli',
+'markedaspatrolled' => 'Tandoi lah dipatroli',
+
 # Browsing diffs
 'previousdiff' => '← Revisi sabalunnyo',
 'nextdiff' => 'Revisi salanjuiknyo →',
@@ -1675,6 +1696,7 @@ Sanak hanyo buliah mancaliak sumbernyo sajo',
 'file-nohires' => 'Indak tasadio resolusi nan labiah gadang.',
 'svg-long-desc' => 'Berkas SVG, $1 × $2 piksel, ukuran berkas: $3',
 'svg-long-desc-animated' => 'Berkas anmasi SVG, $1 × $2 piksel, ukuran berkas: $3',
+'svg-long-error' => 'Berkas SVG indak sah: $1',
 'show-big-image' => 'Resolusi panuah',
 'show-big-image-preview' => 'Ukuran pratonton ko: $1',
 'show-big-image-other' => '{{PLURAL:$2|Resolusi}} lainnyo: $1.',
@@ -1686,7 +1708,7 @@ Sanak hanyo buliah mancaliak sumbernyo sajo',
 'file-info-png-frames' => '$1 {{PLURAL:$1|bingkai}}',
 
 # Special:NewFiles
-'newimages-legend' => 'Panyaring',
+'newimages-legend' => 'Panyariang',
 'newimages-label' => 'Namo berkas (atau sabagian darinyo):',
 'showhidebots' => '($1 bot)',
 'noimages' => 'Indak ado nan dicaliak.',
@@ -1704,7 +1726,10 @@ Sanak hanyo buliah mancaliak sumbernyo sajo',
 'minutes' => '{{PLURAL:$1|$1 minik}}',
 'hours' => '{{PLURAL:$1|$1 jam}}',
 'days' => '{{PLURAL:$1|$1 hari}}',
+'months' => '{{PLURAL:$1|$1 bulan}}',
+'years' => '{{PLURAL:$1|$1 taun}}',
 'ago' => '$1 nan lalu',
+'just-now' => 'kini ko',
 
 # Bad image list
 'bad_image_list' => 'Formatnyo adolah sabagai barikuik:
@@ -1798,6 +1823,7 @@ Nan lainnyo akan tasuruak sacaro baku.
 'watchlistall2' => 'kasadonyo',
 'namespacesall' => 'sadonyo',
 'monthsall' => 'sadonyo',
+'limitall' => 'sadonyo',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Tampilkan parubahan takaik',
@@ -1811,21 +1837,38 @@ Nan lainnyo akan tasuruak sacaro baku.
 'duplicate-defaultsort' => '\'\'\'Peringatan:\'\'\' Kunci panguruitan default "$2" sabalunnyo mangabaikan kunci panguruitan default "$1".',
 
 # Special:Version
+'version' => 'Versi',
+'version-extensions' => 'Ekstensi tarinstal',
+'version-specialpages' => 'Laman istimewa',
+'version-parserhooks' => 'Kaik parser',
+'version-variables' => 'Variabel',
+'version-antispam' => 'Pancagahan spam',
 'version-skins' => 'Kulik',
 'version-other' => 'Lain-lain',
+'version-version' => '(Versi $1)',
 'version-license' => 'Lisensi',
+'version-poweredby-credits' => "Wiki ko didukuang jo '''[//www.mediawiki.org/ MediaWiki]''', hak cipta © 2001-$1 $2.",
+'version-poweredby-others' => 'lainnyo',
+'version-software-version' => 'Versi',
+'version-entrypoints-header-url' => 'URL',
 'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Artikel path]',
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Skrip path]',
 
 # Special:FilePath
+'filepath' => 'Lokasi berkas',
 'filepath-page' => 'Berkas:',
+'filepath-submit' => 'Cari',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch-result-n' => 'Berkas "$1" punyo {{PLURAL:$2|1 duplikat identik|$2 duplikat identik}}.',
+'fileduplicatesearch-result-n' => 'Berkas "$1" ado {{PLURAL:$2|$2 duplikat nan samo}}.',
 'fileduplicatesearch-noresults' => 'Indak basobok berkas banamo "$1".',
 
 # Special:SpecialPages
 'specialpages' => 'Laman istimewa',
+'specialpages-group-login' => 'Masuak log / mandafta',
+
+# Special:BlankPage
+'blankpage' => 'Laman kosong',
 
 # External image whitelist
 'external_image_whitelist' => '#Bia se barih ko apo adonyo<pre>
@@ -1856,6 +1899,6 @@ Nan lainnyo akan tasuruak sacaro baku.
 'searchsuggest-containing' => 'Barisi...',
 
 # Durations
-'duration-millennia' => '$1 {{PLURAL:$1|millennium|millenia}}',
+'duration-millennia' => '$1 {{PLURAL:$1|milenium}}',
 
 );

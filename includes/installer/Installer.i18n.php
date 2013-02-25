@@ -668,6 +668,7 @@ If you\'re translating this message to a right-to-left language, consider writin
 	'config-admin-password' => '{{Identical|Password}}',
 	'config-admin-email' => '{{Identical|E-mail address}}',
 	'config-subscribe' => 'Used as label for the installer checkbox',
+	'config-subscribe-help' => '"Low-volume" in this context means that there will be few e-mails to that mailing list per time period.',
 	'config-profile-help' => 'Messages referenced:
 * {{msg-mw|config-profile-wiki}}
 * {{msg-mw|config-profile-no-anon}}
@@ -1174,14 +1175,18 @@ $1',
 	'config-page-copying' => 'Copiar',
 	'config-page-upgradedoc' => 'Anovando',
 	'config-page-existingwiki' => 'Wiki esistente',
+	'config-download-localsettings' => 'Descargar <code>LocalSettings.php</code>',
+	'config-help' => 'Ayuda',
+	'config-nofile' => 'Nun pudo atopase\'l ficheru "$1". ¿Desaniciose?',
 	'mainpagetext' => "'''MediaWiki instalóse correchamente.'''",
-	'mainpagedocfooter' => "Visita la [//meta.wikimedia.org/wiki/Help:Contents Guía d'usuariu] pa saber cómo usar esti software wiki.
+	'mainpagedocfooter' => 'Visita la [//meta.wikimedia.org/wiki/Help:Contents Guía del usuariu] pa saber cómo usar esti software wiki.
 
 == Empecipiando ==
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Llista de les opciones de configuración]
 * [//www.mediawiki.org/wiki/Manual:FAQ FAQ de MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Llista de corréu de les ediciones de MediaWiki]", # Fuzzy
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Llista de corréu de les ediciones de MediaWiki]
+* [//www.mediawiki.org/wiki/Localisation#Translation_resources Llocaliza MediaWiki na to llingua]',
 );
 
 /** Kotava (Kotava)
@@ -10311,7 +10316,7 @@ chmod a+w $3</pre>',
 	'config-admin-error-user' => '"<nowiki>$1</nowiki>"という名前の管理者を作成する際に内部エラーが発生しました。',
 	'config-admin-error-password' => '管理者"<nowiki>$1</nowiki>"のパスワードを設定する際に内部エラーが発生しました: <pre>$2</pre>',
 	'config-subscribe' => '[https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce リリース告知のメーリングリスト]を購読する。',
-	'config-subscribe-help' => 'これは、リリースの告知 (重要なセキュリティに関する案内を含む) に使用される、低容量のメーリングリストです。
+	'config-subscribe-help' => 'これは、リリースの告知 (重要なセキュリティに関する案内を含む) に使用される、流量が少ないメーリングリストです。
 このメーリングリストを購読して、新しいバージョンが出た場合にMediaWikiを更新してください。',
 	'config-almost-done' => 'これでほぼ終わりました!
 残りの設定を飛ばして、ウィキを今すぐインストールできます。',

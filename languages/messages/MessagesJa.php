@@ -1006,9 +1006,9 @@ $2
 ブロックは$1によって実施されました。
 ブロックの理由は ''$2'' です。
 
-* ブロック開始時期：$8
-* ブロック解除予定：$6
-* ブロック対象：$7
+* ブロック開始日時: $8
+* ブロック解除予定: $6
+* ブロック対象: $7
 
 このブロックについて、$1もしくは他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]に問い合わせることができます。
 ただし、[[Special:Preferences|個人設定]]で有効なメールアドレスが登録されていない場合、またはメール送信機能の使用がブロックされている場合、「この利用者にメールを送信」の機能は使えません。
@@ -1019,9 +1019,9 @@ $2
 
 :''$2''
 
-* ブロックの開始：$8
-* ブロック解除予定：$6
-* 意図されているブロック対象者：$7
+* ブロック開始日時: $8
+* ブロック解除予定: $6
+* ブロック対象: $7
 
 $1または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこのブロックについて問い合わせることができます。
 
@@ -2496,27 +2496,27 @@ contenttype/subtypeの形式で入力してください (例: <code>image/jpeg</
 
 $PAGEINTRO $NEWPAGE
 
-編集内容の要約：$PAGESUMMARY（$PAGEMINOREDIT）
+編集内容の要約: $PAGESUMMARY ($PAGEMINOREDIT)
 
-投稿者の連絡先：
-メール：$PAGEEDITOR_EMAIL
-ウィキ：$PAGEEDITOR_WIKI
+投稿者の連絡先:
+メール: $PAGEEDITOR_EMAIL
+ウィキ: $PAGEEDITOR_WIKI
 
 このページを訪れない限り、これ以上の活動に対する通知は送信されません。ウォッチリスト内のすべてのページについて、通知を再設定することもできます。
 
                          {{SITENAME}}通知システム
 
 --
-メール通知の設定は、以下のページで変更してください：
+メール通知の設定は、以下のページで変更してください:
 {{canonicalurl:{{#special:Preferences}}}}
 
-ウォッチリストの設定は、以下のページで変更してください：
+ウォッチリストの設定は、以下のページで変更してください:
 {{canonicalurl:{{#special:EditWatchlist}}}}
 
-このページは、以下のページでウォッチリストから削除できます：
+このページは、以下のページでウォッチリストから削除できます:
 $UNWATCHURL
 
-ご意見、お問い合わせ：
+ご意見、お問い合わせ:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
 'created' => '作成',
 'changed' => '変更',
@@ -3933,7 +3933,7 @@ $5
 {{SITENAME}} のアカウント「$2」のメールアドレスをこのアドレスに変更しました。
 
 このアカウントが本当にあなたのものであれば、以下のリンクをブラウザーで開いて、
-{{SITENAME}} のメール機能を再び有効にしてください：
+{{SITENAME}} のメール機能を再び有効にしてください:
 
 $3
 
@@ -4153,11 +4153,11 @@ $5
 'version-poweredby-credits' => "このウィキは、'''[//www.mediawiki.org/ MediaWiki]'''(copyright © 2001-$1 $2)で動作しています。",
 'version-poweredby-others' => 'その他',
 'version-credits-summary' => '[[Special:Version|MediaWiki]] に貢献した以下の人たちに感謝します。',
-'version-license-info' => 'MediaWikiはフリーソフトウェアです。あなたは、フリーソフトウェア財団の発行するGNU一般公衆利用許諾書 (GNU General Public License)（バージョン2、またはそれ以降のライセンス）の規約に基づき、このライブラリを再配布および改変できます。
+'version-license-info' => 'MediaWikiはフリーソフトウェアです。あなたは、フリーソフトウェア財団の発行するGNU一般公衆利用許諾書 (GNU General Public License) (バージョン2、またはそれ以降のライセンス) の規約に基づき、このライブラリを再配布および改変できます。
 
 MediaWikiは、有用であることを期待して配布されていますが、商用あるいは特定の目的に適するかどうかも含めて、暗黙的にも、一切保証されません。詳しくは、GNU一般公衆利用許諾書をご覧ください。
 
-あなたはこのプログラムと共に、[{{SERVER}}{{SCRIPTPATH}}/COPYING GNU一般公衆利用許諾契約書の複製]を受け取ったはずです。もし受け取っていなければ、フリーソフトウェア財団(the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA)まで請求するか、[//www.gnu.org/licenses/old-licenses/gpl-2.0.html オンラインで閲覧]してください。',
+あなたはこのプログラムと共に、[{{SERVER}}{{SCRIPTPATH}}/COPYING GNU一般公衆利用許諾契約書の複製]を受け取ったはずです。受け取っていない場合は、フリーソフトウェア財団 (the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA) まで請求するか、[//www.gnu.org/licenses/old-licenses/gpl-2.0.html オンラインで閲覧]してください。',
 'version-software' => 'インストール済みソフトウェア',
 'version-software-product' => '製品',
 'version-software-version' => 'バージョン',
