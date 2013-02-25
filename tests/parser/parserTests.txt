@@ -2648,6 +2648,21 @@ External link containing double-single-quotes with no space separating the url f
 </p>
 !! end
 
+!!test
+Text in square brackets that is not a link should parse as text
+!!input
+[foo]
+[{{echo|foo}}]
+[url={{echo|foo}}]
+[url=http://example.com]
+!!result
+<p>[foo]
+[foo]
+[url=foo]
+[url=<a rel="nofollow" class="external free" href="http://example.com">http://example.com</a>]
+</p>
+!!end
+
 !! test
 URL-encoding in URL functions (single parameter)
 !! input
@@ -7050,6 +7065,15 @@ Image caption containing a newline
 </p>
 !!end
 
+!!test
+Parsoid: Image caption containing leading space
+(The leading space should not trigger nowiki escaping in wt2wt mode)
+!! input
+[[Image:Foobar.jpg|thumb| bar]]
+!! result
+<div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" width="180" height="20" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>bar</div></div></div>
+
+!!end
 
 !! test
 Bug 3090: External links other than http: in image captions
