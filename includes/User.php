@@ -76,7 +76,7 @@ class User {
 	 * corresponding database fields must call a cache-clearing function.
 	 * @showinitializer
 	 */
-	static $mCacheVars = array(
+	public static $mCacheVars = array(
 		// user table
 		'mId',
 		'mName',
@@ -104,7 +104,7 @@ class User {
 	 * "right-$right".
 	 * @showinitializer
 	 */
-	static $mCoreRights = array(
+	public static $mCoreRights = array(
 		'apihighlimits',
 		'autoconfirmed',
 		'autopatrol',
@@ -169,11 +169,11 @@ class User {
 	/**
 	 * String Cached results of getAllRights()
 	 */
-	static $mAllRights = false;
+	private static $mAllRights = false;
 
 	/** @name Cache variables */
 	//@{
-	var $mId, $mName, $mRealName, $mPassword, $mNewpassword, $mNewpassTime,
+	public $mId, $mName, $mRealName, $mPassword, $mNewpassword, $mNewpassTime,
 		$mEmail, $mTouched, $mToken, $mEmailAuthenticated,
 		$mEmailToken, $mEmailTokenExpires, $mRegistration, $mEditCount,
 		$mGroups, $mOptionOverrides;
@@ -183,7 +183,7 @@ class User {
 	 * Bool Whether the cache variables have been loaded.
 	 */
 	//@{
-	var $mOptionsLoaded;
+	public $mOptionsLoaded;
 
 	/**
 	 * Array with already loaded items or true if all items have been loaded.
@@ -200,12 +200,12 @@ class User {
 	 *
 	 * Use the User::newFrom*() family of functions to set this.
 	 */
-	var $mFrom;
+	private $mFrom;
 
 	/**
 	 * Lazy-initialized variables, invalidated with clearInstanceCache
 	 */
-	var $mNewtalk, $mDatePreference, $mBlockedby, $mHash, $mRights,
+	private $mNewtalk, $mDatePreference, $mBlockedby, $mHash, $mRights,
 		$mBlockreason, $mEffectiveGroups, $mImplicitGroups, $mFormerGroups, $mBlockedGlobally,
 		$mLocked, $mHideName, $mOptions;
 
@@ -217,12 +217,12 @@ class User {
 	/**
 	 * @var Block
 	 */
-	var $mBlock;
+	private $mBlock;
 
 	/**
 	 * @var bool
 	 */
-	var $mAllowUsertalk;
+	private $mAllowUsertalk;
 
 	/**
 	 * @var Block
@@ -234,7 +234,7 @@ class User {
 	 */
 	private $mWatchedItems = array();
 
-	static $idCacheByName = array();
+	private static $idCacheByName = array();
 
 	/**
 	 * Lightweight constructor for an anonymous user.
@@ -931,6 +931,7 @@ class User {
 			return $result;
 		}
 
+		/*
 		if ( $wgExternalAuthType && $wgAutocreatePolicy == 'view' ) {
 			$extUser = ExternalUser::newFromCookie();
 			if ( $extUser ) {
@@ -938,6 +939,7 @@ class User {
 				# lower down, in fact)
 			}
 		}
+		*/
 
 		$request = $this->getRequest();
 
@@ -1589,7 +1591,7 @@ class User {
 		$allowUsertalk = ( $wgBlockAllowsUTEdit ? $this->mAllowUsertalk : false );
 		# If a user's name is suppressed, they cannot make edits anywhere
 		if ( !$this->mHideName && $allowUsertalk && $title->getText() === $this->getName() &&
-		  $title->getNamespace() == NS_USER_TALK ) {
+			$title->getNamespace() == NS_USER_TALK ) {
 			$blocked = false;
 			wfDebug( __METHOD__ . ": self-talk page, ignoring any blocks\n" );
 		}
@@ -4114,7 +4116,7 @@ class User {
 		// Pull from a slave to be less cruel to servers
 		// Accuracy isn't the point anyway here
 		$dbr = wfGetDB( DB_SLAVE );
-		$count = (int) $dbr->selectField(
+		$count = (int)$dbr->selectField(
 			'revision',
 			'COUNT(rev_user)',
 			array( 'rev_user' => $this->getId() ),
