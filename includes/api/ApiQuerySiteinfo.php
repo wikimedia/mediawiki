@@ -114,9 +114,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	}
 
 	protected function appendGeneralInfo( $property ) {
-		global $wgContLang,
-			$wgDisableLangConversion,
-			$wgDisableTitleConversion;
+		global $wgContLang;
 
 		$data = array();
 		$mainPage = Title::newMainPage();
@@ -128,14 +126,6 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$data['phpsapi'] = PHP_SAPI;
 		$data['dbtype'] = $GLOBALS['wgDBtype'];
 		$data['dbversion'] = $this->getDB()->getServerVersion();
-
-		if ( !$wgDisableLangConversion ) {
-			$data['langconversion'] = '';
-		}
-
-		if ( !$wgDisableTitleConversion ) {
-			$data['titleconversion'] = '';
-		}
 
 		$git = SpecialVersion::getGitHeadSha1( $GLOBALS['IP'] );
 		if ( $git ) {
