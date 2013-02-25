@@ -141,7 +141,11 @@ class CopyFileBackend extends Maintenance {
 			foreach ( $srcPathsRel as $srcPathRel ) {
 				$srcPaths[] = $src->getRootStoragePath() . "/$backendRel/$srcPathRel";
 			}
+			$t_start = microtime( true );
 			$fsFiles = $src->getLocalReferenceMulti( array( 'srcs' => $srcPaths, 'latest' => 1 ) );
+			$ellapsed_ms = floor( ( microtime( true ) - $t_start ) * 1000 );
+			$this->output( "\nDownloaded these file(s) [{$ellapsed_ms}ms]:\n" .
+				implode( "\n", $srcPaths ) . "\n\n" );
 		}
 
 		// Determine what files need to be copied over...
