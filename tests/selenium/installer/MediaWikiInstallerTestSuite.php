@@ -1,5 +1,4 @@
 <?php
-
 /**
  * MediaWikiInstallerTestSuite
  *
@@ -26,6 +25,10 @@
  * @addtogroup Maintenance
  *
  */
+
+if ( PHP_SAPI != 'cli' ) {
+	die( "Run me from the command line please.\n" );
+}
 
 require_once 'PHPUnit/Framework/TestSuite.php';
 

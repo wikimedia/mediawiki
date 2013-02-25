@@ -1,4 +1,4 @@
-#!/usr/bin/php
+#!/usr/bin/env php
 <?php
 /**
  * Other tests for the unicode normalization module.
