@@ -70,7 +70,11 @@ class WebResponse {
 			$secureCookie = $forceSecure;
 		}
 
-		$httpOnlySafe = wfHttpOnlySafe() && $wgCookieHttpOnly;
+		// Mark the cookie as httpOnly if $wgCookieHttpOnly is true,
+		// unless the requesting user-agent is known to have trouble with
+		// httpOnly cookies.
+		$httpOnlySafe = $wgCookieHttpOnly && wfHttpOnlySafe();
+
 		wfDebugLog( 'cookie',
 			'setcookie: "' . implode( '", "',
 				array(
