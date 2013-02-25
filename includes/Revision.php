@@ -1587,7 +1587,7 @@ class Revision implements IDBAccessObject {
 	 */
 	static function getTimestampFromId( $title, $id ) {
 		$dbr = wfGetDB( DB_SLAVE );
-		// Casting fix for DB2
+		// Casting fix for databases that can't take '' for rev_id
 		if ( $id == '' ) {
 			$id = 0;
 		}
