@@ -1,4 +1,4 @@
-#!/usr/bin/php
+#!/usr/bin/env php
 <?php
 /**
  * @file
@@ -24,11 +24,12 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-$IP = dirname( __DIR__ );
+if ( PHP_SAPI != 'cli' ) {
+	die( "Run me from the command line please.\n" );
+}
 
 define( 'SELENIUMTEST', true );
 
-//require_once( __DIR__ . '/../maintenance/commandLine.inc' );
 require( __DIR__ . '/../maintenance/Maintenance.php' );
 
 require_once( 'PHPUnit/Runner/Version.php' );
