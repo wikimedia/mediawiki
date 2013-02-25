@@ -237,11 +237,6 @@ define( 'SFH_OBJECT_ARGS', 2 );
 /**@}*/
 
 /**
- * Flags for Parser::setLinkHook
- */
-define( 'SLH_PATTERN', 1 );
-
-/**
  * Flags for Parser::replaceLinkHolders
  */
 define( 'RLH_FOR_UPDATE', 1 );
