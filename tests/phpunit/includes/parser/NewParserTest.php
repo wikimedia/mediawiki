@@ -275,7 +275,7 @@ class NewParserTest extends MediaWikiTestCase {
 		}
 
 		$settings = array(
-			'wgServer' => 'http://Britney-Spears',
+			'wgServer' => 'http://example.org',
 			'wgScript' => '/index.php',
 			'wgScriptPath' => '/',
 			'wgArticlePath' => '/wiki/$1',
