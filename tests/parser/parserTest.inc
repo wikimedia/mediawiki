@@ -631,7 +631,7 @@ class ParserTest {
 			self::getOptionValue( 'wgLinkHolderBatchSize', $opts, 1000 );
 
 		$settings = array(
-			'wgServer' => 'http://Britney-Spears',
+			'wgServer' => 'http://example.org',
 			'wgScript' => '/index.php',
 			'wgScriptPath' => '/',
 			'wgArticlePath' => '/wiki/$1',
