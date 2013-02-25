@@ -180,7 +180,6 @@ MediaWiki does support the following other DBMSs to varying degrees.
 * PostgreSQL
 * SQLite
 * Oracle
-* IBM DB2
 * MSSQL
 
 More information can be found about each of these databases (known issues,
