@@ -101,6 +101,7 @@ class MwSql extends Maintenance {
 				$this->error( $e, $doDie );
 			}
 		}
+		wfWaitForSlaves();
 	}
 
 	/**
