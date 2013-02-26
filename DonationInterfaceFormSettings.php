@@ -30,30 +30,11 @@ $forms_whitelist['bt'] = array(
 	'gateway' => 'globalcollect',
 	'countries' => array(
 	//	'+' => 'ALL',
-		'-' => array('CA','US'),
 	),
 	'currencies' => array(
-		'+' => array('AED', 'BGN', 'BHD', 'CLP', 'CZK', 'DKK', 'EEK', 'EGP', 'EUR', 'HRK',
+		'+' => array('AED', 'BGN', 'BHD', 'CAD', 'CLP', 'CZK', 'DKK', 'EEK', 'EGP', 'EUR', 'HRK',
 					 'HUF', 'IDR', 'JPY', 'LBP', 'MXN', 'MYR', 'NOK', 'NZD', 'PEN', 'PLN',
 					 'QAR', 'RON', 'RUB', 'SEK', 'THB', 'TRY', 'TWD', 'USD', 'ZAR'),
-	),
-	'payment_methods' => array('bt' => 'ALL')
-);
-
-$forms_whitelist['bt-CA'] = array(
-	'file' => $form_dirs['gc'] . '/bt/bt-CA.html',
-	'gateway' => 'globalcollect',
-	'countries' => array(
-		'+' => 'CA',
-	),
-	'payment_methods' => array('bt' => 'ALL')
-);
-
-$forms_whitelist['bt-US'] = array(
-	'file' => $form_dirs['gc'] . '/bt/bt-US.html',
-	'gateway' => 'globalcollect',
-	'countries' => array(
-		'+' => 'US',
 	),
 	'payment_methods' => array('bt' => 'ALL')
 );
