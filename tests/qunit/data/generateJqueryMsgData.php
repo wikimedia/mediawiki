@@ -61,9 +61,7 @@
  * </code>
  */
 
-$maintenanceDir = dirname( dirname( dirname( __DIR__ ) ) ) . '/maintenance';
-
-require( "$maintenanceDir/Maintenance.php" );
+require( __DIR__ . '/../../../maintenance/Maintenance.php' );
 
 class GenerateJqueryMsgData extends Maintenance {
 
@@ -149,4 +147,4 @@ class GenerateJqueryMsgData extends Maintenance {
 }
 
 $maintClass = "GenerateJqueryMsgData";
-require_once( "$maintenanceDir/doMaintenance.php" );
+require_once( RUN_MAINTENANCE_IF_MAIN );

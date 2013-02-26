@@ -24,7 +24,7 @@
  */
 header( 'Content-Type: text/javascript; charset=utf-8' );
 
-require_once '../../../includes/Xml.php';
+require_once __DIR__ . '/../../../includes/Xml.php';
 
 $moduleImplementations = array(
 	'testUsesMissing' => "
