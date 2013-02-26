@@ -18,6 +18,8 @@ class StructureTest extends MediaWikiTestCase {
 		$testClassRegex = implode( '|', array(
 			'ApiFormatTestBase',
 			'ApiTestCase',
+			'ApiQueryTestCase',
+			'ApiQueryContinueTestBase',
 			'MediaWikiLangTestCase',
 			'MediaWikiTestCase',
 			'PHPUnit_Framework_TestCase',

@@ -22,14 +22,17 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- *
- * These tests validate basic functionality of the api query module
+ */
+
+require_once( 'ApiQueryTestCase.php' );
+
+/** These tests validate basic functionality of the api query module
  *
  * @group API
  * @group Database
  * @group medium
  */
-class ApiQueryBasicTest extends ApiTestCase {
+class ApiQueryBasicTest extends ApiQueryTestCase {
 	/**
 	 * Create a set of pages. These must not change, otherwise the tests might give wrong results.
 	 * @see MediaWikiTestCase::addDBData()
@@ -297,20 +300,6 @@ class ApiQueryBasicTest extends ApiTestCase {
 	}
 
 	/**
-	 * Merges all requests (parameter arrays) into one
-	 * @return array
-	 */
-	private function merge( /*...*/ ) {
-		$request = array();
-		$expected = array();
-		foreach ( func_get_args() as $v ) {
-			$request = array_merge_recursive( $request, $v[0] );
-			$this->mergeExpected( $expected, $v[1] );
-		}
-		return array( $request, $expected );
-	}
-
-	/**
 	 * Recursively merges the expected values in the $item into the $all
 	 */
 	private function mergeExpected( &$all, $item ) {
@@ -324,38 +313,6 @@ class ApiQueryBasicTest extends ApiTestCase {
 			} else {
 				$all[$k] = $v;
 			}
-		}
-	}
-
-	/**
-	 * Checks that the request's result matches the expected results.
-	 * @param $values array is a two element array( request, expected_results )
-	 * @throws Exception
-	 */
-	private function check( $values ) {
-		$request = $values[0];
-		$expected = $values[1];
-		if ( !array_key_exists( 'action', $request ) ) {
-			$request['action'] = 'query';
-		}
-		foreach ( $request as &$val ) {
-			if ( is_array( $val ) ) {
-				$val = implode( '|', array_unique( $val ) );
-			}
-		}
-		$result = $this->doApiRequest( $request );
-		$result = $result[0];
-		$expected = array( 'query' => $expected );
-		try {
-			$this->assertQueryResults( $expected, $result );
-		} catch ( Exception $e ) {
-			print( "\nRequest:\n" );
-			print_r( $request );
-			print( "\nExpected:\n" );
-			print_r( $expected );
-			print( "\nResult:\n" );
-			print_r( $result );
-			throw $e; // rethrow it
 		}
 	}
 
