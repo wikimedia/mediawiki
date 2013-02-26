@@ -241,6 +241,8 @@ production.
   currently in use on the wiki.
 * (bug 44921) ApiMain::execute() will now return after the CORS check for an
   HTTP OPTIONS request.
+* (bug 44923) action=upload works correctly if the entire file is uploaded in
+  the first chunk.
 
 === API internal changes in 1.21 ===
 * For debugging only, a new global $wgDebugAPI removes many API restrictions when true.
