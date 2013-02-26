@@ -195,69 +195,67 @@ class ApiUpload extends ApiBase {
 		$chunkPath = $request->getFileTempname( 'chunk' );
 		$chunkSize = $request->getUpload( 'chunk' )->getSize();
 		if ( $this->mParams['offset'] == 0 ) {
-			$result['filekey'] = $this->performStash();
+			$filekey = $this->performStash();
 		} else {
+			$filekey = $this->mParams['filekey'];
 			$status = $this->mUpload->addChunk(
 				$chunkPath, $chunkSize, $this->mParams['offset'] );
 			if ( !$status->isGood() ) {
 				$this->dieUsage( $status->getWikiText(), 'stashfailed' );
 				return array();
 			}
+		}
 
-			// Check we added the last chunk:
-			if( $this->mParams['offset'] + $chunkSize == $this->mParams['filesize'] ) {
-				if ( $this->mParams['async'] && !wfIsWindows() ) {
-					$progress = UploadBase::getSessionStatus( $this->mParams['filekey'] );
-					if ( $progress && $progress['result'] === 'Poll' ) {
-						$this->dieUsage( "Chunk assembly already in progress.", 'stashfailed' );
-					}
-					UploadBase::setSessionStatus(
-						$this->mParams['filekey'],
-						array( 'result' => 'Poll',
-							'stage' => 'queued', 'status' => Status::newGood() )
-					);
-					$retVal = 1;
-					$cmd = wfShellWikiCmd(
-						"$IP/includes/upload/AssembleUploadChunks.php",
-						array(
-							'--wiki', wfWikiID(),
-							'--filename', $this->mParams['filename'],
-							'--filekey', $this->mParams['filekey'],
-							'--userid', $this->getUser()->getId(),
-							'--sessionid', session_id(),
-							'--quiet'
-						)
-					) . " < " . wfGetNull() . " > " . wfGetNull() . " 2>&1 &";
-					// Start a process in the background. Enforce the time limits via PHP
-					// since ulimit4.sh seems to often not work for this particular usage.
-					wfShellExec( $cmd, $retVal, array(), array( 'time' => 0, 'memory' => 0 ) );
-					if ( $retVal == 0 ) {
-						$result['result'] = 'Poll';
-					} else {
-						UploadBase::setSessionStatus( $this->mParams['filekey'], false );
-						$this->dieUsage(
-							"Failed to start AssembleUploadChunks.php", 'stashfailed' );
-					}
+		// Check we added the last chunk:
+		if( $this->mParams['offset'] + $chunkSize == $this->mParams['filesize'] ) {
+			if ( $this->mParams['async'] && !wfIsWindows() ) {
+				$progress = UploadBase::getSessionStatus( $this->mParams['filekey'] );
+				if ( $progress && $progress['result'] === 'Poll' ) {
+					$this->dieUsage( "Chunk assembly already in progress.", 'stashfailed' );
+				}
+				UploadBase::setSessionStatus(
+					$this->mParams['filekey'],
+					array( 'result' => 'Poll',
+						'stage' => 'queued', 'status' => Status::newGood() )
+				);
+				$retVal = 1;
+				$cmd = wfShellWikiCmd(
+					"$IP/includes/upload/AssembleUploadChunks.php",
+					array(
+						'--wiki', wfWikiID(),
+						'--filename', $this->mParams['filename'],
+						'--filekey', $this->mParams['filekey'],
+						'--userid', $this->getUser()->getId(),
+						'--sessionid', session_id(),
+						'--quiet'
+					)
+				) . " < " . wfGetNull() . " > " . wfGetNull() . " 2>&1 &";
+				// Start a process in the background. Enforce the time limits via PHP
+				// since ulimit4.sh seems to often not work for this particular usage.
+				wfShellExec( $cmd, $retVal, array(), array( 'time' => 0, 'memory' => 0 ) );
+				if ( $retVal == 0 ) {
+					$result['result'] = 'Poll';
 				} else {
-					$status = $this->mUpload->concatenateChunks();
-					if ( !$status->isGood() ) {
-						$this->dieUsage( $status->getWikiText(), 'stashfailed' );
-						return array();
-					}
-
-					// We have a new filekey for the fully concatenated file.
-					$result['filekey'] = $this->mUpload->getLocalFile()->getFileKey();
-
-					// Remove chunk from stash. (Checks against user ownership of chunks.)
-					$this->mUpload->stash->removeFile( $this->mParams['filekey'] );
-
-					$result['result'] = 'Success';
+					UploadBase::setSessionStatus( $this->mParams['filekey'], false );
+					$this->dieUsage(
+						"Failed to start AssembleUploadChunks.php", 'stashfailed' );
 				}
 			} else {
-				// Continue passing through the filekey for adding further chunks.
-				$result['filekey'] = $this->mParams['filekey'];
+				$status = $this->mUpload->concatenateChunks();
+				if ( !$status->isGood() ) {
+					$this->dieUsage( $status->getWikiText(), 'stashfailed' );
+					return array();
+				}
+
+				// The the fully concatenated file has a new filekey. So remove
+				// the old filekey and fetch the new one.
+				$this->mUpload->stash->removeFile( $filekey );
+				$filekey = $this->mUpload->getLocalFile()->getFileKey();
+
+				$result['result'] = 'Success';
 			}
 		}
+		$result['filekey'] = $filekey;
 		$result['offset'] = $this->mParams['offset'] + $chunkSize;
 		return $result;
 	}
