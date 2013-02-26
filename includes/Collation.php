@@ -43,8 +43,6 @@ abstract class Collation {
 		switch( $collationName ) {
 			case 'uppercase':
 				return new UppercaseCollation;
-			case 'uppercase-sv':
-				return new UppercaseSvCollation;
 			case 'identity':
 				return new IdentityCollation;
 			case 'uca-default':
@@ -124,22 +122,6 @@ class UppercaseCollation extends Collation {
 			$string = substr( $string, 1 );
 		}
 		return $this->lang->ucfirst( $this->lang->firstChar( $string ) );
-	}
-}
-
-/**
- * Like UppercaseCollation but swaps Ä and Æ.
- *
- * This provides an ordering suitable for Swedish.
- * @author Lejonel
- */
-class UppercaseSvCollation extends UppercaseCollation {
-
-	/* Unicode code point order is ÄÅÆÖ, Swedish order is ÅÄÖ and Æ is often sorted as Ä.
-	 * Replacing Ä for Æ should give a better collation. */
-	function getSortKey( $string ) {
-		$uppercase = $this->lang->uc( $string );
-		return strtr( $uppercase, array( 'Ä' => 'Æ', 'Æ' => 'Ä' ) );
 	}
 }
 
