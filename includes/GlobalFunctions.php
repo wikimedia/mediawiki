@@ -1386,9 +1386,13 @@ function wfUILang() {
 }
 
 /**
- * This is the new function for getting translated interface messages.
- * See the Message class for documentation how to use them.
- * The intention is that this function replaces all old wfMsg* functions.
+ * This is the function for getting translated interface messages.
+ *
+ * @see Message class for documentation how to use them.
+ * @see https://www.mediawiki.org/wiki/Manual:Messages_API
+ *
+ * This function replaces all old wfMsg* functions.
+ *
  * @param $key \string Message key.
  * Varargs: normal message parameters.
  * @return Message
