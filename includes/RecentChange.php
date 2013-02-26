@@ -191,8 +191,6 @@ class RecentChange {
 	public function &getTitle() {
 		if ( $this->mTitle === false ) {
 			$this->mTitle = Title::makeTitle( $this->mAttribs['rc_namespace'], $this->mAttribs['rc_title'] );
-			# Make sure the correct page ID is process cached
-			$this->mTitle->resetArticleID( $this->mAttribs['rc_cur_id'] );
 		}
 		return $this->mTitle;
 	}
