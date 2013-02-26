@@ -5879,6 +5879,7 @@ $wgSpecialPageGroups = array(
 	'Listredirects' => 'pages',
 	'Categories' => 'pages',
 	'Disambiguations' => 'pages',
+	'PagesWithProp' => 'pages',
 
 	'Randompage' => 'redirects',
 	'Randomredirect' => 'redirects',
