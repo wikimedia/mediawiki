@@ -1758,6 +1758,7 @@ abstract class File {
 	 *             Set it to false to ignore the extension.
 	 *
 	 * @return array
+	 * @deprecated since 1.19
 	 */
 	static function getPropsFromPath( $path, $ext = true ) {
 		wfDebug( __METHOD__ . ": Getting file info for $path\n" );
@@ -1777,6 +1778,7 @@ abstract class File {
 	 * @param $path string
 	 *
 	 * @return bool|string False on failure
+	 * @deprecated since 1.19
 	 */
 	static function sha1Base36( $path ) {
 		wfDeprecated( __METHOD__, '1.19' );
