@@ -109,10 +109,11 @@ class ApiQuery extends ApiBase {
 	 */
 	private $mPageSet;
 
-	private $params;
-	private $iwUrl;
+	private $mParams;
 	private $mNamedDB = array();
 	private $mModuleMgr;
+	private $mGeneratorContinue;
+	private $mUseLegacyContinue;
 
 	/**
 	 * @param $main ApiMain
@@ -233,37 +234,37 @@ class ApiQuery extends ApiBase {
 	 * #5 Execute all requested modules
 	 */
 	public function execute() {
-		$this->params = $this->extractRequestParams();
-		$this->iwUrl = $this->params['iwurl'];
+		$this->mParams = $this->extractRequestParams();
+
+		// $pagesetParams is a array of parameter names used by the pageset generator
+		//   or null if pageset has already finished and is no longer needed
+		// $completeModules is a set of complete modules with the name as key
+		$this->initContinue( $pagesetParams, $completeModules );
 
 		// Instantiate requested modules
-		$modules = array();
-		$this->instantiateModules( $modules, 'prop' );
-		$this->instantiateModules( $modules, 'list' );
-		$this->instantiateModules( $modules, 'meta' );
+		$allModules = array();
+		$this->instantiateModules( $allModules, 'prop' );
+		$propModules = $allModules; // Keep a copy
+		$this->instantiateModules( $allModules, 'list' );
+		$this->instantiateModules( $allModules, 'meta' );
 
-		// Query modules may optimize data requests through the $this->getPageSet()
-		// object by adding extra fields from the page table.
-		// This function will gather all the extra request fields from the modules.
-		foreach ( $modules as $module ) {
-			if ( !$this->getRequest()->wasPosted() && $module->mustBePosted() ) {
-				$this->dieUsageMsgOrDebug( array( 'mustbeposted', $module->getModuleName() ) );
-			}
+		// Filter modules based on continue parameter
+		$modules = $this->initModules( $allModules, $completeModules, $pagesetParams !== null );
 
-			$module->requestExtraData( $this->mPageSet );
+		// Execute pageset if in legacy mode or if pageset is not done
+		if ( $completeModules === null || $pagesetParams !== null ) {
+			// Populate page/revision information
+			$this->mPageSet->execute();
+			// Record page information (title, namespace, if exists, etc)
+			$this->outputGeneralPageInfo();
+		} else {
+			$this->mPageSet->executeDryRun();
 		}
 
-		// Populate page/revision information
-		$this->mPageSet->execute();
 		$cacheMode = $this->mPageSet->getCacheMode();
 
-		// Record page information (title, namespace, if exists, etc)
-		$this->outputGeneralPageInfo();
-
-		// Execute all requested modules.
-		/**
-		 * @var $module ApiQueryBase
-		 */
+		// Execute all unfinished modules
+		/** @var $module ApiQueryBase */
 		foreach ( $modules as $module ) {
 			$params = $module->extractRequestParams();
 			$cacheMode = $this->mergeCacheMode(
@@ -276,6 +277,139 @@ class ApiQuery extends ApiBase {
 
 		// Set the cache mode
 		$this->getMain()->setCacheMode( $cacheMode );
+
+		if ( $completeModules === null ) {
+			return; // Legacy continue, we are done
+		}
+
+		// Reformat query-continue result section
+		$result = $this->getResult();
+		$qc = $result->getData();
+		if ( isset( $qc['query-continue'] ) ) {
+			$qc = $qc['query-continue'];
+			$result->unsetValue( null, 'query-continue' );
+		} elseif ( $this->mGeneratorContinue !== null ) {
+			$qc = array();
+		} else {
+			// no more "continue"s, we are done!
+			return;
+		}
+
+		// we are done with all the modules that do not have result in query-continue
+		$completeModules = array_merge( $completeModules, array_diff_key( $modules, $qc ) );
+		if ( $pagesetParams !== null ) {
+			// The pageset is still in use, check if all props have finished
+			$incompleteProps = array_intersect_key( $propModules, $qc );
+			if ( count( $incompleteProps ) > 0 ) {
+				// Properties are not done, continue with the same pageset state - copy current parameters
+				$main = $this->getMain();
+				$contValues = array();
+				foreach ( $pagesetParams as $param ) {
+					// The param name is already prefix-encoded
+					$contValues[$param] = $main->getVal( $param );
+				}
+			} elseif ( $this->mGeneratorContinue !== null ) {
+				// Move to the next set of pages produced by pageset, properties need to be restarted
+				$contValues = $this->mGeneratorContinue;
+				$pagesetParams = array_keys( $contValues );
+				$completeModules = array_diff_key( $completeModules, $propModules );
+			} else {
+				// Done with the pageset, finish up with the the lists and meta modules
+				$pagesetParams = null;
+			}
+		}
+
+		$continue = '||' . implode( '|', array_keys( $completeModules ) );
+		if ( $pagesetParams !== null ) {
+			// list of all pageset parameters to use in the next request
+			$continue = implode( '|', $pagesetParams ) . $continue;
+		} else {
+			// we are done with the pageset
+			$contValues = array();
+			$continue = '-' . $continue;
+		}
+		$contValues['continue'] = $continue;
+		foreach ( $qc as $qcModule ) {
+			foreach ( $qcModule as $qcKey => $qcValue ) {
+				$contValues[$qcKey] = $qcValue;
+			}
+		}
+		$this->getResult()->addValue( null, 'continue', $contValues );
+	}
+
+	/**
+	 * Parse 'continue' parameter into the list of complete modules and a list of generator parameters
+	 * @param array|null $pagesetParams returns list of generator params or null if pageset is done
+	 * @param array|null $completeModules returns list of finished modules (as keys), or null if legacy
+	 */
+	private function initContinue( &$pagesetParams, &$completeModules )
+	{
+		$pagesetParams = array();
+		$continue = $this->mParams['continue'];
+		if ( $continue !== null ) {
+			$this->mUseLegacyContinue = false;
+			if ( $continue !== '' ) {
+				// Format: ' pagesetParam1 | pagesetParam2 || module1 | module2 | module3 | ...
+				// If pageset is done, use '-'
+				$continue = explode( '||', $continue );
+				$this->dieContinueUsageIf( count( $continue ) !== 2 );
+				if ( $continue[0] === '-' ) {
+					$pagesetParams = null; // No need to execute pageset
+				} elseif ( $continue[0] !== '' ) {
+					// list of pageset params that might need to be repeated
+					$pagesetParams = explode( '|', $continue[0] );
+				}
+				$continue = $continue[1];
+			}
+			if ( $continue !== '' ) {
+				$completeModules = array_flip( explode( '|', $continue ) );
+			} else {
+				$completeModules = array();
+			}
+		} else {
+			$this->mUseLegacyContinue = true;
+			$completeModules = null;
+		}
+	}
+
+	/**
+	 * Validate sub-modules, filter out completed ones, and do requestExtraData()
+	 * @param array $allModules An dict of name=>instance of all modules requested by the client
+	 * @param array|null $completeModules list of finished modules, or null if legacy continue
+	 * @param bool $usePageset True if pageset will be executed
+	 * @return array of modules to be processed during this execution
+	 */
+	private function initModules( $allModules, $completeModules, $usePageset ) {
+		$modules = $allModules;
+		$tmp = $completeModules;
+		$wasPosted = $this->getRequest()->wasPosted();
+		$main = $this->getMain();
+
+		/** @var $module ApiQueryBase */
+		foreach ( $allModules as $moduleName => $module ) {
+			if ( !$wasPosted && $module->mustBePosted() ) {
+				$this->dieUsageMsgOrDebug( array( 'mustbeposted', $moduleName ) );
+			}
+			if ( $completeModules !== null && array_key_exists( $moduleName, $completeModules ) ) {
+				// If this module is done, mark all its params as used
+				foreach ( $module->getFinalParams() as $paramName => $param ) {
+					$main->getVal( $module->encodeParamName( $paramName ) );
+				}
+				// Make sure this module is not used during execution
+				unset( $modules[$moduleName] );
+				unset( $tmp[$moduleName] );
+			} elseif ( $completeModules === null || $usePageset ) {
+				// Query modules may optimize data requests through the $this->getPageSet()
+				// object by adding extra fields from the page table.
+				// This function will gather all the extra request fields from the modules.
+				$module->requestExtraData( $this->mPageSet );
+			} else {
+				// Error - this prop module must have finished before generator is done
+				$this->dieContinueUsageIf( $this->mModuleMgr->getModuleGroup( $moduleName ) === 'prop' );
+			}
+		}
+		$this->dieContinueUsageIf( $completeModules !== null && count( $tmp ) !== 0 );
+		return $modules;
 	}
 
 	/**
@@ -306,9 +440,16 @@ class ApiQuery extends ApiBase {
 	 * @param $param string Parameter name to read modules from
 	 */
 	private function instantiateModules( &$modules, $param ) {
-		if ( isset( $this->params[$param] ) ) {
-			foreach ( $this->params[$param] as $moduleName ) {
-				$modules[] = $this->mModuleMgr->getModule( $moduleName );
+		if ( isset( $this->mParams[$param] ) ) {
+			foreach ( $this->mParams[$param] as $moduleName ) {
+				$instance = $this->mModuleMgr->getModule( $moduleName, $param );
+				if ( $instance === null ) {
+					ApiBase::dieDebug( __METHOD__, 'Error instantiating module' );
+				}
+				// Ignore duplicates. TODO 2.0: die()?
+				if ( !array_key_exists( $moduleName, $modules ) ) {
+					$modules[$moduleName] = $instance;
+				}
 			}
 		}
 	}
@@ -334,7 +475,7 @@ class ApiQuery extends ApiBase {
 		if ( $values ) {
 			$result->addValue( 'query', 'converted', $values );
 		}
-		$values = $pageSet->getInterwikiTitlesAsResult( $result, $this->iwUrl );
+		$values = $pageSet->getInterwikiTitlesAsResult( $result, $this->mParams['iwurl'] );
 		if ( $values ) {
 			$result->addValue( 'query', 'interwiki', $values );
 		}
@@ -392,7 +533,7 @@ class ApiQuery extends ApiBase {
 		}
 
 		if ( count( $pages ) ) {
-			if ( $this->params['indexpageids'] ) {
+			if ( $this->mParams['indexpageids'] ) {
 				$pageIDs = array_keys( $pages );
 				// json treats all map keys as strings - converting to match
 				$pageIDs = array_map( 'strval', $pageIDs );
@@ -403,9 +544,30 @@ class ApiQuery extends ApiBase {
 			$result->setIndexedTagName( $pages, 'page' );
 			$result->addValue( 'query', 'pages', $pages );
 		}
-		if ( $this->params['export'] ) {
+		if ( $this->mParams['export'] ) {
 			$this->doExport( $pageSet, $result );
 		}
+	}
+
+	/**
+	 * This method is called by the generator base when generator in the smart-continue
+	 * mode tries to set 'query-continue' value. ApiQuery stores those values separately
+	 * until the post-processing when it is known if the generation should continue or repeat.
+	 * @param ApiQueryGeneratorBase $module generator module
+	 * @param string $paramName
+	 * @param mixed $paramValue
+	 * @return bool true if processed, false if this is a legacy continue
+	 */
+	public function setGeneratorContinue( $module, $paramName, $paramValue ) {
+		if ( $this->mUseLegacyContinue ) {
+			return false;
+		}
+		$paramName = $module->encodeParamName( $paramName );
+		if ( $this->mGeneratorContinue === null ) {
+			$this->mGeneratorContinue = array();
+		}
+		$this->mGeneratorContinue[$paramName] = $paramValue;
+		return true;
 	}
 
 	/**
@@ -440,7 +602,7 @@ class ApiQuery extends ApiBase {
 		// It's not continuable, so it would cause more
 		// problems than it'd solve
 		$result->disableSizeCheck();
-		if ( $this->params['exportnowrap'] ) {
+		if ( $this->mParams['exportnowrap'] ) {
 			$result->reset();
 			// Raw formatter will handle this
 			$result->addValue( null, 'text', $exportxml );
@@ -471,6 +633,7 @@ class ApiQuery extends ApiBase {
 			'export' => false,
 			'exportnowrap' => false,
 			'iwurl' => false,
+			'continue' => null,
 		);
 		if ( $flags ) {
 			$result += $this->getPageSet()->getFinalParams( $flags );
@@ -543,6 +706,7 @@ class ApiQuery extends ApiBase {
 			'export' => 'Export the current revisions of all given or generated pages',
 			'exportnowrap' => 'Return the export XML without wrapping it in an XML result (same format as Special:Export). Can only be used with export',
 			'iwurl' => 'Whether to get the full URL if the title is an interwiki link',
+			'continue' => '(Recommended) When present, ensures that all xxcontinue=xxx can be merged together without omitting data',
 		);
 	}
 
@@ -563,8 +727,8 @@ class ApiQuery extends ApiBase {
 
 	public function getExamples() {
 		return array(
-			'api.php?action=query&prop=revisions&meta=siteinfo&titles=Main%20Page&rvprop=user|comment',
-			'api.php?action=query&generator=allpages&gapprefix=API/&prop=revisions',
+			'api.php?action=query&prop=revisions&meta=siteinfo&titles=Main%20Page&rvprop=user|comment&continue',
+			'api.php?action=query&generator=allpages&gapprefix=API/&prop=revisions&continue',
 		);
 	}
 

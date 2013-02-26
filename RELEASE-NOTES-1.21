@@ -233,6 +233,7 @@ production.
   particular page property.
 * Added an API query module list=pagepropnames, which lists all page prop names
   currently in use on the wiki.
+* Added 'continue=' parameter to streamline client iteration over complex query results
 
 === API internal changes in 1.21 ===
 * For debugging only, a new global $wgDebugAPI removes many API restrictions when true.
@@ -247,6 +248,7 @@ production.
 * ApiQueryGeneratorBase::setGeneratorMode() now requires a pageset param.
 * $wgAPIGeneratorModules is now obsolete and will be ignored.
 * Added flags ApiResult::OVERRIDE and ADD_ON_TOP to setElement() and addValue()
+* Internal API calls will now include <warnings> in case of unused parameters
 
 === Languages updated in 1.21 ===
 

@@ -340,12 +340,12 @@ class ApiResult extends ApiBase {
 	 * Unset a value previously added to the result set.
 	 * Fails silently if the value isn't found.
 	 * For parameters, see addValue()
-	 * @param $path array
+	 * @param $path array|null
 	 * @param $name string
 	 */
 	public function unsetValue( $path, $name ) {
 		$data = &$this->mData;
-		if ( !is_null( $path ) ) {
+		if ( $path !== null ) {
 			foreach ( (array)$path as $p ) {
 				if ( !isset( $data[$p] ) ) {
 					return;
