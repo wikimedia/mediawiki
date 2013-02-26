@@ -1894,6 +1894,10 @@ Snano chceš wopisanje na jeje [$2 stronje datajoweho wopisanja] wobdźěłać.'
 'disambiguationspage' => 'Template:Wjacezmyslnosć',
 'disambiguations-text' => "Slědowace strony wobsahuja znajmjeńša jedyn wotkaz k stronje '''rozjasnjenja wjacezmyslnosće'''. Měli město toho na poprawnu stronu wotkazać.<br />Maja stronu za stronu rozjasnjenja wjacezmyslnosće, jeli předłohu wužiwa, na kotruž so wot [[MediaWiki:Disambiguationspage]] wotkazuje.",
 
+'pageswithprop' => 'Strony z kajkosću strony',
+'pageswithprop-text' => 'Tuta strona nalistuje strony, kotrež wěstu kajkosć strony wužiwaja.',
+'pageswithprop-prop' => 'Mjeno kajkosće:',
+
 'doubleredirects' => 'Dwójne daleposrědkowanja',
 'doubleredirectstext' => 'Tuta strona nalistuje strony, kotrež k druhim daleposrědkowanskim stronam dale posrědkuja.
 Kóžda rjadka wobsahuje wotkazy k prěnjemu a druhemu daleposrědkowanju kaž tež cil druheho daleposrědkowanja, kotryž je zwjetša  "woprawdźita" cilowa strona, na kotruž prěnje daleposrědkowanje měło pokazać. <del>Přešmórnjene</del> zapiski su hižo sčinjene.',
@@ -3822,4 +3826,7 @@ Hewak móžeš slědowacy jednory formular wužiwać. Twój komentar přida so s
 'duration-centuries' => '$1 {{PLURAL:$1|lětstotk|lětstotkaj|lětstotki|lětstotkow}}',
 'duration-millennia' => '$1 {{PLURAL:$1|lěttysac|lěttysacaj|lěttysacy|lěttysacow}}',
 
+# Unknown messages
+'pageswithprop-legend' => 'Strony z kajkosću strony',
+'pageswithprop-submit' => 'Wotpósłać',
 );

@@ -2174,6 +2174,10 @@ Vielleicht möchtest du die Beschreibung auf der dortigen [$2 Dateibeschreibungs
 
 Eine Seite gilt als Begriffsklärungsseite, wenn sie mindestens eine der auf der Seite [[MediaWiki:Disambiguationspage|Disambiguationspage]] aufgeführten Vorlagen enthält.",
 
+'pageswithprop' => 'Seiten mit einer Seiteneigenschaft',
+'pageswithprop-text' => 'Diese Spezialseite listet Seiten auf, die eine bestimmte Seiteneigenschaft verwenden.',
+'pageswithprop-prop' => 'Eigenschaftsname:',
+
 'doubleredirects' => 'Doppelte Weiterleitungen',
 'doubleredirectstext' => 'Diese Liste enthält Weiterleitungen, die auf Weiterleitungen verlinken.
 Jede Zeile enthält Links zur ersten und zweiten Weiterleitung sowie dem Ziel der zweiten Weiterleitung, welches für gewöhnlich die gewünschte Zielseite ist, auf die bereits die erste Weiterleitung zeigen sollte.
@@ -4175,4 +4179,7 @@ Anderenfalls kannst du auch das untenstehende einfache Formular nutzen. Dein Kom
 'duration-centuries' => '$1 {{PLURAL:$1|Jahrhundert|Jahrhunderte}}',
 'duration-millennia' => '$1 {{PLURAL:$1|Jahrtausend|Jahrtausende}}',
 
+# Unknown messages
+'pageswithprop-legend' => 'Seiten mit einer Seiteneigenschaft',
+'pageswithprop-submit' => 'Los',
 );

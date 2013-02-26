@@ -2366,7 +2366,7 @@ La dirección de correo electrónico que indicaste en [[Special:Preferences|tus 
 'emailccsubject' => 'Copia de tu mensaje a $1: $2',
 'emailsent' => 'Correo electrónico enviado',
 'emailsenttext' => 'Se ha enviado tu mensaje de correo electrónico.',
-'emailuserfooter' => 'Este correo electrónico fue enviado por $1 a $2 a través de la función «Enviar correo electrónico a este usuario» en {{SITENAME}}.',
+'emailuserfooter' => 'Este correo electrónico fue enviado por $1 a $2 a través de la función «Enviar un correo electrónico a este usuario» en {{SITENAME}}.',
 
 # User Messenger
 'usermessage-summary' => 'Dejando un mensaje de sistema.',

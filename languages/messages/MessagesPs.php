@@ -533,6 +533,7 @@ $1',
 
 تاسې کولای شی چې د کارن-نوم نه پرته په ورکنومي توګه {{SITENAME}} وکاروی، او يا هم په همدې او يا کوم بل کارن-نوم، يو ځل <span class='plainlinks'>[$1 بيا غونډال ته ورننوځۍ]</span>.
 دا په پام کې وساتۍ چې تر څو تاسې د خپل کتنمل حافظه نه وي سپينه کړې، نو ځينې مخونو کې به لا تر اوسه پورې په غونډال کې ننوتي ښکارۍ.",
+'welcomeuser' => '$1، ښه راغلې!',
 'yourname' => 'کارن-نوم:',
 'yourpassword' => 'پټنوم:',
 'yourpasswordagain' => 'پټنوم بيا وليکه',
@@ -2614,7 +2615,7 @@ $5
 'specialpages-group-highuse' => 'ډېر کارېدونکي مخونه',
 'specialpages-group-pages' => 'د مخونو لړليک',
 'specialpages-group-pagetools' => 'د مخ اوزارونه',
-'specialpages-group-wiki' => 'ويکيډاټا او اوزارونه',
+'specialpages-group-wiki' => 'توکي او اوزارونه',
 
 # Special:BlankPage
 'blankpage' => 'تش مخ',

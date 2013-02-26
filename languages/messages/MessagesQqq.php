@@ -162,8 +162,11 @@ This is the toolbar: [[Image:Toolbar.png]]",
 'tog-editsectiononrightclick' => "[[Special:Preferences]], tab 'Edit'. Offers user to edit a section by clicking on a section title. {{Gender}}",
 'tog-showtoc' => "[[Special:Preferences]], tab 'Misc'.
 Offers user to show a table of contents automatically if a page has more than 3 headings (= 4 or more headings).",
-'tog-rememberpassword' => "{{Identical|Remember my login on this computer}}[[Special:Preferences]], tab 'User profile', section 'Change password'. Offers user remember login details.  {{Gender}} Parameters:
-* $1 is the number of days the login details are remembered.",
+'tog-rememberpassword' => "{{Gender}}
+[[Special:Preferences]], tab 'User profile', section 'Change password'. Offers user remember login details.
+Parameters:
+* $1 - the number of days the login details are remembered
+{{Identical|Remember my login on this computer}}",
 'tog-watchcreations' => "[[Special:Preferences]], tab 'Watchlist'. Offers user to add created pages to watchlist. {{Gender}}",
 'tog-watchdefault' => "[[Special:Preferences]], tab 'Watchlist'. Offers user to add edited pages to watchlist. {{Gender}}",
 'tog-watchmoves' => "[[Special:Preferences]], tab 'Watchlist'. Offers user to add moved pages to watchlist. {{Gender}}",
@@ -223,8 +226,7 @@ This option means "underline links as in your user skin or your browser", there 
 # Font style option in Special:Preferences
 'editfont-style' => 'Used in [[Special:Preferences]], tab Editing. {{Gender}}',
 'editfont-default' => 'Option used in [[Special:Preferences]], tab Editing. {{Gender}}
-
-{{identical|Browser default}}',
+{{Identical|Browser default}}',
 'editfont-monospace' => 'Option used in [[Special:Preferences]], tab Editing. {{Gender}}',
 'editfont-sansserif' => 'Option used in [[Special:Preferences]], tab Editing. {{Gender}}',
 'editfont-serif' => 'Option used in [[Special:Preferences]], tab Editing. {{Gender}}',
@@ -315,21 +317,31 @@ This option means "underline links as in your user skin or your browser", there 
 'category-empty' => 'The text displayed in category page when that category is empty',
 'hidden-categories' => 'Used in the categories section of pages. Is followed by a colon and a list of categories.',
 'hidden-category-category' => 'Name of the [[mw:Help:Tracking categories|tracking category]] where hidden categories will be listed.',
-'category-subcat-count' => 'This message is displayed at the top of a category page showing the number of pages in the category. Parameters:
-* $1: number of subcategories shown
-* $2: total number of subcategories in category',
-'category-subcat-count-limited' => 'This message is displayed at the top of a category page showing the number of pages in the category when not all pages in a category are counted. Parameters:
-* $1: number of subcategories shown',
+'category-subcat-count' => 'This message is displayed at the top of a category page showing the number of pages in the category.
+
+Parameters:
+* $1 - number of subcategories shown
+* $2 - total number of subcategories in category',
+'category-subcat-count-limited' => 'This message is displayed at the top of a category page showing the number of pages in the category when not all pages in a category are counted.
+
+Parameters:
+* $1 - number of subcategories shown',
 'category-article-count' => 'This message is used on category pages. Parameters:
-* $1: number of pages shown
-* $2: total number of pages in category',
-'category-article-count-limited' => 'This message is displayed at the top of a category page showing the number of pages in the category when not all pages in a category are counted. Parameters:
-* $1: number of pages shown',
-'category-file-count' => 'This message is displayed at the top of a category page showing the number of pages in the category. Parameters:
-* $1: number of files shown
-* $2: total number of files in category',
-'category-file-count-limited' => 'This message is displayed at the top of a category page showing the number of pages in the category when not all pages in a category are counted. Parameters:
-* $1: number of files shown',
+* $1 - number of pages shown
+* $2 - total number of pages in category',
+'category-article-count-limited' => 'This message is displayed at the top of a category page showing the number of pages in the category when not all pages in a category are counted.
+
+Parameters:
+* $1 - number of pages shown',
+'category-file-count' => 'This message is displayed at the top of a category page showing the number of pages in the category.
+
+Parameters:
+* $1 - number of files shown
+* $2 - total number of files in category',
+'category-file-count-limited' => 'This message is displayed at the top of a category page showing the number of pages in the category when not all pages in a category are counted.
+
+Parameters:
+* $1 - number of files shown',
 'listingcontinuesabbrev' => 'Shown in contiuation of each first letter group.
 See http://test.wikipedia.org/wiki/Category:Test_ko?uselang={{SUBPAGENAME}}, for example.',
 'index-category' => 'Name of the [[mw:Help:Tracking categories|tracking category]] where pages with the <nowiki>__INDEX__</nowiki> behaviour switch are listed. For description of this behaviour switch see [[mw:Help:Magic_words#Behavior_switches|MediaWiki]].',
@@ -564,16 +576,18 @@ See also:
 'viewtalkpage' => 'Used in Standard (a.k.a. Classic) skin as a link to talk page for all namespaces, in edit or history mode.',
 'otherlanguages' => 'This message is shown under the toolbox. It is used if there are interwiki links added to the page, like <tt><nowiki>[[</nowiki>en:Interwiki article]]</tt>.
 {{Identical|Otherlanguages}}',
-'redirectedfrom' => 'The text displayed when a certain page is redirected to another page.
-*<tt>$1</tt> contains the name of the page user came from.',
+'redirectedfrom' => 'The text displayed when a certain page is redirected to another page. Parameters:
+* $1 - the name of the page user came from',
 'redirectpagesub' => 'Displayed under the page title of a page which is a redirect to another page, see [{{fullurl:Project:Translators|redirect=no}} Project:Translators] for example.
 
 {{Identical|Redirect page}}',
 'lastmodifiedat' => 'This message is shown below each page, in the footer with the logos and links.
-* $1: date
-* $2: time
 
-See also [[MediaWiki:Lastmodifiedatby/{{SUBPAGENAME}}]].',
+Parameters:
+* $1 - date
+* $2 - time
+See also:
+* {{msg-mw|Lastmodifiedatby}}',
 'viewcount' => 'Used as page-view counter.',
 'protectedpage' => "This message is displayed when trying to edit a page you can't edit because it has been protected.
 
@@ -585,7 +599,8 @@ This message is the title for the message {{msg-mw|protectedpagetext}}.",
 'jumptosearch' => 'Part of the "jump to" navigation links. Hidden by default in monobook skin. The format is: [[MediaWiki:Jumpto/{{SUBPAGENAME}}|{{int:jumpto}}]] [[MediaWiki:Jumptonavigation/{{SUBPAGENAME}}|{{int:jumptonavigation}}]], {{int:jumptosearch}}.
 
 {{Identical|Search}}',
-'view-pool-error' => 'Error message. $1 is probably unused.',
+'view-pool-error' => 'Error message. Parameters:
+* $1 - probably unused',
 'pool-timeout' => "Part of {{msg-mw|view-pool-error}}.
 
 For explanation of 'lock' see [[w:Lock_(computer_science)|wikipedia]].",
@@ -665,10 +680,9 @@ See also:
 
 'badaccess' => 'Title shown within page indicating unauthorized access.',
 'badaccess-group0' => 'Shown when you are not allowed to do something.',
-'badaccess-groups' => "Error message when you aren't allowed to do something.
-
-* $1 is a list of groups.
-* $2 is the number of groups.",
+'badaccess-groups' => "Error message when you aren't allowed to do something. Parameters:
+* $1 - a list of groups
+* $2 - the number of groups",
 
 'versionrequired' => 'This message is not used in the MediaWiki core, but was introduced with the reason that it could be useful for extensions. See also {{msg|versionrequiredtext}}.',
 'versionrequiredtext' => 'This message is not used in the MediaWiki core, but was introduced with the reason that it could be useful for extensions. See also {{msg|versionrequired}}.',
@@ -681,7 +695,10 @@ Do '''not''' replace SITENAME with a translation of Wikipedia or some encycopedi
 'backlinksubtitle' => '{{optional}}
 Appears in subtitle
 * $1 is a link to the page (HTML)',
-'retrievedfrom' => 'Message which appears in the source of every page, but it is hidden. It is shown when printing. $1 is a link back to the current page: {{FULLURL:{{FULLPAGENAME}}}}.',
+'retrievedfrom' => 'Message which appears in the source of every page, but it is hidden. It is shown when printing.
+
+Parameters:
+* $1 - a link back to the current page: {{FULLURL:{{FULLPAGENAME}}}}',
 'youhavenewmessages' => 'The yellow message appearing when someone edited your user talk page.
 The format is: "{{int:youhavenewmessages| [[MediaWiki:Newmessageslink/{{SUBPAGENAME}}|{{int:newmessageslink}}]] |[[MediaWiki:Newmessagesdifflink/{{SUBPAGENAME}}|{{int:newmessagesdifflink}}]]}}"',
 'newmessageslink' => 'This is the first link displayed in an orange rectangle when a user gets a message on his talk page.
@@ -693,14 +710,17 @@ Used in message {{msg-mw|youhavenewmessages}} (as parameter $1).
 
 See also:
 * {{msg-mw|Newmessagesdifflinkplural}}',
-'youhavenewmessagesfromusers' => 'New talk indicator message: the message appearing when someone edited your user talk page.
-The message takes three parameters;
-*$1 {{msg-mw|newmessageslinkplural}},
-*$2 {{msg-mw|newmessagesdifflinkplural}}, and
-*$3 the number of authors who have edited the talk page since the owning user last viewed it.',
-'youhavenewmessagesmanyusers' => 'New talk indicator message: the message appearing when someone edited your user talk page. Used when more than 10 users edited the user talk page since the owning user last viewed it, similar to{{msg-mw|youhavenewmessages}}. Parameters:
-* $1 is {{msg-mw|newmessageslinkplural}},
-* $2 is  {{msg-mw|newmessagesdifflinkplural}}.',
+'youhavenewmessagesfromusers' => 'New talk indicator message: the message appearing when someone edited your user talk page. Parameters:
+* $1 - defined as {{msg-mw|newmessageslinkplural}}
+* $2 - defined as {{msg-mw|newmessagesdifflinkplural}}
+* $3 - the number of authors who have edited the talk page since the owning user last viewed it',
+'youhavenewmessagesmanyusers' => 'New talk indicator message: the message appearing when someone edited your user talk page.
+
+Used when more than 10 users edited the user talk page since the owning user last viewed it, similar to {{msg-mw|youhavenewmessages}}.
+
+Parameters:
+* $1 - {{msg-mw|newmessageslinkplural}}
+* $2 - {{msg-mw|newmessagesdifflinkplural}}',
 'newmessageslinkplural' => 'Like {{msg-mw|newmessageslink}} but supporting pluralization. Used in message {{msg-mw|youhavenewmessagesfromusers}} (as parameter $1).
 This message itself takes one parameter, $1, which is 1 if there was one new edit, or 2 if there was more than one new edit
 since the last time the user has seen his or her talk page.',
@@ -759,12 +779,16 @@ View or restore <nowiki>{{PLURAL:$1|one deleted edit|$1 deleted edits}}</nowiki>
 'feed-invalid' => 'Result of check whether feed type is valid or not.',
 'feed-unavailable' => 'This message is displayed when a user tries to use an RSS or Atom feed on a wiki where such feeds have been disabled.',
 'site-rss-feed' => "Used in the HTML header of a wiki's RSS feed.
-$1 is <nowiki>{{SITENAME}}</nowiki>.
 HTML markup cannot be used.
+
+Parameters:
+* $1 - <nowiki>{{SITENAME}}</nowiki>
 {{Identical|S1 RSS/Atom feed}}",
 'site-atom-feed' => "Used in the HTML header of a wiki's Atom feed.
-$1 is <nowiki>{{SITENAME}}</nowiki>.
 HTML markup cannot be used.
+
+Parameters:
+* $1 - <nowiki>{{SITENAME}}</nowiki>
 {{Identical|S1 RSS/Atom feed}}",
 'page-rss-feed' => '{{Identical|S1 RSS/Atom feed}}',
 'page-atom-feed' => '{{Identical|S1 RSS/Atom feed}}',
@@ -880,33 +904,32 @@ This error is shown when trying to open a special page which does not exist, e.g
 'readonly' => 'Used as title of error message when database is locked.',
 'enterlockreason' => 'For developers when locking the database',
 'readonlytext' => 'Used as error message when the database is locked.',
-'missing-article' => "This message is shown when a revision does not exist, either as permalink or as diff. Examples:
-
+'missing-article' => 'This message is shown when a revision does not exist, either as permalink or as diff. Examples:
 # [{{canonicalurl:Project:News|oldid=9999999}} Permalink with invalid revision#]
 # [{{canonicalurl:Project:News|diff=426850&oldid=99999999}} Diff with invalid revision#]
-
-'''Parameters'''
-* $1: Pagename
-* $2: Content of
+Parameters:
+* $1 - Pagename
+* $2 - Content of
 *# {{msg-mw|Missingarticle-rev}} - Permalink with invalid revision#
-*# {{msg-mw|Missingarticle-diff}} - Diff with invalid revision#",
+*# {{msg-mw|Missingarticle-diff}} - Diff with invalid revision#',
 'missingarticle-rev' => 'Parameter $2 of {{msg-mw|Missing-article}}: It is shown after the articlename.
 
-* $1: revision# of the requested id
+Parameters:
+* $1 - revision# of the requested id
 
 [{{canonicalurl:Translating:Tasks|oldid=371789000}} Click here] to see an example of such an error message.',
 'missingarticle-diff' => 'Parameter $2 of {{msg-mw|Missing-article}}: It is shown after the articlename.
 
-* $1: revision# of the old id
-* $2: revision# of the id build the diff with.
+Parameters:
+* $1 - revision# of the old id
+* $2 - revision# of the id build the diff with
 
 [{{canonicalurl:Translating:Tasks|diff=372398&oldid=371789000}} Click here] to see an example of such an error message.',
 'readonly_lag' => 'Error message displayed when the database is locked.',
 'internalerror' => '{{Identical|Internal error}}',
 'internalerror_info' => '* $1 - error message',
-'fileappenderrorread' => '"Append" is a computer procedure, explained on [[w:Append|Wikipedia]].
-
-$1 is a filename, I think.',
+'fileappenderrorread' => '"Append" is a computer procedure, explained on [[w:Append|Wikipedia]]. Parameters:
+* $1 - probably filename',
 'fileappenderror' => 'Parameters:
 * $1 - file name
 * $2 - file name',
@@ -930,8 +953,8 @@ See also:
 * {{msg-mw|Bad-target-model}}',
 'cannotdelete' => 'Error message in deleting. Parameters:
 * $1 - page name or file name',
-'cannotdelete-title' => 'Title of error page when the user cannot delete a page
-* $1 is the page name',
+'cannotdelete-title' => 'Title of error page when the user cannot delete a page. Parameters:
+* $1 - the page name',
 'delete-hook-aborted' => 'Error message shown when an extension hook prevents a page deletion, but does not provide an error message.',
 'badtitle' => 'The page title when a user requested a page with invalid page name. The content will be {{msg-mw|badtitletext}}.',
 'badtitletext' => 'The message shown when a user requested a page with invalid page name. The page title will be {{msg-mw|badtitle}}.
@@ -941,13 +964,15 @@ See also:
 * {{msg-mw|immobile-source-namespace}}
 * {{msg-mw|immobile-target-namespace-iw}}
 * {{msg-mw|immobile-target-namespace}}',
-'perfcached' => 'Like {{msg-mw|perfcachedts}} but used when we do not know how long ago page was cached (unlikely to happen). Parameters:
-* $1 is the max result cut off ($wgQueryCacheLimit)',
+'perfcached' => 'Like {{msg-mw|perfcachedts}} but used when we do not know how long ago page was cached (unlikely to happen).
+
+Parameters:
+* $1 - the max result cut off ($wgQueryCacheLimit)',
 'perfcachedts' => 'Used on pages that list page lists for which the displayed data is cached. Parameters:
-* $1 is a time stamp (date and time combined)
-* $2 is a date (optional)
-* $3 is a time (optional)
-* $4 is the cut off limit for cached results ($wgQueryCacheLimit). If there are more then this many results for the query, only the first $4 of those will be listed on the page. Usually $4 is about 1000.',
+* $1 - a time stamp (date and time combined)
+* $2 - a date (optional)
+* $3 - a time (optional)
+* $4 - the cut off limit for cached results ($wgQueryCacheLimit). If there are more then this many results for the query, only the first $4 of those will be listed on the page. Usually $4 is about 1000.',
 'querypage-no-updates' => 'Text on some special pages, e.g. [[Special:FewestRevisions]].',
 'wrong_wfQuery_params' => 'Used as error message.',
 'viewsource' => 'The text displayed in place of the {{msg-mw|Edit}} tab when the user has no permission to edit the page.
@@ -957,8 +982,8 @@ See also:
 * {{msg-mw|Accesskey-ca-viewsource}}
 * {{msg-mw|Tooltip-ca-viewsource}}
 {{Identical|View source}}',
-'viewsource-title' => 'Page title shown when trying to edit a protected page.
-* $1 is the name of the page',
+'viewsource-title' => 'Page title shown when trying to edit a protected page. Parameters:
+* $1 - the name of the page',
 'actionthrottled' => 'This is the title of an error page. Read it in combination with {{msg-mw|actionthrottledtext}}.',
 'actionthrottledtext' => 'Used as error message. Read it in combination with {{msg-mw|actionthrottled}}.',
 'protectedpagetext' => "This message is displayed when trying to edit a page you can't edit because it has been protected.
@@ -986,12 +1011,14 @@ See also {{msg-mw|protectedinterface}}.',
 * $2 - file repository name
 * $3 - reason',
 'invalidtitle-knownnamespace' => 'Displayed when an invalid title was encountered (generally in a list), but the namespace number is known to exist.
-* $1 is the namespace number
-* $2 is the namespace name in content language or {{msg-mw|blanknamespace}} for the main namespace
-* $3 is the part of the title after the namespace (e.g. SomeName for the page User:SomeName)',
-'invalidtitle-unknownnamespace' => 'Displayed when an invalid title was encountered (generally in a list) and the namespace number is unknown.
-* $1 is the namespace number
-* $2 is the part of the title after the namespace (e.g. SomeName for the page User:SomeName)',
+
+Parameters:
+* $1 - the namespace number
+* $2 - the namespace name in content language or {{msg-mw|blanknamespace}} for the main namespace
+* $3 - the part of the title after the namespace (e.g. SomeName for the page User:SomeName)',
+'invalidtitle-unknownnamespace' => 'Displayed when an invalid title was encountered (generally in a list) and the namespace number is unknown. Parameters:
+* $1 - the namespace number
+* $2 - the part of the title after the namespace (e.g. SomeName for the page User:SomeName)',
 'exception-nologin' => 'Generic page title used on error page when a user is not logged in. Message used by the UserNotLoggedIn exception.
 {{Identical|Not logged in}}',
 'exception-nologin-text' => 'Generic reason displayed on error page when a user is not logged in. Message used by the UserNotLoggedIn exception.',
@@ -1003,8 +1030,8 @@ See also {{msg-mw|protectedinterface}}.',
 'virus-unknownscanner' => 'Used as error message. This message is followed by the virus scanner name.',
 
 # Login and logout pages
-'logouttext' => 'Log out message
-* $1 is an URL to [[Special:Userlogin]] containing returnto and returntoquery parameters',
+'logouttext' => 'Log out message. Parameters:
+* $1 - an URL to [[Special:Userlogin]] containing <code>returnto</code> and <code>returntoquery</code> parameters',
 'welcomeuser' => 'Text for a welcome heading that users see after registering a user account. $1 is the username of the new user. See [[bugzilla:42215]]',
 'welcomecreation-msg' => 'A welcome message users see after registering a user account, following a welcomeuser heading. $1 is the username of the new user. Replaces welcomecreation in 1.21wmf5,see [[bugzilla:42215]]',
 'yourname' => "In user preferences
@@ -1031,7 +1058,7 @@ See also:
 * {{msg-mw|Tooltip-pt-anonlogin}}
 {{Identical|Log in}}",
 'nav-login-createaccount' => "Shown to anonymous users in the upper right corner of the page. When you can't create an account, the message {{msg-mw|login}} is shown.
-{{identical|Log in / create account}}",
+{{Identical|Log in / create account}}",
 'loginprompt' => 'A small notice in the log in form.',
 'userlogin' => 'Name of special page [[Special:UserLogin]] where a user can log in or click to create a user account.
 {{Identical|Log in / create account}}',
@@ -1121,9 +1148,10 @@ Parameters:
 "in the last day" precisely means: during the lasts 86400 seconds (24 hours) ending right now.',
 'emailauthenticated' => 'In user preferences ([[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}) and on [[Special:ConfirmEmail]].
 
-* $1: obsolete, date and time
-* $2: date
-* $3: time',
+Parameters:
+* $1 - obsolete, date and time
+* $2 - date
+* $3 - time',
 'emailnotauthenticated' => 'Message in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}. It appears after saving your e-mail address but before it has been authenticated.',
 'noemailprefs' => "Message appearing in the 'E-mail options' section of the 'User profile' page in [[Special:Preferences|Preferences]], when no user e-mail address has been entered.",
 'emailconfirmlink' => 'Link to [[Special:ConfirmEmail]]. Appears in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}} after saving your e-mail address but before it has been authenticated.',
@@ -1176,9 +1204,8 @@ See also:
 'resetpass-submit-loggedin' => 'Button on [[Special:ResetPass]] to submit new password.
 
 {{Identical|Change password}}',
-'resetpass-submit-cancel' => '{{Identical|Cancel}}
-
-Used on [[Special:ResetPass]]',
+'resetpass-submit-cancel' => 'Used on [[Special:ResetPass]].
+{{Identical|Cancel}}',
 'resetpass-wrong-oldpass' => 'Error message shown on [[Special:ChangePassword]] when the old password is not valid.',
 'resetpass-temp-password' => 'The label of the input box for the temporary password (received by e-mail) on the form displayed after logging in with a temporary password.',
 
@@ -1260,9 +1287,8 @@ See also:
 
 {{Identical|Italic text}}',
 'link_sample' => 'This is the default text in the internal link that is created when you press the third button from the left on the edit toolbar (the "Ab" icon).',
-'link_tip' => '{{Identical|Internal link}}
-
-Tip for internal links',
+'link_tip' => 'Tip for internal links.
+{{Identical|Internal link}}',
 'extlink_sample' => 'This message appears when clicking on the fourth button of the edit toolbar. You can translate "link title". Because many of the localisations had urls that went to domains reserved for advertising, it is recommended that the link is left as-is. All customised links were replaced with the standard one, that is reserved in the standard and will never have ads or something.',
 'extlink_tip' => 'This is the tip that appears when you hover the mouse over the fourth button from the left on the edit toolbar.
 
@@ -1349,28 +1375,24 @@ Should match: {{msg-mw|summary}}.',
 'blockedtitle' => 'Used as title displayed for blocked users. The corresponding message body is one of the following messages:
 * {{msg-mw|Blockedtext|notext=1}}
 * {{msg-mw|Autoblockedtext|notext=1}}',
-'blockedtext' => 'Text displayed to blocked users.
-
-Parameters:
-* <tt>$1</tt> is the blocking sysop (with a link to his/her userpage)
-* <tt>$2</tt> is the reason for the block
-* <tt>$3</tt> is the current IP address of the blocked user
-* <tt>$4</tt> is the blocking sysop’s username (plain text, without the link)
-* <tt>$5</tt> is the unique numeric identifier of the applied autoblock
-* <tt>$6</tt> is the expiry of the block
-* <tt>$7</tt> is the intended target of the block (what the blocking user specified in the blocking form)
-* <tt>$8</tt> is the timestamp when the block started',
-'autoblockedtext' => 'Text displayed to automatically blocked users.
-
-Parameters:
-* <tt>$1</tt> is the blocking sysop (with a link to his/her userpage)
-* <tt>$2</tt> is the reason for the block
-* <tt>$3</tt> is the current IP address of the blocked user
-* <tt>$4</tt> is the blocking sysop’s username (plain text, without the link). Use it for GENDER.
-* <tt>$5</tt> is the unique numeric identifier of the applied autoblock
-* <tt>$6</tt> is the expiry of the block
-* <tt>$7</tt> is the intended target of the block (what the blocking user specified in the blocking form)
-* <tt>$8</tt> is the timestamp when the block started',
+'blockedtext' => 'Text displayed to blocked users. Parameters:
+* $1 - the blocking sysop (with a link to his/her userpage)
+* $2 - the reason for the block
+* $3 - the current IP address of the blocked user
+* $4 - the blocking sysop’s username (plain text, without the link)
+* $5 - the unique numeric identifier of the applied autoblock
+* $6 - the expiry of the block
+* $7 - the intended target of the block (what the blocking user specified in the blocking form)
+* $8 - the timestamp when the block started',
+'autoblockedtext' => 'Text displayed to automatically blocked users. Parameters:
+* $1 - the blocking sysop (with a link to his/her userpage)
+* $2 - the reason for the block
+* $3 - the current IP address of the blocked user
+* $4 - the blocking sysop’s username (plain text, without the link). Use it for GENDER.
+* $5 - the unique numeric identifier of the applied autoblock
+* $6 - the expiry of the block
+* $7 - the intended target of the block (what the blocking user specified in the blocking form)
+* $8 - the timestamp when the block started',
 'blockednoreason' => 'Substituted with <code>$2</code> in the following message if the reason is not given:
 * {{msg-mw|cantcreateaccount-text}}.
 {{Identical|No reason given}}',
@@ -1622,20 +1644,16 @@ See also:
 * {{msg-mw|Post-expand-template-argument-warning}}',
 'parser-template-loop-warning' => '* $1 - page title',
 'parser-template-recursion-depth-warning' => '* $1 - limit value of recursion depth',
-'language-converter-depth-warning' => 'Error message shown when a page uses too deeply nested language conversion syntax
-
-* <tt>$1</tt> is the value of the depth limit',
+'language-converter-depth-warning' => 'Error message shown when a page uses too deeply nested language conversion syntax. Parameters:
+* $1 - the value of the depth limit',
 'node-count-exceeded-category' => 'This message is used as a category name for a [[mw:Help:Tracking categories|tracking category]] where pages are placed automatically if the node-count of the preprocessor exceeds the limit.',
-'node-count-exceeded-warning' => 'Error message shown when a page exceeded the node-count limit of the preprocessor
-
-* <tt>$1</tt> is the value of the node-count limit
-* <tt>$2</tt> is the value of the max node-count limit',
+'node-count-exceeded-warning' => 'Error message shown when a page exceeded the node-count limit of the preprocessor. Parameters:
+* $1 - the value of the node-count limit
+* $2 - the value of the max node-count limit',
 'expansion-depth-exceeded-category' => 'This message is used as a category name for a [[mw:Help:Tracking categories|tracking category]] where pages are placed automatically if the [[meta:Help:Expansion_depth|expansion depth]] of the preprocessor exceeds the limit.',
-'expansion-depth-exceeded-warning' => 'Error message shown when a page exceeded the [[meta:Help:Expansion_depth|expansion depth limit]] of the preprocessor.
-
-Parameters:
-* <tt>$1</tt> is the value of the depth limit
-* <tt>$2</tt> is the value of the max depth limit',
+'expansion-depth-exceeded-warning' => 'Error message shown when a page exceeded the [[meta:Help:Expansion_depth|expansion depth limit]] of the preprocessor. Parameters:
+* $1 - the value of the depth limit
+* $2 - the value of the max depth limit',
 'parser-unstrip-loop-warning' => '{{Doc-important|Do not translate function name "<code>unstrip</code>".}}
 This error is shown when a parser extension tag such as &lt;pre> includes a reference to itself in its own output.
 
@@ -1700,12 +1718,13 @@ See the error message:
 * $3 is the time at which the revision was created.',
 'revision-info' => 'Appears just below the page title when an old version of the page is being viewed.
 
-* $1: date and time of revision
-* $2: a series of links: to author of the revision, his talk page, etc.
-* (optional) $3: revision ID
-* (optional) $4: date of revision
-* (optional) $5: time of revision
-* (optional) $6: author of revision, for GENDER use',
+Parameters:
+* $1 - date and time of revision
+* $2 - a series of links: to author of the revision, his talk page, etc.
+* $3 - (Optional) revision ID
+* $4 - (Optional) date of revision
+* $5 - (Optional) time of revision
+* $6 - (Optional) author of revision, for GENDER use',
 'previousrevision' => 'See also:
 * {{msg-mw|Nextrevision}}',
 'nextrevision' => 'See also:
@@ -1795,13 +1814,13 @@ It is the page title of [[Special:RevisionDelete]].',
 'revdelete-nologid-text' => 'See also:
 * {{msg-mw|Revdelete-nologid-title}}',
 'revdelete-no-file' => 'Used as error message in [[Special:RevisionDelete]].',
-'revdelete-show-file-confirm' => 'A confirmation message shown on Special:Revisiondelete when the request does not contain a valid token (e.g. when a user clicks a link received in mail).
+'revdelete-show-file-confirm' => 'A confirmation message shown on [[Special:Revisiondelete]] when the request does not contain a valid token (e.g. when a user clicks a link received in mail).
 
-* <code>$1</code> is a file name
-* <code>$2</code> is a date
-* <code>$3</code> is a time
-
-{{identical|Are you sure you want to view the deleted revision of the file...}}',
+Parameters:
+* $1 - a file name
+* $2 - a date
+* $3 - a time
+{{Identical|Are you sure you want to view the deleted revision of the file...}}',
 'revdelete-show-file-submit' => 'Reply to {{msg-mw|Revdelete-show-file-confirm}}.
 
 {{Identical|Yes}}',
@@ -2259,8 +2278,8 @@ $1 is the relevance of this result in per cent.
 {{Identical|Related}}',
 'searchall' => '{{Identical|All}}',
 'showingresults' => 'This message is used on some special pages such as [[Special:WantedCategories]]. Parameters:
-*$1 is the total number of results in the batch shown.
-*$2 is the number of the first item listed.
+* $1 - the total number of results in the batch shown
+* $2 - the number of the first item listed
 See also:
 * {{msg-mw|Showingresultsnum}}',
 'showingresultsnum' => 'Parameters:
@@ -2416,8 +2435,8 @@ This option lets your time zone setting use the one that is used on the wiki (of
 {{Related|Timezoneregion}}',
 'allowemail' => 'Used in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.',
 'prefs-searchoptions' => '{{Identical|Search}}',
-'prefs-namespaces' => "{{Identical|Namespaces}}
-Shown as legend of the second fieldset of the tab 'Search' in [[Special:Preferences]]",
+'prefs-namespaces' => "Shown as legend of the second fieldset of the tab 'Search' in [[Special:Preferences]]
+{{Identical|Namespaces}}",
 'defaultns' => 'Used in [[Special:Preferences]], tab "Search".',
 'default' => '{{Identical|Default}}',
 'prefs-files' => 'Title of a tab in [[Special:Preferences]].
@@ -3644,19 +3663,21 @@ Example: [[:Image:Addon-icn.png]]',
 * Parameter $1 is the number of pages that link to the file/image.',
 'linkstoimage-more' => 'Shown on an image description page when a file is used/linked more than 100 times on other pages.
 
-* $1: limit. At the moment hardcoded at 100
-* $2: filename',
+Parameters:
+* $1 - limit. At the moment hardcoded at 100
+* $2 - filename',
 'nolinkstoimage' => 'Displayed on image description pages, see for exampe [[:Image:Tournesol.png#filelinks]].',
 'morelinkstoimage' => '{{doc-important|Do not translate "Special:WhatLinksHere"}}
 Parameters:
 * $1 - page title',
 'linkstoimage-redirect' => 'Item in the "the following pages link to this file" section on a file page if the item is a redirect.
-* $1: an HTML link to the file
-* $2: the list of files that link to the redirect (may be empty)',
-'duplicatesoffile' => 'Shown on file description pages when a file is duplicated
 
-* $1: Number of identical files
-* $2: Name of the shown file to link to the special page "FileDuplicateSearch"',
+Parameters:
+* $1 - an HTML link to the file
+* $2 - the list of files that link to the redirect (may be empty)',
+'duplicatesoffile' => 'Shown on file description pages when a file is duplicated. Parameters:
+* $1 - Number of identical files
+* $2 - Name of the shown file to link to the special page [[Special:FileDuplicateSearch]]',
 'sharedupload' => 'Shown on an image description page when it is used in a central repository (i.e. [[commons:|Commons]] for Wikimedia wikis).
 
 * $1 is the name of the shared repository. On Wikimedia sites, $1 is {{msg-mw|shared-repo-name-shared}}. The default value for $1 is {{msg-mw|shared-repo}}.
@@ -3837,9 +3858,8 @@ Possible alternatives to the word 'content' are 'subject matter' or 'wiki subjec
 'statistics-users' => '{{doc-important|Do not translate "Special:ListUsers"}}
 Used in [[Special:Statistics]].',
 'statistics-users-active' => 'Used in [[Special:Statistics]]',
-'statistics-users-active-desc' => "Description shown beneath ''Active users'' in [[Special:Statistics]]
-
-* \$1: Value of \$wgRCMaxAge in days",
+'statistics-users-active-desc' => "Description shown beneath ''Active users'' in [[Special:Statistics]]. Parameters:
+* \$1 - Value of <code>\$wgRCMaxAge</code> in days",
 'statistics-mostpopular' => 'Used in [[Special:Statistics]]',
 
 'disambiguations' => 'Name of a special page displayed in [[Special:SpecialPages]].',
@@ -3851,11 +3871,11 @@ This block of text is shown on [[:Special:Disambiguations]].
 
 \'\'\'Background information:\'\'\' Beyond telling about links going to disambiguation pages, that they are generally bad, it should explain which pages in the article namespace are seen as disambiguations: [[MediaWiki:Disambiguationspage]] usually holds a list of disambiguation templates of the local wiki. Pages linking to one of them (by transclusion) will count as disambiguation pages. Pages linking to these disambiguation pages, instead to the disambiguated article itself, are listed on [[:Special:Disambiguations]].',
 
-'pageswithprop'         => 'Title for [[Special:PagesWithProp]]',
-'pageswithprop-legend'  => 'Legend for the input form on [[Special:PagesWithProp]]',
-'pageswithprop-text'    => 'Introductory text for the input form on [[Special:PagesWithProp]]',
-'pageswithprop-prop'    => 'Label for the property name input field on [[Special:PagesWithProp]]',
-'pageswithprop-submit'  => 'Label for the submit button on [[Special:PagesWithProp]]',
+'pageswithprop' => 'Title for [[Special:PagesWithProp]].
+{{Identical|Page with page property}}',
+'pageswithprop-text' => 'Introductory text for the input form on [[Special:PagesWithProp]]',
+'pageswithprop-prop' => 'Label for the property name input field on [[Special:PagesWithProp]].
+{{Identical|Property name}}',
 
 'doubleredirects' => 'Name of [[Special:DoubleRedirects]] displayed in [[Special:SpecialPages]]',
 'doubleredirectstext' => 'Shown on top of [[Special:Doubleredirects]]',
@@ -3933,10 +3953,10 @@ $1 is a page title",
 'listusers-editsonly' => 'Option in [[Special:ListUsers]].',
 'listusers-creationsort' => 'Option in [[Special:ListUsers]].',
 'usereditcount' => 'Shown behind every username on [[Special:ListUsers]].',
-'usercreated' => 'Used in [[Special:ListUsers]].
-* <code>$1</code> is a date
-* <code>$2</code> is a time
-* <code>$3</code> is the name of the user, for use in GENDER',
+'usercreated' => 'Used in [[Special:ListUsers]]. Parameters:
+* $1 - a date
+* $2 - a time
+* $3 - the name of the user, for use in GENDER',
 'newpages' => 'Name of special page displayed in [[Special:SpecialPages]]
 {{Identical|New page}}',
 'newpages-username' => '{{Identical|Username}}',
@@ -4206,9 +4226,8 @@ The title for this error message is {{msg-mw|Usermaildisabled}}.',
 'emailusername' => 'This is a prompt being used in [[Special:Emailuser]] when called without a (valid) target user for the e-mail.
 
 {{Identical|Username}}',
-'emailusernamesubmit' => '{{Identical|Submit}}
-
-This is a button text used in [[Special:Emailuser]] when called without a (valid) target user for the e-mail.',
+'emailusernamesubmit' => 'This is a button text used in [[Special:Emailuser]] when called without a (valid) target user for the e-mail.
+{{Identical|Submit}}',
 'email-legend' => 'Title of the box in [[Special:EmailUser]]',
 'emailfrom' => 'Field in [[Special:EmailUser]].
 {{Identical|From}}',
@@ -4227,10 +4246,9 @@ This is a button text used in [[Special:Emailuser]] when called without a (valid
 'emailccsubject' => 'Subject of the carbon-copied  email for the sender sent through MediaWiki.',
 'emailsent' => 'Title of [[Special:EmailUser]] when it says you it sent an email',
 'emailsenttext' => 'When you send an e-mail, [[Special:EmailUser]] says you this (Your email has been sent).',
-'emailuserfooter' => 'This message is appended to every email sent through the "Email user" function.
-
-* $1: username of the sender
-* $2: username of the recipient',
+'emailuserfooter' => 'This message is appended to every email sent through the "Email user" function. Parameters:
+* $1 - username of the sender
+* $2 - username of the recipient',
 
 # User Messenger
 'usermessage-summary' => 'This message is used as an edit summary for any message that is posted because of a system event. Translate "leaving a message" in the sense of: to give a message to someone; to deliver a message somewhere; to deposit.',
@@ -4247,9 +4265,9 @@ See also:
 * {{msg-mw|Tooltip-pt-watchlist}}
 {{Identical|My watchlist}}',
 'watchlistfor2' => 'Subtitle on [[Special:Watchlist]].
-
-*$1: Username of current user
-*$2: Tool links (View relevant changes | View and edit watchlist | Edit raw watchlist)
+Parameters:
+* $1 - Username of current user
+* $2 - Tool links (View relevant changes | View and edit watchlist | Edit raw watchlist)
 {{Identical|For $1}}',
 'nowatchlist' => 'Displayed when there is no pages in the watchlist.',
 'watchlistanontext' => '* $1 is a link to [[Special:UserLogin]] with {{msg-mw|loginreqlink}} as link description',
@@ -4483,17 +4501,17 @@ See also:
 # Rollback
 'rollback' => '{{Identical|Rollback}}',
 'rollback_short' => '{{Identical|Rollback}}',
-'rollbacklink' => '{{Identical|Rollback}}
+'rollbacklink' => '{{Doc-actionlink}}
 This link text appears on the recent changes page to users who have the "rollback" right.
 This message has a tooltip {{msg-mw|tooltip-rollback}}
+{{Identical|Rollback}}',
+'rollbacklinkcount' => '{{doc-actionlink}}
+Text of the rollback link showing the number of edits to be rolled back. See also {{msg-mw|rollbacklink}}.
 
-{{Doc-actionlink}}',
-'rollbacklinkcount' => 'Text of the rollback link showing the number of edits to be rolled back. See also {{msg-mw|rollbacklink}}.
-* $1: the number of edits that will be rollbacked. If $1 is over the value of $wgShowRollbackEditCount (default: 10) {{msg-mw|rollbacklinkcount-morethan}} is used.
+Parameters:
+* $1 - the number of edits that will be rollbacked. If $1 is over the value of <code>$wgShowRollbackEditCount</code> (default: 10) {{msg-mw|rollbacklinkcount-morethan}} is used.
 
-The rollback link is displayed with a tooltip {{msg-mw|Tooltip-rollback}}
-
-{{Doc-actionlink}}',
+The rollback link is displayed with a tooltip {{msg-mw|Tooltip-rollback}}',
 'rollbacklinkcount-morethan' => 'Text of the rollback link when a greater number of edits is to be rolled back. See also {{msg-mw|rollbacklink}}.
 
 When the number of edits rolled back is smaller than [[mw:Manual:$wgShowRollbackEditCount|$wgShowRollbackEditCount]], {{msg-mw|rollbacklinkcount}} is used instead.
@@ -4506,19 +4524,21 @@ See also:
 * {{msg-mw|Notvisiblerev}}
 {{Identical|Revert}}
 {{Identical|Rollback}}',
-'alreadyrolled' => "Appear when there's rollback and/or edit collision.
-* $1: the page to be rollbacked
-* $2: the editor to be rollbacked of that page
-* $3: the editor that cause collision
-
+'alreadyrolled' => "Appear when there's rollback and/or edit collision. Parameters:
+* $1 - the page to be rollbacked
+* $2 - the editor to be rollbacked of that page
+* $3 - the editor that cause collision
 {{Identical|Rollback}}",
 'editcomment' => "Only shown if there is an edit ''{{msg-mw|summary}}''",
-'revertpage' => '{{Identical|Revert}}
-Additionally available:
-* $3: revid of the revision reverted to,
-* $4: timestamp of the revision reverted to,
-* $5: revid of the revision reverted from,
-* $6: timestamp of the revision reverted from',
+'revertpage' => 'Parameters:
+* $1 - username 1
+* $2 - username 2
+Additionally available parameters:
+* $3 - revid of the revision reverted to
+* $4 - timestamp of the revision reverted to
+* $5 - revid of the revision reverted from
+* $6 - timestamp of the revision reverted from
+{{Identical|Revert}}',
 'revertpage-nouser' => 'This is a confirmation message a user sees after reverting, when the username of the version is hidden with RevisionDelete.
 In other cases the message {{msg-mw|revertpage}} is used.',
 'rollback-success' => 'This message shows up on screen after successful revert (generally visible only to admins). $1 describes user whose changes have been reverted, $2 describes user which produced version, which replaces reverted version.
@@ -4601,9 +4621,10 @@ See also:
 {{Identical|Other time}}',
 'protect-existing-expiry' => 'Shows the existing expiry time in the drop down menu of the protection form ([{{canonicalurl:User:Raymond/test|action=unprotect}} example])
 
-* $1: date and time of the existing expiry time (kept for backward compatibility purposes)
-* $2: date of the existing expiry time
-* $3: time of the existing expiry time',
+Parameters:
+* $1 - date and time of the existing expiry time (kept for backward compatibility purposes)
+* $2 - date of the existing expiry time
+* $3 - time of the existing expiry time',
 'protect-otherreason' => 'Shown on the page protection form as label for the following input field (text)
 {{Identical|Other/additional reason}}',
 'protect-otherreason-op' => 'Shown on the page protection form in the drop down menu
@@ -4617,9 +4638,9 @@ See also:
 See also:
 * {{msg-mw|Delete-edit-reasonlist}}
 * {{msg-mw|Ipb-edit-dropdown}}',
-'protect-expiry-options' => "{{Identical|Infinite}}{{doc-important|Be careful: '''1 translation:1 english''', so the first part is the translation and the second part should stay in English.}}
-
-Options for the duration of the page protection. Example: See e.g. [[MediaWiki:Protect-expiry-options/nl]] if you still don't know how to do it.",
+'protect-expiry-options' => "{{doc-important|Be careful: '''1 translation:1 english''', so the first part is the translation and the second part should stay in English.}}
+Options for the duration of the page protection. Example: See e.g. [[MediaWiki:Protect-expiry-options/nl]] if you still don't know how to do it.
+{{Identical|Infinite}}",
 'restriction-type' => 'Used on [[Special:ProtectedPages]]. The text next to a drop-down box. See [[mw:Manual:Administrators|MediaWiki Manual]] for more information on protection.
 {{Identical|Permission}}',
 'restriction-level' => 'Used on [[Special:ProtectedPages]] and [[Special:ProtectedTitles]]. The text next to a drop-down box. See the [[mw:Project:Protected_titles|help page on MediaWiki]] and on [[meta:Protect|Meta]] for more information.',
@@ -4689,13 +4710,14 @@ See also:
 * {{msg-mw|Undeletehistory}}
 * {{msg-mw|Undeleterevdel}}',
 'undelete-revision' => 'Shown in "View and restore deleted pages" ([[Special:Undelete/$1]]).
-
-* $1: deleted page name
-* $3: user name (author of revision, not who deleted it)
-* $4: date of the revision
-* $5: time of the revision
-
-\'\'Example:\'\' Deleted revision of [[Main Page]] (as of {{CURRENTDAY}} {{CURRENTMONTHNAME}} {{CURRENTYEAR}}, at {{CURRENTTIME}}) by [[User:Username|Username]]:',
+Parameters:
+* $1 - deleted page name
+* $2 - (unused)
+* $3 - user name (author of revision, not who deleted it)
+* $4 - date of the revision
+* $5 - time of the revision
+Example:
+* Deleted revision of [[Main Page]] (as of {{CURRENTDAY}} {{CURRENTMONTHNAME}} {{CURRENTYEAR}}, at {{CURRENTTIME}}) by [[User:Username|Username]]:',
 'undelete-nodiff' => 'Used in [[Special:Undelete]].',
 'undeletebtn' => 'Shown on [[Special:Undelete]] as button caption and on [[Special:Log/delete|deletion log]] after each entry (for sysops).
 
@@ -4725,8 +4747,8 @@ See also:
 See also:
 * {{msg-mw|Undeletedrevisions-files}}
 * {{msg-mw|Undeletedrevisions}}',
-'cannotundelete' => 'Message shown when undeletion failed for some reason.
-* <code>$1</code> is the combined wikitext of messages for all errors that caused the failure.',
+'cannotundelete' => 'Message shown when undeletion failed for some reason. Parameters:
+* $1 - the combined wikitext of messages for all errors that caused the failure',
 'undeletedpage' => '* $1 - page title',
 'undelete-header' => 'Used in [[Special:Undelete]].',
 'undelete-search-title' => 'Page title when showing the search form in [[Special:Undelete]].
@@ -4767,10 +4789,12 @@ See also:
 * {{msg-mw|Undelete-error-short}}
 * {{msg-mw|Undelete-error-long}}',
 'undelete-show-file-confirm' => 'A confirmation message shown on [[Special:Undelete]] when the request does not contain a valid token (e.g. when a user clicks a link received in mail).
-* <code>$1</code> is the name of the file being undeleted.
-* <code>$2</code> is the date of the displayed revision.
-* <code>$3</code> is the time of the displayed revision.
-{{identical|Are you sure you want to view the deleted revision of the file...}}',
+
+Parameters:
+* $1 - the name of the file being undeleted
+* $2 - the date of the displayed revision
+* $3 - the time of the displayed revision
+{{Identical|Are you sure you want to view the deleted revision of the file...}}',
 'undelete-show-file-submit' => '{{Identical|Yes}}',
 'undelete-revisionrow' => "{{Optional}}
 A revision row in the undelete page. Parameters:
@@ -5018,9 +5042,9 @@ See also:
 {{Identical|Automatically block ...}}',
 'ipbsubmit' => '{{Identical|Block this user}}',
 'ipbother' => '{{Identical|Other time}}',
-'ipboptions' => "{{Identical|Infinite}}{{doc-important|Be careful: '''1 translation:1 english''', so the first part is the translation and the second part should stay in English.}}
-
-Options for the duration of the block. Example: See e.g. [[MediaWiki:Ipboptions/nl]] if you still don't know how to do it.",
+'ipboptions' => "{{doc-important|Be careful: '''1 translation:1 english''', so the first part is the translation and the second part should stay in English.}}
+Options for the duration of the block. Example: See e.g. [[MediaWiki:Ipboptions/nl]] if you still don't know how to do it.
+{{Identical|Infinite}}",
 'ipbotheroption' => '{{Identical|Other}}',
 'ipbotherreason' => '{{Identical|Other/additional reason}}',
 'ipbhidename' => 'This is the label for a checkbox in the user block form on [[Special:Block]].
@@ -5639,7 +5663,7 @@ See also:
 'delete_and_move_text' => 'Used when moving a page, but the destination page already exists and needs deletion. This message is to confirm that you really want to delete the page. See also {{msg|delete and move confirm}}.',
 'delete_and_move_confirm' => 'Used when moving a page, but the destination page already exists and needs deletion. This message is for a checkbox to confirm that you really want to delete the page. See also {{msg|delete and move text}}.',
 'delete_and_move_reason' => 'Shown as reason in content language in the deletion log. Parameter:
-* $1: The page name for which this page was deleted.',
+* $1 - The page name for which this page was deleted.',
 'selfmove' => 'Used as error message when moving page.
 
 See also:
@@ -5674,9 +5698,11 @@ See also:
 * {{msg-mw|Immobile-target-page}}',
 'bad-target-model' => 'This message is shown when attempting to move a page, but the move would change the page\'s content model.
 This may be the case when [[mw:Manual:$wgContentHandlerUseDB|$wgContentHandlerUseDB]] is set to false, because then a page\'s content model is derived from the page\'s title.
-* $1: The localized name of the original page\'s content model:
+
+Parameters:
+* $1 - The localized name of the original page\'s content model:
 **{{msg-mw|Content-model-wikitext}}, {{msg-mw|Content-model-javascript}}, {{msg-mw|Content-model-css}} or {{msg-mw|Content-model-text}}
-* $2: The localized name of the content model used by the destination title:
+* $2 - The localized name of the content model used by the destination title:
 **{{msg-mw|Content-model-wikitext}}, {{msg-mw|Content-model-javascript}}, {{msg-mw|Content-model-css}} or {{msg-mw|Content-model-text}}',
 'imagenocrossnamespace' => 'Used as error message.
 
@@ -5964,14 +5990,14 @@ See also:
 * {{msg-mw|Import-noarticle}}
 * {{msg-mw|Importbadinterwiki}}',
 'import-nonewrevisions' => 'Used in [[Special:Import]].',
-'xml-error-string' => ':$1: Some kind of message, perhaps name of the error?
-:$2: line number
-:$3: columm number
-:$4: ?? $this->mByte . $this->mContext
-:$5: error description
-----
-:Example
-Import failed: XML import parse failure at line 1, col 1 (byte 3; "- <mediawiki xml"): Empty document',
+'xml-error-string' => 'Parameters:
+* $1 - Some kind of message, perhaps name of the error?
+* $2 - line number
+* $3 - column number
+* $4 - ?? $this->mByte . $this->mContext
+* $5 - error description
+Example:
+* Import failed: XML import parse failure at line 1, col 1 (byte 3; "- <mediawiki xml"): Empty document',
 'import-upload' => 'Used on [[Special:Import]].
 
 Related messages:
@@ -6501,15 +6527,19 @@ This message is the variable $3 in the message {{msg-mw|lastmodifiedatby}}. This
 
 See also {{msg-mw|Anonusers}} and {{msg-mw|Siteuser}}.",
 'lastmodifiedatby' => "This message is shown when viewing the credits of a page (example: [{{fullurl:Main Page|action=credits}}]). Note that this action is disabled by default (currently enabled on translatewiki.net).
-* $1: date
-* $2: time
-* $3: if the user has entered his 'real name' in his preferences then this variable is his 'real name'. If the user has not entered his 'real name' in his preferences then this variable is the message [[Mediawiki:siteuser/{{SUBPAGENAME}}]], which includes his username.
-* $4: username in plain text. Can be used for GENDER
 
-See also [[MediaWiki:Lastmodifiedat/{{SUBPAGENAME}}]].",
+Parameters:
+* $1 - date
+* $2 - time
+* $3 - if the user has entered his 'real name' in his preferences then this variable is his 'real name'. If the user has not entered his 'real name' in his preferences then this variable is the message {{msg-mw|Siteuser}}, which includes his username.
+* $4 - username in plain text. Can be used for GENDER
+See also:
+* {{msg-mw|Lastmodifiedat}}",
 'othercontribs' => 'This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}). Note that this action is disabled by default (currently enabled on translatewiki.net - to use type <nowiki>&action=credits</nowiki> at the end of any URL in the address bar).
-* $1: the list of author(s) of the revisions preceding the current revision. It appears after the message [[Mediawiki:lastmodifiedatby/{{SUBPAGENAME}}]]. If there are no previous authors this message does not appear at all. If needed the messages [[Mediawiki:siteusers/{{SUBPAGENAME}}]], [[Mediawiki:anonymous/{{SUBPAGENAME}}]] and [[Mediawiki:and/{{SUBPAGENAME}}]] are part of the list of names.
-* $2: optional, the count of names in $1',
+
+Parameters:
+* $1 - the list of author(s) of the revisions preceding the current revision. It appears after the message {{msg-mw|Lastmodifiedatby}}. If there are no previous authors this message does not appear at all. If needed the messages {{msg-mw|Siteusers}}, {{msg-mw|Anonymous}} and {{msg-mw|And}} are part of the list of names.
+* $2 - (Optional) the count of names in $1',
 'others' => 'The following explanation is guesswork. This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}). Note that this action is disabled by default (currently enabled on translatewiki.net - to use type <nowiki>&action=credits</nowiki> at the end of any URL in the address bar).
 
 The message appears at the end of the list of credits given in the message [[Mediawiki:Othercontribs/{{SUBPAGENAME}}]] if the number of contributors is above a certain level.
@@ -7104,9 +7134,11 @@ This tag shows the detail of the fraction of a second (1/100s) at which the file
 The exposure time. Number of (or fraction of) seconds the film was exposed to light. The value for this property is formatted using {{msg-mw|exif-exposuretime-format}}',
 'exif-exposuretime-format' => "Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
-*$1 is the exposure time written as a fraction of a second, for example 1/640 of a second.
-*$2 is the exposure time written as a decimal, for example 0.0015625.
-*'sec' is the abbreviation used in English for the unit of time 'second'.",
+Parameters:
+* $1 - the exposure time written as a fraction of a second, for example 1/640 of a second
+* $2 - the exposure time written as a decimal, for example 0.0015625
+
+'sec' is the abbreviation used in English for the unit of time 'second'.",
 'exif-fnumber' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 The [[w:F_number|F number]] is the relative aperture of the camera.',
@@ -7358,7 +7390,7 @@ This is taken from IPTC-iim 2:135 and XMP's dc:language.
 {{Identical|Language}}",
 'exif-iimversion' => 'IIM version number. Version of information interchange 2:xx records. 4 is current version. 2 is often seen as well. This is the value stored 2:00 field (Note, iptc-iim also stores a model version in 1:00. This version field displays the 2:00 record only)',
 'exif-iimcategory' => 'Primary Category of image (or other media). Technically supposed to be limited to 3 characters, however that is not always followed. Some common 3 letter category abbreviations are expanded by mediawiki. Similar to {{msg-mw|exif-keywords}}.
-{{identical|Category}}',
+{{Identical|Category}}',
 'exif-iimsupplementalcategory' => 'Supplemental categories. Like {{msg-mw|exif-iimcategory}} but for categories beyond the main one.',
 'exif-datetimeexpires' => 'Date after which not to use the image (media). This is often used in news situations were certain things (like forecasts) should not be used after a specified date.',
 'exif-datetimereleased' => 'Earliest date the image (media) can be used. See 2:30 of http://www.iptc.org/std/IIM/4.1/specification/IIMV4.1.pdf',
@@ -8257,15 +8289,19 @@ Name of month in Hebrew calendar.',
 Name of month in Hebrew calendar.',
 
 # Signatures
-'signature' => "This will be substituted in the signature (~<nowiki></nowiki>~~ or ~~<nowiki></nowiki>~~ excluding timestamp)
-* $1: the username that is currently login
-* $2: the customized signature which is specified in [[Special:Preferences|user's preferences]] as non-raw
+'signature' => "This will be substituted in the signature (~<nowiki></nowiki>~~ or ~~<nowiki></nowiki>~~ excluding timestamp). Parameters:
+* $1 - the username that is currently login
+* $2 - the customized signature which is specified in [[Special:Preferences|user's preferences]] as non-raw
 Use your language default parentheses ({{msg-mw|parentheses}}), but not use the message direct.",
 'timezone-utc' => '{{optional}}',
 
 # Core parser functions
-'unknown_extension_tag' => '* Description: This is an error shown when you use an unknown extension tag name. This feature allows tags like <tt><nowiki><pre></nowiki></tt> to be called with a parser like <tt><nowiki>{{#tag:pre}}</nowiki></tt>.
-* Parameter $1: This is the unknown extension tag name.',
+'unknown_extension_tag' => 'This is an error shown when you use an unknown extension tag name.
+
+This feature allows tags like <code><nowiki><pre></nowiki></code> to be called with a parser like <code><nowiki>{{#tag:pre}}</nowiki></code>.
+
+Parameters:
+* $1 - the unknown extension tag name',
 'duplicate-defaultsort' => 'See definition of [[w:Sorting|sort key]] on Wikipedia.',
 
 # Special:Version
@@ -8298,9 +8334,9 @@ This is being used in [[Special:Version]], preceeding the subversion revision nu
 
 {{Identical|Revision}}',
 'version-license' => '{{Identical|License}}',
-'version-poweredby-credits' => 'Message shown on [[Special:Version]]. Parameters are:
-*$1: the current year
-*$2: a list of selected MediaWiki authors',
+'version-poweredby-credits' => 'Message shown on [[Special:Version]]. Parameters:
+* $1 - the current year
+* $2 - a list of selected MediaWiki authors',
 'version-poweredby-others' => 'Used at the very end of {{msg-mw|version-poweredby-credits}} on [[Special:Version]]. First, there\'s a long list of selected MediaWiki authors, then the word "and" (from {{msg-mw|and}}) follows and then this translation, which is supposed to credit the many other people than developer helping with MediaWiki.',
 'version-credits-summary' => 'Summary of the [[Special:Version/Credits]] sub page, which lists all developers etc. who contributed to MediaWiki. Shown at the top.',
 'version-license-info' => '[[wikipedia:GNU GPL|GNU GPL]] notice shown at [[Special:Version]]. See //www.gnu.org/licenses/old-licenses/gpl-2.0-translations.html for available translations.',
@@ -8336,12 +8372,13 @@ A short description of the script path entry point. Links to the mediawiki.org d
 'fileduplicatesearch-submit' => 'Button label on [[Special:FileDuplicateSearch]].
 
 {{Identical|Search}}',
-'fileduplicatesearch-info' => 'Information beneath the thumbnail on the right side shown after a successful search via [[Special:FileDuplicateSearch]]
+'fileduplicatesearch-info' => 'Information beneath the thumbnail on the right side shown after a successful search via [[Special:FileDuplicateSearch]].
 
-* $1: width of the file
-* $2: height of the file
-* $3: File size
-* $4: MIME type',
+Parameters:
+* $1 - width of the file
+* $2 - height of the file
+* $3 - File size
+* $4 - MIME type',
 'fileduplicatesearch-result-1' => 'Result line after the list of files of [[Special:FileDuplicateSearch]]
 
 $1 is the name of the requested file.',
@@ -8403,11 +8440,12 @@ It appears that the word 'valid' describes 'tags', not 'change'. It also appears
 'tags-display-header' => 'Caption of a column in [[Special:Tags]]. For more information on tags see [[mw:Manual:Tags|MediaWiki]].',
 'tags-description-header' => 'Caption of a column in [[Special:Tags]]. For more information on tags see [[mw:Manual:Tags|MediaWiki]].',
 'tags-hitcount-header' => 'Caption of a column in [[Special:Tags]]. For more information on tags see [[mw:Manual:Tags|MediaWiki]].',
-'tags-edit' => '{{Identical|Edit}}
-Used on [[Special:Tags]]. Verb. Used as display text on a link to create/edit a description.',
+'tags-edit' => 'Used on [[Special:Tags]]. Verb. Used as display text on a link to create/edit a description.
+{{Identical|Edit}}',
 'tags-hitcount' => 'Shown in the "{{msg-mw|Tags-hitcount-header}}" column in [[Special:Tags]]. For more information on tags see [[mw:Manual:Tags|MediaWiki]].
 
-* <code>$1</code> is the number of changes marked with the tag',
+Parameters:
+* $1 - the number of changes marked with the tag',
 
 # Special:ComparePages
 'comparepages' => 'The title of [[Special:ComparePages]]',
@@ -8720,4 +8758,9 @@ $4 is the gender of the target user.',
 'duration-centuries' => '{{Related|Duration}}',
 'duration-millennia' => '{{Related|Duration}}',
 
+# Unknown messages
+'pageswithprop-legend' => 'Legend for the input form on [[Special:PagesWithProp]].
+{{Identical|Page with page property}}',
+'pageswithprop-submit' => 'Label for the submit button on [[Special:PagesWithProp]].
+{{Identical|Go}}',
 );

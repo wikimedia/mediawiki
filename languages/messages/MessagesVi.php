@@ -637,7 +637,7 @@ Cơ sở dữ liệu báo lỗi “$3: $4”',
 'enterlockreason' => 'Nêu lý do khóa, cùng với thời hạn khóa',
 'readonlytext' => 'Cơ sở dữ liệu hiện đã bị khóa không nhận trang mới và các điều chỉnh khác, có lẽ để bảo trì cơ sở dữ liệu định kỳ, một thời gian ngắn nữa nó sẽ trở lại bình thường.
 
-Quản lý viên khóa nó đã đưa ra lời giải thích sau: $1',
+Bảo quản viên khóa nó đã đưa ra lời giải thích sau: $1',
 'missing-article' => 'Cơ sở dữ liệu không tìm thấy văn bản của trang lẽ ra phải có, trang      Normal   0               false   false   false      EN-US   X-NONE   X-NONE                                                     MicrosoftInternetExplorer4                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     “$1” $2.
 
 Điều này thường xảy ra do nhấn vào liên kết khác biệt phiên bản đã quá lâu hoặc liên kết lịch sử của một trang đã bị xóa.
@@ -1025,7 +1025,7 @@ Bạn phải đảm bảo với chúng tôi rằng chính bạn là người vi�
 Không thể lưu trang.",
 'readonlywarning' => "'''CẢNH BÁO: Cơ sở dữ liệu đã bị khóa để bảo dưỡng, do đó bạn không thể lưu các sửa đổi của mình. Bạn nên cắt-dán đoạn bạn vừa sửa vào một tập tin và lưu nó lại để sửa đổi sau này.'''
 
-Quản lý viên khi khóa dữ liệu đã đưa ra lý do: $1",
+Bảo quản viên khi khóa dữ liệu đã đưa ra lý do: $1",
 'protectedpagewarning' => "'''Cảnh báo: Trang này đã bị khóa và chỉ có các thành viên có quyền quản lý mới có thể sửa được.'''
 Thông tin mới nhất trong nhật trình được ghi dưới đây để tiện theo dõi:",
 'semiprotectedpagewarning' => "'''Lưu ý:''' Trang này đã bị khóa nên chỉ có các thành viên có tài khoản mới có thể sửa đổi được.
@@ -2069,6 +2069,10 @@ Hãy nhớ kiểm tra các liên kết khác đến bản mẫu trước khi xó
 'disambiguationspage' => 'Template:disambig',
 'disambiguations-text' => "Các trang này có liên kết đến ít nhất một '''trang định hướng''', những trang này có thể có liên kết đến các trang đúng nghĩa hơn.<br />Các trang định hướng là trang sử dụng những bản mẫu được liệt kê ở [[MediaWiki:Disambiguationspage]].",
 
+'pageswithprop' => 'Trang có thuộc tính trang',
+'pageswithprop-text' => 'Trang này liệt kê các trang sử dụng một thuộc tính trang nào đó.',
+'pageswithprop-prop' => 'Tên thuộc tính:',
+
 'doubleredirects' => 'Đổi hướng kép',
 'doubleredirectstext' => 'Trang này liệt kê các trang đổi hướng đến một trang đổi hướng khác.
 Mỗi hàng có chứa các liên kết đến trang đổi hướng thứ nhất và thứ hai, cũng như mục tiêu của trang đổi hướng thứ hai, thường là trang đích “thực sự”, là nơi mà trang đổi hướng đầu tiên nên trỏ đến.
@@ -2119,10 +2123,10 @@ Các mục <del>bị gạch bỏ</del> là các trang đã được sửa.',
 'mostlinked' => 'Trang được liên kết đến nhiều nhất',
 'mostlinkedcategories' => 'Thể loại có nhiều trang nhất',
 'mostlinkedtemplates' => 'Bản mẫu được liên kết đến nhiều nhất',
-'mostcategories' => 'Các trang có nhiều thể loại nhất',
+'mostcategories' => 'Trang có nhiều thể loại nhất',
 'mostimages' => 'Tập tin được liên kết đến nhiều nhất',
-'mostinterwikis' => 'Các trang có nhiều liên kết liên wiki nhất',
-'mostrevisions' => 'Các trang được sửa đổi nhiều lần nhất',
+'mostinterwikis' => 'Trang có nhiều liên kết liên wiki nhất',
+'mostrevisions' => 'Trang được sửa đổi nhiều lần nhất',
 'prefixindex' => 'Tất cả các trang trùng với tiền tố',
 'prefixindex-namespace' => 'Tất cả các trang trùng với tiền tố (không gian $1)',
 'shortpages' => 'Trang ngắn nhất',
@@ -2134,7 +2138,7 @@ Các mục <del>bị gạch bỏ</del> là các trang đã được sửa.',
 'protectedpages-cascade' => 'Chỉ hiển thị khóa theo tầng',
 'protectedpagestext' => 'Các trang này bị khóa không cho sửa đổi hay di chuyển',
 'protectedpagesempty' => 'Hiện không có trang nào bị khóa với các thông số này.',
-'protectedtitles' => 'Các tựa trang được bảo vệ',
+'protectedtitles' => 'Tên trang bị khóa',
 'protectedtitlestext' => 'Các tựa trang sau đây đã bị khóa không cho tạo mới',
 'protectedtitlesempty' => 'Không có tựa trang nào bị khóa với các thông số như vậy.',
 'listusers' => 'Danh sách thành viên',
@@ -2142,9 +2146,9 @@ Các mục <del>bị gạch bỏ</del> là các trang đã được sửa.',
 'listusers-creationsort' => 'Xếp theo ngày khởi tạo',
 'usereditcount' => '$1 {{PLURAL:$1|sửa đổi|sửa đổi}}',
 'usercreated' => '{{GENDER:$3}}mở $1 lúc $2',
-'newpages' => 'Các trang mới nhất',
+'newpages' => 'Trang mới',
 'newpages-username' => 'Tên người dùng:',
-'ancientpages' => 'Các trang cũ nhất',
+'ancientpages' => 'Trang cũ nhất',
 'move' => 'Di chuyển',
 'movethispage' => 'Di chuyển trang này',
 'unusedimagestext' => 'Các tập tin sau tồn tại nhưng chưa được nhúng vào trang nào.
@@ -2660,8 +2664,8 @@ Xem lại những lần cấm tại [[Special:BlockList|danh sách cấm]].',
 'unblocked' => '[[User:$1|$1]] đã hết bị cấm',
 'unblocked-range' => '$1 đã được bỏ cấm',
 'unblocked-id' => '$1 đã hết bị cấm',
-'blocklist' => 'Những người dùng bị cấm',
-'ipblocklist' => 'Những người dùng bị cấm',
+'blocklist' => 'Người dùng bị cấm',
+'ipblocklist' => 'Người dùng bị cấm',
 'ipblocklist-legend' => 'Tìm một thành viên bị cấm',
 'blocklist-userblocks' => 'Ẩn tác vụ cấm tài khoản',
 'blocklist-tempblocks' => 'Ẩn tác vụ cấm có thời hạn',
@@ -3994,7 +3998,7 @@ Các hình ảnh được hiển thị ở kích thước tối đa, còn các l
 * <strong class="mw-specialpagerestricted">Trang đặc biệt được hạn chế.</strong>
 * <span class="mw-specialpagecached">Trang đặc biệt được lấy từ vùng nhớ đệm (có thể lỗi thời).</span>',
 'specialpages-group-maintenance' => 'Báo cáo bảo quản',
-'specialpages-group-other' => 'Những trang đặc biệt khác',
+'specialpages-group-other' => 'Trang đặc biệt khác',
 'specialpages-group-login' => 'Đăng nhập / Mở tài khoản',
 'specialpages-group-changes' => 'Thay đổi gần đây và nhật trình',
 'specialpages-group-media' => 'Báo cáo và tải lên phương tiện',
@@ -4021,7 +4025,7 @@ Các hình ảnh được hiển thị ở kích thước tối đa, còn các l
 #Hãy đặt các mẩu biểu thức chính quy ở phía trên dòng này. Hãy để yên dòng này</pre>',
 
 # Special:Tags
-'tags' => 'Các thẻ đánh dấu thay đổi hợp lệ',
+'tags' => 'Thẻ đánh dấu thay đổi hợp lệ',
 'tag-filter' => 'Bộ lọc [[Special:Tags|thẻ]]:',
 'tag-filter-submit' => 'Bộ lọc',
 'tags-title' => 'Thẻ đánh dấu',
@@ -4179,4 +4183,7 @@ Nếu không thì bạn có thể điền biểu mẫu đơn giản ở dưới.
 'duration-centuries' => '$1 thế kỷ',
 'duration-millennia' => '$1 thiên niên kỷ',
 
+# Unknown messages
+'pageswithprop-legend' => 'Các trang có thuộc tính trang',
+'pageswithprop-submit' => 'Xem',
 );
