@@ -358,6 +358,9 @@ class UploadStash {
 	public function removeFileNoAuth( $key ) {
 		wfDebug( __METHOD__ . " clearing row $key\n" );
 
+		// Ensure we have the UploadStashFile loaded for this key
+		$this->getFile( $key );
+
 		$dbw = $this->repo->getMasterDb();
 
 		$dbw->delete(
