@@ -37,8 +37,6 @@ class nextJobDB extends Maintenance {
 	}
 
 	public function execute() {
-		global $wgMemc;
-
 		$type = false; // job type required/picked
 		if ( $this->hasOption( 'types' ) ) {
 			$types = explode( ' ', $this->getOption( 'types' ) );
