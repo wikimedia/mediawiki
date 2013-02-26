@@ -312,6 +312,13 @@ $wgUploadStashMaxAge = 6 * 3600; // 6 hours
 $wgAllowImageMoving = true;
 
 /**
+ * Enable deferred upload tasks that use the job queue.
+ * Only enable this if job runners are set up for both the
+ * 'AssembleUploadChunks' and 'PublishStashedFile' job types.
+ */
+$wgEnableAsyncUploads = false;
+
+/**
  * These are additional characters that should be replaced with '-' in filenames
  */
 $wgIllegalFileChars = ":";
@@ -5520,6 +5527,8 @@ $wgJobClasses = array(
 	'enotifNotify' => 'EnotifNotifyJob',
 	'fixDoubleRedirect' => 'DoubleRedirectJob',
 	'uploadFromUrl' => 'UploadFromUrlJob',
+	'AssembleUploadChunks' => 'AssembleUploadChunksJob',
+	'PublishStashedFile' => 'PublishStashedFileJob',
 	'null' => 'NullJob'
 );
 
@@ -5533,7 +5542,7 @@ $wgJobClasses = array(
  * - Jobs that you want to run on specialized machines ( like transcoding, or a particular
  *   machine on your cluster has 'outside' web access you could restrict uploadFromUrl )
  */
-$wgJobTypesExcludedFromDefaultQueue = array();
+$wgJobTypesExcludedFromDefaultQueue = array( 'AssembleUploadChunks', 'PublishStashedFile' );
 
 /**
  * Map of job types to configuration arrays.

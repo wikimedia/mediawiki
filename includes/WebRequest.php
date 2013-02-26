@@ -1124,6 +1124,30 @@ HTML;
 		$this->ip = $ip;
 		return $ip;
 	}
+
+	/**
+	 * @param string $ip
+	 * @return void
+	 * @since 1.21
+	 */
+	public function setIP( $ip ) {
+		$this->ip = $ip;
+	}
+
+	/**
+	 * Export the resolved user IP, HTTP headers, and session ID.
+	 * The result will be reasonably sized to allow for serialization.
+	 *
+	 * @return Array
+	 * @since 1.21
+	 */
+	public function exportUserSession() {
+		return array(
+			'ip'        => $this->getIP(),
+			'headers'   => $this->getAllHeaders(),
+			'sessionId' => session_id()
+		);
+	}
 }
 
 /**
@@ -1263,8 +1287,9 @@ class FauxRequest extends WebRequest {
 			throw new MWException( "FauxRequest() got bogus data" );
 		}
 		$this->wasPosted = $wasPosted;
-		if( $session )
+		if( $session ) {
 			$this->session = $session;
+		}
 	}
 
 	/**
