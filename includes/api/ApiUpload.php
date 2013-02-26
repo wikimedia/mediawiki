@@ -679,7 +679,9 @@ class ApiUpload extends ApiBase {
 				),
 			),
 			'ignorewarnings' => false,
-			'file' => null,
+			'file' => array(
+				ApiBase::PARAM_TYPE => 'upload',
+			),
 			'url' => null,
 			'filekey' => null,
 			'sessionkey' => array(
@@ -690,7 +692,9 @@ class ApiUpload extends ApiBase {
 
 			'filesize' => null,
 			'offset' => null,
-			'chunk' => null,
+			'chunk' => array(
+				ApiBase::PARAM_TYPE => 'upload',
+			),
 
 			'async' => false,
 			'asyncdownload' => false,
