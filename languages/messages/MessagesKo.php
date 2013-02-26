@@ -2167,6 +2167,10 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 그 링크는 다른 적절한 문서로 연결할 필요가 있습니다.<br />
 [[MediaWiki:Disambiguationspage]]에서 링크된 틀을 사용하는 문서를 동음이의 문서로 간주합니다.",
 
+'pageswithprop' => '문서 속성으로 된 문서',
+'pageswithprop-text' => '이 문서는 특정 문서 속성을 사용한 문서를 나타냅니다.',
+'pageswithprop-prop' => '속성 이름:',
+
 'doubleredirects' => '이중 넘겨주기 목록',
 'doubleredirectstext' => '이 문서는 다른 넘겨주기 문서로 넘겨주고 있는 문서의 목록입니다.
 매 줄에는 첫 번째 문서와 두 번째 문서의 링크가 있습니다. 그리고 보통 첫 번째 문서가 넘겨주어야 할 "실제" 문서인 두 번째 넘겨주기의 대상이 있습니다.
@@ -4178,7 +4182,7 @@ $5
 'api-error-invalid-file-key' => '내부 오류: 임시 저장소에서 파일을 찾지 못했습니다.',
 'api-error-missingparam' => '내부 오류: 요청 중 매개변수가 누락되었습니다.',
 'api-error-missingresult' => '내부 오류: 파일의 복제가 성공했는지 판단할 수 없습니다.',
-'api-error-mustbeloggedin' => '파일을 올리기 위해서는 로그인해야 합니다.',
+'api-error-mustbeloggedin' => '파일을 올리려면 로그인해야 합니다.',
 'api-error-mustbeposted' => '내부 오류: HTTP POST에 요청이 필요합니다.',
 'api-error-noimageinfo' => '파일 올리기는 성공했지만 서버가 파일에 대해 어떠한 정보도 주지 않았습니다.',
 'api-error-nomodule' => '내부 오류: 올리기 모듈이 설정되지 않았습니다.',
@@ -4206,4 +4210,7 @@ $5
 'duration-centuries' => '$1{{PLURAL:$1|세기}}',
 'duration-millennia' => '$1{{PLURAL:$1|천년}}',
 
+# Unknown messages
+'pageswithprop-legend' => '문서 속성으로 된 문서',
+'pageswithprop-submit' => '가기',
 );

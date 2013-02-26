@@ -1307,7 +1307,7 @@ Certifique-se de que tal alteração manterá a continuidade das ações.',
 'difference-title-multipage' => 'Mudanças entre as páginas "$1" e "$2"',
 'difference-multipage' => '(Diferenças entre páginas)',
 'lineno' => 'Linha $1:',
-'compareselectedversions' => 'Compare as versões selecionadas',
+'compareselectedversions' => 'Comparar as versões selecionadas',
 'showhideselectedversions' => 'Exibir/ocultar edições selecionadas',
 'editundo' => 'desfazer',
 'diff-multi' => '({{PLURAL:$1|Uma edição intermediária|$1 edições intermediárias}} de {{PLURAL:$2|um usuário|$2 usuários}} {{PLURAL:$1|não apresentada|não apresentadas}})',
@@ -2255,7 +2255,7 @@ Veja também [[Special:WantedCategories|categorias pedidas]].',
 'special-categories-sort-abc' => 'ordenar alfabeticamente',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Contribuições de usuário eliminadas',
+'deletedcontributions' => 'Edições eliminadas',
 'deletedcontributions-title' => 'Contribuições de usuário eliminadas',
 'sp-deletedcontributions-contribs' => 'contribuições',
 

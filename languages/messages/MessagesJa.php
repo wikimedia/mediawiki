@@ -2208,6 +2208,10 @@ contenttype/subtypeの形式で入力してください (例: <code>image/jpeg</
 これらのリンクは、より適切なページへのリンクに変更する必要があります。<br />
 [[MediaWiki:Disambiguationspage]] にリンクがあるテンプレートを使用しているページを、曖昧さ回避ページと見なします。",
 
+'pageswithprop' => 'ページプロパティがあるページ',
+'pageswithprop-text' => 'このページでは、特定のページプロパティを持つページを列挙します。',
+'pageswithprop-prop' => 'プロパティ名:',
+
 'doubleredirects' => '二重転送',
 'doubleredirectstext' => 'このページでは、転送ページへの転送ページを列挙します。
 最初の転送ページ、その転送先にある転送ページ、さらにその転送先にあるページ、それぞれへのリンクを各行に表示しています。多くの場合は最終的な転送先が「正しい」転送先であり、最初の転送ページの転送先は最終的な転送先に直接向けるべきです。
@@ -3097,7 +3101,7 @@ MediaWiki 全般のローカライズ (地域化) に貢献したい場合は、
 ファイルの一部のみアップロードされました。',
 'importuploaderrortemp' => '取り込みファイルのアップロードに失敗しました。
 一時フォルダーがありません。',
-'import-parse-failure' => 'XMLの取り込み構文解析に失敗しました',
+'import-parse-failure' => 'XML取り込みの構文解析に失敗しました',
 'import-noarticle' => '取り込むページがありません!',
 'import-nonewrevisions' => 'すべての版は以前に取り込み済みです。',
 'xml-error-string' => '$1、$2 行の $3 文字目 ($4バイト目): $5',
@@ -3107,12 +3111,13 @@ MediaWiki 全般のローカライズ (地域化) に貢献したい場合は、
 'import-invalid-interwiki' => '指定されたウィキから取り込めませんでした。',
 'import-error-edit' => 'あなたにそのページを編集する許可がないため、ページ「$1」は取り込まれませんでした。',
 'import-error-create' => 'あなたにそのページを作成する許可がないため、ページ「$1」は取り込まれませんでした。',
-'import-error-interwiki' => '名前が外部リンク (interwiki) に予約されているため、ページ「$1」を取り込みませんでした。',
+'import-error-interwiki' => 'ページ名が外部リンク (ウィキ間リンク) に予約されているため、ページ「$1」を取り込みませんでした。',
 'import-error-special' => 'ページ「$1」は、ページが許可されない特別名前空間に属しているため取り込みません。',
 'import-error-invalid' => '名前が正しくないため、ページ「$1」を取り込みませんでした。',
+'import-error-unserialize' => 'ページ「$1」の版 $2 は直列化復元できませんでした。この版は $4 として直列化されたコンテンツモデル $3 を使用していると報告されています。',
 'import-options-wrong' => '間違った{{PLURAL:$2|オプション}}です: <nowiki>$1</nowiki>',
-'import-rootpage-invalid' => '入力されたルート ページの名前が無効です。',
-'import-rootpage-nosubpage' => 'ルート ページの名前空間「$1」では、下位ページが許可されていません。',
+'import-rootpage-invalid' => '入力したルートページの名前は無効です。',
+'import-rootpage-nosubpage' => 'ルートページの名前空間「$1」では、下位ページが許可されていません。',
 
 # Import log
 'importlogpage' => '取り込み記録',
@@ -4377,4 +4382,6 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'duration-centuries' => '$1 {{PLURAL:$1|世紀}}',
 'duration-millennia' => '$1{{PLURAL:$1|,000 年}}',
 
+# Unknown messages
+'pageswithprop-submit' => '実行',
 );

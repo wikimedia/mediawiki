@@ -3266,7 +3266,7 @@ Otevřením souboru můžete ohrozit svůj počítač.",
 'months' => '{{PLURAL:$1|$1 měsícem|$1 měsíci}}',
 'years' => '{{PLURAL:$1|$1 rokem|$1 roky}}',
 'ago' => 'před $1',
-'just-now' => 'Právě teď',
+'just-now' => 'právě teď',
 
 # Bad image list
 'bad_image_list' => 'Tato stránka má následující formát:
