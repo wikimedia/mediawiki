@@ -1227,6 +1227,9 @@ class LanguageTest extends LanguageClassesTestCase {
 
 	function providePluralData() {
 		return array(
+			array( 'plural', 0, array(
+				'singular', 'plural'
+			) ),
 			array( 'explicit zero', 0, array(
 				'0=explicit zero', 'singular', 'plural'
 			) ),
@@ -1238,6 +1241,15 @@ class LanguageTest extends LanguageClassesTestCase {
 			) ),
 			array( 'plural', 3, array(
 				'0=explicit zero', '1=explicit one', 'singular', 'plural'
+			) ),
+			array( 'explicit elevan', 11, array(
+				'singular', 'plural', '11=explicit elevan',
+			) ),
+			array( 'plural', 12, array(
+				'singular', 'plural', '11=explicit twelve',
+			) ),
+			array( 'plural', 12, array(
+				'singular', 'plural', '=explicit form',
 			) ),
 		);
 	}
