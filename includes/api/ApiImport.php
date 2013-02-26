@@ -105,7 +105,9 @@ class ApiImport extends ApiBase {
 				ApiBase::PARAM_REQUIRED => true
 			),
 			'summary' => null,
-			'xml' => null,
+			'xml' => array(
+				ApiBase::PARAM_TYPE => 'upload',
+			),
 			'interwikisource' => array(
 				ApiBase::PARAM_TYPE => $wgImportSources
 			),
