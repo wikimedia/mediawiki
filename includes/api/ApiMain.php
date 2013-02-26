@@ -920,6 +920,18 @@ class ApiMain extends ApiBase {
 	}
 
 	/**
+	 * Get a request upload, and register the fact that it was used, for logging.
+	 *
+	 * @since 1.21
+	 * @param $name string Parameter name
+	 * @return WebRequestUpload
+	 */
+	public function getUpload( $name ) {
+		$this->mParamsUsed[$name] = true;
+		return $this->getRequest()->getUpload( $name );
+	}
+
+	/**
 	 * Report unused parameters, so the client gets a hint in case it gave us parameters we don't know,
 	 * for example in case of spelling mistakes or a missing 'g' prefix for generators.
 	 */

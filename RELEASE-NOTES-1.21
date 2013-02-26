@@ -243,6 +243,10 @@ production.
   currently in use on the wiki.
 * (bug 44921) ApiMain::execute() will now return after the CORS check for an
   HTTP OPTIONS request.
+* (bug 44909) API parameters may now be marked as type "upload", which is now
+  used for action=upload's 'file' and 'chunk' parameters. This type will raise
+  an error during parameter validation if the parameter is given but not
+  recognized as an uploaded file.
 
 === API internal changes in 1.21 ===
 * For debugging only, a new global $wgDebugAPI removes many API restrictions when true.

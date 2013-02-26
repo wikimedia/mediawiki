@@ -917,6 +917,29 @@ abstract class ApiBase extends ContextSource {
 			}
 
 			$value = $this->getMain()->getCheck( $encParamName );
+		} elseif ( $type == 'upload' ) {
+			if ( isset( $default ) ) {
+				// Having a default value is not allowed
+				ApiBase::dieDebug( __METHOD__, "File upload param $encParamName's default is set to '$default'. File upload parameters may not have a default." );
+			}
+			if ( $multi ) {
+				ApiBase::dieDebug( __METHOD__, "Multi-values not supported for $encParamName" );
+			}
+			$value = $this->getMain()->getUpload( $encParamName );
+			if ( !$value->exists() ) {
+				// This will get the value without trying to normalize it
+				// (because trying to normalize a large binary file
+				// accidentally uploaded as a field fails spectacularly)
+				$value = $this->getMain()->getRequest()->unsetVal( $encParamName );
+				if ( $value !== null ) {
+					$this->dieUsage(
+						"File upload param $encParamName is not a file upload; " .
+						"be sure to use multipart/form-data for your POST and include " .
+						"a filename in the Content-Disposition header.",
+						"badupload_{$encParamName}"
+					);
+				}
+			}
 		} else {
 			$value = $this->getMain()->getVal( $encParamName, $default );
 
@@ -1012,6 +1035,8 @@ abstract class ApiBase extends ContextSource {
 						if ( !$multi ) {
 							$value = $value[0];
 						}
+						break;
+					case 'upload': // nothing to do
 						break;
 					default:
 						ApiBase::dieDebug( __METHOD__, "Param $encParamName's type is unknown - $type" );
