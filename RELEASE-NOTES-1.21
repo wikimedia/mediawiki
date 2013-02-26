@@ -96,8 +96,6 @@ production.
 * (bug 5346) Categories that are redirects will be displayed italic in
   the category links section at the bottom of a page.
 * (bug 43915) New maintenance script deleteEqualMessages.php.
-* New collation uppercase-sv, which is like uppercase, but adapted
-  to Swedish sort order.
 * WikiText now permits the use of WAI-ARIA's role="presentation" inside of
   html elements and tables. This allows presentational markup, especially
   tables. To be marked up as such.
