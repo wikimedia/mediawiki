@@ -364,6 +364,12 @@ class ApiMain extends ApiBase {
 			return;
 		}
 
+		// Exit here if the request method was OPTIONS
+		// (assume there will be a followup GET or POST)
+		if ( $this->getRequest()->getMethod() === 'OPTIONS' ) {
+			return;
+		}
+
 		// In case an error occurs during data output,
 		// clear the output buffer and print just the error information
 		ob_start();
