@@ -37,15 +37,11 @@ class nextJobDB extends Maintenance {
 	}
 
 	public function execute() {
-		global $wgMemc;
-
-		$type = false; // job type required/picked
+		$types = false; // job type required/picked
 		if ( $this->hasOption( 'types' ) ) {
 			$types = explode( ' ', $this->getOption( 'types' ) );
 		} elseif ( $this->hasOption( 'type' ) ) {
 			$types = array( $this->getOption( 'type' ) );
-		} else {
-			$types = JobQueueGroup::singleton()->getDefaultQueueTypes();
 		}
 
 		// Handle any required periodic queue maintenance
