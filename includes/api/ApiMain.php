@@ -834,10 +834,9 @@ class ApiMain extends ApiBase {
 		wfRunHooks( 'APIAfterExecute', array( &$module ) );
 		$module->profileOut();
 
-		if ( !$this->mInternalMode ) {
-			// Report unused params
-			$this->reportUnusedParams();
+		$this->reportUnusedParams();
 
+		if ( !$this->mInternalMode ) {
 			//append Debug information
 			MWDebug::appendDebugInfoToApiResult( $this->getContext(), $this->getResult() );
 
@@ -921,13 +920,17 @@ class ApiMain extends ApiBase {
 		$paramsUsed = $this->getParamsUsed();
 		$allParams = $this->getRequest()->getValueNames();
 
-		// Printer has not yet executed; don't warn that its parameters are unused
-		$printerParams = array_map(
-			array( $this->mPrinter, 'encodeParamName' ),
-			array_keys( $this->mPrinter->getFinalParams() ?: array() )
-		);
+		if ( !$this->mInternalMode ) {
+			// Printer has not yet executed; don't warn that its parameters are unused
+			$printerParams = array_map(
+				array( $this->mPrinter, 'encodeParamName' ),
+				array_keys( $this->mPrinter->getFinalParams() ?: array() )
+			);
+			$unusedParams = array_diff( $allParams, $paramsUsed, $printerParams );
+		} else {
+			$unusedParams = array_diff( $allParams, $paramsUsed );
+		}
 
-		$unusedParams = array_diff( $allParams, $paramsUsed, $printerParams );
 		if( count( $unusedParams ) ) {
 			$s = count( $unusedParams ) > 1 ? 's' : '';
 			$this->setWarning( "Unrecognized parameter$s: '" . implode( $unusedParams, "', '" ) . "'" );

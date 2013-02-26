@@ -46,8 +46,11 @@ class ApiPageSet extends ApiBase {
 	 */
 	const DISABLE_GENERATORS = 1;
 
-	private $mDbSource, $mParams;
-	private $mResolveRedirects, $mConvertTitles, $mAllowGenerator;
+	private $mDbSource;
+	private $mParams;
+	private $mResolveRedirects;
+	private $mConvertTitles;
+	private $mAllowGenerator;
 
 	private $mAllPages = array(); // [ns][dbkey] => page_id or negative when missing
 	private $mTitles = array();
@@ -87,9 +90,25 @@ class ApiPageSet extends ApiBase {
 	}
 
 	/**
+	 * In case execute() is not called, call this method to mark all relevant parameters as used
+	 * This prevents unused parameters from being reported as warnings
+	 */
+	public function executeDryRun() {
+		$this->executeInternal( true );
+	}
+
+	/**
 	 * Populate the PageSet from the request parameters.
 	 */
 	public function execute() {
+		$this->executeInternal( false );
+	}
+
+	/**
+	 * Populate the PageSet from the request parameters.
+	 * @param bool $isDryRun If true, instantiates generator, but only to mark relevant parameters as used
+	 */
+	private function executeInternal( $isDryRun ) {
 		$this->profileIn();
 
 		$generatorName = $this->mAllowGenerator ? $this->mParams['generator'] : null;
@@ -114,15 +133,27 @@ class ApiPageSet extends ApiBase {
 			$tmpPageSet = new ApiPageSet( $dbSource, ApiPageSet::DISABLE_GENERATORS );
 			$generator->setGeneratorMode( $tmpPageSet );
 			$this->mCacheMode = $generator->getCacheMode( $generator->extractRequestParams() );
-			$generator->requestExtraData( $tmpPageSet );
-			$tmpPageSet->execute();
+
+			if ( !$isDryRun ) {
+				$generator->requestExtraData( $tmpPageSet );
+			}
+			$tmpPageSet->executeInternal( $isDryRun );
 
 			// populate this pageset with the generator output
 			$this->profileOut();
 			$generator->profileIn();
-			$generator->executeGenerator( $this );
-			wfRunHooks( 'APIQueryGeneratorAfterExecute', array( &$generator, &$this ) );
-			$this->resolvePendingRedirects();
+
+			if ( !$isDryRun ) {
+				$generator->executeGenerator( $this );
+				wfRunHooks( 'APIQueryGeneratorAfterExecute', array( &$generator, &$this ) );
+				$this->resolvePendingRedirects();
+			} else {
+				// Prevent warnings from being reported on these parameters
+				$main = $this->getMain();
+				foreach ( $generator->extractRequestParams() as $paramName => $param ) {
+					$main->getVal( $generator->encodeParamName( $paramName ) );
+				}
+			}
 			$generator->profileOut();
 			$this->profileIn();
 
@@ -148,25 +179,28 @@ class ApiPageSet extends ApiBase {
 				}
 				$dataSource = 'revids';
 			}
-			// Populate page information with the original user input
-			switch( $dataSource ) {
-				case 'titles':
-					$this->initFromTitles( $this->mParams['titles'] );
-					break;
-				case 'pageids':
-					$this->initFromPageIds( $this->mParams['pageids'] );
-					break;
-				case 'revids':
-					if ( $this->mResolveRedirects ) {
-						$this->setWarning( 'Redirect resolution cannot be used together with the revids= parameter. ' .
-							'Any redirects the revids= point to have not been resolved.' );
-					}
-					$this->mResolveRedirects = false;
-					$this->initFromRevIDs( $this->mParams['revids'] );
-					break;
-				default:
-					// Do nothing - some queries do not need any of the data sources.
-					break;
+
+			if ( !$isDryRun ) {
+				// Populate page information with the original user input
+				switch( $dataSource ) {
+					case 'titles':
+						$this->initFromTitles( $this->mParams['titles'] );
+						break;
+					case 'pageids':
+						$this->initFromPageIds( $this->mParams['pageids'] );
+						break;
+					case 'revids':
+						if ( $this->mResolveRedirects ) {
+							$this->setWarning( 'Redirect resolution cannot be used together with the revids= parameter. ' .
+								'Any redirects the revids= point to have not been resolved.' );
+						}
+						$this->mResolveRedirects = false;
+						$this->initFromRevIDs( $this->mParams['revids'] );
+						break;
+					default:
+						// Do nothing - some queries do not need any of the data sources.
+						break;
+				}
 			}
 		}
 		$this->profileOut();
@@ -841,7 +875,7 @@ class ApiPageSet extends ApiBase {
 
 	/**
 	 * Given an array of title strings, convert them into Title objects.
-	 * Alternativelly, an array of Title objects may be given.
+	 * Alternatively, an array of Title objects may be given.
 	 * This method validates access rights for the title,
 	 * and appends normalization values to the output.
 	 *
