@@ -39,19 +39,26 @@
  */
 function wfPHPVersionError( $type ) {
 	$mwVersion = '1.21';
-	$phpVersion = PHP_VERSION;
-	$message = "MediaWiki $mwVersion requires at least PHP version 5.3.2, you are using PHP $phpVersion.";
-	if( $type == 'index.php' ) {
+	$minimumVersionPHP = '5.3.2';
+
+	$phpVersion = phpversion();
+	$protocol = isset( $_SERVER['SERVER_PROTOCOL'] ) ? $_SERVER['SERVER_PROTOCOL'] : 'HTTP/1.0';
+	$message = "MediaWiki $mwVersion requires at least PHP version $minimumVersionPHP, you are using PHP $phpVersion.";
+	if ( $type == 'cli' ) {
+		$finalOutput = "You are using PHP version $phpVersion but MediaWiki $mwVersion needs PHP $minimumVersionPHP or higher. ABORTING.\n" .
+		"Check if you have a newer php executable with a different name, such as php5.\n";
+	} elseif ( $type == 'index.php' ) {
+		$pathinfo = pathinfo( $_SERVER['SCRIPT_NAME'] );
 		$encLogo = htmlspecialchars(
-			str_replace( '//', '/', pathinfo( $_SERVER['SCRIPT_NAME'], PATHINFO_DIRNAME ) . '/'
-			) . 'skins/common/images/mediawiki.png'
+			str_replace( '//', '/', $pathinfo['dirname'] . '/' ) .
+			'skins/common/images/mediawiki.png'
 		);
 
-		header( $_SERVER['SERVER_PROTOCOL'] . ' 500 MediaWiki configuration Error', true, 500 );
+		header( "$protocol 500 MediaWiki configuration Error" );
 		header( 'Content-type: text/html; charset=UTF-8' );
 		// Don't cache error pages!  They cause no end of trouble...
 		header( 'Cache-control: none' );
-		header( 'Pragma: nocache' );
+		header( 'Pragma: no-cache' );
 
 		$finalOutput = <<<HTML
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -103,9 +110,7 @@ HTML;
 	} else {
 		// So nothing thinks this is JS or CSS
 		$finalOutput = ( $type == 'load.php' ) ? "/* $message */" : $message;
-		if( $type != 'cli' ) {
-			header( $_SERVER['SERVER_PROTOCOL'] . ' 500 MediaWiki configuration Error', true, 500 );
-		}
+		header( "$protocol 500 MediaWiki configuration Error" );
 	}
 	echo( "$finalOutput\n" );
 	die( 1 );
