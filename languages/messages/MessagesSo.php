@@ -472,7 +472,7 @@ Fadlan waxyar sug intii aadan soo gelin.',
 'login-abort-generic' => 'Ma u soo gali karin gudaha - waa la noqay',
 'loginlanguagelabel' => 'Luqada: $1',
 
-# E-mail sending
+# Email sending
 'user-mail-no-addy' => "Isku dayday in aa dirto e-mail ayada oo ciwaan e-mail la'aan ah.",
 
 # Change password dialog
@@ -1068,7 +1068,7 @@ Tafaasiishiisa waxee ku qorantahay [$2 bogga tafaasiisha faylka] oo ka arki kart
 # Special:ListGroupRights
 'listgrouprights-members' => '(Inta ka mid ah liiskooda)',
 
-# E-mail user
+# Email user
 'mailnologin' => "Ma'jiro cinwaan wax lagu diro",
 'mailnologintext' => 'Waa in aad [[Special:UserLogin|gudaha ku jirtaa]]
 kuna haysatid E-boosto sax ah [[Special:Preferences|dooqyadaada]],
@@ -1421,7 +1421,7 @@ Hadii faylka wax laga badalay sida oo markiisa hore ahaa, waxaa laga yaabaa in e
 'namespacesall' => 'dhamaan',
 'monthsall' => 'Dhamaan',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail_noemail' => 'Kuma haysatid cinwaan E-boosto sax [[Special:Preferences|isticmaala dooqiisa]].',
 
 # action=watch/unwatch

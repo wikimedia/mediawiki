@@ -787,7 +787,7 @@ Palun pea nüüd pisut vahet.',
 'loginlanguagelabel' => 'Keel: $1',
 'suspicious-userlogout' => 'Sinu väljalogimiskatse nurjus, sest see näis olevat katkise veebilehitseja või puhverserveri saadetud.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Tundmatu tõrge PHP funktsioonis mail().',
 'user-mail-no-addy' => 'Püüdsid saata e-kirja ilma meiliaadressita.',
 
@@ -1458,7 +1458,7 @@ See ei tohi olla pikem kui {{PLURAL:$1|üks märk|$1 märki}}.',
 'prefs-displaywatchlist' => 'Kuvasätted',
 'prefs-diffs' => 'Erinevused',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'Sobiv e-posti aadress',
 'email-address-validity-invalid' => 'Sisesta sobiv e-posti aadress.',
 
@@ -2218,7 +2218,7 @@ Toetatud {{PLURAL:$2|protokoll|protokollid}}: <code>$1</code> (määramata proto
 'listgrouprights-addgroup-self-all' => 'Oma konto kõigisse rühmadesse lisada',
 'listgrouprights-removegroup-self-all' => 'Eemaldada ennast kõigist rühmadest',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Saatja aadress puudub',
 'mailnologintext' => 'Pead olema [[Special:UserLogin|sisse logitud]] ja sul peab [[Special:Preferences|eelistustes]] olema kehtiv e-posti aadress, et saata teistele kasutajatele e-kirju.',
 'emailuser' => 'Saada sellele kasutajale e-kiri',
@@ -3570,7 +3570,7 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'monthsall' => 'kõik',
 'limitall' => 'iga',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'E-posti aadressi kinnitamine',
 'confirmemail_noemail' => 'Sul pole [[Special:Preferences|eelistuste leheküljel]] e-posti aadressi määranud.',
 'confirmemail_text' => 'Enne kui saad e-postiga seotud teenuseid kasutada, pead oma e-posti aadressi õigsust kinnitama. Allpool olevat nuppu klõpsates saadetakse sulle e-posti teel kinnituskood. Aadressi kinnitamiseks klõpsa e-kirjas olevat linki.',

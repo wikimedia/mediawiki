@@ -692,7 +692,7 @@ Si us plau, esperi abans de tornar-ho a intentar.",
 'loginlanguagelabel' => 'Llengua: $1',
 'suspicious-userlogout' => "S'ha denegat la vostra petició per tancar la sessió ja què sembla que va ser enviada per un navegador defectuós o un proxy cau.",
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Error desconegut en la funció mail() de PHP',
 'user-mail-no-addy' => "S'ha intentat enviar un missatge de correu electrònic sense adreça.",
 
@@ -1364,7 +1364,7 @@ Ha de tenir com a molt {{PLURAL:$1|un caràcter|$1 caràcters}}.',
 'prefs-displaywatchlist' => 'Opcions de visualització',
 'prefs-diffs' => 'Difs',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => "L'adreça de correu electrònic sembla vàlida",
 'email-address-validity-invalid' => 'Escriviu una adreça vàlida de correu electrònic',
 
@@ -2125,7 +2125,7 @@ Pot ser que hi hagi més informació sobre drets individuals [[{{MediaWiki:Listg
 'listgrouprights-addgroup-self-all' => 'Afegir-se a qualsevol grup',
 'listgrouprights-removegroup-self-all' => 'Abandona tots els grups',
 
-# E-mail user
+# Email user
 'mailnologin' => "No enviïs l'adreça",
 'mailnologintext' => "Heu d'haver [[Special:UserLogin|entrat]]
 i tenir una direcció electrònica vàlida en les vostres [[Special:Preferences|preferències]]
@@ -3492,7 +3492,7 @@ La resta d'enllaços de la línia són les excepcions, és a dir, les pàgines o
 'monthsall' => 'tots',
 'limitall' => 'tots',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => "Confirma l'adreça de correu electrònic",
 'confirmemail_noemail' => "No heu introduït una direcció vàlida de correu electrònic en les vostres [[Special:Preferences|preferències d'usuari]].",
 'confirmemail_text' => "El projecte {{SITENAME}} necessita que valideu la vostra adreça de correu

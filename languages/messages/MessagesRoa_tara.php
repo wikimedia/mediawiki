@@ -554,7 +554,7 @@ Pe piacere vide c'aspitte 'nu picche de timbe apprime de pruvà 'n'otra vote.",
 'loginlanguagelabel' => 'Lénga: $1',
 'suspicious-userlogout' => "'A richiesta toje de assè ha state bloccate purcè pare ca ha state mannate da 'nu browser scuasciate o da 'a cache de 'nu proxy.",
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => "Errore scanusciute jndr'à funzione PHP mail()",
 'user-mail-no-addy' => "E' pruvate a mannà 'na mail senze 'u 'ndirizze mail",
 'user-mail-no-body' => "Pruvate a mannà 'na mail cu 'nu cuèrpe vacande o troppe curte.",
@@ -1254,7 +1254,7 @@ Ce tu 'u mitte, a fatje ca è fatte t'avène ricanusciute.",
 'prefs-displaywatchlist' => "Fà vedè l'opzione",
 'prefs-diffs' => 'Diff',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => "L'indirizze e-mail pare valide",
 'email-address-validity-invalid' => "Mitte 'n'indirizze e-mail valide",
 
@@ -2062,7 +2062,7 @@ Ponne stà [[{{MediaWiki:Listgrouprights-helppage}}|'mbormaziune de cchiù]] sus
 'listgrouprights-addgroup-self-all' => "Mitte tutte le gruppe sus a 'u cunde utende mije",
 'listgrouprights-removegroup-self-all' => "Live tutte le gruppe da 'u cunde utende mije",
 
-# E-mail user
+# Email user
 'mailnologin' => 'Nisciune indirizze de invie',
 'mailnologintext' => "Tu a essere [[Special:UserLogin|collegate]] e a avè 'n'indirizze email valide jndr'à le [[Special:Preferences|preferenze]] tue pe mannà 'na mail a otre utinde.",
 'emailuser' => "Manne n'email a stu utende",
@@ -3595,7 +3595,7 @@ $8',
 'monthsall' => 'tutte',
 'limitall' => 'tutte',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => "Conferme l'indirizze e-mail",
 'confirmemail_noemail' => "Tu non ge tine 'n'indirizze e-mail valide configurate sus a le [[Special:Preferences|preferenze tue]].",
 'confirmemail_text' => "{{SITENAME}} richiede ca tu ha validà l'indirizze email tue apprime de ausà 'a funzione de l'email.

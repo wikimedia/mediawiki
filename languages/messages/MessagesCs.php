@@ -861,7 +861,7 @@ Počkejte chvíli, než to zkusíte znovu.',
 'loginlanguagelabel' => 'Jazyk: $1',
 'suspicious-userlogout' => 'Váš požadavek na odhlášení byl odmítnut, neboť to vypadá, že ho poslal rozbitý prohlížeč nebo cachující proxy.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Neznámá chyba v PHP funkci mail()',
 'user-mail-no-addy' => 'Pokus o odeslání e-mailu bez e-mailové adresy',
 'user-mail-no-body' => 'Pokus o odeslání prázdného nebo nesmyslně krátkého e-mailu.',
@@ -1534,7 +1534,7 @@ Tuto operaci nelze vrátit zpět.',
 'prefs-displaywatchlist' => 'Možnosti zobrazení',
 'prefs-diffs' => 'Porovnání verzí',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'E-mailová adresa vypadá platně',
 'email-address-validity-invalid' => 'Zadejte platnou e-mailovou adresu',
 
@@ -2121,6 +2121,10 @@ Vstup: <code>typ obsahu/podtyp</code>, např. <code>image/jpeg</code>.',
 Asi by místo toho měly odkazovat na konkrétnější stránku.<br />
 Stránka je považována za rozcestník, pokud používá některou ze šablon odkazovaných na [[MediaWiki:Disambiguationspage]].",
 
+'pageswithprop' => 'Stránky s vlastností',
+'pageswithprop-text' => 'Tato stránka obsahuje seznam stránek, které používají zadanou vlastnost stránky.',
+'pageswithprop-prop' => 'Název vlastnosti:',
+
 'doubleredirects' => 'Dvojitá přesměrování',
 'doubleredirectstext' => 'Na této stránce je seznam přesměrování vedoucích na další přesměrování.
 Každý řádek obsahuje odkaz na první a druhé přesměrování a k tomu cíl druhého přesměrování, který obvykle ukazuje jméno „skutečné“ cílové stránky, na kterou by mělo první přesměrování odkazovat.
@@ -2312,7 +2316,7 @@ Povinná je přinejmenším doména nejvyššího řádu, např. „*.org“.<br
 'listgrouprights-addgroup-self-all' => 'Přidání svého účtu do libovolné skupiny',
 'listgrouprights-removegroup-self-all' => 'Vyřazení svého účtu z libovolné skupiny',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Bez odesílací adresy',
 'mailnologintext' => 'Pokud chcete posílat e-maily jiným uživatelům, musíte se [[Special:UserLogin|přihlásit]] a mít platnou e-mailovou adresu ve svém [[Special:Preferences|nastavení]].',
 'emailuser' => 'Poslat e-mail',
@@ -3692,7 +3696,7 @@ Obsahuje pouze seznam s odrážkami (řádka začíná s *). První odkaz na ř�
 'monthsall' => 'všechny',
 'limitall' => 'vše',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Potvrzení e-mailové adresy',
 'confirmemail_noemail' => 'Ve svém [[Special:Preferences|uživatelském nastavení]] jste nezadali platnou e-mailovou adresu.',
 'confirmemail_text' => 'Tato wiki vyžaduje, abyste před využíváním některých funkcí potvrdili svoji e-mailovou adresu. Kliknutím na tlačítko níže odešlete potvrzovací e-mail na vámi uvedenou adresu. Tento e-mail obsahuje odkaz a potvrzovací kód; zobrazením odkazované stránky ve svém internetovém prohlížeči potvrdíte, že zadaná adresa je platná.',
@@ -4154,4 +4158,7 @@ Jinak můžete využít jednoduchý formulář níže. Váš komentář bude př
 'duration-centuries' => '$1 {{PLURAL:$1|století}}',
 'duration-millennia' => '$1 {{PLURAL:$1|tisíciletí}}',
 
+# Unknown messages
+'pageswithprop-legend' => 'Stránky s vlastností',
+'pageswithprop-submit' => 'Provést',
 );

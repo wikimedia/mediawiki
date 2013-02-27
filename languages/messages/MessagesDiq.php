@@ -818,7 +818,7 @@ Bıne vındere u newe ra dest pê bıkere.',
 'loginlanguagelabel' => 'Zıwan: $1',
 'suspicious-userlogout' => 'Waştişê tu ya veciyayişi kebul nibiya cunki ihtimal o ke waştiş yew browser ya zi proksiyê heripiyaye ra ameya.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => "PHP's mail() fonksiyoni de xırabin vıcyê.",
 'user-mail-no-addy' => 'Bê E-posta kerd ju e-posta bırşo cırê.',
 
@@ -1490,7 +1490,7 @@ Kaberê bini ke şıma de kewti irtıbat, adresa e-postey şıma eşkera nêbena
 'prefs-displaywatchlist' => 'Weçinayışê mocnayışi',
 'prefs-diffs' => 'Ferqi',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'e-posta adresi raştayo',
 'email-address-validity-invalid' => 'e-postayo raştay defiye de',
 
@@ -2272,7 +2272,7 @@ qey heqê şexsi de [[{{MediaWiki:Listgrouprights-helppage}}|hema malumato ziyed
 'listgrouprights-addgroup-self-all' => 'şıma eşkeni hesabê xo re heme gruban têare bıkerî',
 'listgrouprights-removegroup-self-all' => 'şıma hesabê xo ra eşkeni heme gruban bıveci',
 
-# E-mail user
+# Email user
 'mailnologin' => 'adresa erşawıtışi/ruşnayişi çina.',
 'mailnologintext' => 'qey karberanê binan re e-posta erşawıtış de gani şıma [[Special:UserLogin|hesab aker]]ê [[Special:Preferences|pelê tercihani]] de gani yew e-postayo meqbul bıbo.',
 'emailuser' => 'Ena karberi rê mesac bırse',
@@ -3751,7 +3751,7 @@ $8',
 'monthsall' => 'pêro',
 'limitall' => 'pêro',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Adresê e-posta tesdiq ker',
 'confirmemail_noemail' => 'Yew emaîlê tu raştîyê çin o ke [[Special:Preferences|tercihê karberî]] ayar bike.',
 'confirmemail_text' => 'Qey gurweyayışê e-postayê wikiyi gani veror e-postayê şıma araşt bıbo.

@@ -784,7 +784,7 @@ Esperatz abans d’ensajar tornamai.',
 'loginlanguagelabel' => 'Lenga: $1',
 'suspicious-userlogout' => 'Vòstra demanda de desconnexion es estada refusada perque sembla qu’es estada mandada per un navigador copat o la mesa en escondedor d’un proxy.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Error desconeguda dins la foncion mail() de PHP.',
 
 # Change password dialog
@@ -1396,7 +1396,7 @@ Tanben podètz causir de permetre a d’autres de vos contactar per vòstra pagi
 'prefs-displaywatchlist' => "Opcions d'afichatge",
 'prefs-diffs' => 'Diferéncias',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => "L'adreça electronica sembla bona",
 'email-address-validity-invalid' => 'entrar una adreça electronica valida',
 
@@ -2105,7 +2105,7 @@ I pòt aver [[{{MediaWiki:Listgrouprights-helppage}}|d'entresenhas complementàr
 'listgrouprights-addgroup-self-all' => 'Se pòt apondre totes los gropes a son compte pròpri',
 'listgrouprights-removegroup-self-all' => 'Se pòt levar totes los gropes de son compte pròpri',
 
-# E-mail user
+# Email user
 'mailnologin' => "Pas d'adreça",
 'mailnologintext' => 'Vos cal èsser [[Special:UserLogin|connectat(ada)]]
 e aver indicat una adreça electronica valida dins vòstras [[Special:Preferences|preferéncias]]
@@ -3408,7 +3408,7 @@ Los autres ligams sus la meteissa linha son considerats coma d'excepcions, per e
 'monthsall' => 'totes',
 'limitall' => 'totes',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => "Confirmar l'adreça de corrièr electronic",
 'confirmemail_noemail' => 'L’adreça de corrièr electronic configurada dins vòstras [[Special:Preferences|preferéncias]] es pas valida.',
 'confirmemail_text' => '{{SITENAME}} necessita la verificacion de vòstra adreça de corrièr electronic abans de poder utilizar tota foncion de messatjariá. Utilizatz lo boton çaijós per mandar un corrièr electronic de confirmacion a vòstra adreça. Lo corrièr contendrà un ligam contenent un còde, cargatz aqueste ligam dins vòstre navigador per validar vòstra adreça.',

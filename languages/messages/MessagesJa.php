@@ -883,7 +883,7 @@ Cookieを有効にしていることを確認して、このページを再読�
 'loginlanguagelabel' => '言語: $1',
 'suspicious-userlogout' => '壊れたブラウザーまたはキャッシュプロキシによって送信された可能性があるため、ログアウト要求は拒否されました。',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'PHPのmail()関数での不明なエラーです。',
 'user-mail-no-addy' => 'メールアドレスなしでメールを送信しようとしました。',
 'user-mail-no-body' => '本文が空、またはあまりにも短いメールは送信できません。',
@@ -1593,7 +1593,7 @@ $1 {{PLURAL:$1|文字}}以下である必要があります。',
 'prefs-displaywatchlist' => '表示の設定',
 'prefs-diffs' => '差分',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'メールアドレスは有効のようです',
 'email-address-validity-invalid' => '有効なメールアドレスを入力してください',
 
@@ -2407,7 +2407,7 @@ contenttype/subtypeの形式で入力してください (例: <code>image/jpeg</
 'listgrouprights-addgroup-self-all' => '自分のアカウントに全グループを追加可能',
 'listgrouprights-removegroup-self-all' => '自分のアカウントから全グループを除去可能',
 
-# E-mail user
+# Email user
 'mailnologin' => '送信アドレスがありません',
 'mailnologintext' => '他の利用者宛にメールを送信するためには、[[Special:UserLogin|ログイン]]し、[[Special:Preferences|個人設定]]で有効なメールアドレスを設定する必要があります。',
 'emailuser' => 'この利用者にメールを送信',
@@ -3895,7 +3895,7 @@ Variants for Chinese language
 'monthsall' => 'すべて',
 'limitall' => 'すべて',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'メールアドレスの確認',
 'confirmemail_noemail' => '[[Special:Preferences|個人設定]]で有効なメールアドレスが指定されていません。',
 'confirmemail_text' => '{{SITENAME}}では、メール機能を使用する前にメールアドレスの検証が必要です。

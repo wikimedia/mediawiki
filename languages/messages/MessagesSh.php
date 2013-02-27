@@ -717,7 +717,7 @@ Molimo Vas da sačekate prije nego što pokušate ponovo.',
 'loginlanguagelabel' => 'Jezik: $1',
 'suspicious-userlogout' => 'Vaš zahtjev za odjavu je odbijen jer je poslan preko pokvarenog preglednika ili keširanog proksija.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Nepoznata greška u PHP funkciji mail()',
 'user-mail-no-addy' => 'Pokušaj slanja e-maila bez e-mail adrese.',
 'user-mail-no-body' => 'Pokušano slanje e-maila s praznim ili nerazumno kratkim sadržajem.',
@@ -1414,7 +1414,7 @@ Ako izaberete da date ime, biće korišteno za pripisivanje Vašeg rada.',
 'prefs-displaywatchlist' => 'Postavke prikaza',
 'prefs-diffs' => 'Razlike',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'E-mail adresa izgleda valjano',
 'email-address-validity-invalid' => 'Unesite valjanu e-mail adresu',
 
@@ -2195,7 +2195,7 @@ O svakoj od njih postoje i [[{{MediaWiki:Listgrouprights-helppage}}|dodatne info
 'listgrouprights-addgroup-self-all' => 'Može dodati sve grupe na svoj račun',
 'listgrouprights-removegroup-self-all' => 'Može ukloniti sve grupe sa svog računa',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Nema adrese za slanje',
 'mailnologintext' => 'Morate biti [[Special:UserLogin|prijavljeni]] i imati ispravnu adresu e-pošte u vašim [[Special:Preferences|podešavanjima]] da biste slali e-poštu drugim korisnicima.',
 'emailuser' => 'Pošalji E-mail ovom korisniku',
@@ -3577,7 +3577,7 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 'monthsall' => 'sve',
 'limitall' => 'sve',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Potvrdite adresu e-pošte',
 'confirmemail_noemail' => 'Niste unijeli tačnu e-mail adresu u Vaše [[Special:Preferences|korisničke postavke]].',
 'confirmemail_text' => 'Ova viki zahtjeva da potvrdite adresu Vaše e-pošte prije nego što koristite mogućnosti e-pošte. ž

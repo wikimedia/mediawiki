@@ -791,7 +791,7 @@ Xin hãy đợi chốc lát rồi thử lại.',
 'loginlanguagelabel' => 'Ngôn ngữ: $1',
 'suspicious-userlogout' => 'Đã bỏ qua yêu cầu đăng xuất bạn, hình như được gửi từ trình duyệt hoặc máy proxy nhớ đệm hư.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Lỗi không rõ trong hàm PHP mail()',
 'user-mail-no-addy' => 'Không có địa chỉ để gửi thư điện tử đến',
 'user-mail-no-body' => 'Không thể gửi thư điện tử rỗng hoặc có nội dung ngắn một cách vô lý.',
@@ -1476,7 +1476,7 @@ Nếu bạn đồng ý cung cấp, nó sẽ dùng để ghi nhận công lao c�
 'prefs-displaywatchlist' => 'Tùy chọn hiển thị',
 'prefs-diffs' => 'Khác biệt',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'Có vẻ hợp lệ',
 'email-address-validity-invalid' => 'Yêu cầu địa chỉ hợp lệ!',
 
@@ -2261,7 +2261,7 @@ Có [[{{MediaWiki:Listgrouprights-helppage}}|thông tin thêm]] về từng nhó
 'listgrouprights-addgroup-self-all' => 'Có thể đưa tài khoản của chính mình vào tất cả các nhóm',
 'listgrouprights-removegroup-self-all' => 'Có thể loại tài khoản của chính mình ra khỏi tất cả các nhóm',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Không có địa chỉ gửi thư',
 'mailnologintext' => 'Bạn phải [[Special:UserLogin|đăng nhập]] và khai báo một địa chỉ thư điện tử hợp lệ trong phần [[Special:Preferences|tùy chọn cá nhân]] thì mới gửi được thư cho người khác.',
 'emailuser' => 'Gửi thư cho người này',
@@ -3713,7 +3713,7 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 'monthsall' => 'tất cả',
 'limitall' => 'tất cả',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Xác nhận thư điện tử',
 'confirmemail_noemail' => 'Bạn chưa đưa vào địa chỉ thư điện tử hợp lệ ở [[Special:Preferences|tùy chọn cá nhân]].',
 'confirmemail_text' => '{{SITENAME}} đòi hỏi bạn xác minh thư điện tử của mình

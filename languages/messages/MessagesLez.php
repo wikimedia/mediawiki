@@ -924,7 +924,7 @@ $messages = array(
 'listgrouprights-group' => 'КIеретI',
 'listgrouprights-members' => '(уьзвийрин сиягь)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Уртахдиз чар кхьихь',
 'emailusername' => 'Уртахдин тlвар:',
 'emailusernamesubmit' => 'Ракъурун',

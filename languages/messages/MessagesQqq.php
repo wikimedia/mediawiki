@@ -133,6 +133,7 @@
  * @author Usarker
  * @author Verdy p
  * @author Vinhtantran
+ * @author Vivaelcelta
  * @author Waldir
  * @author Whym
  * @author Yekrats
@@ -342,7 +343,8 @@ Parameters:
 
 Parameters:
 * $1 - number of files shown',
-'listingcontinuesabbrev' => 'Shown in contiuation of each first letter group.
+'listingcontinuesabbrev' => 'Shown in contiuation of each first letter group. This message follows the first letter.
+
 See http://test.wikipedia.org/wiki/Category:Test_ko?uselang={{SUBPAGENAME}}, for example.',
 'index-category' => 'Name of the [[mw:Help:Tracking categories|tracking category]] where pages with the <nowiki>__INDEX__</nowiki> behaviour switch are listed. For description of this behaviour switch see [[mw:Help:Magic_words#Behavior_switches|MediaWiki]].',
 'noindex-category' => 'Name of the [[mw:Help:Tracking categories|tracking category]] where pages with the <nowiki>__NOINDEX__</nowiki> behaviour switch are listed. For description of this behaviour switch see [[mw:Help:Magic_words#Behavior_switches|MediaWiki]].',
@@ -449,7 +451,7 @@ This can also appear in the credits page if the credits feature is enabled,for e
 Used to identify the source of copied information.',
 'help' => 'General text (noun) used in the sidebar (by default).
 
-See also [[MediaWiki:Helppage/{{SUBPAGENAME}}|{{int:helppage}}]] and [[MediaWiki:Edithelp/{{SUBPAGENAME}}|{{int:edithelp}}]].
+See also {{msg-mw|Helppage}} and {{msg-mw|Edithelp}}.
 
 See also:
 * {{msg-mw|Help}}
@@ -465,16 +467,14 @@ See also:
 * {{msg-mw|Accesskey-search}}
 * {{msg-mw|Tooltip-search}}
 {{Identical|Search}}',
-'searchbutton' => 'The button you can see in the sidebar, below the search input box. The "Go" button is [[MediaWiki:Searcharticle/{{SUBPAGENAME}}]].
-
+'searchbutton' => 'The button you can see in the sidebar, below the search input box. The "Go" button is {{msg-mw|Searcharticle}}.
 {{Identical|Search}}',
 'go' => 'See also:
 * {{msg-mw|Go}}
 * {{msg-mw|Accesskey-search-go}}
 * {{msg-mw|Tooltip-search-go}}
 {{Identical|Go}}',
-'searcharticle' => 'Button description in the search menu displayed on every page. The "Search" button is [[MediaWiki:Searchbutton/{{SUBPAGENAME}}]].
-
+'searcharticle' => 'Button description in the search menu displayed on every page. The "Search" button is {{msg-mw|Searchbutton}}.
 {{Identical|Go}}',
 'history' => '{{Identical|Page history}}',
 'history_short' => 'Text used on the history tab.
@@ -814,7 +814,8 @@ See also:
 * {{msg-mw|Accesskey-ca-nstab-main}}
 * {{msg-mw|Tooltip-ca-nstab-main}}
 {{Identical|Page}}',
-'nstab-user' => 'The name for the tab of the user namespace. Example: [[User:Example]]. It is possible to use <nowiki>{{GENDER:{{BASEPAGENAME}}|male form|female form}}</nowiki> if needed.
+'nstab-user' => 'The name for the tab of the user namespace. Example: [[User:Example]]. It is possible to use <nowiki>
+{{GENDER:{{#titleparts:{{BASEPAGENAME}}|1}}|male form|female form}}</nowiki> if needed.
 
 See also:
 * {{msg-mw|Nstab-user}}
@@ -1034,10 +1035,8 @@ Parameters:
 * $1 - an URL to [[Special:Userlogin]] containing <code>returnto</code> and <code>returntoquery</code> parameters',
 'welcomeuser' => 'Text for a welcome heading that users see after registering a user account. $1 is the username of the new user. See [[bugzilla:42215]]',
 'welcomecreation-msg' => 'A welcome message users see after registering a user account, following a welcomeuser heading. $1 is the username of the new user. Replaces welcomecreation in 1.21wmf5,see [[bugzilla:42215]]',
-'yourname' => "In user preferences
-
-<nowiki>{{</nowiki>[[Gender|GENDER]]<nowiki>}}</nowiki> is '''NOT''' supported.
-
+'yourname' => "{{doc-important|<nowiki>{{</nowiki>[[Gender|GENDER]]<nowiki>}}</nowiki> is '''NOT''' supported.}}
+In user preferences.
 {{Identical|Username}}",
 'yourpassword' => 'In user preferences
 
@@ -1077,8 +1076,9 @@ See also:
 'notloggedin' => 'This message is displayed in the standard skin when not logged in. The message is placed above the login link in the top right corner of pages.
 
 {{Identical|Not logged in}}',
-'nologin' => 'A message shown in the log in form. $1 is a link to the account creation form, and the text of it is "[[MediaWiki:Nologinlink/{{SUBPAGENAME}}|{{int:nologinlink}}]]".',
-'nologinlink' => 'Text of the link to the account creation form. Before that link, the message [[MediaWiki:Nologin/{{SUBPAGENAME}}]] appears.
+'nologin' => 'A message shown in the log in form. Parameters:
+* $1 - a link to the account creation form, and the text of it is {{msg-mw|Nologinlink}}',
+'nologinlink' => 'Text of the link to the account creation form. Before that link, the message {{msg-mw|Nologin}} appears.
 {{Identical|Create an account}}',
 'createaccount' => 'The title of [[Special:CreateAccount]], where users can register a new account. Used on [[Special:SpecialPages]] and on the submit button in the form where you register a new account.
 
@@ -1086,8 +1086,7 @@ It is also used on the top of the page for logged out users, where it appears ne
 {{Identical|Create account}}',
 'gotaccount' => 'A message shown in the account creation form.
 * $1 - a link to the log in form, and the text of it is {{msg-mw|Gotaccountlink}}',
-'gotaccountlink' => 'Text of the link to the log in form. Before that link, the message [[MediaWiki:Gotaccount/{{SUBPAGENAME}}]] appears.
-
+'gotaccountlink' => 'Text of the link to the log in form. Before that link, the message {{msg-mw|Gotaccount}} appears.
 {{Identical|Log in}}',
 'userlogin-resetlink' => 'Used on the login page.',
 'createaccountmail' => 'Button text for creating a new account and sending the new password to the specified e-mail address directly, as used on [[Special:UserLogin/signup]] if creating accounts by e-mail is allowed.',
@@ -1107,9 +1106,11 @@ Defaults to '''nocookieslogin''' ({{int:nocookieslogin}})",
 'noname' => 'Error message.',
 'loginsuccesstitle' => 'The title of the page saying that you are logged in. The content of the page is the message {{msg-mw|Loginsuccess}}.
 {{Identical|Login successful}}',
-'loginsuccess' => 'The content of the page saying that you are logged in. The title of the page is "[[MediaWiki:Loginsuccesstitle/{{SUBPAGENAME}}|{{int:loginsuccesstitle}}]]". $1 is the name of the logged in user.
+'loginsuccess' => 'The content of the page saying that you are logged in. The title of the page is {{msg-mw|Loginsuccesstitle}}.
 
-<nowiki>{{</nowiki>[[Gender|GENDER]]<nowiki>}}</nowiki> is supported.',
+Parameters:
+* $1 - the name of the logged in user
+{{Gender}}',
 'nosuchuser' => 'Displayed when trying to log in with an unexisting username. When you are not allowed to create an account, the message {{msg-mw|nosuchusershort}} is displayed.',
 'nosuchusershort' => "Displayed when trying to log in with a non-existant username. This message is only shown when you can't create an account, otherwise the message {{msg-mw|nosuchusershort}} is displayed.",
 'nouserspecified' => 'Used as error message when username to fetch is not specified.',
@@ -1144,7 +1145,8 @@ Parameters:
 * $1 - password reminder resend time (in hours)',
 'mailerror' => 'Used as error message in sending confirmation mail to user. Parameters:
 * $1 - new mail address',
-'acct_creation_throttle_hit' => 'Errormessage at [[Special:CreateAccount]].
+'acct_creation_throttle_hit' => 'Error message at [[Special:CreateAccount]].
+
 "in the last day" precisely means: during the lasts 86400 seconds (24 hours) ending right now.',
 'emailauthenticated' => 'In user preferences ([[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}) and on [[Special:ConfirmEmail]].
 
@@ -1180,7 +1182,7 @@ See also:
 {{Identical|Language}}',
 'suspicious-userlogout' => 'Used when the logout request looks suspicious, in Special:UserLogout.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Used as error message when <code>mail()</code> returned empty error message.',
 'user-mail-no-addy' => 'This is the error message in case an e-mail could not be sent because there was no e-mail address to send it to.',
 'user-mail-no-body' => 'This is the error message in case an e-mail has an empty or unreasonably short body',
@@ -2543,7 +2545,7 @@ Used in [[Special:Preferences]], tab "Watchlist". The display options refer to:
 * {{msg-mw|Prefs-watchlist-edits}}',
 'prefs-diffs' => 'Used in [[Special:Preferences]], tab "Misc".',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'Used as hint for {{msg-mw|changeemail-newemail}} field in [[Special:ChangeEmail]], when the provided E-mail address is valid.',
 'email-address-validity-invalid' => 'Used as warning for {{msg-mw|changeemail-newemail}} field in [[Special:ChangeEmail]], when the provided E-mail address is invalid.',
 
@@ -3182,7 +3184,7 @@ See also:
 * {{msg-mw|http-invalid-url}}
 * {{msg-mw|upload-copy-upload-invalid-domain}}
 * {{msg-mw|tmp-create-error}}',
-'large-file' => 'Variables $1 and $2 have appropriate unit symbols already. See for example [[Mediawiki:size-kilobytes]].',
+'large-file' => 'Variables $1 and $2 have appropriate unit symbols already. See for example {{msg-mw|Size-kilobytes}}.',
 'largefileserver' => 'Error message when uploading a file whose size is larger than the maximum allowed',
 'emptyfile' => 'Error message when trying to upload an empty file',
 'windows-nonascii-filename' => 'Used as error message when uploading a file.
@@ -4192,7 +4194,7 @@ See also {{msg|listgrouprights-addgroup}}.',
 'listgrouprights-removegroup-self-all' => 'Used on [[Special:ListGroupRights]].
 {{Related|Listgrouprights}}',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Used in [[Special:EmailUser]].
 
 Used as title of the error message {{msg-mw|Mailnologintext}}.',
@@ -4211,7 +4213,7 @@ See also:
 'emailpage' => "Title of special page [[Special:EmailUser]], when it is the destination of the sidebar link {{msg-mw|Emailuser}} on a user's page.",
 'emailpagetext' => 'This is the text that is displayed above the e-mail form on [[Special:EmailUser]].
 
-Special:EmailUser appears when you click on the link "E-mail this user" in the sidebar, but only if there is an e-mail address in the recipient\'s user preferences. If there isn\'t then the message [[Mediawiki:Noemailtext]] will appear instead of Special:EmailUser.',
+Special:EmailUser appears when you click on the link "E-mail this user" in the sidebar, but only if there is an e-mail address in the recipient\'s user preferences. If there isn\'t then the message {{msg-mw|Noemailtext}} will appear instead of Special:EmailUser.',
 'defemailsubject' => 'The default subject of EmailUser emails. Parameters:
 * $1 is the username of the user sending the email and can be used for GENDER.',
 'usermaildisabled' => 'Caption for an error message ({{msg-mw|Usermaildisabledtext}}) shown when the user-to-user e-mail feature is disabled on the wiki (see [[mw:Manual:$wgEnableEmail]], [[mw:Manual:$wgEnableUserEmail]]).',
@@ -4351,8 +4353,8 @@ See also:
 * {{msg-mw|enotif reset|Submit button text}}',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching' => 'Text displayed when clicked on the watch tab: [[MediaWiki:Watch/{{SUBPAGENAME}}|{{int:watch}}]]. It means the wiki is adding that page to your watchlist.',
-'unwatching' => 'Text displayed when clicked on the unwatch tab: [[MediaWiki:Unwatch/{{SUBPAGENAME}}|{{int:unwatch}}]]. It means the wiki is removing that page from your watchlist.',
+'watching' => 'Text displayed when clicked on the watch tab: {{msg-mw|Watch}}. It means the wiki is adding that page to your watchlist.',
+'unwatching' => 'Text displayed when clicked on the unwatch tab: {{msg-mw|Unwatch}}. It means the wiki is removing that page from your watchlist.',
 'watcherrortext' => 'When a user clicked the watch/unwatch tab and the action did not succeed, this message is displayed.
 
 This message is used raw and should not contain wikitext.
@@ -4692,7 +4694,9 @@ See also:
 {{Identical|View deleted pages}}',
 'undeletepagetext' => '* $1 - number of pages',
 'undelete-fieldset-title' => 'Used as the title of the fieldset.',
-'undeleteextrahelp' => "Help message displayed when restoring history of a page. In your language, ''Restore'' is called ''[[MediaWiki:Undeletebtn/{{SUBPAGENAME}}|{{int:Undeletebtn}}]]'' ({{msg|Undeletebtn}}), The ''Reset'' button is called ''[[MediaWiki:Undeletereset/{{SUBPAGENAME}}|{{int:Undeletereset}}]]'' ({{msg|Undeletereset}}).",
+'undeleteextrahelp' => "Help message displayed when restoring history of a page.
+
+In your language, ''Restore'' is called {{msg-mw|Undeletebtn}}, the ''Reset'' button is called {{msg-mw|Undeletereset}}.",
 'undeleterevisions' => '* $1 - number of revisions',
 'undeletehistory' => 'Used in [[Special:Undelete]].
 
@@ -6307,7 +6311,7 @@ See also:
 * {{msg-mw|Accesskey-t-upload}}
 * {{msg-mw|Tooltip-t-upload}}
 {{Identical|Upload file}}',
-'tooltip-t-specialpages' => 'The tooltip when hovering over the link "[[MediaWiki:Specialpages/{{SUBPAGENAME}}|{{int:specialpages}}]]" going to a list of all special pages available in the wiki.
+'tooltip-t-specialpages' => 'The tooltip when hovering over the link {{msg-mw|Specialpages}} going to a list of all special pages available in the wiki.
 
 See also:
 * {{msg-mw|Specialpages}}
@@ -6514,9 +6518,13 @@ JS for users using Monobook skin.',
 
 # Attribution
 'anonymous' => 'This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}). Note that this action is disabled by default (currently enabled on translatewiki.net).
-This message appears at the very end of the list of names in the message [[MediaWiki:Othercontribs/{{SUBPAGENAME}}|othercontribs]]. If there are no anonymous users in the credits list then this message does not appear at all.
 
-* $1 is the number of anonymous users in the message',
+This message appears at the very end of the list of names in the message {{msg-mw|Othercontribs}}.
+
+If there are no anonymous users in the credits list then this message does not appear at all.
+
+Parameters:
+* $1 - the number of anonymous users in the message',
 'siteuser' => "This message is shown when viewing the credits of a page ([{{fullurl:Main Page|action=credits}} example]). Note that this action is disabled by default, but currently enabled on translatewiki.net. This message is the variable $3 in the message {{msg-mw|lastmodifiedatby}}. This message only appears if a user has not entered their 'real name' in their preferences. See also {{msg-mw|Siteusers}}.
 
 Parameters:
@@ -6542,26 +6550,33 @@ Parameters:
 * $2 - (Optional) the count of names in $1',
 'others' => 'The following explanation is guesswork. This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}). Note that this action is disabled by default (currently enabled on translatewiki.net - to use type <nowiki>&action=credits</nowiki> at the end of any URL in the address bar).
 
-The message appears at the end of the list of credits given in the message [[Mediawiki:Othercontribs/{{SUBPAGENAME}}]] if the number of contributors is above a certain level.
+The message appears at the end of the list of credits given in the message {{msg-mw|Othercontribs}} if the number of contributors is above a certain level.
 {{Identical|Other}}',
 'siteusers' => 'This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}). Note that this action is disabled by default (currently enabled on translatewiki.net).
-It should be in a form that fits with [[MediaWiki:Othercontribs/{{SUBPAGENAME}}|othercontribs]].
 
-* $1 is a list of user names (example: "\'\'Jim, Janet, Jane, Joe\'\'") where the user has not put his \'real name\' in his preferences.
-* $2 is the number of user names in $1
+It should be in a form that fits with {{msg-mw|Othercontribs}}.
 
-If there is more than one user in the list then the message {{msg-mw|and}} appears before the last name. If $2 is NIL then this message does not appear at all.
+Parameters:
+* $1 - a list of user names (example: "\'\'Jim, Janet, Jane, Joe\'\'") where the user has not put his \'real name\' in his preferences.
+* $2 - the number of user names in $1
 
-See also {{msg-mw|Siteuser}}.',
+If there is more than one user in the list then the message {{msg-mw|And}} appears before the last name. If $2 is NULL then this message does not appear at all.
+
+See also:
+* {{msg-mw|Siteuser}}',
 'anonusers' => 'This message is shown when viewing the credits of a page (example: {{fullurl:Support|action=credits}}). Note that this action is disabled by default (currently enabled on translatewiki.net).
-It should be in a form that fits with [[MediaWiki:Othercontribs/{{SUBPAGENAME}}|othercontribs]].
 
-* $1 is a list of IP addresses
-* $2 is the number of IP addresses in $1
+It should be in a form that fits with {{msg-mw|Othercontribs}}.
+
+Parameters:
+* $1 - a list of IP addresses
+* $2 - the number of IP addresses in $1
 
 If there is more than one user in the list then the message {{msg-mw|and}} appears before the last name. If $2 is NIL then this message does not appear at all.
 
-See also {{msg-mw|Anonuser}} and {{msg-mw|Siteusers}}.',
+See also:
+* {{msg-mw|Anonuser}}
+* {{msg-mw|Siteusers}}',
 'creditspage' => "This message is the ''contentSub'' (the grey subtitle) shown when viewing credits of a page (example: {{fullurl:Project:News|action=credits}}). Note that the credits action is disabled by default (currently enabled on translatewiki.net).",
 'nocredits' => 'This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}) but when there are no credits available. Note that the credits action is disabled by default (currently enabled on translatewiki.net).',
 
@@ -7002,8 +7017,8 @@ Varient Option for wikis with variants conversion enabled.',
 # Metadata
 'metadata' => 'The title of a section on an image description page, with information and data about the image. For example of message in use see [[commons:File:Titan-crystal_bar.JPG|Commons]].
 {{Identical|Metadata}}',
-'metadata-expand' => 'On an image description page, there is mostly a table containing data (metadata) about the image. The most important data are shown, but if you click on this link, you can see more data and information. For the link to hide back the less important data, see "[[MediaWiki:Metadata-collapse/{{SUBPAGENAME}}|{{int:metadata-collapse}}]]".',
-'metadata-collapse' => 'On an image description page, there is mostly a table containing data (metadata) about the image. The most important data are shown, but if you click on the link "[[MediaWiki:Metadata-expand/{{SUBPAGENAME}}|{{int:metadata-expand}}]]", you can see more data and information. This message is for the link to hide back the less important data.',
+'metadata-expand' => 'On an image description page, there is mostly a table containing data (metadata) about the image. The most important data are shown, but if you click on this link, you can see more data and information. For the link to hide back the less important data, see {{msg-mw|Metadata-collapse}}.',
+'metadata-collapse' => 'On an image description page, there is mostly a table containing data (metadata) about the image. The most important data are shown, but if you click on the link {{msg-mw|Metadata-expand}}, you can see more data and information. This message is for the link to hide back the less important data.',
 'metadata-fields' => '{{doc-important|Do not translate list items, only translate the text! So leave "<code>* make</code>" and the other items exactly as they are.}}
 The sentences are for explanation only and are not shown to the user.',
 'metadata-langitem' => '{{optional}}
@@ -7899,14 +7914,13 @@ This message is variable $3 in the message {{msg-mw|Wlshowlast}}.
 'namespacesall' => 'In special page [[Special:WhatLinksHere]]. Drop-down box option for namespace.
 
 {{Identical|All}}',
-'monthsall' => 'Used in a drop-down box on [[Special:Contributions]] as an option for "all months". See also [[MediaWiki:Month/{{SUBPAGENAME}}]].
-
+'monthsall' => 'Used in a drop-down box on [[Special:Contributions]] as an option for "all months". See also {{msg-mw|Month}}.
 {{Identical|All}}',
 'limitall' => 'Used on [[Special:AllMessages]] (and potentially other TablePager based tables) to display "all" the messages.
 
 {{Identical|All}}',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Title of [[Special:ConfirmEmail]] page.',
 'confirmemail_noemail' => 'Failure message on [[Special:ConfirmEmail]].',
 'confirmemail_text' => 'Explanation on [[Special:ConfirmEmail]]',

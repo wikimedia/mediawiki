@@ -913,7 +913,7 @@ Bitte warte, bevor du es erneut probierst.',
 'loginlanguagelabel' => 'Sprache: $1',
 'suspicious-userlogout' => 'Deine Abmeldeanfrage wurde verweigert, da sie vermutlich von einem defekten Browser oder einem Cache-Proxy gesendet wurde.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Unbekannter Fehler mit der Funktion mail() von PHP',
 'user-mail-no-addy' => 'Versuchte, eine E-Mail ohne Angabe einer E-Mail-Adresse zu versenden.',
 'user-mail-no-body' => 'Es wurde versucht, eine E-Mail mit einem leeren oder zu kurzen Textkörper zu versenden.',
@@ -1581,7 +1581,7 @@ Dies kann nicht mehr rückgängig gemacht werden.',
 'prefs-displaywatchlist' => 'Anzeigeoptionen',
 'prefs-diffs' => 'Versionsvergleich',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'Diese E-Mail-Adresse scheint gültig zu sein.',
 'email-address-validity-invalid' => 'Eine gültige E-Mail-Adresse ist erforderlich.',
 
@@ -2366,7 +2366,7 @@ Zusätzliche Informationen über einzelne Rechte können [[{{MediaWiki:Listgroup
 'listgrouprights-addgroup-self-all' => 'Kann alle Gruppen zum eigenen Konto hinzufügen',
 'listgrouprights-removegroup-self-all' => 'Kann alle Gruppen vom eigenen Konto entfernen',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Fehler beim E-Mail-Versand',
 'mailnologintext' => 'Du musst [[Special:UserLogin|angemeldet sein]] und eine bestätigte E-Mail-Adresse in deinen [[Special:Preferences|Einstellungen]] eingetragen haben, um anderen Benutzern E-Mails schicken zu können.',
 'emailuser' => 'E-Mail an diesen Benutzer',
@@ -3199,7 +3199,7 @@ Das liegt wahrscheinlich an einem Link auf eine externe Seite.',
 'pageinfo-header-restrictions' => 'Seitenschutz',
 'pageinfo-header-properties' => 'Seiteneigenschaften',
 'pageinfo-display-title' => 'Anzeigetitel',
-'pageinfo-default-sort' => 'Standard-Sortierschlüssel',
+'pageinfo-default-sort' => 'Standardsortierschlüssel',
 'pageinfo-length' => 'Seitenlänge (in Bytes)',
 'pageinfo-article-id' => 'Seitenkennnummer',
 'pageinfo-language' => 'Seiteninhaltssprache',
@@ -3755,7 +3755,7 @@ Weitere werden standardmäßig nicht angezeigt.
 'monthsall' => 'alle',
 'limitall' => 'alle',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'E-Mail-Adresse bestätigen (Authentifizierung)',
 'confirmemail_noemail' => 'Du hast keine gültige E-Mail-Adresse in deinen [[Special:Preferences|persönlichen Einstellungen]] eingetragen.',
 'confirmemail_text' => '{{SITENAME}} erfordert, dass du deine E-Mail-Adresse bestätigst (authentifizieren), bevor du die erweiterten E-Mail-Funktionen benutzen kannst. Klicke bitte auf die unten stehende, mit „Bestätigungscode zuschicken“ beschriftete Schaltfläche, damit eine automatisch erstellte E-Mail an die angegebene Adresse geschickt wird. Diese E-Mail enthält eine Web-Adresse mit einem Bestätigungscode. Indem du diese Webseite in deinem Webbrowser öffnest, bestätigst du, dass die angegebene E-Mail-Adresse korrekt und gültig ist.',

@@ -888,7 +888,7 @@ Veuillez attendre avant d'essayer à nouveau.",
 'loginlanguagelabel' => 'Langue : $1',
 'suspicious-userlogout' => "Votre demande de déconnexion a été refusée car il semble qu'elle a été envoyée par un navigateur cassé ou la mise en cache d'un proxy.",
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Erreur inconnue dans la fonction mail() de PHP.',
 'user-mail-no-addy' => "Tenté d'envoyer un courriel sans adresse de courriel",
 'user-mail-no-body' => "Essai d'envoi d'un courriel avec un corps vide ou déraisonnablement court.",
@@ -1554,7 +1554,7 @@ Elle ne doit pas dépasser $1 caractère{{PLURAL:$1||s}}.',
 'prefs-displaywatchlist' => "Options d'affichage",
 'prefs-diffs' => 'Différences',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'Semble valide',
 'email-address-validity-invalid' => 'Une adresse valide est nécessaire !',
 
@@ -2346,7 +2346,7 @@ Des [[{{MediaWiki:Listgrouprights-helppage}}|informations additionnelles]] peuve
 'listgrouprights-addgroup-self-all' => "Peut s'ajouter tous les groupes à son propre compte",
 'listgrouprights-removegroup-self-all' => 'Peut se retirer tous les groupes de son propre compte',
 
-# E-mail user
+# Email user
 'mailnologin' => "Pas d'adresse d'expéditeur",
 'mailnologintext' => "Vous devez être [[Special:UserLogin|identifié]] et avoir indiqué une adresse électronique valide dans vos [[Special:Preferences|préférences]] pour pouvoir envoyer des courriels à d'autres utilisateurs.",
 'emailuser' => 'Lui envoyer un courriel',
@@ -3755,7 +3755,7 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'monthsall' => 'tous',
 'limitall' => 'tous',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => "Confirmer l'adresse de courriel",
 'confirmemail_noemail' => "Vous n'avez pas défini une adresse de courriel valide dans vos [[Special:Preferences|préférences]].",
 'confirmemail_text' => 'Ce wiki nécessite la vérification de votre adresse de courriel avant de pouvoir utiliser toute fonction de messagerie.

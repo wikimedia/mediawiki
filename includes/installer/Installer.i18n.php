@@ -6298,7 +6298,8 @@ $messages['gd'] = array(
 == Toiseach tòiseachaidh ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Liosta suidheachadh nan roghainnean]
 * [//www.mediawiki.org/wiki/Manual:FAQ CÀBHA MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Liosta puist nan sgaoilidhean MediaWiki]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Liosta puist nan sgaoilidhean MediaWiki]
+* [//www.mediawiki.org/wiki/Localisation#Translation_resources Cuir do chànan air MediaWiki]",
 );
 
 /** Galician (galego)

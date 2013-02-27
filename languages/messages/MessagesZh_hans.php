@@ -835,7 +835,7 @@ $2',
 'loginlanguagelabel' => '语言：$1',
 'suspicious-userlogout' => '注销请求被拒绝，因为它似乎是由有设计缺陷的浏览器或缓存代理发出的。',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => '在 PHP 的 mail() 函数中的未知错误',
 'user-mail-no-addy' => '尝试发送邮件而不附带电子邮件地址。',
 'user-mail-no-body' => '试图发送空的或者主体短得不合理的电子邮件。',
@@ -1456,7 +1456,7 @@ $1",
 'prefs-displaywatchlist' => '显示',
 'prefs-diffs' => '差异对比',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => '电子邮件地址有效',
 'email-address-validity-invalid' => '请输入有效的电子邮件地址',
 
@@ -2207,7 +2207,7 @@ $1',
 'listgrouprights-addgroup-self-all' => '添加所有用户组至自己的账户',
 'listgrouprights-removegroup-self-all' => '删除自己的账户的所有用户组',
 
-# E-mail user
+# Email user
 'mailnologin' => '无电子邮件地址',
 'mailnologintext' => '你必须[[Special:UserLogin|登录]]并在你的[[Special:Preferences|系统设置]]中拥有有效的电子邮件地址才能向其他用户发送电子邮件。',
 'emailuser' => '电邮联系',
@@ -3610,7 +3610,7 @@ Variants for Chinese language
 'monthsall' => '全部',
 'limitall' => '全部',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => '确认邮箱地址',
 'confirmemail_noemail' => '你还没有在你的[[Special:Preferences|系统设置]]中设置有效的电子邮件地址。',
 'confirmemail_text' => '{{SITENAME}}要求您在使用邮件功能之前验证您的邮箱地址。

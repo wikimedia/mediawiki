@@ -532,7 +532,7 @@ San-o matagan pa hin iba nga e-mail para ha imo akawnt, kinahanglan mo sundon an
 'login-abort-generic' => 'An imo paglog-in in diri malinamposon - Naundang',
 'loginlanguagelabel' => 'Pinulongan: $1',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Waray kasabti ha kanan PHP mail() function.',
 
 # Change password dialog
@@ -921,7 +921,7 @@ An imo e-mail address in diri makikit-an kun an iba nga mga gumaramit in makonta
 'prefs-displaywatchlist' => 'Mga pirilion hiunong han ginpapakita',
 'prefs-diffs' => 'Mga kaibhan',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'E-mail address in baga puydi',
 
 # User rights
@@ -1376,7 +1376,7 @@ An paglaladawan han iya [$2 fayl han paglaladawan nga pakli] didto in ginpapakit
 'listgrouprights-addgroup-all' => 'Igdugang ngatanan nga mga hugpo',
 'listgrouprights-removegroup-all' => 'Igtanggal ngatanan nga mga hugpo',
 
-# E-mail user
+# Email user
 'emailuser' => 'Ig-e-mail ini nga gumaramit',
 'emailuser-title-target' => 'Ig-E-mail ini nga {{HENERO:$1|gumaramit}}',
 'emailuser-title-notarget' => 'Gumaramit han e-mail',
@@ -2042,7 +2042,7 @@ An iba in daan nakatago.
 'monthsall' => 'ngatanan',
 'limitall' => 'ngatanan',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Igkompirma an e-mail address',
 'confirmemail_sent' => 'Ginpadara an kompirmasyon han e-mail.',
 'confirmemail_needlogin' => 'Kinahanglanon mo hin $1 para makakompirma han imo e-mail address.',

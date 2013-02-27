@@ -740,7 +740,7 @@ Vinsamlegast reynið aftur síðar.',
 'loginlanguagelabel' => 'Tungumál: $1',
 'suspicious-userlogout' => 'Beiðni um útskráningu hafnað því hún var líklegast send frá biluðum vafra eða vefseli sem hefur vistað vefsíðuna í flýtiminni.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Óþekkt villa í PHP mail() aðgerð.',
 'user-mail-no-addy' => 'Gat ekki sent tölvupóst því ekkert tölvupóstfang fannst.',
 'user-mail-no-body' => 'Reyndi að senda tölvupóst með engu eða verulega stuttu meginmáli.',
@@ -1422,7 +1422,7 @@ Tölvupóstfang þitt er ekki gefið upp þegar aðrir notendur hafa samband vi�
 'prefs-displaywatchlist' => 'Útlitsmöguleikar',
 'prefs-diffs' => 'Breytingar',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'Netfang virðist vera virkt.',
 'email-address-validity-invalid' => 'Settu inn rétt netfang',
 
@@ -2203,7 +2203,7 @@ Leitin þarf að minnsta kosti að innihalda rótarlén, eins og "*.org"
 'listgrouprights-addgroup-self-all' => 'Bæta sjálfum sér í alla hópa',
 'listgrouprights-removegroup-self-all' => 'Fjarlægja sjálfan sig úr öllum hópum',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Ekkert netfang til að senda á',
 'mailnologintext' => 'Þú verður að vera [[Special:UserLogin|innskráð(ur)]] auk þess að hafa gilt netfang í [[Special:Preferences|stillingunum]] þínum til að senda tölvupóst til annara notenda.',
 'emailuser' => 'Senda þessum notanda tölvupóst',
@@ -3548,7 +3548,7 @@ Ef skránni hefur verið breytt, kann að vera að einhverjar upplýsingar eigi 
 'monthsall' => 'allir',
 'limitall' => 'alla',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Staðfesta netfang',
 'confirmemail_noemail' => 'Þú hefur ekki gefið upp gilt netfang í [[Special:Preferences|notandastillingum]] þínum.',
 'confirmemail_text' => '{{SITENAME}} krefst þess að þú staðfestir netfangið þitt áður en að þú getur notað eiginleika tengt því. Smelltu á hnappinn að neðan til að fá staðfestingarpóst sendan á netfangið. Pósturinn mun innihalda tengil með kóða í sér; opnaðu tengilinn í vafranum til að staðfesta að netfangið sé rétt.',

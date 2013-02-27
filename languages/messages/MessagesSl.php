@@ -701,7 +701,7 @@ Prosimo počakajte, preden poskusite znova.',
 'loginlanguagelabel' => 'Jezik: $1',
 'suspicious-userlogout' => 'Vaša zahteva za odjavo je bila zavrnjena, saj kaže, da je bila poslana iz pokvarjenega brskalnika ali proxyja s predpomnilnikom.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Neznana napaka v funkciji PHP mail()',
 'user-mail-no-addy' => 'Poskušal poslati e-pošto brez e-poštnega naslova',
 'user-mail-no-body' => 'Poskušali ste poslati e-pošto s prazno ali nerazumno kratko vsebino.',
@@ -1392,7 +1392,7 @@ Ko vas drugi uporabniki kontaktirajo, jim vašega e-poštnega naslova ne bomo ra
 'prefs-displaywatchlist' => 'Možnosti prikaza',
 'prefs-diffs' => 'Primerjave',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'Izgleda veljaven',
 'email-address-validity-invalid' => 'Obvezen je veljaven naslov!',
 
@@ -1997,6 +1997,10 @@ Preden jih izbrišete, preverite še druge povezave nanje.',
 Namesto tega bi morda bilo bolje, da se povezujejo na primernejše strani.<br />
 Stran se obravnava kot razločitvena, če uporablja predloge, povezane z [[MediaWiki:Disambiguationspage]].",
 
+'pageswithprop' => 'Strani z lastnostmi strani',
+'pageswithprop-text' => 'Stran navaja vse strani, ki uporabljajo določene lastnosti strani.',
+'pageswithprop-prop' => 'Ime lastnosti:',
+
 'doubleredirects' => 'Dvojne preusmeritve',
 'doubleredirectstext' => 'Ta stran navaja strani, ki se preusmerjajo na druge preusmeritvene strani.
 Vsaka vrstica vsebuje povezavo do prve in druge preusmeritve, kakor tudi do cilja druge preusmeritve, ki je po navadi »prava« ciljna stran, na katero naj bi kazala prva preusmeritev.
@@ -2188,7 +2192,7 @@ Morda so na razpolago tudi [[{{MediaWiki:Listgrouprights-helppage}}|dodatne info
 'listgrouprights-addgroup-self-all' => 'Lastni račun dodaj v vse skupine',
 'listgrouprights-removegroup-self-all' => 'Lastni račun odstrani iz vseh skupin',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Manjka naslov pošiljatelja',
 'mailnologintext' => 'Za pošiljanje e-pošte drugim uporabnikom se [[Special:UserLogin|prijavite]] in v [[Special:Preferences|nastavitvah]] vpišite veljaven e-poštni naslov.',
 'emailuser' => 'Pošlji uporabniku e-pismo',
@@ -3568,7 +3572,7 @@ Druga bodo po privzetem skrita.
 'monthsall' => 'vse',
 'limitall' => 'vse',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Potrditev naslova elektronske pošte',
 'confirmemail_noemail' => 'Nimate določenega veljavnega e-poštnega naslova v vaših [[Special:Preferences|uporabniških nastavitvah]].',
 'confirmemail_text' => 'Za uporabo e-poštnih možnosti {{GRAMMAR:rodilnik|{{SITENAME}}}} morate najprej potrditi svoj e-poštni naslov.
@@ -3978,4 +3982,7 @@ V nasprotnem primeru lahko uporabite preprost obrazec spodaj. Vašo pripombo bom
 'duration-centuries' => '$1 {{PLURAL:$1|stoletje|stoletji|stoletja|stoletij}}',
 'duration-millennia' => '$1 {{PLURAL:$1|tisočletje|tisočletji|tisočletja|tisočletij}}',
 
+# Unknown messages
+'pageswithprop-legend' => 'Strani z lastnostmi strani',
+'pageswithprop-submit' => 'Pojdi',
 );

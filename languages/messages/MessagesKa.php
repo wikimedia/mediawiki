@@ -686,7 +686,7 @@ $1 საათში.',
 'loginlanguagelabel' => 'ენა: $1',
 'suspicious-userlogout' => 'თქვენი მოთხოვნა გასვლის შესახებ გაუქმებულია, რადგანაც იგი გავს ქეშირებადი პროქსის ან არაკორექტული ბრაუზერის მოთხოვნას.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'ამოუცნობი შეცდომა PHP-ის mail() ფუნქციაში',
 'user-mail-no-addy' => 'ცდილობდა ელ-ფოსტის გაგზავნას ელ-ფოსტის მისამართის გარეშე.',
 'user-mail-no-body' => 'ცდილობდა ცარიელი ან უაზროდ მოკლე შინაარსის ელექტრონული წერილის გაგზავნას.',
@@ -1376,7 +1376,7 @@ $1",
 'prefs-displaywatchlist' => 'გამოსახვის კონფიგურაციები',
 'prefs-diffs' => 'სხვაობა ვერსიებს შორის',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'ელ-ფოსტის მისამართი სწორად გამოიყურება',
 'email-address-validity-invalid' => 'მიუთითეთ სწორი ელ-ფოსტის მისამართი',
 
@@ -2156,7 +2156,7 @@ $1',
 'listgrouprights-addgroup-self-all' => 'შეუძლია ყელა ჯგუფია ჩამატება ანგარიშს.',
 'listgrouprights-removegroup-self-all' => 'შეუძლია თავისი ანგარიშის ყველა ჯგუფის წაშლა.',
 
-# E-mail user
+# Email user
 'mailnologin' => 'გამგზავნი მისამართი არ არის მითითებული.',
 'mailnologintext' => 'თქვენ უნდა [[Special:UserLogin|წარადგენილი იყოთ სისტემისადმი]] და გქონდეთ წესიერი ელექტრონული ფოსტის მისამართი თქვენს [[Special:Preferences|კონფიგურაციაში]] იმისთვის, რომ გაუგზავნოთ წერილების სხვა მომხმარებლებს.',
 'emailuser' => 'გაუგზავნეთ იმეილი ამ მომხმარებელს',
@@ -3583,7 +3583,7 @@ $8',
 'monthsall' => 'ყველა',
 'limitall' => 'ყველა',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'ელ. ფოსტის მისამართის დადასტურება',
 'confirmemail_noemail' => 'თქვენ არ გაქვს მითითებული მართებული ელმისამართი [[Special:Preferences|მომხმარებლის პარამეტრებში]].',
 'confirmemail_text' => '{{SITENAME}} ითხოვს თქვენი ელ. ფოსტის დადასტურებას, სანამ ელ.

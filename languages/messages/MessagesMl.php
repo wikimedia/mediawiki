@@ -831,7 +831,7 @@ $2',
 'loginlanguagelabel' => 'ഭാഷ: $1',
 'suspicious-userlogout' => 'ലോഗൗട്ട് ചെയ്യാനുള്ള താങ്കളുടെ അഭ്യർത്ഥന നിരസിച്ചിരിക്കുന്നു, കാരണം അത് തകർന്ന ബ്രൗസറിൽ നിന്നോ കാഷിങ് പ്രോക്സിയിൽ നിന്നോ ഉണ്ടായതുപോലെ അനുഭവപ്പെടുന്നു.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'പി.എച്ച്.പി.യുടെ main() ഫങ്ഷനിൽ അപരിചിതമായ പിഴവ്',
 'user-mail-no-addy' => 'ഇമെയിൽ വിലാസം ഇല്ലാതെയാണ് ഇമെയിൽ അയയ്ക്കാൻ ശ്രമിച്ചത്',
 'user-mail-no-body' => 'ശൂന്യമായതോ അസാമാന്യമായി ചെറുതോ ആയ ഉള്ളടക്കമുള്ള ഇമെയിൽ അയയ്ക്കാൻ ശ്രമിച്ചു.',
@@ -1382,7 +1382,7 @@ $1",
 # Preferences page
 'preferences' => 'ക്രമീകരണങ്ങൾ',
 'mypreferences' => 'ക്രമീകരണങ്ങൾ',
-'prefs-edits' => 'ആകെ തിരുത്തലുകൾ:',
+'prefs-edits' => 'ആകെ തിരുത്തുകൾ:',
 'prefsnologin' => 'ലോഗിൻ ചെയ്തിട്ടില്ല',
 'prefsnologintext' => 'ഉപയോക്തൃക്രമീകരണങ്ങൾ മാറ്റാൻ താങ്കൾ <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} ലോഗിൻ]</span> ചെയ്തിരിക്കണം.',
 'changepassword' => 'രഹസ്യവാക്ക് മാറ്റുക',
@@ -1496,7 +1496,7 @@ $1",
 'prefs-displaywatchlist' => 'പ്രദർശന ഐച്ഛികങ്ങൾ',
 'prefs-diffs' => 'വ്യത്യാസങ്ങൾ',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'സാധുതയുള്ളതെന്ന് തോന്നുന്നു',
 'email-address-validity-invalid' => 'സാധുതയുള്ള വിലാസം ആവശ്യമാണ്!',
 
@@ -2271,7 +2271,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization കാണുക.',
 'listgrouprights-addgroup-self-all' => 'എല്ലാ സംഘങ്ങളേയും സ്വന്തം അംഗത്വത്തിൽ ചേർക്കുക',
 'listgrouprights-removegroup-self-all' => 'സ്വന്തം അംഗത്വത്തിൽ നിന്ന് എല്ലാ സംഘങ്ങളേയും നീക്കംചെയ്യുക',
 
-# E-mail user
+# Email user
 'mailnologin' => 'അയയ്ക്കാനുള്ള വിലാസം ലഭ്യമല്ല',
 'mailnologintext' => 'മറ്റ് ഉപയോക്താക്കൾക്കു ഇമെയിലയക്കുവാൻ താങ്കൾ [[Special:UserLogin|ലോഗിൻ]] ചെയ്തിരിക്കുകയും, സാധുവായ ഒരു ഇമെയിൽ വിലാസം താങ്കളുടെ [[Special:Preferences|ക്രമീകരണങ്ങൾ]] താളിൽ സജ്ജീകരിച്ചിരിക്കുകയും വേണം.',
 'emailuser' => 'ഈ ഉപയോക്താവിനു ഇമെയിൽ അയക്കുക',
@@ -3105,7 +3105,7 @@ $1',
 'pageinfo-title' => '"$1" എന്ന താളിന്റെ വിവരങ്ങൾ',
 'pageinfo-not-current' => 'ക്ഷമിക്കുക, പഴയ നാൾപ്പതിപ്പുകളിൽ ഈ വിവരം പ്രദർശിപ്പിക്കുക അസാദ്ധ്യമാണ്.',
 'pageinfo-header-basic' => 'അടിസ്ഥാനവിവരങ്ങൾ',
-'pageinfo-header-edits' => 'തിരുത്തൽചരിത്രം',
+'pageinfo-header-edits' => 'തിരുത്തുകളുടെ നാൾവഴി',
 'pageinfo-header-restrictions' => 'സംരക്ഷണം',
 'pageinfo-header-properties' => 'താളിന്റെ ഗുണഗണങ്ങൾ',
 'pageinfo-display-title' => 'പ്രദർശിപ്പിക്കേണ്ട തലക്കെട്ട്',
@@ -3661,7 +3661,7 @@ $1',
 'monthsall' => 'എല്ലാം',
 'limitall' => 'എല്ലാം',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'ഇ-മെയിൽ വിലാസം സ്ഥിരീകരിക്കൽ',
 'confirmemail_noemail' => '[[Special:Preferences|താങ്കളുടെ ക്രമീകരണങ്ങളുടെ കൂടെ]] സാധുവായൊരു ഇ-മെയിൽ വിലാസം സജ്ജീകരിച്ചിട്ടില്ല.',
 'confirmemail_text' => '{{SITENAME}} സം‌രംഭത്തിൽ ഇ-മെയിൽ സൗകര്യം ഉപയോഗിക്കണമെങ്കിൽ താങ്കൾ താങ്കളുടെ ഇ-മെയിൽ വിലാസത്തിന്റെ സാധുത തെളിയിച്ചിരിക്കണം. താങ്കളുടെ ഇ-മെയിൽ വിലാസത്തിലേക്ക് സ്ഥിരീകരണ മെയിൽ അയക്കുവാൻ താഴെയുള്ള ബട്ടൺ അമർത്തുക. താങ്കൾക്ക് അയക്കുന്ന ഇ-മെയിലിൽ ഒരു സ്ഥിരീകരണ കോഡ് ഉണ്ട്. ആ കോഡിൽ അമർത്തിയാൽ താങ്കളുടെ വിലാസത്തിന്റെ സാധുത തെളിയിക്കപ്പെടും.',

@@ -625,7 +625,7 @@ Berriro saiatu aurretik itxaron ezazu, mesedez.',
 'loginlanguagelabel' => 'Hizkuntza: $1',
 'suspicious-userlogout' => 'Saioa amaitzeko egin duzun eskaria ukatu da. Izan ere, ematen du eskari hori gaizki dabilen nabigatzaile edo cache proxy batek bidali duela.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'PHPren mail() funtzioan arazo ezezagun bat egon da.',
 
 # Change password dialog
@@ -1240,7 +1240,7 @@ $1 {{PLURAL:$1|karakteretik|karakteretik}} behera izan behar ditu.',
 'prefs-displaywatchlist' => 'Aukerak erakutsi',
 'prefs-diffs' => 'Ezberdintasunak',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'E-posta helbidea zuzena dela dirudi',
 'email-address-validity-invalid' => 'E-posta helbide zuzena idatzi',
 
@@ -1900,7 +1900,7 @@ Badago [[{{MediaWiki:Listgrouprights-helppage}}|informazio osagarria]] banakako 
 'listgrouprights-addgroup-self-all' => 'Talde guztiak norbere kontura gehitu',
 'listgrouprights-removegroup-self-all' => 'Talde guztiak norbere kontutik ezabatu',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Bidalketa helbiderik ez',
 'mailnologintext' => 'Beste erabiltzaileei e-posta mezuak bidaltzeko [[Special:UserLogin|saioa hasi]] eta baliozko e-posta helbidea behar duzu izan zure [[Special:Preferences|hobespenetan]].',
 'emailuser' => 'Erabiltzaile honi e-posta bidali',
@@ -3118,7 +3118,7 @@ Zerrenda elementuak (hasieran * duten lerroak) baino ez dira kontuan hartzen. Le
 'monthsall' => 'guztiak',
 'limitall' => 'guztiak',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'E-posta helbidea egiaztatu',
 'confirmemail_noemail' => 'Ez daukazu e-posta helbiderik zehaztuta zure [[Special:Preferences|hobespenetan]].',
 'confirmemail_text' => 'Wiki honetan zure e-posta helbidea egiaztatzea beharrezkoa da e-postarekin zerikusia duten ezaugarriak erabili aurretik. Beheko botoia jo zure helbidera egiaztapen mezu bat bidaltzeko. Mezuan kode bat duen lotura bat joango da atxikita; lotura hori zure nabigatzailean ireki ezazu e-posta helbidea egiaztatzeko.',

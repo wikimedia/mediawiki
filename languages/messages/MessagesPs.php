@@ -622,7 +622,7 @@ $1',
 'login-abort-generic' => 'غونډال کې مو ننوتل نابريالی شو - ناڅاپي بند شو',
 'loginlanguagelabel' => 'ژبه: $1',
 
-# E-mail sending
+# Email sending
 'user-mail-no-addy' => 'د يوې برېښليک پتې پرته د برېښليک لېږلو هڅه شوې.',
 
 # Change password dialog
@@ -1097,7 +1097,7 @@ $1',
 'prefs-displaywatchlist' => 'د ښکارېدنې خوښنې',
 'prefs-diffs' => 'توپيرونه',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'برېښليک پته سمه ښکاري',
 'email-address-validity-invalid' => 'يوه سمه برېښليک پته وليکۍ',
 
@@ -1602,7 +1602,7 @@ $1',
 'listgrouprights-addgroup-self-all' => 'خپل ګڼون کې ټولې ډلې ورګډول',
 'listgrouprights-removegroup-self-all' => 'خپل ګڼون نه ټولې ډلې ليري کول',
 
-# E-mail user
+# Email user
 'mailnologin' => 'هېڅ کومه لېږل شوې پته نشته',
 'emailuser' => 'کارن ته برېښليک لېږل',
 'emailuser-title-target' => 'دې {{GENDER:$1|کارن}} ته برېښليک لېږل',
@@ -2425,7 +2425,7 @@ $1',
 'monthsall' => 'ټول',
 'limitall' => 'ټول',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'د برېښليک پتې پخلی وکړی',
 'confirmemail_noemail' => 'تاسې يوه سمه برېښليک پته نه ده ثبته کړې مهرباني وکړی [[Special:Preferences|د کارن غوره توبونه]] مو بدل کړۍ.',
 'confirmemail_send' => 'يو تاييدي کوډ لېږل',

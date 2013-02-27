@@ -678,7 +678,7 @@ Gortozit a-raok klask en-dro.",
 'loginlanguagelabel' => 'Yezh : $1',
 'suspicious-userlogout' => 'Distaolet eo bet ho koulenn digevreañ rak kaset e oa bet gant ur merdeer direizhet pe krubuilhadenn ur proksi, evit doare.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => "Fazi dianav en arc'hwel postel () PHP",
 'user-mail-no-addy' => "Klasket kas ur postel hep lakaat ur chomlec'h postel.",
 
@@ -1350,7 +1350,7 @@ Ma skrivit anezhañ e vo implijet evit lakaat war wel ar pezh a vo bet degaset g
 'prefs-displaywatchlist' => 'Dibarzhioù diskwel',
 'prefs-diffs' => "Diforc'hioù",
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => "Reizh eo ar chomlec'h postel war a seblant",
 'email-address-validity-invalid' => "Ebarzhit ur chomlec'h postel reizh",
 
@@ -2133,7 +2133,7 @@ Gallout a ra bezañ [[{{MediaWiki:Listgrouprights-helppage}}|titouroù ouzhpenn]
 'listgrouprights-addgroup-self-all' => 'Gallout a ra ouzhpennañ an holl strolladoù da gont an-unan',
 'listgrouprights-removegroup-self-all' => 'Gallout a ra tennañ kuit an holl strolladoù eus kont an-unan.',
 
-# E-mail user
+# Email user
 'mailnologin' => "Chomlec'h ebet",
 'mailnologintext' => "Ret eo deoc'h bezañ [[Special:UserLogin|kevreet]]
 ha bezañ merket ur chomlec'h postel reizh en ho [[Special:Preferences|penndibaboù]]
@@ -3511,7 +3511,7 @@ Kuzhet e vo ar re all dre ziouer.
 'monthsall' => 'an holl',
 'limitall' => 'An holl',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => "Kadarnaat ar chomlec'h postel",
 'confirmemail_noemail' => "N'hoc'h eus ket spisaet chomlec'h postel mat ebet en ho [[Special:Preferences|penndibaboù implijer]].",
 'confirmemail_text' => "Rankout a ra ar wiki-mañ bezañ gwiriet ho chomlec'h postel a-raok gallout implijout nep arc'hwel postel. Implijit ar bouton a-is evit kas ur postel kadarnaat d'ho chomlec'h. Ul liamm ennañ ur c'hod a vo er postel. Kargit al liamm-se en o merdeer evit kadarnaat ho chomlec'h.",

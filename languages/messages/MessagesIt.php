@@ -784,7 +784,7 @@ Riprovare più tardi.',
 'loginlanguagelabel' => 'Lingua: $1',
 'suspicious-userlogout' => 'La tua richiesta di disconnessione è stata negata perché sembra inviata da un browser non funzionante o un proxy di caching.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Errore sconosciuto nella funzione PHP mail()',
 'user-mail-no-addy' => 'Hai cercato di inviare una e-mail senza un indirizzo.',
 'user-mail-no-body' => 'Tentato di inviare una e-mail con un testo vuoto o estremamente breve.',
@@ -1443,7 +1443,7 @@ Il tuo indirizzo non viene rivelato quando gli altri utenti ti contattano.',
 'prefs-displaywatchlist' => 'Opzioni di visualizzazione',
 'prefs-diffs' => 'Differenze',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => "L'indirizzo e-mail sembra valido",
 'email-address-validity-invalid' => 'Inserisci un indirizzo e-mail valido',
 
@@ -2217,7 +2217,7 @@ Potrebbero esserci [[{{MediaWiki:Listgrouprights-helppage}}|ulteriori informazio
 'listgrouprights-addgroup-self-all' => 'Può aggiungersi a tutti i gruppi',
 'listgrouprights-removegroup-self-all' => 'Può rimuoversi da tutti i gruppi',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Nessun indirizzo cui inviare il messaggio',
 'mailnologintext' => 'Per inviare messaggi e-mail ad altri utenti è necessario [[Special:UserLogin|accedere al sito]] e aver registrato un indirizzo valido nelle proprie [[Special:Preferences|preferenze]].',
 'emailuser' => "Scrivi all'utente",
@@ -3592,7 +3592,7 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 'monthsall' => 'tutti',
 'limitall' => 'tutti',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Conferma indirizzo email',
 'confirmemail_noemail' => 'Non è stato indicato un indirizzo e-mail valido nelle proprie [[Special:Preferences|preferenze]].',
 'confirmemail_text' => "{{SITENAME}} richiede la verifica dell'indirizzo e-mail prima di poter usare le relative funzioni. Premere il pulsante qui sotto per inviare una richiesta di conferma al proprio indirizzo; nel messaggio è presente un collegamento che contiene un codice. Visitare il collegamento con il proprio browser per confermare che l'indirizzo e-mail è valido.",
