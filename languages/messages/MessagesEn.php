@@ -3854,7 +3854,7 @@ $1',
 'nextdiff'     => 'Newer edit →',
 
 # Media information
-'mediawarning'                => "'''Warning''': This file type may contain malicious code.
+'mediawarning'                => "'''Warning:''' This file type may contain malicious code.
 By executing it, your system may be compromised.",
 'imagemaxsize'                => "Image size limit:<br />''(for file description pages)''",
 'thumbsize'                   => 'Thumbnail size:',
@@ -4513,7 +4513,7 @@ This confirmation code will expire at $4.',
 'scarytranscludetoolong'           => '[URL is too long]',
 
 # Delete conflict
-'deletedwhileediting'      => "'''Warning''': This page was deleted after you started editing!",
+'deletedwhileediting'      => "'''Warning:''' This page was deleted after you started editing!",
 'confirmrecreate'          => "User [[User:$1|$1]] ([[User talk:$1|talk]]) deleted this page after you started editing with reason:
 : ''$2''
 Please confirm that you really want to recreate this page.",
