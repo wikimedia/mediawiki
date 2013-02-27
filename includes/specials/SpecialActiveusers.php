@@ -94,20 +94,22 @@ class ActiveUsersPager extends UsersPager {
 		$dbr = wfGetDB( DB_SLAVE );
 		$conds = array( 'rc_user > 0' ); // Users - no anons
 		if( !$this->getUser()->isAllowed( 'hideuser' ) ) {
-			$conds[] = 'ipb_deleted IS NULL OR ipb_deleted = 0'; // don't show hidden names
+			$conds[] = 'ipb_deleted IS NULL'; // don't show hidden names
 		}
 		$conds[] = 'rc_log_type IS NULL OR rc_log_type != ' . $dbr->addQuotes( 'newusers' );
-		$conds[] = 'rc_timestamp >= ' . $dbr->addQuotes( $dbr->timestamp( wfTimestamp( TS_UNIX ) - $this->RCMaxAge*24*3600 ) );
+		$conds[] = 'rc_timestamp >= ' . $dbr->addQuotes(
+			$dbr->timestamp( wfTimestamp( TS_UNIX ) - $this->RCMaxAge*24*3600 ) );
 
 		if( $this->requestedUser != '' ) {
 			$conds[] = 'rc_user_text >= ' . $dbr->addQuotes( $this->requestedUser );
 		}
 
-		$query = array(
-			'tables' => array( 'recentchanges', 'user', 'ipblocks' ),
-			'fields' => array( 'user_name' => 'rc_user_text', // inheritance
+		return array(
+			'tables' => array( 'recentchanges', 'ipblocks' ),
+			'fields' => array(
+				'user_name' => 'rc_user_text', // for Pager inheritance
 				'rc_user_text', // for Pager
-				'user_id',
+				'user_id' => 'rc_user',
 				'recentedits' => 'COUNT(*)',
 				'ipb_deleted' => 'MAX(ipb_deleted)'
 			),
@@ -115,16 +117,15 @@ class ActiveUsersPager extends UsersPager {
 				'GROUP BY' => array( 'rc_user_text', 'user_id' ),
 				'USE INDEX' => array( 'recentchanges' => 'rc_user_text' )
 			),
-			'join_conds' => array(
-				'user' => array( 'INNER JOIN', 'rc_user_text=user_name' ),
+			'join_conds' => array( // check for suppression blocks
 				'ipblocks' => array( 'LEFT JOIN', array(
-					'user_id=ipb_user',
-					'ipb_auto' => 0
+					'rc_user=ipb_user',
+					'ipb_auto' => 0,
+					'ipb_deleted' => 1
 				)),
 			),
 			'conds' => $conds
 		);
-		return $query;
 	}
 
 	function formatRow( $row ) {
