@@ -154,7 +154,7 @@ class UpdateMediaWiki extends Maintenance {
 			$child = $this->runChild( $maint );
 
 			// LoggedUpdateMaintenance is checking the updatelog itself
-			$isLoggedUpdate = ( $child instanceof LoggedUpdateMaintenance );
+			$isLoggedUpdate = is_a( $child, 'LoggedUpdateMaintenance' );
 
 			if ( !$isLoggedUpdate && $updater->updateRowExists( $maint ) ) {
 				continue;
