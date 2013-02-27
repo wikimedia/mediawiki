@@ -869,17 +869,35 @@ class ParserTest {
 		$this->uploadDir = $this->setupUploadDir();
 		$user = User::createNew( 'WikiSysop' );
 		$image = wfLocalFile( Title::makeTitle( NS_FILE, 'Foobar.jpg' ) );
+		# note that the size/width/height/bits/etc of the file
+		# are actually set by inspecting the file itself; the arguments
+		# to recordUpload2 have no effect.  That said, we try to make things
+		# match up so it is less confusing to readers of the code & tests.
 		$image->recordUpload2( '', 'Upload of some lame file', 'Some lame file', array(
-			'size' => 12345,
+			'size' => 7881,
 			'width' => 1941,
 			'height' => 220,
-			'bits' => 24,
+			'bits' => 8,
 			'media_type' => MEDIATYPE_BITMAP,
 			'mime' => 'image/jpeg',
 			'metadata' => serialize( array() ),
-			'sha1' => wfBaseConvert( '', 16, 36, 31 ),
+			'sha1' => wfBaseConvert( '1', 16, 36, 31 ),
 			'fileExists' => true
 		), $this->db->timestamp( '20010115123500' ), $user );
+
+		$image = wfLocalFile( Title::makeTitle( NS_FILE, 'Thumb.png' ) );
+		# again, note that size/width/height below are ignored; see above.
+		$image->recordUpload2( '', 'Upload of some lame thumbnail', 'Some lame thumbnail', array(
+			'size' => 22589,
+			'width' => 135,
+			'height' => 135,
+			'bits' => 8,
+			'media_type' => MEDIATYPE_BITMAP,
+			'mime' => 'image/png',
+			'metadata' => serialize( array() ),
+			'sha1' => wfBaseConvert( '2', 16, 36, 31 ),
+			'fileExists' => true
+		), $this->db->timestamp( '20130225203040' ), $user );
 
 		# This image will be blacklisted in [[MediaWiki:Bad image list]]
 		$image = wfLocalFile( Title::makeTitle( NS_FILE, 'Bad.jpg' ) );
@@ -891,7 +909,7 @@ class ParserTest {
 			'media_type' => MEDIATYPE_BITMAP,
 			'mime' => 'image/jpeg',
 			'metadata' => serialize( array() ),
-			'sha1' => wfBaseConvert( '', 16, 36, 31 ),
+			'sha1' => wfBaseConvert( '3', 16, 36, 31 ),
 			'fileExists' => true
 		), $this->db->timestamp( '20010115123500' ), $user );
 	}
@@ -960,6 +978,8 @@ class ParserTest {
 
 		wfMkdirParents( $dir . '/3/3a', null, __METHOD__ );
 		copy( "$IP/skins/monobook/headbg.jpg", "$dir/3/3a/Foobar.jpg" );
+		wfMkdirParents( $dir . '/e/ea', null, __METHOD__ );
+		copy( "$IP/skins/monobook/wiki.png", "$dir/e/ea/Thumb.png" );
 		wfMkdirParents( $dir . '/0/09', null, __METHOD__ );
 		copy( "$IP/skins/monobook/headbg.jpg", "$dir/0/09/Bad.jpg" );
 
@@ -1008,6 +1028,8 @@ class ParserTest {
 				"$dir/thumb/3/3a/Foobar.jpg/70px-Foobar.jpg",
 				"$dir/thumb/3/3a/Foobar.jpg/960px-Foobar.jpg",
 
+				"$dir/e/ea/Thumb.png",
+
 				"$dir/0/09/Bad.jpg",
 
 				"$dir/math/f/a/5/fa50b8b616463173474302ca3e63586b.png",
@@ -1023,6 +1045,9 @@ class ParserTest {
 				"$dir/thumb/3/3a/Foobar.jpg",
 				"$dir/thumb/3/3a",
 				"$dir/thumb/3",
+
+				"$dir/e/ea",
+				"$dir/e",
 
 				"$dir/0/09/",
 				"$dir/0/",

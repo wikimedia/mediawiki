@@ -187,6 +187,10 @@ class NewParserTest extends MediaWikiTestCase {
 		# We will upload the actual files later. Note that if anything causes LocalFile::load()
 		# to be triggered before then, it will break via maybeUpgrade() setting the fileExists
 		# member to false and storing it in cache.
+		# note that the size/width/height/bits/etc of the file
+		# are actually set by inspecting the file itself; the arguments
+		# to recordUpload2 have no effect.  That said, we try to make things
+		# match up so it is less confusing to readers of the code & tests.
 		$image = wfLocalFile( Title::makeTitle( NS_FILE, 'Foobar.jpg' ) );
 		if ( !$this->db->selectField( 'image', '1', array( 'img_name' => $image->getName() ) ) ) {
 			$image->recordUpload2(
@@ -194,16 +198,36 @@ class NewParserTest extends MediaWikiTestCase {
 				'Upload of some lame file',
 				'Some lame file',
 				array(
-					'size' => 12345,
+					'size' => 7881,
 					'width' => 1941,
 					'height' => 220,
-					'bits' => 24,
+					'bits' => 8,
 					'media_type' => MEDIATYPE_BITMAP,
 					'mime' => 'image/jpeg',
 					'metadata' => serialize( array() ),
-					'sha1' => wfBaseConvert( '', 16, 36, 31 ),
+					'sha1' => wfBaseConvert( '1', 16, 36, 31 ),
 					'fileExists' => true ),
 				$this->db->timestamp( '20010115123500' ), $user
+			);
+		}
+
+		$image = wfLocalFile( Title::makeTitle( NS_FILE, 'Thumb.png' ) );
+		if ( !$this->db->selectField( 'image', '1', array( 'img_name' => $image->getName() ) ) ) {
+			$image->recordUpload2(
+				'', // archive name
+				'Upload of some lame thumbnail',
+				'Some lame thumbnail',
+				array(
+					'size' => 22589,
+					'width' => 135,
+					'height' => 135,
+					'bits' => 8,
+					'media_type' => MEDIATYPE_BITMAP,
+					'mime' => 'image/png',
+					'metadata' => serialize( array() ),
+					'sha1' => wfBaseConvert( '2', 16, 36, 31 ),
+					'fileExists' => true ),
+				$this->db->timestamp( '20130225203040' ), $user
 			);
 		}
 
@@ -222,7 +246,7 @@ class NewParserTest extends MediaWikiTestCase {
 					'media_type' => MEDIATYPE_BITMAP,
 					'mime' => 'image/jpeg',
 					'metadata' => serialize( array() ),
-					'sha1' => wfBaseConvert( '', 16, 36, 31 ),
+					'sha1' => wfBaseConvert( '3', 16, 36, 31 ),
 					'fileExists' => true ),
 				$this->db->timestamp( '20010115123500' ), $user
 			);
@@ -429,6 +453,10 @@ class NewParserTest extends MediaWikiTestCase {
 		$backend->store( array(
 			'src' => "$IP/skins/monobook/headbg.jpg", 'dst' => "$base/local-public/3/3a/Foobar.jpg"
 		) );
+		$backend->prepare( array( 'dir' => "$base/local-public/e/ea" ) );
+		$backend->store( array(
+			'src' => "$IP/skins/monobook/wiki.png", 'dst' => "$base/local-public/e/ea/Thumb.png"
+		) );
 		$backend->prepare( array( 'dir' => "$base/local-public/0/09" ) );
 		$backend->store( array(
 			'src' => "$IP/skins/monobook/headbg.jpg", 'dst' => "$base/local-public/0/09/Bad.jpg"
@@ -478,8 +506,9 @@ class NewParserTest extends MediaWikiTestCase {
 				"$base/local-thumb/3/3a/Foobar.jpg/70px-Foobar.jpg",
 				"$base/local-thumb/3/3a/Foobar.jpg/960px-Foobar.jpg",
 
+				"$base/local-public/e/ea/Thumb.png",
+
 				"$base/local-public/0/09/Bad.jpg",
-				"$base/local-thumb/0/09/Bad.jpg",
 
 				"$base/local-public/math/f/a/5/fa50b8b616463173474302ca3e63586b.png",
 			)
