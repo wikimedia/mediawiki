@@ -3748,8 +3748,9 @@ class User {
 	/**
 	 * Get the timestamp of account creation.
 	 *
-	 * @return String|Bool Timestamp of account creation, or false for
-	 *     non-existent/anonymous user accounts.
+	 * @return String|Bool|Null Timestamp of account creation, false for
+	 *     non-existent/anonymous user accounts, or null if existing account
+	 *     but information is not in database.
 	 */
 	public function getRegistration() {
 		if ( $this->isAnon() ) {
