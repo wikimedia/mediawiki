@@ -1226,6 +1226,7 @@ class LanguageTest extends LanguageClassesTestCase {
 	}
 
 	function providePluralData() {
+		// Params are: [expected text, number given, [the plural forms]]
 		return array(
 			array( 'plural', 0, array(
 				'singular', 'plural'
@@ -1242,14 +1243,17 @@ class LanguageTest extends LanguageClassesTestCase {
 			array( 'plural', 3, array(
 				'0=explicit zero', '1=explicit one', 'singular', 'plural'
 			) ),
-			array( 'explicit elevan', 11, array(
-				'singular', 'plural', '11=explicit elevan',
+			array( 'explicit eleven', 11, array(
+				'singular', 'plural', '11=explicit eleven',
 			) ),
 			array( 'plural', 12, array(
 				'singular', 'plural', '11=explicit twelve',
 			) ),
 			array( 'plural', 12, array(
 				'singular', 'plural', '=explicit form',
+			) ),
+			array( 'other', 2, array(
+				'kissa=kala', '1=2=3', 'other',
 			) ),
 		);
 	}
