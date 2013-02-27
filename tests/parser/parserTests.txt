@@ -4782,7 +4782,7 @@ Magic Word: {{NUMBEROFFILES}}
 !! input
 {{NUMBEROFFILES}}
 !! result
-<p>2
+<p>3
 </p>
 !! end
 
@@ -7151,10 +7151,67 @@ Image with link parameter (URL target) and unnamed parameter
 
 !! test
 Thumbnail image with link parameter
+!! options
+php
 !! input
 [[Image:foobar.jpg|thumb|link=http://example.com/|Title]]
 !! result
 <div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="http://example.com/"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" width="180" height="20" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Title</div></div></div>
+
+!! end
+
+!! test
+Manually-specified thumbnail image
+!! options
+php
+!! input
+[[Image:Foobar.jpg|thumb=Thumb.png|Title]]
+!! result
+<div class="thumb tright"><div class="thumbinner" style="width:137px;"><a href="/wiki/File:Foobar.jpg"><img alt="" src="http://example.com/images/e/ea/Thumb.png" width="135" height="135" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Title</div></div></div>
+
+!! end
+
+!! test
+Manually-specified thumbnail image with explicit link to wiki page
+!! options
+php
+!! input
+[[Image:Foobar.jpg|thumb=Thumb.png|link=Main Page|Title]]
+!! result
+<div class="thumb tright"><div class="thumbinner" style="width:137px;"><a href="/wiki/Main_Page" title="Main Page"><img alt="" src="http://example.com/images/e/ea/Thumb.png" width="135" height="135" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Title</div></div></div>
+
+!! end
+
+!! test
+Manually-specified thumbnail image with explicit link to url
+!! options
+php
+!! input
+[[Image:Foobar.jpg|thumb=Thumb.png|link=http://example.com|Title]]
+!! result
+<div class="thumb tright"><div class="thumbinner" style="width:137px;"><a href="http://example.com"><img alt="" src="http://example.com/images/e/ea/Thumb.png" width="135" height="135" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Title</div></div></div>
+
+!! end
+
+!! test
+Manually-specified thumbnail image with explicit no link
+!! options
+php
+!! input
+[[Image:Foobar.jpg|thumb=Thumb.png|link=|Title]]
+!! result
+<div class="thumb tright"><div class="thumbinner" style="width:137px;"><img alt="" src="http://example.com/images/e/ea/Thumb.png" width="135" height="135" class="thumbimage" />  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Title</div></div></div>
+
+!! end
+
+!! test
+Manually-specified thumbnail image with explicit link and alt text
+!! options
+php
+!! input
+[[Image:Foobar.jpg|thumb=Thumb.png|link=Main Page|alt=alttext|Title]]
+!! result
+<div class="thumb tright"><div class="thumbinner" style="width:137px;"><a href="/wiki/Main_Page" title="Main Page"><img alt="alttext" src="http://example.com/images/e/ea/Thumb.png" width="135" height="135" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Title</div></div></div>
 
 !! end
 
@@ -9580,7 +9637,7 @@ Fuzz testing: image with bogus manual thumbnail
 !!input
 [[Image:foobar.jpg|thumbnail= ]]
 !!result
-<div class="thumb tright"><div class="thumbinner" style="width:1943px;">Error creating thumbnail:   <div class="thumbcaption"></div></div></div>
+<div class="thumb tright"><div class="thumbinner" style="width:182px;">Error creating thumbnail:   <div class="thumbcaption"></div></div></div>
 
 !!end
 

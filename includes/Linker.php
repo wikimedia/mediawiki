@@ -612,7 +612,7 @@ class Linker {
 				$hp['width'] = $file->getWidth( $page );
 			}
 
-			if ( isset( $fp['thumbnail'] ) || isset( $fp['framed'] ) || isset( $fp['frameless'] ) || !$hp['width'] ) {
+			if ( isset( $fp['thumbnail'] ) || isset( $fp['manualthumb'] ) || isset( $fp['framed'] ) || isset( $fp['frameless'] ) || !$hp['width'] ) {
 				global $wgThumbLimits, $wgThumbUpright;
 				if ( $widthOption === null || !isset( $wgThumbLimits[$widthOption] ) ) {
 					$widthOption = User::getDefaultOption( 'thumbsize' );
@@ -797,6 +797,7 @@ class Linker {
 		}
 		$thumb = false;
 		$noscale = false;
+		$manualthumb = false;
 
 		if ( !$exists ) {
 			$outerWidth = $hp['width'] + 2;
@@ -808,6 +809,7 @@ class Linker {
 					$manual_img = wfFindFile( $manual_title );
 					if ( $manual_img ) {
 						$thumb = $manual_img->getUnscaledThumb( $hp );
+						$manualthumb = true;
 					} else {
 						$exists = false;
 					}
@@ -840,6 +842,12 @@ class Linker {
 		if ( $page ) {
 			$url = wfAppendQuery( $url, 'page=' . urlencode( $page ) );
 		}
+		if ( $manualthumb &&
+		     !isset( $fp['link-title'] ) &&
+		     !isset( $fp['link-url'] ) &&
+		     !isset( $fp['no-link'] ) ) {
+			$fp['link-url'] = $url;
+		}
 
 		$s = "<div class=\"thumb t{$fp['align']}\"><div class=\"thumbinner\" style=\"width:{$outerWidth}px;\">";
 		if ( !$exists ) {
@@ -849,7 +857,7 @@ class Linker {
 			$s .= wfMessage( 'thumbnail_error', '' )->escaped();
 			$zoomIcon = '';
 		} else {
-			if ( !$noscale ) {
+			if ( !$noscale && !$manualthumb ) {
 				self::processResponsiveImages( $file, $thumb, $hp );
 			}
 			$params = array(
