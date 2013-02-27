@@ -5,7 +5,7 @@ the most important parts of the code of MediaWiki. More in-depth documentation
 can be found at http://www.mediawiki.org/wiki/Manual:Code.
 
 API documentation is automatically generated and updated daily at:
-  http://svn.wikimedia.org/doc/
+  https://gerrit.wikimedia.org/r/#/
 
 You can get a fresh version using 'make doc' or mwdocgen.php in the
 ../maintenance/ directory.
