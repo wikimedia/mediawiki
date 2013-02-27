@@ -614,7 +614,7 @@ class Linker {
 				$hp['width'] = $file->getWidth( $page );
 			}
 
-			if ( isset( $fp['thumbnail'] ) || isset( $fp['framed'] ) || isset( $fp['frameless'] ) || !$hp['width'] ) {
+			if ( isset( $fp['thumbnail'] ) || isset( $fp['manualthumb'] ) || isset( $fp['framed'] ) || isset( $fp['frameless'] ) || !$hp['width'] ) {
 				global $wgThumbLimits, $wgThumbUpright;
 				if ( !isset( $widthOption ) || !isset( $wgThumbLimits[$widthOption] ) ) {
 					$widthOption = User::getDefaultOption( 'thumbsize' );
@@ -840,6 +840,12 @@ class Linker {
 		$url = $title->getLocalURL( $query );
 		if ( $page ) {
 			$url = wfAppendQuery( $url, 'page=' . urlencode( $page ) );
+		}
+		if ( isset( $fp['manualthumb'] ) &&
+		     !isset( $fp['link-title'] ) &&
+		     !isset( $fp['link-url'] ) &&
+		     !isset( $fp['no-link'] ) ) {
+			$fp['link-url'] = $url;
 		}
 
 		$s = "<div class=\"thumb t{$fp['align']}\"><div class=\"thumbinner\" style=\"width:{$outerWidth}px;\">";
