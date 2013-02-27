@@ -193,11 +193,13 @@ class IcuCollation extends Collation {
 		// Verified by native speakers
 		'pl' => array( "Ą", "Ć", "Ę", "Ł", "Ń", "Ó", "Ś", "Ź", "Ż" ),
 		'fi' => array( "Å", "Ä", "Ö" ),
+		'be' => array( "Ё" ),
+		'be-tarask' => array( "Ё" ),
+		'ru' => array(),
 		// Not verified, but likely correct
 		'af' => array(),
 		'ast' => array( "CH", "LL", "Ñ" ),
 		'az' => array( "Ç", "Ə", "Ğ", "İ", "Ö", "Ş", "Ü" ),
-		'be' => array( "Ё" ),
 		'bg' => array(),
 		'br' => array( "CH", "C'H" ),
 		'bs' => array( "Č", "Ć", "DŽ", "Đ", "LJ", "NJ", "Š", "Ž" ),
@@ -243,7 +245,6 @@ class IcuCollation extends Collation {
 		'pt' => array(),
 		'rm' => array(),
 		'ro' => array( "Ă", "Â", "Î", "Ş", "Ţ" ),
-		'ru' => array(),
 		'rup' => array( "Ă", "Â", "Î", "Ľ", "Ń", "Ş", "Ţ" ),
 		'sco' => array(),
 		'sk' => array( "Ä", "Č", "CH", "Ô", "Š", "Ž" ),
