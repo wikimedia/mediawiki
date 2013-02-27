@@ -359,7 +359,7 @@ class SqlBagOStuff extends BagOStuff {
 			);
 			$db->commit( __METHOD__ );
 		} catch ( DBQueryError $e ) {
-			$this->handleWriteError( $e );
+			$this->handleWriteError( $e, $serverIndex );
 
 			return false;
 		}
