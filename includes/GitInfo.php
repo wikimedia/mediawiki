@@ -45,7 +45,7 @@ class GitInfo {
 	 */
 	public function __construct( $dir ) {
 		$this->basedir = "{$dir}/.git";
-		if ( is_readable( $this->basedir ) ) {
+		if ( is_readable( $this->basedir ) && !is_dir( $this->basedir ) ) {
 			$GITfile = file_get_contents( $this->basedir );
 			if ( strlen( $GITfile ) > 8 && substr( $GITfile, 0, 8 ) === 'gitdir: ' ) {
 				$path = rtrim( substr( $GITfile, 8 ), "\r\n" );
