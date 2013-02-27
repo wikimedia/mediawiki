@@ -89,6 +89,25 @@
 		};
 
 		/**
+		 * Get date user registered, if available.
+		 *
+		 * @return {Date|false|null} date user registered, or false for anonymous users, or
+		 *  null when data is not available
+		 */
+		this.getRegistration = function () {
+			var registration = mw.config.get( 'wgUserRegistration' );
+			if ( this.isAnon() ) {
+				return false;
+			} else if ( registration === null ) {
+				// Information may not be available if they signed up before
+				// MW began storing this.
+				return null;
+			} else {
+				return new Date( registration );
+			}
+		};
+
+		/**
 		 * Checks if the current user is anonymous.
 		 *
 		 * @return Boolean

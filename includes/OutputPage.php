@@ -3029,7 +3029,8 @@ $templates
 		if ( $user->isLoggedIn() ) {
 			$vars['wgUserId'] = $user->getId();
 			$vars['wgUserEditCount'] = $user->getEditCount();
-			$vars['wgUserRegistration'] = $user->getRegistration();
+			$userReg = wfTimestampOrNull( TS_UNIX, $user->getRegistration() );
+			$vars['wgUserRegistration'] = $userReg !== null ? ( $userReg * 1000 ) : null;
 		}
 		if ( $wgContLang->hasVariants() ) {
 			$vars['wgUserVariant'] = $wgContLang->getPreferredVariant();
