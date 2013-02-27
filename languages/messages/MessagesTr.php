@@ -844,7 +844,7 @@ Lütfen tekrar denemeden önce bekleyin.',
 'loginlanguagelabel' => 'Dil: $1',
 'suspicious-userlogout' => 'Çıkış isteğiniz reddedildi çünkü bozuk bir tarayıcı ya da önbellekli vekil tarafından gönerilmiş gibi görünüyor.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => "PHP's mail() fonksiyonunda bilinmeyen hata",
 'user-mail-no-addy' => 'Bir e-posta adresi olmadan e-posta göndermeye çalıştı.',
 
@@ -1506,7 +1506,7 @@ Diğer kullanıcılar sizinle bu yolla iletişime geçtiğinde e-posta adresiniz
 'prefs-displaywatchlist' => 'Görüntüleme seçenekleri',
 'prefs-diffs' => 'Farklar',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'E-posta adresi geçerli görünüyor',
 'email-address-validity-invalid' => 'Geçerli bir e-posta adresi girin',
 
@@ -2245,7 +2245,7 @@ Bireysel haklarla ilgili [[{{MediaWiki:Listgrouprights-helppage}}|daha fazla bil
 'listgrouprights-addgroup-self-all' => 'Kendi hesabına tüm grupları ekleyebilir',
 'listgrouprights-removegroup-self-all' => 'Kendi hesabından tüm grupları çıkarabilir',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Gönderi adresi yok.',
 'mailnologintext' => 'Diğer kullanıcılara e-posta gönderebilmeniz için [[Special:UserLogin|oturum aç]]malısınız ve [[Special:Preferences|tercihler]] sayfasında geçerli bir e-posta adresiniz olmalı.',
 'emailuser' => 'Bu kullanıcıya e-posta gönder',
@@ -3591,7 +3591,7 @@ Diğerleri varsayılan olarak gizlenecektir.
 'monthsall' => 'hepsi',
 'limitall' => 'tümü',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'E-posta adresini onayla',
 'confirmemail_noemail' => '[[Special:Preferences|Kullanıcı tercihlerinizde]] tanımlanmış uygun bir e-posta adresiniz yok.',
 'confirmemail_text' => "Viki'nin e-posta işlevlerini kullanmabilmek için, önce e-posta adresinizin doğrulanması gerekiyor.

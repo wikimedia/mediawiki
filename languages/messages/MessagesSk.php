@@ -781,7 +781,7 @@ Prosím, počkajte predtým, než to skúsite znova.',
 'loginlanguagelabel' => 'Jazyk: $1',
 'suspicious-userlogout' => 'Vaša požiadavka odhlásiť sa bola zamietnutá, pretože to vyzerá, že ju poslal pokazený prehliadač alebo proxy server.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Neznáma chyba vo funkcii PHP mail()',
 'user-mail-no-addy' => 'Pokus o odoslanie e-mailu bez e-mailovej adresy.',
 
@@ -1463,7 +1463,7 @@ Musí obsahovať menej ako $1 {{PLURAL:$1|znak|znaky|znakov}}.',
 'prefs-displaywatchlist' => 'Možnosti zobrazenia',
 'prefs-diffs' => 'Rozdiely',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'Formát e-mailovej adresa vyzerá byť správny',
 'email-address-validity-invalid' => 'Zadajte platnú e-mailovú adresu',
 
@@ -2242,7 +2242,7 @@ Môžete si prečítať [[{{MediaWiki:Listgrouprights-helppage}}|ďalšie inform
 'listgrouprights-addgroup-self-all' => 'Do vlastného účtu je možné pridať všetky skupiny',
 'listgrouprights-removegroup-self-all' => 'Z vlastného účtu je možné odstrániť všetky skupiny',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Žiadna adresa na zaslanie',
 'mailnologintext' => 'Musíte byť [[Special:UserLogin|prihlásený]] a mať platnú e-mailovú adresu vo vašich [[Special:Preferences|nastaveniach]], aby ste mohli iným používateľom posielať e-maily.',
 'emailuser' => 'E-mail tomuto používateľovi',
@@ -3627,7 +3627,7 @@ Ostatné budú predvolene skryté.
 'monthsall' => 'všetky',
 'limitall' => 'všetky',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Potvrdiť e-mailovú adresu',
 'confirmemail_noemail' => 'Nenastavili ste platnú emailovú adresu vo svojich [[Special:Preferences|Nastaveniach]].',
 'confirmemail_text' => '{{SITENAME}} vyžaduje, aby ste potvrdili platnosť vašej e-mailovej adresy

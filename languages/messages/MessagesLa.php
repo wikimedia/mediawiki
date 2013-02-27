@@ -1437,7 +1437,7 @@ Vide etiam [[Special:WantedCategories|categorias desideratas]].',
 'listgrouprights-addgroup-self-all' => 'Addere omnes greges ad rationem propriam',
 'listgrouprights-removegroup-self-all' => 'Removere omnes greges ex ratione propria',
 
-# E-mail user
+# Email user
 'emailuser' => 'Litteras electronicas usori mittere',
 'emailpage' => 'Mittere litteras electronicas huic usori',
 'emailpagetext' => 'Forma subter nuntium ad usorem mittet.
@@ -2227,7 +2227,7 @@ Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic m
 'namespacesall' => 'omnia',
 'monthsall' => 'omnes',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Inscriptionem electronicam adfirmare',
 'confirmemail_noemail' => 'Non est tibi inscriptio electronica valida in [[Special:Preferences|tuis praeferentiis]] posita.',
 'confirmemail_text' => '{{SITENAME}} te postulat inscriptionem tuam electronicam adfirmare priusquam proprietatibus litterarum electronicarum fruaris. Imprime botonem subter ut nuntium adfirmationis tibi mittatur. Nuntio nexus inerit quod est scribendus in tuo navigatro interretiali ut validum adfirmes tuam inscriptionem electronicam.',

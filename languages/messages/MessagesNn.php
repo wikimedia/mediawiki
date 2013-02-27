@@ -800,7 +800,7 @@ Du kan sjå bort frå denne meldinga dersom kontoen vart oppretta med eit uhell.
 'loginlanguagelabel' => 'Språk: $1',
 'suspicious-userlogout' => 'Førespurnaden din om å logge ut vart nekta fordi han såg ut til å vere sendt av ein øydelagt nettlesar eller mellomtenar.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Ukjend feil i PHPs mail()-funksjon',
 'user-mail-no-addy' => '↓Prøvde å senda e-post utan e-postadresse',
 'user-mail-no-body' => 'Freista å senda e-post med tom eller urimeleg stutt brødtekst.',
@@ -1460,7 +1460,7 @@ Dette kan ikkje tilbakestillast.',
 'prefs-displaywatchlist' => 'Val for vising',
 'prefs-diffs' => 'Skilnader',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'E-postadressa ser ut til å vera gyldig',
 'email-address-validity-invalid' => 'Skriv inn ei gyldig e-postaddresse.',
 
@@ -2230,7 +2230,7 @@ Det er påkravt med eit toppnivådomene, til dømes «*.org».<br />
 'listgrouprights-addgroup-self-all' => 'Kan leggja til alle gruppene til sin eigen konto',
 'listgrouprights-removegroup-self-all' => 'Kan ta vekk alle gruppene frå sin eigen konto',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Inga avsendaradresse',
 'mailnologintext' => 'Du lyt vera [[Special:UserLogin|innlogga]] og ha ei gyldig e-postadresse sett i [[Special:Preferences|brukarinnstillingane]] for å sende e-post åt andre brukarar.',
 'emailuser' => 'Send e-post åt denne brukaren',
@@ -3591,7 +3591,7 @@ Andre er gøymde som standard.
 'monthsall' => 'alle',
 'limitall' => 'alle',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Stadfest e-postadresse',
 'confirmemail_noemail' => 'Du har ikkje gjeve ei gyldig e-postadresse i [[Special:Preferences|innstillingane dine]].',
 'confirmemail_text' => '{{SITENAME}} krev at du stadfester e-postadressa di

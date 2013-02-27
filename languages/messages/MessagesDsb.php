@@ -649,7 +649,7 @@ Móžoš toś te zdźělenje ignorowaś, jolic toś te konto jo se jano zamólnj
 'loginlanguagelabel' => 'Rěc: $1',
 'suspicious-userlogout' => 'Twójo póžedanje za wótzjawjenim jo se wótpokazało, dokulaž zda se, až jo se pósłało pśez wobškóźony wobglědowak abo pufrowański proksy',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Njeznata zmólka w PHP-funkciji mail()',
 'user-mail-no-addy' => 'Jo se wopytało, e-mail bźez e-mailoweje adrese pósłaś',
 'user-mail-no-body' => 'Jo se wopytało, e-mail bźez teksta abo z pśekrotkim tekstom pósłaś',
@@ -1306,7 +1306,7 @@ Móžoš toś ten bok wužywaś, aby slědk stajił swóje nastajenja na standar
 'prefs-displaywatchlist' => 'Zwobraznjowańske opcije',
 'prefs-diffs' => 'Rozdźěle',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'Zda se, až e-mailowa adresa jo płaśiwa',
 'email-address-validity-invalid' => 'Zapódaj płaśiwu e-mailowu adresu',
 
@@ -2082,7 +2082,7 @@ Jo nanejmjenjej głowna domena trěbna, na pśikład "*.org"<br />
 'listgrouprights-addgroup-self-all' => 'Móžo wše kupki swójskemu kontoju pśidaś',
 'listgrouprights-removegroup-self-all' => 'Móžo wše kupki ze swójskego konta wótpóraś',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Njejo móžno e-mailku pósłaś.',
 'mailnologintext' => 'Dejš [[Special:UserLogin|pśizjawjony]] byś a płaśiwu e-mailowu adresu w swójich [[Special:Preferences|nastajenjach]] měś, aby drugim wužywarjam e-mail pósłał.',
 'emailuser' => 'Toś tomu wužywarjeju e-mail pósłaś',
@@ -3433,7 +3433,7 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 'monthsall' => 'wšykne',
 'limitall' => 'wšykne',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'E-mailowu adresu wobkšuśiś.',
 'confirmemail_noemail' => 'W swójich [[Special:Preferences|nastajenjach]] njejsy płaśecu e-mailowu adresu zapódał.',
 'confirmemail_text' => '{{SITENAME}} pomina, až wobkšuśijoš swóju e-mailowu adresu, nježlic až móžoš e-mailowe funkcije wužywaś. Tłocyš-lic na tłocatko, dostanjoš e-mailku, w kótarejž jo wótkaz z wobkšuśenskim gronidłom. Tłocenje na wótkaz wobkšuśijo, až twója e-mailowa adresa jo korektna.',

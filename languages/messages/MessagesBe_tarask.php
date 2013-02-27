@@ -764,7 +764,7 @@ $2',
 'loginlanguagelabel' => 'Мова: $1',
 'suspicious-userlogout' => 'Ваш запыт на выхад з сыстэмы быў адхілены, таму што выглядае, што ён быў дасланы пашкоджаным браўзэрам альбо кэшаваным проксі-сэрвэрам.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Узьнікла невядомая памылка ў функцыі PHP mail()',
 'user-mail-no-addy' => 'Спроба даслаць электронны ліст без адрасу дастаўкі',
 'user-mail-no-body' => 'Спроба даслаць ліст з пустым або надзвычай кароткім зьместам.',
@@ -1443,7 +1443,7 @@ $1",
 'prefs-displaywatchlist' => 'Налады паказу',
 'prefs-diffs' => 'Розьніцы вэрсіяў',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'Выглядае слушна',
 'email-address-validity-invalid' => 'Неабходны слушны адрас!',
 
@@ -2217,7 +2217,7 @@ $1',
 'listgrouprights-addgroup-self-all' => 'Можа дадаць уласны рахунак да ўсіх груп',
 'listgrouprights-removegroup-self-all' => 'Можа выдаліць уласны рахунак з ўсіх груп',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Няма адрасу атрымальніка',
 'mailnologintext' => 'Вам неабходна [[Special:UserLogin|ўвайсьці ў сыстэму]] і мець пацьверджаны адрас электроннай пошты ў Вашых [[Special:Preferences|наладах]], каб дасылаць лісты іншым удзельнікам.',
 'emailuser' => 'Даслаць ліст',
@@ -3599,7 +3599,7 @@ $1',
 'monthsall' => 'усе',
 'limitall' => 'усе',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Пацьвердзіць адрас электроннай пошты',
 'confirmemail_noemail' => 'Вы не пазначылі слушны адрас электроннай пошты ў Вашых [[Special:Preferences|наладах удзельніка]].',
 'confirmemail_text' => '{{SITENAME}} патрабуе, каб Вы пацьвердзілі Ваш адрас электроннай пошты перад ўжываньнем магчымасьцяў электроннай пошты. Актывізуйце кнопку ніжэй, каб даслаць ліст з пацьверджаньнем на Ваш адрас. Ліст будзе ўтрымліваць спасылку з кодам; загрузіце спасылку ў Вашым браўзэры, каб пацьвердзіць, што Ваш адрас электроннай пошты зьяўляецца слушным.',

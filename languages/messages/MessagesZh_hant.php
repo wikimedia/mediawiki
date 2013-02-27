@@ -753,7 +753,7 @@ $2',
 'loginlanguagelabel' => '語言：$1',
 'suspicious-userlogout' => '您登出的要求已經被拒絕，因為它可能是由已損壞的瀏覽器或者快取代理傳送。',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => '在 PHP 的 mail() 參數中的未知錯誤',
 'user-mail-no-addy' => '嘗試不帶電郵地址發送電郵。',
 'user-mail-no-body' => '試圖發送空的或主體不合理短的電子郵件。',
@@ -1271,7 +1271,7 @@ $1",
 'showingresults' => '下面顯示從第 <b>$2</b> 條開始的 <b>$1</b> 條結果：',
 'showingresultsnum' => "下面顯示從第 '''$2''' 條開始的 '''{{PLURAL:$3|1|$3}}''' 條結果。",
 'showingresultsheader' => "對'''$4'''的{{PLURAL:$5|第'''$1'''至第'''$3'''項結果|第'''$1 - $2'''項，共'''$3'''項結果}}",
-'nonefound' => "'''注意''': 只有一些名字空間是會作為預設搜尋。嘗試''all:''去搜尋全部的頁面（包埋討論頁面、模板等），或可用需要的名字空間作為前綴。",
+'nonefound' => "'''注意：'''只有一些名字空間是會作為預設搜尋。嘗試''all:''去搜尋全部的頁面（包埋討論頁面、模板等），或可用需要的名字空間作為前綴。",
 'search-nonefound' => '在查詢中無結果相符。',
 'powersearch' => '進階搜尋',
 'powersearch-legend' => '進階搜尋',
@@ -1409,7 +1409,7 @@ $1",
 'prefs-displaywatchlist' => '顯示選項',
 'prefs-diffs' => '差異',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => '電子郵件地址有效',
 'email-address-validity-invalid' => '請提供一個有效的電子郵件地址',
 
@@ -2178,7 +2178,7 @@ Template:消除歧義',
 'listgrouprights-addgroup-self-all' => '在自己的賬戶中加入所有群組',
 'listgrouprights-removegroup-self-all' => '在自己的賬戶中移除所有群組',
 
-# E-mail user
+# Email user
 'mailnologin' => '無電郵地址',
 'mailnologintext' => '您必須先[[Special:UserLogin|登入]]
 並在[[Special:Preferences|偏好設定]]
@@ -3593,7 +3593,7 @@ Variants for Chinese language
 'monthsall' => '全部',
 'limitall' => '全部',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => '確認郵箱位址',
 'confirmemail_noemail' => '您沒有在您的[[Special:Preferences|用戶設定]]裡面輸入一個有效的 email 位址。',
 'confirmemail_text' => '{{SITENAME}}要求您在使用郵件功能之前驗證您的郵箱位址。
@@ -3660,7 +3660,7 @@ $5
 'scarytranscludetoolong' => '[URL 地址太長]',
 
 # Delete conflict
-'deletedwhileediting' => '警告: 此頁在您開始編輯之後已經被刪除﹗',
+'deletedwhileediting' => "'''警告：'''此頁在您開始編輯之後已經被刪除﹗",
 'confirmrecreate' => "在您開始編輯這個頁面後，用戶[[User:$1|$1]] （[[User talk:$1|對話]]）以下列原因刪除了這個頁面：
 : ''$2''
 請確認在您重新創建頁面前三思。",

@@ -547,7 +547,7 @@ Fuirich ort mus feuch thu ris a-rithist.",
 'loginlanguagelabel' => 'Cànan: $1',
 'suspicious-userlogout' => "Chaidh d' iarrtas airson clàradh a-mach a dhiùltadh a chionn 's gu bheil coltas gun deach a chur le brabhsair briste no le progsaidh tasglannaidh.",
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Mearachd neo-aithichte san fheart mail() aig PHP.',
 'user-mail-no-addy' => 'Cha do ghabh am post-d a chur leis nach robh seòladh puist-d ann.',
 'user-mail-no-body' => 'Bha bodhaig na teachdaireachd bàn no air leth goirid.',
@@ -1156,7 +1156,7 @@ Chithear an tuairisgeul a tha aice air [duilleag tuairisgeul an fhaidhle $2] gu 
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|byte|bytes}}',
 'nmembers' => '$1 {{PLURAL:$1|bhall|bhall|buill|ball}}',
-'nviews' => '$1 {{PLURAL:$1|sealladh|shealladh|sealladh|shealladh|seallaidhean|sealladh}}',
+'nviews' => '$1 {{PLURAL:$1|sealladh|shealladh|seallaidhean|sealladh}}',
 'uncategorizedpages' => 'Duilleagan gun roinn-seòrsa',
 'uncategorizedcategories' => 'Roinnean-seòrsa gun roinn-seòrsa',
 'unusedimages' => 'Faidhlichean gun chleachdadh',
@@ -1193,18 +1193,18 @@ Chithear an tuairisgeul a tha aice air [duilleag tuairisgeul an fhaidhle $2] gu 
 
 # Special:Categories
 'categories' => 'Roinnean-seòrsa',
-'categoriespagetext' => "Tha duilleagan no meadhan {{PLURAL:$1|san roinn-seòrsa|san roinn-seòrsa|san roinn-seòrsa|san roinn-seòrsa|sna roinntean-seòrsa|san roinn-seòrsa}} a leanas.
+'categoriespagetext' => "Tha duilleagan no meadhan {{PLURAL:$1|san roinn-seòrsa|sna roinntean-seòrsa|}} a leanas.
 Chan fhaicear [[Special:UnusedCategories|roinntean-seòrsa gun chleachdadh an-seo]].
 Thoir sùil air na [[Special:WantedCategories|roinntean-seòrsa a thathar 'gan iarraidh cuideachd]].",
 
 # Special:LinkSearch
-'linksearch' => 'Ceanglaichean dhan taobh a-muigh',
+'linksearch' => 'Lorg sna ceanglaichean dhan taobh a-muigh',
 'linksearch-line' => "Tha $1 a' ceangal an-seo o $2",
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(liosta de bhuill)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Cuir post-dealain dhan chleachdaiche seo',
 'emailfrom' => 'O:',
 'emailto' => 'Gu:',
@@ -1217,8 +1217,8 @@ Thoir sùil air na [[Special:WantedCategories|roinntean-seòrsa a thathar 'gan i
 'mywatchlist' => 'An clàr-faire',
 'watchlistfor2' => 'Do $1 $2',
 'nowatchlist' => "Chan eil rud sam bith air a' chlàr-fhaire agad.",
-'addedwatchtext' => "Chaidh an duilleag \"[[:\$1]]\" a chur ri [[Special:Watchlist|do chlàr-faire]].
-Nochdaidh mùthaidhean a nithear air an duilleag seo 's air an duilleag deasbaireachd a tha co-cheangailte ris an-seo san àm ri teachd agus nochdaidh an duilleag ann an litrichean '''troma''' ann an [[Special:RecentChanges|liosta nam mùthaidhean ùra]] gum bi e furasta ri fhaicinn.",
+'addedwatchtext' => 'Chaidh an duilleag "[[:$1]]" a chur ri [[Special:Watchlist|do chlàr-faire]].
+Nochdaidh mùthaidhean a nithear air an duilleag seo \'s air an duilleag deasbaireachd a tha co-cheangailte ris an-seo san àm ri teachd.',
 'removedwatchtext' => 'Chaidh an duilleag "[[:$1]]" a thoirt air falbh o [[Special:Watchlist|do chlàr-faire]].',
 'watch' => 'Cum sùil air',
 'watchthispage' => 'Cum sùil air an duilleag seo',
@@ -1227,8 +1227,8 @@ Nochdaidh mùthaidhean a nithear air an duilleag seo 's air an duilleag deasbair
 'watchlist-details' => 'Tha {{PLURAL:$1|$1 duilleag|$1 dhuilleag|$1 duilleagan|$1 duilleag}} air do chlàr-faire, gun luaidh air na duilleagan deasbaireachd.',
 'watchmethod-recent' => "A' sgrùdadh deasachaidhean ùra airson duilleagan air d' fhaire",
 'watchmethod-list' => "A' sgrùdadh duilleagan air d' fhaire airson deasachaidhean ùra",
-'watchlistcontains' => 'Tha $1 {{PLURAL:$1|duilleag|dhuilleag|duilleag|dhuilleag|duilleagan|duilleag}} air do chlàr-faire.',
-'wlnote' => 'Seo $1 {{PLURAL:$1|mhùthadh mu dheireadh|mhùthadh mu dheireadh|na mùthaidhean mu dheireadh|mùthadh mu dheireadh}} anns na $2 {{PLURAL:$2|uair|uair|uairean|uair}} mu dheireadh.',
+'watchlistcontains' => 'Tha $1 {{PLURAL:$1|duilleag|dhuilleag|duilleagan|duilleag}} air do chlàr-faire.',
+'wlnote' => 'Seo {{PLURAL:$1|an $1 mhùthadh|$1 mhùthadh|na $1 mùthaidhean|$1 mùthadh}} mu dheireadh san {{PLURAL:$2|$2 uair a thìde|$2 uair a thìde|$2 uairean a thìde|$2 uair a thìde}} mu dheireadh, mar a bha e $3, $4.',
 'wlshowlast' => 'Seall na $1 uairean a thìde mu dheireadh $2 làithean mu dheireadh $3',
 'watchlist-options' => 'Roghainnean mo chlàir-faire',
 
@@ -1267,8 +1267,8 @@ Seall air $2 airson clàr de dhuilleagan a chaidh a sguabadh às o chionn ghoiri
 
 # Protect
 'protectlogpage' => 'Loga an dìon',
-'protectlogtext' => "Tha liosta na chaidh a dhìon 's a neo-dhìon gu h-ìosal.
-Cuir sùil air [[Special:ProtectedPages|liosta nan duilleagan fo dhìon]] airson liosta na fheadhainn a tha fo dhìon an-dràsta fhèin.",
+'protectlogtext' => 'Tha liosta na chaidh a dhìon gu h-ìosal.
+Cuir sùil air [[Special:ProtectedPages|liosta nan duilleagan fo dhìon]] airson liosta na fheadhainn a tha fo dhìon an-dràsta fhèin.',
 'protectedarticle' => '"[[$1]]" air a dhìon',
 'modifiedarticleprotection' => 'a dh\'atharraich an ìre dìon de "[[$1]]"',
 'unprotectedarticle' => 'a neo-dhìon "[[$1]]"',
@@ -1282,12 +1282,12 @@ Cuir sùil air [[Special:ProtectedPages|liosta nan duilleagan fo dhìon]] airson
 'protect-text' => "Chì thu an ìre dìon dhen duilleag '''$1''' an-seo agus is urrainn dhut atharrachadh an-seo.",
 'protect-locked-access' => "Chan eil cead aig a' chunntas agad an ìre dìon de dhuilleag atharrachadh.
 Seo roghainnean làithreach na duilleige '''$1''':",
-'protect-cascadeon' => "Tha an duilleag seo fo dhìon an-dràsta a chionn 's gu bheil e air a ghabhail a-steach {{PLURAL:$1|san duilleag|sna duilleagan|san duilleag|sna duilleagan|san duilleag|sna duilleagan}} a leanas aig a bheil dìon easach air.
+'protect-cascadeon' => "Tha an duilleag seo fo dhìon an-dràsta a chionn 's gu bheil e air a ghabhail a-steach {{PLURAL:$1|$1  duilleag|$1 dhuilleag|$1 duilleagan|$1 duilleag}} a leanas aig a bheil dìon easach air.
 'S urrainn dhut ìre dìon na duilleige seo atharrachadh ach cha bhi buaidh air an dìon easach.",
 'protect-default' => 'Ceadaich a h-uile cleachdaiche',
-'protect-fallback' => 'Iarr cead "$1"',
-'protect-level-autoconfirmed' => 'Cuir bacadh air cleachdaichean ùra is feadhainn gun chlàrachadh',
-'protect-level-sysop' => 'Rianadairean a-mhàin',
+'protect-fallback' => 'Na ceadaich ach do chleachdaichean aig a bheil cead "$1"',
+'protect-level-autoconfirmed' => 'Na ceadaich ach cleachdaichean a chaidh an dearbhadh gu fèin-obrachail',
+'protect-level-sysop' => 'Na ceadaich ach rianadairean',
 'protect-summary-cascade' => 'mar eas',
 'protect-expiring' => 'falbhaidh an ùine air $1 (UTC)',
 'protect-cascade' => "Dìon duilleagan a tha 'gan gabhail a-steach san duilleag seo (dìon mar eas)",
@@ -1296,7 +1296,7 @@ Seo roghainnean làithreach na duilleige '''$1''':",
 'restriction-level' => 'Ìre bacaidh:',
 
 # Undelete
-'undeleterevisions' => 'Chaidh $1 {{PLURAL:$1|leth-bhreac|leth-bhreac|leth-bhreac|leth-bhreac|leth-bhreacan|leth-bhreac}} a chur san tasg-lann',
+'undeleterevisions' => 'Chaidh {{PLURAL:$1|$1 leth-bhreac|$1 leth-bhreac|$1 leth-bhreacan|$1 leth-bhreac}} a chur san tasg-lann',
 'undeletelink' => 'seall/aisig',
 'undeleteviewlink' => 'seall',
 
@@ -1349,8 +1349,8 @@ Seo roghainnean làithreach na duilleige '''$1''':",
 'ipboptions' => '2 uair a thìde:2 hours, 1 latha:1 day, 3 làithean:3 days, 1 seachdain:1 week, 2 sheachdain:2 weeks, 1 mhìos:1 month, 3 mìosan:3 months, 6 mìosan:6 months, 1 bhliadhna:1 year,neo-chrìochnach:infinite',
 'badipaddress' => "Chan eil an seòladh IP aig a' cleachdair seo iomchaidh",
 'blockipsuccesssub' => "Shoirbhich leat leis a' bhacadh",
-'blockipsuccesstext' => "Tha [[Special:Contributions/$1|$1]] air a bhacadh.
-<br />Faic [[Special:BlockList|Liosta nan IP baicte]] na bacaidhean a dh'ath-sgrùdadh.",
+'blockipsuccesstext' => 'Chaidh [[Special:Contributions/$1|$1]] a bhacadh.
+<br />Faic [[Special:BlockList|liosta nan IP bacte]] gus sùile a thoirt air na bacaidhean.',
 'unblockip' => 'Neo-bhac an cleachdaiche',
 'ipusubmit' => 'Thoir air falbh am bacadh seo',
 'ipblocklist' => 'Cleachdaichean a chaidh a bhacadh',
@@ -1377,7 +1377,7 @@ Seo roghainnean làithreach na duilleige '''$1''':",
 'movepagetext' => "Ma chleachdas tu am foirm gu h-ìosal, cuiridh tu ainm ùr air 's gluaisidh tu a h-eachdraidh gu lèir dhan ainm ùr.
 Bidh an seann tiotal 'na ath-sheòladh dhan tiotal ùr an uairsin.
 'S urrainn dhut ath-sheòladh sam bith a tha a' dol dhan tiotal tùsail ùrachadh leis fhèin.
-Mura dèan thu sin, dèan cinntach gun cuir thu sùil air eagal 's gum bi [[Special:DoubleRedirects|ath-sheòlaidhean dùbailte]] no [[Special:BrokenRedirects|briste]] ann.
+Mura dèan thu sin, dèan cinnteach gun cuir thu sùil air eagal 's gum bi [[Special:DoubleRedirects|ath-sheòlaidhean dùbailte]] no [[Special:BrokenRedirects|briste]] ann.
 'S ann ort-sa a tha an t-uallach airson dèanamh cinntach gu bheil na ceanglaichean a' dol dha na h-àitichean ceart.
 
 Thoir an aire '''nach dèid''' an duilleag a ghluasad ma tha duilleag air an tiotal ùr mu thràth ach ma bhios e falamh no 'na ath-sheòladh 's mur eil eachdraidh deasachaidh ann.
@@ -1385,7 +1385,7 @@ Thoir an aire '''nach dèid''' an duilleag a ghluasad ma tha duilleag air an tio
 
 '''Rabhadh!'''
 Faodaidh seo a bhith 'na atharrachadh mòr ris nach bi dùil air duilleag air a bheil fèill mhòr;
-dèan cinntach gu bheil thu a' tuigsinn dè a' bhuaidh a bhios agad mus dèid thu air adhart.",
+dèan cinnteach gu bheil thu a' tuigsinn dè a' bhuaidh a bhios agad mus dèid thu air adhart.",
 'movepagetalktext' => "Thèid an duilleag deasbaireachd a tha co-cheangailte ris a ghluasad 'na cois '''ach:'''
 *Ma tha duilleag deasbaireachd nach eil falamh aig an ainm ùr mu thràth, no
 *Ma bheir thu air falbh a' chromag on bhogsa gu h-ìosal
@@ -1485,11 +1485,11 @@ Tadhail air [//www.mediawiki.org/wiki/Localisation Ionadaileadh MediaWiki] is [/
 'tooltip-summary' => 'Cuir a-steach gearr-chunntas',
 
 # Attribution
-'anonymous' => '{{PLURAL:$1|Cleachdaiche|Cleachdaichean|Cleachdaichean|Cleachdaichean|Cleachdaichean|Cleachdaichean}} gun ainm o {{SITENAME}}',
+'anonymous' => '{{PLURAL:$1|cleachdaiche|cleachdaichean}} gun ainm o {{SITENAME}}',
 'siteuser' => 'cleachdaiche {{SITENAME}} $1',
 'othercontribs' => 'Stèidhichte air obair le $1.',
 'others' => 'eile',
-'siteusers' => '{{PLURAL:$2|chleachdaiche|chleachdaiche|chleachdaiche|chleachdaiche|cleachdaichean|cleachdaiche}} {{SITENAME}} $1',
+'siteusers' => '{{PLURAL:$2|cleachdaiche|cleachdaichean}} {{SITENAME}} $1',
 
 # Browsing diffs
 'previousdiff' => '← Mùthadh nas sine',

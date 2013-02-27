@@ -647,7 +647,7 @@ Móžeš tutu zdźělenku ignorować, jeli so wužiwarske konto zmylnje wutwori�
 'loginlanguagelabel' => 'Rěč: $1',
 'suspicious-userlogout' => 'Twoje naprašowanje za wotzjewjenje bu wotpokazane, dokelž zda so, jako by so přez wobškodźeny wobhladowak abo pufrowacy proksy pósłało',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Njeznaty zmylk w PHP-funkciji mail()',
 'user-mail-no-addy' => 'Je so spytało e-mejl bjez e-mejloweje adresy słać.',
 'user-mail-no-body' => 'Je so spytało, e-mejl bjez teksta abo z překrótkim tekstom pósłać',
@@ -1308,7 +1308,7 @@ Smě mjenje hač $1 {{PLURAL:$1|znamješko|znamješce|znamješka|znamješkow}} d
 'prefs-displaywatchlist' => 'Zwobraznjenske opcije',
 'prefs-diffs' => 'Rozdźěle',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'Zda so, zo e-mejlowa adresa je płaćiwa',
 'email-address-validity-invalid' => 'Zapodaj płaćiwu e-mejlowu adresu',
 
@@ -2085,7 +2085,7 @@ Znajmjeńša hłowna domena je trěbna, na přikład "*.org".<br />
 'listgrouprights-addgroup-self-all' => 'Móže wšě skupiny swójskemu kontu přidać',
 'listgrouprights-removegroup-self-all' => 'Móže wšě skupiny ze swójskeho konta wotstronić',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Njejsy přizjewjeny.',
 'mailnologintext' => 'Dyrbiš [[Special:UserLogin|přizjewjeny]] być a płaćiwu e-mejlowu adresu w swojich [[Special:Preferences|nastajenjach]] měć, zo by druhim wužiwarjam mejlki pósłać móhł.',
 'emailuser' => 'Wužiwarjej mejlku pósłać',
@@ -3429,7 +3429,7 @@ Nasledne wotkazy na samsnej lince definuja wuwzaća, hdźež so wobraz smě naje
 'monthsall' => 'wšě',
 'limitall' => 'wšě',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Emailowu adresu wobkrućić',
 'confirmemail_noemail' => 'Njejsy płaćiwu e-mejlowu adresu w swojich [[Special:Preferences|nastajenjach]] podał.',
 'confirmemail_text' => 'Tutón wiki žada, zo swoju e-mejlowu adresu wobkrućiš, prjedy hač e-mejlowe funkcije wužiješ. Zaktiwuzij tłóčatko deleka, zo by swojej adresy wobkrućensku mejlku pósłał. Mejlka zapřijmje wotkaz, kotryž kod wobsahuje; wočiń wotkaz we swojim wobhladowaku, zo by wobkrućił, zo twoja e-mejlowa adresa je płaćiwa.',

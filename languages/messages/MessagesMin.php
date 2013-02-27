@@ -524,7 +524,7 @@ Sila manunggu sabalun mancubo baliak.',
 'loginlanguagelabel' => 'Baso: $1',
 'suspicious-userlogout' => 'Pamintaan Sanak untuak kalua log ditolak karano tampaknyo dikirim oleh panjalajah nan rusak atau proksi panyinggah.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Kasalahan nan indak dikana dalam fungsi mail() PHP',
 'user-mail-no-addy' => 'Mancubo mangirim e-mail tanpa alamat e-mail nan sah.',
 'user-mail-no-body' => 'Mancubo kirim surel kosong atau pasan talalu pendek',
@@ -1098,7 +1098,7 @@ Alamaik surel tu indakkan tau dek urang nan manghubungi sanak tu.',
 'prefs-displaywatchlist' => 'Pilihan tampilan',
 'prefs-diffs' => 'Pabedoan',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'Alamaik surel nampaknyo sah',
 'email-address-validity-invalid' => 'Masuakkan alamaik surel nan sah',
 
@@ -1330,7 +1330,7 @@ Lihek pulo [[Special:WantedCategories|kategori nan diinginkan]].',
 # Special:ListGroupRights
 'listgrouprights-members' => '(dafta anggota)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Surel pangguno',
 'emailuser-title-target' => 'Kirim surel ka {{GENDER:$1|panggun}} ko',
 'emailuser-title-notarget' => 'Kirim surel',

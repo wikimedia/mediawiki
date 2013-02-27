@@ -860,7 +860,7 @@ $2',
 'loginlanguagelabel' => '언어: $1',
 'suspicious-userlogout' => '브라우저에 이상이 있거나 캐싱 프록시에서 로그아웃을 요청했기 때문에 로그아웃이 거부되었습니다.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'PHP의 mail() 함수에서 알 수 없는 오류가 발생했습니다.',
 'user-mail-no-addy' => '받는이의 이메일 주소가 없으면 이메일을 보낼 수 없습니다.',
 'user-mail-no-body' => '비어 있거나 지나치게 짧은 본문으로 이메일을 보내려고 했습니다.',
@@ -1559,7 +1559,7 @@ HTML 태그를 확인하세요.',
 'prefs-displaywatchlist' => '보이기 설정',
 'prefs-diffs' => '차이',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => '이메일 주소가 유효한 것으로 보입니다.',
 'email-address-validity-invalid' => '유효한 이메일 주소를 입력해주세요.',
 
@@ -2364,7 +2364,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'listgrouprights-addgroup-self-all' => '자신에게 모든 권한을 부여',
 'listgrouprights-removegroup-self-all' => '자신의 계정에서 모든 권한을 해제',
 
-# E-mail user
+# Email user
 'mailnologin' => '보낼 이메일 주소가 없음',
 'mailnologintext' => '다른 사용자에게 이메일을 보내려면 [[Special:UserLogin|로그인]]한 다음 [[Special:Preferences|사용자 환경 설정]]에서 자신의 이메일 주소를 저장해야 합니다.',
 'emailuser' => '이메일 보내기',
@@ -3800,7 +3800,7 @@ Variants for Chinese language
 'monthsall' => '모든 달',
 'limitall' => '모두',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => '이메일 주소 확인',
 'confirmemail_noemail' => '[[Special:Preferences|환경 설정]]에 이메일을 설정하지 않았습니다.',
 'confirmemail_text' => '{{SITENAME}}에서는 이메일 기능을 사용하기 전에 이메일 인증을 받아야 합니다.

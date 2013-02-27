@@ -866,7 +866,7 @@ $2',
 'loginlanguagelabel' => 'Јазик: $1',
 'suspicious-userlogout' => 'Вашето барање за одјава е одбиено бидејќи се чини дека е испратено од расипан прелистувач или кеширачки застапник (proxy).',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Непозната грешка во функцијата mail() на PHP',
 'user-mail-no-addy' => 'Се обидовте да испратите порака без да внесете адреса',
 'user-mail-no-body' => 'Се обидовте да испратите писмо кое е празно или со неразумно куса содржина.',
@@ -1560,7 +1560,7 @@ $1",
 'prefs-displaywatchlist' => 'Нагодувања на приказот',
 'prefs-diffs' => 'Разлики',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'Исправно',
 'email-address-validity-invalid' => 'Се бара исправна адреса!',
 
@@ -2363,7 +2363,7 @@ $1',
 'listgrouprights-addgroup-self-all' => 'Може да ги додаде сите групи на сопствената корисничка сметка',
 'listgrouprights-removegroup-self-all' => 'Може да ги избрише сите групи од сопствената корисничка сметка',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Нема адреса за праќање',
 'mailnologintext' => 'Мора да сте [[Special:UserLogin|најавени]] и да имате важечка е-поштенска адреса во вашите [[Special:Preferences|нагодувања]] за да може да праќате е-пошта до други корисници.',
 'emailuser' => 'Пиши е-пошта на корисникот',
@@ -3853,7 +3853,7 @@ Variants for Chinese language
 'monthsall' => 'сите',
 'limitall' => 'сите',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Потврда на е-поштенска адреса',
 'confirmemail_noemail' => 'Немате наведено важечка е-поштенска адреса во вашите [[Special:Preferences|нагодувања]].',
 'confirmemail_text' => '{{SITENAME}} бара да ја потврдите вашата е-поштенска адреса пред да ги користите можностите за е-пошта.

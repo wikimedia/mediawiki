@@ -1188,7 +1188,7 @@ $1',
 'listgrouprights-removegroup-self' => 'ܠܚܝ {{PLURAL:$2|ܟܢܘܫܬܐ|ܟܢܘܫܬ̈ܐ}} ܡܢ ܚܘܫܒܢܗ ܕܝܠܢܝܐ: $1',
 'listgrouprights-removegroup-self-all' => 'ܠܚܝ ܟܠ ܟܢܘܫܬ̈ܐ ܡܢ ܚܘܫܒܢܗ ܕܝܠܢܝܐ',
 
-# E-mail user
+# Email user
 'mailnologin' => 'ܠܝܬ ܡܘܢܥܐ ܠܫܘܕܪܐ',
 'emailuser' => 'ܫܕܪ ܐܓܪܬܐ ܠܗܢܐ ܡܦܠܚܢܐ',
 'emailpage' => 'ܫܕܪ ܐܓܪܬܐ ܒܒܝܠܕܪܐ ܐܠܩܛܪܘܢܝܐ ܠܡܦܠܚܢܐ',
@@ -1698,7 +1698,7 @@ $1',
 'monthsall' => 'ܟܠ',
 'limitall' => 'ܟܠ',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'ܫܪܪ ܒܝܠܕܪܐ ܐܠܩܛܪܘܢܝܐ',
 'confirmemail_subject' => 'ܫܘܪܪܐ ܕܒܝܠܕܪܐ ܐܠܩܛܪܘܢܝܐ ܡܢ {{SITENAME}}',
 'confirmemail_invalidated' => 'ܫܘܪܪܐ ܕܒܝܠܕܪܐ ܐܠܩܛܪܘܢܝܐ ܐܬܒܛܠ',
@@ -1821,9 +1821,9 @@ $1',
 'logentry-move-move_redir-noredirect' => '$1 ܫܢܐ ܦܐܬܐ ܕ $3 ܠ $4 ܕܐܝܬܘܗܝ ܦܐܬܐ ܕܨܘܝܒܐ ܘܕܠܐ ܫܒܩܐ ܦܐܬܐ ܕܨܘܝܒܐ',
 'logentry-patrol-patrol' => '$1 ܫܘܕܥ ܬܢܝܬܐ $4 ܕܦܐܬܐ $3 ܟܪܝܟܬܐ',
 'logentry-patrol-patrol-auto' => '$1 ܝܬܐܝܬ ܫܘܕܥ ܬܢܝܬܐ $4 ܕܦܐܬܐ $3 ܟܪܝܟܬܐ',
-'logentry-newusers-newusers' => 'ܚܘܫܒܢܐ ܕܡܦܠܚܢܐ $1 ܐܬܒܪܐ',
-'logentry-newusers-create' => 'ܚܘܫܒܢܐ ܕܡܦܠܚܢܐ $1 ܐܬܒܪܐ',
-'logentry-newusers-create2' => 'ܚܘܫܒܢܐ ܕܡܦܠܚܢܐ $3 ܐܬܒܪܐ ܒܝܕ $1',
+'logentry-newusers-newusers' => 'ܚܘܫܒܢܐ ܕܡܦܠܚܢܐ $1 ܐܬܬܟܝܢ',
+'logentry-newusers-create' => 'ܚܘܫܒܢܐ ܕܡܦܠܚܢܐ $1 ܐܬܬܟܝܢ',
+'logentry-newusers-create2' => 'ܚܘܫܒܢܐ ܕܡܦܠܚܢܐ $3 ܐܬܬܟܝܢ ܒܝܕ $1',
 'logentry-newusers-autocreate' => 'ܚܘܫܒܢܐ $1 ܐܬܒܪܝ ܝܬܐܝܬ',
 'rightsnone' => '(ܠܐ ܡܕܡ)',
 

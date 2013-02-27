@@ -819,7 +819,7 @@ Aguarde antes de tentar novamente, por favor.',
 'loginlanguagelabel' => 'Língua: $1',
 'suspicious-userlogout' => 'O seu pedido para sair foi negado porque parece ter sido enviado por um browser danificado ou por um proxy com cache.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Erro desconhecido na função mail() do PHP',
 'user-mail-no-addy' => 'Tentou enviar uma mensagem sem um endereço de correio electrónico',
 
@@ -1511,7 +1511,7 @@ Esta informação será pública.',
 'prefs-displaywatchlist' => 'Opções de apresentação',
 'prefs-diffs' => 'Diferenças',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'Parece válido',
 'email-address-validity-invalid' => 'Endereço válido necessário!',
 
@@ -2303,7 +2303,7 @@ Encontram-se disponíveis [[{{MediaWiki:Listgrouprights-helppage}}|informações
 'listgrouprights-addgroup-self-all' => 'Adicionar a própria conta a todos os grupos',
 'listgrouprights-removegroup-self-all' => 'Remover a própria conta de todos os grupos',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Não existe endereço de envio',
 'mailnologintext' => 'Precisa de estar [[Special:UserLogin|autenticado]] e possuir um endereço de correio válido nas suas [[Special:Preferences|preferências]], para poder enviar correio electrónico a outros utilizadores.',
 'emailuser' => 'Enviar correio electrónico a este utilizador',
@@ -3680,7 +3680,7 @@ Caso o ficheiro tenha sido modificado a partir do seu estado original, alguns de
 'monthsall' => 'todos',
 'limitall' => 'tudo',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Confirmar endereço de correio electrónico',
 'confirmemail_noemail' => 'Não tem um endereço de correio electrónico válido nas suas [[Special:Preferences|preferências de utilizador]].',
 'confirmemail_text' => 'A {{SITENAME}} requer que valide o seu endereço de correio electrónico antes de usar as funcionalidades de correio.

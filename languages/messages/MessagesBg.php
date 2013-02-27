@@ -731,7 +731,7 @@ $2',
 'loginlanguagelabel' => 'Език: $1',
 'suspicious-userlogout' => 'Заявката ви за излизане от системата беше отхвърлена, тъй като изглежда е била изпратена погрешка от браузъра или кеширащото прокси.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Неизвестна грешка в mail() функцията на PHP',
 'user-mail-no-addy' => 'Опитвате се да изпратите е-писмо без да е посочен адрес за електронна поща.',
 
@@ -1396,7 +1396,7 @@ $1",
 'prefs-displaywatchlist' => 'Видими настройки',
 'prefs-diffs' => 'Разлики',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'Адресът за е-поща изглежда валиден',
 'email-address-validity-invalid' => 'Въведете валиден адрес за е-поща',
 
@@ -2108,7 +2108,7 @@ $1',
 'listgrouprights-addgroup-self-all' => 'Може да добавя всички групи към своята сметка',
 'listgrouprights-removegroup-self-all' => 'Може да премахва всички групи от собствената сметка',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Няма електронна поща',
 'mailnologintext' => 'Необходимо е да [[Special:UserLogin|влезете]] и да посочите валидна електронна поща в [[Special:Preferences|настройките]] си, за да може да пращате писма на други потребители.',
 'emailuser' => 'Писмо до потребителя',
@@ -3380,7 +3380,7 @@ $1',
 'monthsall' => 'всички',
 'limitall' => 'всички',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Потвърждаване на адрес за електронна поща',
 'confirmemail_noemail' => 'Не сте посочили валиден адрес за електронна поща в [[Special:Preferences|настройки си]].',
 'confirmemail_text' => '{{SITENAME}} изисква да потвърдите адреса си за електронна поща преди да използвате възможностите за е-поща. Натиснете долния бутон, за да ви бъде изпратено писмо, съдържащо специално генерирана препратка, чрез която ще можете да потвърдите валидността на адреса си.',

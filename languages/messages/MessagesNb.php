@@ -817,7 +817,7 @@ Du kan ignorere denne beskjeden dersom kontoen ble opprettet ved en feil.',
 'loginlanguagelabel' => 'Språk: $1',
 'suspicious-userlogout' => 'Din forespørsel om å logge ut ble nektet fordi den så ut til å ha bli sendt av en ødelagt nettleser eller en mellomtjener.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Ukjent feil i PHPs mail()-funksjon',
 'user-mail-no-addy' => 'Forsøkte å sende e-post uten e-postadresse',
 'user-mail-no-body' => 'Prøvde å sende e-post med tom eller for kort brødtekst.',
@@ -1502,7 +1502,7 @@ Den kan maks inneholde $1 {{PLURAL:$1|tegn|tegn}}.',
 'prefs-displaywatchlist' => 'Visningsalternativer',
 'prefs-diffs' => 'Forskjeller',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'E-postadressen ser gyldig ut',
 'email-address-validity-invalid' => 'Skriv inn en gyldig e-postadresse',
 
@@ -2092,6 +2092,8 @@ Kanskje du vil redigere beskrivelsen på dens [$2 filbeskrivelsesside].',
 De burde i stedet lenke til en passende innholdsside.<br />
 En side anses om en pekerside om den inneholder en mal som det lenkes til fra [[MediaWiki:Disambiguationspage]].",
 
+'pageswithprop' => 'Sider med sideverdi',
+
 'doubleredirects' => 'Doble omdirigeringer',
 'doubleredirectstext' => 'Denne siden lister opp de sidene som er omdirigeringer til andre omdirigeringssider.
 Hver rad inneholder lenker til første og andre omdirigering, samt målet for den andre omdirigeringen, som vanligvis er den «virkelige» målsiden som den første omdirigeringen burde peke til.
@@ -2282,7 +2284,7 @@ Mer informasjon om de enkelte rettighetstypene kan finnes [[{{MediaWiki:Listgrou
 'listgrouprights-addgroup-self-all' => 'Kan legge til alle grupper til egen konto',
 'listgrouprights-removegroup-self-all' => 'Kan ta bort alle grupper fra egen konto',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Ingen avsenderadresse',
 'mailnologintext' => 'Du må være [[Special:UserLogin|logget inn]] og ha en gyldig e-postadresse satt i [[Special:Preferences|brukerinnstillingene]] for å sende e-post til andre brukere.',
 'emailuser' => 'E-post til denne brukeren',
@@ -2779,7 +2781,7 @@ Du kan oppdatere omdirigeringer som peker til den opprinnelige tittelen automati
 Om du velger å ikke gjøre det, sjekk at flyttingen ikke fører til [[Special:DoubleRedirects|doble]] eller [[Special:BrokenRedirects|ødelagte omdirigeringer]].
 Du er ansvarlig for at lenker fortsetter å peke til de sidene de er ment å peke til.
 
-Legg merke til at siden '''ikke''' kan flyttes hvis det allerede finnes en side med den nye tittelen, med mindre den er tom eller er en omdirigeringsside uten historikk.
+Legg merke til at siden '''ikke''' kan flyttes hvis det allerede finnes en side med den nye tittelen, med mindre sistnevnte er tom eller er en omdirigeringsside uten historikk.
 Det betyr at du kan flytte en side tilbake dit den kom fra hvis du gjør en feil, og du kan ikke overskrive eksisterende sider ved et uhell.
 
 '''Advarsel!'''
@@ -3663,7 +3665,7 @@ Rotert 90° mot klokka og vridd vertikalt',
 'monthsall' => 'alle',
 'limitall' => 'alle',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Bekreft e-postadresse',
 'confirmemail_noemail' => 'Du har ikke oppgitt en gyldig e-postadresse i [[Special:Preferences|innstillingene dine]].',
 'confirmemail_text' => 'Du må bekrefte e-postadressen din før du kan benytte deg av e-posttjenester på {{SITENAME}}. Trykk på knappen under for å sende en bekreftelsesmelding til e-postadressen din. Meldingen vil inneholde en lenke med en kode; følg lenken for å bekrefte at e-postadressen er gyldig.',
@@ -4084,4 +4086,6 @@ Om det ikke er tilfellet, kan du bruke det enkle skjemaet som du finner under. K
 'duration-centuries' => '$1 {{PLURAL:$1|århundre|århundrer}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennier}}',
 
+# Unknown messages
+'pageswithprop-legend' => 'Sider med en sideverdi',
 );

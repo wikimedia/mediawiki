@@ -553,7 +553,7 @@ Pangaasi nga agurayka sakbay nga agipadas manen.',
 'loginlanguagelabel' => 'Pagsasao: $1',
 'suspicious-userlogout' => 'Naiparit ti panagkiddawmo a rummuar  ngamin ket kasla inpatulod ti nadadael a "panagbasabasa" wenno "caching proxy".',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Di am-ammo a biddut iti surat ti PHP  () a pamay-an.',
 'user-mail-no-addy' => 'Pinadas nga impatulod ti e-surat nga awan ti e-surat a pagtaengan.',
 'user-mail-no-body' => 'Nangpadaska a nangipatulod ti e-surat nga awan linaonna wenno ababa laeng a bagi.',
@@ -1259,7 +1259,7 @@ Ti e-surat a pagtaengam ket saan nga maipakita kadagiti agar-aramat nga agkontak
 'prefs-displaywatchlist' => 'Ipakita dagiti pagpilian',
 'prefs-diffs' => 'Sabali',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'Ti e-surat a pagtaengan ket kasla umiso',
 'email-address-validity-invalid' => 'Ikabil ti umiso nga e-surat a pagtaengan',
 
@@ -2042,7 +2042,7 @@ Adda pay ngata [[{{MediaWiki:Listgrouprights-helppage}}|adu pay a pakaammo]] a m
 'listgrouprights-addgroup-self-all' => 'Inayon amin dagiti bunggoy ti bukodmo a pakabilangan',
 'listgrouprights-removegroup-self-all' => 'Ikkatem amin dagiti bunggoy ti bukod a pakabilangan',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Awan ti pagipatulodan a pagtaengan',
 'mailnologintext' => 'Masapul a [[Special:UserLogin|nakastrekka]] ken adda umisu nga e-surat a pagtaengan idiay [[Special:Preferences|kaykayatmo]] ti agipatulod ti e-surat kadagiti sabsabali nga agar-aramat.',
 'emailuser' => 'E-suratan daytoy nga agar-aramat',
@@ -3411,7 +3411,7 @@ Dagiti dadduma ket mailemmeng a kinasigud.
 'monthsall' => 'amin',
 'limitall' => 'amin',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Pasingkedan ti e-surat a pagtaengam',
 'confirmemail_noemail' => 'Awan ti umisu nga e-surat a pagtaengam a naikabil idiay [[Special:Preferences|kaykayat ti agar-aramat]].',
 'confirmemail_text' => 'Ti {{SITNAME}} ket masapulna a pasingkedam ti e-surat a pagtaengam sakbay nga agusar ti -surat a langa.

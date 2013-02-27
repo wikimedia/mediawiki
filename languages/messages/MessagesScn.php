@@ -1753,7 +1753,7 @@ Protucolli suppurtati: <code>$1</code>',
 'listgrouprights-addgroup-self-all' => 'Junci tutti li gruppa ô propriu account',
 'listgrouprights-removegroup-self-all' => 'Può livari tutti li gruppi dô propriu account',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Nuddu ndirizzu cui mannari lu missaggiu',
 'mailnologintext' => 'Hai a fari lu [[Special:UserLogin|login]] e aver riggistratu na casella e-mail vàlida ntê tò [[Special:Preferences|prifirenzi]] pi mannari posta alittrònica a àutri Utenti.',
 'emailuser' => "Manna n'imail a stu utenti",
@@ -2777,7 +2777,7 @@ Li lijami succissivi, supra la stissa riga, sunnu cunzidirati comu eccizzioni (p
 'namespacesall' => 'Tutti',
 'monthsall' => 'tutti',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Cunferma ndirizzu e-mail',
 'confirmemail_noemail' => 'Nun hà statu ndicatu un ndirizzu e-mail vàlidu ntê propi [[Special:Preferences|prifirenzi]].',
 'confirmemail_text' => "Stu situ richiedi la virìfica di l ndirizzu e-mail prima di putiri usari li funzioni cunnessi a l'email. Prèmiri lu pulsanti ccà sutta pi mannari na richiesta di cunferma a lu propiu ndirizzu; ntô missaggiu è prisenti un culligamenti ca cunteni un còdici. Visitari lu culligamentu cu lu propiu browser pi cunfirmari ca lu ndirizzu e-mail è vàlidu.",

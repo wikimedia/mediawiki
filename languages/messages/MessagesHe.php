@@ -865,7 +865,7 @@ $2',
 'loginlanguagelabel' => 'שפה: $1',
 'suspicious-userlogout' => 'בקשתכם לצאת מהחשבון נדחתה כיוון שנראה שהיא נשלחה על ידי דפדפן שבור או שרת פרוקסי עם זיכרון מטמון.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'שגיאה לא ידועה בפונקציה mail()‎ של PHP',
 'user-mail-no-addy' => 'ניסיון לשלוח דוא"ל ללא כתובת דוא"ל.',
 'user-mail-no-body' => 'ניסיון לשלוח דוא"ל עם תוכן ריק או קצר מאוד.',
@@ -1551,7 +1551,7 @@ $1",
 'prefs-displaywatchlist' => 'אפשרויות תצוגה',
 'prefs-diffs' => 'הבדלים בין גרסאות',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'כתובת הדואר האלקטרוני נראית תקינה',
 'email-address-validity-invalid' => 'יש להקליד כתובת דואר אלקטרוני תקינה',
 
@@ -2149,6 +2149,10 @@ $1',
 ייתכן שעליהם לקשר במקום זאת לדף מתאים יותר.<br />
 דף נחשב לדף פירושונים אם הוא משתמש בתבנית המקושרת מהדף [[MediaWiki:Disambiguationspage]].",
 
+'pageswithprop' => 'דפים עם מאפיין דף',
+'pageswithprop-text' => 'הדף הזה נותן רשימה של דפים שמשתמשים במאפיין דף מסוים.',
+'pageswithprop-prop' => 'שם המאפיין:',
+
 'doubleredirects' => 'הפניות כפולות',
 'doubleredirectstext' => 'בדף הזה מופיעה רשימת דפי הפניה שמפנים לדפי הפניה אחרים.
 כל שורה מכילה קישור לשתי ההפניות הראשונות, וכן את היעד של ההפניה השנייה, שהיא לרוב היעד ה"אמיתי" של ההפניה, שההפניה הראשונה אמורה להצביע אליו.
@@ -2341,7 +2345,7 @@ $1',
 'listgrouprights-addgroup-self-all' => 'הוספת כל הקבוצות לחשבון האישי',
 'listgrouprights-removegroup-self-all' => 'הסרת כל הקבוצות מהחשבון האישי',
 
-# E-mail user
+# Email user
 'mailnologin' => 'אין כתובת לשליחה',
 'mailnologintext' => 'עליכם [[Special:UserLogin|להיכנס לחשבון]] ולהגדיר לעצמכם כתובת דואר אלקטרוני תקינה ב[[Special:Preferences|העדפות המשתמש]] שלכם כדי לשלוח דואר למשתמש אחר.',
 'emailuser' => 'שליחת דואר אלקטרוני למשתמש זה',
@@ -3751,7 +3755,7 @@ $1',
 'monthsall' => 'הכול',
 'limitall' => 'הכול',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'אימות כתובת דוא"ל',
 'confirmemail_noemail' => 'אין לכם כתובת דוא"ל תקפה המוגדרת ב[[Special:Preferences|העדפות המשתמש]] שלכם.',
 'confirmemail_text' => 'אתר זה דורש שתאמתו את כתובת הדוא"ל שלכם לפני שתשתמשו בשירותי הדוא"ל. לחצו על הכפתור למטה כדי לשלוח דוא"ל עם קוד אימות לכתובת הדוא"ל שהזנתם. טענו את הקישור בדפדפן שלכם כדי לאשר שכתובת הדוא"ל תקפה.',
@@ -4214,4 +4218,7 @@ $5
 'duration-centuries' => '{{PLURAL:$1|מאה שנה|מאתיים שנה|$1 מאות שנים}}',
 'duration-millennia' => '{{PLURAL:$1|אלף שנה|אלפיים שנה|$1 אלפי שנים}}',
 
+# Unknown messages
+'pageswithprop-legend' => 'דפים עם מאפיין דף',
+'pageswithprop-submit' => 'שליחה',
 );

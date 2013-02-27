@@ -815,7 +815,7 @@ Várj egy kicsit, mielőtt újra próbálkozol.',
 'loginlanguagelabel' => 'Nyelv: $1',
 'suspicious-userlogout' => 'A kijelentkezési kérésed vissza lett utasítva, mert úgy tűnik, hogy egy hibás böngésző vagy gyorsítótárazó proxy küldte.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Ismeretlen hiba a PHP mail() függvényében',
 'user-mail-no-addy' => 'E-mail üzenetet próbáltál küldeni e-mail cím megadása nélkül.',
 'user-mail-no-body' => 'Üres vagy nagyon rövid email-t próbáltál küldeni.',
@@ -1481,7 +1481,7 @@ A műveletet nem lehet visszavonni.',
 'prefs-displaywatchlist' => 'Megjelenítési beállítások',
 'prefs-diffs' => 'Eltérések (diffek)',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'Az e-mail cím érvényesnek tűnik',
 'email-address-validity-invalid' => 'Írj be egy érvényes e-mail címet',
 
@@ -2257,7 +2257,7 @@ Az egyes csoportokról további információt [[{{MediaWiki:Listgrouprights-help
 'listgrouprights-addgroup-self-all' => 'az összes csoportot hozzáadhatja a saját fiókjához',
 'listgrouprights-removegroup-self-all' => 'az összes csoporból eltávolíthatja a saját fiókját',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Nincs feladó',
 'mailnologintext' => 'Ahhoz hogy másoknak e-mailt küldhess, [[Special:UserLogin|be kell jelentkezned]] és meg kell adnod egy érvényes e-mail címet a [[Special:Preferences|beállításaidban]].',
 'emailuser' => 'E-mail küldése ezen szerkesztőnek',
@@ -3654,7 +3654,7 @@ míg a többi elem a táblázat összecsukása után alapértelmezett esetben re
 'monthsall' => 'mind',
 'limitall' => 'mind',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'E-mail cím megerősítése',
 'confirmemail_noemail' => 'Nincs érvényes e-mail cím megadva a [[Special:Preferences|beállításaidnál]].',
 'confirmemail_text' => 'Meg kell erősítened az e-mail címed, mielőtt használhatnád a(z) {{SITENAME}} levelezési rendszerét. Nyomd meg az alsó gombot, hogy kaphass egy e-mailt, melyben megtalálod a megerősítéshez szükséges kódot. Töltsd be a kódot a böngésződbe, hogy aktiválhasd az e-mail címedet.',

@@ -823,7 +823,7 @@ Por favor aguarde antes de tentar novamente.',
 'loginlanguagelabel' => 'Idioma: $1',
 'suspicious-userlogout' => 'Sua solicitação para sair foi negada porque aparentemente foi enviada por um navegador danificado ou por um servidor proxy com cache.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Erro desconhecido na função mail() do PHP',
 'user-mail-no-addy' => 'Tentou enviar uma mensagem sem um endereço de e-mail.',
 'user-mail-no-body' => 'Você tentou enviar com o campo de e-mail vazio ou com poucos caracteres.',
@@ -1508,7 +1508,7 @@ Caso decida fornecê-lo, este será utilizado para dar-lhe crédito pelo seu tra
 'prefs-displaywatchlist' => 'Opções de exibição',
 'prefs-diffs' => 'Diferenças',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'Parece válido',
 'email-address-validity-invalid' => 'Forneça um endereço de e-mail válido',
 
@@ -2114,6 +2114,10 @@ Talvez você deseje editar a descrição na sua [$2 página de descrição de ar
 Talvez fosse melhor que possuissem links para uma página mais específica.</br>
 Uma página é considerada como de desambiguação se utilizar uma predefinição que esteja definida em [[MediaWiki:Disambiguationspage]].",
 
+'pageswithprop' => 'Páginas com uma propriedade de página',
+'pageswithprop-text' => 'Esta página lista as páginas que usam uma determinada propriedade de página.',
+'pageswithprop-prop' => 'Nome da propriedade:',
+
 'doubleredirects' => 'Redirecionamentos duplos',
 'doubleredirectstext' => 'Esta página lista as páginas que redirecionam para outros redirecionamentos.
 Cada linha contém links para o primeiro e o segundo redirecionamentos, juntamente com o alvo do segundo redirecionamento, que é geralmente a verdadeira página de destino, para a qual o primeiro redirecionamento deveria apontar.
@@ -2304,7 +2308,7 @@ Pode haver [[{{MediaWiki:Listgrouprights-helppage}}|informações adicionais]] s
 'listgrouprights-addgroup-self-all' => 'Pode adicionar todos os grupos à própria conta',
 'listgrouprights-removegroup-self-all' => 'Pode remover todos os grupos da própria conta',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Nenhum endereço de envio',
 'mailnologintext' => 'Necessita de estar [[Special:UserLogin|autenticado]] e de possuir um endereço de e-mail válido nas suas [[Special:Preferences|preferências]] para poder enviar um e-mail a outros usuários.',
 'emailuser' => 'Enviar-lhe um e-mail',
@@ -2987,6 +2991,7 @@ Salve o arquivo no seu computador e importe-o aqui.',
 'import-error-interwiki' => 'A página "$1" não pôde ser importada pois seu nome está reservado para um link interwik.',
 'import-error-special' => 'A página "$1" não pôde ser importada porque ela pertence a um espaço nominal especial que não suporta páginas.',
 'import-error-invalid' => 'A página "$1" não pôde ser importada por seu nome ser inválido.',
+'import-error-unserialize' => 'Revisão  $2  da página " $1 " não pôde ser desserializada. A revisão foi relatada para usar o modelo de conteúdo  $3  serializado como  $4',
 'import-options-wrong' => '{{PLURAL:$2|Opção com erro|Opções com erros}}: <nowiki>$1</nowiki>',
 'import-rootpage-invalid' => 'A página raiz dada é um título inválido.',
 'import-rootpage-nosubpage' => 'O espaço nominal $1 da página principal não permite subpáginas.',
@@ -3138,6 +3143,7 @@ Tal bloqueio foi provavelmente causado por uma ligação para um ''website'' ext
 'pageinfo-robot-noindex' => 'Não indexável',
 'pageinfo-views' => 'Número de visitas',
 'pageinfo-watchers' => 'Número de vigilantes da página',
+'pageinfo-few-watchers' => 'Menos de  $1  {{PLURAL:$1|vigilante|vigilantes}}',
 'pageinfo-redirects-name' => 'Redirecionamentos para esta página',
 'pageinfo-subpages-name' => 'Subpáginas desta página',
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|redirecionamento|redirecionamentos}}; $3 {{PLURAL:$3|não redirecionamento|não redirecionamentos}})',
@@ -3684,7 +3690,7 @@ Por padrão, outros campos estarão ocultos.
 'monthsall' => 'todos',
 'limitall' => 'todas',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Confirmar endereço de E-mail',
 'confirmemail_noemail' => 'Não possui um endereço de e-mail válido indicado nas suas [[Special:Preferences|preferências de usuário]].',
 'confirmemail_text' => '{{SITENAME}} requer o seu endereço de e-mail esteja validado antes de utilizar as funcionalidades que requerem um endereço de e-mail.
@@ -4069,6 +4075,7 @@ Caso contrário, você poderá usar o formulário simplificado a seguir. Seu com
 'api-error-ok-but-empty' => 'Erro interno: não há resposta do servidor.',
 'api-error-overwrite' => 'Não é permitido sobrescrever um arquivo já existente.',
 'api-error-stashfailed' => 'Erro interno: o servidor não conseguiu armazenar o arquivo temporário.',
+'api-error-publishfailed' => 'Erro interno: O servidor falhou ao publicar o arquivo temporário.',
 'api-error-timeout' => 'O servidor não respondeu dentro do tempo esperado.',
 'api-error-unclassified' => 'Ocorreu um erro desconhecido',
 'api-error-unknown-code' => 'Erro desconhecido: "$1"',
@@ -4089,4 +4096,7 @@ Caso contrário, você poderá usar o formulário simplificado a seguir. Seu com
 'duration-centuries' => '$1 {{PLURAL:$1|século|séculos}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milênio|milênios}}',
 
+# Unknown messages
+'pageswithprop-legend' => 'Páginas com uma propriedade de página',
+'pageswithprop-submit' => 'Ir',
 );

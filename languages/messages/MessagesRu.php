@@ -911,7 +911,7 @@ $2',
 'loginlanguagelabel' => 'Язык: $1',
 'suspicious-userlogout' => 'Ваш запрос на завершение сеанса отклонён, так как он похож на запрос, отправленный некорректным браузером или кэширующим прокси.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Неизвестная ошибка в PHP-функции mail()',
 'user-mail-no-addy' => 'Пытался отправить электронное письмо без адреса электронной почты',
 'user-mail-no-body' => 'Пытался отправить электронное письмо с пустым или бессмысленно коротким содержанием.',
@@ -1601,7 +1601,7 @@ $1",
 'prefs-displaywatchlist' => 'Настройки отображения',
 'prefs-diffs' => 'Разница версий',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'Выглядит корректно',
 'email-address-validity-invalid' => 'Введите корректный адрес электронной почты!',
 
@@ -2387,7 +2387,7 @@ $1',
 'listgrouprights-addgroup-self-all' => 'Может добавлять все группы к своей учётной записи',
 'listgrouprights-removegroup-self-all' => 'может удалять все группы со своей учётной записи',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Адрес для отправки отсутствует',
 'mailnologintext' => 'Вы должны [[Special:UserLogin|представиться системе]] и иметь действительный адрес электронной почты в ваших [[Special:Preferences|настройках]], чтобы иметь возможность отправлять электронную почту другим участникам.',
 'emailuser' => 'Письмо участнику',
@@ -3798,7 +3798,7 @@ $1',
 'monthsall' => 'все',
 'limitall' => 'все',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Подтверждение адреса электронной почты',
 'confirmemail_noemail' => 'Вы не задали корректный адрес электронной почты в своих [[Special:Preferences|настройках]].',
 'confirmemail_text' => 'Вики-движок требует подтверждения адреса электронной почты перед тем, как начать с ним работать.

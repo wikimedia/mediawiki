@@ -545,7 +545,7 @@ $1',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main' => 'Páxina',
-'nstab-user' => 'Páxina de {{GENDER:{{BASEPAGENAME}}|usuario|usuaria}}',
+'nstab-user' => 'Páxina de {{GENDER:{{#titleparts:{{BASEPAGENAME}}|1}}|usuario|usuaria}}',
 'nstab-media' => 'Páxina multimedia',
 'nstab-special' => 'Páxina especial',
 'nstab-project' => 'Páxina do proxecto',
@@ -764,7 +764,7 @@ Por favor, agarde antes de probar outra vez.',
 'loginlanguagelabel' => 'Lingua: $1',
 'suspicious-userlogout' => 'Rexeitouse a súa petición de saír do sistema porque semella que a enviou un navegador roto ou a caché dun proxy.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Erro descoñecido na función mail() do PHP.',
 'user-mail-no-addy' => 'Intentou enviar un correo sen enderezo de correo electrónico.',
 'user-mail-no-body' => 'Intentou enviar un correo baleiro ou cun corpo curto de máis.',
@@ -1454,7 +1454,7 @@ Ha de ter menos {{PLURAL:$1|dun carácter|de $1 caracteres}}.',
 'prefs-displaywatchlist' => 'Opcións de visualización',
 'prefs-diffs' => 'Diferenzas',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'O enderezo de correo electrónico semella válido',
 'email-address-validity-invalid' => 'Escriba un enderezo de correo electrónico válido',
 
@@ -2252,7 +2252,7 @@ Se quere máis información acerca dos dereitos individuais, pode atopala [[{{Me
 'listgrouprights-addgroup-self-all' => 'Pode engadir todos os grupos pola súa propia conta',
 'listgrouprights-removegroup-self-all' => 'Pode eliminar todos os grupos pola súa propia conta',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Non existe enderezo para o envío',
 'mailnologintext' => 'Debe [[Special:UserLogin|acceder ao sistema]] e ter rexistrado un enderezo de correo electrónico válido nas súas [[Special:Preferences|preferencias]] para enviar correos electrónicos a outros usuarios.',
 'emailuser' => 'Enviar un correo electrónico a {{GENDER:{{BASEPAGENAME}}|este usuario|esta usuaria}}',
@@ -3660,7 +3660,7 @@ Os demais agocharanse por omisión.
 'monthsall' => 'todos',
 'limitall' => 'todas',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Confirmar o enderezo de correo electrónico',
 'confirmemail_noemail' => 'Non ten rexistrado ningún enderezo de correo electrónico válido nas súas [[Special:Preferences|preferencias de usuario]].',
 'confirmemail_text' => '{{SITENAME}} require que lle dea validez ao seu enderezo de correo electrónico antes de utilizar as funcións relacionadas con el.

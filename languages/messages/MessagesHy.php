@@ -750,7 +750,7 @@ $2',
 Խնդրում ենք սպասել որոշ ժամանակ կրկին փորձելուց առաջ։',
 'loginlanguagelabel' => 'Լեզու՝ $1',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Անհայտ սխալ PHP-ի mail() ֆունկցիայում',
 'user-mail-no-addy' => 'Փորձվեց ուղարկել էլ․ նամակ առանց էլ․ հասցեի։',
 
@@ -1298,7 +1298,7 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'prefs-displaywatchlist' => 'Ցուցադրման ընտրանքներ',
 'prefs-diffs' => 'Տարբերություններ',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'Էլ. հասցեն վավերական է',
 'email-address-validity-invalid' => 'Մուտքագրեք վավերական էլ. հասցե',
 
@@ -1760,7 +1760,7 @@ $1-ը հղվել է $2 ից',
 'listgrouprights-members' => '(անդամների ցանկ)',
 'listgrouprights-addgroup' => 'Ավելացնեել {{PLURAL:$2|խումբ|խմբեր}}՝  $1',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Ուղարկման հասցե չկա',
 'mailnologintext' => 'Անհրաժեշտ է [[Special:UserLogin|մտնել համակարգ]] և ունենալ գործող էլ-փոստի հասցե ձեր [[Special:Preferences|նախընտրություններում]]՝ ուրիշ մասնակիցներին էլեկտրոնային նամակներ ուղարկելու համար։',
 'emailuser' => 'էլ-նամակ ուղարկել այս մասնակցին',
@@ -2558,7 +2558,7 @@ $1',
 'monthsall' => 'բոլոր',
 'limitall' => 'բոլոր',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Էլ-հասցեի վավերացում',
 'confirmemail_noemail' => 'Դուք չեք նշել գործող էլ-հասցե ձեր [[Special:Preferences|նախընտրություններում]]։',
 'confirmemail_text' => 'Այս վիքիում անհրաժեշտ է վավերացնել էլ-հասցեն մինչև էլ-փոստի վրա հիմնված հնարավորությունների օգտագործելը։ Մատնահարեք ստորև կոճակին՝ ձեր հասցեին վավերացման նամակ ուղարկելու համար։ Ուղերձում կգտնեք վավերացման կոդով հղում, որին հետևելով կվավերացնեք ձեր էլ-հասցեն։',

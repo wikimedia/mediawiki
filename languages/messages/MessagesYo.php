@@ -565,7 +565,7 @@ E-mail kankan kò ní jẹ́ fífiránṣẹ́ fún ìkankan nínú àwọn ìn�
 'loginlanguagelabel' => 'Èdè: $1',
 'suspicious-userlogout' => 'Ìtọrọ tí ẹ ṣe láti bọ́sóde jẹ̀ kíkọ̀ nítorípé ó dà bí pé ó jẹ́ fífiránṣẹ́ látọ̀dọ̀ awòtakùn (browser) àìdára tàbí ẹ̀rọ-ìwọ̀fà ìmúpamọ́ onígbàdíẹ̀.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Àsìṣe àìmọ̀ nínú ìgbéṣe mail() ti PHP',
 'user-mail-no-addy' => 'Ó fẹ́ fi e-mail ránṣẹ́ láìsí àdírẹ́sì e-mail.',
 
@@ -1259,7 +1259,7 @@ Tí ẹ bá fisílẹ̀ a ó lòó láti tóka iṣẹ́ yín fún yín.',
 'prefs-displaywatchlist' => 'Ìfihàn àwọn àṣàyàn',
 'prefs-diffs' => 'Àwọn ìyàtọ̀',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'Àdírẹ́ẹ̀sì e-mail dà bí èyí tótọ́',
 'email-address-validity-invalid' => 'Ẹ tẹ e-mail tótọ́',
 
@@ -2044,7 +2044,7 @@ Orúkọ ibiàyè pọndandan, fún àpẹrẹ "*.org".<br />
 'listgrouprights-addgroup-self-all' => 'Ìfikún gbogbo ẹgbẹ́ mọ́ àpamọ́ araẹni',
 'listgrouprights-removegroup-self-all' => 'Ìyọkúrò gbogbo ẹgbẹ́ kúrò nínú àpamọ́ araẹni',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Kò sí àdírẹ́sì àfiránṣẹ́',
 'mailnologintext' => 'Ẹ gbọ́dọ̀ ti [[Special:UserLogin|wọlé]] kí ẹ sì ní àdírẹ́ẹ̀sì e-mail oníìbámu nínú [[Special:Preferences|àwọn ìfẹ́ràn]] yín láti le baà le fi e-mail ránṣẹ́ sí àwọn onísẹ míràn.',
 'emailuser' => 'Ẹ fi e-mail ránṣẹ́ sí oníṣe yìí',
@@ -3261,7 +3261,7 @@ Tóbájẹ́pé fáìlì ọ̀hún ti jẹ́ títúnṣe sí bóṣewà ní bẹ
 'monthsall' => 'gbogbo',
 'limitall' => 'gbogbo',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => "Ṣè'múdájú àdírẹ́ẹ̀sì e-mail",
 'confirmemail_noemail' => 'Ẹ kò tíì ṣètò àdírẹ́ẹ̀sì e-mail tó tótọ́ nínú [[Special:Preferences|ìfẹ́ràn oníṣe]] yín.',
 'confirmemail_send' => 'Fi àmìọ̀rọ̀ ìmúdájú ránṣẹ́',

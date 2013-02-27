@@ -691,7 +691,7 @@ $1',
 'loginlanguagelabel' => 'ภาษา: $1',
 'suspicious-userlogout' => 'คำขอล็อกเอาต์ของคุณถูกปฏิเสธเพราะดูเหมือนส่งมาจากเบราว์เซอร์หรือพร็อกซีแคชที่เสีย',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'เกิดข้อผิดพลาดไม่ทราบสาเหตุในฟังก์ชัน mail() ของพีเอชพี',
 'user-mail-no-addy' => 'พยายามส่งอีเมลโดยไม่มีที่อยู่อีเมล',
 'user-mail-no-body' => 'พยายามส่งอีเมลที่มีเนื้อหาว่างหรือสั้นอย่างไร้เหตุผล',
@@ -1347,7 +1347,7 @@ $1",
 'prefs-displaywatchlist' => 'ตัวเลือกผลแสดง',
 'prefs-diffs' => 'ผลต่าง',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'ที่อยู่อีเมลดูถูกต้อง',
 'email-address-validity-invalid' => 'ป้อนที่อยู่อีเมลที่ถูกต้อง',
 
@@ -2075,7 +2075,7 @@ $1',
 'listgrouprights-addgroup-self-all' => 'เพิ่มทุกกลุ่มเข้าไปในบัญชีนี้',
 'listgrouprights-removegroup-self-all' => 'นำทุกกลุ่มออกจากบัญชีนี้',
 
-# E-mail user
+# Email user
 'mailnologin' => 'ไม่มีที่อยู่ส่ง',
 'mailnologintext' => 'คุณต้อง[[Special:UserLogin|ล็อกอิน]]และมีที่อยู่อีเมลที่สมเหตุสมผลใน[[Special:Preferences|การตั้งค่า]]ของคุณ ในการส่งอีเมลหาผู้ใช้อื่น',
 'emailuser' => 'ส่งอีเมลหาผู้ใช้นี้',
@@ -3333,7 +3333,7 @@ $1',
 'monthsall' => 'ทั้งหมด',
 'limitall' => 'ทั้งหมด',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'ยืนยันอีเมล',
 'confirmemail_noemail' => 'ไม่ได้ใส่อีเมลในส่วน [[Special:Preferences|การตั้งค่าส่วนตัว]]',
 'confirmemail_text' => 'ถ้าต้องการใช้คำสั่งพิเศษในด้านอีเมสล จำเป็นต้องใส่ค่าอีเมลก่อน โดยกดที่ปุ่มด้านล่าง และทางระบบจะส่งไปที่อีเมลนี้ ในอีเมลจะมีลิงก์ซึ่งมีรหัสสำหรับยืนยันอีเมล',

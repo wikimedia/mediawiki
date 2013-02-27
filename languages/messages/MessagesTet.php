@@ -639,7 +639,7 @@ Ita-nia mudansa la armazenadu seidauk!",
 'listgrouprights-rights' => 'Priviléjiu',
 'listgrouprights-members' => '(lista membru nian)',
 
-# E-mail user
+# Email user
 'emailuser' => "Haruka korreiu eletróniku ba uza-na'in ne'e",
 'defemailsubject' => '{{SITENAME}} - korreiu eletróniku husi uza-na\'in "$1"',
 'noemailtitle' => "Lá'os diresaun korreiu eletróniku",

@@ -986,7 +986,7 @@ $2',
 'loginlanguagelabel' => 'اللغة: $1',
 'suspicious-userlogout' => 'رفض طلب خروجك لأنه يبدو كأنه أرسل عن طريق متصفح معطوب أو وسيط تخزين.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => "خطأ غير معروف في وظيفة البريد PHP's mail()",
 'user-mail-no-addy' => 'لقد حاولت إرسال بريد إلكتروني دون عنوان بريد إلكتروني.',
 'user-mail-no-body' => 'محاول ارسال بريد إلكتروني فارغ أو ذو نص قصير.',
@@ -1682,7 +1682,7 @@ $1",
 'prefs-displaywatchlist' => 'خصائص العرض',
 'prefs-diffs' => 'فروقات',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'يبدو أن عنوان البريد الإلكتروني صالح',
 'email-address-validity-invalid' => 'أدخل عنوان بريد إلكتروني صالح',
 
@@ -2479,7 +2479,7 @@ $1',
 'listgrouprights-addgroup-self-all' => 'يمكنه إضافة كل المجموعات إلى حسابه الخاص',
 'listgrouprights-removegroup-self-all' => 'يمكنه إزالة كل المجموعات من حسابه الخاص',
 
-# E-mail user
+# Email user
 'mailnologin' => 'لا يوجد عنوان للإرسال',
 'mailnologintext' => 'يجب أن تقوم [[Special:UserLogin|بتسجيل الدخول]] وإدخال بريد إلكتروني صالح في صفحة [[Special:Preferences|التفضيلات]] لتتمكن من إرسال الرسائل لمستخدمين آخرين.',
 'emailuser' => 'إرسال رسالة لهذا المستخدم',
@@ -3934,7 +3934,7 @@ $1',
 'monthsall' => 'الكل',
 'limitall' => 'الكل',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'تأكيد عنوان البريد الإلكتروني',
 'confirmemail_noemail' => 'ليس لديك عنوان بريد إلكتروني صحيح مسجل في [[Special:Preferences|تفضيلاتك]].',
 'confirmemail_text' => '{{SITENAME}} يجب تأكيد عنوانك الإلكتروني قبل استخدام خصائص البريد الإلكتروني.

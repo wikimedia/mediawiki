@@ -869,7 +869,7 @@ $1',
 'loginlanguagelabel' => 'Мова: $1',
 'suspicious-userlogout' => 'Ваш запит на завершення сеанса відхилений, оскільки він схожий на запит, відправлений зіпсованим веб-оглядачем або кешуючим проксі-сервером.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Невідома помилка в PHP-mail() функції',
 'user-mail-no-addy' => 'Спроба надсилання електронної пошти без зазначеної адреси електронної пошти.',
 'user-mail-no-body' => 'Спроба надіслати електронного листа з порожнім або надто коротким вмістом.',
@@ -1559,7 +1559,7 @@ $1",
 'prefs-displaywatchlist' => 'Налаштування показу',
 'prefs-diffs' => 'Різниці версій',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'Адреса електронної пошти є чинною',
 'email-address-validity-invalid' => 'Введіть чинну адресу електронної пошти',
 
@@ -2357,7 +2357,7 @@ $1',
 'listgrouprights-addgroup-self-all' => 'Може додавати всі групи до свого облікового запису',
 'listgrouprights-removegroup-self-all' => 'може вилучати всі групи зі свого облікового запису',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Відсутня адреса для відправки',
 'mailnologintext' => 'Ви повинні [[Special:UserLogin|ввійти до системи]] і мати підтверджену адресу електронної пошти у ваших [[Special:Preferences|налаштуваннях]], щоб мати змогу надсилати електронну пошту іншим користувачам.',
 'emailuser' => 'Надіслати листа',
@@ -3865,7 +3865,7 @@ $8',
 'monthsall' => 'всі',
 'limitall' => 'усі',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Підтвердження адреси ел. пошти',
 'confirmemail_noemail' => 'Ви не зазначили коректну адресу електронної пошти у ваших [[Special:Preferences|налаштуваннях користувача]].',
 'confirmemail_text' => 'Вікі-двигун потребує підтвердження адреси електронної пошти перед початком роботи. Натисніть на кнопку, щоб за вказаною адресою одержати листа, який міститиме посилання на спеціальну сторінку, після відкриття якої у браузері адреса електронної пошти буде вважатися підтвердженою.',

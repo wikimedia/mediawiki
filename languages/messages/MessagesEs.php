@@ -658,7 +658,7 @@ $1',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main' => 'Página',
-'nstab-user' => 'Usuario',
+'nstab-user' => 'Página de usuari{{gender:{{#titleparts:{{BASEPAGENAME}}|1}}|o|a|o}}',
 'nstab-media' => 'Media',
 'nstab-special' => 'Página especial',
 'nstab-project' => 'Página del proyecto',
@@ -867,7 +867,7 @@ Puedes ignorar este mensaje si esta cuenta fue creada por error.',
 'loginlanguagelabel' => 'Idioma: $1',
 'suspicious-userlogout' => 'Tu solicitud de desconexión ha sido denegada, pues parece haber sido enviada desde un navegador defectuoso o un proxy caché.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Error desconocido en la función mail() de PHP.',
 'user-mail-no-addy' => 'Se ha intentado enviar correo electrónico sin una dirección de correo electrónico.',
 'user-mail-no-body' => 'Trató de enviar un correo electrónico con un cuerpo vacío o excesivamente corto.',
@@ -1552,7 +1552,7 @@ Tu dirección de correo no se revela cuando otros usuarios te contactan.',
 'prefs-displaywatchlist' => 'Opciones de visualización',
 'prefs-diffs' => 'Diferencias',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'La dirección de correo electrónico parece ser válida',
 'email-address-validity-invalid' => 'Introduce una dirección de correo válida',
 
@@ -2335,7 +2335,7 @@ Puede haber información adicional sobre privilegios individuales en [[{{MediaWi
 'listgrouprights-addgroup-self-all' => 'Agregar todos los grupos a tu propia cuenta',
 'listgrouprights-removegroup-self-all' => 'Eliminar todos los grupos de tu propia cuenta',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Ninguna dirección de envio',
 'mailnologintext' => 'Debes [[Special:UserLogin|iniciar sesión]] y tener una dirección electrónica válida en tus [[Special:Preferences|preferencias]] para enviar un correo electrónico a otros usuarios.',
 'emailuser' => 'Enviar un correo electrónico a {{GENDER:{{BASEPAGENAME}}|este usuario|esta usuaria}}',
@@ -3738,7 +3738,7 @@ Existen otros campos que se mantendrán ocultos por defecto.
 'monthsall' => 'todos',
 'limitall' => 'Todos',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Confirmar dirección de correo electrónico',
 'confirmemail_noemail' => 'No tienes una dirección de correo electrónico válida en tus [[Special:Preferences|preferencias de usuario]].',
 'confirmemail_text' => '{{SITENAME}} requiere la validación de tu dirección de correo antes de usarlo. Pulsa el botón de abajo para enviar la confirmación.

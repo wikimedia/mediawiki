@@ -688,7 +688,7 @@ Waart w.e.g. ier Dir et nach eng Kéier versicht.",
 'loginlanguagelabel' => 'Sprooch: $1',
 'suspicious-userlogout' => 'Är Ufro fir Iech auszeloggen gouf refuséiert well et esou ausgesäit wéi wann se vun engem Futtise Browser oder Proxy-Tëschespäicher kënnt.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Onbekannte Feeler an der PHP-Mail-Fonctioun',
 'user-mail-no-addy' => 'Huet versicht eng Mail ouni Mailadress ze schécken',
 'user-mail-no-body' => 'Et gouf probéiert eng E-Mail ouni Text oder mat engem ze kuerzen Text ze schécken.',
@@ -1351,7 +1351,7 @@ Si muss manner wéi $1 {{PLURAL:$1|Zeechen|Zeechen}} hunn.',
 'prefs-displaywatchlist' => 'Optioune vun deem wat gewise gëtt',
 'prefs-diffs' => 'Ënnerscheeder',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => "D'E-Mailadress schéngt valabel ze sinn",
 'email-address-validity-invalid' => 'Gitt eng valabel e-Mailadress an',
 
@@ -1921,6 +1921,9 @@ Dir musst ëmmer de Medien- a Subtyp aginn: z. Bsp. <code>image/jpeg</code>.",
 Si sollte am beschten op déi eigentlech gemengte Säit verlinkt sinn.<br />
 Eng Säite gëtt als Homonymie-Säit behandelt, wa si eng Schabloun benotzt déi vu [[MediaWiki:Disambiguationspage]] verlinkt ass.",
 
+'pageswithprop' => 'Säite mat enger Säiten-Eegeschaft',
+'pageswithprop-prop' => 'Numm vun der Eegeschaft:',
+
 'doubleredirects' => 'Duebel Viruleedungen',
 'doubleredirectstext' => 'Op dëser Säit stinn déi Säiten déi op aner Viruleedungssäite viruleeden.
 An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi d\'Zil vun der zweeter Viruleedung, déi normalerweis déi "richteg" Zilsäit ass, op déi déi éischt Viruleedung hilinke soll.
@@ -2111,7 +2114,7 @@ Et ginn [[{{MediaWiki:Listgrouprights-helppage}}|zousätzlech Informatiounen]] i
 'listgrouprights-addgroup-self-all' => 'däerf all Gruppe bäi säin eegene Benotzerkont derbäisetzen',
 'listgrouprights-removegroup-self-all' => 'Däerf all Gruppe vu sengem eegene Benotzerkont ewechhuelen',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Keng E-Mailadress',
 'mailnologintext' => 'Dir musst [[Special:UserLogin|ugemellt]] sinn an eng gëlteg E-Mail Adress an Äre [[Special:Preferences|Astellungen]] aginn hunn, fir engem anere Benotzer eng E-Mail ze schécken.',
 'emailuser' => 'Dësem Benotzer eng E-Mail schécken',
@@ -3475,7 +3478,7 @@ Déi aner sinn am Standard verstoppt.
 'monthsall' => 'all',
 'limitall' => 'all',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'E-Mailadress confirméieren',
 'confirmemail_noemail' => 'Dir hutt keng gëlteg E-Mail-Adress an Äre [[Special:Preferences|Benotzerastellungen]] agedro.',
 'confirmemail_text' => "Ier Dir d'E-Mailfunktioune vun {{SITENAME}} benotze kënnt musst dir als éischt Är E-Mailadress confirméieren. Dréckt w.e.g. de Knäppchen hei ënnendrënner fir eng Confirmatiouns-E-Mail op déi Adress ze schécken déi Dir uginn hutt. An där E-Mail steet e Link mat engem Code, deen dir dann an Ärem Browser opmaache musst fir esou ze bestätegen, datt Är Adress och wierklech existéiert a valabel ass.",
@@ -3860,4 +3863,7 @@ Soss kënnt Dir den einfache Formulär hei drënner benotzen. Är Bemierkung gë
 'duration-centuries' => '$1 {{PLURAL:$1|Joerhonnert|Joerhonnerten}}',
 'duration-millennia' => '$1 {{PLURAL:$1|Millenaire|Millenairen}}',
 
+# Unknown messages
+'pageswithprop-legend' => 'Säite mat enger Säiten-Eegeschaft',
+'pageswithprop-submit' => 'Lass',
 );
