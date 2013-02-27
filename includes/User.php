@@ -980,10 +980,13 @@ class User {
 		}
 
 		if ( $request->getSessionData( 'wsToken' ) ) {
-			$passwordCorrect = $proposedUser->getToken( false ) === $request->getSessionData( 'wsToken' );
+			$passwordCorrect = ( $proposedUser->getToken( false ) === $request->getSessionData( 'wsToken' ) );
 			$from = 'session';
 		} elseif ( $request->getCookie( 'Token' ) ) {
-			$passwordCorrect = $proposedUser->getToken( false ) === $request->getCookie( 'Token' );
+			# Get the token from DB/cache and clean it up to remove garbage padding.
+			# This deals with historical problems with bugs and the default column value.
+			$token = rtrim( $proposedUser->getToken( false ) ); // correct token
+			$passwordCorrect = ( strlen( $token ) && $token === $request->getCookie( 'Token' ) );
 			$from = 'cookie';
 		} else {
 			# No session or persistent login cookie
