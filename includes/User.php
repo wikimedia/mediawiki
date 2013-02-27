@@ -3112,6 +3112,7 @@ class User {
 	public static function createNew( $name, $params = array() ) {
 		$user = new User;
 		$user->load();
+		$user->setToken(); // init token
 		if ( isset( $params['options'] ) ) {
 			$user->mOptions = $params['options'] + (array)$user->mOptions;
 			unset( $params['options'] );
@@ -3173,6 +3174,9 @@ class User {
 	 */
 	public function addToDatabase() {
 		$this->load();
+		if ( !$this->mToken ) {
+			$this->setToken(); // init token
+		}
 
 		$this->mTouched = self::newTouchedTimestamp();
 
