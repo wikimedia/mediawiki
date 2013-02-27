@@ -198,6 +198,7 @@ class IcuCollation extends Collation {
 		'ast' => array( "CH", "LL", "Ñ" ),
 		'az' => array( "Ç", "Ə", "Ğ", "İ", "Ö", "Ş", "Ü" ),
 		'be' => array( "Ё" ),
+		'be-tarask' => array( "Ё" ),
 		'bg' => array(),
 		'br' => array( "CH", "C'H" ),
 		'bs' => array( "Č", "Ć", "DŽ", "Đ", "LJ", "NJ", "Š", "Ž" ),
