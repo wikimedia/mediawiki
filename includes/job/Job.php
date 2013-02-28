@@ -195,6 +195,7 @@ abstract class Job {
 
 	/**
 	 * @return bool Whether this job can be retried on failure by job runners
+	 * @since 1.21
 	 */
 	public function allowRetries() {
 		return true;
@@ -204,6 +205,7 @@ abstract class Job {
 	 * Subclasses may need to override this to make duplication detection work
 	 *
 	 * @return Array Map of key/values
+	 * @since 1.21
 	 */
 	public function getDeduplicationInfo() {
 		$info = array(
@@ -223,6 +225,7 @@ abstract class Job {
 	/**
 	 * @param string $key A key that identifies the task
 	 * @return Array
+	 * @since 1.21
 	 */
 	public static function newRootJobParams( $key ) {
 		return array(
@@ -233,6 +236,7 @@ abstract class Job {
 
 	/**
 	 * @return Array
+	 * @since 1.21
 	 */
 	public function getRootJobParams() {
 		return array(
@@ -243,6 +247,15 @@ abstract class Job {
 				? $this->params['rootJobTimestamp']
 				: null
 		);
+	}
+
+	/**
+	 * @return bool
+	 * @since 1.21
+	 */
+	public function hasRootJobParams() {
+		return isset( $this->params['rootJobSignature'] )
+			&& isset( $this->params['rootJobTimestamp'] );
 	}
 
 	/**
