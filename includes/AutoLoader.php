@@ -111,6 +111,7 @@ $wgAutoloadLocalClasses = array(
 	'FormOptions' => 'includes/FormOptions.php',
 	'FormSpecialPage' => 'includes/SpecialPage.php',
 	'GitInfo' => 'includes/GitInfo.php',
+	'HashRing' => 'includes/HashRing.php',
 	'HashtableReplacer' => 'includes/StringUtils.php',
 	'HistoryBlob' => 'includes/HistoryBlob.php',
 	'HistoryBlobCurStub' => 'includes/HistoryBlob.php',
@@ -662,6 +663,7 @@ $wgAutoloadLocalClasses = array(
 	'JobQueueAggregatorRedis' => 'includes/job/JobQueueAggregatorRedis.php',
 	'JobQueueDB' => 'includes/job/JobQueueDB.php',
 	'JobQueueGroup' => 'includes/job/JobQueueGroup.php',
+	'JobQueueFederated' => 'includes/job/JobQueueFederated.php',
 	'JobQueueRedis' => 'includes/job/JobQueueRedis.php',
 
 	# includes/job/jobs
