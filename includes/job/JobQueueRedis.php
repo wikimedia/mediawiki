@@ -33,7 +33,6 @@ class JobQueueRedis extends JobQueue {
 
 	protected $server; // string; server address
 
-	const ROOTJOB_TTL   = 1209600; // integer; seconds to remember root jobs (14 days)
 	const MAX_AGE_PRUNE = 604800; // integer; seconds a job can live once claimed (7 days)
 
 	protected $key; // string; key to prefix the queue keys with (used for testing)
@@ -224,14 +223,6 @@ class JobQueueRedis extends JobQueue {
 			$this->throwRedisException( $this->server, $conn, $e );
 		}
 
-		// Flag this job as an old duplicate based on its "root" job...
-		try {
-			if ( $job && $this->isRootJobOldDuplicate( $job ) ) {
-				wfIncrStats( 'job-pop-duplicate' );
-				return DuplicateJob::newFromJob( $job ); // convert to a no-op
-			}
-		} catch ( MWException $e ) {} // don't lose jobs over this
-
 		return $job;
 	}
 
@@ -286,7 +277,7 @@ class JobQueueRedis extends JobQueue {
 		} elseif ( !isset( $params['rootJobTimestamp'] ) ) {
 			throw new MWException( "Cannot register root job; missing 'rootJobTimestamp'." );
 		}
-		$key = $this->getRootJobKey( $params['rootJobSignature'] );
+		$key = $this->getRootJobCacheKey( $params['rootJobSignature'] );
 
 		$conn = $this->getConnection();
 		try {
@@ -302,13 +293,11 @@ class JobQueueRedis extends JobQueue {
 	}
 
 	/**
-	 * Check if the "root" job of a given job has been superseded by a newer one
-	 *
-	 * @param $job Job
+	 * @see JobQueue::doIsRootJobOldDuplicate()
+	 * @param Job $job
 	 * @return bool
-	 * @throws MWException
 	 */
-	protected function isRootJobOldDuplicate( Job $job ) {
+	protected function doIsRootJobOldDuplicate( Job $job ) {
 		$params = $job->getParams();
 		if ( !isset( $params['rootJobSignature'] ) ) {
 			return false; // job has no de-deplication info
@@ -320,7 +309,7 @@ class JobQueueRedis extends JobQueue {
 		$conn = $this->getConnection();
 		try {
 			// Get the last time this root job was enqueued
-			$timestamp = $conn->get( $this->getRootJobKey( $params['rootJobSignature'] ) );
+			$timestamp = $conn->get( $this->getRootJobCacheKey( $params['rootJobSignature'] ) );
 		} catch ( RedisException $e ) {
 			$this->throwRedisException( $this->server, $conn, $e );
 		}
@@ -561,15 +550,6 @@ class JobQueueRedis extends JobQueue {
 		} else {
 			return wfForeignMemcKey( $db, $prefix, 'jobqueue', $this->type, $prop );
 		}
-	}
-
-	/**
-	 * @param string $signature Hash identifier of the root job
-	 * @return string
-	 */
-	private function getRootJobKey( $signature ) {
-		list( $db, $prefix ) = wfSplitWikiID( $this->wiki );
-		return wfForeignMemcKey( $db, $prefix, 'jobqueue', $this->type, 'rootjob', $signature );
 	}
 
 	/**
