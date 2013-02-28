@@ -111,19 +111,19 @@ abstract class JobQueue {
 	}
 
 	/**
-	 * @return string One of (random, timestamp, fifo)
+	 * @return string One of (random, timestamp, fifo, undefined)
 	 */
 	final public function getOrder() {
 		return $this->order;
 	}
 
 	/**
-	 * @return Array Subset of (random, timestamp, fifo)
+	 * @return Array Subset of (random, timestamp, fifo, undefined)
 	 */
 	abstract protected function supportedOrders();
 
 	/**
-	 * @return string One of (random, timestamp, fifo)
+	 * @return string One of (random, timestamp, fifo, undefined)
 	 */
 	abstract protected function optimalOrder();
 
