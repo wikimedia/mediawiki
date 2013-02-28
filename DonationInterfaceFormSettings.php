@@ -404,6 +404,22 @@ $forms_whitelist['rcc'] = array(
 	'recurring'
 );
 
+/*************************
+ * Boletos
+ *************************/
+
+$forms_whitelist['boletos'] = array(
+	'file' => $form_dirs['gc'] . '/cash/boletos.html',
+	'gateway' => 'globalcollect',
+	'payment_methods' => array('cash' => 'boleto'),
+	'countries' => array(
+		'+' => array('BR'),
+	),
+	'currencies' => array(
+		'+' => array('BRL'),
+	),
+);
+
 
 //Yes: We definitely want to blow away everything that didn't come from this file. 
 $wgDonationInterfaceAllowedHtmlForms = $forms_whitelist;
