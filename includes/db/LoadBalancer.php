@@ -117,34 +117,14 @@ class LoadBalancer {
 	 * Given an array of non-normalised probabilities, this function will select
 	 * an element and return the appropriate key
 	 *
+	 * @deprecated 1.21, use wfPickRandom()
+	 *
 	 * @param $weights array
 	 *
 	 * @return int
 	 */
 	function pickRandom( $weights ) {
-		if ( !is_array( $weights ) || count( $weights ) == 0 ) {
-			return false;
-		}
-
-		$sum = array_sum( $weights );
-		if ( $sum == 0 ) {
-			# No loads on any of them
-			# In previous versions, this triggered an unweighted random selection,
-			# but this feature has been removed as of April 2006 to allow for strict
-			# separation of query groups.
-			return false;
-		}
-		$max = mt_getrandmax();
-		$rand = mt_rand( 0, $max ) / $max * $sum;
-
-		$sum = 0;
-		foreach ( $weights as $i => $w ) {
-			$sum += $w;
-			if ( $sum >= $rand ) {
-				break;
-			}
-		}
-		return $i;
+		return wfPickRandom( $weights );
 	}
 
 	/**
