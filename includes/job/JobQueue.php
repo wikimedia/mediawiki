@@ -120,19 +120,19 @@ abstract class JobQueue {
 	}
 
 	/**
-	 * @return string One of (random, timestamp, fifo)
+	 * @return string One of (random, timestamp, fifo, undefined)
 	 */
 	final public function getOrder() {
 		return $this->order;
 	}
 
 	/**
-	 * @return Array Subset of (random, timestamp, fifo)
+	 * @return Array Subset of (random, timestamp, fifo, undefined)
 	 */
 	abstract protected function supportedOrders();
 
 	/**
-	 * @return string One of (random, timestamp, fifo)
+	 * @return string One of (random, timestamp, fifo, undefined)
 	 */
 	abstract protected function optimalOrder();
 
@@ -542,7 +542,7 @@ abstract class JobQueue {
 	 * This does not include jobs that are currently acquired or delayed.
 	 * This should only be called on a queue that is no longer being popped.
 	 *
-	 * @return Iterator|Traversable|Array
+	 * @return Iterator
 	 * @throws MWException
 	 */
 	abstract public function getAllQueuedJobs();
