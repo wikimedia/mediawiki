@@ -133,7 +133,7 @@ class UploadFromStash extends UploadBase {
 	 * Get the base 36 SHA1 of the file
 	 * @return string
 	 */
-	protected function getTempFileSha1Base36() {
+	public function getTempFileSha1Base36() {
 		return $this->mFileProps['sha1'];
 	}
 
