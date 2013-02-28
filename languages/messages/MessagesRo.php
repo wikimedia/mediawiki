@@ -804,7 +804,7 @@ Vă rugăm să așteptați până să mai încercați.',
 'loginlanguagelabel' => 'Limba: $1',
 'suspicious-userlogout' => 'Cererea dumneavoastră de a închide sesiunea a fost refuzată întrucât pare că a fost trimisă printr-o eroare a navigatorului sau de un proxy memorat în cache.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Eroare necunoscută în funcția PHP mail()',
 'user-mail-no-addy' => 'S-a încercat trimiterea e-mailului fără o adresă de e-mail.',
 'user-mail-no-body' => 'S-a încercat trimiterea unui e-mail fără conținut sau nejustificat de scurt.',
@@ -1489,7 +1489,7 @@ Dacă decideți furnizarea sa, acesta va fi folosit pentru a vă atribui munca.'
 'prefs-displaywatchlist' => 'Opțiuni de afișare',
 'prefs-diffs' => 'Diferențe',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'Adresa de e-mail pare validă',
 'email-address-validity-invalid' => 'Introduceți o adresă de e-mail validă',
 
@@ -2085,6 +2085,10 @@ Lista tipurilor MIME recunoscute de MediaWiki poate fi găsită la [http://svn.w
 Acestea ar trebui să conțină legături către un articol mai potrivit.<br />
 O pagină este considerată o pagină de dezambiguizare dacă folosește formate care apar la [[MediaWiki:Disambiguationspage]].",
 
+'pageswithprop' => 'Pagini cu o proprietate de pagină',
+'pageswithprop-text' => 'Această pagină listează paginile care utilizează o anumită proprietate de pagină.',
+'pageswithprop-prop' => 'Numele proprietății:',
+
 'doubleredirects' => 'Redirecționări duble',
 'doubleredirectstext' => 'Această listă conține pagini care redirecționează la alte pagini de redirecționare.
 Fiecare rând conține legături la primele două redirecționări, precum și ținta celei de-a doua redirecționări, care este de obicei pagina țintă "reală", către care ar trebui să redirecționeze prima pagină.
@@ -2275,7 +2279,7 @@ Pot exista [[{{MediaWiki:Listgrouprights-helppage}}|informații suplimentare]] d
 'listgrouprights-addgroup-self-all' => 'Pot fi adăugate toate grupurile contului propriu',
 'listgrouprights-removegroup-self-all' => 'Pot fi șterse toate grupurile din contul propriu',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Nu există adresă de trimitere',
 'mailnologintext' => 'Trebuie să fii [[Special:UserLogin|autentificat]] și să ai o adresă validă de e-mail în [[Special:Preferences|preferințe]] pentru a trimite e-mail altor utilizatori.',
 'emailuser' => 'Trimiteți un e-mail',
@@ -3666,7 +3670,7 @@ Altele vor fi ascunse implicit.
 'monthsall' => 'toate',
 'limitall' => 'toate',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Confirmă adresa de e-mail',
 'confirmemail_noemail' => 'Nu aveți o adresă de e-mail validă setată la [[Special:Preferences|preferințe]].',
 'confirmemail_text' => '{{SITENAME}} solicită validarea adresei de e-mail înaintea utilizării funcțiilor specifice poștei electronice.
@@ -4060,4 +4064,7 @@ Imaginile sunt afișate la rezoluția lor maximă, în timp ce alte tipuri de fi
 'duration-centuries' => '$1 {{PLURAL:$1|secol|secole|de secole}}',
 'duration-millennia' => '$1 {{PLURAL:$1|mileniu|milenii|de milenii}}',
 
+# Unknown messages
+'pageswithprop-legend' => 'Pagini cu o proprietate de pagină',
+'pageswithprop-submit' => 'Du-te',
 );

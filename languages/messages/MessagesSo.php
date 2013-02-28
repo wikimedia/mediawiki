@@ -1163,6 +1163,7 @@ Faalada iyo helista caawinaad dheeraad ah:
 # Rollback
 'rollback_short' => 'Soo celi',
 'rollbacklink' => 'dib u soo celi',
+'rollbacklinkcount-morethan' => 'soo celinta in kabadan $1 {{PLURAL:$1|badal|badallo}}',
 'revertpage' => 'Wuxuu dib u noqay badalkii oo sameeyay  [[Special:Contributions/$2|$2]] ([[User talk:$2|talk]]) kuna celiyay badalkii ka  danbeeyay oo sameeyay  [[User:$1|$1]]',
 'revertpage-nouser' => 'Wuxuu dib u noqay bedelyada (magaca isticmaalaha waa laga saaray) kuna celiyay  [[User:$1|$1]]',
 'rollback-success' => 'Wuxuu dib u noqay bedelka oo sameeyay  $1;

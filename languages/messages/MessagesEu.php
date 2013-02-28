@@ -1789,7 +1789,7 @@ Orrialde bat argipen motakoa dela antzeman ohi da [[MediaWiki:Disambiguationspag
 'listusers-editsonly' => 'Aldaketak egin dituzten erabiltzaileak soilik erakutsi',
 'listusers-creationsort' => 'Sorrera dataren arabera sailkatu',
 'usereditcount' => '{{PLURAL:$1|aldaketa $1|$1 aldaketa}}',
-'usercreated' => '$2-(e)tan $1-(a)n {{GENDER:$3|sortua}},',
+'usercreated' => '{{GENDER:$3|Sortze data}}: $1, $2',
 'newpages' => 'Orrialde berriak',
 'newpages-username' => 'Erabiltzaile izena:',
 'ancientpages' => 'Orrialde zaharrenak',
@@ -1870,7 +1870,7 @@ Baimendutako protokoloak: <code>$1</code> (protokoloa zehazten ez bada http:// h
 'linksearch-error' => 'Komodinak izenaren hasieran bakarrik agertu beharko lirateke.',
 
 # Special:ListUsers
-'listusersfrom' => 'Hemendik aurrerako erabiltzaileak bistaratu:',
+'listusersfrom' => 'Honela hasten diren erabiltzaileak bistaratu:',
 'listusers-submit' => 'Erakutsi',
 'listusers-noresult' => 'Ez da erabiltzailerik aurkitu.',
 'listusers-blocked' => '(blokeatua)',

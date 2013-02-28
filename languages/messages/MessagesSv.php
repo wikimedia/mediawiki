@@ -822,7 +822,7 @@ Vänta innan du försöker igen.',
 'loginlanguagelabel' => 'Språk: $1',
 'suspicious-userlogout' => 'Din begäran om att logga ut nekades eftersom det ser ut som det skickades av en trasig webbläsare eller cachande proxy.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => "Okänt fel i PHP's mail()-funktion",
 'user-mail-no-addy' => 'Försökte skicka e-post utan en e-postadress',
 'user-mail-no-body' => 'Försökte skicka e-post med tomt eller orimligt kort innehåll.',
@@ -1503,7 +1503,7 @@ Om du väljer att ange ditt riktiga namn, kommer det att användas för att till
 'prefs-displaywatchlist' => 'Visningalternativ',
 'prefs-diffs' => 'Skillnader',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'Ser giltig ut',
 'email-address-validity-invalid' => 'Giltig adress krävs!',
 
@@ -2097,6 +2097,10 @@ Innan mallarna raderas, kontrollera att det inte finns andra länkar till dem.',
 De bör troligtvis ändras så att de länkar till en mer passande sida istället.<br />
 En sida anses vara en förgreningssida om den inkluderar en mall som länkas till från [[MediaWiki:Disambiguationspage]].",
 
+'pageswithprop' => 'Sidor med en sidegenskap',
+'pageswithprop-text' => 'Denna sida listar sidor som använder en speciell sidegenskap.',
+'pageswithprop-prop' => 'Egenskapsnamn:',
+
 'doubleredirects' => 'Dubbla omdirigeringar',
 'doubleredirectstext' => 'Det här är en lista över sidor som dirigerar om till andra omdirigeringssidor. Varje rad innehåller länkar till den första och andra omdirigeringsidan, samt till målet för den andra omdirigeringen. Målet för den andra omdirigeringen är ofta den "riktiga" sidan, som den första omdirigeringen egentligen ska leda till.
 <del>Stryk över</del> poster som har åtgärdats.',
@@ -2286,7 +2290,7 @@ Det kan finnas [[{{MediaWiki:Listgrouprights-helppage}}|ytterligare information]
 'listgrouprights-addgroup-self-all' => 'Kan lägga till alla grupperna till sitt eget konto',
 'listgrouprights-removegroup-self-all' => 'Kan ta bort alla grupperna från sitt eget konto',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Ingen adress att skicka till',
 'mailnologintext' => 'För att kunna skicka e-post till andra användare, måste du vara [[Special:UserLogin|inloggad]] och ha angivit en korrekt e-postadress i dina [[Special:Preferences|användarinställningar]].',
 'emailuser' => 'Skicka e-post till den här användaren',
@@ -3691,7 +3695,7 @@ Andra kommer att gömmas som standard
 'monthsall' => 'alla',
 'limitall' => 'alla',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Bekräfta e-postadress',
 'confirmemail_noemail' => 'Du har inte angivit någon giltig e-postadress i dina [[Special:Preferences|inställningar]].',
 'confirmemail_text' => 'Innan du kan använda {{SITENAME}}s funktioner för e-post måste du bekräfta din e-postadress. Aktivera knappen nedan för att skicka en bekräftelsekod till din e-postadress. Mailet kommer att innehålla en länk, som innehåller en kod. Genom att klicka på den länken eller kopiera den till din webbläsares fönster för webbadresser, bekräftar du att din e-postadress fungerar.',
@@ -4096,4 +4100,7 @@ Annars kan du använda det enkla formuläret nedan. Din kommentar kommer att lä
 'duration-centuries' => '$1 {{PLURAL:$1|sekel|sekel}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennier}}',
 
+# Unknown messages
+'pageswithprop-legend' => 'Sidor med en sidegenskap',
+'pageswithprop-submit' => 'Gå',
 );
