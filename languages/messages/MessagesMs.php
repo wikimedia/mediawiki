@@ -697,7 +697,7 @@ Sila tunggu sebentar dan cuba lagi.',
 'loginlanguagelabel' => 'Bahasa: $1',
 'suspicious-userlogout' => 'Permintaan anda untuk log keluar ditolak kerana ia kelihatan seperti dihantar oleh pelayar rosak atau proksi pengagregatan.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Ralat tak diketahui dalam fungsi mail() PHP',
 'user-mail-no-addy' => 'E-eml cuba dihantar tanpa alamat e-mel',
 'user-mail-no-body' => 'Anda telah cuba menghantar e-mel dengan isi yang kosong atau terlampau ringkas.',
@@ -1368,7 +1368,7 @@ Tindakan ini tidak boleh dibatalkan.',
 'prefs-displaywatchlist' => 'Pilihan paparan',
 'prefs-diffs' => 'Beza',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'Alamat e-mel adalah sah',
 'email-address-validity-invalid' => 'Sila masukkan alamat e-mel yang sah',
 
@@ -1957,6 +1957,10 @@ Mungkin anda ingin menyunting keterangan pada [$2 laman penerangan failnya] di s
 Pautan ini sepatutnya ditujukan ke topik yang sepatutnya.<br />
 Sesebuah laman dianggap sebagai laman penyahkekaburan jika ia menggunakan templat yang dipaut dari [[MediaWiki:Disambiguationspage]]",
 
+'pageswithprop' => 'Halaman dengan sifat halaman',
+'pageswithprop-text' => 'Halaman ini menyenaraikan halaman-halaman yang menggunakan sifat halaman yang tertentu.',
+'pageswithprop-prop' => 'Nama sifat:',
+
 'doubleredirects' => 'Lencongan berganda',
 'doubleredirectstext' => 'Yang berikut ialah senarai laman yang melencong ke laman lencongan lain. Setiap baris mengandungi pautan ke laman lencongan pertama dan kedua, serta baris pertama bagi teks lencongan kedua, lazimnya merupakan laman sasaran "sebenar", yang sepatutnya ditujui oleh lencongan pertama.
 Masukan yang <del>dipotong</del> telah diselesaikan.',
@@ -2146,7 +2150,7 @@ Anda boleh mengetahui [[{{MediaWiki:Listgrouprights-helppage}}|maklumat tambahan
 'listgrouprights-addgroup-self-all' => 'Menyertai semua kumpulan',
 'listgrouprights-removegroup-self-all' => 'Keluar daripada semua kumpulan',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Tiada alamat e-mel',
 'mailnologintext' => 'Anda perlu [[Special:UserLogin|log masuk]]
 terlebih dahulu dan mempunyai alamat e-mel yang sah dalam
@@ -3534,7 +3538,7 @@ Ruangan-ruangan yang lain pula akan disembunyikan pada asali.
 'monthsall' => 'semua',
 'limitall' => 'semua',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Sahkan alamat e-mel',
 'confirmemail_noemail' => 'Anda belum menetapkan alamat e-mel yang sah dalam [[Special:Preferences|laman keutamaan]] anda.',
 'confirmemail_text' => '{{SITENAME}} menghendaki supaya anda mengesahkan alamat e-mel anda sebelum menggunakan ciri-ciri e-mel.
@@ -3945,4 +3949,7 @@ Ataupun, anda boleh menggunakan borang yang mudah di bawah. Ulasan anda akan dic
 'duration-centuries' => '$1 abad',
 'duration-millennia' => '$1 alaf',
 
+# Unknown messages
+'pageswithprop-legend' => 'Halaman dengan sifat halaman',
+'pageswithprop-submit' => 'Pergi',
 );

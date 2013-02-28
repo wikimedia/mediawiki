@@ -3665,6 +3665,9 @@ Prosimo, potrdite, da jo resnično želite znova ustvariti.",
 'confirm-unwatch-button' => 'V redu',
 'confirm-unwatch-top' => 'Odstranim stran z vašega spiska nadzorov?',
 
+# Separators for various lists, etc.
+'percent' => '$1 %',
+
 # Multipage image navigation
 'imgmultipageprev' => '← prejšnja stran',
 'imgmultipagenext' => 'naslednja stran →',

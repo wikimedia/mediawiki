@@ -575,7 +575,7 @@ Por favor espera enantes d'intentalo otra vuelta.",
 'loginlanguagelabel' => 'Llingua: $1',
 'suspicious-userlogout' => "Negósete'l pidimientu de desconexón porque paez que vien d'un restolador frañíu o d'un proxy de caché.",
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Fallu desconocíu na función mail() de PHP.',
 'user-mail-no-addy' => 'Intentasti unviar un corréu electrónicu ensin direición.',
 'user-mail-no-body' => "Trató d'unviar un corréu electrónicu con un cuerpu baleru o curtiu enforma.",
@@ -1272,7 +1272,7 @@ Esta información sedrá pública.",
 'prefs-displaywatchlist' => 'Opciones de vista',
 'prefs-diffs' => 'Diferencies',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'La direición de corréu paez válida',
 'email-address-validity-invalid' => 'Escribi una direición de corréu válida',
 
@@ -1874,6 +1874,10 @@ Alcuérdate de comprobar otros enllaces a les plantíes enantes d'esborrales.",
 'disambiguations-text' => "Les siguientes páxines contienen polo menos un enllaz a una '''páxina de dixebra'''. En cuenta d'ello habríen enllaciar a una páxina más apropiada.<br />
 Una páxina tratase como una páxina de dixebra si usa una plantía que tea enllaciada dende [[MediaWiki:Disambiguationspage]]",
 
+'pageswithprop' => 'Páxines con una propiedá de páxina',
+'pageswithprop-text' => "Esta páxina llista les páxines qu'usen una propiedá de páxina determinada.",
+'pageswithprop-prop' => 'Nome de la propiedá:',
+
 'doubleredirects' => 'Redireiciones dobles',
 'doubleredirectstext' => 'Esta páxina llista páxines que redireicionen a otres páxines de redireición.
 Cada filera contién enllaces a la primer y segunda redireición, asina como al oxetivu de la segunda redireición, que de vezu ye la páxina oxetivu "real", onde tendría d\'empobinar la primer redireición.
@@ -2064,7 +2068,7 @@ Pue haber [[{{MediaWiki:Listgrouprights-helppage}}|información adicional]] toca
 'listgrouprights-addgroup-self-all' => 'Amestar tolos grupos a la cuenta propia',
 'listgrouprights-removegroup-self-all' => 'Desaniciar tolos grupos de la cuenta propia',
 
-# E-mail user
+# Email user
 'mailnologin' => "Ensin direición d'unviu",
 'mailnologintext' => 'Has tar [[Special:UserLogin|identificáu]]
 y tener una direición de corréu válida nes tos [[Special:Preferences|preferencies]]
@@ -3472,7 +3476,7 @@ Los demás tarán anubríos de mou predetermináu.
 'monthsall' => 'toos',
 'limitall' => 'toos',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Confirmar direición de corréu',
 'confirmemail_noemail' => "Nun tienes una direición de corréu válida nes tos [[Special:Preferences|preferencies d'usuariu]].",
 'confirmemail_text' => "{{SITENAME}} requier que valides la to direición de corréu enantes d'usar les
@@ -3879,4 +3883,7 @@ D\'otra miente, pues usar el formulariu cenciellu d\'abaxo. El to comentariu apa
 'duration-centuries' => '$1 {{PLURAL:$1|sieglu|sieglos}}',
 'duration-millennia' => '$1 {{PLURAL:$1|mileniu|milenios}}',
 
+# Unknown messages
+'pageswithprop-legend' => 'Páxines con una propiedá de páxina',
+'pageswithprop-submit' => 'Dir',
 );
