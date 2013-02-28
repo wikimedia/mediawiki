@@ -38,12 +38,12 @@ class ApiMove extends ApiBase {
 
 		if ( isset( $params['from'] ) ) {
 			$fromTitle = Title::newFromText( $params['from'] );
-			if ( !$fromTitle ) {
+			if ( !$fromTitle || $fromTitle->isExternal() ) {
 				$this->dieUsageMsg( array( 'invalidtitle', $params['from'] ) );
 			}
 		} elseif ( isset( $params['fromid'] ) ) {
 			$fromTitle = Title::newFromID( $params['fromid'] );
-			if ( !$fromTitle ) {
+			if ( !$fromTitle || $fromTitle->isExternal() ) {
 				$this->dieUsageMsg( array( 'nosuchpageid', $params['fromid'] ) );
 			}
 		}
@@ -54,7 +54,7 @@ class ApiMove extends ApiBase {
 		$fromTalk = $fromTitle->getTalkPage();
 
 		$toTitle = Title::newFromText( $params['to'] );
-		if ( !$toTitle ) {
+		if ( !$toTitle || $toTitle->isExternal() ) {
 			$this->dieUsageMsg( array( 'invalidtitle', $params['to'] ) );
 		}
 		$toTalk = $toTitle->getTalkPage();
