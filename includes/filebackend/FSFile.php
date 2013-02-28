@@ -28,6 +28,7 @@
  */
 class FSFile {
 	protected $path; // path to file
+	private $sha1Base36 = null; // File Sha1Base36
 
 	/**
 	 * Sets up the file object
@@ -193,20 +194,26 @@ class FSFile {
 	 * 160 log 2 / log 36 = 30.95, so the 160-bit hash fills 31 digits in base 36
 	 * fairly neatly.
 	 *
+	 * @param $recache bool
 	 * @return bool|string False on failure
 	 */
-	public function getSha1Base36() {
+	public function getSha1Base36( $recache = false ) {
 		wfProfileIn( __METHOD__ );
 
+		if ( $this->sha1Base36 !== null && !$recache ) {
+			return $this->sha1Base36;
+		}
+
 		wfSuppressWarnings();
-		$hash = sha1_file( $this->path );
+		$this->sha1Base36 = sha1_file( $this->path );
 		wfRestoreWarnings();
-		if ( $hash !== false ) {
-			$hash = wfBaseConvert( $hash, 16, 36, 31 );
+
+		if ( $this->sha1Base36 !== false ) {
+			$this->sha1Base36 = wfBaseConvert( $this->sha1Base36, 16, 36, 31 );
 		}
 
 		wfProfileOut( __METHOD__ );
-		return $hash;
+		return $this->sha1Base36;
 	}
 
 	/**
@@ -242,11 +249,18 @@ class FSFile {
 	 * fairly neatly.
 	 *
 	 * @param $path string
+	 * @param $recache bool
 	 *
 	 * @return bool|string False on failure
 	 */
-	public static function getSha1Base36FromPath( $path ) {
-		$fsFile = new self( $path );
-		return $fsFile->getSha1Base36();
+	public static function getSha1Base36FromPath( $path, $recache = false ) {
+		static $sha1Base36 = array();
+
+		if ( !isset( $sha1Base36[$path] ) || $recache ) {
+			$fsFile = new self( $path );
+			$sha1Base36[$path] = $fsFile->getSha1Base36();
+		}
+
+		return $sha1Base36[$path];
 	}
 }
