@@ -690,13 +690,8 @@ class CurlHttpRequest extends MWHttpRequest {
 		}
 		$this->curlOptions[CURLOPT_USERAGENT] = $this->reqHeaders['User-Agent'];
 
-		if ( isset( $this->sslVerifyHost ) ) {
-			$this->curlOptions[CURLOPT_SSL_VERIFYHOST] = $this->sslVerifyHost;
-		}
-
-		if ( isset( $this->sslVerifyCert ) ) {
-			$this->curlOptions[CURLOPT_SSL_VERIFYPEER] = $this->sslVerifyCert;
-		}
+		$this->curlOptions[CURLOPT_SSL_VERIFYHOST] = $this->sslVerifyHost ? 2 : 0;
+		$this->curlOptions[CURLOPT_SSL_VERIFYPEER] = $this->sslVerifyCert;
 
 		if ( $this->caInfo ) {
 			$this->curlOptions[CURLOPT_CAINFO] = $this->caInfo;
