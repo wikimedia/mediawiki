@@ -181,20 +181,30 @@ class IcuCollation extends Collation {
 	);
 
 	/**
-	 * Additional characters (or character groups) to be considered first-letters
+	 * Additional characters (or character groups) to be considered separate
+	 * letters for given languages, compared to the data stored in the
+	 * first-letters-root.ser file (which among others includes full basic latin,
+	 * cyrillic and greek alphabets).
 	 *
-	 * Generated based on the primary level of Unicode collation tailorings
-	 * available at http://developer.mimer.com/charts/tailorings.htm .
+	 * "Separate letter" is a letter that would have a separate heading/section
+	 * for it in a dictionary or a phone book in this language. This data isn't
+	 * used for sorting (the ICU library handles that), only for deciding which
+	 * characters (or character groups) to use as headings.
+	 *
+	 * Initially generated based on the primary level of Unicode collation
+	 * tailorings available at http://developer.mimer.com/charts/tailorings.htm ,
+	 * later modified.
 	 *
 	 * Empty arrays are intended; this signifies that the data for the language is
 	 * available and that there are, in fact, no additional letters to consider.
 	 */
 	static $tailoringFirstLetters = array(
 		// Verified by native speakers
-		'pl' => array( "Ą", "Ć", "Ę", "Ł", "Ń", "Ó", "Ś", "Ź", "Ż" ),
-		'fi' => array( "Å", "Ä", "Ö" ),
 		'be' => array( "Ё" ),
 		'be-tarask' => array( "Ё" ),
+		'fi' => array( "Å", "Ä", "Ö" ),
+		'it' => array(),
+		'pl' => array( "Ą", "Ć", "Ę", "Ł", "Ń", "Ó", "Ś", "Ź", "Ż" ),
 		'ru' => array(),
 		// Not verified, but likely correct
 		'af' => array(),
@@ -227,7 +237,6 @@ class IcuCollation extends Collation {
 		'hsb' => array( "Č", "DŹ", "Ě", "CH", "Ł", "Ń", "Ř", "Š", "Ć", "Ž" ),
 		'hu' => array( "CS", "DZ", "DZS", "GY", "LY", "NY", "Ö", "SZ", "TY", "Ü", "ZS" ),
 		'is' => array( "Á", "Ð", "É", "Í", "Ó", "Ú", "Ý", "Þ", "Æ", "Ö", "Å" ),
-		'it' => array(),
 		'kk' => array( "Ү", "І" ),
 		'kl' => array( "Æ", "Ø", "Å" ),
 		'ku' => array( "Ç", "Ê", "Î", "Ş", "Û" ),
