@@ -1167,7 +1167,7 @@ class EditPage {
 	 * since the post-edit state should only apply to the load right after the save.
 	 */
 	protected function setPostEditCookie() {
-		global $wgCookiePrefix, $wgCookieDomain;;
+		global $wgCookiePrefix, $wgCookieDomain;
 		$revisionId = $this->mArticle->getLatest();
 		$postEditKey = self::POST_EDIT_COOKIE_KEY_PREFIX . $revisionId;
 

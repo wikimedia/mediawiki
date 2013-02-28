@@ -201,6 +201,7 @@ class FSFile {
 		wfProfileIn( __METHOD__ );
 
 		if ( $this->sha1Base36 !== null && !$recache ) {
+			wfProfileOut( __METHOD__ );
 			return $this->sha1Base36;
 		}
 

@@ -184,8 +184,6 @@ class ApiUpload extends ApiBase {
 	 * @return array
 	 */
 	private function getChunkResult( $warnings ) {
-		global $IP;
-
 		$result = array();
 
 		$result['result'] = 'Continue';
@@ -564,8 +562,6 @@ class ApiUpload extends ApiBase {
 	 * @return array
 	 */
 	protected function performUpload( $warnings ) {
-		global $IP;
-
 		// Use comment as initial page text by default
 		if ( is_null( $this->mParams['text'] ) ) {
 			$this->mParams['text'] = $this->mParams['comment'];
