@@ -330,6 +330,40 @@ function wfRandomString( $length = 32 ) {
 }
 
 /**
+ * Given an array of non-normalised probabilities, this function will select
+ * an element and return the appropriate key
+ *
+ * @param $weights array
+ *
+ * @return int
+ */
+function wfPickRandom( $weights ){
+	if ( !is_array( $weights ) || count( $weights ) == 0 ) {
+		return false;
+	}
+
+	$sum = array_sum( $weights );
+	if ( $sum == 0 ) {
+		# No loads on any of them
+		# In previous versions, this triggered an unweighted random selection,
+		# but this feature has been removed as of April 2006 to allow for strict
+		# separation of query groups.
+		return false;
+	}
+	$max = mt_getrandmax();
+	$rand = mt_rand( 0, $max ) / $max * $sum;
+
+	$sum = 0;
+	foreach ( $weights as $i => $w ) {
+		$sum += $w;
+		if ( $sum >= $rand ) {
+			break;
+		}
+	}
+	return $i;
+}
+
+/**
  * We want some things to be included as literal characters in our title URLs
  * for prettiness, which urlencode encodes by default.  According to RFC 1738,
  * all of the following should be safe:
