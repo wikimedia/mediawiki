@@ -28,7 +28,6 @@
  * @since 1.21
  */
 class JobQueueDB extends JobQueue {
-	const ROOTJOB_TTL = 1209600; // integer; seconds to remember root jobs (14 days)
 	const CACHE_TTL_SHORT = 30; // integer; seconds to cache info without re-validating
 	const CACHE_TTL_LONG = 300; // integer; seconds to cache info that is kept up to date
 	const MAX_AGE_PRUNE = 604800; // integer; seconds a job can live once claimed
@@ -252,11 +251,6 @@ class JobQueueDB extends JobQueue {
 			$job = Job::factory( $row->job_cmd, $title,
 				self::extractBlob( $row->job_params ), $row->job_id );
 			$job->id = $row->job_id; // XXX: work around broken subclasses
-			// Flag this job as an old duplicate based on its "root" job...
-			if ( $this->isRootJobOldDuplicate( $job ) ) {
-				wfIncrStats( 'job-pop-duplicate' );
-				$job = DuplicateJob::newFromJob( $job ); // convert to a no-op
-			}
 			break; // done
 		} while( true );
 
@@ -534,30 +528,6 @@ class JobQueueDB extends JobQueue {
 	}
 
 	/**
-	 * Check if the "root" job of a given job has been superseded by a newer one
-	 *
-	 * @param $job Job
-	 * @return bool
-	 */
-	protected function isRootJobOldDuplicate( Job $job ) {
-		global $wgMemc;
-
-		$params = $job->getParams();
-		if ( !isset( $params['rootJobSignature'] ) ) {
-			return false; // job has no de-deplication info
-		} elseif ( !isset( $params['rootJobTimestamp'] ) ) {
-			trigger_error( "Cannot check root job; missing 'rootJobTimestamp'." );
-			return false;
-		}
-
-		// Get the last time this root job was enqueued
-		$timestamp = $wgMemc->get( $this->getRootJobCacheKey( $params['rootJobSignature'] ) );
-
-		// Check if a new root job was started at the location after this one's...
-		return ( $timestamp && $timestamp > $params['rootJobTimestamp'] );
-	}
-
-	/**
 	 * @see JobQueue::doWaitForBackups()
 	 * @return void
 	 */
@@ -669,15 +639,6 @@ class JobQueueDB extends JobQueue {
 	private function getCacheKey( $property ) {
 		list( $db, $prefix ) = wfSplitWikiID( $this->wiki );
 		return wfForeignMemcKey( $db, $prefix, 'jobqueue', $this->type, $property );
-	}
-
-	/**
-	 * @param string $signature Hash identifier of the root job
-	 * @return string
-	 */
-	private function getRootJobCacheKey( $signature ) {
-		list( $db, $prefix ) = wfSplitWikiID( $this->wiki );
-		return wfForeignMemcKey( $db, $prefix, 'jobqueue', $this->type, 'rootjob', $signature );
 	}
 
 	/**
