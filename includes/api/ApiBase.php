@@ -756,7 +756,7 @@ abstract class ApiBase extends ContextSource {
 		$pageObj = null;
 		if ( isset( $params['title'] ) ) {
 			$titleObj = Title::newFromText( $params['title'] );
-			if ( !$titleObj ) {
+			if ( !$titleObj || $titleObj->isExternal() ) {
 				$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
 			}
 			if ( !$titleObj->canExist() ) {

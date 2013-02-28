@@ -42,7 +42,7 @@ class ApiExpandTemplates extends ApiBase {
 
 		// Create title for parser
 		$title_obj = Title::newFromText( $params['title'] );
-		if ( !$title_obj ) {
+		if ( !$title_obj || $title_obj->isExternal() ) {
 			$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
 		}
 

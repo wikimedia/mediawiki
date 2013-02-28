@@ -85,7 +85,7 @@ class ApiFileRevert extends ApiBase {
 	protected function validateParameters() {
 		// Validate the input title
 		$title = Title::makeTitleSafe( NS_FILE, $this->params['filename'] );
-		if ( is_null( $title ) ) {
+		if ( is_null( $title ) || $title->isExternal() ) {
 			$this->dieUsageMsg( array( 'invalidtitle', $this->params['filename'] ) );
 		}
 		$localRepo = RepoGroup::singleton()->getLocalRepo();

@@ -85,7 +85,7 @@ class ApiComparePages extends ApiBase {
 			return $revision;
 		} elseif( $titleText ) {
 			$title = Title::newFromText( $titleText );
-			if( !$title ) {
+			if( !$title || $title->isExternal() ) {
 				$this->dieUsageMsg( array( 'invalidtitle', $titleText ) );
 			}
 			return $title->getLatestRevID();

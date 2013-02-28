@@ -41,7 +41,7 @@ class ApiUndelete extends ApiBase {
 		}
 
 		$titleObj = Title::newFromText( $params['title'] );
-		if ( !$titleObj ) {
+		if ( !$titleObj || $titleObj->isExternal() ) {
 			$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
 		}
 

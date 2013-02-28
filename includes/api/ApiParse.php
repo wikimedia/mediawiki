@@ -161,7 +161,7 @@ class ApiParse extends ApiBase {
 			}
 		} else { // Not $oldid, $pageid, $page. Hence based on $text
 			$titleObj = Title::newFromText( $title );
-			if ( !$titleObj ) {
+			if ( !$titleObj || $titleObj->isExternal() ) {
 				$this->dieUsageMsg( array( 'invalidtitle', $title ) );
 			}
 			if ( !$titleObj->canExist() ) {
