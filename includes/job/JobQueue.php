@@ -37,6 +37,8 @@ abstract class JobQueue {
 
 	const QoS_Atomic = 1; // integer; "all-or-nothing" job insertions
 
+	const ROOTJOB_TTL = 2419200; // integer; seconds to remember root jobs (28 days)
+
 	/**
 	 * @param $params array
 	 */
@@ -109,19 +111,19 @@ abstract class JobQueue {
 	}
 
 	/**
-	 * @return string One of (random, timestamp, fifo)
+	 * @return string One of (random, timestamp, fifo, undefined)
 	 */
 	final public function getOrder() {
 		return $this->order;
 	}
 
 	/**
-	 * @return Array Subset of (random, timestamp, fifo)
+	 * @return Array Subset of (random, timestamp, fifo, undefined)
 	 */
 	abstract protected function supportedOrders();
 
 	/**
-	 * @return string One of (random, timestamp, fifo)
+	 * @return string One of (random, timestamp, fifo, undefined)
 	 */
 	abstract protected function optimalOrder();
 
@@ -252,6 +254,15 @@ abstract class JobQueue {
 		wfProfileIn( __METHOD__ );
 		$job = $this->doPop();
 		wfProfileOut( __METHOD__ );
+
+		// Flag this job as an old duplicate based on its "root" job...
+		try {
+			if ( $job && $this->isRootJobOldDuplicate( $job ) ) {
+				wfIncrStats( 'job-pop-duplicate' );
+				$job = DuplicateJob::newFromJob( $job ); // convert to a no-op
+			}
+		} catch ( MWException $e ) {} // don't lose jobs over this
+
 		return $job;
 	}
 
@@ -334,7 +345,76 @@ abstract class JobQueue {
 	 * @return bool
 	 */
 	protected function doDeduplicateRootJob( Job $job ) {
-		return true;
+		global $wgMemc;
+
+		$params = $job->getParams();
+		if ( !isset( $params['rootJobSignature'] ) ) {
+			throw new MWException( "Cannot register root job; missing 'rootJobSignature'." );
+		} elseif ( !isset( $params['rootJobTimestamp'] ) ) {
+			throw new MWException( "Cannot register root job; missing 'rootJobTimestamp'." );
+		}
+		$key = $this->getRootJobCacheKey( $params['rootJobSignature'] );
+		// Callers should call batchInsert() and then this function so that if the insert
+		// fails, the de-duplication registration will be aborted. Since the insert is
+		// deferred till "transaction idle", do the same here, so that the ordering is
+		// maintained. Having only the de-duplication registration succeed would cause
+		// jobs to become no-ops without any actual jobs that made them redundant.
+		$timestamp = $wgMemc->get( $key ); // current last timestamp of this job
+		if ( $timestamp && $timestamp >= $params['rootJobTimestamp'] ) {
+			return true; // a newer version of this root job was enqueued
+		}
+
+		// Update the timestamp of the last root job started at the location...
+		return $wgMemc->set( $key, $params['rootJobTimestamp'], JobQueueDB::ROOTJOB_TTL );
+	}
+
+	/**
+	 * Check if the "root" job of a given job has been superseded by a newer one
+	 *
+	 * @param $job Job
+	 * @return bool
+	 * @throws MWException
+	 */
+	final protected function isRootJobOldDuplicate( Job $job ) {
+		if ( $job->getType() !== $this->type ) {
+			throw new MWException( "Got '{$job->getType()}' job; expected '{$this->type}'." );
+		}
+		wfProfileIn( __METHOD__ );
+		$isDuplicate = $this->doIsRootJobOldDuplicate( $job );
+		wfProfileOut( __METHOD__ );
+		return $isDuplicate;
+	}
+
+	/**
+	 * @see JobQueue::isRootJobOldDuplicate()
+	 * @param Job $job
+	 * @return bool
+	 */
+	protected function doIsRootJobOldDuplicate( Job $job ) {
+		global $wgMemc;
+
+		$params = $job->getParams();
+		if ( !isset( $params['rootJobSignature'] ) ) {
+			return false; // job has no de-deplication info
+		} elseif ( !isset( $params['rootJobTimestamp'] ) ) {
+			trigger_error( "Cannot check root job; missing 'rootJobTimestamp'." );
+			return false;
+		}
+
+		// Get the last time this root job was enqueued
+		$timestamp = $wgMemc->get( $this->getRootJobCacheKey( $params['rootJobSignature'] ) );
+
+		// Check if a new root job was started at the location after this one's...
+		return ( $timestamp && $timestamp > $params['rootJobTimestamp'] );
+	}
+
+	/**
+	 * @param string $signature Hash identifier of the root job
+	 * @return string
+	 */
+	protected function getRootJobCacheKey( $signature ) {
+		list( $db, $prefix ) = wfSplitWikiID( $this->wiki );
+		return wfForeignMemcKey( $db, $prefix, 'jobqueue', $this->type, 'rootjob', $signature );
 	}
 
 	/**
