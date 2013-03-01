@@ -2498,6 +2498,17 @@ External links: multiple legal whitespace is fine, Magnus. Don't break it please
 !! end
 
 !! test
+External links: link text with spaces
+!! input
+[http://www.example.com a b c]
+[http://www.example.com ''a'' ''b'']
+!! result
+<p><a rel="nofollow" class="external text" href="http://www.example.com">a b c</a>
+<a rel="nofollow" class="external text" href="http://www.example.com"><i>a</i> <i>b</i></a>
+</p>
+!! end
+
+!! test
 External links: wiki links within external link (Bug 3695)
 !! input
 [http://example.com [[wikilink]] embedded in ext link]
@@ -2657,21 +2668,6 @@ External link containing double-single-quotes with no space separating the url f
 </p>
 !! end
 
-!!test
-Text in square brackets that is not a link should parse as text
-!!input
-[foo]
-[{{echo|foo}}]
-[url={{echo|foo}}]
-[url=http://example.com]
-!!result
-<p>[foo]
-[foo]
-[url=foo]
-[url=<a rel="nofollow" class="external free" href="http://example.com">http://example.com</a>]
-</p>
-!!end
-
 !! test
 URL-encoding in URL functions (single parameter)
 !! input
@@ -2726,6 +2722,8 @@ Non-extlinks in brackets
 [{{echo|foo}} ''bar'']
 [{{echo|foo}}l's] errand
 [{{echo|foo}}l's errand]
+[url={{echo|foo}}]
+[url=http://example.com]
 !! result
 <p>[foo]
 [foo bar]
@@ -2737,6 +2735,8 @@ Non-extlinks in brackets
 [foo <i>bar</i>]
 [fool's] errand
 [fool's errand]
+[url=foo]
+[url=<a rel="nofollow" class="external free" href="http://example.com">http://example.com</a>]
 </p>
 !! end
 
@@ -5838,7 +5838,7 @@ Templates: HTML Tables: 4f. Generating a single tag of a HTML table
 !!end
 
 !!test
-Templates: Wiki Tables: 1. Fostering of entire template content
+Templates: Wiki Tables: 1a. Fostering of entire template content
 !!input
 {|
 {{echo|a}}
@@ -5846,6 +5846,24 @@ Templates: Wiki Tables: 1. Fostering of entire template content
 !!result
 <table>
 a
+<tr><td></td></tr></table>
+
+!!end
+
+!!test
+Templates: Wiki Tables: 1b. Fostering of entire template content
+!!input
+{|
+{{echo|<div>}}
+foo
+{{echo|</div>}}
+|}
+!!result
+<table>
+<div>
+<p>foo
+</p>
+</div>
 <tr><td></td></tr></table>
 
 !!end
@@ -5891,7 +5909,7 @@ Templates: Wiki Tables: 4. Templated tags, no content
 !!end
 
 !!test
-Templates: Wiki Tables: 4. Templated tags, regular td-tags
+Templates: Wiki Tables: 5. Templated tags, regular td-tags
 !!input
 {{tbl-start}}
 |foo
@@ -5905,7 +5923,7 @@ Templates: Wiki Tables: 4. Templated tags, regular td-tags
 !!end
 
 !!test
-Templates: Wiki Tables: 4. Templated tags, templated td-tags
+Templates: Wiki Tables: 6. Templated tags, templated td-tags
 !!input
 {{tbl-start}}
 {{!}}foo
