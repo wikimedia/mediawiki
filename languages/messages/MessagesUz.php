@@ -1113,7 +1113,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'listgrouprights-helppage' => 'Help:Guruhlar huquqlari',
 'listgrouprights-members' => '(a’zolar ro‘yxati)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Foydalanuvchiga maktub',
 'emailuser-title-target' => 'Ushbu {{GENDER:$1|foydalanuvchi}}ga maktub joʻnatish',
 'emailuser-title-notarget' => 'Foydalanuvchiga elektron maktub yozish',
@@ -1122,7 +1122,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'defemailsubject' => '{{SITENAME}} — $1 tomonidan maktub',
 'usermaildisabled' => 'Foydalanuvchi elektron pochtasi o‘chirilgan',
 'noemailtitle' => 'Elektron pochta manzili mavjud emas',
-'noemailtext' => "Bu foydalanuvchi e-mail manzil ko'rsatgani yo'q.",
+'noemailtext' => 'Bu foydalanuvchi e-mail manzil koʻrsatgani yoʻq.',
 'nowikiemailtitle' => 'Maktub joʻnatishga ruxsat yoʻq',
 'emailtarget' => 'Oluvchi ishtirokchining ismini kiriting',
 'emailusername' => 'Ishtirokchi nomi:',

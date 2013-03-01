@@ -1241,8 +1241,8 @@ Parameters:
 * $3 - the number of repetitions in $2
 * $4 - base URL of the wiki',
 'passwordreset-emailelement' => "This is a body of a reminder email to allow them into the system with a new password. Parameters:
-* $1 will be the user's login name. This parameter can be used for GENDER.
-* $2 will be the temporary password given by the system.",
+* $1 - the user's login name. This parameter can be used for GENDER.
+* $2 - the temporary password given by the system",
 'passwordreset-emailsent' => 'Used in [[Special:PasswordReset]].
 
 See also:
@@ -1377,24 +1377,24 @@ Should match: {{msg-mw|summary}}.',
 'blockedtitle' => 'Used as title displayed for blocked users. The corresponding message body is one of the following messages:
 * {{msg-mw|Blockedtext|notext=1}}
 * {{msg-mw|Autoblockedtext|notext=1}}',
-'blockedtext' => 'Text displayed to blocked users. Parameters:
+'blockedtext' => "Text displayed to blocked users. Parameters:
 * $1 - the blocking sysop (with a link to his/her userpage)
 * $2 - the reason for the block
 * $3 - the current IP address of the blocked user
-* $4 - the blocking sysop’s username (plain text, without the link)
+* $4 - the blocking sysop's username (plain text, without the link)
 * $5 - the unique numeric identifier of the applied autoblock
 * $6 - the expiry of the block
 * $7 - the intended target of the block (what the blocking user specified in the blocking form)
-* $8 - the timestamp when the block started',
-'autoblockedtext' => 'Text displayed to automatically blocked users. Parameters:
+* $8 - the timestamp when the block started",
+'autoblockedtext' => "Text displayed to automatically blocked users. Parameters:
 * $1 - the blocking sysop (with a link to his/her userpage)
 * $2 - the reason for the block
 * $3 - the current IP address of the blocked user
-* $4 - the blocking sysop’s username (plain text, without the link). Use it for GENDER.
+* $4 - the blocking sysop's username (plain text, without the link). Use it for GENDER.
 * $5 - the unique numeric identifier of the applied autoblock
 * $6 - the expiry of the block
 * $7 - the intended target of the block (what the blocking user specified in the blocking form)
-* $8 - the timestamp when the block started',
+* $8 - the timestamp when the block started",
 'blockednoreason' => 'Substituted with <code>$2</code> in the following message if the reason is not given:
 * {{msg-mw|cantcreateaccount-text}}.
 {{Identical|No reason given}}',
@@ -1582,15 +1582,15 @@ See also:
 * {{msg-mw|edit-gone-missing}}
 * {{msg-mw|edit-conflict}}
 * {{msg-mw|edit-no-change}}',
-'defaultmessagetext' => 'Caption above the default message text shown on the left-hand side of a diff displayed after clicking “Show changes” when creating a new page in the MediaWiki: namespace',
+'defaultmessagetext' => 'Caption above the default message text shown on the left-hand side of a diff displayed after clicking "Show changes" when creating a new page in the MediaWiki: namespace',
 'content-failed-to-parse' => "Error message indicating that the page's content can not be saved because it is syntactically invalid. This may occurr for content types using serialization or a strict markup syntax.
 *$1 – content model ({{msg-mw|Content-model-wikitext}}, {{msg-mw|Content-model-javascript}}, {{msg-mw|Content-model-css}} or {{msg-mw|Content-model-text}})
 *$2 – content format as MIME type (e.g. <tt>text/css</tt>)
 *$3 – specific error message",
 'invalid-content-data' => "Error message indicating that the page's content can not be saved because it is invalid. This may occurr for content types with internal consistency constraints.",
 'content-not-allowed-here' => 'Error message indicating that the desired content model is not supported in given localtion.
-* $1 is the human readable name of the content model: {{msg-mw|Content-model-wikitext}}, {{msg-mw|Content-model-javascript}}, {{msg-mw|Content-model-css}} or {{msg-mw|Content-model-text}}
-* $2 is the title of the page in question.',
+* $1 - the human readable name of the content model: {{msg-mw|Content-model-wikitext}}, {{msg-mw|Content-model-javascript}}, {{msg-mw|Content-model-css}} or {{msg-mw|Content-model-text}}
+* $2 - the title of the page in question',
 
 # Content models
 'content-model-wikitext' => 'Name for the wikitext content model, used when decribing what type of content a page contains.
@@ -1715,9 +1715,9 @@ See the error message:
 * $2 is a date (optional)
 * $3 is a time (optional)',
 'revisionasof' => 'Used on a difference page when comparing different versions of a page or when viewing an non-current version of a page. See {{msg-mw|Currentrev-asof}} for the message for the current version.
-* $1 is the date/time at which the revision was created. Example: "\'\'Revision as of 14:44, 24 January 2008\'\'".
-* $2 is the date at which the revision was created.
-* $3 is the time at which the revision was created.',
+* $1 - the date/time at which the revision was created. Example: "\'\'Revision as of 14:44, 24 January 2008\'\'".
+* $2 - the date at which the revision was created
+* $3 - the time at which the revision was created',
 'revision-info' => 'Appears just below the page title when an old version of the page is being viewed.
 
 Parameters:
@@ -2136,8 +2136,8 @@ This message has sometimes a tooltip {{msg-mw|tooltip-undo}}
 *Parameter $1 is the number of revisions
 *Parameter $2 is the number of distinct users who made those revisions",
 'diff-multi-manyusers' => "This message appears in the revision history of a page when comparing two versions which aren't consecutive, and the intermediate revisions have been edited by more than 100 users. Parameters:
-* $1 is the number of revisions, will always be 101 or more.
-* $2 is the number of users that were found, which was limited at 100.",
+* $1 - the number of revisions, will always be 101 or more
+* $2 - the number of users that were found, which was limited at 100",
 'difference-missing-revision' => 'Text displayed when the requested revision does not exist using a diff link.
 
 Example: [{{canonicalurl:Project:News|diff=426850&oldid=99999999}} Diff with invalid revision#]
@@ -2255,8 +2255,8 @@ See also:
 * {{msg-mw|Searchprofile-advanced|message}}
 * {{msg-mw|Searchprofile-advanced-tooltip|tooltip}}',
 'search-result-size' => 'Shown per line of a [[Special:Search|search result]]
-* $1 is the size of the page in bytes, but no need to add "byte" or similar as the unit is added by special function.
-* $2 is the sum of all words in this page.',
+* $1 - the size of the page in bytes, but no need to add "byte" or similar as the unit is added by special function
+* $2 - the sum of all words in this page',
 'search-result-category-size' => '* $1 - number of members in this category. $1 is equal to $2+$3.
 * $2 - number of subcategories
 * $3 - number of files',
@@ -2275,7 +2275,7 @@ $1 is the relevance of this result in per cent.
 'search-relatedarticle' => 'This is a search result (and I guess search engine) dependent messages. I do not know how to trigger the feature. The message is displayed if the search result contains information that related pages can also be provided from the search engine. I assume this is "More Like This" functionality. Microsoft glossary defines MLT as "A way to refine search by identifying the right set of documents and then locating similar documents. This allows the searcher to control the direction of the search and focus on the most fruitful lines of inquiry."[http://www.microsoft.com/enterprisesearch/en/us/search-glossary.aspx]
 {{Identical|Related}}',
 'mwsuggest-disable' => "The text of an option on the 'search options' tab of a user's Preferences.",
-'searcheverything-enable' => 'Used in [[Special:Preferences]], tab “Search”.',
+'searcheverything-enable' => 'Used in [[Special:Preferences]], tab "Search".',
 'searchrelated' => 'This is a search result (and I guess search engine) dependent messages. I do not know how to trigger the feature. The message is displayed if the search result contains information that related pages can also be provided from the search engine. I assume this is "More Like This" functionality. Microsoft glossary defines MLT as "A way to refine search by identifying the right set of documents and then locating similar documents. This allows the searcher to control the direction of the search and focus on the most fruitful lines of inquiry."[http://www.microsoft.com/enterprisesearch/en/us/search-glossary.aspx]
 {{Identical|Related}}',
 'searchall' => '{{Identical|All}}',
@@ -2566,14 +2566,14 @@ Used in [[Special:Preferences]], tab "Watchlist". The display options refer to:
 'userrights-groupsmember' => 'Used when editing user groups in [[Special:Userrights]]. The message is followed by a list of group names.
 
 Parameters:
-* $1 - the number of items in the list following the message, for PLURAL.
-* $2 - the user name, for GENDER.',
+* $1 - the number of items in the list following the message, for PLURAL
+* $2 - the user name, for GENDER',
 'userrights-groupsmember-auto' => 'Used when editing user groups in [[Special:Userrights]]. The message is followed by a list of group names.
 "Implicit" is for groups that the user was automatically added to (such as "autoconfirmed"); cf. {{msg-mw|userrights-groupsmember}}
 
 Parameters
-* $1 - the number of items in the list following the message, for PLURAL.
-* $2 - the user name, for GENDER.',
+* $1 - the number of items in the list following the message, for PLURAL
+* $2 - the user name, for GENDER',
 'userrights-groupsmember-type' => '{{optional}}
 Parameters:
 * $1 is list of group names.
@@ -3399,14 +3399,14 @@ See also:
 'backend-fail-alreadyexists' => 'Parameters:
 * $1 is a filename.',
 'backend-fail-store' => 'Parameters:
-* $1 is a filename
-* $2 is a storage path.',
+* $1 - a filename
+* $2 - a storage path',
 'backend-fail-copy' => 'Parameters:
-* $1 is a file path
-* $2 is a file path.',
+* $1 - a file path
+* $2 - a file path',
 'backend-fail-move' => 'Parameters:
-* $1 is a file path
-* $2 is a file path.',
+* $1 - a file path
+* $2 - a file path',
 'backend-fail-opentemp' => 'Used as error message.
 {{Related|Backend-fail}}',
 'backend-fail-writetemp' => 'Used as error message.
@@ -3427,8 +3427,8 @@ See also:
 'backend-fail-contenttype' => '$1 is a storage (file) path',
 'backend-fail-batchsize' => 'Error message when the limit of operations to be done at once in the file backend was reached.
 Parameters:
-* $1 is the number of operations attempted at once in this case.
-* $2 is the maximum number of operations that can be attempted at once.
+* $1 - the number of operations attempted at once in this case
+* $2 - the maximum number of operations that can be attempted at once
 
 A "[[:wikipedia:Front and back ends|backend]]" is a system or component that ordinary users don\'t interact with directly and don\'t need to know about, and that is responsible for a distinct task or service - for example, a storage back-end is a generic system for storing data which other applications can use. Possible alternatives for back-end are "system" or "service", or (depending on context and language) even leave it untranslated.',
 'backend-fail-usable' => 'Parameters:
@@ -4090,8 +4090,8 @@ In order to translate ''Unused categories'' and ''wanted categories'' see {{msg|
 'deletedcontributions-title' => 'Title of [[Special:DeletedContributions]] (extension), a special page with a list of edits to pages which were deleted. Only viewable by sysops.
 
 {{Identical|Deleted user contributions}}',
-'sp-deletedcontributions-contribs' => 'Link to user’s contributions on [[Special:DeletedContributions]].
-{{Identical|Contribution}}',
+'sp-deletedcontributions-contribs' => "Link to user's contributions on [[Special:DeletedContributions]].
+{{Identical|Contribution}}",
 
 # Special:LinkSearch
 'linksearch' => 'Title of [[Special:LinkSearch|special page]] and legend of fieldset on that page.
@@ -4172,23 +4172,25 @@ See also:
 * $1 is the text from the 'right-...' messages, i.e. {{msg-mw|right-edit}}
 * $2 is the codename of this right",
 'listgrouprights-addgroup' => 'This is an individual right for groups, used on [[Special:ListGroupRights]].
-* $1 is an enumeration of group names.
-* $2 is the number of group names in $1.
-See also {{msg|listgrouprights-removegroup}}.',
+* $1 - an enumeration of group names
+* $2 - the number of group names in $1
+See also:
+* {{msg-mw|listgrouprights-removegroup}}',
 'listgrouprights-removegroup' => 'This is an individual right for groups, used on [[Special:ListGroupRights]].
-* $1 is an enumeration of group names.
-* $2 is the number of group names in $1.
-See also {{msg|listgrouprights-addgroup}}.',
+* $1 - an enumeration of group names
+* $2 - the number of group names in $1
+See also:
+* {{msg-mw|listgrouprights-addgroup}}',
 'listgrouprights-addgroup-all' => 'Used on [[Special:ListGroupRights]].
 {{Related|Listgrouprights}}',
 'listgrouprights-removegroup-all' => 'Used on [[Special:ListGroupRights]].
 {{Related|Listgrouprights}}',
 'listgrouprights-addgroup-self' => 'This is an individual right for groups, used on [[Special:ListGroupRights]].
-* $1 are the group names.
-* $2 is the number of group names in $1.',
+* $1 - the group names
+* $2 - the number of group names in $1',
 'listgrouprights-removegroup-self' => 'This is an individual right for groups, used on [[Special:ListGroupRights]].
-* $1 are the group names.
-* $2 is the number of group names in $1.',
+* $1 - the group names
+* $2 - the number of group names in $1',
 'listgrouprights-addgroup-self-all' => 'Used on [[Special:ListGroupRights]].
 {{Related|Listgrouprights}}',
 'listgrouprights-removegroup-self-all' => 'Used on [[Special:ListGroupRights]].
@@ -4335,11 +4337,14 @@ See also:
 * {{msg-mw|Watchmethod-recent}}',
 'watchlistcontains' => '* $1 - number of pages in your watchlist',
 'wlnote' => 'Used on [[Special:Watchlist]] when the maximum number of days is specified.
+
 Similar to {{msg-mw|rcnote}} which is used on [[Special:RecentChanges]].
-* $1 is the number of changes shown,
-* $2 is the number of hours for which the changes are shown,
-* $3 is a date alone,
-* $4 is a time alone.',
+
+Parameters:
+* $1 - the number of changes shown
+* $2 - the number of hours for which the changes are shown
+* $3 - a date alone
+* $4 - a time alone',
 'wlshowlast' => 'Appears on [[Special:Watchlist]]. Parameters:
 * $1 - a choice of different numbers of hours ("1 | 2 | 6 | 12")
 * $2 - a choice of different numbers of days ("1 | 3 | 7")
@@ -5260,10 +5265,11 @@ The page name of [[Special:Log/block]]. Also appears in the drop down menu of [[
 'blocklog-showsuppresslog' => 'Parameters:
 * $1 is the blocked user. Can be used for GENDER (optional)',
 'blocklogentry' => 'This is the text of an entry in the Block log, and recent changes, after hour (and date, only in the Block log) and sysop name:
-* $1 is the blocked user or IP (with link to contributions and talk)
-* $2 is the duration of the block (hours, days etc.) or the specified expiry date
-* $3 contains "(details) (\'\'reason\'\')"
-See also {{msg-mw|Blocklistline}}.',
+* $1 - the blocked user or IP (with link to contributions and talk)
+* $2 - the duration of the block (hours, days etc.) or the specified expiry date
+* $3 - contains "(details) (\'\'reason\'\')"
+See also:
+* {{msg-mw|Blocklistline}}',
 'reblock-logentry' => 'This is the text of an entry in the Block log (and Recent Changes), after hour (and date, only in the Block log) and sysop name:
 * $1 is the user being reblocked
 * $2 is the expiry time of the block
@@ -6030,11 +6036,14 @@ See also:
 'import-error-special' => '* $1 - page title',
 'import-error-invalid' => '* $1 - page title',
 'import-error-unserialize' => 'Import error message displayed when a revision could not be unserialized.
-This may happen if the content got corrupted or the serialization format is mis-reported. Parameters:
-* $1 is the name of the page the offending revision belongs to.
-* $2 is the ID of the offending revision, as reported in the dump that is being imported.
-* $3 is the content model reported for the offending revision in the dump that is being imported.
-* $4 is the serialization format reported for the offending revision in the dump that is being imported.',
+
+This may happen if the content got corrupted or the serialization format is mis-reported.
+
+Parameters:
+* $1 - the name of the page the offending revision belongs to
+* $2 - the ID of the offending revision, as reported in the dump that is being imported
+* $3 - the content model reported for the offending revision in the dump that is being imported
+* $4 - the serialization format reported for the offending revision in the dump that is being imported',
 'import-options-wrong' => 'Used on [[Special:Import]], when one of the options has an error.',
 'import-rootpage-invalid' => 'Used on [[Special:Import]], when the root page is invalid.',
 'import-rootpage-nosubpage' => 'Used on [[Special:Import]], when the import namespace does not support subpages. Parameters:
@@ -6641,9 +6650,9 @@ Parameters:
 
 Used as link text, linked to '{{int:Prefixindex}}' page ([[Special:PrefixIndex]]).",
 'pageinfo-subpages-value' => 'Parameters:
-* $1 is the number of subpages of the page.
-* $2 is the number of subpages of the page that are redirects.
-* $3 is the number of subpages of the page that are not redirects.',
+* $1 - the number of subpages of the page
+* $2 - the number of subpages of the page that are redirects
+* $3 - the number of subpages of the page that are not redirects',
 'pageinfo-firstuser' => 'The user who created the page.',
 'pageinfo-firsttime' => 'The date and time the page was created.',
 'pageinfo-lastuser' => 'The last user who edited the page.',
@@ -6789,9 +6798,9 @@ See also:
 'widthheightpage' => 'This message is used on image pages in the dimensions column in the file history section for images  with more than one page.
 
 Parameters:
-* $1 is the width of the image pages in pixels.
-* $2 is the height of the image pages in pixels.
-* $3 is the number of pages in the file.',
+* $1 - the width of the image pages in pixels
+* $2 - the height of the image pages in pixels
+* $3 - the number of pages in the file',
 'file-info' => 'File info displayed on file description page.',
 'file-info-size' => 'File info displayed on file description page.
 
@@ -6803,21 +6812,21 @@ Parameters:
 'file-info-size-pages' => 'File info displayed on file description page, when the file is a multi-page document, with at least two pages. Like {{msg-mw|file-info-size}} but $5 is the total number of pages in the document.
 
 Parameters:
-* $1 is the width of the image pages in pixels.
-* $2 is the height of the image pagess in pixels.
-* $3 is the file size as a number followed by a unit — for example: 99 KB
-* $4 is the MIME type, a formalized textual information — for example: <code>image/jpeg</code>
-* $5 is the total number of pages in the document.',
+* $1 - the width of the image pages in pixels
+* $2 - the height of the image pagess in pixels
+* $3 - the file size as a number followed by a unit — for example: 99 KB
+* $4 - the MIME type, a formalized textual information — for example: <code>image/jpeg</code>
+* $5 - the total number of pages in the document',
 'file-nohires' => 'File info displayed on file description page. For example of message in use see [[:File:Mouse10.gif]].',
 'svg-long-desc' => 'Displayed under an SVG image at the image description page. Note that argument 3 is a string that includes the file size unit symbol. See for example [[:File:Yes check.svg]].
 
-Start with a lowercase letter, unless the first word is “SVG”.',
+Start with a lowercase letter, unless the first word is "SVG".',
 'svg-long-desc-animated' => 'Displayed under an SVG image at the image description page if the image is animated. Non-animated images use {{msg-mw|svg-long-desc}}.
-* $1 is the width in pixels
-* $2 is the height in pixels, and
-* $3 is the file size including a unit (for example "10 KB").
+* $1 - the width in pixels
+* $2 - the height in pixels
+* $3 - the file size including a unit (for example "10 KB")
 
-Start with a lowercase letter, unless the first word is “SVG”.',
+Start with a lowercase letter, unless the first word is "SVG".',
 'svg-long-error' => 'Displayed for invalid SVG file metadata. Parameters:
 * $1 - the error message
 See also:
@@ -6825,10 +6834,9 @@ See also:
 'show-big-image' => 'Displayed under an image at the image description page, when it is displayed smaller there than it was uploaded.',
 'show-big-image-preview' => 'Message shown under the image description page thumbnail, next to {{msg-mw|show-big-image-other}}.',
 'show-big-image-other' => 'Message shown under the image description page thumbnail, next to {{msg-mw|show-big-image-preview}}, if the image is in high resolution.',
-'show-big-image-size' => '
-Parameters:
-* $1 is the width of the image(s) in pixels.
-* $2 is the height of the image(s) in pixels.',
+'show-big-image-size' => 'Parameters:
+* $1 - the width of the image(s) in pixels
+* $2 - the height of the image(s) in pixels',
 'file-info-gif-looped' => 'Part of the information provided about a [[w:Gif|.gif file]] on its file description page. Looped means repeating in the context of an animated gif. It is a sequence of images, each displayed after the other, and the first one displayed after the last, in a never ending loop. For example of message in use see [[:File:Mouse10.gif]].',
 'file-info-gif-frames' => 'Part of the information provided about a [[w:Gif|.gif file]] on its file description page.',
 'file-info-png-looped' => 'Part of the information provided about a [[w:APNG|.apng file]] on its file description page. Looped means repeating indefinetly in the context of an animated png. It is a sequence of images, each displayed after the other, and the first one displayed after the last, in a never ending loop.',
@@ -8710,11 +8718,11 @@ $4 is the gender of the target user.',
 'api-error-badtoken' => 'API error message that can be used for client side localisation of API errors.',
 'api-error-copyuploaddisabled' => 'API error message that can be used for client side localisation of API errors.',
 'api-error-duplicate' => 'API error message that can be used for client side localisation of API errors. Parameters:
-* $1 is a number of files
-* $2 is a link to a list of duplicate files.',
+* $1 - a number of files
+* $2 - a link to a list of duplicate files',
 'api-error-duplicate-archive' => 'API error message that can be used for client side localisation of API errors. Parameters:
-* $1 is a number of files
-* $2 is a link to a list of duplicate files.',
+* $1 - a number of files
+* $2 - a link to a list of duplicate files',
 'api-error-duplicate-archive-popup-title' => 'API error message that can be used for client side localisation of API errors. Parameters:
 * $1 is a number of files.',
 'api-error-duplicate-popup-title' => 'This message is a pop-up title shown in case one or more files exactly equal to the one just uploaded are already present. The word "duplicate" is an adjective.',
