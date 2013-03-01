@@ -728,7 +728,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 */
 	final public static function factory( $dbType, $p = array() ) {
 		$canonicalDBTypes = array(
-			'mysql', 'postgres', 'sqlite', 'oracle', 'mssql', 'ibm_db2'
+			'mysql', 'postgres', 'sqlite', 'oracle', 'mssql'
 		);
 		$dbType = strtolower( $dbType );
 		$class = 'Database' . ucfirst( $dbType );

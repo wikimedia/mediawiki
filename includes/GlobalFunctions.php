@@ -2469,11 +2469,6 @@ define( 'TS_ORACLE', 6 );
 define( 'TS_POSTGRES', 7 );
 
 /**
- * DB2 format time
- */
-define( 'TS_DB2', 8 );
-
-/**
  * ISO 8601 basic format with no timezone: 19860209T200000Z.  This is used by ResourceLoader
  */
 define( 'TS_ISO_8601_BASIC', 9 );
