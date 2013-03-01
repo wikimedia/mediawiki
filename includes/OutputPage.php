@@ -521,9 +521,11 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Add only CSS of one or more modules recognized by the resource loader. Module
-	 * styles added through this function will be loaded by the resource loader when
-	 * the page loads.
+	 * Add only CSS of one or more modules recognized by the resource loader.
+	 *
+	 * Module styles added through this function will be added using standard link CSS
+	 * tags, rather than as a combined Javascript and CSS package. Thus, they will
+	 * load when JavaScript is disabled (unless CSS also happens to be disabled).
 	 *
 	 * @param $modules Mixed: module name (string) or array of module names
 	 */
