@@ -9,6 +9,7 @@ class ApiCreateAccountTest extends ApiTestCase {
 	function setUp() {
 		parent::setUp();
 		LoginForm::setCreateaccountToken();
+		$this->setMwGlobals( array( 'wgEnableEmail' => true ) );
 	}
 
 	/**
@@ -141,10 +142,6 @@ class ApiCreateAccountTest extends ApiTestCase {
 	 * @expectedException UsageException
 	 */
 	function testInvalidEmail() {
-		global $wgEnableEmail;
-		if ( !$wgEnableEmail ) {
-			$this->markTestSkipped( 'email is not enabled, so createaccount does not check it' );
-		}
 		$this->doApiRequest( array(
 			'action' => 'createaccount',
 			'name' => 'Test User',
