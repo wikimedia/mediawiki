@@ -335,7 +335,7 @@ function wfRandomString( $length = 32 ) {
  *
  * @param $weights array
  *
- * @return int|string
+ * @return bool|int|string
  */
 function wfPickRandom( $weights ){
 	if ( !is_array( $weights ) || count( $weights ) == 0 ) {

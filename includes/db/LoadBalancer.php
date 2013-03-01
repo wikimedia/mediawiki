@@ -121,7 +121,7 @@ class LoadBalancer {
 	 *
 	 * @param $weights array
 	 *
-	 * @return int
+	 * @return bool|int|string
 	 */
 	function pickRandom( $weights ) {
 		return wfPickRandom( $weights );
