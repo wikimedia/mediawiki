@@ -85,6 +85,8 @@ class LinksUpdateTest extends MediaWikiTestCase {
 	}
 
 	public function testUpdate_categorylinks() {
+		$this->setMwGlobals( 'wgCategoryCollation', 'uppercase' );
+
 		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", 111 );
 
 		$po->addCategory( "Foo", "FOO" );
