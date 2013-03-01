@@ -237,6 +237,23 @@ class JobQueueGroup {
 	}
 
 	/**
+	 * Check if jobs should not be popped of a queue right now.
+	 * This is only used for performance, such as to avoid spamming
+	 * the queue with many sub-jobs before they actually get run.
+	 *
+	 * @param $type string
+	 * @return bool
+	 */
+	public function isQueueDeprioritized( $type ) {
+		if ( $type === 'refreshLinks2' ) {
+			// Don't keep converting refreshLinks2 => refreshLinks jobs if the
+			// later jobs have not been done yet. This helps throttle queue spam.
+			return !$this->get( 'refreshLinks' )->isEmpty();
+		}
+		return false;
+	}
+
+	/**
 	 * Execute any due periodic queue maintenance tasks for all queues.
 	 *
 	 * A task is "due" if the time ellapsed since the last run is greater than
