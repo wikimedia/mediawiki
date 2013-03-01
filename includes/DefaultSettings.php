@@ -6491,7 +6491,7 @@ $wgContentHandlerTextFallback = 'ignore';
  *
  * @since 1.21
  */
-$wgContentHandlerUseDB = false;
+$wgContentHandlerUseDB = true;
 
 /**
  * Determines which types of text are parsed as wikitext. This does not imply that these kinds
