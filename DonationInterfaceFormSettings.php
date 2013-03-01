@@ -102,7 +102,7 @@ $forms_whitelist['rtbt-sofo'] = array(
 	'file' => $form_dirs['gc'] . '/rtbt/rtbt-sofo.html',
 	'gateway' => 'globalcollect',
 	'countries' => array(
-		'+' => array( 'AT', 'BE' ),
+		'+' => array( 'AT', 'BE', 'CH', 'DE' ),
 		'-' => 'GB'
 	),
 	'currencies' => array( '+' => 'EUR' ),
