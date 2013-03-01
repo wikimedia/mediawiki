@@ -40,7 +40,7 @@ class ApiWatch extends ApiBase {
 		$params = $this->extractRequestParams();
 		$title = Title::newFromText( $params['title'] );
 
-		if ( !$title || $title->getNamespace() < 0 ) {
+		if ( !$title || $title->isExternal() || !$title->canExist() ) {
 			$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
 		}
 
