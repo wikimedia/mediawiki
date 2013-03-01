@@ -136,7 +136,6 @@ $wgAutoloadLocalClasses = array(
 	'HTMLTextField' => 'includes/HTMLForm.php',
 	'Http' => 'includes/HttpFunctions.php',
 	'HttpError' => 'includes/Exception.php',
-	'HttpRequest' => 'includes/HttpFunctions.old.php',
 	'ICacheHelper' => 'includes/CacheHelper.php',
 	'IcuCollation' => 'includes/Collation.php',
 	'IdentityCollation' => 'includes/Collation.php',
