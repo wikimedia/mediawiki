@@ -767,10 +767,7 @@ abstract class FileBackendStore extends FileBackend {
 		$hash = $this->doGetFileSha1Base36( $params );
 		wfProfileOut( __METHOD__ . '-miss-' . $this->name );
 		wfProfileOut( __METHOD__ . '-miss' );
-		if ( $hash ) { // don't cache negatives
-			$this->cheapCache->set( $path, 'sha1',
-				array( 'hash' => $hash, 'latest' => $latest ) );
-		}
+		$this->cheapCache->set( $path, 'sha1', array( 'hash' => $hash, 'latest' => $latest ) );
 		wfProfileOut( __METHOD__ . '-' . $this->name );
 		wfProfileOut( __METHOD__ );
 		return $hash;
