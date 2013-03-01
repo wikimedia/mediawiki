@@ -184,7 +184,7 @@ $messages = array(
 'vector-simplesearch-preference' => 'Aktifkan kotak pancarian sadarano (hanyo kulik Vector)',
 'vector-view-create' => 'Buek',
 'vector-view-edit' => 'Suntiang',
-'vector-view-history' => 'Riwayaik lalu',
+'vector-view-history' => 'Riwayaik',
 'vector-view-view' => 'Baco',
 'vector-view-viewsource' => 'Caliak sumber',
 'actions' => 'Tindakan',
@@ -611,7 +611,7 @@ Sandi samantaro: $2',
 'nowiki_tip' => 'Abaikan format wiki',
 'image_tip' => 'Cantumkan berkas',
 'media_tip' => 'Pautan berkas',
-'sig_tip' => 'Tandotangan sanak jo waktu',
+'sig_tip' => 'Tandotangan sanak jo wakatu',
 'hr_tip' => 'Garih mandata',
 
 # Edit pages
@@ -1350,11 +1350,11 @@ Alamaik surel nan Sanak masuakkan di [[Special:Preferences|pangaturan akun]] aka
 'emailccme' => 'Kirimkan denai salinan pasan.',
 
 # Watchlist
-'watchlist' => 'Dafta pantau',
-'mywatchlist' => 'Dafta pantau',
+'watchlist' => 'Pantauan',
+'mywatchlist' => 'Pantauan',
 'watchlistfor2' => 'Untuak $1 $2',
-'addedwatchtext' => "Laman \"[[:\$1]]\" lah ditambahkan ka [[Special:Watchlist|senarai pantauan awak]].
-Parubahan laman ko tamasuak laman otanyo akan ditampilkan dalam '''cetak taba''' pado [[Special:RecentChanges|senarai parubahan]] agar lebih mudah manjagonyo.",
+'addedwatchtext' => "Laman \"[[:\$1]]\" lah ditambahkan ka [[Special:Watchlist|dafta pantauan Sanak]].
+Parubahan laman ko tamasuak laman rundiangnyo akan ditampilan pado [[Special:RecentChanges|dafta parubahan]] '''bacetak taba''' agar labiah mudah mancaliaknyo.",
 'removewatch' => 'Hapuih dari dafta pantau',
 'removedwatchtext' => 'Laman "[[:$1]]" lah dihapuih dari [[Special:Watchlist|dafta pantau Sanak]].',
 'watch' => 'Pantau',

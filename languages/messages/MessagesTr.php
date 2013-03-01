@@ -3706,7 +3706,7 @@ Sayfayı baştan açmak isityorsanız, lütfen onaylayın.",
 'autosumm-blank' => 'Sayfayı boşalttı',
 'autosumm-replace' => "Sayfa içeriği '$1' ile değiştiriliyor",
 'autoredircomment' => '[[$1]] sayfasına yönlendirildi',
-'autosumm-new' => "Sayfa oluşturdu, içeriği: '$1'",
+'autosumm-new' => 'Yeni sayfa: "$1"',
 
 # Live preview
 'livepreview-loading' => 'Yükleniyor...',

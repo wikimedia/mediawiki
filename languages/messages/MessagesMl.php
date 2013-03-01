@@ -4071,4 +4071,6 @@ $5
 'duration-centuries' => '{{PLURAL:$1|ഒരു നൂറ്റാണ്ട്|$1 നൂറ്റാണ്ട്}}',
 'duration-millennia' => '{{PLURAL:$1|ഒരു സഹസ്രാബ്ദം|$1 സഹസ്രാബ്ദം}}',
 
+# Unknown messages
+'pageswithprop-submit' => 'പോകൂ',
 );
