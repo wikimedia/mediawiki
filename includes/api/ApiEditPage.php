@@ -46,10 +46,6 @@ class ApiEditPage extends ApiBase {
 
 		$pageObj = $this->getTitleOrPageId( $params );
 		$titleObj = $pageObj->getTitle();
-		if ( $titleObj->isExternal() ) {
-			$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
-		}
-
 		$apiResult = $this->getResult();
 
 		if ( $params['redirect'] ) {

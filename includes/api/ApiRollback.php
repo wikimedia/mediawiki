@@ -181,7 +181,7 @@ class ApiRollback extends ApiBase {
 
 		$this->mTitleObj = Title::newFromText( $params['title'] );
 
-		if ( !$this->mTitleObj ) {
+		if ( !$this->mTitleObj || $this->mTitleObj->isExternal() ) {
 			$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
 		}
 		if ( !$this->mTitleObj->exists() ) {
