@@ -5546,6 +5546,8 @@ $wgJobTypesExcludedFromDefaultQueue = array( 'AssembleUploadChunks', 'PublishSta
 
 /**
  * Map of job types to configuration arrays.
+ * This determines which queue class and storage system is used for each job type.
+ * Job types that do not have explicit configuration will use the 'default' config.
  * These settings should be global to all wikis.
  */
 $wgJobTypeConf = array(
