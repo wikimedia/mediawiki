@@ -7,6 +7,7 @@ $forms_whitelist = array();
 $form_dirs = array(
 	'default' => $wgDonationInterfaceHtmlFormDir,
 	'gc' => $wgGlobalCollectGatewayHtmlFormDir,
+	'paypal' => $wgPaypalGatewayHtmlFormDir,
 //	'pfp' => $wgPayflowProGatewayHtmlFormDir,
 );
 
@@ -399,6 +400,33 @@ $forms_whitelist['boletos'] = array(
 	'currencies' => array(
 		'+' => array('BRL'),
 	),
+);
+
+/*************************
+ * Paypal
+ *************************/
+
+$forms_whitelist['paypal'] = array(
+	'file' => $form_dirs['paypal'] . '/paypal.html',
+	'gateway' => 'paypal',
+	'payment_methods' => array('paypal' => 'ALL'),
+	'currencies' => array(
+		'+' => array(
+			'AUD', 'BRL', 'CAD', 'CZK', 'DKK', 'EUR', 'HKD', 'HUF', 'ILS',
+			'JPY', 'MYR', 'MXN', 'NOK', 'NZD', 'PHP', 'PLN', 'GBP', 'SGD',
+			'SEK', 'CHF', 'TWD', 'THB', 'TRY', 'USD',
+		),
+	),
+);
+
+$forms_whitelist['paypal-recurring'] = array(
+	'file' => $form_dirs['paypal'] . '/paypal-recurring.html',
+	'gateway' => 'paypal',
+	'payment_methods' => array('paypal' => 'ALL'),
+	'currencies' => array(
+		'+' => $forms_whitelist['paypal']['currencies']['+'],
+	),
+	'recurring',
 );
 
 
