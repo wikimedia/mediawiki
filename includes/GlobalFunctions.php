@@ -344,14 +344,12 @@ function wfPickRandom( $weights ){
 
 	$sum = array_sum( $weights );
 	if ( $sum == 0 ) {
-		# No loads on any of them
-		# In previous versions, this triggered an unweighted random selection,
-		# but this feature has been removed as of April 2006 to allow for strict
-		# separation of query groups.
-		return false;
+		return false; // no load on any item (and avoid infinite loop below)
 	}
 	$max = mt_getrandmax();
-	$rand = mt_rand( 0, $max ) / $max * $sum;
+	do {
+		$rand = mt_rand( 0, $max ) / $max * $sum;
+	} while ( $rand == 0 ); // don't let a 0 weighted item be picked
 
 	$sum = 0;
 	foreach ( $weights as $i => $w ) {
