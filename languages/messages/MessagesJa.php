@@ -2404,8 +2404,8 @@ contenttype/subtypeの形式で入力してください (例: <code>image/jpeg</
 'listgrouprights-removegroup-all' => '全グループを除去可能',
 'listgrouprights-addgroup-self' => '自身のアカウントに{{PLURAL:$2|グループ}}を追加: $1',
 'listgrouprights-removegroup-self' => '自身のアカウントから{{PLURAL:$2|グループ}}を除去: $1',
-'listgrouprights-addgroup-self-all' => '自分のアカウントに全グループを追加可能',
-'listgrouprights-removegroup-self-all' => '自分のアカウントから全グループを除去可能',
+'listgrouprights-addgroup-self-all' => '自身のアカウントに全グループを追加可能',
+'listgrouprights-removegroup-self-all' => '自身のアカウントから全グループを除去可能',
 
 # Email user
 'mailnologin' => '送信アドレスがありません',

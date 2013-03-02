@@ -3579,13 +3579,15 @@ See also:
 * {{msg-mw|Upload-curl-error28|title}}
 * {{msg-mw|Upload-curl-error28-text|body}}',
 
-'license' => 'This appears in the upload form for the license drop-down. The header in the file description page is now at {{msg-mw|License-header}}.',
+'license' => 'This appears in the upload form for the license drop-down. The header in the file description page is now at {{msg-mw|License-header}}.
+{{Identical|Licensing}}',
 'license-header' => 'Used as section header in [[Special:Upload]].
 
 See also:
 * {{msg-mw|Filedesc}}
 * {{msg-mw|Filestatus}}
-* {{msg-mw|Filesource}}',
+* {{msg-mw|Filesource}}
+{{Identical|Licensing}}',
 'nolicense' => '{{Identical|None selected}}',
 'license-nopreview' => 'Error message when a certain license does not exist',
 'upload_source_url' => 'Used in [[Special:Upload]].

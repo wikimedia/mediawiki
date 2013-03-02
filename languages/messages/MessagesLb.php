@@ -1708,6 +1708,8 @@ Wann de Problem weider besteet, dann un de [[Special:ListUsers/sysop|Administrat
 'backend-fail-create' => 'De Fichier $1 konnt net geschriwwe ginn.',
 'backend-fail-maxsize' => 'De Fichier $1 konnt net geschriwwe gi well e méi grouss ass wéi {{PLURAL:$2|ee Byte|$2 Byten}}.',
 'backend-fail-readonly' => 'De Späicher-Backend "$1" kann elo nëmme geliest ginn (read-only). De Grond deen ugi gouf war: "$2"',
+'backend-fail-connect' => 'Keng Verbindung mam Backend vum Späicher "$1".',
+'backend-fail-internal' => 'Onbekannte Feeler am Backend vum Späicher: "$1"',
 
 # Lock manager
 'lockmanager-notlocked' => '"$1" konnt net fräigeschalt ginn; $1 ass net gespaart.',

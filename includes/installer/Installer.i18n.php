@@ -647,7 +647,6 @@ Message shown when PHP parameter <code>suhosin.get.max_value_length</code> is be
 * $1 - a link to the SQLite home page having the anchor text "SQLite".',
 	'config-support-oracle' => 'Parameters:
 * $1 - a link to the Oracle home page, the anchor text of which is "Oracle".',
-	'config-support-ibm_db2' => 'Used in the DBConnect step of the installer, explaining what is the ibm_db2 database',
 	'config-connection-error' => '$1 is the external error from the database, such as "DB connection error: Access denied for user \'dba\'@\'localhost\' (using password: YES) (localhost)."
 
 If you\'re translating this message to a right-to-left language, consider writing <nowiki><div dir="ltr">$1.</div></nowiki>. (When the bidi features for HTML5 will be implemented in the browsers, it will probably be a good idea to write it as <nowiki><div dir="auto">$1.</div></nowiki>.)',
@@ -7758,16 +7757,13 @@ Změń ju jenož, jeli su přeswědčiwe přičiny za to.',
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
-	'config-type-ibm_db2' => 'IBM DB2',
 	'config-support-mysql' => '* $1 je primarny cil za MediaWiki a podpěruje so najlěpje ([http://www.php.net/manual/en/mysql.installation.php Nawod ke kompilowanju  PHP z  MySQL-podpěru])',
 	'config-support-postgres' => '* $1 je popularny system datoweje banki zjawneho žórła jako alternatiwa k MySQL ([http://www.php.net/manual/en/pgsql.installation.php nawod za kompilowanje PHP z podpěru PostgreSQL]). Móhło hišće někotre zmylki eksistować, a njeporuča so jón w produktiwnej wokolinje wužiwać.',
 	'config-support-oracle' => '* $1 je komercielna předewzaćelska datowa banka. ([http://www.php.net/manual/en/oci8.installation.php Nawod za kompilowanje PHP z OCI8-podpěru])',
-	'config-support-ibm_db2' => '* $1 je komercielna předewzaćelska datowa banka. ([http://www.php.net/manual/en/ibm-db2.installation.php How to compile PHP with IBM DB2 support])',
 	'config-header-mysql' => 'Nastajenja MySQL',
 	'config-header-postgres' => 'Nastajenja PostgreSQL',
 	'config-header-sqlite' => 'Nastajenja SQLite',
 	'config-header-oracle' => 'Nastajenja Oracle',
-	'config-header-ibm_db2' => 'Nastajenja IBM DB2',
 	'config-invalid-db-type' => 'Njepłaćiwy typ datoweje banki',
 	'config-missing-db-name' => 'Dyrbiš hódnotu za "Mjeno datoweje banki" zapodać',
 	'config-missing-db-host' => 'Dyrbiš hódnotu za "Database host" zapodać',
@@ -10183,7 +10179,6 @@ PostgreSQLを使用している場合、UNIXソケットで接続するにはこ
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
-	'config-type-ibm_db2' => 'IBM DB2',
 	'config-support-info' => 'MediaWiki は以下のデータベース システムに対応しています:
 
 $1
@@ -10193,12 +10188,10 @@ $1
 	'config-support-postgres' => '* $1は、MySQLの代替として人気があるオープンソースのデータベースシステムです ([http://www.php.net/manual/en/pgsql.installation.php PostgreSQLに対応したPHPをコンパイルする方法])',
 	'config-support-sqlite' => '* $1は、良くサポートされている、軽量データベースシステムです。([http://www.php.net/manual/ja/pdo.installation.php SQLiteに対応したPHPをコンパイルする方法]、PDOを使用)',
 	'config-support-oracle' => '* $1は商業企業のデータベースです。([http://www.php.net/manual/en/oci8.installation.php OCI8サポートなPHPをコンパイルする方法])',
-	'config-support-ibm_db2' => '* $1 は商業企業のデータベースです。([http://www.php.net/manual/en/ibm-db2.installation.php IBM DB2に対応したPHPをコンパイルする方法])',
 	'config-header-mysql' => 'MySQL の設定',
 	'config-header-postgres' => 'PostgreSQL の設定',
 	'config-header-sqlite' => 'SQLite の設定',
 	'config-header-oracle' => 'Oracle の設定',
-	'config-header-ibm_db2' => 'IBM DB2 の設定',
 	'config-invalid-db-type' => '無効なデータベースの種類',
 	'config-missing-db-name' => '「データベース名」を入力してください',
 	'config-missing-db-host' => '「データベースのホスト」を入力してください',

@@ -2020,6 +2020,8 @@ $1',
 'disambiguationspage' => 'Template:消歧义',
 'disambiguations-text' => "以下的页面都有到'''消歧义页'''的链接，但它们可能可以链接到更适当的页面。<br />一个页面如果使用了[[MediaWiki:Disambiguationspage]]内的模板，则会被视为消歧义页。",
 
+'pageswithprop-prop' => '属性名称：',
+
 'doubleredirects' => '双重重定向页',
 'doubleredirectstext' => '本页面列出重定向至其他重定向页的页面。每行含有第一及第二重定向的链接和第二重定向的目标（通常是第一重定向应该指向的“真实”目标页面）。<del>带删除线的</del>条目已被解决。',
 'double-redirect-fixed-move' => '[[$1]]已被移动。它现在重定向至[[$2]]。',
@@ -4012,4 +4014,6 @@ MediaWiki发表时预期有用，但对此'''无任何保证'''，亦无隐含�
 'duration-centuries' => '$1个世纪',
 'duration-millennia' => '$1千年',
 
+# Unknown messages
+'pageswithprop-submit' => '提交',
 );

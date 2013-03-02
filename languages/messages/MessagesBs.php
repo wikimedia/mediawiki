@@ -672,6 +672,7 @@ $2',
 'titleprotected' => 'Naslov stranice je zaštićen od postavljanja od strane korisnika [[User:$1|$1]].
 Iz razloga "\'\'$2\'\'".',
 'invalidtitle-knownnamespace' => 'Neispravan naslov s imenskim prostorom "$2" i tekstom "$3"',
+'invalidtitle-unknownnamespace' => 'Neispravan naslov s imenskim prostorom br. $1 i tekstom "$2"',
 'exception-nologin' => 'Niste prijavljeni',
 'exception-nologin-text' => 'Ova stranica ili aktivnost zahtijeva da budete prijavljeni na ovom wikiju.',
 
@@ -948,6 +949,10 @@ Možete [[Special:Search/{{PAGENAME}}|tražiti naslov ove stranice]] na drugim s
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} tražiti u povezanim zapisima] ili [{{fullurl:{{FULLPAGENAME}}|action=edit}} urediti ovu stranicu]</span>.',
 'noarticletext-nopermission' => 'Trenutno nema teksta na ovoj stranici.
 Možete [[Special:Search/{{PAGENAME}}|tražiti ovaj naslov stranice]] na drugim stranicama ili <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} pretražiti povezane zapisnike]</span>, ali nemate dozvolu da napravite ovu stranicu.',
+'missing-revision' => 'Uređivanje broj $1 na stranici "{{PAGENAME}}" ne postoji.
+
+Ovo se obično dešava kada pratite zastarjelu vezu na stranice koja je obrisana.
+Više informacija možete pronaći u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} protokol brisanja].',
 'userpage-userdoesnotexist' => 'Korisnički račun "<nowiki>$1</nowiki>" nije registrovan.
 Molimo provjerite da li želite napraviti/izmijeniti ovu stranicu.',
 'userpage-userdoesnotexist-view' => 'Korisnički račun "$1" nije registrovan.',
@@ -1083,6 +1088,7 @@ Ovakvi argumenti se trebaju izbjegavati.',
 'expansion-depth-exceeded-warning' => 'Stranice koje su prekoračile dubinu proširenja',
 'parser-unstrip-loop-warning' => 'Pronađena petlja',
 'parser-unstrip-recursion-limit' => 'Prekoračeno ograničenje rekurzije ($1)',
+'converter-manual-rule-error' => 'Pronađena je greška u pravilu za ručno pretvaranje jezika',
 
 # "Undo" feature
 'undo-success' => 'Izmjena se može vratiti.
@@ -1957,6 +1963,7 @@ Opis sa njene [$2 stranice opisa datoteke] je prikazan ispod.',
 'uploadnewversion-linktext' => 'Postavite noviju verziju ove datoteke',
 'shared-repo-from' => 'iz $1',
 'shared-repo' => 'dijeljeni repozitorijum',
+'upload-disallowed-here' => 'Ne možete prepisati ovu datoteku.',
 
 # File reversion
 'filerevert' => 'Vrati $1',

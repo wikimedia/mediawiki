@@ -586,7 +586,7 @@ $messages = array(
 'vector-action-protect' => 'محافظت',
 'vector-action-undelete' => 'احیا',
 'vector-action-unprotect' => 'تغییر سطح حفاظت',
-'vector-simplesearch-preference' => 'فعال کردن جستجوی ساده (فقط در پوستهٔ برداری)',
+'vector-simplesearch-preference' => 'فعال کردن نوار جستجوی ساده‌شده (فقط در پوستهٔ برداری)',
 'vector-view-create' => 'ایجاد',
 'vector-view-edit' => 'ویرایش',
 'vector-view-history' => 'نمایش تاریخچه',
@@ -949,7 +949,7 @@ $2',
 'loginlanguagelabel' => 'زبان: $1',
 'suspicious-userlogout' => 'درخواست شما برای خروج از سامانه رد شد زیرا به نظر می‌رسد که این درخواست توسط یک مرورگر معیوب یا پروکسی میانگیر ارسال شده باشد.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'خطای ناشناخته در تابع  mail()‎ پی‌اچ‌پی',
 'user-mail-no-addy' => 'تلاش برای ارسال نامه بدون یک آدرس رایانامه.',
 'user-mail-no-body' => 'تلاش برای فرستادن پست‌الکترونیک بی‌دلیل کوتاه یا خالی',
@@ -1643,7 +1643,7 @@ $1",
 'prefs-displaywatchlist' => 'گزینه‌های نمایش',
 'prefs-diffs' => 'تفاوت‌ها',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'نشانی رایانامه معتبر به نظر می رسد',
 'email-address-validity-invalid' => 'نشانی رایانامهٔ معتبر وارد کنید',
 
@@ -2429,7 +2429,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'listgrouprights-addgroup-self-all' => 'می‌تواند حساب خود را به تمام گروه‌ها اضافه کند',
 'listgrouprights-removegroup-self-all' => 'می‌تواند حساب خود را از تمام گروه‌ها حذف کند',
 
-# E-mail user
+# Email user
 'mailnologin' => 'نشانی‌ای از فرستنده موجود نیست',
 'mailnologintext' => 'برای فرستادن رایانامه به کاربران دیگر باید [[Special:UserLogin|به سامانه وارد شوید]] و نشانی رایانامهٔ معتبری در [[Special:Preferences|ترجیحات]] خود داشته باشید.',
 'emailuser' => 'فرستادن نامه به این کاربر',
@@ -2638,7 +2638,7 @@ $PAGEINTRO $NEWPAGE
 شما می‌توانید سطح محافظت این صفحه را تغییر بدهید اما این کار تاثیری بر محافظت آبشاری صفحه نخواهد گذاشت.',
 'protect-default' => 'همهٔ کاربرها',
 'protect-fallback' => 'فقط به کاربرهایی که دسترسی «$1» دارند، اجازه داده می‌شود',
-'protect-level-autoconfirmed' => 'فقط به کاربرهای تائیدشده اجازه بده',
+'protect-level-autoconfirmed' => 'اجازه فقط برای به کاربرهای تائیدشده',
 'protect-level-sysop' => 'فقط مدیران',
 'protect-summary-cascade' => 'آبشاری',
 'protect-expiring' => 'زمان سرآمدن $1 (UTC)',
@@ -3822,7 +3822,7 @@ $1',
 'monthsall' => 'همهٔ ماه‌ها',
 'limitall' => 'همه',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'تأیید نشانی رایانامه',
 'confirmemail_noemail' => 'شما در صفحهٔ [[Special:Preferences|ترجیحات کاربری]] خود نشانی رایانامه معتبری وارد نکرده‌اید.',
 'confirmemail_text' => 'این ویکی شما را ملزم به تأیید اعتبار رایانامه خود، پیش از استفاده از خدمات رایانامه در اینجا می‌کند. دکمهٔ زیرین را فعال کنید تا نامهٔ تأییدی به نشانی رایانامهٔ شما فرستاده شود. این نامه دربردارندهٔ پیوندی خواهد بود که حاوی یک کد است. پیوند را در مرورگر خود بار کنید (اجرا) کنید تا اعتبار نشانی رایانامهٔ شما تایید شود.',
