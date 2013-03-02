@@ -226,7 +226,7 @@ class SpecialWatchlist extends SpecialPage {
 
 		# Toggle watchlist content (all recent edits or just the latest)
 		if( $values['extended'] ) {
-			$limitWatchlist = intval( $user->getOption( 'wllimit' ) );
+			$limitWatchlist = $user->getIntOption( 'wllimit' );
 			$usePage = false;
 		} else {
 			# Top log Ids for a page are not stored

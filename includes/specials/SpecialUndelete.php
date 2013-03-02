@@ -939,8 +939,8 @@ class SpecialUndelete extends SpecialPage {
 			// source view for textual content
 			$sourceView = Xml::element( 'textarea', array(
 				'readonly' => 'readonly',
-				'cols' => intval( $user->getOption( 'cols' ) ),
-				'rows' => intval( $user->getOption( 'rows' ) ) ),
+				'cols' => $user->getIntOption( 'cols' ),
+				'rows' => $user->getIntOption( 'rows' ) ),
 				$content->getNativeData() . "\n" );
 
 			$previewButton = Xml::element( 'input', array(

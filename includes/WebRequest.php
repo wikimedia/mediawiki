@@ -741,7 +741,7 @@ class WebRequest {
 			$limit = 0;
 		}
 		if( ( $limit == 0 ) && ( $optionname != '' ) ) {
-			$limit = (int)$wgUser->getOption( $optionname );
+			$limit = $wgUser->getIntOption( $optionname );
 		}
 		if( $limit <= 0 ) {
 			$limit = $deflimit;

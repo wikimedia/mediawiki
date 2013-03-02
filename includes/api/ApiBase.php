@@ -842,7 +842,7 @@ abstract class ApiBase extends ContextSource {
 							? 'watchdefault' : 'watchcreations';
 				}
 				# Watch the article based on the user preference
-				return (bool)$this->getUser()->getOption( $userOption );
+				return $this->getUser()->getBoolOption( $userOption );
 
 			case 'nochange':
 				return $userWatching;
