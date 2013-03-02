@@ -970,8 +970,8 @@ var mw = ( function ( $, undefined ) {
 			 *
 			 * @private
 			 * @param {string|string[]} dependencies Module name or array of string module names
-			 * @param {Function} ready Callback to execute when all dependencies are ready
-			 * @param {Function} error Callback to execute when any dependency fails
+			 * @param {Function} [ready] Callback to execute when all dependencies are ready
+			 * @param {Function} [error] Callback to execute when any dependency fails
 			 * @param {boolean} [async] If true, load modules asynchronously even if
 			 *  document ready has not yet occurred.
 			 */
@@ -1447,7 +1447,7 @@ var mw = ( function ( $, undefined ) {
 						return;
 					}
 					// Since some modules are not yet ready, queue up a request.
-					request( filtered, null, null, async );
+					request( filtered, undefined, undefined, async );
 				},
 
 				/**
