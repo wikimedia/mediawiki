@@ -1392,6 +1392,19 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
+	 * Die with the $prefix.'badcontinue' error. This call is common enough to make it into the base method.
+	 * @param $condition boolean will only die if this value is true
+	 * @since 1.21
+	 */
+	protected function dieContinueUsageIf( $condition ) {
+		if ( $condition ) {
+			$this->dieUsage(
+				'Invalid continue param. You should pass the original value returned by the previous query',
+				'badcontinue' );
+		}
+	}
+
+	/**
 	 * Return the error message related to a certain array
 	 * @param $error array Element of a getUserPermissionsErrors()-style array
 	 * @return array('code' => code, 'info' => info)
@@ -1525,6 +1538,13 @@ abstract class ApiBase extends ContextSource {
 				if ( isset( $paramSettings[ApiBase::PARAM_REQUIRED] ) ) {
 					$ret[] = array( 'missingparam', $paramName );
 				}
+			}
+			if ( array_key_exists( 'continue', $params ) ) {
+				$ret[] = array(
+					array(
+						'code' => 'badcontinue',
+						'info' => 'Invalid continue param. You should pass the original value returned by the previous query'
+					) );
 			}
 		}
 
