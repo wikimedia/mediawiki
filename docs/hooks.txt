@@ -2120,6 +2120,10 @@ $special: the special page object
 hook to remove a core special page.
 $list: list (array) of core special pages
 
+'SpecialPage_reorderPages': Called when reorganizing the layout of the groups
+and pages, use this hook to reorder the layout on the special SpecialPages.
+$groups: list (array) of goups and pages
+
 'SpecialPageAfterExecute': Called after SpecialPage::execute.
 $special: the SpecialPage object
 $subPage: the subpage string or null if no subpage was specified
