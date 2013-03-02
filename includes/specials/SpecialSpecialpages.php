@@ -81,8 +81,12 @@ class SpecialSpecialpages extends UnlistedSpecialPage {
 			}
 		}
 
+		/** Hook for reordering the list of special pages */
+		$moveOther = true;
+		wfRunHooks( 'SpecialPage_reorderPages', array( &$groups, &$moveOther ) );
+
 		/** Always move "other" to end */
-		if( array_key_exists( 'other', $groups ) ) {
+		if( $moveOther === true && array_key_exists( 'other', $groups ) ) {
 			$other = $groups['other'];
 			unset( $groups['other'] );
 			$groups['other'] = $other;
