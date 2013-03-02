@@ -916,7 +916,7 @@ EOT
 	public function getImageLimitsFromOption( $user, $optionName ) {
 		global $wgImageLimits;
 
-		$option = intval( $user->getOption( $optionName ) );
+		$option = $user->getIntOption( $optionName );
 		if ( !isset( $wgImageLimits[$option] ) ) {
 			$option = User::getDefaultOption( $optionName );
 		}

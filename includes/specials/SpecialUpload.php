@@ -953,7 +953,7 @@ class UploadForm extends HTMLForm {
 					? 'filereuploadsummary'
 					: 'fileuploadsummary',
 				'default' => $this->mComment,
-				'cols' => intval( $this->getUser()->getOption( 'cols' ) ),
+				'cols' => $this->getUser()->getIntOption( 'cols' ),
 				'rows' => 8,
 			)
 		);
