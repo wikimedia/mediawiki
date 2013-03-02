@@ -288,10 +288,10 @@ class CategoryViewer extends ContextSource {
 			# the collation in the database differs from the one
 			# set in $wgCategoryCollation, pagination might go totally haywire.
 			$extraConds = array( 'cl_type' => $type );
-			if ( $this->from[$type] !== null ) {
+			if ( isset( $this->from[$type] ) && $this->from[$type] !== null ) {
 				$extraConds[] = 'cl_sortkey >= '
 					. $dbr->addQuotes( $this->collation->getSortKey( $this->from[$type] ) );
-			} elseif ( $this->until[$type] !== null ) {
+			} elseif ( isset( $this->until[$type] ) && $this->until[$type] !== null ) {
 				$extraConds[] = 'cl_sortkey < '
 					. $dbr->addQuotes( $this->collation->getSortKey( $this->until[$type] ) );
 				$this->flip[$type] = true;
@@ -445,9 +445,9 @@ class CategoryViewer extends ContextSource {
 	 * @return String: HTML output, possibly empty if there are no other pages
 	 */
 	private function getSectionPagingLinks( $type ) {
-		if ( $this->until[$type] !== null ) {
+		if ( isset( $this->until[$type] ) && $this->until[$type] !== null ) {
 			return $this->pagingLinks( $this->nextPage[$type], $this->until[$type], $type );
-		} elseif ( $this->nextPage[$type] !== null || $this->from[$type] !== null ) {
+		} elseif ( $this->nextPage[$type] !== null || ( isset( $this->from[$type] ) && $this->from[$type] !== null ) ) {
 			return $this->pagingLinks( $this->from[$type], $this->nextPage[$type], $type );
 		} else {
 			return '';
@@ -677,7 +677,9 @@ class CategoryViewer extends ContextSource {
 		}
 
 		$fromOrUntil = false;
-		if ( $this->from[$pagingType] !== null || $this->until[$pagingType] !== null ) {
+		if ( ( isset( $this->from[$pagingType] ) && $this->from[$pagingType] !== null ) ||
+			( isset( $this->until[$pagingType] ) && $this->until[$pagingType] !== null )
+		) {
 			$fromOrUntil = true;
 		}
 
