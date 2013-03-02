@@ -193,9 +193,9 @@ class ApiCreateAccount extends ApiBase {
 			'password' => "Password (ignored if {$p}mailpassword is set)",
 			'domain' => 'Domain for external authentication (optional)',
 			'token' => 'Account creation token obtained in first request',
-			'email' => 'E-mail address of user (optional)',
+			'email' => 'Email address of user (optional)',
 			'realname' => 'Real name of user (optional)',
-			'mailpassword' => 'If set to any value, a random password will be e-mailed to the user',
+			'mailpassword' => 'If set to any value, a random password will be emailed to the user',
 			'reason' => 'Optional reason for creating the account to be put in the logs',
 			'language' => 'Language code to set as default for the user (optional, defaults to content language)'
 		);
