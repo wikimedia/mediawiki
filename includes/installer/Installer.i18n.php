@@ -232,7 +232,7 @@ The directory you provide must be writable by the webserver during installation.
 It should '''not''' be accessible via the web, this is why we're not putting it where your PHP files are.
 
 The installer will write a <code>.htaccess</code> file along with it, but if that fails someone can gain access to your raw database.
-That includes raw user data (e-mail addresses, hashed passwords) as well as deleted revisions and other restricted data on the wiki.
+That includes raw user data (email addresses, hashed passwords) as well as deleted revisions and other restricted data on the wiki.
 
 Consider putting the database somewhere else altogether, for example in <code>/var/lib/mediawiki/yourwiki</code>.",
 	'config-oracle-def-ts'            => 'Default tablespace:',
@@ -373,16 +373,16 @@ Specify a different username.',
 	'config-admin-password-blank'     => 'Enter a password for the administrator account.',
 	'config-admin-password-same'      => 'The password must not be the same as the username.',
 	'config-admin-password-mismatch'  => 'The two passwords you entered do not match.',
-	'config-admin-email'              => 'E-mail address:',
-	'config-admin-email-help'         => 'Enter an e-mail address here to allow you to receive e-mail from other users on the wiki, reset your password, and be notified of changes to pages on your watchlist. You can leave this field empty.',
+	'config-admin-email'              => 'Email address:',
+	'config-admin-email-help'         => 'Enter an email address here to allow you to receive email from other users on the wiki, reset your password, and be notified of changes to pages on your watchlist. You can leave this field empty.',
 	'config-admin-error-user'         => 'Internal error when creating an admin with the name "<nowiki>$1</nowiki>".',
 	'config-admin-error-password'     => 'Internal error when setting a password for the admin "<nowiki>$1</nowiki>": <pre>$2</pre>',
-	'config-admin-error-bademail'     => 'You have entered an invalid e-mail address.',
+	'config-admin-error-bademail'     => 'You have entered an invalid email address.',
 	'config-subscribe'                => 'Subscribe to the [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce release announcements mailing list].',
 	'config-subscribe-help'           => 'This is a low-volume mailing list used for release announcements, including important security announcements.
 You should subscribe to it and update your MediaWiki installation when new versions come out.',
-	'config-subscribe-noemail'        => 'You tried to subscribe to the release announcements mailing list without providing an e-mail address.
-Please provide an e-mail address if you wish to subscribe to the mailing list.',
+	'config-subscribe-noemail'        => 'You tried to subscribe to the release announcements mailing list without providing an email address.
+Please provide an email address if you wish to subscribe to the mailing list.',
 	'config-almost-done'              => 'You are almost done!
 You can now skip the remaining configuration and install the wiki right now.',
 	'config-optional-continue'        => 'Ask me more questions.',
@@ -423,22 +423,22 @@ If you want to be able to use text from Wikipedia, and you want Wikipedia to be 
 Wikipedia previously used the GNU Free Documentation License.
 The GFDL is a valid license, but it is difficult to understand.
 It is also difficult to reuse content licensed under the GFDL.",
-	'config-email-settings'           => 'E-mail settings',
-	'config-enable-email'             => 'Enable outbound e-mail',
-	'config-enable-email-help'        => "If you want e-mail to work, [http://www.php.net/manual/en/mail.configuration.php PHP's mail settings] need to be configured correctly.
-If you do not want any e-mail features, you can disable them here.",
-	'config-email-user'               => 'Enable user-to-user e-mail',
-	'config-email-user-help'          => 'Allow all users to send each other e-mail if they have enabled it in their preferences.',
+	'config-email-settings'           => 'Email settings',
+	'config-enable-email'             => 'Enable outbound email',
+	'config-enable-email-help'        => "If you want email to work, [http://www.php.net/manual/en/mail.configuration.php PHP's mail settings] need to be configured correctly.
+If you do not want any email features, you can disable them here.",
+	'config-email-user'               => 'Enable user-to-user email',
+	'config-email-user-help'          => 'Allow all users to send each other email if they have enabled it in their preferences.',
 	'config-email-usertalk'           => 'Enable user talk page notification',
 	'config-email-usertalk-help'      => 'Allow users to receive notifications on user talk page changes, if they have enabled it in their preferences.',
 	'config-email-watchlist'          => 'Enable watchlist notification',
 	'config-email-watchlist-help'     => 'Allow users to receive notifications about their watched pages if they have enabled it in their preferences.',
-	'config-email-auth'               => 'Enable e-mail authentication',
-	'config-email-auth-help'          => "If this option is enabled, users have to confirm their e-mail address using a link sent to them whenever they set or change it.
-Only authenticated e-mail addresses can receive e-mails from other users or change notification e-mails.
-Setting this option is '''recommended''' for public wikis because of potential abuse of the e-mail features.",
-	'config-email-sender'             => 'Return e-mail address:',
-	'config-email-sender-help'        => 'Enter the e-mail address to use as the return address on outbound e-mail.
+	'config-email-auth'               => 'Enable email authentication',
+	'config-email-auth-help'          => "If this option is enabled, users have to confirm their email address using a link sent to them whenever they set or change it.
+Only authenticated email addresses can receive emails from other users or change notification emails.
+Setting this option is '''recommended''' for public wikis because of potential abuse of the email features.",
+	'config-email-sender'             => 'Return email address:',
+	'config-email-sender-help'        => 'Enter the email address to use as the return address on outbound email.
 This is where bounces will be sent.
 Many mail servers require at least the domain name part to be valid.',
 	'config-upload-settings'          => 'Images and file uploads',
