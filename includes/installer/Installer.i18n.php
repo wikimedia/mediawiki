@@ -668,6 +668,8 @@ If you\'re translating this message to a right-to-left language, consider writin
 * {{msg-mw|config-profile-no-anon}}
 * {{msg-mw|config-profile-fishbowl}}
 * {{msg-mw|config-profile-private}}',
+	'config-email-settings' => '{{Identical|E-mail setting}}',
+	'config-email-user' => '{{Identical|Enable user-to-user e-mail}}',
 	'config-upload-help' => 'The word "mode" here refers to the access rights given to various user groups when attempting to create and store files and/or subdiretories in the said directory on the server. It also refers to the <code>mode</code> command used to maipulate said right mask under Unix, Linux, and similar operating systems. A less operating-system-centric translation is fine.',
 	'config-logo-help' => '',
 	'config-cc-not-chosen' => '{{doc-important|Do not translate the "<code>proceed</code>" part.}}
@@ -2702,7 +2704,6 @@ Arabat cheñch anezho ma n'hoc'h eus ket ezhomm d'en ober.",
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
-	'config-type-ibm_db2' => 'IBM DB2',
 	'config-support-info' => "Skoret eo ar reizhiadoù diaz titouroù da-heul gant MediaWiki :
 
 $1
@@ -2712,12 +2713,10 @@ Ma ne welit ket amañ dindan ar reizhiad diaz titouroù a fell deoc'h ober ganti
 	'config-support-postgres' => "* Ur reizhiad diaz titouroù brudet ha digor eo $1. Gallout a ra ober evit MySQL ([http://www.php.net/manual/en/pgsql.installation.php Penaos kempunañ PHP gant skor PostgreSQL]). Gallout a ra bezañ un nebeud drein bihan enni ha n'eo ket erbedet he implijout en un endro produiñ.",
 	'config-support-sqlite' => "* $1 zo ur reizhiad diaz titouroù skañv skoret eus ar c'hentañ. ([http://www.php.net/manual/en/pdo.installation.php Penaos kempunañ PHP gant skor SQLite], implijout a ra PDO)",
 	'config-support-oracle' => '* $1 zo un diaz titouroù kenwerzhel. ([http://www.php.net/manual/en/oci8.installation.php Penaos kempunañ PHP gant skor OCI8])',
-	'config-support-ibm_db2' => '* Un diaz titouroù evit embregerezhioù kenwerzhel eo $1.', # Fuzzy
 	'config-header-mysql' => 'Arventennoù MySQL',
 	'config-header-postgres' => 'Arventennoù PostgreSQL',
 	'config-header-sqlite' => 'Arventennoù SQLite',
 	'config-header-oracle' => 'Arventennoù Oracle',
-	'config-header-ibm_db2' => 'Arventennoù IBM DB2',
 	'config-invalid-db-type' => 'Direizh eo ar seurt diaz roadennoù',
 	'config-missing-db-name' => 'Ret eo deoc\'h merkañ un dalvoudenn evit "Anv an diaz titouroù"',
 	'config-missing-db-host' => 'Ret eo deoc\'h merkañ un dalvoudenn evit "Ostiz an diaz titouroù"',
@@ -2802,7 +2801,7 @@ Gellout a rit tremen ar c'hefluniadur nevez ha staliañ ar wiki war-eeun.",
 	'config-optional-continue' => "Sevel muioc'h a goulennoù ouzhin.",
 	'config-optional-skip' => 'Aet on skuizh, staliañ ar wiki hepken.',
 	'config-profile' => 'Profil ar gwirioù implijer :',
-	'config-profile-wiki' => 'Wiki hengounel', # Fuzzy
+	'config-profile-wiki' => 'Wiki digor',
 	'config-profile-no-anon' => 'Krouidigezh ur gont ret',
 	'config-profile-fishbowl' => 'Embanner aotreet hepken',
 	'config-profile-private' => 'Wiki prevez',
@@ -2859,7 +2858,7 @@ Marteze e vo ezhomm kefluniañ pelloc'h met gallout a rit o gweredekaat bremañ.
 	'config-install-alreadydone' => "'''Diwallit''': Staliet hoc'h eus MediaWiki dija war a seblant hag emaoc'h o klask e staliañ c'hoazh.
 Kit d'ar bajenn war-lerc'h, mar plij.",
 	'config-install-begin' => 'Pa vo bet pouezet ganeoc\'h war "{{int:config-continue}}"  e krogo staliadur MediaWiki.
-Pouezit war Kent mar fell deoc\'h cheñch tra pe dra.', # Fuzzy
+Pouezit war "{{int:config-back}}" mar fell deoc\'h cheñch tra pe dra.',
 	'config-install-step-done' => 'graet',
 	'config-install-step-failed' => "c'hwitet",
 	'config-install-extensions' => 'En ur gontañ an astennoù',
@@ -2894,9 +2893,10 @@ Gwiriit hag-eñ e c'hall an implijer « $1 » skrivañ er brastres « $2 ».",
 
 == Kregiñ ganti ==
 
-* [//www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
-* [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]", # Fuzzy
+* [//www.mediawiki.org/wiki/Manual:Configuration_settings Roll an arventennoù kefluniañ]
+* [//www.mediawiki.org/wiki/Manual:FAQ FAG MediaWiki]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Roll ar c'haozeadennoù diwar-benn dasparzhoù MediaWiki]
+* [//www.mediawiki.org/wiki/Localisation#Translation_resources Lec'hiañ MediaWiki en ho yezh", # Fuzzy
 );
 
 /** Bosnian (bosanski)
@@ -9359,7 +9359,6 @@ Pertimbangkan untuk menempatkan basis data di tempat lain, misalnya di <code>/va
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
-	'config-type-ibm_db2' => 'IBM DB2',
 	'config-support-info' => 'MediaWiki mendukung sistem basis data berikut:
 
 $1
@@ -9369,12 +9368,10 @@ Jika Anda tidak melihat sistem basis data yang Anda gunakan tercantum di bawah i
 	'config-support-postgres' => '* $1 adalah sistem basis data sumber terbuka populer sebagai alternatif untuk MySQL ([http://www.php.net/manual/en/pgsql.installation.php cara mengompilasi PHP dengan dukungan PostgreSQL]). Mungkin ada beberapa bug terbuka dan alternatif ini tidak direkomendasikan untuk dipakai dalam lingkungan produksi.',
 	'config-support-sqlite' => '* $1 adalah sistem basis data yang ringan yang sangat baik dukungannya. ([http://www.php.net/manual/en/pdo.installation.php cara mengompilasi PHP dengan dukungan SQLite], menggunakan PDO)',
 	'config-support-oracle' => '* $1 adalah basis data komersial untuka perusahaan. ([http://www.php.net/manual/en/oci8.installation.php cara mengompilasi PHP dengan dukungan OCI8])',
-	'config-support-ibm_db2' => '* $1 adalah basis data-perusahaan komersial.', # Fuzzy
 	'config-header-mysql' => 'Pengaturan MySQL',
 	'config-header-postgres' => 'Pengaturan PostgreSQL',
 	'config-header-sqlite' => 'Pengaturan SQLite',
 	'config-header-oracle' => 'Pengaturan Oracle',
-	'config-header-ibm_db2' => 'Pengaturan IBM DB2',
 	'config-invalid-db-type' => 'Jenis basis data tidak sah',
 	'config-missing-db-name' => 'Anda harus memasukkan nilai untuk "Nama basis data"',
 	'config-missing-db-host' => 'Anda harus memasukkan nilai untuk "Inang basis data"',
@@ -9459,7 +9456,6 @@ Basis data MyISAM cenderung lebih sering rusak daripada basis data InnoDB.",
 Ini lebih efisien daripada modus UTF-8 MySQL dan memungkinkan Anda untuk menggunakan ragam penuh karakter Unicode.
 
 Dalam '''modus UTF-8''', MySQL akan tahu apa set karakter data dan dapat menampilkan dan mengubahnya sesuai keperluan, tetapi tidak akan mengizinkan Anda menyimpan karakter di atas [//en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Basic Multilingual Plane].",
-	'config-ibm_db2-low-db-pagesize' => "Basis data DB2 Anda tidak memiliki pagesize yang cukup untuk tablespace bawaan. Pagesize harus sama atau lebih dari '''32K'''.",
 	'config-site-name' => 'Nama wiki:',
 	'config-site-name-help' => 'Ini akan muncul di bilah judul peramban dan di berbagai tempat lainnya.',
 	'config-site-name-blank' => 'Masukkan nama situs.',
@@ -10286,13 +10282,13 @@ chmod a+w $3</pre>',
 	'config-project-namespace-help' => "ウィキペディアの例に従い、多くのウィキは、コンテンツのページとは分離したポリシーページを「'''プロジェクトの名前空間'''」に持っています。
 この名前空間内のページのページ名はすべて特定の接頭辞で始まります。それをここで指定できます。
 通常、この接頭辞はウィキ名に基づきますが、「#」や「:」のような区切り文字を含めることはできません。",
-	'config-ns-invalid' => '"<nowiki>$1</nowiki>"のように指定された名前空間は無効です。
-違うプロジェクト名前空間を指定してください。',
+	'config-ns-invalid' => '指定した名前空間「<nowiki>$1</nowiki>」は無効です。
+別のプロジェクト名前空間を指定してください。',
 	'config-admin-box' => '管理アカウント',
 	'config-admin-name' => '名前:',
 	'config-admin-password' => 'パスワード:',
 	'config-admin-password-confirm' => 'パスワードの再入力:',
-	'config-admin-help' => '希望するユーザー名をここに入力してください (例: "Joe Bloggs")。
+	'config-admin-help' => '希望するユーザー名をここに入力してください (例:「Joe Bloggs」)。
 この名前でこのウィキにログインすることになります。',
 	'config-admin-name-blank' => '管理者のユーザー名を入力してください。',
 	'config-admin-name-invalid' => '指定したユーザー名「<nowiki>$1</nowiki>」は無効です。
@@ -10302,8 +10298,9 @@ chmod a+w $3</pre>',
 	'config-admin-password-mismatch' => '入力された2つのパスワードが一致しません。',
 	'config-admin-email' => 'メールアドレス:',
 	'config-admin-email-help' => 'メールアドレスを入力してください。他の利用者からのメールの受け取り、パスワードのリセット、ウォッチリストに登録したページの更新通知に使用します。空欄のままにすることもできます。',
-	'config-admin-error-user' => '"<nowiki>$1</nowiki>"という名前の管理者を作成する際に内部エラーが発生しました。',
-	'config-admin-error-password' => '管理者"<nowiki>$1</nowiki>"のパスワードを設定する際に内部エラーが発生しました: <pre>$2</pre>',
+	'config-admin-error-user' => '「<nowiki>$1</nowiki>」という名前の管理者を作成する際に内部エラーが発生しました。',
+	'config-admin-error-password' => '管理者「<nowiki>$1</nowiki>」のパスワードを設定する際に内部エラーが発生しました: <pre>$2</pre>',
+	'config-admin-error-bademail' => '無効なメールアドレスを入力しました。',
 	'config-subscribe' => '[https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce リリース告知のメーリングリスト]を購読する。',
 	'config-subscribe-help' => 'これは、リリースの告知 (重要なセキュリティに関する案内を含む) に使用される、流量が少ないメーリングリストです。
 このメーリングリストを購読して、新しいバージョンが出た場合にMediaWikiを更新してください。',
@@ -19812,22 +19809,33 @@ $messages['xal'] = array(
  * @author පසිඳු කාවින්ද
  */
 $messages['yi'] = array(
+	'config-information' => 'אינפֿארמאציע',
 	'config-back' => '→ צוריק',
+	'config-continue' => 'פֿארזעצן ←',
 	'config-page-language' => 'שפראַך',
 	'config-page-name' => 'נאָמען',
 	'config-page-options' => 'ברירות',
+	'config-db-type' => 'דאטנבאזע טיפ:',
+	'config-db-name' => 'דאטנבאזע נאָמען:',
+	'config-project-namespace' => 'פראיעקט נאָמענטייל:',
 	'config-ns-generic' => 'פראיעקט',
 	'config-admin-name' => 'אײַער נאָמען:',
 	'config-admin-password' => 'פאַסווארט:',
+	'config-admin-password-mismatch' => 'די צוויי פאסוועטרט איר האט איינגעגעבן שטימען נישט.',
 	'config-admin-email' => 'בליצפּאָסט אַדרעס:',
+	'config-install-tables' => 'שאפן טאבעלעס',
+	'config-install-tables-exist' => "'''ווארענונג''': זעט אויס אז די מעדיעוויקי טאבעלעס עקזיסטירן שוין.
+איבערהיפן שאפֿן.",
+	'config-download-localsettings' => 'אראפלאדן <code>LocalSettings.php</code>',
 	'config-help' => 'הילף',
+	'config-nofile' => 'מ\'האט נישט געקענט טרעפן די טעקע "$1". צי האט מען זי אויסגעמעקט?',
 	'mainpagetext' => "'''מעדיעוויקי אינסטאלירט מיט דערפאלג.'''",
 	'mainpagedocfooter' => "גיט זיך אן עצה מיט [//meta.wikimedia.org/wiki/Help:Contents באניצער'ס וועגווײַזער] פֿאר אינפֿארמאציע וויאזוי זיך באנוצן מיט וויקי ווייכוואַרג.
 
 == נוצליכע וועבלינקען פֿאַר אנהייבערס ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings רשימה פון קאנפֿיגוראציעס]
 * [//www.mediawiki.org/wiki/Manual:FAQ אפֿט געפֿרעגטע שאלות]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce מעדיעוויקי באפֿרײַאונג פאסטליסטע]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce מעדיעוויקי באפֿרײַאונג פאסטליסטע]* [//www.mediawiki.org/wiki/Localisation#Translation_resources איבערזעצן מעדיעוויקי אין אײַער שפראך]",
 );
 
 /** Yoruba (Yorùbá)
