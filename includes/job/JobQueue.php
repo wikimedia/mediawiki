@@ -43,9 +43,16 @@ abstract class JobQueue {
 	protected function __construct( array $params ) {
 		$this->wiki = $params['wiki'];
 		$this->type = $params['type'];
-		$this->order = isset( $params['order'] ) ? $params['order'] : 'random';
 		$this->claimTTL = isset( $params['claimTTL'] ) ? $params['claimTTL'] : 0;
 		$this->maxTries = isset( $params['maxTries'] ) ? $params['maxTries'] : 3;
+		if ( isset( $params['order'] ) && $params['order'] !== 'any' ) {
+			$this->order = $params['order'];
+		} else {
+			$this->order = $this->optimalOrder();
+		}
+		if ( !in_array( $this->order, $this->supportedOrders() ) ) {
+			throw new MWException( __CLASS__ . " does not support '{$this->order}' order." );
+		}
 	}
 
 	/**
@@ -60,10 +67,10 @@ abstract class JobQueue {
 	 *                job runners since jobs can take different times to finish once popped.
 	 *                If "timestamp" is used, the queue will at least be loosely ordered
 	 *                by timestamp, allowing for some jobs to be popped off out of order.
-	 *                If "random" is used, pop() will pick jobs in random order. This might be
-	 *                useful for improving concurrency depending on the queue storage medium.
-	 *                Note that "random" really means "don't care", so it may actually be FIFO
-	 *                or only weakly random (e.g. pop() takes one of the first X jobs randomly).
+	 *                If "random" is used, pop() will pick jobs in random order.
+	 *                Note that it may only be weakly random (e.g. a lottery of the oldest X).
+	 *                If "any" is choosen, the queue will use whatever order is the fastest.
+	 *                This might be useful for improving concurrency for job acquisition.
 	 *   - claimTTL : If supported, the queue will recycle jobs that have been popped
 	 *                but not acknowledged as completed after this many seconds. Recycling
 	 *                of jobs simple means re-inserting them into the queue. Jobs can be
@@ -100,6 +107,23 @@ abstract class JobQueue {
 	final public function getType() {
 		return $this->type;
 	}
+
+	/**
+	 * @return string One of (random, timestamp, fifo)
+	 */
+	final public function getOrder() {
+		return $this->order;
+	}
+
+	/**
+	 * @return Array Subset of (random, timestamp, fifo)
+	 */
+	abstract public function supportedOrders();
+
+	/**
+	 * @return string One of (random, timestamp, fifo)
+	 */
+	abstract protected function optimalOrder();
 
 	/**
 	 * Quickly check if the queue is empty (has no available jobs).

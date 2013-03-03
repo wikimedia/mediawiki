@@ -50,6 +50,14 @@ class JobQueueDB extends JobQueue {
 		$this->cluster = isset( $params['cluster'] ) ? $params['cluster'] : false;
 	}
 
+	public function supportedOrders() {
+		return array( 'random', 'timestamp', 'fifo' );
+	}
+
+	protected function optimalOrder() {
+		return 'random';
+	}
+
 	/**
 	 * @see JobQueue::doIsEmpty()
 	 * @return bool

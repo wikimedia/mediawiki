@@ -52,6 +52,14 @@ class JobQueueRedis extends JobQueue {
 		$this->redisPool = RedisConnectionPool::singleton( $params['redisConfig'] );
 	}
 
+	public function supportedOrders() {
+		return array( 'timestamp', 'fifo' );
+	}
+
+	protected function optimalOrder() {
+		return 'fifo';
+	}
+
 	/**
 	 * @see JobQueue::doIsEmpty()
 	 * @return bool
