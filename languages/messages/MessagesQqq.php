@@ -890,17 +890,20 @@ This error is shown when trying to open a special page which does not exist, e.g
 'error' => '{{Identical|Error}}',
 'databaseerror' => 'Used as title of error message (one of the following messages):
 * {{msg-mw|Dberrortext}}
-* {{msg-mw|Dberrortextcl}}',
+* {{msg-mw|Dberrortextcl}}
+* {{msg-mw|Dberrortext-hidden}}',
 'dberrortext' => 'Parameters:
 * $1 - The last SQL command/query
 * $2 - SQL function name
 * $3 - Error number
 * $4 - Error description',
+'dberrortext-hidden' => 'Has no parameters; used instead of {{msg-mw|Dberrortext}} to hide details such as server IP addresses.',
 'dberrortextcl' => 'Parameters:
 * $1 - The last SQL command/query
 * $2 - SQL function name
 * $3 - Error number
 * $4 - Error description',
+'dberrortextcl-hidden' => 'Has no parameters; used instead of {{msg-mw|Dberrortextcl}} to hide details such as server IP addresses.',
 'laggedslavemode' => 'Used as warning when getting the timestamp of the latest version, if in LaggedSlaveMode.',
 'readonly' => 'Used as title of error message when database is locked.',
 'enterlockreason' => 'For developers when locking the database',
@@ -8493,6 +8496,7 @@ Parameters:
 'dberr-again' => 'This message does not allow any wiki nor html markup.',
 'dberr-info' => 'This message does not allow any wiki nor html markup.
 * $1 - database server name',
+'dberr-info-hidden' => 'This message does not allow any wiki nor html markup.',
 'dberr-usegoogle' => 'This message does not allow any wiki nor html markup.',
 'dberr-outofdate' => "{{doc-singularthey}}
 In this sentence, '''their''' indexes refers to '''Google's''' indexes. This message does not allow any wiki nor html markup.",
