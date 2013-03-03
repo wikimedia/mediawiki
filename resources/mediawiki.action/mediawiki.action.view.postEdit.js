@@ -1,4 +1,9 @@
 ( function ( mw, $ ) {
+	// Only a view can be a post-edit.
+	if ( mw.config.get( 'wgAction' ) !== 'view' ) {
+		return;
+	}
+
 	// Matches EditPage::POST_EDIT_COOKIE_KEY_PREFIX
 	var cookieKey = mw.config.get( 'wgCookiePrefix' ) + 'PostEditRevision' + mw.config.get( 'wgCurRevisionId' );
 
