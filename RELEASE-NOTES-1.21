@@ -286,6 +286,8 @@ changes to languages because of Bugzilla reports.
   Vector extension (and possibly disable its features using config settings if
   you don't want them).
 * Experimental IBM DB2 support was removed due to lack of interest and maintainership
+* BREAKING CHANGE: (bug 38244) Removed the mediawiki.api.titleblacklist module
+  and moved it to the TitleBlacklist extension.
 
 == Compatibility ==
 
