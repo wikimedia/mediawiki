@@ -43,24 +43,12 @@ class DBError extends MWException {
 	}
 
 	/**
-	 * @param $html string
-	 * @return string
-	 */
-	protected function getContentMessage( $html ) {
-		if ( $html ) {
-			return nl2br( htmlspecialchars( $this->getMessage() ) );
-		} else {
-			return $this->getMessage();
-		}
-	}
-
-	/**
 	 * @return string
 	 */
 	function getText() {
 		global $wgShowDBErrorBacktrace;
 
-		$s = $this->getContentMessage( false ) . "\n";
+		$s = $this->getTextContent() . "\n";
 
 		if ( $wgShowDBErrorBacktrace ) {
 			$s .= "Backtrace:\n" . $this->getTraceAsString() . "\n";
@@ -75,13 +63,28 @@ class DBError extends MWException {
 	function getHTML() {
 		global $wgShowDBErrorBacktrace;
 
-		$s = $this->getContentMessage( true );
+		$s = $this->getHTMLContent();
 
 		if ( $wgShowDBErrorBacktrace ) {
-			$s .= '<p>Backtrace:</p><p>' . nl2br( htmlspecialchars( $this->getTraceAsString() ) );
+			$s .= '<p>Backtrace:</p><p>' .
+				nl2br( htmlspecialchars( $this->getTraceAsString() ) ) . '</p>';
 		}
 
 		return $s;
+	}
+
+	/**
+	 * @return string
+	 */
+	protected function getTextContent() {
+		return $this->getMessage();
+	}
+
+	/**
+	 * @return string
+	 */
+	protected function getHTMLContent() {
+		return '<p>' . nl2br( htmlspecialchars( $this->getMessage() ) ) . '</p>';
 	}
 }
 
@@ -96,11 +99,12 @@ class DBConnectionError extends DBError {
 
 		if ( trim( $error ) != '' ) {
 			$msg .= ": $error";
+		} elseif ( $db ) {
+			$error = $this->db->getServer();
 		}
 
-		$this->error = $error;
-
 		parent::__construct( $db, $msg );
+		$this->error = $error;
 	}
 
 	/**
@@ -141,39 +145,51 @@ class DBConnectionError extends DBError {
 	 * @return string
 	 */
 	function getPageTitle() {
-		global $wgSitename;
-		return htmlspecialchars( $this->msg( 'dberr-header', "$wgSitename has a problem" ) );
+		return $this->msg( 'dberr-header', 'This wiki has a problem' );
 	}
 
 	/**
 	 * @return string
 	 */
 	function getHTML() {
-		global $wgShowDBErrorBacktrace;
+		global $wgShowDBErrorBacktrace, $wgShowHostnames, $wgShowSQLErrors;
 
-		$sorry = htmlspecialchars( $this->msg( 'dberr-problems', 'Sorry! This site is experiencing technical difficulties.' ) );
+		$sorry = htmlspecialchars( $this->msg( 'dberr-problems', "Sorry!\nThis site is experiencing technical difficulties." ) );
 		$again = htmlspecialchars( $this->msg( 'dberr-again', 'Try waiting a few minutes and reloading.' ) );
-		$info = htmlspecialchars( $this->msg( 'dberr-info', '(Can\'t contact the database server: $1)' ) );
+
+		if ( $wgShowHostnames || $wgShowSQLErrors ) {
+			$info = str_replace(
+				'$1', Html::element( 'span', array( 'dir' => 'ltr' ), $this->error ),
+				htmlspecialchars( $this->msg( 'dberr-info', '(Cannot contact the database server: $1)' ) )
+			);
+		} else {
+			$info = htmlspecialchars( $this->msg( 'dberr-info-hidden', '(Cannot contact the database server)' ) );
+		}
 
 		# No database access
 		MessageCache::singleton()->disable();
 
-		if ( trim( $this->error ) == '' && $this->db ) {
-			$this->error = $this->db->getProperty( 'mServer' );
-		}
-
-		$this->error = Html::element( 'span', array( 'dir' => 'ltr' ), $this->error );
-
-		$noconnect = "<h1>$sorry</h1><p>$again</p><p><small>$info</small></p>";
-		$text = str_replace( '$1', $this->error, $noconnect );
+		$text = "<h1>$sorry</h1><p>$again</p><p><small>$info</small></p>";
 
 		if ( $wgShowDBErrorBacktrace ) {
-			$text .= '<p>Backtrace:</p><p>' . nl2br( htmlspecialchars( $this->getTraceAsString() ) );
+			$text .= '<p>Backtrace:</p><p>' .
+				nl2br( htmlspecialchars( $this->getTraceAsString() ) ) . '</p>';
 		}
 
-		$extra = $this->searchForm();
+		$text .= '<hr />';
+		$text .= $this->searchForm();
 
-		return "$text<hr />$extra";
+		return $text;
+	}
+
+	protected function getTextContent() {
+		global $wgShowHostnames, $wgShowSQLErrors;
+
+		if ( $wgShowHostnames || $wgShowSQLErrors ) {
+			return $this->getMessage();
+		} else {
+			return 'DB connection error';
+		}
 	}
 
 	public function reportHTML() {
@@ -302,42 +318,6 @@ class DBQueryError extends DBError {
 	}
 
 	/**
-	 * @param $html string
-	 * @return string
-	 */
-	function getContentMessage( $html ) {
-		if ( $this->useMessageCache() ) {
-			if ( $html ) {
-				$msg = 'dberrortext';
-				$sql = htmlspecialchars( $this->getSQL() );
-				$fname = htmlspecialchars( $this->fname );
-				$error = htmlspecialchars( $this->error );
-			} else {
-				$msg = 'dberrortextcl';
-				$sql = $this->getSQL();
-				$fname = $this->fname;
-				$error = $this->error;
-			}
-			return wfMessage( $msg )->rawParams( $sql, $fname, $this->errno, $error )->text();
-		} else {
-			return parent::getContentMessage( $html );
-		}
-	}
-
-	/**
-	 * @return String
-	 */
-	function getSQL() {
-		global $wgShowSQLErrors;
-
-		if ( !$wgShowSQLErrors ) {
-			return $this->msg( 'sqlhidden', 'SQL hidden' );
-		} else {
-			return $this->sql;
-		}
-	}
-
-	/**
 	 * @return bool
 	 */
 	function getLogMessage() {
@@ -351,6 +331,94 @@ class DBQueryError extends DBError {
 	function getPageTitle() {
 		return $this->msg( 'databaseerror', 'Database error' );
 	}
+
+	/**
+	 * @return string
+	 */
+	protected function getHTMLContent() {
+		$key = 'databaseerror-text';
+		$s = Html::element( 'p', array(), $this->msg( $key, $this->getFallbackMessage( $key ) ) );
+
+		$details = $this->getTechnicalDetails();
+		if ( $details ) {
+			$s .= '<ul>';
+			foreach ( $details as $key => $detail ) {
+				$s .= str_replace(
+					'$1', call_user_func_array( 'Html::element', $detail ),
+					Html::element( 'li', array(),
+						$this->msg( $key, $this->getFallbackMessage( $key ) )
+					)
+				);
+			}
+			$s .= '</ul>';
+		}
+
+		return $s;
+	}
+
+	/**
+	 * @return string
+	 */
+	protected function getTextContent() {
+		$key = 'databaseerror-textcl';
+		$s = $this->msg( $key, $this->getFallbackMessage( $key ) ) . "\n";
+
+		foreach ( $this->getTechnicalDetails() as $key => $detail ) {
+			$s .= $this->msg( $key, $this->getFallbackMessage( $key ), $detail[2] ) . "\n";
+		}
+
+		return $s;
+	}
+
+	/**
+	 * Make a list of technical details that can be shown to the user. This information can
+	 * aid in debugging yet may be useful to an attacker trying to exploit a security weakness
+	 * in the software or server configuration.
+	 *
+	 * Thus no such details are shown by default, though if $wgShowHostnames is true, only the
+	 * full SQL query is hidden; in fact, the error message often does contain a hostname, and
+	 * sites using this option probably don't care much about "security by obscurity". Of course,
+	 * if $wgShowSQLErrors is true, the SQL query *is* shown.
+	 *
+	 * @return array: Keys are message keys; values are arrays of arguments for Html::element().
+	 *   Array will be empty if users are not allowed to see any of these details at all.
+	 */
+	protected function getTechnicalDetails() {
+		global $wgShowHostnames, $wgShowSQLErrors;
+
+		$attribs = array( 'dir' => 'ltr' );
+		$details = array();
+
+		if ( $wgShowSQLErrors ) {
+			$details['databaseerror-query'] = array(
+				'div', array( 'class' => 'mw-code' ) + $attribs, $this->sql );
+		}
+
+		if ( $wgShowHostnames || $wgShowSQLErrors ) {
+			$errorMessage = $this->errno . ' ' . $this->error;
+			$details['databaseerror-function'] = array( 'code', $attribs, $this->fname );
+			$details['databaseerror-error'] = array( 'samp', $attribs, $errorMessage );
+		}
+
+		return $details;
+	}
+
+	/**
+	 * @param string $key Message key
+	 * @return string: English message text
+	 */
+	private function getFallbackMessage( $key ) {
+		$messages = array(
+			'databaseerror-text' => 'A database query error has occurred.
+This may indicate a bug in the software.',
+			'databaseerror-textcl' => 'A database query error has occurred.',
+			'databaseerror-query' => 'Query: $1',
+			'databaseerror-function' => 'Function: $1',
+			'databaseerror-error' => 'Error: $1',
+		);
+		return $messages[$key];
+	}
+
 }
 
 /**

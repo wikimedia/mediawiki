@@ -285,6 +285,8 @@ production.
   can no longer be uploaded as an extension that we do know the mime type
   for.
 * (bug 51742) Add data-sort-value for better sorting of hitcounts Special:Tags
+* (bug 26811) On DB error pages, server hostnames are now hidden when both
+  $wgShowHostnames and $wgShowSQLErrors are false.
 
 === API changes in 1.22 ===
 * (bug 25553) The JSON output formatter now leaves forward slashes unescaped
