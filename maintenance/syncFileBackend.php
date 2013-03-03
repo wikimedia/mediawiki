@@ -39,6 +39,7 @@ class SyncFileBackend extends Maintenance {
 		$this->addOption( 'end', 'Ending journal ID', false, true );
 		$this->addOption( 'posdir', 'Directory to read/record journal positions', false, true );
 		$this->addOption( 'posdump', 'Just dump current journal position into the position dir.' );
+		$this->addOption( 'postime', 'For position dumps, get the ID at this time', false, true );
 		$this->addOption( 'verbose', 'Verbose mode', false, false, 'v' );
 		$this->setBatchSize( 50 );
 	}
@@ -54,7 +55,11 @@ class SyncFileBackend extends Maintenance {
 			if ( !$this->hasOption( 'posdir' ) ) {
 				$this->error( "Param posdir required!", 1 );
 			}
-			$id = (int)$src->getJournal()->getCurrentPosition(); // default to 0
+			if ( $this->hasOption( 'postime' ) ) {
+				$id = (int)$src->getJournal()->getPositionAtTime( $this->getOption( 'postime' ) );
+			} else {
+				$id = (int)$src->getJournal()->getCurrentPosition();
+			}
 			$this->output( "Current journal position is $id.\n" );
 			if ( file_put_contents( $posFile, $id, LOCK_EX ) !== false ) {
 				$this->output( "Saved journal position file.\n" );
