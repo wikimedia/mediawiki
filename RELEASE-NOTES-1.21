@@ -196,6 +196,8 @@ production.
 * (bug 40326) Check if files exist with a different extension during uploading
 * (bug 34798) Updated CSS for Atom/RSS recent changes feeds to match on-wiki diffs.
 * (bug 42430) Calling numRows on MySQL no longer propagates unrelated errors.
+* (bug 44719) Removed mention of non-existing maintenance/migrateCurStubs.php
+  script in includes/DefaultSettings.php
 
 === API changes in 1.21 ===
 * prop=revisions can now report the contentmodel and contentformat.
