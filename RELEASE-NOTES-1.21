@@ -295,13 +295,21 @@ changes to languages because of Bugzilla reports.
   Vector extension (and possibly disable its features using config settings if
   you don't want them).
 * Experimental IBM DB2 support was removed due to lack of interest and maintainership
-* BREAKING CHANGE: Filenames of maintenance scripts were standardized into lowerCamelCase
-  format, and made more explicit: clear_stats.php -> clearCacheStats.php; 
-  clear_interwiki_cache.php -> clearInterwikiCache.php; initStats.php -> initSiteStats.php;
-  proxy_check.php -> proxyCheck.php; stats.php -> showCacheStats.php;
-  showStats.php -> showSiteStats.php. Class names were renamed accordingly:
-  clear_stats -> ClearCacheStats; InitStats -> InitSiteStats; CacheStats -> ShowCacheStats
-  ShowStats -> ShowSiteStats.
+* BREAKING CHANGE: Filenames of maintenance scripts were standardized into
+  lowerCamelCase format, and made more explicit:
+  - clear_stats.php -> clearCacheStats.php
+  - clear_interwiki_cache.php -> clearInterwikiCache.php
+  - initStats.php -> initSiteStats.php
+  - proxy_check.php -> proxyCheck.php
+  - stats.php -> showCacheStats.php
+  - showStats.php -> showSiteStats.php.
+  Class names were renamed accordingly:
+  - clear_stats -> ClearCacheStats
+  - InitStats -> InitSiteStats
+  - CacheStats -> ShowCacheStats
+  - ShowStats -> ShowSiteStats.
+* BREAKING CHANGE: (bug 38244) Removed the mediawiki.api.titleblacklist module
+  and moved it to the TitleBlacklist extension.
 
 == Compatibility ==
 

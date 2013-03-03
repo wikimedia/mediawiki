@@ -595,13 +595,6 @@ return array(
 		'scripts' => 'resources/mediawiki.api/mediawiki.api.parse.js',
 		'dependencies' => 'mediawiki.api',
 	),
-	'mediawiki.api.titleblacklist' => array(
-		'scripts' => 'resources/mediawiki.api/mediawiki.api.titleblacklist.js',
-		'dependencies' => array(
-			'mediawiki.api',
-			'mediawiki.Title',
-		),
-	),
 	'mediawiki.api.watch' => array(
 		'scripts' => 'resources/mediawiki.api/mediawiki.api.watch.js',
 		'dependencies' => array(
