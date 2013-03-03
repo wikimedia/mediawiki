@@ -570,7 +570,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		$js = '';
 		foreach ( array_unique( $scripts ) as $fileName ) {
 			$localPath = $this->getLocalPath( $fileName );
-			if ( !file_exists( $localPath ) ) {
+			if ( !wfFileExists( $localPath ) ) {
 				throw new MWException( __METHOD__ . ": script file not found: \"$localPath\"" );
 			}
 			$contents = file_get_contents( $localPath );
@@ -627,7 +627,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 */
 	protected function readStyleFile( $path, $flip ) {
 		$localPath = $this->getLocalPath( $path );
-		if ( !file_exists( $localPath ) ) {
+		if ( !wfFileExists( $localPath ) ) {
 			$msg = __METHOD__ . ": style file not found: \"$localPath\"";
 			wfDebugLog( 'resourceloader', $msg );
 			throw new MWException( $msg );

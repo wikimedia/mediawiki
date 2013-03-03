@@ -82,7 +82,7 @@ class BitmapMetadataHandler {
 	 */
 	function getExif ( $filename, $byteOrder ) {
 		global $wgShowEXIF;
-		if ( file_exists( $filename ) && $wgShowEXIF ) {
+		if ( wfFileExists( $filename ) && $wgShowEXIF ) {
 			$exif = new Exif( $filename, $byteOrder );
 			$data = $exif->getFilteredData();
 			if ( $data ) {
@@ -261,7 +261,7 @@ class BitmapMetadataHandler {
 	 * @return Array The metadata.
 	 */
 	public static function Tiff ( $filename ) {
-		if ( file_exists( $filename ) ) {
+		if ( wfFileExists( $filename ) ) {
 			$byteOrder = self::getTiffByteOrder( $filename );
 			if ( !$byteOrder ) {
 				throw new MWException( "Error determining byte order of $filename" );

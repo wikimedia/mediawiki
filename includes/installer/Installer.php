@@ -481,7 +481,7 @@ abstract class Installer {
 		global $IP;
 
 		wfSuppressWarnings();
-		$_lsExists = file_exists( "$IP/LocalSettings.php" );
+		$_lsExists = wfFileExists( "$IP/LocalSettings.php" );
 		wfRestoreWarnings();
 
 		if( !$_lsExists ) {
@@ -491,7 +491,7 @@ abstract class Installer {
 
 		require( "$IP/includes/DefaultSettings.php" );
 		require( "$IP/LocalSettings.php" );
-		if ( file_exists( "$IP/AdminSettings.php" ) ) {
+		if ( wfFileExists( "$IP/AdminSettings.php" ) ) {
 			require( "$IP/AdminSettings.php" );
 		}
 		return get_defined_vars();
@@ -1192,7 +1192,7 @@ abstract class Installer {
 			$command = $path . DIRECTORY_SEPARATOR . $name;
 
 			wfSuppressWarnings();
-			$file_exists = file_exists( $command );
+			$file_exists = wfFileExists( $command );
 			wfRestoreWarnings();
 
 			if ( $file_exists ) {
@@ -1330,7 +1330,7 @@ abstract class Installer {
 			if( !is_dir( "$extDir/$file" ) ) {
 				continue;
 			}
-			if( file_exists( "$extDir/$file/$file.php" ) ) {
+			if( wfFileExists( "$extDir/$file/$file.php" ) ) {
 				$exts[] = $file;
 			}
 		}

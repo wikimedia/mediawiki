@@ -61,7 +61,7 @@ class JpegMetadataExtractor {
 		if ( !$filename ) {
 			throw new MWException( "No filename specified for " . __METHOD__ );
 		}
-		if ( !file_exists( $filename ) || is_dir( $filename ) ) {
+		if ( !wfFileExists( $filename ) || is_dir( $filename ) ) {
 			throw new MWException( "Invalid file $filename passed to " . __METHOD__ );
 		}
 

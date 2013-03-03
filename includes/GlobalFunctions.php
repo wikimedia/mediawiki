@@ -988,7 +988,7 @@ function wfErrorLog( $text, $file ) {
 		socket_close( $sock );
 	} else {
 		wfSuppressWarnings();
-		$exists = file_exists( $file );
+		$exists = wfFileExists( $file );
 		$size = $exists ? filesize( $file ) : false;
 		if ( !$exists || ( $size !== false && $size + strlen( $text ) < 0x7fffffff ) ) {
 			file_put_contents( $file, $text, FILE_APPEND );
@@ -2363,7 +2363,7 @@ function wfTempDir() {
 	$tmpDir = array_map( "getenv", array( 'TMPDIR', 'TMP', 'TEMP' ) );
 
 	foreach( $tmpDir as $tmp ) {
-		if( $tmp && file_exists( $tmp ) && is_dir( $tmp ) && is_writable( $tmp ) ) {
+		if( $tmp && wfFileExists( $tmp ) && is_dir( $tmp ) && is_writable( $tmp ) ) {
 			return $tmp;
 		}
 	}
@@ -2390,7 +2390,7 @@ function wfMkdirParents( $dir, $mode = null, $caller = null ) {
 		wfDebug( "$caller: called wfMkdirParents($dir)\n" );
 	}
 
-	if( strval( $dir ) === '' || file_exists( $dir ) ) {
+	if( strval( $dir ) === '' || wfFileExists( $dir ) ) {
 		return true;
 	}
 
@@ -2756,7 +2756,7 @@ function wfMerge( $old, $mine, $yours, &$result ) {
 	# This check may also protect against code injection in
 	# case of broken installations.
 	wfSuppressWarnings();
-	$haveDiff3 = $wgDiff3 && file_exists( $wgDiff3 );
+	$haveDiff3 = $wgDiff3 && wfFileExists( $wgDiff3 );
 	wfRestoreWarnings();
 
 	if( !$haveDiff3 ) {
@@ -2835,7 +2835,7 @@ function wfDiff( $before, $after, $params = '-u' ) {
 
 	global $wgDiff;
 	wfSuppressWarnings();
-	$haveDiff = $wgDiff && file_exists( $wgDiff );
+	$haveDiff = $wgDiff && wfFileExists( $wgDiff );
 	wfRestoreWarnings();
 
 	# This check may also protect against code injection in
@@ -3230,7 +3230,7 @@ function wfGetPrecompiledData( $name ) {
 	global $IP;
 
 	$file = "$IP/serialized/$name";
-	if ( file_exists( $file ) ) {
+	if ( wfFileExists( $file ) ) {
 		$blob = file_get_contents( $file );
 		if ( $blob ) {
 			return unserialize( $blob );
@@ -3345,6 +3345,58 @@ function wfGetLB( $wiki = false ) {
  */
 function &wfGetLBFactory() {
 	return LBFactory::singleton();
+}
+
+/**
+ * Check whether a file exists.
+ *
+ * Basically a wrapper for PHP's file_exists except
+ * that it handles cases with URLs as well.
+ */
+function wfFileExists( $filename ) {
+	$uri = new Uri( $filename );
+
+	// If not a valid URI, make one.
+	if ( !$uri->getComponents() ) {
+		$uri->setScheme( 'file' );
+		$uri->setPath( $filename );
+	}
+
+	switch ( $uri->getScheme() ) {
+		// For HTTP, we need to check if the URL 404s manually.
+		case 'http':
+			// Http::request returns false on error, but '' on success for HEAD.
+			return Http::request( 'head', $uri ) !== false;
+
+		// Internal PHP URIs that always exist.
+		case 'php':
+			return in_array(
+				$uri->getPath(),
+				array(
+					'stdin', 'stdout', 'stderr',
+					'input', 'output',
+					'fd', 'memory', 'temp',
+					'filter'
+				)
+			);
+
+		// Assume data and glob URIs exist.
+		case 'data':
+		case 'glob':
+			return true;
+
+		// For compression functions, treat it as a local file.
+		case 'zlib':
+		case 'compress.zlib':
+		case 'compress.bzip2':
+			$uri->setScheme( 'file' );
+		// For local files, fall back to PHP's file_exists/
+		case 'file':
+		case 'ftp':
+		case 'phar':
+		default:
+			return file_exists( $uri );
+	}
 }
 
 /**

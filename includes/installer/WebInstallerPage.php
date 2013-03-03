@@ -1271,7 +1271,7 @@ abstract class WebInstaller_Document extends WebInstallerPage {
 
 	public function getFileContents() {
 		$file = __DIR__ . '/../../' . $this->getFileName();
-		if( ! file_exists( $file ) ) {
+		if( ! wfFileExists( $file ) ) {
 			return wfMessage( 'config-nofile', $file )->plain();
 		}
 		return file_get_contents( $file );

@@ -642,7 +642,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 */
 	public function getSchemaPath() {
 		global $IP;
-		if ( file_exists( "$IP/maintenance/" . $this->getType() . "/tables.sql" ) ) {
+		if ( wfFileExists( "$IP/maintenance/" . $this->getType() . "/tables.sql" ) ) {
 			return "$IP/maintenance/" . $this->getType() . "/tables.sql";
 		} else {
 			return "$IP/maintenance/tables.sql";
@@ -3344,7 +3344,7 @@ abstract class DatabaseBase implements DatabaseType {
 		global $IP;
 
 		$dbType = $this->getType();
-		if ( file_exists( "$IP/maintenance/$dbType/archives/$patch" ) ) {
+		if ( wfFileExists( "$IP/maintenance/$dbType/archives/$patch" ) ) {
 			return "$IP/maintenance/$dbType/archives/$patch";
 		} else {
 			return "$IP/maintenance/archives/$patch";

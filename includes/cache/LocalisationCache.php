@@ -422,7 +422,7 @@ class LocalisationCache {
 
 		# Recache the data if necessary
 		if ( !$this->manualRecache && $this->isExpired( $code ) ) {
-			if ( file_exists( Language::getMessagesFileName( $code ) ) ) {
+			if ( wfFileExists( Language::getMessagesFileName( $code ) ) ) {
 				$this->recache( $code );
 			} elseif ( $code === 'en' ) {
 				throw new MWException( 'MessagesEn.php is missing.' );
@@ -526,7 +526,7 @@ class LocalisationCache {
 			$mwPlural = "$IP/languages/data/plurals-mediawiki.xml";
 			// Load CLDR plural rules
 			$this->loadPluralFile( $cldrPlural );
-			if ( file_exists( $mwPlural ) ) {
+			if ( wfFileExists( $mwPlural ) ) {
 				// Override or extend
 				$this->loadPluralFile( $mwPlural );
 			}
@@ -569,7 +569,7 @@ class LocalisationCache {
 		global $IP;
 
 		$fileName = Language::getMessagesFileName( $code );
-		if ( !file_exists( $fileName ) ) {
+		if ( !wfFileExists( $fileName ) ) {
 			return false;
 		}
 
@@ -1112,7 +1112,7 @@ class LCStore_CDB implements LCStore {
 		if ( !isset( $this->readers[$code] ) ) {
 			$fileName = $this->getFileName( $code );
 
-			if ( !file_exists( $fileName ) ) {
+			if ( !wfFileExists( $fileName ) ) {
 				$this->readers[$code] = false;
 			} else {
 				$this->readers[$code] = CdbReader::open( $fileName );
@@ -1132,7 +1132,7 @@ class LCStore_CDB implements LCStore {
 	}
 
 	public function startWrite( $code ) {
-		if ( !file_exists( $this->directory ) ) {
+		if ( !wfFileExists( $this->directory ) ) {
 			if ( !wfMkdirParents( $this->directory, null, __METHOD__ ) ) {
 				throw new MWException( "Unable to create the localisation store " .
 					"directory \"{$this->directory}\"" );

@@ -537,7 +537,7 @@ abstract class MediaHandler {
 	 * @return bool True if removed, false otherwise
 	 */
 	function removeBadFile( $dstPath, $retval = 0 ) {
-		if( file_exists( $dstPath ) ) {
+		if( wfFileExists( $dstPath ) ) {
 			$thumbstat = stat( $dstPath );
 			if( $thumbstat['size'] == 0 || $retval != 0 ) {
 				$result = unlink( $dstPath );

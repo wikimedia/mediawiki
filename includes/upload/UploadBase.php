@@ -835,7 +835,7 @@ abstract class UploadBase {
 	 * on exit to clean up.
 	 */
 	public function cleanupTempFile() {
-		if ( $this->mRemoveTempFile && $this->mTempPath && file_exists( $this->mTempPath ) ) {
+		if ( $this->mRemoveTempFile && $this->mTempPath && wfFileExists( $this->mTempPath ) ) {
 			wfDebug( __METHOD__ . ": Removing temporary file {$this->mTempPath}\n" );
 			unlink( $this->mTempPath );
 		}

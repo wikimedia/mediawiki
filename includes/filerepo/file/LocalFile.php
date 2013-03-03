@@ -740,7 +740,7 @@ class LocalFile extends File {
 			// Rename to broken-*
 			for ( $i = 0; $i < 100; $i++ ) {
 				$broken = $this->repo->getZonePath( 'public' ) . "/broken-$i-$thumbName";
-				if ( !file_exists( $broken ) ) {
+				if ( !wfFileExists( $broken ) ) {
 					rename( $thumbPath, $broken );
 					break;
 				}

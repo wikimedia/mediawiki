@@ -164,7 +164,7 @@ class FSFileBackend extends FileBackendStore {
 		}
 		$parentDir = dirname( $fsPath );
 
-		if ( file_exists( $fsPath ) ) {
+		if ( wfFileExists( $fsPath ) ) {
 			$ok = is_file( $fsPath ) && is_writable( $fsPath );
 		} else {
 			$ok = is_dir( $parentDir ) && is_writable( $parentDir );
@@ -491,7 +491,7 @@ class FSFileBackend extends FileBackendStore {
 		$contRoot = $this->containerFSRoot( $shortCont, $fullCont ); // must be valid
 		$dir = ( $dirRel != '' ) ? "{$contRoot}/{$dirRel}" : $contRoot;
 		// Seed new directories with a blank index.html, to prevent crawling...
-		if ( !empty( $params['noListing'] ) && !file_exists( "{$dir}/index.html" ) ) {
+		if ( !empty( $params['noListing'] ) && !wfFileExists( "{$dir}/index.html" ) ) {
 			$this->trapWarnings();
 			$bytes = file_put_contents( "{$dir}/index.html", $this->indexHtmlPrivate() );
 			$this->untrapWarnings();
@@ -500,7 +500,7 @@ class FSFileBackend extends FileBackendStore {
 			}
 		}
 		// Add a .htaccess file to the root of the container...
-		if ( !empty( $params['noAccess'] ) && !file_exists( "{$contRoot}/.htaccess" ) ) {
+		if ( !empty( $params['noAccess'] ) && !wfFileExists( "{$contRoot}/.htaccess" ) ) {
 			$this->trapWarnings();
 			$bytes = file_put_contents( "{$contRoot}/.htaccess", $this->htaccessPrivate() );
 			$this->untrapWarnings();
