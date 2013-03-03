@@ -2364,9 +2364,6 @@ $wgBrowserBlackList = array(
  * requires that the cur table be kept around for those revisions
  * to remain viewable.
  *
- * maintenance/migrateCurStubs.php can be used to complete the
- * migration in the background once the wiki is back online.
- *
  * This option affects the updaters *only*. Any present cur stub
  * revisions will be readable at runtime regardless of this setting.
  */
