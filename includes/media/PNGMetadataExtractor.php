@@ -78,7 +78,7 @@ class PNGMetadataExtractor {
 
 		if ( !$filename ) {
 			throw new Exception( __METHOD__ . ": No file name specified" );
-		} elseif ( !file_exists( $filename ) || is_dir( $filename ) ) {
+		} elseif ( !wfFileExists( $filename ) || is_dir( $filename ) ) {
 			throw new Exception( __METHOD__ . ": File $filename does not exist" );
 		}
 

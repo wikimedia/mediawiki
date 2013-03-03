@@ -41,7 +41,7 @@ class SpecialUnlockdb extends FormSpecialPage {
 
 		parent::checkExecutePermissions( $user );
 		# If the lock file isn't writable, we can do sweet bugger all
-		if ( !file_exists( $wgReadOnlyFile ) ) {
+		if ( !wfFileExists( $wgReadOnlyFile ) ) {
 			throw new ErrorPageError( 'lockdb', 'databasenotlocked' );
 		}
 	}

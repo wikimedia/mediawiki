@@ -545,7 +545,7 @@ class BitmapHandler extends ImageHandler {
 			return $this->getMediaTransformError( $params, $errMsg );
 		}
 
-		if ( !file_exists( $params['srcPath'] ) ) {
+		if ( !wfFileExists( $params['srcPath'] ) ) {
 			$err = "File seems to be missing: {$params['srcPath']}";
 			wfDebug( "$err\n" );
 			$errMsg = wfMessage( 'thumbnail_image-missing', $params['srcPath'] )->text();

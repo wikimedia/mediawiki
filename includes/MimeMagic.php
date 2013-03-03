@@ -979,7 +979,7 @@ class MimeMagic {
 
 		// Special code for ogg - detect if it's video (theora),
 		// else label it as sound.
-		if ( $mime == 'application/ogg' && file_exists( $path ) ) {
+		if ( $mime == 'application/ogg' && wfFileExists( $path ) ) {
 
 			// Read a chunk of the file
 			$f = fopen( $path, "rt" );
