@@ -30,8 +30,6 @@ div#content {
 	/* Border on top, left, and bottom side */
 	border: 1px solid #a7d7f9;
 	border-right-width: 0;
-	/* Merge the border with tabs' one (in their background image) */
-	margin-top: -1px;
 	background-color: white;
 	color: black;
 	direction: ltr;
