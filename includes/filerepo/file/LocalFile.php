@@ -1083,7 +1083,7 @@ class LocalFile extends File {
 		$options = array();
 		$handler = MediaHandler::getHandler( $props['mime'] );
 		if ( $handler ) {
-			$options['headers'] = $handler->getStreamHeaders( $props['metadata'] );
+			$options['headers'] = $handler->getStreamHeaders( $props['metadata'], $this );
 		} else {
 			$options['headers'] = array();
 		}

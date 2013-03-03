@@ -249,10 +249,18 @@ abstract class MediaHandler {
 	/**
 	 * Get useful response headers for GET/HEAD requests for a file with the given metadata
 	 * @param $metadata mixed Result of the getMetadata() function of this handler for a file
+	 * @param File $file Optional file object to retrieve additional metadata from
 	 * @return Array
 	 */
-	public function getStreamHeaders( $metadata ) {
-		return array();
+	public function getStreamHeaders( $metadata, File $file = null ) {
+		if ( $file !== null ) {
+			return array(
+				'Content-Length' => $file->getSize(),
+				'Content-Type' => $file->getMimeType(),
+			);
+		} else {
+			return array();
+		}
 	}
 
 	/**
