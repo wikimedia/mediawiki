@@ -96,11 +96,12 @@ class DBConnectionError extends DBError {
 
 		if ( trim( $error ) != '' ) {
 			$msg .= ": $error";
+		} else {
+			$error = $this->db->getServer();
 		}
 
-		$this->error = $error;
-
 		parent::__construct( $db, $msg );
+		$this->error = $error;
 	}
 
 	/**
@@ -141,39 +142,40 @@ class DBConnectionError extends DBError {
 	 * @return string
 	 */
 	function getPageTitle() {
-		global $wgSitename;
-		return htmlspecialchars( $this->msg( 'dberr-header', "$wgSitename has a problem" ) );
+		return $this->msg( 'dberr-header', 'This wiki has a problem' );
 	}
 
 	/**
 	 * @return string
 	 */
 	function getHTML() {
-		global $wgShowDBErrorBacktrace;
+		global $wgShowDBErrorBacktrace, $wgShowHostnames, $wgShowSQLErrors;
 
 		$sorry = htmlspecialchars( $this->msg( 'dberr-problems', 'Sorry! This site is experiencing technical difficulties.' ) );
 		$again = htmlspecialchars( $this->msg( 'dberr-again', 'Try waiting a few minutes and reloading.' ) );
-		$info  = htmlspecialchars( $this->msg( 'dberr-info', '(Can\'t contact the database server: $1)' ) );
+
+		if ( $wgShowHostnames || $wgShowSQLErrors ) {
+			$info = str_replace(
+				'$1', Html::element( 'span', array( 'dir' => 'ltr' ), $this->error ),
+				htmlspecialchars( $this->msg( 'dberr-info', '(Cannot contact the database server: $1)' ) )
+			);
+		} else {
+			$info = htmlspecialchars( $this->msg( 'dberr-info-hidden', '(Cannot contact the database server)' ) );
+		}
 
 		# No database access
 		MessageCache::singleton()->disable();
 
-		if ( trim( $this->error ) == '' ) {
-			$this->error = $this->db->getProperty( 'mServer' );
-		}
-
-		$this->error = Html::element( 'span', array( 'dir' => 'ltr' ), $this->error );
-
-		$noconnect = "<h1>$sorry</h1><p>$again</p><p><small>$info</small></p>";
-		$text = str_replace( '$1', $this->error, $noconnect );
+		$text = "<h1>$sorry</h1><p>$again</p><p><small>$info</small></p>";
 
 		if ( $wgShowDBErrorBacktrace ) {
 			$text .= '<p>Backtrace:</p><p>' . nl2br( htmlspecialchars( $this->getTraceAsString() ) );
 		}
 
-		$extra = $this->searchForm();
+		$text .= '<hr />';
+		$text .= $this->searchForm();
 
-		return "$text<hr />$extra";
+		return $text;
 	}
 
 	public function reportHTML() {
@@ -306,7 +308,12 @@ class DBQueryError extends DBError {
 	 * @return string
 	 */
 	function getContentMessage( $html ) {
+		global $wgShowHostnames, $wgShowSQLErrors;
+
 		if ( $this->useMessageCache() ) {
+			if ( !$wgShowHostnames && !$wgShowSQLErrors ) {
+				return wfMessage( $html ? 'dberrortext-hidden' : 'dberrortextcl-hidden' )->text();
+			}
 			if ( $html ) {
 				$msg = 'dberrortext';
 				$sql = htmlspecialchars( $this->getSQL() );

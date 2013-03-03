@@ -983,11 +983,14 @@ The last attempted database query was:
 <blockquote><code>$1</code></blockquote>
 from within function "<code>$2</code>".
 Database returned error "<samp>$3: $4</samp>".',
+'dberrortext-hidden'            => 'A database query syntax error has occurred.
+This may indicate a bug in the software.',
 'dberrortextcl'                 => 'A database query syntax error has occurred.
 The last attempted database query was:
 "$1"
 from within function "$2".
 Database returned error "$3: $4"',
+'dberrortextcl-hidden'          => 'A database query syntax error has occurred.',
 'laggedslavemode'               => "'''Warning:''' Page may not contain recent updates.",
 'readonly'                      => 'Database locked',
 'enterlockreason'               => 'Enter a reason for the lock, including an estimate of when the lock will be released',
@@ -4847,6 +4850,7 @@ Images are shown in full resolution, other file types are started with their ass
 This site is experiencing technical difficulties.',
 'dberr-again'       => 'Try waiting a few minutes and reloading.',
 'dberr-info'        => '(Cannot contact the database server: $1)',
+'dberr-info-hidden' => '(Cannot contact the database server)',
 'dberr-usegoogle'   => 'You can try searching via Google in the meantime.',
 'dberr-outofdate'   => 'Note that their indexes of our content may be out of date.',
 'dberr-cachederror' => 'This is a cached copy of the requested page, and may not be up to date.',

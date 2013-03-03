@@ -192,6 +192,8 @@ production.
   extensions) performed using Git 1.7.8+ should now appear.
 * (bug 42184) $wgUploadSizeWarning missing second variable
 * (bug 40326) Check if files exist with a different extension during uploading
+* (bug 26811) On most database error pages, server IP addresses are now hidden
+  from view when both $wgShowHostnames and $wgShowSQLErrors are false.
 
 === API changes in 1.21 ===
 * prop=revisions can now report the contentmodel and contentformat.
