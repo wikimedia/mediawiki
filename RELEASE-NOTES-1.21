@@ -187,6 +187,8 @@ production.
   "password mismatch" error.
 * (bug 44599) On Special:Version, HEADs for submodule checkouts (e.g. for
   extensions) performed using Git 1.7.8+ should now appear.
+* (bug 26811) On database error pages, server IP addresses are now hidden
+  from view (in most cases) when $wgShowHostnames is false.
 
 === API changes in 1.21 ===
 * prop=revisions can now report the contentmodel and contentformat.
