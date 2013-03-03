@@ -181,7 +181,7 @@ function setupTestResources( $testResourceName, $testSqlFile, $testImageZip ) {
 
 	// create test image dir
 	$testUploadPath = getTestUploadPathFromResourceName( $testResourceName );
-	if ( !file_exists( $testUploadPath ) ) {
+	if ( !wfFileExists( $testUploadPath ) ) {
 		mkdir( $testUploadPath );
 	}
 
@@ -200,7 +200,7 @@ function teardownTestResources( $testResourceName ) {
 
 	$testUploadPath = getTestUploadPathFromResourceName( $testResourceName );
 	// remove test image dir
-	if ( file_exists( $testUploadPath ) ) {
+	if ( wfFileExists( $testUploadPath ) ) {
 		wfRecursiveRemoveDir( $testUploadPath );
 	}
 }

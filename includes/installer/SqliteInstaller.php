@@ -183,7 +183,7 @@ class SqliteInstaller extends DatabaseInstaller {
 		$dir = $this->getVar( 'wgSQLiteDataDir' );
 		$dbName = $this->getVar( 'wgDBname' );
 		// Don't create the data file yet
-		if ( !file_exists( DatabaseSqlite::generateFileName( $dir, $dbName ) ) ) {
+		if ( !wfFileExists( DatabaseSqlite::generateFileName( $dir, $dbName ) ) ) {
 			return false;
 		}
 
@@ -206,7 +206,7 @@ class SqliteInstaller extends DatabaseInstaller {
 
 		$db = $this->getVar( 'wgDBname' );
 		$file = DatabaseSqlite::generateFileName( $dir, $db );
-		if ( file_exists( $file ) ) {
+		if ( wfFileExists( $file ) ) {
 			if ( !is_writable( $file ) ) {
 				return Status::newFatal( 'config-sqlite-readonly', $file );
 			}

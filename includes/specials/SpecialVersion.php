@@ -684,7 +684,7 @@ class SpecialVersion extends SpecialPage {
 		// http://svnbook.red-bean.com/nightly/en/svn.developer.insidewc.html
 		$entries = $dir . '/.svn/entries';
 
-		if( !file_exists( $entries ) ) {
+		if( !wfFileExists( $entries ) ) {
 			return false;
 		}
 

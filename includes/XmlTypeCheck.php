@@ -72,7 +72,7 @@ class XmlTypeCheck {
 
 		xml_set_element_handler( $parser, array( $this, 'rootElementOpen' ), false );
 
-		if ( file_exists( $fname ) ) {
+		if ( wfFileExists( $fname ) ) {
 			$file = fopen( $fname, "rb" );
 			if ( $file ) {
 				do {

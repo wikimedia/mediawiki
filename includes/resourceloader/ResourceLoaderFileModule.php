@@ -566,7 +566,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		$js = '';
 		foreach ( array_unique( $scripts ) as $fileName ) {
 			$localPath = $this->getLocalPath( $fileName );
-			if ( !file_exists( $localPath ) ) {
+			if ( !wfFileExists( $localPath ) ) {
 				throw new MWException( __METHOD__.": script file not found: \"$localPath\"" );
 			}
 			$contents = file_get_contents( $localPath );
@@ -623,7 +623,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 */
 	protected function readStyleFile( $path, $flip ) {
 		$localPath = $this->getLocalPath( $path );
-		if ( !file_exists( $localPath ) ) {
+		if ( !wfFileExists( $localPath ) ) {
 			$msg = __METHOD__.": style file not found: \"$localPath\"";
 			wfDebugLog( 'resourceloader', $msg );
 			throw new MWException( $msg );
@@ -656,7 +656,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @return int UNIX timestamp, or 1 if the file doesn't exist
 	 */
 	protected static function safeFilemtime( $filename ) {
-		if ( file_exists( $filename ) ) {
+		if ( wfFileExists( $filename ) ) {
 			return filemtime( $filename );
 		} else {
 			// We only ever map this function on an array if we're gonna call max() after,

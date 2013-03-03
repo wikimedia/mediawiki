@@ -73,7 +73,7 @@ class CSSMin {
 					: '' ) . "{$match['file'][0]}";
 
 				// Only proceed if we can access the file
-				if ( !is_null( $path ) && file_exists( $file ) ) {
+				if ( !is_null( $path ) && wfFileExists( $file ) ) {
 					$files[] = $file;
 				}
 			}
@@ -169,7 +169,7 @@ class CSSMin {
 
 			$replacement = false;
 
-			if ( $local !== false && file_exists( $file ) ) {
+			if ( $local !== false && wfFileExists( $file ) ) {
 				// Add version parameter as a time-stamp in ISO 8601 format,
 				// using Z for the timezone, meaning GMT
 				$url .= '?' . gmdate( 'Y-m-d\TH:i:s\Z', round( filemtime( $file ), -2 ) );

@@ -732,7 +732,7 @@ class WikiImporter {
 
 		if ( $this->mImageBasePath && isset( $uploadInfo['rel'] ) ) {
 			$path = "{$this->mImageBasePath}/{$uploadInfo['rel']}";
-			if ( file_exists( $path ) ) {
+			if ( wfFileExists( $path ) ) {
 				$uploadInfo['fileSrc'] = $path;
 				$uploadInfo['isTempSrc'] = false;
 			}

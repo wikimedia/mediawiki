@@ -203,7 +203,7 @@ class Fallback {
 		$pathArray = explode( PATH_SEPARATOR, get_include_path() );
 		foreach ( $pathArray as $path ) {
 			$fullFilename = $path . DIRECTORY_SEPARATOR . $filename;
-			if ( file_exists( $fullFilename ) ) {
+			if ( wfFileExists( $fullFilename ) ) {
 				return $fullFilename;
 			}
 		}

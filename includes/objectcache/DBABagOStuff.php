@@ -83,7 +83,7 @@ class DBABagOStuff extends BagOStuff {
 	 * @return resource
 	 */
 	protected function getReader() {
-		if ( file_exists( $this->mFile ) ) {
+		if ( wfFileExists( $this->mFile ) ) {
 			$handle = dba_open( $this->mFile, 'rl', $this->mHandler );
 		} else {
 			$handle = $this->getWriter();
