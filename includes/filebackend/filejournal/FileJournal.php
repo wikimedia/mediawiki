@@ -126,6 +126,23 @@ abstract class FileJournal {
 	abstract protected function doGetCurrentPosition();
 
 	/**
+	 * Get the position ID of the latest journal entry at some point in time
+	 *
+	 * @param $time integer|string timestamp
+	 * @return integer|false
+	 */
+	final public function getPositionAtTime( $time ) {
+		return $this->doGetPositionAtTime( $time );
+	}
+
+	/**
+	 * @see FileJournal::getPositionAtTime()
+	 * @param $time integer|string timestamp
+	 * @return integer|false
+	 */
+	abstract protected function doGetPositionAtTime( $time );
+
+	/**
 	 * Get an array of file change log entries.
 	 * A starting change ID and/or limit can be specified.
 	 *
@@ -198,6 +215,15 @@ class NullFileJournal extends FileJournal {
 	 * @return integer|false
 	 */
 	protected function doGetCurrentPosition() {
+		return false;
+	}
+
+	/**
+	 * @see FileJournal::doGetPositionAtTime()
+	 * @param $time integer|string timestamp
+	 * @return integer|false
+	 */
+	protected function doGetPositionAtTime( $time ) {
 		return false;
 	}
 
