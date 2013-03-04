@@ -206,7 +206,12 @@ class SpecialLog extends SpecialPage {
 			'button',
 			array(
 				'type' => 'submit',
-				'class' => "deleterevision-log-submit mw-log-deleterevision-button"
+				'class' => array(
+					'deleterevision-log-submit',
+					'mw-log-deleterevision-button',
+					'mw-ui-button',
+					'mw-ui-primary'
+				)
 			),
 			$this->msg( 'showhideselectedlogentries' )->text()
 		) . "\n";
