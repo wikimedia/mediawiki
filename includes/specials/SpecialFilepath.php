@@ -47,7 +47,7 @@ class SpecialFilepath extends SpecialPage {
 			$file = wfFindFile( $title );
 
 			if ( $file && $file->exists() ) {
-				// Default behaviour: Use the direct link to the file.
+				// Default behavior: Use the direct link to the file.
 				$url = $file->getURL();
 				$width = $request->getInt( 'width', -1 );
 				$height = $request->getInt( 'height', -1 );

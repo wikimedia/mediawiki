@@ -346,8 +346,8 @@ Parameters:
 'listingcontinuesabbrev' => 'Shown in contiuation of each first letter group. This message follows the first letter.
 
 See http://test.wikipedia.org/wiki/Category:Test_ko?uselang={{SUBPAGENAME}}, for example.',
-'index-category' => 'Name of the [[mw:Help:Tracking categories|tracking category]] where pages with the <nowiki>__INDEX__</nowiki> behaviour switch are listed. For description of this behaviour switch see [[mw:Help:Magic_words#Behavior_switches|MediaWiki]].',
-'noindex-category' => 'Name of the [[mw:Help:Tracking categories|tracking category]] where pages with the <nowiki>__NOINDEX__</nowiki> behaviour switch are listed. For description of this behaviour switch see [[mw:Help:Magic_words#Behavior_switches|MediaWiki]].',
+'index-category' => 'Name of the [[mw:Help:Tracking categories|tracking category]] where pages with the <nowiki>__INDEX__</nowiki> behavior switch are listed. For description of this behavior switch see [[mw:Help:Magic_words#Behavior_switches|MediaWiki]].',
+'noindex-category' => 'Name of the [[mw:Help:Tracking categories|tracking category]] where pages with the <nowiki>__NOINDEX__</nowiki> behavior switch are listed. For description of this behavior switch see [[mw:Help:Magic_words#Behavior_switches|MediaWiki]].',
 'broken-file-category' => 'Name of [[mw:Help:Tracking categories|tracking category]] where pages that embed files that do not exist ("broken images") are listed.',
 'categoryviewer-pagedlinks' => '{{Optional}}
 The pagination links in category viewer. Parameters:

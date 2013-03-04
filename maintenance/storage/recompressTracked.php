@@ -523,7 +523,7 @@ class RecompressTracked {
 	 *
 	 * Write the new URL to the text table and set the bt_moved flag.
 	 *
-	 * This is done in a single transaction to provide restartable behaviour
+	 * This is done in a single transaction to provide restartable behavior
 	 * without data loss.
 	 *
 	 * The transaction is kept short to reduce locking.

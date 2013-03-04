@@ -437,7 +437,7 @@
 
 				// If the jQuery selector isn't found within the <ul>,
 				// or if nextnode was invalid or not passed at all,
-				// then just append it at the end of the <ul> (this is the default behaviour)
+				// then just append it at the end of the <ul> (this is the default behavior)
 				} else {
 					$ul.append( $item );
 				}

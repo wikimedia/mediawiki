@@ -302,7 +302,7 @@ class SpecialPage {
 	 *     be displayed by the default execute() method, without the global function ever
 	 *     being called.
 	 *
-	 *     If you override execute(), you can recover the default behaviour with userCanExecute()
+	 *     If you override execute(), you can recover the default behavior with userCanExecute()
 	 *     and displayRestrictionError()
 	 *
 	 * @param $name String: name of the special page, as seen in links and URLs
@@ -695,7 +695,7 @@ class SpecialPage {
 	 * also the name that will be listed in Special:Specialpages
 	 *
 	 * Derived classes can override this, but usually it is easier to keep the
-	 * default behaviour. Messages can be added at run-time, see
+	 * default behavior. Messages can be added at run-time, see
 	 * MessageCache.php.
 	 *
 	 * @return String
@@ -889,7 +889,7 @@ abstract class FormSpecialPage extends SpecialPage {
 	}
 
 	/**
-	 * Get the HTMLForm to control behaviour
+	 * Get the HTMLForm to control behavior
 	 * @return HTMLForm|null
 	 */
 	protected function getForm() {

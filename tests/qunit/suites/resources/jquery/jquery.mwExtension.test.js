@@ -40,7 +40,7 @@
 		assert.strictEqual( $.isEmpty( [] ), true, 'isEmpty: []' );
 		assert.strictEqual( $.isEmpty( {} ), true, 'isEmpty: {}' );
 
-		// Documented behaviour
+		// Documented behavior
 		assert.strictEqual( $.isEmpty( { length: 0 } ), true, 'isEmpty: { length: 0 }' );
 	} );
 

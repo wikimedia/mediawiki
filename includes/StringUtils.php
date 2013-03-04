@@ -110,7 +110,7 @@ class StringUtils {
 	 * memory. The delimiters are literal strings, not regular expressions.
 	 *
 	 * If the start delimiter ends with an initial substring of the end delimiter,
-	 * e.g. in the case of C-style comments, the behaviour differs from the model
+	 * e.g. in the case of C-style comments, the behavior differs from the model
 	 * regex. In this implementation, the end must share no characters with the
 	 * start, so e.g. /*\/ is not considered to be both the start and end of a
 	 * comment. /*\/xy/*\/ is considered to be a single comment with contents /xy/.

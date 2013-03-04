@@ -1327,7 +1327,7 @@ class Revision implements IDBAccessObject {
 
 		if ( $wgContentHandlerUseDB ) {
 			//NOTE: Store null for the default model and format, to save space.
-			//XXX: Makes the DB sensitive to changed defaults. Make this behaviour optional? Only in miser mode?
+			//XXX: Makes the DB sensitive to changed defaults. Make this behavior optional? Only in miser mode?
 
 			$model = $this->getContentModel();
 			$format = $this->getContentFormat();

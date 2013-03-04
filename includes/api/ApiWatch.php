@@ -46,7 +46,7 @@ class ApiWatch extends ApiBase {
 
 		$res = array( 'title' => $title->getPrefixedText() );
 
-		// Currently unnecessary, code to act as a safeguard against any change in current behaviour of uselang
+		// Currently unnecessary, code to act as a safeguard against any change in current behavior of uselang
 		// Copy from ApiParse
 		$oldLang = null;
 		if ( isset( $params['uselang'] ) && $params['uselang'] != $this->getContext()->getLanguage()->getCode() ) {

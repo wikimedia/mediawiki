@@ -388,7 +388,7 @@ abstract class FormAction extends Action {
 	protected function alterForm( HTMLForm $form ) {}
 
 	/**
-	 * Get the HTMLForm to control behaviour
+	 * Get the HTMLForm to control behavior
 	 * @return HTMLForm|null
 	 */
 	protected function getForm() {
@@ -439,7 +439,7 @@ abstract class FormAction extends Action {
 	 * some stuff underneath (history etc); to do some processing on submission of that
 	 * form (delete, protect, etc) and to do something exciting on 'success', be that
 	 * display something new or redirect to somewhere.  Some actions have more exotic
-	 * behaviour, but that's what subclassing is for :D
+	 * behavior, but that's what subclassing is for :D
 	 */
 	public function show() {
 		$this->setHeaders();

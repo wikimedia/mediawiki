@@ -1837,7 +1837,7 @@ $wgSessionsInMemcached = false;
 
 /**
  * Store sessions in an object cache, configured by $wgSessionCacheType. This
- * can be useful to improve performance, or to avoid the locking behaviour of
+ * can be useful to improve performance, or to avoid the locking behavior of
  * PHP's default session handler, which tends to prevent multiple requests for
  * the same user from acting concurrently.
  */
@@ -2207,7 +2207,7 @@ $wgUsePrivateIPs = false;
  * change it in their preferences.
  *
  * This also defines the language of pages in the wiki. The content is wrapped
- * in a html element with lang=XX attribute. This behaviour can be overriden
+ * in a html element with lang=XX attribute. This behavior can be overriden
  * via hooks, see Title::getPageLanguage.
  */
 $wgLanguageCode = 'en';
@@ -4971,7 +4971,7 @@ $wgEnableSearchContributorsByIP = true;
 
 /**
  * Path to the GNU diff3 utility. If the file doesn't exist, edit conflicts will
- * fall back to the old behaviour (no merging).
+ * fall back to the old behavior (no merging).
  */
 $wgDiff3 = '/usr/bin/diff3';
 

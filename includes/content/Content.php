@@ -335,7 +335,7 @@ interface Content {
 	 * target is hit in order to provide (hopefully) the Title of the final
 	 * destination instead of another redirect.
 	 *
-	 * There is usually no need to override the default behaviour, subclasses that
+	 * There is usually no need to override the default behavior, subclasses that
 	 * want to implement redirects should override getRedirectTarget().
 	 *
 	 * @since 1.21

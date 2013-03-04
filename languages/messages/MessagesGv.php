@@ -1154,7 +1154,7 @@ Shoh ny reaghaghyn roie da'n duillag '''$1''':",
 ** Removing content from pages
 ** Spamming links to external sites
 ** Inserting nonsense/gibberish into pages
-** Intimidating behaviour/harassment
+** Intimidating behavior/harassment
 ** Abusing multiple accounts
 * Oyr elley
 ** Ennym ymmydeyryn neuchooie

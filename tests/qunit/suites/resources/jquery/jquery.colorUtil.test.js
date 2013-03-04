@@ -17,7 +17,7 @@
 		assert.deepEqual( $.colorUtil.getRGB( '#eEe' ), [238, 238, 238], 'Hex string: 3 char mixed' );
 		assert.deepEqual( $.colorUtil.getRGB( 'rgba(0, 0, 0, 0)' ), [255, 255, 255], 'Zero rgba for Safari 3; Transparent (whitespace)' );
 
-		// Perhaps this is a bug in colorUtil, but it is the current behaviour so, let's keep
+		// Perhaps this is a bug in colorUtil, but it is the current behavior so, let's keep
 		// track of it, so we will know in case it would ever change.
 		assert.strictEqual( $.colorUtil.getRGB( 'rgba(0,0,0,0)' ), undefined, 'Zero rgba without whitespace' );
 

@@ -261,7 +261,7 @@ class SpecialSearch extends SpecialPage {
 		if( $textMatches && $textMatches->hasSuggestion() ) {
 			$st = SpecialPage::getTitleFor( 'Search' );
 
-			# mirror Go/Search behaviour of original request ..
+			# mirror Go/Search behavior of original request ..
 			$didYouMeanParams = array( 'search' => $textMatches->getSuggestionQuery() );
 
 			if( $this->fulltext != null ) {
