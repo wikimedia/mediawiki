@@ -1,5 +1,4 @@
 <?php
-
 /**
  * MediaWikiHelpFieldHintTestCase
  *
@@ -22,19 +21,15 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  * http://www.gnu.org/copyleft/gpl.html
- *
- * @addtogroup Maintenance
- *
  */
+
+require_once ( __DIR__ . '/MediaWikiInstallationCommonFunction.php' );
 
 /**
  * Test Case ID   : 29 (http://www.mediawiki.org/wiki/New_installer/Test_plan)
  * Test Case Name : Help field hint availability for the fields.
  * Version        : MediaWiki 1.18alpha
  */
-
-require_once ( __DIR__ . '/MediaWikiInstallationCommonFunction.php' );
-
 class MediaWikiHelpFieldHintTestCase extends MediaWikiInstallationCommonFunction {
 	function setUp() {
 		parent::setUp();
