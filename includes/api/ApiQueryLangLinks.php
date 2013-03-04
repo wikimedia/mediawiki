@@ -102,13 +102,15 @@ class ApiQueryLangLinks extends ApiQueryBase {
 				$this->setContinueEnumParameter( 'continue', "{$row->ll_from}|{$row->ll_lang}" );
 				break;
 			}
-			$entry = array( 'lang' => $row->ll_lang );
+			$langcode = $row->ll_lang;
+			$entry = array( 'lang' => $langcode );
 			if ( $params['url'] ) {
 				$title = Title::newFromText( "{$row->ll_lang}:{$row->ll_title}" );
 				if ( $title ) {
 					$entry['url'] = wfExpandUrl( $title->getFullURL(), PROTO_CURRENT );
 				}
 			}
+			$entry['langname'] = wfGetLangObj( $langcode )->fetchLanguageName( $langcode, $langcode );
 			ApiResult::setContent( $entry, $row->ll_title );
 			$fit = $this->addPageSubItem( $row->ll_from, $entry );
 			if ( !$fit ) {
@@ -160,6 +162,7 @@ class ApiQueryLangLinks extends ApiQueryBase {
 		return array(
 			'' => array(
 				'lang' => 'string',
+				'langname' => 'string',
 				'url' => array(
 					ApiBase::PROP_TYPE => 'string',
 					ApiBase::PROP_NULLABLE => true
