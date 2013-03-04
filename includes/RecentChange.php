@@ -263,7 +263,7 @@ class RecentChange {
 
 		# Notify external application via UDP
 		if ( !$noudp ) {
-			$this->notifyRC2UDP();
+			$this->notifyLiveFeeds();
 		}
 
 		# E-mail notifications
@@ -284,54 +284,90 @@ class RecentChange {
 		}
 	}
 
+	/**
+	 * @deprecated since 1.22, use notifyLiveFeeds instead.
+	 */
 	public function notifyRC2UDP() {
-		global $wgRC2UDPAddress, $wgRC2UDPOmitBots;
-		# Notify external application via UDP
-		# Omit RC_EXTERNAL changes: bots and tools can get these edits from the feed of the external wiki
-		if ( $wgRC2UDPAddress && $this->mAttribs['rc_type'] != RC_EXTERNAL &&
-			( !$this->mAttribs['rc_bot'] || !$wgRC2UDPOmitBots ) ) {
-			self::sendToUDP( $this->getIRCLine() );
-		}
+		wfDeprecated( __METHOD__, '1.22' );
+		$this->notifyLiveFeeds();
 	}
 
 	/**
 	 * Send some text to UDP.
-	 * @see RecentChange::cleanupForIRC
-	 * @param string $line text to send
-	 * @param string $address defaults to $wgRC2UDPAddress.
-	 * @param string $prefix defaults to $wgRC2UDPPrefix.
-	 * @param int $port defaults to $wgRC2UDPPort. (Since 1.17)
-	 * @return Boolean: success
+	 * @deprecated since 1.22
 	 */
 	public static function sendToUDP( $line, $address = '', $prefix = '', $port = '' ) {
-		global $wgRC2UDPAddress, $wgRC2UDPPrefix, $wgRC2UDPPort;
-		# Assume default for standard RC case
-		$address = $address ? $address : $wgRC2UDPAddress;
-		$prefix = $prefix ? $prefix : $wgRC2UDPPrefix;
-		$port = $port ? $port : $wgRC2UDPPort;
-		# Notify external application via UDP
-		if ( $address ) {
-			$conn = socket_create( AF_INET, SOCK_DGRAM, SOL_UDP );
-			if ( $conn ) {
-				$line = $prefix . $line;
-				wfDebug( __METHOD__ . ": sending UDP line: $line\n" );
-				socket_sendto( $conn, $line, strlen( $line ), 0, $address, $port );
-				socket_close( $conn );
-				return true;
-			} else {
-				wfDebug( __METHOD__ . ": failed to create UDP socket\n" );
-			}
-		}
-		return false;
+		global $wgRC2UDPPrefix, $wgRC2UDPInterwikiPrefix;
+		wfDeprecated( __METHOD__, '1.22' );
+
+		$engine = new UDPRCFeedEngine();
+		$feed = array(
+			'uri' => "udp://$address:$port/$wgRC2UDPPrefix",
+			'formatter' => 'IRCColourfulRCFeedFormatter',
+			'add_interwiki_prefix' => $wgRC2UDPInterwikiPrefix,
+		);
+
+		return $engine->send( $line, $feed, $prefix );
 	}
 
 	/**
-	 * Remove newlines, carriage returns and decode html entities
-	 * @param $text String
-	 * @return String
+	 * Notify all the feeds about the change.
+	 */
+	public function notifyLiveFeeds() {
+		global $wgRCLiveFeeds;
+
+		foreach ( $wgRCLiveFeeds as $feed ) {
+			$engine = self::getStreamEngine( $feed['uri'] );
+
+			if ( isset( $this->mExtras['actionCommentIRC'] ) ) {
+				$actionComment = $this->mExtras['actionCommentIRC'];
+			} else {
+				$actionComment = null;
+			}
+
+			$omitBots = isset( $feed['omit_bots'] ) ? $feed['omit_bots'] : false;
+
+			if (
+				( $omitBots && $this->mAttribs['rc_bot'] ) ||
+				$this->mAttribs['rc_type'] == RC_EXTERNAL
+			) {
+				continue;
+			}
+
+			$formatter = new $feed['formatter']();
+			$line = $formatter->getLine( $feed, $this, $actionComment );
+
+			$engine->send( $line, $feed );
+		}
+	}
+
+	/**
+	 * Gets the stream engine object for a given URI from $wgStreamLoggers
+	 *
+	 * @param $uri string URI to get the engine object for
+	 * @return object The engine object
+	 */
+	private static function getStreamEngine( $uri ) {
+		global $wgStreamLoggers;
+
+		$scheme = parse_url( $uri, PHP_URL_SCHEME );
+		if ( !$scheme ) {
+			throw new MWException( __FUNCTION__ . ": Invalid stream logger URI: '$uri'" );
+		}
+
+		if ( !isset( $wgStreamLoggers[$scheme] ) ) {
+			throw new MWException( __FUNCTION__ . ": Unknown stream logger URI scheme: $scheme" );
+		}
+
+		return new $wgStreamLoggers[$scheme];
+	}
+
+	/**
+	 * @deprecated since 1.22, moved to IRCColourfulRCFeedFormatter
 	 */
 	public static function cleanupForIRC( $text ) {
-		return Sanitizer::decodeCharReferences( str_replace( array( "\n", "\r" ), array( " ", "" ), $text ) );
+		wfDeprecated( __METHOD__, '1.22' );
+		return IRCColourfulRCFeedFormatter::cleanupForIRC( $text );
 	}
 
 	/**
@@ -728,89 +764,6 @@ class RecentChange {
 			$trail = '';
 		}
 		return $trail;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getIRCLine() {
-		global $wgUseRCPatrol, $wgUseNPPatrol, $wgRC2UDPInterwikiPrefix, $wgLocalInterwiki,
-			$wgCanonicalServer, $wgScript;
-
-		if ( $this->mAttribs['rc_type'] == RC_LOG ) {
-			// Don't use SpecialPage::getTitleFor, backwards compatibility with
-			// IRC API which expects "Log".
-			$titleObj = Title::newFromText( 'Log/' . $this->mAttribs['rc_log_type'], NS_SPECIAL );
-		} else {
-			$titleObj =& $this->getTitle();
-		}
-		$title = $titleObj->getPrefixedText();
-		$title = self::cleanupForIRC( $title );
-
-		if ( $this->mAttribs['rc_type'] == RC_LOG ) {
-			$url = '';
-		} else {
-			$url = $wgCanonicalServer . $wgScript;
-			if ( $this->mAttribs['rc_type'] == RC_NEW ) {
-				$query = '?oldid=' . $this->mAttribs['rc_this_oldid'];
-			} else {
-				$query = '?diff=' . $this->mAttribs['rc_this_oldid'] . '&oldid=' . $this->mAttribs['rc_last_oldid'];
-			}
-			if ( $wgUseRCPatrol || ( $this->mAttribs['rc_type'] == RC_NEW && $wgUseNPPatrol ) ) {
-				$query .= '&rcid=' . $this->mAttribs['rc_id'];
-			}
-			// HACK: We need this hook for WMF's secure server setup
-			wfRunHooks( 'IRCLineURL', array( &$url, &$query ) );
-			$url .= $query;
-		}
-
-		if ( $this->mAttribs['rc_old_len'] !== null && $this->mAttribs['rc_new_len'] !== null ) {
-			$szdiff = $this->mAttribs['rc_new_len'] - $this->mAttribs['rc_old_len'];
-			if ( $szdiff < -500 ) {
-				$szdiff = "\002$szdiff\002";
-			} elseif ( $szdiff >= 0 ) {
-				$szdiff = '+' . $szdiff;
-			}
-			// @todo i18n with parentheses in content language?
-			$szdiff = '(' . $szdiff . ')';
-		} else {
-			$szdiff = '';
-		}
-
-		$user = self::cleanupForIRC( $this->mAttribs['rc_user_text'] );
-
-		if ( $this->mAttribs['rc_type'] == RC_LOG ) {
-			$targetText = $this->getTitle()->getPrefixedText();
-			$comment = self::cleanupForIRC( str_replace( "[[$targetText]]", "[[\00302$targetText\00310]]", $this->mExtra['actionCommentIRC'] ) );
-			$flag = $this->mAttribs['rc_log_action'];
-		} else {
-			$comment = self::cleanupForIRC( $this->mAttribs['rc_comment'] );
-			$flag = '';
-			if ( !$this->mAttribs['rc_patrolled'] && ( $wgUseRCPatrol || $this->mAttribs['rc_type'] == RC_NEW && $wgUseNPPatrol ) ) {
-				$flag .= '!';
-			}
-			$flag .= ( $this->mAttribs['rc_type'] == RC_NEW ? "N" : "" ) . ( $this->mAttribs['rc_minor'] ? "M" : "" ) . ( $this->mAttribs['rc_bot'] ? "B" : "" );
-		}
-
-		if ( $wgRC2UDPInterwikiPrefix === true && $wgLocalInterwiki !== false ) {
-			$prefix = $wgLocalInterwiki;
-		} elseif ( $wgRC2UDPInterwikiPrefix ) {
-			$prefix = $wgRC2UDPInterwikiPrefix;
-		} else {
-			$prefix = false;
-		}
-		if ( $prefix !== false ) {
-			$titleString = "\00314[[\00303$prefix:\00307$title\00314]]";
-		} else {
-			$titleString = "\00314[[\00307$title\00314]]";
-		}
-
-		# see http://www.irssi.org/documentation/formats for some colour codes. prefix is \003,
-		# no colour (\003) switches back to the term default
-		$fullString = "$titleString\0034 $flag\00310 " .
-			"\00302$url\003 \0035*\003 \00303$user\003 \0035*\003 $szdiff \00310$comment\003\n";
-
-		return $fullString;
 	}
 
 	/**
