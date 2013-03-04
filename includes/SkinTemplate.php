@@ -1929,6 +1929,9 @@ abstract class BaseTemplate extends QuickTemplate {
 					Linker::tooltipAndAccesskeyAttribs( "search-$mode" ),
 					$attrs
 				);
+				$textClass = isset( $realAttrs['class'] ) ? ( $realAttrs['class'] . ' ' ) : '';
+				$textClass .= 'mw-ui-button';
+				$realAttrs['class'] = $textClass;
 				return Html::element( 'input', $realAttrs );
 			case 'image':
 				$buttonAttrs = array(

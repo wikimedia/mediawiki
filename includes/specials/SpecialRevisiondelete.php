@@ -102,6 +102,9 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 
 		$this->setHeaders();
 		$this->outputHeader();
+
+		$output->addModuleStyles( 'mediawiki.ui.button' );
+
 		$request = $this->getRequest();
 		$this->submitClicked = $request->wasPosted() && $request->getBool( 'wpSubmit' );
 		# Handle our many different possible input types.
@@ -397,7 +400,11 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 					'<td></td>' .
 					'<td class="mw-submit">' .
 						Xml::submitButton( $this->msg( 'revdelete-submit', $numRevisions )->text(),
-							array( 'name' => 'wpSubmit' ) ) .
+							array(
+								'name' => 'wpSubmit',
+								'class' => 'mw-ui-button mw-ui-destructive'
+							)
+						) .
 					'</td>' .
 				"</tr>\n" .
 				Xml::closeElement( 'table' ) .
