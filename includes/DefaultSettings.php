@@ -5086,11 +5086,15 @@ $wgRCLinkDays = array( 1, 3, 7, 14, 30 );
 /**
  * Send recent changes updates via UDP. The updates will be formatted for IRC.
  * Set this to the IP address of the receiver.
+ *
+ * @deprecated since 1.22, use $wgRCLiveFeeds
  */
 $wgRC2UDPAddress = false;
 
 /**
  * Port number for RC updates
+ *
+ * @deprecated since 1.22, use $wgRCLiveFeeds
  */
 $wgRC2UDPPort = false;
 
@@ -5099,20 +5103,65 @@ $wgRC2UDPPort = false;
  * This can be used to identify the wiki. A script is available called
  * mxircecho.py which listens on a UDP port, and uses a prefix ending in a
  * tab to identify the IRC channel to send the log line to.
+ *
+ * @deprecated since 1.22, use $wgRCLiveFeeds
  */
 $wgRC2UDPPrefix = '';
 
 /**
  * If this is set to true, $wgLocalInterwiki will be prepended to links in the
  * IRC feed. If this is set to a string, that string will be used as the prefix.
+ *
+ * @deprecated since 1.22, use $wgRCLiveFeeds
  */
 $wgRC2UDPInterwikiPrefix = false;
 
 /**
  * Set to true to omit "bot" edits (by users with the bot permission) from the
  * UDP feed.
+ *
+ * @deprecated since 1.22, use $wgRCLiveFeeds
  */
 $wgRC2UDPOmitBots = false;
+
+/**
+ * Destinations to which notifications about recent changes
+ * should be sent.
+ *
+ * As of MediaWiki 1.22, the only supported 'engine' parameter option in core
+ * is 'UDPRCFeedEngine', which is used to send recent changes over UDP to the
+ * specified server.
+ * The common options are:
+ *   * 'uri' -- the address to which the notices are to be sent.
+ *   * 'formatter' -- the class name (implementing RCFeedFormatter) which will
+ *     produce the text to send.
+ *   * 'omit_bots' -- whether the bot edits should be in the feed
+ *  The IRC-specific options are:
+ *   * 'interwiki_prefix' -- whether the titles should be prefixed with
+ *     $wgLocalInterwiki.
+ *  The JSON-specific options are:
+ *   * 'channel' -- if set, the 'channel' parameter is also set in JSON values.
+ *
+ *  To ensure backwards-compatability, whenever $wgRC2UDPAddress is set, a
+ *  'default' feed will be created reusing the deprecated $wgRC2UDP* variables.
+ *
+ * @example $wgRCLiveFeeds['example'] = array(
+ *		'engine' => 'UDPRCFeedEngine',
+ *		'formatter' => 'JSONRCFeedFormatter',
+ *		'uri' => "udp://localhost:1336",
+ *		'interwiki_prefix' => false,
+ *		'omit_bots' => true,
+ *	);
+ * @example $wgRCLiveFeeds['exampleirc'] = array(
+ *		'engine' => 'UDPRCFeedEngine',
+ *		'formatter' => 'IRCColourfulRCFeedFormatter',
+ *		'uri' => "udp://localhost:1338",
+ *		'interwiki_prefix' => false,
+ *		'omit_bots' => true,
+ *	);
+ * @since 1.22
+ */
+$wgRCLiveFeeds = array();
 
 /**
  * Enable user search in Special:Newpages
