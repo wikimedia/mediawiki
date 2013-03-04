@@ -660,7 +660,7 @@ class Linker {
 		if ( $file && isset( $fp['frameless'] ) ) {
 			$srcWidth = $file->getWidth( $page );
 			# For "frameless" option: do not present an image bigger than the source (for bitmap-style images)
-			# This is the same behaviour as the "thumb" option does it already.
+			# This is the same behavior as the "thumb" option does it already.
 			if ( $srcWidth && !$file->mustRender() && $hp['width'] > $srcWidth ) {
 				$hp['width'] = $srcWidth;
 			}
@@ -819,7 +819,7 @@ class Linker {
 				$noscale = true;
 			} else {
 				# Do not present an image bigger than the source, for bitmap-style images
-				# This is a hack to maintain compatibility with arbitrary pre-1.10 behaviour
+				# This is a hack to maintain compatibility with arbitrary pre-1.10 behavior
 				$srcWidth = $file->getWidth( $page );
 				if ( $srcWidth && !$file->mustRender() && $hp['width'] > $srcWidth ) {
 					$hp['width'] = $srcWidth;

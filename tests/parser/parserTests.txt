@@ -7752,7 +7752,7 @@ http://example.com [[Image:foobar.jpg]]
 !!end
 
 !! test
-Short headings with trailing space should match behaviour of Parser::doHeadings (bug 19910)
+Short headings with trailing space should match behavior of Parser::doHeadings (bug 19910)
 !! input
 === 
 The line above must have a trailing space!
@@ -9863,7 +9863,7 @@ section=1
 ==marked==
 !!end
 
-# Test behaviour of bug 19910
+# Test behavior of bug 19910
 !! test
 Sectiion with all-equals
 !! options

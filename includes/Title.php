@@ -4397,7 +4397,7 @@ class Title {
 		$isKnown = null;
 
 		/**
-		 * Allows overriding default behaviour for determining if a page exists.
+		 * Allows overriding default behavior for determining if a page exists.
 		 * If $isKnown is kept as null, regular checks happen. If it's
 		 * a boolean, this value is returned by the isKnown method.
 		 *

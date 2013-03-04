@@ -786,7 +786,7 @@ class LegacyTemplate extends BaseTemplate {
 			return '';
 		}
 
-		# __NEWSECTIONLINK___ changes behaviour here
+		# __NEWSECTIONLINK___ changes behavior here
 		# If it is present, the link points to this page, otherwise
 		# it points to the talk page
 		if ( !$title->isTalkPage() && !$wgOut->showNewSectionLink() ) {

@@ -115,7 +115,7 @@ class ForeignDBFile extends LocalFile {
 	 * @return string
 	 */
 	function getDescriptionUrl() {
-		// Restore remote behaviour
+		// Restore remote behavior
 		return File::getDescriptionUrl();
 	}
 
@@ -123,7 +123,7 @@ class ForeignDBFile extends LocalFile {
 	 * @return string
 	 */
 	function getDescriptionText() {
-		// Restore remote behaviour
+		// Restore remote behavior
 		return File::getDescriptionText();
 	}
 }

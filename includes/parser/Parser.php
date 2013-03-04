@@ -305,7 +305,7 @@ class Parser {
 		 * string constructs.
 		 *
 		 * Must not consist of all title characters, or else it will change
-		 * the behaviour of <nowiki> in a link.
+		 * the behavior of <nowiki> in a link.
 		 */
 		$this->mUniqPrefix = "\x7fUNIQ" . self::getRandomString();
 		$this->mStripState = new StripState( $this->mUniqPrefix );
@@ -3471,7 +3471,7 @@ class Parser {
 		{
 			# Bug 529: if the template begins with a table or block-level
 			# element, it should be treated as beginning a new line.
-			# This behaviour is somewhat controversial.
+			# This behavior is somewhat controversial.
 			$text = "\n" . $text;
 		}
 

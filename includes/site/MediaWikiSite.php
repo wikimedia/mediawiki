@@ -304,7 +304,7 @@ class MediaWikiSite extends Site {
 	 * @see Site::getPageUrl
 	 *
 	 * This implementation returns a URL constructed using the path returned by getLinkPath().
-	 * In addition to the default behaviour implemented by Site::getPageUrl(), this
+	 * In addition to the default behavior implemented by Site::getPageUrl(), this
 	 * method converts the $pageName to DBKey-format by replacing spaces with underscores
 	 * before using it in the URL.
 	 *
