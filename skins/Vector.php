@@ -434,6 +434,11 @@ class VectorTemplate extends BaseTemplate {
 			<div>
 		<?php } ?>
 			<?php
+			// TODO (mattflaschen, 2014-03-05): mw-ui-button is not used for
+			// the simple search, since it looks wrong with the magnifying glass.
+			// However, it would be nice to have mw-ui-button if simple search
+			// is off, but currently the buttons are way too big if you try that.
+			// It probably needs an override.
 			echo $this->makeSearchInput( array( 'id' => 'searchInput' ) );
 			echo Html::hidden( 'title', $this->get( 'searchtitle' ) );
 			// We construct two buttons (for 'go' and 'fulltext' search modes), but only one will be

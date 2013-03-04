@@ -291,7 +291,7 @@ class UsersPager extends AlphabeticPager {
 
 		# Submit button and form bottom
 		$out .= Html::hidden( 'limit', $this->mLimit );
-		$out .= Xml::submitButton( $this->msg( 'allpagessubmit' )->text() );
+		$out .= Xml::submitButton( $this->msg( 'allpagessubmit' )->text(), array( 'class' => 'mw-ui-button mw-ui-constructive' ) );
 		wfRunHooks( 'SpecialListusersHeader', array( $this, &$out ) );
 		$out .= Xml::closeElement( 'fieldset' ) .
 			Xml::closeElement( 'form' );
@@ -378,6 +378,9 @@ class SpecialListUsers extends IncludableSpecialPage {
 		$this->setHeaders();
 		$this->outputHeader();
 
+		$out = $this->getOutput();
+		$out->addModuleStyles( 'mediawiki.ui.button' );
+
 		$up = new UsersPager( $this->getContext(), $par, $this->including() );
 
 		# getBody() first to check, if empty
@@ -396,7 +399,7 @@ class SpecialListUsers extends IncludableSpecialPage {
 			$s .= $this->msg( 'listusers-noresult' )->parseAsBlock();
 		}
 
-		$this->getOutput()->addHTML( $s );
+		$out->addHTML( $s );
 	}
 
 	protected function getGroupName() {

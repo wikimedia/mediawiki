@@ -89,6 +89,8 @@ class SpecialMergeHistory extends SpecialPage {
 		$this->setHeaders();
 		$this->outputHeader();
 
+		$this->getOutput()->addModuleStyles( 'mediawiki.ui.button' );
+
 		if ( $this->mTargetID && $this->mDestID && $this->mAction == 'submit' && $this->mMerge ) {
 			$this->merge();
 
@@ -153,7 +155,10 @@ class SpecialMergeHistory extends SpecialPage {
 				<td>' . Xml::label( $this->msg( 'mergehistory-into' )->text(), 'dest' ) . '</td>
 				<td>' . Xml::input( 'dest', 30, $this->mDest, array( 'id' => 'dest' ) ) . '</td>
 			</tr><tr><td>' .
-				Xml::submitButton( $this->msg( 'mergehistory-go' )->text() ) .
+				Xml::submitButton(
+					$this->msg( 'mergehistory-go' )->text(),
+					array( 'class' => 'mw-ui-button mw-ui-progressive' )
+				) .
 				'</td></tr>' .
 				Xml::closeElement( 'table' ) .
 				'</fieldset>' .
@@ -203,7 +208,10 @@ class SpecialMergeHistory extends SpecialPage {
 					<tr>
 						<td>&#160;</td>
 						<td class="mw-submit">' .
-					Xml::submitButton( $this->msg( 'mergehistory-submit' )->text(), array( 'name' => 'merge', 'id' => 'mw-merge-submit' ) ) .
+					Xml::submitButton(
+						$this->msg( 'mergehistory-submit' )->text(),
+						array( 'name' => 'merge', 'id' => 'mw-merge-submit', 'class' => 'mw-ui-button mw-ui-constructive' )
+					) .
 					'</td>
 					</tr>' .
 					Xml::closeElement( 'table' ) .

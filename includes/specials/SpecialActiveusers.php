@@ -206,7 +206,7 @@ class ActiveUsersPager extends UsersPager {
 		$out .= Xml::checkLabel( $this->msg( 'activeusers-hidesysops' )->text(),
 			'hidesysops', 'hidesysops', $this->opts->getValue( 'hidesysops' ), array( 'tabindex' => 3 ) ) . '<br />';
 
-		$out .= Xml::submitButton( $this->msg( 'allpagessubmit' )->text(), array( 'tabindex' => 4 ) ) . "\n";# Submit button and form bottom
+		$out .= Xml::submitButton( $this->msg( 'allpagessubmit' )->text(), array( 'tabindex' => 4, 'class' => 'mw-ui-button mw-ui-constructive' ) ) . "\n";# Submit button and form bottom
 		$out .= Xml::closeElement( 'fieldset' );
 		$out .= Xml::closeElement( 'form' );
 
@@ -238,6 +238,7 @@ class SpecialActiveUsers extends SpecialPage {
 		$this->outputHeader();
 
 		$out = $this->getOutput();
+		$out->addModuleStyles( 'mediawiki.ui.button' );
 		$out->wrapWikiMsg( "<div class='mw-activeusers-intro'>\n$1\n</div>",
 			array( 'activeusers-intro', $this->getLanguage()->formatNum( $wgActiveUserDays ) ) );
 

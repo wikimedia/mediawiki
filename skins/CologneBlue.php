@@ -539,10 +539,11 @@ class CologneBlueTemplate extends BaseTemplate {
 
 		$s .= $this->makeSearchInput( array( 'class' => 'mw-searchInput', 'type' => 'text', 'size' => '14' ) );
 		$s .= ( $which == 'footer' ? " " : "<br />" );
-		$s .= $this->makeSearchButton( 'go', array( 'class' => 'searchButton' ) );
+		$s .= $this->makeSearchButton( 'go', array( 'class' => 'mw-ui-button searchButton' ) );
 
 		if ( $wgUseTwoButtonsSearchForm ) {
-			$s .= $this->makeSearchButton( 'fulltext', array( 'class' => 'searchButton' ) );
+			// TODO (mattflaschen, 2014-03-05): This line of buttons probably should not wrap.
+			$s .= $this->makeSearchButton( 'fulltext', array( 'class' => 'mw-ui-button searchButton' ) );
 		} else {
 			$s .= '<div><a href="' . $action . '" rel="search">' . wfMessage( 'powersearch-legend' )->escaped() . "</a></div>\n";
 		}
