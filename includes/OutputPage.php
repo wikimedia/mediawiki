@@ -2489,6 +2489,7 @@ $templates
 		$userdir = $this->getLanguage()->getDir();
 		$sitedir = $wgContLang->getDir();
 
+		$this->addModuleStyles( 'mediawiki.ui' );
 		if ( $sk->commonPrintStylesheet() ) {
 			$this->addModuleStyles( 'mediawiki.legacy.wikiprintable' );
 		}
