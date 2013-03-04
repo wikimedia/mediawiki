@@ -18,6 +18,8 @@ This is a maintenance release of the MediaWiki 1.20 branch.
 * (bug 44135) Fixed problems in CurlHttpRequest that caused InstantCommons
   to longer work by default.
 * (bug 44010) FauxRequest leaked cookie data from primary request.
+* (bug 43518) API unblock leaked the full user object
+* (bug 45355) Read of arbitrary files through mwdoc-filter.php
 
 == MediaWiki 1.20.2 ==
 
