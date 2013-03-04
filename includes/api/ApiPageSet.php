@@ -69,18 +69,21 @@ class ApiPageSet extends ApiBase {
 	private $mFakePageId = -1;
 	private $mCacheMode = 'public';
 	private $mRequestedPageFields = array();
+	private $mDefaultNamespace = NS_MAIN;
 
 	/**
 	 * Constructor
 	 * @param $dbSource ApiBase Module implementing getDB().
 	 *        Allows PageSet to reuse existing db connection from the shared state like ApiQuery.
 	 * @param $flags int Zero or more flags like DISABLE_GENERATORS
+	 * @param $defaultNamespace int the namespace to use if none is specified by a prefix.
 	 * @since 1.21 accepts $flags instead of two boolean values
 	 */
-	public function __construct( ApiBase $dbSource, $flags = 0 ) {
+	public function __construct( ApiBase $dbSource, $flags = 0, $defaultNamespace = NS_MAIN ) {
 		parent::__construct( $dbSource->getMain(), $dbSource->getModuleName() );
 		$this->mDbSource = $dbSource;
 		$this->mAllowGenerator = ( $flags & ApiPageSet::DISABLE_GENERATORS ) == 0;
+		$this->mDefaultNamespace = $defaultNamespace;
 
 		$this->profileIn();
 		$this->mParams = $this->extractRequestParams();
@@ -884,12 +887,15 @@ class ApiPageSet extends ApiBase {
 	 */
 	private function processTitlesArray( $titles ) {
 		$genderCache = GenderCache::singleton();
-		$genderCache->doTitlesArray( $titles, __METHOD__ );
-
+		$genderCache->doTitlesArray( $titles, __METHOD__, $this->mDefaultNamespace );
 		$linkBatch = new LinkBatch();
 
 		foreach ( $titles as $title ) {
-			$titleObj = is_string( $title ) ? Title::newFromText( $title ) : $title;
+			if ( is_string( $title ) ) {
+				$titleObj = Title::newFromText( $title, $this->mDefaultNamespace );
+			} else {
+				$titleObj = $title;
+			}
 			if ( !$titleObj ) {
 				// Handle invalid titles gracefully
 				$this->mAllpages[0][$title] = $this->mFakePageId;
@@ -899,10 +905,9 @@ class ApiPageSet extends ApiBase {
 			}
 			$unconvertedTitle = $titleObj->getPrefixedText();
 			$titleWasConverted = false;
-			$iw = $titleObj->getInterwiki();
-			if ( strval( $iw ) !== '' ) {
+			if ( $titleObj->isExternal() ) {
 				// This title is an interwiki link.
-				$this->mInterwikiTitles[$titleObj->getPrefixedText()] = $iw;
+				$this->mInterwikiTitles[$unconvertedTitle] = $titleObj->getInterwiki();
 			} else {
 				// Variants checking
 				global $wgContLang;

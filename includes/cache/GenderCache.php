@@ -117,11 +117,16 @@ class GenderCache {
 	 * @since 1.20
 	 * @param $titles List: array of Title objects or strings
 	 * @param $caller String: the calling method
+	 * @param $defaultNamespace int the namespace to use if none is specified by a prefix.
 	 */
-	public function doTitlesArray( $titles, $caller = '' ) {
+	public function doTitlesArray( $titles, $caller = '', $defaultNamespace = NS_MAIN ) {
 		$users = array();
 		foreach ( $titles as $title ) {
-			$titleObj = is_string( $title ) ? Title::newFromText( $title ) : $title;
+			if ( is_string( $title ) ) {
+				$titleObj = Title::newFromText( $title, $defaultNamespace );
+			} else {
+				$titleObj = $title;
+			}
 			if ( !$titleObj ) {
 				continue;
 			}
