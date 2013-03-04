@@ -168,6 +168,31 @@ class RecentChange {
 		);
 	}
 
+	/**
+	 * Generate a string representation of the recent change type.
+	 *
+	 * @param type Change type to represent
+	 * @return string
+	 */
+	public static function typeToString( $type ) {
+		switch ( $type ) {
+			case RC_EDIT:
+				return 'edit';
+			case RC_NEW:
+				return 'new';
+			case RC_MOVE:
+				return 'move';
+			case RC_LOG:
+				return 'log';
+			case RC_EXTERNAL:
+				return 'external';
+			case RC_MOVE_OVER_REDIRECT:
+				return 'move over redirect';
+			default:
+				return $type;
+		}
+	}
+
 	# Accessors
 
 	/**
@@ -282,10 +307,44 @@ class RecentChange {
 	}
 
 	public function notifyRC2UDP() {
-		global $wgRC2UDPAddress, $wgRC2UDPOmitBots;
-		# Notify external application via UDP
-		if ( $wgRC2UDPAddress && ( !$this->mAttribs['rc_bot'] || !$wgRC2UDPOmitBots ) ) {
-			self::sendToUDP( $this->getIRCLine() );
+		$this->notifyLiveFeeds();
+	}
+
+	/**
+	 * Notify all the feeds about the change.
+	 */
+	public function notifyLiveFeeds() {
+		global $wgRCLiveFeeds;
+
+		foreach( $wgRCLiveFeeds as $feedID => $feed ) {
+			$engine = $feed['engine'];
+
+			if( $engine == 'irc' || $engine == 'json' ) {
+				if( $engine == 'irc' ) {
+					$line = $this->getIRCLine( $feed['interwiki_prefix'] );
+				}
+				if( $engine == 'json' ) {
+					$line = $this->getJSON( $feed );
+				}
+
+				$prefix = isset( $feed['prefix'] ) ? $feed['prefix'] : '';
+				$omitBots = isset( $feed['omit_bots'] ) ? $feed['omit_bots'] : false;
+
+				if( $omitBots && $this->mAttribs['rc_bot'] ) {
+					return;
+				}
+
+				self::sendToUDP(
+					$line,
+					$feed['address'],
+					$prefix,
+					$feed['port']
+				);
+			} else {
+				if( !wfRunHooks( 'RecentChangeCustomFeed', array( $feedID, $engine, $feed, $this ) ) ) {
+					throw new MWException( "Recent chanages feed {$feedID} has invalid engine specified" );
+				}
+			}
 		}
 	}
 
@@ -300,7 +359,7 @@ class RecentChange {
 	 */
 	public static function sendToUDP( $line, $address = '', $prefix = '', $port = '' ) {
 		global $wgRC2UDPAddress, $wgRC2UDPPrefix, $wgRC2UDPPort;
-		# Assume default for standard RC case
+		# Assume default for standard RC case (using b/c variables)
 		$address = $address ? $address : $wgRC2UDPAddress;
 		$prefix = $prefix ? $prefix : $wgRC2UDPPrefix;
 		$port = $port ? $port : $wgRC2UDPPort;
@@ -721,10 +780,80 @@ class RecentChange {
 	}
 
 	/**
+	 * Return the JSON representation of the change used for the live feed.
+	 */
+	public function getJSON( $feed ) {
+		global $wgCanonicalServer, $wgScript, $wgArticlePath;
+
+		$packet = array();
+
+		if( isset( $feed['channel'] ) ) {
+			$packet['channel'] = $feed['channel'];
+		}
+
+		// Usually, RC ID is exposed only for patrolling purposes,
+		// but there is no real reason not to expose it in other cases,
+		// and I can see how this may be potentially useful for clients.
+		$packet['id'] = $this->mAttribs['rc_id'];
+		$packet['type'] = self::typeToString( $this->mAttribs['rc_type'] );
+
+		// While sufficiently complex feed readers should be able to fetch NS
+		// information from the API, full_title is provided for those who do not care,
+		// allowing simplier client implementation
+		$packet['namespace'] = $this->getTitle()->getNamespace();
+		$packet['title'] = $this->getTitle()->getDBkey();
+		$packet['full_title'] = $this->getTitle()->getPrefixedText();
+
+		$packet['comment'] = $this->mAttribs['rc_comment'];
+		$packet['timestamp'] = wfTimestamp( TS_ISO_8601, $this->mAttribs['rc_timestamp'] );
+		$packet['user'] = $this->mAttribs['rc_user_text'];
+		$packet['bot'] = (bool)$this->mAttribs['rc_bot'];
+
+		$type = $this->mAttribs['rc_type'];
+		if( $type == RC_EDIT || $type == RC_NEW ) {
+			global $wgUseRCPatrol, $wgUseNPPatrol;
+
+			$packet['minor'] = $this->mAttribs['rc_minor'];
+			if( $wgUseRCPatrol || ($type == RC_NEW && $wgUseNPPatrol) ) {
+				$packet['patrolled'] = $this->mAttribs['rc_patrolled'];
+			}
+		}
+
+		switch( $type ) {
+			case RC_EDIT:
+				$packet['old_len'] = $this->mAttribs['rc_old_len'];
+				$packet['new_len'] = $this->mAttribs['rc_new_len'];
+				$packet['old_revision'] = $this->mAttribs['rc_last_oldid'];
+				$packet['new_revision'] = $this->mAttribs['rc_this_oldid'];
+				break;
+
+			case RC_NEW:
+				$packet['len'] = $this->mAttribs['rc_new_len'];
+				$packet['revision'] = $this->mAttribs['rc_this_oldid'];
+				break;
+
+			case RC_LOG:
+				$packet['log_type'] = $this->mAttribs['rc_log_type'];
+				$packet['log_action'] = $this->mAttribs['rc_log_action'];
+				if( $this->mAttribs['rc_params'] ) {
+					$packet['log_params'] = unserialize( $this->mAttribs['rc_params'] );
+				}
+				$packet['log_action_comment'] = $this->mExtra['actionComment'];
+				break;
+		}
+
+		$packet['url_server'] = $wgCanonicalServer;
+		$packet['url_script_path'] = $wgScript;
+		$packet['url_article_path'] = $wgArticlePath;
+
+		return json_encode( $packet );
+	}
+
+	/**
 	 * @return string
 	 */
-	public function getIRCLine() {
-		global $wgUseRCPatrol, $wgUseNPPatrol, $wgRC2UDPInterwikiPrefix, $wgLocalInterwiki,
+	public function getIRCLine( $interwikiPrefix = false ) {
+		global $wgUseRCPatrol, $wgUseNPPatrol, $wgLocalInterwiki,
 			$wgCanonicalServer, $wgScript;
 
 		if ( $this->mAttribs['rc_type'] == RC_LOG ) {
@@ -782,10 +911,10 @@ class RecentChange {
 			$flag .= ( $this->mAttribs['rc_type'] == RC_NEW ? "N" : "" ) . ( $this->mAttribs['rc_minor'] ? "M" : "" ) . ( $this->mAttribs['rc_bot'] ? "B" : "" );
 		}
 
-		if ( $wgRC2UDPInterwikiPrefix === true && $wgLocalInterwiki !== false ) {
+		if ( $interwikiPrefix === true && $wgLocalInterwiki !== false ) {
 			$prefix = $wgLocalInterwiki;
-		} elseif ( $wgRC2UDPInterwikiPrefix ) {
-			$prefix = $wgRC2UDPInterwikiPrefix;
+		} elseif ( $interwikiPrefix ) {
+			$prefix = $interwikiPrefix;
 		} else {
 			$prefix = false;
 		}
