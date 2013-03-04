@@ -6,4 +6,6 @@
  */
 class HTMLSubmitField extends HTMLButtonField {
 	protected $buttonType = 'submit';
+
+	// TODO Needs a constructor to add $this->mClass .= ' mw-ui-constructive' (the caller should specify the semantically appropriate class name).
 }
