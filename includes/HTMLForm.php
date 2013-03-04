@@ -2366,7 +2366,7 @@ class HTMLSubmitField extends HTMLFormField {
 		return Xml::submitButton(
 			$value,
 			array(
-				'class' => 'mw-htmlform-submit ' . $this->mClass,
+				'class' => 'mw-ui-button mw-htmlform-submit ' . $this->mClass,
 				'name' => $this->mName,
 				'id' => $this->mID,
 			)
