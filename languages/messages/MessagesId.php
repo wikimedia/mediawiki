@@ -837,7 +837,7 @@ Silakan menunggu sebelum mencoba lagi.',
 'loginlanguagelabel' => 'Bahasa: $1',
 'suspicious-userlogout' => 'Permintaan Anda untuk keluar log ditolak karena tampaknya dikirim oleh penjelajah yang rusak atau proksi penyinggah.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Kesalahan yang tidak dikenal dalam fungsi mail() PHP',
 'user-mail-no-addy' => 'Mencoba mengirimkan surel tanpa alamat surel.',
 'user-mail-no-body' => 'Mencoba untuk mengirim surel kosong atau terlalu pendek.',
@@ -1139,10 +1139,10 @@ Beberapa templat akan diabaikan.',
 'converter-manual-rule-error' => 'Kesalahan terdeteksi di aturan manual konversi bahasa',
 
 # "Undo" feature
-'undo-success' => 'Suntingan ini dapat dibatalkan. Tolong cek perbandingan di bawah untuk meyakinkan bahwa benar itu yang Anda ingin lakukan, lalu simpan perubahan tersebut untuk menyelesaikan pembatalan suntingan.',
-'undo-failure' => 'Suntingan ini tidak dapat dibatalkan karena konflik penyuntingan antara.',
-'undo-norev' => 'Suntingan ini tidak dapat dibatalkan karena halaman tidak ditemukan atau telah dihapuskan.',
-'undo-summary' => 'Membatalkan revisi $1 oleh [[Special:Contributions/$2|$2]] ([[User talk:$2|bicara]])',
+'undo-success' => 'Suntingan ini dapat dibalikkan. Silakan periksa perbandingan di bawah untuk meyakinkan bahwa benar itu yang Anda ingin lakukan, lalu simpan perubahan tersebut untuk menyelesaikan pembalikkan suntingan.',
+'undo-failure' => 'Suntingan ini tidak dapat dibalikkan karena konflik penyuntingan antara.',
+'undo-norev' => 'Suntingan ini tidak dapat dibalikkan karena halaman tidak ditemukan atau telah dihapuskan.',
+'undo-summary' => 'Membalikkan revisi $1 oleh [[Special:Contributions/$2|$2]] ([[User talk:$2|bicara]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Akun tak dapat dibuat',
@@ -1320,7 +1320,7 @@ Pastikan bahwa perubahan ini tetap mempertahankan kontinuitas versi terdahulu ha
 'lineno' => 'Baris $1:',
 'compareselectedversions' => 'Bandingkan versi terpilih',
 'showhideselectedversions' => 'Tampilkan/sembunyikan versi terpilih',
-'editundo' => 'batalkan',
+'editundo' => 'balikkan',
 'diff-multi' => '({{PLURAL:$1|Satu|$1}} revisi antara oleh {{PLURAL:$2|satu|$2}} pengguna tak ditampilkan)',
 'diff-multi-manyusers' => '({{PLURAL:$1|Satu|$1}} revisi antara oleh lebih dari $2 {{PLURAL:$2|satu|$2}} pengguna tak ditampilkan)',
 'difference-missing-revision' => '{{PLURAL:$2|Satu revisi|$2 revisi}} dari perbedaan ini ($1) {{PLURAL:$2|tidak|tidak}} ditemukan.
@@ -1519,7 +1519,7 @@ Jika Anda memberikannya, nama asli Anda akan digunakan untuk memberi pengenalan 
 'prefs-displaywatchlist' => 'Pilihan tampilan',
 'prefs-diffs' => 'Beda',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'Alamat surel tampaknya sah',
 'email-address-validity-invalid' => 'Masukkan alamat surel yang sah',
 
@@ -1992,7 +1992,7 @@ Ketika disaring oleh pengguna, hanya vesi berkas terbaru dari berkas yang penggu
 'filehist-help' => 'Klik pada tanggal/waktu untuk melihat berkas ini pada saat tersebut.',
 'filehist-deleteall' => 'hapus semua',
 'filehist-deleteone' => 'hapus',
-'filehist-revert' => 'kembalikan',
+'filehist-revert' => 'batalkan',
 'filehist-current' => 'terkini',
 'filehist-datetime' => 'Tanggal/Waktu',
 'filehist-thumb' => 'Miniatur',
@@ -2031,13 +2031,13 @@ Mungkin Anda ingin menyunting keterangan pada [$2 halaman deskripsi berkas] di s
 'upload-disallowed-here' => 'Anda tidak bisa menimpa berkas ini.',
 
 # File reversion
-'filerevert' => 'Kembalikan $1',
-'filerevert-legend' => 'Kembalikan berkas',
-'filerevert-intro' => "Anda mengembalikan '''[[Media:$1|$1]]''' ke versi [$4 pada $3, $2].",
+'filerevert' => 'Batalkan $1',
+'filerevert-legend' => 'Batalkan berkas',
+'filerevert-intro' => "Anda membatalkan '''[[Media:$1|$1]]''' ke versi [$4 pada $3, $2].",
 'filerevert-comment' => 'Alasan:',
-'filerevert-defaultcomment' => 'Dikembalikan ke versi pada $2, $1',
-'filerevert-submit' => 'Kembalikan',
-'filerevert-success' => "'''[[Media:$1|$1]]''' telah dikembalikan ke versi [$4 pada $3, $2]",
+'filerevert-defaultcomment' => 'Dibatalkan ke versi pada $2, $1',
+'filerevert-submit' => 'Batalkan',
+'filerevert-success' => "'''[[Media:$1|$1]]''' telah dibatalkan ke versi [$4 pada $3, $2]",
 'filerevert-badversion' => 'Tidak ada versi lokal terdahulu dari berkas ini dengan stempel waktu yang dimaksud.',
 
 # File deletion
@@ -2305,7 +2305,7 @@ Perlu sedikitnya satu domain tingkat atas, misalnya "*.org".<br />
 'listgrouprights-addgroup-self-all' => 'Dapat menambahkan semua grup ke akun sendiri',
 'listgrouprights-removegroup-self-all' => 'Menghapus semua kelompok dari akun sendiri',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Tidak ada alamat surel',
 'mailnologintext' => 'Anda harus [[Special:UserLogin|masuk log]] dan mempunyai alamat surel yang sah di dalam [[Special:Preferences|preferensi]] untuk mengirimkan surel kepada pengguna lain.',
 'emailuser' => 'Surel pengguna',
@@ -2442,7 +2442,7 @@ Umpan balik dan bantuan lebih lanjut:
 'dellogpage' => 'Log penghapusan',
 'dellogpagetext' => 'Di bawah ini adalah log penghapusan halaman. Semua waktu yang ditunjukkan adalah waktu server.',
 'deletionlog' => 'log penghapusan',
-'reverted' => 'Dikembalikan ke revisi sebelumnya',
+'reverted' => 'Dibatalkan ke revisi sebelumnya',
 'deletecomment' => 'Alasan:',
 'deleteotherreason' => 'Alasan lain/tambahan:',
 'deletereasonotherlist' => 'Alasan lain',
@@ -2463,16 +2463,16 @@ Menghapus halaman ini dapat menyebabkan masalah dalam operasional basis data {{S
 'rollbacklinkcount' => 'kembalikan $1 {{PLURAL:$1|suntingan|suntingan}}',
 'rollbacklinkcount-morethan' => 'kembalikan lebih dari $1 {{PLURAL:$1|suntingan|suntingan}}',
 'rollbackfailed' => 'Pengembalian gagal dilakukan',
-'cantrollback' => 'Tidak dapat mengembalikan suntingan;
+'cantrollback' => 'Tidak dapat membatalkan suntingan;
 kontributor terakhir adalah satu-satunya penulis halaman ini.',
 'alreadyrolled' => 'Tidak dapat melakukan pengembalian ke revisi terakhir [[:$1]] oleh [[User:$2|$2]] ([[User talk:$2|bicara]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);
 pengguna lain telah menyunting atau melakukan pengembalian terhadap halaman ini.
 
 Suntingan terakhir dilakukan oleh [[User:$3|$3]] ([[User talk:$3|bicara]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment' => "Komentar penyuntingan adalah: \"''\$1''\".",
-'revertpage' => '←Suntingan [[Special:Contributions/$2|$2]] ([[User talk:$2|bicara]]) dikembalikan ke versi terakhir oleh [[User:$1|$1]]',
+'revertpage' => '←Suntingan [[Special:Contributions/$2|$2]] ([[User talk:$2|bicara]]) dibatalkan ke versi terakhir oleh [[User:$1|$1]]',
 'revertpage-nouser' => 'Pengembalian suntingan oleh (pengguna dihapus) ke suntingan terakhir oleh [[User:$1|$1]]',
-'rollback-success' => 'Pengembalian suntingan oleh $1; dikembalikan ke versi terakhir oleh $2.',
+'rollback-success' => 'Pembatalan suntingan oleh $1; dibatalkan ke versi terakhir oleh $2.',
 
 # Edit tokens
 'sessionfailure-title' => 'Kegagalan sesi',
@@ -2859,7 +2859,7 @@ Dalam kasus tersebut, apabila diinginkan, Anda dapat memindahkan atau menggabung
 'movesubpagetext' => 'Halaman ini memiliki $1 {{PLURAL:$1|subhalaman|subhalaman}} seperti ditampilkan berikut.',
 'movenosubpage' => 'Halaman ini tak memiliki subhalaman.',
 'movereason' => 'Alasan:',
-'revertmove' => 'kembalikan',
+'revertmove' => 'batalkan',
 'delete_and_move' => 'Hapus dan pindahkan',
 'delete_and_move_text' => '==Penghapusan diperlukan==
 Halaman yang dituju, "[[:$1]]", telah mempunyai isi. Apakah Anda hendak menghapusnya untuk memberikan ruang bagi pemindahan?',
@@ -3072,8 +3072,8 @@ Simpan ke komputer Anda dan unggah ke sini.',
 'tooltip-watchlistedit-raw-submit' => 'Perbarui daftar pantauan',
 'tooltip-recreate' => 'Buat ulang halaman walaupun sebenarnya telah dihapus',
 'tooltip-upload' => 'Mulai pemuatan',
-'tooltip-rollback' => 'Mengembalikan suntingan-suntingan di halaman ini ke kontributor terakhir dalam satu kali klik.',
-'tooltip-undo' => 'Mengembalikan revisi ini dan membuka kotak penyuntingan dengan mode pratayang. Alasan dapat ditambahkan di kotak ringkasan.',
+'tooltip-rollback' => '"Kembalikan" membatalkan suntingan-suntingan di halaman ini ke kontributor terakhir dalam satu kali klik.',
+'tooltip-undo' => '"Balikkan" membatalkan revisi ini dan membuka kotak penyuntingan dengan mode pratayang. Alasan dapat ditambahkan di kotak ringkasan.',
 'tooltip-preferences-save' => 'Simpan preferensi',
 'tooltip-summary' => 'Masukkan sebuah ringkasan pendek',
 
@@ -3133,7 +3133,7 @@ Simpan ke komputer Anda dan unggah ke sini.',
 Ini mungkin disebabkan oleh pranala ke situs luar yang termasuk dalam daftar hitam.',
 'spamprotectionmatch' => 'Teks berikut ini memancing filter spam kami: $1',
 'spambot_username' => 'Pembersihan span MediaWiki',
-'spam_reverting' => 'Mengembalikan ke versi terakhir yang tak memiliki pranala ke $1',
+'spam_reverting' => 'Membatalkan ke versi terakhir yang tak memiliki pranala ke $1',
 'spam_blanking' => 'Semua revisi yang memiliki pranala ke $1, pengosongan',
 'spam_deleting' => 'Semua revisi yang memiliki pranala ke $1, penghapusan',
 
@@ -3782,7 +3782,7 @@ $8',
 'monthsall' => 'semua',
 'limitall' => 'semua',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Konfirmasi alamat surel',
 'confirmemail_noemail' => 'Anda tidak memberikan alamat surel yang sah di [[Special:Preferences|preferensi pengguna]] Anda.',
 'confirmemail_text' => '{{SITENAME}} mengharuskan Anda untuk melakukan konfirmasi atas alamat surel Anda sebelum fitur-fitur surel dapat digunakan.
@@ -4123,7 +4123,7 @@ Gambar ditampilkan dalam resolusi penuh dan tipe lain berkas akan dibuka langsun
 'htmlform-int-toohigh' => 'Nilai yang Anda masukkan melebihi nilai maksimum $1',
 'htmlform-required' => 'Nilai ini diperlukan',
 'htmlform-submit' => 'Kirim',
-'htmlform-reset' => 'Batalkan perubahan',
+'htmlform-reset' => 'Balikkan perubahan',
 'htmlform-selectorother-other' => 'Lain-lain',
 
 # SQLite database support

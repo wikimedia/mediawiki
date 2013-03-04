@@ -819,7 +819,7 @@ Bonvolu ĝisatendi antaŭ retrovi.',
 'loginlanguagelabel' => 'Lingvo: $1',
 'suspicious-userlogout' => 'Via peto por elsaluti estis malpermesita ĉar verŝajne ĝi estis sendita de trompita retumilo aŭ kaŝiganta proksima servilo.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Nekonata eraro en la funkcio mail() de PHP',
 'user-mail-no-addy' => 'Provis sendi retpoŝton sen retpoŝtadreso.',
 
@@ -1504,7 +1504,7 @@ Jen hazarde generita valoro por via uzo: $1',
 'prefs-displaywatchlist' => 'Montraj opcioj',
 'prefs-diffs' => 'Diferencoj',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'Ŝajnas ke la retpoŝtadreso estas valida',
 'email-address-validity-invalid' => 'Tajpu validan retpoŝtadreson',
 
@@ -1685,7 +1685,7 @@ Jen hazarde generita valoro por via uzo: $1',
 'hist' => 'historio',
 'hide' => 'Kaŝi',
 'show' => 'Montri',
-'minoreditletter' => 'E',
+'minoreditletter' => 'e',
 'newpageletter' => 'N',
 'boteditletter' => 'R',
 'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|priatentanta uzanto|priatentantaj uzantoj}}]',
@@ -2275,7 +2275,7 @@ Estas [[{{MediaWiki:Listgrouprights-helppage}}|aldona informo]] pri individuaj r
 'listgrouprights-addgroup-self-all' => 'Povas aldoni ĉiujn grupojn al propra konto',
 'listgrouprights-removegroup-self-all' => 'Povas forigi ĉiujn grupojn de propra konto',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Neniu alsendota adreso',
 'mailnologintext' => 'Vi nepre estu [[Special:UserLogin|salutanta]] kaj havanta validan retpoŝtadreson en viaj [[Special:Preferences|preferoj]] por retpoŝti al aliaj uzantoj.',
 'emailuser' => 'Retpoŝti ĉi tiun uzanton',
@@ -3675,7 +3675,7 @@ Aliaj estos kaŝitaj defaŭlte.
 'monthsall' => 'ĉiuj',
 'limitall' => 'ĉiuj',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Konfirmi retadreson',
 'confirmemail_noemail' => 'Vi ne havas validan retpoŝtan adreson notitan en viaj [[Special:Preferences|Preferoj]].',
 'confirmemail_text' => 'Ĉi tiu vikio postulas ke vi validigu vian retadreson antaŭ ol uzadi la retmesaĝpreferojn. Bonvolu alklaki la suban butonon por sendi konfirmesaĝon al via adreso. La mesaĝo entenos ligilon kun kodo; bonvolu alŝuti la ligilon en vian foliumilon por konfirmi ke via retadreso validas.',

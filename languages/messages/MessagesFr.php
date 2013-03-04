@@ -60,6 +60,7 @@
  * @author McDutchie
  * @author Meithal
  * @author Moyg
+ * @author Nicolas NALLET
  * @author Nicolas Raoul
  * @author Nnemo
  * @author Od1n
@@ -1473,7 +1474,7 @@ Essayez en utilisant le préfixe ''all:'' pour rechercher dans tout le contenu (
 'prefs-edit-boxsize' => 'Taille de la fenêtre de modification.',
 'rows' => 'Rangées :',
 'columns' => 'Colonnes :',
-'searchresultshead' => 'Recherches',
+'searchresultshead' => 'Filtrer avec cette valeur',
 'resultsperpage' => 'Nombre de réponses par page :',
 'stub-threshold' => 'Limite supérieure pour les <a href="#" class="stub">liens vers les ébauches</a> (octets) :',
 'stub-threshold-disabled' => 'Désactivé',

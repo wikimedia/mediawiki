@@ -563,7 +563,7 @@ $2',
 'loginlanguagelabel' => 'Тил: $1',
 'suspicious-userlogout' => 'Терс браузер неда кэш этиучу прокси берген соруугъа ушагъаны ючюн, Сизни чыгъаргъа сорууугъуз алынмагъанды.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => "PHP's mail() функцияда белгили болмагъан халат",
 'user-mail-no-addy' => 'Бир e-mail адрес болмагъанлай e-mail иерге кюрешди',
 
@@ -1219,7 +1219,7 @@ $1 {{PLURAL:$1|символдан|символладан}} кеб болургъ
 'prefs-displaywatchlist' => 'Кёрюнюуню джарашдырыулары',
 'prefs-diffs' => 'Версияланы башхалыкълары',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'E-mail адрес тюзге ушайды',
 'email-address-validity-invalid' => 'Тюз e-mail адрес джазыгъыз!',
 
@@ -1944,7 +1944,7 @@ URL-ни тюз , сайтны ачыкъ болгъанына ишексиз б
 'listgrouprights-addgroup-self-all' => 'Бютеу къауумланы кесини тергеу джазыууна къошаллыкъды',
 'listgrouprights-removegroup-self-all' => 'Кесини тергеу джазыуундан бютеу къауумланы къораталлыкъды',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Джиберирге адрес джокъду',
 'mailnologintext' => 'Башха къошулуучулагъа эл. почта джиберелир ючюн [[Special:UserLogin|системагъа кирирге]] керексиз эм [[Special:Preferences|джарашдырыуланы]] бетинде джараулу эл. почта адрес болургъа керекди.',
 'emailuser' => 'Къошулуучугъа письмо',
@@ -2734,6 +2734,7 @@ MediaWiki локализациясына юлюш къошаргъа излей 
 'markedaspatrollederror' => 'Сыналмаганды',
 'markedaspatrollederrortext' => 'Сыналгъан кибик белгилер ючюн версия белгилерге керексиз.',
 'markedaspatrollederror-noautopatrol' => 'Кесигизни тюрлендириулеригизни, сыналгъан кибик белгилерге эркинлигигиз джокъду.',
+'markedaspatrollednotify' => '«$1» бетдеги бу тюрлениу тинтиб къаралгъанча белгиленди.',
 
 # Patrol log
 'patrol-log-page' => 'Патруль этиуню журналы',
@@ -3207,7 +3208,7 @@ $1',
 'monthsall' => 'бютеу',
 'limitall' => 'бютеую',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Электорн адресни мюкюл эт',
 'confirmemail_noemail' => '[[Special:Preferences|джарашдырыулада]] тамамланнган, джараулу электрон адресигиз джокоъду.',
 'confirmemail_text' => 'Викини электрон почтасыны адреси бла хайырланыб башлауну аллы бла, аны мюкюл этериге керекди.
