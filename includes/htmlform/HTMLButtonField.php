@@ -17,7 +17,7 @@ class HTMLButtonField extends HTMLFormField {
 
 	public function getInputHTML( $value ) {
 		$attr = array(
-			'class' => 'mw-htmlform-submit ' . $this->mClass,
+			'class' => 'mw-ui-button mw-htmlform-submit ' . $this->mClass,
 			'id' => $this->mID,
 		) + $this->getAttributes( array( 'disabled', 'tabindex' ) );
 
