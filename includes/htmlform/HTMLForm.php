@@ -725,14 +725,12 @@ class HTMLForm extends ContextSource {
 		# For good measure (it is the default)
 		$this->getOutput()->preventClickjacking();
 		$this->getOutput()->addModules( 'mediawiki.htmlform' );
-		if ( $this->isVForm() ) {
-			$this->getOutput()->addModuleStyles( array(
-				'mediawiki.ui',
-				'mediawiki.ui.button',
-			) );
-			// @todo Should vertical form set setWrapperLegend( false )
-			// to hide ugly fieldsets?
-		}
+		$this->getOutput()->addModuleStyles( array(
+			'mediawiki.ui',
+			'mediawiki.ui.button',
+		) );
+		// @todo Should vertical form set setWrapperLegend( false )
+		// to hide ugly fieldsets?
 
 		$html = ''
 			. $this->getErrors( $submitResult )
@@ -833,7 +831,8 @@ class HTMLForm extends ContextSource {
 				$attribs += Linker::tooltipAndAccesskeyAttribs( $this->mSubmitTooltip );
 			}
 
-			$attribs['class'] = array( 'mw-htmlform-submit' );
+			// TODO (button type/class should be customizable)
+			$attribs['class'] = array( 'mw-htmlform-submit', 'mw-ui-button' );
 
 			if ( $this->isVForm() ) {
 				// mw-ui-block is necessary because the buttons aren't necessarily in an
@@ -856,7 +855,8 @@ class HTMLForm extends ContextSource {
 				'input',
 				array(
 					'type' => 'reset',
-					'value' => $this->msg( 'htmlform-reset' )->text()
+					'value' => $this->msg( 'htmlform-reset' )->text(),
+					'class' => 'mw-ui-button',
 				)
 			) . "\n";
 		}
@@ -865,7 +865,7 @@ class HTMLForm extends ContextSource {
 			$attrs = array(
 				'type' => 'submit',
 				'name' => $button['name'],
-				'value' => $button['value']
+				'value' => $button['value'],
 			);
 
 			if ( $button['attribs'] ) {
@@ -875,6 +875,9 @@ class HTMLForm extends ContextSource {
 			if ( isset( $button['id'] ) ) {
 				$attrs['id'] = $button['id'];
 			}
+
+			// XXX Need to merge 'mw-ui-button' into attrs['class'],
+			// if not already present. 'class' may be a string or array.
 
 			$buttons .= Html::element( 'input', $attrs ) . "\n";
 		}
