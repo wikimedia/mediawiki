@@ -100,6 +100,22 @@ class DBFileJournal extends FileJournal {
 	}
 
 	/**
+	 * @see FileJournal::doGetPositionAtTime()
+	 * @param $time integer|string timestamp
+	 * @return integer|false
+	 */
+	protected function doGetPositionAtTime( $time ) {
+		$dbw = $this->getMasterDB();
+
+		$encTimestamp = $dbw->addQuotes( $dbw->timestamp( $time ) );
+		return $dbw->selectField( 'filejournal', 'fj_id',
+			array( 'fj_backend' => $this->backend, "fj_timestamp <= $encTimestamp" ),
+			__METHOD__,
+			array( 'ORDER BY' => 'fj_timestamp DESC' )
+		);
+	}
+
+	/**
 	 * @see FileJournal::doGetChangeEntries()
 	 * @return Array
 	 * @throws DBError
