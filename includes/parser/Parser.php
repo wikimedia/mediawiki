@@ -3242,70 +3242,22 @@ class Parser {
 
 			$colonPos = strpos( $part1, ':' );
 			if ( $colonPos !== false ) {
-				# Case sensitive functions
-				$function = substr( $part1, 0, $colonPos );
-				if ( isset( $this->mFunctionSynonyms[1][$function] ) ) {
-					$function = $this->mFunctionSynonyms[1][$function];
-				} else {
-					# Case insensitive functions
-					$function = $wgContLang->lc( $function );
-					if ( isset( $this->mFunctionSynonyms[0][$function] ) ) {
-						$function = $this->mFunctionSynonyms[0][$function];
-					} else {
-						$function = false;
-					}
+				$func = substr( $part1, 0, $colonPos );
+				$funcArgs = array( trim( substr( $part1, $colonPos + 1 ) ) );
+				for ( $i = 0; $i < $args->getLength(); $i++ ) {
+					$funcArgs[] = $args->item( $i );
 				}
-				if ( $function ) {
-					wfProfileIn( __METHOD__ . '-pfunc-' . $function );
-					list( $callback, $flags ) = $this->mFunctionHooks[$function];
-					$initialArgs = array( &$this );
-					$funcArgs = array( trim( substr( $part1, $colonPos + 1 ) ) );
-					if ( $flags & SFH_OBJECT_ARGS ) {
-						# Add a frame parameter, and pass the arguments as an array
-						$allArgs = $initialArgs;
-						$allArgs[] = $frame;
-						for ( $i = 0; $i < $args->getLength(); $i++ ) {
-							$funcArgs[] = $args->item( $i );
-						}
-						$allArgs[] = $funcArgs;
-					} else {
-						# Convert arguments to plain text
-						for ( $i = 0; $i < $args->getLength(); $i++ ) {
-							$funcArgs[] = trim( $frame->expand( $args->item( $i ) ) );
-						}
-						$allArgs = array_merge( $initialArgs, $funcArgs );
-					}
-
-					# Workaround for PHP bug 35229 and similar
-					if ( !is_callable( $callback ) ) {
-						wfProfileOut( __METHOD__ . '-pfunc-' . $function );
-						wfProfileOut( __METHOD__ . '-pfunc' );
-						wfProfileOut( __METHOD__ );
-						throw new MWException( "Tag hook for $function is not callable\n" );
-					}
-					$result = call_user_func_array( $callback, $allArgs );
-					$found = true;
-					$noparse = true;
-					$preprocessFlags = 0;
-
-					if ( is_array( $result ) ) {
-						if ( isset( $result[0] ) ) {
-							$text = $result[0];
-							unset( $result[0] );
-						}
-
-						# Extract flags into the local scope
-						# This allows callers to set flags such as nowiki, found, etc.
-						extract( $result );
-					} else {
-						$text = $result;
-					}
-					if ( !$noparse ) {
-						$text = $this->preprocessToDom( $text, $preprocessFlags );
-						$isChildObj = true;
-					}
-					wfProfileOut( __METHOD__ . '-pfunc-' . $function );
+				try {
+					$result = $this->callParserFunction( $frame, $func, $funcArgs );
+				} catch ( Exception $ex ) {
+					wfProfileOut( __METHOD__ . '-pfunc' );
+					throw $ex;
 				}
+
+				# The interface for parser functions allows for extracting
+				# flags into the local scope. Extract any forwarded flags
+				# here.
+				extract( $result );
 			}
 			wfProfileOut( __METHOD__ . '-pfunc' );
 		}
@@ -3500,6 +3452,120 @@ class Parser {
 
 		wfProfileOut( __METHOD__ );
 		return $ret;
+	}
+
+	/**
+	 * Call a parser function and return an array with text and flags.
+	 *
+	 * The returned array will always contain a boolean 'found', indicating
+	 * whether the parser function was found or not. It may also contain the
+	 * following:
+	 *  text: string|object, resulting wikitext or PP DOM object
+	 *  isHTML: bool, $text is HTML, armour it against wikitext transformation
+	 *  isChildObj: bool, $text is a DOM node needing expansion in a child frame
+	 *  isLocalObj: bool, $text is a DOM node needing expansion in the current frame
+	 *  nowiki: bool, wiki markup in $text should be escaped
+	 *
+	 * @since 1.21
+	 * @param $frame PPFrame The current frame, contains template arguments
+	 * @param $function string Function name
+	 * @param $args array Arguments to the function
+	 * @return array
+	 */
+	public function callParserFunction( $frame, $function, array $args = array() ) {
+		global $wgContLang;
+
+		wfProfileIn( __METHOD__ );
+
+		# Case sensitive functions
+		if ( isset( $this->mFunctionSynonyms[1][$function] ) ) {
+			$function = $this->mFunctionSynonyms[1][$function];
+		} else {
+			# Case insensitive functions
+			$function = $wgContLang->lc( $function );
+			if ( isset( $this->mFunctionSynonyms[0][$function] ) ) {
+				$function = $this->mFunctionSynonyms[0][$function];
+			} else {
+				wfProfileOut( __METHOD__ );
+				return array( 'found' => false );
+			}
+		}
+
+		wfProfileIn( __METHOD__ . '-pfunc-' . $function );
+		list( $callback, $flags ) = $this->mFunctionHooks[$function];
+
+		# Workaround for PHP bug 35229 and similar
+		if ( !is_callable( $callback ) ) {
+			wfProfileOut( __METHOD__ . '-pfunc-' . $function );
+			wfProfileOut( __METHOD__ );
+			throw new MWException( "Tag hook for $function is not callable\n" );
+		}
+
+		$allArgs = array( &$this );
+		if ( $flags & SFH_OBJECT_ARGS ) {
+			# Convert arguments to PPNodes and collect for appending to $allArgs
+			$funcArgs = array();
+			foreach ( $args as $k => $v ) {
+				if ( $v instanceof PPNode || $k === 0 ) {
+					$funcArgs[] = $v;
+				} else {
+					$funcArgs[] = $this->mPreprocessor->newPartNodeArray( array( $k => $v ) )->item( 0 );
+				}
+			}
+
+			# Add a frame parameter, and pass the arguments as an array
+			$allArgs[] = $frame;
+			$allArgs[] = $funcArgs;
+		} else {
+			# Convert arguments to plain text and append to $allArgs
+			foreach ( $args as $k => $v ) {
+				if ( $v instanceof PPNode ) {
+					$allArgs[] = trim( $frame->expand( $v ) );
+				} elseif ( is_int( $k ) && $k >= 0 ) {
+					$allArgs[] = trim( $v );
+				} else {
+					$allArgs[] = trim( "$k=$v" );
+				}
+			}
+		}
+
+		$result = call_user_func_array( $callback, $allArgs );
+
+		# The interface for function hooks allows them to return a wikitext
+		# string or an array containing the string and any flags. This mungs
+		# things around to match what this method should return.
+		if ( !is_array( $result ) ) {
+			$result = array(
+				'found' => true,
+				'text' => $result,
+			);
+		} else {
+			if ( isset( $result[0] ) && !isset( $result['text'] ) ) {
+				$result['text'] = $result[0];
+			}
+			unset( $result[0] );
+			$result += array(
+				'found' => true,
+			);
+		}
+
+		$noparse = true;
+		$preprocessFlags = 0;
+		if ( isset( $result['noparse'] ) ) {
+			$noparse = $result['noparse'];
+		}
+		if ( isset( $result['preprocessFlags'] ) ) {
+			$preprocessFlags = $result['preprocessFlags'];
+		}
+
+		if ( !$noparse ) {
+			$result['text'] = $this->preprocessToDom( $result['text'], $preprocessFlags );
+			$result['isChildObj'] = true;
+		}
+		wfProfileOut( __METHOD__ . '-pfunc-' . $function );
+		wfProfileOut( __METHOD__ );
+
+		return $result;
 	}
 
 	/**
