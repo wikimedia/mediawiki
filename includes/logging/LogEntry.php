@@ -544,7 +544,7 @@ class ManualLogEntry extends LogEntryBase {
 		}
 
 		if ( $to === 'udp' || $to === 'rcandudp' ) {
-			$rc->notifyRC2UDP();
+			$rc->notifyRCFeeds();
 		}
 	}
 

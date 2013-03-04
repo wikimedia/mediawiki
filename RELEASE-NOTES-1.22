@@ -49,6 +49,11 @@ production.
 * The checkbox for staying in HTTPS displayed on the login form when $wgSecureLogin is
   enabled has been removed. Instead, whether the user stays in HTTPS will be determined
   based on the user's preferences, and whether they came from HTTPS or not.
+* $wgRC2UDPAddress, $wgRC2UDPInterwikiPrefix, $wgRC2UDPOmitBots, $wgRC2UDPPort,
+  and $wgRC2UDPPrefix configuration options have been deprecated in favor of a
+  $wgRCFeeds configuration array. $wgRCFeeds makes both the format and
+  destination of recent change notifications customizable, and allows for
+  multiple destinations to be specified.
 
 === New features in 1.22 ===
 * (bug 44525) mediawiki.jqueryMsg can now parse (whitelisted) HTML elements and attributes.
@@ -403,6 +408,11 @@ changes to languages because of Bugzilla reports.
   have been deprecated in favour of using mw.hook.
 * The 'showjumplinks' user preference has been removed, jump links are now
   always included.
+* Methods RecentChange::notifyRC2UDP, RecentChange::sendToUDP, and
+  RecentChange::cleanupForIRC have been deprecated, as it is now the
+  responsibility of classes implementing the RCFeedFormatter and RCFeedEngine
+  interfaces to implement the formatting and delivery for recent change
+  notifications.
 
 == Compatibility ==
 
