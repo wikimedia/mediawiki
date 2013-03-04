@@ -3744,6 +3744,17 @@ abstract class DatabaseBase implements DatabaseType {
 	}
 
 	/**
+	 * Returns the table prefix being used by this instance.
+	 *
+	 * @since 1.21
+	 *
+	 * @return string|null
+	 */
+	public function getTablePrefix() {
+		return $this->mTablePrefix;
+	}
+
+	/**
 	 * @since 1.19
 	 */
 	public function __toString() {
