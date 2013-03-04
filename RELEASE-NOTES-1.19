@@ -12,6 +12,9 @@ This is a maintenance release of the MediaWiki 1.19 branch
   Special:Preferences, but are still available via the action=options API.
 * (bug 44010) Context is passed to UserGetLanguageObject.
 * The recursion guard on RequestContext::getLanguage() was weakened.
+* (bug 44135/42441) Pass '2' instead of 'true' to CURLOPT_SSL_VERIFYHOST
+* (bug 43518) API action=unblock should return the user name, not the full
+  user object
 
 == MediaWiki 1.19.3 ==
 
