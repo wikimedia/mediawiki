@@ -1085,6 +1085,13 @@ function wfLogWarning( $msg, $callerOffset = 1, $level = E_USER_WARNING ) {
 }
 
 /**
+ * @deprecated since 1.22, use wfLogToFileOrStream instead.
+ */
+function wfErrorLog( $text, $file ) {
+	wfLogToFileOrStream( $text, $file );
+}
+
+/**
  * Log to a file without getting "file size exceeded" signals.
  *
  * Can also log to TCP or UDP with the syntax udp://host:port/prefix. This will
@@ -1094,7 +1101,7 @@ function wfLogWarning( $msg, $callerOffset = 1, $level = E_USER_WARNING ) {
  * @param string $file filename
  * @throws MWException
  */
-function wfErrorLog( $text, $file ) {
+function wfLogToFileOrStream( $text, $file ) {
 	if ( substr( $file, 0, 4 ) == 'udp:' ) {
 		# Needs the sockets extension
 		if ( preg_match( '!^(tcp|udp):(?://)?\[([0-9a-fA-F:]+)\]:(\d+)(?:/(.*))?$!', $file, $m ) ) {

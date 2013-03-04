@@ -360,28 +360,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		$type = intval( $row->rc_type );
 
 		/* Determine what kind of change this was. */
-		switch ( $type ) {
-			case RC_EDIT:
-				$vals['type'] = 'edit';
-				break;
-			case RC_NEW:
-				$vals['type'] = 'new';
-				break;
-			case RC_MOVE:
-				$vals['type'] = 'move';
-				break;
-			case RC_LOG:
-				$vals['type'] = 'log';
-				break;
-			case RC_EXTERNAL:
-				$vals['type'] = 'external';
-				break;
-			case RC_MOVE_OVER_REDIRECT:
-				$vals['type'] = 'move over redirect';
-				break;
-			default:
-				$vals['type'] = $type;
-		}
+		$vals['type'] = RecentChange::typeToString( $type );
 
 		/* Create a new entry in the result for the title. */
 		if ( $this->fld_title ) {
