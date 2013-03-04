@@ -384,7 +384,11 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 					'<td></td>' .
 					'<td class="mw-submit">' .
 						Xml::submitButton( $this->msg( 'revdelete-submit', $numRevisions )->text(),
-							array( 'name' => 'wpSubmit' ) ) .
+							array(
+								'name' => 'wpSubmit',
+								'class' => 'mw-ui-button mw-ui-destructive'
+							)
+						) .
 					'</td>' .
 				"</tr>\n" .
 				Xml::closeElement( 'table' ) .
