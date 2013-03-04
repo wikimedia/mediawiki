@@ -17,23 +17,23 @@ project.index
 sublime-*
 
 # MediaWiki install & usage
-cache
-docs/js
-images/[0-9a-f]
-images/archive
-images/deleted
-images/lockdir
-images/temp
-images/thumb
+/cache
+/docs/js
+/images/[0-9a-f]
+/images/archive
+/images/deleted
+/images/lockdir
+/images/temp
+/images/thumb
 ## Extension:EasyTimeline
-images/timeline
-images/tmp
-maintenance/.mweval_history
-maintenance/.mwsql_history
-maintenance/dev/data
-AdminSettings.php
-LocalSettings.php
-StartProfiler.php
+/images/timeline
+/images/tmp
+/maintenance/.mweval_history
+/maintenance/.mwsql_history
+/maintenance/dev/data
+/AdminSettings.php
+/LocalSettings.php
+/StartProfiler.php
 
 # Building & testing
 node_modules/
@@ -55,6 +55,6 @@ Thumbs.db
 .idea
 .metadata*
 .settings
-favicon.ico
-static*
-tags
+/favicon.ico
+/static*
+/tags
