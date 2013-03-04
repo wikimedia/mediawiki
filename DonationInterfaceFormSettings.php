@@ -43,15 +43,14 @@ $forms_whitelist['bt'] = array(
 /****************
  * Direct Debit *
  ****************/
-/*
-$forms_whitelist['dd-ES'] = array(
-	'file' => $form_dirs['gc'] . '/dd/dd-ES.html',
+$forms_whitelist['dd'] = array(
+	'file' => $form_dirs['gc'] . '/dd/dd.html',
 	'gateway' => 'globalcollect',
 	'countries' => array(
-		'+' => 'ES',
+		'+' => array('AT', 'BE', 'DE', 'ES', 'IT', 'NL'),
 	),
 	'payment_methods' => array('dd' => 'ALL')
-); */
+);
 
 
 /*********************
