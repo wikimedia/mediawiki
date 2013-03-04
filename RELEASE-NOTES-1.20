@@ -6,7 +6,7 @@ setting since version 1.2.0. If you have it on, turn it '''off''' if you can.
 
 == MediaWiki 1.20.3 ==
 
-This is a maintenance release of the MediaWiki 1.20 branch.
+This is a security and maintenance release of the MediaWiki 1.20 branch.
 
 === Changes since 1.20.2 ===
 * New preference type - 'api'. Preferences of this type are not shown on
@@ -15,9 +15,11 @@ This is a maintenance release of the MediaWiki 1.20 branch.
 * The recursion guard on RequestContext::getLanguage() was weakened.
 * (bug 40585) Don't drop 'step="any"' in HTML input fields.
 * (bug 44024) Fixed problems in ObjectCache when using XCache.
-* (bug 44135) Fixed problems in CurlHttpRequest that caused InstantCommons
-  to longer work by default.
 * (bug 44010) FauxRequest leaked cookie data from primary request.
+* (bug 44135/42441) Pass '2' instead of 'true' to CURLOPT_SSL_VERIFYHOST
+* (bug 43518) API action=unblock should return the user name, not the full
+  user object
+* (Bug 45355) Prevent read of arbitrary files through mwdoc-filter.php
 
 == MediaWiki 1.20.2 ==
 
