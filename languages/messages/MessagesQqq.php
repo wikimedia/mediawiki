@@ -7887,7 +7887,7 @@ $1 is maxaperture in APEX units (APEX aperture units = 2log<sub>2</sub>(f-number
 'exif-iimcategory-hum' => 'Displayed as part of the iimcategory field if the 3 letter code is recognized, or as part {{msg-mw|exif-subjectnewscode-value}}',
 'exif-iimcategory-lab' => 'Displayed as part of the iimcategory field if the 3 letter code is recognized, or as part {{msg-mw|exif-subjectnewscode-value}}
 
-"Labour" here refers to all news on labour issues; employment; unemployment; work relations; labour disputes; strikes; legislation; unions; job related issues; government policy. (at least, according to Reuters.)',
+"Labor" here refers to all news on labor issues; employment; unemployment; work relations; labor disputes; strikes; legislation; unions; job related issues; government policy. (at least, according to Reuters.)',
 'exif-iimcategory-lif' => 'Displayed as part of the iimcategory field if the 3 letter code is recognized, or as part {{msg-mw|exif-subjectnewscode-value}}',
 'exif-iimcategory-pol' => 'Displayed as part of the iimcategory field if the 3 letter code is recognized, or as part {{msg-mw|exif-subjectnewscode-value}}',
 'exif-iimcategory-rel' => 'Displayed as part of the iimcategory field if the 3 letter code is recognized, or as part {{msg-mw|exif-subjectnewscode-value}}',

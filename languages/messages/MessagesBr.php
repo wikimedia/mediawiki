@@ -291,7 +291,7 @@ $messages = array(
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Rummad |Rummad }}',
 'category_header' => 'Niver a bennadoù er rummad "$1"',
-'subcategories' => 'Isrummad',
+'subcategories' => 'Isrummadoù',
 'category-media-header' => 'Restroù liesvedia er rummad "$1"',
 'category-empty' => "''N'eus na pajenn na media ebet er rummad-mañ evit ar mare.''",
 'hidden-categories' => '{{PLURAL:$1|Rummad kuzhet|Rummad kuzhet}}',
@@ -450,7 +450,7 @@ $1',
 'youhavenewmessagesmulti' => "Kemennoù nevez zo ganeoc'h war $1",
 'editsection' => 'kemmañ',
 'editold' => 'kemmañ',
-'viewsourceold' => 'gwelet ar vammenn',
+'viewsourceold' => 'sellet ouzh tarzh an destenn',
 'editlink' => 'kemmañ',
 'viewsourcelink' => 'gwelet an tarzh',
 'editsectionhint' => 'Kemmañ ar rann : $1',
@@ -1529,7 +1529,7 @@ Ma skrivit anezhañ e vo implijet evit lakaat war wel ar pezh a vo bet degaset g
 'rclinks' => "Diskouez an $1 kemm diwezhañ c'hoarvezet e-pad an $2 devezh diwezhañ<br />$3",
 'diff' => "diforc'h",
 'hist' => 'ist',
-'hide' => 'kuzhat',
+'hide' => 'Kuzhat',
 'show' => 'Diskouez',
 'minoreditletter' => 'D',
 'newpageletter' => 'N',
@@ -1544,9 +1544,9 @@ Ma skrivit anezhañ e vo implijet evit lakaat war wel ar pezh a vo bet degaset g
 'rc-old-title' => 'bet krouet da gentañ gant an anv "$1"',
 
 # Recent changes linked
-'recentchangeslinked' => 'Heuliañ al liammoù',
-'recentchangeslinked-feed' => 'Heuliañ al liammoù',
-'recentchangeslinked-toolbox' => 'Heuliañ al liammoù',
+'recentchangeslinked' => 'Heuliañ ar pajennoù liammet',
+'recentchangeslinked-feed' => 'Heuliañ ar pajennoù liammet',
+'recentchangeslinked-toolbox' => 'Heuliañ ar pajennoù liammet',
 'recentchangeslinked-title' => 'Kemmoù a denn da "$1"',
 'recentchangeslinked-noresult' => 'Kemm ebet war ar pajennoù liammet e-pad an amzer spisaet.',
 'recentchangeslinked-summary' => "Rollet eo war ar bajenn dibar-mañ ar c'hemmoù diwezhañ bet degaset war ar pajennoù liammet ouzh ur bajenn lakaet (pe ouzh izili ur rummad lakaet).
@@ -1940,6 +1940,8 @@ Marteze a-walc'h e fell deoc'h kemmañ an deskrivadur anezhi war ar [$2 bajenn d
 'disambiguations-text' => "Liammet eo ar pajennoù da-heul ouzh ur '''bajenn disheñvelout'''.
 Padal e tlefent kas war-eeun d'an danvez anezho.<br />
 Sellet e vez ouzh ur bajenn evel ouzh ur bajenn disheñvelout ma ra gant ur patrom liammet ouzh [[MediaWiki:Disambiguationspage]]",
+
+'pageswithprop-prop' => 'Anv ar perzh :',
 
 'doubleredirects' => 'Adkasoù doubl',
 'doubleredirectstext' => 'Rollañ a ra ar bajenn-mañ ar pajennoù a adkas da bajennoù adkas all.
@@ -3852,6 +3854,7 @@ Diskouezet eo ar skeudennoù gant ur pizhder uhel, erounit a ra ar restroù all 
 'logentry-newusers-create' => 'Krouet eo bet ar gont implijer $1',
 'logentry-newusers-create2' => 'Gant $1 eo bet krouet ar gont implijer $3',
 'logentry-newusers-autocreate' => 'Krouet eo bet kont $1 ent emgefre',
+'logentry-rights-autopromote' => '$1 zo bet anvet ent emgefre a $4 da $5',
 'rightsnone' => '(netra)',
 
 # Feedback
@@ -3906,6 +3909,7 @@ A-hend-all e c'hallit ober gant ar furmskrid eeunaet dindan. Ouzhpennet e vo hoc
 'api-error-ok-but-empty' => 'Fazi diabarzh : respont ebet a-berzh ar servijer.',
 'api-error-overwrite' => "N'eo ket aotreet frikañ ur restr zo anezhi c'hoazh.",
 'api-error-stashfailed' => "Fazi diabarzh : dibosupl d'ar servijer enrollañ ar restr padennek.",
+'api-error-publishfailed' => "Fazi diabarzh : dibosupl d'ar servijer embann ar restr padennek.",
 'api-error-timeout' => "N'eo ket bet ar servijer evit respont en termen lakaet.",
 'api-error-unclassified' => "C'hoarvezet ez eus ur gudenn dianav.",
 'api-error-unknown-code' => 'Fazi dianav : "$1"',

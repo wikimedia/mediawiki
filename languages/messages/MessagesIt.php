@@ -2024,6 +2024,8 @@ Probabilmente vuoi modificare la descrizione presente nella [$2 pagina di descri
 Esse potrebbero dover puntare a una pagina più appropriata.<br />
 Vengono considerate pagine di disambiguazione tutte quelle che contengono i template elencati in [[MediaWiki:Disambiguationspage]].",
 
+'pageswithprop' => 'Pagine con una pagina di proprietà',
+'pageswithprop-text' => 'Questa pagina elenca le pagine che utilizzano una particolare pagina di proprietà.',
 'pageswithprop-prop' => 'Nome proprietà:',
 
 'doubleredirects' => 'Redirect doppi',
@@ -4005,5 +4007,6 @@ Le immagini vengono mostrate alla massima risoluzione disponibile, per gli altri
 'duration-millennia' => '$1 {{PLURAL:$1|millennio|millenni}}',
 
 # Unknown messages
+'pageswithprop-legend' => 'Pagine con una pagina di proprietà',
 'pageswithprop-submit' => 'Vai',
 );

@@ -680,7 +680,7 @@ Vinsamlegast veldu þér annað.',
 {{SITENAME}} notar vefkökur til að skrá inn notendur.
 Þú hefur lokað fyrir vefkökur.
 Gjörðu svo vel og opnaðu fyrir þær, skráðu þig svo inn með notandanafni og lykilorði.',
-'nocookieslogin' => '{{SITENAME}} notar vefkökur til innskráningar. Vafrinn þinn er ekki að taka á móti þeim sem gerir það ókleyft að innskrá þig. Vinsamlegast virkjaðu móttöku kakna í vafranum þínum til að geta skráð þig inn.',
+'nocookieslogin' => '{{SITENAME}} notar vefkökur til innskráningar. Vafrinn þinn er ekki að taka á móti þeim. Vinsamlegast virkjaðu móttöku kakna í vafranum þínum til að geta skráð þig inn.',
 'nocookiesfornew' => 'Notenda aðgangurinn var ekki stofnaður, því ekki fannst uppruni beiðnarinnar.
 Gakktu úr skugga um að vefkökur séu virkar, endurhladdu þessari síðu og reyndu aftur.',
 'noname' => 'Þú hefur ekki tilgreint gilt notandanafn.',
@@ -877,14 +877,14 @@ Athugaðu að þú getur ekki notað „Senda þessum notanda tölvupóst“ að
 Núverandi vistfang þitt er $3, og bönnunarnúmerið er #$5.
 Vinsamlegast tilgreindu allt að ofanverðu í fyrirspurnum þínum.",
 'blockednoreason' => 'engin ástæða gefin',
-'whitelistedittext' => 'Þú þarft að $1 til að breyta síðum.',
+'whitelistedittext' => 'Þú þarft að $1 þig til að breyta síðum.',
 'confirmedittext' => 'Þú verður að staðfesta netfangið þitt áður en þú getur breytt síðum. Vinsamlegast stilltu og staðfestu netfangið þitt í gegnum [[Special:Preferences|stillingarnar]].',
 'nosuchsectiontitle' => 'Hluti ekki til',
 'nosuchsectiontext' => 'Þú reyndir að breyta hluta sem er ekki til.
 Hlutinn gæti hafa verið fluttur til eða hent á meðan þú varst að skoða síðuna.',
 'loginreqtitle' => 'Innskráningar krafist',
 'loginreqlink' => 'innskrá',
-'loginreqpagetext' => 'Þú þarft að $1 til að geta séð aðrar síður.',
+'loginreqpagetext' => 'Þú þarft að $1 þig til að geta séð aðrar síður.',
 'accmailtitle' => 'Lykilorð sent.',
 'accmailtext' => "Lykilorðið fyrir [[User talk:$1|$1]] hefur verið sent á $2.
 
@@ -2245,7 +2245,7 @@ Póstfangið sem þú tilgreindir í [[Special:Preferences|stillingunum þínum]
 'mywatchlist' => 'Vaktlisti',
 'watchlistfor2' => 'Eftir $1 $2',
 'nowatchlist' => 'Vaktlistinn er tómur.',
-'watchlistanontext' => 'Vinsamlegast $1 til að skoða eða breyta vaktlistanum þínum.',
+'watchlistanontext' => 'Vinsamlegast $1ðu þig til að skoða eða breyta vaktlistanum þínum.',
 'watchnologin' => 'Óinnskráð(ur)',
 'watchnologintext' => 'Þú verður að vera [[Special:UserLogin|innskáð(ur)]] til að geta breytt vaktlistanum.',
 'addwatch' => 'Bæta á vaktlistann',
@@ -3564,7 +3564,7 @@ Athugaðu hvort ógild tákn séu í netfanginu þínu.
 
 Póstþjónninn skilaði: $1',
 'confirmemail_invalid' => 'Ógildur staðfestingarkóði. Hann gæti verið útrunninn.',
-'confirmemail_needlogin' => 'Þú verður að $1 til að staðfesta netfangið þitt.',
+'confirmemail_needlogin' => 'Þú verður að $1 þig til að staðfesta netfangið þitt.',
 'confirmemail_success' => 'Netfang þitt hefur verið staðfest. Þú getur nú [[Special:UserLogin|skráð þig inn]] og vafrað um wiki-kerfið.',
 'confirmemail_loggedin' => 'Netfang þitt hefur verið staðfest.',
 'confirmemail_error' => 'Eitthvað fór úrskeiðis við vistun staðfestingarinnar.',
