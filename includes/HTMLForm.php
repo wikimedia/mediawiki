@@ -717,7 +717,7 @@ class HTMLForm extends ContextSource {
 				$attribs += Linker::tooltipAndAccesskeyAttribs( $this->mSubmitTooltip );
 			}
 
-			$attribs['class'] = 'mw-htmlform-submit';
+			$attribs['class'] = array( 'mw-htmlform-submit', 'mw-ui-button', 'mw-ui-primary' );
 
 			$html .= Xml::submitButton( $this->getSubmitText(), $attribs ) . "\n";
 		}
@@ -727,7 +727,8 @@ class HTMLForm extends ContextSource {
 				'input',
 				array(
 					'type' => 'reset',
-					'value' => $this->msg( 'htmlform-reset' )->text()
+					'value' => $this->msg( 'htmlform-reset' )->text(),
+					'class' => 'mw-ui-button',
 				)
 			) . "\n";
 		}
@@ -736,7 +737,7 @@ class HTMLForm extends ContextSource {
 			$attrs = array(
 				'type' => 'submit',
 				'name' => $button['name'],
-				'value' => $button['value']
+				'value' => $button['value'],
 			);
 
 			if ( $button['attribs'] ) {
@@ -746,6 +747,8 @@ class HTMLForm extends ContextSource {
 			if ( isset( $button['id'] ) ) {
 				$attrs['id'] = $button['id'];
 			}
+			// XXX Need to merge 'mw-ui-button' into attrs['class'],
+			// if not already present. 'class' may be a string or array.
 
 			$html .= Html::element( 'input', $attrs );
 		}
@@ -2743,6 +2746,8 @@ class HTMLHiddenField extends HTMLFormField {
  */
 class HTMLSubmitField extends HTMLButtonField {
 	protected $buttonType = 'submit';
+
+	// TODO Needs a constructor to add $this->mClass .= ' mw-ui-primary';
 }
 
 /**
@@ -2762,7 +2767,7 @@ class HTMLButtonField extends HTMLFormField {
 
 	public function getInputHTML( $value ) {
 		$attr = array(
-			'class' => 'mw-htmlform-submit ' . $this->mClass,
+			'class' => 'mw-ui-button mw-htmlform-submit ' . $this->mClass,
 			'id' => $this->mID,
 		);
 
