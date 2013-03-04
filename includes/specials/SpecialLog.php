@@ -50,6 +50,9 @@ class SpecialLog extends SpecialPage {
 		$this->setHeaders();
 		$this->outputHeader();
 
+		$out = $this->getOutput();
+		$out->addModuleStyles( 'mediawiki.ui.button' );
+
 		$opts = new FormOptions;
 		$opts->add( 'type', '' );
 		$opts->add( 'user', '' );
@@ -206,7 +209,12 @@ class SpecialLog extends SpecialPage {
 			'button',
 			array(
 				'type' => 'submit',
-				'class' => "deleterevision-log-submit mw-log-deleterevision-button"
+				'class' => array(
+					'deleterevision-log-submit',
+					'mw-log-deleterevision-button',
+					'mw-ui-button',
+					'mw-ui-progressive'
+				)
 			),
 			$this->msg( 'showhideselectedlogentries' )->text()
 		) . "\n";
