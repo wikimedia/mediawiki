@@ -11,6 +11,10 @@
  * @file
  */
 
+if ( PHP_SAPI != 'cli' ) {
+	die( "This filter can only be run from the command line.\n" );
+}
+
 $source = file_get_contents( $argv[1] );
 $regexp = '#\@var\s+([^\s]+)([^/]+)/\s+(var|public|protected|private)\s+(\$[^\s;=]+)#';
 $replac = '${2} */ ${3} ${1} ${4}';
