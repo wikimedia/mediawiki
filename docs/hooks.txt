@@ -1834,6 +1834,13 @@ $out: OutputPage object
 'RecentChange_save': Called at the end of RecentChange::save().
 $recentChange: RecentChange object
 
+'RecentChangeCustomFeed': Allows to provide custom live feeds for recent changes.
+Have to return false if it actually handled the request.
+$feedID: the ID string of the recent changes feed
+$engine: the name of the engine specified by user
+$feed: the feed parameters
+$change: RecentChange object
+
 'RedirectSpecialArticleRedirectParams': Lets you alter the set of parameter
 names such as "oldid" that are preserved when using redirecting special pages
 such as Special:MyPage and Special:MyTalk.
