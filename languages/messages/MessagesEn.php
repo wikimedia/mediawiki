@@ -4411,7 +4411,7 @@ $8', # only translate this message to other languages if you have to change it
 'exif-iimcategory-evn' => 'Environment',
 'exif-iimcategory-hth' => 'Health',
 'exif-iimcategory-hum' => 'Human interest',
-'exif-iimcategory-lab' => 'Labour',
+'exif-iimcategory-lab' => 'Labor',
 'exif-iimcategory-lif' => 'Lifestyle and leisure',
 'exif-iimcategory-pol' => 'Politics',
 'exif-iimcategory-rel' => 'Religion and belief',
