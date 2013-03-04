@@ -397,6 +397,18 @@ if ( $wgCookieSecure === 'detect' ) {
 	$wgCookieSecure = ( WebRequest::detectProtocol() === 'https' );
 }
 
+if ( $wgRC2UDPAddress ) {
+	$wgRCLiveFeeds['default'] = array(
+		'engine' => 'UDPRCFeedEngine',
+		'format' => 'ircpretty',
+		'address' => &$wgRC2UDPAddress,
+		'port' => &$wgRC2UDPPort,
+		'prefix' => &$wgRC2UDPPrefix,
+		'interwiki_prefix' => &$wgRC2UDPInterwikiPrefix,
+		'omit_bots' => &$wgRC2UDPOmitBots,
+	);
+}
+
 // Disable MWDebug for command line mode, this prevents MWDebug from eating up
 // all the memory from logging SQL queries on maintenance scripts
 global $wgCommandLineMode;

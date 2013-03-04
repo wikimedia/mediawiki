@@ -5085,11 +5085,15 @@ $wgRCLinkDays = array( 1, 3, 7, 14, 30 );
 /**
  * Send recent changes updates via UDP. The updates will be formatted for IRC.
  * Set this to the IP address of the receiver.
+ *
+ * @deprecated since 1.22, use $wgRCLiveFeeds
  */
 $wgRC2UDPAddress = false;
 
 /**
  * Port number for RC updates
+ *
+ * @deprecated since 1.22, use $wgRCLiveFeeds
  */
 $wgRC2UDPPort = false;
 
@@ -5098,20 +5102,48 @@ $wgRC2UDPPort = false;
  * This can be used to identify the wiki. A script is available called
  * mxircecho.py which listens on a UDP port, and uses a prefix ending in a
  * tab to identify the IRC channel to send the log line to.
+ *
+ * @deprecated since 1.22, use $wgRCLiveFeeds
  */
 $wgRC2UDPPrefix = '';
 
 /**
  * If this is set to true, $wgLocalInterwiki will be prepended to links in the
  * IRC feed. If this is set to a string, that string will be used as the prefix.
+ *
+ * @deprecated since 1.22, use $wgRCLiveFeeds
  */
 $wgRC2UDPInterwikiPrefix = false;
 
 /**
  * Set to true to omit "bot" edits (by users with the bot permission) from the
  * UDP feed.
+ *
+ * @deprecated since 1.22, use $wgRCLiveFeeds
  */
 $wgRC2UDPOmitBots = false;
+
+/**
+ * Destinations to which notifications about recent changes
+ * should be sent. The format is 'id' => parameters.
+ *
+ * The two currently supported 'engine' parameter options are 'irc' and 'json',
+ * Both are used to send recent changes over UDP to the specified server.
+ * The common options are:
+ *   * 'address' -- the address to which the notices are to be sent.
+ *   * 'port' -- the UDP port number
+ *   * 'prefix' -- the string with which all notices should be prefixed
+ *   * 'omit_bots' -- whether the bot edits should be in the feed
+ *  The IRC-specific options are:
+ *   * 'interwiki_prefix' -- whether the titles should be prefixed with
+ *     $wgLocalInterwiki.
+ *  The JSON-specific options are:
+ *   * 'channel' -- if set, the 'channel' parameter is also set in JSON values.
+ *
+ *  By default, this contains a 'default' entry pointing to old $wgRC2UDP paramters
+ *  of IRC feed.
+ */
+$wgRCLiveFeeds = array();
 
 /**
  * Enable user search in Special:Newpages
