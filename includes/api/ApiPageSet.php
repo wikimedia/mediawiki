@@ -69,6 +69,7 @@ class ApiPageSet extends ApiBase {
 	private $mFakePageId = -1;
 	private $mCacheMode = 'public';
 	private $mRequestedPageFields = array();
+	private $mDefaultNamespace = NS_MAIN;
 
 	/**
 	 * Constructor
@@ -77,10 +78,11 @@ class ApiPageSet extends ApiBase {
 	 * @param $flags int Zero or more flags like DISABLE_GENERATORS
 	 * @since 1.21 accepts $flags instead of two boolean values
 	 */
-	public function __construct( ApiBase $dbSource, $flags = 0 ) {
+	public function __construct( ApiBase $dbSource, $flags = 0, $defaultNamespace = NS_MAIN ) {
 		parent::__construct( $dbSource->getMain(), $dbSource->getModuleName() );
 		$this->mDbSource = $dbSource;
 		$this->mAllowGenerator = ( $flags & ApiPageSet::DISABLE_GENERATORS ) == 0;
+		$this->mDefaultNamespace = $defaultNamespace;
 
 		$this->profileIn();
 		$this->mParams = $this->extractRequestParams();
@@ -885,11 +887,11 @@ class ApiPageSet extends ApiBase {
 	private function processTitlesArray( $titles ) {
 		$genderCache = GenderCache::singleton();
 		$genderCache->doTitlesArray( $titles, __METHOD__ );
-
 		$linkBatch = new LinkBatch();
 
 		foreach ( $titles as $title ) {
-			$titleObj = is_string( $title ) ? Title::newFromText( $title ) : $title;
+			$titleObj = is_string( $title ) ? Title::newFromText(
+				$title, $defaultNamespace = $this->mDefaultNamespace ) : $title;
 			if ( !$titleObj ) {
 				// Handle invalid titles gracefully
 				$this->mAllpages[0][$title] = $this->mFakePageId;
