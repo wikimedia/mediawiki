@@ -267,8 +267,8 @@ class RecentChangeTest extends MediaWikiTestCase {
 		$formatter = LogFormatter::newFromEntry( $logEntry );
 		$formatter->setContext( $this->context );
 
-		// Apply the same transformation as done in RecentChange::getIRCLine for rc_comment
-		$ircRcComment = RecentChange::cleanupForIRC( $formatter->getIRCActionComment() );
+		// Apply the same transformation as done in IRCColourfulRCFeedFormatter::getLine for rc_comment
+		$ircRcComment = IRCColourfulRCFeedFormatter::cleanupForIRC( $formatter->getIRCActionComment() );
 
 		$this->assertEquals(
 			$expected,
