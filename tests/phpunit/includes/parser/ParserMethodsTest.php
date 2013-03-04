@@ -28,5 +28,22 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $expected, $text );
 	}
 
+	public function testCallParserFunction() {
+		global $wgParser;
+
+		// Normal parses test passing PPNodes. Test passing an array.
+		$title = Title::newFromText( str_replace( '::', '__', __METHOD__ ) );
+		$wgParser->startExternalParse( $title, new ParserOptions(), Parser::OT_HTML );
+		$frame = $wgParser->getPreprocessor()->newFrame();
+		$ret = $wgParser->callParserFunction( $frame, '#tag',
+			array( 'pre', 'foo', 'style' => 'margin-left: 1.6em' )
+		);
+		$ret['text'] = $wgParser->mStripState->unstripBoth( $ret['text'] );
+		$this->assertSame( array(
+			'found' => true,
+			'text' => '<pre style="margin-left: 1.6em">foo</pre>',
+		), $ret, 'callParserFunction works for {{#tag:pre|foo|style=margin-left: 1.6em}}' );
+	}
+
 	// TODO: Add tests for cleanSig() / cleanSigInSig(), getSection(), replaceSection(), getPreloadText()
 }
