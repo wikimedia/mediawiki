@@ -824,6 +824,10 @@ $wgAutoloadLocalClasses = array(
 	'ProfilerStub' => 'includes/profiler/ProfilerStub.php',
 	'ProfileSection' => 'includes/profiler/Profiler.php',
 
+	# includes/rclivefeed
+	'RCFeedEngine' => 'includes/rclivefeed/RCFeedEngine.php',
+	'UDPRCFeedEngine' => 'includes/rclivefeed/UDPRCFeedEngine.php',
+
 	# includes/resourceloader
 	'ResourceLoader' => 'includes/resourceloader/ResourceLoader.php',
 	'ResourceLoaderContext' => 'includes/resourceloader/ResourceLoaderContext.php',
