@@ -1,0 +1,74 @@
+/* Benefits column CSS */
+div.createacct-benefits-container {
+	margin-left: 100px;
+	float: left }
+
+div.createacct-benefits-container h2 {
+	margin-bottom: 30px;
+}
+
+ul.createacct-benefits-list {
+	list-style: none;
+	margin-left: 0;
+}
+
+ul.createacct-benefits-list li {
+	display: block;
+	padding: 0;
+	margin-bottom: 40px; }
+
+div.benefits-icon {
+	display: inline-block;
+	padding: 0;
+	float: left;
+	width: 80px;
+	height: 75px;
+	margin-right: 15px;
+	border: 0; }
+
+.benefits-icon.icon-edits {
+	/* @embed */
+	background: url(images/icon-edits.png) no-repeat right;
+}
+
+.benefits-icon.icon-pages {
+	/* @embed */
+	background: url(images/icon-pages.png) no-repeat right;
+}
+
+.benefits-icon.icon-contributors {
+	/* @embed */
+	background: url(images/icon-contributors.png) no-repeat right;
+}
+
+/* General alignment of benefits */
+.benefits-text {
+	display: inline-block;
+	min-width: 200px;
+	height: 75px;
+	vertical-align: middle;
+	max-width: 450px;
+	padding: 0;
+}
+
+/* Special font for numbers in benefits*/
+div.number-text h3 {
+	top: 0;
+	margin: 0;
+	padding: 0;
+	color: #252525;
+	font-family: 'Georgia', serif;
+	font-weight: normal;
+	font-size: 2.2em;
+	line-height: 1.2;
+	text-align: center;
+}
+
+div.number-text {
+	display: block;
+	font-size: 1.2em;
+	font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+	color: #444;
+	margin-top: 1em;
+	text-align: center;
+}
