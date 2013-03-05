@@ -42,22 +42,22 @@ var mw = ( function ( $, undefined ) {
 		 */
 		get: function ( selection, fallback ) {
 			var results, i;
+			// If we only do this in the `return` block, it'll fail for the
+			// call to get() from the mutli-selection block.
+			fallback = arguments.length > 1 ? fallback : null;
 
 			if ( $.isArray( selection ) ) {
 				selection = slice.call( selection );
 				results = {};
-				for ( i = 0; i < selection.length; i += 1 ) {
+				for ( i = 0; i < selection.length; i++ ) {
 					results[selection[i]] = this.get( selection[i], fallback );
 				}
 				return results;
 			}
 
 			if ( typeof selection === 'string' ) {
-				if ( this.values[selection] === undefined ) {
-					if ( fallback !== undefined ) {
-						return fallback;
-					}
-					return null;
+				if ( !hasOwn.call( this.values, selection ) ) {
+					return fallback;
 				}
 				return this.values[selection];
 			}
@@ -86,7 +86,7 @@ var mw = ( function ( $, undefined ) {
 				}
 				return true;
 			}
-			if ( typeof selection === 'string' && value !== undefined ) {
+			if ( typeof selection === 'string' && arguments.length > 1 ) {
 				this.values[selection] = value;
 				return true;
 			}
@@ -103,14 +103,14 @@ var mw = ( function ( $, undefined ) {
 			var s;
 
 			if ( $.isArray( selection ) ) {
-				for ( s = 0; s < selection.length; s += 1 ) {
-					if ( this.values[selection[s]] === undefined ) {
+				for ( s = 0; s < selection.length; s++ ) {
+					if ( typeof selection[s] !== 'string' || !hasOwn.call( this.values, selection[s] ) ) {
 						return false;
 					}
 				}
 				return true;
 			}
-			return this.values[selection] !== undefined;
+			return typeof selection === 'string' && hasOwn.call( this.values, selection );
 		}
 	};
 

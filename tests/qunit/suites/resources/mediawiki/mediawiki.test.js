@@ -37,10 +37,8 @@
 		assert.strictEqual( window.mw, window.mediaWiki, 'mw alias to mediaWiki' );
 	} );
 
-	QUnit.test( 'mw.Map', 17, function ( assert ) {
+	QUnit.test( 'mw.Map', 27, function ( assert ) {
 		var arry, conf, funky, globalConf, nummy, someValues;
-
-		assert.ok( mw.Map, 'mw.Map defined' );
 
 		conf = new mw.Map();
 		// Dummy variables
@@ -48,15 +46,43 @@
 		arry = [];
 		nummy = 7;
 
-		// Tests for input validation
-		assert.strictEqual( conf.get( 'inexistantKey' ), null, 'Map.get returns null if selection was a string and the key was not found' );
-		assert.strictEqual( conf.set( 'myKey', 'myValue' ), true, 'Map.set returns boolean true if a value was set for a valid key string' );
+		// Single get and set
+
+		assert.strictEqual( conf.set( 'foo', 'Bar' ), true, 'Map.set returns boolean true if a value was set for a valid key string' );
+		assert.equal( conf.get( 'foo' ), 'Bar', 'Map.get returns a single value value correctly' );
+
+		assert.strictEqual( conf.get( 'example' ), null, 'Map.get returns null if selection was a string and the key was not found' );
+		assert.strictEqual( conf.get( 'example', arry ), arry, 'Map.get returns fallback by reference if the key was not found' );
+		assert.strictEqual( conf.get( 'example', undefined ), undefined, 'Map.get supports `undefined` as fallback instead of `null`' );
+
+		assert.strictEqual( conf.get( 'constructor' ), null, 'Map.get does not look at Object.prototype of internal storage (constructor)' );
+		assert.strictEqual( conf.get( 'hasOwnProperty' ), null, 'Map.get does not look at Object.prototype of internal storage (hasOwnProperty)' );
+
+		conf.set( 'hasOwnProperty', function () { return true; } );
+		assert.strictEqual( conf.get( 'example', 'missing' ), 'missing', 'Map.get uses neutral hasOwnProperty method (positive)' );
+
+		conf.set( 'example', 'Foo' );
+		conf.set( 'hasOwnProperty', function () { return false; } );
+		assert.strictEqual( conf.get( 'example' ), 'Foo', 'Map.get uses neutral hasOwnProperty method (negative)' );
+
+		assert.strictEqual( conf.set( 'constructor', 42 ), true, 'Map.set for key "constructor"' );
+		assert.strictEqual( conf.get( 'constructor' ), 42, 'Map.get for key "constructor"' );
+
+		assert.strictEqual( conf.set( 'ImUndefined', undefined ), true, 'Map.set allows setting value to `undefined`' );
+		assert.equal( conf.get( 'ImUndefined', 'fallback' ), undefined , 'Map.get supports retreiving value of `undefined`' );
+
 		assert.strictEqual( conf.set( funky, 'Funky' ), false, 'Map.set returns boolean false if key was invalid (Function)' );
 		assert.strictEqual( conf.set( arry, 'Arry' ), false, 'Map.set returns boolean false if key was invalid (Array)' );
 		assert.strictEqual( conf.set( nummy, 'Nummy' ), false, 'Map.set returns boolean false if key was invalid (Number)' );
-		assert.equal( conf.get( 'myKey' ), 'myValue', 'Map.get returns a single value value correctly' );
-		assert.strictEqual( conf.get( nummy ), null, 'Map.get ruturns null if selection was invalid (Number)' );
+
 		assert.strictEqual( conf.get( funky ), null, 'Map.get ruturns null if selection was invalid (Function)' );
+		assert.strictEqual( conf.get( nummy ), null, 'Map.get ruturns null if selection was invalid (Number)' );
+
+		conf.set( String( nummy ), 'I used to be a number' );
+
+		assert.strictEqual( conf.exists( 'doesNotExist' ), false, 'Map.exists where property does not exist' );
+		assert.strictEqual( conf.exists( 'ImUndefined' ), true, 'Map.exists where value is `undefined`' );
+		assert.strictEqual( conf.exists( nummy ), false, 'Map.exists where key is invalid but looks like an existing key' );
 
 		// Multiple values at once
 		someValues = {
@@ -75,15 +101,13 @@
 			'notExist': null
 		}, 'Map.get return includes keys that were not found as null values' );
 
-		assert.strictEqual( conf.exists( 'foo' ), true, 'Map.exists returns boolean true if a key exists' );
-		assert.strictEqual( conf.exists( 'notExist' ), false, 'Map.exists returns boolean false if a key does not exists' );
 
 		// Interacting with globals and accessing the values object
 		assert.strictEqual( conf.get(), conf.values, 'Map.get returns the entire values object by reference (if called without arguments)' );
 
 		conf.set( 'globalMapChecker', 'Hi' );
 
-		assert.ok( false === 'globalMapChecker' in window, 'new mw.Map did not store its values in the global window object by default' );
+		assert.ok( 'globalMapChecker' in window === false, 'new mw.Map did not store its values in the global window object by default' );
 
 		globalConf = new mw.Map( true );
 		globalConf.set( 'anotherGlobalMapChecker', 'Hello' );
