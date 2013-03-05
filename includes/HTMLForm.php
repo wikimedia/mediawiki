@@ -957,7 +957,7 @@ class HTMLForm extends ContextSource {
 					$hasLabel = true;
 				}
 			} elseif ( is_array( $value ) ) {
-				$section = $this->displaySection( $value, $key );
+				$section = $this->displaySection( $value, $key, "$fieldsetIDPrefix-$key" );
 				$legend = $this->getLegend( $key );
 				if ( isset( $this->mSectionHeaders[$key] ) ) {
 					$section = $this->mSectionHeaders[$key] . $section;
