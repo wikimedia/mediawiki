@@ -1,0 +1,82 @@
+// Form elements and layouts
+
+// --------------------------------------------------------------------------
+// Layouts
+// --------------------------------------------------------------------------
+
+// The FancyCaptcha image CAPTCHA used on WMF wikis drives the width of the
+// 'vform' stacked div design, the form can't be narrower than this.
+$captchaContainerWidth: 290px;
+$defaultFormWidth: $captchaContainerWidth;
+
+.mw-ui-vform {
+    @include box-sizing(border-box);
+
+    width: $defaultFormWidth;
+
+    & > div {
+        display: block;
+        margin: 0 0 15px 0;
+        padding: 0;
+        width: 100%;
+
+        // MW currently doesn't use the type attribute everywhere on inputs
+        input,
+        label,
+        .mw-ui-button {
+            display: block;
+            @include box-sizing(border-box);
+            margin: 0;
+            width: 100%;
+        }
+
+        input {
+            @include agora-field-styling; // mixins/_forms.scss
+        }
+
+        label {
+            @include agora-label-styling;
+
+            width: auto;
+            margin: 0 0 0.2em 0;
+            padding: 0;
+
+            &.mw-ui-checkbox-label, &.mw-ui-radio-label {
+                @include agora-inline-label-styling;
+            }
+        }
+
+        // Override the above styling just for checkboxes and radio inputs
+        input[type="checkbox"],
+        input[type="radio"] {
+            display: inline;
+            @include box-sizing(content-box);
+            width: auto;
+        }
+
+    }
+}
+
+// --------------------------------------------------------------------------
+// Elements
+// --------------------------------------------------------------------------
+
+// Apply mw-ui-input to fields individually to style them
+// You don't need to use this if <input> is within a Agora form container
+.mw-ui-input {
+    @include agora-field-styling; // mixins/_forms.scss
+}
+
+// Default label styling is mw-ui-block-label
+.mw-ui-block-label, .mw-ui-formlist div label {
+    @include agora-label-styling; // mixins/_forms.scss
+}
+
+// Checkbox and radio button label alignment hack
+//   <label class="mw-ui-checkbox-label">
+//       <input type="checkbox" />Label
+//   </label>
+
+.mw-ui-checkbox-label, .mw-ui-radio-label {
+    @include agora-inline-label-styling;
+}
