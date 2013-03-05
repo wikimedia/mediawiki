@@ -78,6 +78,19 @@ class ScopedLock {
 		return null;
 	}
 
+	/**
+	 * Release a scoped lock and set any errors in the attatched Status object.
+	 * This is useful for early release of locks before function scope is destroyed.
+	 * This is the same as setting the lock object to null.
+	 *
+	 * @param ScopedLock $lock
+	 * @return void
+	 * @since 1.21
+	 */
+	public static function release( ScopedLock &$lock = null ) {
+		$lock = null;
+	}
+
 	function __destruct() {
 		$wasOk = $this->status->isOK();
 		$this->status->merge( $this->manager->unlock( $this->paths, $this->type ) );
