@@ -2836,6 +2836,13 @@ $wgVectorUseSimpleSearch = true;
 $wgVectorUseIconWatch = true;
 
 /**
+ * Use VForm design for Special:Userlogin.  This can be overridden by
+ * a useNew bool in the query string.  For instance, if it is globally
+ * false, you can try it with useNew=1.
+ */
+$wgUseVFormUserLogin = false;
+
+/**
  * Display user edit counts in various prominent places.
  */
 $wgEdititis = false;
