@@ -12,6 +12,10 @@ production.
 * $wgRedirectScript was removed. It was unused.
 
 === New features in 1.22 ===
+* New version of Special:UserLogin form
+** It is opt-in for now, controlled by $wgUseVFormUserLogin setting.
+** Append ?useNew=1 to the query string to try it.
+** It uses new mw-ui-vform and mw-ui-button styles in core
 
 === Bug fixes in 1.22 ===
 
