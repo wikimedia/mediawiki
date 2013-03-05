@@ -2322,6 +2322,7 @@ class User {
 	 * - 'registered' - preferences which are registered in core MediaWiki or
 	 *                  by extensions using the UserGetDefaultOptions hook.
 	 * - 'registered-multiselect' - as above, using the 'multiselect' type.
+	 * - 'registered-checkmatrix' - as above, using the 'checkmatrix' type.
 	 * - 'userjs' - preferences with names starting with 'userjs-', intended to
 	 *              be used by user scripts.
 	 * - 'unused' - preferences about which MediaWiki doesn't know anything.
@@ -2338,6 +2339,7 @@ class User {
 		return array(
 			'registered',
 			'registered-multiselect',
+			'registered-checkmatrix',
 			'userjs',
 			'unused'
 		);
@@ -2363,8 +2365,8 @@ class User {
 		$prefs = Preferences::getPreferences( $this, $context );
 		$mapping = array();
 
-		// Multiselect options are stored in the database with one key per
-		// option, each having a boolean value. Extract those keys.
+		// Multiselect and checkmatrix options are stored in the database with
+		// one key per option, each having a boolean value. Extract those keys.
 		$multiselectOptions = array();
 		foreach ( $prefs as $name => $info ) {
 			if ( ( isset( $info['type'] ) && $info['type'] == 'multiselect' ) ||
@@ -2379,6 +2381,23 @@ class User {
 				unset( $prefs[$name] );
 			}
 		}
+		$checkmatrixOptions = array();
+		foreach ( $prefs as $name => $info ) {
+			if ( ( isset( $info['type'] ) && $info['type'] == 'checkmatrix' ) ||
+					( isset( $info['class'] ) && $info['class'] == 'HTMLCheckMatrix' ) ) {
+				$columns = HTMLFormField::flattenOptions( $info['columns'] );
+				$rows = HTMLFormField::flattenOptions( $info['rows'] );
+				$prefix = isset( $info['prefix'] ) ? $info['prefix'] : $name;
+
+				foreach ( $columns as $column ) {
+					foreach ( $rows as $row ) {
+						$checkmatrixOptions["$prefix-$column-$row"] = true;
+					}
+				}
+
+				unset( $prefs[$name] );
+			}
+		}
 
 		// $value is ignored
 		foreach ( $options as $key => $value ) {
@@ -2386,6 +2405,8 @@ class User {
 				$mapping[$key] = 'registered';
 			} elseif( isset( $multiselectOptions[$key] ) ) {
 				$mapping[$key] = 'registered-multiselect';
+			} elseif( isset( $checkmatrixOptions[$key] ) ) {
+				$mapping[$key] = 'registered-checkmatrix';
 			} elseif ( substr( $key, 0, 7 ) === 'userjs-' ) {
 				$mapping[$key] = 'userjs';
 			} else {
@@ -2404,14 +2425,14 @@ class User {
 	 * and 'all', which forces a reset of *all* preferences and overrides everything else.
 	 *
 	 * @param $resetKinds array|string which kinds of preferences to reset. Defaults to
-	 *                                 array( 'registered', 'registered-multiselect', 'unused' )
-	 *                                 for backwards-compatibility.
+	 *             array( 'registered', 'registered-multiselect', 'registered-checkmatrix', 'unused' )
+	 *             for backwards-compatibility.
 	 * @param $context IContextSource|null context source used when $resetKinds
-	 *                                     does not contain 'all', passed to getOptionKinds().
-	 *                                     Defaults to RequestContext::getMain() when null.
+	 *             does not contain 'all', passed to getOptionKinds().
+	 *             Defaults to RequestContext::getMain() when null.
 	 */
 	public function resetOptions(
-		$resetKinds = array( 'registered', 'registered-multiselect', 'unused' ),
+		$resetKinds = array( 'registered', 'registered-multiselect', 'registered-checkmatrix', 'unused' ),
 		IContextSource $context = null
 	) {
 		$this->load();

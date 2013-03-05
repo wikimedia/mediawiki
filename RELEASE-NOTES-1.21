@@ -96,6 +96,8 @@ production.
 * (bug 5346) Categories that are redirects will be displayed italic in
   the category links section at the bottom of a page.
 * (bug 43915) New maintenance script deleteEqualMessages.php.
+* You can now create checkbox option matrixes through the HTMLCheckMatrix
+  subclass in HTMLForm.
 * WikiText now permits the use of WAI-ARIA's role="presentation" inside of
   html elements and tables. This allows presentational markup, especially
   tables. To be marked up as such.
