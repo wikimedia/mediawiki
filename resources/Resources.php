@@ -931,6 +931,13 @@ return array(
 	'mediawiki.special.userlogin.signup' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.userLogin.signup.js',
 	),
+	'mediawiki.special.userlogin.vform' => array(
+		'styles' => array(
+			'resources/mediawiki.special/mediawiki.special.logincreate.vform.css',
+			'resources/mediawiki.special/mediawiki.special.userlogin.vform.css',
+		),
+		'position' => 'top',
+	),
 	'mediawiki.special.javaScriptTest' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.javaScriptTest.js',
 		'messages' => array_merge( Skin::getSkinNameMessages(), array(
@@ -1029,5 +1036,12 @@ return array(
 		'styles' => array( 'common/wikiprintable.css' => array( 'media' => 'print' ) ),
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
+	),
+	'mediawiki.ui' => array(
+		'skinStyles' => array(
+			'default' => 'resources/mediawiki.ui/mediawiki.ui.default.css',
+			'vector' => 'resources/mediawiki.ui/mediawiki.ui.vector.css',
+		),
+		'position' => 'top',
 	),
 );
