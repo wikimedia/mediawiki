@@ -1,0 +1,59 @@
+/***************** some of this stuff should move to Agora core CSS *****************/
+/* Style elements in a mw-ui-container.
+DISABLED
+div.mw-ui-container {
+    font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    font-size: 1.0em;
+    border: 0;
+}
+*/
+
+.mw-ui-container h2 {
+	border: 0;
+	font-weight: bold;
+}
+
+/*
+ * When inside the Agora style, disable the border that Vector puts on the div
+ * surrounding a form.
+ */
+.mw-ui-container #userloginForm, .mw-ui-container #userlogin {
+    border: 0;
+	margin: 0;
+    padding: 0;
+}
+
+/* TODO (spage, 2013-02-25) Munaf, set font-size on the container or on the
+ * form?
+ * - Container means everything in the container is inflated, including the CTA
+ *   (good), signupstart & signupend (?) and the h2 font (bad).
+ * - Form means the things outside the formlist are left alone, so h2 is the
+ *   normal size (good), the CTA is too small (give it a px size?) and
+ *   signupstart & signupend are normal.
+ */
+/* Note MediaWiki HTML::input drops default type="text" if $wgHtml5 */
+
+/* Similar to .acux-errorbox */
+/*
+ * In theory besides errorbox there could be warningbox, successbox, msgbox,
+ * spage has never seen these in practice.
+ * Vector has styles coloring warningbox cream and successbox green.
+ */
+.mw-ui-formlist .errorbox, .mw-ui-formlist .warningbox, .mw-ui-formlist .successbox {
+	-webkit-box-sizing: border-box; /* munaf, I'm guessing, like input boxes? */
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	width: 100%;
+	/* munaf, need some font-size to disable vector's font-size: larger for errorbox
+	 * munaf, this leaves error text bigger than label text which has
+	 * .mw-ui-formlist li label shrinking an addition 0.9em on top of Vector's
+	 * #bodyContent 0.8em
+	 */
+	font-size: 100%;
+	margin: 0 0 1em 0;
+	padding: 0.5em;
+	color: #cc0000;
+	border: 1px solid #fac5c5;
+	background-color: #fae3e3;
+	text-shadow: 0 1px #fae3e3;
+}
