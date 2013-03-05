@@ -2836,6 +2836,12 @@ $wgVectorUseSimpleSearch = true;
 $wgVectorUseIconWatch = true;
 
 /**
+ * Use "Agora" design for Special:Userlogin.  If true it can be overridden by
+ * useAgora=1 in the query string, if false by useAgora=0 in the query string.
+ */
+$wgUseAgoraUserLogin = false;
+
+/**
  * Display user edit counts in various prominent places.
  */
 $wgEdititis = false;
