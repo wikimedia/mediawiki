@@ -1011,7 +1011,10 @@ $wgAutoloadLocalClasses = array(
 
 	# includes/templates
 	'UserloginTemplate' => 'includes/templates/Userlogin.php',
+	'AgoraTemplate' => 'includes/templates/UserloginAgora.php',
+	'UserloginTemplateAgora' => 'includes/templates/UserloginAgora.php',
 	'UsercreateTemplate' => 'includes/templates/Usercreate.php',
+	'UsercreateTemplateAgora' => 'includes/templates/UsercreateAgora.php',
 
 	# includes/upload
 	'UploadBase' => 'includes/upload/UploadBase.php',

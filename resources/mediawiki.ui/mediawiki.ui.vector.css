@@ -1,0 +1,335 @@
+/* Agora styles */
+/* _effects.scss */
+/* Mixins for visual effects in CSS3 */
+/* line 7, ../scss/components/_utilities.scss */
+.mw-ui-flush-left {
+  float: left;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+/* line 11, ../scss/components/_utilities.scss */
+.mw-ui-flush-right {
+  float: right;
+  margin-right: 0;
+  padding-right: 0;
+}
+
+/* line 15, ../scss/components/_utilities.scss */
+.mw-ui-center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* line 8, ../scss/components/_buttons.scss */
+button.mw-ui-button, input[type="submit"].mw-ui-button, a.mw-ui-button {
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  zoom: 1;
+  *display: inline;
+  padding: 0.4em 1em 0.4em 1em;
+  margin: 0;
+  background-color: #c9c9c9;
+  *background-color: #c9c9c9;
+  *zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FFDCDCDC', endColorstr='#FFC9C9C9');
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #dcdcdc), color-stop(100%, #c9c9c9));
+  background-image: -webkit-linear-gradient(top, #dcdcdc, #c9c9c9);
+  background-image: -moz-linear-gradient(top, #dcdcdc, #c9c9c9);
+  background-image: -o-linear-gradient(top, #dcdcdc, #c9c9c9);
+  background-image: linear-gradient(top, #dcdcdc, #c9c9c9);
+  color: #4a4a4a;
+  text-shadow: 0 1px 1px rgba(201, 201, 201, 0.3);
+  border: 1px solid #c4c4c4;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  line-height: 1.4em;
+  vertical-align: middle;
+  text-align: center;
+  text-decoration: none;
+  font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  font-size: 1em;
+  font-weight: bold;
+  cursor: pointer;
+}
+/* line 38, ../scss/mixins/_effects.scss */
+button.mw-ui-button:hover, button.mw-ui-button.hover, input[type="submit"].mw-ui-button:hover, input[type="submit"].mw-ui-button.hover, a.mw-ui-button:hover, a.mw-ui-button.hover {
+  background-color: gainsboro;
+  *background-color: gainsboro;
+  *zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FFE9E9E9', endColorstr='#FFDCDCDC');
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #e9e9e9), color-stop(100%, #dcdcdc));
+  background-image: -webkit-linear-gradient(top, #e9e9e9, #dcdcdc);
+  background-image: -moz-linear-gradient(top, #e9e9e9, #dcdcdc);
+  background-image: -o-linear-gradient(top, #e9e9e9, #dcdcdc);
+  background-image: linear-gradient(top, #e9e9e9, #dcdcdc);
+}
+/* line 43, ../scss/mixins/_effects.scss */
+button.mw-ui-button:active, button.mw-ui-button.active, input[type="submit"].mw-ui-button:active, input[type="submit"].mw-ui-button.active, a.mw-ui-button:active, a.mw-ui-button.active {
+  background-image: none;
+  background-color: #c1c1c1;
+  text-shadow: none;
+}
+/* line 53, ../scss/mixins/_effects.scss */
+button.mw-ui-button:disabled, button.mw-ui-button.disabled, input[type="submit"].mw-ui-button:disabled, input[type="submit"].mw-ui-button.disabled, a.mw-ui-button:disabled, a.mw-ui-button.disabled {
+  background-image: none;
+  background-color: #c9c9c9;
+  opacity: 0.5;
+  text-shadow: none;
+}
+/* line 37, ../scss/components/_buttons.scss */
+button.mw-ui-button:disabled, button.mw-ui-button.disabled, input[type="submit"].mw-ui-button:disabled, input[type="submit"].mw-ui-button.disabled, a.mw-ui-button:disabled, a.mw-ui-button.disabled {
+  cursor: default;
+}
+/* line 44, ../scss/components/_buttons.scss */
+button.mw-ui-button.blue, button.mw-ui-button.primary, input[type="submit"].mw-ui-button.blue, input[type="submit"].mw-ui-button.primary, a.mw-ui-button.blue, a.mw-ui-button.primary {
+  background-color: #3366bb;
+  *background-color: #3366bb;
+  *zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FF4779CD', endColorstr='#FF3366BB');
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #4779cd), color-stop(100%, #3366bb));
+  background-image: -webkit-linear-gradient(top, #4779cd, #3366bb);
+  background-image: -moz-linear-gradient(top, #4779cd, #3366bb);
+  background-image: -o-linear-gradient(top, #4779cd, #3366bb);
+  background-image: linear-gradient(top, #4779cd, #3366bb);
+  color: white;
+  text-shadow: 0 1px 1px rgba(51, 102, 187, 0.75);
+  border: 1px solid #3162b3;
+}
+/* line 38, ../scss/mixins/_effects.scss */
+button.mw-ui-button.blue:hover, button.mw-ui-button.blue.hover, button.mw-ui-button.primary:hover, button.mw-ui-button.primary.hover, input[type="submit"].mw-ui-button.blue:hover, input[type="submit"].mw-ui-button.blue.hover, input[type="submit"].mw-ui-button.primary:hover, input[type="submit"].mw-ui-button.primary.hover, a.mw-ui-button.blue:hover, a.mw-ui-button.blue.hover, a.mw-ui-button.primary:hover, a.mw-ui-button.primary.hover {
+  background-color: #4779cd;
+  *background-color: #4779cd;
+  *zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FF5B88D2', endColorstr='#FF4779CD');
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #5b88d2), color-stop(100%, #4779cd));
+  background-image: -webkit-linear-gradient(top, #5b88d2, #4779cd);
+  background-image: -moz-linear-gradient(top, #5b88d2, #4779cd);
+  background-image: -o-linear-gradient(top, #5b88d2, #4779cd);
+  background-image: linear-gradient(top, #5b88d2, #4779cd);
+}
+/* line 43, ../scss/mixins/_effects.scss */
+button.mw-ui-button.blue:active, button.mw-ui-button.blue.active, button.mw-ui-button.primary:active, button.mw-ui-button.primary.active, input[type="submit"].mw-ui-button.blue:active, input[type="submit"].mw-ui-button.blue.active, input[type="submit"].mw-ui-button.primary:active, input[type="submit"].mw-ui-button.primary.active, a.mw-ui-button.blue:active, a.mw-ui-button.blue.active, a.mw-ui-button.primary:active, a.mw-ui-button.primary.active {
+  background-image: none;
+  background-color: #305faf;
+  text-shadow: none;
+}
+/* line 53, ../scss/mixins/_effects.scss */
+button.mw-ui-button.blue:disabled, button.mw-ui-button.blue.disabled, button.mw-ui-button.primary:disabled, button.mw-ui-button.primary.disabled, input[type="submit"].mw-ui-button.blue:disabled, input[type="submit"].mw-ui-button.blue.disabled, input[type="submit"].mw-ui-button.primary:disabled, input[type="submit"].mw-ui-button.primary.disabled, a.mw-ui-button.blue:disabled, a.mw-ui-button.blue.disabled, a.mw-ui-button.primary:disabled, a.mw-ui-button.primary.disabled {
+  background-image: none;
+  background-color: #3366bb;
+  opacity: 0.5;
+  text-shadow: none;
+}
+/* line 49, ../scss/components/_buttons.scss */
+button.mw-ui-button.green, button.mw-ui-button.constructive, input[type="submit"].mw-ui-button.green, input[type="submit"].mw-ui-button.constructive, a.mw-ui-button.green, a.mw-ui-button.constructive {
+  background-color: #27aa65;
+  *background-color: #27aa65;
+  *zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FF2EC977', endColorstr='#FF27AA65');
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #2ec977), color-stop(100%, #27aa65));
+  background-image: -webkit-linear-gradient(top, #2ec977, #27aa65);
+  background-image: -moz-linear-gradient(top, #2ec977, #27aa65);
+  background-image: -o-linear-gradient(top, #2ec977, #27aa65);
+  background-image: linear-gradient(top, #2ec977, #27aa65);
+  color: white;
+  text-shadow: 0 1px 1px rgba(39, 170, 101, 0.75);
+  border: 1px solid #25a260;
+}
+/* line 38, ../scss/mixins/_effects.scss */
+button.mw-ui-button.green:hover, button.mw-ui-button.green.hover, button.mw-ui-button.constructive:hover, button.mw-ui-button.constructive.hover, input[type="submit"].mw-ui-button.green:hover, input[type="submit"].mw-ui-button.green.hover, input[type="submit"].mw-ui-button.constructive:hover, input[type="submit"].mw-ui-button.constructive.hover, a.mw-ui-button.green:hover, a.mw-ui-button.green.hover, a.mw-ui-button.constructive:hover, a.mw-ui-button.constructive.hover {
+  background-color: #2ec977;
+  *background-color: #2ec977;
+  *zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FF3ED384', endColorstr='#FF2EC977');
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #3ed384), color-stop(100%, #2ec977));
+  background-image: -webkit-linear-gradient(top, #3ed384, #2ec977);
+  background-image: -moz-linear-gradient(top, #3ed384, #2ec977);
+  background-image: -o-linear-gradient(top, #3ed384, #2ec977);
+  background-image: linear-gradient(top, #3ed384, #2ec977);
+}
+/* line 43, ../scss/mixins/_effects.scss */
+button.mw-ui-button.green:active, button.mw-ui-button.green.active, button.mw-ui-button.constructive:active, button.mw-ui-button.constructive.active, input[type="submit"].mw-ui-button.green:active, input[type="submit"].mw-ui-button.green.active, input[type="submit"].mw-ui-button.constructive:active, input[type="submit"].mw-ui-button.constructive.active, a.mw-ui-button.green:active, a.mw-ui-button.green.active, a.mw-ui-button.constructive:active, a.mw-ui-button.constructive.active {
+  background-image: none;
+  background-color: #249e5e;
+  text-shadow: none;
+}
+/* line 53, ../scss/mixins/_effects.scss */
+button.mw-ui-button.green:disabled, button.mw-ui-button.green.disabled, button.mw-ui-button.constructive:disabled, button.mw-ui-button.constructive.disabled, input[type="submit"].mw-ui-button.green:disabled, input[type="submit"].mw-ui-button.green.disabled, input[type="submit"].mw-ui-button.constructive:disabled, input[type="submit"].mw-ui-button.constructive.disabled, a.mw-ui-button.green:disabled, a.mw-ui-button.green.disabled, a.mw-ui-button.constructive:disabled, a.mw-ui-button.constructive.disabled {
+  background-image: none;
+  background-color: #27aa65;
+  opacity: 0.5;
+  text-shadow: none;
+}
+/* line 54, ../scss/components/_buttons.scss */
+button.mw-ui-button.red, button.mw-ui-button.destructive, input[type="submit"].mw-ui-button.red, input[type="submit"].mw-ui-button.destructive, a.mw-ui-button.red, a.mw-ui-button.destructive {
+  background-color: #cc0000;
+  *background-color: #cc0000;
+  *zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FFF20000', endColorstr='#FFCC0000');
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f20000), color-stop(100%, #cc0000));
+  background-image: -webkit-linear-gradient(top, #f20000, #cc0000);
+  background-image: -moz-linear-gradient(top, #f20000, #cc0000);
+  background-image: -o-linear-gradient(top, #f20000, #cc0000);
+  background-image: linear-gradient(top, #f20000, #cc0000);
+  color: white;
+  text-shadow: 0 1px 1px rgba(204, 0, 0, 0.75);
+  border: 1px solid #c20000;
+}
+/* line 38, ../scss/mixins/_effects.scss */
+button.mw-ui-button.red:hover, button.mw-ui-button.red.hover, button.mw-ui-button.destructive:hover, button.mw-ui-button.destructive.hover, input[type="submit"].mw-ui-button.red:hover, input[type="submit"].mw-ui-button.red.hover, input[type="submit"].mw-ui-button.destructive:hover, input[type="submit"].mw-ui-button.destructive.hover, a.mw-ui-button.red:hover, a.mw-ui-button.red.hover, a.mw-ui-button.destructive:hover, a.mw-ui-button.destructive.hover {
+  background-color: #f20000;
+  *background-color: #f20000;
+  *zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FFFF0D0D', endColorstr='#FFF20000');
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ff0d0d), color-stop(100%, #f20000));
+  background-image: -webkit-linear-gradient(top, #ff0d0d, #f20000);
+  background-image: -moz-linear-gradient(top, #ff0d0d, #f20000);
+  background-image: -o-linear-gradient(top, #ff0d0d, #f20000);
+  background-image: linear-gradient(top, #ff0d0d, #f20000);
+}
+/* line 43, ../scss/mixins/_effects.scss */
+button.mw-ui-button.red:active, button.mw-ui-button.red.active, button.mw-ui-button.destructive:active, button.mw-ui-button.destructive.active, input[type="submit"].mw-ui-button.red:active, input[type="submit"].mw-ui-button.red.active, input[type="submit"].mw-ui-button.destructive:active, input[type="submit"].mw-ui-button.destructive.active, a.mw-ui-button.red:active, a.mw-ui-button.red.active, a.mw-ui-button.destructive:active, a.mw-ui-button.destructive.active {
+  background-image: none;
+  background-color: #bd0000;
+  text-shadow: none;
+}
+/* line 53, ../scss/mixins/_effects.scss */
+button.mw-ui-button.red:disabled, button.mw-ui-button.red.disabled, button.mw-ui-button.destructive:disabled, button.mw-ui-button.destructive.disabled, input[type="submit"].mw-ui-button.red:disabled, input[type="submit"].mw-ui-button.red.disabled, input[type="submit"].mw-ui-button.destructive:disabled, input[type="submit"].mw-ui-button.destructive.disabled, a.mw-ui-button.red:disabled, a.mw-ui-button.red.disabled, a.mw-ui-button.destructive:disabled, a.mw-ui-button.destructive.disabled {
+  background-image: none;
+  background-color: #cc0000;
+  opacity: 0.5;
+  text-shadow: none;
+}
+/* line 60, ../scss/components/_buttons.scss */
+button.mw-ui-button.big, input[type="submit"].mw-ui-button.big, a.mw-ui-button.big {
+  font-size: 1.3em;
+}
+/* line 65, ../scss/components/_buttons.scss */
+button.mw-ui-button.block, input[type="submit"].mw-ui-button.block, a.mw-ui-button.block {
+  display: block;
+  width: 100%;
+}
+
+/* line 7, ../scss/components/_forms.scss */
+ul.mw-ui-formlist {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  font-size: 1em;
+  line-height: 1.4em;
+  list-style: none;
+  list-style-image: none;
+  width: 20em;
+}
+/* line 16, ../scss/components/_forms.scss */
+ul.mw-ui-formlist li {
+  display: block;
+  margin: 0 0 15px 0;
+  padding: 0;
+  width: 100%;
+}
+/* line 25, ../scss/components/_forms.scss */
+ul.mw-ui-formlist li input,
+ul.mw-ui-formlist li label,
+ul.mw-ui-formlist li .mw-ui-button {
+  display: block;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  width: 100%;
+}
+/* line 32, ../scss/components/_forms.scss */
+ul.mw-ui-formlist li label {
+  width: auto;
+  margin: 0 0 0.2em 0;
+  padding: 0;
+}
+/* line 38, ../scss/components/_forms.scss */
+ul.mw-ui-formlist li label.mw-ui-checkbox-label, ul.mw-ui-formlist li label.mw-ui-radio-label {
+  cursor: pointer;
+  vertical-align: bottom;
+  line-height: normal;
+  height: 1em;
+  font-weight: normal;
+}
+/* line 50, ../scss/mixins/_forms.scss */
+ul.mw-ui-formlist li label.mw-ui-checkbox-label > input[type="checkbox"], ul.mw-ui-formlist li label.mw-ui-checkbox-label > input[type="radio"], ul.mw-ui-formlist li label.mw-ui-radio-label > input[type="checkbox"], ul.mw-ui-formlist li label.mw-ui-radio-label > input[type="radio"] {
+  width: auto;
+  height: auto;
+  margin: 0 0.3em 0 0;
+  padding: 0;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #c9c9c9;
+  cursor: pointer;
+}
+/* line 45, ../scss/components/_forms.scss */
+ul.mw-ui-formlist li input[type="checkbox"],
+ul.mw-ui-formlist li input[type="radio"] {
+  display: inline;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  width: auto;
+}
+
+/* line 60, ../scss/components/_forms.scss */
+.mw-ui-input, .mw-ui-formlist li input {
+  outline: 0;
+  font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  font-size: 1em;
+  line-height: 1.4em;
+  font-size: 1em;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #c9c9c9;
+  color: #252525;
+  padding: 0.25em 0 0.2em 0.5em;
+}
+/* line 15, ../scss/mixins/_forms.scss */
+.mw-ui-input:focus, .mw-ui-formlist li input:focus {
+  -webkit-box-shadow: #4091ed 0px 0px 5px;
+  -moz-box-shadow: #4091ed 0px 0px 5px;
+  box-shadow: #4091ed 0px 0px 5px;
+  border-color: #4091ed;
+}
+
+/* line 65, ../scss/components/_forms.scss */
+.mw-ui-block-label, .mw-ui-formlist li label {
+  font-weight: bold;
+  font-size: 0.9em;
+  color: #7d7d7d;
+}
+/* line 34, ../scss/mixins/_forms.scss */
+.mw-ui-block-label *, .mw-ui-formlist li label * {
+  font-weight: normal;
+}
+
+/* line 74, ../scss/components/_forms.scss */
+.mw-ui-checkbox-label, .mw-ui-radio-label {
+  cursor: pointer;
+  vertical-align: bottom;
+  line-height: normal;
+  height: 1em;
+  font-weight: normal;
+}
+/* line 50, ../scss/mixins/_forms.scss */
+.mw-ui-checkbox-label > input[type="checkbox"], .mw-ui-checkbox-label > input[type="radio"], .mw-ui-radio-label > input[type="checkbox"], .mw-ui-radio-label > input[type="radio"] {
+  width: auto;
+  height: auto;
+  margin: 0 0.3em 0 0;
+  padding: 0;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #c9c9c9;
+  cursor: pointer;
+}
