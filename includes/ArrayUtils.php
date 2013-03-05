@@ -58,7 +58,9 @@ class ArrayUtils {
 		$sum = 0;
 		foreach ( $weights as $i => $w ) {
 			$sum += $w;
-			if ( $sum >= $rand ) {
+			# Do not return keys if they have 0 weight.
+			# Note that the "all 0 weight" case is handed above
+			if ( $w > 0 && $sum >= $rand ) {
 				break;
 			}
 		}
