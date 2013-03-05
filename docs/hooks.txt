@@ -745,6 +745,14 @@ $output: OutputPage object in use
 the defaults.
 &$namespaces: Array of namespace numbers with corresponding canonical names
 
+'CategoryAfterPageAdded': After a page is added to a category.
+$category: Category that page was added to
+$wikiPage: WikiPage that was added
+
+'CategoryAfterPageRemoved': After a page is removed from a category.
+$category: Category that page was removed from
+$wikiPage: WikiPage that was removed
+
 'CategoryPageView': Before viewing a categorypage in CategoryPage::view.
 $catpage: CategoryPage instance
 
