@@ -117,14 +117,14 @@ class LoadBalancer {
 	 * Given an array of non-normalised probabilities, this function will select
 	 * an element and return the appropriate key
 	 *
-	 * @deprecated 1.21, use wfPickRandom()
+	 * @deprecated 1.21, use ArrayUtils::pickRandom()
 	 *
 	 * @param $weights array
 	 *
 	 * @return bool|int|string
 	 */
 	function pickRandom( $weights ) {
-		return wfPickRandom( $weights );
+		return ArrayUtils::pickRandom( $weights );
 	}
 
 	/**
