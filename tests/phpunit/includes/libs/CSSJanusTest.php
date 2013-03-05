@@ -151,14 +151,21 @@ class CSSJanusTest extends MediaWikiTestCase {
 				'#settings td p strong'
 			),
 			array(
-				# Not sure how 4+ values should behave,
-				# testing to make sure changes are detected
-				'.foo { x-unknown: 1 2 3 4 5; }',
-				'.foo { x-unknown: 1 4 3 2 5; }',
+				// Test the colors regex
+				'.foo { border-color: red green blue white }',
+				'.foo { border-color: red white blue green }',
 			),
 			array(
-				'.foo { x-unknown: 1 2 3 4 5 6; }',
-				'.foo { x-unknown: 1 4 3 2 5 6; }',
+				// Test the colors regex harder
+				'.foo { border-color: red #f00 rgb(255, 0, 0%) rgba(100%, 0, 0, 0) }',
+				'.foo { border-color: red rgba(100%, 0, 0, 0) rgb(255, 0, 0%) #f00 }',
+			),
+			array(
+				// Do not bork 4+ values
+				'.foo { x-unknown: 1 2 3 4 5; }'
+			),
+			array(
+				'.foo { x-unknown: 1 2 3 4 5 6; }'
 			),
 
 			// Shorthand / Three notation
@@ -177,6 +184,28 @@ class CSSJanusTest extends MediaWikiTestCase {
 			// Shorthand / One notation
 			array(
 				'.foo { padding: 1px; }'
+			),
+
+			// text-shadow and box-shadow
+			array(
+				'.foo { box-shadow: -6px 3px 8px 5px rgba(0, 0, 0, 0.25); }',
+				'.foo { box-shadow: 6px 3px 8px 5px rgba(0, 0, 0, 0.25); }',
+			),
+			array(
+				'.foo { box-shadow: inset -6px 3px 8px 5px rgba(0, 0, 0, 0.25); }',
+				'.foo { box-shadow: inset 6px 3px 8px 5px rgba(0, 0, 0, 0.25); }',
+			),
+			array(
+				'.foo { text-shadow: orange 2px 0; }',
+				'.foo { text-shadow: orange -2px 0; }',
+			),
+			array(
+				'.foo { text-shadow: 2px 0 orange; }',
+				'.foo { text-shadow: -2px 0 orange; }',
+			),
+			array(
+				// Don't mangle zeroes
+				'.foo { text-shadow: orange 0 2px; }'
 			),
 
 			// Direction
