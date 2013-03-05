@@ -47,11 +47,18 @@ $forms_whitelist['dd'] = array(
 	'file' => $form_dirs['gc'] . '/dd/dd.html',
 	'gateway' => 'globalcollect',
 	'countries' => array(
-		'+' => array('AT', 'BE', 'DE', 'ES', 'IT', 'NL'),
+		'+' => array('AT', 'DE', 'ES', 'NL'),
 	),
 	'payment_methods' => array('dd' => 'ALL')
 );
 
+$forms_whitelist['dd-recurring'] = array_merge(
+	$forms_whitelist['dd'],
+	array(
+		'file' => $form_dirs['gc'] . '/dd/dd-recurring.html',
+		'recurring',
+	)
+);
 
 /*********************
  * Electronic Wallet *
