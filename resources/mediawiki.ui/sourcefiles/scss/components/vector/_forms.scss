@@ -1,0 +1,7 @@
+@import "../default/forms"; // Layer Vector on top of the default settings.
+
+.mw-ui-vform,
+.mw-ui-vform > div input,
+.mw-ui-input {
+    @include vector-type;
+}
