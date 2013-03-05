@@ -93,9 +93,9 @@ You cannot install MediaWiki.',
 However, MediaWiki requires PHP $2 or higher.',
 	'config-unicode-using-utf8'       => 'Using Brion Vibber\'s utf8_normalize.so for Unicode normalization.',
 	'config-unicode-using-intl'       => 'Using the [http://pecl.php.net/intl intl PECL extension] for Unicode normalization.',
-	'config-unicode-pure-php-warning' => "'''Warning''': The [http://pecl.php.net/intl intl PECL extension] is not available to handle Unicode normalization, falling back to slow pure-PHP implementation.
+	'config-unicode-pure-php-warning' => "'''Warning:''' The [http://pecl.php.net/intl intl PECL extension] is not available to handle Unicode normalization, falling back to slow pure-PHP implementation.
 If you run a high-traffic site, you should read a little on [//www.mediawiki.org/wiki/Unicode_normalization_considerations Unicode normalization].",
-	'config-unicode-update-warning'   => "'''Warning''': The installed version of the Unicode normalization wrapper uses an older version of [http://site.icu-project.org/ the ICU project's] library.
+	'config-unicode-update-warning'   => "'''Warning:''' The installed version of the Unicode normalization wrapper uses an older version of [http://site.icu-project.org/ the ICU project's] library.
 You should [//www.mediawiki.org/wiki/Unicode_normalization_considerations upgrade] if you are at all concerned about using Unicode.",
 	'config-no-db'                    => 'Could not find a suitable database driver! You need to install a database driver for PHP.
 The following database types are supported: $1.
@@ -103,8 +103,8 @@ The following database types are supported: $1.
 If you are on shared hosting, ask your hosting provider to install a suitable database driver.
 If you compiled PHP yourself, reconfigure it with a database client enabled, for example using <code>./configure --with-mysql</code>.
 If you installed PHP from a Debian or Ubuntu package, then you also need install the php5-mysql module.',
-	'config-outdated-sqlite'          => "'''Warning''': you have SQLite $1, which is lower than minimum required version $2. SQLite will be unavailable.",
-	'config-no-fts3'                  => "'''Warning''': SQLite is compiled without the [//sqlite.org/fts3.html FTS3 module], search features will be unavailable on this backend.",
+	'config-outdated-sqlite'          => "'''Warning:''' you have SQLite $1, which is lower than minimum required version $2. SQLite will be unavailable.",
+	'config-no-fts3'                  => "'''Warning:''' SQLite is compiled without the [//sqlite.org/fts3.html FTS3 module], search features will be unavailable on this backend.",
 	'config-register-globals'         => "'''Warning: PHP's <code>[http://php.net/register_globals register_globals]</code> option is enabled.'''
 '''Disable it if you can.'''
 MediaWiki will work, but your server is exposed to potential security vulnerabilities.",
@@ -127,19 +127,19 @@ MediaWiki requires functions in this module and will not work in this configurat
 If you're running Mandrake, install the php-xml package.",
 	'config-pcre'                     => 'The PCRE support module appears to be missing.
 MediaWiki requires the Perl-compatible regular expression functions to work.',
-	'config-pcre-no-utf8'             => "'''Fatal''': PHP's PCRE module seems to be compiled without PCRE_UTF8 support.
+	'config-pcre-no-utf8'             => "'''Fatal:''' PHP's PCRE module seems to be compiled without PCRE_UTF8 support.
 MediaWiki requires UTF-8 support to function correctly.",
 	'config-memory-raised'            => "PHP's <code>memory_limit</code> is $1, raised to $2.",
 	'config-memory-bad'               => "'''Warning:''' PHP's <code>memory_limit</code> is $1.
 This is probably too low.
 The installation may fail!",
-	'config-ctype'                    => "'''Fatal''': PHP must be compiled with support for the [http://www.php.net/manual/en/ctype.installation.php Ctype extension].",
+	'config-ctype'                    => "'''Fatal:''' PHP must be compiled with support for the [http://www.php.net/manual/en/ctype.installation.php Ctype extension].",
 	'config-xcache'                   => '[http://xcache.lighttpd.net/ XCache] is installed',
 	'config-apc'                      => '[http://www.php.net/apc APC] is installed',
 	'config-wincache'                 => '[http://www.iis.net/download/WinCacheForPhp WinCache] is installed',
 	'config-no-cache'                 => "'''Warning:''' Could not find [http://www.php.net/apc APC], [http://xcache.lighttpd.net/ XCache] or [http://www.iis.net/download/WinCacheForPhp WinCache].
 Object caching is not enabled.",
-	'config-mod-security'             => "'''Warning''': Your web server has [http://modsecurity.org/ mod_security] enabled. If misconfigured, it can cause problems for MediaWiki or other software that allows users to post arbitrary content.
+	'config-mod-security'             => "'''Warning:''' Your web server has [http://modsecurity.org/ mod_security] enabled. If misconfigured, it can cause problems for MediaWiki or other software that allows users to post arbitrary content.
 Refer to [http://modsecurity.org/documentation/ mod_security documentation] or contact your host's support if you encounter random errors.",
 	'config-diff3-bad'                => 'GNU diff3 not found.',
 	'config-imagemagick'              => 'Found ImageMagick: <code>$1</code>.
@@ -150,7 +150,7 @@ Image thumbnailing will be enabled if you enable uploads.',
 Image thumbnailing will be disabled.',
 	'config-no-uri'                   => "'''Error:''' Could not determine the current URI.
 Installation aborted.",
-	'config-no-cli-uri'               => "'''Warning''': No --scriptpath specified, using default: <code>$1</code>.",
+	'config-no-cli-uri'               => "'''Warning:''' No --scriptpath specified, using default: <code>$1</code>.",
 	'config-using-server'             => 'Using server name "<nowiki>$1</nowiki>".',
 	'config-using-uri'                => 'Using server URL "<nowiki>$1$2</nowiki>".',
 	'config-uploads-not-safe'         => "'''Warning:''' Your default directory for uploads <code>$1</code> is vulnerable to arbitrary scripts execution.
@@ -327,7 +327,7 @@ The account you specify here must already exist.',
 	'config-mysql-engine'             => 'Storage engine:',
 	'config-mysql-innodb'             => 'InnoDB',
 	'config-mysql-myisam'             => 'MyISAM',
-	'config-mysql-myisam-dep'         => "'''Warning''': You have selected MyISAM as storage engine for MySQL, which is not recommended for use with MediaWiki, because:
+	'config-mysql-myisam-dep'         => "'''Warning:''' You have selected MyISAM as storage engine for MySQL, which is not recommended for use with MediaWiki, because:
 * it barely supports concurrency due to table locking
 * it is more prone to corruption than other engines
 * the MediaWiki codebase does not always handle MyISAM as it should
@@ -514,12 +514,12 @@ MediaWiki currently requires that the tables be owned by the web user. Please sp
 	'config-install-user-missing-create' => 'The specified user "$1" does not exist.
 Please click the "create account" checkbox below if you want to create it.',
 	'config-install-tables'           => 'Creating tables',
-	'config-install-tables-exist'     => "'''Warning''': MediaWiki tables seem to already exist.
+	'config-install-tables-exist'     => "'''Warning:''' MediaWiki tables seem to already exist.
 Skipping creation.",
-	'config-install-tables-failed'    => "'''Error''': Table creation failed with the following error: $1",
+	'config-install-tables-failed'    => "'''Error:''' Table creation failed with the following error: $1",
 	'config-install-interwiki'        => 'Populating default interwiki table',
 	'config-install-interwiki-list'   => 'Could not read file <code>interwiki.list</code>.',
-	'config-install-interwiki-exists' => "'''Warning''': The interwiki table seems to already have entries.
+	'config-install-interwiki-exists' => "'''Warning:''' The interwiki table seems to already have entries.
 Skipping default list.",
 	'config-install-stats'            => 'Initializing statistics',
 	'config-install-keys'             => 'Generating secret keys',
