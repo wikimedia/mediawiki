@@ -1741,7 +1741,11 @@ class HTMLCheckField extends HTMLFormField {
 			$attr['class'] = $this->mClass;
 		}
 
-		return Xml::check( $this->mName, $value, $attr ) . '&#160;' .
+		if ( $value ) {
+			$attr['checked'] = true;
+		}
+
+		return Html::input( $this->mName, 1, 'checkbox', $attr ) . '&#160;' .
 			Html::rawElement( 'label', array( 'for' => $this->mID ), $this->mLabel );
 	}
 
@@ -1863,9 +1867,13 @@ class HTMLCheckMatrix extends HTMLFormField {
 						'id' => "{$this->mID}-$columnTag-$rowTag",
 						'value' => $columnTag . '-' . $rowTag
 					);
-					$checkbox = Xml::check(
+					if ( in_array( $columnTag . '-' . $rowTag, (array)$value, true ) ) {
+						$thisAttribs['checked'] = true;
+					}
+					$checkbox = Html::input(
 						$this->mName . '[]',
-						in_array( $columnTag . '-' . $rowTag, (array)$value, true ),
+						1,
+						'checkbox',
 						$attribs + $thisAttribs );
 					$rowContents .= Html::rawElement( 'td', array(), $checkbox );
 				}
@@ -2131,10 +2139,13 @@ class HTMLMultiSelectField extends HTMLFormField {
 				$html .= $this->formatOptions( $info, $value );
 			} else {
 				$thisAttribs = array( 'id' => "{$this->mID}-$info", 'value' => $info );
-
-				$checkbox = Xml::check(
+				if ( in_array( $info, $value, true ) ) {
+					$thisAttribs['checked'] = true;
+				}
+				$checkbox = Html::input(
 					$this->mName . '[]',
-					in_array( $info, $value, true ),
+					1,
+					'checkbox',
 					$attribs + $thisAttribs );
 				$checkbox .= '&#160;' . Html::rawElement( 'label', array( 'for' => "{$this->mID}-$info" ), $label );
 
