@@ -244,9 +244,9 @@ $messages = array(
 'hidden-category-category' => 'Kategoria ezkutuak',
 'category-subcat-count' => '{{PLURAL:$2|Kategoria honek beste honako azpikategoria baino ez du.|Kategoria honek honako {{PLURAL:$1|azpikategoria du|$1 azpikategoriak ditu}}, guztira dauden $2tik.}}',
 'category-subcat-count-limited' => 'Kategoria honek {{PLURAL:$1|azpikategoria hau du|$1 azpikategoria hauek ditu}}.',
-'category-article-count' => '{{PLURAL:$2|Kategoria honek honako orrialdea baino ez du.|Honako {{PLURAL:$1|orrialdea kategoria honetan dago|$1 orrialdeak kategoria hauetan daude}}, guztira dauden $2 (e)tik.}}',
+'category-article-count' => '{{PLURAL:$2|Kategoria honek ondorengo orri hau baino ez du.|Ondorengo {{PLURAL:$1|orri hau kategoria honetan dago|$1 orriak kategoria honetan daude}}. Guztira $2 orri dira kategoria honetan.}}',
 'category-article-count-limited' => 'Ondorengo {{PLURAL:$1|orri hau kategoria honetan dago.|$1 orri hauek kategoria honetan daude.}}',
-'category-file-count' => '{{PLURAL:$2|Kategoria honek fitxategi hau baino ez du.|Honako {{PLURAL:$1|fitxategia kategoria honetan dago|$1 fitxategiak kategoria honetan daude}} guztira dauden $2 (e)tik.}}',
+'category-file-count' => '{{PLURAL:$2|Kategoria honek ondorengo fitxategi hau baino ez du.|Ondorengo {{PLURAL:$1|fitxategi hau kategoria honetan dago|$1 fitxategiak kategoria honetan daude}}. Guztira $2 fitxategi dira kategoria honetan.}}',
 'category-file-count-limited' => 'Ondorengo {{PLURAL:$1|fitxategia kategoria honetan dago.|$1 fitxategiak kategoria honetan daude.}}',
 'listingcontinuesabbrev' => 'jarr.',
 'index-category' => 'Indexatutako orrialdeak',
@@ -313,7 +313,7 @@ $messages = array(
 'editthispage' => 'Orri hau aldatu',
 'create-this-page' => 'Orrialde hau sortu',
 'delete' => 'Ezabatu',
-'deletethispage' => 'Orrialde hau ezabatu',
+'deletethispage' => 'Ezabatu orri hau',
 'undelete_short' => 'Berreskuratu {{PLURAL:$1|aldaketa bat|$1 aldaketa}}',
 'viewdeleted_short' => 'Ikusi ezabatutako {{PLURAL:$1|bidalketa bat|$1 bidalketa}}',
 'protect' => 'Babestu',
@@ -1004,10 +1004,10 @@ Ezin duzu atzitu.',
 'revdelete-concurrent-change' => 'Errorea, $1 $2 data duen elementua aldatzean: badirudi haren egoera aldatu duela nor edo nork, zu aldatzen saiatzen ari zinela.
 Begira itzazu erregistroak.',
 'revdelete-reason-dropdown' => '*Ezabatzeko ohiko arrazoiak
-** Egile eskubideen urraketa
+** Egile eskubideak urratzea
 ** Informazio pertsonal edo iruzkin desegokia
 ** Lankide izen desegokia
-** Iraingarria izan daitekeen informazioa',
+** Kalumnia edo iraintzat jo daiteke',
 'revdelete-otherreason' => 'Bestelako arrazoia:',
 'revdelete-reasonotherlist' => 'Beste arrazoi bat',
 'revdelete-edit-reasonlist' => 'Ezabaketa arrazoiak aldatu',
@@ -2273,7 +2273,9 @@ Ikus [[Special:BlockList|blokeoen zerrenda]] blokeoak aztertzeko.',
 'blocklist' => 'Blokeatutako erabiltzaileak',
 'ipblocklist' => 'Blokeatutako erabiltzaileak',
 'ipblocklist-legend' => 'Blokeatutako erabiltzaile bat bilatu',
+'blocklist-timestamp' => 'Eguna eta ordua',
 'blocklist-target' => 'Helburua',
+'blocklist-by' => 'Blokeoa ezarri duen administratzailea',
 'blocklist-reason' => 'Arrazoia',
 'ipblocklist-submit' => 'Bilatu',
 'ipblocklist-localblock' => 'Tokiko blokeoa',
@@ -2298,7 +2300,7 @@ Ikus [[Special:BlockList|blokeoen zerrenda]] blokeoak aztertzeko.',
 Blokeo erregistroa ematen da azpian erreferentziarako:',
 'blocklog-showsuppresslog' => 'Lankide hau aurretik blokeatua eta ezkutatua izan da.
 Erregistroa ematen da azpian erreferentziarako:',
-'blocklogentry' => '"[[$1]]" wikilariari blokeoa ezarri zaio. Blokeoaldia: $2 $3',
+'blocklogentry' => 'wikilariak [[$1]] erabiltzailea blokeatu du. Blokeoaldia: $2 $3',
 'reblock-logentry' => '[[$1]] wikilariari blokeoaldia aldatu diogu. Blokeoaldi berria: $2 $3',
 'blocklogtext' => 'Erabiltzaileen blokeoen ezarpen eta ezabaketen erregistroa da hau. 
 Automatikoki blokeatutako IP helbideak ez dira zerrendatzen. 
@@ -3353,7 +3355,9 @@ Irudiak bereizmen handienean daude, bestelako fitxategi motak beraiei esleitutak
 'htmlform-selectorother-other' => 'Beste bat',
 
 # New logging system
-'logentry-delete-delete' => '$1 wikilariak $3 orria ezabatu du',
+'logentry-delete-delete' => '$1 wikilariak «$3» orria ezabatu du',
+'logentry-delete-event' => '$1 wikilariak ikusgaitasuna aldatu {{PLURAL:$5|dio erregistroko sarrera bati|die erregistroko $5 sarrerari}}, $3 orrian: $4',
+'logentry-suppress-event' => '$1 wikilariak ezkutuan ikusgaitasuna aldatu {{PLURAL:$5|dio erregistroko sarrera bati|die erregistroko $5 sarrerari}}, $3 orrian: $4',
 'revdelete-restricted' => 'administratzaileentzako mugak ezarri dira',
 'revdelete-unrestricted' => 'administratzaileentzako mugak kendu dira',
 'logentry-move-move' => '$1 wikilariak «$3» orria «$4» izenera aldatu du',

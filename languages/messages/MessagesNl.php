@@ -877,7 +877,7 @@ Wacht even voordat u het opnieuw probeert.',
 'loginlanguagelabel' => 'Taal: $1',
 'suspicious-userlogout' => 'Uw verzoek om af te melden is genegeerd, omdat het lijkt alsof het verzoek is verzonden door een browser of cacheproxy die stuk is.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Er is een onbekende fout opgetreden in de mail()-functie van PHP',
 'user-mail-no-addy' => 'Geprobeerd een e-mail te verzenden zonder een e-mailadres.',
 'user-mail-no-body' => 'Er is geprobeerd een e-mail te verzenden zonder inhoud of met een hele korte inhoud.',
@@ -1579,7 +1579,7 @@ Als u deze opgeeft, kan deze naam gebruikt worden om u erkenning te geven voor u
 'prefs-displaywatchlist' => 'Weergaveopties',
 'prefs-diffs' => 'Verschillen',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'Het e-mailadres lijkt geldig',
 'email-address-validity-invalid' => 'Geef een geldig e-mailadres op',
 
@@ -2191,6 +2191,10 @@ Vergeet niet de "Koppelingen naar deze pagina" te controleren alvorens deze sjab
 Deze horen waarschijnlijk direct naar een meer toepasselijke pagina te verwijzen.<br />
 Een pagina wordt gezien als doorverwijspagina als er een sjabloon op staat dat opgenomen is op [[MediaWiki:Disambiguationspage]].",
 
+'pageswithprop' => "Pagina's met een pagina-eigenschap",
+'pageswithprop-text' => "Op deze pagina worden pagina's weergegeven met een bepaalde pagina-eigenschap.",
+'pageswithprop-prop' => 'Naam van de eigenschap:',
+
 'doubleredirects' => 'Dubbele doorverwijzingen',
 'doubleredirectstext' => "Deze lijst bevat pagina's die doorverwijzen naar andere doorverwijspagina's.
 Elke rij bevat koppelingen naar de eerste en de tweede doorverwijspagina en een koppeling naar de doelpagina van de tweede doorverwijspagina.
@@ -2386,7 +2390,7 @@ Er kan [[{{MediaWiki:Listgrouprights-helppage}}|extra informatie]] over individu
 'listgrouprights-addgroup-self-all' => 'Alle groepen toevoegen aan eigen gebruiker',
 'listgrouprights-removegroup-self-all' => 'Alle groepen verwijderen van eigen gebruiker',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Geen verzendadres beschikbaar',
 'mailnologintext' => 'U moet [[Special:UserLogin|aangemeld]] zijn en een geldig e-mailadres in uw [[Special:Preferences|voorkeuren]] vermelden om andere gebruikers te kunnen e-mailen.',
 'emailuser' => 'Deze gebruiker e-mailen',
@@ -3809,7 +3813,7 @@ Andere velden worden verborgen.
 'monthsall' => 'alle',
 'limitall' => 'alle',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'E-mailadres bevestigen',
 'confirmemail_noemail' => 'U hebt geen geldig e-mailadres ingegeven in uw [[Special:Preferences|gebruikersvoorkeuren]].',
 'confirmemail_text' => '{{SITENAME}} eist bevestiging van uw e-mailadres voordat u de e-mailmogelijkheden kunt gebruiken.
@@ -4233,4 +4237,7 @@ Anders kunt u ook het eenvoudige formulier hieronder gebruiken. Uw reactie wordt
 'duration-centuries' => '$1 {{PLURAL:$1|eeuw|eeuwen}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennia}}',
 
+# Unknown messages
+'pageswithprop-legend' => "Pagina's met een pagina-eigenschap",
+'pageswithprop-submit' => 'OK',
 );

@@ -253,18 +253,18 @@ $messages = array(
 'thu' => 'Juğ',
 'fri' => 'Vie',
 'sat' => 'Shab',
-'january' => 'Enero',
-'february' => 'Fevrero',
+'january' => 'Jenero',
+'february' => 'Hevrero',
 'march' => 'Março',
-'april' => 'Abril',
+'april' => 'Avril',
 'may_long' => 'Mayo',
-'june' => 'Junio',
+'june' => 'Juño',
 'july' => 'Jullo',
 'august' => 'Agosto',
-'september' => 'Setembre',
-'october' => 'Ochůvre',
-'november' => 'Novembre',
-'december' => 'Diziembre',
+'september' => 'Setiembre',
+'october' => 'Ochòvre',
+'november' => 'Noviembre',
+'december' => 'Deziembre',
 'january-gen' => 'Enero',
 'february-gen' => 'Fevrero',
 'march-gen' => 'Março',
@@ -419,7 +419,7 @@ $messages = array(
 'policy-url' => 'Project:Politikas',
 'portal' => 'Puertal de la komunitá',
 'portal-url' => 'Project:Puertal de la komunitá',
-'privacy' => 'Principio de particůlaridad',
+'privacy' => 'Principio de particòlaridad',
 'privacypage' => 'Project:Principio de particůlaridad',
 
 'badaccess' => 'Yerro de permissión',
@@ -435,7 +435,7 @@ $messages = array(
 'viewsourceold' => 'Ver su manadero',
 'editlink' => 'trocar',
 'viewsourcelink' => 'ver su manadero',
-'editsectionhint' => 'Troca el capítůlo: $1',
+'editsectionhint' => 'Troca el kapítolo: $1',
 'toc' => 'Contènidos',
 'showtoc' => 'Amostrar',
 'hidetoc' => 'esconder',
@@ -888,7 +888,7 @@ La descripción en su [$2 hoja de descripción del arxivo] está amostrada debax
 # Special:ListGroupRights
 'listgrouprights-members' => '(ver los miembros de este grupo)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Embia e-mail a este usuario',
 
 # Watchlist
@@ -1009,7 +1009,7 @@ A continuación se mostran las opciones actuales de la hoja '''$1''':",
 'blocklink' => 'blokea',
 'unblocklink' => 'quita el bloqueo',
 'change-blocklink' => 'troca el blokeo',
-'contribslink' => 'Àjustamientos',
+'contribslink' => 'donos',
 'blocklogpage' => 'Bloqueos de usuarios',
 'blocklogentry' => 'bloqueó a [[$1]] $3 durante un tiempo de $2',
 'unblocklogentry' => 'desbloqueó a "$1"',
@@ -1068,7 +1068,7 @@ Si puede ser, escoge otro nombre.',
 'tooltip-pt-preferences' => 'Mis preferencias',
 'tooltip-pt-watchlist' => 'La lista de los trocamientos acontècidos en las hojas akavidadas.',
 'tooltip-pt-mycontris' => 'La lista de tus àjustamientos',
-'tooltip-pt-login' => "T'encorajamos d'entrar ma no sos obligado",
+'tooltip-pt-login' => 'Te encorajamos de entrar ma no estás obligado',
 'tooltip-pt-logout' => 'Salir',
 'tooltip-ca-talk' => 'Diskusyón encima del artícůlo de contènido',
 'tooltip-ca-edit' => 'Puedes trocar esta hoja. Y si puede ser, usa el botón de previsteo antes de enrejistrar la hoja',
@@ -1084,14 +1084,14 @@ Puedes ver su manadero',
 'tooltip-search' => 'Busca en {{SITENAME}}',
 'tooltip-search-go' => 'Si ay una hoja con este nombre egzakto, vate allá.',
 'tooltip-search-fulltext' => 'Busca este teksto en las hojas',
-'tooltip-p-logo' => 'Visita la primera hoja',
+'tooltip-p-logo' => 'Vate a la primera hoja',
 'tooltip-n-mainpage' => 'Visita la primera hoja',
 'tooltip-n-mainpage-description' => 'Visita la primera hoja',
 'tooltip-n-portal' => 'Encima del projeto, lo que puedes hazer y ánde topar todo',
 'tooltip-n-currentevents' => 'Información encima de los acontècimientos de oy día',
-'tooltip-n-recentchanges' => 'La lista de los trocamientos freskos en el viki',
-'tooltip-n-randompage' => 'Carga una kualunke hoja asegún viene',
-'tooltip-n-help' => 'El lugar para âmbezarse',
+'tooltip-n-recentchanges' => 'La lista de los trocamientos muevos en el viki',
+'tooltip-n-randompage' => 'Carga una hoja por asardo',
+'tooltip-n-help' => 'El lugar para saver más',
 'tooltip-t-whatlinkshere' => 'Una lista de todas las hojas del viki que tienen atamientos con esta hoja',
 'tooltip-t-recentchangeslinked' => 'Los trocamientos freskos de las hojas que tienen atamiento con esta hoja',
 'tooltip-feed-rss' => 'Sindicación RSS de esta hoja',
@@ -1133,11 +1133,11 @@ Puedes ver su manadero',
 'show-big-image' => 'Resolución original',
 
 # Bad image list
-'bad_image_list' => "El formato es ańsina:
+'bad_image_list' => 'El formato es ansina:
 
-Cale akavidar sólo elementos de lista (quere dezir: shurás/satires qu'empeçan con *).
-El primer atamiento de cada shurá deve de ser un atamiento á una dosya negra (á la dosya que se quere blokear).
-Los atamientos venideros que stan en la mesma shurá s'aprecian como eksepsiones, por eńxemplo, hojas ande la dosya se ve en la shurá.",
+Cale akavidar sólo elementos de lista (quere dezir: liñas que empeçan con *).
+El primer atamiento de cada liña deve de ser un atamiento á una dosya negra (á la dosya que se quere blokear).
+Los atamientos venideros que están en la mesma liña se aprecian como eksepsiones, por enxemplo, hojas ande la dosya se ve en la liña.',
 
 # Metadata
 'metadata' => 'Metadatos',
@@ -1192,7 +1192,7 @@ Los otros campos se van a guardar por defecto.
 'namespacesall' => 'todos',
 'monthsall' => '(todos)',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Konfirmar direksion e-pósta',
 'confirmemail_send' => 'Embiar el kodigo de konfirmasion.',
 'confirmemail_sent' => 'Konfirmasion de pósta embiada.',

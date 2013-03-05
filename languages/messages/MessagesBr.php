@@ -2497,7 +2497,7 @@ Roit a-is an abeg resis (o verkañ, da skouer, roll ar pajennoù bet graet gaou 
 ** Emzalc'h hegazus/handeus betek re
 ** Mont re bell gant implij meur a gont
 ** Anv implijer n'eo ket aotreet",
-'ipb-hardblock' => "Mirout a ra ouzh an implijerien kevreet da zegas kemmoù adalek ar c'homlec'h IP-mañ",
+'ipb-hardblock' => "Mirout ouzh an implijerien kevreet da zegas kemmoù adalek ar chomlec'h IP-mañ",
 'ipbcreateaccount' => 'Mirout ouzh an implijer da grouiñ kontoù',
 'ipbemailban' => 'Mirout ouzh an implijer da gas posteloù',
 'ipbenableautoblock' => "Stankañ war-eeun ar chomlec'h IP diwezhañ implijet gant an den-mañ hag an holl chomlec'hioù a c'hallfe klask kemmañ traoù drezo drezo diwezhatoc'h",
