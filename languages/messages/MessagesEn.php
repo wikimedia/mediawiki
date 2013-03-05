@@ -188,7 +188,7 @@ $bookstoreList = array(
 
 /**
  * Magic words
- * Customisable syntax for wikitext and elsewhere.
+ * Customizable syntax for wikitext and elsewhere.
  *
  * IDs must be valid identifiers, they cannot contain hyphens.
  * CASE is 0 to match all case variants, 1 for case-sensitive
@@ -3463,7 +3463,7 @@ In the latter case you can also use a link, for example [[{{#Special:Export}}/{{
 Please visit [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [//translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB'     => "This page cannot be used because '''\$wgUseDatabaseMessages''' has been disabled.",
 'allmessages-filter-legend'     => 'Filter',
-'allmessages-filter'            => 'Filter by customisation state:',
+'allmessages-filter'            => 'Filter by customization state:',
 'allmessages-filter-unmodified' => 'Unmodified',
 'allmessages-filter-all'        => 'All',
 'allmessages-filter-modified'   => 'Modified',
