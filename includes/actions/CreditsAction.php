@@ -23,6 +23,9 @@
  * @author <evan@wikitravel.org>
  */
 
+/**
+ * @ingroup Actions
+ */
 class CreditsAction extends FormlessAction {
 
 	public function getName() {

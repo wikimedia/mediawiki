@@ -22,6 +22,11 @@
  * @ingroup Actions
  */
 
+/**
+ * Displays information about a page.
+ *
+ * @ingroup Actions
+ */
 class InfoAction extends FormlessAction {
 	/**
 	 * Returns the name of the action this object responds to.

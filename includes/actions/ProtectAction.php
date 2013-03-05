@@ -23,6 +23,13 @@
  * @author Timo Tijhof
  */
 
+/**
+ * Handle page protection
+ *
+ * This is a wrapper that will call Article::protect().
+ *
+ * @ingroup Actions
+ */
 class ProtectAction extends FormlessAction {
 
 	public function getName() {
@@ -41,6 +48,13 @@ class ProtectAction extends FormlessAction {
 
 }
 
+/**
+ * Handle page unprotection
+ *
+ * This is a wrapper that will call Article::unprotect().
+ *
+ * @ingroup Actions
+ */
 class UnprotectAction extends ProtectAction {
 
 	public function getName() {

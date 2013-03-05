@@ -29,6 +29,8 @@
 /**
  * A simple method to retrieve the plain source of an article,
  * using "action=raw" in the GET request string.
+ *
+ * @ingroup Actions
  */
 class RawAction extends FormlessAction {
 	private $mGen;

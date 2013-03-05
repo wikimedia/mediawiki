@@ -23,6 +23,13 @@
  * @author Timo Tijhof
  */
 
+/**
+ * An action that views article content
+ *
+ * This is a wrapper that will call Article::render().
+ *
+ * @ingroup Actions
+ */
 class ViewAction extends FormlessAction {
 
 	public function getName() {
