@@ -934,6 +934,21 @@ return array(
 	'mediawiki.special.userlogin.signup' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.userLogin.signup.js',
 	),
+	'mediawiki.special.userlogin.agora' => array(
+		'styles' => array(
+			'resources/mediawiki.special/mediawiki.special.forms.agora.css',
+			'resources/mediawiki.special/mediawiki.special.userlogin.agora.css',
+		),
+		'position' => 'top',
+	),
+	'mediawiki.special.createaccount.agora' => array(
+		'scripts' => 'resources/mediawiki.special/mediawiki.special.createaccount.agora.js',
+		'styles' => array(
+			'resources/mediawiki.special/mediawiki.special.forms.agora.css',
+			'resources/mediawiki.special/mediawiki.special.createaccount.agora.css',
+		),
+		'position' => 'top',
+	),
 	'mediawiki.special.javaScriptTest' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.javaScriptTest.js',
 		'messages' => array_merge( Skin::getSkinNameMessages(), array(
