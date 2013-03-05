@@ -1,0 +1,32 @@
+/***************** stuff just for userlogin Agora *****************/
+.mw-ui-formlist .mw-secure {
+	background: url(images/icon-lock.png) no-repeat scroll left center transparent;
+	margin: 0 0 0 1px;
+	padding: 0 0 0 11px;
+}
+
+#createaccount-cta {
+    width: 20em;
+    height: 10em;
+    text-align: center;
+    background: url(images/glyph-people-large.png) no-repeat 50%;
+    font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
+#createaccount-cta h3 {
+    width: 100%;
+    font-size: 0.9em;
+    font-weight: normal;
+    text-align: center;
+    padding-top: 4em;
+}
+
+#mw-joinproject {
+    display: inline-block;
+    font-size: 1em;
+    margin-left: 0.75em;
+
+    -webkit-box-shadow: 4px 4px 4px 4px rgba(255, 255, 255, 1);
+    -moz-box-shadow: 4px 4px 4px 4px rgba(255, 255, 255, 1);
+    box-shadow: 4px 4px 4px 4px rgba(255, 255, 255, 1);
+}
