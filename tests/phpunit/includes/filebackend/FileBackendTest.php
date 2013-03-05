@@ -2072,6 +2072,23 @@ class FileBackendTest extends MediaWikiTestCase {
 			$this->assertEquals( true, $status->isOK(),
 				"Locking of files succeeded with OK status ($backendName)." );
 		}
+
+		$status = Status::newGood();
+		$sl = $this->backend->getScopedFileLocks( $paths, LockManager::LOCK_EX, $status );
+		$this->assertType( 'ScopedLock', $sl,
+			"Scoped locking of files succeeded ($backendName)." );
+		$this->assertEquals( array(), $status->errors,
+			"Scoped locking of files succeeded ($backendName)." );
+		$this->assertEquals( true, $status->isOK(),
+			"Scoped locking of files succeeded with OK status ($backendName)." );
+
+		ScopedLock::release( $sl );
+		$this->assertEquals( null, $sl,
+			"Scoped unlocking of files succeeded ($backendName)." );
+		$this->assertEquals( array(), $status->errors,
+			"Scoped unlocking of files succeeded ($backendName)." );
+		$this->assertEquals( true, $status->isOK(),
+			"Scoped unlocking of files succeeded with OK status ($backendName)." );
 	}
 
 	// test helper wrapper for backend prepare() function
