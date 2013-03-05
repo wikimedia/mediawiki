@@ -139,11 +139,15 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 		if ( $wgContLang->linkPrefixExtension() ) {
 			$data['linkprefix'] = wfMessage( 'linkprefix' )->inContentLanguage()->text();
+		} else {
+			$data['linkprefix'] = '';
 		}
 
 		$linktrail = $wgContLang->linkTrail();
 		if ( $linktrail ) {
 			$data['linktrail'] = $linktrail;
+		} else {
+			$data['linktrail'] = '';
 		}
 
 		$git = SpecialVersion::getGitHeadSha1( $GLOBALS['IP'] );
