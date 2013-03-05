@@ -696,6 +696,33 @@ class Html {
 	}
 
 	/**
+	 * Convenience function to produce a checkbox element.
+	 *
+	 * @param $name    string  name attribute
+	 * @param $checked boolean Whether the checkbox is checked or not
+	 * @param $attribs array   Associative array of miscellaneous extra
+	 *   attributes, passed to Html::element()
+	 * @return string Raw HTML
+	 */
+	public static function check( $name, $checked = false, $attribs = array() ) {
+		if ( $checked ) {
+			$checkedAttrib = array( 'checked' => 'checked' );
+		} else {
+			$checkedAttrib = array();
+		}
+		$attribs = array_merge(
+			array(
+				'name' => $name,
+				'type' => 'checkbox',
+				'value' => 1
+			),
+			$checkedAttrib,
+			$attribs
+		);
+		return self::element( 'input', $attribs );
+	}
+
+	/**
 	 * Convenience function to produce an input element with type=hidden
 	 *
 	 * @param $name    string name attribute
