@@ -949,6 +949,7 @@ return array(
 	'mediawiki.tests.qunit.testrunner' => array(
 		'scripts' => 'tests/qunit/data/testrunner.js',
 		'dependencies' => array(
+			'jquery.getAttrs',
 			'jquery.qunit',
 			'jquery.qunit.completenessTest',
 			'mediawiki.page.startup',

@@ -5,7 +5,9 @@
 
 	var mwTestIgnore, mwTester,
 		addons,
-		envExecCount;
+		envExecCount,
+		ELEMENT_NODE = 1,
+		TEXT_NODE = 3;
 
 	/**
 	 * Add bogus to url to prevent IE crazy caching
@@ -180,6 +182,47 @@
 	};
 
 	/**
+	 * Recursively convert a HTML node or text node to a JSON object representing its HTML structure.
+	 *
+	 * Only elements, attributes, and text are considered.
+	 *
+	 * @param {HTMLElement|TextNode} node jQuery node or raw text node
+	 */
+	function getDomStructure( node ) {
+		var $node, children, processedChildren, attributes, i, len, el;
+		$node = $( node );
+		if ( node.nodeType === ELEMENT_NODE ) {
+			children = $node.contents();
+			processedChildren = [];
+			for ( i = 0, len = children.length; i < len; i++ ) {
+				el = children[i];
+				if ( el.nodeType === ELEMENT_NODE || el.nodeType === TEXT_NODE ) {
+					processedChildren.push( getDomStructure( el ) );
+				}
+			}
+
+			attributes = $node.getAttrs();
+			return {
+				tagName: node.tagName,
+				attributes: attributes,
+				contents: processedChildren
+			};
+		} else {
+			// Should be text node
+			return $node.text();
+		}
+	}
+
+	/**
+	 * Gets structure of node for this HTML
+	 *
+	 * @param {string} html HTML markup
+	 */
+	function getHtmlStructure( html ) {
+		return getDomStructure( $( html )[0] );
+	}
+
+	/**
 	 * Add-on assertion helpers
 	 */
 	// Define the add-ons
@@ -213,6 +256,36 @@
 		// Expect numerical value greater than or equal to X
 		gtOrEq: function ( actual, expected, message ) {
 			QUnit.push( actual >= expected, actual, 'greater than or equal to ' + expected, message );
+		},
+
+		/**
+		 * Asserts that two HTML strings are structurally equivalent
+		 *
+		 * @param {string} actualHtml actual HTML markup
+		 * @param {string} expectedHtml expected HTML markup
+		 * @param {string} message assertion message
+		 */
+		htmlEqual: function ( actualHtml, expectedHtml, message ) {
+			QUnit.assert.deepEqual(
+				getHtmlStructure( actualHtml ),
+				getHtmlStructure( expectedHtml ),
+				message
+			);
+		},
+
+		/**
+		 * Asserts that two HTML strings are not structurally equivalent
+		 *
+		 * @param {string} actualHtml actual HTML markup
+		 * @param {string} expectedHtml expected HTML markup
+		 * @param {string} message assertion message
+		 */
+		notHtmlEqual: function ( actualHtml, expectedHtml, message ) {
+			QUnit.assert.notDeepEqual(
+				getHtmlStructure( actualHtml ),
+				getHtmlStructure( expectedHtml ),
+				message
+			);
 		}
 	};
 
@@ -251,6 +324,20 @@
 
 		mw.config.set( 'testVar', 'bar' );
 		mw.messages.set( 'testMsg', 'Bar.' );
+	} );
+
+	QUnit.test( 'htmlEqual', 2, function ( assert ) {
+		assert.htmlEqual(
+			'<div><p class="some classes" data-length="10">Child paragraph with <a href="http://example.com">A link</a></p>Regular text<span>A span</span></div>',
+			'<div><p data-length=\'10\' class=\'some classes\'>Child paragraph with <a href=\'http://example.com\'>A link</a></p>Regular text<span>A span</span></div>',
+			'HTML with different order and quotation marks is equal'
+		);
+
+		assert.notHtmlEqual(
+			'<div><p class="some classes" data-length="10">Child paragraph with <a href="http://example.com">A link</a></p>Regular text<span>A span</span></div>',
+			'<div><p data-length=\'10\' class=\'some more classes\'>Child paragraph with <a href=\'http://example.com\'>A link</a></p>Regular text<span>A span</span></div>',
+			'HTML with different order and quotation marks and values is not equal'
+		);
 	} );
 
 	QUnit.test( 'Teardown', 3, function ( assert ) {
