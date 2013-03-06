@@ -212,6 +212,13 @@ production.
 * (bug 41889) Fix $.tablesorter rowspan exploding for complex cases.
 * WDDX formatted output will actually be formatted (and normal output will no
   longer be), and will no longer choke on booleans.
+* BREAKING CHANGE: (bug 41729) Display editsection links next to headings. Also
+  change their class name from .editsection to .mw-editsection and place them at
+  the end of the heading element instead of the beginning. Client-side code and
+  screen-scrapers will have to be adjusted to handle both cases (old HTML will
+  still be visible on cached page renders until they are purged); extensions
+  using the DoEditSectionLink or EditSectionLink hooks might need adjustments as
+  well.
 
 === API changes in 1.21 ===
 * prop=revisions can now report the contentmodel and contentformat.
