@@ -57,7 +57,6 @@ class DjVuImage {
 		return $info !== false;
 	}
 
-
 	/**
 	 * Return data in the style of getimagesize()
 	 * @return array or false on failure
@@ -66,7 +65,7 @@ class DjVuImage {
 		$data = $this->getInfo();
 
 		if( $data !== false ) {
-			$width  = $data['width'];
+			$width = $data['width'];
 			$height = $data['height'];
 
 			return array( $width, $height, 'DjVu',

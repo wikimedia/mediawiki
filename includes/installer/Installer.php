@@ -1089,7 +1089,6 @@ abstract class Installer {
 		}
 	}
 
-
 	/**
 	 * Check the libicu version
 	 */

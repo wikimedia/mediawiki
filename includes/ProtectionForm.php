@@ -482,7 +482,7 @@ class ProtectionForm {
 
 		# Add manual and custom reason field/selects as well as submit
 		if( !$this->disabled ) {
-			$out .=  Xml::openElement( 'table', array( 'id' => 'mw-protect-table3' ) ) .
+			$out .= Xml::openElement( 'table', array( 'id' => 'mw-protect-table3' ) ) .
 				Xml::openElement( 'tbody' );
 			$out .= "
 				<tr>

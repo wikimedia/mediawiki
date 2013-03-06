@@ -861,7 +861,6 @@ class PPFrame_Hash implements PPFrame {
 	 */
 	var $depth;
 
-
 	/**
 	 * Construct a new preprocessor frame.
 	 * @param $preprocessor Preprocessor: the parent preprocessor

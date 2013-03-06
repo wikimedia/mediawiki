@@ -24,7 +24,6 @@
  * @author Luke Welling lwelling@wikimedia.org
  */
 
-
 /**
  * Stores a single person's name and email address.
  * These are passed in via the constructor, and will be returned in SMTP
@@ -77,7 +76,6 @@ class MailAddress {
 		return $this->toString();
 	}
 }
-
 
 /**
  * Collection of static functions for sending mail
@@ -270,7 +268,7 @@ class UserMailer {
 				$mime = new Mail_mime( array( 'eol' => $endl ) );
 				$mime->setTXTBody( $body['text'] );
 				$mime->setHTMLBody( $body['html'] );
-				$body = $mime->get();  // must call get() before headers()
+				$body = $mime->get(); // must call get() before headers()
 				$headers = $mime->headers( $headers );
 			}
 		}

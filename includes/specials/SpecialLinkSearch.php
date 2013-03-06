@@ -22,7 +22,6 @@
  * @author Brion Vibber
  */
 
-
 /**
  * Special:LinkSearch to search the external-links table.
  * @ingroup SpecialPage

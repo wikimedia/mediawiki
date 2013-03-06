@@ -72,24 +72,23 @@ class XMPReader {
 	* element pops up when we're in that mode, we ignore it.
 	*/
 	const MODE_INITIAL = 0;
-	const MODE_IGNORE  = 1;
-	const MODE_LI      = 2;
+	const MODE_IGNORE = 1;
+	const MODE_LI = 2;
 	const MODE_LI_LANG = 3;
-	const MODE_QDESC   = 4;
+	const MODE_QDESC = 4;
 
 	// The following MODE constants are also used in the
 	// $items array to denote what type of property the item is.
-	const MODE_SIMPLE    = 10;
-	const MODE_STRUCT    = 11; // structure (associative array)
-	const MODE_SEQ       = 12; // ordered list
-	const MODE_BAG       = 13; // unordered list
-	const MODE_LANG      = 14;
-	const MODE_ALT       = 15; // non-language alt. Currently not implemented, and not needed atm.
+	const MODE_SIMPLE = 10;
+	const MODE_STRUCT = 11; // structure (associative array)
+	const MODE_SEQ = 12; // ordered list
+	const MODE_BAG = 13; // unordered list
+	const MODE_LANG = 14;
+	const MODE_ALT = 15; // non-language alt. Currently not implemented, and not needed atm.
 	const MODE_BAGSTRUCT = 16; // A BAG of Structs.
 
 	const NS_RDF = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#';
 	const NS_XML = 'http://www.w3.org/XML/1998/namespace';
-
 
 	/**
 	* Constructor.
@@ -206,7 +205,6 @@ class XMPReader {
 				}
 			}
 		}
-
 
 		// We don't want to return the special values, since they're
 		// special and not info to be stored about the file.
@@ -330,7 +328,6 @@ class XMPReader {
 			wfDebugLog( 'XMP', __METHOD__ . 'Error reading extended XMP block, invalid length or offset.' );
 			return false;
 		}
-
 
 		// we're not very robust here. we should accept it in the wrong order. To quote
 		// the xmp standard:
@@ -591,8 +588,6 @@ class XMPReader {
 			array_shift( $this->mode );
 			array_shift( $this->curItem );
 		}
-
-
 	}
 
 	/**
@@ -1128,8 +1123,6 @@ class XMPReader {
 			$this->mode[0] = self::MODE_QDESC;
 		}
 		foreach ( $attribs as $name => $val ) {
-
-
 			if ( strpos( $name, ' ' ) === false ) {
 				// This shouldn't happen, but so far some old software forgets namespace
 				// on rdf:about.

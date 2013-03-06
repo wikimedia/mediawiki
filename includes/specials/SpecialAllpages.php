@@ -116,7 +116,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 		global $wgScript;
 		$t = $this->getTitle();
 
-		$out  = Xml::openElement( 'div', array( 'class' => 'namespaceoptions' ) );
+		$out = Xml::openElement( 'div', array( 'class' => 'namespaceoptions' ) );
 		$out .= Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) );
 		$out .= Html::hidden( 'title', $t->getPrefixedText() );
 		$out .= Xml::openElement( 'fieldset' );
@@ -457,7 +457,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 								Linker::link( $self, $this->msg( 'allpages' )->escaped() );
 
 			# Do we put a previous link ?
-			if( isset( $prevTitle ) &&  $pt = $prevTitle->getText() ) {
+			if( isset( $prevTitle ) && $pt = $prevTitle->getText() ) {
 				$query = array( 'from' => $prevTitle->getText() );
 
 				if( $namespace )

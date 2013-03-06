@@ -40,90 +40,90 @@ class EditPage {
 	/**
 	 * Status: Article successfully updated
 	 */
-	const AS_SUCCESS_UPDATE            = 200;
+	const AS_SUCCESS_UPDATE = 200;
 
 	/**
 	 * Status: Article successfully created
 	 */
-	const AS_SUCCESS_NEW_ARTICLE       = 201;
+	const AS_SUCCESS_NEW_ARTICLE = 201;
 
 	/**
 	 * Status: Article update aborted by a hook function
 	 */
-	const AS_HOOK_ERROR                = 210;
+	const AS_HOOK_ERROR = 210;
 
 	/**
 	 * Status: A hook function returned an error
 	 */
-	const AS_HOOK_ERROR_EXPECTED       = 212;
+	const AS_HOOK_ERROR_EXPECTED = 212;
 
 	/**
 	 * Status: User is blocked from editting this page
 	 */
-	const AS_BLOCKED_PAGE_FOR_USER     = 215;
+	const AS_BLOCKED_PAGE_FOR_USER = 215;
 
 	/**
 	 * Status: Content too big (> $wgMaxArticleSize)
 	 */
-	const AS_CONTENT_TOO_BIG           = 216;
+	const AS_CONTENT_TOO_BIG = 216;
 
 	/**
 	 * Status: User cannot edit? (not used)
 	 */
-	const AS_USER_CANNOT_EDIT          = 217;
+	const AS_USER_CANNOT_EDIT = 217;
 
 	/**
 	 * Status: this anonymous user is not allowed to edit this page
 	 */
-	const AS_READ_ONLY_PAGE_ANON       = 218;
+	const AS_READ_ONLY_PAGE_ANON = 218;
 
 	/**
 	 * Status: this logged in user is not allowed to edit this page
 	 */
-	const AS_READ_ONLY_PAGE_LOGGED     = 219;
+	const AS_READ_ONLY_PAGE_LOGGED = 219;
 
 	/**
 	 * Status: wiki is in readonly mode (wfReadOnly() == true)
 	 */
-	const AS_READ_ONLY_PAGE            = 220;
+	const AS_READ_ONLY_PAGE = 220;
 
 	/**
 	 * Status: rate limiter for action 'edit' was tripped
 	 */
-	const AS_RATE_LIMITED              = 221;
+	const AS_RATE_LIMITED = 221;
 
 	/**
 	 * Status: article was deleted while editting and param wpRecreate == false or form
 	 * was not posted
 	 */
-	const AS_ARTICLE_WAS_DELETED       = 222;
+	const AS_ARTICLE_WAS_DELETED = 222;
 
 	/**
 	 * Status: user tried to create this page, but is not allowed to do that
 	 * ( Title->usercan('create') == false )
 	 */
-	const AS_NO_CREATE_PERMISSION      = 223;
+	const AS_NO_CREATE_PERMISSION = 223;
 
 	/**
 	 * Status: user tried to create a blank page
 	 */
-	const AS_BLANK_ARTICLE             = 224;
+	const AS_BLANK_ARTICLE = 224;
 
 	/**
 	 * Status: (non-resolvable) edit conflict
 	 */
-	const AS_CONFLICT_DETECTED         = 225;
+	const AS_CONFLICT_DETECTED = 225;
 
 	/**
 	 * Status: no edit summary given and the user has forceeditsummary set and the user is not
 	 * editting in his own userspace or talkspace and wpIgnoreBlankSummary == false
 	 */
-	const AS_SUMMARY_NEEDED            = 226;
+	const AS_SUMMARY_NEEDED = 226;
 
 	/**
 	 * Status: user tried to create a new section without content
 	 */
-	const AS_TEXTBOX_EMPTY             = 228;
+	const AS_TEXTBOX_EMPTY = 228;
 
 	/**
 	 * Status: article is too big (> $wgMaxArticleSize), after merging in the new section
@@ -133,37 +133,37 @@ class EditPage {
 	/**
 	 * not used
 	 */
-	const AS_OK                        = 230;
+	const AS_OK = 230;
 
 	/**
 	 * Status: WikiPage::doEdit() was unsuccessfull
 	 */
-	const AS_END                       = 231;
+	const AS_END = 231;
 
 	/**
 	 * Status: summary contained spam according to one of the regexes in $wgSummarySpamRegex
 	 */
-	const AS_SPAM_ERROR                = 232;
+	const AS_SPAM_ERROR = 232;
 
 	/**
 	 * Status: anonymous user is not allowed to upload (User::isAllowed('upload') == false)
 	 */
-	const AS_IMAGE_REDIRECT_ANON       = 233;
+	const AS_IMAGE_REDIRECT_ANON = 233;
 
 	/**
 	 * Status: logged in user is not allowed to upload (User::isAllowed('upload') == false)
 	 */
-	const AS_IMAGE_REDIRECT_LOGGED     = 234;
+	const AS_IMAGE_REDIRECT_LOGGED = 234;
 
 	/**
 	 * Status: can't parse content
 	 */
-	const AS_PARSE_ERROR                = 240;
+	const AS_PARSE_ERROR = 240;
 
 	/**
 	 * HTML id and name for the beginning of the edit form.
 	 */
-	const EDITFORM_ID                  = 'editform';
+	const EDITFORM_ID = 'editform';
 
 	/**
 	 * Prefix of key for cookie used to pass post-edit state.
@@ -397,9 +397,9 @@ class EditPage {
 
 		$this->isConflict = false;
 		// css / js subpages of user pages get a special treatment
-		$this->isCssJsSubpage       = $this->mTitle->isCssJsSubpage();
-		$this->isCssSubpage         = $this->mTitle->isCssSubpage();
-		$this->isJsSubpage          = $this->mTitle->isJsSubpage();
+		$this->isCssJsSubpage = $this->mTitle->isCssJsSubpage();
+		$this->isCssSubpage = $this->mTitle->isCssSubpage();
+		$this->isJsSubpage = $this->mTitle->isJsSubpage();
 		$this->isWrongCaseCssJsPage = $this->isWrongCaseCssJsPage();
 
 		# Show applicable editing introductions
@@ -714,7 +714,7 @@ class EditPage {
 				$this->starttime = null;
 			}
 
-			$this->recreate  = $request->getCheck( 'wpRecreate' );
+			$this->recreate = $request->getCheck( 'wpRecreate' );
 
 			$this->minoredit = $request->getCheck( 'wpMinoredit' );
 			$this->watchthis = $request->getCheck( 'wpWatchthis' );
@@ -732,18 +732,18 @@ class EditPage {
 		} else {
 			# Not a posted form? Start with nothing.
 			wfDebug( __METHOD__ . ": Not a posted form.\n" );
-			$this->textbox1     = '';
-			$this->summary      = '';
+			$this->textbox1 = '';
+			$this->summary = '';
 			$this->sectiontitle = '';
-			$this->edittime     = '';
-			$this->starttime    = wfTimestampNow();
-			$this->edit         = false;
-			$this->preview      = false;
-			$this->save         = false;
-			$this->diff         = false;
-			$this->minoredit    = false;
-			$this->watchthis    = $request->getBool( 'watchthis', false ); // Watch may be overriden by request parameters
-			$this->recreate     = false;
+			$this->edittime = '';
+			$this->starttime = wfTimestampNow();
+			$this->edit = false;
+			$this->preview = false;
+			$this->save = false;
+			$this->diff = false;
+			$this->minoredit = false;
+			$this->watchthis = $request->getBool( 'watchthis', false ); // Watch may be overriden by request parameters
+			$this->recreate = false;
 
 			// When creating a new section, we can preload a section title by passing it as the
 			// preloadtitle parameter in the URL (Bug 13100)
@@ -1006,7 +1006,7 @@ class EditPage {
 		$rev = $this->mArticle->getRevision();
 		$content = $rev ? $rev->getContent( Revision::RAW ) : null;
 
-		if ( $content  === false || $content === null ) {
+		if ( $content === false || $content === null ) {
 			if ( !$this->contentModel ) $this->contentModel = $this->getTitle()->getContentModel();
 			$handler = ContentHandler::getForModelID( $this->contentModel );
 
@@ -1019,7 +1019,6 @@ class EditPage {
 			return $content;
 		}
 	}
-
 
 	/**
 	 * Use this method before edit() to preload some text into the edit box
@@ -2419,7 +2418,6 @@ class EditPage {
 		# Add header copyright warning
 		$this->showHeaderCopyrightWarning();
 	}
-
 
 	/**
 	 * Standard summary input and label (wgSummary), abstracted so EditPage

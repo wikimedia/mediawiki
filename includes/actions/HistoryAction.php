@@ -145,9 +145,9 @@ class HistoryAction extends FormlessAction {
 		/**
 		 * Add date selector to quickly get to a certain time
 		 */
-		$year        = $request->getInt( 'year' );
-		$month       = $request->getInt( 'month' );
-		$tagFilter   = $request->getVal( 'tagfilter' );
+		$year = $request->getInt( 'year' );
+		$month = $request->getInt( 'month' );
+		$tagFilter = $request->getVal( 'tagfilter' );
 		$tagSelector = ChangeTags::buildTagFilterSelector( $tagFilter );
 
 		/**

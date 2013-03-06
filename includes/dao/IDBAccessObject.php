@@ -46,7 +46,7 @@
  */
 interface IDBAccessObject {
 	// Constants for object loading bitfield flags (higher => higher QoS)
-	const READ_LATEST  = 1; // read from the master
+	const READ_LATEST = 1; // read from the master
 	const READ_LOCKING = 3; // READ_LATEST and "FOR UPDATE"
 
 	// Convenience constant for callers to explicitly request slave data

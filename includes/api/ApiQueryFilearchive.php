@@ -207,7 +207,6 @@ class ApiQueryFilearchive extends ApiQueryBase {
 				$file['suppressed'] = '';
 			}
 
-
 			$fit = $result->addValue( array( 'query', $this->getModuleName() ), null, $file );
 			if ( !$fit ) {
 				$this->setContinueEnumParameter( 'continue', $row->fa_name );

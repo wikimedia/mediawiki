@@ -55,7 +55,6 @@ class JavaScriptContent extends TextContent {
 		return new JavaScriptContent( $pst );
 	}
 
-
 	protected function getHtml( ) {
 		$html = "";
 		$html .= "<pre class=\"mw-code mw-js\" dir=\"ltr\">\n";

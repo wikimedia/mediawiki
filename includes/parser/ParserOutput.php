@@ -418,7 +418,6 @@ class ParserOutput extends CacheTime {
 		return $this->mProperties;
 	}
 
-
 	/**
 	 * Returns the options from its ParserOptions which have been taken
 	 * into account to produce this output or false if not available.

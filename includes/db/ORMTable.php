@@ -201,7 +201,7 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 * @return ORMResult
 	 */
 	public function select( $fields = null, array $conditions = array(),
-							array $options = array(), $functionName  = null ) {
+							array $options = array(), $functionName = null ) {
 		$res = $this->rawSelect( $fields, $conditions, $options, $functionName );
 		return new ORMResult( $this, $res );
 	}
@@ -221,7 +221,7 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 * @throws DBQueryError if the query failed (even if the database was in ignoreErrors mode).
 	 */
 	public function selectObjects( $fields = null, array $conditions = array(),
-								   array $options = array(), $functionName  = null ) {
+								   array $options = array(), $functionName = null ) {
 		$result = $this->selectFields( $fields, $conditions, $options, false, $functionName );
 
 		$objects = array();
@@ -247,7 +247,7 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 * @throws DBQueryError if the quey failed (even if the database was in ignoreErrors mode).
 	 */
 	public function rawSelect( $fields = null, array $conditions = array(),
-							   array $options = array(), $functionName  = null ) {
+							   array $options = array(), $functionName = null ) {
 		if ( is_null( $fields ) ) {
 			$fields = array_keys( $this->getFields() );
 		}
@@ -313,7 +313,7 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 * @return array of array
 	 */
 	public function selectFields( $fields = null, array $conditions = array(),
-								  array $options = array(), $collapse = true, $functionName  = null ) {
+								  array $options = array(), $collapse = true, $functionName = null ) {
 		$objects = array();
 
 		$result = $this->rawSelect( $fields, $conditions, $options, $functionName );

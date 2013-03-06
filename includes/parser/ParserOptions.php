@@ -505,7 +505,6 @@ class ParserOptions {
 			$confstr .= '*';
 		}
 
-
 		// Space assigned for the stubthreshold but unused
 		// since it disables the parser cache, its value will always
 		// be 0 when this function is called by parsercache.

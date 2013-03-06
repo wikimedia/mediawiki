@@ -66,7 +66,6 @@ class ConfEditor {
 	 */
 	var $stateStack;
 
-
 	/**
 	 * The path stack is a stack of associative arrays with the following elements:
 	 *    name              The name of top level of the path

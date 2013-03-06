@@ -41,9 +41,9 @@ abstract class JobQueue {
 	 * @param $params array
 	 */
 	protected function __construct( array $params ) {
-		$this->wiki     = $params['wiki'];
-		$this->type     = $params['type'];
-		$this->order    = isset( $params['order'] ) ? $params['order'] : 'random';
+		$this->wiki = $params['wiki'];
+		$this->type = $params['type'];
+		$this->order = isset( $params['order'] ) ? $params['order'] : 'random';
 		$this->claimTTL = isset( $params['claimTTL'] ) ? $params['claimTTL'] : 0;
 		$this->maxTries = isset( $params['maxTries'] ) ? $params['maxTries'] : 3;
 	}
