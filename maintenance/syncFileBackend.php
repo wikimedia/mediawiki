@@ -57,10 +57,11 @@ class SyncFileBackend extends Maintenance {
 			}
 			if ( $this->hasOption( 'postime' ) ) {
 				$id = (int)$src->getJournal()->getPositionAtTime( $this->getOption( 'postime' ) );
+				$this->output( "Requested journal position is $id.\n" );
 			} else {
 				$id = (int)$src->getJournal()->getCurrentPosition();
+				$this->output( "Current journal position is $id.\n" );
 			}
-			$this->output( "Current journal position is $id.\n" );
 			if ( file_put_contents( $posFile, $id, LOCK_EX ) !== false ) {
 				$this->output( "Saved journal position file.\n" );
 			} else {
