@@ -451,7 +451,7 @@ class ResourceLoader {
 					$this->hasErrors = true;
 					continue;
 				}
-				$modules[$name] = $this->getModule( $name );
+				$modules[$name] = $module;
 			} else {
 				$missing[] = $name;
 			}
