@@ -181,23 +181,34 @@ class IcuCollation extends Collation {
 	);
 
 	/**
-	 * Additional characters (or character groups) to be considered first-letters
+	 * Additional characters (or character groups) to be considered separate
+	 * letters for given languages, compared to the data stored in the
+	 * first-letters-root.ser file (which among others includes full basic latin,
+	 * cyrillic and greek alphabets).
 	 *
-	 * Generated based on the primary level of Unicode collation tailorings
-	 * available at http://developer.mimer.com/charts/tailorings.htm .
+	 * "Separate letter" is a letter that would have a separate heading/section
+	 * for it in a dictionary or a phone book in this language. This data isn't
+	 * used for sorting (the ICU library handles that), only for deciding which
+	 * characters (or character groups) to use as headings.
+	 *
+	 * Initially generated based on the primary level of Unicode collation
+	 * tailorings available at http://developer.mimer.com/charts/tailorings.htm ,
+	 * later modified.
 	 *
 	 * Empty arrays are intended; this signifies that the data for the language is
 	 * available and that there are, in fact, no additional letters to consider.
 	 */
 	static $tailoringFirstLetters = array(
 		// Verified by native speakers
-		'pl' => array( "Ą", "Ć", "Ę", "Ł", "Ń", "Ó", "Ś", "Ź", "Ż" ),
+		'be' => array( "Ё" ),
+		'be-tarask' => array( "Ё" ),
 		'fi' => array( "Å", "Ä", "Ö" ),
+		'pl' => array( "Ą", "Ć", "Ę", "Ł", "Ń", "Ó", "Ś", "Ź", "Ż" ),
+		'ru' => array(),
 		// Not verified, but likely correct
 		'af' => array(),
 		'ast' => array( "CH", "LL", "Ñ" ),
 		'az' => array( "Ç", "Ə", "Ğ", "İ", "Ö", "Ş", "Ü" ),
-		'be' => array( "Ё" ),
 		'bg' => array(),
 		'br' => array( "CH", "C'H" ),
 		'bs' => array( "Č", "Ć", "DŽ", "Đ", "LJ", "NJ", "Š", "Ž" ),
@@ -243,7 +254,6 @@ class IcuCollation extends Collation {
 		'pt' => array(),
 		'rm' => array(),
 		'ro' => array( "Ă", "Â", "Î", "Ş", "Ţ" ),
-		'ru' => array(),
 		'rup' => array( "Ă", "Â", "Î", "Ľ", "Ń", "Ş", "Ţ" ),
 		'sco' => array(),
 		'sk' => array( "Ä", "Č", "CH", "Ô", "Š", "Ž" ),
@@ -253,7 +263,7 @@ class IcuCollation extends Collation {
 		'sr' => array(),
 		'sv' => array( "Å", "Ä", "Ö" ),
 		'tk' => array( "Ç", "Ä", "Ž", "Ň", "Ö", "Ş", "Ü", "Ý" ),
-		'tl' => array( "Ñ", "NG" ), /* 'fil' in the data source */
+		'tl' => array( "Ñ", "NG" ),
 		'tr' => array( "Ç", "Ğ", "İ", "Ö", "Ş", "Ü" ),
 		'tt' => array( "Ә", "Ө", "Ү", "Җ", "Ң", "Һ" ),
 		'uk' => array( "Ґ", "Ь" ),
