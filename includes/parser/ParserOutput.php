@@ -67,8 +67,22 @@ class ParserOutput extends CacheTime {
 
 	function getText() {
 		if ( $this->mEditSectionTokens ) {
+			$text = $this->mText;
+
+			// If there's old output with misplaced editsections links cached, mangle it to put them in
+			// the right position. We can assume that there is no '</hN>' inside header tags, making this
+			// possible to do with a regex.
+			$text = preg_replace(
+				//            [ this part is like EDITSECTION_REGEX, but with non-capturing groups                           ]
+				//                                                                                  note the space here ------v
+				'#(<[hH](\d)>)(<(?:mw:)?editsection page="(?:.*?)" section="(?:.*?)"(?:/>|>(?:.*?)(?:</(?:mw:)?editsection>))) ([\s\S]*?)(</[hH]\2>)#',
+				// swap the order of content and editsection link - $2 is ignored since it's the number in hN's tag name
+				'$1$4 $3$5',
+				$text
+			);
+
 			return preg_replace_callback( ParserOutput::EDITSECTION_REGEX,
-				array( &$this, 'replaceEditSectionLinksCallback' ), $this->mText );
+				array( &$this, 'replaceEditSectionLinksCallback' ), $text );
 		}
 		return preg_replace( ParserOutput::EDITSECTION_REGEX, '', $this->mText );
 	}
