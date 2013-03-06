@@ -204,6 +204,7 @@ class ResourceLoader {
 		$this->register( include( "$IP/resources/Resources.php" ) );
 		// Register extension modules
 		wfRunHooks( 'ResourceLoaderRegisterModules', array( &$this ) );
+		wfRunHooks( 'ResourceLoaderAfterRegisterModules', array( &$this ) );
 		$this->register( $wgResourceModules );
 
 		if ( $wgEnableJavaScriptTest === true ) {

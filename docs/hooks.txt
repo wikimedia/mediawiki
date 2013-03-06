@@ -1863,6 +1863,11 @@ such as when responding to a resource
 loader request or generating HTML output.
 &$resourceLoader: ResourceLoader object
 
+'ResourceLoaderAfterRegisterModules': Executes immediately after
+ResourceLoaderRegisterModules to allow extensions to access the complete set of
+registered modules.
+&$resourceLoader: ResourceLoader object
+
 'ResourceLoaderTestModules': Let you add new JavaScript testing modules. This is
 called after the addition of 'qunit' and MediaWiki testing resources.
 &testModules: array of JavaScript testing modules. The 'qunit' framework,
