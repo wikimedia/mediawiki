@@ -10,12 +10,6 @@
 		}
 	],
 	"license": "GPL-2.0",
-	"repositories": [
-		{
-			"type": "vcs",
-			"url": "https://gerrit.wikimedia.org/r/p/mediawiki/core.git"
-		}
-	],
 	"support": {
 		"issues": "https://bugzilla.wikimedia.org/",
 		"irc": "irc://irc.freenode.net/mediawiki",
