@@ -1531,6 +1531,15 @@ var mw = ( function ( $, undefined ) {
 		}() ),
 
 		/**
+		 * Syntactic sugar for pluggable logging using events.
+		 * @param logGroup {String}
+		 */
+		emitLog: function ( logGroup /* , ... */ ) {
+			var parameters = slice.call( arguments, 1 );
+			$( document ).trigger( 'mediaWiki.emitLog.' + logGroup, parameters );
+		},
+
+		/**
 		 * HTML construction helper functions
 		 * @class mw.html
 		 * @singleton
