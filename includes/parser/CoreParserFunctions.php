@@ -124,7 +124,7 @@ class CoreParserFunctions {
 
 	/**
 	 * @param $parser Parser
-	 * @param  $date
+	 * @param $date
 	 * @param null $defaultPref
 	 * @return mixed|string
 	 */
@@ -138,8 +138,9 @@ class CoreParserFunctions {
 
 		// Specify a different default date format other than the the normal default
 		// iff the user has 'default' for their setting
-		if ( $pref == 'default' && $defaultPref )
+		if ( $pref == 'default' && $defaultPref ) {
 			$pref = $defaultPref;
+		}
 
 		$date = $df->reformat( $pref, $date, array( 'match-whole' ) );
 		return $date;
@@ -235,21 +236,82 @@ class CoreParserFunctions {
 		return $parser->markerSkipCallback( $s, array( $wgContLang, 'uc' ) );
 	}
 
-	static function localurl( $parser, $s = '', $arg = null ) { return self::urlFunction( 'getLocalURL', $s, $arg ); }
-	static function localurle( $parser, $s = '', $arg = null ) { return self::urlFunction( 'escapeLocalURL', $s, $arg ); }
-	static function fullurl( $parser, $s = '', $arg = null ) { return self::urlFunction( 'getFullURL', $s, $arg ); }
-	static function fullurle( $parser, $s = '', $arg = null ) { return self::urlFunction( 'escapeFullURL', $s, $arg ); }
-	static function canonicalurl( $parser, $s = '', $arg = null ) { return self::urlFunction( 'getCanonicalURL', $s, $arg ); }
-	static function canonicalurle( $parser, $s = '', $arg = null ) { return self::urlFunction( 'escapeCanonicalURL', $s, $arg ); }
+	/**
+	 * @param $parser Parser
+	 * @param string $s
+	 * @param array $arg
+	 * @return Mixed
+	 */
+	static function localurl( $parser, $s = '', $arg = null ) {
+		return self::urlFunction( 'getLocalURL', $s, $arg );
+	}
 
+	/**
+	 * @param $parser Parser
+	 * @param string $s
+	 * @param array $arg
+	 * @return Mixed
+	 */
+	static function localurle( $parser, $s = '', $arg = null ) {
+		return self::urlFunction( 'escapeLocalURL', $s, $arg );
+	}
+
+	/**
+	 * @param $parser Parser
+	 * @param string $s
+	 * @param array $arg
+	 * @return Mixed
+	 */
+	static function fullurl( $parser, $s = '', $arg = null ) {
+		return self::urlFunction( 'getFullURL', $s, $arg );
+	}
+
+	/**
+	 * @param $parser Parser
+	 * @param string $s
+	 * @param array $arg
+	 * @return Mixed
+	 */
+	static function fullurle( $parser, $s = '', $arg = null ) {
+		return self::urlFunction( 'escapeFullURL', $s, $arg );
+	}
+
+	/**
+	 * @param $parser Parser
+	 * @param string $s
+	 * @param array $arg
+	 * @return Mixed
+	 */
+	static function canonicalurl( $parser, $s = '', $arg = null ) {
+		return self::urlFunction( 'getCanonicalURL', $s, $arg );
+	}
+
+	/**
+	 * @param $parser Parser
+	 * @param string $s
+	 * @param array $arg
+	 * @return Mixed
+	 */
+	static function canonicalurle( $parser, $s = '', $arg = null ) {
+		return self::urlFunction( 'escapeCanonicalURL', $s, $arg );
+	}
+
+
+	/**
+	 * @param $parser Parser
+	 * @param string $s
+	 * @param array $arg
+	 * @return Mixed
+	 */
 	static function urlFunction( $func, $s = '', $arg = null ) {
 		$title = Title::newFromText( $s );
 		# Due to order of execution of a lot of bits, the values might be encoded
 		# before arriving here; if that's true, then the title can't be created
 		# and the variable will fail. If we can't get a decent title from the first
 		# attempt, url-decode and try for a second.
-		if( is_null( $title ) )
+		if( is_null( $title ) ) {
 			$title = Title::newFromURL( urldecode( $s ) );
+		}
 		if( !is_null( $title ) ) {
 			# Convert NS_MEDIA -> NS_FILE
 			if( $title->getNamespace() == NS_MEDIA ) {
@@ -379,10 +441,8 @@ class CoreParserFunctions {
 
 		if( !$wgRestrictDisplayTitle ) {
 			$parser->mOutput->setDisplayTitle( $text );
-		} else {
-			if ( $title instanceof Title && $title->getFragment() == '' && $title->equals( $parser->mTitle ) ) {
-				$parser->mOutput->setDisplayTitle( $text );
-			}
+		} elseif ( $title instanceof Title && $title->getFragment() == '' && $title->equals( $parser->mTitle ) ) {
+			$parser->mOutput->setDisplayTitle( $text );
 		}
 
 		return '';
@@ -395,7 +455,7 @@ class CoreParserFunctions {
 	 * @param mixed $value value to match
 	 * @return boolean true on successful match
 	 */
-	static private function matchAgainstMagicword( $magicword, $value ) {
+	private static function matchAgainstMagicword( $magicword, $value ) {
 		if ( strval( $value ) === '' ) {
 			return false;
 		}
@@ -403,6 +463,11 @@ class CoreParserFunctions {
 		return $mwObject->match( $value );
 	}
 
+	/**
+	 * @param $num int
+	 * @param $raw string
+	 * @return
+	 */
 	static function formatRaw( $num, $raw ) {
 		if( self::matchAgainstMagicword( 'rawsuffix', $raw ) ) {
 			return $num;
@@ -411,37 +476,96 @@ class CoreParserFunctions {
 			return $wgContLang->formatNum( $num );
 		}
 	}
+
+	/**
+	 * @param $parser Parser
+	 * @param $raw string
+	 * @return
+	 */
 	static function numberofpages( $parser, $raw = null ) {
 		return self::formatRaw( SiteStats::pages(), $raw );
 	}
+
+	/**
+	 * @param $parser Parser
+	 * @param $raw string
+	 * @return
+	 */
 	static function numberofusers( $parser, $raw = null ) {
 		return self::formatRaw( SiteStats::users(), $raw );
 	}
+
+	/**
+	 * @param $parser Parser
+	 * @param $raw string
+	 * @return
+	 */
 	static function numberofactiveusers( $parser, $raw = null ) {
 		return self::formatRaw( SiteStats::activeUsers(), $raw );
 	}
+
+	/**
+	 * @param $parser Parser
+	 * @param $raw string
+	 * @return
+	 */
 	static function numberofarticles( $parser, $raw = null ) {
 		return self::formatRaw( SiteStats::articles(), $raw );
 	}
+
+	/**
+	 * @param $parser Parser
+	 * @param $raw string
+	 * @return
+	 */
 	static function numberoffiles( $parser, $raw = null ) {
 		return self::formatRaw( SiteStats::images(), $raw );
 	}
+
+	/**
+	 * @param $parser Parser
+	 * @param $raw string
+	 * @return
+	 */
 	static function numberofadmins( $parser, $raw = null ) {
 		return self::formatRaw( SiteStats::numberingroup( 'sysop' ), $raw );
 	}
+
+	/**
+	 * @param $parser Parser
+	 * @param $raw string
+	 * @return
+	 */
 	static function numberofedits( $parser, $raw = null ) {
 		return self::formatRaw( SiteStats::edits(), $raw );
 	}
+
+	/**
+	 * @param $parser Parser
+	 * @param $raw string
+	 * @return
+	 */
 	static function numberofviews( $parser, $raw = null ) {
 		return self::formatRaw( SiteStats::views(), $raw );
 	}
+
+	/**
+	 * @param $parser Parser
+	 * @param $raw string
+	 * @return
+	 */
 	static function pagesinnamespace( $parser, $namespace = 0, $raw = null ) {
 		return self::formatRaw( SiteStats::pagesInNs( intval( $namespace ) ), $raw );
 	}
+
+	/**
+	 * @param $parser Parser
+	 * @param $raw string
+	 * @return
+	 */
 	static function numberingroup( $parser, $name = '', $raw = null) {
 		return self::formatRaw( SiteStats::numberingroup( strtolower( $name ) ), $raw );
 	}
-
 
 	/**
 	 * Given a title, return the namespace name that would be given by the
@@ -452,122 +576,243 @@ class CoreParserFunctions {
 	 */
 	static function mwnamespace( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
-		if ( is_null( $t ) )
+		if ( is_null( $t ) ) {
 			return '';
+		}
 		return str_replace( '_', ' ', $t->getNsText() );
 	}
+
+	/**
+	 * @param $parser Parser
+	 * @param $title string
+	 * @return string
+	 */
 	static function namespacee( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
-		if ( is_null( $t ) )
+		if ( is_null( $t ) ) {
 			return '';
+		}
 		return wfUrlencode( $t->getNsText() );
 	}
+
+	/**
+	 * @param $parser Parser
+	 * @param $title string
+	 * @return string
+	 */
 	static function namespacenumber( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
-		if ( is_null( $t ) )
+		if ( is_null( $t ) ) {
 			return '';
+		}
 		return $t->getNamespace();
 	}
+
+	/**
+	 * @param $parser Parser
+	 * @param $title string
+	 * @return string
+	 */
 	static function talkspace( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
-		if ( is_null( $t ) || !$t->canTalk() )
+		if ( is_null( $t ) || !$t->canTalk() ) {
 			return '';
+		}
 		return str_replace( '_', ' ', $t->getTalkNsText() );
 	}
+
+	/**
+	 * @param $parser Parser
+	 * @param $title string
+	 * @return string
+	 */
 	static function talkspacee( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
-		if ( is_null( $t ) || !$t->canTalk() )
+		if ( is_null( $t ) || !$t->canTalk() ) {
 			return '';
+		}
 		return wfUrlencode( $t->getTalkNsText() );
 	}
+
+	/**
+	 * @param $parser Parser
+	 * @param $title string
+	 * @return string
+	 */
 	static function subjectspace( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
-		if ( is_null( $t ) )
+		if ( is_null( $t ) ) {
 			return '';
+		}
 		return str_replace( '_', ' ', $t->getSubjectNsText() );
 	}
+
+	/**
+	 * @param $parser Parser
+	 * @param $title string
+	 * @return string
+	 */
 	static function subjectspacee( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
-		if ( is_null( $t ) )
+		if ( is_null( $t ) ) {
 			return '';
+		}
 		return wfUrlencode( $t->getSubjectNsText() );
 	}
 
 	/**
-	 * Functions to get and normalize pagenames, corresponding to the magic words
-	 * of the same names
-	 * @return String
+	 * @param $parser Parser
+	 * @param $title string
+	 * @return string
 	 */
 	static function pagename( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
-		if ( is_null( $t ) )
+		if ( is_null( $t ) ) {
 			return '';
+		}
 		return wfEscapeWikiText( $t->getText() );
 	}
+
+	/**
+	 * @param $parser Parser
+	 * @param $title string
+	 * @return string
+	 */
 	static function pagenamee( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
-		if ( is_null( $t ) )
+		if ( is_null( $t ) ) {
 			return '';
+		}
 		return wfEscapeWikiText( $t->getPartialURL() );
 	}
+
+	/**
+	 * @param $parser Parser
+	 * @param $title string
+	 * @return string
+	 */
 	static function fullpagename( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
-		if ( is_null( $t ) || !$t->canTalk() )
+		if ( is_null( $t ) || !$t->canTalk() ) {
 			return '';
+		}
 		return wfEscapeWikiText( $t->getPrefixedText() );
 	}
+
+	/**
+	 * @param $parser Parser
+	 * @param $title string
+	 * @return string
+	 */
 	static function fullpagenamee( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
-		if ( is_null( $t ) || !$t->canTalk() )
+		if ( is_null( $t ) || !$t->canTalk() ) {
 			return '';
+		}
 		return wfEscapeWikiText( $t->getPrefixedURL() );
 	}
+
+	/**
+	 * @param $parser Parser
+	 * @param $title string
+	 * @return string
+	 */
 	static function subpagename( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
-		if ( is_null( $t ) )
+		if ( is_null( $t ) ) {
 			return '';
+		}
 		return wfEscapeWikiText( $t->getSubpageText() );
 	}
+
+	/**
+	 * @param $parser Parser
+	 * @param $title string
+	 * @return string
+	 */
 	static function subpagenamee( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
-		if ( is_null( $t ) )
+		if ( is_null( $t ) ) {
 			return '';
+		}
 		return wfEscapeWikiText( $t->getSubpageUrlForm() );
 	}
+
+	/**
+	 * @param $parser Parser
+	 * @param $title string
+	 * @return string
+	 */
 	static function basepagename( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
-		if ( is_null( $t ) )
+		if ( is_null( $t ) ) {
 			return '';
+		}
 		return wfEscapeWikiText( $t->getBaseText() );
 	}
+
+	/**
+	 * @param $parser Parser
+	 * @param $title string
+	 * @return string
+	 */
 	static function basepagenamee( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
-		if ( is_null( $t ) )
+		if ( is_null( $t ) ) {
 			return '';
+		}
 		return wfEscapeWikiText( wfUrlEncode( str_replace( ' ', '_', $t->getBaseText() ) ) );
 	}
+
+	/**
+	 * @param $parser Parser
+	 * @param $title string
+	 * @return string
+	 */
 	static function talkpagename( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
-		if ( is_null( $t ) || !$t->canTalk() )
+		if ( is_null( $t ) || !$t->canTalk() ) {
 			return '';
+		}
 		return wfEscapeWikiText( $t->getTalkPage()->getPrefixedText() );
 	}
+
+	/**
+	 * @param $parser Parser
+	 * @param $title string
+	 * @return string
+	 */
 	static function talkpagenamee( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
-		if ( is_null( $t ) || !$t->canTalk() )
+		if ( is_null( $t ) || !$t->canTalk() ) {
 			return '';
+		}
 		return wfEscapeWikiText( $t->getTalkPage()->getPrefixedUrl() );
 	}
+
+	/**
+	 * @param $parser Parser
+	 * @param $title string
+	 * @return string
+	 */
 	static function subjectpagename( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
-		if ( is_null( $t ) )
+		if ( is_null( $t ) ) {
 			return '';
+		}
 		return wfEscapeWikiText( $t->getSubjectPage()->getPrefixedText() );
 	}
+
+	/**
+	 * @param $parser Parser
+	 * @param $title string
+	 * @return string
+	 */
 	static function subjectpagenamee( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
-		if ( is_null( $t ) )
+		if ( is_null( $t ) ) {
 			return '';
+		}
 		return wfEscapeWikiText( $t->getSubjectPage()->getPrefixedUrl() );
 	}
 
@@ -575,6 +820,10 @@ class CoreParserFunctions {
 	 * Return the number of pages, files or subcats in the given category,
 	 * or 0 if it's nonexistent. This is an expensive parser function and
 	 * can't be called too many times per page.
+	 * @param $parser Parser
+	 * @param $name string
+	 * @param $arg1 string
+	 * @param $arg2 string
 	 * @return string
 	 */
 	static function pagesincategory( $parser, $name = '', $arg1 = null, $arg2 = null ) {
@@ -683,7 +932,6 @@ class CoreParserFunctions {
 	 * @param Parser $parser
 	 * @param string $type
 	 * @param string $title
-	 *
 	 * @return string
 	 */
 	static function protectionlevel( $parser, $type = '', $title = '' ) {
@@ -739,17 +987,31 @@ class CoreParserFunctions {
 		}
 	}
 
+	/**
+	 * @param $parser Parser
+	 * @param $string string
+	 * @param $length string
+	 * @param $padding string
+	 * @return string
+	 */
 	static function padleft( $parser, $string = '', $length = 0, $padding = '0' ) {
 		return self::pad( $parser, $string, $length, $padding, STR_PAD_LEFT );
 	}
 
+	/**
+	 * @param $parser Parser
+	 * @param $string string
+	 * @param $length string
+	 * @param $padding string
+	 * @return string
+	 */
 	static function padright( $parser, $string = '', $length = 0, $padding = '0' ) {
 		return self::pad( $parser, $string, $length, $padding );
 	}
 
 	/**
 	 * @param $parser Parser
-	 * @param  $text
+	 * @param $text string
 	 * @return string
 	 */
 	static function anchorencode( $parser, $text ) {
@@ -757,6 +1019,11 @@ class CoreParserFunctions {
 		return substr( $parser->guessSectionNameFromWikiText( $text ), 1);
 	}
 
+	/**
+	 * @param $parser Parser
+	 * @param $text string
+	 * @return string
+	 */
 	static function special( $parser, $text ) {
 		list( $page, $subpage ) = SpecialPageFactory::resolveAlias( $text );
 		if ( $page ) {
@@ -767,6 +1034,11 @@ class CoreParserFunctions {
 		}
 	}
 
+	/**
+	 * @param $parser Parser
+	 * @param $text string
+	 * @return string
+	 */
 	static function speciale( $parser, $text ) {
 		return wfUrlencode( str_replace( ' ', '_', self::special( $parser, $text ) ) );
 	}
@@ -787,8 +1059,9 @@ class CoreParserFunctions {
 		$arg = $magicWords->matchStartToEnd( $uarg );
 
 		$text = trim( $text );
-		if( strlen( $text ) == 0 )
+		if( strlen( $text ) == 0 ) {
 			return '';
+		}
 		$old = $parser->getCustomDefaultSort();
 		if ( $old === false || $arg !== 'defaultsort_noreplace' ) {
 			$parser->setDefaultSort( $text );
@@ -803,8 +1076,15 @@ class CoreParserFunctions {
 		}
 	}
 
-	// Usage {{filepath|300}}, {{filepath|nowiki}}, {{filepath|nowiki|300}} or {{filepath|300|nowiki}}
-	// or {{filepath|300px}}, {{filepath|200x300px}}, {{filepath|nowiki|200x300px}}, {{filepath|200x300px|nowiki}}
+	/**
+	 * Usage {{filepath|300}}, {{filepath|nowiki}}, {{filepath|nowiki|300}} or {{filepath|300|nowiki}}
+	 * or {{filepath|300px}}, {{filepath|200x300px}}, {{filepath|nowiki|200x300px}}, {{filepath|200x300px|nowiki}}
+	 * @param $parser Parser
+	 * @param $name string
+	 * @param $argA string
+	 * @param $argB string
+	 * @return string
+	 */
 	public static function filepath( $parser, $name = '', $argA = '', $argB = '' ) {
 		$file = wfFindFile( $name );
 
@@ -841,6 +1121,9 @@ class CoreParserFunctions {
 
 	/**
 	 * Parser function to extension tag adaptor
+	 * @param $parser Parser
+	 * @param $frame PPframe
+	 * @param $args string
 	 * @return string
 	 */
 	public static function tagObj( $parser, $frame, $args ) {

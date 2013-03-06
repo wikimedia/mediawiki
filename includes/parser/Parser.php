@@ -1459,41 +1459,57 @@ class Parser {
 				} else {
 					if ( strlen( $r ) == 2 ) {
 						if ( $state === 'i' ) {
-							$output .= '</i>'; $state = '';
+							$output .= '</i>';
+							$state = '';
 						} elseif ( $state === 'bi' ) {
-							$output .= '</i>'; $state = 'b';
+							$output .= '</i>';
+							$state = 'b';
 						} elseif ( $state === 'ib' ) {
-							$output .= '</b></i><b>'; $state = 'b';
+							$output .= '</b></i><b>';
+							$state = 'b';
 						} elseif ( $state === 'both' ) {
-							$output .= '<b><i>' . $buffer . '</i>'; $state = 'b';
+							$output .= '<b><i>' . $buffer . '</i>';
+							$state = 'b';
 						} else { # $state can be 'b' or ''
-							$output .= '<i>'; $state .= 'i';
+							$output .= '<i>';
+							$state .= 'i';
 						}
 					} elseif ( strlen( $r ) == 3 ) {
 						if ( $state === 'b' ) {
-							$output .= '</b>'; $state = '';
+							$output .= '</b>';
+							$state = '';
 						} elseif ( $state === 'bi' ) {
-							$output .= '</i></b><i>'; $state = 'i';
+							$output .= '</i></b><i>';
+							$state = 'i';
 						} elseif ( $state === 'ib' ) {
-							$output .= '</b>'; $state = 'i';
+							$output .= '</b>';
+							$state = 'i';
 						} elseif ( $state === 'both' ) {
-							$output .= '<i><b>' . $buffer . '</b>'; $state = 'i';
+							$output .= '<i><b>' . $buffer . '</b>';
+							$state = 'i';
 						} else { # $state can be 'i' or ''
-							$output .= '<b>'; $state .= 'b';
+							$output .= '<b>';
+							$state .= 'b';
 						}
 					} elseif ( strlen( $r ) == 5 ) {
 						if ( $state === 'b' ) {
-							$output .= '</b><i>'; $state = 'i';
+							$output .= '</b><i>';
+							$state = 'i';
 						} elseif ( $state === 'i' ) {
-							$output .= '</i><b>'; $state = 'b';
+							$output .= '</i><b>';
+							$state = 'b';
 						} elseif ( $state === 'bi' ) {
-							$output .= '</i></b>'; $state = '';
+							$output .= '</i></b>';
+							$state = '';
 						} elseif ( $state === 'ib' ) {
-							$output .= '</b></i>'; $state = '';
+							$output .= '</b></i>';
+							$state = '';
 						} elseif ( $state === 'both' ) {
-							$output .= '<i><b>' . $buffer . '</b></i>'; $state = '';
+							$output .= '<i><b>' . $buffer . '</b></i>';
+							$state = '';
 						} else { # ($state == '')
-							$buffer = ''; $state = 'both';
+							$buffer = '';
+							$state = 'both';
 						}
 					}
 				}

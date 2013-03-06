@@ -22,42 +22,170 @@
  * @ingroup Parser
  */
 class ParserOutput extends CacheTime {
-	var $mText,                       # The output text
-		$mLanguageLinks,              # List of the full text of language links, in the order they appear
-		$mCategories,                 # Map of category names to sort keys
-		$mTitleText,                  # title text of the chosen language variant
-		$mLinks = array(),            # 2-D map of NS/DBK to ID for the links in the document. ID=zero for broken.
-		$mTemplates = array(),        # 2-D map of NS/DBK to ID for the template references. ID=zero for broken.
-		$mTemplateIds = array(),      # 2-D map of NS/DBK to rev ID for the template references. ID=zero for broken.
-		$mImages = array(),           # DB keys of the images used, in the array key only
-		$mFileSearchOptions = array(), # DB keys of the images used mapped to sha1 and MW timestamp
-		$mExternalLinks = array(),    # External link URLs, in the key only
-		$mInterwikiLinks = array(),   # 2-D map of prefix/DBK (in keys only) for the inline interwiki links in the document.
-		$mNewSection = false,         # Show a new section link?
-		$mHideNewSection = false,     # Hide the new section link?
-		$mNoGallery = false,          # No gallery on category page? (__NOGALLERY__)
-		$mHeadItems = array(),        # Items to put in the <head> section
-		$mModules = array(),          # Modules to be loaded by the resource loader
-		$mModuleScripts = array(),    # Modules of which only the JS will be loaded by the resource loader
-		$mModuleStyles = array(),     # Modules of which only the CSSS will be loaded by the resource loader
-		$mModuleMessages = array(),   # Modules of which only the messages will be loaded by the resource loader
-		$mOutputHooks = array(),      # Hook tags as per $wgParserOutputHooks
-		$mWarnings = array(),         # Warning text to be returned to the user. Wikitext formatted, in the key only
-		$mSections = array(),         # Table of contents
-		$mEditSectionTokens = false,  # prefix/suffix markers if edit sections were output as tokens
-		$mProperties = array(),       # Name/value pairs to be cached in the DB
-		$mTOCHTML = '',               # HTML of the TOC
-		$mTimestamp;                  # Timestamp of the revision
-		private $mIndexPolicy = '';       # 'index' or 'noindex'?  Any other value will result in no change.
-		private $mAccessedOptions = array(); # List of ParserOptions (stored in the keys)
-		private $mSecondaryDataUpdates = array(); # List of DataUpdate, used to save info from the page somewhere else.
-		private $mExtensionData = array(); # extra data used by extensions
 
+	/**
+	 * The output text
+	 */
+	var $mText;
+
+	/**
+	 * List of the full text of language links, in the order they appear
+	 */
+	var $mLanguageLinks;
+
+	/**
+	 * Map of category names to sort keys
+	 */
+	var $mCategories;
+
+	/**
+	 * title text of the chosen language variant
+	 */
+	var $mTitleText;
+
+	/**
+	 * 2-D map of NS/DBK to ID for the links in the document. ID=zero for broken.
+	 */
+	var $mLinks = array();
+
+	/**
+	 * 2-D map of NS/DBK to ID for the template references. ID=zero for broken.
+	 */
+	var $mTemplates = array();
+
+	/**
+	 * 2-D map of NS/DBK to rev ID for the template references. ID=zero for broken.
+	 */
+	var $mTemplateIds = array();
+
+	/**
+	 * DB keys of the images used, in the array key only
+	 */
+	var $mImages = array();
+
+	/**
+	 * DB keys of the images used mapped to sha1 and MW timestamp
+	 */
+	var $mFileSearchOptions = array();
+
+	/**
+	 * External link URLs, in the key only
+	 */
+	var $mExternalLinks = array();
+
+	/**
+	 * 2-D map of prefix/DBK (in keys only) for the inline interwiki links in the document.
+	 */
+	var $mInterwikiLinks = array();
+
+	/**
+	 * Show a new section link?
+	 */
+	var $mNewSection = false;
+
+	/**
+	 * Hide the new section link?
+	 */
+	var $mHideNewSection = false;
+
+	/**
+	 * No gallery on category page? (__NOGALLERY__)
+	 */
+	var $mNoGallery = false;
+
+	/**
+	 * Items to put in the <head> section
+	 */
+	var $mHeadItems = array();
+
+	/**
+	 * Modules to be loaded by the resource loader
+	 */
+	var $mModules = array();
+
+	/**
+	 * Modules of which only the JS will be loaded by the resource loader
+	 */
+	var $mModuleScripts = array();
+
+	/**
+	 * Modules of which only the CSSS will be loaded by the resource loader
+	 */
+	var $mModuleStyles = array();
+
+	/**
+	 * Modules of which only the messages will be loaded by the resource loader
+	 */
+	var $mModuleMessages = array();
+
+	/**
+	 * Hook tags as per $wgParserOutputHooks
+	 */
+	var $mOutputHooks = array();
+
+	/**
+	 * Warning text to be returned to the user. Wikitext formatted, in the key only
+	 */
+	var $mWarnings = array();
+
+	/**
+	 * Table of contents
+	 */
+	var $mSections = array();
+
+	/**
+	 * prefix/suffix markers if edit sections were output as tokens
+	 */
+	var $mEditSectionTokens = false;
+
+	/**
+	 * Name/value pairs to be cached in the DB
+	 */
+	var $mProperties = array();
+
+	/**
+	 * HTML of the TOC
+	 */
+	var $mTOCHTML = '';
+
+	/**
+	 * Timestamp of the revision
+	 */
+	var $mTimestamp;
+
+	/**
+	 * 'index' or 'noindex'?  Any other value will result in no change.
+	 */
+	private $mIndexPolicy = '';
+
+	/**
+	 * List of ParserOptions (stored in the keys)
+	 */
+	private $mAccessedOptions = array();
+
+	/**
+	 * List of DataUpdate, used to save info from the page somewhere else.
+	 */
+	private $mSecondaryDataUpdates = array();
+
+	/**
+	 * extra data used by extensions
+	 */
+	private $mExtensionData = array();
+
+
+	/**
+	 *
+	 */
 	const EDITSECTION_REGEX = '#<(?:mw:)?editsection page="(.*?)" section="(.*?)"(?:/>|>(.*?)(</(?:mw:)?editsection>))#';
 
+	/**
+	 * @param $text string
+	 * @param $languageLinks array
+	 * @param $categoryLinks array
+	 */
 	function __construct( $text = '', $languageLinks = array(), $categoryLinks = array(),
-		$containsOldMagic = false, $titletext = '' )
-	{
+		$containsOldMagic = false, $titletext = '' ) {
 		$this->mText = $text;
 		$this->mLanguageLinks = $languageLinks;
 		$this->mCategories = $categoryLinks;
@@ -65,6 +193,9 @@ class ParserOutput extends CacheTime {
 		$this->mTitleText = $titletext;
 	}
 
+	/**
+	 * @return string
+	 */
 	function getText() {
 		if ( $this->mEditSectionTokens ) {
 			return preg_replace_callback( ParserOutput::EDITSECTION_REGEX,
@@ -96,59 +227,291 @@ class ParserOutput extends CacheTime {
 		return call_user_func_array( array( $skin, 'doEditSectionLink' ), $args );
 	}
 
-	function &getLanguageLinks()         { return $this->mLanguageLinks; }
-	function getInterwikiLinks()         { return $this->mInterwikiLinks; }
-	function getCategoryLinks()          { return array_keys( $this->mCategories ); }
-	function &getCategories()            { return $this->mCategories; }
-	function getTitleText()              { return $this->mTitleText; }
-	function getSections()               { return $this->mSections; }
-	function getEditSectionTokens()      { return $this->mEditSectionTokens; }
-	function &getLinks()                 { return $this->mLinks; }
-	function &getTemplates()             { return $this->mTemplates; }
-	function &getTemplateIds()           { return $this->mTemplateIds; }
-	function &getImages()                { return $this->mImages; }
-	function &getFileSearchOptions()     { return $this->mFileSearchOptions; }
-	function &getExternalLinks()         { return $this->mExternalLinks; }
-	function getNoGallery()              { return $this->mNoGallery; }
-	function getHeadItems()              { return $this->mHeadItems; }
-	function getModules()                { return $this->mModules; }
-	function getModuleScripts()          { return $this->mModuleScripts; }
-	function getModuleStyles()           { return $this->mModuleStyles; }
-	function getModuleMessages()         { return $this->mModuleMessages; }
-	function getOutputHooks()            { return (array)$this->mOutputHooks; }
-	function getWarnings()               { return array_keys( $this->mWarnings ); }
-	function getIndexPolicy()            { return $this->mIndexPolicy; }
-	function getTOCHTML()                { return $this->mTOCHTML; }
-	function getTimestamp()              { return $this->mTimestamp; }
+	/**
+	 * @return
+	 */
+	function &getLanguageLinks() {
+		return $this->mLanguageLinks;
+	}
 
-	function setText( $text )            { return wfSetVar( $this->mText, $text ); }
-	function setLanguageLinks( $ll )     { return wfSetVar( $this->mLanguageLinks, $ll ); }
-	function setCategoryLinks( $cl )     { return wfSetVar( $this->mCategories, $cl ); }
+	/**
+	 * @return
+	 */
+	function getInterwikiLinks() {
+		return $this->mInterwikiLinks;
+	}
 
-	function setTitleText( $t )          { return wfSetVar( $this->mTitleText, $t ); }
-	function setSections( $toc )         { return wfSetVar( $this->mSections, $toc ); }
-	function setEditSectionTokens( $t )  { return wfSetVar( $this->mEditSectionTokens, $t ); }
-	function setIndexPolicy( $policy )   { return wfSetVar( $this->mIndexPolicy, $policy ); }
-	function setTOCHTML( $tochtml )      { return wfSetVar( $this->mTOCHTML, $tochtml ); }
-	function setTimestamp( $timestamp )  { return wfSetVar( $this->mTimestamp, $timestamp ); }
+	/**
+	 * @return
+	 */
+	function getCategoryLinks() {
+		return array_keys( $this->mCategories );
+	}
 
-	function addCategory( $c, $sort )    { $this->mCategories[$c] = $sort; }
-	function addLanguageLink( $t )       { $this->mLanguageLinks[] = $t; }
-	function addWarning( $s )            { $this->mWarnings[$s] = 1; }
+	/**
+	 * @return
+	 */
+	function &getCategories() {
+		return $this->mCategories;
+	}
 
+	/**
+	 * @return
+	 */
+	function getTitleText() {
+		return $this->mTitleText;
+	}
+
+	/**
+	 * @return
+	 */
+	function getSections() {
+		return $this->mSections;
+	}
+
+	/**
+	 * @return
+	 */
+	function getEditSectionTokens() {
+		return $this->mEditSectionTokens;
+	}
+
+	/**
+	 * @return
+	 */
+	function &getLinks() {
+		return $this->mLinks;
+	}
+
+	/**
+	 * @return
+	 */
+	function &getTemplates() {
+		return $this->mTemplates;
+	}
+
+	/**
+	 * @return
+	 */
+	function &getTemplateIds() {
+		return $this->mTemplateIds;
+	}
+
+	/**
+	 * @return
+	 */
+	function &getImages() {
+		return $this->mImages;
+	}
+
+	/**
+	 * @return
+	 */
+	function &getFileSearchOptions() {
+		return $this->mFileSearchOptions;
+	}
+
+	/**
+	 * @return
+	 */
+	function &getExternalLinks() {
+		return $this->mExternalLinks;
+	}
+
+	/**
+	 * @return
+	 */
+	function getNoGallery() {
+		return $this->mNoGallery;
+	}
+
+	/**
+	 * @return
+	 */
+	function getHeadItems() {
+		return $this->mHeadItems;
+	}
+
+	/**
+	 * @return
+	 */
+	function getModules() {
+		return $this->mModules;
+	}
+
+	/**
+	 * @return
+	 */
+	function getModuleScripts() {
+		return $this->mModuleScripts;
+	}
+
+	/**
+	 * @return
+	 */
+	function getModuleStyles() {
+		return $this->mModuleStyles;
+	}
+
+	/**
+	 * @return
+	 */
+	function getModuleMessages() {
+		return $this->mModuleMessages;
+	}
+
+	/**
+	 * @return
+	 */
+	function getOutputHooks() {
+		return (array)$this->mOutputHooks;
+	}
+
+	/**
+	 * @return
+	 */
+	function getWarnings() {
+		return array_keys( $this->mWarnings );
+	}
+
+	/**
+	 * @return
+	 */
+	function getIndexPolicy() {
+		return $this->mIndexPolicy;
+	}
+
+	/**
+	 * @return
+	 */
+	function getTOCHTML() {
+		return $this->mTOCHTML;
+	}
+
+	/**
+	 * @return
+	 */
+	function getTimestamp() {
+		return $this->mTimestamp;
+	}
+
+	/**
+	 * @return
+	 */
+	function setText( $text ) {
+		return wfSetVar( $this->mText, $text );
+	}
+
+	/**
+	 * @return
+	 */
+	function setLanguageLinks( $ll ) {
+		return wfSetVar( $this->mLanguageLinks, $ll );
+	}
+
+	/**
+	 * @return
+	 */
+	function setCategoryLinks( $cl ) {
+		return wfSetVar( $this->mCategories, $cl );
+	}
+
+	/**
+	 * @return
+	 */
+	function setTitleText( $t ) {
+		return wfSetVar( $this->mTitleText, $t );
+	}
+
+	/**
+	 * @return
+	 */
+	function setSections( $toc ) {
+		return wfSetVar( $this->mSections, $toc );
+	}
+
+	/**
+	 * @return
+	 */
+	function setEditSectionTokens( $t ) {
+		return wfSetVar( $this->mEditSectionTokens, $t );
+	}
+
+	/**
+	 * @return
+	 */
+	function setIndexPolicy( $policy ) {
+		return wfSetVar( $this->mIndexPolicy, $policy );
+	}
+
+	/**
+	 * @return
+	 */
+	function setTOCHTML( $tochtml ) {
+		return wfSetVar( $this->mTOCHTML, $tochtml );
+	}
+
+	/**
+	 * @return
+	 */
+	function setTimestamp( $timestamp ) {
+		return wfSetVar( $this->mTimestamp, $timestamp );
+	}
+
+	/**
+	 * @param $c string
+	 * @param $sort string
+	 */
+	function addCategory( $c, $sort ) {
+		$this->mCategories[$c] = $sort;
+	}
+
+	/**
+	 * @param $t string
+	 */
+	function addLanguageLink( $t ) {
+		$this->mLanguageLinks[] = $t;
+	}
+
+	/**
+	 * @param $s string
+	 */
+	function addWarning( $s ) {
+		$this->mWarnings[$s] = 1;
+	}
+
+	/**
+	 * @param $hook
+	 * @param $data
+	 */
 	function addOutputHook( $hook, $data = false ) {
 		$this->mOutputHooks[] = array( $hook, $data );
 	}
 
+	/**
+	 * @param $value bool
+	 */
 	function setNewSection( $value ) {
 		$this->mNewSection = (bool)$value;
 	}
+
+	/**
+	 * @param $value bool
+	 */
 	function hideNewSection ( $value ) {
 		$this->mHideNewSection = (bool)$value;
 	}
+
+	/**
+	 * @return bool
+	 */
 	function getHideNewSection () {
 		return (bool)$this->mHideNewSection;
 	}
+
+	/**
+	 * @return bool
+	 */
 	function getNewSection() {
 		return (bool)$this->mNewSection;
 	}
@@ -171,6 +534,9 @@ class ParserOutput extends CacheTime {
 		);
 	}
 
+	/**
+	 * @param $url string
+	 */
 	function addExternalLink( $url ) {
 		# We don't register links pointing to our own server, unless... :-)
 		global $wgServer, $wgRegisterInternalExternals;
@@ -280,18 +646,30 @@ class ParserOutput extends CacheTime {
 		}
 	}
 
+	/**
+	 * @param $modules string|array
+	 */
 	public function addModules( $modules ) {
 		$this->mModules = array_merge( $this->mModules, (array) $modules );
 	}
 
+	/**
+	 * @param $modules string|array
+	 */
 	public function addModuleScripts( $modules ) {
 		$this->mModuleScripts = array_merge( $this->mModuleScripts, (array)$modules );
 	}
 
+	/**
+	 * @param $modules string|array
+	 */
 	public function addModuleStyles( $modules ) {
 		$this->mModuleStyles = array_merge( $this->mModuleStyles, (array)$modules );
 	}
 
+	/**
+	 * @param $modules string|array
+	 */
 	public function addModuleMessages( $modules ) {
 		$this->mModuleMessages = array_merge( $this->mModuleMessages, (array)$modules );
 	}
@@ -407,17 +785,23 @@ class ParserOutput extends CacheTime {
 		$this->mProperties[$name] = $value;
 	}
 
+	/**
+	 * @param $name string
+	 * @return mixed
+	 */
 	public function getProperty( $name ) {
 		return isset( $this->mProperties[$name] ) ? $this->mProperties[$name] : false;
 	}
 
+	/**
+	 * @return array
+	 */
 	public function getProperties() {
 		if ( !isset( $this->mProperties ) ) {
 			$this->mProperties = array();
 		}
 		return $this->mProperties;
 	}
-
 
 	/**
 	 * Returns the options from its ParserOptions which have been taken
@@ -544,5 +928,4 @@ class ParserOutput extends CacheTime {
 
 		return null;
 	}
-
 }
