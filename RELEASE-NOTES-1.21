@@ -197,7 +197,17 @@ production.
   extensions) performed using Git 1.7.8+ should now appear.
 * (bug 42184) $wgUploadSizeWarning missing second variable
 * (bug 40326) Check if files exist with a different extension during uploading
+<<<<<<< .merge_file_b06088
 * (bug 34798) Updated CSS for Atom/RSS recent changes feeds to match on-wiki diffs.
+=======
+* BREAKING CHANGE: (bug 41729) Display editsection links next to headings. Also
+  change their class name from .editsection to .mw-editsection and place them at
+  the end of the heading element instead of the beginning. Client-side code and
+  screen-scrapers will have to be adjusted to handle both cases (old HTML will
+  still be visible on cached page renders until they are purged); extensions
+  using the DoEditSectionLink or EditSectionLink hooks might need adjustments as
+  well.
+>>>>>>> .merge_file_c06088
 
 === API changes in 1.21 ===
 * prop=revisions can now report the contentmodel and contentformat.
