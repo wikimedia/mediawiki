@@ -45,6 +45,13 @@ production.
   another portlet will work as expected.
 * (bug 6747) {{ROOTPAGENAME}} introduced, contains the name of the topmost
   page without namespace.
+* BREAKING CHANGE: (bug 41729) Display editsection links next to headings. Also
+  change their class name from .editsection to .mw-editsection and place them at
+  the end of the heading element instead of the beginning. Client-side code and
+  screen-scrapers will have to be adjusted to handle both cases (old HTML will
+  still be visible on cached page renders until they are purged); extensions
+  using the DoEditSectionLink or EditSectionLink hooks might need adjustments as
+  well.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail. Previously one could still
