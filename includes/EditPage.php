@@ -1189,7 +1189,9 @@ class EditPage {
 		// FIXME: once the interface for internalAttemptSave() is made nicer, this should use the message in $status
 		if ( $status->value == self::AS_SUCCESS_UPDATE || $status->value == self::AS_SUCCESS_NEW_ARTICLE ) {
 			$this->didSave = true;
-			$this->setPostEditCookie();
+			if ( !$resultDetails['nullEdit'] ) {
+				$this->setPostEditCookie();
+			}
 		}
 
 		switch ( $status->value ) {
@@ -1324,8 +1326,12 @@ class EditPage {
 	/**
 	 * Attempt submission (no UI)
 	 *
-	 * @param $result
-	 * @param $bot bool
+	 * @param array $result array to add statuses to, currently with the possible keys:
+	 *  spam - string - Spam string from content if any spam is detected by matchSpamRegex
+	 *  sectionanchor - string - Section anchor for a section save
+	 *  nullEdit - boolean - Set if doEditContent is OK.  True if null edit, false otherwise.
+	 *  redirect - boolean -  Set if doEditContent is OK.  True if resulting revision is a redirect
+	 * @param bool $bot True if edit is being made under the bot right.
 	 *
 	 * @return Status object, possibly with a message, but always with one of the AS_* constants in $status->value,
 	 *
@@ -1718,6 +1724,7 @@ class EditPage {
 			return $doEditStatus;
 		}
 
+		$result['nullEdit'] = $doEditStatus->hasMessage( 'edit-no-change' );
 		$result['redirect'] = $content->isRedirect();
 		$this->updateWatchlist();
 		wfProfileOut( __METHOD__ );
