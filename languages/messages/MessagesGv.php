@@ -961,7 +961,7 @@ Ta duillagyn er [[Special:Watchlist|dty rolley arrey]] ayns '''clou trome'''.",
 'listgrouprights-helppage' => 'Help:Kiartyn y phossan',
 'listgrouprights-members' => '(rolley olteynyn)',
 
-# E-mail user
+# Email user
 'emailuser' => "Cur post-L da'n ymmydeyr shoh",
 'emailfrom' => 'Veih:',
 'emailto' => 'Da:',

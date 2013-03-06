@@ -510,7 +510,7 @@ $messages = array(
 'userpage' => 'Xem trang thành viên',
 'projectpage' => 'Xem trang dự án',
 'imagepage' => 'Xem trang tập tin',
-'mediawikipage' => 'Thông báo giao diện',
+'mediawikipage' => 'Thông điệp giao diện',
 'templatepage' => 'Trang bản mẫu',
 'viewhelppage' => 'Trang trợ giúp',
 'categorypage' => 'Trang thể loại',
@@ -603,7 +603,7 @@ $1',
 'nstab-special' => 'Trang đặc biệt',
 'nstab-project' => 'Dự án',
 'nstab-image' => 'Tập tin',
-'nstab-mediawiki' => 'Thông báo',
+'nstab-mediawiki' => 'Thông điệp',
 'nstab-template' => 'Bản mẫu',
 'nstab-help' => 'Trợ giúp',
 'nstab-category' => 'Thể loại',
@@ -679,8 +679,8 @@ Truy vấn: $2',
 'protectedpagetext' => 'Trang này đã bị khóa không cho sửa đổi hoặc tác động khác.',
 'viewsourcetext' => 'Bạn vẫn có thể xem và chép xuống mã nguồn của trang này:',
 'viewyourtext' => "Bạn vẫn có thể xem và chép xuống mã nguồn '''các sửa đổi của bạn''' tại trang này:",
-'protectedinterface' => 'Trang này cung cấp một thông báo trong giao diện phần mềm, và bị khóa để tránh phá hoại. Để bổ sung hoặc thay đổi bản dịch ở bất cứ wiki nào, xin vui lòng đóng góp vào [//translatewiki.net/wiki/Main_Page?setlang=vi translatewiki.net], dự án bản địa hóa của MediaWiki.',
-'editinginterface' => "'''Lưu ý:''' Bạn đang sửa chữa một trang dùng để cung cấp thông báo giao diện cho phần mềm. Những thay đổi tại trang này sẽ ảnh hưởng đến giao diện của rất nhiều người dùng wiki này. Để bổ sung hoặc thay đổi bản dịch ở bất cứ wiki nào, xin vui lòng đóng góp vào [//translatewiki.net/wiki/Main_Page?setlang=vi translatewiki.net], dự án bản địa hóa của MediaWiki.",
+'protectedinterface' => 'Trang này cung cấp một thông điệp trong giao diện phần mềm, và bị khóa để tránh phá hoại. Để bổ sung hoặc thay đổi bản dịch ở bất cứ wiki nào, xin vui lòng đóng góp vào [//translatewiki.net/wiki/Main_Page?setlang=vi translatewiki.net], dự án bản địa hóa của MediaWiki.',
+'editinginterface' => "'''Lưu ý:''' Bạn đang sửa chữa một trang dùng để cung cấp thông điệp giao diện cho phần mềm. Những thay đổi tại trang này sẽ ảnh hưởng đến giao diện của rất nhiều người dùng wiki này. Để bổ sung hoặc thay đổi bản dịch ở bất cứ wiki nào, xin vui lòng đóng góp vào [//translatewiki.net/wiki/Main_Page?setlang=vi translatewiki.net], dự án bản địa hóa của MediaWiki.",
 'sqlhidden' => '(đã giấu truy vấn SQL)',
 'cascadeprotected' => 'Trang này đã bị khóa không cho sửa đổi, vì nó được nhúng vào {{PLURAL:$1|trang|những trang}} đã bị khóa với tùy chọn “khóa theo tầng” được kích hoạt:
 $2',
@@ -783,7 +783,7 @@ Hãy nhập một địa chỉ có định dạng đúng hoặc bỏ trống ô 
 'createaccount-title' => 'Tài khoản mới tại {{SITENAME}}',
 'createaccount-text' => 'Ai đó đã tạo một tài khoản với tên $2 tại {{SITENAME}} ($4). Mật khẩu của "$2" là "$3". Bạn nên đăng nhập và đổi mật khẩu ngay bây giờ.
 
-Xin hãy bỏ qua thông báo này nếu tài khoản này không phải do bạn tạo ra.',
+Xin hãy bỏ qua thông điệp này nếu tài khoản này không phải do bạn tạo ra.',
 'usernamehasherror' => 'Tên người dùng không thể chứa dấu rào',
 'login-throttled' => 'Bạn đã thử quá nhiều mật khẩu của tài khoản này.
 Xin hãy đợi chốc lát rồi thử lại.',
@@ -2295,8 +2295,8 @@ Có [[{{MediaWiki:Listgrouprights-helppage}}|thông tin thêm]] về từng nhó
 'emailuserfooter' => 'Thư điện tử này được $1 gửi đến $2 thông qua chức năng “Gửi thư cho người này” của {{SITENAME}}.',
 
 # User Messenger
-'usermessage-summary' => 'Đang để lại thông báo hệ thống.',
-'usermessage-editor' => 'Trình thông báo hệ thống',
+'usermessage-summary' => 'Đang để lại thông điệp hệ thống.',
+'usermessage-editor' => 'Trình thông điệp hệ thống',
 
 # Watchlist
 'watchlist' => 'Danh sách theo dõi',
@@ -2871,12 +2871,12 @@ Trong trường hợp sau bạn cũng có thể dùng một liên kết, ví d�
 'export-pagelinks' => 'Gồm cả các trang liên kết sâu đến:',
 
 # Namespace 8 related
-'allmessages' => 'Thông báo hệ thống',
-'allmessagesname' => 'Tên thông báo',
+'allmessages' => 'Thông điệp hệ thống',
+'allmessagesname' => 'Tên thông điệp',
 'allmessagesdefault' => 'Nội dung mặc định',
 'allmessagescurrent' => 'Nội dung hiện thời',
-'allmessagestext' => 'Đây là toàn bộ thông báo hệ thống có trong không gian tên MediaWiki.
-Mời vào [//www.mediawiki.org/wiki/Localisation Địa phương hóa MediaWiki]  và [//translatewiki.net translatewiki.net] nếu bạn muốn đóng góp dịch chung cả MediaWiki.',
+'allmessagestext' => 'Đây là toàn bộ thông điệp hệ thống có trong không gian tên MediaWiki.
+Mời vào [//www.mediawiki.org/wiki/Localisation?uselang=vi Địa phương hóa MediaWiki] và [//translatewiki.net/wiki/?uselang=vi translatewiki.net] nếu bạn muốn đóng góp dịch chung cả MediaWiki.',
 'allmessagesnotsupportedDB' => "Trang này không dùng được vì biến '''\$wgUseDatabaseMessages''' đã bị tắt.",
 'allmessages-filter-legend' => 'Bộ lọc',
 'allmessages-filter' => 'Lọc theo tình trạng sửa đổi:',
@@ -3012,13 +3012,13 @@ Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 'tooltip-t-specialpages' => 'Danh sách các trang đặc biệt',
 'tooltip-t-print' => 'Bản để in ra của trang',
 'tooltip-t-permalink' => 'Liên kết thường trực đến phiên bản này của trang',
-'tooltip-ca-nstab-main' => 'Xem trang nội dung này',
-'tooltip-ca-nstab-user' => 'Xem trang về người này',
+'tooltip-ca-nstab-main' => 'Xem trang nội dung',
+'tooltip-ca-nstab-user' => 'Xem trang cá nhân',
 'tooltip-ca-nstab-media' => 'Xem trang phương tiện',
 'tooltip-ca-nstab-special' => 'Đây là một trang đặc biệt, bạn không thể sửa đổi nó.',
 'tooltip-ca-nstab-project' => 'Xem trang dự án',
 'tooltip-ca-nstab-image' => 'Xem trang miêu tả tập tin',
-'tooltip-ca-nstab-mediawiki' => 'Xem thông báo hệ thống',
+'tooltip-ca-nstab-mediawiki' => 'Xem thông điệp hệ thống',
 'tooltip-ca-nstab-template' => 'Xem bản mẫu',
 'tooltip-ca-nstab-help' => 'Xem trang trợ giúp',
 'tooltip-ca-nstab-category' => 'Xem trang thể loại',

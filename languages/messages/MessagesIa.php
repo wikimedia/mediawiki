@@ -166,7 +166,7 @@ $messages = array(
 'tog-previewonfirst' => 'Monstrar previsualisation al prime modification',
 'tog-nocache' => "Disactivar le ''cache'' de paginas in le navigator",
 'tog-enotifwatchlistpages' => 'Notificar me per e-mail quando un pagina o file in mi observatorio es modificate',
-'tog-enotifusertalkpages' => 'Notificar me via e-mail quando mi pagina de discussion es modificate',
+'tog-enotifusertalkpages' => 'Notificar me per e-mail quando mi pagina de discussion es modificate',
 'tog-enotifminoredits' => 'Notificar me etiam de modificationes minor de paginas e files',
 'tog-enotifrevealaddr' => 'Revelar mi adresse de e-mail in messages de notification',
 'tog-shownumberswatching' => 'Monstrar le numero de usatores que observa le pagina',
@@ -628,16 +628,16 @@ e continuar a usar le contrasigno original.',
 'passwordsent' => 'Un nove contrasigno ha essite inviate al adresse de e-mail registrate pro "$1".
 Per favor aperi session de novo post reciper lo.',
 'blocked-mailpassword' => 'Tu adresse IP es blocate de facer modificationes, e pro impedir le abuso, le uso del function pro recuperar contrasignos es equalmente blocate.',
-'eauthentsent' => 'Un e-mail de confirmation ha essite inviate al adresse de e-mail nominate.
-Ante que alcun altere e-mail se invia al conto, tu debera sequer le instructiones in le e-mail, pro confirmar que le conto es de facto tue.',
+'eauthentsent' => 'Un e-mail de confirmation ha essite inviate al adresse de e-mail specificate.
+Pro poter reciper altere e-mail a iste conto, tu debe sequer le instructiones in iste e-mail pro confirmar que le conto es realmente tue.',
 'throttled-mailpassword' => 'Un rememoration del contrasigno ha jam essite inviate intra le ultime {{PLURAL:$1|hora|$1 horas}}.
 Pro prevenir le abuso, solmente un rememoration de contrasigno essera inviate per {{PLURAL:$1|hora|$1 horas}}.',
 'mailerror' => 'Error de inviar e-mail: $1',
 'acct_creation_throttle_hit' => 'Le visitatores de iste wiki usante tu adresse IP ha create {{PLURAL:$1|1 conto|$1 contos}} durante le ultime die, e isto es le maximo permittite in iste periodo de tempore.
 A causa de isto, le visitatores usante iste adresse IP non pote crear nove contos al momento.',
-'emailauthenticated' => 'Tu adresse de e-mail esseva authentificate le $2 a $3.',
-'emailnotauthenticated' => 'Tu adresse de e-mail non ha essite authentificate ancora.
-Nos non inviara e-mail pro alcun del sequente functiones.',
+'emailauthenticated' => 'Tu adresse de e-mail ha essite confirmate le $2 a $3.',
+'emailnotauthenticated' => 'Tu non ha ancora confirmate tu adresse de e-mail.
+Nulle e-mail essera inviate pro le sequente functiones.',
 'noemailprefs' => 'Es necessari specificar un adresse de e-mail in tu preferentias pro poter executar iste functiones.',
 'emailconfirmlink' => 'Confirmar tu adresse de e-mail',
 'invalidemailaddress' => 'Le adresse de e-mail ha un formato invalide e non pote esser acceptate.
@@ -1270,7 +1270,7 @@ Nota que lor indices del contento de {{SITENAME}} pote esser obsolete.',
 'prefs-misc' => 'Misc',
 'prefs-resetpass' => 'Cambiar contrasigno',
 'prefs-changeemail' => 'Cambiar e-mail',
-'prefs-setemail' => 'Definir un adresse de e-mail',
+'prefs-setemail' => 'Specificar un adresse de e-mail',
 'prefs-email' => 'Optiones de e-mail',
 'prefs-rendering' => 'Apparentia',
 'saveprefs' => 'Confirmar',
@@ -1346,7 +1346,7 @@ Illo debe haber minus de $1 {{PLURAL:$1|character|characteres}}.',
 Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contributiones.',
 'prefs-help-email' => 'Le adresse de e-mail es optional, ma es necessari pro le reinitialisation de tu contrasigno, in caso que tu lo oblida.',
 'prefs-help-email-others' => 'Tu pote etiam optar pro permitter que altere personas te contacta via tu pagina de usator o de discussion, sin necessitate de revelar tu identitate.',
-'prefs-help-email-required' => 'Le adresse de e-mail es requirite.',
+'prefs-help-email-required' => 'Un adresse de e-mail es obligatori.',
 'prefs-info' => 'Informationes de base',
 'prefs-i18n' => 'Internationalisation',
 'prefs-signature' => 'Signatura',
@@ -3587,8 +3587,8 @@ Le alteres essera initialmente celate.
 Activa le button infra pro inviar un message de confirmation a tu adresse.
 Le message includera un ligamine continente un codice;
 visita le ligamine in tu navigator pro confirmar que tu adresse de e-mail es valide.',
-'confirmemail_pending' => 'Un codice de confirmation ha ja essite inviate a te;
-si tu ha recentemente create tu conto, es recommendate attender le arrivata de illo durante alcun minutas ante de provar requestar un nove codice.',
+'confirmemail_pending' => 'Un codice de confirmation ha jam essite inviate a te per e-mail;
+si tu ha create tu conto recentemente, per favor attende alcun minutas que le message de confirmation arriva ante de requestar un nove codice.',
 'confirmemail_send' => 'Inviar un codice de confirmation',
 'confirmemail_sent' => 'Message de confirmation inviate.',
 'confirmemail_oncreate' => 'Un codice de confirmation ha essite inviate a tu adresse de e-mail.
@@ -3606,14 +3606,14 @@ Tu pote ora aperir un session e fruer te del wiki.',
 'confirmemail_error' => 'Un problema occurreva durante le salveguarda de tu confirmation.',
 'confirmemail_subject' => 'Confirmation del adresse de e-mail pro {{SITENAME}}',
 'confirmemail_body' => 'Un persona, probabilemente tu, usante le adresse IP $1,
-ha registrate un conto "$2" con iste adresse de e-mail in {{SITENAME}}.
+ha create un conto "$2" con iste adresse de e-mail in {{SITENAME}}.
 
-Pro confirmar que iste conto es de facto tue, e pro activar le functiones
+Pro confirmar que iste conto es realmente tue, e pro activar le functiones
 de e-mail in {{SITENAME}}, visita iste ligamine in tu navigator:
 
 $3
 
-Si tu *non* ha registrate le conto, seque iste ligamine
+Si tu *non* ha create iste conto, seque le sequente ligamine
 pro cancellar le confirmation del adresse de e-mail:
 
 $5
@@ -3622,7 +3622,7 @@ Iste codice de confirmation expirara a $4.',
 'confirmemail_body_changed' => 'Un persona, probabilemente tu, usante le adresse IP $1,
 ha cambiate le adresse de e-mail del conto "$2" a iste adresse in {{SITENAME}}.
 
-Pro confirmar que iste conto es de facto tue, e pro reactivar le functiones
+Pro confirmar que iste conto es realmente tue, e pro reactivar le functiones
 de e-mail in {{SITENAME}}, visita iste ligamine in tu navigator:
 
 $3
@@ -3636,7 +3636,7 @@ Iste codice de confirmation expirara a $4.',
 'confirmemail_body_set' => 'Un persona, probabilemente tu, usante le adresse IP $1,
 ha specificate que iste adresse de e-mail pertine al conto "$2" in {{SITENAME}}.
 
-Pro confirmar que iste conto es de facto tue, e pro reactivar le functiones
+Pro confirmar que iste conto es realmente tue, e pro activar le functiones
 de e-mail in {{SITENAME}}, visita iste ligamine in tu navigator:
 
 $3

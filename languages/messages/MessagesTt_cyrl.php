@@ -686,7 +686,7 @@ $2',
 'loginlanguagelabel' => 'Тел: $1',
 'suspicious-userlogout' => 'Сезнең эшчәнлекне бетерү соравыгыз кире кагылды, чөнки ул ялгыш браузер яисә кэшлаучы прокси аша җибәрелергэ мөмкин.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'PHP mail() функциясендә билгесез хата',
 'user-mail-no-addy' => 'Электрон почта адресыннан башка электрон хат җибәрмәкче булды',
 
@@ -1712,7 +1712,7 @@ PICT # төрле
 'listgrouprights-helppage' => 'Help:Төркемнәрнең хокуклары',
 'listgrouprights-members' => '(төркем исемлеге)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Бу кулланучыга хат',
 'emailuser-title-target' => '{{GENDER:$1|Кулланучыга}} электрон хат язу',
 'emailuser-title-notarget' => 'Кулланучыга хат җибәрү',
@@ -2426,6 +2426,9 @@ $1',
 'hijri-calendar-m1' => 'Мөхәррәм',
 'hijri-calendar-m7' => 'Раҗәб',
 'hijri-calendar-m9' => 'Рамазан',
+
+# Signatures
+'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|бәхәс]])',
 
 # Core parser functions
 'duplicate-defaultsort' => 'Игътибар. Уйланма куелган "$2" бүлгәләү ачкычы элеккеге уйланма куелган "$1" бүлгәләү ачкычын үзгәртә.',
