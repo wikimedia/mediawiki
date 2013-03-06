@@ -72,18 +72,10 @@ class RedisConnectionPool {
 			throw new MWException( __CLASS__. ' requires the phpredis extension: ' .
 				'https://github.com/nicolasff/phpredis' );
 		}
-		$this->connectTimeout = isset( $options['connectTimeout'] )
-			? $options['connectTimeout']
-			: 1;
-		$this->persistent = isset( $options['persistent'] )
-			? $options['persistent']
-			: false;
-		$this->password = isset( $options['password'] )
-			? $options['password']
-			: '';
-		$this->poolSize = isset( $options['poolSize'] )
-			? $options['poolSize']
-			: 5;
+		$this->connectTimeout = $options['connectTimeout'];
+		$this->persistent = $options['persistent'];
+		$this->password = $options['password'];
+		$this->poolSize = $options['poolSize'];
 		if ( !isset( $options['serializer'] ) || $options['serializer'] === 'php' ) {
 			$this->serializer = Redis::SERIALIZER_PHP;
 		} elseif ( $options['serializer'] === 'igbinary' ) {
@@ -95,9 +87,30 @@ class RedisConnectionPool {
 
 	/**
 	 * @param $options Array
+	 * @return Array
+	 */
+	protected static function applyDefaultConfig( array $options ) {
+		if ( !isset( $options['connectTimeout'] ) ) {
+			$options['connectTimeout'] = 1;
+		}
+		if ( !isset( $options['persistent'] ) ) {
+			$options['persistent'] = false;
+		}
+		if ( !isset( $options['password'] ) ) {
+			$options['password'] = '';
+		}
+		if ( !isset( $options['poolSize'] ) ) {
+			$options['poolSize'] = 1;
+		}
+		return $options;
+	}
+
+	/**
+	 * @param $options Array
 	 * @return RedisConnectionPool
 	 */
 	public static function singleton( array $options ) {
+		$options = self::applyDefaultConfig( $options );
 		// Map the options to a unique hash...
 		$poolOptions = $options;
 		unset( $poolOptions['poolSize'] ); // avoid pool fragmentation
@@ -109,7 +122,7 @@ class RedisConnectionPool {
 			wfDebug( "Creating a new " . __CLASS__ . " instance with id $id." );
 		}
 		// Simply grow the pool size if the existing one is too small
-		$psize = isset( $options['poolSize'] ) ? $options['poolSize'] : 1; // size requested
+		$psize = $options['poolSize']; // size requested
 		self::$instances[$id]->poolSize = max( $psize, self::$instances[$id]->poolSize );
 
 		return self::$instances[$id];
