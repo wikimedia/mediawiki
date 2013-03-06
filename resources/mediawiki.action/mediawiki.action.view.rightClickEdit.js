@@ -8,7 +8,7 @@ jQuery( function ( $ ) {
 	// Don't use the ":has:(.editsection a)" selector because it performs very bad.
 	// http://jsperf.com/jq-1-7-2-vs-jq-1-8-1-performance-of-mw-has/2
 	$( document ).on( 'contextmenu', 'h1, h2, h3, h4, h5, h6', function ( e ) {
-		var $edit = $( this ).find( '.editsection a' );
+		var $edit = $( this ).find( '.mw-editsection a, .editsection a' );
 		if ( !$edit.length ) {
 			return;
 		}
