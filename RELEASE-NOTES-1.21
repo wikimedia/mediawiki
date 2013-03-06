@@ -208,6 +208,13 @@ production.
   script in includes/DefaultSettings.php
 * (bug 45143) jquery.badge: Treat non-Latin variants of zero as zero as well.
 * (bug 46151) mwdocgen.php should not ignore exit code of doxygen command.
+* BREAKING CHANGE: (bug 41729) Display editsection links next to headings. Also
+  change their class name from .editsection to .mw-editsection and place them at
+  the end of the heading element instead of the beginning. Client-side code and
+  screen-scrapers will have to be adjusted to handle both cases (old HTML will
+  still be visible on cached page renders until they are purged); extensions
+  using the DoEditSectionLink or EditSectionLink hooks might need adjustments as
+  well.
 
 === API changes in 1.21 ===
 * prop=revisions can now report the contentmodel and contentformat.
