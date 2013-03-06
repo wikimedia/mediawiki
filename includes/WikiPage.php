@@ -3058,6 +3058,15 @@ class WikiPage implements Page, IDBAccessObject {
 				__METHOD__
 			);
 		}
+
+		foreach( $added as $catName ) {
+			$cat = Category::newFromName( $catName );
+			wfRunHooks( 'CategoryAfterPageAdded', array( $cat, $this ) );
+		}
+		foreach( $deleted as $catName ) {
+			$cat = Category::newFromName( $catName );
+			wfRunHooks( 'CategoryAfterPageRemoved', array( $cat, $this ) );
+		}
 	}
 
 	/**
