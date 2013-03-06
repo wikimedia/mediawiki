@@ -513,6 +513,27 @@ The ''[[Main Page]]'''s talk page.
 !! end
 
 ###
+### Non-html5 tags
+###
+
+!! test
+Non-html5 tags should be accepted
+!! input
+<center>''foo''</center>
+<big>''foo''</big>
+<font>''foo''</font>
+<strike>''foo''</strike>
+<tt>''foo''</tt>
+!! result
+<center><i>foo</i></center>
+<p><big><i>foo</i></big>
+<font><i>foo</i></font>
+<strike><i>foo</i></strike>
+<tt><i>foo</i></tt>
+</p>
+!! end
+
+###
 ### <nowiki> test cases
 ###
 
