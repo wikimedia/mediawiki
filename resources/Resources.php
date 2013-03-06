@@ -26,7 +26,9 @@ if( !defined( 'MEDIAWIKI' ) ) {
 
 return array(
 
-	/* Special modules who have their own classes */
+	/**
+	 * Special modules who have their own classes
+	 */
 
 	// Scripts managed by the local wiki (stored in the MediaWiki namespace)
 	'site' => array( 'class' => 'ResourceLoaderSiteModule' ),
@@ -48,7 +50,16 @@ return array(
 	// Scripts for the dynamic language specific data, like grammar forms.
 	'mediawiki.language.data' => array( 'class' => 'ResourceLoaderLanguageDataModule' ),
 
-	/* Skins */
+	/**
+	 * Skins
+	 * Be careful not to add 'scripts' to these modules,
+	 * since they are loaded with OutputPage::addModuleStyles so that the skin styles
+	 * apply without javascript.
+	 * If a skin needs custom js in the interface, register a separate module
+	 * and add it to the load queue with OutputPage::addModules.
+	 *
+	 * See Vector for an example.
+	 */
 
 	'skins.chick' => array(
 		'styles' => array( 'chick/main.css' => array( 'media' => 'screen, handheld' ) ),
@@ -102,6 +113,10 @@ return array(
 			'vector/screen.css' => array( 'media' => 'screen' ),
 			'vector/screen-hd.css' => array( 'media' => 'screen and (min-width: 982px)' ),
 		),
+		'remoteBasePath' => $GLOBALS['wgStylePath'],
+		'localBasePath' => $GLOBALS['wgStyleDirectory'],
+	),
+	'skins.vector.js' => array(
 		'scripts' => 'vector/vector.js',
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
