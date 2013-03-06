@@ -81,7 +81,7 @@ class ResourceLoaderUserCSSPrefsModule extends ResourceLoaderModule {
 			$rules[] = "#toc { display: none; }\n";
 		}
 		if ( !$options['editsection'] ) {
-			$rules[] = ".editsection { display: none; }\n";
+			$rules[] = ".mw-editsection, .editsection { display: none; }\n";
 		}
 		if ( $options['editfont'] !== 'default' ) {
 			// Double-check that $options['editfont'] consists of safe characters only
