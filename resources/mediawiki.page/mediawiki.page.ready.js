@@ -21,6 +21,14 @@
 		/* Enable CheckboxShiftClick */
 		$( 'input[type=checkbox]:not(.noshiftselect)' ).checkboxShiftClick();
 
+		/* Fix display of legacy .editsection links on cached HTML page renders */
+		$( '.editsection' )
+			.removeClass( 'editsection' ).addClass( 'mw-editsection' )
+			.each( function () {
+				/* Move to the end of parent element (a heading), with a space inbetween */
+				$( this ).parent().append( ' ', this );
+			} );
+
 		/* Add accesskey hints to the tooltips */
 		mw.util.updateTooltipAccessKeys();
 
