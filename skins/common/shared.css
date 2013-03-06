@@ -1092,9 +1092,24 @@ table.floatleft {
 	z-index: 99;
 }
 
-.editsection, .toctoggle {
+.mw-editsection, .editsection, .toctoggle {
 	-moz-user-select: none;
 	-webkit-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
+}
+
+/* Display editsection links smaller and next to headings */
+.mw-editsection {
+	font-size: x-small;
+	font-weight: normal;
+	margin-left: 1em;
+	vertical-align: baseline;
+	/* Reset line-height; headings tend to have it set to larger values */
+	line-height: 1em;
+	/* Since .editsection is a <span> (inline element), it is treated as part */
+	/* of the heading content when selecting text by multiple clicks and thus */
+	/* selected together with heading content, despite the user-select: none; */
+	/* rule set above. This enforces non-selection without changing the look. */
+	display: inline-block;
 }
