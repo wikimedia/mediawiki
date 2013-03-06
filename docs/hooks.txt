@@ -2293,7 +2293,7 @@ $result: Boolean; whether MediaWiki currently thinks this is a CSS/JS page.
   Title::isCssOrJsPage().
 
 'TitleIsAlwaysKnown': Called when determining if a page exists. Allows
-overriding default behaviour for determining if a page exists. If $isKnown is
+overriding default behavior for determining if a page exists. If $isKnown is
 kept as null, regular checks happen. If it's a boolean, this value is returned
 by the isKnown method.
 $title: Title object that is being checked

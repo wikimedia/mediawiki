@@ -34,7 +34,7 @@ class ZipDirectoryReader {
 	 *
 	 * Because this class is aimed at verification, an error is raised on
 	 * suspicious or ambiguous input, instead of emulating some standard
-	 * behaviour.
+	 * behavior.
 	 *
 	 * @param $fileName string The archive file name
 	 * @param $callback Array The callback function. It will be called for each file

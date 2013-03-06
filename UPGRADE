@@ -81,7 +81,7 @@ The names of configuration variables, and their default values and purposes,
 can change between release branches, e.g. $wgDisableUploads in 1.4 is replaced
 with $wgEnableUploads in later versions. When upgrading, consult the release
 notes to check for configuration changes which would alter the expected
-behaviour of MediaWiki.
+behavior of MediaWiki.
 
 === Check installed extensions ===
 

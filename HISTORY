@@ -132,7 +132,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 39273) Added AJAX support for "Show changes" (diff) in LivePreview.
 * Added ResourceLoader module "jquery.badge".
 * mw.util.$content now points to the overall content area in the skin rather than just
-  page text content area. If you need the old behaviour please use $( '#mw-content-text').
+  page text content area. If you need the old behavior please use $( '#mw-content-text').
 * jsMessage has been replaced with a floating bubble notification system complete
   with auto-hide, multi-message support, and message replacement tags.
 * jquery.messageBox which appears to be unused by both core and extensions has
@@ -1135,7 +1135,7 @@ Selected changes since MediaWiki 1.17 that may be of interest:
 * New maintenance script to refresh image metadata (maintenance/refreshImageMetadata.php).
 * (bug 16428) Include permalink in printable version.
 * (bug 30722) Add an identity collation that sorts things based on what the
-  unicode code point is (aka pre-1.17 behaviour).
+  unicode code point is (aka pre-1.17 behavior).
 * (bug 30940) Add a hook in User:getDefaultOptions.
   To give extensions a better and more flexible way of providing default
   values for preferences a hook has been introdiced in User:getDefaultOptions().
@@ -2125,7 +2125,7 @@ Selected changes since MediaWiki 1.16 that may be of interest:
   make wfTempDir() return a sane value for Windows on worst-case.
 * (bug 24824) Support ImageMagick 6.5.6-2+ JPEG decoder size hint, to reduce
   memory usage when such an ImageMagick is used for scaling.
-* Disable multithreaded behaviour in recent ImageMagick, to avoid a deadlock
+* Disable multithreaded behavior in recent ImageMagick, to avoid a deadlock
   when a resource limit such as $wgMaxShellMemory is hit.
 * (bug 24981) Allow extensions to access SpecialUpload variables again.
 * (bug 20744) Wiki forgets about an uploaded file.
@@ -2518,8 +2518,8 @@ Other significant changes to MediaWiki's language support:
   exist. In that case the URL will get (?|&)wpDestFile=<filename> appended to
   it as appropriate.
 * If $wgLocaltimezone is null, use the server's timezone as the default for
-  signatures. This was always the behaviour documented in DefaultSettings.php
-  but has not been the actual behaviour for some time: instead, UTC was used
+  signatures. This was always the behavior documented in DefaultSettings.php
+  but has not been the actual behavior for some time: instead, UTC was used
   by default.
 * Added $wgExtensionAssetsPath, to decouple assets serving from $wgScriptPath.
   If not specified it will default to $wgScriptPath/extensions
@@ -4716,7 +4716,7 @@ Other changes in this release:
 * (bug 12644) Template list on edit page now sorted on preview
 * (bug 14058) Support pipe trick for namespaces and interwikis with "-"
 * Message name filter on Special:Allmessages now case-insensitive
-* (bug 13943) Fix image redirect behaviour on image pages
+* (bug 13943) Fix image redirect behavior on image pages
 * (bug 14093) Do 'sysop' => 'protect' magic in Title::isValidMoveOperation
 * (bug 14063) Power search form missing <label> for redirects check
 * (bug 14111) Similar filename warning links now lead to correct page
@@ -4939,7 +4939,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   to not check and assume they are always up to date)
 * The rollback permission can now be rate-limited using the normal mechanism.
 * New configuration variable $wgExtraLanguageNames
-* Behaviour of $wgAddGroups and $wgRemoveGroups changed. New behaviour:
+* Behavior of $wgAddGroups and $wgRemoveGroups changed. New behavior:
 * * Granting the userrights privilege allows arbitrary changing of rights.
 * * Without the userrights privilege, a user will be able to add and/or
      remove the groups specified in $wgAddGroups and $wgRemoveGroups for
@@ -5351,7 +5351,7 @@ the removal of this double-parse. Please see the wiki page for examples.
 
 Message transformation mode has been removed, and replaced with "preprocess"
 mode. This means that some MediaWiki namespace messages may need to be updated,
-especially ones which took advantage of the terribly counterintuitive behaviour
+especially ones which took advantage of the terribly counterintuitive behavior
 of the former message mode.
 
 The header identification routines for section edit and for numbering section
@@ -5361,7 +5361,7 @@ template expansion will still be rendered into a heading tag, and will get an
 entry in the TOC, but will not have a section edit link. HTML-style headings
 will also not have a section edit link. Valid wikitext headings present in the
 template source text will get a template section edit link. This is a major
-break from previous behaviour, but I believe the effects are almost entirely
+break from previous behavior, but I believe the effects are almost entirely
 beneficial.
 
 The main motivation for making these changes was performance. The new two-pass
@@ -5568,7 +5568,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   enabled by default.
 * Added option to install to MyISAM
 * (bug 9250) Remove hardcoded minimum image name length of three characters
-* Fixed DISPLAYTITLE behaviour to reject titles which don't normalise to the
+* Fixed DISPLAYTITLE behavior to reject titles which don't normalise to the
   same title as the current page, and enabled per default
 * Wrap site CSS and JavaScript in a <pre> tag, like user JS/CSS
 * (bug 10196) Add classes and dir="ltr" to the <pre>s on CSS and JS pages (new
@@ -5850,7 +5850,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Fix upload form display in right-to-left languages
 * Fixed regression in blocking of username '0'
 * (bug 9437) Don't overwrite edit form submission handler when setting up
-  edit box scroll position preserve/restore behaviour
+  edit box scroll position preserve/restore behavior
 * (bug 10805) Fix "undo" link when viewing the diff of the most recent
   change to a page using "diff=0"
 * (bug 10765) img_auth.php will now refuse logged-out requests where
@@ -6396,7 +6396,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   to image/svg+xml after loading from the database.
 * Workaround for djvutoxml bug #1704049 (poor performance). Use djvudump
   instead.
-* Fixed odd behaviour in ImagePage on DjVu thumbnailing errors
+* Fixed odd behavior in ImagePage on DjVu thumbnailing errors
 * (bug 5439) "Go" title search will now jump to shared/foreign Image: and
   MediaWiki: pages that have not been locally edited.
 * (bug 9630) Limits links in Whatlinkshere forgot about namespace filter
@@ -7002,7 +7002,7 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 * New maintenance script to show the cached statistics : showStats.php.
 * Count deleted edits when regenerating total edits in maintenance/initStats.php
 * (bug 3706) Allow users to be exempted from IP blocks. The ipblock-exempt permission
-  key has been added to enable this behaviour, by default assigned to sysops.
+  key has been added to enable this behavior, by default assigned to sysops.
 * (bug 7948) importDump.php now warn that Recentchanges need to be rebuild.
 * (bug 7667) allow XHTML namespaces customization
 * (bug 8531) Correct local name of Lingála (patch by Raymond)
@@ -7281,7 +7281,7 @@ they will be run along with the main tests by maintenance/parserTests.php
 * (bug 6642) Don't offer to unlock the database when it isn't locked
 * cleanupTitles.php changed from --dry-run option to --fix, so default
   behavior is now a non-invasive check as with namespaceDupes.php
-* (bug 6660) Fix behaviour of EditPage::blockedPage() when the article does
+* (bug 6660) Fix behavior of EditPage::blockedPage() when the article does
   not exist; now doesn't show the source box if the user hasn't provided it
   (blocked mid-edit) and the page doesn't exist
 * Improve default value of "blockedtext"
@@ -7442,7 +7442,7 @@ they will be run along with the main tests by maintenance/parserTests.php
 * (bug 6023) Fixed mismatch of 0/NULL for wl_notificationtimestamp; now notification
   mails are working after 'Mark all pages visited' button on Special:Watchlist is clicked
 * Made {{INT:}} a core parser function instead of a special case. The syntax
-  and behaviour is largely unchanged.
+  and behavior is largely unchanged.
 * (bug 7448) Fixing the native name for Ewe (ee)
 * (bug 6864) Replace message 'editing' with new message 'editinguser' in Special:Userrights
   to allow better localisation
@@ -10320,7 +10320,7 @@ pages for purposes of page relevancy ranking.
 * (bug 1283) Use underlining and borders to highlight additions/deletions
   in diff-view
 * Use user's local timezone in Special:Log display
-* Show filename for images in gallery by default (restore beta 3 behaviour)
+* Show filename for images in gallery by default (restore beta 3 behavior)
 * (bug 1201) Double-escaping in brokenlinks, imagelinks, categorylinks, searchindex
 * When using squid reverse proxy, cache the redirect to the Main_Page
 * (bug 1302) Fix Norwegian language file

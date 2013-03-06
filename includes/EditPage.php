@@ -563,7 +563,7 @@ class EditPage {
 			// Nothing *to* preview for new sections
 			return false;
 		} elseif ( ( $wgRequest->getVal( 'preload' ) !== null || $this->mTitle->exists() ) && $wgUser->getOption( 'previewonfirst' ) ) {
-			// Standard preference behaviour
+			// Standard preference behavior
 			return true;
 		} elseif ( !$this->mTitle->exists() &&
 			isset( $wgPreviewOnOpenNamespaces[$this->mTitle->getNamespace()] ) &&

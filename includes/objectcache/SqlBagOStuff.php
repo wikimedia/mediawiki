@@ -133,7 +133,7 @@ class SqlBagOStuff extends BagOStuff {
 			} else {
 				/*
 				 * We must keep a separate connection to MySQL in order to avoid deadlocks
-				 * However, SQLite has an opposite behaviour. And PostgreSQL needs to know
+				 * However, SQLite has an opposite behavior. And PostgreSQL needs to know
 				 * if we are in transaction or no
 				 */
 				if ( wfGetDB( DB_MASTER )->getType() == 'mysql' ) {

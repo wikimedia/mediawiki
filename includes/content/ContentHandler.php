@@ -83,7 +83,7 @@ abstract class ContentHandler {
 	 *   form of the content.
 	 * - If $wgContentHandlerTextFallback is 'ignore' and $content is not a
 	 *   TextContent object, this method returns null.
-	 * - otherwise, the behaviour is undefined.
+	 * - otherwise, the behavior is undefined.
 	 *
 	 * @since 1.21
 	 *

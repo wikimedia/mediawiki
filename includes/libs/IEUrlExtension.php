@@ -245,7 +245,7 @@ class IEUrlExtension {
 	 * whether the script filename has been obscured.
 	 *
 	 * The function returns false if the server is not known to have this
-	 * behaviour. Microsoft IIS in particular is known to decode escaped script
+	 * behavior. Microsoft IIS in particular is known to decode escaped script
 	 * filenames.
 	 *
 	 * SERVER_SOFTWARE typically contains either a plain string such as "Zeus",
