@@ -129,15 +129,20 @@ span.texhtml {
 
 /* Edit section links */
 /* Correct directionality when page dir is different from site/user dir */
+
+/* The .mw-editsection:first-child versions are transitional hacks due to the change */
+/* in DOM position of the section link.  It only applies when the new class is in the legacy position.
+/* Without this, the edit link can appear to the left of the section (neither old nor new intended behavior) */
+
 /* @noflip */
-.mw-content-ltr .editsection,
-.mw-content-rtl .mw-content-ltr .editsection {
+.mw-content-ltr .editsection, .mw-content-ltr .mw-editsection:first-child,
+.mw-content-rtl .mw-content-ltr .editsection, .mw-content-rtl .mw-content-ltr .mw-editsection:first-child {
 	float: right;
 	margin-left: 5px;
 }
 /* @noflip */
-.mw-content-rtl .editsection,
-.mw-content-ltr .mw-content-rtl .editsection {
+.mw-content-rtl .editsection, .mw-content-rtl .mw-editsection:first-child,
+.mw-content-ltr .mw-content-rtl .editsection, .mw-content-ltr .mw-content-rtl .mw-editsection:first-child {
 	float: left;
 	margin-right: 5px;
 }
@@ -1092,9 +1097,24 @@ table.floatleft {
 	z-index: 99;
 }
 
-.editsection, .toctoggle {
+.mw-editsection, .editsection, .toctoggle {
 	-moz-user-select: none;
 	-webkit-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
+}
+
+/* Display editsection links smaller and next to headings */
+.mw-editsection {
+	font-size: x-small;
+	font-weight: normal;
+	margin-left: 1em;
+	vertical-align: baseline;
+	/* Reset line-height; headings tend to have it set to larger values */
+	line-height: 1em;
+	/* As .mw-editsection is a <span> (inline element), it is treated as part */
+	/* of the heading content when selecting text by multiple clicks and thus */
+	/* selected together with heading content, despite the user-select: none; */
+	/* rule set above. This enforces non-selection without changing the look. */
+	display: inline-block;
 }
