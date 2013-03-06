@@ -391,7 +391,9 @@ var mw = ( function ( $, undefined ) {
 				// List of callback functions waiting for modules to be ready to be called
 				jobs = [],
 				// Selector cache for the marker element. Use getMarker() to get/use the marker!
-				$marker = null;
+				$marker = null,
+				// Buffer for addEmbeddedCSS.
+				cssBuffer = '';
 
 			/* Private methods */
 
@@ -477,8 +479,30 @@ var mw = ( function ( $, undefined ) {
 				);
 			}
 
+			/**
+			 * @param {string} [cssText=cssBuffer] If called without cssText,
+			 * the internal buffer will be inserted instead.
+			 */
 			function addEmbeddedCSS( cssText ) {
 				var $style, styleEl;
+
+				// Yield once before inserting the <style> tag. There are likely
+				// more calls coming up which we can combine this way.
+				// Appending a stylesheet and waiting for the browser to repaint
+				// is fairly expensive, this reduces it (bug 45810)
+				if ( cssText ) {
+					cssBuffer += cssText;
+					// TODO: Use requestAnimationFrame in the future which will
+					// perform even better by not injecting styles while we're
+					// still drawing.
+					setTimeout( addEmbeddedCSS );
+					return;
+				}
+				if ( !cssBuffer ) {
+					return;
+				}
+				cssText = cssBuffer;
+				cssBuffer = '';
 
 				$style = getMarker().prev();
 				// Verify that the the element before Marker actually is one
