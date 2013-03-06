@@ -201,7 +201,7 @@ class LoginForm extends SpecialPage {
 		if( !$status->isGood() ) {
 			$error = $this->getOutput()->parse( $status->getWikiText() );
 			$this->mainLoginForm( $error );
-			return false;
+			return;
 		}
 
 		$u = $status->getValue();
@@ -831,6 +831,9 @@ class LoginForm extends SpecialPage {
 		}
 	}
 
+	/**
+	 * @param $error string
+	 */
 	function resetLoginForm( $error ) {
 		$this->getOutput()->addHTML( Xml::element( 'p', array( 'class' => 'error' ), $error ) );
 		$reset = new SpecialChangePassword();
@@ -945,6 +948,7 @@ class LoginForm extends SpecialPage {
 	 * User::isBlockedFromCreateAccount(), which gets this block, ignores the 'hardblock'
 	 * setting on blocks (bug 13611).
 	 * @param $block Block the block causing this error
+	 * @throws ErrorPageError
 	 */
 	function userBlockedMessage( Block $block ) {
 		# Let's be nice about this, it's likely that this feature will be used
@@ -1334,8 +1338,8 @@ class LoginForm extends SpecialPage {
 	 * Create a language selector link for a particular language
 	 * Links back to this page preserving type and returnto
 	 *
-	 * @param $text Link text
-	 * @param $lang Language code
+	 * @param $text string Link text
+	 * @param $lang string Language code
 	 * @return string
 	 */
 	function makeLanguageSelectorLink( $text, $lang ) {
