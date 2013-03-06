@@ -1095,7 +1095,7 @@ class Revision implements IDBAccessObject {
 	/**
 	 * Get previous revision for this title
 	 *
-	 * @return Revision or null
+	 * @return Revision|null
 	 */
 	public function getPrevious() {
 		if( $this->getTitle() ) {

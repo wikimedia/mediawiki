@@ -857,7 +857,7 @@ class User {
 	 * @note This no longer clears uncached lazy-initialised properties;
 	 *       the constructor does that instead.
 	 *
-	 * @param $name string
+	 * @param $name string|bool
 	 */
 	public function loadDefaults( $name = false ) {
 		wfProfileIn( __METHOD__ );
@@ -2069,7 +2069,7 @@ class User {
 
 	/**
 	 * Get the user's current token.
-	 * @param $forceCreation Force the generation of a new token if the user doesn't have one (default=true for backwards compatibility)
+	 * @param $forceCreation bool Force the generation of a new token if the user doesn't have one (default=true for backwards compatibility)
 	 * @return String Token
 	 */
 	public function getToken( $forceCreation = true ) {
@@ -2980,7 +2980,7 @@ class User {
 	 *
 	 * @param $request WebRequest object to use; $wgRequest will be used if null
 	 *        is passed.
-	 * @param $secure Whether to force secure/insecure cookies or use default
+	 * @param $secure bool Whether to force secure/insecure cookies or use default
 	 */
 	public function setCookies( $request = null, $secure = null ) {
 		if ( $request === null ) {
@@ -2988,7 +2988,9 @@ class User {
 		}
 
 		$this->load();
-		if ( 0 == $this->mId ) return;
+		if ( 0 == $this->mId ) {
+			return;
+		}
 		if ( !$this->mToken ) {
 			// When token is empty or NULL generate a new one and then save it to the database
 			// This allows a wiki to re-secure itself after a leak of it's user table or $wgSecretKey
@@ -3510,11 +3512,10 @@ class User {
 	/**
 	 * Generate a looking random token for various uses.
 	 *
-	 * @param $salt String Optional salt value
 	 * @return String The new random token
 	 * @deprecated since 1.20; Use MWCryptRand for secure purposes or wfRandomString for pesudo-randomness
 	 */
-	public static function generateToken( $salt = '' ) {
+	public static function generateToken() {
 		return MWCryptRand::generateHex( 32 );
 	}
 
@@ -4322,7 +4323,7 @@ class User {
 	/**
 	 * Load the user options either from cache, the database or an array
 	 *
-	 * @param $data Rows for the current user out of the user_properties table
+	 * @param $data array Rows for the current user out of the user_properties table
 	 */
 	protected function loadOptions( $data = null ) {
 		global $wgContLang;
