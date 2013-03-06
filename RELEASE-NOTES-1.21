@@ -114,6 +114,9 @@ production.
   oc, pl, pt, rm, ro, ru, rup, sco, sk, sl, smn, sq, sr, sv, tk, tl, tr, tt, uk,
   uz, vi.
 * Added 'CategoryAfterPageAdded' and 'CategoryAfterPageRemoved' hooks.
+* Added QUnit assertion helper (QUnit.assert.htmlEqual), for checking if HTML
+  is structurally equal while ignoring insignificant differences like
+  quoting style and attribute order.
 
 === Bug fixes in 1.21 ===
 * (bug 40353) SpecialDoubleRedirect should support interwiki redirects.
