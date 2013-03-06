@@ -82,6 +82,7 @@ class RunJobs extends Maintenance {
 			$this->runJobsLog( "Executed $count periodic queue task(s)." );
 		}
 
+		$lastTime = time();
 		do {
 			$job = ( $type === false )
 				? $group->pop( JobQueueGroup::TYPE_DEFAULT, JobQueueGroup::USE_CACHE )
@@ -118,8 +119,13 @@ class RunJobs extends Maintenance {
 					break;
 				}
 
-				// Don't let any slaves/backups fall behind...
+				// Don't let any queue slaves/backups fall behind
 				$group->get( $job->getType() )->waitForBackups();
+				// Don't let any of the main DB slaves get backed up
+				$timePassed = time() - $lastTime;
+				if ( $timePassed >= 5 || $timePassed < 0 ) {
+					wfWaitForSlaves();
+				}
 			}
 		} while ( $job ); // stop when there are no jobs
 	}
