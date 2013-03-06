@@ -1740,8 +1740,8 @@ class Linker {
 	 */
 	public static function makeHeadline( $level, $attribs, $anchor, $html, $link, $legacyAnchor = false ) {
 		$ret = "<h$level$attribs"
+			. "<span class=\"mw-headline\" id=\"$anchor\">$html</span> "
 			. $link
-			. " <span class=\"mw-headline\" id=\"$anchor\">$html</span>"
 			. "</h$level>";
 		if ( $legacyAnchor !== false ) {
 			$ret = "<div id=\"$legacyAnchor\"></div>$ret";
