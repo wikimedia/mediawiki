@@ -253,7 +253,7 @@ $messages = array(
 'thu' => 'Juğ',
 'fri' => 'Vie',
 'sat' => 'Shab',
-'january' => 'Jenero',
+'january' => 'Enero',
 'february' => 'Hevrero',
 'march' => 'Março',
 'april' => 'Avril',
@@ -1089,7 +1089,7 @@ Puedes ver su manadero',
 'tooltip-n-mainpage-description' => 'Visita la primera hoja',
 'tooltip-n-portal' => 'Encima del projeto, lo que puedes hazer y ánde topar todo',
 'tooltip-n-currentevents' => 'Información encima de los acontècimientos de oy día',
-'tooltip-n-recentchanges' => 'La lista de los trocamientos muevos en el viki',
+'tooltip-n-recentchanges' => 'Lista de los trocamientos muevos en el viki',
 'tooltip-n-randompage' => 'Carga una hoja por asardo',
 'tooltip-n-help' => 'El lugar para saver más',
 'tooltip-t-whatlinkshere' => 'Una lista de todas las hojas del viki que tienen atamientos con esta hoja',
@@ -1099,7 +1099,7 @@ Puedes ver su manadero',
 'tooltip-t-contributions' => 'Ver la lista de ajustamientos de este usuario',
 'tooltip-t-emailuser' => 'A este usuario, mándale una letra electrόnica (ímey)',
 'tooltip-t-upload' => 'Suve dosyas por aquí',
-'tooltip-t-specialpages' => 'La lista de todas las hojas especiales',
+'tooltip-t-specialpages' => 'Lista de todas las hojas especiales',
 'tooltip-t-print' => "Versión apropiada para imprimir d'esta hoja",
 'tooltip-t-permalink' => "Atamiento permanente á est'enderechamiento de la hoja",
 'tooltip-ca-nstab-main' => 'Ve el artícůlo de contènido',
@@ -1135,9 +1135,9 @@ Puedes ver su manadero',
 # Bad image list
 'bad_image_list' => 'El formato es ansina:
 
-Cale akavidar sólo elementos de lista (quere dezir: liñas que empeçan con *).
-El primer atamiento de cada liña deve de ser un atamiento á una dosya negra (á la dosya que se quere blokear).
-Los atamientos venideros que están en la mesma liña se aprecian como eksepsiones, por enxemplo, hojas ande la dosya se ve en la liña.',
+Sólo elementos de lista (liñas empeçando con *) se toman en konsidherasyón.
+El primer atamiento de cada liña deve de atarse con una dosya negra (la dosya que se quere blokar).
+Los atamientos venideros que están en la misma liña se konsidheran como eksepsiones, por enxemplo, hojas ande la dosya se ve en la liña.',
 
 # Metadata
 'metadata' => 'Metadatos',

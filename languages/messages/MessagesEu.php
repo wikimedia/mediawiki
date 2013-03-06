@@ -805,12 +805,12 @@ Orrialdea gordetzeko erabakitzen duzun unean goiko koadroko edukia '''bakarrik''
 'nonunicodebrowser' => "'''OHARRA: Zure nabigatzailea ez dator Unicode arauarekin bat. Artikuluak modu seguruan aldatu ahal izateko beste sistema bat gaitu da: ASCII ez diren karaktereak kode hamaseitar bezala agertuko dira aldaketa koadroan.'''",
 'editingold' => "'''KONTUZ: Artikulu honen bertsio zahar bat aldatzen ari zara. Gorde egiten baduzu, azkenengo aldaketa baino lehenagoko aldakuntzak, ezabatuak izango dira.'''",
 'yourdiff' => 'Ezberdintasunak',
-'copyrightwarning' => "Kontuan izan {{SITENAME}}(e)n egindako ekarpen guztiak $2 baldintzapean argitaratzen direla (ikus $1 informazio gehiagorako). Zure testua banatzeko baldintza hauekin ados ez bazaude, ez ezazu bidali.<br />
-Era berean, bidaltzen ari zaren edukia zuk zeuk idatzitakoa dela edo jabetza publikoko edo baliabide aske batetik kopiatu duzula zin egin ari zara.
-'''EZ BIDALI BAIMENIK GABEKO COPYRIGHTDUN EDUKIRIK!'''",
-'copyrightwarning2' => "Mesedez, kontuan izan {{SITENAME}}(e)n egindako ekarpen guztiak besteek aldatu edo ezabatu ditzaketela. Ez baduzu besteek aldaketak egitea nahi, ez ezazu bidali.<br />
-Era berean, bidaltzen ari zaren edukia zuk zeuk idatzitakoa dela edo jabetza publikoko edo baliabide aske batetik kopiatu duzula zin egin ari zara (ikus $1 informazio gehiagorako).
-'''EZ BIDALI BAIMENIK GABEKO COPYRIGHTDUN EDUKIRIK!'''",
+'copyrightwarning' => "Kontuan izan ezazu {{SITENAME}} webgunean egindako ekarpen guztiak $2 lizentziaren pean argitaratzen direla (xehetasunetarako, ikus $1). Zuk idatzitakoa libreki aldatua eta banatua izatea nahi ez baduzu, ez ezazu hemen jarri.<br />
+Era berean, hitzematen ari zara hau zuk zeuk idatzia dela, edo jabari publikotik nahiz askea den beste ituri batetik kopiatu duzula.
+'''Ez erabili copyright eskubideek babestutako lanik, baimenik gabe!'''",
+'copyrightwarning2' => "Mesedez, kontuan izan ezazu {{SITENAME}} webgunean egindako ekarpen guztiak beste erabiltzaileek aldatu edo ezabatu ditzaketela. Zuk idatzitakoa libreki aldatua izatea nahi ez baduzu, ez ezazu hemen jarri.<br />
+Era berean, hitzematen ari zara hau zuk zeuk idatzia dela, edo jabari publikotik nahiz askea den beste ituri batetik kopiatu duzula (xehetasunetarako, ikus $1).
+'''Ez erabili copyright eskubideek babestutako lanik, baimenik gabe!'''",
 'longpageerror' => "'''Errorea: Bidali duzun testuak {{PLURAL:$1|kilobyte 1eko|$1 kilobyteko}} luzera du, eta {{PLURAL:$2|kilobyte 1eko|$2 kilobyteko}} maximoa baino luzeagoa da.'''
 Ezin da gorde.",
 'readonlywarning' => "'''Oharra: Datu-basea blokeatu egin da mantenu lanak burutzeko, beraz ezingo dituzu orain zure aldaketak gorde.'''

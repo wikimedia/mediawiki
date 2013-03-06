@@ -213,13 +213,13 @@ $messages = array(
 'thursday' => '週四',
 'friday' => '週五',
 'saturday' => '週六',
-'sun' => '週日',
-'mon' => '周一',
-'tue' => '周二',
-'wed' => '周三',
-'thu' => '周四',
-'fri' => '周五',
-'sat' => '周六',
+'sun' => '日',
+'mon' => '一',
+'tue' => '二',
+'wed' => '三',
+'thu' => '四',
+'fri' => '五',
+'sat' => '六',
 'january' => '一月',
 'february' => '二月',
 'march' => '三月',
@@ -407,7 +407,7 @@ $1',
 
 'ok' => '可',
 'retrievedfrom' => '取自"$1"',
-'youhavenewmessages' => '子有$1（$2）',
+'youhavenewmessages' => '有$1書至子書房也。（$2）',
 'newmessageslink' => '新訊',
 'newmessagesdifflink' => '變更',
 'youhavenewmessagesfromusers' => '子有 $1 自 {{PLURAL:$3|another user|$3 簿戶也}} ($2)。',
@@ -597,7 +597,7 @@ $2',
 'loginlanguagelabel' => '語：$1',
 'suspicious-userlogout' => '爾欲無離也，可由壞瀏覽器或快枝代理呈送之。',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => '於 PHP mail() 參數現錯',
 
 # Change password dialog
@@ -813,8 +813,8 @@ $2',
 'last' => '前',
 'page_first' => '首',
 'page_last' => '末',
-'histlegend' => "辨異：擇二孔後，按Enter、或點下鈕以辨之。<br />
-釋義：'''（{{int:cur}}）'''與今審辨；'''（{{int:last}}）'''與前審辨；'''{{int:minoreditletter}}'''，校文",
+'histlegend' => "辨異：既擇二孔，按Enter、或點下鈕以辨之。<br />
+釋義：'''（{{int:cur}}）'''與今審辨；'''（{{int:last}}）'''與前審辨；'''{{int:minoreditletter}}'''，令校",
 'history-fieldset-title' => '誌覽',
 'history-show-deleted' => '只刪',
 'histfirst' => '初',
@@ -1129,7 +1129,7 @@ $1",
 'prefs-displaywatchlist' => '示項',
 'prefs-diffs' => '異',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => '電郵有效之',
 'email-address-validity-invalid' => '貢一效之電郵',
 
@@ -1293,7 +1293,7 @@ $1",
 'recentchanges-label-newpage' => '此纂開新頁',
 'recentchanges-label-minor' => '此乃細纂',
 'recentchanges-label-bot' => '此乃機纂',
-'recentchanges-label-unpatrolled' => '此乃未巡之纂',
+'recentchanges-label-unpatrolled' => '是纂未巡',
 'rcnote' => "下為自$4$5起，'''$2'''日內'''$1'''近易也。",
 'rcnotefrom' => "下為自'''$2'''至'''$1'''之易也。",
 'rclistfrom' => '自$1起之易也',
@@ -1600,6 +1600,7 @@ $1',
 'statistics-mostpopular' => '燴炙',
 
 'disambiguations' => '釋義',
+'disambiguationspage' => 'Template:弭誤解',
 'disambiguations-text' => '頁下引[[MediaWiki:Disambiguationspage]]模，求釋義，宜正題之。',
 
 'doubleredirects' => '窮渡',
@@ -1768,7 +1769,7 @@ $1',
 'listgrouprights-addgroup-self-all' => '加自之全組',
 'listgrouprights-removegroup-self-all' => '除自之全組',
 
-# E-mail user
+# Email user
 'mailnologin' => '無驛',
 'mailnologintext' => '[[Special:UserLogin|登簿]]置郵，方可捎書。',
 'emailuser' => '捎君',
@@ -1871,7 +1872,7 @@ $NEWPAGE
 'historywarning' => '警示，此頁約有誌$1：',
 'confirmdeletetext' => '欲刪此物與誌，知後果、合[[{{MediaWiki:Policy-url}}]]後再為之。',
 'actioncomplete' => '成矣',
-'actionfailed' => '敗矣',
+'actionfailed' => '未竟',
 'deletedtext' => '"$1"刪矣，見誌刪於$2。',
 'dellogpage' => '誌刪',
 'dellogpagetext' => '近刪如下：',
@@ -2594,7 +2595,7 @@ $1',
 'monthsall' => '全',
 'limitall' => '全',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => '核郵驛',
 'confirmemail_noemail' => '[[Special:Preferences|簿註]]有驛。',
 'confirmemail_send' => '遣核符',

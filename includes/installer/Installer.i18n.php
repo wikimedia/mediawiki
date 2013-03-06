@@ -4419,6 +4419,20 @@ $messages['el'] = array(
 	'mainpagedocfooter' => 'Περισσότερες πληροφορίες σχετικά με τη χρήση και με τη ρύθμιση παραμέτρων θα βρείτε στους συνδέσμους: [//meta.wikimedia.org/wiki/MediaWiki_localisation Οδηγίες για τροποποίηση του περιβάλλοντος εργασίας] και [//meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Εγχειρίδιο χρήστη].', # Fuzzy
 );
 
+/** British English (British English)
+ * @author Shirayuki
+ */
+$messages['en-gb'] = array(
+	'config-unicode-using-utf8' => "Using Brion Vibber's utf8_normalize.so for Unicode normalisation.",
+	'config-unicode-using-intl' => 'Using the [http://pecl.php.net/intl intl PECL extension] for Unicode normalisation.',
+	'config-unicode-pure-php-warning' => "'''Warning:''' The [http://pecl.php.net/intl intl PECL extension] is not available to handle Unicode normalisation, falling back to slow pure-PHP implementation.
+If you run a high-traffic site, you should read a little on [//www.mediawiki.org/wiki/Unicode_normalization_considerations Unicode normalisation].",
+	'config-unicode-update-warning' => "'''Warning:''' The installed version of the Unicode normalisation wrapper uses an older version of [http://site.icu-project.org/ the ICU project's] library.
+You should [//www.mediawiki.org/wiki/Unicode_normalization_considerations upgrade] if you are at all concerned about using Unicode.",
+	'config-profile-fishbowl' => 'Authorised editors only',
+	'config-install-stats' => 'Initialising statistics',
+);
+
 /** Esperanto (Esperanto)
  * @author Airon90
  * @author Yekrats
@@ -10038,9 +10052,9 @@ MediaWikiのインストールはできません。',
 しかし、MediaWikiには PHP $2 以上が必要です。',
 	'config-unicode-using-utf8' => 'Unicode正規化に、Brion Vibberのutf8_normalize.soを使用。',
 	'config-unicode-using-intl' => 'Unicode正規化に[http://pecl.php.net/intl intl PECL 拡張機能]を使用。',
-	'config-unicode-pure-php-warning' => "'''警告''': Unicode 正規化の処理に [http://pecl.php.net/intl intl PECL 拡張機能]を利用できないため、処理が遅いピュア PHP の実装を代わりに使用しています。
+	'config-unicode-pure-php-warning' => "'''警告:''' Unicode 正規化の処理に [http://pecl.php.net/intl intl PECL 拡張機能]を利用できないため、処理が遅いピュア PHP の実装を代わりに使用しています。
 高トラフィックのサイトを運営する場合は、[//www.mediawiki.org/wiki/Unicode_normalization_considerations Unicode 正規化]をお読みください。",
-	'config-unicode-update-warning' => "'''警告''': インストールされているバージョンの Unicode 正規化ラッパーは、[http://site.icu-project.org/ ICU プロジェクト]のライブラリの古いバージョンを使用しています。
+	'config-unicode-update-warning' => "'''警告:''' インストールされているバージョンの Unicode 正規化ラッパーは、[http://site.icu-project.org/ ICU プロジェクト]のライブラリの古いバージョンを使用しています。
 Unicode を少しでも利用する可能性がある場合は、[//www.mediawiki.org/wiki/Unicode_normalization_considerations アップグレード]してください。",
 	'config-no-db' => '適切なデータベース ドライバーが見つかりませんでした! PHP にデータベース ドライバーをインストールする必要があります。
 以下の種類のデータベースに対応しています: $1
@@ -10048,7 +10062,7 @@ Unicode を少しでも利用する可能性がある場合は、[//www.mediawik
 共有サーバーを使用している場合は、適切なデータベース ドライバーのインストールを、サーバーの管理者に依頼してください。
 PHP を自分でコンパイルした場合は、例えば <code>./configure --with-mysql</code> を実行して、データベース クライアントを使用できるように再設定してください。
 Debian または Ubuntu のパッケージから PHP をインストールした場合は、php5-mysql モジュールもインストールする必要があります。',
-	'config-no-fts3' => "'''警告''': SQLite は [//sqlite.org/fts3.html FTS3] モジュールなしでコンパイルされており、このバックエンドでは検索機能は利用できなくなります。",
+	'config-no-fts3' => "'''警告:''' SQLite は [//sqlite.org/fts3.html FTS3] モジュールなしでコンパイルされており、このバックエンドでは検索機能は利用できなくなります。",
 	'config-register-globals' => "'''警告: PHP の <code>[http://php.net/register_globals register_globals]</code> オプションが有効になっています。'''
 '''可能なら無効化してください。'''
 MediaWiki は動作しますが、サーバーの潜在的なセキュリティ脆弱性が露呈されます。",
@@ -10071,7 +10085,7 @@ MediaWikiは、このモジュールの関数を必要としているため、�
 Mandrakeを実行している場合、php-xmlパッケージをインストールしてください。',
 	'config-pcre' => 'PCREをサポートしているモジュールが不足しているようです。
 MediaWikiは、Perl互換の正規表現関数の動作が必要です。',
-	'config-pcre-no-utf8' => "'''致命的エラー''': PHP の PCRE が PCRE_UTF8 対応なしでコンパイルされているようです。
+	'config-pcre-no-utf8' => "'''致命的エラー:''' PHP の PCRE が PCRE_UTF8 対応なしでコンパイルされているようです。
 MediaWiki を正しく動作させるには、UTF-8 対応が必要です。",
 	'config-memory-raised' => 'PHPの<code>memory_limit</code>は$1で、$2に引き上げられました。',
 	'config-memory-bad' => "'''警告:''' PHPの<code>memory_limit</code>に$1に設定されています。
@@ -10091,7 +10105,7 @@ MediaWiki を正しく動作させるには、UTF-8 対応が必要です。",
 画像のサムネイル生成は無効になります。',
 	'config-no-uri' => "'''エラー:''' 現在のURIを決定できませんでした。
 インストールは中止されました。",
-	'config-no-cli-uri' => "'''警告''': --scriptpath が指定されていないため、既定値 <code>$1</code> を使用します。",
+	'config-no-cli-uri' => "'''警告:''' --scriptpath が指定されていないため、既定値 <code>$1</code> を使用します。",
 	'config-using-server' => 'サーバー名「<nowiki>$1</nowiki>」を使用しています。',
 	'config-using-uri' => 'サーバー URL「<nowiki>$1$2</nowiki>」を使用しています。',
 	'config-uploads-not-safe' => "'''警告:''' アップロードの既定ディレクトリ <code>$1</code> に、任意のスクリプト実行に関する脆弱性があります。
@@ -10422,12 +10436,12 @@ GFDLは有効なライセンスですが、内容を理解するのは困難で�
 	'config-install-user-missing-create' => '指定したユーザー「$1」は存在しません。
 アカウントを作成する場合は、下の「アカウント作成」をクリックしてください。',
 	'config-install-tables' => 'テーブルの作成',
-	'config-install-tables-exist' => "'''警告''': MediaWiki テーブルは既に存在するようです。
+	'config-install-tables-exist' => "'''警告:''' MediaWiki テーブルは既に存在するようです。
 作成を省略します。",
-	'config-install-tables-failed' => "'''エラー''': テーブルの作成が、以下のエラーにより失敗しました: $1",
+	'config-install-tables-failed' => "'''エラー:''' テーブルの作成が、以下のエラーにより失敗しました: $1",
 	'config-install-interwiki' => '既定のウィキ間テーブルの導入',
 	'config-install-interwiki-list' => 'ファイル <code>interwiki.list</code> から読み取れませんでした。',
-	'config-install-interwiki-exists' => "'''警告''': ウィキ間テーブルは既に登録されているようです。
+	'config-install-interwiki-exists' => "'''警告:''' ウィキ間テーブルは既に登録されているようです。
 既定のテーブルを無視します。",
 	'config-install-stats' => '統計情報の初期化',
 	'config-install-keys' => '秘密鍵の生成',
@@ -19955,7 +19969,7 @@ $1',
 	'config-env-php-toolow' => '已安装PHP $1；但是，MediaWiki需要PHP $2或更高版本。',
 	'config-unicode-using-utf8' => '使用Brion Vibber的utf8_normalize.so实现Unicode正常化。',
 	'config-unicode-using-intl' => '使用[http://pecl.php.net/intl intl PECL扩展]实现Unicode正常化。',
-	'config-unicode-pure-php-warning' => "'''警告'''：因为尚未安装 [http://pecl.php.net/intl intl PECL 扩展]以处理 Unicode 正常化，故只能退而采用运行较慢的纯 PHP 实现的方法。
+	'config-unicode-pure-php-warning' => "'''警告：'''因为尚未安装 [http://pecl.php.net/intl intl PECL 扩展]以处理 Unicode 正常化，故只能退而采用运行较慢的纯 PHP 实现的方法。
 如果您运行着一个高流量的站点，请参阅 [//www.mediawiki.org/wiki/Unicode_normalization_considerations Unicode 正常化]一文。",
 	'config-unicode-update-warning' => "'''警告'''：Unicode正常化封装器的已安装版本使用了旧版本的[http://site.icu-project.org/ ICU项目]库。如果您需要使用Unicode，请将其[//www.mediawiki.org/wiki/Unicode_normalization_considerations 升级]。",
 	'config-no-db' => '找不到合适的数据库驱动！您需要为PHP安装数据库驱动。目前支持以下数据库：$1。
@@ -20060,7 +20074,6 @@ Object caching is not enabled.",
 请考虑将数据库统一放置在某处，如<code>/var/lib/mediawiki/yourwiki</code>下。",
 	'config-oracle-def-ts' => '默认表空间：',
 	'config-oracle-temp-ts' => '临时表空间：',
-	'config-type-ibm_db2' => 'IBM DB2',
 	'config-support-info' => 'MediaWiki支持以下数据库系统：
 
 $1
@@ -20070,12 +20083,10 @@ $1
 	'config-support-postgres' => '* $1是一种流行的开源数据库系统，可作为MySQL的替代（[http://www.php.net/manual/en/pgsql.installation.php 如何将对PostgreSQL的支持编译进PHP中]）。本程序中可能依然存在一些小而明显的错误，因此并不建议在生产环境中使用该数据库系统。',
 	'config-support-sqlite' => '* $1是一种轻量级的数据库系统，能被良好地支持。（[http://www.php.net/manual/en/pdo.installation.php 如何将对SQLite的支持编译进PHP中]，须使用PDO）',
 	'config-support-oracle' => '* $1是一种商用企业级的数据库。（[http://www.php.net/manual/en/oci8.installation.php 如何将对OCI8的支持编译进PHP中]）',
-	'config-support-ibm_db2' => '* $1是一种商用企业级数据库。（[http://www.php.net/manual/en/ibm-db2.installation.php 如何编译支持IBM DB2的PHP]）',
 	'config-header-mysql' => 'MySQL设置',
 	'config-header-postgres' => 'PostgreSQL设置',
 	'config-header-sqlite' => 'SQLite设置',
 	'config-header-oracle' => 'Oracle设置',
-	'config-header-ibm_db2' => 'IBM DB2设置',
 	'config-invalid-db-type' => '无效的数据库类型',
 	'config-missing-db-name' => '您必须为“数据库名称”输入内容',
 	'config-missing-db-host' => '您必须为“数据库主机”输入内容',
@@ -20150,7 +20161,6 @@ chmod a+w $3</pre>',
 	'config-mysql-charset-help' => "在'''二进制模式'''下，MediaWiki会将UTF-8编码的文本存于数据库的二进制字段中。相对于MySQL的UTF-8模式，这种方法效率更高，并允许您使用全范围的Unicode字符。
 
 在'''UTF-8模式'''下，MySQL将知道您数据使用的字符集，并能适当地提供和转换内容。但这样做您将无法在数据库中存储[//zh.wikipedia.org/wiki/基本多文种平面 基本多文种平面]以外的字符。",
-	'config-ibm_db2-low-db-pagesize' => "您的DB2数据库默认表空间的页长（pagesize）不足。至少需要'''32K'''或更大的页长。",
 	'config-site-name' => 'Wiki的名称：',
 	'config-site-name-help' => '填入的内容会出现在浏览器的标题栏以及其他多处位置中。',
 	'config-site-name-blank' => '输入网站的名称。',
@@ -20400,7 +20410,7 @@ $1',
 	'config-env-php-toolow' => '已安裝 PHP $1；但是，MediaWiki 需要 PHP $2 或更高版本。',
 	'config-unicode-using-utf8' => '將使用 Brion Vibber 的 utf8_normalize.so 以實作 Unicode 正規化。',
 	'config-unicode-using-intl' => '將使用 [http://pecl.php.net/intl intl PECL 延伸函式庫]以實作 Unicode 正規化。',
-	'config-unicode-pure-php-warning' => "'''警告'''：因為尚未安裝 [http://pecl.php.net/intl intl PECL 延伸函式庫]以處理 Unicode 正規化，故只能退而採用較慢的純 PHP 實作。如果您運行着一個高流量的網站，請參閱 [//www.mediawiki.org/wiki/Unicode_normalization_considerations Unicode 正規化]一文。",
+	'config-unicode-pure-php-warning' => "'''警告：'''因為尚未安裝 [http://pecl.php.net/intl intl PECL 延伸函式庫]以處理 Unicode 正規化，故只能退而採用較慢的純 PHP 實作。如果您運行着一個高流量的網站，請參閱 [//www.mediawiki.org/wiki/Unicode_normalization_considerations Unicode 正規化]一文。",
 	'config-unicode-update-warning' => "'''警告'''：Unicode正常化封裝器的已安裝版本使用了舊版本的[http://site.icu-project.org/ ICU項目]庫。如果您需要使用Unicode，請將其[//www.mediawiki.org/wiki/Unicode_normalization_considerations 升級]。",
 	'config-no-db' => '找不到合適的數據庫驅動！您需要為PHP安裝數據庫驅動。目前支持以下數據庫：$1。
 
@@ -20504,7 +20514,6 @@ Object caching is not enabled.",
 請考慮將數據庫統一放置在某處，如<code>/var/lib/mediawiki/yourwiki</code>下。",
 	'config-oracle-def-ts' => '默認表空間：',
 	'config-oracle-temp-ts' => '臨時表空間：',
-	'config-type-ibm_db2' => 'IBM DB2',
 	'config-support-info' => 'MediaWiki支持以下數據庫系統：
 
 $1
@@ -20514,12 +20523,10 @@ $1
 	'config-support-postgres' => '* $1是一種流行的開源數據庫系統，可作為MySQL的替代（[http://www.php.net/manual/en/pgsql.installation.php 如何將對PostgreSQL的支持編譯進PHP中]）。本程序中可能依然存在一些小而明顯的錯誤，因此並不建議在生產環境中使用該數據庫系統。',
 	'config-support-sqlite' => '* $1是一種輕量級的數據庫系統，能被良好地支持。（[http://www.php.net/manual/en/pdo.installation.php 如何將對SQLite的支持編譯進PHP中]，須使用PDO）',
 	'config-support-oracle' => '* $1是一種商用企業級的數據庫。（[http://www.php.net/manual/en/oci8.installation.php 如何將對OCI8的支持編譯進PHP中]）',
-	'config-support-ibm_db2' => '* $1是一種商用企業級數據庫。', # Fuzzy
 	'config-header-mysql' => 'MySQL 的設定',
 	'config-header-postgres' => 'PostgreSQL設置',
 	'config-header-sqlite' => 'SQLite 的設定',
 	'config-header-oracle' => '甲骨文設定',
-	'config-header-ibm_db2' => 'IBM DB2設置',
 	'config-invalid-db-type' => '無效的資料庫類型',
 	'config-missing-db-name' => '您必須為“數據庫名稱”輸入內容',
 	'config-missing-db-host' => '您必須為“數據庫主機”輸入內容',
@@ -20594,7 +20601,6 @@ chmod a+w $3</pre>',
 	'config-mysql-charset-help' => "在'''二進制模式'''下，MediaWiki會將UTF-8編碼的文本存於數據庫的二進制字段中。相對於MySQL的UTF-8模式，這種方法效率更高，並允許您使用全範圍的Unicode字符。
 
 在'''UTF-8模式'''下，MySQL將知道您數據使用的字符集，並能適當地提供和轉換內容。但這樣做您將無法在數據庫中存儲[//zh.wikipedia.org/wiki/基本多文種平面 基本多文種平面]以外的字符。",
-	'config-ibm_db2-low-db-pagesize' => "您的DB2數據庫默認表空間的頁長（pagesize）不足。至少需要'''32K'''或更大的頁長。",
 	'config-site-name' => 'Wiki的名稱：',
 	'config-site-name-help' => '填入的內容會出現在瀏覽器的標題欄以及其他多處位置中。',
 	'config-site-name-blank' => '輸入站點名稱。',
