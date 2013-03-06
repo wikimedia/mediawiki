@@ -391,7 +391,9 @@ var mw = ( function ( $, undefined ) {
 				// List of callback functions waiting for modules to be ready to be called
 				jobs = [],
 				// Selector cache for the marker element. Use getMarker() to get/use the marker!
-				$marker = null;
+				$marker = null,
+				// Buffer for addEmbeddedCSS.
+				cssBuffer = '';
 
 			/* Private methods */
 
@@ -452,59 +454,82 @@ var mw = ( function ( $, undefined ) {
 			}
 
 			/**
-			 * Checks whether we should create a new styleheet or append to the
-			 * given style tag in `$style`.
-			 *
-			 * TODO: Handle IE cssRules limit (not the same as the IE styleSheets limit).
+			 * Checks whether it is safe to add this css to a stylesheet.
 			 *
 			 * @private
-			 * @param {jQuery} $style
 			 * @param {string} cssText
-			 * @return {boolean} False if a new one should be created.
+			 * @return {boolean} False if a new one must be created.
 			 */
-			function shouldExpandStylesheetWith( $style, cssText ) {
-				return (
-					// By default, always create a new <style>. Appending text
-					// to a <style> tag means the contents have to be re-parsed (bug 45810).
-					// Except, of course, in IE below 9, in there we default to
-					// re-using and appending to a <style> tag due to the
-					// IE stylesheet limit (bug 31676).
-					( 'documentMode' in document && document.documentMode <= 9 ) &&
-					// Makes sure that cssText containing `@import`
-					// rules will end up in a new stylesheet (as those only work when
-					// placed at the start of a stylesheet; bug 35562).
-					cssText.indexOf( '@import' ) === -1
-				);
+			function canExpandStylesheetWith( cssText ) {
+				// Makes sure that cssText containing `@import`
+				// rules will end up in a new stylesheet (as those only work when
+				// placed at the start of a stylesheet; bug 35562).
+				return cssText.indexOf( '@import' ) === -1;
 			}
 
+			/**
+			 * @param {string} [cssText=cssBuffer] If called without cssText,
+			 * the internal buffer will be inserted instead.
+			 */
 			function addEmbeddedCSS( cssText ) {
 				var $style, styleEl;
 
-				$style = getMarker().prev();
-				// Verify that the the element before Marker actually is one
-				// that came from ResourceLoader, and not a style tag that some
-				// other script inserted before our marker, or, more importantly,
-				// it may not be a style tag at all (could be `<meta>` or `<script>`).
-				if (
-					$style.data( 'ResourceLoaderDynamicStyleTag' ) === true &&
-					shouldExpandStylesheetWith( $style, cssText )
-				) {
-					// There's already a dynamic <style> tag present and
-					// canExpandStylesheetWith() gave a green light to append more to it.
-					styleEl = $style.get( 0 );
-					if ( styleEl.styleSheet ) {
-						try {
-							styleEl.styleSheet.cssText += cssText; // IE
-						} catch ( e ) {
-							log( 'addEmbeddedCSS fail\ne.message: ' + e.message, e );
-						}
-					} else {
-						styleEl.appendChild( document.createTextNode( String( cssText ) ) );
+				// Yield once before inserting the <style> tag. There are likely
+				// more calls coming up which we can combine this way.
+				// Appending a stylesheet and waiting for the browser to repaint
+				// is fairly expensive, this reduces it (bug 45810)
+				if ( cssText ) {
+					// Be careful not to extend the buffer with css that needs a new stylesheet
+					if ( !cssBuffer || canExpandStylesheetWith( cssText ) ) {
+						// Linebreak for somewhat distinguishable sections
+						// (the rl-cachekey comment separating each)
+						cssBuffer += '\n' + cssText;
+						// TODO: Use requestAnimationFrame in the future which will
+						// perform even better by not injecting styles while the browser
+						// is paiting.
+						setTimeout( addEmbeddedCSS );
+						return;
 					}
+
+				// This is a delayed call and we got a buffer still
+				} else if ( cssBuffer ) {
+					cssText = cssBuffer;
+					cssBuffer = '';
 				} else {
-					$( addStyleTag( cssText, getMarker() ) )
-						.data( 'ResourceLoaderDynamicStyleTag', true );
+					// This is a delayed call, but buffer is already cleared by
+					// another delayed call.
+					return;
 				}
+
+				// By default, always create a new <style>. Appending text
+				// to a <style> tag means the contents have to be re-parsed (bug 45810).
+				// Except, of course, in IE below 9, in there we default to
+				// re-using and appending to a <style> tag due to the
+				// IE stylesheet limit (bug 31676).
+				if ( 'documentMode' in document && document.documentMode <= 9 ) {
+
+					$style = getMarker().prev();
+					// Verify that the the element before Marker actually is a
+					// <style> tag and one that came from ResourceLoader
+					// (not some other style tag or even a `<meta>` or `<script>`).
+					if ( $style.data( 'ResourceLoaderDynamicStyleTag' ) === true ) {
+						// There's already a dynamic <style> tag present and
+						// canExpandStylesheetWith() gave a green light to append more to it.
+						styleEl = $style.get( 0 );
+						if ( styleEl.styleSheet ) {
+							try {
+								styleEl.styleSheet.cssText += cssText; // IE
+							} catch ( e ) {
+								log( 'addEmbeddedCSS fail\ne.message: ' + e.message, e );
+							}
+						} else {
+							styleEl.appendChild( document.createTextNode( String( cssText ) ) );
+						}
+						return;
+					}
+				}
+
+				$( addStyleTag( $.trim( cssText ), getMarker() ) ).data( 'ResourceLoaderDynamicStyleTag', true );
 			}
 
 			/**
