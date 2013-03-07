@@ -1016,6 +1016,7 @@ abstract class FileBackend {
 	 * @param $params Array
 	 * $params include:
 	 *   - src : source storage path
+	 *   - ttl : lifetime (seconds) if pre-authenticated; default is 1 day (since 1.21)
 	 * @return string|null
 	 * @since 1.21
 	 */
