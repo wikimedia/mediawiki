@@ -109,6 +109,9 @@ class SqliteUpdater extends DatabaseUpdater {
 			array( 'modifyField', 'user_groups', 'ug_group', 'patch-ug_group-length-increase-255.sql' ),
 			array( 'modifyField', 'user_former_groups', 'ufg_group', 'patch-ufg_group-length-increase-255.sql' ),
 			array( 'addIndex', 'page_props', 'pp_propname_page',  'patch-page_props-propname-page-index.sql' ),
+
+			array( 'addField', 'job',           'job_not_before',       'patch-job_not_before.sql' ),
+			array( 'addIndex', 'job',           'job_not_before',       'patch-job_not_before.sql' ),
 		);
 	}
 
