@@ -657,6 +657,8 @@ class HistoryPager extends ReverseChronologicalPager {
 				$tools[] = "<span class=\"mw-history-undo\">{$undolink}</span>";
 			}
 		}
+		// Allow extension to add their own links here
+		wfRunHooks( 'HistoryRevisionTools', array( $rev, &$tools ) );
 
 		if ( $tools ) {
 			$s2 .= ' '. $this->msg( 'parentheses' )->rawParams( $lang->pipeList( $tools ) )->escaped();
