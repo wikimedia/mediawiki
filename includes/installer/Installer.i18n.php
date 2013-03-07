@@ -4429,6 +4429,7 @@ $messages['en-gb'] = array(
 If you run a high-traffic site, you should read a little on [//www.mediawiki.org/wiki/Unicode_normalization_considerations Unicode normalisation].",
 	'config-unicode-update-warning' => "'''Warning:''' The installed version of the Unicode normalisation wrapper uses an older version of [http://site.icu-project.org/ the ICU project's] library.
 You should [//www.mediawiki.org/wiki/Unicode_normalization_considerations upgrade] if you are at all concerned about using Unicode.",
+	'config-unknown-collation' => "'''Warning:''' Database is using unrecognised collation.",
 	'config-profile-fishbowl' => 'Authorised editors only',
 	'config-install-stats' => 'Initialising statistics',
 );
@@ -10460,7 +10461,7 @@ MediaWikiのインストールに成功しました。
 
 $3
 
-'''注意''': この生成された設定ファイルをダウンロードせずにインストールを終了すると、このファイルは利用できなくなります。
+'''注意:''' この生成された設定ファイルをダウンロードせずにインストールを終了すると、このファイルは利用できなくなります。
 
 上記の作業が完了すると、'''[$2 ウィキに入る]'''ことができます。",
 	'config-download-localsettings' => '<code>LocalSettings.php</code> をダウンロード',
@@ -19823,7 +19824,10 @@ $messages['xal'] = array(
  * @author පසිඳු කාවින්ද
  */
 $messages['yi'] = array(
+	'config-desc' => 'דער אינסטאלירער פאר מעדיעוויקי',
+	'config-title' => 'מעדיעוויקי $1 אינסטאלירונג',
 	'config-information' => 'אינפֿארמאציע',
+	'config-wiki-language' => 'ווקי שפראך:',
 	'config-back' => '→ צוריק',
 	'config-continue' => 'פֿארזעצן ←',
 	'config-page-language' => 'שפראַך',

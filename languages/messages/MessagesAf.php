@@ -642,7 +642,7 @@ Moenie vergeet om u [[Special:Preferences|voorkeure vir {{SITENAME}}]] te stel n
 'gotaccount' => "Het u reeds 'n rekening? '''$1'''.",
 'gotaccountlink' => 'Teken in',
 'userlogin-resetlink' => 'U aanmeld besonderhede vergeet?',
-'createaccountmail' => 'deur e-pos',
+'createaccountmail' => "Gebruik 'n tydelike lukrake wagwoord en stuur dit na die e-posadres hier onder",
 'createaccountreason' => 'Rede:',
 'badretype' => 'Die ingetikte wagwoorde is nie dieselfde nie.',
 'userexists' => "Die gebruikersnaam wat u gekies het is reeds geneem.
@@ -710,7 +710,7 @@ Wag asseblief alvorens u weer probeer.",
 'loginlanguagelabel' => 'Taal: $1',
 'suspicious-userlogout' => "U versoek om af te teken is geïgnoreer omdat dit lyk asof dit deur 'n gebreekte webleser of instaanbediener gestuur is.",
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Onbekende fout in PHP se mail()-funksie',
 'user-mail-no-addy' => "Geprobeer om e-pos te stuur sonder 'n e-posadres.",
 'user-mail-no-body' => "Daar is probeer om 'n leë of 'n onredelike kort boodskap te stuur.",
@@ -1242,7 +1242,7 @@ Details kan in die [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} s
 'search-interwiki-default' => '$1 resultate:',
 'search-interwiki-more' => '(meer)',
 'search-relatedarticle' => 'Verwante',
-'mwsuggest-disable' => 'Deaktiveer AJAX-voorstelle',
+'mwsuggest-disable' => 'Deaktiveer soek-voorstelle',
 'searcheverything-enable' => 'Soek in alle naamruimtes',
 'searchrelated' => 'verwante',
 'searchall' => 'alle',
@@ -1391,7 +1391,7 @@ Die inligting is vir ander gebruikers sigbaar.',
 'prefs-displaywatchlist' => 'Weergaweopsies',
 'prefs-diffs' => 'Verskille',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'Die e-posadres lyk geldig',
 'email-address-validity-invalid' => "Verskaf 'n geldige e-posadres",
 
@@ -1990,6 +1990,10 @@ Miskien wil u eerder die beskrywing daar op die [$2 lêerbeskrywing] bywerk.',
 Hulle moet gewysig word om eerder direk na die regte onderwerpe te skakel.<br />
 'n Bladsy word beskou as 'n dubbelsinnigheidsbladsy as dit 'n sjabloon bevat wat geskakel is vanaf [[MediaWiki:Disambiguationspage]]",
 
+'pageswithprop' => "Blaaie met 'n bladsy-eienskap",
+'pageswithprop-text' => "Hierdie bladsy lys blaaie met 'n bepaalde blady-eienskap.",
+'pageswithprop-prop' => 'Naam van die eienskap:',
+
 'doubleredirects' => 'Dubbele aansture',
 'doubleredirectstext' => 'Hierdie lys bevat bladsye wat aansture na ander aanstuurblaaie is.
 Elke ry bevat skakels na die eerste en die tweede aanstuur, asook die eerste reël van van die tweede aanstuur se teks, wat gewoonlik die "regte" teiken-bladsy gee waarna die eerste aanstuur behoort te wys.
@@ -2182,7 +2186,7 @@ Daar kan [[{{MediaWiki:Listgrouprights-helppage}}|extra inligting]] oor individu
 'listgrouprights-addgroup-self-all' => 'Alle groepe byvoeg tot eie gebruiker',
 'listgrouprights-removegroup-self-all' => 'Alle groepe verwyder van eie gebruiker',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Geen versendadres beskikbaar',
 'mailnologintext' => "U moet [[Special:UserLogin|ingeteken]] wees en 'n geldige e-posadres in die [[Special:Preferences|voorkeure]] hê om e-pos aan ander gebruikers te stuur.",
 'emailuser' => 'Stuur e-pos na hierdie gebruiker',
@@ -2219,7 +2223,7 @@ Daar kan [[{{MediaWiki:Listgrouprights-helppage}}|extra inligting]] oor individu
 'usermessage-editor' => 'Stelselboodskapper',
 
 # Watchlist
-'watchlist' => 'My dophoulys',
+'watchlist' => 'Dophoulys',
 'mywatchlist' => 'Dophoulys',
 'watchlistfor2' => 'Vir $1 $2',
 'nowatchlist' => 'U het geen items in u dophoulys nie.',
@@ -3016,6 +3020,7 @@ Hierdie situasie was waarskynlik deur 'n skakel na 'n eksterne webtuiste op ons 
 'pageinfo-robot-noindex' => 'Nie indekseerbaar nie',
 'pageinfo-views' => 'Aantal kere gewys',
 'pageinfo-watchers' => 'Aantal dophouers',
+'pageinfo-few-watchers' => 'Minder as {{PLURAL:$1|dophouer|$1 dophouers}}',
 'pageinfo-redirects-name' => 'Aansture na die bladsy',
 'pageinfo-subpages-name' => 'Subblaaie van die bladsy',
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|aanstuur|aansture}}; $3 {{PLURAL:$3|nie-aanstuur|nie-aansture}})',
@@ -3556,7 +3561,7 @@ Ander velde sal versteek wees.
 'monthsall' => 'alle',
 'limitall' => 'alle',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Bevestig e-posadres',
 'confirmemail_noemail' => "U het nie 'n geldige e-posadres in u [[Special:Preferences|gebruikersvoorkeure]] gestel nie.",
 'confirmemail_text' => "Hierdie wiki vereis dat u e-posadres bevestig word voordat epos-funksies gebruik word. Klik onderstaande knoppie om 'n bevestigingspos na u adres te stuur. Die pos sal 'n skakel met 'n kode insluit; maak hierdie skakel oop in u webblaaier om te bevestig dat die adres geldig is.",
@@ -3782,7 +3787,7 @@ Beelde word in hulle volle resolusie gewys. Ander lêertipes word direk met hull
 'specialpages-group-highuse' => 'Baie gebruikte bladsye',
 'specialpages-group-pages' => 'Lyste van bladsye',
 'specialpages-group-pagetools' => 'Bladsyhulpmiddels',
-'specialpages-group-wiki' => 'Wiki data en hulpmiddels',
+'specialpages-group-wiki' => 'Data en hulpmiddels',
 'specialpages-group-redirects' => 'Aanstuur gewone bladsye',
 'specialpages-group-spam' => 'Spam-hulpmiddels',
 
@@ -3879,6 +3884,7 @@ Beelde word in hulle volle resolusie gewys. Ander lêertipes word direk met hull
 'logentry-newusers-newusers' => 'Gebruiker $1 is geskep',
 'logentry-newusers-create' => 'Gebruiker $1 is geskep',
 'logentry-newusers-create2' => 'Gebruiker $3 is deur $1 geskep',
+'logentry-newusers-byemail' => 'Gebruiker $3 is deur $1 geskep en die wagwoord is per e-pos aangestuur',
 'logentry-newusers-autocreate' => 'Die gebruiker $1 is outomaties geskep',
 'logentry-rights-rights' => '$1 het groepslidmaatskap vir $3 van $4 na $5 gewysig',
 'logentry-rights-rights-legacy' => '$1 het groepslidmaatskap vir $3 gewysig',
@@ -3937,6 +3943,7 @@ Anders kan u die eenvoudige vorm hieronder gebruik. U kommentaar sal by die blad
 'api-error-ok-but-empty' => 'Interne fout: geen reaksie van die bediener.',
 'api-error-overwrite' => "'N bestaande lêer vervang word nie toegelaat nie.",
 'api-error-stashfailed' => 'Interne fout: Server nie tydelike lêer te stoor.',
+'api-error-publishfailed' => 'Interne fout: bediener kon nie die tydelike lêer publiseer nie.',
 'api-error-timeout' => 'Die bediener het nie reageer binne die verwagte tyd.',
 'api-error-unclassified' => "'n Onbekende fout het voorgekom.",
 'api-error-unknown-code' => 'Onbekende fout: "$1"',
@@ -3957,4 +3964,7 @@ Anders kan u die eenvoudige vorm hieronder gebruik. U kommentaar sal by die blad
 'duration-centuries' => '$1 {{PLURAL:$1|eeu|eeue}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennia}}',
 
+# Unknown messages
+'pageswithprop-legend' => "Blaaie met 'n bladsy-eienskap",
+'pageswithprop-submit' => 'OK',
 );

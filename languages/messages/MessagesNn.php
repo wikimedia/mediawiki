@@ -2604,7 +2604,7 @@ $1',
 'ipb-change-block' => 'Blokker brukaren på nytt med desse innstillingane',
 'ipb-confirm' => 'Stadfest blokkering',
 'badipaddress' => 'IP-adressa er ugyldig eller blokkering av brukarar er slått av på tenaren.',
-'blockipsuccesssub' => 'Blokkeringa er utførd',
+'blockipsuccesssub' => 'Blokkeringa er utført',
 'blockipsuccesstext' => '«[[Special:Contributions/$1|$1]]» er blokkert.<br />
 Sjå [[Special:BlockList|blokkeringslista]] for alle blokkeringane.',
 'ipb-blockingself' => 'Du er i ferd med å blokkera deg sjølv. Er du viss på at du ynskjer gjera dette?',

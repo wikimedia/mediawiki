@@ -428,7 +428,7 @@ Kerem kerê, deqêna oncia bıcerrebnê.",
 'protectedpagetext' => 'Na pele vurnaisu rê qapan biya.',
 'viewsourcetext' => 'Sıma şikinê çımê na pele bıvênê u kopya kerê:',
 'protectedinterface' => "Na pele ''software'' rê meqalunê caunê bırnau dana, u qapana ke suıstımalu rê engel bo.",
-'editinginterface' => "'''Teme:''' Sıma hao jü pela ke serba nustê meqalunê caunê bırnau dana, vurnenê.
+'editinginterface' => "Teme:''' Sıma hawo jü pela ke serba nustê meqalunê caunê bırnau dana, vurnenê.
 Vurnaisê na pele karberunê binu rê serpela karberi kena ke bıasno.
 Serba çarnaişi, yardımê [//translatewiki.net/wiki/Main_Page?setlang=kiu translatewiki.net]i ra procêdoskerdene rê diqet kerê.",
 'sqlhidden' => '(Persê SQLi nımıteo)',
@@ -1138,7 +1138,7 @@ Cêr [$2 pela arezekerdena dosya de] arezekerdene asnina.',
 'listgrouprights-addgroup-all' => 'Heme grubu ilawe ke',
 'listgrouprights-removegroup-all' => 'Heme grubu wedare',
 
-# E-mail user
+# Email user
 'emailuser' => 'Nê karberi rê e-poste bırusne',
 'emailpage' => 'Karberi rê e-poste bırusne',
 'emailfrom' => 'Kami ra:',

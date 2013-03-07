@@ -527,7 +527,7 @@ Wees sü gödj än täif, bit dü wider ferseechst.',
 'loginlanguagelabel' => 'Spräke: $1',
 'suspicious-userlogout' => 'Dan Oufmäldönjfrååge wörd ferwaigred, deer ja fermouslik foon en defäkte browser unti en cache-proxy sånd wörd.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Ünbekäänd feeler mä det funktsjuun mail() faan PHP.',
 'user-mail-no-addy' => 'Köö niinj e-mail schake suner e-mail-adres.',
 'user-mail-no-body' => 'Dü wulst en e-mail saner tekst wechsjüür.',
@@ -1053,7 +1053,7 @@ Dü könst det uun't [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}
 'search-interwiki-default' => '$1 resultoote:',
 'search-interwiki-more' => '(widere)',
 'search-relatedarticle' => 'früne',
-'mwsuggest-disable' => 'forsliike per Ajax deaktiviire',
+'mwsuggest-disable' => "Föörslacher för't sjüken deaktiwiare",
 'searcheverything-enable' => 'Onj ål noomerüme säke',
 'searchrelated' => 'früne',
 'searchall' => 'åle',
@@ -1195,7 +1195,7 @@ Do san jo ual iinstelangen wech.',
 'prefs-displaywatchlist' => "Mögelkhaiden för't uunwisin",
 'prefs-diffs' => 'Ferskeel',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'Detdiar E-Mail-adres schocht gud ütj.',
 'email-address-validity-invalid' => 'Du en echt E-Mail-adres uun.',
 
@@ -1448,7 +1448,7 @@ Det beskriiwang faan't [$2 beskriiwangssidj] woort oner uunwiset.",
 # Special:ListGroupRights
 'listgrouprights-members' => '(lasmoote-list)',
 
-# E-mail user
+# Email user
 'emailuser' => 'E-mail tu dideere brüker',
 
 # Watchlist

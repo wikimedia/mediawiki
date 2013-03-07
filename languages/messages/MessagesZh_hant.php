@@ -1873,7 +1873,7 @@ $1',
 'filehist-filesize' => '檔案大小',
 'filehist-comment' => '註解',
 'filehist-missing' => '檔案遺失',
-'imagelinks' => '文件使用情況',
+'imagelinks' => '檔案使用情況',
 'linkstoimage' => '以下的$1個頁面連接到本檔案:',
 'linkstoimage-more' => '多於$1個頁面連接到這個檔案。
 下面的清單只列示了連去這個檔案的最首$1個頁面。

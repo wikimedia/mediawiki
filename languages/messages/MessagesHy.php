@@ -2444,6 +2444,8 @@ Please visit [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and 
 'skinname-myskin' => 'ԻմՏեսք',
 'skinname-chick' => 'Ծիտ',
 'skinname-simple' => 'Պարզ',
+'skinname-modern' => 'Մոդերն',
+'skinname-vector' => 'Սովորական',
 
 # Patrolling
 'markaspatrolleddiff' => 'Նշել որպես ստուգված',
@@ -2480,6 +2482,7 @@ $1',
 'mediawarning' => "'''Զգուշացում'''. այս նիշքի տեսակը կարող է պարունակել վնասակար ծրագրային կոդ։ Այն կիրարկելը կարող է վտանգել ձեր համակարգը։",
 'imagemaxsize' => 'Պատկերի էջում պատկերի չափի սահմանափակում.',
 'thumbsize' => 'Պատկերների փոքրացված չափ.',
+'widthheight' => '$1 × $2',
 'widthheightpage' => '$1 × $2, $3 էջեր',
 'file-info' => 'նիշքի չափ՝ $1, MIME-տեսակ՝ $2',
 'file-info-size' => '$1 × $2 փիքսել, նիշքի չափը՝ $3, MIME-տեսակը՝ $4',
