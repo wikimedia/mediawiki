@@ -285,6 +285,9 @@ $article: Article object
 $user: the User object that was created. (Parameter added in 1.7)
 $byEmail: true when account was created "by email" (added in 1.12)
 
+'AfterCreateApiMain': Called after ApiMain is instantiated in api.php.
+&$processor: ApiMain instance
+
 'AfterFinalPageOutput': At the end of OutputPage::output() but before final
 ob_end_flush() which will send the buffered output to the client. This allows
 for last-minute modification of the output within the buffer by using
@@ -659,6 +662,10 @@ false to override. If an image is "bad", it is not rendered inline in wiki
 pages or galleries in category pages.
 $name: Image name being checked
 &$bad: Whether or not the image is "bad"
+
+'BeforeCreateApiMain': Called before ApiMain is instantiated in api.php.
+Change $processor and return false to override.
+&$processor: null on in, optional ApiMain instance on out
 
 'BeforeDisplayNoArticleText': Before displaying message key "noarticletext" or
 "noarticletext-nopermission" at Article::showMissingArticle().

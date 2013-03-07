@@ -71,7 +71,11 @@ $wgTitle = Title::makeTitle( NS_MAIN, 'API' );
  * is some form of an ApiMain, possibly even one that produces an error message,
  * but we don't care here, as that is handled by the ctor.
  */
-$processor = new ApiMain( RequestContext::getMain(), $wgEnableWriteAPI );
+$processor = null;
+if ( wfRunHooks( 'BeforeCreateApiMain', array( &$processor ) ) ) {
+	$processor = new ApiMain( RequestContext::getMain(), $wgEnableWriteAPI );
+}
+wfRunHooks( 'AfterCreateApiMain', array( &$processor ) );
 
 // Process data & print results
 $processor->execute();
