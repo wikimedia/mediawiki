@@ -391,7 +391,9 @@ var mw = ( function ( $, undefined ) {
 				// List of callback functions waiting for modules to be ready to be called
 				jobs = [],
 				// Selector cache for the marker element. Use getMarker() to get/use the marker!
-				$marker = null;
+				$marker = null,
+				// Buffer for addEmbeddedCSS.
+				cssBuffer = '';
 
 			/* Private methods */
 
@@ -465,15 +467,46 @@ var mw = ( function ( $, undefined ) {
 				return cssText.indexOf( '@import' ) === -1;
 			}
 
+			/**
+			 * @param {string} [cssText=cssBuffer] If called without cssText,
+			 * the internal buffer will be inserted instead.
+			 */
 			function addEmbeddedCSS( cssText ) {
 				var $style, styleEl;
+
+				// Yield once before inserting the <style> tag. There are likely
+				// more calls coming up which we can combine this way.
+				// Appending a stylesheet and waiting for the browser to repaint
+				// is fairly expensive, this reduces it (bug 45810)
+				if ( cssText ) {
+					// Be careful not to extend the buffer with css that needs a new stylesheet
+					if ( !cssBuffer || canExpandStylesheetWith( cssText ) ) {
+						// Linebreak for somewhat distinguishable sections
+						// (the rl-cachekey comment separating each)
+						cssBuffer += '\n' + cssText;
+						// TODO: Use requestAnimationFrame in the future which will
+						// perform even better by not injecting styles while the browser
+						// is paiting.
+						setTimeout( addEmbeddedCSS );
+						return;
+					}
+
+				// This is a delayed call and we got a buffer still
+				} else if ( cssBuffer ) {
+					cssText = cssBuffer;
+					cssBuffer = '';
+				} else {
+					// This is a delayed call, but buffer is already cleared by
+					// another delayed call.
+					return;
+				}
 
 				// By default, always create a new <style>. Appending text
 				// to a <style> tag means the contents have to be re-parsed (bug 45810).
 				// Except, of course, in IE below 9, in there we default to
 				// re-using and appending to a <style> tag due to the
 				// IE stylesheet limit (bug 31676).
-				if ( ( 'documentMode' in document && document.documentMode <= 9 ) && canExpandStylesheetWith( cssText ) ) {
+				if ( 'documentMode' in document && document.documentMode <= 9 ) {
 
 					$style = getMarker().prev();
 					// Verify that the the element before Marker actually is a
