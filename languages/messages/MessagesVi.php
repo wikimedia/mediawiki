@@ -1081,10 +1081,10 @@ Nó nên ít hơn $2 {{PLURAL:$2|lần gọi|lần gọi}}, hiện giờ đang l
 'expensive-parserfunction-category' => 'Trang có quá nhiều lời gọi hàm cú pháp cần mức độ xử lý cao',
 'post-expand-template-inclusion-warning' => 'Cảnh báo: Kích thước bản mẫu nhúng vào quá lớn.
 Một số bản mẫu sẽ không được đưa vào.',
-'post-expand-template-inclusion-category' => 'Những trang có kích thước bản mẫu nhúng vào vượt quá giới hạn cho phép',
-'post-expand-template-argument-warning' => 'Cảnh báo: Trang này có chứa ít nhất một giá trị bản mẫu có kích thước bung ra quá lớn.
-Những giá trị này sẽ bị bỏ đi.',
-'post-expand-template-argument-category' => 'Những trang có chứa những giá trị bản mẫu bị loại bỏ',
+'post-expand-template-inclusion-category' => 'Trang có kích thước bản mẫu nhúng vào vượt quá giới hạn cho phép',
+'post-expand-template-argument-warning' => 'Cảnh báo: Trang này có chứa ít nhất một tham số bản mẫu có kích thước bung ra quá lớn.
+Những tham số này sẽ bị bỏ đi.',
+'post-expand-template-argument-category' => 'Trang có chứa tham số bản mẫu bị loại bỏ',
 'parser-template-loop-warning' => 'Phát hiện bản mẫu lặp vòng: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Bản mẫu đã vượt quá giới hạn về độ sâu đệ quy ($1)',
 'language-converter-depth-warning' => 'Đã vượt quá giới hạn độ sâu của bộ chuyển đổi ngôn ngữ ($1)',

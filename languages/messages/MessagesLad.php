@@ -1091,7 +1091,7 @@ Puedes ver su manadero',
 'tooltip-n-currentevents' => 'Información encima de los acontècimientos de oy día',
 'tooltip-n-recentchanges' => 'Lista de los trocamientos muevos en el viki',
 'tooltip-n-randompage' => 'Carga una hoja por asardo',
-'tooltip-n-help' => 'El lugar para saver más',
+'tooltip-n-help' => 'Para saver mas',
 'tooltip-t-whatlinkshere' => 'Una lista de todas las hojas del viki que tienen atamientos con esta hoja',
 'tooltip-t-recentchangeslinked' => 'Los trocamientos freskos de las hojas que tienen atamiento con esta hoja',
 'tooltip-feed-rss' => 'Sindicación RSS de esta hoja',
@@ -1137,7 +1137,7 @@ Puedes ver su manadero',
 
 Sólo elementos de lista (liñas empeçando con *) se toman en konsidherasyón.
 El primer atamiento de cada liña deve de atarse con una dosya negra (la dosya que se quere blokar).
-Los atamientos venideros que están en la misma liña se konsidheran como eksepsiones, por enxemplo, hojas ande la dosya se ve en la liña.',
+Los atamientos venideros que están en la misma liña se konsidheran como eksepsiones (yaani hojas ande la dosya puede aparecer encaxada en la liña)',
 
 # Metadata
 'metadata' => 'Metadatos',

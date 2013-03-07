@@ -811,7 +811,7 @@ Molimo Vas da pričekate prije nego što pokušate ponovo.',
 'loginlanguagelabel' => 'Jezik: $1',
 'suspicious-userlogout' => 'Vaš zahtjev za odjavu je odbijen jer to izgleda kao da je poslan preko pokvarenog preglednika ili keširanog posrednika (proxyja).',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Nepoznata pogreška u PHP-mail() funkciji',
 'user-mail-no-addy' => 'Pokušaj slanja e-maila bez e-mail adrese.',
 
@@ -1478,9 +1478,9 @@ Ne smije biti duži od $1 {{PLURAL:$1|znaka|znaka|znakova}}.',
 'prefs-displaywatchlist' => 'Opcije prikaza',
 'prefs-diffs' => 'razl',
 
-# User preference: e-mail validation using jQuery
-'email-address-validity-valid' => 'E-mail adresa se pokazuje ispravnom',
-'email-address-validity-invalid' => 'Unesite valjanu e-mail adresu',
+# User preference: email validation using jQuery
+'email-address-validity-valid' => 'Adresa e-pošte pokazuje se ispravnom',
+'email-address-validity-invalid' => 'Unesite valjanu adresu e-pošte',
 
 # User rights
 'userrights' => 'Upravljanje suradničkim pravima',
@@ -2241,7 +2241,7 @@ Dodatne informacije o pojedinim pravim se mogu pronaći [[{{MediaWiki:Listgroupr
 'listgrouprights-addgroup-self-all' => 'Dodaj sve skupine vlastitom računu',
 'listgrouprights-removegroup-self-all' => 'Uklonite sve skupine iz vlastitog računa',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Nema adrese pošiljaoca',
 'mailnologintext' => 'Morate biti [[Special:UserLogin|prijavljeni]]
 i imati valjanu adresu e-pošte u svojim [[Special:Preferences|postavkama]]
@@ -2663,7 +2663,7 @@ Pogledajte [[Special:BlockList|popis blokiranja]] za pregled blokiranih suradnik
 'anononlyblock' => 'samo IP adrese',
 'noautoblockblock' => 'blokiranje samoga sebe je onemogućeno',
 'createaccountblock' => 'blokirano stvaranje suradničkog računa',
-'emailblock' => 'e-mail je blokiran',
+'emailblock' => 'e-pošta je blokirana',
 'blocklist-nousertalk' => 'bez uređivanja vlastite stranice za razgovor',
 'ipblocklist-empty' => 'Popis blokiranja je prazan.',
 'ipblocklist-no-results' => 'Tražena IP adresa ili suradničko ime nije blokirano.',
@@ -2671,7 +2671,7 @@ Pogledajte [[Special:BlockList|popis blokiranja]] za pregled blokiranih suradnik
 'unblocklink' => 'deblokiraj',
 'change-blocklink' => 'promijeni blokiranje',
 'contribslink' => 'doprinosi',
-'emaillink' => 'pošalji e-mail',
+'emaillink' => 'pošalji e-poruku',
 'autoblocker' => 'Automatski ste blokirani jer je Vašu IP adresu nedavno koristio "[[User:$1|$1]]" koji je blokiran zbog: "$2".',
 'blocklogpage' => 'Evidencija blokiranja',
 'blocklog-showlog' => 'Ovaj suradnik je ranije blokiran.
@@ -3605,7 +3605,7 @@ Svaka sljedeća poveznica u istom retku je izuzetak, npr. kod stranica gdje se s
 'monthsall' => 'sve',
 'limitall' => 'sve',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Potvrda e-mail adrese',
 'confirmemail_noemail' => 'Niste unijeli važeću e-mail adresu u Vaše [[Special:Preferences|suradničke postavke]].',
 'confirmemail_text' => 'U ovom wikiju morate prije korištenja e-mail naredbi potvrditi svoju e-mail adresu. Kliknite na gumb ispod kako biste poslali poruku s potvrdom na Vašu adresu. U poruci će biti poveznica koju morate otvoriti u svom web pregledniku i time potvrditi svoju e-mail adresu.',

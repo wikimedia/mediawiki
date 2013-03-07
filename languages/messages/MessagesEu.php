@@ -879,7 +879,7 @@ Eztabaidak aipatu gabe utzi dira.',
 Mesedez beheko alderaketa egiaztatu, egin nahi duzuna hori dela frogatzeko, eta ondoren azpiko aldaketak gorde, aldaketa desegiten amaitzeko.',
 'undo-failure' => 'Ezin izan da aldaketa desegin tarteko aldaketekin gatazkak direla-eta.',
 'undo-norev' => 'Aldaketa ezin da desegin ez delako existitzen edo ezabatu zutelako.',
-'undo-summary' => '[[Special:Contributions/$2|$2(r)en]] $1 berrikuspena desegin da ([[User talk:$2|Eztabaida]])',
+'undo-summary' => '[[Special:Contributions/$2|$2]] ([[User talk:$2|eztabaida]]) wikilariaren $1 berrikuspena desegin da',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Ezin izan da kontua sortu',
