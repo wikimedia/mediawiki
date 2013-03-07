@@ -110,4 +110,8 @@ class ShortPagesPage extends QueryPage {
 				? "${hlinkInParentheses} {$dm}{$plink} {$dm}[{$size}]"
 				: "<del>${hlinkInParentheses} {$dm}{$plink} {$dm}[{$size}]</del>";
 	}
+
+	protected function getGroupName() {
+		return 'maintenance';
+	}
 }

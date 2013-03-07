@@ -151,4 +151,8 @@ class BrokenRedirectsPage extends QueryPage {
 		$out .= " {$arr} {$to}";
 		return $out;
 	}
+
+	protected function getGroupName() {
+		return 'maintenance';
+	}
 }

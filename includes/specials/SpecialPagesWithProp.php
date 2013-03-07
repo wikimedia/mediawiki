@@ -131,4 +131,8 @@ class SpecialPagesWithProp extends QueryPage {
 		}
 		return $ret;
 	}
+
+	protected function getGroupName() {
+		return 'pages';
+	}
 }

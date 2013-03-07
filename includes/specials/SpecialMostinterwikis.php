@@ -114,4 +114,8 @@ class MostinterwikisPage extends QueryPage {
 
 		return $this->getLanguage()->specialList( $link, $count );
 	}
+
+	protected function getGroupName() {
+		return 'highuse';
+	}
 }

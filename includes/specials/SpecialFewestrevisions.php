@@ -93,4 +93,8 @@ class FewestrevisionsPage extends QueryPage {
 
 		return $this->getLanguage()->specialList( $plink, $nlink );
 	}
+
+	protected function getGroupName() {
+		return 'maintenance';
+	}
 }

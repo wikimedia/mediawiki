@@ -212,4 +212,8 @@ class SpecialListGroupRights extends SpecialPage {
 			return '<ul><li>' . implode( "</li>\n<li>", $r ) . '</li></ul>';
 		}
 	}
+
+	protected function getGroupName() {
+		return 'users';
+	}
 }

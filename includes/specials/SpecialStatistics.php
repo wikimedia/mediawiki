@@ -329,4 +329,8 @@ class SpecialStatistics extends SpecialPage {
 			Xml::tags( 'th', array( 'colspan' => '2' ), $this->msg( $header )->parse() ) .
 			Xml::closeElement( 'tr' );
 	}
+
+	protected function getGroupName() {
+		return 'wiki';
+	}
 }
