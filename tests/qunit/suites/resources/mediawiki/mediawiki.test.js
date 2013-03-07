@@ -333,11 +333,15 @@
 		mw.loader.implement(
 			'test.implement.a',
 			function () {
-				assert.equal(
-					$element.css( 'float' ),
-					'right',
-					'style is applied'
-				);
+				QUnit.stop();
+				setTimeout(function () {
+					assert.equal(
+						$element.css( 'float' ),
+						'right',
+						'style is applied'
+					);
+					QUnit.start();
+				});
 			},
 			{
 				'all': '.mw-test-implement-a { float: right; }'
@@ -426,11 +430,15 @@
 		mw.loader.implement(
 			'test.implement.c',
 			function () {
-				assert.equal(
-					$element.css( 'float' ),
-					'right',
-					'style is applied'
-				);
+				QUnit.stop();
+				setTimeout(function () {
+					assert.equal(
+						$element.css( 'float' ),
+						'right',
+						'style is applied'
+					);
+					QUnit.start();
+				});
 			},
 			{
 				'all': '.mw-test-implement-c { float: right; }'
