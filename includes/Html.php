@@ -650,6 +650,64 @@ class Html {
 	}
 
 	/**
+	 * Convenience function to produce a checkbox (input element with type=checkbox)
+	 *
+	 * @param string $name Name attribute
+	 * @param bool $checked Whether the checkbox is checked or not
+	 * @param array $attribs Array of additional attributes
+	 */
+	public static function check( $name, $checked = false, array $attribs = array() ) {
+		if ( isset( $attribs['value'] ) ) {
+			$value = $attribs['value'];
+			unset( $attribs['value'] );
+		} else {
+			$value = 1;
+		}
+
+		if ( $checked ) {
+			$attribs[] = 'checked';
+		}
+
+		return self::input( $name, $value, 'checkbox', $attribs );
+	}
+
+	/**
+	 * Convenience function to produce a checkbox (input element with type=checkbox)
+	 *
+	 * @param string $name Name attribute
+	 * @param bool $checked Whether the checkbox is checked or not
+	 * @param array $attribs Array of additional attributes
+	 */
+	public static function radio( $name, $checked = false, array $attribs = array() ) {
+		if ( isset( $attribs['value'] ) ) {
+			$value = $attribs['value'];
+			unset( $attribs['value'] );
+		} else {
+			$value = 1;
+		}
+
+		if ( $checked ) {
+			$attribs[] = 'checked';
+		}
+
+		return self::input( $name, $value, 'radio', $attribs );
+	}
+
+	/**
+	 * Convenience function for generating a label for inputs.
+	 *
+	 * @param string $label Contents of the label
+	 * @param string $id ID of the element being labeled
+	 * @param array $attribs Additional attributes
+	 */
+	public static function label( $label, $id, array $attribs = array() ) {
+		$attribs += array(
+			'for' => $id
+		);
+		return self::element( 'label', $attribs, $label );
+	}
+
+	/**
 	 * Convenience function to produce an input element with type=hidden
 	 *
 	 * @param $name    string name attribute

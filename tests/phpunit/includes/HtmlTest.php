@@ -628,4 +628,61 @@ class HtmlTest extends MediaWikiTestCase {
 			'Allow special case "step=any".'
 		);
 	}
+
+	public function testWrapperInput() {
+		$this->assertEquals(
+			'<input type=radio value=testval name=testname>',
+			Html::input( 'testname', 'testval', 'radio' ),
+			'Input wrapper with type and value.'
+		);
+		$this->assertEquals(
+			'<input name=testname>',
+			Html::input( 'testname' ),
+			'Input wrapper with all default values.'
+		);
+	}
+
+	public function testWrapperCheck() {
+		$this->assertEquals(
+			'<input type=checkbox value=1 name=testname>',
+			Html::check( 'testname' ),
+			'Checkbox wrapper unchecked.'
+		);
+		$this->assertEquals(
+			'<input checked type=checkbox value=1 name=testname>',
+			Html::check( 'testname', true ),
+			'Checkbox wrapper checked.'
+		);
+		$this->assertEquals(
+			'<input type=checkbox value=testval name=testname>',
+			Html::check( 'testname', false, array( 'value' => 'testval' ) ),
+			'Checkbox wrapper with a value override.'
+		);
+	}
+
+	public function testWrapperRadio() {
+		$this->assertEquals(
+			'<input type=radio value=1 name=testname>',
+			Html::radio( 'testname' ),
+			'Radio wrapper unchecked.'
+		);
+		$this->assertEquals(
+			'<input checked type=radio value=1 name=testname>',
+			Html::radio( 'testname', true ),
+			'Radio wrapper checked.'
+		);
+		$this->assertEquals(
+			'<input type=radio value=testval name=testname>',
+			Html::radio( 'testname', false, array( 'value' => 'testval' ) ),
+			'Radio wrapper with a value override.'
+		);
+	}
+
+	public function testWrapperLabel() {
+		$this->assertEquals(
+			'<label for=testid>testlabel</label>',
+			Html::label( 'testlabel', 'testid' ),
+			'Label wrapper'
+		);
+	}
 }
