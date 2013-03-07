@@ -19,6 +19,7 @@
  *
  * @file
  */
+
 class RedisBagOStuff extends BagOStuff {
 	/** @var RedisConnectionPool */
 	protected $redisPool;

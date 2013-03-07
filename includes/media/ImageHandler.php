@@ -139,7 +139,6 @@ abstract class ImageHandler extends MediaHandler {
 			$params['height'] = $params['physicalHeight'];
 		}
 
-
 		if ( !$this->validateThumbParams( $params['physicalWidth'],
 				$params['physicalHeight'], $srcWidth, $srcHeight, $mimeType ) ) {
 			return false;

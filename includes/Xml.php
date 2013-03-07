@@ -39,7 +39,7 @@ class Xml {
 	public static function element( $element, $attribs = null, $contents = '', $allowShortTag = true ) {
 		$out = '<' . $element;
 		if( !is_null( $attribs ) ) {
-			$out .=  self::expandAttributes( $attribs );
+			$out .= self::expandAttributes( $attribs );
 		}
 		if( is_null( $contents ) ) {
 			$out .= '>';

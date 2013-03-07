@@ -558,7 +558,6 @@ class Revision implements IDBAccessObject {
 			// Build a new revision to be saved...
 			global $wgUser; // ugh
 
-
 			# if we have a content object, use it to set the model and type
 			if ( !empty( $row['content'] ) ) {
 				//@todo: when is that set? test with external store setup! check out insertOn() [dk]

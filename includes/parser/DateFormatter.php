@@ -55,7 +55,7 @@ class DateFormatter {
 		$this->lang = $lang;
 
 		$this->monthNames = $this->getMonthRegex();
-		for ( $i=1; $i<=12; $i++ ) {
+		for ( $i = 1; $i <= 12; $i++ ) {
 			$this->xMonths[$this->lang->lc( $this->lang->getMonthName( $i ) )] = $i;
 			$this->xMonths[$this->lang->lc( $this->lang->getMonthAbbreviation( $i ) )] = $i;
 		}
@@ -154,7 +154,7 @@ class DateFormatter {
 		} else {
 			$preference = self::NONE;
 		}
-		for ( $i=1; $i<=self::LAST; $i++ ) {
+		for ( $i = 1; $i <= self::LAST; $i++ ) {
 			$this->mSource = $i;
 			if ( isset ( $this->rules[$preference][$i] ) ) {
 				# Specific rules
@@ -203,7 +203,7 @@ class DateFormatter {
 
 		$bits = array();
 		$key = $this->keys[$this->mSource];
-		for ( $p=0; $p < strlen( $key ); $p++ ) {
+		for ( $p = 0; $p < strlen( $key ); $p++ ) {
 			if ( $key[$p] != ' ' ) {
 				$bits[$key[$p]] = $matches[$p+1];
 			}
@@ -250,7 +250,7 @@ class DateFormatter {
 			$bits['d'] = sprintf( '%02d', $bits['j'] );
 		}
 
-		for ( $p=0; $p < strlen( $format ); $p++ ) {
+		for ( $p = 0; $p < strlen( $format ); $p++ ) {
 			$char = $format[$p];
 			switch ( $char ) {
 				case 'd': # ISO day of month

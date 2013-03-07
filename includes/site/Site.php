@@ -40,7 +40,6 @@ class Site implements Serializable {
 
 	const PATH_LINK = 'link';
 
-
 	/**
 	 * A version ID that identifies the serialization structure used by getSerializationData()
 	 * and unserialize(). This is useful for constructing cache keys in cases where the cache relies

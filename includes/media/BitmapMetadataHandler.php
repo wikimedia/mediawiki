@@ -69,7 +69,6 @@ class BitmapMetadataHandler {
 		$this->addMetadata( $iptc, $this->iptcType );
 	}
 
-
 	/**
 	 * Get exif info using exif class.
 	 * Basically what used to be in BitmapHandler::getMetadata().
@@ -301,6 +300,4 @@ class BitmapMetadataHandler {
 
 		}
 	}
-
-
 }

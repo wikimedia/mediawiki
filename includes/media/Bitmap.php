@@ -75,7 +75,6 @@ class BitmapHandler extends ImageHandler {
 		return true;
 	}
 
-
 	/**
 	 * Extracts the width/height if the image will be scaled before rotating
 	 *
@@ -99,7 +98,6 @@ class BitmapHandler extends ImageHandler {
 		}
 		return array( $width, $height );
 	}
-
 
 	/**
 	 * Function that returns the number of pixels to be thumbnailed.
@@ -157,7 +155,6 @@ class BitmapHandler extends ImageHandler {
 			wfDebug( __METHOD__ . ": returning unscaled image\n" );
 			return $this->getClientScalingThumbnailImage( $image, $scalerParams );
 		}
-
 
 		if ( $scaler == 'client' ) {
 			# Client-side image scaling, use the source URL
@@ -341,7 +338,7 @@ class BitmapHandler extends ImageHandler {
 		$rotation = $this->getRotation( $image );
 		list( $width, $height ) = $this->extractPreRotationDimensions( $params, $rotation );
 
-		$cmd  =
+		$cmd =
 			wfEscapeShellArg( $wgImageMagickConvertCommand ) .
 			// Specify white background color, will be used for transparent images
 			// in Internet Explorer/Windows instead of default black.

@@ -95,7 +95,6 @@ class ApiQueryRevisions extends ApiQueryBase {
 				!is_null( $params['endid'] ) || $params['dir'] === 'newer' ||
 				!is_null( $params['start'] ) || !is_null( $params['end'] ) );
 
-
 		$pageSet = $this->getPageSet();
 		$pageCount = $pageSet->getGoodTitleCount();
 		$revCount = $pageSet->getRevisionCount();
@@ -168,7 +167,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 		$index = array();
 
 		$userMax = ( $this->fld_content ? ApiBase::LIMIT_SML1 : ApiBase::LIMIT_BIG1 );
-		$botMax  = ( $this->fld_content ? ApiBase::LIMIT_SML2 : ApiBase::LIMIT_BIG2 );
+		$botMax = ( $this->fld_content ? ApiBase::LIMIT_SML2 : ApiBase::LIMIT_BIG2 );
 		$limit = $params['limit'];
 		if ( $limit == 'max' ) {
 			$limit = $this->getMain()->canApiHighLimits() ? $botMax : $userMax;

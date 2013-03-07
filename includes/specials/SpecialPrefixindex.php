@@ -90,7 +90,7 @@ class SpecialPrefixindex extends SpecialAllpages {
 	function namespacePrefixForm( $namespace = NS_MAIN, $from = '', $hideredirects = false ) {
 		global $wgScript;
 
-		$out  = Xml::openElement( 'div', array( 'class' => 'namespaceoptions' ) );
+		$out = Xml::openElement( 'div', array( 'class' => 'namespaceoptions' ) );
 		$out .= Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) );
 		$out .= Html::hidden( 'title', $this->getTitle()->getPrefixedText() );
 		$out .= Xml::openElement( 'fieldset' );

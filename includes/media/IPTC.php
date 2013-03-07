@@ -530,7 +530,7 @@ class IPTC {
 			case "\x1b(K":
 				$c = "ISO646-DE";
 				break;
-			case "\x1b(N":  //crylic
+			case "\x1b(N": //crylic
 				$c = "ISO_5427";
 				break;
 			case "\x1b(`": //iso646-NO

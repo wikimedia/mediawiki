@@ -303,8 +303,8 @@ class FileBackendMultiWrite extends FileBackend {
 
 		$mBackend = $this->backends[$this->masterIndex];
 		foreach ( $paths as $path ) {
-			$mPath  = $this->substPaths( $path, $mBackend );
-			$mSha1  = $mBackend->getFileSha1Base36( array( 'src' => $mPath ) );
+			$mPath = $this->substPaths( $path, $mBackend );
+			$mSha1 = $mBackend->getFileSha1Base36( array( 'src' => $mPath ) );
 			$mExist = $mBackend->fileExists( array( 'src' => $mPath ) );
 			// Check if the master backend is available...
 			if ( $mExist === null ) {

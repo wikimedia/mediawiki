@@ -124,7 +124,7 @@ class SqliteUpdater extends DatabaseUpdater {
 	protected function sqliteSetupSearchindex() {
 		$module = DatabaseSqlite::getFulltextSearchModule();
 		$fts3tTable = $this->updateRowExists( 'fts3' );
-		if ( $fts3tTable &&  !$module ) {
+		if ( $fts3tTable && !$module ) {
 			$this->applyPatch( 'searchindex-no-fts.sql', false, 'PHP is missing FTS3 support, downgrading tables' );
 		} elseif ( !$fts3tTable && $module == 'FTS3' ) {
 			$this->applyPatch( 'searchindex-fts3.sql', false, "Adding FTS3 search capabilities" );

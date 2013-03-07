@@ -273,7 +273,7 @@ class SkinTemplate extends Skin {
 
 		$userLang = $this->getLanguage();
 		$userLangCode = $userLang->getHtmlCode();
-		$userLangDir  = $userLang->getDir();
+		$userLangDir = $userLang->getDir();
 
 		$tpl->set( 'lang', $userLangCode );
 		$tpl->set( 'dir', $userLangDir );

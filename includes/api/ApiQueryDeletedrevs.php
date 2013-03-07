@@ -116,7 +116,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		}
 		// Check limits
 		$userMax = $fld_content ? ApiBase::LIMIT_SML1 : ApiBase::LIMIT_BIG1;
-		$botMax  = $fld_content ? ApiBase::LIMIT_SML2 : ApiBase::LIMIT_BIG2;
+		$botMax = $fld_content ? ApiBase::LIMIT_SML2 : ApiBase::LIMIT_BIG2;
 
 		$limit = $params['limit'];
 

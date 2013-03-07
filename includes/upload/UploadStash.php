@@ -349,7 +349,6 @@ class UploadStash {
 		return $this->removeFileNoAuth( $key );
 	}
 
-
 	/**
 	 * Remove a file (see removeFile), but doesn't check ownership first.
 	 *

@@ -515,7 +515,6 @@ class ApiUpload extends ApiBase {
 		}
 	}
 
-
 	/**
 	 * Check warnings.
 	 * Returns a suitable array for inclusion into API results if there were warnings
@@ -552,7 +551,6 @@ class ApiUpload extends ApiBase {
 		}
 		return $warnings;
 	}
-
 
 	/**
 	 * Perform the actual upload. Returns a suitable result array on success;

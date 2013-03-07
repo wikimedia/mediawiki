@@ -99,7 +99,6 @@ class MWMemcached {
 
 	// }}}
 
-
 	/**
 	 * Command statistics
 	 *
@@ -1210,7 +1209,6 @@ class MWMemcached {
 	// }}}
 	// }}}
 }
-
 
 // }}}
 
