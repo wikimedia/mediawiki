@@ -188,6 +188,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		$titleWhere = array();
 		$allRedirNs = array();
 		$allRedirDBkey = array();
+		/** @var $t Title */
 		foreach ( $this->redirTitles as $t ) {
 			$redirNs = $t->getNamespace();
 			$redirDBkey = $t->getDBkey();
@@ -201,6 +202,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 
 		if ( !is_null( $this->redirID ) ) {
 			$op = $this->params['dir'] == 'descending' ? '<' : '>';
+			/** @var $first Title */
 			$first = $this->redirTitles[0];
 			$title = $db->addQuotes( $first->getDBkey() );
 			$ns = $first->getNamespace();

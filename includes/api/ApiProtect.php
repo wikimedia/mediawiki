@@ -174,7 +174,7 @@ class ApiProtect extends ApiBase {
 			'token' => 'A protect token previously retrieved through prop=info',
 			'protections' => 'List of protection levels, formatted action=group (e.g. edit=sysop)',
 			'expiry' => array( 'Expiry timestamps. If only one timestamp is set, it\'ll be used for all protections.',
-					'Use \'infinite\', \'indefinite\' or \'never\', for a neverexpiring protection.' ),
+					'Use \'infinite\', \'indefinite\' or \'never\', for a never-expiring protection.' ),
 			'reason' => 'Reason for (un)protecting',
 			'cascade' => array( 'Enable cascading protection (i.e. protect pages included in this page)',
 					'Ignored if not all protection levels are \'sysop\' or \'protect\'' ),

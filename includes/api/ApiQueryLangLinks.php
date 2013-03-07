@@ -25,7 +25,7 @@
  */
 
 /**
- * A query module to list all langlinks (links to correspanding foreign language pages).
+ * A query module to list all langlinks (links to corresponding foreign language pages).
  *
  * @ingroup API
  */
