@@ -542,7 +542,7 @@ If the download was not offered, or if you cancelled it, you can restart the dow
 
 $3
 
-'''Note''': If you do not do this now, this generated configuration file will not be available to you later if you exit the installation without downloading it.
+'''Note:''' If you do not do this now, this generated configuration file will not be available to you later if you exit the installation without downloading it.
 
 When that has been done, you can '''[$2 enter your wiki]'''.",
 	'config-download-localsettings' => 'Download <code>LocalSettings.php</code>',
