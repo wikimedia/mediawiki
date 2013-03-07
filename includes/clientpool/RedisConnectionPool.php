@@ -40,7 +40,6 @@ class RedisConnectionPool {
 	protected $connectTimeout; // string; connection timeout
 	protected $persistent; // bool; whether connections persist
 	protected $password; // string; plaintext auth password
-	protected $poolSize; // integer; maximum number of idle connections
 	protected $serializer; // integer; the serializer to use (Redis::SERIALIZER_*)
 
 	protected $idlePoolSize = 0; // integer; current idle pool size
@@ -61,7 +60,6 @@ class RedisConnectionPool {
 	 *                      Optional, default is 1 second.
 	 *   - persistent     : Set this to true to allow connections to persist across
 	 *                      multiple web requests. False by default.
-	 *   - poolSize       : Maximim number of idle connections. Default is 5.
 	 *   - password       : The authentication password, will be sent to Redis in clear text.
 	 *                      Optional, if it is unspecified, no AUTH command will be sent.
 	 *   - serializer     : Set to "php" or "igbinary". Default is "php".
@@ -75,7 +73,6 @@ class RedisConnectionPool {
 		$this->connectTimeout = $options['connectTimeout'];
 		$this->persistent = $options['persistent'];
 		$this->password = $options['password'];
-		$this->poolSize = $options['poolSize'];
 		if ( !isset( $options['serializer'] ) || $options['serializer'] === 'php' ) {
 			$this->serializer = Redis::SERIALIZER_PHP;
 		} elseif ( $options['serializer'] === 'igbinary' ) {
@@ -99,9 +96,6 @@ class RedisConnectionPool {
 		if ( !isset( $options['password'] ) ) {
 			$options['password'] = '';
 		}
-		if ( !isset( $options['poolSize'] ) ) {
-			$options['poolSize'] = 1;
-		}
 		return $options;
 	}
 
@@ -112,19 +106,13 @@ class RedisConnectionPool {
 	public static function singleton( array $options ) {
 		$options = self::applyDefaultConfig( $options );
 		// Map the options to a unique hash...
-		$poolOptions = $options;
-		unset( $poolOptions['poolSize'] ); // avoid pool fragmentation
-		ksort( $poolOptions ); // normalize to avoid pool fragmentation
-		$id = sha1( serialize( $poolOptions ) );
+		ksort( $options ); // normalize to avoid pool fragmentation
+		$id = sha1( serialize( $options ) );
 		// Initialize the object at the hash as needed...
 		if ( !isset( self::$instances[$id] ) ) {
 			self::$instances[$id] = new self( $options );
 			wfDebug( "Creating a new " . __CLASS__ . " instance with id $id." );
 		}
-		// Simply grow the pool size if the existing one is too small
-		$psize = $options['poolSize']; // size requested
-		self::$instances[$id]->poolSize = max( $psize, self::$instances[$id]->poolSize );
-
 		return self::$instances[$id];
 	}
 
@@ -244,16 +232,16 @@ class RedisConnectionPool {
 	 * @return void
 	 */
 	protected function closeExcessIdleConections() {
-		if ( $this->idlePoolSize <= $this->poolSize ) {
-			return; // nothing to do
+		if ( $this->idlePoolSize <= count( $this->connections ) ) {
+			return; // nothing to do (no more connections than servers)
 		}
 
 		foreach ( $this->connections as $server => &$serverConnections ) {
 			foreach ( $serverConnections as $key => &$connection ) {
 				if ( $connection['free'] ) {
 					unset( $serverConnections[$key] );
-					if ( --$this->idlePoolSize <= $this->poolSize ) {
-						return; // done
+					if ( --$this->idlePoolSize <= count( $this->connections ) ) {
+						return; // done (no more connections than servers)
 					}
 				}
 			}
