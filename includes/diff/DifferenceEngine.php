@@ -267,6 +267,8 @@ class DifferenceEngine extends ContextSource {
 		$deleted = $suppressed = false;
 		$allowed = $this->mNewRev->userCan( Revision::DELETED_TEXT, $user );
 
+		$revisionTools = array();
+
 		# mOldRev is false if the difference engine is called with a "vague" query for
 		# a diff between a version V and its previous version V' AND the version V
 		# is the first version of that article. In that case, V' does not exist.
@@ -301,8 +303,7 @@ class DifferenceEngine extends ContextSource {
 					}
 				}
 				if ( !$this->mOldRev->isDeleted( Revision::DELETED_TEXT ) && !$this->mNewRev->isDeleted( Revision::DELETED_TEXT ) ) {
-					$undoLink = ' ' . $this->msg( 'parentheses' )->rawParams(
-						Html::element( 'a', array(
+					$undoLink = Html::element( 'a', array(
 							'href' => $this->mNewPage->getLocalUrl( array(
 								'action' => 'edit',
 								'undoafter' => $this->mOldid,
@@ -310,7 +311,8 @@ class DifferenceEngine extends ContextSource {
 							'title' => Linker::titleAttrib( 'undo' )
 						),
 						$this->msg( 'editundo' )->text()
-					) )->escaped();
+					);
+					$revisionTools[] = $undoLink;
 				}
 			}
 
@@ -376,7 +378,15 @@ class DifferenceEngine extends ContextSource {
 
 		# Handle RevisionDelete links...
 		$rdel = $this->revisionDeleteLink( $this->mNewRev );
-		$newRevisionHeader = $this->getRevisionHeader( $this->mNewRev, 'complete' ) . $undoLink;
+
+		# Allow extensions to define their own revision tools
+		wfRunHooks( 'DiffRevisionTools', array( $this->mNewRev, &$revisionTools ) );
+		$formattedRevisionTools = array();
+		// Put each one in parentheses (poor man's button)
+		foreach ( $revisionTools as $tool ) {
+			$formattedRevisionTools[] = $this->msg( 'parentheses' )->rawParams( $tool )->escaped();
+		}
+		$newRevisionHeader = $this->getRevisionHeader( $this->mNewRev, 'complete' ) . ' ' . implode( ' ', $formattedRevisionTools );
 
 		$newHeader = '<div id="mw-diff-ntitle1"><strong>' . $newRevisionHeader . '</strong></div>' .
 			'<div id="mw-diff-ntitle2">' . Linker::revUserTools( $this->mNewRev, !$this->unhide ) .

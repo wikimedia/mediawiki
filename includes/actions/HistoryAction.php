@@ -183,7 +183,7 @@ class HistoryAction extends FormlessAction {
 			'</fieldset></form>'
 		);
 
-		wfRunHooks( 'PageHistoryBeforeList', array( &$this->page ) );
+		wfRunHooks( 'PageHistoryBeforeList', array( &$this->page, &$out ) );
 
 		// Create and output the list.
 		$pager = new HistoryPager( $this, $year, $month, $tagFilter, $conds );
@@ -654,6 +654,8 @@ class HistoryPager extends ReverseChronologicalPager {
 				$tools[] = "<span class=\"mw-history-undo\">{$undolink}</span>";
 			}
 		}
+		// Allow extension to add their own links here
+		wfRunHooks( 'HistoryRevisionTools', array( $rev, &$tools ) );
 
 		if ( $tools ) {
 			$s2 .= ' '. $this->msg( 'parentheses' )->rawParams( $lang->pipeList( $tools ) )->escaped();
