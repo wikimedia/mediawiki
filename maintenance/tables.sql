@@ -1307,7 +1307,12 @@ CREATE TABLE /*_*/job (
   job_token_timestamp varbinary(14) NULL default NULL,
 
   -- Base 36 SHA1 of the job parameters relevant to detecting duplicates
-  job_sha1 varbinary(32) NOT NULL default ''
+  job_sha1 varbinary(32) NOT NULL default '',
+
+  -- Timestamp of the earliest time the job is requested to be executed
+  -- NULL for jobs that can be perfomed immediately 
+  -- NULL for all jobs in queues that don't support delay
+  job_not_before varbinary(14) NULL default NULL
 ) /*$wgDBTableOptions*/;
 
 CREATE INDEX /*i*/job_sha1 ON /*_*/job (job_sha1);

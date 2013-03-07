@@ -34,7 +34,7 @@ abstract class JobQueue {
 	protected $order; // string; job priority for pop()
 	protected $claimTTL; // integer; seconds
 	protected $maxTries; // integer; maximum number of times to try a job
-
+	protected $delay; // boolean support deliberately delayed jobs with a minimum start time
 	const QoS_Atomic = 1; // integer; "all-or-nothing" job insertions
 
 	/**
@@ -46,6 +46,7 @@ abstract class JobQueue {
 		$this->order    = isset( $params['order'] ) ? $params['order'] : 'random';
 		$this->claimTTL = isset( $params['claimTTL'] ) ? $params['claimTTL'] : 0;
 		$this->maxTries = isset( $params['maxTries'] ) ? $params['maxTries'] : 3;
+		$this->delay = isset( $params['delay'] ) ? ( ( bool ) ( $params['delay'] ) ) : false;
 	}
 
 	/**
@@ -68,6 +69,12 @@ abstract class JobQueue {
 	 *                but not acknowledged as completed after this many seconds. Recycling
 	 *                of jobs simple means re-inserting them into the queue. Jobs can be
 	 *                attempted up to three times before being discarded.
+	 *   - delay	: Request support for a minimum start time for jobs
+	 * 		  so a job can be queued with "do not process before <timestamp>" logic
+	 * 		  In practice few jobs want delay so by default don't look for or honor delay requests
+	 * 		  so query performance is not harmed for the 99% of other jobs
+	 *                Not all queue types will support delays so may be silently ignored
+	 *                To use, pass a notBefore or delay integer in each Job's params array
 	 *
 	 * Queue classes should throw an exception if they do not support the options given.
 	 *
