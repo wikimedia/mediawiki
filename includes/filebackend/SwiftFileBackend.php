@@ -1210,12 +1210,13 @@ class SwiftFileBackend extends FileBackendStore {
 				return null; // invalid path
 			}
 			try {
+				$ttl = isset( $params['ttl'] ) ? $params['ttl'] : 86400;
 				$sContObj = $this->getContainer( $srcCont );
 				$obj = new CF_Object( $sContObj, $srcRel, false, false ); // skip HEAD
 				if ( $this->swiftTempUrlKey != '' ) {
-					return $obj->get_temp_url( $this->swiftTempUrlKey, 86400, "GET" );
+					return $obj->get_temp_url( $this->swiftTempUrlKey, $ttl, "GET" );
 				} else { // give S3 API URL for rgw
-					$expires = time() + 86400;
+					$expires = time() + $ttl;
 					// Path for signature starts with the bucket
 					$spath = '/' . rawurlencode( $srcCont ) . '/' .
 						str_replace( '%2F', '/', rawurlencode( $srcRel ) );
