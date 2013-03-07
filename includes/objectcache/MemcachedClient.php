@@ -911,10 +911,21 @@ class MWMemcached {
 
 		while ( 1 ) {
 			$decl = $this->_fgets( $sock );
+
 			if( $decl === false ) {
+				/*
+				 * If nothing can be read, something is wrong because we know exactly when
+				 * to stop reading (right after "END") and we return right after that.
+				 */
 				return false;
 			} elseif ( preg_match( '/^VALUE (\S+) (\d+) (\d+) (\d+)$/', $decl, $match ) ) {
-
+				/*
+				 * Read all data returned. This can be either one or multiple values.
+				 * Save all that data (in an array) to be processed later: we'll first
+				 * want to continue reading until "END" before doing anything else,
+				 * to make sure that we don't leave our client in a state where it's
+				 * output is not yet fully read.
+				 */
 				$results[] = array(
 					$match[1], // rkey
 					$match[2], // flags
@@ -927,6 +938,10 @@ class MWMemcached {
 					return false;
 				}
 
+				/**
+				 * All data has been read, time to process the data and build
+				 * meaningful return values.
+				 */
 				foreach ( $results as $vars ) {
 					list( $rkey, $flags, $len, $casToken, $data ) = $vars;
 
@@ -942,6 +957,15 @@ class MWMemcached {
 						$ret[$rkey] = gzuncompress( $ret[$rkey] );
 					}
 
+					/*
+					 * This unserialize is the exact reason that we only want to
+					 * process data after having read until "END" (instead of doing
+					 * this right away): "unserialize" can trigger outside code:
+					 * in the event that $ret[$rkey] is a serialized object,
+					 * unserializing it will trigger __wakeup() if present. If that
+					 * function attempted to read from memcached (while we did not
+					 * yet read "END"), these 2 calls would collide.
+					 */
 					if ( $flags & self::SERIALIZED ) {
 						$ret[$rkey] = unserialize( $ret[$rkey] );
 					}
