@@ -29,7 +29,7 @@
 class SpecialProtectedpages extends SpecialPage {
 
 	protected $IdLevel = 'level';
-	protected $IdType  = 'type';
+	protected $IdType = 'type';
 
 	public function __construct() {
 		parent::__construct( 'Protectedpages' );

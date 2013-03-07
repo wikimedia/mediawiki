@@ -813,8 +813,6 @@ class DatabaseMssql extends DatabaseBase {
 						TO $newUser
 						;
 					" );
-
-
 	}
 
 	function encodeBlob( $b ) {

@@ -114,7 +114,7 @@ function utf8ToCodepoint( $char ) {
 	$z >>= $length;
 
 	# Add in the free bits from subsequent bytes
-	for ( $i=1; $i<$length; $i++ ) {
+	for ( $i=1; $i < $length; $i++ ) {
 		$z <<= 6;
 		$z |= ord( $char[$i] ) & 0x3f;
 	}

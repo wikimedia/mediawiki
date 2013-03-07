@@ -386,11 +386,11 @@ class WikiPage implements Page, IDBAccessObject {
 			// Old-fashioned restrictions
 			$this->mTitle->loadRestrictions( $data->page_restrictions );
 
-			$this->mId          = intval( $data->page_id );
-			$this->mCounter     = intval( $data->page_counter );
-			$this->mTouched     = wfTimestamp( TS_MW, $data->page_touched );
-			$this->mIsRedirect  = intval( $data->page_is_redirect );
-			$this->mLatest      = intval( $data->page_latest );
+			$this->mId = intval( $data->page_id );
+			$this->mCounter = intval( $data->page_counter );
+			$this->mTouched = wfTimestamp( TS_MW, $data->page_touched );
+			$this->mIsRedirect = intval( $data->page_is_redirect );
+			$this->mLatest = intval( $data->page_latest );
 			// Bug 37225: $latest may no longer match the cached latest Revision object.
 			// Double-check the ID of any cached latest Revision object for consistency.
 			if ( $this->mLastRevision && $this->mLastRevision->getId() != $this->mLatest ) {
@@ -1704,7 +1704,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$editInfo = $this->prepareContentForEdit( $content, null, $user, $serialisation_format );
 		$serialized = $editInfo->pst;
 		$content = $editInfo->pstContent;
-		$newsize =  $content->getSize();
+		$newsize = $content->getSize();
 
 		$dbw = wfGetDB( DB_MASTER );
 		$now = wfTimestampNow();
@@ -3043,7 +3043,7 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 		$dbw->insert( 'category', $insertRows, __METHOD__, 'IGNORE' );
 
-		$addFields    = array( 'cat_pages = cat_pages + 1' );
+		$addFields = array( 'cat_pages = cat_pages + 1' );
 		$removeFields = array( 'cat_pages = cat_pages - 1' );
 
 		if ( $ns == NS_CATEGORY ) {

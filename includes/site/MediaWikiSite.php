@@ -169,7 +169,6 @@ class MediaWikiSite extends Site {
 		return $page['title'];
 	}
 
-
 	/**
 	 * Get normalization record for a given page title from an API response.
 	 *

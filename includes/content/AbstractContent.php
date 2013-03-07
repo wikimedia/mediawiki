@@ -203,7 +203,6 @@ abstract class AbstractContent implements Content {
 		return $this->getNativeData() === $that->getNativeData();
 	}
 
-
 	/**
 	 * Returns a list of DataUpdate objects for recording information about this
 	 * Content in some secondary data store.
@@ -242,7 +241,6 @@ abstract class AbstractContent implements Content {
 
 		return $parserOutput->getSecondaryDataUpdates( $title, $recursive );
 	}
-
 
 	/**
 	 * @see Content::getRedirectChain

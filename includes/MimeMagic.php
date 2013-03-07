@@ -413,7 +413,6 @@ class MimeMagic {
 		return $m;
 	}
 
-
 	/**
 	 * Tests if the extension matches the given mime type. Returns true if a
 	 * match was found, null if the mime type is unknown, and false if the
@@ -427,7 +426,7 @@ class MimeMagic {
 		$ext = $this->getExtensionsForType( $mime );
 
 		if ( !$ext ) {
-			return null;  // Unknown mime type
+			return null; // Unknown mime type
 		}
 
 		$ext = explode( ' ', $ext );

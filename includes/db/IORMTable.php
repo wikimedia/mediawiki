@@ -311,7 +311,6 @@ interface IORMTable {
 	 */
 	public function setReadDb( $db );
 
-
 	/**
 	 * Get the ID of the any foreign wiki to use as a target for database operations
 	 *

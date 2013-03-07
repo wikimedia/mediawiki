@@ -21,7 +21,6 @@
  * @ingroup Database
  */
 
-
 /**
  * A multi-wiki, multi-master factory for Wikimedia and similar installations.
  * Ignores the old configuration globals

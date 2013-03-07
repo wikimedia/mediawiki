@@ -25,7 +25,6 @@
  * @file
  */
 
-
 /**
  * Format Image metadata values into a human readable form.
  *
@@ -525,7 +524,6 @@ class FormatMetadata {
 						break;
 					}
 					break;
-
 
 				case 'GPSTrackRef':
 				case 'GPSImgDirectionRef':

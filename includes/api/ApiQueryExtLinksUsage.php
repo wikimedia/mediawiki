@@ -55,7 +55,7 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 		$query = $params['query'];
 		$protocol = self::getProtocolPrefix( $params['protocol'] );
 
-		$this->addTables( array( 'page', 'externallinks' ) );	// must be in this order for 'USE INDEX'
+		$this->addTables( array( 'page', 'externallinks' ) ); // must be in this order for 'USE INDEX'
 		$this->addOption( 'USE INDEX', 'el_index' );
 		$this->addWhere( 'page_id=el_from' );
 

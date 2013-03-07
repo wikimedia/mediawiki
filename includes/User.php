@@ -574,7 +574,6 @@ class User {
 			return false;
 		}
 
-
 		// Ensure that the name can't be misresolved as a different title,
 		// such as with extra namespace keys at the start.
 		$parsed = Title::newFromText( $name );
@@ -1264,7 +1263,6 @@ class User {
 			return null;
 		}
 	}
-
 
 	/**
 	 * Get blocking information
@@ -3309,7 +3307,7 @@ class User {
 		// since it disables the parser cache, its value will always
 		// be 0 when this function is called by parsercache.
 
-		$confstr =        $this->getOption( 'math' );
+		$confstr = $this->getOption( 'math' );
 		$confstr .= '!' . $this->getStubThreshold();
 		$confstr .= '!' . ( $this->getOption( 'numberheadings' ) ? '1' : '' );
 		$confstr .= '!' . $wgLang->getCode();

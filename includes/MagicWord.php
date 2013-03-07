@@ -464,7 +464,6 @@ class MagicWord {
 		}
 	}
 
-
 	/**
 	 * Returns true if the text matches the word, and alters the
 	 * input string, removing all instances of the word

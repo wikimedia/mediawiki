@@ -531,8 +531,8 @@ class PostgresInstaller extends DatabaseInstaller {
 		$schema = $this->getVar( 'wgDBmwschema' );
 		return
 "# Postgres specific settings
-\$wgDBport           = \"{$port}\";
-\$wgDBmwschema       = \"{$schema}\";";
+\$wgDBport = \"{$port}\";
+\$wgDBmwschema = \"{$schema}\";";
 	}
 
 	public function preUpgrade() {

@@ -2357,7 +2357,6 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
  */
 class HTMLRadioField extends HTMLFormField {
 
-
 	function validate( $value, $alldata ) {
 		$p = parent::validate( $value, $alldata );
 

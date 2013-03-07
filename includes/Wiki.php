@@ -356,10 +356,10 @@ class MediaWiki {
 		// Check for redirects ...
 		$action = $request->getVal( 'action', 'view' );
 		$file = ( $title->getNamespace() == NS_FILE ) ? $article->getFile() : null;
-		if ( ( $action == 'view' || $action == 'render' ) 	// ... for actions that show content
-			&& !$request->getVal( 'oldid' ) &&    // ... and are not old revisions
-			!$request->getVal( 'diff' ) &&    // ... and not when showing diff
-			$request->getVal( 'redirect' ) != 'no' &&	// ... unless explicitly told not to
+		if ( ( $action == 'view' || $action == 'render' ) // ... for actions that show content
+			&& !$request->getVal( 'oldid' ) && // ... and are not old revisions
+			!$request->getVal( 'diff' ) && // ... and not when showing diff
+			$request->getVal( 'redirect' ) != 'no' && // ... unless explicitly told not to
 			// ... and the article is not a non-redirect image page with associated file
 			!( is_object( $file ) && $file->exists() && !$file->getRedirected() ) )
 		{

@@ -182,7 +182,6 @@ class SpecialLog extends SpecialPage {
 		return $s;
 	}
 
-
 	/**
 	 * Set page title and show header for this log type
 	 * @param $type string

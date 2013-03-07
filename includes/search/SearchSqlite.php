@@ -196,7 +196,6 @@ class SearchSqlite extends SearchEngine {
 		return new SqliteSearchResultSet( $resultSet, $this->searchTerms, $total );
 	}
 
-
 	/**
 	 * Return a partial WHERE clause to exclude redirects, if so set
 	 * @return String
@@ -275,7 +274,7 @@ class SearchSqlite extends SearchEngine {
 
 	function getCountQuery( $filteredTerm, $fulltext ) {
 		$match = $this->parseQuery( $filteredTerm, $fulltext );
-		$page        = $this->db->tableName( 'page' );
+		$page = $this->db->tableName( 'page' );
 		$searchindex = $this->db->tableName( 'searchindex' );
 		return "SELECT COUNT(*) AS c " .
 			"FROM $page,$searchindex " .

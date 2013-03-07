@@ -775,7 +775,7 @@ class FileRepo {
 				throw new MWException( 'Validation error in $dstRel' );
 			}
 			$dstPath = "$root/$dstRel";
-			$dstDir  = dirname( $dstPath );
+			$dstDir = dirname( $dstPath );
 			// Create destination directories for this triplet
 			if ( !$this->initDirectory( $dstDir )->isOK() ) {
 				return $this->newFatal( 'directorycreateerror', $dstDir );
@@ -965,10 +965,10 @@ class FileRepo {
 	public function storeTemp( $originalName, $srcPath ) {
 		$this->assertWritableRepo(); // fail out if read-only
 
-		$date       = gmdate( "YmdHis" );
-		$hashPath   = $this->getHashPath( $originalName );
-		$dstRel     = "{$hashPath}{$date}!{$originalName}";
-		$dstUrlRel  = $hashPath . $date . '!' . rawurlencode( $originalName );
+		$date = gmdate( "YmdHis" );
+		$hashPath = $this->getHashPath( $originalName );
+		$dstRel = "{$hashPath}{$date}!{$originalName}";
+		$dstUrlRel = $hashPath . $date . '!' . rawurlencode( $originalName );
 		$virtualUrl = $this->getVirtualUrl( 'temp' ) . '/' . $dstUrlRel;
 
 		$result = $this->quickImport( $srcPath, $virtualUrl );
@@ -1622,7 +1622,7 @@ class FileRepo {
 	 */
 	public function nameForThumb( $name ) {
 		if ( strlen( $name ) > $this->abbrvThreshold ) {
-			$ext  = FileBackend::extensionFromPath( $name );
+			$ext = FileBackend::extensionFromPath( $name );
 			$name = ( $ext == '' ) ? 'thumbnail' : "thumbnail.$ext";
 		}
 		return $name;

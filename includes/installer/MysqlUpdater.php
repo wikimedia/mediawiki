@@ -416,7 +416,7 @@ class MysqlUpdater extends DatabaseUpdater {
 				if ( $prev_title == $row->cur_title && $prev_namespace == $row->cur_namespace ) {
 					$deleteId[] = $row->cur_id;
 				}
-				$prev_title     = $row->cur_title;
+				$prev_title = $row->cur_title;
 				$prev_namespace = $row->cur_namespace;
 			}
 			$sql = "DELETE FROM $cur WHERE cur_id IN ( " . join( ',', $deleteId ) . ')';

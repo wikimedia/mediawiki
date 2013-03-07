@@ -20,7 +20,6 @@
  * @file
  */
 
-
 /**
  * Some functions to help implement an external link filter for spam control.
  *

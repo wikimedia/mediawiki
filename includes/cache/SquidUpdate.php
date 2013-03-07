@@ -61,7 +61,7 @@ class SquidUpdate {
 			array( 'page_namespace', 'page_title' ),
 			array(
 				'pl_namespace' => $title->getNamespace(),
-				'pl_title'     => $title->getDBkey(),
+				'pl_title' => $title->getDBkey(),
 				'pl_from=page_id' ),
 			__METHOD__ );
 		$blurlArr = $title->getSquidURLs();

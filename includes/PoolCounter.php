@@ -42,15 +42,15 @@
 abstract class PoolCounter {
 
 	/* Return codes */
-	const LOCKED   = 1; /* Lock acquired */
+	const LOCKED = 1; /* Lock acquired */
 	const RELEASED = 2; /* Lock released */
-	const DONE     = 3; /* Another worker did the work for you */
+	const DONE = 3; /* Another worker did the work for you */
 
-	const ERROR      = -1; /* Indeterminate error */
+	const ERROR = -1; /* Indeterminate error */
 	const NOT_LOCKED = -2; /* Called release() with no lock held */
 	const QUEUE_FULL = -3; /* There are already maxqueue workers on this lock */
-	const TIMEOUT    = -4; /* Timeout exceeded */
-	const LOCK_HELD  = -5; /* Cannot acquire another lock while you have one lock held */
+	const TIMEOUT = -4; /* Timeout exceeded */
+	const LOCK_HELD = -5; /* Cannot acquire another lock while you have one lock held */
 
 	/**
 	 * I want to do this task and I need to do it myself.
@@ -107,9 +107,9 @@ abstract class PoolCounter {
 
 	protected function __construct( $conf, $type, $key ) {
 		$this->key = $key;
-		$this->workers  = $conf['workers'];
+		$this->workers = $conf['workers'];
 		$this->maxqueue = $conf['maxqueue'];
-		$this->timeout  = $conf['timeout'];
+		$this->timeout = $conf['timeout'];
 	}
 }
 

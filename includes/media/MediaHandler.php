@@ -181,7 +181,6 @@ abstract class MediaHandler {
 		return self::METADATA_GOOD;
 	}
 
-
 	/**
 	 * Get a MediaTransformOutput object representing an alternate of the transformed
 	 * output which will call an intermediary thumbnail assist script.
@@ -404,7 +403,6 @@ abstract class MediaHandler {
 		$fields = array_map( 'strtolower', $fields );
 		return $fields;
 	}
-
 
 	/**
 	 * This is used to generate an array element for each metadata value

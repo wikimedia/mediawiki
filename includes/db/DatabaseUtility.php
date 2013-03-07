@@ -219,9 +219,9 @@ class ResultWrapper implements Iterator {
  * doesn't go anywhere near an actual database.
  */
 class FakeResultWrapper extends ResultWrapper {
-	var $result     = array();
-	var $db         = null;	// And it's going to stay that way :D
-	var $pos        = 0;
+	var $result = array();
+	var $db = null; // And it's going to stay that way :D
+	var $pos = 0;
 	var $currentRow = null;
 
 	function __construct( $array ) {

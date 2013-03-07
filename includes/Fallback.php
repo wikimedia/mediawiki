@@ -149,7 +149,6 @@ class Fallback {
 		return $total;
 	}
 
-
 	/**
 	 * Fallback implementation of mb_strpos, hardcoded to UTF-8.
 	 * @param $haystack String

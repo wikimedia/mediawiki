@@ -429,7 +429,7 @@ class WikiExporter {
 		foreach ( $resultset as $row ) {
 			if ( $last === null ||
 				$last->page_namespace != $row->page_namespace ||
-				$last->page_title     != $row->page_title ) {
+				$last->page_title != $row->page_title ) {
 				if ( $last !== null ) {
 					$output = '';
 					if ( $this->dumpUploads ) {
@@ -649,7 +649,7 @@ class XmlDumpWriter {
 		}
 
 		if ( isset( $row->rev_minor_edit ) && $row->rev_minor_edit ) {
-			$out .=  "      <minor/>\n";
+			$out .= "      <minor/>\n";
 		}
 		if ( isset( $row->rev_deleted ) && ( $row->rev_deleted & Revision::DELETED_COMMENT ) ) {
 			$out .= "      " . Xml::element( 'comment', array( 'deleted' => 'deleted' ) ) . "\n";
@@ -870,7 +870,6 @@ class XmlDumpWriter {
 		return $prefix . $title->getText();
 	}
 }
-
 
 /**
  * Base class for output stream; prints to stdout or buffer or whereever.
@@ -1398,7 +1397,6 @@ class DumpNamespaceFilter extends DumpFilter {
 		return $this->invert xor $match;
 	}
 }
-
 
 /**
  * Dump output filter to include only the last revision in each page sequence.
