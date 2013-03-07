@@ -1,29 +1,60 @@
+# Repository management
 .svn
-*~
+
+# git-deploy status file:
+/.deploy
+
+# Editors
 *.kate-swp
+*~
+.*.swp
+.project
+cscope.files
+cscope.out
+## NetBeans
+nbproject*
+project.index
+sublime-*
+
+# MediaWiki install & usage
+/cache
+/docs/js
+/images/[0-9a-f]
+/images/archive
+/images/deleted
+/images/lockdir
+/images/temp
+/images/thumb
+## Extension:EasyTimeline
+/images/timeline
+/images/tmp
+/maintenance/.mweval_history
+/maintenance/.mwsql_history
+/maintenance/dev/data
+/AdminSettings.php
+/LocalSettings.php
+/StartProfiler.php
+
+# Building & testing
+node_modules/
+
+# Composer
+/vendor
+/composer.lock
+/composer.json
+
+# Operating systems
+## Mac OS X
+.DS_Store
+## Windows
+Thumbs.db
+
+# Misc
+.buildpath
 .classpath
 .idea
 .metadata*
-.project
 .settings
-AdminSettings.php
-LocalSettings.php
-StartProfiler.php
-cscope.files
-cscope.out
-favicon.ico
-nbproject*
-project.index
-static*
-tags
-cache/*.cdb
-images/[0-9a-f]
-images/archive
-images/deleted
-images/temp
-images/thumb
-images/timeline
-images/tmp
-maintenance/dev/data
-maintenance/.mweval_history
-maintenance/.mwsql_history
+/favicon.ico
+/static*
+/tags
