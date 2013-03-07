@@ -60,6 +60,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$opts->add( 'feed', '' );
 		$opts->add( 'tagfilter', '' );
 		$opts->add( 'invert', false );
+		$opts->add( 'associated', false );
 
 		$this->customFilters = array();
 		wfRunHooks( 'SpecialNewPagesFilters', array( $this, &$this->customFilters ) );
@@ -213,6 +214,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$username = $this->opts->consumeValue( 'username' );
 		$tagFilterVal = $this->opts->consumeValue( 'tagfilter' );
 		$nsinvert = $this->opts->consumeValue( 'invert' );
+		$associated = $this->opts->consumeValue( 'associated' );
 
 		// Check username input validity
 		$ut = Title::makeTitleSafe( NS_USER, $username );
@@ -254,7 +256,14 @@ class SpecialNewpages extends IncludableSpecialPage {
 						'invert',
 						'nsinvert',
 						$nsinvert,
-						array( 'title' => $this->msg( 'tooltip-invert' )->text() )
+						array( 'title' => $this->msg( 'tooltip-invert' )->text(), 'class' => 'mw-input' )
+					) . '&#160;' .
+					Xml::checkLabel(
+						$this->msg( 'namespace_association' )->text(),
+						'associated',
+						'associated',
+						$associated,
+						array( 'title' => $this->msg( 'tooltip-namespace_association' )->text(), 'class' => 'mw-input' )
 					) .
 				'</td>
 			</tr>' . ( $tagFilter ? (
@@ -512,10 +521,11 @@ class NewPagesPager extends ReverseChronologicalPager {
 		$user = Title::makeTitleSafe( NS_USER, $username );
 
 		if( $namespace !== false ) {
-			if ( $this->opts->getValue( 'invert' ) ) {
-				$conds[] = 'rc_namespace != ' . $this->mDb->addQuotes( $namespace );
-			} else {
-				$conds['rc_namespace'] = $namespace;
+			$ns_cond = SpecialPage::getNamespaceCond(
+				$this->mDb, 'rc_namespace', $namespace, $this->opts->getValue( 'invert' ), $this->opts->getValue( 'associated' )
+			);
+			if ( $ns_cond !== "" ) {
+				$conds[] = $ns_cond;
 			}
 			$rcIndexes = array( 'new_name_timestamp' );
 		} else {
