@@ -170,6 +170,25 @@ abstract class Job {
 	}
 
 	/**
+	 * @return null or integer
+	 * notBefore is a timestamp in seconds
+	 * It can be set directly or calculated from the current timestamp and a 'delay' (also in seconds)
+	 */
+	public function getNotBefore() {
+		if(
+			isset( $this->params['notBefore'] ) &&
+			intval( $this->params['notBefore'] ) > 0 ) {
+			return intval( $this->params['notBefore'] );
+		} else if (
+			isset( $this->params['delay'] ) &&
+			intval( $this->params['delay'] ) > 0 ) {
+			return time() + intval( $this->params['delay'] );
+		} else {
+			return null;
+		}
+	}
+
+	/**
 	 * @return array
 	 */
 	public function getParams() {
@@ -206,6 +225,10 @@ abstract class Job {
 		if ( is_array( $info['params'] ) ) {
 			unset( $info['params']['rootJobSignature'] );
 			unset( $info['params']['rootJobTimestamp'] );
+		}
+		// Identical jobs with different not before times should count as duplicates
+		if ( is_array( $info['params'] ) ) {
+			unset( $info['params']['notBefore'] );
 		}
 		return $info;
 	}
