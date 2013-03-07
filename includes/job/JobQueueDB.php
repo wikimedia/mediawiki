@@ -19,6 +19,7 @@
  *
  * @file
  * @author Aaron Schulz
+ * @author Luke Welling
  */
 
 /**
@@ -65,6 +66,10 @@ class JobQueueDB extends JobQueue {
 		return 'random';
 	}
 
+	protected function supportsDelayedJobs() {
+		return true;
+	}
+
 	/**
 	 * @see JobQueue::doIsEmpty()
 	 * @return bool
@@ -108,6 +113,34 @@ class JobQueueDB extends JobQueue {
 		$this->cache->set( $key, $size, self::CACHE_TTL_SHORT );
 
 		return $size;
+	}
+
+	/**
+	 * @see JobQueue::doGetDelayedCount()
+	 * @return integer
+	 */
+	protected function doGetDelayedCount() {
+		if ( !$this->checkDelay ) {
+			return 0; // no delayed jobs
+		}
+
+		$key = $this->getCacheKey( 'delayedcount' );
+
+		$count = $this->cache->get( $key );
+		if ( is_int( $count ) ) {
+			return $count;
+		}
+
+		list( $dbr, $scope ) = $this->getSlaveDB();
+		$count = (int)$dbr->selectField( 'job', 'COUNT(*)',
+			array( 'job_cmd' => $this->type,
+                               "job_not_before > {$dbw->addQuotes( $now )}"
+			),
+			__METHOD__
+		);
+		$this->cache->set( $key, $count, self::CACHE_TTL_SHORT );
+
+		return $count;
 	}
 
 	/**
@@ -315,10 +348,10 @@ class JobQueueDB extends JobQueue {
 				$ineq = $gte ? '>=' : '<=';
 				$dir = $gte ? 'ASC' : 'DESC';
 				$row = $dbw->selectRow( 'job', '*', // find a random job
-					array(
+					$this->appendDelayCond( $dbw, array(
 						'job_cmd'   => $this->type,
 						'job_token' => '', // unclaimed
-						"job_random {$ineq} {$dbw->addQuotes( $rand )}" ),
+						"job_random {$ineq} {$dbw->addQuotes( $rand )}" ) ),
 					__METHOD__,
 					array( 'ORDER BY' => "job_random {$dir}" )
 				);
@@ -332,10 +365,10 @@ class JobQueueDB extends JobQueue {
 				// in MySQL if there are many rows for some reason. This uses a small OFFSET
 				// instead of job_random for reducing excess claim retries.
 				$row = $dbw->selectRow( 'job', '*', // find a random job
-					array(
+					$this->appendDelayCond( $dbw, array(
 						'job_cmd'   => $this->type,
 						'job_token' => '', // unclaimed
-					),
+					) ),
 					__METHOD__,
 					array( 'OFFSET' => mt_rand( 0, self::MAX_OFFSET ) )
 				);
@@ -391,20 +424,27 @@ class JobQueueDB extends JobQueue {
 					"WHERE ( " .
 						"job_cmd = {$dbw->addQuotes( $this->type )} " .
 						"AND job_token = {$dbw->addQuotes( '' )} " .
+						$this->delayQueryFragment( $dbw ) .
 					") ORDER BY job_id ASC LIMIT 1",
 					__METHOD__
 				);
 			} else {
 				// Use a subquery to find the job, within an UPDATE to claim it.
 				// This uses as much of the DB wrapper functions as possible.
+
 				$dbw->update( 'job',
 					array(
 						'job_token'           => $uuid,
 						'job_token_timestamp' => $dbw->timestamp(),
-						'job_attempts = job_attempts+1' ),
+						'job_attempts = job_attempts+1'
+					),
 					array( 'job_id = (' .
 						$dbw->selectSQLText( 'job', 'job_id',
-							array( 'job_cmd' => $this->type, 'job_token' => '' ),
+							$this->appendDelayCond( $dbw, array(
+								'job_cmd' => $this->type,
+								'job_token' => '' 
+								)
+							),
 							__METHOD__,
 							array( 'ORDER BY' => 'job_id ASC', 'LIMIT' => 1 ) ) .
 						')'
@@ -426,6 +466,45 @@ class JobQueueDB extends JobQueue {
 		} while ( !$row );
 
 		return $row;
+	}
+
+	/**
+	 * If we are using delayed queue, return the array of where conditions passed in with delay specific addition
+	 * Used by claimOldest() and claimRandom()
+	 *
+	 * @param Database subclass $dbw
+	 * @param array $conds
+	 *
+	 * @return array of where conditions
+         */
+	protected function appendDelayCond( $dbw, $conds ) {
+		if ( $this->checkDelay === true ) {
+			$now = $dbw->timestamp();
+			$conds[] = "(
+				job_not_before IS NULL OR
+				job_not_before <= {$dbw->addQuotes( $now )} ) ";
+		}
+		return $conds;
+	}
+
+	/**
+	 * If we are using delayed queue, return extra sql to fetch only jobs that are due to be processed
+	 * Used by claimOldest()
+	 *
+	 * @param Database subclass $dbw
+	 *
+	 * @return string sql fragment
+         */
+	protected function delayQueryFragment( $dbw ) {
+		if ( $this->checkDelay === true ) {
+			$now = $dbw->timestamp();
+			return "AND (
+					job_not_before IS NULL OR
+					job_not_before <= {$dbw->addQuotes( $now )}
+				)";
+		} else {
+			return '';
+		}
 	}
 
 	/**
@@ -643,18 +722,19 @@ class JobQueueDB extends JobQueue {
 		list( $dbw, $scope ) = $this->getMasterDB();
 		return array(
 			// Fields that describe the nature of the job
-			'job_cmd'       => $job->getType(),
-			'job_namespace' => $job->getTitle()->getNamespace(),
-			'job_title'     => $job->getTitle()->getDBkey(),
-			'job_params'    => self::makeBlob( $job->getParams() ),
+			'job_cmd'        => $job->getType(),
+			'job_namespace'  => $job->getTitle()->getNamespace(),
+			'job_title'      => $job->getTitle()->getDBkey(),
+			'job_params'     => self::makeBlob( $job->getParams() ),
 			// Additional job metadata
-			'job_id'        => $dbw->nextSequenceValue( 'job_job_id_seq' ),
-			'job_timestamp' => $dbw->timestamp(),
-			'job_sha1'      => wfBaseConvert(
+			'job_id'         => $dbw->nextSequenceValue( 'job_job_id_seq' ),
+			'job_timestamp'  => $dbw->timestamp(),
+			'job_sha1'       => wfBaseConvert(
 				sha1( serialize( $job->getDeduplicationInfo() ) ),
 				16, 36, 31
 			),
-			'job_random'    => mt_rand( 0, self::MAX_JOB_RANDOM )
+			'job_random'     => mt_rand( 0, self::MAX_JOB_RANDOM ),
+			'job_not_before' => $dbw->timestampOrNull( $job->getReleaseTimestamp() )
 		);
 	}
 

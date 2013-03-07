@@ -219,6 +219,11 @@ abstract class Job {
 			// Likewise for jobs with different delay times
 			unset( $info['params']['jobReleaseTimestamp'] );
 		}
+		// Identical jobs with different not before times should count as duplicates
+		if ( is_array( $info['params'] ) ) {
+			unset( $info['params']['delay'] );
+			unset( $info['params']['notBefore'] );
+		}
 		return $info;
 	}
 
