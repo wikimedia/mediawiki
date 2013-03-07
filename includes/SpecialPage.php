@@ -296,6 +296,40 @@ class SpecialPage {
 	}
 
 	/**
+	 * Create the namespace part of the conditions for a where-clause
+	 *
+	 * @param $dbr DatabaseBase Database handle
+	 * @param $col_name String The namespace column in the table, e.g. page_namespace, rc_namespace, ..
+	 * @param $namespace mixed Selected namespace as int, any other value: all namespaces. Default: false
+	 * @param $invert bool Invert selection? Default: false
+	 * @param $associated bool Include associated namespaces? Default: false
+	 *
+	 * @return Array Array containing the namespace conds, to be merged into the rest of conds
+	 *
+	 */
+	public static function getNamespaceCond(
+		DatabaseBase $dbr, $col_name, $namespace = false, $invert = false, $associated = false
+	) {
+
+		if ( is_int( $namespace ) ) {
+			$selectedNS = $dbr->addQuotes( $namespace );
+			$eq_op = $invert ? '!=' : '=';
+			$bool_op = $invert ? 'AND' : 'OR';
+
+			if ( $associated ) {
+				$associatedNS = $dbr->addQuotes( MWNamespace::getAssociated( $namespace ) );
+				return array(
+					"$col_name $eq_op $selectedNS $bool_op $col_name $eq_op $associatedNS"
+				);
+			} else {
+				return array( "$col_name $eq_op $selectedNS" );
+			}
+		}
+
+		return array();
+	}
+
+	/**
 	 * Default constructor for special pages
 	 * Derivative classes should call this from their constructor
 	 *     Note that if the user does not have the required level, an error message will
