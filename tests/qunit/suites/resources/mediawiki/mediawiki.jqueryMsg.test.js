@@ -81,7 +81,7 @@
 			} );
 	}
 
-	QUnit.test( 'Replace', 9, function ( assert ) {
+	QUnit.test( 'Replace', 7, function ( assert ) {
 		var parser = mw.jqueryMsg.getMessageFunction();
 
 		mw.messages.set( 'simple', 'Foo $1 baz $2' );
