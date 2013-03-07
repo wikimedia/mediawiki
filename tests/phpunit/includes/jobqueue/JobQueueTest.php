@@ -7,7 +7,7 @@
  */
 class JobQueueTest extends MediaWikiTestCase {
 	protected $key;
-	protected $queueRand, $queueRandTTL, $queueFifo, $queueFifoTTL;
+	protected $queueRand, $queueRandTTL, $queueFifo, $queueFifoTTL, $queueDelay;
 
 	function __construct( $name = null, array $data = array(), $dataName = '' ) {
 		parent::__construct( $name, $data, $dataName );
@@ -144,6 +144,15 @@ class JobQueueTest extends MediaWikiTestCase {
 
 		$queue->flushCaches();
 		$this->assertEquals( 0, $queue->getAcquiredCount(), "Active job count ($desc)" );
+
+		$queue->flushCaches();
+		$this->assertEquals( 0, $queue->getSize(), "Queue is empty ($desc)" );
+		$this->assertEquals( 0, $queue->getAcquiredCount(), "Queue is empty ($desc)" );
+
+		$this->assertTrue( $queue->push( $this->newDelayedJob() ), "Push of delayed job worked regardless of support($desc)" );
+
+		$this->assertFalse( $queue->isEmpty(), "Queue is not empty ($desc)" );
+		$queue->flushCaches();
 	}
 
 	/**
@@ -288,6 +297,91 @@ class JobQueueTest extends MediaWikiTestCase {
 		$queue->flushCaches();
 		$this->assertEquals( 0, $queue->getSize(), "Queue is empty ($desc)" );
 		$this->assertEquals( 0, $queue->getAcquiredCount(), "No jobs active ($desc)" );
+
+		//Test that delays have no effect on a non-delayed queue
+		$this->assertTrue( $queue->push( $this->newDelayedJob( 1, array(), 1 ) ), "Push worked ($desc)" );
+		$job = $queue->pop();
+		$this->assertTrue( $job instanceof Job, "Immediate pop should succeed with delay request ignored ($desc)" );
+		$queue->ack( $job );
+		$this->assertTrue( $queue->push( $this->newDelayedJob( 2, array(), 0 ) ), "Push worked ($desc)" );
+		$this->assertTrue( $queue->push( $this->newDelayedJob( 3, array(), 999 ) ), "Push worked ($desc)" );
+		$this->assertTrue( $queue->push( $this->newDelayedJob( 4, array(), 0 ) ), "Push worked ($desc)" );
+
+		//  pop order should be FIFO - 2, 3, 4
+		for ( $i = 2; $i < 5 ; ++$i ) {
+			$job = $queue->pop();
+			$this->assertTrue( $job instanceof Job, "Jobs popped from queue ($desc)" );
+			$params = $job->getParams();
+			$this->assertEquals( $i, $params['i'], "Job with ignored delay $i popped from queue in position $i ($desc)" );
+			$queue->ack( $job );
+		}
+	}
+
+	/**
+	 * @dataProvider provider_delayedQueueLists
+	 * Note these tests rely on magic numbers and timing so are susceptible to spurious failures
+	 */
+	function testDelayedJobOrder( $queue, $recycles, $desc ) {
+		$queue = $this->$queue;
+
+		$this->assertTrue( $queue->isEmpty(), "Queue is empty ($desc)" );
+
+		$queue->flushCaches();
+		$this->assertEquals( 0, $queue->getSize(), "Queue is empty ($desc)" );
+		$this->assertEquals( 0, $queue->getAcquiredCount(), "Queue is empty ($desc)" );
+
+		for ( $i = 0; $i < 10; ++$i ) {
+			$this->assertTrue( $queue->push( $this->newDelayedJob( $i, array(), 0 ) ), "Push worked ($desc)" );
+		}
+
+		for ( $i = 0; $i < 10; ++$i ) {
+			$job = $queue->pop();
+			$this->assertTrue( $job instanceof Job, "Jobs popped from queue ($desc)" );
+			$params = $job->getParams();
+			$this->assertEquals( $i, $params['i'], "Job with zero delay popped from queue is FIFO ($desc)" );
+			$queue->ack( $job );
+		}
+
+		$this->assertFalse( $queue->pop(), "Queue is empty ($desc)" );
+
+		// test setting delay param
+		$this->assertTrue( $queue->push( $this->newDelayedJob( 1, array(), 2 ) ), "Push worked ($desc)" );
+		$this->assertFalse( $queue->pop(), "Immediate pop should fail with delay ($desc)" );
+		$this->assertTrue( $queue->push( $this->newDelayedJob( 2, array(), 0 ) ), "Push worked ($desc)" );
+		$this->assertTrue( $queue->push( $this->newDelayedJob( 3, array(), 999 ) ), "Push worked ($desc)" );
+		$this->assertTrue( $queue->push( $this->newDelayedJob( 4, array(), 0 ) ), "Push worked ($desc)" );
+
+		// after waiting more than a second, pop order should be 1,2,4,false
+		$correct = array( 1, 2, 4 );
+		sleep(2);
+		for ( $i = 0; $i < 3 ; ++$i ) {
+			$job = $queue->pop();
+			$this->assertTrue( $job instanceof Job, "Jobs popped from queue ($desc)" );
+			$params = $job->getParams();
+			$this->assertEquals( $correct[$i], $params['i'], "Job with delay {$correct[$i]} popped from queue in position $i ($desc)" );
+			$queue->ack( $job );
+		}
+		$this->assertFalse( $queue->pop(), "Long delayed item should not be popable during this test ($desc)" );
+
+
+		// test setting notBefore param
+		$this->assertTrue( $queue->push( $this->newDelayedJob( 1, array(), 0, time() + 2 ) ), "Push worked ($desc)" );
+		$this->assertFalse( $queue->pop(), "Immediate pop should fail with notBefore ($desc)" );
+		$this->assertTrue( $queue->push( $this->newDelayedJob( 2, array(), 0, time() + 0 ) ), "Push worked ($desc)" );
+		$this->assertTrue( $queue->push( $this->newDelayedJob( 3, array(), 0, time() + 999 ) ), "Push worked ($desc)" );
+		$this->assertTrue( $queue->push( $this->newDelayedJob( 4, array(), 0, time() + 0 ) ), "Push worked ($desc)" );
+
+		// after waiting more than a second, pop order should be 1,2,4,false
+		$correct = array( 1, 2, 4 );
+		sleep(2);
+		for ( $i = 0; $i < 3 ; ++$i ) {
+			$job = $queue->pop();
+			$this->assertTrue( $job instanceof Job, "Jobs popped from queue ($desc)" );
+			$params = $job->getParams();
+			$this->assertEquals( $correct[$i], $params['i'], "Job with delay {$correct[$i]} popped from queue in position $i ($desc)" );
+			$queue->ack( $job );
+		}
+		$this->assertFalse( $queue->pop(), "Long delayed item should not be popable during this test ($desc)" );
 	}
 
 	public static function provider_queueLists() {
@@ -308,6 +402,12 @@ class JobQueueTest extends MediaWikiTestCase {
 		);
 	}
 
+	function provider_delayedQueueLists() {
+		return array(
+			array( 'queueDelay', 'fifo', false, 'Ordered queue with delayed start times' )
+		);
+	}
+
 	function newJob( $i = 0, $rootJob = array() ) {
 		return new NullJob( Title::newMainPage(),
 			array( 'lives' => 0, 'usleep' => 0, 'removeDuplicates' => 0, 'i' => $i ) + $rootJob );
@@ -317,4 +417,16 @@ class JobQueueTest extends MediaWikiTestCase {
 		return new NullJob( Title::newMainPage(),
 			array( 'lives' => 0, 'usleep' => 0, 'removeDuplicates' => 1, 'i' => $i ) + $rootJob );
 	}
+
+	function newDelayedJob( $i = 0, $rootJob = array(), $delay = 0, $notBefore = 0 ) {
+		$params = array( 'lives' => 0, 'usleep' => 0, 'removeDuplicates' => 0, 'i' => $i ) + $rootJob;
+		if( $delay !== 0 ) {
+			$params['delay'] = $delay;
+		}
+		if( $notBefore !== 0 ) {
+			$params['notBefore'] = $notBefore;
+		}
+		return new NullJob( Title::newMainPage(), $params );
+	}
+
 }

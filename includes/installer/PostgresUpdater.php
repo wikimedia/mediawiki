@@ -160,6 +160,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'addPgField', 'job',           'job_token',            "TEXT NOT NULL DEFAULT ''" ),
 			array( 'addPgField', 'job',           'job_token_timestamp',  "TIMESTAMPTZ" ),
 			array( 'addPgField', 'job',           'job_sha1',             "TEXT NOT NULL DEFAULT ''" ),
+			array( 'addPgField', 'job',           'job_not_before',       "TIMESTAMPTZ DEFAULT NULL" ),
 
 			# type changes
 			array( 'changeField', 'archive',       'ar_deleted',      'smallint', '' ),
@@ -238,6 +239,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'addPgIndex', 'job',           'job_cmd_token',          '(job_cmd, job_token, job_random)' ),
 			array( 'addPgIndex', 'job',           'job_cmd_token_id',       '(job_cmd, job_token, job_id)' ),
 			array( 'addPgIndex', 'filearchive',   'fa_sha1',                '(fa_sha1)' ),
+			array( 'addPgIndex', 'job',           'job_not_before_idx',     '(job_not_before)' ),
 
 			array( 'checkIndex', 'pagelink_unique', array(
 				array( 'pl_from', 'int4_ops', 'btree', 0 ),
