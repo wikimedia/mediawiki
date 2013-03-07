@@ -946,6 +946,10 @@ class SpecialBlock extends FormSpecialPage {
 		$out->setPageTitle( $this->msg( 'blockipsuccesssub' ) );
 		$out->addWikiMsg( 'blockipsuccesstext', wfEscapeWikiText( $this->target ) );
 	}
+
+	protected function getGroupName() {
+		return 'users';
+	}
 }
 
 # BC @since 1.18

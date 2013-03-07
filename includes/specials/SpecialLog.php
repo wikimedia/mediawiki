@@ -194,4 +194,7 @@ class SpecialLog extends SpecialPage {
 		$this->getOutput()->addHTML( $page->getDescription()->parseAsBlock() );
 	}
 
+	protected function getGroupName() {
+		return 'changes';
+	}
 }

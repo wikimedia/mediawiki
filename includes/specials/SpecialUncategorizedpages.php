@@ -69,4 +69,8 @@ class UncategorizedPagesPage extends PageQueryPage {
 			return array( 'page_namespace', 'page_title' );
 		return array( 'page_title' );
 	}
+
+	protected function getGroupName() {
+		return 'maintenance';
+	}
 }

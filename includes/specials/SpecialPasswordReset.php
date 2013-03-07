@@ -326,4 +326,8 @@ class SpecialPasswordReset extends FormSpecialPage {
 
 		return false;
 	}
+
+	protected function getGroupName() {
+		return 'users';
+	}
 }

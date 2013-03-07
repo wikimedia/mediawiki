@@ -86,4 +86,8 @@ class SpecialFilepath extends SpecialPage {
 			Html::closeElement( 'form' )
 		);
 	}
+
+	protected function getGroupName() {
+		return 'media';
+	}
 }

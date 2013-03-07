@@ -541,6 +541,10 @@ class SpecialContributions extends SpecialPage {
 			Xml::closeElement( 'form' );
 		return $form;
 	}
+
+	protected function getGroupName() {
+		return 'users';
+	}
 }
 
 /**

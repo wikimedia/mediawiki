@@ -87,4 +87,8 @@ class SpecialPreferences extends SpecialPage {
 
 		return true;
 	}
+
+	protected function getGroupName() {
+		return 'users';
+	}
 }

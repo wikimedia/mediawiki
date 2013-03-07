@@ -464,4 +464,8 @@ class SpecialWhatLinksHere extends SpecialPage {
 		}
 		return Xml::fieldset( $this->msg( 'whatlinkshere-filters' )->text(), $this->getLanguage()->pipeList( $links ) );
 	}
+
+	protected function getGroupName() {
+		return 'pagetools';
+	}
 }

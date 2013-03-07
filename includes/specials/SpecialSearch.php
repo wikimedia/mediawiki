@@ -1162,4 +1162,7 @@ class SpecialSearch extends SpecialPage {
 		$this->extraParams[$key] = $value;
 	}
 
+	protected function getGroupName() {
+		return 'redirects';
+	}
 }

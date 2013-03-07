@@ -222,4 +222,8 @@ class LinkSearchPage extends QueryPage {
 	function getOrderFields() {
 		return array();
 	}
+
+	protected function getGroupName() {
+		return 'redirects';
+	}
 }

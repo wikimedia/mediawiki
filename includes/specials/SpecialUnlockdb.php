@@ -84,4 +84,8 @@ class SpecialUnlockdb extends FormSpecialPage {
 		$out->addSubtitle( $this->msg( 'unlockdbsuccesssub' ) );
 		$out->addWikiMsg( 'unlockdbsuccesstext' );
 	}
+
+	protected function getGroupName() {
+		return 'wiki';
+	}
 }

@@ -102,4 +102,8 @@ class SpecialLockdb extends FormSpecialPage {
 		$out->addSubtitle( $this->msg( 'lockdbsuccesssub' ) );
 		$out->addWikiMsg( 'lockdbsuccesstext' );
 	}
+
+	protected function getGroupName() {
+		return 'wiki';
+	}
 }

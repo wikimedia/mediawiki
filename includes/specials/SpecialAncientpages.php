@@ -71,4 +71,8 @@ class AncientPagesPage extends QueryPage {
 		);
 		return $this->getLanguage()->specialList( $link, htmlspecialchars( $d ) );
 	}
+
+	protected function getGroupName() {
+		return 'maintenance';
+	}
 }
