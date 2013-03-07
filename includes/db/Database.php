@@ -1398,6 +1398,51 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	}
 
 	/**
+	 * Create the namespace part of the conditions for a where-clause
+	 *
+	 * @since 1.23
+	 *
+	 * @param String $col_name The namespace column in the table, e.g. page_namespace, rc_namespace, ..
+	 * @param mixed $namespace Selected namespace as int, any other value: all namespaces.
+	 *   Default: false
+	 * @param bool $invert Invert selection? Default: false
+	 * @param bool $associated Include associated namespaces? Default: false
+	 *
+	 * @return String containing the namespace cond (possibly empty)
+	 *
+	 */
+	public function makeNamespaceCond(
+		$col_name, $namespace = false, $invert = false, $associated = false
+	) {
+
+		if ( is_int( $namespace ) ) {
+			$selectedNS = $this->addQuotes( $namespace );
+			$eq_op = $invert ? '!=' : '=';
+			$bool_op = $invert ? LIST_AND : LIST_OR;
+
+			if ( $associated ) {
+				$associatedNS = $this->addQuotes(
+					MWNamespace::getAssociated( $namespace )
+				);
+				return $this->makeList(
+					array(
+						"$col_name $eq_op $selectedNS",
+						"$col_name $eq_op $associatedNS"
+					),
+					$bool_op
+				);
+			} else {
+				return $this->makeList(
+					array( "$col_name $eq_op $selectedNS"),
+					$bool_op
+				);
+			}
+		}
+
+		return "";
+	}
+
+	/**
 	 * Execute a SELECT query constructed using the various parameters provided.
 	 * See below for full details of the parameters.
 	 *

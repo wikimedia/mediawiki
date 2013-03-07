@@ -51,7 +51,7 @@ class SpecialRecentchangesTest extends MediaWikiTestCase {
 			array( # expected
 				'rc_bot' => 0,
 				#0 => "rc_timestamp >= '20110223000000'",
-				1 => "rc_namespace = '0'",
+				1 => "(rc_namespace = '0')",
 			),
 			array(
 				'namespace' => NS_MAIN,
@@ -65,7 +65,7 @@ class SpecialRecentchangesTest extends MediaWikiTestCase {
 			array( # expected
 				#0 => "rc_timestamp >= '20110223000000'",
 				'rc_bot' => 0,
-				1 => sprintf( "rc_namespace != '%s'", NS_MAIN ),
+				1 => sprintf( "(rc_namespace != '%s')", NS_MAIN ),
 			),
 			array(
 				'namespace' => NS_MAIN,
@@ -84,7 +84,7 @@ class SpecialRecentchangesTest extends MediaWikiTestCase {
 			array( # expected
 				#0 => "rc_timestamp >= '20110223000000'",
 				'rc_bot' => 0,
-				1 => sprintf( "(rc_namespace = '%s' OR rc_namespace = '%s')", $ns1, $ns2 ),
+				1 => sprintf( "(rc_namespace = '%s') OR (rc_namespace = '%s')", $ns1, $ns2 ),
 			),
 			array(
 				'namespace' => $ns1,
@@ -103,7 +103,7 @@ class SpecialRecentchangesTest extends MediaWikiTestCase {
 			array( # expected
 				#0 => "rc_timestamp >= '20110223000000'",
 				'rc_bot' => 0,
-				1 => sprintf( "(rc_namespace != '%s' AND rc_namespace != '%s')", $ns1, $ns2 ),
+				1 => sprintf( "(rc_namespace != '%s') AND (rc_namespace != '%s')", $ns1, $ns2 ),
 			),
 			array(
 				'namespace' => $ns1,
