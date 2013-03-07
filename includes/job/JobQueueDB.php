@@ -19,6 +19,7 @@
  *
  * @file
  * @author Aaron Schulz
+ * @author Luke Welling
  */
 
 /**
@@ -351,6 +352,13 @@ class JobQueueDB extends JobQueue {
 				// same table being changed in an UPDATE query in MySQL (gives Error: 1093).
 				// Oracle and Postgre have no such limitation. However, MySQL offers an
 				// alternative here by supporting ORDER BY + LIMIT for UPDATE queries.
+				$delayQuery = '';
+				if ( $this->delay === true ) {
+					$now = time();
+					$delayQuery = "AND (
+						job_not_before IS NULL OR
+						job_not_before <= {$dbw->addQuotes( $now )} ) ";
+				}
 				$dbw->query( "UPDATE {$dbw->tableName( 'job' )} " .
 					"SET " .
 						"job_token = {$dbw->addQuotes( $uuid ) }, " .
@@ -359,12 +367,22 @@ class JobQueueDB extends JobQueue {
 					"WHERE ( " .
 						"job_cmd = {$dbw->addQuotes( $this->type )} " .
 						"AND job_token = {$dbw->addQuotes( '' )} " .
+						$delayQuery .
 					") ORDER BY job_id ASC LIMIT 1",
 					__METHOD__
 				);
 			} else {
 				// Use a subquery to find the job, within an UPDATE to claim it.
 				// This uses as much of the DB wrapper functions as possible.
+				$whereConds = array( 'job_cmd' => $this->type, 'job_token' => '' );
+
+				if ( $this->delay ) {
+					$now = time();
+					$whereConds += array( "(
+						job_not_before IS NULL OR
+						job_not_before <= {$dbw->addQuotes( $now )} ) ");
+				}
+
 				$dbw->update( 'job',
 					array(
 						'job_token'           => $uuid,
@@ -372,7 +390,7 @@ class JobQueueDB extends JobQueue {
 						'job_attempts = job_attempts+1' ),
 					array( 'job_id = (' .
 						$dbw->selectSQLText( 'job', 'job_id',
-							array( 'job_cmd' => $this->type, 'job_token' => '' ),
+							$whereConds,
 							__METHOD__,
 							array( 'ORDER BY' => 'job_id ASC', 'LIMIT' => 1 ) ) .
 						')'
@@ -619,18 +637,19 @@ class JobQueueDB extends JobQueue {
 		list( $dbw, $scope ) = $this->getMasterDB();
 		return array(
 			// Fields that describe the nature of the job
-			'job_cmd'       => $job->getType(),
-			'job_namespace' => $job->getTitle()->getNamespace(),
-			'job_title'     => $job->getTitle()->getDBkey(),
-			'job_params'    => self::makeBlob( $job->getParams() ),
+			'job_cmd'        => $job->getType(),
+			'job_namespace'  => $job->getTitle()->getNamespace(),
+			'job_title'      => $job->getTitle()->getDBkey(),
+			'job_params'     => self::makeBlob( $job->getParams() ),
 			// Additional job metadata
-			'job_id'        => $dbw->nextSequenceValue( 'job_job_id_seq' ),
-			'job_timestamp' => $dbw->timestamp(),
-			'job_sha1'      => wfBaseConvert(
+			'job_id'         => $dbw->nextSequenceValue( 'job_job_id_seq' ),
+			'job_timestamp'  => $dbw->timestamp(),
+			'job_sha1'       => wfBaseConvert(
 				sha1( serialize( $job->getDeduplicationInfo() ) ),
 				16, 36, 31
 			),
-			'job_random'    => mt_rand( 0, self::MAX_JOB_RANDOM )
+			'job_random'     => mt_rand( 0, self::MAX_JOB_RANDOM ),
+			'job_not_before' => $job->getNotBefore()
 		);
 	}
 
