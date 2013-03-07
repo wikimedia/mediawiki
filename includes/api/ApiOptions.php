@@ -80,7 +80,8 @@ class ApiOptions extends ApiBase {
 					$validation = $field->validate( $value, $user->getOptions() );
 					break;
 				case 'registered-multiselect':
-					// A key for a multiselect option.
+				case 'registered-checkmatrix':
+					// A key for a multiselect or checkmatrix option.
 					$validation = true;
 					$value = $value !== null ? (bool) $value : null;
 					break;
