@@ -59,6 +59,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$opts->add( 'feed', '' );
 		$opts->add( 'tagfilter', '' );
 		$opts->add( 'invert', false );
+		$opts->add( 'associated', false );
 
 		$this->customFilters = array();
 		wfRunHooks( 'SpecialNewPagesFilters', array( $this, &$this->customFilters ) );
@@ -215,6 +216,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$username = $this->opts->consumeValue( 'username' );
 		$tagFilterVal = $this->opts->consumeValue( 'tagfilter' );
 		$nsinvert = $this->opts->consumeValue( 'invert' );
+		$associated = $this->opts->consumeValue( 'associated' );
 
 		// Check username input validity
 		$ut = Title::makeTitleSafe( NS_USER, $username );
@@ -238,27 +240,34 @@ class SpecialNewpages extends IncludableSpecialPage {
 			Xml::openElement( 'table', array( 'id' => 'mw-newpages-table' ) ) .
 			'<tr>
 				<td class="mw-label">' .
-			Xml::label( $this->msg( 'namespace' )->text(), 'namespace' ) .
-			'</td>
-			<td class="mw-input">' .
-			Html::namespaceSelector(
-				array(
-					'selected' => $namespace,
-					'all' => 'all',
-				), array(
-					'name' => 'namespace',
-					'id' => 'namespace',
-					'class' => 'namespaceselector',
-				)
-			) . '&#160;' .
-			Xml::checkLabel(
-				$this->msg( 'invert' )->text(),
-				'invert',
-				'nsinvert',
-				$nsinvert,
-				array( 'title' => $this->msg( 'tooltip-invert' )->text() )
-			) .
-			'</td>
+					Xml::label( $this->msg( 'namespace' )->text(), 'namespace' ) .
+				'</td>
+				<td class="mw-input">' .
+					Html::namespaceSelector(
+						array(
+							'selected' => $namespace,
+							'all' => 'all',
+						), array(
+							'name'  => 'namespace',
+							'id'    => 'namespace',
+							'class' => 'namespaceselector',
+						)
+					) . '&#160;' .
+					Xml::checkLabel(
+						$this->msg( 'invert' )->text(),
+						'invert',
+						'nsinvert',
+						$nsinvert,
+						array( 'title' => $this->msg( 'tooltip-invert' )->text(), 'class' => 'mw-input' )
+					) . '&#160;' .
+					Xml::checkLabel(
+						$this->msg( 'namespace_association' )->text(),
+						'associated',
+						'associated',
+						$associated,
+						array( 'title' => $this->msg( 'tooltip-namespace_association' )->text(), 'class' => 'mw-input' )
+					) .
+				'</td>
 			</tr>' . ( $tagFilter ? (
 			'<tr>
 				<td class="mw-label">' .
@@ -528,11 +537,16 @@ class NewPagesPager extends ReverseChronologicalPager {
 		$username = $this->opts->getValue( 'username' );
 		$user = Title::makeTitleSafe( NS_USER, $username );
 
-		if ( $namespace !== false ) {
-			if ( $this->opts->getValue( 'invert' ) ) {
-				$conds[] = 'rc_namespace != ' . $this->mDb->addQuotes( $namespace );
-			} else {
-				$conds['rc_namespace'] = $namespace;
+		if( $namespace !== false ) {
+			$ns_cond = SpecialPage::getNamespaceCond(
+				$this->mDb,
+				'rc_namespace',
+				$namespace,
+				$this->opts->getValue( 'invert' ),
+				$this->opts->getValue( 'associated' )
+			);
+			if ( $ns_cond !== "" ) {
+				$conds[] = $ns_cond;
 			}
 			$rcIndexes = array( 'new_name_timestamp' );
 		} else {

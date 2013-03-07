@@ -723,7 +723,13 @@ class ContribsPager extends ReverseChronologicalPager {
 		list( $tables, $index, $userCond, $join_cond ) = $this->getUserCond();
 
 		$user = $this->getUser();
-		$conds = array_merge( $userCond, $this->getNamespaceCond() );
+
+		$ns_cond = SpecialPage::getNamespaceCond(
+			$this->mDb, 'page_namespace', $this->namespace, $this->nsInvert, $this->associated
+		);
+		if ( $ns_cond !== "" ) {
+			$conds[] = $ns_cond;
+		}
 
 		// Paranoia: avoid brute force searches (bug 17342)
 		if ( !$user->isAllowed( 'deletedhistory' ) ) {
@@ -806,30 +812,6 @@ class ContribsPager extends ReverseChronologicalPager {
 		}
 
 		return array( $tables, $index, $condition, $join_conds );
-	}
-
-	function getNamespaceCond() {
-		if ( $this->namespace !== '' ) {
-			$selectedNS = $this->mDb->addQuotes( $this->namespace );
-			$eq_op = $this->nsInvert ? '!=' : '=';
-			$bool_op = $this->nsInvert ? 'AND' : 'OR';
-
-			if ( !$this->associated ) {
-				return array( "page_namespace $eq_op $selectedNS" );
-			}
-
-			$associatedNS = $this->mDb->addQuotes(
-				MWNamespace::getAssociated( $this->namespace )
-			);
-
-			return array(
-				"page_namespace $eq_op $selectedNS " .
-					$bool_op .
-					" page_namespace $eq_op $associatedNS"
-			);
-		}
-
-		return array();
 	}
 
 	function getIndexField() {
