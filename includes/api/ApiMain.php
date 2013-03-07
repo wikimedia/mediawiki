@@ -1118,11 +1118,11 @@ class ApiMain extends ApiBase {
 	protected function getCredits() {
 		return array(
 			'API developers:',
-			'    Roan Kattouw "<Firstname>.<Lastname>@gmail.com" (lead developer Sep 2007-present)',
+			'    Roan Kattouw "<Firstname>.<Lastname>@gmail.com" (lead developer Sep 2007-2009)',
 			'    Victor Vasiliev - vasilvv at gee mail dot com',
 			'    Bryan Tong Minh - bryan . tongminh @ gmail . com',
 			'    Sam Reed - sam @ reedyboy . net',
-			'    Yuri Astrakhan "<Firstname><Lastname>@gmail.com" (creator, lead developer Sep 2006-Sep 2007, 2012)',
+			'    Yuri Astrakhan "<Firstname><Lastname>@gmail.com" (creator, lead developer Sep 2006-Sep 2007, 2012-present)',
 			'',
 			'Please send your comments, suggestions and questions to mediawiki-api@lists.wikimedia.org',
 			'or file a bug report at https://bugzilla.wikimedia.org/'
@@ -1276,7 +1276,7 @@ class ApiMain extends ApiBase {
 	 * @param $class ApiFormatBase The class implementing this format.
 	 */
 	protected function addFormat( $name, $class ) {
-		$this->getModuleManager->addModule( $name, 'format', $class );
+		$this->getModuleManager()->addModule( $name, 'format', $class );
 	}
 
 	/**

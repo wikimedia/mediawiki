@@ -897,7 +897,7 @@ class ApiPageSet extends ApiBase {
 			}
 			if ( !$titleObj ) {
 				// Handle invalid titles gracefully
-				$this->mAllpages[0][$title] = $this->mFakePageId;
+				$this->mAllPages[0][$title] = $this->mFakePageId;
 				$this->mInvalidTitles[$this->mFakePageId] = $title;
 				$this->mFakePageId--;
 				continue; // There's nothing else we can do
