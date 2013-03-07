@@ -25,9 +25,9 @@
  */
 
 /**
-* API module that facilitates the blocking of users. Requires API write mode
-* to be enabled.
-*
+ * API module that facilitates the blocking of users. Requires API write mode
+ * to be enabled.
+ *
  * @ingroup API
  */
 class ApiBlock extends ApiBase {

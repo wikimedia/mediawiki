@@ -829,20 +829,20 @@ class FormatMetadata {
 	}
 
 	/**
-	* A function to collapse multivalued tags into a single value.
-	* This turns an array of (for example) authors into a bulleted list.
-	*
-	* This is public on the basis it might be useful outside of this class.
-	*
-	* @param $vals Array array of values
-	* @param $type String Type of array (either lang, ul, ol).
-	* lang = language assoc array with keys being the lang code
-	* ul = unordered list, ol = ordered list
-	* type can also come from the '_type' member of $vals.
-	* @param $noHtml Boolean If to avoid returning anything resembling
-	* html. (Ugly hack for backwards compatibility with old mediawiki).
-	* @return String single value (in wiki-syntax).
-	*/
+	 * A function to collapse multivalued tags into a single value.
+	 * This turns an array of (for example) authors into a bulleted list.
+	 *
+	 * This is public on the basis it might be useful outside of this class.
+	 *
+	 * @param $vals Array array of values
+	 * @param $type String Type of array (either lang, ul, ol).
+	 * lang = language assoc array with keys being the lang code
+	 * ul = unordered list, ol = ordered list
+	 * type can also come from the '_type' member of $vals.
+	 * @param $noHtml Boolean If to avoid returning anything resembling
+	 * html. (Ugly hack for backwards compatibility with old mediawiki).
+	 * @return String single value (in wiki-syntax).
+	 */
 	public static function flattenArray( $vals, $type = 'ul', $noHtml = false ) {
 		if ( isset( $vals['_type'] ) ) {
 			$type = $vals['_type'];
@@ -1353,7 +1353,7 @@ class FormatMetadata {
  *
  * @deprecated since 1.18
  *
-**/
+ */
 class FormatExif {
 	var $meta;
 

@@ -2979,14 +2979,14 @@ class WikiPage implements Page, IDBAccessObject {
 	}
 
 	/**
-	* Return an applicable autosummary if one exists for the given edit.
-	* @param $oldtext String|null: the previous text of the page.
-	* @param $newtext String|null: The submitted text of the page.
-	* @param $flags Int bitmask: a bitmask of flags submitted for the edit.
-	* @return string An appropriate autosummary, or an empty string.
-	*
-	* @deprecated since 1.21, use ContentHandler::getAutosummary() instead
-	*/
+	 * Return an applicable autosummary if one exists for the given edit.
+	 * @param $oldtext String|null: the previous text of the page.
+	 * @param $newtext String|null: The submitted text of the page.
+	 * @param $flags Int bitmask: a bitmask of flags submitted for the edit.
+	 * @return string An appropriate autosummary, or an empty string.
+	 *
+	 * @deprecated since 1.21, use ContentHandler::getAutosummary() instead
+	 */
 	public static function getAutosummary( $oldtext, $newtext, $flags ) {
 		// NOTE: stub for backwards-compatibility. assumes the given text is wikitext. will break horribly if it isn't.
 

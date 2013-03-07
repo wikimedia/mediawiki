@@ -369,7 +369,7 @@ abstract class File {
 	 * returns false.
 	 *
 	 * @return string|bool ForeignAPIFile::getPath can return false
-	*/
+	 */
 	public function getPath() {
 		if ( !isset( $this->path ) ) {
 			$this->assertRepoDefined();
@@ -512,12 +512,12 @@ abstract class File {
 	}
 
 	/**
-	* get versioned metadata
-	*
-	* @param $metadata Mixed Array or String of (serialized) metadata
-	* @param $version integer version number.
-	* @return Array containing metadata, or what was passed to it on fail (unserializing if not array)
-	*/
+	 * get versioned metadata
+	 *
+	 * @param $metadata Mixed Array or String of (serialized) metadata
+	 * @param $version integer version number.
+	 * @return Array containing metadata, or what was passed to it on fail (unserializing if not array)
+	 */
 	public function convertMetadataVersion($metadata, $version) {
 		$handler = $this->getHandler();
 		if ( !is_array( $metadata ) ) {

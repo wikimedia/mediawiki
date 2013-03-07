@@ -751,12 +751,12 @@ class Xml {
 	}
 
 	/**
-	* Generate a form (without the opening form element).
-	* Output optionally includes a submit button.
-	* @param $fields Array Associative array, key is message corresponding to a description for the field (colon is in the message), value is appropriate input.
-	* @param $submitLabel String A message containing a label for the submit button.
-	* @return string HTML form.
-	*/
+	 * Generate a form (without the opening form element).
+	 * Output optionally includes a submit button.
+	 * @param $fields Array Associative array, key is message corresponding to a description for the field (colon is in the message), value is appropriate input.
+	 * @param $submitLabel String A message containing a label for the submit button.
+	 * @return string HTML form.
+	 */
 	public static function buildForm( $fields, $submitLabel = null ) {
 		$form = '';
 		$form .= "<table><tbody>";

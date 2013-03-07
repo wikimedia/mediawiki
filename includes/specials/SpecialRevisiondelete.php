@@ -464,8 +464,8 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	}
 
 	/**
-	* @return String: HTML
-	*/
+	 * @return String: HTML
+	 */
 	protected function buildCheckBoxes() {
 		$html = '<table>';
 		// If there is just one item, use checkboxes

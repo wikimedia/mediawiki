@@ -37,16 +37,16 @@ class JpegMetadataExtractor {
 	// that many segments. Your average file has about 10.
 
 	/** Function to extract metadata segments of interest from jpeg files
-	* based on GIFMetadataExtractor.
-	*
-	* we can almost use getimagesize to do this
-	* but gis doesn't support having multiple app1 segments
-	* and those can't extract xmp on files containing both exif and xmp data
-	*
-	* @param String $filename name of jpeg file
-	* @return Array of interesting segments.
-	* @throws MWException if given invalid file.
-	*/
+	 * based on GIFMetadataExtractor.
+	 *
+	 * we can almost use getimagesize to do this
+	 * but gis doesn't support having multiple app1 segments
+	 * and those can't extract xmp on files containing both exif and xmp data
+	 *
+	 * @param String $filename name of jpeg file
+	 * @return Array of interesting segments.
+	 * @throws MWException if given invalid file.
+	 */
 	static function segmentSplitter ( $filename ) {
 		$showXMP = function_exists( 'xml_parser_create_ns' );
 
@@ -183,18 +183,18 @@ class JpegMetadataExtractor {
 	}
 
 	/**
-	* This reads the photoshop image resource.
-	* Currently it only compares the iptc/iim hash
-	* with the stored hash, which is used to determine the precedence
-	* of the iptc data. In future it may extract some other info, like
-	* url of copyright license.
-	*
-	* This should generally be called by BitmapMetadataHandler::doApp13()
-	*
-	* @param String $app13 photoshop psir app13 block from jpg.
-	* @throws MWException (It gets caught next level up though)
-	* @return String if the iptc hash is good or not.
-	*/
+	 * This reads the photoshop image resource.
+	 * Currently it only compares the iptc/iim hash
+	 * with the stored hash, which is used to determine the precedence
+	 * of the iptc data. In future it may extract some other info, like
+	 * url of copyright license.
+	 *
+	 * This should generally be called by BitmapMetadataHandler::doApp13()
+	 *
+	 * @param String $app13 photoshop psir app13 block from jpg.
+	 * @throws MWException (It gets caught next level up though)
+	 * @return String if the iptc hash is good or not.
+	 */
 	public static function doPSIR ( $app13 ) {
 		if ( !$app13 ) {
 			throw new MWException( "No App13 segment given" );

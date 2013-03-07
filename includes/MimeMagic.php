@@ -144,21 +144,21 @@ END_STRING
 class MimeMagic {
 
 	/**
-	* Mapping of media types to arrays of mime types.
-	* This is used by findMediaType and getMediaType, respectively
-	*/
+	 * Mapping of media types to arrays of mime types.
+	 * This is used by findMediaType and getMediaType, respectively
+	 */
 	var $mMediaTypes = null;
 
 	/** Map of mime type aliases
-	*/
+	 */
 	var $mMimeTypeAliases = null;
 
 	/** map of mime types to file extensions (as a space seprarated list)
-	*/
+	 */
 	var $mMimeToExt = null;
 
 	/** map of file extensions types to mime types (as a space seprarated list)
-	*/
+	 */
 	var $mExtToMime = null;
 
 	/** IEContentAnalyzer instance
@@ -179,8 +179,8 @@ class MimeMagic {
 	 */
 	function __construct() {
 		/**
-		*   --- load mime.types ---
-		*/
+		 *   --- load mime.types ---
+		 */
 
 		global $wgMimeTypeFile, $IP, $wgLoadFileinfoExtension;
 
@@ -802,12 +802,13 @@ class MimeMagic {
 			# TODO: remove the block below, as soon as improveTypeFromExtension is used everywhere
 			if ( $ext !== true && $ext !== false ) {
 				/** This is the mode used by getPropsFromPath
-				* These mime's are stored in the database, where we don't really want
-				* x-opc+zip, because we use it only for internal purposes
-				*/
+				 * These mime's are stored in the database, where we don't really want
+				 * x-opc+zip, because we use it only for internal purposes
+				 */
 				if ( $this->isMatchingExtension( $ext, $mime) ) {
 					/* A known file extension for an OPC file,
-					* find the proper mime type for that file extension */
+					 * find the proper mime type for that file extension
+					 */
 					$mime = $this->guessTypesForExtension( $ext );
 				} else {
 					$mime = "application/zip";

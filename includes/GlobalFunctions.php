@@ -350,7 +350,7 @@ function wfRandomString( $length = 32 ) {
  *
  * @param $s String:
  * @return string
-*/
+ */
 function wfUrlencode( $s ) {
 	static $needle;
 	if ( is_null( $s ) ) {

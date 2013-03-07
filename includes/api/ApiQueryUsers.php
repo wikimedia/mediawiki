@@ -254,12 +254,12 @@ class ApiQueryUsers extends ApiQueryBase {
 	}
 
 	/**
-	* Gets all the groups that a user is automatically a member of (implicit groups)
-	*
-	* @deprecated since 1.20; call User::getAutomaticGroups() directly.
-	* @param $user User
-	* @return array
-	*/
+	 * Gets all the groups that a user is automatically a member of (implicit groups)
+	 *
+	 * @deprecated since 1.20; call User::getAutomaticGroups() directly.
+	 * @param $user User
+	 * @return array
+	 */
 	public static function getAutoGroups( $user ) {
 		wfDeprecated( __METHOD__, '1.20' );
 

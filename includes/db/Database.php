@@ -491,7 +491,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * Returns true if this database uses timestamps rather than integers
 	 *
 	 * @return bool
-	*/
+	 */
 	public function realTimestamps() {
 		return false;
 	}

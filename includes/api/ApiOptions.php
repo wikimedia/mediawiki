@@ -25,9 +25,9 @@
  */
 
 /**
-* API module that facilitates the changing of user's preferences.
-* Requires API write mode to be enabled.
-*
+ * API module that facilitates the changing of user's preferences.
+ * Requires API write mode to be enabled.
+ *
  * @ingroup API
  */
 class ApiOptions extends ApiBase {

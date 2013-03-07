@@ -346,23 +346,23 @@ class Exif {
 	}
 
 	/**
-	* Collapse some fields together.
-	* This converts some fields from exif form, to a more friendly form.
-	* For example GPS latitude to a single number.
-	*
-	* The rationale behind this is that we're storing data, not presenting to the user
-	* For example a longitude is a single number describing how far away you are from
-	* the prime meridian. Well it might be nice to split it up into minutes and seconds
-	* for the user, it doesn't really make sense to split a single number into 4 parts
-	* for storage. (degrees, minutes, second, direction vs single floating point number).
-	*
-	* Other things this might do (not really sure if they make sense or not):
-	* Dates -> mediawiki date format.
-	* convert values that can be in different units to be in one standardized unit.
-	*
-	* As an alternative approach, some of this could be done in the validate phase
-	* if we make up our own types like Exif::DATE.
-	*/
+	 * Collapse some fields together.
+	 * This converts some fields from exif form, to a more friendly form.
+	 * For example GPS latitude to a single number.
+	 *
+	 * The rationale behind this is that we're storing data, not presenting to the user
+	 * For example a longitude is a single number describing how far away you are from
+	 * the prime meridian. Well it might be nice to split it up into minutes and seconds
+	 * for the user, it doesn't really make sense to split a single number into 4 parts
+	 * for storage. (degrees, minutes, second, direction vs single floating point number).
+	 *
+	 * Other things this might do (not really sure if they make sense or not):
+	 * Dates -> mediawiki date format.
+	 * convert values that can be in different units to be in one standardized unit.
+	 *
+	 * As an alternative approach, some of this could be done in the validate phase
+	 * if we make up our own types like Exif::DATE.
+	 */
 	function collapseData( ) {
 
 		$this->exifGPStoNumber( 'GPSLatitude' );
@@ -434,11 +434,11 @@ class Exif {
 
 	}
 	/**
-	* Do userComment tags and similar. See pg. 34 of exif standard.
-	* basically first 8 bytes is charset, rest is value.
-	* This has not been tested on any shift-JIS strings.
-	* @param $prop String prop name.
-	*/
+	 * Do userComment tags and similar. See pg. 34 of exif standard.
+	 * basically first 8 bytes is charset, rest is value.
+	 * This has not been tested on any shift-JIS strings.
+	 * @param $prop String prop name.
+	 */
 	private function charCodeString ( $prop ) {
 		if ( isset( $this->mFilteredExifData[$prop] ) ) {
 
@@ -495,21 +495,21 @@ class Exif {
 		}
 	}
 	/**
-	* Convert an Exif::UNDEFINED from a raw binary string
-	* to its value. This is sometimes needed depending on
-	* the type of UNDEFINED field
-	* @param $prop String name of property
-	*/
+	 * Convert an Exif::UNDEFINED from a raw binary string
+	 * to its value. This is sometimes needed depending on
+	 * the type of UNDEFINED field
+	 * @param $prop String name of property
+	 */
 	private function exifPropToOrd ( $prop ) {
 		if ( isset( $this->mFilteredExifData[$prop] ) ) {
 			$this->mFilteredExifData[$prop] = ord( $this->mFilteredExifData[$prop] );
 		}
 	}
 	/**
-	* Convert gps in exif form to a single floating point number
-	* for example 10 degress 20`40`` S -> -10.34444
-	* @param String $prop a gps coordinate exif tag name (like GPSLongitude)
-	*/
+	 * Convert gps in exif form to a single floating point number
+	 * for example 10 degress 20`40`` S -> -10.34444
+	 * @param String $prop a gps coordinate exif tag name (like GPSLongitude)
+	 */
 	private function exifGPStoNumber ( $prop ) {
 		$loc =& $this->mFilteredExifData[$prop];
 		$dir =& $this->mFilteredExifData[$prop . 'Ref'];

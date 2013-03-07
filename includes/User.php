@@ -3632,7 +3632,7 @@ class User {
 	}
 
 	/**
-	* Return a URL the user can use to confirm their email address.
+	 * Return a URL the user can use to confirm their email address.
 	 * @param $token String Accepts the email confirmation token
 	 * @return String New token URL
 	 */

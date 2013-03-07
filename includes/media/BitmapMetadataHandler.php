@@ -47,13 +47,13 @@ class BitmapMetadataHandler {
 	private $iptcType = 'iptc-no-hash';
 
 	/**
-	* This does the photoshop image resource app13 block
-	* of interest, IPTC-IIM metadata is stored here.
-	*
-	* Mostly just calls doPSIR and doIPTC
-	*
-	* @param String $app13 String containing app13 block from jpeg file
-	*/
+	 * This does the photoshop image resource app13 block
+	 * of interest, IPTC-IIM metadata is stored here.
+	 *
+	 * Mostly just calls doPSIR and doIPTC
+	 *
+	 * @param String $app13 String containing app13 block from jpeg file
+	 */
 	private function doApp13 ( $app13 ) {
 		try {
 			$this->iptcType = JpegMetadataExtractor::doPSIR( $app13 );
@@ -91,11 +91,11 @@ class BitmapMetadataHandler {
 		}
 	}
 	/** Add misc metadata. Warning: atm if the metadata category
-	* doesn't have a priority, it will be silently discarded.
-	*
-	* @param Array $metaArray array of metadata values
-	* @param string $type type. defaults to other. if two things have the same type they're merged
-	*/
+	 * doesn't have a priority, it will be silently discarded.
+	 *
+	 * @param Array $metaArray array of metadata values
+	 * @param string $type type. defaults to other. if two things have the same type they're merged
+	 */
 	function addMetadata ( $metaArray, $type = 'other' ) {
 		if ( isset( $this->metadata[$type] ) ) {
 			/* merge with old data */
@@ -106,14 +106,14 @@ class BitmapMetadataHandler {
 	}
 
 	/**
-	* Merge together the various types of metadata
-	* the different types have different priorites,
-	* and are merged in order.
-	*
-	* This function is generally called by the media handlers' getMetadata()
-	*
-	* @return Array metadata array
-	*/
+	 * Merge together the various types of metadata
+	 * the different types have different priorites,
+	 * and are merged in order.
+	 *
+	 * This function is generally called by the media handlers' getMetadata()
+	 *
+	 * @return Array metadata array
+	 */
 	function getMetadataArray () {
 		// this seems a bit ugly... This is all so its merged in right order
 		// based on the MWG recomendation.
