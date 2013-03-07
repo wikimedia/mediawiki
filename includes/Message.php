@@ -743,8 +743,8 @@ class RawMessage extends Message {
 	 * Call the parent constructor, then store the key as
 	 * the message.
 	 *
-	 * @param $key Message to use
-	 * @param $params Parameters for the message
+	 * @param $key string Message to use
+	 * @param $params array Parameters for the message
 	 * @see Message::__construct
 	 */
 	public function __construct( $key, $params = array() ) {
