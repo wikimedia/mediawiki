@@ -84,7 +84,7 @@ class ApiQueryUsers extends ApiQueryBase {
 		$users = (array)$params['users'];
 		$goodNames = $done = array();
 		$result = $this->getResult();
-		// Canonicalize user names
+		// Canonical-ize user names
 		foreach ( $users as $u ) {
 			$n = User::getCanonicalName( $u );
 			if ( $n === false || $n === '' ) {

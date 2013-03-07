@@ -33,6 +33,8 @@
 
 class ApiQueryRandom extends ApiQueryGeneratorBase {
 
+	private $mPageIDs;
+
 	public function __construct( $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'rn' );
 	}
@@ -79,7 +81,7 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 			$count++;
 			if ( is_null( $resultPageSet ) ) {
 				// Prevent duplicates
-				if ( !in_array( $row->page_id, $this->pageIDs ) ) {
+				if ( !in_array( $row->page_id, $this->mPageIDs ) ) {
 					$fit = $this->getResult()->addValue(
 							array( 'query', $this->getModuleName() ),
 							null, $this->extractRowInfo( $row ) );
@@ -89,7 +91,7 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 						// $count < $limit is false
 						return 1E9;
 					}
-					$this->pageIDs[] = $row->page_id;
+					$this->mPageIDs[] = $row->page_id;
 				}
 			} else {
 				$resultPageSet->processDbRow( $row );
@@ -106,7 +108,7 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 	public function run( $resultPageSet = null ) {
 		$params = $this->extractRequestParams();
 		$result = $this->getResult();
-		$this->pageIDs = array();
+		$this->mPageIDs = array();
 
 		$this->prepareQuery( wfRandom(), $params['limit'], $params['namespace'], $resultPageSet, $params['redirect'] );
 		$count = $this->runQuery( $resultPageSet );

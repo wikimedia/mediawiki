@@ -133,6 +133,7 @@ class ApiSetNotificationTimestamp extends ApiBase {
 			}
 
 			// Now, put the valid titles into the result
+			/** @var $title Title */
 			foreach ( $pageSet->getTitles() as $title ) {
 				$ns = $title->getNamespace();
 				$dbkey = $title->getDBkey();

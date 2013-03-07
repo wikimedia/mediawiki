@@ -58,6 +58,8 @@ class ApiEditPage extends ApiBase {
 				// array_shift( $titles );
 
 				$redirValues = array();
+
+				/** @var $newTitle Title */
 				foreach ( $titles as $id => $newTitle ) {
 
 					if ( !isset( $titles[$id - 1] ) ) {
@@ -391,6 +393,7 @@ class ApiEditPage extends ApiBase {
 			case EditPage::AS_TEXTBOX_EMPTY:
 				$this->dieUsageMsg( 'emptynewsection' );
 
+			/** @noinspection PhpMissingBreakStatementInspection */
 			case EditPage::AS_SUCCESS_NEW_ARTICLE:
 				$r['new'] = '';
 

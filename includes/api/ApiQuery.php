@@ -507,6 +507,7 @@ class ApiQuery extends ApiBase {
 			);
 		}
 		// Report special pages
+		/** @var $title Title */
 		foreach ( $pageSet->getSpecialTitles() as $fakeId => $title ) {
 			$vals = array();
 			ApiQueryBase::addTitleInfo( $vals, $title );
@@ -576,6 +577,7 @@ class ApiQuery extends ApiBase {
 		$titles = $pageSet->getGoodTitles();
 		if ( count( $titles ) ) {
 			$user = $this->getUser();
+			/** @var $title Title */
 			foreach ( $titles as $title ) {
 				if ( $title->userCan( 'read', $user ) ) {
 					$exportTitles[] = $title;
