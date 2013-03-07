@@ -508,11 +508,10 @@ class NewPagesPager extends ReverseChronologicalPager {
 		$user = Title::makeTitleSafe( NS_USER, $username );
 
 		if( $namespace !== false ) {
-			if ( $this->opts->getValue( 'invert' ) ) {
-				$conds[] = 'rc_namespace != ' . $this->mDb->addQuotes( $namespace );
-			} else {
-				$conds['rc_namespace'] = $namespace;
-			}
+			$ns_cond = SpecialPage::getNamespaceCond(
+				$this->mDb, 'rc_namespace', $namespace, $this->opts->getValue( 'invert' )
+			);
+			$conds = array_merge( $conds, $ns_cond );
 			$rcIndexes = array( 'new_name_timestamp' );
 		} else {
 			$rcIndexes = array( 'rc_timestamp' );
