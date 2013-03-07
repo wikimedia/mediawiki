@@ -135,7 +135,6 @@ abstract class ApiBase extends ContextSource {
 		return $this->mModuleName;
 	}
 
-
 	/**
 	 * Get the module manager, or null if this module has no sub-modules
 	 * @since 1.21
@@ -429,7 +428,7 @@ abstract class ApiBase extends ContextSource {
 							if ( $t === '' ) {
 								$nothingPrompt = 'Can be empty, or ';
 							} else {
-								$choices[] =  $t;
+								$choices[] = $t;
 							}
 						}
 						$desc .= $paramPrefix . $nothingPrompt . $prompt;

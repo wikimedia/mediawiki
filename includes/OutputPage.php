@@ -1597,7 +1597,6 @@ class OutputPage extends ContextSource {
 		$this->addHTML( $text );
 	}
 
-
 	/**
 	 * Add the output of a QuickTemplate to the output buffer
 	 *
@@ -2952,7 +2951,6 @@ $templates
 		$this->mJsConfigVars[$keys] = $value;
 	}
 
-
 	/**
 	 * Get an array containing the variables to be set in mw.config in JavaScript.
 	 *
@@ -3222,7 +3220,6 @@ $templates
 				'href' => wfExpandUrl( wfAppendQuery( wfScript( 'api' ), array( 'action' => 'rsd' ) ), PROTO_RELATIVE ),
 			) );
 		}
-
 
 		# Language variants
 		if ( !$wgDisableLangConversion && $wgCanonicalLanguageLinks ) {

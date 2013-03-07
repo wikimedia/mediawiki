@@ -31,15 +31,15 @@
  */
 class Exif {
 
-	const BYTE      = 1;    //!< An 8-bit (1-byte) unsigned integer.
-	const ASCII     = 2;    //!< An 8-bit byte containing one 7-bit ASCII code. The final byte is terminated with NULL.
-	const SHORT     = 3;    //!< A 16-bit (2-byte) unsigned integer.
-	const LONG      = 4;    //!< A 32-bit (4-byte) unsigned integer.
-	const RATIONAL  = 5;    //!< Two LONGs. The first LONG is the numerator and the second LONG expresses the denominator
-	const UNDEFINED = 7;    //!< An 8-bit byte that can take any value depending on the field definition
-	const SLONG     = 9;    //!< A 32-bit (4-byte) signed integer (2's complement notation),
-	const SRATIONAL = 10;   //!< Two SLONGs. The first SLONG is the numerator and the second SLONG is the denominator.
-	const IGNORE    = -1;   // A fake value for things we don't want or don't support.
+	const BYTE = 1; //!< An 8-bit (1-byte) unsigned integer.
+	const ASCII = 2; //!< An 8-bit byte containing one 7-bit ASCII code. The final byte is terminated with NULL.
+	const SHORT = 3; //!< A 16-bit (2-byte) unsigned integer.
+	const LONG = 4; //!< A 32-bit (4-byte) unsigned integer.
+	const RATIONAL = 5; //!< Two LONGs. The first LONG is the numerator and the second LONG expresses the denominator
+	const UNDEFINED = 7; //!< An 8-bit byte that can take any value depending on the field definition
+	const SLONG = 9; //!< A 32-bit (4-byte) signed integer (2's complement notation),
+	const SRATIONAL = 10; //!< Two SLONGs. The first SLONG is the numerator and the second SLONG is the denominator.
+	const IGNORE = -1; // A fake value for things we don't want or don't support.
 
 	//@{
 	/* @var array

@@ -92,7 +92,6 @@ class MIMEsearchPage extends QueryPage {
 		parent::execute( $par );
 	}
 
-
 	function formatResult( $skin, $result ) {
 		global $wgContLang;
 

@@ -77,18 +77,18 @@ class ApiQueryUserInfo extends ApiQueryBase {
 
 		if ( isset( $this->prop['groups'] ) ) {
 			$vals['groups'] = $user->getEffectiveGroups();
-			$result->setIndexedTagName( $vals['groups'], 'g' );	// even if empty
+			$result->setIndexedTagName( $vals['groups'], 'g' ); // even if empty
 		}
 
 		if ( isset( $this->prop['implicitgroups'] ) ) {
 			$vals['implicitgroups'] = $user->getAutomaticGroups();
-			$result->setIndexedTagName( $vals['implicitgroups'], 'g' );	// even if empty
+			$result->setIndexedTagName( $vals['implicitgroups'], 'g' ); // even if empty
 		}
 
 		if ( isset( $this->prop['rights'] ) ) {
 			// User::getRights() may return duplicate values, strip them
 			$vals['rights'] = array_values( array_unique( $user->getRights() ) );
-			$result->setIndexedTagName( $vals['rights'], 'r' );	// even if empty
+			$result->setIndexedTagName( $vals['rights'], 'r' ); // even if empty
 		}
 
 		if ( isset( $this->prop['changeablegroups'] ) ) {

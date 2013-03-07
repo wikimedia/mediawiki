@@ -307,7 +307,7 @@ class Block {
 
 				# This has the nice property that a /32 block is ranked equally with a
 				# single-IP block, which is exactly what it is...
-				$score = self::TYPE_RANGE  - 1 + ( $size / 128 );
+				$score = self::TYPE_RANGE - 1 + ( $size / 128 );
 
 			} else {
 				$score = $block->getType();

@@ -116,7 +116,7 @@ class SpecialBookSources extends SpecialPage {
 	private function makeForm() {
 		global $wgScript;
 
-		$form  = '<fieldset><legend>' . $this->msg( 'booksources-search-legend' )->escaped() . '</legend>';
+		$form = '<fieldset><legend>' . $this->msg( 'booksources-search-legend' )->escaped() . '</legend>';
 		$form .= Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) );
 		$form .= Html::hidden( 'title', $this->getTitle()->getPrefixedText() );
 		$form .= '<p>' . Xml::inputLabel( $this->msg( 'booksources-isbn' )->text(), 'isbn', 'isbn', 20, $this->isbn );

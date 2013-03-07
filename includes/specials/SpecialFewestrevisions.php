@@ -60,7 +60,6 @@ class FewestrevisionsPage extends QueryPage {
 		);
 	}
 
-
 	function sortDescending() {
 		return false;
 	}

@@ -239,7 +239,6 @@ class SearchEngine {
 
 		$title = Title::newFromText( $searchterm );
 
-
 		# Entering an IP address goes to the contributions page
 		if ( $wgEnableSearchContributorsByIP ) {
 			if ( ( $title->getNamespace() == NS_USER && User::isIP( $title->getText() ) )
@@ -247,7 +246,6 @@ class SearchEngine {
 				return SpecialPage::getTitleFor( 'Contributions', $title->getDBkey() );
 			}
 		}
-
 
 		# Entering a user goes to the user page whether it's there or not
 		if ( $title->getNamespace() == NS_USER ) {
@@ -675,7 +673,6 @@ class SearchResultTooMany {
 	# # Some search engines may bail out if too many matches are found
 }
 
-
 /**
  * @todo FIXME: This class is horribly factored. It would probably be better to
  * have a useful base class to which you pass some standard information, then
@@ -973,7 +970,7 @@ class SearchHighlighter {
 		}
 		$spat .= '/';
 		$textExt = array(); // text extracts
-		$otherExt = array();  // other extracts
+		$otherExt = array(); // other extracts
 		wfProfileIn( "$fname-split" );
 		$start = 0;
 		$textLen = strlen( $text );

@@ -257,7 +257,7 @@ class ApiEditPage extends ApiBase {
 		if ( !is_null( $params['starttimestamp'] ) && $params['starttimestamp'] != '' ) {
 			$requestArray['wpStarttime'] = wfTimestamp( TS_MW, $params['starttimestamp'] );
 		} else {
-			$requestArray['wpStarttime'] = wfTimestampNow();	// Fake wpStartime
+			$requestArray['wpStarttime'] = wfTimestampNow(); // Fake wpStartime
 		}
 
 		if ( $params['minor'] || ( !$params['notminor'] && $user->getOption( 'minordefault' ) ) )	{

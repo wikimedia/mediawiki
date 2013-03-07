@@ -704,8 +704,6 @@ abstract class UploadBase {
 		}
 		$this->mFilteredName = $nt->getDBkey();
 
-
-
 		/**
 		 * We'll want to blacklist against *any* 'extension', and use
 		 * only the final one for the whitelist.
@@ -733,7 +731,6 @@ abstract class UploadBase {
 					$ext = array( $this->mFinalExtension );
 				}
 			}
-
 		}
 
 		/* Don't allow users to override the blacklist (check file extension) */
@@ -1128,14 +1125,13 @@ abstract class UploadBase {
 			}
 
 			# use set to add a remote / data / script target to an element
-			if( $strippedElement == 'set' && $stripped == 'to' &&  preg_match( '!(http|https|data|script):!sim', $value ) ) {
+			if( $strippedElement == 'set' && $stripped == 'to' && preg_match( '!(http|https|data|script):!sim', $value ) ) {
 				wfDebug( __METHOD__ . ": Found svg setting attibute to '$value' in uploaded file.\n" );
 				return true;
 			}
 
-
 			# use handler attribute with remote / data / script
-			if( $stripped == 'handler' &&  preg_match( '!(http|https|data|script):!sim', $value ) ) {
+			if( $stripped == 'handler' && preg_match( '!(http|https|data|script):!sim', $value ) ) {
 				wfDebug( __METHOD__ . ": Found svg setting handler with remote/data/script '$attrib'='$value' in uploaded file.\n" );
 				return true;
 			}
@@ -1407,7 +1403,6 @@ abstract class UploadBase {
 				);
 			}
 		}
-
 
 		foreach( self::getFilenamePrefixBlacklist() as $prefix ) {
 			if ( substr( $partname, 0, strlen( $prefix ) ) == $prefix ) {

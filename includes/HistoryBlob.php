@@ -183,7 +183,6 @@ class ConcatenatedGzipHistoryBlob implements HistoryBlob
 	}
 }
 
-
 /**
  * Pointer object for an item within a CGZ blob stored in the text table.
  */
@@ -284,7 +283,6 @@ class HistoryBlobStub {
 		return $this->mHash;
 	}
 }
-
 
 /**
  * To speed up conversion from 1.4 to 1.5 schema, text rows can refer to the

@@ -33,7 +33,6 @@
 
 interface IORMRow {
 
-
 	/**
 	 * Constructor.
 	 *

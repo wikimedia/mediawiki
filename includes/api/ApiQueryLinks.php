@@ -79,7 +79,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 	 */
 	private function run( $resultPageSet = null ) {
 		if ( $this->getPageSet()->getGoodTitleCount() == 0 ) {
-			return;	// nothing to do
+			return; // nothing to do
 		}
 
 		$params = $this->extractRequestParams();

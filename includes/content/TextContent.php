@@ -186,7 +186,6 @@ class TextContent extends AbstractContent {
 		return $diff;
 	}
 
-
 	/**
 	 * Returns a generic ParserOutput object, wrapping the HTML returned by
 	 * getHtml().

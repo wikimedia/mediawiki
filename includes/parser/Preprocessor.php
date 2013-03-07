@@ -205,7 +205,6 @@ interface PPNode {
 	 */
 	function getChildrenOfType( $type );
 
-
 	/**
 	 * Returns the length of the array, or false if this is not an array-type node
 	 */

@@ -78,7 +78,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 
 		$this->addFieldsIf( 'cl_timestamp', $fld_timestamp || $params['sort'] == 'timestamp' );
 
-		$this->addTables( array( 'page', 'categorylinks' ) );	// must be in this order for 'USE INDEX'
+		$this->addTables( array( 'page', 'categorylinks' ) ); // must be in this order for 'USE INDEX'
 
 		$this->addWhereFld( 'cl_to', $categoryTitle->getDBkey() );
 		$queryTypes = $params['type'];

@@ -637,10 +637,10 @@ class MysqlInstaller extends DatabaseInstaller {
 		$tblOpts = LocalSettingsGenerator::escapePhpString( $this->getTableOptions() );
 		return
 "# MySQL specific settings
-\$wgDBprefix         = \"{$prefix}\";
+\$wgDBprefix = \"{$prefix}\";
 
 # MySQL table options to use during installation or update
-\$wgDBTableOptions   = \"{$tblOpts}\";
+\$wgDBTableOptions = \"{$tblOpts}\";
 
 # Experimental charset support for MySQL 5.0.
 \$wgDBmysql5 = {$dbmysql5};";

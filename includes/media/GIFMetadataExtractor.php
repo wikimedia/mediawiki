@@ -251,7 +251,7 @@ class GIFMetadataExtractor {
 	 */
 	static function readGCT( $fh, $bpp ) {
 		if ( $bpp > 0 ) {
-			for( $i=1; $i<=pow( 2, $bpp ); ++$i ) {
+			for( $i = 1; $i <= pow( 2, $bpp ); ++$i ) {
 				fread( $fh, 3 );
 			}
 		}

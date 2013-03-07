@@ -144,7 +144,6 @@ class CdbReader_DBA {
 	}
 }
 
-
 /**
  * Writer class which uses the DBA extension
  */

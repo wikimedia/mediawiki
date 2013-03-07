@@ -71,7 +71,6 @@ class MovePageForm extends UnlistedSpecialPage {
 			? Title::newFromText( $newTitleText_bc )
 			: Title::makeTitleSafe( $newTitleTextNs, $newTitleTextMain );
 
-
 		$user = $this->getUser();
 
 		# Check rights
@@ -493,7 +492,6 @@ class MovePageForm extends UnlistedSpecialPage {
 		} else {
 			$msgName = 'movepage-moved-noredirect';
 		}
-
 
 		$out->addHTML( $this->msg( 'movepage-moved' )->rawParams( $oldLink,
 			$newLink )->params( $oldText, $newText )->parseAsBlock() );

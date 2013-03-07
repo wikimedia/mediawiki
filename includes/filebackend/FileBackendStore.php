@@ -57,8 +57,8 @@ abstract class FileBackendStore extends FileBackend {
 	 */
 	public function __construct( array $config ) {
 		parent::__construct( $config );
-		$this->memCache       = new EmptyBagOStuff(); // disabled by default
-		$this->cheapCache     = new ProcessCacheLRU( 300 );
+		$this->memCache = new EmptyBagOStuff(); // disabled by default
+		$this->cheapCache = new ProcessCacheLRU( 300 );
 		$this->expensiveCache = new ProcessCacheLRU( 5 );
 	}
 

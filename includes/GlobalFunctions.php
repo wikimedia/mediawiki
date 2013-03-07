@@ -94,7 +94,6 @@ if( !function_exists( 'mb_strrpos' ) ) {
 	}
 }
 
-
 // Support for Wietse Venema's taint feature
 if ( !function_exists( 'istainted' ) ) {
 	/**
@@ -850,8 +849,6 @@ function wfExpandIRI( $url ) {
 function wfExpandIRI_callback( $matches ) {
 	return urldecode( $matches[1] );
 }
-
-
 
 /**
  * Make URL indexes, appropriate for the el_index field of externallinks.
@@ -1965,9 +1962,7 @@ function wfFormatStackFrame( $frame ) {
 		$frame['function'];
 }
 
-
 /* Some generic result counters, pulled out of SearchEngine */
-
 
 /**
  * @todo document

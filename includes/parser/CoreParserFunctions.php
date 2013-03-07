@@ -442,7 +442,6 @@ class CoreParserFunctions {
 		return self::formatRaw( SiteStats::numberingroup( strtolower( $name ) ), $raw );
 	}
 
-
 	/**
 	 * Given a title, return the namespace name that would be given by the
 	 * corresponding magic word

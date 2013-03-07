@@ -356,7 +356,6 @@ class SpecialSearch extends SpecialPage {
 		$out->addHTML( $this->formHeader( $term, $num, $totalRes ) );
 		$out->addHtml( $this->getProfileForm( $this->profile, $term ) );
 
-
 		$out->addHtml( Xml::closeElement( 'form' ) );
 		$out->addHtml( "<div class='searchresults'>" );
 

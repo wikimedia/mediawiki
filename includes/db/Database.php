@@ -282,7 +282,6 @@ abstract class DatabaseBase implements DatabaseType {
 	 */
 	protected $fileHandle = null;
 
-
 # ------------------------------------------------------------------------------
 # Accessors
 # ------------------------------------------------------------------------------
@@ -2070,7 +2069,7 @@ abstract class DatabaseBase implements DatabaseType {
 				&& in_array( $table, $wgSharedTables ) # A shared table is selected
 			) {
 				$database = $wgSharedDB;
-				$prefix   = $wgSharedPrefix === null ? $this->mTablePrefix : $wgSharedPrefix;
+				$prefix = $wgSharedPrefix === null ? $this->mTablePrefix : $wgSharedPrefix;
 			} else {
 				$database = null;
 				$prefix = $this->mTablePrefix; # Default prefix

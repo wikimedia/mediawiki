@@ -59,7 +59,6 @@ class SearchMssql extends SearchEngine {
 		return new MssqlSearchResultSet( $resultSet, $this->searchTerms );
 	}
 
-
 	/**
 	 * Return a partial WHERE clause to exclude redirects, if so set
 	 *
@@ -144,7 +143,7 @@ class SearchMssql extends SearchEngine {
 	 */
 	function queryMain( $filteredTerm, $fulltext ) {
 		$match = $this->parseQuery( $filteredTerm, $fulltext );
-		$page        = $this->db->tableName( 'page' );
+		$page = $this->db->tableName( 'page' );
 		$searchindex = $this->db->tableName( 'searchindex' );
 
 		return 'SELECT page_id, page_namespace, page_title, ftindex.[RANK]' .
