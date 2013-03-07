@@ -134,27 +134,17 @@ class SpecialWatchlist extends SpecialPage {
 			$values[$key] = (int)$request->getBool( $key, $defaults[$key] );
 		}
 
+		# Possible where conditions
+		$conds = array();
+
 		# Get namespace value, if supplied, and prepare a WHERE fragment
 		$nameSpace = $request->getIntOrNull( 'namespace' );
 		$invert = $request->getBool( 'invert' );
 		$associated = $request->getBool( 'associated' );
-		if ( !is_null( $nameSpace ) ) {
-			$eq_op = $invert ? '!=' : '=';
-			$bool_op = $invert ? 'AND' : 'OR';
-			$nameSpace = intval( $nameSpace ); // paranioa
-			if ( !$associated ) {
-				$nameSpaceClause = "rc_namespace $eq_op $nameSpace";
-			} else {
-				$associatedNS = MWNamespace::getAssociated( $nameSpace );
-				$nameSpaceClause =
-					"rc_namespace $eq_op $nameSpace " .
-					$bool_op .
-					" rc_namespace $eq_op $associatedNS";
-			}
-		} else {
-			$nameSpace = '';
-			$nameSpaceClause = '';
-		}
+
+		$ns_cond = SpecialPage::getNamespaceCond( $dbr, 'rc_namespace', $nameSpace, $invert, $associated );
+		$conds = array_merge( $conds, $ns_cond );
+
 		$values['namespace'] = $nameSpace;
 		$values['invert'] = $invert;
 		$values['associated'] = $associated;
@@ -184,9 +174,6 @@ class SpecialWatchlist extends SpecialPage {
 			$output->redirect( $this->getTitle()->getFullUrl( $nondefaults ) );
 			return;
 		}
-
-		# Possible where conditions
-		$conds = array();
 
 		if( $values['days'] > 0 ) {
 			$conds[] = 'rc_timestamp > ' . $dbr->addQuotes( $dbr->timestamp( time() - intval( $values['days'] * 86400 ) ) );
@@ -218,9 +205,6 @@ class SpecialWatchlist extends SpecialPage {
 		}
 		if ( $user->useRCPatrol() && $values['hidePatrolled'] ) {
 			$conds[] = 'rc_patrolled != 1';
-		}
-		if ( $nameSpaceClause ) {
-			$conds[] = $nameSpaceClause;
 		}
 
 		# Toggle watchlist content (all recent edits or just the latest)
