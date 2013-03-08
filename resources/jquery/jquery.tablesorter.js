@@ -98,7 +98,9 @@
 			// like charAt, toLowerCase and split are expected.
 			return String( data );
 		} else {
-			if ( node.tagName.toLowerCase() === 'img' ) {
+			if ( !node ) {
+				return $node.text();
+			} else if ( node.tagName.toLowerCase() === 'img' ) {
 				return $node.attr( 'alt' ) || ''; // handle undefined alt
 			} else {
 				return $.map( $.makeArray( node.childNodes ), function( elem ) {
