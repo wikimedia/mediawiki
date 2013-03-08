@@ -639,4 +639,8 @@ class UserrightsPage extends SpecialPage {
 		$output->addHTML( Xml::element( 'h2', null, $rightsLogPage->getName()->text() ) );
 		LogEventsList::showLogExtract( $output, 'rights', $user->getUserPage() );
 	}
+
+	protected function getGroupName() {
+		return 'users';
+	}
 }

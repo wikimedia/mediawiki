@@ -87,4 +87,8 @@ class WantedFilesPage extends WantedQueryPage {
 			)
 		);
 	}
+
+	protected function getGroupName() {
+		return 'maintenance';
+	}
 }

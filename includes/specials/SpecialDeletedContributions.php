@@ -522,4 +522,8 @@ class DeletedContributionsPage extends SpecialPage {
 			Xml::closeElement( 'form' );
 		return $f;
 	}
+
+	protected function getGroupName() {
+		return 'users';
+	}
 }

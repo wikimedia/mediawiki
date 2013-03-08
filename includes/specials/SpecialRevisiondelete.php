@@ -623,4 +623,8 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			array( 'value' => $bitfield, 'comment' => $reason )
 		);
 	}
+
+	protected function getGroupName() {
+		return 'pagetools';
+	}
 }

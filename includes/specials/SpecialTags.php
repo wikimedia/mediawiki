@@ -92,4 +92,8 @@ class SpecialTags extends SpecialPage {
 
 		return Xml::tags( 'tr', null, $newRow ) . "\n";
 	}
+
+	protected function getGroupName() {
+		return 'changes';
+	}
 }

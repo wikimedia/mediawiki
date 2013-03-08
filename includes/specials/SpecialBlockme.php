@@ -59,4 +59,8 @@ class SpecialBlockme extends UnlistedSpecialPage {
 
 		$this->getOutput()->addWikiMsg( 'proxyblocksuccess' );
 	}
+
+	protected function getGroupName() {
+		return 'other';
+	}
 }

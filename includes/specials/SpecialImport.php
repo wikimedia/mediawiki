@@ -341,6 +341,10 @@ class SpecialImport extends SpecialPage {
 			);
 		}
 	}
+
+	protected function getGroupName() {
+		return 'pagetools';
+	}
 }
 
 /**

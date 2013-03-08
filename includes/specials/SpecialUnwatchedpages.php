@@ -94,4 +94,8 @@ class UnwatchedpagesPage extends QueryPage {
 
 		return $this->getLanguage()->specialList( $plink, $wlink );
 	}
+
+	protected function getGroupName() {
+		return 'maintenance';
+	}
 }

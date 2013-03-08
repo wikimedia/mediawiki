@@ -159,4 +159,8 @@ class RandomPage extends SpecialPage {
 
 		return $dbr->fetchObject( $res );
 	}
+
+	protected function getGroupName() {
+		return 'redirects';
+	}
 }

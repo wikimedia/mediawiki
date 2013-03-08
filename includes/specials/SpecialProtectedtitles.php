@@ -182,6 +182,10 @@ class SpecialProtectedtitles extends SpecialPage {
 				array( 'id' => $this->IdLevel, 'name' => $this->IdLevel ),
 				implode( "\n", $options ) );
 	}
+
+	protected function getGroupName() {
+		return 'maintenance';
+	}
 }
 
 /**

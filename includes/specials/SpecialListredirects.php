@@ -126,4 +126,8 @@ class ListredirectsPage extends QueryPage {
 			return "<del>$rd_link</del>";
 		}
 	}
+
+	protected function getGroupName() {
+		return 'pages';
+	}
 }

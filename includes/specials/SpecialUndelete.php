@@ -1525,4 +1525,8 @@ class SpecialUndelete extends SpecialPage {
 			$out->addWikiText( '<div class="error">' . $status->getWikiText( 'undelete-error-short', 'undelete-error-long' ) . '</div>' );
 		}
 	}
+
+	protected function getGroupName() {
+		return 'pagetools';
+	}
 }

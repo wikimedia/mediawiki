@@ -124,4 +124,8 @@ class MostlinkedTemplatesPage extends QueryPage {
 		$label = $this->msg( 'ntransclusions' )->numParams( $result->value )->escaped();
 		return Linker::link( $wlh, $label );
 	}
+
+	protected function getGroupName() {
+		return 'highuse';
+	}
 }

@@ -82,4 +82,8 @@ class DeadendPagesPage extends PageQueryPage {
 			return array( 'page_title' );
 		}
 	}
+
+	protected function getGroupName() {
+		return 'maintenance';
+	}
 }
