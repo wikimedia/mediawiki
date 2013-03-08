@@ -36,6 +36,8 @@ if [ "$MW_MEM_LIMIT" -gt 0 ]; then
 	else
 		ulimit -v "$MW_MEM_LIMIT"
 	fi
+else
+	MW_CGROUP=""
 fi
 if [ "$MW_FILE_SIZE_LIMIT" -gt 0 ]; then
 	ulimit -f "$MW_FILE_SIZE_LIMIT"
