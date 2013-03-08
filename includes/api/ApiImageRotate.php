@@ -59,10 +59,6 @@ class ApiImageRotate extends ApiBase {
 		$rotation = $params[ 'rotation' ];
 		$user = $this->getUser();
 
-		if( is_null( $rotation ) || $rotation % 90 ) {
-			$this->dieUsage( "Rotation: {$rotation}", 'rotation must be multiple of 90 degrees' );
-		}
-
 		$pageSet = $this->getPageSet();
 		$pageSet->execute();
 
@@ -73,32 +69,47 @@ class ApiImageRotate extends ApiBase {
 		self::addValues( $result, $pageSet->getSpecialTitles(), 'special', 'title' );
 		self::addValues( $result, $pageSet->getMissingPageIDs(), 'missing', 'pageid' );
 		self::addValues( $result, $pageSet->getMissingRevisionIDs(), 'missing', 'revid' );
-		self::addValues( $result, $pageSet->getMissingTitles(), 'missing' );
 		self::addValues( $result, $pageSet->getInterwikiTitlesAsResult() );
 
 		foreach ( $pageSet->getTitles() as $title ) {
-			$file = wfFindFile( $title );
-
 			$r = array();
-			$r[ 'title' ] = $title->getFullText();
-			if ( !$file ) {
+			$r['id'] = $title->getArticleID();
+			ApiQueryBase::addTitleInfo( $r, $title );
+			if ( !$title->exists() ) {
 				$r['missing'] = '';
+			}
+
+			$file = wfFindFile( $title );
+			if ( !$file ) {
 				$r['result'] = 'Failure';
+				$r['errormessage'] = 'File does not exist';
 				$result[] = $r;
 				continue;
 			}
 			$handler = $file->getHandler();
 			if ( !$handler || !$handler->canRotate() ) {
-				$r['invalid'] = '';
 				$r['result'] = 'Failure';
+				$r['errormessage'] = 'File type cannot be rotated';
 				$result[] = $r;
 				continue;
 			}
 
 			// Check whether we're allowed to rotate this file
-			$this->checkPermissions( $this->getUser(), $file->getTitle() );
+			$permError = $this->checkPermissions( $this->getUser(), $file->getTitle() );
+			if ( $permError !== null ) {
+				$r['result'] = 'Failure';
+				$r['errormessage'] = $permError;
+				$result[] = $r;
+				continue;
+			}
 
 			$srcPath = $file->getLocalRefPath();
+			if ( $srcPath === false ) {
+				$r['result'] = 'Failure';
+				$r['errormessage'] = 'Cannot get local file path';
+				$result[] = $r;
+				continue;
+			}
 			$ext = strtolower( pathinfo( "$srcPath", PATHINFO_EXTENSION ) );
 			$tmpFile = TempFSFile::factory( 'rotate_', $ext);
 			$dstPath = $tmpFile->getPath();
@@ -134,15 +145,15 @@ class ApiImageRotate extends ApiBase {
 	 */
 	private function getPageSet() {
 		if ( $this->mPageSet === null ) {
-			$this->mPageSet = new ApiPageSet( $this, 0, NS_FILE);
+			$this->mPageSet = new ApiPageSet( $this, 0, NS_FILE );
 		}
 		return $this->mPageSet;
 	}
 
 	/**
 	 * Checks that the user has permissions to perform rotations.
-	 * Dies with usage message on inadequate permissions.
 	 * @param $user User The user to check.
+	 * @return string|null Permission error message, or null if there is no error
 	 */
 	protected function checkPermissions( $user, $title ) {
 		$permissionErrors = array_merge(
@@ -151,8 +162,12 @@ class ApiImageRotate extends ApiBase {
 		);
 
 		if ( $permissionErrors ) {
-			$this->dieUsageMsg( $permissionErrors[0] );
+			// Just return the first error
+			$msg = $this->parseMsg( $permissionErrors[0] );
+			return $msg['info'];
 		}
+
+		return null;
 	}
 
 	public function mustBePosted() {
@@ -167,7 +182,8 @@ class ApiImageRotate extends ApiBase {
 		$pageSet = $this->getPageSet();
 		$result = array(
 			'rotation' => array(
-				ApiBase::PARAM_DFLT => 0,
+				ApiBase::PARAM_TYPE => array( '90', '180', '270' ),
+				ApiBase::PARAM_REQUIRED => true
 			),
 			'token' => array(
 				ApiBase::PARAM_TYPE => 'string',
@@ -183,8 +199,8 @@ class ApiImageRotate extends ApiBase {
 	public function getParamDescription() {
 		$pageSet = $this->getPageSet();
 		return $pageSet->getParamDescription() + array(
-			'rotation' => 'Degrees to rotate image, values can be 0, 90, 180 or 270',
-			'token' => 'Edit token. You can get one of these through prop=info',
+			'rotation' => 'Degrees to rotate image clockwise',
+			'token' => 'Edit token. You can get one of these through action=tokens',
 		);
 	}
 
@@ -210,7 +226,7 @@ class ApiImageRotate extends ApiBase {
 
 	public function getExamples() {
 		return array(
-			'api.php?action=imagerotate&titles=Example.jpg&rotation=90&token=+\\',
+			'api.php?action=imagerotate&titles=Example.jpg&rotation=90&token=123ABC',
 		);
 	}
 }
