@@ -157,6 +157,12 @@ class VectorTemplate extends BaseTemplate {
 		<div id="mw-head-base" class="noprint"></div>
 		<!-- content -->
 		<div id="content" class="mw-body" role="main">
+			<a href="" id="hide" class="side-arrow">
+				<img src="http://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/1leftarrow.png/21px-1leftarrow.png" />
+			</a>
+			<a href="" id="unhide" style="display:none;">
+				<img src="http://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Nuvola_single_chevron_right.svg/21px-Nuvola_single_chevron_right.svg.png" />
+			</a>
 			<a id="top"></a>
 			<div id="mw-js-message" style="display:none;"<?php $this->html( 'userlangattributes' ) ?>></div>
 			<?php if ( $this->data['sitenotice'] ): ?>
