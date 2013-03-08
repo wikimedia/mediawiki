@@ -80,7 +80,7 @@ class ApiImageRotate extends ApiBase {
 			$file = wfFindFile( $title );
 
 			$r = array();
-			$r[ 'title' ] = $title->getFullText();
+			ApiQueryBase::addTitleInfo( $r, $title );
 			if ( !$file ) {
 				$r['missing'] = '';
 				$r['result'] = 'Failure';
@@ -134,7 +134,7 @@ class ApiImageRotate extends ApiBase {
 	 */
 	private function getPageSet() {
 		if ( $this->mPageSet === null ) {
-			$this->mPageSet = new ApiPageSet( $this, 0, NS_FILE);
+			$this->mPageSet = new ApiPageSet( $this, 0, NS_FILE );
 		}
 		return $this->mPageSet;
 	}
@@ -167,7 +167,8 @@ class ApiImageRotate extends ApiBase {
 		$pageSet = $this->getPageSet();
 		$result = array(
 			'rotation' => array(
-				ApiBase::PARAM_DFLT => 0,
+				ApiBase::PARAM_TYPE => array( '90', '180', '270' ),
+				ApiBase::PARAM_REQUIRED => true
 			),
 			'token' => array(
 				ApiBase::PARAM_TYPE => 'string',
@@ -183,8 +184,8 @@ class ApiImageRotate extends ApiBase {
 	public function getParamDescription() {
 		$pageSet = $this->getPageSet();
 		return $pageSet->getParamDescription() + array(
-			'rotation' => 'Degrees to rotate image, values can be 0, 90, 180 or 270',
-			'token' => 'Edit token. You can get one of these through prop=info',
+			'rotation' => 'Degrees to rotate image clockwise',
+			'token' => 'Edit token. You can get one of these through action=tokens',
 		);
 	}
 
@@ -210,7 +211,7 @@ class ApiImageRotate extends ApiBase {
 
 	public function getExamples() {
 		return array(
-			'api.php?action=imagerotate&titles=Example.jpg&rotation=90&token=+\\',
+			'api.php?action=imagerotate&titles=Example.jpg&rotation=90&token=123ABC',
 		);
 	}
 }
