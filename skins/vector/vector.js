@@ -18,4 +18,19 @@ jQuery( function ( $ ) {
 				$el.removeClass( 'vectorMenuFocus' );
 			} );
 	} );
+	$( 'a#hide' ).click(function(){
+					$( '#mw-panel' ).hide();
+					$( '#content' ).css( 'margin-left' , '0em' );
+					$( this ).hide();
+					$( 'a#unhide' ).fadeIn();
+					return false;
+		});
+		$( 'a#unhide' ).click(function(){
+					$( '#content' ).css( 'margin-left' , '11em' );
+					$( '#mw-panel' ).fadeIn();
+					$(this).hide();
+					$ ( 'a#hide' ).fadeIn();
+					return false;
+		});
+
 } );

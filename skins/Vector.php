@@ -157,6 +157,12 @@ class VectorTemplate extends BaseTemplate {
 		<div id="mw-head-base" class="noprint"></div>
 		<!-- content -->
 		<div id="content" class="mw-body" role="main">
+			<a href="" id="hide">
+				<img src="/core/skins/common/images/Arr_l.png" />
+			</a>
+			<a href="" id="unhide" style="display:none;">
+				<img src="/core/skins/common/images/Arr_r.png" />
+			</a>
 			<a id="top"></a>
 			<div id="mw-js-message" style="display:none;"<?php $this->html( 'userlangattributes' ) ?>></div>
 			<?php if ( $this->data['sitenotice'] ): ?>
