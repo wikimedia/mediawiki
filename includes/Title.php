@@ -1731,6 +1731,10 @@ class Title {
 	 * @return Array list of errors
 	 */
 	private function checkQuickPermissions( $action, $user, $errors, $doExpensiveQueries, $short ) {
+		if ( !wfRunHooks( 'TitleQuickPermissions', array( $action, &$errors, $doExpensiveQueries, $short ) ) ) {
+			return $errors;
+		}
+
 		if ( $action == 'create' ) {
 			if (
 				( $this->isTalkPage() && !$user->isAllowed( 'createtalk' ) ) ||
