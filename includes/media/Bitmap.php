@@ -634,7 +634,7 @@ class BitmapHandler extends ImageHandler {
 		# Escape glob chars
 		$path = preg_replace( '/[*?\[\]{}]/', '\\\\\0', $path );
 
-		return self::escapeMagickPath( $path, $scene );
+		return $this->escapeMagickPath( $path, $scene );
 	}
 
 	/**
@@ -644,7 +644,7 @@ class BitmapHandler extends ImageHandler {
 	 */
 	function escapeMagickOutput( $path, $scene = false ) {
 		$path = str_replace( '%', '%%', $path );
-		return self::escapeMagickPath( $path, $scene );
+		return $this->escapeMagickPath( $path, $scene );
 	}
 
 	/**
@@ -762,26 +762,26 @@ class BitmapHandler extends ImageHandler {
 	 * @since 1.21
 	 * @return bool
 	 */
-	public static function rotate( $file, $params ) {
+	public function rotate( $file, $params ) {
 		global $wgImageMagickConvertCommand;
 
-		$rotation = ( $params[ 'rotation' ] + self::getRotation( $file ) ) % 360;
+		$rotation = ( $params[ 'rotation' ] + $this->getRotation( $file ) ) % 360;
 		$scene = false;
 
 		$scaler = self::getScalerType( null, false );
 		switch ( $scaler ) {
 			case 'im':
 				$cmd = wfEscapeShellArg( $wgImageMagickConvertCommand ) . " " .
-					wfEscapeShellArg( self::escapeMagickInput( $params[ 'srcPath' ], $scene ) ) .
+					wfEscapeShellArg( $this->escapeMagickInput( $params[ 'srcPath' ], $scene ) ) .
 					" -rotate -$rotation " .
-					wfEscapeShellArg( self::escapeMagickOutput( $params[ 'dstPath' ] ) ) . " 2>&1";
+					wfEscapeShellArg( $this->escapeMagickOutput( $params[ 'dstPath' ] ) ) . " 2>&1";
 				wfDebug( __METHOD__ . ": running ImageMagick: $cmd\n" );
 				wfProfileIn( 'convert' );
 				$retval = 0;
 				$err = wfShellExec( $cmd, $retval, $env );
 				wfProfileOut( 'convert' );
 				if ( $retval !== 0 ) {
-					self::logErrorForExternalProcess( $retval, $err, $cmd );
+					$this->logErrorForExternalProcess( $retval, $err, $cmd );
 					return new MediaTransformError( 'thumbnail_error', 0, 0, $err );
 				}
 				return false;
