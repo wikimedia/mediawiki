@@ -4067,4 +4067,5 @@ Imaginile sunt afișate la rezoluția lor maximă, în timp ce alte tipuri de fi
 # Unknown messages
 'pageswithprop-legend' => 'Pagini cu o proprietate de pagină',
 'pageswithprop-submit' => 'Du-te',
+'rotate-comment' => 'Imagine rotită în sensul acelor de ceasornic cu $1 {{PLURAL:$1|grad|grade|de grade}}',
 );

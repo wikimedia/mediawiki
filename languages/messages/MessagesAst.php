@@ -3886,4 +3886,5 @@ D\'otra miente, pues usar el formulariu cenciellu d\'abaxo. El to comentariu apa
 # Unknown messages
 'pageswithprop-legend' => 'Páxines con una propiedá de páxina',
 'pageswithprop-submit' => 'Dir',
+'rotate-comment' => 'Imaxe xirada $1 {{PLURAL:$1|grau|graos}} en sentíu horariu',
 );

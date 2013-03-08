@@ -4242,4 +4242,5 @@ Sinon, vous pouvez utiliser le formulaire simplifié ci-dessous. Votre commentai
 # Unknown messages
 'pageswithprop-legend' => 'Pages avec une propriété de page',
 'pageswithprop-submit' => 'Aller',
+'rotate-comment' => 'Image pivotée de $1 {{PLURAL:$1|degré|degrés}} dans le sens des aiguilles d’une montre',
 );

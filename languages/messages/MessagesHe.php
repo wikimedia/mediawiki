@@ -4221,4 +4221,5 @@ $5
 # Unknown messages
 'pageswithprop-legend' => 'דפים עם מאפיין דף',
 'pageswithprop-submit' => 'הצגה',
+'rotate-comment' => 'התמונה סובבה {{PLURAL:$1|במעלה אחת|ב֫־$1 מעלות}} בכיוון השעון',
 );

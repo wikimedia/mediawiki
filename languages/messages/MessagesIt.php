@@ -4009,4 +4009,5 @@ Le immagini vengono mostrate alla massima risoluzione disponibile, per gli altri
 # Unknown messages
 'pageswithprop-legend' => 'Pagine con una pagina di proprietà',
 'pageswithprop-submit' => 'Vai',
+'rotate-comment' => 'Immagine ruotata di $1 {{PLURAL:$1|grado|gradi}} in senso orario',
 );

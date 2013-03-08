@@ -4186,4 +4186,5 @@ Nếu không thì bạn có thể điền biểu mẫu đơn giản ở dưới.
 # Unknown messages
 'pageswithprop-legend' => 'Các trang có thuộc tính trang',
 'pageswithprop-submit' => 'Xem',
+'rotate-comment' => 'Đã quay hình $1 độ theo chiều kim đồng hồ',
 );

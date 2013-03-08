@@ -808,7 +808,7 @@ Odczekaj chwilę zanim ponowisz próbę.',
 'loginlanguagelabel' => 'Język: $1',
 'suspicious-userlogout' => 'Żądanie wylogowania zostało odrzucone ponieważ wygląda na to, że zostało wysłane przez uszkodzoną przeglądarkę lub buforujący serwer proxy.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Wystąpił nieznany błąd w funkcji PHP mail()',
 'user-mail-no-addy' => 'Próba wysłania e‐maila bez adresu odbiorcy',
 'user-mail-no-body' => 'Próbowano wysłać e-mail o psutej lub krótkiej treści.',
@@ -1491,7 +1491,7 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'prefs-displaywatchlist' => 'Opcje wyświetlania',
 'prefs-diffs' => 'Zmiany',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'Wygląda na prawidłowy',
 'email-address-validity-invalid' => 'Wymagany jest prawidłowy adres!',
 
@@ -2282,7 +2282,7 @@ Sprawdź stronę z [[{{MediaWiki:Listgrouprights-helppage}}|dodatkowymi informac
 'listgrouprights-addgroup-self-all' => 'Może dodać własne konto do wszystkich grup',
 'listgrouprights-removegroup-self-all' => 'Może usunąć własne konto ze wszystkich grup',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Brak adresu',
 'mailnologintext' => 'Musisz się [[Special:UserLogin|zalogować]] i mieć wpisany aktualny adres e‐mailowy w swoich [[Special:Preferences|preferencjach]], aby móc wysłać e‐mail do innego użytkownika.',
 'emailuser' => 'Wyślij e‐mail do tego użytkownika',
@@ -3136,6 +3136,7 @@ Najprawdopodobniej zostało to spowodowane przez link do zewnętrznej strony int
 'pageinfo-robot-noindex' => 'Nieindeksowalne',
 'pageinfo-views' => 'Odsłon',
 'pageinfo-watchers' => 'Liczba obserwujących',
+'pageinfo-few-watchers' => 'Mniej niż $1 {{PLURAL:$1|obserwujący|obserwujących}}',
 'pageinfo-redirects-name' => 'Liczba przekierowań do tej strony',
 'pageinfo-subpages-name' => 'Liczba podstron tej strony',
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|przekierowanie|przekierowania|przekierowań}}; $3 {{PLURAL:$3|bez przekierowania|bez przekierowań|bez przekierowań}})',
@@ -3691,7 +3692,7 @@ Pozostałe pola zostaną domyślnie ukryte.
 'monthsall' => 'wszystkie',
 'limitall' => 'wszystkie',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Potwierdzanie adresu e‐mail',
 'confirmemail_noemail' => 'Nie podał{{GENDER:|eś|aś|eś/aś}} prawidłowego adresu e‐mail w [[Special:Preferences|preferencjach]].',
 'confirmemail_text' => 'Projekt {{SITENAME}} wymaga weryfikacji adresu e‐mail przed użyciem funkcji korzystających z poczty.
@@ -4144,4 +4145,6 @@ W przeciwnym wypadku można użyć prostego formularza poniżej. Komentarz zosta
 'duration-centuries' => '$1 {{PLURAL:$1|stulecie|stulecia|stuleci}}',
 'duration-millennia' => '$1 {{PLURAL:$1|tysiąclecie|tysiąclecia|tysiącleci}}',
 
+# Unknown messages
+'rotate-comment' => 'Obraz został odwrócony o $1 {{PLURAL:$1|stopień|stopnie|stopni}} (w kierunku zgodnym z ruchem wskazówek zegara)',
 );

@@ -4096,4 +4096,5 @@ Ce nò, tu puè ausà 'u module facile aqquà sotte. 'U commende tune avène agg
 # Unknown messages
 'pageswithprop-legend' => "Pàggene cu 'na probbietà d'a pàgene",
 'pageswithprop-submit' => 'Véje',
+'rotate-comment' => 'Immaggine rotate de $1 {{PLURAL:$1|grade}} in sienze orarie',
 );

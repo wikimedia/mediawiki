@@ -756,7 +756,8 @@ The format is: "{{int:youhavenewmessagesmulti| [[MediaWiki:Newmessageslink/{{SUB
 This is the link used to collapse a collapsible element. (used as plaintext. No wikitext or html is parsed.)
 
 See also:
-* {{msg-mw|Collapsible-expand}}',
+* {{msg-mw|Collapsible-expand}}
+{{Identical|Collapse}}',
 'collapsible-expand' => '{{Doc-actionlink}}
 This is the link used to expand a collapsible element (used as plaintext. No wikitext or html is parsed.)
 
@@ -814,8 +815,7 @@ See also:
 * {{msg-mw|Accesskey-ca-nstab-main}}
 * {{msg-mw|Tooltip-ca-nstab-main}}
 {{Identical|Page}}',
-'nstab-user' => 'The name for the tab of the user namespace. Example: [[User:Example]]. It is possible to use <nowiki>
-{{GENDER:{{#titleparts:{{BASEPAGENAME}}|1}}|male form|female form}}</nowiki> if needed.
+'nstab-user' => 'The name for the tab of the user namespace. Example: [[User:Example]]. It is possible to use <nowiki>{{GENDER:{{BASEPAGENAME}}|male form|female form}}</nowiki> if needed.
 
 See also:
 * {{msg-mw|Nstab-user}}
@@ -8782,12 +8782,10 @@ $4 is the gender of the target user.',
 'duration-centuries' => '{{Related|Duration}}',
 'duration-millennia' => '{{Related|Duration}}',
 
-# Rotation
-'rotation-comment' => 'comment set for new version uploaded after rotation',
-
 # Unknown messages
 'pageswithprop-legend' => 'Legend for the input form on [[Special:PagesWithProp]].
 {{Identical|Page with page property}}',
 'pageswithprop-submit' => 'Label for the submit button on [[Special:PagesWithProp]].
 {{Identical|Go}}',
+'rotate-comment' => 'Edit summary for the act of rotating an image.',
 );

@@ -3997,4 +3997,5 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 # Unknown messages
 'pageswithprop-legend' => '有頁面屬性的頁面',
 'pageswithprop-submit' => '進入',
+'rotate-comment' => '順時針旋轉圖像$1{{PLURAL:$1|度|度}}',
 );

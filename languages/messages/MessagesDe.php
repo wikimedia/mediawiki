@@ -4181,4 +4181,5 @@ Anderenfalls kannst du auch das untenstehende einfache Formular nutzen. Dein Kom
 # Unknown messages
 'pageswithprop-legend' => 'Seiten mit einer Seiteneigenschaft',
 'pageswithprop-submit' => 'Los',
+'rotate-comment' => 'Bild um $1 {{PLURAL:$1|Grad}} im Uhrzeigersinn gedreht',
 );

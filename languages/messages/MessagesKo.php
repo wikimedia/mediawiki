@@ -624,8 +624,8 @@ $1',
 'toc' => '목차',
 'showtoc' => '보이기',
 'hidetoc' => '숨기기',
-'collapsible-collapse' => '숨기기',
-'collapsible-expand' => '보이기',
+'collapsible-collapse' => '접기',
+'collapsible-expand' => '펼치기',
 'thisisdeleted' => '$1을 보거나 되살리겠습니까?',
 'viewdeleted' => '$1을 보겠습니까?',
 'restorelink' => '삭제된 편집 $1개',
@@ -4213,4 +4213,5 @@ $5
 # Unknown messages
 'pageswithprop-legend' => '문서 속성으로 된 문서',
 'pageswithprop-submit' => '가기',
+'rotate-comment' => '그림을 시계 방향으로 $1{{PLURAL:$1|도}}로 회전함',
 );

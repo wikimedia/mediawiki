@@ -4351,4 +4351,5 @@ $5
 # Unknown messages
 'pageswithprop-legend' => 'Страници со својство',
 'pageswithprop-submit' => 'Оди',
+'rotate-comment' => 'Сликата е завртена за $1 {{PLURAL:$1|степен|степени}} вдесно',
 );

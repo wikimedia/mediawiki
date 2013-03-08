@@ -13,6 +13,7 @@
  * @author Irena Plahuta
  * @author McDutchie
  * @author Smihael
+ * @author Vadgt
  * @author XJamRastafire
  * @author Yerpo
  * @author romanm
@@ -3988,4 +3989,5 @@ V nasprotnem primeru lahko uporabite preprost obrazec spodaj. Vašo pripombo bom
 # Unknown messages
 'pageswithprop-legend' => 'Strani z lastnostmi strani',
 'pageswithprop-submit' => 'Pojdi',
+'rotate-comment' => 'Slika zavrti s  $1  {{PLURAL:$1| degree|degrees}} v smeri urinega kazalca',
 );

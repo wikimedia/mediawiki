@@ -691,7 +691,7 @@ Vent venligst før du prøver igen.',
 'loginlanguagelabel' => 'Sprog: $1',
 'suspicious-userlogout' => 'Din anmodning om at logge ud blev nægtet, fordi det ser ud som den blev sendt af en ødelagt browser eller caching proxy.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => "Ukendt fejl i PHP's mail()-funtion",
 'user-mail-no-addy' => 'Forsøgte at sende email uden en email-adresse',
 'user-mail-no-body' => 'Forsøgte at sende en e-mail med tomt eller urimeligt kort indhold.',
@@ -1351,7 +1351,7 @@ Hvis du vælger at oplyse dit navn, vil det blive brugt til at tilskrive dig dit
 'prefs-info' => 'Grundlæggende information',
 'prefs-i18n' => 'Internationalisering:',
 'prefs-signature' => 'Signatur',
-'prefs-dateformat' => 'Dataformat',
+'prefs-dateformat' => 'Formatering af datoer',
 'prefs-timeoffset' => 'Tidsforskel',
 'prefs-advancedediting' => 'Avancerede indstillinger',
 'prefs-advancedrc' => 'Avancerede indstillinger',
@@ -1363,7 +1363,7 @@ Hvis du vælger at oplyse dit navn, vil det blive brugt til at tilskrive dig dit
 'prefs-displaywatchlist' => 'Visningsmuligheder',
 'prefs-diffs' => 'Forskelle',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'E-mailadressen ser ud til at være gyldig',
 'email-address-validity-invalid' => 'Indtast en gyldig e-mail adresse',
 
@@ -2144,7 +2144,7 @@ Der findes muligvis [[{{MediaWiki:Listgrouprights-helppage}}|yderligere informat
 'listgrouprights-addgroup-self-all' => 'Kan tilføje alle grupper til egen konto',
 'listgrouprights-removegroup-self-all' => 'Kan fjerne alle grupper fra egen konto',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Du er ikke logget på',
 'mailnologintext' => 'Du skal være [[Special:UserLogin|logget på]] og have en gyldig e-mailadresse sat i dine [[Special:Preferences|indstillinger]] for at sende e-mail til andre brugere.',
 'emailuser' => 'E-mail til denne bruger',
@@ -3510,7 +3510,7 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 'monthsall' => 'alle',
 'limitall' => 'alle',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Bekræft e-mail-adressen',
 'confirmemail_noemail' => 'Du har ikke angivet en gyldig e-mail-adresse i din [[Special:Preferences|brugerprofil]].',
 'confirmemail_text' => '{{SITENAME}} kræver, at du bekræfter en e-mail-adresse (autentificering), før du kan bruge de udvidede e-mail-funktioner. Med et klik på kontrolfeltet forneden sendes en e-mail til dig. Denne e-mail indeholder et link med en bekræftelseskode. Med et klik på dette link bekræftes, at e-mail-adressen er gyldig.',
