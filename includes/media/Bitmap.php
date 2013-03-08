@@ -656,7 +656,7 @@ class BitmapHandler extends ImageHandler {
 	 * @throws MWException
 	 * @return string
 	 */
-	protected function escapeMagickPath( $path, $scene = false ) {
+	protected static function escapeMagickPath( $path, $scene = false ) {
 		# Die on format specifiers (other than drive letters). The regex is
 		# meant to match all the formats you get from "convert -list format"
 		if ( preg_match( '/^([a-zA-Z0-9-]+):/', $path, $m ) ) {
