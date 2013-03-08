@@ -860,6 +860,7 @@ class SpecialPage {
 	 * @since 1.21
 	 */
 	public function getFinalGroupName() {
+		global $wgSpecialPageGroups;
 		$name = $this->getName();
 		$group = '-';
 
