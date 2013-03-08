@@ -118,7 +118,7 @@ abstract class JobQueue {
 	/**
 	 * @return Array Subset of (random, timestamp, fifo)
 	 */
-	abstract public function supportedOrders();
+	abstract protected function supportedOrders();
 
 	/**
 	 * @return string One of (random, timestamp, fifo)

@@ -52,7 +52,7 @@ class JobQueueRedis extends JobQueue {
 		$this->redisPool = RedisConnectionPool::singleton( $params['redisConfig'] );
 	}
 
-	public function supportedOrders() {
+	protected function supportedOrders() {
 		return array( 'timestamp', 'fifo' );
 	}
 

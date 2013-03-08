@@ -50,7 +50,7 @@ class JobQueueDB extends JobQueue {
 		$this->cluster = isset( $params['cluster'] ) ? $params['cluster'] : false;
 	}
 
-	public function supportedOrders() {
+	protected function supportedOrders() {
 		return array( 'random', 'timestamp', 'fifo' );
 	}
 
