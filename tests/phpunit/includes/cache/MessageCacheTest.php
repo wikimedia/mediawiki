@@ -12,6 +12,12 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 	}
 
 	function addDBData() {
+		// be sure english messages under $key, not $key/en
+		$this->setMwGlobals( array(
+			'wgLanguageCode' => 'en',
+			'wgContLang' => Language::factory( 'en' ),
+		) );
+
 		// Set up messages and fallbacks ab -> ru -> en
 		$this->makePage( 'FallbackLanguageTest-Full', 'ab' );
 		$this->makePage( 'FallbackLanguageTest-Full', 'ru' );
