@@ -4242,6 +4242,12 @@ $wgAvailableRights = array();
 $wgDeleteRevisionsLimit = 0;
 
 /**
+ * Time limit for users with the deleteown permission deleting pages
+ * only they have edited. Default is ninety days.
+ */
+$wgDeleteOwnExpiry = 3600 * 24 * 90;
+
+/**
  * Number of accounts each IP address may create, 0 to disable.
  *
  * @warning Requires memcached

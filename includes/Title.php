@@ -1731,6 +1731,8 @@ class Title {
 	 * @return Array list of errors
 	 */
 	private function checkQuickPermissions( $action, $user, $errors, $doExpensiveQueries, $short ) {
+		global $wgDeleteOwnExpiry;
+
 		if ( $action == 'create' ) {
 			if (
 				( $this->isTalkPage() && !$user->isAllowed( 'createtalk' ) ) ||
@@ -1769,6 +1771,24 @@ class Title {
 					&& $this->mNamespace == NS_USER && !$this->isSubpage() ) {
 				// Show user page-specific message only if the user can move other pages
 				$errors[] = array( 'cant-move-to-user-page' );
+			}
+		} elseif ( $action == 'delete' ) {
+			$options = array( 'include_both', 'ignore_minor' );
+			$first = $this->getFirstRevision();
+			$latestTime = new MWTimestamp( Revision::getTimestampFromId( $this, $this->getLatestRevID() ) );
+			if (
+				// Check general delete permission
+				!$user->isAllowed( 'delete' ) &&
+				// Check if user is only author on page and can deleteown
+				!$user->isAllowed( 'deleteown' ) &&
+				$first->getUser( Revision::RAW ) === $user->getId() &&
+				$latestTime->getTimestamp() <= time() + $wgDeleteOwnExpiry
+				(
+					!$doExpensiveQueries ||
+					$this->countAuthorsBetween( $first, 0, 1, $options ) === 1
+				)
+			) {
+				$errors[] = $this->missingPermissionError( 'deleteown', $short );
 			}
 		} elseif ( !$user->isAllowed( $action ) ) {
 			$errors[] = $this->missingPermissionError( $action, $short );
@@ -4325,14 +4345,26 @@ class Title {
 			}
 			return ( $old->getRawUserText() === $new->getRawUserText() ) ? 1 : 2;
 		}
+
+		$conds = array(
+			'rev_page' => $this->getArticleID(),
+			"rev_timestamp $old_cmp " . $dbr->addQuotes( $dbr->timestamp( $old->getTimestamp() ) ),
+			"rev_timestamp $new_cmp " . $dbr->addQuotes( $dbr->timestamp( $new->getTimestamp() ) )
+		);
+		if ( in_array( 'ignore_minor', $options ) ) {
+			$conds['rev_minor_edit'] = 0;
+		}
+
 		$dbr = wfGetDB( DB_SLAVE );
-		$res = $dbr->select( 'revision', 'DISTINCT rev_user_text',
+		$res = $dbr->select(
+			'revision',
+			'rev_user_text',
+			$conds,
+			__METHOD__,
 			array(
-				'rev_page' => $this->getArticleID(),
-				"rev_timestamp $old_cmp " . $dbr->addQuotes( $dbr->timestamp( $old->getTimestamp() ) ),
-				"rev_timestamp $new_cmp " . $dbr->addQuotes( $dbr->timestamp( $new->getTimestamp() ) )
-			), __METHOD__,
-			array( 'LIMIT' => $limit + 1 ) // add one so caller knows it was truncated
+				'DISTINCT',
+				'LIMIT' => $limit + 1 // add one so caller knows it was truncated
+			)
 		);
 		return (int)$dbr->numRows( $res );
 	}
