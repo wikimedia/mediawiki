@@ -33,6 +33,8 @@
 
 class ApiQueryRandom extends ApiQueryGeneratorBase {
 
+	private $pageIDs;
+
 	public function __construct( $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'rn' );
 	}

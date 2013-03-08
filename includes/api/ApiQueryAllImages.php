@@ -42,7 +42,7 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 
 	/**
 	 * Override parent method to make sure the repo's DB is used
-	 * which may not necesarilly be the same as the local DB.
+	 * which may not necessarily be the same as the local DB.
 	 *
 	 * TODO: allow querying non-local repos.
 	 * @return DatabaseBase

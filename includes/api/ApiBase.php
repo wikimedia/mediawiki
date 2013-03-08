@@ -189,7 +189,7 @@ abstract class ApiBase extends ContextSource {
 	 * @return ApiResult
 	 */
 	public function getResult() {
-		// Main module has getResult() method overriden
+		// Main module has getResult() method overridden
 		// Safety - avoid infinite loop:
 		if ( $this->isMain() ) {
 			ApiBase::dieDebug( __METHOD__, 'base method was called on main module. ' );
@@ -334,6 +334,7 @@ abstract class ApiBase extends ContextSource {
 	/**
 	 * @param $item string
 	 * @return string
+	 * @noinspection PhpUnusedPrivateMethodInspection
 	 */
 	private function indentExampleText( $item ) {
 		return "  " . $item;
@@ -582,7 +583,7 @@ abstract class ApiBase extends ContextSource {
 	 * The array can also contain a boolean under the key PROP_LIST,
 	 * indicating whether the result is a list.
 	 *
-	 * Don't call this functon directly: use getFinalResultProperties() to
+	 * Don't call this function directly: use getFinalResultProperties() to
 	 * allow hooks to modify descriptions as needed.
 	 *
 	 * @return array|bool False on no properties
@@ -795,10 +796,11 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
-	 * Callback function used in requireOnlyOneParameter to check whether reequired parameters are set
+	 * Callback function used in requireOnlyOneParameter to check whether required parameters are set
 	 *
 	 * @param  $x object Parameter to check is not null/false
 	 * @return bool
+	 * @noinspection PhpUnusedPrivateMethodInspection
 	 */
 	private function parameterNotEmpty( $x ) {
 		return !is_null( $x ) && $x !== false;
@@ -838,7 +840,7 @@ abstract class ApiBase extends ContextSource {
 				if ( $userWatching ) {
 					return true;
 				}
-				# If no user option was passed, use watchdefault or watchcreation
+				# If no user option was passed, use watchdefault or watchcreations
 				if ( is_null( $userOption ) ) {
 					$userOption = $titleObj->exists()
 							? 'watchdefault' : 'watchcreations';
@@ -1268,7 +1270,7 @@ abstract class ApiBase extends ContextSource {
 		'badipaddress' => array( 'code' => 'invalidip', 'info' => "Invalid IP address specified" ),
 		'ipb_expiry_invalid' => array( 'code' => 'invalidexpiry', 'info' => "Invalid expiry time" ),
 		'ipb_already_blocked' => array( 'code' => 'alreadyblocked', 'info' => "The user you tried to block was already blocked" ),
-		'ipb_blocked_as_range' => array( 'code' => 'blockedasrange', 'info' => "IP address \"\$1\" was blocked as part of range \"\$2\". You can't unblock the IP invidually, but you can unblock the range as a whole." ),
+		'ipb_blocked_as_range' => array( 'code' => 'blockedasrange', 'info' => "IP address \"\$1\" was blocked as part of range \"\$2\". You can't unblock the IP individually, but you can unblock the range as a whole." ),
 		'ipb_cant_unblock' => array( 'code' => 'cantunblock', 'info' => "The block you specified was not found. It may have been unblocked already" ),
 		'mailnologin' => array( 'code' => 'cantsend', 'info' => "You are not logged in, you do not have a confirmed email address, or you are not allowed to send email to other users, so you cannot send email" ),
 		'ipbblocked' => array( 'code' => 'ipbblocked', 'info' => 'You cannot block or unblock users while you are yourself blocked' ),
