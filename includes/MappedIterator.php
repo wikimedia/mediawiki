@@ -39,7 +39,7 @@ class MappedIterator implements Iterator {
 	 * The keys of the base iterator are reused verbatim.
 	 *
 	 * @param Iterator|Array $iter
-	 * @param Closure $callback
+	 * @param Closure $vCallback
 	 * @throws MWException
 	 */
     public function __construct( $iter, Closure $vCallback ) {
@@ -81,11 +81,10 @@ class MappedIterator implements Iterator {
 	}
 
 	/**
-	 * @return Mixed|null Returns null if out of range
+	 * @return void
 	 */
 	public function next() {
 		$this->baseIterator->next();
-		return $this->current(); // make sure callback is applied
 	}
 
 	/**
