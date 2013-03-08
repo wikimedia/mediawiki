@@ -2332,6 +2332,15 @@ database result.
 &$titleArray: set this to an object to override the default object returned
 $res: database result used to create the object
 
+'TitleQuickPermissions': Called from Title::checkQuickPermissions to add to
+or override the quick permissions check.
+$title: The Title object being accessed
+$user: The User performing the action
+$action: Action being performed
+&$errors: Array of errors
+$doExpensiveQueries: Whether to do expensive DB queries
+$short: Whether to return immediately on first error
+
 'TitleGetRestrictionTypes': Allows extensions to modify the types of protection
 that can be applied.
 $title: The title in question.
