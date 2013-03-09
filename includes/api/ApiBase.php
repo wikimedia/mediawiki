@@ -1045,6 +1045,11 @@ abstract class ApiBase extends ContextSource {
 				}
 			}
 
+			if ( $required && is_array( $value ) && !count( $value ) ) {
+				// Die, if required array has no items
+				$this->dieUsageMsg( array( 'missingparam', $paramName ) );
+			}
+
 			// Throw out duplicates if requested
 			if ( is_array( $value ) && !$dupes ) {
 				$value = array_unique( $value );
