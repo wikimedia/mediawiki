@@ -194,7 +194,19 @@ class SwiftFileBackend extends FileBackendStore {
 	}
 
 	/**
-	 * @param string $disposition Content-Disposition header value
+	 * @param $headers array
+	 * @return array
+	 */
+	protected function sanitizeHdrs( array $headers ) {
+		// By default, Swift has annoyingly low maximum header value limits
+		if ( isset( $headers['Content-Disposition'] ) ) {
+			$headers['Content-Disposition'] = $this->truncDisp( $headers['Content-Disposition'] );
+		}
+		return $headers;
+	}
+
+	/**
+	 * @param $disposition string Content-Disposition header value
 	 * @return string Truncated Content-Disposition header value to meet Swift limits
 	 */
 	protected function truncDisp( $disposition ) {
@@ -252,13 +264,9 @@ class SwiftFileBackend extends FileBackendStore {
 			if ( !strlen( $obj->content_type ) ) { // special case
 				$obj->content_type = 'unknown/unknown';
 			}
-			// Set the Content-Disposition header if requested
-			if ( isset( $params['disposition'] ) ) {
-				$obj->headers['Content-Disposition'] = $this->truncDisp( $params['disposition'] );
-			}
 			// Set any other custom headers if requested
 			if ( isset( $params['headers'] ) ) {
-				$obj->headers += $params['headers'];
+				$obj->headers += $this->sanitizeHdrs( $params['headers'] );
 			}
 			if ( !empty( $params['async'] ) ) { // deferred
 				$op = $obj->write_async( $params['content'] );
@@ -337,13 +345,9 @@ class SwiftFileBackend extends FileBackendStore {
 			if ( !strlen( $obj->content_type ) ) { // special case
 				$obj->content_type = 'unknown/unknown';
 			}
-			// Set the Content-Disposition header if requested
-			if ( isset( $params['disposition'] ) ) {
-				$obj->headers['Content-Disposition'] = $this->truncDisp( $params['disposition'] );
-			}
 			// Set any other custom headers if requested
 			if ( isset( $params['headers'] ) ) {
-				$obj->headers += $params['headers'];
+				$obj->headers += $this->sanitizeHdrs( $params['headers'] );
 			}
 			if ( !empty( $params['async'] ) ) { // deferred
 				wfSuppressWarnings();
@@ -424,8 +428,9 @@ class SwiftFileBackend extends FileBackendStore {
 		try {
 			$dstObj = new CF_Object( $dContObj, $dstRel, false, false ); // skip HEAD
 			$hdrs = array(); // source file headers to override with new values
-			if ( isset( $params['disposition'] ) ) {
-				$hdrs['Content-Disposition'] = $this->truncDisp( $params['disposition'] );
+			// Set any other custom headers if requested
+			if ( isset( $params['headers'] ) ) {
+				$hdrs += $this->sanitizeHdrs( $params['headers'] );
 			}
 			if ( !empty( $params['async'] ) ) { // deferred
 				$op = $sContObj->copy_object_to_async( $srcRel, $dContObj, $dstRel, null, $hdrs );
@@ -497,8 +502,9 @@ class SwiftFileBackend extends FileBackendStore {
 			$srcObj = new CF_Object( $sContObj, $srcRel, false, false ); // skip HEAD
 			$dstObj = new CF_Object( $dContObj, $dstRel, false, false ); // skip HEAD
 			$hdrs = array(); // source file headers to override with new values
-			if ( isset( $params['disposition'] ) ) {
-				$hdrs['Content-Disposition'] = $this->truncDisp( $params['disposition'] );
+			// Set any other custom headers if requested
+			if ( isset( $params['headers'] ) ) {
+				$hdrs += $this->sanitizeHdrs( $params['headers'] );
 			}
 			if ( !empty( $params['async'] ) ) { // deferred
 				$op = $sContObj->move_object_to_async( $srcRel, $dContObj, $dstRel, null, $hdrs );
@@ -603,19 +609,15 @@ class SwiftFileBackend extends FileBackendStore {
 			return $status;
 		}
 
-		$hdrs = isset( $params['headers'] ) ? $params['headers'] : array();
-		// Set the Content-Disposition header if requested
-		if ( isset( $params['disposition'] ) ) {
-			$hdrs['Content-Disposition'] = $this->truncDisp( $params['disposition'] );
-		}
-
 		try {
 			$sContObj = $this->getContainer( $srcCont );
 			// Get the latest version of the current metadata
 			$srcObj = $sContObj->get_object( $srcRel,
 				$this->headersFromParams( array( 'latest' => true ) ) );
 			// Merge in the metadata updates...
-			$srcObj->headers = $hdrs + $srcObj->headers;
+			if ( isset( $params['headers'] ) ) {
+				$srcObj->headers = $this->sanitizeHdrs( $params['headers'] ) + $srcObj->headers;
+			}
 			$srcObj->sync_metadata(); // save to Swift
 			$this->purgeCDNCache( array( $srcObj ) );
 		} catch ( CDNNotEnabledException $e ) {

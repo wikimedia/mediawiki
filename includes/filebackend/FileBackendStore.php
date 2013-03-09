@@ -92,7 +92,6 @@ abstract class FileBackendStore extends FileBackend {
 	 * $params include:
 	 *   - content     : the raw file contents
 	 *   - dst         : destination storage path
-	 *   - disposition : Content-Disposition header value for the destination
 	 *   - headers     : HTTP header name/value map
 	 *   - async       : Status will be returned immediately if supported.
 	 *                   If the status is OK, then its value field will be
@@ -135,7 +134,6 @@ abstract class FileBackendStore extends FileBackend {
 	 * $params include:
 	 *   - src         : source path on disk
 	 *   - dst         : destination storage path
-	 *   - disposition : Content-Disposition header value for the destination
 	 *   - headers     : HTTP header name/value map
 	 *   - async       : Status will be returned immediately if supported.
 	 *                   If the status is OK, then its value field will be
@@ -179,7 +177,7 @@ abstract class FileBackendStore extends FileBackend {
 	 *   - src                 : source storage path
 	 *   - dst                 : destination storage path
 	 *   - ignoreMissingSource : do nothing if the source file does not exist
-	 *   - disposition         : Content-Disposition header value for the destination
+	 *   - headers             : HTTP header name/value map
 	 *   - async               : Status will be returned immediately if supported.
 	 *                           If the status is OK, then its value field will be
 	 *                           set to a FileBackendStoreOpHandle object.
@@ -248,7 +246,7 @@ abstract class FileBackendStore extends FileBackend {
 	 *   - src                 : source storage path
 	 *   - dst                 : destination storage path
 	 *   - ignoreMissingSource : do nothing if the source file does not exist
-	 *   - disposition         : Content-Disposition header value for the destination
+	 *   - headers             : HTTP header name/value map
 	 *   - async               : Status will be returned immediately if supported.
 	 *                           If the status is OK, then its value field will be
 	 *                           set to a FileBackendStoreOpHandle object.
@@ -294,7 +292,6 @@ abstract class FileBackendStore extends FileBackend {
 	 *
 	 * $params include:
 	 *   - src           : source storage path
-	 *   - disposition   : Content-Disposition header value for the destination
 	 *   - headers       : HTTP header name/value map
 	 *   - async         : Status will be returned immediately if supported.
 	 *                     If the status is OK, then its value field will be
@@ -1277,15 +1274,20 @@ abstract class FileBackendStore extends FileBackend {
 	}
 
 	/**
-	 * Strip long HTTP headers from a file operation
+	 * Strip long HTTP headers from a file operation.
+	 * Most headers are just numbers, but some are allowed to be long.
+	 * This function is useful for cleaning up headers and avoiding backend
+	 * specific errors, especially in the middle of batch file operations.
 	 *
 	 * @param array $op Same format as doOperation()
 	 * @return Array
 	 */
 	protected function stripInvalidHeadersFromOp( array $op ) {
-		if ( isset( $op['headers'] ) ) {
+		static $longs = array( 'Content-Disposition' );
+		if ( isset( $op['headers'] ) ) { // op sets HTTP headers
 			foreach ( $op['headers'] as $name => $value ) {
-				if ( strlen( $name ) > 255 || strlen( $value ) > 255 ) {
+				$maxHVLen = in_array( $name, $longs ) ? INF : 255;
+				if ( strlen( $name ) > 255 || strlen( $value ) > $maxHVLen ) {
 					trigger_error( "Header '$name: $value' is too long." );
 					unset( $op['headers'][$name] );
 				} elseif ( !strlen( $value ) ) {
