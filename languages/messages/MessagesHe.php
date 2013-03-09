@@ -2150,8 +2150,10 @@ $1',
 דף נחשב לדף פירושונים אם הוא משתמש בתבנית המקושרת מהדף [[MediaWiki:Disambiguationspage]].",
 
 'pageswithprop' => 'דפים עם מאפיין דף',
+'pageswithprop-legend' => 'דפים עם מאפיין דף',
 'pageswithprop-text' => 'בדף זה מופיעה רשימת דפים שמשתמשים במאפיין דף מסוים.',
 'pageswithprop-prop' => 'שם המאפיין:',
+'pageswithprop-submit' => 'הצגה',
 
 'doubleredirects' => 'הפניות כפולות',
 'doubleredirectstext' => 'בדף הזה מופיעה רשימת דפי הפניה שמפנים לדפי הפניה אחרים.
@@ -4218,8 +4220,7 @@ $5
 'duration-centuries' => '{{PLURAL:$1|מאה שנה|מאתיים שנה|$1 מאות שנים}}',
 'duration-millennia' => '{{PLURAL:$1|אלף שנה|אלפיים שנה|$1 אלפי שנים}}',
 
-# Unknown messages
-'pageswithprop-legend' => 'דפים עם מאפיין דף',
-'pageswithprop-submit' => 'הצגה',
+# Image rotation
 'rotate-comment' => 'התמונה סובבה {{PLURAL:$1|במעלה אחת|ב֫־$1 מעלות}} בכיוון השעון',
+
 );

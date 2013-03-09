@@ -1924,7 +1924,9 @@ Si sollte am beschten op déi eigentlech gemengte Säit verlinkt sinn.<br />
 Eng Säite gëtt als Homonymie-Säit behandelt, wa si eng Schabloun benotzt déi vu [[MediaWiki:Disambiguationspage]] verlinkt ass.",
 
 'pageswithprop' => 'Säite mat enger Säiten-Eegeschaft',
+'pageswithprop-legend' => 'Säite mat enger Säiten-Eegeschaft',
 'pageswithprop-prop' => 'Numm vun der Eegeschaft:',
+'pageswithprop-submit' => 'Lass',
 
 'doubleredirects' => 'Duebel Viruleedungen',
 'doubleredirectstext' => 'Op dëser Säit stinn déi Säiten déi op aner Viruleedungssäite viruleeden.
@@ -3865,7 +3867,4 @@ Soss kënnt Dir den einfache Formulär hei drënner benotzen. Är Bemierkung gë
 'duration-centuries' => '$1 {{PLURAL:$1|Joerhonnert|Joerhonnerten}}',
 'duration-millennia' => '$1 {{PLURAL:$1|Millenaire|Millenairen}}',
 
-# Unknown messages
-'pageswithprop-legend' => 'Säite mat enger Säiten-Eegeschaft',
-'pageswithprop-submit' => 'Lass',
 );

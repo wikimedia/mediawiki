@@ -502,7 +502,7 @@ $1',
 'pool-errorunknown' => 'Անհայտ սխալ',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite' => '{{grammar:genitive|{{SITENAME}}}}ի մասին',
+'aboutsite' => '{{grammar:genitive|{{SITENAME}}}} մասին',
 'aboutpage' => 'Project:Էությունը',
 'copyright' => 'Կայքի բովանդակությունը գտնվում է «$1» արտոնագրի տակ։',
 'copyrightpage' => '{{ns:project}}:Հեղինակային իրավունքներ',
@@ -672,7 +672,7 @@ $2',
 'welcomecreation-msg' => 'Ձեր հաշիվն ստեղծված է։
 Չմոռանաք փոփոխել ձեր [[Special:Preferences|նախընտրությունները]]։',
 'yourname' => 'Մասնակցի անուն՝',
-'yourpassword' => 'Գաղտնաբառ.',
+'yourpassword' => 'Գաղտնաբառ՝',
 'yourpasswordagain' => 'Կրկնեք գաղտնաբառը',
 'remembermypassword' => 'Հիշել իմ մուտքագրված տվյալները այս համակարգչում ($1 {{PLURAL:$1|օրից|օրից}} ոչ ավել ժամկետով)',
 'yourdomainname' => 'Ձեր դոմենը՝',
@@ -1007,6 +1007,7 @@ $2',
 
 # Content models
 'content-model-wikitext' => 'վիքիտեքստ',
+'content-model-javascript' => 'ՋավաՍկրիպտ',
 
 # "Undo" feature
 'undo-success' => 'Խմբագրումը կարող է հետ շրջվել։ Ստուգեք տարբերակների համեմատությունը ստորև, որպեսզի համոզվեք, որ դա է ձեզ հետաքրքրող փոփոխությունը և մատնահարեք «Հիշել էջը»՝ գործողությունն ավարտելու համար։',
@@ -1622,6 +1623,8 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 Փոխարենը նրանք, հավանաբար, պետք է հղեն համապատասխան թեմային։<br />
 Էջը համարվում է երկիմաստության փարատման էջ, եթե այն պարունակում է [[MediaWiki:Disambiguationspage]] էջում ընդգրկված կաղապարներից որևէ մեկը։',
 
+'pageswithprop-submit' => 'Անցնել',
+
 'doubleredirects' => 'Կրկնակի վերահղումներ',
 'doubleredirectstext' => 'Այս էջում բերված են վերահղման էջերին վերահղող էջերը։ Յուրաքանչյուր տող պարունակում է հղումներ դեպի առաջին և երկրորդ վերահղումները, ինչպես նաև երկրորդ վերահղման նպատակային էջի առաջին տողը, որում սովորաբար նշված է էջի անվանումը, որին պետք է հղի նաև առաջին վերահղումը։',
 'double-redirect-fixed-move' => '«[[$1]]» էջը վերանվանված է և այժմ վերահղում է «[[$2]]» էջին։',
@@ -1644,7 +1647,7 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'ncategories' => '$1 {{PLURAL:$1|կատեգորիա|կատեգորիաներ}}',
 'ninterwikis' => '$1 {{PLURAL:$1|ինտերվիքի|ինտերվիքիներ}}',
 'nlinks' => '$1 {{PLURAL:$1|հղում|հղումներ}}',
-'nmembers' => '$1 {{PLURAL:$1|անդամ|անդամ}}',
+'nmembers' => '$1 {{PLURAL:$1|անդամ|անդամներ}}',
 'nrevisions' => '$1 {{PLURAL:$1|տարբերակ|տարբերակներ}}',
 'nviews' => '$1 {{PLURAL:$1|դիտում|դիտումներ}}',
 'nimagelinks' => 'օգտագործվում է $1 {{PLURAL:$1|էջ|էջեր}}',
@@ -2550,6 +2553,8 @@ $1',
 'exif-componentsconfiguration-0' => 'գոյություն չունի',
 
 'exif-urgency-normal' => 'Նորմալ ($1)',
+'exif-urgency-low' => 'Թույլ ($1)',
+'exif-urgency-high' => 'Ուժեղ ($1)',
 
 # External editor support
 'edit-externally' => 'Խմբագրել այս նիշքը արտաքին խմբագրիչով',

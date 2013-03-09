@@ -3044,6 +3044,9 @@ $messages['ceb'] = array(
  * @author Calak
  */
 $messages['ckb'] = array(
+	'config-wiki-language' => 'زمانی ویکی:',
+	'config-page-language' => 'زمان',
+	'config-page-name' => 'ناو',
 	'mainpagetext' => "'''میدیاویکی بە سەرکەوتوویی دامەزرا.'''",
 	'mainpagedocfooter' => 'لە [//meta.wikimedia.org/wiki/Help:Contents ڕێنوێنیی بەکارھێنەران] بۆ زانیاری سەبارەت بە بەکارھێنانی نەرمامێری ویکی کەڵک وەربگرە.
 

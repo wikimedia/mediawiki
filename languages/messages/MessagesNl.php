@@ -2192,8 +2192,10 @@ Deze horen waarschijnlijk direct naar een meer toepasselijke pagina te verwijzen
 Een pagina wordt gezien als doorverwijspagina als er een sjabloon op staat dat opgenomen is op [[MediaWiki:Disambiguationspage]].",
 
 'pageswithprop' => "Pagina's met een pagina-eigenschap",
+'pageswithprop-legend' => "Pagina's met een pagina-eigenschap",
 'pageswithprop-text' => "Op deze pagina worden pagina's weergegeven met een bepaalde pagina-eigenschap.",
 'pageswithprop-prop' => 'Naam van de eigenschap:',
+'pageswithprop-submit' => 'OK',
 
 'doubleredirects' => 'Dubbele doorverwijzingen',
 'doubleredirectstext' => "Deze lijst bevat pagina's die doorverwijzen naar andere doorverwijspagina's.
@@ -4237,7 +4239,4 @@ Anders kunt u ook het eenvoudige formulier hieronder gebruiken. Uw reactie wordt
 'duration-centuries' => '$1 {{PLURAL:$1|eeuw|eeuwen}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennia}}',
 
-# Unknown messages
-'pageswithprop-legend' => "Pagina's met een pagina-eigenschap",
-'pageswithprop-submit' => 'OK',
 );

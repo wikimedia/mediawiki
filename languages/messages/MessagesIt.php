@@ -2025,8 +2025,10 @@ Esse potrebbero dover puntare a una pagina più appropriata.<br />
 Vengono considerate pagine di disambiguazione tutte quelle che contengono i template elencati in [[MediaWiki:Disambiguationspage]].",
 
 'pageswithprop' => 'Pagine con una pagina di proprietà',
+'pageswithprop-legend' => 'Pagine con una pagina di proprietà',
 'pageswithprop-text' => 'Questa pagina elenca le pagine che utilizzano una particolare pagina di proprietà.',
 'pageswithprop-prop' => 'Nome proprietà:',
+'pageswithprop-submit' => 'Vai',
 
 'doubleredirects' => 'Redirect doppi',
 'doubleredirectstext' => 'In questa pagina sono elencate pagine che reindirizzano ad altre pagine di redirect.
@@ -4006,8 +4008,7 @@ Le immagini vengono mostrate alla massima risoluzione disponibile, per gli altri
 'duration-centuries' => '$1 {{PLURAL:$1|secolo|secoli}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennio|millenni}}',
 
-# Unknown messages
-'pageswithprop-legend' => 'Pagine con una pagina di proprietà',
-'pageswithprop-submit' => 'Vai',
+# Image rotation
 'rotate-comment' => 'Immagine ruotata di $1 {{PLURAL:$1|grado|gradi}} in senso orario',
+
 );

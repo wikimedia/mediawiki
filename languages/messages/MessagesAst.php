@@ -1875,8 +1875,10 @@ Alcuérdate de comprobar otros enllaces a les plantíes enantes d'esborrales.",
 Una páxina tratase como una páxina de dixebra si usa una plantía que tea enllaciada dende [[MediaWiki:Disambiguationspage]]",
 
 'pageswithprop' => 'Páxines con una propiedá de páxina',
+'pageswithprop-legend' => 'Páxines con una propiedá de páxina',
 'pageswithprop-text' => "Esta páxina llista les páxines qu'usen una propiedá de páxina determinada.",
 'pageswithprop-prop' => 'Nome de la propiedá:',
+'pageswithprop-submit' => 'Dir',
 
 'doubleredirects' => 'Redireiciones dobles',
 'doubleredirectstext' => 'Esta páxina llista páxines que redireicionen a otres páxines de redireición.
@@ -3883,8 +3885,7 @@ D\'otra miente, pues usar el formulariu cenciellu d\'abaxo. El to comentariu apa
 'duration-centuries' => '$1 {{PLURAL:$1|sieglu|sieglos}}',
 'duration-millennia' => '$1 {{PLURAL:$1|mileniu|milenios}}',
 
-# Unknown messages
-'pageswithprop-legend' => 'Páxines con una propiedá de páxina',
-'pageswithprop-submit' => 'Dir',
+# Image rotation
 'rotate-comment' => 'Imaxe xirada $1 {{PLURAL:$1|grau|graos}} en sentíu horariu',
+
 );

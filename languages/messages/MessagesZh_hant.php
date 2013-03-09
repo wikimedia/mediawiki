@@ -1987,8 +1987,10 @@ Template:消除歧義',
 'disambiguations-text' => "以下的頁面都有至少一個連到'''消歧義頁'''的鏈接，但它們應鏈接到合適的頁面。<br />一個頁面如果使用了[[MediaWiki:Disambiguationspage]]內的模板，則會被視為消歧義頁。",
 
 'pageswithprop' => '有頁面屬性的頁面',
+'pageswithprop-legend' => '有頁面屬性的頁面',
 'pageswithprop-text' => '此頁列出所有頁面使用了特定的頁面屬性。',
 'pageswithprop-prop' => '屬性名稱：',
+'pageswithprop-submit' => '進入',
 
 'doubleredirects' => '雙重重定向頁面',
 'doubleredirectstext' => '這一頁列出所有重定向頁面重定向到另一個重定向頁的頁面。每一行都包含到第一和第二個重定向頁面的連結，以及第二個重定向頁面的目標，通常顯示的都會是"真正"的目標頁面，也就是第一個重定向頁面應該指向的頁面。
@@ -3994,8 +3996,7 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 'duration-centuries' => '$1個世紀',
 'duration-millennia' => '$1千年',
 
-# Unknown messages
-'pageswithprop-legend' => '有頁面屬性的頁面',
-'pageswithprop-submit' => '進入',
+# Image rotation
 'rotate-comment' => '順時針旋轉圖像$1{{PLURAL:$1|度|度}}',
+
 );

@@ -2167,8 +2167,10 @@ $1',
 Една страница се смета за страница за појаснување ако го користи шаблонот што води од [[MediaWiki:Disambiguationspage]]",
 
 'pageswithprop' => 'Страници со својство',
+'pageswithprop-legend' => 'Страници со својство',
 'pageswithprop-text' => 'На страницава се наведени страници што користат дадено својство.',
 'pageswithprop-prop' => 'Име на својството:',
+'pageswithprop-submit' => 'Оди',
 
 'doubleredirects' => 'Двојни пренасочувања',
 'doubleredirectstext' => 'Оваа страница ги прикажува пренасочувачките страници до други пренасочувачки страници.
@@ -4348,8 +4350,7 @@ $5
 'duration-centuries' => '$1 {{PLURAL:$1|век|века}}',
 'duration-millennia' => '$1 {{PLURAL:$1|милениум|милениуми}}',
 
-# Unknown messages
-'pageswithprop-legend' => 'Страници со својство',
-'pageswithprop-submit' => 'Оди',
+# Image rotation
 'rotate-comment' => 'Сликата е завртена за $1 {{PLURAL:$1|степен|степени}} вдесно',
+
 );

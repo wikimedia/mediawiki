@@ -1967,8 +1967,10 @@ Istes debe forsan ligar directemente al articulo sur le thema in question.<br />
 Un pagina se tracta como pagina de disambiguation si illo usa un patrono que es ligate ab [[MediaWiki:Disambiguationspage]].",
 
 'pageswithprop' => 'Paginas con un proprietate de pagina',
+'pageswithprop-legend' => 'Paginas con un proprietate de pagina',
 'pageswithprop-text' => 'Iste pagina lista le paginas que usa un certe proprietate de pagina.',
 'pageswithprop-prop' => 'Nomine del proprietate:',
+'pageswithprop-submit' => 'Va',
 
 'doubleredirects' => 'Redirectiones duple',
 'doubleredirectstext' => 'Iste pagina lista paginas de redirection verso altere paginas de redirection.
@@ -3988,7 +3990,7 @@ Si non, tu pote usar le formulario facile hic infra. Tu commento essera addite a
 'duration-centuries' => '$1 {{PLURAL:$1|seculo|seculos}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennio|millennios}}',
 
-# Unknown messages
-'pageswithprop-legend' => 'Paginas con un proprietate de pagina',
-'pageswithprop-submit' => 'Va',
+# Image rotation
+'rotate-comment' => 'Imagine rotate de $1 {{PLURAL:$1|grado|grados}} in senso horologic',
+
 );

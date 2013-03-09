@@ -2086,8 +2086,10 @@ Acestea ar trebui să conțină legături către un articol mai potrivit.<br />
 O pagină este considerată o pagină de dezambiguizare dacă folosește formate care apar la [[MediaWiki:Disambiguationspage]].",
 
 'pageswithprop' => 'Pagini cu o proprietate de pagină',
+'pageswithprop-legend' => 'Pagini cu o proprietate de pagină',
 'pageswithprop-text' => 'Această pagină listează paginile care utilizează o anumită proprietate de pagină.',
 'pageswithprop-prop' => 'Numele proprietății:',
+'pageswithprop-submit' => 'Du-te',
 
 'doubleredirects' => 'Redirecționări duble',
 'doubleredirectstext' => 'Această listă conține pagini care redirecționează la alte pagini de redirecționare.
@@ -4064,8 +4066,7 @@ Imaginile sunt afișate la rezoluția lor maximă, în timp ce alte tipuri de fi
 'duration-centuries' => '$1 {{PLURAL:$1|secol|secole|de secole}}',
 'duration-millennia' => '$1 {{PLURAL:$1|mileniu|milenii|de milenii}}',
 
-# Unknown messages
-'pageswithprop-legend' => 'Pagini cu o proprietate de pagină',
-'pageswithprop-submit' => 'Du-te',
+# Image rotation
 'rotate-comment' => 'Imagine rotită în sensul acelor de ceasornic cu $1 {{PLURAL:$1|grad|grade|de grade}}',
+
 );

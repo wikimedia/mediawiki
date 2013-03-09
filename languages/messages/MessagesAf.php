@@ -1991,8 +1991,10 @@ Hulle moet gewysig word om eerder direk na die regte onderwerpe te skakel.<br />
 'n Bladsy word beskou as 'n dubbelsinnigheidsbladsy as dit 'n sjabloon bevat wat geskakel is vanaf [[MediaWiki:Disambiguationspage]]",
 
 'pageswithprop' => "Blaaie met 'n bladsy-eienskap",
+'pageswithprop-legend' => "Blaaie met 'n bladsy-eienskap",
 'pageswithprop-text' => "Hierdie bladsy lys blaaie met 'n bepaalde blady-eienskap.",
 'pageswithprop-prop' => 'Naam van die eienskap:',
+'pageswithprop-submit' => 'OK',
 
 'doubleredirects' => 'Dubbele aansture',
 'doubleredirectstext' => 'Hierdie lys bevat bladsye wat aansture na ander aanstuurblaaie is.
@@ -3964,7 +3966,4 @@ Anders kan u die eenvoudige vorm hieronder gebruik. U kommentaar sal by die blad
 'duration-centuries' => '$1 {{PLURAL:$1|eeu|eeue}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennia}}',
 
-# Unknown messages
-'pageswithprop-legend' => "Blaaie met 'n bladsy-eienskap",
-'pageswithprop-submit' => 'OK',
 );

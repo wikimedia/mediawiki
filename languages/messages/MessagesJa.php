@@ -1039,7 +1039,7 @@ $1または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこのブロッ�
 'loginreqtitle' => 'ログインが必要',
 'loginreqlink' => 'ログイン',
 'loginreqpagetext' => '他のページを閲覧するには$1する必要があります。',
-'accmailtitle' => 'パスワードをお送りしました。',
+'accmailtitle' => 'パスワードをお送りしました',
 'accmailtext' => "[[User talk:$1|$1]]のために無作為に生成したパスワードを、$2に送信しました。
 
 この新アカウントのパスワードは、ログインした際に''[[Special:ChangePassword|パスワード変更]]''ページで変更できます。",
@@ -1047,10 +1047,10 @@ $1または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこのブロッ�
 'newarticletext' => "まだ存在しないページへのリンクをたどりました。
 このページを新規作成するには、ページの内容を以下のボックスに記入してください (詳しくは[[{{MediaWiki:Helppage}}|ヘルプページ]]を参照してください)。
 誤ってこのページにたどり着いた場合には、ブラウザーの'''戻る'''ボタンで前のページに戻ってください。",
-'anontalkpagetext' => "----''このページはアカウントをまだ作成していないか使用していない匿名利用者のための議論ページです。
-匿名利用者を識別するために、利用者名の代わりにIPアドレスが使用されています。
-IP アドレスは複数の利用者で共有されている場合があります。
-もし、あなたが匿名利用者であり、自分に関係のないコメントが寄せられている考えられる場合は、[[Special:UserLogin/signup|アカウントを作成する]]か[[Special:UserLogin|ログインして]]他の匿名利用者と間違えられないようにしてください。''",
+'anontalkpagetext' => "----
+''このページはアカウントをまだ作成していないか使用していない匿名利用者のための議論ページです。''
+
+匿名利用者を識別するために、利用者名の代わりにIPアドレスが使用されています。IP アドレスは複数の利用者で共有されている場合があります。もし、あなたが匿名利用者であり、自分に関係のないコメントが寄せられていると考えられる場合は、[[Special:UserLogin/signup|アカウントを作成する]]か[[Special:UserLogin|ログインして]]他の匿名利用者と間違えられないようにしてください。",
 'noarticletext' => '現在このページには内容がありません。
 他のページ内で[[Special:Search/{{PAGENAME}}|このページ名を検索]]、
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 関連する記録を検索]、
@@ -2209,8 +2209,10 @@ contenttype/subtypeの形式で入力してください (例: <code>image/jpeg</
 [[MediaWiki:Disambiguationspage]] にリンクがあるテンプレートを使用しているページを、曖昧さ回避ページと見なします。",
 
 'pageswithprop' => 'ページプロパティがあるページ',
+'pageswithprop-legend' => 'ページプロパティがあるページ',
 'pageswithprop-text' => 'このページでは、特定のページプロパティを持つページを列挙します。',
 'pageswithprop-prop' => 'プロパティ名:',
+'pageswithprop-submit' => '実行',
 
 'doubleredirects' => '二重転送',
 'doubleredirectstext' => 'このページでは、転送ページへの転送ページを列挙します。
@@ -4382,7 +4384,7 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'duration-centuries' => '$1 {{PLURAL:$1|世紀}}',
 'duration-millennia' => '$1{{PLURAL:$1|,000 年}}',
 
-# Unknown messages
-'pageswithprop-legend' => 'ページプロパティがあるページ',
-'pageswithprop-submit' => '実行',
+# Image rotation
+'rotate-comment' => '画像を時計回りに $1 {{PLURAL:$1|度}}回転',
+
 );

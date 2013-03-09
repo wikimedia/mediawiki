@@ -2115,8 +2115,10 @@ Talvez fosse melhor que possuissem links para uma página mais específica.</br>
 Uma página é considerada como de desambiguação se utilizar uma predefinição que esteja definida em [[MediaWiki:Disambiguationspage]].",
 
 'pageswithprop' => 'Páginas com uma propriedade de página',
+'pageswithprop-legend' => 'Páginas com uma propriedade de página',
 'pageswithprop-text' => 'Esta página lista as páginas que usam uma determinada propriedade de página.',
 'pageswithprop-prop' => 'Nome da propriedade:',
+'pageswithprop-submit' => 'Ir',
 
 'doubleredirects' => 'Redirecionamentos duplos',
 'doubleredirectstext' => 'Esta página lista as páginas que redirecionam para outros redirecionamentos.
@@ -4096,7 +4098,4 @@ Caso contrário, você poderá usar o formulário simplificado a seguir. Seu com
 'duration-centuries' => '$1 {{PLURAL:$1|século|séculos}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milênio|milênios}}',
 
-# Unknown messages
-'pageswithprop-legend' => 'Páginas com uma propriedade de página',
-'pageswithprop-submit' => 'Ir',
 );

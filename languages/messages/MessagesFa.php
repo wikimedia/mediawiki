@@ -2239,8 +2239,10 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 یک صفحه هنگامی صفحهٔ ابهام‌زدایی در نظر گرفته می‌شود که در آن از الگویی که به [[MediaWiki:Disambiguationspage]] پیوند دارد استفاده شده باشد.",
 
 'pageswithprop' => 'صفحه‌های دارای خاصیت صفحه',
+'pageswithprop-legend' => 'صفحه‌های دارای خاصیت صفحه',
 'pageswithprop-text' => 'این صفحه فهرستی است از صفحه‌هایی که از یک خاصیت صفحهٔ خاص استفاده می‌کنند.',
 'pageswithprop-prop' => 'نام خاصیت:',
+'pageswithprop-submit' => 'برو',
 
 'doubleredirects' => 'تغییرمسیرهای دوتایی',
 'doubleredirectstext' => 'این صفحه فهرستی از صفحه‌های تغییرمسیری را ارائه می‌کند که به صفحهٔ تغییرمسیر دیگری اشاره می‌کنند.
@@ -4289,7 +4291,7 @@ $5
 'duration-centuries' => '$1 قرن',
 'duration-millennia' => '{{PLURAL:$1|هزار سال |$1 هزار سال}}',
 
-# Unknown messages
-'pageswithprop-legend' => 'صفحه‌های دارای خاصیت صفحه',
-'pageswithprop-submit' => 'برو',
+# Image rotation
+'rotate-comment' => 'تصویر به دست $1 {{PLURAL:$1|درجهٔ|درجهٔ}} ساعت‌گرد چرخانده شد',
+
 );

@@ -1864,8 +1864,10 @@ Arrecuèrdete de condrollà pe otre collegaminde a le template apprime de scange
 'Na pàgene jè trattate cumme pàgene de disambiguazione ce tu ause 'nu template ca è appundate da [[MediaWiki:Disambiguationspage]]",
 
 'pageswithprop' => "Pàggene cu 'na probbietà d'a pàgene",
+'pageswithprop-legend' => "Pàggene cu 'na probbietà d'a pàgene",
 'pageswithprop-text' => "Sta pàgene elenghe le pàggene ca ausane 'na particolare probbietà d'a pàgene.",
 'pageswithprop-prop' => "Nome d'a probbietà:",
+'pageswithprop-submit' => 'Véje',
 
 'doubleredirects' => 'Ridirezionaminde a doppie',
 'doubleredirectstext' => "Sta pàgene elenghe le pàggene ca se ridirezionane sus a otre pàggene de ridirezionaminde.
@@ -4093,8 +4095,7 @@ Ce nò, tu puè ausà 'u module facile aqquà sotte. 'U commende tune avène agg
 'duration-centuries' => '$1 {{PLURAL:$1|sechele|sechele}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennie|millennie}}',
 
-# Unknown messages
-'pageswithprop-legend' => "Pàggene cu 'na probbietà d'a pàgene",
-'pageswithprop-submit' => 'Véje',
+# Image rotation
 'rotate-comment' => 'Immaggine rotate de $1 {{PLURAL:$1|grade}} in sienze orarie',
+
 );

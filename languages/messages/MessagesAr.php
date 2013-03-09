@@ -2289,8 +2289,10 @@ $1',
 تعامل الصفحة كصفحة توضيح إذا كان بها قالب موجود في [[MediaWiki:Disambiguationspage]]",
 
 'pageswithprop' => 'صفحات مع خاصية الصفحة',
+'pageswithprop-legend' => 'صفحات مع خاصية الصفحة',
 'pageswithprop-text' => 'تسرد هذه الصفحة الصفحات التي تستخدم خاصية صفحة معينة.',
 'pageswithprop-prop' => 'اسم الخاصية:',
+'pageswithprop-submit' => 'اذهب',
 
 'doubleredirects' => 'تحويلات مزدوجة',
 'doubleredirectstext' => 'هذه الصفحة تعرض الصفحات التي تحول إلى صفحات تحويل أخرى.
@@ -4439,7 +4441,4 @@ $5
 'duration-centuries' => '{{PLURAL: $1||قرن واحد|قرنان|$1 قرون|$1 قرنًا|$1 قرن}}',
 'duration-millennia' => '{{PLURAL: $1||ألفية واحدة|ألفيتان|$1 ألفيات|$1 ألفية}}',
 
-# Unknown messages
-'pageswithprop-legend' => 'صفحات مع خاصية الصفحة',
-'pageswithprop-submit' => 'اذهب',
 );

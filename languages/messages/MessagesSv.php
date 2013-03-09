@@ -2098,8 +2098,10 @@ De bör troligtvis ändras så att de länkar till en mer passande sida iställe
 En sida anses vara en förgreningssida om den inkluderar en mall som länkas till från [[MediaWiki:Disambiguationspage]].",
 
 'pageswithprop' => 'Sidor med en sidegenskap',
+'pageswithprop-legend' => 'Sidor med en sidegenskap',
 'pageswithprop-text' => 'Denna sida listar sidor som använder en speciell sidegenskap.',
 'pageswithprop-prop' => 'Egenskapsnamn:',
+'pageswithprop-submit' => 'Gå',
 
 'doubleredirects' => 'Dubbla omdirigeringar',
 'doubleredirectstext' => 'Det här är en lista över sidor som dirigerar om till andra omdirigeringssidor. Varje rad innehåller länkar till den första och andra omdirigeringsidan, samt till målet för den andra omdirigeringen. Målet för den andra omdirigeringen är ofta den "riktiga" sidan, som den första omdirigeringen egentligen ska leda till.
@@ -4100,7 +4102,7 @@ Annars kan du använda det enkla formuläret nedan. Din kommentar kommer att lä
 'duration-centuries' => '$1 {{PLURAL:$1|sekel|sekel}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennier}}',
 
-# Unknown messages
-'pageswithprop-legend' => 'Sidor med en sidegenskap',
-'pageswithprop-submit' => 'Gå',
+# Image rotation
+'rotate-comment' => 'Bilden roteras $1 {{PLURAL:$1|grad|grader}} medurs',
+
 );

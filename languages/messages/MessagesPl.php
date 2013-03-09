@@ -4145,6 +4145,7 @@ W przeciwnym wypadku można użyć prostego formularza poniżej. Komentarz zosta
 'duration-centuries' => '$1 {{PLURAL:$1|stulecie|stulecia|stuleci}}',
 'duration-millennia' => '$1 {{PLURAL:$1|tysiąclecie|tysiąclecia|tysiącleci}}',
 
-# Unknown messages
+# Image rotation
 'rotate-comment' => 'Obraz został odwrócony o $1 {{PLURAL:$1|stopień|stopnie|stopni}} (w kierunku zgodnym z ruchem wskazówek zegara)',
+
 );

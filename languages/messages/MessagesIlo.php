@@ -1851,6 +1851,12 @@ Laglagipem ti agkita kadagiti sabsabali a panilpo ti plantilia sakbay nga ikkate
 Dagitoy ket embes a nasken a maisilpoda kadagiti maitutop a panid.<br />
 Ti panid ket matrato a kas panangilawlawag a panid no agusar ti plantilia a nakasilpo manipud idiay [[MediaWiki:Disambiguationspage]].",
 
+'pageswithprop' => 'Pampanid nga adda maysa a tagikua ti panid',
+'pageswithprop-legend' => 'Pampanid nga adda maysa a tagikua ti panid',
+'pageswithprop-text' => 'Daytoy a panid ket ilistana ti pampanid nga agus-usar ti naisangayan a tagikua ti panid.',
+'pageswithprop-prop' => 'Nagan ti tagikua:',
+'pageswithprop-submit' => 'Inkan',
+
 'doubleredirects' => 'Dagiti namindua a naibaw-ing',
 'doubleredirectstext' => 'Daytoy a panid ket ilistana dagiti panid nga agbaw-ing kadagiti sabsabali a baw-ing a pampanid.
 Iti tunggal maysa nga aray ket adda nagyanna kadagiti panilpo iti umuna ken maikadua a baw-ing, ken iti puntaan iti maikadua a baw-ing, nga isu ti "pudno" a puntaan ti panid, nga ti umuna a baw-ing ket isu ti ipatudona.
@@ -3818,5 +3824,8 @@ Nupay kasta, mau-sarmo ti nakabuklan dita baba. Ti komentario nga itedmo ket mai
 'duration-decades' => '$1 {{PLURAL:$1|dekada|dek-dekada}}',
 'duration-centuries' => '$1 {{PLURAL:$1|siglo|sig-siglo}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenio|mil-milenio}}',
+
+# Image rotation
+'rotate-comment' => 'Ti ladawan ket napusipos babaen ti $1 {{PLURAL:$1|a degrado|a degdegrado}} nga agpakanawan',
 
 );

@@ -2114,8 +2114,10 @@ Halaman-halaman tersebut seharusnya berpaut ke topik-topik yang sesuai.<br />
 Suatu halaman dianggap sebagai halaman disambiguasi apabila halaman tersebut menggunakan templat yang terhubung ke [[MediaWiki:Disambiguationspage]].",
 
 'pageswithprop' => 'Halaman dengan halaman properti',
+'pageswithprop-legend' => 'Halaman dengan halaman properti',
 'pageswithprop-text' => 'Halaman ini berisi daftar halaman yang menggunakan properti halaman tertentu.',
 'pageswithprop-prop' => 'Nama properti:',
+'pageswithprop-submit' => 'Pergi',
 
 'doubleredirects' => 'Pengalihan ganda',
 'doubleredirectstext' => 'Halaman ini memuat daftar halaman yang dialihkan ke halaman pengalihan yang lain.
@@ -4243,8 +4245,7 @@ Jika tidak, Anda dapat menggunakan formulir mudah di bawah ini. Komentar Anda ak
 'duration-centuries' => '{{PLURAL:$1||}}$1 abad',
 'duration-millennia' => '{{PLURAL:$1||}}$1 milenium',
 
-# Unknown messages
-'pageswithprop-legend' => 'Halaman dengan halaman properti',
-'pageswithprop-submit' => 'Pergi',
-'rotate-comment' => 'Gambar diputar $1 {{PLURAL:$1|derajat|derajat}} searah jarum jam',
+# Image rotation
+'rotate-comment' => 'Gambar diputar $1 {{PLURAL:$1|derajat}} searah jarum jam',
+
 );

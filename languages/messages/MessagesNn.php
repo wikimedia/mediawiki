@@ -2046,8 +2046,10 @@ Dei bør kan henda lenkja til ei meir passande side i staden.<br />
 Ei side vert handsama som ei fleirtydingsside om ho nyttar ein mal som er lenkja til frå [[MediaWiki:Disambiguationspage]].",
 
 'pageswithprop' => 'Sider med ein sideeigenskap',
+'pageswithprop-legend' => 'Sider med ein sideeigenskap',
 'pageswithprop-text' => 'Denne sida listar opp sider som nyttar ein viss sideeigenskap.',
 'pageswithprop-prop' => 'Namn på eigenskap:',
+'pageswithprop-submit' => 'Gå',
 
 'doubleredirects' => 'Doble omdirigeringar',
 'doubleredirectstext' => 'Kvar line inneheld lenkjer til den første og den andre omdirigeringa, og den første lina frå den andre omdirigeringsteksten. Det gjev som regel den «rette» målartikkelen, som den første omdirigeringa skulle ha peikt på. <del>Overstrykne</del> liner har vorte retta på.',
@@ -3993,7 +3995,4 @@ Om ikkje kan du nytta det enkle skjemaet under. Merknaden din vert lagd til på 
 'duration-centuries' => '$1 {{PLURAL:$1|hundreår|hundreår}}',
 'duration-millennia' => '$1 {{PLURAL:$1|tusenår|tusenår}}',
 
-# Unknown messages
-'pageswithprop-legend' => 'Sider med ein sideeigenskap',
-'pageswithprop-submit' => 'Gå',
 );

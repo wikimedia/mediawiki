@@ -2070,8 +2070,10 @@ Hãy nhớ kiểm tra các liên kết khác đến bản mẫu trước khi xó
 'disambiguations-text' => "Các trang này có liên kết đến ít nhất một '''trang định hướng''', những trang này có thể có liên kết đến các trang đúng nghĩa hơn.<br />Các trang định hướng là trang sử dụng những bản mẫu được liệt kê ở [[MediaWiki:Disambiguationspage]].",
 
 'pageswithprop' => 'Trang có thuộc tính trang',
+'pageswithprop-legend' => 'Các trang có thuộc tính trang',
 'pageswithprop-text' => 'Trang này liệt kê các trang sử dụng một thuộc tính trang nào đó.',
 'pageswithprop-prop' => 'Tên thuộc tính:',
+'pageswithprop-submit' => 'Xem',
 
 'doubleredirects' => 'Đổi hướng kép',
 'doubleredirectstext' => 'Trang này liệt kê các trang đổi hướng đến một trang đổi hướng khác.
@@ -4183,8 +4185,7 @@ Nếu không thì bạn có thể điền biểu mẫu đơn giản ở dưới.
 'duration-centuries' => '$1 thế kỷ',
 'duration-millennia' => '$1 thiên niên kỷ',
 
-# Unknown messages
-'pageswithprop-legend' => 'Các trang có thuộc tính trang',
-'pageswithprop-submit' => 'Xem',
+# Image rotation
 'rotate-comment' => 'Đã quay hình $1 độ theo chiều kim đồng hồ',
+
 );

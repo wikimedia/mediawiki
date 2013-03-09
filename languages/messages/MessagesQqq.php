@@ -3877,9 +3877,13 @@ This block of text is shown on [[:Special:Disambiguations]].
 
 'pageswithprop' => 'Title for [[Special:PagesWithProp]].
 {{Identical|Page with page property}}',
+'pageswithprop-legend' => 'Legend for the input form on [[Special:PagesWithProp]].
+{{Identical|Page with page property}}',
 'pageswithprop-text' => 'Introductory text for the input form on [[Special:PagesWithProp]]',
 'pageswithprop-prop' => 'Label for the property name input field on [[Special:PagesWithProp]].
 {{Identical|Property name}}',
+'pageswithprop-submit' => 'Label for the submit button on [[Special:PagesWithProp]].
+{{Identical|Go}}',
 
 'doubleredirects' => 'Name of [[Special:DoubleRedirects]] displayed in [[Special:SpecialPages]]',
 'doubleredirectstext' => 'Shown on top of [[Special:Doubleredirects]]',
@@ -8782,10 +8786,7 @@ $4 is the gender of the target user.',
 'duration-centuries' => '{{Related|Duration}}',
 'duration-millennia' => '{{Related|Duration}}',
 
-# Unknown messages
-'pageswithprop-legend' => 'Legend for the input form on [[Special:PagesWithProp]].
-{{Identical|Page with page property}}',
-'pageswithprop-submit' => 'Label for the submit button on [[Special:PagesWithProp]].
-{{Identical|Go}}',
+# Image rotation
 'rotate-comment' => 'Edit summary for the act of rotating an image.',
+
 );

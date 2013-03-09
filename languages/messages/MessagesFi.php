@@ -2036,7 +2036,9 @@ Täsmennyssivun sijaan ne voisivat linkittää suoraan asianomaiseen aiheeseen.<
 Sivua kohdellaan täsmennyssivuna, jos se käyttää mallinetta, johon on linkki sivulta [[MediaWiki:Disambiguationspage]].",
 
 'pageswithprop' => 'Sivut sivun ominaisuuden mukaan',
+'pageswithprop-legend' => 'Sivut sivun ominaisuuden mukaan',
 'pageswithprop-text' => 'Tällä sivulla on lueteltu sivut, jotka käyttävät erityistä sivun ominaisuutta.',
+'pageswithprop-submit' => 'Siirry',
 
 'doubleredirects' => 'Kaksinkertaiset ohjaukset',
 'doubleredirectstext' => 'Tässä listassa on ohjaussivut, jotka ohjaavat toiseen ohjaussivuun.
@@ -3996,7 +3998,4 @@ Muussa tapauksessa voit käyttää alla olevaa helpompaa lomaketta. Kommenttisi 
 'duration-centuries' => '$1 {{PLURAL:$1|vuosisata|vuosisataa}}',
 'duration-millennia' => '$1 {{PLURAL:$1|vuosituhat|vuosituhatta}}',
 
-# Unknown messages
-'pageswithprop-legend' => 'Sivut sivun ominaisuuden mukaan',
-'pageswithprop-submit' => 'Siirry',
 );

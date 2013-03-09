@@ -2153,8 +2153,10 @@ Elles devraient plutôt pointer vers le bon article.<br />
 Une page est considérée comme une page d'homonymie si elle utilise un modèle lié à [[MediaWiki:Disambiguationspage]]",
 
 'pageswithprop' => 'Pages avec une propriété de page',
+'pageswithprop-legend' => 'Pages avec une propriété de page',
 'pageswithprop-text' => 'Cette page liste les pages qui utilisent une propriété de page particulière.',
 'pageswithprop-prop' => 'Nom de la propriété:',
+'pageswithprop-submit' => 'Aller',
 
 'doubleredirects' => 'Doubles redirections',
 'doubleredirectstext' => 'Voici une liste des pages qui redirigent vers des pages qui sont elles-mêmes des pages de redirection.
@@ -4239,8 +4241,7 @@ Sinon, vous pouvez utiliser le formulaire simplifié ci-dessous. Votre commentai
 'duration-centuries' => '$1 siècle{{PLURAL:$1||s}}',
 'duration-millennia' => '$1 millénaire{{PLURAL:$1||s}}',
 
-# Unknown messages
-'pageswithprop-legend' => 'Pages avec une propriété de page',
-'pageswithprop-submit' => 'Aller',
+# Image rotation
 'rotate-comment' => 'Image pivotée de $1 {{PLURAL:$1|degré|degrés}} dans le sens des aiguilles d’une montre',
+
 );

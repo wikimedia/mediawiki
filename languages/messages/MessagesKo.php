@@ -2168,8 +2168,10 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 [[MediaWiki:Disambiguationspage]]에서 링크된 틀을 사용하는 문서를 동음이의 문서로 간주합니다.",
 
 'pageswithprop' => '문서 속성으로 된 문서',
+'pageswithprop-legend' => '문서 속성으로 된 문서',
 'pageswithprop-text' => '이 문서는 특정 문서 속성을 사용한 문서를 나타냅니다.',
 'pageswithprop-prop' => '속성 이름:',
+'pageswithprop-submit' => '가기',
 
 'doubleredirects' => '이중 넘겨주기 목록',
 'doubleredirectstext' => '이 문서는 다른 넘겨주기 문서로 넘겨주고 있는 문서의 목록입니다.
@@ -4210,8 +4212,7 @@ $5
 'duration-centuries' => '$1{{PLURAL:$1|세기}}',
 'duration-millennia' => '$1{{PLURAL:$1|천년}}',
 
-# Unknown messages
-'pageswithprop-legend' => '문서 속성으로 된 문서',
-'pageswithprop-submit' => '가기',
+# Image rotation
 'rotate-comment' => '그림을 시계 방향으로 $1{{PLURAL:$1|도}}로 회전함',
+
 );
