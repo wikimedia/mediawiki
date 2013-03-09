@@ -1640,9 +1640,10 @@ $wgMessageStructure = array(
 	'pageswithprop' => array(
 		'pageswithprop',
 		'pageswithprop-summary',
+		'pageswithprop-legend',
 		'pageswithprop-text',
 		'pageswithprop-prop',
-		'pageswithprop-ok',
+		'pageswithprop-submit',
 	),
 	'doubleredirects' => array(
 		'doubleredirects',
@@ -3851,6 +3852,9 @@ $wgMessageStructure = array(
 		'duration-centuries',
 		'duration-millennia'
 	),
+	'rotation' => array(
+		'rotate-comment',
+	),
 );
 
 /** Comments for each block */
@@ -4094,5 +4098,5 @@ Variants for Chinese language",
 	'apierrors'             => 'API errors',
 	'duration'              => 'Durations',
 	'cachedspecial'         => 'SpecialCachedPage',
-	'rotation-comment'      => 'Image rotation message',
+	'rotation'              => 'Image rotation',
 );
