@@ -128,6 +128,7 @@ class HTMLForm extends ContextSource {
 
 	protected $mFieldTree;
 	protected $mShowReset = false;
+	protected $mShowSubmit = true;
 	public $mFieldData;
 
 	protected $mSubmitCallback;
@@ -683,23 +684,26 @@ class HTMLForm extends ContextSource {
 	 */
 	function getButtons() {
 		$html = '';
-		$attribs = array();
 
-		if ( isset( $this->mSubmitID ) ) {
-			$attribs['id'] = $this->mSubmitID;
+		if ( $this->mShowSubmit ) {
+			$attribs = array();
+
+			if ( isset( $this->mSubmitID ) ) {
+				$attribs['id'] = $this->mSubmitID;
+			}
+
+			if ( isset( $this->mSubmitName ) ) {
+				$attribs['name'] = $this->mSubmitName;
+			}
+
+			if ( isset( $this->mSubmitTooltip ) ) {
+				$attribs += Linker::tooltipAndAccesskeyAttribs( $this->mSubmitTooltip );
+			}
+
+			$attribs['class'] = 'mw-htmlform-submit';
+
+			$html .= Xml::submitButton( $this->getSubmitText(), $attribs ) . "\n";
 		}
-
-		if ( isset( $this->mSubmitName ) ) {
-			$attribs['name'] = $this->mSubmitName;
-		}
-
-		if ( isset( $this->mSubmitTooltip ) ) {
-			$attribs += Linker::tooltipAndAccesskeyAttribs( $this->mSubmitTooltip );
-		}
-
-		$attribs['class'] = 'mw-htmlform-submit';
-
-		$html .= Xml::submitButton( $this->getSubmitText(), $attribs ) . "\n";
 
 		if ( $this->mShowReset ) {
 			$html .= Html::element(
@@ -848,6 +852,21 @@ class HTMLForm extends ContextSource {
 	 */
 	function setSubmitID( $t ) {
 		$this->mSubmitID = $t;
+		return $this;
+	}
+
+	/**
+	 * Stop a default submit button being shown for this form. This implies that an
+	 * alternate submit method must be provided manually.
+	 *
+	 * @since 1.22
+	 *
+	 * @param bool $suppressSubmit Set to false to re-enable the button again
+	 *
+	 * @return HTMLForm $this for chaining calls
+	 */
+	function suppressDefaultSubmit( $suppressSubmit = true ) {
+		$this->mShowSubmit = !$suppressSubmit;
 		return $this;
 	}
 
@@ -2526,14 +2545,17 @@ class HTMLSubmitField extends HTMLFormField {
 	}
 
 	public function getInputHTML( $value ) {
-		return Xml::submitButton(
-			$value,
-			array(
-				'class' => 'mw-htmlform-submit ' . $this->mClass,
-				'name' => $this->mName,
-				'id' => $this->mID,
-			)
+		$attr = array(
+			'class' => 'mw-htmlform-submit ' . $this->mClass,
+			'name' => $this->mName,
+			'id' => $this->mID,
 		);
+
+		if ( !empty( $this->mParams['disabled'] ) ) {
+			$attr['disabled'] = 'disabled';
+		}
+
+		return Xml::submitButton( $value, $attr );
 	}
 
 	protected function needsLabel() {
