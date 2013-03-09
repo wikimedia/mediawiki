@@ -255,15 +255,14 @@ class RedisConnectionPool {
 	 * object and let it be reopened during the next request.
 	 *
 	 * @param $server string
-	 * @param $conn RedisConnRef
+	 * @param $cref RedisConnRef
 	 * @param $e RedisException
 	 * @return void
 	 */
-	public function handleException( $server, RedisConnRef $conn, RedisException $e ) {
-		wfDebugLog( 'redis',
-			"Redis exception on server $server: " . $e->getMessage() . "\n" );
+	public function handleException( $server, RedisConnRef $cref, RedisException $e ) {
+		wfDebugLog( 'redis', "Redis exception on server $server: " . $e->getMessage() . "\n" );
 		foreach ( $this->connections[$server] as $key => $connection ) {
-			if ( $connection['conn'] === $conn ) {
+			if ( $cref->isConnIdentical( $connection['conn'] ) ) {
 				$this->idlePoolSize -= $connection['free'] ? 1 : 0;
 				unset( $this->connections[$server][$key] );
 				break;
@@ -281,11 +280,10 @@ class RedisConnectionPool {
 class RedisConnRef {
 	/** @var RedisConnectionPool */
 	protected $pool;
-
-	protected $server; // string
-
 	/** @var Redis */
 	protected $conn;
+
+	protected $server; // string
 
 	/**
 	 * @param $pool RedisConnectionPool
@@ -300,6 +298,10 @@ class RedisConnRef {
 
 	public function __call( $name, $arguments ) {
 		return call_user_func_array( array( $this->conn, $name ), $arguments );
+	}
+
+	public function isConnIdentical( Redis $conn ) {
+		return $this->conn === $conn;
 	}
 
 	function __destruct() {
