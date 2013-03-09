@@ -129,6 +129,11 @@ abstract class JobQueue {
 	 * Quickly check if the queue is empty (has no available jobs).
 	 * Queue classes should use caching if they are any slower without memcached.
 	 *
+	 * If caching is used, this might return false when there are actually no jobs.
+	 * If pop() is called and returns false then it should correct the cache. Also,
+	 * calling flushCaches() first prevents this. However, this affect is typically
+	 * not distinguishable from the race condition between isEmpty() and pop().
+	 *
 	 * @return bool
 	 * @throws MWException
 	 */
@@ -146,8 +151,10 @@ abstract class JobQueue {
 	abstract protected function doIsEmpty();
 
 	/**
-	 * Get the number of available jobs in the queue.
+	 * Get the number of available (unacquired) jobs in the queue.
 	 * Queue classes should use caching if they are any slower without memcached.
+	 *
+	 * If caching is used, this number might be out of date for a minute.
 	 *
 	 * @return integer
 	 * @throws MWException
@@ -168,6 +175,8 @@ abstract class JobQueue {
 	/**
 	 * Get the number of acquired jobs (these are temporarily out of the queue).
 	 * Queue classes should use caching if they are any slower without memcached.
+	 *
+	 * If caching is used, this number might be out of date for a minute.
 	 *
 	 * @return integer
 	 * @throws MWException
@@ -213,6 +222,7 @@ abstract class JobQueue {
 		if ( !count( $jobs ) ) {
 			return true; // nothing to do
 		}
+
 		foreach ( $jobs as $job ) {
 			if ( $job->getType() !== $this->type ) {
 				throw new MWException( "Got '{$job->getType()}' job; expected '{$this->type}'." );
