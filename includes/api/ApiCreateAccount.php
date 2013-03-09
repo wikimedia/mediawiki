@@ -29,6 +29,18 @@
  */
 class ApiCreateAccount extends ApiBase {
 	public function execute() {
+
+		// $loginForm->addNewaccountInternal will throw exceptions
+		// if wiki is read only (already handled by api), user is blocked or does not have rights.
+		// Use userCan in order to hit GlobalBlock checks (according to Special:userlogin)
+		$loginTitle = SpecialPage::getTitleFor( 'Userlogin' );
+		if ( !$loginTitle->userCan( 'createaccount', $this->getUser() ) ) {
+			$this->dieUsage( 'You do not have the right to create a new account', 'permdenied-createaccount' );
+		}
+		if ( $this->getUser()->isBlockedFromCreateAccount() ) {
+			$this->dieUsage( 'You cannot create a new account because you are blocked', 'blocked' );
+		}
+
 		$params = $this->extractRequestParams();
 
 		$result = array();
@@ -228,17 +240,20 @@ class ApiCreateAccount extends ApiBase {
 	}
 
 	public function getPossibleErrors() {
+		// Note the following errors aren't possible and don't need to be listed:
+		// sessionfailure, nocookiesfornew, badretype
 		$localErrors = array(
-			'wrongpassword',
+			'wrongpassword', // Actually caused by wrong domain field. Riddle me that...
 			'sessionfailure',
 			'sorbs_create_account_reason',
 			'noname',
 			'userexists',
-			'password-name-match',
-			'password-login-forbidden',
+			'password-name-match', // from User::getPasswordValidity
+			'password-login-forbidden', // from User::getPasswordValidity
 			'noemailtitle',
 			'invalidemailaddress',
-			'externaldberror'
+			'externaldberror',
+			'acct_creation_throttle_hit',
 		);
 
 		$errors = parent::getPossibleErrors();
@@ -246,6 +261,19 @@ class ApiCreateAccount extends ApiBase {
 		foreach( $localErrors as $error ) {
 			$errors[] = array( 'code' => $error, 'info' => wfMessage( $error )->parse() );
 		}
+
+		$errors[] = array(
+			'code' => 'permdenied-createaccount',
+			'info' => 'You do not have the right to create a new account'
+		);
+		$errors[] = array(
+			'code' => 'blocked',
+			'info' => 'You cannot create a new account because you are blocked'
+		);
+		$errors[] = array(
+			'code' => 'aborted',
+			'info' => 'Account creation aborted by hook (info may vary)'
+		);
 
 		// 'passwordtooshort' has parameters. :(
 		global $wgMinimalPasswordLength;
