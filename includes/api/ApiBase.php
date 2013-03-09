@@ -965,7 +965,6 @@ abstract class ApiBase extends ContextSource {
 						if ( $required && $value === '' ) {
 							$this->dieUsageMsg( array( 'missingparam', $paramName ) );
 						}
-
 						break;
 					case 'integer': // Force everything using intval() and optionally validate limits
 						$min = isset ( $paramSettings[self::PARAM_MIN] ) ? $paramSettings[self::PARAM_MIN] : null;
@@ -1022,20 +1021,12 @@ abstract class ApiBase extends ContextSource {
 						}
 						break;
 					case 'user':
-						if ( !is_array( $value ) ) {
-							$value = array( $value );
-						}
-
-						foreach ( $value as $key => $val ) {
-							$title = Title::makeTitleSafe( NS_USER, $val );
-							if ( is_null( $title ) ) {
-								$this->dieUsage( "Invalid value for user parameter $encParamName", "baduser_{$encParamName}" );
+						if ( is_array( $value ) ) {
+							foreach ( $value as $key => $val ) {
+								$value[$key] = $this->validateUser( $val, $encParamName );
 							}
-							$value[$key] = $title->getText();
-						}
-
-						if ( !$multi ) {
-							$value = $value[0];
+						} else {
+							$value = $this->validateUser( $value, $encParamName );
 						}
 						break;
 					case 'upload': // nothing to do
@@ -1046,7 +1037,7 @@ abstract class ApiBase extends ContextSource {
 			}
 
 			// Throw out duplicates if requested
-			if ( is_array( $value ) && !$dupes ) {
+			if ( !$dupes && is_array( $value ) ) {
 				$value = array_unique( $value );
 			}
 
@@ -1159,15 +1150,28 @@ abstract class ApiBase extends ContextSource {
 
 	/**
 	 * @param $value string
-	 * @param $paramName string
+	 * @param $encParamName string
 	 * @return string
 	 */
-	function validateTimestamp( $value, $paramName ) {
+	function validateTimestamp( $value, $encParamName ) {
 		$unixTimestamp = wfTimestamp( TS_UNIX, $value );
 		if ( $unixTimestamp === false ) {
-			$this->dieUsage( "Invalid value '$value' for timestamp parameter $paramName", "badtimestamp_{$paramName}" );
+			$this->dieUsage( "Invalid value '$value' for timestamp parameter $paramName", "badtimestamp_{$encParamName}" );
 		}
 		return wfTimestamp( TS_MW, $unixTimestamp );
+	}
+
+	/**
+	 * @param $value string
+	 * @param $encParamName string
+	 * @return string
+	 */
+	function validateUser( $value, $encParamName ) {
+		$title = Title::makeTitleSafe( NS_USER, $value );
+		if ( is_null( $title ) ) {
+			$this->dieUsage( "Invalid value '$value' for user parameter $encParamName", "baduser_{$encParamName}" );
+		}
+		return $title->getText();
 	}
 
 	/**
