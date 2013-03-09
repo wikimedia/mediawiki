@@ -92,7 +92,6 @@ abstract class FileBackendStore extends FileBackend {
 	 * $params include:
 	 *   - content     : the raw file contents
 	 *   - dst         : destination storage path
-	 *   - disposition : Content-Disposition header value for the destination
 	 *   - headers     : HTTP header name/value map
 	 *   - async       : Status will be returned immediately if supported.
 	 *                   If the status is OK, then its value field will be
@@ -135,7 +134,6 @@ abstract class FileBackendStore extends FileBackend {
 	 * $params include:
 	 *   - src         : source path on disk
 	 *   - dst         : destination storage path
-	 *   - disposition : Content-Disposition header value for the destination
 	 *   - headers     : HTTP header name/value map
 	 *   - async       : Status will be returned immediately if supported.
 	 *                   If the status is OK, then its value field will be
@@ -179,7 +177,7 @@ abstract class FileBackendStore extends FileBackend {
 	 *   - src                 : source storage path
 	 *   - dst                 : destination storage path
 	 *   - ignoreMissingSource : do nothing if the source file does not exist
-	 *   - disposition         : Content-Disposition header value for the destination
+	 *   - headers             : HTTP header name/value map
 	 *   - async               : Status will be returned immediately if supported.
 	 *                           If the status is OK, then its value field will be
 	 *                           set to a FileBackendStoreOpHandle object.
@@ -248,7 +246,7 @@ abstract class FileBackendStore extends FileBackend {
 	 *   - src                 : source storage path
 	 *   - dst                 : destination storage path
 	 *   - ignoreMissingSource : do nothing if the source file does not exist
-	 *   - disposition         : Content-Disposition header value for the destination
+	 *   - headers             : HTTP header name/value map
 	 *   - async               : Status will be returned immediately if supported.
 	 *                           If the status is OK, then its value field will be
 	 *                           set to a FileBackendStoreOpHandle object.
@@ -294,7 +292,6 @@ abstract class FileBackendStore extends FileBackend {
 	 *
 	 * $params include:
 	 *   - src           : source storage path
-	 *   - disposition   : Content-Disposition header value for the destination
 	 *   - headers       : HTTP header name/value map
 	 *   - async         : Status will be returned immediately if supported.
 	 *                     If the status is OK, then its value field will be

@@ -191,7 +191,6 @@ abstract class FileBackend {
 	 *         'content'             => <string of new file contents>,
 	 *         'overwrite'           => <boolean>,
 	 *         'overwriteSame'       => <boolean>,
-	 *         'disposition'         => <Content-Disposition header value>,
 	 *         'headers'             => <HTTP header name/value map> # since 1.21
 	 *     );
 	 * @endcode
@@ -204,7 +203,6 @@ abstract class FileBackend {
 	 *         'dst'                 => <storage path>,
 	 *         'overwrite'           => <boolean>,
 	 *         'overwriteSame'       => <boolean>,
-	 *         'disposition'         => <Content-Disposition header value>,
 	 *         'headers'             => <HTTP header name/value map> # since 1.21
 	 *     )
 	 * @endcode
@@ -218,7 +216,7 @@ abstract class FileBackend {
 	 *         'overwrite'           => <boolean>,
 	 *         'overwriteSame'       => <boolean>,
 	 *         'ignoreMissingSource' => <boolean>, # since 1.21
-	 *         'disposition'         => <Content-Disposition header value>
+	 *         'headers'             => <HTTP header name/value map> # since 1.21
 	 *     )
 	 * @endcode
 	 *
@@ -231,7 +229,7 @@ abstract class FileBackend {
 	 *         'overwrite'           => <boolean>,
 	 *         'overwriteSame'       => <boolean>,
 	 *         'ignoreMissingSource' => <boolean>, # since 1.21
-	 *         'disposition'         => <Content-Disposition header value>
+	 *         'headers'             => <HTTP header name/value map> # since 1.21
 	 *     )
 	 * @endcode
 	 *
@@ -249,7 +247,6 @@ abstract class FileBackend {
 	 *     array(
 	 *         'op'                  => 'describe',
 	 *         'src'                 => <storage path>,
-	 *         'disposition'         => <Content-Disposition header value>,
 	 *         'headers'             => <HTTP header name/value map>
 	 *     )
 	 * @endcode
@@ -268,10 +265,6 @@ abstract class FileBackend {
 	 *   - overwriteSame       : An error will not be given if a file already
 	 *                           exists at the destination that has the same
 	 *                           contents as the new contents to be written there.
-	 *   - disposition         : If supplied, the backend will return a Content-Disposition
-	 *                           header when GETs/HEADs of the destination file are made.
-	 *                           Backends that don't support metadata ignore this.
-	 *                           See http://tools.ietf.org/html/rfc6266. (since 1.20)
 	 *   - headers             : If supplied, the backend will return these headers when
 	 *                           GETs/HEADs of the destination file are made. Header values
 	 *                           should be smaller than 256 bytes, often options or numbers.
@@ -320,6 +313,11 @@ abstract class FileBackend {
 		}
 		if ( empty( $opts['force'] ) ) { // sanity
 			unset( $opts['nonLocking'] );
+		}
+		foreach ( $ops as &$op ) {
+			if ( isset( $op['disposition'] ) ) { // b/c (MW 1.20)
+				$op['headers']['Content-Disposition'] = $op['disposition'];
+			}
 		}
 		$scope = $this->getScopedPHPBehaviorForOps(); // try to ignore client aborts
 		return $this->doOperationsInternal( $ops, $opts );
@@ -452,7 +450,6 @@ abstract class FileBackend {
 	 *         'op'                  => 'create',
 	 *         'dst'                 => <storage path>,
 	 *         'content'             => <string of new file contents>,
-	 *         'disposition'         => <Content-Disposition header value>,
 	 *         'headers'             => <HTTP header name/value map> # since 1.21
 	 *     )
 	 * @endcode
@@ -463,7 +460,6 @@ abstract class FileBackend {
 	 *         'op'                  => 'store',
 	 *         'src'                 => <file system path>,
 	 *         'dst'                 => <storage path>,
-	 *         'disposition'         => <Content-Disposition header value>,
 	 *         'headers'             => <HTTP header name/value map> # since 1.21
 	 *     )
 	 * @endcode
@@ -475,7 +471,7 @@ abstract class FileBackend {
 	 *         'src'                 => <storage path>,
 	 *         'dst'                 => <storage path>,
 	 *         'ignoreMissingSource' => <boolean>, # since 1.21
-	 *         'disposition'         => <Content-Disposition header value>
+	 *         'headers'             => <HTTP header name/value map> # since 1.21
 	 *     )
 	 * @endcode
 	 *
@@ -486,7 +482,7 @@ abstract class FileBackend {
 	 *         'src'                 => <storage path>,
 	 *         'dst'                 => <storage path>,
 	 *         'ignoreMissingSource' => <boolean>, # since 1.21
-	 *         'disposition'         => <Content-Disposition header value>
+	 *         'headers'             => <HTTP header name/value map> # since 1.21
 	 *     )
 	 * @endcode
 	 *
@@ -504,7 +500,6 @@ abstract class FileBackend {
 	 *     array(
 	 *         'op'                  => 'describe',
 	 *         'src'                 => <storage path>,
-	 *         'disposition'         => <Content-Disposition header value>,
 	 *         'headers'             => <HTTP header name/value map>
 	 *     )
 	 * @endcode
@@ -519,10 +514,6 @@ abstract class FileBackend {
 	 * @par Boolean flags for operations (operation-specific):
 	 *   - ignoreMissingSource : The operation will simply succeed and do
 	 *                           nothing if the source file does not exist.
-	 *   - disposition         : When supplied, the backend will add a Content-Disposition
-	 *                           header when GETs/HEADs of the destination file are made.
-	 *                           Backends that don't support file metadata will ignore this.
-	 *                           See http://tools.ietf.org/html/rfc6266 (since 1.20).
 	 *   - headers             : If supplied with a header name/value map, the backend will
 	 *                           reply with these headers when GETs/HEADs of the destination
 	 *                           file are made. Header values should be smaller than 256 bytes.
@@ -551,6 +542,9 @@ abstract class FileBackend {
 		}
 		foreach ( $ops as &$op ) {
 			$op['overwrite'] = true; // avoids RTTs in key/value stores
+			if ( isset( $op['disposition'] ) ) { // b/c (MW 1.20)
+				$op['headers']['Content-Disposition'] = $op['disposition'];
+			}
 		}
 		$scope = $this->getScopedPHPBehaviorForOps(); // try to ignore client aborts
 		return $this->doQuickOperationsInternal( $ops );
