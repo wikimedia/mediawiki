@@ -39,8 +39,7 @@ class ApiQueryAllMessages extends ApiQueryBase {
 		$params = $this->extractRequestParams();
 
 		if ( is_null( $params['lang'] ) ) {
-			global $wgLang;
-			$langObj = $wgLang;
+			$langObj = $this->getLanguage();
 		} else {
 			$langObj = Language::factory( $params['lang'] );
 		}

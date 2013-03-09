@@ -3400,8 +3400,7 @@ $templates
 	 * @return string
 	 */
 	public function buildCssLinks() {
-		global $wgUseSiteCss, $wgAllowUserCss, $wgAllowUserCssPrefs,
-			$wgLang, $wgContLang;
+		global $wgUseSiteCss, $wgAllowUserCss, $wgAllowUserCssPrefs, $wgContLang;
 
 		$this->getSkin()->setupSkinUserCss( $this );
 
@@ -3435,7 +3434,7 @@ $templates
 				// If needed, Janus it first. This is user-supplied CSS, so it's
 				// assumed to be right for the content language directionality.
 				$previewedCSS = $this->getRequest()->getText( 'wpTextbox1' );
-				if ( $wgLang->getDir() !== $wgContLang->getDir() ) {
+				if ( $this->getLanguage()->getDir() !== $wgContLang->getDir() ) {
 					$previewedCSS = CSSJanus::transform( $previewedCSS, true, false );
 				}
 				$otherTags .= Html::inlineStyle( $previewedCSS );
