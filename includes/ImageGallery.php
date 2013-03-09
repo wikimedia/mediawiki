@@ -238,8 +238,6 @@ class ImageGallery {
 	 * @return string
 	 */
 	function toHTML() {
-		global $wgLang;
-
 		if ( $this->mPerRow > 0 ) {
 			$maxwidth = $this->mPerRow * ( $this->mWidths + self::THUMB_PADDING + self::GB_PADDING + self::GB_BORDERS );
 			$oldStyle = isset( $this->mAttribs['style'] ) ? $this->mAttribs['style'] : '';
@@ -255,6 +253,7 @@ class ImageGallery {
 			$output .= "\n\t<li class='gallerycaption'>{$this->mCaption}</li>";
 		}
 
+		$lang = $this->getLang();
 		$params = array(
 			'width' => $this->mWidths,
 			'height' => $this->mHeights
@@ -337,7 +336,7 @@ class ImageGallery {
 
 			if( $this->mShowBytes ) {
 				if( $img ) {
-					$fileSize = htmlspecialchars( $wgLang->formatSize( $img->getSize() ) );
+					$fileSize = htmlspecialchars( $lang->formatSize( $img->getSize() ) );
 				} else {
 					$fileSize = wfMessage( 'filemissing' )->escaped();
 				}
@@ -349,7 +348,7 @@ class ImageGallery {
 			$textlink = $this->mShowFilename ?
 				Linker::link(
 					$nt,
-					htmlspecialchars( $wgLang->truncate( $nt->getText(), $this->mCaptionLength ) ),
+					htmlspecialchars( $lang->truncate( $nt->getText(), $this->mCaptionLength ) ),
 					array(),
 					array(),
 					array( 'known', 'noclasses' )
@@ -401,6 +400,17 @@ class ImageGallery {
 		return is_object( $this->contextTitle ) && $this->contextTitle instanceof Title
 			? $this->contextTitle
 			: false;
+	}
+
+	/**
+	 * Determines the correct language to be used for this image gallery
+	 * @return Language object
+	 */
+	private function getLang() {
+		global $wgLang;
+		return $this->mParser
+			? $this->mParser->getTargetLanguage()
+			: $wgLang;
 	}
 
 } //class
