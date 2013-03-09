@@ -1348,7 +1348,7 @@ It may have been moved or deleted while you were viewing the page.',
 'loginreqtitle'                    => 'Login required',
 'loginreqlink'                     => 'log in',
 'loginreqpagetext'                 => 'You must $1 to view other pages.',
-'accmailtitle'                     => 'Password sent.',
+'accmailtitle'                     => 'Password sent',
 'accmailtext'                      => "A randomly generated password for [[User talk:$1|$1]] has been sent to $2.
 
 The password for this new account can be changed on the ''[[Special:ChangePassword|change password]]'' page upon logging in.",

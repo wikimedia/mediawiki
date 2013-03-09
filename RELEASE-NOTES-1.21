@@ -258,6 +258,7 @@ production.
 * (bug 33304) list=allpages will no longer return duplicate entries when
   querying protection.
 * (bug 33304) list=allpages will now find really old indefinite protections.
+* (bug 45922) Remove period in password sent for account creation page title.
 
 === API internal changes in 1.21 ===
 * For debugging only, a new global $wgDebugAPI removes many API restrictions when true.
