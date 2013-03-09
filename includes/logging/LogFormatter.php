@@ -992,7 +992,7 @@ class DeleteLogFormatter extends LogFormatter {
 						$this->msg( 'diff' )->escaped(),
 						array(),
 						array(
-							'target'    => $this->entry->getTarget()->getPrefixedDBKey(),
+							'target'    => $this->entry->getTarget()->getPrefixedDBkey(),
 							'diff'      => 'prev',
 							'timestamp' => $ids[0]
 						)

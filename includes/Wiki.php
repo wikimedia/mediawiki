@@ -247,7 +247,7 @@ class MediaWiki {
 		// Redirect loops, no title in URL, $wgUsePathInfo URLs, and URLs with a variant
 		} elseif ( $request->getVal( 'action', 'view' ) == 'view' && !$request->wasPosted()
 			&& ( $request->getVal( 'title' ) === null ||
-				$title->getPrefixedDBKey() != $request->getVal( 'title' ) )
+				$title->getPrefixedDBkey() != $request->getVal( 'title' ) )
 			&& !count( $request->getValueNames( array( 'action', 'title' ) ) )
 			&& wfRunHooks( 'TestCanonicalRedirect', array( $request, $title, $output ) ) )
 		{

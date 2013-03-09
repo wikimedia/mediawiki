@@ -174,7 +174,7 @@ class HistoryAction extends FormlessAction {
 				false,
 				array( 'id' => 'mw-history-search' )
 			) .
-			Html::hidden( 'title', $this->getTitle()->getPrefixedDBKey() ) . "\n" .
+			Html::hidden( 'title', $this->getTitle()->getPrefixedDBkey() ) . "\n" .
 			Html::hidden( 'action', 'history' ) . "\n" .
 			Xml::dateMenu( ( $year == null ? date( "Y" ) : $year ), $month ) . '&#160;' .
 			( $tagSelector ? ( implode( '&#160;', $tagSelector ) . '&#160;' ) : '' ) .
@@ -440,7 +440,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		$this->getOutput()->wrapWikiMsg( "<div class='mw-history-legend'>\n$1\n</div>", 'histlegend' );
 		$s = Html::openElement( 'form', array( 'action' => $wgScript,
 			'id' => 'mw-history-compare' ) ) . "\n";
-		$s .= Html::hidden( 'title', $this->getTitle()->getPrefixedDbKey() ) . "\n";
+		$s .= Html::hidden( 'title', $this->getTitle()->getPrefixedDBkey() ) . "\n";
 		$s .= Html::hidden( 'action', 'historysubmit' ) . "\n";
 
 		// Button container stored in $this->buttons for re-use in getEndBody()
@@ -580,7 +580,7 @@ class HistoryPager extends ReverseChronologicalPager {
 			// Otherwise, show the link...
 			} else {
 				$query = array( 'type' => 'revision',
-					'target' => $this->getTitle()->getPrefixedDbkey(), 'ids' => $rev->getId() );
+					'target' => $this->getTitle()->getPrefixedDBkey(), 'ids' => $rev->getId() );
 				$del .= Linker::revDeleteLink( $query,
 					$rev->isDeleted( Revision::DELETED_RESTRICTED ), false );
 			}

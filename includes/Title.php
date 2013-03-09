@@ -2140,7 +2140,7 @@ class Title {
 			# Time to check the whitelist
 			# Only do these checks is there's something to check against
 			$name = $this->getPrefixedText();
-			$dbName = $this->getPrefixedDBKey();
+			$dbName = $this->getPrefixedDBkey();
 
 			// Check for explicit whitelisting with and without underscores
 			if ( in_array( $name, $wgWhitelistRead, true ) || in_array( $dbName, $wgWhitelistRead, true ) ) {

@@ -89,7 +89,7 @@ class LinkSearchPage extends QueryPage {
 			count( $protocols_list )
 		);
 		$s = Xml::openElement( 'form', array( 'id' => 'mw-linksearch-form', 'method' => 'get', 'action' => $GLOBALS['wgScript'] ) ) .
-			Html::hidden( 'title', $this->getTitle()->getPrefixedDbKey() ) .
+			Html::hidden( 'title', $this->getTitle()->getPrefixedDBkey() ) .
 			'<fieldset>' .
 			Xml::element( 'legend', array(), $this->msg( 'linksearch' )->text() ) .
 			Xml::inputLabel( $this->msg( 'linksearch-pat' )->text(), 'target', 'target', 50, $target ) . ' ';

@@ -419,7 +419,7 @@ abstract class ApiQueryBase extends ApiBase {
 		if ( !$t ) {
 			$this->dieUsageMsg( array( 'invalidtitle', $title ) );
 		}
-		return $t->getPrefixedDbKey();
+		return $t->getPrefixedDBkey();
 	}
 
 	/**

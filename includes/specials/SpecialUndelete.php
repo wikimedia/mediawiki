@@ -783,7 +783,7 @@ class SpecialUndelete extends SpecialPage {
 				'action' => $wgScript ) ) .
 			Xml::fieldset( $this->msg( 'undelete-search-box' )->text() ) .
 			Html::hidden( 'title',
-				$this->getTitle()->getPrefixedDbKey() ) .
+				$this->getTitle()->getPrefixedDBkey() ) .
 			Xml::inputLabel( $this->msg( 'undelete-search-prefix' )->text(),
 				'prefix', 'prefix', 20,
 				$this->mSearchPrefix ) . ' ' .
@@ -967,7 +967,7 @@ class SpecialUndelete extends SpecialPage {
 			Xml::element( 'input', array(
 				'type' => 'hidden',
 				'name' => 'target',
-				'value' => $this->mTargetObj->getPrefixedDbKey() ) ) .
+				'value' => $this->mTargetObj->getPrefixedDBkey() ) ) .
 			Xml::element( 'input', array(
 				'type' => 'hidden',
 				'name' => 'timestamp',

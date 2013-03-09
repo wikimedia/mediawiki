@@ -225,7 +225,7 @@ class WikiImporter {
 				} else {
 					// set namespace to 'all', so the namespace check in processTitle() can passed
 					$this->setTargetNamespace( null );
-					$this->mTargetRootPage = $title->getPrefixedDBKey();
+					$this->mTargetRootPage = $title->getPrefixedDBkey();
 				}
 			}
 		}

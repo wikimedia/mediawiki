@@ -3008,7 +3008,7 @@ $templates
 			'wgCanonicalNamespace' => $nsname,
 			'wgCanonicalSpecialPageName' => $canonicalName,
 			'wgNamespaceNumber' => $title->getNamespace(),
-			'wgPageName' => $title->getPrefixedDBKey(),
+			'wgPageName' => $title->getPrefixedDBkey(),
 			'wgTitle' => $title->getText(),
 			'wgCurRevisionId' => $latestRevID,
 			'wgArticleId' => $pageID,
@@ -3024,7 +3024,7 @@ $templates
 			'wgDefaultDateFormat' => $lang->getDefaultDateFormat(),
 			'wgMonthNames' => $lang->getMonthNamesArray(),
 			'wgMonthNamesShort' => $lang->getMonthAbbreviationsArray(),
-			'wgRelevantPageName' => $relevantTitle->getPrefixedDBKey(),
+			'wgRelevantPageName' => $relevantTitle->getPrefixedDBkey(),
 		);
 		if ( $user->isLoggedIn() ) {
 			$vars['wgUserId'] = $user->getId();
@@ -3042,7 +3042,7 @@ $templates
 			$vars['wgIsMainPage'] = true;
 		}
 		if ( $this->mRedirectedFrom ) {
-			$vars['wgRedirectedFrom'] = $this->mRedirectedFrom->getPrefixedDBKey();
+			$vars['wgRedirectedFrom'] = $this->mRedirectedFrom->getPrefixedDBkey();
 		}
 
 		// Allow extensions to add their custom variables to the mw.config map.
