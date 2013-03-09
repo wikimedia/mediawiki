@@ -7,13 +7,14 @@ Notes on the Job queuing system architecture.
 \section intro Introduction
 
 The data model consist of the following main components:
-
 * The Job object represents a particular deferred task that happens in the
   background. All jobs subclass the Job object and put the main logic in the
   function called run().
 * The JobQueue object represents a particular queue of jobs of a certain type.
   For example there may be a queue for email jobs and a queue for squid purge
   jobs.
+
+\section jobqueue Job queues
 
 Each job type has its own queue and is associated to a storage medium. One
 queue might save its jobs in redis while another one uses would use a database.
@@ -27,6 +28,7 @@ The factory class JobQueueGroup provides helper functions:
 
 The following queue classes are available:
 * JobQueueDB (stores jobs in the `job` table in a database)
+* JobQueueRedis (stores jobs in a redis server)
 
 All queue classes support some basic operations (though some may be no-ops):
 * enqueueing a batch of jobs
@@ -45,6 +47,27 @@ jobs when dequeued while leaving the ack() function as a no-op; if a job is
 dequeued by a job runner, which crashes before completion, the job will be
 lost. Some jobs, like purging squid caches after a template change, may not
 require durable queues, whereas other jobs might be more important.
+
+\section aggregator Job queue aggregator
+
+The aggregators are used by nextJobDB.php, which is a script that will return a
+random ready queue (on any wiki in the farm) that can be used with runJobs.php.
+This can be used in conjuction with any scripts that handle wiki farm job queues.
+Note that $wgLocalDatabases defines what wikis are in the wiki farm.
+
+Since each job type has its own queue, and wiki-farms may have many wikis,
+there might be a large number of queues to keep track of. To avoid wasting
+large amounts of time polling empty queues, aggregators exists to keep track
+of which queues are ready.
+
+The following queue aggregator classes are available:
+* JobQueueAggregatorMemc (uses $wgMemc to track ready queues)
+* JobQueueAggregatorRedis (uses a redis server to track ready queues)
+
+Some aggregators cache data for a few minutes while others may be always up to date.
+This can be an important factor for jobs that need a low pickup time (or latency).
+
+\section jobs Jobs
 
 Callers should also try to make jobs maintain correctness when executed twice.
 This is useful for queues that actually implement ack(), since they may recycle
