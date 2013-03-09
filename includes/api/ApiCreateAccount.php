@@ -108,8 +108,10 @@ class ApiCreateAccount extends ApiBase {
 
 		$apiResult = $this->getResult();
 
-		if( $status->hasMessage( 'sessionfailure' ) ) {
-			// Token was incorrect, so add it to result, but don't throw an exception.
+		if( $status->hasMessage( 'sessionfailure' ) || $status->hasMessage( 'nocookiesfornew' ) ) {
+			// Token was incorrect, so add it to result, but don't throw an exception
+			// since not having the correct token is part of the normal
+			// flow of events.
 			$result['token'] = LoginForm::getCreateaccountToken();
 			$result['result'] = 'needtoken';
 		} elseif( !$status->isOK() ) {
@@ -230,7 +232,6 @@ class ApiCreateAccount extends ApiBase {
 	public function getPossibleErrors() {
 		$localErrors = array(
 			'wrongpassword',
-			'sessionfailure',
 			'sorbs_create_account_reason',
 			'noname',
 			'userexists',
