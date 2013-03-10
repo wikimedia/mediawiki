@@ -12,6 +12,7 @@ production.
 * $wgRedirectScript was removed. It was unused.
 
 === New features in 1.22 ===
+* (bug 44525) mediawiki.jqueryMsg can now parse (whitelisted) HTML elements and attributes.
 
 === Bug fixes in 1.22 ===
 
