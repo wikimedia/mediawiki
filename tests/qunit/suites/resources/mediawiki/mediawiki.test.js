@@ -124,7 +124,7 @@
 		assert.ok( mw.config instanceof mw.Map, 'mw.config instance of mw.Map' );
 	} );
 
-	QUnit.test( 'mw.message & mw.messages', 54, function ( assert ) {
+	QUnit.test( 'mw.message & mw.messages', 69, function ( assert ) {
 		var goodbye, hello;
 
 		// Convenience method for asserting the same result for multiple formats
@@ -211,6 +211,42 @@
 
 		assertMultipleFormats( ['int-msg'], ['text', 'parse', 'escaped'], 'Some Other Message', 'int is resolved' );
 		assert.equal( mw.message( 'int-msg' ).plain(), mw.messages.get( 'int-msg' ), 'int is not resolved in plain mode' );
+
+		assert.ok( mw.messages.set( 'mediawiki-italics-msg', '<i>Very</i> important' ),	'mw.messages.set: Register' );
+		assertMultipleFormats( ['mediawiki-italics-msg'], ['plain', 'text', 'parse'], mw.messages.get( 'mediawiki-italics-msg' ), 'Simple italics unchanged' );
+		assert.htmlEqual(
+			mw.message( 'mediawiki-italics-msg' ).escaped(),
+			'&lt;i&gt;Very&lt;/i&gt; important',
+			'Italics are escaped in	escaped mode'
+		);
+
+		assert.ok( mw.messages.set( 'mediawiki-italics-with-link', 'An <i>italicized [[link|wiki-link]]</i>' ), 'mw.messages.set: Register' );
+		assertMultipleFormats( ['mediawiki-italics-with-link'], ['plain', 'text'], mw.messages.get( 'mediawiki-italics-with-link' ), 'Italics with link unchanged' );
+		assert.htmlEqual(
+			mw.message( 'mediawiki-italics-with-link' ).escaped(),
+			'An &lt;i&gt;italicized [[link|wiki-link]]&lt;/i&gt;',
+			'Italics and link unchanged except for escaping in escaped mode'
+		);
+		assert.htmlEqual(
+			mw.message( 'mediawiki-italics-with-link' ).parse(),
+			'An <i>italicized <a title="link" href="' + mw.util.wikiGetlink( 'link' ) + '">wiki-link</i>',
+			'Italics with link inside in parse mode'
+		);
+
+		assert.ok( mw.messages.set( 'mediawiki-script-msg', '<script  >alert( "Who put this script here?" );</script>' ), 'mw.messages.set: Register' );
+		assertMultipleFormats( ['mediawiki-script-msg'], ['plain', 'text'], mw.messages.get( 'mediawiki-script-msg' ), 'Script unchanged' );
+		assert.htmlEqual(
+			mw.message( 'mediawiki-script-msg' ).escaped(),
+			'&lt;script  &gt;alert( "Who put this script here?" );&lt;/script&gt;',
+			'Script escaped when using escaped format'
+		);
+		assert.htmlEqual(
+			mw.message( 'mediawiki-script-msg' ).parse(),
+			'&lt;script  &gt;alert( "Who put this script here?" );&lt;/script&gt;',
+			'Script escaped when using parse format'
+		);
+
+
 	} );
 
 	QUnit.test( 'mw.msg', 14, function ( assert ) {
