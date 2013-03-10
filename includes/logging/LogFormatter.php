@@ -402,8 +402,10 @@ class LogFormatter {
 
 		// Filter out parameters which are not in format #:foo
 		foreach ( $entry->getParameters() as $key => $value ) {
-			if ( strpos( $key, ':' ) === false ) continue;
-			list( $index, $type, $name ) = explode( ':', $key, 3 );
+			if ( strpos( $key, ':' ) === false ) {
+				continue;
+			}
+			list( $index, $type, ) = explode( ':', $key, 3 );
 			$params[$index - 1] = $this->formatParameterValue( $type, $value );
 		}
 

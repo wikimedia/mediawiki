@@ -145,7 +145,7 @@ class FSFileBackend extends FileBackendStore {
 		if ( $relPath === null ) {
 			return null; // invalid
 		}
-		list( $b, $shortCont, $r ) = FileBackend::splitStoragePath( $storagePath );
+		list( , $shortCont, ) = FileBackend::splitStoragePath( $storagePath );
 		$fsPath = $this->containerFSRoot( $shortCont, $fullCont ); // must be valid
 		if ( $relPath != '' ) {
 			$fsPath .= "/{$relPath}";
@@ -460,7 +460,7 @@ class FSFileBackend extends FileBackendStore {
 	 */
 	protected function doPrepareInternal( $fullCont, $dirRel, array $params ) {
 		$status = Status::newGood();
-		list( $b, $shortCont, $r ) = FileBackend::splitStoragePath( $params['dir'] );
+		list( , $shortCont, ) = FileBackend::splitStoragePath( $params['dir'] );
 		$contRoot = $this->containerFSRoot( $shortCont, $fullCont ); // must be valid
 		$dir = ( $dirRel != '' ) ? "{$contRoot}/{$dirRel}" : $contRoot;
 		$existed = is_dir( $dir ); // already there?
@@ -487,7 +487,7 @@ class FSFileBackend extends FileBackendStore {
 	 */
 	protected function doSecureInternal( $fullCont, $dirRel, array $params ) {
 		$status = Status::newGood();
-		list( $b, $shortCont, $r ) = FileBackend::splitStoragePath( $params['dir'] );
+		list( , $shortCont, ) = FileBackend::splitStoragePath( $params['dir'] );
 		$contRoot = $this->containerFSRoot( $shortCont, $fullCont ); // must be valid
 		$dir = ( $dirRel != '' ) ? "{$contRoot}/{$dirRel}" : $contRoot;
 		// Seed new directories with a blank index.html, to prevent crawling...
@@ -518,7 +518,7 @@ class FSFileBackend extends FileBackendStore {
 	 */
 	protected function doPublishInternal( $fullCont, $dirRel, array $params ) {
 		$status = Status::newGood();
-		list( $b, $shortCont, $r ) = FileBackend::splitStoragePath( $params['dir'] );
+		list( , $shortCont, ) = FileBackend::splitStoragePath( $params['dir'] );
 		$contRoot = $this->containerFSRoot( $shortCont, $fullCont ); // must be valid
 		$dir = ( $dirRel != '' ) ? "{$contRoot}/{$dirRel}" : $contRoot;
 		// Unseed new directories with a blank index.html, to allow crawling...
@@ -549,7 +549,7 @@ class FSFileBackend extends FileBackendStore {
 	 */
 	protected function doCleanInternal( $fullCont, $dirRel, array $params ) {
 		$status = Status::newGood();
-		list( $b, $shortCont, $r ) = FileBackend::splitStoragePath( $params['dir'] );
+		list( , $shortCont, ) = FileBackend::splitStoragePath( $params['dir'] );
 		$contRoot = $this->containerFSRoot( $shortCont, $fullCont ); // must be valid
 		$dir = ( $dirRel != '' ) ? "{$contRoot}/{$dirRel}" : $contRoot;
 		$this->trapWarnings();
@@ -598,7 +598,7 @@ class FSFileBackend extends FileBackendStore {
 	 * @return bool|null
 	 */
 	protected function doDirectoryExists( $fullCont, $dirRel, array $params ) {
-		list( $b, $shortCont, $r ) = FileBackend::splitStoragePath( $params['dir'] );
+		list( , $shortCont, ) = FileBackend::splitStoragePath( $params['dir'] );
 		$contRoot = $this->containerFSRoot( $shortCont, $fullCont ); // must be valid
 		$dir = ( $dirRel != '' ) ? "{$contRoot}/{$dirRel}" : $contRoot;
 
@@ -614,7 +614,7 @@ class FSFileBackend extends FileBackendStore {
 	 * @return Array|null
 	 */
 	public function getDirectoryListInternal( $fullCont, $dirRel, array $params ) {
-		list( $b, $shortCont, $r ) = FileBackend::splitStoragePath( $params['dir'] );
+		list( , $shortCont, ) = FileBackend::splitStoragePath( $params['dir'] );
 		$contRoot = $this->containerFSRoot( $shortCont, $fullCont ); // must be valid
 		$dir = ( $dirRel != '' ) ? "{$contRoot}/{$dirRel}" : $contRoot;
 		$exists = is_dir( $dir );
@@ -633,7 +633,7 @@ class FSFileBackend extends FileBackendStore {
 	 * @return Array|FSFileBackendFileList|null
 	 */
 	public function getFileListInternal( $fullCont, $dirRel, array $params ) {
-		list( $b, $shortCont, $r ) = FileBackend::splitStoragePath( $params['dir'] );
+		list( , $shortCont, ) = FileBackend::splitStoragePath( $params['dir'] );
 		$contRoot = $this->containerFSRoot( $shortCont, $fullCont ); // must be valid
 		$dir = ( $dirRel != '' ) ? "{$contRoot}/{$dirRel}" : $contRoot;
 		$exists = is_dir( $dir );

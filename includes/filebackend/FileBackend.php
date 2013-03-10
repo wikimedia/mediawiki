@@ -1279,7 +1279,7 @@ abstract class FileBackend {
 	 */
 	final public static function parentStoragePath( $storagePath ) {
 		$storagePath = dirname( $storagePath );
-		list( $b, $cont, $rel ) = self::splitStoragePath( $storagePath );
+		list( , , $rel ) = self::splitStoragePath( $storagePath );
 		return ( $rel === null ) ? null : $storagePath;
 	}
 

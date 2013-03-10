@@ -173,14 +173,16 @@ class TextContent extends AbstractContent {
 
 		# @todo: could implement this in DifferenceEngine and just delegate here?
 
-		if ( !$lang ) $lang = $wgContLang;
+		if ( !$lang ) {
+			$lang = $wgContLang;
+		}
 
 		$otext = $this->getNativeData();
 		$ntext = $this->getNativeData();
 
 		# Note: Use native PHP diff, external engines don't give us abstract output
-		$ota = explode( "\n", $wgContLang->segmentForDiff( $otext ) );
-		$nta = explode( "\n", $wgContLang->segmentForDiff( $ntext ) );
+		$ota = explode( "\n", $lang->segmentForDiff( $otext ) );
+		$nta = explode( "\n", $lang->segmentForDiff( $ntext ) );
 
 		$diff = new Diff( $ota, $nta );
 		return $diff;

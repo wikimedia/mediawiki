@@ -327,14 +327,9 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	/**
 	 * Default action when we don't have a subpage -- just show links to the uploads we have,
 	 * Also show a button to clear stashed files
-	 * @param $status [optional] Status: the result of processRequest
 	 * @return bool
 	 */
-	private function showUploads( $status = null ) {
-		if ( $status === null ) {
-			$status = Status::newGood();
-		}
-
+	private function showUploads() {
 		// sets the title, etc.
 		$this->setHeaders();
 		$this->outputHeader();
