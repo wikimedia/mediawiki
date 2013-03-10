@@ -96,8 +96,15 @@ class SyncFileBackend extends Maintenance {
 			$this->output( "Ending journal position is $end.\n" );
 		}
 
+		// Periodically update the position file
+		$callback = function( $pos ) use ( $startFromPosFile, $posFile, $start ) {
+			if ( $startFromPosFile && $pos >= $start ) { // successfully advanced
+				file_put_contents( $posFile, $pos, LOCK_EX );
+			}
+		};
+
 		// Actually sync the dest backend with the reference backend
-		$lastOKPos = $this->syncBackends( $src, $dst, $start, $end );
+		$lastOKPos = $this->syncBackends( $src, $dst, $start, $end, $callback );
 
 		// Update the sync position file
 		if ( $startFromPosFile && $lastOKPos >= $start ) { // successfully advanced
@@ -131,9 +138,12 @@ class SyncFileBackend extends Maintenance {
 	 * @param $dst FileBackend
 	 * @param $start integer Starting journal position
 	 * @param $end integer Starting journal position
+	 * @param $callback Closure Callback to update any position file
 	 * @return integer|false Journal entry ID or false if there are none
 	 */
-	protected function syncBackends( FileBackend $src, FileBackend $dst, $start, $end ) {
+	protected function syncBackends(
+		FileBackend $src, FileBackend $dst, $start, $end, Closure $callback
+	) {
 		$lastOKPos = 0; // failed
 		$first = true; // first batch
 
@@ -164,6 +174,7 @@ class SyncFileBackend extends Maintenance {
 			$status = $this->syncFileBatch( array_keys( $pathsInBatch ), $src, $dst );
 			if ( $status->isOK() ) {
 				$lastOKPos = max( $lastOKPos, $lastPosInBatch );
+				$callback( $lastOKPos ); // update position file
 			} else {
 				$this->error( print_r( $status->getErrorsArray(), true ) );
 				break; // no gaps; everything up to $lastPos must be OK
