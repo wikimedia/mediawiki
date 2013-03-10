@@ -3822,4 +3822,7 @@ Dangosir delweddau ar eu maint llawn, dechreuir ffeiliau o fathau eraill yn unio
 'duration-centuries' => '$1 {{PLURAL:$1|canmlwydd|ganmlwydd|ganmlwydd|canmlwydd|chanmlwydd|canmlwydd}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milflwydd|filflwydd|filflwydd|milflwydd|milflwydd|milflwydd}}',
 
+# Image rotation
+'rotate-comment' => "Trowyd y llun $1 {{PLURAL:$1|gradd|radd|radd|gradd}} gyda'r cloc",
+
 );

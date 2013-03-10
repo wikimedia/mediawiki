@@ -721,7 +721,7 @@ Siehe die [[Special:Version|Versionsseite]]',
 'nosuchaction' => 'Diese Aktion gibt es nicht',
 'nosuchactiontext' => 'Die in der URL angegebene Aktion wird von MediaWiki nicht unterstützt.
 Es kann ein Schreibfehler in der URL vorliegen oder es wurde ein fehlerhafter Link angeklickt.
-Es kann sich auch um einen Programmierfehler in der Software, die auf {{SITENAME}} benutzt wird, handeln.',
+Es kann sich auch um einen Programmierfehler in der Software, die von {{SITENAME}} benutzt wird, handeln.',
 'nosuchspecialpage' => 'Spezialseite nicht vorhanden',
 'nospecialpagetext' => '<strong>Die aufgerufene Spezialseite ist nicht vorhanden.</strong>
 

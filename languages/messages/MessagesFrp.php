@@ -1000,7 +1000,7 @@ Vos pouede [[Special:Search/{{PAGENAME}}|fâre na rechèrche sur cél titro]] de
 'missing-revision' => 'La vèrsion numerô $1 de la pâge apelâye « {{PAGENAME}} » ègziste pas.
 
 En g·ènèral cen arreve en siuvent un lim d’un historico dèpassâ de vers na pâge qu’est étâye suprimâye.
-Vos pouede trovar més de dètalys dedens lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].',
+Vos pouede trovar més de dètalys sur lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].',
 'userpage-userdoesnotexist' => 'Lo compto utilisator « $1 » est pas encartâ.
 Se vos plét, controlâd que vos voléd fâre / changiér cela pâge.',
 'userpage-userdoesnotexist-view' => 'Lo compto utilisator « $1 » est pas encartâ.',
@@ -1194,30 +1194,30 @@ Pôt-étre el est étâye suprimâye du vouiqui ou ben renomâye.
 'rev-deleted-event' => '(accion du jornal enlevâye)',
 'rev-deleted-user-contribs' => '[nom d’utilisator ou ben adrèce IP enlevâ(ye) - changement cachiê sur les contribucions]',
 'rev-deleted-text-permission' => "Ceta vèrsion de la pâge est étâye '''suprimâye'''.
-Y pôt avêr més de dètalys dedens lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].",
+Y pôt avêr més de dètalys sur lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].",
 'rev-deleted-text-unhide' => "Ceta vèrsion de la pâge est étâye '''suprimâye'''.
-Y pôt avêr més de dètalys dedens lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].
+Y pôt avêr més de dètalys sur lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].
 Vos pouede adés [$1 vêre cela vèrsion] se vos o voléd.",
 'rev-suppressed-text-unhide' => "Ceta vèrsion de la pâge est étâye '''rèprimâye'''.
-Y pôt avêr més de dètalys dedens lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de les rèprèssions].
+Y pôt avêr més de dètalys sur lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de les rèprèssions].
 Vos pouede adés [$1 vêre cela vèrsion] se vos o voléd.",
 'rev-deleted-text-view' => "Ceta vèrsion de la pâge est étâye '''suprimâye'''.
-Vos la pouede vêre ; y pôt avêr més de dètalys dedens lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].",
+Vos la pouede vêre ; y pôt avêr més de dètalys sur lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].",
 'rev-suppressed-text-view' => "Ceta vèrsion de la pâge est étâye '''rèprimâye'''.
-Vos la pouede vêre ; y pôt avêr més de dètalys dedens lo [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jornal de les rèprèssions].",
+Vos la pouede vêre ; y pôt avêr més de dètalys sur lo [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jornal de les rèprèssions].",
 'rev-deleted-no-diff' => "Vos pouede pas vêre ceta dif perce que yona de les vèrsions est étâye '''suprimâye'''.
-Y pôt avêr més de dètalys dedens lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].",
+Y pôt avêr més de dètalys sur lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].",
 'rev-suppressed-no-diff' => "Vos pouede pas vêre ceta dif, yona de les vèrsions est étâye '''suprimâye'''.",
 'rev-deleted-unhide-diff' => "Yona de les vèrsions de ceta dif est étâye '''suprimâye'''.
-Y pôt avêr més de dètalys dedens lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].
+Y pôt avêr més de dètalys sur lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].
 Vos pouede adés [$1 vêre cela dif] se vos o voléd.",
 'rev-suppressed-unhide-diff' => "Yona de les vèrsions de ceta dif est étâye '''rèprimâye'''.
-Y pôt avêr més de dètalys dedens lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de les rèprèssions].
+Y pôt avêr més de dètalys sur lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de les rèprèssions].
 Vos pouede adés [$1 vêre cela dif] se vos o voléd.",
 'rev-deleted-diff-view' => "Yona de les vèrsions de ceta dif est étâye '''suprimâye'''.
-Vos pouede vêre ceta dif ; y pôt avêr més de dètalys dedens lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].",
+Vos pouede vêre ceta dif ; y pôt avêr més de dètalys sur lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].",
 'rev-suppressed-diff-view' => "Yona de les vèrsions de ceta dif est étâye '''rèprimâye'''.
-Vos pouede vêre ceta dif ; y pôt avêr més de dètalys dedens lo [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jornal de les rèprèssions].",
+Vos pouede vêre ceta dif ; y pôt avêr més de dètalys sur lo [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jornal de les rèprèssions].",
 'rev-delundel' => 'montrar / cachiér',
 'rev-showdeleted' => 'montrar',
 'revisiondelete' => 'Suprimar / refâre des vèrsions',

@@ -1891,8 +1891,10 @@ Snaź coš wopisanje na jeje [$2 boku datajowego wopisanja] wobźěłaś.',
 Maju bok za  bok rozjasnjenja zapśimjeśow, gaž wužywa pśedłogu, na kótaruž wótkazujo se wót [[MediaWiki:Disambiguationspage]].',
 
 'pageswithprop' => 'Boki z kakosću boka',
+'pageswithprop-legend' => 'Boki z kakosću boka',
 'pageswithprop-text' => 'Toś ten bok nalicyjo boki, kótarež wužywaju wěstu kakosć boka.',
 'pageswithprop-prop' => 'Mě kakosći:',
+'pageswithprop-submit' => 'Wótpósłaś',
 
 'doubleredirects' => 'Dwójne dalejpósrědnjenja',
 'doubleredirectstext' => 'Toś ten bok nalicujo boki, kótarež dalej pósrědnjaju na druge dalejpósrědnjenja.
@@ -3834,7 +3836,7 @@ Hować móžoš slědujucy jadnory formular wužywaś. Twój komentar pśidajo s
 'duration-centuries' => '$1 {{PLURAL:$1|stolěśe|stolěśi|stolěśa|stolěśow}}',
 'duration-millennia' => '$1 {{PLURAL:$1|lěttysac|lěttysaca|lěttysace|lěttysacow}}',
 
-# Unknown messages
-'pageswithprop-legend' => 'Boki z kakosću boka',
-'pageswithprop-submit' => 'Wótpósłaś',
+# Image rotation
+'rotate-comment' => 'Wobraz wó $1 {{PLURAL:$1|stopjeń|stopnja|stopnje|stopnjow}} ako špěra źo wobwjertnjony',
+
 );

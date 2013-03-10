@@ -575,6 +575,9 @@ $2',
 'customjsprotected' => "Dir hutt net d'Recht dës JavaScript-Säit z'änneren, well dorop déi perséinlech Astellunge vun engem anere Benotzer gespäichert sinn.",
 'ns-specialprotected' => 'Spezialsäite kënnen net verännert ginn.',
 'titleprotected' => "Eng Säit mat dësem Numm kann net ugeluecht ginn. Dës Spär gouf vum [[User:$1|$1]] gemaach deen als Grond ''$2'' uginn huet.",
+'filereadonlyerror' => 'De Fichier "$1" konnt net geännert ginn well de Repertoire vun de Fichieren "$2" nëmme geliest däerf ginn.
+
+Den Administrateur den d\'Schreiwe gespaart huet, huet dës Erklärung uginn: "$3"',
 'invalidtitle-knownnamespace' => 'Net valabelen Titel mam Nummraum "$2" a mam Text "$3"',
 'invalidtitle-unknownnamespace' => 'Net valabelen Titel mat der onbekannter Nummraum-Zuel $1 a mam Text "$2"',
 'exception-nologin' => 'Net ageloggt',

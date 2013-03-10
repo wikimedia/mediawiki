@@ -434,7 +434,7 @@ $messages = array(
 'qbbrowse' => 'Sirvi',
 'qbedit' => 'Redigeeri',
 'qbpageoptions' => 'Lehekülje suvandid',
-'qbmyoptions' => 'Minu suvandid',
+'qbmyoptions' => 'Minu leheküljed',
 'qbspecialpages' => 'Erileheküljed',
 'faq' => 'KKK',
 'faqpage' => 'Project:KKK',
@@ -523,7 +523,7 @@ $1',
 'aboutsite' => '{{GRAMMAR:genitive|{{SITENAME}}}} tiitelandmed',
 'aboutpage' => 'Project:Tiitelandmed',
 'copyright' => 'Kogu tekst on kasutatav litsentsi $1 tingimustel.',
-'copyrightpage' => '{{ns:project}}:Autoriõigused',
+'copyrightpage' => '{{ns:project}}:Autoriõigus',
 'currentevents' => 'Sündmused',
 'currentevents-url' => 'Project:Sündmused',
 'disclaimers' => 'Hoiatused',
@@ -2027,6 +2027,12 @@ Sisesta kujul tüüp/alamtüüp, näiteks <code>image/jpeg</code>.',
 Võimalik, et sellised lingid peaks viitama sobivamatele lehekülgedele.
 Lehekülg loetakse täpsustusleheküljeks, kui see kasutab malli, millele viitab sõnum [[MediaWiki:Disambiguationspage]].",
 
+'pageswithprop' => 'Leheatribuudiga leheküljed',
+'pageswithprop-legend' => 'Leheatribuudiga leheküljed',
+'pageswithprop-text' => 'Sellel leheküljel on loetletud mõnd leheatribuuti kasutavad leheküljed.',
+'pageswithprop-prop' => 'Atribuudi nimi:',
+'pageswithprop-submit' => 'Mine',
+
 'doubleredirects' => 'Kahekordsed ümbersuunamised',
 'doubleredirectstext' => 'Käesolev leht esitab loendi lehtedest, mis sisaldavad ümbersuunamisi teistele ümbersuunamislehtedele.
 Igal real on ära toodud esimene ja teine ümbersuunamisleht ning samuti teise ümbersuunamislehe sihtmärk, mis tavaliselt on esialgse ümbersuunamise tegelik siht, millele see otse osutama peakski.
@@ -2283,7 +2289,7 @@ Edasised muudatused sellel leheküljel ja seotud aruteluleheküljel tuuakse ära
 'iteminvalidname' => "Probleem üksusega '$1'. Selle nimes on viga.",
 'wlnote' => "Allpool on {{PLURAL:$1|viimane muudatus|viimased '''$1''' muudatust}} viimase {{PLURAL:$2|tunni|'''$2''' tunni}} jooksul seisuga $3, $4.",
 'wlshowlast' => 'Näita viimast $1 tundi $2 päeva. $3',
-'watchlist-options' => 'Jälgimisloendi võimalused',
+'watchlist-options' => 'Jälgimisloendi seaded',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching' => 'Jälgimine...',
@@ -2348,7 +2354,7 @@ Tagasiside ja abi:
 'confirmdeletetext' => 'Sa oled andmebaasist kustutamas lehekülge koos kogu tema ajalooga.
 Palun kinnita, et tahad seda tõepoolest teha, et sa mõistad tagajärgi ja et sinu tegevus on kooskõlas siinse [[{{MediaWiki:Policy-url}}|sisekorraga]].',
 'actioncomplete' => 'Toiming sooritatud',
-'actionfailed' => 'Tegevus ebaõnnestus',
+'actionfailed' => 'Toiming ebaõnnestus',
 'deletedtext' => '"$1" on kustutatud. Kustutatud leheküljed on ära toodud eraldi loendis ($2).',
 'dellogpage' => 'Kustutamislogi',
 'dellogpagetext' => 'Allpool on esitatud nimekiri viimastest kustutamistest.
@@ -2831,7 +2837,7 @@ Viimasel juhul saab kasutada ka linki, näiteks lehekülje "[[{{MediaWiki:Mainpa
 # Namespace 8 related
 'allmessages' => 'Kõik süsteemi sõnumid',
 'allmessagesname' => 'Nimi',
-'allmessagesdefault' => 'Vaikimisi tekst',
+'allmessagesdefault' => 'Vaiketekst',
 'allmessagescurrent' => 'Praegune tekst',
 'allmessagestext' => 'See on loend kõikidest olemasolevatest süsteemisõnumitest MediaWiki nimeruumis.
 Kui soovid MediaWiki tarkvara tõlkimises osaleda, siis vaata lehti [//www.mediawiki.org/wiki/Localisation MediaWiki lokaliseerimine] ja [//translatewiki.net translatewiki.net].',
@@ -2932,9 +2938,9 @@ Palun ürita uuesti.',
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'Sinu kasutajaleht',
 'tooltip-pt-anonuserpage' => 'Sinu IP-aadressi kasutajalehekülg',
-'tooltip-pt-mytalk' => 'Minu aruteluleht',
+'tooltip-pt-mytalk' => 'Sinu arutelulehekülg',
 'tooltip-pt-anontalk' => 'Arutelu sellelt IP-aadressilt tehtud muudatuste kohta',
-'tooltip-pt-preferences' => 'Minu eelistused',
+'tooltip-pt-preferences' => 'Sinu eelistused',
 'tooltip-pt-watchlist' => 'Lehekülgede loend, mida jälgid muudatuste osas',
 'tooltip-pt-mycontris' => 'Sinu kaastööde loend',
 'tooltip-pt-login' => 'Me julgustame teid sisse logima, kuid see pole kohustuslik.',
@@ -2950,7 +2956,7 @@ Saad vaadata selle lähteteksti.',
 'tooltip-ca-unprotect' => 'Muuda selle lehekülje kaitset',
 'tooltip-ca-delete' => 'Kustuta see lehekülg',
 'tooltip-ca-undelete' => 'Taasta enne lehekülje kustutamist tehtud muudatused',
-'tooltip-ca-move' => 'Teisalda see lehekülg teise nime alla.',
+'tooltip-ca-move' => 'Teisalda see lehekülg',
 'tooltip-ca-watch' => 'Lisa see lehekülg oma jälgimisloendisse',
 'tooltip-ca-unwatch' => 'Eemalda see lehekülg oma jälgimisloendist',
 'tooltip-search' => 'Otsi vikist',
@@ -3164,6 +3170,8 @@ Järgnevas loendis, mis on sorteeritud $2, on '''$1''' {{PLURAL:$1|fail|faili}}.
 'minutes' => '{{PLURAL:$1|üks minut|$1 minutit}}',
 'hours' => '{{PLURAL:$1|üks tund|$1 tundi}}',
 'days' => '{{PLURAL:$1|üks päev|$1 päeva}}',
+'months' => '{{PLURAL:$1|Üks kuu|$1 kuud}}',
+'years' => '{{PLURAL:$1|Üks aasta|$1 aastat}}',
 'ago' => '$1 tagasi',
 'just-now' => 'just nüüd',
 
@@ -3935,6 +3943,7 @@ Kui ei, kasuta allolevat lihtsat vormi. Sinu kommentaar lisatakse koos kasutajan
 'api-error-ok-but-empty' => 'Sisetõrge: Server ei vasta.',
 'api-error-overwrite' => 'Olemasolevate failide ülekirjutamine pole lubatud.',
 'api-error-stashfailed' => 'Sisetõrge: Serveril ei õnnestunud ajutist faili talletada.',
+'api-error-publishfailed' => 'Sisetõrge: Serveril ebaõnnestus ajutise faili avaldamine.',
 'api-error-timeout' => 'Server ei vastanud oodatud aja sees.',
 'api-error-unclassified' => 'Ilmnes teadmata tõrge.',
 'api-error-unknown-code' => 'Teadmata tõrge: "$1"',
@@ -3954,5 +3963,8 @@ Kui ei, kasuta allolevat lihtsat vormi. Sinu kommentaar lisatakse koos kasutajan
 'duration-decades' => '$1 {{PLURAL:$1|kümnendi}}',
 'duration-centuries' => '$1 {{PLURAL:$1|sajandi}}',
 'duration-millennia' => '$1 {{PLURAL:$1|aastatuhande}}',
+
+# Image rotation
+'rotate-comment' => 'Pilti pööratud $1 {{PLURAL:$1|kraad|kraadi}} päripäeva',
 
 );

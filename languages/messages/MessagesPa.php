@@ -189,23 +189,23 @@ $digitGroupingPattern = "##,##,###";
 
 $messages = array(
 # User preference toggles
-'tog-underline' => 'ਅੰਡਰ-ਲਾਈਨ ਲਿੰਕ:',
-'tog-justify' => 'ਪੈਰਾ ਸਹੀ ਕਰੇ .',
-'tog-hideminor' => 'ਮੌਨਜੁਦਾ ਬਦਲਾਬ ਮੈ ਸੈ ਨੀਕੈ ਬਦਲਾਬ ਕੌ ਛੁਪਾ ਕਰ ਰਖੇ.',
-'tog-hidepatrolled' => 'ਮੌਨਜੁਦਾ ਬਦਲਾਬ ਮੈ ਸੈ ਸਹੀਤਕ ਬਦਲਾਬ ਕੌ ਛੁਪਾ ਕਰ ਰਖੇ.',
+'tog-underline' => 'ਕੜੀਆਂ ਅਧੋਰੇਖਨ:',
+'tog-justify' => 'ਪਰਿੱਛੇਦ ਸਮਾਨ ਕਰੋ',
+'tog-hideminor' => 'ਹਾਲ ’ਚ ਹੋਏ ਬਦਲਾਵ ਵਿੱਚ ਛੋਟੇ ਬਦਲਾਵ ਛੁਪਾਓ',
+'tog-hidepatrolled' => 'ਹਾਲ ’ਚ ਹੋਏ ਬਦਲਾਵ ਵਿੱਚ ਜਾਂਚੇ ਹੋਏ ਬਦਲਾਵ ਛੁਪਾਓ',
 'tog-newpageshidepatrolled' => 'ਨਵੀ ਸੁਚੀ ਮੈ ਸੈ ਗਸ਼ਤ ਪਰਚੇ ਕੌ ਛੁਪਾਏ.',
-'tog-extendwatchlist' => 'ਸਾਰੀ ਨਵੀ ਤਬਦੀਲੀਆ ਹੀ ਨਹੀ ,ਪੂਰਾਣੀ ਤਬਦੀਲੀਆ ਨੂੰ ਵੀ ਨਵੀ ਸੂਚੀ ਵਿਚ ਵਧਾ ਕੈ ਸ਼ਾਮੀਲ ਕਰੌ.',
-'tog-usenewrc' => 'ਤਾਜ਼ਾ ਤਬਦੀਲੀਆਂ ਅਤੇ ਨਿਗਰਾਨੀ-ਲਿਸਟ ਵਿਚ ਸਫ਼ੇ ਮੁਤਾਬਕ ਤਬਦੀਲੀਆਂ ਦੇ ਗਰੁੱਪ ਬਣਾਓ (ਜਾਵਾ ਸਕ੍ਰਿਪਟ ਲੋੜੀਂਦੀ ਹੈ)',
+'tog-extendwatchlist' => 'ਕੇਵਲ ਹਾਲਿਆ ਹੀ ਨਹੀਂ, ਸਗੋਂ ਸਾਰੇ ਪਰਿਵਰਤਨਾਂ ਨੂੰ ਵਿਖਾਉਣ ਲਈ ਧਿਆਨਸੂਚੀ ਨੂੰ ਵਿਸਥਾਰਿਤ ਕਰੋ',
+'tog-usenewrc' => 'ਹਾਲ ’ਚ ਹੋਏ ਬਦਲਾਵ ਅਤੇ ਧਿਆਨਸੂਚੀ ਵਿੱਚ ਪੰਨੇ ਮੁਤਾਬਕ ਬਦਲਾਵ ਦੇ ਗਰੁੱਪ ਬਣਾਓ (ਜਾਵਾਸਕ੍ਰਿਪਟ ਦੀ ਜਰੂਰਤ ਹੈ)',
 'tog-numberheadings' => 'ਆਟੋ-ਨੰਬਰ ਹੈਡਿੰਗ',
 'tog-showtoolbar' => 'ਐਡਿਟ ਟੂਲਬਾਰ ਵੇਖੋ (JavaScript)',
-'tog-editondblclick' => 'ਦੂਹਰੇ ਕਲਿੱਕ ਨਾਲ਼ ਸਫ਼ੇ ਸੋਧੋ (ਜਾਵਾ ਸਕ੍ਰਿਪਟ ਲੋੜੀਂਦੀ ਹੈ)',
-'tog-editsection' => '[ਸੰਪਾਦਨ] ਲਿੰਕਾਂ ਜ਼ਰੀਏ ਸੈਕਸ਼ਨ ਸੋਧ ਚਾਲੂ ਕਰੋ',
+'tog-editondblclick' => 'ਦੂਹਰੇ ਕਲਿੱਕ ’ਤੇ ਪੰਨੇ ਨੂੰ ਸੰਪਾਦਿਤ ਕਰੋ (ਜਾਵਾਸਕ੍ਰਿਪਟ ਦੀ ਜਰੂਰਤ ਹੈ)',
+'tog-editsection' => '[ਸੰਪਾਦਨ] ਕੜੀਆਂ ਦੁਆਰਾ ਅਨੁਭਾਗ ਸੰਪਾਦਨ ਸਮਰੱਥਾਵਾਨ ਕਰੋ',
 'tog-editsectiononrightclick' => 'ਸੈਕਸ਼ਨ ਸਿਰਲੇਖਾਂ ਤੇ ਸੱਜੀ ਕਲਿੱਕ ਦੁਆਰਾ ਸੋਧ ਯੋਗ ਕਰੋ (ਜਾਵਾ ਸਕ੍ਰਿਪਟ ਲੋੜੀਂਦੀ ਹੈ)',
 'tog-showtoc' => 'ਟੇਬਲ ਆਫ਼ ਕੰਨਟੈੱਟ ਵੇਖਾਓ (for pages with more than 3 headings)',
 'tog-rememberpassword' => 'ਇਸ ਬਰਾਊਜ਼ਰ ਉੱਤੇ ਮੇਰਾ ਲਾਗਇਨ ਯਾਦ ਰੱਖੋ ($1 {{PLURAL:$1|ਦਿਨ|ਦਿਨਾਂ}} ਲਈ ਵੱਧ ਤੋਂ ਵੱਧ)',
 'tog-watchcreations' => 'ਮੇਰੇ ਵਲੋਂ ਬਣਾਏ ਗਏ ਪੰਨੇ ਅਤੇ ਅੱਪਲੋਡ ਕੀਤੀਆਂ ਫ਼ਾਈਲਾਂ ਮੇਰੀ ਧਿਆਨਸੂਚੀ ਵਿੱਚ ਪਾਓ',
-'tog-watchdefault' => 'ਮੇਰੇ ਵੱਲੋਂ ਸੋਧੇ ਗਏ ਸਫ਼ੇ ਅਤੇ ਫ਼ਾਈਲਾਂ ਮੇਰੀ ਨਿਗਰਾਨੀ-ਲਿਸਟ ਵਿਚ ਪਾਓ',
-'tog-watchmoves' => 'ਮੇਰੇ ਵੱਲੋਂ ਬਦਲੇ ਸਿਰਲੇਖਾਂ ਵਾਲ਼ੇ ਸਫ਼ੇ ਅਤੇ ਫ਼ਾਈਲਾਂ ਮੇਰੀ ਨਿਗਰਾਨੀ-ਲਿਸਟ ਵਿਚ ਪਾਓ',
+'tog-watchdefault' => 'ਮੇਰੇ ਵੱਲੋਂ ਸੰਪਾਦਿਤ ਗਏ ਪੰਨੇ ਅਤੇ ਫਾਈਲਾਂ ਮੇਰੀ ਧਿਆਨਸੂਚੀ ਵਿੱਚ ਪਾਓ',
+'tog-watchmoves' => 'ਮੇਰੇ ਵੱਲੋਂ ਸਥਾਨਾਂਤਰਿਤ ਪੰਨੇ ਅਤੇ ਫਾਈਲਾਂ ਮੇਰੀ ਧਿਆਨਸੂਚੀ ਵਿੱਚ ਪਾਓ',
 'tog-watchdeletion' => 'ਮੇਰੇ ਵਲੋਂ ਮਿਟਾਏ ਗਏ ਸਫ਼ੇ ਅਤੇ ਫ਼ਾਈਲਾਂ ਮੇਰੀ ਨਿਗਰਾਨੀ-ਲਿਸਟ ਵਿਚ ਪਾਓ',
 'tog-minordefault' => 'ਸਾਰੇ ਫੇਰ-ਬਦਲਾਂ ’ਤੇ ਮੂਲ ਰੂਪ ਵਿਚ ਛੋਟੀਆਂ ਹੋਣ ਦਾ ਨਿਸ਼ਾਨ ਲਾਓ',
 'tog-previewontop' => 'ਐਡਿਟ ਬਕਸੇ ਤੋਂ ਪਹਿਲਾਂ ਝਲਕ ਵੇਖਾਓ',
@@ -671,7 +671,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 'login-abort-generic' => 'ਤੁਹਾਡੀ ਲਾਗਇਨ ਨਾਕਾਮ ਸੀ - ਰੱਦ',
 'loginlanguagelabel' => 'ਭਾਸ਼ਾ: $1',
 
-# E-mail sending
+# Email sending
 'user-mail-no-addy' => 'ਬਿਨਾਂ ਈ-ਮੇਲ ਪਤਾ ਦਿੱਤੇ ਈ-ਮੇਲ ਭੇਜਣ ਦੀ ਕੋਸ਼ਿਸ਼ ਕੀਤੀ।',
 
 # Change password dialog
@@ -1170,7 +1170,7 @@ $3|'''1''' ਨਤੀਜਾ|'''$3''' ਨਤੀਜੇ}} ਵਖਾਓ।",
 'prefs-advancedwatchlist' => 'ਤਕਨੀਕੀ ਚੋਣਾਂ',
 'prefs-diffs' => 'ਫ਼ਰਕ',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'ਈ-ਮੇਲ ਪਤਾ ਸਹੀ ਲਗਦਾ ਹੈ',
 'email-address-validity-invalid' => 'ਸਹੀ ਈ-ਮੇਲ ਪਤਾ ਦਾਖ਼ਲ ਕਰੋ',
 
@@ -1603,7 +1603,7 @@ to upload files.',
 'listgrouprights-addgroup-all' => 'ਸਾਰੇ ਗਰੁੱਪ ਜੋੜੋ',
 'listgrouprights-removegroup-all' => 'ਸਾਰੇ ਗਰੁੱਪ ਹਟਾਓ',
 
-# E-mail user
+# Email user
 'mailnologin' => 'ਕੋਈ ਭੇਜਣ ਐਡਰੈੱਸ ਨਹੀਂ',
 'mailnologintext' => 'ਦੂਜੇ ਮੈਂਬਰਾਂ ਨੂੰ ਈ-ਮੇਲ ਭੇਜਣ ਲਈ ਤੁਹਾਨੂੰ [[Special:UserLogin|ਲਾਗਇਨ]] ਹੋਣਾ ਅਤੇ ਆਪਣੀਆਂ [[Special:Preferences|ਪਸੰਦਾਂ]] ਵਿਚ ਇਕ ਸਹੀ ਈ-ਮੇਲ ਪਤਾ ਦੇਣਾ ਪਵੇਗਾ।',
 'emailuser' => 'ਇਸ ਵਰਤੋਂਕਾਰ ਨੂੰ ਈ-ਮੇਲ ਭੇਜੋ',
@@ -2119,7 +2119,7 @@ delete|ਹਟਾਉਣ ਦਾ ਚਿੱਠਾ]] ਵੇਖੋ।',
 'monthsall' => 'ਸਭ',
 'limitall' => 'ਸਭ',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'ਈਮੇਲ ਐਡਰੈੱਸ ਪੁਸ਼ਟੀ',
 'confirmemail_send' => 'ਇੱਕ ਪੁਸ਼ਟੀ ਕੋਡ ਭੇਜੋ',
 'confirmemail_sent' => 'ਪੁਸ਼ਟੀ ਈਮੇਲ ਭੇਜੀ ਗਈ।',

@@ -806,7 +806,7 @@ $2',
 'loginlanguagelabel' => 'भाषा: $1',
 'suspicious-userlogout' => 'तुमचे अदाखल होणे प्रतिबंधित झाले कारण असे दिसते की ते तुटलेल्या न्याहाळकाद्वारे पाठवले गेले.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'पीएचपीच्या विपत्र() पर्यायात अज्ञात चूक',
 'user-mail-no-addy' => 'ईमेल पत्त्या विना ईमेल पाठवण्यचा प्रयत्न केला',
 
@@ -1438,7 +1438,7 @@ $1",
 'prefs-displaywatchlist' => 'दर्शन पर्याय',
 'prefs-diffs' => 'फरक',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'विपत्रपत्ता वैध आहे',
 'email-address-validity-invalid' => 'वैध विपत्रपत्ता लिहा',
 
@@ -2182,7 +2182,7 @@ Input:contenttype/subtype, e.g. <code>image/jpeg</code>.',
 'listgrouprights-addgroup-self-all' => 'सर्व समूह स्वतःच्या खात्यात मिळवा',
 'listgrouprights-removegroup-self-all' => 'सर्व समूह स्वतःच्या खात्यातून काढून टाका',
 
-# E-mail user
+# Email user
 'mailnologin' => 'पाठविण्याचा पत्ता नाही',
 'mailnologintext' => 'इतर सदस्यांना विपत्र(ई-मेल) पाठवण्याकरिता तुम्ही [[Special:UserLogin|प्रवेश केलेला]] असणे आणि  प्रमाणित (ई-मेल) पत्ता तुमच्या [[Special:Preferences|पसंतीत]] नमुद असणे आवश्यक आहे.',
 'emailuser' => 'या सदस्याला ई-मेल पाठवा',
@@ -3511,7 +3511,7 @@ $1',
 'monthsall' => 'सर्व',
 'limitall' => 'सर्व',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'ई-मेल पत्ता पडताळून पहा',
 'confirmemail_noemail' => '[[Special:Preferences|सदस्य पसंतीत]] तुम्ही प्रमाणित विपत्र (ई-मेल) पत्ता दिलेला नाही.',
 'confirmemail_text' => 'विपत्र सुविधा वापरण्या पूर्वी {{SITENAME}}वर तुमचा विपत्र (ई-मेल) पत्ता प्रमाणित करणे गरजेचे आहे. तुमच्या पत्त्यावर निश्चितीकरण विपत्र (ई-मेल) पाठवण्याकरिता खालील बटण सुरू करा.विपत्रात कुटसंकेतच्(पासवर्ड) असलेला दुवा असेल;तुमचा विपत्र (ई-मेल) पत्ता प्रमाणित करण्या करिता तुमच्या विचरकात हा दिलेला दुवा चढवा.',

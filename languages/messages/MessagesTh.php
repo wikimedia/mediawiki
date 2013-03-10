@@ -2196,7 +2196,7 @@ $UNWATCHURL
 'deletepage' => 'ลบหน้า',
 'confirm' => 'ยืนยัน',
 'excontent' => "เนื้อหาเดิม: '$1'",
-'excontentauthor' => "เนื้อหาเดิม: '$1' (และผู้เขียนคนเดียว คือ '[[Special:Contributions/$2|$2]]')",
+'excontentauthor' => "เนื้อหาเดิม: '$1' (และมีผู้เขียนคนเดียว คือ '[[Special:Contributions/$2|$2]]')",
 'exbeforeblank' => "เนื้อหาก่อนถูกทำว่างคือ: '$1'",
 'exblank' => 'หน้าว่าง',
 'delete-confirm' => 'ลบ "$1"',
@@ -3355,7 +3355,8 @@ $1',
 'confirmemail_invalid' => 'รหัสยืนยันไม่ถูกต้อง 
 รหัสอาจหมดอายุแล้ว',
 'confirmemail_needlogin' => 'ต้อง $1 เพื่อยืนยันที่อยู่อีเมลของคุณ',
-'confirmemail_success' => 'อีเมลคุณได้รับการยืนยันแล้ว ขณะนี้คุณสามารถ[[Special:UserLogin|ล็อกอิน]]และมีความสุขกับวิกินี้',
+'confirmemail_success' => 'อีเมลคุณได้รับการยืนยันแล้ว
+คุณอาจ[[Special:UserLogin|ล็อกอิน]]ตอนนี้และสนุกกับการแก้ไขวิกิ',
 'confirmemail_loggedin' => 'อีเมลคุณได้รับการยืนยันแล้ว',
 'confirmemail_error' => 'เกิดปัญหาขณะบันทึกการยืนยันของคุณ',
 'confirmemail_subject' => 'การยืนยันที่อยู่อีเมล {{SITENAME}}',
