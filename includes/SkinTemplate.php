@@ -1174,6 +1174,7 @@ class SkinTemplate extends Skin {
 		$nav_urls['log'] = false;
 		$nav_urls['blockip'] = false;
 		$nav_urls['emailuser'] = false;
+		$nav_urls['userrights'] = false;
 
 		// A print stylesheet is attached to all pages, but nobody ever
 		// figures that out. :)  Add a link...
@@ -1239,6 +1240,13 @@ class SkinTemplate extends Skin {
 			if ( $this->showEmailUser( $user ) ) {
 				$nav_urls['emailuser'] = array(
 					'href' => self::makeSpecialUrlSubpage( 'Emailuser', $rootUser )
+				);
+			}
+
+			$sur = new UserrightsPage;
+			if ( $sur->userCanExecute( $this->getUser() ) ) {
+				$nav_urls['userrights'] = array(
+					'href' => self::makeSpecialUrlSubpage( 'UserRights', $rootUser )
 				);
 			}
 		}
@@ -1439,7 +1447,7 @@ abstract class BaseTemplate extends QuickTemplate {
 				$toolbox['feeds']['links'][$key]['class'] = 'feedlink';
 			}
 		}
-		foreach ( array( 'contributions', 'log', 'blockip', 'emailuser', 'upload', 'specialpages' ) as $special ) {
+		foreach ( array( 'contributions', 'log', 'blockip', 'emailuser', 'userrights', 'upload', 'specialpages' ) as $special ) {
 			if ( isset( $this->data['nav_urls'][$special] ) && $this->data['nav_urls'][$special] ) {
 				$toolbox[$special] = $this->data['nav_urls'][$special];
 				$toolbox[$special]['id'] = "t-$special";
