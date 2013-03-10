@@ -2313,6 +2313,17 @@ class User {
 	}
 
 	/**
+	 * Delete the given option for a user.
+	 *
+	 * @param $oname String The option to delete
+	 */
+	public function deleteOption( $oname ) {
+		$this->loadOptions();
+
+		unset( $this->mOptions[$oname] );
+	}
+
+	/**
 	 * Return a list of the types of user options currently returned by
 	 * User::getOptionKinds().
 	 *
