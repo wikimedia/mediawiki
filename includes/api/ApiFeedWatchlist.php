@@ -61,9 +61,6 @@ class ApiFeedWatchlist extends ApiBase {
 			if( !isset( $wgFeedClasses[$params['feedformat']] ) ) {
 				$this->dieUsage( 'Invalid subscription feed type', 'feed-invalid' );
 			}
-			if ( !is_null( $params['wlexcludeuser'] ) ) {
-				$fauxReqArr['wlexcludeuser'] = $params['wlexcludeuser'];
-			}
 
 			// limit to the number of hours going from now back
 			$endTime = wfTimestamp( TS_MW, time() - intval( $params['hours'] * 60 * 60 ) );
@@ -80,11 +77,14 @@ class ApiFeedWatchlist extends ApiBase {
 				'wllimit' => ( 50 > $wgFeedLimit ) ? $wgFeedLimit : 50
 			);
 
-			if ( !is_null( $params['wlowner'] ) ) {
+			if ( $params['wlowner'] !== null ) {
 				$fauxReqArr['wlowner'] = $params['wlowner'];
 			}
-			if ( !is_null( $params['wltoken'] ) ) {
+			if ( $params['wltoken'] !== null ) {
 				$fauxReqArr['wltoken'] = $params['wltoken'];
+			}
+			if ( $params['wlexcludeuser'] !== null ) {
+				$fauxReqArr['wlexcludeuser'] = $params['wlexcludeuser'];
 			}
 
 			// Support linking to diffs instead of article
