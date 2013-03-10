@@ -35,6 +35,9 @@ class JobQueueDB extends JobQueue {
 	const MAX_JOB_RANDOM = 2147483647; // integer; 2^31 - 1, used for job_random
 	const MAX_OFFSET = 255; // integer; maximum number of rows to skip
 
+	/** @var BagOStuff */
+	protected $cache;
+
 	protected $cluster = false; // string; name of an external DB cluster
 
 	/**
@@ -48,6 +51,7 @@ class JobQueueDB extends JobQueue {
 	protected function __construct( array $params ) {
 		parent::__construct( $params );
 		$this->cluster = isset( $params['cluster'] ) ? $params['cluster'] : false;
+		$this->cache = wfGetMainCache();
 	}
 
 	protected function supportedOrders() {
@@ -63,11 +67,9 @@ class JobQueueDB extends JobQueue {
 	 * @return bool
 	 */
 	protected function doIsEmpty() {
-		global $wgMemc;
-
 		$key = $this->getCacheKey( 'empty' );
 
-		$isEmpty = $wgMemc->get( $key );
+		$isEmpty = $this->cache->get( $key );
 		if ( $isEmpty === 'true' ) {
 			return true;
 		} elseif ( $isEmpty === 'false' ) {
@@ -78,7 +80,7 @@ class JobQueueDB extends JobQueue {
 		$found = $dbr->selectField( // unclaimed job
 			'job', '1', array( 'job_cmd' => $this->type, 'job_token' => '' ), __METHOD__
 		);
-		$wgMemc->add( $key, $found ? 'false' : 'true', self::CACHE_TTL_LONG );
+		$this->cache->add( $key, $found ? 'false' : 'true', self::CACHE_TTL_LONG );
 
 		return !$found;
 	}
@@ -88,11 +90,9 @@ class JobQueueDB extends JobQueue {
 	 * @return integer
 	 */
 	protected function doGetSize() {
-		global $wgMemc;
-
 		$key = $this->getCacheKey( 'size' );
 
-		$size = $wgMemc->get( $key );
+		$size = $this->cache->get( $key );
 		if ( is_int( $size ) ) {
 			return $size;
 		}
@@ -102,7 +102,7 @@ class JobQueueDB extends JobQueue {
 			array( 'job_cmd' => $this->type, 'job_token' => '' ),
 			__METHOD__
 		);
-		$wgMemc->set( $key, $size, self::CACHE_TTL_SHORT );
+		$this->cache->set( $key, $size, self::CACHE_TTL_SHORT );
 
 		return $size;
 	}
@@ -112,15 +112,13 @@ class JobQueueDB extends JobQueue {
 	 * @return integer
 	 */
 	protected function doGetAcquiredCount() {
-		global $wgMemc;
-
 		if ( $this->claimTTL <= 0 ) {
 			return 0; // no acknowledgements
 		}
 
 		$key = $this->getCacheKey( 'acquiredcount' );
 
-		$count = $wgMemc->get( $key );
+		$count = $this->cache->get( $key );
 		if ( is_int( $count ) ) {
 			return $count;
 		}
@@ -130,7 +128,7 @@ class JobQueueDB extends JobQueue {
 			array( 'job_cmd' => $this->type, "job_token != {$dbr->addQuotes( '' )}" ),
 			__METHOD__
 		);
-		$wgMemc->set( $key, $count, self::CACHE_TTL_SHORT );
+		$this->cache->set( $key, $count, self::CACHE_TTL_SHORT );
 
 		return $count;
 	}
@@ -160,12 +158,11 @@ class JobQueueDB extends JobQueue {
 
 			$key = $this->getCacheKey( 'empty' );
 			$atomic = ( $flags & self::QoS_Atomic );
+			$cache = $this->cache;
 
 			$dbw->onTransactionIdle(
-				function() use ( $dbw, $rowSet, $rowList, $atomic, $key, $scope
+				function() use ( $dbw, $cache, $rowSet, $rowList, $atomic, $key, $scope
 			) {
-				global $wgMemc;
-
 				if ( $atomic ) {
 					$dbw->begin( __METHOD__ ); // wrap all the job additions in one transaction
 				}
@@ -204,7 +201,7 @@ class JobQueueDB extends JobQueue {
 					$dbw->commit( __METHOD__ );
 				}
 
-				$wgMemc->set( $key, 'false', JobQueueDB::CACHE_TTL_LONG );
+				$cache->set( $key, 'false', JobQueueDB::CACHE_TTL_LONG );
 			} );
 		}
 
@@ -216,9 +213,7 @@ class JobQueueDB extends JobQueue {
 	 * @return Job|bool
 	 */
 	protected function doPop() {
-		global $wgMemc;
-
-		if ( $wgMemc->get( $this->getCacheKey( 'empty' ) ) === 'true' ) {
+		if ( $this->cache->get( $this->getCacheKey( 'empty' ) ) === 'true' ) {
 			return false; // queue is empty
 		}
 
@@ -238,7 +233,7 @@ class JobQueueDB extends JobQueue {
 			}
 			// Check if we found a row to reserve...
 			if ( !$row ) {
-				$wgMemc->set( $this->getCacheKey( 'empty' ), 'true', self::CACHE_TTL_LONG );
+				$this->cache->set( $this->getCacheKey( 'empty' ), 'true', self::CACHE_TTL_LONG );
 				break; // nothing to do
 			}
 			wfIncrStats( 'job-pop' );
@@ -272,11 +267,9 @@ class JobQueueDB extends JobQueue {
 	 * @return Row|false
 	 */
 	protected function claimRandom( $uuid, $rand, $gte ) {
-		global $wgMemc;
-
 		list( $dbw, $scope ) = $this->getMasterDB();
 		// Check cache to see if the queue has <= OFFSET items
-		$tinyQueue = $wgMemc->get( $this->getCacheKey( 'small' ) );
+		$tinyQueue = $this->cache->get( $this->getCacheKey( 'small' ) );
 
 		$row = false; // the row acquired
 		$invertedDirection = false; // whether one job_random direction was already scanned
@@ -317,7 +310,7 @@ class JobQueueDB extends JobQueue {
 				);
 				if ( !$row ) {
 					$tinyQueue = true; // we know the queue must have <= MAX_OFFSET rows
-					$wgMemc->set( $this->getCacheKey( 'small' ), 1, 30 );
+					$this->cache->set( $this->getCacheKey( 'small' ), 1, 30 );
 					continue; // use job_random
 				}
 			}
@@ -410,8 +403,6 @@ class JobQueueDB extends JobQueue {
 	 * @return integer Number of jobs recycled/deleted
 	 */
 	public function recycleAndDeleteStaleJobs() {
-		global $wgMemc;
-
 		$now = time();
 		list( $dbw, $scope ) = $this->getMasterDB();
 		$count = 0; // affected rows
@@ -449,7 +440,7 @@ class JobQueueDB extends JobQueue {
 				);
 				$count += $dbw->affectedRows();
 				wfIncrStats( 'job-recycle', $dbw->affectedRows() );
-				$wgMemc->set( $this->getCacheKey( 'empty' ), 'false', self::CACHE_TTL_LONG );
+				$this->cache->set( $this->getCacheKey( 'empty' ), 'false', self::CACHE_TTL_LONG );
 			}
 		}
 
@@ -518,16 +509,15 @@ class JobQueueDB extends JobQueue {
 		// maintained. Having only the de-duplication registration succeed would cause
 		// jobs to become no-ops without any actual jobs that made them redundant.
 		list( $dbw, $scope ) = $this->getMasterDB();
-		$dbw->onTransactionIdle( function() use ( $params, $key, $scope ) {
-			global $wgMemc;
-
-			$timestamp = $wgMemc->get( $key ); // current last timestamp of this job
+		$cache = $this->cache;
+		$dbw->onTransactionIdle( function() use ( $cache, $params, $key, $scope ) {
+			$timestamp = $cache->get( $key ); // current last timestamp of this job
 			if ( $timestamp && $timestamp >= $params['rootJobTimestamp'] ) {
 				return true; // a newer version of this root job was enqueued
 			}
 
 			// Update the timestamp of the last root job started at the location...
-			return $wgMemc->set( $key, $params['rootJobTimestamp'], JobQueueDB::ROOTJOB_TTL );
+			return $cache->set( $key, $params['rootJobTimestamp'], JobQueueDB::ROOTJOB_TTL );
 		} );
 
 		return true;
@@ -540,8 +530,6 @@ class JobQueueDB extends JobQueue {
 	 * @return bool
 	 */
 	protected function isRootJobOldDuplicate( Job $job ) {
-		global $wgMemc;
-
 		$params = $job->getParams();
 		if ( !isset( $params['rootJobSignature'] ) ) {
 			return false; // job has no de-deplication info
@@ -551,7 +539,7 @@ class JobQueueDB extends JobQueue {
 		}
 
 		// Get the last time this root job was enqueued
-		$timestamp = $wgMemc->get( $this->getRootJobCacheKey( $params['rootJobSignature'] ) );
+		$timestamp = $this->cache->get( $this->getRootJobCacheKey( $params['rootJobSignature'] ) );
 
 		// Check if a new root job was started at the location after this one's...
 		return ( $timestamp && $timestamp > $params['rootJobTimestamp'] );
@@ -581,10 +569,8 @@ class JobQueueDB extends JobQueue {
 	 * @return void
 	 */
 	protected function doFlushCaches() {
-		global $wgMemc;
-
 		foreach ( array( 'empty', 'size', 'acquiredcount' ) as $type ) {
-			$wgMemc->delete( $this->getCacheKey( $type ) );
+			$this->cache->delete( $this->getCacheKey( $type ) );
 		}
 	}
 
