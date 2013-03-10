@@ -1,5 +1,5 @@
 ( function ( mw, $ ) {
-	var isReady, toolbar, currentFocused, queue, $toolbar, slice;
+	var isReady, toolbar, $currentFocused, queue, $toolbar, slice;
 
 	isReady = false;
 	queue = [];
@@ -72,8 +72,8 @@
 		 * use sampleText instead of selection if there is none.
 		 */
 		insertTags: function ( tagOpen, tagClose, sampleText ) {
-			if ( currentFocused && currentFocused.length ) {
-				currentFocused.textSelection(
+			if ( $currentFocused && $currentFocused.length ) {
+				$currentFocused.textSelection(
 					'encapsulateSelection', {
 						'pre': tagOpen,
 						'peri': sampleText,
@@ -92,16 +92,15 @@
 	window.addButton = toolbar.addButton;
 	window.insertTags = toolbar.insertTags;
 
-	// Explose API publicly
+	// Expose API publicly
 	mw.toolbar = toolbar;
 
 	$( document ).ready( function () {
 		var buttons, i, b, $iframe;
 
-		// currentFocus is used to determine where to insert tags
-		currentFocused = $( '#wpTextbox1' );
+		// Used to determine where to insert tags
+		$currentFocused = $( '#wpTextbox1' );
 
-		// Populate the selector cache for $toolbar
 		$toolbar = $( '#toolbar' );
 
 		// Legacy: Merge buttons from mwCustomEditButtons
@@ -149,21 +148,8 @@
 		}() );
 
 		$( 'textarea, input:text' ).focus( function () {
-			currentFocused = $(this);
+			$currentFocused = $(this);
 		});
-
-		// HACK: make currentFocused work with the usability iframe
-		// With proper focus detection support (HTML 5!) this'll be much cleaner
-		// TODO: Get rid of this WikiEditor code from MediaWiki core!
-		$iframe = $( '.wikiEditor-ui-text iframe' );
-		if ( $iframe.length > 0 ) {
-			$( $iframe.get( 0 ).contentWindow.document )
-				// for IE
-				.add( $iframe.get( 0 ).contentWindow.document.body )
-				.focus( function () {
-					currentFocused = $iframe;
-				} );
-		}
 	});
 
 }( mediaWiki, jQuery ) );
