@@ -1646,7 +1646,7 @@ class ImportStreamSource {
 	static function newFromUpload( $fieldname = "xmlimport" ) {
 		$upload =& $_FILES[$fieldname];
 
-		if( !isset( $upload ) || !$upload['name'] ) {
+		if( $upload === null || !$upload['name'] ) {
 			return Status::newFatal( 'importnofile' );
 		}
 		if( !empty( $upload['error'] ) ) {
