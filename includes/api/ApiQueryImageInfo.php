@@ -90,6 +90,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 					continue;
 				}
 
+				/** @var $img File */
 				$img = $images[$title];
 
 				if ( self::getTransformCount() >= self::TRANSFORM_LIMIT ) {
@@ -158,6 +159,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				// Get one more to facilitate query-continue functionality
 				$count = ( $gotOne ? 1 : 0 );
 				$oldies = $img->getHistory( $params['limit'] - $count + 1, $start, $params['end'] );
+				/** @var $oldie File */
 				foreach ( $oldies as $oldie ) {
 					if ( ++$count > $params['limit'] ) {
 						// We've reached the extra one which shows that there are additional pages to be had. Stop here...
@@ -452,6 +454,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 
 	/**
 	 * @param $img File
+	 * @param null|string $start
 	 * @return string
 	 */
 	protected function getContinueStr( $img, $start = null ) {
@@ -516,6 +519,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	/**
 	 * Returns array key value pairs of properties and their descriptions
 	 *
+	 * @param string $modulePrefix
 	 * @return array
 	 */
 	private static function getProperties( $modulePrefix = '' ) {
@@ -710,7 +714,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			array( 'code' => "{$p}urlwidth", 'info' => "{$p}urlheight cannot be used without {$p}urlwidth" ),
 			array( 'code' => 'urlparam', 'info' => "Invalid value for {$p}urlparam" ),
 			array( 'code' => 'urlparam_no_width', 'info' => "{$p}urlparam requires {$p}urlwidth" ),
-			array( 'code' => 'urlparam_urlwidth_mismatch', 'info' => "The width set in {$p}urlparm doesnt't " .
+			array( 'code' => 'urlparam_urlwidth_mismatch', 'info' => "The width set in {$p}urlparm doesn't " .
 				"match the one in {$p}urlwidth" ),
 		) );
 	}

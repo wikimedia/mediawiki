@@ -71,6 +71,7 @@ class ApiUpload extends ApiBase {
 		$this->checkPermissions( $user );
 
 		// Fetch the file (usually a no-op)
+		/** @var $status Status */
 		$status = $this->mUpload->fetchFile();
 		if ( !$status->isGood() ) {
 			$errors = $status->getErrorsArray();
@@ -116,13 +117,13 @@ class ApiUpload extends ApiBase {
 	}
 
 	/**
-	 * Get an uplaod result based on upload context
+	 * Get an upload result based on upload context
 	 * @return array
 	 */
 	private function getContextResult() {
 		$warnings = $this->getApiWarnings();
 		if ( $warnings && !$this->mParams['ignorewarnings'] ) {
-			// Get warnings formated in result array format
+			// Get warnings formatted in result array format
 			return $this->getWarningsResult( $warnings );
 		} elseif ( $this->mParams['chunk'] ) {
 			// Add chunk, and get result
@@ -137,7 +138,7 @@ class ApiUpload extends ApiBase {
 	}
 
 	/**
-	 * Get Stash Result, throws an expetion if the file could not be stashed.
+	 * Get Stash Result, throws an exception if the file could not be stashed.
 	 * @param $warnings array Array of Api upload warnings
 	 * @return array
 	 */
@@ -197,6 +198,7 @@ class ApiUpload extends ApiBase {
 			$filekey = $this->performStash();
 		} else {
 			$filekey = $this->mParams['filekey'];
+			/** @var $status Status */
 			$status = $this->mUpload->addChunk(
 				$chunkPath, $chunkSize, $this->mParams['offset'] );
 			if ( !$status->isGood() ) {
@@ -565,6 +567,7 @@ class ApiUpload extends ApiBase {
 			$this->mParams['text'] = $this->mParams['comment'];
 		}
 
+		/** @var $file File */
 		$file = $this->mUpload->getLocalFile();
 		$watch = $this->getWatchlistValue( $this->mParams['watchlist'], $file->getTitle() );
 
@@ -603,6 +606,7 @@ class ApiUpload extends ApiBase {
 					"Failed to start PublishStashedFile.php", 'publishfailed' );
 			}
 		} else {
+			/** @var $status Status */
 			$status = $this->mUpload->performUpload( $this->mParams['comment'],
 				$this->mParams['text'], $watch, $this->getUser() );
 

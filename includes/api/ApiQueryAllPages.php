@@ -347,7 +347,7 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 				'Show info about 4 pages starting at the letter "T"',
 			),
 			'api.php?action=query&generator=allpages&gaplimit=2&gapfilterredir=nonredirects&gapfrom=Re&prop=revisions&rvprop=content' => array(
-				'Show content of first 2 non-redirect pages begining at "Re"',
+				'Show content of first 2 non-redirect pages beginning at "Re"',
 			)
 		);
 	}

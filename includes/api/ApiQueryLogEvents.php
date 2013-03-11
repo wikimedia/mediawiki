@@ -451,7 +451,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				' timestamp      - Adds the timestamp for the event',
 				' comment        - Adds the comment of the event',
 				' parsedcomment  - Adds the parsed comment of the event',
-				' details        - Lists addtional details about the event',
+				' details        - Lists additional details about the event',
 				' tags           - Lists tags for the event',
 			),
 			'type' => 'Filter log entries to only this type',

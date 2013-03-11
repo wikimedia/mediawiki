@@ -69,7 +69,7 @@ class ApiParamInfo extends ApiBase {
 	 * @param array $params user parameters array
 	 * @param string $type parameter name
 	 * @param array $res store results in this array
-	 * @param array $resultObj results object to set indexed tag.
+	 * @param ApiResult $resultObj results object to set indexed tag.
 	 */
 	private function addModulesInfo( $params, $type, &$res, $resultObj ) {
 		if ( !is_array( $params[$type] ) ) {
@@ -291,7 +291,7 @@ class ApiParamInfo extends ApiBase {
 				$retval['props'][] = $propResult;
 			}
 
-			// default is true for query modules, false for other modules, overriden by ApiBase::PROP_LIST
+			// default is true for query modules, false for other modules, overridden by ApiBase::PROP_LIST
 			if ( $listResult === true || ( $listResult !== false && $obj instanceof ApiQueryBase ) ) {
 				$retval['listresult'] = '';
 			}
