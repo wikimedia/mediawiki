@@ -134,7 +134,7 @@ class ApiImageRotate extends ApiBase {
 	 */
 	private function getPageSet() {
 		if ( $this->mPageSet === null ) {
-			$this->mPageSet = new ApiPageSet( $this, 0, NS_FILE);
+			$this->mPageSet = new ApiPageSet( $this, 0, NS_FILE );
 		}
 		return $this->mPageSet;
 	}

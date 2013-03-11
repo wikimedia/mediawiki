@@ -190,7 +190,7 @@ class ExifBitmapHandler extends BitmapHandler {
 		}
 
 		$data = $file->getMetadata();
-		return self::getRotationForExif( $data );
+		return $this->getRotationForExif( $data );
 	}
 
 	/**
