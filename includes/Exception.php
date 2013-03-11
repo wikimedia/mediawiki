@@ -329,11 +329,17 @@ class ErrorPageError extends MWException {
 		$this->msg = $msg;
 		$this->params = $params;
 
+		// Bug 44111: Messages in the log files should be in English and not
+		// customized by the local wiki. So get the default English version for
+		// passing to the parent constructor. Our overridden report() below
+		// makes sure that the page shown to the user is not forced to English.
 		if( $msg instanceof Message ) {
-			parent::__construct( $msg );
+			$enMsg = clone( $msg );
 		} else {
-			parent::__construct( wfMessage( $msg )->text() );
+			$enMsg = wfMessage( $msg, $params );
 		}
+		$enMsg->inLanguage( 'en' )->useDatabase( false );
+		parent::__construct( $enMsg->text() );
 	}
 
 	function report() {
