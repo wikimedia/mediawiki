@@ -6381,6 +6381,14 @@ $wgSiteTypes = array(
 );
 
 /**
+ * Per-session probability from [0,1] that an anonymous user will be given an ID that lasts until the next session.
+ *
+ * @see mediawiki.user.interSessionId()
+ * @since 1.22
+ */
+$wgStudyAnonymousPopulation = 0;
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}
