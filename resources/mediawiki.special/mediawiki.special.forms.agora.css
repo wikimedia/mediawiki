@@ -1,0 +1,29 @@
+/*
+ * When inside the Agora style, disable the border that Vector puts on the div
+ * surrounding the login form.
+ * Also disable the margin and padding that Vector puts around the form.
+ * TODO: Perhaps only do this for Vector?
+ */
+.mw-ui-container #userloginForm, .mw-ui-container #userlogin {
+	border: 0;
+	margin: 0;
+	padding: 0;
+}
+
+/*
+ * Besides errorbox there could be warningbox, successbox, msgbox, though
+ * spage has never seen these in practice.
+ * Vector has styles coloring warningbox cream and successbox green.
+ */
+.mw-ui-vform .errorbox, .mw-ui-vform .warningbox, .mw-ui-vform .successbox {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	font-size: 0.9em;
+	margin: 0 0 1em 0;
+	padding: 0.5em;
+	color: #cc0000;
+	border: 1px solid #fac5c5;
+	background-color: #fae3e3;
+	text-shadow: 0 1px #fae3e3;
+}

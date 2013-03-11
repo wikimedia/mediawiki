@@ -7,6 +7,23 @@
  * @since 1.21
  */
 class SpecialUserlogin extends FormSpecialPage {
+	private $mShowAgora;
+	/**
+	 * Whether to show "Agora"-style forms.
+	 * ?useAgora=1 forces Agora style, ?useAgora=0 forced old-style,
+	 * otherwise consult a global variable.
+	 * @return Boolean
+	 */
+	private function shouldShowAgora() {
+		global $wgRequest, $wgUseAgoraUserLogin;
+
+		if ( $wgRequest->getCheck( 'useAgora' ) ) {
+			return $wgRequest->getBool( 'useAgora' );
+		}
+
+		return (boolean) $wgUseAgoraUserLogin;
+	}
+
 	/**
 	 * Call parent constructor and then make a FakeTemplate
 	 * to accomodate old extensions.
@@ -25,6 +42,7 @@ class SpecialUserlogin extends FormSpecialPage {
 	 * @param $par Unused
 	 */
 	function execute( $par ) {
+		$this->mShowAgora = $this->shouldShowAgora();
 		global $wgSecureLogin;
 		if (
 			$wgSecureLogin &&
@@ -113,11 +131,21 @@ class SpecialUserlogin extends FormSpecialPage {
 
 	/**
 	 * Set a throttle on the form and add the necessary header and
-	 * footer text.
+	 * footer text.  And if showing Agora do lots of stuff.
 	 *
 	 * @param $form HTMLForm object
 	 */
 	function alterForm( HTMLForm $form ) {
+		if ( $this->mShowAgora ) {
+			global $wgOut;
+			// Note this new format implemented in HTMLFormat.
+			$form->setDisplayFormat( 'vform' );
+			$wgOut->addModules( array(
+				'mediawiki.special.userlogin.agora',
+				'mediawiki.ui',
+			) );
+			$form->setWrapperLegend( false );
+		}
 		// Set login throttle.
 		global $wgPasswordAttemptThrottle;
 		if( is_array( $wgPasswordAttemptThrottle ) ) {
@@ -141,8 +169,14 @@ class SpecialUserlogin extends FormSpecialPage {
 
 		wfRunHooks( 'UserLoginAlterForm', array( $form, &$headerText, &$footerText ) );
 
+		// TODO (spage, 2013-03-26) Setting DisplayFormat to 'vform' should
+		// make HTMLForm do this.
+		$form->setWrapperLegend( false );
 		$form->addHeaderText( $headerText );
 		$form->addFooterText( $footerText );
+		// TODO (spage, 2013-03-26) Need to get this to have Agora styles
+		//   'mw-ui-button big block primary'
+		$form->setSubmitTextMsg( 'login' );
 	}
 
 	/**
@@ -209,6 +243,9 @@ class SpecialUserlogin extends FormSpecialPage {
 		// Remember password checkbox if cookies persist outside of browser session.
 		if( $wgCookieExpiration > 0 ) {
 			$expirationDays = ceil( $wgCookieExpiration / ( 3600 * 24 ) );
+			// TODO (spage, 2013-03-26) Agora forms use a different checkbox layout;
+			// either have display format 'vform' do this or clients specify new type
+			// 'labelledCheck'.
 			$a['Remember'] = array(
 				'type' => 'check',
 				'label' => $this->msg( 'remembermypassword' )->numParams( $expirationDays )->text(),
