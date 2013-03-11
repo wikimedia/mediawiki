@@ -1246,7 +1246,7 @@ class SkinTemplate extends Skin {
 			$sur = new UserrightsPage;
 			if ( $sur->userCanExecute( $this->getUser() ) ) {
 				$nav_urls['userrights'] = array(
-					'href' => self::makeSpecialUrlSubpage( 'UserRights', $rootUser )
+					'href' => self::makeSpecialUrlSubpage( 'Userrights', $rootUser )
 				);
 			}
 		}
