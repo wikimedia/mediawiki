@@ -163,7 +163,7 @@ abstract class FileOp {
 	/**
 	 * Update a dependency tracking array to account for this operation
 	 *
-	 * @param $deps Array Prior path reads/writes; format of FileOp::newPredicates()
+	 * @param array $deps Prior path reads/writes; format of FileOp::newPredicates()
 	 * @return Array
 	 */
 	final public function applyDependencies( array $deps ) {
@@ -175,7 +175,7 @@ abstract class FileOp {
 	/**
 	 * Check if this operation changes files listed in $paths
 	 *
-	 * @param $paths Array Prior path reads/writes; format of FileOp::newPredicates()
+	 * @param array $paths Prior path reads/writes; format of FileOp::newPredicates()
 	 * @return boolean
 	 */
 	final public function dependsOn( array $deps ) {
@@ -195,8 +195,8 @@ abstract class FileOp {
 	/**
 	 * Get the file journal entries for this file operation
 	 *
-	 * @param $oPredicates Array Pre-op info about files (format of FileOp::newPredicates)
-	 * @param $nPredicates Array Post-op info about files (format of FileOp::newPredicates)
+	 * @param array $oPredicates Pre-op info about files (format of FileOp::newPredicates)
+	 * @param array $nPredicates Post-op info about files (format of FileOp::newPredicates)
 	 * @return Array
 	 */
 	final public function getJournalEntries( array $oPredicates, array $nPredicates ) {
@@ -392,7 +392,7 @@ abstract class FileOp {
 	/**
 	 * Check if a file will exist in storage when this operation is attempted
 	 *
-	 * @param $source string Storage path
+	 * @param string $source Storage path
 	 * @param $predicates Array
 	 * @return bool
 	 */
@@ -408,7 +408,7 @@ abstract class FileOp {
 	/**
 	 * Get the SHA-1 of a file in storage when this operation is attempted
 	 *
-	 * @param $source string Storage path
+	 * @param string $source Storage path
 	 * @param $predicates Array
 	 * @return string|bool False on failure
 	 */

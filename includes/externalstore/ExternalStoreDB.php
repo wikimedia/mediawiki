@@ -75,7 +75,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	/**
 	 * Get a LoadBalancer for the specified cluster
 	 *
-	 * @param $cluster String: cluster name
+	 * @param string $cluster cluster name
 	 * @return LoadBalancer object
 	 */
 	function &getLoadBalancer( $cluster ) {
@@ -87,7 +87,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	/**
 	 * Get a slave database connection for the specified cluster
 	 *
-	 * @param $cluster String: cluster name
+	 * @param string $cluster cluster name
 	 * @return DatabaseBase object
 	 */
 	function &getSlave( $cluster ) {
@@ -109,7 +109,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	/**
 	 * Get a master database connection for the specified cluster
 	 *
-	 * @param $cluster String: cluster name
+	 * @param string $cluster cluster name
 	 * @return DatabaseBase object
 	 */
 	function &getMaster( $cluster ) {

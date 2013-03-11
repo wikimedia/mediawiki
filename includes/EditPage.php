@@ -476,7 +476,7 @@ class EditPage {
 	 *   "View source for ..." page displaying the source code after the error message.
 	 *
 	 * @since 1.19
-	 * @param $permErrors Array of permissions errors, as returned by
+	 * @param array $permErrors of permissions errors, as returned by
 	 *                    Title::getUserPermissionsErrors().
 	 * @throws PermissionsError
 	 */
@@ -1049,7 +1049,7 @@ class EditPage {
 	 * Get the contents to be preloaded into the box, either set by
 	 * an earlier setPreloadText() or by loading the given page.
 	 *
-	 * @param $preload String: representing the title to preload from.
+	 * @param string $preload representing the title to preload from.
 	 *
 	 * @return String
 	 *
@@ -1068,7 +1068,7 @@ class EditPage {
 	 * Get the contents to be preloaded into the box, either set by
 	 * an earlier setPreloadText() or by loading the given page.
 	 *
-	 * @param $preload String: representing the title to preload from.
+	 * @param string $preload representing the title to preload from.
 	 *
 	 * @return Content
 	 *
@@ -2055,7 +2055,7 @@ class EditPage {
 	 * an exception will be raised. Set $this->allowNonTextContent to true to allow editing of non-textual
 	 * content.
 	 *
-	 * @param String|null|bool $text Text to unserialize
+	 * @param string|null|bool $text Text to unserialize
 	 * @return Content The content object created from $text. If $text was false or null, false resp. null will be
 	 *                 returned instead.
 	 *
@@ -2433,10 +2433,10 @@ class EditPage {
 	 * inferred by the id given to the input. You can remove them both by
 	 * passing array( 'id' => false ) to $userInputAttrs.
 	 *
-	 * @param $summary string The value of the summary input
-	 * @param $labelText string The html to place inside the label
-	 * @param $inputAttrs array of attrs to use on the input
-	 * @param $spanLabelAttrs array of attrs to use on the span inside the label
+	 * @param string $summary The value of the summary input
+	 * @param string $labelText The html to place inside the label
+	 * @param array $inputAttrs of attrs to use on the input
+	 * @param array $spanLabelAttrs of attrs to use on the span inside the label
 	 *
 	 * @return array An array in the format array( $label, $input )
 	 */
@@ -2470,7 +2470,7 @@ class EditPage {
 	 * @param $isSubjectPreview Boolean: true if this is the section subject/title
 	 *                          up top, or false if this is the comment summary
 	 *                          down below the textarea
-	 * @param $summary String: The text of the summary to display
+	 * @param string $summary The text of the summary to display
 	 * @return String
 	 */
 	protected function showSummaryInput( $isSubjectPreview, $summary = "" ) {
@@ -2496,7 +2496,7 @@ class EditPage {
 	 * @param $isSubjectPreview Boolean: true if this is the section subject/title
 	 *                          up top, or false if this is the comment summary
 	 *                          down below the textarea
-	 * @param $summary String: the text of the summary to display
+	 * @param string $summary the text of the summary to display
 	 * @return String
 	 */
 	protected function getSummaryPreview( $isSubjectPreview, $summary = "" ) {
@@ -2569,8 +2569,8 @@ HTML
 	 * The $textoverride method can be used by subclasses overriding showContentForm
 	 * to pass back to this method.
 	 *
-	 * @param $customAttribs array of html attributes to use in the textarea
-	 * @param $textoverride String: optional text to override $this->textarea1 with
+	 * @param array $customAttribs of html attributes to use in the textarea
+	 * @param string $textoverride optional text to override $this->textarea1 with
 	 */
 	protected function showTextbox1( $customAttribs = null, $textoverride = null ) {
 		if ( $this->wasDeletedSinceLastEdit() && $this->formtype == 'save' ) {
@@ -2674,7 +2674,7 @@ HTML
 	 * Append preview output to $wgOut.
 	 * Includes category rendering if this is a category page.
 	 *
-	 * @param $text String: the HTML to be output for the preview.
+	 * @param string $text the HTML to be output for the preview.
 	 */
 	protected function showPreview( $text ) {
 		global $wgOut;
@@ -3297,8 +3297,8 @@ HTML
 	 * Returns an array of html code of the following checkboxes:
 	 * minor and watch
 	 *
-	 * @param $tabindex int Current tabindex
-	 * @param $checked Array of checkbox => bool, where bool indicates the checked
+	 * @param int $tabindex Current tabindex
+	 * @param array $checked of checkbox => bool, where bool indicates the checked
 	 *                 status of the checkbox
 	 *
 	 * @return array
@@ -3348,7 +3348,7 @@ HTML
 	 * Returns an array of html code of the following buttons:
 	 * save, diff, preview and live
 	 *
-	 * @param $tabindex int Current tabindex
+	 * @param int $tabindex Current tabindex
 	 *
 	 * @return array
 	 */
@@ -3477,7 +3477,7 @@ HTML
 	/**
 	 * Produce the stock "your edit contains spam" page
 	 *
-	 * @param $match string|bool Text which triggered one or more filters
+	 * @param string|bool $match Text which triggered one or more filters
 	 * @deprecated since 1.17 Use method spamPageWithContent() instead
 	 */
 	static function spamPage( $match = false ) {

@@ -173,9 +173,9 @@ class UploadFromChunks extends UploadFromFile {
 	/**
 	 * Add a chunk to the temporary directory
 	 *
-	 * @param $chunkPath string path to temporary chunk file
-	 * @param $chunkSize int size of the current chunk
-	 * @param $offset int offset of current chunk ( mutch match database chunk offset )
+	 * @param string $chunkPath path to temporary chunk file
+	 * @param int $chunkSize size of the current chunk
+	 * @param int $offset offset of current chunk ( mutch match database chunk offset )
 	 * @return Status
 	 */
 	public function addChunk( $chunkPath, $chunkSize, $offset ) {

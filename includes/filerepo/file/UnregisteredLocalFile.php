@@ -42,7 +42,7 @@ class UnregisteredLocalFile extends File {
 	var $handler;
 
 	/**
-	 * @param $path string Storage path
+	 * @param string $path Storage path
 	 * @param $mime string
 	 * @return UnregisteredLocalFile
 	 */

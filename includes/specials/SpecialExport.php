@@ -272,7 +272,7 @@ class SpecialExport extends SpecialPage {
 	/**
 	 * Do the actual page exporting
 	 *
-	 * @param $page String: user input on what page(s) to export
+	 * @param string $page user input on what page(s) to export
 	 * @param $history Mixed: one of the WikiExporter history export constants
 	 * @param $list_authors Boolean: Whether to add distinct author list (when
 	 *                      not returning full history)

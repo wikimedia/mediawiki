@@ -42,7 +42,7 @@ class LogEventsList extends ContextSource {
 	 *
 	 * @param $context IContextSource Context to use; formerly it was Skin object.
 	 * @param $unused void Unused; used to be an OutputPage object.
-	 * @param $flags int flags; can be a combinaison of self::NO_ACTION_LINK,
+	 * @param int $flags flags; can be a combinaison of self::NO_ACTION_LINK,
 	 *        self::NO_EXTRA_USER_LINKS or self::USE_REVDEL_CHECKBOXES.
 	 */
 	public function __construct( $context, $unused = null, $flags = 0 ) {
@@ -88,7 +88,7 @@ class LogEventsList extends ContextSource {
 	/**
 	 * Show options for the log list
 	 *
-	 * @param $types string or Array
+	 * @param string $types or Array
 	 * @param $user String
 	 * @param $page String
 	 * @param $pattern String
@@ -449,10 +449,10 @@ class LogEventsList extends ContextSource {
 	 * Show log extract. Either with text and a box (set $msgKey) or without (don't set $msgKey)
 	 *
 	 * @param $out OutputPage|String-by-reference
-	 * @param $types String|Array Log types to show
-	 * @param $page String|Title The page title to show log entries for
-	 * @param $user String The user who made the log entries
-	 * @param $param array Associative Array with the following additional options:
+	 * @param string|array $types Log types to show
+	 * @param string|Title $page The page title to show log entries for
+	 * @param string $user The user who made the log entries
+	 * @param array $param Associative Array with the following additional options:
 	 * - lim Integer Limit of items to show, default is 50
 	 * - conds Array Extra conditions for the query (e.g. "log_action != 'revision'")
 	 * - showIfEmpty boolean Set to false if you don't want any output in case the loglist is empty

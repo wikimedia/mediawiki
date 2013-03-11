@@ -70,7 +70,7 @@ class WebRequest {
 	 * If the REQUEST_URI is not provided we'll fall back on the PATH_INFO
 	 * provided by the server if any and use that to set a 'title' parameter.
 	 *
-	 * @param $want string: If this is not 'all', then the function
+	 * @param string $want If this is not 'all', then the function
 	 * will return an empty array if it determines that the URL is
 	 * inside a rewrite path.
 	 *
@@ -233,9 +233,9 @@ class WebRequest {
 	 * URL rewriting function; tries to extract page title and,
 	 * optionally, one other fixed parameter value from a URL path.
 	 *
-	 * @param $path string: the URL path given from the client
-	 * @param $bases array: one or more URLs, optionally with $1 at the end
-	 * @param $key string: if provided, the matching key in $bases will be
+	 * @param string $path the URL path given from the client
+	 * @param array $bases one or more URLs, optionally with $1 at the end
+	 * @param string $key if provided, the matching key in $bases will be
 	 *             passed on as the value of this URL parameter
 	 * @return array of URL variables to interpolate; empty if no match
 	 */
@@ -262,8 +262,8 @@ class WebRequest {
 	 * Recursively strips slashes from the given array;
 	 * used for undoing the evil that is magic_quotes_gpc.
 	 *
-	 * @param $arr array: will be modified
-	 * @param $topLevel bool Specifies if the array passed is from the top
+	 * @param array $arr will be modified
+	 * @param bool $topLevel Specifies if the array passed is from the top
 	 * level of the source. In PHP5 magic_quotes only escapes the first level
 	 * of keys that belong to an array.
 	 * @return array the original array
@@ -359,7 +359,7 @@ class WebRequest {
 	 * selected by a drop-down menu). For freeform input, see getText().
 	 *
 	 * @param $name String
-	 * @param $default String: optional default (or NULL)
+	 * @param string $default optional default (or NULL)
 	 * @return String
 	 */
 	public function getVal( $name, $default = null ) {
@@ -377,7 +377,7 @@ class WebRequest {
 	/**
 	 * Set an arbitrary value into our get/post data.
 	 *
-	 * @param $key String: key name to use
+	 * @param string $key key name to use
 	 * @param $value Mixed: value to set
 	 * @return Mixed: old value if one was present, null otherwise
 	 */
@@ -390,7 +390,7 @@ class WebRequest {
 	/**
 	 * Unset an arbitrary value from our get/post data.
 	 *
-	 * @param $key String: key name to use
+	 * @param string $key key name to use
 	 * @return Mixed: old value if one was present, null otherwise
 	 */
 	public function unsetVal( $key ) {
@@ -409,7 +409,7 @@ class WebRequest {
 	 * If no source and no default, returns NULL.
 	 *
 	 * @param $name String
-	 * @param $default Array: optional default (or NULL)
+	 * @param array $default optional default (or NULL)
 	 * @return Array
 	 */
 	public function getArray( $name, $default = null ) {
@@ -428,7 +428,7 @@ class WebRequest {
 	 * If an array is returned, contents are guaranteed to be integers.
 	 *
 	 * @param $name String
-	 * @param $default Array: option default (or NULL)
+	 * @param array $default option default (or NULL)
 	 * @return Array of ints
 	 */
 	public function getIntArray( $name, $default = null ) {
@@ -516,7 +516,7 @@ class WebRequest {
 	 * be required - e.g.  Esperanto x-coding).
 	 *
 	 * @param $name String
-	 * @param $default String: optional
+	 * @param string $default optional
 	 * @return String
 	 */
 	public function getText( $name, $default = '' ) {
@@ -609,8 +609,8 @@ class WebRequest {
 	/**
 	 * Get a cookie from the $_COOKIE jar
 	 *
-	 * @param $key String: the name of the cookie
-	 * @param $prefix String: a prefix to use for the cookie name, if not $wgCookiePrefix
+	 * @param string $key the name of the cookie
+	 * @param string $prefix a prefix to use for the cookie name, if not $wgCookiePrefix
 	 * @param $default Mixed: what to return if the value isn't found
 	 * @return Mixed: cookie value or $default if the cookie not set
 	 */
@@ -678,7 +678,7 @@ class WebRequest {
 
 	/**
 	 * Take an arbitrary query and rewrite the present URL to include it
-	 * @param $query String: query string fragment; do not include initial '?'
+	 * @param string $query query string fragment; do not include initial '?'
 	 *
 	 * @return String
 	 */
@@ -690,7 +690,7 @@ class WebRequest {
 	 * HTML-safe version of appendQuery().
 	 * @deprecated: Deprecated in 1.20, warnings in 1.21, remove in 1.22.
 	 *
-	 * @param $query String: query string fragment; do not include initial '?'
+	 * @param string $query query string fragment; do not include initial '?'
 	 * @return String
 	 */
 	public function escapeAppendQuery( $query ) {
@@ -710,8 +710,8 @@ class WebRequest {
 	/**
 	 * Appends or replaces value of query variables.
 	 *
-	 * @param $array Array of values to replace/add to query
-	 * @param $onlyquery Bool: whether to only return the query string and not
+	 * @param array $array of values to replace/add to query
+	 * @param bool $onlyquery whether to only return the query string and not
 	 *                   the complete URL
 	 * @return String
 	 */
@@ -730,7 +730,7 @@ class WebRequest {
 	 * Offset must be positive but is not capped.
 	 *
 	 * @param $deflimit Integer: limit to use if no input and the user hasn't set the option.
-	 * @param $optionname String: to specify an option other than rclimit to pull from.
+	 * @param string $optionname to specify an option other than rclimit to pull from.
 	 * @return array first element is limit, second is offset
 	 */
 	public function getLimitOffset( $deflimit = 50, $optionname = 'rclimit' ) {
@@ -870,7 +870,7 @@ class WebRequest {
 
 	/**
 	 * Get a request header, or false if it isn't set
-	 * @param $name String: case-insensitive header name
+	 * @param string $name case-insensitive header name
 	 *
 	 * @return string|bool False on failure
 	 */
@@ -887,7 +887,7 @@ class WebRequest {
 	/**
 	 * Get data from $_SESSION
 	 *
-	 * @param $key String: name of key in $_SESSION
+	 * @param string $key name of key in $_SESSION
 	 * @return Mixed
 	 */
 	public function getSessionData( $key ) {
@@ -900,7 +900,7 @@ class WebRequest {
 	/**
 	 * Set session data
 	 *
-	 * @param $key String: name of key in $_SESSION
+	 * @param string $key name of key in $_SESSION
 	 * @param $data Mixed
 	 */
 	public function setSessionData( $key, $data ) {
@@ -1162,7 +1162,7 @@ class WebRequestUpload {
 	 * Constructor. Should only be called by WebRequest
 	 *
 	 * @param $request WebRequest The associated request
-	 * @param $key string Key in $_FILES array (name of form field)
+	 * @param string $key Key in $_FILES array (name of form field)
 	 */
 	public function __construct( $request, $key ) {
 		$this->request = $request;
@@ -1274,9 +1274,9 @@ class FauxRequest extends WebRequest {
 	private $session = array();
 
 	/**
-	 * @param $data Array of *non*-urlencoded key => value pairs, the
+	 * @param array $data of *non*-urlencoded key => value pairs, the
 	 *   fake GET/POST values
-	 * @param $wasPosted Bool: whether to treat the data as POST
+	 * @param bool $wasPosted whether to treat the data as POST
 	 * @param $session Mixed: session array or null
 	 * @throws MWException
 	 */

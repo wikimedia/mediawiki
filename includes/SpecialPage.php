@@ -135,7 +135,7 @@ class SpecialPage {
 	 * preferred method is now to add a SpecialPage_initList hook.
 	 * @deprecated since 1.18
 	 *
-	 * @param $name String the page to remove
+	 * @param string $name the page to remove
 	 */
 	static function removePage( $name ) {
 		wfDeprecated( __METHOD__, '1.18' );
@@ -145,7 +145,7 @@ class SpecialPage {
 	/**
 	 * Check if a given name exist as a special page or as a special page alias
 	 *
-	 * @param $name String: name of a special page
+	 * @param string $name name of a special page
 	 * @return Boolean: true if a special page exists with this name
 	 * @deprecated since 1.18 call SpecialPageFactory method directly
 	 */
@@ -253,8 +253,8 @@ class SpecialPage {
 	 * Get a localised Title object for a specified special page name
 	 *
 	 * @param $name String
-	 * @param $subpage String|Bool subpage string, or false to not use a subpage
-	 * @param $fragment String the link fragment (after the "#")
+	 * @param string|Bool $subpage subpage string, or false to not use a subpage
+	 * @param string $fragment the link fragment (after the "#")
 	 * @throws MWException
 	 * @return Title object
 	 */
@@ -271,7 +271,7 @@ class SpecialPage {
 	 * Get a localised Title object for a page name with a possibly unvalidated subpage
 	 *
 	 * @param $name String
-	 * @param $subpage String|Bool subpage string, or false to not use a subpage
+	 * @param string|Bool $subpage subpage string, or false to not use a subpage
 	 * @return Title object or null if the page doesn't exist
 	 */
 	public static function getSafeTitleFor( $name, $subpage = false ) {
@@ -305,12 +305,12 @@ class SpecialPage {
 	 *     If you override execute(), you can recover the default behavior with userCanExecute()
 	 *     and displayRestrictionError()
 	 *
-	 * @param $name String: name of the special page, as seen in links and URLs
-	 * @param $restriction String: user right required, e.g. "block" or "delete"
-	 * @param $listed Bool: whether the page is listed in Special:Specialpages
+	 * @param string $name name of the special page, as seen in links and URLs
+	 * @param string $restriction user right required, e.g. "block" or "delete"
+	 * @param bool $listed whether the page is listed in Special:Specialpages
 	 * @param $function Callback|Bool: function called by execute(). By default it is constructed from $name
-	 * @param $file String: file which is included by execute(). It is also constructed from $name by default
-	 * @param $includable Bool: whether the page can be included in normal pages
+	 * @param string $file file which is included by execute(). It is also constructed from $name by default
+	 * @param bool $includable whether the page can be included in normal pages
 	 */
 	public function __construct(
 		$name = '', $restriction = '', $listed = true,
@@ -322,12 +322,12 @@ class SpecialPage {
 	/**
 	 * Do the real work for the constructor, mainly so __call() can intercept
 	 * calls to SpecialPage()
-	 * @param $name String: name of the special page, as seen in links and URLs
-	 * @param $restriction String: user right required, e.g. "block" or "delete"
-	 * @param $listed Bool: whether the page is listed in Special:Specialpages
+	 * @param string $name name of the special page, as seen in links and URLs
+	 * @param string $restriction user right required, e.g. "block" or "delete"
+	 * @param bool $listed whether the page is listed in Special:Specialpages
 	 * @param $function Callback|Bool: function called by execute(). By default it is constructed from $name
-	 * @param $file String: file which is included by execute(). It is also constructed from $name by default
-	 * @param $includable Bool: whether the page can be included in normal pages
+	 * @param string $file file which is included by execute(). It is also constructed from $name by default
+	 * @param bool $includable whether the page can be included in normal pages
 	 */
 	private function init( $name, $restriction, $listed, $function, $file, $includable ) {
 		$this->mName = $name;
@@ -350,8 +350,8 @@ class SpecialPage {
 	 * Use PHP's magic __call handler to get calls to the old PHP4 constructor
 	 * because PHP E_STRICT yells at you for having __construct() and SpecialPage()
 	 *
-	 * @param $fName String Name of called method
-	 * @param $a Array Arguments to the method
+	 * @param string $fName Name of called method
+	 * @param array $a Arguments to the method
 	 * @throws MWException
 	 * @deprecated since 1.17, call parent::__construct()
 	 */
@@ -673,7 +673,7 @@ class SpecialPage {
 	 * May be overriden, i.e. by extensions to stick with the naming conventions
 	 * for message keys: 'extensionname-xxx'
 	 *
-	 * @param $summaryMessageKey String: message key of the summary
+	 * @param string $summaryMessageKey message key of the summary
 	 */
 	function outputHeader( $summaryMessageKey = '' ) {
 		global $wgContLang;
@@ -983,7 +983,7 @@ abstract class FormSpecialPage extends SpecialPage {
 	/**
 	 * Basic SpecialPage workflow: get a form, send it to the user; get some data back,
 	 *
-	 * @param $par String Subpage string if one was specified
+	 * @param string $par Subpage string if one was specified
 	 */
 	public function execute( $par ) {
 		$this->setParameter( $par );
@@ -1109,7 +1109,7 @@ abstract class RedirectSpecialPage extends UnlistedSpecialPage {
 	 * If the special page is a redirect, then get the Title object it redirects to.
 	 * False otherwise.
 	 *
-	 * @param $par String Subpage string
+	 * @param string $par Subpage string
 	 * @return Title|bool
 	 */
 	abstract public function getRedirect( $par );

@@ -65,7 +65,7 @@ interface Content {
 	 *
 	 * @since 1.21
 	 *
-	 * @param $maxLength int Maximum length of the summary text
+	 * @param int $maxLength Maximum length of the summary text
 	 * @return string The summary text
 	 */
 	public function getTextForSummary( $maxLength = 250 );
@@ -148,7 +148,7 @@ interface Content {
 	 *
 	 * @since 1.21
 	 *
-	 * @param $format string The format to check
+	 * @param string $format The format to check
 	 * @return bool Whether the format is supported
 	 */
 	public function isSupportedFormat( $format );
@@ -240,7 +240,7 @@ interface Content {
 	 *
 	 * @since 1.21
 	 *
-	 * @param $hasLinks Bool: If it is known whether this content contains
+	 * @param bool $hasLinks If it is known whether this content contains
 	 *    links, provide this information here, to avoid redundant parsing to
 	 *    find out.
 	 * @return boolean
@@ -371,7 +371,7 @@ interface Content {
 	 *
 	 * @since 1.21
 	 *
-	 * @param $sectionId string The section's ID, given as a numeric string.
+	 * @param string $sectionId The section's ID, given as a numeric string.
 	 *    The ID "0" retrieves the section before the first heading, "1" the
 	 *    text between the first heading (included) and the second heading
 	 *    (excluded), etc.
@@ -388,7 +388,7 @@ interface Content {
 	 *
 	 * @param $section null/false or a section number (0, 1, 2, T1, T2...), or "new"
 	 * @param $with Content: new content of the section
-	 * @param $sectionTitle String: new section's subject, only if $section is 'new'
+	 * @param string $sectionTitle new section's subject, only if $section is 'new'
 	 * @return string Complete article text, or null if error
 	 */
 	public function replaceSection( $section, Content $with, $sectionTitle = '' );
@@ -491,8 +491,8 @@ interface Content {
 	 * Converts this content object into another content object with the given content model,
 	 * if that is possible.
 	 *
-	 * @param String  $toModel the desired content model, use the CONTENT_MODEL_XXX flags.
-	 * @param String  $lossy flag, set to "lossy" to allow lossy conversion. If lossy conversion is
+	 * @param string  $toModel the desired content model, use the CONTENT_MODEL_XXX flags.
+	 * @param string  $lossy flag, set to "lossy" to allow lossy conversion. If lossy conversion is
 	 * not allowed, full round-trip conversion is expected to work without losing information.
 	 *
 	 * @return Content|bool A content object with the content model $toModel, or false if

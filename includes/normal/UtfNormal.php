@@ -73,7 +73,7 @@ class UtfNormal {
 	 * Fast return for pure ASCII strings; some lesser optimizations for
 	 * strings containing only known-good characters. Not as fast as toNFC().
 	 *
-	 * @param $string String: a UTF-8 string
+	 * @param string $string a UTF-8 string
 	 * @return string a clean, shiny, normalized UTF-8 string
 	 */
 	static function cleanUp( $string ) {
@@ -114,7 +114,7 @@ class UtfNormal {
 	 * Fast return for pure ASCII strings; some lesser optimizations for
 	 * strings containing only known-good characters.
 	 *
-	 * @param $string String: a valid UTF-8 string. Input is not validated.
+	 * @param string $string a valid UTF-8 string. Input is not validated.
 	 * @return string a UTF-8 string in normal form C
 	 */
 	static function toNFC( $string ) {
@@ -132,7 +132,7 @@ class UtfNormal {
 	 * Convert a UTF-8 string to normal form D, canonical decomposition.
 	 * Fast return for pure ASCII strings.
 	 *
-	 * @param $string String: a valid UTF-8 string. Input is not validated.
+	 * @param string $string a valid UTF-8 string. Input is not validated.
 	 * @return string a UTF-8 string in normal form D
 	 */
 	static function toNFD( $string ) {
@@ -151,7 +151,7 @@ class UtfNormal {
 	 * This may cause irreversible information loss, use judiciously.
 	 * Fast return for pure ASCII strings.
 	 *
-	 * @param $string String: a valid UTF-8 string. Input is not validated.
+	 * @param string $string a valid UTF-8 string. Input is not validated.
 	 * @return string a UTF-8 string in normal form KC
 	 */
 	static function toNFKC( $string ) {
@@ -170,7 +170,7 @@ class UtfNormal {
 	 * This may cause irreversible information loss, use judiciously.
 	 * Fast return for pure ASCII strings.
 	 *
-	 * @param $string String: a valid UTF-8 string. Input is not validated.
+	 * @param string $string a valid UTF-8 string. Input is not validated.
 	 * @return string a UTF-8 string in normal form KD
 	 */
 	static function toNFKD( $string ) {
@@ -197,7 +197,7 @@ class UtfNormal {
 	/**
 	 * Returns true if the string is _definitely_ in NFC.
 	 * Returns false if not or uncertain.
-	 * @param $string String: a valid UTF-8 string. Input is not validated.
+	 * @param string $string a valid UTF-8 string. Input is not validated.
 	 * @return bool
 	 */
 	static function quickIsNFC( $string ) {
@@ -237,7 +237,7 @@ class UtfNormal {
 	/**
 	 * Returns true if the string is _definitely_ in NFC.
 	 * Returns false if not or uncertain.
-	 * @param $string String: a UTF-8 string, altered on output to be valid UTF-8 safe for XML.
+	 * @param string $string a UTF-8 string, altered on output to be valid UTF-8 safe for XML.
 	 * @return bool
 	 */
 	static function quickIsNFCVerify( &$string ) {
@@ -503,8 +503,8 @@ class UtfNormal {
 	 * (depending on which decomposition map is passed to us).
 	 * Input is assumed to be *valid* UTF-8. Invalid code will break.
 	 * @private
-	 * @param $string String: valid UTF-8 string
-	 * @param $map Array: hash of expanded decomposition map
+	 * @param string $string valid UTF-8 string
+	 * @param array $map hash of expanded decomposition map
 	 * @return string a UTF-8 string decomposed, not yet normalized (needs sorting)
 	 */
 	static function fastDecompose( $string, $map ) {
@@ -564,7 +564,7 @@ class UtfNormal {
 	 * Sorts combining characters into canonical order. This is the
 	 * final step in creating decomposed normal forms D and KD.
 	 * @private
-	 * @param $string String: a valid, decomposed UTF-8 string. Input is not validated.
+	 * @param string $string a valid, decomposed UTF-8 string. Input is not validated.
 	 * @return string a UTF-8 string with combining characters sorted in canonical order
 	 */
 	static function fastCombiningSort( $string ) {
@@ -616,7 +616,7 @@ class UtfNormal {
 	 * Produces canonically composed sequences, i.e. normal form C or KC.
 	 *
 	 * @private
-	 * @param $string String: a valid UTF-8 string in sorted normal form D or KD. Input is not validated.
+	 * @param string $string a valid UTF-8 string in sorted normal form D or KD. Input is not validated.
 	 * @return string a UTF-8 string with canonical precomposed characters used where possible
 	 */
 	static function fastCompose( $string ) {
@@ -762,7 +762,7 @@ class UtfNormal {
 	 * Function to replace some characters that we don't want
 	 * but most of the native normalize functions keep.
 	 *
-	 * @param $string String The string
+	 * @param string $string The string
 	 * @return String String with the character codes replaced.
 	 */
 	private static function replaceForNativeNormalize( $string ) {

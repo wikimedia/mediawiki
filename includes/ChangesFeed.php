@@ -31,8 +31,8 @@ class ChangesFeed {
 	/**
 	 * Constructor
 	 *
-	 * @param $format String: feed's format (either 'rss' or 'atom')
-	 * @param $type String: type of feed (for cache keys)
+	 * @param string $format feed's format (either 'rss' or 'atom')
+	 * @param string $type type of feed (for cache keys)
 	 */
 	public function __construct( $format, $type ) {
 		$this->format = $format;
@@ -42,9 +42,9 @@ class ChangesFeed {
 	/**
 	 * Get a ChannelFeed subclass object to use
 	 *
-	 * @param $title String: feed's title
-	 * @param $description String: feed's description
-	 * @param $url String: url of origin page
+	 * @param string $title feed's title
+	 * @param string $description feed's description
+	 * @param string $url url of origin page
 	 * @return ChannelFeed subclass or false on failure
 	 */
 	public function getFeedObject( $title, $description, $url ) {
@@ -110,9 +110,9 @@ class ChangesFeed {
 	/**
 	 * Save to feed result to $messageMemc
 	 *
-	 * @param $feed String: feed's content
-	 * @param $timekey String: memcached key of the last modification
-	 * @param $key String: memcached key of the content
+	 * @param string $feed feed's content
+	 * @param string $timekey memcached key of the last modification
+	 * @param string $key memcached key of the content
 	 */
 	public function saveToCache( $feed, $timekey, $key ) {
 		global $messageMemc;
@@ -125,8 +125,8 @@ class ChangesFeed {
 	 * Try to load the feed result from $messageMemc
 	 *
 	 * @param $lastmod Integer: timestamp of the last item in the recentchanges table
-	 * @param $timekey String: memcached key of the last modification
-	 * @param $key String: memcached key of the content
+	 * @param string $timekey memcached key of the last modification
+	 * @param string $key memcached key of the content
 	 * @return string|bool feed's content on cache hit or false on cache miss
 	 */
 	public function loadFromCache( $lastmod, $timekey, $key ) {

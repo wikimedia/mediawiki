@@ -37,7 +37,7 @@ interface LoadMonitor {
 	/**
 	 * Perform pre-connection load ratio adjustment.
 	 * @param $loads array
-	 * @param $group String: the selected query group
+	 * @param string $group the selected query group
 	 * @param $wiki String
 	 */
 	function scaleLoads( &$loads, $group = false, $wiki = false );

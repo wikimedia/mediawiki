@@ -68,7 +68,7 @@ class SearchOracle extends SearchEngine {
 	/**
 	 * Perform a full text search query and return a result set.
 	 *
-	 * @param $term String: raw search term
+	 * @param string $term raw search term
 	 * @return SqlSearchResultSet
 	 */
 	function searchText( $term ) {
@@ -82,7 +82,7 @@ class SearchOracle extends SearchEngine {
 	/**
 	 * Perform a title-only search query and return a result set.
 	 *
-	 * @param $term String: raw search term
+	 * @param string $term raw search term
 	 * @return SqlSearchResultSet
 	 */
 	function searchTitle( $term ) {

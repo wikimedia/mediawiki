@@ -92,7 +92,7 @@ abstract class DatabaseUpdater {
 	 * Constructor
 	 *
 	 * @param $db DatabaseBase object to perform updates on
-	 * @param $shared bool Whether to perform updates on shared tables
+	 * @param bool $shared Whether to perform updates on shared tables
 	 * @param $maintenance Maintenance Maintenance object which created us
 	 */
 	protected function __construct( DatabaseBase &$db, $shared, Maintenance $maintenance = null ) {
@@ -177,7 +177,7 @@ abstract class DatabaseUpdater {
 	/**
 	 * Output some text. If we're running from web, escape the text first.
 	 *
-	 * @param $str String: Text to output
+	 * @param string $str Text to output
 	 */
 	public function output( $str ) {
 		if ( $this->maintenance->isQuiet() ) {
@@ -197,7 +197,7 @@ abstract class DatabaseUpdater {
 	 *
 	 * @since 1.17
 	 *
-	 * @param $update Array: the update to run. Format is the following:
+	 * @param array $update the update to run. Format is the following:
 	 *                first item is the callback function, it also can be a
 	 *                simple string with the name of a function in this class,
 	 *                following elements are parameters to the function.
@@ -214,8 +214,8 @@ abstract class DatabaseUpdater {
 	 *
 	 * @since 1.18
 	 *
-	 * @param $tableName String Name of table to create
-	 * @param $sqlPath String Full path to the schema file
+	 * @param string $tableName Name of table to create
+	 * @param string $sqlPath Full path to the schema file
 	 */
 	public function addExtensionTable( $tableName, $sqlPath ) {
 		$this->extensionUpdates[] = array( 'addTable', $tableName, $sqlPath, true );
@@ -261,9 +261,9 @@ abstract class DatabaseUpdater {
 	 *
 	 * @since 1.21
 	 *
-	 * @param $tableName string The table name
-	 * @param $indexName string The index name
-	 * @param $sqlPath string The path to the SQL change path
+	 * @param string $tableName The table name
+	 * @param string $indexName The index name
+	 * @param string $sqlPath The path to the SQL change path
 	 */
 	public function dropExtensionIndex( $tableName, $indexName, $sqlPath ) {
 		$this->extensionUpdates[] = array( 'dropIndex', $tableName, $indexName, $sqlPath, true );
@@ -285,11 +285,11 @@ abstract class DatabaseUpdater {
 	 *
 	 * @since 1.21
 	 *
-	 * @param $tableName string The table name
-	 * @param $oldIndexName string The old index name
-	 * @param $newIndexName string The new index name
+	 * @param string $tableName The table name
+	 * @param string $oldIndexName The old index name
+	 * @param string $newIndexName The new index name
 	 * @param $skipBothIndexExistWarning Boolean: Whether to warn if both the old and the new indexes exist. [facultative; by default, false]
-	 * @param $sqlPath string The path to the SQL change path
+	 * @param string $sqlPath The path to the SQL change path
 	 */
 	public function renameExtensionIndex( $tableName, $oldIndexName, $newIndexName, $sqlPath, $skipBothIndexExistWarning = false ) {
 		$this->extensionUpdates[] = array( 'renameIndex', $tableName, $oldIndexName, $newIndexName, $skipBothIndexExistWarning, $sqlPath, true );
@@ -298,9 +298,9 @@ abstract class DatabaseUpdater {
 	/**
 	 * @since 1.21
 	 *
-	 * @param $tableName string The table name
-	 * @param $fieldName string The field to be modified
-	 * @param $sqlPath string The path to the SQL change path
+	 * @param string $tableName The table name
+	 * @param string $fieldName The field to be modified
+	 * @param string $sqlPath The path to the SQL change path
 	 */
 	public function modifyExtensionField( $tableName, $fieldName, $sqlPath) {
 		$this->extensionUpdates[] = array( 'modifyField', $tableName, $fieldName, $sqlPath, true );
@@ -324,7 +324,7 @@ abstract class DatabaseUpdater {
 	 *
 	 * @since 1.19
 	 *
-	 * @param $class string Name of a Maintenance subclass
+	 * @param string $class Name of a Maintenance subclass
 	 */
 	public function addPostDatabaseUpdateMaintenance( $class ) {
 		$this->postDatabaseUpdateMaintenance[] = $class;
@@ -370,7 +370,7 @@ abstract class DatabaseUpdater {
 	/**
 	 * Do all the updates
 	 *
-	 * @param $what Array: what updates to perform
+	 * @param array $what what updates to perform
 	 */
 	public function doUpdates( $what = array( 'core', 'extensions', 'stats' ) ) {
 		global $wgVersion, $wgLocalisationCacheConf;
@@ -412,7 +412,7 @@ abstract class DatabaseUpdater {
 	/**
 	 * Helper function for doUpdates()
 	 *
-	 * @param $updates Array of updates to run
+	 * @param array $updates of updates to run
 	 * @param $passSelf Boolean: whether to pass this object we calling external
 	 *                  functions
 	 */
@@ -459,7 +459,7 @@ abstract class DatabaseUpdater {
 	 * Helper function: check if the given key is present in the updatelog table.
 	 * Obviously, only use this for updates that occur after the updatelog table was
 	 * created!
-	 * @param $key String Name of the key to check for
+	 * @param string $key Name of the key to check for
 	 *
 	 * @return bool
 	 */
@@ -477,8 +477,8 @@ abstract class DatabaseUpdater {
 	 * Helper function: Add a key to the updatelog table
 	 * Obviously, only use this for updates that occur after the updatelog table was
 	 * created!
-	 * @param $key String Name of key to insert
-	 * @param $val String [optional] value to insert along with the key
+	 * @param string $key Name of key to insert
+	 * @param string $val [optional] value to insert along with the key
 	 */
 	public function insertUpdateRow( $key, $val = null ) {
 		$this->db->clearFlag( DBO_DDLMODE );
@@ -508,7 +508,7 @@ abstract class DatabaseUpdater {
 	 * Updates will be prevented if the table is a shared table and it is not
 	 * specified to run updates on shared tables.
 	 *
-	 * @param $name String table name
+	 * @param string $name table name
 	 * @return bool
 	 */
 	protected function doTable( $name ) {
@@ -580,7 +580,7 @@ abstract class DatabaseUpdater {
 	/**
 	 * Append an SQL fragment to the open file handle.
 	 *
-	 * @param $filename String: File name to open
+	 * @param string $filename File name to open
 	 */
 	public function copyFile( $filename ) {
 		$this->db->sourceFile( $filename, false, false, false,
@@ -594,7 +594,7 @@ abstract class DatabaseUpdater {
 	 *
 	 * This is used as a callback for for sourceLine().
 	 *
-	 * @param $line String text to append to the file
+	 * @param string $line text to append to the file
 	 * @return Boolean false to skip actually executing the file
 	 * @throws MWException
 	 */
@@ -609,9 +609,9 @@ abstract class DatabaseUpdater {
 	/**
 	 * Applies a SQL patch
 	 *
-	 * @param $path String Path to the patch file
+	 * @param string $path Path to the patch file
 	 * @param $isFullPath Boolean Whether to treat $path as a relative or not
-	 * @param $msg String Description of the patch
+	 * @param string $msg Description of the patch
 	 * @return boolean false if patch is skipped.
 	 */
 	protected function applyPatch( $path, $isFullPath = false, $msg = null ) {
@@ -640,8 +640,8 @@ abstract class DatabaseUpdater {
 	/**
 	 * Add a new table to the database
 	 *
-	 * @param $name String Name of the new table
-	 * @param $patch String Path to the patch file
+	 * @param string $name Name of the new table
+	 * @param string $patch Path to the patch file
 	 * @param $fullpath Boolean Whether to treat $patch path as a relative or not
 	 * @return Boolean false if this was skipped because schema changes are skipped
 	 */
@@ -661,9 +661,9 @@ abstract class DatabaseUpdater {
 	/**
 	 * Add a new field to an existing table
 	 *
-	 * @param $table String Name of the table to modify
-	 * @param $field String Name of the new field
-	 * @param $patch String Path to the patch file
+	 * @param string $table Name of the table to modify
+	 * @param string $field Name of the new field
+	 * @param string $patch Path to the patch file
 	 * @param $fullpath Boolean Whether to treat $patch path as a relative or not
 	 * @return Boolean false if this was skipped because schema changes are skipped
 	 */
@@ -685,9 +685,9 @@ abstract class DatabaseUpdater {
 	/**
 	 * Add a new index to an existing table
 	 *
-	 * @param $table String Name of the table to modify
-	 * @param $index String Name of the new index
-	 * @param $patch String Path to the patch file
+	 * @param string $table Name of the table to modify
+	 * @param string $index Name of the new index
+	 * @param string $patch Path to the patch file
 	 * @param $fullpath Boolean Whether to treat $patch path as a relative or not
 	 * @return Boolean false if this was skipped because schema changes are skipped
 	 */
@@ -709,9 +709,9 @@ abstract class DatabaseUpdater {
 	/**
 	 * Drop a field from an existing table
 	 *
-	 * @param $table String Name of the table to modify
-	 * @param $field String Name of the old field
-	 * @param $patch String Path to the patch file
+	 * @param string $table Name of the table to modify
+	 * @param string $field Name of the old field
+	 * @param string $patch Path to the patch file
 	 * @param $fullpath Boolean Whether to treat $patch path as a relative or not
 	 * @return Boolean false if this was skipped because schema changes are skipped
 	 */
@@ -731,9 +731,9 @@ abstract class DatabaseUpdater {
 	/**
 	 * Drop an index from an existing table
 	 *
-	 * @param $table String: Name of the table to modify
-	 * @param $index String: Name of the index
-	 * @param $patch String: Path to the patch file
+	 * @param string $table Name of the table to modify
+	 * @param string $index Name of the index
+	 * @param string $patch Path to the patch file
 	 * @param $fullpath Boolean: Whether to treat $patch path as a relative or not
 	 * @return Boolean false if this was skipped because schema changes are skipped
 	 */
@@ -753,11 +753,11 @@ abstract class DatabaseUpdater {
 	/**
 	 * Rename an index from an existing table
 	 *
-	 * @param $table String: Name of the table to modify
-	 * @param $oldIndex String: Old name of the index
-	 * @param $newIndex String: New name of the index
+	 * @param string $table Name of the table to modify
+	 * @param string $oldIndex Old name of the index
+	 * @param string $newIndex New name of the index
 	 * @param $skipBothIndexExistWarning Boolean: Whether to warn if both the old and the new indexes exist.
-	 * @param $patch String: Path to the patch file
+	 * @param string $patch Path to the patch file
 	 * @param $fullpath Boolean: Whether to treat $patch path as a relative or not
 	 * @return Boolean false if this was skipped because schema changes are skipped
 	 */
@@ -828,9 +828,9 @@ abstract class DatabaseUpdater {
 	/**
 	 * Modify an existing field
 	 *
-	 * @param $table String: name of the table to which the field belongs
-	 * @param $field String: name of the field to modify
-	 * @param $patch String: path to the patch file
+	 * @param string $table name of the table to which the field belongs
+	 * @param string $field name of the field to modify
+	 * @param string $patch path to the patch file
 	 * @param $fullpath Boolean: whether to treat $patch path as a relative or not
 	 * @return Boolean false if this was skipped because schema changes are skipped
 	 */

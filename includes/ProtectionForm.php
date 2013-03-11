@@ -201,7 +201,7 @@ class ProtectionForm {
 	/**
 	 * Show the input form with optional error message
 	 *
-	 * @param $err String: error message or null if there's no error
+	 * @param string $err error message or null if there's no error
 	 */
 	function show( $err = null ) {
 		global $wgOut;
@@ -554,8 +554,8 @@ class ProtectionForm {
 	/**
 	 * Build protection level selector
 	 *
-	 * @param $action String: action to protect
-	 * @param $selected String: current protection level
+	 * @param string $action action to protect
+	 * @param string $selected current protection level
 	 * @return String: HTML fragment
 	 */
 	function buildSelector( $action, $selected ) {
@@ -594,7 +594,7 @@ class ProtectionForm {
 	/**
 	 * Prepare the label for a protection selector option
 	 *
-	 * @param $permission String: permission required
+	 * @param string $permission permission required
 	 * @return String
 	 */
 	private function getOptionLabel( $permission ) {

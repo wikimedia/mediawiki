@@ -66,7 +66,7 @@ class LSLockManager extends QuorumLockManager {
 	 *                    each having an odd-numbered list of server names (peers) as values.
 	 *   - connTimeout  : Lock server connection attempt timeout. [optional]
 	 *
-	 * @param Array $config
+	 * @param array $config
 	 */
 	public function __construct( array $config ) {
 		parent::__construct( $config );

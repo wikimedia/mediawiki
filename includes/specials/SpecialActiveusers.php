@@ -50,7 +50,7 @@ class ActiveUsersPager extends UsersPager {
 	/**
 	 * @param $context IContextSource
 	 * @param $group null Unused
-	 * @param $par string Parameter passed to the page
+	 * @param string $par Parameter passed to the page
 	 */
 	function __construct( IContextSource $context = null, $group = null, $par = null ) {
 		global $wgActiveUserDays;

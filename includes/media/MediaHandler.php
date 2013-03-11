@@ -103,7 +103,7 @@ abstract class MediaHandler {
 	 * can't be determined.
 	 *
 	 * @param $image File: the image object, or false if there isn't one
-	 * @param $path String: the filename
+	 * @param string $path the filename
 	 * @return Array Follow the format of PHP getimagesize() internal function. See http://www.php.net/getimagesize
 	 */
 	abstract function getImageSize( $image, $path );
@@ -113,7 +113,7 @@ abstract class MediaHandler {
 	 *
 	 * @param $image File: the image object, or false if there isn't one.
 	 *   Warning, FSFile::getPropsFromPath might pass an (object)array() instead (!)
-	 * @param $path String: the filename
+	 * @param string $path the filename
 	 * @return String
 	 */
 	function getMetadata( $image, $path ) { return ''; }
@@ -199,9 +199,9 @@ abstract class MediaHandler {
 	 * actually do the transform.
 	 *
 	 * @param $image File: the image object
-	 * @param $dstPath String: filesystem destination path
-	 * @param $dstUrl String: Destination URL to use in output HTML
-	 * @param $params Array: Arbitrary set of parameters validated by $this->validateParam()
+	 * @param string $dstPath filesystem destination path
+	 * @param string $dstUrl Destination URL to use in output HTML
+	 * @param array $params Arbitrary set of parameters validated by $this->validateParam()
 	 * @return MediaTransformOutput
 	 */
 	final function getTransform( $image, $dstPath, $dstUrl, $params ) {
@@ -213,9 +213,9 @@ abstract class MediaHandler {
 	 * transform unless $flags contains self::TRANSFORM_LATER.
 	 *
 	 * @param $image File: the image object
-	 * @param $dstPath String: filesystem destination path
-	 * @param $dstUrl String: destination URL to use in output HTML
-	 * @param $params Array: arbitrary set of parameters validated by $this->validateParam()
+	 * @param string $dstPath filesystem destination path
+	 * @param string $dstUrl destination URL to use in output HTML
+	 * @param array $params arbitrary set of parameters validated by $this->validateParam()
 	 * @param $flags Integer: a bitfield, may contain self::TRANSFORM_LATER
 	 *
 	 * @return MediaTransformOutput
@@ -360,7 +360,7 @@ abstract class MediaHandler {
 	 *
 	 * This is used by the media handlers that use the FormatMetadata class
 	 *
-	 * @param $metadataArray Array metadata array
+	 * @param array $metadataArray metadata array
 	 * @return array for use displaying metadata.
 	 */
 	function formatMetadataHelper( $metadataArray ) {
@@ -412,17 +412,17 @@ abstract class MediaHandler {
 	 * @param &$array Array An array containing elements for each type of visibility
 	 * and each of those elements being an array of metadata items. This function adds
 	 * a value to that array.
-	 * @param $visibility string ('visible' or 'collapsed') if this value is hidden
+	 * @param string $visibility ('visible' or 'collapsed') if this value is hidden
 	 * by default.
-	 * @param $type String type of metadata tag (currently always 'exif')
-	 * @param $id String the name of the metadata tag (like 'artist' for example).
+	 * @param string $type type of metadata tag (currently always 'exif')
+	 * @param string $id the name of the metadata tag (like 'artist' for example).
 	 * its name in the table displayed is the message "$type-$id" (Ex exif-artist ).
-	 * @param $value String thingy goes into a wikitext table; it used to be escaped but
+	 * @param string $value thingy goes into a wikitext table; it used to be escaped but
 	 * that was incompatible with previous practise of customized display
 	 * with wikitext formatting via messages such as 'exif-model-value'.
 	 * So the escaping is taken back out, but generally this seems a confusing
 	 * interface.
-	 * @param $param String value to pass to the message for the name of the field
+	 * @param string $param value to pass to the message for the name of the field
 	 * as $1. Currently this parameter doesn't seem to ever be used.
 	 *
 	 * Note, everything here is passed through the parser later on (!)
@@ -519,7 +519,7 @@ abstract class MediaHandler {
 	 * match the handler class, a Status object should be returned containing
 	 * relevant errors.
 	 *
-	 * @param $fileName string The local path to the file.
+	 * @param string $fileName The local path to the file.
 	 * @return Status object
 	 */
 	function verifyUpload( $fileName ) {
@@ -530,8 +530,8 @@ abstract class MediaHandler {
 	 * Check for zero-sized thumbnails. These can be generated when
 	 * no disk space is available or some other error occurs
 	 *
-	 * @param $dstPath string The location of the suspect file
-	 * @param $retval int Return value of some shell process, file will be deleted if this is non-zero
+	 * @param string $dstPath The location of the suspect file
+	 * @param int $retval Return value of some shell process, file will be deleted if this is non-zero
 	 * @return bool True if removed, false otherwise
 	 */
 	function removeBadFile( $dstPath, $retval = 0 ) {

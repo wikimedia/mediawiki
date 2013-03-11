@@ -153,7 +153,7 @@ class LBFactory_Multi extends LBFactory {
 	}
 
 	/**
-	 * @param String $cluster
+	 * @param string $cluster
 	 * @param bool $wiki
 	 * @throws MWException
 	 * @return LoadBalancer

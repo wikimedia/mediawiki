@@ -265,8 +265,8 @@ class LinksUpdate extends SqlDataUpdate {
 
 	/**
 	 * Update all the appropriate counts in the category table.
-	 * @param $added array associative array of category name => sort key
-	 * @param $deleted array associative array of category name => sort key
+	 * @param array $added associative array of category name => sort key
+	 * @param array $deleted associative array of category name => sort key
 	 */
 	function updateCategoryCounts( $added, $deleted ) {
 		$a = WikiPage::factory( $this->mTitle );
@@ -430,7 +430,7 @@ class LinksUpdate extends SqlDataUpdate {
 	/**
 	 * Get an array of category insertions
 	 *
-	 * @param $existing array mapping existing category names to sort keys. If both
+	 * @param array $existing mapping existing category names to sort keys. If both
 	 * match a link in $this, the link will be omitted from the output
 	 *
 	 * @return array
@@ -474,7 +474,7 @@ class LinksUpdate extends SqlDataUpdate {
 	/**
 	 * Get an array of interlanguage link insertions
 	 *
-	 * @param $existing Array mapping existing language codes to titles
+	 * @param array $existing mapping existing language codes to titles
 	 *
 	 * @return array
 	 */
@@ -884,8 +884,8 @@ class LinksDeletionUpdate extends SqlDataUpdate {
 
 	/**
 	 * Update all the appropriate counts in the category table.
-	 * @param $added array associative array of category name => sort key
-	 * @param $deleted array associative array of category name => sort key
+	 * @param array $added associative array of category name => sort key
+	 * @param array $deleted associative array of category name => sort key
 	 */
 	function updateCategoryCounts( $added, $deleted ) {
 		$a = WikiPage::factory( $this->mTitle );

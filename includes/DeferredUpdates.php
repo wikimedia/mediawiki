@@ -66,7 +66,7 @@ class DeferredUpdates {
 	/**
 	 * Do any deferred updates and clear the list
 	 *
-	 * @param $commit String: set to 'commit' to commit after every update to
+	 * @param string $commit set to 'commit' to commit after every update to
 	 *                prevent lock contention
 	 */
 	public static function doUpdates( $commit = '' ) {

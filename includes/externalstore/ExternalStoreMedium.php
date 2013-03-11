@@ -33,7 +33,7 @@ abstract class ExternalStoreMedium {
 	protected $params = array();
 
 	/**
-	 * @param $params array Options
+	 * @param array $params Options
 	 */
 	public function __construct( array $params = array() ) {
 		$this->params = $params;
@@ -42,7 +42,7 @@ abstract class ExternalStoreMedium {
 	/**
 	 * Fetch data from given external store URL
 	 *
-	 * @param $url string An external store URL
+	 * @param string $url An external store URL
 	 * @return string|bool The text stored or false on error
 	 * @throws MWException
 	 */
@@ -51,8 +51,8 @@ abstract class ExternalStoreMedium {
 	/**
 	 * Insert a data item into a given location
 	 *
-	 * @param $location string: the location name
-	 * @param $data string: the data item
+	 * @param string $location the location name
+	 * @param string $data the data item
 	 * @return string|bool The URL of the stored data item, or false on error
 	 * @throws MWException
 	 */

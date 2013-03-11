@@ -120,7 +120,7 @@ class MWInit {
 	 *
 	 *    require( MWInit::extSetupPath( 'ParserFunctions/ParserFunctions.php' ) );
 	 *
-	 * @param $extRel string The path relative to the extensions directory, as defined by
+	 * @param string $extRel The path relative to the extensions directory, as defined by
 	 *   $wgExtensionsDirectory.
 	 *
 	 * @return string

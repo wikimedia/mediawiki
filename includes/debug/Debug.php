@@ -135,7 +135,7 @@ class MWDebug {
 	 * @since 1.19
 	 * @param $msg string
 	 * @param $callerOffset int
-	 * @param $level int A PHP error level. See sendWarning()
+	 * @param int $level A PHP error level. See sendWarning()
 	 * @return mixed
 	 */
 	public static function warning( $msg, $callerOffset = 1, $level = E_USER_NOTICE ) {
@@ -162,9 +162,9 @@ class MWDebug {
 	 * - MediaWiki's debug log, if $wgDevelopmentWarnings is set to false.
 	 *
 	 * @since 1.19
-	 * @param $function string: Function that is deprecated.
-	 * @param $version string|bool: Version in which the function was deprecated.
-	 * @param $component string|bool: Component to which the function belongs.
+	 * @param string $function Function that is deprecated.
+	 * @param string|bool $version Version in which the function was deprecated.
+	 * @param string|bool $component Component to which the function belongs.
 	 *     If false, it is assumbed the function is in MediaWiki core.
 	 * @param $callerOffset integer: How far up the callstack is the original
 	 *    caller. 2 = function that called the function that called
@@ -270,8 +270,8 @@ class MWDebug {
 	 * Send a warning either to the debug log or by triggering an user PHP
 	 * error depending on $wgDevelopmentWarnings.
 	 *
-	 * @param $msg string Message to send
-	 * @param $caller array caller description get from getCallerDescription()
+	 * @param string $msg Message to send
+	 * @param array $caller caller description get from getCallerDescription()
 	 * @param $level error level to use if $wgDevelopmentWarnings is true
 	 */
 	private static function sendWarning( $msg, $caller, $level ) {

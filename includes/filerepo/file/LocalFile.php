@@ -123,7 +123,7 @@ class LocalFile extends File {
 	 * Create a LocalFile from a SHA-1 key
 	 * Do not call this except from inside a repo class.
 	 *
-	 * @param $sha1 string base-36 SHA-1
+	 * @param string $sha1 base-36 SHA-1
 	 * @param $repo LocalRepo
 	 * @param string|bool $timestamp MW_timestamp (optional)
 	 *
@@ -644,7 +644,7 @@ class LocalFile extends File {
 	/**
 	 * Returns ID or name of user who uploaded the file
 	 *
-	 * @param $type string 'text' or 'id'
+	 * @param string $type 'text' or 'id'
 	 * @return int|string
 	 */
 	function getUser( $type = 'text' ) {
@@ -763,7 +763,7 @@ class LocalFile extends File {
 
 	/**
 	 * Get all thumbnail names previously generated for this file
-	 * @param $archiveName string|bool Name of an archive file, default false
+	 * @param string|bool $archiveName Name of an archive file, default false
 	 * @return array first element is the base dir, then files in that base dir.
 	 */
 	function getThumbnails( $archiveName = false ) {
@@ -827,7 +827,7 @@ class LocalFile extends File {
 
 	/**
 	 * Delete cached transformed files for an archived version only.
-	 * @param $archiveName string name of the archived file
+	 * @param string $archiveName name of the archived file
 	 */
 	function purgeOldThumbnails( $archiveName ) {
 		global $wgUseSquid;
@@ -895,8 +895,8 @@ class LocalFile extends File {
 
 	/**
 	 * Delete a list of thumbnails visible at urls
-	 * @param $dir string base dir of the files.
-	 * @param $files array of strings: relative filenames (to $dir)
+	 * @param string $dir base dir of the files.
+	 * @param array $files of strings: relative filenames (to $dir)
 	 */
 	protected function purgeThumbList( $dir, $files ) {
 		$fileListDebug = strtr(
@@ -1046,15 +1046,15 @@ class LocalFile extends File {
 
 	/**
 	 * Upload a file and record it in the DB
-	 * @param $srcPath String: source storage path, virtual URL, or filesystem path
-	 * @param $comment String: upload description
-	 * @param $pageText String: text to use for the new description page,
+	 * @param string $srcPath source storage path, virtual URL, or filesystem path
+	 * @param string $comment upload description
+	 * @param string $pageText text to use for the new description page,
 	 *                  if a new description page is created
 	 * @param $flags Integer|bool: flags for publish()
-	 * @param $props Array|bool: File properties, if known. This can be used to reduce the
+	 * @param array|bool $props File properties, if known. This can be used to reduce the
 	 *               upload time when uploading virtual URLs for which the file info
 	 *               is already known
-	 * @param $timestamp String|bool: timestamp for img_timestamp, or false to use the current time
+	 * @param string|bool $timestamp timestamp for img_timestamp, or false to use the current time
 	 * @param $user User|null: User object or null to use $wgUser
 	 *
 	 * @return FileRepoStatus object. On success, the value member contains the
@@ -1372,10 +1372,10 @@ class LocalFile extends File {
 	 * The archive name should be passed through to recordUpload for database
 	 * registration.
 	 *
-	 * @param $srcPath String: local filesystem path to the source image
+	 * @param string $srcPath local filesystem path to the source image
 	 * @param $flags Integer: a bitwise combination of:
 	 *     File::DELETE_SOURCE	Delete the source file, i.e. move rather than copy
-	 * @param $options Array Optional additional parameters
+	 * @param array $options Optional additional parameters
 	 * @return FileRepoStatus object. On success, the value member contains the
 	 *     archive name, or an empty string if it was a new file.
 	 */
@@ -1390,11 +1390,11 @@ class LocalFile extends File {
 	 * The archive name should be passed through to recordUpload for database
 	 * registration.
 	 *
-	 * @param $srcPath String: local filesystem path to the source image
-	 * @param $dstRel String: target relative path
+	 * @param string $srcPath local filesystem path to the source image
+	 * @param string $dstRel target relative path
 	 * @param $flags Integer: a bitwise combination of:
 	 *     File::DELETE_SOURCE	Delete the source file, i.e. move rather than copy
-	 * @param $options Array Optional additional parameters
+	 * @param array $options Optional additional parameters
 	 * @return FileRepoStatus object. On success, the value member contains the
 	 *     archive name, or an empty string if it was a new file.
 	 */
@@ -1550,7 +1550,7 @@ class LocalFile extends File {
 	 *
 	 * May throw database exceptions on error.
 	 *
-	 * @param $versions array set of record ids of deleted items to restore,
+	 * @param array $versions set of record ids of deleted items to restore,
 	 *                    or empty to restore all revisions.
 	 * @param $unsuppress Boolean
 	 * @return FileRepoStatus

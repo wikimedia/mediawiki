@@ -204,7 +204,7 @@ class FileBackendMultiWrite extends FileBackend {
 	/**
 	 * Check that a set of files are consistent across all internal backends
 	 *
-	 * @param $paths Array List of storage paths
+	 * @param array $paths List of storage paths
 	 * @return Status
 	 */
 	public function consistencyCheck( array $paths ) {
@@ -270,7 +270,7 @@ class FileBackendMultiWrite extends FileBackend {
 	/**
 	 * Check that a set of file paths are usable across all internal backends
 	 *
-	 * @param $paths Array List of storage paths
+	 * @param array $paths List of storage paths
 	 * @return Status
 	 */
 	public function accessibilityCheck( array $paths ) {
@@ -295,7 +295,7 @@ class FileBackendMultiWrite extends FileBackend {
 	 * Check that a set of files are consistent across all internal backends
 	 * and re-synchronize those files againt the "multi master" if needed.
 	 *
-	 * @param $paths Array List of storage paths
+	 * @param array $paths List of storage paths
 	 * @return Status
 	 */
 	public function resyncFiles( array $paths ) {
@@ -336,7 +336,7 @@ class FileBackendMultiWrite extends FileBackend {
 	/**
 	 * Get a list of file storage paths to read or write for a list of operations
 	 *
-	 * @param $ops Array Same format as doOperations()
+	 * @param array $ops Same format as doOperations()
 	 * @return Array List of storage paths to files (does not include directories)
 	 */
 	protected function fileStoragePathsForOps( array $ops ) {
@@ -359,7 +359,7 @@ class FileBackendMultiWrite extends FileBackend {
 	 * Substitute the backend name in storage path parameters
 	 * for a set of operations with that of a given internal backend.
 	 *
-	 * @param $ops Array List of file operation arrays
+	 * @param array $ops List of file operation arrays
 	 * @param $backend FileBackendStore
 	 * @return Array
 	 */
@@ -380,7 +380,7 @@ class FileBackendMultiWrite extends FileBackend {
 	/**
 	 * Same as substOpBatchPaths() but for a single operation
 	 *
-	 * @param $ops array File operation array
+	 * @param array $ops File operation array
 	 * @param $backend FileBackendStore
 	 * @return Array
 	 */
@@ -392,7 +392,7 @@ class FileBackendMultiWrite extends FileBackend {
 	/**
 	 * Substitute the backend of storage paths with an internal backend's name
 	 *
-	 * @param $paths Array|string List of paths or single string path
+	 * @param array|string $paths List of paths or single string path
 	 * @param $backend FileBackendStore
 	 * @return Array|string
 	 */
@@ -407,7 +407,7 @@ class FileBackendMultiWrite extends FileBackend {
 	/**
 	 * Substitute the backend of internal storage paths with the proxy backend's name
 	 *
-	 * @param $paths Array|string List of paths or single string path
+	 * @param array|string $paths List of paths or single string path
 	 * @return Array|string
 	 */
 	protected function unsubstPaths( $paths ) {
@@ -447,7 +447,7 @@ class FileBackendMultiWrite extends FileBackend {
 	}
 
 	/**
-	 * @param $path string Storage path
+	 * @param string $path Storage path
 	 * @return bool Path container should have dir changes pushed to all backends
 	 */
 	protected function replicateContainerDirChanges( $path ) {

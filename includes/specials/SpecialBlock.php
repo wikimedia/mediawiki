@@ -225,7 +225,7 @@ class SpecialBlock extends FormSpecialPage {
 	/**
 	 * If the user has already been blocked with similar settings, load that block
 	 * and change the defaults for the form fields to match the existing settings.
-	 * @param $fields Array HTMLForm descriptor array
+	 * @param array $fields HTMLForm descriptor array
 	 * @return Bool whether fields were altered (that is, whether the target is
 	 *     already blocked)
 	 */
@@ -451,7 +451,7 @@ class SpecialBlock extends FormSpecialPage {
 	/**
 	 * Determine the target of the block, and the type of target
 	 * TODO: should be in Block.php?
-	 * @param $par String subpage parameter passed to setup, or data value from
+	 * @param string $par subpage parameter passed to setup, or data value from
 	 *     the HTMLForm
 	 * @param $request WebRequest optionally try and get data from a request too
 	 * @return array( User|string|null, Block::TYPE_ constant|null )
@@ -521,7 +521,7 @@ class SpecialBlock extends FormSpecialPage {
 	 * Validate a block target.
 	 *
 	 * @since 1.21
-	 * @param String $value Block target to check
+	 * @param string $value Block target to check
 	 * @param User $user Performer of the block
 	 * @return Status
 	 */
@@ -810,7 +810,7 @@ class SpecialBlock extends FormSpecialPage {
 	/**
 	 * Convert a submitted expiry time, which may be relative ("2 weeks", etc) or absolute
 	 * ("24 May 2034", etc), into an absolute timestamp we can put into the database.
-	 * @param $expiry String: whatever was typed into the form
+	 * @param string $expiry whatever was typed into the form
 	 * @return String: timestamp or "infinity" string for the DB implementation
 	 */
 	public static function parseExpiryInput( $expiry ) {
@@ -883,7 +883,7 @@ class SpecialBlock extends FormSpecialPage {
 	/**
 	 * Return a comma-delimited list of "flags" to be passed to the log
 	 * reader for this block, to provide more information in the logs
-	 * @param $data Array from HTMLForm data
+	 * @param array $data from HTMLForm data
 	 * @param $type Block::TYPE_ constant (USER, RANGE, or IP)
 	 * @return string
 	 */

@@ -116,7 +116,7 @@ class CacheTime {
 	 * per-article cache invalidation timestamps, or if it comes from
 	 * an incompatible older version.
 	 *
-	 * @param $touched String: the affected article's last touched timestamp
+	 * @param string $touched the affected article's last touched timestamp
 	 * @return Boolean
 	 */
 	public function expired( $touched ) {

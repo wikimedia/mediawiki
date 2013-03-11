@@ -278,7 +278,7 @@ abstract class ExternalUser {
 	 * This is part of the core code and is not overridable by specific
 	 * plugins.  It's in this class only for convenience.
 	 *
-	 * @param $id int user_id
+	 * @param int $id user_id
 	 */
 	final public function linkToLocal( $id ) {
 		$dbw = wfGetDB( DB_MASTER );

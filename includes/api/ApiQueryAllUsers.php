@@ -37,7 +37,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 	/**
 	 * This function converts the user name to a canonical form
 	 * which is stored in the database.
-	 * @param String $name
+	 * @param string $name
 	 * @return String
 	 */
 	private function getCanonicalUserName( $name ) {

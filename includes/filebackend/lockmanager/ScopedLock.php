@@ -43,7 +43,7 @@ class ScopedLock {
 
 	/**
 	 * @param $manager LockManager
-	 * @param $paths Array List of storage paths
+	 * @param array $paths List of storage paths
 	 * @param $type integer LockManager::LOCK_* constant
 	 * @param $status Status
 	 */
@@ -62,7 +62,7 @@ class ScopedLock {
 	 * The status object is updated with any errors or warnings.
 	 *
 	 * @param $manager LockManager
-	 * @param $paths Array List of storage paths
+	 * @param array $paths List of storage paths
 	 * @param $type integer LockManager::LOCK_* constant
 	 * @param $status Status
 	 * @return ScopedLock|null Returns null on failure

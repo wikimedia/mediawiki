@@ -140,9 +140,9 @@ class DateFormatter {
 	}
 
 	/**
-	 * @param $preference String: User preference
-	 * @param $text String: Text to reformat
-	 * @param $options Array: can contain 'linked' and/or 'match-whole'
+	 * @param string $preference User preference
+	 * @param string $text Text to reformat
+	 * @param array $options can contain 'linked' and/or 'match-whole'
 	 * @return mixed|String
 	 */
 	function reformat( $preference, $text, $options = array( 'linked' ) ) {
@@ -321,7 +321,7 @@ class DateFormatter {
 
 	/**
 	 * Makes an ISO month, e.g. 02, from a month name
-	 * @param $monthName String: month name
+	 * @param string $monthName month name
 	 * @return string ISO month name
 	 */
 	function makeIsoMonth( $monthName ) {
@@ -331,7 +331,7 @@ class DateFormatter {
 
 	/**
 	 * @todo document
-	 * @param $year String: Year name
+	 * @param string $year Year name
 	 * @return string ISO year name
 	 */
 	function makeIsoYear( $year ) {

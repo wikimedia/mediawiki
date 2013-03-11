@@ -726,7 +726,7 @@ __INDEXATTR__;
 	 * @param $table   String: Name of the table to insert to.
 	 * @param $args    Array: Items to insert into the table.
 	 * @param $fname   String: Name of the function, for profiling
-	 * @param $options String or Array. Valid options: IGNORE
+	 * @param string $options or Array. Valid options: IGNORE
 	 *
 	 * @return bool Success of insert operation. IGNORE always returns true.
 	 */
@@ -1347,7 +1347,7 @@ SQL;
 	 *
 	 * @private
 	 *
-	 * @param $ins String: SQL string, read from a stream (usually tables.sql)
+	 * @param string $ins SQL string, read from a stream (usually tables.sql)
 	 *
 	 * @return string SQL string
 	 */
@@ -1371,7 +1371,7 @@ SQL;
 	 *
 	 * @private
 	 *
-	 * @param $options Array: an associative array of options to be turned into
+	 * @param array $options an associative array of options to be turned into
 	 *              an SQL query, valid keys are listed in the function.
 	 * @return array
 	 */
@@ -1441,8 +1441,8 @@ SQL;
 	 * Check to see if a named lock is available. This is non-blocking.
 	 * See http://www.postgresql.org/docs/8.2/static/functions-admin.html#FUNCTIONS-ADVISORY-LOCKS
 	 *
-	 * @param $lockName String: name of lock to poll
-	 * @param $method String: name of method calling us
+	 * @param string $lockName name of lock to poll
+	 * @param string $method name of method calling us
 	 * @return Boolean
 	 * @since 1.20
 	 */

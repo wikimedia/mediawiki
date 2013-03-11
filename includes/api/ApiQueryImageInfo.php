@@ -193,7 +193,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 
 	/**
 	 * From parameters, construct a 'scale' array
-	 * @param $params Array: Parameters passed to api.
+	 * @param array $params Parameters passed to api.
 	 * @return Array or Null: key-val array of 'width' and 'height', or null
 	 */
 	public function getScale( $params ) {
@@ -224,8 +224,8 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	 * We do this later than getScale, since we need the image
 	 * to know which handler, since handlers can make their own parameters.
 	 * @param File $image Image that params are for.
-	 * @param Array $thumbParams thumbnail parameters from getScale
-	 * @param String $otherParams of otherParams (iiurlparam).
+	 * @param array $thumbParams thumbnail parameters from getScale
+	 * @param string $otherParams of otherParams (iiurlparam).
 	 * @return Array of parameters for transform.
 	 */
 	protected function mergeThumbParams ( $image, $thumbParams, $otherParams ) {
@@ -272,10 +272,10 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	 * Get result information for an image revision
 	 *
 	 * @param $file File object
-	 * @param $prop Array of properties to get (in the keys)
+	 * @param array $prop of properties to get (in the keys)
 	 * @param $result ApiResult object
-	 * @param $thumbParams Array containing 'width' and 'height' items, or null
-	 * @param $version string Version of image metadata (for things like jpeg which have different versions).
+	 * @param array $thumbParams containing 'width' and 'height' items, or null
+	 * @param string $version Version of image metadata (for things like jpeg which have different versions).
 	 * @return Array: result array
 	 */
 	static function getInfo( $file, $prop, $result, $thumbParams = null, $version = 'latest' ) {

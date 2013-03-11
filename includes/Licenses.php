@@ -211,7 +211,7 @@ class License {
 	/**
 	 * Constructor
 	 *
-	 * @param $str String: license name??
+	 * @param string $str license name??
 	 */
 	function __construct( $str ) {
 		list( $text, $template ) = explode( '|', strrev( $str ), 2 );

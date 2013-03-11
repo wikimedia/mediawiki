@@ -126,11 +126,11 @@ class Html {
 	 * content model.  If $wgWellFormedXml is false, then a few bytes will be
 	 * shaved off the HTML output as well.
 	 *
-	 * @param $element string The element's name, e.g., 'a'
-	 * @param $attribs array  Associative array of attributes, e.g., array(
+	 * @param string $element The element's name, e.g., 'a'
+	 * @param array $attribs  Associative array of attributes, e.g., array(
 	 *   'href' => 'http://www.mediawiki.org/' ). See expandAttributes() for
 	 *   further documentation.
-	 * @param $contents string The raw HTML contents of the element: *not*
+	 * @param string $contents The raw HTML contents of the element: *not*
 	 *   escaped!
 	 * @return string Raw HTML
 	 */
@@ -250,7 +250,7 @@ class Html {
 	 * it returns the empty string when that's guaranteed to be safe.
 	 *
 	 * @since 1.17
-	 * @param $element string Name of the element, e.g., 'a'
+	 * @param string $element Name of the element, e.g., 'a'
 	 * @return string A closing tag, if required
 	 */
 	public static function closeElement( $element ) {
@@ -287,8 +287,8 @@ class Html {
 	 * only guarantees that the output array should be functionally identical
 	 * to the input array (currently per the HTML 5 draft as of 2009-09-06).
 	 *
-	 * @param $element string Name of the element, e.g., 'a'
-	 * @param $attribs array  Associative array of attributes, e.g., array(
+	 * @param string $element Name of the element, e.g., 'a'
+	 * @param array $attribs  Associative array of attributes, e.g., array(
 	 *   'href' => 'http://www.mediawiki.org/' ).  See expandAttributes() for
 	 *   further documentation.
 	 * @return array An array of attributes functionally identical to $attribs
@@ -435,7 +435,7 @@ class Html {
 	 *     // gives '<em class="bar quux"></em>'
 	 * @endcode
 	 *
-	 * @param $attribs array Associative array of attributes, e.g., array(
+	 * @param array $attribs Associative array of attributes, e.g., array(
 	 *   'href' => 'http://www.mediawiki.org/' ).  Values will be HTML-escaped.
 	 *   A value of false means to omit the attribute.  For boolean attributes,
 	 *   you can omit the key, e.g., array( 'checked' ) instead of
@@ -598,7 +598,7 @@ class Html {
 	 * @todo do some useful escaping as well, like if $contents contains
 	 * literal "</script>" or (for XML) literal "]]>".
 	 *
-	 * @param $contents string JavaScript
+	 * @param string $contents JavaScript
 	 * @return string Raw HTML
 	 */
 	public static function inlineScript( $contents ) {
@@ -641,7 +641,7 @@ class Html {
 	 * (if any).  TODO: do some useful escaping as well, like if $contents
 	 * contains literal "</style>" (admittedly unlikely).
 	 *
-	 * @param $contents string CSS
+	 * @param string $contents CSS
 	 * @param $media mixed A media type string, like 'screen'
 	 * @return string Raw HTML
 	 */
@@ -683,7 +683,7 @@ class Html {
 	 * @param $name    string name attribute
 	 * @param $value   mixed  value attribute
 	 * @param $type    string type attribute
-	 * @param $attribs array  Associative array of miscellaneous extra
+	 * @param array $attribs  Associative array of miscellaneous extra
 	 *   attributes, passed to Html::element()
 	 * @return string Raw HTML
 	 */
@@ -700,7 +700,7 @@ class Html {
 	 *
 	 * @param $name    string name attribute
 	 * @param $value   string value attribute
-	 * @param $attribs array  Associative array of miscellaneous extra
+	 * @param array $attribs  Associative array of miscellaneous extra
 	 *   attributes, passed to Html::element()
 	 * @return string Raw HTML
 	 */
@@ -718,7 +718,7 @@ class Html {
 	 *
 	 * @param $name    string name attribute
 	 * @param $value   string value attribute
-	 * @param $attribs array  Associative array of miscellaneous extra
+	 * @param array $attribs  Associative array of miscellaneous extra
 	 *   attributes, passed to Html::element()
 	 * @return string Raw HTML
 	 */
@@ -757,7 +757,7 @@ class Html {
 	 * - label: text for label to add before the field
 	 * - exclude: [optional] Array of namespace ids to exclude
 	 * - disable: [optional] Array of namespace ids for which the option should be disabled in the selector
-	 * @param $selectAttribs array HTML attributes for the generated select element.
+	 * @param array $selectAttribs HTML attributes for the generated select element.
 	 * - id:   [optional], default: 'namespace'
 	 * - name: [optional], default: 'namespace'
 	 * @return string HTML code to select a namespace.
@@ -852,7 +852,7 @@ class Html {
 	 * Constructs the opening html-tag with necessary doctypes depending on
 	 * global variables.
 	 *
-	 * @param $attribs array  Associative array of miscellaneous extra
+	 * @param array $attribs  Associative array of miscellaneous extra
 	 *   attributes, passed to Html::element() of html tag.
 	 * @return string  Raw HTML
 	 */
@@ -914,10 +914,10 @@ class Html {
 	/**
 	 * Get HTML for an info box with an icon.
 	 *
-	 * @param $text String: wikitext, get this with wfMessage()->plain()
-	 * @param $icon String: icon name, file in skins/common/images
-	 * @param $alt String: alternate text for the icon
-	 * @param $class String: additional class name to add to the wrapper div
+	 * @param string $text wikitext, get this with wfMessage()->plain()
+	 * @param string $icon icon name, file in skins/common/images
+	 * @param string $alt alternate text for the icon
+	 * @param string $class additional class name to add to the wrapper div
 	 * @param $useStylePath
 	 *
 	 * @return string

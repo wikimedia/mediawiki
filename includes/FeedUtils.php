@@ -33,8 +33,8 @@ class FeedUtils {
 	 * If the feed should be purged; $timekey and $key will be removed from
 	 * $messageMemc
 	 *
-	 * @param $timekey String: cache key of the timestamp of the last item
-	 * @param $key String: cache key of feed's content
+	 * @param string $timekey cache key of the timestamp of the last item
+	 * @param string $key cache key of feed's content
 	 */
 	public static function checkPurge( $timekey, $key ) {
 		global $wgRequest, $wgUser, $messageMemc;
@@ -48,7 +48,7 @@ class FeedUtils {
 	/**
 	 * Check whether feeds can be used and that $type is a valid feed type
 	 *
-	 * @param $type String: feed type, as requested by the user
+	 * @param string $type feed type, as requested by the user
 	 * @return Boolean
 	 */
 	public static function checkFeedOutput( $type ) {
@@ -98,8 +98,8 @@ class FeedUtils {
 	 * @param $oldid Integer: old revision's id
 	 * @param $newid Integer: new revision's id
 	 * @param $timestamp Integer: new revision's timestamp
-	 * @param $comment String: new revision's comment
-	 * @param $actiontext String: text of the action; in case of log event
+	 * @param string $comment new revision's comment
+	 * @param string $actiontext text of the action; in case of log event
 	 * @return String
 	 */
 	public static function formatDiffRow( $title, $oldid, $newid, $timestamp, $comment, $actiontext = '' ) {
@@ -236,7 +236,7 @@ class FeedUtils {
 	 * Might be 'cleaner' to use DOM or XSLT or something,
 	 * but *gack* it's a pain in the ass.
 	 *
-	 * @param $text String: diff's HTML output
+	 * @param string $text diff's HTML output
 	 * @return String: modified HTML
 	 */
 	public static function applyDiffStyle( $text ) {

@@ -206,7 +206,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 	 * the client, but some day we might find a case where it should be
 	 * different.
 	 *
-	 * @param $key string The key used by the caller, or false if there wasn't one.
+	 * @param string $key The key used by the caller, or false if there wasn't one.
 	 * @param $result Mixed The return value
 	 * @return Mixed
 	 */

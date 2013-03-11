@@ -572,7 +572,7 @@ class JobQueueRedis extends JobQueue {
 	}
 
 	/**
-	 * @param $uid string Job UID
+	 * @param string $uid Job UID
 	 * @return bool Whether $uid is a SHA-1 hash based identifier for de-duplication
 	 */
 	protected function isHashUid( $uid ) {

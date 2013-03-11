@@ -40,7 +40,7 @@ class XmlTypeCheck {
 	public $rootElement = '';
 
 	/**
-	 * @param $file string filename
+	 * @param string $file filename
 	 * @param $filterCallback callable (optional)
 	 *        Function to call to do additional custom validity checks from the
 	 *        SAX element handler event. This gives you access to the element

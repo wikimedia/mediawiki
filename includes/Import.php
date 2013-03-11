@@ -330,8 +330,8 @@ class WikiImporter {
 	 * @param $title Title
 	 * @param $origTitle Title
 	 * @param $revCount Integer
-	 * @param $sucCount Int: number of revisions for which callback returned true
-	 * @param $pageInfo Array: associative array of page information
+	 * @param int $sucCount number of revisions for which callback returned true
+	 * @param array $pageInfo associative array of page information
 	 */
 	private function pageOutCallback( $title, $origTitle, $revCount, $sucCount, $pageInfo ) {
 		if( isset( $this->mPageOutCallback ) ) {

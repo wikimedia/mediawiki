@@ -66,7 +66,7 @@ class Categoryfinder {
 	 * Initializes the instance. Do this prior to calling run().
 	 * @param $article_ids Array of article IDs
 	 * @param $categories FIXME
-	 * @param $mode String: FIXME, default 'AND'.
+	 * @param string $mode FIXME, default 'AND'.
 	 * @todo FIXME: $categories/$mode
 	 */
 	function seed( $article_ids, $categories, $mode = 'AND' ) {
@@ -111,9 +111,9 @@ class Categoryfinder {
 
 	/**
 	 * This functions recurses through the parent representation, trying to match the conditions
-	 * @param $id int The article/category to check
-	 * @param $conds array The array of categories to match
-	 * @param $path array used to check for recursion loops
+	 * @param int $id The article/category to check
+	 * @param array $conds The array of categories to match
+	 * @param array $path used to check for recursion loops
 	 * @return bool Does this match the conditions?
 	 */
 	function check( $id, &$conds, $path = array() ) {

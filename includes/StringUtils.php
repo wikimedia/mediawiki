@@ -115,11 +115,11 @@ class StringUtils {
 	 * start, so e.g. /*\/ is not considered to be both the start and end of a
 	 * comment. /*\/xy/*\/ is considered to be a single comment with contents /xy/.
 	 *
-	 * @param $startDelim String: start delimiter
-	 * @param $endDelim String: end delimiter
+	 * @param string $startDelim start delimiter
+	 * @param string $endDelim end delimiter
 	 * @param $callback Callback: function to call on each match
 	 * @param $subject String
-	 * @param $flags String: regular expression flags
+	 * @param string $flags regular expression flags
 	 * @throws MWException
 	 * @return string
 	 */
@@ -200,12 +200,12 @@ class StringUtils {
 	 *
 	 *   preg_replace( "!$startDelim(.*)$endDelim!$flags", $replace, $subject )
 	 *
-	 * @param $startDelim String: start delimiter regular expression
-	 * @param $endDelim String: end delimiter regular expression
-	 * @param $replace String: replacement string. May contain $1, which will be
+	 * @param string $startDelim start delimiter regular expression
+	 * @param string $endDelim end delimiter regular expression
+	 * @param string $replace replacement string. May contain $1, which will be
 	 *                 replaced by the text between the delimiters
-	 * @param $subject String to search
-	 * @param $flags String: regular expression flags
+	 * @param string $subject to search
+	 * @param string $flags regular expression flags
 	 * @return String: The string with the matches replaced
 	 */
 	static function delimiterReplace( $startDelim, $endDelim, $replace, $subject, $flags = '' ) {

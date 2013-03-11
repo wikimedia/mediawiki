@@ -32,8 +32,8 @@ class UserRightsProxy {
 	 * @see newFromId()
 	 * @see newFromName()
 	 * @param $db DatabaseBase: db connection
-	 * @param $database String: database name
-	 * @param $name String: user name
+	 * @param string $database database name
+	 * @param string $name user name
 	 * @param $id Integer: user ID
 	 */
 	private function __construct( $db, $database, $name, $id ) {
@@ -56,7 +56,7 @@ class UserRightsProxy {
 	/**
 	 * Confirm the selected database name is a valid local interwiki database name.
 	 *
-	 * @param $database String: database name
+	 * @param string $database database name
 	 * @return Boolean
 	 */
 	public static function validDatabase( $database ) {
@@ -67,7 +67,7 @@ class UserRightsProxy {
 	/**
 	 * Same as User::whoIs()
 	 *
-	 * @param $database String: database name
+	 * @param string $database database name
 	 * @param $id Integer: user ID
 	 * @param $ignoreInvalidDB Boolean: if true, don't check if $database is in $wgLocalDatabases
 	 * @return String: user name or false if the user doesn't exist
@@ -84,7 +84,7 @@ class UserRightsProxy {
 	/**
 	 * Factory function; get a remote user entry by ID number.
 	 *
-	 * @param $database String: database name
+	 * @param string $database database name
 	 * @param $id Integer: user ID
 	 * @param $ignoreInvalidDB Boolean: if true, don't check if $database is in $wgLocalDatabases
 	 * @return UserRightsProxy or null if doesn't exist
@@ -96,8 +96,8 @@ class UserRightsProxy {
 	/**
 	 * Factory function; get a remote user entry by name.
 	 *
-	 * @param $database String: database name
-	 * @param $name String: user name
+	 * @param string $database database name
+	 * @param string $name user name
 	 * @param $ignoreInvalidDB Boolean: if true, don't check if $database is in $wgLocalDatabases
 	 * @return UserRightsProxy or null if doesn't exist
 	 */

@@ -1172,8 +1172,8 @@ abstract class Installer {
 	 *
 	 * Used only by environment checks.
 	 *
-	 * @param $path String: path to search
-	 * @param $names Array of executable names
+	 * @param string $path path to search
+	 * @param array $names of executable names
 	 * @param $versionInfo Boolean false or array with two members:
 	 *		 0 => Command to run for version check, with $1 for the full executable name
 	 *		 1 => String to compare the output with
@@ -1277,7 +1277,7 @@ abstract class Installer {
 	/**
 	 * Checks for presence of an Apache module. Works only if PHP is running as an Apache module, too.
 	 *
-	 * @param $moduleName String: Name of module to check.
+	 * @param string $moduleName Name of module to check.
 	 * @return bool
 	 */
 	public static function apacheModulePresent( $moduleName ) {
@@ -1434,8 +1434,8 @@ abstract class Installer {
 	/**
 	 * Actually perform the installation.
 	 *
-	 * @param $startCB Array A callback array for the beginning of each step
-	 * @param $endCB Array A callback array for the end of each step
+	 * @param array $startCB A callback array for the beginning of each step
+	 * @param array $endCB A callback array for the end of each step
 	 *
 	 * @return Array of Status objects
 	 */
@@ -1642,9 +1642,9 @@ abstract class Installer {
 	/**
 	 * Add an installation step following the given step.
 	 *
-	 * @param $callback Array A valid installation callback array, in this form:
+	 * @param array $callback A valid installation callback array, in this form:
 	 *    array( 'name' => 'some-unique-name', 'callback' => array( $obj, 'function' ) );
-	 * @param $findStep String the step to find. Omit to put the step at the beginning
+	 * @param string $findStep the step to find. Omit to put the step at the beginning
 	 */
 	public function addInstallStep( $callback, $findStep = 'BEGINNING' ) {
 		$this->extraInstallSteps[$findStep][] = $callback;

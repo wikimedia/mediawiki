@@ -339,7 +339,7 @@ class ApiQueryInfo extends ApiQueryBase {
 
 	/**
 	 * Get a result array with information about a title
-	 * @param $pageid int Page ID (negative for missing titles)
+	 * @param int $pageid Page ID (negative for missing titles)
 	 * @param $title Title object
 	 * @return array
 	 */

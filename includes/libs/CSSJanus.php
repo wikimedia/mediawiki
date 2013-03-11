@@ -123,7 +123,7 @@ class CSSJanus {
 
 	/**
 	 * Transform an LTR stylesheet to RTL
-	 * @param $css String: stylesheet to transform
+	 * @param string $css stylesheet to transform
 	 * @param $swapLtrRtlInURL Boolean: If true, swap 'ltr' and 'rtl' in URLs
 	 * @param $swapLeftRightInURL Boolean: If true, swap 'left' and 'right' in URLs
 	 * @return string Transformed stylesheet
@@ -305,8 +305,8 @@ class CSSJanus_Tokenizer {
 
 	/**
 	 * Constructor
-	 * @param $regex string Regular expression whose matches to replace by a token.
-	 * @param $token string Token
+	 * @param string $regex Regular expression whose matches to replace by a token.
+	 * @param string $token Token
 	 */
 	public function __construct( $regex, $token ) {
 		$this->regex = $regex;
@@ -317,7 +317,7 @@ class CSSJanus_Tokenizer {
 	/**
 	 * Replace all occurrences of $regex in $str with a token and remember
 	 * the original strings.
-	 * @param $str String to tokenize
+	 * @param string $str to tokenize
 	 * @return string Tokenized string
 	 */
 	public function tokenize( $str ) {
@@ -336,7 +336,7 @@ class CSSJanus_Tokenizer {
 	/**
 	 * Replace tokens with their originals. If multiple strings were tokenized, it's important they be
 	 * detokenized in exactly the SAME ORDER.
-	 * @param $str String: previously run through tokenize()
+	 * @param string $str previously run through tokenize()
 	 * @return string Original string
 	 */
 	public function detokenize( $str ) {

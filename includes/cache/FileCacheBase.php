@@ -107,7 +107,7 @@ abstract class FileCacheBase {
 
 	/**
 	 * Check if up to date cache file exists
-	 * @param $timestamp string MW_TS timestamp
+	 * @param string $timestamp MW_TS timestamp
 	 *
 	 * @return bool
 	 */

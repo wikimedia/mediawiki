@@ -102,8 +102,8 @@ class Exif {
 	/**
 	 * Constructor
 	 *
-	 * @param $file String: filename.
-	 * @param $byteOrder String Type of byte ordering either 'BE' (Big Endian) or 'LE' (Little Endian). Default ''.
+	 * @param string $file filename.
+	 * @param string $byteOrder Type of byte ordering either 'BE' (Big Endian) or 'LE' (Little Endian). Default ''.
 	 * @throws MWException
 	 * @todo FIXME: The following are broke:
 	 * SubjectArea. Need to test the more obscure tags.
@@ -437,7 +437,7 @@ class Exif {
 	 * Do userComment tags and similar. See pg. 34 of exif standard.
 	 * basically first 8 bytes is charset, rest is value.
 	 * This has not been tested on any shift-JIS strings.
-	 * @param $prop String prop name.
+	 * @param string $prop prop name.
 	 */
 	private function charCodeString ( $prop ) {
 		if ( isset( $this->mFilteredExifData[$prop] ) ) {
@@ -498,7 +498,7 @@ class Exif {
 	 * Convert an Exif::UNDEFINED from a raw binary string
 	 * to its value. This is sometimes needed depending on
 	 * the type of UNDEFINED field
-	 * @param $prop String name of property
+	 * @param string $prop name of property
 	 */
 	private function exifPropToOrd ( $prop ) {
 		if ( isset( $this->mFilteredExifData[$prop] ) ) {
@@ -508,7 +508,7 @@ class Exif {
 	/**
 	 * Convert gps in exif form to a single floating point number
 	 * for example 10 degress 20`40`` S -> -10.34444
-	 * @param String $prop a gps coordinate exif tag name (like GPSLongitude)
+	 * @param string $prop a gps coordinate exif tag name (like GPSLongitude)
 	 */
 	private function exifGPStoNumber ( $prop ) {
 		$loc =& $this->mFilteredExifData[$prop];
@@ -727,8 +727,8 @@ class Exif {
 	 * Validates if a tag has a legal value according to the Exif spec
 	 *
 	 * @private
-	 * @param $section String: section where tag is located.
-	 * @param $tag String: the tag to check.
+	 * @param string $section section where tag is located.
+	 * @param string $tag the tag to check.
 	 * @param $val Mixed: the value of the tag.
 	 * @param $recursive Boolean: true if called recursively for array types.
 	 * @return bool
@@ -828,7 +828,7 @@ class Exif {
 	 *
 	 * @private
 	 *
-	 * @param $fname String: the name of the function calling this function
+	 * @param string $fname the name of the function calling this function
 	 * @param $io Boolean: Specify whether we're beginning or ending
 	 */
 	private function debugFile( $fname, $io ) {

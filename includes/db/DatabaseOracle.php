@@ -1151,7 +1151,7 @@ class DatabaseOracle extends DatabaseBase {
 	 *
 	 * @private
 	 *
-	 * @param $options Array: an associative array of options to be turned into
+	 * @param array $options an associative array of options to be turned into
 	 *              an SQL query, valid keys are listed in the function.
 	 * @return array
 	 */

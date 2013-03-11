@@ -247,10 +247,10 @@ class ForeignAPIRepo extends FileRepo {
 	 * If the url has been requested today, get it from cache
 	 * Otherwise retrieve remote thumb url, check for local file.
 	 *
-	 * @param $name String is a dbkey form of a title
+	 * @param string $name is a dbkey form of a title
 	 * @param $width
 	 * @param $height
-	 * @param String $params Other rendering parameters (page number, etc) from handler's makeParamString.
+	 * @param string $params Other rendering parameters (page number, etc) from handler's makeParamString.
 	 * @return bool|string
 	 */
 	function getThumbUrlFromCache( $name, $width, $height, $params = "" ) {
@@ -336,7 +336,7 @@ class ForeignAPIRepo extends FileRepo {
 	/**
 	 * @see FileRepo::getZoneUrl()
 	 * @param $zone String
-	 * @param $ext String|null Optional file extension
+	 * @param string|null $ext Optional file extension
 	 * @return String
 	 */
 	function getZoneUrl( $zone, $ext = null ) {

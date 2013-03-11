@@ -369,8 +369,8 @@ class User {
 	 * This is slightly less efficient than newFromId(), so use newFromId() if
 	 * you have both an ID and a name handy.
 	 *
-	 * @param $name String Username, validated by Title::newFromText()
-	 * @param $validate String|Bool Validate username. Takes the same parameters as
+	 * @param string $name Username, validated by Title::newFromText()
+	 * @param string|Bool $validate Validate username. Takes the same parameters as
 	 *    User::getCanonicalName(), except that true is accepted as an alias
 	 *    for 'valid', for BC.
 	 *
@@ -399,7 +399,7 @@ class User {
 	/**
 	 * Static factory method for creation from a given user ID.
 	 *
-	 * @param $id Int Valid user ID
+	 * @param int $id Valid user ID
 	 * @return User The corresponding User object
 	 */
 	public static function newFromId( $id ) {
@@ -417,7 +417,7 @@ class User {
 	 *
 	 * If the code is invalid or has expired, returns NULL.
 	 *
-	 * @param $code String Confirmation code
+	 * @param string $code Confirmation code
 	 * @return User object, or null
 	 */
 	public static function newFromConfirmationCode( $code ) {
@@ -458,8 +458,8 @@ class User {
 	 * user_name and user_real_name are not provided because the whole row
 	 * will be loaded once more from the database when accessing them.
 	 *
-	 * @param $row Array A row from the user table
-	 * @param $data Array Further data to load into the object (see User::loadFromRow for valid keys)
+	 * @param array $row A row from the user table
+	 * @param array $data Further data to load into the object (see User::loadFromRow for valid keys)
 	 * @return User
 	 */
 	public static function newFromRow( $row, $data = null ) {
@@ -472,7 +472,7 @@ class User {
 
 	/**
 	 * Get the username corresponding to a given user ID
-	 * @param $id Int User ID
+	 * @param int $id User ID
 	 * @return String|bool The corresponding username
 	 */
 	public static function whoIs( $id ) {
@@ -482,7 +482,7 @@ class User {
 	/**
 	 * Get the real name of a user given their user ID
 	 *
-	 * @param $id Int User ID
+	 * @param int $id User ID
 	 * @return String|bool The corresponding user's real name
 	 */
 	public static function whoIsReal( $id ) {
@@ -491,7 +491,7 @@ class User {
 
 	/**
 	 * Get database id given a user name
-	 * @param $name String Username
+	 * @param string $name Username
 	 * @return Int|Null The corresponding user's ID, or null if user is nonexistent
 	 */
 	public static function idFromName( $name ) {
@@ -543,7 +543,7 @@ class User {
 	 * addresses like this, if we allowed accounts like this to be created
 	 * new users could get the old edits of these anonymous users.
 	 *
-	 * @param $name String to match
+	 * @param string $name to match
 	 * @return Bool
 	 */
 	public static function isIP( $name ) {
@@ -558,7 +558,7 @@ class User {
 	 * is longer than the maximum allowed username size or doesn't begin with
 	 * a capital letter.
 	 *
-	 * @param $name String to match
+	 * @param string $name to match
 	 * @return Bool
 	 */
 	public static function isValidUserName( $name ) {
@@ -612,7 +612,7 @@ class User {
 	 * If an account already exists in this form, login will be blocked
 	 * by a failure to pass this function.
 	 *
-	 * @param $name String to match
+	 * @param string $name to match
 	 * @return Bool
 	 */
 	public static function isUsableName( $name ) {
@@ -649,7 +649,7 @@ class User {
 	 * Additional blacklisting may be added here rather than in
 	 * isValidUserName() to avoid disrupting existing accounts.
 	 *
-	 * @param $name String to match
+	 * @param string $name to match
 	 * @return Bool
 	 */
 	public static function isCreatableName( $name ) {
@@ -679,7 +679,7 @@ class User {
 	/**
 	 * Is the input a valid password for this user?
 	 *
-	 * @param $password String Desired password
+	 * @param string $password Desired password
 	 * @return Bool
 	 */
 	public function isValidPassword( $password ) {
@@ -690,7 +690,7 @@ class User {
 	/**
 	 * Given unvalidated password input, return error message on failure.
 	 *
-	 * @param $password String Desired password
+	 * @param string $password Desired password
 	 * @return mixed: true on success, string or array of error message on failure
 	 */
 	public function getPasswordValidity( $password ) {
@@ -750,7 +750,7 @@ class User {
 	 * to be liberal enough for wide use. Some invalid addresses will still
 	 * pass validation here.
 	 *
-	 * @param $addr String E-mail address
+	 * @param string $addr E-mail address
 	 * @return Bool
 	 * @deprecated since 1.18 call Sanitizer::isValidEmail() directly
 	 */
@@ -762,8 +762,8 @@ class User {
 	/**
 	 * Given unvalidated user input, return a canonical username, or false if
 	 * the username is invalid.
-	 * @param $name String User input
-	 * @param $validate String|Bool type of validation to use:
+	 * @param string $name User input
+	 * @param string|Bool $validate type of validation to use:
 	 *                - false        No validation
 	 *                - 'valid'      Valid for batch processes
 	 *                - 'usable'     Valid for batch processes and login
@@ -822,7 +822,7 @@ class User {
 	/**
 	 * Count the number of edits of a user
 	 *
-	 * @param $uid Int User ID to check
+	 * @param int $uid User ID to check
 	 * @return Int the user's edit count
 	 *
 	 * @deprecated since 1.21 in favour of User::getEditCount
@@ -892,11 +892,11 @@ class User {
 	/**
 	 * Return whether an item has been loaded.
 	 *
-	 * @param $item String: item to check. Current possibilities:
+	 * @param string $item item to check. Current possibilities:
 	 *              - id
 	 *              - name
 	 *              - realname
-	 * @param $all String: 'all' to check if the whole object has been loaded
+	 * @param string $all 'all' to check if the whole object has been loaded
 	 *        or any other string to check if only the item is available (e.g.
 	 *        for optimisation)
 	 * @return Boolean
@@ -1042,8 +1042,8 @@ class User {
 	/**
 	 * Initialize this object from a row from the user table.
 	 *
-	 * @param $row Array Row from the user table to load.
-	 * @param $data Array Further user data to load into the object
+	 * @param array $row Row from the user table to load.
+	 * @param array $data Further user data to load into the object
 	 *
 	 *	user_groups		Array with groups out of the user_groups table
 	 *	user_properties		Array with properties out of the user_properties table
@@ -1156,7 +1156,7 @@ class User {
 	 *   will not be re-added automatically. The user will also not lose the
 	 *   group if they no longer meet the criteria.
 	 *
-	 * @param $event String key in $wgAutopromoteOnce (each one has groups/criteria)
+	 * @param string $event key in $wgAutopromoteOnce (each one has groups/criteria)
 	 *
 	 * @return array Array of groups the user has been promoted to.
 	 *
@@ -1195,7 +1195,7 @@ class User {
 	 * Clear various cached data stored in this object. The cache of the user table
 	 * data (i.e. self::$mCacheVars) is not cleared unless $reloadFrom is given.
 	 *
-	 * @param $reloadFrom bool|String Reload user and user_groups table data from a
+	 * @param bool|String $reloadFrom Reload user and user_groups table data from a
 	 *   given source. May be "name", "id", "defaults", "session", or false for
 	 *   no reload.
 	 */
@@ -1252,7 +1252,7 @@ class User {
 	/**
 	 * Get a given default option value.
 	 *
-	 * @param $opt String Name of option to retrieve
+	 * @param string $opt Name of option to retrieve
 	 * @return String Default option value
 	 */
 	public static function getDefaultOption( $opt ) {
@@ -1266,7 +1266,7 @@ class User {
 
 	/**
 	 * Get blocking information
-	 * @param $bFromSlave Bool Whether to check the slave database first. To
+	 * @param bool $bFromSlave Whether to check the slave database first. To
 	 *                    improve performance, non-critical checks are done
 	 *                    against slaves. Check when actually saving should be
 	 *                    done against master.
@@ -1340,8 +1340,8 @@ class User {
 	/**
 	 * Whether the given IP is in a DNS blacklist.
 	 *
-	 * @param $ip String IP to check
-	 * @param $checkWhitelist Bool: whether to check the whitelist first
+	 * @param string $ip IP to check
+	 * @param bool $checkWhitelist whether to check the whitelist first
 	 * @return Bool True if blacklisted.
 	 */
 	public function isDnsBlacklisted( $ip, $checkWhitelist = false ) {
@@ -1361,8 +1361,8 @@ class User {
 	/**
 	 * Whether the given IP is in a given DNS blacklist.
 	 *
-	 * @param $ip String IP to check
-	 * @param $bases String|Array of Strings: URL of the DNS blacklist
+	 * @param string $ip IP to check
+	 * @param string|array $bases of Strings: URL of the DNS blacklist
 	 * @return Bool True if blacklisted.
 	 */
 	public function inDnsBlacklist( $ip, $bases ) {
@@ -1462,7 +1462,7 @@ class User {
 	 * @note When using a shared cache like memcached, IP-address
 	 * last-hit counters will be shared across wikis.
 	 *
-	 * @param $action String Action to enforce; 'edit' if unspecified
+	 * @param string $action Action to enforce; 'edit' if unspecified
 	 * @return Bool True if a rate limiter was tripped
 	 */
 	public function pingLimiter( $action = 'edit' ) {
@@ -1557,7 +1557,7 @@ class User {
 	/**
 	 * Check if user is blocked
 	 *
-	 * @param $bFromSlave Bool Whether to check the slave database instead of the master
+	 * @param bool $bFromSlave Whether to check the slave database instead of the master
 	 * @return Bool True if blocked, false otherwise
 	 */
 	public function isBlocked( $bFromSlave = true ) { // hacked from false due to horrible probs on site
@@ -1567,7 +1567,7 @@ class User {
 	/**
 	 * Get the block affecting the user, or null if the user is not blocked
 	 *
-	 * @param $bFromSlave Bool Whether to check the slave database instead of the master
+	 * @param bool $bFromSlave Whether to check the slave database instead of the master
 	 * @return Block|null
 	 */
 	public function getBlock( $bFromSlave = true ) {
@@ -1579,7 +1579,7 @@ class User {
 	 * Check if user is blocked from editing a particular article
 	 *
 	 * @param $title Title to check
-	 * @param $bFromSlave Bool whether to check the slave database instead of the master
+	 * @param bool $bFromSlave whether to check the slave database instead of the master
 	 * @return Bool
 	 */
 	function isBlockedFrom( $title, $bFromSlave = false ) {
@@ -1633,7 +1633,7 @@ class User {
 	 * Do not use for actual edit permission checks!
 	 * This is intented for quick UI checks.
 	 *
-	 * @param $ip String IP address, uses current client if none given
+	 * @param string $ip IP address, uses current client if none given
 	 * @return Bool True if blocked, false otherwise
 	 */
 	public function isBlockedGlobally( $ip = '' ) {
@@ -1703,7 +1703,7 @@ class User {
 
 	/**
 	 * Set the user and reload all fields according to a given ID
-	 * @param $v Int User ID to reload
+	 * @param int $v User ID to reload
 	 */
 	public function setId( $v ) {
 		$this->mId = $v;
@@ -1739,7 +1739,7 @@ class User {
 	 *
 	 * @note User::newFromName() has rougly the same function, when the named user
 	 * does not exist.
-	 * @param $str String New user name to set
+	 * @param string $str New user name to set
 	 */
 	public function setName( $str ) {
 		$this->load();
@@ -1819,9 +1819,9 @@ class User {
 	 * Internal uncached check for new messages
 	 *
 	 * @see getNewtalk()
-	 * @param $field String 'user_ip' for anonymous users, 'user_id' otherwise
-	 * @param $id String|Int User's IP address for anonymous users, User ID otherwise
-	 * @param $fromMaster Bool true to fetch from the master, false for a slave
+	 * @param string $field 'user_ip' for anonymous users, 'user_id' otherwise
+	 * @param string|Int $id User's IP address for anonymous users, User ID otherwise
+	 * @param bool $fromMaster true to fetch from the master, false for a slave
 	 * @return Bool True if the user has new messages
 	 */
 	protected function checkNewtalk( $field, $id, $fromMaster = false ) {
@@ -1837,8 +1837,8 @@ class User {
 
 	/**
 	 * Add or update the new messages flag
-	 * @param $field String 'user_ip' for anonymous users, 'user_id' otherwise
-	 * @param $id String|Int User's IP address for anonymous users, User ID otherwise
+	 * @param string $field 'user_ip' for anonymous users, 'user_id' otherwise
+	 * @param string|Int $id User's IP address for anonymous users, User ID otherwise
 	 * @param $curRev Revision new, as yet unseen revision of the user talk page. Ignored if null.
 	 * @return Bool True if successful, false otherwise
 	 */
@@ -1863,8 +1863,8 @@ class User {
 
 	/**
 	 * Clear the new messages flag for the given user
-	 * @param $field String 'user_ip' for anonymous users, 'user_id' otherwise
-	 * @param $id String|Int User's IP address for anonymous users, User ID otherwise
+	 * @param string $field 'user_ip' for anonymous users, 'user_id' otherwise
+	 * @param string|Int $id User's IP address for anonymous users, User ID otherwise
 	 * @return Bool True if successful, false otherwise
 	 */
 	protected function deleteNewtalk( $field, $id ) {
@@ -1883,7 +1883,7 @@ class User {
 
 	/**
 	 * Update the 'You have new messages!' status.
-	 * @param $val Bool Whether the user has new messages
+	 * @param bool $val Whether the user has new messages
 	 * @param $curRev Revision new, as yet unseen revision of the user talk page. Ignored if null or !$val.
 	 */
 	public function setNewtalk( $val, $curRev = null ) {
@@ -1979,7 +1979,7 @@ class User {
 
 	/**
 	 * Validate the cache for this account.
-	 * @param $timestamp String A timestamp in TS_MW format
+	 * @param string $timestamp A timestamp in TS_MW format
 	 *
 	 * @return bool
 	 */
@@ -2008,7 +2008,7 @@ class User {
 	 * wipes it, so the account cannot be logged in until
 	 * a new password is set, for instance via e-mail.
 	 *
-	 * @param $str String New password to set
+	 * @param string $str New password to set
 	 * @throws PasswordError on failure
 	 *
 	 * @return bool
@@ -2047,7 +2047,7 @@ class User {
 	/**
 	 * Set the password and reset the random token unconditionally.
 	 *
-	 * @param $str string|null New password to set or null to set an invalid
+	 * @param string|null $str New password to set or null to set an invalid
 	 *        password hash meaning that the user will not be able to log in
 	 *        through the web interface.
 	 */
@@ -2067,7 +2067,7 @@ class User {
 
 	/**
 	 * Get the user's current token.
-	 * @param $forceCreation bool Force the generation of a new token if the user doesn't have one (default=true for backwards compatibility)
+	 * @param bool $forceCreation Force the generation of a new token if the user doesn't have one (default=true for backwards compatibility)
 	 * @return String Token
 	 */
 	public function getToken( $forceCreation = true ) {
@@ -2082,7 +2082,7 @@ class User {
 	 * Set the random token (used for persistent authentication)
 	 * Called from loadDefaults() among other places.
 	 *
-	 * @param $token String|bool If specified, set the token to this value
+	 * @param string|bool $token If specified, set the token to this value
 	 */
 	public function setToken( $token = false ) {
 		$this->load();
@@ -2096,8 +2096,8 @@ class User {
 	/**
 	 * Set the password for a password reminder or new account email
 	 *
-	 * @param $str String New password to set
-	 * @param $throttle Bool If true, reset the throttle timestamp to the present
+	 * @param string $str New password to set
+	 * @param bool $throttle If true, reset the throttle timestamp to the present
 	 */
 	public function setNewpassword( $str, $throttle = true ) {
 		$this->load();
@@ -2144,7 +2144,7 @@ class User {
 
 	/**
 	 * Set the user's e-mail address
-	 * @param $str String New e-mail address
+	 * @param string $str New e-mail address
 	 */
 	public function setEmail( $str ) {
 		$this->load();
@@ -2160,7 +2160,7 @@ class User {
 	 * Set the user's e-mail address and a confirmation mail if needed.
 	 *
 	 * @since 1.20
-	 * @param $str String New e-mail address
+	 * @param string $str New e-mail address
 	 * @return Status
 	 */
 	public function setEmailWithConfirmation( $str ) {
@@ -2206,7 +2206,7 @@ class User {
 
 	/**
 	 * Set the user's real name
-	 * @param $str String New real name
+	 * @param string $str New real name
 	 */
 	public function setRealName( $str ) {
 		$this->load();
@@ -2216,9 +2216,9 @@ class User {
 	/**
 	 * Get the user's current setting for a given option.
 	 *
-	 * @param $oname String The option to check
-	 * @param $defaultOverride String A default value returned if the option does not exist
-	 * @param $ignoreHidden Bool = whether to ignore the effects of $wgHiddenPrefs
+	 * @param string $oname The option to check
+	 * @param string $defaultOverride A default value returned if the option does not exist
+	 * @param bool $ignoreHidden = whether to ignore the effects of $wgHiddenPrefs
 	 * @return String User's current value for the option
 	 * @see getBoolOption()
 	 * @see getIntOption()
@@ -2271,7 +2271,7 @@ class User {
 	/**
 	 * Get the user's current setting for a given option, as a boolean value.
 	 *
-	 * @param $oname String The option to check
+	 * @param string $oname The option to check
 	 * @return Bool User's current value for the option
 	 * @see getOption()
 	 */
@@ -2282,8 +2282,8 @@ class User {
 	/**
 	 * Get the user's current setting for a given option, as a boolean value.
 	 *
-	 * @param $oname String The option to check
-	 * @param $defaultOverride Int A default value returned if the option does not exist
+	 * @param string $oname The option to check
+	 * @param int $defaultOverride A default value returned if the option does not exist
 	 * @return Int User's current value for the option
 	 * @see getOption()
 	 */
@@ -2298,7 +2298,7 @@ class User {
 	/**
 	 * Set the given option for a user.
 	 *
-	 * @param $oname String The option to set
+	 * @param string $oname The option to set
 	 * @param $val mixed New value to set
 	 */
 	public function setOption( $oname, $val ) {
@@ -2351,7 +2351,7 @@ class User {
 	 *
 	 * @see User::listOptionKinds
 	 * @param $context IContextSource
-	 * @param $options array assoc. array with options keys to check as keys. Defaults to $this->mOptions.
+	 * @param array $options assoc. array with options keys to check as keys. Defaults to $this->mOptions.
 	 * @return array the key => kind mapping data
 	 */
 	public function getOptionKinds( IContextSource $context, $options = null ) {
@@ -2422,7 +2422,7 @@ class User {
 	 * Supported values are everything that can be reported by getOptionKinds()
 	 * and 'all', which forces a reset of *all* preferences and overrides everything else.
 	 *
-	 * @param $resetKinds array|string which kinds of preferences to reset. Defaults to
+	 * @param array|string $resetKinds which kinds of preferences to reset. Defaults to
 	 *             array( 'registered', 'registered-multiselect', 'registered-checkmatrix', 'unused' )
 	 *             for backwards-compatibility.
 	 * @param $context IContextSource|null context source used when $resetKinds
@@ -2531,7 +2531,7 @@ class User {
 	 * Get the list of implicit group memberships this user has.
 	 * This includes all explicit groups, plus 'user' if logged in,
 	 * '*' for all accounts, and autopromoted groups
-	 * @param $recache Bool Whether to avoid the cache
+	 * @param bool $recache Whether to avoid the cache
 	 * @return Array of String internal group names
 	 */
 	public function getEffectiveGroups( $recache = false ) {
@@ -2554,7 +2554,7 @@ class User {
 	 * Get the list of implicit group memberships this user has.
 	 * This includes 'user' if logged in, '*' for all accounts,
 	 * and autopromoted groups
-	 * @param $recache Bool Whether to avoid the cache
+	 * @param bool $recache Whether to avoid the cache
 	 * @return Array of String internal group names
 	 */
 	public function getAutomaticGroups( $recache = false ) {
@@ -2636,7 +2636,7 @@ class User {
 	/**
 	 * Add the user to the given group.
 	 * This takes immediate effect.
-	 * @param $group String Name of the group to add
+	 * @param string $group Name of the group to add
 	 */
 	public function addGroup( $group ) {
 		if( wfRunHooks( 'UserAddGroup', array( $this, &$group ) ) ) {
@@ -2661,7 +2661,7 @@ class User {
 	/**
 	 * Remove the user from the given group.
 	 * This takes immediate effect.
-	 * @param $group String Name of the group to remove
+	 * @param string $group Name of the group to remove
 	 */
 	public function removeGroup( $group ) {
 		$this->load();
@@ -2924,7 +2924,7 @@ class User {
 
 	/**
 	 * Set this user's options from an encoded string
-	 * @param $str String Encoded options to import
+	 * @param string $str Encoded options to import
 	 *
 	 * @deprecated in 1.19 due to removal of user_options from the user table
 	 */
@@ -2952,9 +2952,9 @@ class User {
 	/**
 	 * Set a cookie on the user's client. Wrapper for
 	 * WebResponse::setCookie
-	 * @param $name String Name of the cookie to set
-	 * @param $value String Value to set
-	 * @param $exp Int Expiration time, as a UNIX time value;
+	 * @param string $name Name of the cookie to set
+	 * @param string $value Value to set
+	 * @param int $exp Expiration time, as a UNIX time value;
 	 *                   if 0 or not specified, use the default $wgCookieExpiration
 	 * @param $secure Bool
 	 *  true: Force setting the secure attribute when setting the cookie
@@ -2967,7 +2967,7 @@ class User {
 
 	/**
 	 * Clear a cookie on the user's client
-	 * @param $name String Name of the cookie to clear
+	 * @param string $name Name of the cookie to clear
 	 */
 	protected function clearCookie( $name ) {
 		$this->setCookie( $name, '', time() - 86400 );
@@ -2978,7 +2978,7 @@ class User {
 	 *
 	 * @param $request WebRequest object to use; $wgRequest will be used if null
 	 *        is passed.
-	 * @param $secure bool Whether to force secure/insecure cookies or use default
+	 * @param bool $secure Whether to force secure/insecure cookies or use default
 	 */
 	public function setCookies( $request = null, $secure = null ) {
 		if ( $request === null ) {
@@ -3122,8 +3122,8 @@ class User {
 	/**
 	 * Add a user to the database, return the user object
 	 *
-	 * @param $name String Username to add
-	 * @param $params Array of Strings Non-default parameters to save to the database as user_* fields:
+	 * @param string $name Username to add
+	 * @param array $params of Strings Non-default parameters to save to the database as user_* fields:
 	 *   - password             The user's password hash. Password logins will be disabled if this is omitted.
 	 *   - newpassword          Hash for a temporary password that has been mailed to the user
 	 *   - email                The user's email address
@@ -3399,7 +3399,7 @@ class User {
 
 	/**
 	 * Check to see if the given clear-text password is one of the accepted passwords
-	 * @param $password String: user password.
+	 * @param string $password user password.
 	 * @return Boolean: True if the given password is correct, otherwise False.
 	 */
 	public function checkPassword( $password ) {
@@ -3466,7 +3466,7 @@ class User {
 	 * Alias for getEditToken.
 	 * @deprecated since 1.19, use getEditToken instead.
 	 *
-	 * @param $salt String|Array of Strings Optional function-specific data for hashing
+	 * @param string|array $salt of Strings Optional function-specific data for hashing
 	 * @param $request WebRequest object to use or null to use $wgRequest
 	 * @return String The new edit token
 	 */
@@ -3483,7 +3483,7 @@ class User {
 	 *
 	 * @since 1.19
 	 *
-	 * @param $salt String|Array of Strings Optional function-specific data for hashing
+	 * @param string|array $salt of Strings Optional function-specific data for hashing
 	 * @param $request WebRequest object to use or null to use $wgRequest
 	 * @return String The new edit token
 	 */
@@ -3523,8 +3523,8 @@ class User {
 	 * user's own login session, not a form submission from a third-party
 	 * site.
 	 *
-	 * @param $val String Input value to compare
-	 * @param $salt String Optional function-specific data for hashing
+	 * @param string $val Input value to compare
+	 * @param string $salt Optional function-specific data for hashing
 	 * @param $request WebRequest object to use or null to use $wgRequest
 	 * @return Boolean: Whether the token matches
 	 */
@@ -3540,8 +3540,8 @@ class User {
 	 * Check given value against the token value stored in the session,
 	 * ignoring the suffix.
 	 *
-	 * @param $val String Input value to compare
-	 * @param $salt String Optional function-specific data for hashing
+	 * @param string $val Input value to compare
+	 * @param string $salt Optional function-specific data for hashing
 	 * @param $request WebRequest object to use or null to use $wgRequest
 	 * @return Boolean: Whether the token matches
 	 */
@@ -3554,7 +3554,7 @@ class User {
 	 * Generate a new e-mail confirmation token and send a confirmation/invalidation
 	 * mail to the user's given address.
 	 *
-	 * @param $type String: message to send, either "created", "changed" or "set"
+	 * @param string $type message to send, either "created", "changed" or "set"
 	 * @return Status object
 	 */
 	public function sendConfirmationMail( $type = 'created' ) {
@@ -3588,10 +3588,10 @@ class User {
 	 * Send an e-mail to this user's account. Does not check for
 	 * confirmed status or validity.
 	 *
-	 * @param $subject String Message subject
-	 * @param $body String Message body
-	 * @param $from String Optional From address; if unspecified, default $wgPasswordSender will be used
-	 * @param $replyto String Reply-To address
+	 * @param string $subject Message subject
+	 * @param string $body Message body
+	 * @param string $from Optional From address; if unspecified, default $wgPasswordSender will be used
+	 * @param string $replyto Reply-To address
 	 * @return Status
 	 */
 	public function sendMail( $subject, $body, $from = null, $replyto = null ) {
@@ -3631,7 +3631,7 @@ class User {
 
 	/**
 	 * Return a URL the user can use to confirm their email address.
-	 * @param $token String Accepts the email confirmation token
+	 * @param string $token Accepts the email confirmation token
 	 * @return String New token URL
 	 */
 	private function confirmationTokenUrl( $token ) {
@@ -3640,7 +3640,7 @@ class User {
 
 	/**
 	 * Return a URL the user can use to invalidate their email address.
-	 * @param $token String Accepts the email confirmation token
+	 * @param string $token Accepts the email confirmation token
 	 * @return String New token URL
 	 */
 	private function invalidationTokenUrl( $token ) {
@@ -3657,8 +3657,8 @@ class User {
 	 * also sometimes can get corrupted in some browsers/mailers
 	 * (bug 6957 with Gmail and Internet Explorer).
 	 *
-	 * @param $page String Special page
-	 * @param $token String Token
+	 * @param string $page Special page
+	 * @param string $token Token
 	 * @return String Formatted URL
 	 */
 	protected function getTokenUrl( $page, $token ) {
@@ -3698,7 +3698,7 @@ class User {
 
 	/**
 	 * Set the e-mail authentication timestamp.
-	 * @param $timestamp String TS_MW timestamp
+	 * @param string $timestamp TS_MW timestamp
 	 */
 	function setEmailAuthenticationTimestamp( $timestamp ) {
 		$this->load();
@@ -3812,7 +3812,7 @@ class User {
 	/**
 	 * Get the permissions associated with a given list of groups
 	 *
-	 * @param $groups Array of Strings List of internal group names
+	 * @param array $groups of Strings List of internal group names
 	 * @return Array of Strings List of permission key names for given groups combined
 	 */
 	public static function getGroupPermissions( $groups ) {
@@ -3839,7 +3839,7 @@ class User {
 	/**
 	 * Get all the groups who have a given permission
 	 *
-	 * @param $role String Role to check
+	 * @param string $role Role to check
 	 * @return Array of Strings List of internal group names with the given permission
 	 */
 	public static function getGroupsWithPermission( $role ) {
@@ -3856,8 +3856,8 @@ class User {
 	/**
 	 * Check, if the given group has the given permission
 	 *
-	 * @param $group String Group to check
-	 * @param $role String Role to check
+	 * @param string $group Group to check
+	 * @param string $role Role to check
 	 * @return bool
 	 */
 	public static function groupHasPermission( $group, $role ) {
@@ -3869,7 +3869,7 @@ class User {
 	/**
 	 * Get the localized descriptive name for a group, if it exists
 	 *
-	 * @param $group String Internal group name
+	 * @param string $group Internal group name
 	 * @return String Localized descriptive group name
 	 */
 	public static function getGroupName( $group ) {
@@ -3880,8 +3880,8 @@ class User {
 	/**
 	 * Get the localized descriptive name for a member of a group, if it exists
 	 *
-	 * @param $group String Internal group name
-	 * @param $username String Username for gender (since 1.19)
+	 * @param string $group Internal group name
+	 * @param string $username Username for gender (since 1.19)
 	 * @return String Localized name for group member
 	 */
 	public static function getGroupMember( $group, $username = '#' ) {
@@ -3934,7 +3934,7 @@ class User {
 	/**
 	 * Get the title of a page describing a particular group
 	 *
-	 * @param $group String Internal group name
+	 * @param string $group Internal group name
 	 * @return Title|Bool Title of the page if it exists, false otherwise
 	 */
 	public static function getGroupPage( $group ) {
@@ -3951,8 +3951,8 @@ class User {
 	 * Create a link to the group in HTML, if available;
 	 * else return the group name.
 	 *
-	 * @param $group String Internal name of the group
-	 * @param $text String The text of the link
+	 * @param string $group Internal name of the group
+	 * @param string $text The text of the link
 	 * @return String HTML link to the group
 	 */
 	public static function makeGroupLinkHTML( $group, $text = '' ) {
@@ -3971,8 +3971,8 @@ class User {
 	 * Create a link to the group in Wikitext, if available;
 	 * else return the group name.
 	 *
-	 * @param $group String Internal name of the group
-	 * @param $text String The text of the link
+	 * @param string $group Internal name of the group
+	 * @param string $text The text of the link
 	 * @return String Wikilink to the group
 	 */
 	public static function makeGroupLinkWiki( $group, $text = '' ) {
@@ -3991,7 +3991,7 @@ class User {
 	/**
 	 * Returns an array of the groups that a particular group can add/remove.
 	 *
-	 * @param $group String: the group to check for whether it can add/remove
+	 * @param string $group the group to check for whether it can add/remove
 	 * @return Array array( 'add' => array( addablegroups ),
 	 *     'remove' => array( removablegroups ),
 	 *     'add-self' => array( addablegroups to self),
@@ -4164,7 +4164,7 @@ class User {
 	/**
 	 * Get the description of a given right
 	 *
-	 * @param $right String Right to query
+	 * @param string $right Right to query
 	 * @return String Localized description of the right
 	 */
 	public static function getRightDescription( $right ) {
@@ -4176,8 +4176,8 @@ class User {
 	/**
 	 * Make an old-style password hash
 	 *
-	 * @param $password String Plain-text password
-	 * @param $userId String User ID
+	 * @param string $password Plain-text password
+	 * @param string $userId User ID
 	 * @return String Password hash
 	 */
 	public static function oldCrypt( $password, $userId ) {
@@ -4192,7 +4192,7 @@ class User {
 	/**
 	 * Make a new-style password hash
 	 *
-	 * @param $password String Plain-text password
+	 * @param string $password Plain-text password
 	 * @param bool|string $salt Optional salt, may be random or the user ID.
 
 	 *                     If unspecified or false, will generate one automatically
@@ -4220,9 +4220,9 @@ class User {
 	 * Compare a password hash with a plain-text password. Requires the user
 	 * ID if there's a chance that the hash is an old-style hash.
 	 *
-	 * @param $hash String Password hash
-	 * @param $password String Plain-text password to compare
-	 * @param $userId String|bool User ID for old-style password salt
+	 * @param string $hash Password hash
+	 * @param string $password Plain-text password to compare
+	 * @param string|bool $userId User ID for old-style password salt
 	 *
 	 * @return Boolean
 	 */
@@ -4251,7 +4251,7 @@ class User {
 	 * Add a newuser log entry for this user.
 	 * Before 1.19 the return value was always true.
 	 *
-	 * @param $action string|bool: account creation type.
+	 * @param string|bool $action account creation type.
 	 *   - String, one of the following values:
 	 *     - 'create' for an anonymous user creating an account for himself.
 	 *       This will force the action's performer to be the created user itself,
@@ -4263,7 +4263,7 @@ class User {
 	 *     - false will be converted to 'create' if this object is the same as
 	 *       $wgUser and to 'create2' otherwise
 	 *
-	 * @param $reason String: user supplied reason
+	 * @param string $reason user supplied reason
 	 *
 	 * @return int|bool True if not $wgNewUserLog; otherwise ID of log item or 0 on failure
 	 */
@@ -4321,7 +4321,7 @@ class User {
 	/**
 	 * Load the user options either from cache, the database or an array
 	 *
-	 * @param $data array Rows for the current user out of the user_properties table
+	 * @param array $data Rows for the current user out of the user_properties table
 	 */
 	protected function loadOptions( $data = null ) {
 		global $wgContLang;

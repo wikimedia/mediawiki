@@ -620,7 +620,7 @@ class SpecialVersion extends SpecialPage {
 	/**
 	 * Convert an array of items into a list for display.
 	 *
-	 * @param $list Array of elements to display
+	 * @param array $list of elements to display
 	 * @param $sort Boolean: whether to sort the items in $list
 	 *
 	 * @return String
@@ -754,7 +754,7 @@ class SpecialVersion extends SpecialPage {
 	/**
 	 * Retrieve the revision number of a Subversion working directory.
 	 *
-	 * @param $dir String: directory of the svn checkout
+	 * @param string $dir directory of the svn checkout
 	 *
 	 * @return Integer: revision number as int
 	 */
@@ -771,7 +771,7 @@ class SpecialVersion extends SpecialPage {
 	}
 
 	/**
-	 * @param $dir String: directory of the git checkout
+	 * @param string $dir directory of the git checkout
 	 * @return bool|String sha1 of commit HEAD points to
 	 */
 	public static function getGitHeadSha1( $dir ) {

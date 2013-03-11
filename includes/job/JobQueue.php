@@ -213,7 +213,7 @@ abstract class JobQueue {
 	 * This does not require $wgJobClasses to be set for the given job type.
 	 * Outside callers should use JobQueueGroup::push() instead of this function.
 	 *
-	 * @param $jobs array List of Jobs
+	 * @param array $jobs List of Jobs
 	 * @param $flags integer Bitfield (supports JobQueue::QoS_Atomic)
 	 * @return bool Returns false on failure
 	 * @throws MWException

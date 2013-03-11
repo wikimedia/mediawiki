@@ -45,7 +45,7 @@ class Hooks {
 	 *
 	 * @since 1.21
 	 *
-	 * @param $name String: the name of the hook to clear.
+	 * @param string $name the name of the hook to clear.
 	 *
 	 * @throws MWException if not in testing mode.
 	 */
@@ -62,7 +62,7 @@ class Hooks {
 	 *
 	 * @since 1.18
 	 *
-	 * @param $name String: name of hook
+	 * @param string $name name of hook
 	 * @param $callback Mixed: callback function to attach
 	 */
 	public static function register( $name, $callback ) {
@@ -79,7 +79,7 @@ class Hooks {
 	 *
 	 * @since 1.18
 	 *
-	 * @param $name String: name of hook
+	 * @param string $name name of hook
 	 * @return Boolean: true if the hook has a function registered to it
 	 */
 	public static function isRegistered( $name ) {
@@ -95,7 +95,7 @@ class Hooks {
 	 *
 	 * @throws MWException
 	 * @throws FatalError
-	 * @param $name String: name of the hook
+	 * @param string $name name of the hook
 	 *
 	 * @return array
 	 */
@@ -134,7 +134,7 @@ class Hooks {
 	/**
 	 * Call hook functions defined in Hooks::register
 	 *
-	 * @param $event String: event name
+	 * @param string $event event name
 	 * @param $args  Array: parameters passed to hook functions
 	 *
 	 * @throws MWException
@@ -302,8 +302,8 @@ class Hooks {
 	 *
 	 * @since 1.18
 	 *
-	 * @param $errno int Unused
-	 * @param $errstr String: error message
+	 * @param int $errno Unused
+	 * @param string $errstr error message
 	 * @throws MWHookException
 	 * @return Boolean: false
 	 */

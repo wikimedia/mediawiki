@@ -61,7 +61,7 @@ class MemcLockManager extends QuorumLockManager {
 	 *   - memcConfig   : Configuration array for ObjectCache::newFromParams. [optional]
 	 *                    If set, this must use one of the memcached classes.
 	 *
-	 * @param Array $config
+	 * @param array $config
 	 * @throws MWException
 	 */
 	public function __construct( array $config ) {
@@ -223,7 +223,7 @@ class MemcLockManager extends QuorumLockManager {
 	/**
 	 * Get the MemcachedBagOStuff object for a $lockSrv
 	 *
-	 * @param $lockSrv string Server name
+	 * @param string $lockSrv Server name
 	 * @return MemcachedBagOStuff|null
 	 */
 	protected function getCache( $lockSrv ) {
@@ -253,7 +253,7 @@ class MemcLockManager extends QuorumLockManager {
 
 	/**
 	 * @param $memc MemcachedBagOStuff
-	 * @param $keys Array List of keys to acquire
+	 * @param array $keys List of keys to acquire
 	 * @return bool
 	 */
 	protected function acquireMutexes( MemcachedBagOStuff $memc, array $keys ) {
@@ -291,7 +291,7 @@ class MemcLockManager extends QuorumLockManager {
 
 	/**
 	 * @param $memc MemcachedBagOStuff
-	 * @param $keys Array List of acquired keys
+	 * @param array $keys List of acquired keys
 	 * @return void
 	 */
 	protected function releaseMutexes( MemcachedBagOStuff $memc, array $keys ) {

@@ -145,7 +145,7 @@ class ApiMain extends ApiBase {
 	 * Constructs an instance of ApiMain that utilizes the module and format specified by $request.
 	 *
 	 * @param $context IContextSource|WebRequest - if this is an instance of FauxRequest, errors are thrown and no printing occurs
-	 * @param $enableWrite bool should be set to true if the api may modify data
+	 * @param bool $enableWrite should be set to true if the api may modify data
 	 */
 	public function __construct( $context = null, $enableWrite = false ) {
 		if ( $context === null ) {
@@ -245,7 +245,7 @@ class ApiMain extends ApiBase {
 	/**
 	 * Set the type of caching headers which will be sent.
 	 *
-	 * @param $mode String One of:
+	 * @param string $mode One of:
 	 *    - 'public':     Cache this object in public caches, if the maxage or smaxage
 	 *         parameter is set, or if setCacheMaxAge() was called. If a maximum age is
 	 *         not provided by any of these means, the object will be private.
@@ -480,9 +480,9 @@ class ApiMain extends ApiBase {
 
 	/**
 	 * Attempt to match an Origin header against a set of rules and a set of exceptions
-	 * @param $value string Origin header
-	 * @param $rules array Set of wildcard rules
-	 * @param $exceptions array Set of wildcard rules
+	 * @param string $value Origin header
+	 * @param array $rules Set of wildcard rules
+	 * @param array $exceptions Set of wildcard rules
 	 * @return bool True if $value matches a rule in $rules and doesn't match any rules in $exceptions, false otherwise
 	 */
 	protected static function matchOrigin( $value, $rules, $exceptions ) {
@@ -505,7 +505,7 @@ class ApiMain extends ApiBase {
 	 * '*' => '.*?'
 	 * '?' => '.'
 	 *
-	 * @param $wildcard string String with wildcards
+	 * @param string $wildcard String with wildcards
 	 * @return string Regular expression
 	 */
 	protected static function wildcardToRegex( $wildcard ) {
@@ -737,7 +737,7 @@ class ApiMain extends ApiBase {
 	/**
 	 * Check the max lag if necessary
 	 * @param $module ApiBase object: Api module being used
-	 * @param $params Array an array containing the request parameters.
+	 * @param array $params an array containing the request parameters.
 	 * @return boolean True on success, false should exit immediately
 	 */
 	protected function checkMaxLag( $module, $params ) {
@@ -796,7 +796,7 @@ class ApiMain extends ApiBase {
 	/**
 	 * Check POST for external response and setup result printer
 	 * @param $module ApiBase An Api module
-	 * @param $params Array an array with the request parameters
+	 * @param array $params an array with the request parameters
 	 */
 	protected function setupExternalResponse( $module, $params ) {
 		if ( !$this->getRequest()->wasPosted() && $module->mustBePosted() ) {
@@ -923,7 +923,7 @@ class ApiMain extends ApiBase {
 	 * Get a request upload, and register the fact that it was used, for logging.
 	 *
 	 * @since 1.21
-	 * @param $name string Parameter name
+	 * @param string $name Parameter name
 	 * @return WebRequestUpload
 	 */
 	public function getUpload( $name ) {
@@ -1211,7 +1211,7 @@ class ApiMain extends ApiBase {
 
 	/**
 	 * @param $module ApiBase
-	 * @param $paramName String What type of request is this? e.g. action, query, list, prop, meta, format
+	 * @param string $paramName What type of request is this? e.g. action, query, list, prop, meta, format
 	 * @return string
 	 */
 	public static function makeHelpMsgHeader( $module, $paramName ) {
@@ -1261,7 +1261,7 @@ class ApiMain extends ApiBase {
 	 * behavior of inherent ones.
 	 *
 	 * @deprecated since 1.21, Use getModuleManager()->addModule() instead.
-	 * @param $name string The identifier for this module.
+	 * @param string $name The identifier for this module.
 	 * @param $class ApiBase The class where this module is implemented.
 	 */
 	protected function addModule( $name, $class ) {
@@ -1273,7 +1273,7 @@ class ApiMain extends ApiBase {
 	 * classes who wish to add to or modify current formatters.
 	 *
 	 * @deprecated since 1.21, Use getModuleManager()->addModule() instead.
-	 * @param $name string The identifier for this format.
+	 * @param string $name The identifier for this format.
 	 * @param $class ApiFormatBase The class implementing this format.
 	 */
 	protected function addFormat( $name, $class ) {

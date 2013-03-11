@@ -574,8 +574,8 @@ class MysqlInstaller extends DatabaseInstaller {
 
 	/**
 	 * Return a formal 'User'@'Host' username for use in queries
-	 * @param $name String Username, quotes will be added
-	 * @param $host String Hostname, quotes will be added
+	 * @param string $name Username, quotes will be added
+	 * @param string $host Hostname, quotes will be added
 	 * @return String
 	 */
 	private function buildFullUserName( $name, $host ) {
@@ -585,8 +585,8 @@ class MysqlInstaller extends DatabaseInstaller {
 	/**
 	 * Try to see if the user account exists. Our "superuser" may not have
 	 * access to mysql.user, so false means "no" or "maybe"
-	 * @param $host String Hostname to check
-	 * @param $user String Username to check
+	 * @param string $host Hostname to check
+	 * @param string $user Username to check
 	 * @return boolean
 	 */
 	private function userDefinitelyExists( $host, $user ) {

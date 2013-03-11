@@ -52,11 +52,11 @@ class FeedItem {
 	/**
 	 * Constructor
 	 *
-	 * @param $title String|Title Item's title
+	 * @param string|Title $title Item's title
 	 * @param $description String
-	 * @param $url String: URL uniquely designating the item.
-	 * @param $date String: Item's date
-	 * @param $author String: Author's user name
+	 * @param string $url URL uniquely designating the item.
+	 * @param string $date Item's date
+	 * @param string $author Author's user name
 	 * @param $comments String
 	 */
 	function __construct( $title, $description, $url, $date = '', $author = '', $comments = '' ) {
@@ -72,7 +72,7 @@ class FeedItem {
 	/**
 	 * Encode $string so that it can be safely embedded in a XML document
 	 *
-	 * @param $string String: string to encode
+	 * @param string $string string to encode
 	 * @return String
 	 */
 	public function xmlEncode( $string ) {
@@ -95,7 +95,7 @@ class FeedItem {
 	/**
 	 * set the unique id of an item
 	 *
-	 * @param $uniqueId String: unique id for the item
+	 * @param string $uniqueId unique id for the item
 	 * @param $rssIsPermalink Boolean: set to true if the guid (unique id) is a permalink (RSS feeds only)
 	 */
 	public function setUniqueId( $uniqueId, $rssIsPermalink = false ) {
@@ -170,7 +170,7 @@ class FeedItem {
 	/**
 	 * Quickie hack... strip out wikilinks to more legible form from the comment.
 	 *
-	 * @param $text String: wikitext
+	 * @param string $text wikitext
 	 * @return String
 	 */
 	public static function stripComment( $text ) {

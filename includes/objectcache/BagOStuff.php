@@ -65,7 +65,7 @@ abstract class BagOStuff {
 	 * Set an item.
 	 * @param $key string
 	 * @param $value mixed
-	 * @param $exptime int Either an interval in seconds or a unix timestamp for expiry
+	 * @param int $exptime Either an interval in seconds or a unix timestamp for expiry
 	 * @return bool success
 	 */
 	abstract public function set( $key, $value, $exptime = 0 );
@@ -75,7 +75,7 @@ abstract class BagOStuff {
 	 * @param $casToken mixed
 	 * @param $key string
 	 * @param $value mixed
-	 * @param $exptime int Either an interval in seconds or a unix timestamp for expiry
+	 * @param int $exptime Either an interval in seconds or a unix timestamp for expiry
 	 * @return bool success
 	 */
 	abstract public function cas( $casToken, $key, $value, $exptime = 0 );
@@ -83,7 +83,7 @@ abstract class BagOStuff {
 	/**
 	 * Delete an item.
 	 * @param $key string
-	 * @param $time int Amount of time to delay the operation (mostly memcached-specific)
+	 * @param int $time Amount of time to delay the operation (mostly memcached-specific)
 	 * @return bool True if the item was deleted or not found, false on failure
 	 */
 	abstract public function delete( $key, $time = 0 );
@@ -95,8 +95,8 @@ abstract class BagOStuff {
 	 *
 	 * @param $key string
 	 * @param $callback closure Callback method to be executed
-	 * @param $exptime int Either an interval in seconds or a unix timestamp for expiry
-	 * @param $attempts int The amount of times to attempt a merge in case of failure
+	 * @param int $exptime Either an interval in seconds or a unix timestamp for expiry
+	 * @param int $attempts The amount of times to attempt a merge in case of failure
 	 * @return bool success
 	 */
 	public function merge( $key, closure $callback, $exptime = 0, $attempts = 10 ) {
@@ -108,8 +108,8 @@ abstract class BagOStuff {
 	 *
 	 * @param $key string
 	 * @param $callback closure Callback method to be executed
-	 * @param $exptime int Either an interval in seconds or a unix timestamp for expiry
-	 * @param $attempts int The amount of times to attempt a merge in case of failure
+	 * @param int $exptime Either an interval in seconds or a unix timestamp for expiry
+	 * @param int $attempts The amount of times to attempt a merge in case of failure
 	 * @return bool success
 	 */
 	protected function mergeViaCas( $key, closure $callback, $exptime = 0, $attempts = 10 ) {
@@ -137,8 +137,8 @@ abstract class BagOStuff {
 	 *
 	 * @param $key string
 	 * @param $callback closure Callback method to be executed
-	 * @param $exptime int Either an interval in seconds or a unix timestamp for expiry
-	 * @param $attempts int The amount of times to attempt a merge in case of failure
+	 * @param int $exptime Either an interval in seconds or a unix timestamp for expiry
+	 * @param int $attempts The amount of times to attempt a merge in case of failure
 	 * @return bool success
 	 */
 	protected function mergeViaLock( $key, closure $callback, $exptime = 0, $attempts = 10 ) {
@@ -202,7 +202,7 @@ abstract class BagOStuff {
 
 	/**
 	 * Delete all objects expiring before a certain date.
-	 * @param $date string The reference date in MW format
+	 * @param string $date The reference date in MW format
 	 * @param $progressCallback callback|bool Optional, a function which will be called
 	 *     regularly during long-running operations with the percentage progress
 	 *     as the first parameter.
@@ -218,7 +218,7 @@ abstract class BagOStuff {
 
 	/**
 	 * Get an associative array containing the item for each of the keys that have items.
-	 * @param $keys Array List of strings
+	 * @param array $keys List of strings
 	 * @return Array
 	 */
 	public function getMulti( array $keys ) {
@@ -260,7 +260,7 @@ abstract class BagOStuff {
 
 	/**
 	 * Increase stored value of $key by $value while preserving its TTL
-	 * @param $key String: Key to increase
+	 * @param string $key Key to increase
 	 * @param $value Integer: Value to add to $key (Default 1)
 	 * @return integer|bool New value or false on failure
 	 */

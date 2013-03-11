@@ -106,7 +106,7 @@ class Block {
 	 * user ID. Tries the user ID first, and if that doesn't work, tries
 	 * the address.
 	 *
-	 * @param $address String: IP address of user/anon
+	 * @param string $address IP address of user/anon
 	 * @param $user Integer: user id of user
 	 * @return Block Object
 	 * @deprecated since 1.18
@@ -199,8 +199,8 @@ class Block {
 	/**
 	 * Get a block from the DB, with either the given address or the given username
 	 *
-	 * @param $address string The IP address of the user, or blank to skip IP blocks
-	 * @param $user int The user ID, or zero for anonymous users
+	 * @param string $address The IP address of the user, or blank to skip IP blocks
+	 * @param int $user The user ID, or zero for anonymous users
 	 * @return Boolean: the user is blocked from editing
 	 * @deprecated since 1.18
 	 */
@@ -331,8 +331,8 @@ class Block {
 
 	/**
 	 * Get a set of SQL conditions which will select rangeblocks encompasing a given range
-	 * @param $start String Hexadecimal IP representation
-	 * @param $end String Hexadecimal IP represenation, or null to use $start = $end
+	 * @param string $start Hexadecimal IP representation
+	 * @param string $end Hexadecimal IP represenation, or null to use $start = $end
 	 * @return String
 	 */
 	public static function getRangeCond( $start, $end = null ) {
@@ -572,7 +572,7 @@ class Block {
 	 * blocked by this Block. This will use the recentchanges table.
 	 *
 	 * @param Block $block
-	 * @param Array &$blockIds
+	 * @param array &$blockIds
 	 * @return Array: block IDs of retroactive autoblocks made
 	 */
 	protected static function defaultRetroactiveAutoblock( Block $block, array &$blockIds ) {
@@ -611,7 +611,7 @@ class Block {
 	 * Checks whether a given IP is on the autoblock whitelist.
 	 * TODO: this probably belongs somewhere else, but not sure where...
 	 *
-	 * @param $ip String: The IP to check
+	 * @param string $ip The IP to check
 	 * @return Boolean
 	 */
 	public static function isWhitelistedFromAutoblocks( $ip ) {
@@ -654,7 +654,7 @@ class Block {
 	/**
 	 * Autoblocks the given IP, referring to this Block.
 	 *
-	 * @param $autoblockIP String: the IP to autoblock.
+	 * @param string $autoblockIP the IP to autoblock.
 	 * @return mixed: block ID if an autoblock was inserted, false if not.
 	 */
 	public function doAutoblock( $autoblockIP ) {
@@ -945,7 +945,7 @@ class Block {
 	/**
 	 * Encode expiry for DB
 	 *
-	 * @param $expiry String: timestamp for expiry, or
+	 * @param string $expiry timestamp for expiry, or
 	 * @param $db DatabaseBase object
 	 * @return String
 	 * @deprecated since 1.18; use $dbw->encodeExpiry() instead
@@ -958,8 +958,8 @@ class Block {
 	/**
 	 * Decode expiry which has come from the DB
 	 *
-	 * @param $expiry String: Database expiry format
-	 * @param $timestampType Int Requested timestamp format
+	 * @param string $expiry Database expiry format
+	 * @param int $timestampType Requested timestamp format
 	 * @return String
 	 * @deprecated since 1.18; use $wgLang->formatExpiry() instead
 	 */
@@ -984,7 +984,7 @@ class Block {
 	/**
 	 * Gets rid of uneeded numbers in quad-dotted/octet IP strings
 	 * For example, 127.111.113.151/24 -> 127.111.113.0/24
-	 * @param $range String: IP address to normalize
+	 * @param string $range IP address to normalize
 	 * @return string
 	 * @deprecated since 1.18, call IP::sanitizeRange() directly
 	 */
@@ -1018,7 +1018,7 @@ class Block {
 	/**
 	 * Convert a submitted expiry time, which may be relative ("2 weeks", etc) or absolute
 	 * ("24 May 2034"), into an absolute timestamp we can put into the database.
-	 * @param $expiry String: whatever was typed into the form
+	 * @param string $expiry whatever was typed into the form
 	 * @return String: timestamp or "infinity" string for th DB implementation
 	 * @deprecated since 1.18 moved to SpecialBlock::parseExpiryInput()
 	 */
@@ -1042,7 +1042,7 @@ class Block {
 	 * @param $vagueTarget String|User|Int as above, but we will search for *any* block which
 	 *     affects that target (so for an IP address, get ranges containing that IP; and also
 	 *     get any relevant autoblocks). Leave empty or blank to skip IP-based lookups.
-	 * @param $fromMaster Bool whether to use the DB_MASTER database
+	 * @param bool $fromMaster whether to use the DB_MASTER database
 	 * @return Block|null (null if no relevant block could be found).  The target and type
 	 *     of the returned Block will refer to the actual block which was found, which might
 	 *     not be the same as the target you gave if you used $vagueTarget!

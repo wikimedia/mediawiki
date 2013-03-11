@@ -35,7 +35,7 @@ class DBError extends MWException {
 	/**
 	 * Construct a database error
 	 * @param $db DatabaseBase object which threw the error
-	 * @param $error String A simple error message to be used for debugging
+	 * @param string $error A simple error message to be used for debugging
 	 */
 	function __construct( DatabaseBase &$db, $error ) {
 		$this->db = $db;

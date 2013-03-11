@@ -103,8 +103,8 @@ class LocalRepo extends FileRepo {
 	/**
 	 * Check if a deleted (filearchive) file has this sha1 key
 	 *
-	 * @param $key String File storage key (base-36 sha1 key with file extension)
-	 * @param $lock String|null Use "lock" to lock the row via FOR UPDATE
+	 * @param string $key File storage key (base-36 sha1 key with file extension)
+	 * @param string|null $lock Use "lock" to lock the row via FOR UPDATE
 	 * @return bool File with this key is in use
 	 */
 	protected function deletedFileHasKey( $key, $lock = null ) {
@@ -120,8 +120,8 @@ class LocalRepo extends FileRepo {
 	/**
 	 * Check if a hidden (revision delete) file has this sha1 key
 	 *
-	 * @param $key String File storage key (base-36 sha1 key with file extension)
-	 * @param $lock String|null Use "lock" to lock the row via FOR UPDATE
+	 * @param string $key File storage key (base-36 sha1 key with file extension)
+	 * @param string|null $lock Use "lock" to lock the row via FOR UPDATE
 	 * @return bool File with this key is in use
 	 */
 	protected function hiddenFileHasKey( $key, $lock = null ) {
@@ -226,7 +226,7 @@ class LocalRepo extends FileRepo {
 	 * Get an array or iterator of file objects for files that have a given
 	 * SHA-1 content hash.
 	 *
-	 * @param $hash String a sha1 hash to look for
+	 * @param string $hash a sha1 hash to look for
 	 * @return Array
 	 */
 	function findBySha1( $hash ) {
@@ -254,7 +254,7 @@ class LocalRepo extends FileRepo {
 	 *
 	 * Overrides generic implementation in FileRepo for performance reason
 	 *
-	 * @param $hashes array An array of hashes
+	 * @param array $hashes An array of hashes
 	 * @return array An Array of arrays or iterators of file objects and the hash as key
 	 */
 	function findBySha1s( array $hashes ) {

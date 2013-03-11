@@ -61,10 +61,10 @@ class DatabaseMssql extends DatabaseBase {
 
 	/**
 	 * Usually aborts on failure
-	 * @param String $server
-	 * @param String $user
-	 * @param String $password
-	 * @param String $dbName
+	 * @param string $server
+	 * @param string $user
+	 * @param string $password
+	 * @param string $dbName
 	 * @throws DBConnectionError
 	 * @return bool|DatabaseBase|null
 	 */
@@ -284,7 +284,7 @@ class DatabaseMssql extends DatabaseBase {
 	 * @param $vars    Mixed: array or string, field name(s) to be retrieved
 	 * @param $conds   Mixed: array or string, condition(s) for WHERE
 	 * @param $fname   String: calling function name (use __METHOD__) for logs/profiling
-	 * @param $options Array: associative array of options (e.g. array('GROUP BY' => 'page_title')),
+	 * @param array $options associative array of options (e.g. array('GROUP BY' => 'page_title')),
 	 *                 see Database::makeSelectOptions code for list of supported stuff
 	 * @param $join_conds Array: Associative array of table join conditions (optional)
 	 *						   (e.g. array( 'page' => array('LEFT JOIN','page_latest=rev_id') )
@@ -309,7 +309,7 @@ class DatabaseMssql extends DatabaseBase {
 	 * @param $vars    Mixed:  Array or string, field name(s) to be retrieved
 	 * @param $conds   Mixed:  Array or string, condition(s) for WHERE
 	 * @param $fname   String: Calling function name (use __METHOD__) for logs/profiling
-	 * @param $options Array:  Associative array of options (e.g. array('GROUP BY' => 'page_title')),
+	 * @param array $options  Associative array of options (e.g. array('GROUP BY' => 'page_title')),
 	 *                 see Database::makeSelectOptions code for list of supported stuff
 	 * @param $join_conds Array: Associative array of table join conditions (optional)
 	 *                    (e.g. array( 'page' => array('LEFT JOIN','page_latest=rev_id') )
@@ -385,8 +385,8 @@ class DatabaseMssql extends DatabaseBase {
 	 *
 	 * Usually aborts on failure
 	 * If errors are explicitly ignored, returns success
-	 * @param String $table
-	 * @param Array $arrToInsert
+	 * @param string $table
+	 * @param array $arrToInsert
 	 * @param string $fname
 	 * @param array $options
 	 * @throws DBQueryError
@@ -891,7 +891,7 @@ class DatabaseMssql extends DatabaseBase {
 	/**
 	 * @private
 	 *
-	 * @param $options Array: an associative array of options to be turned into
+	 * @param array $options an associative array of options to be turned into
 	 *                 an SQL query, valid keys are listed in the function.
 	 * @return Array
 	 */

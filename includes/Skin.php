@@ -107,7 +107,7 @@ abstract class Skin extends ContextSource {
 	 * Normalize a skin preference value to a form that can be loaded.
 	 * If a skin can't be found, it will fall back to the configured
 	 * default (or the old 'Classic' skin if that's broken).
-	 * @param $key String: 'monobook', 'standard', etc.
+	 * @param string $key 'monobook', 'standard', etc.
 	 * @return string
 	 */
 	static function normalizeKey( $key ) {
@@ -148,7 +148,7 @@ abstract class Skin extends ContextSource {
 
 	/**
 	 * Factory method for loading a skin of a given type
-	 * @param $key String: 'monobook', 'standard', etc.
+	 * @param string $key 'monobook', 'standard', etc.
 	 * @return Skin
 	 */
 	static function &newFromKey( $key ) {
@@ -482,7 +482,7 @@ abstract class Skin extends ContextSource {
 
 	/**
 	 * Render the array as a serie of links.
-	 * @param $tree Array: categories tree returned by Title::getParentCategoryTree
+	 * @param array $tree categories tree returned by Title::getParentCategoryTree
 	 * @return String separated by &gt;, terminate with "\n"
 	 */
 	function drawCategoryBrowser( $tree ) {
@@ -851,8 +851,8 @@ abstract class Skin extends ContextSource {
 
 	/**
 	 * Renders a $wgFooterIcons icon acording to the method's arguments
-	 * @param $icon Array: The icon to build the html for, see $wgFooterIcons for the format of this array
-	 * @param $withImage Bool|String: Whether to use the icon's image or output a text-only footericon
+	 * @param array $icon The icon to build the html for, see $wgFooterIcons for the format of this array
+	 * @param bool|String $withImage Whether to use the icon's image or output a text-only footericon
 	 * @return String HTML
 	 */
 	function makeFooterIcon( $icon, $withImage = 'withImage' ) {
@@ -968,7 +968,7 @@ abstract class Skin extends ContextSource {
 	 * Return a fully resolved style path url to images or styles stored in the common folder.
 	 * This method returns a url resolved using the configured skin style path
 	 * and includes the style version inside of the url.
-	 * @param $name String: The name or path of a skin resource file
+	 * @param string $name The name or path of a skin resource file
 	 * @return String The fully resolved style path url including styleversion
 	 */
 	function getCommonStylePath( $name ) {
@@ -980,7 +980,7 @@ abstract class Skin extends ContextSource {
 	 * Return a fully resolved style path url to images or styles stored in the curent skins's folder.
 	 * This method returns a url resolved using the configured skin style path
 	 * and includes the style version inside of the url.
-	 * @param $name String: The name or path of a skin resource file
+	 * @param string $name The name or path of a skin resource file
 	 * @return String The fully resolved style path url including styleversion
 	 */
 	function getSkinStylePath( $name ) {
@@ -1007,8 +1007,8 @@ abstract class Skin extends ContextSource {
 	 * If $proto is set to null, make a local URL. Otherwise, make a full
 	 * URL with the protocol specified.
 	 *
-	 * @param $name string Name of the Special page
-	 * @param $urlaction string Query to append
+	 * @param string $name Name of the Special page
+	 * @param string $urlaction Query to append
 	 * @param $proto Protocol to use or null for a local URL
 	 * @return String
 	 */
@@ -1101,7 +1101,7 @@ abstract class Skin extends ContextSource {
 
 	/**
 	 * Make URL details where the article exists (or at least it's convenient to think so)
-	 * @param $name String Article name
+	 * @param string $name Article name
 	 * @param $urlaction String
 	 * @return Array
 	 */
@@ -1381,7 +1381,7 @@ abstract class Skin extends ContextSource {
 	/**
 	 * Get a cached notice
 	 *
-	 * @param $name String: message name, or 'default' for $wgSiteNotice
+	 * @param string $name message name, or 'default' for $wgSiteNotice
 	 * @return String: HTML fragment
 	 */
 	private function getCachedNotice( $name ) {
@@ -1489,9 +1489,9 @@ abstract class Skin extends ContextSource {
 	 *
 	 * @param $nt      Title  The title being linked to (may not be the same as
 	 *   $wgTitle, if the section is included from a template)
-	 * @param $section string The designation of the section being pointed to,
+	 * @param string $section The designation of the section being pointed to,
 	 *   to be included in the link, like "&section=$section"
-	 * @param $tooltip string The tooltip to use for the link: will be escaped
+	 * @param string $tooltip The tooltip to use for the link: will be escaped
 	 *   and wrapped in the 'editsectionhint' message
 	 * @param $lang    string Language code
 	 * @return         string HTML to use for edit link
@@ -1549,8 +1549,8 @@ abstract class Skin extends ContextSource {
 	 * Use PHP's magic __call handler to intercept legacy calls to the linker
 	 * for backwards compatibility.
 	 *
-	 * @param $fname String Name of called method
-	 * @param $args Array Arguments to the method
+	 * @param string $fname Name of called method
+	 * @param array $args Arguments to the method
 	 * @throws MWException
 	 * @return mixed
 	 */

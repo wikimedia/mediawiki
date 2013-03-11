@@ -46,7 +46,7 @@ class JobQueueGroup {
 	const CACHE_VERSION = 1; // integer; cache version
 
 	/**
-	 * @param $wiki string Wiki ID
+	 * @param string $wiki Wiki ID
 	 */
 	protected function __construct( $wiki ) {
 		$this->wiki = $wiki;
@@ -54,7 +54,7 @@ class JobQueueGroup {
 	}
 
 	/**
-	 * @param $wiki string Wiki ID
+	 * @param string $wiki Wiki ID
 	 * @return JobQueueGroup
 	 */
 	public static function singleton( $wiki = false ) {

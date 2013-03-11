@@ -36,8 +36,8 @@ class ZipDirectoryReader {
 	 * suspicious or ambiguous input, instead of emulating some standard
 	 * behavior.
 	 *
-	 * @param $fileName string The archive file name
-	 * @param $callback Array The callback function. It will be called for each file
+	 * @param string $fileName The archive file name
+	 * @param array $callback The callback function. It will be called for each file
 	 *   with a single associative array each time, with members:
 	 *
 	 *      - name: The file name. Directories conventionally have a trailing
@@ -47,7 +47,7 @@ class ZipDirectoryReader {
 	 *
 	 *      - size: The uncompressed file size
 	 *
-	 * @param $options Array An associative array of read options, with the option
+	 * @param array $options An associative array of read options, with the option
 	 *    name in the key. This may currently contain:
 	 *
 	 *      - zip64: If this is set to true, then we will emulate a
@@ -494,8 +494,8 @@ class ZipDirectoryReader {
 	 * Get the file contents from a given offset. If there are not enough bytes
 	 * in the file to satisfy the request, an exception will be thrown.
 	 *
-	 * @param $start int The byte offset of the start of the block.
-	 * @param $length int The number of bytes to return. If omitted, the remainder
+	 * @param int $start The byte offset of the start of the block.
+	 * @param int $length The number of bytes to return. If omitted, the remainder
 	 *    of the file will be returned.
 	 *
 	 * @return string
@@ -583,9 +583,9 @@ class ZipDirectoryReader {
 	 * Unpack a binary structure. This is like the built-in unpack() function
 	 * except nicer.
 	 *
-	 * @param $string string The binary data input
+	 * @param string $string The binary data input
 	 *
-	 * @param $struct array An associative array giving structure members and their
+	 * @param array $struct An associative array giving structure members and their
 	 *    types. In the key is the field name. The value may be either an
 	 *    integer, in which case the field is a little-endian unsigned integer
 	 *    encoded in the given number of bytes, or an array, in which case the
@@ -594,7 +594,7 @@ class ZipDirectoryReader {
 	 *       - "string": The second array element gives the length of string.
 	 *          Not null terminated.
 	 *
-	 * @param $offset int The offset into the string at which to start unpacking.
+	 * @param int $offset The offset into the string at which to start unpacking.
 	 *
 	 * @throws MWException
 	 * @return array Unpacked associative array. Note that large integers in the input
@@ -651,7 +651,7 @@ class ZipDirectoryReader {
 	 * boolean.
 	 *
 	 * @param $value integer
-	 * @param $bitIndex int The index of the bit, where 0 is the LSB.
+	 * @param int $bitIndex The index of the bit, where 0 is the LSB.
 	 * @return bool
 	 */
 	function testBit( $value, $bitIndex ) {

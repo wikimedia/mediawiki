@@ -47,8 +47,8 @@ class ExternalStore {
 	/**
 	 * Get an external store object of the given type, with the given parameters
 	 *
-	 * @param $proto string Type of external storage, should be a value in $wgExternalStores
-	 * @param $params array Associative array of ExternalStoreMedium parameters
+	 * @param string $proto Type of external storage, should be a value in $wgExternalStores
+	 * @param array $params Associative array of ExternalStoreMedium parameters
 	 * @return ExternalStoreMedium|bool The store class or false on error
 	 */
 	public static function getStoreObject( $proto, array $params = array() ) {
@@ -66,8 +66,8 @@ class ExternalStore {
 	/**
 	 * Fetch data from given URL
 	 *
-	 * @param $url string The URL of the text to get
-	 * @param $params array Associative array of ExternalStoreMedium parameters
+	 * @param string $url The URL of the text to get
+	 * @param array $params Associative array of ExternalStoreMedium parameters
 	 * @return string|bool The text stored or false on error
 	 * @throws MWException
 	 */
@@ -95,9 +95,9 @@ class ExternalStore {
 	 * The protocol part is used to identify the class, the rest is passed to the
 	 * class itself as a parameter.
 	 *
-	 * @param $url String A partial external store URL ("<store type>://<location>")
+	 * @param string $url A partial external store URL ("<store type>://<location>")
 	 * @param $data string
-	 * @param $params array Associative array of ExternalStoreMedium parameters
+	 * @param array $params Associative array of ExternalStoreMedium parameters
 	 * @return string|bool The URL of the stored data item, or false on error
 	 * @throws MWException
 	 */
@@ -126,7 +126,7 @@ class ExternalStore {
 	 * itself. It also fails-over to the next possible clusters.
 	 *
 	 * @param $data string
-	 * @param $params array Associative array of ExternalStoreMedium parameters
+	 * @param array $params Associative array of ExternalStoreMedium parameters
 	 * @return string|bool The URL of the stored data item, or false on error
 	 * @throws MWException
 	 */

@@ -468,7 +468,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	/**
 	 * Send output to the OutputPage object, only called if not used feeds
 	 *
-	 * @param $rows Array of database rows
+	 * @param array $rows of database rows
 	 * @param $opts FormOptions
 	 */
 	public function webOutput( $rows, $opts ) {
@@ -724,7 +724,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	/**
 	 * Filter $rows by categories set in $opts
 	 *
-	 * @param $rows Array of database rows
+	 * @param array $rows of database rows
 	 * @param $opts FormOptions
 	 */
 	function filterByCategories( &$rows, FormOptions $opts ) {
@@ -789,8 +789,8 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	 * Makes change an option link which carries all the other options
 	 *
 	 * @param $title Title
-	 * @param $override Array: options to override
-	 * @param $options Array: current options
+	 * @param array $override options to override
+	 * @param array $options current options
 	 * @param $active Boolean: whether to show the link in bold
 	 * @return string
 	 */

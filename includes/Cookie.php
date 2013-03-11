@@ -43,8 +43,8 @@ class Cookie {
 	 * cookies. Used internally after a request to parse the
 	 * Set-Cookie headers.
 	 *
-	 * @param $value String: the value of the cookie
-	 * @param $attr Array: possible key/values:
+	 * @param string $value the value of the cookie
+	 * @param array $attr possible key/values:
 	 *        expires A date string
 	 *        path    The path this cookie is used on
 	 *        domain  Domain this cookie is used on
@@ -84,8 +84,8 @@ class Cookie {
 	 * @todo fixme fails to detect 3-letter top-level domains
 	 * @todo fixme fails to detect 2-letter top-level domains for single-domain use (probably not a big problem in practice, but there are test cases)
 	 *
-	 * @param $domain String: the domain to validate
-	 * @param $originDomain String: (optional) the domain the cookie originates from
+	 * @param string $domain the domain to validate
+	 * @param string $originDomain (optional) the domain the cookie originates from
 	 * @return Boolean
 	 */
 	public static function validateCookieDomain( $domain, $originDomain = null ) {
@@ -142,8 +142,8 @@ class Cookie {
 	/**
 	 * Serialize the cookie jar into a format useful for HTTP Request headers.
 	 *
-	 * @param $path String: the path that will be used. Required.
-	 * @param $domain String: the domain that will be used. Required.
+	 * @param string $path the path that will be used. Required.
+	 * @param string $domain the domain that will be used. Required.
 	 * @return String
 	 */
 	public function serializeToHttpRequest( $path, $domain ) {
@@ -232,7 +232,7 @@ class CookieJar {
 	 * Parse the content of an Set-Cookie HTTP Response header.
 	 *
 	 * @param $cookie String
-	 * @param $domain String: cookie's domain
+	 * @param string $domain cookie's domain
 	 * @return null
 	 */
 	public function parseCookieResponseHeader ( $cookie, $domain ) {

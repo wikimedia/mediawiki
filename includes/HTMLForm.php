@@ -190,10 +190,10 @@ class HTMLForm extends ContextSource {
 
 	/**
 	 * Build a new HTMLForm from an array of field attributes
-	 * @param $descriptor Array of Field constructs, as described above
+	 * @param array $descriptor of Field constructs, as described above
 	 * @param $context IContextSource available since 1.18, will become compulsory in 1.18.
 	 *     Obviates the need to call $form->setTitle()
-	 * @param $messagePrefix String a prefix to go in front of default messages
+	 * @param string $messagePrefix a prefix to go in front of default messages
 	 */
 	public function __construct( $descriptor, /*IContextSource*/ $context = null, $messagePrefix = '' ) {
 		if ( $context instanceof IContextSource ) {
@@ -248,7 +248,7 @@ class HTMLForm extends ContextSource {
 
 	/**
 	 * Set format in which to display the form
-	 * @param $format String the name of the format to use, must be one of
+	 * @param string $format the name of the format to use, must be one of
 	 *        $this->availableDisplayFormats
 	 * @throws MWException
 	 * @since 1.20
@@ -281,7 +281,7 @@ class HTMLForm extends ContextSource {
 	/**
 	 * Initialise a new Object for the field
 	 * @param $fieldname string
-	 * @param $descriptor string input Descriptor, as described above
+	 * @param string $descriptor input Descriptor, as described above
 	 * @throws MWException
 	 * @return HTMLFormField subclass
 	 */
@@ -417,7 +417,7 @@ class HTMLForm extends ContextSource {
 	/**
 	 * Set a callback to a function to do something with the form
 	 * once it's been successfully validated.
-	 * @param $cb String function name.  The function will be passed
+	 * @param string $cb function name.  The function will be passed
 	 *	 the output from HTMLForm::filterDataForSubmit, and must
 	 *	 return Bool true on success, Bool false if no submission
 	 *	 was attempted, or String HTML output to display on error.
@@ -441,7 +441,7 @@ class HTMLForm extends ContextSource {
 
 	/**
 	 * Set the introductory message, overwriting any existing message.
-	 * @param $msg String complete text of message to display
+	 * @param string $msg complete text of message to display
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
 	function setIntro( $msg ) {
@@ -452,7 +452,7 @@ class HTMLForm extends ContextSource {
 	/**
 	 * Set the introductory message, overwriting any existing message.
 	 * @since 1.19
-	 * @param $msg String complete text of message to display
+	 * @param string $msg complete text of message to display
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
 	function setPreText( $msg ) {
@@ -462,7 +462,7 @@ class HTMLForm extends ContextSource {
 
 	/**
 	 * Add introductory text.
-	 * @param $msg String complete text of message to display
+	 * @param string $msg complete text of message to display
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
 	function addPreText( $msg ) {
@@ -472,8 +472,8 @@ class HTMLForm extends ContextSource {
 
 	/**
 	 * Add header text, inside the form.
-	 * @param $msg String complete text of message to display
-	 * @param $section string The section to add the header to
+	 * @param string $msg complete text of message to display
+	 * @param string $section The section to add the header to
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
 	function addHeaderText( $msg, $section = null ) {
@@ -491,7 +491,7 @@ class HTMLForm extends ContextSource {
 	/**
 	 * Set header text, inside the form.
 	 * @since 1.19
-	 * @param $msg String complete text of message to display
+	 * @param string $msg complete text of message to display
 	 * @param $section The section to add the header to
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
@@ -506,8 +506,8 @@ class HTMLForm extends ContextSource {
 
 	/**
 	 * Add footer text, inside the form.
-	 * @param $msg String complete text of message to display
-	 * @param $section string The section to add the footer text to
+	 * @param string $msg complete text of message to display
+	 * @param string $section The section to add the footer text to
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
 	function addFooterText( $msg, $section = null ) {
@@ -525,8 +525,8 @@ class HTMLForm extends ContextSource {
 	/**
 	 * Set footer text, inside the form.
 	 * @since 1.19
-	 * @param $msg String complete text of message to display
-	 * @param $section string The section to add the footer text to
+	 * @param string $msg complete text of message to display
+	 * @param string $section The section to add the footer text to
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
 	function setFooterText( $msg, $section = null ) {
@@ -540,7 +540,7 @@ class HTMLForm extends ContextSource {
 
 	/**
 	 * Add text to the end of the display.
-	 * @param $msg String complete text of message to display
+	 * @param string $msg complete text of message to display
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
 	function addPostText( $msg ) {
@@ -550,7 +550,7 @@ class HTMLForm extends ContextSource {
 
 	/**
 	 * Set text at the end of the display.
-	 * @param $msg String complete text of message to display
+	 * @param string $msg complete text of message to display
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
 	function setPostText( $msg ) {
@@ -560,8 +560,8 @@ class HTMLForm extends ContextSource {
 
 	/**
 	 * Add a hidden field to the output
-	 * @param $name String field name.  This will be used exactly as entered
-	 * @param $value String field value
+	 * @param string $name field name.  This will be used exactly as entered
+	 * @param string $value field value
 	 * @param $attribs Array
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
@@ -573,9 +573,9 @@ class HTMLForm extends ContextSource {
 
 	/**
 	 * Add a button to the form
-	 * @param $name String field name.
-	 * @param $value String field value
-	 * @param $id String DOM id for the button (default: null)
+	 * @param string $name field name.
+	 * @param string $value field value
+	 * @param string $id DOM id for the button (default: null)
 	 * @param $attribs Array
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
@@ -625,7 +625,7 @@ class HTMLForm extends ContextSource {
 
 	/**
 	 * Wrap the form innards in an actual "<form>" element
-	 * @param $html String HTML contents to wrap.
+	 * @param string $html HTML contents to wrap.
 	 * @return String wrapped HTML.
 	 */
 	function wrapForm( $html ) {
@@ -765,7 +765,7 @@ class HTMLForm extends ContextSource {
 
 	/**
 	 * Format a stack of error messages into a single HTML string
-	 * @param $errors Array of message keys/values
+	 * @param array $errors of message keys/values
 	 * @return String HTML, a "<ul>" list of errors
 	 */
 	public static function formatErrors( $errors ) {
@@ -793,7 +793,7 @@ class HTMLForm extends ContextSource {
 
 	/**
 	 * Set the text for the submit button
-	 * @param $t String plaintext.
+	 * @param string $t plaintext.
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
 	function setSubmitText( $t ) {
@@ -804,7 +804,7 @@ class HTMLForm extends ContextSource {
 	/**
 	 * Set the text for the submit button to a message
 	 * @since 1.19
-	 * @param $msg String message key
+	 * @param string $msg message key
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
 	public function setSubmitTextMsg( $msg ) {
@@ -823,7 +823,7 @@ class HTMLForm extends ContextSource {
 	}
 
 	/**
-	 * @param $name String Submit button name
+	 * @param string $name Submit button name
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
 	public function setSubmitName( $name ) {
@@ -832,7 +832,7 @@ class HTMLForm extends ContextSource {
 	}
 
 	/**
-	 * @param $name String Tooltip for the submit button
+	 * @param string $name Tooltip for the submit button
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
 	public function setSubmitTooltip( $name ) {
@@ -852,7 +852,7 @@ class HTMLForm extends ContextSource {
 	}
 
 	/**
-	 * @param $id String DOM id for the form
+	 * @param string $id DOM id for the form
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
 	public function setId( $id ) {
@@ -862,7 +862,7 @@ class HTMLForm extends ContextSource {
 	/**
 	 * Prompt the whole form to be wrapped in a "<fieldset>", with
 	 * this text as its "<legend>" element.
-	 * @param $legend String HTML to go inside the "<legend>" element.
+	 * @param string $legend HTML to go inside the "<legend>" element.
 	 *	 Will be escaped
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
@@ -875,7 +875,7 @@ class HTMLForm extends ContextSource {
 	 * Prompt the whole form to be wrapped in a "<fieldset>", with
 	 * this message as its "<legend>" element.
 	 * @since 1.19
-	 * @param $msg String message key
+	 * @param string $msg message key
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
 	public function setWrapperLegendMsg( $msg ) {
@@ -932,8 +932,8 @@ class HTMLForm extends ContextSource {
 	/**
 	 * @todo Document
 	 * @param $fields array[]|HTMLFormField[] array of fields (either arrays or objects)
-	 * @param $sectionName string ID attribute of the "<table>" tag for this section, ignored if empty
-	 * @param $fieldsetIDPrefix string ID prefix for the "<fieldset>" tag of each subsection, ignored if empty
+	 * @param string $sectionName ID attribute of the "<table>" tag for this section, ignored if empty
+	 * @param string $fieldsetIDPrefix ID prefix for the "<fieldset>" tag of each subsection, ignored if empty
 	 * @return String
 	 */
 	public function displaySection( $fields, $sectionName = '', $fieldsetIDPrefix = '' ) {
@@ -1030,7 +1030,7 @@ class HTMLForm extends ContextSource {
 
 	/**
 	 * Stop a reset button being shown for this form
-	 * @param $suppressReset Bool set to false to re-enable the
+	 * @param bool $suppressReset set to false to re-enable the
 	 *	 button again
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
@@ -1100,7 +1100,7 @@ abstract class HTMLFormField {
 	 * This function must be implemented to return the HTML to generate
 	 * the input object itself.  It should not implement the surrounding
 	 * table cells/rows, or labels/help messages.
-	 * @param $value String the value to set the input to; eg a default
+	 * @param string $value the value to set the input to; eg a default
 	 *	 text for a text input.
 	 * @return String valid HTML.
 	 */
@@ -1132,8 +1132,8 @@ abstract class HTMLFormField {
 	 * Override this function to add specific validation checks on the
 	 * field input.  Don't forget to call parent::validate() to ensure
 	 * that the user-defined callback mValidationCallback is still run
-	 * @param $value String the value the field was submitted with
-	 * @param $alldata Array the data collected from the form
+	 * @param string $value the value the field was submitted with
+	 * @param array $alldata the data collected from the form
 	 * @return Mixed Bool true on success, or String error to display.
 	 */
 	function validate( $value, $alldata ) {
@@ -1182,7 +1182,7 @@ abstract class HTMLFormField {
 
 	/**
 	 * Initialise the object
-	 * @param $params array Associative Array. See HTMLForm doc for syntax.
+	 * @param array $params Associative Array. See HTMLForm doc for syntax.
 	 * @throws MWException
 	 */
 	function __construct( $params ) {
@@ -1251,7 +1251,7 @@ abstract class HTMLFormField {
 	/**
 	 * Get the complete table row for the input, including help text,
 	 * labels, and whatever.
-	 * @param $value String the value to set the input to.
+	 * @param string $value the value to set the input to.
 	 * @return String complete HTML table row.
 	 */
 	function getTableRow( $value ) {
@@ -1295,7 +1295,7 @@ abstract class HTMLFormField {
 	 * Get the complete div for the input, including help text,
 	 * labels, and whatever.
 	 * @since 1.20
-	 * @param $value String the value to set the input to.
+	 * @param string $value the value to set the input to.
 	 * @return String complete HTML table row.
 	 */
 	public function getDiv( $value ) {
@@ -1322,7 +1322,7 @@ abstract class HTMLFormField {
 	 * Get the complete raw fields for the input, including help text,
 	 * labels, and whatever.
 	 * @since 1.20
-	 * @param $value String the value to set the input to.
+	 * @param string $value the value to set the input to.
 	 * @return String complete HTML table row.
 	 */
 	public function getRaw( $value ) {
@@ -1420,7 +1420,7 @@ abstract class HTMLFormField {
 	/**
 	 * Determine form errors to display and their classes
 	 * @since 1.20
-	 * @param $value String the value of the input
+	 * @param string $value the value of the input
 	 * @return Array
 	 */
 	public function getErrorsAndErrorClass( $value ) {
@@ -1488,7 +1488,7 @@ abstract class HTMLFormField {
 	/**
 	 * flatten an array of options to a single array, for instance,
 	 * a set of "<options>" inside "<optgroups>".
-	 * @param $options array Associative Array with values either Strings
+	 * @param array $options Associative Array with values either Strings
 	 *	 or Arrays
 	 * @return Array flattened input
 	 */
@@ -1826,7 +1826,7 @@ class HTMLCheckMatrix extends HTMLFormField {
 	 * The value of each option is a combination of the row tag and column tag.
 	 * mParams['rows'] is an array with row labels as keys and row tags as values.
 	 * mParams['columns'] is an array with column labels as keys and column tags as values.
-	 * @param $value Array of the options that should be checked
+	 * @param array $value of the options that should be checked
 	 * @return String
 	 */
 	function getInputHTML( $value ) {
@@ -1886,7 +1886,7 @@ class HTMLCheckMatrix extends HTMLFormField {
 	 * We override this function since the label should always be on a separate
 	 * line above the options in the case of a checkbox matrix, i.e. it's always
 	 * a "vertical-label".
-	 * @param $value String the value to set the input to
+	 * @param string $value the value to set the input to
 	 * @return String complete HTML table row
 	 */
 	function getTableRow( $value ) {
@@ -2222,8 +2222,8 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 
 	/**
 	 * Build a drop-down box from a textual list.
-	 * @param $string String message text
-	 * @param $otherName String name of "other reason" option
+	 * @param string $string message text
+	 * @param string $otherName name of "other reason" option
 	 * @return Array
 	 * TODO: this is copied from Xml::listDropDown(), deprecate/avoid duplication?
 	 */

@@ -59,7 +59,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 	/**
 	 * Constructor
 	 *
-	 * @param $name string: name of the special page, as seen in links and URLs (default: 'Allpages')
+	 * @param string $name name of the special page, as seen in links and URLs (default: 'Allpages')
 	 */
 	function __construct( $name = 'Allpages' ) {
 		parent::__construct( $name );
@@ -68,7 +68,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 	/**
 	 * Entry point : initialise variables and call subfunctions.
 	 *
-	 * @param $par String: becomes "FOO" when called like Special:Allpages/FOO (default NULL)
+	 * @param string $par becomes "FOO" when called like Special:Allpages/FOO (default NULL)
 	 */
 	function execute( $par ) {
 		global $wgContLang;
@@ -107,9 +107,9 @@ class SpecialAllpages extends IncludableSpecialPage {
 	 * HTML for the top form
 	 *
 	 * @param $namespace Integer: a namespace constant (default NS_MAIN).
-	 * @param $from String: dbKey we are starting listing at.
-	 * @param $to String: dbKey we are ending listing at.
-	 * @param $hideredirects Bool: dont show redirects  (default FALSE)
+	 * @param string $from dbKey we are starting listing at.
+	 * @param string $to dbKey we are ending listing at.
+	 * @param bool $hideredirects dont show redirects  (default FALSE)
 	 * @return string
 	 */
 	function namespaceForm( $namespace = NS_MAIN, $from = '', $to = '', $hideredirects = false ) {
@@ -165,9 +165,9 @@ class SpecialAllpages extends IncludableSpecialPage {
 
 	/**
 	 * @param $namespace Integer (default NS_MAIN)
-	 * @param $from String: list all pages from this name
-	 * @param $to String: list all pages to this name
-	 * @param $hideredirects Bool: dont show redirects (default FALSE)
+	 * @param string $from list all pages from this name
+	 * @param string $to list all pages to this name
+	 * @param bool $hideredirects dont show redirects (default FALSE)
 	 */
 	function showToplevel( $namespace = NS_MAIN, $from = '', $to = '', $hideredirects = false ) {
 		$output = $this->getOutput();
@@ -294,10 +294,10 @@ class SpecialAllpages extends IncludableSpecialPage {
 	/**
 	 * Show a line of "ABC to DEF" ranges of articles
 	 *
-	 * @param $inpoint String: lower limit of pagenames
-	 * @param $outpoint String: upper limit of pagenames
+	 * @param string $inpoint lower limit of pagenames
+	 * @param string $outpoint upper limit of pagenames
 	 * @param $namespace Integer (Default NS_MAIN)
-	 * @param $hideredirects Bool: dont show redirects (default FALSE)
+	 * @param bool $hideredirects dont show redirects (default FALSE)
 	 * @return string
 	 */
 	function showline( $inpoint, $outpoint, $namespace = NS_MAIN, $hideredirects ) {
@@ -327,9 +327,9 @@ class SpecialAllpages extends IncludableSpecialPage {
 
 	/**
 	 * @param $namespace Integer (Default NS_MAIN)
-	 * @param $from String: list all pages from this name (default FALSE)
-	 * @param $to String: list all pages to this name (default FALSE)
-	 * @param $hideredirects Bool: dont show redirects (default FALSE)
+	 * @param string $from list all pages from this name (default FALSE)
+	 * @param string $to list all pages to this name (default FALSE)
+	 * @param bool $hideredirects dont show redirects (default FALSE)
 	 */
 	function showChunk( $namespace = NS_MAIN, $from = false, $to = false, $hideredirects = false ) {
 		global $wgContLang;
@@ -515,7 +515,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 
 	/**
 	 * @param $ns Integer: the namespace of the article
-	 * @param $text String: the name of the article
+	 * @param string $text the name of the article
 	 * @return array( int namespace, string dbkey, string pagename ) or NULL on error
 	 */
 	protected function getNamespaceKeyAndText( $ns, $text ) {

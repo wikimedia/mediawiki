@@ -527,7 +527,7 @@ abstract class DatabaseInstaller {
 
 	/**
 	 * Get a standard web-user fieldset
-	 * @param $noCreateMsg String: Message to display instead of the creation checkbox.
+	 * @param string $noCreateMsg Message to display instead of the creation checkbox.
 	 *   Set this to false to show a creation checkbox.
 	 *
 	 * @return String

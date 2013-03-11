@@ -241,7 +241,7 @@ class HistoryAction extends FormlessAction {
 	/**
 	 * Output a subscription feed listing recent edits to this page.
 	 *
-	 * @param $type String: feed type
+	 * @param string $type feed type
 	 */
 	function feed( $type ) {
 		global $wgFeedClasses, $wgFeedLimit;
@@ -508,8 +508,8 @@ class HistoryPager extends ReverseChronologicalPager {
 	/**
 	 * Creates a submit button
 	 *
-	 * @param $message String: text of the submit button, will be escaped
-	 * @param $attributes Array: attributes
+	 * @param string $message text of the submit button, will be escaped
+	 * @param array $attributes attributes
 	 * @return String: HTML output for the submit button
 	 */
 	function submitButton( $message, $attributes = array() ) {

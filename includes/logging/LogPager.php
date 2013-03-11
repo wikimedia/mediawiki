@@ -35,14 +35,14 @@ class LogPager extends ReverseChronologicalPager {
 	 * Constructor
 	 *
 	 * @param $list LogEventsList
-	 * @param $types String or Array: log types to show
-	 * @param $performer String: the user who made the log entries
-	 * @param $title String|Title: the page title the log entries are for
-	 * @param $pattern String: do a prefix search rather than an exact title match
-	 * @param $conds Array: extra conditions for the query
+	 * @param string $types or Array: log types to show
+	 * @param string $performer the user who made the log entries
+	 * @param string|Title $title the page title the log entries are for
+	 * @param string $pattern do a prefix search rather than an exact title match
+	 * @param array $conds extra conditions for the query
 	 * @param $year Integer: the year to start from
 	 * @param $month Integer: the month to start from
-	 * @param $tagFilter String: tag
+	 * @param string $tagFilter tag
 	 */
 	public function __construct( $list, $types = array(), $performer = '', $title = '', $pattern = '',
 		$conds = array(), $year = false, $month = false, $tagFilter = '' ) {
@@ -90,7 +90,7 @@ class LogPager extends ReverseChronologicalPager {
 	 * Set the log reader to return only entries of the given type.
 	 * Type restrictions enforced here
 	 *
-	 * @param $types String or array: Log types ('upload', 'delete', etc);
+	 * @param string $types or array: Log types ('upload', 'delete', etc);
 	 *   empty string means no restriction
 	 */
 	private function limitType( $types ) {
@@ -132,7 +132,7 @@ class LogPager extends ReverseChronologicalPager {
 	/**
 	 * Set the log reader to return only entries by the given user.
 	 *
-	 * @param $name String: (In)valid user name
+	 * @param string $name (In)valid user name
 	 * @return bool
 	 */
 	private function limitPerformer( $name ) {
@@ -167,7 +167,7 @@ class LogPager extends ReverseChronologicalPager {
 	 * Set the log reader to return only entries affecting the given page.
 	 * (For the block and rights logs, this is a user page.)
 	 *
-	 * @param $page String or Title object: Title name
+	 * @param string $page or Title object: Title name
 	 * @param $pattern String
 	 * @return bool
 	 */

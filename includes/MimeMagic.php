@@ -502,8 +502,8 @@ class MimeMagic {
 	 * If $mime is "application/x-opc+zip" and isMatchingExtension( $ext, $mime )
 	 * gives true, return the result of guessTypesForExtension($ext).
 	 *
-	 * @param $mime String: the mime type, typically guessed from a file's content.
-	 * @param $ext String: the file extension, as taken from the file name
+	 * @param string $mime the mime type, typically guessed from a file's content.
+	 * @param string $ext the file extension, as taken from the file name
 	 *
 	 * @return string the mime type
 	 */
@@ -545,7 +545,7 @@ class MimeMagic {
 	 * detection (namely XML based formats like XHTML or SVG, as well as ZIP
 	 * based formats like OPC/ODF files).
 	 *
-	 * @param $file String: the file to check
+	 * @param string $file the file to check
 	 * @param $ext Mixed: the file extension, or true (default) to extract it from the filename.
 	 *             Set it to false to ignore the extension. DEPRECATED! Set to false, use
 	 *             improveTypeFromExtension($mime, $ext) later to improve mime type.
@@ -754,7 +754,7 @@ class MimeMagic {
 	 * header data.  Currently works for OpenDocument and OpenXML types...
 	 * If can't tell, returns 'application/zip'.
 	 *
-	 * @param $header String: some reasonably-sized chunk of file header
+	 * @param string $header some reasonably-sized chunk of file header
 	 * @param $tail   String: the tail of the file
 	 * @param $ext Mixed: the file extension, or true to extract it from the filename.
 	 *             Set it to false (default) to ignore the extension. DEPRECATED! Set to false,
@@ -860,7 +860,7 @@ class MimeMagic {
 	 * mime type if the file is an image. If no mime type can be determined,
 	 * this function returns 'unknown/unknown'.
 	 *
-	 * @param $file String: the file to check
+	 * @param string $file the file to check
 	 * @param $ext Mixed: the file extension, or true (default) to extract it from the filename.
 	 *             Set it to false to ignore the extension. DEPRECATED! Set to false, use
 	 *             improveTypeFromExtension($mime, $ext) later to improve mime type.
@@ -961,9 +961,9 @@ class MimeMagic {
 	 * @todo analyse file if need be
 	 * @todo look at multiple extension, separately and together.
 	 *
-	 * @param $path String: full path to the image file, in case we have to look at the contents
+	 * @param string $path full path to the image file, in case we have to look at the contents
 	 *        (if null, only the mime type is used to determine the media type code).
-	 * @param $mime String: mime type. If null it will be guessed using guessMimeType.
+	 * @param string $mime mime type. If null it will be guessed using guessMimeType.
 	 *
 	 * @return (int?string?) a value to be used with the MEDIATYPE_xxx constants.
 	 */
@@ -1078,9 +1078,9 @@ class MimeMagic {
 	 * Get the MIME types that various versions of Internet Explorer would
 	 * detect from a chunk of the content.
 	 *
-	 * @param $fileName String: the file name (unused at present)
-	 * @param $chunk String: the first 256 bytes of the file
-	 * @param $proposed String: the MIME type proposed by the server
+	 * @param string $fileName the file name (unused at present)
+	 * @param string $chunk the first 256 bytes of the file
+	 * @param string $proposed the MIME type proposed by the server
 	 * @return Array
 	 */
 	public function getIEMimeTypes( $fileName, $chunk, $proposed ) {

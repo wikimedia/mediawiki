@@ -31,7 +31,7 @@
 class NullJob extends Job {
 	/**
 	 * @param $title Title (can be anything)
-	 * @param $params Array: job parameters (lives, usleep)
+	 * @param array $params job parameters (lives, usleep)
 	 * @param $id Integer: job id
 	 */
 	function __construct( $title, $params, $id = 0 ) {

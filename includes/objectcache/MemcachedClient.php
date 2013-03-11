@@ -241,7 +241,7 @@ class MWMemcached {
 	/**
 	 * Memcache initializer
 	 *
-	 * @param $args Array Associative array of settings
+	 * @param array $args Associative array of settings
 	 *
 	 * @return  mixed
 	 */
@@ -271,7 +271,7 @@ class MWMemcached {
 	 * Adds a key/value to the memcache server if one isn't already set with
 	 * that key
 	 *
-	 * @param $key String: key to set with data
+	 * @param string $key key to set with data
 	 * @param $val Mixed: value to store
 	 * @param $exp Integer: (optional) Expiration time. This can be a number of seconds
 	 * to cache for (up to 30 days inclusive).  Any timespans of 30 days + 1 second or
@@ -291,7 +291,7 @@ class MWMemcached {
 	/**
 	 * Decrease a value stored on the memcache server
 	 *
-	 * @param $key String: key to decrease
+	 * @param string $key key to decrease
 	 * @param $amt Integer: (optional) amount to decrease
 	 *
 	 * @return Mixed: FALSE on failure, value on success
@@ -306,7 +306,7 @@ class MWMemcached {
 	/**
 	 * Deletes a key from the server, optionally after $time
 	 *
-	 * @param $key String: key to delete
+	 * @param string $key key to delete
 	 * @param $time Integer: (optional) how long to wait before deleting
 	 *
 	 * @return Boolean: TRUE on success, FALSE on failure
@@ -406,7 +406,7 @@ class MWMemcached {
 	/**
 	 * Retrieves the value associated with the key from the memcache server
 	 *
-	 * @param $key array|string key to retrieve
+	 * @param array|string $key key to retrieve
 	 * @param $casToken[optional] Float
 	 *
 	 * @return Mixed
@@ -466,7 +466,7 @@ class MWMemcached {
 	/**
 	 * Get multiple keys from the server(s)
 	 *
-	 * @param $keys Array: keys to retrieve
+	 * @param array $keys keys to retrieve
 	 *
 	 * @return Array
 	 */
@@ -530,7 +530,7 @@ class MWMemcached {
 	/**
 	 * Increments $key (optionally) by $amt
 	 *
-	 * @param $key String: key to increment
+	 * @param string $key key to increment
 	 * @param $amt Integer: (optional) amount to increment
 	 *
 	 * @return Integer: null if the key does not exist yet (this does NOT
@@ -547,7 +547,7 @@ class MWMemcached {
 	/**
 	 * Overwrites an existing value for key; only works if key is already set
 	 *
-	 * @param $key String: key to set value as
+	 * @param string $key key to set value as
 	 * @param $value Mixed: value to store
 	 * @param $exp Integer: (optional) Expiration time. This can be a number of seconds
 	 * to cache for (up to 30 days inclusive).  Any timespans of 30 days + 1 second or
@@ -569,7 +569,7 @@ class MWMemcached {
 	 * output as an array (null array if no output)
 	 *
 	 * @param $sock Resource: socket to send command on
-	 * @param $cmd String: command to run
+	 * @param string $cmd command to run
 	 *
 	 * @return Array: output array
 	 */
@@ -603,7 +603,7 @@ class MWMemcached {
 	 * Unconditionally sets a key to a given value in the memcache.  Returns true
 	 * if set successfully.
 	 *
-	 * @param $key String: key to set value as
+	 * @param string $key key to set value as
 	 * @param $value Mixed: value to set
 	 * @param $exp Integer: (optional) Expiration time. This can be a number of seconds
 	 * to cache for (up to 30 days inclusive).  Any timespans of 30 days + 1 second or
@@ -625,7 +625,7 @@ class MWMemcached {
 	 * to a known, given value.  Returns true if set successfully.
 	 *
 	 * @param $casToken Float: current known value
-	 * @param $key String: key to set value as
+	 * @param string $key key to set value as
 	 * @param $value Mixed: value to set
 	 * @param $exp Integer: (optional) Expiration time. This can be a number of seconds
 	 * to cache for (up to 30 days inclusive).  Any timespans of 30 days + 1 second or
@@ -671,7 +671,7 @@ class MWMemcached {
 	/**
 	 * Sets the server list to distribute key gets and puts between
 	 *
-	 * @param $list Array of servers to connect to
+	 * @param array $list of servers to connect to
 	 *
 	 * @see     MWMemcached::__construct()
 	 */
@@ -706,7 +706,7 @@ class MWMemcached {
 	/**
 	 * Close the specified socket
 	 *
-	 * @param $sock String: socket to close
+	 * @param string $sock socket to close
 	 *
 	 * @access  private
 	 */
@@ -723,7 +723,7 @@ class MWMemcached {
 	 * Connects $sock to $host, timing out after $timeout
 	 *
 	 * @param $sock Integer: socket to connect
-	 * @param $host String: Host:IP to connect to
+	 * @param string $host Host:IP to connect to
 	 *
 	 * @return  boolean
 	 * @access  private
@@ -765,7 +765,7 @@ class MWMemcached {
 	/**
 	 * Marks a host as dead until 30-40 seconds in the future
 	 *
-	 * @param $sock String: socket to mark as dead
+	 * @param string $sock socket to mark as dead
 	 *
 	 * @access  private
 	 */
@@ -791,7 +791,7 @@ class MWMemcached {
 	/**
 	 * get_sock
 	 *
-	 * @param $key String: key to retrieve value for;
+	 * @param string $key key to retrieve value for;
 	 *
 	 * @return Mixed: resource on success, false on failure
 	 * @access private
@@ -840,7 +840,7 @@ class MWMemcached {
 	/**
 	 * Creates a hash integer based on the $key
 	 *
-	 * @param $key String: key to hash
+	 * @param string $key key to hash
 	 *
 	 * @return Integer: hash value
 	 * @access private
@@ -858,8 +858,8 @@ class MWMemcached {
 	/**
 	 * Perform increment/decriment on $key
 	 *
-	 * @param $cmd String command to perform
-	 * @param $key String|array key to perform it on
+	 * @param string $cmd command to perform
+	 * @param string|array $key key to perform it on
 	 * @param $amt Integer amount to adjust
 	 *
 	 * @return Integer: new value of $key
@@ -900,7 +900,7 @@ class MWMemcached {
 	 * Load items into $ret from $sock
 	 *
 	 * @param $sock Resource: socket to read from
-	 * @param $ret Array: returned values
+	 * @param array $ret returned values
 	 * @param $casToken[optional] Float
 	 * @return boolean True for success, false for failure
 	 *
@@ -985,8 +985,8 @@ class MWMemcached {
 	/**
 	 * Performs the requested storage operation to the memcache server
 	 *
-	 * @param $cmd String: command to perform
-	 * @param $key String: key to act on
+	 * @param string $cmd command to perform
+	 * @param string $key key to act on
 	 * @param $val Mixed: what we need to store
 	 * @param $exp Integer: (optional) Expiration time. This can be a number of seconds
 	 * to cache for (up to 30 days inclusive).  Any timespans of 30 days + 1 second or
@@ -1068,7 +1068,7 @@ class MWMemcached {
 	/**
 	 * Returns the socket for the host
 	 *
-	 * @param $host String: Host:IP to get socket for
+	 * @param string $host Host:IP to get socket for
 	 *
 	 * @return Mixed: IO Stream or false
 	 * @access private

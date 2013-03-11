@@ -270,8 +270,8 @@ class OutputPage extends ContextSource {
 	/**
 	 * Redirect to $url rather than displaying the normal page
 	 *
-	 * @param $url String: URL
-	 * @param $responsecode String: HTTP status code
+	 * @param string $url URL
+	 * @param string $responsecode HTTP status code
 	 */
 	public function redirect( $url, $responsecode = '302' ) {
 		# Strip newlines as a paranoia check for header injection in PHP<5.1.2
@@ -301,8 +301,8 @@ class OutputPage extends ContextSource {
 	 * Add a new "<meta>" tag
 	 * To add an http-equiv meta tag, precede the name with "http:"
 	 *
-	 * @param $name String tag name
-	 * @param $val String tag value
+	 * @param string $name tag name
+	 * @param string $val tag value
 	 */
 	function addMeta( $name, $val ) {
 		array_push( $this->mMetatags, array( $name, $val ) );
@@ -311,7 +311,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Add a keyword or a list of keywords in the page header
 	 *
-	 * @param $text String or array of strings
+	 * @param string $text or array of strings
 	 */
 	function addKeyword( $text ) {
 		if( is_array( $text ) ) {
@@ -326,7 +326,7 @@ class OutputPage extends ContextSource {
 	 *
 	 * Note: use setCanonicalUrl() for rel=canonical.
 	 *
-	 * @param $linkarr Array: associative array of attributes.
+	 * @param array $linkarr associative array of attributes.
 	 */
 	function addLink( $linkarr ) {
 		array_push( $this->mLinktags, $linkarr );
@@ -335,7 +335,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Add a new \<link\> with "rel" attribute set to "meta"
 	 *
-	 * @param $linkarr Array: associative array mapping attribute names to their
+	 * @param array $linkarr associative array mapping attribute names to their
 	 *                 values, both keys and values will be escaped, and the
 	 *                 "rel" attribute will be automatically added
 	 */
@@ -371,7 +371,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Add raw HTML to the list of scripts (including \<script\> tag, etc.)
 	 *
-	 * @param $script String: raw HTML
+	 * @param string $script raw HTML
 	 */
 	function addScript( $script ) {
 		$this->mScripts .= $script . "\n";
@@ -380,7 +380,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Register and add a stylesheet from an extension directory.
 	 *
-	 * @param $url String path to sheet.  Provide either a full url (beginning
+	 * @param string $url path to sheet.  Provide either a full url (beginning
 	 *             with 'http', etc) or a relative path from the document root
 	 *             (beginning with '/').  Otherwise it behaves identically to
 	 *             addStyle() and draws from the /skins folder.
@@ -401,9 +401,9 @@ class OutputPage extends ContextSource {
 	/**
 	 * Add a JavaScript file out of skins/common, or a given relative path.
 	 *
-	 * @param $file String: filename in skins/common or complete on-server path
+	 * @param string $file filename in skins/common or complete on-server path
 	 *              (/foo/bar.js)
-	 * @param $version String: style version of the file. Defaults to $wgStyleVersion
+	 * @param string $version style version of the file. Defaults to $wgStyleVersion
 	 */
 	public function addScriptFile( $file, $version = null ) {
 		global $wgStylePath, $wgStyleVersion;
@@ -421,7 +421,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Add a self-contained script tag with the given contents
 	 *
-	 * @param $script String: JavaScript text, no "<script>" tags
+	 * @param string $script JavaScript text, no "<script>" tags
 	 */
 	public function addInlineScript( $script ) {
 		$this->mScripts .= Html::inlineScript( "\n$script\n" ) . "\n";
@@ -440,7 +440,7 @@ class OutputPage extends ContextSource {
 	 * Filter an array of modules to remove insufficiently trustworthy members, and modules
 	 * which are no longer registered (eg a page is cached before an extension is disabled)
 	 * @param $modules Array
-	 * @param $position String if not null, only return modules with this position
+	 * @param string $position if not null, only return modules with this position
 	 * @param $type string
 	 * @return Array
 	 */
@@ -462,8 +462,8 @@ class OutputPage extends ContextSource {
 	/**
 	 * Get the list of modules to include on this page
 	 *
-	 * @param $filter Bool whether to filter out insufficiently trustworthy modules
-	 * @param $position String if not null, only return modules with this position
+	 * @param bool $filter whether to filter out insufficiently trustworthy modules
+	 * @param string $position if not null, only return modules with this position
 	 * @param $param string
 	 * @return Array of module names
 	 */
@@ -581,8 +581,8 @@ class OutputPage extends ContextSource {
 	/**
 	 * Add or replace an header item to the output
 	 *
-	 * @param $name String: item name
-	 * @param $value String: raw HTML
+	 * @param string $name item name
+	 * @param string $value raw HTML
 	 */
 	public function addHeadItem( $name, $value ) {
 		$this->mHeadItems[$name] = $value;
@@ -591,7 +591,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Check if the header item $name is already set
 	 *
-	 * @param $name String: item name
+	 * @param string $name item name
 	 * @return Boolean
 	 */
 	public function hasHeadItem( $name ) {
@@ -601,7 +601,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Set the value of the ETag HTTP header, only used if $wgUseETag is true
 	 *
-	 * @param $tag String: value of "ETag" header
+	 * @param string $tag value of "ETag" header
 	 */
 	function setETag( $tag ) {
 		$this->mETag = $tag;
@@ -748,7 +748,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Override the last modified timestamp
 	 *
-	 * @param $timestamp String: new timestamp, in a format readable by
+	 * @param string $timestamp new timestamp, in a format readable by
 	 *        wfTimestamp()
 	 */
 	public function setLastModified( $timestamp ) {
@@ -758,7 +758,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Set the robot policy for the page: <http://www.robotstxt.org/meta.html>
 	 *
-	 * @param $policy String: the literal string to output as the contents of
+	 * @param string $policy the literal string to output as the contents of
 	 *   the meta tag.  Will be parsed according to the spec and output in
 	 *   standardized form.
 	 * @return null
@@ -778,7 +778,7 @@ class OutputPage extends ContextSource {
 	 * Set the index policy for the page, but leave the follow policy un-
 	 * touched.
 	 *
-	 * @param $policy string Either 'index' or 'noindex'.
+	 * @param string $policy Either 'index' or 'noindex'.
 	 * @return null
 	 */
 	public function setIndexPolicy( $policy ) {
@@ -792,7 +792,7 @@ class OutputPage extends ContextSource {
 	 * Set the follow policy for the page, but leave the index policy un-
 	 * touched.
 	 *
-	 * @param $policy String: either 'follow' or 'nofollow'.
+	 * @param string $policy either 'follow' or 'nofollow'.
 	 * @return null
 	 */
 	public function setFollowPolicy( $policy ) {
@@ -806,7 +806,7 @@ class OutputPage extends ContextSource {
 	 * Set the new value of the "action text", this will be added to the
 	 * "HTML title", separated from it with " - ".
 	 *
-	 * @param $text String: new value of the "action text"
+	 * @param string $text new value of the "action text"
 	 */
 	public function setPageTitleActionText( $text ) {
 		$this->mPageTitleActionText = $text;
@@ -899,7 +899,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Replace the subtile with $str
 	 *
-	 * @param $str String|Message: new value of the subtitle. String should be safe HTML.
+	 * @param string|Message $str new value of the subtitle. String should be safe HTML.
 	 */
 	public function setSubtitle( $str ) {
 		$this->clearSubtitle();
@@ -910,7 +910,7 @@ class OutputPage extends ContextSource {
 	 * Add $str to the subtitle
 	 *
 	 * @deprecated in 1.19; use addSubtitle() instead
-	 * @param $str String|Message to add to the subtitle
+	 * @param string|Message $str to add to the subtitle
 	 */
 	public function appendSubtitle( $str ) {
 		$this->addSubtitle( $str );
@@ -919,7 +919,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Add $str to the subtitle
 	 *
-	 * @param $str String|Message to add to the subtitle. String should be safe HTML.
+	 * @param string|Message $str to add to the subtitle. String should be safe HTML.
 	 */
 	public function addSubtitle( $str ) {
 		if ( $str instanceof Message ) {
@@ -1031,7 +1031,7 @@ class OutputPage extends ContextSource {
 	 * for the new version
 	 * @see addFeedLink()
 	 *
-	 * @param $val String: query to append to feed links or false to output
+	 * @param string $val query to append to feed links or false to output
 	 *        default links
 	 */
 	public function setFeedAppendQuery( $val ) {
@@ -1051,8 +1051,8 @@ class OutputPage extends ContextSource {
 	/**
 	 * Add a feed link to the page header
 	 *
-	 * @param $format String: feed type, should be a key of $wgFeedClasses
-	 * @param $href String: URL
+	 * @param string $format feed type, should be a key of $wgFeedClasses
+	 * @param string $href URL
 	 */
 	public function addFeedLink( $format, $href ) {
 		global $wgAdvertisedFeedTypes;
@@ -1136,7 +1136,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Add new language links
 	 *
-	 * @param $newLinkArray array Associative array mapping language code to the page
+	 * @param array $newLinkArray Associative array mapping language code to the page
 	 *                      name
 	 */
 	public function addLanguageLinks( $newLinkArray ) {
@@ -1146,7 +1146,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Reset the language links and add new language links
 	 *
-	 * @param $newLinkArray array Associative array mapping language code to the page
+	 * @param array $newLinkArray Associative array mapping language code to the page
 	 *                      name
 	 */
 	public function setLanguageLinks( $newLinkArray ) {
@@ -1165,7 +1165,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Add an array of categories, with names in the keys
 	 *
-	 * @param $categories Array mapping category name => sort key
+	 * @param array $categories mapping category name => sort key
 	 */
 	public function addCategoryLinks( $categories ) {
 		global $wgContLang;
@@ -1226,7 +1226,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Reset the category links (but not the category list) and add $categories
 	 *
-	 * @param $categories Array mapping category name => sort key
+	 * @param array $categories mapping category name => sort key
 	 */
 	public function setCategoryLinks( $categories ) {
 		$this->mCategoryLinks = array();
@@ -1280,7 +1280,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Show what level of JavaScript / CSS untrustworthiness is allowed on this page
 	 * @see ResourceLoaderModule::$origin
-	 * @param $type String ResourceLoaderModule TYPE_ constant
+	 * @param string $type ResourceLoaderModule TYPE_ constant
 	 * @return Int ResourceLoaderModule ORIGIN_ class constant
 	 */
 	public function getAllowedModules( $type ) {
@@ -1314,7 +1314,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Prepend $text to the body HTML
 	 *
-	 * @param $text String: HTML
+	 * @param string $text HTML
 	 */
 	public function prependHTML( $text ) {
 		$this->mBodytext = $text . $this->mBodytext;
@@ -1323,7 +1323,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Append $text to the body HTML
 	 *
-	 * @param $text String: HTML
+	 * @param string $text HTML
 	 */
 	public function addHTML( $text ) {
 		$this->mBodytext .= $text;
@@ -1477,7 +1477,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Add wikitext with a custom Title object
 	 *
-	 * @param $text String: wikitext
+	 * @param string $text wikitext
 	 * @param $title Title object
 	 * @param $linestart Boolean: is this the start of a line?
 	 */
@@ -1488,7 +1488,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Add wikitext with a custom Title object and tidy enabled.
 	 *
-	 * @param $text String: wikitext
+	 * @param string $text wikitext
 	 * @param $title Title object
 	 * @param $linestart Boolean: is this the start of a line?
 	 */
@@ -1499,7 +1499,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Add wikitext with tidy enabled
 	 *
-	 * @param $text String: wikitext
+	 * @param string $text wikitext
 	 * @param $linestart Boolean: is this the start of a line?
 	 */
 	public function addWikiTextTidy( $text, $linestart = true ) {
@@ -1510,7 +1510,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Add wikitext with a custom Title object
 	 *
-	 * @param $text String: wikitext
+	 * @param string $text wikitext
 	 * @param $title Title object
 	 * @param $linestart Boolean: is this the start of a line?
 	 * @param $tidy Boolean: whether to use tidy
@@ -1742,7 +1742,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Add an HTTP header that will influence on the cache
 	 *
-	 * @param $header String: header name
+	 * @param string $header header name
 	 * @param $option Array|null
 	 * @todo FIXME: Document the $option parameter; it appears to be for
 	 *        X-Vary-Options but what format is acceptable?
@@ -2048,7 +2048,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Actually output something with print().
 	 *
-	 * @param $ins String: the string to output
+	 * @param string $ins the string to output
 	 */
 	public function out( $ins ) {
 		print $ins;
@@ -2067,8 +2067,8 @@ class OutputPage extends ContextSource {
 	 * indexing, clear the current text and redirect, set the page's title
 	 * and optionally an custom HTML title (content of the "<title>" tag).
 	 *
-	 * @param $pageTitle String|Message will be passed directly to setPageTitle()
-	 * @param $htmlTitle String|Message will be passed directly to setHTMLTitle();
+	 * @param string|Message $pageTitle will be passed directly to setPageTitle()
+	 * @param string|Message $htmlTitle will be passed directly to setHTMLTitle();
 	 *                   optional, if not passed the "<title>" attribute will be
 	 *                   based on $pageTitle
 	 */
@@ -2094,7 +2094,7 @@ class OutputPage extends ContextSource {
 	 *
 	 * @param $title Mixed: message key (string) for page title, or a Message object
 	 * @param $msg Mixed: message key (string) for page text, or a Message object
-	 * @param $params Array: message parameters; ignored if $msg is a Message object
+	 * @param array $params message parameters; ignored if $msg is a Message object
 	 */
 	public function showErrorPage( $title, $msg, $params = array() ) {
 		if( !$title instanceof Message ) {
@@ -2115,8 +2115,8 @@ class OutputPage extends ContextSource {
 	/**
 	 * Output a standard permission error page
 	 *
-	 * @param $errors Array: error message keys
-	 * @param $action String: action that was denied or null if unknown
+	 * @param array $errors error message keys
+	 * @param string $action action that was denied or null if unknown
 	 */
 	public function showPermissionsErrorPage( $errors, $action = null ) {
 		// For some action (read, edit, create and upload), display a "login to do this action"
@@ -2200,7 +2200,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Display an error page noting that a given permission bit is required.
 	 * @deprecated since 1.18, just throw the exception directly
-	 * @param $permission String: key required
+	 * @param string $permission key required
 	 * @throws PermissionsError
 	 */
 	public function permissionRequired( $permission ) {
@@ -2219,8 +2219,8 @@ class OutputPage extends ContextSource {
 	/**
 	 * Format a list of error messages
 	 *
-	 * @param $errors Array of arrays returned by Title::getUserPermissionsErrors
-	 * @param $action String: action that was denied or null if unknown
+	 * @param array $errors of arrays returned by Title::getUserPermissionsErrors
+	 * @param string $action action that was denied or null if unknown
 	 * @return String: the wikitext error-messages, formatted into a list.
 	 */
 	public function formatPermissionsErrorMessage( $errors, $action = null ) {
@@ -2388,8 +2388,8 @@ $templates
 	 * Add a "return to" link pointing to a specified title
 	 *
 	 * @param $title Title to link
-	 * @param $query Array query string parameters
-	 * @param $text String text of the link (input is not escaped)
+	 * @param array $query query string parameters
+	 * @param string $text text of the link (input is not escaped)
 	 * @param $options Options array to pass to Linker
 	 */
 	public function addReturnTo( $title, $query = array(), $text = null, $options = array() ) {
@@ -2413,7 +2413,7 @@ $templates
 	 *
 	 * @param $unused
 	 * @param $returnto Title or String to return to
-	 * @param $returntoquery String: query string for the return to link
+	 * @param string $returntoquery query string for the return to link
 	 */
 	public function returnToMain( $unused = null, $returnto = null, $returntoquery = null ) {
 		if ( $returnto == null ) {
@@ -2570,9 +2570,9 @@ $templates
 	/**
 	 * TODO: Document
 	 * @param $modules Array/string with the module name(s)
-	 * @param $only String ResourceLoaderModule TYPE_ class constant
+	 * @param string $only ResourceLoaderModule TYPE_ class constant
 	 * @param $useESI boolean
-	 * @param $extraQuery Array with extra query parameters to add to each request. array( param => value )
+	 * @param array $extraQuery with extra query parameters to add to each request. array( param => value )
 	 * @param $loadCall boolean If true, output an (asynchronous) mw.loader.load() call rather than a "<script src='...'>" tag
 	 * @return string html "<script>" and "<style>" tags
 	 */
@@ -3080,7 +3080,7 @@ $templates
 	}
 
 	/**
-	 * @param $addContentType bool: Whether "<meta>" specifying content type should be returned
+	 * @param bool $addContentType Whether "<meta>" specifying content type should be returned
 	 *
 	 * @return array in format "link name or number => 'link html'".
 	 */
@@ -3330,7 +3330,7 @@ $templates
 
 	/**
 	 * @param $unused
-	 * @param $addContentType bool: Whether "<meta>" specifying content type should be returned
+	 * @param bool $addContentType Whether "<meta>" specifying content type should be returned
 	 *
 	 * @return string HTML tag links to be put in the header.
 	 */
@@ -3341,9 +3341,9 @@ $templates
 	/**
 	 * Generate a "<link rel/>" for a feed.
 	 *
-	 * @param $type String: feed type
-	 * @param $url String: URL to the feed
-	 * @param $text String: value of the "title" attribute
+	 * @param string $type feed type
+	 * @param string $url URL to the feed
+	 * @param string $text value of the "title" attribute
 	 * @return String: HTML fragment
 	 */
 	private function feedLink( $type, $url, $text ) {
@@ -3359,10 +3359,10 @@ $templates
 	 * Add a local or specified stylesheet, with the given media options.
 	 * Meant primarily for internal use...
 	 *
-	 * @param $style String: URL to the file
-	 * @param $media String: to specify a media type, 'screen', 'printable', 'handheld' or any.
-	 * @param $condition String: for IE conditional comments, specifying an IE version
-	 * @param $dir String: set to 'rtl' or 'ltr' for direction-specific sheets
+	 * @param string $style URL to the file
+	 * @param string $media to specify a media type, 'screen', 'printable', 'handheld' or any.
+	 * @param string $condition for IE conditional comments, specifying an IE version
+	 * @param string $dir set to 'rtl' or 'ltr' for direction-specific sheets
 	 */
 	public function addStyle( $style, $media = '', $condition = '', $dir = '' ) {
 		$options = array();
@@ -3383,7 +3383,7 @@ $templates
 	/**
 	 * Adds inline CSS styles
 	 * @param $style_css Mixed: inline CSS
-	 * @param $flip String: Set to 'flip' to flip the CSS if needed
+	 * @param string $flip Set to 'flip' to flip the CSS if needed
 	 */
 	public function addInlineStyle( $style_css, $flip = 'noflip' ) {
 		if( $flip === 'flip' && $this->getLanguage()->isRTL() ) {
@@ -3509,8 +3509,8 @@ $templates
 	/**
 	 * Generate \<link\> tags for stylesheets
 	 *
-	 * @param $style String: URL to the file
-	 * @param $options Array: option, can contain 'condition', 'dir', 'media'
+	 * @param string $style URL to the file
+	 * @param array $options option, can contain 'condition', 'dir', 'media'
 	 *                 keys
 	 * @return String: HTML fragment
 	 */
@@ -3551,7 +3551,7 @@ $templates
 	/**
 	 * Transform "media" attribute based on request parameters
 	 *
-	 * @param $media String: current value of the "media" attribute
+	 * @param string $media current value of the "media" attribute
 	 * @return String: modified value of the "media" attribute, or null to skip
 	 * this stylesheet
 	 */
@@ -3679,7 +3679,7 @@ $templates
 	 * Include jQuery core. Use this to avoid loading it multiple times
 	 * before we get a usable script loader.
 	 *
-	 * @param $modules Array: list of jQuery modules which should be loaded
+	 * @param array $modules list of jQuery modules which should be loaded
 	 * @return Array: the list of modules which were not loaded.
 	 * @since 1.16
 	 * @deprecated since 1.17

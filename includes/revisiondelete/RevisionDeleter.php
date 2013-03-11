@@ -31,12 +31,12 @@ class RevisionDeleter {
 	 * Checks for a change in the bitfield for a certain option and updates the
 	 * provided array accordingly.
 	 *
-	 * @param $desc String: description to add to the array if the option was
+	 * @param string $desc description to add to the array if the option was
 	 * enabled / disabled.
 	 * @param $field Integer: the bitmask describing the single option.
 	 * @param $diff Integer: the xor of the old and new bitfields.
 	 * @param $new Integer: the new bitfield
-	 * @param $arr Array: the array to update.
+	 * @param array $arr the array to update.
 	 */
 	protected static function checkItem( $desc, $field, $diff, $new, &$arr ) {
 		if( $diff & $field ) {

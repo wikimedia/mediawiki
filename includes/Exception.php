@@ -64,8 +64,8 @@ class MWException extends Exception {
 	/**
 	 * Run hook to allow extensions to modify the text of the exception
 	 *
-	 * @param $name string: class name of the exception
-	 * @param $args array: arguments to pass to the callback functions
+	 * @param string $name class name of the exception
+	 * @param array $args arguments to pass to the callback functions
 	 * @return string|null string to output or null if any hook has been called
 	 */
 	function runHooks( $name, $args = array() ) {
@@ -99,8 +99,8 @@ class MWException extends Exception {
 	/**
 	 * Get a message from i18n
 	 *
-	 * @param $key string: message name
-	 * @param $fallback string: default message if the message cache can't be
+	 * @param string $key message name
+	 * @param string $fallback default message if the message cache can't be
 	 *                  called by the exception
 	 * The function also has other parameters that are arguments for the message
 	 * @return string message with arguments replaced
@@ -320,9 +320,9 @@ class ErrorPageError extends MWException {
 	/**
 	 * Note: these arguments are keys into wfMessage(), not text!
 	 *
-	 * @param $title string|Message Message key (string) for page title, or a Message object
-	 * @param $msg string|Message Message key (string) for error text, or a Message object
-	 * @param $params array with parameters to wfMessage()
+	 * @param string|Message $title Message key (string) for page title, or a Message object
+	 * @param string|Message $msg Message key (string) for error text, or a Message object
+	 * @param array $params with parameters to wfMessage()
 	 */
 	function __construct( $title, $msg, $params = null ) {
 		$this->title = $title;
@@ -354,8 +354,8 @@ class ErrorPageError extends MWException {
  */
 class BadTitleError extends ErrorPageError {
 	/**
-	 * @param $msg string|Message A message key (default: 'badtitletext')
-	 * @param $params Array parameter to wfMessage()
+	 * @param string|Message $msg A message key (default: 'badtitletext')
+	 * @param array $params parameter to wfMessage()
 	 */
 	function __construct( $msg = 'badtitletext', $params = null ) {
 		parent::__construct( 'badtitle', $msg, $params );
@@ -557,8 +557,8 @@ class HttpError extends MWException {
 	 * Constructor
 	 *
 	 * @param $httpCode Integer: HTTP status code to send to the client
-	 * @param $content String|Message: content of the message
-	 * @param $header String|Message: content of the header (\<title\> and \<h1\>)
+	 * @param string|Message $content content of the message
+	 * @param string|Message $header content of the header (\<title\> and \<h1\>)
 	 */
 	public function __construct( $httpCode, $content, $header = null ) {
 		parent::__construct( $content );
@@ -684,7 +684,7 @@ class MWExceptionHandler {
 	 * Print a message, if possible to STDERR.
 	 * Use this in command line mode only (see isCommandLine)
 	 *
-	 * @param $message string Failure text
+	 * @param string $message Failure text
 	 */
 	public static function printError( $message ) {
 		# NOTE: STDERR may not be available, especially if php-cgi is used from the command line (bug #15602).

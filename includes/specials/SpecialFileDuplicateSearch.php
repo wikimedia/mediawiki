@@ -67,7 +67,7 @@ class FileDuplicateSearchPage extends QueryPage {
 
 	/**
 	 *
-	 * @param $dupes Array of File objects
+	 * @param array $dupes of File objects
 	 */
 	function showList( $dupes ) {
 		$html = array();

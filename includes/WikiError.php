@@ -82,7 +82,7 @@ class WikiError {
  */
 class WikiErrorMsg extends WikiError {
 	/**
-	 * @param $message String: wiki message name
+	 * @param string $message wiki message name
 	 * @param ... parameters to pass to wfMsg()
 	 *
 	 * @deprecated since 1.17

@@ -50,7 +50,7 @@ class ImagePage extends Article {
 
 	/**
 	 * Constructor from a page id
-	 * @param $id Int article ID to load
+	 * @param int $id article ID to load
 	 * @return ImagePage|null
 	 */
 	public static function newFromID( $id ) {
@@ -250,7 +250,7 @@ class ImagePage extends Article {
 	 *
 	 * @todo FIXME: Bad interface, see note on MediaHandler::formatMetadata().
 	 *
-	 * @param $metadata Array: the array containing the EXIF data
+	 * @param array $metadata the array containing the EXIF data
 	 * @return String The metadata table. This is treated as Wikitext (!)
 	 */
 	protected function makeMetadataTable( $metadata ) {
@@ -565,7 +565,7 @@ EOT
 
 	/**
 	 * Creates an thumbnail of specified size and returns an HTML link to it
-	 * @param $params array Scaler parameters
+	 * @param array $params Scaler parameters
 	 * @param $width int
 	 * @param $height int
 	 * @return string
@@ -909,7 +909,7 @@ EOT
 	 * Returns the corrosponding $wgImageLimits entry for the selected user option
 	 *
 	 * @param $user User
-	 * @param $optionName string Name of a option to check, typically imagesize or thumbsize
+	 * @param string $optionName Name of a option to check, typically imagesize or thumbsize
 	 * @return array
 	 * @since 1.21
 	 */

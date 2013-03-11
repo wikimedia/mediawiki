@@ -110,7 +110,7 @@ class UIDGenerator {
 	}
 
 	/**
-	 * @param $time array (UIDGenerator::millitime(), clock sequence)
+	 * @param array $time (UIDGenerator::millitime(), clock sequence)
 	 * @return string 88 bits
 	 */
 	protected function getTimestampedID88( array $info ) {
@@ -152,7 +152,7 @@ class UIDGenerator {
 	}
 
 	/**
-	 * @param $info array (UIDGenerator::milltime(), counter, clock sequence)
+	 * @param array $info (UIDGenerator::milltime(), counter, clock sequence)
 	 * @return string 128 bits
 	 */
 	protected function getTimestampedID128( array $info ) {
@@ -214,7 +214,7 @@ class UIDGenerator {
 	 * than any previous (time,counter) value for the given clock sequence.
 	 * This is useful for making UIDs sequential on a per-node bases.
 	 *
-	 * @param $lockFile string Name of a local lock file
+	 * @param string $lockFile Name of a local lock file
 	 * @param $clockSeqSize integer The number of possible clock sequence values
 	 * @param $counterSize integer The number of possible counter values
 	 * @return Array (result of UIDGenerator::millitime(), counter, clock sequence)
@@ -295,7 +295,7 @@ class UIDGenerator {
 	 * Wait till the current timestamp reaches $time and return the current
 	 * timestamp. This returns false if it would have to wait more than 10ms.
 	 *
-	 * @param $time array Result of UIDGenerator::millitime()
+	 * @param array $time Result of UIDGenerator::millitime()
 	 * @return Array|bool UIDGenerator::millitime() result or false
 	 */
 	protected function timeWaitUntil( array $time ) {
@@ -310,7 +310,7 @@ class UIDGenerator {
 	}
 
 	/**
-	 * @param $time array Result of UIDGenerator::millitime()
+	 * @param array $time Result of UIDGenerator::millitime()
 	 * @return string 46 MSBs of "milliseconds since epoch" in binary (rolls over in 4201)
 	 */
 	protected function millisecondsSinceEpochBinary( array $time ) {

@@ -190,10 +190,10 @@ abstract class UploadBase {
 
 	/**
 	 * Initialize the path information
-	 * @param $name string the desired destination name
-	 * @param $tempPath string the temporary path
-	 * @param $fileSize int the file size
-	 * @param $removeTempFile bool (false) remove the temporary file?
+	 * @param string $name the desired destination name
+	 * @param string $tempPath the temporary path
+	 * @param int $fileSize the file size
+	 * @param bool $removeTempFile (false) remove the temporary file?
 	 * @throws MWException
 	 */
 	public function initializePathInfo( $name, $tempPath, $fileSize, $removeTempFile = false ) {
@@ -244,7 +244,7 @@ abstract class UploadBase {
 	}
 
 	/**
-	 * @param $srcPath String: the source path
+	 * @param string $srcPath the source path
 	 * @return string the real path if it was a virtual URL
 	 */
 	function getRealPath( $srcPath ) {
@@ -353,7 +353,7 @@ abstract class UploadBase {
 	/**
 	 * Verify the mime type
 	 *
-	 * @param $mime string representing the mime
+	 * @param string $mime representing the mime
 	 * @return mixed true if the file is verified, an array otherwise
 	 */
 	protected function verifyMimeType( $mime ) {
@@ -884,8 +884,8 @@ abstract class UploadBase {
 	/**
 	 * Checks if the mime type of the uploaded file matches the file extension.
 	 *
-	 * @param $mime String: the mime type of the uploaded file
-	 * @param $extension String: the filename extension that the file is to be served with
+	 * @param string $mime the mime type of the uploaded file
+	 * @param string $extension the filename extension that the file is to be served with
 	 * @return Boolean
 	 */
 	public static function verifyExtension( $mime, $extension ) {
@@ -925,9 +925,9 @@ abstract class UploadBase {
 	 * potentially harmful. The present implementation will produce false
 	 * positives in some situations.
 	 *
-	 * @param $file String: pathname to the temporary upload file
-	 * @param $mime String: the mime type of the file
-	 * @param $extension String: the extension of the file
+	 * @param string $file pathname to the temporary upload file
+	 * @param string $mime the mime type of the file
+	 * @param string $extension the extension of the file
 	 * @return Boolean: true if the file contains something looking like embedded scripts
 	 */
 	public static function detectScript( $file, $mime, $extension ) {
@@ -1173,7 +1173,7 @@ abstract class UploadBase {
 	 * This relies on the $wgAntivirus and $wgAntivirusSetup variables.
 	 * $wgAntivirusRequired may be used to deny upload if the scan fails.
 	 *
-	 * @param $file String: pathname to the temporary upload file
+	 * @param string $file pathname to the temporary upload file
 	 * @return mixed false if not virus is found, NULL if the scan fails or is disabled,
 	 *         or a string containing feedback from the virus scanner if a virus was found.
 	 *         If textual feedback is missing but a virus was found, this function returns true.
@@ -1301,7 +1301,7 @@ abstract class UploadBase {
 	 * Check if a user is the last uploader
 	 *
 	 * @param $user User object
-	 * @param $img String: image name
+	 * @param string $img image name
 	 * @return Boolean
 	 */
 	public static function userCanReUpload( User $user, $img ) {

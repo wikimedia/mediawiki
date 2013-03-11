@@ -93,7 +93,7 @@ class ImageGallery {
 	/**
 	 * Set the caption (as plain text)
 	 *
-	 * @param $caption string Caption
+	 * @param string $caption Caption
 	 */
 	function setCaption( $caption ) {
 		$this->mCaption = htmlspecialchars( $caption );
@@ -102,7 +102,7 @@ class ImageGallery {
 	/**
 	 * Set the caption (as HTML)
 	 *
-	 * @param $caption String: Caption
+	 * @param string $caption Caption
 	 */
 	public function setCaptionHtml( $caption ) {
 		$this->mCaption = $caption;
@@ -220,7 +220,7 @@ class ImageGallery {
 	 * Note -- if taking from user input, you should probably run through
 	 * Sanitizer::validateAttributes() first.
 	 *
-	 * @param $attribs Array of HTML attribute pairs
+	 * @param array $attribs of HTML attribute pairs
 	 */
 	function setAttributes( $attribs ) {
 		$this->mAttribs = $attribs;

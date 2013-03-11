@@ -47,7 +47,7 @@ abstract class RevDel_List extends RevisionListBase {
 	 * Set the visibility for the revisions in this list. Logging and
 	 * transactions are done here.
 	 *
-	 * @param $params array Associative array of parameters. Members are:
+	 * @param array $params Associative array of parameters. Members are:
 	 *     value:       The integer value to set the visibility to
 	 *     comment:     The log comment.
 	 * @return Status
@@ -176,7 +176,7 @@ abstract class RevDel_List extends RevisionListBase {
 
 	/**
 	 * Record a log entry on the action
-	 * @param $params array Associative array of parameters:
+	 * @param array $params Associative array of parameters:
 	 *     newBits:         The new value of the *_deleted bitfield
 	 *     oldBits:         The old value of the *_deleted bitfield.
 	 *     title:           The target title
@@ -220,7 +220,7 @@ abstract class RevDel_List extends RevisionListBase {
 
 	/**
 	 * Get log parameter array.
-	 * @param $params array Associative array of log parameters, same as updateLog()
+	 * @param array $params Associative array of log parameters, same as updateLog()
 	 * @return array
 	 */
 	public function getLogParams( $params ) {

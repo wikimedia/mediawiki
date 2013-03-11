@@ -285,7 +285,7 @@ class LikeMatch {
 	/**
 	 * Store a string into a LikeMatch marker object.
 	 *
-	 * @param String $s
+	 * @param string $s
 	 */
 	public function __construct( $s ) {
 		$this->str = $s;

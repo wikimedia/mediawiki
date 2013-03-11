@@ -43,7 +43,7 @@ class JpegMetadataExtractor {
 	 * but gis doesn't support having multiple app1 segments
 	 * and those can't extract xmp on files containing both exif and xmp data
 	 *
-	 * @param String $filename name of jpeg file
+	 * @param string $filename name of jpeg file
 	 * @return Array of interesting segments.
 	 * @throws MWException if given invalid file.
 	 */
@@ -191,7 +191,7 @@ class JpegMetadataExtractor {
 	 *
 	 * This should generally be called by BitmapMetadataHandler::doApp13()
 	 *
-	 * @param String $app13 photoshop psir app13 block from jpg.
+	 * @param string $app13 photoshop psir app13 block from jpg.
 	 * @throws MWException (It gets caught next level up though)
 	 * @return String if the iptc hash is good or not.
 	 */

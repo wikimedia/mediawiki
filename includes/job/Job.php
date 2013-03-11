@@ -59,10 +59,10 @@ abstract class Job {
 	/**
 	 * Create the appropriate object to handle a specific job
 	 *
-	 * @param $command String: Job command
+	 * @param string $command Job command
 	 * @param $title Title: Associated title
-	 * @param $params Array|bool: Job parameters
-	 * @param $id Int: Job identifier
+	 * @param array|bool $params Job parameters
+	 * @param int $id Job identifier
 	 * @throws MWException
 	 * @return Job
 	 */
@@ -82,7 +82,7 @@ abstract class Job {
 	 * This may add duplicate at insert time, but they will be
 	 * removed later on, when the first one is popped.
 	 *
-	 * @param $jobs array of Job objects
+	 * @param array $jobs of Job objects
 	 * @return bool
 	 * @deprecated 1.21
 	 */
@@ -97,7 +97,7 @@ abstract class Job {
 	 * be rolled-back as part of a larger transaction. However,
 	 * large batches of jobs can cause slave lag.
 	 *
-	 * @param $jobs array of Job objects
+	 * @param array $jobs of Job objects
 	 * @return bool
 	 * @deprecated 1.21
 	 */
@@ -211,7 +211,7 @@ abstract class Job {
 	}
 
 	/**
-	 * @param $key string A key that identifies the task
+	 * @param string $key A key that identifies the task
 	 * @return Array
 	 */
 	public static function newRootJobParams( $key ) {

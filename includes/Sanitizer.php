@@ -358,9 +358,9 @@ class Sanitizer {
 	 * @private
 	 * @param $text String
 	 * @param $processCallback Callback to do any variable or parameter replacements in HTML attribute values
-	 * @param $args Array for the processing callback
-	 * @param $extratags Array for any extra tags to include
-	 * @param $removetags Array for any tags (default or extra) to exclude
+	 * @param array $args for the processing callback
+	 * @param array $extratags for any extra tags to include
+	 * @param array $removetags for any tags (default or extra) to exclude
 	 * @return string
 	 */
 	static function removeHTMLtags( $text, $processCallback = null, $args = array(), $extratags = array(), $removetags = array() ) {
@@ -699,7 +699,7 @@ class Sanitizer {
 	 * - Invalid id attributes are reencoded
 	 *
 	 * @param $attribs Array
-	 * @param $whitelist Array: list of allowed attribute names
+	 * @param array $whitelist list of allowed attribute names
 	 * @return Array
 	 *
 	 * @todo Check for legal values where the DTD limits things.
@@ -1013,7 +1013,7 @@ class Sanitizer {
 	 * @see http://www.whatwg.org/specs/web-apps/current-work/multipage/elements.html#the-id-attribute
 	 *   HTML5 definition of id attribute
 	 *
-	 * @param $id String: id to escape
+	 * @param string $id id to escape
 	 * @param $options Mixed: string or array of strings (default is array()):
 	 *   'noninitial': This is a non-initial fragment of an id, not a full id,
 	 *       so don't pay attention if the first character isn't valid at the
@@ -1080,7 +1080,7 @@ class Sanitizer {
 	 * Given HTML input, escape with htmlspecialchars but un-escape entites.
 	 * This allows (generally harmless) entities like &#160; to survive.
 	 *
-	 * @param $html String to escape
+	 * @param string $html to escape
 	 * @return String: escaped input
 	 */
 	static function escapeHtmlAllowEntities( $html ) {
@@ -1332,7 +1332,7 @@ class Sanitizer {
 	 * This is useful for page titles, not for text to be displayed,
 	 * MediaWiki allows HTML entities to escape normalization as a feature.
 	 *
-	 * @param $text String (already normalized, containing entities)
+	 * @param string $text (already normalized, containing entities)
 	 * @return String (still normalized, without entities)
 	 */
 	public static function decodeCharReferencesAndNormalize( $text ) {
@@ -1634,7 +1634,7 @@ class Sanitizer {
 	 * Warning: this return value must be further escaped for literal
 	 * inclusion in HTML output as of 1.10!
 	 *
-	 * @param $text String: HTML fragment
+	 * @param string $text HTML fragment
 	 * @return String
 	 */
 	static function stripAllTags( $text ) {
@@ -1746,7 +1746,7 @@ class Sanitizer {
 	 *
 	 * @since 1.18
 	 *
-	 * @param $addr String E-mail address
+	 * @param string $addr E-mail address
 	 * @return Bool
 	 */
 	public static function validateEmail( $addr ) {

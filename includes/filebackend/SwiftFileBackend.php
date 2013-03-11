@@ -194,7 +194,7 @@ class SwiftFileBackend extends FileBackendStore {
 	}
 
 	/**
-	 * @param $disposition string Content-Disposition header value
+	 * @param string $disposition Content-Disposition header value
 	 * @return string Truncated Content-Disposition header value to meet Swift limits
 	 */
 	protected function truncDisp( $disposition ) {
@@ -816,7 +816,7 @@ class SwiftFileBackend extends FileBackendStore {
 	 * Fill in any missing object metadata and save it to Swift
 	 *
 	 * @param $obj CF_Object
-	 * @param $path string Storage path to object
+	 * @param string $path Storage path to object
 	 * @return bool Success
 	 * @throws Exception cloudfiles exceptions
 	 */
@@ -956,11 +956,11 @@ class SwiftFileBackend extends FileBackendStore {
 	/**
 	 * Do not call this function outside of SwiftFileBackendFileList
 	 *
-	 * @param $fullCont string Resolved container name
-	 * @param $dir string Resolved storage directory with no trailing slash
-	 * @param $after string|null Storage path of file to list items after
+	 * @param string $fullCont Resolved container name
+	 * @param string $dir Resolved storage directory with no trailing slash
+	 * @param string|null $after Storage path of file to list items after
 	 * @param $limit integer Max number of items to list
-	 * @param $params Array Includes flag for 'topOnly'
+	 * @param array $params Includes flag for 'topOnly'
 	 * @return Array List of relative paths of dirs directly under $dir
 	 */
 	public function getDirListPageInternal( $fullCont, $dir, &$after, $limit, array $params ) {
@@ -1029,11 +1029,11 @@ class SwiftFileBackend extends FileBackendStore {
 	/**
 	 * Do not call this function outside of SwiftFileBackendFileList
 	 *
-	 * @param $fullCont string Resolved container name
-	 * @param $dir string Resolved storage directory with no trailing slash
-	 * @param $after string|null Storage path of file to list items after
+	 * @param string $fullCont Resolved container name
+	 * @param string $dir Resolved storage directory with no trailing slash
+	 * @param string|null $after Storage path of file to list items after
 	 * @param $limit integer Max number of items to list
-	 * @param $params Array Includes flag for 'topOnly'
+	 * @param array $params Includes flag for 'topOnly'
 	 * @return Array List of relative paths of files under $dir
 	 */
 	public function getFileListPageInternal( $fullCont, $dir, &$after, $limit, array $params ) {
@@ -1320,8 +1320,8 @@ class SwiftFileBackend extends FileBackendStore {
 	 * (lists are truncated to 10000 item with no way to page), and is just a performance risk.
 	 *
 	 * @param $contObj CF_Container Swift container
-	 * @param $readGrps Array List of read access routes
-	 * @param $writeGrps Array List of write access routes
+	 * @param array $readGrps List of read access routes
+	 * @param array $writeGrps List of write access routes
 	 * @return Status
 	 */
 	protected function setContainerAccess(
@@ -1344,7 +1344,7 @@ class SwiftFileBackend extends FileBackendStore {
 	 * Purge the CDN cache of affected objects if CDN caching is enabled.
 	 * This is for Rackspace/Akamai CDNs.
 	 *
-	 * @param $objects Array List of CF_Object items
+	 * @param array $objects List of CF_Object items
 	 * @return void
 	 */
 	public function purgeCDNCache( array $objects ) {
@@ -1438,8 +1438,8 @@ class SwiftFileBackend extends FileBackendStore {
 	 * Get a Swift container object, possibly from process cache.
 	 * Use $reCache if the file count or byte count is needed.
 	 *
-	 * @param $container string Container name
-	 * @param $bypassCache bool Bypass all caches and load from Swift
+	 * @param string $container Container name
+	 * @param bool $bypassCache Bypass all caches and load from Swift
 	 * @return CF_Container
 	 * @throws CloudFilesException
 	 */
@@ -1466,7 +1466,7 @@ class SwiftFileBackend extends FileBackendStore {
 	/**
 	 * Create a Swift container
 	 *
-	 * @param $container string Container name
+	 * @param string $container Container name
 	 * @return CF_Container
 	 * @throws CloudFilesException
 	 */
@@ -1480,7 +1480,7 @@ class SwiftFileBackend extends FileBackendStore {
 	/**
 	 * Delete a Swift container
 	 *
-	 * @param $container string Container name
+	 * @param string $container Container name
 	 * @return void
 	 * @throws CloudFilesException
 	 */
@@ -1581,8 +1581,8 @@ abstract class SwiftFileBackendList implements Iterator {
 
 	/**
 	 * @param $backend SwiftFileBackend
-	 * @param $fullCont string Resolved container name
-	 * @param $dir string Resolved directory relative to container
+	 * @param string $fullCont Resolved container name
+	 * @param string $dir Resolved directory relative to container
 	 * @param $params Array
 	 */
 	public function __construct( SwiftFileBackend $backend, $fullCont, $dir, array $params ) {
@@ -1652,8 +1652,8 @@ abstract class SwiftFileBackendList implements Iterator {
 	/**
 	 * Get the given list portion (page)
 	 *
-	 * @param $container string Resolved container name
-	 * @param $dir string Resolved path relative to container
+	 * @param string $container Resolved container name
+	 * @param string $dir Resolved path relative to container
 	 * @param $after string|null
 	 * @param $limit integer
 	 * @param $params Array

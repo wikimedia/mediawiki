@@ -94,8 +94,8 @@ class LocalSettingsGenerator {
 
 	/**
 	 * For $wgGroupPermissions, set a given ['group']['permission'] value.
-	 * @param $group String Group name
-	 * @param $rightsArr Array An array of permissions, in the form of:
+	 * @param string $group Group name
+	 * @param array $rightsArr An array of permissions, in the form of:
 	 *   array( 'right' => true, 'right2' => false )
 	 */
 	public function setGroupRights( $group, $rightsArr ) {
@@ -157,7 +157,7 @@ class LocalSettingsGenerator {
 	/**
 	 * Write the generated LocalSettings to a file
 	 *
-	 * @param $fileName String Full path to filename to write to
+	 * @param string $fileName Full path to filename to write to
 	 */
 	public function writeFile( $fileName ) {
 		file_put_contents( $fileName, $this->getText() );

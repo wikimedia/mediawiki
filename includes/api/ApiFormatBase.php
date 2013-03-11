@@ -38,7 +38,7 @@ abstract class ApiFormatBase extends ApiBase {
 	 * Constructor
 	 * If $format ends with 'fm', pretty-print the output in HTML.
 	 * @param $main ApiMain
-	 * @param $format string Format name
+	 * @param string $format Format name
 	 */
 	public function __construct( $main, $format ) {
 		parent::__construct( $main, $format );
@@ -83,7 +83,7 @@ abstract class ApiFormatBase extends ApiBase {
 	 * special-case fix that should be removed once the help has been
 	 * reworked to use a fully HTML interface.
 	 *
-	 * @param $b bool Whether or not ampersands should be escaped.
+	 * @param bool $b Whether or not ampersands should be escaped.
 	 */
 	public function setUnescapeAmps ( $b ) {
 		$this->mUnescapeAmps = $b;
@@ -127,7 +127,7 @@ abstract class ApiFormatBase extends ApiBase {
 	 * A human-targeted notice about available formats is printed for the HTML-based output,
 	 * except for help screens (caused by either an error in the API parameters,
 	 * the calling of action=help, or requesting the root script api.php).
-	 * @param $isHelpScreen bool Whether a help screen is going to be shown
+	 * @param bool $isHelpScreen Whether a help screen is going to be shown
 	 */
 	function initPrinter( $isHelpScreen ) {
 		if ( $this->mDisabled ) {
@@ -326,7 +326,7 @@ class ApiFormatFeedWrapper extends ApiFormatBase {
 	 * Call this method to initialize output data. See execute()
 	 * @param $result ApiResult
 	 * @param $feed object an instance of one of the $wgFeedClasses classes
-	 * @param $feedItems array of FeedItem objects
+	 * @param array $feedItems of FeedItem objects
 	 */
 	public static function setResult( $result, $feed, $feedItems ) {
 		// Store output in the Result data.

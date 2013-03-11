@@ -73,7 +73,7 @@ class OldLocalFile extends LocalFile {
 	 * Create a OldLocalFile from a SHA-1 key
 	 * Do not call this except from inside a repo class.
 	 *
-	 * @param $sha1 string base-36 SHA-1
+	 * @param string $sha1 base-36 SHA-1
 	 * @param $repo LocalRepo
 	 * @param string|bool $timestamp MW_timestamp (optional)
 	 *
@@ -123,8 +123,8 @@ class OldLocalFile extends LocalFile {
 	/**
 	 * @param $title Title
 	 * @param $repo FileRepo
-	 * @param $time String: timestamp or null to load by archive name
-	 * @param $archiveName String: archive name or null to load by timestamp
+	 * @param string $time timestamp or null to load by archive name
+	 * @param string $archiveName archive name or null to load by timestamp
 	 * @throws MWException
 	 */
 	function __construct( $title, $repo, $time, $archiveName ) {
@@ -318,8 +318,8 @@ class OldLocalFile extends LocalFile {
 	/**
 	 * Upload a file directly into archive. Generally for Special:Import.
 	 *
-	 * @param $srcPath string File system path of the source file
-	 * @param $archiveName string Full archive name of the file, in the form
+	 * @param string $srcPath File system path of the source file
+	 * @param string $archiveName Full archive name of the file, in the form
 	 *     $timestamp!$filename, where $filename must match $this->getName()
 	 *
 	 * @param $timestamp string
@@ -350,10 +350,10 @@ class OldLocalFile extends LocalFile {
 	/**
 	 * Record a file upload in the oldimage table, without adding log entries.
 	 *
-	 * @param $srcPath string File system path to the source file
-	 * @param $archiveName string The archive name of the file
+	 * @param string $srcPath File system path to the source file
+	 * @param string $archiveName The archive name of the file
 	 * @param $timestamp string
-	 * @param $comment string Upload comment
+	 * @param string $comment Upload comment
 	 * @param $user User User who did this upload
 	 * @return bool
 	 */

@@ -32,7 +32,7 @@ class WinCacheBagOStuff extends BagOStuff {
 	/**
 	 * Get a value from the WinCache object cache
 	 *
-	 * @param $key String: cache key
+	 * @param string $key cache key
 	 * @param $casToken[optional] int: cas token
 	 * @return mixed
 	 */
@@ -51,9 +51,9 @@ class WinCacheBagOStuff extends BagOStuff {
 	/**
 	 * Store a value in the WinCache object cache
 	 *
-	 * @param $key String: cache key
+	 * @param string $key cache key
 	 * @param $value Mixed: object to store
-	 * @param $expire Int: expiration time
+	 * @param int $expire expiration time
 	 * @return bool
 	 */
 	public function set( $key, $value, $expire = 0 ) {
@@ -67,10 +67,10 @@ class WinCacheBagOStuff extends BagOStuff {
 	/**
 	 * Store a value in the WinCache object cache, race condition-safe
 	 *
-	 * @param $casToken int: cas token
-	 * @param $key String: cache key
-	 * @param $value int: object to store
-	 * @param $exptime Int: expiration time
+	 * @param int $casToken cas token
+	 * @param string $key cache key
+	 * @param int $value object to store
+	 * @param int $exptime expiration time
 	 * @return bool
 	 */
 	public function cas( $casToken, $key, $value, $exptime = 0 ) {
@@ -80,8 +80,8 @@ class WinCacheBagOStuff extends BagOStuff {
 	/**
 	 * Remove a value from the WinCache object cache
 	 *
-	 * @param $key String: cache key
-	 * @param $time Int: not used in this implementation
+	 * @param string $key cache key
+	 * @param int $time not used in this implementation
 	 * @return bool
 	 */
 	public function delete( $key, $time = 0 ) {

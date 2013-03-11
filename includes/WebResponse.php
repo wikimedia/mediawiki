@@ -30,8 +30,8 @@ class WebResponse {
 	/**
 	 * Output a HTTP header, wrapper for PHP's
 	 * header()
-	 * @param $string String: header to output
-	 * @param $replace Bool: replace current similar header
+	 * @param string $string header to output
+	 * @param bool $replace replace current similar header
 	 * @param $http_response_code null|int Forces the HTTP response code to the specified value.
 	 */
 	public function header( $string, $replace = true, $http_response_code = null ) {
@@ -40,12 +40,12 @@ class WebResponse {
 
 	/**
 	 * Set the browser cookie
-	 * @param $name String: name of cookie
-	 * @param $value String: value to give cookie
-	 * @param $expire Int: Unix timestamp (in seconds) when the cookie should expire.
+	 * @param string $name name of cookie
+	 * @param string $value value to give cookie
+	 * @param int $expire Unix timestamp (in seconds) when the cookie should expire.
 	 *        0 (the default) causes it to expire $wgCookieExpiration seconds from now.
-	 * @param $prefix String: Prefix to use, if not $wgCookiePrefix (use '' for no prefix)
-	 * @param $domain String: Cookie domain to use, if not $wgCookieDomain
+	 * @param string $prefix Prefix to use, if not $wgCookiePrefix (use '' for no prefix)
+	 * @param string $domain Cookie domain to use, if not $wgCookieDomain
 	 * @param $forceSecure Bool:
 	 *   true: force the cookie to be set with the secure attribute
 	 *   false: force the cookie to be set without the secure attribute
@@ -105,8 +105,8 @@ class FauxResponse extends WebResponse {
 
 	/**
 	 * Stores a HTTP header
-	 * @param $string String: header to output
-	 * @param $replace Bool: replace current similar header
+	 * @param string $string header to output
+	 * @param bool $replace replace current similar header
 	 * @param $http_response_code null|int Forces the HTTP response code to the specified value.
 	 */
 	public function header( $string, $replace = true, $http_response_code = null ) {
@@ -149,9 +149,9 @@ class FauxResponse extends WebResponse {
 	/**
 	 * @todo document. It just ignore optional parameters.
 	 *
-	 * @param $name String: name of cookie
-	 * @param $value String: value to give cookie
-	 * @param $expire Int: number of seconds til cookie expires (Default: 0)
+	 * @param string $name name of cookie
+	 * @param string $value value to give cookie
+	 * @param int $expire number of seconds til cookie expires (Default: 0)
 	 * @param $prefix TODO DOCUMENT (Default: null)
 	 * @param $domain TODO DOCUMENT (Default: null)
 	 * @param $forceSecure TODO DOCUMENT (Default: null)

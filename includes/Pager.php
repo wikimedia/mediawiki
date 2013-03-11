@@ -269,7 +269,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 * Extract some useful data from the result object for use by
 	 * the navigation bar, put it into $this
 	 *
-	 * @param $offset String: index offset, inclusive
+	 * @param string $offset index offset, inclusive
 	 * @param $limit Integer: exact query limit
 	 * @param $res ResultWrapper
 	 */
@@ -335,7 +335,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 * Do a query with specified parameters, rather than using the object
 	 * context
 	 *
-	 * @param $offset String: index offset, inclusive
+	 * @param string $offset index offset, inclusive
 	 * @param $limit Integer: exact query limit
 	 * @param $descending Boolean: query direction, false for ascending, true for descending
 	 * @return ResultWrapper
@@ -348,7 +348,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	/**
 	 * Build variables to use by the database wrapper.
 	 *
-	 * @param $offset String: index offset, inclusive
+	 * @param string $offset index offset, inclusive
 	 * @param $limit Integer: exact query limit
 	 * @param $descending Boolean: query direction, false for ascending, true for descending
 	 * @return array
@@ -431,9 +431,9 @@ abstract class IndexPager extends ContextSource implements Pager {
 	/**
 	 * Make a self-link
 	 *
-	 * @param $text String: text displayed on the link
-	 * @param $query Array: associative array of paramter to be in the query string
-	 * @param $type String: value of the "rel" attribute
+	 * @param string $text text displayed on the link
+	 * @param array $query associative array of paramter to be in the query string
+	 * @param string $type value of the "rel" attribute
 	 *
 	 * @return String: HTML fragment
 	 */
@@ -1047,8 +1047,8 @@ abstract class TablePager extends IndexPager {
 	 *
 	 * @protected
 	 *
-	 * @param $field String The column
-	 * @param $value String The cell contents
+	 * @param string $field The column
+	 * @param string $value The cell contents
 	 * @return Array of attr => value
 	 */
 	function getCellAttrs( $field, $value ) {
@@ -1177,7 +1177,7 @@ abstract class TablePager extends IndexPager {
 	 * Resubmits all defined elements of the query string, except for a
 	 * blacklist, passed in the $blacklist parameter.
 	 *
-	 * @param $blacklist Array parameters from the request query which should not be resubmitted
+	 * @param array $blacklist parameters from the request query which should not be resubmitted
 	 * @return String: HTML fragment
 	 */
 	function getHiddenFields( $blacklist = array() ) {
@@ -1243,8 +1243,8 @@ abstract class TablePager extends IndexPager {
 	 *
 	 * @protected
 	 *
-	 * @param $name String: the database field name
-	 * @param $value String: the value retrieved from the database
+	 * @param string $name the database field name
+	 * @param string $value the value retrieved from the database
 	 */
 	abstract function formatValue( $name, $value );
 

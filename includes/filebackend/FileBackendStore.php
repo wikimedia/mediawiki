@@ -969,8 +969,8 @@ abstract class FileBackendStore extends FileBackend {
 	/**
 	 * @see FileBackendStore::directoryExists()
 	 *
-	 * @param $container string Resolved container name
-	 * @param $dir string Resolved path relative to container
+	 * @param string $container Resolved container name
+	 * @param string $dir Resolved path relative to container
 	 * @param $params Array
 	 * @return bool|null
 	 */
@@ -1002,8 +1002,8 @@ abstract class FileBackendStore extends FileBackend {
 	 *
 	 * @see FileBackendStore::getDirectoryList()
 	 *
-	 * @param $container string Resolved container name
-	 * @param $dir string Resolved path relative to container
+	 * @param string $container Resolved container name
+	 * @param string $dir Resolved path relative to container
 	 * @param $params Array
 	 * @return Traversable|Array|null Returns null on failure
 	 */
@@ -1035,8 +1035,8 @@ abstract class FileBackendStore extends FileBackend {
 	 *
 	 * @see FileBackendStore::getFileList()
 	 *
-	 * @param $container string Resolved container name
-	 * @param $dir string Resolved path relative to container
+	 * @param string $container Resolved container name
+	 * @param string $dir Resolved path relative to container
 	 * @param $params Array
 	 * @return Traversable|Array|null Returns null on failure
 	 */
@@ -1049,7 +1049,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * The result must have the same number of items as the input.
 	 * An exception is thrown if an unsupported operation is requested.
 	 *
-	 * @param $ops Array Same format as doOperations()
+	 * @param array $ops Same format as doOperations()
 	 * @return Array List of FileOp objects
 	 * @throws MWException
 	 */
@@ -1088,7 +1088,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * each corresponding to a list of storage paths to be locked.
 	 * All returned paths are normalized.
 	 *
-	 * @param $performOps Array List of FileOp objects
+	 * @param array $performOps List of FileOp objects
 	 * @return Array ('sh' => list of paths, 'ex' => list of paths)
 	 */
 	final public function getPathsToLockForOpsInternal( array $performOps ) {
@@ -1240,7 +1240,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * The resulting Status object fields will correspond
 	 * to the order in which the handles where given.
 	 *
-	 * @param $handles Array List of FileBackendStoreOpHandle objects
+	 * @param array $handles List of FileBackendStoreOpHandle objects
 	 * @return Array Map of Status objects
 	 * @throws MWException
 	 */
@@ -1279,7 +1279,7 @@ abstract class FileBackendStore extends FileBackend {
 	/**
 	 * Strip long HTTP headers from a file operation
 	 *
-	 * @param $op array Same format as doOperation()
+	 * @param array $op Same format as doOperation()
 	 * @return Array
 	 */
 	protected function stripInvalidHeadersFromOp( array $op ) {
@@ -1335,7 +1335,7 @@ abstract class FileBackendStore extends FileBackend {
 	 *
 	 * @see FileBackend::clearCache()
 	 *
-	 * @param $paths Array Storage paths (optional)
+	 * @param array $paths Storage paths (optional)
 	 * @return void
 	 */
 	protected function doClearCache( array $paths = null ) {}
@@ -1424,8 +1424,8 @@ abstract class FileBackendStore extends FileBackend {
 	 * Get the container name shard suffix for a given path.
 	 * Any empty suffix means the container is not sharded.
 	 *
-	 * @param $container string Container name
-	 * @param $relPath string Storage path relative to the container
+	 * @param string $container Container name
+	 * @param string $relPath Storage path relative to the container
 	 * @return string|null Returns null if shard could not be determined
 	 */
 	final protected function getContainerShard( $container, $relPath ) {
@@ -1461,7 +1461,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * Container dirs like "a", where the container shards on "x/xy",
 	 * can reside on several shards. Such paths are tricky to handle.
 	 *
-	 * @param $storagePath string Storage path
+	 * @param string $storagePath Storage path
 	 * @return bool
 	 */
 	final public function isSingleShardPathInternal( $storagePath ) {
@@ -1541,8 +1541,8 @@ abstract class FileBackendStore extends FileBackend {
 	 * getting absolute paths (e.g. FS based backends). Note that the relative path
 	 * may be the empty string (e.g. the path is simply to the container).
 	 *
-	 * @param $container string Container name
-	 * @param $relStoragePath string Storage path relative to the container
+	 * @param string $container Container name
+	 * @param string $relStoragePath Storage path relative to the container
 	 * @return string|null Path or null if not valid
 	 */
 	protected function resolveContainerPath( $container, $relStoragePath ) {
@@ -1552,7 +1552,7 @@ abstract class FileBackendStore extends FileBackend {
 	/**
 	 * Get the cache key for a container
 	 *
-	 * @param $container string Resolved container name
+	 * @param string $container Resolved container name
 	 * @return string
 	 */
 	private function containerCacheKey( $container ) {
@@ -1562,7 +1562,7 @@ abstract class FileBackendStore extends FileBackend {
 	/**
 	 * Set the cached info for a container
 	 *
-	 * @param $container string Resolved container name
+	 * @param string $container Resolved container name
 	 * @param $val mixed Information to cache
 	 */
 	final protected function setContainerCache( $container, $val ) {
@@ -1573,7 +1573,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * Delete the cached info for a container.
 	 * The cache key is salted for a while to prevent race conditions.
 	 *
-	 * @param $container string Resolved container name
+	 * @param string $container Resolved container name
 	 */
 	final protected function deleteContainerCache( $container ) {
 		if ( !$this->memCache->set( $this->containerCacheKey( $container ), 'PURGED', 300 ) ) {
@@ -1633,7 +1633,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * resolved container names and their corresponding cached info.
 	 * Only containers that actually exist should appear in the map.
 	 *
-	 * @param $containerInfo Array Map of resolved container names to cached info
+	 * @param array $containerInfo Map of resolved container names to cached info
 	 * @return void
 	 */
 	protected function doPrimeContainerCache( array $containerInfo ) {}
@@ -1641,7 +1641,7 @@ abstract class FileBackendStore extends FileBackend {
 	/**
 	 * Get the cache key for a file path
 	 *
-	 * @param $path string Normalized storage path
+	 * @param string $path Normalized storage path
 	 * @return string
 	 */
 	private function fileCacheKey( $path ) {
@@ -1653,7 +1653,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * Negatives (404s) are not cached. By not caching negatives, we can skip cache
 	 * salting for the case when a file is created at a path were there was none before.
 	 *
-	 * @param $path string Storage path
+	 * @param string $path Storage path
 	 * @param $val mixed Information to cache
 	 */
 	final protected function setFileCache( $path, $val ) {
@@ -1670,7 +1670,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * Since negatives (404s) are not cached, this does not need to be called when
 	 * a file is created at a path were there was none before.
 	 *
-	 * @param $path string Storage path
+	 * @param string $path Storage path
 	 */
 	final protected function deleteFileCache( $path ) {
 		$path = FileBackend::normalizeStoragePath( $path );
@@ -1687,7 +1687,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * used in a list of storage paths or FileOp objects.
 	 * This loads the persistent cache values into the process cache.
 	 *
-	 * @param $items Array List of storage paths or FileOps
+	 * @param array $items List of storage paths or FileOps
 	 * @return void
 	 */
 	final protected function primeFileCache( array $items ) {
@@ -1734,7 +1734,7 @@ abstract class FileBackendStore extends FileBackend {
 	/**
 	 * Set the 'concurrency' option from a list of operation options
 	 *
-	 * @param $opts array Map of operation options
+	 * @param array $opts Map of operation options
 	 * @return Array
 	 */
 	final protected function setConcurrencyFlags( array $opts ) {
@@ -1806,9 +1806,9 @@ abstract class FileBackendStoreShardListIterator implements Iterator {
 
 	/**
 	 * @param $backend FileBackendStore
-	 * @param $container string Full storage container name
-	 * @param $dir string Storage directory relative to container
-	 * @param $suffixes Array List of container shard suffixes
+	 * @param string $container Full storage container name
+	 * @param string $dir Storage directory relative to container
+	 * @param array $suffixes List of container shard suffixes
 	 * @param $params Array
 	 */
 	public function __construct(
@@ -1935,8 +1935,8 @@ abstract class FileBackendStoreShardListIterator implements Iterator {
 	/**
 	 * Get the list for a given container shard
 	 *
-	 * @param $container string Resolved container name
-	 * @param $dir string Resolved path relative to container
+	 * @param string $container Resolved container name
+	 * @param string $dir Resolved path relative to container
 	 * @param $params Array
 	 * @return Traversable|Array|null
 	 */

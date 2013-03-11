@@ -594,8 +594,8 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 
 	/**
 	 * Put together a rev_deleted bitfield
-	 * @param $bitPars array extractBitParams() params
-	 * @param $oldfield int current bitfield
+	 * @param array $bitPars extractBitParams() params
+	 * @param int $oldfield current bitfield
 	 * @return array
 	 */
 	public static function extractBitfield( $bitPars, $oldfield ) {

@@ -46,7 +46,7 @@ class SpecialBookSources extends SpecialPage {
 	/**
 	 * Show the special page
 	 *
-	 * @param $isbn string ISBN passed as a subpage parameter
+	 * @param string $isbn ISBN passed as a subpage parameter
 	 */
 	public function execute( $isbn ) {
 		$this->setHeaders();
@@ -63,7 +63,7 @@ class SpecialBookSources extends SpecialPage {
 
 	/**
 	 * Returns whether a given ISBN (10 or 13) is valid. True indicates validity.
-	 * @param $isbn string ISBN passed for check
+	 * @param string $isbn ISBN passed for check
 	 * @return bool
 	 */
 	public static function isValidISBN( $isbn ) {
@@ -101,7 +101,7 @@ class SpecialBookSources extends SpecialPage {
 	/**
 	 * Trim ISBN and remove characters which aren't required
 	 *
-	 * @param $isbn string Unclean ISBN
+	 * @param string $isbn Unclean ISBN
 	 * @return string
 	 */
 	private static function cleanIsbn( $isbn ) {
@@ -171,8 +171,8 @@ class SpecialBookSources extends SpecialPage {
 	/**
 	 * Format a book source list item
 	 *
-	 * @param $label string Book source label
-	 * @param $url string Book source URL
+	 * @param string $label Book source label
+	 * @param string $url Book source URL
 	 * @return string
 	 */
 	private function makeListItem( $label, $url ) {

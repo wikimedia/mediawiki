@@ -150,9 +150,9 @@ class ApiQuery extends ApiBase {
 	 * If no such connection has been requested before, it will be created.
 	 * Subsequent calls with the same $name will return the same connection
 	 * as the first, regardless of the values of $db and $groups
-	 * @param $name string Name to assign to the database connection
-	 * @param $db int One of the DB_* constants
-	 * @param $groups array Query groups
+	 * @param string $name Name to assign to the database connection
+	 * @param int $db One of the DB_* constants
+	 * @param array $groups Query groups
 	 * @return DatabaseBase
 	 */
 	public function getNamedDB( $name, $db, $groups ) {
@@ -201,7 +201,7 @@ class ApiQuery extends ApiBase {
 	/**
 	 * Get whether the specified module is a prop, list or a meta query module
 	 * @deprecated since 1.21, use getModuleManager()->getModuleGroup()
-	 * @param $moduleName string Name of the module to find type for
+	 * @param string $moduleName Name of the module to find type for
 	 * @return mixed string or null
 	 */
 	function getModuleType( $moduleName ) {
@@ -433,8 +433,8 @@ class ApiQuery extends ApiBase {
 
 	/**
 	 * Create instances of all modules requested by the client
-	 * @param $modules Array to append instantiated modules to
-	 * @param $param string Parameter name to read modules from
+	 * @param array $modules to append instantiated modules to
+	 * @param string $param Parameter name to read modules from
 	 */
 	private function instantiateModules( &$modules, $param ) {
 		if ( isset( $this->mParams[$param] ) ) {
@@ -664,7 +664,7 @@ class ApiQuery extends ApiBase {
 
 	/**
 	 * For all modules of a given group, generate help messages and join them together
-	 * @param $group string Module group
+	 * @param string $group Module group
 	 * @return string
 	 */
 	private function makeHelpMsgHelper( $group ) {

@@ -47,7 +47,7 @@ class Status {
 	/**
 	 * Factory function for fatal errors
 	 *
-	 * @param $message String|Message: message name or object
+	 * @param string|Message $message message name or object
 	 * @return Status
 	 */
 	static function newFatal( $message /*, parameters...*/ ) {
@@ -103,7 +103,7 @@ class Status {
 	/**
 	 * Add a new warning
 	 *
-	 * @param $message String|Message: message name or object
+	 * @param string|Message $message message name or object
 	 */
 	function warning( $message /*, parameters... */ ) {
 		$params = array_slice( func_get_args(), 1 );
@@ -117,7 +117,7 @@ class Status {
 	 * Add an error, do not set fatal flag
 	 * This can be used for non-fatal errors
 	 *
-	 * @param $message String|Message: message name or object
+	 * @param string|Message $message message name or object
 	 */
 	function error( $message /*, parameters... */ ) {
 		$params = array_slice( func_get_args(), 1 );
@@ -131,7 +131,7 @@ class Status {
 	 * Add an error and set OK to false, indicating that the operation
 	 * as a whole was fatal
 	 *
-	 * @param $message String|Message: message name or object
+	 * @param string|Message $message message name or object
 	 */
 	function fatal( $message /*, parameters... */ ) {
 		$params = array_slice( func_get_args(), 1 );
@@ -167,9 +167,9 @@ class Status {
 	/**
 	 * Get the error list as a wikitext formatted list
 	 *
-	 * @param $shortContext String: a short enclosing context message name, to
+	 * @param string $shortContext a short enclosing context message name, to
 	 *        be used when there is a single error
-	 * @param $longContext String: a long enclosing context message name, for a list
+	 * @param string $longContext a long enclosing context message name, for a list
 	 * @return String
 	 */
 	function getWikiText( $shortContext = false, $longContext = false ) {
@@ -330,7 +330,7 @@ class Status {
 	 * Note, due to the lack of tools for comparing Message objects, this
 	 * function will not work when using a Message object as a parameter.
 	 *
-	 * @param $msg String: message name
+	 * @param string $msg message name
 	 * @return Boolean
 	 */
 	function hasMessage( $msg ) {

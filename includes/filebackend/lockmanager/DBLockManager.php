@@ -71,7 +71,7 @@ abstract class DBLockManager extends QuorumLockManager {
 	 *                   This tells the DB server how long to wait before assuming
 	 *                   connection failure and releasing all the locks for a session.
 	 *
-	 * @param Array $config
+	 * @param array $config
 	 */
 	public function __construct( array $config ) {
 		parent::__construct( $config );

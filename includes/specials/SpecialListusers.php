@@ -36,7 +36,7 @@ class UsersPager extends AlphabeticPager {
 
 	/**
 	 * @param $context IContextSource
-	 * @param $par array (Default null)
+	 * @param array $par (Default null)
 	 * @param $including boolean Whether this page is being transcluded in
 	 * another page
 	 */
@@ -297,8 +297,8 @@ class UsersPager extends AlphabeticPager {
 	/**
 	 * Format a link to a group description page
 	 *
-	 * @param $group String: group name
-	 * @param $username String Username
+	 * @param string $group group name
+	 * @param string $username Username
 	 * @return string
 	 */
 	protected static function buildGroupLink( $group, $username ) {
@@ -321,7 +321,7 @@ class SpecialListUsers extends IncludableSpecialPage {
 	/**
 	 * Show the special page
 	 *
-	 * @param $par string (optional) A group to list users from
+	 * @param string $par (optional) A group to list users from
 	 */
 	public function execute( $par ) {
 		$this->setHeaders();

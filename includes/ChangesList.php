@@ -80,7 +80,7 @@ class ChangesList extends ContextSource {
 	 * This first argument used to be an User object.
 	 *
 	 * @deprecated in 1.18; use newFromContext() instead
-	 * @param $unused string|User Unused
+	 * @param string|User $unused Unused
 	 * @return ChangesList|EnhancedChangesList|OldChangesList derivative
 	 */
 	public static function newFromUser( $unused ) {
@@ -130,8 +130,8 @@ class ChangesList extends ContextSource {
 
 	/**
 	 * Returns the appropriate flags for new page, minor change and patrolling
-	 * @param $flags Array Associative array of 'flag' => Bool
-	 * @param $nothing String to use for empty space
+	 * @param array $flags Associative array of 'flag' => Bool
+	 * @param string $nothing to use for empty space
 	 * @return String
 	 */
 	protected function recentChangesFlags( $flags, $nothing = '&#160;' ) {
@@ -150,7 +150,7 @@ class ChangesList extends ContextSource {
 	 * unpatrolled edit.  By default in English it will contain "N", "m", "b",
 	 * "!" respectively, plus it will have an appropriate title and class.
 	 *
-	 * @param $flag String: 'newpage', 'unpatrolled', 'minor', or 'bot'
+	 * @param string $flag 'newpage', 'unpatrolled', 'minor', or 'bot'
 	 * @return String: Raw HTML
 	 */
 	public static function flag( $flag ) {
@@ -287,7 +287,7 @@ class ChangesList extends ContextSource {
 	}
 
 	/**
-	 * @param $s string HTML to update
+	 * @param string $s HTML to update
 	 * @param $rc_timestamp mixed
 	 */
 	public function insertDateHeader( &$s, $rc_timestamp ) {
@@ -304,7 +304,7 @@ class ChangesList extends ContextSource {
 	}
 
 	/**
-	 * @param $s string HTML to update
+	 * @param string $s HTML to update
 	 * @param $title Title
 	 * @param $logtype string
 	 */
@@ -315,7 +315,7 @@ class ChangesList extends ContextSource {
 	}
 
 	/**
-	 * @param $s string HTML to update
+	 * @param string $s HTML to update
 	 * @param $rc RecentChange
 	 * @param $unpatrolled
 	 */
@@ -358,7 +358,7 @@ class ChangesList extends ContextSource {
 	}
 
 	/**
-	 * @param $s string HTML to update
+	 * @param string $s HTML to update
 	 * @param $rc RecentChange
 	 * @param $unpatrolled
 	 * @param $watched
@@ -407,7 +407,7 @@ class ChangesList extends ContextSource {
 	/**
 	 * Insert time timestamp string from $rc into $s
 	 *
-	 * @param $s string HTML to update
+	 * @param string $s HTML to update
 	 * @param $rc RecentChange
 	 */
 	public function insertTimestamp( &$s, $rc ) {
@@ -587,8 +587,8 @@ class OldChangesList extends ChangesList {
 	 * Format a line using the old system (aka without any javascript).
 	 *
 	 * @param $rc RecentChange, passed by reference
-	 * @param $watched Bool (default false)
-	 * @param $linenumber Int (default null)
+	 * @param bool $watched (default false)
+	 * @param int $linenumber (default null)
 	 *
 	 * @return string|bool
 	 */
@@ -1137,9 +1137,9 @@ class EnhancedChangesList extends ChangesList {
 
 	/**
 	 * Generate HTML for an arrow or placeholder graphic
-	 * @param $dir String: one of '', 'd', 'l', 'r'
-	 * @param $alt String: text
-	 * @param $title String: text
+	 * @param string $dir one of '', 'd', 'l', 'r'
+	 * @param string $alt text
+	 * @param string $title text
 	 * @return String: HTML "<img>" tag
 	 */
 	protected function arrow( $dir, $alt = '', $title = '' ) {

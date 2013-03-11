@@ -37,7 +37,7 @@ class LoadBalancer {
 	private $mLoadMonitorClass, $mLoadMonitor;
 
 	/**
-	 * @param $params Array with keys:
+	 * @param array $params with keys:
 	 *    servers           Required. Array of server info structures.
 	 *    masterWaitTimeout Replication lag wait timeout
 	 *    loadMonitor       Name of a class used to fetch server lag and load.
@@ -433,7 +433,7 @@ class LoadBalancer {
 	 * This is the main entry point for this class.
 	 *
 	 * @param $i Integer: server index
-	 * @param $groups Array: query groups
+	 * @param array $groups query groups
 	 * @param bool|string $wiki Wiki ID
 	 *
 	 * @throws MWException
@@ -550,7 +550,7 @@ class LoadBalancer {
 	 * error will be available via $this->mErrorConnection.
 	 *
 	 * @param $i Integer server index
-	 * @param $wiki String wiki ID to open
+	 * @param string $wiki wiki ID to open
 	 * @return DatabaseBase
 	 *
 	 * @access private
@@ -596,7 +596,7 @@ class LoadBalancer {
 	 * error will be available via $this->mErrorConnection.
 	 *
 	 * @param $i Integer: server index
-	 * @param $wiki String: wiki ID to open
+	 * @param string $wiki wiki ID to open
 	 * @return DatabaseBase
 	 */
 	function openForeignConnection( $i, $wiki ) {
@@ -978,7 +978,7 @@ class LoadBalancer {
 	 * May attempt to open connections to slaves on the default DB. If there is
 	 * no lag, the maximum lag will be reported as -1.
 	 *
-	 * @param $wiki string Wiki ID, or false for the default database
+	 * @param string $wiki Wiki ID, or false for the default database
 	 *
 	 * @return array ( host, max lag, index of max lagged host )
 	 */

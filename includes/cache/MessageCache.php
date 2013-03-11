@@ -122,7 +122,7 @@ class MessageCache {
 	 * Actual format of the file depends on the $wgLocalMessageCacheSerialized
 	 * setting.
 	 *
-	 * @param $hash String: the hash of contents, to check validity.
+	 * @param string $hash the hash of contents, to check validity.
 	 * @param $code Mixed: Optional language code, see documenation of load().
 	 * @return bool on failure.
 	 */
@@ -380,7 +380,7 @@ class MessageCache {
 	 * $wgMaxMsgCacheEntrySize are assigned a special value, and are loaded
 	 * on-demand from the database later.
 	 *
-	 * @param $code String: language code.
+	 * @param string $code language code.
 	 * @return Array: loaded messages for storing in caches.
 	 */
 	function loadFromDB( $code ) {
@@ -460,7 +460,7 @@ class MessageCache {
 	/**
 	 * Updates cache as necessary when message page is changed
 	 *
-	 * @param $title String: name of the page changed.
+	 * @param string $title name of the page changed.
 	 * @param $text Mixed: new contents of the page.
 	 */
 	public function replace( $title, $text ) {
@@ -523,9 +523,9 @@ class MessageCache {
 	/**
 	 * Shortcut to update caches.
 	 *
-	 * @param $cache Array: cached messages with a version.
-	 * @param $memc Bool: Wether to update or not memcache.
-	 * @param $code String: Language code.
+	 * @param array $cache cached messages with a version.
+	 * @param bool $memc Wether to update or not memcache.
+	 * @param string $code Language code.
 	 * @return bool on somekind of error.
 	 */
 	protected function saveToCaches( $cache, $memc = true, $code = false ) {
@@ -585,7 +585,7 @@ class MessageCache {
 	 *    we look at MediaWiki:$key)
 	 * 2) Built-in messages via the l10n cache which is also in fallback order
 	 *
-	 * @param $key String: the message cache key
+	 * @param string $key the message cache key
 	 * @param $useDB Boolean: If true will look for the message in the DB, false only
 	 *        get the message from the DB, false to use only the compiled l10n cache.
 	 * @param bool|string|object $langcode Code of the language to get the message for.
@@ -721,8 +721,8 @@ class MessageCache {
 	 * Get a message from the MediaWiki namespace, with caching. The key must
 	 * first be converted to two-part lang/msg form if necessary.
 	 *
-	 * @param $title String: Message cache key with initial uppercase letter.
-	 * @param $code String: code denoting the language to try.
+	 * @param string $title Message cache key with initial uppercase letter.
+	 * @param string $code code denoting the language to try.
 	 *
 	 * @return string|bool False on failure
 	 */

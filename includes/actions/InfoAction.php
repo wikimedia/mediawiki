@@ -132,9 +132,9 @@ class InfoAction extends FormlessAction {
 	/**
 	 * Adds a row to a table that will be added to the content.
 	 *
-	 * @param $table string The table that will be added to the content
-	 * @param $name string The name of the row
-	 * @param $value string The value of the row
+	 * @param string $table The table that will be added to the content
+	 * @param string $name The name of the row
+	 * @param string $value The value of the row
 	 * @return string The table with the row added
 	 */
 	protected function addRow( $table, $name, $value ) {
@@ -147,8 +147,8 @@ class InfoAction extends FormlessAction {
 	/**
 	 * Adds a table to the content that will be added to the output.
 	 *
-	 * @param $content string The content that will be added to the output
-	 * @param $table string The table
+	 * @param string $content The content that will be added to the output
+	 * @param string $table The table
 	 * @return string The content with the table added
 	 */
 	protected function addTable( $content, $table ) {

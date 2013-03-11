@@ -129,7 +129,7 @@ abstract class ContentHandler {
 	 *
 	 * @since 1.21
 	 *
-	 * @param $text string the textual representation, will be
+	 * @param string $text the textual representation, will be
 	 *    unserialized to create the Content object
 	 * @param $title null|Title the title of the page this text belongs to.
 	 *    Required if $modelId is not provided.
@@ -300,7 +300,7 @@ abstract class ContentHandler {
 	 *
 	 * @since 1.21
 	 *
-	 * @param $modelId String The ID of the content model for which to get a
+	 * @param string $modelId The ID of the content model for which to get a
 	 *    handler. Use CONTENT_MODEL_XXX constants.
 	 * @return ContentHandler The ContentHandler singleton for handling the
 	 *    model given by $modelId
@@ -347,7 +347,7 @@ abstract class ContentHandler {
 	 * Model names are localized using system messages. Message keys
 	 * have the form content-model-$name, where $name is getContentModelName( $id ).
 	 *
-	 * @param $name String The content model ID, as given by a CONTENT_MODEL_XXX
+	 * @param string $name The content model ID, as given by a CONTENT_MODEL_XXX
 	 *    constant or returned by Revision::getContentModel().
 	 *
 	 * @return string The content format's localized name.
@@ -391,8 +391,8 @@ abstract class ContentHandler {
 	 * and a list of supported formats. Values for the parameters are typically
 	 * provided as literals by subclass's constructors.
 	 *
-	 * @param $modelId String (use CONTENT_MODEL_XXX constants).
-	 * @param $formats array List for supported serialization formats
+	 * @param string $modelId (use CONTENT_MODEL_XXX constants).
+	 * @param array $formats List for supported serialization formats
 	 *    (typically as MIME types)
 	 */
 	public function __construct( $modelId, $formats ) {
@@ -420,7 +420,7 @@ abstract class ContentHandler {
 	 *
 	 * @since 1.21
 	 *
-	 * @param $blob string serialized form of the content
+	 * @param string $blob serialized form of the content
 	 * @param $format null|String the format used for serialization
 	 * @return Content the Content object created by deserializing $blob
 	 */
@@ -474,7 +474,7 @@ abstract class ContentHandler {
 	 *
 	 * @since 1.21
 	 *
-	 * @param String $model_id The model to check
+	 * @param string $model_id The model to check
 	 *
 	 * @throws MWException
 	 */
@@ -523,7 +523,7 @@ abstract class ContentHandler {
 	 *
 	 * @since 1.21
 	 *
-	 * @param $format string the serialization format to check
+	 * @param string $format the serialization format to check
 	 * @return bool
 	 */
 	public function isSupportedFormat( $format ) {
@@ -540,7 +540,7 @@ abstract class ContentHandler {
 	 * Convenient for checking whether a format provided as a parameter is
 	 * actually supported.
 	 *
-	 * @param $format string the serialization format to check
+	 * @param string $format the serialization format to check
 	 *
 	 * @throws MWException
 	 */
@@ -575,7 +575,7 @@ abstract class ContentHandler {
 	 * @param $context IContextSource context to use, anything else will be
 	 *    ignored
 	 * @param $old Integer Old ID we want to show and diff with.
-	 * @param $new int|string String either 'prev' or 'next'.
+	 * @param int|string $new String either 'prev' or 'next'.
 	 * @param $rcid Integer ??? FIXME (default 0)
 	 * @param $refreshCache boolean If set, refreshes the diff cache
 	 * @param $unhide boolean If set, allow viewing deleted revs
@@ -712,7 +712,7 @@ abstract class ContentHandler {
 	 *
 	 * @param $oldContent Content|null: the previous text of the page.
 	 * @param $newContent Content|null: The submitted text of the page.
-	 * @param $flags int Bit mask: a bit mask of flags submitted for the edit.
+	 * @param int $flags Bit mask: a bit mask of flags submitted for the edit.
 	 *
 	 * @return string An appropriate auto-summary, or an empty string.
 	 */
@@ -997,10 +997,10 @@ abstract class ContentHandler {
 	 * Logs a deprecation warning, visible if $wgDevelopmentWarnings, but only if
 	 * self::$enableDeprecationWarnings is set to true.
 	 *
-	 * @param String      $func The name of the deprecated function
+	 * @param string      $func The name of the deprecated function
 	 * @param string      $version The version since the method is deprecated. Usually 1.21
 	 *                    for ContentHandler related stuff.
-	 * @param String|bool $component: Component to which the function belongs.
+	 * @param string|bool $component: Component to which the function belongs.
 	 *                                If false, it is assumed the function is in MediaWiki core.
 	 *
 	 * @see ContentHandler::$enableDeprecationWarnings
@@ -1019,9 +1019,9 @@ abstract class ContentHandler {
 	 * hook function, a new Content object is constructed from the new
 	 * text.
 	 *
-	 * @param $event String: event name
-	 * @param $args Array: parameters passed to hook functions
-	 * @param $warn bool: whether to log a warning.
+	 * @param string $event event name
+	 * @param array $args parameters passed to hook functions
+	 * @param bool $warn whether to log a warning.
 	 *                    Default to self::$enableDeprecationWarnings.
 	 *                    May be set to false for testing.
 	 *

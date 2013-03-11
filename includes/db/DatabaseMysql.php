@@ -695,8 +695,8 @@ class DatabaseMysql extends DatabaseBase {
 	/**
 	 * Check to see if a named lock is available. This is non-blocking.
 	 *
-	 * @param $lockName String: name of lock to poll
-	 * @param $method String: name of method calling us
+	 * @param string $lockName name of lock to poll
+	 * @param string $method name of method calling us
 	 * @return Boolean
 	 * @since 1.20
 	 */
@@ -893,8 +893,8 @@ class DatabaseMysql extends DatabaseBase {
 	/**
 	 * List all tables on the database
 	 *
-	 * @param $prefix string Only show tables with this prefix, e.g. mw_
-	 * @param $fname String: calling function name
+	 * @param string $prefix Only show tables with this prefix, e.g. mw_
+	 * @param string $fname calling function name
 	 * @return array
 	 */
 	function listTables( $prefix = null, $fname = 'DatabaseMysql::listTables' ) {

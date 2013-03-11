@@ -35,9 +35,9 @@ class Http {
 	/**
 	 * Perform an HTTP request
 	 *
-	 * @param $method String: HTTP method. Usually GET/POST
-	 * @param $url String: full URL to act on. If protocol-relative, will be expanded to an http:// URL
-	 * @param $options Array: options to pass to MWHttpRequest object.
+	 * @param string $method HTTP method. Usually GET/POST
+	 * @param string $url full URL to act on. If protocol-relative, will be expanded to an http:// URL
+	 * @param array $options options to pass to MWHttpRequest object.
 	 *	Possible keys for the array:
 	 *    - timeout             Timeout length in seconds
 	 *    - postData            An array of key-value pairs or a url-encoded form data
@@ -103,7 +103,7 @@ class Http {
 	/**
 	 * Check if the URL can be served by localhost
 	 *
-	 * @param $url String: full url to check
+	 * @param string $url full url to check
 	 * @return Boolean
 	 */
 	public static function isLocalURL( $url ) {
@@ -209,8 +209,8 @@ class MWHttpRequest {
 	public $status;
 
 	/**
-	 * @param $url String: url to use. If protocol-relative, will be expanded to an http:// URL
-	 * @param $options Array: (optional) extra params to pass (see Http::request())
+	 * @param string $url url to use. If protocol-relative, will be expanded to an http:// URL
+	 * @param array $options (optional) extra params to pass (see Http::request())
 	 */
 	protected function __construct( $url, $options = array() ) {
 		global $wgHTTPTimeout;
@@ -263,8 +263,8 @@ class MWHttpRequest {
 
 	/**
 	 * Generate a new request object
-	 * @param $url String: url to use
-	 * @param $options Array: (optional) extra params to pass (see Http::request())
+	 * @param string $url url to use
+	 * @param array $options (optional) extra params to pass (see Http::request())
 	 * @throws MWException
 	 * @return CurlHttpRequest|PhpHttpRequest
 	 * @see MWHttpRequest::__construct

@@ -80,7 +80,7 @@ class DifferenceEngine extends ContextSource {
 	 * Constructor
 	 * @param $context IContextSource context to use, anything else will be ignored
 	 * @param $old Integer old ID we want to show and diff with.
-	 * @param $new String either 'prev' or 'next'.
+	 * @param string $new either 'prev' or 'next'.
 	 * @param $rcid Integer ??? FIXME (default 0)
 	 * @param $refreshCache boolean If set, refreshes the diff cache
 	 * @param $unhide boolean If set, allow viewing deleted revs
@@ -618,7 +618,7 @@ class DifferenceEngine extends ContextSource {
 	 *
 	 * @param string|bool $otitle Header for old text or false
 	 * @param string|bool $ntitle Header for new text or false
-	 * @param $notice String: HTML between diff header and body
+	 * @param string $notice HTML between diff header and body
 	 * @return mixed
 	 */
 	function getDiff( $otitle, $ntitle, $notice = '' ) {
@@ -759,8 +759,8 @@ class DifferenceEngine extends ContextSource {
 	/**
 	 * Generate a diff, no caching
 	 *
-	 * @param $otext String: old text, must be already segmented
-	 * @param $ntext String: new text, must be already segmented
+	 * @param string $otext old text, must be already segmented
+	 * @param string $ntext new text, must be already segmented
 	 * @return bool|string
 	 * @deprecated since 1.21, use generateContentDiffBody() instead!
 	 */
@@ -775,8 +775,8 @@ class DifferenceEngine extends ContextSource {
 	 *
 	 * @todo move this to TextDifferenceEngine, make DifferenceEngine abstract. At some point.
 	 *
-	 * @param $otext String: old text, must be already segmented
-	 * @param $ntext String: new text, must be already segmented
+	 * @param string $otext old text, must be already segmented
+	 * @param string $ntext new text, must be already segmented
 	 * @return bool|string
 	 */
 	function generateTextDiffBody( $otext, $ntext ) {
@@ -937,7 +937,7 @@ class DifferenceEngine extends ContextSource {
 	 * Get a header for a specified revision.
 	 *
 	 * @param $rev Revision
-	 * @param $complete String: 'complete' to get the header wrapped depending
+	 * @param string $complete 'complete' to get the header wrapped depending
 	 *        the visibility of the revision and a link to edit the page.
 	 * @return String HTML fragment
 	 */

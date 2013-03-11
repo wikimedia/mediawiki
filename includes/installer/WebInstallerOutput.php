@@ -104,7 +104,7 @@ class WebInstallerOutput {
 
 	/**
 	 * Get the raw vector CSS, flipping if needed
-	 * @param $dir String 'ltr' or 'rtl'
+	 * @param string $dir 'ltr' or 'rtl'
 	 * @return String
 	 */
 	public function getCSS( $dir ) {

@@ -111,7 +111,7 @@ class LinkHolderArray {
 	 * strings will be returned.
 	 *
 	 * @param $other LinkHolderArray
-	 * @param $texts Array of strings
+	 * @param array $texts of strings
 	 * @return Array
 	 */
 	function mergeForeign( $other, $texts ) {
@@ -210,9 +210,9 @@ class LinkHolderArray {
 	 *
 	 * @param $nt Title
 	 * @param $text String
-	 * @param $query Array [optional]
-	 * @param $trail String [optional]
-	 * @param $prefix String [optional]
+	 * @param array $query [optional]
+	 * @param string $trail [optional]
+	 * @param string $prefix [optional]
 	 * @return string
 	 */
 	function makeHolder( $nt, $text = '', $query = array(), $trail = '', $prefix = '' ) {

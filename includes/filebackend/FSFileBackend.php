@@ -102,7 +102,7 @@ class FSFileBackend extends FileBackendStore {
 	/**
 	 * Sanity check a relative file system path for validity
 	 *
-	 * @param $path string Normalized relative path
+	 * @param string $path Normalized relative path
 	 * @return bool
 	 */
 	protected function isLegalRelPath( $path ) {
@@ -137,7 +137,7 @@ class FSFileBackend extends FileBackendStore {
 	/**
 	 * Get the absolute file system path for a storage path
 	 *
-	 * @param $storagePath string Storage path
+	 * @param string $storagePath Storage path
 	 * @return string|null
 	 */
 	protected function resolveToFSPath( $storagePath ) {
@@ -747,7 +747,7 @@ class FSFileBackend extends FileBackendStore {
 	/**
 	 * Chmod a file, suppressing the warnings
 	 *
-	 * @param $path string Absolute file system path
+	 * @param string $path Absolute file system path
 	 * @return bool Success
 	 */
 	protected function chmod( $path ) {
@@ -779,7 +779,7 @@ class FSFileBackend extends FileBackendStore {
 	/**
 	 * Clean up directory separators for the given OS
 	 *
-	 * @param $path string FS path
+	 * @param string $path FS path
 	 * @return string
 	 */
 	protected function cleanPathSlashes( $path ) {
@@ -857,7 +857,7 @@ abstract class FSFileBackendList implements Iterator {
 	protected $params = array();
 
 	/**
-	 * @param $dir string file system directory
+	 * @param string $dir file system directory
 	 * @param $params array
 	 */
 	public function __construct( $dir, array $params ) {
@@ -878,7 +878,7 @@ abstract class FSFileBackendList implements Iterator {
 	/**
 	 * Return an appropriate iterator object to wrap
 	 *
-	 * @param $dir string file system directory
+	 * @param string $dir file system directory
 	 * @return Iterator
 	 */
 	protected function initIterator( $dir ) {

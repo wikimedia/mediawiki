@@ -147,7 +147,7 @@ abstract class Action {
 	/**
 	 * Check if a given action is recognised, even if it's disabled
 	 *
-	 * @param $name String: name of an action
+	 * @param string $name name of an action
 	 * @return Bool
 	 */
 	final public static function exists( $name ) {
@@ -545,8 +545,8 @@ abstract class FormlessAction extends Action {
 	/**
 	 * Execute the action silently, not giving any output.  Since these actions don't have
 	 * forms, they probably won't have any data, but some (eg rollback) may do
-	 * @param $data Array values that would normally be in the GET request
-	 * @param $captureErrors Bool whether to catch exceptions and just return false
+	 * @param array $data values that would normally be in the GET request
+	 * @param bool $captureErrors whether to catch exceptions and just return false
 	 * @throws ErrorPageError|Exception
 	 * @return Bool whether execution was successful
 	 */

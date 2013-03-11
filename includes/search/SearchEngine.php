@@ -58,7 +58,7 @@ class SearchEngine {
 	 * If title searches are not supported or disabled, return null.
 	 * STUB
 	 *
-	 * @param $term String: raw search term
+	 * @param string $term raw search term
 	 * @return SearchResultSet
 	 */
 	function searchText( $term ) {
@@ -70,7 +70,7 @@ class SearchEngine {
 	 * If title searches are not supported or disabled, return null.
 	 * STUB
 	 *
-	 * @param $term String: raw search term
+	 * @param string $term raw search term
 	 * @return SearchResultSet
 	 */
 	function searchTitle( $term ) {
@@ -118,7 +118,7 @@ class SearchEngine {
 	 * on text to be used for searching or updating search index.
 	 * Default implementation does nothing (simply returns $string).
 	 *
-	 * @param $string string: String to process
+	 * @param string $string String to process
 	 * @return string
 	 */
 	public function normalizeText( $string ) {
@@ -806,7 +806,7 @@ class SearchResult {
 	}
 
 	/**
-	 * @param $terms Array: terms to highlight
+	 * @param array $terms terms to highlight
 	 * @return String: highlighted text snippet, null (and not '') if not supported
 	 */
 	function getTextSnippet( $terms ) {
@@ -823,7 +823,7 @@ class SearchResult {
 	}
 
 	/**
-	 * @param $terms Array: terms to highlight
+	 * @param array $terms terms to highlight
 	 * @return String: highlighted title, '' if not supported
 	 */
 	function getTitleSnippet( $terms ) {
@@ -831,7 +831,7 @@ class SearchResult {
 	}
 
 	/**
-	 * @param $terms Array: terms to highlight
+	 * @param array $terms terms to highlight
 	 * @return String: highlighted redirect name (redirect to this page), '' if none or not supported
 	 */
 	function getRedirectSnippet( $terms ) {
@@ -942,7 +942,7 @@ class SearchHighlighter {
 	 * Default implementation of wikitext highlighting
 	 *
 	 * @param $text String
-	 * @param $terms Array: terms to highlight (unescaped)
+	 * @param array $terms terms to highlight (unescaped)
 	 * @param $contextlines Integer
 	 * @param $contextchars Integer
 	 * @return String
@@ -1185,7 +1185,7 @@ class SearchHighlighter {
 	/**
 	 * Split text into lines and add it to extracts array
 	 *
-	 * @param $extracts Array: index -> $line
+	 * @param array $extracts index -> $line
 	 * @param $count Integer
 	 * @param $text String
 	 */
@@ -1280,12 +1280,12 @@ class SearchHighlighter {
 	/**
 	 * Search extracts for a pattern, and return snippets
 	 *
-	 * @param $pattern String: regexp for matching lines
-	 * @param $extracts Array: extracts to search
+	 * @param string $pattern regexp for matching lines
+	 * @param array $extracts extracts to search
 	 * @param $linesleft Integer: number of extracts to make
 	 * @param $contextchars Integer: length of snippet
-	 * @param $out Array: map for highlighted snippets
-	 * @param $offsets Array: map of starting points of snippets
+	 * @param array $out map for highlighted snippets
+	 * @param array $offsets map of starting points of snippets
 	 * @protected
 	 */
 	function process( $pattern, $extracts, &$linesleft, &$contextchars, &$out, &$offsets ) {

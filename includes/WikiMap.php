@@ -28,7 +28,7 @@ class WikiMap {
 	/**
 	 * Get a WikiReference object for $wikiID
 	 *
-	 * @param $wikiID String: wiki'd id (generally database name)
+	 * @param string $wikiID wiki'd id (generally database name)
 	 * @return WikiReference object or null if the wiki was not found
 	 */
 	public static function getWiki( $wikiID ) {
@@ -53,7 +53,7 @@ class WikiMap {
 	 * Convenience to get the wiki's display name
 	 *
 	 * @todo We can give more info than just the wiki id!
-	 * @param $wikiID String: wiki'd id (generally database name)
+	 * @param string $wikiID wiki'd id (generally database name)
 	 * @return string|int Wiki's name or $wiki_id if the wiki was not found
 	 */
 	public static function getWikiName( $wikiID ) {
@@ -68,9 +68,9 @@ class WikiMap {
 	/**
 	 * Convenience to get a link to a user page on a foreign wiki
 	 *
-	 * @param $wikiID String: wiki'd id (generally database name)
-	 * @param $user String: user name (must be normalised before calling this function!)
-	 * @param $text String: link's text; optional, default to "User:$user"
+	 * @param string $wikiID wiki'd id (generally database name)
+	 * @param string $user user name (must be normalised before calling this function!)
+	 * @param string $text link's text; optional, default to "User:$user"
 	 * @return String: HTML link or false if the wiki was not found
 	 */
 	public static function foreignUserLink( $wikiID, $user, $text=null ) {
@@ -80,9 +80,9 @@ class WikiMap {
 	/**
 	 * Convenience to get a link to a page on a foreign wiki
 	 *
-	 * @param $wikiID String: wiki'd id (generally database name)
-	 * @param $page String: page name (must be normalised before calling this function!)
-	 * @param $text String: link's text; optional, default to $page
+	 * @param string $wikiID wiki'd id (generally database name)
+	 * @param string $page page name (must be normalised before calling this function!)
+	 * @param string $text link's text; optional, default to $page
 	 * @return String: HTML link or false if the wiki was not found
 	 */
 	public static function makeForeignLink( $wikiID, $page, $text=null ) {
@@ -101,8 +101,8 @@ class WikiMap {
 	/**
 	 * Convenience to get a url to a page on a foreign wiki
 	 *
-	 * @param $wikiID String: wiki'd id (generally database name)
-	 * @param $page String: page name (must be normalised before calling this function!)
+	 * @param string $wikiID wiki'd id (generally database name)
+	 * @param string $page page name (must be normalised before calling this function!)
 	 * @return String: URL or false if the wiki was not found
 	 */
 	public static function getForeignURL( $wikiID, $page ) {
@@ -176,7 +176,7 @@ class WikiReference {
 	 * Helper function for getUrl()
 	 *
 	 * @todo FIXME: This may be generalized...
-	 * @param $page String: page name (must be normalised before calling this function!)
+	 * @param string $page page name (must be normalised before calling this function!)
 	 * @return String: Url fragment
 	 */
 	private function getLocalUrl( $page ) {
@@ -186,7 +186,7 @@ class WikiReference {
 	/**
 	 * Get a canonical (i.e. based on $wgCanonicalServer) URL to a page on this foreign wiki
 	 *
-	 * @param $page String: page name (must be normalised before calling this function!)
+	 * @param string $page page name (must be normalised before calling this function!)
 	 * @return String: Url
 	 */
 	public function getCanonicalUrl( $page ) {
@@ -214,7 +214,7 @@ class WikiReference {
 	 * Get a URL based on $wgServer, like Title::getFullUrl() would produce
 	 * when called locally on the wiki.
 	 *
-	 * @param $page String: page name (must be normalized before calling this function!)
+	 * @param string $page page name (must be normalized before calling this function!)
 	 * @return String: URL
 	 */
 	public function getFullUrl( $page ) {

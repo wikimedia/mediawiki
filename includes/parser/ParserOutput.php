@@ -156,8 +156,8 @@ class ParserOutput extends CacheTime {
 	/**
 	 * Checks, if a url is pointing to the own server
 	 *
-	 * @param $internal String the server to check against
-	 * @param $url String the url to check
+	 * @param string $internal the server to check against
+	 * @param string $url the url to check
 	 * @return bool
 	 */
 	static function isLinkInternal( $internal, $url ) {
@@ -220,9 +220,9 @@ class ParserOutput extends CacheTime {
 
 	/**
 	 * Register a file dependency for this output
-	 * @param $name string Title dbKey
-	 * @param $timestamp string MW timestamp of file creation (or false if non-existing)
-	 * @param $sha1 string base 36 SHA-1 of file (or false if non-existing)
+	 * @param string $name Title dbKey
+	 * @param string $timestamp MW timestamp of file creation (or false if non-existing)
+	 * @param string $sha1 base 36 SHA-1 of file (or false if non-existing)
 	 * @return void
 	 */
 	function addImage( $name, $timestamp = null, $sha1 = null ) {
@@ -315,7 +315,7 @@ class ParserOutput extends CacheTime {
 	 * -- this is assumed to have been validated
 	 * (check equal normalisation, etc.)
 	 *
-	 * @param $text String: desired title text
+	 * @param string $text desired title text
 	 */
 	public function setDisplayTitle( $text ) {
 		$this->setTitleText( $text );

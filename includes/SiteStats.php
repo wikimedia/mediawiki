@@ -160,7 +160,7 @@ class SiteStats {
 
 	/**
 	 * Find the number of users in a given user group.
-	 * @param $group String: name of group
+	 * @param string $group name of group
 	 * @return Integer
 	 */
 	static function numberingroup( $group ) {
@@ -398,7 +398,7 @@ class SiteStatsUpdate implements DeferrableUpdate {
 
 	/**
 	 * @param $type string
-	 * @param $sign string ('+' or '-')
+	 * @param string $sign ('+' or '-')
 	 * @return string
 	 */
 	private function getTypeCacheKey( $type, $sign ) {
@@ -451,7 +451,7 @@ class SiteStatsUpdate implements DeferrableUpdate {
 
 	/**
 	 * Reduce pending delta counters after updates have been applied
-	 * @param Array $pd Result of getPendingDeltas(), used for DB update
+	 * @param array $pd Result of getPendingDeltas(), used for DB update
 	 * @return void
 	 */
 	protected function removePendingDeltas( array $pd ) {
@@ -574,7 +574,7 @@ class SiteStatsInit {
 	 * @param $database DatabaseBase|bool
 	 * - Boolean: whether to use the master DB
 	 * - DatabaseBase: database connection to use
-	 * @param $options Array of options, may contain the following values
+	 * @param array $options of options, may contain the following values
 	 * - update Boolean: whether to update the current stats (true) or write fresh (false) (default: false)
 	 * - views Boolean: when true, do not update the number of page views (default: true)
 	 * - activeUsers Boolean: whether to update the number of active users (default: false)

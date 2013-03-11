@@ -67,7 +67,7 @@ class PageArchive {
 	 * given title prefix.
 	 * Returns result wrapper with (ar_namespace, ar_title, count) fields.
 	 *
-	 * @param $prefix String: title prefix
+	 * @param string $prefix title prefix
 	 * @return ResultWrapper
 	 */
 	public static function listPagesByPrefix( $prefix ) {
@@ -331,7 +331,7 @@ class PageArchive {
 	 * Once restored, the items will be removed from the archive tables.
 	 * The deletion log will be updated with an undeletion notice.
 	 *
-	 * @param $timestamps Array: pass an empty array to restore all revisions, otherwise list the ones to undelete.
+	 * @param array $timestamps pass an empty array to restore all revisions, otherwise list the ones to undelete.
 	 * @param $comment String
 	 * @param $fileVersions Array
 	 * @param $unsuppress Boolean
@@ -413,7 +413,7 @@ class PageArchive {
 	 * to the cur/old tables. If the page currently exists, all revisions will
 	 * be stuffed into old, otherwise the most recent will go into cur.
 	 *
-	 * @param $timestamps Array: pass an empty array to restore all revisions, otherwise list the ones to undelete.
+	 * @param array $timestamps pass an empty array to restore all revisions, otherwise list the ones to undelete.
 	 * @param $unsuppress Boolean: remove all ar_deleted/fa_deleted restrictions of seletected revs
 	 *
 	 * @param $comment String
@@ -1378,7 +1378,7 @@ class SpecialUndelete extends SpecialPage {
 	 *
 	 * @param $rev Revision
 	 * @param $titleObj Title
-	 * @param $ts string Timestamp
+	 * @param string $ts Timestamp
 	 * @return string
 	 */
 	function getPageLink( $rev, $titleObj, $ts ) {
@@ -1409,8 +1409,8 @@ class SpecialUndelete extends SpecialPage {
 	 *
 	 * @param $file File
 	 * @param $titleObj Title
-	 * @param $ts string A timestamp
-	 * @param $key String: a storage key
+	 * @param string $ts A timestamp
+	 * @param string $key a storage key
 	 *
 	 * @return String: HTML fragment
 	 */

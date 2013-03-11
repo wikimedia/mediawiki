@@ -96,7 +96,7 @@ class Title {
 	/**
 	 * Create a new Title from a prefixed DB key
 	 *
-	 * @param $key String the database key, which has underscores
+	 * @param string $key the database key, which has underscores
 	 *	instead of spaces, possibly including namespace and
 	 *	interwiki prefixes
 	 * @return Title, or NULL on an error
@@ -115,9 +115,9 @@ class Title {
 	 * Create a new Title from text, such as what one would find in a link. De-
 	 * codes any HTML entities in the text.
 	 *
-	 * @param $text String the link text; spaces, prefixes, and an
+	 * @param string $text the link text; spaces, prefixes, and an
 	 *   initial ':' indicating the main namespace are accepted.
-	 * @param $defaultNamespace Int the namespace to use if none is speci-
+	 * @param int $defaultNamespace the namespace to use if none is speci-
 	 *   fied by a prefix.  If you want to force a specific namespace even if
 	 *   $text might begin with a namespace prefix, use makeTitle() or
 	 *   makeTitleSafe().
@@ -178,7 +178,7 @@ class Title {
 	 * Create a new Title from URL-encoded text. Ensures that
 	 * the given title's length does not exceed the maximum.
 	 *
-	 * @param $url String the title, as might be taken from a URL
+	 * @param string $url the title, as might be taken from a URL
 	 * @return Title the new object, or NULL on an error
 	 */
 	public static function newFromURL( $url ) {
@@ -223,8 +223,8 @@ class Title {
 	/**
 	 * Create a new Title from an article ID
 	 *
-	 * @param $id Int the page_id corresponding to the Title to create
-	 * @param $flags Int use Title::GAID_FOR_UPDATE to use master
+	 * @param int $id the page_id corresponding to the Title to create
+	 * @param int $flags use Title::GAID_FOR_UPDATE to use master
 	 * @return Title the new object, or NULL on an error
 	 */
 	public static function newFromID( $id, $flags = 0 ) {
@@ -246,7 +246,7 @@ class Title {
 	/**
 	 * Make an array of titles from an array of IDs
 	 *
-	 * @param $ids Array of Int Array of IDs
+	 * @param array $ids of Int Array of IDs
 	 * @return Array of Titles
 	 */
 	public static function newFromIDs( $ids ) {
@@ -317,10 +317,10 @@ class Title {
 	 * For convenience, spaces are converted to underscores so that
 	 * eg user_text fields can be used directly.
 	 *
-	 * @param $ns Int the namespace of the article
-	 * @param $title String the unprefixed database key form
-	 * @param $fragment String the link fragment (after the "#")
-	 * @param $interwiki String the interwiki prefix
+	 * @param int $ns the namespace of the article
+	 * @param string $title the unprefixed database key form
+	 * @param string $fragment the link fragment (after the "#")
+	 * @param string $interwiki the interwiki prefix
 	 * @return Title the new object
 	 */
 	public static function &makeTitle( $ns, $title, $fragment = '', $interwiki = '' ) {
@@ -341,10 +341,10 @@ class Title {
 	 * The parameters will be checked for validity, which is a bit slower
 	 * than makeTitle() but safer for user-provided data.
 	 *
-	 * @param $ns Int the namespace of the article
-	 * @param $title String database key form
-	 * @param $fragment String the link fragment (after the "#")
-	 * @param $interwiki String interwiki prefix
+	 * @param int $ns the namespace of the article
+	 * @param string $title database key form
+	 * @param string $fragment the link fragment (after the "#")
+	 * @param string $interwiki interwiki prefix
 	 * @return Title the new object, or NULL on an error
 	 */
 	public static function makeTitleSafe( $ns, $title, $fragment = '', $interwiki = '' ) {
@@ -381,7 +381,7 @@ class Title {
 	 * This will only return the very next target, useful for
 	 * the redirect table and other checks that don't need full recursion
 	 *
-	 * @param $text String: Text with possible redirect
+	 * @param string $text Text with possible redirect
 	 * @return Title: The corresponding Title
 	 * @deprecated since 1.21, use Content::getRedirectTarget instead.
 	 */
@@ -398,7 +398,7 @@ class Title {
 	 * This will recurse down $wgMaxRedirects times or until a non-redirect target is hit
 	 * in order to provide (hopefully) the Title of the final destination instead of another redirect
 	 *
-	 * @param $text String Text with possible redirect
+	 * @param string $text Text with possible redirect
 	 * @return Title
 	 * @deprecated since 1.21, use Content::getUltimateRedirectTarget instead.
 	 */
@@ -415,7 +415,7 @@ class Title {
 	 * The last element in the array is the final destination after all redirects
 	 * have been resolved (up to $wgMaxRedirects times)
 	 *
-	 * @param $text String Text with possible redirect
+	 * @param string $text Text with possible redirect
 	 * @return Array of Titles, with the destination last
 	 * @deprecated since 1.21, use Content::getRedirectChain instead.
 	 */
@@ -429,7 +429,7 @@ class Title {
 	/**
 	 * Get the prefixed DB key associated with an ID
 	 *
-	 * @param $id Int the page_id of the article
+	 * @param int $id the page_id of the article
 	 * @return Title an object representing the article, or NULL if no such article was found
 	 */
 	public static function nameOf( $id ) {
@@ -490,8 +490,8 @@ class Title {
 	 * Get a string representation of a title suitable for
 	 * including in a search index
 	 *
-	 * @param $ns Int a namespace index
-	 * @param $title String text-form main part
+	 * @param int $ns a namespace index
+	 * @param string $title text-form main part
 	 * @return String a stripped-down title string ready for the search index
 	 */
 	public static function indexTitle( $ns, $title ) {
@@ -517,10 +517,10 @@ class Title {
 	/**
 	 * Make a prefixed DB key from a DB key and a namespace index
 	 *
-	 * @param $ns Int numerical representation of the namespace
-	 * @param $title String the DB key form the title
-	 * @param $fragment String The link fragment (after the "#")
-	 * @param $interwiki String The interwiki prefix
+	 * @param int $ns numerical representation of the namespace
+	 * @param string $title the DB key form the title
+	 * @param string $fragment The link fragment (after the "#")
+	 * @param string $interwiki The interwiki prefix
 	 * @return String the prefixed form of the title
 	 */
 	public static function makeName( $ns, $title, $fragment = '', $interwiki = '' ) {
@@ -540,7 +540,7 @@ class Title {
 	/**
 	 * Escape a text fragment, say from a link, for a URL
 	 *
-	 * @param $fragment string containing a URL or link fragment (after the "#")
+	 * @param string $fragment containing a URL or link fragment (after the "#")
 	 * @return String: escaped string
 	 */
 	static function escapeFragmentForURL( $fragment ) {
@@ -698,7 +698,7 @@ class Title {
 	/**
 	 * Convenience method for checking a title's content model name
 	 *
-	 * @param String $id The content model ID (use the CONTENT_MODEL_XXX constants).
+	 * @param string $id The content model ID (use the CONTENT_MODEL_XXX constants).
 	 * @return Boolean true if $this->getContentModel() == $id
 	 */
 	public function hasContentModel( $id ) {
@@ -794,7 +794,7 @@ class Title {
 	/**
 	 * Returns true if this title resolves to the named special page
 	 *
-	 * @param $name String The special page name
+	 * @param string $name The special page name
 	 * @return boolean
 	 */
 	public function isSpecial( $name ) {
@@ -832,7 +832,7 @@ class Title {
 	 * Please make use of this instead of comparing to getNamespace()
 	 * This function is much more resistant to changes we may make
 	 * to namespaces than code that makes direct comparisons.
-	 * @param $ns int The namespace
+	 * @param int $ns The namespace
 	 * @return bool
 	 * @since 1.19
 	 */
@@ -1102,7 +1102,7 @@ class Title {
 	 * Deprecated for public use, use Title::makeTitle() with fragment parameter.
 	 * Still in active use privately.
 	 *
-	 * @param $fragment String text
+	 * @param string $fragment text
 	 */
 	public function setFragment( $fragment ) {
 		$this->mFragment = str_replace( '_', ' ', substr( $fragment, 1 ) );
@@ -1112,7 +1112,7 @@ class Title {
 	 * Prefix some arbitrary text with the namespace or interwiki prefix
 	 * of this object
 	 *
-	 * @param $name String the text
+	 * @param string $name the text
 	 * @return String the prefixed text
 	 * @private
 	 */
@@ -1283,7 +1283,7 @@ class Title {
 	 * # returns: Title{User:Foo/Bar/Baz/Asdf}
 	 * @endcode
 	 *
-	 * @param $text String The subpage name to add to the title
+	 * @param string $text The subpage name to add to the title
 	 * @return Title Subpage title
 	 * @since 1.20
 	 */
@@ -1399,7 +1399,7 @@ class Title {
 	 * with action=render, $wgServer is prepended.
 	 *
 
-	 * @param $query string|array an optional query string,
+	 * @param string|array $query an optional query string,
 	 *   not used for interwiki links. Can be specified as an associative array as well,
 	 *   e.g., array( 'action' => 'edit' ) (keys and values will be URL-escaped).
 	 *   Some query patterns will trigger various shorturl path replacements.
@@ -1664,7 +1664,7 @@ class Title {
 	 *
 	 * May provide false positives, but should never provide a false negative.
 	 *
-	 * @param $action String action that permission needs to be checked for
+	 * @param string $action action that permission needs to be checked for
 	 * @param $user User to check (since 1.19); $wgUser will be used if not
 	 *              provided.
 	 * @return Bool
@@ -1676,10 +1676,10 @@ class Title {
 	/**
 	 * Can $user perform $action on this page?
 	 *
-	 * @param $action String action that permission needs to be checked for
+	 * @param string $action action that permission needs to be checked for
 	 * @param $user User to check (since 1.19); $wgUser will be used if not
 	 *   provided.
-	 * @param $doExpensiveQueries Bool Set this to false to avoid doing
+	 * @param bool $doExpensiveQueries Set this to false to avoid doing
 	 *   unnecessary queries.
 	 * @return Bool
 	 */
@@ -1696,11 +1696,11 @@ class Title {
 	 *
 	 * @todo FIXME: This *does not* check throttles (User::pingLimiter()).
 	 *
-	 * @param $action String action that permission needs to be checked for
+	 * @param string $action action that permission needs to be checked for
 	 * @param $user User to check
-	 * @param $doExpensiveQueries Bool Set this to false to avoid doing unnecessary
+	 * @param bool $doExpensiveQueries Set this to false to avoid doing unnecessary
 	 *   queries by skipping checks for cascading protections and user blocks.
-	 * @param $ignoreErrors Array of Strings Set this to a list of message keys
+	 * @param array $ignoreErrors of Strings Set this to a list of message keys
 	 *   whose corresponding errors may be ignored.
 	 * @return Array of arguments to wfMessage to explain permissions problems.
 	 */
@@ -1722,9 +1722,9 @@ class Title {
 	/**
 	 * Permissions checks that fail most often, and which are easiest to test.
 	 *
-	 * @param $action String the action to check
+	 * @param string $action the action to check
 	 * @param $user User user to check
-	 * @param $errors Array list of current errors
+	 * @param array $errors list of current errors
 	 * @param $doExpensiveQueries Boolean whether or not to perform expensive queries
 	 * @param $short Boolean short circuit on first error
 	 *
@@ -1780,7 +1780,7 @@ class Title {
 	/**
 	 * Add the resulting error code to the errors array
 	 *
-	 * @param $errors Array list of current errors
+	 * @param array $errors list of current errors
 	 * @param $result Mixed result of errors
 	 *
 	 * @return Array list of errors
@@ -1805,9 +1805,9 @@ class Title {
 	/**
 	 * Check various permission hooks
 	 *
-	 * @param $action String the action to check
+	 * @param string $action the action to check
 	 * @param $user User user to check
-	 * @param $errors Array list of current errors
+	 * @param array $errors list of current errors
 	 * @param $doExpensiveQueries Boolean whether or not to perform expensive queries
 	 * @param $short Boolean short circuit on first error
 	 *
@@ -1838,9 +1838,9 @@ class Title {
 	/**
 	 * Check permissions on special pages & namespaces
 	 *
-	 * @param $action String the action to check
+	 * @param string $action the action to check
 	 * @param $user User user to check
-	 * @param $errors Array list of current errors
+	 * @param array $errors list of current errors
 	 * @param $doExpensiveQueries Boolean whether or not to perform expensive queries
 	 * @param $short Boolean short circuit on first error
 	 *
@@ -1867,9 +1867,9 @@ class Title {
 	/**
 	 * Check CSS/JS sub-page permissions
 	 *
-	 * @param $action String the action to check
+	 * @param string $action the action to check
 	 * @param $user User user to check
-	 * @param $errors Array list of current errors
+	 * @param array $errors list of current errors
 	 * @param $doExpensiveQueries Boolean whether or not to perform expensive queries
 	 * @param $short Boolean short circuit on first error
 	 *
@@ -1896,9 +1896,9 @@ class Title {
 	 * page. The user must possess all required rights for this
 	 * action.
 	 *
-	 * @param $action String the action to check
+	 * @param string $action the action to check
 	 * @param $user User user to check
-	 * @param $errors Array list of current errors
+	 * @param array $errors list of current errors
 	 * @param $doExpensiveQueries Boolean whether or not to perform expensive queries
 	 * @param $short Boolean short circuit on first error
 	 *
@@ -1927,9 +1927,9 @@ class Title {
 	/**
 	 * Check restrictions on cascading pages.
 	 *
-	 * @param $action String the action to check
+	 * @param string $action the action to check
 	 * @param $user User to check
-	 * @param $errors Array list of current errors
+	 * @param array $errors list of current errors
 	 * @param $doExpensiveQueries Boolean whether or not to perform expensive queries
 	 * @param $short Boolean short circuit on first error
 	 *
@@ -1966,9 +1966,9 @@ class Title {
 	/**
 	 * Check action permissions not already checked in checkQuickPermissions
 	 *
-	 * @param $action String the action to check
+	 * @param string $action the action to check
 	 * @param $user User to check
-	 * @param $errors Array list of current errors
+	 * @param array $errors list of current errors
 	 * @param $doExpensiveQueries Boolean whether or not to perform expensive queries
 	 * @param $short Boolean short circuit on first error
 	 *
@@ -2022,9 +2022,9 @@ class Title {
 	/**
 	 * Check that the user isn't blocked from editting.
 	 *
-	 * @param $action String the action to check
+	 * @param string $action the action to check
 	 * @param $user User to check
-	 * @param $errors Array list of current errors
+	 * @param array $errors list of current errors
 	 * @param $doExpensiveQueries Boolean whether or not to perform expensive queries
 	 * @param $short Boolean short circuit on first error
 	 *
@@ -2087,9 +2087,9 @@ class Title {
 	/**
 	 * Check that the user is allowed to read this page.
 	 *
-	 * @param $action String the action to check
+	 * @param string $action the action to check
 	 * @param $user User to check
-	 * @param $errors Array list of current errors
+	 * @param array $errors list of current errors
 	 * @param $doExpensiveQueries Boolean whether or not to perform expensive queries
 	 * @param $short Boolean short circuit on first error
 	 *
@@ -2190,7 +2190,7 @@ class Title {
 	 * Get a description array when the user doesn't have the right to perform
 	 * $action (i.e. when User::isAllowed() returns false)
 	 *
-	 * @param $action String the action to check
+	 * @param string $action the action to check
 	 * @param $short Boolean short circuit on first error
 	 * @return Array list of errors
 	 */
@@ -2220,10 +2220,10 @@ class Title {
 	 * which checks ONLY that previously checked by userCan (i.e. it leaves out
 	 * checks on wfReadOnly() and blocks)
 	 *
-	 * @param $action String action that permission needs to be checked for
+	 * @param string $action action that permission needs to be checked for
 	 * @param $user User to check
-	 * @param $doExpensiveQueries Bool Set this to false to avoid doing unnecessary queries.
-	 * @param $short Bool Set this to true to stop after the first permission error.
+	 * @param bool $doExpensiveQueries Set this to false to avoid doing unnecessary queries.
+	 * @param bool $short Set this to true to stop after the first permission error.
 	 * @return Array of arrays of the arguments to wfMessage to explain permissions problems.
 	 */
 	protected function getUserPermissionsErrorsInternal( $action, $user, $doExpensiveQueries = true, $short = false ) {
@@ -2372,8 +2372,8 @@ class Title {
 	 *
 	 * @deprecated in 1.19; will be removed in 1.20. Use WikiPage::doUpdateRestrictions() instead.
 	 * @param $create_perm String Permission required for creation
-	 * @param $reason String Reason for protection
-	 * @param $expiry String Expiry timestamp
+	 * @param string $reason Reason for protection
+	 * @param string $expiry Expiry timestamp
 	 * @return boolean true
 	 */
 	public function updateTitleProtection( $create_perm, $reason, $expiry ) {
@@ -2408,7 +2408,7 @@ class Title {
 	/**
 	 * Is this page "semi-protected" - the *only* protection is autoconfirm?
 	 *
-	 * @param $action String Action to check (default: edit)
+	 * @param string $action Action to check (default: edit)
 	 * @return Bool
 	 */
 	public function isSemiProtected( $action = 'edit' ) {
@@ -2434,7 +2434,7 @@ class Title {
 	/**
 	 * Does the title correspond to a protected article?
 	 *
-	 * @param $action String the action the page is protected from,
+	 * @param string $action the action the page is protected from,
 	 * by default checks all actions.
 	 * @return Bool
 	 */
@@ -2496,7 +2496,7 @@ class Title {
 	/**
 	 * Cascading protection: Get the source of any cascading restrictions on this page.
 	 *
-	 * @param $getPages Bool Whether or not to retrieve the actual pages
+	 * @param bool $getPages Whether or not to retrieve the actual pages
 	 *        that the restrictions have come from.
 	 * @return Mixed Array of Title objects of the pages from which cascading restrictions
 	 *     have come, false for none, or true if such restrictions exist, but $getPages
@@ -2596,7 +2596,7 @@ class Title {
 	/**
 	 * Accessor/initialisation for mRestrictions
 	 *
-	 * @param $action String action that permission needs to be checked for
+	 * @param string $action action that permission needs to be checked for
 	 * @return Array of Strings the array of groups allowed to edit this article
 	 */
 	public function getRestrictions( $action ) {
@@ -2639,7 +2639,7 @@ class Title {
 	 * Loads a string into mRestrictions array
 	 *
 	 * @param $res Resource restrictions as an SQL result.
-	 * @param $oldFashionedRestrictions String comma-separated list of page
+	 * @param string $oldFashionedRestrictions comma-separated list of page
 	 *        restrictions from page table (pre 1.10)
 	 */
 	private function loadRestrictionsFromResultWrapper( $res, $oldFashionedRestrictions = null ) {
@@ -2657,8 +2657,8 @@ class Title {
 	 * and page_restrictions table for this existing page.
 	 * Public for usage by LiquidThreads.
 	 *
-	 * @param $rows array of db result objects
-	 * @param $oldFashionedRestrictions string comma-separated list of page
+	 * @param array $rows of db result objects
+	 * @param string $oldFashionedRestrictions comma-separated list of page
 	 *        restrictions from page table (pre 1.10)
 	 */
 	public function loadRestrictionsFromRows( $rows, $oldFashionedRestrictions = null ) {
@@ -2740,7 +2740,7 @@ class Title {
 	/**
 	 * Load restrictions from the page_restrictions table
 	 *
-	 * @param $oldFashionedRestrictions String comma-separated list of page
+	 * @param string $oldFashionedRestrictions comma-separated list of page
 	 *        restrictions from page table (pre 1.10)
 	 */
 	public function loadRestrictions( $oldFashionedRestrictions = null ) {
@@ -2840,7 +2840,7 @@ class Title {
 	/**
 	 * Get all subpages of this page.
 	 *
-	 * @param $limit Int maximum number of subpages to fetch; -1 for no limit
+	 * @param int $limit maximum number of subpages to fetch; -1 for no limit
 	 * @return mixed TitleArray, or empty array if this page's namespace
 	 *  doesn't allow subpages
 	 */
@@ -2918,7 +2918,7 @@ class Title {
 	 * Get the article ID for this Title from the link cache,
 	 * adding it if necessary
 	 *
-	 * @param $flags Int a bit field; may be Title::GAID_FOR_UPDATE to select
+	 * @param int $flags a bit field; may be Title::GAID_FOR_UPDATE to select
 	 *  for update
 	 * @return Int the ID
 	 */
@@ -2944,7 +2944,7 @@ class Title {
 	 * Is this an article that is a redirect page?
 	 * Uses link cache, adding it if necessary
 	 *
-	 * @param $flags Int a bit field; may be Title::GAID_FOR_UPDATE to select for update
+	 * @param int $flags a bit field; may be Title::GAID_FOR_UPDATE to select for update
 	 * @return Bool
 	 */
 	public function isRedirect( $flags = 0 ) {
@@ -2974,7 +2974,7 @@ class Title {
 	 * What is the length of this page?
 	 * Uses link cache, adding it if necessary
 	 *
-	 * @param $flags Int a bit field; may be Title::GAID_FOR_UPDATE to select for update
+	 * @param int $flags a bit field; may be Title::GAID_FOR_UPDATE to select for update
 	 * @return Int
 	 */
 	public function getLength( $flags = 0 ) {
@@ -3003,7 +3003,7 @@ class Title {
 	/**
 	 * What is the page_latest field for this page?
 	 *
-	 * @param $flags Int a bit field; may be Title::GAID_FOR_UPDATE to select for update
+	 * @param int $flags a bit field; may be Title::GAID_FOR_UPDATE to select for update
 	 * @throws MWException
 	 * @return Int or 0 if the page doesn't exist
 	 */
@@ -3038,7 +3038,7 @@ class Title {
 	 * loading of the new page_id. It's also called from
 	 * WikiPage::doDeleteArticleReal()
 	 *
-	 * @param $newid Int the new Article ID
+	 * @param int $newid the new Article ID
 	 */
 	public function resetArticleID( $newid ) {
 		$linkCache = LinkCache::singleton();
@@ -3061,8 +3061,8 @@ class Title {
 	/**
 	 * Capitalize a text string for a title if it belongs to a namespace that capitalizes
 	 *
-	 * @param $text String containing title to capitalize
-	 * @param $ns int namespace index, defaults to NS_MAIN
+	 * @param string $text containing title to capitalize
+	 * @param int $ns namespace index, defaults to NS_MAIN
 	 * @return String containing capitalized title
 	 */
 	public static function capitalize( $text, $ns = NS_MAIN ) {
@@ -3283,9 +3283,9 @@ class Title {
 	 * WARNING: do not use this function on arbitrary user-supplied titles!
 	 * On heavily-used templates it will max out the memory.
 	 *
-	 * @param $options Array: may be FOR UPDATE
-	 * @param $table String: table name
-	 * @param $prefix String: fields prefix
+	 * @param array $options may be FOR UPDATE
+	 * @param string $table table name
+	 * @param string $prefix fields prefix
 	 * @return Array of Title objects linking here
 	 */
 	public function getLinksTo( $options = array(), $table = 'pagelinks', $prefix = 'pl' ) {
@@ -3327,7 +3327,7 @@ class Title {
 	 * WARNING: do not use this function on arbitrary user-supplied titles!
 	 * On heavily-used templates it will max out the memory.
 	 *
-	 * @param $options Array: may be FOR UPDATE
+	 * @param array $options may be FOR UPDATE
 	 * @return Array of Title the Title objects linking here
 	 */
 	public function getTemplateLinksTo( $options = array() ) {
@@ -3341,9 +3341,9 @@ class Title {
 	 * WARNING: do not use this function on arbitrary user-supplied titles!
 	 * On heavily-used templates it will max out the memory.
 	 *
-	 * @param $options Array: may be FOR UPDATE
-	 * @param $table String: table name
-	 * @param $prefix String: fields prefix
+	 * @param array $options may be FOR UPDATE
+	 * @param string $table table name
+	 * @param string $prefix fields prefix
 	 * @return Array of Title objects linking here
 	 */
 	public function getLinksFrom( $options = array(), $table = 'pagelinks', $prefix = 'pl' ) {
@@ -3402,7 +3402,7 @@ class Title {
 	 * WARNING: do not use this function on arbitrary user-supplied titles!
 	 * On heavily-used templates it will max out the memory.
 	 *
-	 * @param $options Array: may be FOR UPDATE
+	 * @param array $options may be FOR UPDATE
 	 * @return Array of Title the Title objects used here
 	 */
 	public function getTemplateLinksFrom( $options = array() ) {
@@ -3495,9 +3495,9 @@ class Title {
 	 * Returns true if ok, or a getUserPermissionsErrors()-like array otherwise
 	 *
 	 * @param $nt Title the new title
-	 * @param $auth Bool indicates whether $wgUser's permissions
+	 * @param bool $auth indicates whether $wgUser's permissions
 	 *  should be checked
-	 * @param $reason String is the log summary of the move, used for spam checking
+	 * @param string $reason is the log summary of the move, used for spam checking
 	 * @return Mixed True on success, getUserPermissionsErrors()-like array on failure
 	 */
 	public function isValidMoveOperation( &$nt, $auth = true, $reason = '' ) {
@@ -3639,10 +3639,10 @@ class Title {
 	 * Move a title to a new location
 	 *
 	 * @param $nt Title the new title
-	 * @param $auth Bool indicates whether $wgUser's permissions
+	 * @param bool $auth indicates whether $wgUser's permissions
 	 *  should be checked
-	 * @param $reason String the reason for the move
-	 * @param $createRedirect Bool Whether to create a redirect from the old title to the new title.
+	 * @param string $reason the reason for the move
+	 * @param bool $createRedirect Whether to create a redirect from the old title to the new title.
 	 *  Ignored if the user doesn't have the suppressredirect right.
 	 * @return Mixed true on success, getUserPermissionsErrors()-like array on failure
 	 */
@@ -3757,8 +3757,8 @@ class Title {
 	 * source page or nonexistent
 	 *
 	 * @param $nt Title the page to move to, which should be a redirect or nonexistent
-	 * @param $reason String The reason for the move
-	 * @param $createRedirect Bool Whether to leave a redirect at the old title. Does not check
+	 * @param string $reason The reason for the move
+	 * @param bool $createRedirect Whether to leave a redirect at the old title. Does not check
 	 *   if the user has the suppressredirect right
 	 * @throws MWException
 	 */
@@ -3881,9 +3881,9 @@ class Title {
 	 * Move this page's subpages to be subpages of $nt
 	 *
 	 * @param $nt Title Move target
-	 * @param $auth bool Whether $wgUser's permissions should be checked
-	 * @param $reason string The reason for the move
-	 * @param $createRedirect bool Whether to create redirects from the old subpages to
+	 * @param bool $auth Whether $wgUser's permissions should be checked
+	 * @param string $reason The reason for the move
+	 * @param bool $createRedirect Whether to create redirects from the old subpages to
 	 *     the new ones Ignored if the user doesn't have the 'suppressredirect' right
 	 * @return mixed array with old page titles as keys, and strings (new page titles) or
 	 *     arrays (errors) as values, or an error array with numeric indices if no pages
@@ -4080,7 +4080,7 @@ class Title {
 	/**
 	 * Get a tree of parent categories
 	 *
-	 * @param $children Array with the children in the keys, to check for circular refs
+	 * @param array $children with the children in the keys, to check for circular refs
 	 * @return Array Tree of parent categories
 	 */
 	public function getParentCategoryTree( $children = array() ) {
@@ -4122,8 +4122,8 @@ class Title {
 	/**
 	 * Get the revision ID of the previous revision
 	 *
-	 * @param $revId Int Revision ID. Get the revision that was before this one.
-	 * @param $flags Int Title::GAID_FOR_UPDATE
+	 * @param int $revId Revision ID. Get the revision that was before this one.
+	 * @param int $flags Title::GAID_FOR_UPDATE
 	 * @return Int|Bool Old revision ID, or FALSE if none exists
 	 */
 	public function getPreviousRevisionID( $revId, $flags = 0 ) {
@@ -4147,8 +4147,8 @@ class Title {
 	/**
 	 * Get the revision ID of the next revision
 	 *
-	 * @param $revId Int Revision ID. Get the revision that was after this one.
-	 * @param $flags Int Title::GAID_FOR_UPDATE
+	 * @param int $revId Revision ID. Get the revision that was after this one.
+	 * @param int $flags Title::GAID_FOR_UPDATE
 	 * @return Int|Bool Next revision ID, or FALSE if none exists
 	 */
 	public function getNextRevisionID( $revId, $flags = 0 ) {
@@ -4172,7 +4172,7 @@ class Title {
 	/**
 	 * Get the first revision of the page
 	 *
-	 * @param $flags Int Title::GAID_FOR_UPDATE
+	 * @param int $flags Title::GAID_FOR_UPDATE
 	 * @return Revision|Null if page doesn't exist
 	 */
 	public function getFirstRevision( $flags = 0 ) {
@@ -4194,7 +4194,7 @@ class Title {
 	/**
 	 * Get the oldest revision timestamp of this page
 	 *
-	 * @param $flags Int Title::GAID_FOR_UPDATE
+	 * @param int $flags Title::GAID_FOR_UPDATE
 	 * @return String: MW timestamp
 	 */
 	public function getEarliestRevTime( $flags = 0 ) {
@@ -4251,8 +4251,8 @@ class Title {
 	 * Get the number of revisions between the given revision.
 	 * Used for diffs and other things that really need it.
 	 *
-	 * @param $old int|Revision Old revision or rev ID (first before range)
-	 * @param $new int|Revision New revision or rev ID (first after range)
+	 * @param int|Revision $old Old revision or rev ID (first before range)
+	 * @param int|Revision $new New revision or rev ID (first after range)
 	 * @return Int Number of revisions between these revisions.
 	 */
 	public function countRevisionsBetween( $old, $new ) {
@@ -4280,10 +4280,10 @@ class Title {
 	 * Get the number of authors between the given revisions or revision IDs.
 	 * Used for diffs and other things that really need it.
 	 *
-	 * @param $old int|Revision Old revision or rev ID (first before range by default)
-	 * @param $new int|Revision New revision or rev ID (first after range by default)
-	 * @param $limit int Maximum number of authors
-	 * @param $options string|array (Optional): Single option, or an array of options:
+	 * @param int|Revision $old Old revision or rev ID (first before range by default)
+	 * @param int|Revision $new New revision or rev ID (first after range by default)
+	 * @param int $limit Maximum number of authors
+	 * @param string|array $options (Optional): Single option, or an array of options:
 	 *     'include_old' Include $old in the range; $new is excluded.
 	 *     'include_new' Include $new in the range; $old is excluded.
 	 *     'include_both' Include both $old and $new in the range.
@@ -4591,7 +4591,7 @@ class Title {
 	/**
 	 * Generate strings used for xml 'id' names in monobook tabs
 	 *
-	 * @param $prepend string defaults to 'nstab-'
+	 * @param string $prepend defaults to 'nstab-'
 	 * @return String XML 'id' name
 	 */
 	public function getNamespaceKey( $prepend = 'nstab-' ) {
@@ -4622,7 +4622,7 @@ class Title {
 	/**
 	 * Get all extant redirects to this Title
 	 *
-	 * @param $ns Int|Null Single namespace to consider; NULL to consider all namespaces
+	 * @param int|Null $ns Single namespace to consider; NULL to consider all namespaces
 	 * @return Array of Title redirects to this title
 	 */
 	public function getRedirectsHere( $ns = null ) {
@@ -4708,7 +4708,7 @@ class Title {
 	 * prefix.  This will be fed to Collation::getSortKey() to get a
 	 * binary sortkey that can be used for actual sorting.
 	 *
-	 * @param $prefix string The prefix to be used, specified using
+	 * @param string $prefix The prefix to be used, specified using
 	 *   {{defaultsort:}} or like [[Category:Foo|prefix]].  Empty for no
 	 *   prefix.
 	 * @return string

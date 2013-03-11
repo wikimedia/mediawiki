@@ -54,7 +54,7 @@ abstract class FileJournal {
 	 * Create an appropriate FileJournal object from config
 	 *
 	 * @param $config Array
-	 * @param $backend string A registered file backend name
+	 * @param string $backend A registered file backend name
 	 * @throws MWException
 	 * @return FileJournal
 	 */
@@ -90,8 +90,8 @@ abstract class FileJournal {
 	 *     newSha1 : The final base 36 SHA-1 of the file
 	 * Note that 'false' should be used as the SHA-1 for non-existing files.
 	 *
-	 * @param $entries Array List of file operations (each an array of parameters)
-	 * @param $batchId string UUID string that identifies the operation batch
+	 * @param array $entries List of file operations (each an array of parameters)
+	 * @param string $batchId UUID string that identifies the operation batch
 	 * @return Status
 	 */
 	final public function logChangeBatch( array $entries, $batchId ) {
@@ -104,8 +104,8 @@ abstract class FileJournal {
 	/**
 	 * @see FileJournal::logChangeBatch()
 	 *
-	 * @param $entries Array List of file operations (each an array of parameters)
-	 * @param $batchId string UUID string that identifies the operation batch
+	 * @param array $entries List of file operations (each an array of parameters)
+	 * @param string $batchId UUID string that identifies the operation batch
 	 * @return Status
 	 */
 	abstract protected function doLogChangeBatch( array $entries, $batchId );

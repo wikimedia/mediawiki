@@ -146,9 +146,9 @@ class SpecialProtectedpages extends SpecialPage {
 
 	/**
 	 * @param $namespace Integer
-	 * @param $type String: restriction type
-	 * @param $level String: restriction level
-	 * @param $sizetype String: "min" or "max"
+	 * @param string $type restriction type
+	 * @param string $level restriction level
+	 * @param string $sizetype "min" or "max"
 	 * @param $size Integer
 	 * @param $indefOnly Boolean: only indefinie protection
 	 * @param $cascadeOnly Boolean: only cascading protection

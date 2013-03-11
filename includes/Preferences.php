@@ -1244,7 +1244,7 @@ class Preferences {
 	 * @param $user User
 	 * @param $context IContextSource
 	 * @param $formClass string
-	 * @param $remove Array: array of items to remove
+	 * @param array $remove array of items to remove
 	 * @return HtmlForm
 	 */
 	static function getFormObject( $user, IContextSource $context, $formClass = 'PreferencesForm', array $remove = array() ) {
@@ -1473,7 +1473,7 @@ class Preferences {
 	 *
 	 * @deprecated in 1.20; use User::setEmailWithConfirmation() instead.
 	 * @param $user User
-	 * @param $newaddr string New email address
+	 * @param string $newaddr New email address
 	 * @return Array (true on success or Status on failure, info string)
 	 */
 	public static function trySetUserEmail( User $user, $newaddr ) {

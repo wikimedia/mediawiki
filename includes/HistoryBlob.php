@@ -198,7 +198,7 @@ class HistoryBlobStub {
 	var $mOldId, $mHash, $mRef;
 
 	/**
-	 * @param $hash string the content hash of the text
+	 * @param string $hash the content hash of the text
 	 * @param $oldid Integer the old_id for the CGZ object
 	 */
 	function __construct( $hash = '', $oldid = 0 ) {

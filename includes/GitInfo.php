@@ -41,7 +41,7 @@ class GitInfo {
 	private static $viewers = false;
 
 	/**
-	 * @param $dir string The root directory of the repo where the .git dir can be found
+	 * @param string $dir The root directory of the repo where the .git dir can be found
 	 */
 	public function __construct( $dir ) {
 		$this->basedir = "{$dir}/.git";
@@ -70,7 +70,7 @@ class GitInfo {
 	/**
 	 * Check if a string looks like a hex encoded SHA1 hash
 	 *
-	 * @param $str string The string to check
+	 * @param string $str The string to check
 	 * @return bool Whether or not the string looks like a SHA1
 	 */
 	public static function isSHA1( $str ) {

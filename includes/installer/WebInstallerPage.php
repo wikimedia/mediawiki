@@ -128,7 +128,7 @@ abstract class WebInstallerPage {
 	/**
 	 * Get the starting tags of a fieldset.
 	 *
-	 * @param $legend String: message name
+	 * @param string $legend message name
 	 *
 	 * @return string
 	 */
@@ -357,7 +357,7 @@ class WebInstaller_ExistingWiki extends WebInstallerPage {
 
 	/**
 	 * Initiate an upgrade of the existing database
-	 * @param $vars array Variables from LocalSettings.php and AdminSettings.php
+	 * @param array $vars Variables from LocalSettings.php and AdminSettings.php
 	 * @return Status
 	 */
 	protected function handleExistingUpgrade( $vars ) {

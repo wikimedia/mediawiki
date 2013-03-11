@@ -31,9 +31,9 @@
  */
 class MailAddress {
 	/**
-	 * @param $address string|User string with an email address, or a User object
-	 * @param $name String: human-readable name if a string address is given
-	 * @param $realName String: human-readable real name if a string address is given
+	 * @param string|User $address string with an email address, or a User object
+	 * @param string $name human-readable name if a string address is given
+	 * @param string $realName human-readable real name if a string address is given
 	 */
 	function __construct( $address, $name = null, $realName = null ) {
 		if ( is_object( $address ) && $address instanceof User ) {
@@ -108,9 +108,9 @@ class UserMailer {
 	/**
 	 * Creates a single string from an associative array
 	 *
-	 * @param $headers array Associative Array: keys are header field names,
+	 * @param array $headers Associative Array: keys are header field names,
 	 *                 values are ... values.
-	 * @param $endl String: The end of line character.  Defaults to "\n"
+	 * @param string $endl The end of line character.  Defaults to "\n"
 	 *
 	 * Note RFC2822 says newlines must be CRLF (\r\n)
 	 * but php mail naively "corrects" it and requires \n for the "correction" to work
@@ -151,10 +151,10 @@ class UserMailer {
 	 *
 	 * @param $to MailAddress: recipient's email (or an array of them)
 	 * @param $from MailAddress: sender's email
-	 * @param $subject String: email's subject.
-	 * @param $body String: email's text or Array of two strings to be the text and html bodies
+	 * @param string $subject email's subject.
+	 * @param string $body email's text or Array of two strings to be the text and html bodies
 	 * @param $replyto MailAddress: optional reply-to email (default: null).
-	 * @param $contentType String: optional custom Content-Type (default: text/plain; charset=UTF-8)
+	 * @param string $contentType optional custom Content-Type (default: text/plain; charset=UTF-8)
 	 * @throws MWException
 	 * @return Status object
 	 */
@@ -380,7 +380,7 @@ class UserMailer {
 	 * Set the mail error message in self::$mErrorString
 	 *
 	 * @param $code Integer: error number
-	 * @param $string String: error message
+	 * @param string $string error message
 	 */
 	static function errorHandler( $code, $string ) {
 		self::$mErrorString = preg_replace( '/^mail\(\)(\s*\[.*?\])?: /', '', $string );
@@ -570,11 +570,11 @@ class EmailNotification {
 	 *
 	 * @param $editor User object
 	 * @param $title Title object
-	 * @param $timestamp string Edit timestamp
-	 * @param $summary string Edit summary
+	 * @param string $timestamp Edit timestamp
+	 * @param string $summary Edit summary
 	 * @param $minorEdit bool
-	 * @param $oldid int Revision ID
-	 * @param $watchers array of user IDs
+	 * @param int $oldid Revision ID
+	 * @param array $watchers of user IDs
 	 * @param string $pageStatus
 	 * @throws MWException
 	 */

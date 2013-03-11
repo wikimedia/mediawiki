@@ -367,7 +367,7 @@ class ManualLogEntry extends LogEntryBase {
 	 *
 	 * @since 1.19
 	 *
-	 * @param $parameters array Associative array
+	 * @param array $parameters Associative array
 	 */
 	public function setParameters( $parameters ) {
 		$this->parameters = $parameters;
@@ -468,8 +468,8 @@ class ManualLogEntry extends LogEntryBase {
 
 	/**
 	 * Publishes the log entry.
-	 * @param $newId int id of the log entry.
-	 * @param $to string: rcandudp (default), rc, udp
+	 * @param int $newId id of the log entry.
+	 * @param string $to rcandudp (default), rc, udp
 	 */
 	public function publish( $newId, $to = 'rcandudp' ) {
 		$log = new LogPage( $this->getType() );

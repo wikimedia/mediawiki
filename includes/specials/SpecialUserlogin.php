@@ -636,7 +636,7 @@ class LoginForm extends SpecialPage {
 	/**
 	 * Increment the login attempt throttle hit count for the (username,current IP)
 	 * tuple unless the throttle was already reached.
-	 * @param $username string The user name
+	 * @param string $username The user name
 	 * @return Bool|Integer The integer hit count or True if it is already at the limit
 	 */
 	public static function incLoginThrottle( $username ) {
@@ -664,7 +664,7 @@ class LoginForm extends SpecialPage {
 
 	/**
 	 * Clear the login attempt throttle hit count for the (username,current IP) tuple.
-	 * @param $username string The user name
+	 * @param string $username The user name
 	 * @return void
 	 */
 	public static function clearLoginThrottle( $username ) {
@@ -844,8 +844,8 @@ class LoginForm extends SpecialPage {
 	/**
 	 * @param $u User object
 	 * @param $throttle Boolean
-	 * @param $emailTitle String: message name of email title
-	 * @param $emailText String: message name of email text
+	 * @param string $emailTitle message name of email title
+	 * @param string $emailText message name of email text
 	 * @return Status object
 	 */
 	function mailPasswordInternal( $u, $throttle = true, $emailTitle = 'passwordremindertitle', $emailText = 'passwordremindertext' ) {
@@ -925,7 +925,7 @@ class LoginForm extends SpecialPage {
 	/**
 	 * Display an "successful action" page.
 	 *
-	 * @param $title string|Message page's title
+	 * @param string|Message $title page's title
 	 * @param $msgname string
 	 * @param $injected_html string
 	 */
@@ -1337,8 +1337,8 @@ class LoginForm extends SpecialPage {
 	 * Create a language selector link for a particular language
 	 * Links back to this page preserving type and returnto
 	 *
-	 * @param $text string Link text
-	 * @param $lang string Language code
+	 * @param string $text Link text
+	 * @param string $lang Language code
 	 * @return string
 	 */
 	function makeLanguageSelectorLink( $text, $lang ) {

@@ -41,9 +41,9 @@ class StubObject {
 	/**
 	 * Constructor.
 	 *
-	 * @param $global String: name of the global variable.
-	 * @param $class String: name of the class of the real object.
-	 * @param $params Array: parameters to pass to contructor of the real
+	 * @param string $global name of the global variable.
+	 * @param string $class name of the class of the real object.
+	 * @param array $params parameters to pass to contructor of the real
 	 *               object.
 	 */
 	function __construct( $global = null, $class = null, $params = array() ) {
@@ -70,8 +70,8 @@ class StubObject {
 	 * This function will also call the function with the same name in the real
 	 * object.
 	 *
-	 * @param $name String: name of the function called
-	 * @param $args Array: arguments
+	 * @param string $name name of the function called
+	 * @param array $args arguments
 	 * @return mixed
 	 */
 	function _call( $name, $args ) {
@@ -91,8 +91,8 @@ class StubObject {
 	 * Function called by PHP if no function with that name exists in this
 	 * object.
 	 *
-	 * @param $name String: name of the function called
-	 * @param $args Array: arguments
+	 * @param string $name name of the function called
+	 * @param array $args arguments
 	 * @return mixed
 	 */
 	function __call( $name, $args ) {
@@ -105,7 +105,7 @@ class StubObject {
 	 * This is public, for the convenience of external callers wishing to access
 	 * properties, e.g. eval.php
 	 *
-	 * @param $name String: name of the method called in this object.
+	 * @param string $name name of the method called in this object.
 	 * @param $level Integer: level to go in the stact trace to get the function
 	 *               who called this function.
 	 * @throws MWException

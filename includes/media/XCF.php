@@ -72,7 +72,7 @@ class XCFHandler extends BitmapHandler {
 	 * @author Hexmode
 	 * @author Hashar
 	 *
-	 * @param $filename String Full path to a XCF file
+	 * @param string $filename Full path to a XCF file
 	 * @return bool|array metadata array just like PHP getimagesize()
 	 */
 	static function getXCFMetaData( $filename ) {

@@ -62,9 +62,9 @@ class ApiModuleManager extends ContextSource {
 	 * classes who wish to add their own modules to their lexicon or override the
 	 * behavior of inherent ones.
 	 *
-	 * @param $group string Name of the module group
-	 * @param $name string The identifier for this module.
-	 * @param $class string The class where this module is implemented.
+	 * @param string $group Name of the module group
+	 * @param string $name The identifier for this module.
+	 * @param string $class The class where this module is implemented.
 	 */
 	public function addModule( $name, $group, $class ) {
 		$this->mGroups[$group] = null;
@@ -73,9 +73,9 @@ class ApiModuleManager extends ContextSource {
 
 	/**
 	 * Get module instance by name, or instantiate it if it does not exist
-	 * @param $moduleName string module name
-	 * @param $group string optionally validate that the module is in a specific group
-	 * @param $ignoreCache bool if true, force-creates a new instance and does not cache it
+	 * @param string $moduleName module name
+	 * @param string $group optionally validate that the module is in a specific group
+	 * @param bool $ignoreCache if true, force-creates a new instance and does not cache it
 	 * @return mixed the new module instance, or null if failed
 	 */
 	public function getModule( $moduleName, $group = null, $ignoreCache = false ) {

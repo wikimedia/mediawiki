@@ -47,7 +47,7 @@ class FormatJson {
 	/**
 	 * Decodes a JSON string.
 	 *
-	 * @param $value String: the json string being decoded.
+	 * @param string $value the json string being decoded.
 	 * @param $assoc Boolean: when true, returned objects will be converted into associative arrays.
 	 *
 	 * @return Mixed: the value encoded in json in appropriate PHP type.

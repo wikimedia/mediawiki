@@ -310,8 +310,8 @@ abstract class FileBackend {
 	 *   - a) unexpected operation errors occurred (network partitions, disk full...)
 	 *   - b) significant operation errors occurred and 'force' was not set
 	 *
-	 * @param $ops Array List of operations to execute in order
-	 * @param $opts Array Batch operation options
+	 * @param array $ops List of operations to execute in order
+	 * @param array $opts Batch operation options
 	 * @return Status
 	 */
 	final public function doOperations( array $ops, array $opts = array() ) {
@@ -337,8 +337,8 @@ abstract class FileBackend {
 	 *
 	 * @see FileBackend::doOperations()
 	 *
-	 * @param $op Array Operation
-	 * @param $opts Array Operation options
+	 * @param array $op Operation
+	 * @param array $opts Operation options
 	 * @return Status
 	 */
 	final public function doOperation( array $op, array $opts = array() ) {
@@ -351,8 +351,8 @@ abstract class FileBackend {
 	 *
 	 * @see FileBackend::doOperation()
 	 *
-	 * @param $params Array Operation parameters
-	 * @param $opts Array Operation options
+	 * @param array $params Operation parameters
+	 * @param array $opts Operation options
 	 * @return Status
 	 */
 	final public function create( array $params, array $opts = array() ) {
@@ -365,8 +365,8 @@ abstract class FileBackend {
 	 *
 	 * @see FileBackend::doOperation()
 	 *
-	 * @param $params Array Operation parameters
-	 * @param $opts Array Operation options
+	 * @param array $params Operation parameters
+	 * @param array $opts Operation options
 	 * @return Status
 	 */
 	final public function store( array $params, array $opts = array() ) {
@@ -379,8 +379,8 @@ abstract class FileBackend {
 	 *
 	 * @see FileBackend::doOperation()
 	 *
-	 * @param $params Array Operation parameters
-	 * @param $opts Array Operation options
+	 * @param array $params Operation parameters
+	 * @param array $opts Operation options
 	 * @return Status
 	 */
 	final public function copy( array $params, array $opts = array() ) {
@@ -393,8 +393,8 @@ abstract class FileBackend {
 	 *
 	 * @see FileBackend::doOperation()
 	 *
-	 * @param $params Array Operation parameters
-	 * @param $opts Array Operation options
+	 * @param array $params Operation parameters
+	 * @param array $opts Operation options
 	 * @return Status
 	 */
 	final public function move( array $params, array $opts = array() ) {
@@ -407,8 +407,8 @@ abstract class FileBackend {
 	 *
 	 * @see FileBackend::doOperation()
 	 *
-	 * @param $params Array Operation parameters
-	 * @param $opts Array Operation options
+	 * @param array $params Operation parameters
+	 * @param array $opts Operation options
 	 * @return Status
 	 */
 	final public function delete( array $params, array $opts = array() ) {
@@ -421,8 +421,8 @@ abstract class FileBackend {
 	 *
 	 * @see FileBackend::doOperation()
 	 *
-	 * @param $params Array Operation parameters
-	 * @param $opts Array Operation options
+	 * @param array $params Operation parameters
+	 * @param array $opts Operation options
 	 * @return Status
 	 * @since 1.21
 	 */
@@ -540,8 +540,8 @@ abstract class FileBackend {
 	 * will reflect each operation attempted for the given files. The status will be
 	 * considered "OK" as long as no fatal errors occurred.
 	 *
-	 * @param $ops Array Set of operations to execute
-	 * @param $opts Array Batch operation options
+	 * @param array $ops Set of operations to execute
+	 * @param array $opts Batch operation options
 	 * @return Status
 	 * @since 1.20
 	 */
@@ -568,7 +568,7 @@ abstract class FileBackend {
 	 *
 	 * @see FileBackend::doQuickOperations()
 	 *
-	 * @param $op Array Operation
+	 * @param array $op Operation
 	 * @return Status
 	 * @since 1.20
 	 */
@@ -582,7 +582,7 @@ abstract class FileBackend {
 	 *
 	 * @see FileBackend::doQuickOperation()
 	 *
-	 * @param $params Array Operation parameters
+	 * @param array $params Operation parameters
 	 * @return Status
 	 * @since 1.20
 	 */
@@ -596,7 +596,7 @@ abstract class FileBackend {
 	 *
 	 * @see FileBackend::doQuickOperation()
 	 *
-	 * @param $params Array Operation parameters
+	 * @param array $params Operation parameters
 	 * @return Status
 	 * @since 1.20
 	 */
@@ -610,7 +610,7 @@ abstract class FileBackend {
 	 *
 	 * @see FileBackend::doQuickOperation()
 	 *
-	 * @param $params Array Operation parameters
+	 * @param array $params Operation parameters
 	 * @return Status
 	 * @since 1.20
 	 */
@@ -624,7 +624,7 @@ abstract class FileBackend {
 	 *
 	 * @see FileBackend::doQuickOperation()
 	 *
-	 * @param $params Array Operation parameters
+	 * @param array $params Operation parameters
 	 * @return Status
 	 * @since 1.20
 	 */
@@ -638,7 +638,7 @@ abstract class FileBackend {
 	 *
 	 * @see FileBackend::doQuickOperation()
 	 *
-	 * @param $params Array Operation parameters
+	 * @param array $params Operation parameters
 	 * @return Status
 	 * @since 1.20
 	 */
@@ -652,7 +652,7 @@ abstract class FileBackend {
 	 *
 	 * @see FileBackend::doQuickOperation()
 	 *
-	 * @param $params Array Operation parameters
+	 * @param array $params Operation parameters
 	 * @return Status
 	 * @since 1.21
 	 */
@@ -666,7 +666,7 @@ abstract class FileBackend {
 	 * otherwise safe from modification from other processes. Normally,
 	 * the file will be a new temp file, which should be adequate.
 	 *
-	 * @param $params Array Operation parameters
+	 * @param array $params Operation parameters
 	 * $params include:
 	 *   - srcs        : ordered source storage paths (e.g. chunk1, chunk2, ...)
 	 *   - dst         : file system path to 0-byte temp file
@@ -1110,7 +1110,7 @@ abstract class FileBackend {
 	 * Preload persistent file stat and property cache into in-process cache.
 	 * This should be used when stat calls will be made on a known list of a many files.
 	 *
-	 * @param $paths Array Storage paths
+	 * @param array $paths Storage paths
 	 * @return void
 	 */
 	public function preloadCache( array $paths ) {}
@@ -1119,7 +1119,7 @@ abstract class FileBackend {
 	 * Invalidate any in-process file stat and property cache.
 	 * If $paths is given, then only the cache for those files will be cleared.
 	 *
-	 * @param $paths Array Storage paths (optional)
+	 * @param array $paths Storage paths (optional)
 	 * @return void
 	 */
 	public function clearCache( array $paths = null ) {}
@@ -1130,7 +1130,7 @@ abstract class FileBackend {
 	 *
 	 * Callers should consider using getScopedFileLocks() instead.
 	 *
-	 * @param $paths Array Storage paths
+	 * @param array $paths Storage paths
 	 * @param $type integer LockManager::LOCK_* constant
 	 * @return Status
 	 */
@@ -1141,7 +1141,7 @@ abstract class FileBackend {
 	/**
 	 * Unlock the files at the given storage paths in the backend.
 	 *
-	 * @param $paths Array Storage paths
+	 * @param array $paths Storage paths
 	 * @param $type integer LockManager::LOCK_* constant
 	 * @return Status
 	 */
@@ -1157,7 +1157,7 @@ abstract class FileBackend {
 	 * Once the return value goes out scope, the locks will be released and
 	 * the status updated. Unlock fatals will not change the status "OK" value.
 	 *
-	 * @param $paths Array Storage paths
+	 * @param array $paths Storage paths
 	 * @param $type integer LockManager::LOCK_* constant
 	 * @param $status Status Status to update on lock/unlock
 	 * @return ScopedLock|null Returns null on failure
@@ -1177,7 +1177,7 @@ abstract class FileBackend {
 	 *
 	 * @see FileBackend::doOperations()
 	 *
-	 * @param $ops Array List of file operations to FileBackend::doOperations()
+	 * @param array $ops List of file operations to FileBackend::doOperations()
 	 * @param $status Status Status to update on lock/unlock
 	 * @return Array List of ScopedFileLocks or null values
 	 * @since 1.20
@@ -1198,7 +1198,7 @@ abstract class FileBackend {
 	/**
 	 * Get the storage path for the given container for this backend
 	 *
-	 * @param $container string Container name
+	 * @param string $container Container name
 	 * @return string Storage path
 	 * @since 1.21
 	 */
@@ -1308,8 +1308,8 @@ abstract class FileBackend {
 	/**
 	 * Build a Content-Disposition header value per RFC 6266.
 	 *
-	 * @param $type string One of (attachment, inline)
-	 * @param $filename string Suggested file name (should not contain slashes)
+	 * @param string $type One of (attachment, inline)
+	 * @param string $filename Suggested file name (should not contain slashes)
 	 * @throws MWException
 	 * @return string
 	 * @since 1.20
@@ -1337,7 +1337,7 @@ abstract class FileBackend {
 	 *
 	 * This uses the same traversal protection as Title::secureAndSplit().
 	 *
-	 * @param $path string Storage path relative to a container
+	 * @param string $path Storage path relative to a container
 	 * @return string|null
 	 */
 	final protected static function normalizeContainerPath( $path ) {

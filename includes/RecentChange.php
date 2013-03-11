@@ -110,7 +110,7 @@ class RecentChange {
 	/**
 	 * Obtain the recent change with a given rc_id value
 	 *
-	 * @param $rcid Int rc_id value to retrieve
+	 * @param int $rcid rc_id value to retrieve
 	 * @return RecentChange
 	 */
 	public static function newFromId( $rcid ) {
@@ -120,7 +120,7 @@ class RecentChange {
 	/**
 	 * Find the first recent change matching some specific conditions
 	 *
-	 * @param $conds Array of conditions
+	 * @param array $conds of conditions
 	 * @param $fname Mixed: override the method name in profiling/logs
 	 * @return RecentChange
 	 */
@@ -292,10 +292,10 @@ class RecentChange {
 	/**
 	 * Send some text to UDP.
 	 * @see RecentChange::cleanupForIRC
-	 * @param $line String: text to send
-	 * @param $address String: defaults to $wgRC2UDPAddress.
-	 * @param $prefix String: defaults to $wgRC2UDPPrefix.
-	 * @param $port Int: defaults to $wgRC2UDPPort. (Since 1.17)
+	 * @param string $line text to send
+	 * @param string $address defaults to $wgRC2UDPAddress.
+	 * @param string $prefix defaults to $wgRC2UDPPrefix.
+	 * @param int $port defaults to $wgRC2UDPPort. (Since 1.17)
 	 * @return Boolean: success
 	 */
 	public static function sendToUDP( $line, $address = '', $prefix = '', $port = '' ) {
@@ -685,7 +685,7 @@ class RecentChange {
 	/**
 	 * Get an attribute value
 	 *
-	 * @param $name String Attribute name
+	 * @param string $name Attribute name
 	 * @return mixed
 	 */
 	public function getAttribute( $name ) {

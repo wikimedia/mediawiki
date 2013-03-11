@@ -75,8 +75,8 @@ class ApiPageSet extends ApiBase {
 	 * Constructor
 	 * @param $dbSource ApiBase Module implementing getDB().
 	 *        Allows PageSet to reuse existing db connection from the shared state like ApiQuery.
-	 * @param $flags int Zero or more flags like DISABLE_GENERATORS
-	 * @param $defaultNamespace int the namespace to use if none is specified by a prefix.
+	 * @param int $flags Zero or more flags like DISABLE_GENERATORS
+	 * @param int $defaultNamespace the namespace to use if none is specified by a prefix.
 	 * @since 1.21 accepts $flags instead of two boolean values
 	 */
 	public function __construct( ApiBase $dbSource, $flags = 0, $defaultNamespace = NS_MAIN ) {
@@ -220,7 +220,7 @@ class ApiPageSet extends ApiBase {
 	/**
 	 * Request an additional field from the page table.
 	 * Must be called before execute()
-	 * @param $fieldName string Field name
+	 * @param string $fieldName Field name
 	 */
 	public function requestField( $fieldName ) {
 		$this->mRequestedPageFields[$fieldName] = null;
@@ -229,7 +229,7 @@ class ApiPageSet extends ApiBase {
 	/**
 	 * Get the value of a custom field previously requested through
 	 * requestField()
-	 * @param $fieldName string Field name
+	 * @param string $fieldName Field name
 	 * @return mixed Field value
 	 */
 	public function getCustomField( $fieldName ) {
@@ -513,7 +513,7 @@ class ApiPageSet extends ApiBase {
 
 	/**
 	 * Populate this PageSet from a list of Titles
-	 * @param $titles array of Title objects
+	 * @param array $titles of Title objects
 	 */
 	public function populateFromTitles( $titles ) {
 		$this->profileIn();
@@ -523,7 +523,7 @@ class ApiPageSet extends ApiBase {
 
 	/**
 	 * Populate this PageSet from a list of page IDs
-	 * @param $pageIDs array of page IDs
+	 * @param array $pageIDs of page IDs
 	 */
 	public function populateFromPageIDs( $pageIDs ) {
 		$this->profileIn();
@@ -544,7 +544,7 @@ class ApiPageSet extends ApiBase {
 
 	/**
 	 * Populate this PageSet from a list of revision IDs
-	 * @param $revIDs array of revision IDs
+	 * @param array $revIDs of revision IDs
 	 */
 	public function populateFromRevisionIDs( $revIDs ) {
 		$this->profileIn();
@@ -597,7 +597,7 @@ class ApiPageSet extends ApiBase {
 	 * #5 Substitute the original LinkBatch object with the new list
 	 * #6 Repeat from step #1
 	 *
-	 * @param $titles array of Title objects or strings
+	 * @param array $titles of Title objects or strings
 	 */
 	private function initFromTitles( $titles ) {
 		// Get validated and normalized title objects
@@ -624,7 +624,7 @@ class ApiPageSet extends ApiBase {
 
 	/**
 	 * Does the same as initFromTitles(), but is based on page IDs instead
-	 * @param $pageids array of page IDs
+	 * @param array $pageids of page IDs
 	 */
 	private function initFromPageIds( $pageids ) {
 		if ( !$pageids ) {
@@ -660,9 +660,9 @@ class ApiPageSet extends ApiBase {
 	 * Iterate through the result of the query on 'page' table,
 	 * and for each row create and store title object and save any extra fields requested.
 	 * @param $res ResultWrapper DB Query result
-	 * @param $remaining array of either pageID or ns/title elements (optional).
+	 * @param array $remaining of either pageID or ns/title elements (optional).
 	 *        If given, any missing items will go to $mMissingPageIDs and $mMissingTitles
-	 * @param $processTitles bool Must be provided together with $remaining.
+	 * @param bool $processTitles Must be provided together with $remaining.
 	 *        If true, treat $remaining as an array of [ns][title]
 	 *        If false, treat it as an array of [pageIDs]
 	 */
@@ -731,7 +731,7 @@ class ApiPageSet extends ApiBase {
 	/**
 	 * Does the same as initFromTitles(), but is based on revision IDs
 	 * instead
-	 * @param $revids array of revision IDs
+	 * @param array $revids of revision IDs
 	 */
 	private function initFromRevIDs( $revids ) {
 		if ( !$revids ) {
@@ -882,7 +882,7 @@ class ApiPageSet extends ApiBase {
 	 * This method validates access rights for the title,
 	 * and appends normalization values to the output.
 	 *
-	 * @param $titles array of Title objects or strings
+	 * @param array $titles of Title objects or strings
 	 * @return LinkBatch
 	 */
 	private function processTitlesArray( $titles ) {

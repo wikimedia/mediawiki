@@ -137,11 +137,11 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/**
 	 * Constructs a new module from an options array.
 	 *
-	 * @param $options Array: List of options; if not given or empty, an empty module will be
+	 * @param array $options List of options; if not given or empty, an empty module will be
 	 *     constructed
-	 * @param $localBasePath String: Base path to prepend to all local paths in $options. Defaults
+	 * @param string $localBasePath Base path to prepend to all local paths in $options. Defaults
 	 *     to $IP
-	 * @param $remoteBasePath String: Base path to prepend to all remote paths in $options. Defaults
+	 * @param string $remoteBasePath Base path to prepend to all remote paths in $options. Defaults
 	 *     to $wgScriptPath
 	 *
 	 * Below is a description for the $options array:
@@ -473,9 +473,9 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/**
 	 * Collates file paths by option (where provided).
 	 *
-	 * @param $list Array: List of file paths in any combination of index/path
+	 * @param array $list List of file paths in any combination of index/path
 	 *     or path/options pairs
-	 * @param $option String: option name
+	 * @param string $option option name
 	 * @param $default Mixed: default value if the option isn't set
 	 * @return Array: List of file paths, collated by $option
 	 */
@@ -503,9 +503,9 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/**
 	 * Gets a list of element that match a key, optionally using a fallback key.
 	 *
-	 * @param $list Array: List of lists to select from
-	 * @param $key String: Key to look for in $map
-	 * @param $fallback String: Key to look for in $list if $key doesn't exist
+	 * @param array $list List of lists to select from
+	 * @param string $key Key to look for in $map
+	 * @param string $fallback Key to look for in $list if $key doesn't exist
 	 * @return Array: List of elements from $map which matched $key or $fallback,
 	 *     or an empty list in case of no match
 	 */
@@ -558,7 +558,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/**
 	 * Gets the contents of a list of JavaScript files.
 	 *
-	 * @param $scripts Array: List of file paths to scripts to read, remap and concetenate
+	 * @param array $scripts List of file paths to scripts to read, remap and concetenate
 	 * @throws MWException
 	 * @return String: Concatenated and remapped JavaScript data from $scripts
 	 */
@@ -588,7 +588,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/**
 	 * Gets the contents of a list of CSS files.
 	 *
-	 * @param $styles Array: List of media type/list of file paths pairs, to read, remap and
+	 * @param array $styles List of media type/list of file paths pairs, to read, remap and
 	 * concetenate
 	 *
 	 * @param $flip bool
@@ -619,7 +619,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 *
 	 * This method can be used as a callback for array_map()
 	 *
-	 * @param $path String: File path of style file to read
+	 * @param string $path File path of style file to read
 	 * @param $flip bool
 	 *
 	 * @return String: CSS data in script file

@@ -67,7 +67,7 @@ class MediaWikiSite extends Site {
 	 *
 	 * @since 1.21
 	 *
-	 * @param String $title the target page's title, in normalized form.
+	 * @param string $title the target page's title, in normalized form.
 	 *
 	 * @return String
 	 */

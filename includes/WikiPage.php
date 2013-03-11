@@ -126,8 +126,8 @@ class WikiPage implements Page, IDBAccessObject {
 	/**
 	 * Constructor from a page id
 	 *
-	 * @param $id Int article ID to load
-	 * @param $from string|int one of the following values:
+	 * @param int $id article ID to load
+	 * @param string|int $from one of the following values:
 	 *        - "fromdb" or WikiPage::READ_NORMAL to select from a slave database
 	 *        - "fromdbmaster" or WikiPage::READ_LATEST to select from the master database
 	 *
@@ -149,7 +149,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @since 1.20
 	 * @param $row object: database row containing at least fields returned
 	 *        by selectFields().
-	 * @param $from string|int: source of $data:
+	 * @param string|int $from source of $data:
 	 *        - "fromdb" or WikiPage::READ_NORMAL: from a slave DB
 	 *        - "fromdbmaster" or WikiPage::READ_LATEST: from the master DB
 	 *        - "forupdate" or WikiPage::READ_LOCKING: from the master DB using SELECT FOR UPDATE
@@ -369,7 +369,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @since 1.20
 	 * @param $data object: database row containing at least fields returned
 	 *        by selectFields()
-	 * @param $from string|int One of the following:
+	 * @param string|int $from One of the following:
 	 *        - "fromdb" or WikiPage::READ_NORMAL if the data comes from a slave DB
 	 *        - "fromdbmaster" or WikiPage::READ_LATEST if the data comes from the master DB
 	 *        - "forupdate"  or WikiPage::READ_LOCKING if the data comes from from
@@ -682,7 +682,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 	/**
 	 * Set the page timestamp (use only to avoid DB queries)
-	 * @param $ts string MW timestamp of last article revision
+	 * @param string $ts MW timestamp of last article revision
 	 * @return void
 	 */
 	public function setTimestamp( $ts ) {
@@ -1022,7 +1022,7 @@ class WikiPage implements Page, IDBAccessObject {
 	/**
 	 * Get the last N authors
 	 * @param $num Integer: number of revisions to get
-	 * @param $revLatest String: the latest rev_id, selected from the master (optional)
+	 * @param string $revLatest the latest rev_id, selected from the master (optional)
 	 * @return array Array of authors, duplicates not removed
 	 */
 	public function getLastNAuthors( $num, $revLatest = 0 ) {
@@ -1423,9 +1423,9 @@ class WikiPage implements Page, IDBAccessObject {
 
 	/**
 	 * @param $section null|bool|int or a section number (0, 1, 2, T1, T2...)
-	 * @param $text String: new text of the section
-	 * @param $sectionTitle String: new section's subject, only if $section is 'new'
-	 * @param $edittime String: revision timestamp or null to use the current revision
+	 * @param string $text new text of the section
+	 * @param string $sectionTitle new section's subject, only if $section is 'new'
+	 * @param string $edittime revision timestamp or null to use the current revision
 	 * @throws MWException
 	 * @return String new complete article text, or null if error
 	 *
@@ -1466,8 +1466,8 @@ class WikiPage implements Page, IDBAccessObject {
 	/**
 	 * @param $section null|bool|int or a section number (0, 1, 2, T1, T2...)
 	 * @param $sectionContent Content: new content of the section
-	 * @param $sectionTitle String: new section's subject, only if $section is 'new'
-	 * @param $edittime String: revision timestamp or null to use the current revision
+	 * @param string $sectionTitle new section's subject, only if $section is 'new'
+	 * @param string $edittime revision timestamp or null to use the current revision
 	 *
 	 * @throws MWException
 	 * @return Content new complete article content, or null if error
@@ -1537,8 +1537,8 @@ class WikiPage implements Page, IDBAccessObject {
 	 * Change an existing article or create a new article. Updates RC and all necessary caches,
 	 * optionally via the deferred update array.
 	 *
-	 * @param $text String: new text
-	 * @param $summary String: edit summary
+	 * @param string $text new text
+	 * @param string $summary edit summary
 	 * @param $flags Integer bitfield:
 	 *      EDIT_NEW
 	 *          Article is known or assumed to be non-existent, create a new one
@@ -1595,7 +1595,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * optionally via the deferred update array.
 	 *
 	 * @param $content Content: new content
-	 * @param $summary String: edit summary
+	 * @param string $summary edit summary
 	 * @param $flags Integer bitfield:
 	 *      EDIT_NEW
 	 *          Article is known or assumed to be non-existent, create a new one
@@ -2029,7 +2029,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 *
 	 * @param $revision Revision object
 	 * @param $user User object that did the revision
-	 * @param $options Array of options, following indexes are used:
+	 * @param array $options of options, following indexes are used:
 	 * - changed: boolean, whether the revision changed the content (default true)
 	 * - created: boolean, whether the revision created the page (default false)
 	 * - oldcountable: boolean or null (default null):
@@ -2157,9 +2157,9 @@ class WikiPage implements Page, IDBAccessObject {
 	 * The article must already exist; link tables etc
 	 * are not updated, caches are not flushed.
 	 *
-	 * @param $text String: text submitted
+	 * @param string $text text submitted
 	 * @param $user User The relevant user
-	 * @param $comment String: comment submitted
+	 * @param string $comment comment submitted
 	 * @param $minor Boolean: whereas it's a minor modification
 	 *
 	 * @deprecated since 1.21, use doEditContent() instead.
@@ -2178,7 +2178,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 *
 	 * @param $content Content: content submitted
 	 * @param $user User The relevant user
-	 * @param $comment String: comment submitted
+	 * @param string $comment comment submitted
 	 * @param $serialisation_format String: format for storing the content in the database
 	 * @param $minor Boolean: whereas it's a minor modification
 	 */
@@ -2208,10 +2208,10 @@ class WikiPage implements Page, IDBAccessObject {
 	 * Update the article's restriction field, and leave a log entry.
 	 * This works for protection both existing and non-existing pages.
 	 *
-	 * @param $limit Array: set of restriction keys
+	 * @param array $limit set of restriction keys
 	 * @param $reason String
 	 * @param &$cascade Integer. Set to false if cascading protection isn't allowed.
-	 * @param $expiry Array: per restriction type expiration
+	 * @param array $expiry per restriction type expiration
 	 * @param $user User The user updating the restrictions
 	 * @return Status
 	 */
@@ -2478,10 +2478,10 @@ class WikiPage implements Page, IDBAccessObject {
 	 *
 	 * Deletes the article with database consistency, writes logs, purges caches
 	 *
-	 * @param $reason string delete reason for deletion log
+	 * @param string $reason delete reason for deletion log
 	 * @param $suppress boolean suppress all revisions and log the deletion in
 	 *        the suppression log instead of the deletion log
-	 * @param $id int article ID
+	 * @param int $id article ID
 	 * @param $commit boolean defaults to true, triggers transaction end
 	 * @param &$error Array of errors to append to
 	 * @param $user User The deleting user
@@ -2500,10 +2500,10 @@ class WikiPage implements Page, IDBAccessObject {
 	 *
 	 * @since 1.19
 	 *
-	 * @param $reason string delete reason for deletion log
+	 * @param string $reason delete reason for deletion log
 	 * @param $suppress boolean suppress all revisions and log the deletion in
 	 *        the suppression log instead of the deletion log
-	 * @param $id int article ID
+	 * @param int $id article ID
 	 * @param $commit boolean defaults to true, triggers transaction end
 	 * @param &$error Array of errors to append to
 	 * @param $user User The deleting user
@@ -2637,7 +2637,7 @@ class WikiPage implements Page, IDBAccessObject {
 	/**
 	 * Do some database updates after deletion
 	 *
-	 * @param $id Int: page_id value of the page being deleted (B/C, currently unused)
+	 * @param int $id page_id value of the page being deleted (B/C, currently unused)
 	 * @param $content Content: optional page content to be used when determining the required updates.
 	 *        This may be needed because $this->getContent() may already return null when the page proper was deleted.
 	 */
@@ -2665,12 +2665,12 @@ class WikiPage implements Page, IDBAccessObject {
 	 *
 	 * @todo: seperate the business/permission stuff out from backend code
 	 *
-	 * @param $fromP String: Name of the user whose edits to rollback.
-	 * @param $summary String: Custom summary. Set to default summary if empty.
-	 * @param $token String: Rollback token.
+	 * @param string $fromP Name of the user whose edits to rollback.
+	 * @param string $summary Custom summary. Set to default summary if empty.
+	 * @param string $token Rollback token.
 	 * @param $bot Boolean: If true, mark all reverted edits as bot.
 	 *
-	 * @param $resultDetails Array: contains result-specific array of additional values
+	 * @param array $resultDetails contains result-specific array of additional values
 	 *    'alreadyrolled' : 'current' (rev)
 	 *    success        : 'summary' (str), 'current' (rev), 'target' (rev)
 	 *
@@ -2714,11 +2714,11 @@ class WikiPage implements Page, IDBAccessObject {
 	 * rollback to the DB. Therefore, you should only call this function direct-
 	 * ly if you want to use custom permissions checks. If you don't, use
 	 * doRollback() instead.
-	 * @param $fromP String: Name of the user whose edits to rollback.
-	 * @param $summary String: Custom summary. Set to default summary if empty.
+	 * @param string $fromP Name of the user whose edits to rollback.
+	 * @param string $summary Custom summary. Set to default summary if empty.
 	 * @param $bot Boolean: If true, mark all reverted edits as bot.
 	 *
-	 * @param $resultDetails Array: contains result-specific array of additional values
+	 * @param array $resultDetails contains result-specific array of additional values
 	 * @param $guser User The user performing the rollback
 	 * @return array
 	 */
@@ -2981,9 +2981,9 @@ class WikiPage implements Page, IDBAccessObject {
 
 	/**
 	 * Return an applicable autosummary if one exists for the given edit.
-	 * @param $oldtext String|null: the previous text of the page.
-	 * @param $newtext String|null: The submitted text of the page.
-	 * @param $flags Int bitmask: a bitmask of flags submitted for the edit.
+	 * @param string|null $oldtext the previous text of the page.
+	 * @param string|null $newtext The submitted text of the page.
+	 * @param int $flags bitmask: a bitmask of flags submitted for the edit.
 	 * @return string An appropriate autosummary, or an empty string.
 	 *
 	 * @deprecated since 1.21, use ContentHandler::getAutosummary() instead
@@ -3015,8 +3015,8 @@ class WikiPage implements Page, IDBAccessObject {
 	 * Update all the appropriate counts in the category table, given that
 	 * we've added the categories $added and deleted the categories $deleted.
 	 *
-	 * @param $added array   The names of categories that were added
-	 * @param $deleted array The names of categories that were deleted
+	 * @param array $added   The names of categories that were added
+	 * @param array $deleted The names of categories that were deleted
 	 */
 	public function updateCategoryCounts( $added, $deleted ) {
 		$ns = $this->mTitle->getNamespace();
@@ -3167,7 +3167,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * so we can do things like signatures and links-in-context.
 	 *
 	 * @deprecated in 1.19; use Parser::preSaveTransform() instead
-	 * @param $text String article contents
+	 * @param string $text article contents
 	 * @param $user User object: user doing the edit
 	 * @param $popts ParserOptions object: parser options, default options for
 	 *               the user loaded if null given
@@ -3214,10 +3214,10 @@ class WikiPage implements Page, IDBAccessObject {
 	 * Update the article's restriction field, and leave a log entry.
 	 *
 	 * @deprecated since 1.19
-	 * @param $limit Array: set of restriction keys
+	 * @param array $limit set of restriction keys
 	 * @param $reason String
 	 * @param &$cascade Integer. Set to false if cascading protection isn't allowed.
-	 * @param $expiry Array: per restriction type expiration
+	 * @param array $expiry per restriction type expiration
 	 * @param $user User The user updating the restrictions
 	 * @return bool true on success
 	 */

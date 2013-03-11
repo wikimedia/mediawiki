@@ -175,8 +175,8 @@ class CoreParserFunctions {
 	 * For links to "wiki"s, or similar software, spaces are encoded as '_',
 	 *
 	 * @param $parser Parser object
-	 * @param $s String: The text to encode.
-	 * @param $arg String (optional): The type of encoding.
+	 * @param string $s The text to encode.
+	 * @param string $arg (optional): The type of encoding.
 	 * @return string
 	 */
 	static function urlencode( $parser, $s = '', $arg = null ) {
@@ -353,7 +353,7 @@ class CoreParserFunctions {
 	 * title which will normalise to the canonical title
 	 *
 	 * @param $parser Parser: parent parser
-	 * @param $text String: desired title text
+	 * @param string $text desired title text
 	 * @return String
 	 */
 	static function displaytitle( $parser, $text = '' ) {
@@ -645,7 +645,7 @@ class CoreParserFunctions {
 	 * @todo Document parameters
 	 *
 	 * @param $parser Parser
-	 * @param $page String TODO DOCUMENT (Default: empty string)
+	 * @param string $page TODO DOCUMENT (Default: empty string)
 	 * @param $raw TODO DOCUMENT (Default: null)
 	 * @return string
 	 */
@@ -699,8 +699,8 @@ class CoreParserFunctions {
 	/**
 	 * Gives language names.
 	 * @param $parser Parser
-	 * @param $code String  Language code (of which to get name)
-	 * @param $inLanguage String  Language code (in which to get name)
+	 * @param string $code  Language code (of which to get name)
+	 * @param string $inLanguage  Language code (in which to get name)
 	 * @return String
 	 */
 	static function language( $parser, $code = '', $inLanguage = '' ) {
@@ -772,8 +772,8 @@ class CoreParserFunctions {
 
 	/**
 	 * @param $parser Parser
-	 * @param $text String The sortkey to use
-	 * @param $uarg String Either "noreplace" or "noerror" (in en)
+	 * @param string $text The sortkey to use
+	 * @param string $uarg Either "noreplace" or "noerror" (in en)
 	 *   both suppress errors, and noreplace does nothing if
 	 *   a default sortkey already exists.
 	 * @return string

@@ -33,7 +33,7 @@ class FSFile {
 	/**
 	 * Sets up the file object
 	 *
-	 * @param $path string Path to temporary file on local disk
+	 * @param string $path Path to temporary file on local disk
 	 * @throws MWException
 	 */
 	public function __construct( $path ) {
@@ -231,7 +231,7 @@ class FSFile {
 	/**
 	 * Get an associative array containing information about a file in the local filesystem.
 	 *
-	 * @param $path String: absolute local filesystem path
+	 * @param string $path absolute local filesystem path
 	 * @param $ext Mixed: the file extension, or true to extract it from the filename.
 	 *             Set it to false to ignore the extension.
 	 *

@@ -37,7 +37,7 @@ class SpecialBlockList extends SpecialPage {
 	/**
 	 * Main execution point
 	 *
-	 * @param $par String title fragment
+	 * @param string $par title fragment
 	 */
 	public function execute( $par ) {
 		$this->setHeaders();

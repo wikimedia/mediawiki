@@ -25,8 +25,8 @@ class ChangeTags {
 	/**
 	 * Creates HTML for the given tags
 	 *
-	 * @param $tags String: Comma-separated list of tags
-	 * @param $page String: A label for the type of action which is being displayed,
+	 * @param string $tags Comma-separated list of tags
+	 * @param string $page A label for the type of action which is being displayed,
 	 *                     for example: 'history', 'contributions' or 'newpages'
 	 *
 	 * @return Array with two items: (html, classes)
@@ -62,7 +62,7 @@ class ChangeTags {
 	/**
 	 * Get a short description for a tag
 	 *
-	 * @param $tag String: tag
+	 * @param string $tag tag
 	 *
 	 * @return String: Short description of the tag from "mediawiki:tag-$tag" if this message exists,
 	 *                 html-escaped version of $tag otherwise
@@ -75,11 +75,11 @@ class ChangeTags {
 	/**
 	 * Add tags to a change given its rc_id, rev_id and/or log_id
 	 *
-	 * @param $tags String|Array: Tags to add to the change
+	 * @param string|array $tags Tags to add to the change
 	 * @param $rc_id int: rc_id of the change to add the tags to
 	 * @param $rev_id int: rev_id of the change to add the tags to
 	 * @param $log_id int: log_id of the change to add the tags to
-	 * @param $params String: params to put in the ct_params field of tabel 'change_tag'
+	 * @param string $params params to put in the ct_params field of tabel 'change_tag'
 	 *
 	 * @throws MWException
 	 * @return bool: false if no changes are made, otherwise true
@@ -160,11 +160,11 @@ class ChangeTags {
 	 * Handles selecting tags, and filtering.
 	 * Needs $tables to be set up properly, so we can figure out which join conditions to use.
 	 *
-	 * @param $tables String|Array: Tabel names, see DatabaseBase::select
-	 * @param $fields String|Array: Fields used in query, see DatabaseBase::select
-	 * @param $conds String|Array: conditions used in query, see DatabaseBase::select
+	 * @param string|array $tables Tabel names, see DatabaseBase::select
+	 * @param string|array $fields Fields used in query, see DatabaseBase::select
+	 * @param string|array $conds conditions used in query, see DatabaseBase::select
 	 * @param $join_conds Array: join conditions, see DatabaseBase::select
-	 * @param $options Array: options, see Database::select
+	 * @param array $options options, see Database::select
 	 * @param bool|string $filter_tag Tag to select on
 	 *
 	 * @throws MWException When unable to determine appropriate JOIN condition for tagging
@@ -211,7 +211,7 @@ class ChangeTags {
 	/**
 	 * Build a text box to select a change tag
 	 *
-	 * @param $selected String: tag to select by default
+	 * @param string $selected tag to select by default
 	 * @param $fullForm Boolean:
 	 *        - if false, then it returns an array of (label, form).
 	 *        - if true, it returns an entire form around the selector.

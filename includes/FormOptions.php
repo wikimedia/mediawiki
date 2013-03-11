@@ -104,7 +104,7 @@ class FormOptions implements ArrayAccess {
 	/**
 	 * Verify the given option name exist.
 	 *
-	 * @param $name String: option name
+	 * @param string $name option name
 	 * @param $strict Boolean: throw an exception when the option does not exist (default false)
 	 * @throws MWException
 	 * @return Boolean: true if option exist, false otherwise
@@ -123,7 +123,7 @@ class FormOptions implements ArrayAccess {
 	/**
 	 * Use to set the value of an option.
 	 *
-	 * @param $name String: option name
+	 * @param string $name option name
 	 * @param $value Mixed: value for the option
 	 * @param $force Boolean: whether to set the value when it is equivalent to the default value for this option (default false).
 	 * @return null
@@ -143,7 +143,7 @@ class FormOptions implements ArrayAccess {
 	 * Get the value for the given option name.
 	 * Internally use getValueReal()
 	 *
-	 * @param $name String: option name
+	 * @param string $name option name
 	 * @return Mixed
 	 */
 	public function getValue( $name ) {
@@ -154,7 +154,7 @@ class FormOptions implements ArrayAccess {
 
 	/**
 	 * @todo Document
-	 * @param $option Array: array structure describing the option
+	 * @param array $option array structure describing the option
 	 * @return Mixed. Value or the default value if it is null
 	 */
 	protected function getValueReal( $option ) {
@@ -168,7 +168,7 @@ class FormOptions implements ArrayAccess {
 	/**
 	 * Delete the option value.
 	 * This will make future calls to getValue()  return the default value.
-	 * @param $name String: option name
+	 * @param string $name option name
 	 * @return null
 	 */
 	public function reset( $name ) {
@@ -191,7 +191,7 @@ class FormOptions implements ArrayAccess {
 
 	/**
 	 * @todo Document
-	 * @param $names Array: array of option names
+	 * @param array $names array of option names
 	 * @return null
 	 */
 	public function consumeValues( /*Array*/ $names ) {
@@ -210,9 +210,9 @@ class FormOptions implements ArrayAccess {
 	 * Validate and set an option integer value
 	 * The value will be altered to fit in the range.
 	 *
-	 * @param $name String: option name
-	 * @param $min Int: minimum value
-	 * @param $max Int: maximum value
+	 * @param string $name option name
+	 * @param int $min minimum value
+	 * @param int $max maximum value
 	 * @throws MWException
 	 * @exception MWException Option is not of type int
 	 * @return null

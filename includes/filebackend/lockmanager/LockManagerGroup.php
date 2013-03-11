@@ -38,14 +38,14 @@ class LockManagerGroup {
 	protected $managers = array();
 
 	/**
-	 * @param $domain string Domain (usually wiki ID)
+	 * @param string $domain Domain (usually wiki ID)
 	 */
 	protected function __construct( $domain ) {
 		$this->domain = $domain;
 	}
 
 	/**
-	 * @param $domain string Domain (usually wiki ID)
+	 * @param string $domain Domain (usually wiki ID)
 	 * @return LockManagerGroup
 	 */
 	public static function singleton( $domain = false ) {

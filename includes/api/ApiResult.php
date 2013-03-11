@@ -147,10 +147,10 @@ class ApiResult extends ApiBase {
 	/**
 	 * Add an output value to the array by name.
 	 * Verifies that value with the same name has not been added before.
-	 * @param $arr array to add $value to
-	 * @param $name string Index of $arr to add $value at
+	 * @param array $arr to add $value to
+	 * @param string $name Index of $arr to add $value at
 	 * @param $value mixed
-	 * @param $flags int Zero or more OR-ed flags like OVERRIDE | ADD_ON_TOP. This parameter used to be
+	 * @param int $flags Zero or more OR-ed flags like OVERRIDE | ADD_ON_TOP. This parameter used to be
 	 *        boolean, and the value of OVERRIDE=1 was specifically chosen so that it would be backwards
 	 *        compatible with the new method signature.
 	 *
@@ -183,9 +183,9 @@ class ApiResult extends ApiBase {
 	/**
 	 * Adds a content element to an array.
 	 * Use this function instead of hardcoding the '*' element.
-	 * @param $arr array to add the content element to
+	 * @param array $arr to add the content element to
 	 * @param $value Mixed
-	 * @param $subElemName string when present, content element is created
+	 * @param string $subElemName when present, content element is created
 	 *  as a sub item of $arr. Use this parameter to create elements in
 	 *  format "<elem>text</elem>" without attributes.
 	 */
@@ -208,7 +208,7 @@ class ApiResult extends ApiBase {
 	 * give all indexed values the given tag name. This function MUST be
 	 * called on every array that has numerical indexes.
 	 * @param $arr array
-	 * @param $tag string Tag name
+	 * @param string $tag Tag name
 	 */
 	public function setIndexedTagName( &$arr, $tag ) {
 		// In raw mode, add the '_element', otherwise just ignore
@@ -225,7 +225,7 @@ class ApiResult extends ApiBase {
 	/**
 	 * Calls setIndexedTagName() on each sub-array of $arr
 	 * @param $arr array
-	 * @param $tag string Tag name
+	 * @param string $tag Tag name
 	 */
 	public function setIndexedTagName_recursive( &$arr, $tag ) {
 		if ( !is_array( $arr ) ) {
@@ -244,7 +244,7 @@ class ApiResult extends ApiBase {
 	 * Calls setIndexedTagName() on an array already in the result.
 	 * Don't specify a path to a value that's not in the result, or
 	 * you'll get nasty errors.
-	 * @param $path array Path to the array, like addValue()'s $path
+	 * @param array $path Path to the array, like addValue()'s $path
 	 * @param $tag string
 	 */
 	public function setIndexedTagName_internal( $path, $tag ) {
@@ -271,7 +271,7 @@ class ApiResult extends ApiBase {
 	 * @param $path array|string|null
 	 * @param $name string
 	 * @param $value mixed
-	 * @param $flags int Zero or more OR-ed flags like OVERRIDE | ADD_ON_TOP. This parameter used to be
+	 * @param int $flags Zero or more OR-ed flags like OVERRIDE | ADD_ON_TOP. This parameter used to be
 	 *        boolean, and the value of OVERRIDE=1 was specifically chosen so that it would be backwards
 	 *        compatible with the new method signature.
 	 * @return bool True if $value fits in the result, false if not

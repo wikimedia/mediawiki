@@ -80,8 +80,8 @@ class WikiExporter {
 	 *                   offset: non-inclusive offset at which to start the query
 	 *                   limit: maximum number of rows to return
 	 *                   dir: "asc" or "desc" timestamp order
-	 * @param $buffer Int: one of WikiExporter::BUFFER or WikiExporter::STREAM
-	 * @param $text Int: one of WikiExporter::TEXT or WikiExporter::STUB
+	 * @param int $buffer one of WikiExporter::BUFFER or WikiExporter::STREAM
+	 * @param int $text one of WikiExporter::TEXT or WikiExporter::STUB
 	 */
 	function __construct( $db, $history = WikiExporter::CURRENT,
 			$buffer = WikiExporter::BUFFER, $text = WikiExporter::TEXT ) {
@@ -126,7 +126,7 @@ class WikiExporter {
 	/**
 	 * Dumps a series of page and revision records for those pages
 	 * in the database falling within the page_id range given.
-	 * @param $start Int: inclusive lower limit (this id is included)
+	 * @param int $start inclusive lower limit (this id is included)
 	 * @param $end   Int: Exclusive upper limit (this id is not included)
 	 *                   If 0, no upper limit.
 	 */
@@ -141,7 +141,7 @@ class WikiExporter {
 	/**
 	 * Dumps a series of page and revision records for those pages
 	 * in the database with revisions falling within the rev_id range given.
-	 * @param $start Int: inclusive lower limit (this id is included)
+	 * @param int $start inclusive lower limit (this id is included)
 	 * @param $end   Int: Exclusive upper limit (this id is not included)
 	 *                   If 0, no upper limit.
 	 */
@@ -758,7 +758,7 @@ class XmlDumpWriter {
 
 	/**
 	 * @param $timestamp string
-	 * @param $indent string Default to six spaces
+	 * @param string $indent Default to six spaces
 	 * @return string
 	 */
 	function writeTimestamp( $timestamp, $indent = "      " ) {
@@ -769,7 +769,7 @@ class XmlDumpWriter {
 	/**
 	 * @param $id
 	 * @param $text string
-	 * @param $indent string Default to six spaces
+	 * @param string $indent Default to six spaces
 	 * @return string
 	 */
 	function writeContributor( $id, $text, $indent = "      " ) {
@@ -946,7 +946,7 @@ class DumpOutput {
 	 * Use this for the last piece of a file written out
 	 * at specified checkpoints (e.g. every n hours).
 	 * @param $newname mixed File name. May be a string or an array with one element
-	 * @param $open bool If true, a new file with the old filename will be opened again for writing (default: false)
+	 * @param bool $open If true, a new file with the old filename will be opened again for writing (default: false)
 	 */
 	function closeAndRename( $newname, $open = false ) {
 	}

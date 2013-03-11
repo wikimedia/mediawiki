@@ -153,8 +153,8 @@ class UserrightsPage extends SpecialPage {
 	 * Save user groups changes in the database.
 	 * Data comes from the editUserGroupsForm() form function
 	 *
-	 * @param $username String: username to apply changes to.
-	 * @param $reason String: reason for group change
+	 * @param string $username username to apply changes to.
+	 * @param string $reason reason for group change
 	 * @return null
 	 */
 	function saveUserGroups( $username, $reason = '' ) {
@@ -189,9 +189,9 @@ class UserrightsPage extends SpecialPage {
 	 * Save user groups changes in the database.
 	 *
 	 * @param $user User object
-	 * @param $add Array of groups to add
-	 * @param $remove Array of groups to remove
-	 * @param $reason String: reason for group change
+	 * @param array $add of groups to add
+	 * @param array $remove of groups to remove
+	 * @param string $reason reason for group change
 	 * @return Array: Tuple of added, then removed groups
 	 */
 	function doSaveUserGroups( $user, $add, $remove, $reason = '' ) {
@@ -258,7 +258,7 @@ class UserrightsPage extends SpecialPage {
 
 	/**
 	 * Edit user groups membership
-	 * @param $username String: name of the user.
+	 * @param string $username name of the user.
 	 */
 	function editUserGroupsForm( $username ) {
 		$status = $this->fetchUser( $username );
@@ -392,7 +392,7 @@ class UserrightsPage extends SpecialPage {
 	 * form will be able to manipulate based on the current user's system
 	 * permissions.
 	 *
-	 * @param $groups Array: list of groups the given user is in
+	 * @param array $groups list of groups the given user is in
 	 * @return Array:  Tuple of addable, then removable groups
 	 */
 	protected function splitGroups( $groups ) {
@@ -527,7 +527,7 @@ class UserrightsPage extends SpecialPage {
 	 * Adds a table with checkboxes where you can select what groups to add/remove
 	 *
 	 * @todo Just pass the username string?
-	 * @param $usergroups Array: groups the user belongs to
+	 * @param array $usergroups groups the user belongs to
 	 * @param $user User a user object
 	 * @return string XHTML table element with checkboxes
 	 */
@@ -611,7 +611,7 @@ class UserrightsPage extends SpecialPage {
 	}
 
 	/**
-	 * @param $group string: the name of the group to check
+	 * @param string $group the name of the group to check
 	 * @return bool Can we add the group?
 	 */
 	private function canAdd( $group ) {

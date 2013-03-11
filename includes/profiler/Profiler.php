@@ -28,7 +28,7 @@
 
 /**
  * Begin profiling of a function
- * @param $functionname String: name of the function we will profile
+ * @param string $functionname name of the function we will profile
  */
 function wfProfileIn( $functionname ) {
 	global $wgProfiler;
@@ -39,7 +39,7 @@ function wfProfileIn( $functionname ) {
 
 /**
  * Stop profiling of a function
- * @param $functionname String: name of the function we have profiled
+ * @param string $functionname name of the function we have profiled
  */
 function wfProfileOut( $functionname = 'missing' ) {
 	global $wgProfiler;
@@ -250,7 +250,7 @@ class Profiler {
 	/**
 	 * Recursive function the format the current profiling array into a tree
 	 *
-	 * @param $stack array profiling array
+	 * @param array $stack profiling array
 	 * @return array
 	 */
 	function remapCallTree( $stack ) {
@@ -305,7 +305,7 @@ class Profiler {
 	 * Get the initial time of the request, based either on $wgRequestTime or
 	 * $wgRUstart. Will return null if not able to find data.
 	 *
-	 * @param $metric string|false: metric to use, with the following possibilities:
+	 * @param string|false $metric metric to use, with the following possibilities:
 	 *   - user: User CPU time (without system calls)
 	 *   - cpu: Total CPU time (user and system calls)
 	 *   - wall (or any other string): elapsed time
@@ -338,7 +338,7 @@ class Profiler {
 	 * Get the initial time of the request, based either on $wgRequestTime or
 	 * $wgRUstart. Will return null if not able to find data.
 	 *
-	 * @param $metric string|false: metric to use, with the following possibilities:
+	 * @param string|false $metric metric to use, with the following possibilities:
 	 *   - user: User CPU time (without system calls)
 	 *   - cpu: Total CPU time (user and system calls)
 	 *   - wall (or any other string): elapsed time
@@ -582,7 +582,7 @@ class Profiler {
 	/**
 	 * Add an entry in the debug log file
 	 *
-	 * @param $s String to output
+	 * @param string $s to output
 	 */
 	function debug( $s ) {
 		if( defined( 'MW_COMPILED' ) || function_exists( 'wfDebug' ) ) {

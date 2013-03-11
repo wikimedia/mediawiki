@@ -100,8 +100,8 @@ class ZhClient {
 	/**
 	 * Convert the input to a different language variant
 	 *
-	 * @param $text String: input text
-	 * @param $tolang String: language variant
+	 * @param string $text input text
+	 * @param string $tolang language variant
 	 * @return string the converted text
 	 */
 	function convert( $text, $tolang ) {
@@ -117,7 +117,7 @@ class ZhClient {
 	/**
 	 * Convert the input to all possible variants
 	 *
-	 * @param $text String: input text
+	 * @param string $text input text
 	 * @return array langcode => converted_string
 	 */
 	function convertToAllVariants( $text ) {
@@ -142,7 +142,7 @@ class ZhClient {
 	/**
 	 * Perform word segmentation
 	 *
-	 * @param $text String: input text
+	 * @param string $text input text
 	 * @return string segmented text
 	 */
 	function segment( $text ) {

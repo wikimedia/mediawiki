@@ -888,7 +888,7 @@ class Revision implements IDBAccessObject {
 	}
 
 	/**
-	 * @param $field int one of DELETED_* bitfield constants
+	 * @param int $field one of DELETED_* bitfield constants
 	 *
 	 * @return Boolean
 	 */
@@ -1152,8 +1152,8 @@ class Revision implements IDBAccessObject {
 	  * field must be included
 	  *
 	  * @param $row Object: the text data
-	  * @param $prefix String: table prefix (default 'old_')
-	  * @param $wiki String|false: the name of the wiki to load the revision text from
+	  * @param string $prefix table prefix (default 'old_')
+	  * @param string|false $wiki the name of the wiki to load the revision text from
 	  *         (same as the the wiki $row was loaded from) or false to indicate the local
 	  *         wiki (this is the default). Otherwise, it must be a symbolic wiki database
 	  *         identifier as understood by the LoadBalancer class.
@@ -1479,7 +1479,7 @@ class Revision implements IDBAccessObject {
 	 *
 	 * @param $dbw DatabaseBase
 	 * @param $pageId Integer: ID number of the page to read from
-	 * @param $summary String: revision's summary
+	 * @param string $summary revision's summary
 	 * @param $minor Boolean: whether the revision should be considered as minor
 	 * @return Revision|null on error
 	 */

@@ -155,7 +155,7 @@ class FileRepo {
 	/**
 	 * Check if a single zone or list of zones is defined for usage
 	 *
-	 * @param $doZones Array Only do a particular zones
+	 * @param array $doZones Only do a particular zones
 	 * @throws MWException
 	 * @return Status
 	 */
@@ -199,8 +199,8 @@ class FileRepo {
 	/**
 	 * Get the URL corresponding to one of the four basic zones
 	 *
-	 * @param $zone String One of: public, deleted, temp, thumb
-	 * @param $ext String|null Optional file extension
+	 * @param string $zone One of: public, deleted, temp, thumb
+	 * @param string|null $ext Optional file extension
 	 * @return String or false
 	 */
 	public function getZoneUrl( $zone, $ext = null ) {
@@ -237,7 +237,7 @@ class FileRepo {
 	 * from the URL path, one can configure thumb_handler.php to recognize a special path on the
 	 * same host name as the wiki that is used for viewing thumbnails.
 	 *
-	 * @param $zone String: one of: public, deleted, temp, thumb
+	 * @param string $zone one of: public, deleted, temp, thumb
 	 * @return String or false
 	 */
 	public function getZoneHandlerUrl( $zone ) {
@@ -340,7 +340,7 @@ class FileRepo {
 	 * version control should return false if the time is specified.
 	 *
 	 * @param $title Mixed: Title object or string
-	 * @param $options array Associative array of options:
+	 * @param array $options Associative array of options:
 	 *     time:           requested time for a specific file version, or false for the
 	 *                     current version. An image object will be returned which was
 	 *                     created at the specified time (which may be archived or current).
@@ -399,7 +399,7 @@ class FileRepo {
 	/**
 	 * Find many files at once.
 	 *
-	 * @param $items array An array of titles, or an array of findFile() options with
+	 * @param array $items An array of titles, or an array of findFile() options with
 	 *    the "title" option giving the title. Example:
 	 *
 	 *     $findItem = array( 'title' => $title, 'private' => true );
@@ -431,8 +431,8 @@ class FileRepo {
 	 * Returns false if the file does not exist. Repositories not supporting
 	 * version control should return false if the time is specified.
 	 *
-	 * @param $sha1 String base 36 SHA-1 hash
-	 * @param $options array Option array, same as findFile().
+	 * @param string $sha1 base 36 SHA-1 hash
+	 * @param array $options Option array, same as findFile().
 	 * @return File|bool False on failure
 	 */
 	public function findFileFromKey( $sha1, $options = array() ) {
@@ -476,7 +476,7 @@ class FileRepo {
 	 * Get an array of arrays or iterators of file objects for files that
 	 * have the given SHA-1 content hashes.
 	 *
-	 * @param $hashes array An array of hashes
+	 * @param array $hashes An array of hashes
 	 * @return array An Array of arrays or iterators of file objects and the hash as key
 	 */
 	public function findBySha1s( array $hashes ) {
@@ -562,7 +562,7 @@ class FileRepo {
 	 * Get a relative path including trailing slash, e.g. f/fa/
 	 * If the repo is not hashed, returns an empty string
 	 *
-	 * @param $name string Name of file
+	 * @param string $name Name of file
 	 * @return string
 	 */
 	public function getHashPath( $name ) {
@@ -573,7 +573,7 @@ class FileRepo {
 	 * Get a relative path including trailing slash, e.g. f/fa/
 	 * If the repo is not hashed, returns an empty string
 	 *
-	 * @param $suffix string Basename of file from FileRepo::storeTemp()
+	 * @param string $suffix Basename of file from FileRepo::storeTemp()
 	 * @return string
 	 */
 	public function getTempHashPath( $suffix ) {
@@ -622,7 +622,7 @@ class FileRepo {
 	 * Make an url to this repo
 	 *
 	 * @param $query mixed Query string to append
-	 * @param $entry string Entry point; defaults to index
+	 * @param string $entry Entry point; defaults to index
 	 * @return string|bool False on failure
 	 */
 	public function makeUrl( $query = '', $entry = 'index' ) {
@@ -676,8 +676,8 @@ class FileRepo {
 	 * repository's file class, since it may return invalid results. User code
 	 * should use File::getDescriptionText().
 	 *
-	 * @param $name String: name of image to fetch
-	 * @param $lang String: language to fetch it in, if any.
+	 * @param string $name name of image to fetch
+	 * @param string $lang language to fetch it in, if any.
 	 * @return string
 	 */
 	public function getDescriptionRenderUrl( $name, $lang = null ) {
@@ -716,9 +716,9 @@ class FileRepo {
 	/**
 	 * Store a file to a given destination.
 	 *
-	 * @param $srcPath String: source file system path, storage path, or virtual URL
-	 * @param $dstZone String: destination zone
-	 * @param $dstRel String: destination relative path
+	 * @param string $srcPath source file system path, storage path, or virtual URL
+	 * @param string $dstZone destination zone
+	 * @param string $dstRel destination relative path
 	 * @param $flags Integer: bitwise combination of the following flags:
 	 *     self::DELETE_SOURCE     Delete the source file after upload
 	 *     self::OVERWRITE         Overwrite an existing destination file instead of failing
@@ -741,7 +741,7 @@ class FileRepo {
 	/**
 	 * Store a batch of files
 	 *
-	 * @param $triplets Array: (src, dest zone, dest rel) triplets as per store()
+	 * @param array $triplets (src, dest zone, dest rel) triplets as per store()
 	 * @param $flags Integer: bitwise combination of the following flags:
 	 *     self::DELETE_SOURCE     Delete the source file after upload
 	 *     self::OVERWRITE         Overwrite an existing destination file instead of failing
@@ -823,7 +823,7 @@ class FileRepo {
 	 * Each file can be a (zone, rel) pair, virtual url, storage path.
 	 * It will try to delete each file, but ignores any errors that may occur.
 	 *
-	 * @param $files array List of files to delete
+	 * @param array $files List of files to delete
 	 * @param $flags Integer: bitwise combination of the following flags:
 	 *     self::SKIP_LOCKING      Skip any file locking when doing the deletions
 	 * @return FileRepoStatus
@@ -861,9 +861,9 @@ class FileRepo {
 	 * This function can be used to write to otherwise read-only foreign repos.
 	 * This is intended for copying generated thumbnails into the repo.
 	 *
-	 * @param $src string Source file system path, storage path, or virtual URL
-	 * @param $dst string Virtual URL or storage path
-	 * @param $disposition string|null Content-Disposition if given and supported
+	 * @param string $src Source file system path, storage path, or virtual URL
+	 * @param string $dst Virtual URL or storage path
+	 * @param string|null $disposition Content-Disposition if given and supported
 	 * @return FileRepoStatus
 	 */
 	final public function quickImport( $src, $dst, $disposition = null ) {
@@ -875,7 +875,7 @@ class FileRepo {
 	 * This function can be used to write to otherwise read-only foreign repos.
 	 * This is intended for purging thumbnails.
 	 *
-	 * @param $path string Virtual URL or storage path
+	 * @param string $path Virtual URL or storage path
 	 * @return FileRepoStatus
 	 */
 	final public function quickPurge( $path ) {
@@ -886,7 +886,7 @@ class FileRepo {
 	 * Deletes a directory if empty.
 	 * This function can be used to write to otherwise read-only foreign repos.
 	 *
-	 * @param $dir string Virtual URL (or storage path) of directory to clean
+	 * @param string $dir Virtual URL (or storage path) of directory to clean
 	 * @return Status
 	 */
 	public function quickCleanDir( $dir ) {
@@ -906,7 +906,7 @@ class FileRepo {
 	 * All path parameters may be a file system path, storage path, or virtual URL.
 	 * When "dispositions" are given they are used as Content-Disposition if supported.
 	 *
-	 * @param $triples Array List of (source path, destination path, disposition)
+	 * @param array $triples List of (source path, destination path, disposition)
 	 * @return FileRepoStatus
 	 */
 	public function quickImportBatch( array $triples ) {
@@ -934,7 +934,7 @@ class FileRepo {
 	 * This function can be used to write to otherwise read-only foreign repos.
 	 * This does no locking nor journaling and is intended for purging thumbnails.
 	 *
-	 * @param $paths Array List of virtual URLs or storage paths
+	 * @param array $paths List of virtual URLs or storage paths
 	 * @return FileRepoStatus
 	 */
 	public function quickPurgeBatch( array $paths ) {
@@ -957,9 +957,9 @@ class FileRepo {
 	 * Returns a FileRepoStatus object with the file Virtual URL in the value,
 	 * file can later be disposed using FileRepo::freeTemp().
 	 *
-	 * @param $originalName String: the base name of the file as specified
+	 * @param string $originalName the base name of the file as specified
 	 *     by the user. The file extension will be maintained.
-	 * @param $srcPath String: the current location of the file.
+	 * @param string $srcPath the current location of the file.
 	 * @return FileRepoStatus object with the URL in the value.
 	 */
 	public function storeTemp( $originalName, $srcPath ) {
@@ -979,7 +979,7 @@ class FileRepo {
 	/**
 	 * Remove a temporary file or mark it for garbage collection
 	 *
-	 * @param $virtualUrl String: the virtual URL returned by FileRepo::storeTemp()
+	 * @param string $virtualUrl the virtual URL returned by FileRepo::storeTemp()
 	 * @return Boolean: true on success, false on failure
 	 */
 	public function freeTemp( $virtualUrl ) {
@@ -997,8 +997,8 @@ class FileRepo {
 	/**
 	 * Concatenate a list of temporary files into a target file location.
 	 *
-	 * @param $srcPaths Array Ordered list of source virtual URLs/storage paths
-	 * @param $dstPath String Target file system path
+	 * @param array $srcPaths Ordered list of source virtual URLs/storage paths
+	 * @param string $dstPath Target file system path
 	 * @param $flags Integer: bitwise combination of the following flags:
 	 *     self::DELETE_SOURCE     Delete the source files
 	 * @return FileRepoStatus
@@ -1043,13 +1043,13 @@ class FileRepo {
 	 * Options to $options include:
 	 *   - headers : name/value map of HTTP headers to use in response to GET/HEAD requests
 	 *
-	 * @param $srcPath String: the source file system path, storage path, or URL
-	 * @param $dstRel String: the destination relative path
-	 * @param $archiveRel String: the relative path where the existing file is to
+	 * @param string $srcPath the source file system path, storage path, or URL
+	 * @param string $dstRel the destination relative path
+	 * @param string $archiveRel the relative path where the existing file is to
 	 *        be archived, if there is one. Relative to the public zone root.
 	 * @param $flags Integer: bitfield, may be FileRepo::DELETE_SOURCE to indicate
 	 *        that the source file should be deleted if possible
-	 * @param $options Array Optional additional parameters
+	 * @param array $options Optional additional parameters
 	 * @return FileRepoStatus
 	 */
 	public function publish(
@@ -1074,7 +1074,7 @@ class FileRepo {
 	/**
 	 * Publish a batch of files
 	 *
-	 * @param $ntuples Array: (source, dest, archive) triplets or
+	 * @param array $ntuples (source, dest, archive) triplets or
 	 *        (source, dest, archive, options) 4-tuples as per publish().
 	 * @param $flags Integer: bitfield, may be FileRepo::DELETE_SOURCE to indicate
 	 *        that the source files should be deleted if possible
@@ -1197,7 +1197,7 @@ class FileRepo {
 	 * Creates a directory with the appropriate zone permissions.
 	 * Callers are responsible for doing read-only and "writable repo" checks.
 	 *
-	 * @param $dir string Virtual URL (or storage path) of directory to clean
+	 * @param string $dir Virtual URL (or storage path) of directory to clean
 	 * @return Status
 	 */
 	protected function initDirectory( $dir ) {
@@ -1217,7 +1217,7 @@ class FileRepo {
 	/**
 	 * Deletes a directory if empty.
 	 *
-	 * @param $dir string Virtual URL (or storage path) of directory to clean
+	 * @param string $dir Virtual URL (or storage path) of directory to clean
 	 * @return Status
 	 */
 	public function cleanDir( $dir ) {
@@ -1233,7 +1233,7 @@ class FileRepo {
 	/**
 	 * Checks existence of a a file
 	 *
-	 * @param $file string Virtual URL (or storage path) of file to check
+	 * @param string $file Virtual URL (or storage path) of file to check
 	 * @return bool
 	 */
 	public function fileExists( $file ) {
@@ -1244,7 +1244,7 @@ class FileRepo {
 	/**
 	 * Checks existence of an array of files.
 	 *
-	 * @param $files Array: Virtual URLs (or storage paths) of files to check
+	 * @param array $files Virtual URLs (or storage paths) of files to check
 	 * @return array|bool Either array of files and existence flags, or false
 	 */
 	public function fileExistsBatch( array $files ) {
@@ -1282,7 +1282,7 @@ class FileRepo {
 	 * assumes a naming scheme in the deleted zone based on content hash, as
 	 * opposed to the public zone which is assumed to be unique.
 	 *
-	 * @param $sourceDestPairs Array of source/destination pairs. Each element
+	 * @param array $sourceDestPairs of source/destination pairs. Each element
 	 *        is a two-element array containing the source file path relative to the
 	 *        public root in the first element, and the archive file path relative
 	 *        to the deleted zone root in the second element.
@@ -1459,7 +1459,7 @@ class FileRepo {
 	 * Attempt to stream a file with the given virtual URL/storage path
 	 *
 	 * @param $virtualUrl string
-	 * @param $headers Array Additional HTTP headers to send on success
+	 * @param array $headers Additional HTTP headers to send on success
 	 * @return bool Success
 	 */
 	public function streamFile( $virtualUrl, $headers = array() ) {

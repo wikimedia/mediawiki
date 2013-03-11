@@ -118,7 +118,7 @@ abstract class QuorumLockManager extends LockManager {
 	 * This is all or nothing; if any key is locked then this totally fails.
 	 *
 	 * @param $bucket integer
-	 * @param $paths Array List of resource keys to lock
+	 * @param array $paths List of resource keys to lock
 	 * @param $type integer LockManager::LOCK_EX or LockManager::LOCK_SH
 	 * @return Status
 	 */
@@ -160,7 +160,7 @@ abstract class QuorumLockManager extends LockManager {
 	 * Attempt to release locks with the peers for a bucket
 	 *
 	 * @param $bucket integer
-	 * @param $paths Array List of resource keys to lock
+	 * @param array $paths List of resource keys to lock
 	 * @param $type integer LockManager::LOCK_EX or LockManager::LOCK_SH
 	 * @return Status
 	 */

@@ -94,9 +94,9 @@ class SpecialWhatLinksHere extends SpecialPage {
 	}
 
 	/**
-	 * @param $level int     Recursion level
+	 * @param int $level     Recursion level
 	 * @param $target Title   Target title
-	 * @param $limit int     Number of entries to display
+	 * @param int $limit     Number of entries to display
 	 * @param $from Title   Display from this article ID
 	 * @param $back Title   Display from this article ID at backwards scrolling
 	 */

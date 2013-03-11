@@ -134,7 +134,7 @@ class Article implements Page {
 
 	/**
 	 * Constructor from a page id
-	 * @param $id Int article ID to load
+	 * @param int $id article ID to load
 	 * @return Article|null
 	 */
 	public static function newFromID( $id ) {
@@ -853,7 +853,7 @@ class Article implements Page {
 
 	/**
 	 * Get the robot policy to be used for the current view
-	 * @param $action String the action= GET parameter
+	 * @param string $action the action= GET parameter
 	 * @param $pOutput ParserOutput
 	 * @return Array the policy that should be set
 	 * TODO: actions other than 'view'
@@ -1211,7 +1211,7 @@ class Article implements Page {
 	 *   Revision as of \<date\>; view current revision
 	 *   \<- Previous version | Next Version -\>
 	 *
-	 * @param $oldid int: revision ID of this article revision
+	 * @param int $oldid revision ID of this article revision
 	 */
 	public function setOldSubtitle( $oldid = 0 ) {
 		if ( !wfRunHooks( 'DisplayOldSubtitle', array( &$this, &$oldid ) ) ) {
@@ -1519,7 +1519,7 @@ class Article implements Page {
 	/**
 	 * Output deletion confirmation dialog
 	 * @todo FIXME: Move to another file?
-	 * @param $reason String: prefilled reason
+	 * @param string $reason prefilled reason
 	 */
 	public function confirmDelete( $reason ) {
 		wfDebug( "Article::confirmDelete\n" );
@@ -1887,8 +1887,8 @@ class Article implements Page {
 	 *
 	 * @deprecated in 1.18; call OutputPage::redirect() directly
 	 * @param $noRedir Boolean: add redirect=no
-	 * @param $sectionAnchor String: section to redirect to, including "#"
-	 * @param $extraQuery String: extra query params
+	 * @param string $sectionAnchor section to redirect to, including "#"
+	 * @param string $extraQuery extra query params
 	 */
 	public function doRedirect( $noRedir = false, $sectionAnchor = '', $extraQuery = '' ) {
 		wfDeprecated( __METHOD__, '1.18' );
@@ -1908,7 +1908,7 @@ class Article implements Page {
 	 * Use PHP's magic __get handler to handle accessing of
 	 * raw WikiPage fields for backwards compatibility.
 	 *
-	 * @param $fname String Field name
+	 * @param string $fname Field name
 	 */
 	public function __get( $fname ) {
 		if ( property_exists( $this->mPage, $fname ) ) {
@@ -1922,7 +1922,7 @@ class Article implements Page {
 	 * Use PHP's magic __set handler to handle setting of
 	 * raw WikiPage fields for backwards compatibility.
 	 *
-	 * @param $fname String Field name
+	 * @param string $fname Field name
 	 * @param $fvalue mixed New value
 	 */
 	public function __set( $fname, $fvalue ) {
@@ -1941,8 +1941,8 @@ class Article implements Page {
 	 * Use PHP's magic __call handler to transform instance calls to
 	 * WikiPage functions for backwards compatibility.
 	 *
-	 * @param $fname String Name of called method
-	 * @param $args Array Arguments to the method
+	 * @param string $fname Name of called method
+	 * @param array $args Arguments to the method
 	 * @return mixed
 	 */
 	public function __call( $fname, $args ) {

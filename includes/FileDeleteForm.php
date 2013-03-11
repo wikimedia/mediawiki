@@ -140,8 +140,8 @@ class FileDeleteForm {
 	 *
 	 * @param $title Title object
 	 * @param File $file: file object
-	 * @param $oldimage String: archive name
-	 * @param $reason String: reason of the deletion
+	 * @param string $oldimage archive name
+	 * @param string $reason reason of the deletion
 	 * @param $suppress Boolean: whether to mark all deleted versions as restricted
 	 * @param $user User object performing the request
 	 * @throws MWException
@@ -309,7 +309,7 @@ class FileDeleteForm {
 	 * showing an appropriate message depending upon whether
 	 * it's a current file or an old version
 	 *
-	 * @param $message String: message base
+	 * @param string $message message base
 	 * @return String
 	 */
 	private function prepareMessage( $message ) {

@@ -57,7 +57,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	/**
 	 * Execute page -- can output a file directly or show a listing of them.
 	 *
-	 * @param $subPage String: subpage, e.g. in http://example.com/wiki/Special:UploadStash/foo.jpg, the "foo.jpg" part
+	 * @param string $subPage subpage, e.g. in http://example.com/wiki/Special:UploadStash/foo.jpg, the "foo.jpg" part
 	 * @return Boolean: success
 	 */
 	public function execute( $subPage ) {
@@ -73,7 +73,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	 * If file available in stash, cats it out to the client as a simple HTTP response.
 	 * n.b. Most sanity checking done in UploadStashLocalFile, so this is straightforward.
 	 *
-	 * @param $key String: the key of a particular requested file
+	 * @param string $key the key of a particular requested file
 	 * @throws HttpError
 	 * @return bool
 	 */
@@ -167,8 +167,8 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	/**
 	 * Scale a file (probably with a locally installed imagemagick, or similar) and output it to STDOUT.
 	 * @param $file File
-	 * @param $params array Scaling parameters ( e.g. array( width => '50' ) );
-	 * @param $flags int Scaling flags ( see File:: constants )
+	 * @param array $params Scaling parameters ( e.g. array( width => '50' ) );
+	 * @param int $flags Scaling flags ( see File:: constants )
 	 * @throws MWException
 	 * @throws UploadStashFileNotFoundException
 	 * @return boolean success
@@ -277,8 +277,8 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	/**
 	 * Output HTTP response of raw content
 	 * Side effect: writes HTTP response to STDOUT.
-	 * @param $content String content
-	 * @param $contentType String mime type
+	 * @param string $content content
+	 * @param string $contentType mime type
 	 * @throws SpecialUploadStashTooLargeException
 	 * @return bool
 	 */
@@ -296,8 +296,8 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	 * Output headers for streaming
 	 * XXX unsure about encoding as binary; if we received from HTTP perhaps we should use that encoding, concatted with semicolon to mimeType as it usually is.
 	 * Side effect: preps PHP to write headers to STDOUT.
-	 * @param String $contentType : string suitable for content-type header
-	 * @param String $size: length in bytes
+	 * @param string $contentType : string suitable for content-type header
+	 * @param string $size: length in bytes
 	 */
 	private static function outputFileHeaders( $contentType, $size ) {
 		header( "Content-Type: $contentType", true );

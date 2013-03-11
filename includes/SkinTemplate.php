@@ -113,7 +113,7 @@ class SkinTemplate extends Skin {
 	 * roughly equivalent to PHPTAL 0.7.
 	 *
 	 * @param $classname String
-	 * @param $repository string: subdirectory where we keep template files
+	 * @param string $repository subdirectory where we keep template files
 	 * @param $cache_dir string
 	 * @return QuickTemplate
 	 * @private
@@ -505,7 +505,7 @@ class SkinTemplate extends Skin {
 	 * Format language name for use in sidebar interlanguage links list.
 	 * By default it is capitalized.
 	 *
-	 * @param $name string Language name, e.g. "English" or "español"
+	 * @param string $name Language name, e.g. "English" or "español"
 	 * @return string
 	 * @private
 	 */
@@ -1397,7 +1397,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	/**
 	 * Get a Message object with its context set
 	 *
-	 * @param $name string message name
+	 * @param string $name message name
 	 * @return Message
 	 */
 	public function getMsg( $name ) {
@@ -1646,9 +1646,9 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * Makes a link, usually used by makeListItem to generate a link for an item
 	 * in a list used in navigation lists, portlets, portals, sidebars, etc...
 	 *
-	 * @param $key string usually a key from the list you are generating this
+	 * @param string $key usually a key from the list you are generating this
 	 * link from.
-	 * @param $item array contains some of a specific set of keys.
+	 * @param array $item contains some of a specific set of keys.
 	 *
 	 * The text of the link will be generated either from the contents of the
 	 * "text" key in the $item array, if a "msg" key is present a message by
@@ -1665,7 +1665,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	 *
 	 * If you don't want an accesskey, set $item['tooltiponly'] = true;
 	 *
-	 * @param $options array can be used to affect the output of a link.
+	 * @param array $options can be used to affect the output of a link.
 	 * Possible options are:
 	 *   - 'text-wrapper' key to specify a list of elements to wrap the text of
 	 *   a link in. This should be an array of arrays containing a 'tag' and

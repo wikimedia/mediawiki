@@ -52,7 +52,7 @@ class HTMLCacheUpdateJob extends Job {
 	/**
 	 * Construct a job
 	 * @param $title Title: the title linked to
-	 * @param $params Array: job parameters (table, start and end page_ids)
+	 * @param array $params job parameters (table, start and end page_ids)
 	 * @param $id Integer: job id
 	 */
 	function __construct( $title, $params, $id = 0 ) {

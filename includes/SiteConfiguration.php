@@ -169,11 +169,11 @@ class SiteConfiguration {
 
 	/**
 	 * Retrieves a configuration setting for a given wiki.
-	 * @param $settingName String ID of the setting name to retrieve
-	 * @param $wiki String Wiki ID of the wiki in question.
-	 * @param $suffix String The suffix of the wiki in question.
-	 * @param $params Array List of parameters. $.'key' is replaced by $value in all returned data.
-	 * @param $wikiTags Array The tags assigned to the wiki.
+	 * @param string $settingName ID of the setting name to retrieve
+	 * @param string $wiki Wiki ID of the wiki in question.
+	 * @param string $suffix The suffix of the wiki in question.
+	 * @param array $params List of parameters. $.'key' is replaced by $value in all returned data.
+	 * @param array $wikiTags The tags assigned to the wiki.
 	 * @return Mixed the value of the setting requested.
 	 */
 	public function get( $settingName, $wiki, $suffix = null, $params = array(), $wikiTags = array() ) {
@@ -184,9 +184,9 @@ class SiteConfiguration {
 	/**
 	 * Really retrieves a configuration setting for a given wiki.
 	 *
-	 * @param $settingName String ID of the setting name to retrieve.
-	 * @param $wiki String Wiki ID of the wiki in question.
-	 * @param $params Array: array of parameters.
+	 * @param string $settingName ID of the setting name to retrieve.
+	 * @param string $wiki Wiki ID of the wiki in question.
+	 * @param array $params array of parameters.
 	 * @return Mixed the value of the setting requested.
 	 */
 	protected function getSetting( $settingName, $wiki, /*array*/ $params ) {
@@ -280,10 +280,10 @@ class SiteConfiguration {
 
 	/**
 	 * Gets all settings for a wiki
-	 * @param $wiki String Wiki ID of the wiki in question.
-	 * @param $suffix String The suffix of the wiki in question.
-	 * @param $params Array List of parameters. $.'key' is replaced by $value in all returned data.
-	 * @param $wikiTags Array The tags assigned to the wiki.
+	 * @param string $wiki Wiki ID of the wiki in question.
+	 * @param string $suffix The suffix of the wiki in question.
+	 * @param array $params List of parameters. $.'key' is replaced by $value in all returned data.
+	 * @param array $wikiTags The tags assigned to the wiki.
 	 * @return Array Array of settings requested.
 	 */
 	public function getAll( $wiki, $suffix = null, $params = array(), $wikiTags = array() ) {
@@ -310,10 +310,10 @@ class SiteConfiguration {
 
 	/**
 	 * Retrieves a configuration setting for a given wiki, forced to a boolean.
-	 * @param $setting String ID of the setting name to retrieve
-	 * @param $wiki String Wiki ID of the wiki in question.
-	 * @param $suffix String The suffix of the wiki in question.
-	 * @param $wikiTags Array The tags assigned to the wiki.
+	 * @param string $setting ID of the setting name to retrieve
+	 * @param string $wiki Wiki ID of the wiki in question.
+	 * @param string $suffix The suffix of the wiki in question.
+	 * @param array $wikiTags The tags assigned to the wiki.
 	 * @return bool The value of the setting requested.
 	 */
 	public function getBool( $setting, $wiki, $suffix = null, $wikiTags = array() ) {
@@ -331,12 +331,12 @@ class SiteConfiguration {
 
 	/**
 	 * Retrieves the value of a given setting, and places it in a variable passed by reference.
-	 * @param $setting String ID of the setting name to retrieve
-	 * @param $wiki String Wiki ID of the wiki in question.
-	 * @param $suffix String The suffix of the wiki in question.
-	 * @param $var array Reference The variable to insert the value into.
-	 * @param $params Array List of parameters. $.'key' is replaced by $value in all returned data.
-	 * @param $wikiTags Array The tags assigned to the wiki.
+	 * @param string $setting ID of the setting name to retrieve
+	 * @param string $wiki Wiki ID of the wiki in question.
+	 * @param string $suffix The suffix of the wiki in question.
+	 * @param array $var Reference The variable to insert the value into.
+	 * @param array $params List of parameters. $.'key' is replaced by $value in all returned data.
+	 * @param array $wikiTags The tags assigned to the wiki.
 	 */
 	public function extractVar( $setting, $wiki, $suffix, &$var, $params = array(), $wikiTags = array() ) {
 		$value = $this->get( $setting, $wiki, $suffix, $params, $wikiTags );
@@ -347,11 +347,11 @@ class SiteConfiguration {
 
 	/**
 	 * Retrieves the value of a given setting, and places it in its corresponding global variable.
-	 * @param $setting String ID of the setting name to retrieve
-	 * @param $wiki String Wiki ID of the wiki in question.
-	 * @param $suffix String The suffix of the wiki in question.
-	 * @param $params Array List of parameters. $.'key' is replaced by $value in all returned data.
-	 * @param $wikiTags Array The tags assigned to the wiki.
+	 * @param string $setting ID of the setting name to retrieve
+	 * @param string $wiki Wiki ID of the wiki in question.
+	 * @param string $suffix The suffix of the wiki in question.
+	 * @param array $params List of parameters. $.'key' is replaced by $value in all returned data.
+	 * @param array $wikiTags The tags assigned to the wiki.
 	 */
 	public function extractGlobal( $setting, $wiki, $suffix = null, $params = array(), $wikiTags = array() ) {
 		$params = $this->mergeParams( $wiki, $suffix, $params, $wikiTags );
@@ -381,10 +381,10 @@ class SiteConfiguration {
 
 	/**
 	 * Retrieves the values of all settings, and places them in their corresponding global variables.
-	 * @param $wiki String Wiki ID of the wiki in question.
-	 * @param $suffix String The suffix of the wiki in question.
-	 * @param $params Array List of parameters. $.'key' is replaced by $value in all returned data.
-	 * @param $wikiTags Array The tags assigned to the wiki.
+	 * @param string $wiki Wiki ID of the wiki in question.
+	 * @param string $suffix The suffix of the wiki in question.
+	 * @param array $params List of parameters. $.'key' is replaced by $value in all returned data.
+	 * @param array $wikiTags The tags assigned to the wiki.
 	 */
 	public function extractAllGlobals( $wiki, $suffix = null, $params = array(), $wikiTags = array() ) {
 		$params = $this->mergeParams( $wiki, $suffix, $params, $wikiTags );
@@ -433,11 +433,11 @@ class SiteConfiguration {
 	 * by self::$siteParamsCallback for backward compatibility
 	 * Values returned by self::getWikiParams() have the priority.
 	 *
-	 * @param $wiki String Wiki ID of the wiki in question.
-	 * @param $suffix String The suffix of the wiki in question.
-	 * @param $params Array List of parameters. $.'key' is replaced by $value in
+	 * @param string $wiki Wiki ID of the wiki in question.
+	 * @param string $suffix The suffix of the wiki in question.
+	 * @param array $params List of parameters. $.'key' is replaced by $value in
 	 *                all returned data.
-	 * @param $wikiTags Array The tags assigned to the wiki.
+	 * @param array $wikiTags The tags assigned to the wiki.
 	 * @return array
 	 */
 	protected function mergeParams( $wiki, $suffix, /*array*/ $params, /*array*/ $wikiTags ) {

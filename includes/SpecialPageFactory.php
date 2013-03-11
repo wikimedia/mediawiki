@@ -312,7 +312,7 @@ class SpecialPageFactory {
 	/**
 	 * Check if a given name exist as a special page or as a special page alias
 	 *
-	 * @param $name String: name of a special page
+	 * @param string $name name of a special page
 	 * @return Boolean: true if a special page exists with this name
 	 */
 	public static function exists( $name ) {
@@ -323,7 +323,7 @@ class SpecialPageFactory {
 	/**
 	 * Find the object with a given name and return it (or NULL)
 	 *
-	 * @param $name String Special page name, may be localised and/or an alias
+	 * @param string $name Special page name, may be localised and/or an alias
 	 * @return SpecialPage|null SpecialPage object or null if the page doesn't exist
 	 */
 	public static function getPage( $name ) {

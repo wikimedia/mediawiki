@@ -80,7 +80,7 @@ abstract class MediaTransformOutput {
 	}
 
 	/**
-	 * @param $storagePath string The permanent storage path
+	 * @param string $storagePath The permanent storage path
 	 * @return void
 	 */
 	public function setStoragePath( $storagePath ) {
@@ -90,7 +90,7 @@ abstract class MediaTransformOutput {
 	/**
 	 * Fetch HTML for this transform output
 	 *
-	 * @param $options array Associative array of options. Boolean options
+	 * @param array $options Associative array of options. Boolean options
 	 *     should be indicated with a value of true for true, and false or
 	 *     absent for false.
 	 *
@@ -160,7 +160,7 @@ abstract class MediaTransformOutput {
 	/**
 	 * Stream the file if there were no errors
 	 *
-	 * @param $headers Array Additional HTTP headers to send on success
+	 * @param array $headers Additional HTTP headers to send on success
 	 * @return Bool success
 	 */
 	public function streamFile( $headers = array() ) {
@@ -228,9 +228,9 @@ class ThumbnailImage extends MediaTransformOutput {
 	 * It may also include a 'page' parameter for multipage files.
 	 *
 	 * @param $file File object
-	 * @param $url String: URL path to the thumb
+	 * @param string $url URL path to the thumb
 	 * @param $path String|bool|null: filesystem path to the thumb
-	 * @param $parameters Array: Associative array of parameters
+	 * @param array $parameters Associative array of parameters
 	 * @private
 	 */
 	function __construct( $file, $url, $path = false, $parameters = array() ) {
@@ -270,7 +270,7 @@ class ThumbnailImage extends MediaTransformOutput {
 	 * Return HTML <img ... /> tag for the thumbnail, will include
 	 * width and height attributes and a blank alt text (as required).
 	 *
-	 * @param $options array Associative array of options. Boolean options
+	 * @param array $options Associative array of options. Boolean options
 	 *     should be indicated with a value of true for true, and false or
 	 *     absent for false.
 	 *

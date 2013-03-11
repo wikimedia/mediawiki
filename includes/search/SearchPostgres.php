@@ -47,7 +47,7 @@ class SearchPostgres extends SearchEngine {
 	 * Currently searches a page's current title (page.page_title) and
 	 * latest revision article text (pagecontent.old_text)
 	 *
-	 * @param $term String: raw search term
+	 * @param string $term raw search term
 	 * @return PostgresSearchResultSet
 	 */
 	function searchTitle( $term ) {

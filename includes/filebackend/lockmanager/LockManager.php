@@ -75,7 +75,7 @@ abstract class LockManager {
 	/**
 	 * Lock the resources at the given abstract paths
 	 *
-	 * @param $paths Array List of resource names
+	 * @param array $paths List of resource names
 	 * @param $type integer LockManager::LOCK_* constant
 	 * @return Status
 	 */
@@ -89,7 +89,7 @@ abstract class LockManager {
 	/**
 	 * Unlock the resources at the given abstract paths
 	 *
-	 * @param $paths Array List of storage paths
+	 * @param array $paths List of storage paths
 	 * @param $type integer LockManager::LOCK_* constant
 	 * @return Status
 	 */
@@ -127,7 +127,7 @@ abstract class LockManager {
 	/**
 	 * Lock resources with the given keys and lock type
 	 *
-	 * @param $paths Array List of storage paths
+	 * @param array $paths List of storage paths
 	 * @param $type integer LockManager::LOCK_* constant
 	 * @return string
 	 */
@@ -136,7 +136,7 @@ abstract class LockManager {
 	/**
 	 * Unlock resources with the given keys and lock type
 	 *
-	 * @param $paths Array List of storage paths
+	 * @param array $paths List of storage paths
 	 * @param $type integer LockManager::LOCK_* constant
 	 * @return string
 	 */

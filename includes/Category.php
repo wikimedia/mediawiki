@@ -106,7 +106,7 @@ class Category {
 	/**
 	 * Factory function.
 	 *
-	 * @param $name Array: A category name (no "Category:" prefix).  It need
+	 * @param array $name A category name (no "Category:" prefix).  It need
 	 *   not be normalized, with spaces replaced by underscores.
 	 * @return mixed Category, or false on a totally invalid name
 	 */

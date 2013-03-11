@@ -207,8 +207,8 @@ class SpecialUpload extends SpecialPage {
 	/**
 	 * Get an UploadForm instance with title and text properly set.
 	 *
-	 * @param $message String: HTML string to add to the form
-	 * @param $sessionKey String: session key in case this is a stashed upload
+	 * @param string $message HTML string to add to the form
+	 * @param string $sessionKey session key in case this is a stashed upload
 	 * @param $hideIgnoreWarning Boolean: whether to hide "ignore warning" check box
 	 * @return UploadForm
 	 */
@@ -298,7 +298,7 @@ class SpecialUpload extends SpecialPage {
 	 * essentially means that UploadBase::VERIFICATION_ERROR and
 	 * UploadBase::EMPTY_FILE should not be passed here.
 	 *
-	 * @param $message String: HTML message to be passed to mainUploadForm
+	 * @param string $message HTML message to be passed to mainUploadForm
 	 */
 	protected function showRecoverableUploadError( $message ) {
 		$sessionKey = $this->mUpload->stashSession();
@@ -372,7 +372,7 @@ class SpecialUpload extends SpecialPage {
 	/**
 	 * Show the upload form with error message, but do not stash the file.
 	 *
-	 * @param $message string HTML string
+	 * @param string $message HTML string
 	 */
 	protected function showUploadError( $message ) {
 		$message = '<h2>' . $this->msg( 'uploadwarning' )->escaped() . "</h2>\n" .
@@ -524,7 +524,7 @@ class SpecialUpload extends SpecialPage {
 	/**
 	 * Provides output to the user for a result of UploadBase::verifyUpload
 	 *
-	 * @param $details Array: result of UploadBase::verifyUpload
+	 * @param array $details result of UploadBase::verifyUpload
 	 * @throws MWException
 	 */
 	protected function processVerificationError( $details ) {
@@ -623,7 +623,7 @@ class SpecialUpload extends SpecialPage {
 	 * Formats a result of UploadBase::getExistsWarning as HTML
 	 * This check is static and can be done pre-upload via AJAX
 	 *
-	 * @param $exists Array: the result of UploadBase::getExistsWarning
+	 * @param array $exists the result of UploadBase::getExistsWarning
 	 * @return String: empty string if there is no warning or an HTML fragment
 	 */
 	public static function getExistsWarning( $exists ) {
@@ -676,7 +676,7 @@ class SpecialUpload extends SpecialPage {
 	/**
 	 * Get a list of warnings
 	 *
-	 * @param $filename String: local filename, e.g. 'file exists', 'non-descriptive filename'
+	 * @param string $filename local filename, e.g. 'file exists', 'non-descriptive filename'
 	 * @return Array: list of warning messages
 	 */
 	public static function ajaxGetExistsWarning( $filename ) {

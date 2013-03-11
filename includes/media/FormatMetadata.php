@@ -52,7 +52,7 @@ class FormatMetadata {
 	 * value which most of the time are plain integers. This function
 	 * formats Exif (and other metadata) values into human readable form.
 	 *
-	 * @param $tags Array: the Exif data to format ( as returned by
+	 * @param array $tags the Exif data to format ( as returned by
 	 *                    Exif::getFilteredData() or BitmapMetadataHandler )
 	 * @return array
 	 */
@@ -832,8 +832,8 @@ class FormatMetadata {
 	 *
 	 * This is public on the basis it might be useful outside of this class.
 	 *
-	 * @param $vals Array array of values
-	 * @param $type String Type of array (either lang, ul, ol).
+	 * @param array $vals array of values
+	 * @param string $type Type of array (either lang, ul, ol).
 	 * lang = language assoc array with keys being the lang code
 	 * ul = unordered list, ol = ordered list
 	 * type can also come from the '_type' member of $vals.
@@ -939,8 +939,8 @@ class FormatMetadata {
 
 	/** Helper function for creating lists of translations.
 	 *
-	 * @param $value String value (this is not escaped)
-	 * @param $lang String lang code of item or false
+	 * @param string $value value (this is not escaped)
+	 * @param string $lang lang code of item or false
 	 * @param $default Boolean if it is default value.
 	 * @param $noHtml Boolean If to avoid html (for back-compat)
 	 * @throws MWException
@@ -1006,10 +1006,10 @@ class FormatMetadata {
 	 *
 	 * @private
 	 *
-	 * @param $tag String: the tag name to pass on
-	 * @param $val String: the value of the tag
-	 * @param $arg String: an argument to pass ($1)
-	 * @param $arg2 String: a 2nd argument to pass ($2)
+	 * @param string $tag the tag name to pass on
+	 * @param string $val the value of the tag
+	 * @param string $arg an argument to pass ($1)
+	 * @param string $arg2 a 2nd argument to pass ($2)
 	 * @return string A wfMessage of "exif-$tag-$val" in lower case
 	 */
 	static function msg( $tag, $val, $arg = null, $arg2 = null ) {
@@ -1115,7 +1115,7 @@ class FormatMetadata {
 	 * Note, leading 0's are significant, so this is
 	 * a string, not an int.
 	 *
-	 * @param $val String: The 8 digit news code.
+	 * @param string $val The 8 digit news code.
 	 * @return string The human readable form
 	 */
 	private static function convertNewsCode( $val ) {
@@ -1188,8 +1188,8 @@ class FormatMetadata {
 	 * Format a coordinate value, convert numbers from floating point
 	 * into degree minute second representation.
 	 *
-	 * @param $coord int degrees, minutes and seconds
-	 * @param $type String: latitude or longitude (for if its a NWS or E)
+	 * @param int $coord degrees, minutes and seconds
+	 * @param string $type latitude or longitude (for if its a NWS or E)
 	 * @return mixed A floating point number or whatever we were fed
 	 */
 	static function formatCoords( $coord, $type ) {
@@ -1224,7 +1224,7 @@ class FormatMetadata {
 	/**
 	 * Format the contact info field into a single value.
 	 *
-	 * @param $vals Array array with fields of the ContactInfo
+	 * @param array $vals array with fields of the ContactInfo
 	 *    struct defined in the IPTC4XMP spec. Or potentially
 	 *    an array with one element that is a free form text
 	 *    value from the older iptc iim 1:118 prop.

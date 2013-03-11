@@ -35,7 +35,7 @@ class IPTC {
 	 *
 	 * @see http://www.iptc.org/std/IIM/4.1/specification/IIMV4.1.pdf
 	 *
-	 * @param $rawData String app13 block from jpeg containing iptc/iim data
+	 * @param string $rawData app13 block from jpeg containing iptc/iim data
 	 * @return Array iptc metadata array
 	 */
 	static function parse( $rawData ) {
@@ -353,8 +353,8 @@ class IPTC {
 	 * Convert an iptc date and time tags into the exif format
 	 *
 	 * @todo Potentially this should also capture the timezone offset.
-	 * @param Array $date The date tag
-	 * @param Array $time The time tag
+	 * @param array $date The date tag
+	 * @param array $time The time tag
 	 * @param $c
 	 * @return String Date in exif format.
 	 */
@@ -418,8 +418,8 @@ class IPTC {
 
 	/**
 	 * Helper function to convert charset for iptc values.
-	 * @param $data string|array The iptc string
-	 * @param $charset String: The charset
+	 * @param string|array $data The iptc string
+	 * @param string $charset The charset
 	 *
 	 * @return string|array
 	 */
@@ -437,7 +437,7 @@ class IPTC {
 	/**
 	 * Helper function of a helper function to convert charset for iptc values.
 	 * @param $data Mixed String or Array: The iptc string
-	 * @param $charset String: The charset
+	 * @param string $charset The charset
 	 *
 	 * @return string
 	 */
@@ -466,7 +466,7 @@ class IPTC {
 
 	/**
 	 * take the value of 1:90 tag and returns a charset
-	 * @param String $tag 1:90 tag.
+	 * @param string $tag 1:90 tag.
 	 * @return string charset name or "?"
 	 * Warning, this function does not (and is not intended to) detect
 	 * all iso 2022 escape codes. In practise, the code for utf-8 is the

@@ -49,8 +49,8 @@ class FileOpBatch {
 	 *   - a) unexpected operation errors occurred (network partitions, disk full...)
 	 *   - b) significant operation errors occurred and 'force' was not set
 	 *
-	 * @param $performOps Array List of FileOp operations
-	 * @param $opts Array Batch operation options
+	 * @param array $performOps List of FileOp operations
+	 * @param array $opts Batch operation options
 	 * @param $journal FileJournal Journal to log operations to
 	 * @return Status
 	 */

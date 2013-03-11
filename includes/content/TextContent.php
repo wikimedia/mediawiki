@@ -81,7 +81,7 @@ class TextContent extends AbstractContent {
 	 * Returns true if this content is not a redirect, and $wgArticleCountMethod
 	 * is "any".
 	 *
-	 * @param $hasLinks Bool: if it is known whether this content contains links,
+	 * @param bool $hasLinks if it is known whether this content contains links,
 	 * provide this information here, to avoid redundant parsing to find out.
 	 *
 	 * @return bool True if the content is countable
@@ -193,9 +193,9 @@ class TextContent extends AbstractContent {
 	 * getHtml().
 	 *
 	 * @param $title Title Context title for parsing
-	 * @param $revId int|null Revision ID (for {{REVISIONID}})
+	 * @param int|null $revId Revision ID (for {{REVISIONID}})
 	 * @param $options ParserOptions|null Parser options
-	 * @param $generateHtml bool Whether or not to generate HTML
+	 * @param bool $generateHtml Whether or not to generate HTML
 	 *
 	 * @return ParserOutput representing the HTML form of the text
 	 */
@@ -259,8 +259,8 @@ class TextContent extends AbstractContent {
 	 * This implementation provides lossless conversion between content models based
 	 * on TextContent.
 	 *
-	 * @param String  $toModel the desired content model, use the CONTENT_MODEL_XXX flags.
-	 * @param String  $lossy flag, set to "lossy" to allow lossy conversion. If lossy conversion is
+	 * @param string  $toModel the desired content model, use the CONTENT_MODEL_XXX flags.
+	 * @param string  $lossy flag, set to "lossy" to allow lossy conversion. If lossy conversion is
 	 * not allowed, full round-trip conversion is expected to work without losing information.
 	 *
 	 * @return Content|bool A content object with the content model $toModel, or false if

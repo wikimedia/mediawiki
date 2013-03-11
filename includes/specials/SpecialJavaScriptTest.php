@@ -102,8 +102,8 @@ class SpecialJavaScriptTest extends SpecialPage {
 	 * Function to wrap the summary.
 	 * It must be given a valid state as a second parameter or an exception will
 	 * be thrown.
-	 * @param $html String: The raw HTML.
-	 * @param $state String: State, one of 'noframework', 'unknownframework' or 'frameworkfound'
+	 * @param string $html The raw HTML.
+	 * @param string $state State, one of 'noframework', 'unknownframework' or 'frameworkfound'
 	 * @throws MWException
 	 * @return string
 	 */

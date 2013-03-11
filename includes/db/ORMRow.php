@@ -139,7 +139,7 @@ class ORMRow implements IORMRow {
 	 *
 	 * @since 1.20
 	 *
-	 * @param $name string: Field name
+	 * @param string $name Field name
 	 * @param $default mixed: Default value to return when none is found
 	 * (default: null)
 	 *

@@ -163,7 +163,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	/**
 	 * Validate target User
 	 *
-	 * @param $target String: target user name
+	 * @param string $target target user name
 	 * @return User object on success or a string on error
 	 */
 	public static function getTarget( $target ) {
@@ -191,7 +191,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	 * Check whether a user is allowed to send email
 	 *
 	 * @param $user User object
-	 * @param $editToken String: edit token
+	 * @param string $editToken edit token
 	 * @return null on success or string on error
 	 */
 	public static function getPermissionsError( $user, $editToken ) {
@@ -231,7 +231,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	/**
 	 * Form to ask for target user name.
 	 *
-	 * @param $name String: user name submitted.
+	 * @param string $name user name submitted.
 	 * @return String: form asking for user name.
 	 */
 	protected function userForm( $name ) {

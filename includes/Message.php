@@ -216,7 +216,7 @@ class Message {
 	 * Constructor.
 	 * @since 1.17
 	 * @param $key: message key, or array of message keys to try and use the first non-empty message for
-	 * @param $params Array message parameters
+	 * @param array $params message parameters
 	 * @return Message: $this
 	 */
 	public function __construct( $key, $params = array() ) {
@@ -264,7 +264,7 @@ class Message {
 	 * intented to be used instead of the real constructor, because it allows
 	 * chaining method calls, while new objects don't.
 	 * @since 1.17
-	 * @param $key String: message key
+	 * @param string $key message key
 	 * @param Varargs: parameters as Strings
 	 * @return Message: $this
 	 */
@@ -635,8 +635,8 @@ class Message {
 	/**
 	 * Substitutes any paramaters into the message text.
 	 * @since 1.17
-	 * @param $message String: the message text
-	 * @param $type String: either before or after
+	 * @param string $message the message text
+	 * @param string $type either before or after
 	 * @return String
 	 */
 	protected function replaceParameters( $message, $type = 'before' ) {
@@ -654,7 +654,7 @@ class Message {
 	/**
 	 * Extracts the parameter type and preprocessed the value if needed.
 	 * @since 1.18
-	 * @param $param String|Array: Parameter as defined in this class.
+	 * @param string|array $param Parameter as defined in this class.
 	 * @return Tuple(type, value)
 	 */
 	protected function extractParam( $param ) {
@@ -678,7 +678,7 @@ class Message {
 	/**
 	 * Wrapper for what ever method we use to parse wikitext.
 	 * @since 1.17
-	 * @param $string String: Wikitext message contents
+	 * @param string $string Wikitext message contents
 	 * @return string Wikitext parsed into HTML
 	 */
 	protected function parseText( $string ) {
@@ -689,7 +689,7 @@ class Message {
 	/**
 	 * Wrapper for what ever method we use to {{-transform wikitext.
 	 * @since 1.17
-	 * @param $string String: Wikitext message contents
+	 * @param string $string Wikitext message contents
 	 * @return string Wikitext with {{-constructs replaced with their values.
 	 */
 	protected function transformText( $string ) {
@@ -743,8 +743,8 @@ class RawMessage extends Message {
 	 * Call the parent constructor, then store the key as
 	 * the message.
 	 *
-	 * @param $key string Message to use
-	 * @param $params array Parameters for the message
+	 * @param string $key Message to use
+	 * @param array $params Parameters for the message
 	 * @see Message::__construct
 	 */
 	public function __construct( $key, $params = array() ) {

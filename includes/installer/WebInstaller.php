@@ -140,7 +140,7 @@ class WebInstaller extends Installer {
 	/**
 	 * Main entry point.
 	 *
-	 * @param $session Array: initial session array
+	 * @param array $session initial session array
 	 *
 	 * @return Array: new session array
 	 */
@@ -461,7 +461,7 @@ class WebInstaller extends Installer {
 
 	/**
 	 * Set a session variable.
-	 * @param $name String key for the variable
+	 * @param string $name key for the variable
 	 * @param $value Mixed
 	 */
 	public function setSession( $name, $value ) {
@@ -610,7 +610,7 @@ class WebInstaller extends Installer {
 	/**
 	 * Get HTML for an error box with an icon.
 	 *
-	 * @param $text String: wikitext, get this with wfMessage()->plain()
+	 * @param string $text wikitext, get this with wfMessage()->plain()
 	 *
 	 * @return string
 	 */
@@ -621,7 +621,7 @@ class WebInstaller extends Installer {
 	/**
 	 * Get HTML for a warning box with an icon.
 	 *
-	 * @param $text String: wikitext, get this with wfMessage()->plain()
+	 * @param string $text wikitext, get this with wfMessage()->plain()
 	 *
 	 * @return string
 	 */
@@ -632,9 +632,9 @@ class WebInstaller extends Installer {
 	/**
 	 * Get HTML for an info box with an icon.
 	 *
-	 * @param $text String: wikitext, get this with wfMessage()->plain()
-	 * @param $icon String: icon name, file in skins/common/images
-	 * @param $class String: additional class name to add to the wrapper div
+	 * @param string $text wikitext, get this with wfMessage()->plain()
+	 * @param string $icon icon name, file in skins/common/images
+	 * @param string $class additional class name to add to the wrapper div
 	 *
 	 * @return string
 	 */
@@ -668,7 +668,7 @@ class WebInstaller extends Installer {
 
 	/**
 	 * Output a help box.
-	 * @param $msg String key for wfMessage()
+	 * @param string $msg key for wfMessage()
 	 */
 	public function showHelpBox( $msg /*, ... */ ) {
 		$args = func_get_args();
@@ -1006,7 +1006,7 @@ class WebInstaller extends Installer {
 	 * fake) passwords.
 	 *
 	 * @param $varNames Array
-	 * @param $prefix String: the prefix added to variables to obtain form names
+	 * @param string $prefix the prefix added to variables to obtain form names
 	 *
 	 * @return array
 	 */

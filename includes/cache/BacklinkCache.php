@@ -356,7 +356,7 @@ class BacklinkCache {
 	 * Returns an array giving the start and end of each range. The first
 	 * batch has a start of false, and the last batch has an end of false.
 	 *
-	 * @param $table String: the links table name
+	 * @param string $table the links table name
 	 * @param $batchSize Integer
 	 * @return Array
 	 */

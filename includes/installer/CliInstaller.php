@@ -129,7 +129,7 @@ class CliInstaller extends Installer {
 	/**
 	 * Write LocalSettings.php to a given path
 	 *
-	 * @param $path String Full path to write LocalSettings.php to
+	 * @param string $path Full path to write LocalSettings.php to
 	 */
 	public function writeConfigurationFile( $path ) {
 		$ls = InstallerOverrides::getLocalSettingsGenerator( $this );

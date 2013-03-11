@@ -29,7 +29,7 @@
 class BitmapHandler extends ImageHandler {
 	/**
 	 * @param $image File
-	 * @param $params array Transform parameters. Entries with the keys 'width'
+	 * @param array $params Transform parameters. Entries with the keys 'width'
 	 * and 'height' are the respective screen width and height, while the keys
 	 * 'physicalWidth' and 'physicalHeight' indicate the thumbnail dimensions.
 	 * @return bool
@@ -83,8 +83,8 @@ class BitmapHandler extends ImageHandler {
 	 * stored as raw landscape with 90-degress rotation, the resulting size
 	 * will be wider than it is tall.
 	 *
-	 * @param $params array Parameters as returned by normaliseParams
-	 * @param $rotation int The rotation angle that will be applied
+	 * @param array $params Parameters as returned by normaliseParams
+	 * @param int $rotation The rotation angle that will be applied
 	 * @return array ($width, $height) array
 	 */
 	public function extractPreRotationDimensions( $params, $rotation ) {
@@ -261,7 +261,7 @@ class BitmapHandler extends ImageHandler {
 	 * client side
 	 *
 	 * @param $image File File associated with this thumbnail
-	 * @param $scalerParams array Array with scaler params
+	 * @param array $scalerParams Array with scaler params
 	 * @return ThumbnailImage
 	 *
 	 * @todo fixme: no rotation support
@@ -278,7 +278,7 @@ class BitmapHandler extends ImageHandler {
 	 * Transform an image using ImageMagick
 	 *
 	 * @param $image File File associated with this thumbnail
-	 * @param $params array Array with scaler params
+	 * @param array $params Array with scaler params
 	 *
 	 * @return MediaTransformError Error object if error occurred, false (=no error) otherwise
 	 */
@@ -377,7 +377,7 @@ class BitmapHandler extends ImageHandler {
 	 * Transform an image using the Imagick PHP extension
 	 *
 	 * @param $image File File associated with this thumbnail
-	 * @param $params array Array with scaler params
+	 * @param array $params Array with scaler params
 	 *
 	 * @return MediaTransformError Error object if error occurred, false (=no error) otherwise
 	 */
@@ -454,7 +454,7 @@ class BitmapHandler extends ImageHandler {
 	 * Transform an image using a custom command
 	 *
 	 * @param $image File File associated with this thumbnail
-	 * @param $params array Array with scaler params
+	 * @param array $params Array with scaler params
 	 *
 	 * @return MediaTransformError Error object if error occurred, false (=no error) otherwise
 	 */
@@ -497,8 +497,8 @@ class BitmapHandler extends ImageHandler {
 	/**
 	 * Get a MediaTransformError with error 'thumbnail_error'
 	 *
-	 * @param $params array Parameter array as passed to the transform* functions
-	 * @param $errMsg string Error message
+	 * @param array $params Parameter array as passed to the transform* functions
+	 * @param string $errMsg Error message
 	 * @return MediaTransformError
 	 */
 	public function getMediaTransformError( $params, $errMsg ) {
@@ -510,7 +510,7 @@ class BitmapHandler extends ImageHandler {
 	 * Transform an image using the built in GD library
 	 *
 	 * @param $image File File associated with this thumbnail
-	 * @param $params array Array with scaler params
+	 * @param array $params Array with scaler params
 	 *
 	 * @return MediaTransformError Error object if error occurred, false (=no error) otherwise
 	 */
@@ -619,7 +619,7 @@ class BitmapHandler extends ImageHandler {
 	 * in a directory, so we're better off escaping and waiting for the bugfix
 	 * to filter down to users.
 	 *
-	 * @param $path string The file path
+	 * @param string $path The file path
 	 * @param bool|string $scene The scene specification, or false if there is none
 	 * @throws MWException
 	 * @return string
@@ -651,7 +651,7 @@ class BitmapHandler extends ImageHandler {
 	 * Armour a string against ImageMagick's GetPathComponent(). This is a
 	 * helper function for escapeMagickInput() and escapeMagickOutput().
 	 *
-	 * @param $path string The file path
+	 * @param string $path The file path
 	 * @param bool|string $scene The scene specification, or false if there is none
 	 * @throws MWException
 	 * @return string
@@ -757,7 +757,7 @@ class BitmapHandler extends ImageHandler {
 
 	/**
 	 * @param $file File
-	 * @param $params array Rotate parameters.
+	 * @param array $params Rotate parameters.
 	 *	'rotation' clockwise rotation in degrees, allowed are multiples of 90
 	 * @since 1.21
 	 * @return bool

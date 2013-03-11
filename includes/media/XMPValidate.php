@@ -44,7 +44,7 @@ class XMPValidate {
 	/**
 	 * function to validate boolean properties ( True or False )
 	 *
-	 * @param $info Array information about current property
+	 * @param array $info information about current property
 	 * @param &$val Mixed current value to validate
 	 * @param $standalone Boolean if this is a simple property or array
 	 */
@@ -63,7 +63,7 @@ class XMPValidate {
 	/**
 	 * function to validate rational properties ( 12/10 )
 	 *
-	 * @param $info Array information about current property
+	 * @param array $info information about current property
 	 * @param &$val Mixed current value to validate
 	 * @param $standalone Boolean if this is a simple property or array
 	 */
@@ -85,7 +85,7 @@ class XMPValidate {
 	 * if its outside of range put it into range.
 	 *
 	 * @see MWG spec
-	 * @param $info Array information about current property
+	 * @param array $info information about current property
 	 * @param &$val Mixed current value to validate
 	 * @param $standalone Boolean if this is a simple property or array
 	 */
@@ -121,7 +121,7 @@ class XMPValidate {
 	/**
 	 * function to validate integers
 	 *
-	 * @param $info Array information about current property
+	 * @param array $info information about current property
 	 * @param &$val Mixed current value to validate
 	 * @param $standalone Boolean if this is a simple property or array
 	 */
@@ -141,7 +141,7 @@ class XMPValidate {
 	 * function to validate properties with a fixed number of allowed
 	 * choices. (closed choice)
 	 *
-	 * @param $info Array information about current property
+	 * @param array $info information about current property
 	 * @param &$val Mixed current value to validate
 	 * @param $standalone Boolean if this is a simple property or array
 	 */
@@ -171,7 +171,7 @@ class XMPValidate {
 	/**
 	 * function to validate and modify flash structure
 	 *
-	 * @param $info Array information about current property
+	 * @param array $info information about current property
 	 * @param &$val Mixed current value to validate
 	 * @param $standalone Boolean if this is a simple property or array
 	 */
@@ -205,7 +205,7 @@ class XMPValidate {
 	 * @see rfc 3066
 	 * @see http://www.adobe.com/devnet/xmp/pdfs/XMPSpecificationPart1.pdf page 30 (section 8.2.2.5)
 	 *
-	 * @param $info Array information about current property
+	 * @param array $info information about current property
 	 * @param &$val Mixed current value to validate
 	 * @param $standalone Boolean if this is a simple property or array
 	 */
@@ -233,7 +233,7 @@ class XMPValidate {
 	 * YYYY-MM-DDThh:mm:ssTZD
 	 * YYYY-MM-DDThh:mm:ss.sTZD
 	 *
-	 * @param $info Array information about current property
+	 * @param array $info information about current property
 	 * @param &$val Mixed current value to validate. Converts to TS_EXIF as a side-effect.
 	 *	in cases where there's only a partial date, it will give things like
 	 *	2011:04.
@@ -330,7 +330,7 @@ class XMPValidate {
 	 * @see http://www.adobe.com/devnet/xmp/pdfs/XMPSpecificationPart2.pdf
 	 *        section 1.2.7.4 on page 23
 	 *
-	 * @param $info Array unused (info about prop)
+	 * @param array $info unused (info about prop)
 	 * @param &$val String GPS string in either DDD,MM,SSk or
 	 *           or DDD,MM.mmk form
 	 * @param $standalone Boolean if its a simple prop (should always be true)

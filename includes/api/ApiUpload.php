@@ -139,7 +139,7 @@ class ApiUpload extends ApiBase {
 
 	/**
 	 * Get Stash Result, throws an exception if the file could not be stashed.
-	 * @param $warnings array Array of Api upload warnings
+	 * @param array $warnings Array of Api upload warnings
 	 * @return array
 	 */
 	private function getStashResult( $warnings ) {
@@ -161,7 +161,7 @@ class ApiUpload extends ApiBase {
 
 	/**
 	 * Get Warnings Result
-	 * @param $warnings array Array of Api upload warnings
+	 * @param array $warnings Array of Api upload warnings
 	 * @return array
 	 */
 	private function getWarningsResult( $warnings ) {
@@ -181,7 +181,7 @@ class ApiUpload extends ApiBase {
 
 	/**
 	 * Get the result of a chunk upload.
-	 * @param $warnings array Array of Api upload warnings
+	 * @param array $warnings Array of Api upload warnings
 	 * @return array
 	 */
 	private function getChunkResult( $warnings ) {
@@ -281,9 +281,9 @@ class ApiUpload extends ApiBase {
 	 * Throw an error that the user can recover from by providing a better
 	 * value for $parameter
 	 *
-	 * @param $error array Error array suitable for passing to dieUsageMsg()
-	 * @param $parameter string Parameter that needs revising
-	 * @param $data array Optional extra data to pass to the user
+	 * @param array $error Error array suitable for passing to dieUsageMsg()
+	 * @param string $parameter Parameter that needs revising
+	 * @param array $data Optional extra data to pass to the user
 	 * @throws UsageException
 	 */
 	private function dieRecoverableError( $error, $parameter, $data = array() ) {
@@ -558,7 +558,7 @@ class ApiUpload extends ApiBase {
 	 * Perform the actual upload. Returns a suitable result array on success;
 	 * dies on failure.
 	 *
-	 * @param $warnings array Array of Api upload warnings
+	 * @param array $warnings Array of Api upload warnings
 	 * @return array
 	 */
 	protected function performUpload( $warnings ) {

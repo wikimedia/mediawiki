@@ -78,7 +78,7 @@ class SpecialSearch extends SpecialPage {
 	/**
 	 * Entry point
 	 *
-	 * @param $par String or null
+	 * @param string $par or null
 	 */
 	public function execute( $par ) {
 		$this->setHeaders();
@@ -536,7 +536,7 @@ class SpecialSearch extends SpecialPage {
 	 * Format a single hit result
 	 *
 	 * @param $result SearchResult
-	 * @param $terms Array: terms to highlight
+	 * @param array $terms terms to highlight
 	 *
 	 * @return string
 	 */
@@ -758,7 +758,7 @@ class SpecialSearch extends SpecialPage {
 	 * @param $lastInterwiki String
 	 * @param $terms Array
 	 * @param $query String
-	 * @param $customCaptions Array: iw prefix -> caption
+	 * @param array $customCaptions iw prefix -> caption
 	 *
 	 * @return string
 	 */
@@ -851,7 +851,7 @@ class SpecialSearch extends SpecialPage {
 	/**
 	 * Generates the power search box at [[Special:Search]]
 	 *
-	 * @param $term String: search term
+	 * @param string $term search term
 	 * @param $opts array
 	 * @return String: HTML form
 	 */
@@ -1073,10 +1073,10 @@ class SpecialSearch extends SpecialPage {
 	 * Make a search link with some target namespaces
 	 *
 	 * @param $term String
-	 * @param $namespaces Array ignored
-	 * @param $label String: link's text
-	 * @param $tooltip String: link's tooltip
-	 * @param $params Array: query string parameters
+	 * @param array $namespaces ignored
+	 * @param string $label link's text
+	 * @param string $tooltip link's tooltip
+	 * @param array $params query string parameters
 	 * @return String: HTML fragment
 	 */
 	protected function makeSearchLink( $term, $namespaces, $label, $tooltip, $params = array() ) {
@@ -1106,7 +1106,7 @@ class SpecialSearch extends SpecialPage {
 	/**
 	 * Check if query starts with image: prefix
 	 *
-	 * @param $term String: the string to check
+	 * @param string $term the string to check
 	 * @return Boolean
 	 */
 	protected function startsWithImage( $term ) {
@@ -1122,7 +1122,7 @@ class SpecialSearch extends SpecialPage {
 	/**
 	 * Check if query starts with all: prefix
 	 *
-	 * @param $term String: the string to check
+	 * @param string $term the string to check
 	 * @return Boolean
 	 */
 	protected function startsWithAll( $term ) {

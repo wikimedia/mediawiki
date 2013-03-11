@@ -74,7 +74,7 @@ class LinkCache {
 	 * Get a field of a title object from cache.
 	 * If this link is not good, it will return NULL.
 	 * @param $title Title
-	 * @param $field String: ('length','redirect','revision','model')
+	 * @param string $field ('length','redirect','revision','model')
 	 * @return mixed
 	 */
 	public function getGoodLinkFieldObj( $title, $field ) {
@@ -162,7 +162,7 @@ class LinkCache {
 	/**
 	 * Add a title to the link cache, return the page_id or zero if non-existent
 	 *
-	 * @param $title String: title to add
+	 * @param string $title title to add
 	 * @return Integer
 	 */
 	public function addLink( $title ) {

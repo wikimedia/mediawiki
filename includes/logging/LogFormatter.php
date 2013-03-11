@@ -451,7 +451,7 @@ class LogFormatter {
 
 	/**
 	 * Formats parameters values dependent to their type
-	 * @param $type string The type of the value.
+	 * @param string $type The type of the value.
 	 *   Valid are currently:
 	 *     * - (empty) or plain: The value is returned as-is
 	 *     * raw: The value will be added to the log message
@@ -470,7 +470,7 @@ class LogFormatter {
 	 *     * title-link: The value is a page title,
 	 *                   returns link to this page
 	 *     * number: Format value as number
-	 * @param $value string The parameter value that should
+	 * @param string $value The parameter value that should
 	 *                      be formated
 	 * @return string or Message::numParam or Message::rawParam
 	 *         Formated value
@@ -525,7 +525,7 @@ class LogFormatter {
 	 * Helper to make a link to the page, taking the plaintext
 	 * value in consideration.
 	 * @param $title Title the page
-	 * @param $parameters array query parameters
+	 * @param array $parameters query parameters
 	 * @throws MWException
 	 * @return String
 	 */

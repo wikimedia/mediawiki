@@ -127,7 +127,7 @@ class ConfEditor {
 
 	/**
 	 * Edit the text. Returns the edited text.
-	 * @param $ops Array of operations.
+	 * @param array $ops of operations.
 	 *
 	 * Operations are given as an associative array, with members:
 	 *    type:     One of delete, set, append or insert (required)
@@ -306,7 +306,7 @@ class ConfEditor {
 	 * setVar( $arr, 'foo/bar', 'baz', 3 ); will set
 	 * $arr['foo']['bar']['baz'] = 3;
 	 * @param $array array
-	 * @param $path string slash-delimited path
+	 * @param string $path slash-delimited path
 	 * @param $key mixed Key
 	 * @param $value mixed Value
 	 */

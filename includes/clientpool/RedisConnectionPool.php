@@ -119,7 +119,7 @@ class RedisConnectionPool {
 	/**
 	 * Get a connection to a redis server. Based on code in RedisBagOStuff.php.
 	 *
-	 * @param $server string A hostname/port combination or the absolute path of a UNIX socket.
+	 * @param string $server A hostname/port combination or the absolute path of a UNIX socket.
 	 *                       If a hostname is specified but no port, port 6379 will be used.
 	 * @return RedisConnRef|bool Returns false on failure
 	 * @throws MWException

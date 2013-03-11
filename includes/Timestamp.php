@@ -72,7 +72,7 @@ class MWTimestamp {
 	 *
 	 * @since 1.20
 	 *
-	 * @param $timestamp bool|string Timestamp to set, or false for current time
+	 * @param bool|string $timestamp Timestamp to set, or false for current time
 	 */
 	public function __construct( $timestamp = false ) {
 		$this->setTimestamp( $timestamp );
@@ -86,7 +86,7 @@ class MWTimestamp {
 	 *
 	 * @since 1.20
 	 *
-	 * @param $ts string|bool Timestamp to store, or false for now
+	 * @param string|bool $ts Timestamp to store, or false for now
 	 * @throws TimestampException
 	 */
 	public function setTimestamp( $ts = false ) {
@@ -159,7 +159,7 @@ class MWTimestamp {
 	 *
 	 * @since 1.20
 	 *
-	 * @param $style int Constant Output format for timestamp
+	 * @param int $style Constant Output format for timestamp
 	 * @throws TimestampException
 	 * @return string The formatted timestamp
 	 */

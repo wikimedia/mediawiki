@@ -323,7 +323,7 @@ interface IORMTable {
 	/**
 	 * Set the ID of the any foreign wiki to use as a target for database operations
 	 *
-	 * @param String|bool $wiki The target wiki, in a form that  LBFactory understands (or false if the local wiki shall be used)
+	 * @param string|bool $wiki The target wiki, in a form that  LBFactory understands (or false if the local wiki shall be used)
 	 *
 	 * @since 1.20
 	 */

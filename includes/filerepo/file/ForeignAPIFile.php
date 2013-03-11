@@ -106,7 +106,7 @@ class ForeignAPIFile extends File {
 	}
 
 	/**
-	 * @param Array $params
+	 * @param array $params
 	 * @param int $flags
 	 * @return bool|MediaTransformOutput
 	 */

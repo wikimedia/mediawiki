@@ -205,7 +205,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * $titles can be an array of strings or Title objects; the former
 	 * is preferred, since Titles are very memory-heavy
 	 *
-	 * @param $titles array of strings, or Title objects
+	 * @param array $titles of strings, or Title objects
 	 * @param $output String
 	 */
 	private function showTitles( $titles, &$output ) {
@@ -313,7 +313,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 *
 	 * @param Title $title
 	 * @param int $namespace
-	 * @param String $dbKey
+	 * @param string $dbKey
 	 * @return bool: Whether this item is valid
 	 */
 	private function checkTitle( $title, $namespace, $dbKey ) {
@@ -382,7 +382,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * $titles can be an array of strings or Title objects; the former
 	 * is preferred, since Titles are very memory-heavy
 	 *
-	 * @param $titles Array of strings, or Title objects
+	 * @param array $titles of strings, or Title objects
 	 */
 	private function watchTitles( $titles ) {
 		$dbw = wfGetDB( DB_MASTER );
@@ -415,7 +415,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * $titles can be an array of strings or Title objects; the former
 	 * is preferred, since Titles are very memory-heavy
 	 *
-	 * @param $titles Array of strings, or Title objects
+	 * @param array $titles of strings, or Title objects
 	 */
 	private function unwatchTitles( $titles ) {
 		$dbw = wfGetDB( DB_MASTER );
@@ -668,8 +668,8 @@ class EditWatchlistCheckboxSeriesField extends HTMLMultiSelectField {
 	 * form is open (bug 32126), but we know that invalid items will
 	 * be harmless so we can override it here.
 	 *
-	 * @param $value String the value the field was submitted with
-	 * @param $alldata Array the data collected from the form
+	 * @param string $value the value the field was submitted with
+	 * @param array $alldata the data collected from the form
 	 * @return Mixed Bool true on success, or String error to display.
 	 */
 	function validate( $value, $alldata ) {

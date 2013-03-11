@@ -157,7 +157,7 @@ class Services_JSON
 	 * provides a slower PHP-only method for installations
 	 * that lack the multibye string extension.
 	 *
-	 * @param $utf16 String: UTF-16 character
+	 * @param string $utf16 UTF-16 character
 	 * @return String: UTF-8 character
 	 * @access private
 	 */
@@ -212,7 +212,7 @@ class Services_JSON
 	 * provides a slower PHP-only method for installations
 	 * that lack the multibye string extension.
 	 *
-	 * @param $utf8 String: UTF-8 character
+	 * @param string $utf8 UTF-8 character
 	 * @return String: UTF-16 character
 	 * @access private
 	 */
@@ -480,7 +480,7 @@ class Services_JSON
 	/**
 	 * array-walking function for use in generating JSON-formatted name-value pairs
 	 *
-	 * @param $name String: name of key to use
+	 * @param string $name name of key to use
 	 * @param $value Mixed: reference to an array element to be encoded
 	 *
 	 * @return String: JSON-formatted name-value pair, like '"name":value'
@@ -500,7 +500,7 @@ class Services_JSON
 	/**
 	 * reduce a string by removing leading and trailing comments and whitespace
 	 *
-	 * @param $str String: string value to strip of comments and whitespace
+	 * @param string $str string value to strip of comments and whitespace
 	 *
 	 * @return String: string value stripped of comments and whitespace
 	 * @access private
@@ -527,7 +527,7 @@ class Services_JSON
 	/**
 	 * decodes a JSON string into appropriate variable
 	 *
-	 * @param $str String: JSON-formatted string
+	 * @param string $str JSON-formatted string
 	 *
 	 * @return mixed number, boolean, string, array, or object
 	 *		   corresponding to given JSON input string.

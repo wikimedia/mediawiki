@@ -81,7 +81,7 @@ abstract class ResourceLoaderModule {
 	 * Set this module's name. This is called by ResourceLoader::register()
 	 * when registering the module. Other code should not call this.
 	 *
-	 * @param $name String: Name
+	 * @param string $name Name
 	 */
 	public function setName( $name ) {
 		$this->name = $name;
@@ -102,7 +102,7 @@ abstract class ResourceLoaderModule {
 	 * Set this module's origin. This is called by ResourceLodaer::register()
 	 * when registering the module. Other code should not call this.
 	 *
-	 * @param $origin Int origin
+	 * @param int $origin origin
 	 */
 	public function setOrigin( $origin ) {
 		$this->origin = $origin;
@@ -303,7 +303,7 @@ abstract class ResourceLoaderModule {
 	 * Get the files this module depends on indirectly for a given skin.
 	 * Currently these are only image files referenced by the module's CSS.
 	 *
-	 * @param $skin String: Skin name
+	 * @param string $skin Skin name
 	 * @return Array: List of files
 	 */
 	public function getFileDependencies( $skin ) {
@@ -329,8 +329,8 @@ abstract class ResourceLoaderModule {
 	/**
 	 * Set preloaded file dependency information. Used so we can load this
 	 * information for all modules at once.
-	 * @param $skin String: Skin name
-	 * @param $deps Array: Array of file names
+	 * @param string $skin Skin name
+	 * @param array $deps Array of file names
 	 */
 	public function setFileDependencies( $skin, $deps ) {
 		$this->fileDeps[$skin] = $deps;
@@ -339,7 +339,7 @@ abstract class ResourceLoaderModule {
 	/**
 	 * Get the last modification timestamp of the message blob for this
 	 * module in a given language.
-	 * @param $lang String: Language code
+	 * @param string $lang Language code
 	 * @return Integer: UNIX timestamp, or 0 if the module doesn't have messages
 	 */
 	public function getMsgBlobMtime( $lang ) {
@@ -367,7 +367,7 @@ abstract class ResourceLoaderModule {
 	/**
 	 * Set a preloaded message blob last modification timestamp. Used so we
 	 * can load this information for all modules at once.
-	 * @param $lang String: Language code
+	 * @param string $lang Language code
 	 * @param $mtime Integer: UNIX timestamp or 0 if there is no such blob
 	 */
 	public function setMsgBlobMtime( $lang, $mtime ) {
@@ -462,7 +462,7 @@ abstract class ResourceLoaderModule {
 	/**
 	 * Safe version of filemtime(), which doesn't throw a PHP warning if the file doesn't exist
 	 * but returns 1 instead.
-	 * @param $filename string File name
+	 * @param string $filename File name
 	 * @return int UNIX timestamp, or 1 if the file doesn't exist
 	 */
 	protected static function safeFilemtime( $filename ) {

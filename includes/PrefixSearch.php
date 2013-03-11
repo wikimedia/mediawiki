@@ -32,7 +32,7 @@ class PrefixSearch {
 	 *
 	 * @param $search String
 	 * @param $limit Integer
-	 * @param $namespaces Array: used if query is not explicitely prefixed
+	 * @param array $namespaces used if query is not explicitely prefixed
 	 * @return Array of strings
 	 */
 	public static function titleSearch( $search, $limit, $namespaces = array() ) {
@@ -91,7 +91,7 @@ class PrefixSearch {
 	/**
 	 * Prefix search special-case for Special: namespace.
 	 *
-	 * @param $search String: term
+	 * @param string $search term
 	 * @param $limit Integer: max number of items to return
 	 * @return Array
 	 */
@@ -147,8 +147,8 @@ class PrefixSearch {
 	 * be automatically capitalized by Title::secureAndSpit()
 	 * later on depending on $wgCapitalLinks)
 	 *
-	 * @param $namespaces Array: namespaces to search in
-	 * @param $search String: term
+	 * @param array $namespaces namespaces to search in
+	 * @param string $search term
 	 * @param $limit Integer: max number of items to return
 	 * @return Array of title strings
 	 */

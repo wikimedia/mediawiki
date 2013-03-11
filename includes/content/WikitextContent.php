@@ -219,7 +219,7 @@ class WikitextContent extends TextContent {
 	 * Returns true if this content is not a redirect, and this content's text
 	 * is countable according to the criteria defined by $wgArticleCountMethod.
 	 *
-	 * @param $hasLinks Bool  if it is known whether this content contains
+	 * @param bool $hasLinks  if it is known whether this content contains
 	 *    links, provide this information here, to avoid redundant parsing to
 	 *    find out (default: null).
 	 * @param $title Title: (default: null)
@@ -278,9 +278,9 @@ class WikitextContent extends TextContent {
 	 * @since    1.21
 	 *
 	 * @param $title Title
-	 * @param $revId int Revision to pass to the parser (default: null)
+	 * @param int $revId Revision to pass to the parser (default: null)
 	 * @param $options ParserOptions (default: null)
-	 * @param $generateHtml bool (default: false)
+	 * @param bool $generateHtml (default: false)
 	 *
 	 * @internal param \IContextSource|null $context
 	 * @return ParserOutput representing the HTML form of the text

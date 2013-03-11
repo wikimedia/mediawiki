@@ -144,8 +144,8 @@ class DatabaseSqlite extends DatabaseBase {
 
 	/**
 	 * Generates a database file name. Explicitly public for installer.
-	 * @param $dir String: Directory where database resides
-	 * @param $dbName String: Database name
+	 * @param string $dir Directory where database resides
+	 * @param string $dbName Database name
 	 * @return String
 	 */
 	public static function generateFileName( $dir, $dbName ) {
@@ -194,9 +194,9 @@ class DatabaseSqlite extends DatabaseBase {
 	 * Attaches external database to our connection, see http://sqlite.org/lang_attach.html
 	 * for details.
 	 *
-	 * @param $name String: database name to be used in queries like SELECT foo FROM dbname.table
-	 * @param $file String: database file name. If omitted, will be generated using $name and $wgSQLiteDataDir
-	 * @param $fname String: calling function name
+	 * @param string $name database name to be used in queries like SELECT foo FROM dbname.table
+	 * @param string $file database file name. If omitted, will be generated using $name and $wgSQLiteDataDir
+	 * @param string $fname calling function name
 	 *
 	 * @return ResultWrapper
 	 */
@@ -834,8 +834,8 @@ class DatabaseSqlite extends DatabaseBase {
 	/**
 	 * List all tables on the database
 	 *
-	 * @param $prefix string Only show tables with this prefix, e.g. mw_
-	 * @param $fname String: calling function name
+	 * @param string $prefix Only show tables with this prefix, e.g. mw_
+	 * @param string $fname calling function name
 	 *
 	 * @return array
 	 */

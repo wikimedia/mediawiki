@@ -78,7 +78,7 @@ class ResourceLoaderContext {
 	 * Expand a string of the form jquery.foo,bar|jquery.ui.baz,quux to
 	 * an array of module names like array( 'jquery.foo', 'jquery.bar',
 	 * 'jquery.ui.baz', 'jquery.ui.quux' )
-	 * @param $modules String Packed module name list
+	 * @param string $modules Packed module name list
 	 * @return array of module names
 	 */
 	public static function expandModuleNames( $modules ) {

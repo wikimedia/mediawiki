@@ -52,7 +52,7 @@ class BitmapMetadataHandler {
 	 *
 	 * Mostly just calls doPSIR and doIPTC
 	 *
-	 * @param String $app13 String containing app13 block from jpeg file
+	 * @param string $app13 String containing app13 block from jpeg file
 	 */
 	private function doApp13 ( $app13 ) {
 		try {
@@ -92,7 +92,7 @@ class BitmapMetadataHandler {
 	/** Add misc metadata. Warning: atm if the metadata category
 	 * doesn't have a priority, it will be silently discarded.
 	 *
-	 * @param Array $metaArray array of metadata values
+	 * @param array $metaArray array of metadata values
 	 * @param string $type type. defaults to other. if two things have the same type they're merged
 	 */
 	function addMetadata ( $metaArray, $type = 'other' ) {
@@ -143,7 +143,7 @@ class BitmapMetadataHandler {
 
 	/** Main entry point for jpeg's.
 	 *
-	 * @param $filename string filename (with full path)
+	 * @param string $filename filename (with full path)
 	 * @return array metadata result array.
 	 * @throws MWException on invalid file.
 	 */
@@ -186,7 +186,7 @@ class BitmapMetadataHandler {
 	 * merge the png various tEXt chunks to that
 	 * are interesting, but for now it only does XMP
 	 *
-	 * @param $filename String full path to file
+	 * @param string $filename full path to file
 	 * @return Array Array for storage in img_metadata.
 	 */
 	public static function PNG ( $filename ) {
@@ -215,7 +215,7 @@ class BitmapMetadataHandler {
 	 * They don't really have native metadata, so just merges together
 	 * XMP and image comment.
 	 *
-	 * @param $filename string full path to file
+	 * @param string $filename full path to file
 	 * @return Array metadata array
 	 */
 	public static function GIF ( $filename ) {
@@ -281,7 +281,7 @@ class BitmapMetadataHandler {
 	 * Read the first 2 bytes of a tiff file to figure out
 	 * Little Endian or Big Endian. Needed for exif stuff.
 	 *
-	 * @param $filename String The filename
+	 * @param string $filename The filename
 	 * @return String 'BE' or 'LE' or false
 	 */
 	static function getTiffByteOrder( $filename ) {

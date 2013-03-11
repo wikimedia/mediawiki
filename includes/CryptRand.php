@@ -148,7 +148,7 @@ class MWCryptRand {
 	/**
 	 * Randomly hash data while mixing in clock drift data for randomness
 	 *
-	 * @param $data string The data to randomly hash.
+	 * @param string $data The data to randomly hash.
 	 * @return String The hashed bytes
 	 * @author Tim Starling
 	 */
@@ -468,8 +468,8 @@ class MWCryptRand {
 	 * You can use MWCryptRand::wasStrong() if you wish to know if the source used
 	 * was cryptographically strong.
 	 *
-	 * @param $bytes int the number of bytes of random data to generate
-	 * @param $forceStrong bool Pass true if you want generate to prefer cryptographically
+	 * @param int $bytes the number of bytes of random data to generate
+	 * @param bool $forceStrong Pass true if you want generate to prefer cryptographically
 	 *                          strong sources of entropy even if reading from them may steal
 	 *                          more entropy from the system than optimal.
 	 * @return String Raw binary random data
@@ -484,8 +484,8 @@ class MWCryptRand {
 	 * You can use MWCryptRand::wasStrong() if you wish to know if the source used
 	 * was cryptographically strong.
 	 *
-	 * @param $chars int the number of hex chars of random data to generate
-	 * @param $forceStrong bool Pass true if you want generate to prefer cryptographically
+	 * @param int $chars the number of hex chars of random data to generate
+	 * @param bool $forceStrong Pass true if you want generate to prefer cryptographically
 	 *                          strong sources of entropy even if reading from them may steal
 	 *                          more entropy from the system than optimal.
 	 * @return String Hexadecimal random data

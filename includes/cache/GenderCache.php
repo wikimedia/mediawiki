@@ -59,8 +59,8 @@ class GenderCache {
 
 	/**
 	 * Returns the gender for given username.
-	 * @param $username String or User: username
-	 * @param $caller String: the calling method
+	 * @param string $username or User: username
+	 * @param string $caller the calling method
 	 * @return String
 	 */
 	public function getGenderOf( $username, $caller = '' ) {
@@ -116,7 +116,7 @@ class GenderCache {
 	 *
 	 * @since 1.20
 	 * @param $titles List: array of Title objects or strings
-	 * @param $caller String: the calling method
+	 * @param string $caller the calling method
 	 */
 	public function doTitlesArray( $titles, $caller = '' ) {
 		$users = array();
@@ -137,7 +137,7 @@ class GenderCache {
 	/**
 	 * Preloads genders for given list of users.
 	 * @param $users List|String: usernames
-	 * @param $caller String: the calling method
+	 * @param string $caller the calling method
 	 */
 	public function doQuery( $users, $caller = '' ) {
 		$default = $this->getDefault();

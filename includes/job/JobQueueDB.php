@@ -266,9 +266,9 @@ class JobQueueDB extends JobQueue {
 	/**
 	 * Reserve a row with a single UPDATE without holding row locks over RTTs...
 	 *
-	 * @param $uuid string 32 char hex string
+	 * @param string $uuid 32 char hex string
 	 * @param $rand integer Random unsigned integer (31 bits)
-	 * @param $gte bool Search for job_random >= $random (otherwise job_random <= $random)
+	 * @param bool $gte Search for job_random >= $random (otherwise job_random <= $random)
 	 * @return Row|false
 	 */
 	protected function claimRandom( $uuid, $rand, $gte ) {
@@ -346,7 +346,7 @@ class JobQueueDB extends JobQueue {
 	/**
 	 * Reserve a row with a single UPDATE without holding row locks over RTTs...
 	 *
-	 * @param $uuid string 32 char hex string
+	 * @param string $uuid 32 char hex string
 	 * @return Row|false
 	 */
 	protected function claimOldest( $uuid ) {

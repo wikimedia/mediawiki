@@ -72,9 +72,9 @@ class JavaScriptMinifier {
 	 *       literals (e.g. quoted strings) longer than $maxLineLength are encountered
 	 *       or when required to guard against semicolon insertion.
 	 *
-	 * @param $s String JavaScript code to minify
-	 * @param $statementsOnOwnLine Bool Whether to put each statement on its own line
-	 * @param $maxLineLength Int Maximum length of a single line, or -1 for no maximum.
+	 * @param string $s JavaScript code to minify
+	 * @param bool $statementsOnOwnLine Whether to put each statement on its own line
+	 * @param int $maxLineLength Maximum length of a single line, or -1 for no maximum.
 	 * @return String Minified code
 	 */
 	public static function minify( $s, $statementsOnOwnLine = false, $maxLineLength = 1000 ) {

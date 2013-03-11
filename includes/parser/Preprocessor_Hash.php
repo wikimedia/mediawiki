@@ -89,7 +89,7 @@ class Preprocessor_Hash implements Preprocessor {
 	 * Preprocess some wikitext and return the document tree.
 	 * This is the ghost of Parser::replace_variables().
 	 *
-	 * @param $text String: the text to parse
+	 * @param string $text the text to parse
 	 * @param $flags Integer: bitwise combination of:
 	 *          Parser::PTD_FOR_INCLUSION    Handle "<noinclude>" and "<includeonly>" as if the text is being
 	 *                                     included. Default is to assume a direct page view.

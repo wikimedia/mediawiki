@@ -254,8 +254,8 @@ class SquidUpdate {
 
 	/**
 	 * Find the HTCP routing rule to use for a given URL.
-	 * @param $url string URL to match
-	 * @param $rules array Array of rules, see $wgHTCPMulticastRouting for format and behavior
+	 * @param string $url URL to match
+	 * @param array $rules Array of rules, see $wgHTCPMulticastRouting for format and behavior
 	 * @return mixed Element of $rules that matched, or false if nothing matched
 	 */
 	static function getRuleForURL( $url, $rules ) {
