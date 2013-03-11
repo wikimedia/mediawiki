@@ -5879,4 +5879,26 @@ class Parser {
 		}
 		return $parsedWidthParam;
 	}
+
+	/**
+	 * Get formatted error html
+	 *
+	 * @since 1.21
+	 *
+	 * @param string
+	 *
+	 * @return string
+	 */
+	public function formatError( $errorMessage ) {
+		if ( is_string( $errorMessage ) ) {
+			return \Html::element(
+				'span',
+				array( 'class' => 'error' ),
+				$errorMessage
+			);
+		}
+
+		wfDebug( __METHOD__ . ': $errorMessage must be a string.' . "\n" );
+		return '';
+    }
 }
