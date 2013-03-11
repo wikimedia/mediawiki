@@ -41,6 +41,7 @@
  * @author Sarrus
  * @author Sir48
  * @author Slomox
+ * @author Steenth
  * @author Svip
  * @author Søren Løvborg
  * @author Tjernobyl
@@ -1952,6 +1953,12 @@ Husk at kontrollere for andre henvisninger til skabelonerne før de slettes.',
 'disambiguations-text' => "De følgende sider henviser til mindst en side med en '''flertydig titel'''.
 De bør henvise direkte til et mere passende emne i stedet.<br />
 En side behandles som en side med en flertydig titel hvis den bruger en skabelon som der er henvist til fra [[MediaWiki:Disambiguationspage]].",
+
+'pageswithprop' => 'Sider med en sideegenskab',
+'pageswithprop-legend' => 'Sider med en sideegenskab',
+'pageswithprop-text' => 'Denne side viser en liste over sider, der bruger en bestemt sideegenskaben.',
+'pageswithprop-prop' => 'Egenskabsnavn:',
+'pageswithprop-submit' => 'Gå',
 
 'doubleredirects' => 'Dobbelte omdirigeringer',
 'doubleredirectstext' => 'Dette er en liste over sider som omdirigerer til andre omdirigeringssider.
@@ -3903,5 +3910,8 @@ Ellers kan du bruge den enkle formular nedenfor. Din kommentar vil blive tilføj
 'duration-decades' => '$1 {{PLURAL:$1|årti|årtier}}',
 'duration-centuries' => '$1 {{PLURAL:$1|århundrede|århundreder}}',
 'duration-millennia' => '$1 {{PLURAL:$1|årtusind|årtusinder}}',
+
+# Image rotation
+'rotate-comment' => 'Billedet roteres med $1 {{PLURAL:$1| grad|grader}} med uret',
 
 );

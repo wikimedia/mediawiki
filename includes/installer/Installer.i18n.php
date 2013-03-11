@@ -1035,12 +1035,13 @@ $messages['ang'] = array(
 
 /** Arabic (العربية)
  * @author Meno25
+ * @author Mido
  * @author OsamaK
  * @author روخو
  */
 $messages['ar'] = array(
 	'config-desc' => 'مثبت لميدياويكي',
-	'config-title' => 'ميدياويكي 1$ التثبيت', # Fuzzy
+	'config-title' => 'تثبيت ميدياويكي $1',
 	'config-information' => 'معلومات',
 	'config-back' => '→ ارجع',
 	'config-continue' => 'استمر ←',
@@ -1061,7 +1062,7 @@ $messages['ar'] = array(
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings قائمة إعدادات الضبط]
 * [//www.mediawiki.org/wiki/Manual:FAQ أسئلة متكررة حول ميدياويكي]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce القائمة البريدية الخاصة بإصدار ميدياويكي]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce القائمة البريدية الخاصة بإصدار ميدياويكي]', # Fuzzy
 );
 
 /** Aramaic (ܐܪܡܝܐ)
@@ -2888,6 +2889,7 @@ Gwiriit hag-eñ e c'hall an implijer « $1 » skrivañ er brastres « $2 ».",
 	'config-install-mainpage-failed' => "Ne c'haller ket ensoc'hañ ar bajenn bennañ: $1",
 	'config-download-localsettings' => 'Pellgargañ <code>LocalSettings.php</code>',
 	'config-help' => 'skoazell',
+	'config-nofile' => 'N\'eus ket bet gallet kavout ar restr "$1". Daoust ha dilamet eo bet ?',
 	'mainpagetext' => "'''Meziant MediaWiki staliet.'''",
 	'mainpagedocfooter' => "Sellit ouzh [//meta.wikimedia.org/wiki/Help:Contents Sturlevr an implijerien] evit gouzout hiroc'h war an doare da implijout ar meziant wiki.
 

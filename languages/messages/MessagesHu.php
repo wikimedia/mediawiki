@@ -3094,6 +3094,7 @@ Ez valószínűleg egy olyan link miatt van, ami egy feketelistán lévő oldalr
 'spambot_username' => 'MediaWiki spam kitakarítása',
 'spam_reverting' => 'Visszatérés a $1 lapra mutató hivatkozásokat nem tartalmazó utolsó változathoz',
 'spam_blanking' => 'Az összes változat tartalmazott a $1 lapra mutató hivatkozásokat, kiürítés',
+'spam_deleting' => 'Minden változat tartalmazott $1-re mutató hivatkozást, törlöm',
 
 # Info page
 'pageinfo-title' => 'Információk a(z) „$1” lapról',
@@ -3722,6 +3723,7 @@ Ez a megerősítő e-mail $4-ig érvényes.',
 # Scary transclusion
 'scarytranscludedisabled' => '[Wikiközi beillesztés le van tiltva]',
 'scarytranscludefailed' => '[$1 sablon letöltése sikertelen]',
+'scarytranscludefailed-httpstatus' => ' [Nem sikerült betölteni a(z) $1 sablont: HTTP $2]',
 'scarytranscludetoolong' => '[Az URL túl hosszú]',
 
 # Delete conflict
@@ -4053,5 +4055,8 @@ A képek teljes méretben jelennek meg, más fájltípusok közvetlenül a hozz�
 'duration-decades' => '{{PLURAL:$1|egy|$1}} évtized',
 'duration-centuries' => '{{PLURAL:$1|egy|$1}} évszázad',
 'duration-millennia' => '{{PLURAL:$1|egy|$1}} évezred',
+
+# Image rotation
+'rotate-comment' => 'Elforgattam a képet $1 fokkal, az óramutató járásával megegyező irányban',
 
 );

@@ -378,7 +378,7 @@ $1',
 'pool-errorunknown' => 'Билдәһеҙ хата',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite' => '{{grammar:genitive|{{SITENAME}}}} тураһында',
+'aboutsite' => '{{SITENAME}} тураһында',
 'aboutpage' => 'Project:Тасуирлама',
 'copyright' => '$1 ярашлы эстәлеге менән һәр кем файҙалана ала.',
 'copyrightpage' => '{{ns:project}}:Авторлыҡ хоҡуҡтары',
@@ -645,7 +645,7 @@ $2',
 'loginlanguagelabel' => 'Тел: $1',
 'suspicious-userlogout' => 'Һеҙҙең сеансты тамамлау тураһында һорауығыҙ кире ҡағылды, сөнки ул төҙөк булмаған браузер йәки кэшлаусы прокси тарафынан ебәрелгән һорауға оҡшаған.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'PHP-ның mail() функцияһында билдәһеҙ хата',
 'user-mail-no-addy' => 'Электрон почта адресы булмайынса электрон хәбәр ебәреп ҡараны',
 
@@ -1323,7 +1323,7 @@ $1",
 'prefs-displaywatchlist' => 'Күренеш көйләүҙәре',
 'prefs-diffs' => 'Айырмалар',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'E-mail адрес дөрөҫ булғанға оҡшаған',
 'email-address-validity-invalid' => 'Дөрөҫ e-mail адресын керетегеҙ',
 
@@ -2103,7 +2103,7 @@ $1',
 'listgrouprights-addgroup-self-all' => 'Үҙенең иҫәп яҙмаһына бөтә төркөмдәрҙе өҫтәү',
 'listgrouprights-removegroup-self-all' => 'Үҙенең иҫәп яҙмаһынан бөтә төркөмдәрҙе юйыу',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Хат ебәреү өсөн адрес юҡ',
 'mailnologintext' => 'Башҡа ҡатнашыусыларға хат ебәреү өсөн, һеҙ [[Special:UserLogin|танылырға]] һәм [[Special:Preferences|көйләүҙәрегеҙҙә]] ысын электрон адрес почтаһы кереткән булырға тейешһегеҙ.',
 'emailuser' => 'Ҡатнашыусыға хат',
@@ -3472,7 +3472,7 @@ $1',
 'monthsall' => 'бөтә',
 'limitall' => 'бөтә',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Электрон почта адресын раҫлау',
 'confirmemail_noemail' => 'Һеҙҙең [[Special:Preferences|көйләүҙәрегеҙҙә]] дөрөҫ электрон почта адресы юҡ.',
 'confirmemail_text' => '{{SITENAME}} проекты электрон почта мөмкинлектәрен ҡулланыр алдынан электрон почта адресының раҫланыуын талап итә.
