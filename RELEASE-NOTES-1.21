@@ -195,6 +195,7 @@ production.
 * (bug 42184) $wgUploadSizeWarning missing second variable
 * (bug 40326) Check if files exist with a different extension during uploading
 * (bug 34798) Updated CSS for Atom/RSS recent changes feeds to match on-wiki diffs.
+* (bug 42430) Calling numRows on MySQL no longer propagates unrelated errors.
 
 === API changes in 1.21 ===
 * prop=revisions can now report the contentmodel and contentformat.
