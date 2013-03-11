@@ -36,6 +36,8 @@
 		tooltip: 'Enable debug mode in ResourceLoader'
 	} );
 
+	QUnit.config.requireExpects = true;
+
 	/**
 	 * Load TestSwarm agent
 	 */
@@ -52,7 +54,7 @@
 	/**
 	 * CompletenessTest
 	 */
-	 // Adds toggle checkbox to header
+	// Adds toggle checkbox to header
 	QUnit.config.urlConfig.push( {
 		id: 'completenesstest',
 		label: 'Run CompletenessTest',
