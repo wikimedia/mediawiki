@@ -80,7 +80,7 @@ class RedisConnectionPool {
 			: false;
 		$this->password = isset( $options['password'] )
 			? $options['password']
-			: '';
+			: null;
 		$this->poolSize = isset( $options['poolSize'] )
 			? $options['poolSize']
 			: 5;
