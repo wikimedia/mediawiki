@@ -141,30 +141,16 @@
 		};
 
 		/**
-		 * Gets the current user's name or a random ID automatically generated and kept in a cookie.
-		 *
-		 * This ID is persistent for anonymous users, staying in their browser up to 1 year. The
-		 * expiration time is reset each time the ID is queried, so in most cases this ID will
-		 * persist until the browser's cookies are cleared or the user doesn't visit for 1 year.
+		 * Gets the current user's name or the session ID
 		 *
 		 * @return {string} User name or random session ID
 		 */
 		this.id = function () {
-			var id,
-				name = user.getName();
+			var name = user.getName();
 			if ( name ) {
 				return name;
 			}
-			id = $.cookie( 'mediaWiki.user.id' );
-			if ( typeof id === 'undefined' || id === null ) {
-				id = user.generateRandomSessionId();
-			}
-			// Set cookie if not set, or renew it if already set
-			$.cookie( 'mediaWiki.user.id', id, {
-				expires: 365,
-				path: '/'
-			} );
-			return id;
+			return user.sessionId();
 		};
 
 		/**
