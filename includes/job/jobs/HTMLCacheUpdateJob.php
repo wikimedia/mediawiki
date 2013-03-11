@@ -124,7 +124,7 @@ class HTMLCacheUpdateJob extends Job {
 	 *
 	 * @param $titleArray array
 	 * @param $rootJobParams array
-	 * @rerturn void
+	 * @return void
 	 */
 	protected function insertJobsFromTitles( $titleArray, $rootJobParams = array() ) {
 		// Carry over any "root job" information

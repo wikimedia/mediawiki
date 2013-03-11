@@ -107,7 +107,7 @@ interface IORMTable {
 	 * @param string|null $functionName
 	 *
 	 * @return ORMResult The result set
-	 * @throw DBQueryError if the query failed (even if the database was in ignoreErrors mode)
+	 * @throws DBQueryError if the query failed (even if the database was in ignoreErrors mode)
 	 */
 	public function select( $fields = null, array $conditions = array(),
 							array $options = array(), $functionName = null );
@@ -139,7 +139,7 @@ interface IORMTable {
 	 * @param null|string $functionName
 	 *
 	 * @return ResultWrapper
-	 * @throw DBQueryError if the query failed (even if the database was in ignoreErrors mode)
+	 * @throws DBQueryError if the query failed (even if the database was in ignoreErrors mode)
 	 */
 	public function rawSelect( $fields = null, array $conditions = array(),
 							   array $options = array(), $functionName = null );

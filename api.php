@@ -8,7 +8,7 @@
  * as an argument in the URL ('?action=') and with write-enabled set to the
  * value of $wgEnableWriteAPI as specified in LocalSettings.php.
  * It then invokes "execute()" on the ApiMain object instance, which
- * produces output in the format sepecified in the URL.
+ * produces output in the format specified in the URL.
  *
  * Copyright © 2006 Yuri Astrakhan <Firstname><Lastname>@gmail.com
  *

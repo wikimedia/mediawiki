@@ -1,7 +1,7 @@
 <?php
 /**
  * Version of mw-config/index.php to used in web server requiring .php5
- * extension to execute scripts with PHP5 egine.
+ * extension to execute scripts with PHP5 engine.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

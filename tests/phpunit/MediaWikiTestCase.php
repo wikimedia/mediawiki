@@ -128,7 +128,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 *
 	 * The obtained filename is enlisted to be removed upon tearDown
 	 *
-	 * @returns string: absolute name of the temporary file
+	 * @return string: absolute name of the temporary file
 	 */
 	protected function getNewTempFile() {
 		$fname = tempnam( wfTempDir(), 'MW_PHPUnit_' . get_class( $this ) . '_' );
@@ -142,7 +142,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * The obtained directory is enlisted to be removed (recursively with all its contained
 	 * files) upon tearDown.
 	 *
-	 * @returns string: absolute name of the temporary directory
+	 * @return string: absolute name of the temporary directory
 	 */
 	protected function getNewTempDirectory() {
 		// Starting of with a temporary /file/.

@@ -6,7 +6,7 @@ class StringUtilsTest extends MediaWikiTestCase {
 	 * This test StringUtils::isUtf8 whenever we have mbstring extension
 	 * loaded.
 	 *
-	 * @cover StringUtils::isUtf8
+	 * @covers StringUtils::isUtf8
 	 * @dataProvider provideStringsForIsUtf8Check
 	 */
 	function testIsUtf8WithMbstring( $expected, $string ) {
@@ -24,7 +24,7 @@ class StringUtilsTest extends MediaWikiTestCase {
 	 * implementation used as a fallback when mb_check_encoding() is
 	 * not available.
 	 *
-	 * @cover StringUtils::isUtf8
+	 * @covers StringUtils::isUtf8
 	 * @dataProvider provideStringsForIsUtf8Check
 	 */
 	function testIsUtf8WithPhpFallbackImplementation( $expected, $string ) {
