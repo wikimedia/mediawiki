@@ -20,6 +20,7 @@
  * @author Jordi Roqué
  * @author Juanpabl
  * @author Kaganer
+ * @author Marcmpujol
  * @author Martorell
  * @author McDutchie
  * @author Pasqual (ca)
@@ -330,6 +331,7 @@ $messages = array(
 'newwindow' => '(obre en una nova finestra)',
 'cancel' => 'Anuŀla',
 'moredotdotdot' => 'Més...',
+'morenotlisted' => 'Més no en la llista...',
 'mypage' => 'Pàgina',
 'mytalk' => 'Discussió',
 'anontalk' => "Discussió d'aquesta IP",
@@ -695,6 +697,7 @@ Si us plau, esperi abans de tornar-ho a intentar.",
 # Email sending
 'php-mail-error-unknown' => 'Error desconegut en la funció mail() de PHP',
 'user-mail-no-addy' => "S'ha intentat enviar un missatge de correu electrònic sense adreça.",
+'user-mail-no-body' => 'Vas intentar enviar un correu electrònic amb un cos buit o excessivament curt.',
 
 # Change password dialog
 'resetpass' => 'Canvia la contrasenya',
@@ -2313,6 +2316,8 @@ Vegeu la [[Special:ProtectedPages|llista de pàgines protegides]] per a la llist
 'prot_1movedto2' => '[[$1]] mogut a [[$2]]',
 'protect-badnamespace-title' => 'Espai de nom no-protectable',
 'protect-badnamespace-text' => 'Les pàgines en aquest espai de nom no pot ser protegit.',
+'protect-norestrictiontypes-text' => 'Aquesta pàgina no es pot protegir ja que no hi ha cap tipus de restricció disponible.',
+'protect-norestrictiontypes-title' => 'Pàgina no protegible',
 'protect-legend' => 'Confirmeu la protecció',
 'protectcomment' => 'Motiu:',
 'protectexpiry' => "Data d'expiració",

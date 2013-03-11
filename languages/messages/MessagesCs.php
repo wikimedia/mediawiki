@@ -2122,8 +2122,10 @@ Asi by místo toho měly odkazovat na konkrétnější stránku.<br />
 Stránka je považována za rozcestník, pokud používá některou ze šablon odkazovaných na [[MediaWiki:Disambiguationspage]].",
 
 'pageswithprop' => 'Stránky s vlastností',
+'pageswithprop-legend' => 'Stránky s vlastností',
 'pageswithprop-text' => 'Tato stránka obsahuje seznam stránek, které používají zadanou vlastnost stránky.',
 'pageswithprop-prop' => 'Název vlastnosti:',
+'pageswithprop-submit' => 'Provést',
 
 'doubleredirects' => 'Dvojitá přesměrování',
 'doubleredirectstext' => 'Na této stránce je seznam přesměrování vedoucích na další přesměrování.
@@ -4158,7 +4160,7 @@ Jinak můžete využít jednoduchý formulář níže. Váš komentář bude př
 'duration-centuries' => '$1 {{PLURAL:$1|století}}',
 'duration-millennia' => '$1 {{PLURAL:$1|tisíciletí}}',
 
-# Unknown messages
-'pageswithprop-legend' => 'Stránky s vlastností',
-'pageswithprop-submit' => 'Provést',
+# Image rotation
+'rotate-comment' => 'Obrázek otočen o $1 {{PLURAL:$1|stupeň|stupně|stupňů}} po směru hodinových ručiček',
+
 );

@@ -675,9 +675,9 @@ Kato sandi untuak akun baharu iko dapek diubah di laman ''[[Special:ChangePasswo
 'newarticletext' => "Laman nan awak cari alun ado.
 Untuak mambuek laman tu, mulailah dangan manulih dalam kotak di bawah (caliak [[{{MediaWiki:Helppage}}|laman bantuan]] untuak informasi lanjuiknyo).
 Jikok awak indak sangajo sampai ka laman ko, klik tombol '''back''' pado panjalajah web awak.",
-'anontalkpagetext' => "----''Iko adolah laman pambicaraan saurang pangguno anonim nan alun mambuek akun atau indak manggunoannyo.
-Jadi, kami tapaso harus mamakai alamat IP nan basangkutan untuak maidentifikasikannyo.
-Jikok Sanak adolah saurang pangguno anonim dan marasa mandapekkan komentar-komentar nan indak relevan nan ditujuan langsung kapado Sanak, sila [[Special:UserLogin/signup|mambuek akun]] atau [[Special:UserLogin|masuak log]] untuak mahindari karancuan jo pangguno anonim lainnya di lain wakatu.''",
+'anontalkpagetext' => "----''Iko adolah laman rundiang saurang pangguno anonim nan alun mambuek akun atau indak manggunoannyo.
+Jadi, kami tapaso mamakai alamat IP nan takaik untuak mangenalinyo.
+Jikok Sanak adolah pangguno anonim dan maraso mandapek komentar nan indak lamak nan ditujuan langsung kapado Sanak, cubolah [[Special:UserLogin/signup|mambuek akun]] atau [[Special:UserLogin|masuak log]] guno manghindari karancuan jo pangguno anonim lainnyo.''",
 'noarticletext' => 'Kini ko indak ada teks di laman iko.
 Sanak dapek [[Special:Search/{{PAGENAME}}|malakukan pancarian untuak judul laman iko]] di laman-laman lain, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} mancari log takaik], atau [{{fullurl:{{FULLPAGENAME}}|action=edit}} manyuntiang laman iko]</span>.',
 'noarticletext-nopermission' => 'Kini ko indak ado teks dalam laman ko.
@@ -1089,8 +1089,8 @@ Jan labiah dari $1 {{PLURAL:$1|karakter}}.',
 'prefs-help-realname' => "Namo asli sifaiknyo opsional.
 Jiko' Angku manambahkannyo, namo asli Angku akan digunoan untuak mengenal hasil karaja Angku.",
 'prefs-help-email' => "Alamaik surel ko hanyolah tambahan, tapi paralu untuak ma-''reset'' kato sandi, bilo Sanak lupo kato sandi.",
-'prefs-help-email-others' => 'Sanak dapek mamiliah untuak mangizinkan urang lain manghubungi jo surel malalui laman pangguno atau laman diskusi.
-Alamaik surel tu indakkan tau dek urang nan manghubungi sanak tu.',
+'prefs-help-email-others' => 'Sanak dapek mamiliah untuak mangizinkan urang lain manghubungi jo surel malalui laman pangguno atau laman rundiang.
+Alamaik surel Sanak indakkan tau dek urang nan manghubungi sanak tu.',
 'prefs-help-email-required' => 'Alamaik surel wajib diisi.',
 'prefs-info' => 'Informasi dasar',
 'prefs-i18n' => 'Internasionalisasi',
@@ -1698,7 +1698,7 @@ Entri log pamblokiran tabaru ado di bawah ko untuak referensi:',
 'ipbotheroption' => 'lainnyo',
 'ipbotherreason' => 'Alasan lain/tambahan:',
 'ipbhidename' => 'Suruakan namo pangguno dari dafta jo suntiangan',
-'ipbwatchuser' => 'Pantau laman pangguno ko jo laman diskusinyo',
+'ipbwatchuser' => 'Pantau laman pangguno ko jo laman rundiangnyo',
 'ipb-disableusertalk' => 'Halang pangguno ko manyuntiang laman diskusinyo wakatu disakek',
 'ipb-change-block' => 'Sakek baliak pangguno jo setelan ko',
 'ipb-confirm' => 'Konfirmasi sakek',

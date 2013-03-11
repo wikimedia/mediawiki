@@ -631,7 +631,11 @@ o [{{fullurl:{{FULLPAGENAME}}|action=edit}} igliwat ini nga pakli]</span>.',
 'noarticletext-nopermission' => 'Waray yana nahasurat hini nga pakli
 Puyde hi ikaw [[Special:Search/{{PAGENAME}}|magbiling han ngaran hini nga pakli]] ha iba nga mga pakli,
 o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} mamiling han mga nanginginlabot nga mga talaan]</span>, kundi diri ka gintutugotan hin paghímò hini nga pakli.',
+'userpage-userdoesnotexist' => 'Diri nakarehistro an akawnt han gumaramit nga "$1".
+Alayon pagpamuruotbuot kun karuyag mo maghimo/mag-edit hini nga pakli.',
 'userpage-userdoesnotexist-view' => "An akawnt han gumaramit ni ''$1'' in diri nakarehistro.",
+'blocked-notice-logextract' => 'Ini nga gumaramit in nakapugong yana.
+An pinakaurhi nga log entry han mga pinugong in ginhatag ha ubos para hit reperensya:',
 'updated' => '(Ginbag-ohan)',
 'note' => "'''Pahibaro:'''",
 'previewnote' => "'''Hinumdumi nga pahiuna-nga-paggawas pa la ini.'''
@@ -850,6 +854,7 @@ Ginpapasabot nga an sulod han mga panudlok han {{SITENAME}} in bangin daan an.',
 'prefs-user-pages' => 'Mga pakli hin gumaramit',
 'prefs-personal' => 'Pangilal-an han nagamit',
 'prefs-rc' => 'Kalalabay la nga mga pagbabag-o',
+'prefs-watchlist' => 'Listahan hit binabantayan',
 'prefs-watchlist-days' => 'Mga adlaw nga makikita ha barantayan:',
 'prefs-watchlist-days-max' => 'Pinakadamo $1 {{PLURAL:$1|ka adlaw|ka mga adlaw}}',
 'prefs-watchlist-edits-max' => 'Pinakadako nga ihap: 1000',
@@ -889,8 +894,8 @@ Ginpapasabot nga an sulod han mga panudlok han {{SITENAME}} in bangin daan an.',
 'default' => 'aada-nga-daan',
 'prefs-files' => 'Mga paypay',
 'youremail' => 'E-mail:',
-'username' => 'Agnay hiton gumaramit:',
-'uid' => 'ID han gumaramit:',
+'username' => '{{HENERO:$1|Agnay hit gumaramit}}:',
+'uid' => 'ID hit {{HENERO:$1|Gumaramit}}:',
 'prefs-memberingroups' => 'Api han {{PLURAL:$1| nga hugpo|nga mga hugpo}}:',
 'prefs-registration' => 'Oras han pagrehistro:',
 'yourrealname' => 'Tinuod nga ngaran:',
@@ -956,6 +961,7 @@ Diri ka gintutugotan pagliwat han mga katungod han gumaramit ha iba nga mga wiki
 'group-bureaucrat-member' => '{{GENDER:$1|burokrata}}',
 
 'grouppage-user' => '{{ns:project}}:Mga gumaramit',
+'grouppage-autoconfirmed' => '{{ns:project}}:Mga gumaramit nga naka-awtokompirmado',
 'grouppage-bot' => '{{ns:project}}:Mga bot',
 'grouppage-sysop' => '{{ns:project}}:Mga magdudumara',
 'grouppage-bureaucrat' => '{{ns:project}}:Mga burokrata',
@@ -974,7 +980,9 @@ Diri ka gintutugotan pagliwat han mga katungod han gumaramit ha iba nga mga wiki
 'right-movefile' => 'Balhina an mga paypay',
 'right-upload' => 'Igkarga paigbaw an mga paypay',
 'right-reupload' => 'Sapawa an mga aada nga mga paypay',
+'right-reupload-own' => 'Igsapaw an aada yana nga mga paypay nga ginkarga-pasaka nimo mismo',
 'right-upload_by_url' => 'Igkarga paigbaw an mga paypay tikang ha uska URL',
+'right-autoconfirmed' => 'Igliwat an mga semi-pinanpasaliporan nga pakli',
 'right-bot' => 'Igtrato komo uska naglulugaring nga proseso',
 'right-delete' => 'Igpara an mga pakli',
 'right-bigdelete' => 'Igpara an mga pakli nga may-ada dagko nga mga kaagi',
@@ -1026,6 +1034,7 @@ Diri ka gintutugotan pagliwat han mga katungod han gumaramit ha iba nga mga wiki
 'action-protect' => 'igsaliwan an katupngan han pananalipod para hini nga pakli',
 'action-import' => 'ig-angbit ini nga pakli tikang ha iba nga wiki',
 'action-importupload' => 'ig-angbit ini nga pakli tikang ha uska ginkarga-pasaka nga paypay',
+'action-patrol' => 'markahi an kanan iba pagliwat komo nakapatrolya',
 'action-mergehistory' => 'Igtampo an kaagi hini nga pakli',
 'action-userrights' => 'Igliwat an ngatanan nga mga katungod han gumaramit',
 'action-sendemail' => 'Padara hin mga e-mail',
@@ -1084,6 +1093,7 @@ Mga pakli ha [[Special:Watchlist|imo angay timan-an]] in naka-'''bold'''.",
 
 An taramdan han pagpara ngan pagbalhin para hini nga pakli in ginhahatag para han imo kamurayaw:",
 'upload-permitted' => 'Gintutugotan nga mga klase han paypay: $1.',
+'upload-preferred' => 'Mas karugag nga mga tipo hin paypay: %1.',
 'upload-prohibited' => 'Gindidire nga mga klase han paypay: $1.',
 'uploadlog' => 'Talaan hin ginkarga-pasaka',
 'uploadlogpage' => 'Talaan han mga ginkarga-paigbaw',
@@ -1091,11 +1101,15 @@ An taramdan han pagpara ngan pagbalhin para hini nga pakli in ginhahatag para ha
 'filedesc' => 'Dalikyat nga pulong',
 'fileuploadsummary' => 'Dalikyat nga pulong:',
 'filereuploadsummary' => 'Mga pagbal-iw ha fayl:',
+'filestatus' => 'Kahimtang han copyright:',
 'filesource' => 'Tinikangan:',
+'uploadedfiles' => 'Mga paypay nga ginkarga-pasaka',
 'ignorewarning' => 'Pabay-i an pahimatngon ngan igtipig la ngahaw',
 'ignorewarnings' => 'Pasagdi an bisan ano nga mga pahimatngon',
+'minlength1' => 'Iton ngaran-han-paypay in kinahanglan may-ada bisan usa la nga letra.',
 'filename-toolong' => 'Iton ngaran hin paypay in diri puyde na mas lapos pa ha 240 ka mga byte.',
 'badfilename' => 'An ngaran-han-paypay in ginliwat ngada ha "$1".',
+'empty-file' => 'An paypay nga imo ginsumite in waray sulod.',
 'filename-tooshort' => 'An ngaran han fayl in halipot hin duro.',
 'filetype-banned' => 'Ini nga klase nga paypay in gindidire.',
 'illegal-filename' => 'An ngaran han fayl in diri gintutugutan.',
@@ -1105,6 +1119,7 @@ An taramdan han pagpara ngan pagbalhin para hini nga pakli in ginhahatag para ha
 'large-file' => 'Ginrerekomenda nga it mga paypay in diri malapos hin $1;
 ini nga paypay in $2.',
 'largefileserver' => 'Ini nga paypay in durudako kaysa ha ginpapakarawat han serbidor.',
+'windows-nonascii-filename' => 'Ini nga wiki in diri nakasuportado han mga ngaran-han-paypay nga may-ada pinaurog nga mga karakter.',
 'uploadwarning' => 'Pahimatngon han pagkarga paigbaw',
 'savefile' => 'Igtipig an paypay',
 'uploadedimage' => 'ginkarga-paigbaw "[[$1]]"',
@@ -1153,6 +1168,21 @@ $1',
 'backend-fail-create' => 'Diri nasusuratan an paypay nga "$1".',
 'backend-fail-maxsize' => 'Diri nasusuratan an paypay nga "$1" tungod nga mas dako ini kaysa hin {{PLURAL:"$2|usa nga byte|$2 nga mga byte}}.',
 'backend-fail-readonly' => 'An panluyo nga tiripigan nga "$1" in ha pagkayana in panbasa-la.  An rason nga ginhatag in: "\'\'$2\'\'"',
+'backend-fail-connect' => 'Diri nakakasumpay ha storage backend "$1".',
+
+# Lock manager
+'lockmanager-notlocked' => 'Waray ka rangka an "$1"; diri ini nakatrangka.',
+'lockmanager-fail-closelock' => 'Diri nakakasera han nakatrangka nga paypay para han "$1".',
+'lockmanager-fail-deletelock' => 'Diri nakakapara han nakatrangka nga paypay para hit "$1".',
+'lockmanager-fail-acquirelock' => 'Diri nakakakarawat hin trangka para hit "$1".',
+'lockmanager-fail-openlock' => 'Diri nakakaabre han nakatrangka nga paypay para hit "$1".',
+'lockmanager-fail-releaselock' => 'Diri nakakabul-iw han trangka para hit "$1".',
+
+# ZipDirectoryReader
+'zip-wrong-format' => 'An espisipikado nga paypay in diri naka ZIP nga paypay.',
+
+# Special:UploadStash
+'uploadstash-errclear' => 'An paghawan han mga paypay in diri malinamposon.',
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Diri gintutugutan makasulod',
@@ -1207,7 +1237,11 @@ An paglaladawan han iya [$2 fayl han paglaladawan nga pakli] didto in ginpapakit
 'upload-disallowed-here' => 'Diri nimo masasapaw ini nga paypay.',
 
 # File reversion
+'filerevert' => 'Igbalik $1',
+'filerevert-legend' => 'Igbalik an paypay',
 'filerevert-comment' => 'Rason:',
+'filerevert-defaultcomment' => 'Ginbalik nga bersyon han $2, $1',
+'filerevert-submit' => 'Igbalik',
 
 # File deletion
 'filedelete' => 'Igpara $1',
@@ -1224,6 +1258,9 @@ An paglaladawan han iya [$2 fayl han paglaladawan nga pakli] didto in ginpapakit
 'mimesearch' => 'MIME nga pamiling',
 'mimetype' => 'MIME nga klase:',
 'download' => 'pagkarga paubos',
+
+# Unwatched pages
+'unwatchedpages' => 'Mga paypay nga gintanggal an pagbantay',
 
 # List redirects
 'listredirects' => 'Talaan hin mga redirect',
@@ -1258,6 +1295,11 @@ An paglaladawan han iya [$2 fayl han paglaladawan nga pakli] didto in ginpapakit
 'disambiguations' => 'Mga pakli nga nasumpay ha mga pansayod nga pakli',
 'disambiguationspage' => 'Template:pansayod',
 
+'pageswithprop-submit' => 'Kadto-a',
+
+'doubleredirects' => 'Mga doble nga redirekta',
+'double-redirect-fixer' => 'Mangangayad hin redirekta',
+
 'brokenredirects' => 'Mga redirect nga utod',
 'brokenredirects-edit' => 'igliwat',
 'brokenredirects-delete' => 'paraa',
@@ -1289,12 +1331,18 @@ An paglaladawan han iya [$2 fayl han paglaladawan nga pakli] didto in ginpapakit
 'mostlinked' => 'Pinakadamo nga mga ginsumpayan nga pakli',
 'mostlinkedcategories' => 'Pinakadamo nga mga ginsumpayan nga kaarangay',
 'mostlinkedtemplates' => 'Pinakadamo nga mga ginsumpayan nga batakan',
+'mostcategories' => 'Mga paypay nga may-ada pinakadamo nga mga kaarangay',
+'mostimages' => 'Pinakadamo nga nahisumpayan nga mga paypay',
+'mostinterwikis' => 'Mga pakli nga may-ada pinakadamo nga mga interwiki',
+'mostrevisions' => 'Mga pakli nga may-ada pinakadamo nga mga rebisyon',
 'prefixindex' => 'Ngatanan nga pakli nga may-ada pahiuna-nga-sumpay',
 'shortpages' => 'Haglipot nga mga pakli',
 'longpages' => 'Haglaba nga mga pakli',
 'deadendpages' => 'Waray na kakadtoan nga mga pakli',
 'protectedpages' => 'Pinapasaliporan nga mga pakli',
+'protectedtitles' => 'Pinapasaliporan nga mga titulo',
 'listusers' => 'Lista han mga gumaramit',
+'listusers-editsonly' => 'Igpakita la an mga gumaramit nga may-ada ginliwat',
 'listusers-creationsort' => 'Ginsusunodsunod pinaagi han paghimo nga petsa',
 'usereditcount' => '$1 {{PLURAL:$1|ka pagliwat|ka mga pagliwat}}',
 'usercreated' => '{{GENDER:$3|Ginhimo}} han $1 ha $2',
@@ -1333,6 +1381,7 @@ An paglaladawan han iya [$2 fayl han paglaladawan nga pakli] didto in ginpapakit
 'allpagesnext' => 'Sunod',
 'allpagessubmit' => 'Kadto-a',
 'allpages-bad-ns' => '{{SITENAME}} in waray ngaran-lat\'ang nga "$1".',
+'allpages-hide-redirects' => 'Igtago an mga redirekta',
 
 # SpecialCachedPage
 'cachedspecial-refresh-now' => 'Igkita an pinakaurhi.',
@@ -1387,6 +1436,7 @@ An paglaladawan han iya [$2 fayl han paglaladawan nga pakli] didto in ginpapakit
 'noemailtitle' => 'Waray e-mail address',
 'nowikiemailtitle' => 'Waray gintutugutan nga e-mail',
 'emailusername' => 'Agnay hiton gumaramit:',
+'emailusernamesubmit' => 'Igsumite',
 'emailfrom' => 'Tikang kan:',
 'emailto' => 'Para kan:',
 'emailsubject' => 'Himangrawon:',
@@ -1404,13 +1454,20 @@ An paglaladawan han iya [$2 fayl han paglaladawan nga pakli] didto in ginpapakit
 'mywatchlist' => 'Mga angay timan-an nakon',
 'watchlistfor2' => 'Para ha $1 $2',
 'watchnologin' => 'Diri nakalog-in',
+'addwatch' => 'Igdugang an listahan hit binabantayan',
 'watch' => 'Bantayi',
 'watchthispage' => 'Bantayi ini nga pakli',
 'unwatch' => 'Pabay-i an pagbantay',
+'unwatchthispage' => 'Undangi pagbantay',
 'watchlist-details' => '{{PLURAL:$1|$1 nga pakli|$1 nga mga pakli}} nga aada ha imo talaan nga binabantayan, diri lakip an mga hiruhimangraw-nga-pakli.',
 'wlshowlast' => 'Igpakita an katapusan nga $1 nga mga oras $2 nga mga adlaw $3',
 'watchlist-options' => 'Mga pirilian han talaan han binabantayan',
 
+# Displayed when you click the "watch" button and it is in the process of watching
+'watching' => 'Ginbabantay...',
+'unwatching' => 'Diri na ginbabantay...',
+
+'enotif_reset' => 'Markahi an ngatanan nga mga pakli nga ginbisita na',
 'enotif_impersonal_salutation' => 'gumaramit han {{SITENAME}}',
 'enotif_anon_editor' => 'waray magpakilala nga gumaramit $1',
 'created' => 'nahimo',
@@ -1421,6 +1478,7 @@ An paglaladawan han iya [$2 fayl han paglaladawan nga pakli] didto in ginpapakit
 'confirm' => 'Kompirma',
 'excontent' => "An sulod in: ''$1''",
 'excontentauthor' => 'an sulod in: \'\'$1\'\' (ngan hi "[[Special:Contributions/$2|$2]]" la an nag-amot)',
+'exbeforeblank' => 'sulod san-o paghawan in: "$1"',
 'exblank' => 'waray sulod an pakli',
 'delete-confirm' => 'Igpara "$1"',
 'delete-legend' => 'Igpara',
@@ -1452,7 +1510,7 @@ Kitaa an $2 para hin talaan han mga gibag-ohi nga mga ginpamara.',
 'prot_1movedto2' => '[[$1]] in ginbalhin ngadto ha [[$2]]',
 'protectcomment' => 'Katadongan:',
 'protect-default' => 'Togota an ngatanan nga mga gumaramit',
-'protect-level-sysop' => 'Mga magdudumara la',
+'protect-level-sysop' => 'Tuguti la an mga magdudumara',
 'protect-othertime' => 'Lain nga oras:',
 'protect-othertime-op' => 'lain nga oras',
 'protect-otherreason' => 'Lain/dugang nga katadongan:',
@@ -1855,6 +1913,7 @@ $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'ago' => '$1 an nakalabay',
+'just-now' => 'yana pala',
 
 # Bad image list
 'bad_image_list' => 'An kabutangan in masunod:
