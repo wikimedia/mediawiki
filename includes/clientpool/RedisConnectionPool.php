@@ -94,7 +94,7 @@ class RedisConnectionPool {
 			$options['persistent'] = false;
 		}
 		if ( !isset( $options['password'] ) ) {
-			$options['password'] = '';
+			$options['password'] = null;
 		}
 		return $options;
 	}
