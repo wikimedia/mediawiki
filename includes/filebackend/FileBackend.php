@@ -684,7 +684,7 @@ abstract class FileBackend {
 	 * except they are only applied *if* the directory/container had to be created.
 	 * These flags should always be set for directories that have private files.
 	 *
-	 * @param $params Array
+	 * @param array $params
 	 * $params include:
 	 *   - dir            : storage directory
 	 *   - noAccess       : try to deny file access (since 1.20)
@@ -712,7 +712,7 @@ abstract class FileBackend {
 	 * access to the storage user representing end-users in web requests.
 	 * This is not guaranteed to actually do anything.
 	 *
-	 * @param $params Array
+	 * @param array $params
 	 * $params include:
 	 *   - dir            : storage directory
 	 *   - noAccess       : try to deny file access
@@ -740,7 +740,7 @@ abstract class FileBackend {
 	 * access to the storage user representing end-users in web requests.
 	 * This essentially can undo the result of secure() calls.
 	 *
-	 * @param $params Array
+	 * @param array $params
 	 * $params include:
 	 *   - dir            : storage directory
 	 *   - access         : try to allow file access
@@ -767,7 +767,7 @@ abstract class FileBackend {
 	 * Backends using key/value stores may do nothing unless the directory
 	 * is that of an empty container, in which case it will be deleted.
 	 *
-	 * @param $params Array
+	 * @param array $params
 	 * $params include:
 	 *   - dir            : storage directory
 	 *   - recursive      : recursively delete empty subdirectories first (since 1.20)
@@ -806,7 +806,7 @@ abstract class FileBackend {
 	 * Check if a file exists at a storage path in the backend.
 	 * This returns false if only a directory exists at the path.
 	 *
-	 * @param $params Array
+	 * @param array $params
 	 * $params include:
 	 *   - src    : source storage path
 	 *   - latest : use the latest available data
@@ -817,7 +817,7 @@ abstract class FileBackend {
 	/**
 	 * Get the last-modified timestamp of the file at a storage path.
 	 *
-	 * @param $params Array
+	 * @param array $params
 	 * $params include:
 	 *   - src    : source storage path
 	 *   - latest : use the latest available data
@@ -829,7 +829,7 @@ abstract class FileBackend {
 	 * Get the contents of a file at a storage path in the backend.
 	 * This should be avoided for potentially large files.
 	 *
-	 * @param $params Array
+	 * @param array $params
 	 * $params include:
 	 *   - src    : source storage path
 	 *   - latest : use the latest available data
@@ -849,7 +849,7 @@ abstract class FileBackend {
 	 *
 	 * @see FileBackend::getFileContents()
 	 *
-	 * @param $params Array
+	 * @param array $params
 	 * $params include:
 	 *   - srcs        : list of source storage paths
 	 *   - latest      : use the latest available data
@@ -862,7 +862,7 @@ abstract class FileBackend {
 	/**
 	 * Get the size (bytes) of a file at a storage path in the backend.
 	 *
-	 * @param $params Array
+	 * @param array $params
 	 * $params include:
 	 *   - src    : source storage path
 	 *   - latest : use the latest available data
@@ -878,7 +878,7 @@ abstract class FileBackend {
 	 *   - size   : the file size (bytes)
 	 * Additional values may be included for internal use only.
 	 *
-	 * @param $params Array
+	 * @param array $params
 	 * $params include:
 	 *   - src    : source storage path
 	 *   - latest : use the latest available data
@@ -889,7 +889,7 @@ abstract class FileBackend {
 	/**
 	 * Get a SHA-1 hash of the file at a storage path in the backend.
 	 *
-	 * @param $params Array
+	 * @param array $params
 	 * $params include:
 	 *   - src    : source storage path
 	 *   - latest : use the latest available data
@@ -901,7 +901,7 @@ abstract class FileBackend {
 	 * Get the properties of the file at a storage path in the backend.
 	 * This gives the result of FSFile::getProps() on a local copy of the file.
 	 *
-	 * @param $params Array
+	 * @param array $params
 	 * $params include:
 	 *   - src    : source storage path
 	 *   - latest : use the latest available data
@@ -916,7 +916,7 @@ abstract class FileBackend {
 	 * will be sent if streaming began, while none will be sent otherwise.
 	 * Implementations should flush the output buffer before sending data.
 	 *
-	 * @param $params Array
+	 * @param array $params
 	 * $params include:
 	 *   - src     : source storage path
 	 *   - headers : list of additional HTTP headers to send on success
@@ -938,7 +938,7 @@ abstract class FileBackend {
 	 * In that later case, there are copies of the file that must stay in sync.
 	 * Additionally, further calls to this function may return the same file.
 	 *
-	 * @param $params Array
+	 * @param array $params
 	 * $params include:
 	 *   - src    : source storage path
 	 *   - latest : use the latest available data
@@ -958,7 +958,7 @@ abstract class FileBackend {
 	 *
 	 * @see FileBackend::getLocalReference()
 	 *
-	 * @param $params Array
+	 * @param array $params
 	 * $params include:
 	 *   - srcs        : list of source storage paths
 	 *   - latest      : use the latest available data
@@ -973,7 +973,7 @@ abstract class FileBackend {
 	 * The temporary copy will have the same file extension as the source.
 	 * Temporary files may be purged when the file object falls out of scope.
 	 *
-	 * @param $params Array
+	 * @param array $params
 	 * $params include:
 	 *   - src    : source storage path
 	 *   - latest : use the latest available data
@@ -993,7 +993,7 @@ abstract class FileBackend {
 	 *
 	 * @see FileBackend::getLocalCopy()
 	 *
-	 * @param $params Array
+	 * @param array $params
 	 * $params include:
 	 *   - srcs        : list of source storage paths
 	 *   - latest      : use the latest available data
@@ -1013,7 +1013,7 @@ abstract class FileBackend {
 	 * Otherwise, one would need to use getLocalReference(), which involves loading
 	 * the entire file on to local disk.
 	 *
-	 * @param $params Array
+	 * @param array $params
 	 * $params include:
 	 *   - src : source storage path
 	 *   - ttl : lifetime (seconds) if pre-authenticated; default is 1 day

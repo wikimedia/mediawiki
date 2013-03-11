@@ -100,7 +100,7 @@ abstract class FileBackendStore extends FileBackend {
 	 *   - dstExists   : Whether a file exists at the destination (optimization).
 	 *                   Callers can use "false" if no existing file is being changed.
 	 *
-	 * @param $params Array
+	 * @param array $params
 	 * @return Status
 	 */
 	final public function createInternal( array $params ) {
@@ -143,7 +143,7 @@ abstract class FileBackendStore extends FileBackend {
 	 *   - dstExists   : Whether a file exists at the destination (optimization).
 	 *                   Callers can use "false" if no existing file is being changed.
 	 *
-	 * @param $params Array
+	 * @param array $params
 	 * @return Status
 	 */
 	final public function storeInternal( array $params ) {
@@ -186,7 +186,7 @@ abstract class FileBackendStore extends FileBackend {
 	 *   - dstExists           : Whether a file exists at the destination (optimization).
 	 *                           Callers can use "false" if no existing file is being changed.
 	 *
-	 * @param $params Array
+	 * @param array $params
 	 * @return Status
 	 */
 	final public function copyInternal( array $params ) {
@@ -219,7 +219,7 @@ abstract class FileBackendStore extends FileBackend {
 	 *                           If the status is OK, then its value field will be
 	 *                           set to a FileBackendStoreOpHandle object.
 	 *
-	 * @param $params Array
+	 * @param array $params
 	 * @return Status
 	 */
 	final public function deleteInternal( array $params ) {
@@ -255,7 +255,7 @@ abstract class FileBackendStore extends FileBackend {
 	 *   - dstExists           : Whether a file exists at the destination (optimization).
 	 *                           Callers can use "false" if no existing file is being changed.
 	 *
-	 * @param $params Array
+	 * @param array $params
 	 * @return Status
 	 */
 	final public function moveInternal( array $params ) {
@@ -300,7 +300,7 @@ abstract class FileBackendStore extends FileBackend {
 	 *                     If the status is OK, then its value field will be
 	 *                     set to a FileBackendStoreOpHandle object.
 	 *
-	 * @param $params Array
+	 * @param array $params
 	 * @return Status
 	 */
 	final public function describeInternal( array $params ) {
@@ -326,7 +326,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * No-op file operation that does nothing.
 	 * Do not call this function from places outside FileBackend and FileOp.
 	 *
-	 * @param $params Array
+	 * @param array $params
 	 * @return Status
 	 */
 	final public function nullInternal( array $params ) {
@@ -971,7 +971,7 @@ abstract class FileBackendStore extends FileBackend {
 	 *
 	 * @param string $container Resolved container name
 	 * @param string $dir Resolved path relative to container
-	 * @param $params Array
+	 * @param array $params
 	 * @return bool|null
 	 */
 	abstract protected function doDirectoryExists( $container, $dir, array $params );
@@ -1004,7 +1004,7 @@ abstract class FileBackendStore extends FileBackend {
 	 *
 	 * @param string $container Resolved container name
 	 * @param string $dir Resolved path relative to container
-	 * @param $params Array
+	 * @param array $params
 	 * @return Traversable|Array|null Returns null on failure
 	 */
 	abstract public function getDirectoryListInternal( $container, $dir, array $params );
@@ -1037,7 +1037,7 @@ abstract class FileBackendStore extends FileBackend {
 	 *
 	 * @param string $container Resolved container name
 	 * @param string $dir Resolved path relative to container
-	 * @param $params Array
+	 * @param array $params
 	 * @return Traversable|Array|null Returns null on failure
 	 */
 	abstract public function getFileListInternal( $container, $dir, array $params );
@@ -1809,7 +1809,7 @@ abstract class FileBackendStoreShardListIterator implements Iterator {
 	 * @param string $container Full storage container name
 	 * @param string $dir Storage directory relative to container
 	 * @param array $suffixes List of container shard suffixes
-	 * @param $params Array
+	 * @param array $params
 	 */
 	public function __construct(
 		FileBackendStore $backend, $container, $dir, array $suffixes, array $params
@@ -1937,7 +1937,7 @@ abstract class FileBackendStoreShardListIterator implements Iterator {
 	 *
 	 * @param string $container Resolved container name
 	 * @param string $dir Resolved path relative to container
-	 * @param $params Array
+	 * @param array $params
 	 * @return Traversable|Array|null
 	 */
 	abstract protected function listFromShard( $container, $dir, array $params );

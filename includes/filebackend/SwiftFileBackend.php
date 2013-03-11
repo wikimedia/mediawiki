@@ -1257,7 +1257,7 @@ class SwiftFileBackend extends FileBackendStore {
 	 * on a FileBackend params array, e.g. that of getLocalCopy().
 	 * $params is currently only checked for a 'latest' flag.
 	 *
-	 * @param $params Array
+	 * @param array $params
 	 * @return Array
 	 */
 	protected function headersFromParams( array $params ) {
@@ -1514,7 +1514,7 @@ class SwiftFileBackend extends FileBackendStore {
 	 * @param $e Exception
 	 * @param $status Status|null
 	 * @param $func string
-	 * @param $params Array
+	 * @param array $params
 	 * @return void
 	 */
 	protected function handleException( Exception $e, $status, $func, array $params ) {
@@ -1583,7 +1583,7 @@ abstract class SwiftFileBackendList implements Iterator {
 	 * @param $backend SwiftFileBackend
 	 * @param string $fullCont Resolved container name
 	 * @param string $dir Resolved directory relative to container
-	 * @param $params Array
+	 * @param array $params
 	 */
 	public function __construct( SwiftFileBackend $backend, $fullCont, $dir, array $params ) {
 		$this->backend = $backend;
@@ -1656,7 +1656,7 @@ abstract class SwiftFileBackendList implements Iterator {
 	 * @param string $dir Resolved path relative to container
 	 * @param $after string|null
 	 * @param $limit integer
-	 * @param $params Array
+	 * @param array $params
 	 * @return Traversable|Array|null Returns null on failure
 	 */
 	abstract protected function pageFromList( $container, $dir, &$after, $limit, array $params );
