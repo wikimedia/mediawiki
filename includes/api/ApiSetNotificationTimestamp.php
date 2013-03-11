@@ -133,6 +133,7 @@ class ApiSetNotificationTimestamp extends ApiBase {
 			}
 
 			// Now, put the valid titles into the result
+			/** @var $title Title */
 			foreach ( $pageSet->getTitles() as $title ) {
 				$ns = $title->getNamespace();
 				$dbkey = $title->getDBkey();
@@ -283,9 +284,9 @@ class ApiSetNotificationTimestamp extends ApiBase {
 
 	public function getExamples() {
 		return array(
-			'api.php?action=setnotificationtimestamp&entirewatchlist=&token=ABC123' => 'Reset the notification status for the entire watchlist',
-			'api.php?action=setnotificationtimestamp&titles=Main_page&token=ABC123' => 'Reset the notification status for "Main page"',
-			'api.php?action=setnotificationtimestamp&titles=Main_page&timestamp=2012-01-01T00:00:00Z&token=ABC123' => 'Set the notification timestamp for "Main page" so all edits since 1 January 2012 are unviewed',
+			'api.php?action=setnotificationtimestamp&entirewatchlist=&token=123ABC' => 'Reset the notification status for the entire watchlist',
+			'api.php?action=setnotificationtimestamp&titles=Main_page&token=123ABC' => 'Reset the notification status for "Main page"',
+			'api.php?action=setnotificationtimestamp&titles=Main_page&timestamp=2012-01-01T00:00:00Z&token=123ABC' => 'Set the notification timestamp for "Main page" so all edits since 1 January 2012 are unviewed',
 		);
 	}
 

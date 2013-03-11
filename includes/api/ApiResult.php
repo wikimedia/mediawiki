@@ -36,8 +36,8 @@
  * There are two special key values that change how XML output is generated:
  *   '_element' This key sets the tag name for the rest of the elements in the current array.
  *              It is only inserted if the formatter returned true for getNeedsRawData()
- *   '*'        This key has special meaning only to the XML formatter, and is outputed as is
- * 				for all others. In XML it becomes the content of the current element.
+ *   '*'        This key has special meaning only to the XML formatter, and is outputted as is
+ *              for all others. In XML it becomes the content of the current element.
  *
  * @ingroup API
  */

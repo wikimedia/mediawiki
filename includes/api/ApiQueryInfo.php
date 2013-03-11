@@ -321,6 +321,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			$this->getDisplayTitle();
 		}
 
+		/** @var $title Title */
 		foreach ( $this->everything as $pageid => $title ) {
 			$pageInfo = $this->extractPageInfo( $pageid, $title );
 			$fit = $result->addValue( array(
@@ -462,6 +463,7 @@ class ApiQueryInfo extends ApiQueryBase {
 
 			$res = $this->select( __METHOD__ );
 			foreach ( $res as $row ) {
+				/** @var $title Title */
 				$title = $this->titles[$row->pr_page];
 				$a = array(
 					'type' => $row->pr_type,
@@ -597,6 +599,7 @@ class ApiQueryInfo extends ApiQueryBase {
 	private function getTSIDs() {
 		$getTitles = $this->talkids = $this->subjectids = array();
 
+		/** @var $t Title */
 		foreach ( $this->everything as $t ) {
 			if ( MWNamespace::isTalk( $t->getNamespace() ) ) {
 				if ( $this->fld_subjectid ) {
