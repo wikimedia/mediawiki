@@ -1078,8 +1078,8 @@ __INDEXATTR__;
 	 * This is list does not contain magic keywords like "$user"
 	 * Needs transaction
 	 *
-	 * @seealso getSearchPath()
-	 * @seealso setSearchPath()
+	 * @see getSearchPath()
+	 * @see setSearchPath()
 	 * @since 1.19
 	 * @return array list of actual schemas for the current sesson
 	 */

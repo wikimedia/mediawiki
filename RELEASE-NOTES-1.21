@@ -20,12 +20,12 @@ production.
   disabled.
 
 === New features in 1.21 ===
-* (bug 38110) Schema changes (adding or dropping tables, indicies and
+* (bug 38110) Schema changes (adding or dropping tables, indices and
   fields) can be now be done separately from from other changes that
   update.php makes.  This is useful in environments that use database
   permissions to restrict schema changes but allow the DB user that
   MediaWiki normally runs as to perform other changes that update.php
-  makes.  Schema changes can be run seperately.  See the file UPGRADE
+  makes.  Schema changes can be run separately.  See the file UPGRADE
   for more information.
 * (bug 34876) jquery.makeCollapsible has been improved in performance.
 * Added ContentHandler facility to allow extensions to support other content
@@ -96,7 +96,7 @@ production.
 * (bug 5346) Categories that are redirects will be displayed italic in
   the category links section at the bottom of a page.
 * (bug 43915) New maintenance script deleteEqualMessages.php.
-* You can now create checkbox option matrixes through the HTMLCheckMatrix
+* You can now create checkbox option matrices through the HTMLCheckMatrix
   subclass in HTMLForm.
 * WikiText now permits the use of WAI-ARIA's role="presentation" inside of
   html elements and tables. This allows presentational markup, especially
@@ -230,7 +230,7 @@ production.
 * (bug 43849) ApiQueryImageInfo no longer throws exceptions with ForeignDBRepo
   redirects.
 * On error, any warnings generated before that error will be shown in the result.
-* action=help suports generalized submodules (modules=query+value), querymodules obsolete
+* action=help supports generalized submodules (modules=query+value), querymodules obsolete
 * ApiQueryImageInfo continuation is more reliable. The only major change is
   that the imagerepository property will no longer be set on page objects not
   processed in the current query (i.e. non-images or those skipped due to
@@ -241,7 +241,7 @@ production.
 * ApiQueryImageInfo will now limit the number of calls to File::transform made
   in any one query. If there are too many, iicontinue will be returned.
 * action=query&meta=siteinfo&siprop=general will now return the regexes used for
-  link trails and link prefices. Added for Parsoid support.
+  link trails and link prefixes. Added for Parsoid support.
 * Added an API query module list=pageswithprop, which lists pages using a
   particular page property.
 * Added an API query module list=pagepropnames, which lists all page prop names
