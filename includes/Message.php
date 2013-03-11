@@ -552,6 +552,63 @@ class Message {
 	}
 
 	/**
+	 * If the message is a redirect, return the contents of the page
+	 * it redirects to. This function follows only one level of redirects
+	 * (although you can call it several times).
+	 * If following the redirect fails, the message returns the
+	 * raw wikitext used («#REDIRECT [[title]]»).
+	 * @since 1.21
+	 * @return Message: $this
+	 */
+	public function followRedirect() {
+		$text = $this->fetchMessage();
+
+		if ( $text === false ) {
+			return $this;
+		}
+
+		$content = new WikitextContent( $text );
+		$title = $content->getRedirectTarget();
+
+		if ( !$title ) {
+			return $this;
+		}
+
+		if ( $title->getNamespace() == NS_MEDIAWIKI ) {
+			/* Great, it will be in the message cache */
+			$cache = MessageCache::singleton();
+			$text = $cache->get( $title->getDBkey(), true, true );
+
+			if ( $text ) {
+				$this->message = $text;
+			}
+
+			return $this;
+		}
+
+		if ( !$title->exists() ) {
+			/* Broken redirect */
+			return $this;
+		}
+
+		$page = WikiPage::factory( $title );
+		$content = $page->getContent( Revision::FOR_PUBLIC );
+		if ( !$content ) {
+			/* Missing page */
+			return $this;
+		}
+
+		if ( !$content instanceof TextContent ) {
+			/* This redirect makes no sense! */
+			return $this;
+		}
+
+		$this->message = $content->getWikitextForTransclusion();
+
+		return $this;
+	}
+
+	/**
 	 * Returns the message parsed from wikitext to HTML.
 	 * @since 1.17
 	 * @return String: HTML
