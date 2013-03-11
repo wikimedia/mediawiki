@@ -141,13 +141,9 @@
 		};
 
 		/**
-		 * Gets the current user's name or a random ID automatically generated and kept in a cookie.
+		 * Gets the current user's name, or a semi-persistent random ID
 		 *
-		 * This ID is persistent for anonymous users, staying in their browser up to 1 year. The
-		 * expiration time is reset each time the ID is queried, so in most cases this ID will
-		 * persist until the browser's cookies are cleared or the user doesn't visit for 1 year.
-		 *
-		 * @return {string} User name or random session ID
+		 * @return String: User name or random session ID
 		 */
 		this.id = function () {
 			var id,
@@ -155,16 +151,51 @@
 			if ( name ) {
 				return name;
 			}
-			id = $.cookie( 'mediaWiki.user.id' );
-			if ( typeof id === 'undefined' || id === null ) {
-				id = user.generateRandomSessionId();
+			// Fall back to the session ID, or a longer-lived ID when appropriate.
+			return user.interSessionId();
+		};
+
+		/**
+		 * Retrieve a semi-persistent ID which may be used to guess the user's last session ID.
+		 *
+		 * This might be done during usability studies, for example.
+		 *
+		 * Since this is a bald invasion of privacy, it will never be performed
+		 * on the same user twice in a row.  In other words, every third
+		 * visiting session, an anon's anonymity is guaranteed again.
+		 *
+		 * @return String: session ID, or previous session ID if available
+		 */
+		this.interSessionId = function() {
+			var chanceOfStudy,
+				id,
+				sessionId = user.sessionId(),
+				cheatCookie = $.cookie( 'mediaWiki.user.interSessionId' );
+
+			if ( typeof cheatCookie === 'undefined' || cheatCookie === null ) {
+				// the probability a user will be enrolled in the study, per session
+				chanceOfStudy = mw.config.get( 'wgStudyAnonymousPopulation' );
+
+				if ( chanceOfStudy && Math.random() < chanceOfStudy ) {
+					// Enroll in our special program, until the next visit.
+					$.cookie( 'mediaWiki.user.interSessionId', sessionId, { 'expires': 365, 'path': '/' } );
+				} else {
+					// not enrolled
+					// Prevent enrollment for this session, so that the chance
+					// of enrollment is independent of pageviews per visit.
+					//FIXME: would an empty string cookie value trigger any browser bugs?
+					$.cookie( 'mediaWiki.user.interSessionId', 'nil', { 'expires': null, 'path': '/' } );
+				}
+			} else if ( cheatCookie === 'nil' ) {
+				// already prevented!
+			} else if ( cheatCookie === sessionId ) {
+				// nothing to do until the next visit
+			} else {
+				// convert to a session cookie
+				$.cookie( 'mediaWiki.user.interSessionId', cheatCookie, { 'expires': null, 'path': '/' } );
+				return cheatCookie;
 			}
-			// Set cookie if not set, or renew it if already set
-			$.cookie( 'mediaWiki.user.id', id, {
-				expires: 365,
-				path: '/'
-			} );
-			return id;
+			return sessionId;
 		};
 
 		/**
