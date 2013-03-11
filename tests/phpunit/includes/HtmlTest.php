@@ -443,7 +443,7 @@ class HtmlTest extends MediaWikiTestCase {
 
 	/**
 	 * Test out Html::element drops or enforces default value
-	 * @cover Html::dropDefaults
+	 * @covers Html::dropDefaults
 	 * @dataProvider provideElementsWithAttributesHavingDefaultValues
 	 */
 	function testDropDefaults( $expected, $element, $attribs, $message = '' ) {

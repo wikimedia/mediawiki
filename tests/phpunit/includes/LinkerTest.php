@@ -4,7 +4,7 @@ class LinkerTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideCasesForUserLink
-	 * @cover Linker::userLink
+	 * @covers Linker::userLink
 	 */
 	function testUserLink( $expected, $userId, $userName, $altUserName = false, $msg = '' ) {
 		$this->setMwGlobals( array(

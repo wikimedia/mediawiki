@@ -358,7 +358,7 @@ $wgImgAuthPublicTest = true;
  *                      FSRepo is also supported for backwards compatibility.
  *
  *   - name             A unique name for the repository (but $wgLocalFileRepo should be 'local').
- *                      The name should consist of alpha-numberic characters.
+ *                      The name should consist of alpha-numeric characters.
  *   - backend          A file backend name (see $wgFileBackends).
  *
  * For most core repos:
@@ -412,7 +412,7 @@ $wgImgAuthPublicTest = true;
  *
  * ForeignDBRepo:
  *   - dbType, dbServer, dbUser, dbPassword, dbName, dbFlags
- *                      equivalent to the corresponding member of $wgDBservers
+ *                       equivalent to the corresponding member of $wgDBservers
  *   - tablePrefix       Table prefix, the foreign wiki's $wgDBprefix
  *   - hasSharedCache    True if the wiki's shared cache is accessible via the local $wgMemc
  *
@@ -423,7 +423,7 @@ $wgImgAuthPublicTest = true;
  * If you leave $wgLocalFileRepo set to false, Setup will fill in appropriate values.
  * Otherwise, set $wgLocalFileRepo to a repository structure as described above.
  * If you set $wgUseInstantCommons to true, it will add an entry for Commons.
- * If you set $wgForeignFileRepos to an array of repostory structures, those will
+ * If you set $wgForeignFileRepos to an array of repository structures, those will
  * be searched after the local file repo.
  * Otherwise, you will only have access to local media files.
  *
@@ -991,7 +991,7 @@ $wgAntivirus = null;
  * "command" is the full command to call the virus scanner - %f will be
  * replaced with the name of the file to scan. If not present, the filename
  * will be appended to the command. Note that this must be overwritten if the
- * scanner is not in the system path; in that case, plase set
+ * scanner is not in the system path; in that case, please set
  * $wgAntivirusSetup[$wgAntivirus]['command'] to the desired command with full
  * path.
  *
@@ -1001,8 +1001,8 @@ $wgAntivirus = null;
  *     the scan to be failed. This will pass the file if $wgAntivirusRequired
  *     is not set.
  *   - An exit code mapped to AV_SCAN_ABORTED causes the function to consider
- *     the file to have an usupported format, which is probably imune to
- *     virusses. This causes the file to pass.
+ *     the file to have an unsupported format, which is probably immune to
+ *     viruses. This causes the file to pass.
  *   - An exit code mapped to AV_NO_VIRUS will cause the file to pass, meaning
  *     no virus was found.
  *   - All other codes (like AV_VIRUS_FOUND) will cause the function to report
@@ -1021,7 +1021,7 @@ $wgAntivirusSetup = array(
 		'codemap' => array(
 			"0" => AV_NO_VIRUS, # no virus
 			"1" => AV_VIRUS_FOUND, # virus found
-			"52" => AV_SCAN_ABORTED, # unsupported file format (probably imune)
+			"52" => AV_SCAN_ABORTED, # unsupported file format (probably immune)
 			"*" => AV_SCAN_FAILED, # else scan failed
 		),
 		'messagepattern' => '/.*?:(.*)/sim',
@@ -1250,7 +1250,7 @@ $wgEnableUserEmail = true;
  * instead of From. ($wgEmergencyContact will be used as From.)
  *
  * Some mailers (eg sSMTP) set the SMTP envelope sender to the From value,
- * which can cause problems with SPF validation and leak recipient addressses
+ * which can cause problems with SPF validation and leak recipient addresses
  * when bounces are sent to the sender.
  */
 $wgUserEmailUseReplyTo = false;
@@ -1449,7 +1449,7 @@ $wgAllDBsAreLocalhost = false;
  * preferences shared (preferences were stored in the user table prior to 1.16)
  *
  * $wgSharedTables may be customized with a list of tables to share in the shared
- * datbase. However it is advised to limit what tables you do share as many of
+ * database. However it is advised to limit what tables you do share as many of
  * MediaWiki's tables may have side effects if you try to share them.
  *
  * $wgSharedPrefix is the table prefix for the shared database. It defaults to
@@ -1537,7 +1537,7 @@ $wgDBerrorLog = false;
  * Timezone to use in the error log.
  * Defaults to the wiki timezone ($wgLocaltimezone).
  *
- * A list of useable timezones can found at:
+ * A list of usable timezones can found at:
  * http://php.net/manual/en/timezones.php
  *
  * @par Examples:
@@ -2211,14 +2211,14 @@ $wgUsePrivateIPs = false;
  * change it in their preferences.
  *
  * This also defines the language of pages in the wiki. The content is wrapped
- * in a html element with lang=XX attribute. This behavior can be overriden
+ * in a html element with lang=XX attribute. This behavior can be overridden
  * via hooks, see Title::getPageLanguage.
  */
 $wgLanguageCode = 'en';
 
 /**
  * Language cache size, or really how many languages can we handle
- * simultanously without degrading to crawl speed.
+ * simultaneously without degrading to crawl speed.
  */
 $wgLangObjCacheSize = 10;
 
@@ -2244,7 +2244,7 @@ $wgExtraLanguageNames = array();
 
 /**
  * List of language codes that don't correspond to an actual language.
- * These codes are mostly leftoffs from renames, or other legacy things.
+ * These codes are mostly left-offs from renames, or other legacy things.
  * This array makes them not appear as a selectable language on the installer,
  * and excludes them when running the transstat.php script.
  */
@@ -2484,7 +2484,7 @@ $wgForceUIMsgAsContentMsg = array();
  * Timezones can be translated by editing MediaWiki messages of type
  * timezone-nameinlowercase like timezone-utc.
  *
- * A list of useable timezones can found at:
+ * A list of usable timezones can found at:
  * http://php.net/manual/en/timezones.php
  *
  * @par Examples:
@@ -2503,7 +2503,7 @@ $wgLocaltimezone = null;
  * for anonymous users and new user accounts.
  *
  * This setting is used for most date/time displays in the software, and is
- * overrideable in user preferences. It is *not* used for signature timestamps.
+ * overridable in user preferences. It is *not* used for signature timestamps.
  *
  * By default, this will be set to match $wgLocaltimezone.
  */
@@ -2602,7 +2602,7 @@ $wgWellFormedXml = true;
  * @par Example:
  * @code
  * $wgXhtmlNamespaces['svg'] = 'http://www.w3.org/2000/svg';
- * @endCode
+ * @endcode
  * Normally we wouldn't have to define this in the root "<html>"
  * element, but IE needs it there in some circumstances.
  *
@@ -2787,7 +2787,7 @@ $wgExperimentalHtmlIds = false;
  * for the icon, the following keys are used:
  *  - src: An absolute url to the image to use for the icon, this is recommended
  *        but not required, however some skins will ignore icons without an image
- * - url: The url to use in the a element arround the text or icon, if not set an a element will not be outputted
+ * - url: The url to use in the a element around the text or icon, if not set an a element will not be outputted
  * - alt: This is the text form of the icon, it will be displayed without an image in
  *        skins like Modern or if src is not set, and will otherwise be used as
  *        the alt="" for the image. This key is required.
@@ -2859,7 +2859,7 @@ $wgSend404Code = true;
 
 /**
  * The $wgShowRollbackEditCount variable is used to show how many edits will be
- * rollback. The numeric value of the varible are the limit up to are counted.
+ * rollback. The numeric value of the variable are the limit up to are counted.
  * If the value is false or 0, the edits are not counted. Disabling this will
  * furthermore prevent MediaWiki from hiding some useless rollback links.
  *
@@ -3207,7 +3207,7 @@ $wgInterwikiFallbackSite = 'wiki';
 /** @} */ # end of Interwiki caching settings.
 
 /**
- * If local interwikis are set up which allow redirects,
+ * If local interwikies are set up which allow redirects,
  * set this regexp to restrict URLs which will be displayed
  * as 'redirected from' links.
  *
@@ -3307,7 +3307,7 @@ $wgInvalidRedirectTargets = array( 'Filepath', 'Mypage', 'Mytalk' );
  *  class             The class name
  *
  *  preprocessorClass The preprocessor class. Two classes are currently available:
- *                    Preprocessor_Hash, which uses plain PHP arrays for tempoarary
+ *                    Preprocessor_Hash, which uses plain PHP arrays for temporary
  *                    storage, and Preprocessor_DOM, which uses the DOM module for
  *                    temporary storage. Preprocessor_DOM generally uses less memory;
  *                    the speed of the two is roughly the same.
@@ -4106,7 +4106,7 @@ $wgNamespaceProtection = array();
  * namespaces constants (NS_USER, NS_MAIN...).
  *
  * Among other things, this may be useful to enforce read-restrictions
- * which may otherwise be bypassed by using the template machanism.
+ * which may otherwise be bypassed by using the template mechanism.
  */
 $wgNonincludableNamespaces = array();
 
@@ -4815,7 +4815,7 @@ $wgDebugToolbar = false;
 $wgDisableTextSearch = false;
 
 /**
- * Set to true to have nicer highligted text in search results,
+ * Set to true to have nicer highlighted text in search results,
  * by default off due to execution overhead
  */
 $wgAdvancedSearchHighlighting = false;
@@ -4841,7 +4841,7 @@ $wgCountTotalSearchHits = false;
 /**
  * Template for OpenSearch suggestions, defaults to API action=opensearch
  *
- * Sites with heavy load would tipically have these point to a custom
+ * Sites with heavy load would typically have these point to a custom
  * PHP wrapper to avoid firing up mediawiki for every keystroke
  *
  * Placeholders: {searchTerms}
@@ -4933,14 +4933,14 @@ $wgUseTwoButtonsSearchForm = true;
 
 /**
  * Array of namespaces to generate a Google sitemap for when the
- * maintenance/generateSitemap.php script is run, or false if one is to be ge-
- * nerated for all namespaces.
+ * maintenance/generateSitemap.php script is run, or false if one is to be
+ * generated for all namespaces.
  */
 $wgSitemapNamespaces = false;
 
 /**
  * Custom namespace priorities for sitemaps. Setting this will allow you to
- * set custom priorities to namsepaces when sitemaps are generated using the
+ * set custom priorities to namespaces when sitemaps are generated using the
  * maintenance/generateSitemap.php script.
  *
  * This should be a map of namespace IDs to priority
@@ -4981,7 +4981,7 @@ $wgDiff = '/usr/bin/diff';
 
 /**
  * Which namespaces have special treatment where they should be preview-on-open
- * Internaly only Category: pages apply, but using this extensions (e.g. Semantic MediaWiki)
+ * Internally only Category: pages apply, but using this extensions (e.g. Semantic MediaWiki)
  * can specify namespaces of pages they have special treatment for
  */
 $wgPreviewOnOpenNamespaces = array(
@@ -5461,7 +5461,7 @@ $wgAutoloadClasses = array();
  *     'version' => 1.9,
  *     'path' => __FILE__,
  *     'author' => 'Foo Barstein',
- *     'url' => 'http://wwww.example.com/Example%20Extension/',
+ *     'url' => 'http://www.example.com/Example%20Extension/',
  *     'description' => 'An example extension',
  *     'descriptionmsg' => 'exampleextension-desc',
  * );
@@ -5918,8 +5918,8 @@ $wgNamespaceRobotPolicies = array();
 
 /**
  * Robot policies per article. These override the per-namespace robot policies.
- * Must be in the form of an array where the key part is a properly canonical-
- * ised text form title and the value is a robot policy.
+ * Must be in the form of an array where the key part is a properly canonicalised
+ * text form title and the value is a robot policy.
  *
  * @par Example:
  * @code

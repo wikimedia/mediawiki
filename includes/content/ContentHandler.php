@@ -141,7 +141,7 @@ abstract class ContentHandler {
 	 * @throws MWException
 	 * @return Content a Content object representing $text
 	 *
-	 * @throw MWException if $model or $format is not supported or if $text can
+	 * @throws MWException if $model or $format is not supported or if $text can
 	 *    not be unserialized using $format.
 	 */
 	public static function makeContent( $text, Title $title = null,

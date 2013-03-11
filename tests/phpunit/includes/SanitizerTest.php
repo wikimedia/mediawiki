@@ -63,7 +63,7 @@ class SanitizerTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @cover Sanitizer::removeHTMLtags
+	 * @covers Sanitizer::removeHTMLtags
 	 * @dataProvider provideHtml5Tags
 	 *
 	 * @param String $tag Name of an HTML5 element (ie: 'video')
@@ -116,7 +116,7 @@ class SanitizerTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideTagAttributesToDecode
-	 * @cover Sanitizer::decodeTagAttributes
+	 * @covers Sanitizer::decodeTagAttributes
 	 */
 	function testDecodeTagAttributes( $expected, $attributes, $message = '' ) {
 		$this->assertEquals( $expected,
@@ -165,7 +165,7 @@ class SanitizerTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideDeprecatedAttributes
-	 * @cover Sanitizer::fixTagAttributes
+	 * @covers Sanitizer::fixTagAttributes
 	 */
 	function testDeprecatedAttributesUnaltered( $inputAttr, $inputEl, $message = '' ) {
 		$this->assertEquals( " $inputAttr",
@@ -193,7 +193,7 @@ class SanitizerTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideCssCommentsFixtures
-	 * @cover Sanitizer::checkCss
+	 * @covers Sanitizer::checkCss
 	 */
 	function testCssCommentsChecking( $expected, $css, $message = '' ) {
 		$this->assertEquals( $expected,

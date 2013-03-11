@@ -50,7 +50,7 @@ class LogPage {
 	 */
 	var $target;
 
-	/* @acess public */
+	/* @access public */
 	var $updateRecentChanges, $sendToUDP;
 
 	/**
