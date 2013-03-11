@@ -186,6 +186,7 @@ class HTMLForm extends ContextSource {
 		'table',
 		'div',
 		'raw',
+		'vform',
 	);
 
 	/**
@@ -664,7 +665,9 @@ class HTMLForm extends ContextSource {
 		if ( !empty( $this->mId ) ) {
 			$attribs['id'] = $this->mId;
 		}
-
+		if ( $this->getDisplayFormat() ==='vform' ) {
+			$attribs['class'] .= ' mw-ui-vform';
+		}
 		return Html::rawElement( 'form', $attribs, $html );
 	}
 
@@ -714,6 +717,9 @@ class HTMLForm extends ContextSource {
 		}
 
 		$attribs['class'] = 'mw-htmlform-submit';
+		if ( $this->getDisplayFormat() ==='vform' ) {
+			$attribs['class'] .= ' mw-ui-button big block primary';
+		}
 
 		$html .= Xml::submitButton( $this->getSubmitText(), $attribs ) . "\n";
 
@@ -959,7 +965,17 @@ class HTMLForm extends ContextSource {
 		$subsectionHtml = '';
 		$hasLabel = false;
 
-		$getFieldHtmlMethod = ( $displayFormat == 'table' ) ? 'getTableRow' : 'get' . ucfirst( $displayFormat );
+		switch( $displayFormat ) {
+			case 'table':
+				$getFieldHtmlMethod = 'getTableRow';
+				break;
+			case 'vform':
+				// Close enough to a div.
+				$getFieldHtmlMethod = 'getDiv';
+				break;
+			default:
+				$getFieldHtmlMethod = 'get' . ucfirst( $displayFormat );
+		}
 
 		foreach ( $fields as $key => $value ) {
 			if ( $value instanceof HTMLFormField ) {
@@ -1007,7 +1023,7 @@ class HTMLForm extends ContextSource {
 			if ( $displayFormat === 'table' ) {
 				$html = Html::rawElement( 'table', $attribs,
 					Html::rawElement( 'tbody', array(), "\n$html\n" ) ) . "\n";
-			} elseif ( $displayFormat === 'div' ) {
+			} elseif ( $displayFormat === 'div' || $displayFormat ==='vform' ) {
 				$html = Html::rawElement( 'div', $attribs, "\n$html\n" );
 			}
 		}
@@ -1487,7 +1503,7 @@ abstract class HTMLFormField {
 			return Html::rawElement( 'td', array( 'class' => 'mw-label' ) + $cellAttributes,
 				Html::rawElement( 'label', $for, $this->getLabel() )
 			);
-		} elseif ( $displayFormat == 'div' ) {
+		} elseif ( $displayFormat == 'div' || $displayFormat ==='vform' ) {
 			return Html::rawElement( 'div', array( 'class' => 'mw-label' ) + $cellAttributes,
 				Html::rawElement( 'label', $for, $this->getLabel() )
 			);
