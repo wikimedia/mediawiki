@@ -554,7 +554,7 @@ class NewParserTest extends MediaWikiTestCase {
 
 		if ( !$this->isWikitextNS( NS_MAIN ) ) {
 			// parser tests frequently assume that the main namespace contains wikitext.
-			// @todo: When setting up pages, force the content model. Only skip if
+			// @todo When setting up pages, force the content model. Only skip if
 			//        $wgtContentModelUseDB is false.
 			$this->markTestSkipped( "Main namespace does not support wikitext,"
 				. "skipping parser test: $desc" );

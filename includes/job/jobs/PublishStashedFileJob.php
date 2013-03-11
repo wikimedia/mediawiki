@@ -48,7 +48,7 @@ class PublishStashedFileJob extends Job {
 			);
 
 			$upload = new UploadFromStash( $user );
-			// @TODO: initialize() causes a GET, ideally we could frontload the antivirus
+			// @todo initialize() causes a GET, ideally we could frontload the antivirus
 			// checks and anything else to the stash stage (which includes concatenation and
 			// the local file is thus already there). That way, instead of GET+PUT, there could
 			// just be a COPY operation from the stash to the public zone.

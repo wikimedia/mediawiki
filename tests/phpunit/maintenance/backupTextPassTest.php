@@ -63,7 +63,7 @@ class TextPassDumperTest extends DumpTestCase {
 			// Page from non-default namespace
 
 			if ( $ns === NS_TALK ) {
-				//@todo: work around this.
+				// @todo work around this.
 				throw new MWException( "The default wikitext namespace is the talk namespace. "
 					. " We can't currently deal with that." );
 			}

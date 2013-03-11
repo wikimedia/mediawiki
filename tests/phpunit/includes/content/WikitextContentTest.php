@@ -240,7 +240,7 @@ just a test"
 	}
 
 	/**
-	 * @todo: test needs database! Should be done by a test class in the Database group.
+	 * @todo Test needs database! Should be done by a test class in the Database group.
 	 */
 	/*
 	public function getRedirectChain() {
@@ -250,7 +250,7 @@ just a test"
 	*/
 
 	/**
-	 * @todo: test needs database! Should be done by a test class in the Database group.
+	 * @todo Test needs database! Should be done by a test class in the Database group.
 	 */
 	/*
 	public function getUltimateRedirectTarget() {
@@ -380,7 +380,7 @@ just a test"
 				CONTENT_MODEL_WIKITEXT, "hello [[world test 21344]]\n",
 				array( 'LinksDeletionUpdate' => array() )
 			),
-			// @todo: more...?
+			// @todo more...?
 		);
 	}
 }

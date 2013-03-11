@@ -364,7 +364,7 @@ class ResourceLoader {
 	 * @return Array
 	 */
 	public function getTestModuleNames( $framework = 'all' ) {
-		/// @TODO: api siteinfo prop testmodulenames modulenames
+		/// @todo api siteinfo prop testmodulenames modulenames
 		if ( $framework == 'all' ) {
 			return $this->testModuleNames;
 		} elseif ( isset( $this->testModuleNames[$framework] ) && is_array( $this->testModuleNames[$framework] ) ) {

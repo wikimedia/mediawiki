@@ -25,7 +25,7 @@
  *
  * This maintains WikiPage functions for backwards compatibility.
  *
- * @todo move and rewrite code to an Action class
+ * @todo Move and rewrite code to an Action class
  *
  * See design.txt for an overview.
  * Note: edit user interface and cache support functions have been
@@ -385,7 +385,8 @@ class Article implements Page {
 
 		$content = $this->fetchContentObject();
 
-		$this->mContent = ContentHandler::getContentText( $content ); #@todo: get rid of mContent everywhere!
+		// @todo Get rid of mContent everywhere!
+		$this->mContent = ContentHandler::getContentText( $content );
 		ContentHandler::runLegacyHooks( 'ArticleAfterFetchContent', array( &$this, &$this->mContent ) );
 
 		wfProfileOut( __METHOD__ );
@@ -787,7 +788,7 @@ class Article implements Page {
 	 * Show a diff page according to current request variables. For use within
 	 * Article::view() only, other callers should use the DifferenceEngine class.
 	 *
-	 * @todo: make protected
+	 * @todo Make protected
 	 */
 	public function showDiffPage() {
 		$request = $this->getContext()->getRequest();

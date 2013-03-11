@@ -34,7 +34,7 @@ class BackupDumperPageTest extends DumpTestCase {
 			$this->talk_namespace = NS_TALK;
 
 			if ( $this->namespace === $this->talk_namespace ) {
-				//@todo: work around this.
+				// @todo work around this.
 				throw new MWException( "The default wikitext namespace is the talk namespace. "
 					. " We can't currently deal with that." );
 			}

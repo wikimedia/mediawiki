@@ -99,7 +99,7 @@ class SpecialWatchlist extends SpecialPage {
 			return;
 		}
 
-		// @TODO: use FormOptions!
+		// @todo use FormOptions!
 		$defaults = array(
 		/* float */ 'days' => floatval( $user->getOption( 'watchlistdays' ) ), /* 3.0 or 0.5, watch further below */
 		/* bool  */ 'hideMinor' => (int)$user->getBoolOption( 'watchlisthideminor' ),

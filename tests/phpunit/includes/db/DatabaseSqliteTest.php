@@ -233,7 +233,7 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 
 	/**
 	 * Runs upgrades of older databases and compares results with current schema
-	 * @todo: currently only checks list of tables
+	 * @todo Currently only checks list of tables
 	 */
 	public function testUpgrades() {
 		global $IP, $wgVersion, $wgProfileToDatabase;

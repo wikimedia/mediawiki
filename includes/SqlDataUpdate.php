@@ -56,7 +56,7 @@ abstract class SqlDataUpdate extends DataUpdate {
 			$this->mOptions = array( 'FOR UPDATE' );
 		}
 
-		// @todo: get connection only when it's needed? make sure that doesn't break anything, especially transactions!
+		// @todo get connection only when it's needed? make sure that doesn't break anything, especially transactions!
 		$this->mDb = wfGetDB( DB_MASTER );
 
 		$this->mWithTransaction = $withTransaction;

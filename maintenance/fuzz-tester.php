@@ -1973,7 +1973,7 @@ class specialChemicalsourcesTest extends pageTest {
  ** returns the help screen - so currently a lot of the tests aren't actually doing much
  ** because something wasn't right in the query.
  **
- ** @todo: Incomplete / unfinished; Runs too fast (suggests not much testing going on).
+ ** @todo Incomplete / unfinished; Runs too fast (suggests not much testing going on).
  */
 class api extends pageTest {
 

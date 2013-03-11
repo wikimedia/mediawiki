@@ -284,7 +284,7 @@ class SpecialPasswordReset extends FormSpecialPage {
 
 	public function onSuccess() {
 		if ( $this->getUser()->isAllowed( 'passwordreset' ) && $this->email != null ) {
-			// @todo: Logging
+			// @todo Logging
 
 			if ( $this->result->isGood() ) {
 				$this->getOutput()->addWikiMsg( 'passwordreset-emailsent-capture' );
