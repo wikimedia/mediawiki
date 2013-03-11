@@ -33,6 +33,8 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 	 *
 	 * Available parameters are:
 	 *   - servers:             The list of IP:port combinations holding the memcached servers.
+	 *   - internalServers:     Set this to the list of internal servers if 'servers' are proxies.
+	 *                          This is used by memcached debugging scripts.
 	 *   - persistent:          Whether to use a persistent connection
 	 *   - compress_threshold:  The minimum size an object must be before it is compressed
 	 *   - timeout:             The read timeout in microseconds
@@ -100,6 +102,9 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 			$servers[] = IP::splitHostAndPort( $host ); // (ip, port)
 		}
 		$this->client->addServers( $servers );
+
+		$this->servers = $params['servers'];
+		$this->internalServers = $params['internalServers'];
 	}
 
 	/**

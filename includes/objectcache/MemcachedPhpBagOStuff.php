@@ -33,6 +33,8 @@ class MemcachedPhpBagOStuff extends MemcachedBagOStuff {
 	 *
 	 * Available parameters are:
 	 *   - servers:             The list of IP:port combinations holding the memcached servers.
+	 *   - internalServers:     Set this to the list of internal servers if 'servers' are proxies.
+	 *                          This is used by memcached debugging scripts.
 	 *   - debug:               Whether to set the debug flag in the underlying client.
 	 *   - persistent:          Whether to use a persistent connection
 	 *   - compress_threshold:  The minimum size an object must be before it is compressed
@@ -47,6 +49,9 @@ class MemcachedPhpBagOStuff extends MemcachedBagOStuff {
 		$this->client = new MemCachedClientforWiki( $params );
 		$this->client->set_servers( $params['servers'] );
 		$this->client->set_debug( $params['debug'] );
+
+		$this->servers = $params['servers'];
+		$this->internalServers = $params['internalServers'];
 	}
 
 	/**

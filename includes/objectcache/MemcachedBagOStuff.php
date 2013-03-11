@@ -29,6 +29,9 @@
 class MemcachedBagOStuff extends BagOStuff {
 	protected $client;
 
+	protected $servers = array(); // servers this interfaces with (might be proxies)
+	protected $internalServers = array(); // effective servers (behind any proxies)
+
 	/**
 	 * Fill in the defaults for any parameters missing from $params, using the
 	 * backwards-compatible global variables
@@ -36,6 +39,9 @@ class MemcachedBagOStuff extends BagOStuff {
 	protected function applyDefaultParams( $params ) {
 		if ( !isset( $params['servers'] ) ) {
 			$params['servers'] = $GLOBALS['wgMemCachedServers'];
+		}
+		if ( !isset( $params['internalServers'] ) ) {
+			$params['internalServers'] = $params['servers'];
 		}
 		if ( !isset( $params['debug'] ) ) {
 			$params['debug'] = $GLOBALS['wgMemCachedDebug'];
@@ -119,11 +125,25 @@ class MemcachedBagOStuff extends BagOStuff {
 	}
 
 	/**
-	 * Get the underlying client object. This is provided for debugging
-	 * purposes.
+	 * Get the underlying client object. This is provided for debugging purposes.
 	 */
 	public function getClient() {
 		return $this->client;
+	}
+
+	/**
+	 * Get the server list. This is provided for debugging purposes.
+	 */
+	public function getServers() {
+		return $this->servers;
+	}
+
+	/**
+	 * Get the underlying server list, behind any proxies (like twemcache servers).
+	 * This is provided for debugging purposes.
+	 */
+	public function getInternalServers() {
+		return $this->internalServers;
 	}
 
 	/**

@@ -36,6 +36,7 @@ class mcTest extends Maintenance {
 		$this->mDescription = "Makes several 'set', 'incr' and 'get' requests on every"
 							  . " memcached server and shows a report";
 		$this->addOption( 'i', 'Number of iterations', false, true );
+		$this->addOption( 'noproxy', 'Bypass proxy memcached servers', false, true );
 		$this->addArg( 'server[:port]', 'Memcached server to test, with optional port', false );
 	}
 
@@ -45,13 +46,14 @@ class mcTest extends Maintenance {
 		$iterations = $this->getOption( 'i', 100 );
 		if ( $this->hasArg() ) {
 			$servers = array( $this->getArg() );
-		} elseif ( $wgMainCacheType === CACHE_MEMCACHED ) {
-			global $wgMemCachedServers;
-			$servers = $wgMemCachedServers ;
-		} elseif( isset( $wgObjectCaches[$wgMainCacheType] ) ) {
-			$servers = $wgObjectCaches[$wgMainCacheType]['servers'];
 		} else {
-			$this->error( "MediaWiki isn't configured for Memcached usage", 1 );
+			$cache = wfGetMainCache();
+			if ( !( $cache instanceof MemcachedBagOStuff ) ) {
+				$this->error( "MediaWiki isn't configured for Memcached usage", 1 );
+			}
+			$servers = $this->hasOption( 'noproxy' )
+				? $cache->getInternalServers()
+				: $cache->getServers();
 		}
 
 		foreach ( $servers as $server ) {

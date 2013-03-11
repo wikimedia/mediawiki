@@ -26,25 +26,26 @@
 require_once( __DIR__ . '/commandLine.inc' );
 
 $debug = in_array( '--debug', $argv );
+$noproxy = in_array( '--noproxy', $argv );
 $help = in_array( '--help', $argv );
 
 if( $help ) {
 	mccShowUsage();
 	exit( 0 );
 }
+
+$cache = wfGetMainCache();
+if ( !( $cache instanceof MemcachedBagOStuff ) ) {
+	print "MediaWiki isn't configured for Memcached usage\n";
+	exit( 1 );
+}
+$servers = $noproxy ? $cache->getInternalServers() : $cache->getServers();
+
 $mcc = new MWMemcached( array(
 	'persistent' => true,
 	'debug' => $debug,
 ) );
-
-if ( $wgMainCacheType === CACHE_MEMCACHED ) {
-	$mcc->set_servers( $wgMemCachedServers );
-} elseif( isset( $wgObjectCaches[$wgMainCacheType] ) ) {
-	$mcc->set_servers( $wgObjectCaches[$wgMainCacheType]['servers'] );
-} else {
-	print "MediaWiki isn't configured for Memcached usage\n";
-	exit( 1 );
-}
+$mcc->set_servers( $servers );
 
 /**
  * Show this command line tool usage.
@@ -60,6 +61,7 @@ with the MediaWiki memcached cache.
 
 Options:
 	--debug Set debug mode on the memcached connection.
+	--noproxy Bypass proxy memcached servers
 	--help  This help screen.
 
 Interactive commands:
