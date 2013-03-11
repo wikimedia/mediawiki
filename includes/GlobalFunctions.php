@@ -3955,7 +3955,7 @@ function wfIsBadImage( $name, $contextTitle = false, $blacklist = null ) {
 		$badImages = $badImageCache;
 	} else { // cache miss
 		if ( $blacklist === null ) {
-			$blacklist = wfMessage( 'bad_image_list' )->inContentLanguage()->plain(); // site list
+			$blacklist = wfMessage( 'bad_image_list' )->inContentLanguage()->followRedirect()->plain(); // site list
 		}
 		# Build the list now
 		$badImages = array();
