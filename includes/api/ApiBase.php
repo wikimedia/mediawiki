@@ -334,6 +334,7 @@ abstract class ApiBase extends ContextSource {
 	/**
 	 * @param $item string
 	 * @return string
+	 * @noinspection PhpUnusedPrivateMethodInspection
 	 */
 	private function indentExampleText( $item ) {
 		return "  " . $item;
@@ -799,6 +800,7 @@ abstract class ApiBase extends ContextSource {
 	 *
 	 * @param  $x object Parameter to check is not null/false
 	 * @return bool
+	 * @noinspection PhpUnusedPrivateMethodInspection
 	 */
 	private function parameterNotEmpty( $x ) {
 		return !is_null( $x ) && $x !== false;
