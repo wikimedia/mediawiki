@@ -27,22 +27,23 @@
  * This is faster, less resource intensive, queue that JobQueueDB.
  * All data for a queue using this class is placed into one redis server.
  *
- * There are seven main redis keys used to track jobs:
- *   - l-unclaimed  : A list of job IDs used for push/pop
+ * There are eight main redis keys used to track jobs:
+ *   - l-unclaimed  : A list of job IDs used for ready unclaimed jobs
  *   - z-claimed    : A sorted set of (job ID, UNIX timestamp as score) used for job retries
  *   - z-abandoned  : A sorted set of (job ID, UNIX timestamp as score) used for broken jobs
+ *   - z-delayed    : A sorted set of (job ID, UNIX timestamp as score) used for delayed jobs
  *   - h-idBySha1   : A hash of (SHA1 => job ID) for unclaimed jobs used for de-duplication
  *   - h-sha1Byid   : A hash of (job ID => SHA1) for unclaimed jobs used for de-duplication
  *   - h-attempts   : A hash of (job ID => attempt count) used for job claiming/retries
  *   - h-data       : A hash of (job ID => serialized blobs) for job storage
- * Any given job ID can be in only one of l-unclaimed, z-claimed, and z-abandoned.
+ * A job ID can be in only one of z-delayed, l-unclaimed, z-claimed, and z-abandoned.
  * If an ID appears in any of those lists, it should have a h-data entry for its ID.
- * If a job has a non-empty SHA1 de-duplication value and its ID is in l-unclaimed,
- * then there should be no other such jobs. Every h-idBySha1 entry has an h-sha1Byid
+ * If a job has a SHA1 de-duplication value and its ID is in l-unclaimed or z-delayed, then
+ * there should be no other such jobs with that SHA1. Every h-idBySha1 entry has an h-sha1Byid
  * entry and every h-sha1Byid must refer to an ID that is l-unclaimed. If a job has its
  * ID in z-claimed or z-abandoned, then it must also have an h-attempts entry for its ID.
  *
- * Additionally, "rootjob:* keys to track "root jobs" used for additional de-duplication.
+ * Additionally, "rootjob:* keys track "root jobs" used for additional de-duplication.
  * Aside from root job keys, all keys have no expiry, and are only removed when jobs are run.
  * All the keys are prefixed with the relevant wiki ID information.
  *
@@ -89,6 +90,10 @@ class JobQueueRedis extends JobQueue {
 		return 'fifo';
 	}
 
+	protected function supportsDelayedJobs() {
+		return true;
+	}
+
 	/**
 	 * @see JobQueue::doIsEmpty()
 	 * @return bool
@@ -133,6 +138,23 @@ class JobQueueRedis extends JobQueue {
 	}
 
 	/**
+	 * @see JobQueue::doGetDelayedCount()
+	 * @return integer
+	 * @throws MWException
+	 */
+	protected function doGetDelayedCount() {
+		if ( !$this->checkDelay ) {
+			return 0; // no delayed jobs
+		}
+		$conn = $this->getConnection();
+		try {
+			return $conn->zSize( $this->getQueueKey( 'z-delayed' ) );
+		} catch ( RedisException $e ) {
+			$this->throwRedisException( $this->server, $conn, $e );
+		}
+	}
+
+	/**
 	 * @see JobQueue::doBatchPush()
 	 * @param array $jobs
 	 * @param $flags
@@ -150,13 +172,8 @@ class JobQueueRedis extends JobQueue {
 				$items[$item['uuid']] = $item;
 			}
 		}
-		// Convert the field maps into serialized blobs
-		$tuples = array();
-		foreach ( $items as $item ) {
-			$tuples[] = array( $item['uuid'], $item['sha1'], serialize( $item ) );
-		}
 
-		if ( !count( $tuples ) ) {
+		if ( !count( $items ) ) {
 			return true; // nothing to do
 		}
 
@@ -164,26 +181,26 @@ class JobQueueRedis extends JobQueue {
 		try {
 			// Actually push the non-duplicate jobs into the queue...
 			if ( $flags & self::QoS_Atomic ) {
-				$batches = array( $tuples ); // all or nothing
+				$batches = array( $items ); // all or nothing
 			} else {
-				$batches = array_chunk( $tuples, 500 ); // avoid tying up the server
+				$batches = array_chunk( $items, 500 ); // avoid tying up the server
 			}
 			$failed = 0;
 			$pushed = 0;
-			foreach ( $batches as $tupleBatch ) {
-				$added = $this->pushBlobs( $conn, $tupleBatch );
+			foreach ( $batches as $itemBatch ) {
+				$added = $this->pushBlobs( $conn, $itemBatch );
 				if ( is_int( $added ) ) {
 					$pushed += $added;
 				} else {
-					$failed += count( $tupleBatch );
+					$failed += count( $itemBatch );
 				}
 			}
 			if ( $failed > 0 ) {
 				wfDebugLog( 'JobQueueRedis', "Could not insert {$failed} {$this->type} job(s)." );
 				return false;
 			}
-			wfIncrStats( 'job-insert', count( $tuples ) );
-			wfIncrStats( 'job-insert-duplicate', count( $tuples ) - $failed - $pushed );
+			wfIncrStats( 'job-insert', count( $items ) );
+			wfIncrStats( 'job-insert-duplicate', count( $items ) - $failed - $pushed );
 		} catch ( RedisException $e ) {
 			$this->throwRedisException( $this->server, $conn, $e );
 		}
@@ -193,30 +210,36 @@ class JobQueueRedis extends JobQueue {
 
 	/**
 	 * @param RedisConnRef $conn
-	 * @param array $tuples List of tuples of (job ID, job SHA1 or '', serialized blob)
+	 * @param array $items List of results from JobQueueRedis::getNewJobFields()
 	 * @return integer Number of jobs inserted (duplicates are ignored)
 	 * @throws RedisException
 	 */
-	protected function pushBlobs( RedisConnRef $conn, array $tuples ) {
+	protected function pushBlobs( RedisConnRef $conn, array $items ) {
 		$args = array(); // ([id, sha1, blob [, id, sha1, blob ... ] ] )
-		foreach ( $tuples as $tuple ) {
-			$args[] = $tuple[0]; // id
-			$args[] = $tuple[1]; // sha1
-			$args[] = $tuple[2]; // blob
+		foreach ( $items as $item ) {
+			$args[] = (string)$item['uuid'];
+			$args[] = (string)$item['sha1'];
+			$args[] = (string)$item['rtimestamp'];
+			$args[] = (string)serialize( $item );
 		}
 		static $script =
 <<<LUA
-		if #ARGV % 3 ~= 0 then return redis.error_reply('Unmatched arguments') end
+		if #ARGV % 4 ~= 0 then return redis.error_reply('Unmatched arguments') end
 		local pushed = 0
-		for i = 1,#ARGV,3 do
-			local id,sha1,blob = ARGV[i],ARGV[i+1],ARGV[i+2]
+		for i = 1,#ARGV,4 do
+			local id,sha1,rtimestamp,blob = ARGV[i],ARGV[i+1],ARGV[i+2],ARGV[i+3]
 			if sha1 == '' or redis.call('hExists',KEYS[3],sha1) == 0 then
-				redis.call('lPush',KEYS[1],id)
+				if 1*rtimestamp > 0 then
+					-- Insert into delayed queue (release time as score)
+					redis.call('zAdd',KEYS[4],rtimestamp,id)
+				else
+					-- Insert into unclaimed queue
+					redis.call('lPush',KEYS[1],id)
 				if sha1 ~= '' then
 					redis.call('hSet',KEYS[2],id,sha1)
 					redis.call('hSet',KEYS[3],sha1,id)
 				end
-				redis.call('hSet',KEYS[4],id,blob)
+				redis.call('hSet',KEYS[5],id,blob)
 				pushed = pushed + 1
 			end
 		end
@@ -228,11 +251,12 @@ LUA;
 					$this->getQueueKey( 'l-unclaimed' ), # KEYS[1]
 					$this->getQueueKey( 'h-sha1ById' ), # KEYS[2]
 					$this->getQueueKey( 'h-idBySha1' ), # KEYS[3]
-					$this->getQueueKey( 'h-data' ), # KEYS[4]
+					$this->getQueueKey( 'z-delayed' ), # KEYS[4]
+					$this->getQueueKey( 'h-data' ), # KEYS[5]
 				),
 				$args
 			),
-			4 # number of first argument(s) that are keys
+			5 # number of first argument(s) that are keys
 		);
 	}
 
@@ -243,6 +267,12 @@ LUA;
 	 */
 	protected function doPop() {
 		$job = false;
+
+		// Push ready delayed jobs into the queue every 10 jobs to spread the load.
+		// This is also done as a periodic task, but we don't want too much done at once.
+		if ( $this->checkDelay && mt_rand( 0, 9 ) == 0 ) {
+			$this->releaseReadyDelayedJobs();
+		}
 
 		$conn = $this->getConnection();
 		try {
@@ -473,7 +503,7 @@ LUA;
 	}
 
 	/**
-	 * This function should not be called outside RedisJobQueue
+	 * This function should not be called outside JobQueueRedis
 	 *
 	 * @param $uid string
 	 * @param $conn RedisConnRef
@@ -493,6 +523,43 @@ LUA;
 		} catch ( RedisException $e ) {
 			$this->throwRedisException( $this->server, $conn, $e );
 		}
+	}
+
+	/**
+	 * Release any ready delayed jobs into the queue
+	 *
+	 * @return integer Number of jobs released
+	 * @throws MWException
+	 */
+	public function releaseReadyDelayedJobs() {
+		$count = 0;
+
+		$conn = $this->getConnection();
+		try {
+			static $script =
+<<<LUA
+			-- Get the list of ready delayed jobs, sorted by readiness
+			local ids = redis.call('zRangeByScore',KEYS[1],0,ARGV[1])
+			-- Migrate the jobs from the "delayed" set to the "unclaimed" list
+			for k,id in ipairs(ids) do
+				redis.call('lPush',KEYS[2],id)
+				redis.call('zRem',KEYS[1],id)
+			end
+			return #ids
+LUA;
+			$count += (int)$this->redisEval( $conn, $script,
+				array(
+					$this->getQueueKey( 'z-delayed' ), // KEYS[1]
+					$this->getQueueKey( 'l-unclaimed' ), // KEYS[2]
+					time() // ARGV[1]; max "delay until" UNIX timestamp
+				),
+				2 # first two arguments are keys
+			);
+		} catch ( RedisException $e ) {
+			$this->throwRedisException( $this->server, $conn, $e );
+		}
+
+		return $count;
 	}
 
 	/**
@@ -574,16 +641,20 @@ LUA;
 	 * @return Array
 	 */
 	protected function doGetPeriodicTasks() {
+		$tasks = array();
 		if ( $this->claimTTL > 0 ) {
-			return array(
-				'recycleAndDeleteStaleJobs' => array(
-					'callback' => array( $this, 'recycleAndDeleteStaleJobs' ),
-					'period'   => ceil( $this->claimTTL / 2 )
-				)
+			$tasks['recycleAndDeleteStaleJobs'] = array(
+				'callback' => array( $this, 'recycleAndDeleteStaleJobs' ),
+				'period'   => ceil( $this->claimTTL / 2 )
 			);
-		} else {
-			return array();
 		}
+		if ( $this->checkDelay ) {
+			$tasks['releaseReadyDelayedJobs'] = array(
+				'callback' => array( $this, 'releaseReadyDelayedJobs' ),
+				'period'   => 300 // 5 minutes
+			);
+		}
+		return $tasks;
 	}
 
 	/**
@@ -609,16 +680,18 @@ LUA;
 	protected function getNewJobFields( Job $job ) {
 		return array(
 			// Fields that describe the nature of the job
-			'type'      => $job->getType(),
-			'namespace' => $job->getTitle()->getNamespace(),
-			'title'     => $job->getTitle()->getDBkey(),
-			'params'    => $job->getParams(),
+			'type'       => $job->getType(),
+			'namespace'  => $job->getTitle()->getNamespace(),
+			'title'      => $job->getTitle()->getDBkey(),
+			'params'     => $job->getParams(),
+			// Some jobs cannot run until a "release timestamp"
+			'rtimestamp' => $job->getReleaseTimestamp() ?: 0,
 			// Additional job metadata
-			'uuid'      => UIDGenerator::newRawUUIDv4( UIDGenerator::QUICK_RAND ),
-			'sha1'      => $job->ignoreDuplicates()
+			'uuid'       => UIDGenerator::newRawUUIDv4( UIDGenerator::QUICK_RAND ),
+			'sha1'       => $job->ignoreDuplicates()
 				? wfBaseConvert( sha1( serialize( $job->getDeduplicationInfo() ) ), 16, 36, 31 )
 				: '',
-			'timestamp' => time() // UNIX timestamp
+			'timestamp'  => time() // UNIX timestamp
 		);
 	}
 
