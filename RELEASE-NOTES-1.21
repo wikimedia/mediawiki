@@ -116,6 +116,7 @@ production.
 * Added 'CategoryAfterPageAdded' and 'CategoryAfterPageRemoved' hooks.
 * (bug 33186) Add image rotation api "imagerotate"
 * (bug 34040) Add "User rights management" link on user page toolbox.
+* Disable Special:PasswordReset when $wgEnableEmail = false
 
 === Bug fixes in 1.21 ===
 * (bug 40353) SpecialDoubleRedirect should support interwiki redirects.
