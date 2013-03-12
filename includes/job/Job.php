@@ -111,7 +111,7 @@ abstract class Job {
 	 * runners.
 	 *
 	 * @param $type string
-	 * @return Job
+	 * @return Job|bool Returns false if there are no jobs
 	 * @deprecated 1.21
 	 */
 	public static function pop_type( $type ) {
