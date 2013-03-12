@@ -65,53 +65,67 @@ $.fn.makeCollapsible = function () {
 				return;
 			}
 
-			if ( action === 'collapse' ) {
+			// Handle different kinds of elements
 
-				// Collapse the element
-				if ( $collapsible.is( 'table' ) ) {
+			if ( $collapsible.is( 'table' ) ) {
+				// Tables
+				$containers = $collapsible.find( '> tbody > tr' );
+				if ( $defaultToggle ) {
+					// Exclude table row containing togglelink
+					$containers = $containers.not( $defaultToggle.closest( 'tr' ) );
+				}
+
+				if ( action === 'collapse' ) {
 					// Hide all table rows of this table
-					// Slide doens't work with tables, but fade does as of jQuery 1.1.3
+					// Slide doesn't work with tables, but fade does as of jQuery 1.1.3
 					// http://stackoverflow.com/questions/467336#920480
-					$containers = $collapsible.find( '> tbody > tr' );
-					if ( $defaultToggle ) {
-						// Exclude tablerow containing togglelink
-						$containers = $containers.not( $defaultToggle.closest( 'tr' ) );
-					}
-
 					if ( options.instantHide ) {
 						$containers.hide();
 					} else {
 						$containers.stop( true, true ).fadeOut();
 					}
+				} else {
+					$containers.stop( true, true ).fadeIn();
+				}
 
-				} else if ( $collapsible.is( 'ul' ) || $collapsible.is( 'ol' ) ) {
-					$containers = $collapsible.find( '> li' );
-					if ( $defaultToggle ) {
-						// Exclude list-item containing togglelink
-						$containers = $containers.not( $defaultToggle.parent() );
-					}
+			} else if ( $collapsible.is( 'ul' ) || $collapsible.is( 'ol' ) ) {
+				// Lists
+				$containers = $collapsible.find( '> li' );
+				if ( $defaultToggle ) {
+					// Exclude list-item containing togglelink
+					$containers = $containers.not( $defaultToggle.parent() );
+				}
 
+				if ( action === 'collapse' ) {
 					if ( options.instantHide ) {
 						$containers.hide();
 					} else {
 						$containers.stop( true, true ).slideUp();
 					}
-
 				} else {
-					// <div>, <p> etc.
-					$collapsibleContent = $collapsible.find( '> .mw-collapsible-content' );
+					$containers.stop( true, true ).slideDown();
+				}
 
-					// If a collapsible-content is defined, collapse it
-					if ( $collapsibleContent.length ) {
+			} else {
+				// Everything else: <div>, <p> etc.
+				$collapsibleContent = $collapsible.find( '> .mw-collapsible-content' );
+
+				// If a collapsible-content is defined, act on it
+				if ( $collapsibleContent.length ) {
+					if ( action === 'collapse' ) {
 						if ( options.instantHide ) {
 							$collapsibleContent.hide();
 						} else {
 							$collapsibleContent.slideUp();
 						}
-
-					// Otherwise assume this is a customcollapse with a remote toggle
-					// .. and there is no collapsible-content because the entire element should be toggled
 					} else {
+						$collapsibleContent.slideDown();
+					}
+
+				// Otherwise assume this is a customcollapse with a remote toggle
+				// .. and there is no collapsible-content because the entire element should be toggled
+				} else {
+					if ( action === 'collapse' ) {
 						if ( options.instantHide ) {
 							$collapsible.hide();
 						} else {
@@ -121,40 +135,6 @@ $.fn.makeCollapsible = function () {
 								$collapsible.slideUp();
 							}
 						}
-					}
-				}
-
-			} else {
-
-				// Expand the element
-				if ( $collapsible.is( 'table' ) ) {
-					$containers = $collapsible.find( '>tbody>tr' );
-					if ( $defaultToggle ) {
-						// Exclude tablerow containing togglelink
-						$containers.not( $defaultToggle.parent().parent() ).stop(true, true).fadeIn();
-					} else {
-						$containers.stop( true, true ).fadeIn();
-					}
-
-				} else if ( $collapsible.is( 'ul' ) || $collapsible.is( 'ol' ) ) {
-					$containers = $collapsible.find( '> li' );
-					if ( $defaultToggle ) {
-						// Exclude list-item containing togglelink
-						$containers.not( $defaultToggle.parent() ).stop( true, true ).slideDown();
-					} else {
-						$containers.stop( true, true ).slideDown();
-					}
-
-				} else {
-					// <div>, <p> etc.
-					$collapsibleContent = $collapsible.find( '> .mw-collapsible-content' );
-
-					// If a collapsible-content is defined, collapse it
-					if ( $collapsibleContent.length ) {
-						$collapsibleContent.slideDown();
-
-					// Otherwise assume this is a customcollapse with a remote toggle
-					// .. and there is no collapsible-content because the entire element should be toggled
 					} else {
 						if ( $collapsible.is( 'tr' ) || $collapsible.is( 'td' ) || $collapsible.is( 'th' ) ) {
 							$collapsible.fadeIn();
