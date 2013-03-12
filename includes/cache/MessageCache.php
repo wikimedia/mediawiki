@@ -327,31 +327,39 @@ class MessageCache {
 			$where[] = 'cache is empty';
 			$where[] = 'loading from database';
 
-			$this->lock( $cacheKey );
+			if ( $this->lock( $cacheKey ) ) {
+				$that = $this;
+				$osc = new ScopedCallback( function() use ( $that, $cacheKey ) {
+					$that->unlock( $cacheKey );
+				} );
+			}
 			# Limit the concurrency of loadFromDB to a single process
 			# This prevents the site from going down when the cache expires
 			$statusKey = wfMemcKey( 'messages', $code, 'status' );
 			$success = $this->mMemc->add( $statusKey, 'loading', MSG_LOAD_TIMEOUT );
 			if ( $success ) { // acquired lock
+				$cache = $this->mMemc;
+				$isc = new ScopedCallback( function() use ( $cache, $statusKey ) {
+					$cache->delete( $statusKey );
+				} );
 				$cache = $this->loadFromDB( $code );
 				$success = $this->setCache( $cache, $code );
 				if ( $success ) { // messages loaded
 					$success = $this->saveToCaches( $cache, true, $code );
-					if ( $success ) {
-						$this->mMemc->delete( $statusKey );
-					} else {
+					$isc = null; // unlock
+					if ( !$success ) {
 						$this->mMemc->set( $statusKey, 'error', 60 * 5 );
 						wfDebug( __METHOD__ . ": set() error: restart memcached server!\n" );
 						$exception = new MWException( "Could not save cache for '$code'." );
 					}
 				} else {
-					$this->mMemc->delete( $statusKey );
+					$isc = null; // unlock
 					$exception = new MWException( "Could not load cache from DB for '$code'." );
 				}
 			} else {
 				$exception = new MWException( "Could not acquire '$statusKey' lock." );
 			}
-			$this->unlock( $cacheKey );
+			$osc = null; // unlock
 		}
 
 		if ( !$success ) {
