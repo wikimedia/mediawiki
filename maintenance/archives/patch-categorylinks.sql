@@ -31,7 +31,4 @@ CREATE TABLE /*$wgDBprefix*/categorylinks (
   -- when collation is set to UTF-8. Bleeeacch!
   KEY cl_sortkey(cl_to,cl_sortkey),
 
-  -- Not really used?
-  KEY cl_timestamp(cl_to,cl_timestamp)
-
 ) /*$wgDBTableOptions*/;

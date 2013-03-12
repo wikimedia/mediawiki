@@ -7,5 +7,5 @@
 --
 
 ALTER TABLE /*$wgDBprefix*/categorylinks
-   DROP INDEX cl_sortkey,
+   DROP INDEX IF EXISTS cl_sortkey,
    ADD INDEX cl_sortkey(cl_to, cl_sortkey, cl_from);

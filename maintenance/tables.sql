@@ -562,12 +562,6 @@ CREATE UNIQUE INDEX /*i*/cl_from ON /*_*/categorylinks (cl_from,cl_to);
 -- callers won't be using an index: fix this?
 CREATE INDEX /*i*/cl_sortkey ON /*_*/categorylinks (cl_to,cl_type,cl_sortkey,cl_from);
 
--- Not really used?
-CREATE INDEX /*i*/cl_timestamp ON /*_*/categorylinks (cl_to,cl_timestamp);
-
--- For finding rows with outdated collation
-CREATE INDEX /*i*/cl_collation ON /*_*/categorylinks (cl_collation);
-
 --
 -- Track all existing categories.  Something is a category if 1) it has an en-
 -- try somewhere in categorylinks, or 2) it once did.  Categories might not
