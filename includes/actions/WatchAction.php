@@ -20,6 +20,11 @@
  * @ingroup Actions
  */
 
+/**
+ * Page addition to a user's watchlist
+ *
+ * @ingroup Actions
+ */
 class WatchAction extends FormAction {
 
 	public function getName() {
@@ -148,6 +153,11 @@ class WatchAction extends FormAction {
 	}
 }
 
+/**
+ * Page removal from a user's watchlist
+ *
+ * @ingroup Actions
+ */
 class UnwatchAction extends WatchAction {
 
 	public function getName() {

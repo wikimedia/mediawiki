@@ -20,6 +20,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
+ * @ingroup Actions
  */
 
 /**
@@ -30,6 +31,7 @@
  * Construct it by passing in an Article, and call $h->history() to print the
  * history.
  *
+ * @ingroup Actions
  */
 class HistoryAction extends FormlessAction {
 	const DIR_PREV = 0;
@@ -331,6 +333,7 @@ class HistoryAction extends FormlessAction {
 
 /**
  * @ingroup Pager
+ * @ingroup Actions
  */
 class HistoryPager extends ReverseChronologicalPager {
 	public $lastRow = false, $counter, $historyPage, $buttons, $conds;
