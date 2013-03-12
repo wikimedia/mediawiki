@@ -1358,10 +1358,11 @@ To create the page, start typing in the box below (see the [[{{MediaWiki:Helppag
 If you are here by mistake, click your browser's '''back''' button.",
 'newarticletextanon'               => '{{int:newarticletext}}', # do not translate or duplicate this message to other languages
 'talkpagetext'                     => '<!-- MediaWiki:talkpagetext -->', # do not translate or duplicate this message to other languages
-'anontalkpagetext'                 => "----''This is the discussion page for an anonymous user who has not created an account yet, or who does not use it.
+'anontalkpagetext'                 => "----
+''This is the discussion page for an anonymous user who has not created an account yet, or who does not use it.''
 We therefore have to use the numerical IP address to identify him/her.
 Such an IP address can be shared by several users.
-If you are an anonymous user and feel that irrelevant comments have been directed at you, please [[Special:UserLogin/signup|create an account]] or [[Special:UserLogin|log in]] to avoid future confusion with other anonymous users.''",
+If you are an anonymous user and feel that irrelevant comments have been directed at you, please [[Special:UserLogin/signup|create an account]] or [[Special:UserLogin|log in]] to avoid future confusion with other anonymous users.",
 'noarticletext'                    => 'There is currently no text in this page.
 You can [[Special:Search/{{PAGENAME}}|search for this page title]] in other pages,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} search the related logs],
