@@ -114,7 +114,7 @@ class TitleCleanup extends TableCleanup {
 	protected function moveInconsistentPage( $row, $title ) {
 		if ( $title->exists() || $title->getInterwiki() || !$title->canExist() ) {
 			if ( $title->getInterwiki() || !$title->canExist() ) {
-				$prior = $title->getPrefixedDbKey();
+				$prior = $title->getPrefixedDBkey();
 			} else {
 				$prior = $title->getDBkey();
 			}

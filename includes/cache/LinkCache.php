@@ -78,7 +78,7 @@ class LinkCache {
 	 * @return mixed
 	 */
 	public function getGoodLinkFieldObj( $title, $field ) {
-		$dbkey = $title->getPrefixedDbKey();
+		$dbkey = $title->getPrefixedDBkey();
 		if ( array_key_exists( $dbkey, $this->mGoodLinkFields ) ) {
 			return $this->mGoodLinkFields[$dbkey][$field];
 		} else {
@@ -105,7 +105,7 @@ class LinkCache {
 	 * @param $model Integer: latest revision's content model ID
 	 */
 	public function addGoodLinkObj( $id, $title, $len = -1, $redir = null, $revision = false, $model = false ) {
-		$dbkey = $title->getPrefixedDbKey();
+		$dbkey = $title->getPrefixedDBkey();
 		$this->mGoodLinks[$dbkey] = intval( $id );
 		$this->mGoodLinkFields[$dbkey] = array(
 			'length' => intval( $len ),
@@ -122,7 +122,7 @@ class LinkCache {
 	 *  page_latest and page_content_model
 	 */
 	public function addGoodLinkObjFromRow( $title, $row ) {
-		$dbkey = $title->getPrefixedDbKey();
+		$dbkey = $title->getPrefixedDBkey();
 		$this->mGoodLinks[$dbkey] = intval( $row->page_id );
 		$this->mGoodLinkFields[$dbkey] = array(
 			'length' => intval( $row->page_len ),
@@ -136,7 +136,7 @@ class LinkCache {
 	 * @param $title Title
 	 */
 	public function addBadLinkObj( $title ) {
-		$dbkey = $title->getPrefixedDbKey();
+		$dbkey = $title->getPrefixedDBkey();
 		if ( !$this->isBadLink( $dbkey ) ) {
 			$this->mBadLinks[$dbkey] = 1;
 		}
@@ -150,7 +150,7 @@ class LinkCache {
 	 * @param $title Title
 	 */
 	public function clearLink( $title ) {
-		$dbkey = $title->getPrefixedDbKey();
+		$dbkey = $title->getPrefixedDBkey();
 		unset( $this->mBadLinks[$dbkey] );
 		unset( $this->mGoodLinks[$dbkey] );
 		unset( $this->mGoodLinkFields[$dbkey] );
