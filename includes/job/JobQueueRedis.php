@@ -50,6 +50,7 @@ class JobQueueRedis extends JobQueue {
 		parent::__construct( $params );
 		$this->server = $params['redisServer'];
 		$this->redisPool = RedisConnectionPool::singleton( $params['redisConfig'] );
+		$this->checkDelay = isset( $params['checkDelay'] ) ? $params['checkDelay'] : false;
 	}
 
 	protected function supportedOrders() {
@@ -100,6 +101,23 @@ class JobQueueRedis extends JobQueue {
 		$conn = $this->getConnection();
 		try {
 			return $conn->lSize( $this->getQueueKey( 'l-claimed' ) );
+		} catch ( RedisException $e ) {
+			$this->throwRedisException( $this->server, $conn, $e );
+		}
+	}
+
+	/**
+	 * @see JobQueue::doGetDelayedCount()
+	 * @return integer
+	 * @throws MWException
+	 */
+	protected function doGetDelayedCount() {
+		if ( !$this->checkDelay ) {
+			return 0; // no delayed jobs
+		}
+		$conn = $this->getConnection();
+		try {
+			return $conn->zSize( $this->getQueueKey( 'z-delayed' ) );
 		} catch ( RedisException $e ) {
 			$this->throwRedisException( $this->server, $conn, $e );
 		}
@@ -157,13 +175,30 @@ class JobQueueRedis extends JobQueue {
 			}
 			// Actually push the non-duplicate jobs into the queue...
 			if ( count( $items ) ) {
-				$uids = array_keys( $items );
+				$lParams = array(); // list push params
+				$zParams = array(); // sorted-set add params
+				foreach ( $items as $item ) {
+					if ( $item['delayUntil'] > 0 ) { // use sorted-set
+						$zParams[] = $item['delayUntil']; // score
+						$zParams[] = $item['uid']; // value
+					} else { // use list
+						$lParams[] = $item['uid'];
+					}
+				}
 				$conn->multi( Redis::MULTI ); // begin (atomic trx)
 				$conn->mSet( $this->prefixKeysWithQueueKey( 'data', $items ) );
-				call_user_func_array(
-					array( $conn, 'lPush' ),
-					array_merge( array( $this->getQueueKey( 'l-unclaimed' ) ), $uids )
-				);
+				if ( count( $lParams ) ) {
+					call_user_func_array(
+						array( $conn, 'lPush' ),
+						array_merge( array( $this->getQueueKey( 'l-unclaimed' ) ), $lParams )
+					);
+				}
+				if ( count( $zParams ) ) {
+					call_user_func_array(
+						array( $conn, 'zAdd' ),
+						array_merge( array( $this->getQueueKey( 'z-delayed' ) ), $zParams )
+					);
+				}
 				$res = $conn->exec(); // commit (atomic trx)
 				if ( in_array( false, $res, true ) ) {
 					wfDebugLog( 'JobQueueRedis', "Could not insert {$this->type} job(s)." );
@@ -187,8 +222,16 @@ class JobQueueRedis extends JobQueue {
 	protected function doPop() {
 		$job = false;
 
-		if ( $this->claimTTL <= 0 && mt_rand( 0, 99 ) == 0 ) {
+		$rand = mt_rand( 0, 99 );
+		// Prune jobs and IDs from the "garbage" list every 100 jobs.
+		// This only applies for the case when acknowledgements are disabled.
+		if ( ( $rand % 99 ) == 0 && $this->claimTTL <= 0 ) {
 			$this->cleanupClaimedJobs(); // prune jobs and IDs from the "garbage" list
+		}
+		// Push ready delayed jobs into the queue every 10 jobs to spread the load.
+		// This is also done as a periodic tasks, but we don't want to do too much at once.
+		if ( ( $rand % 9 ) == 0 && $this->checkDelay ) {
+			$this->releaseReadyDelayedJobs();
 		}
 
 		$conn = $this->getConnection();
@@ -360,7 +403,7 @@ class JobQueueRedis extends JobQueue {
 	}
 
 	/**
-	 * This function should not be called outside RedisJobQueue
+	 * This function should not be called outside JobQueueRedis
 	 *
 	 * @param $uid string
 	 * @param $conn RedisConnRef
@@ -476,6 +519,45 @@ class JobQueueRedis extends JobQueue {
 	}
 
 	/**
+	 * Release any ready delayed jobs into the queue
+	 *
+	 * @return integer Number of jobs released
+	 * @throws MWException
+	 */
+	public function releaseReadyDelayedJobs() {
+		$count = 0;
+		// Move ready jobs from the "delayed" set to the "unclaimed" list
+		$conn = $this->getConnection();
+		try {
+			// Get the list of ready delayed jobs, sorted by readiness
+			$uids = $conn->zRangeByScore(
+				$this->getQueueKey( 'z-delayed' ),
+				0, // min "delay until" UNIX timestamp
+				time(), // max "delay until" UNIX timestamp
+				array( 'limit' => array( 0, 1000 ) ) // offset, count
+			);
+			$count = count( $uids );
+			if ( $count ) {
+				// Migrate the jobs from the "delayed" set to the "unclaimed" list
+				$conn->multi( Redis::MULTI ); // begin (atomic trx)
+				call_user_func_array(
+					array( $conn, 'lPush' ),
+					array_merge( array( $this->getQueueKey( 'l-unclaimed' ) ), $uids )
+				);
+				call_user_func_array(
+					array( $conn, 'zRem' ),
+					array_merge( array( $this->getQueueKey( 'z-delayed' ) ), $uids )
+				);
+				$conn->exec(); // commit (atomic trx)
+			}
+		} catch ( RedisException $e ) {
+			$this->throwRedisException( $this->server, $conn, $e );
+		}
+
+		return $count;
+	}
+
+	/**
 	 * Destroy any jobs that have been claimed
 	 *
 	 * @return integer Number of jobs deleted
@@ -526,16 +608,20 @@ class JobQueueRedis extends JobQueue {
 	 * @return Array
 	 */
 	protected function doGetPeriodicTasks() {
+		$tasks = array();
 		if ( $this->claimTTL > 0 ) {
-			return array(
-				'recycleAndDeleteStaleJobs' => array(
-					'callback' => array( $this, 'recycleAndDeleteStaleJobs' ),
-					'period'   => ceil( $this->claimTTL / 2 )
-				)
+			$tasks['recycleAndDeleteStaleJobs'] = array(
+				'callback' => array( $this, 'recycleAndDeleteStaleJobs' ),
+				'period'   => ceil( $this->claimTTL / 2 )
 			);
-		} else {
-			return array();
 		}
+		if ( $this->checkDelay ) {
+			$tasks['releaseReadyDelayedJobs'] = array(
+				'callback' => array( $this, 'releaseReadyDelayedJobs' ),
+				'period'   => 300 // 5 minutes
+			);
+		}
+		return $tasks;
 	}
 
 	/**
@@ -545,15 +631,17 @@ class JobQueueRedis extends JobQueue {
 	protected function getNewJobFields( Job $job ) {
 		return array(
 			// Fields that describe the nature of the job
-			'type'      => $job->getType(),
-			'namespace' => $job->getTitle()->getNamespace(),
-			'title'     => $job->getTitle()->getDBkey(),
-			'params'    => $job->getParams(),
+			'type'       => $job->getType(),
+			'namespace'  => $job->getTitle()->getNamespace(),
+			'title'      => $job->getTitle()->getDBkey(),
+			'params'     => $job->getParams(),
+			// Some jobs cannot run until a certain timestamp
+			'delayUntil' => $job->delayUntilTimestamp() ?: null,
 			// Additional metadata
-			'uid'       => $job->ignoreDuplicates()
+			'uid'        => $job->ignoreDuplicates()
 				? wfBaseConvert( sha1( serialize( $job->getDeduplicationInfo() ) ), 16, 36, 31 )
 				: wfRandomString( 32 ),
-			'timestamp' => time() // UNIX timestamp
+			'timestamp'  => time() // UNIX timestamp
 		);
 	}
 
