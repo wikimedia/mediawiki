@@ -108,7 +108,7 @@ class ImagePage extends Article {
 		$diff = $request->getVal( 'diff' );
 		$diffOnly = $request->getBool( 'diffonly', $this->getContext()->getUser()->getOption( 'diffonly' ) );
 
-		if ( $this->getTitle()->getNamespace() != NS_FILE || ( isset( $diff ) && $diffOnly ) ) {
+		if ( $this->getTitle()->getNamespace() != NS_FILE || ( $diff !== null && $diffOnly ) ) {
 			parent::view();
 			return;
 		}
@@ -116,7 +116,7 @@ class ImagePage extends Article {
 		$this->loadFile();
 
 		if ( $this->getTitle()->getNamespace() == NS_FILE && $this->mPage->getFile()->getRedirected() ) {
-			if ( $this->getTitle()->getDBkey() == $this->mPage->getFile()->getName() || isset( $diff ) ) {
+			if ( $this->getTitle()->getDBkey() == $this->mPage->getFile()->getName() || $diff !== null ) {
 				// mTitle is the same as the redirect target so ask Article
 				// to perform the redirect for us.
 				$request->setVal( 'diffonly', 'true' );

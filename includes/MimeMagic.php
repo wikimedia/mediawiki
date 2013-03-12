@@ -346,7 +346,7 @@ class MimeMagic {
 	 * @return MimeMagic
 	 */
 	public static function &singleton() {
-		if ( !isset( self::$instance ) ) {
+		if ( self::$instance === null ) {
 			self::$instance = new MimeMagic;
 		}
 		return self::$instance;

@@ -616,7 +616,7 @@ class Linker {
 
 			if ( isset( $fp['thumbnail'] ) || isset( $fp['framed'] ) || isset( $fp['frameless'] ) || !$hp['width'] ) {
 				global $wgThumbLimits, $wgThumbUpright;
-				if ( !isset( $widthOption ) || !isset( $wgThumbLimits[$widthOption] ) ) {
+				if ( $widthOption === null || !isset( $wgThumbLimits[$widthOption] ) ) {
 					$widthOption = User::getDefaultOption( 'thumbsize' );
 				}
 
