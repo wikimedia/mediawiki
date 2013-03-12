@@ -86,10 +86,12 @@ CREATE TABLE /*_*/user (
   -- Same with passwords.
   user_email tinytext NOT NULL,
 
-  -- This is a timestamp which is updated when a user
-  -- logs in, logs out, changes preferences, or performs
-  -- some other action requiring HTML cache invalidation
-  -- to ensure that the UI is updated.
+  -- If the browser sends an If-Modified-Since header, a 304 response is
+  -- suppressed if the value in this field for the current user is later than
+  -- the value in the IMS header. That is, this field is an invalidation timestamp
+  -- for the browser cache of logged-in users. Among other things, it is used
+  -- to prevent pages generated for a previously logged in user from being
+  -- displayed after a session expiry followed by a fresh login.
   user_touched binary(14) NOT NULL default '',
 
   -- A pseudorandomly generated value that is stored in
