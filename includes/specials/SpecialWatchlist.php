@@ -116,7 +116,7 @@ class SpecialWatchlist extends SpecialPage {
 		$this->customFilters = array();
 		wfRunHooks( 'SpecialWatchlistFilters', array( $this, &$this->customFilters ) );
 		foreach( $this->customFilters as $key => $params ) {
-			$defaults[$key] = $params['msg'];
+			$defaults[$key] = $params['default'];
 		}
 
 		# Extract variables from the request, falling back to user preferences or
@@ -131,7 +131,7 @@ class SpecialWatchlist extends SpecialPage {
 		$values['hidePatrolled'] = (int)$request->getBool( 'hidePatrolled', $defaults['hidePatrolled'] );
 		$values['extended'] = (int)$request->getBool( 'extended', $defaults['extended'] );
 		foreach( $this->customFilters as $key => $params ) {
-			$values[$key] = (int)$request->getBool( $key );
+			$values[$key] = (int)$request->getBool( $key, $defaults[$key] );
 		}
 
 		# Get namespace value, if supplied, and prepare a WHERE fragment
