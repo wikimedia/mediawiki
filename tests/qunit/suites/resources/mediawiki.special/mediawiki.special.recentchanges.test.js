@@ -3,7 +3,7 @@
 
 	// TODO: verify checkboxes == [ 'nsassociated', 'nsinvert' ]
 
-	QUnit.test( '"all" namespace disable checkboxes', function ( assert ) {
+	QUnit.test( '"all" namespace disable checkboxes', 8, function ( assert ) {
 		var selectHtml, $env, $options;
 
 		// from Special:Recentchanges

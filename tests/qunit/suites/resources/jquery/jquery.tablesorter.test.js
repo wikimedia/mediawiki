@@ -614,7 +614,7 @@
 		}
 	);
 
-	QUnit.test( 'Test detection routine', function ( assert ) {
+	QUnit.test( 'Test detection routine', 1, function ( assert ) {
 		var $table;
 		$table = $(
 			'<table class="sortable">' +
@@ -635,7 +635,7 @@
 	} );
 
 	/** FIXME: the diff output is not very readeable. */
-	QUnit.test( 'bug 32047 - caption must be before thead', function ( assert ) {
+	QUnit.test( 'bug 32047 - caption must be before thead', 1, function ( assert ) {
 		var $table;
 		$table = $(
 			'<table class="sortable">' +
@@ -655,7 +655,7 @@
 		);
 	} );
 
-	QUnit.test( 'data-sort-value attribute, when available, should override sorting position', function ( assert ) {
+	QUnit.test( 'data-sort-value attribute, when available, should override sorting position', 3, function ( assert ) {
 		var $table, data;
 
 		// Example 1: All cells except one cell without data-sort-value,
@@ -925,7 +925,7 @@
 		}
 	);
 
-	QUnit.test( 'Sorting images using alt text', function ( assert ) {
+	QUnit.test( 'Sorting images using alt text', 1, function ( assert ) {
 		var $table = $(
 			'<table class="sortable">' +
 				'<tr><th>THEAD</th></tr>' +
@@ -942,7 +942,7 @@
 		);
 	} );
 
-	QUnit.test( 'Sorting images using alt text (complex)', function ( assert ) {
+	QUnit.test( 'Sorting images using alt text (complex)', 1, function ( assert ) {
 		var $table = $(
 			'<table class="sortable">' +
 				'<tr><th>THEAD</th></tr>' +
@@ -963,7 +963,7 @@
 		);
 	} );
 
-	QUnit.test( 'Sorting images using alt text (with format autodetection)', function ( assert ) {
+	QUnit.test( 'Sorting images using alt text (with format autodetection)', 1, function ( assert ) {
 		var $table = $(
 			'<table class="sortable">' +
 				'<tr><th>THEAD</th></tr>' +
