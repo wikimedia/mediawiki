@@ -73,7 +73,7 @@ class RunJobs extends Maintenance {
 		$type = $this->getOption( 'type', false );
 		$wgTitle = Title::newFromText( 'RunJobs.php' );
 		$dbw = wfGetDB( DB_MASTER );
-		$n = 0;
+		$jobsRun = 0; // counter
 
 		$group = JobQueueGroup::singleton();
 		// Handle any required periodic queue maintenance
@@ -88,6 +88,7 @@ class RunJobs extends Maintenance {
 				? $group->pop( JobQueueGroup::TYPE_DEFAULT, JobQueueGroup::USE_CACHE )
 				: $group->pop( $type ); // job from a single queue
 			if ( $job ) { // found a job
+				++$jobsRun;
 				$this->runJobsLog( $job->toString() . " STARTING" );
 
 				// Run the job...
@@ -113,18 +114,20 @@ class RunJobs extends Maintenance {
 				}
 
 				// Break out if we hit the job count or wall time limits...
-				if ( $maxJobs && ++$n >= $maxJobs ) {
+				if ( $maxJobs && $jobsRun >= $maxJobs ) {
 					break;
 				} elseif ( $maxTime && ( time() - $startTime ) > $maxTime ) {
 					break;
 				}
 
-				// Don't let any queue slaves/backups fall behind
-				$group->get( $job->getType() )->waitForBackups();
 				// Don't let any of the main DB slaves get backed up
 				$timePassed = time() - $lastTime;
 				if ( $timePassed >= 5 || $timePassed < 0 ) {
 					wfWaitForSlaves();
+				}
+				// Don't let any queue slaves/backups fall behind
+				if ( $jobsRun > 0 && ( $jobsRun % 100 ) == 0 ) {
+					$group->waitForBackups();
 				}
 			}
 		} while ( $job ); // stop when there are no jobs
