@@ -33,226 +33,229 @@ $.fn.makeCollapsible = function () {
 			$firstItem,
 			collapsibleId,
 			$customTogglers,
-			firstval,
-			/**
-			 * @param {jQuery} $collapsible
-			 * @param {string} action The action this function will take ('expand' or 'collapse').
-			 * @param {jQuery|null} [optional] $defaultToggle
-			 * @param {Object|undefined} options
-			 */
-			toggleElement = function ( $collapsible, action, $defaultToggle, options ) {
-				var $collapsibleContent, $containers;
-				options = options || {};
+			firstval;
 
-				// Validate parameters
+		/**
+		 * @param {jQuery} $collapsible
+		 * @param {string} action The action this function will take ('expand' or 'collapse').
+		 * @param {jQuery|null} [optional] $defaultToggle
+		 * @param {Object|undefined} options
+		 */
+		function toggleElement( $collapsible, action, $defaultToggle, options ) {
+			var $collapsibleContent, $containers;
+			options = options || {};
 
-				// $collapsible must be an instance of jQuery
-				if ( !$collapsible.jquery ) {
-					return;
-				}
-				if ( action !== 'expand' && action !== 'collapse' ) {
-					// action must be string with 'expand' or 'collapse'
-					return;
-				}
-				if ( $defaultToggle === undefined ) {
-					$defaultToggle = null;
-				}
-				if ( $defaultToggle !== null && !$defaultToggle.jquery ) {
-					// is optional (may be undefined), but if defined it must be an instance of jQuery.
-					// If it's not, abort right away.
-					// After this $defaultToggle is either null or a valid jQuery instance.
-					return;
-				}
+			// Validate parameters
 
-				if ( action === 'collapse' ) {
+			// $collapsible must be an instance of jQuery
+			if ( !$collapsible.jquery ) {
+				return;
+			}
+			if ( action !== 'expand' && action !== 'collapse' ) {
+				// action must be string with 'expand' or 'collapse'
+				return;
+			}
+			if ( $defaultToggle === undefined ) {
+				$defaultToggle = null;
+			}
+			if ( $defaultToggle !== null && !$defaultToggle.jquery ) {
+				// is optional (may be undefined), but if defined it must be an instance of jQuery.
+				// If it's not, abort right away.
+				// After this $defaultToggle is either null or a valid jQuery instance.
+				return;
+			}
 
-					// Collapse the element
-					if ( $collapsible.is( 'table' ) ) {
-						// Hide all table rows of this table
-						// Slide doens't work with tables, but fade does as of jQuery 1.1.3
-						// http://stackoverflow.com/questions/467336#920480
-						$containers = $collapsible.find( '> tbody > tr' );
-						if ( $defaultToggle ) {
-							// Exclude tablerow containing togglelink
-							$containers = $containers.not( $defaultToggle.closest( 'tr' ) );
-						}
+			if ( action === 'collapse' ) {
 
-						if ( options.instantHide ) {
-							$containers.hide();
-						} else {
-							$containers.stop( true, true ).fadeOut();
-						}
+				// Collapse the element
+				if ( $collapsible.is( 'table' ) ) {
+					// Hide all table rows of this table
+					// Slide doens't work with tables, but fade does as of jQuery 1.1.3
+					// http://stackoverflow.com/questions/467336#920480
+					$containers = $collapsible.find( '> tbody > tr' );
+					if ( $defaultToggle ) {
+						// Exclude tablerow containing togglelink
+						$containers = $containers.not( $defaultToggle.closest( 'tr' ) );
+					}
 
-					} else if ( $collapsible.is( 'ul' ) || $collapsible.is( 'ol' ) ) {
-						$containers = $collapsible.find( '> li' );
-						if ( $defaultToggle ) {
-							// Exclude list-item containing togglelink
-							$containers = $containers.not( $defaultToggle.parent() );
-						}
-
-						if ( options.instantHide ) {
-							$containers.hide();
-						} else {
-							$containers.stop( true, true ).slideUp();
-						}
-
+					if ( options.instantHide ) {
+						$containers.hide();
 					} else {
-						// <div>, <p> etc.
-						$collapsibleContent = $collapsible.find( '> .mw-collapsible-content' );
+						$containers.stop( true, true ).fadeOut();
+					}
 
-						// If a collapsible-content is defined, collapse it
-						if ( $collapsibleContent.length ) {
-							if ( options.instantHide ) {
-								$collapsibleContent.hide();
-							} else {
-								$collapsibleContent.slideUp();
-							}
+				} else if ( $collapsible.is( 'ul' ) || $collapsible.is( 'ol' ) ) {
+					$containers = $collapsible.find( '> li' );
+					if ( $defaultToggle ) {
+						// Exclude list-item containing togglelink
+						$containers = $containers.not( $defaultToggle.parent() );
+					}
 
-						// Otherwise assume this is a customcollapse with a remote toggle
-						// .. and there is no collapsible-content because the entire element should be toggled
-						} else {
-							if ( options.instantHide ) {
-								$collapsible.hide();
-							} else {
-								if ( $collapsible.is( 'tr' ) || $collapsible.is( 'td' ) || $collapsible.is( 'th' ) ) {
-									$collapsible.fadeOut();
-								} else {
-									$collapsible.slideUp();
-								}
-							}
-						}
+					if ( options.instantHide ) {
+						$containers.hide();
+					} else {
+						$containers.stop( true, true ).slideUp();
 					}
 
 				} else {
+					// <div>, <p> etc.
+					$collapsibleContent = $collapsible.find( '> .mw-collapsible-content' );
 
-					// Expand the element
-					if ( $collapsible.is( 'table' ) ) {
-						$containers = $collapsible.find( '>tbody>tr' );
-						if ( $defaultToggle ) {
-							// Exclude tablerow containing togglelink
-							$containers.not( $defaultToggle.parent().parent() ).stop(true, true).fadeIn();
+					// If a collapsible-content is defined, collapse it
+					if ( $collapsibleContent.length ) {
+						if ( options.instantHide ) {
+							$collapsibleContent.hide();
 						} else {
-							$containers.stop( true, true ).fadeIn();
+							$collapsibleContent.slideUp();
 						}
 
-					} else if ( $collapsible.is( 'ul' ) || $collapsible.is( 'ol' ) ) {
-						$containers = $collapsible.find( '> li' );
-						if ( $defaultToggle ) {
-							// Exclude list-item containing togglelink
-							$containers.not( $defaultToggle.parent() ).stop( true, true ).slideDown();
-						} else {
-							$containers.stop( true, true ).slideDown();
-						}
-
+					// Otherwise assume this is a customcollapse with a remote toggle
+					// .. and there is no collapsible-content because the entire element should be toggled
 					} else {
-						// <div>, <p> etc.
-						$collapsibleContent = $collapsible.find( '> .mw-collapsible-content' );
-
-						// If a collapsible-content is defined, collapse it
-						if ( $collapsibleContent.length ) {
-							$collapsibleContent.slideDown();
-
-						// Otherwise assume this is a customcollapse with a remote toggle
-						// .. and there is no collapsible-content because the entire element should be toggled
+						if ( options.instantHide ) {
+							$collapsible.hide();
 						} else {
 							if ( $collapsible.is( 'tr' ) || $collapsible.is( 'td' ) || $collapsible.is( 'th' ) ) {
-								$collapsible.fadeIn();
+								$collapsible.fadeOut();
 							} else {
-								$collapsible.slideDown();
+								$collapsible.slideUp();
 							}
 						}
 					}
 				}
-			},
-			/**
-			 * Toggles collapsible and togglelink class and updates text label.
-			 *
-			 * @param {jQuery} $that
-			 * @param {jQuery.Event} e
-			 * @param {Object|undefined} options
-			 */
-			toggleLinkDefault = function ( $that, e, options ) {
-				var $collapsible = $that.closest( '.mw-collapsible' ).toggleClass( 'mw-collapsed' );
+
+			} else {
+
+				// Expand the element
+				if ( $collapsible.is( 'table' ) ) {
+					$containers = $collapsible.find( '>tbody>tr' );
+					if ( $defaultToggle ) {
+						// Exclude tablerow containing togglelink
+						$containers.not( $defaultToggle.parent().parent() ).stop(true, true).fadeIn();
+					} else {
+						$containers.stop( true, true ).fadeIn();
+					}
+
+				} else if ( $collapsible.is( 'ul' ) || $collapsible.is( 'ol' ) ) {
+					$containers = $collapsible.find( '> li' );
+					if ( $defaultToggle ) {
+						// Exclude list-item containing togglelink
+						$containers.not( $defaultToggle.parent() ).stop( true, true ).slideDown();
+					} else {
+						$containers.stop( true, true ).slideDown();
+					}
+
+				} else {
+					// <div>, <p> etc.
+					$collapsibleContent = $collapsible.find( '> .mw-collapsible-content' );
+
+					// If a collapsible-content is defined, collapse it
+					if ( $collapsibleContent.length ) {
+						$collapsibleContent.slideDown();
+
+					// Otherwise assume this is a customcollapse with a remote toggle
+					// .. and there is no collapsible-content because the entire element should be toggled
+					} else {
+						if ( $collapsible.is( 'tr' ) || $collapsible.is( 'td' ) || $collapsible.is( 'th' ) ) {
+							$collapsible.fadeIn();
+						} else {
+							$collapsible.slideDown();
+						}
+					}
+				}
+			}
+		}
+
+		/**
+		 * Toggles collapsible and togglelink class and updates text label.
+		 *
+		 * @param {jQuery} $that
+		 * @param {jQuery.Event} e
+		 * @param {Object|undefined} options
+		 */
+		function toggleLinkDefault( $that, e, options ) {
+			var $collapsible = $that.closest( '.mw-collapsible' ).toggleClass( 'mw-collapsed' );
+			e.preventDefault();
+			e.stopPropagation();
+
+			// It's expanded right now
+			if ( !$that.hasClass( 'mw-collapsible-toggle-collapsed' ) ) {
+				// Change link to "Show"
+				$that.removeClass( 'mw-collapsible-toggle-expanded' ).addClass( 'mw-collapsible-toggle-collapsed' );
+				if ( $that.find( '> a' ).length ) {
+					$that.find( '> a' ).text( expandtext );
+				} else {
+					$that.text( expandtext );
+				}
+				// Collapse element
+				toggleElement( $collapsible, 'collapse', $that, options );
+
+			// It's collapsed right now
+			} else {
+				// Change link to "Hide"
+				$that.removeClass( 'mw-collapsible-toggle-collapsed' ).addClass( 'mw-collapsible-toggle-expanded' );
+				if ( $that.find( '> a' ).length ) {
+					$that.find( '> a' ).text( collapsetext );
+				} else {
+					$that.text( collapsetext );
+				}
+				// Expand element
+				toggleElement( $collapsible, 'expand', $that, options );
+			}
+			return;
+		}
+
+		/**
+		 * Toggles collapsible and togglelink class.
+		 *
+		 * @param {jQuery} $that
+		 * @param {jQuery.Event} e
+		 * @param {Object|undefined} options
+		 */
+		function toggleLinkPremade( $that, e, options ) {
+			var $collapsible = $that.eq( 0 ).closest( '.mw-collapsible' ).toggleClass( 'mw-collapsed' );
+			if ( $.nodeName( e.target, 'a' ) ) {
+				return true;
+			}
+			e.preventDefault();
+			e.stopPropagation();
+
+			// It's expanded right now
+			if ( !$that.hasClass( 'mw-collapsible-toggle-collapsed' ) ) {
+				// Change toggle to collapsed
+				$that.removeClass( 'mw-collapsible-toggle-expanded' ).addClass( 'mw-collapsible-toggle-collapsed' );
+				// Collapse element
+				toggleElement( $collapsible, 'collapse', $that, options );
+
+			// It's collapsed right now
+			} else {
+				// Change toggle to expanded
+				$that.removeClass( 'mw-collapsible-toggle-collapsed' ).addClass( 'mw-collapsible-toggle-expanded' );
+				// Expand element
+				toggleElement( $collapsible, 'expand', $that, options );
+			}
+			return;
+		}
+
+		/**
+		 * Toggles customcollapsible.
+		 *
+		 * @param {jQuery} $that
+		 * @param {jQuery.Event} e
+		 * @param {Object|undefined} options
+		 * @param {jQuery} $collapsible
+		 */
+		function toggleLinkCustom( $that, e, options, $collapsible ) {
+			// For the initial state call of customtogglers there is no event passed
+			if ( e ) {
 				e.preventDefault();
 				e.stopPropagation();
-
-				// It's expanded right now
-				if ( !$that.hasClass( 'mw-collapsible-toggle-collapsed' ) ) {
-					// Change link to "Show"
-					$that.removeClass( 'mw-collapsible-toggle-expanded' ).addClass( 'mw-collapsible-toggle-collapsed' );
-					if ( $that.find( '> a' ).length ) {
-						$that.find( '> a' ).text( expandtext );
-					} else {
-						$that.text( expandtext );
-					}
-					// Collapse element
-					toggleElement( $collapsible, 'collapse', $that, options );
-
-				// It's collapsed right now
-				} else {
-					// Change link to "Hide"
-					$that.removeClass( 'mw-collapsible-toggle-collapsed' ).addClass( 'mw-collapsible-toggle-expanded' );
-					if ( $that.find( '> a' ).length ) {
-						$that.find( '> a' ).text( collapsetext );
-					} else {
-						$that.text( collapsetext );
-					}
-					// Expand element
-					toggleElement( $collapsible, 'expand', $that, options );
-				}
-				return;
-			},
-			/**
-			 * Toggles collapsible and togglelink class.
-			 *
-			 * @param {jQuery} $that
-			 * @param {jQuery.Event} e
-			 * @param {Object|undefined} options
-			 */
-			toggleLinkPremade = function ( $that, e, options ) {
-				var $collapsible = $that.eq( 0 ).closest( '.mw-collapsible' ).toggleClass( 'mw-collapsed' );
-				if ( $.nodeName( e.target, 'a' ) ) {
-					return true;
-				}
-				e.preventDefault();
-				e.stopPropagation();
-
-				// It's expanded right now
-				if ( !$that.hasClass( 'mw-collapsible-toggle-collapsed' ) ) {
-					// Change toggle to collapsed
-					$that.removeClass( 'mw-collapsible-toggle-expanded' ).addClass( 'mw-collapsible-toggle-collapsed' );
-					// Collapse element
-					toggleElement( $collapsible, 'collapse', $that, options );
-
-				// It's collapsed right now
-				} else {
-					// Change toggle to expanded
-					$that.removeClass( 'mw-collapsible-toggle-collapsed' ).addClass( 'mw-collapsible-toggle-expanded' );
-					// Expand element
-					toggleElement( $collapsible, 'expand', $that, options );
-				}
-				return;
-			},
-			/**
-			 * Toggles customcollapsible.
-			 *
-			 * @param {jQuery} $that
-			 * @param {jQuery.Event} e
-			 * @param {Object|undefined} options
-			 * @param {jQuery} $collapsible
-			 */
-			toggleLinkCustom = function ( $that, e, options, $collapsible ) {
-				// For the initial state call of customtogglers there is no event passed
-				if ( e ) {
-					e.preventDefault();
-					e.stopPropagation();
-				}
-				// Get current state and toggle to the opposite
-				var action = $collapsible.hasClass( 'mw-collapsed' ) ? 'expand' : 'collapse';
-				$collapsible.toggleClass( 'mw-collapsed' );
-				toggleElement( $collapsible, action, $that, options );
-
-			};
+			}
+			// Get current state and toggle to the opposite
+			var action = $collapsible.hasClass( 'mw-collapsed' ) ? 'expand' : 'collapse';
+			$collapsible.toggleClass( 'mw-collapsed' );
+			toggleElement( $collapsible, action, $that, options );
+		}
 
 		// Return if it has been enabled already.
 		if ( $collapsible.data( 'mw-made-collapsible' ) ) {
