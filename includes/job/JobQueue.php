@@ -126,7 +126,7 @@ abstract class JobQueue {
 	abstract protected function optimalOrder();
 
 	/**
-	 * Quickly check if the queue is empty (has no available jobs).
+	 * Quickly check if the queue has no available (unacquired, non-delayed) jobs.
 	 * Queue classes should use caching if they are any slower without memcached.
 	 *
 	 * If caching is used, this might return false when there are actually no jobs.
@@ -151,7 +151,7 @@ abstract class JobQueue {
 	abstract protected function doIsEmpty();
 
 	/**
-	 * Get the number of available (unacquired) jobs in the queue.
+	 * Get the number of available (unacquired, non-delayed) jobs in the queue.
 	 * Queue classes should use caching if they are any slower without memcached.
 	 *
 	 * If caching is used, this number might be out of date for a minute.
@@ -193,6 +193,30 @@ abstract class JobQueue {
 	 * @return integer
 	 */
 	abstract protected function doGetAcquiredCount();
+
+	/**
+	 * Get the number of delayed jobs (these are temporarily out of the queue).
+	 * Queue classes should use caching if they are any slower without memcached.
+	 *
+	 * If caching is used, this number might be out of date for a minute.
+	 *
+	 * @return integer
+	 * @throws MWException
+	 */
+	final public function getDelayedCount() {
+		wfProfileIn( __METHOD__ );
+		$res = $this->doGetDelayedCount();
+		wfProfileOut( __METHOD__ );
+		return $res;
+	}
+
+	/**
+	 * @see JobQueue::getDelayedCount()
+	 * @return integer
+	 */
+	protected function doGetDelayedCount() {
+		return 0; // not implemented
+	}
 
 	/**
 	 * Push a single jobs into the queue.
@@ -413,7 +437,7 @@ abstract class JobQueue {
 	protected function doFlushCaches() {}
 
 	/**
-	 * Get an iterator to traverse over all of the jobs in this queue.
+	 * Get an iterator to traverse over all available jobs in this queue.
 	 * This does not include jobs that are current acquired. In general,
 	 * this should only be called on a queue that is no longer being popped.
 	 *

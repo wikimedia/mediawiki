@@ -177,6 +177,15 @@ abstract class Job {
 	}
 
 	/**
+	 * @return integer|null UNIX timestamp to delay running this job until, otherwise null
+	 */
+	public function delayUntilTimestamp() {
+		return isset( $this->params['delayUntilTimestamp'] )
+			? wfTimestampOrNull( TS_UNIX, $this->params['delayUntilTimestamp'] )
+			: null;
+	}
+
+	/**
 	 * @return bool Whether only one of each identical set of jobs should be run
 	 */
 	public function ignoreDuplicates() {
