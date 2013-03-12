@@ -23,6 +23,9 @@ production.
   version of the Vector extension as this feature may conflict.
 
 === Bug fixes in 1.22 ===
+* Disable Special:PasswordReset when $wgEnableEmail. Previously one could still
+  navigate to the page by entering the URL directly.
+
 
 === API changes in 1.22 ===
 * (bug 46626) xmldoublequote parameter was removed. Because of a bug, the

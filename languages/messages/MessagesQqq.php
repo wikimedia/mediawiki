@@ -1228,6 +1228,7 @@ See also:
 'passwordreset-text' => 'Text on [[Special:PasswordReset]]',
 'passwordreset-legend' => '{{Identical|Reset password}}',
 'passwordreset-disabled' => 'Used as error message in changing password.',
+'passwordreset-emaildisabled' => 'Used as error message in changing password when site\'s email feature is disabled.',
 'passwordreset-pretext' => 'These instructions are shown on the password reset dialogue, which can, in principle, take the user\'s email address as well as, or instead of, their username. This text displays above one or more fields, at least one of which needs to be completed, and the message does not know which routes are available, so it needs to refer to some vague noun rather than specifically "username".
 "One of the pieces of data" means "an info"/"a datum" (probably to be translatea with a singular noun in your language if available). Parameters:
 * $1 is the number of password reset routes. This is never 1, but always two or more. Thus, the first plural option is empty in English.',

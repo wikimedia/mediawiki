@@ -292,7 +292,7 @@ class SpecialPasswordReset extends FormSpecialPage {
 	}
 
 	protected function canChangePassword( User $user ) {
-		global $wgPasswordResetRoutes, $wgAuth;
+		global $wgPasswordResetRoutes, $wgEnableEmail, $wgAuth;
 
 		// Maybe password resets are disabled, or there are no allowable routes
 		if ( !is_array( $wgPasswordResetRoutes ) ||
@@ -304,6 +304,11 @@ class SpecialPasswordReset extends FormSpecialPage {
 		// Maybe the external auth plugin won't allow local password changes
 		if ( !$wgAuth->allowPasswordChange() ) {
 			return 'resetpass_forbidden';
+		}
+
+		// Maybe email features have been disabled
+		if ( !$wgEnableEmail ) {
+			return 'passwordreset-emaildisabled';
 		}
 
 		// Maybe the user is blocked (check this here rather than relying on the parent
