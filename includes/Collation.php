@@ -181,7 +181,10 @@ class IcuCollation extends Collation {
 
 	/**
 	 * Additional characters (or character groups) to be considered separate
-	 * letters for given languages, compared to the data stored in the
+	 * letters for given languages, or to be removed from the list of such
+	 * letters (denoted by keys starting with '-').
+	 *
+	 * These are additions to (or subtractions from) the data stored in the
 	 * first-letters-root.ser file (which among others includes full basic latin,
 	 * cyrillic and greek alphabets).
 	 *
@@ -262,6 +265,7 @@ class IcuCollation extends Collation {
 		'sq' => array( "Ç", "Dh", "Ë", "Gj", "Ll", "Nj", "Rr", "Sh", "Th", "Xh", "Zh" ),
 		'sr' => array(),
 		'sv' => array( "Å", "Ä", "Ö" ),
+		'-sv' => array( "Þ" ), // sorted as "th" in Swedish, causing unexpected output - bug 45446
 		'tk' => array( "Ç", "Ä", "Ž", "Ň", "Ö", "Ş", "Ü", "Ý" ),
 		'tl' => array( "Ñ", "Ng" ),
 		'tr' => array( "Ç", "Ğ", "İ", "Ö", "Ş", "Ü" ),
@@ -352,7 +356,12 @@ class IcuCollation extends Collation {
 
 		if ( isset ( self::$tailoringFirstLetters[$this->locale] ) ) {
 			$letters = wfGetPrecompiledData( "first-letters-root.ser" );
+			// Append additional characters
 			$letters = array_merge( $letters, self::$tailoringFirstLetters[$this->locale] );
+			// Remove unnecessary ones, if any
+			if ( isset( self::$tailoringFirstLetters[ '-' . $this->locale ] ) ) {
+				$letters = array_diff( $letters, self::$tailoringFirstLetters[ '-' . $this->locale ] );
+			}
 		} else {
 			$letters = wfGetPrecompiledData( "first-letters-{$this->locale}.ser" );
 			if ( $letters === false ) {
