@@ -4239,4 +4239,7 @@ Anders kunt u ook het eenvoudige formulier hieronder gebruiken. Uw reactie wordt
 'duration-centuries' => '$1 {{PLURAL:$1|eeuw|eeuwen}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennia}}',
 
+# Image rotation
+'rotate-comment' => 'Afbeelding gedraaid, $1 {{PLURAL:$1|graad|graden}} met de klok mee',
+
 );

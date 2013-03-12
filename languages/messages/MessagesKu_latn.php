@@ -524,7 +524,7 @@ Eger account\'a bikarhêneran şaşî hate çêkirin, guhdare vê peyamê meke.'
 'usernamehasherror' => 'Divê karakterên xerab ji bo navê bikarhêner neyên bikaranîn',
 'loginlanguagelabel' => 'Ziman: $1',
 
-# E-mail sending
+# Email sending
 'user-mail-no-addy' => 'Hewl da e-nameyekê bê navnîşana e-nameyê bişîne',
 
 # Change password dialog
@@ -566,7 +566,7 @@ Ji bo xelaskirina tomarkirinê, divê tu niha şîfreyeke nû binivîsî:',
 'bold_tip' => 'Nivîsa stûr',
 'italic_sample' => 'Nivîsa xwehr (îtalîk)',
 'italic_tip' => 'Nivîsa xwehr (îtalîk)',
-'link_sample' => 'Navê lînkê',
+'link_sample' => 'Sernavê girêdanê',
 'link_tip' => 'Girêdana navxweyî',
 'extlink_sample' => 'http://www.example.com navê lînkê',
 'extlink_tip' => 'Girêdana derve (http:// di destpêkê de ji bîr neke)',
@@ -945,7 +945,7 @@ Sedema qedexekirina $3 ev e: ''$2''",
 'prefs-displaywatchlist' => 'Vebijarkan nîşan bide',
 'prefs-diffs' => 'Cudahî',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'E-name derbasdar e',
 'email-address-validity-invalid' => 'E-nameyeke derbasdar binivîse',
 
@@ -1366,7 +1366,7 @@ Li [[Special:WantedCategories|kategoriyên xwestî]] binêre.',
 'listgrouprights-addgroup-all' => 'Hemû koman tevlî bike',
 'listgrouprights-removegroup-all' => 'Hemû koman jê bibe',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Navnîşanê neşîne',
 'mailnologintext' => 'Te gireke xwe [[Special:UserLogin|qeydbikê]] û adrêsa e-nameyan di [[Special:Preferences|tercihên xwe]] da nivîsandibe ji bo şandina e-nameyan ji bikarhênerên din ra.',
 'emailuser' => 'Ji bikarhêner re e-name bişîne',
@@ -1600,7 +1600,7 @@ Ji bo jêbirinan û çêkirinên nû, ji kerema xwe li [[{{ns:special}}:Log/dele
 'whatlinkshere-links' => '← girêdan',
 'whatlinkshere-hideredirs' => 'Beralîkirinan $1',
 'whatlinkshere-hidetrans' => 'Naverokan $1',
-'whatlinkshere-hidelinks' => 'Lînkan $1',
+'whatlinkshere-hidelinks' => 'Girêdanan $1',
 'whatlinkshere-hideimages' => '$1 lînkên wêneyan',
 'whatlinkshere-filters' => 'Parzûn',
 
@@ -2011,7 +2011,7 @@ Ji ber ku girêdaneke derve di wê rûpelê de heye ev pirsgirêk pêk hat.',
 'monthsall' => 'hemû',
 'limitall' => 'hemû',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Adrêsa e-nameyan nasbike',
 'confirmemail_noemail' => 'Te e-mail-adressê xwe di [[Special:Preferences|tercihên xwe da]] nenivîsandiye.',
 'confirmemail_success' => 'E-Mail adrêsa te hate naskirin. Tu niha dikarî xwe qeydbikê û kêfkê.',

@@ -855,9 +855,9 @@ Dis was moontlik geskuif of verwyder terwyl u die bladsy gelees het.",
 'loginreqlink' => 'teken in',
 'loginreqpagetext' => 'U moet $1 om ander bladsye te bekyk.',
 'accmailtitle' => 'Wagwoord gestuur.',
-'accmailtext' => "'n Lukraakgegenereerde wagwoord vir [[User talk:$1|$1]] is na $2 gestuur.
+'accmailtext' => "'n Lukrake wagwoord vir [[User talk:$1|$1]] is na $2 gestuur.
 
-Die wagwoord vir hierdie nuwe gebruiker kan verander word op die ''[[Special:ChangePassword|verander wagwoord]]'' bladsy nadat ingeteken is.",
+Die wagwoord vir hierdie nuwe gebruiker kan op die ''[[Special:ChangePassword|verander wagwoord]]''-bladsy verander word nadat ingeteken is.",
 'newarticle' => '(Nuut)',
 'newarticletext' => "Hierdie bladsy bestaan nie.
 Tik iets in die invoerboks hier onder om 'n nuwe bladsy te skep. Meer inligting is op die [[{{MediaWiki:Helppage}}|hulpbladsy]] beskikbaar.
@@ -945,7 +945,7 @@ Die administrateur wat dit gesluit het se verduideliking: $1",
 'cascadeprotectedwarning' => "'''Waarskuwing:''' Die bladsy was beveilig sodat dit slegs deur administrateurs gewysig kan word, omrede dit ingesluit is in die volgende {{PLURAL:$1|bladsy|bladsye}} wat kaskade-beskerming geniet:",
 'titleprotectedwarning' => "'''WAARSKUWING: Hierdie bladsy is beveilig. Slegs gebruikers met [[Special:ListGroupRights|spesiale regte]] sal dit kan skep.'''
 Die nuutste logboekinskrywing word hieronder ter verwysing vertoon:",
-'templatesused' => 'Hierdie bladsy {{PLURAL:$1|gebruik sjabloon|gebruik sjablone}}:',
+'templatesused' => '{{PLURAL:$1|Sjabloon|Sjablone}} gebruik op hierdie blad:',
 'templatesusedpreview' => '{{PLURAL:$1|Sjabloon|Sjablone}} gebruik in hierdie voorskou:',
 'templatesusedsection' => 'Die volgende {{PLURAL:$1|sjabloon|sjablone}} word in hierdie afdeling gebruik:',
 'template-protected' => '(beskermd)',
@@ -1350,7 +1350,7 @@ Hier volg 'n lukraak gegenereerde waarde wat u kan gebruik: $1",
 Die aksie kan nie ongedaan gemaak word nie.',
 'prefs-emailconfirm-label' => 'E-posbevestiging:',
 'prefs-textboxsize' => 'Afmetings van die wysigingsvenster',
-'youremail' => 'E-pos',
+'youremail' => 'E-posadres:',
 'username' => '{{GENDER:$1|Gebruikersnaam}}:',
 'uid' => '{{GENDER:$1|Gebruikersnommer}}:',
 'prefs-memberingroups' => '{{GENDER:$2|Lid}} van {{PLURAL:$1|groep|groepe}}:',
@@ -3786,7 +3786,7 @@ Beelde word in hulle volle resolusie gewys. Ander lêertipes word direk met hull
 'specialpages-group-changes' => 'Onlangse wysigings en boekstawings',
 'specialpages-group-media' => 'Media verslae en oplaai',
 'specialpages-group-users' => 'Gebruikers en regte',
-'specialpages-group-highuse' => 'Baie gebruikte bladsye',
+'specialpages-group-highuse' => 'Mees gebruikte bladsye',
 'specialpages-group-pages' => 'Lyste van bladsye',
 'specialpages-group-pagetools' => 'Bladsyhulpmiddels',
 'specialpages-group-wiki' => 'Data en hulpmiddels',
@@ -3858,8 +3858,8 @@ Beelde word in hulle volle resolusie gewys. Ander lêertipes word direk met hull
 'sqlite-no-fts' => 'Weergawe $1 sonder ondersteuning vir vol-teks soektogte ("full-text search")',
 
 # New logging system
-'logentry-delete-delete' => '$1 het die bladsy $3 verwyder',
-'logentry-delete-restore' => '$1 het die bladsy $3 teruggeplaas',
+'logentry-delete-delete' => '$1 het bladsy $3 verwyder',
+'logentry-delete-restore' => '$1 het bladsy $3 teruggeplaas',
 'logentry-delete-event' => "$1 het die sigbaarheid van {{PLURAL:$5|'n logboekreël|$5 logboekreëls}} van $3 gewysig: $4",
 'logentry-delete-revision' => "$1 het die sigbaarheid van {{PLURAL:$5|'n weergawe|$5 weergawes}} van bladsy $3 gewysig: $4",
 'logentry-delete-event-legacy' => '$1 het die sigbaarheid van logboekreëls van $3 gewysig',
@@ -3965,5 +3965,8 @@ Anders kan u die eenvoudige vorm hieronder gebruik. U kommentaar sal by die blad
 'duration-decades' => '$1 {{PLURAL:$1|dekade|dekades}}',
 'duration-centuries' => '$1 {{PLURAL:$1|eeu|eeue}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennia}}',
+
+# Image rotation
+'rotate-comment' => 'Beeld $1 {{PLURAL:$1|graad|grade} kloksgewys gedraai',
 
 );
