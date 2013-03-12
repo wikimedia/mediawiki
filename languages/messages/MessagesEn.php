@@ -4606,15 +4606,15 @@ Please confirm that you really want to recreate this page.",
 'size-yottabytes' => '$1 YB', # only translate this message to other languages if you have to change it
 
 # Bitrate units
-'bitrate-bits'      => '$1bps', # only translate this message to other languages if you have to change it
-'bitrate-kilobits'  => '$1kbps', # only translate this message to other languages if you have to change it
-'bitrate-megabits'  => '$1Mbps', # only translate this message to other languages if you have to change it
-'bitrate-gigabits'  => '$1Gbps', # only translate this message to other languages if you have to change it
-'bitrate-terabits'  => '$1Tbps', # only translate this message to other languages if you have to change it
-'bitrate-petabits'  => '$1Pbps', # only translate this message to other languages if you have to change it
-'bitrate-exabits'   => '$1Ebps', # only translate this message to other languages if you have to change it
-'bitrate-zetabits'  => '$1Zbps', # only translate this message to other languages if you have to change it
-'bitrate-yottabits' => '$1Ybps', # only translate this message to other languages if you have to change it
+'bitrate-bits'      => '$1 bps', # only translate this message to other languages if you have to change it
+'bitrate-kilobits'  => '$1 kbps', # only translate this message to other languages if you have to change it
+'bitrate-megabits'  => '$1 Mbps', # only translate this message to other languages if you have to change it
+'bitrate-gigabits'  => '$1 Gbps', # only translate this message to other languages if you have to change it
+'bitrate-terabits'  => '$1 Tbps', # only translate this message to other languages if you have to change it
+'bitrate-petabits'  => '$1 Pbps', # only translate this message to other languages if you have to change it
+'bitrate-exabits'   => '$1 Ebps', # only translate this message to other languages if you have to change it
+'bitrate-zetabits'  => '$1 Zbps', # only translate this message to other languages if you have to change it
+'bitrate-yottabits' => '$1 Ybps', # only translate this message to other languages if you have to change it
 
 # Live preview
 'livepreview-loading' => 'Loading...',
