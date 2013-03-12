@@ -4522,7 +4522,7 @@ This message has a tooltip {{msg-mw|tooltip-rollback}}
 Text of the rollback link showing the number of edits to be rolled back. See also {{msg-mw|rollbacklink}}.
 
 Parameters:
-* $1 - the number of edits that will be rollbacked. If $1 is over the value of <code>$wgShowRollbackEditCount</code> (default: 10) {{msg-mw|rollbacklinkcount-morethan}} is used.
+* $1 - the number of edits that will be rolled back. If $1 is over the value of <code>$wgShowRollbackEditCount</code> (default: 10) {{msg-mw|rollbacklinkcount-morethan}} is used.
 
 The rollback link is displayed with a tooltip {{msg-mw|Tooltip-rollback}}',
 'rollbacklinkcount-morethan' => 'Text of the rollback link when a greater number of edits is to be rolled back. See also {{msg-mw|rollbacklink}}.
@@ -4538,8 +4538,8 @@ See also:
 {{Identical|Revert}}
 {{Identical|Rollback}}',
 'alreadyrolled' => "Appear when there's rollback and/or edit collision. Parameters:
-* $1 - the page to be rollbacked
-* $2 - the editor to be rollbacked of that page
+* $1 - the page to be rolled back
+* $2 - the editor to be rolled-back of that page
 * $3 - the editor that cause collision
 {{Identical|Rollback}}",
 'editcomment' => "Only shown if there is an edit ''{{msg-mw|summary}}''",

@@ -2522,12 +2522,12 @@ Puteți schimba nivelul de protejare al acestei pagini, dar asta nu va afecta pr
 'restriction-level-all' => 'orice nivel',
 
 # Undelete
-'undelete' => 'Recuperează pagina ștearsă',
-'undeletepage' => 'Vizualizează și recuperează pagini șterse',
+'undelete' => 'Recuperare pagină ștearsă',
+'undeletepage' => 'Vizualizare și recuperare pagini șterse',
 'undeletepagetitle' => "'''Această listă cuprinde versiuni șterse ale paginii [[:$1|$1]].'''",
 'viewdeletedpage' => 'Vezi paginile șterse',
 'undeletepagetext' => '{{PLURAL:$1|Următoarea pagină a fost ștearsă, dar încă se află în arhivă și poate fi recuperată|Următoarele $1 pagini au fost șterse, dar încă se află în arhivă și pot fi recuperate|Următoarele $1 de pagini au fost șterse, dar încă se află în arhivă și pot fi recuperate}}. Arhiva ar putea fi ștearsă periodic.',
-'undelete-fieldset-title' => 'Recuperează versiuni',
+'undelete-fieldset-title' => 'Recuperare versiuni',
 'undeleteextrahelp' => "Pentru a restaura întregul istoric al paginii lăsați toate căsuțele nebifate și apăsați butonul '''''{{int:undeletebtn}}'''''.
 Pentru a realiza o recuperare selectivă bifați versiunile pe care doriți să le recuperați și apăsați butonul '''''{{int:undeletebtn}}'''''.",
 'undeleterevisions' => '$1 {{PLURAL:$1|versiune arhivată|versiuni arhivate|de versiuni arhivate}}',
@@ -2553,7 +2553,7 @@ $1',
 'undeletedpage' => "'''$1 a fost recuperat'''
 
 Consultați [[Special:Log/delete|jurnalul ștergerilor]] pentru a vedea toate ștergerile și recuperările recente.",
-'undelete-header' => 'Vezi [[Special:Log/delete|logul de ștergere]] pentru paginile șterse recent.',
+'undelete-header' => 'Consultați [[Special:Log/delete|jurnalul de ștergeri]] pentru paginile șterse recent.',
 'undelete-search-title' => 'Căutare pagini șterse',
 'undelete-search-box' => 'Caută pagini șterse',
 'undelete-search-prefix' => 'Arată paginile care încep cu:',

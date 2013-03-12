@@ -741,7 +741,7 @@ Consulta: $2',
 'viewsourcetext' => 'Puedes ver y copiar el código fuente de esta página:',
 'viewyourtext' => "Puedes ver y copiar el código de '''tus ediciones''' a esta página:",
 'protectedinterface' => 'Esta página proporciona el texto de la interfaz del software en este wiki, y está protegida para prevenir el abuso.
-Para agregar o cambiar las traducciones para todos los wikis, por favor use [//translatewiki.net/translatewiki.net], el proyecto de localización de MediaWiki.',
+Para agregar o cambiar las traducciones para todos los wikis, por favor, usa [//translatewiki.net/ translatewiki.net], el proyecto de localización de MediaWiki.',
 'editinginterface' => "'''Aviso:''' Estás editando una página usada para proporcionar el texto de la interfaz para el software. 
 Los cambios en esta página afectarán a la apariencia de la interfaz para los demás usuarios de este wiki. 
 Para añadir o cambiar las traducciones, por favor considera usar [//translatewiki.net/ translatewiki.net], el proyecto de localización de MediaWiki.",
