@@ -1162,6 +1162,6 @@ class SpecialSearch extends SpecialPage {
 	}
 
 	protected function getGroupName() {
-		return 'redirects';
+		return 'pages';
 	}
 }
