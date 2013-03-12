@@ -202,6 +202,25 @@ class JobQueueGroup {
 	}
 
 	/**
+	 * Wait for any slaves or backup queue servers to catch up.
+	 *
+	 * This does nothing for certain queue classes.
+	 *
+	 * @return void
+	 * @throws MWException
+	 */
+	public function waitForBackups() {
+		global $wgJobTypeConf;
+
+		wfProfileIn( __METHOD__ );
+		// Try to avoid doing this more than once per queue storage medium
+		foreach ( $wgJobTypeConf as $type => $conf ) {
+			$this->get( $type )->waitForBackups();
+		}
+		wfProfileOut( __METHOD__ );
+	}
+
+	/**
 	 * Get the list of queue types
 	 *
 	 * @return array List of strings
