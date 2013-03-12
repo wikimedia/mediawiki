@@ -343,7 +343,13 @@ class FileBackendMultiWrite extends FileBackend {
 		$paths = array();
 		foreach ( $ops as $op ) {
 			if ( isset( $op['src'] ) ) {
-				$paths[] = $op['src'];
+				// For things like copy/move/delete with "ignoreMissingSource" and there
+				// is no source file, nothing should happen and there should be no errors.
+				if ( empty( $op['ignoreMissingSource'] )
+					|| $this->fileExists( array( 'src' => $op['src'] ) ) )
+				{
+					$paths[] = $op['src'];
+				}
 			}
 			if ( isset( $op['srcs'] ) ) {
 				$paths = array_merge( $paths, $op['srcs'] );

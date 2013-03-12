@@ -387,6 +387,14 @@ class FileBackendTest extends MediaWikiTestCase {
 			$dest, // dest
 		);
 
+		$op2 = $op;
+		$op2['ignoreMissingSource'] = true;
+		$cases[] = array(
+			$op2, // operation
+			self::baseStorePath() . '/unittest-cont-bad/e/file.txt', // source
+			$dest, // dest
+		);
+
 		return $cases;
 	}
 
@@ -499,6 +507,14 @@ class FileBackendTest extends MediaWikiTestCase {
 			$dest, // dest
 		);
 
+		$op2 = $op;
+		$op2['ignoreMissingSource'] = true;
+		$cases[] = array(
+			$op2, // operation
+			self::baseStorePath() . '/unittest-cont-bad/e/file.txt', // source
+			$dest, // dest
+		);
+
 		return $cases;
 	}
 
@@ -576,6 +592,14 @@ class FileBackendTest extends MediaWikiTestCase {
 		);
 
 		$op['ignoreMissingSource'] = true;
+		$cases[] = array(
+			$op, // operation
+			false, // without source
+			true // succeeds
+		);
+
+		$op['ignoreMissingSource'] = true;
+		$op['src'] = self::baseStorePath() . '/unittest-cont-bad/e/file.txt';
 		$cases[] = array(
 			$op, // operation
 			false, // without source
