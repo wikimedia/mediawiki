@@ -851,6 +851,7 @@ $rev: Revision object
 $diff: DifferenceEngine object that's calling
 $oldRev: Revision object of the "old" revision (may be null/invalid)
 $newRev: Revision object of the "new" revision
+&$out: OutputPage object
 
 'DisplayOldSubtitle': before creating subtitle when browsing old versions of
 an article
