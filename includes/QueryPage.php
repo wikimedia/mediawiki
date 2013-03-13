@@ -149,7 +149,7 @@ abstract class QueryPage extends SpecialPage {
 
 	/**
 	 * For back-compat, subclasses may return a raw SQL query here, as a string.
-	 * This is stronly deprecated; getQueryInfo() should be overridden instead.
+	 * This is strongly deprecated; getQueryInfo() should be overridden instead.
 	 * @throws MWException
 	 * @return string
 	 */
@@ -228,7 +228,7 @@ abstract class QueryPage extends SpecialPage {
 	}
 
 	/**
-	 * Sometime we dont want to build rss / atom feeds.
+	 * Sometime we don't want to build rss / atom feeds.
 	 *
 	 * @return Boolean
 	 */

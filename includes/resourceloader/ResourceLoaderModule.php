@@ -99,7 +99,7 @@ abstract class ResourceLoaderModule {
 	}
 
 	/**
-	 * Set this module's origin. This is called by ResourceLodaer::register()
+	 * Set this module's origin. This is called by ResourceLoader::register()
 	 * when registering the module. Other code should not call this.
 	 *
 	 * @param int $origin origin

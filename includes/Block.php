@@ -227,7 +227,7 @@ class Block {
 	/**
 	 * Load a block from the database which affects the already-set $this->target:
 	 *     1) A block directly on the given user or IP
-	 *     2) A rangeblock encompasing the given IP (smallest first)
+	 *     2) A rangeblock encompassing the given IP (smallest first)
 	 *     3) An autoblock on the given IP
 	 * @param $vagueTarget User|String also search for blocks affecting this target.  Doesn't
 	 *     make any sense to use TYPE_AUTO / TYPE_ID here. Leave blank to skip IP lookups.
@@ -251,7 +251,7 @@ class Block {
 			list( $target, $type ) = self::parseTarget( $vagueTarget );
 			switch( $type ) {
 				case self::TYPE_USER:
-					# Slightly wierd, but who are we to argue?
+					# Slightly weird, but who are we to argue?
 					$conds['ipb_address'][] = (string)$target;
 					break;
 
@@ -330,9 +330,9 @@ class Block {
 	}
 
 	/**
-	 * Get a set of SQL conditions which will select rangeblocks encompasing a given range
+	 * Get a set of SQL conditions which will select rangeblocks encompassing a given range
 	 * @param string $start Hexadecimal IP representation
-	 * @param string $end Hexadecimal IP represenation, or null to use $start = $end
+	 * @param string $end Hexadecimal IP representation, or null to use $start = $end
 	 * @return String
 	 */
 	public static function getRangeCond( $start, $end = null ) {
@@ -488,7 +488,7 @@ class Block {
 	 * Update a block in the DB with new parameters.
 	 * The ID field needs to be loaded first.
 	 *
-	 * @return Int number of affected rows, which should probably be 1 or something's
+	 * @return Int number of affected rows, which should probably be 1 or something has
 	 *     gone slightly awry
 	 */
 	public function update() {
@@ -982,7 +982,7 @@ class Block {
 	}
 
 	/**
-	 * Gets rid of uneeded numbers in quad-dotted/octet IP strings
+	 * Gets rid of unneeded numbers in quad-dotted/octet IP strings
 	 * For example, 127.111.113.151/24 -> 127.111.113.0/24
 	 * @param string $range IP address to normalize
 	 * @return string
@@ -1193,7 +1193,7 @@ class Block {
 
 	/**
 	 * Set the user who implemented (or will implement) this block
-	 * @param $user User|string Local User object or username string for foriegn users
+	 * @param $user User|string Local User object or username string for foreign users
 	 */
 	public function setBlocker( $user ) {
 		$this->blocker = $user;

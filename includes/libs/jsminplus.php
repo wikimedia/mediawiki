@@ -256,7 +256,7 @@ class JSMinPlus
 							}
 							elseif ($type == KEYWORD_VAR && $type == $lastType)
 							{
-								// mutiple var-statements can go into one
+								// multiple var-statements can go into one
 								$t = ',' . substr($t, 4);
 							}
 							else
@@ -298,7 +298,7 @@ class JSMinPlus
 
 				if ($elsePart)
 				{
-					// be carefull and always make a block out of the thenPart; could be more optimized but is a lot of trouble
+					// be careful and always make a block out of the thenPart; could be more optimized but is a lot of trouble
 					if ($thenPart != ';' && $thenPart[0] != '{')
 						$thenPart = '{' . $thenPart . '}';
 
@@ -521,7 +521,7 @@ class JSMinPlus
 					break;
 
 					case TOKEN_STRING:
-						//combine concatted strings with same quotestyle
+						//combine concatenated strings with same quote style
 						if ($n->type == OP_PLUS && substr($left, -1) == $right[0])
 						{
 							$s = substr($left, 0, -1) . substr($right, 1);

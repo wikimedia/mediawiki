@@ -128,7 +128,7 @@ class SpecialRecentchangeslinked extends SpecialRecentChanges {
 
 		if( $ns == NS_CATEGORY && !$showlinkedto ) {
 			// special handling for categories
-			// XXX: should try to make this less klugy
+			// XXX: should try to make this less kludgy
 			$link_tables = array( 'categorylinks' );
 			$showlinkedto = true;
 		} else {

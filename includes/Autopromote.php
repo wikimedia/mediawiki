@@ -140,8 +140,8 @@ class Autopromote {
 				return true;
 			}
 		}
-		# If we got here, the array presumably does not contain other condi-
-		# tions; it's not recursive.  Pass it off to self::checkCondition.
+		// If we got here, the array presumably does not contain other conditions;
+		// it's not recursive.  Pass it off to self::checkCondition.
 		if ( !is_array( $cond ) ) {
 			$cond = array( $cond );
 		}
@@ -152,8 +152,7 @@ class Autopromote {
 	/**
 	 * As recCheckCondition, but *not* recursive.  The only valid conditions
 	 * are those whose first element is APCOND_EMAILCONFIRMED/APCOND_EDITCOUNT/
-	 * APCOND_AGE.  Other types will throw an exception if no extension evalu-
-	 * ates them.
+	 * APCOND_AGE.  Other types will throw an exception if no extension evaluates them.
 	 *
 	 * @param array $cond A condition, which must not contain other conditions
 	 * @param $user User The user to check the condition against

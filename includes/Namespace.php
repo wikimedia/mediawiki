@@ -182,7 +182,7 @@ class MWNamespace {
 	 * sure that code will not potentially break.
 	 *
 	 * @param int $ns1 The first namespace index
-	 * @param int $ns2 The second namespae index
+	 * @param int $ns2 The second namespace index
 	 *
 	 * @return bool
 	 * @since 1.19
@@ -197,7 +197,7 @@ class MWNamespace {
 	 *     NS_USER and NS_USER_TALK will return true.
 	 *
 	 * @param int $ns1 The first namespace index
-	 * @param int $ns2 The second namespae index
+	 * @param int $ns2 The second namespace index
 	 *
 	 * @return bool
 	 * @since 1.19

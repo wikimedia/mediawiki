@@ -153,11 +153,11 @@ class MimeMagic {
 	 */
 	var $mMimeTypeAliases = null;
 
-	/** map of mime types to file extensions (as a space seprarated list)
+	/** map of mime types to file extensions (as a space separated list)
 	 */
 	var $mMimeToExt = null;
 
-	/** map of file extensions types to mime types (as a space seprarated list)
+	/** map of file extensions types to mime types (as a space separated list)
 	 */
 	var $mExtToMime = null;
 
@@ -541,7 +541,7 @@ class MimeMagic {
 	/**
 	 * Mime type detection. This uses detectMimeType to detect the mime type
 	 * of the file, but applies additional checks to determine some well known
-	 * file formats that may be missed or misinterpreter by the default mime
+	 * file formats that may be missed or misinterpreted by the default mime
 	 * detection (namely XML based formats like XHTML or SVG, as well as ZIP
 	 * based formats like OPC/ODF files).
 	 *
@@ -853,7 +853,7 @@ class MimeMagic {
 	 * Internal mime type detection. Detection is done using an external
 	 * program, if $wgMimeDetectorCommand is set. Otherwise, the fileinfo
 	 * extension and mime_content_type are tried (in this order), if they
-	 * are available. If the dections fails and $ext is not false, the mime
+	 * are available. If the detections fails and $ext is not false, the mime
 	 * type is guessed from the file extension, using guessTypesForExtension.
 	 *
 	 * If the mime type is still unknown, getimagesize is used to detect the
@@ -904,7 +904,7 @@ class MimeMagic {
 			# NOTE: this function is available since PHP 4.3.0, but only if
 			# PHP was compiled with --with-mime-magic or, before 4.3.2, with --enable-mime-magic.
 			#
-			# On Windows, you must set mime_magic.magicfile in php.ini to point to the mime.magic file bundeled with PHP;
+			# On Windows, you must set mime_magic.magicfile in php.ini to point to the mime.magic file bundled with PHP;
 			# sometimes, this may even be needed under linus/unix.
 			#
 			# Also note that this has been DEPRECATED in favor of the fileinfo extension by PECL, see above.
@@ -1041,7 +1041,7 @@ class MimeMagic {
 	 * File extensions are represented by a string starting with a dot (.) to
 	 * distinguish them from mime types.
 	 *
-	 * This funktion relies on the mapping defined by $this->mMediaTypes
+	 * This function relies on the mapping defined by $this->mMediaTypes
 	 * @access private
 	 * @return int|string
 	 */

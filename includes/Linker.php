@@ -36,8 +36,8 @@ class Linker {
 	const TOOL_LINKS_EMAIL = 2;
 
 	/**
-	 * Get the appropriate HTML attributes to add to the "a" element of an ex-
-	 * ternal link, as created by [wikisyntax].
+	 * Get the appropriate HTML attributes to add to the "a" element of an
+	 * external link, as created by [wikisyntax].
 	 *
 	 * @param string $class the contents of the class attribute; if an empty
 	 *   string is passed, which is the default value, defaults to 'external'.
@@ -50,8 +50,7 @@ class Linker {
 	}
 
 	/**
-	 * Get the appropriate HTML attributes to add to the "a" element of an in-
-	 * terwiki link.
+	 * Get the appropriate HTML attributes to add to the "a" element of an interwiki link.
 	 *
 	 * @param string $title the title text for the link, URL-encoded (???) but
 	 *   not HTML-escaped
@@ -73,8 +72,7 @@ class Linker {
 	}
 
 	/**
-	 * Get the appropriate HTML attributes to add to the "a" element of an in-
-	 * ternal link.
+	 * Get the appropriate HTML attributes to add to the "a" element of an internal link.
 	 *
 	 * @param string $title the title text for the link, URL-encoded (???) but
 	 *   not HTML-escaped
@@ -89,8 +87,8 @@ class Linker {
 	}
 
 	/**
-	 * Get the appropriate HTML attributes to add to the "a" element of an in-
-	 * ternal link, given the Title object for the page we want to link to.
+	 * Get the appropriate HTML attributes to add to the "a" element of an internal
+	 * link, given the Title object for the page we want to link to.
 	 *
 	 * @param $nt Title
 	 * @param string $unused unused
@@ -171,8 +169,8 @@ class Linker {
 	 *   the link text.  This is raw HTML and will not be escaped.  If null,
 	 *   defaults to the prefixed text of the Title; or if the Title is just a
 	 *   fragment, the contents of the fragment.
-	 * @param array $customAttribs  A key => value array of extra HTML attri-
-	 *   butes, such as title and class.  (href is ignored.)  Classes will be
+	 * @param array $customAttribs  A key => value array of extra HTML attributes,
+	 *   such as title and class.  (href is ignored.)  Classes will be
 	 *   merged with the default classes, while other attributes will replace
 	 *   default attributes.  All passed attribute values will be HTML-escaped.
 	 *   A false attribute value means to suppress that attribute.
@@ -382,13 +380,13 @@ class Linker {
 	 * @return string
 	 */
 	private static function linkText( $target ) {
-		# We might be passed a non-Title by make*LinkObj().  Fail gracefully.
+		// We might be passed a non-Title by make*LinkObj().  Fail gracefully.
 		if ( !$target instanceof Title ) {
 			return '';
 		}
 
-		# If the target is just a fragment, with no title, we return the frag-
-		# ment text.  Otherwise, we return the title text itself.
+		// If the target is just a fragment, with no title, we return the fragment
+		// text.  Otherwise, we return the title text itself.
 		if ( $target->getPrefixedText() === '' && $target->getFragment() !== '' ) {
 			return htmlspecialchars( $target->getFragment() );
 		}
@@ -552,7 +550,7 @@ class Linker {
 	 *          caption         HTML for image caption.
 	 *          link-url        URL to link to
 	 *          link-title      Title object to link to
-	 *          link-target     Value for the target attribue, only with link-url
+	 *          link-target     Value for the target attribute, only with link-url
 	 *          no-link         Boolean, suppress description link
 	 *
 	 * @param array $handlerParams associative array of media handler parameters, to be passed
@@ -683,6 +681,7 @@ class Linker {
 				'valign' => isset( $fp['valign'] ) ? $fp['valign'] : false,
 				'img-class' => $fp['class'] );
 			if ( isset( $fp['border'] ) ) {
+				// TODO: BUG? Both values are identical
 				$params['img-class'] .= ( $params['img-class'] !== '' ) ? ' thumbborder' : 'thumbborder';
 			}
 			$params = self::getImageLinkMTOParams( $fp, $query, $parser ) + $params;
@@ -1565,7 +1564,7 @@ class Linker {
 	public static function commentBlock( $comment, $title = null, $local = false ) {
 		// '*' used to be the comment inserted by the software way back
 		// in antiquity in case none was provided, here for backwards
-		// compatability, acc. to brion -ævar
+		// compatibility, acc. to brion -ævar
 		if ( $comment == '' || $comment == '*' ) {
 			return '';
 		} else {
@@ -1808,7 +1807,7 @@ class Linker {
 	 * is set and the user is the only contributor of the page.
 	 *
 	 * @param $rev Revision object
-	 * @param bool $verify Try to verfiy that this revision can really be rolled back
+	 * @param bool $verify Try to verify that this revision can really be rolled back
 	 * @return integer|bool|null
 	 */
 	public static function getRollbackEditCount( $rev, $verify ) {

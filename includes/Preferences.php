@@ -1,6 +1,6 @@
 <?php
 /**
- * Form to edit user perferences.
+ * Form to edit user preferences.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

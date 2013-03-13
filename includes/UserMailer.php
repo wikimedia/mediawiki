@@ -255,7 +255,7 @@ class UserMailer {
 
 		if ( is_array( $body ) ) {
 			// we are sending a multipart message
-			wfDebug( "Assembling mulitpart mime email\n" );
+			wfDebug( "Assembling multipart mime email\n" );
 			if ( !stream_resolve_include_path( 'Mail/mime.php' ) ) {
 				wfDebug( "PEAR Mail_Mime package is not installed. Falling back to text email.\n" );
 			}
@@ -489,7 +489,7 @@ class EmailNotification {
 			return;
 		}
 
-		// Build a list of users to notfiy
+		// Build a list of users to notify
 		$watchers = array();
 		if ( $wgEnotifWatchlist || $wgShowUpdatedMarker ) {
 			$dbw = wfGetDB( DB_MASTER );

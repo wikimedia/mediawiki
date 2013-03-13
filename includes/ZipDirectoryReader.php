@@ -538,7 +538,7 @@ class ZipDirectoryReader {
 	 * of length self::SEGSIZE. The result is cached. This is a helper function
 	 * for getBlock().
 	 *
-	 * If there are not enough bytes in the file to satsify the request, the
+	 * If there are not enough bytes in the file to satisfy the request, the
 	 * return value will be truncated. If a request is made for a segment beyond
 	 * the end of the file, an empty string will be returned.
 	 * @return string

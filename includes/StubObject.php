@@ -43,7 +43,7 @@ class StubObject {
 	 *
 	 * @param string $global name of the global variable.
 	 * @param string $class name of the class of the real object.
-	 * @param array $params parameters to pass to contructor of the real
+	 * @param array $params parameters to pass to constructor of the real
 	 *               object.
 	 */
 	function __construct( $global = null, $class = null, $params = array() ) {
@@ -53,7 +53,7 @@ class StubObject {
 	}
 
 	/**
-	 * Returns a bool value whetever $obj is a stub object. Can be used to break
+	 * Returns a bool value whenever $obj is a stub object. Can be used to break
 	 * a infinite loop when unstubbing an object.
 	 *
 	 * @param $obj Object to check.
@@ -106,7 +106,7 @@ class StubObject {
 	 * properties, e.g. eval.php
 	 *
 	 * @param string $name name of the method called in this object.
-	 * @param $level Integer: level to go in the stact trace to get the function
+	 * @param $level Integer: level to go in the stack trace to get the function
 	 *               who called this function.
 	 * @throws MWException
 	 */

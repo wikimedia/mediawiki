@@ -32,7 +32,7 @@ class PrefixSearch {
 	 *
 	 * @param $search String
 	 * @param $limit Integer
-	 * @param array $namespaces used if query is not explicitely prefixed
+	 * @param array $namespaces used if query is not explicitly prefixed
 	 * @return Array of strings
 	 */
 	public static function titleSearch( $search, $limit, $namespaces = array() ) {

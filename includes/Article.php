@@ -1727,7 +1727,7 @@ class Article implements Page {
 	 *
 	 * @param $oldid mixed integer Revision ID or null
 	 * @param $user User The relevant user
-	 * @return ParserOutput or false if the given revsion ID is not found
+	 * @return ParserOutput or false if the given revision ID is not found
 	 */
 	public function getParserOutput( $oldid = null, User $user = null ) {
 		//XXX: bypasses mParserOptions and thus setParserOptions()

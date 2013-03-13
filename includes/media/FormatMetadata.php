@@ -1,6 +1,6 @@
 <?php
 /**
- * Formating of image metadata values into human readable form.
+ * Formatting of image metadata values into human readable form.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

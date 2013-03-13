@@ -500,7 +500,7 @@ class Html {
 			if ( in_array( $key, $spaceSeparatedListAttributes ) ) {
 				// Apply some normalization and remove duplicates
 
-				// Convert into correct array. Array can contain space-seperated
+				// Convert into correct array. Array can contain space-separated
 				// values. Implode/explode to get those into the main array as well.
 				if ( is_array( $value ) ) {
 					// If input wasn't an array, we can skip this step
@@ -512,7 +512,7 @@ class Html {
 							if ( !isset( $value[$v] ) ) {
 								// As a special case don't set 'foo' if a
 								// separate 'foo' => true/false exists in the array
-								// keys should be authoritive
+								// keys should be authoritative
 								$newValue[] = $v;
 							}
 						} elseif ( $v ) {
@@ -796,7 +796,7 @@ class Html {
 			// Value is provided by user, the name shown is localized for the user.
 			$options[$params['all']] = wfMessage( 'namespacesall' )->text();
 		}
-		// Add all namespaces as options (in the content langauge)
+		// Add all namespaces as options (in the content language)
 		$options += $wgContLang->getFormattedNamespaces();
 
 		// Convert $options to HTML and filter out namespaces below 0
@@ -807,7 +807,7 @@ class Html {
 			}
 			if ( $nsId === NS_MAIN ) {
 				// For other namespaces use use the namespace prefix as label, but for
-				// main we don't use "" but the user message descripting it (e.g. "(Main)" or "(Article)")
+				// main we don't use "" but the user message describing it (e.g. "(Main)" or "(Article)")
 				$nsName = wfMessage( 'blanknamespace' )->text();
 			} elseif ( is_int( $nsId ) ) {
 				$nsName = $wgContLang->convertNamespace( $nsId );
