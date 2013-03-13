@@ -739,9 +739,8 @@ class extensionLanguages extends languages {
 	function __construct( MessageGroup $group ) {
 		$this->mMessageGroup = $group;
 
-		$bools = $this->mMessageGroup->getBools();
-		$this->mIgnoredMessages = $bools['ignored'];
-		$this->mOptionalMessages = $bools['optional'];
+		$this->mIgnoredMessages = $this->mMessageGroup->getIgnored();
+		$this->mOptionalMessages = $this->mMessageGroup->getOptional();
 	}
 
 	/**
