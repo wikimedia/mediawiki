@@ -56,7 +56,7 @@ class Sanitizer {
 	 * As well as &apos; which is only defined starting in XHTML1.
 	 * @private
 	 */
-	static $htmlEntities = array(
+	public static $htmlEntities = array(
 		'Aacute'   => 193,
 		'aacute'   => 225,
 		'Acirc'    => 194,
@@ -315,7 +315,7 @@ class Sanitizer {
 	/**
 	 * Character entity aliases accepted by MediaWiki
 	 */
-	static $htmlEntityAliases = array(
+	public static $htmlEntityAliases = array(
 		'רלמ' => 'rlm',
 		'رلم' => 'rlm',
 	);
@@ -323,7 +323,7 @@ class Sanitizer {
 	/**
 	 * Lazy-initialised attributes regex, see getAttribsRegex()
 	 */
-	static $attribsRegex;
+	public static $attribsRegex;
 
 	/**
 	 * Regular expression to match HTML/XML attribute pairs within a tag.
@@ -382,7 +382,7 @@ class Sanitizer {
 				'strike', 'strong', 'tt', 'var', 'div', 'center',
 				'blockquote', 'ol', 'ul', 'dl', 'table', 'caption', 'pre',
 				'ruby', 'rt', 'rb', 'rp', 'p', 'span', 'abbr', 'dfn',
-				'kbd', 'samp'
+				'kbd', 'samp', 'noscript' # bug 45731
 			);
 			if ( $wgHtml5 ) {
 				$htmlpairsStatic = array_merge( $htmlpairsStatic, array( 'data', 'time', 'mark' ) );
@@ -767,7 +767,7 @@ class Sanitizer {
 			if ( $attribute === 'href' || $attribute === 'src' ) {
 				if ( !preg_match( $hrefExp, $value ) ) {
 					continue; //drop any href or src attributes not using an allowed protocol.
-						  //NOTE: this also drops all relative URLs
+						//NOTE: this also drops all relative URLs
 				}
 			}
 
@@ -1773,6 +1773,6 @@ class Sanitizer {
 		$                      # End of string
 		/ix"; // case Insensitive, eXtended
 
-		return (bool) preg_match( $HTML5_email_regexp, $addr );
+		return (bool)preg_match( $HTML5_email_regexp, $addr );
 	}
 }

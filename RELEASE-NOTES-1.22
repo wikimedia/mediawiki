@@ -29,6 +29,7 @@ production.
 * Added 'SpecialSearchResultsPrepend' and 'SpecialSearchResultsAppend' hooks.
 * (bug 23343) Implemented ability to apply IP blocks to the contents of X-Forwarded-For headers
   by adding a new configuration variable $wgApplyIpBlocksToXff (disabled by default).
+* (bug 45731) Allow <noscript> tag
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail. Previously one could still
