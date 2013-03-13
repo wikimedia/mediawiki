@@ -106,7 +106,7 @@ class FeedUtils {
 		global $wgFeedDiffCutoff, $wgLang;
 		wfProfileIn( __METHOD__ );
 
-		# log enties
+		// log entries
 		$completeText = '<p>' . implode( ' ',
 			array_filter(
 				array(
@@ -115,7 +115,7 @@ class FeedUtils {
 
 		// NOTE: Check permissions for anonymous users, not current user.
 		//       No "privileged" version should end up in the cache.
-		//       Most feed readers will not log in anway.
+		//       Most feed readers will not log in anyway.
 		$anon = new User();
 		$accErrors = $title->getUserPermissionsErrors( 'read', $anon, true );
 

@@ -383,7 +383,7 @@ class Revision implements IDBAccessObject {
 	}
 
 	/**
-	 * Return the value of a select() page conds array for the paeg table.
+	 * Return the value of a select() page conds array for the page table.
 	 * This will assure that the revision(s) are not orphaned from live pages.
 	 * @since 1.19
 	 * @return Array

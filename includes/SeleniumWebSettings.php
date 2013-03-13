@@ -64,7 +64,7 @@ if ( isset( $_GET['setupTestSuite'] ) ) {
 	}
 
 	$testIncludes = array(); // array containing all the includes needed for this test
-	$testGlobalConfigs = array(); // an array containg all the global configs needed for this test
+	$testGlobalConfigs = array(); // an array containing all the global configs needed for this test
 	$testResourceFiles = array(); // an array containing all the resource files needed for this test
 	$callback = $wgSeleniumTestConfigs[$setupTestSuiteName];
 	call_user_func_array( $callback, array( &$testIncludes, &$testGlobalConfigs, &$testResourceFiles));
@@ -109,7 +109,7 @@ if ( isset( $_COOKIE[$cookieName] ) ) {
 	}
 
 	$testIncludes = array(); // array containing all the includes needed for this test
-	$testGlobalConfigs = array(); // an array containg all the global configs needed for this test
+	$testGlobalConfigs = array(); // an array containing all the global configs needed for this test
 	$testResourceFiles = array(); // an array containing all the resource files needed for this test
 	$callback = $wgSeleniumTestConfigs[$testSuiteName];
 	call_user_func_array( $callback, array( &$testIncludes, &$testGlobalConfigs, &$testResourceFiles));

@@ -173,7 +173,7 @@ class MWInit {
 	}
 
 	/**
-	 * Determine wether a method exists within a class, using a method which works
+	 * Determine whether a method exists within a class, using a method which works
 	 * under HipHop.
 	 *
 	 * Note that under HipHop when method_exists is given a string for it's class

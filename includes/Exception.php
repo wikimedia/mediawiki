@@ -171,7 +171,7 @@ class MWException extends Exception {
 
 	/**
 	 * Get a random ID for this error.
-	 * This allows to link the exception to its correspoding log entry when
+	 * This allows to link the exception to its corresponding log entry when
 	 * $wgShowExceptionDetails is set to false.
 	 *
 	 * @return string

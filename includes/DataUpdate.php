@@ -67,8 +67,8 @@ abstract class DataUpdate implements DeferrableUpdate {
 	 *
 	 * This methods supports transactions logic by first calling beginTransaction()
 	 * on all updates in the array, then calling doUpdate() on each, and, if all goes well,
-	 * then calling commitTransaction() on each update. If an error occurrs,
-	 * rollbackTransaction() will be called on any update object that had beginTranscation()
+	 * then calling commitTransaction() on each update. If an error occurs,
+	 * rollbackTransaction() will be called on any update object that had beginTransaction()
 	 * called but not yet commitTransaction().
 	 *
 	 * This allows for limited transactional logic across multiple backends for storing

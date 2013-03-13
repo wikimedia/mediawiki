@@ -124,7 +124,7 @@ class Categoryfinder {
 
 		$path[] = $id;
 
-		# Shortcut (runtime paranoia): No contitions=all matched
+		# Shortcut (runtime paranoia): No conditions=all matched
 		if ( count( $conds ) == 0 ) {
 			return true;
 		}

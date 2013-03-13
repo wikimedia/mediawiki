@@ -526,7 +526,7 @@ class SkinTemplate extends Skin {
 	}
 
 	/**
-	 * Output a boolean indiciating if buildPersonalUrls should output separate
+	 * Output a boolean indicating if buildPersonalUrls should output separate
 	 * login and create account links or output a combined link
 	 * By default we simply return a global config setting that affects most skins
 	 * This is setup as a method so that like with $wgLogo and getLogo() a skin
@@ -779,7 +779,7 @@ class SkinTemplate extends Skin {
 	 * variants: Used to list the language variants for the page
 	 *
 	 * Each section's value is a key/value array of links for that section.
-	 * The links themseves have these common keys:
+	 * The links themselves have these common keys:
 	 * - class: The css classes to apply to the tab
 	 * - text: The text to display on the tab
 	 * - href: The href for the tab to point to
@@ -1073,8 +1073,8 @@ class SkinTemplate extends Skin {
 		# We don't want to give the watch tab an accesskey if the
 		# page is being edited, because that conflicts with the
 		# accesskey on the watch checkbox.  We also don't want to
-		# give the edit tab an accesskey, because that's fairly su-
-		# perfluous and conflicts with an accesskey (Ctrl-E) often
+		# give the edit tab an accesskey, because that's fairly
+		# superfluous and conflicts with an accesskey (Ctrl-E) often
 		# used for editing in Safari.
 		if ( in_array( $action, array( 'edit', 'submit' ) ) ) {
 			if ( isset( $content_navigation['views']['edit'] ) ) {
@@ -1419,7 +1419,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	/**
 	 * Create an array of common toolbox items from the data in the quicktemplate
 	 * stored by SkinTemplate.
-	 * The resulting array is built acording to a format intended to be passed
+	 * The resulting array is built according to a format intended to be passed
 	 * through makeListItem to generate the html.
 	 * @return array
 	 */
@@ -1483,7 +1483,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	/**
 	 * Create an array of personal tools items from the data in the quicktemplate
 	 * stored by SkinTemplate.
-	 * The resulting array is built acording to a format intended to be passed
+	 * The resulting array is built according to a format intended to be passed
 	 * through makeListItem to generate the html.
 	 * This is in reality the same list as already stored in personal_urls
 	 * however it is reformatted so that you can just pass the individual items
