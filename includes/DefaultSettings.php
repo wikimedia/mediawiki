@@ -973,7 +973,7 @@ $wgUseImageResize = true;
 $wgEnableAutoRotation = null;
 
 /**
- * Internal name of virus scanner. This servers as a key to the
+ * Internal name of virus scanner. This serves as a key to the
  * $wgAntivirusSetup array. Set this to NULL to disable virus scanning. If not
  * null, every file uploaded will be scanned for viruses.
  */
