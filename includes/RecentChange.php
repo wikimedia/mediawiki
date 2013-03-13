@@ -321,7 +321,7 @@ class RecentChange {
 	}
 
 	/**
-	 * Remove newlines, carriage returns and decode html entites
+	 * Remove newlines, carriage returns and decode html entities
 	 * @param $text String
 	 * @return String
 	 */

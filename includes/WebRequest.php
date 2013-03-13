@@ -1,6 +1,6 @@
 <?php
 /**
- * Deal with importing all those nasssty globals and things
+ * Deal with importing all those nasty globals and things
  *
  * Copyright © 2003 Brion Vibber <brion@pobox.com>
  * http://www.mediawiki.org/
@@ -503,7 +503,7 @@ class WebRequest {
 	 */
 	public function getCheck( $name ) {
 		# Checkboxes and buttons are only present when clicked
-		# Presence connotes truth, abscense false
+		# Presence connotes truth, absence false
 		return $this->getVal( $name, null ) !== null;
 	}
 

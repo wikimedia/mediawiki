@@ -29,7 +29,7 @@
  * (http://citeseer.ist.psu.edu/myers86ond.html) with range compression (see Wu et al.'s
  * "An O(NP) Sequence Comparison Algorithm").
  *
- * This implementation supports an upper bound on the excution time.
+ * This implementation supports an upper bound on the execution time.
  *
  * Complexity: O((M + N)D) worst case time, O(M + N + D^2) expected time, O(M + N) space
  *

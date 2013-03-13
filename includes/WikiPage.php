@@ -345,7 +345,7 @@ class WikiPage implements Page, IDBAccessObject {
 			$data = $this->pageDataFromTitle( wfGetDB( DB_MASTER ), $this->mTitle );
 		} elseif ( $from === self::READ_NORMAL ) {
 			$data = $this->pageDataFromTitle( wfGetDB( DB_SLAVE ), $this->mTitle );
-			// Use a "last rev inserted" timestamp key to dimish the issue of slave lag.
+			// Use a "last rev inserted" timestamp key to diminish the issue of slave lag.
 			// Note that DB also stores the master position in the session and checks it.
 			$touched = $this->getCachedLastEditTime();
 			if ( $touched ) { // key set
@@ -2273,7 +2273,7 @@ class WikiPage implements Page, IDBAccessObject {
 			$changed = true;
 		}
 
-		// If nothing's changed, do nothing
+		// If nothing has changed, do nothing
 		if ( !$changed ) {
 			return Status::newGood();
 		}
@@ -2663,7 +2663,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * performs permissions checks on $user, then calls commitRollback()
 	 * to do the dirty work
 	 *
-	 * @todo: seperate the business/permission stuff out from backend code
+	 * @todo: separate the business/permission stuff out from backend code
 	 *
 	 * @param string $fromP Name of the user whose edits to rollback.
 	 * @param string $summary Custom summary. Set to default summary if empty.

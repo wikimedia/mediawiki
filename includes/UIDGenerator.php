@@ -39,7 +39,7 @@ class UIDGenerator {
 	/** @var Array */
 	protected $fileHandles = array(); // cache file handles
 
-	const QUICK_RAND = 1; // get randomness from fast and unsecure sources
+	const QUICK_RAND = 1; // get randomness from fast and insecure sources
 
 	protected function __construct() {
 		$idFile = wfTempDir() . '/mw-' . __CLASS__ . '-UID-nodeid';
@@ -152,7 +152,7 @@ class UIDGenerator {
 	}
 
 	/**
-	 * @param array $info (UIDGenerator::milltime(), counter, clock sequence)
+	 * @param array $info (UIDGenerator::millitime(), counter, clock sequence)
 	 * @return string 128 bits
 	 */
 	protected function getTimestampedID128( array $info ) {

@@ -22,7 +22,7 @@
  */
 
 /**
- * Date formatter, recognises dates in plain text and formats them accoding to user preferences.
+ * Date formatter, recognises dates in plain text and formats them according to user preferences.
  * @todo preferences, OutputPage
  * @ingroup Parser
  */

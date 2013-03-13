@@ -25,7 +25,7 @@
  * Class for reading jpegs and extracting metadata.
  * see also BitmapMetadataHandler.
  *
- * Based somewhat on GIFMetadataExtrator.
+ * Based somewhat on GIFMetadataExtractor.
  *
  * @ingroup Media
  */

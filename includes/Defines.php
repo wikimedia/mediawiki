@@ -137,7 +137,7 @@ define( 'MEDIATYPE_ARCHIVE',    'ARCHIVE' );     // archive file (zip, tar, etc)
  */
 define( 'AV_NO_VIRUS', 0 );  #scan ok, no virus found
 define( 'AV_VIRUS_FOUND', 1 );  #virus found!
-define( 'AV_SCAN_ABORTED', -1 );  #scan aborted, the file is probably imune
+define( 'AV_SCAN_ABORTED', -1 );  #scan aborted, the file is probably immune
 define( 'AV_SCAN_FAILED', false );  #scan failed (scanner not found or error in scanner)
 /**@}*/
 

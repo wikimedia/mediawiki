@@ -117,8 +117,8 @@ class Title {
 	 *
 	 * @param string $text the link text; spaces, prefixes, and an
 	 *   initial ':' indicating the main namespace are accepted.
-	 * @param int $defaultNamespace the namespace to use if none is speci-
-	 *   fied by a prefix.  If you want to force a specific namespace even if
+	 * @param int $defaultNamespace the namespace to use if none is specified
+	 *   by a prefix.  If you want to force a specific namespace even if
 	 *   $text might begin with a namespace prefix, use makeTitle() or
 	 *   makeTitleSafe().
 	 * @throws MWException
@@ -869,7 +869,7 @@ class Title {
 	 * is either NS_USER or NS_USER_TALK since both of them have NS_USER
 	 * as their subject namespace.
 	 *
-	 * This is MUCH simpler than individually testing for equivilance
+	 * This is MUCH simpler than individually testing for equivalence
 	 * against both NS_USER and NS_USER_TALK, and is also forward compatible.
 	 * @since 1.19
 	 * @param $ns int
@@ -911,7 +911,7 @@ class Title {
 	 * Is this the mainpage?
 	 * @note Title::newFromText seems to be sufficiently optimized by the title
 	 * cache that we don't need to over-optimize by doing direct comparisons and
-	 * acidentally creating new bugs where $title->equals( Title::newFromText() )
+	 * accidentally creating new bugs where $title->equals( Title::newFromText() )
 	 * ends up reporting something differently than $title->isMainPage();
 	 *
 	 * @since 1.18
@@ -970,7 +970,7 @@ class Title {
 				|| $this->hasContentModel( CONTENT_MODEL_JAVASCRIPT ) );
 
 		#NOTE: this hook is also called in ContentHandler::getDefaultModel. It's called here again to make sure
-		#      hook funktions can force this method to return true even outside the mediawiki namespace.
+		#      hook functions can force this method to return true even outside the mediawiki namespace.
 
 		wfRunHooks( 'TitleIsCssOrJsPage', array( $this, &$isCssOrJsPage ) );
 
@@ -1331,7 +1331,7 @@ class Title {
 	 * second argument named variant. This was deprecated in favor
 	 * of passing an array of option with a "variant" key
 	 * Once $query2 is removed for good, this helper can be dropped
-	 * andthe wfArrayToCgi moved to getLocalURL();
+	 * and the wfArrayToCgi moved to getLocalURL();
 	 *
 	 * @since 1.19 (r105919)
 	 * @param $query
@@ -2020,7 +2020,7 @@ class Title {
 	}
 
 	/**
-	 * Check that the user isn't blocked from editting.
+	 * Check that the user isn't blocked from editing.
 	 *
 	 * @param string $action the action to check
 	 * @param $user User to check
@@ -4497,7 +4497,7 @@ class Title {
 	/**
 	 * Updates page_touched for this page; called from LinksUpdate.php
 	 *
-	 * @return Bool true if the update succeded
+	 * @return Bool true if the update succeeded
 	 */
 	public function invalidateCache() {
 		global $wgMemc;
@@ -4598,7 +4598,7 @@ class Title {
 		global $wgContLang;
 		// Gets the subject namespace if this title
 		$namespace = MWNamespace::getSubject( $this->getNamespace() );
-		// Checks if cononical namespace name exists for namespace
+		// Checks if canonical namespace name exists for namespace
 		if ( MWNamespace::exists( $this->getNamespace() ) ) {
 			// Uses canonical namespace name
 			$namespaceKey = MWNamespace::getCanonicalName( $namespace );
@@ -4664,7 +4664,7 @@ class Title {
 	public function isValidRedirectTarget() {
 		global $wgInvalidRedirectTargets;
 
-		// invalid redirect targets are stored in a global array, but explicity disallow Userlogout here
+		// invalid redirect targets are stored in a global array, but explicitly disallow Userlogout here
 		if ( $this->isSpecial( 'Userlogout' ) ) {
 			return false;
 		}

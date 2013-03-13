@@ -118,13 +118,13 @@ class LinkFilter {
 		// Reverse the labels in the hostname, convert to lower case
 		// For emails reverse domainpart only
 		if ( $prot == 'mailto:' && strpos( $host, '@' ) ) {
-			// complete email adress
+			// complete email address
 			$mailparts = explode( '@', $host );
 			$domainpart = strtolower( implode( '.', array_reverse( explode( '.', $mailparts[1] ) ) ) );
 			$host = $domainpart . '@' . $mailparts[0];
 			$like = array( "$prot$host", $db->anyString() );
 		} elseif ( $prot == 'mailto:' ) {
-			// domainpart of email adress only. do not add '.'
+			// domainpart of email address only. do not add '.'
 			$host = strtolower( implode( '.', array_reverse( explode( '.', $host ) ) ) );
 			$like = array( "$prot$host", $db->anyString() );
 		} else {
