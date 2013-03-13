@@ -292,7 +292,6 @@ class DifferenceEngine extends ContextSource {
 				$samePage = false;
 			}
 
-			$revisionTools = array();
 			if ( $samePage && $this->mNewPage->quickUserCan( 'edit', $user ) ) {
 				if ( $this->mNewRev->isCurrent() && $this->mNewPage->userCan( 'rollback', $user ) ) {
 					$rollbackLink = Linker::generateRollback( $this->mNewRev, $this->getContext() );
@@ -302,7 +301,8 @@ class DifferenceEngine extends ContextSource {
 					}
 				}
 				if ( !$this->mOldRev->isDeleted( Revision::DELETED_TEXT ) && !$this->mNewRev->isDeleted( Revision::DELETED_TEXT ) ) {
-					$undoLink = Html::element( 'a', array(
+					$undoLink = ' ' . $this->msg( 'parentheses' )->rawParams(
+						Html::element( 'a', array(
 							'href' => $this->mNewPage->getLocalUrl( array(
 								'action' => 'edit',
 								'undoafter' => $this->mOldid,
@@ -310,8 +310,7 @@ class DifferenceEngine extends ContextSource {
 							'title' => Linker::titleAttrib( 'undo' )
 						),
 						$this->msg( 'editundo' )->text()
-					);
-					$revisionTools[] = $undoLink;
+					) )->escaped();
 				}
 			}
 
@@ -377,15 +376,7 @@ class DifferenceEngine extends ContextSource {
 
 		# Handle RevisionDelete links...
 		$rdel = $this->revisionDeleteLink( $this->mNewRev );
-
-		# Allow extensions to define their own revision tools
-		wfRunHooks( 'DiffRevisionTools', array( $this->mNewRev, &$revisionTools ) );
-		$formattedRevisionTools = array();
-		// Put each one in parentheses (poor man's button)
-		foreach ( $revisionTools as $tool ) {
-			$formattedRevisionTools[] = $this->msg( 'parentheses' )->rawParams( $tool )->escaped();
-		}
-		$newRevisionHeader = $this->getRevisionHeader( $this->mNewRev, 'complete' ) . ' ' . implode( ' ', $formattedRevisionTools );
+		$newRevisionHeader = $this->getRevisionHeader( $this->mNewRev, 'complete' ) . $undoLink;
 
 		$newHeader = '<div id="mw-diff-ntitle1"><strong>' . $newRevisionHeader . '</strong></div>' .
 			'<div id="mw-diff-ntitle2">' . Linker::revUserTools( $this->mNewRev, !$this->unhide ) .
