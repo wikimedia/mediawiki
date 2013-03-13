@@ -168,6 +168,8 @@ class IdentityCollation extends Collation {
 
 
 class IcuCollation extends Collation {
+	const FIRST_LETTER_VERSION = 1;
+
 	var $primaryCollator, $mainCollator, $locale;
 	var $firstLetterData;
 
@@ -359,7 +361,9 @@ class IcuCollation extends Collation {
 		$cacheKey = wfMemcKey( 'first-letters', $this->locale );
 		$cacheEntry = $cache->get( $cacheKey );
 
-		if ( $cacheEntry ) {
+		if ( $cacheEntry && isset( $cacheEntry['version'] )
+			&& $cacheEntry['version'] == self::FIRST_LETTER_VERSION ) 
+		{
 			$this->firstLetterData = $cacheEntry;
 			return $this->firstLetterData;
 		}
@@ -406,7 +410,8 @@ class IcuCollation extends Collation {
 		ksort( $letterMap, SORT_STRING );
 		$data = array(
 			'chars' => array_values( $letterMap ),
-			'keys' => array_keys( $letterMap )
+			'keys' => array_keys( $letterMap ),
+			'version' => self::FIRST_LETTER_VERSION,
 		);
 
 		// Reduce memory usage before caching
