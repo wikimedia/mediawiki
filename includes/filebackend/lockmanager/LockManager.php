@@ -77,11 +77,23 @@ abstract class LockManager {
 	 *
 	 * @param array $paths List of resource names
 	 * @param $type integer LockManager::LOCK_* constant
+	 * @param integer $timeout Timeout in seconds (0 means non-blocking) (since 1.21)
 	 * @return Status
 	 */
-	final public function lock( array $paths, $type = self::LOCK_EX ) {
+	final public function lock( array $paths, $type = self::LOCK_EX, $timeout = 0 ) {
 		wfProfileIn( __METHOD__ );
-		$status = $this->doLock( array_unique( $paths ), $this->lockTypeMap[$type] );
+		$utimeleft = 1e6 * $timeout;
+		$usleep = 1e3 * 500; // retry interval
+		$start = microtime( true );
+		do {
+			$status = $this->doLock( array_unique( $paths ), $this->lockTypeMap[$type] );
+			if ( $status->isOK() || $utimeleft < $usleep ) {
+				break;
+			} else {
+				usleep( $usleep );
+				$utimeleft -= $usleep;
+			}
+		} while ( ( microtime( true ) - $start ) <= $timeout );
 		wfProfileOut( __METHOD__ );
 		return $status;
 	}
