@@ -62,7 +62,7 @@ class RedisConnectionPool {
 	 *                      multiple web requests. False by default.
 	 *   - password       : The authentication password, will be sent to Redis in clear text.
 	 *                      Optional, if it is unspecified, no AUTH command will be sent.
-	 *   - serializer     : Set to "php" or "igbinary". Default is "php".
+	 *   - serializer     : Set to "php", "igbinary", or "none". Default is "php".
 	 * @param array $options
 	 */
 	protected function __construct( array $options ) {
@@ -77,6 +77,8 @@ class RedisConnectionPool {
 			$this->serializer = Redis::SERIALIZER_PHP;
 		} elseif ( $options['serializer'] === 'igbinary' ) {
 			$this->serializer = Redis::SERIALIZER_IGBINARY;
+		} elseif ( $options['serializer'] === 'none' ) {
+			$this->serializer = Redis::SERIALIZER_NONE;
 		} else {
 			throw new MWException( "Invalid serializer specified." );
 		}
