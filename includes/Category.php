@@ -332,8 +332,7 @@ class Category {
 				'files' => "COUNT($cond2)"
 			),
 			array( 'cl_to' => $this->mName, 'page_id = cl_from' ),
-			__METHOD__,
-			array( 'LOCK IN SHARE MODE' )
+			__METHOD__
 		);
 		$ret = $dbw->update(
 			'category',
