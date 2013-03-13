@@ -147,6 +147,57 @@ $.fn.makeCollapsible = function () {
 		}
 
 		/**
+		 * Handlers clicking on the collapsible element toggle and other
+		 * situations where a collapsible element is toggled (e.g. the initial
+		 * toggle for collapsed ones).
+		 *
+		 * @param {jQuery} $toggle the clickable toggle itself
+		 * @param {jQuery} $collapsible the collapsible element
+		 * @param {jQuery.Event|null} e either the event or null if unavailable
+		 * @param {Object|undefined} options
+		 */
+		function togglingHandler( $toggle, $collapsible, event, options ) {
+			var wasCollapsed, $textContainer, collapseText, expandText;
+
+			if ( options.linksPassthru ) {
+				// Don't fire if a link was clicked, if requested  (for premade togglers by default),
+				if ( $.nodeName( event.target, 'a' ) ) {
+					return true;
+				}
+			} else if ( event ) {
+				event.preventDefault();
+				event.stopPropagation();
+			}
+
+			wasCollapsed = $collapsible.hasClass( 'mw-collapsed' );
+
+			// Toggle the state of the collapsible element (that is, expand or collapse)
+			$collapsible.toggleClass( 'mw-collapsed', !wasCollapsed );
+
+			// Toggle the mw-collapsible-toggle classes, if requested (for default and premade togglers by default)
+			if ( options.toggleClasses ) {
+				$toggle
+					.toggleClass( 'mw-collapsible-toggle-collapsed', !wasCollapsed )
+					.toggleClass( 'mw-collapsible-toggle-expanded', wasCollapsed );
+			}
+
+			// Toggle the text ("Show"/"Hide"), if requested (for default togglers by default)
+			if ( options.toggleText ) {
+				collapseText = options.toggleText.collapseText;
+				expandText = options.toggleText.expandText;
+
+				$textContainer = $toggle.find( '> a' );
+				if ( !$textContainer.length ) {
+					$textContainer = $toggle;
+				}
+				$textContainer.text( wasCollapsed ? collapseText : expandText );
+			}
+
+			// And finally toggle the element state itself
+			toggleElement( $collapsible, wasCollapsed ? 'expand' : 'collapse', $toggle, options );
+		}
+
+		/**
 		 * Toggles collapsible and togglelink class and updates text label.
 		 *
 		 * @param {jQuery} $that
@@ -154,35 +205,9 @@ $.fn.makeCollapsible = function () {
 		 * @param {Object|undefined} options
 		 */
 		function toggleLinkDefault( $that, e, options ) {
-			var $collapsible = $that.closest( '.mw-collapsible' ).toggleClass( 'mw-collapsed' );
-			e.preventDefault();
-			e.stopPropagation();
-
-			// It's expanded right now
-			if ( !$that.hasClass( 'mw-collapsible-toggle-collapsed' ) ) {
-				// Change link to "Show"
-				$that.removeClass( 'mw-collapsible-toggle-expanded' ).addClass( 'mw-collapsible-toggle-collapsed' );
-				if ( $that.find( '> a' ).length ) {
-					$that.find( '> a' ).text( expandtext );
-				} else {
-					$that.text( expandtext );
-				}
-				// Collapse element
-				toggleElement( $collapsible, 'collapse', $that, options );
-
-			// It's collapsed right now
-			} else {
-				// Change link to "Hide"
-				$that.removeClass( 'mw-collapsible-toggle-collapsed' ).addClass( 'mw-collapsible-toggle-expanded' );
-				if ( $that.find( '> a' ).length ) {
-					$that.find( '> a' ).text( collapsetext );
-				} else {
-					$that.text( collapsetext );
-				}
-				// Expand element
-				toggleElement( $collapsible, 'expand', $that, options );
-			}
-			return;
+			var $collapsible = $that.closest( '.mw-collapsible' );
+			options = $.extend( { toggleClasses: true }, options );
+			togglingHandler( $that, $collapsible, e, options );
 		}
 
 		/**
@@ -193,28 +218,9 @@ $.fn.makeCollapsible = function () {
 		 * @param {Object|undefined} options
 		 */
 		function toggleLinkPremade( $that, e, options ) {
-			var $collapsible = $that.eq( 0 ).closest( '.mw-collapsible' ).toggleClass( 'mw-collapsed' );
-			if ( $.nodeName( e.target, 'a' ) ) {
-				return true;
-			}
-			e.preventDefault();
-			e.stopPropagation();
-
-			// It's expanded right now
-			if ( !$that.hasClass( 'mw-collapsible-toggle-collapsed' ) ) {
-				// Change toggle to collapsed
-				$that.removeClass( 'mw-collapsible-toggle-expanded' ).addClass( 'mw-collapsible-toggle-collapsed' );
-				// Collapse element
-				toggleElement( $collapsible, 'collapse', $that, options );
-
-			// It's collapsed right now
-			} else {
-				// Change toggle to expanded
-				$that.removeClass( 'mw-collapsible-toggle-collapsed' ).addClass( 'mw-collapsible-toggle-expanded' );
-				// Expand element
-				toggleElement( $collapsible, 'expand', $that, options );
-			}
-			return;
+			var $collapsible = $that.eq( 0 ).closest( '.mw-collapsible' );
+			options = $.extend( { toggleClasses: true }, options );
+			togglingHandler( $that, $collapsible, e, options );
 		}
 
 		/**
@@ -226,15 +232,8 @@ $.fn.makeCollapsible = function () {
 		 * @param {jQuery} $collapsible
 		 */
 		function toggleLinkCustom( $that, e, options, $collapsible ) {
-			// For the initial state call of customtogglers there is no event passed
-			if ( e ) {
-				e.preventDefault();
-				e.stopPropagation();
-			}
-			// Get current state and toggle to the opposite
-			var action = $collapsible.hasClass( 'mw-collapsed' ) ? 'expand' : 'collapse';
-			$collapsible.toggleClass( 'mw-collapsed' );
-			toggleElement( $collapsible, action, $that, options );
+			options = $.extend( { linksPassthru: true }, options );
+			togglingHandler( $that, $collapsible, e, options );
 		}
 
 		// Return if it has been enabled already.
@@ -261,6 +260,7 @@ $.fn.makeCollapsible = function () {
 					.prepend( '&nbsp;[' )
 					.append( ']&nbsp;' )
 					.on( 'click.mw-collapse', function ( e, options ) {
+						options = $.extend( { toggleText: { collapseText: collapsetext, expandText: expandtext } }, options );
 						toggleLinkDefault( $(this), e, options );
 					} );
 
