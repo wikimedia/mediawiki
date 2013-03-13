@@ -2325,7 +2325,7 @@ Bevestig asseblief dat u dit wil doen, dat u die gevolge verstaan en dat u dit d
 Kyk na $2 vir \'n rekord van onlangse skrappings.',
 'dellogpage' => 'Skraplogboek',
 'dellogpagetext' => "Hier onder is 'n lys van die mees onlangse skrappings. Alle tye is bedienertyd (UGT).",
-'deletionlog' => 'skrappings-logboek',
+'deletionlog' => 'skraplogboek',
 'reverted' => 'Het terug gegaan na vroeëre weergawe',
 'deletecomment' => 'Rede:',
 'deleteotherreason' => 'Ander/ekstra rede:',
@@ -3967,6 +3967,6 @@ Anders kan u die eenvoudige vorm hieronder gebruik. U kommentaar sal by die blad
 'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennia}}',
 
 # Image rotation
-'rotate-comment' => 'Beeld $1 {{PLURAL:$1|graad|grade} kloksgewys gedraai',
+'rotate-comment' => 'Beeld $1 {{PLURAL:$1|graad|grade}} kloksgewys gedraai',
 
 );

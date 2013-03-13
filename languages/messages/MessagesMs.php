@@ -1958,8 +1958,10 @@ Pautan ini sepatutnya ditujukan ke topik yang sepatutnya.<br />
 Sesebuah laman dianggap sebagai laman penyahkekaburan jika ia menggunakan templat yang dipaut dari [[MediaWiki:Disambiguationspage]]",
 
 'pageswithprop' => 'Halaman dengan sifat halaman',
+'pageswithprop-legend' => 'Halaman dengan sifat halaman',
 'pageswithprop-text' => 'Halaman ini menyenaraikan halaman-halaman yang menggunakan sifat halaman yang tertentu.',
 'pageswithprop-prop' => 'Nama sifat:',
+'pageswithprop-submit' => 'Pergi',
 
 'doubleredirects' => 'Lencongan berganda',
 'doubleredirectstext' => 'Yang berikut ialah senarai laman yang melencong ke laman lencongan lain. Setiap baris mengandungi pautan ke laman lencongan pertama dan kedua, serta baris pertama bagi teks lencongan kedua, lazimnya merupakan laman sasaran "sebenar", yang sepatutnya ditujui oleh lencongan pertama.
@@ -3949,7 +3951,7 @@ Ataupun, anda boleh menggunakan borang yang mudah di bawah. Ulasan anda akan dic
 'duration-centuries' => '$1 abad',
 'duration-millennia' => '$1 alaf',
 
-# Unknown messages
-'pageswithprop-legend' => 'Halaman dengan sifat halaman',
-'pageswithprop-submit' => 'Pergi',
+# Image rotation
+'rotate-comment' => 'Imej diputar sebanyak $1 {{PLURAL:$1|darjah|darjah}} mengikut arah jam',
+
 );
