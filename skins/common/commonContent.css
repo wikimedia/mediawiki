@@ -128,6 +128,13 @@ img.thumbborder {
 #userlogin, #userloginForm {
 	border: solid 1px #cccccc;
 	padding: 1.2em;
-	margin: .5em;
-	float: left;
+	margin: 0.5em;
+}
+
+#loginend {
+	margin: 0.5em;
+}
+
+#loginend table {
+	width: 100%;
 }
