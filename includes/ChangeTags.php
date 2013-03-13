@@ -79,7 +79,7 @@ class ChangeTags {
 	 * @param $rc_id int: rc_id of the change to add the tags to
 	 * @param $rev_id int: rev_id of the change to add the tags to
 	 * @param $log_id int: log_id of the change to add the tags to
-	 * @param string $params params to put in the ct_params field of tabel 'change_tag'
+	 * @param string $params params to put in the ct_params field of table 'change_tag'
 	 *
 	 * @throws MWException
 	 * @return bool: false if no changes are made, otherwise true
@@ -160,7 +160,7 @@ class ChangeTags {
 	 * Handles selecting tags, and filtering.
 	 * Needs $tables to be set up properly, so we can figure out which join conditions to use.
 	 *
-	 * @param string|array $tables Tabel names, see DatabaseBase::select
+	 * @param string|array $tables Table names, see DatabaseBase::select
 	 * @param string|array $fields Fields used in query, see DatabaseBase::select
 	 * @param string|array $conds conditions used in query, see DatabaseBase::select
 	 * @param $join_conds Array: join conditions, see DatabaseBase::select

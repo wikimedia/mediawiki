@@ -49,7 +49,7 @@ class StringUtils {
 	static function isUtf8( $value, $disableMbstring = false ) {
 
 		if ( preg_match( '/[\x80-\xff]/', $value ) === 0 ) {
-			# no high bit set, this is pure ASCII which is defacto
+			# no high bit set, this is pure ASCII which is de facto
 			# valid UTF-8
 			return true;
 		}
@@ -405,7 +405,7 @@ class ReplacementArray {
 	/**
 	 * Set an element of the replacement array
 	 * @param $from string
-	 * @param $to stromg
+	 * @param $to string
 	 */
 	function setPair( $from, $to ) {
 		$this->data[$from] = $to;

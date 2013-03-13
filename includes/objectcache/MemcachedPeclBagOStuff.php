@@ -47,7 +47,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		if ( $params['persistent'] ) {
 			// The pool ID must be unique to the server/option combination.
 			// The Memcached object is essentially shared for each pool ID.
-			// We can only resuse a pool ID if we keep the config consistent.
+			// We can only reuse a pool ID if we keep the config consistent.
 			$this->client = new Memcached( md5( serialize( $params ) ) );
 			if ( count( $this->client->getServerList() ) ) {
 				wfDebug( __METHOD__ . ": persistent Memcached object already loaded.\n" );

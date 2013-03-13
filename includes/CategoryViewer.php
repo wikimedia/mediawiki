@@ -249,7 +249,7 @@ class CategoryViewer extends ContextSource {
 		$link = Linker::link( $title );
 		if ( $isRedirect ) {
 			// This seems kind of pointless given 'mw-redirect' class,
-			// but keeping for back-compatiability with user css.
+			// but keeping for back-compatibility with user css.
 			$link = '<span class="redirect-in-category">' . $link . '</span>';
 		}
 		$this->articles[] = $link;
@@ -392,7 +392,7 @@ class CategoryViewer extends ContextSource {
 		$r = '';
 
 		# @todo FIXME: Here and in the other two sections: we don't need to bother
-		# with this rigamarole if the entire category contents fit on one page
+		# with this rigmarole if the entire category contents fit on one page
 		# and have already been retrieved.  We can just use $rescnt in that
 		# case and save a query and some logic.
 		$dbcnt = $this->cat->getPageCount() - $this->cat->getSubcatCount()
@@ -574,7 +574,7 @@ class CategoryViewer extends ContextSource {
 	 * Create paging links, as a helper method to getSectionPagingLinks().
 	 *
 	 * @param string $first The 'until' parameter for the generated URL
-	 * @param string $last The 'from' parameter for the genererated URL
+	 * @param string $last The 'from' parameter for the generated URL
 	 * @param string $type A prefix for parameters, 'page' or 'subcat' or
 	 *     'file'
 	 * @return String HTML

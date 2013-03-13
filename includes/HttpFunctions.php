@@ -335,7 +335,7 @@ class MWHttpRequest {
 	}
 
 	/**
-	 * Set the refererer header
+	 * Set the referrer header
 	 */
 	public function setReferer( $url ) {
 		$this->setHeader( 'Referer', $url );
@@ -450,7 +450,7 @@ class MWHttpRequest {
 
 	/**
 	 * Parses the headers, including the HTTP status code and any
-	 * Set-Cookie headers.  This function expectes the headers to be
+	 * Set-Cookie headers.  This function expects the headers to be
 	 * found in an array in the member variable headerList.
 	 */
 	protected function parseHeader() {

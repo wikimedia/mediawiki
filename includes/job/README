@@ -52,7 +52,7 @@ require durable queues, whereas other jobs might be more important.
 
 The aggregators are used by nextJobDB.php, which is a script that will return a
 random ready queue (on any wiki in the farm) that can be used with runJobs.php.
-This can be used in conjuction with any scripts that handle wiki farm job queues.
+This can be used in conjunction with any scripts that handle wiki farm job queues.
 Note that $wgLocalDatabases defines what wikis are in the wiki farm.
 
 Since each job type has its own queue, and wiki-farms may have many wikis,

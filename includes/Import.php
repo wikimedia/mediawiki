@@ -1531,7 +1531,7 @@ class WikiRevision {
 		}
 
 		if ( $status->isGood() ) {
-			wfDebug( __METHOD__ . ": Succesful\n" );
+			wfDebug( __METHOD__ . ": Successful\n" );
 			return true;
 		} else {
 			wfDebug( __METHOD__ . ': failed: ' . $status->getXml() . "\n" );

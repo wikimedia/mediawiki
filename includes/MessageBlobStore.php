@@ -29,7 +29,7 @@
  * A message blob is a JSON object containing the interface messages for a
  * certain resource in a certain language. These message blobs are cached
  * in the msg_resource table and automatically invalidated when one of their
- * consistuent messages or the resource itself is changed.
+ * constituent messages or the resource itself is changed.
  */
 class MessageBlobStore {
 
