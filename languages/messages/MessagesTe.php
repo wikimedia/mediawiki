@@ -642,7 +642,7 @@ $2',
 'loginlanguagelabel' => 'భాష: $1',
 'suspicious-userlogout' => 'సరిగా పనిచేయని విహారిణి లేదా కాషింగ్ ప్రాక్సీ వల్ల పంపబడడం చేత, నిష్క్రమించాలనే మీ అభ్యర్థనని నిరాకరించారు.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'PHP యొక్క mail() ఫంక్షన్‍లో ఏదో తెలియని లోపం దొర్లింది',
 'user-mail-no-addy' => 'ఈ-మెయిలు చిరునామాని ఇవ్వకుండానే ఈ-మెయిలు పంపడానికి ప్రయత్నించారు.',
 
@@ -1281,7 +1281,7 @@ $1",
 'prefs-displaywatchlist' => 'ప్రదర్శన ఎంపికలు',
 'prefs-diffs' => 'తేడాలు',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'ఈ-మెయిలు చిరునామా సరిగానే ఉన్నట్టుంది',
 'email-address-validity-invalid' => 'దయచేసి సరైన ఈమెయిలు చిరునామాని ఇవ్వండి',
 
@@ -1990,7 +1990,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization చూడండి.',
 'listgrouprights-addgroup-self-all' => 'అన్ని సమూహాలని స్వంత ఖాతాకి చేర్చుకోలగడటం',
 'listgrouprights-removegroup-self-all' => 'స్వంత ఖాతా నుండి అన్ని సమూహాలనూ తొలగించుకోగలగడం',
 
-# E-mail user
+# Email user
 'mailnologin' => 'పంపించవలసిన చిరునామా లేదు',
 'mailnologintext' => 'ఇతరులకు ఈ-మెయిలు పంపించాలంటే, మీరు [[Special:UserLogin|లాగిన్‌]] అయి ఉండాలి, మరియు మీ [[Special:Preferences|అభిరుచుల]]లో సరైన ఈ-మెయిలు చిరునామా ఇచ్చి ఉండాలి.',
 'emailuser' => 'ఈ వాడుకరికి ఈ-మెయిలుని పంపించండి',
@@ -3236,7 +3236,7 @@ $1',
 'monthsall' => 'అన్నీ',
 'limitall' => 'అన్నీ',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'ఈ-మెయిలు చిరునామా ధృవీకరించండి',
 'confirmemail_noemail' => '[[Special:Preferences|మీ అభిరుచులలో]] ఈమెయిలు అడ్రసు పెట్టి లేదు.',
 'confirmemail_text' => '{{SITENAME}}లో ఈ-మెయిలు అంశాల్ని వాడుకునే ముందు మీ ఈ-మెయిలు చిరునామాను నిర్ధారించవలసిన అవసరం ఉంది.
