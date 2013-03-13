@@ -48,7 +48,6 @@ class MemcLockManager extends QuorumLockManager {
 	/** @var Array */
 	protected $serversUp = array(); // (server name => bool)
 
-	protected $lockExpiry; // integer; maximum time locks can be held
 	protected $session = ''; // string; random UUID
 
 	/**
@@ -85,9 +84,6 @@ class MemcLockManager extends QuorumLockManager {
 					'Only MemcachedBagOStuff classes are supported by MemcLockManager.' );
 			}
 		}
-
-		$met = ini_get( 'max_execution_time' ); // this is 0 in CLI mode
-		$this->lockExpiry = $met ? 2*(int)$met : 2*3600;
 
 		$this->session = wfRandomString( 32 );
 	}
@@ -138,7 +134,7 @@ class MemcLockManager extends QuorumLockManager {
 			}
 			if ( $status->isOK() ) {
 				// Register the session in the lock record array
-				$locksHeld[$type][$this->session] = $now + $this->lockExpiry;
+				$locksHeld[$type][$this->session] = $now + $this->lockTTL;
 				// We will update this record if none of the other locks conflict
 				$lockRecords[$locksKey] = $locksHeld;
 			}
@@ -242,7 +238,7 @@ class MemcLockManager extends QuorumLockManager {
 		if ( isset( $this->bagOStuffs[$lockSrv] ) ) {
 			$memc = $this->bagOStuffs[$lockSrv];
 			if ( !isset( $this->serversUp[$lockSrv] ) ) {
-				$this->serversUp[$lockSrv] = $memc->set( 'MemcLockManager:ping', 1, 1 );
+				$this->serversUp[$lockSrv] = $memc->set( __CLASS__ . ':ping', 1, 1 );
 				if ( !$this->serversUp[$lockSrv] ) {
 					trigger_error( __METHOD__ . ": Could not contact $lockSrv.", E_USER_WARNING );
 				}

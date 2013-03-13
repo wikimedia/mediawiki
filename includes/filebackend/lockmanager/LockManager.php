@@ -54,6 +54,7 @@ abstract class LockManager {
 	protected $locksHeld = array();
 
 	protected $domain; // string; domain (usually wiki ID)
+	protected $lockTTL; // integer; maximum time locks can be held
 
 	/* Lock types; stronger locks have higher values */
 	const LOCK_SH = 1; // shared lock (for reads)
@@ -64,12 +65,22 @@ abstract class LockManager {
 	 * Construct a new instance from configuration
 	 *
 	 * $config paramaters include:
-	 *   - domain : Domain (usually wiki ID) that all resources are relative to [optional]
+	 *   - domain  : Domain (usually wiki ID) that all resources are relative to [optional]
+	 *   - lockTTL : Age (in seconds) at which resource locks should expire.
+	 *               This only applies if locks are not tied to a connection/process.
 	 *
 	 * @param $config Array
 	 */
 	public function __construct( array $config ) {
 		$this->domain = isset( $config['domain'] ) ? $config['domain'] : wfWikiID();
+		if ( isset( $config['lockTTL'] ) ) {
+			$this->lockTTL = max( 1, $config['lockTTL'] );
+		} elseif ( PHP_SAPI === 'cli' ) {
+			$this->lockTTL = 2*3600;
+		} else {
+			$met = ini_get( 'max_execution_time' ); // this is 0 in CLI mode
+			$this->lockTTL = max( 5*60, 2*(int)$met );
+		}
 	}
 
 	/**
