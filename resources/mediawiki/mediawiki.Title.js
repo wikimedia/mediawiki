@@ -186,16 +186,31 @@ var
 	 * @return {Mixed} Boolean true/false if the information is available. Otherwise null.
 	 */
 	Title.exists = function ( title ) {
-		var type = $.type( title ), obj = Title.exist.pages, match;
-		if ( type === 'string' ) {
-			match = obj[title];
-		} else if ( type === 'object' && title instanceof Title ) {
-			match = obj[title.toString()];
+		var pageName;
+		if ( typeof title === 'string' ) {
+			pageName = title;
+		} else if ( typeof title === 'object' && title instanceof Title ) {
+			pageName = title.toString();
 		} else {
 			throw new Error( 'mw.Title.exists: title must be a string or an instance of Title' );
 		}
-		if ( typeof match === 'boolean' ) {
-			return match;
+
+		if ( !$.inArray( pageName, Title.exist.pages ) ) {
+			var api = new mw.Api( { async:true } );
+			api.get( {
+				action: 'query',
+				titles: pageName
+			} ).done( function ( data ) {
+				if ( $.inArray( -1, data.query.pages ) ) {
+					Title.exist.set( pageName, false );
+				} else {
+					Title.exist.set( pageName, true );
+				}
+			} );
+		}
+
+		if ( typeof Title.exist.pages[pageName] === 'boolean' ) {
+			return Title.exist.pages[pageName];
 		}
 		return null;
 	};
@@ -226,10 +241,9 @@ var
 		set: function ( titles, state ) {
 			titles = $.isArray( titles ) ? titles : [titles];
 			state = state === undefined ? true : !!state;
-			var pages = this.pages, i, len = titles.length;
-			for ( i = 0; i < len; i++ ) {
-				pages[ titles[i] ] = state;
-			}
+			$.each( titles, function ( index, value ) {
+				this.pages[ value ] = state;
+			} );
 			return true;
 		}
 	};
