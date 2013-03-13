@@ -851,6 +851,7 @@ $rev: Revision object
 $diff: DifferenceEngine object that's calling
 $oldRev: Revision object of the "old" revision (may be null/invalid)
 $newRev: Revision object of the "new" revision
+$context: RequestContext object
 
 'DisplayOldSubtitle': before creating subtitle when browsing old versions of
 an article
@@ -1678,7 +1679,7 @@ $baseRevId: the rev ID (or false) this edit was based on
 
 'PageHistoryBeforeList': When a history page list is about to be constructed.
 $article: the article that the history is loading for
-$out: OutputPage object
+$context: RequestContext object
 
 'PageHistoryLineEnding' : Right before the end <li> is added to a history line.
 $row: the revision row for this line
