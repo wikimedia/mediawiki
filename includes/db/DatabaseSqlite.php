@@ -471,7 +471,7 @@ class DatabaseSqlite extends DatabaseBase {
 	 */
 	function makeSelectOptions( $options ) {
 		foreach ( $options as $k => $v ) {
-			if ( is_numeric( $k ) && $v == 'FOR UPDATE' ) {
+			if ( is_numeric( $k ) && ($v == 'FOR UPDATE' || $v == 'LOCK IN SHARE MODE') ) {
 				$options[$k] = '';
 			}
 		}
