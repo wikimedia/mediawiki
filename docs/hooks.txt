@@ -1678,6 +1678,7 @@ $baseRevId: the rev ID (or false) this edit was based on
 
 'PageHistoryBeforeList': When a history page list is about to be constructed.
 $article: the article that the history is loading for
+$out: OutputPage object
 
 'PageHistoryLineEnding' : Right before the end <li> is added to a history line.
 $row: the revision row for this line
