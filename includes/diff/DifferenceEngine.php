@@ -267,6 +267,8 @@ class DifferenceEngine extends ContextSource {
 		$deleted = $suppressed = false;
 		$allowed = $this->mNewRev->userCan( Revision::DELETED_TEXT, $user );
 
+		$revisionTools = array();
+
 		# mOldRev is false if the difference engine is called with a "vague" query for
 		# a diff between a version V and its previous version V' AND the version V
 		# is the first version of that article. In that case, V' does not exist.
@@ -292,7 +294,6 @@ class DifferenceEngine extends ContextSource {
 				$samePage = false;
 			}
 
-			$revisionTools = array();
 			if ( $samePage && $this->mNewPage->quickUserCan( 'edit', $user ) ) {
 				if ( $this->mNewRev->isCurrent() && $this->mNewPage->userCan( 'rollback', $user ) ) {
 					$rollbackLink = Linker::generateRollback( $this->mNewRev, $this->getContext() );
