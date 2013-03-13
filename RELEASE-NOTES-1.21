@@ -114,6 +114,7 @@ production.
   oc, pl, pt, rm, ro, ru, rup, sco, sk, sl, smn, sq, sr, sv, tk, tl, tr, tt, uk,
   uz, vi.
 * Added 'CategoryAfterPageAdded' and 'CategoryAfterPageRemoved' hooks.
+* Added 'HistoryRevisionTools' and 'DiffRevisionTools' hooks.
 * (bug 33186) Add image rotation api "imagerotate"
 * (bug 34040) Add "User rights management" link on user page toolbox.
 

@@ -842,6 +842,11 @@ $title: the diff page title (nullable)
 $old: the ?old= param value from the url
 $new: the ?new= param value from the url
 
+'DiffRevisionTools': Override or extend the revision tools available from the
+diff view, i.e. undo, etc.
+$rev: Revision object
+&$links: Array of HTML links
+
 'DiffViewHeader': Called before diff display
 $diff: DifferenceEngine object that's calling
 $oldRev: Revision object of the "old" revision (may be null/invalid)
@@ -1199,6 +1204,11 @@ $result: User permissions error to add. If none, return true.
 'GitViewers': Called when generating the list of git viewers for
 Special:Version, use this to change the list.
 &$extTypes: associative array of repo URLS to viewer URLs.
+
+'HistoryRevisionTools': Override or extend the revision tools available from the
+page history view, i.e. undo, rollback, etc.
+$rev: Revision object
+&$links: Array of HTML links
 
 'ImageBeforeProduceHTML': Called before producing the HTML created by a wiki
 image insertion. You can skip the default logic entirely by returning false, or
