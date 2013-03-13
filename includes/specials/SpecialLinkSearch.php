@@ -42,7 +42,7 @@ class LinkSearchPage extends QueryPage {
 	}
 
 	function execute( $par ) {
-		global $wgUrlProtocols, $wgMiserMode;
+		global $wgUrlProtocols, $wgMiserMode, $wgScript;
 
 		$this->setHeaders();
 		$this->outputHeader();
@@ -88,11 +88,11 @@ class LinkSearchPage extends QueryPage {
 			'<nowiki>' . $this->getLanguage()->commaList( $protocols_list ) . '</nowiki>',
 			count( $protocols_list )
 		);
-		$s = Xml::openElement( 'form', array( 'id' => 'mw-linksearch-form', 'method' => 'get', 'action' => $GLOBALS['wgScript'] ) ) .
-			Html::hidden( 'title', $this->getTitle()->getPrefixedDBkey() ) .
-			'<fieldset>' .
-			Xml::element( 'legend', array(), $this->msg( 'linksearch' )->text() ) .
-			Xml::inputLabel( $this->msg( 'linksearch-pat' )->text(), 'target', 'target', 50, $target ) . ' ';
+		$s = Html::openElement( 'form', array( 'id' => 'mw-linksearch-form', 'method' => 'get', 'action' => $wgScript ) ) . "\n" .
+			Html::hidden( 'title', $this->getTitle()->getPrefixedDBkey() ) . "\n" .
+			Html::openElement( 'fieldset' ) . "\n" .
+			Html::element( 'legend', array(), $this->msg( 'linksearch' )->text() ) . "\n" .
+			Xml::inputLabel( $this->msg( 'linksearch-pat' )->text(), 'target', 'target', 50, $target ) . "\n";
 		if ( !$wgMiserMode ) {
 			$s .= Html::namespaceSelector(
 				array(
@@ -106,9 +106,9 @@ class LinkSearchPage extends QueryPage {
 				)
 			);
 		}
-		$s .= Xml::submitButton( $this->msg( 'linksearch-ok' )->text() ) .
-			'</fieldset>' .
-			Xml::closeElement( 'form' );
+		$s .= Xml::submitButton( $this->msg( 'linksearch-ok' )->text() ) . "\n" .
+			Html::closeElement( 'fieldset' ) . "\n" .
+			Html::closeElement( 'form' ) . "\n";
 		$out->addHTML( $s );
 
 		if( $target != '' ) {
