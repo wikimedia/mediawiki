@@ -437,8 +437,7 @@ class User {
 	 * Create a new user object using data from session or cookies. If the
 	 * login credentials are invalid, the result is an anonymous user.
 	 *
-	 * @param $request WebRequest object to use; $wgRequest will be used if
-	 *        ommited.
+	 * @param $request WebRequest object to use; $wgRequest will be used if omitted.
 	 * @return User object
 	 */
 	public static function newFromSession( WebRequest $request = null ) {
@@ -554,7 +553,7 @@ class User {
 	 * Is the input a valid username?
 	 *
 	 * Checks if the input is a valid username, we don't want an empty string,
-	 * an IP address, anything that containins slashes (would mess up subpages),
+	 * an IP address, anything that contains slashes (would mess up subpages),
 	 * is longer than the maximum allowed username size or doesn't begin with
 	 * a capital letter.
 	 *
@@ -1631,7 +1630,7 @@ class User {
 	/**
 	 * Check if user is blocked on all wikis.
 	 * Do not use for actual edit permission checks!
-	 * This is intented for quick UI checks.
+	 * This is intended for quick UI checks.
 	 *
 	 * @param string $ip IP address, uses current client if none given
 	 * @return Bool True if blocked, false otherwise
@@ -1737,7 +1736,7 @@ class User {
 	 * address for an anonymous user to something other than the current
 	 * remote IP.
 	 *
-	 * @note User::newFromName() has rougly the same function, when the named user
+	 * @note User::newFromName() has roughly the same function, when the named user
 	 * does not exist.
 	 * @param string $str New user name to set
 	 */
@@ -3511,7 +3510,7 @@ class User {
 	 * Generate a looking random token for various uses.
 	 *
 	 * @return String The new random token
-	 * @deprecated since 1.20; Use MWCryptRand for secure purposes or wfRandomString for pesudo-randomness
+	 * @deprecated since 1.20; Use MWCryptRand for secure purposes or wfRandomString for pseudo-randomness
 	 */
 	public static function generateToken() {
 		return MWCryptRand::generateHex( 32 );

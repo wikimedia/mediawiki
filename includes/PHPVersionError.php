@@ -22,7 +22,7 @@
 
 /**
  * Display something vaguely comprehensible in the event of a totally unrecoverable error.
- * Does not assume access to *anything*; no globals, no autloader, no database, no localisation.
+ * Does not assume access to *anything*; no globals, no autoloader, no database, no localisation.
  * Safe for PHP4 (and putting this here means that WebStart.php and GlobalSettings.php
  * no longer need to be).
  *

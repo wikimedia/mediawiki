@@ -123,7 +123,7 @@ class OutputPage extends ContextSource {
 	var $mScripts = '';
 
 	/**
-	 * Inline CSS styles. Use addInlineStyle() sparsingly
+	 * Inline CSS styles. Use addInlineStyle() sparingly
 	 */
 	var $mInlineStyles = '';
 
@@ -897,7 +897,7 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Replace the subtile with $str
+	 * Replace the subtitle with $str
 	 *
 	 * @param string|Message $str new value of the subtitle. String should be safe HTML.
 	 */
@@ -1303,7 +1303,7 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * As for setAllowedModules(), but don't inadvertantly make the page more accessible
+	 * As for setAllowedModules(), but don't inadvertently make the page more accessible
 	 * @param  $type String
 	 * @param  $level Int ResourceLoaderModule class constant
 	 */
@@ -1467,7 +1467,7 @@ class OutputPage extends ContextSource {
 	 * @param $interface Boolean: is this text in the user interface language?
 	 */
 	public function addWikiText( $text, $linestart = true, $interface = true ) {
-		$title = $this->getTitle(); // Work arround E_STRICT
+		$title = $this->getTitle(); // Work around E_STRICT
 		if ( !$title ) {
 			throw new MWException( 'Title is null' );
 		}
@@ -1939,7 +1939,7 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Get the message associed with the HTTP response code $code
+	 * Get the message associated with the HTTP response code $code
 	 *
 	 * @param $code Integer: status code
 	 * @return String or null: message or null if $code is not in the list of
@@ -2331,7 +2331,7 @@ $templates
 	}
 
 	/**
-	 * Turn off regular page output and return an error reponse
+	 * Turn off regular page output and return an error response
 	 * for when rate limiting has triggered.
 	 */
 	public function rateLimited() {
@@ -2695,7 +2695,7 @@ $templates
 			}
 			// Special handling for the user group; because users might change their stuff
 			// on-wiki like user pages, or user preferences; we need to find the highest
-			// timestamp of these user-changable modules so we can ensure cache misses on change
+			// timestamp of these user-changeable modules so we can ensure cache misses on change
 			// This should NOT be done for the site group (bug 27564) because anons get that too
 			// and we shouldn't be putting timestamps in Squid-cached HTML
 			$version = null;
@@ -3576,7 +3576,7 @@ $templates
 					// Example supported values for $media: 'screen', 'only screen', 'screen and (min-width: 982px)' ),
 					// Example NOT supported value for $media: '3d-glasses, screen, print and resolution > 90dpi'
 					//
-					// If it's a print request, we never want any kind of screen styesheets
+					// If it's a print request, we never want any kind of screen stylesheets
 					// If it's a handheld request (currently the only other choice with a switch),
 					// we don't want simple 'screen' but we might want screen queries that
 					// have a max-width or something, so we'll pass all others on and let the

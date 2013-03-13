@@ -432,7 +432,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 * Make a self-link
 	 *
 	 * @param string $text text displayed on the link
-	 * @param array $query associative array of paramter to be in the query string
+	 * @param array $query associative array of parameter to be in the query string
 	 * @param string $type value of the "rel" attribute
 	 *
 	 * @return String: HTML fragment
@@ -688,8 +688,8 @@ abstract class IndexPager extends ContextSource implements Pager {
 	protected function getExtraSortFields() { return array(); }
 
 	/**
-	 * Return the default sorting direction: false for ascending, true for de-
-	 * scending.  You can also have an associative array of ordertype => dir,
+	 * Return the default sorting direction: false for ascending, true for
+	 * descending.  You can also have an associative array of ordertype => dir,
 	 * if multiple order types are supported.  In this case getIndexField()
 	 * must return an array, and the keys of that must exactly match the keys
 	 * of this.
@@ -784,8 +784,8 @@ abstract class AlphabeticPager extends IndexPager {
 
 	/**
 	 * If this supports multiple order type messages, give the message key for
-	 * enabling each one in getNavigationBar.  The return type is an associa-
-	 * tive array whose keys must exactly match the keys of the array returned
+	 * enabling each one in getNavigationBar.  The return type is an associative
+	 * array whose keys must exactly match the keys of the array returned
 	 * by getIndexField(), and whose values are message keys.
 	 *
 	 * @return Array

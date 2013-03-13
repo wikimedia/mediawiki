@@ -60,7 +60,7 @@ class ChangesList extends ContextSource {
 	protected $message;
 
 	/**
-	 * Changeslist contructor
+	 * Changeslist constructor
 	 *
 	 * @param $obj Skin or IContextSource
 	 */
@@ -563,7 +563,7 @@ class ChangesList extends ContextSource {
 	}
 
 	public function insertExtra( &$s, &$rc, &$classes ) {
-		## Empty, used for subclassers to add anything special.
+		// Empty, used for subclasses to add anything special.
 	}
 
 	protected function showAsUnpatrolled( RecentChange $rc ) {

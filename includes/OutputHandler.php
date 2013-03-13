@@ -92,7 +92,7 @@ function wfRequestExtension() {
  */
 function wfGzipHandler( $s ) {
 	if( !function_exists( 'gzencode' ) ) {
-		wfDebug( __FUNCTION__ . "() skipping compression (gzencode unavaible)\n" );
+		wfDebug( __FUNCTION__ . "() skipping compression (gzencode unavailable)\n" );
 		return $s;
 	}
 	if( headers_sent() ) {

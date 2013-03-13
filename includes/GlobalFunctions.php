@@ -311,7 +311,7 @@ function wfRandom() {
 }
 
 /**
- * Get a random string containing a number of pesudo-random hex
+ * Get a random string containing a number of pseudo-random hex
  * characters.
  * @note This is not secure, if you are trying to generate some sort
  *       of token please use MWCryptRand instead.
@@ -422,8 +422,8 @@ function wfArrayToCgi( $array1, $array2 = null, $prefix = '' ) {
 
 /**
  * This is the logical opposite of wfArrayToCgi(): it accepts a query string as
- * its argument and returns the same string in array form.  This allows compa-
- * tibility with legacy functions that accept raw query strings instead of nice
+ * its argument and returns the same string in array form.  This allows compatibility
+ * with legacy functions that accept raw query strings instead of nice
  * arrays.  Of course, keys and values are urldecode()d.
  *
  * @param string $query query string
@@ -1081,7 +1081,7 @@ function wfLogDBError( $text ) {
  * @param $function String
  * @param string|bool $version Version of MediaWiki that the function was deprecated in (Added in 1.19).
  * @param string|bool $component Added in 1.19.
- * @param $callerOffset integer: How far up the callstack is the original
+ * @param $callerOffset integer: How far up the call stack is the original
  *    caller. 2 = function that called the function that called
  *    wfDeprecated (Added in 1.20)
  *
@@ -1662,7 +1662,7 @@ function wfMsgWikiHtml( $key ) {
  *   <i>content</i>: fetch message for content language instead of interface
  * Also can accept a single associative argument, of the form 'language' => 'xx':
  *   <i>language</i>: Language object or language code to fetch message for
- *       (overriden by <i>content</i>).
+ *       (overridden by <i>content</i>).
  * Behavior for conflicting options (e.g., parse+parseinline) is undefined.
  *
  * @return String
@@ -1742,7 +1742,7 @@ function wfMsgExt( $key, $options ) {
 /**
  * Since wfMsg() and co suck, they don't return false if the message key they
  * looked up didn't exist but a XHTML string, this function checks for the
- * nonexistance of messages by checking the MessageCache::get() result directly.
+ * nonexistence of messages by checking the MessageCache::get() result directly.
  *
  * @deprecated since 1.18. Use Message::isDisabled().
  *
@@ -1825,7 +1825,7 @@ function wfReportTime() {
  *
  * With Zend Optimizer 3.2.0 loaded, this causes segfaults under somewhat
  * murky circumstances, which may be triggered in part by stub objects
- * or other fancy talkin'.
+ * or other fancy talking'.
  *
  * Will return an empty array if Zend Optimizer is detected or if
  * debug_backtrace is disabled, otherwise the output from
@@ -2090,7 +2090,7 @@ function wfEscapeWikiText( $text ) {
 }
 
 /**
- * Get the current unix timetstamp with microseconds.  Useful for profiling
+ * Get the current unix timestamp with microseconds.  Useful for profiling
  * @return Float
  */
 function wfTime() {
@@ -3321,7 +3321,7 @@ function wfHttpOnlySafe() {
 }
 
 /**
- * Check if there is sufficent entropy in php's built-in session generation
+ * Check if there is sufficient entropy in php's built-in session generation
  * @return bool true = there is sufficient entropy
  */
 function wfCheckEntropy() {
@@ -3702,8 +3702,8 @@ function wfCountDown( $n ) {
  *              characters before hashing.
  * @return string
  * @codeCoverageIgnore
- * @deprecated since 1.20; Please use MWCryptRand for security purposes and wfRandomString for pesudo-random strings
- * @warning This method is NOT secure. Additionally it has many callers that use it for pesudo-random purposes.
+ * @deprecated since 1.20; Please use MWCryptRand for security purposes and wfRandomString for pseudo-random strings
+ * @warning This method is NOT secure. Additionally it has many callers that use it for pseudo-random purposes.
  */
 function wfGenerateToken( $salt = '' ) {
 	wfDeprecated( __METHOD__, '1.20' );
@@ -3888,7 +3888,7 @@ function wfRunHooks( $event, $args = array() ) {
  *
  * @param string $format The format string (See php's docs)
  * @param $data: A binary string of binary data
- * @param $length integer or false: The minimun length of $data. This is to
+ * @param $length integer or false: The minimum length of $data. This is to
  *	prevent reading beyond the end of $data. false to disable the check.
  *
  * Also be careful when using this function to read unsigned 32 bit integer

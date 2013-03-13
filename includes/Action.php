@@ -32,7 +32,7 @@
  *
  * Actions generally fall into two groups: the show-a-form-then-do-something-with-the-input
  * format (protect, delete, move, etc), and the just-do-something format (watch, rollback,
- * patrol, etc). The FormAction and FormlessAction classes respresent these two groups.
+ * patrol, etc). The FormAction and FormlessAction classes represent these two groups.
  */
 abstract class Action {
 

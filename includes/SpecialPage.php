@@ -670,7 +670,7 @@ class SpecialPage {
 	/**
 	 * Outputs a summary message on top of special pages
 	 * Per default the message key is the canonical name of the special page
-	 * May be overriden, i.e. by extensions to stick with the naming conventions
+	 * May be overridden, i.e. by extensions to stick with the naming conventions
 	 * for message keys: 'extensionname-xxx'
 	 *
 	 * @param string $summaryMessageKey message key of the summary
@@ -827,7 +827,7 @@ class SpecialPage {
 		// RequestContext passes context to wfMessage, and the language is set from
 		// the context, but setting the language for Message class removes the
 		// interface message status, which breaks for example usernameless gender
-		// invokations. Restore the flag when not including special page in content.
+		// invocations. Restore the flag when not including special page in content.
 		if ( $this->including() ) {
 			$message->setInterfaceMessageFlag( false );
 		}
@@ -864,7 +864,7 @@ class SpecialPage {
 		$name = $this->getName();
 		$group = '-';
 
-		// Allow overridding the group from the wiki side
+		// Allow overbidding the group from the wiki side
 		$msg = $this->msg( 'specialpages-specialpagegroup-' . strtolower( $name ) )->inContentLanguage();
 		if ( !$msg->isBlank() ) {
 			$group = $msg->text();
@@ -873,7 +873,7 @@ class SpecialPage {
 			$group = $this->getGroupName();
 
 			// Group '-' is used as default to have the chance to determine,
-			// if the special pages overriddes this method,
+			// if the special pages overrides this method,
 			// if not overridden, $wgSpecialPageGroups is checked for b/c
 			if ( $group === '-' && isset( $wgSpecialPageGroups[$name] ) ) {
 				$group = $wgSpecialPageGroups[$name];
@@ -1082,7 +1082,7 @@ abstract class RedirectSpecialPage extends UnlistedSpecialPage {
 	// Query parameters that can be passed through redirects
 	protected $mAllowedRedirectParams = array();
 
-	// Query parameteres added by redirects
+	// Query parameters added by redirects
 	protected $mAddedRedirectParams = array();
 
 	public function execute( $par ) {
@@ -1191,7 +1191,7 @@ class SpecialCreateAccount extends SpecialRedirectToSpecial {
 }
 /**
  * SpecialMypage, SpecialMytalk and SpecialMycontributions special pages
- * are used to get user independant links pointing to the user page, talk
+ * are used to get user independent links pointing to the user page, talk
  * page and list of contributions.
  * This can let us cache a single copy of any generated content for all
  * users.

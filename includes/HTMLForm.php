@@ -378,7 +378,7 @@ class HTMLForm extends ContextSource {
 	}
 
 	/**
-	 * Validate all the fields, and call the submision callback
+	 * Validate all the fields, and call the submission callback
 	 * function if everything is kosher.
 	 * @throws MWException
 	 * @return Mixed Bool true == Successful submission, Bool false
@@ -886,7 +886,7 @@ class HTMLForm extends ContextSource {
 	/**
 	 * Set the prefix for various default messages
 	 * @todo currently only used for the "<fieldset>" legend on forms
-	 * with multiple sections; should be used elsewhre?
+	 * with multiple sections; should be used elsewhere?
 	 * @param $p String
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
@@ -1109,7 +1109,7 @@ abstract class HTMLFormField {
 	/**
 	 * Get a translated interface message
 	 *
-	 * This is a wrapper arround $this->mParent->msg() if $this->mParent is set
+	 * This is a wrapper around $this->mParent->msg() if $this->mParent is set
 	 * and wfMessage() otherwise.
 	 *
 	 * Parameters are the same as wfMessage().

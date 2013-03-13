@@ -79,7 +79,7 @@ class MWCryptRand {
 		// Include some information about the filesystem's current state in the random state
 		$files = array();
 
-		// We know this file is here so grab some info about ourself
+		// We know this file is here so grab some info about ourselves
 		$files[] = __FILE__;
 
 		// We must also have a parent folder, and with the usual file structure, a grandparent
@@ -162,7 +162,7 @@ class MWCryptRand {
 		$buffer = str_repeat( ' ', $bufLength );
 		$bufPos = 0;
 
-		// Iterate for $duration seconds or at least $minIerations number of iterations
+		// Iterate for $duration seconds or at least $minIterations number of iterations
 		$iterations = 0;
 		$startTime = microtime( true );
 		$currentTime = $startTime;

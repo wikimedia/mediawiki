@@ -282,7 +282,7 @@ class RSSFeed extends ChannelFeed {
 	}
 
 	/**
-	 * Ouput an RSS 2.0 header
+	 * Output an RSS 2.0 header
 	 */
 	function outHeader() {
 		global $wgVersion;
@@ -318,7 +318,7 @@ class RSSFeed extends ChannelFeed {
 	}
 
 	/**
-	 * Ouput an RSS 2.0 footer
+	 * Output an RSS 2.0 footer
 	 */
 	function outFooter() {
 	?>
@@ -362,7 +362,7 @@ class AtomFeed extends ChannelFeed {
 	}
 
 	/**
-	 * Atom 1.0 requires a unique, opaque IRI as a unique indentifier
+	 * Atom 1.0 requires a unique, opaque IRI as a unique identifier
 	 * for every feed we create. For now just use the URL, but who
 	 * can tell if that's right? If we put options on the feed, do we
 	 * have to change the id? Maybe? Maybe not.
@@ -409,7 +409,7 @@ class AtomFeed extends ChannelFeed {
 	}
 
 	/**
-	 * Outputs the footer for Atom 1.0 feed (basicly '\</feed\>').
+	 * Outputs the footer for Atom 1.0 feed (basically '\</feed\>').
 	 */
 	function outFooter() {?>
 	</feed><?php

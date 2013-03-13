@@ -58,7 +58,7 @@ class EditPage {
 	const AS_HOOK_ERROR_EXPECTED = 212;
 
 	/**
-	 * Status: User is blocked from editting this page
+	 * Status: User is blocked from editing this page
 	 */
 	const AS_BLOCKED_PAGE_FOR_USER = 215;
 
@@ -93,7 +93,7 @@ class EditPage {
 	const AS_RATE_LIMITED = 221;
 
 	/**
-	 * Status: article was deleted while editting and param wpRecreate == false or form
+	 * Status: article was deleted while editing and param wpRecreate == false or form
 	 * was not posted
 	 */
 	const AS_ARTICLE_WAS_DELETED = 222;
@@ -116,7 +116,7 @@ class EditPage {
 
 	/**
 	 * Status: no edit summary given and the user has forceeditsummary set and the user is not
-	 * editting in his own userspace or talkspace and wpIgnoreBlankSummary == false
+	 * editing in his own userspace or talkspace and wpIgnoreBlankSummary == false
 	 */
 	const AS_SUMMARY_NEEDED = 226;
 
@@ -136,7 +136,7 @@ class EditPage {
 	const AS_OK = 230;
 
 	/**
-	 * Status: WikiPage::doEdit() was unsuccessfull
+	 * Status: WikiPage::doEdit() was unsuccessful
 	 */
 	const AS_END = 231;
 
@@ -253,7 +253,7 @@ class EditPage {
 	public $previewTextAfterContent = '';
 	public $mPreloadContent = null;
 
-	/* $didSave should be set to true whenever an article was succesfully altered. */
+	/* $didSave should be set to true whenever an article was successfully altered. */
 	public $didSave = false;
 	public $undidRev = 0;
 
@@ -742,7 +742,7 @@ class EditPage {
 			$this->save = false;
 			$this->diff = false;
 			$this->minoredit = false;
-			$this->watchthis = $request->getBool( 'watchthis', false ); // Watch may be overriden by request parameters
+			$this->watchthis = $request->getBool( 'watchthis', false ); // Watch may be overridden by request parameters
 			$this->recreate = false;
 
 			// When creating a new section, we can preload a section title by passing it as the
@@ -790,7 +790,7 @@ class EditPage {
 	/**
 	 * Subpage overridable method for extracting the page content data from the
 	 * posted form to be placed in $this->textbox1, if using customized input
-	 * this method should be overrided and return the page text that will be used
+	 * this method should be overridden and return the page text that will be used
 	 * for saving, preview parsing and so on...
 	 *
 	 * @param $request WebRequest
@@ -972,7 +972,7 @@ class EditPage {
 	 * section replaced in its context (using WikiPage::replaceSection())
 	 * to the original text of the edit.
 	 *
-	 * This difers from Article::getContent() that when a missing revision is
+	 * This differs from Article::getContent() that when a missing revision is
 	 * encountered the result will be null and not the
 	 * 'missing-revision' message.
 	 *
@@ -2181,7 +2181,7 @@ class EditPage {
 		}
 
 		if ( $this->hasPresetSummary ) {
-			// If a summary has been preset using &summary= we dont want to prompt for
+			// If a summary has been preset using &summary= we don't want to prompt for
 			// a different summary. Only prompt for a summary if the summary is blanked.
 			// (Bug 17416)
 			$this->autoSumm = md5( '' );
@@ -2207,7 +2207,7 @@ class EditPage {
 		}
 
 		if ( $this->isConflict ) {
-			// In an edit conflict bypass the overrideable content form method
+			// In an edit conflict bypass the overridable content form method
 			// and fallback to the raw wpTextbox1 since editconflicts can't be
 			// resolved between page source edits and custom ui edits using the
 			// custom edit ui.
@@ -2441,7 +2441,7 @@ class EditPage {
 	 * @return array An array in the format array( $label, $input )
 	 */
 	function getSummaryInput( $summary = "", $labelText = null, $inputAttrs = null, $spanLabelAttrs = null ) {
-		// Note: the maxlength is overriden in JS to 255 and to make it use UTF-8 bytes, not characters.
+		// Note: the maxlength is overridden in JS to 255 and to make it use UTF-8 bytes, not characters.
 		$inputAttrs = ( is_array( $inputAttrs ) ? $inputAttrs : array() ) + array(
 			'id' => 'wpSummary',
 			'maxlength' => '200',
@@ -3620,7 +3620,7 @@ HTML
 	 * @private
 	 */
 	function makesafe( $invalue ) {
-		// Armor existing references for reversability.
+		// Armor existing references for reversibility.
 		$invalue = strtr( $invalue, array( "&#x" => "&#x0" ) );
 
 		$bytesleft = 0;
@@ -3672,7 +3672,7 @@ HTML
 					$i++;
 				} while ( ctype_xdigit( $invalue[$i] ) && ( $i < strlen( $invalue ) ) );
 
-				// Do some sanity checks. These aren't needed for reversability,
+				// Do some sanity checks. These aren't needed for reversibility,
 				// but should help keep the breakage down if the editor
 				// breaks one of the entities whilst editing.
 				if ( ( substr( $invalue, $i, 1 ) == ";" ) and ( strlen( $hexstring ) <= 6 ) ) {
@@ -3685,7 +3685,7 @@ HTML
 				$result .= substr( $invalue, $i, 1 );
 			}
 		}
-		// reverse the transform that we made for reversability reasons.
+		// reverse the transform that we made for reversibility reasons.
 		return strtr( $result, array( "&#x0" => "&#x" ) );
 	}
 }

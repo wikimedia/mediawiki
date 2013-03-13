@@ -348,7 +348,7 @@ class WikiExporter {
 				$join['revision'] = array( 'INNER JOIN', 'page_id=rev_page' );
 				$opts['ORDER BY'] = array( 'rev_page ASC', 'rev_id ASC' );
 			} else {
-				# Uknown history specification parameter?
+				# Unknown history specification parameter?
 				wfProfileOut( __METHOD__ );
 				throw new MWException( __METHOD__ . " given invalid history dump type." );
 			}
@@ -872,7 +872,7 @@ class XmlDumpWriter {
 }
 
 /**
- * Base class for output stream; prints to stdout or buffer or whereever.
+ * Base class for output stream; prints to stdout or buffer or wherever.
  * @ingroup Dump
  */
 class DumpOutput {
@@ -1442,7 +1442,7 @@ class DumpLatestFilter extends DumpFilter {
 }
 
 /**
- * Base class for output stream; prints to stdout or buffer or whereever.
+ * Base class for output stream; prints to stdout or buffer or wherever.
  * @ingroup Dump
  */
 class DumpMultiWriter {
