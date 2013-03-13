@@ -275,7 +275,7 @@ class DifferenceEngine extends ContextSource {
 			$samePage = true;
 			$oldHeader = '';
 		} else {
-			wfRunHooks( 'DiffViewHeader', array( $this, $this->mOldRev, $this->mNewRev ) );
+			wfRunHooks( 'DiffViewHeader', array( $this, $this->mOldRev, $this->mNewRev, &$out ) );
 
 			$sk = $this->getSkin();
 			if ( method_exists( $sk, 'suppressQuickbar' ) ) {
