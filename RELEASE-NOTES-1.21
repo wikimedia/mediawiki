@@ -117,6 +117,7 @@ production.
 * Added 'HistoryRevisionTools' and 'DiffRevisionTools' hooks.
 * (bug 33186) Add image rotation api "imagerotate"
 * (bug 34040) Add "User rights management" link on user page toolbox.
+* (bug 45731) Allow <noscript> tag
 
 === Bug fixes in 1.21 ===
 * (bug 40353) SpecialDoubleRedirect should support interwiki redirects.

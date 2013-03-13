@@ -382,7 +382,7 @@ class Sanitizer {
 				'strike', 'strong', 'tt', 'var', 'div', 'center',
 				'blockquote', 'ol', 'ul', 'dl', 'table', 'caption', 'pre',
 				'ruby', 'rt', 'rb', 'rp', 'p', 'span', 'abbr', 'dfn',
-				'kbd', 'samp'
+				'kbd', 'samp', 'noscript' # bug 45731
 			);
 			if ( $wgHtml5 ) {
 				$htmlpairsStatic = array_merge( $htmlpairsStatic, array( 'data', 'time', 'mark' ) );
@@ -765,7 +765,7 @@ class Sanitizer {
 			if ( $attribute === 'href' || $attribute === 'src' ) {
 				if ( !preg_match( $hrefExp, $value ) ) {
 					continue; //drop any href or src attributes not using an allowed protocol.
-						  //NOTE: this also drops all relative URLs
+						//NOTE: this also drops all relative URLs
 				}
 			}
 
@@ -1443,30 +1443,30 @@ class Sanitizer {
 		if ( $wgAllowRdfaAttributes ) {
 			#RDFa attributes as specified in section 9 of http://www.w3.org/TR/2008/REC-rdfa-syntax-20081014
 			$common = array_merge( $common, array(
-			    'about', 'property', 'resource', 'datatype', 'typeof',
+				'about', 'property', 'resource', 'datatype', 'typeof',
 			) );
 		}
 
 		if ( $wgHtml5 && $wgAllowMicrodataAttributes ) {
 			# add HTML5 microdata tages as pecified by http://www.whatwg.org/specs/web-apps/current-work/multipage/microdata.html#the-microdata-model
 			$common = array_merge( $common, array(
-			    'itemid', 'itemprop', 'itemref', 'itemscope', 'itemtype'
+				'itemid', 'itemprop', 'itemref', 'itemscope', 'itemtype'
 			) );
 		}
 
 		$block = array_merge( $common, array( 'align' ) );
 		$tablealign = array( 'align', 'char', 'charoff', 'valign' );
 		$tablecell = array( 'abbr',
-		                    'axis',
-		                    'headers',
-		                    'scope',
-		                    'rowspan',
-		                    'colspan',
-		                    'nowrap', # deprecated
-		                    'width',  # deprecated
-		                    'height', # deprecated
-		                    'bgcolor' # deprecated
-		                    );
+							'axis',
+							'headers',
+							'scope',
+							'rowspan',
+							'colspan',
+							'nowrap', # deprecated
+							'width',  # deprecated
+							'height', # deprecated
+							'bgcolor' # deprecated
+							);
 
 		# Numbers refer to sections in HTML 4.01 standard describing the element.
 		# See: http://www.w3.org/TR/html4/
@@ -1770,6 +1770,6 @@ class Sanitizer {
 		$                      # End of string
 		/ix"; // case Insensitive, eXtended
 
-		return (bool) preg_match( $HTML5_email_regexp, $addr );
+		return (bool)preg_match( $HTML5_email_regexp, $addr );
 	}
 }
