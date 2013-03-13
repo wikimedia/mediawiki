@@ -1,6 +1,6 @@
 <?php
 /**
- * Simple wrapper for json_econde and json_decode that falls back on Services_JSON class.
+ * Simple wrapper for json_encode and json_decode that falls back on Services_JSON class.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

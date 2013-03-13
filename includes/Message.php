@@ -22,11 +22,11 @@
  */
 
 /**
- * The Message class provides methods which fullfil two basic services:
+ * The Message class provides methods which fulfil two basic services:
  *  - fetching interface messages
  *  - processing messages into a variety of formats
  *
- * First implemented with MediaWiki 1.17, the Message class is intented to
+ * First implemented with MediaWiki 1.17, the Message class is intended to
  * replace the old wfMsg* functions that over time grew unusable.
  * @see https://www.mediawiki.org/wiki/Manual:Messages_API for equivalences
  * between old and new functions.
@@ -261,7 +261,7 @@ class Message {
 
 	/**
 	 * Factory function that is just wrapper for the real constructor. It is
-	 * intented to be used instead of the real constructor, because it allows
+	 * intended to be used instead of the real constructor, because it allows
 	 * chaining method calls, while new objects don't.
 	 * @since 1.17
 	 * @param string $key message key
@@ -554,7 +554,7 @@ class Message {
 	}
 
 	/**
-	 * Returns the message text as-is, only parameters are subsituted.
+	 * Returns the message text as-is, only parameters are substituted.
 	 * @since 1.17
 	 * @return String: Unescaped untransformed message text.
 	 */
@@ -633,7 +633,7 @@ class Message {
 	}
 
 	/**
-	 * Substitutes any paramaters into the message text.
+	 * Substitutes any parameters into the message text.
 	 * @since 1.17
 	 * @param string $message the message text
 	 * @param string $type either before or after

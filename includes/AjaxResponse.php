@@ -172,7 +172,7 @@ class AjaxResponse {
 			# tell the client to use a cached copy, without a way to purge it.
 
 			if ( $wgUseSquid ) {
-				# Expect explicite purge of the proxy cache, but require end user agents
+				# Expect explicit purge of the proxy cache, but require end user agents
 				# to revalidate against the proxy on each visit.
 				# Surrogate-Control controls our Squid, Cache-Control downstream caches
 

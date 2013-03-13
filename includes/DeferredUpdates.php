@@ -34,7 +34,7 @@ interface DeferrableUpdate {
 }
 
 /**
- * Class for mananging the deferred updates.
+ * Class for managing the deferred updates.
  *
  * @since 1.19
  */

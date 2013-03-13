@@ -262,7 +262,7 @@ class ImagePage extends Article {
 				# @todo FIXME: Why is this using escapeId for a class?!
 				$class = Sanitizer::escapeId( $v['id'] );
 				if ( $type == 'collapsed' ) {
-					$class .= ' collapsable';
+					$class .= ' collapsable'; // sic
 				}
 				$r .= "<tr class=\"$class\">\n";
 				$r .= "<th>{$v['name']}</th>\n";
@@ -330,13 +330,13 @@ class ImagePage extends Article {
 				if ( $width > $maxWidth || $height > $maxHeight ) {
 					# Calculate the thumbnail size.
 					# First case, the limiting factor is the width, not the height.
-					if ( $width / $height >= $maxWidth / $maxHeight ) { // FIXME: Possible divison by 0. bug 36911
-						$height = round( $height * $maxWidth / $width ); // FIXME: Possible divison by 0. bug 36911
+					if ( $width / $height >= $maxWidth / $maxHeight ) { // FIXME: Possible division by 0. bug 36911
+						$height = round( $height * $maxWidth / $width ); // FIXME: Possible division by 0. bug 36911
 						$width = $maxWidth;
 						# Note that $height <= $maxHeight now.
 					} else {
-						$newwidth = floor( $width * $maxHeight / $height ); // FIXME: Possible divison by 0. bug 36911
-						$height = round( $height * $newwidth / $width ); // FIXME: Possible divison by 0. bug 36911
+						$newwidth = floor( $width * $maxHeight / $height ); // FIXME: Possible division by 0. bug 36911
+						$height = round( $height * $newwidth / $width ); // FIXME: Possible division by 0. bug 36911
 						$width = $newwidth;
 						# Note that $height <= $maxHeight now, but might not be identical
 						# because of rounding.
@@ -550,7 +550,7 @@ EOT
 				$nofile = 'filepage-nofile';
 			}
 			// Note, if there is an image description page, but
-			// no image, then this setRobotPolicy is overriden
+			// no image, then this setRobotPolicy is overridden
 			// by Article::View().
 			$out->setRobotPolicy( 'noindex,nofollow' );
 			$out->wrapWikiMsg( "<div id='mw-imagepage-nofile' class='plainlinks'>\n$1\n</div>", $nofile );
@@ -906,7 +906,7 @@ EOT
 	}
 
 	/**
-	 * Returns the corrosponding $wgImageLimits entry for the selected user option
+	 * Returns the corresponding $wgImageLimits entry for the selected user option
 	 *
 	 * @param $user User
 	 * @param string $optionName Name of a option to check, typically imagesize or thumbsize

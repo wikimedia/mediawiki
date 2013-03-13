@@ -180,7 +180,7 @@ class IP {
 				$ip
 			);
 		}
-		// Remove leading zereos from each bloc as needed
+		// Remove leading zeros from each bloc as needed
 		$ip = preg_replace( '/(^|:)0+(' . RE_IPV6_WORD . ')/', '$1$2', $ip );
 		return $ip;
 	}
@@ -746,7 +746,7 @@ class IP {
 	}
 
 	/**
-	 * Gets rid of uneeded numbers in quad-dotted/octet IP strings
+	 * Gets rid of unneeded numbers in quad-dotted/octet IP strings
 	 * For example, 127.111.113.151/24 -> 127.111.113.0/24
 	 * @param string $range IP address to normalize
 	 * @return string

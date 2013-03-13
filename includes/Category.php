@@ -167,7 +167,7 @@ class Category {
 
 		# NOTE: the row often results from a LEFT JOIN on categorylinks. This may result in
 		#       all the cat_xxx fields being null, if the category page exists, but nothing
-		#       was ever added to the category. This case should be treated linke an empty
+		#       was ever added to the category. This case should be treated link an empty
 		#       category, if possible.
 
 		if ( $row->cat_title === null ) {

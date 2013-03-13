@@ -50,7 +50,7 @@ class ZhClient {
 	}
 
 	/**
-	 * Establish conncetion
+	 * Establish connection
 	 *
 	 * @access private
 	 *

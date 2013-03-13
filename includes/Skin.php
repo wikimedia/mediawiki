@@ -167,7 +167,7 @@ abstract class Skin extends ContextSource {
 				require_once( "{$wgStyleDirectory}/{$skinName}.php" );
 			}
 
-			# Check if we got if not failback to default skin
+			# Check if we got if not fallback to default skin
 			if ( !MWInit::classExists( $className ) ) {
 				# DO NOT die if the class isn't found. This breaks maintenance
 				# scripts and can cause a user account to be unrecoverable
@@ -481,7 +481,7 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * Render the array as a serie of links.
+	 * Render the array as a series of links.
 	 * @param array $tree categories tree returned by Title::getParentCategoryTree
 	 * @return String separated by &gt;, terminate with "\n"
 	 */
@@ -850,7 +850,7 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * Renders a $wgFooterIcons icon acording to the method's arguments
+	 * Renders a $wgFooterIcons icon according to the method's arguments
 	 * @param array $icon The icon to build the html for, see $wgFooterIcons for the format of this array
 	 * @param bool|String $withImage Whether to use the icon's image or output a text-only footericon
 	 * @return String HTML
@@ -977,7 +977,7 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * Return a fully resolved style path url to images or styles stored in the curent skins's folder.
+	 * Return a fully resolved style path url to images or styles stored in the current skins's folder.
 	 * This method returns a url resolved using the configured skin style path
 	 * and includes the style version inside of the url.
 	 * @param string $name The name or path of a skin resource file

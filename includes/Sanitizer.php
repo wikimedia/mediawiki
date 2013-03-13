@@ -372,7 +372,7 @@ class Sanitizer {
 		wfProfileIn( __METHOD__ );
 
 		// Base our staticInitialised variable off of the global config state so that if the globals
-		// are changed (like in the secrewed up test system) we will re-initialise the settings.
+		// are changed (like in the screwed up test system) we will re-initialise the settings.
 		$globalContext = implode( '-', compact( 'wgHtml5', 'wgAllowMicrodataAttributes', 'wgAllowImageTag' ) );
 		if ( !$staticInitialised || $staticInitialised != $globalContext ) {
 
@@ -514,7 +514,7 @@ class Sanitizer {
 						isset( $htmlpairs[$t] ) ) {
 							$badtag = true;
 						} elseif ( isset( $htmlsingleonly[$t] ) ) {
-							# Hack to force empty tag for uncloseable elements
+							# Hack to force empty tag for unclosable elements
 							$brace = '/>';
 						} elseif ( isset( $htmlsingle[$t] ) ) {
 							# Hack to not close $htmlsingle tags
@@ -676,7 +676,7 @@ class Sanitizer {
 	 *
 	 * - Discards attributes not on a whitelist for the given element
 	 * - Unsafe style attributes are discarded
-	 * - Invalid id attributes are reencoded
+	 * - Invalid id attributes are re-encoded
 	 *
 	 * @param $attribs Array
 	 * @param $element String
@@ -696,7 +696,7 @@ class Sanitizer {
 	 *
 	 * - Discards attributes not the given whitelist
 	 * - Unsafe style attributes are discarded
-	 * - Invalid id attributes are reencoded
+	 * - Invalid id attributes are re-encoded
 	 *
 	 * @param $attribs Array
 	 * @param array $whitelist list of allowed attribute names
@@ -1077,7 +1077,7 @@ class Sanitizer {
 	}
 
 	/**
-	 * Given HTML input, escape with htmlspecialchars but un-escape entites.
+	 * Given HTML input, escape with htmlspecialchars but un-escape entities.
 	 * This allows (generally harmless) entities like &#160; to survive.
 	 *
 	 * @param string $html to escape
@@ -1448,7 +1448,7 @@ class Sanitizer {
 		}
 
 		if ( $wgHtml5 && $wgAllowMicrodataAttributes ) {
-			# add HTML5 microdata tages as pecified by http://www.whatwg.org/specs/web-apps/current-work/multipage/microdata.html#the-microdata-model
+			# add HTML5 microdata tags as specified by http://www.whatwg.org/specs/web-apps/current-work/multipage/microdata.html#the-microdata-model
 			$common = array_merge( $common, array(
 			    'itemid', 'itemprop', 'itemref', 'itemscope', 'itemtype'
 			) );

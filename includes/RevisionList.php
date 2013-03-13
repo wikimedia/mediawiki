@@ -190,7 +190,7 @@ abstract class RevisionItemBase {
 	}
 
 	/**
-	 * Get the date, formatted in user's languae
+	 * Get the date, formatted in user's language
 	 * @return String
 	 */
 	public function formatDate() {
@@ -199,7 +199,7 @@ abstract class RevisionItemBase {
 	}
 
 	/**
-	 * Get the time, formatted in user's languae
+	 * Get the time, formatted in user's language
 	 * @return String
 	 */
 	public function formatTime() {

@@ -37,7 +37,7 @@ define( 'NORMALIZE_INTL', function_exists( 'normalizer_normalize' ) );
  *
  * Not as fast as I'd like, but should be usable for most purposes.
  * UtfNormal::toNFC() will bail early if given ASCII text or text
- * it can quickly deterimine is already normalized.
+ * it can quickly determine is already normalized.
  *
  * All functions can be called static.
  *

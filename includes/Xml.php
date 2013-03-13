@@ -359,7 +359,7 @@ class Xml {
 	 * Convenience function to build an HTML form label
 	 * @param string $label text of the label
 	 * @param $id
-	 * @param array $attribs an attribute array.  This will usuall be
+	 * @param array $attribs an attribute array.  This will usually be
 	 *     the same array as is passed to the corresponding input element,
 	 *     so this function will cherry-pick appropriate attributes to
 	 *     apply to the label as well; only class and title are applied.

@@ -360,7 +360,7 @@ class ImageGallery {
 			# http://bugzilla.wikimedia.org/show_bug.cgi?id=1765 -Ævar
 
 			# Weird double wrapping (the extra div inside the li) needed due to FF2 bug
-			# Can be safely removed if FF2 falls completely out of existance
+			# Can be safely removed if FF2 falls completely out of existence
 			$output .=
 				"\n\t\t" . '<li class="gallerybox" style="width: ' . ( $this->mWidths + self::THUMB_PADDING + self::GB_PADDING ) . 'px">'
 					. '<div style="width: ' . ( $this->mWidths + self::THUMB_PADDING + self::GB_PADDING ) . 'px">'

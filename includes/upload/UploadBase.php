@@ -108,7 +108,7 @@ abstract class UploadBase {
 	/**
 	 * Returns true if the user can use this upload module or else a string
 	 * identifying the missing permission.
-	 * Can be overriden by subclasses.
+	 * Can be overridden by subclasses.
 	 *
 	 * @param $user User
 	 * @return bool
@@ -252,7 +252,7 @@ abstract class UploadBase {
 		$repo = RepoGroup::singleton()->getLocalRepo();
 		if ( $repo->isVirtualUrl( $srcPath ) ) {
 			// @TODO: just make uploads work with storage paths
-			// UploadFromStash loads files via virtuals URLs
+			// UploadFromStash loads files via virtual URLs
 			$tmpFile = $repo->getLocalCopy( $srcPath );
 			$tmpFile->bind( $this ); // keep alive with $this
 			wfProfileOut( __METHOD__ );
@@ -967,7 +967,7 @@ abstract class UploadBase {
 
 		$chunk = trim( $chunk );
 
-		# @todo FIXME: Convert from UTF-16 if necessarry!
+		# @todo FIXME: Convert from UTF-16 if necessary!
 		wfDebug( __METHOD__ . ": checking for embedded scripts and HTML stuff\n" );
 
 		# check for HTML doctype
@@ -1100,13 +1100,13 @@ abstract class UploadBase {
 				return true;
 			}
 
-			# href with embeded svg as target
+			# href with embedded svg as target
 			if( $stripped == 'href' && preg_match( '!data:[^,]*image/svg[^,]*,!sim', $value ) ) {
 				wfDebug( __METHOD__ . ": Found href to embedded svg \"<$strippedElement '$attrib'='$value'...\" in uploaded file.\n" );
 				return true;
 			}
 
-			# href with embeded (text/xml) svg as target
+			# href with embedded (text/xml) svg as target
 			if( $stripped == 'href' && preg_match( '!data:[^,]*text/xml[^,]*,!sim', $value ) ) {
 				wfDebug( __METHOD__ . ": Found href to embedded svg \"<$strippedElement '$attrib'='$value'...\" in uploaded file.\n" );
 				return true;
@@ -1120,13 +1120,13 @@ abstract class UploadBase {
 
 			# use set to add href attribute to parent element
 			if( $strippedElement == 'set' && $stripped == 'attributename' && strpos( $value, 'href' ) !== false ) {
-				wfDebug( __METHOD__ . ": Found svg setting href attibute '$value' in uploaded file.\n" );
+				wfDebug( __METHOD__ . ": Found svg setting href attribute '$value' in uploaded file.\n" );
 				return true;
 			}
 
 			# use set to add a remote / data / script target to an element
 			if( $strippedElement == 'set' && $stripped == 'to' && preg_match( '!(http|https|data|script):!sim', $value ) ) {
-				wfDebug( __METHOD__ . ": Found svg setting attibute to '$value' in uploaded file.\n" );
+				wfDebug( __METHOD__ . ": Found svg setting attribute to '$value' in uploaded file.\n" );
 				return true;
 			}
 
