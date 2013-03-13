@@ -382,7 +382,7 @@ class Sanitizer {
 				'strike', 'strong', 'tt', 'var', 'div', 'center',
 				'blockquote', 'ol', 'ul', 'dl', 'table', 'caption', 'pre',
 				'ruby', 'rt', 'rb', 'rp', 'p', 'span', 'abbr', 'dfn',
-				'kbd', 'samp'
+				'kbd', 'samp', 'noscript' # bug 45731
 			);
 			if ( $wgHtml5 ) {
 				$htmlpairsStatic = array_merge( $htmlpairsStatic, array( 'data', 'time', 'mark' ) );
