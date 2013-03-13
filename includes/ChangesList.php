@@ -121,8 +121,10 @@ class ChangesList extends ContextSource {
 	 */
 	private function preCacheMessages() {
 		if ( !isset( $this->message ) ) {
-			foreach ( explode( ' ', 'cur diff hist last blocklink history ' .
-			'semicolon-separator pipe-separator' ) as $msg ) {
+			foreach ( array(
+				'cur', 'diff', 'hist', 'last', 'blocklink', 'history',
+				'semicolon-separator', 'pipe-separator' ) as $msg
+			) {
 				$this->message[$msg] = $this->msg( $msg )->escaped();
 			}
 		}
