@@ -68,7 +68,7 @@ TEXT;
 	}
 
 	public function execute() {
-		global $wgCategoryCollation, $wgMiserMode;
+		global $wgCategoryCollation;
 
 		$dbw = $this->getDB( DB_MASTER );
 		$force = $this->getOption( 'force' );
