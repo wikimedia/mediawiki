@@ -5442,6 +5442,8 @@ $wgValidSkinNames = array();
  */
 $wgSpecialPages = array();
 
+$wgAutoloadNamespaceRootDirs = array();
+
 /**
  * Array mapping class names to filenames, for autoloading.
  */

@@ -21,6 +21,11 @@
  */
 
 /**
+ * An array of top-level namespaces which map to a root dir containing classes named according to PSR-0
+ */
+global $wgAutoloadNamespaceRootDirs;
+
+/**
  * Locations of core classes
  * Extension classes are specified with $wgAutoloadClasses
  * This array is a global instead of a static member of AutoLoader to work around a bug in APC
@@ -1115,7 +1120,7 @@ class AutoLoader {
 	 * as well.
 	 */
 	static function autoload( $className ) {
-		global $wgAutoloadClasses, $wgAutoloadLocalClasses;
+		global $wgAutoloadClasses, $wgAutoloadLocalClasses, $wgAutoloadNamespaceRootDirs;
 
 		// Workaround for PHP bug <https://bugs.php.net/bug.php?id=49143> (5.3.2. is broken, it's fixed in 5.3.6).
 		// Strip leading backslashes from class names. When namespaces are used, leading backslashes are used to indicate
@@ -1125,7 +1130,18 @@ class AutoLoader {
 		// backlash in this case, causing autoloading to fail.
 		$className = ltrim( $className, '\\' );
 
-		if ( isset( $wgAutoloadLocalClasses[$className] ) ) {
+		# Try the namespace registry.  A more sophisticated algorithm would
+		# check each prefix; for now only top-level namespaces are supported.
+		$classTuple = explode( '\\', $className );
+		$toplevelNamespace = array_shift( $classTuple );
+		if ( $classTuple
+				and isset( $wgAutoloadNamespaceRootDirs[$toplevelNamespace] ) ) {
+			$filename = implode( DIRECTORY_SEPARATOR, array_merge(
+				array( $wgAutoloadNamespaceRootDirs[$toplevelNamespace] ),
+				$classTuple
+			) );
+			$filename .= '.php';
+		} elseif ( isset( $wgAutoloadLocalClasses[$className] ) ) {
 			$filename = $wgAutoloadLocalClasses[$className];
 		} elseif ( isset( $wgAutoloadClasses[$className] ) ) {
 			$filename = $wgAutoloadClasses[$className];
