@@ -103,6 +103,10 @@ production.
 * (bug 43689) The lists of templates used on the page and hidden categories it
   is a member of, shown below the edit form, are now collapsible (and collapsed
   by default).
+* Parser profiling data, formerly only available in the "NewPP limit report"
+  HTML comment, is now also displayed at the bottom of page previews.
+* Added ParserLimitReportPrepare and ParserLimitReportFormat hooks, deprecated
+  ParserLimitReport hook.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one

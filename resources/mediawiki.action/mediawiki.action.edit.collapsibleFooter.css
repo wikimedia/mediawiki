@@ -9,3 +9,8 @@
 	margin-bottom: 1em;
 	margin-left: 2.5em;
 }
+
+/* Show/hide animation is incorrect if the table has a margin set */
+table.wikitable.preview-limit-report {
+	margin: 0;
+}
