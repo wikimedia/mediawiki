@@ -856,6 +856,7 @@ class SpecialSearch extends SpecialPage {
 	 * @return String: HTML form
 	 */
 	protected function powerSearchBox( $term, $opts ) {
+		global $wgContLang;
 		// Groups namespaces into rows according to subject
 		$rows = array();
 		foreach( SearchEngine::searchableNamespaces() as $namespace => $name ) {
@@ -863,7 +864,7 @@ class SpecialSearch extends SpecialPage {
 			if( !array_key_exists( $subject, $rows ) ) {
 				$rows[$subject] = "";
 			}
-			$name = str_replace( '_', ' ', $name );
+			$name = $wgContLang->getConverter()->convertNamespace( $namespace );
 			if( $name == '' ) {
 				$name = $this->msg( 'blanknamespace' )->text();
 			}
