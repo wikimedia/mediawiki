@@ -55,13 +55,19 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 /**
  * wgConf hold the site configuration.
  * Not used for much in a default install.
+ * @since 1.5
  */
 $wgConf = new SiteConfiguration;
 
-/** MediaWiki version number */
+/**
+ * MediaWiki version number
+ * @since 1.2
+ */
 $wgVersion = '1.21alpha';
 
-/** Name of the site. It must be changed in LocalSettings.php */
+/**
+ * Name of the site. It must be changed in LocalSettings.php
+ */
 $wgSitename = 'MediaWiki';
 
 /**
@@ -87,6 +93,7 @@ $wgServer = WebRequest::detectServer();
  * Must be fully qualified, even if $wgServer is protocol-relative.
  *
  * Defaults to $wgServer, expanded to a fully qualified http:// URL if needed.
+ * @since 1.18
  */
 $wgCanonicalServer = false;
 
@@ -121,6 +128,7 @@ $wgScriptPath = '/wiki';
  * The default $wgArticlePath will be set based on this value at runtime, but if
  * you have customized it, having this incorrectly set to true can cause
  * redirect loops when "pretty URLs" are used.
+ * @since 1.2.1
  */
 $wgUsePathInfo = ( strpos( PHP_SAPI, 'cgi' ) === false ) &&
 	( strpos( PHP_SAPI, 'apache2filter' ) === false ) &&
@@ -132,6 +140,7 @@ $wgUsePathInfo = ( strpos( PHP_SAPI, 'cgi' ) === false ) &&
  *
  * Some hosting providers use PHP 4 for *.php files, and PHP 5 for *.php5. This
  * variable is provided to support those providers.
+ * @since 1.11
  */
 $wgScriptExtension = '.php';
 
@@ -174,12 +183,14 @@ $wgRedirectScript = false;
  * The URL path to load.php.
  *
  * Defaults to "{$wgScriptPath}/load{$wgScriptExtension}".
+ * @since 1.17
  */
 $wgLoadScript = false;
 
 /**
  * The URL path of the skins directory.
  * Defaults to "{$wgScriptPath}/skins".
+ * @since 1.3
  */
 $wgStylePath = false;
 $wgStyleSheetPath = &$wgStylePath;
@@ -187,6 +198,7 @@ $wgStyleSheetPath = &$wgStylePath;
 /**
  * The URL path of the skins directory. Should not point to an external domain.
  * Defaults to "{$wgScriptPath}/skins".
+ * @since 1.17
  */
 $wgLocalStylePath = false;
 
@@ -200,6 +212,7 @@ $wgExtensionAssetsPath = false;
 /**
  * Filesystem stylesheets directory.
  * Defaults to "{$IP}/skins".
+ * @since 1.3
  */
 $wgStyleDirectory = false;
 
@@ -237,12 +250,14 @@ $wgLogo = false;
 
 /**
  * The URL path of the shortcut icon.
+ * @since 1.6
  */
 $wgFavicon = '/favicon.ico';
 
 /**
  * The URL path of the icon for iPhone and iPod Touch web app bookmarks.
  * Defaults to no icon.
+ * @since 1.12
  */
 $wgAppleTouchIcon = false;
 
@@ -266,6 +281,7 @@ $wgTmpDirectory = false;
 /**
  * If set, this URL is added to the start of $wgUploadPath to form a complete
  * upload URL.
+ * @since 1.4
  */
 $wgUploadBaseUrl = '';
 
@@ -274,6 +290,7 @@ $wgUploadBaseUrl = '';
  * Full thumbnail URL will be like $wgUploadStashScalerBaseUrl/e/e6/Foo.jpg/123px-Foo.jpg
  * where 'e6' are the first two characters of the MD5 hash of the file name.
  * If $wgUploadStashScalerBaseUrl is set to false, thumbs are rendered locally as needed.
+ * @since 1.17
  */
 $wgUploadStashScalerBaseUrl = false;
 
@@ -289,6 +306,7 @@ $wgUploadStashScalerBaseUrl = false;
  *
  * There must be an appropriate script or rewrite rule in place to handle these
  * URLs.
+ * @since 1.5
  */
 $wgActionPaths = array();
 
