@@ -29,6 +29,7 @@
  * Requires PHPUnit.
  *
  * @ingroup UtfNormal
+ * @group Large
  */
 class CleanUpTest extends MediaWikiTestCase {
 	/** @todo document */
