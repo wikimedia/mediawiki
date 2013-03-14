@@ -2247,9 +2247,11 @@ class EditPage {
 
 		$wgOut->addHTML( Html::rawElement( 'div', array( 'class' => 'templatesUsed' ),
 			Linker::formatTemplates( $this->getTemplates(), $this->preview, $this->section != '' ) ) );
-
 		$wgOut->addHTML( Html::rawElement( 'div', array( 'class' => 'hiddencats' ),
 			Linker::formatHiddenCategories( $this->mArticle->getHiddenCategories() ) ) );
+		$wgOut->addHTML( Html::rawElement( 'div', array( 'class' => 'limitreport' ),
+			self::getPreviewLimitReport( $this->mParserOutput ) ) );
+
 
 		if ( $this->isConflict ) {
 			try {
@@ -2826,6 +2828,50 @@ HTML
 
 		return "<div id=\"editpage-copywarn\">\n" .
 			call_user_func_array( 'wfMessage', $copywarnMsg )->plain() . "\n</div>";
+	}
+
+	/**
+	 * Get the Limit report for page previews
+	 *
+	 * @since 1.21
+	 * @param ParserOutput $output ParserOutput object from the parse
+	 * @return string HTML
+	 */
+	public static function getPreviewLimitReport( $output ) {
+		if ( !$output || !$output->getLimitReportData() ) {
+			return '';
+		}
+
+		$limitReport = Html::rawElement( 'div', array(
+			'class' => 'mw-previewReportExplanation'
+		), wfMessage( 'limitreport-title' )->parseAsBlock() ) .
+			Html::openElement( 'div', array( 'class' => 'preview-limit-report' ) ) .
+			Html::openElement( 'table', array( 'class' => 'wikitable' ) ) .
+			Html::openElement( 'tbody' );
+
+		foreach ( $output->getLimitReportData() as $key => $value ) {
+			if ( wfRunHooks( 'ParserLimitReportFormat',
+				array( $key, $value, &$limitReport, true, true )
+			) ) {
+				$keyMsg = wfMessage( $key );
+				$valueMsg = wfMessage( array( "$key-value-html", "$key-value" ) );
+				if ( !$valueMsg->exists() ) {
+					$valueMsg = new RawMessage( '$1' );
+				}
+				if ( !$keyMsg->isDisabled() && !$valueMsg->isDisabled() ) {
+					$limitReport .= Html::openElement( 'tr' ) .
+						Html::rawElement( 'th', null, $keyMsg->parse() ) .
+						Html::rawElement( 'td', null, $valueMsg->params( $value )->parse() ) .
+						Html::closeElement( 'tr' );
+				}
+			}
+		}
+
+		$limitReport .= Html::closeElement( 'tbody' ) .
+			Html::closeElement( 'table' ) .
+			Html::closeElement( 'div' );
+
+		return Html::rawElement( 'div', null, $limitReport );
 	}
 
 	protected function showStandardInputs( &$tabindex = 2 ) {

@@ -177,6 +177,11 @@
 				$list: $( '.hiddencats ul' ),
 				$toggler: $( '.mw-hiddenCategoriesExplanation' ),
 				cookieName: 'hidden-categories-list'
+			},
+			{
+				$list: $( '.preview-limit-report' ),
+				$toggler: $( '.mw-previewReportExplanation' ),
+				cookieName: 'preview-limit-report'
 			}
 		];
 

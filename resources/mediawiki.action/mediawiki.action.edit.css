@@ -9,3 +9,9 @@
 	margin-bottom: 1em;
 	margin-left: 2.5em;
 }
+
+/* Parent element has appropriate margins set, and doubling them causes
+   animation glitches when using $.slideDown() when they fail to fold */
+.mw-editfooter-list table.wikitable {
+	margin: 0;
+}
