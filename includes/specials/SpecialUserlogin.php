@@ -417,9 +417,11 @@ class LoginForm extends SpecialPage {
 		$u->setRealName( $this->mRealName );
 
 		$abortError = '';
-		if( !wfRunHooks( 'AbortNewAccount', array( $u, &$abortError ) ) ) {
+		if( !wfRunHooks( 'AbortNewAccount', array( $u, &$abortError, $this ) ) ) {
 			// Hook point to add extra creation throttles and blocks
 			wfDebug( "LoginForm::addNewAccountInternal: a hook blocked creation\n" );
+			// For API requests, note that extensions can fill in machine-readable data
+			// when the NewAccountApiData hook is run.
 			return Status::newFatal( new RawMessage( $abortError ) );
 		}
 

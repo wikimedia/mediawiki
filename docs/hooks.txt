@@ -269,6 +269,7 @@ $reason: the reason for the move (added in 1.13)
 'AbortNewAccount': Return false to cancel explicit account creation.
 $user: the User object about to be created (read-only, incomplete)
 &$msg: out parameter: HTML to display on abort
+$loginPage: the LoginPage object used (added in 1.21)
 
 'ActionBeforeFormDisplay': Before executing the HTMLForm object.
 $name: name of the action
@@ -1571,6 +1572,12 @@ $index: Integer; the index of the namespace being checked.
 $result: Boolean; whether MediaWiki currently thinks that pages in this
   namespace are movable. Hooks may change this value to override the return
   value of MWNamespace::isMovable().
+
+'NewAccountApiData': Gives account-creation extensions a chance to return data
+on an API action=createaccount request. This can be things like a captcha failure,
+or additional user data on success. This overrides default error responses.
+$loginPage: LoginPage instance used to attempt the account creation
+&$resultArr : data in this array will be added to the API result
 
 'NewRevisionFromEditComplete': Called when a revision was inserted due to an
 edit.
