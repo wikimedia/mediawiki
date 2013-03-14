@@ -52,6 +52,8 @@ class ParserOutput extends CacheTime {
 		private $mAccessedOptions = array(); # List of ParserOptions (stored in the keys)
 		private $mSecondaryDataUpdates = array(); # List of DataUpdate, used to save info from the page somewhere else.
 		private $mExtensionData = array(); # extra data used by extensions
+		private $mLimitReportData = array(); # Parser limit report data
+		private $mParseStartTime = array(); # Timestamps for getTimeSinceStart()
 
 	const EDITSECTION_REGEX = '#<(?:mw:)?editsection page="(.*?)" section="(.*?)"(?:/>|>(.*?)(</(?:mw:)?editsection>))#';
 
@@ -134,6 +136,7 @@ class ParserOutput extends CacheTime {
 	function getIndexPolicy()            { return $this->mIndexPolicy; }
 	function getTOCHTML()                { return $this->mTOCHTML; }
 	function getTimestamp()              { return $this->mTimestamp; }
+	function getLimitReportData()        { return $this->mLimitReportData; }
 
 	function setText( $text )            { return wfSetVar( $this->mText, $text ); }
 	function setLanguageLinks( $ll )     { return wfSetVar( $this->mLanguageLinks, $ll ); }
@@ -558,4 +561,68 @@ class ParserOutput extends CacheTime {
 		return null;
 	}
 
+	private static function getTimes( $clock = null ) {
+		$ret = array();
+		if ( !$clock || $clock === 'wall' ) {
+			$ret['wall'] = microtime( true );
+		}
+		if ( ( !$clock || $clock === 'cpu' ) && function_exists( 'getrusage' ) ) {
+			$ru = getrusage();
+			$ret['cpu'] = $ru['ru_utime.tv_sec'] + $ru['ru_utime.tv_usec'] / 1e6;
+			$ret['cpu'] += $ru['ru_stime.tv_sec'] + $ru['ru_stime.tv_usec'] / 1e6;
+		}
+		return $ret;
+	}
+
+	/**
+	 * Resets the parse start timestamps for future calls to getTimeSinceStart()
+	 * @since 1.21
+	 */
+	function resetParseStartTime() {
+		$this->mParseStartTime = self::getTimes();
+	}
+
+	/**
+	 * Returns the time since resetParseStartTime() was last called
+	 *
+	 * Clocks available are:
+	 *  wall: Wall clock time
+	 *  cpu: CPU time (requires getrusage)
+	 *
+	 * @since 1.21
+	 * @param string $clock
+	 * @return float|null
+	 */
+	function getTimeSinceStart( $clock ) {
+		if ( !isset( $this->mParseStartTime[$clock] ) ) {
+			return null;
+		}
+
+		$end = self::getTimes( $clock );
+		return $end[$clock] - $this->mParseStartTime[$clock];
+	}
+
+	/**
+	 * Sets parser limit report data for a key
+	 *
+	 * The key is used as the prefix for various messages used for formatting:
+	 *  $key: The label for the field in the limit report
+	 *  $key-value-text: Message used to format the value in the "NewPP limit
+	 *      report" HTML comment. If missing, uses $key-format.
+	 *  $key-value-html: Message used to format the value in the preview limit
+	 *      report table. If missing, uses $key-format.
+	 *  $key-value: Message used to format the value. If missing, uses "$1".
+	 *
+	 * Note that all values are interpreted as wikitext, and so should be
+	 * encoded with htmlspecialchars() as necessary, but should avoid complex
+	 * HTML for sanity of display in the "NewPP limit report" comment.
+	 *
+	 * @since 1.21
+	 * @param string $key Message key
+	 * @param mixed $value Appropriate for Message::params()
+	 * @return null
+	 */
+	function setLimitReportData( $key, $value ) {
+		$this->mLimitReportData[$key] = $value;
+	}
 }

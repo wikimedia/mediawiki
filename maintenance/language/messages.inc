@@ -3911,6 +3911,25 @@ $wgMessageStructure = array(
 	'rotation' => array(
 		'rotate-comment',
 	),
+	'limitreport' => array(
+		'limitreport-title',
+		'limitreport-cputime',
+		'limitreport-cputime-value',
+		'limitreport-walltime',
+		'limitreport-walltime-value',
+		'limitreport-ppvisitednodes',
+		'limitreport-ppvisitednodes-value',
+		'limitreport-ppgeneratednodes',
+		'limitreport-ppgeneratednodes-value',
+		'limitreport-postexpandincludesize',
+		'limitreport-postexpandincludesize-value',
+		'limitreport-templateargumentsize',
+		'limitreport-templateargumentsize-value',
+		'limitreport-expansiondepth',
+		'limitreport-expansiondepth-value',
+		'limitreport-expenseivefunctioncount',
+		'limitreport-expenseivefunctioncount-value',
+	),
 );
 
 /** Comments for each block */
@@ -4153,4 +4172,5 @@ Variants for Chinese language",
 	'duration'              => 'Durations',
 	'cachedspecial'         => 'SpecialCachedPage',
 	'rotation'              => 'Image rotation',
+	'limitreport'           => 'Limit report',
 );

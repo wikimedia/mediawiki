@@ -363,6 +363,9 @@ class Parser {
 		$this->startParse( $title, $options, self::OT_HTML, $clearState );
 
 		$this->mInputSize = strlen( $text );
+		if ( $this->mOptions->getEnableLimitReport() ) {
+			$this->mOutput->resetParseStartTime();
+		}
 
 		# Remove the strip marker tag prefix from the input, if present.
 		if ( $clearState ) {
@@ -493,22 +496,64 @@ class Parser {
 		# Information on include size limits, for the benefit of users who try to skirt them
 		if ( $this->mOptions->getEnableLimitReport() ) {
 			$max = $this->mOptions->getMaxIncludeSize();
-			$PFreport = "Expensive parser function count: {$this->mExpensiveFunctionCount}/{$this->mOptions->getExpensiveParserFunctionLimit()}\n";
-			$limitReport =
-				"NewPP limit report\n" .
-				"Preprocessor visited node count: {$this->mPPNodeCount}/{$this->mOptions->getMaxPPNodeCount()}\n" .
-				"Preprocessor generated node count: " .
-					"{$this->mGeneratedPPNodeCount}/{$this->mOptions->getMaxGeneratedPPNodeCount()}\n" .
-				"Post-expand include size: {$this->mIncludeSizes['post-expand']}/$max bytes\n" .
-				"Template argument size: {$this->mIncludeSizes['arg']}/$max bytes\n" .
-				"Highest expansion depth: {$this->mHighestExpansionDepth}/{$this->mOptions->getMaxPPExpandDepth()}\n" .
-				$PFreport;
+
+			$cpuTime = $this->mOutput->getTimeSinceStart( 'cpu' );
+			if ( $cpuTime !== null ) {
+				$this->mOutput->setLimitReportData( 'limitreport-cputime',
+					sprintf( "%.3f", $cpuTime )
+				);
+			}
+
+			$wallTime = $this->mOutput->getTimeSinceStart( 'wall' );
+			$this->mOutput->setLimitReportData( 'limitreport-walltime',
+				sprintf( "%.3f", $wallTime )
+			);
+
+			$this->mOutput->setLimitReportData( 'limitreport-ppvisitednodes',
+				array( $this->mPPNodeCount, $this->mOptions->getMaxPPNodeCount() )
+			);
+			$this->mOutput->setLimitReportData( 'limitreport-ppgeneratednodes',
+				array( $this->mGeneratedPPNodeCount, $this->mOptions->getMaxGeneratedPPNodeCount() )
+			);
+			$this->mOutput->setLimitReportData( 'limitreport-postexpandincludesize',
+				array( $this->mIncludeSizes['post-expand'], $max )
+			);
+			$this->mOutput->setLimitReportData( 'limitreport-templateargumentsize',
+				array( $this->mIncludeSizes['arg'], $max )
+			);
+			$this->mOutput->setLimitReportData( 'limitreport-expansiondepth',
+				array( $this->mHighestExpansionDepth, $this->mOptions->getMaxPPExpandDepth() )
+			);
+			$this->mOutput->setLimitReportData( 'limitreport-expenseivefunctioncount',
+				array( $this->mExpensiveFunctionCount, $this->mOptions->getExpensiveParserFunctionLimit() )
+			);
+			wfRunHooks( 'ParserLimitReportPrepare', array( $this, $this->mOutput ) );
+
+			$limitReport = "NewPP limit report\n";
+			foreach ( $this->mOutput->getLimitReportData() as $key => $value ) {
+				if ( wfRunHooks( 'ParserLimitReportFormat',
+					array( $key, $value, &$limitReport, false, false )
+				) ) {
+					$keyMsg = wfMessage( $key )->inLanguage( 'en' )->useDatabase( false );
+					$valueMsg = wfMessage( array( "$key-value-text", "$key-value" ) )
+						->inLanguage( 'en' )->useDatabase( false );
+					if ( !$valueMsg->exists() ) {
+						$valueMsg = new RawMessage( '$1' );
+					}
+					if ( !$keyMsg->isDisabled() && !$valueMsg->isDisabled() ) {
+						$valueMsg->params( $value );
+						$limitReport .= "{$keyMsg->text()}: {$valueMsg->text()}\n";
+					}
+				}
+			}
+			// Since we're not really outputting HTML, decode the entities and
+			// then re-encode the things that need hiding inside HTML comments.
+			$limitReport = htmlspecialchars_decode( $limitReport );
 			wfRunHooks( 'ParserLimitReport', array( $this, &$limitReport ) );
 
 			// Sanitize for comment. Note '‐' in the replacement is U+2010,
 			// which looks much like the problematic '-'.
 			$limitReport = str_replace( array( '-', '&' ), array( '‐', '&amp;' ), $limitReport );
-
 			$text .= "\n<!-- \n$limitReport-->\n";
 
 			if ( $this->mGeneratedPPNodeCount > $this->mOptions->getMaxGeneratedPPNodeCount() / 10 ) {
