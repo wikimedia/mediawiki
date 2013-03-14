@@ -1,0 +1,8 @@
+Verified-1: jenkins-bot
+Code-Review+2: Matthias Mullie <mmullie@wikimedia.org>
+Verified+2: Matthias Mullie <mmullie@wikimedia.org>
+Submitted-by: Matthias Mullie <mmullie@wikimedia.org>
+Submitted-at: Thu, 14 Mar 2013 16:37:44 +0000
+Reviewed-on: https://gerrit.wikimedia.org/r/53764
+Project: mediawiki/core
+Branch: refs/heads/wmf/1.21wmf11
