@@ -37,7 +37,7 @@ class AssembleUploadChunksJob extends Job {
 		$context = RequestContext::getMain();
 		try {
 			$user = $context->getUser();
-			if ( !$user->isLoggedIn() || $user->getId() != $this->params['userid'] ) {
+			if ( !$user->isLoggedIn() ) {
 				$this->setLastError( "Could not load the author user from session." );
 				return false;
 			}

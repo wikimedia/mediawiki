@@ -393,15 +393,31 @@ class RequestContext implements IContextSource {
 	}
 
 	/**
-	 * Import the resolved user IP, HTTP headers, and session ID.
+	 * Export the resolved user IP, HTTP headers, user ID, and session ID.
+	 * The result will be reasonably sized to allow for serialization.
+	 *
+	 * @return Array
+	 * @since 1.21
+	 */
+	public function exportSession() {
+		return array(
+			'ip'        => $this->getRequest()->getIP(),
+			'headers'   => $this->getRequest()->getAllHeaders(),
+			'sessionId' => session_id(),
+			'userId'    => $this->getUser()->getId()
+		);
+	}
+
+	/**
+	 * Import the resolved user IP, HTTP headers, user ID, and session ID.
 	 * This sets the current session and sets $wgUser and $wgRequest.
 	 * Once the return value falls out of scope, the old context is restored.
 	 * This function can only be called within CLI mode scripts.
 	 *
 	 * This will setup the session from the given ID. This is useful when
-	 * background scripts inherit some context when acting on behalf of a user.
+	 * background scripts inherit context when acting on behalf of a user.
 	 *
-	 * $param array $params Result of WebRequest::exportUserSession()
+	 * $param array $params Result of RequestContext::exportSession()
 	 * @return ScopedCallback
 	 * @throws MWException
 	 * @since 1.21
@@ -434,13 +450,13 @@ class RequestContext implements IContextSource {
 			// Set the current context to use the new WebRequest
 			$context->setRequest( $request );
 			$wgRequest = $context->getRequest(); // b/c
-			// Set the current user based on the new session and WebRequest
-			$context->setUser( User::newFromSession( $request ) ); // uses $_SESSION
+			// Set the current user based on the new session
+			$context->setUser( User::newFromId( $params['userId'] ) );
 			$wgUser = $context->getUser(); // b/c
 		};
 
 		// Stash the old session and load in the new one
-		$oldParams = self::getMain()->getRequest()->exportUserSession();
+		$oldParams = self::getMain()->exportSession();
 		$importSessionFunction( $params );
 
 		// Set callback to save and close the new session and reload the old one
