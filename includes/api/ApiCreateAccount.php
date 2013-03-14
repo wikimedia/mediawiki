@@ -120,12 +120,21 @@ class ApiCreateAccount extends ApiBase {
 
 		$apiResult = $this->getResult();
 
-		if( $status->hasMessage( 'sessionfailure' ) || $status->hasMessage( 'nocookiesfornew' ) ) {
-			// Token was incorrect, so add it to result, but don't throw an exception
-			// since not having the correct token is part of the normal
-			// flow of events.
+		$hookData = array();
+		// Give the extension a chance to report machine-readable data back to client.
+		// If this is provided, we'll ignore generic error responses and send the
+		// given data back inside the 'createaccount' section along with a session token.
+		wfRunHooks( 'NewAccountApiData', array( $loginForm, &$hookData ) );
+
+		if( $status->hasMessage( 'sessionfailure' ) || $status->hasMessage( 'nocookiesfornew' ) || $hookData ) {
+			// Token was incorrect or recoverable hook event, so add it to result,
+			// but don't throw an exception since not having the correct token is
+			// part of the normal flow of events.
 			$result['token'] = LoginForm::getCreateaccountToken();
 			$result['result'] = 'needtoken';
+			foreach( $hookData as $key => $val ) {
+				$result[$key] = $val;
+			}
 		} elseif( !$status->isOK() ) {
 			// There was an error. Die now.
 			// Cannot use dieUsageMsg() directly because extensions
