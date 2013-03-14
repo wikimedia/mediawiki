@@ -10,5 +10,10 @@
 			name: 'hidden-categories-list',
 			title: mw.msg( 'hiddencategorieslabel' )
 		} );
+
+		$( '.limitreport' ).footerCollapsibleList( {
+			name: 'newpp-limit-report',
+			title: mw.msg( 'limitreport-collapse-label' )
+		} );
 	} );
 } ( jQuery ) );
