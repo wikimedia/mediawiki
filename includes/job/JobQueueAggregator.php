@@ -119,6 +119,23 @@ abstract class JobQueueAggregator {
 	abstract protected function doGetAllReadyWikiQueues();
 
 	/**
+	 * Purge all of the aggregator information
+	 *
+	 * @return bool Success
+	 */
+	final public function purge() {
+		wfProfileIn( __METHOD__ );
+		$res = $this->doPurge();
+		wfProfileOut( __METHOD__ );
+		return $res;
+	}
+
+	/**
+	 * @see JobQueueAggregator::purge()
+	 */
+	abstract protected function doPurge();
+
+	/**
 	 * Get all databases that have a pending job.
 	 * This poll all the queues and is this expensive.
 	 *

@@ -109,6 +109,13 @@ class JobQueueAggregatorMemc extends JobQueueAggregator {
 	}
 
 	/**
+	 * @see JobQueueAggregator::doPurge()
+	 */
+	protected function doPurge() {
+		return $this->cache->delete( $this->getReadyQueueCacheKey() );
+	}
+
+	/**
 	 * @return string
 	 */
 	private function getReadyQueueCacheKey() {
