@@ -9048,4 +9048,37 @@ $4 is the gender of the target user.',
 # Image rotation
 'rotate-comment' => 'Edit summary for the act of rotating an image.',
 
+# Limit report
+'limitreport-title' => 'Title for the preview limit report table.',
+'limitreport-cputime' => 'Label for the "CPU time usage" row in the limit report table',
+'limitreport-cputime-value' => 'Format for the "CPU time usage" value in the limit report table.
+* $1 is the time usage in seconds',
+'limitreport-walltime' => 'Label for the "Real time usage" row in the limit report table',
+'limitreport-walltime-value' => 'Format for the "Real time usage" value in the limit report table.
+* $1 is the time usage in seconds',
+'limitreport-ppvisitednodes' => 'Label for the "Preprocessor visited node count" row in the limit report table',
+'limitreport-ppvisitednodes-value' => 'Format for the "Preprocessor visited node count" row in the limit report table.
+* $1 is the usage
+* $2 is the maximum',
+'limitreport-ppgeneratednodes' => 'Label for the "Preprocessor generated node count" row in the limit report table',
+'limitreport-ppgeneratednodes-value' => 'Format for the "Preprocessor generated node count" row in the limit report table.
+* $1 is the usage
+* $2 is the maximum',
+'limitreport-postexpandincludesize' => 'Label for the "Post-expand include size" row in the limit report table',
+'limitreport-postexpandincludesize-value' => 'Format for the "Post-expand include size" row in the limit report table.
+* $1 is the usage in bytes
+* $2 is the maximum',
+'limitreport-templateargumentsize' => 'Label for the "Template argument size" row in the limit report table',
+'limitreport-templateargumentsize-value' => 'Format for the "Template argument size" row in the limit report table.
+* $1 is the usage in bytes
+* $2 is the maximum',
+'limitreport-expansiondepth' => 'Label for the "Highest expansion depth" row in the limit report table',
+'limitreport-expansiondepth-value' => 'Format for the "Highest expansion depth" row in the limit report table.
+* $1 is the depth
+* $2 is the maximum',
+'limitreport-expensivefunctioncount' => 'Label for the "Expensive parser function count" row in the limit report table',
+'limitreport-expensivefunctioncount-value' => 'Format for the "Expensive parser function count" row in the limit report table.
+* $1 is the usage
+* $2 is the maximum',
+
 );
