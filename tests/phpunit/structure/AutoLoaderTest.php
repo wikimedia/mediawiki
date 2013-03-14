@@ -92,4 +92,15 @@ class AutoLoaderTest extends MediaWikiTestCase {
 		$this->assertFalse( $uncerealized instanceof __PHP_Incomplete_Class,
 			"unserialize() can load classes case-insensitively." );
 	}
+
+	/**
+	 * @covers AutoLoader::registerNamespace
+	 * @covers AutoLoader::searchNamespaces
+	 */
+	function testNamespacedClass() {
+		AutoLoader::registerNamespace( 'mediawiki\tests\data\autoload', __DIR__ . '/../data/php/autoload' );
+		$className = 'mediawiki\tests\data\autoload\subdir\AutoLoadNamespacedFoo';
+
+		$this->assertTrue( class_exists( $className ) );
+	}
 }
