@@ -1349,4 +1349,28 @@ class LanguageTest extends LanguageClassesTestCase {
 			array( 'FI', false, 'is not supported language, input should be in lower case' ),
 		);
 	}
+
+	/**
+	 * @dataProvider provideGetNamespaceAliases
+	 */
+	function testGetNamespaceAliases( $languageCode, $subset ) {
+		$language = Language::factory( $languageCode );
+		$aliases = $language->getNamespaceAliases();
+		foreach ( $subset as $alias => $nsId ) {
+			$this->assertEquals( $nsId, $aliases[$alias] );
+		}
+	}
+
+	function provideGetNamespaceAliases() {
+		// TODO: Add tests for NS_PROJECT_TALK and GenderNamespaces
+		return array(
+			array(
+				'zh',
+				array(
+					'文件' => NS_FILE,
+					'檔案' => NS_FILE,
+				),
+			),
+		);
+	}
 }
