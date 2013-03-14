@@ -222,8 +222,7 @@ class ApiUpload extends ApiBase {
 					array(
 						'filename'  => $this->mParams['filename'],
 						'filekey'   => $this->mParams['filekey'],
-						'session'   => $this->getRequest()->exportUserSession(),
-						'userid'    => $this->getUser()->getId()
+						'session'   => $this->getContext()->exportSession()
 					)
 				) );
 				if ( $ok ) {
@@ -593,8 +592,7 @@ class ApiUpload extends ApiBase {
 					'comment'   => $this->mParams['comment'],
 					'text'      => $this->mParams['text'],
 					'watch'     => $watch,
-					'session'   => $this->getRequest()->exportUserSession(),
-					'userid'    => $this->getUser()->getId()
+					'session'   => $this->getContext()->exportSession()
 				)
 			) );
 			if ( $ok ) {

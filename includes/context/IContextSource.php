@@ -105,4 +105,13 @@ interface IContextSource {
 	 * @return Message
 	 */
 	public function msg();
+
+	/**
+	 * Export the resolved user IP, HTTP headers, user ID, and session ID.
+	 * The result will be reasonably sized to allow for serialization.
+	 *
+	 * @return Array
+	 * @since 1.21
+	 */
+	public function exportSession();
 }
