@@ -371,6 +371,11 @@ result.
 &$module: ApiBase Module object
 &$properties: Array of properties
 
+'APICreateAccountBeforeCreate': Before creating a user with api.php?action=createuser,
+after processing request parameters. Return false to let the request fail, returning
+an error message or an <createuser result="Failure"> tag if $resultArr was filled.
+&$resultArr : data in this array will be added to the API result
+
 'APIQueryAfterExecute': After calling the execute() method of an
 action=query submodule. Use this to extend core API modules.
 &$module: Module object

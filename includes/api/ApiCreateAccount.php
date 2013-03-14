@@ -44,6 +44,7 @@ class ApiCreateAccount extends ApiBase {
 		$params = $this->extractRequestParams();
 
 		$result = array();
+		$apiResult = $this->getResult();
 
 		// Init session if necessary
 		if ( session_id() == '' ) {
@@ -52,6 +53,16 @@ class ApiCreateAccount extends ApiBase {
 
 		if( $params['mailpassword'] && !$params['email'] ) {
 			$this->dieUsageMsg( 'noemail' );
+		}
+
+		// Run hooks
+		// Handle APICreateAccountBeforeCreate parameters
+		$r = array();
+		if ( !wfRunHooks( 'APICreateAccountBeforeCreate', array( &$r ) ) ) {
+			if ( count( $r ) ) {
+				$apiResult->addValue( null, $this->getModuleName(), $r );
+				return;
+			}
 		}
 
 		$context = new DerivativeContext( $this->getContext() );
@@ -117,8 +128,6 @@ class ApiCreateAccount extends ApiBase {
 			$result['userid'] = $user->getId();
 			$result['token'] = $user->getToken();
 		}
-
-		$apiResult = $this->getResult();
 
 		if( $status->hasMessage( 'sessionfailure' ) || $status->hasMessage( 'nocookiesfornew' ) ) {
 			// Token was incorrect, so add it to result, but don't throw an exception
