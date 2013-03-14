@@ -2816,6 +2816,58 @@ HTML
 			call_user_func_array( 'wfMessage', $copywarnMsg )->plain() . "\n</div>";
 	}
 
+	/**
+	 * Get the Limit report for page previews
+	 *
+	 * @since 1.21
+	 * @param User $user User for which the preview is being made
+	 * @param ParserOutput $output ParserOutput object from the parse
+	 * @return string HTML
+	 */
+	public static function getPreviewLimitReport( User $user, ParserOutput $output ) {
+		if ( !$user->getOption( 'previewlimitreport' ) ) {
+			return '';
+		}
+
+		$limitReport = wfMessage( 'limitreport-top' )->parse() . "\n";
+
+		foreach ( $output->getLimitReportData() as $key => $data ) {
+			list( $value, $opts ) = $data;
+
+			$label = wfMessage( $key )->text();
+
+			$msg = wfMessage( "$key-value" );
+			if ( $msg->isDisabled() ){
+				$msg = new RawMessage( '$1' );
+			}
+			if ( in_array( 'multiline', $opts ) ) {
+				$valkey = 'limitreport-multiline-row';
+				$val = '';
+				$m = wfMessage( "$key-top" );
+				if ( !$m->isDisabled() ) {
+					$val .= $m->text() . "\n";
+				}
+				foreach ( $value as $v ) {
+					$m = clone( $msg );
+					$val .= $m->params( $v )->text() . "\n";
+				}
+				$m = wfMessage( "$key-bottom" );
+				if ( !$m->isDisabled() ) {
+					$val .= $m->text();
+				}
+			} else {
+				$valkey = 'limitreport-row';
+				$val = $msg->params( $value )->text() . "\n";
+			}
+
+			$limitReport .= wfMessage( $valkey, $key, $label, $val )->parse() . "\n";
+		}
+
+		$limitReport .= wfMessage( 'limitreport-bottom' )->parse();
+
+		return $limitReport;
+	}
+
 	protected function showStandardInputs( &$tabindex = 2 ) {
 		global $wgOut;
 		$wgOut->addHTML( "<div class='editOptions'>\n" );
@@ -3102,6 +3154,7 @@ HTML
 		$attribs = array( 'lang' => $pageLang->getCode(), 'dir' => $pageLang->getDir(),
 			'class' => 'mw-content-' . $pageLang->getDir() );
 		$previewHTML = Html::rawElement( 'div', $attribs, $previewHTML );
+		$previewHTML .= self::getPreviewLimitReport( $wgUser, $this->mParserOutput );
 
 		wfProfileOut( __METHOD__ );
 		return $previewhead . $previewHTML . $this->previewTextAfterContent;

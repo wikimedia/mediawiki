@@ -1754,7 +1754,8 @@ cache or return false to not use it.
 $parser: Parser object
 $varCache: variable cache (array)
 
-'ParserLimitReport': Called at the end of Parser:parse() when the parser will
+'ParserLimitReport': DEPRECATED, use ParserPrepareLimitReport instead.
+Called at the end of Parser:parse() when the parser will
 include comments about size of the text parsed.
 $parser: Parser object
 $limitReport: text that will be included (without comment tags)
@@ -1765,6 +1766,12 @@ $title: title object representing the file
 $file: file object that will be used to create the image
 &$params: 2-D array of parameters
 $parser: Parser object that called the hook
+
+'ParserPrepareLimitReport': Called at the end of Parser:parse() when the parser will
+include comments about size of the text parsed. Hooks should use
+$output->setLimitReportData() to populate data.
+$parser: Parser object
+$output: ParserOutput object
 
 'ParserSectionCreate': Called each time the parser creates a document section
 from wikitext. Use this to apply per-section modifications to HTML (like
