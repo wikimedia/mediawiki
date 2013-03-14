@@ -1096,6 +1096,9 @@ $wgAutoloadLocalClasses = array(
 	'VectorTemplate' => 'skins/Vector.php',
 );
 
+// FIXME: is there still that bug where autoloaders can't use static class vars?
+$wgAutoloadNamespaceRootDirs = array();
+
 class AutoLoader {
 	/**
 	 * autoload - take a class name and attempt to load it
@@ -1114,12 +1117,14 @@ class AutoLoader {
 		// the auto-loader ($className would be 'foo\Bar'). However, if a class is accessed using a string instead of a
 		// class literal (e.g. $class = '\foo\Bar'; new $class()), then some versions of PHP do not strip the leading
 		// backlash in this case, causing autoloading to fail.
-		$className = ltrim( $className, '\\' );
+		$className = ltrim( $className, "\\" );
 
 		if ( isset( $wgAutoloadLocalClasses[$className] ) ) {
 			$filename = $wgAutoloadLocalClasses[$className];
 		} elseif ( isset( $wgAutoloadClasses[$className] ) ) {
 			$filename = $wgAutoloadClasses[$className];
+		} elseif ( $filename = self::searchNamespaces( $className ) ) {
+			// found it!
 		} else {
 			# Try a different capitalisation
 			# The case can sometimes be wrong when unserializing PHP 4 objects
@@ -1163,6 +1168,89 @@ class AutoLoader {
 	 */
 	static function loadClass( $class ) {
 		return class_exists( $class );
+	}
+
+	/**
+	 * Register that a namespace prefix maps to some root directory
+	 *
+	 * Then, when a namespace prefix is matched during autoloading, any remaining
+	 * namespace segments will be appended to this root directory, using a subset of:
+	 * @link https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md
+	 *
+	 * The most specific matching namespace is searched first, falling back to those with
+	 * fewer segments.
+	 *
+	 * Currently, underscores are not interpreted in any special way, which goes
+	 * against the PSR-0 spec.
+	 *
+	 * Examples:
+	 * @code
+	 * // From CentralNotice.php,
+	 * AutoLoader::registerNamespace( 'mediawiki\extensions\CentralNotice', __DIR__ . "/includes" );
+	 * @endcode
+	 *
+	 * If a namespace has been registered as above, the following instantiation will
+	 * attempt to load the class from extensions/CentralNotice/includes/allocations/Criteria.php:
+	 * @code
+	 * new mediawiki\extensions\CentralNotice\allocations\Criteria();
+	 * @endcode
+	 *
+	 * @param string $namespace namespace for which this rule applies
+	 * @param string $rootDir absolute path where classfiles will be found
+	 *
+	 * @since 1.22
+	 */
+	static function registerNamespace( $namespace, $rootDir ) {
+		global $wgAutoloadNamespaceRootDirs;
+
+		$wgAutoloadNamespaceRootDirs[$namespace] = $rootDir;
+	}
+
+	/**
+	 * Attempt class lookup in the namespace registry
+	 *
+	 * @param string $className fully-qualified class name
+	 *
+	 * @return string the expected filename of a class discovered by
+	 * matching its namespace prefix against @see $namespaceRootDirs.
+	 * If there is no match, return an empty string.
+	 */
+	static protected function searchNamespaces( $className ) {
+		global $wgAutoloadNamespaceRootDirs;
+
+		// Remove the class name
+		$namespace = self::rstripNamespace( $className );
+
+		// Attempt the most specific namespace prefix first
+		while ( $namespace ) {
+			if ( array_key_exists( $namespace, $wgAutoloadNamespaceRootDirs ) ) {
+				$remainingClassPath = substr( $className, strlen( $namespace ) + 1 );
+				$subpath = strtr( $remainingClassPath, "\\", DIRECTORY_SEPARATOR );
+				$filename =
+					$wgAutoloadNamespaceRootDirs[$namespace] . DIRECTORY_SEPARATOR .
+					$subpath . ".php";
+
+				return $filename;
+			}
+
+			$namespace = self::rstripNamespace( $namespace );
+		}
+
+		// Not found. Return empty string to make HipHop happy... once it supports namespaces ;)
+		return '';
+	}
+
+	/**
+	 * Remove the rightmost class or namespace from a fully qualified className
+	 * or prefix.
+	 *
+	 * @param string $className fully qualified class, or a namespace hierarchy
+	 *
+	 * @return string leftmost N - 1 namespace sub-levels, or an empty string
+	 * if there were no more segments to remove.
+	 */
+	static protected function rstripNamespace( $className ) {
+		return substr( $className, 0, strrpos( $className, "\\" ) );
 	}
 }
 
