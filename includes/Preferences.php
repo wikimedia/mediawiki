@@ -774,6 +774,11 @@ class Preferences {
 			'section' => 'editing/advancedediting',
 			'label-message' => 'tog-previewonfirst',
 		);
+		$defaultPreferences['previewlimitreport'] = array(
+			'type' => 'toggle',
+			'section' => 'editing/advancedediting',
+			'label-message' => 'tog-previewlimitreport',
+		);
 
 		if ( $wgAllowUserCssPrefs ) {
 			$defaultPreferences['editsection'] = array(
