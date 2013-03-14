@@ -47,6 +47,7 @@ $wgAutoloadClasses += array(
 
 	//db
 	'ORMTableTest' => "$testDir/phpunit/includes/db/ORMTableTest.php",
+	'PageORMTableForTesting' => "$testDir/phpunit/includes/db/ORMTableTest.php",
 
 	# tests/phpunit/includes/api
 	'ApiFormatTestBase' => "$testDir/phpunit/includes/api/format/ApiFormatTestBase.php",
