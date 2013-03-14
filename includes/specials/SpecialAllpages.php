@@ -71,7 +71,6 @@ class SpecialAllpages extends IncludableSpecialPage {
 	 * @param string $par becomes "FOO" when called like Special:Allpages/FOO (default NULL)
 	 */
 	function execute( $par ) {
-		global $wgContLang;
 		$request = $this->getRequest();
 		$out = $this->getOutput();
 
@@ -85,10 +84,10 @@ class SpecialAllpages extends IncludableSpecialPage {
 		$namespace = $request->getInt( 'namespace' );
 		$hideredirects = $request->getBool( 'hideredirects', false );
 
-		$namespaces = $wgContLang->getNamespaces();
+		$namespaces = $this->getContext()->getLanguage()->getNamespaces();
 
 		$out->setPageTitle(
-			( $namespace > 0 && in_array( $namespace, array_keys( $namespaces) ) ) ?
+			( $namespace > 0 && in_array( $namespace, array_keys( $namespaces ) ) ) ?
 			$this->msg( 'allinnamespace', str_replace( '_', ' ', $namespaces[$namespace] ) ) :
 			$this->msg( 'allarticles' )
 		);
@@ -301,6 +300,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 	 * @return string
 	 */
 	function showline( $inpoint, $outpoint, $namespace = NS_MAIN, $hideredirects ) {
+		// use content language since page titles are considered to use content language
 		global $wgContLang;
 		$inpointf = htmlspecialchars( str_replace( '_', ' ', $inpoint ) );
 		$outpointf = htmlspecialchars( str_replace( '_', ' ', $outpoint ) );
@@ -332,12 +332,11 @@ class SpecialAllpages extends IncludableSpecialPage {
 	 * @param bool $hideredirects dont show redirects (default FALSE)
 	 */
 	function showChunk( $namespace = NS_MAIN, $from = false, $to = false, $hideredirects = false ) {
-		global $wgContLang;
 		$output = $this->getOutput();
 
 		$fromList = $this->getNamespaceKeyAndText( $namespace, $from );
 		$toList = $this->getNamespaceKeyAndText( $namespace, $to );
-		$namespaces = $wgContLang->getNamespaces();
+		$namespaces = $this->getContext()->getLanguage()->getNamespaces();
 		$n = 0;
 
 		if ( !$fromList || !$toList ) {
