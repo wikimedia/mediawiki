@@ -1798,10 +1798,29 @@ cache or return false to not use it.
 $parser: Parser object
 $varCache: variable cache (array)
 
-'ParserLimitReport': Called at the end of Parser:parse() when the parser will
+'ParserLimitReport': DEPRECATED, use ParserLimitReportPrepare and
+ParserLimitReportFormat instead.
+Called at the end of Parser:parse() when the parser will
 include comments about size of the text parsed.
 $parser: Parser object
-$limitReport: text that will be included (without comment tags)
+&$limitReport: text that will be included (without comment tags)
+
+'ParserLimitReportFormat': Called for each row in the parser limit report that
+needs formatting. If nothing handles this hook, the default is to use "$key" to
+get the label, and "$key-value" or "$key-value-text"/"$key-value-html" to
+format the value.
+$key: Key for the limit report item (string)
+$value: Value of the limit report item
+&$report: String onto which to append the data
+$isHTML: If true, $report is an HTML table with two columns; if false, it's
+	text intended for display in a monospaced font.
+$localize: If false, $report should be output in English.
+
+'ParserLimitReportPrepare': Called at the end of Parser:parse() when the parser will
+include comments about size of the text parsed. Hooks should use
+$output->setLimitReportData() to populate data.
+$parser: Parser object
+$output: ParserOutput object
 
 'ParserMakeImageParams': Called before the parser make an image link, use this
 to modify the parameters of the image.
