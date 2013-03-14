@@ -101,7 +101,17 @@ class JobQueueAggregatorRedis extends JobQueueAggregator {
 					$pendingDBs[$type][] = $wiki;
 				}
 			} else { // cache miss
+				// Avoid duplicated effort
+				$conn->multi( Redis::MULTI );
+				$conn->setnx( $this->getReadyQueueKey() . ":lock", 1 );
+				$conn->expire( $this->getReadyQueueKey() . ":lock", 3600 );
+				if ( $conn->exec() !== array( true, true ) ) { // lock
+					return array(); // already in progress
+				}
+
 				$pendingDBs = $this->findPendingWikiQueues(); // (type => list of wikis)
+
+				$conn->delete( $this->getReadyQueueKey() . ":lock" ); // unlock
 
 				$now = time();
 				$map = array();
