@@ -47,4 +47,24 @@ class AutoLoaderTest extends MediaWikiTestCase {
 			'actual' => $actual,
 		);
 	}
+
+	public function testAutoLoadClass() {
+		$className = "OutputPage";
+
+		$this->assertTrue( class_exists( $className ) );
+	}
+
+	public function testAutoLoadUsingNamespace() {
+		AutoLoader::registerNamespace( 'mediawiki\\tests\\data\\autoload', __DIR__ . "/data/php/autoload" );
+		$className = "mediawiki\\tests\\data\\autoload\\subdir\\AutoLoadNamespacedFoo";
+
+		$this->assertTrue( class_exists( $className ) );
+	}
+
+	public function testAutoLoadNamespaceInnerClass() {
+		AutoLoader::registerNamespace( 'mediawiki\\tests\\data\\autoload', __DIR__ . "/data/php/autoload" );
+		$className = "mediawiki\\tests\\data\\autoload\\AutoLoadMultiClassBar\\RandoInnerClass";
+
+		$this->assertTrue( class_exists( $className ) );
+	}
 }

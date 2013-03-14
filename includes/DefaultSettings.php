@@ -5407,6 +5407,41 @@ $wgSpecialPages = array();
 $wgAutoloadClasses = array();
 
 /**
+ * @global array Namespace prefixes mapped to a root directory
+ *
+ * When a namespace prefix is matched during autoloading, any remaining
+ * namespace segments are appended to the root directory, using a subset of:
+ * @link https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md
+ *
+ * The most specific matching namespace is searched first, falling back to those with
+ * fewer segments.
+ *
+ * Currently, underscores are not interpreted in any special way, which goes
+ * against the PSR-0 spec.
+ *
+ * Examples:
+ * @code
+ * $wgAutoloadNamespaceRootDirs['mediawiki\\core'] = "{$IP}/includes";
+ * @endcode
+ *
+ * Using the functional interface is preferable to setting the global
+ * directly. If we wanted to register a namespace from a setup function
+ * in the CentralNotice extension, it would look something like:
+ * @code
+ * AutoLoader::registerNamespace( 'mediawiki\\extensions\\CentralNotice', __DIR__ . "/includes" );
+ * @endcode
+ *
+ * If the above namespace has been registered, the following instantiation will
+ * attempt to load the class from extensions/CentralNotice/allocations/Criteria.php:
+ * @code
+ * new CentralNotice\allocations\Criteria();
+ * @endcode
+ *
+ * @since 1.22
+ */
+$wgAutoloadNamespaceRootDirs = array();
+
+/**
  * An array of extension types and inside that their names, versions, authors,
  * urls, descriptions and pointers to localized description msgs. Note that
  * the version, url, description and descriptionmsg key can be omitted.
