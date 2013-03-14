@@ -39,7 +39,7 @@ class AssembleUploadChunksJob extends Job {
 			$user = $context->getUser();
 			if ( !$user->isLoggedIn() || $user->getId() != $this->params['userid'] ) {
 				$this->setLastError( "Could not load the author user from session." );
-				return true; // no retries
+				return false;
 			}
 
 			UploadBase::setSessionStatus(
@@ -62,7 +62,7 @@ class AssembleUploadChunksJob extends Job {
 					array( 'result' => 'Failure', 'stage' => 'assembling', 'status' => $status )
 				);
 				$this->setLastError( $status->getWikiText() );
-				return true; // no retries
+				return false;
 			}
 
 			// We have a new filekey for the fully concatenated file
@@ -99,18 +99,20 @@ class AssembleUploadChunksJob extends Job {
 				)
 			);
 			$this->setLastError( get_class( $e ) . ": " . $e->getText() );
+			return false;
 		}
-		return true; // returns true on success and erro (no retries)
+		return true;
 	}
 
-	/**
-	 * @return Array
-	 */
 	public function getDeduplicationInfo() {
 		$info = parent::getDeduplicationInfo();
 		if ( is_array( $info['params'] ) ) {
 			$info['params'] = array( 'filekey' => $info['params']['filekey'] );
 		}
 		return $info;
+	}
+
+	public function allowRetries() {
+		return false;
 	}
 }

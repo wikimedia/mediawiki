@@ -39,7 +39,7 @@ class PublishStashedFileJob extends Job {
 			$user = $context->getUser();
 			if ( !$user->isLoggedIn() || $user->getId() != $this->params['userid'] ) {
 				$this->setLastError( "Could not load the author user from session." );
-				return true; // no retries
+				return false;
 			}
 
 			UploadBase::setSessionStatus(
@@ -64,7 +64,7 @@ class PublishStashedFileJob extends Job {
 					array( 'result' => 'Failure', 'stage' => 'publish', 'status' => $status )
 				);
 				$this->setLastError( "Could not verify upload." );
-				return true; // no retries
+				return false;
 			}
 
 			// Upload the stashed file to a permanent location
@@ -80,7 +80,7 @@ class PublishStashedFileJob extends Job {
 					array( 'result' => 'Failure', 'stage' => 'publish', 'status' => $status )
 				);
 				$this->setLastError( $status->getWikiText() );
-				return true; // no retries
+				return false;
 			}
 
 			// Build the image info array while we have the local reference handy
@@ -111,18 +111,20 @@ class PublishStashedFileJob extends Job {
 				)
 			);
 			$this->setLastError( get_class( $e ) . ": " . $e->getText() );
+			return false;
 		}
-		return true; // returns true on success and erro (no retries)
+		return true;
 	}
 
-	/**
-	 * @return Array
-	 */
 	public function getDeduplicationInfo() {
 		$info = parent::getDeduplicationInfo();
 		if ( is_array( $info['params'] ) ) {
 			$info['params'] = array( 'filekey' => $info['params']['filekey'] );
 		}
 		return $info;
+	}
+
+	public function allowRetries() {
+		return false;
 	}
 }
