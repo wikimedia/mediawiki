@@ -875,6 +875,8 @@ class SpecialSearch extends SpecialPage {
 	 * @return String: HTML form
 	 */
 	protected function powerSearchBox( $term, $opts ) {
+		global $wgContLang;
+
 		// Groups namespaces into rows according to subject
 		$rows = array();
 		foreach ( SearchEngine::searchableNamespaces() as $namespace => $name ) {
@@ -882,10 +884,12 @@ class SpecialSearch extends SpecialPage {
 			if ( !array_key_exists( $subject, $rows ) ) {
 				$rows[$subject] = "";
 			}
-			$name = str_replace( '_', ' ', $name );
+
+			$name = $wgContLang->getConverter()->convertNamespace( $namespace );
 			if ( $name == '' ) {
 				$name = $this->msg( 'blanknamespace' )->text();
 			}
+
 			$rows[$subject] .=
 				Xml::openElement(
 					'td', array( 'style' => 'white-space: nowrap' )
@@ -898,6 +902,7 @@ class SpecialSearch extends SpecialPage {
 				) .
 				Xml::closeElement( 'td' );
 		}
+
 		$rows = array_values( $rows );
 		$numRows = count( $rows );
 
@@ -909,9 +914,11 @@ class SpecialSearch extends SpecialPage {
 				'table',
 				array( 'cellpadding' => 0, 'cellspacing' => 0 )
 			);
+
 			for ( $j = $i; $j < $i + 4 && $j < $numRows; $j++ ) {
 				$namespaceTables .= Xml::tags( 'tr', null, $rows[$j] );
 			}
+
 			$namespaceTables .= Xml::closeElement( 'table' );
 		}
 
