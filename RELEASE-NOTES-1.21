@@ -120,6 +120,10 @@ production.
 * (bug 45526) Add QUnit assertion helper "QUnit.assert.htmlEqual" for asserting
   structual equality of HTML (ignoring insignificant differences like
   quotmarks, order and whitespace in the attribute list).
+* Parser profiling data, formerly only available in the "NewPP limit report"
+  HTML comment, is now also displayed at the bottom of page previews.
+* Added ParserLimitReportPrepare and ParserLimitReportFormat hooks, deprecated
+  ParserLimitReport hook.
 
 === Bug fixes in 1.21 ===
 * (bug 40353) SpecialDoubleRedirect should support interwiki redirects.
