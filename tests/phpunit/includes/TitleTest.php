@@ -96,7 +96,7 @@ class TitleTest extends MediaWikiTestCase {
 	 * @param string $action
 	 * @param array|string|true $expected Required error
 	 *
-	 * @covers Title::checkReadPermission
+	 * @covers Title::checkReadPermissions
 	 * @dataProvider dataWgWhitelistReadRegexp
 	 */
 	function testWgWhitelistReadRegexp( $whitelistRegexp, $source, $action, $expected ) {
