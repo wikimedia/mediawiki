@@ -1110,6 +1110,8 @@ class AutoLoader {
 
 		if ( isset( $wgAutoloadLocalClasses[$className] ) ) {
 			$filename = $wgAutoloadLocalClasses[$className];
+		} elseif ( $filename = self::searchNamespaces( $className ) ) {
+			// found it!
 		} elseif ( isset( $wgAutoloadClasses[$className] ) ) {
 			$filename = $wgAutoloadClasses[$className];
 		} else {
@@ -1155,6 +1157,58 @@ class AutoLoader {
 	 */
 	static function loadClass( $class ) {
 		return class_exists( $class );
+	}
+
+	/**
+	 * The polite way to register autoload namespaces
+	 * @see $wgAutoloadNamespaceRootDirs.
+	 */
+	static function registerNamespace( $namespace, $rootDir ) {
+		global $wgAutoloadNamespaceRootDirs;
+
+		$wgAutoloadNamespaceRootDirs[$namespace] = $rootDir;
+	}
+
+	/**
+	 * Attempt class lookup in the namespace registry
+	 *
+	 * @return string|boolean the expected filename of a class discovered by
+	 * matching its namespace prefix against @see $namespaceRootDirs.
+	 * If there is no match, return false-ish.
+	 */
+	static protected function searchNamespaces( $className ) {
+		global $wgAutoloadNamespaceRootDirs;
+
+		// Remove the class name
+		$namespace = self::rstripNamespace( $className );
+
+		// Attempt the most specific namespace prefix first
+		while ( $namespace ) {
+			if ( array_key_exists( $namespace, $wgAutoloadNamespaceRootDirs ) ) {
+				$remainingClassPath = substr( $className, strlen( $namespace ) + 1 );
+				$subpath = strtr( $remainingClassPath, "\\", DIRECTORY_SEPARATOR );
+				$filename =
+					$wgAutoloadNamespaceRootDirs[$namespace] . DIRECTORY_SEPARATOR .
+					$subpath . ".php";
+
+				return $filename;
+			}
+
+			$namespace = self::rstripNamespace( $namespace );
+		}
+
+		// Not found. Return empty string to make HipHop happy... once it supports namespaces ;)
+		return '';
+	}
+
+	/**
+	 * Remove the rightmost class or namespace from a fully qualified className
+	 * or prefix.
+	 *
+	 * @return string Empty string if there were no segments to remove.
+	 */
+	static protected function rstripNamespace( $className ) {
+		return substr( $className, 0, strrpos( $className, "\\" ) );
 	}
 }
 
