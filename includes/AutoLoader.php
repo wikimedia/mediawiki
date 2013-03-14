@@ -1110,6 +1110,9 @@ class AutoLoader {
 
 		if ( isset( $wgAutoloadLocalClasses[$className] ) ) {
 			$filename = $wgAutoloadLocalClasses[$className];
+		} elseif ( $filename = self::searchNamespaces( $className ) ) {
+			// Cache it somewhere less expensive.
+			$wgAutoloadLocalClasses[$className] = $filename;
 		} elseif ( isset( $wgAutoloadClasses[$className] ) ) {
 			$filename = $wgAutoloadClasses[$className];
 		} else {
@@ -1155,6 +1158,44 @@ class AutoLoader {
 	 */
 	static function loadClass( $class ) {
 		return class_exists( $class );
+	}
+
+	/**
+	 * The polite way to register autoload namespaces
+	 * @see $wgAutoloadNamespaceRootDirs.
+	 */
+	static function registerNamespace( $namespace, $rootDir ) {
+		$wgAutoloadNamespaceRootDirs[$namespace] = $rootDir;
+	}
+
+	/**
+	 * @return string the expected filename of a class discovered by matching
+	 * its namespace prefix against @see $namespaceRootDirs.
+	 */
+	static protected function searchNamespaces( $className ) {
+		global $wgAutoloadNamespaceRootDirs;
+
+		$namespace = self::rstripNamespace( $className );
+
+		while ( $namespace ) {
+			if ( array_key_exists( $namespace, $wgAutoloadNamespaceRootDirs ) ) {
+				$remainingClassPath = substr( $className, strlen( $namespace ) + 1 );
+				$subpath = strtr( $remainingClassPath, "\\", DIRECTORY_SEPARATOR );
+				$filename =
+					$wgAutoloadNamespaceRootDirs[$namespace] . DIRECTORY_SEPARATOR .
+					$subpath . ".php";
+
+				return $filename;
+			}
+
+			$namespace = self::rstripNamespace( $namespace );
+		}
+
+		return false;
+	}
+
+	static protected function rstripNamespace( $className ) {
+		return substr( $className, 0, strrpos( $className, "\\" ) );
 	}
 }
 
