@@ -5397,6 +5397,20 @@ $wgSpecialPages = array();
 $wgAutoloadClasses = array();
 
 /**
+ * array Namespace prefixes map to a root directory, where class files can
+ * be found under a subpath conforming to PSR-0.
+ *
+ * The most specific matching namespace is searched first, falling back to those with
+ * fewer segments.
+ *
+ * Example settings:
+ *    'mediawiki\\core' => "{$IP}/includes",
+ *    'mediawiki\\CentralNotice' => "{$IP}/extensions/CentralNotice/includes",
+ *    ...
+ */
+$wgAutoloadNamespaceRootDirs = array();
+
+/**
  * An array of extension types and inside that their names, versions, authors,
  * urls, descriptions and pointers to localized description msgs. Note that
  * the version, url, description and descriptionmsg key can be omitted.
