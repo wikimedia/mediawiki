@@ -3303,7 +3303,7 @@ $5
 'hijri-calendar-m2' => 'سەفەر',
 'hijri-calendar-m3' => 'ڕەبیعەلئەووەڵ',
 'hijri-calendar-m4' => 'ڕەبیعەلئاخیر',
-'hijri-calendar-m5' => 'جومادەلئەووەل',
+'hijri-calendar-m5' => 'جومادەلئوولا',
 'hijri-calendar-m6' => 'جومادەسسانی',
 'hijri-calendar-m7' => 'ڕەجەب',
 'hijri-calendar-m8' => 'شەعبان',
