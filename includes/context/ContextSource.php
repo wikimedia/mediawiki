@@ -164,4 +164,15 @@ abstract class ContextSource implements IContextSource {
 		$args = func_get_args();
 		return call_user_func_array( array( $this->getContext(), 'msg' ), $args );
 	}
+
+	/**
+	 * Export the resolved user IP, HTTP headers, user ID, and session ID.
+	 * The result will be reasonably sized to allow for serialization.
+	 *
+	 * @return Array
+	 * @since 1.21
+	 */
+	public function exportSession() {
+		return $this->getContext()->exportSession();
+	}
 }
