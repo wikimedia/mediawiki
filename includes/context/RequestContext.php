@@ -393,59 +393,92 @@ class RequestContext implements IContextSource {
 	}
 
 	/**
-	 * Import the resolved user IP, HTTP headers, and session ID.
+	 * Export the resolved user IP, HTTP headers, user ID, and session ID.
+	 * The result will be reasonably sized to allow for serialization.
+	 *
+	 * @return Array
+	 * @since 1.21
+	 */
+	public function exportSession() {
+		return array(
+			'ip'        => $this->getRequest()->getIP(),
+			'headers'   => $this->getRequest()->getAllHeaders(),
+			'sessionId' => session_id(),
+			'userId'    => $this->getUser()->getId()
+		);
+	}
+
+	/**
+	 * Import the resolved user IP, HTTP headers, user ID, and session ID.
 	 * This sets the current session and sets $wgUser and $wgRequest.
 	 * Once the return value falls out of scope, the old context is restored.
 	 * This function can only be called within CLI mode scripts.
 	 *
 	 * This will setup the session from the given ID. This is useful when
-	 * background scripts inherit some context when acting on behalf of a user.
+	 * background scripts inherit context when acting on behalf of a user.
 	 *
-	 * $param array $params Result of WebRequest::exportUserSession()
+	 * $param array $params Result of RequestContext::exportSession()
 	 * @return ScopedCallback
 	 * @throws MWException
 	 * @since 1.21
 	 */
 	public static function importScopedSession( array $params ) {
 		if ( PHP_SAPI !== 'cli' ) {
-			// Don't send random private cookie headers to other random users
+			// Don't send random private cookies or turn $wgRequest into FauxRequest
 			throw new MWException( "Sessions can only be imported in cli mode." );
+		} elseif ( !strlen( $params['sessionId'] ) ) {
+			throw new MWException( "No session ID was specified." );
 		}
 
-		$importSessionFunction = function( array $params ) {
+		if ( $params['userId'] ) { // logged-in user
+			$user = User::newFromId( $params['userId'] );
+			if ( !$user ) {
+				throw new MWException( "No user with ID '{$params['userId']}'." );
+			}
+		} elseif ( !IP::isValid( $params['ip'] ) ) {
+			throw new MWException( "Could not load user '{$params['ip']}'." );
+		} else { // anon user
+			$user = User::newFromName( $params['ip'], false );
+		}
+
+		$importSessionFunction = function( User $user, array $params ) {
 			global $wgRequest, $wgUser;
 
-			// Write and close any current session
+			$context = RequestContext::getMain();
+			// Commit and close any current session
 			session_write_close(); // persist
 			session_id( '' ); // detach
 			$_SESSION = array(); // clear in-memory array
-			// Load the new session from the session ID
-			if ( strlen( $params['sessionId'] ) ) {
+			// Remove any user IP or agent information
+			$context->setRequest( new FauxRequest() );
+			$wgRequest = $context->getRequest(); // b/c
+			// Now that all private information is detached from the user, it should
+			// be safe to load the new user. If errors occur or an exception is thrown
+			// and caught (leaving the main context in a mixed state), there is no risk
+			// of the User object being attached to the wrong IP, headers, or session.
+			$context->setUser( $user );
+			$wgUser = $context->getUser(); // b/c
+			if ( strlen( $params['sessionId'] ) ) { // don't make a new random ID
 				wfSetupSession( $params['sessionId'] ); // sets $_SESSION
 			}
-			// Build the new WebRequest object
 			$request = new FauxRequest( array(), false, $_SESSION );
 			$request->setIP( $params['ip'] );
 			foreach ( $params['headers'] as $name => $value ) {
 				$request->setHeader( $name, $value );
 			}
-
-			$context = RequestContext::getMain();
 			// Set the current context to use the new WebRequest
 			$context->setRequest( $request );
 			$wgRequest = $context->getRequest(); // b/c
-			// Set the current user based on the new session and WebRequest
-			$context->setUser( User::newFromSession( $request ) ); // uses $_SESSION
-			$wgUser = $context->getUser(); // b/c
 		};
 
 		// Stash the old session and load in the new one
-		$oldParams = self::getMain()->getRequest()->exportUserSession();
-		$importSessionFunction( $params );
+		$oUser = self::getMain()->getUser();
+		$oParams = self::getMain()->exportSession();
+		$importSessionFunction( $user, $params );
 
 		// Set callback to save and close the new session and reload the old one
-		return new ScopedCallback( function() use ( $importSessionFunction, $oldParams ) {
-			$importSessionFunction( $oldParams );
+		return new ScopedCallback( function() use ( $importSessionFunction, $oUser, $oParams ) {
+			$importSessionFunction( $oUser, $oParams );
 		} );
 	}
 
