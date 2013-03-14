@@ -120,6 +120,23 @@ class JobQueueAggregatorRedis extends JobQueueAggregator {
 	}
 
 	/**
+	 * @see JobQueueAggregator::doPurge()
+	 */
+	protected function doPurge() {
+		$conn = $this->getConnection();
+		if ( !$conn ) {
+			return false;
+		}
+		try {
+			$conn->delete( $this->getReadyQueueKey() );
+		} catch ( RedisException $e ) {
+			$this->handleException( $conn, $e );
+			return false;
+		}
+		return true;
+	}
+
+	/**
 	 * Get a connection to the server that handles all sub-queues for this queue
 	 *
 	 * @return Array (server name, Redis instance)
