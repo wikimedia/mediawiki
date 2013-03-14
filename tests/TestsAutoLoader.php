@@ -30,6 +30,7 @@ $wgAutoloadClasses += array(
 	'DbTestPreviewer' => "$testDir/testHelpers.inc",
 	'DbTestRecorder' => "$testDir/testHelpers.inc",
 	'DelayedParserTest' => "$testDir/testHelpers.inc",
+	'ITestRecorder' => "$testDir/testHelpers.inc",
 	'ParserTestResult' => "$testDir/parser/ParserTestResult.php",
 	'TestFileIterator' => "$testDir/testHelpers.inc",
 	'TestRecorder' => "$testDir/testHelpers.inc",
@@ -49,6 +50,7 @@ $wgAutoloadClasses += array(
 	//db
 	'ORMTableTest' => "$testDir/phpunit/includes/db/ORMTableTest.php",
 	'DatabaseTestHelper' => "$testDir/phpunit/includes/db/DatabaseTestHelper.php",
+	'PageORMTableForTesting' => "$testDir/phpunit/includes/db/ORMTableTest.php",
 
 	# tests/phpunit/includes/api
 	'ApiFormatTestBase' => "$testDir/phpunit/includes/api/format/ApiFormatTestBase.php",
