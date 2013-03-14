@@ -1085,7 +1085,7 @@ Du bør vurdere om det er passende å fortsette å redigere denne siden.
 Slette- og flytteloggen for denne siden gjengis her:",
 'moveddeleted-notice' => 'Denne siden har blitt slettet.
 Slette- og flytteloggen vises nedenfor.',
-'log-fulllog' => 'Vil hele loggen',
+'log-fulllog' => 'Vis hele loggen',
 'edit-hook-aborted' => 'Redigering avbrutt av en funksjon, uten forklaring.',
 'edit-gone-missing' => 'Kunne ikke oppdatere siden fordi den har blitt slettet.',
 'edit-conflict' => 'Redigeringskonflikt.',
@@ -2093,6 +2093,7 @@ De burde i stedet lenke til en passende innholdsside.<br />
 En side anses om en pekerside om den inneholder en mal som det lenkes til fra [[MediaWiki:Disambiguationspage]].",
 
 'pageswithprop' => 'Sider med sideverdi',
+'pageswithprop-legend' => 'Sider med en sideverdi',
 
 'doubleredirects' => 'Doble omdirigeringer',
 'doubleredirectstext' => 'Denne siden lister opp de sidene som er omdirigeringer til andre omdirigeringssider.
@@ -4086,6 +4087,4 @@ Om det ikke er tilfellet, kan du bruke det enkle skjemaet som du finner under. K
 'duration-centuries' => '$1 {{PLURAL:$1|århundre|århundrer}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennier}}',
 
-# Unknown messages
-'pageswithprop-legend' => 'Sider med en sideverdi',
 );

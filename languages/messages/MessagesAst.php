@@ -1543,9 +1543,9 @@ Por favor, camienta si daveres quies xubir esti archivu.",
 'windows-nonascii-filename' => 'Esta wiki nun permite nomes de ficheru con caráuteres especiales.',
 'fileexists' => 'Yá esiste un ficheru con esti nome, por favor comprueba <strong>[[:$1]]</strong> si nun tas seguru de querer camudalu.
 [[$1|thumb]]',
-'filepageexists' => "La páxina de descripción d'esti ficheru yá se creó en <strong>[[:$1]]</strong>, pero anguaño nun esiste nengún ficheru con esti nome.
+'filepageexists' => "La páxina de descripción d'esti ficheru creóse yá en <strong>[[:$1]]</strong>, pero anguaño nun esiste nengún ficheru con esti nome.
 El resume que pongas nun va apaecer na páxina de descripción.
-Pa facer que'l to resume apaeza, vas tener que lu editar manualmente.
+Pa facer que'l to resume apaeza, vas tener qu'editalu manualmente.
 [[$1|thumb]]",
 'fileexists-extension' => 'Yá esiste un ficheru con un nome asemeyáu: [[$2|thumb]]
 * Nome del ficheru que se quier xubir: <strong>[[:$1]]</strong>
@@ -1657,7 +1657,7 @@ Si'l problema persiste, contauta con un [[Special:ListUsers/sysop|alministrador]
 'backend-fail-internal' => 'Hebo un fallu desconocíu nel motor d\'almacenamientu "$1".',
 'backend-fail-contenttype' => 'Non se pudo determinar la triba de conteníu de ficheru a guardar en "$1".',
 'backend-fail-batchsize' => "El motor d'almacenamientu dio un llote de $1 {{PLURAL:$1|operación|operaciones}} en ficheros; el llímite ye de $2 {{PLURAL:$2|operación|operaciones}}.",
-'backend-fail-usable' => 'Nun se pudo llee o escribir el ficheru «$1» porque nun hai permisos bastantes o falten los direutorios/contenedores.',
+'backend-fail-usable' => 'Nun pudo lleese o escribise nel ficheru «$1» porque nun hai permisos bastantes o falten los direutorios/contenedores.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Nun se pudo coneutar cola base de datos del diariu pal sofitu d\'almacenamientu "$1".',
@@ -1777,7 +1777,7 @@ Hai disponible una [[Special:WhatLinksHere/$2|llista completa]].",
 'duplicatesoffile' => "{{PLURAL:$1|El siguiente archivu ye un duplicáu|Los siguientes $1 archivos son duplicaos}} d'esti archivu ([[Special:FileDuplicateSearch/$2|más detalles]]):",
 'sharedupload' => "Esti ficheru ye de $1 y se pue usar n'otros proyeutos.",
 'sharedupload-desc-there' => 'Esti ficheru ye de $1 y puen usalu otros proyeutos.
-Llee la [páxina de descripción del ficheru $2] pa más información.',
+Llea la [páxina de descripción del ficheru $2] pa más información.',
 'sharedupload-desc-here' => "Esti ficheru ye de $1 y puen usalu otros proyeutos.
 La descripción de la [$2 páxina de descripción del ficheru] s'amuesa darréu.",
 'sharedupload-desc-edit' => "Esti ficheru ye de $1 y se pue usar n'otros proyeutos.
@@ -3663,11 +3663,11 @@ Tamién pues [[Special:EditWatchlist|usar l'editor estándar]].",
 'version-poweredby-credits' => "Esta wiki funciona con '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'otros',
 'version-credits-summary' => 'Nos prestaría dar reconocimientu a les siguientes persones pola so contribución a [[Special:Version|MediaWiki]].',
-'version-license-info' => "MediaWiki ye software llibre; pues redistribuilu y/o camudalu baxo los términos de la Llicencia Pública Xeneral GNU tal como ta asoleyada pola Free Software Foundation; o la versión 2 de la Llicencia, o (como prefieras) cualesquier versión posterior.
+'version-license-info' => "MediaWiki ye software llibre; pue redistribuilu y/o camudalu baxo los términos de la Llicencia Pública Xeneral GNU tal como ta asoleyada pola Free Software Foundation; o la versión 2 de la Llicencia, o (como prefieras) cualesquier versión posterior.
 
-MediaWiki se distribúi col envís de que seya afayadiza, pero ENSIN GARANTÍA DALA; ensin siquiera garantía implícita de COMERCIALIDÁ o ADAUTACIÓN A UN DETERMINÁU PROPÓSITU. Llee la Llicencia Pública Xeneral GNU pa más detalles.
+MediaWiki distribúise col envís de que seya afayadiza, pero ENSIN GARANTÍA DALA; ensin siquiera garantía implícita de COMERCIALIDÁ o ADAUTACIÓN A UN DETERMINÁU PROPÓSITU. Llea la Llicencia Pública Xeneral GNU pa más detalles.
 
-Tendríes d'haber recibío [{{SERVER}}{{SCRIPTPATH}}/COPYING una copia de la Llicencia Pública Xeneral GNU] xunto con esti programa; sinón, escribi a la Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA o [//www.gnu.org/licenses/old-licenses/gpl-2.0.html lleela en llinia].",
+Tendría d'haber recibío [{{SERVER}}{{SCRIPTPATH}}/COPYING una copia de la Llicencia Pública Xeneral GNU] xunto con esti programa; sinón, escriba a la Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA o [//www.gnu.org/licenses/old-licenses/gpl-2.0.html lleala en llinia].",
 'version-software' => 'Software instaláu',
 'version-software-product' => 'Productu',
 'version-software-version' => 'Versión',
@@ -3802,11 +3802,11 @@ Les imáxenes amuésense a resolución completa; les demás tribes d'archivu exe
 'logentry-move-move_redir-noredirect' => '$1 treslladó la páxina "$3" a "$4" sobre una redireición ensin dexar una redireición',
 'logentry-patrol-patrol' => '$1 marcó la revisión $4 de la páxina "$3" como patrullada',
 'logentry-patrol-patrol-auto' => '$1 marcó automaticamente la revisión $4 de la páxina "$3" como patrullada',
-'logentry-newusers-newusers' => "Se creó la cuenta d'usuariu $1",
-'logentry-newusers-create' => "Se creó la cuenta d'usuariu $1",
+'logentry-newusers-newusers' => "Creóse la cuenta d'usuariu $1",
+'logentry-newusers-create' => "Creóse la cuenta d'usuariu $1",
 'logentry-newusers-create2' => "$1 creó la cuenta d'usuariu $3",
 'logentry-newusers-byemail' => "$1 creó la cuenta d'usuariu $3 y la contraseña uviose per corréu electrónicu",
-'logentry-newusers-autocreate' => 'La cuenta $1 se creó automáticamente',
+'logentry-newusers-autocreate' => 'La cuenta $1 creóse automáticamente',
 'logentry-rights-rights' => '$1 camudó la pertenencia a grupos de $3 dende $4 a $5',
 'logentry-rights-rights-legacy' => '$1 camudó la pertenencia a grupos de $3',
 'logentry-rights-autopromote' => '$1 promocionó automáticamente de $4 a $5',

@@ -1544,6 +1544,7 @@ Ako izaberete da date ime, biće korišteno za pripisivanje za vaš rad.',
 'right-writeapi' => "Korištenje opcije ''write API''",
 'right-delete' => 'Brisanje stranica',
 'right-bigdelete' => 'Brisanje stranica sa velikom historijom',
+'right-deletelogentry' => 'Brisanje i vraćanje određenih zapisa u evidenciji',
 'right-deleterevision' => 'Brisanje i vraćanje određenih revizija stranice',
 'right-deletedhistory' => 'Pregled stavki obrisane historije, bez povezanog teksta',
 'right-deletedtext' => 'Pregled obrisanog teksta i izmjena između obrisanih revizija',
@@ -1958,6 +1959,10 @@ Ovdje je dostupan [[Special:WhatLinksHere/$2|potpuni spisak]].',
 Molimo pogledajte [$2 stranicu opisa datoteke] za ostale informacije.',
 'sharedupload-desc-here' => 'Ova datoteka je sa $1 i može se koristiti i na drugim projektima.
 Opis sa njene [$2 stranice opisa datoteke] je prikazan ispod.',
+'sharedupload-desc-edit' => 'Ova datoteka se nalazi na $1 i može da se koristi na drugim projektima.
+Njen opis možete urediti na [$2 stranici opisa datoteke].',
+'sharedupload-desc-create' => 'Ova datoteka se nalazi na $1 i može da se koristi na drugim projektima.
+Možda želite urediti njen opis na [$2 stranici opisa datoteke].',
 'filepage-nofile' => 'Ne postoji datoteka s ovim nazivom.',
 'filepage-nofile-link' => 'Ne postoji datoteka s ovim imenom, ali je možete [$1 postaviti].',
 'uploadnewversion-linktext' => 'Postavite noviju verziju ove datoteke',
@@ -2049,6 +2054,8 @@ Prije brisanja provjerite da li druge stranice vode na te šablone.',
 Umjesto toga, one se trebaju povezati sa konkretnim konkretnim stranicom.<br />
 Stranica se smatra čvorom, ukoliko koristi šablon koji je povezan sa spiskom [[MediaWiki:Disambiguationspage]]",
 
+'pageswithprop-submit' => 'Idi',
+
 'doubleredirects' => 'Dvostruka preusmjerenja',
 'doubleredirectstext' => 'Ova stranica prikazuje stranice koje preusmjeravaju na druga preusmjerenja.
 Svaki red sadrži veze na prvo i drugo preusmjerenje, kao i na prvu liniju teksta drugog preusmjerenja, što obično daje "pravi" ciljni članak, na koji bi prvo preusmjerenje i trebalo da pokazuje.
@@ -2072,6 +2079,7 @@ Svaki red sadrži veze na prvo i drugo preusmjerenje, kao i na prvu liniju tekst
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|bajt|bajtova}}',
 'ncategories' => '$1 {{PLURAL:$1|kategorija|kategorije}}',
+'ninterwikis' => '$1 {{PLURAL:$1|međujezična veza|međujezične veze}}',
 'nlinks' => '$1 {{PLURAL:$1|veza|veze}}',
 'nmembers' => '$1 {{PLURAL:$1|član|članova}}',
 'nrevisions' => '$1 {{PLURAL:$1|revizija|revizije|revizija}}',
@@ -2175,6 +2183,8 @@ Možda sadrži jedan ili više znakova koji se ne mogu koristiti u naslovima.',
 'allpages-hide-redirects' => 'Sakrij preusmjerenja',
 
 # SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'Gledate keširanu verziju ove stranice, koja može biti stara i do $1.',
+'cachedspecial-viewing-cached-ts' => 'Gledate keširanu verziju ove stranice, koja možda nije potpuno aktualna.',
 'cachedspecial-refresh-now' => 'Pogledaj najnoviju.',
 
 # Special:Categories
@@ -2896,6 +2906,7 @@ Sve akcije pri međuwiki uvozu će biti zapisane u [[Special:Log/import|zapisu u
 'import-interwiki-templates' => 'Uključi sve šablone',
 'import-interwiki-submit' => 'Uvoz',
 'import-interwiki-namespace' => 'Odredišni imenski prostor:',
+'import-interwiki-rootpage' => 'Odredišna osnovna stranica (opcionalno):',
 'import-upload-filename' => 'Naziv datoteke:',
 'import-comment' => 'Komentar:',
 'importtext' => 'Molimo Vas da izvezete datoteku iz izvornog wikija koristeći [[Special:Export|alat za izvoz]].
@@ -2932,6 +2943,8 @@ Nedostaje privremeni folder.',
 'import-error-special' => 'Stranica "$1" nije uvezena jer pripada posebnom imenskom prostoru koje ne prihvata stranice.',
 'import-error-invalid' => 'Stranica "$1" nije uvezena jer je njen naziv neispravan.',
 'import-options-wrong' => '{{PLURAL:$2|Pogrešna opcija|Pogrešne opcije}}: <nowiki>$1</nowiki>',
+'import-rootpage-invalid' => 'Navedena osnovna stranica ima neispravan naslov.',
+'import-rootpage-nosubpage' => 'Imenski prostor "$1" osnovne stranice ne dozvoljava podstranice.',
 
 # Import log
 'importlogpage' => 'Zapisnik uvoza',
@@ -3077,6 +3090,7 @@ Ovo je vjerovatno izazvao vezom ka vanjskoj nepoželjnoj stranici.',
 'pageinfo-header-restrictions' => 'Zaštita stranice',
 'pageinfo-header-properties' => 'Svojstva stranice',
 'pageinfo-display-title' => 'Naslov stranice',
+'pageinfo-default-sort' => 'Podrazumijevani ključ sortiranja',
 'pageinfo-length' => 'Dužina stranice (u bajtovima)',
 'pageinfo-article-id' => 'ID stranice',
 'pageinfo-language' => 'Jezik sadržaja stranice',
@@ -3084,6 +3098,7 @@ Ovo je vjerovatno izazvao vezom ka vanjskoj nepoželjnoj stranici.',
 'pageinfo-watchers' => 'Broj pratitelja stranice',
 'pageinfo-redirects-name' => 'Preusmjeravanja na ovu stranicu',
 'pageinfo-subpages-name' => 'Podstranice ove stranice',
+'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|preusmjerenje|preusmjerenja}}; $3 {{PLURAL:$3|nepreusmjerenje|nepreusmjerenja}})',
 'pageinfo-firstuser' => 'Korisnik koji je napravio stranicu',
 'pageinfo-firsttime' => 'Datum stvaranja stranice',
 'pageinfo-lastuser' => 'Posljednji urednik stranice',
@@ -3155,6 +3170,7 @@ $1',
 'file-info-size-pages' => '$1 × $2 piksela, veličina datoteke: $3, MIME vrsta: $4, $5 {{PLURAL:$5|stranica|stranice|stranica}}',
 'file-nohires' => 'Veća rezolucija nije dostupna.',
 'svg-long-desc' => 'SVG fajl, dozvoljeno $1 × $2 piksela, veličina fajla: $3',
+'svg-long-desc-animated' => 'Animirana SVG datoteka, nominalno: $1 × $2 piksela, veličina datoteke: $3',
 'show-big-image' => 'Vidi sliku u punoj veličini (rezoluciji)',
 'show-big-image-preview' => 'Veličina ovog prikaza: $1.',
 'show-big-image-other' => '{{PLURAL:$2|Druga rezolucija|Ostale rezolucije}}: $1.',
@@ -3164,6 +3180,8 @@ $1',
 'file-info-png-looped' => 'stalno iznova',
 'file-info-png-repeat' => 'pregledano $1 {{PLURAL:$1|put|puta}}',
 'file-info-png-frames' => '$1 {{PLURAL:$1|sličica|sličice|sličica}}',
+'file-no-thumb-animation' => "'''Napomena: Zbog tehničkih ograničenja minijature ove datoteke neće biti animirane.'''",
+'file-no-thumb-animation-gif' => "'''Napomena: Zbog tehničkih ograničenja, minijature GIF slika visoke rezolucije kao što je ova neće biti animirane.'''",
 
 # Special:NewFiles
 'newimages' => 'Galerija novih slika',
@@ -3861,6 +3879,7 @@ Trebali biste dobiti [{{SERVER}}{{SCRIPTPATH}}/KOPIJU GNU opće javne licence] z
 'version-software' => 'Instalirani softver',
 'version-software-product' => 'Proizvod',
 'version-software-version' => 'Verzija',
+'version-entrypoints-header-entrypoint' => 'Ulazna tačka',
 'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
