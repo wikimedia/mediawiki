@@ -2239,6 +2239,8 @@ class EditPage {
 		$wgOut->addHTML( Html::rawElement( 'div', array( 'class' => 'hiddencats' ),
 			Linker::formatHiddenCategories( $this->mArticle->getHiddenCategories() ) ) );
 
+		$wgOut->addHTML( self::getPreviewLimitReport( $this->mParserOutput ) );
+
 		if ( $this->isConflict ) {
 			try {
 				$this->showConflict();
@@ -2814,6 +2816,48 @@ HTML
 
 		return "<div id=\"editpage-copywarn\">\n" .
 			call_user_func_array( 'wfMessage', $copywarnMsg )->plain() . "\n</div>";
+	}
+
+	/**
+	 * Get the Limit report for page previews
+	 *
+	 * @since 1.21
+	 * @param ParserOutput $output ParserOutput object from the parse
+	 * @return string HTML
+	 */
+	public static function getPreviewLimitReport( ParserOutput $output ) {
+		$limitReport = Html::openElement( 'table', array(
+			'class' => 'preview-limit-report wikitable mw-collapsible mw-collapsed'
+		) ) .
+			Html::openElement( 'thead' ) .
+			Html::openElement( 'tr' ) .
+			Html::rawElement( 'th', array( 'colspan' => 2 ), wfMessage( 'limitreport-title' )->parse() ) .
+			Html::closeElement( 'tr' ) .
+			Html::closeElement( 'thead' ) .
+			Html::openElement( 'tbody' );
+
+		foreach ( $output->getLimitReportData() as $key => $value ) {
+			if ( wfRunHooks( 'ParserLimitReportFormat',
+				array( $key, $value, &$limitReport, true, true )
+			) ) {
+				$keyMsg = wfMessage( $key );
+				$valueMsg = wfMessage( array( "$key-value-html", "$key-value" ) );
+				if ( !$valueMsg->exists() ) {
+					$valueMsg = new RawMessage( '$1' );
+				}
+				if ( !$keyMsg->isDisabled() && !$valueMsg->isDisabled() ) {
+					$limitReport .= Html::openElement( 'tr' ) .
+						Html::rawElement( 'th', null, $keyMsg->parse() ) .
+						Html::rawElement( 'td', null, $valueMsg->params( $value )->parse() ) .
+						Html::closeElement( 'tr' );
+				}
+			}
+		}
+
+		$limitReport .= Html::closeElement( 'tbody' ) .
+			Html::closeElement( 'table' );
+
+		return $limitReport;
 	}
 
 	protected function showStandardInputs( &$tabindex = 2 ) {
