@@ -44,6 +44,7 @@ class ApiCreateAccount extends ApiBase {
 		$params = $this->extractRequestParams();
 
 		$result = array();
+		$apiResult = $this->getResult();
 
 		// Init session if necessary
 		if ( session_id() == '' ) {
@@ -52,6 +53,23 @@ class ApiCreateAccount extends ApiBase {
 
 		if( $params['mailpassword'] && !$params['email'] ) {
 			$this->dieUsageMsg( 'noemail' );
+		}
+
+		// Run hooks
+		// Handle APICreateAccountBeforeCreate parameters
+		$r = array();
+		$fakeUser = User::newFromName( $params['name'] );
+		if ( !wfRunHooks( 'APICreateAccountBeforeCreate', array( $fakeUser, &$r ) ) ) {
+			// Pass back a token to assist in next retry.
+			if ( count( $r ) ) {
+				$r['result'] = 'Failure';
+				$r['token'] = LoginForm::getCreateaccountToken();
+				$apiResult->addValue( null, $this->getModuleName(), $r );
+				return;
+			} else {
+				$this->dieUsageMsg( 'hookaborted' );
+			}
+			return;
 		}
 
 		$context = new DerivativeContext( $this->getContext() );
@@ -117,8 +135,6 @@ class ApiCreateAccount extends ApiBase {
 			$result['userid'] = $user->getId();
 			$result['token'] = $user->getToken();
 		}
-
-		$apiResult = $this->getResult();
 
 		if( $status->hasMessage( 'sessionfailure' ) || $status->hasMessage( 'nocookiesfornew' ) ) {
 			// Token was incorrect, so add it to result, but don't throw an exception
@@ -255,6 +271,7 @@ class ApiCreateAccount extends ApiBase {
 			'invalidemailaddress',
 			'externaldberror',
 			'acct_creation_throttle_hit',
+			'hookaborted',
 		);
 
 		$errors = parent::getPossibleErrors();

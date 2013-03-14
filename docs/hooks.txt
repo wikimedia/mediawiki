@@ -345,6 +345,12 @@ $user: Current user
 &$message: API usage message to die with, as a message key or array
 as accepted by ApiBase::dieUsageMsg.
 
+'APICreateAccountBeforeCreate': Before creating a user with api.php?action=createuser,
+after processing request parameters. Return false to let the request fail, returning
+an error message or an <createuser result="Failure"> tag if $resultArr was filled.
+$user: Provisional user object containing the target user name
+&$resultArr : data in this array will be added to the API result
+
 'APIEditBeforeSave': Before saving a page with api.php?action=edit, after
 processing request parameters. Return false to let the request fail, returning
 an error message or an <edit result="Failure"> tag if $resultArr was filled.
