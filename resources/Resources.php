@@ -614,6 +614,7 @@ return array(
 		'messages' => array (
 			'templatesusedlabel',
 			'hiddencategorieslabel',
+			'limitreport-collapse-label',
 		),
 	),
 	'mediawiki.debug' => array(
