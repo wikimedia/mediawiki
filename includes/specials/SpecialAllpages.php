@@ -297,10 +297,10 @@ class SpecialAllpages extends IncludableSpecialPage {
 	 * @param string $inpoint lower limit of pagenames
 	 * @param string $outpoint upper limit of pagenames
 	 * @param $namespace Integer (Default NS_MAIN)
-	 * @param bool $hideredirects dont show redirects (default FALSE)
+	 * @param bool $hideRedirects don't show redirects. Default: false
 	 * @return string
 	 */
-	function showline( $inpoint, $outpoint, $namespace = NS_MAIN, $hideredirects ) {
+	function showline( $inpoint, $outpoint, $namespace = NS_MAIN, $hideRedirects = false ) {
 		global $wgContLang;
 		$inpointf = htmlspecialchars( str_replace( '_', ' ', $inpoint ) );
 		$outpointf = htmlspecialchars( str_replace( '_', ' ', $outpoint ) );
@@ -308,15 +308,20 @@ class SpecialAllpages extends IncludableSpecialPage {
 		$inpointf = $wgContLang->truncate( $inpointf, $this->maxPageLength );
 		$outpointf = $wgContLang->truncate( $outpointf, $this->maxPageLength );
 
-		$queryparams = $namespace ? "namespace=$namespace&" : '';
+		$queryParams = array (
+			'from' => $inpoint,
+			'to' => $outpoint,
+		);
 
-		$queryhideredirects = array();
-		if ( $hideredirects ) {
-			$queryhideredirects['hideredirects'] = 1;
+		if( $namespace ) {
+			$queryParams['namespace'] = $namespace;
+		}
+		if ( $hideRedirects ) {
+			$queryParams['hideredirects'] = 1;
 		}
 
 		$special = $this->getTitle();
-		$link = htmlspecialchars( $special->getLocalUrl( $queryparams . 'from=' . urlencode( $inpoint ) . '&to=' . urlencode( $outpoint ), $queryhideredirects ) );
+		$link = htmlspecialchars( $special->getLocalUrl( $queryParams ) );
 
 		$out = $this->msg( 'alphaindexline' )->rawParams(
 			"<a href=\"$link\">$inpointf</a></td><td>",
