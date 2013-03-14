@@ -1151,6 +1151,11 @@ class AutoLoader {
 	static protected $autoloadLocalClassesLower = null;
 
 	/**
+	 * @var array $namespaceRootDirs map from namespace prefix to root classpath
+	 */
+	static protected $namespaceRootDirs = array();
+
+	/**
 	 * autoload - take a class name and attempt to load it
 	 *
 	 * @param string $className name of class we're looking for.
@@ -1174,6 +1179,8 @@ class AutoLoader {
 			$filename = $wgAutoloadLocalClasses[$className];
 		} elseif ( isset( $wgAutoloadClasses[$className] ) ) {
 			$filename = $wgAutoloadClasses[$className];
+		} elseif ( $filename = self::searchNamespaces( $className ) ) {
+			// found it!
 		} elseif ( $wgAutoloadAttemptLowercase ) {
 			/*
 			 * Try a different capitalisation.
@@ -1233,6 +1240,90 @@ class AutoLoader {
 	 */
 	static function resetAutoloadLocalClassesLower() {
 		self::$autoloadLocalClassesLower = null;
+	}
+
+	/**
+	 * Register a mapping from namespace hierarchy prefix to root directory
+	 *
+	 * Then, when a namespace prefix is matched during autoloading, any remaining
+	 * namespace segments will be appended to this root directory, following PSR-4 (proposed):
+	 * @link https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md
+	 *
+	 * The most specific matching namespace is searched first, falling back to those with
+	 * fewer segments.
+	 *
+	 * Note that we are not implementing the optional PSR-4 extension to allow multiple base
+	 * directories for a single namespace prefix.
+	 *
+	 * Examples:
+	 * @code
+	 * // From CentralNotice.php,
+	 * AutoLoader::registerNamespace( 'MediaWiki\Extensions\CentralNotice', __DIR__ . "/includes" );
+	 * @endcode
+	 *
+	 * If a namespace has been registered as above, the following instantiation will
+	 * attempt to load the class from MW_ROOT/extensions/CentralNotice/includes/Allocations/Criteria.php:
+	 * @code
+	 * new MediaWiki\Extensions\CentralNotice\Allocations\Criteria();
+	 * @endcode
+	 *
+	 * @param string $namespace namespace prefix for which this rule applies
+	 * @param string $rootDir absolute path where classfiles will be found
+	 *
+	 * @since 1.23
+	 */
+	static function registerNamespace( $namespace, $rootDir ) {
+		global $IP;
+		$namespace = ltrim( $namespace, '\\' );
+		if ( substr( $rootDir, 0, 1 ) != '/' ) {
+			$rootDir = $IP . '/' . $rootDir;
+		}
+		self::$namespaceRootDirs[$namespace] = $rootDir;
+	}
+
+	/**
+	 * Attempt class lookup in the namespace registry
+	 *
+	 * @param string $className fully-qualified class name
+	 *
+	 * @return string the expected filename of a class discovered by
+	 * matching its namespace prefix against @see $namespaceRootDirs.
+	 * If there is no match, return an empty string.
+	 */
+	static protected function searchNamespaces( $className ) {
+		// Strip the classname component
+		$namespace = self::rstripNamespace( $className );
+
+		// Attempt the most specific namespace prefix first
+		while ( $namespace ) {
+			if ( isset( self::$namespaceRootDirs[$namespace] ) ) {
+				$remainingClassPath = substr( $className, strlen( $namespace ) + 1 );
+				$subpath = str_replace( '\\', '/', $remainingClassPath );
+				$filename =
+					self::$namespaceRootDirs[$namespace] . '/' . $subpath . '.php';
+
+				return $filename;
+			}
+
+			$namespace = self::rstripNamespace( $namespace );
+		}
+
+		// Not found. Return an empty string so that HipHop doesn't have to
+		// generate multiple copies of bytecode to support a mixed output type.
+		return '';
+	}
+
+	/**
+	 * Remove the rightmost class or namespace from a fully qualified className
+	 * or prefix.
+	 *
+	 * @param string $className fully qualified class, or a namespace hierarchy
+	 *
+	 * @return string leftmost N - 1 namespace sub-levels, or an empty string
+	 * if there were no more segments to remove.
+	 */
+	static protected function rstripNamespace( $className ) {
+		return substr( $className, 0, strrpos( $className, '\\' ) );
 	}
 }
 
