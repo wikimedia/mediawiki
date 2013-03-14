@@ -147,9 +147,9 @@
 		 * expiration time is reset each time the ID is queried, so in most cases this ID will
 		 * persist until the browser's cookies are cleared or the user doesn't visit for 1 year.
 		 *
-		 * @return String: User name or random session ID
+		 * @return {string} User name or random session ID
 		 */
-		this.id = function() {
+		this.id = function () {
 			var id,
 				name = user.getName();
 			if ( name ) {

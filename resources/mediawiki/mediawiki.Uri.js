@@ -201,7 +201,7 @@
 					uri = this,
 					matches = parser[ options.strictMode ? 'strict' : 'loose' ].exec( str );
 				$.each( properties, function ( i, property ) {
-					uri[ property ] = matches[ i+1 ];
+					uri[ property ] = matches[ i + 1 ];
 				} );
 
 				// uri.query starts out as the query string; we will parse it into key-val pairs then make
@@ -210,7 +210,7 @@
 				q = {};
 				// using replace to iterate over a string
 				if ( uri.query ) {
-					uri.query.replace( /(?:^|&)([^&=]*)(?:(=)([^&]*))?/g, function ($0, $1, $2, $3) {
+					uri.query.replace( /(?:^|&)([^&=]*)(?:(=)([^&]*))?/g, function ( $0, $1, $2, $3 ) {
 						var k, v;
 						if ( $1 ) {
 							k = Uri.decode( $1 );
