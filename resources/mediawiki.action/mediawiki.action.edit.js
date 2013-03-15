@@ -96,7 +96,7 @@
 	mw.toolbar = toolbar;
 
 	$( document ).ready( function () {
-		var buttons, i, b, $iframe;
+		var i, buttons, b, $iframe, collapsibleLists, c;
 
 		// currentFocus is used to determine where to insert tags
 		currentFocused = $( '#wpTextbox1' );
@@ -163,6 +163,47 @@
 				.focus( function () {
 					currentFocused = $iframe;
 				} );
+		}
+
+		// Collapsible lists of categories and templates
+		collapsibleLists = [
+			{
+				$list: $( '.templatesUsed ul' ),
+				$toggler: $( '.mw-templatesUsedExplanation' ),
+				cookie: 'templates-used-list'
+			},
+			{
+				$list: $( '.hiddencats ul' ),
+				$toggler: $( '.mw-hiddenCategoriesExplanation' ),
+				cookie: 'hidden-categories-list'
+			}
+		];
+
+		for ( i = 0; i < collapsibleLists.length; i++ ) {
+			/*jshint loopfunc:true */
+			c = collapsibleLists[i];
+
+			// Make the toggler appear clickable; the <a> is additionally styled with an arrow icon
+			c.$toggler.find( 'p' ).wrapInner( $( '<a>' ).addClass( 'mw-editfooter-toggler' ) );
+			c.$list.addClass( 'mw-editfooter-list' );
+
+			c.$list.makeCollapsible( {
+				$customTogglers: c.$toggler,
+				linksPassthru: false,
+				plainMode: true,
+				collapsed: ( $.cookie( c.cookie ) !== 'expanded' )
+			} );
+
+			c.$list.addClass( $.cookie( c.cookie ) !== 'expanded' ? 'collapsed' : 'expanded' );
+
+			c.$list.on( 'beforeExpand.mw-collapse', function () {
+				c.$toggler.toggleClass( 'expanded collapsed' );
+				$.cookie( c.cookie, 'expanded' );
+			} );
+			c.$list.on( 'beforeCollapse.mw-collapse', function () {
+				c.$toggler.toggleClass( 'expanded collapsed' );
+				$.cookie( c.cookie, 'collapsed' );
+			} );
 		}
 	});
 
