@@ -218,6 +218,30 @@ class ApiPageSet extends ApiBase {
 	}
 
 	/**
+	 * Return the parameter name that is the source of data for this PageSet
+	 *
+	 * If multiple source parameters are specified (e.g. titles and pageids),
+	 * one will be named arbitrarily.
+	 *
+	 * @return string|null
+	 */
+	public function getDataSource() {
+		if ( $this->mAllowGenerator && isset( $this->mParams['generator'] ) ) {
+			return 'generator';
+		}
+		if ( isset( $this->mParams['titles'] ) ) {
+			return 'titles';
+		}
+		if ( isset( $this->mParams['pageids'] ) ) {
+			return 'pageids';
+		}
+		if ( isset( $this->mParams['revids'] ) ) {
+			return 'revids';
+		}
+		return null;
+	}
+
+	/**
 	 * Request an additional field from the page table.
 	 * Must be called before execute()
 	 * @param string $fieldName Field name
