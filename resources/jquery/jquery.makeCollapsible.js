@@ -15,6 +15,8 @@
  * @license GPL2 <http://www.gnu.org/licenses/old-licenses/gpl-2.0.html>
  */
 ( function ( $, mw ) {
+	var lpx = 'jquery.makeCollapsible> ';
+
 	/**
 	 * @param {jQuery} $collapsible
 	 * @param {string} action The action this function will take ('expand' or 'collapse').
@@ -216,22 +218,33 @@
 		togglingHandler( $that, $collapsible, e, options );
 	}
 
-	$.fn.makeCollapsible = function () {
+	/**
+	 * Make any element collapsible.
+	 *
+	 * Supported options:
+	 * - collapseText: text to be used for the toggler when clicking it would
+	 *   collapse the element. Default: the 'data-collapsetext' attribute of
+	 *   the collapsible element or the content of 'collapsible-collapse'
+	 *   message.
+	 * - expandText: text to be used for the toggler when clicking it would
+	 *   expand the element. Default: the 'data-expandtext' attribute of
+	 *   the collapsible element or the content of 'collapsible-expand'
+	 *   message.
+	 * - collapsed: boolean, whether to collapse immediately. By default
+	 *   collapse only if the elements has the 'mw-collapsible' class.
+	 * - $customTogglers: jQuerified list of elements to be used as togglers
+	 *   for this collapsible element. By default, if the collapsible element
+	 *   has an id attribute like 'mw-customcollapsible-XXX', elements with a
+	 *   *class* of 'mw-customtoggle-XXX' are made togglers for it.
+	 */
+	$.fn.makeCollapsible = function ( options ) {
 		return this.each(function () {
-			// Define reused variables and functions
-			var lpx = 'jquery.makeCollapsible> ',
-				collapsible = this,
-				// Ensure class "mw-collapsible" is present in case .makeCollapsible()
-				// is called on element(s) that don't have it yet.
-				$collapsible = $(collapsible).addClass( 'mw-collapsible' ),
-				collapsetext = $collapsible.attr( 'data-collapsetext' ),
-				expandtext = $collapsible.attr( 'data-expandtext' ),
-				$toggle,
-				$toggleLink,
-				$firstItem,
-				collapsibleId,
-				$customTogglers,
-				firstval;
+			var $collapsible, collapsetext, expandtext, $toggle, $toggleLink, $firstItem, collapsibleId,
+				$customTogglers, firstval;
+
+			// Ensure class "mw-collapsible" is present in case .makeCollapsible()
+			// is called on element(s) that don't have it yet.
+			$collapsible = $(this).addClass( 'mw-collapsible' );
 
 			// Return if it has been enabled already.
 			if ( $collapsible.data( 'mw-made-collapsible' ) ) {
@@ -240,13 +253,9 @@
 				$collapsible.data( 'mw-made-collapsible', true );
 			}
 
-			// Use custom text or default ?
-			if ( !collapsetext ) {
-				collapsetext = mw.msg( 'collapsible-collapse' );
-			}
-			if ( !expandtext ) {
-				expandtext = mw.msg( 'collapsible-expand' );
-			}
+			// Use custom text or default?
+			collapsetext = options.collapsetext || $collapsible.attr( 'data-collapsetext' ) || mw.msg( 'collapsible-collapse' );
+			expandtext = options.expandText || $collapsible.attr( 'data-expandtext' ) || mw.msg( 'collapsible-expand' );
 
 			// Create toggle link with a space around the brackets (&nbsp;[text]&nbsp;)
 			$toggleLink =
@@ -263,23 +272,29 @@
 
 			// Check if this element has a custom position for the toggle link
 			// (ie. outside the container or deeper inside the tree)
-			// Then: Locate the custom toggle link(s) and bind them
-			if ( ( $collapsible.attr( 'id' ) || '' ).indexOf( 'mw-customcollapsible-' ) === 0 ) {
-				collapsibleId = $collapsible.attr( 'id' );
-				$customTogglers = $( '.' + collapsibleId.replace( 'mw-customcollapsible', 'mw-customtoggle' ) );
-				mw.log( lpx + 'Found custom collapsible: #' + collapsibleId );
+			if ( options.$customTogglers ) {
+				$customTogglers = $( options.$customTogglers );
+			} else {
+				collapsibleId = $collapsible.attr( 'id' ) || '';
+				if ( collapsibleId.indexOf( 'mw-customcollapsible-' ) === 0 ) {
+					mw.log( lpx + 'Found custom collapsible: #' + collapsibleId );
+					$customTogglers = $( '.' + collapsibleId.replace( 'mw-customcollapsible', 'mw-customtoggle' ) );
 
-				// Double check that there is actually a customtoggle link
-				if ( $customTogglers.length ) {
-					$customTogglers.on( 'click.mw-collapse', function ( e, options ) {
-						toggleLinkCustom( $(this), e, options, $collapsible );
-					} );
-				} else {
-					mw.log( lpx + '#' + collapsibleId + ': Missing toggler!' );
+					// Double check that there is actually a customtoggle link
+					if ( !$customTogglers.length ) {
+						mw.log( lpx + '#' + collapsibleId + ': Missing toggler!' );
+					}
 				}
+			}
+
+			// Bind the custom togglers
+			if ( $customTogglers && $customTogglers.length ) {
+				$customTogglers.on( 'click.mw-collapse', function ( e, options ) {
+					toggleLinkCustom( $(this), e, options, $collapsible );
+				} );
 
 				// Initial state
-				if ( $collapsible.hasClass( 'mw-collapsed' ) ) {
+				if ( options.collapsed || $collapsible.hasClass( 'mw-collapsed' ) ) {
 					// Remove here so that the toggler goes in the right direction,
 					// It re-adds the class.
 					$collapsible.removeClass( 'mw-collapsed' );
@@ -287,7 +302,7 @@
 				}
 
 			// If this is not a custom case, do the default:
-			// Wrap the contents add the toggle link
+			// Wrap the contents and add the toggle link
 			} else {
 				// Elements are treated differently
 				if ( $collapsible.is( 'table' ) ) {
@@ -348,7 +363,10 @@
 
 			// Initial state (only for those that are not custom,
 			// because the initial state of those has been taken care of already).
-			if ( $collapsible.hasClass( 'mw-collapsed' ) && ( $collapsible.attr( 'id' ) || '').indexOf( 'mw-customcollapsible-' ) !== 0 ) {
+			if (
+				( options.collapsed || $collapsible.hasClass( 'mw-collapsed' ) ) &&
+				( !$customTogglers || !$customTogglers.length )
+			) {
 				$collapsible.removeClass( 'mw-collapsed' );
 				// The collapsible element could have multiple togglers
 				// To toggle the initial state only click one of them (ie. the first one, eq(0) )
