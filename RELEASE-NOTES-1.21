@@ -203,6 +203,7 @@ production.
 * (bug 44719) Removed mention of non-existing maintenance/migrateCurStubs.php
   script in includes/DefaultSettings.php
 * (bug 45143) jquery.badge: Treat non-Latin variants of zero as zero as well.
+* (bug 46151) mwdocgen.php should not ignore exit code of doxygen command.
 
 === API changes in 1.21 ===
 * prop=revisions can now report the contentmodel and contentformat.

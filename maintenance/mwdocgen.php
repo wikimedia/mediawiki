@@ -254,7 +254,8 @@ $command
 
 TEXT;
 
-passthru( $command );
+$exitcode = 1;
+passthru( $command, $exitcode );
 
 echo <<<TEXT
 ---------------------------------------------------
@@ -264,3 +265,5 @@ Check above for possible errors.
 You might want to delete the temporary file $generatedConf
 
 TEXT;
+
+exit( $exitcode );
