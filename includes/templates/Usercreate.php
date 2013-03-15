@@ -108,7 +108,7 @@ class UsercreateTemplate extends QuickTemplate {
 			$doms .= "<option>" . htmlspecialchars( $dom ) . "</option>";
 		}
 	?>
-		<tr>
+		<tr id="mw-user-domain-section">
 			<td class="mw-label"><?php $this->msg( 'yourdomainname' ) ?></td>
 			<td class="mw-input">
 				<select name="wpDomain" value="<?php $this->text( 'domain' ) ?>"
