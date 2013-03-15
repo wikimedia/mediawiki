@@ -49,7 +49,7 @@
 
 		// Handle different kinds of elements
 
-		if ( $collapsible.is( 'table' ) ) {
+		if ( !options.plainMode && $collapsible.is( 'table' ) ) {
 			// Tables
 			$containers = $collapsible.find( '> tbody > tr' );
 			if ( $defaultToggle ) {
@@ -70,7 +70,7 @@
 				$containers.stop( true, true ).fadeIn();
 			}
 
-		} else if ( $collapsible.is( 'ul' ) || $collapsible.is( 'ol' ) ) {
+		} else if ( !options.plainMode && ( $collapsible.is( 'ul' ) || $collapsible.is( 'ol' ) ) ) {
 			// Lists
 			$containers = $collapsible.find( '> li' );
 			if ( $defaultToggle ) {
@@ -93,7 +93,7 @@
 			$collapsibleContent = $collapsible.find( '> .mw-collapsible-content' );
 
 			// If a collapsible-content is defined, act on it
-			if ( $collapsibleContent.length ) {
+			if ( !options.plainMode && $collapsibleContent.length ) {
 				if ( action === 'collapse' ) {
 					if ( options.instantHide ) {
 						$collapsibleContent.hide();
@@ -235,11 +235,16 @@
 	 *   for this collapsible element. By default, if the collapsible element
 	 *   has an id attribute like 'mw-customcollapsible-XXX', elements with a
 	 *   *class* of 'mw-customtoggle-XXX' are made togglers for it.
+	 * - plainMode: boolean, whether to use a "plain mode" when making the
+	 *   element collapsible - that is, hide entire tables and lists (instead
+	 *   of hiding only all rows but first of tables, and hiding each list
+	 *   item separately for lists) and don't wrap other elements in
+	 *   div.mw-collapsible-content. May only be used with custom togglers.
 	 */
 	$.fn.makeCollapsible = function ( options ) {
 		return this.each(function () {
 			var $collapsible, collapsetext, expandtext, $toggle, $toggleLink, $firstItem, collapsibleId,
-				$customTogglers, firstval;
+				$customTogglers, firstval, plainMode;
 
 			// Ensure class "mw-collapsible" is present in case .makeCollapsible()
 			// is called on element(s) that don't have it yet.
@@ -255,6 +260,9 @@
 			// Use custom text or default?
 			collapsetext = options.collapsetext || $collapsible.attr( 'data-collapsetext' ) || mw.msg( 'collapsible-collapse' );
 			expandtext = options.expandText || $collapsible.attr( 'data-expandtext' ) || mw.msg( 'collapsible-expand' );
+
+			// Handle plain mode
+			plainMode = !!options.plainMode;
 
 			// Create toggle link with a space around the brackets (&nbsp;[text]&nbsp;)
 			$toggleLink =
@@ -289,6 +297,7 @@
 			// Bind the custom togglers
 			if ( $customTogglers && $customTogglers.length ) {
 				$customTogglers.on( 'click.mw-collapse', function ( e, options ) {
+					options = $.extend( { plainMode: plainMode }, options );
 					toggleLinkCustom( $(this), e, options, $collapsible );
 				} );
 
