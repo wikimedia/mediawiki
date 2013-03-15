@@ -229,9 +229,9 @@ abstract class DatabaseBase implements DatabaseType {
 	protected $mConn = null;
 	protected $mOpened = false;
 
-	/** @var array of Closure */
+	/** @var callable[] */
 	protected $mTrxIdleCallbacks = array();
-	/** @var array of Closure */
+	/** @var callable[] */
 	protected $mTrxPreCommitCallbacks = array();
 
 	protected $mTablePrefix;
@@ -2966,10 +2966,10 @@ abstract class DatabaseBase implements DatabaseType {
 	 * after the database is updated so that the jobs will see the data when they actually run.
 	 * It can also be used for updates that easily cause deadlocks if locks are held too long.
 	 *
-	 * @param Closure $callback
+	 * @param callable $callback
 	 * @since 1.20
 	 */
-	final public function onTransactionIdle( Closure $callback ) {
+	final public function onTransactionIdle( $callback ) {
 		$this->mTrxIdleCallbacks[] = $callback;
 		if ( !$this->mTrxLevel ) {
 			$this->runOnTransactionIdleCallbacks();
@@ -2984,10 +2984,10 @@ abstract class DatabaseBase implements DatabaseType {
 	 * This is useful for updates that easily cause deadlocks if locks are held too long
 	 * but where atomicity is strongly desired for these updates and some related updates.
 	 *
-	 * @param Closure $callback
+	 * @param callable $callback
 	 * @since 1.22
 	 */
-	final public function onTransactionPreCommitOrIdle( Closure $callback ) {
+	final public function onTransactionPreCommitOrIdle( $callback ) {
 		if ( $this->mTrxLevel ) {
 			$this->mTrxPreCommitCallbacks[] = $callback;
 		} else {

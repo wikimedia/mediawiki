@@ -26,13 +26,13 @@
  * @since 1.21
  */
 class ScopedCallback {
-	/** @var Closure */
+	/** @var callable */
 	protected $callback;
 
 	/**
-	 * @param $callback Closure
+	 * @param callable $callback
 	 */
-	public function __construct( Closure $callback ) {
+	public function __construct( $callback ) {
 		$this->callback = $callback;
 	}
 
