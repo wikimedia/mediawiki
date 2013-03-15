@@ -44,8 +44,9 @@ class ApiSetNotificationTimestamp extends ApiBase {
 		$this->requireMaxOneParameter( $params, 'timestamp', 'torevid', 'newerthanrevid' );
 
 		$pageSet = $this->getPageSet();
-		$args = array_merge( array( $params, 'entirewatchlist' ), array_keys( $pageSet->getAllowedParams() ) );
-		call_user_func_array( array( $this, 'requireOnlyOneParameter' ), $args );
+		if ( $params['entirewatchlist'] && $pageSet->getDataSource() !== null ) {
+			$this->dieUsage( "Cannot use 'entirewatchlist' at the same time as '{$pageSet->getDataSource()}'", 'multisource' );
+		}
 
 		$dbw = wfGetDB( DB_MASTER, 'api' );
 
