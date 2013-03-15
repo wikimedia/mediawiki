@@ -711,6 +711,7 @@ return array(
 		'dependencies' => array(
 			'jquery.textSelection',
 			'jquery.byteLimit',
+			'jquery.makeCollapsible',
 		),
 		'position' => 'top',
 	),
