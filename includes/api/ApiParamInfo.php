@@ -179,18 +179,6 @@ class ApiParamInfo extends ApiBase {
 				);
 			}
 
-			//handle missing type
-			if ( !isset( $p[ApiBase::PARAM_TYPE] ) ) {
-				$dflt = isset( $p[ApiBase::PARAM_DFLT] ) ? $p[ApiBase::PARAM_DFLT] : null;
-				if ( is_bool( $dflt ) ) {
-					$p[ApiBase::PARAM_TYPE] = 'boolean';
-				} elseif ( is_string( $dflt ) || is_null( $dflt ) ) {
-					$p[ApiBase::PARAM_TYPE] = 'string';
-				} elseif ( is_int( $dflt ) ) {
-					$p[ApiBase::PARAM_TYPE] = 'integer';
-				}
-			}
-
 			if ( isset( $p[ApiBase::PARAM_DEPRECATED] ) && $p[ApiBase::PARAM_DEPRECATED] ) {
 				$a['deprecated'] = '';
 			}
@@ -198,8 +186,8 @@ class ApiParamInfo extends ApiBase {
 				$a['required'] = '';
 			}
 
+			$type = $this->getParamTypeFromSettings( $p );
 			if ( isset( $p[ApiBase::PARAM_DFLT] ) ) {
-				$type = $p[ApiBase::PARAM_TYPE];
 				if ( $type === 'boolean' ) {
 					$a['default'] = ( $p[ApiBase::PARAM_DFLT] ? 'true' : 'false' );
 				} elseif ( $type === 'string' ) {
@@ -223,12 +211,10 @@ class ApiParamInfo extends ApiBase {
 				$a['allowsduplicates'] = '';
 			}
 
-			if ( isset( $p[ApiBase::PARAM_TYPE] ) ) {
-				$a['type'] = $p[ApiBase::PARAM_TYPE];
-				if ( is_array( $a['type'] ) ) {
-					$a['type'] = array_values( $a['type'] ); // to prevent sparse arrays from being serialized to JSON as objects
-					$result->setIndexedTagName( $a['type'], 't' );
-				}
+			$a['type'] = $type;
+			if ( is_array( $a['type'] ) ) {
+				$a['type'] = array_values( $a['type'] ); // to prevent sparse arrays from being serialized to JSON as objects
+				$result->setIndexedTagName( $a['type'], 't' );
 			}
 			if ( isset( $p[ApiBase::PARAM_MAX] ) ) {
 				$a['max'] = $p[ApiBase::PARAM_MAX];
