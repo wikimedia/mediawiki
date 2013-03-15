@@ -25,10 +25,13 @@
 /** */
 require_once( __DIR__ . '/commandLine.inc' );
 
-$debug = in_array( '--debug', $argv );
-$help = in_array( '--help', $argv );
+$options = getopt( '', array( 'debug', 'help', 'cache:' ) );
 
-if( $help ) {
+$debug = isset( $options['debug'] );
+$help = isset( $options['help'] );
+$cache = isset( $options['cache'] ) ? $options['cache'] : null;
+
+if ( $help ) {
 	mccShowUsage();
 	exit( 0 );
 }
@@ -37,9 +40,15 @@ $mcc = new MWMemcached( array(
 	'debug' => $debug,
 ) );
 
-if ( $wgMainCacheType === CACHE_MEMCACHED ) {
+if ( $cache ) {
+	if ( !isset( $wgObjectCaches[$cache] ) ) {
+		print "MediaWiki isn't configured with a cache named '$cache'";
+		exit( 1 );
+	}
+	$servers = $wgObjectCaches[$cache]['servers'];
+} elseif ( $wgMainCacheType === CACHE_MEMCACHED ) {
 	$mcc->set_servers( $wgMemCachedServers );
-} elseif( isset( $wgObjectCaches[$wgMainCacheType] ) ) {
+} elseif( isset( $wgObjectCaches[$wgMainCacheType]['servers'] ) ) {
 	$mcc->set_servers( $wgObjectCaches[$wgMainCacheType]['servers'] );
 } else {
 	print "MediaWiki isn't configured for Memcached usage\n";
