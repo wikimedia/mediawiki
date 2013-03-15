@@ -287,6 +287,8 @@ production.
   to use UTF-8 encoding instead of hex escape codes for most non-ASCII characters.
 * action=opensearch no longer silently ignores the format parameter.
 * action=opensearch now supports format=jsonfm.
+* (bug 32151) ApiWatch now have pageset capabilities (titles/pageids/generators).
+  Title parameter is now deprecated.
 
 === API internal changes in 1.21 ===
 * For debugging only, a new global $wgDebugAPI removes many API restrictions when true.
