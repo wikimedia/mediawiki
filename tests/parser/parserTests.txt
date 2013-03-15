@@ -4681,6 +4681,36 @@ Magic Word: {{SITENAME}}
 !! end
 
 !! test
+Case-sensitive magic words, when cased differently, should just be template transclusions
+!! input
+{{CurrentMonth}}
+{{currentday}}
+{{cURreNTweEK}}
+{{currentHour}}
+!! result
+<p><a href="/index.php?title=Template:CurrentMonth&amp;action=edit&amp;redlink=1" class="new" title="Template:CurrentMonth (page does not exist)">Template:CurrentMonth</a>
+<a href="/index.php?title=Template:Currentday&amp;action=edit&amp;redlink=1" class="new" title="Template:Currentday (page does not exist)">Template:Currentday</a>
+<a href="/index.php?title=Template:CURreNTweEK&amp;action=edit&amp;redlink=1" class="new" title="Template:CURreNTweEK (page does not exist)">Template:CURreNTweEK</a>
+<a href="/index.php?title=Template:CurrentHour&amp;action=edit&amp;redlink=1" class="new" title="Template:CurrentHour (page does not exist)">Template:CurrentHour</a>
+</p>
+!! end
+
+!! test
+Case-insensitive magic words should still work with weird casing.
+!! input
+{{sErVeRNaMe}}
+{{LCFirst:AOEU}}
+{{ucFIRST:aoeu}}
+{{SERver}}
+!! result
+<p>example.org
+aOEU
+Aoeu
+<a rel="nofollow" class="external free" href="http://example.org">http://example.org</a>
+</p>
+!! end
+
+!! test
 Namespace 1 {{ns:1}}
 !! input
 {{ns:1}}
