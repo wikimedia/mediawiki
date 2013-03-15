@@ -391,18 +391,6 @@ abstract class ApiBase extends ContextSource {
 					);
 				}
 
-				//handle missing type
-				if ( !isset( $paramSettings[ApiBase::PARAM_TYPE] ) ) {
-					$dflt = isset( $paramSettings[ApiBase::PARAM_DFLT] ) ? $paramSettings[ApiBase::PARAM_DFLT] : null;
-					if ( is_bool( $dflt ) ) {
-						$paramSettings[ApiBase::PARAM_TYPE] = 'boolean';
-					} elseif ( is_string( $dflt ) || is_null( $dflt ) ) {
-						$paramSettings[ApiBase::PARAM_TYPE] = 'string';
-					} elseif ( is_int( $dflt ) ) {
-						$paramSettings[ApiBase::PARAM_TYPE] = 'integer';
-					}
-				}
-
 				if ( isset( $paramSettings[self::PARAM_DEPRECATED] ) && $paramSettings[self::PARAM_DEPRECATED] ) {
 					$desc = "DEPRECATED! $desc";
 				}
@@ -411,79 +399,76 @@ abstract class ApiBase extends ContextSource {
 					$desc .= $paramPrefix . "This parameter is required";
 				}
 
-				$type = isset( $paramSettings[self::PARAM_TYPE] ) ? $paramSettings[self::PARAM_TYPE] : null;
-				if ( isset( $type ) ) {
-					$hintPipeSeparated = true;
-					$multi = isset( $paramSettings[self::PARAM_ISMULTI] ) ? $paramSettings[self::PARAM_ISMULTI] : false;
-					if ( $multi ) {
-						$prompt = 'Values (separate with \'|\'): ';
-					} else {
-						$prompt = 'One value: ';
-					}
+				$type = $this->getParamTypeFromSettings( $paramSettings );
+				$hintPipeSeparated = true;
+				$multi = isset( $paramSettings[self::PARAM_ISMULTI] ) ? $paramSettings[self::PARAM_ISMULTI] : false;
+				if ( $multi ) {
+					$prompt = 'Values (separate with \'|\'): ';
+				} else {
+					$prompt = 'One value: ';
+				}
 
-					if ( is_array( $type ) ) {
-						$choices = array();
-						$nothingPrompt = '';
-						foreach ( $type as $t ) {
-							if ( $t === '' ) {
-								$nothingPrompt = 'Can be empty, or ';
-							} else {
-								$choices[] = $t;
+				if ( is_array( $type ) ) {
+					$choices = array();
+					$nothingPrompt = '';
+					foreach ( $type as $t ) {
+						if ( $t === '' ) {
+							$nothingPrompt = 'Can be empty, or ';
+						} else {
+							$choices[] = $t;
+						}
+					}
+					$desc .= $paramPrefix . $nothingPrompt . $prompt;
+					$choicesstring = implode( ', ', $choices );
+					$desc .= wordwrap( $choicesstring, 100, $descWordwrap );
+					$hintPipeSeparated = false;
+				} else {
+					switch ( $type ) {
+						case 'namespace':
+							// Special handling because namespaces are type-limited, yet they are not given
+							$desc .= $paramPrefix . $prompt;
+							$desc .= wordwrap( implode( ', ', MWNamespace::getValidNamespaces() ),
+								100, $descWordwrap );
+							$hintPipeSeparated = false;
+							break;
+						case 'limit':
+							$desc .= $paramPrefix . "No more than {$paramSettings[self :: PARAM_MAX]}";
+							if ( isset( $paramSettings[self::PARAM_MAX2] ) ) {
+								$desc .= " ({$paramSettings[self::PARAM_MAX2]} for bots)";
 							}
-						}
-						$desc .= $paramPrefix . $nothingPrompt . $prompt;
-						$choicesstring = implode( ', ', $choices );
-						$desc .= wordwrap( $choicesstring, 100, $descWordwrap );
-						$hintPipeSeparated = false;
-					} else {
-						switch ( $type ) {
-							case 'namespace':
-								// Special handling because namespaces are type-limited, yet they are not given
-								$desc .= $paramPrefix . $prompt;
-								$desc .= wordwrap( implode( ', ', MWNamespace::getValidNamespaces() ),
-									100, $descWordwrap );
-								$hintPipeSeparated = false;
-								break;
-							case 'limit':
-								$desc .= $paramPrefix . "No more than {$paramSettings[self :: PARAM_MAX]}";
-								if ( isset( $paramSettings[self::PARAM_MAX2] ) ) {
-									$desc .= " ({$paramSettings[self::PARAM_MAX2]} for bots)";
+							$desc .= ' allowed';
+							break;
+						case 'integer':
+							$s = $multi ? 's' : '';
+							$hasMin = isset( $paramSettings[self::PARAM_MIN] );
+							$hasMax = isset( $paramSettings[self::PARAM_MAX] );
+							if ( $hasMin || $hasMax ) {
+								if ( !$hasMax ) {
+									$intRangeStr = "The value$s must be no less than {$paramSettings[self::PARAM_MIN]}";
+								} elseif ( !$hasMin ) {
+									$intRangeStr = "The value$s must be no more than {$paramSettings[self::PARAM_MAX]}";
+								} else {
+									$intRangeStr = "The value$s must be between {$paramSettings[self::PARAM_MIN]} and {$paramSettings[self::PARAM_MAX]}";
 								}
-								$desc .= ' allowed';
-								break;
-							case 'integer':
-								$s = $multi ? 's' : '';
-								$hasMin = isset( $paramSettings[self::PARAM_MIN] );
-								$hasMax = isset( $paramSettings[self::PARAM_MAX] );
-								if ( $hasMin || $hasMax ) {
-									if ( !$hasMax ) {
-										$intRangeStr = "The value$s must be no less than {$paramSettings[self::PARAM_MIN]}";
-									} elseif ( !$hasMin ) {
-										$intRangeStr = "The value$s must be no more than {$paramSettings[self::PARAM_MAX]}";
-									} else {
-										$intRangeStr = "The value$s must be between {$paramSettings[self::PARAM_MIN]} and {$paramSettings[self::PARAM_MAX]}";
-									}
+								$desc .= $paramPrefix . $intRangeStr;
+							}
+							break;
+						case 'upload':
+							$desc .= $paramPrefix . "Must be posted as a file upload using multipart/form-data";
+							break;
+					}
+				}
 
-									$desc .= $paramPrefix . $intRangeStr;
-								}
-								break;
-							case 'upload':
-								$desc .= $paramPrefix . "Must be posted as a file upload using multipart/form-data";
-								break;
-						}
+				if ( $multi ) {
+					if ( $hintPipeSeparated ) {
+						$desc .= $paramPrefix . "Separate values with '|'";
 					}
 
-					if ( $multi ) {
-						if ( $hintPipeSeparated ) {
-							$desc .= $paramPrefix . "Separate values with '|'";
-						}
-
-						$isArray = is_array( $type );
-						if ( !$isArray
-								|| $isArray && count( $type ) > self::LIMIT_SML1 ) {
-							$desc .= $paramPrefix . "Maximum number of values " .
-									self::LIMIT_SML1 . " (" . self::LIMIT_SML2 . " for bots)";
-						}
+					$isArray = is_array( $type );
+					if ( !$isArray
+							|| $isArray && count( $type ) > self::LIMIT_SML1 ) {
+						$desc .= $paramPrefix . "Maximum number of values " .
+								self::LIMIT_SML1 . " (" . self::LIMIT_SML2 . " for bots)";
 					}
 				}
 
@@ -890,26 +875,17 @@ abstract class ApiBase extends ContextSource {
 		if ( !is_array( $paramSettings ) ) {
 			$default = $paramSettings;
 			$multi = false;
-			$type = gettype( $paramSettings );
+			$type = $this->getParamTypeFromSettings( array( self::PARAM_DFLT => $default ) );
 			$dupes = false;
 			$deprecated = false;
 			$required = false;
 		} else {
 			$default = isset( $paramSettings[self::PARAM_DFLT] ) ? $paramSettings[self::PARAM_DFLT] : null;
 			$multi = isset( $paramSettings[self::PARAM_ISMULTI] ) ? $paramSettings[self::PARAM_ISMULTI] : false;
-			$type = isset( $paramSettings[self::PARAM_TYPE] ) ? $paramSettings[self::PARAM_TYPE] : null;
+			$type = $this->getParamTypeFromSettings( $paramSettings );
 			$dupes = isset( $paramSettings[self::PARAM_ALLOW_DUPLICATES] ) ? $paramSettings[self::PARAM_ALLOW_DUPLICATES] : false;
 			$deprecated = isset( $paramSettings[self::PARAM_DEPRECATED] ) ? $paramSettings[self::PARAM_DEPRECATED] : false;
 			$required = isset( $paramSettings[self::PARAM_REQUIRED] ) ? $paramSettings[self::PARAM_REQUIRED] : false;
-
-			// When type is not given, and no choices, the type is the same as $default
-			if ( !isset( $type ) ) {
-				if ( isset( $default ) ) {
-					$type = gettype( $default );
-				} else {
-					$type = 'NULL'; // allow everything
-				}
-			}
 		}
 
 		if ( $type == 'boolean' ) {
@@ -959,8 +935,6 @@ abstract class ApiBase extends ContextSource {
 		if ( isset( $value ) ) {
 			if ( !is_array( $type ) ) {
 				switch ( $type ) {
-					case 'NULL': // nothing to do
-						break;
 					case 'string':
 						if ( $required && $value === '' ) {
 							$this->dieUsageMsg( array( 'missingparam', $paramName ) );
@@ -1050,6 +1024,30 @@ abstract class ApiBase extends ContextSource {
 		}
 
 		return $value;
+	}
+
+	/**
+	 * Get the internal param type from a paramSettings array
+	 * When no PARAM_TYPE is set, it used PARAM_DFLT to determine the type
+	 * @param array paramSettings
+	 * @return string type
+	 * @since 1.21
+	 */
+	protected function getParamTypeFromSettings( $paramSettings ) {
+		if ( isset( $paramSettings[self::PARAM_TYPE] ) ) {
+			return $paramSettings[self::PARAM_TYPE];
+		}
+
+		//handle missing type
+		$dflt = isset( $paramSettings[ApiBase::PARAM_DFLT] ) ? $paramSettings[ApiBase::PARAM_DFLT] : null;
+		if ( is_bool( $dflt ) ) {
+			return 'boolean';
+		}
+		if ( is_int( $dflt ) ) {
+			return 'integer';
+		}
+		// treat all the rest as string
+		return 'string';
 	}
 
 	/**
