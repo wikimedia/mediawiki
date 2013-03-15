@@ -806,12 +806,12 @@ class Exif {
 		if ( !$this->log ) {
 			return;
 		}
-		$type = gettype( $in );
 		$class = ucfirst( __CLASS__ );
-		if ( $type === 'array' ) {
+		if ( is_array( $in ) ) {
 			$in = print_r( $in, true );
 		}
 
+		$type = gettype( $in );
 		if ( $action === true ) {
 			wfDebugLog( $this->log, "$class::$fname: accepted: '$in' (type: $type)\n" );
 		} elseif ( $action === false ) {
