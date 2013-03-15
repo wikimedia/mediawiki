@@ -174,6 +174,10 @@
 			$textContainer.text( wasCollapsed ? collapseText : expandText );
 		}
 
+		// Trigger a custom event to allow callers to hook to the collapsing/expanding,
+		// allowing one to e.g. implement persistence via cookies
+		$collapsible.trigger( wasCollapsed ? 'beforeExpand.mw-collapse' : 'beforeCollapse.mw-collapse' );
+
 		// And finally toggle the element state itself
 		toggleElement( $collapsible, wasCollapsed ? 'expand' : 'collapse', $toggle, options );
 	}
