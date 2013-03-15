@@ -1568,7 +1568,7 @@ abstract class ApiBase extends ContextSource {
 		$params = $this->getFinalParams();
 		if ( $params ) {
 			foreach ( $params as $paramName => $paramSettings ) {
-				if ( isset( $paramSettings[ApiBase::PARAM_REQUIRED] ) ) {
+				if ( isset( $paramSettings[ApiBase::PARAM_REQUIRED] ) && $paramSettings[ApiBase::PARAM_REQUIRED] ) {
 					$ret[] = array( 'missingparam', $paramName );
 				}
 			}
