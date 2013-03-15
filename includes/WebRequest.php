@@ -1133,21 +1133,6 @@ HTML;
 	public function setIP( $ip ) {
 		$this->ip = $ip;
 	}
-
-	/**
-	 * Export the resolved user IP, HTTP headers, and session ID.
-	 * The result will be reasonably sized to allow for serialization.
-	 *
-	 * @return Array
-	 * @since 1.21
-	 */
-	public function exportUserSession() {
-		return array(
-			'ip'        => $this->getIP(),
-			'headers'   => $this->getAllHeaders(),
-			'sessionId' => session_id()
-		);
-	}
 }
 
 /**
