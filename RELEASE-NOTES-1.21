@@ -203,6 +203,7 @@ production.
 * (bug 44719) Removed mention of non-existing maintenance/migrateCurStubs.php
   script in includes/DefaultSettings.php
 * (bug 45143) jquery.badge: Treat non-Latin variants of zero as zero as well.
+* (bug 46151) mwdocgen.php should not ignore exit code of doxygen command.
 
 === API changes in 1.21 ===
 * prop=revisions can now report the contentmodel and contentformat.
@@ -270,6 +271,8 @@ production.
 * (bug 33304) list=allpages will now find really old indefinite protections.
 * (bug 45937) meta=allmessages will report a syntactically invalid lang as a
   proper error instead of as an uncaught exception.
+* (bug 32151) ApiWatch now have pageset capabilities (titles/pageids/generators).
+  Title parameter is now deprecated.
 
 === API internal changes in 1.21 ===
 * For debugging only, a new global $wgDebugAPI removes many API restrictions when true.
