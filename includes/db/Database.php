@@ -2961,9 +2961,9 @@ abstract class DatabaseBase implements DatabaseType {
 	 *
 	 * @since 1.20
 	 *
-	 * @param Closure $callback
+	 * @param callable $callback
 	 */
-	final public function onTransactionIdle( Closure $callback ) {
+	final public function onTransactionIdle( $callback ) {
 		if ( $this->mTrxLevel ) {
 			$this->mTrxIdleCallbacks[] = $callback;
 		} else {
