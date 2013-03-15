@@ -182,6 +182,8 @@ production.
   honors $wgBlockCIDRLimit. Note any clients passing invalid values to bkip
   will now receive an error, rather than the previous behavior listing all
   user blocks.
+* (bug 32151) ApiWatch now has pageset capabilities (titles/pageids/generators).
+  Title parameter is now deprecated.
 
 === Languages updated in 1.22===
 
