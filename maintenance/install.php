@@ -22,9 +22,8 @@
  */
 
 if ( !function_exists( 'version_compare' ) || ( version_compare( phpversion(), '5.3.2' ) < 0 ) ) {
-	echo "You are using PHP version " . phpversion() . " but MediaWiki needs PHP 5.3.2 or higher. ABORTING.\n" .
-	"Check if you have a newer php executable with a different name, such as php5.\n";
-	die( 1 );
+	require_once( dirname( __FILE__ ) . '/../includes/PHPVersionError.php' );
+	wfPHPVersionError( 'cli' );
 }
 
 define( 'MW_CONFIG_CALLBACK', 'Installer::overrideConfig' );
