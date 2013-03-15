@@ -29,7 +29,7 @@
 class MappedIterator implements Iterator {
 	/** @var Iterator */
 	protected $baseIterator;
-	/** @var Closure */
+	/** @var callable */
 	protected $vCallback;
 
 	/**
@@ -39,10 +39,10 @@ class MappedIterator implements Iterator {
 	 * The keys of the base iterator are reused verbatim.
 	 *
 	 * @param Iterator|Array $iter
-	 * @param Closure $vCallback
+	 * @param callable $vCallback
 	 * @throws MWException
 	 */
-    public function __construct( $iter, Closure $vCallback ) {
+	public function __construct( $iter, $vCallback ) {
 		if ( is_array( $iter ) ) {
 			$this->baseIterator = new ArrayIterator( $iter );
 		} elseif ( $iter instanceof Iterator ) {
@@ -51,7 +51,7 @@ class MappedIterator implements Iterator {
 			throw new MWException( "Invalid base iterator provided." );
 		}
 		$this->vCallback = $vCallback;
-    }
+	}
 
 	/**
 	 * @return void
