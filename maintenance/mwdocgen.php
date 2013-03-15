@@ -63,6 +63,8 @@ $doxygenInputFilter = "php {$mwPath}maintenance/mwdoc-filter.php";
 /** where Phpdoc should output documentation */
 $doxyOutput = $mwPath . 'docs' . DIRECTORY_SEPARATOR ;
 
+$doxyVersion = 'master';
+
 /** MediaWiki subpaths */
 $mwPathI = $mwPath . 'includes/';
 $mwPathL = $mwPath . 'languages/';
@@ -164,6 +166,12 @@ if ( is_array( $argv ) ) {
 				$doxyOutput = realpath( $argv[$i] );
 			}
 			break;
+		case '--version':
+			$i++;
+			if ( isset( $argv[$i] ) ) {
+				$doxyVersion = $argv[$i];
+			}
+			break;
 		case '--generate-man':
 			$doxyGenerateMan = true;
 			break;
@@ -183,8 +191,9 @@ Commands:
 If no command is given, you will be prompted.
 
 Other options:
-    --output <dir>  Set output directory (default $doxyOutput)
+    --output <dir>  Set output directory (default: $doxyOutput)
     --generate-man  Generates man page documentation
+    --version       Project version to display in the outut (default: $doxyVersion)
     --help          Show this help and exit.
 
 
@@ -234,14 +243,11 @@ case 6:
 	$excludePatterns = 'extensions';
 }
 
-// @todo FIXME to work on git
-$version = 'master';
-
 // Generate path exclusions
 $excludedPaths = $mwPath . join( " $mwPath", $mwExcludePaths );
 print "EXCLUDE: $excludedPaths\n\n";
 
-$generatedConf = generateConfigFile( $doxygenTemplate, $doxyOutput, $mwPath, $version, $input, $excludedPaths, $excludePatterns, $doxyGenerateMan, $doxygenInputFilter );
+$generatedConf = generateConfigFile( $doxygenTemplate, $doxyOutput, $mwPath, $doxyVersion, $input, $excludedPaths, $excludePatterns, $doxyGenerateMan, $doxygenInputFilter );
 $command = $doxygenBin . ' ' . $generatedConf;
 
 echo <<<TEXT
