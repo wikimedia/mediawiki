@@ -75,6 +75,30 @@ class ApiPageSet extends ApiBase {
 	private $mDefaultNamespace = NS_MAIN;
 
 	/**
+	 * Add all items from $values into the result
+	 * @param array $result output
+	 * @param array $values values to add
+	 * @param string $flag the name of the boolean flag to mark this element
+	 * @param string $name if given, name of the value
+	 */
+	private static function addValues( array &$result, $values, $flag = null, $name = null ) {
+		foreach ( $values as $val ) {
+			if ( $val instanceof Title ) {
+				$v = array();
+				ApiQueryBase::addTitleInfo( $v, $val );
+			} elseif( $name !== null ) {
+				$v = array( $name => $val );
+			} else {
+				$v = $val;
+			}
+			if( $flag !== null ) {
+				$v[$flag] = '';
+			}
+			$result[] = $v;
+		}
+	}
+
+	/**
 	 * Constructor
 	 * @param $dbSource ApiBase Module implementing getDB().
 	 *        Allows PageSet to reuse existing db connection from the shared state like ApiQuery.
@@ -485,6 +509,23 @@ class ApiPageSet extends ApiBase {
 			$result->setIndexedTagName( $values, 'i' );
 		}
 		return $values;
+	}
+
+	/**
+	 * Get an array of invalid/special/missing titles.
+	 *
+	 * @return array
+	 * @since 1.21
+	 */
+	public function getWarnings() {
+		$result = array();
+		self::addValues( $result, $this->getInvalidTitles(), 'invalid', 'title' );
+		self::addValues( $result, $this->getSpecialTitles(), 'special', 'title' );
+		self::addValues( $result, $this->getMissingPageIDs(), 'missing', 'pageid' );
+		self::addValues( $result, $this->getMissingRevisionIDs(), 'missing', 'revid' );
+		self::addValues( $result, $this->getMissingTitles(), 'missing' );
+		self::addValues( $result, $this->getInterwikiTitlesAsResult() );
+		return $result;
 	}
 
 	/**
