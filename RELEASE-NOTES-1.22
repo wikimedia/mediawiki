@@ -257,6 +257,8 @@ production.
   with the content.
 * (bug 51342) prop=imageinfo iicontinue now contains the dbkey, not the text
   version of the title.
+* (bug 32151) ApiWatch now has pageset capabilities (titles/pageids/generators).
+  Title parameter is now deprecated.
 
 === Languages updated in 1.22===
 
