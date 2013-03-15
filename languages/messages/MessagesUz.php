@@ -414,7 +414,7 @@ $1',
 'nstab-category' => 'Turkum',
 
 # Main script and global functions
-'nosuchaction' => "Bunday amal yo'q",
+'nosuchaction' => 'Bunday amal yoʻq',
 'nosuchspecialpage' => "Bunday maxsus sahifa yo'q",
 
 # General errors

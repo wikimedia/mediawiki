@@ -15,6 +15,7 @@
  * @author ArnoLagrange
  * @author Blahma
  * @author Castelobranco
+ * @author Eliovir
  * @author Iketsi
  * @author Jens Liebenau
  * @author Kaganer
@@ -2082,6 +2083,9 @@ Bonvolu kontroli aliajn ligilojn al la ŝablonoj antaŭ ol forigi ilin.',
 'disambiguations-text' => "La jenaj paĝoj alligas '''apartigilon'''.
 Ili devus anstataŭe alligi la ĝustan temon.<br />
 Paĝo estas traktata kiel apartigilo se ĝi uzas ŝablonon kiu estas ligita de [[MediaWiki:Disambiguationspage]]",
+
+'pageswithprop-prop' => 'Nomo de la atributo:',
+'pageswithprop-submit' => 'Ek',
 
 'doubleredirects' => 'Duoblaj alidirektadoj',
 'doubleredirectstext' => 'Ĉi tiu paĝo montras paĝojn kiuj alidirektas al aliaj alidirektiloj.

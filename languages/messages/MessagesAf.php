@@ -1352,7 +1352,7 @@ Die aksie kan nie ongedaan gemaak word nie.',
 'prefs-textboxsize' => 'Afmetings van die wysigingsvenster',
 'youremail' => 'E-posadres:',
 'username' => '{{GENDER:$1|Gebruikersnaam}}:',
-'uid' => '{{GENDER:$1|Gebruikersnommer}}:',
+'uid' => '{{GENDER:$1|Gebruiker-ID}}:',
 'prefs-memberingroups' => '{{GENDER:$2|Lid}} van {{PLURAL:$1|groep|groepe}}:',
 'prefs-registration' => 'Registrasiedatum:',
 'yourrealname' => 'Regte naam:',
@@ -2697,9 +2697,9 @@ Om die databasis te ontsluit moet u skyfregte aan die lêer op die webbediener t
 # Move page
 'move-page' => 'Skuif "$1"',
 'move-page-legend' => 'Skuif bladsy',
-'movepagetext' => "Die vorm hier onder hernoem 'n bladsy en skuif die hele wysigingsgeskiedenis na die nuwe naam.
+'movepagetext' => "ie vorm hier onder hernoem 'n bladsy en skuif die hele wysigingsgeskiedenis na die nuwe naam.
 Die ou bladsy sal vervang word met 'n aanstuurblad na die nuwe titel.
-'''Skakels na die ou bladsytitel sal nie outomaties verander word nie; maak seker dat dubbele aanstuurverwysings nie voorkom nie deur die \"wat skakel hierheen\"-funksie na die skuif te gebruik.''' Dit is u verantwoordelikheid om seker te maak dat skakels steeds wys na waarheen hulle behoort te gaan.
+'''Skakels na die ou bladsytitel sal nie outomaties verander word nie; maak seker dat [[Special:DoubleRedirects|dubbele aanstuurverwysings]] en [[Special:BrokenRedirects|stukkende aansture]] nie voorkom nie deur die \"wat skakel hierheen\"-funksie na die skuif te gebruik.''' Dit is u verantwoordelikheid om seker te maak dat skakels steeds wys na waarheen hulle behoort te gaan.
 
 Let daarop dat 'n bladsy '''nie''' geskuif sal word indien daar reeds 'n bladsy met dieselfde titel bestaan nie, tensy dit leeg of 'n aanstuurbladsy is en geen wysigingsgeskiedenis het nie. Dit beteken dat u 'n bladsy kan terugskuif na sy ou titel indien u 'n fout gemaak het, maar u kan nie 'n bestaande bladsy oorskryf nie.
 

@@ -432,6 +432,7 @@ $messages = array(
 'newwindow' => '(otwiera się w nowym oknie)',
 'cancel' => 'Anuluj',
 'moredotdotdot' => 'Więcej...',
+'morenotlisted' => 'I inne...',
 'mypage' => 'Strona',
 'mytalk' => 'Dyskusja',
 'anontalk' => 'Dyskusja tego IP',

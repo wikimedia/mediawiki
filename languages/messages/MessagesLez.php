@@ -11,6 +11,7 @@
  * @author Andrijko Z.
  * @author Aslan4ik
  * @author Cekli829
+ * @author Lezgia
  * @author MF-Warburg
  * @author Migraghvi
  * @author Namik
@@ -314,6 +315,7 @@ $messages = array(
 'actionthrottled' => 'Фадвилин сергьятар',
 
 # Virus scanner
+'virus-scanfailed' => 'Сканди гъалатl (кулег$1)',
 'virus-unknownscanner' => 'Малумтушир антивирус',
 
 # Login and logout pages

@@ -2038,6 +2038,7 @@ Sivua kohdellaan täsmennyssivuna, jos se käyttää mallinetta, johon on linkki
 'pageswithprop' => 'Sivut sivun ominaisuuden mukaan',
 'pageswithprop-legend' => 'Sivut sivun ominaisuuden mukaan',
 'pageswithprop-text' => 'Tällä sivulla on lueteltu sivut, jotka käyttävät erityistä sivun ominaisuutta.',
+'pageswithprop-prop' => 'Ominaisuuden nimi',
 'pageswithprop-submit' => 'Siirry',
 
 'doubleredirects' => 'Kaksinkertaiset ohjaukset',

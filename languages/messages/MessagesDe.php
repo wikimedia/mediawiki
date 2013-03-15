@@ -53,6 +53,7 @@
  * @author Rillke
  * @author SVG
  * @author Saibo
+ * @author Sebastian Wallroth
  * @author Spacebirdy
  * @author Srhat
  * @author TMg
@@ -415,7 +416,7 @@ $messages = array(
 'tog-hidepatrolled' => 'Kontrollierte Änderungen in den „Letzten Änderungen“ ausblenden',
 'tog-newpageshidepatrolled' => 'Kontrollierte Seiten bei den „Neuen Seiten“ ausblenden',
 'tog-extendwatchlist' => 'Erweiterte Beobachtungsliste zur Anzeige aller Änderungen',
-'tog-usenewrc' => 'Seitenbezogene Gruppierung in den „Letzten Änderungen“ und auf der Beobachtungsliste (benötigt JavaScript)',
+'tog-usenewrc' => 'Änderungen auf „Letzte Änderungen“ und Beobachtungsliste nach Seite gruppieren (benötigt JavaScript)',
 'tog-numberheadings' => 'Überschriften automatisch nummerieren',
 'tog-showtoolbar' => 'Bearbeiten-Werkzeugleiste anzeigen (benötigt JavaScript)',
 'tog-editondblclick' => 'Seiten mit Doppelklick bearbeiten (benötigt JavaScript)',
