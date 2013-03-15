@@ -113,14 +113,14 @@ class FileDuplicateSearchPage extends QueryPage {
 
 		# Create the input form
 		$out->addHTML(
-			Xml::openElement( 'form', array( 'id' => 'fileduplicatesearch', 'method' => 'get', 'action' => $wgScript ) ) .
-			Html::hidden( 'title', $this->getTitle()->getPrefixedDBkey() ) .
-			Xml::openElement( 'fieldset' ) .
-			Xml::element( 'legend', null, $this->msg( 'fileduplicatesearch-legend' )->text() ) .
-			Xml::inputLabel( $this->msg( 'fileduplicatesearch-filename' )->text(), 'filename', 'filename', 50, $this->filename ) . ' ' .
-			Xml::submitButton( $this->msg( 'fileduplicatesearch-submit' )->text() ) .
-			Xml::closeElement( 'fieldset' ) .
-			Xml::closeElement( 'form' )
+			Html::openElement( 'form', array( 'id' => 'fileduplicatesearch', 'method' => 'get', 'action' => $wgScript ) ) . "\n" .
+			Html::hidden( 'title', $this->getTitle()->getPrefixedDBkey() ) . "\n" .
+			Html::openElement( 'fieldset' ) . "\n" .
+			Html::element( 'legend', null, $this->msg( 'fileduplicatesearch-legend' )->text() ) . "\n" .
+			Xml::inputLabel( $this->msg( 'fileduplicatesearch-filename' )->text(), 'filename', 'filename', 50, $this->filename ) . "\n" .
+			Xml::submitButton( $this->msg( 'fileduplicatesearch-submit' )->text() ) . "\n" .
+			Html::closeElement( 'fieldset' ) . "\n" .
+			Html::closeElement( 'form' )
 		);
 
 		if( $this->file ) {
