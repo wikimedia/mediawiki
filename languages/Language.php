@@ -349,12 +349,12 @@ class Language {
 	public static function isValidBuiltInCode( $code ) {
 
 		if ( !is_string( $code ) ) {
-			$type = gettype( $code );
-			if ( $type === 'object' ) {
+			if ( is_object( $code ) ) {
 				$addmsg = " of class " . get_class( $code );
 			} else {
 				$addmsg = '';
 			}
+			$type = gettype( $code );
 			throw new MWException( __METHOD__ . " must be passed a string, $type given$addmsg" );
 		}
 

@@ -808,7 +808,7 @@ class Exif {
 		}
 		$type = gettype( $in );
 		$class = ucfirst( __CLASS__ );
-		if ( $type === 'array' ) {
+		if ( is_array( $in ) ) {
 			$in = print_r( $in, true );
 		}
 

@@ -67,41 +67,36 @@ class ApiFormatWddx extends ApiFormatBase {
 		$indstr = ( $this->getIsHtml() ? '' : str_repeat( ' ', $indent ) );
 		$indstr2 = ( $this->getIsHtml() ? '' : str_repeat( ' ', $indent + 2 ) );
 		$nl = ( $this->getIsHtml() ? '' : "\n" );
-		switch ( gettype( $elemValue ) ) {
-			case 'array':
-				// Check whether we've got an associative array (<struct>)
-				// or a regular array (<array>)
-				$cnt = count( $elemValue );
-				if ( $cnt == 0 || array_keys( $elemValue ) === range( 0, $cnt - 1 ) ) {
-					// Regular array
-					$this->printText( $indstr . Xml::element( 'array', array(
-						'length' => $cnt ), null ) . $nl );
-					foreach ( $elemValue as $subElemValue ) {
-						$this->slowWddxPrinter( $subElemValue, $indent + 2 );
-					}
-					$this->printText( "$indstr</array>$nl" );
-				} else {
-					// Associative array (<struct>)
-					$this->printText( "$indstr<struct>$nl" );
-					foreach ( $elemValue as $subElemName => $subElemValue ) {
-						$this->printText( $indstr2 . Xml::element( 'var', array(
-							'name' => $subElemName
-						), null ) . $nl );
-						$this->slowWddxPrinter( $subElemValue, $indent + 4 );
-						$this->printText( "$indstr2</var>$nl" );
-					}
-					$this->printText( "$indstr</struct>$nl" );
+		if ( is_array( $elemValue ) ) {
+			// Check whether we've got an associative array (<struct>)
+			// or a regular array (<array>)
+			$cnt = count( $elemValue );
+			if ( $cnt == 0 || array_keys( $elemValue ) === range( 0, $cnt - 1 ) ) {
+				// Regular array
+				$this->printText( $indstr . Xml::element( 'array', array(
+					'length' => $cnt ), null ) . $nl );
+				foreach ( $elemValue as $subElemValue ) {
+					$this->slowWddxPrinter( $subElemValue, $indent + 2 );
 				}
-				break;
-			case 'integer':
-			case 'double':
-				$this->printText( $indstr . Xml::element( 'number', null, $elemValue ) . $nl );
-				break;
-			case 'string':
-				$this->printText( $indstr . Xml::element( 'string', null, $elemValue ) . $nl );
-				break;
-			default:
-				ApiBase::dieDebug( __METHOD__, 'Unknown type ' . gettype( $elemValue ) );
+				$this->printText( "$indstr</array>$nl" );
+			} else {
+				// Associative array (<struct>)
+				$this->printText( "$indstr<struct>$nl" );
+				foreach ( $elemValue as $subElemName => $subElemValue ) {
+					$this->printText( $indstr2 . Xml::element( 'var', array(
+						'name' => $subElemName
+					), null ) . $nl );
+					$this->slowWddxPrinter( $subElemValue, $indent + 4 );
+					$this->printText( "$indstr2</var>$nl" );
+				}
+				$this->printText( "$indstr</struct>$nl" );
+			}
+		} elseif ( is_int( $elemValue ) || is_float( $elemValue ) ) {
+			$this->printText( $indstr . Xml::element( 'number', null, $elemValue ) . $nl );
+		} elseif ( is_string( $elemValue ) ) {
+			$this->printText( $indstr . Xml::element( 'string', null, $elemValue ) . $nl );
+		} else {
+			ApiBase::dieDebug( __METHOD__, 'Unknown type ' . gettype( $elemValue ) );
 		}
 	}
 

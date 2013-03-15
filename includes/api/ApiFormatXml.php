@@ -131,84 +131,78 @@ class ApiFormatXml extends ApiFormatBase {
 		}
 		$elemName = str_replace( ' ', '_', $elemName );
 
-		switch ( gettype( $elemValue ) ) {
-			case 'array':
-				if ( isset( $elemValue['*'] ) ) {
-					$subElemContent = $elemValue['*'];
-					if ( $doublequote ) {
-						$subElemContent = Sanitizer::encodeAttribute( $subElemContent );
-					}
-					unset( $elemValue['*'] );
+		if ( is_array( $elemValue ) ) {
+			if ( isset( $elemValue['*'] ) ) {
+				$subElemContent = $elemValue['*'];
+				if ( $doublequote ) {
+					$subElemContent = Sanitizer::encodeAttribute( $subElemContent );
+				}
+				unset( $elemValue['*'] );
 
-					// Add xml:space="preserve" to the
-					// element so XML parsers will leave
-					// whitespace in the content alone
-					$elemValue['xml:space'] = 'preserve';
-				} else {
-					$subElemContent = null;
+				// Add xml:space="preserve" to the
+				// element so XML parsers will leave
+				// whitespace in the content alone
+				$elemValue['xml:space'] = 'preserve';
+			} else {
+				$subElemContent = null;
+			}
+
+			if ( isset( $elemValue['_element'] ) ) {
+				$subElemIndName = $elemValue['_element'];
+				unset( $elemValue['_element'] );
+			} else {
+				$subElemIndName = null;
+			}
+
+			$indElements = array();
+			$subElements = array();
+			foreach ( $elemValue as $subElemId => & $subElemValue ) {
+				if ( is_string( $subElemValue ) && $doublequote ) {
+					$subElemValue = Sanitizer::encodeAttribute( $subElemValue );
 				}
 
-				if ( isset( $elemValue['_element'] ) ) {
-					$subElemIndName = $elemValue['_element'];
-					unset( $elemValue['_element'] );
-				} else {
-					$subElemIndName = null;
+				if ( is_int( $subElemId ) ) {
+					$indElements[] = $subElemValue;
+					unset( $elemValue[$subElemId] );
+				} elseif ( is_array( $subElemValue ) ) {
+					$subElements[$subElemId] = $subElemValue;
+					unset ( $elemValue[$subElemId] );
+				}
+			}
+
+			if ( is_null( $subElemIndName ) && count( $indElements ) ) {
+				ApiBase::dieDebug( __METHOD__, "($elemName, ...) has integer keys without _element value. Use ApiResult::setIndexedTagName()." );
+			}
+
+			if ( count( $subElements ) && count( $indElements ) && !is_null( $subElemContent ) ) {
+				ApiBase::dieDebug( __METHOD__, "($elemName, ...) has content and subelements" );
+			}
+
+			if ( !is_null( $subElemContent ) ) {
+				$retval .= $indstr . Xml::element( $elemName, $elemValue, $subElemContent );
+			} elseif ( !count( $indElements ) && !count( $subElements ) ) {
+				$retval .= $indstr . Xml::element( $elemName, $elemValue );
+			} else {
+				$retval .= $indstr . Xml::element( $elemName, $elemValue, null );
+
+				foreach ( $subElements as $subElemId => & $subElemValue ) {
+					$retval .= self::recXmlPrint( $subElemId, $subElemValue, $indent );
 				}
 
-				$indElements = array();
-				$subElements = array();
-				foreach ( $elemValue as $subElemId => & $subElemValue ) {
-					if ( is_string( $subElemValue ) && $doublequote ) {
-						$subElemValue = Sanitizer::encodeAttribute( $subElemValue );
-					}
-
-					if ( gettype( $subElemId ) === 'integer' ) {
-						$indElements[] = $subElemValue;
-						unset( $elemValue[$subElemId] );
-					} elseif ( is_array( $subElemValue ) ) {
-						$subElements[$subElemId] = $subElemValue;
-						unset ( $elemValue[$subElemId] );
-					}
+				foreach ( $indElements as &$subElemValue ) {
+					$retval .= self::recXmlPrint( $subElemIndName, $subElemValue, $indent );
 				}
 
-				if ( is_null( $subElemIndName ) && count( $indElements ) ) {
-					ApiBase::dieDebug( __METHOD__, "($elemName, ...) has integer keys without _element value. Use ApiResult::setIndexedTagName()." );
-				}
-
-				if ( count( $subElements ) && count( $indElements ) && !is_null( $subElemContent ) ) {
-					ApiBase::dieDebug( __METHOD__, "($elemName, ...) has content and subelements" );
-				}
-
-				if ( !is_null( $subElemContent ) ) {
-					$retval .= $indstr . Xml::element( $elemName, $elemValue, $subElemContent );
-				} elseif ( !count( $indElements ) && !count( $subElements ) ) {
-					$retval .= $indstr . Xml::element( $elemName, $elemValue );
-				} else {
-					$retval .= $indstr . Xml::element( $elemName, $elemValue, null );
-
-					foreach ( $subElements as $subElemId => & $subElemValue ) {
-						$retval .= self::recXmlPrint( $subElemId, $subElemValue, $indent );
-					}
-
-					foreach ( $indElements as &$subElemValue ) {
-						$retval .= self::recXmlPrint( $subElemIndName, $subElemValue, $indent );
-					}
-
-					$retval .= $indstr . Xml::closeElement( $elemName );
-				}
-				break;
-			case 'object':
-				// ignore
-				break;
-			default:
-				// to make sure null value doesn't produce unclosed element,
-				// which is what Xml::element( $elemName, null, null ) returns
-				if ( $elemValue === null ) {
-					$retval .= $indstr . Xml::element( $elemName );
-				} else {
-					$retval .= $indstr . Xml::element( $elemName, null, $elemValue );
-				}
-				break;
+				$retval .= $indstr . Xml::closeElement( $elemName );
+			}
+		} elseif ( !is_object( $elemValue ) ) {
+			// to make sure null value doesn't produce unclosed element,
+			// which is what Xml::element( $elemName, null, null ) returns
+			if ( $elemValue === null ) {
+				$retval .= $indstr . Xml::element( $elemName );
+			} else {
+				$retval .= $indstr . Xml::element( $elemName, null, $elemValue );
+			}
 		}
 		return $retval;
 	}
