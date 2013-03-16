@@ -1612,7 +1612,7 @@
 	"wantedcategories": "Wanted categories",
 	"wantedcategories-summary": "",
 	"wantedpages": "Wanted pages",
-	"wantedpages-summary": "",
+	"wantedpages-summary": "List of non-existing pages with the most links to them, excluding pages which only have redirects linking to them. For a list of non-existent pages that have redirects linking to them, see [[{{#special:BrokenRedirects}}]].",
 	"wantedpages-badtitle": "Invalid title in result set: $1",
 	"wantedfiles": "Wanted files",
 	"wantedfiles-summary": "",
