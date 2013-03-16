@@ -1081,10 +1081,10 @@ class WikiPage implements Page, IDBAccessObject {
 		global $wgEnableParserCache;
 
 		return $wgEnableParserCache
-			&& $parserOptions->getStubThreshold() == 0
-			&& $this->exists()
 			&& ( $oldid === null || $oldid === 0 || $oldid === $this->getLatest() )
-			&& $this->getContentHandler()->isParserCacheSupported();
+			&& $this->getContentHandler()->isParserCacheSupported()
+			&& $parserOptions->getStubThreshold() == 0
+			&& $this->exists();
 	}
 
 	/**
@@ -2006,7 +2006,14 @@ class WikiPage implements Page, IDBAccessObject {
 
 		$edit->format = $serialization_format;
 		$edit->popts = $this->makeParserOptions( 'canonical' );
-		$edit->output = $edit->pstContent ? $edit->pstContent->getParserOutput( $this->mTitle, $revid, $edit->popts ) : null;
+
+		if ( $edit->pstContent ) {
+			// NOTE: we only need HTML if we are going to cache the ParserOutput.
+			$needHtml = $this->isParserCacheUsed( $edit->popts, $revid );
+			$edit->output = $edit->pstContent->getParserOutput( $this->mTitle, $revid, $edit->popts, $needHtml );
+		} else {
+			$edit->output = null;
+		}
 
 		$edit->newContent = $content;
 		$edit->oldContent = $this->getContent( Revision::RAW );
@@ -2037,8 +2044,6 @@ class WikiPage implements Page, IDBAccessObject {
 	 *   - null: don't change the article count
 	 */
 	public function doEditUpdates( Revision $revision, User $user, array $options = array() ) {
-		global $wgEnableParserCache;
-
 		wfProfileIn( __METHOD__ );
 
 		$options += array( 'changed' => true, 'created' => false, 'oldcountable' => null );
@@ -2055,9 +2060,16 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		// Save it to the parser cache
-		if ( $wgEnableParserCache ) {
-			$parserCache = ParserCache::singleton();
-			$parserCache->save( $editInfo->output, $this, $editInfo->popts );
+		if ( $this->isParserCacheUsed( $editInfo->popts, 0 ) ) {
+			// Don't save it if the ParserOutput object doesn't contain HTML.
+			// This shouldn't happen if isParserCacheUsed() returns true,
+			// but double check to make sure.
+			if ( $editInfo->output->getText() === null ) {
+				trigger_error( "ParserOutput doesn't contain HTML, can't save to parser cache!", E_USER_WARNING );
+			} else {
+				$parserCache = ParserCache::singleton();
+				$parserCache->save( $editInfo->output, $this, $editInfo->popts );
+			}
 		}
 
 		// Update the links tables and other secondary data
