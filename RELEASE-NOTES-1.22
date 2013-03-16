@@ -163,6 +163,7 @@ production.
   The special page form received a new checkbox matching that option.
 * (bug 23580) Implement javascript callback interface "mw.hook".
 * (bug 30713) New mw.hook "wikipage.content".
+* Maintenance script created to populate archive.ar_len field
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
