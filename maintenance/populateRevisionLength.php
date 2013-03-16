@@ -67,10 +67,11 @@ class PopulateRevisionLength extends LoggedUpdateMaintenance {
 		$blockEnd = intval( $start ) + $this->mBatchSize - 1;
 		$count = 0;
 		$missing = 0;
+		$fields = Revision::selectFields();
 		while ( $blockStart <= $end ) {
 			$this->output( "...doing rev_id from $blockStart to $blockEnd\n" );
 			$res = $db->select( 'revision',
-						Revision::selectFields(),
+						$fields,
 						array( "rev_id >= $blockStart",
 						   "rev_id <= $blockEnd",
 						   "rev_len IS NULL" ),
