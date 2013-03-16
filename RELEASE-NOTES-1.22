@@ -25,6 +25,8 @@ production.
   version of the Vector extension as this feature may conflict.
 * New version of Special:UserLogin form. It is opt-in for now, controlled by
   the $wgUseVFormUserLogin setting or a 'useNew' URL parameter trigger.
+* (bug 17665) Special:WantedPages no longer lists any page having at least one redirect 
+  pointing to it.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail. Previously one could still
