@@ -2006,7 +2006,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 		$edit->format = $serialization_format;
 		$edit->popts = $this->makeParserOptions( 'canonical' );
-		$edit->output = $edit->pstContent ? $edit->pstContent->getParserOutput( $this->mTitle, $revid, $edit->popts ) : null;
+		$edit->output = $edit->pstContent ? $edit->pstContent->getParserOutput( $this->mTitle, $revid, $edit->popts, false ) : null;
 
 		$edit->newContent = $content;
 		$edit->oldContent = $this->getContent( Revision::RAW );
