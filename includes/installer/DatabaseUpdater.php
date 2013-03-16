@@ -72,6 +72,7 @@ abstract class DatabaseUpdater {
 		'PopulateImageSha1',
 		'FixExtLinksProtocolRelative',
 		'PopulateFilearchiveSha1',
+		'PopulateArchiveLength',
 	);
 
 	/**

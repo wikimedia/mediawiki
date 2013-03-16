@@ -58,6 +58,7 @@ production.
 * HTMLForm will turn multiselect checkboxes into a Chosen interface when setting cssclass 'mw-chosen'
 * rebuildLocalisationCache learned --lang option. Let you rebuild l10n caches
   of the specified languages instead of all of them.
+* Maintenance script created to populate archive.ar_len field
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail. Previously one could still
