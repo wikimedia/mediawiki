@@ -851,7 +851,7 @@ $2',
 'loginlanguagelabel' => 'Γλώσσα: $1',
 'suspicious-userlogout' => 'Το αίτημα αποσύνδεσής σας απερρίφθη επειδή φαίνεται ότι στάλθηκε από ένα λανθασμένο φυλλομετρητή (browser) ή διακομιστή προσωρινής αποθήκευσης.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Άγνωστο σφάλμα στη συνάρτηση mail() της PHP.',
 'user-mail-no-addy' => 'Προσπαθήσατε να στείλετε e-mail χωρίς μια διεύθυνση e-mail.',
 'user-mail-no-body' => 'Προσπάθησε να στείλει e-mail με ένα κενό ή αδικαιολόγητα σύντομο σώμα.',
@@ -1510,7 +1510,7 @@ $1",
 'prefs-displaywatchlist' => 'Επιλογές εμφάνισης',
 'prefs-diffs' => 'Διαφορές',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'Η διεύθυνση ηλεκτρονικού ταχυδρομείου φαίνεται έγκυρη',
 'email-address-validity-invalid' => 'Εισάγετε  μια έγκυρη διεύθυνση ηλεκτρονικού ταχυδρομείου',
 
@@ -2275,7 +2275,7 @@ $1',
 'listgrouprights-addgroup-self-all' => 'Μπορεί να προσθέσει όλες τις ομάδες στο δικό σας λογαριασμό',
 'listgrouprights-removegroup-self-all' => 'Μπορεί να αφαιρέσει όλες τις ομάδες από το δικό σας λογαριασμό',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Δεν υπάρχει διεύθυνση παραλήπτη.',
 'mailnologintext' => 'Πρέπει να έχετε [[Special:UserLogin|συνδεθεί]] και να έχετε δηλώσει
 μια έγκυρη ηλεκτρονική διεύθυνση στις [[Special:Preferences|Προτιμήσεις]]
@@ -3653,7 +3653,7 @@ $1',
 'monthsall' => 'όλα',
 'limitall' => 'όλες',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Επιβεβαίωση διεύθυνσης e-mail',
 'confirmemail_noemail' => 'Δεν έχετε ορίσει μια έγκυρη διεύθυνση ηλεκτρονικού ταχυδρομείου στις [[Special:Preferences|προτιμήσεις χρήστη]] σας.',
 'confirmemail_text' => 'Το σύστημα χρειάζεται να επαληθεύσει τη διεύθυνση e-mail που δώσατε για να χρησιμοποιήσετε τις δυνατότητες αλληλογραφίας. Κάνετε κλικ στο παρακάτω κουμπί και θα σας αποσταλεί μήνυμα επαλήθευσης στη διεύθυνσή σας. Στο μήνυμα αυτό θα εμφανίζεται ένας σύνδεσμος που Θα περιέχει τον κωδικό επαλήθευσης -ακολουθήστε το σύνδεσμο αυτό για να μπορέσει το σύστημα να επαληθεύσει τη διεύθυνση αλληλογραφίας σας.',

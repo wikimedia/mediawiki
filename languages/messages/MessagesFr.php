@@ -388,9 +388,9 @@ $messages = array(
 # User preference toggles
 'tog-underline' => 'Souligner les liens :',
 'tog-justify' => 'Justifier les paragraphes',
-'tog-hideminor' => 'Masquer les modifications mineures dans les modifications récentes',
+'tog-hideminor' => 'Masquer les modifications mineures dans les changements récents',
 'tog-hidepatrolled' => 'Masquer les modifications surveillées dans les modifications récentes',
-'tog-newpageshidepatrolled' => 'Masquer les pages surveillées parmi les nouvelles pages',
+'tog-newpageshidepatrolled' => 'Masquer les pages surveillées parmi la liste des nouvelles pages',
 'tog-extendwatchlist' => 'Étendre la liste de suivi pour afficher toutes les modifications et pas uniquement les plus récentes',
 'tog-usenewrc' => 'Grouper les changements dans les modifications récentes et la liste de suivi (nécessite JavaScript)',
 'tog-numberheadings' => 'Numéroter automatiquement les titres de section',

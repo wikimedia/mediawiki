@@ -667,7 +667,7 @@ $2',
 'loginlanguagelabel' => 'ભાષા: $1',
 'suspicious-userlogout' => 'લોગ આઉટ કરવાની તમારી વિનંતિ પૂરી ન કરી શકાઇ. એમ લાગે છે કે તેને તૃટિ પામેલ બ્રાઉઝર કે પ્રોક્સી દ્વારા મોકલાઈ હતી.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'PHPની મેલ() કામગીરીમાં અજ્ઞાત ત્રુટિ',
 'user-mail-no-addy' => 'ઈ મેલ એડ્રસ વગર ઈ મેલ મોકલવા પ્રયત્ન કરેલ.',
 
@@ -1341,7 +1341,7 @@ HTML નાકું ચકાસો',
 'prefs-displaywatchlist' => 'પ્રદર્શન વિકલ્પો',
 'prefs-diffs' => 'ફરક',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'ઈ-મેલ યોગ્ય લાગે છે.',
 'email-address-validity-invalid' => 'પ્રમાણભૂત શૈલિમાં ઈ-મેલ એડ્રેસ લખો',
 
@@ -2107,7 +2107,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization. જુઓ',
 'listgrouprights-addgroup-self-all' => 'દરેક જૂથને તેમના પોતાના ખાતા માં ઉમેરો',
 'listgrouprights-removegroup-self-all' => 'બધા જૂથને તેમના પોતાના ખાતામાંથી હટાવો',
 
-# E-mail user
+# Email user
 'mailnologin' => 'મેળવનારનું સરનામું નથી',
 'mailnologintext' => 'અન્ય સભ્યને ઇ-મેલ મોકલવા માટે તમે [[Special:UserLogin|logged in]] પ્રવેશ કરેલ હોવો જોઈએ અને તમારા[[Special:Preferences|preferences]] વિકલ્પોમાં તમારા ઈ-મેલ સરનામાની પુષ્ટિ થયેલી હોવી જોઈએ',
 'emailuser' => 'સભ્યને ઇ-મેલ કરો',
@@ -3447,7 +3447,7 @@ $1',
 'monthsall' => 'બધા',
 'limitall' => 'બધા',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'તમારા ઇ-મેઇલ સરનામાની પુષ્ટિ કરો',
 'confirmemail_noemail' => 'તમારા [[Special:Preferences|user preferences]] માં વૈધ ઈ-મેલ સરનામું નથી.',
 'confirmemail_text' => '{{SITENAME}} માં તમારા ઇ-મેલ સરનામાની પુષ્ટિ થયેલી હોવી જરૂરી છે.

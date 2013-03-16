@@ -448,7 +448,7 @@ $1",
 'currentevents-url' => 'Project:Huidige gebeure',
 'disclaimers' => 'Voorbehoud',
 'disclaimerpage' => 'Project:Voorwaardes',
-'edithelp' => 'Wysighulp',
+'edithelp' => 'Wysigingshulp',
 'edithelppage' => 'Help:Wysig',
 'helppage' => 'Help:Inhoud',
 'mainpage' => 'Tuisblad',
@@ -928,7 +928,7 @@ Die MediaWiki-sagteware hou hiermee rekening sodat u bladsye veilig kan wysig: n
 'editingold' => "'''WAARSKUWING: U is besig om 'n ouer weergawe van hierdie bladsy te wysig.
 As u dit stoor, sal enige wysigings sedert hierdie een weer uitgewis word.'''",
 'yourdiff' => 'Wysigings',
-'copyrightwarning' => "Alle bydraes aan {{SITENAME}} word beskou as beskikbaar gestel onder die $2 (lees $1 vir meer inligting).
+'copyrightwarning' => "Alle bydraes aan {{SITENAME}} word onder die $2 beskikbaar gestel (lees $1 vir meer inligting).
 As u nie wil toelaat dat u teks deur ander persone gewysig of versprei word nie, moet dit asseblief nie hier invoer nie.<br />
 Hierdeur beloof u ons dat u die byvoegings self geskryf het, of gekopieer het van publieke domein of soortgelyke vrye bronne.
 '''MOENIE WERK WAT DEUR KOPIEREG BESKERM WORD HIER PLAAS SONDER TOESTEMMING NIE!'''",
@@ -1957,11 +1957,11 @@ Miskien wil u eerder die beskrywing daar op die [$2 lêerbeskrywing] bywerk.',
 
 # Random page
 'randompage' => 'Lukrake bladsy',
-'randompage-nopages' => 'Daar is geen bladye in die volgende {{PLURAL:$2|naamspasie|naamspasies}}: $1.',
+'randompage-nopages' => 'Daar is geen bladsye in die volgende {{PLURAL:$2|naamruimte|naamruimtes}} nie: $1.',
 
 # Random redirect
 'randomredirect' => 'Lukrake aanstuur',
-'randomredirect-nopages' => 'Daar is geen aansture in naamspasie "$1".',
+'randomredirect-nopages' => 'Daar is geen aansture in naamruimte "$1" nie.',
 
 # Statistics
 'statistics' => 'Statistieke',
@@ -2121,7 +2121,7 @@ U kan die resultate vernou deur 'n boekstaaftipe, gebruikersnaam (kas-sensitief)
 'allpagesprefix' => 'Wys bladsye wat begin met:',
 'allpagesbadtitle' => "Die gespesifiseerde bladsynaam is ongeldig of het 'n intertaal- of interwiki-voorvoegsel.
 Dit is moontlik dat die naam karakters bevat wat nie in titels gebruik mag word nie.",
-'allpages-bad-ns' => '{{SITENAME}} het geen naamspasie "$1" nie.',
+'allpages-bad-ns' => '{{SITENAME}} het nie \'n naamruimte "$1" nie.',
 'allpages-hide-redirects' => 'Versteek aansture',
 
 # SpecialCachedPage
@@ -2771,7 +2771,7 @@ Die teikenartikel "[[:$1]]" bestaan reeds. Wil u dit skrap om plek te maak vir d
 'immobile-target-page' => 'Dit is nie moontlik om na die titel toe te skuif nie.',
 'bad-target-model' => "Die gewenste bestemming gebruik 'n ander inhoudsmodel. Dit is nie moontlik van $1 na $2 om te skakel nie.",
 'imagenocrossnamespace' => "'n Medialêer kan nie na 'n ander naamruimte geskuif word nie",
-'nonfile-cannot-move-to-file' => 'Net lêers kan na die lêernaamspasie geskuif word',
+'nonfile-cannot-move-to-file' => 'Net lêers kan na die lêernaamruimte geskuif word',
 'imagetypemismatch' => 'Die nuwe lêer se uitbreiding pas nie by die lêertipe nie',
 'imageinvalidfilename' => 'Die nuwe lêernaam is ongeldig',
 'fix-double-redirects' => 'Opdateer alle aansture wat na die oorspronklike titel wys',
@@ -2811,7 +2811,7 @@ In die laatste geval kan u ook \'n verwysing gebruik, byvoorbeeld [[{{#Special:E
 'allmessagesname' => 'Naam',
 'allmessagesdefault' => 'Verstekteks',
 'allmessagescurrent' => 'Huidige teks',
-'allmessagestext' => "Hier is 'n lys boodskappe wat in die ''MediaWiki''-naamspasie beskikbaar is.
+'allmessagestext' => "Hier is 'n lys boodskappe wat in die ''MediaWiki''-naamruimte teenwoordig is.
 Gaan na [//www.mediawiki.org/wiki/Localisation MediaWiki-lokalisasie] en [//translatewiki.net translatewiki.net] as u wil help om MediaWiki te vertaal.",
 'allmessagesnotsupportedDB' => "Daar is geen ondersteuning vir '''{{ns:special}}:Allmessages''' omdat '''\$wgUseDatabaseMessages''' uitgeskakel is.",
 'allmessages-filter-legend' => 'Filter',
@@ -2908,14 +2908,14 @@ Die lêer is slegs gedeeltelik opgelaai.',
 'javascripttest-qunit-heading' => 'QUnit toetssuite vir MediaWiki JavaScript',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage' => 'U gebruikerbladsy',
-'tooltip-pt-anonuserpage' => 'Die gebruikerbladsy vir die IP-adres waaronder u redigeer',
-'tooltip-pt-mytalk' => 'U besprekingsbladsy',
+'tooltip-pt-userpage' => 'My gebruikerbladsy',
+'tooltip-pt-anonuserpage' => 'Die gebruikersbladsy vir die IP-adres waaronder u wysigings aanbring',
+'tooltip-pt-mytalk' => 'My besprekingsbladsy',
 'tooltip-pt-anontalk' => 'Bespreking oor bydraes van hierdie IP-adres',
 'tooltip-pt-preferences' => 'My voorkeure',
 'tooltip-pt-watchlist' => 'Die lys bladsye wat u vir veranderinge dophou',
-'tooltip-pt-mycontris' => 'Lys van u bydraes',
-'tooltip-pt-login' => 'U word aangemoedig om in te teken; dit is egter nie verpligtend nie.',
+'tooltip-pt-mycontris' => 'Lys van my bydraes',
+'tooltip-pt-login' => 'U word aangemoedig om in te teken. Dit is egter nie verpligtend nie.',
 'tooltip-pt-anonlogin' => 'U word aangemoedig om in te teken; dit is egter nie verpligtend nie.',
 'tooltip-pt-logout' => 'Teken uit',
 'tooltip-ca-talk' => 'Bespreking oor die inhoudsbladsy',

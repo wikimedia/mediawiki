@@ -77,6 +77,7 @@
  * @author Savh
  * @author Shirayuki
  * @author Spacebirdy
+ * @author Stephensuleeman
  * @author Technorum
  * @author The Evil IP address
  * @author TheBITLINK
@@ -2144,6 +2145,8 @@ Entrada: contenttype/subtype, p. ej. <code>image/jpeg</code>.',
 'disambiguations-text' => "Las siguientes páginas contienen al menos un enlace a una '''página de desambiguación'''.
 En lugar de ello deberían enlazar a una página más apropiada.<br />
 Una página es considerada página de desambiguación si utiliza la plantilla que está enlazada desde [[MediaWiki:Disambiguationspage]].",
+
+'pageswithprop-submit' => 'Ir',
 
 'doubleredirects' => 'Redirecciones dobles',
 'doubleredirectstext' => 'Esta página contiene una lista de páginas que redirigen a otras páginas de redirección.

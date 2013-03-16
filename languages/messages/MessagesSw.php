@@ -625,7 +625,7 @@ Tafadhali subiri kwanza kabla ya kujaribu tena.',
 'loginlanguagelabel' => 'Lugha: $1',
 'suspicious-userlogout' => 'Ombi lako la kutoka kwenye akaunti yako limehiniwa, kwa sababu inaonekana kwamba ombi lilitumwa na kivinjari kilichoharibika au seva ya kuwakilisha yenye kache.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Hitilafu isiyojulikana katika ufanyajikazi wa barua za PHP ().',
 'user-mail-no-addy' => 'Umejaribu kutuma barua pepe bila anwani ya barua pepe.',
 
@@ -1247,7 +1247,7 @@ Taarifa hii itakuwa wazi.',
 'prefs-displaywatchlist' => 'Mapendekezo ya kuzinza',
 'prefs-diffs' => 'Tofauti',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'Anwani ya barua pepe inaonekana kuwa sawa',
 'email-address-validity-invalid' => 'Ingiza anwani halisi ya barua pepe',
 
@@ -1943,7 +1943,7 @@ Labda patakuwa na [[{{MediaWiki:Listgrouprights-helppage}}|maelezo mengine]] kuh
 'listgrouprights-addgroup-self-all' => 'Kuongeza makundi yote katika akaunti ya binafsi',
 'listgrouprights-removegroup-self-all' => 'Kuondoa makundi yote kutoka akaunti ya binafsi',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Hakuna anwani wa kutuma',
 'mailnologintext' => 'Ukitaka kutuma barua pepe kwa watumiaji wengine inabidi uwe [[Special:UserLogin|umeshaingia kwenye akaunti yako]] na pia uwe na anwani ya barua pepe sahihi pale [[Special:Preferences|mapendekezo yako]].',
 'emailuser' => 'Mtumie mtumiaji huyu barua pepe',
@@ -2870,7 +2870,7 @@ likifupishwa. Nyuga zingine zitafichwa kama chaguo-msingi.
 'monthsall' => 'yote',
 'limitall' => 'zote',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Kuyakinisha anwani ya barua pepe',
 'confirmemail_noemail' => 'Hakuna anwani ya barua pepe halali kwenye [[Special:Preferences|mapendekezo yako]].',
 'confirmemail_text' => '{{SITENAME}} inakutakia uyakinishe anwani yako ya barua pepe kabla kutumia zana zinazohusika barua pepe.

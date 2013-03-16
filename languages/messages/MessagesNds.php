@@ -686,7 +686,7 @@ Tööv en Stoot, ehrdat du dat noch wedder versöchst.',
 'loginlanguagelabel' => 'Spraak: $1',
 'suspicious-userlogout' => 'Dien Anfraag, di aftomellen, worr aflehnt, wieldat se vermoodlich vun en Browser oder Cache-Proxy sennt worrn is, de nich mehr funkschoneert.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Unbekennten Fehler in PHP sien mail()-Funkschoon',
 'user-mail-no-addy' => 'Versöch en E-Mail ahn E-Mail-Adress to sennen.',
 
@@ -1237,7 +1237,7 @@ Dat kann nich wedder ungeschehn maakt warrn.',
 'prefs-displaywatchlist' => 'Weddergaav-Instellungen',
 'prefs-diffs' => 'Ünnerscheed',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'E-Mail-Adress lett good',
 
 # User rights
@@ -1827,7 +1827,7 @@ Mehr Informatschonen över enkelte Rechten staht ünner [[{{MediaWiki:Listgroupr
 'listgrouprights-addgroup-self-all' => 'Kann all Gruppen to’t egen Brukerkonto tofögen',
 'listgrouprights-removegroup-self-all' => 'Kann all Gruppen vun’t egen Brukerkonto wegdoon',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Du büst nich anmellt.',
 'mailnologintext' => 'Du musst [[Special:UserLogin|anmellt wesen]] un in diene [[Special:Preferences|Instellungen]] en güllige E-Mail-Adress hebben, dat du annere Brukers E-Mails tostüren kannst.',
 'emailuser' => 'E-Mail an dissen Bruker',
@@ -2853,7 +2853,7 @@ Wiedere warrt standardmatig nich anwiest:
 'monthsall' => 'alle',
 'limitall' => 'all',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Nettbreefadress bestätigen',
 'confirmemail_noemail' => 'Du hest kene bestätigte Nettbreefadress in diene [[Special:Preferences|Instellen]] angeven.',
 'confirmemail_text' => '{{SITENAME}} verlangt, dat du diene Nettbreefadress bestätigst, ehrder du de Nettbreeffunkschonen bruken kannst. Klick op den Knopp wieder ünnen, dat di en Bestätigungskood tostüürt warrt.',

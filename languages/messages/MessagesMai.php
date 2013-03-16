@@ -514,7 +514,7 @@ $2',
 'loginlanguagelabel' => 'भाषा : $1',
 'suspicious-userlogout' => 'अहाँक निष्क्रमणक अनुरोध नै मानल गेल कारण ई लागल जे ई पुरान गवेषकक लागि वा दोसराइत उपस्मृति द्वारा पठाओल गेल छल।',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'पी.एच.पी.क संदेश कार्य() मे अज्ञात दोष',
 'user-mail-no-addy' => 'बिन ई-पत्र संकेतक ई-पत्र पठेबाक प्रयास',
 
@@ -1168,7 +1168,7 @@ $3 द्वारा देल कारण अछि ''$2''",
 'prefs-displaywatchlist' => 'दृश्य विकल्प सभ',
 'prefs-diffs' => 'अन्तर निर्धारक सभ',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'ई-पत्र संकेत मान्य बुझाइत अछि',
 'email-address-validity-invalid' => 'एकटा मान्य ई-पत्र संकेत लिखू',
 
@@ -1888,7 +1888,7 @@ $1',
 'listgrouprights-addgroup-self-all' => 'सभटा वर्गकेँ अपन खातामे जोड़ू',
 'listgrouprights-removegroup-self-all' => 'सभटा वर्गकेँ अपन खातासँ निकालू',
 
-# E-mail user
+# Email user
 'mailnologin' => 'कोनो पठेबाक पता नै',
 'mailnologintext' => 'अहाँ [[Special:UserLogin|सम्प्रवेशित]] हेबाक चाही आ अहाँक विकल्प [[Special:Preferences|preferences]]  मे एकटा मान्य ई-पत्र संकेत दोसर प्रयोक्ताकेँ पठेबा लेल हेबाक चाही।',
 'emailuser' => 'ऐ प्रयोक्ताकेँ ई-पत्र पठाउ',
@@ -3206,7 +3206,7 @@ Variants for Chinese language
 'monthsall' => 'सभ',
 'limitall' => 'सभटा',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => ' ई-पत्र सत्यापित करू',
 'confirmemail_noemail' => 'अहाँ लग कोनो मान्य ई-पत्र संकेत नै अछि एतए [[Special:Preferences|प्रयोक्ताक पसिन्न सभ]] देबा लेल।',
 'confirmemail_text' => '{{जालस्थल}}  चाहैए जे अहाँ अपन ई-पत्र सुविधा प्रयोग करबासँ पहिने अपन ई-पत्र संकेतक सत्यापन करू।

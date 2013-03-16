@@ -571,7 +571,7 @@ MySQL returned error "$3: $4".',
 'loginlanguagelabel' => 'மொழி: $1',
 'suspicious-userlogout' => 'உங்கள் விடுபதிகை கோரிக்கை மறுக்கப்பட்டது ஏனென்றால் அது அறுபட்ட உலாவி அல்லது மாற்று இடைக்கிடங்கியால் அனுப்பப்பட்டுள்ளது.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => "PHP 's mail() செயல்பாட்டில் அறியப்படாத பிழை.",
 'user-mail-no-addy' => 'மின்னஞ்சல் முகவரி இல்லாமல் மின்னஞ்சல் அனுப்ப முயற்சித்தது.',
 
@@ -1226,7 +1226,7 @@ $1",
 'prefs-displaywatchlist' => 'விருப்பத்தேர்வுகளைக் காட்டு',
 'prefs-diffs' => 'வித்தியாசங்கள்',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'மின்னஞ்சல் முகவரி முறையானதாகத் தோன்றுகிறது',
 'email-address-validity-invalid' => 'முறையான மின்னஞ்சல் முகவரியை உள்ளிடுக',
 
@@ -1958,7 +1958,7 @@ $1',
 'listgrouprights-addgroup-self-all' => 'எல்லா குழுவையும் சொந்த கணக்கில் சேர்',
 'listgrouprights-removegroup-self-all' => 'எல்லா குழுவையும் சொந்த கணக்கில் இருந்து  நீக்கு',
 
-# E-mail user
+# Email user
 'mailnologin' => 'அனுப்பும் முகவரி இல்லை',
 'mailnologintext' => 'நீங்கள்[[Special:UserLogin|புகுபதிகை செய்திருப்பதுடன்]]
 ஏனைய பயனர்களுக்கு மின்னஞ்சல் அனுப்பக்கூடியத்தாக செல்லுபடியாகக்கூடிய மின்னஞ்சல் முகவரியொன்றும் உங்களுடைய  [[Special:Preferences|விருப்பத் தெரிவுகளில்]] கொடுபட்டிருக்கவேண்டும்.',
@@ -3253,7 +3253,7 @@ $1',
 'monthsall' => 'அனைத்து மாதங்களும்',
 'limitall' => 'அனைத்து',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'மின்னஞ்சல் முகவரியை உறுதிப்படுத்துக',
 'confirmemail_noemail' => 'உங்கள் [[Special:Preferences|பயனர் விருப்பத்தேர்வுகளில்]] செல்லுபடியான மின்னஞ்சல் முகவரியைக் குறிப்பிடவில்லை.',
 'confirmemail_text' => 'மின்னஞ்சல் சிறப்பியல்புகளைப் பயன்படுத்துவதற்கு {{SITENAME}} தளம் உங்களது மின்னஞ்சல் உறுதிப்படுத்தப்பட வேண்டும் மென எதிர்பார்க்கின்றது. உறுதிப்படுத்தல் மின்னஞ்சல் ஒன்றை அனுப்ப கீழுள்ள விசையை முடுக்கவும். மின்னஞ்சல் ஒரு இணைப்பைக் கொண்டிருக்கும்; உங்கள் மின்னஞ்சலை உறுதிப்படுத்த இவ்விணைப்பை உங்கள் உலாவியில் திறக்கவும்.',

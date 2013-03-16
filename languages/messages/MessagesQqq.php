@@ -1093,7 +1093,8 @@ It is also used on the top of the page for logged out users, where it appears ne
 'createaccountreason' => '{{Identical|Reason}}',
 'badretype' => 'Used as error message when the new password and its retype do not match.',
 'userexists' => 'Used as error message in creating a user account.',
-'loginerror' => 'Used as title of error message.',
+'loginerror' => 'Used as title of error message.
+{{Identical|Login error}}',
 'createaccounterror' => 'Parameters:
 * $1 is an error message',
 'nocookiesnew' => "This message is displayed when a new account was successfully created, but the browser doesn't accept cookies.",

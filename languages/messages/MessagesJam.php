@@ -831,7 +831,7 @@ Piej pahn [[Special:Watchlist|yu wachlis]] dem '''buol'''.",
 # Special:ListGroupRights
 'listgrouprights-members' => '(lis a memba)',
 
-# E-mail user
+# Email user
 'emailuser' => 'E-miel dis yuuza',
 
 # Watchlist

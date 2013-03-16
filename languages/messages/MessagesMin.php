@@ -885,9 +885,29 @@ Angku dapek mancaliaknyo; rinciannyo mungkin ado di [{{fullurl:{{#Special:Log}}/
 Angku dapek malieknyo; rinciannyo mungkin ado di [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log pambanaman]",
 'rev-deleted-no-diff' => "Angku indak dapek maliek pabedoan ko dek salah satu dari revisinyo alah '''dihapuih'''.
 Rinciannyo mungkin ado di [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log penghapuihan].",
+'rev-suppressed-no-diff' => "Angku indak dapek maliek pabedoan ko dek salah satu dari revisinyo alah '''dihapuih'''.",
+'rev-deleted-unhide-diff' => "Revisi laman ko alah '''dihapuih'''.
+Rinciannyo mungkin ado di [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log penghapuihan].
+Sanak masih dapek [$1 maliek revisi ko] ko' amuah.",
+'rev-suppressed-unhide-diff' => "Revisi laman ko alah '''tabanam'''.
+Rinciannyo mungkin ado di [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} log pambanaman].
+Sanak masih dapek [$1 maliek revisi ko] ko' amuah.",
+'rev-deleted-diff-view' => "Laman revisi ko alah '''dihapuih'''.
+Sanak dapek mancaliaknyo; rinciannyo mungkin ado di [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log penghapuihan].",
+'rev-suppressed-diff-view' => "Revisi laman ko alah '''tabanam'''.
+Sanak dapek malieknyo; rinciannyo mungkin ado di [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log pambanaman]",
 'rev-delundel' => 'tampilkan/suruakkan',
 'rev-showdeleted' => "tunjua'an",
+'revisiondelete' => 'Hapuih/batal hapuih revisi',
+'revdelete-nooldid-title' => 'Target revisi indak basobok',
+'revdelete-nologtype-title' => 'Tipe log indak diagiah',
+'revdelete-nologtype-text' => 'Sanak indak mngagiah tipe log untuak manerapkan tindakan ko.',
+'revdelete-nologid-title' => 'Entri log indak valid',
+'revdelete-no-file' => 'Berkas nan dituju indak basobok.',
+'revdelete-show-file-confirm' => 'Apokah Sanak yakin nio mancaliak revisi nan alah dihapuih dari berkas "<nowiki>$1</nowiki>" per $3, $2?',
 'revdelete-show-file-submit' => 'Yo',
+'revdelete-selected' => "'''{{PLURAL:$2|Revisi piliahan}} dari [[:$1]]:'''",
+'logdelete-selected' => "'''{{PLURAL:$1|Log pilihan}}:'''",
 'revdelete-radio-set' => 'Yo',
 'revdelete-radio-unset' => 'Indak',
 'revdelete-log' => 'Alasan:',

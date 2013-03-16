@@ -557,7 +557,7 @@ Iontráil seoladh dea-fhormáidte le do thoil, nó glan an réimse sin.',
 'usernamehasherror' => 'Ní cheadaítear hais a úsáid in ainm úsáideora',
 'loginlanguagelabel' => 'Teanga: $1',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Earráid anaithnid i bhfeidhm mail() de chuid PHP',
 
 # Change password dialog
@@ -1254,7 +1254,7 @@ Féach freisin ar [[Special:WantedCategories|catagóirí faoi iarraidh]].',
 'listgrouprights-rights' => 'Cearta',
 'listgrouprights-members' => '(liostaigh baill)',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Níl aon seoladh maith ann',
 'mailnologintext' => 'Ní mór duit bheith  [[Special:UserLogin|logáilte isteach]]
 agus bheith le seoladh ríomhphoist bhailí i do chuid [[Special:Preferences|sainroghanna]]
@@ -2120,7 +2120,7 @@ cúlra i bhfócas)',
 'monthsall' => 'gach mí',
 'limitall' => 'iad uile',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Deimhnigh do ríomhsheoladh',
 'confirmemail_text' => 'Tá sé de dhíth an an vicí seo do ríomhsheoladh a bhailíochtú sula n-úsáideann tú na gnéithe ríomhphoist. Brúigh an cnaipe seo thíos chun teachtaireacht deimhnithe a sheoladh chuig do chuntas ríomhphoist. Beidh nasc ann sa chomhad ina mbeidh cód áirithe; lódáil an nasc i do bhrabhsálaí chun deimhniú go bhfuil do ríomhsheoladh bailí.',
 'confirmemail_send' => 'Seol cód deimhnithe',

@@ -1008,7 +1008,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 # Special:ListGroupRights
 'listgrouprights-members' => '(sṳ̀n-yèn chhîn-tân)',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Mò email thi-tiám',
 'mailnologintext' => 'Ngì pit-sî siên [[Special:UserLogin|tên-ngi̍p]] pin-chhai [[Special:Preferences|chhâm-su sat-chṳ]] chûng yû yit-ke yû-háu ke e-mail thi-tiám chhòi-nèn email khì-thâ yung-fu.',
 'emailuser' => 'Email ke-yung-fu',
@@ -1574,7 +1574,7 @@ yèn-heu thùng yit-hòng heu-fông ke lièn-chiap chiông-voi pûn sṳ-vì li-
 'namespacesall' => 'Chhiòn-phu',
 'monthsall' => 'chhiòn-phu',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Khok-ngin email thi-tiám',
 'confirmemail_noemail' => 'Ngì mò-yû chhai ngì-ke [[Special:Preferences|yung-fu sat-thin]] sû-ngi̍p yit-ke yû-háu ke email thi-tiám.',
 'confirmemail_text' => 'Chhṳ́ mióng-chham yêu-khiù ngì chhai sṳ́-yung sin-siông kûng-nèn chṳ̂-chhièn ngiam-chṳn ngì-ke sin-siông thi-tiám. Tiám-kit yî-ha on-néu chhṳ̍t-hiong ngì-ke sin-siông fat-sung yit-fûng khok-ngin sin-siông. Ke-sin-siông pâu-hàm yû yit-hòng me̍t-me̍t lièn-kiet; chhiáng chhai ngì-ke hi-khí chûng kâ-chai chhṳ́ lièn-kiet yî khok-ngin ngì-ke sin-siông thi-tiám he yû-háu ke.',

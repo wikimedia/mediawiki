@@ -537,7 +537,7 @@ Tulung nunggu dhisik sadurungé njajal manèh.',
 'loginlanguagelabel' => 'Basa: $1',
 'suspicious-userlogout' => 'Panjaluk panjenengan supaya metu ditolak amarga katoné panjlajah internt utawa proksi panyinggah.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Kasalahan ora dingertèni nèng piguna mail() PHP.',
 'user-mail-no-addy' => 'Njajal ngirim layang èlèktronik tanpa alamat layang èlèktronik.',
 'user-mail-no-body' => 'Nyoba ngirim layang e-mail, tapi isine kosong.',
@@ -1204,7 +1204,7 @@ Alamat layang èlèktronik Sampéyan ora dituduhaké nalika wong liya ngubungi S
 'prefs-displaywatchlist' => 'Opsi tampilan',
 'prefs-diffs' => 'Prabédan',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'Alamat layang èlèktronik kayané sah',
 'email-address-validity-invalid' => 'Lebokaké alamat layang èlèktronik sing sah',
 
@@ -1971,7 +1971,7 @@ Informasi tambahan perkara hak-hak individual bisa ditemokaké ing [[{{MediaWiki
 'listgrouprights-addgroup-self-all' => 'Nambahaké kabèh grup menyang akuné dhéwé',
 'listgrouprights-removegroup-self-all' => 'Mbusak kabèh klompok saka akuné dhéwé',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Ora ana alamat layang e-mail',
 'mailnologintext' => 'Panjenengan kudu [[Special:UserLogin|mlebu log]] lan kagungan alamat e-mail sing sah ing [[Special:Preferences|preféèrensi]] yèn kersa ngirim layang e-mail kanggo panganggo liya.',
 'emailuser' => 'Kirim e-mail panganggo iki',
@@ -3316,7 +3316,7 @@ Pranala-pranala sabanjuré ing baris sing padha dianggep minangka ''pengecualian
 'monthsall' => 'kabèh',
 'limitall' => 'kabèh',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Konfirmasi alamat e-mail',
 'confirmemail_noemail' => 'Panjenengan ora maringi alamat e-mail sing absah ing [[Special:Preferences|préferènsi]] panjenengan.',
 'confirmemail_text' => '{{SITENAME}} ngwajibaké panjenengan ndhedhes utawa konfirmasi alamat e-mail panjenengan sadurungé bisa nganggo fitur-fitur e-mail.

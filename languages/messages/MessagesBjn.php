@@ -632,7 +632,7 @@ Muhun hadangi dahulu sapandang hanyar cubai pulang.',
 'loginlanguagelabel' => 'Bahasa: $1',
 'suspicious-userlogout' => 'Parmintaan Pian hagan kaluar log kada ditarima karana nangkaya dikirim matan panjalajah web rakai atawa tatangkap proxy.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Kasalahan kada dipinandui dalam pungsi surat () PHP',
 'user-mail-no-addy' => 'Mancuba mangirim suril kada baalamat suril.',
 
@@ -1290,7 +1290,7 @@ Amun Pian mamilih manyadiakan ini, ini akan dipuruk gasan paminanduan kulihan ga
 'prefs-displaywatchlist' => 'Pilihan tampilan',
 'prefs-diffs' => 'Bida',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'Alamat suril tacungul sah',
 'email-address-validity-invalid' => 'Buati sabuah alamat suril nang sah',
 
@@ -2051,7 +2051,7 @@ Ada di [[{{MediaWiki:Listgrouprights-helppage}}|tambahan panjalasan]] pasal hak 
 'listgrouprights-addgroup-self-all' => 'Tambahi samunyaan gagalambang ka akun surang',
 'listgrouprights-removegroup-self-all' => 'Hapus samunyaan gagalambang matan akun surang',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Kadada alamat kirim',
 'mailnologintext' => 'Pian musti [[Special:UserLogin|babuat log]] wan baisi sabuah alamat suril sah di [[Special:Preferences|kakatujuan]] Pian hagan mangirim suril ka papamuruk lain.',
 'emailuser' => 'Suril pamakai',
@@ -3333,7 +3333,7 @@ Tautan-tautan abis tu pada baris sama dipartimbangkan sabagai pangacualian, nang
 'monthsall' => 'samunyaan',
 'limitall' => 'samunyaan',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Yakinakan alamat suril',
 'confirmemail_noemail' => 'Pian kada baisi sabuah alamat suril nang sah dalam [[Special:Preferences|kakatujuan pamuruk]] Pian.',
 'confirmemail_text' => '{{SITENAME}} mawajibakan Pian mayakinakan alamat suril Pian sabalum pitur-pitur suril dipurukakan.

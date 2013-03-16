@@ -1975,6 +1975,8 @@ Sıradaki liste sadece bu dosyaya bağlantı veren {{PLURAL:$1|ilk dosyayı|ilk 
 'sharedupload-desc-there' => 'Bu dosya $1 deposundan ve diğer projeler tarafından kullanılıyor olabilir. Daha fazla bilgi için lütfen [$2 dosya açıklama sayfasına] bakın.',
 'sharedupload-desc-here' => 'Bu dosya $1 deposundan ve diğer projeler tarafından kullanılıyor olabilir.
 Aşağıda [$2 dosya açıklama sayfasındaki] açıklama gösteriliyor.',
+'sharedupload-desc-create' => 'Bu dosya, $1 ve diğer projeler tarafından kullanılıyor olabilir. 
+Dosya açıklamasını düzenlemek isterseniz, [$2 dosya açıklama sayfası] bulunmaktadır.',
 'filepage-nofile' => 'Bu isimde bir dosya yok.',
 'filepage-nofile-link' => 'Bu isimde bir dosya yok, ama siz [$1 yükleyebilirsiniz].',
 'uploadnewversion-linktext' => 'Dosyanın yenisini yükleyin',
@@ -2060,6 +2062,8 @@ Aşağıda [$2 dosya açıklama sayfasındaki] açıklama gösteriliyor.',
 'disambiguations' => 'Anlam ayrım sayfalarına bağlantısı olan sayfalar',
 'disambiguationspage' => 'Template:Anlam ayrımı',
 'disambiguations-text' => 'İlk satırda yer alan sayfalar bir anlam ayrım sayfasına iç bağlantı olduğunu gösterir. İkinci sırada yer alan sayfalar anlam ayrım sayfalarını gösterir. <br />Burada [[MediaWiki:Disambiguationspage]] tüm anlam ayrım şablonlarına bağlantılar verilmesi gerekmektedir.',
+
+'pageswithprop-submit' => 'Git',
 
 'doubleredirects' => 'Çift yönlendirmeler',
 'doubleredirectstext' => 'Bu sayfa diğer yönlendirme sayfalarına yönlendirme yapan sayfaları listeler.

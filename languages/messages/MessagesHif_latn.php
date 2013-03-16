@@ -540,7 +540,7 @@ Thora deri baad fir se kosis karna.',
 'loginlanguagelabel' => 'Bhasa: $1',
 'suspicious-userlogout' => 'Aap ke log out kare ke maang ke na kar dewa gais hae kaahe ki ii janaawe hae ki ii maang ke ek tuuta browser nai to caching proxy bhejis hae.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'PHP ke mail() function me koi anjaan kharaabi hae',
 'user-mail-no-addy' => 'Bina e-mail address rahe pe bhi e-mail bheje ke kosis karaa gais hae.',
 
@@ -1226,7 +1226,7 @@ Iske $1 {{PLURAL:$1|character|characters}} se kamti rahe ke chaahi.',
 'prefs-displaywatchlist' => 'Choice dekhao',
 'prefs-diffs' => 'Farka',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'E-mail address kanuni hae',
 'email-address-validity-invalid' => 'Ek kanuni e-mail ke likho',
 
@@ -2005,7 +2005,7 @@ Support karaa gais protocol: <code>$1</code> (defaults to http:// if no protocol
 'listgrouprights-addgroup-self-all' => 'Sab group ke aapan account me jorre saktaa hai',
 'listgrouprights-removegroup-self-all' => 'Sab group ke aapan account se hatae saktaa hai',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Koi bheje waala address nai hai',
 'mailnologintext' => 'Duusra logan ke lage e-mail bheje ke khatir aap ke [[Special:UserLogin|logged in]] aur [[Special:Preferences|preferences]]  me thik e-mail hoew ke chaahi.',
 'emailuser' => 'Ii user ke E-mail karo',
@@ -3138,7 +3138,7 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 'monthsall' => 'sab',
 'limitall' => 'sab',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'E-mail address ke pakka karo',
 
 # Delete conflict

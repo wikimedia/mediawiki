@@ -702,7 +702,7 @@ $2',
 'loginlanguagelabel' => 'භාෂාව: $1',
 'suspicious-userlogout' => 'නිෂ්ක්‍රමණය සඳහා ඔබගේ අයැදුම නිෂ්ප්‍රභා කෙරුනේ එය යොමු කොට ඇත්තේ භින්න(කැඩුනු) බ්‍රවුසරයකින් හෝ නිවේෂණය කෙරෙමින් පවතින ප්‍රොක්සියක් වෙතින් යැයි බැලූ බැල්මට පෙනෙන බැවිනි.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'php mail() ශ්‍රිතයේ හඳුනානොගත් ගැටළුවකි',
 'user-mail-no-addy' => 'විද්‍යුත් තැපැල් ලිපිනයක් නොමැතිව විද්‍යුත් තැපැල් පණිවුඩයක් යැවීමට උත්සහ දරා ඇත.',
 
@@ -1369,7 +1369,7 @@ HTML ටැගයන් පිරික්සන්න.',
 'prefs-displaywatchlist' => 'විකල්ප පෙන්වන්න',
 'prefs-diffs' => 'වෙනස',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'විද්‍යුත්-තැපැල් ලිපිනය අනීතික බවක් පෙනෙයි.',
 'email-address-validity-invalid' => 'වලංගු විද්‍යුත් ලිපිනයක් ඇතුලත් කරන්න',
 
@@ -2138,7 +2138,7 @@ When filtered by user, only files where that user uploaded the most recent versi
 'listgrouprights-addgroup-self-all' => 'සි‍යළු කාණ්ඩයන් ස්වීය ගිණුමට එක්කරන්න',
 'listgrouprights-removegroup-self-all' => 'සියළු කාණ්ඩයන් ස්වීය ගිණුමෙන් ඉවත් කරන්න',
 
-# E-mail user
+# Email user
 'mailnologin' => 'යායුතු ලිපිනය නොමැත',
 'mailnologintext' => 'අනෙකුත් පරිශීලකයන්හට  විද්‍යුත්-තැපැල් යැවුමට පෙරාතුව, ඔබ [[Special:UserLogin|ප්‍රවිෂ්ට වී]], ඔබගේ  [[Special:Preferences|අභිරුචියන්හි]]  නීතික විද්‍යුත්-තැපැල් ලිපිනයක් සඳහන් කර තිබිය යුතුය.',
 'emailuser' => 'මෙම පරිශීලක වෙත විද්‍යුත්-ලිපියක් යවන්න',
@@ -3559,7 +3559,7 @@ Others will be hidden by default.
 'monthsall' => 'සියළු',
 'limitall' => 'සියල්ලම',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'විද්‍යුත්-තැපැල් ලිපිනය තහවුරු කරන්න',
 'confirmemail_noemail' => 'ඔබගේ  [[Special:Preferences|පරිශීලක අභිරුචියන්]] හි නීතික විද්‍යුත්-තැපැල් ලිපිනයක් ඔබ විසින් පිහිටුවා නොමැත.',
 'confirmemail_text' => 'විද්‍යුත්-තැපැල් අංගයන් භාවිතා කිරීමට පෙර  ඔබගේ විද්‍යුත්-තැපැල් ලිපිනය නීතිකරණය කල යුතු බවට {{SITENAME}} අවධාරණය කරයි.

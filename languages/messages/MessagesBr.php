@@ -1582,7 +1582,7 @@ Evit enklozañ ur skeudenn en ur pennad, lakait er pennad-se ul liamm skrivet ev
 'uploadlogpagetext' => "Setu a-is marilh ar restroù diwezhañ bet karget war ar servijer.
 S.o [[Special:NewFiles|rann ar skeudennoù nevez]] evit kaout ur sell gwiroc'h",
 'filename' => 'Anv ar restr',
-'filedesc' => 'Deskrivadur',
+'filedesc' => 'Diverradur',
 'fileuploadsummary' => 'Diverrañ :',
 'filereuploadsummary' => 'Kemmoù er restr :',
 'filestatus' => 'Statud a-fet gwirioù aozer :',

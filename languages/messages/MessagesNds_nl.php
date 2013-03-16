@@ -806,7 +806,7 @@ Je mutten effen wachten veurda'j t opniej proberen kunnen.",
 'loginlanguagelabel' => 'Taal: $1',
 'suspicious-userlogout' => 'Joew verzeuk um of te melden is aofewezen umdat t dernaor uutziet dat t verstuurd is deur n kepotte webkieker of tussenopslagbuffer',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Der was n onbekende fout mit de mail()-funksie van PHP',
 'user-mail-no-addy' => 'Eprobeerd n berichjen te versturen zonder n netpostadres',
 
@@ -1466,7 +1466,7 @@ Disse informasie is zichtbaor veur aandere gebrukers.',
 'prefs-displaywatchlist' => 'Weergave-instellingen',
 'prefs-diffs' => 'Verschillen',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'Geldig netpostadres',
 'email-address-validity-invalid' => 'Geef n geldig netpostadres op',
 
@@ -2237,7 +2237,7 @@ Meer informasie over de rechten ku'j [[{{MediaWiki:Listgrouprights-helppage}}|hi
 'listgrouprights-addgroup-self-all' => 'Kan alle groepen bie de eigen gebruker doon',
 'listgrouprights-removegroup-self-all' => 'Kan alle groepen vortdoon van eigen gebruker',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Niet an-emeld.',
 'mailnologintext' => 'Je mutten [[Special:UserLogin|an-emeld]] ween en n geldig e-mailadres in "[[Special:Preferences|mien veurkeuren]]" invoeren um disse funksie te kunnen gebruken.',
 'emailuser' => 'n Bericht sturen',
@@ -3565,7 +3565,7 @@ Aandere velden wörden verbörgen.
 'monthsall' => 'alles',
 'limitall' => 'alles',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Bevestig netpostadres',
 'confirmemail_noemail' => 'Je hebben gien geldig netpostadres in-evoerd in joew [[Special:Preferences|veurkeuren]].',
 'confirmemail_text' => "Bie disse wiki mu'j je netpostadres bevestigen veurda'j de berichtopsies gebruken kunnen. Klik op de onderstaonde knoppe um n bevestigingsbericht te ontvangen. In dit bericht zit n kode mit n verwiezing; um je netpostadres te bevestigen mu'j disse verwiezing openen.",

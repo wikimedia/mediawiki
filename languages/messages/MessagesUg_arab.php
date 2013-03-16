@@ -586,7 +586,7 @@ cookies نى قوزغاتقانلىقىڭىزنى جەزملەڭ، بۇ بەتن
 'loginlanguagelabel' => 'تىل: $1',
 'suspicious-userlogout' => 'تىزىمدىن چىقىش ئىلتىماسىڭىز رەت قىلىندى، چۈنكى ئۇ بەلكىم بۇزۇلغان توركۆرگۈ ياكى غەملەك ۋاكالەتچىسى يوللىغان بولۇشى مۇمكىن.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'PHP نىڭ mail() فونكسىيەسىدىكى يوچۇن خاتالىق',
 'user-mail-no-addy' => 'ئېلخەت ئادرېسسىز خەت يوللاشنى سىنىدى.',
 'user-mail-no-body' => 'بوش ياكى مەزمۇنى قىسقا مۇۋاپىق بولمىغان تورخەت ئەۋەتىشنى سىنىدى.',
@@ -1290,7 +1290,7 @@ HTML بەلگىسىنى تەكشۈرۈڭ.',
 'prefs-displaywatchlist' => 'كۆرسىتىش تاللانما',
 'prefs-diffs' => 'پەرقلەر',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'ئېلخەت ئادرېسى ئىناۋەتلىك',
 'email-address-validity-invalid' => 'ئىناۋەتلىك ئېلخەت ئادرېسىدىن بىرنى كىرگۈزۈڭ',
 
@@ -2079,7 +2079,7 @@ URL نىڭ توغرىلىقى ۋە تور بېكەتنى زىيارەت قىلى
 'listgrouprights-addgroup-self-all' => 'شەخسىي ھېساباتىمغا ھەممە گۇرۇپپىنى قوش',
 'listgrouprights-removegroup-self-all' => 'شەخسىي ھېساباتىمدىن ھەممە گۇرۇپپىنى چىقىرىۋەت',
 
-# E-mail user
+# Email user
 'mailnologin' => 'يوللايدىغان ئادرېس يوق',
 'mailnologintext' => 'سىز ئالدى بىلەن [[Special:UserLogin|تىزىمغا كىر]]ىپ، [[Special:Preferences|مايىللىق]] تەڭشىكىدە ئىناۋەتلىك ئېلخەت ئادرېسىڭىزدىن بىرسى بولغاندا ئاندىن باشقا ئىشلەتكۈچىلەرگە ئېلخەت يوللىيالايسىز.',
 'emailuser' => 'بۇ ئىشلەتكۈچىگە ئېلخەت يوللا',
@@ -3548,7 +3548,7 @@ Variants for Chinese language
 'monthsall' => 'ھەممىسى',
 'limitall' => 'ھەممىسى',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'جەزملەش ئېلخەت ئادرېسى',
 'confirmemail_noemail' => 'سىز ئۆزىڭىزنىڭ [[Special:Preferences|user مايىللىق]] تەڭشىكىڭىزگە ئىناۋەتلىك ئېلخەت ئادرېسى كىرگۈزمەپسىز.',
 'confirmemail_text' => '{{SITENAME}} ئېلخەت ئىقتىدارى ئىشلىتىشتىن ئىلگىرى ئېلخەت ئادرېسىڭىزنى دەلىللەشنى تەلەپ قىلىدۇ.

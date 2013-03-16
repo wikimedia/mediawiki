@@ -545,7 +545,7 @@ Për piasì speta prima ëd prové torna.",
 'loginlanguagelabel' => 'Lenga: $1',
 'suspicious-userlogout' => "Soa arcesta ëd seurte dal sistema a l'é stàita arfudà përchè a smija com s'a fussa stàita mandà da 'n navigador scolegà o da l'archiviassion an local d'un proxy.",
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Eror pa conossù ant la funsion PHP mail()',
 'user-mail-no-addy' => 'Provà a spedì un mëssagi sensa adrëssa ëd pòsta eletrònica.',
 'user-mail-no-body' => 'Preuva a mandé un corel con un còrp veuid o motobin curt.',
@@ -1222,7 +1222,7 @@ Costa anformassion a sarà pùblica.",
 'prefs-displaywatchlist' => 'Opsion ëd visualisassion',
 'prefs-diffs' => 'Diferense',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'A smija bon',
 'email-address-validity-invalid' => "A-i é da manca ëd n'adrëssa bon-a!",
 
@@ -2011,7 +2011,7 @@ A peulo ess-ie d'[[{{MediaWiki:Listgrouprights-helppage}}|anformassion adissiona
 'listgrouprights-addgroup-self-all' => 'Gionté tute le partìe a sò cont',
 'listgrouprights-removegroup-self-all' => 'Gavé tute le partìe da sò cont',
 
-# E-mail user
+# Email user
 'mailnologin' => "A-i é pa l'adrëssa për mandé ël mëssagi",
 'mailnologintext' => "A dev [[Special:UserLogin|rintré ant ël sistema]]
 e avèj registrà n'adrëssa ëd pòsta eletrònica vàlida ant ij [[Special:Preferences|sò gust]] për podèj mandé dij mëssagi ëd pòsta eletrònica a j'àutri Utent.",
@@ -3390,7 +3390,7 @@ J'àutri a saran stërmà coma stàndard.
 'monthsall' => 'tuti',
 'limitall' => 'tùit',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => "Confermé l'adrëssa postal",
 'confirmemail_noemail' => "A l'ha pa butà gnun-a adrëssa vàlida ëd pòsta eletrònica ant ij [[Special:Preferences|sò gust]].",
 'confirmemail_text' => "Costa wiki a ciama che chiel a convàlida n'adrëssa ëd pòsta eletrònica anans che

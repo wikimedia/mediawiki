@@ -16608,16 +16608,29 @@ Se você não pretende usar um logotipo, deixe este campo em branco.', # Fuzzy
 );
 
 /** Quechua (Runa Simi)
+ * @author AlimanRuna
  */
 $messages['qu'] = array(
+	'config-desc' => 'MediaWiki tiyachiq',
+	'config-title' => 'MediaWiki $1 tiyachiy',
+	'config-information' => 'Willay',
+	'config-your-language' => 'Rimayniyki:',
+	'config-wiki-language' => 'Wiki rimay:',
+	'config-back' => '← Ñawpaqman',
+	'config-extensions' => "Mast'ariykuna",
+	'config-install-step-done' => 'rurasqañam',
+	'config-install-step-failed' => 'manam aypasqachu',
+	'config-help' => 'yanapay',
+	'config-nofile' => '"$1" sutiyuq willañiqiqa manam tarisqachu. Qullusqachu?',
 	'mainpagetext' => "'''MediaWiki nisqa llamp'u kaqqa aypaylla takyachisqañam.'''",
 	'mainpagedocfooter' => "Wiki llamp'u kaqmanta willasunaykipaqqa [//meta.wikimedia.org/wiki/Help:Contents Ruraqpaq yanapana] ''(User's Guide)'' sutiyuq p'anqata qhaway.
 
 == Qallarichkaspa ==
 
-* [//www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
-* [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
+* [//www.mediawiki.org/wiki/Manual:Configuration_settings Kunphigurasyun churanamanta sutisuyu]
+* [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki nisqamanta pasaq tapuykuna]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki kachaykuy e-chaski sutisuyu]
+* [//www.mediawiki.org/wiki/Localisation#Translation_resources MediaWiki nisqata qampa rimaykiman t'ikray]",
 );
 
 /** Romagnol (Rumagnôl)

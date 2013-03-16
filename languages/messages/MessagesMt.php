@@ -752,7 +752,7 @@ Jekk jogħġbok stenna qabel ma terġa' tipprova.",
 'loginlanguagelabel' => 'Lingwa: $1',
 'suspicious-userlogout' => "Ir-rikjesta tiegħek li toħroġ barra mill-kont tiegħek ġiet miċħuda minħabba li jidher li din intbagħtet minn browser li ma jaħdimx jew minn proxy ta' caching.",
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Żball mhux magħruf fil-funzjoni mail() tal-PHP.',
 'user-mail-no-addy' => 'Pruvajt tibgħat posta elettronika mingħajr indirizz.',
 
@@ -1405,7 +1405,7 @@ Hawnhekk hawn valur iġġenerat b'mod każwali li inti tista' tuża: $1",
 'prefs-displaywatchlist' => "Opzjonijiet ta' viżwalizazzjoni",
 'prefs-diffs' => 'Differenzi',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'L-indirizz elettroniku jidher validu',
 'email-address-validity-invalid' => 'Daħħal indirizz elettroniku validu',
 
@@ -2144,7 +2144,7 @@ Jista' jkun hemm [[{{MediaWiki:Listgrouprights-helppage}}|aktar informazzjoni]] 
 'listgrouprights-addgroup-self-all' => "Jista' jżid kull grupp lill-kont tiegħu stess",
 'listgrouprights-removegroup-self-all' => "Jista' jneħħi l-gruppi kollha mill-kont tiegħu stess",
 
-# E-mail user
+# Email user
 'mailnologin' => 'L-Ebda indirizz tal-posta',
 'mailnologintext' => "Sabiex tkun tista' tibgħat posta elettronika 'l utenti oħrajn huwa neċessarju li [[Special:UserLogin|tidħol fis-sit]] bħalha utent reġistrat u jkollhok indirizz validu fil-[[Special:Preferences|preferenzi]] tiegħek.",
 'emailuser' => 'Ikteb lil dan l-utent',
@@ -3476,7 +3476,7 @@ Oħrajn jiġu moħbija kif inhu definit oriġinarjament.
 'monthsall' => 'kollha',
 'limitall' => 'kollha',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Ikkonferma l-indirizz tal-posta elettronika',
 'confirmemail_noemail' => "M'għandekx indirizz tal-posta elettronika validu fil-[[Special:Preferences|preferenzi tal-utent]].",
 'confirmemail_text' => "{{SITENAME}} għandha bżonn li inti tivverifika l-indirizz tal-posta elettronika tiegħek qabel ma tkun tista' tagħmel użu mill-faċilitajiet tal-posta elettronika.

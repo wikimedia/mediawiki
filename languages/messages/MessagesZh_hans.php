@@ -597,7 +597,7 @@ $1',
 'policy-url' => 'Project:方针',
 'portal' => '社区专页',
 'portal-url' => 'Project:社区专页',
-'privacy' => '隐私权政策',
+'privacy' => '隐私政策',
 'privacypage' => 'Project:隐私权政策',
 
 'badaccess' => '权限错误',
@@ -1345,7 +1345,7 @@ $1",
 'qbsettings-directionality' => '根据您的语言文本方向固定位置',
 
 # Preferences page
-'preferences' => '系统设置',
+'preferences' => '参数设置',
 'mypreferences' => '系统设置',
 'prefs-edits' => '编辑数量：',
 'prefsnologin' => '未登录',
@@ -2020,6 +2020,7 @@ $1',
 'disambiguationspage' => 'Template:消歧义',
 'disambiguations-text' => "以下的页面都有到'''消歧义页'''的链接，但它们可能可以链接到更适当的页面。<br />一个页面如果使用了[[MediaWiki:Disambiguationspage]]内的模板，则会被视为消歧义页。",
 
+'pageswithprop-text' => '此页面列出了使用特定页面属性的页面名单。',
 'pageswithprop-prop' => '属性名称：',
 'pageswithprop-submit' => '提交',
 
@@ -4014,5 +4015,8 @@ MediaWiki发表时预期有用，但对此'''无任何保证'''，亦无隐含�
 'duration-decades' => '$10年',
 'duration-centuries' => '$1个世纪',
 'duration-millennia' => '$1千年',
+
+# Image rotation
+'rotate-comment' => '图像已顺时针方向旋转了 $1 {{PLURAL:$1|度|度}}',
 
 );

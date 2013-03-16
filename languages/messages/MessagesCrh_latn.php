@@ -1376,7 +1376,7 @@ Ayrıca [[Special:WantedCategories|talap etilgen kategoriyalarnıñ cedveline]] 
 # Special:ListGroupRights
 'listgrouprights-members' => '(azalar cedveli)',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Mektüp yollanacaq adresi yoqtır',
 'mailnologintext' => 'Diger qullanıcılarğa elektron mektüpler yollap olmaq içün [[Special:UserLogin|oturım açmalısıñız]] ve [[Special:Preferences|sazlamalarıñızda]] mevcut olğan e-mail adresiniñ saibi olmalısıñız.',
 'emailuser' => 'Qullanıcığa mektüp',
@@ -1948,7 +1948,7 @@ Er satır * işaretinen başlamalı. Satırnıñ birinci bağlantısı qоşmağ
 'monthsall' => 'Episi',
 'limitall' => 'bütüni',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'E-mail adresini tasdıqla',
 'confirmemail_noemail' => '[[Special:Preferences|Qullanıcı sazlamalarıñızda]] dоğru bir e-mail adresiñiz yoq.',
 'confirmemail_text' => '{{SITENAME}} saytınıñ e-mail funktsiyalarını qullanmazdan evel e-mail adresiñizniñ tasdıqlanması kerek. Adresiñizge tasdıq e-mail mektübini yollamaq içün aşağıdaki dögmeni basıñız. Yollanacaq beyanatta adresiñizni tasdıqlamaq içün brauzeriñiznen irişip olacaq, tasdıq kodu olğan bir bağlantı olacaq.',

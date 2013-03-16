@@ -3499,7 +3499,7 @@ Variants for Chinese language
 'exif-gpstrack' => '이동 방향',
 'exif-gpsimgdirectionref' => '그림 방향에 대한 정보',
 'exif-gpsimgdirection' => '그림 방향',
-'exif-gpsmapdatum' => '측지 조사 데이처 사용',
+'exif-gpsmapdatum' => '사용된 측지 조사 데이터',
 'exif-gpsdestlatituderef' => '목적지의 위도 정보',
 'exif-gpsdestlatitude' => '목적지의 위도',
 'exif-gpsdestlongituderef' => '목적지의 경도 정보',

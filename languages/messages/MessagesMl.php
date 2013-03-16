@@ -23,6 +23,7 @@
  * @author Praveenp
  * @author Sadik Khalid
  * @author Sadik Khalid <sadik.khalid@gmail.com>
+ * @author Santhosh.thottingal
  * @author ShajiA
  * @author Shiju Alex <shijualexonline@gmail.com>
  * @author Shijualex
@@ -2080,6 +2081,8 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization കാണുക.',
 'disambiguations-text' => "താഴെക്കൊടുത്തിരിക്കുന്ന താളുകളിൽ '''വിവക്ഷിതങ്ങൾ താളിലേയ്ക്ക്''' കുറഞ്ഞത് ഒരു കണ്ണിയുണ്ട്. അവ അനുയോജ്യമായ താളിലേയ്ക്ക് കണ്ണിചേർക്കപ്പെടേണ്ടതാവാം. <br />
 [[MediaWiki:Disambiguationspage]] എന്ന താളിൽ കണ്ണി ചേർത്തിട്ടുള്ള ഫലകം ഉപയോഗിക്കുന്ന താളുകളെ വിവക്ഷിതങ്ങൾ താളായി കണക്കാക്കുന്നു.",
 
+'pageswithprop-submit' => 'പോകൂ',
+
 'doubleredirects' => 'ഇരട്ട തിരിച്ചുവിടലുകൾ',
 'doubleredirectstext' => 'ഈ താളിൽ ഒരു തിരിച്ചുവിടലിൽ നിന്നും മറ്റു തിരിച്ചുവിടൽ താളുകളിലേയ്ക്ക് പോകുന്ന താളുകൾ കൊടുത്തിരിക്കുന്നു. ഓരോ വരിയിലും ഒന്നാമത്തേയും രണ്ടാമത്തേയും തിരിച്ചുവിടൽ താളിലേക്കുള്ള കണ്ണികളും, രണ്ടാമത്തെ തിരിച്ചുവിടൽ താളിൽ നിന്നു ശരിയായ ലക്ഷ്യതാളിലേക്കുള്ള കണ്ണികളും ഉൾക്കൊള്ളുന്നു.
 <del>വെട്ടിക്കൊടുത്തിരിക്കുന്നവ</del> ശരിയാക്കിയവയാണ്.',
@@ -2357,7 +2360,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization കാണുക.',
 'enotif_body_intro_restored' => '{{SITENAME}} സംരംഭത്തിലെ $1 എന്ന താൾ $PAGEEDITDATE-നു {{gender:$2|$2}} പുനഃസ്ഥാപിച്ചിരിക്കുന്നു, ഇപ്പോഴത്തെ നാൾപ്പതിപ്പിനായി $3 കാണുക.',
 'enotif_body_intro_changed' => '{{SITENAME}} സംരംഭത്തിലെ $1 എന്ന താളിൽ $PAGEEDITDATE-നു {{gender:$2|$2}} മാറ്റം വരുത്തിയിരിക്കുന്നു, ഇപ്പോഴത്തെ നാൾപ്പതിപ്പിനായി $3 കാണുക.',
 'enotif_lastvisited' => 'താങ്കളുടെ അവസാന സന്ദർശനത്തിനു ശേഷമുണ്ടായ മാറ്റങ്ങൾ കാണുവാൻ  $1 സന്ദർശിക്കുക.',
-'enotif_lastdiff' => 'ഈ മാറ്റം ദർശിക്കാൻ $1 കാണുക.',
+'enotif_lastdiff' => 'ഈ മാറ്റം കാണാൻ $1 കാണുക.',
 'enotif_anon_editor' => 'അജ്ഞാത ഉപയോക്താവ് $1',
 'enotif_body' => 'പ്രിയ $WATCHINGUSERNAME,
 
@@ -4071,6 +4074,4 @@ $5
 'duration-centuries' => '{{PLURAL:$1|ഒരു നൂറ്റാണ്ട്|$1 നൂറ്റാണ്ട്}}',
 'duration-millennia' => '{{PLURAL:$1|ഒരു സഹസ്രാബ്ദം|$1 സഹസ്രാബ്ദം}}',
 
-# Unknown messages
-'pageswithprop-submit' => 'പോകൂ',
 );

@@ -547,7 +547,7 @@ $2',
 'loginlanguagelabel' => 'Омугун тыла: $1',
 'suspicious-userlogout' => 'Сеансы түмүктүүр ыйытыгыҥ ылыныллыбата, тоҕо диэтэххэ браузер эбэтэр кээштыыр прокси алҕас ыыппыт ыйытыктарыгар майгынныыр.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'mail() PHP-функциятыгар туох эрэ алҕас тахсыбыт',
 'user-mail-no-addy' => 'Сурук аадырыһа суох ыыттылла сатаабыт',
 'user-mail-no-body' => 'Кураанах эбэтэр суолтата суох кылгас тиэкистээх суругу ыыта сатаабыт.',
@@ -1233,7 +1233,7 @@ $1 {{PLURAL:$1|бэлиэттэн|бэлиэттэн (буукубаттан)}} 
 'prefs-displaywatchlist' => 'Көстүүтүн туруоруулара',
 'prefs-diffs' => 'Уратылара',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'Сөп курдук көстөр',
 'email-address-validity-invalid' => 'Алҕаһа суох аадырыс ирдэнэр',
 
@@ -2014,7 +2014,7 @@ $1',
 'listgrouprights-addgroup-self-all' => 'Бары бөлөхтөрү бэйэтин аатыгар холбуон сөп',
 'listgrouprights-removegroup-self-all' => 'Бары бөлөхтөрү бэйэтин аатыттан сотуон сөп',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Аадырыһа суох',
 'mailnologintext' => 'Атын кыттааччылары кытта e-mail көмөтүнэн суруйсуоххун баҕарар буоллаххына бэйэҕин [[Special:UserLogin|билиһиннэриэхтээххин]]  уонна e-mail аадырыскын [[Special:Preferences|туруорууларгар]] суруйуохтааххын.',
 'emailuser' => 'Кыттааччыга сурук',
@@ -3361,7 +3361,7 @@ $1',
 'monthsall' => 'бары',
 'limitall' => 'бары',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Электроннай аадырыһы бигэргэтии',
 'confirmemail_noemail' => '[[Special:Preferences|Бэйэҥ туруорууларгар]] электроннай аадырыскын суруйбатаххын эбэтэр сыыһа суруйбуккун.',
 'confirmemail_text' => '{{SITENAME}} движога үлэлиэҥ иннинэ электроннай аадырыскын бигэргэтэри эрэйэр.

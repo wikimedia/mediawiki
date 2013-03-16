@@ -1276,7 +1276,7 @@ Faqet në [[Special:Watchlist|listën tuej të mbikëqyrjes]] janë '''të theks
 # Special:ListGroupRights
 'listgrouprights-members' => '(lista e antarëve)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Çoji postel këtij përdoruesi',
 
 # Watchlist

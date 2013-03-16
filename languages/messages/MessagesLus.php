@@ -469,7 +469,7 @@ I tum leh hmain nghâk lawk ang che.',
 'login-abort-generic' => 'I luh tumna a hlawhchham - Pamţùl a ni',
 'loginlanguagelabel' => 'Ţawng: $1',
 
-# E-mail sending
+# Email sending
 'user-mail-no-addy' => 'E-chenhmun awm lova e-lehkha thawn i tum.',
 
 # Change password dialog
@@ -871,7 +871,7 @@ Hmangtuten e-lehkha an thawn chein i e-chenhmun hrilh an ni chuang lo vang.',
 'prefs-displaywatchlist' => 'Duhthlanna tilang rawh',
 'prefs-diffs' => 'Danglamna',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'E-chenhmun a dik hmel',
 'email-address-validity-invalid' => 'E-chenhmun dik ziak rawh',
 
@@ -1367,7 +1367,7 @@ Hetah hian [[Special:UnusedCategories|pawl hman lohho]] pholan tel a ni lo.
 'listgrouprights-members' => '(tel zawng zawng)',
 'listgrouprights-addgroup' => '{{PLURAL:$2|Pawl|Pawl}} belhna: $1',
 
-# E-mail user
+# Email user
 'emailuser' => 'He hmangtu hi e-lehkha thawn rawh',
 'emailusername' => 'Hmangtu hming:',
 'emailusernamesubmit' => 'Thehlut rawh',

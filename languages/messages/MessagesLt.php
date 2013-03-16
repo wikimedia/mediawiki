@@ -689,7 +689,7 @@ Palaukite prieš bandant vėl.',
 'loginlanguagelabel' => 'Kalba: $1',
 'suspicious-userlogout' => 'Jūsų prašymas atsijungti buvo atmestas, nes, atrodo, jį klaidingai išsiuntė naršyklė arba spartinantysis tarpinis serveris.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Nežinoma klaida PHP mail() funkcijoje',
 'user-mail-no-addy' => 'Bandyta išsiųsti elektroninį laišką be el. pašto adreso.',
 'user-mail-no-body' => 'Mėginta siųsti tuščia ar pernelyg trumpą E-pašto žinutė.',
@@ -1338,7 +1338,7 @@ Jei jūs jį įvesite, jis bus naudojamas pažymėti jūsų darbą.',
 'prefs-displaywatchlist' => 'Rodymo nuostatos',
 'prefs-diffs' => 'Skirtumai',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'Panašu, kad E-pašto adresas yra teisingas',
 'email-address-validity-invalid' => 'Įveskite korektišką e-pašto adresą',
 
@@ -2088,7 +2088,7 @@ Palaikomi protokolai: <code>$1</code> (nei vieno iš jų nenurodykite paieškoje
 'listgrouprights-addgroup-self-all' => 'Priskirti visas grupes prie paskyros',
 'listgrouprights-removegroup-self-all' => 'Pašalinti visas grupes iš savo paskyros',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Nėra adreso',
 'mailnologintext' => 'Jums reikia būti [[Special:UserLogin|prisijungusiam]] ir turi būti įvestas teisingas el. pašto adresas jūsų [[Special:Preferences|nustatymuose]], kad siųstumėte el. laiškus kitiems nautotojams.',
 'emailuser' => 'Rašyti laišką šiam naudotojui',
@@ -3465,7 +3465,7 @@ Visos kitos nuorodos toje pačioje eilutėje yra laikomos išimtimis, t. y. pusl
 'monthsall' => 'visi',
 'limitall' => 'visi',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Patvirtinkite el. pašto adresą',
 'confirmemail_noemail' => 'Jūs neturite nurodę teisingo el. pašto adreso [[Special:Preferences|savo nustatymuose]].',
 'confirmemail_text' => 'Šiame projekte būtina patvirtinti el. pašto adresą prieš naudojant el. pašto funkcijas. Spustelkite žemiau esantį mygtuką,

@@ -605,7 +605,7 @@ Pakilaog sana tabi nin sarong tugmadong koreo o pabayae na mayong laman an surat
 'loginlanguagelabel' => 'Lengguwahe: $1',
 'suspicious-userlogout' => 'An hinahagad mong magluwas pinagpundo nin huli ta ini gayod pinagpadara sa paagi nin sarong pasang kilyaw o proksing hilom.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Bakong bantog na kasalaan sa PHP mail() function.',
 'user-mail-no-addy' => 'Nagprubar na magpadara nin e-koreo na mayo nin e-koreong address.',
 'user-mail-no-body' => 'Nagprubar na magpadara nin e-surat na mayong laman o daeng kanultulan na halipot an hawak.',
@@ -1292,7 +1292,7 @@ An saimong e-surat na adres dae ipagbuyagyag kunsoarin na an ibang paragamit mak
 'prefs-displaywatchlist' => 'Ipahiling ang mga pagpipilian',
 'prefs-diffs' => 'Diffs',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'An e-koreo nagpapahiling na balido',
 'email-address-validity-invalid' => 'Magkaag nin sarong balidong e-koreong address',
 
@@ -2065,7 +2065,7 @@ Puwedeng magkakaigwa nin [[{{MediaWiki:Listgrouprights-helppage}}|kadagdagang im
 'listgrouprights-addgroup-self-all' => 'Idagdag an gabos na mga grupo tanganing magkaigwa nin sadireng panindog',
 'listgrouprights-removegroup-self-all' => 'Halion an gabos na mga grupo gikan sa sadireng panindog',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Mayong direksyón nin destino',
 'mailnologintext' => "Kaipuhan ika si [[Special:UserLogin|nakalaog]]
 asin may marhay na ''e''-surat sa saimong [[Special:Preferences|Mga kabôtan]]
@@ -3439,7 +3439,7 @@ Sublokas kan siyudad na ipinahiling',
 'monthsall' => 'gabos',
 'limitall' => 'gabos',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => "Kompirmaron an ''e''-surat",
 'confirmemail_noemail' => "Mayô kang pigkaag na marhay na ''e''-surat sa saimong [[Special:Preferences|mga kabôtan nin parágamit]].",
 'confirmemail_text' => '{{SITENAME}} minakaipo na balidaron an saimong e-surat na adres bago mo gagamiton an mga estima kan e-surat.

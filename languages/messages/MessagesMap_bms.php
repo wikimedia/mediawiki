@@ -514,7 +514,7 @@ Tulung ngenteni sedela sedurunge njajal maning.',
 'loginlanguagelabel' => 'Basa: $1',
 'suspicious-userlogout' => "Panjalukan Rika nggo metu log ditolak jalarak ketone dikirim nang panjlajah sing rusak utawa proksi panyinggah (''caching proxy'').",
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Kasalahan sing ora genah nang fungsi mail() PHP.',
 'user-mail-no-addy' => 'Njajal ngirimna imel tanpa nganggo alamat imel.',
 
@@ -1036,7 +1036,7 @@ Aja kuatir, alamat imele Rika ora ditidokna dong pangganggo sejen ngontak Rika.'
 'prefs-displaywatchlist' => 'Opsi tampilan',
 'prefs-diffs' => 'Prabédan',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'Alamatimel ketone wis sah',
 'email-address-validity-invalid' => 'Monggo dilebokna alamat imel sing bener',
 
@@ -1453,7 +1453,7 @@ Rika teyeng mbatesi tampilan kanthi milih jinis log, jeneng panganggo (sensitif 
 # Special:ListGroupRights
 'listgrouprights-members' => '(daftar anggota)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Kirim imel maring panganggo kiye',
 'emailtarget' => 'Lebokna jeneng panganggo utawa panampa',
 'emailusername' => 'Jeneng panganggo:',

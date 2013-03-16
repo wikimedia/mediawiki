@@ -689,7 +689,7 @@ $2',
 'loginlanguagelabel' => 'ভাষা: $1',
 'suspicious-userlogout' => 'আপোনাৰ প্ৰস্থানৰ অনুৰোধ বাতিল কৰা হৈছে কাৰণ হয়তো আপোনাৰ ব্ৰাউজাৰ অসম্পূৰ্ণ নতুবা পূৰ্বৱতী তথ্য পঠাইছে ।',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'পি.এইছ.পি মেইল () কাৰ্যত অজ্ঞাত ত্ৰুটি ।',
 'user-mail-no-addy' => 'ই-মেইল ঠিকনা নোহোৱাকৈয়ে ই-মেইল পঠোৱাৰ চেষ্টা কৰা হৈছে ।',
 
@@ -1380,7 +1380,7 @@ $1",
 'prefs-displaywatchlist' => 'বিকল্প প্ৰদৰ্শন কৰক',
 'prefs-diffs' => 'পাৰ্থক্য',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'ই-মেইল ঠিকনাটো সঠিক',
 'email-address-validity-invalid' => 'সঠিক ই-মেইল ঠিকনা প্ৰদান কৰক',
 
@@ -2165,7 +2165,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization চাওক।",
 'listgrouprights-addgroup-self-all' => 'সকলো গোট নিজৰ একাউণ্টত যোগ কৰক',
 'listgrouprights-removegroup-self-all' => 'নিজৰ একাউণ্টৰপৰা সকলো গোট আঁতৰাওক',
 
-# E-mail user
+# Email user
 'mailnologin' => 'পাওঁতাৰ ঠিকনা নাই',
 'mailnologintext' => 'আন সদস্যক ই-মেইল পঠিয়াবলৈ আপুনি [[Special:UserLogin|লগ্‌ ইন]] কৰিব লাগিব আৰু আপোনাৰ [[Special:Preferences|পছন্দসমূহত]] এটা বৈধ ই-মেইল ঠিকনা থাকিব লাগিব ।',
 'emailuser' => 'এই সদস্যজনলৈ ই-মেইল পঠিয়াওক',
@@ -3533,7 +3533,7 @@ Any subsequent links on the same line are considered to be exceptions, i.e. page
 'monthsall' => 'সকলো',
 'limitall' => 'সকলোবোৰ',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'ই-মেইল ঠিকনা নিশ্চিত কৰক',
 'confirmemail_noemail' => 'আপোনাৰ [[Special:Preferences|সদস্য পছন্দসমূহ]]ত কোনো বৈধ ই-মেইল ঠিকনা নাই ।',
 'confirmemail_text' => '{{SITENAME}}ত ই-মেইল ভিত্তিক সেৱা ব্যৱহাৰ কৰাৰ পূৰ্বে আপুনি আপোনাৰ ই-মেইল ঠিকনা নিশ্চিত কৰিব লাগিব । তলৰ বুটামটো টিপি আপোনাৰ ই-মেইল ঠিকনালৈ এখন নিশ্চিতকৰণ মেইল পঠিয়াওক ।

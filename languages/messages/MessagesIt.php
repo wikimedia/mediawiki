@@ -2024,9 +2024,9 @@ Probabilmente vuoi modificare la descrizione presente nella [$2 pagina di descri
 Esse potrebbero dover puntare a una pagina più appropriata.<br />
 Vengono considerate pagine di disambiguazione tutte quelle che contengono i template elencati in [[MediaWiki:Disambiguationspage]].",
 
-'pageswithprop' => 'Pagine con una pagina di proprietà',
-'pageswithprop-legend' => 'Pagine con una pagina di proprietà',
-'pageswithprop-text' => 'Questa pagina elenca le pagine che utilizzano una particolare pagina di proprietà.',
+'pageswithprop' => 'Pagine con una proprietà di pagina',
+'pageswithprop-legend' => 'Pagine con una proprietà di pagina',
+'pageswithprop-text' => 'Questa pagina elenca le pagine che utilizzano una particolare proprietà di pagina.',
 'pageswithprop-prop' => 'Nome proprietà:',
 'pageswithprop-submit' => 'Vai',
 

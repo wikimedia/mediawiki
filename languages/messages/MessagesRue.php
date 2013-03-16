@@ -618,7 +618,7 @@ $2',
 'loginlanguagelabel' => 'Язык: $1',
 'suspicious-userlogout' => 'Ваша пожадавка на одголошіня была одвергнута, бо вызерає то так, же была послана розбитым переглядачом або кешуючім проксі-сервером.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Незнама хыба у PHP mail() функції',
 'user-mail-no-addy' => 'Проба одослати електронічну пошту без імейловой адресы.',
 
@@ -1285,7 +1285,7 @@ $1",
 'prefs-displaywatchlist' => 'Наставлїня  взгляду',
 'prefs-diffs' => 'Порівнаня верзії',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'Адреса ел. пошты вызерать быти правилна',
 'email-address-validity-invalid' => 'Задайте правилну адресу ел. пошты',
 
@@ -2048,7 +2048,7 @@ $1',
 'listgrouprights-addgroup-self-all' => 'Приданя свого конта до хоцьякой ґрупы',
 'listgrouprights-removegroup-self-all' => 'Одстранїня свого контра з хоцьякой ґрупы',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Без адресы одосланя',
 'mailnologintext' => 'Кідь хочете посылати ел. пошту іншым хоснователям, мусите ся [[Special:UserLogin|приголосити]] і мати платну адресу ел. пошты в своїм [[Special:Preferences|наставлїню]].',
 'emailuser' => 'Послати імейл тому хоснователёви',
@@ -3385,7 +3385,7 @@ $1',
 'monthsall' => 'вшыткы',
 'limitall' => 'вшыткы',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Потверджіня адресы ел. пошты',
 'confirmemail_noemail' => 'Во своїм [[Special:Preferences|хосновательскім наставлїню]] сьте не зазначіли платну адресу ел. пошты.',
 'confirmemail_text' => 'Тота вікі выжадує, жебы сьте перед хоснованым дакотрых функцій потвердили свою адресу електронічной пошты. Кликнутём на клапку ниже одошлете потверджовачій лист на вами зазначену адресу. Тот лист обсягує одказ і код потверджіня; зображінём одказованой сторінкы во своїм інтернетовім переглядачу потвердите, же зазначена адреса є платна.',

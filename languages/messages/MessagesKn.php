@@ -1436,7 +1436,7 @@ $2',
 'listgrouprights-members' => '(ಸದಸ್ಯರ ಪಟ್ಟಿ)',
 'listgrouprights-addgroup-all' => 'ಎಲ್ಲಾ ಗುಂಪುಗಳನ್ನು ಸೇರಿಸಿ',
 
-# E-mail user
+# Email user
 'mailnologin' => 'ಕಳುಹಿಸುವ ವಿಳಾಸ ಇಲ್ಲ',
 'mailnologintext' => 'ಇತರ ಬಳಕೆದಾರರಿಗೆ ಇ-ಅಂಚೆ ಕಳುಹಿಸಲು ನೀವು [[Special:UserLogin|ಲಾಗ್ ಇನ್]] ಆಗಿರಬೇಕು ಮತ್ತು ನಿಮ್ಮ [[Special:Preferences|ಪ್ರಾಶಸ್ತ್ಯಗಳ ಪುಟದಲ್ಲಿ]] ಒಂದು ಧೃಡೀಕೃತ ಇ-ಅಂಚೆ ವಿಳಾಸ ನೀಡಿರಬೇಕು.',
 'emailuser' => 'ಈ ಸದಸ್ಯರಿಗೆ ಇ-ಅಂಚೆ ಕಳಿಸಿ',
@@ -2026,7 +2026,7 @@ $1',
 'monthsall' => 'ಎಲ್ಲಾ',
 'limitall' => 'ಎಲ್ಲಾ',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'ಇ-ಅಂಚೆ ವಿಳಾಸವನ್ನು ಖಾತ್ರಿ ಮಾಡಿ',
 'confirmemail_noemail' => 'ನಿಮ್ಮ [[Special:Preferences|ಬಳಕೆದಾರ ಪ್ರಾಶಸ್ತ್ಯಗಳಲ್ಲಿ]] ಸರಿಯಾದ ಇ-ಅಂಚೆ ವಿಳಾಸವಿಲ್ಲ.',
 'confirmemail_pending' => 'ನಿಮಗೆ ಧೃಡೀಕರಣ ಕೋಡ್ ಒಂದನ್ನು ಆಗಲೆ ಇ-ಅಂಚೆಯ ಮೂಲಕ ಕಳುಹಿಸಲಾಗಿದೆ;
