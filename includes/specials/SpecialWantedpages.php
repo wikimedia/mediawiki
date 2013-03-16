@@ -60,7 +60,8 @@ class WantedPagesPage extends WantedQueryPage {
 			'tables' => array(
 				'pagelinks',
 				'pg1' => 'page',
-				'pg2' => 'page'
+				'pg2' => 'page',
+				'r' => 'redirect',
 			),
 			'fields' => array(
 				'namespace' => 'pl_namespace',
@@ -71,7 +72,8 @@ class WantedPagesPage extends WantedQueryPage {
 				'pg1.page_namespace IS NULL',
 				"pl_namespace NOT IN ( '" . NS_USER .
 					"', '" . NS_USER_TALK . "' )",
-				"pg2.page_namespace != '" . NS_MEDIAWIKI . "'"
+				"pg2.page_namespace != '" . NS_MEDIAWIKI . "'",
+				'r.rd_title IS NULL'
 			),
 			'options' => array(
 				'HAVING' => "COUNT(*) > $count",
@@ -84,7 +86,8 @@ class WantedPagesPage extends WantedQueryPage {
 						'pg1.page_title = pl_title'
 					)
 				),
-				'pg2' => array( 'LEFT JOIN', 'pg2.page_id = pl_from' )
+				'pg2' => array( 'LEFT JOIN', 'pg2.page_id = pl_from' ),
+				'r' => array( 'LEFT JOIN', 'r.rd_title = pl_title')
 			)
 		);
 		// Replacement for the WantedPages::getSQL hook
