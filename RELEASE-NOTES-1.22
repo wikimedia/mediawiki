@@ -244,6 +244,7 @@ production.
   the output of the API query meta=siteinfo&siprop=statistics
 * Primary keys have been added to both the archive table and the externallinks
   tables.
+* Maintenance script created to populate archive.ar_len field.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
