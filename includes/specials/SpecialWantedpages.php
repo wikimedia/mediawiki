@@ -73,7 +73,10 @@ class WantedPagesPage extends WantedQueryPage {
 				"pg2.page_namespace != '" . NS_MEDIAWIKI . "'"
 			),
 			'options' => array(
-				'HAVING' => "COUNT(*) > $count",
+				'HAVING' => array(
+					"COUNT(*) > $count",
+					"COUNT(*) > SUM(pg2.page_is_redirect)"
+				),
 				'GROUP BY' => array( 'pl_namespace', 'pl_title' )
 			),
 			'join_conds' => array(
