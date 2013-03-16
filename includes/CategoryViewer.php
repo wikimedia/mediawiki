@@ -526,7 +526,10 @@ class CategoryViewer extends ContextSource {
 
 			$first = true;
 			foreach ( $colContents as $char => $articles ) {
-				$ret .= '<h3>' . htmlspecialchars( $char );
+				# Change space to non-breaking space to keep headers aligned
+				$h3char = $char === ' ' ? '&#160;' : htmlspecialchars( $char );
+
+				$ret .= '<h3>' . $h3char;
 				if ( $first && $char === $prevchar ) {
 					# We're continuing a previous chunk at the top of a new
 					# column, so add " cont." after the letter.
