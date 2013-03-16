@@ -121,6 +121,7 @@ production.
 * (bug 45526) Add QUnit assertion helper "QUnit.assert.htmlEqual" for asserting
   structual equality of HTML (ignoring insignificant differences like
   quotmarks, order and whitespace in the attribute list).
+* Maintenance script created to populate archive.ar_len field
 
 === Bug fixes in 1.21 ===
 * (bug 42649) PHP Fatal error: Call to a member function isLocal() on a
