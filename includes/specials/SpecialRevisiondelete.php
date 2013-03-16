@@ -147,7 +147,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		} else {
 			$this->typeName = $request->getVal( 'type' );
 			$this->targetObj = Title::newFromText( $request->getText( 'target' ) );
-			if ( $this->targetObj && $this->targetObj->isSpecial( 'Log' ) ) {
+			if ( $this->targetObj && $this->targetObj->isSpecial( 'Log' ) && count( $this->ids ) !== 0 ) {
 				$result = wfGetDB( DB_SLAVE )->select( 'logging',
 					'log_type',
 					array( 'log_id' => $this->ids ),
