@@ -99,6 +99,8 @@ production.
   tags.
 * Added 'ChangeTagsListActive' hook, to separate the concepts of "defined" and
   "active" formerly conflated by the 'ListDefinedTags' hook.
+* (T19665) Special:WantedPages only lists page which having at least one red link
+  pointing to it.
 
 ==== External libraries ====
 * MediaWiki now requires certain external libraries to be installed. In the past
