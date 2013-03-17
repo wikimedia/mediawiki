@@ -626,7 +626,7 @@ Pšosym pśizjaw se zasej, gaž jo dostanjoš.',
 'eauthentsent' => 'Wobkšuśenje jo se na e-mailowu adresu wótposłało.
 
 Nježli až wótpósćelo se dalšna e-mail na to wužywarske konto, dejš slědowaś instrukcije w powěsći a tak wobkšuśiś, až konto jo wót wěrnosći twójo.',
-'throttled-mailpassword' => 'W běgu {{PLURAL:$1|slědneje $1 góźiny|slědnjeju $1 góźinowu|slědnych $1 góźinow}} jo se južo raz wó nowe šćitne gronidło pšosyło. Aby se znjewužywanje wobinuło, wótpósćelo se jano jadno šćitne gronidło w běgu {{PLURAL:$1|$1 góźiny|$1 góźinowu|$1 góźinow}}.',
+'throttled-mailpassword' => 'E-mail za anulěrowanje gronidła jo se za {{PLURAL:$1|slědnu góźinu|slědnej $1 góźinje|slědne $1 góźiny|slědnych $1 góźin}} pósłała. Aby znjewužywanjeju zasajźało, se jano jadna e-mail za anulěrowanje gronidła na {{PLURAL:$1|góźinu|$1 góźinje|$1 góźiny|$1 góźin}} pósćelo.',
 'mailerror' => 'Zmólka pśi wótpósłanju e-maila: $1',
 'acct_creation_throttle_hit' => 'Woglědowarje toś togo wikija, kótarež wužywaju twóju IP-adresu su napórali {{PLURAL:$1|1 konto|$1 konśe|$1 konta|$1 kontow}} slědny źeń. To jo maksimalna dowólona licba za toś tu periodu.
 Woglědowarje, kótarež wužywaju toś tu IP-adresu njamógu tuchylu dalšne konta napóraś.',
@@ -674,7 +674,7 @@ Sy snaź swójo gronidło južo wuspěšnje změnił abo nowe nachylne gronidło
 
 # Special:PasswordReset
 'passwordreset' => 'Gronidło slědk stajiś',
-'passwordreset-text' => 'Wupołni toś ten formular, aby dostał e-mailowe dopomnjeśe k swójim kontowym drobnostkam.',
+'passwordreset-text' => 'Wupołni toś ten formular, aby swójo gronidło anulěrował.',
 'passwordreset-legend' => 'Gronidło slědk stajiś',
 'passwordreset-disabled' => 'Slědkstajenja gronidłow su se znjemóžnili na toś tom wikiju.',
 'passwordreset-pretext' => '{{PLURAL:$1||Zapódaj dołojce jadne ze slědujucych datowych podaśow}}',
@@ -684,23 +684,23 @@ Sy snaź swójo gronidło južo wuspěšnje změnił abo nowe nachylne gronidło
 'passwordreset-capture-help' => 'Jolic nakśickujoš toś ten kašćik, e-mail (z nachylnym gronidłom) buźo se pokazaś a wužywarjeju słaś.',
 'passwordreset-email' => 'E-mailowa adresa:',
 'passwordreset-emailtitle' => 'Kontowe drobnostki na {{GRAMMAR:lokatiw|{{SITENAME}}}}',
-'passwordreset-emailtext-ip' => 'Něchten (nejskerjej ty, z IP-adresu $1) jo dopomnjeśe na twóje kontowe drobnostki za {{SITENAME}} pominał ($4).  {{PLURAL:$3|Slědujuce wužywarske konto jo|Slědujucej wužywarskej konśe stej|Slědujuce wužywarske konta su|Slědujuce wužywarske konta su}} z toś tej e-mailoweju adresu {{PLURAL:$3|zwězane|zwězanej|zwězane|zwězane}}:
+'passwordreset-emailtext-ip' => 'Něchten (nejskerjej ty, z IP-adresu $1) jo anulěrowanje gronidła za {{GRAMMAR:akuzatiw|{{SITENAME}}}} pominał ($4).  {{PLURAL:$3|Slědujuce wužywarske konto jo|Slědujucej wužywarskej konśe stej|Slědujuce wužywarske konta su}} z toś tej e-mailoweju adresu {{PLURAL:$3|zwězane|zwězanej|zwězane}}:
 
 $2
 
-{{PLURAL:$3|Toś to nachylne gronidło spadnjo|Toś tej nachylnej gronidle spadnjotej|Toś te nachylne gronidła spadnu|Toś te nachylne gronidła spadnu}} za {{PLURAL:$5|jaden źeń|$5 dnja|$5 dny|$5 dnjow}}.
+{{PLURAL:$3|Toś to nachylne gronidło spadnjo|Toś tej nachylnej gronidle spadnjotej|Toś te nachylne gronidła spadnu}} za {{PLURAL:$5|jaden źeń|$5 dnja|$5 dny|$5 dnjow}}.
 Ty by měł se něnto pśizjawiś a nowe gronidło wustajiś. Jolic něchten drugi jo toś to napšašowanje pósłał, abo jolic sy se zasej na spócetne gronidło spomnjeł a wěcej njocoš jo změniś, móžoš toś to zdźělenje ignorěrowaś a swójo stare gronidło dalej wužywaś.',
-'passwordreset-emailtext-user' => 'Wužywaŕ $1 jo dopomnjeśe na twóje kontowe drobnostki za {{SITENAME}} pominał ($4).  {{PLURAL:$3|Slědujuce wužywarske konto jo|Slědujucej wužywarskej konśe stej|Slědujuce wužywarske konta su|Slědlujuce wužywarske konta su}} z toś tej e-mailoweju adresu {{PLURAL:$3|zwězane|zwězanej|zwězane|zwězane}}:
+'passwordreset-emailtext-user' => 'Wužywaŕ $1 jo anulěrowanje gronidła za {{GRAMMAR:akuzatiw|{{SITENAME}}}} pominał ($4).  {{PLURAL:$3|Slědujuce wužywarske konto jo|Slědujucej wužywarskej konśe stej|Slědujuce wužywarske konta su}} z toś tej e-mailoweju adresu {{PLURAL:$3|zwězane|zwězanej|zwězane}}:
 
 $2
 
-{{PLURAL:$3|Toś to nachylne gronidło spadnjo|Toś tej nachylnej gronidle spadnjotej|Toś te nachylne gronidła spadnu|Toś te nachylne gronidła spadnu}} za {{PLURAL:$5|jaden źeń|$5 dnja|$5 dny|$5 dnjow}}.
+{{PLURAL:$3|Toś to nachylne gronidło spadnjo|Toś tej nachylnej gronidle spadnjotej|Toś te nachylne gronidła spadnu}} za {{PLURAL:$5|jaden źeń|$5 dnja|$5 dny|$5 dnjow}}.
 Ty by měł se něnto pśizjawiś a nowe gronidło wustajiś. Jolic něchten drugi jo toś to napšašowanje pósłał, abo jolic sy se zasej na spócetne gronidło spomnjeł a wěcej njocoš jo změniś, móžoš toś to zdźělenje ignorěrowaś a swójo stare gronidło dalej wužywaś.',
 'passwordreset-emailelement' => 'Wužywarske mě: $1
 Nachylne gronidło: $2',
-'passwordreset-emailsent' => 'Dopominańska e-mail jo se pósłała.',
-'passwordreset-emailsent-capture' => 'Dopominańska e-mail jo se pósłała, kótaraž se dołojce pokazujo.',
-'passwordreset-emailerror-capture' => 'Dołojce pokazowana e-mail jo se napóriła, ale jo se njeraźiło ju wužiwarjeju pósłaś: $1',
+'passwordreset-emailsent' => 'E-mail za anulěrowanje gronidła jo se pósłała.',
+'passwordreset-emailsent-capture' => 'E-mail za anulěrowanje gronidła jo se pósłała, kótaraž pokazujo se dołojce.',
+'passwordreset-emailerror-capture' => 'E-mail za anulěrowanje gronidła jo se generěrowała, kótaraž pokazujo se dołojce, ale jeje słanje wužywarjeju jo se njeraźiło: $1',
 
 # Special:ChangeEmail
 'changeemail' => 'E-mailowu adresu změniś',
@@ -3728,17 +3728,17 @@ Wobraze se w połnym wótgranicowanju pokazuju, druge datajowe typy se ze zwěza
 'sqlite-no-fts' => 'Wersija $1 bźez pódpěry za połnotekstowe pytanje',
 
 # New logging system
-'logentry-delete-delete' => '$1 jo bok $3 wulašował',
-'logentry-delete-restore' => '$1 jo bok $3 wótnowił',
-'logentry-delete-event' => '$1 jo změnił widobnosć {{PLURAL:$5|protokolowego zapiska|$5 protokoloweju zapiskowu|$5 protokolowych zapiskow|$5 protokolowych zapiskow}} na $3: $4',
-'logentry-delete-revision' => '$1 jo změnił widobnosć {{PLURAL:$5|wersije|$5 wersijowu|$5 wersijow|$5 wersijow}} na boku $3: $4',
-'logentry-delete-event-legacy' => '$1 jo změnił widobnosć protokolowych zapiskow na $3',
-'logentry-delete-revision-legacy' => '$1 jo změnił widobnosć wersijow na boku $3',
-'logentry-suppress-delete' => '$1 jo pódtłocył bok $3',
-'logentry-suppress-event' => '$1 jo kšajźu změnił widobnosć {{PLURAL:$5|protokolowego zapiska|$5 protokoloweju zapiskowu|$5 protokolowych zapiskow|$5 protokolowych zapiskow}} na $3: $4',
-'logentry-suppress-revision' => '$1 jo kšajźu změnił widobnosć {{PLURAL:$5|wersije|$5 wersijowu|$5 wersijow|$5 wersijow}} na boku $3: $4',
-'logentry-suppress-event-legacy' => '$1 jo kšajźu změnił widobnosć protokolowych zapiskow na $3',
-'logentry-suppress-revision-legacy' => '$1 jo kšajźu změnił widobnosć wersijow na boku $3',
+'logentry-delete-delete' => '$1 jo bok $3 {{GENDER:$2|wulašował|wulašowała}}',
+'logentry-delete-restore' => '$1 jo bok $3 {{GENDER:$2|wótnowił|wótnowiła}}',
+'logentry-delete-event' => '$1 jo {{GENDER:$2|změnił|změniła}} widobnosć {{PLURAL:$5|protokolowego zapiska|$5 protokoloweju zapiskowu|$5 protokolowych zapiskow}} na $3: $4',
+'logentry-delete-revision' => '$1 jo {{GENDER:$2|změnił|změniła}} widobnosć {{PLURAL:$5|wersije|$5 wersijowu|$5 wersijow}} na boku $3: $4',
+'logentry-delete-event-legacy' => '$1 jo {{GENDER:$2|změnił|změniła}} widobnosć protokolowych zapiskow na $3',
+'logentry-delete-revision-legacy' => '$1 jo {{GENDER:$2|změnił|změniła}} widobnosć wersijow na boku $3',
+'logentry-suppress-delete' => '$1 jo {{GENDER:$2|pódtłocył|pódtłocyła}} bok $3',
+'logentry-suppress-event' => '$1 jo kšajźu {{GENDER:$2|změnił|změniła}} widobnosć {{PLURAL:$5|protokolowego zapiska|$5 protokoloweju zapiskowu|$5 protokolowych zapiskow}} na $3: $4',
+'logentry-suppress-revision' => '$1 jo kšajźu {{GENDER:$2|změnił|změniła}} widobnosć {{PLURAL:$5|wersije|$5 wersijowu|$5 wersijow}} na boku $3: $4',
+'logentry-suppress-event-legacy' => '$1 jo kšajźu {{GENDER:$2|změnił|změniła}} widobnosć protokolowych zapiskow na $3',
+'logentry-suppress-revision-legacy' => '$1 jo kšajźu {{GENDER:$2|změnił|změniła}} widobnosć wersijow na boku $3',
 'revdelete-content-hid' => 'wopśimjeśe schowane',
 'revdelete-summary-hid' => 'Zespominanje schowane',
 'revdelete-uname-hid' => 'wužywarske mě schowane',
@@ -3747,20 +3747,20 @@ Wobraze se w połnym wótgranicowanju pokazuju, druge datajowe typy se ze zwěza
 'revdelete-uname-unhid' => 'wužywarske mě widobne',
 'revdelete-restricted' => 'Wobgranicowanja se teke na administratorow nałožuju',
 'revdelete-unrestricted' => 'Wobgranicowanja za administratorow wótpórane',
-'logentry-move-move' => '$1 jo pśesunuł bok $3 do $4',
-'logentry-move-move-noredirect' => '$1 jo pśesunuł bok $3 do $4, mimo až jo napórał dalejpósrědnjenje',
-'logentry-move-move_redir' => '$1 jo pśesunuł bok $3 do $4 a jo pśepisał dalejpósrědnjenje',
-'logentry-move-move_redir-noredirect' => '$1 jo pśesunuł bok $3 do $4 a jo pśepisał dalejpósrědnjenje, mimo až jo napórał dalejpósrědnjenje',
-'logentry-patrol-patrol' => '$1 jo markěrował wersiju $4 boka $3 ako doglědowanu',
-'logentry-patrol-patrol-auto' => '$1 jo awtomatiski markěrował wersiju $4 boka $3 ako doglědowanu',
-'logentry-newusers-newusers' => 'Wužywarske konto $1 jo se załožyło',
-'logentry-newusers-create' => 'Wužywarske konto $1 jo se załožyło',
-'logentry-newusers-create2' => '$1 jo załožył wužywarske konto $3',
-'logentry-newusers-byemail' => 'Wužywarske konto $3 jo se wót $1 załožyło a gronidło jo se pśez e-mail pósłało.',
-'logentry-newusers-autocreate' => 'Konto $1 jo se awtomatiski załožyło',
-'logentry-rights-rights' => '$1 jo kupkowe cłonkojstwo za $3 z $4 do $5 změnił',
-'logentry-rights-rights-legacy' => '$1 jo kupkowe cłonkojstwo za $3 změnił',
-'logentry-rights-autopromote' => '$1 jo se awtomatiski wót $4 do $5 pówušył',
+'logentry-move-move' => '$1 jo {{GENDER:$2|pśesunuł|pśesunuła}} bok $3 do $4',
+'logentry-move-move-noredirect' => '$1 jo {{GENDER:$2|pśesunuł|pśesunuła}} bok $3 do $4, mimo až jo {{GENDER:$2|napórał|napórała}} dalejpósrědnjenje',
+'logentry-move-move_redir' => '$1 jo {{GENDER:$2|pśesunuł|pśesunuła}} bok $3 do $4 a jo {{GENDER:$2|pśepisał|pśepisała}} dalejpósrědnjenje',
+'logentry-move-move_redir-noredirect' => '$1 jo {{GENDER:$2|pśesunuł|pśesunuła}} bok $3 do $4 a jo {{GENDER:$2|pśepisał|pśepisał}} dalejpósrědnjenje, mimo až jo {{GENDER:$2|napórał|napórała}} dalejpósrědnjenje',
+'logentry-patrol-patrol' => '$1 jo {{GENDER:$2|markěrował|markěrował}} wersiju $4 boka $3 ako doglědowanu',
+'logentry-patrol-patrol-auto' => '$1 jo awtomatiski {{GENDER:$2|markěrował|měrkěrowała}} wersiju $4 boka $3 ako doglědowanu',
+'logentry-newusers-newusers' => 'Wužywarske konto $1 jo se {{GENDER:$2|załožyło}}',
+'logentry-newusers-create' => 'Wužywarske konto $1 jo se {{GENDER:$2|załožyło}}',
+'logentry-newusers-create2' => '$1 jo {{GENDER:$2|załožył|załožyła}} wužywarske konto $3',
+'logentry-newusers-byemail' => '$1 jo wužywarske konto $3 {{GENDER:$2|załožył|załožyła}} a gronidło jo se pśez e-mail pósłało',
+'logentry-newusers-autocreate' => 'Wužywarske konto $1 jo se awtomatiski {{GENDER:$2|załožyło}}',
+'logentry-rights-rights' => '$1 jo kupkowe cłonkojstwo za $3 z $4 do $5 {{GENDER:$2|změnił|změniła}}',
+'logentry-rights-rights-legacy' => '$1 jo kupkowe cłonkojstwo za $3 {{GENDER:$2|změnił|změniła}}',
+'logentry-rights-autopromote' => '$1 jo se awtomatiski wót $4 do $5 {{GENDER:$2|pśirědował|pśirědowała}}',
 'rightsnone' => '(nic)',
 
 # Feedback

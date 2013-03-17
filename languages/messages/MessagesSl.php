@@ -672,8 +672,8 @@ Ko ga boste prejeli, se ponovno prijavite.',
 'blocked-mailpassword' => 'Urejanje z vašega IP-naslova je blokirano. Da bi preprečili zlorabe, vam ni dovoljeno tudi uporabljati funkcije za povrnitev pozabljenega gesla.',
 'eauthentsent' => 'E-sporočilo je bilo poslano na navedeni e-naslov.
 Če želite tja poslati še katero, sledite navodilom v e-sporočilu, da potrdite lastništvo računa.',
-'throttled-mailpassword' => 'Geselski opomnik je bil v {{PLURAL:$1|zadnji uri|zadnjih $1 urah}} že poslan.
-Za preprečevanje zlorab je lahko na {{PLURAL:$1|uro|$1 uri|$1 ure|$1 ur}} poslano samo eno opozorilo.',
+'throttled-mailpassword' => 'E-pošto za ponastavitev gesla smo v {{PLURAL:$1|zadnji uri|zadnjih $1 urah}} že poslali.
+Za preprečevanje zlorab lahko na {{PLURAL:$1|uro|$1 uri|$1 ure|$1 ur}} pošljemo samo eno sporočilo za ponastavitev gesla.',
 'mailerror' => 'Napaka pri pošiljanju pošte: $1',
 'acct_creation_throttle_hit' => 'Obiskovalci {{GRAMMAR:rodilnik|{{SITENAME}}}} so s tem IP-naslovom v zadnjih 24 urah ustvarili že $1 {{PLURAL:$1|uporabniški račun|uporabniška računa|uporabniške račune|uporabniških računov|uporabniških računov}} in s tem dosegli največje dopustno število v omenjenem časovnem obdobju. Novih računov zato s tem IP-naslovom trenutno žal ne morete več ustvariti.
 
@@ -728,7 +728,7 @@ Morda ste že uspešno spremenili geslo ali pa ste zahtevali novo začasno geslo
 
 # Special:PasswordReset
 'passwordreset' => 'Ponastavitev gesla',
-'passwordreset-text' => 'Izpolnite obrazec, da prejmete e-poštni opomnik s podrobnostmi vašega računa.',
+'passwordreset-text' => 'Izpolnite obrazec, da ponastavite geslo.',
 'passwordreset-legend' => 'Ponastavitev gesla',
 'passwordreset-disabled' => 'Ponastavljanje gesla je na tem wikiju onemogočeno.',
 'passwordreset-pretext' => '{{PLURAL:$1||Vnesite enega od dela podatkov spodaj}}',
@@ -738,8 +738,8 @@ Morda ste že uspešno spremenili geslo ali pa ste zahtevali novo začasno geslo
 'passwordreset-capture-help' => 'Če potrdite to polje, vam bodo e-pošte (z začasnim geslom) pokazane in poslane uporabniku.',
 'passwordreset-email' => 'E-poštni naslov:',
 'passwordreset-emailtitle' => 'Podrobnosti računa na {{SITENAME}}',
-'passwordreset-emailtext-ip' => 'Nekdo (verjetno vi, z IP-naslova $1) je zahteval opomnik vaših
-podatkov o računu na {{SITENAME}} ($4). S tem e-poštnim naslovom
+'passwordreset-emailtext-ip' => 'Nekdo (verjetno vi, z IP-naslova $1) je zahteval ponastavitev vašega
+gesla na {{SITENAME}} ($4). S tem e-poštnim naslovom
 {{PLURAL:$3|je povezan naslednji uporabniški račun|sta povezana naslednja uporabniška računa|so povezani naslednji uporabniški računi}}:
 
 $2
@@ -749,7 +749,7 @@ Prijavite se in izberite novo geslo sedaj. Če je zahtevo podal
 nekdo drug ali pa ste se spomnili svojega prvotnega gesla in ga več
 ne želite spremeniti, lahko to sporočilo prezrete in nadaljujete z uporabo
 svojega starega gesla.',
-'passwordreset-emailtext-user' => 'Uporabnik $1 na {{SITENAME}} je zahteval opomnik vaših podatkov o računu na {{SITENAME}}
+'passwordreset-emailtext-user' => 'Uporabnik $1 na strani {{SITENAME}} je zahteval ponastavitev vašega gesla na {{SITENAME}}
 ($4). S tem e-poštnim naslovom {{PLURAL:$3|je povezan naslednji uporabniški račun|sta povezana naslednja uporabniška računa|so povezani naslednji uporabniški računi}}:
 
 $2
@@ -761,9 +761,9 @@ ne želite spremeniti, lahko to sporočilo prezrete in nadaljujete z uporabo
 svojega starega gesla.',
 'passwordreset-emailelement' => 'Uporabniško ime: $1
 Začasno geslo: $2',
-'passwordreset-emailsent' => 'Opomnilna e-pošta je bila poslana.',
-'passwordreset-emailsent-capture' => 'E-poštni opomnik je bil poslan in je prikazan spodaj.',
-'passwordreset-emailerror-capture' => 'E-poštni opomnik je bil poslan in je prikazan spodaj, vendar pa pošiljanje uporabniku ni uspelo: $1',
+'passwordreset-emailsent' => 'Poslali smo e-pošto za postavitev gesla.',
+'passwordreset-emailsent-capture' => 'Poslali smo e-pošto za ponastavitev gesla, ki je prikazana spodaj.',
+'passwordreset-emailerror-capture' => 'Ustvarili smo e-pošto za ponastavitev gesla, ki je prikazana spodaj, vendar pa pošiljanje uporabniku ni uspelo: $1',
 
 # Special:ChangeEmail
 'changeemail' => 'Sprememba e-poštnega naslova',

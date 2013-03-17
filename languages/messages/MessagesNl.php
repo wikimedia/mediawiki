@@ -848,7 +848,7 @@ Om misbruik te voorkomen is het niet mogelijk om een nieuw wachtwoord aan te vra
 'eauthentsent' => 'Er is een bevestigingse-mail naar het opgegeven e-mailadres gezonden.
 Volg de aanwijzingen in de e-mail om aan te geven dat het uw e-mailadres is.
 Tot die tijd kunnen er geen e-mails naar het e-mailadres gezonden worden.',
-'throttled-mailpassword' => 'In {{PLURAL:$1|het laatste uur|de laatste $1 uur}} is er al een wachtwoordherinnering verzonden.
+'throttled-mailpassword' => 'In {{PLURAL:$1|het laatste uur|de laatste $1 uur}} is al een wachtwoordherinnering verzonden.
 Om misbruik te voorkomen wordt er slechts één wachtwoordherinnering per {{PLURAL:$1|uur|$1 uur}} verzonden.',
 'mailerror' => 'Fout bij het verzenden van e-mail: $1',
 'acct_creation_throttle_hit' => 'Bezoekers van deze wiki met hetzelfde IP-adres als u hebben de afgelopen dag al $1 gebruiker{{PLURAL:$1||s}} geregistreerd, wat het maximale aantal in deze periode is.
@@ -904,7 +904,7 @@ Mogelijk hebt u uw wachtwoord al gewijzigd of een nieuw tijdelijk wachtwoord aan
 
 # Special:PasswordReset
 'passwordreset' => 'Wachtwoord opnieuw instellen',
-'passwordreset-text' => 'Vul dit formulier in zodat we u een e-mail kunnen sturen met uw gebruikersgegevens.',
+'passwordreset-text' => 'Vul dit formulier in om uw wachtwoord opnieuw in te stellen.',
 'passwordreset-legend' => 'Wachtwoord opnieuw instellen',
 'passwordreset-disabled' => 'Het is in deze wiki niet mogelijk uw wachtwoord opnieuw in te stellen.',
 'passwordreset-pretext' => '{{PLURAL:$1||Voer één van de onderstaande velden in}}',
@@ -914,15 +914,12 @@ Mogelijk hebt u uw wachtwoord al gewijzigd of een nieuw tijdelijk wachtwoord aan
 'passwordreset-capture-help' => 'Als u dit vakje aanvinkt, wordt de e-mail (met het tijdelijke wachtwoord) naar de gebruiker verzonden en ook aan u weergegeven.',
 'passwordreset-email' => 'E-mailadres:',
 'passwordreset-emailtitle' => 'Gebruikersgegevens op {{SITENAME}}',
-'passwordreset-emailtext-ip' => 'Iemand, waarschijnlijk u, heeft vanaf het IP-adres $1 uw gebruikersgegevens voor {{SITENAME}} ($4) opgevraagd.
-De volgende {{PLURAL:$3|gebruiker is|gebruikers zijn}} gekoppeld aan dit e-mailadres:
+'passwordreset-emailtext-ip' => 'Iemand, waarschijnlijk u, heeft vanaf het IP-adres $1 een aanvraag gedaan om uw wachtwoord voor {{SITENAME}} ($4) opnieuw in te stellen. De volgende {{PLURAL:$3|gebruiker is|gebruikers zijn}} gekoppeld aan dit e-mailadres:
 
 $2
 
-{{PLURAL:$3|Dit tijdelijke wachtwoord vervalt|Deze tijdelijke wachtwoorden vervallen}} over {{PLURAL:$5|een dag|$5 dagen}}.
-Meld u aan en wijzig het wachtwoord nu. Als u dit verzoek niet zelf heeft gedaan, of als u het oorspronkelijke wachtwoord nog kent en het niet wilt wijzigen, negeer dit bericht dan en blijf uw oude wachtwoord gebruiken.',
-'passwordreset-emailtext-user' => 'Gebruiker $1 op de site {{SITENAME}} heeft uw gebruikersgegevens voor {{SITENAME}} ($4) opgevraagd.
-De volgende {{PLURAL:$3|gebruiker is|gebruikers zijn}} gekoppeld aan dit e-mailadres:
+{{PLURAL:$3|Dit tijdelijke wachtwoord vervalt|Deze tijdelijke wachtwoorden vervallen}} over {{PLURAL:$5|een dag|$5 dagen}}. Meld u aan en wijzig het wachtwoord nu. Als u dit verzoek niet zelf heeft gedaan, of als u het oorspronkelijke wachtwoord nog kent en het niet wilt wijzigen, negeer dit bericht dan en blijf uw oude wachtwoord gebruiken.',
+'passwordreset-emailtext-user' => 'Gebruiker $1 op de site {{SITENAME}} heeft een aanvraag gedaan om uw wachtwoord voor {{SITENAME}} ($4) opnieuw in te stellen. De volgende {{PLURAL:$3|gebruiker is|gebruikers zijn}} gekoppeld aan dit e-mailadres:
 
 $2
 
@@ -930,9 +927,9 @@ $2
 Meld u aan en wijzig het wachtwoord nu. Als u dit verzoek niet zelf heeft gedaan, of als u het oorspronkelijke wachtwoord nog kent en het niet wilt wijzigen, negeer dit bericht dan en blijf uw oude wachtwoord gebruiken.',
 'passwordreset-emailelement' => 'Gebruikersnaam: $1
 Tijdelijk wachtwoord: $2',
-'passwordreset-emailsent' => 'Er is per e-mail een herinnering verzonden.',
-'passwordreset-emailsent-capture' => 'Er is een herinneringse-mail verzonden. Deze wordt hieronder weergegeven.',
-'passwordreset-emailerror-capture' => 'Er is een herinneringse-mail aangemaakt. Deze wordt hieronder weergegeven. Het verzonden naar de gebruiker is mislukt om de volgende reden: $1',
+'passwordreset-emailsent' => 'Er is een e-mail voor het opnieuw instellen van een wachtwoord verzonden.',
+'passwordreset-emailsent-capture' => 'Er is een e-mail voor het opnieuw instellen van een wachtwoord verzonden. Deze wordt hieronder weergegeven.',
+'passwordreset-emailerror-capture' => 'Er is een e-mail voor het opnieuw instellen van een wachtwoord aangemaakt. Deze wordt hieronder weergegeven. Het verzonden naar de gebruiker is mislukt om de volgende reden: $1',
 
 # Special:ChangeEmail
 'changeemail' => 'E-mailadres wijzigen',
@@ -4131,17 +4128,17 @@ Andere bestandstypen worden direct in het met het MIME-type verbonden programma 
 'sqlite-no-fts' => 'Versie $1 zonder ondersteuning voor "full-text" zoeken',
 
 # New logging system
-'logentry-delete-delete' => '$1 heeft de pagina $3 verwijderd',
-'logentry-delete-restore' => '$1 heeft de pagina $3 teruggeplaatst',
-'logentry-delete-event' => '$1 heeft de zichtbaarheid van {{PLURAL:$5|een logboekregel|$5 logboekregels}} van $3 gewijzigd: $4',
-'logentry-delete-revision' => '$1 heeft de zichtbaarheid van {{PLURAL:$5|een versie|$5 versies}} van de pagina $3 gewijzigd: $4',
-'logentry-delete-event-legacy' => '$1 heeft de zichtbaarheid van logboekregels van $3 gewijzigd',
-'logentry-delete-revision-legacy' => '$1 heeft de zichtbaarheid van versies van de pagina $3 gewijzigd',
-'logentry-suppress-delete' => '$1 heeft de pagina $3 onderdrukt',
-'logentry-suppress-event' => '$1 heeft heimelijk de zichtbaarheid van {{PLURAL:$5|een logboekregel|$5 logboekregels}} van $3 gewijzigd: $4',
-'logentry-suppress-revision' => '$1 heeft heimelijk de zichtbaarheid van {{PLURAL:$5|een versie|$5 versies}} van de pagina $3 gewijzigd: $4',
-'logentry-suppress-event-legacy' => '$1 heeft heimelijk de zichtbaarheid van logboekregels van $3 gewijzigd',
-'logentry-suppress-revision-legacy' => '$1 heeft heimelijk de zichtbaarheid van versies van de pagina $3 gewijzigd.',
+'logentry-delete-delete' => '$1 {{GENDER:$2|heeft}} de pagina $3 verwijderd',
+'logentry-delete-restore' => '$1 {{GENDER:$2|heeft}} de pagina $3 teruggeplaatst',
+'logentry-delete-event' => '$1 {{GENDER:$2|heeft}} de zichtbaarheid van {{PLURAL:$5|een logboekregel|$5 logboekregels}} van $3 gewijzigd: $4',
+'logentry-delete-revision' => '$1 {{GENDER:$2|heeft}} de zichtbaarheid van {{PLURAL:$5|een versie|$5 versies}} van de pagina $3 gewijzigd: $4',
+'logentry-delete-event-legacy' => '$1 {{GENDER:$2|heeft}} de zichtbaarheid van logboekregels van $3 gewijzigd',
+'logentry-delete-revision-legacy' => '$1 {{GENDER:$2|heeft}} de zichtbaarheid van versies van de pagina $3 gewijzigd',
+'logentry-suppress-delete' => '$1 {{GENDER:$2|heeft}} de pagina $3 onderdrukt',
+'logentry-suppress-event' => '$1 {{GENDER:$2|heeft}} heimelijk de zichtbaarheid van {{PLURAL:$5|een logboekregel|$5 logboekregels}} van $3 gewijzigd: $4',
+'logentry-suppress-revision' => '$1 {{GENDER:$2|heeft}} heimelijk de zichtbaarheid van {{PLURAL:$5|een versie|$5 versies}} van de pagina $3 gewijzigd: $4',
+'logentry-suppress-event-legacy' => '$1 {{GENDER:$2|heeft}} heimelijk de zichtbaarheid van logboekregels van $3 gewijzigd',
+'logentry-suppress-revision-legacy' => '$1 {{GENDER:$2|heeft}} heimelijk de zichtbaarheid van versies van de pagina $3 gewijzigd.',
 'revdelete-content-hid' => 'inhoud verborgen',
 'revdelete-summary-hid' => 'bewerkingssamenvatting verborgen',
 'revdelete-uname-hid' => 'gebruikersnaam verborgen',
@@ -4150,20 +4147,20 @@ Andere bestandstypen worden direct in het met het MIME-type verbonden programma 
 'revdelete-uname-unhid' => 'gebruikersnaam zichtbaar gemaakt',
 'revdelete-restricted' => 'heeft beperkingen aan beheerders opgelegd',
 'revdelete-unrestricted' => 'heeft beperkingen voor beheerders opgeheven',
-'logentry-move-move' => '$1 heeft pagina $3 naar $4 hernoemd',
-'logentry-move-move-noredirect' => '$1 heeft de pagina $3 hernoemd naar $4 zonder een doorverwijzing achter te laten',
-'logentry-move-move_redir' => '$1 heeft pagina $3 hernoemd naar $4 over een doorverwijzing',
-'logentry-move-move_redir-noredirect' => '$1 heeft pagina $3 naar $4 hernoemd over een doorverwijzing zonder een doorverwijzing achter te laten',
-'logentry-patrol-patrol' => '$1 heeft versie $4 van pagina $3 als gecontroleerd gemarkeerd',
-'logentry-patrol-patrol-auto' => '$1 heeft versie $4 van pagina $3 automatisch als gecontroleerd gemarkeerd',
-'logentry-newusers-newusers' => 'Gebruiker $1 is aangemaakt',
-'logentry-newusers-create' => 'Gebruiker $1 is aangemaakt',
-'logentry-newusers-create2' => 'Gebruiker $3 is aangemaakt door $1',
-'logentry-newusers-byemail' => 'Gebruiker $3 is aangemaakt door $1 en het wachtwoord is per e-mail verzonden',
-'logentry-newusers-autocreate' => 'De gebruiker $1 is automatisch aangemaakt',
-'logentry-rights-rights' => '$1 heeft groepslidmaatschap voor $3 gewijzigd van $4 naar $5',
-'logentry-rights-rights-legacy' => '$1 heeft groepslidmaatschap voor $3 gewijzigd',
-'logentry-rights-autopromote' => '$1 is automatisch gepromoveerd van $4 naar $5',
+'logentry-move-move' => '$1 {{GENDER:$2|heeft}} pagina $3 hernoemd naar $4',
+'logentry-move-move-noredirect' => '$1 {{GENDER:$2|heeft}} de pagina $3 hernoemd naar $4 zonder een doorverwijzing achter te laten',
+'logentry-move-move_redir' => '$1 {{GENDER:$2|heeft}} pagina $3 hernoemd naar $4 over een doorverwijzing',
+'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|heeft}} pagina $3 naar $4 hernoemd over een doorverwijzing zonder een doorverwijzing achter te laten',
+'logentry-patrol-patrol' => '$1 {{GENDER:$2|heeft}} versie $4 van pagina $3 gemarkeerd als gecontroleerd',
+'logentry-patrol-patrol-auto' => '$1 {{GENDER:$2|heeft}} versie $4 van pagina $3 automatisch gemarkeerd als gecontroleerd',
+'logentry-newusers-newusers' => 'Gebruiker $1 {{GENDER:$2|is}} aangemaakt',
+'logentry-newusers-create' => 'Gebruiker $1 {{GENDER:$2|is}} aangemaakt',
+'logentry-newusers-create2' => 'Gebruiker $3 {{GENDER:$2|is}} aangemaakt door $1',
+'logentry-newusers-byemail' => 'Gebruiker $3 {{GENDER:$2|is}} aangemaakt door $1 en het wachtwoord is per e-mail verzonden',
+'logentry-newusers-autocreate' => 'De gebruiker $1 {{GENDER:$2|is}} automatisch aangemaakt',
+'logentry-rights-rights' => '$1 {{GENDER:$2|heeft}} groepslidmaatschap voor $3 gewijzigd van $4 naar $5',
+'logentry-rights-rights-legacy' => '$1 {{GENDER:$2|heeft}} het groepslidmaatschap gewijzigd voor $3',
+'logentry-rights-autopromote' => '$1 {{GENDER:$2|is}} automatisch gepromoveerd van $4 naar $5',
 'rightsnone' => '(geen)',
 
 # Feedback

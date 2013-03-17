@@ -580,11 +580,22 @@ $messages['qqq'] = array(
 	'config-title' => 'Parameters:
 * $1 is the version of MediaWiki that is being installed.',
 	'config-information' => '{{Identical|Information}}',
+	'config-localsettings-upgrade' => '{{doc-important|Do not translate <code>LocalSettings.php</code> and <code>$wgUpgradeKey</code>.}}',
 	'config-localsettings-cli-upgrade' => '{{doc-important|Do not translate the <code>LocalSettings.php</code> and the <code>update.php</code> parts.}}',
+	'config-upgrade-key-missing' => 'Used in info box. Parameters:
+* $1 - the upgrade key, enclosed in <code><nowiki><pre></nowikI></code> tag.',
+	'config-localsettings-incomplete' => '{{doc-important|Do not translate <code>LocalSettings.php</code> and <code><nowiki>{{int:Config-continue}}</nowiki><code>.}}
+Parameters:
+* $1 - name of variable (any one of required variables or installer-specific global variables)',
+	'config-localsettings-connection-error' => '{{doc-important|Do not translate <code>LocalSettings.php</code> and <code>AdminSettings.php</code>.}}
+Used as error message. Parameters:
+* $1 - (probably empty string)',
 	'config-session-error' => 'Parameters:
 * $1 is the error that was encountered with the session.',
 	'config-session-expired' => 'Parameters:
 * $1 is the configured session lifetime.',
+	'config-no-session' => '{{doc-important|Do not translate <code>php.ini</code> and <code>session.save_path</code>.}}
+Used as error message.',
 	'config-back' => '{{Identical|Back}}',
 	'config-continue' => '{{Identical|Continue}}',
 	'config-page-language' => '{{Identical|Language}}',
@@ -633,6 +644,8 @@ Message shown when PHP parameter <code>suhosin.get.max_value_length</code> is be
 	'config-db-account-lock' => "It might be easier to translate ''normal operation'' as \"also after the installation process\"",
 	'config-pg-test-error' => '* $1 - database name
 * $2 - error message',
+	'config-sqlite-dir-help' => '{{doc-important|Do not translate <code>.htaccess</code> and <code>/var/lib/mediawiki/yourwiki</code>.}}
+Used in help box.',
 	'config-type-mysql' => '{{optional}}',
 	'config-type-postgres' => '{{optional}}',
 	'config-type-sqlite' => '{{optional}}',
@@ -677,6 +690,8 @@ This message refers to a block of HTML being embedded into the installer page. I
 	'config-memcached-servers' => '{{doc-important|Do not translate "memcached".}}
 {{Identical|Memcached server}}',
 	'config-extensions' => '{{Identical|Extension}}',
+	'config-extensions-help' => '{{doc-important|Do not translate <code>./extensions</code>.}}
+Used in help box.',
 	'config-install-step-done' => '{{Identical|Done}}',
 	'config-install-step-failed' => '{{Identical|Failed}}',
 	'config-install-database' => '*{{msg-mw|Config-install-database}}
@@ -739,6 +754,8 @@ See also:
 *{{msg-mw|Config-install-keys}}
 *{{msg-mw|Config-install-sysop}}
 *{{msg-mw|Config-install-mainpage}}',
+	'config-install-interwiki-list' => '{{doc-important|Do not translate <code>interwiki.list</code>.}}
+Used as error message.',
 	'config-install-stats' => '*{{msg-mw|Config-install-database}}
 *{{msg-mw|Config-install-tables}}
 *{{msg-mw|Config-install-schema}}
@@ -4331,16 +4348,20 @@ $messages['diq'] = array(
 );
 
 /** Lower Sorbian (dolnoserbski)
+ * @author Michawiki
  */
 $messages['dsb'] = array(
 	'mainpagetext' => "'''MediaWiki jo se wuspěšnje instalěrowało.'''",
 	'mainpagedocfooter' => "Pomoc pśi wužywanju softwary wiki namakajoš pód [//meta.wikimedia.org/wiki/Help:Contents User's Guide].
 
+Pomoc pśi wužywanju softwary wiki namakajoš pód [//meta.wikimedia.org/wiki/Help:Contents User's Guide].
+
 == Na zachopjenje ==
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Konfiguracija lisćiny połoženjow]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ (pšašanja a wótegrona)]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lisćina e-mailowych nakładow MediaWiki]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lisćina e-mailowych nakładow MediaWiki]
+* [//www.mediawiki.org/wiki/Localisation#Translation_resources MediaWiki za twóju rěc lokalizěrowaś]",
 );
 
 /** Central Dusun (Dusun Bundu-liwan)
@@ -7975,7 +7996,7 @@ Standardna lisćina sp přeskakuje.",
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Wo nastajenjach]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]
-* [//www.mediawiki.org/wiki/Localisation#Translation_resources Localise MediaWiki for your language]',
+* [//www.mediawiki.org/wiki/Localisation#Translation_resources MediaWiki za twoju rěč lokalizować]',
 );
 
 /** Haitian (Kreyòl ayisyen)

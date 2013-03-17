@@ -625,7 +625,7 @@ Prošu přizjew so znowa, po tym zo sy je přijał.',
 'blocked-mailpassword' => 'Twoja IP-adresa je přećiwo wobdźěłowanju zablokowana, a tohodla njeje dowolene, funkciju za wobnowjenje hesłow wužiwać, zo by znjewužiwanju zadźěwało.',
 'eauthentsent' => 'Wobkrućenska e-mejlka bu na naspomnjenu e-mejlowu adresu pósłana.
 Prjedy hač so druha e-mejlka na konto pósćele, dyrbiš so po instrukcijach w e-mejlce měć, zo by wobkrućił, zo konto je woprawdźe twoje.',
-'throttled-mailpassword' => 'Bu hižo nowe hesło za {{PLURAL:$1|poslednju hodźinu|poslednjej $1 hodźinje|poslednje $1 hodźiny|poslednich $1 hodźin}} pósłane. Zo by znjewužiwanju zadźěwało, so jenož jedne hesło na {{PLURAL:$1|hodźinu|$1 hodźinje|$1 hodźiny|$1 hodźin}} pósćele.',
+'throttled-mailpassword' => 'E-mejl za anulowanje hesło je so za {{PLURAL:$1|poslednju hodźinu|poslednjej $1 hodźinje|poslednje $1 hodźiny|poslednich $1 hodźin}} pósłała. Zo by znjewužiwanju zadźěwało, so jenož jedna e-mejl za anulowanje hesła na {{PLURAL:$1|hodźinu|$1 hodźinje|$1 hodźiny|$1 hodźin}} pósćele.',
 'mailerror' => 'Zmylk při słanju e-mejlki: $1',
 'acct_creation_throttle_hit' => 'Wopytowarjo tutoho wikija, kotřiž twoju IP-adresu wužiwaja, su {{PLURAL:$1|1 konto|$1 kontaj|$1 konty|$1 kontow}} posledni dźeń wutworił, štož je maksimalna ličba za tutu periodu. Wopytowarjo, kotřiž tutu IP-adresu wužiwaja, njemóža tuchwilu dalše konta wutworić.',
 'emailauthenticated' => 'Twoja e-mejlowa adresa bu $2 $3 hodź. wobkrućena.',
@@ -672,7 +672,7 @@ Snano sy swoje hesło hižo wuspěšnje změnił abo nowe nachwilne hesło poža
 
 # Special:PasswordReset
 'passwordreset' => 'Hesło wróćo stajić',
-'passwordreset-text' => 'Wupjelń tutón formular, zo by dopomnjensku e-mejl wo swojich kontowych podrobnosćach dóstał.',
+'passwordreset-text' => 'Wupjelń tutón formular, zo by swoje hesło anulował.',
 'passwordreset-legend' => 'Hesło wróćo stajić',
 'passwordreset-disabled' => 'Wróćostajenje hesłow je so na  tutym wikiju znjemóžniło.',
 'passwordreset-pretext' => '{{PLURAL:$1||Zapodaj deleka jedne ze slědowacych datowych podaćow}}',
@@ -682,23 +682,23 @@ Snano sy swoje hesło hižo wuspěšnje změnił abo nowe nachwilne hesło poža
 'passwordreset-capture-help' => 'Jeli nakřižuješ tutón kašćik, budźe so e-mejlka z nachwilnym hesło pokazować a tež wužiwarjej pósłać.',
 'passwordreset-email' => 'E-mejlowa adresa:',
 'passwordreset-emailtitle' => 'Kontowe podrobnosće na {{GRAMMAR:lokatiw|{{SITENAME}}}}',
-'passwordreset-emailtext-ip' => 'Něchtó (najskerje ty, z IP-adresu $1) je dopomnjenku na twoje kontowe podrobnosće za {{SITENAME}} požadał ($4).  {{PLURAL:$3|Slědowace wužiwarske konto je|Slědowacej wužiwarskej konće stej|Slědowace wužiwarske konta su|Slědowace wužiwarske konta su}} z tutej e-mejlowej adresu {{PLURAL:$3|zwjazane|zwjazanej|zwjazane|zwjazane}}:
+'passwordreset-emailtext-ip' => 'Něchtó (najskerje ty, z IP-adresu $1) je anulowanje hesła za {{GRAMMAR:akuzatiw|{{SITENAME}}}} požadał ($4).  {{PLURAL:$3|Slědowace wužiwarske konto je|Slědowacej wužiwarskej konće stej|Slědowace wužiwarske konta su}} z tutej e-mejlowej adresu {{PLURAL:$3|zwjazane|zwjazanej|zwjazane}}:
 
 $2
 
-{{PLURAL:$3|Tute nachwilne hesło spadnje|Tutej nachwilnej hesle spadnjetej|Tute nachwilne hesła spadnu|Tute nachwilne hesła spadnu}} za {{PLURAL:$5|jedyn dźeń|$5 dnjej|$5 dny|$5 dnjow}}.
+{{PLURAL:$3|Tute nachwilne hesło spadnje|Tutej nachwilnej hesle spadnjetej|Tute nachwilne hesła spadnu}} za {{PLURAL:$5|jedyn dźeń|$5 dnjej|$5 dny|$5 dnjow}}.
 Ty měł so nětko přizjewić a nowe hesło wubrać. Jeli něchtó druhi je tute naprašowanje pósłał, abo jeli sy so zaso na prěnjotne hesło dopomnił a wjace nochceš jo změnić, móžeš tutu zdźělenku ignorować a swoje stare hesło dale wužiwać.',
-'passwordreset-emailtext-user' => 'Wužiwar $1 je dopomnjenku na twoje kontowe podrobnosće za {{SITENAME}} požadał ($4).  {{PLURAL:$3|Slědowace wužiwarske konto je|Slědowacej wužiwarskej konće stej|Slědowace wužiwarske konta su|Slědowace wužiwarske konta su}} z tutej e-mejlowej adresu {{PLURAL:$3|zwjazane|zwjazanej|zwjazane|zwjazane}}:
+'passwordreset-emailtext-user' => 'Wužiwar $1 na {{GRAMMAR:lokatiw|{{SITENAME}}}} je anulowanje twojeho hesła za {{GRAMMAR:akuzatiw|{{SITENAME}}}} požadał ($4).  {{PLURAL:$3|Slědowace wužiwarske konto je|Slědowacej wužiwarskej konće stej|Slědowace wužiwarske konta su}} z tutej e-mejlowej adresu {{PLURAL:$3|zwjazane|zwjazanej|zwjazane}}:
 
 $2
 
-{{PLURAL:$3|Tute nachwilne hesło spadnje|Tutej nachwilnej hesle spadnjetej|Tute nachwilne hesła spadnu|Tute nachwilne hesła spadnu}} za {{PLURAL:$5|jedyn dźeń|$5 dnjej|$5 dny|$5 dnjow}}.
+{{PLURAL:$3|Tute nachwilne hesło spadnje|Tutej nachwilnej hesle spadnjetej|Tute nachwilne hesła spadnu}} za {{PLURAL:$5|jedyn dźeń|$5 dnjej|$5 dny|$5 dnjow}}.
 Ty měł so nětko přizjewić a nowe hesło wubrać. Jeli něchtó druhi je tute naprašowanje pósłał, abo jeli sy so zaso na prěnjotne hesło dopomnił a wjace nochceš jo změnić, móžeš tutu zdźělenku ignorować a swoje stare hesło dale wužiwać.',
 'passwordreset-emailelement' => 'Wužiwarske mjeno: $1
 Nachwilne hesło: $2',
-'passwordreset-emailsent' => 'Wopomnjenska e-mejlka je so pósłała.',
-'passwordreset-emailsent-capture' => 'Deleka pokazana dopomnjenska e-mejl je so wotpósłała.',
-'passwordreset-emailerror-capture' => 'Deleka pokazana dopomnjenska e-mejl je so wutworiła, ale słanje wužiwarjej je so njeporadźiło: $1',
+'passwordreset-emailsent' => 'E-mejl za anulowanje hesło je so pósłała.',
+'passwordreset-emailsent-capture' => 'E-mejl za anulowanje hesła je so pósłała, kotraž so deleka pokazuje.',
+'passwordreset-emailerror-capture' => 'E-mejl za anulowanje hesła je so wutworiła, kotraž so deleka pokazuje, ale słanje wužiwarjej je so njeporadźiło: $1',
 
 # Special:ChangeEmail
 'changeemail' => 'E-mejlowu adresu změnić',
@@ -3720,17 +3720,17 @@ Wobrazy so połnym rozeznaću pokazuja, druhe datajowe typy so ze zwjazanym prog
 'sqlite-no-fts' => '$1 połnotekstowe pytanje njepodpěruje',
 
 # New logging system
-'logentry-delete-delete' => '$1 je stronu $3 zhašał',
-'logentry-delete-restore' => '$1 je stronu $3 wobnowił',
-'logentry-delete-event' => '$1 změni widźomnosć {{PLURAL:$5|protokoloweho zapiska|$5 protokoloweju zapiskow|$5 protokolowych zapiskow|$5 protokolowych zapiskow}} na $3: $4',
-'logentry-delete-revision' => '$1 změni widźomnosć {{PLURAL:$5|jedneje wersije|$5 wersijow|$5 wersijow|$5 wersijow}} na $3: $4',
-'logentry-delete-event-legacy' => '$1 změni widźomnosć protokolowych zapiskow na $3',
-'logentry-delete-revision-legacy' => '$1 změni widźomnosć wersijow na stronje $3',
-'logentry-suppress-delete' => '$1 je stronu $3 potłóčił',
-'logentry-suppress-event' => '$1 změni skradźu widźomnosć {{PLURAL:$5|protokoloweho zapiska|$5 protokoloweju zapiskow|$5 protokolowych zapiskow|$5 protokolowych zapiskow}} na $3: $4',
-'logentry-suppress-revision' => '$1 změni skradźu widźomnosć {{PLURAL:$5|jedneje wersije|$5 wersijow|$5 wersijow|$5 wersijow}} na stronje $3: $4',
-'logentry-suppress-event-legacy' => '$1 změni skradźu widźomnosć protokolowych zapiskow na $3',
-'logentry-suppress-revision-legacy' => '$1 změni skradźu widźomnosć wersijow na stronje $3',
+'logentry-delete-delete' => '$1 je stronu $3 {{GENDER:$1|zhašał|zhašała}}',
+'logentry-delete-restore' => '$1 je stronu $3 {{GENDER:$1wobnowił|wobnowiła}}',
+'logentry-delete-event' => '$1 je widźomnosć {{PLURAL:$5|protokoloweho zapiska|$5 protokoloweju zapiskow|$5 protokolowych zapiskow}} na $3 {{GENDER:$2|změnił|změniła}}: $4',
+'logentry-delete-revision' => '$1 je widźomnosć {{PLURAL:$5|jedneje wersije|$5 wersijow}} na $3 {{GENDER:$2|změnił|změniła}}: $4',
+'logentry-delete-event-legacy' => '$1 je widźomnosć protokolowych zapiskow na $3 {{GENDER:$2|změnił|změniła}}',
+'logentry-delete-revision-legacy' => '$1 je widźomnosć wersijow na stronje $3 {{GENDER:$2|změnił|změniła}}',
+'logentry-suppress-delete' => '$1 je stronu $3 {{GENDER:$2|potłóčił|potłóčiła}}',
+'logentry-suppress-event' => '$1 je skradźu widźomnosć {{PLURAL:$5|protokoloweho zapiska|$5 protokoloweju zapiskow|$5 protokolowych zapiskow}} na $3 {{GENDER:$2|změnił|změniła}}: $4',
+'logentry-suppress-revision' => '$1 je skradźu widźomnosć {{PLURAL:$5|jedneje wersije|$5 wersijow}} na stronje $3 {{GENDER:$2|změnił|změniła}}: $4',
+'logentry-suppress-event-legacy' => '$1 je skradźu widźomnosć protokolowych zapiskow na $3 {{GENDER:$2|změnił|změniła}}',
+'logentry-suppress-revision-legacy' => '$1 je skradźu widźomnosć wersijow na stronje $3 {{GENDER:$2|změnił|změniła}}',
 'revdelete-content-hid' => 'wobsah schowany',
 'revdelete-summary-hid' => 'Zjeće schowane',
 'revdelete-uname-hid' => 'wužiwarske mjeno schowane',
@@ -3739,20 +3739,20 @@ Wobrazy so połnym rozeznaću pokazuja, druhe datajowe typy so ze zwjazanym prog
 'revdelete-uname-unhid' => 'wužiwarske mjeno widźomne',
 'revdelete-restricted' => 'na administratorow nałožene wobmjezowanja',
 'revdelete-unrestricted' => 'Wobmjezowanja za administratorow wotstronjene',
-'logentry-move-move' => '$1 je stronu $3 do $4 přesunył',
-'logentry-move-move-noredirect' => '$1 přesuny stronu $3 do $4, bjeztoho zo by dalesposrědkowanje wutworił',
-'logentry-move-move_redir' => '$1 přesuny stronu $3 do $4 přepisujo dalesposrědkowanje',
-'logentry-move-move_redir-noredirect' => '$1 přesuny stronu $3 do $4 přepisujo dalesposrědkowanje, bjeztoho zo by dalesposrědkowanje wutworił',
-'logentry-patrol-patrol' => '$1 markěrowaše wersiju $4 strony $3 jako skontrolowanu',
-'logentry-patrol-patrol-auto' => '$1 awtomatisce markěrowaše wersiju $4 strony $3 jako skontrolowanu',
-'logentry-newusers-newusers' => 'Wužiwarske konto $1 je so załožiło',
-'logentry-newusers-create' => 'Wužiwarske konto $1 je so załožiło',
-'logentry-newusers-create2' => '$1 załoži wužiwarske konto $3',
-'logentry-newusers-byemail' => 'Wužiwarske konto $3 je so wot $1 załožiło a hesło je so přez e-mejl pósłało.',
-'logentry-newusers-autocreate' => 'Konto $1 je so awtomatisce załožiło',
-'logentry-rights-rights' => '$1 změni skupinske čłonstwo za $3 z $4 do $5',
-'logentry-rights-rights-legacy' => '$1 změni skupinske čłonstwo za $3',
-'logentry-rights-autopromote' => '$1 powyši so awtomatisce wot $4 do $5',
+'logentry-move-move' => '$1 je stronu $3 do $4 {{GENDER:$2|přesunył|přesunyła}}',
+'logentry-move-move-noredirect' => '$1 je stronu $3 do $4 {{GENDER:$2|přesunył|přesunyła}}, bjeztoho zo by dalesposrědkowanje {{GENDER:$2|wutworił|wutworiła}}',
+'logentry-move-move_redir' => '$1 je stronu $3 do $4 {{GENDER:$2|přesunył|přesunyła}} přepisujo dalesposrědkowanje',
+'logentry-move-move_redir-noredirect' => '$1 je stronu $3 do $4 {{GENDER:$2|přesunył|přesunyła}} přepisujo dalesposrědkowanje, bjeztoho zo by dalesposrědkowanje {{GENDER:$2|wutworił|wutworiła}}',
+'logentry-patrol-patrol' => '$1 je wersiju $4 strony $3 jako dohladowanu {{GENDER:$2|markěrował|markěrowała}}',
+'logentry-patrol-patrol-auto' => '$1 je wersiju $4 strony $3 awtomatisce jako dohladowanu {{GENDER:$2|markěrował|markěrowała}}',
+'logentry-newusers-newusers' => 'Wužiwarske konto $1 je so {{GENDER:$2|załožiło}}',
+'logentry-newusers-create' => 'Wužiwarske konto $1 je so {{GENDER:$2|załožiło}}',
+'logentry-newusers-create2' => '$1 je wužiwarske konto $3 {{GENDER:$2|załožił|załožiła}}',
+'logentry-newusers-byemail' => '$1 je wužiwarske konto $3 {{GENDER:$2|załožił|załožiła}} a hesło je so přez e-mejl pósłało.',
+'logentry-newusers-autocreate' => 'Wužiwarske konto $1 je so awtomatisce {{GENDER:$2|załožiło}}',
+'logentry-rights-rights' => '$1 je skupinske čłonstwo za $3 z $4 do $5 {{GENDER:$2|změnił|změniła}}',
+'logentry-rights-rights-legacy' => '$1 je skupinske čłonstwo za $3 {{GENDER:$2|změnił|změniła}}',
+'logentry-rights-autopromote' => '$1 je so awtomatisce wot $4 do $5 {{GENDER:$2|přirjadował|přirjadowała}}',
 'rightsnone' => '(ničo)',
 
 # Feedback

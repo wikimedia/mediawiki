@@ -4361,7 +4361,7 @@ $5
 'logentry-newusers-newusers' => 'تم إنشاء الحساب $1',
 'logentry-newusers-create' => 'تم إنشاء الحساب $1',
 'logentry-newusers-create2' => 'أنشأ $1 الحساب $3',
-'logentry-newusers-byemail' => 'أنشئ حساب المستخدم $3 من قبل $1 وأرسلت كلمة السر بالبريد الإلكتروني',
+'logentry-newusers-byemail' => 'ُ{{GENDER:$2|أنشأ|أنشأت}} $1 حساب المستخدم $3 وأُرسلت كلمة السر بالبريد الإلكتروني',
 'logentry-newusers-autocreate' => 'أنشئ حساب $1 تلقائياً',
 'logentry-rights-rights' => 'غير $1 صلاحيات $3 من $4 إلى $5',
 'logentry-rights-rights-legacy' => 'غير $1 صلاحيات $3',

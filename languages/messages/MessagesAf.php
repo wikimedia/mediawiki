@@ -762,7 +762,7 @@ $2
 Meld asseblief aan en verander u wagwoord nou. As u dit nie versoek het nie, of as u die oorspronklike wagwoord nog ken en dit nie wil verander nie, ignoreer die berig en hou aan om u ou wagwoord te gebruik.',
 'passwordreset-emailelement' => 'Gebruikersnaam: $1
 Tydelike wagwoord: $2',
-'passwordreset-emailsent' => "'n E-pos ter herhindering is gestuur.",
+'passwordreset-emailsent' => "'n E-pos is gestuur om u wagwoord te herstel.",
 'passwordreset-emailsent-capture' => "'n E-pos ter herinnering is gestuur en word hieronder vertoon.",
 'passwordreset-emailerror-capture' => "'n E-pos ter herinnering is geskep en word hieronder vertoon. Die uitstuur daarvan het egter gefaal: $1",
 

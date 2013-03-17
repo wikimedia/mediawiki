@@ -881,7 +881,7 @@ $2
 {{PLURAL:$3|这个|这个}}临时密码将会在{{PLURAL:$5|一天|$5 天}}后过期。请立即登录并设置新的密码。如果请求是其他人发出的，或者您已回忆起您的旧密码并不再需要更改，您可以忽略本条消息并继续使用原密码。',
 'passwordreset-emailelement' => '用户名：$1
 临时密码：$2',
-'passwordreset-emailsent' => '已发送提醒电子邮件。',
+'passwordreset-emailsent' => '密码重置邮件已发送。',
 'passwordreset-emailsent-capture' => '提醒电子邮件已发送，并在下面显示。',
 'passwordreset-emailerror-capture' => '生成的提醒电子邮件如下所示，但发送失败：$1',
 

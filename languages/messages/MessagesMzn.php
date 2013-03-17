@@ -834,7 +834,7 @@ $2، $1',
 # Special:ListGroupRights
 'listgrouprights-members' => '(کارورون لیست)',
 
-# E-mail user
+# Email user
 'mailnologintext' => 'برای برسنی‌ین پوست الکترونیکی به کارورون دیگه ونه [[Special:UserLogin|بورین سامانه دله]] و نشونی پوست الکترونیکی معتبری تو [[Special:Preferences|ترجیحات]] خادت ره داشته بایی.',
 'emailuser' => 'این کارور وسّه ایمیل بَرسِن',
 'emailpage' => 'ئـی-مه‌یـل ای کـارور وه‌سه',
@@ -1054,7 +1054,7 @@ $2، $1',
 'namespacesall' => 'همه',
 'monthsall' => 'همه ماه‌ئون',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail_body_changed' => 'ات نفر، احتمالاً خاد شمِا، از نشونی آی‌پی $1 نشونی پوست ایلکتورونیک حیساب «$2» {{SITENAME}} ره تغییر هدائه.
 
 برای تایید این که این حیساب واقعاً شمه شه و فعال هکردن دبارهٔ ویژگی پوست ایلکتورونیک {{SITENAME}}، پیوند زیر دله ره شه مرورگر دله وا هکنین:

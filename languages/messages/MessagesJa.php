@@ -854,8 +854,8 @@ Cookieを有効にしていることを確認して、このページを再読�
 'blocked-mailpassword' => 'ご使用中のIPアドレスからの編集はブロックされており、不正利用防止のため、パスワードの再発行機能は使用できません。',
 'eauthentsent' => '指定したメールアドレスに、アドレス確認のためのメールをお送りしました。
 メールに記載された手順に従って、このアカウントの所有者であることの確認が取れると、このアカウント宛のメールを受け取れるようになります。',
-'throttled-mailpassword' => '新しいパスワードは過去 {{PLURAL:$1|$1 時間}}に送信済みです。
-悪用防止のため、パスワードの再発行は {{PLURAL:$1|$1 時間}}に 1 回のみです。',
+'throttled-mailpassword' => 'パスワード再設定メールを過去 {{PLURAL:$1|$1 時間}}に送信済みです。
+悪用防止のため、パスワードの再設定は {{PLURAL:$1|$1 時間}}に 1 回のみです。',
 'mailerror' => 'メールを送信する際にエラーが発生しました: $1',
 'acct_creation_throttle_hit' => 'あなたと同じ IP アドレスでこのウィキに訪れた人が、最近 24 時間で {{PLURAL:$1|$1 アカウント}}を作成しており、これはこの期間で作成が許可されている最大数です。
 そのため、現在この IP アドレスではアカウントをこれ以上作成できません。',
@@ -910,7 +910,7 @@ Cookieを有効にしていることを確認して、このページを再読�
 
 # Special:PasswordReset
 'passwordreset' => 'パスワードの再設定',
-'passwordreset-text' => 'このフォームに入力すると、アカウント詳細のリマインダーをメールでお送りします。',
+'passwordreset-text' => 'このフォームに記入すると、パスワードを再設定できます。',
 'passwordreset-legend' => 'パスワードの再設定',
 'passwordreset-disabled' => 'パスワードの再設定は、このウィキでは無効になっています。',
 'passwordreset-pretext' => '{{PLURAL:$1||下記のデータのいずれか 1 つを入力してください}}',
@@ -920,8 +920,8 @@ Cookieを有効にしていることを確認して、このページを再読�
 'passwordreset-capture-help' => 'このボックスにチェックを入れると、利用者に送信されるメールの内容 (仮パスワードを含む) をあなたも閲覧できます。',
 'passwordreset-email' => 'メールアドレス:',
 'passwordreset-emailtitle' => '{{SITENAME}}上のアカウントの詳細',
-'passwordreset-emailtext-ip' => '誰か (おそらくあなた、IP アドレス $1) が {{SITENAME}} ($4) での
-あなたのアカウントの詳細情報を送信するよう申請しました。
+'passwordreset-emailtext-ip' => '誰か (おそらくあなた、IP アドレス $1) が {{SITENAME}} ($4)
+でのパスワードを再設定するよう申請しました。
 以下の利用者{{PLURAL:$3|アカウント|アカウント群}}がこのメールアドレスと紐付けられています。
 
 $2
@@ -932,7 +932,7 @@ $2
 覚えていてそれを変更したくない場合には、このメッセージを無視して以前のパスワードを
 使用し続けることができます。',
 'passwordreset-emailtext-user' => '{{SITENAME}} の利用者 $1 があなたの {{SITENAME}} ($4)
-におけるアカウントの詳細情報を送信するよう申請しました。
+でのパスワードを再設定するよう申請しました。
 以下の利用者{{PLURAL:$3|アカウント|アカウント群}}がこのメールアドレスと紐付けられています。
 
 $2
@@ -944,9 +944,9 @@ $2
 以前のパスワードを使い続けることができます。',
 'passwordreset-emailelement' => '利用者名: $1
 仮パスワード: $2',
-'passwordreset-emailsent' => '確認メールをお送りしました。',
-'passwordreset-emailsent-capture' => '下記の内容の、確認メールをお送りしました。',
-'passwordreset-emailerror-capture' => '以下の内容の確認メールを生成しましたが、利用者への送信に失敗しました: $1',
+'passwordreset-emailsent' => 'パスワード再設定メールをお送りしました。',
+'passwordreset-emailsent-capture' => '下記の内容の、パスワード再設定メールをお送りしました。',
+'passwordreset-emailerror-capture' => '以下の内容のパスワード再設定メールを生成しましたが、利用者への送信に失敗しました: $1',
 
 # Special:ChangeEmail
 'changeemail' => 'メールアドレスの変更',

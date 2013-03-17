@@ -796,8 +796,8 @@ fortsätta använda ditt gamla lösenord.',
 'blocked-mailpassword' => 'Din IP-adress är blockerad, därför kan den inte användas för att få ett nytt lösenord.',
 'eauthentsent' => 'Ett e-brev för bekräftelse har skickats till den e-postadress som angivits.
 Innan någon annan e-post kan skickas härifrån till kontot, måste du följa instruktionerna i e-brevet för att bekräfta att kontot verkligen är ditt.',
-'throttled-mailpassword' => 'Ett nytt lösenord har redan skickats för mindre än {{PLURAL:$1|en timme|$1 timmar}} sedan.
-För att förhindra missbruk skickas bara ett nytt lösenord per {{PLURAL:$1|timme|$1-timmarsperiod}}.',
+'throttled-mailpassword' => 'En lösenordsåterställning har redan skickats för mindre än {{PLURAL:$1|en timme|$1 timmar}} sedan.
+För att förhindra missbruk skickas bara en lösenordsåterställning per {{PLURAL:$1|timme|$1-timmarsperiod}}.',
 'mailerror' => 'Fel vid skickande av e-post: $1',
 'acct_creation_throttle_hit' => 'Besökare till den här wikin som har använt din IP-adress har skapat {{PLURAL:$1|1 användarkonto|$1 användarkonton}} under det senaste dygnet, vilket är det maximalt tillåtna inom den tidsperioden.
 Som ett resultat kan besökare som använder den här IP-adressen inte skapa några fler användarkonton just nu.',
@@ -847,7 +847,7 @@ Du kanske redan har lyckats ändra ditt lösenord eller begärt ett nytt tillfä
 
 # Special:PasswordReset
 'passwordreset' => 'Lösenordsåterställning',
-'passwordreset-text' => 'Fyll i detta formulär för att få en påminnelse om dina kontouppgifter via e-post.',
+'passwordreset-text' => 'Fyll i detta formulär för att återställa ditt lösenord.',
 'passwordreset-legend' => 'Återställ lösenord',
 'passwordreset-disabled' => 'Lösenordsåterställning har inaktiverats på denna wiki.',
 'passwordreset-pretext' => '{{PLURAL:$1||Ange en av datadelarna nedan}}',
@@ -857,13 +857,13 @@ Du kanske redan har lyckats ändra ditt lösenord eller begärt ett nytt tillfä
 'passwordreset-capture-help' => 'Om du markerar den här rutan kommer e-postmeddelandet (med det tillfälliga lösenordet) visas för dig och skickas till användaren.',
 'passwordreset-email' => 'E-postadress:',
 'passwordreset-emailtitle' => 'Kontouppgifter på {{SITENAME}}',
-'passwordreset-emailtext-ip' => 'Någon (förmodligen du, från IP-adressen $1) begärde en påminnelse av dina kontodetaljer för {{SITENAME}} ($4). Följande användar{{PLURAL:$3|konto är förknippad|konton är förknippade}} med denna e-postadress:
+'passwordreset-emailtext-ip' => 'Någon (förmodligen du, från IP-adressen $1) begärde en återställning av ditt lösenord för {{SITENAME}} ($4). Följande användar{{PLURAL:$3|konto är förknippad|konton är förknippade}} med denna e-postadress:
 
 $2
 
 {{PLURAL:$3|Detta|Dessa}} tillfälliga lösenord kommer att gå ut om {{PLURAL:$5|en dag|$5 dagar}}.
 Du bör logga in och välja ett nytt lösenord nu. Om någon annan gjorde denna begäran, eller om du kommer ihåg ditt ursprungliga lösenord, och du önskar inte att ändra det, kan du ignorera detta meddelande och fortsätta använda ditt gamla lösenord.',
-'passwordreset-emailtext-user' => 'Användaren $1 på {{SITENAME}} begärde en påminnelse om dina kontodetaljer för {{SITENAME}} ($4). Följande användar{{PLURAL:$3|konto är förknippad|konton är förknippade}} med denna e-postadress:
+'passwordreset-emailtext-user' => 'Användaren $1 på {{SITENAME}} begärde en återställning av ditt lösenord för {{SITENAME}} ($4). Följande användar{{PLURAL:$3|konto är förknippad|konton är förknippade}} med denna e-postadress:
 
 $2
 
@@ -871,9 +871,9 @@ $2
 Du bör logga in och välja ett nytt lösenord nu. Om någon annan gjorde denna begäran, eller om du kommer ihåg ditt ursprungliga lösenord, och du önskar inte att ändra det, kan du ignorera detta meddelande och fortsätta använda ditt gamla lösenord.',
 'passwordreset-emailelement' => 'Användarnamn: $1
 Tillfälligt lösenord: $2',
-'passwordreset-emailsent' => 'En påminnelse via e-post har skickats.',
-'passwordreset-emailsent-capture' => 'En påminnelse via e-post har skickats, som visas nedan.',
-'passwordreset-emailerror-capture' => 'En påminnelse via e-post har skapats, som visas nedan, men det gick inte att skicka den till användaren: $1',
+'passwordreset-emailsent' => 'En lösenordsåterställning via e-post har skickats.',
+'passwordreset-emailsent-capture' => 'En lösenordsåterställning via e-post har skickats, som visas nedan.',
+'passwordreset-emailerror-capture' => 'En lösenordsåterställning via e-post har skapats, som visas nedan, men det gick inte att skicka den till användaren: $1',
 
 # Special:ChangeEmail
 'changeemail' => 'Ändra e-postadress',
@@ -4017,16 +4017,16 @@ Bilder visas i full upplösning, andra filtyper öppnas direkt i de program som 
 'logentry-move-move-noredirect' => '$1 flyttade sidan $3 till $4 utan att lämna en omdirigering',
 'logentry-move-move_redir' => '$1 flyttade sidan $3 till $4 över en omdirigering',
 'logentry-move-move_redir-noredirect' => '$1 flyttade sidan $3 till $4 över en omdirigering utan att lämna en omdirigering',
-'logentry-patrol-patrol' => '$1 markerade versionen $4 av sidan $3 som patrullerad',
-'logentry-patrol-patrol-auto' => '$1 markerade automatiskt versionen $4 av sidan $3 som patrullerad',
-'logentry-newusers-newusers' => 'Användarkonto $1 skapades',
-'logentry-newusers-create' => 'Användarkonto $1 skapades',
-'logentry-newusers-create2' => 'Användarkonto $3 skapades av $1',
-'logentry-newusers-byemail' => 'Användarkontot $3 skapades av $1 och lösenordet skickades via e-post',
-'logentry-newusers-autocreate' => 'Kontot $1 skapades automatiskt',
-'logentry-rights-rights' => '$1 ändrade gruppmedlemskap för $3 från $4 till $5',
-'logentry-rights-rights-legacy' => '$1 ändrade gruppmedlemskap för $3',
-'logentry-rights-autopromote' => '$1 befordrades automatiskt från $4 till $5',
+'logentry-patrol-patrol' => '$1 {{GENDER:$2|markerade}} versionen $4 av sidan $3 som patrullerad',
+'logentry-patrol-patrol-auto' => '$1 {{GENDER:$2|markerade}} automatiskt versionen $4 av sidan $3 som patrullerad',
+'logentry-newusers-newusers' => 'Användarkonto $1 har {{GENDER:$2|skapats}}',
+'logentry-newusers-create' => 'Användarkonto $1 har {{GENDER:$2|skapats}}',
+'logentry-newusers-create2' => 'Användarkonto $3 har {{GENDER:$2|skapats}} av $1',
+'logentry-newusers-byemail' => 'Användarkontot $3 har {{GENDER:$2|skapats}} av $1 och lösenordet skickades via e-post',
+'logentry-newusers-autocreate' => 'Användarkontot $1 {{GENDER:$2|skapades}} automatiskt',
+'logentry-rights-rights' => '$1 {{GENDER:$2|ändrade}} gruppmedlemskapet för $3 från $4 till $5',
+'logentry-rights-rights-legacy' => '$1 {{GENDER:$2|ändrade}} gruppmedlemskapet för $3',
+'logentry-rights-autopromote' => '$1 {{GENDER:$2|befordrades}} automatiskt från $4 till $5',
 'rightsnone' => '(inga)',
 
 # Feedback

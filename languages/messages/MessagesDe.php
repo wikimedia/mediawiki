@@ -888,7 +888,7 @@ Bitte melde dich damit an, sobald du es erhalten hast. Das alte Passwort bleibt 
 'eauthentsent' => 'Eine Bestätigungs-E-Mail wurde an die angegebene Adresse verschickt.
 
 Bevor eine E-Mail von anderen Benutzern über die E-Mail-Funktion empfangen werden kann, muss die Adresse und ihre tatsächliche Zugehörigkeit zu diesem Benutzerkonto erst bestätigt werden. Bitte befolge die Hinweise in der Bestätigungs-E-Mail.',
-'throttled-mailpassword' => 'Es wurde innerhalb der letzten {{PLURAL:$1|Stunde|$1 Stunden}} bereits ein neues Passwort angefordert. Um einen Missbrauch der Funktion zu verhindern, kann nur {{PLURAL:$1|einmal pro Stunde|alle $1 Stunden}} ein neues Passwort angefordert werden.',
+'throttled-mailpassword' => 'Es wurde innerhalb der letzten {{PLURAL:$1|Stunde|$1 Stunden}} bereits eine Passwortzurücksetzungs-E-Mail angefordert. Um einen Missbrauch der Funktion zu verhindern, kann nur {{PLURAL:$1|einmal pro Stunde|alle $1 Stunden}} eine Passwortzurücksetzungs-E-Mail angefordert werden.',
 'mailerror' => 'Fehler beim Senden der E-Mail: $1',
 'acct_creation_throttle_hit' => 'Besucher dieses Wikis, die deine IP-Adresse verwenden, haben innerhalb des letzten Tages {{PLURAL:$1|1 Benutzerkonto|$1 Benutzerkonten}} erstellt, was die maximal erlaubte Anzahl in dieser Zeitperiode ist.
 
@@ -938,7 +938,7 @@ Möglicherweise hast du dein Passwort bereits erfolgreich geändert oder ein neu
 
 # Special:PasswordReset
 'passwordreset' => 'Passwort zurücksetzen',
-'passwordreset-text' => 'Bitte dieses Formular ausfüllen, um per E-Mail eine Erinnerung zu den Anmeldeinformationen deines Benutzerkontos zu erhalten.',
+'passwordreset-text' => 'Bitte dieses Formular ausfüllen, um dein Passwort zurückzusetzen.',
 'passwordreset-legend' => 'Passwort zurücksetzen',
 'passwordreset-disabled' => 'Das Zurücksetzen von Passwörtern wurde in diesem Wiki deaktiviert.',
 'passwordreset-pretext' => '{{PLURAL:$1||Gib eines der folgenden Daten ein.}}',
@@ -948,22 +948,27 @@ Möglicherweise hast du dein Passwort bereits erfolgreich geändert oder ein neu
 'passwordreset-capture-help' => 'Sofern Du dieses Kästchen ankreuzt, wird die E-Mail-Nachricht mit dem temporären Passwort, sowohl dir angezeigt, als auch dem Benutzer zugesandt.',
 'passwordreset-email' => 'E-Mail-Adresse:',
 'passwordreset-emailtitle' => 'Benutzerkontoinformationen auf {{SITENAME}}',
-'passwordreset-emailtext-ip' => 'Jemand mit der IP-Adresse $1, wahrscheinlich du selbst, hat eine Erinnerung an deine Benutzerkonteninformationen für {{SITENAME}} angefordert ($4). {{PLURAL:$3|Das folgende Benutzerkonto ist|Die folgenden Benutzerkonten sind}} mit dieser E-Mail-Adresse verknüpft:
+'passwordreset-emailtext-ip' => 'Jemand mit der IP-Adresse $1, wahrscheinlich du selbst, hat eine Zurücksetzung deines
+Passworts für {{SITENAME}} angefordert ($4). {{PLURAL:$3|Das folgende Benutzerkonto ist|Die folgenden Benutzerkonten sind}}
+mit dieser E-Mail-Adresse verknüpft:
 
 $2
 
 {{PLURAL:$3|Dieses temporäre Passwort läuft|Diese temporären Passwörter laufen}} innerhalb von {{PLURAL:$5|einem Tag|$5 Tagen}} ab.
-Du solltest dich anmelden und ein neues Passwort vergeben. Falls jemand anderes diese Anfrage getätigt hat oder du dich wieder an dein ursprüngliches Passwort erinnern kannst und es nicht länger ändern möchtest, kannst du diese Nachricht ignorieren und weiterhin dein altes Passwort benutzen.',
-'passwordreset-emailtext-user' => 'Benutzer $1 auf {{SITENAME}} hat eine Erinnerung an deine Benutzerkonteninformationen für {{SITENAME}} angefordert ($4). {{PLURAL:$3|Das folgende Benutzerkonto ist|Die folgenden Benutzerkonten sind}} mit dieser E-Mail-Adresse verknüpft:
+Du solltest dich anmelden und ein neues Passwort vergeben. Falls jemand anderes diese
+Anfrage getätigt hat oder du dich wieder an dein ursprüngliches Passwort erinnern kannst und es nicht länger
+ändern möchtest, kannst du diese Nachricht ignorieren und weiterhin dein altes
+Passwort benutzen.',
+'passwordreset-emailtext-user' => 'Benutzer $1 auf {{SITENAME}} hat eine Zurücksetzung deines Passworts für {{SITENAME}} angefordert ($4). {{PLURAL:$3|Das folgende Benutzerkonto ist|Die folgenden Benutzerkonten sind}} mit dieser E-Mail-Adresse verknüpft:
 
 $2
 
 {{PLURAL:$3|Dieses temporäre Passwort läuft|Diese temporären Passwörter laufen}} innerhalb von {{PLURAL:$5|einem Tag|$5 Tagen}} ab. Du solltest dich anmelden und ein neues Passwort vergeben. Falls jemand anderes diese Anfrage getätigt hat oder du dich wieder an dein ursprüngliches Passwort erinnern kannst und es nicht ändern möchtest, kannst du diese Nachricht ignorieren und weiterhin dein altes Passwort benutzen.',
 'passwordreset-emailelement' => 'Benutzername: $1
 Temporäres Passwort: $2',
-'passwordreset-emailsent' => 'Eine Erinnerung wurde per E-Mail versandt.',
-'passwordreset-emailsent-capture' => 'Die unten angezeigte Erinnerungs-E-Mail wurde abgeschickt.',
-'passwordreset-emailerror-capture' => 'Die unten angezeigte Erinnerungs-E-Mail wurde generiert, allerdings ist der Versand an den Benutzer gescheitert: $1',
+'passwordreset-emailsent' => 'Eine Passwortzurücksetzungs-E-Mail wurde versandt.',
+'passwordreset-emailsent-capture' => 'Eine Passwortzurücksetzungs-E-Mail wurde versandt, die unten angezeigt wird.',
+'passwordreset-emailerror-capture' => 'Die unten angezeigte Passwortzurücksetzungs-E-Mail wurde generiert, allerdings ist der Versand an den Benutzer gescheitert: $1',
 
 # Special:ChangeEmail
 'changeemail' => 'E-Mail-Adresse ändern',
@@ -4073,17 +4078,17 @@ Eine [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie der ''GNU General Public License'']
 'sqlite-no-fts' => 'Version $1 ohne Unterstützung für die Volltextsuche',
 
 # New logging system
-'logentry-delete-delete' => '$1 löschte Seite $3',
-'logentry-delete-restore' => '$1 stellte Seite $3 wieder her',
-'logentry-delete-event' => '$1 änderte die Sichtbarkeit {{PLURAL:$5|eines Logbucheintrags|von $5 Logbucheinträgen}} auf $3: $4',
-'logentry-delete-revision' => '$1 änderte die Sichtbarkeit {{PLURAL:$5|einer Version|von $5 Versionen}} der Seite $3: $4',
-'logentry-delete-event-legacy' => '$1 änderte die Sichtbarkeit von Logbucheinträgen auf $3',
-'logentry-delete-revision-legacy' => '$1 änderte die Sichtbarkeit von Versionen der Seite $3',
-'logentry-suppress-delete' => '$1 unterdrückte Seite $3',
-'logentry-suppress-event' => '$1 änderte diskret die Sichtbarkeit {{PLURAL:$5|eines Logbucheintrags|von $5 Logbucheinträgen}} auf $3: $4',
-'logentry-suppress-revision' => '$1 änderte diskret die Sichtbarkeit {{PLURAL:$5|einer Version|von $5 Versionen}} der Seite $3: $4',
-'logentry-suppress-event-legacy' => '$1 änderte diskret die Sichtbarkeit von Logbucheinträgen auf $3',
-'logentry-suppress-revision-legacy' => '$1 änderte diskret die Sichtbarkeit von Versionen der Seite $3',
+'logentry-delete-delete' => '$1 {{GENDER:$2|löschte}} Seite $3',
+'logentry-delete-restore' => '$1 {{GENDER:$2|stellte}} Seite $3 wieder her',
+'logentry-delete-event' => '$1 {{GENDER:$2|änderte}}  die Sichtbarkeit {{PLURAL:$5|eines Logbucheintrags|von $5 Logbucheinträgen}} auf $3: $4',
+'logentry-delete-revision' => '$1 {{GENDER:$2|änderte}} die Sichtbarkeit {{PLURAL:$5|einer Version|von $5 Versionen}} der Seite $3: $4',
+'logentry-delete-event-legacy' => '$1 {{GENDER:$2|änderte}} die Sichtbarkeit von Logbucheinträgen auf $3',
+'logentry-delete-revision-legacy' => '$1 {{GENDER:$2|änderte}} die Sichtbarkeit von Versionen der Seite $3',
+'logentry-suppress-delete' => '$1 {{GENDER:$2|unterdrückte}} Seite $3',
+'logentry-suppress-event' => '$1 {{GENDER:$2|änderte}} diskret die Sichtbarkeit {{PLURAL:$5|eines Logbucheintrags|von $5 Logbucheinträgen}} auf $3: $4',
+'logentry-suppress-revision' => '$1 {{GENDER:$2|änderte}} diskret die Sichtbarkeit {{PLURAL:$5|einer Version|von $5 Versionen}} der Seite $3: $4',
+'logentry-suppress-event-legacy' => '$1 {{GENDER:$2|änderte}} diskret die Sichtbarkeit von Logbucheinträgen auf $3',
+'logentry-suppress-revision-legacy' => '$1 {{GENDER:$2|änderte}} diskret die Sichtbarkeit von Versionen der Seite $3',
 'revdelete-content-hid' => 'Inhalt versteckt',
 'revdelete-summary-hid' => 'Zusammenfassung versteckt',
 'revdelete-uname-hid' => 'Benutzername versteckt',
@@ -4092,20 +4097,20 @@ Eine [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie der ''GNU General Public License'']
 'revdelete-uname-unhid' => 'Benutzername freigegeben',
 'revdelete-restricted' => 'Einschränkungen gelten auch für Administratoren',
 'revdelete-unrestricted' => 'Einschränkungen für Administratoren aufgehoben',
-'logentry-move-move' => '$1 verschob Seite $3 nach $4',
-'logentry-move-move-noredirect' => '$1 verschob Seite $3 nach $4, ohne dabei eine Weiterleitung anzulegen',
-'logentry-move-move_redir' => '$1 verschob Seite $3 nach $4 und überschrieb dabei eine Weiterleitung',
-'logentry-move-move_redir-noredirect' => '$1 verschob Seite $3 nach $4 und überschrieb dabei eine Weiterleitung ohne selbst eine Weiterleitung anzulegen',
-'logentry-patrol-patrol' => '$1 markierte Version $4 von Seite $3 als kontrolliert',
-'logentry-patrol-patrol-auto' => '$1 markierte automatisch Version $4 von Seite $3 als kontrolliert',
-'logentry-newusers-newusers' => 'Benutzerkonto $1 wurde erstellt',
-'logentry-newusers-create' => 'Benutzerkonto $1 wurde erstellt',
-'logentry-newusers-create2' => 'Benutzerkonto $3 wurde von $1 erstellt',
-'logentry-newusers-byemail' => 'Das Benutzerkonto $3 wurde von $1 erstellt und das Passwort wurde per E-Mail zugesandt',
-'logentry-newusers-autocreate' => 'Benutzerkonto $1 wurde automatisch erstellt',
-'logentry-rights-rights' => '$1 änderte die Gruppenzugehörigkeit für $3 von $4 zu $5',
-'logentry-rights-rights-legacy' => '$1 änderte die Gruppenzugehörigkeit für $3',
-'logentry-rights-autopromote' => '$1 wurde automatisch von $4 zu $5 zugeordnet',
+'logentry-move-move' => '$1 {{GENDER:$2|verschob}} Seite $3 nach $4',
+'logentry-move-move-noredirect' => '$1 {{GENDER:$2|verschob}} Seite $3 nach $4, ohne dabei eine Weiterleitung anzulegen',
+'logentry-move-move_redir' => '$1 {{GENDER:$2|verschob}} Seite $3 nach $4 und überschrieb dabei eine Weiterleitung',
+'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|verschob}} Seite $3 nach $4 und überschrieb dabei eine Weiterleitung ohne selbst eine Weiterleitung anzulegen',
+'logentry-patrol-patrol' => '$1 {{GENDER:$2|markierte}} Version $4 von Seite $3 als kontrolliert',
+'logentry-patrol-patrol-auto' => '$1 {{GENDER:$2|markierte}} automatisch Version $4 von Seite $3 als kontrolliert',
+'logentry-newusers-newusers' => 'Benutzerkonto $1 wurde {{GENDER:$2|erstellt}}',
+'logentry-newusers-create' => 'Benutzerkonto $1 wurde {{GENDER:$2|erstellt}}',
+'logentry-newusers-create2' => 'Benutzerkonto $3 wurde von $1 {{GENDER:$2|erstellt}}',
+'logentry-newusers-byemail' => 'Das Benutzerkonto $3 wurde von $1 {{GENDER:$2|erstellt}} und das Passwort wurde per E-Mail zugesandt',
+'logentry-newusers-autocreate' => 'Benutzerkonto $1 wurde automatisch {{GENDER:$2|erstellt}}',
+'logentry-rights-rights' => '$1 {{GENDER:$2|änderte}} die Gruppenzugehörigkeit für $3 von $4 zu $5',
+'logentry-rights-rights-legacy' => '$1 {{GENDER:$2|änderte}} die Gruppenzugehörigkeit für $3',
+'logentry-rights-autopromote' => '$1 wurde automatisch von $4 zu $5 {{GENDER:$2|zugeordnet}}',
 'rightsnone' => '(–)',
 
 # Feedback

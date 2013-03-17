@@ -610,7 +610,7 @@ $messages = array(
 # Special:ListUsers
 'listusers-submit' => 'виждь',
 
-# E-mail user
+# Email user
 'emailuser' => 'посъли єпїстолѫ',
 
 # Watchlist

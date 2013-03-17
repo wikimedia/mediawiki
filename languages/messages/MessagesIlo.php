@@ -525,8 +525,8 @@ Sumrekka koma manen kalpasan a maawatmo daytoy a baro a kontrasenias.',
 'blocked-mailpassword' => 'Ti IP a pagtaengam ket naserraan manipud ti panag-urnos, ken isu a saan a mabalin nga agusar ti panagala ti kontrasenias a pamay-an tapno mapawilan ti panag-abuso.',
 'eauthentsent' => 'Naipatuloden ti pammasingked nga e-surat iti naited nga e-surat a pagtaengan.
 Sakbay nga ania man nga e-surat ti maipatulod iti pakabilangan, masapul a surotem dagiti maibagbaga iti e-surat, tapno mapasingkedan a ti pakabilangan ket agpayso a kukuam.',
-'throttled-mailpassword' => 'Ti palagip ti kontrasenias ket naipatuloden, iti napalabas nga {{PLURAL:$1|oras|$1 nga oras}}.
-Tapno maipawilan ti panag-abuso, maysa laeng a palagip ti kontrasenias ti maipatulod ti tunggal maysa nga {{PLURAL:$1|oras|$1 nga oras}}.',
+'throttled-mailpassword' => 'Ti panangidisso manen ti kontrasenias ket naipatuloden, iti napalabas nga {{PLURAL:$1|oras|$1 nga oras}}.
+Tapno maipawilan ti panag-abuso, maysa laeng a panangidisso manen ti kontrasenias ti maipatulod iti tunggal maysa nga {{PLURAL:$1|oras|$1 nga oras}}.',
 'mailerror' => 'Biddut iti panagipatulod ti surat: $1',
 'acct_creation_throttle_hit' => 'Dagiti sumarungkar ti daytoy a wiki nga agususar ti IP a pagtaengan ket nakaaramid {{PLURAL:$1|iti 1 a pakabilangan|kadagiti $1 a pakabilangan}} iti nasakbayan nga aldaw, nga isu laeng ti kaadu a maipalubos iti daytoy a paset ti panawen.
 A kas ti nagbanagan, dagiti agsarsarummgkar nga agususar ti IP a pagtaengan ket agdama a saanda a mabalin a makaaramid kadagiti pakabilangan.',
@@ -580,7 +580,7 @@ Mabalin a nagballigi ti panagsukatmo ti kontrasenias wenno nagkiddaw ti baro a t
 
 # Special:PasswordReset
 'passwordreset' => 'Ipasubli ti kontrasenias',
-'passwordreset-text' => 'Lippasem daytoy a kinabuklan tapno maipatulodanka ti e-surat a paglagipan kadagiti salaysay ti pakabilangam.',
+'passwordreset-text' => 'Lippasem daytoy a porma tapno maidisso manen ti bukodmo a kontrasenias.',
 'passwordreset-legend' => 'Ipasubli ti kontrasenias',
 'passwordreset-disabled' => 'Nabaldado dagiti panagisubli ti kontrasenias iti daytoy a wiki.',
 'passwordreset-pretext' => '{{PLURAL:$1||Ikabil ti maysa a piraso ti datos dita baba}}',
@@ -590,9 +590,8 @@ Mabalin a nagballigi ti panagsukatmo ti kontrasenias wenno nagkiddaw ti baro a t
 'passwordreset-capture-help' => 'No markaam daytoy a kahon, ti e-surat (nga adda ti temporario a kontrasenias) ket maipakita kenka ken maipatulod iti agar-aramat.',
 'passwordreset-email' => 'E-surat a pagtaengan:',
 'passwordreset-emailtitle' => 'Salaysay ti pakabilangan iti {{SITENAME}}',
-'passwordreset-emailtext-ip' => 'Adda (baka sika, ti naggapuan ti IP a pagtaengan $1) a nagkiddaw ti palagip para
-dagiti salaysay ti pakabilangam para iti {{SITNAME}} ($4) . {{PLURAL:$3|Ti |Dagiti}} sumaganad a pakabilangan ti agar-aramat ket
-nakairaman iti daytoy nga e-surat a pagtaengan:
+'passwordreset-emailtext-ip' => 'Adda (baka sika, ti naggapuan ti IP a pagtaengan $1) a nagkiddaw ti maysa a panangidisso manen ti kontrasenias para iti {{SITNAME}} ($4) . {{PLURAL:$3|Ti |Dagiti}} sumaganad a pakabilangan ti agar-aramat ket
+nakairaman iti daytoy nga esurat a pagtaengan:
 
 $2
 
@@ -600,9 +599,9 @@ $2
 Sumrekka kuman ta agpili ka ti baro a kontrasenias mo tattan. No adda met sabali a nagaramid daytoy a 
 panagkiddaw, wenno malagip mo ti dati a kontrasenias mo, ket saan mo a kayaten a sukatan, saan mo nga ikaskaso daytoy a mensahe ken 
 agtuloy ka nga agusar ti daan a kontrasenias.',
-'passwordreset-emailtext-user' => 'Daytoy nga  agar-aramat  $1 iti {{SITENAME}} ket nagkiddaw ti palagip para dagiti salaysay ti pakabilangan iti {{SITENAME}}
+'passwordreset-emailtext-user' => 'Daytoy nga  agar-aramat $1 iti {{SITENAME}} ket nagkiddaw ti maysa a panangidisso manen ti bukodmo a kontrasenias para iti {{SITENAME}}
 ($4) .  {{PLURAL:$3|Ti|Dagiti}} sumaganad a pakabilanagn ti agar-aramat ket
-nakairaman iti daytoy nga e-surat a pagtaengan:
+nakairaman iti daytoy nga esurat a pagtaengan:
 
 $2
 
@@ -612,9 +611,9 @@ panagkiddaw, wenno malagip mo ti dati a kontrasenias mo, ket saan mo a kayaten a
 agtuloy kan nga agusar ti daan a kontrasenias mo.',
 'passwordreset-emailelement' => 'Nagan ti agar-aramat: $1
 Temporario a kontrasenias: $2',
-'passwordreset-emailsent' => 'Maipatuloden ti e-surat a palagip.',
-'passwordreset-emailsent-capture' => 'Naipatulod ti palagip nga e-surat, a napaikita dita baba.',
-'passwordreset-emailerror-capture' => 'Naaramid ti palagip nga e-surat, a napaikita dita baba, ngem napaay a napaitulod iti agar-aramat: $1',
+'passwordreset-emailsent' => 'Ti maysa nga esurat ti panangidisso manen ti kontrasenias ket naipatuloden.',
+'passwordreset-emailsent-capture' => 'Ti maysa nga esurat ti panangidisso manen ti kontrasenias ket naipatuloden, a napaikita dita baba.',
+'passwordreset-emailerror-capture' => 'Ti maysa nga esurat ti panangidisso manen ti kontrasenias ket naaramiden, a napaikita dita baba, ngem napaay a napaitulod iti agar-aramat: $1',
 
 # Special:ChangeEmail
 'changeemail' => 'Sukatan ti e-surat a pagtaengan',
@@ -3717,17 +3716,17 @@ Daytoy a pagsaadan ket agdadama ti teknikal a pagrigrigatan.',
 'sqlite-no-fts' => '$1 awan ti suporta ti napno a testo ti panagbiruk',
 
 # New logging system
-'logentry-delete-delete' => 'Inikkat ni $1 ti panid  ti $3',
-'logentry-delete-restore' => 'Insubli ni $1 ti panid ti $3',
-'logentry-delete-event' => 'Sinukatan ni $1  ti panagkita {{PLURAL:$5|iti listaan ti pasamak |dagiti $5 a listaan ti pasamak }} iti $3: $4',
-'logentry-delete-revision' => 'Sinukatan ni $1 ti panagkita  {{PLURAL:$5|iti panagbaliw |dagiti $5 a panagbaliw}} iti panid $3: $4',
-'logentry-delete-event-legacy' => 'Sinukatan ni $1  ti panagkita ti listaan dagiti pasamak idiay $3',
-'logentry-delete-revision-legacy' => 'Sinukatan ni $1 ti panagkita dagiti panagbaliw idiay panid $3',
-'logentry-suppress-delete' => 'Pinasardeng ni $1 ti panid ti $3',
-'logentry-suppress-event' => 'Sekreto a sinukatan ni $1 ti panagkita {{PLURAL:$5|iti listaan ti pasamak |dagiti $5 a listaan ti pasamak }} iti $3: $4',
-'logentry-suppress-revision' => 'Sekreto a sinukatan ni $1 ti panagkita {{PLURAL:$5|iti panagbaliw |dagiti $5 a panagbaliw}} iti panid $3: $4',
-'logentry-suppress-event-legacy' => 'Sekreto a sinukatan ni $1 ti panagkita ti listaan dagiti pasamak idiay $3',
-'logentry-suppress-revision-legacy' => 'Sekreto a sinukatan ni $1  ti panagkita dagiti panagbaliw idiay panid $3',
+'logentry-delete-delete' => 'Ni $1 ket {{GENDER:$2|inikkatna}} ti panid ti $3',
+'logentry-delete-restore' => 'Ni $1 ket {{GENDER:$2|insublina}} ti panid ti $3',
+'logentry-delete-event' => 'Ni $1 ket {{GENDER:$2|binaliwanna}} ti panagkita {{PLURAL:$5|iti listaan ti pasamak |dagiti $5 a listaan ti pasamak }} iti $3: $4',
+'logentry-delete-revision' => 'Ni $1 ket {{GENDER:$2|binaliwanna}} ti panagkita  {{PLURAL:$5|iti panagbaliw |dagiti $5 a panagbaliw}} iti panid $3: $4',
+'logentry-delete-event-legacy' => 'Ni $1 ket {{GENDER:$2|binaliwanna}} ti panagkita ti listaan dagiti pasamak idiay $3',
+'logentry-delete-revision-legacy' => 'Ni $1 ket {{GENDER:$2|binaliwanna}} ti panagkita dagiti panagbaliw idiay panid $3',
+'logentry-suppress-delete' => 'Ni $1 ket {{GENDER:$2|pinasardengna}} ti panid ti $3',
+'logentry-suppress-event' => 'Ni $1 ket sekreto a {{GENDER:$2|binaliwanna}} ti panagkita {{PLURAL:$5|iti listaan ti pasamak |dagiti $5 a listaan ti pasamak }} iti $3: $4',
+'logentry-suppress-revision' => 'Ni $1 ket sekreto a {{GENDER:$2|binaliwanna}} ti panagkita {{PLURAL:$5|iti panagbaliw |dagiti $5 a panagbaliw}} iti panid $3: $4',
+'logentry-suppress-event-legacy' => 'Ni $1 ket sekreto a {{GENDER:$2|binaliwanna}} ti panagkita ti listaan dagiti pasamak idiay $3',
+'logentry-suppress-revision-legacy' => 'Ni $1 ket sekreto a {{GENDER:$2|binaliwanna}} ti panagkita dagiti panagbaliw idiay panid $3',
 'revdelete-content-hid' => 'nailemmeng ti nagyan na',
 'revdelete-summary-hid' => 'nailemmeng ti pakabuklan a naurnos',
 'revdelete-uname-hid' => 'nailemmeng ti nagan ti agar-aramat',
@@ -3736,15 +3735,15 @@ Daytoy a pagsaadan ket agdadama ti teknikal a pagrigrigatan.',
 'revdelete-uname-unhid' => 'saan a nailemmeng ti nagan ti agar-aramat',
 'revdelete-restricted' => 'naipakat dagiti pammarit kadagiti administrador',
 'revdelete-unrestricted' => 'naikkat dagiti pammarit para kadagiti administrador',
-'logentry-move-move' => 'Inyalis ni  $1 daytoy panid $3 idiay $4',
-'logentry-move-move-noredirect' => 'Inyalis ni $1  ti panid ti $3 idiay $4 a saan a nangibati ti baw-ing',
-'logentry-move-move_redir' => 'Inyalis ni $1 ti panid ti $3 idiay $4 nga adda iti maysa a baw-ing',
-'logentry-move-move_redir-noredirect' => 'Inyalis ni $1 ti panid ti $3 idiay $4 nga adda iti maysa a baw-ing a saan a nangibati ti baw-ing',
-'logentry-patrol-patrol' => 'Minarkaan ni $1 ti panagbaliw a $4 ti panid ti  $3 a napatruliaan',
-'logentry-patrol-patrol-auto' => 'Automatiko a minarkaan ni $1 ti panagbaliw a $4 ti panid ti $3 a napatruliaan',
-'logentry-newusers-newusers' => 'Nagpartuat idi ti $1 a pakabilangan ti agar-aramat',
-'logentry-newusers-create' => 'Nagpartuat idi ti $1 a pakabilangan ti agar-aramat',
-'logentry-newusers-create2' => 'Nagpartuat ni ti $3 a pakabilangan ti agar-aramat babaen ni $1',
+'logentry-move-move' => 'Ni $1 ket {{GENDER:$2|inyalisna}}ti panid $3 idiay $4',
+'logentry-move-move-noredirect' => 'Ni $1 ket {{GENDER:$2|inyalisna}} ti panid ti $3 idiay $4 a saan a nangibati ti baw-ing',
+'logentry-move-move_redir' => 'Ni $1 ket {{GENDER:$2|inyalisna}} ti panid ti $3 idiay $4 nga adda iti maysa a baw-ing',
+'logentry-move-move_redir-noredirect' => 'Ni $1 ket {{GENDER:$2|inyalisna} ti panid ti $3 idiay $4 nga adda iti maysa a baw-ing a saan a nangibati ti baw-ing',
+'logentry-patrol-patrol' => 'Ni $1 ket {{GENDER:$2|minarkaanna}} ti panagbaliw a $4 ti panid ti $3 a napatruliaan',
+'logentry-patrol-patrol-auto' => 'Ni $1 ket automatiko a {{GENDER:$2|minarkaanna}} ti panagbaliw a $4 ti panid ti $3 a napatruliaan',
+'logentry-newusers-newusers' => 'Ti pakabilangan idi ni $1 ket {{GENDER:$2|napartuat}}',
+'logentry-newusers-create' => 'Ti pakabilangan idi ni $1 ket {{GENDER:$2|napartuat}}',
+'logentry-newusers-create2' => 'Ti pakabilangan ti agar-aramat $3 ket {{GENDER:$2|napartuat}} idi babaen ni $1',
 'logentry-newusers-byemail' => 'Ti pakabilangan a $3 ket pinartuat idi babaen ni $1 ken ti kontrasenias ket naipatulod idi babaen ti e-surat',
 'logentry-newusers-autocreate' => 'Ti pakabilangan ni $1 ket automatiko a napartuat',
 'logentry-rights-rights' => 'Ni $1 ket nangbaliw ti grupo a panakaikameng para kenni $3 manipud ti $4 iti $5',

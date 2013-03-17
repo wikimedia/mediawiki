@@ -832,8 +832,8 @@ $2',
 'blocked-mailpassword' => '당신의 IP 주소는 편집을 할 수 없게 차단되어 있어서 악용하지 못하도록 비밀번호 되살리기 기능 사용이 금지됩니다.',
 'eauthentsent' => '입력한 이메일로 확인 이메일을 보냈습니다.
 게정에서 다른 이메일로 보내기 전에 이메일 내용의 지시대로 계정 확인 절차를 실행해 주십시오.',
-'throttled-mailpassword' => '비밀번호 확인 이메일을 이미 최근 $1시간 안에 보냈습니다.
-악용을 방지하기 위해 비밀번호 확인 메일은 $1시간마다 오직 하나씩만 보낼 수 있습니다.',
+'throttled-mailpassword' => '비밀번호 재설정 이메일을 이미 최근 {{PLURAL:$1|$1시간}} 안에 보냈습니다.
+악용을 방지하기 위해 비밀번호 재설정 메일은 {{PLURAL:$1|$1시간}}마다 오직 하나씩만 보낼 수 있습니다.',
 'mailerror' => '메일 보내기 오류: $1',
 'acct_creation_throttle_hit' => '당신의 IP 주소를 이용한 방문자가 이전에 이미 계정을 $1개 만들어, 계정 만들기 한도를 초과하였습니다.
 따라서 지금은 이 IP 주소로는 더 이상 계정을 만들 수 없습니다.',
@@ -887,7 +887,7 @@ $2',
 
 # Special:PasswordReset
 'passwordreset' => '비밀번호 재설정',
-'passwordreset-text' => '이메일을 통해 계정 정보를 받을 수 있습니다. 아래의 칸을 채워주세요.',
+'passwordreset-text' => '비밀번호를 재설정하려면 이 양식을 채워주세요.',
 'passwordreset-legend' => '비밀번호 재설정',
 'passwordreset-disabled' => '이 위키에서는 비밀번호를 재설정할 수 없습니다.',
 'passwordreset-pretext' => '{{PLURAL:$1||아래에 한 가지 정보를 입력하세요}}',
@@ -897,27 +897,29 @@ $2',
 'passwordreset-capture-help' => '이 상자에 체크하면 이메일이 발송된 즉시 임시 비밀번호가 담긴 이메일을 볼 수 있습니다.',
 'passwordreset-email' => '이메일 주소:',
 'passwordreset-emailtitle' => '{{SITENAME}} 계정 자세한 정보',
-'passwordreset-emailtext-ip' => 'IP 주소 $1을 사용하는 누군가가 아마 자신이 {{SITENAME}} ($4)의 비밀번호 찾기를 요청하였습니다.
-이 이메일 주소와 연관된 계정의 목록입니다:
+'passwordreset-emailtext-ip' => '$1 IP 주소를 사용하는 누군가가 아마 자신이 {{SITENAME}} ($4)의 비밀번호 재설정을 요청하였습니다.
+이 이메일 주소와 연관된 {{PLURAL:$3|계정}}의 목록입니다:
 
 $2
 
-이 {{PLURAL:$3|임시 비밀번호}}는 $5일 후에 만료됩니다.
+이 {{PLURAL:$3|임시 비밀번호}}는 {{PLURAL:$5|$5일}} 후에 만료됩니다.
 이 비밀번호로 로그인한 후 비밀번호를 바꾸십시오. 만약 당신이 아닌 다른 사람이 요청하였거나,
-원래의 비밀번호를 기억해냈다면, 이 메시지를 무시하고 이전의 비밀번호를 계속 사용할 수 있습니다.',
-'passwordreset-emailtext-user' => '{{SITENAME}} ($4)의 사용자 $1이 비밀번호 찾기를 요청하였습니다.
-이 이메일 주소와 연관된 계정의 목록입니다:
+원래의 비밀번호를 기억해냈다면, 이 메시지를 무시하고
+이전의 비밀번호를 계속 사용할 수 있습니다.',
+'passwordreset-emailtext-user' => '{{SITENAME}} ($4)의 사용자 $1이 비밀번호 재설정dmf 요청하였습니다.
+이 이메일 주소와 연관된 {{PLURAL:$3|계정}}의 목록입니다:
 
 $2
 
-이 {{PLURAL:$3|임시 비밀번호}}는 $5일 후에 만료됩니다.
+{{PLURAL:$3|이 임시 비밀번호}}는 {{PLURAL:$5|$5일}} 후에 만료됩니다.
 이 비밀번호로 로그인한 후 비밀번호를 바꾸십시오. 만약 당신이 아닌 다른 사람이 요청하였거나,
-원래의 비밀번호를 기억해냈다면, 이 메시지를 무시하고 이전의 비밀번호를 계속 사용할 수 있습니다.',
+원래의 비밀번호를 기억해냈다면, 이 메시지를 무시하고
+이전의 비밀번호를 계속 사용할 수 있습니다.',
 'passwordreset-emailelement' => '사용자 이름: $1
 임시 비밀번호: $2',
-'passwordreset-emailsent' => '비밀번호 찾기 이메일을 보냈습니다.',
-'passwordreset-emailsent-capture' => '비밀번호 찾기 이메일이 발송되었으며, 아래에 나타나 있습니다.',
-'passwordreset-emailerror-capture' => '비밀번호 찾기 이메일이 만들어져 아래에 나타났지만 발송하는 데에는 실패했습니다: $1',
+'passwordreset-emailsent' => '비밀번호 재설정 이메일을 보냈습니다.',
+'passwordreset-emailsent-capture' => '비밀번호 재설정 이메일이 발송되었으며, 아래에 나타나 있습니다.',
+'passwordreset-emailerror-capture' => '비밀번호 재설정 이메일이 만들어져 아래에 나타났지만 발송하는 데에는 실패했습니다: $1',
 
 # Special:ChangeEmail
 'changeemail' => '이메일 주소 바꾸기',

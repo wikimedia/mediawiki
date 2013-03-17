@@ -6828,12 +6828,11 @@ Parameters:
 'svg-long-desc' => 'Displayed under an SVG image at the image description page. Note that argument 3 is a string that includes the file size unit symbol. See for example [[:File:Yes check.svg]].
 
 Start with a lowercase letter, unless the first word is "SVG".',
-'svg-long-desc-animated' => 'Displayed under an SVG image at the image description page if the image is animated. Non-animated images use {{msg-mw|svg-long-desc}}.
+'svg-long-desc-animated' => 'Displayed under an SVG image at the image description page if the image is animated.
 * $1 - the width in pixels
 * $2 - the height in pixels
 * $3 - the file size including a unit (for example "10 KB")
-
-Start with a lowercase letter, unless the first word is "SVG".',
+Non-animated images use {{msg-mw|svg-long-desc}}.',
 'svg-long-error' => 'Displayed for invalid SVG file metadata. Parameters:
 * $1 - the error message
 See also:

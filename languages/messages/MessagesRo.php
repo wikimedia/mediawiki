@@ -779,7 +779,7 @@ să folosiți vechea parolă.',
 'passwordsent' => 'O nouă parolă a fost trimisă la adresa de e-mail a utilizatorului "$1". Te rugăm să te autentifici pe {{SITENAME}} după ce o primești.',
 'blocked-mailpassword' => 'Această adresă IP este blocată la editare, și deci nu este permisă utilizarea funcției de recuperare a parolei pentru a preveni abuzul.',
 'eauthentsent' => 'Un email de confirmare a fost trimis adresei nominalizate. Înainte de a fi trimis orice alt email acestui cont, trebuie să urmați intrucțiunile din email, pentru a confirma că acest cont este într-adevăr al dvs.',
-'throttled-mailpassword' => 'O parolă a fost deja trimisă în {{PLURAL:$1|ultima oră|ultimele $1 ore|ultimele $1 de ore}}. Pentru a preveni abuzul, se poate trimite doar o parolă la {{PLURAL:$1|o oră|$1 ore|$1 de ore}}.',
+'throttled-mailpassword' => 'Un e-mail pentru resetarea parolei a fost deja trimis în {{PLURAL:$1|ultima oră|ultimele $1 ore|ultimele $1 de ore}}. Pentru a preveni abuzul, se va trimite doar un e-mail de resetare a parolei la un interval de o {{PLURAL:$1|o oră|$1 ore|$1 de ore}}.',
 'mailerror' => 'Eroare la trimitere e-mail: $1',
 'acct_creation_throttle_hit' => 'De la această adresă IP, vizitatorii sitului au creat {{PLURAL:$1|1 cont|$1 conturi|$1 de conturi}} de utilizator în ultimele zile, acest număr de noi conturi fiind maximul admis în această perioadă de timp.
 Prin urmare, vizitatorii care folosesc același IP nu mai pot crea alte conturi pentru moment.',
@@ -829,7 +829,7 @@ Este posibil să fi reușit deja schimbarea parolei sau să fi cerut o parolă t
 
 # Special:PasswordReset
 'passwordreset' => 'Resetare parolă',
-'passwordreset-text' => 'Completați acest formular pentru a primi un e-mail cu datele contului dumneavoastră.',
+'passwordreset-text' => 'Completați acest formular pentru a vă reseta parola.',
 'passwordreset-legend' => 'Resetare parolă',
 'passwordreset-disabled' => 'Resetarea parolei a fost dezactivată pe acest wiki.',
 'passwordreset-pretext' => '{{PLURAL:$1| | Introduceți mai jos o parte din informații}}',
@@ -839,8 +839,8 @@ Este posibil să fi reușit deja schimbarea parolei sau să fi cerut o parolă t
 'passwordreset-capture-help' => 'Dacă bifați această căsuță, e-mailul (conținând parola temperară) vă va fi afișat, dar va fi trimis și utilizatorului.',
 'passwordreset-email' => 'Adresă de e-mail:',
 'passwordreset-emailtitle' => 'Detalii despre cont pe {{SITENAME}}',
-'passwordreset-emailtext-ip' => 'Cineva (probabil dumneavoastră, de la adresa IP $1) a cerut reamintirea detaliilor
-contului dumneavoastră pe {{SITENAME}} ($4). {{PLURAL:$3|Următorul cont este asociat|Următoarele conturi sunt asociate}}
+'passwordreset-emailtext-ip' => 'Cineva (probabil dumneavoastră, de la adresa IP $1) a solicitat resetarea parolei 
+pentru {{SITENAME}} ($4). {{PLURAL:$3|Următorul cont este asociat|Următoarele conturi sunt asociate}}
 cu această adresă de e-mail:
 
 $2
@@ -849,7 +849,7 @@ $2
 Ar trebui să vă autentificați și să schimbați parola acum. Dacă altcineva a făcut această cerere 
 sau dacă v-ați reamintit parola inițială și nu mai doriți să o schimbați,
 puteți ignora acest mesaj, continuând să utilizați vechea parolă.',
-'passwordreset-emailtext-user' => 'Utilizatorul $1 de pe {{SITENAME}} a solicitat o reamintire a detaliilor contului dumneavoastră pentru {{SITENAME}} ($4). Următorul utilizator are {{PLURAL:$3|contul asociat|conturile asociate}} cu această adresă de e-mail:
+'passwordreset-emailtext-user' => 'Utilizatorul $1 de pe {{SITENAME}} a solicitat o resetare a parolei dumneavoastră pentru {{SITENAME}} ($4). Următorul utilizator are {{PLURAL:$3|contul asociat|conturile asociate}} cu această adresă de e-mail:
 
 $2
 
@@ -857,9 +857,9 @@ $2
 Ar trebui să vă autentificați și să alegeți acum o nouă parolă. Dacă altcineva a făcut această solicitare, ori dacă v-ați reamintit parola originală și nu mai doriți modificarea ei, puteți ignora acest mesaj, continuând cu vechea parolă.',
 'passwordreset-emailelement' => 'Nume de utilizator: $1
 Parolă temporară: $2',
-'passwordreset-emailsent' => 'A fost trimis un e-mail de reamintire.',
-'passwordreset-emailsent-capture' => 'Un mesaj de reamintire a fost trimis, fiind afișat mai jos.',
-'passwordreset-emailerror-capture' => 'Un mesaj de reamintire a fost generat (fiind afișat mai jos), dar trimiterea sa către utilizator a eșuat: $1',
+'passwordreset-emailsent' => 'A fost trimis un e-mail de resetare a parolei.',
+'passwordreset-emailsent-capture' => 'Un mesaj de resetare a parolei a fost trimis, fiind afișat mai jos.',
+'passwordreset-emailerror-capture' => 'Un mesaj de resetare a parolei a fost generat (fiind afișat mai jos), dar trimiterea sa către utilizator a eșuat: $1',
 
 # Special:ChangeEmail
 'changeemail' => 'Modificare adresă de e-mail',
