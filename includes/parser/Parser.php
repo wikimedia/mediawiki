@@ -4158,7 +4158,7 @@ class Parser {
 			$levelCount[$toclevel] = $level;
 
 			# count number of headlines for each level
-			@$sublevelCount[$toclevel]++;
+			$sublevelCount[$toclevel]++;
 			$dot = 0;
 			for( $i = 1; $i <= $toclevel; $i++ ) {
 				if ( !empty( $sublevelCount[$i] ) ) {
