@@ -133,8 +133,7 @@ class ApiQueryTags extends ApiQueryBase {
 
 	public function getAllowedParams() {
 		return array(
-			'continue' => array(
-			),
+			'continue' => null,
 			'limit' => array(
 				ApiBase::PARAM_DFLT => 10,
 				ApiBase::PARAM_TYPE => 'limit',
