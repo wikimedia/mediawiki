@@ -72,8 +72,8 @@ class TextContent extends AbstractContent {
 	 *
 	 * @return int The size
 	 */
-	public function getSize( ) {
-		$text = $this->getNativeData( );
+	public function getSize() {
+		$text = $this->getNativeData();
 		return strlen( $text );
 	}
 
@@ -89,7 +89,7 @@ class TextContent extends AbstractContent {
 	public function isCountable( $hasLinks = null ) {
 		global $wgArticleCountMethod;
 
-		if ( $this->isRedirect( ) ) {
+		if ( $this->isRedirect() ) {
 			return false;
 		}
 
@@ -105,7 +105,7 @@ class TextContent extends AbstractContent {
 	 *
 	 * @return string: the raw text
 	 */
-	public function getNativeData( ) {
+	public function getNativeData() {
 		$text = $this->mText;
 		return $text;
 	}
@@ -115,7 +115,7 @@ class TextContent extends AbstractContent {
 	 *
 	 * @return string: the raw text
 	 */
-	public function getTextForSearchIndex( ) {
+	public function getTextForSearchIndex() {
 		return $this->getNativeData();
 	}
 
@@ -127,7 +127,7 @@ class TextContent extends AbstractContent {
 	 *
 	 * @return string|false: the raw text, or null if the conversion failed
 	 */
-	public function getWikitextForTransclusion( ) {
+	public function getWikitextForTransclusion() {
 		$wikitext = $this->convert( CONTENT_MODEL_WIKITEXT, 'lossy' );
 
 		if ( $wikitext ) {
@@ -248,7 +248,7 @@ class TextContent extends AbstractContent {
 	 *
 	 * @return string an HTML representation of the content's markup
 	 */
-	protected function getHighlightHtml( ) {
+	protected function getHighlightHtml() {
 		# TODO: make Highlighter interface, use highlighter here, if available
 		return htmlspecialchars( $this->getNativeData() );
 	}

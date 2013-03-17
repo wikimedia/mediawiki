@@ -460,7 +460,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 *
 	 * @return bool
 	 */
-	public function isRedirect( ) {
+	public function isRedirect() {
 		$content = $this->getContent();
 		if ( !$content ) return false;
 
@@ -821,7 +821,7 @@ class WikiPage implements Page, IDBAccessObject {
 			$content = $this->getContent();
 		}
 
-		if ( !$content || $content->isRedirect( ) ) {
+		if ( !$content || $content->isRedirect() ) {
 			return false;
 		}
 

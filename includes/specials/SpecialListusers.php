@@ -206,7 +206,7 @@ class UsersPager extends AlphabeticPager {
 	/**
 	 * @return string
 	 */
-	function getPageHeader( ) {
+	function getPageHeader() {
 		global $wgScript;
 
 		list( $self ) = explode( '/', $this->getTitle()->getPrefixedDBkey() );

@@ -1086,7 +1086,7 @@ class WebInstaller extends Installer {
 	/**
 	 * @return bool
 	 */
-	public function envCheckPath( ) {
+	public function envCheckPath() {
 		// PHP_SELF isn't available sometimes, such as when PHP is CGI but
 		// cgi.fix_pathinfo is disabled. In that case, fall back to SCRIPT_NAME
 		// to get the path to the current script... hopefully it's reliable. SIGH

@@ -1490,7 +1490,7 @@ class specialBlockmeTest extends pageTest {
 	function __construct() {
 		$this->pagePath = "index.php?title=Special:Blockme";
 
-		$this->params = array ( );
+		$this->params = array ();
 
 		// sometimes we specify "ip", and sometimes we don't.
 		if ( wikiFuzz::randnum( 1 ) == 0 ) {

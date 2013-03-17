@@ -108,7 +108,7 @@ class userOptions {
 			return false;
 		}
 
-		$this->{ $this->mMode } ( );
+		$this->{ $this->mMode } ();
 		return true;
 	}
 
@@ -117,7 +117,7 @@ class userOptions {
 	#
 
 	/** List default options and their value */
-	private function LISTER( ) {
+	private function LISTER() {
 		$def = User::getDefaultOptions();
 		ksort( $def );
 		$maxOpt = 0;
@@ -130,7 +130,7 @@ class userOptions {
 	}
 
 	/** List options usage */
-	private function USAGER( ) {
+	private function USAGER() {
 		$ret = array();
 		$defaultOptions = User::getDefaultOptions();
 
@@ -181,7 +181,7 @@ class userOptions {
 
 
 	/** Change our users options */
-	private function CHANGER( ) {
+	private function CHANGER() {
 		$this->warn();
 
 		// We list user by user_id from one of the slave database

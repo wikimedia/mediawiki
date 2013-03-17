@@ -34,7 +34,7 @@ abstract class DataUpdate implements DeferrableUpdate {
 	/**
 	 * Constructor
 	 */
-	public function __construct( ) {
+	public function __construct() {
 		# noop
 	}
 

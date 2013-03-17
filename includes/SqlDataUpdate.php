@@ -48,7 +48,7 @@ abstract class SqlDataUpdate extends DataUpdate {
 	public function __construct( $withTransaction = true ) {
 		global $wgAntiLockFlags;
 
-		parent::__construct( );
+		parent::__construct();
 
 		if ( $wgAntiLockFlags & ALF_NO_LINK_LOCK ) {
 			$this->mOptions = array();

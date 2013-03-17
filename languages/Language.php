@@ -531,7 +531,7 @@ class Language {
 	/**
 	 * Resets all of the namespace caches. Mainly used for testing
 	 */
-	public function resetNamespaces( ) {
+	public function resetNamespaces() {
 		$this->namespaceNames = null;
 		$this->mNamespaceIds = null;
 		$this->namespaceAliases = null;

@@ -402,7 +402,7 @@ abstract class DatabaseUpdater {
 
 		if( $this->fileHandle ) {
 			$this->skipSchema = false;
-			$this->writeSchemaUpdateFile( );
+			$this->writeSchemaUpdateFile();
 			$this->setAppliedUpdates( "$wgVersion-schema", $this->updatesSkipped );
 		}
 

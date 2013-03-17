@@ -75,7 +75,7 @@ abstract class Benchmarker extends Maintenance {
 		}
 	}
 
-	public function getFormattedResults( ) {
+	public function getFormattedResults() {
 		$ret = '';
 		foreach( $this->results as $res ) {
 			// show function with args

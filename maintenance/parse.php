@@ -109,7 +109,7 @@ class CLIParser extends Maintenance {
 	 *
 	 * @return Title object
 	 */
-	protected function getTitle( ) {
+	protected function getTitle() {
 		$title =
 			$this->getOption( 'title' )
 			? $this->getOption( 'title' )

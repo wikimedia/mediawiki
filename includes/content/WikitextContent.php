@@ -231,7 +231,7 @@ class WikitextContent extends TextContent {
 	public function isCountable( $hasLinks = null, Title $title = null ) {
 		global $wgArticleCountMethod;
 
-		if ( $this->isRedirect( ) ) {
+		if ( $this->isRedirect() ) {
 			return false;
 		}
 
