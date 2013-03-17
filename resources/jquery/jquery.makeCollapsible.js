@@ -247,6 +247,10 @@
 			var $collapsible, collapsetext, expandtext, $toggle, $toggleLink, $firstItem, collapsibleId,
 				$customTogglers, firstval;
 
+			if ( options === undefined ) {
+				options = {};
+			}
+
 			// Ensure class "mw-collapsible" is present in case .makeCollapsible()
 			// is called on element(s) that don't have it yet.
 			$collapsible = $(this).addClass( 'mw-collapsible' );
@@ -259,7 +263,7 @@
 			}
 
 			// Use custom text or default?
-			collapsetext = options.collapsetext || $collapsible.attr( 'data-collapsetext' ) || mw.msg( 'collapsible-collapse' );
+			collapsetext = options.collapseText || $collapsible.attr( 'data-collapsetext' ) || mw.msg( 'collapsible-collapse' );
 			expandtext = options.expandText || $collapsible.attr( 'data-expandtext' ) || mw.msg( 'collapsible-expand' );
 
 			// Create toggle link with a space around the brackets (&nbsp;[text]&nbsp;)
