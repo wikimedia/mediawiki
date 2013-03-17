@@ -28,6 +28,8 @@
  * @ingroup Actions
  */
 class InfoAction extends FormlessAction {
+	const CACHE_VERSION = '2013-03-17';
+
 	/**
 	 * Returns the name of the action this object responds to.
 	 *
@@ -194,9 +196,11 @@ class InfoAction extends FormlessAction {
 
 		$memcKey = wfMemcKey( 'infoaction', sha1( $title->getPrefixedText() ), $this->page->getLatest() );
 		$pageCounts = $wgMemc->get( $memcKey );
-		if ( $pageCounts === false ) {
+		$version = isset( $pageCounts['cacheversion'] ) ? $pageCounts['cacheversion'] : false;
+		if ( $pageCounts === false || $version !== self::CACHE_VERSION ) {
 			// Get page information that would be too "expensive" to retrieve by normal means
 			$pageCounts = self::pageCounts( $title );
+			$pageCounts['cacheversion'] = self::CACHE_VERSION;
 
 			$wgMemc->set( $memcKey, $pageCounts );
 		}
