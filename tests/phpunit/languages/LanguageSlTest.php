@@ -11,13 +11,13 @@ class LanguageSlTest extends LanguageClassesTestCase {
 
 	/** @dataProvider providerPlural */
 	function testPlural( $result, $value ) {
-		$forms = array( 'one', 'two', 'few', 'other', 'zero' );
+		$forms = array( 'one', 'two', 'few', 'other' );
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
 	function providerPlural() {
 		return array(
-			array( 'zero', 0 ),
+			array( 'other', 0 ),
 			array( 'one', 1 ),
 			array( 'two', 2 ),
 			array( 'few', 3 ),
