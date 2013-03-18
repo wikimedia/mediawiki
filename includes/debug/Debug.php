@@ -135,10 +135,24 @@ class MWDebug {
 	 * @since 1.19
 	 * @param $msg string
 	 * @param $callerOffset int
-	 * @param int $level A PHP error level. See sendWarning()
+	 * @param $level int A PHP error level. See sendWarning()
+	 * @param $log string: 'production' will always trigger a php error, 'auto'
+	 *        will trigger an error if $wgDevelopmentWarnings is true, and 'debug'
+	 *        will only write to the debug log(s).
+	 *
 	 * @return mixed
 	 */
-	public static function warning( $msg, $callerOffset = 1, $level = E_USER_NOTICE ) {
+	public static function warning( $msg, $callerOffset = 1, $level = E_USER_NOTICE, $log = 'auto' ) {
+		global $wgDevelopmentWarnings;
+
+		if ( $log === 'auto' && !$wgDevelopmentWarnings ) {
+			$log = 'debug';
+		}
+
+		if ( $log === 'debug' ) {
+			$level = false;
+		}
+
 		$callerDescription = self::getCallerDescription( $callerOffset );
 
 		self::sendWarning( $msg, $callerDescription, $level );
@@ -212,7 +226,8 @@ class MWDebug {
 		}
 
 		if ( $sendToLog ) {
-			self::sendWarning( $msg, $callerDescription, E_USER_DEPRECATED );
+			global $wgDevelopmentWarnings; // we could have a more specific $wgDeprecationWarnings setting.
+			self::sendWarning( $msg, $callerDescription, $wgDevelopmentWarnings ? E_USER_DEPRECATED : false );
 		}
 
 		if ( self::$enabled ) {
@@ -267,23 +282,21 @@ class MWDebug {
 	}
 
 	/**
-	 * Send a warning either to the debug log or by triggering an user PHP
-	 * error depending on $wgDevelopmentWarnings.
+	 * Send a warning to the debug log and optionally also trigger a PHP
+	 * error, depending on the $level argument.
 	 *
-	 * @param string $msg Message to send
-	 * @param array $caller caller description get from getCallerDescription()
-	 * @param $level error level to use if $wgDevelopmentWarnings is true
+	 * @param $msg string Message to send
+	 * @param $caller array caller description get from getCallerDescription()
+	 * @param $level int|bool error level to use; set to false to not trigger an error
 	 */
 	private static function sendWarning( $msg, $caller, $level ) {
-		global $wgDevelopmentWarnings;
-
 		$msg .= ' [Called from ' . $caller['func'] . ' in ' . $caller['file'] . ']';
 
-		if ( $wgDevelopmentWarnings ) {
+		if ( $level !== false ) {
 			trigger_error( $msg, $level );
-		} else {
-			wfDebug( "$msg\n" );
 		}
+
+		wfDebug( "$msg\n" );
 	}
 
 	/**
