@@ -106,28 +106,6 @@ class LanguageGan extends LanguageZh {
 	}
 
 	/**
-	 * this should give much better diff info
-	 *
-	 * @param $text string
-	 * @return string
-	 */
-	function segmentForDiff( $text ) {
-		return preg_replace(
-			"/([\\xc0-\\xff][\\x80-\\xbf]*)/e",
-			"' ' .\"$1\"", $text );
-	}
-
-	/**
-	 * @param $text string
-	 * @return string
-	 */
-	function unsegmentForDiff( $text ) {
-		return preg_replace(
-			"/ ([\\xc0-\\xff][\\x80-\\xbf]*)/e",
-			"\"$1\"", $text );
-	}
-
-	/**
 	 * word segmentation
 	 *
 	 * @param $string string
@@ -139,15 +117,4 @@ class LanguageGan extends LanguageZh {
 		return parent::normalizeForSearch( $string, $autoVariant );
 	}
 
-	/**
-	 * @param $termsArray array
-	 * @return array
-	 */
-	function convertForSearchResult( $termsArray ) {
-		$terms = implode( '|', $termsArray );
-		$terms = self::convertDoubleWidth( $terms );
-		$terms = implode( '|', $this->mConverter->autoConvertToAllVariants( $terms ) );
-		$ret = array_unique( explode( '|', $terms ) );
-		return $ret;
-	}
 }

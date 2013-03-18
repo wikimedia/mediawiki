@@ -34,9 +34,7 @@ $verbose = true;
 
 if( defined( 'PRETTY_UTF8' ) ) {
 	function pretty( $string ) {
-		return preg_replace( '/([\x00-\xff])/e',
-			'sprintf("%02X", ord("$1"))',
-			$string );
+		return strtoupper( bin2hex( $string ) );
 	}
 } else {
 	/**
@@ -44,9 +42,7 @@ if( defined( 'PRETTY_UTF8' ) ) {
 	 * @return string
 	 */
 	function pretty( $string ) {
-		return trim( preg_replace( '/(.)/use',
-			'sprintf("%04X ", utf8ToCodepoint("$1"))',
-			$string ) );
+		return strtoupper( utf8ToHexSequence( $string ) );
 	}
 }
 
