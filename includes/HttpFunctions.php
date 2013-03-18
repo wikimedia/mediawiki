@@ -64,8 +64,10 @@ class Http {
 			$options['timeout'] = 'default';
 		}
 
+		wfProfileIn( __METHOD__ . "-$method" );
 		$req = MWHttpRequest::factory( $url, $options );
 		$status = $req->execute();
+		wfProfileOut( __METHOD__ . "-$method" );
 
 		if ( $status->isOK() ) {
 			return $req->getContent();
