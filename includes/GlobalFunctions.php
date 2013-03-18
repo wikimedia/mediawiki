@@ -1093,16 +1093,29 @@ function wfDeprecated( $function, $version = false, $component = false, $callerO
 
 /**
  * Send a warning either to the debug log or in a PHP error depending on
- * $wgDevelopmentWarnings
+ * $wgDevelopmentWarnings. To log warnings in production, use wfLogWarning() instead.
  *
  * @param $msg String: message to send
  * @param $callerOffset Integer: number of items to go back in the backtrace to
  *        find the correct caller (1 = function calling wfWarn, ...)
- * @param $level Integer: PHP error level; only used when $wgDevelopmentWarnings
- *        is true
+ * @param $level Integer: PHP error level; defaults to E_USER_NOTICE;
+ *        only used when $wgDevelopmentWarnings is true
  */
 function wfWarn( $msg, $callerOffset = 1, $level = E_USER_NOTICE ) {
-	MWDebug::warning( $msg, $callerOffset + 1, $level );
+	MWDebug::warning( $msg, $callerOffset + 1, $level, 'auto' );
+}
+
+/**
+ * Send a warning as a PHP error and the debug log. This is intended for logging
+ * warnings in production. For logging development warnings, use WfWarn instead.
+ *
+ * @param $msg String: message to send
+ * @param $callerOffset Integer: number of items to go back in the backtrace to
+ *        find the correct caller (1 = function calling wfLogWarning, ...)
+ * @param $level Integer: PHP error level; defaults to E_USER_WARNING
+ */
+function wfLogWarning( $msg, $callerOffset = 1, $level = E_USER_WARNING ) {
+	MWDebug::warning( $msg, $callerOffset + 1, $level, 'production' );
 }
 
 /**
@@ -2578,8 +2591,7 @@ function wfMkdirParents( $dir, $mode = null, $caller = null ) {
 
 	if( !$ok ) {
 		// PHP doesn't report the path in its warning message, so add our own to aid in diagnosis.
-		trigger_error( sprintf( "%s: failed to mkdir \"%s\" mode 0%o", __FUNCTION__, $dir, $mode ),
-			E_USER_WARNING );
+		wfLogWarning( sprintf( "failed to mkdir \"%s\" mode 0%o", $dir, $mode ) );
 	}
 	return $ok;
 }
