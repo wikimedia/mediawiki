@@ -55,14 +55,6 @@ class RedisConnectionPool {
 	const SERVER_DOWN_TTL = 30; // integer; seconds to cache servers as "down"
 
 	/**
-	 * $options include:
-	 *   - connectTimeout : The timeout for new connections, in seconds.
-	 *                      Optional, default is 1 second.
-	 *   - persistent     : Set this to true to allow connections to persist across
-	 *                      multiple web requests. False by default.
-	 *   - password       : The authentication password, will be sent to Redis in clear text.
-	 *                      Optional, if it is unspecified, no AUTH command will be sent.
-	 *   - serializer     : Set to "php", "igbinary", or "none". Default is "php".
 	 * @param array $options
 	 */
 	protected function __construct( array $options ) {
@@ -103,6 +95,14 @@ class RedisConnectionPool {
 
 	/**
 	 * @param $options Array
+	 * $options include:
+	 *   - connectTimeout : The timeout for new connections, in seconds.
+	 *                      Optional, default is 1 second.
+	 *   - persistent     : Set this to true to allow connections to persist across
+	 *                      multiple web requests. False by default.
+	 *   - password       : The authentication password, will be sent to Redis in clear text.
+	 *                      Optional, if it is unspecified, no AUTH command will be sent.
+	 *   - serializer     : Set to "php", "igbinary", or "none". Default is "php".
 	 * @return RedisConnectionPool
 	 */
 	public static function singleton( array $options ) {
