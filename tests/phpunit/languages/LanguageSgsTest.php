@@ -10,25 +10,25 @@ class LanguageSgsTest extends LanguageClassesTestCase {
 
 	/** @dataProvider providePluralAllForms */
 	function testPluralAllForms( $result, $value ) {
-		$forms = array( 'one', 'few', 'many', 'other' );
+		$forms = array( 'one', 'two', 'few', 'other' );
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
 	function providePluralAllForms() {
 		return array(
-			array( 'many', 0 ),
+			array( 'few', 0 ),
 			array( 'one', 1 ),
-			array( 'few', 2 ),
+			array( 'two', 2 ),
 			array( 'other', 3 ),
-			array( 'many', 10 ),
-			array( 'many', 11 ),
-			array( 'many', 12 ),
-			array( 'many', 19 ),
+			array( 'few', 10 ),
+			array( 'few', 11 ),
+			array( 'few', 12 ),
+			array( 'few', 19 ),
 			array( 'other', 20 ),
-			array( 'many', 100 ),
+			array( 'few', 100 ),
 			array( 'one', 101 ),
-			array( 'many', 111 ),
-			array( 'many', 112 ),
+			array( 'few', 111 ),
+			array( 'few', 112 ),
 		);
 	}
 

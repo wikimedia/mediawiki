@@ -27,5 +27,10 @@
 		<pluralRules locales="bho">
 			<pluralRule count="one">n in 0..1</pluralRule>
 		</pluralRules>
+		<pluralRules locales="sgs">
+			<pluralRule count="one">n mod 10 is 1 and n mod 100 is not 11</pluralRule>
+			<pluralRule count="two">n mod 10 is 2 and n mod 100 is not 12</pluralRule>
+			<pluralRule count="few">n is 0 or n mod 100 is 0 or n mod 100 in 10..19</pluralRule>
+		</pluralRules>
 	</plurals>
 </supplementalData>
