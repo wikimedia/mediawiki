@@ -37,11 +37,11 @@ sublime-*
 
 # Building & testing
 node_modules/
+/includes/normal/*.txt
 
 # Composer
 /vendor
 /composer.lock
-/composer.json
 
 # Operating systems
 ## Mac OS X
