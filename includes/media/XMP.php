@@ -414,7 +414,7 @@ class XMPReader {
 	 *
 	 * @param string $elm Namespace of element followed by a space and then tag name of element.
 	 */
-	private function endElementModeIgnore ( $elm ) {
+	private function endElementModeIgnore( $elm ) {
 		if ( $this->curItem[0] === $elm ) {
 			array_shift( $this->curItem );
 			array_shift( $this->mode );
@@ -436,7 +436,7 @@ class XMPReader {
 	 *
 	 * @param string $elm namespace, space, and tag name.
 	 */
-	private function endElementModeSimple ( $elm ) {
+	private function endElementModeSimple( $elm ) {
 		if ( $this->charContent !== false ) {
 			if ( $this->processingArray ) {
 				// if we're processing an array, use the original element

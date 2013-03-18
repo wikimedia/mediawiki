@@ -32,7 +32,7 @@
  */
 class JpegHandler extends ExifBitmapHandler {
 
-	function getMetadata ( $image, $filename ) {
+	function getMetadata( $image, $filename ) {
 		try {
 			$meta = BitmapMetadataHandler::Jpeg( $filename );
 			if ( !is_array( $meta ) ) {

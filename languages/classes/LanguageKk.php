@@ -435,7 +435,7 @@ class LanguageKk extends LanguageKk_cyrl {
 	 *
 	 * @return string
 	 */
-	function ucfirst ( $string ) {
+	function ucfirst( $string ) {
 		$variant = $this->getPreferredVariant();
 		if ( ( $variant == 'kk-latn' || $variant == 'kk-tr' ) && $string[0] == 'i' ) {
 			$string = 'İ' . substr( $string, 1 );
@@ -452,7 +452,7 @@ class LanguageKk extends LanguageKk_cyrl {
 	 *
 	 * @return string
 	 */
-	function lcfirst ( $string ) {
+	function lcfirst( $string ) {
 		$variant = $this->getPreferredVariant();
 		if ( ( $variant == 'kk-latn' || $variant == 'kk-tr' ) && $string[0] == 'I' ) {
 			$string = 'ı' . substr( $string, 1 );

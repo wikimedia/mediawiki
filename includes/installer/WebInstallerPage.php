@@ -1261,7 +1261,7 @@ abstract class WebInstaller_Document extends WebInstallerPage {
 
 	abstract protected function getFileName();
 
-	public  function execute() {
+	public function execute() {
 		$text = $this->getFileContents();
 		$text = InstallDocFormatter::format( $text );
 		$this->parent->output->addWikiText( $text );

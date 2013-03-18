@@ -423,7 +423,7 @@ class IPTC {
 	 *
 	 * @return string|array
 	 */
-	private static function convIPTC ( $data, $charset ) {
+	private static function convIPTC( $data, $charset ) {
 		if ( is_array( $data ) ) {
 			foreach ( $data as &$val ) {
 				$val = self::convIPTCHelper( $val, $charset );
@@ -441,7 +441,7 @@ class IPTC {
 	 *
 	 * @return string
 	 */
-	private static function convIPTCHelper ( $data, $charset ) {
+	private static function convIPTCHelper( $data, $charset ) {
 		if ( $charset ) {
 			wfSuppressWarnings();
 			$data = iconv( $charset, "UTF-8//IGNORE", $data );

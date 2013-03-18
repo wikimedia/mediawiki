@@ -210,7 +210,7 @@ class AjaxResponse {
 	 * @param $timestamp string
 	 * @return bool Returns true if the response code was set to 304 Not Modified.
 	 */
-	function checkLastModified ( $timestamp ) {
+	function checkLastModified( $timestamp ) {
 		global $wgCachePages, $wgCacheEpoch, $wgUser;
 		$fname = 'AjaxResponse::checkLastModified';
 

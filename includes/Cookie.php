@@ -197,7 +197,7 @@ class CookieJar {
 	 * Set a cookie in the cookie jar. Make sure only one cookie per-name exists.
 	 * @see Cookie::set()
 	 */
-	public function setCookie ( $name, $value, $attr ) {
+	public function setCookie( $name, $value, $attr ) {
 		/* cookies: case insensitive, so this should work.
 		 * We'll still send the cookies back in the same case we got them, though.
 		 */
@@ -235,7 +235,7 @@ class CookieJar {
 	 * @param string $domain cookie's domain
 	 * @return null
 	 */
-	public function parseCookieResponseHeader ( $cookie, $domain ) {
+	public function parseCookieResponseHeader( $cookie, $domain ) {
 		$len = strlen( 'Set-Cookie:' );
 
 		if ( substr_compare( 'Set-Cookie:', $cookie, 0, $len, true ) === 0 ) {

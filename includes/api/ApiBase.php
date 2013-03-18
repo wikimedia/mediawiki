@@ -822,7 +822,7 @@ abstract class ApiBase extends ContextSource {
 	 * 	If not set will magically default to either watchdefault or watchcreations
 	 * @return bool
 	 */
-	protected function getWatchlistValue ( $watchlist, $titleObj, $userOption = null ) {
+	protected function getWatchlistValue( $watchlist, $titleObj, $userOption = null ) {
 
 		$userWatching = $this->getUser()->isWatched( $titleObj );
 

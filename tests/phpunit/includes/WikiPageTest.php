@@ -10,7 +10,7 @@ class WikiPageTest extends MediaWikiLangTestCase {
 
 	var $pages_to_delete;
 
-	function  __construct( $name = null, array $data = array(), $dataName = '' ) {
+	function __construct( $name = null, array $data = array(), $dataName = '' ) {
 		parent::__construct( $name, $data, $dataName );
 
 		$this->tablesUsed = array_merge(

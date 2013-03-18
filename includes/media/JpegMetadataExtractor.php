@@ -47,7 +47,7 @@ class JpegMetadataExtractor {
 	 * @return Array of interesting segments.
 	 * @throws MWException if given invalid file.
 	 */
-	static function segmentSplitter ( $filename ) {
+	static function segmentSplitter( $filename ) {
 		$showXMP = function_exists( 'xml_parser_create_ns' );
 
 		$segmentCount = 0;
@@ -195,7 +195,7 @@ class JpegMetadataExtractor {
 	 * @throws MWException (It gets caught next level up though)
 	 * @return String if the iptc hash is good or not.
 	 */
-	public static function doPSIR ( $app13 ) {
+	public static function doPSIR( $app13 ) {
 		if ( !$app13 ) {
 			throw new MWException( "No App13 segment given" );
 		}

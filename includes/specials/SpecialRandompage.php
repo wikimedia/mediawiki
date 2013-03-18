@@ -41,7 +41,7 @@ class RandomPage extends SpecialPage {
 		return $this->namespaces;
 	}
 
-	public function setNamespace ( $ns ) {
+	public function setNamespace( $ns ) {
 		if( !$ns || $ns < NS_MAIN ) {
 			$ns = NS_MAIN;
 		}

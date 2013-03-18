@@ -218,7 +218,7 @@ class SavepointPostgres {
 	protected $id;
 	protected $didbegin;
 
-	public function __construct ( $dbw, $id ) {
+	public function __construct( $dbw, $id ) {
 		$this->dbw = $dbw;
 		$this->id = $id;
 		$this->didbegin = false;
@@ -450,7 +450,7 @@ class DatabasePostgres extends DatabaseBase {
 		return $this->mLastResult;
 	}
 
-	protected function dumpError () {
+	protected function dumpError() {
 		$diags = array( PGSQL_DIAG_SEVERITY,
 				PGSQL_DIAG_SQLSTATE,
 				PGSQL_DIAG_MESSAGE_PRIMARY,
@@ -647,7 +647,7 @@ class DatabasePostgres extends DatabaseBase {
 	 * @since 1.19
 	 * @return Array
 	 */
-	function indexAttributes ( $index, $schema = false ) {
+	function indexAttributes( $index, $schema = false ) {
 		if ( $schema === false )
 			$schema = $this->getCoreSchema();
 		/*

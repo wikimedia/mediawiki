@@ -335,7 +335,7 @@ class XMPValidate {
 	 *           or DDD,MM.mmk form
 	 * @param $standalone Boolean if its a simple prop (should always be true)
 	 */
-	public static function validateGPS ( $info, &$val, $standalone ) {
+	public static function validateGPS( $info, &$val, $standalone ) {
 		if ( !$standalone ) {
 			return;
 		}

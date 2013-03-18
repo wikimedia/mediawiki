@@ -158,7 +158,7 @@ class UploadStash {
 	 * @param string $key key under which file information is stored
 	 * @return Array
 	 */
-	public function getMetadata ( $key ) {
+	public function getMetadata( $key ) {
 		$this->getFile( $key );
 		return $this->fileMetadata[$key];
 	}
@@ -169,7 +169,7 @@ class UploadStash {
 	 * @param string $key key under which file information is stored
 	 * @return Array
 	 */
-	public function getFileProps ( $key ) {
+	public function getFileProps( $key ) {
 		$this->getFile( $key );
 		return $this->fileProps[$key];
 	}

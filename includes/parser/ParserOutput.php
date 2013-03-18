@@ -143,10 +143,10 @@ class ParserOutput extends CacheTime {
 	function setNewSection( $value ) {
 		$this->mNewSection = (bool)$value;
 	}
-	function hideNewSection ( $value ) {
+	function hideNewSection( $value ) {
 		$this->mHideNewSection = (bool)$value;
 	}
-	function getHideNewSection () {
+	function getHideNewSection() {
 		return (bool)$this->mHideNewSection;
 	}
 	function getNewSection() {

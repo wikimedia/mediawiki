@@ -85,7 +85,7 @@ abstract class ApiFormatBase extends ApiBase {
 	 *
 	 * @param bool $b Whether or not ampersands should be escaped.
 	 */
-	public function setUnescapeAmps ( $b ) {
+	public function setUnescapeAmps( $b ) {
 		$this->mUnescapeAmps = $b;
 	}
 

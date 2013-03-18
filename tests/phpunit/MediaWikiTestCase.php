@@ -64,7 +64,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		'oracle'
 	);
 
-	function  __construct( $name = null, array $data = array(), $dataName = '' ) {
+	function __construct( $name = null, array $data = array(), $dataName = '' ) {
 		parent::__construct( $name, $data, $dataName );
 
 		$this->backupGlobals = false;

@@ -38,7 +38,7 @@ class UncategorizedCategoriesPage extends UncategorizedPagesPage {
 	 * @param $result The query result
 	 * @return string The category link
 	 */
-	function formatResult ( $skin, $result ) {
+	function formatResult( $skin, $result ) {
 		$title = Title::makeTitle( NS_CATEGORY, $result->title );
 		$text = $title->getText();
 

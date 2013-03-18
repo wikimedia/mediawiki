@@ -493,7 +493,7 @@ class DatabaseOracle extends DatabaseBase {
 		return $retVal;
 	}
 
-	private function fieldBindStatement ( $table, $col, &$val, $includeCol = false ) {
+	private function fieldBindStatement( $table, $col, &$val, $includeCol = false ) {
 		$col_info = $this->fieldInfoMulti( $table, $col );
 		$col_type = $col_info != false ? $col_info->type() : 'CONSTANT';
 
@@ -1121,7 +1121,7 @@ class DatabaseOracle extends DatabaseBase {
 		}
 	}
 
-	private function wrapConditionsForWhere ( $table, $conds, $parentCol = null ) {
+	private function wrapConditionsForWhere( $table, $conds, $parentCol = null ) {
 		$conds2 = array();
 		foreach ( $conds as $col => $val ) {
 			if ( is_array( $val ) ) {

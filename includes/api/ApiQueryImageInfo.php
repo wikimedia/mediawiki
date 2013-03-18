@@ -228,7 +228,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	 * @param string $otherParams of otherParams (iiurlparam).
 	 * @return Array of parameters for transform.
 	 */
-	protected function mergeThumbParams ( $image, $thumbParams, $otherParams ) {
+	protected function mergeThumbParams( $image, $thumbParams, $otherParams ) {
 		if ( !$otherParams ) {
 			return $thumbParams;
 		}

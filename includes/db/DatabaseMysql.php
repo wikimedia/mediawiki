@@ -965,7 +965,7 @@ class MySQLField implements Field {
 	private $name, $tablename, $default, $max_length, $nullable,
 		$is_pk, $is_unique, $is_multiple, $is_key, $type;
 
-	function __construct ( $info ) {
+	function __construct( $info ) {
 		$this->name = $info->name;
 		$this->tablename = $info->table;
 		$this->default = $info->def;

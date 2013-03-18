@@ -54,7 +54,7 @@ class BitmapMetadataHandler {
 	 *
 	 * @param string $app13 String containing app13 block from jpeg file
 	 */
-	private function doApp13 ( $app13 ) {
+	private function doApp13( $app13 ) {
 		try {
 			$this->iptcType = JpegMetadataExtractor::doPSIR( $app13 );
 		} catch ( MWException $e ) {
@@ -79,7 +79,7 @@ class BitmapMetadataHandler {
 	 * @param $filename string
 	 * @param $byteOrder string
 	 */
-	function getExif ( $filename, $byteOrder ) {
+	function getExif( $filename, $byteOrder ) {
 		global $wgShowEXIF;
 		if ( file_exists( $filename ) && $wgShowEXIF ) {
 			$exif = new Exif( $filename, $byteOrder );
@@ -95,7 +95,7 @@ class BitmapMetadataHandler {
 	 * @param array $metaArray array of metadata values
 	 * @param string $type type. defaults to other. if two things have the same type they're merged
 	 */
-	function addMetadata ( $metaArray, $type = 'other' ) {
+	function addMetadata( $metaArray, $type = 'other' ) {
 		if ( isset( $this->metadata[$type] ) ) {
 			/* merge with old data */
 			$metaArray = $metaArray + $this->metadata[$type];
@@ -113,7 +113,7 @@ class BitmapMetadataHandler {
 	 *
 	 * @return Array metadata array
 	 */
-	function getMetadataArray () {
+	function getMetadataArray() {
 		// this seems a bit ugly... This is all so its merged in right order
 		// based on the MWG recomendation.
 		$temp = Array();
@@ -147,7 +147,7 @@ class BitmapMetadataHandler {
 	 * @return array metadata result array.
 	 * @throws MWException on invalid file.
 	 */
-	static function Jpeg ( $filename ) {
+	static function Jpeg( $filename ) {
 		$showXMP = function_exists( 'xml_parser_create_ns' );
 		$meta = new self();
 
@@ -189,7 +189,7 @@ class BitmapMetadataHandler {
 	 * @param string $filename full path to file
 	 * @return Array Array for storage in img_metadata.
 	 */
-	public static function PNG ( $filename ) {
+	public static function PNG( $filename ) {
 		$showXMP = function_exists( 'xml_parser_create_ns' );
 
 		$meta = new self();
@@ -218,7 +218,7 @@ class BitmapMetadataHandler {
 	 * @param string $filename full path to file
 	 * @return Array metadata array
 	 */
-	public static function GIF ( $filename ) {
+	public static function GIF( $filename ) {
 
 		$meta = new self();
 		$baseArray = GIFMetadataExtractor::getMetadata( $filename );
@@ -259,7 +259,7 @@ class BitmapMetadataHandler {
 	 * @throws MWException
 	 * @return Array The metadata.
 	 */
-	public static function Tiff ( $filename ) {
+	public static function Tiff( $filename ) {
 		if ( file_exists( $filename ) ) {
 			$byteOrder = self::getTiffByteOrder( $filename );
 			if ( !$byteOrder ) {

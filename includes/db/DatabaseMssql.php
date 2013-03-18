@@ -661,7 +661,7 @@ class DatabaseMssql extends DatabaseBase {
 		return $version;
 	}
 
-	function tableExists ( $table, $fname = __METHOD__, $schema = false ) {
+	function tableExists( $table, $fname = __METHOD__, $schema = false ) {
 		$res = sqlsrv_query( $this->mConn, "SELECT * FROM information_schema.tables
 			WHERE table_type='BASE TABLE' AND table_name = '$table'" );
 		if ( $res === false ) {
@@ -952,7 +952,7 @@ class DatabaseMssql extends DatabaseBase {
  */
 class MssqlField implements Field {
 	private $name, $tablename, $default, $max_length, $nullable, $type;
-	function __construct ( $info ) {
+	function __construct( $info ) {
 		$this->name = $info['COLUMN_NAME'];
 		$this->tablename = $info['TABLE_NAME'];
 		$this->default = $info['COLUMN_DEFAULT'];

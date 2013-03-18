@@ -10,7 +10,7 @@ class JobQueueTest extends MediaWikiTestCase {
 	protected $queueRand, $queueRandTTL, $queueFifo, $queueFifoTTL;
 	protected $old = array();
 
-	function  __construct( $name = null, array $data = array(), $dataName = '' ) {
+	function __construct( $name = null, array $data = array(), $dataName = '' ) {
 		parent::__construct( $name, $data, $dataName );
 
 		$this->tablesUsed[] = 'job';

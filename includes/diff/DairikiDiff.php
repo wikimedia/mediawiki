@@ -183,7 +183,7 @@ class _DiffEngine {
 	 * @param $to_lines
 	 * @return array
 	 */
-	function diff ( $from_lines, $to_lines ) {
+	function diff( $from_lines, $to_lines ) {
 		wfProfileIn( __METHOD__ );
 
 		// Diff and store locally
@@ -241,7 +241,7 @@ class _DiffEngine {
 	 * @param $from_lines
 	 * @param $to_lines
 	 */
-	function diff_local ( $from_lines, $to_lines ) {
+	function diff_local( $from_lines, $to_lines ) {
 		global $wgExternalDiffEngine;
 		wfProfileIn( __METHOD__ );
 
@@ -469,7 +469,7 @@ class _DiffEngine {
 	 * @param $yoff
 	 * @param $ylim
 	 */
-	function _compareseq ( $xoff, $xlim, $yoff, $ylim ) {
+	function _compareseq( $xoff, $xlim, $yoff, $ylim ) {
 		// Slide down the bottom initial diagonal.
 		while ( $xoff < $xlim && $yoff < $ylim
 		&& $this->xv[$xoff] == $this->yv[$yoff] ) {
@@ -1204,7 +1204,7 @@ class _HWLDF_WordAccumulator {
 	 * @param $words
 	 * @param $tag string
 	 */
-	function addWords ( $words, $tag = '' ) {
+	function addWords( $words, $tag = '' ) {
 		if ( $tag != $this->_tag ) {
 			$this->_flushGroup( $tag );
 		}
@@ -1244,7 +1244,7 @@ class WordLevelDiff extends MappedDiff {
 	 * @param $orig_lines
 	 * @param $closing_lines
 	 */
-	function __construct ( $orig_lines, $closing_lines ) {
+	function __construct( $orig_lines, $closing_lines ) {
 		wfProfileIn( __METHOD__ );
 
 		list( $orig_words, $orig_stripped ) = $this->_split( $orig_lines );

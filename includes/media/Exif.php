@@ -439,7 +439,7 @@ class Exif {
 	 * This has not been tested on any shift-JIS strings.
 	 * @param string $prop prop name.
 	 */
-	private function charCodeString ( $prop ) {
+	private function charCodeString( $prop ) {
 		if ( isset( $this->mFilteredExifData[$prop] ) ) {
 
 			if ( strlen( $this->mFilteredExifData[$prop] ) <= 8 ) {
@@ -500,7 +500,7 @@ class Exif {
 	 * the type of UNDEFINED field
 	 * @param string $prop name of property
 	 */
-	private function exifPropToOrd ( $prop ) {
+	private function exifPropToOrd( $prop ) {
 		if ( isset( $this->mFilteredExifData[$prop] ) ) {
 			$this->mFilteredExifData[$prop] = ord( $this->mFilteredExifData[$prop] );
 		}
@@ -510,7 +510,7 @@ class Exif {
 	 * for example 10 degress 20`40`` S -> -10.34444
 	 * @param string $prop a gps coordinate exif tag name (like GPSLongitude)
 	 */
-	private function exifGPStoNumber ( $prop ) {
+	private function exifGPStoNumber( $prop ) {
 		$loc =& $this->mFilteredExifData[$prop];
 		$dir =& $this->mFilteredExifData[$prop . 'Ref'];
 		$res = false;

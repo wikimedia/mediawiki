@@ -133,7 +133,7 @@ abstract class MediaHandler {
 	 *
 	 * @return string version string
 	 */
-	static function getMetadataVersion () {
+	static function getMetadataVersion() {
 		$version = Array( '2' ); // core metadata version
 		wfRunHooks( 'GetMetadataVersion', Array( &$version ) );
 		return implode( ';', $version);

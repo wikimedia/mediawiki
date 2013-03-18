@@ -66,7 +66,7 @@ class PNGMetadataExtractorTest extends MediaWikiTestCase {
 	 * actual resolution of the image is (aka in dots per meter).
 	 */
 	/*
-	function testPngPhysTag () {
+	function testPngPhysTag() {
 		$meta = PNGMetadataExtractor::getMetadata( $this->filePath .
 			'Png-native-test.png' );
 
