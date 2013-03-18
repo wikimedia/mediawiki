@@ -311,7 +311,7 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 			$db->query( 'CREATE TABLE a ( a_1 )', __METHOD__ ), "Database creationg" );
 		$this->assertTrue( $db->insert( 'a', array( 'a_1' => 10 ), __METHOD__ ),
 			"Insertion worked" );
-		$this->assertEquals( "integer", gettype( $db->insertId() ), "Actual typecheck" );
+		$this->assertInternalType( 'integer', $db->insertId(), "Actual typecheck" );
 		$this->assertTrue( $db->close(), "closing database" );
 	}
 
