@@ -3311,6 +3311,43 @@ Wikitext table with a lot of comments
 
 !! end
 
+!! test
+Wikitext table with double-line table cell
+!! input
+{|
+|a
+b
+|}
+!! result
+<table>
+<tr>
+<td>a
+<p>b
+</p>
+</td></tr></table>
+
+!! end
+
+# The expected HTML structure in this test is debatable. The PHP parser does
+# not parse this kind of table at all. The main focus for Parsoid is on
+# round-tripping, so this output is ok for now. TODO: revisit!
+!! test
+Wikitext table with html-syntax row (Parsoid)
+!! options
+parsoid
+!! input
+{|
+|-
+<td>foo</td>
+|}
+!! result
+<table>
+<tbody>
+<tr>
+<td></td>
+<td>foo</td></tr></tbody></table>
+!! end
+
 ###
 ### Internal links
 ###
