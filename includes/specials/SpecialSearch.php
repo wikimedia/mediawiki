@@ -213,7 +213,8 @@ class SpecialSearch extends SpecialPage {
 		wfProfileIn( __METHOD__ );
 
 		$search = $this->getSearchEngine();
-		$search->setLimitOffset( $this->limit, $this->offset );
+		$search->setLimitOffset( $this->limit + 1, $this->offset );
+		// Request an extra result to determine whether a next page is useful
 		$search->setNamespaces( $this->namespaces );
 		$search->showRedirects = $this->searchRedirects; // BC
 		$search->setFeatureData( 'list-redirects', $this->searchRedirects );
@@ -365,7 +366,7 @@ class SpecialSearch extends SpecialPage {
 			$this->showCreateLink( $t );
 			$prevnext = $this->getLanguage()->viewPrevNext( $this->getTitle(), $this->offset, $this->limit,
 				$this->powerSearchOptions() + array( 'search' => $term ),
-				max( $titleMatchesNum, $textMatchesNum ) < $this->limit
+				max( $titleMatchesNum, $textMatchesNum ) <= $this->limit
 			);
 			//$out->addHTML( "<p class='mw-search-pager-top'>{$prevnext}</p>\n" );
 			wfRunHooks( 'SpecialSearchResults', array( $term, &$titleMatches, &$textMatches ) );
@@ -520,9 +521,11 @@ class SpecialSearch extends SpecialPage {
 		}
 		$out .= "<ul class='mw-search-results'>\n";
 		$result = $matches->next();
-		while( $result ) {
+		$count = 0;
+		while( $result && $count < $this->limit) {
 			$out .= $this->showHit( $result, $terms );
 			$result = $matches->next();
+			$count++;
 		}
 		$out .= "</ul>\n";
 
