@@ -55,10 +55,10 @@ class JavaScriptContent extends TextContent {
 		return new JavaScriptContent( $pst );
 	}
 
-	protected function getHtml( ) {
+	protected function getHtml() {
 		$html = "";
 		$html .= "<pre class=\"mw-code mw-js\" dir=\"ltr\">\n";
-		$html .= $this->getHighlightHtml( );
+		$html .= $this->getHighlightHtml();
 		$html .= "\n</pre>\n";
 
 		return $html;

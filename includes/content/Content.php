@@ -231,7 +231,7 @@ interface Content {
 	 *
 	 * @return Content. A copy of this object
 	 */
-	public function copy( );
+	public function copy();
 
 	/**
 	 * Returns true if this content is countable as a "real" wiki page, provided

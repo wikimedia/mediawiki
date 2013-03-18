@@ -2710,7 +2710,7 @@ function wfDl( $extension, $fileName = null ) {
  * @param varargs
  * @return String
  */
-function wfEscapeShellArg( ) {
+function wfEscapeShellArg() {
 	wfInitShellLocale();
 
 	$args = func_get_args();

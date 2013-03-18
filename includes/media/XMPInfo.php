@@ -31,7 +31,7 @@ class XMPInfo {
 	/** get the items array
 	 * @return Array XMP item configuration array.
 	 */
-	public static function getItems ( ) {
+	public static function getItems () {
 		if( !self::$ranHooks ) {
 			// This is for if someone makes a custom metadata extension.
 			// For example, a medical wiki might want to decode DICOM xmp properties.

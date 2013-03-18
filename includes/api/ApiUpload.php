@@ -81,7 +81,7 @@ class ApiUpload extends ApiBase {
 
 		// Check if the uploaded file is sane
 		if ( $this->mParams['chunk'] ) {
-			$maxSize = $this->mUpload->getMaxUploadSize( );
+			$maxSize = $this->mUpload->getMaxUploadSize();
 			if( $this->mParams['filesize'] > $maxSize ) {
 				$this->dieUsage( 'The file you submitted was too large', 'file-too-large' );
 			}
@@ -440,8 +440,8 @@ class ApiUpload extends ApiBase {
 	/**
 	 * Performs file verification, dies on error.
 	 */
-	protected function verifyUpload( ) {
-		$verification = $this->mUpload->verifyUpload( );
+	protected function verifyUpload() {
+		$verification = $this->mUpload->verifyUpload();
 		if ( $verification['status'] === UploadBase::OK ) {
 			return;
 		} else {

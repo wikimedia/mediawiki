@@ -363,7 +363,7 @@ class Exif {
 	 * As an alternative approach, some of this could be done in the validate phase
 	 * if we make up our own types like Exif::DATE.
 	 */
-	function collapseData( ) {
+	function collapseData() {
 
 		$this->exifGPStoNumber( 'GPSLatitude' );
 		$this->exifGPStoNumber( 'GPSDestLatitude' );
@@ -545,7 +545,7 @@ class Exif {
 	 *
 	 * @deprecated since 1.18
 	 */
-	function makeFormattedData( ) {
+	function makeFormattedData() {
 		wfDeprecated( __METHOD__, '1.18' );
 		$this->mFormattedExifData = FormatMetadata::getFormattedData(
 			$this->mFilteredExifData );
