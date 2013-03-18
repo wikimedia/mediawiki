@@ -123,6 +123,10 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		}
 	}
 
+	function usesTemporaryTables() {
+		return self::$useTemporaryTables;
+	}
+
 	/**
 	 * obtains a new temporary file name
 	 *
