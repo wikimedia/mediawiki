@@ -4106,8 +4106,8 @@ $5
 'sqlite-no-fts' => '$1 (본문은 찾기에서 제외)',
 
 # New logging system
-'logentry-delete-delete' => '$1 사용자가 $3 문서를 삭제했습니다.',
-'logentry-delete-restore' => '$1 사용자가 $3 문서를 복구했습니다.',
+'logentry-delete-delete' => '$1 사용자가 $3 문서를 {{GENDER:$2|삭제했습니다}}.',
+'logentry-delete-restore' => '$1 사용자가 $3 문서를 {{GENDER:$2|복구했습니다}}.',
 'logentry-delete-event' => '$1 사용자가 $3의 기록 $5개에 대해 보이기 설정을 바꾸었습니다: $4',
 'logentry-delete-revision' => '$1 사용자가 $3 문서의 {{PLURAL:$5|$5개 편집}}의 설정을 바꾸었습니다: $4',
 'logentry-delete-event-legacy' => '$1 사용자가 $3 문서 기록의 보이기 설정을 바꾸었습니다.',

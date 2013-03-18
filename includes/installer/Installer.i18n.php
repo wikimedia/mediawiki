@@ -604,14 +604,28 @@ Used as error message.',
 	'config-page-install' => '{{Identical|Install}}',
 	'config-page-copying' => 'This is a link to the full GPL text',
 	'config-restart' => 'Button text to confirm the installation procedure has to be restarted.',
+	'config-copyright' => 'This message follows {{msg-mw|config-env-good}}.
+
+Parameters:
+* $1 - copyright and author list',
 	'config-sidebar' => 'Maximum width for words is 24 characters. Only visible part of the translation counts to this limit.',
 	'config-env-php' => 'Parameters:
-* $1 is the version of PHP that has been installed.',
+* $1 - the version of PHP that has been installed
+See also:
+* {{msg-mw|config-env-php-toolow}}',
+	'config-env-php-toolow' => 'Parameters:
+* $1 - the version of PHP that has been installed
+* $2 - minimum PHP version number
+See also:
+* {{msg-mw|config-env-php}}',
 	'config-unicode-pure-php-warning' => 'PECL is the name of a group producing standard pieces of software for PHP, and intl is the name of their library handling some aspects of internationalization.',
 	'config-unicode-update-warning' => "ICU is a body producing standard software tools for support of Unicode and other internationalization aspects. This message warns the system administrator installing MediaWiki that the server's software is not up-to-date and MediaWiki will have problems handling some characters.",
 	'config-no-db' => '{{doc-important|Do not translate "<code>./configure --with-mysql</code>" and "<code>php5-mysql</code>".}}
 Parameters:
 * $1 is comma separated list of database types supported by MediaWiki.',
+	'config-outdated-sqlite' => 'Used as warning. Parameters:
+* $1 - the version of SQLite that has been installed
+* $2 - minimum version',
 	'config-no-fts3' => 'A "[[:wikipedia:Front and back ends|backend]]" is a system or component that ordinary users don\'t interact with directly and don\'t need to know about, and that is responsible for a distinct task or service - for example, a storage back-end is a generic system for storing data which other applications can use. Possible alternatives for back-end are "system" or "service", or (depending on context and language) even leave it untranslated.',
 	'config-magic-quotes-runtime' => '{{Related|Config-fatal}}',
 	'config-magic-quotes-sybase' => '{{Related|Config-fatal}}',
@@ -634,14 +648,28 @@ Parameters:
 Add dir="ltr" to the <nowiki><code></nowiki> for right-to-left languages.',
 	'config-no-cli-uri' => 'Parameters:
 * $1 is the default value for scriptpath.',
+	'config-using-server' => 'Used as a part of environment check result. Parameters:
+* $1 - default server name',
+	'config-using-uri' => 'Used as a part of environment check result. Parameters:
+* $1 - server name
+* $2 - script path',
+	'config-uploads-not-safe' => 'Used as a part of environment check result. Parameters:
+* $1 - name of directory for images: <code>$IP/images/</code>',
 	'config-no-cli-uploads-check' => 'CLI = [[w:Command-line interface|command-line interface]] (i.e. the installer runs as a command-line script, not using HTML interface via an internet browser)',
+	'config-using531' => 'Used as error message. Parameters:
+* $1 - the version of PHP that has been installed',
 	'config-suhosin-max-value-length' => '{{doc-important|Do not translate "length", "suhosin.get.max_value_length", "php.ini", "$wgResourceLoaderMaxQueryLength" and "LocalSettings.php".}}
 Message shown when PHP parameter <code>suhosin.get.max_value_length</code> is between 0 and 1023 (that max value is hard set in MediaWiki software).',
 	'config-db-host-help' => '{{doc-singularthey}}',
 	'config-db-host-oracle' => 'TNS = [[:wikipedia:Transparent Network Substrate|Transparent Network Substrate]] (<== wikipedia link)',
 	'config-db-wiki-settings' => 'This is more acurate: "Enter identifying or distinguishing data for this wiki" since a MySQL database can host tables of several wikis.',
 	'config-db-account-oracle-warn' => 'A "[[:wikipedia:Front and back ends|backend]]" is a system or component that ordinary users don\'t interact with directly and don\'t need to know about, and that is responsible for a distinct task or service - for example, a storage back-end is a generic system for storing data which other applications can use. Possible alternatives for back-end are "system" or "service", or (depending on context and language) even leave it untranslated.',
+	'config-db-password-empty' => 'Used as error message. Parameters:
+* $1 - database username',
 	'config-db-account-lock' => "It might be easier to translate ''normal operation'' as \"also after the installation process\"",
+	'config-mysql-old' => 'Used as error message. Parameters:
+* $1 - minimum version
+* $2 - the version of MySQL that has been installed',
 	'config-pg-test-error' => '* $1 - database name
 * $2 - error message',
 	'config-sqlite-dir-help' => '{{doc-important|Do not translate <code>.htaccess</code> and <code>/var/lib/mediawiki/yourwiki</code>.}}
@@ -660,20 +688,105 @@ Used in help box.',
 * $1 - a link to the SQLite home page having the anchor text "SQLite".',
 	'config-support-oracle' => 'Parameters:
 * $1 - a link to the Oracle home page, the anchor text of which is "Oracle".',
+	'config-invalid-db-server-oracle' => 'Used as error message. Parameters:
+* $1 - database server name
+See also:
+* {{msg-mw|Config-invalid-db-name}}
+* {{msg-mw|Config-invalid-db-prefix}}',
+	'config-invalid-db-name' => 'Used as error message. Parameters:
+* $1 - database name
+See also:
+* {{msg-mw|Config-invalid-db-server-oracle}}
+* {{msg-mw|Config-invalid-db-prefix}}',
+	'config-invalid-db-prefix' => 'Used as error message. Parameters:
+* $1 - database prefix
+See also:
+* {{msg-mw|Config-invalid-db-server-oracle}}
+* {{msg-mw|Config-invalid-db-name}}',
 	'config-connection-error' => '$1 is the external error from the database, such as "DB connection error: Access denied for user \'dba\'@\'localhost\' (using password: YES) (localhost)."
 
 If you\'re translating this message to a right-to-left language, consider writing <nowiki><div dir="ltr">$1.</div></nowiki>. (When the bidi features for HTML5 will be implemented in the browsers, it will probably be a good idea to write it as <nowiki><div dir="auto">$1.</div></nowiki>.)',
 	'config-invalid-schema' => '*$1 - schema name',
+	'config-db-sys-user-exists-oracle' => 'Used as error message. Parameters:
+* $1 - database username',
+	'config-postgres-old' => 'Used as error message. Used as warning. Parameters:
+* $1 - minimum version
+* $2 - the version of PostgreSQL that has been installed',
+	'config-sqlite-parent-unwritable-group' => 'Used as SQLite error message. Parameters:
+* $1 - data directory
+* $2 - "dirname" part of $1
+* $3 - "basename" part of $1
+* $4 - web server\'s primary group name
+See also:
+* {{msg-mw|Config-sqlite-parent-unwritable-nogroup}}',
+	'config-sqlite-parent-unwritable-nogroup' => 'Used as SQLite error message. Parameters:
+* $1 - data directory
+* $2 - "dirname" part of $1
+* $3 - "basename" part of $1
+See also:
+* {{msg-mw|Config-sqlite-parent-unwritable-group}}',
+	'config-sqlite-mkdir-error' => 'Used as SQLite error message. Parameters:
+* $1 - data directory name',
 	'config-sqlite-dir-unwritable' => 'webserver refers to a software like Apache or Lighttpd.',
+	'config-sqlite-connection-error' => 'Used as SQLite error message. Parameters:
+* $1 - error message which SQLite server returned',
+	'config-sqlite-readonly' => 'Used as SQLite error message. Parameters:
+* $1 - filename',
+	'config-sqlite-cant-create-db' => 'Used as SQLite error message. Parameters:
+* $1 - filename',
 	'config-can-upgrade' => 'Parameters:
 * $1 - Version or Revision indicator.',
+	'config-upgrade-done' => 'Used as success message. Parameters:
+* $1 - full URL of index.php
+See also:
+* {{msg-mw|config-upgrade-done-no-regenerate}}',
+	'config-upgrade-done-no-regenerate' => 'Used as success message. Parameters:
+* $1 - full URL of index.php
+See also:
+* {{msg-mw|config-upgrade-done}}',
 	'config-show-table-status' => '{{doc-important|"<code>SHOW TABLE STATUS</code>" is a MySQL command. Do not translate this.}}',
 	'config-db-web-account-same' => 'checkbox label',
 	'config-db-web-create' => 'checkbox label',
-	'config-ns-generic' => '{{Identical|Project}}',
+	'config-ns-generic' => 'Used as label for "namespace type" radio button.
+
+See also:
+* {{msg-mw|Config-ns-site-name}}
+* {{msg-mw|Config-ns-other}}
+{{Identical|Project}}',
+	'config-ns-site-name' => 'Used as label for "namespace type" radio button. Parameters:
+* $1 - wiki name
+See also:
+* {{msg-mw|Config-ns-generic}}
+* {{msg-mw|Config-ns-other}}',
+	'config-ns-other' => "Used as label for \"namespace type\" radio button.
+
+This message is followed by the input box which enables to '''specify''' a namespace name.
+
+See also:
+* {{msg-mw|Config-ns-site-name}}
+* {{msg-mw|Config-ns-generic}}",
+	'config-ns-invalid' => 'Used as error message. Parameters:
+* $1 - namespace name
+See also:
+* {{msg-mw|Config-ns-conflict}}',
+	'config-ns-conflict' => 'Used as error message. Parameters:
+* $1 - namespace name
+See also:
+* {{msg-mw|Config-ns-invalid}}',
 	'config-admin-name' => '{{Identical|Your name}}',
 	'config-admin-password' => '{{Identical|Password}}',
+	'config-admin-name-invalid' => 'Used as error message. Parameters:
+* $1 - username of administrator',
 	'config-admin-email' => '{{Identical|E-mail address}}',
+	'config-admin-error-user' => 'Used as error message. Parameters:
+* $1 - username of administrator
+See also:
+* {{msg-mw|Config-admin-error-password}}',
+	'config-admin-error-password' => 'Used as error message. Parameters:
+* $1 - username of administrator
+* $2 - error message
+See also:
+* {{msg-mw|Config-admin-error-user}}',
 	'config-subscribe' => 'Used as label for the installer checkbox',
 	'config-subscribe-help' => '"Low-volume" in this context means that there will be few e-mails to that mailing list per time period.',
 	'config-profile-help' => 'Messages referenced:
@@ -685,10 +798,31 @@ If you\'re translating this message to a right-to-left language, consider writin
 	'config-email-user' => '{{Identical|Enable user-to-user e-mail}}',
 	'config-upload-help' => 'The word "mode" here refers to the access rights given to various user groups when attempting to create and store files and/or subdiretories in the said directory on the server. It also refers to the <code>mode</code> command used to maipulate said right mask under Unix, Linux, and similar operating systems. A less operating-system-centric translation is fine.',
 	'config-logo-help' => '',
+	'config-instantcommons' => 'Used as label for the checkbox.
+
+The help message for this checkbox is:
+* {{msg-mw|Config-instantcommons-help}}',
+	'config-instantcommons-help' => 'Used as help message for the checkbox which is labeled {{msg-mw|config-instantcommons}}.',
 	'config-cc-not-chosen' => '{{doc-important|Do not translate the "<code>proceed</code>" part.}}
 This message refers to a block of HTML being embedded into the installer page. It comes from the Creative Commons Web site. The block is in the English language. It is a scripted license chooser. When an individual license has been selected, it asks you to click "proceed" so as to return to the MediaWiki installer page.',
 	'config-memcached-servers' => '{{doc-important|Do not translate "memcached".}}
 {{Identical|Memcached server}}',
+	'config-memcache-badip' => 'Used as error message. Parameters:
+* $1 - IP address for Memcached
+See also:
+* {{msg-mw|Config-memcache-noport}}
+* {{msg-mw|Config-memcache-badport}}',
+	'config-memcache-noport' => 'Used as error message. Parameters:
+* $1 - Memcached server name
+See also:
+* {{msg-mw|Config-memcache-badip}}
+* {{msg-mw|Config-memcache-badport}}',
+	'config-memcache-badport' => 'Used as error message. Parameters:
+* $1 - 1 (hard-coded)
+* $2 - 65535 (hard-coded)
+See also:
+* {{msg-mw|Config-memcache-badip}}
+* {{msg-mw|Config-memcache-noport}}',
 	'config-extensions' => '{{Identical|Extension}}',
 	'config-extensions-help' => '{{doc-important|Do not translate <code>./extensions</code>.}}
 Used in help box.',
@@ -715,6 +849,8 @@ Used in help box.',
 	'config-install-pg-schema-failed' => 'Parameters:
 * $1 = database user name (usernames in the database are unrelated to wiki user names)
 * $2 =',
+	'config-pg-no-plpgsql' => 'Used as error message. Parameters:
+* $1 - database name',
 	'config-install-user' => 'Message indicates that the user is being created
 
 See also:
@@ -727,9 +863,22 @@ See also:
 *{{msg-mw|Config-install-keys}}
 *{{msg-mw|Config-install-sysop}}
 *{{msg-mw|Config-install-mainpage}}',
+	'config-install-user-alreadyexists' => 'Used as warning. Parameters:
+* $1 - database username',
+	'config-install-user-create-failed' => 'Used as MySQL warning and as PostgreSQL error. Parameters:
+* $1 - database username
+* $2 - detailed warning/error message',
 	'config-install-user-grant-failed' => 'Parameters:
 * $1 is the database username for which granting rights failed
 * $2 is the error message',
+	'config-install-user-missing' => 'Used as PostgreSQL error message. Parameters:
+* $1 - database username
+See also:
+* {{msg-mw|Config-install-user-missing-create}}',
+	'config-install-user-missing-create' => 'Used as PostgreSQL error message. Parameters:
+* $1 - database username
+See also:
+* {{msg-mw|Config-install-user-missing}}',
 	'config-install-tables' => 'Message indicates that the tables are being created
 
 See also:
@@ -742,6 +891,8 @@ See also:
 *{{msg-mw|Config-install-keys}}
 *{{msg-mw|Config-install-sysop}}
 *{{msg-mw|Config-install-mainpage}}',
+	'config-install-tables-failed' => 'Used as PostgreSQL error message. Parameters:
+* $1 - detailed error message',
 	'config-install-interwiki' => 'Message indicates that the interwikitables are being populated
 
 See also:
@@ -799,6 +950,8 @@ See also:
 *{{msg-mw|Config-install-keys}}
 *{{msg-mw|Config-install-sysop}}
 *{{msg-mw|Config-install-mainpage}}',
+	'config-install-mainpage-failed' => 'Used as error message. Parameters:
+* $1 - detailed error message',
 	'config-install-done' => 'Parameters:
 * $1 is the URL to LocalSettings download
 * $2 is a link to the wiki.
@@ -806,6 +959,8 @@ See also:
 	'config-download-localsettings' => 'The link text used in the download link in config-install-done.',
 	'config-help' => 'This is used in help boxes.
 {{Identical|Help}}',
+	'config-nofile' => 'Used as failure message. Parameters:
+* $1 - filename',
 	'mainpagetext' => 'Along with {{msg-mw|mainpagedocfooter}}, the text you will see on the Main Page when your wiki is installed.',
 	'mainpagedocfooter' => 'Along with {{msg-mw|mainpagetext}}, the text you will see on the Main Page when your wiki is installed.
 This might be a good place to put information about <nowiki>{{GRAMMAR:}}</nowiki>. See [[{{NAMESPACE}}:{{BASEPAGENAME}}/fi]] for an example. For languages having grammatical distinctions and not having an appropriate <nowiki>{{GRAMMAR:}}</nowiki> software available, a suggestion to check and possibly amend the messages having <nowiki>{{SITENAME}}</nowiki> may be valuable. See [[{{NAMESPACE}}:{{BASEPAGENAME}}/ksh]] for an example.',
@@ -10283,8 +10438,8 @@ chmod a+w $3</pre>',
 
 [$1 ウィキを使い始める]ことができます。
 
-もし、<code>LocalSettings.php</code>ファイルを再生成したいのならば、下のボタンを押してください。
-ウィキに問題がないのであれば、これは'''推奨されません'''。",
+<code>LocalSettings.php</code> ファイルを再生成したい場合は、下のボタンを押してください。
+ウィキに問題がある場合を除き、再生成は'''推奨されません'''。",
 	'config-upgrade-done-no-regenerate' => 'アップグレードが完了しました。
 
 [$1 ウィキの使用を開始]することができます。',
@@ -10418,10 +10573,10 @@ GFDLは有効なライセンスですが、内容を理解するのは困難で�
 
 ロゴが不要の場合は、このボックスを空白のままにしてください。',
 	'config-instantcommons' => 'Instant Commons 機能を有効にする',
-	'config-instantcommons-help' => '[//www.mediawiki.org/wiki/InstantCommons InstantCommons]は、[//commons.wikimedia.org/ ウィキメディア・コモンズ]のサイトで見つかった画像や音声、その他のメディアをウィキ上で利用することができるようになる機能です。
-これを有効化するには、MediaWikiはインターネットに接続できなければなりません。
+	'config-instantcommons-help' => '[//www.mediawiki.org/wiki/InstantCommons Instant Commons] は、[//commons.wikimedia.org/ ウィキメディア・コモンズ]のサイトにある画像、音声、その他のメディアをウィキ上で利用できるようにする機能です。
+これを使用するには、MediaWiki がインターネットに接続できる必要があります。
 
-ウィキメディア・コモンズ以外のウィキを同じように設定する方法など、この機能に関する詳細な情報は、[//mediawiki.org/wiki/Manual:$wgForeignFileRepos マニュアル]をご覧ください。',
+ウィキメディア・コモンズ以外のウィキを同様に設定する手順など、この機能に関する詳細な情報は、[//mediawiki.org/wiki/Manual:$wgForeignFileRepos マニュアル]をご覧ください。',
 	'config-cc-error' => 'クリエイティブ・コモンズ・ライセンスの選択器から結果が得られませんでした。
 ライセンスの名前を手動で入力してください。',
 	'config-cc-again' => 'もう一度選択してください...',
@@ -10438,6 +10593,9 @@ GFDLは有効なライセンスですが、内容を理解するのは困難で�
 カンマ区切りで、利用する特定のポートの指定が必要です。例:
 127.0.0.1:11211
 192.168.1.25:1234',
+	'config-memcache-noport' => 'Memcached サーバー $1 で使用するポート番号を指定していません。
+ポート番号が分からない場合、既定値は 11211 です。',
+	'config-memcache-badport' => 'Memcached のポート番号は $1 から $2 の範囲にしてください。',
 	'config-extensions' => '拡張機能',
 	'config-extensions-help' => '<code>./extensions</code>ディレクトリ内で、上記リストの拡張機能が発見されました。
 
@@ -10455,6 +10613,7 @@ GFDLは有効なライセンスですが、内容を理解するのは困難で�
 	'config-install-pg-schema-failed' => 'テーブルの作成に失敗しました。
 利用者「$1」がスキーマ「$2」に書き込めるようにしてください。',
 	'config-install-pg-commit' => '変更を送信',
+	'config-pg-no-plpgsql' => 'データベース $1 内に PL/pgSQL 言語をインストールする必要があります。',
 	'config-install-user' => 'データベースユーザーの作成',
 	'config-install-user-alreadyexists' => 'ユーザー「$1」は既に存在します',
 	'config-install-user-create-failed' => 'ユーザー「$1」の作成に失敗しました: $2',

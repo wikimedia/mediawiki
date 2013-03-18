@@ -4059,7 +4059,7 @@ Bildoj montriĝas en plena distingivo, aliaj dosiertipoj estas malfermataj rekte
 'logentry-newusers-autocreate' => 'Konto $1 estis kreita aŭtomate',
 'logentry-rights-rights' => '$1 ŝanĝis grupan membrecon por $3 de $4 al $5',
 'logentry-rights-rights-legacy' => '$1 ŝanĝis grupan membrecon por $3',
-'logentry-rights-autopromote' => '$1 estis aŭtomate altrangigita de $4 al $5',
+'logentry-rights-autopromote' => '$1 estis aŭtomate {{GENDER:$2|altrangigita}} de $4 al $5',
 'rightsnone' => '(nenia)',
 
 # Feedback

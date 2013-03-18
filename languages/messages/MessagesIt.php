@@ -625,11 +625,11 @@ Il database ha restituito il seguente errore "$3: $4".',
 L'amministratore di sistema che ha imposto il blocco ha fornito questa spiegazione: $1",
 'missing-article' => 'Il database non ha trovato il testo di una pagina che avrebbe dovuto trovare sotto il nome di "$1" $2.
 
-Di solito ciò si verifica quando viene richiamato, a partire dalla cronologia o dal confronto tra revisioni, un collegamento a una pagina cancellata, a un confronto tra revisioni inesistenti o a un confronto tra revisioni ripulite dalla cronologia.
+Di solito ciò si verifica quando viene richiamato, a partire dalla cronologia o dal confronto tra versioni, un collegamento a una pagina cancellata, a un confronto tra versioni inesistenti o a un confronto tra versioni ripulite dalla cronologia.
 
 In caso contrario, si è probabilmente scoperto un errore del software MediaWiki.
 Si prega di segnalare l\'accaduto a un [[Special:ListUsers/sysop|amministratore]] specificando la URL in questione.',
-'missingarticle-rev' => '(numero della revisione: $1)',
+'missingarticle-rev' => '(numero della versione: $1)',
 'missingarticle-diff' => '(Diff: $1, $2)',
 'readonly_lag' => 'Il database è stato bloccato automaticamente per consentire ai server con i database slave di sincronizzarsi con il master',
 'internalerror' => 'Errore interno',
@@ -758,8 +758,8 @@ Per favore, effettua un accesso non appena la ricevi.',
 'blocked-mailpassword' => 'Per prevenire abusi, non è consentito usare la funzione "Invia nuova password" da un indirizzo IP bloccato.',
 'eauthentsent' => "Un messaggio e-mail di conferma è stato spedito all'indirizzo indicato.
 Per abilitare l'invio di messaggi e-mail per questo accesso è necessario seguire le istruzioni che vi sono indicate, in modo da confermare che si è i legittimi proprietari dell'indirizzo",
-'throttled-mailpassword' => 'Una nuova password è già stata inviata da meno di {{PLURAL:$1|1 ora|$1 ore}}.
-Per prevenire abusi, la funzione "Invia nuova password" può essere usata solo una volta ogni {{PLURAL:$1|ora|$1 ore}}.',
+'throttled-mailpassword' => 'Una email di reimpostazione della password è già stata inviata da meno di {{PLURAL:$1|1 ora|$1 ore}}.
+Per prevenire abusi, la funzione di reimpostazione della password può essere usata solo una volta ogni {{PLURAL:$1|ora|$1 ore}}.',
 'mailerror' => "Errore nell'invio del messaggio: $1",
 'acct_creation_throttle_hit' => "I visitatori del sito che usano il tuo indirizzo IP hanno creato {{PLURAL:$1|1 account|$1 account}} nell'ultimo giorno, che è il massimo consentito in questo periodo di tempo.
 Perciò, gli utenti che usano questo indirizzo IP non possono creare altri account per il momento.",
@@ -809,7 +809,7 @@ La password potrebbe essere stata già cambiata, oppure potrebbe essere stata ri
 
 # Special:PasswordReset
 'passwordreset' => 'Reimposta password',
-'passwordreset-text' => 'Compila questo modulo per ricevere i dettagli del tuo account via e-mail.',
+'passwordreset-text' => 'Compila questo modulo per reimpostare la tua password.',
 'passwordreset-legend' => 'Reimposta password',
 'passwordreset-disabled' => 'La reimpostazione delle password è stata disabilitata su questa wiki',
 'passwordreset-pretext' => '{{PLURAL:$1||Immetti uno dei dati richiesti qui sotto}}',
@@ -819,7 +819,7 @@ La password potrebbe essere stata già cambiata, oppure potrebbe essere stata ri
 'passwordreset-capture-help' => "Se si seleziona questa casella, l'indirizzo e-mail (con la password temporanea), verrà mostrato a voi, oltre ad essere inviato all'utente.",
 'passwordreset-email' => 'Indirizzo e-mail:',
 'passwordreset-emailtitle' => 'Dettagli account su {{SITENAME}}',
-'passwordreset-emailtext-ip' => "Qualcuno (probabilmente tu, con indirizzo IP $1) ha richiesto l'invio di una nuova password per l'accesso a {{SITENAME}} ($4). {{PLURAL:$3|L'utente associato|Gli utenti associati}} a questo indirizzo e-mail sono:
+'passwordreset-emailtext-ip' => "Qualcuno (probabilmente tu, con indirizzo IP $1) ha richiesto l'invio di una nuova password per l'accesso a {{SITENAME}} ($4). {{PLURAL:$3|L'utente associato|Gli utenti associati}} a questo indirizzo email sono:
 
 $2
 
@@ -827,7 +827,7 @@ $2
 Dovresti accedere e scegliere una nuova password ora. 
 
 Se non sei stato tu a fare la richiesta, o se ti sei ricordato la password originale e non vuoi più cambiarla, puoi ignorare questo messaggio e continuare al utilizzare la tua vecchia password.",
-'passwordreset-emailtext-user' => "L'utente $1 di {{SITENAME}} ha richiesto l'invio di una nuova password per l'accesso a {{SITENAME}} ($4). {{PLURAL:$3|L'utente associato|Gli utenti associati}} a questo indirizzo e-mail sono:
+'passwordreset-emailtext-user' => "L'utente $1 di {{SITENAME}} ha richiesto l'invio di una nuova password per l'accesso a {{SITENAME}} ($4). {{PLURAL:$3|L'utente associato|Gli utenti associati}} a questo indirizzo email sono:
 
 $2
 
@@ -837,9 +837,9 @@ Dovresti accedere e scegliere una nuova password ora.
 Se non sei stato tu a fare la richiesta, o se ti sei ricordato la password originale e non vuoi più cambiarla, puoi ignorare questo messaggio e continuare al utilizzare la tua vecchia password.",
 'passwordreset-emailelement' => 'Nome utente: $1
 Password temporanea: $2',
-'passwordreset-emailsent' => 'È stata inviata una e-mail di promemoria.',
-'passwordreset-emailsent-capture' => 'È stata inviata una e-mail di promemoria, il contenuto è riportato di seguito.',
-'passwordreset-emailerror-capture' => "È stata generata l'e-mail di promemoria riportata di seguito. L'invio all'utente non è riuscito: $1",
+'passwordreset-emailsent' => 'È stata inviata una email di reimpostazione della password.',
+'passwordreset-emailsent-capture' => 'È stata inviata una email di reimpostazione della password, il contenuto è riportato di seguito.',
+'passwordreset-emailerror-capture' => "È stata generata una email di reimpostazione della password riportata di seguito. L'invio all'utente non è riuscito: $1",
 
 # Special:ChangeEmail
 'changeemail' => "Modifica l'indirizzo e-mail",
@@ -3901,17 +3901,17 @@ Le immagini vengono mostrate alla massima risoluzione disponibile, per gli altri
 'sqlite-no-fts' => '$1 senza la possibilità di ricerca completa nel testo',
 
 # New logging system
-'logentry-delete-delete' => '$1 ha cancellato la pagina $3',
-'logentry-delete-restore' => '$1 ha ripristinato "$3"',
-'logentry-delete-event' => '$1 ha modificato la visibilità di {{PLURAL:$5|un\'azione del registro|$5 azioni del registro}} di "$3": $4',
-'logentry-delete-revision' => '$1 ha modificato la visibilità per {{PLURAL:$5|una revisione|$5 revisioni}} della pagina $3: $4',
-'logentry-delete-event-legacy' => '$1 ha modificato la visibilità di alcune azioni del registro di "$3"',
-'logentry-delete-revision-legacy' => '$1 ha modificato la visibilità per le revisioni della pagina $3',
-'logentry-suppress-delete' => '$1 ha nascosto la pagina "$3"',
-'logentry-suppress-event' => '$1 ha segretamente modificato la visibilità di {{PLURAL:$5|un\'azione del registro|$5 azioni del registro}} di "$3": $4',
-'logentry-suppress-revision' => '$1 ha segretamente modificato la visibilità di {{PLURAL:$5|una versione|$5 versioni}} di "$3": $4',
-'logentry-suppress-event-legacy' => '$1 ha segretamente modificato la visibilità di alcune azioni del registro di "$3"',
-'logentry-suppress-revision-legacy' => '$1 ha segretamente modificato la visibilità di alcune versioni di "$3"',
+'logentry-delete-delete' => '$1 {{GENDER:$2|ha cancellato}} la pagina $3',
+'logentry-delete-restore' => '$1 {{GENDER:$2|ha ripristinato}} la pagina "$3"',
+'logentry-delete-event' => '$1 {{GENDER:$2|ha modificato}} la visibilità di {{PLURAL:$5|un\'azione del registro|$5 azioni del registro}} di "$3": $4',
+'logentry-delete-revision' => '$1 {{GENDER:$2|ha modificato}} la visibilità per {{PLURAL:$5|una versione|$5 versioni}} della pagina $3: $4',
+'logentry-delete-event-legacy' => '$1 {{GENDER:$2|ha modificato}} la visibilità di alcune azioni del registro di $3',
+'logentry-delete-revision-legacy' => '$1 {{GENDER:$2|ha modificato}} la visibilità per le versioni della pagina $3',
+'logentry-suppress-delete' => '$1 {{GENDER:$2|ha nascosto}} la pagina $3',
+'logentry-suppress-event' => "$1 {{GENDER:$2|ha segretamente modificato}} la visibilità di {{PLURAL:$5|un'azione del registro|$5 azioni del registro}} di $3: $4",
+'logentry-suppress-revision' => '$1 {{GENDER:$2|ha segretamente modificato}} la visibilità di {{PLURAL:$5|una versione|$5 versioni}} della pagina $3: $4',
+'logentry-suppress-event-legacy' => '$1 {{GENDER:$2|ha segretamente modificato}} la visibilità di alcune azioni del registro di $3',
+'logentry-suppress-revision-legacy' => '$1 {{GENDER:$2|ha segretamente modificato}} la visibilità di alcune versioni della pagina $3',
 'revdelete-content-hid' => 'contenuto nascosto',
 'revdelete-summary-hid' => 'oggetto della modifica nascosto',
 'revdelete-uname-hid' => 'nome utente nascosto',
@@ -3920,20 +3920,20 @@ Le immagini vengono mostrate alla massima risoluzione disponibile, per gli altri
 'revdelete-uname-unhid' => 'nome utente ripristinato',
 'revdelete-restricted' => 'limitazioni ai soli amministratori attivate',
 'revdelete-unrestricted' => 'limitazioni ai soli amministratori rimosse',
-'logentry-move-move' => '$1 ha spostato la pagina $3 a $4',
-'logentry-move-move-noredirect' => '$1 ha spostato la pagina $3 a $4 senza lasciare redirect',
-'logentry-move-move_redir' => '$1 ha spostato la pagina $3 a $4 tramite redirect',
-'logentry-move-move_redir-noredirect' => '$1 ha spostato la pagina $3 a $4 al posto di un redirect senza lasciare redirect',
-'logentry-patrol-patrol' => '$1 ha segnato la versione $4 della pagina $3 come verificata',
-'logentry-patrol-patrol-auto' => '$1 ha segnato automaticamente la versione $4 della pagina $3 come verificata',
-'logentry-newusers-newusers' => "L'utenza $1 è stata creata",
-'logentry-newusers-create' => "L'utenza $1 è stata creata",
-'logentry-newusers-create2' => "L'utenza $3 è stata creata da $1",
-'logentry-newusers-byemail' => "L'utente $3 è stato creato da $1 e la password è stata inviata via e-mail",
-'logentry-newusers-autocreate' => "L'utenza $1 è stata creata automaticamente",
-'logentry-rights-rights' => "$1 ha modificato l'appartenenza di $3 dal gruppo $4 al gruppo $5",
-'logentry-rights-rights-legacy' => "$1 ha modificato l'appartenenza a gruppi di $3",
-'logentry-rights-autopromote' => '$1 è stato/a automaticamente promosso/a da $4 a $5',
+'logentry-move-move' => '$1 {{GENDER:$2|ha spostato}} la pagina $3 a $4',
+'logentry-move-move-noredirect' => '$1 {{GENDER:$2|ha spostato}} la pagina $3 a $4 senza lasciare redirect',
+'logentry-move-move_redir' => '$1 {{GENDER:$2|ha spostato}} la pagina $3 a $4 tramite redirect',
+'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|ha spostato}} la pagina $3 a $4 al posto di un redirect senza lasciare redirect',
+'logentry-patrol-patrol' => '$1 {{GENDER:$2|ha segnato}} la versione $4 della pagina $3 come verificata',
+'logentry-patrol-patrol-auto' => '$1 {{GENDER:$2|ha segnato}} automaticamente la versione $4 della pagina $3 come verificata',
+'logentry-newusers-newusers' => "L'utenza $1 è stata {{GENDER:$2|creata}}",
+'logentry-newusers-create' => "L'utenza $1 è stata {{GENDER:$2|creata}}",
+'logentry-newusers-create2' => "L'utenza $3 è stata {{GENDER:$2|creata}} da $1",
+'logentry-newusers-byemail' => "L'utenza $3 è stata {{GENDER:$2|creata}} da $1 e la password è stata inviata via email",
+'logentry-newusers-autocreate' => "L'utenza $1 è stata {{GENDER:$2|creata}} automaticamente",
+'logentry-rights-rights' => "$1 {{GENDER:$2|ha modificato}} l'appartenenza di $3 dal gruppo $4 al gruppo $5",
+'logentry-rights-rights-legacy' => "$1 {{GENDER:$2|ha modificato}} l'appartenenza a gruppi di $3",
+'logentry-rights-autopromote' => '$1 è {{GENDER:$2|stato promosso|stata promossa|stato/a promosso/a}} automaticamente da $4 a $5',
 'rightsnone' => '(nessuno)',
 
 # Feedback

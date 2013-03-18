@@ -955,8 +955,8 @@ Kaberê bini ke şıma de kewti irtıbat, adresa e-postey şıma eşkera nêbena
 'rc-enhanced-hide' => 'Tefsilatu bınımne',
 
 # Recent changes linked
-'recentchangeslinked' => 'Ney sero vurnaene',
-'recentchangeslinked-toolbox' => 'Ney sero vurnaene',
+'recentchangeslinked' => 'Ney sero vurnayene',
+'recentchangeslinked-toolbox' => 'Ney sero vurnayene',
 'recentchangeslinked-title' => 'Heqa "$1"i de vurnais',
 'recentchangeslinked-noresult' => 'Pelanê ke link biye ey vurnayîşî çino.',
 'recentchangeslinked-summary' => "Lista cêrêne, pela bêlikerdiye rê (ya ki karberunê kategoriya bêlikerdiye rê) pelunê girêdaoğu de lista de vurnaisê peyênuna.
@@ -1436,7 +1436,7 @@ Tı şikina çımunê dae bıvênê',
 'tooltip-minoredit' => 'Ney jê vurnaiso qıc isaret ke',
 'tooltip-save' => 'Vurnaisunê ho qeyd ke',
 'tooltip-preview' => 'Kerem ke, vurnaisunê ho qeyd-kerdene ra ravêr be verqayt bıasne!',
-'tooltip-diff' => 'Kamci vurnaişi ke to meqale de kerdê, naine bıasne.',
+'tooltip-diff' => 'Kamci vurnayışi ke to meqale de kerdê, ninan basne.',
 'tooltip-compareselectedversions' => 'Ferqunê wertê ni dı nımınunê weçinıtu bıvêne.',
 'tooltip-watch' => 'Na pele lista huya şêrkerdişi ser ke',
 'tooltip-recreate' => 'Na pele esterıte bo ki, nae oncia bıaferne',

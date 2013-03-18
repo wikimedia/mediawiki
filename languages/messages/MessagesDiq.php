@@ -462,7 +462,7 @@ $messages = array(
 'faqpage' => 'Project: PZP',
 
 # Vector skin
-'vector-action-addsection' => 'Mesel Vırazê',
+'vector-action-addsection' => 'Mewzu vıraze',
 'vector-action-delete' => 'Bestere',
 'vector-action-move' => 'Berê',
 'vector-action-protect' => 'Bıpawe',
@@ -1279,7 +1279,7 @@ no vurnayişo ke şıma keni kontrol bıkere yew pelo kehen nêbo.',
 'mergelog' => 'Logê yew kerdişî',
 'pagemerge-logentry' => '[[$1]] u [[$2]] yew kerd (revizyonî heta $3)',
 'revertmerge' => 'Abırnê',
-'mergelogpagetext' => 'Cêr de jû liste esta ke mocnena ra, raya tewr peyêne kamci pela tarixi be a bine ra şanawa pê.',
+'mergelogpagetext' => 'Cêr de yew liste esta ke mocnena ra, raya tewr peyêne kamci pela tarixi be a bine ra şanawa pê.',
 
 # Diffs
 'history-title' => 'Rewizyonê $1:',
@@ -1687,9 +1687,9 @@ Kaberê bini ke şıma de kewti irtıbat, adresa e-postey şıma eşkera nêbena
 'rc-old-title' => '"$1"i orcinalê cı vıraşt',
 
 # Recent changes linked
-'recentchangeslinked' => 'Vurnayışê eleqeyıni',
-'recentchangeslinked-feed' => 'Vurnayışê eleqeyıni',
-'recentchangeslinked-toolbox' => 'Vurnayışê eleqeyıni',
+'recentchangeslinked' => 'Vurnayışê elaqeyıni',
+'recentchangeslinked-feed' => 'Vurnayışê elaqeyıni',
+'recentchangeslinked-toolbox' => 'Vurnayışê elaqeyıni',
 'recentchangeslinked-title' => 'vurnayışan ser "$1"',
 'recentchangeslinked-noresult' => 'Pelanê ke link biye ey vurnayîşî çino.',
 'recentchangeslinked-summary' => "Lista cêrêne, pela bêlikerdiye rê (ya zi karberanê kategoriya bêlikerdiye rê) pelanê gırêdaoğan de lista de vurnayışê peyênana.

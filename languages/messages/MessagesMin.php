@@ -272,7 +272,7 @@ $1',
 'mainpage-description' => 'Palanta',
 'policy-url' => 'Project:Kabijakan',
 'portal' => 'Portal komunitas',
-'portal-url' => 'Project:Portal komunitas',
+'portal-url' => 'Portal:Komunitas',
 'privacy' => 'Kecipehan privasi',
 'privacypage' => 'Project:Kecipehan privasi',
 

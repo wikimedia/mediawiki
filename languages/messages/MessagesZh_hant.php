@@ -729,7 +729,8 @@ $2',
 請在收到後再登入。',
 'blocked-mailpassword' => '您的IP地址處於查封狀態而不允許編輯，為了安全起見，密碼恢復功能已被禁用。',
 'eauthentsent' => '一封確認信已經發送到所示的地址。在發送其它郵件到此賬戶前，您必須首先依照這封信中的指導確認這個電子郵件信箱真實有效。',
-'throttled-mailpassword' => '密碼提醒已經在前$1小時內發送。為防止濫用，限定在$1小時內僅發送一次密碼提醒。',
+'throttled-mailpassword' => '密碼提醒已經在前$1小時內發送。
+為防止濫用，限定在$1小時內僅發送一次密碼提醒。',
 'mailerror' => '發送郵件錯誤: $1',
 'acct_creation_throttle_hit' => '在這個wiki上的訪客利用您的IP地址在昨天創建了$1個賬戶，是在這段時間中的上限。
 結果利用這個IP地址的訪客在這段時間中不能創建更多的賬戶。',
@@ -779,7 +780,7 @@ $2',
 
 # Special:PasswordReset
 'passwordreset' => '重新設定密碼',
-'passwordreset-text' => '完成此表格以接收一個電郵以提示你的帳戶詳情。',
+'passwordreset-text' => '完成此表格以重置您的密碼。',
 'passwordreset-legend' => '重設密碼',
 'passwordreset-disabled' => '此維基上已禁止了重設密碼。',
 'passwordreset-pretext' => '{{PLURAL:$1||輸入下列其中一個}}',
@@ -789,15 +790,14 @@ $2',
 'passwordreset-capture-help' => '如果您選中此框，電子郵件（包括臨時密碼）將顯示，並發送給用戶。',
 'passwordreset-email' => '電郵地址：',
 'passwordreset-emailtitle' => '在{{SITENAME}}上的詳細信息',
-'passwordreset-emailtext-ip' => '有人（可能是你，來自$1這個IP）要求發出一個在{{SITENAME}}（$4）的帳戶信
-息提示。該用戶{{PLURAL:$3|是|是}}與以下電郵地址有關：
+'passwordreset-emailtext-ip' => '有人（可能是你，來自$1這個IP）要求重置{{SITENAME}}（$4）的密碼。該用戶{{PLURAL:$3|是|是}}與以下電郵地址有關：
 
 $2
 
 {{PLURAL:$3|這個臨時密碼|這些臨時密碼}}會在{{PLURAL:$5|一天|$5天}}到期。
 你應該現在登入並選擇一個新的密碼。如果不是你作出這個請求，又或你已經記
 起你原來的密碼，你可以忽略本信息並使用你原來的密碼。',
-'passwordreset-emailtext-user' => '用戶$1要求發出一個在{{SITENAME}}（$4）的帳戶信息提示。該用戶{{PLURAL:$3|是|是}}與以下
+'passwordreset-emailtext-user' => '用戶$1要求重置在{{SITENAME}}（$4）的密碼。該用戶{{PLURAL:$3|是|是}}與以下
 電郵地址有關：
 
 $2
@@ -807,9 +807,9 @@ $2
 起你原來的密碼，你可以忽略本信息並使用你原來的密碼。',
 'passwordreset-emailelement' => '用戶名：$1
 臨時密碼：$2',
-'passwordreset-emailsent' => '已發送提示電郵。',
-'passwordreset-emailsent-capture' => '提醒電子郵件已發送，並在下面顯示。',
-'passwordreset-emailerror-capture' => '生成的提醒電子郵件如下所示，但發送失敗：$1',
+'passwordreset-emailsent' => '已發送重置密碼電郵。',
+'passwordreset-emailsent-capture' => '重置密碼電子郵件已發送，並在下面顯示。',
+'passwordreset-emailerror-capture' => '生成的重置密碼電子郵件如下所示，但發送失敗：$1',
 
 # Special:ChangeEmail
 'changeemail' => '更改電郵地址',
@@ -3918,7 +3918,7 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 'logentry-newusers-create' => '已建立用戶「$1」',
 'logentry-newusers-create2' => '用戶「$1」建立用戶「$3」',
 'logentry-newusers-byemail' => '$1建立用戶$3並電郵密碼給他',
-'logentry-newusers-autocreate' => '帳戶$1被自動創建',
+'logentry-newusers-autocreate' => '用戶$1被自動創建',
 'logentry-rights-rights' => '$1將$3的權限從$4改為$5',
 'logentry-rights-rights-legacy' => '$1更改$3的權限',
 'logentry-rights-autopromote' => '$1的權限自動從$4改為$5',

@@ -844,7 +844,7 @@ E-mailkaada mala sheegaayo markii ee dadka kale kula soo xiriirayaan.',
 'group-sysop-member' => '{{GENDER:$1|maamulaha}}',
 
 'grouppage-user' => '{{ns:project}}:Isticmaalada',
-'grouppage-autoconfirmed' => '{{ns:project}}:Gude gale la hubiyey si iskeeda ah',
+'grouppage-autoconfirmed' => '{{ns:project}}:Adeegsade la hubiyey',
 'grouppage-sysop' => '{{ns:project}}:Maamulada',
 
 # Rights

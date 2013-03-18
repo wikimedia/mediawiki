@@ -732,13 +732,13 @@ e non o quere modificar, pode ignorar esta mensaxe e
 continuar a utilizar o seu contrasinal vello.',
 'noemail' => 'O usuario "$1" non posúe ningún enderezo de correo electrónico rexistrado.',
 'noemailcreate' => 'Ten que proporcionar un enderezo de correo electrónico válido',
-'passwordsent' => 'Envióuselle un contrasinal novo ao enderezo de correo electrónico rexistrado de "$1".
+'passwordsent' => 'Enviouse un contrasinal novo ao enderezo de correo electrónico rexistrado de "$1".
 Por favor, acceda ao sistema de novo tras recibilo.',
 'blocked-mailpassword' => 'O seu enderezo IP está bloqueado e ten restrinxida a edición de artigos. Tampouco se lle permite usar a función de recuperación do contrasinal para evitar abusos do sistema.',
 'eauthentsent' => 'Envióuselle un correo electrónico de confirmación ao enderezo mencionado.
 Antes de que se lle envíe calquera outro correo a esta conta terá que seguir as instrucións que aparecen nesa mensaxe para confirmar que a conta é realmente súa.',
-'throttled-mailpassword' => 'Enviouse un aviso co contrasinal {{PLURAL:$1|na última hora|nas últimas $1 horas}}.
-Para evitar o abuso do sistema só se envía unha mensaxe cada {{PLURAL:$1|hora|$1 horas}}.',
+'throttled-mailpassword' => 'Enviouse un correo electrónico de restablecemento do contrasinal {{PLURAL:$1|na última hora|nas últimas $1 horas}}.
+Para evitar o abuso do sistema só se enviará unha mensaxe de restablecemento cada {{PLURAL:$1|hora|$1 horas}}.',
 'mailerror' => 'Produciuse un erro ao enviar o correo electrónico: $1',
 'acct_creation_throttle_hit' => 'Alguén que visitou este wiki co seu enderezo IP creou, no último día, {{PLURAL:$1|unha conta|$1 contas}}, que é o máximo permitido neste período de tempo.
 Como resultado, os visitantes que usen este enderezo IP non poden crear máis contas nestes intres.',
@@ -789,7 +789,7 @@ Pode ser que xa cambiase o seu contrasinal ou que solicitase un novo contrasinal
 
 # Special:PasswordReset
 'passwordreset' => 'Restablecer o contrasinal',
-'passwordreset-text' => 'Encha este formulario para recibir un recordatorio por correo electrónico cos detalles da súa conta.',
+'passwordreset-text' => 'Encha este formulario para restablecer o seu contrasinal.',
 'passwordreset-legend' => 'Restablecer o contrasinal',
 'passwordreset-disabled' => 'O restablecemento de contrasinais está desactivado neste wiki.',
 'passwordreset-pretext' => '{{PLURAL:$1||Introduza un dos datos a continuación}}',
@@ -799,31 +799,31 @@ Pode ser que xa cambiase o seu contrasinal ou que solicitase un novo contrasinal
 'passwordreset-capture-help' => 'Se marca esta caixa, poderá ver o correo electrónico (co contrasinal temporal) que se envía ao usuario.',
 'passwordreset-email' => 'Enderezo de correo electrónico:',
 'passwordreset-emailtitle' => 'Detalles da conta de {{SITENAME}}',
-'passwordreset-emailtext-ip' => 'Alguén (probablemente vostede, desde o enderezo IP $1) solicitou un recordatorio coa
-información da súa conta en {{SITENAME}} ($4). {{PLURAL:$3|A seguinte conta de usuario está asociada|As seguintes contas de usuarios están asociadas}}
+'passwordreset-emailtext-ip' => 'Alguén (probablemente vostede, desde o enderezo IP $1) solicitou o restablecemento do seu
+contrasinal de {{SITENAME}} ($4). {{PLURAL:$3|A seguinte conta de usuario está asociada|As seguintes contas de usuarios están asociadas}}
 a este enderezo de correo electrónico:
 
 $2
 
 {{PLURAL:$3|Este contrasinal temporal caducará|Estes contrasinais temporais caducarán}} {{PLURAL:$5|nun día|en $5 días}}.
-Debería acceder ao sistema e elixir un novo contrasinal agora. Se outro fixo esta
+Debería acceder ao sistema e elixir un novo contrasinal agora. Se outra persoa fixo esta
 solicitude ou se lembrou o seu contrasinal orixinal e xa non o quere cambiar,
 ignore esta mensaxe e continúe empregando o seu contrasinal vello.',
-'passwordreset-emailtext-user' => 'O usuario $1 solicitou un recordatorio coa información da súa conta en {{SITENAME}}
+'passwordreset-emailtext-user' => 'O usuario $1 solicitou o restablecemento do contrasinal de {{SITENAME}}
 ($4). {{PLURAL:$3|A seguinte conta de usuario está asociada|As seguintes contas de usuarios están asociadas}}
 a este enderezo de correo electrónico:
 
 $2
 
 {{PLURAL:$3|Este contrasinal temporal caducará|Estes contrasinais temporais caducarán}} {{PLURAL:$5|nun día|en $5 días}}.
-Debería acceder ao sistema e elixir un novo contrasinal agora. Se outro fixo esta
+Debería acceder ao sistema e elixir un novo contrasinal agora. Se outra persoa fixo esta
 solicitude ou se lembrou o seu contrasinal orixinal e xa non o quere cambiar,
 ignore esta mensaxe e continúe empregando o seu contrasinal vello.',
 'passwordreset-emailelement' => 'Nome de usuario: $1
 Contrasinal temporal: $2',
-'passwordreset-emailsent' => 'Enviouse o correo electrónico co recordatorio.',
-'passwordreset-emailsent-capture' => 'Enviouse un correo electrónico recordatorio, mostrado a continuación.',
-'passwordreset-emailerror-capture' => 'Xerouse un correo electrónico recordatorio, mostrado a continuación, pero o envío ao usuario fallou: $1.',
+'passwordreset-emailsent' => 'Enviouse o correo electrónico de restablecemento do contrasinal.',
+'passwordreset-emailsent-capture' => 'Enviouse un correo electrónico de restablecemento do contrasinal, mostrado a continuación.',
+'passwordreset-emailerror-capture' => 'Xerouse un correo electrónico de restablecemento do contrasinal, mostrado a continuación, pero o envío ao usuario fallou: $1',
 
 # Special:ChangeEmail
 'changeemail' => 'Cambiar o enderezo de correo electrónico',
@@ -3965,17 +3965,17 @@ As imaxes móstranse na súa resolución completa; outros tipos de ficheiros in�
 'sqlite-no-fts' => '$1 sen soporte para procuras de texto completo',
 
 # New logging system
-'logentry-delete-delete' => '$1 borrou a páxina "$3"',
-'logentry-delete-restore' => '$1 restaurou a páxina "$3"',
-'logentry-delete-event' => '$1 mudou a visibilidade {{PLURAL:$5|dunha entrada|de $5 entradas}} do rexistro de "$3": $4',
-'logentry-delete-revision' => '$1 mudou a visibilidade {{PLURAL:$5|dunha revisión|de $5 revisións}} da páxina "$3": $4',
-'logentry-delete-event-legacy' => '$1 mudou a visibilidade de entradas do rexistro de "$3"',
-'logentry-delete-revision-legacy' => '$1 mudou a visibilidade de revisións da páxina "$3"',
-'logentry-suppress-delete' => '$1 suprimiu a páxina "$3"',
-'logentry-suppress-event' => '$1 mudou de xeito secreto a visibilidade {{PLURAL:$5|dunha entrada|de $5 entradas}} do rexistro de "$3": $4',
-'logentry-suppress-revision' => '$1 mudou de xeito secreto a visibilidade {{PLURAL:$5|dunha revisión|de $5 revisións}} da páxina "$3": $4',
-'logentry-suppress-event-legacy' => '$1 mudou de xeito secreto a visibilidade de entradas do rexistro de "$3"',
-'logentry-suppress-revision-legacy' => '$1 mudou de xeito secreto a visibilidade de revisións da páxina "$3"',
+'logentry-delete-delete' => '$1 {{GENDER:$2|borrou}} a páxina "$3"',
+'logentry-delete-restore' => '$1 {{GENDER:$2|restaurou}} a páxina "$3"',
+'logentry-delete-event' => '$1 {{GENDER:$2|mudou}} a visibilidade {{PLURAL:$5|dunha entrada|de $5 entradas}} do rexistro de $3: $4',
+'logentry-delete-revision' => '$1 {{GENDER:$2|mudou}} a visibilidade {{PLURAL:$5|dunha revisión|de $5 revisións}} da páxina "$3": $4',
+'logentry-delete-event-legacy' => '$1 {{GENDER:$2|mudou}} a visibilidade de entradas do rexistro de $3',
+'logentry-delete-revision-legacy' => '$1 {{GENDER:$2|mudou}} a visibilidade de revisións da páxina "$3"',
+'logentry-suppress-delete' => '$1 {{GENDER:$2|suprimiu}} a páxina "$3"',
+'logentry-suppress-event' => '$1 {{GENDER:$2|mudou}} de xeito secreto a visibilidade {{PLURAL:$5|dunha entrada|de $5 entradas}} do rexistro de $3: $4',
+'logentry-suppress-revision' => '$1 {{GENDER:$2|mudou}} de xeito secreto a visibilidade {{PLURAL:$5|dunha revisión|de $5 revisións}} da páxina "$3": $4',
+'logentry-suppress-event-legacy' => '$1 {{GENDER:$2|mudou}} de xeito secreto a visibilidade de entradas do rexistro de $3',
+'logentry-suppress-revision-legacy' => '$1 {{GENDER:$2|mudou}} de xeito secreto a visibilidade de revisións da páxina "$3"',
 'revdelete-content-hid' => 'agochou contidos',
 'revdelete-summary-hid' => 'agochou o resumo de edición',
 'revdelete-uname-hid' => 'agochou o nome de usuario',
@@ -3984,20 +3984,20 @@ As imaxes móstranse na súa resolución completa; outros tipos de ficheiros in�
 'revdelete-uname-unhid' => 'descubriu o nome de usuario',
 'revdelete-restricted' => 'aplicou restricións aos administradores',
 'revdelete-unrestricted' => 'eliminou restricións aos administradores',
-'logentry-move-move' => '$1 moveu a páxina "$3" a "$4"',
-'logentry-move-move-noredirect' => '$1 moveu a páxina "$3" a "$4" sen deixar unha redirección',
-'logentry-move-move_redir' => '$1 moveu a páxina "$3" a "$4" sobre unha redirección',
-'logentry-move-move_redir-noredirect' => '$1 moveu a páxina "$3" a "$4" sobre unha redirección sen deixar unha redirección',
-'logentry-patrol-patrol' => '$1 marcou a revisión $4 da páxina "$3" como patrullada',
-'logentry-patrol-patrol-auto' => '$1 marcou automaticamente a revisión $4 da páxina "$3" como patrullada',
-'logentry-newusers-newusers' => 'Creouse a conta de usuario $1',
-'logentry-newusers-create' => 'Creouse a conta de usuario $1',
-'logentry-newusers-create2' => '$1 creou a conta de usuario $3',
-'logentry-newusers-byemail' => '$1 creou a conta de usuario $3; o contrasinal enviouse por correo electrónico',
-'logentry-newusers-autocreate' => 'A conta de usuario $1 creouse automaticamente',
-'logentry-rights-rights' => '$1 cambiou o grupo ao que pertence $3 de $4 a $5',
-'logentry-rights-rights-legacy' => '$1 cambiou o grupo ao que pertence $3',
-'logentry-rights-autopromote' => '$1 foi promovido automaticamente de $4 a $5',
+'logentry-move-move' => '$1 {{GENDER:$2|moveu}} a páxina "$3" a "$4"',
+'logentry-move-move-noredirect' => '$1 {{GENDER:$2|moveu}} a páxina "$3" a "$4" sen deixar unha redirección',
+'logentry-move-move_redir' => '$1 {{GENDER:$2|moveu}} a páxina "$3" a "$4" sobre unha redirección',
+'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|moveu}} a páxina "$3" a "$4" sobre unha redirección sen deixar unha redirección',
+'logentry-patrol-patrol' => '$1 {{GENDER:$2|marcou}} a revisión $4 da páxina "$3" como patrullada',
+'logentry-patrol-patrol-auto' => '$1 {{GENDER:$2|marcou}} automaticamente a revisión $4 da páxina "$3" como patrullada',
+'logentry-newusers-newusers' => 'Creouse a conta de {{GENDER:$2|usuario|usuaria}} $1',
+'logentry-newusers-create' => 'Creouse a conta de {{GENDER:$2|usuario|usuaria}} $1',
+'logentry-newusers-create2' => '$1 {{GENDER:$2|creou}} a conta de usuario $3',
+'logentry-newusers-byemail' => '$1 {{GENDER:$2|creou}} a conta de usuario $3; o contrasinal enviouse por correo electrónico',
+'logentry-newusers-autocreate' => 'A conta de {{GENDER:$2|usuario|usuaria}} $1 creouse automaticamente',
+'logentry-rights-rights' => '$1 {{GENDER:$2|cambiou}} o grupo ao que pertence $3 de $4 a $5',
+'logentry-rights-rights-legacy' => '$1 {{GENDER:$2|cambiou}} o grupo ao que pertence $3',
+'logentry-rights-autopromote' => '$1 foi {{GENDER:$2|promovido|promovida}} automaticamente de $4 a $5',
 'rightsnone' => '(ningún)',
 
 # Feedback

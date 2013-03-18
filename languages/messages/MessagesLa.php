@@ -2388,7 +2388,7 @@ Quaesumus, adfirma ut iterum hanc paginam crees.",
 'logentry-newusers-newusers' => 'Ratio usoris $1 creata est',
 'logentry-newusers-create' => 'Ratio usoris $1 creata est',
 'logentry-newusers-create2' => 'Ratio usoris $3 creata est ab usore $1',
-'logentry-newusers-autocreate' => 'Ratio $1 automatice creata est',
+'logentry-newusers-autocreate' => 'Ratio usoris $1 automatice creata est',
 'rightsnone' => '(nullus)',
 
 # Search suggestions

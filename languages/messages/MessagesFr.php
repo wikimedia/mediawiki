@@ -4133,10 +4133,10 @@ Les images sont montrées dans leur pleine résolution, les autres fichiers sont
 'sqlite-no-fts' => '$1 sans recherche en texte intégral supportée',
 
 # New logging system
-'logentry-delete-delete' => '$1 a supprimé la page $3',
-'logentry-delete-restore' => '$1 a restauré la page $3',
-'logentry-delete-event' => "$1 a modifié la visibilité {{PLURAL:$5|d'un événement du journal|de $5 événements du journal}} sur $3: $4",
-'logentry-delete-revision' => '$1 a modifié la visibilité {{PLURAL:$5|d’une révision|de $5 révisions}} sur la page $3&nbsp;: $4',
+'logentry-delete-delete' => '$1 {{GENDER:$2|a supprimé}} la page $3',
+'logentry-delete-restore' => '$1 {{GENDER:$2|a restauré}} la page $3',
+'logentry-delete-event' => "$1 {{GENDER:$2|a modifié}} la visibilité {{PLURAL:$5|d'un événement du journal|de $5 événements du journal}} sur $3: $4",
+'logentry-delete-revision' => '$1 {{GENDER:$2|a modifié}} la visibilité {{PLURAL:$5|d’une révision|de $5 révisions}} sur la page $3: $4',
 'logentry-delete-event-legacy' => '$1 a modifié la visibilité des événements du journal sur $3',
 'logentry-delete-revision-legacy' => '$1 a modifié la visibilité des révisions sur la page $3',
 'logentry-suppress-delete' => '$1 a supprimé la page $3',

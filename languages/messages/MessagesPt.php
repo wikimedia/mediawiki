@@ -445,6 +445,7 @@ $messages = array(
 'newwindow' => '(abre numa janela nova)',
 'cancel' => 'Cancelar',
 'moredotdotdot' => 'Mais...',
+'morenotlisted' => 'Mais não listadas...',
 'mypage' => 'Página',
 'mytalk' => 'Discussão',
 'anontalk' => 'Discussão para este IP',
@@ -791,8 +792,8 @@ Volte a autenticar-se após recebê-la, por favor.',
 'blocked-mailpassword' => 'O seu endereço IP foi bloqueado e, portanto, não será possível utilizar a função de recuperação da palavra-chave, para prevenir o uso abusivo.',
 'eauthentsent' => 'Foi enviada uma mensagem de confirmação para o endereço de correio electrónico que elegeu.
 Antes que seja enviada qualquer outra mensagem para a conta, terá de seguir as instruções na mensagem enviada, de modo a confirmar que a conta lhe pertence.',
-'throttled-mailpassword' => 'Já foi enviada uma recuperação de palavra-chave {{PLURAL:$1|na última hora|nas últimas $1 horas}}.
-Para prevenir abusos, só uma recuperação pode ser enviada a cada {{PLURAL:$1|hora|$1 horas}}.',
+'throttled-mailpassword' => 'Já foi enviada um email de recuperação de palavra-chave {{PLURAL:$1|na última hora|nas últimas $1 horas}}.
+Para prevenir abusos, só um email de recuperação de palavra-chave pode ser enviado a cada {{PLURAL:$1|hora|$1 horas}}.',
 'mailerror' => 'Erro ao enviar correio: $1',
 'acct_creation_throttle_hit' => 'Visitantes desta wiki com o seu endereço IP criaram $1 {{PLURAL:$1|conta|contas}} no último dia, o que é o máximo permitido neste período de tempo.
 Em resultado, visitantes com este endereço IP não podem criar mais nenhuma conta neste momento.',
