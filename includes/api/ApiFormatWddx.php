@@ -46,7 +46,7 @@ class ApiFormatWddx extends ApiFormatBase {
 		} else {
 			// Don't do newlines and indentation if we weren't asked
 			// for pretty output
-			$nl = ( $this->getIsHtml() ? '' : "\n" );
+			$nl = ( $this->getIsHtml() ? "\n" : '' );
 			$indstr = ' ';
 			$this->printText( "<?xml version=\"1.0\"?>$nl" );
 			$this->printText( "<wddxPacket version=\"1.0\">$nl" );
@@ -64,9 +64,9 @@ class ApiFormatWddx extends ApiFormatBase {
 	 * @param $indent int
 	 */
 	function slowWddxPrinter( $elemValue, $indent = 0 ) {
-		$indstr = ( $this->getIsHtml() ? '' : str_repeat( ' ', $indent ) );
-		$indstr2 = ( $this->getIsHtml() ? '' : str_repeat( ' ', $indent + 2 ) );
-		$nl = ( $this->getIsHtml() ? '' : "\n" );
+		$indstr = ( $this->getIsHtml() ? str_repeat( ' ', $indent ) : '' );
+		$indstr2 = ( $this->getIsHtml() ? str_repeat( ' ', $indent + 2 ) : '' );
+		$nl = ( $this->getIsHtml() ? "\n" : '' );
 		if ( is_array( $elemValue ) ) {
 			// Check whether we've got an associative array (<struct>)
 			// or a regular array (<array>)
@@ -95,6 +95,10 @@ class ApiFormatWddx extends ApiFormatBase {
 			$this->printText( $indstr . Xml::element( 'number', null, $elemValue ) . $nl );
 		} elseif ( is_string( $elemValue ) ) {
 			$this->printText( $indstr . Xml::element( 'string', null, $elemValue ) . $nl );
+		} elseif ( is_bool( $elemValue ) ) {
+			$this->printText( $indstr . Xml::element( 'boolean',
+				array( 'value' => $elemValue ? 'true' : 'false' ) ) . $nl
+			);
 		} else {
 			ApiBase::dieDebug( __METHOD__, 'Unknown type ' . gettype( $elemValue ) );
 		}
