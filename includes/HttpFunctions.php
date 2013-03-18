@@ -58,6 +58,8 @@ class Http {
 	 */
 	public static function request( $method, $url, $options = array() ) {
 		wfDebug( "HTTP: $method: $url\n" );
+		wfProfileIn( __METHOD__ . "-$method" );
+
 		$options['method'] = strtoupper( $method );
 
 		if ( !isset( $options['timeout'] ) ) {
@@ -68,8 +70,11 @@ class Http {
 		$status = $req->execute();
 
 		if ( $status->isOK() ) {
-			return $req->getContent();
+			$content = $req->getContent();
+			wfProfileOut( __METHOD__ . "-$method" );
+			return $content;
 		} else {
+			wfProfileOut( __METHOD__ . "-$method" );
 			return false;
 		}
 	}
@@ -427,6 +432,8 @@ class MWHttpRequest {
 	public function execute() {
 		global $wgTitle;
 
+		wfProfileIn( __METHOD__ );
+
 		$this->content = "";
 
 		if ( strtoupper( $this->method ) == "HEAD" ) {
@@ -446,6 +453,8 @@ class MWHttpRequest {
 		if ( !isset( $this->reqHeaders['User-Agent'] ) ) {
 			$this->setUserAgent( Http::userAgent() );
 		}
+
+		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -454,6 +463,8 @@ class MWHttpRequest {
 	 * found in an array in the member variable headerList.
 	 */
 	protected function parseHeader() {
+		wfProfileIn( __METHOD__ );
+
 		$lastname = "";
 
 		foreach ( $this->headerList as $header ) {
@@ -470,6 +481,8 @@ class MWHttpRequest {
 		}
 
 		$this->parseCookies();
+
+		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -603,6 +616,8 @@ class MWHttpRequest {
 	 * Parse the cookies in the response headers and store them in the cookie jar.
 	 */
 	protected function parseCookies() {
+		wfProfileIn( __METHOD__ );
+
 		if ( !$this->cookieJar ) {
 			$this->cookieJar = new CookieJar;
 		}
@@ -613,6 +628,8 @@ class MWHttpRequest {
 				$this->cookieJar->parseCookieResponseHeader( $cookie, $url['host'] );
 			}
 		}
+
+		wfProfileIn( __METHOD__ );
 	}
 
 	/**
@@ -700,9 +717,12 @@ class CurlHttpRequest extends MWHttpRequest {
 	}
 
 	public function execute() {
+		wfProfileIn( __METHOD__ );
+
 		parent::execute();
 
 		if ( !$this->status->isOK() ) {
+			wfProfileOut( __METHOD__ );
 			return $this->status;
 		}
 
@@ -777,6 +797,8 @@ class CurlHttpRequest extends MWHttpRequest {
 		$this->parseHeader();
 		$this->setStatus();
 
+		wfProfileOut( __METHOD__ );
+
 		return $this->status;
 	}
 
@@ -811,6 +833,8 @@ class PhpHttpRequest extends MWHttpRequest {
 	}
 
 	public function execute() {
+		wfProfileIn( __METHOD__ );
+
 		parent::execute();
 
 		if ( is_array( $this->postData ) ) {
@@ -929,6 +953,8 @@ class PhpHttpRequest extends MWHttpRequest {
 			}
 		}
 		fclose( $fh );
+
+		wfProfileOut( __METHOD__ );
 
 		return $this->status;
 	}
