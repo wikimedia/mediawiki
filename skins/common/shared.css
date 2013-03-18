@@ -21,12 +21,14 @@
 
 /* Most input fields should be in site direction */
 .sitedir-ltr textarea,
-.sitedir-ltr input {
+.sitedir-ltr input,
+.sitedir-ltr select {
 	/* @noflip */
 	direction: ltr;
 }
 .sitedir-rtl textarea,
-.sitedir-rtl input {
+.sitedir-rtl input,
+.sitedir-rtl select {
 	/* @noflip */
 	direction: rtl;
 }
