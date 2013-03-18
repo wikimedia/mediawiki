@@ -84,12 +84,14 @@ abstract class WebInstallerPage {
 
 		if ( $continue ) {
 			// Fake submit button for enter keypress (bug 26267)
+			// Give grep a chance to find the usages: config-continue
 			$s .= Xml::submitButton( wfMessage( "config-$continue" )->text(),
 				array( 'name' => "enter-$continue", 'style' =>
 					'visibility:hidden;overflow:hidden;width:1px;margin:0' ) ) . "\n";
 		}
 
 		if ( $back ) {
+			// Give grep a chance to find the usages: config-back
 			$s .= Xml::submitButton( wfMessage( "config-$back" )->text(),
 				array(
 					'name' => "submit-$back",
@@ -98,6 +100,7 @@ abstract class WebInstallerPage {
 		}
 
 		if ( $continue ) {
+			// Give grep a chance to find the usages: config-continue
 			$s .= Xml::submitButton( wfMessage( "config-$continue" )->text(),
 				array(
 					'name' => "submit-$continue",
@@ -452,6 +455,8 @@ class WebInstaller_DBConnect extends WebInstallerPage {
 		$settings = '';
 		$defaultType = $this->getVar( 'wgDBtype' );
 
+		// Give grep a chance to find the usages:
+		// config-support-mysql, config-support-postgres, config-support-oracle, config-support-sqlite
 		$dbSupport = '';
 		foreach( $this->parent->getDBTypes() as $type ) {
 			$link = DatabaseBase::factory( $type )->getSoftwareLink();
@@ -474,6 +479,8 @@ class WebInstaller_DBConnect extends WebInstallerPage {
 				) .
 				"</li>\n";
 
+			// Give grep a chance to find the usages:
+			// config-header-mysql, config-header-postgres, config-header-oracle, config-header-sqlite
 			$settings .=
 				Html::openElement( 'div', array( 'id' => 'DB_wrapper_' . $type,
 						'class' => 'dbWrapper' ) ) .
@@ -647,6 +654,8 @@ class WebInstaller_Name extends WebInstallerPage {
 				'label' => 'config-site-name',
 				'help' => $this->parent->getHelpBox( 'config-site-name-help' )
 			) ) .
+			// Give grep a chance to find the usages:
+			// config-ns-site-name, config-ns-generic, config-ns-other
 			$this->parent->getRadioSet( array(
 				'var' => '_NamespaceType',
 				'label' => 'config-project-namespace',
@@ -688,6 +697,8 @@ class WebInstaller_Name extends WebInstallerPage {
 			) ) .
 			$this->getFieldSetEnd() .
 			$this->parent->getInfoBox( wfMessage( 'config-almost-done' )->text() ) .
+			// Give grep a chance to find the usages:
+			// config-optional-continue, config-optional-skip
 			$this->parent->getRadioSet( array(
 				'var' => '_SkipOptional',
 				'itemLabelPrefix' => 'config-optional-',
@@ -831,6 +842,9 @@ class WebInstaller_Options extends WebInstallerPage {
 		$this->startForm();
 		$this->addHTML(
 			# User Rights
+			// Give grep a chance to find the usages:
+			// config-profile-wiki, config-profile-no-anon,
+			// config-profile-fishbowl, config-profile-private
 			$this->parent->getRadioSet( array(
 				'var' => '_RightsProfile',
 				'label' => 'config-profile',
@@ -840,6 +854,10 @@ class WebInstaller_Options extends WebInstallerPage {
 			$this->parent->getInfoBox( wfMessage( 'config-profile-help' )->plain() ) .
 
 			# Licensing
+			// Give grep a chance to find the usages:
+			// config-license-cc-by, config-license-cc-by-sa, config-license-cc-by-nc-sa,
+			// config-license-cc-0, config-license-pd, config-license-gfdl,
+			// config-license-none, config-license-cc-choose
 			$this->parent->getRadioSet( array(
 				'var' => '_LicenseCode',
 				'label' => 'config-license',
@@ -966,6 +984,8 @@ class WebInstaller_Options extends WebInstallerPage {
 			# Advanced settings
 			$this->getFieldSetStart( 'config-advanced-settings' ) .
 			# Object cache settings
+			// Give grep a chance to find the usages:
+			// config-cache-none, config-cache-accel, config-cache-memcached
 			$this->parent->getRadioSet( array(
 				'var' => 'wgMainCacheType',
 				'label' => 'config-cache-options',
@@ -1092,6 +1112,10 @@ class WebInstaller_Options extends WebInstallerPage {
 				return false;
 			}
 		} elseif ( in_array( $code, array_keys( $this->parent->licenses ) ) ) {
+			// Give grep a chance to find the usages:
+			// config-license-cc-by, config-license-cc-by-sa, config-license-cc-by-nc-sa,
+			// config-license-cc-0, config-license-pd, config-license-gfdl,
+			// config-license-none, config-license-cc-choose
 			$entry = $this->parent->licenses[$code];
 			if ( isset( $entry['text'] ) ) {
 				$this->setVar( 'wgRightsText', $entry['text'] );
