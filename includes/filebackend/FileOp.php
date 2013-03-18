@@ -457,7 +457,7 @@ abstract class FileOp {
 class CreateFileOp extends FileOp {
 	protected function allowedParams() {
 		return array( array( 'content', 'dst' ),
-			array( 'overwrite', 'overwriteSame', 'disposition', 'headers' ) );
+			array( 'overwrite', 'overwriteSame', 'headers' ) );
 	}
 
 	protected function doPrecheck( array &$predicates ) {
@@ -521,7 +521,7 @@ class StoreFileOp extends FileOp {
 	 */
 	protected function allowedParams() {
 		return array( array( 'src', 'dst' ),
-			array( 'overwrite', 'overwriteSame', 'disposition', 'headers' ) );
+			array( 'overwrite', 'overwriteSame', 'headers' ) );
 	}
 
 	/**
@@ -596,7 +596,7 @@ class CopyFileOp extends FileOp {
 	 */
 	protected function allowedParams() {
 		return array( array( 'src', 'dst' ),
-			array( 'overwrite', 'overwriteSame', 'ignoreMissingSource', 'disposition' ) );
+			array( 'overwrite', 'overwriteSame', 'ignoreMissingSource', 'headers' ) );
 	}
 
 	/**
@@ -673,7 +673,7 @@ class MoveFileOp extends FileOp {
 	 */
 	protected function allowedParams() {
 		return array( array( 'src', 'dst' ),
-			array( 'overwrite', 'overwriteSame', 'ignoreMissingSource', 'disposition' ) );
+			array( 'overwrite', 'overwriteSame', 'ignoreMissingSource', 'headers' ) );
 	}
 
 	/**
@@ -813,7 +813,7 @@ class DescribeFileOp extends FileOp {
 	 * @return array
 	 */
 	protected function allowedParams() {
-		return array( array( 'src' ), array( 'disposition', 'headers' ) );
+		return array( array( 'src' ), array( 'headers' ) );
 	}
 
 	/**
