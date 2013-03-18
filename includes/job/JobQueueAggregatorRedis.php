@@ -25,6 +25,7 @@
  * Class to handle tracking information about all queues using PhpRedis
  *
  * @ingroup JobQueue
+ * @ingroup Redis
  * @since 1.21
  */
 class JobQueueAggregatorRedis extends JobQueueAggregator {

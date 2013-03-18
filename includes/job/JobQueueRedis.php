@@ -25,6 +25,7 @@
  * Class to handle job queues stored in Redis
  *
  * @ingroup JobQueue
+ * @ingroup Redis
  * @since 1.21
  */
 class JobQueueRedis extends JobQueue {
