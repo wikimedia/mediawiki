@@ -975,7 +975,7 @@ $3 هۆکاری "$2" خستوەتەڕوو',
 بۆ لاپەڕەی وەک ئەوە هەوڵی [[Special:Search|گەڕان لەسەر ویکی]] بدە.',
 
 # Revision deletion
-'rev-deleted-comment' => '(پوختەی دەستکاری سڕایەوە)',
+'rev-deleted-comment' => '(کورتەی دەستکاری سڕایەوە)',
 'rev-deleted-user' => '(ناوی بەکارهێنەر سڕایەوە)',
 'rev-deleted-event' => '(لۆگی کردەوە سڕایەوە)',
 'rev-deleted-text-permission' => "ئەم پێداچوونەوەیە لەم پەڕەیە '''سڕدراوەتەوە'''.

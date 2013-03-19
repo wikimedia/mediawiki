@@ -718,7 +718,7 @@ Vläicht hutt Dir Äert Passwuert scho geännert oder en neit temporäert Passwu
 
 # Special:PasswordReset
 'passwordreset' => 'Passwuert zrécksetzen',
-'passwordreset-text' => 'Fëllt dëse Formulaire aus fir eng E-Mail Erënnerung vun den Detailer vun Ärem Benotzerkont ze kréien.',
+'passwordreset-text' => 'Fëllt dëse Formulaire aus fir Äert Passwuert zréckzesetzen.',
 'passwordreset-legend' => 'Passwuert zrécksetzen',
 'passwordreset-disabled' => "D'Zerécksetze vum Passwuert ass op dëser Wiki ausgeschalt.",
 'passwordreset-pretext' => '{{PLURAL:$1||Gitt eng vun dësen Donnéeën an}}',
@@ -3792,8 +3792,8 @@ Den ugefrote Fichier gëtt direkt gewise respektiv mat enger verbonner Applikati
 'logentry-move-move_redir' => "$1 huet d'Säit $3 op $4 geréckelt an dobäi gouf eng Viruleedung iwwerschriwwen",
 'logentry-move-move_redir-noredirect' => "$1 huet d'Säit $3 op $4 geréckelt an dobäi gouf eng Viruleedung iwwerschriwwen an et et gouf keng nei Viruleedung ugeluecht",
 'logentry-patrol-patrol' => "$1 huet d'Versioun $4 vun der Säit $3 als nogekuckt markéiert",
-'logentry-patrol-patrol-auto' => "$1 huet d'Versioun $4 vun der Säit $3 automatesch als nogekuckt markéiert",
-'logentry-newusers-newusers' => 'De Benotzerkont $1 gouf ugeluecht',
+'logentry-patrol-patrol-auto' => "$1 huet d'Versioun $4 vun der Säit $3 automatesch als nogekuckt  {{GENDER:$2|markéiert}}",
+'logentry-newusers-newusers' => 'De Benotzerkont $1 gouf {{GENDER:$2|ugeluecht}}',
 'logentry-newusers-create' => 'De Benotzerkont $1 gouf ugeluecht',
 'logentry-newusers-create2' => 'De Benotzerkont $3 gouf vum $1 ugeluecht',
 'logentry-newusers-byemail' => "De Benotzerkont $3 gouf vum $1 ugeluecht an d'Passwuert gouf per E-Mail geschéckt.",

@@ -4104,7 +4104,6 @@ Es ist daher zu erwägen die Datendatei an gänzlich anderer Stelle abzulegen, b
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
-	'config-type-ibm_db2' => 'IBM DB2',
 	'config-support-info' => 'MediaWiki unterstützt die folgenden Datenbanksysteme:
 
 $1
@@ -4114,12 +4113,10 @@ Sofern nicht das Datenbanksystem angezeigt wird, das verwendet werden soll, gibt
 	'config-support-postgres' => '* $1 ist ein beliebtes Open-Source-Datenbanksystem und eine Alternative zu MySQL ([http://www.php.net/manual/de/pgsql.installation.php Anleitung zur Kompilierung von PHP mit PostgreSQL-Unterstützung]). Es gibt allerdings einige kleinere Implementierungsfehler, so dass von der Nutzung in einer Produktivumgebung abgeraten wird.',
 	'config-support-sqlite' => '* $1 ist ein verschlanktes Datenbanksystem, das auch gut unterstützt wird ([http://www.php.net/manual/de/pdo.installation.php Anleitung zur Kompilierung von PHP mit SQLite-Unterstützung], verwendet PHP Data Objects (PDO))',
 	'config-support-oracle' => '* $1 ist eine kommerzielle Unternehmensdatenbank ([http://www.php.net/manual/en/oci8.installation.php Anleitung zur Kompilierung von PHP mit OCI8-Unterstützung (en)])',
-	'config-support-ibm_db2' => '* $1 ist eine kommerzielle Unternehmensdatenbank ([http://www.php.net/manual/en/ibm-db2.installation.php PHP mit IBM-DB2-Support kompilieren])',
 	'config-header-mysql' => 'MySQL-Einstellungen',
 	'config-header-postgres' => 'PostgreSQL-Einstellungen',
 	'config-header-sqlite' => 'SQLite-Einstellungen',
 	'config-header-oracle' => 'Oracle-Einstellungen',
-	'config-header-ibm_db2' => 'IBM DB2-Einstellungen',
 	'config-invalid-db-type' => 'Unzulässiges Datenbanksystem',
 	'config-missing-db-name' => 'Bei „Datenbankname“ muss ein Wert angegeben werden.',
 	'config-missing-db-host' => 'Bei „Datenbankhost“ muss ein Wert angegeben werden.',
@@ -4213,7 +4210,6 @@ Dies ist effizienter als der UTF-8-Modus von MySQL und ermöglicht so die Verwen
 
 Im '''UTF-8-Modus''' wird MySQL den Zeichensatz der Daten erkennen und sie richtig anzeigen und konvertieren,
 allerdings können keine Zeichen außerhalb des [//de.wikipedia.org/wiki/Basic_Multilingual_Plane#Gliederung_in_Ebenen_und_Bl.C3.B6cke ''Basic Multilingual Plane'' (BMP)] gespeichert werden.",
-	'config-ibm_db2-low-db-pagesize' => "Die DB2-Datenbank verfügt über einen Standardtabellenraum mit einer unzureichenden Seitengröße. Die Seitengröße muss '''32 000'' oder größer sein.",
 	'config-site-name' => 'Name des Wikis:',
 	'config-site-name-help' => 'Er wird in der Titelleiste des Browsers, wie auch verschiedenen anderen Stellen, genutzt.',
 	'config-site-name-blank' => 'Den Namen des Wikis angeben.',
@@ -4335,7 +4331,7 @@ Die Lizenz ist daher jetzt manuell einzugeben.',
 Es wird sehr empfohlen es für mittelgroße bis große Wikis zu nutzen, aber auch für kleine Wikis ergeben sich erkennbare Geschwindigkeitsverbesserungen.',
 	'config-cache-none' => 'Kein Objektcaching (es wird keine Funktion entfernt, allerdings kann dies die Geschwindigkeit größerer Wikis negativ beeinflussen)',
 	'config-cache-accel' => 'Objektcaching von PHP (APC, XCache oder WinCache)',
-	'config-cache-memcached' => 'Memchached Cacheserver nutzen (erfordert einen zusätzliche Installationsvorgang mitsamt Konfiguration)',
+	'config-cache-memcached' => 'Memcached Cacheserver nutzen (erfordert einen zusätzlichen Installationsvorgang mitsamt Konfiguration)',
 	'config-memcached-servers' => 'Memcached Cacheserver',
 	'config-memcached-help' => 'Liste der für Memcached nutzbaren IP-Adressen.
 Es sollte eine je Zeile mitsamt des vorgesehenen Ports angegeben werden. Beispiele:
