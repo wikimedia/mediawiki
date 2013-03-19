@@ -1038,29 +1038,18 @@ Parameters:
 'yourname' => "{{doc-important|<nowiki>{{</nowiki>[[Gender|GENDER]]<nowiki>}}</nowiki> is '''NOT''' supported.}}
 In user preferences.
 {{Identical|Username}}",
-'userlogin-yourname' => "In Agora user login & create account forms, label for username field",
-'userlogin-yourname-ph' => "Placeholder text in Agora userlogin/create account form field.",
 'yourpassword' => 'In user preferences
 
 {{Identical|Password}}',
-'createacct-helpusername-url' => 'The URL of a page providing username guidance for the wiki.',
-'createacct-helpusername-link' => 'Message in Agora create account form providing guidance for username.',
-'userlogin-yourpassword' => "In Agora user login & create account forms, label for password field",
-'userlogin-yourpassword-ph' => "Placeholder text in Agora userlogin form for password field.",
-'createacct-yourpassword-ph' => "Placeholder text in Agora create account form for password field.",
 'yourpasswordagain' => 'In user preferences',
-'createacct-yourpasswordagain' => 'In Agora create account form, label for field to re-enter password',
-'createacct-yourpasswordagain-ph' => 'Placeholder text in Agora create account form for re-enter password field.',
 'remembermypassword' => 'A check box in [[Special:UserLogin]]
 
 {{Identical|Remember my login on this computer}}',
-'userlogin-remembermypassword' => 'The text for a check box in the Agora-style [[Special:UserLogin]]',
-'userlogin-signwithsecure'   => 'Text of link to HTTPS login form',
 'securelogin-stick-https' => 'Used as label for checkbox.',
 'yourdomainname' => 'Used as label for listbox.',
 'password-change-forbidden' => 'Error message shown when an external authentication source does not allow the password to be changed.',
 'externaldberror' => 'This message is thrown when a valid attempt to change the wiki password for a user fails because of a database error or an error from an external system.',
-'login' => "Shown as the caption of the button at [[Special:UserLogin]], and also to anonymous users in the upper right corner of the page when they can't create an account (otherwise the message {{msg-mw|nav-login-createaccount}} is shown there). Also the title of the Agora login special page, which does not combine Log in & Create account.
+'login' => "Shown as the caption of the button at [[Special:UserLogin]], and also to anonymous users in the upper right corner of the page when they can't create an account (otherwise the message {{msg-mw|nav-login-createaccount}} is shown there).
 
 See also:
 * {{msg-mw|Login}}
@@ -1087,8 +1076,6 @@ See also:
 'notloggedin' => 'This message is displayed in the standard skin when not logged in. The message is placed above the login link in the top right corner of pages.
 
 {{Identical|Not logged in}}',
-'userlogin-noaccount' => 'In the Agora-style [[Special:Userlogin]] form, this is the text prior to button inviting user to join project',
-'userlogin-joinproject' => 'Text of button inviting user to create an account',
 'nologin' => 'A message shown in the log in form. Parameters:
 * $1 - a link to the account creation form, and the text of it is {{msg-mw|Nologinlink}}',
 'nologinlink' => 'Text of the link to the account creation form. Before that link, the message {{msg-mw|Nologin}} appears.
@@ -1102,25 +1089,8 @@ It is also used on the top of the page for logged out users, where it appears ne
 'gotaccountlink' => 'Text of the link to the log in form. Before that link, the message {{msg-mw|Gotaccount}} appears.
 {{Identical|Log in}}',
 'userlogin-resetlink' => 'Used on the login page.',
-'helplogin-url' => 'Description: The URL the provides information on logging in to the wiki.',
-'userlogin-helplink' => 'Wiki text linking to login help',
-'createacct-join' => 'Subheading of create account form encouraging user to join the wiki.',
-'createacct-emailrequired'  => 'Label in Agora create account form for email field when it is required.',
-'createacct-emailoptional' => 'Label in Agora create account form for email field when it is optional.',
-'createacct-email-ph'  => 'Placeholder in Agora create account form for email field.',
 'createaccountmail' => 'Button text for creating a new account and sending the new password to the specified e-mail address directly, as used on [[Special:UserLogin/signup]] if creating accounts by e-mail is allowed.',
 'createaccountreason' => '{{Identical|Reason}}',
-'createacct-reason' => 'In Agora create account form, label for field to enter reason to create an account when already logged-in.',
-'createacct-benefit-heading' => 'In Agora create account form, the heading for the section describing the benefits of creating an account.',
-'createacct-benefit-icon1' => 'In Agora create account form, the CSS style for the div next to the first benefit. If you replace this you will need probably need to adjust CSS.',
-'createacct-benefit-head1' => 'In Agora create account form, the text in the heading for the first benefit. Do not edit the magic word; if you replace it you will probably need to adjust CSS.',
-'createacct-benefit-body1' => 'In Agora create account form, the text for the first benefit.',
-'createacct-benefit-icon2' => 'In Agora create account form, the CSS style for the div next to the second benefit. If you replace this you will need probably need to adjust CSS.',
-'createacct-benefit-head2' => 'In Agora create account form, the text in the heading for the second benefit. Do not edit the magic word; if you replace it you will probably need to adjust CSS.',
-'createacct-benefit-body2' => 'In Agora create account form, the text for the second benefit.',
-'createacct-benefit-icon3' => 'In Agora create account form, the CSS style for the div next to the third benefit. If you replace this you will need probably need to adjust CSS.',
-'createacct-benefit-head3' => 'In Agora create account form, the text in the heading for the third benefit. Do not edit the magic word; if you replace it you will probably need to adjust CSS.',
-'createacct-benefit-body3' => 'In Agora create account form, the text for the third benefit.',
 'badretype' => 'Used as error message when the new password and its retype do not match.',
 'userexists' => 'Used as error message in creating a user account.',
 'loginerror' => 'Used as title of error message.',
@@ -2480,8 +2450,6 @@ This option lets your time zone setting use the one that is used on the wiki (of
 'prefs-emailconfirm-label' => 'Sub-heading in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.',
 'prefs-textboxsize' => "Header for the box specifying the size of the editing window, displayed on the 'editing' tab of the [[Special:Preferences|user preferences]] special page.",
 'youremail' => 'Label of the e-mail text box of the "E-mail options" section of [[Special:Preferences]].
-Also used on create account form.
-
 {{Identical|E-mail}}',
 'username' => 'Username field in [[Special:Preferences]]. $1 is the current user name for GENDER distinction (depends on sex setting).
 
