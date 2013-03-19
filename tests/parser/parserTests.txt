@@ -9367,6 +9367,17 @@ http://example.com<pre>junk</pre>
 
 !!end
 
+!! test
+Parsoid-only extension testing
+!! options
+parsoid
+extensions="testextension"
+!! input
+<testextension data-blah="DataBlah">Some content</testextension>
+!! result
+<p data-options="{&quot;data-blah&quot;:&quot;DataBlah&quot;}">Some content</p>
+!! end
+
 !!test
 Fuzz testing: image with bogus manual thumbnail
 !!input
