@@ -252,10 +252,22 @@ class SpecialSearch extends SpecialPage {
 		// fetch search results
 		$rewritten = $search->replacePrefixes( $term );
 
-		$titleMatches = $search->searchTitle( $rewritten );
-		if( !( $titleMatches instanceof SearchResultTooMany ) ) {
-			$textMatches = $search->searchText( $rewritten );
+		$poolSearchResults = new PoolWorkSearchResults( $search, $rewritten );
+		if ( !$poolSearchResults->execute() ) {
+			$error = $poolSearchResults->getError();
+			if ( !$error->isGood() ) {
+				$this->getOutput()->clearHTML(); // for release() errors
+				$this->getOutput()->enableClientCache( false );
+				$this->getOutput()->setRobotPolicy( 'noindex,nofollow' );
+
+				$errortext = $error->getWikiText( false, 'view-pool-error' );
+				$this->getOutput()->addWikiText( '<div class="errorbox">' . $errortext . '</div>' );
+			}
+			wfProfileOut( __METHOD__ );
+			return;
 		}
+		$titleMatches = $poolSearchResults->getTitleMatches();
+		$textMatches = $poolSearchResults->getTextMatches();
 
 		// did you mean... suggestions
 		if( $textMatches && $textMatches->hasSuggestion() ) {
@@ -1163,5 +1175,47 @@ class SpecialSearch extends SpecialPage {
 
 	protected function getGroupName() {
 		return 'redirects';
+	}
+}
+
+class PoolWorkSearchResults extends PoolCounterWork {
+	/**
+	 * @var SearchEngine
+	 */
+	private $searchEngine;
+
+	/**
+	 * @var String
+	 */
+	private $searchTerm;
+
+	protected $cacheKey = 'mysearch';
+
+	/**
+	 * Search results
+	 */
+	private $titleMatches = null;
+	private $textMatches = null;
+
+	public function __construct( SearchEngine $engine, $term ) {
+		$this->searchEngine = $engine;
+		$this->searchTerm = $term;
+		parent::__construct( 'SearchResults', $this->cacheKey . ':searchterm:' . $term );
+	}
+
+	function doWork() {
+		$this->titleMatches = $this->searchEngine->searchTitle( $this->searchTerm );
+		if( !( $this->titleMatches instanceof SearchResultTooMany ) ) {
+			$this->textMatches = $this->searchEngine->searchText( $this->searchTerm );
+		}
+		return true;
+	}
+
+	public function getTitleMatches() {
+		return $this->titleMatches;
+	}
+
+	public function getTextMatches() {
+		return $this->textMatches;
 	}
 }
