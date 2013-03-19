@@ -69,14 +69,12 @@ class Http {
 		$req = MWHttpRequest::factory( $url, $options );
 		$status = $req->execute();
 
+		$content = false;
 		if ( $status->isOK() ) {
 			$content = $req->getContent();
-			wfProfileOut( __METHOD__ . "-$method" );
-			return $content;
-		} else {
-			wfProfileOut( __METHOD__ . "-$method" );
-			return false;
 		}
+		wfProfileOut( __METHOD__ . "-$method" );
+		return $content;
 	}
 
 	/**
@@ -629,7 +627,7 @@ class MWHttpRequest {
 			}
 		}
 
-		wfProfileIn( __METHOD__ );
+		wfProfileOut( __METHOD__ );
 	}
 
 	/**
