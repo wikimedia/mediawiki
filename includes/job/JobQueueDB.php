@@ -412,7 +412,7 @@ class JobQueueDB extends JobQueue {
 	public function recycleAndDeleteStaleJobs() {
 		global $wgMemc;
 
-		$now = time();
+		$now = wfTimestampNow();
 		list( $dbw, $scope ) = $this->getMasterDB();
 		$count = 0; // affected rows
 
