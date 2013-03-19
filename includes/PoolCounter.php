@@ -141,6 +141,11 @@ abstract class PoolCounterWork {
 	protected $cacheable = false; //Does this override getCachedWork() ?
 
 	/**
+	 * @var Status|bool
+	 */
+	protected $error = false;
+
+	/**
 	 * @param string $type The type of PoolCounter to use
 	 * @param string $key Key that identifies the queue this work is placed on
 	 */
@@ -176,7 +181,17 @@ abstract class PoolCounterWork {
 	 * @return bool
 	 */
 	function error( $status ) {
+		$this->error = $status;
 		return false;
+	}
+
+	/**
+	 * Get a Status object in case of error or false otherwise
+	 *
+	 * @return Status|bool
+	 */
+	public function getError() {
+		return $this->error;
 	}
 
 	/**

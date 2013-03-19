@@ -877,6 +877,11 @@ $1',
 'pool-timeout'       => 'Timeout waiting for the lock',
 'pool-queuefull'     => 'Pool queue is full',
 'pool-errorunknown'  => 'Unknown error',
+'search-pool-error'    => 'Sorry, the servers are overloaded at the moment.
+Too many users are trying to search.
+Please wait a while before you try to access search.
+
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'About {{SITENAME}}',

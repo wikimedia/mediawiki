@@ -3324,11 +3324,6 @@ class PoolWorkArticleView extends PoolCounterWork {
 	private $isDirty = false;
 
 	/**
-	 * @var Status|bool
-	 */
-	private $error = false;
-
-	/**
 	 * Constructor
 	 *
 	 * @param $page Page
@@ -3369,15 +3364,6 @@ class PoolWorkArticleView extends PoolCounterWork {
 	 */
 	public function getIsDirty() {
 		return $this->isDirty;
-	}
-
-	/**
-	 * Get a Status object in case of error or false otherwise
-	 *
-	 * @return Status|bool
-	 */
-	public function getError() {
-		return $this->error;
 	}
 
 	/**
@@ -3470,14 +3456,5 @@ class PoolWorkArticleView extends PoolCounterWork {
 			$this->isDirty = true;
 			return true;
 		}
-	}
-
-	/**
-	 * @param $status Status
-	 * @return bool
-	 */
-	function error( $status ) {
-		$this->error = $status;
-		return false;
 	}
 }
