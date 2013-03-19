@@ -49,7 +49,9 @@ class LoginForm extends SpecialPage {
 	var $mSkipCookieCheck, $mReturnToQuery, $mToken, $mStickHTTPS;
 	var $mType, $mReason, $mRealName;
 	var $mAbortLoginErrorMsg = 'login-abort-generic';
-	private $mLoaded = false;
+	private $mLoaded = false, $mSecureLoginUrl;
+	// TODO (spage 2013-02-13)  Remove old forms by, say, release 1.22.
+	private $mShowAgora;
 
 	/**
 	 * @var ExternalUser
@@ -134,11 +136,21 @@ class LoginForm extends SpecialPage {
 			$this->mReturnTo = '';
 			$this->mReturnToQuery = '';
 		}
+
+		$this->mShowAgora = $this->shouldShowAgora();
 	}
 
 	function getDescription() {
-		return $this->msg( $this->getUser()->isAllowed( 'createaccount' ) ?
-			'userlogin' : 'userloginnocreate' )->text();
+		if ( !$this->getUser()->isAllowed( 'createaccount' ) ) {
+			return $this->msg( 'userloginnocreate' )->text();
+		}
+		if ( $this->mShowAgora ) {
+			return $this->msg( $this->mType === 'signup' ?
+					'createaccount' : 'login'
+				)->text();
+		} else {
+			return $this->msg( 'userlogin' )->text();
+		}
 	}
 
 	public function execute( $par ) {
@@ -149,10 +161,10 @@ class LoginForm extends SpecialPage {
 		$this->load();
 		$this->setHeaders();
 
+		// If logging in and not on HTTPS, either redirect to it or offer a link.
 		global $wgSecureLogin;
 		if (
 			$this->mType !== 'signup' &&
-			$wgSecureLogin &&
 			WebRequest::detectProtocol() !== 'https'
 		) {
 			$title = $this->getFullTitle();
@@ -162,8 +174,17 @@ class LoginForm extends SpecialPage {
 				'wpStickHTTPS' => $this->mStickHTTPS
 			);
 			$url = $title->getFullURL( $query, false, PROTO_HTTPS );
-			$this->getOutput()->redirect( $url );
-			return;
+			if ( $wgSecureLogin ) {
+				$this->getOutput()->redirect( $url );
+				return;
+			} else {
+				// A wiki without https login support should set wgServer to
+				// http://somehost, in which case the secure URL generated
+				// above actually won't be PROTO_HTTPS.
+				if ( strncmp($url, PROTO_HTTPS, strlen( PROTO_HTTPS ) ) === 0 ) {
+					$this->mSecureLoginUrl = $url;
+				}
+			}
 		}
 
 		if ( $par == 'signup' ) { # Check for [[Special:Userlogin/signup]]
@@ -1024,6 +1045,32 @@ class LoginForm extends SpecialPage {
 	}
 
 	/**
+	 * Whether to show "Agora"-style forms.
+	 * ?useAgora=1 forces Agora style, ?useAgora=0 forces old-style,
+	 * otherwise consult $wgAgoraUserLogin or $wgAgoraCreateAccount.
+	 * @return Boolean
+	 */
+	private function shouldShowAgora() {
+		global $wgRequest, $wgAgoraUserLogin, $wgAgoraCreateAccount;
+		$override = $wgRequest->getBool( 'useAgora' );
+		if ( $override !== null ) {
+			return $override;
+		}
+		if ( $this->mType == 'signup' ) {
+			return (boolean) $wgAgoraCreateAccount;
+		} else {
+			return (boolean) $wgAgoraUserLogin;
+		}
+	}
+
+	/**
+	 */
+	private function isAgoraExtensionCSSAvailable() {
+		global $wgResourceModules;
+		return array_key_exists( 'ext.agora.base', $wgResourceModules );
+	}
+
+	/**
 	 * @private
 	 */
 	function mainLoginForm( $msg, $msgtype = 'error' ) {
@@ -1034,6 +1081,7 @@ class LoginForm extends SpecialPage {
 
 		$titleObj = $this->getTitle();
 		$user = $this->getUser();
+		$out = $this->getOutput();
 
 		if ( $this->mType == 'signup' ) {
 			// Block signup here if in readonly. Keeps user from
@@ -1060,16 +1108,27 @@ class LoginForm extends SpecialPage {
 		}
 
 		if ( $this->mType == 'signup' ) {
-			$template = new UsercreateTemplate();
+			$template = $this->mShowAgora
+				? new UsercreateTemplateAgora() : new UsercreateTemplate();
 			$q = 'action=submitlogin&type=signup';
 			$linkq = 'type=login';
 			$linkmsg = 'gotaccount';
-			$this->getOutput()->addModules( 'mediawiki.special.userlogin.signup' );
+			$out->addModules( 'mediawiki.special.userlogin.signup' );
 		} else {
-			$template = new UserloginTemplate();
+			$template = $this->mShowAgora
+				? new UserloginTemplateAgora() : new UserloginTemplate();
 			$q = 'action=submitlogin&type=login';
 			$linkq = 'type=signup';
 			$linkmsg = 'nologin';
+		}
+		if ( $this->mShowAgora ) {
+			$out->addModules( array(
+				// core Agora look, what gets loaded is dependent on skin.
+				'mediawiki.ui',
+				$this->mType === 'signup' ? 
+					'mediawiki.special.createaccount.agora' :
+					'mediawiki.special.userlogin.agora'
+			) );
 		}
 
 		if ( $this->mReturnTo !== '' ) {
@@ -1082,16 +1141,23 @@ class LoginForm extends SpecialPage {
 			$linkq .= $returnto;
 		}
 
-		# Don't show a "create account" link if the user can't
+		# Don't show a "create account" link if the user can't.
 		if( $this->showCreateOrLoginLink( $user ) ) {
 			# Pass any language selection on to the mode switch link
 			if( $wgLoginLanguageSelector && $this->mLanguage ) {
 				$linkq .= '&uselang=' . $this->mLanguage;
 			}
-			$link = Html::element( 'a', array( 'href' => $titleObj->getLocalURL( $linkq ) ),
-				$this->msg( $linkmsg . 'link' )->text() ); # Calling either 'gotaccountlink' or 'nologinlink'
+			if ( !$this->mShowAgora ) {
+				$link = Html::element( 'a', array( 'href' => $titleObj->getLocalURL( $linkq ) ),
+					$this->msg( $linkmsg . 'link' )->text() ); # Calling either 'gotaccountlink' or 'nologinlink'
 
-			$template->set( 'link', $this->msg( $linkmsg )->rawParams( $link )->parse() );
+					$template->set( 'link', $this->msg( $linkmsg )->rawParams( $link )->parse() );
+
+			} else {
+				// Supply hyperlink, login template creates the button.
+				// (The template 'link' key is obsolete in the Agora design.)
+				$template->set( 'createOrLoginHref', $titleObj->getLocalURL( $linkq ) );
+			}
 		} else {
 			$template->set( 'link', '' );
 		}
@@ -1151,8 +1217,9 @@ class LoginForm extends SpecialPage {
 			}
 		}
 
+		$template->set( 'secureLoginUrl', $this->mSecureLoginUrl );
 		// Use loginend-https for HTTPS requests if it's not blank, loginend otherwise
-		// Ditto for signupend
+		// Ditto for signupend.  Agora forms use neither.
 		$usingHTTPS = WebRequest::detectProtocol() == 'https';
 		$loginendHTTPS = $this->msg( 'loginend-https' );
 		$signupendHTTPS = $this->msg( 'signupend-https' );
@@ -1175,7 +1242,6 @@ class LoginForm extends SpecialPage {
 			wfRunHooks( 'UserLoginForm', array( &$template ) );
 		}
 
-		$out = $this->getOutput();
 		$out->disallowUserJs(); // just in case...
 		$out->addTemplate( $template );
 	}

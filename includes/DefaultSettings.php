@@ -2847,6 +2847,16 @@ $wgVectorUseSimpleSearch = true;
 $wgVectorUseIconWatch = false;
 
 /**
+ * Use "Agora" design for Special:Userlogin.
+ */
+$wgUseAgoraUserLogin = false;
+
+/**
+ * Use "Agora" design for account creation (Special:Userlogin?type=signup).
+ */
+$wgUseAgoraCreateAccount = false;
+
+/**
  * Display user edit counts in various prominent places.
  */
 $wgEdititis = false;
