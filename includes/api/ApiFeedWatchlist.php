@@ -86,6 +86,11 @@ class ApiFeedWatchlist extends ApiBase {
 			if ( $params['wlexcludeuser'] !== null ) {
 				$fauxReqArr['wlexcludeuser'] = $params['wlexcludeuser'];
 			}
+			// Only list revisions that meet the 'wlshow' criteria
+			if ( $params['wlshow'] !== null ) {
+				$fauxReqArr['wlshow'] = $params['wlshow'];
+			}
+
 
 			// Support linking to diffs instead of article
 			if ( $params['linktodiffs'] ) {
