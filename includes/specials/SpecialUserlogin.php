@@ -1047,19 +1047,20 @@ class LoginForm extends SpecialPage {
 	/**
 	 * Whether to show "Agora"-style forms.
 	 * ?useAgora=1 forces Agora style, ?useAgora=0 forces old-style,
-	 * otherwise consult $wgAgoraUserLogin or $wgAgoraCreateAccount.
+	 * otherwise consult $wgUseAgoraUserLogin or $wgUseAgoraCreateAccount.
 	 * @return Boolean
 	 */
 	private function shouldShowAgora() {
-		global $wgRequest, $wgAgoraUserLogin, $wgAgoraCreateAccount;
-		$override = $wgRequest->getBool( 'useAgora' );
-		if ( $override !== null ) {
-			return $override;
+		global $wgRequest, $wgUseAgoraUserLogin, $wgUseAgoraCreateAccount;
+
+		if ( $wgRequest->getCheck( 'useAgora' ) ) {
+			return $wgRequest->getBool( 'useAgora' );
 		}
+
 		if ( $this->mType == 'signup' ) {
-			return (boolean) $wgAgoraCreateAccount;
+			return (boolean) $wgUseAgoraCreateAccount;
 		} else {
-			return (boolean) $wgAgoraUserLogin;
+			return (boolean) $wgUseAgoraUserLogin;
 		}
 	}
 
@@ -1125,7 +1126,7 @@ class LoginForm extends SpecialPage {
 			$out->addModules( array(
 				// core Agora look, what gets loaded is dependent on skin.
 				'mediawiki.ui',
-				$this->mType === 'signup' ? 
+				$this->mType === 'signup' ?
 					'mediawiki.special.createaccount.agora' :
 					'mediawiki.special.userlogin.agora'
 			) );
