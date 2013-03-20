@@ -165,12 +165,10 @@ class MysqlUpdater extends DatabaseUpdater {
 			array( 'doLogUsertextPopulation' ), # listed separately from the previous update because 1.16 was released without this update
 			array( 'doLogSearchPopulation' ),
 			array( 'addTable', 'l10n_cache',                        'patch-l10n_cache.sql' ),
-			array( 'addTable', 'external_user',                     'patch-external_user.sql' ),
 			array( 'addIndex', 'log_search',    'ls_field_val',     'patch-log_search-rename-index.sql' ),
 			array( 'addIndex', 'change_tag',    'change_tag_rc_tag', 'patch-change_tag-indexes.sql' ),
 			array( 'addField', 'redirect',      'rd_interwiki',     'patch-rd_interwiki.sql' ),
 			array( 'doUpdateTranscacheField' ),
-			array( 'renameEuWikiId' ),
 			array( 'doUpdateMimeMinorField' ),
 
 			// 1.17
@@ -844,15 +842,6 @@ class MysqlUpdater extends DatabaseUpdater {
 		}
 
 		return $this->applyPatch( 'patch-pl-tl-il-unique.sql', false, "Making pl_namespace, tl_namespace and il_to indices UNIQUE" );
-	}
-
-	protected function renameEuWikiId() {
-		if ( $this->db->fieldExists( 'external_user', 'eu_local_id', __METHOD__ ) ) {
-			$this->output( "...eu_wiki_id already renamed to eu_local_id.\n" );
-			return;
-		}
-
-		$this->applyPatch( 'patch-eu_local_id.sql', false, "Renaming eu_wiki_id -> eu_local_id" );
 	}
 
 	protected function doUpdateMimeMinorField() {

@@ -714,7 +714,6 @@ abstract class DatabaseBase implements DatabaseType {
 	 * an extension, et cetera). Do not use this to connect to the MediaWiki
 	 * database. Example uses in core:
 	 * @see LoadBalancer::reallyOpenConnection()
-	 * @see ExternalUser_MediaWiki::initFromCond()
 	 * @see ForeignDBRepo::getMasterDB()
 	 * @see WebInstaller_DBConnect::execute()
 	 *

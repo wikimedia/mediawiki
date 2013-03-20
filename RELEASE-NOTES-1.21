@@ -326,6 +326,10 @@ changes to languages because of Bugzilla reports.
   - ShowStats -> ShowSiteStats.
 * BREAKING CHANGE: (bug 38244) Removed the mediawiki.api.titleblacklist module
   and moved it to the TitleBlacklist extension.
+* BREAKING CHANGE: The "ExternalAuth" authentication subsystem was removed, along
+  with its associated globals of $wgExternalAuthType, $wgExternalAuthConf, 
+  $wgAutocreatePolicy and $wgAllowPrefChange. Affected users are encouraged to
+  use AuthPlugin for external authentication/authorization needs.
 
 == Compatibility ==
 

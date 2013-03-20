@@ -921,20 +921,10 @@ class User {
 	 * @return Bool True if the user is logged in, false otherwise.
 	 */
 	private function loadFromSession() {
-		global $wgExternalAuthType, $wgAutocreatePolicy;
-
 		$result = null;
 		wfRunHooks( 'UserLoadFromSession', array( $this, &$result ) );
 		if ( $result !== null ) {
 			return $result;
-		}
-
-		if ( $wgExternalAuthType && $wgAutocreatePolicy == 'view' ) {
-			$extUser = ExternalUser::newFromCookie();
-			if ( $extUser ) {
-				# TODO: Automatically create the user here (or probably a bit
-				# lower down, in fact)
-			}
 		}
 
 		$request = $this->getRequest();
@@ -4385,8 +4375,6 @@ class User {
 	 * @todo document
 	 */
 	protected function saveOptions() {
-		global $wgAllowPrefChange;
-
 		$this->loadOptions();
 
 		// Not using getOptions(), to keep hidden preferences in database
@@ -4398,7 +4386,6 @@ class User {
 			return;
 		}
 
-		$extuser = ExternalUser::newFromUser( $this );
 		$userId = $this->getId();
 		$insert_rows = array();
 		foreach( $saveOptions as $key => $value ) {
@@ -4412,16 +4399,6 @@ class User {
 						'up_property' => $key,
 						'up_value' => $value,
 					);
-			}
-			if ( $extuser && isset( $wgAllowPrefChange[$key] ) ) {
-				switch ( $wgAllowPrefChange[$key] ) {
-					case 'local':
-					case 'message':
-						break;
-					case 'semiglobal':
-					case 'global':
-						$extuser->setPref( $key, $value );
-				}
 			}
 		}
 
