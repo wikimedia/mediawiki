@@ -261,9 +261,10 @@ abstract class FileBackend {
 	 *   - ignoreMissingSource : The operation will simply succeed and do
 	 *                           nothing if the source file does not exist.
 	 *   - overwrite           : Any destination file will be overwritten.
-	 *   - overwriteSame       : An error will not be given if a file already
-	 *                           exists at the destination that has the same
-	 *                           contents as the new contents to be written there.
+	 *   - overwriteSame       : If a file already exists at the destination with the
+	 *                           same contents, then do nothing to the destination file
+	 *                           instead of giving an error. This does not compare headers.
+	 *                           This option is ignored if 'overwrite' is already provided.
 	 *   - headers             : If supplied, the backend will return these headers when
 	 *                           GETs/HEADs of the destination file are made. Header values
 	 *                           should be smaller than 256 bytes, often options or numbers.

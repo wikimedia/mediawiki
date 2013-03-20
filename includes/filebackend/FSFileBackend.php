@@ -319,7 +319,7 @@ class FSFileBackend extends FileBackendStore {
 			$status->value = new FSFileOpHandle( $this, $params, 'Copy', $cmd, $dest );
 		} else { // immediate write
 			$this->trapWarnings();
-			$ok = copy( $source, $dest );
+			$ok = ( $source === $dest ) ?: copy( $source, $dest );
 			$this->untrapWarnings();
 			// In some cases (at least over NFS), copy() returns true when it fails
 			if ( !$ok || ( filesize( $source ) !== filesize( $dest ) ) ) {
@@ -383,7 +383,7 @@ class FSFileBackend extends FileBackendStore {
 			$status->value = new FSFileOpHandle( $this, $params, 'Move', $cmd );
 		} else { // immediate write
 			$this->trapWarnings();
-			$ok = rename( $source, $dest );
+			$ok = ( $source === $dest ) ?: rename( $source, $dest );
 			$this->untrapWarnings();
 			clearstatcache(); // file no longer at source
 			if ( !$ok ) {

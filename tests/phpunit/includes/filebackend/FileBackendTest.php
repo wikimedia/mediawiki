@@ -817,32 +817,66 @@ class FileBackendTest extends MediaWikiTestCase {
 			"$base/unittest-cont1/e/fileB.a",
 			"$base/unittest-cont1/e/fileC.a"
 		);
-		$ops = array();
+		$createOps = array();
 		$purgeOps = array();
 		foreach ( $files as $path ) {
 			$status = $this->prepare( array( 'dir' => dirname( $path ) ) );
 			$this->assertGoodStatus( $status,
 				"Preparing $path succeeded without warnings ($backendName)." );
-			$ops[] = array( 'op' => 'create', 'dst' => $path, 'content' => mt_rand(0, 50000) );
+			$createOps[] = array( 'op' => 'create', 'dst' => $path, 'content' => mt_rand(0, 50000) );
+			$copyOps[] = array( 'op' => 'copy', 'src' => $path, 'dst' => "$path-2" );
+			$moveOps[] = array( 'op' => 'move', 'src' => "$path-2", 'dst' => "$path-3" );
 			$purgeOps[] = array( 'op' => 'delete', 'src' => $path );
+			$purgeOps[] = array( 'op' => 'delete', 'src' => "$path-3" );
 		}
 		$purgeOps[] = array( 'op' => 'null' );
-		$status = $this->backend->doQuickOperations( $ops );
-		$this->assertGoodStatus( $status,
-			"Creation of source files succeeded ($backendName)." );
 
+		$this->assertGoodStatus(
+			$this->backend->doQuickOperations( $createOps ),
+			"Creation of source files succeeded ($backendName)." );
 		foreach ( $files as $file ) {
 			$this->assertTrue( $this->backend->fileExists( array( 'src' => $file ) ),
 				"File $file exists." );
 		}
 
-		$status = $this->backend->doQuickOperations( $purgeOps );
-		$this->assertGoodStatus( $status,
-			"Quick deletion of source files succeeded ($backendName)." );
+		$this->assertGoodStatus(
+			$this->backend->doQuickOperations( $copyOps ),
+			"Quick copy of source files succeeded ($backendName)." );
+		foreach ( $files as $file ) {
+			$this->assertTrue( $this->backend->fileExists( array( 'src' => "$file-2" ) ),
+				"File $file-2 exists." );
+		}
 
+		$this->assertGoodStatus(
+			$this->backend->doQuickOperations( $moveOps ),
+			"Quick move of source files succeeded ($backendName)." );
+		foreach ( $files as $file ) {
+			$this->assertTrue( $this->backend->fileExists( array( 'src' => "$file-3" ) ),
+				"File $file-3 move in." );
+			$this->assertFalse( $this->backend->fileExists( array( 'src' => "$file-2" ) ),
+				"File $file-2 moved away." );
+		}
+
+		$this->assertGoodStatus(
+			$this->backend->quickCopy( array( 'src' => $files[0], 'dst' => $files[0] ) ),
+			"Copy of file {$files[0]} over itself succeeded ($backendName)." );
+		$this->assertTrue( $this->backend->fileExists( array( 'src' => $files[0] ) ),
+			"File {$files[0]} still exists." );
+
+		$this->assertGoodStatus(
+			$this->backend->quickMove( array( 'src' => $files[0], 'dst' => $files[0] ) ),
+			"Move of file {$files[0]} over itself succeeded ($backendName)." );
+		$this->assertTrue( $this->backend->fileExists( array( 'src' => $files[0] ) ),
+			"File {$files[0]} still exists." );
+
+		$this->assertGoodStatus(
+			$this->backend->doQuickOperations( $purgeOps ),
+			"Quick deletion of source files succeeded ($backendName)." );
 		foreach ( $files as $file ) {
 			$this->assertFalse( $this->backend->fileExists( array( 'src' => $file ) ),
 				"File $file purged." );
+			$this->assertFalse( $this->backend->fileExists( array( 'src' => "$file-3" ) ),
+				"File $file-3 purged." );
 		}
 	}
 
