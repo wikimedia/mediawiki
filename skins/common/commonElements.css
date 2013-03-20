@@ -230,6 +230,9 @@ form {
 textarea {
 	width: 100%;
 	padding: .1em;
+	-webkit-box-sizing: border-box; /* Safari */
+	-moz-box-sizing: border-box;/*Firefox*/
+	box-sizing: border-box;
 }
 select {
 	vertical-align: top;
