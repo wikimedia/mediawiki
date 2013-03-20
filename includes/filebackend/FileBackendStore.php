@@ -190,10 +190,17 @@ abstract class FileBackendStore extends FileBackend {
 	final public function copyInternal( array $params ) {
 		wfProfileIn( __METHOD__ );
 		wfProfileIn( __METHOD__ . '-' . $this->name );
-		$status = $this->doCopyInternal( $params );
-		$this->clearCache( array( $params['dst'] ) );
-		if ( !isset( $params['dstExists'] ) || $params['dstExists'] ) {
-			$this->deleteFileCache( $params['dst'] ); // persistent cache
+		$nsrc = FileBackend::normalizeStoragePath( $params['src'] );
+		$ndst = Filebackend::normalizeStoragePath( $params['dst'] );
+		if ( $nsrc === $ndst ) {
+			// Just update any headers but don't touch the data
+			$status = $this->doDescribeInternal( $params );
+		} else {
+			$status = $this->doCopyInternal( $params );
+			$this->clearCache( array( $params['dst'] ) );
+			if ( !isset( $params['dstExists'] ) || $params['dstExists'] ) {
+				$this->deleteFileCache( $params['dst'] ); // persistent cache
+			}
 		}
 		wfProfileOut( __METHOD__ . '-' . $this->name );
 		wfProfileOut( __METHOD__ );
@@ -259,11 +266,18 @@ abstract class FileBackendStore extends FileBackend {
 	final public function moveInternal( array $params ) {
 		wfProfileIn( __METHOD__ );
 		wfProfileIn( __METHOD__ . '-' . $this->name );
-		$status = $this->doMoveInternal( $params );
-		$this->clearCache( array( $params['src'], $params['dst'] ) );
-		$this->deleteFileCache( $params['src'] ); // persistent cache
-		if ( !isset( $params['dstExists'] ) || $params['dstExists'] ) {
-			$this->deleteFileCache( $params['dst'] ); // persistent cache
+		$nsrc = FileBackend::normalizeStoragePath( $params['src'] );
+		$ndst = Filebackend::normalizeStoragePath( $params['dst'] );
+		if ( $nsrc === $ndst ) {
+			// Just update any headers but don't touch the data
+			$status = $this->doDescribeInternal( $params );
+		} else {
+			$status = $this->doMoveInternal( $params );
+			$this->clearCache( array( $params['src'], $params['dst'] ) );
+			$this->deleteFileCache( $params['src'] ); // persistent cache
+			if ( !isset( $params['dstExists'] ) || $params['dstExists'] ) {
+				$this->deleteFileCache( $params['dst'] ); // persistent cache
+			}
 		}
 		wfProfileOut( __METHOD__ . '-' . $this->name );
 		wfProfileOut( __METHOD__ );

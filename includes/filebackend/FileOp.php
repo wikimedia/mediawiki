@@ -489,11 +489,14 @@ class CreateFileOp extends FileOp {
 	 * @return Status
 	 */
 	protected function doAttempt() {
-		if ( !$this->destSameAsSource ) {
+		if ( $this->destSameAsSource ) {
+			// Just update the destination file headers
+			$params = array( 'src' => $this->params['dst'] ) + $this->params;
+			return $this->backend->describeInternal( $this->setFlags( $params ) );
+		} else {
 			// Create the file at the destination
 			return $this->backend->createInternal( $this->setFlags( $this->params ) );
 		}
-		return Status::newGood();
 	}
 
 	/**
@@ -561,11 +564,14 @@ class StoreFileOp extends FileOp {
 	 * @return Status
 	 */
 	protected function doAttempt() {
-		// Store the file at the destination
-		if ( !$this->destSameAsSource ) {
+		if ( $this->destSameAsSource ) {
+			// Just update the destination file headers
+			$params = array( 'src' => $this->params['dst'] ) + $this->params;
+			return $this->backend->describeInternal( $this->setFlags( $params ) );
+		} else {
+			// Store the file at the destination
 			return $this->backend->storeInternal( $this->setFlags( $this->params ) );
 		}
-		return Status::newGood();
 	}
 
 	/**
@@ -638,14 +644,14 @@ class CopyFileOp extends FileOp {
 	 * @return Status
 	 */
 	protected function doAttempt() {
-		// Do nothing if the src/dst paths are the same
-		if ( $this->params['src'] !== $this->params['dst'] ) {
+		if ( $this->params['src'] === $this->params['dst'] || $this->destSameAsSource ) {
+			// Just update the destination file headers
+			$param = array( 'src' => $this->params['dst'] ) + $this->params;
+			return $this->backend->describeInternal( $this->setFlags( $this->params ) );
+		} else {
 			// Copy the file into the destination
-			if ( !$this->destSameAsSource ) {
-				return $this->backend->copyInternal( $this->setFlags( $this->params ) );
-			}
+			return $this->backend->copyInternal( $this->setFlags( $this->params ) );
 		}
-		return Status::newGood();
 	}
 
 	/**
@@ -717,18 +723,19 @@ class MoveFileOp extends FileOp {
 	 * @return Status
 	 */
 	protected function doAttempt() {
-		// Do nothing if the src/dst paths are the same
-		if ( $this->params['src'] !== $this->params['dst'] ) {
-			if ( !$this->destSameAsSource ) {
-				// Move the file into the destination
-				return $this->backend->moveInternal( $this->setFlags( $this->params ) );
-			} else {
-				// Just delete source as the destination needs no changes
-				$params = array( 'src' => $this->params['src'] );
-				return $this->backend->deleteInternal( $this->setFlags( $params ) );
-			}
+		if ( $this->params['src'] === $this->params['dst'] ) {
+			// Just update the destination file headers
+			$params = array( 'src' => $this->params['dst'] ) + $this->params;
+			return $this->backend->describeInternal( $this->setFlags( $this->params ) );
+		} elseif ( $this->destSameAsSource && empty( $this->params['headers'] ) ) {
+			// Just delete the source as the destination file needs no changes
+			$params = array( 'src' => $this->params['src'], 'async' => $this->async );
+			return $this->backend->deleteInternal( $this->setFlags( $params ) );
+		} else {
+			// Move the file into the destination
+			return $this->backend->moveInternal( $this->setFlags( $this->params ) );
 		}
-		return Status::newGood();
+		return $status;
 	}
 
 	/**
