@@ -8,7 +8,7 @@ has_binary () {
 }
 
 if [ `id -u` -ne 0 ]; then
-    echo '*** ERROR' Must be root to run
+    echo '*** ERROR: Must be root to run'
     exit 1
 fi
 
