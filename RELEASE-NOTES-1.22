@@ -27,6 +27,10 @@ changes to languages because of Bugzilla reports.
 * redirect.php was removed. It was unused.
 * BREAKING CHANGE: Legacy skins Simple, MySkin and Standard were all removed.
   Nostalgia was moved to an extension.
+* BREAKING CHANGE: The "ExternalAuth" authentication subsystem was removed, along
+  with its associated globals of $wgExternalAuthType, $wgExternalAuthConf, 
+  $wgAutocreatePolicy and $wgAllowPrefChange. Affected users are encouraged to
+  use AuthPlugin for external authentication/authorization needs.
 
 == Compatibility ==
 

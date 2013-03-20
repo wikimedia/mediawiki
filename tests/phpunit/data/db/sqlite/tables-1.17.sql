@@ -151,11 +151,6 @@ CREATE TABLE /*_*/externallinks (
 CREATE INDEX /*i*/el_from ON /*_*/externallinks (el_from, el_to(40));
 CREATE INDEX /*i*/el_to ON /*_*/externallinks (el_to(60), el_from);
 CREATE INDEX /*i*/el_index ON /*_*/externallinks (el_index(60));
-CREATE TABLE /*_*/external_user (
-  eu_local_id int unsigned NOT NULL PRIMARY KEY,
-  eu_external_id varchar(255) binary NOT NULL
-) /*$wgDBTableOptions*/;
-CREATE UNIQUE INDEX /*i*/eu_external_id ON /*_*/external_user (eu_external_id);
 CREATE TABLE /*_*/langlinks (
   ll_from int unsigned NOT NULL default 0,
   ll_lang varbinary(20) NOT NULL default '',

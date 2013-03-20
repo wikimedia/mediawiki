@@ -52,11 +52,6 @@ class LoginForm extends SpecialPage {
 	private $mLoaded = false;
 
 	/**
-	 * @var ExternalUser
-	 */
-	private $mExtUser = null;
-
-	/**
 	 * @ var WebRequest
 	 */
 	private $mOverrideRequest = null;
@@ -480,14 +475,6 @@ class LoginForm extends SpecialPage {
 
 		$wgAuth->initUser( $u, $autocreate );
 
-		if ( $this->mExtUser ) {
-			$this->mExtUser->linkToLocal( $u->getId() );
-			$email = $this->mExtUser->getPref( 'emailaddress' );
-			if ( $email && !$this->mEmail ) {
-				$u->setEmail( $email );
-			}
-		}
-
 		$u->setOption( 'rememberpassword', $this->mRemember ? 1 : 0 );
 		$u->saveSettings();
 
@@ -550,10 +537,6 @@ class LoginForm extends SpecialPage {
 			return self::SUCCESS;
 		}
 
-		$this->mExtUser = ExternalUser::newFromName( $this->mUsername );
-
-		# TODO: Allow some magic here for invalid external names, e.g., let the
-		# user choose a different wiki name.
 		$u = User::newFromName( $this->mUsername );
 		if( !( $u instanceof User ) || !User::isUsableName( $u->getName() ) ) {
 			return self::ILLEGAL;
@@ -568,16 +551,6 @@ class LoginForm extends SpecialPage {
 				$isAutoCreated = true;
 			}
 		} else {
-			global $wgExternalAuthType, $wgAutocreatePolicy;
-			if ( $wgExternalAuthType && $wgAutocreatePolicy != 'never'
-				&& is_object( $this->mExtUser )
-				&& $this->mExtUser->authenticate( $this->mPassword )
-			) {
-				# The external user and local user have the same name and
-				# password, so we assume they're the same.
-				$this->mExtUser->linkToLocal( $u->getID() );
-			}
-
 			$u->load();
 		}
 
@@ -696,40 +669,22 @@ class LoginForm extends SpecialPage {
 	 * @return integer Status code
 	 */
 	function attemptAutoCreate( $user ) {
-		global $wgAuth, $wgAutocreatePolicy;
+		global $wgAuth;
 
 		if ( $this->getUser()->isBlockedFromCreateAccount() ) {
 			wfDebug( __METHOD__ . ": user is blocked from account creation\n" );
 			return self::CREATE_BLOCKED;
 		}
-
-		/**
-		 * If the external authentication plugin allows it, automatically cre-
-		 * ate a new account for users that are externally defined but have not
-		 * yet logged in.
-		 */
-		if ( $this->mExtUser ) {
-			# mExtUser is neither null nor false, so use the new ExternalAuth
-			# system.
-			if ( $wgAutocreatePolicy == 'never' ) {
-				return self::NOT_EXISTS;
-			}
-			if ( !$this->mExtUser->authenticate( $this->mPassword ) ) {
-				return self::WRONG_PLUGIN_PASS;
-			}
-		} else {
-			# Old AuthPlugin.
-			if ( !$wgAuth->autoCreate() ) {
-				return self::NOT_EXISTS;
-			}
-			if ( !$wgAuth->userExists( $user->getName() ) ) {
-				wfDebug( __METHOD__ . ": user does not exist\n" );
-				return self::NOT_EXISTS;
-			}
-			if ( !$wgAuth->authenticate( $user->getName(), $this->mPassword ) ) {
-				wfDebug( __METHOD__ . ": \$wgAuth->authenticate() returned false, aborting\n" );
-				return self::WRONG_PLUGIN_PASS;
-			}
+		if ( !$wgAuth->autoCreate() ) {
+			return self::NOT_EXISTS;
+		}
+		if ( !$wgAuth->userExists( $user->getName() ) ) {
+			wfDebug( __METHOD__ . ": user does not exist\n" );
+			return self::NOT_EXISTS;
+		}
+		if ( !$wgAuth->authenticate( $user->getName(), $this->mPassword ) ) {
+			wfDebug( __METHOD__ . ": \$wgAuth->authenticate() returned false, aborting\n" );
+			return self::WRONG_PLUGIN_PASS;
 		}
 
 		$abortError = '';

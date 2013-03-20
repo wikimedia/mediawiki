@@ -96,7 +96,6 @@ $wgAutoloadLocalClasses = array(
 	'ExternalStoreHttp' => 'includes/externalstore/ExternalStoreHttp.php',
 	'ExternalStoreMedium' => 'includes/externalstore/ExternalStoreMedium.php',
 	'ExternalStoreMwstore' => 'includes/externalstore/ExternalStoreMwstore.php',
-	'ExternalUser' => 'includes/ExternalUser.php',
 	'FakeTitle' => 'includes/FakeTitle.php',
 	'Fallback' => 'includes/Fallback.php',
 	'FatalError' => 'includes/Exception.php',
@@ -542,11 +541,6 @@ $wgAutoloadLocalClasses = array(
 	'UnifiedDiffFormatter' => 'includes/diff/DairikiDiff.php',
 	'WikiDiff3' => 'includes/diff/WikiDiff3.php',
 	'WordLevelDiff' => 'includes/diff/DairikiDiff.php',
-
-	# includes/extauth
-	'ExternalUser_Hardcoded' => 'includes/extauth/Hardcoded.php',
-	'ExternalUser_MediaWiki' => 'includes/extauth/MediaWiki.php',
-	'ExternalUser_vB' => 'includes/extauth/vB.php',
 
 	# includes/filebackend
 	'FileBackendGroup' => 'includes/filebackend/FileBackendGroup.php',
