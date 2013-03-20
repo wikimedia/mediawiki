@@ -276,10 +276,12 @@ abstract class FileBackendStore extends FileBackend {
 	 */
 	protected function doMoveInternal( array $params ) {
 		unset( $params['async'] ); // two steps, won't work here :)
+		$nsrc = FileBackend::normalizeStoragePath( $params['src'] );
+		$ndst = Filebackend::normalizeStoragePath( $params['dst'] );
 		// Copy source to dest
 		$status = $this->copyInternal( $params );
-		if ( $status->isOK() ) {
-			// Delete source (only fails due to races or medium going down)
+		if ( $nsrc !== $ndst && $status->isOK() ) {
+			// Delete source (only fails due to races or network problems)
 			$status->merge( $this->deleteInternal( array( 'src' => $params['src'] ) ) );
 			$status->setResult( true, $status->value ); // ignore delete() errors
 		}
@@ -303,9 +305,13 @@ abstract class FileBackendStore extends FileBackend {
 	final public function describeInternal( array $params ) {
 		wfProfileIn( __METHOD__ );
 		wfProfileIn( __METHOD__ . '-' . $this->name );
-		$status = $this->doDescribeInternal( $params );
-		$this->clearCache( array( $params['src'] ) );
-		$this->deleteFileCache( $params['src'] ); // persistent cache
+		if ( count( $params['headers'] ) ) {
+			$status = $this->doDescribeInternal( $params );
+			$this->clearCache( array( $params['src'] ) );
+			$this->deleteFileCache( $params['src'] ); // persistent cache
+		} else {
+			$status = Status::newGood(); // nothing to do
+		}
 		wfProfileOut( __METHOD__ . '-' . $this->name );
 		wfProfileOut( __METHOD__ );
 		return $status;
