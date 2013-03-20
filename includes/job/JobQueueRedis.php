@@ -399,13 +399,12 @@ LUA;
 	 * @throws MWException
 	 */
 	protected function doAck( Job $job ) {
+		if ( !isset( $job->metadata['uuid'] ) ) {
+			throw new MWException( "Job of type '{$job->getType()}' has no UUID." );
+		}
 		if ( $this->claimTTL > 0 ) {
 			$conn = $this->getConnection();
 			try {
-				// Get the exact field map this Job came from, regardless of whether
-				// the job was transformed into a DuplicateJob or anything of the sort.
-				$item = $job->metadata['sourceFields'];
-
 				static $script =
 <<<LUA
 				-- Unmark the job as claimed
@@ -419,7 +418,7 @@ LUA;
 						$this->getQueueKey( 'z-claimed' ), # KEYS[1]
 						$this->getQueueKey( 'h-attempts' ), # KEYS[2]
 						$this->getQueueKey( 'h-data' ), # KEYS[3]
-						$item['uuid'] # ARGV[1]
+						$job->metadata['uuid'] # ARGV[1]
 					),
 					3 # number of first argument(s) that are keys
 				);
@@ -539,7 +538,7 @@ LUA;
 			}
 			$title = Title::makeTitle( $item['namespace'], $item['title'] );
 			$job = Job::factory( $item['type'], $title, $item['params'] );
-			$job->metadata['sourceFields'] = $item;
+			$job->metadata['uuid'] = $item['uuid'];
 			return $job;
 		} catch ( RedisException $e ) {
 			$this->throwRedisException( $this->server, $conn, $e );
@@ -709,7 +708,7 @@ LUA;
 		$title = Title::makeTitleSafe( $fields['namespace'], $fields['title'] );
 		if ( $title ) {
 			$job = Job::factory( $fields['type'], $title, $fields['params'] );
-			$job->metadata['sourceFields'] = $fields;
+			$job->metadata['uuid'] = $fields['uuid'];
 			return $job;
 		}
 		return false;
