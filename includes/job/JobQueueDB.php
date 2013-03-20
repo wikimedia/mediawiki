@@ -250,6 +250,7 @@ class JobQueueDB extends JobQueue {
 			}
 			$job = Job::factory( $row->job_cmd, $title,
 				self::extractBlob( $row->job_params ), $row->job_id );
+			$job->metadata['id'] = $row->job_id;
 			$job->id = $row->job_id; // XXX: work around broken subclasses
 			break; // done
 		} while( true );
@@ -478,7 +479,7 @@ class JobQueueDB extends JobQueue {
 	 * @return Job|bool
 	 */
 	protected function doAck( Job $job ) {
-		if ( !$job->getId() ) {
+		if ( !isset( $job->metadata['id'] ) ) {
 			throw new MWException( "Job of type '{$job->getType()}' has no ID." );
 		}
 
@@ -487,7 +488,7 @@ class JobQueueDB extends JobQueue {
 
 		// Delete a row with a single DELETE without holding row locks over RTTs...
 		$dbw->delete( 'job',
-			array( 'job_cmd' => $this->type, 'job_id' => $job->getId() ), __METHOD__ );
+			array( 'job_cmd' => $this->type, 'job_id' => $job->metadata['id'] ), __METHOD__ );
 
 		return true;
 	}
@@ -573,6 +574,7 @@ class JobQueueDB extends JobQueue {
 					strlen( $row->job_params ) ? unserialize( $row->job_params ) : false,
 					$row->job_id
 				);
+				$job->metadata['id'] = $row->job_id;
 				$job->id = $row->job_id; // XXX: work around broken subclasses
 				return $job;
 			}
