@@ -837,7 +837,7 @@ x <div>foo</div> z
 !! end
 
 !! test
-Empty lines between block tags to test open p-tags are closed between the block tags
+Empty lines between lines with block tags
 !! input
 <div></div>
 
@@ -845,6 +845,12 @@ Empty lines between block tags to test open p-tags are closed between the block 
 <div></div>a
 
 b
+<div>a</div>b
+
+<div>b</div>d
+
+
+<div>e</div>
 !! result
 <div></div>
 <p><br />
@@ -852,6 +858,12 @@ b
 <div></div>a
 <p>b
 </p>
+<div>a</div>b
+<div>b</div>d
+<p><br />
+</p>
+<div>e</div>
+
 !! end
 
 ###
