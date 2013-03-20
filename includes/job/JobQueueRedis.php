@@ -52,6 +52,7 @@
  * made on the servers based on what queues are using it and what tolerance they have.
  *
  * @ingroup JobQueue
+ * @ingroup Redis
  * @since 1.21
  */
 class JobQueueRedis extends JobQueue {
