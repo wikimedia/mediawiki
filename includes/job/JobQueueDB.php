@@ -135,6 +135,39 @@ class JobQueueDB extends JobQueue {
 	}
 
 	/**
+	 * @see JobQueue::doGetAbandonedCount()
+	 * @return integer
+	 * @throws MWException
+	 */
+	protected function doGetAbandonedCount() {
+		global $wgMemc;
+
+		if ( $this->claimTTL <= 0 ) {
+			return 0; // no acknowledgements
+		}
+
+		$key = $this->getCacheKey( 'abandonedcount' );
+
+		$count = $wgMemc->get( $key );
+		if ( is_int( $count ) ) {
+			return $count;
+		}
+
+		list( $dbr, $scope ) = $this->getSlaveDB();
+		$count = (int)$dbr->selectField( 'job', 'COUNT(*)',
+			array(
+				'job_cmd' => $this->type,
+				"job_token != {$dbr->addQuotes( '' )}",
+				"job_attempts >= " . $dbr->addQuotes( $this->maxTries )
+			),
+			__METHOD__
+		);
+		$wgMemc->set( $key, $count, self::CACHE_TTL_SHORT );
+
+		return $count;
+	}
+
+	/**
 	 * @see JobQueue::doBatchPush()
 	 * @param array $jobs
 	 * @param $flags
