@@ -798,6 +798,8 @@ div#content a.external[href *=".pdf?"], div#content a.external[href *=".PDF?"],
 #bodyContent {
 	position: relative;
 	width: 100%;
+	box-sizing: border-box;
+	-moz-box-sizing:border-box; /* Firefox */
 }
 div#bodyContent {
 	line-height: 1.5em;
