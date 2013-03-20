@@ -3282,6 +3282,24 @@ Table with row followed by newlines and table heading
 
 !! end
 
+!! test
+Table with empty line following the start tag
+!! input
+{|
+
+|-
+| foo
+|}
+!! result
+<table>
+
+
+<tr>
+<td> foo
+</td></tr></table>
+
+!! end
+
 # FIXME: Preserve the attribute properly (with an empty string as value) in
 # the PHP parser. Parsoid implements the behavior below.
 !! test
