@@ -44,6 +44,7 @@
  * @author RmSilva
  * @author Rodrigo Calanca Nishino
  * @author SandroHc
+ * @author Sarilho1
  * @author Sir Lestaty de Lioncourt
  * @author Sérgio Ribeiro
  * @author Teles
@@ -845,7 +846,7 @@ Pode ter já alterado com sucesso a sua palavra-chave ou solicitado uma nova pal
 
 # Special:PasswordReset
 'passwordreset' => 'Repor palavra-chave',
-'passwordreset-text' => 'Preencha este formulário para recuperar os dados da sua conta por correio electrónico.',
+'passwordreset-text' => 'Preencha este formulário para repor a sua palavra-passe.',
 'passwordreset-legend' => 'Reiniciar a palavra-chave',
 'passwordreset-disabled' => 'O reinício da palavra-chave foi impossibilitado nesta wiki.',
 'passwordreset-pretext' => '{{PLURAL:$1||Introduza um dos dados abaixo}}',

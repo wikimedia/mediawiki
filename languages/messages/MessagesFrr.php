@@ -1510,9 +1510,9 @@ Feranerangen faan detdiar sidj wurd üüb detdiar list fäästhäälen.",
 'protect-locked-access' => "Din brükerkonto ferfäiget ai ouer da nüsie ruchte tu jü änring foon e sideschüts. Heer san da aktuäle sideschütsönjstalinge fon jü sid '''„$1“:'''",
 'protect-cascadeon' => 'Jüdeer sid as nütutids diilj foon e kaskaadenspäre. Jü as önj {{PLURAL:$1|jü füliende sid|da füliende side}} önjbünen, huk döör jü kaskaadenspäropsjoon schütsed {{PLURAL:$1|as|san}}. Di sideschütsstatus koon for jüdeer sid änred wårde, dåtdeer heet ouers nån influs aw jü kaskaadenspäre:',
 'protect-default' => 'Åle brükere',
-'protect-fallback' => 'Jü "$1"-beruchtiging as nüsi.',
-'protect-level-autoconfirmed' => 'Späring for naie än ai registriirde brükere',
-'protect-level-sysop' => 'Bloot administratoore',
+'protect-fallback' => 'Ferloof bluas för brükern mä "$1"-rochten.',
+'protect-level-autoconfirmed' => 'Ferloof bluas för registriaret brükern.',
+'protect-level-sysop' => 'Ferloof bluas för administratooren.',
 'protect-summary-cascade' => 'kaskadiirend',
 'protect-expiring' => 'bit $2, am e klook $3 (UTC)',
 'protect-cascade' => 'Kaskadiirende späre - åle önj jüdeer sid önjbünene forlååge wårde uk spärd.',
@@ -1668,7 +1668,7 @@ For di fål dåt dü dåt ai dääst, präiw aw [[Special:DoubleRedirects|dööw
 Dü bast deerfor feroontuurdlik, dåt links fortönj ap dåt koräkt muul wise.
 
 Jü sid wårt '''ai''' ferschääwen, wan dåt ål en sid ma di seelew noome jeeft,
-süwid jüdeer ai lääsi unti en widerliidjing suner färsjoonshistoori as. Dåtdeer bedjüset,
+süwid jüdeer ai bloots en widerliidjing suner färsjoonshistoori as. Dåtdeer bedjüset,
 dåt dü jü sid tubääg ferschüwe koost, wan dü en fäägel mååged heest. Dü koost
 deeriinj niinj sid ouerschriwe.
 

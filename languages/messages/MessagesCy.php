@@ -122,7 +122,7 @@ $messages = array(
 'tog-justify' => 'Unioni paragraffau',
 'tog-hideminor' => 'Cuddio golygiadau bychain yn rhestr y newidiadau diweddar',
 'tog-hidepatrolled' => 'Cuddio golygiadau sydd wedi derbyn ymweliad patrôl rhag y rhestr newidiadau diweddar',
-'tog-newpageshidepatrolled' => 'Cuddio tudalennau sydd wedi derbyn ymweliad patrôl rhag y rhestr dudalennau newydd',
+'tog-newpageshidepatrolled' => 'Cuddio tudalennau sydd wedi derbyn ymweliad patrôl rhag rhestr y tudalennau newydd',
 'tog-extendwatchlist' => "Ehangu'r rhestr wylio i ddangos pob golygiad yn hytrach na'r diweddaraf yn unig",
 'tog-usenewrc' => "Yn dangos newidiadau i un dudalen gyda'i gilydd - ar 'newidiadau diweddar' a'r 'rhestr wylio' (angen JavaScript)",
 'tog-numberheadings' => "Rhifo penawdau'n awtomatig",
@@ -586,8 +586,8 @@ Os mai rhywun arall a holodd am y cyfrinair, ynteu eich bod wedi cofio\'r hen gy
 'blocked-mailpassword' => 'Gan fod eich cyfeiriad IP wedi ei atal rhag golygu, ni ellir adfer y cyfrinair.',
 'eauthentsent' => 'Anfonwyd e-bost o gadarnhâd at y cyfeiriad a benwyd.
 Cyn y gellir anfon unrhywbeth arall at y cyfeiriad hwnnw rhaid i chi ddilyn y cyfarwyddiadau yn yr e-bost hwnnw er mwyn cadarnhau bod y cyfeiriad yn un dilys.',
-'throttled-mailpassword' => "Anfonwyd e-bost atoch i'ch atgoffa o'ch cyfrinair eisoes, yn ystod y $1 {{PLURAL:$1|awr|awr|awr|awr|awr|awr}} diwethaf.
-Er mwyn rhwystro camddefnydd, dim ond un e-bost i'ch atgoffa o'ch cyfrinair gaiff ei anfon bob yn $1 {{PLURAL:$1|awr|awr|awr|awr|awr|awr}}.",
+'throttled-mailpassword' => "Anfonwyd e-bost atoch eisoes i'ch atgoffa o'ch cyfrinair, a hynny yn ystod y $1 {{PLURAL:$1|awr}} diwethaf.
+Er mwyn rhwystro camddefnydd, dim ond un e-bost i'ch atgoffa o'ch cyfrinair gaiff ei anfon bob yn $1 {{PLURAL:$1|awr}}.",
 'mailerror' => 'Gwall wrth ddanfon yr e-bost: $1',
 'acct_creation_throttle_hit' => "Mae ymwelwyr sy'n defnyddio'ch cyfeiriad IP wedi creu $1 {{PLURAL:$1|cyfrif|cyfrif|gyfrif|chyfrif|chyfrif|cyfrif}} yn ystod y diwrnod diwethaf, sef y mwyafswm a ganiateir mewn diwrnod.
 Felly ni chaiff defnyddwyr sy'n defnyddio'r cyfeiriad IP hwn greu rhagor o gyfrifon ar hyn o bryd.",
@@ -636,7 +636,7 @@ Gall fod eich bod wedi llwyddo newid eich cyfrinair eisoes neu eich bod wedi gof
 
 # Special:PasswordReset
 'passwordreset' => 'Ailosod cyfrinair',
-'passwordreset-text' => "Cwblhewch y ffurflen hon er mwyn derbyn e-bost i'ch atgoffa o fanylion eich cyfrif.",
+'passwordreset-text' => 'Cwblhewch y ffurflen hon er mwyn ailosod eich cyfrinair.',
 'passwordreset-legend' => 'Ailosod y cyfrinair',
 'passwordreset-disabled' => 'Analluogwyd ailosod cyfrineiriau ar y wici hwn.',
 'passwordreset-pretext' => "{{PLURAL:$1|||Rhowch un o'r darnau o ddata isod|Rhowch un o'r darnau o ddata isod|Rhowch un o'r darnau o ddata isod|Rhowch un o'r darnau o ddata isod|Rhowch un o'r darnau o ddata isod}}",
@@ -646,23 +646,23 @@ Gall fod eich bod wedi llwyddo newid eich cyfrinair eisoes neu eich bod wedi gof
 'passwordreset-capture-help' => "Os y ticiwch y blwch hwn, bydd yr e-bost (gyda'r cyfrinair dros dro) yn cael ei ddangos i chi yn ogystal a chael ei anfon at y defnyddiwr.",
 'passwordreset-email' => 'Eich cyfeiriad e-bost:',
 'passwordreset-emailtitle' => 'Manylion eich cyfrif ar {{SITENAME}}',
-'passwordreset-emailtext-ip' => "Mae rhywun (chi yn ôl pob tebyg, o'r cyfeiriad IP $1) wedi gofyn am nodyn atgoffa o fanylion eich cyfrif ar {{SITENAME}} ($4). Mae'r {{PLURAL:$3|cyfrif|cyfrif|cyfrifon|cyfrifon|cyfrifon|cyfrifon}} canlynol ynghlwm wrth y cyfeiriad e-bost hwn:
+'passwordreset-emailtext-ip' => "Mae rhywun (chi yn ôl pob tebyg, o'r cyfeiriad IP $1) wedi gofyn am ailosod eich cyfrinair ar {{SITENAME}} ($4). Mae'r {{PLURAL:$3|cyfrif|cyfrif|cyfrifon}} canlynol ynghlwm wrth y cyfeiriad e-bost hwn:
 
 $2
 
-Bydd y {{PLURAL:$3||cyfrinair dros dro hwn|cyfrineiriau dros dro hyn|cyfrineiriau dros dro hyn|cyfrineiriau dros dro hyn|cyfrineiriau dros dro hyn}} yn dod i ben ymhen {{PLURAL:$5||diwrnod |deuddydd|tridiau|$5 diwrnod|$5 diwrnod}}. Dylech fewngofnodi nawr a dewis cyfrinair newydd. Os mai rhywun arall a ofynodd am ailosod y cyfrinair, neu os ydych wedi cofio eich cyfrinair gwreiddiol, neu os nad ydych am ei newid bellach, gallwch anwybyddu'r neges hon a pharhau i ddefnyddio eich hen gyfrinair.",
-'passwordreset-emailtext-user' => "Gofynodd y defnyddiwr $1 ar {{SITENAME}} am gael ei atgoffa o fanylion eich cyfrif ar {{SITENAME}}
-($4). Mae'r {{PLURAL:$3||cyfrif|cyfrifon|cyfrifon|cyfrifon|cyfrifon}} canlynol ynghlwm wrth y cyfeiriad e-bost hwn:
+Bydd y {{PLURAL:$3||cyfrinair dros dro hwn|cyfrineiriau dros dro hyn}} yn dod i ben ymhen {{PLURAL:$5||diwrnod |deuddydd|tridiau|$5 diwrnod}}. Dylech fewngofnodi nawr a dewis cyfrinair newydd. Os mai rhywun arall a ofynodd am ailosod y cyfrinair, neu os ydych wedi cofio eich cyfrinair gwreiddiol, neu os nad ydych am ei newid bellach, gallwch anwybyddu'r neges hon a pharhau i ddefnyddio eich hen gyfrinair.",
+'passwordreset-emailtext-user' => "Gofynodd y defnyddiwr $1 ar {{SITENAME}} am gael ailosod ei gyfrinair ar {{SITENAME}}
+($4). Mae'r {{PLURAL:$3||cyfrif|cyfrifon}} canlynol ynghlwm wrth y cyfeiriad e-bost hwn:
 
 $2
 
-Bydd y {{PLURAL:$3||cyfrinair|cyfrineiriau|cyfrineiriau|cyfrineiriau|cyfrineiriau}} dros dro hyn yn dod i ben ymhen {{PLURAL:$5||diwrnod|deuddydd|tridiau|$5 diwrnod|$5 diwrnod}}.
+Bydd y {{PLURAL:$3||cyfrinair|cyfrineiriau}} dros dro hyn yn dod i ben ymhen {{PLURAL:$5||diwrnod|deuddydd|tridiau|$5 diwrnod}}.
 Dylech fewngofnodi nawr a dewis cyfrinair newydd. Os mai rhywun arall a ofynodd am ailosod y cyfrinair, neu os ydych wedi cofio eich cyfrinair gwreiddiol, neu os nad ydych am ei newid bellach, gallwch anwybyddu'r neges hon a pharhau i ddefnyddio eich hen gyfrinair.",
 'passwordreset-emailelement' => "Enw'r defnyddiwr: $1
 Y cyfrinair dros dro: $2",
-'passwordreset-emailsent' => 'Anfonwyd nodyn atgoffa drwy e-bost.',
-'passwordreset-emailsent-capture' => 'Anfonwyd e-bost atgoffa, a ddangosir isod.',
-'passwordreset-emailerror-capture' => "Lluniwyd e-bost atgoffa fel ag a welir isod, ond ni lwyddwyd i'w anfon at y defnyddiwr: $1",
+'passwordreset-emailsent' => 'Anfonwyd e-bost i ailosod eich cyfrinair atoch.',
+'passwordreset-emailsent-capture' => "Anfonwyd e-bost i ailosod cyfrinair, ac fe'i ddangosir isod.",
+'passwordreset-emailerror-capture' => "Lluniwyd e-bost i ailosod cyfrinair fel ag a welir isod, ond ni lwyddwyd i'w anfon at y defnyddiwr: $1",
 
 # Special:ChangeEmail
 'changeemail' => 'Newid y cyfeiriad e-bost',
@@ -3718,12 +3718,12 @@ Dangosir delweddau ar eu maint llawn, dechreuir ffeiliau o fathau eraill yn unio
 'logentry-delete-delete' => 'Dileodd $1 y dudalen $3',
 'logentry-delete-restore' => 'Adferodd $1 y dudalen $3',
 'logentry-delete-event' => 'Newidiodd $1 ymddangosiad {{PLURAL:$5||cofnod lòg|$5 gofnod lòg|$5 chofnod lòg|$5 chofnod lòg|$5 cofnod lòg}} ar $3: $4',
-'logentry-delete-revision' => "Newidiodd $1 ymddangosiad {{PLURAL:$5||diwygiad|$5 ddiwygiad|$5 diwygiad|$5 diwygiad|$5 diwygiad}} o'r dudalen $3: $4",
+'logentry-delete-revision' => "Newidiodd $1 ymddangosiad {{PLURAL:$5||diwygiad|$5 ddiwygiad|$5 diwygiad}} o'r dudalen $3: $4",
 'logentry-delete-event-legacy' => 'Newidiodd $1 welededd cofnodion lòg ar $3',
 'logentry-delete-revision-legacy' => "Newidiodd $1 welededd diwygiadau o'r dudalen $3",
 'logentry-suppress-delete' => 'Cuddiodd $1 y dudalen $3',
 'logentry-suppress-event' => 'Yn y dirgel, newidiodd $1 ymddangosiad {{PLURAL:$5||cofnod lòg|$5 gofnod lòg|$5 chofnod lòg|$5 chofnod lòg|$5 cofnod lòg}} ar $3: $4',
-'logentry-suppress-revision' => "Yn y dirgel, newidiodd $1 ymddangosiad {{PLURAL:$5||diwygiad|$5 ddiwygiad|$5 diwygiad|$5 diwygiad|$5 diwygiad}} o'r dudalen $3: $4",
+'logentry-suppress-revision' => "Yn y dirgel, newidiodd $1 ymddangosiad {{PLURAL:$5||diwygiad|$5 ddiwygiad|$5 diwygiad}} o'r dudalen $3: $4",
 'logentry-suppress-event-legacy' => 'Newidiodd $1 welededd cofnodion lòg ar $3, yn y dirgel',
 'logentry-suppress-revision-legacy' => "Newidiodd $1 welededd diwygiadau o'r dudalen $3, yn y dirgel",
 'revdelete-content-hid' => 'cuddiwyd y cynnwys',
@@ -3734,8 +3734,8 @@ Dangosir delweddau ar eu maint llawn, dechreuir ffeiliau o fathau eraill yn unio
 'revdelete-uname-unhid' => 'datguddiwyd yr enw defnyddiwr',
 'revdelete-restricted' => 'cyfyngwyd ar allu gweinyddwyr i weld',
 'revdelete-unrestricted' => 'tynnwyd y cyfyngiadau ar allu gweinyddwyr i weld',
-'logentry-move-move' => 'Symudwyd y dudalen $3 i $4 gan $1',
-'logentry-move-move-noredirect' => 'Symudwyd y dudalen $3 i $4 gan $1 heb adael dolen ailgyfeirio',
+'logentry-move-move' => 'Symudodd $1 y dudalen $3 i $4',
+'logentry-move-move-noredirect' => 'Symudodd $1 y dudalen $3 i $4 heb adael dolen ailgyfeirio',
 'logentry-move-move_redir' => 'Symudwyd y dudalen $3 i $4 gan $1 dros y ddolen ailgyfeirio',
 'logentry-move-move_redir-noredirect' => 'Symudwyd y dudalen $3 i $4 gan $1 dros ddolen ailgyfeirio heb adael dolen ailgyfeirio newydd',
 'logentry-patrol-patrol' => "Rhoddodd $1 nod ar ddiwygiad $4 o'r dudalen $3 yn dynodi ei fod wedi derbyn ymweliad patrôl",

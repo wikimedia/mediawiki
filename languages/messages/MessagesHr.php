@@ -491,7 +491,7 @@ $messages = array(
 'history' => 'Stare izmjene',
 'history_short' => 'Stare izmjene',
 'updatedmarker' => 'obnovljeno od zadnjeg posjeta',
-'printableversion' => 'Verzija za ispis',
+'printableversion' => 'Inačica za ispis',
 'permalink' => 'Trajna poveznica',
 'print' => 'Ispiši',
 'view' => 'Vidi',
@@ -1987,7 +1987,7 @@ Možda želite urediti njen opis na [$2 stranici opisa datoteke].',
 'filedelete-success' => "Datoteka '''$1''' je izbrisana.",
 'filedelete-success-old' => "Inačica datoteke '''[[Media:$1|$1]]''' od $3, $2 je obrisana.",
 'filedelete-nofile' => "'''$1''' ne postoji.",
-'filedelete-nofile-old' => "Nema arhivirane verzije datoteke '''$1''' s zadanim parametrima.",
+'filedelete-nofile-old' => "Nema arhivirane inačice datoteke '''$1''' sa zadanim parametrima.",
 'filedelete-otherreason' => 'Drugi/dodatni razlog:',
 'filedelete-reason-otherlist' => 'Drugi razlog',
 'filedelete-reason-dropdown' => '*Česti razlozi brisanja
@@ -2832,7 +2832,7 @@ Molimo odaberite drugo ime.',
 
 # Export
 'export' => 'Izvezi stranice',
-'exporttext' => 'Možete izvesti tekst i prijašnje promjene jedne ili više stranica uklopljene u XML kod. U budućim verzijama MediaWiki softvera bit će moguće uvesti ovakvu stranicu u neki drugi wiki. Trenutačna verzija to još ne podržava.
+'exporttext' => 'Možete izvesti tekst i prijašnje promjene jedne ili više stranica uklopljene u kȏd XML. U budućim inačicama MediaWiki softvera bit će moguće uvesti ovakvu stranicu u neki drugi wiki. Trenutačna inačica to još ne podržava.
 
 Za izvoz stranica unesite njihove naslove u polje ispod, jedan naslov po retku, i označite želite li trenutačnu inačicu zajedno sa svim prijašnjima, ili samo trenutačnu inačicu s informacijom o zadnjoj promjeni.
 

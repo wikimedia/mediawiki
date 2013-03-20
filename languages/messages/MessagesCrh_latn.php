@@ -1040,7 +1040,7 @@ Eger bildirseñiz, saifelerdeki deñiştirmelerni kimniñ yapqanını köstermek
 'nchanges' => '$1 {{PLURAL:$1|deñiştirme}}',
 'recentchanges' => 'Soñki deñiştirmeler',
 'recentchanges-legend' => 'Soñki deñiştirmeler sazlamaları',
-'recentchanges-summary' => 'Yapılğan eñ soñki deñişikliklerni bu saifede körip olasıñız.',
+'recentchanges-summary' => 'Yapılğan eñ soñki deñişitirmelerni bu saifede körip olasıñız.',
 'recentchanges-feed-description' => 'Bu lenta vastasınen vikide soñki deñiştirmelerni közet.',
 'recentchanges-label-newpage' => 'Bu deñiştirme yañı bir saife yarattı',
 'recentchanges-label-minor' => 'Bu, kiçik bir deñiştirme',
