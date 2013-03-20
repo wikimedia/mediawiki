@@ -150,6 +150,7 @@ abstract class Job {
 
 	/**
 	 * @return integer May be 0 for jobs stored outside the DB
+	 * @deprecated 1.22
 	 */
 	public function getId() {
 		return $this->id;
