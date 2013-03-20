@@ -3655,7 +3655,7 @@ function wfWaitForSlaves( $maxLag = false, $wiki = false ) {
 	// bug 27975 - Don't try to wait for slaves if there are none
 	// Prevents permission error when getting master position
 	if ( $lb->getServerCount() > 1 ) {
-		$dbw = $lb->getConnection( DB_MASTER );
+		$dbw = $lb->getConnection( DB_MASTER, array(), $wiki );
 		$pos = $dbw->getMasterPos();
 		$lb->waitForAll( $pos );
 	}
