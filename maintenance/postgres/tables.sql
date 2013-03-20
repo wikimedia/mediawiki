@@ -232,13 +232,6 @@ CREATE TABLE externallinks (
 CREATE INDEX externallinks_from_to ON externallinks (el_from,el_to);
 CREATE INDEX externallinks_index   ON externallinks (el_index);
 
-CREATE TABLE external_user (
-  eu_local_id     INTEGER  NOT NULL  PRIMARY KEY,
-  eu_external_id TEXT
-);
-
-CREATE UNIQUE INDEX eu_external_id ON external_user (eu_external_id);
-
 CREATE TABLE langlinks (
   ll_from    INTEGER  NOT NULL  REFERENCES page (page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
   ll_lang    TEXT,

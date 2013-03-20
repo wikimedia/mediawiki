@@ -306,17 +306,6 @@ CREATE TABLE /*$wgDBprefix*/externallinks (
 CREATE INDEX /*$wgDBprefix*/externallinks_index   ON /*$wgDBprefix*/externallinks(el_index);
 
 --
--- Track external user accounts, if ExternalAuth is used
---
-CREATE TABLE /*$wgDBprefix*/external_user (
-	-- Foreign key to user_id
-	eu_local_id INT NOT NULL PRIMARY KEY,
-	-- opaque identifier provided by the external database
-	eu_external_id NVARCHAR(255) NOT NULL,
-);
-CREATE UNIQUE INDEX /*$wgDBprefix*/eu_external_idx ON /*$wgDBprefix*/external_user(eu_external_id);
-
---
 -- Track INTerlanguage links
 --
 CREATE TABLE /*$wgDBprefix*/langlinks (

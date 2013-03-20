@@ -31,6 +31,10 @@ changes to languages because of Bugzilla reports.
   Nostalgia was moved to an extension.
 * Event namespace used by jquery.makeCollapsible has been changed from
   'mw-collapse' to 'mw-collapsible' for consistency with the module name.
+* BREAKING CHANGE: The "ExternalAuth" authentication subsystem was removed, along
+  with its associated globals of $wgExternalAuthType, $wgExternalAuthConf,
+  $wgAutocreatePolicy and $wgAllowPrefChange. Affected users are encouraged to
+  use AuthPlugin for external authentication/authorization needs.
 
 == Compatibility ==
 
