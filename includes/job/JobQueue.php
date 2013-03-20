@@ -239,6 +239,30 @@ abstract class JobQueue {
 	}
 
 	/**
+	 * Get the number of acquired jobs that can no longer be attempted.
+	 * Queue classes should use caching if they are any slower without memcached.
+	 *
+	 * If caching is used, this number might be out of date for a minute.
+	 *
+	 * @return integer
+	 * @throws MWException
+	 */
+	final public function getAbandonedCount() {
+		wfProfileIn( __METHOD__ );
+		$res = $this->doGetAbandonedCount();
+		wfProfileOut( __METHOD__ );
+		return $res;
+	}
+
+	/**
+	 * @see JobQueue::getAbandonedCount()
+	 * @return integer
+	 */
+	protected function doGetAbandonedCount() {
+		return 0; // not implemented
+	}
+
+	/**
 	 * Push a single jobs into the queue.
 	 * This does not require $wgJobClasses to be set for the given job type.
 	 * Outside callers should use JobQueueGroup::push() instead of this function.

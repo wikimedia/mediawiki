@@ -155,6 +155,23 @@ class JobQueueRedis extends JobQueue {
 	}
 
 	/**
+	 * @see JobQueue::doGetAbandonedCount()
+	 * @return integer
+	 * @throws MWException
+	 */
+	protected function doGetAbandonedCount() {
+		if ( $this->claimTTL <= 0 ) {
+			return 0; // no acknowledgements
+		}
+		$conn = $this->getConnection();
+		try {
+			return $conn->zSize( $this->getQueueKey( 'z-abandoned' ) );
+		} catch ( RedisException $e ) {
+			$this->throwRedisException( $this->server, $conn, $e );
+		}
+	}
+
+	/**
 	 * @see JobQueue::doBatchPush()
 	 * @param array $jobs
 	 * @param $flags
