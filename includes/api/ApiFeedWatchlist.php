@@ -86,6 +86,9 @@ class ApiFeedWatchlist extends ApiBase {
 			if ( $params['wlexcludeuser'] !== null ) {
 				$fauxReqArr['wlexcludeuser'] = $params['wlexcludeuser'];
 			}
+			if ( $params['wlshow'] !== null ) {
+				$fauxReqArr['wlshow'] = join( '|', $params['wlshow'] );
+			}
 
 			// Support linking to diffs instead of article
 			if ( $params['linktodiffs'] ) {
@@ -168,10 +171,10 @@ class ApiFeedWatchlist extends ApiBase {
 		return new FeedItem( $titleStr, $completeText, $titleUrl, $timestamp, $user );
 	}
 
-	public function getAllowedParams() {
+	public function getAllowedParams( $flags = 0 ) {
 		global $wgFeedClasses;
 		$feedFormatNames = array_keys( $wgFeedClasses );
-		return array (
+		$ret = array (
 			'feedformat' => array(
 				ApiBase::PARAM_DFLT => 'rss',
 				ApiBase::PARAM_TYPE => $feedFormatNames
@@ -192,8 +195,18 @@ class ApiFeedWatchlist extends ApiBase {
 			'wlexcludeuser' => array(
 				ApiBase::PARAM_TYPE => 'user'
 			),
+			'wlshow' => array(
+				ApiBase::PARAM_ISMULTI => true,
+				ApiBase::PARAM_TYPE => 'string'
+			),
 			'linktodiffs' => false,
 		);
+		if ( $flags ) {
+			$wlparams = $this->getMain()->getModuleManager()->getModule( 'query' )
+			->getModuleManager()->getModule( 'watchlist' )->getAllowedParams( $flags );
+			$ret['wlshow'] = $wlparams['show'];
+		}
+		return $ret;
 	}
 
 	public function getParamDescription() {
@@ -204,6 +217,7 @@ class ApiFeedWatchlist extends ApiBase {
 			'wlowner'    => "The user whose watchlist you want (must be accompanied by {$this->getModulePrefix()}wltoken if it's not you)",
 			'wltoken'    => 'Security token that requested user set in their preferences',
 			'wlexcludeuser' => 'A user whose edits should not be shown in the watchlist',
+			'wlshow'     => 'Include or exclude minor/bot/anonymous/patrolled',
 			'linktodiffs' => 'Link to change differences instead of article pages',
 		);
 	}
