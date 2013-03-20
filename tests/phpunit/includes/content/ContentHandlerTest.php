@@ -145,62 +145,72 @@ class ContentHandlerTest extends MediaWikiTestCase {
 		$this->assertEquals( $expected->getCode(), $lang->getCode() );
 	}
 
-	public function testGetContentText_Null() {
-		global $wgContentHandlerTextFallback;
+	public function dataGetContentText_Null() {
+		return array(
+			array( 'fail' ),
+			array( 'serialize' ),
+			array( 'ignore' ),
+		);
+	}
+
+	/**
+	 * @dataProvider dataGetContentText_Null
+	 */
+	public function testGetContentText_Null( $contentHandlerTextFallback ) {
+		$this->setMwGlobals( 'wgContentHandlerTextFallback', $contentHandlerTextFallback );
 
 		$content = null;
 
-		$wgContentHandlerTextFallback = 'fail';
-		$text = ContentHandler::getContentText( $content );
-		$this->assertEquals( '', $text );
-
-		$wgContentHandlerTextFallback = 'serialize';
-		$text = ContentHandler::getContentText( $content );
-		$this->assertEquals( '', $text );
-
-		$wgContentHandlerTextFallback = 'ignore';
 		$text = ContentHandler::getContentText( $content );
 		$this->assertEquals( '', $text );
 	}
 
-	public function testGetContentText_TextContent() {
-		global $wgContentHandlerTextFallback;
+	public function dataGetContentText_TextContent() {
+		return array(
+			array( 'fail' ),
+			array( 'serialize' ),
+			array( 'ignore' ),
+		);
+	}
+
+	/**
+	 * @dataProvider dataGetContentText_TextContent
+	 */
+	public function testGetContentText_TextContent( $contentHandlerTextFallback ) {
+		$this->setMwGlobals( 'wgContentHandlerTextFallback', $contentHandlerTextFallback );
 
 		$content = new WikitextContent( "hello world" );
 
-		$wgContentHandlerTextFallback = 'fail';
-		$text = ContentHandler::getContentText( $content );
-		$this->assertEquals( $content->getNativeData(), $text );
-
-		$wgContentHandlerTextFallback = 'serialize';
-		$text = ContentHandler::getContentText( $content );
-		$this->assertEquals( $content->serialize(), $text );
-
-		$wgContentHandlerTextFallback = 'ignore';
 		$text = ContentHandler::getContentText( $content );
 		$this->assertEquals( $content->getNativeData(), $text );
 	}
 
-	public function testGetContentText_NonTextContent() {
-		global $wgContentHandlerTextFallback;
+	/**
+	 * ContentHandler::getContentText should have thrown an exception for non-text Content object
+	 * @expectedException MWException
+	 */
+	public function testGetContentText_NonTextContent_fail() {
+		$this->setMwGlobals( 'wgContentHandlerTextFallback', 'fail' );
 
 		$content = new DummyContentForTesting( "hello world" );
 
-		$wgContentHandlerTextFallback = 'fail';
+		ContentHandler::getContentText( $content );
+	}
 
-		try {
-			$text = ContentHandler::getContentText( $content );
+	public function testGetContentText_NonTextContent_serialize() {
+		$this->setMwGlobals( 'wgContentHandlerTextFallback', 'serialize' );
 
-			$this->fail( "ContentHandler::getContentText should have thrown an exception for non-text Content object" );
-		} catch ( MWException $ex ) {
-			// as expected
-		}
+		$content = new DummyContentForTesting( "hello world" );
 
-		$wgContentHandlerTextFallback = 'serialize';
 		$text = ContentHandler::getContentText( $content );
 		$this->assertEquals( $content->serialize(), $text );
+	}
 
-		$wgContentHandlerTextFallback = 'ignore';
+	public function testGetContentText_NonTextContent_ignore() {
+		$this->setMwGlobals( 'wgContentHandlerTextFallback', 'ignore' );
+
+		$content = new DummyContentForTesting( "hello world" );
+
 		$text = ContentHandler::getContentText( $content );
 		$this->assertNull( $text );
 	}
