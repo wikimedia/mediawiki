@@ -194,6 +194,7 @@ $wgAutoloadLocalClasses = array(
 	'PoolCounter' => 'includes/PoolCounter.php',
 	'PoolCounter_Stub' => 'includes/PoolCounter.php',
 	'PoolCounterWork' => 'includes/PoolCounter.php',
+	'PoolCounterWorkViaCallback' => 'includes/PoolCounter.php',
 	'PoolWorkArticleView' => 'includes/WikiPage.php',
 	'Preferences' => 'includes/Preferences.php',
 	'PreferencesForm' => 'includes/Preferences.php',
