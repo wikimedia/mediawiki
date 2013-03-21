@@ -33,20 +33,20 @@
 		"name": "jQuery",
 		"groups": [
 			{
-				"name": "Core",
-				"classes": ["jQuery", "jQuery.Event", "jQuery.Promise", "jQuery.Deferred", "jQuery.jqXHR"]
-			},
-			{
 				"name": "Plugins",
 				"classes": ["jQuery.plugin.*"]
 			}
 		]
 	},
 	{
-		"name": "Misc",
+		"name": "Upstream",
 		"groups": [
 			{
-				"name": "Native",
+				"name": "jQuery",
+				"classes": ["jQuery", "jQuery.Event", "jQuery.Callbacks", "jQuery.Promise", "jQuery.Deferred", "jQuery.jqXHR", "QUnit"]
+			},
+			{
+				"name": "JavaScript",
 				"classes": ["Array", "Boolean", "Date", "Function", "Number", "Object", "RegExp", "String"]
 			}
 		]
