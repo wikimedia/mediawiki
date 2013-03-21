@@ -407,7 +407,7 @@ class LoadBalancer {
 				wfDebug( __METHOD__ . ": no connection open\n" );
 				return false;
 			} else {
-				$conn = $this->openConnection( $index );
+				$conn = $this->openConnection( $index, '' );
 				if ( !$conn ) {
 					wfDebug( __METHOD__ . ": failed to open connection\n" );
 					return false;
