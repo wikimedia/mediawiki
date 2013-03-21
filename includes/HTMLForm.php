@@ -2542,7 +2542,19 @@ class HTMLHiddenField extends HTMLFormField {
  * Add a submit button inline in the form (as opposed to
  * HTMLForm::addButton(), which will add it at the end).
  */
-class HTMLSubmitField extends HTMLFormField {
+class HTMLSubmitField extends HTMLButtonField {
+	protected $buttonType = 'submit';
+}
+
+/**
+ * Adds a generic button inline to the form. Does not do anything, you must add
+ * click handling code in JavaScript. Use a HTMLSubmitField if you merely
+ * wish to add a submit button to a form.
+ *
+ * @since 1.22
+ */
+class HTMLButtonField extends HTMLFormField {
+	protected $buttonType = 'button';
 
 	public function __construct( $info ) {
 		$info['nodata'] = true;
@@ -2552,7 +2564,6 @@ class HTMLSubmitField extends HTMLFormField {
 	public function getInputHTML( $value ) {
 		$attr = array(
 			'class' => 'mw-htmlform-submit ' . $this->mClass,
-			'name' => $this->mName,
 			'id' => $this->mID,
 		);
 
@@ -2560,7 +2571,12 @@ class HTMLSubmitField extends HTMLFormField {
 			$attr['disabled'] = 'disabled';
 		}
 
-		return Xml::submitButton( $value, $attr );
+		return Html::input(
+			$this->mName,
+			$value,
+			$this->buttonType,
+			$attr
+		);
 	}
 
 	protected function needsLabel() {
