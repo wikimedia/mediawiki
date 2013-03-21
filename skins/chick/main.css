@@ -29,7 +29,7 @@ img {
 }
 p {
 	margin: 0.4em 0em 0.5em 0em;
-	line-height: 1.5em;
+	line-height: 1.5;
 }
 
 p img { margin: 0; }
@@ -72,12 +72,12 @@ h6 { font-size: 80%;  }
 h6 .editsection { font-size: 125%; }
 
 ul {
-	line-height: 1.5em;
+	line-height: 1.5;
 	margin: 0.3em 0 0 1.5em;
 	padding:0;
 }
 ol {
-	line-height: 1.5em;
+	line-height: 1.5;
 	margin: 0.3em 0 0 3.2em;
 	padding:0;
 	list-style-image: none;
@@ -92,7 +92,7 @@ dl{
 	margin-bottom: 0.5em;
 }
 dd {
-	line-height: 1.5em;
+	line-height: 1.5;
 	margin-left: 2em;
 	margin-bottom: 0.1em;
 }
@@ -101,7 +101,7 @@ fieldset {
 	border: 1px solid #2f6fab;
 	margin: 1em 0em 1em 0em;
 	padding: 0em 1em 1em 1em;
-	line-height: 1.5em;
+	line-height: 1.5;
 }
 legend {
 	background: white;
@@ -156,7 +156,7 @@ pre, .mw-code {
 	border: 1px dashed #2f6fab;
 	color: black;
 	background-color: #f9f9f9;
-	line-height: 1.1em;
+	line-height: 1.1;
 }
 
 /*
@@ -266,7 +266,7 @@ html .thumbimage {
 html .thumbcaption {
 	border: none;
 	text-align: left;
-	line-height: 1.4em;
+	line-height: 1.4;
 	padding: 0.3em 0 0.1em 0;
 }
 div.magnify {
@@ -316,7 +316,7 @@ table.rimage {
 ** edit views etc
 */
 .special li {
-	line-height: 1.4em;
+	line-height: 1.4;
 	margin: 0;
 	padding: 0;
 }
