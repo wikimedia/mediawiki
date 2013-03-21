@@ -448,3 +448,6 @@
 [submodule "extensions/NavigationTiming"]
 	path = extensions/NavigationTiming
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/NavigationTiming.git
+[submodule "extensions/Thanks"]
+	path = extensions/Thanks
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Thanks.git
