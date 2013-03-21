@@ -394,7 +394,7 @@ Hueliz quimpiya tlahtōl tlein ahmo mohuelītih motequitiltia tōcāpan.',
 'createaccount' => 'Ticchīhuāz cē cuentah',
 'gotaccount' => "¿Ye ticpiya cē cuentah? '''$1'''.",
 'gotaccountlink' => 'Ximocalaqui',
-'createaccountmail' => 'e-mailcopa',
+'createaccountmail' => 'Ticnemītīz ahmo cemihcac zāzoichtacātlahtōlli nō moēhualtīz in maltzinteyōtl netitlanizyeyāntli',
 'createaccountreason' => 'Tlèka:',
 'badretype' => 'Ahneneuhqui motlahtōlichtacāyo.',
 'userexists' => 'In tlatequitiltilīltōcāitl in ōquipehpen ye ia.
@@ -1004,7 +1004,7 @@ Nò mà mỏta in tlèn [[Special:WantedCategories|ìpan kineki tlaìxmatkàtlà
 'listgrouprights-group' => 'Olōlli',
 'listgrouprights-rights' => 'Huelītiliztli',
 
-# E-mail user
+# Email user
 'emailuser' => 'Tiquēhualtlīz maltzinteyōtl netitlaniztli inīn tlatequitiltilīlli',
 'defemailsubject' => '{{SITENAME}} correo tlatequitiltilīlhuīc $1',
 'emailfrom' => 'Īhuīcpa:',
@@ -1410,7 +1410,7 @@ Hueliz cah inīn huēyi tlapatlaliztli. Timitztlātlauhtia ticmatīz cuallōtl a
 'monthsall' => '(mochīntīn)',
 'limitall' => 'mochi',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Ticchicāhuāz e-mail',
 'confirmemail_needlogin' => 'Tihuīquilia $1 ic ticchicāhua mo e-mail.',
 'confirmemail_success' => 'Mocorreo ōmotlahtōlneltilih

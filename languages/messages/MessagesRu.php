@@ -43,6 +43,7 @@
  * @author Haffman
  * @author HalanTul
  * @author Huuchin
+ * @author Ignatus
  * @author Illusion
  * @author Iltever
  * @author Incnis Mrsi
@@ -522,7 +523,7 @@ $messages = array(
 'hidden-category-category' => 'Скрытые категории',
 'category-subcat-count' => '{{PLURAL:$2|Эта категория содержит только следующую подкатегорию.|Эта категория содержит $1 {{PLURAL:$1|подкатегорию|подкатегории}} из $2 всего.}}',
 'category-subcat-count-limited' => 'В этой категории {{PLURAL:$1|$1 подкатегория|$1 подкатегории|$1 подкатегорий}}.',
-'category-article-count' => '{{PLURAL:$2|Эта категория содержит только следующую страницу.|В этой категории показан{{PLURAL:$1|а $1 страница|ы $1 страницы|о $1 страниц}} из $2.}}',
+'category-article-count' => '{{#ifeq:$2|1|Эта категория содержит только следующую страницу.|Эта категория содержит следующ{{PLURAL:$1|ую $1 страницу|ие $1 страницы|ие $1 страниц}} из $2.}}',
 'category-article-count-limited' => 'В этой категории {{PLURAL:$1|$1 страница|$1 страницы|$1 страниц}}.',
 'category-file-count' => '{{PLURAL:$2|Эта категория содержит только один файл.|В этой категории {{PLURAL:$1|показан $1 файл|показано $1 файла|показано $1 файлов}} из $2 {{PLURAL:$2|имеющейся|имеющихся}}.}}',
 'category-file-count-limited' => 'В этой категории {{PLURAL:$1|$1 файл|$1 файла|$1 файлов}}.',
@@ -4212,7 +4213,7 @@ MediaWiki распространяется в надежде, что она бу
 'logentry-newusers-autocreate' => 'Автоматически создана учётная запись $1',
 'logentry-rights-rights' => '$1 {{GENDER:$1|изменил|изменила}} членство в группах для $3 с $4 на $5',
 'logentry-rights-rights-legacy' => '$1 {{GENDER:$1|изменил|изменила}} членство в группах для $3',
-'logentry-rights-autopromote' => 'Учётная запись «$1» была автоматически переведена из $4 в $5',
+'logentry-rights-autopromote' => '$1 был{{GENDER:$2||а}} автоматически переведен{{GENDER:$2||а}} из $4 в $5',
 'rightsnone' => '(нет)',
 
 # Feedback
@@ -4287,5 +4288,8 @@ MediaWiki распространяется в надежде, что она бу
 'duration-decades' => '$1 {{PLURAL:$1|десятилетие|десятилетия|десятилетий}}',
 'duration-centuries' => '$1 {{PLURAL:$1|век|века|веков}}',
 'duration-millennia' => '$1 {{PLURAL:$1|тысячелетие|тысячелетия|тысячелетий}}',
+
+# Image rotation
+'rotate-comment' => 'Изображение повернуто на $1 градус{{PLURAL:$1||а|ов}} по часовой стрелке',
 
 );
