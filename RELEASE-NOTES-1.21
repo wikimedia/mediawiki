@@ -115,6 +115,7 @@ production.
   uz, vi.
 * Added 'CategoryAfterPageAdded' and 'CategoryAfterPageRemoved' hooks.
 * Added 'HistoryRevisionTools' and 'DiffRevisionTools' hooks.
+* Added 'SpecialSearchResultsPrepend' and 'SpecialSearchResultsAppend' hooks.
 * (bug 33186) Add image rotation api "imagerotate"
 * (bug 34040) Add "User rights management" link on user page toolbox.
 * (bug 45526) Add QUnit assertion helper "QUnit.assert.htmlEqual" for asserting
