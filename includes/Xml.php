@@ -452,10 +452,16 @@ class Xml {
 	 * Convenience function to build an HTML submit button
 	 * @param $value String: label text for the button
 	 * @param $attribs Array: optional custom attributes
+	 *
+	 * @since 1.21 No longer will always force type to 'submit'
+	 *
 	 * @return string HTML
 	 */
 	public static function submitButton( $value, $attribs = array() ) {
-		return Html::element( 'input', array( 'type' => 'submit', 'value' => $value ) + $attribs );
+		if ( !array_key_exists( 'type', $attribs ) ) {
+			$attribs[ 'type' ] = 'submit';
+		}
+		return Html::element( 'input', array( 'value' => $value ) + $attribs );
 	}
 
 	/**
