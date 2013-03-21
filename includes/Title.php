@@ -3858,6 +3858,7 @@ class Title {
 			$redirectArticle = WikiPage::factory( $this );
 			$newid = $redirectArticle->insertOn( $dbw );
 			if ( $newid ) { // sanity
+				$redirectArticle->loadPageData( WikiPage::READ_LOCKING ); // bug 46397
 				$redirectRevision = new Revision( array(
 					'title'   => $this, // for determining the default content model
 					'page'    => $newid,
