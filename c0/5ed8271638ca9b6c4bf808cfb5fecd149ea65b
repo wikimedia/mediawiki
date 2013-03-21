@@ -1,0 +1,8 @@
+Verified-1: jenkins-bot
+Code-Review+2: Kaldari <rkaldari@wikimedia.org>
+Verified+2: Kaldari <rkaldari@wikimedia.org>
+Submitted-by: Kaldari <rkaldari@wikimedia.org>
+Submitted-at: Thu, 21 Mar 2013 23:43:59 +0000
+Reviewed-on: https://gerrit.wikimedia.org/r/55222
+Project: mediawiki/core
+Branch: refs/heads/wmf/1.21wmf12
