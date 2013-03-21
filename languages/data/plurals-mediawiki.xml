@@ -2,10 +2,15 @@
 <!DOCTYPE supplementalData SYSTEM "../../common/dtd/ldmlSupplemental.dtd">
 <supplementalData>
 	<plurals>
-		<!-- What is this override for Hebrew based on? Is there a CLDR ticket for this? -Ryan Kaldari 2013-01-28 -->
+		<!--
+		The "one" and "two" rules are copied directly from CLDR.
+		The "many" rule overrides CLDR, because CLDR seems to have a mistake:
+		it's sometimes needed for multiples of 10, but not for 10 itself.
+		-->
 		<pluralRules locales="he">
 			<pluralRule count="one">n is 1</pluralRule>
 			<pluralRule count="two">n is 2</pluralRule>
+            <pluralRule count="many">n is not 0 AND n is not 10 AND n mod 10 is 0</pluralRule>
 		</pluralRules>
 		<pluralRules locales="dsb hsb">
 			<pluralRule count="one">n mod 100 is 1</pluralRule>
