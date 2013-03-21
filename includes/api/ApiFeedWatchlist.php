@@ -86,6 +86,9 @@ class ApiFeedWatchlist extends ApiBase {
 			if ( $params['wlexcludeuser'] !== null ) {
 				$fauxReqArr['wlexcludeuser'] = $params['wlexcludeuser'];
 			}
+			if ( $params['wlshow'] !== null ) {
+				$fauxReqArr['wlshow'] = join( '|', $params['wlshow'] );
+			}
 
 			// Support linking to diffs instead of article
 			if ( $params['linktodiffs'] ) {
@@ -168,10 +171,16 @@ class ApiFeedWatchlist extends ApiBase {
 		return new FeedItem( $titleStr, $completeText, $titleUrl, $timestamp, $user );
 	}
 
-	public function getAllowedParams() {
+	private function getWatchlistModule() {
+		$wlmodule = $this->getMain()->getModuleManager()->getModule( 'query' )
+			->getModuleManager()->getModule( 'watchlist' );
+		return $wlmodule;
+	}
+
+	public function getAllowedParams( $flags = 0 ) {
 		global $wgFeedClasses;
 		$feedFormatNames = array_keys( $wgFeedClasses );
-		return array (
+		$ret = array (
 			'feedformat' => array(
 				ApiBase::PARAM_DFLT => 'rss',
 				ApiBase::PARAM_TYPE => $feedFormatNames
@@ -180,32 +189,40 @@ class ApiFeedWatchlist extends ApiBase {
 				ApiBase::PARAM_DFLT => 24,
 				ApiBase::PARAM_TYPE => 'integer',
 				ApiBase::PARAM_MIN => 1,
-				ApiBase::PARAM_MAX => 72,
+				ApiBase::PARAM_MAX => 72
 			),
 			'allrev' => false,
-			'wlowner' => array(
-				ApiBase::PARAM_TYPE => 'user'
-			),
-			'wltoken' => array(
-				ApiBase::PARAM_TYPE => 'string'
-			),
-			'wlexcludeuser' => array(
-				ApiBase::PARAM_TYPE => 'user'
-			),
-			'linktodiffs' => false,
+			'linktodiffs' => false
 		);
+		if ( $flags ) {
+			$wlparams = getWatchlistModule()->getAllowedParams( $flags );
+			$ret['wlowner']       = $wlparams['owner'];
+			$ret['wltoken']       = $wlparams['token'];
+			$ret['wlshow']        = $wlparams['show'];
+			$ret['wlexcludeuser'] = $wlparams['excludeuser'];
+		}
+		else {
+			$ret['wlowner']       = null;
+			$ret['wltoken']       = null;
+			$ret['wlshow']        = null;
+			$ret['wlexcludeuser'] = null;
+		}
+		return $ret;
 	}
 
 	public function getParamDescription() {
-		return array(
-			'feedformat' => 'The format of the feed',
-			'hours'      => 'List pages modified within this many hours from now',
-			'allrev'     => 'Include multiple revisions of the same page within given timeframe',
-			'wlowner'    => "The user whose watchlist you want (must be accompanied by {$this->getModulePrefix()}wltoken if it's not you)",
-			'wltoken'    => 'Security token that requested user set in their preferences',
-			'wlexcludeuser' => 'A user whose edits should not be shown in the watchlist',
-			'linktodiffs' => 'Link to change differences instead of article pages',
+		$descr = array(
+			'feedformat'  => 'The format of the feed',
+			'hours'       => 'List pages modified within this many hours from now',
+			'linktodiffs' => 'Link to change differences instead of article pages'
 		);
+		$wlparams = getWatchlistModule()->getParamDescription();
+		$descr['allrev']        = $wlparams['allrev'];
+		$descr['wlowner']       = $wlparams['owner'];
+		$descr['wltoken']       = $wlparams['token'];
+		$descr['wlshow']        = $wlparams['show'];
+		$descr['wlexcludeuser'] = $wlparams['excludeuser'];
+		return $descr;
 	}
 
 	public function getDescription() {
@@ -215,7 +232,7 @@ class ApiFeedWatchlist extends ApiBase {
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'code' => 'feed-unavailable', 'info' => 'Syndication feeds are not available' ),
-			array( 'code' => 'feed-invalid', 'info' => 'Invalid subscription feed type' ),
+			array( 'code' => 'feed-invalid', 'info' => 'Invalid subscription feed type' )
 		) );
 	}
 
