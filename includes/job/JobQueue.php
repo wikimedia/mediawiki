@@ -38,6 +38,8 @@ abstract class JobQueue {
 
 	const QoS_Atomic = 1; // integer; "all-or-nothing" job insertions
 
+	const ROOTJOB_TTL = 2419200; // integer; seconds to remember root jobs (28 days)
+
 	/**
 	 * @param $params array
 	 */
@@ -80,7 +82,7 @@ abstract class JobQueue {
 	 *                  but not acknowledged as completed after this many seconds. Recycling
 	 *                  of jobs simple means re-inserting them into the queue. Jobs can be
 	 *                  attempted up to three times before being discarded.
-	 *   - checkDelay : If supported, respect Job::delayUntilTimestamp() in the push functions.
+	 *   - checkDelay : If supported, respect Job::getReleaseTimestamp() in the push functions.
 	 *                  This lets delayed jobs wait in a staging area until a given timestamp is
 	 *                  reached, at which point they will enter the queue. If this is not enabled
 	 *                  or not supported, an exception will be thrown on delayed job insertion.
@@ -218,6 +220,7 @@ abstract class JobQueue {
 	 *
 	 * @return integer
 	 * @throws MWException
+	 * @since 1.22
 	 */
 	final public function getDelayedCount() {
 		wfProfileIn( __METHOD__ );
@@ -267,7 +270,7 @@ abstract class JobQueue {
 			if ( $job->getType() !== $this->type ) {
 				throw new MWException(
 					"Got '{$job->getType()}' job; expected a '{$this->type}' job." );
-			} elseif ( $job->delayUntilTimestamp() && !$this->checkDelay ) {
+			} elseif ( $job->getReleaseTimestamp() && !$this->checkDelay ) {
 				throw new MWException(
 					"Got delayed '{$job->getType()}' job; delays are not supported." );
 			}
@@ -306,6 +309,15 @@ abstract class JobQueue {
 		wfProfileIn( __METHOD__ );
 		$job = $this->doPop();
 		wfProfileOut( __METHOD__ );
+
+		// Flag this job as an old duplicate based on its "root" job...
+		try {
+			if ( $job && $this->isRootJobOldDuplicate( $job ) ) {
+				wfIncrStats( 'job-pop-duplicate' );
+				$job = DuplicateJob::newFromJob( $job ); // convert to a no-op
+			}
+		} catch ( MWException $e ) {} // don't lose jobs over this
+
 		return $job;
 	}
 
@@ -388,7 +400,76 @@ abstract class JobQueue {
 	 * @return bool
 	 */
 	protected function doDeduplicateRootJob( Job $job ) {
-		return true;
+		global $wgMemc;
+
+		$params = $job->getParams();
+		if ( !isset( $params['rootJobSignature'] ) ) {
+			throw new MWException( "Cannot register root job; missing 'rootJobSignature'." );
+		} elseif ( !isset( $params['rootJobTimestamp'] ) ) {
+			throw new MWException( "Cannot register root job; missing 'rootJobTimestamp'." );
+		}
+		$key = $this->getRootJobCacheKey( $params['rootJobSignature'] );
+		// Callers should call batchInsert() and then this function so that if the insert
+		// fails, the de-duplication registration will be aborted. Since the insert is
+		// deferred till "transaction idle", do the same here, so that the ordering is
+		// maintained. Having only the de-duplication registration succeed would cause
+		// jobs to become no-ops without any actual jobs that made them redundant.
+		$timestamp = $wgMemc->get( $key ); // current last timestamp of this job
+		if ( $timestamp && $timestamp >= $params['rootJobTimestamp'] ) {
+			return true; // a newer version of this root job was enqueued
+		}
+
+		// Update the timestamp of the last root job started at the location...
+		return $wgMemc->set( $key, $params['rootJobTimestamp'], JobQueueDB::ROOTJOB_TTL );
+	}
+
+	/**
+	 * Check if the "root" job of a given job has been superseded by a newer one
+	 *
+	 * @param $job Job
+	 * @return bool
+	 * @throws MWException
+	 */
+	final protected function isRootJobOldDuplicate( Job $job ) {
+		if ( $job->getType() !== $this->type ) {
+			throw new MWException( "Got '{$job->getType()}' job; expected '{$this->type}'." );
+		}
+		wfProfileIn( __METHOD__ );
+		$isDuplicate = $this->doIsRootJobOldDuplicate( $job );
+		wfProfileOut( __METHOD__ );
+		return $isDuplicate;
+	}
+
+	/**
+	 * @see JobQueue::isRootJobOldDuplicate()
+	 * @param Job $job
+	 * @return bool
+	 */
+	protected function doIsRootJobOldDuplicate( Job $job ) {
+		global $wgMemc;
+
+		$params = $job->getParams();
+		if ( !isset( $params['rootJobSignature'] ) ) {
+			return false; // job has no de-deplication info
+		} elseif ( !isset( $params['rootJobTimestamp'] ) ) {
+			trigger_error( "Cannot check root job; missing 'rootJobTimestamp'." );
+			return false;
+		}
+
+		// Get the last time this root job was enqueued
+		$timestamp = $wgMemc->get( $this->getRootJobCacheKey( $params['rootJobSignature'] ) );
+
+		// Check if a new root job was started at the location after this one's...
+		return ( $timestamp && $timestamp > $params['rootJobTimestamp'] );
+	}
+
+	/**
+	 * @param string $signature Hash identifier of the root job
+	 * @return string
+	 */
+	protected function getRootJobCacheKey( $signature ) {
+		list( $db, $prefix ) = wfSplitWikiID( $this->wiki );
+		return wfForeignMemcKey( $db, $prefix, 'jobqueue', $this->type, 'rootjob', $signature );
 	}
 
 	/**
@@ -458,13 +539,25 @@ abstract class JobQueue {
 
 	/**
 	 * Get an iterator to traverse over all available jobs in this queue.
-	 * This does not include jobs that are current acquired. In general,
-	 * this should only be called on a queue that is no longer being popped.
+	 * This does not include jobs that are currently acquired or delayed.
+	 * This should only be called on a queue that is no longer being popped.
 	 *
 	 * @return Iterator|Traversable|Array
 	 * @throws MWException
 	 */
 	abstract public function getAllQueuedJobs();
+
+	/**
+	 * Get an iterator to traverse over all delayed jobs in this queue.
+	 * This should only be called on a queue that is no longer being popped.
+	 *
+	 * @return Iterator|Traversable|Array
+	 * @throws MWException
+	 * @since 1.22
+	 */
+	public function getAllDelayedJobs() {
+		return array(); // not implemented
+	}
 
 	/**
 	 * Namespace the queue with a key to isolate it for testing

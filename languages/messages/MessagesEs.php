@@ -65,6 +65,7 @@
  * @author Omnipaedista
  * @author Orgullomoore
  * @author Paucabot
+ * @author Penarc
  * @author PerroVerd
  * @author Pertile
  * @author Piolinfax
@@ -2146,6 +2147,10 @@ Entrada: contenttype/subtype, p. ej. <code>image/jpeg</code>.',
 En lugar de ello deberían enlazar a una página más apropiada.<br />
 Una página es considerada página de desambiguación si utiliza la plantilla que está enlazada desde [[MediaWiki:Disambiguationspage]].",
 
+'pageswithprop' => 'Páginas con una propiedad de página',
+'pageswithprop-legend' => 'Páginas con una propiedad de página',
+'pageswithprop-text' => 'Esta página muestra las páginas que usan la propiedad de una página en particular',
+'pageswithprop-prop' => 'Nombre de la propiedad',
 'pageswithprop-submit' => 'Ir',
 
 'doubleredirects' => 'Redirecciones dobles',
@@ -4143,5 +4148,8 @@ En otro caso, puedes usar el siguiente formulario. Tu comentario será añadido 
 'duration-decades' => '$1 {{PLURAL:$1|década|décadas}}',
 'duration-centuries' => '$1 {{PLURAL:$1|siglo|siglos}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenio|milenios}}',
+
+# Image rotation
+'rotate-comment' => 'Imagen girada por $1 {{PLURAL:$1|grado|grados}} en el sentido de las agujas del reloj',
 
 );

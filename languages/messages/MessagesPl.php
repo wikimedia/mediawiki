@@ -2093,6 +2093,10 @@ Sprawdź inne linki do szablonów, zanim usuniesz tę stronę.',
 a powinny odwoływać się bezpośrednio do stron treści.<br />
 Strona uznawana jest za ujednoznaczniającą, jeśli zawiera szablon linkowany przez stronę [[MediaWiki:Disambiguationspage]]",
 
+'pageswithprop' => 'Strony z właściwościami',
+'pageswithprop-legend' => 'Strony z właściwościami',
+'pageswithprop-text' => 'Ta strona zawiera listę stron korzystających z właściwości.',
+
 'doubleredirects' => 'Podwójne przekierowania',
 'doubleredirectstext' => 'Lista zawiera strony z przekierowaniami do stron, które przekierowują do innej strony.
 Każdy wiersz zawiera linki do pierwszego i drugiego przekierowania oraz link, do którego prowadzi drugie przekierowanie. Ostatni link prowadzi zazwyczaj do strony, do której powinna w rzeczywistości przekierowywać pierwsza strona.

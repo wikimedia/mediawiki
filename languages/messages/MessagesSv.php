@@ -30,6 +30,7 @@
  * @author M.M.S.
  * @author MagnusA
  * @author Micke
+ * @author Mikez
  * @author NH
  * @author Najami
  * @author Nghtwlkr
@@ -2892,7 +2893,7 @@ I det senare fallet kan du även använda en länk, exempel [[{{#Special:Export}
 'exportcuronly' => 'Inkludera endast den nuvarande versionen, inte hela historiken',
 'exportnohistory' => "----
 '''OBS:''' export av fullständig sidhistorik med hjälp av detta formulär har stängts av på grund av prestandaskäl.",
-'exportlistauthors' => 'Innehålla en fullständig lista över bidragsgivare för varje sida',
+'exportlistauthors' => 'Inkludera en fullständig lista över bidragsgivare för varje sida',
 'export-submit' => 'Exportera',
 'export-addcattext' => 'Lägg till sidor från kategori:',
 'export-addcat' => 'Lägg till',

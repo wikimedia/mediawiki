@@ -361,6 +361,9 @@ class MysqlInstaller extends DatabaseInstaller {
 		}
 
 		if ( count( $engines ) >= 2 ) {
+			// getRadioSet() builds a set of labeled radio buttons.
+			// For grep: The following messages are used as the item labels:
+			// config-mysql-innodb, config-mysql-myisam
 			$s .= $this->getRadioSet( array(
 				'var' => '_MysqlEngine',
 				'label' => 'config-mysql-engine',
@@ -385,6 +388,9 @@ class MysqlInstaller extends DatabaseInstaller {
 
 		// Do charset selector
 		if ( count( $charsets ) >= 2 ) {
+			// getRadioSet() builds a set of labeled radio buttons.
+			// For grep: The following messages are used as the item labels:
+			// config-mysql-binary, config-mysql-utf8
 			$s .= $this->getRadioSet( array(
 				'var' => '_MysqlCharset',
 				'label' => 'config-mysql-charset',
