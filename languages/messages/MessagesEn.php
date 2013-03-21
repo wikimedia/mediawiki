@@ -775,9 +775,9 @@ XHTML id names.
 'newwindow'     => '(opens in new window)',
 'cancel'        => 'Cancel',
 'moredotdotdot' => 'More...',
+'morenotlisted' => 'More not listed...',
 'mypage'        => 'Page',
 'mytalk'        => 'Talk',
-'morenotlisted' => 'More not listed...',
 'anontalk'      => 'Talk for this IP address',
 'navigation'    => 'Navigation',
 'and'           => '&#32;and',
@@ -1067,73 +1067,73 @@ The administrator who locked it offered this explanation: "$3".',
 'virus-unknownscanner' => 'unknown antivirus:',
 
 # Login and logout pages
-'logouttext'                 => "'''You are now logged out.'''
+'logouttext'                      => "'''You are now logged out.'''
 
 You can continue to use {{SITENAME}} anonymously, or you can <span class='plainlinks'>[$1 log in again]</span> as the same or as a different user.
 Note that some pages may continue to be displayed as if you were still logged in, until you clear your browser cache.",
-'welcomeuser'                => 'Welcome, $1!',
-'welcomecreation-msg'        => 'Your account has been created.
+'welcomeuser'                     => 'Welcome, $1!',
+'welcomecreation-msg'             => 'Your account has been created.
 Do not forget to change your [[Special:Preferences|{{SITENAME}} preferences]].',
-'yourname'                   => 'Username:',
-'yourpassword'               => 'Password:',
-'yourpasswordagain'          => 'Retype password:',
-'remembermypassword'         => 'Remember my login on this browser (for a maximum of $1 {{PLURAL:$1|day|days}})',
-'securelogin-stick-https'    => 'Stay connected to HTTPS after login',
-'yourdomainname'             => 'Your domain:',
-'password-change-forbidden'  => 'You cannot change passwords on this wiki.',
-'externaldberror'            => 'There was either an authentication database error or you are not allowed to update your external account.',
-'login'                      => 'Log in',
-'nav-login-createaccount'    => 'Log in / create account',
-'loginprompt'                => 'You must have cookies enabled to log in to {{SITENAME}}.',
-'userlogin'                  => 'Log in / create account',
-'userloginnocreate'          => 'Log in',
-'logout'                     => 'Log out',
-'userlogout'                 => 'Log out',
-'userlogout-summary'         => '', # do not translate or duplicate this message to other languages
-'notloggedin'                => 'Not logged in',
-'nologin'                    => "Don't have an account? $1.",
-'nologinlink'                => 'Create an account',
-'createaccount'              => 'Create account',
-'gotaccount'                 => 'Already have an account? $1.',
-'gotaccountlink'             => 'Log in',
-'userlogin-resetlink'        => 'Forgotten your login details?',
-'createaccountmail'          => 'Use a temporary random password and send it to the email address specified below',
-'createaccountreason'        => 'Reason:',
-'badretype'                  => 'The passwords you entered do not match.',
-'userexists'                 => 'Username entered already in use.
+'yourname'                        => 'Username:',
+'yourpassword'                    => 'Password:',
+'yourpasswordagain'               => 'Retype password:',
+'remembermypassword'              => 'Remember my login on this browser (for a maximum of $1 {{PLURAL:$1|day|days}})',
+'securelogin-stick-https'         => 'Stay connected to HTTPS after login',
+'yourdomainname'                  => 'Your domain:',
+'password-change-forbidden'       => 'You cannot change passwords on this wiki.',
+'externaldberror'                 => 'There was either an authentication database error or you are not allowed to update your external account.',
+'login'                           => 'Log in',
+'nav-login-createaccount'         => 'Log in / create account',
+'loginprompt'                     => 'You must have cookies enabled to log in to {{SITENAME}}.',
+'userlogin'                       => 'Log in / create account',
+'userloginnocreate'               => 'Log in',
+'logout'                          => 'Log out',
+'userlogout'                      => 'Log out',
+'userlogout-summary'              => '', # do not translate or duplicate this message to other languages
+'notloggedin'                     => 'Not logged in',
+'nologin'                         => "Don't have an account? $1.",
+'nologinlink'                     => 'Create an account',
+'createaccount'                   => 'Create account',
+'gotaccount'                      => 'Already have an account? $1.',
+'gotaccountlink'                  => 'Log in',
+'userlogin-resetlink'             => 'Forgotten your login details?',
+'createaccountmail'               => 'Use a temporary random password and send it to the email address specified below',
+'createaccountreason'             => 'Reason:',
+'badretype'                       => 'The passwords you entered do not match.',
+'userexists'                      => 'Username entered already in use.
 Please choose a different name.',
-'loginerror'                 => 'Login error',
-'createaccounterror'         => 'Could not create account: $1',
-'nocookiesnew'               => 'The user account was created, but you are not logged in.
+'loginerror'                      => 'Login error',
+'createaccounterror'              => 'Could not create account: $1',
+'nocookiesnew'                    => 'The user account was created, but you are not logged in.
 {{SITENAME}} uses cookies to log in users.
 You have cookies disabled.
 Please enable them, then log in with your new username and password.',
-'nocookieslogin'             => '{{SITENAME}} uses cookies to log in users.
+'nocookieslogin'                  => '{{SITENAME}} uses cookies to log in users.
 You have cookies disabled.
 Please enable them and try again.',
-'nocookiesfornew'            => 'The user account was not created, as we could not confirm its source.
+'nocookiesfornew'                 => 'The user account was not created, as we could not confirm its source.
 Ensure you have cookies enabled, reload this page and try again.',
-'nocookiesforlogin'          => '{{int:nocookieslogin}}', # only translate this message to other languages if you have to change it
-'noname'                     => 'You have not specified a valid username.',
-'loginsuccesstitle'          => 'Login successful',
-'loginsuccess'               => "'''You are now logged in to {{SITENAME}} as \"\$1\".'''",
-'nosuchuser'                 => 'There is no user by the name "$1".
+'nocookiesforlogin'               => '{{int:nocookieslogin}}', # only translate this message to other languages if you have to change it
+'noname'                          => 'You have not specified a valid username.',
+'loginsuccesstitle'               => 'Login successful',
+'loginsuccess'                    => "'''You are now logged in to {{SITENAME}} as \"\$1\".'''",
+'nosuchuser'                      => 'There is no user by the name "$1".
 Usernames are case sensitive.
 Check your spelling, or [[Special:UserLogin/signup|create a new account]].',
-'nosuchusershort'            => 'There is no user by the name "$1".
+'nosuchusershort'                 => 'There is no user by the name "$1".
 Check your spelling.',
-'nouserspecified'            => 'You have to specify a username.',
-'login-userblocked'          => 'This user is blocked. Login not allowed.',
-'wrongpassword'              => 'Incorrect password entered.
+'nouserspecified'                 => 'You have to specify a username.',
+'login-userblocked'               => 'This user is blocked. Login not allowed.',
+'wrongpassword'                   => 'Incorrect password entered.
 Please try again.',
-'wrongpasswordempty'         => 'Password entered was blank.
+'wrongpasswordempty'              => 'Password entered was blank.
 Please try again.',
-'passwordtooshort'           => 'Passwords must be at least {{PLURAL:$1|1 character|$1 characters}}.',
-'password-name-match'        => 'Your password must be different from your username.',
-'password-login-forbidden'   => 'The use of this username and password has been forbidden.',
-'mailmypassword'             => 'Email new password',
-'passwordremindertitle'      => 'New temporary password for {{SITENAME}}',
-'passwordremindertext'       => 'Someone (probably you, from IP address $1) requested a new
+'passwordtooshort'                => 'Passwords must be at least {{PLURAL:$1|1 character|$1 characters}}.',
+'password-name-match'             => 'Your password must be different from your username.',
+'password-login-forbidden'        => 'The use of this username and password has been forbidden.',
+'mailmypassword'                  => 'Email new password',
+'passwordremindertitle'           => 'New temporary password for {{SITENAME}}',
+'passwordremindertext'            => 'Someone (probably you, from IP address $1) requested a new
 password for {{SITENAME}} ($4). A temporary password for user
 "$2" has been created and was set to "$3". If this was your
 intent, you will need to log in and choose a new password now.
@@ -1142,53 +1142,53 @@ Your temporary password will expire in {{PLURAL:$5|one day|$5 days}}.
 If someone else made this request, or if you have remembered your password,
 and you no longer wish to change it, you may ignore this message and
 continue using your old password.',
-'noemail'                    => 'There is no email address recorded for user "$1".',
-'noemailcreate'              => 'You need to provide a valid email address',
-'passwordsent'               => 'A new password has been sent to the email address registered for "$1".
+'noemail'                         => 'There is no email address recorded for user "$1".',
+'noemailcreate'                   => 'You need to provide a valid email address',
+'passwordsent'                    => 'A new password has been sent to the email address registered for "$1".
 Please log in again after you receive it.',
-'blocked-mailpassword'       => 'Your IP address is blocked from editing, and so is not allowed to use the password recovery function to prevent abuse.',
-'eauthentsent'               => 'A confirmation email has been sent to the nominated email address.
+'blocked-mailpassword'            => 'Your IP address is blocked from editing, and so is not allowed to use the password recovery function to prevent abuse.',
+'eauthentsent'                    => 'A confirmation email has been sent to the nominated email address.
 Before any other email is sent to the account, you will have to follow the instructions in the email, to confirm that the account is actually yours.',
-'throttled-mailpassword'     => 'A password reset email has already been sent, within the last {{PLURAL:$1|hour|$1 hours}}.
+'throttled-mailpassword'          => 'A password reset email has already been sent, within the last {{PLURAL:$1|hour|$1 hours}}.
 To prevent abuse, only one password reset email will be sent per {{PLURAL:$1|hour|$1 hours}}.',
-'loginstart'                 => '', # do not translate or duplicate this message to other languages
-'loginend'                   => '', # do not translate or duplicate this message to other languages
-'loginend-https'             => '', # do not translate or duplicate this message to other languages
-'signupstart'                => '{{int:loginstart}}', # do not translate or duplicate this message to other languages
-'signupend'                  => '{{int:loginend}}', # do not translate or duplicate this message to other languages
-'signupend-https'            => '', # do not translate or duplicate this message to other languages
-'mailerror'                  => 'Error sending mail: $1',
-'acct_creation_throttle_hit' => 'Visitors to this wiki using your IP address have created {{PLURAL:$1|1 account|$1 accounts}} in the last day, which is the maximum allowed in this time period.
+'loginstart'                      => '', # do not translate or duplicate this message to other languages
+'loginend'                        => '', # do not translate or duplicate this message to other languages
+'loginend-https'                  => '', # do not translate or duplicate this message to other languages
+'signupstart'                     => '{{int:loginstart}}', # do not translate or duplicate this message to other languages
+'signupend'                       => '{{int:loginend}}', # do not translate or duplicate this message to other languages
+'signupend-https'                 => '', # do not translate or duplicate this message to other languages
+'mailerror'                       => 'Error sending mail: $1',
+'acct_creation_throttle_hit'      => 'Visitors to this wiki using your IP address have created {{PLURAL:$1|1 account|$1 accounts}} in the last day, which is the maximum allowed in this time period.
 As a result, visitors using this IP address cannot create any more accounts at the moment.',
-'emailauthenticated'         => 'Your email address was authenticated on $2 at $3.',
-'emailnotauthenticated'      => 'Your email address is not yet authenticated.
+'emailauthenticated'              => 'Your email address was authenticated on $2 at $3.',
+'emailnotauthenticated'           => 'Your email address is not yet authenticated.
 No email will be sent for any of the following features.',
-'noemailprefs'               => 'Specify an email address in your preferences for these features to work.',
-'emailconfirmlink'           => 'Confirm your email address',
-'invalidemailaddress'        => 'The email address cannot be accepted as it appears to have an invalid format.
+'noemailprefs'                    => 'Specify an email address in your preferences for these features to work.',
+'emailconfirmlink'                => 'Confirm your email address',
+'invalidemailaddress'             => 'The email address cannot be accepted as it appears to have an invalid format.
 Please enter a well-formatted address or empty that field.',
-'cannotchangeemail'          => 'Account email addresses cannot be changed on this wiki.',
-'emaildisabled'              => 'This site cannot send emails.',
-'accountcreated'             => 'Account created',
-'accountcreatedtext'         => 'The user account for $1 has been created.',
-'createaccount-title'        => 'Account creation for {{SITENAME}}',
-'createaccount-text'         => 'Someone created an account for your email address on {{SITENAME}} ($4) named "$2", with password "$3".
+'cannotchangeemail'               => 'Account email addresses cannot be changed on this wiki.',
+'emaildisabled'                   => 'This site cannot send emails.',
+'accountcreated'                  => 'Account created',
+'accountcreatedtext'              => 'The user account for $1 has been created.',
+'createaccount-title'             => 'Account creation for {{SITENAME}}',
+'createaccount-text'              => 'Someone created an account for your email address on {{SITENAME}} ($4) named "$2", with password "$3".
 You should log in and change your password now.
 
 You may ignore this message, if this account was created in error.',
-'usernamehasherror'          => 'Username cannot contain hash characters',
-'login-throttled'            => 'You have made too many recent login attempts.
+'usernamehasherror'               => 'Username cannot contain hash characters',
+'login-throttled'                 => 'You have made too many recent login attempts.
 Please wait before trying again.',
-'login-abort-generic'        => 'Your login was unsuccessful - Aborted',
-'loginlanguagelabel'         => 'Language: $1',
-'loginlanguagelinks'         => '* {{#language:de}}|de
+'login-abort-generic'             => 'Your login was unsuccessful - Aborted',
+'loginlanguagelabel'              => 'Language: $1',
+'loginlanguagelinks'              => '* {{#language:de}}|de
 * {{#language:en}}|en
 * {{#language:eo}}|eo
 * {{#language:fr}}|fr
 * {{#language:es}}|es
 * {{#language:it}}|it
 * {{#language:nl}}|nl', # do not translate or duplicate this message to other languages
-'suspicious-userlogout'      => 'Your request to log out was denied because it looks like it was sent by a broken browser or caching proxy.',
+'suspicious-userlogout'           => 'Your request to log out was denied because it looks like it was sent by a broken browser or caching proxy.',
 
 # Email sending
 'pear-mail-error'        => '$1', # do not translate or duplicate this message to other languages
@@ -3794,8 +3794,8 @@ This is probably caused by a link to a blacklisted external site.',
 'pageinfo-magic-words'            => 'Magic {{PLURAL:$1|word|words}} ($1)',
 'pageinfo-hidden-categories'      => 'Hidden {{PLURAL:$1|category|categories}} ($1)',
 'pageinfo-templates'              => 'Transcluded {{PLURAL:$1|template|templates}} ($1)',
-'pageinfo-footer'                 => '-', # do not translate or duplicate this message to other languages
 'pageinfo-transclusions'          => '{{PLURAL:$1|Page|Pages}} transcluded on ($1)',
+'pageinfo-footer'                 => '-', # do not translate or duplicate this message to other languages
 'pageinfo-toolboxlink'            => 'Page information',
 'pageinfo-redirectsto'            => 'Redirects to',
 'pageinfo-redirectsto-info'       => 'info',
@@ -5002,7 +5002,7 @@ Otherwise, you can use the easy form below. Your comment will be added to the pa
 'duration-centuries' => '$1 {{PLURAL:$1|century|centuries}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennia}}',
 
-#Rotation
+# Image rotation
 'rotate-comment' => 'Image rotated by $1 {{PLURAL:$1|degree|degrees}} clockwise',
 
 );

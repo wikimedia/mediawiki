@@ -1255,7 +1255,7 @@ See also:
 * {{msg-mw|Passwordreset-emailsent}}
 * {{msg-mw|Passwordreset-emailerror-capture}}',
 'passwordreset-emailerror-capture' => 'Error message displayed in [[Special:PasswordReset]] when sending an e-mail fails. Parameters:
-* $1 - the name of a user who was supposed to get the e-mail
+* $1 - error message
 See also:
 * {{msg-mw|Passwordreset-emailsent}}
 * {{msg-mw|Passwordreset-emailsent-capture}}',

@@ -205,6 +205,16 @@ abstract class Job {
 	}
 
 	/**
+	 * @return integer|null UNIX timestamp to delay running this job until, otherwise null
+	 * @since 1.22
+	 */
+	public function getReleaseTimestamp() {
+		return isset( $this->params['jobReleaseTimestamp'] )
+			? wfTimestampOrNull( TS_UNIX, $this->params['jobReleaseTimestamp'] )
+			: null;
+	}
+
+	/**
 	 * @return bool Whether only one of each identical set of jobs should be run
 	 */
 	public function ignoreDuplicates() {

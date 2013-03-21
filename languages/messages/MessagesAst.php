@@ -547,8 +547,8 @@ Por favor vuelvi identificate depués de recibila.',
 'blocked-mailpassword' => 'Ta bloquiada la edición dende la to direición IP, polo que pa evitar abusos nun se pue usar la función de recuperación de clave.',
 'eauthentsent' => "Unvióse un corréu electrónicu de confirmación a la direición indicada.
 Enantes de que s'unvie nengún otru corréu a la cuenta, has siguir les instrucciones del corréu electrónicu pa confirmar que la cuenta ye de to.",
-'throttled-mailpassword' => "Yá s'unvió un recordatoriu de la clave {{PLURAL:$1|na postrer hora|nes postreres $1 hores}}.
-Pa evitar abusos, namái s'unviará un recordatoriu cada {{PLURAL:$1|hora|$1 hores}}.",
+'throttled-mailpassword' => "Yá s'unvió un corréu de reaniciu la clave {{PLURAL:$1|na postrer hora|nes postreres $1 hores}}.
+Pa evitar abusos, namái s'unviará un corréu de reaniciu cada {{PLURAL:$1|hora|$1 hores}}.",
 'mailerror' => 'Fallu al unviar el corréu: $1',
 'acct_creation_throttle_hit' => "Los visitantes d'esta wiki qu'usen la to direición IP yá crearon güei {{PLURAL:$1|1 cuenta|$1 cuentes}}, que ye'l máximu almitíu nesti periodu de tiempu.
 Poro, los visitantes qu'usen esta direición IP nun puen crear más cuentes de momentu.",
@@ -602,7 +602,7 @@ Seique yá camudaras correutamente la clave o que pidieras una nueva clave provi
 
 # Special:PasswordReset
 'passwordreset' => 'Reaniciar clave',
-'passwordreset-text' => 'Completa esti formulariu pa recibir un corréu electrónicu que te recuerde los detalles de la to cuenta.',
+'passwordreset-text' => 'Complete esti formulariu pa reaniciar la contraseña.',
 'passwordreset-legend' => 'Reaniciar clave',
 'passwordreset-disabled' => 'Los reanicios de clave tán desactivaos nesta wiki.',
 'passwordreset-pretext' => "{{PLURAL:$1||Escribi ún de los elementos de los datos d'abaxo}}",
@@ -612,32 +612,27 @@ Seique yá camudaras correutamente la clave o que pidieras una nueva clave provi
 'passwordreset-capture-help' => "Si marques esta caxella, podrás ver el corréu (cola clave provisional) amás d'unvialu al usuariu.",
 'passwordreset-email' => 'Direición de corréu electrónicu:',
 'passwordreset-emailtitle' => 'Detalles de la cuenta en {{SITENAME}}',
-'passwordreset-emailtext-ip' => "Daquién (seique tu, dende la direición IP $1)solicitó un recordatoriu de los
-detalles de la to cuenta de {{SITENAME}} ($4).
+'passwordreset-emailtext-ip' => "Dalguién (seique vusté, dende la direición IP $1)solicitó'l reaniciu de la so contraseña de {{SITENAME}} ($4).
 {{PLURAL:$3|La cuenta d'usuariu siguiente ta asociada|Les cuentes d'usuariu siguientes tán asociaes}}
 a esta direición de corréu electrónicu:
 
 $2
 
-{{PLURAL:$3|Esta clave provisional caduca|Estes claves provisionales caduquen}} {{PLURAL:$5|nún día|en $5 díes}}.
-Habríes identificate y escoyer una clave nueva agora. Si esta solicitú la fizo otra persona,
-o si recordasti la clave orixinal y yá nun quies camudala, pues escaecer esti mensaxe y siguir
-usando la to clave antigua.",
-'passwordreset-emailtext-user' => "L'usuariu $1 de {{SITENAME}} solicitó un recordatoriu de los detalles de la to cuenta de {{SITENAME}} ($4).
-{{PLURAL:$3|La cuenta d'usuariu siguiente ta asociada|Les cuentes d'usuariu siguientes tán asociaes}}
-a esta direición de corréu electrónicu:
+{{PLURAL:$3|Esta contraseña provisional caduca|Estes contraseñes provisionales caduquen}} {{PLURAL:$5|nun día|en $5 díes}}.
+Tendría d'aniciar sesión y escoyer una contraseña nueva agora. Si esta solicitú la fizo otra persona,
+o si recordó la clave orixinal y yá nun quier camudala, pue escaecer esti mensaxe y siguir
+usando la contraseña antigua.",
+'passwordreset-emailtext-user' => "L'usuariu $1 de {{SITENAME}} solicitó un reaniciu de la so contraseña de {{SITENAME}} ($4). {{PLURAL:$3|La cuenta d'usuariu siguiente ta asociada|Les cuentes d'usuariu siguientes tán asociaes}} con esta direición de corréu electrónicu:
 
 $2
 
-{{PLURAL:$3|Esta clave provisional caduca|Estes claves provisionales caduquen}} {{PLURAL:$5|nun día|en $5 díes}}.
-Habríes identificate y escoyer una clave nueva agora. Si esta solicitú la fizo otra persona, o si
-recordasti la clave orixinal y yá nun quies camudala, pues escaecer esti mensaxe y siguir usando
-la to clave antigua.",
+{{PLURAL:$3|Esta contraseña provisional caduca|Estes contraseñes provisionales caduquen}} {{PLURAL:$5|nun día|en $5 díes}}.
+Tendría d'aniciar sesión y escoyer una contraseña nueva agora. Si esta solicitú la fizo otra persona, o si recordó la clave orixinal y yá nun quier camudala, pue escaecer esti mensaxe y siguir usando la contraseña antigua.",
 'passwordreset-emailelement' => "Nome d'usuariu: $1
 Clave provisional: $2",
-'passwordreset-emailsent' => 'Unvióse un corréu electrónicu de recordatoriu.',
-'passwordreset-emailsent-capture' => "Unvióse un corréu electrónicu de recordatoriu, que s'amuesa abaxo.",
-'passwordreset-emailerror-capture' => "Xeneróse un corréu electrónicu de recordatoriu, que s'amuesa abaxo, pero falló'l so unviu al usuariu: $1",
+'passwordreset-emailsent' => 'Unvióse un corréu electrónicu pa reaniciar la contraseña.',
+'passwordreset-emailsent-capture' => "Unvióse un corréu electrónicu pa reaniciar la contraseña, que s'amuesa abaxo.",
+'passwordreset-emailerror-capture' => "Unvióse un corréu electrónicu pa reaniciar la contraseña, que s'amuesa abaxo, pero falló l'unviu al usuariu: $1",
 
 # Special:ChangeEmail
 'changeemail' => 'Camudar la direición de corréu electrónicu',
@@ -734,7 +729,7 @@ Seique se treslladara o desaniciara mientres víes la páxina.',
 'loginreqtitle' => 'Necesítase identificación',
 'loginreqlink' => 'identificate',
 'loginreqpagetext' => 'Has $1 pa ver otres páxines.',
-'accmailtitle' => 'Clave unviada.',
+'accmailtitle' => 'Clave unviada',
 'accmailtext' => "Unvióse a $2 una clave xenerada al debalu pal usuariu [[User talk:$1|$1]].
 
 La clave d'esta cuenta nueva pue camudase na páxina ''[[Special:ChangePassword|camudar clave]]'' depués d'identificate.",
@@ -742,10 +737,11 @@ La clave d'esta cuenta nueva pue camudase na páxina ''[[Special:ChangePassword|
 'newarticletext' => "Siguisti un enllaz a un artículu qu'inda nun esiste.
 Pa crear la páxina, empecipia a escribir nel cuadru d'embaxo (mira la [[{{MediaWiki:Helppage}}|páxina d'ayuda]] pa más información).
 Si llegasti equí por enquivocu, calca nel botón '''atrás''' del to restolador.",
-'anontalkpagetext' => "----''Esta ye la páxina de'alderique pa un usuariu anónimu qu'inda nun creó una cuenta o que nun la usa.
+'anontalkpagetext' => "----
+''Esta ye la páxina de'alderique pa un usuariu anónimu qu'inda nun creó una cuenta o que nun la usa.''
 Pola mor d'ello ha usase la direición numbérica IP pa identificalu/la.
 Tala IP pue ser compartida por varios usuarios.
-Si yes un usuariu anónimu y notes qu'hai comentarios irrelevantes empobinaos pa ti, por favor [[Special:UserLogin/signup|crea una cuenta]] o [[Special:UserLogin/signup|identifícate]] pa torgar futures confusiones con otros usuarios anónimos.''",
+Si yes un usuariu anónimu y notes qu'hai comentarios irrelevantes empobinaos pa ti, por favor [[Special:UserLogin/signup|crea una cuenta]] o [[Special:UserLogin/signup|identifícate]] pa torgar futures confusiones con otros usuarios anónimos.",
 'noarticletext' => 'Nestos momentos nun hai testu nesta páxina.
 Pues [[Special:Search/{{PAGENAME}}|guetar esti títulu de páxina]] n\'otres páxines,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} guetar los rexistros rellacionaos],
@@ -2072,9 +2068,7 @@ Pue haber [[{{MediaWiki:Listgrouprights-helppage}}|información adicional]] toca
 
 # Email user
 'mailnologin' => "Ensin direición d'unviu",
-'mailnologintext' => 'Has tar [[Special:UserLogin|identificáu]]
-y tener una direición de corréu válida nes tos [[Special:Preferences|preferencies]]
-pa poder unviar correos a otros usuarios.',
+'mailnologintext' => 'Has tener [[Special:UserLogin|sesión aniciada]] y una direición de corréu válida nes tos [[Special:Preferences|preferencies]] pa poder unviar correos a otros usuarios.',
 'emailuser' => 'Manda-y un corréu a esti usuariu',
 'emailuser-title-target' => 'Unviar un corréu electrónicu a {{GENDER:$1|esti usuariu|esta usuaria}}',
 'emailuser-title-notarget' => 'Unviar un corréu electrónicu a un usuariu',
@@ -2102,7 +2096,7 @@ La direición de corréu electrónicu qu\'especificasti nes [[Special:Preference
 'emailccme' => 'Unviame per corréu una copia del mio mensaxe.',
 'emailccsubject' => 'Copia del to mensaxe a $1: $2',
 'emailsent' => 'Corréu unviáu',
-'emailsenttext' => 'El to corréu foi unviáu.',
+'emailsenttext' => "Unviose'l to mensaxe de corréu.",
 'emailuserfooter' => 'Esti corréu electrónicu unviolu $1 a $2 per aciu de la función "Manda-y un corréu a un usuariu" de {{SITENAME}}.',
 
 # User Messenger
@@ -2472,9 +2466,9 @@ Mira na [[Special:BlockList|llista de bloqueos]] pa revisar los bloqueos.',
 'unblockip' => 'Desbloquiar usuariu',
 'unblockiptext' => "Usa'l formulariu d'abaxo pa restablecer l'accesu d'escritura a una direicion IP o a un nome d'usuariu previamente bloquiáu.",
 'ipusubmit' => 'Desaniciar esti bloquéu',
-'unblocked' => '[[User:$1|$1]] foi desbloquiáu',
+'unblocked' => '[[User:$1|$1]] desbloquióse.',
 'unblocked-range' => '$1 se desbloquió',
-'unblocked-id' => 'El bloquéu $1 foi elimináu',
+'unblocked-id' => "Desaniciose'l bloquéu $1.",
 'blocklist' => 'Usuarios bloquiaos',
 'ipblocklist' => 'Usuarios bloquiaos',
 'ipblocklist-legend' => 'Atopar un usuariu bloquiáu',
@@ -2496,7 +2490,7 @@ Mira na [[Special:BlockList|llista de bloqueos]] pa revisar los bloqueos.',
 'anononlyblock' => 'namái anón.',
 'noautoblockblock' => 'bloquéu automáticu desactiváu',
 'createaccountblock' => 'bloquiada la creación de cuentes',
-'emailblock' => 'corréu electrónicu bloquiáu',
+'emailblock' => 'corréu electrónicu desactiváu',
 'blocklist-nousertalk' => "nun pue editar la so páxina d'alderique",
 'ipblocklist-empty' => 'La llista de bloqueos ta vacia.',
 'ipblocklist-no-results' => "La direición IP o nome d'usuariu solicitáu nun ta bloquiáu.",
@@ -2520,7 +2514,7 @@ Pa ver los bloqueos qu'hai agora mesmo, mira na [[Special:BlockList|llista de bl
 'block-log-flags-anononly' => 'namái usuarios anónimos',
 'block-log-flags-nocreate' => 'creación de cuentes desactivada',
 'block-log-flags-noautoblock' => 'bloquéu automáticu deshabilitáu',
-'block-log-flags-noemail' => 'corréu electrónicu bloquiáu',
+'block-log-flags-noemail' => 'corréu electrónicu desactiváu',
 'block-log-flags-nousertalk' => "nun pue editar la páxina d'alderique propia",
 'block-log-flags-angry-autoblock' => 'autobloquéu ameyoráu activáu',
 'block-log-flags-hiddenname' => "nome d'usuariu anubríu",
@@ -3481,16 +3475,14 @@ Los demás tarán anubríos de mou predetermináu.
 # Email address confirmation
 'confirmemail' => 'Confirmar direición de corréu',
 'confirmemail_noemail' => "Nun tienes una direición de corréu válida nes tos [[Special:Preferences|preferencies d'usuariu]].",
-'confirmemail_text' => "{{SITENAME}} requier que valides la to direición de corréu enantes d'usar les
-funcionalidaes de mensaxes. Da-y al botón que tienes equí embaxo pa unviar un avisu de
-confirmación a la to direición. Esti avisu va incluyir un enllaz con un códigu; carga
-l'enllaz nel to navegador pa confirmar la to direición de corréu electrónicu.",
+'confirmemail_text' => "{{SITENAME}} requier que valides la to direición de corréu enantes d'usar les carauterístiques de corréu.
+Da-y al botón que tienes equí embaxo pa unviar un corréu de confirmación a la to direición.
+El corréu va incluyir un enllaz con un códigu; carga l'enllaz nel to navegador pa confirmar que la to direición de corréu electrónicu ye válida.",
 'confirmemail_pending' => "Yá s'unvió un códigu de confirmación a la to direición de corréu; si creasti hai poco la to cuenta, pues esperar dellos minutos a que-y de tiempu a llegar enantes de pidir otru códigu nuevu.",
 'confirmemail_send' => 'Unviar códigu de confirmación',
 'confirmemail_sent' => 'Corréu de confirmación unviáu.',
 'confirmemail_oncreate' => "Unvióse un códigu de confirmación a la to direición de corréu.
-Esti códigu nun se necesita pa identificase, pero tendrás que lu conseñar enantes
-d'activar cualesquier funcionalidá de la wiki que tea rellacionada col corréu.",
+Esti códigu nun se necesita p'aniciar sesión, pero tendrás que conseñalu enantes d'activar cualesquier carauterística de la wiki que tea rellacionada col corréu.",
 'confirmemail_sendfailed' => '{{SITENAME}} nun pudo unviar el to corréu de confirmación.
 Por favor comprueba que nun punxeras carauteres non válidos na to direición de corréu.
 
@@ -3502,15 +3494,15 @@ Agora yá pues [[Special:UserLogin|coneutate]] y esfrutar de la wiki.',
 'confirmemail_loggedin' => 'Quedó confirmada la to direición de corréu.',
 'confirmemail_error' => 'Hebo un problema al guardar la to confirmación.',
 'confirmemail_subject' => 'Confirmación de la direición de corréu de {{SITENAME}}',
-'confirmemail_body' => 'Daquién, seique tu dende la IP $1, rexistró la cuenta "$2" con
+'confirmemail_body' => 'Daquién, seique tu, dende la IP $1, rexistró la cuenta "$2" con
 esta direición de corréu en {{SITENAME}}.
 
-Pa confirmar qu\'esta cuenta ye tuya daveres y asina activar les funcionalidaes
+Pa confirmar qu\'esta cuenta ye tuya daveres y asina activar les carauterístiques
 de corréu en {{SITENAME}}, abri esti enllaz nel to navegador:
 
 $3
 
-Si *nun* rexistrasti tu la cuenta, da-y a esti enllaz pa cancelar
+Si *nun* rexistrasti tu la cuenta, sigui esti enllaz pa encaboxar
 la confirmación de la direición de corréu electrónicu:
 
 $5
@@ -3544,8 +3536,8 @@ la confirmación de les señes de corréu electrónicu:
 $5
 
 Esti códigu de confirmación caduca\'l $4.',
-'confirmemail_invalidated' => 'Confirmación de direición de corréu electrónicu cancelada',
-'invalidateemail' => 'Cancelar confirmación de corréu electrónicu',
+'confirmemail_invalidated' => 'Confirmación de direición de corréu electrónicu encaboxada',
+'invalidateemail' => 'Encaboxar confirmación de corréu electrónicu',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[La tresclusión interwiki ta desactivada]',
@@ -3554,7 +3546,7 @@ Esti códigu de confirmación caduca\'l $4.',
 'scarytranscludetoolong' => '[La URL ye demasiao llarga]',
 
 # Delete conflict
-'deletedwhileediting' => "'''Avisu''': ¡Esta páxina foi esborrada depués de qu'entamaras a editala!",
+'deletedwhileediting' => "'''Avisu''': ¡Esta páxina desanicióse depués de qu'entamaras a editala!",
 'confirmrecreate' => "L'usuariu [[User:$1|$1]] ([[User talk:$1|alderique]]) esborró esta páxina depués de qu'empecipiaras a editala pol siguiente motivu:
 : ''$2''
 Por favor confirma que daveres quies volver a crear esta páxina.",
@@ -3777,17 +3769,17 @@ Les imáxenes amuésense a resolución completa; les demás tribes d'archivu exe
 'sqlite-no-fts' => '$1 ensin sofitu pa gueta en testu completu',
 
 # New logging system
-'logentry-delete-delete' => '$1 desanició la páxina $3',
-'logentry-delete-restore' => '$1 restauró la páxina $3',
-'logentry-delete-event' => "$1 camudó la visibilidá {{PLURAL:$5|d'un socesu del rexistru|de $5 socesos del rexistru}} en $3: $4",
-'logentry-delete-revision' => "$1 camudó la visibilidá {{PLURAL:$5|d'una revisión|de $5 revisiones}} na páxina $3: $4",
-'logentry-delete-event-legacy' => '$1 camudó la visibilidá de los socesos del rexistru en $3',
-'logentry-delete-revision-legacy' => '$1 camudó la visibilidá de les revisiones na páxina $3',
-'logentry-suppress-delete' => '$1 suprimió la páxina $3',
-'logentry-suppress-event' => "$1 camudó en secretu la visibilidá {{PLURAL:$5|d'un socesu del rexistru|de $5 socesos del rexistru}} en $3: $4",
-'logentry-suppress-revision' => "$1 camudó en secretu la visibilidá {{PLURAL:$5|d'una revisión|de $5 revisiones}} na páxina $3: $4",
-'logentry-suppress-event-legacy' => '$1 camudó en secretu la visibilidá de los socesos del rexistru en $3',
-'logentry-suppress-revision-legacy' => '$1 camudó en secretu la visibilidá de les revisiones na páxina $3',
+'logentry-delete-delete' => '$1 {{GENDER:$2|desanició}} la páxina $3',
+'logentry-delete-restore' => '$1 {{GENDER:$2|restauró}} la páxina $3',
+'logentry-delete-event' => "$1 {{GENDER:$2|camudó}} la visibilidá {{PLURAL:$5|d'un socesu del rexistru|de $5 socesos del rexistru}} en $3: $4",
+'logentry-delete-revision' => "$1 {{GENDER:$2|camudó}} la visibilidá {{PLURAL:$5|d'una revisión|de $5 revisiones}} na páxina $3: $4",
+'logentry-delete-event-legacy' => '$1 {{GENDER:$2|camudó}} la visibilidá de los socesos del rexistru en $3',
+'logentry-delete-revision-legacy' => '$1 {{GENDER:$2|camudó}} la visibilidá de les revisiones na páxina $3',
+'logentry-suppress-delete' => '$1 {{GENDER:$2|suprimió}} la páxina $3',
+'logentry-suppress-event' => "$1 {{GENDER:$2|camudó}} en secretu la visibilidá {{PLURAL:$5|d'un socesu del rexistru|de $5 socesos del rexistru}} en $3: $4",
+'logentry-suppress-revision' => "$1 {{GENDER:$2|camudó}} en secretu la visibilidá {{PLURAL:$5|d'una revisión|de $5 revisiones}} na páxina $3: $4",
+'logentry-suppress-event-legacy' => '$1 {{GENDER:$2|camudó}} en secretu la visibilidá de los socesos del rexistru en $3',
+'logentry-suppress-revision-legacy' => '$1 {{GENDER:$2|camudó}} en secretu la visibilidá de les revisiones na páxina $3',
 'revdelete-content-hid' => 'conteníu tapecíu',
 'revdelete-summary-hid' => "resume d'edición tapecíu",
 'revdelete-uname-hid' => "nome d'usuariu anubríu",
@@ -3796,20 +3788,20 @@ Les imáxenes amuésense a resolución completa; les demás tribes d'archivu exe
 'revdelete-uname-unhid' => "nome d'usuariu non anubríu",
 'revdelete-restricted' => 'aplicaes les restricciones a los alministradores',
 'revdelete-unrestricted' => 'eliminaes les restricciones a los alministradores',
-'logentry-move-move' => '$1 treslladó la páxina "$3" a "$4"',
-'logentry-move-move-noredirect' => '$1 treslladó la páxina "$3" a "$4" ensin dexar una redireición',
-'logentry-move-move_redir' => '$1 treslladó la páxina "$3" a "$4" sobre una redireición',
-'logentry-move-move_redir-noredirect' => '$1 treslladó la páxina "$3" a "$4" sobre una redireición ensin dexar una redireición',
-'logentry-patrol-patrol' => '$1 marcó la revisión $4 de la páxina "$3" como patrullada',
-'logentry-patrol-patrol-auto' => '$1 marcó automaticamente la revisión $4 de la páxina "$3" como patrullada',
-'logentry-newusers-newusers' => "Creóse la cuenta d'usuariu $1",
-'logentry-newusers-create' => "Creóse la cuenta d'usuariu $1",
-'logentry-newusers-create2' => "$1 creó la cuenta d'usuariu $3",
-'logentry-newusers-byemail' => "$1 creó la cuenta d'usuariu $3 y la contraseña uviose per corréu electrónicu",
-'logentry-newusers-autocreate' => 'La cuenta $1 creóse automáticamente',
-'logentry-rights-rights' => '$1 camudó la pertenencia a grupos de $3 dende $4 a $5',
-'logentry-rights-rights-legacy' => '$1 camudó la pertenencia a grupos de $3',
-'logentry-rights-autopromote' => '$1 promocionó automáticamente de $4 a $5',
+'logentry-move-move' => '$1 {{GENDER:$2|treslladó}} la páxina "$3" a "$4"',
+'logentry-move-move-noredirect' => '$1 {{GENDER:$2|treslladó}} la páxina "$3" a "$4" ensin dexar una redireición',
+'logentry-move-move_redir' => '$1 {{GENDER:$2|treslladó}} la páxina "$3" a "$4" sobre una redireición',
+'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|treslladó}} la páxina "$3" a "$4" sobre una redireición ensin dexar una redireición',
+'logentry-patrol-patrol' => '$1 {{GENDER:$2|marcó}} la revisión $4 de la páxina "$3" como patrullada',
+'logentry-patrol-patrol-auto' => '$1 {{GENDER:$2|marcó}} automáticamente la revisión $4 de la páxina "$3" como patrullada',
+'logentry-newusers-newusers' => "{{GENDER:$2|Creóse}} la cuenta d'usuariu $1",
+'logentry-newusers-create' => "{{GENDER:$2|Creóse}} la cuenta d'usuariu $1",
+'logentry-newusers-create2' => "$1 {{GENDER:$2|creó}} la cuenta d'usuariu $3",
+'logentry-newusers-byemail' => "$1 {{GENDER:$2|creó}} la cuenta d'usuariu $3 y la contraseña unvióse per corréu electrónicu",
+'logentry-newusers-autocreate' => 'La cuenta $1 {{GENDER:$2|creóse}} automáticamente',
+'logentry-rights-rights' => '$1 {{GENDER:$2|camudó}} la pertenencia a grupos de $3 dende $4 a $5',
+'logentry-rights-rights-legacy' => '$1 {{GENDER:$2|camudó}} la pertenencia a grupos de $3',
+'logentry-rights-autopromote' => '$1 {{GENDER:$2|promocionó}} automáticamente de $4 a $5',
 'rightsnone' => '(nengún)',
 
 # Feedback

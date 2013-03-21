@@ -32,44 +32,52 @@ class JobQueueTest extends MediaWikiTestCase {
 		}
 		$baseConfig['type'] = 'null';
 		$baseConfig['wiki'] = wfWikiID();
-		$this->queueRand = JobQueue::factory(
-			array( 'order' => 'random', 'claimTTL' => 0 ) + $baseConfig );
-		$this->queueRandTTL = JobQueue::factory(
-			array( 'order' => 'random', 'claimTTL' => 10 ) + $baseConfig );
-		$this->queueFifo = JobQueue::factory(
-			array( 'order' => 'fifo', 'claimTTL' => 0 ) + $baseConfig );
-		$this->queueFifoTTL = JobQueue::factory(
-			array( 'order' => 'fifo', 'claimTTL' => 10 ) + $baseConfig );
-		if ( $baseConfig['class'] !== 'JobQueueDB' ) { // DB namespace with prefix or temp tables
-			foreach ( array( 'queueRand', 'queueRandTTL', 'queueFifo', 'queueFifoTTL' ) as $q ) {
-				$this->$q->setTestingPrefix( 'unittests-' . wfRandomString( 32 ) );
-			}
+		$variants = array(
+			'queueRand' => array( 'order' => 'random', 'claimTTL' => 0 ),
+			'queueRandTTL' => array( 'order' => 'random', 'claimTTL' => 10 ),
+			'queueTimestamp' => array( 'order' => 'timestamp', 'claimTTL' => 0 ),
+			'queueTimestampTTL' => array( 'order' => 'timestamp', 'claimTTL' => 10 ),
+			'queueFifo' => array( 'order' => 'fifo', 'claimTTL' => 0 ),
+			'queueFifoTTL' => array( 'order' => 'fifo', 'claimTTL' => 10 ),
+		);
+		foreach ( $variants as $q => $settings ) {
+			try {
+				$this->$q = JobQueue::factory( $settings + $baseConfig );
+				if ( ! ( $this->$q instanceof JobQueueDB ) ) {
+					$this->$q->setTestingPrefix( 'unittests-' . wfRandomString( 32 ) );
+				}
+			} catch ( MWException $e ) {}; // unsupported? (@TODO: what if it was another error?)
 		}
 	}
 
 	protected function tearDown() {
 		global $wgMemc;
 		parent::tearDown();
-		foreach ( array( 'queueRand', 'queueRandTTL', 'queueFifo', 'queueFifoTTL' ) as $q ) {
-			do {
-				$job = $this->$q->pop();
-				if ( $job ) {
-					$this->$q->ack( $job );
-				}
-			} while ( $job );
+		foreach ( array(
+			'queueRand', 'queueRandTTL', 'queueTimestamp', 'queueTimestampTTL',
+			'queueFifo', 'queueFifoTTL'
+		) as $q ) {
+			if ( $this->$q ) {
+				do {
+					$job = $this->$q->pop();
+					if ( $job ) {
+						$this->$q->ack( $job );
+					}
+				} while ( $job );
+			}
+			$this->$q = null;
 		}
-		$this->queueRand = null;
-		$this->queueRandTTL = null;
-		$this->queueFifo = null;
-		$this->queueFifoTTL = null;
 		$wgMemc = $this->old['wgMemc'];
 	}
 
 	/**
 	 * @dataProvider provider_queueLists
 	 */
-	function testProperties( $queue, $order, $recycles, $desc ) {
+	function testProperties( $queue, $recycles, $desc ) {
 		$queue = $this->$queue;
+		if ( !$queue ) {
+			$this->markTestSkipped( $desc );
+		}
 
 		$this->assertEquals( wfWikiID(), $queue->getWiki(), "Proper wiki ID ($desc)" );
 		$this->assertEquals( 'null', $queue->getType(), "Proper job type ($desc)" );
@@ -78,8 +86,12 @@ class JobQueueTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provider_queueLists
 	 */
-	function testBasicOperations( $queue, $order, $recycles, $desc ) {
+	function testBasicOperations( $queue, $recycles, $desc ) {
 		$queue = $this->$queue;
+		if ( !$queue ) {
+			$this->markTestSkipped( $desc );
+		}
+
 		$this->assertTrue( $queue->isEmpty(), "Queue is empty ($desc)" );
 
 		$queue->flushCaches();
@@ -146,8 +158,12 @@ class JobQueueTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provider_queueLists
 	 */
-	function testBasicDeduplication( $queue, $order, $recycles, $desc ) {
+	function testBasicDeduplication( $queue, $recycles, $desc ) {
 		$queue = $this->$queue;
+		if ( !$queue ) {
+			$this->markTestSkipped( $desc );
+		}
+
 
 		$this->assertTrue( $queue->isEmpty(), "Queue is empty ($desc)" );
 
@@ -195,8 +211,12 @@ class JobQueueTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provider_queueLists
 	 */
-	function testRootDeduplication( $queue, $order, $recycles, $desc ) {
+	function testRootDeduplication( $queue, $recycles, $desc ) {
 		$queue = $this->$queue;
+		if ( !$queue ) {
+			$this->markTestSkipped( $desc );
+		}
+
 
 		$this->assertTrue( $queue->isEmpty(), "Queue is empty ($desc)" );
 
@@ -247,6 +267,10 @@ class JobQueueTest extends MediaWikiTestCase {
 	 */
 	function testJobOrder( $queue, $recycles, $desc ) {
 		$queue = $this->$queue;
+		if ( !$queue ) {
+			$this->markTestSkipped( $desc );
+		}
+
 
 		$this->assertTrue( $queue->isEmpty(), "Queue is empty ($desc)" );
 
@@ -360,10 +384,12 @@ class JobQueueTest extends MediaWikiTestCase {
 
 	function provider_queueLists() {
 		return array(
-			array( 'queueRand', 'rand', false, 'Random queue without ack()' ),
-			array( 'queueRandTTL', 'rand', true, 'Random queue with ack()' ),
-			array( 'queueFifo', 'fifo', false, 'Ordered queue without ack()' ),
-			array( 'queueFifoTTL', 'fifo', true, 'Ordered queue with ack()' )
+			array( 'queueRand', false, 'Random queue without ack()' ),
+			array( 'queueRandTTL', true, 'Random queue with ack()' ),
+			array( 'queueTimestamp', false, 'Time ordered queue without ack()' ),
+			array( 'queueTimestampTTL', true, 'Time ordered queue with ack()' ),
+			array( 'queueFifo', false, 'FIFO ordered queue without ack()' ),
+			array( 'queueFifoTTL', true, 'FIFO ordered queue with ack()' )
 		);
 	}
 

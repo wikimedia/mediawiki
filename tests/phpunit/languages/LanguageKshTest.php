@@ -7,20 +7,23 @@
 
 /** Tests for MediaWiki languages/classes/LanguageKsh.php */
 class LanguageKshTest extends LanguageClassesTestCase {
-
-	/** @dataProvider providerPlural */
+	/** @dataProvider providePlural */
 	function testPlural( $result, $value ) {
 		$forms = array( 'one', 'other', 'zero' );
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
-	function providerPlural() {
-		return array(
+	/** @dataProvider providePlural */
+	function testGetPluralRuleType( $result, $value ) {
+		$this->assertEquals( $result, $this->getLang()->getPluralRuleType( $value ) );
+	}
+
+	function providePlural() {
+		return array (
 			array( 'zero', 0 ),
 			array( 'one', 1 ),
 			array( 'other', 2 ),
 			array( 'other', 200 ),
 		);
 	}
-
 }

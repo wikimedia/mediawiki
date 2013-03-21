@@ -2619,10 +2619,10 @@ Pôt-étre vos éd un crouyo lim ou ben la vèrsion at possu étre refêta ou en
 'undeletedfiles' => '$1 {{PLURAL:$1|fichiér refêt|fichiérs refêts}}',
 'cannotundelete' => 'Falyita de la rèstoracion :
 $1',
-'undeletedpage' => "'''La pâge $1 est étâye refêta.'''
+'undeletedpage' => "'''$1 est étâye refêta'''
 
-Vêde lo [[Special:Log/delete|jornal de les suprèssions]] por avêr la lista de les novèles suprèssions et rèstoracions.",
-'undelete-header' => 'Vêde lo [[Special:Log/delete|jornal de les suprèssions]] por avêr la lista de les pâges suprimâyes dèrriérement.',
+Vêde lo [[Special:Log/delete|jornal de les suprèssions]] por avêr na lista de les novèles suprèssions et rèstoracions.",
+'undelete-header' => 'Vêde lo [[Special:Log/delete|jornal de les suprèssions]] por avêr les pâges suprimâyes dês pou.',
 'undelete-search-title' => 'Rechèrchiér des pâges suprimâs',
 'undelete-search-box' => 'Rechèrchiér des pâges suprimâs',
 'undelete-search-prefix' => 'Montrar les pâges que començont per :',

@@ -1600,7 +1600,7 @@ Katrā rindiņā ir saites uz pirmo un otro pāradresācijas lapu, kā arī pirm
 'brokenredirects-edit' => 'labot',
 'brokenredirects-delete' => 'dzēst',
 
-'withoutinterwiki' => 'Lapas bez interwiki',
+'withoutinterwiki' => 'Lapas bez starpviki saitēm',
 'withoutinterwiki-summary' => "Šajās lapās nav saišu uz citu valodu projektiem (''interwiki''):",
 'withoutinterwiki-legend' => 'Prefikss',
 'withoutinterwiki-submit' => 'Rādīt',

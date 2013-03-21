@@ -163,7 +163,7 @@ $messages = array(
 'vector-action-unprotect' => 'Хуьн дегишарун',
 'vector-simplesearch-preference' => 'Гегьенш жагъурунин рикIел гъун кутун (кьилди "Вектор" акунар патал)',
 'vector-view-create' => 'Туькlуьрун',
-'vector-view-edit' => 'Расун',
+'vector-view-edit' => 'Дуьзар хъувун',
 'vector-view-history' => 'Тарихдиз килигун',
 'vector-view-view' => 'Кlелун',
 'vector-view-viewsource' => 'Чешме къалурун',
@@ -256,7 +256,7 @@ $messages = array(
 'newmessageslink' => 'цlийи чарар',
 'newmessagesdifflink' => 'Эхиримжи масакIавилер',
 'youhavenewmessagesmulti' => '"$1"-да квез цIийи чарар атанва.',
-'editsection' => 'Расун',
+'editsection' => 'Дуьзар хъувун',
 'editold' => 'Дуьзар хъувун',
 'viewsourceold' => 'сифте кьилин коддиз килига',
 'editlink' => 'Дуьзар хъувун',
@@ -400,7 +400,7 @@ $messages = array(
 'subject' => 'Тема/кьилинцIар',
 'minoredit' => 'ГъвечIи дуьзар хъувун',
 'watchthis' => 'И ччин гуьзетун',
-'savearticle' => 'Чъин хвин',
+'savearticle' => 'Ччин хуьн',
 'preview' => 'Сифтедин килигун',
 'showpreview' => 'Сифтедин килигун къалурун',
 'showlivepreview' => 'Фад сифтедин килигун',
@@ -595,7 +595,7 @@ $messages = array(
 
 # Preferences page
 'preferences' => 'Туькlуьрун',
-'mypreferences' => 'Zi tïķïrunar',
+'mypreferences' => 'Зи низамарунар',
 'prefs-edits' => 'Дьузар хъувунрин кьадар',
 'prefsnologin' => 'Куьне гьахьнавач',
 'changepassword' => 'Парол дегишарун',
@@ -938,7 +938,7 @@ $messages = array(
 
 # Watchlist
 'watchlist' => 'Зи вилив хуьнин сиягь',
-'mywatchlist' => 'Зи вилив хюнин сиягь',
+'mywatchlist' => 'Зи вилив хуьнин сиягь',
 'watchlistfor2' => '$1 $2 патал',
 'addedwatchtext' => "Чар \"[[:\$1]]\" тун хъувунай куьн [[Special:Watchlist|watchlist]].                                                                                                             Къвезмай дегишунар и чарчел ва галкlанавай чарчихъ ихтилатар жеда инна, ахъатдава \"сакlус яцlу''''' инна [[Special:RecentChanges|list of recent changes]] гьам кьизил авун.",
 'removedwatchtext' => 'Чар "[[:$1]]" Идай чlурнай [[Special:Watchlist|ахтармишунин цlарар]].',

@@ -172,19 +172,20 @@ class MagicVariableTest extends MediaWikiTestCase {
 	 * Rough tests for {{SERVERNAME}} magic word
 	 * Bug 31176
 	 * @group Database
+	 * @dataProvider dataServernameFromDifferentProtocols
 	 */
-	function testServernameFromDifferentProtocols() {
-		global $wgServer;
-		$saved_wgServer = $wgServer;
+	function testServernameFromDifferentProtocols( $server ) {
+		$this->setMwGlobals( 'wgServer', $server );
 
-		$wgServer = 'http://localhost/';
 		$this->assertMagic( 'localhost', 'servername' );
-		$wgServer = 'https://localhost/';
-		$this->assertMagic( 'localhost', 'servername' );
-		$wgServer = '//localhost/'; # bug 31176
-		$this->assertMagic( 'localhost', 'servername' );
+	}
 
-		$wgServer = $saved_wgServer;
+	function dataServernameFromDifferentProtocols() {
+		return array(
+			array( 'http://localhost/' ),
+			array( 'https://localhost/' ),
+			array( '//localhost/' ), # bug 31176
+		);
 	}
 
 	############### HELPERS ############################################
