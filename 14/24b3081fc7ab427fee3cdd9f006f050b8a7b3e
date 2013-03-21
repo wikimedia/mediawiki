@@ -1,0 +1,8 @@
+Verified-1: jenkins-bot
+Code-Review+2: Spage <spage@wikimedia.org>
+Verified+2: Spage <spage@wikimedia.org>
+Submitted-by: Spage <spage@wikimedia.org>
+Submitted-at: Thu, 21 Mar 2013 18:48:58 +0000
+Reviewed-on: https://gerrit.wikimedia.org/r/55108
+Project: mediawiki/core
+Branch: refs/heads/wmf/1.21wmf11
