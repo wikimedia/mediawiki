@@ -90,11 +90,13 @@ class MediaWikiSite extends Site {
 	 * @since 1.21
 	 *
 	 * @param string $pageName
+	 * @param string $timeout
+	 * @param array $options
 	 *
 	 * @return string
 	 * @throws MWException
 	 */
-	public function normalizePageName( $pageName ) {
+	public function normalizePageName( $pageName, $timeout = 'default', $options = array() ) {
 
 		// Check if we have strings as arguments.
 		if ( !is_string( $pageName ) ) {
@@ -133,8 +135,7 @@ class MediaWikiSite extends Site {
 			$url = $this->getFileUrl( 'api.php' ) . '?' . wfArrayToCgi( $args );
 
 			// Go on call the external site
-			//@todo: we need a good way to specify a timeout here.
-			$ret = Http::get( $url );
+			$ret = Http::get( $url, timeout, $options );
 		}
 
 		if ( $ret === false ) {
