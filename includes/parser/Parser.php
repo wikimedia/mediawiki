@@ -4108,7 +4108,7 @@ class Parser {
 		# Get all headlines for numbering them and adding funky stuff like [edit]
 		# links - this is for later, but we need the number of headlines right now
 		$matches = array();
-		$numMatches = preg_match_all( '/<H(?P<level>[1-6])(?P<attrib>.*?'.'>)(?P<header>.*?)<\/H[1-6] *>/i', $text, $matches );
+		$numMatches = preg_match_all( '/<H(?P<level>[1-6])(?P<attrib>.*?'.'>)\s*(?P<header>[\s\S]*?)\s*<\/H[1-6] *>/i', $text, $matches );
 
 		# if there are fewer than 4 headlines in the article, do not show TOC
 		# unless it's been explicitly enabled.
@@ -4170,7 +4170,7 @@ class Parser {
 				$serial = $markerMatches[1];
 				list( $titleText, $sectionIndex ) = $this->mHeadings[$serial];
 				$isTemplate = ( $titleText != $baseTitleText );
-				$headline = preg_replace( "/^$markerRegex/", "", $headline );
+				$headline = preg_replace( "/^$markerRegex\\s*/", "", $headline );
 			}
 
 			if ( $toclevel ) {
@@ -4416,7 +4416,7 @@ class Parser {
 		}
 
 		# split up and insert constructed headlines
-		$blocks = preg_split( '/<H[1-6].*?' . '>.*?<\/H[1-6]>/i', $text );
+		$blocks = preg_split( '/<H[1-6].*?' . '>[\s\S]*?<\/H[1-6]>/i', $text );
 		$i = 0;
 
 		// build an array of document sections
