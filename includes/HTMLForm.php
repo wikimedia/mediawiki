@@ -1760,6 +1760,10 @@ class HTMLCheckField extends HTMLFormField {
 			$attr['class'] = $this->mClass;
 		}
 
+		if ( !empty( $this->mParams['onclick'] ) ) {
+			$attr['onclick'] = $this->mParams['onclick'];
+		}
+
 		return Xml::check( $this->mName, $value, $attr ) . '&#160;' .
 			Html::rawElement( 'label', array( 'for' => $this->mID ), $this->mLabel );
 	}
@@ -2537,7 +2541,18 @@ class HTMLHiddenField extends HTMLFormField {
  * Add a submit button inline in the form (as opposed to
  * HTMLForm::addButton(), which will add it at the end).
  */
-class HTMLSubmitField extends HTMLFormField {
+class HTMLSubmitField extends HTMLButtonField {
+	protected $buttonType = 'submit';
+}
+
+/**
+ * Adds a generic button inline to the form. Should use the 'onclick' property to
+ * make this do something.
+ *
+ * @since 1.21
+ */
+class HTMLButtonField extends HTMLFormField {
+	protected $buttonType = 'button';
 
 	public function __construct( $info ) {
 		$info['nodata'] = true;
@@ -2549,10 +2564,15 @@ class HTMLSubmitField extends HTMLFormField {
 			'class' => 'mw-htmlform-submit ' . $this->mClass,
 			'name' => $this->mName,
 			'id' => $this->mID,
+			'type' => $this->buttonType,
 		);
 
 		if ( !empty( $this->mParams['disabled'] ) ) {
 			$attr['disabled'] = 'disabled';
+		}
+
+		if ( !empty( $this->mParams['onclick'] ) ) {
+			$attr['onclick'] = $this->mParams['onclick'];
 		}
 
 		return Xml::submitButton( $value, $attr );
