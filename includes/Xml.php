@@ -455,7 +455,7 @@ class Xml {
 	 * @return string HTML
 	 */
 	public static function submitButton( $value, $attribs = array() ) {
-		return Html::element( 'input', array( 'type' => 'submit', 'value' => $value ) + $attribs );
+        return Html::element( 'input', array( 'type' => 'submit', 'value' => $value ) + $attribs );
 	}
 
 	/**
