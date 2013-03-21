@@ -211,15 +211,11 @@ class TextContentTest extends MediaWikiLangTestCase {
 	 * @group Database
 	 */
 	public function testIsCountable( $text, $hasLinks, $mode, $expected ) {
-		global $wgArticleCountMethod;
-
-		$old = $wgArticleCountMethod;
-		$wgArticleCountMethod = $mode;
+		$this->setMwGlobals( 'wgArticleCountMethod', $mode );
 
 		$content = $this->newContent( $text );
 
 		$v = $content->isCountable( $hasLinks, $this->context->getTitle() );
-		$wgArticleCountMethod = $old;
 
 		$this->assertEquals( $expected, $v, 'isCountable() returned unexpected value ' . var_export( $v, true )
 			. ' instead of ' . var_export( $expected, true ) . " in mode `$mode` for text \"$text\"" );

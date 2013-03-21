@@ -6,16 +6,10 @@
  * ^--- important, causes temporary tables to be used instead of the real database
  */
 class WikiPageTest_ContentHandlerUseDB extends WikiPageTest {
-	var $saveContentHandlerNoDB = null;
 
 	function setUp() {
-		global $wgContentHandlerUseDB;
-
 		parent::setUp();
-
-		$this->saveContentHandlerNoDB = $wgContentHandlerUseDB;
-
-		$wgContentHandlerUseDB = false;
+		$this->setMwGlobals( 'wgContentHandlerUseDB', false );
 
 		$dbw = wfGetDB( DB_MASTER );
 
@@ -30,14 +24,6 @@ class WikiPageTest_ContentHandlerUseDB extends WikiPageTest {
 			$dbw->query( "alter table $archive_table drop column ar_content_model" );
 			$dbw->query( "alter table $archive_table drop column ar_content_format" );
 		}
-	}
-
-	function tearDown() {
-		global $wgContentHandlerUseDB;
-
-		$wgContentHandlerUseDB = $this->saveContentHandlerNoDB;
-
-		parent::tearDown();
 	}
 
 	public function testGetContentModel() {

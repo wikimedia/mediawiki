@@ -134,9 +134,7 @@ class RevisionTest extends MediaWikiTestCase {
 
 	function testCompressRevisionTextUtf8Gzip() {
 		$this->checkPHPExtension( 'zlib' );
-
-		global $wgCompressRevisions;
-		$wgCompressRevisions = true;
+		$this->setMwGlobals( 'wgCompressRevisions', true );
 
 		$row = new stdClass;
 		$row->old_text = "Wiki est l'\xc3\xa9cole superieur !";

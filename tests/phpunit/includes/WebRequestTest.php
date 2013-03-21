@@ -102,10 +102,12 @@ class WebRequestTest extends MediaWikiTestCase {
 	 * @dataProvider provideGetIP
 	 */
 	function testGetIP( $expected, $input, $squid, $private, $description ) {
-		global $wgSquidServersNoPurge, $wgUsePrivateIPs;
 		$_SERVER = $input;
-		$wgSquidServersNoPurge = $squid;
-		$wgUsePrivateIPs = $private;
+		$this->setMwGlobals( array(
+			'wgSquidServersNoPurge' => $squid,
+			'wgUsePrivateIPs' => $private,
+		) );
+
 		$request = new WebRequest();
 		$result = $request->getIP();
 		$this->assertEquals( $expected, $result, $description );

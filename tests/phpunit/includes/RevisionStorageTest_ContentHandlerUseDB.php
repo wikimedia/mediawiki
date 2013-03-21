@@ -6,14 +6,9 @@
  * ^--- important, causes temporary tables to be used instead of the real database
  */
 class RevisionTest_ContentHandlerUseDB extends RevisionStorageTest {
-	var $saveContentHandlerNoDB = null;
 
 	function setUp() {
-		global $wgContentHandlerUseDB;
-
-		$this->saveContentHandlerNoDB = $wgContentHandlerUseDB;
-
-		$wgContentHandlerUseDB = false;
+		$this->setMwGlobals( 'wgContentHandlerUseDB', false );
 
 		$dbw = wfGetDB( DB_MASTER );
 
@@ -30,14 +25,6 @@ class RevisionTest_ContentHandlerUseDB extends RevisionStorageTest {
 		}
 
 		parent::setUp();
-	}
-
-	function tearDown() {
-		global $wgContentHandlerUseDB;
-
-		parent::tearDown();
-
-		$wgContentHandlerUseDB = $this->saveContentHandlerNoDB;
 	}
 
 	/**
