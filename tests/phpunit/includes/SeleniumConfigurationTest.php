@@ -138,8 +138,8 @@ testBrowser 		= "firefox"
 		$seleniumSettings = array();
 		$seleniumBrowsers = array();
 		$seleniumTestSuites = array();
-		global $wgSeleniumConfigFile;
-		$wgSeleniumConfigFile = '';
+		$this->setMwGlobals( 'wgSeleniumConfigFile', '' );
+
 		SeleniumConfig::getSeleniumSettings( $seleniumSettings,
 			$seleniumBrowsers,
 			$seleniumTestSuites );
@@ -152,9 +152,9 @@ testBrowser 		= "firefox"
 		$seleniumSettings = array();
 		$seleniumBrowsers = array();
 		$seleniumTestSuites = array();
-		global $wgSeleniumConfigFile;
 		$this->writeToTempFile( $this->testConfig0 );
-		$wgSeleniumConfigFile = $this->tempFileName;
+		$this->setMwGlobals( 'wgSeleniumConfigFile', $this->tempFileName );
+
 		SeleniumConfig::getSeleniumSettings( $seleniumSettings,
 			$seleniumBrowsers,
 			$seleniumTestSuites );

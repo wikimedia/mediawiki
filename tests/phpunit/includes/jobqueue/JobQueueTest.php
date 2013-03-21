@@ -8,7 +8,6 @@
 class JobQueueTest extends MediaWikiTestCase {
 	protected $key;
 	protected $queueRand, $queueRandTTL, $queueFifo, $queueFifoTTL;
-	protected $old = array();
 
 	function __construct( $name = null, array $data = array(), $dataName = '' ) {
 		parent::__construct( $name, $data, $dataName );
@@ -17,10 +16,11 @@ class JobQueueTest extends MediaWikiTestCase {
 	}
 
 	protected function setUp() {
-		global $wgMemc, $wgJobTypeConf;
+		global $wgJobTypeConf;
 		parent::setUp();
-		$this->old['wgMemc'] = $wgMemc;
-		$wgMemc = new HashBagOStuff();
+
+		$this->setMwGlobals( 'wgMemc', new HashBagOStuff() );
+
 		if ( $this->getCliArg( 'use-jobqueue=' ) ) {
 			$name = $this->getCliArg( 'use-jobqueue=' );
 			if ( !isset( $wgJobTypeConf[$name] ) ) {
@@ -51,7 +51,6 @@ class JobQueueTest extends MediaWikiTestCase {
 	}
 
 	protected function tearDown() {
-		global $wgMemc;
 		parent::tearDown();
 		foreach ( array(
 			'queueRand', 'queueRandTTL', 'queueTimestamp', 'queueTimestampTTL',
@@ -67,7 +66,6 @@ class JobQueueTest extends MediaWikiTestCase {
 			}
 			$this->$q = null;
 		}
-		$wgMemc = $this->old['wgMemc'];
 	}
 
 	/**

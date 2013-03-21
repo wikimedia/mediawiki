@@ -8,12 +8,13 @@
 class UploadFromUrlTest extends ApiTestCase {
 
 	protected function setUp() {
-		global $wgEnableUploads, $wgAllowCopyUploads, $wgAllowAsyncCopyUploads;
 		parent::setUp();
 
-		$wgEnableUploads = true;
-		$wgAllowCopyUploads = true;
-		$wgAllowAsyncCopyUploads = true;
+		$this->setMwGlobals( array(
+			'wgEnableUploads' => true,
+			'wgAllowCopyUploads' => true,
+			'wgAllowAsyncCopyUploads' => true,
+		) );
 		wfSetupSession();
 
 		if ( wfLocalFile( 'UploadFromUrlTest.png' )->exists() ) {

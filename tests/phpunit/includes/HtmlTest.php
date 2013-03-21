@@ -43,8 +43,6 @@ class HtmlTest extends MediaWikiTestCase {
 	}
 
 	public function testElementBasics() {
-		global $wgWellFormedXml;
-
 		$this->assertEquals(
 			'<img>',
 			Html::element( 'img', null, '' ),
@@ -63,7 +61,7 @@ class HtmlTest extends MediaWikiTestCase {
 			'Close tag for empty element (array, string)'
 		);
 
-		$wgWellFormedXml = true;
+		$this->setMwGlobals( 'wgWellFormedXml', true );
 
 		$this->assertEquals(
 			'<img />',
@@ -90,8 +88,6 @@ class HtmlTest extends MediaWikiTestCase {
 	}
 
 	public function testExpandAttributesForBooleans() {
-		global $wgHtml5, $wgWellFormedXml;
-
 		$this->assertEquals(
 			'',
 			Html::expandAttributes( array( 'selected' => false ) ),
@@ -114,7 +110,7 @@ class HtmlTest extends MediaWikiTestCase {
 			'Boolean attributes have no value when value is true (passed as numerical array)'
 		);
 
-		$wgWellFormedXml = true;
+		$this->setMwGlobals( 'wgWellFormedXml', true );
 
 		$this->assertEquals(
 			' selected=""',
@@ -122,7 +118,7 @@ class HtmlTest extends MediaWikiTestCase {
 			'Boolean attributes have empty string value when value is true (wgWellFormedXml)'
 		);
 
-		$wgHtml5 = false;
+		$this->setMwGlobals( 'wgHtml5', false );
 
 		$this->assertEquals(
 			' selected="selected"',
@@ -136,8 +132,6 @@ class HtmlTest extends MediaWikiTestCase {
 	 * Please note it output a string prefixed with a space!
 	 */
 	public function testExpandAttributesVariousExpansions() {
-		global $wgWellFormedXml;
-
 		### NOT EMPTY ####
 		$this->assertEquals(
 			' empty_string=""',
@@ -160,7 +154,7 @@ class HtmlTest extends MediaWikiTestCase {
 			'Number 0 value needs no quotes'
 		);
 
-		$wgWellFormedXml = true;
+		$this->setMwGlobals( 'wgWellFormedXml', true );
 
 		$this->assertEquals(
 			' empty_string=""',

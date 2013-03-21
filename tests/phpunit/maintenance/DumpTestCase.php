@@ -73,8 +73,6 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 	 * Clears $wgUser, and reports errors from addDBData to PHPUnit
 	 */
 	protected function setUp() {
-		global $wgUser;
-
 		parent::setUp();
 
 		// Check if any Exception is stored for rethrowing from addDBData
@@ -83,7 +81,7 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 			throw $this->exceptionFromAddDBData;
 		}
 
-		$wgUser = new User();
+		$this->setMwGlobals( 'wgUser', new User() );
 	}
 
 	/**
