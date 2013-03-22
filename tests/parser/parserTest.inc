@@ -487,7 +487,7 @@ class ParserTest {
 		} elseif ( isset( $opts['comment'] ) ) {
 			$out = Linker::formatComment( $input, $title, $local );
 		} elseif ( isset( $opts['preload'] ) ) {
-			$out = $parser->getpreloadText( $input, $title, $options );
+			$out = $parser->getPreloadText( $input, $title, $options );
 		} else {
 			$output = $parser->parse( $input, $title, $options, true, true, 1337 );
 			$out = $output->getText();
