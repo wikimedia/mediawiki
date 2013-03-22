@@ -19,12 +19,85 @@
  */
 
 /*jshint unused: false */
-function isCompatible() {
+function isCompatible( userAgent ) {
+	function isMobileDevice( userAgent ) {
+		var patterns =
+				[
+					'mobi',
+					'phone',
+					'android',
+					'ipod',
+					'webos',
+					'palm',
+					'opera.m',
+					'semc-browser',
+					'playstation',
+					'nintendo',
+					'blackberry',
+					'bada',
+					'meego',
+					'vodafone',
+					'docomo',
+					'samsung',
+					'alcatel',
+					'motor',
+					'huawei',
+					'audiovox',
+					'philips',
+					'mot-',
+					'cdm-',
+					'sagem-',
+					'htc[-_]',
+					'ngm_',
+					'mmp\/',
+					'up.browser',
+					'symbian',
+					'midp',
+					'kindle',
+					'softbank',
+					'sec-',
+					'240x240',
+					'240x320',
+					'320x320',
+					'ericsson',
+					'panasonic',
+					'hiptop',
+					'portalmmm',
+					'kddi-',
+					'benq',
+					'compal-',
+					'sanyo',
+					'sharp',
+					'teleca',
+					'mitsu',
+					'sendo'
+				],
+			patternsStart =
+				[
+					'lg-',
+					'sie-',
+					'nec-',
+					'lge-',
+					'sgh-',
+					'pg-'
+				],
+			regex = new RegExp( '^(' + patternsStart.join( '|' ) + ')|(' + patterns.join( '|' ) + ')', 'i' );
+		return regex.test( userAgent );
+	}
+
+	if ( typeof userAgent == 'undefined' ) {
+		userAgent = navigator.userAgent;
+	}
 	// IE < 6.0
-	if ( navigator.appVersion.indexOf( 'MSIE' ) !== -1
-		&& parseFloat( navigator.appVersion.split( 'MSIE' )[1] ) < 6 )
+	if ( userAgent.indexOf( 'MSIE' ) !== -1
+		&& parseFloat( userAgent.split( 'MSIE' )[1] ) < 6 )
 	{
 		return false;
+	}
+	if ( isMobileDevice( userAgent ) ) {
+		return ( /Android|Firefox|iPhone|iPad|MSIE (8|9|1\d)\.|Opera Mobi|Samsung|WebKit|Wii/i ).test( userAgent )
+			&& !( /Opera Mini|Series60|webOS/i ).test( userAgent );
+
 	}
 	return true;
 }
