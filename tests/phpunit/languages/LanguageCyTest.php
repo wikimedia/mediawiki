@@ -18,7 +18,7 @@ class LanguageCyTest extends LanguageClassesTestCase {
 		$this->assertEquals( $result, $this->getLang()->getPluralRuleType( $value ) );
 	}
 
-	function providePlural() {
+	public static function providePlural() {
 		return array (
 			array( 'zero', 0 ),
 			array( 'one', 1 ),

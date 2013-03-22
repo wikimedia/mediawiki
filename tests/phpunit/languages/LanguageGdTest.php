@@ -13,7 +13,7 @@ class LanguageGdTest extends LanguageClassesTestCase {
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
-	function providerPlural() {
+	public static function providerPlural() {
 		return array (
 			array( 'other', 0 ),
 			array( 'one', 1 ),
@@ -32,7 +32,7 @@ class LanguageGdTest extends LanguageClassesTestCase {
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
-	function providerPluralExplicit() {
+	public static function providerPluralExplicit() {
 		return array (
 				array( 'other', 0 ),
 				array( 'one', 1 ),

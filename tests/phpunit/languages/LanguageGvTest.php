@@ -21,7 +21,7 @@ class LanguageGvTest extends LanguageClassesTestCase {
 		$this->assertEquals( $result, $this->getLang()->getPluralRuleType( $value ) );
 	}
 
-	function providePlural() {
+	public static function providePlural() {
 		return array (
 			array( 'Form 4', 0 ),
 			array( 'Form 2', 1 ),

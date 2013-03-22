@@ -19,7 +19,7 @@ class LanguageRuTest extends LanguageClassesTestCase {
 		$this->assertEquals( $result, $this->getLang()->getPluralRuleType( $value ) );
 	}
 
-	function providePlural() {
+	public static function providePlural() {
 		return array (
 			array( 'one', 1 ),
 			array( 'many', 11 ),
@@ -41,7 +41,7 @@ class LanguageRuTest extends LanguageClassesTestCase {
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
-	function providePluralTwoForms() {
+	public static function providePluralTwoForms() {
 		return array(
 			array( 'one', 1 ),
 			array( 'other', 11 ),
@@ -55,7 +55,7 @@ class LanguageRuTest extends LanguageClassesTestCase {
 		$this->assertEquals( $result, $this->getLang()->convertGrammar( $word, $case ) );
 	}
 
-	function providerGrammar() {
+	public static function providerGrammar() {
 		return array(
 			array(
 				'Википедии',

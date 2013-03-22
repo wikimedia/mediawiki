@@ -201,7 +201,7 @@ class SiteTest extends MediaWikiTestCase {
 		$this->assertEquals( '', $site->getProtocol() );
 	}
 
-	public function provideGetPageUrl() {
+	public static function provideGetPageUrl() {
 		//NOTE: the assumption that the URL is built by replacing $1
 		//      with the urlencoded version of $page
 		//      is true for Site but not guaranteed for subclasses.

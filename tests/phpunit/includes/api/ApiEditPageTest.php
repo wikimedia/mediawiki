@@ -124,7 +124,7 @@ class ApiEditPageTest extends ApiTestCase {
 		$this->assertEquals( $data, $page->getContent()->serialize() );
 	}
 
-	static function provideEditAppend() {
+	public static function provideEditAppend() {
 		return array(
 			array( #0: append
 				'foo', 'append', 'bar', "foobar"

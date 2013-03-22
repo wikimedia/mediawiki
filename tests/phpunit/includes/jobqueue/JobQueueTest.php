@@ -288,7 +288,7 @@ class JobQueueTest extends MediaWikiTestCase {
 		$this->assertEquals( 0, $queue->getAcquiredCount(), "No jobs active ($desc)" );
 	}
 
-	function provider_queueLists() {
+	public static function provider_queueLists() {
 		return array(
 			array( 'queueRand', false, 'Random queue without ack()' ),
 			array( 'queueRandTTL', true, 'Random queue with ack()' ),
@@ -299,7 +299,7 @@ class JobQueueTest extends MediaWikiTestCase {
 		);
 	}
 
-	function provider_fifoQueueLists() {
+	public static function provider_fifoQueueLists() {
 		return array(
 			array( 'queueFifo', false, 'Ordered queue without ack()' ),
 			array( 'queueFifoTTL', true, 'Ordered queue with ack()' )

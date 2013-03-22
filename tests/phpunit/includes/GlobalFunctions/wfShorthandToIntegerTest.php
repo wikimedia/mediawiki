@@ -12,7 +12,7 @@ class WfShorthandToIntegerTest extends MediaWikiTestCase {
 		);
 	}
 
-	function provideABunchOfShorthands() {
+	public static function provideABunchOfShorthands() {
 		return array(
 			array( '', -1, 'Empty string' ),
 			array( '     ', -1, 'String of spaces' ),

@@ -2,7 +2,7 @@
 
 class JavaScriptMinifierTest extends MediaWikiTestCase {
 
-	function provideCases() {
+	public static function provideCases() {
 		return array(
 
 			// Basic whitespace and comments that should be stripped entirely
@@ -132,7 +132,7 @@ class JavaScriptMinifierTest extends MediaWikiTestCase {
 		$this->assertEquals( $expectedOutput, $minified, "Minified output should be in the form expected." );
 	}
 
-	function provideBug32548() {
+	public static function provideBug32548() {
 		return array(
 			array(
 				// This one gets interpreted all together by the prior code;

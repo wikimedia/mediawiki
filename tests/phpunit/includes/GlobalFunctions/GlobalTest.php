@@ -570,7 +570,7 @@ class GlobalTest extends MediaWikiTestCase {
 		$this->assertEquals( $expected, $index, "wfMakeUrlIndexes(\"$url\")" );
 	}
 
-	function provideMakeUrlIndexes() {
+	public static function provideMakeUrlIndexes() {
 		return array(
 			array(
 				// just a regular :)
@@ -627,7 +627,7 @@ class GlobalTest extends MediaWikiTestCase {
 		$this->assertEquals( $expected, $actual, $description );
 	}
 
-	function provideWfMatchesDomainList() {
+	public static function provideWfMatchesDomainList() {
 		$a = array();
 		$protocols = array( 'HTTP' => 'http:', 'HTTPS' => 'https:', 'protocol-relative' => '' );
 		foreach ( $protocols as $pDesc => $p ) {
@@ -658,7 +658,7 @@ class GlobalTest extends MediaWikiTestCase {
 		$this->assertEquals( $expected, $actual, $description );
 	}
 
-	function provideWfShellMaintenanceCmdList() {
+	public static function provideWfShellMaintenanceCmdList() {
 		global $wgPhpCli;
 		return array(
 			array( 'eval.php', array( '--help', '--test' ), array(),

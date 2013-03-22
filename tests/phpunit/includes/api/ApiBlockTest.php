@@ -109,7 +109,7 @@ class ApiBlockTest extends ApiTestCase {
 	/**
 	 * Just provide the 'block' and 'unblock' action to test both API calls
 	 */
-	function provideBlockUnblockAction() {
+	public static function provideBlockUnblockAction() {
 		return array(
 			array( 'block' ),
 			array( 'unblock' ),

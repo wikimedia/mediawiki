@@ -19,7 +19,7 @@ class LanguageArTest extends LanguageClassesTestCase {
 		$this->assertEquals( $expected, $this->getLang()->sprintfDate( $format, $date ) );
 	}
 
-	function providerSprintfDate() {
+	public static function providerSprintfDate() {
 		return array(
 			array(
 				'xg "vs" g',
@@ -55,7 +55,7 @@ class LanguageArTest extends LanguageClassesTestCase {
 		$this->assertEquals( $result, $this->getLang()->getPluralRuleType( $value ) );
 	}
 
-	function providePlural() {
+	public static function providePlural() {
 		return array(
 			array( 'zero', 0 ),
 			array( 'one', 1 ),

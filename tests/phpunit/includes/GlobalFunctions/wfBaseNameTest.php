@@ -11,7 +11,7 @@ class WfBaseNameTest extends MediaWikiTestCase {
 			"wfBaseName('$fullpath') => '$basename'" );
 	}
 
-	function providePaths() {
+	public static function providePaths() {
 		return array(
 			array( '', '' ),
 			array( '/', '' ),

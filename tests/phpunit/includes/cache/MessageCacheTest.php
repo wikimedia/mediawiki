@@ -63,7 +63,7 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $expectedContent, $result, "Message fallback failed." );
 	}
 
-	function provideMessagesForFallback() {
+	public static function provideMessagesForFallback() {
 		return array(
 			array( 'FallbackLanguageTest-Full', 'ab', 'ab' ),
 			array( 'FallbackLanguageTest-Partial', 'ab', 'ru' ),
@@ -83,7 +83,7 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $expectedContent, $result, "Full key message fallback failed." );
 	}
 
-	function provideMessagesForFullKeys() {
+	public static function provideMessagesForFullKeys() {
 		return array(
 			array( 'MessageCacheTest-FullKeyTest/ru', 'ru', 'ru' ),
 			array( 'MessageCacheTest-FullKeyTest/ru', 'ab', 'ru' ),

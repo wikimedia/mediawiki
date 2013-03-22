@@ -43,7 +43,7 @@ class LanguageBe_taraskTest extends LanguageClassesTestCase {
 		$this->assertEquals( $result, $this->getLang()->getPluralRuleType( $value ) );
 	}
 
-	function providePlural() {
+	public static function providePlural() {
 		return array (
 			array( 'one', 1 ),
 			array( 'many', 11 ),
@@ -65,7 +65,7 @@ class LanguageBe_taraskTest extends LanguageClassesTestCase {
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
-	function providePluralTwoForms() {
+	public static function providePluralTwoForms() {
 		return array(
 			array( 'one', 1 ),
 			array( 'other', 11 ),
