@@ -165,6 +165,40 @@ baz
 !! end
 
 !! test
+More paragraphs and a heading with extra spacing
+!! input
+a
+
+   <!--boo-->
+
+b
+
+
+
+=b=
+
+
+
+[[a]]
+
+
+=b=
+!! result
+<p>a
+</p><p><br />
+b
+</p><p><br />
+</p>
+<h1><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: b">edit</a>]</span> <span class="mw-headline" id="b">b</span></h1>
+<p><a href="/index.php?title=A&amp;action=edit&amp;redlink=1" class="new" title="A (page does not exist)">a</a>
+</p><p><br />
+</p>
+<h1><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: b">edit</a>]</span> <span class="mw-headline" id="b_2">b</span></h1>
+
+!! end
+
+
+!! test
 Parsing an URL
 !! input
 http://fr.wikipedia.org/wiki/🍺
