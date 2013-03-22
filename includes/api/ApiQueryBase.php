@@ -432,7 +432,7 @@ abstract class ApiQueryBase extends ApiBase {
 		if ( trim( $key ) == '' ) {
 			return '';
 		}
-		$t = Title::newFromDbKey( $key );
+		$t = Title::newFromDBkey( $key );
 		// This really shouldn't happen but we gotta check anyway
 		if ( !$t ) {
 			$this->dieUsageMsg( array( 'invalidtitle', $key ) );

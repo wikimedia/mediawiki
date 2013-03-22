@@ -2756,7 +2756,7 @@ class Parser {
 			case 'talkpagenamee':
 				if ( $this->mTitle->canTalk() ) {
 					$talkPage = $this->mTitle->getTalkPage();
-					$value = wfEscapeWikiText( $talkPage->getPrefixedUrl() );
+					$value = wfEscapeWikiText( $talkPage->getPrefixedURL() );
 				} else {
 					$value = '';
 				}
@@ -2767,7 +2767,7 @@ class Parser {
 				break;
 			case 'subjectpagenamee':
 				$subjPage = $this->mTitle->getSubjectPage();
-				$value = wfEscapeWikiText( $subjPage->getPrefixedUrl() );
+				$value = wfEscapeWikiText( $subjPage->getPrefixedURL() );
 				break;
 			case 'pageid': // requested in bug 23427
 				$pageid = $this->getTitle()->getArticleId();
@@ -3289,7 +3289,7 @@ class Parser {
 		if ( !$found && $title ) {
 			if ( !Profiler::instance()->isPersistent() ) {
 				# Too many unique items can kill profiling DBs/collectors
-				$titleProfileIn = __METHOD__ . "-title-" . $title->getDBKey();
+				$titleProfileIn = __METHOD__ . "-title-" . $title->getDBkey();
 				wfProfileIn( $titleProfileIn ); // template in
 			}
 			wfProfileIn( __METHOD__ . '-loadtpl' );

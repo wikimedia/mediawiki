@@ -3940,7 +3940,7 @@ function wfIsBadImage( $name, $contextTitle = false, $blacklist = null ) {
 	# Handle redirects
 	$redirectTitle = RepoGroup::singleton()->checkRedirect( Title::makeTitle( NS_FILE, $name ) );
 	if( $redirectTitle ) {
-		$name = $redirectTitle->getDbKey();
+		$name = $redirectTitle->getDBkey();
 	}
 
 	# Run the extension hook

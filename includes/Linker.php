@@ -961,7 +961,7 @@ class Linker {
 	 */
 	protected static function getUploadUrl( $destFile, $query = '' ) {
 		global $wgUploadMissingFileUrl, $wgUploadNavigationUrl;
-		$q = 'wpDestFile=' . $destFile->getPartialUrl();
+		$q = 'wpDestFile=' . $destFile->getPartialURL();
 		if ( $query != '' )
 			$q .= '&' . $query;
 
@@ -1527,7 +1527,7 @@ class Linker {
 					$nodotdot = substr( $nodotdot, 3 );
 				}
 				if ( $dotdotcount > 0 ) {
-					$exploded = explode( '/', $contextTitle->GetPrefixedText() );
+					$exploded = explode( '/', $contextTitle->getPrefixedText() );
 					if ( count( $exploded ) > $dotdotcount ) { # not allowed to go below top level page
 						$ret = implode( '/', array_slice( $exploded, 0, -$dotdotcount ) );
 						# / at the end means don't show full path
