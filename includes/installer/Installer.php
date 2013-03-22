@@ -1320,13 +1320,16 @@ abstract class Installer {
 	 */
 	public function findExtensions() {
 		if( $this->getVar( 'IP' ) === null ) {
-			return false;
+			return array();
 		}
 
-		$exts = array();
 		$extDir = $this->getVar( 'IP' ) . '/extensions';
-		$dh = opendir( $extDir );
+		if ( !is_readable( $extDir ) || !is_dir( $extDir ) ) {
+			return array();
+		}
 
+		$dh = opendir( $extDir );
+		$exts = array();
 		while ( ( $file = readdir( $dh ) ) !== false ) {
 			if( !is_dir( "$extDir/$file" ) ) {
 				continue;
@@ -1335,6 +1338,7 @@ abstract class Installer {
 				$exts[] = $file;
 			}
 		}
+		closedir( $dh );
 		natcasesort( $exts );
 
 		return $exts;
