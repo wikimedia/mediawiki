@@ -26,11 +26,7 @@ class ExtraParserTest extends MediaWikiTestCase {
 		MagicWord::clearCache();
 	}
 
-	/**
-	 * Bug 8689 - Long numeric lines kill the parser
-	 *
-	 * @group Database
-	 */
+	// Bug 8689 - Long numeric lines kill the parser
 	function testBug8689() {
 		global $wgUser;
 		$longLine = '1.' . str_repeat( '1234567890', 100000 ) . "\n";
@@ -41,20 +37,13 @@ class ExtraParserTest extends MediaWikiTestCase {
 			$this->parser->parse( $longLine, $t, $options )->getText() );
 	}
 
-	/**
-	 * Test the parser entry points
-	 *
-	 * @group Database
-	 */
+	/* Test the parser entry points */
 	function testParse() {
 		$title = Title::newFromText( __FUNCTION__ );
 		$parserOutput = $this->parser->parse( "Test\n{{Foo}}\n{{Bar}}", $title, $this->options );
 		$this->assertEquals( "<p>Test\nContent of <i>Template:Foo</i>\nContent of <i>Template:Bar</i>\n</p>", $parserOutput->getText() );
 	}
 
-	/**
-	 * @group Database
-	 */
 	function testPreSaveTransform() {
 		global $wgUser;
 		$title = Title::newFromText( __FUNCTION__ );
@@ -63,9 +52,6 @@ class ExtraParserTest extends MediaWikiTestCase {
 		$this->assertEquals( "Test\nContent of ''Template:Foo''\n{{Bar}}", $outputText );
 	}
 
-	/**
-	 * @group Database
-	 */
 	function testPreprocess() {
 		$title = Title::newFromText( __FUNCTION__ );
 		$outputText = $this->parser->preprocess( "Test\n{{Foo}}\n{{Bar}}", $title, $this->options );
