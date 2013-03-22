@@ -87,8 +87,7 @@ class ExtraParserTest extends MediaWikiTestCase {
 	 * cleanSig() should do nothing if disabled
 	 */
 	function testCleanSigDisabled() {
-		global $wgCleanSignatures;
-		$wgCleanSignatures = false;
+		$this->setMwGlobals( 'wgCleanSignatures', false );
 
 		$title = Title::newFromText( __FUNCTION__ );
 		$outputText = $this->parser->cleanSig( "{{Foo}} ~~~~" );
