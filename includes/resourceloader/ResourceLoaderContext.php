@@ -145,7 +145,14 @@ class ResourceLoaderContext {
 	public function getLanguage() {
 		if ( $this->language === null ) {
 			global $wgLang;
-			$this->language = $this->request->getVal( 'lang' );
+			$acceptLang = $this->request->getAcceptLang();
+			foreach ( $acceptLang as $key => $value ) {
+				if ( Language::isSupportedLanguage( $key ) ) {
+					$this->language = $key;
+				}
+			}
+
+			$this->language = $this->request->getVal( 'lang', $this->language );
 			if ( !$this->language ) {
 				$this->language = $wgLang->getCode();
 			}

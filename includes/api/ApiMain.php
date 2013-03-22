@@ -999,9 +999,46 @@ class ApiMain extends ApiBase {
 	 * @return array
 	 */
 	public function getAllowedParams() {
+		$accept = $this->getRequest()->getHeader( 'Accept' );
+		$mimes = array();
+		if ( $accept ) {
+			$accept_parse = null;
+			preg_match_all( '/(([a-z]+|\*)([a-z]+|\*))\s*(;\s*q\s*=\s*(1(\.0{0,3})?|0(\.[0-9]{0,3})?)?)?/', $accept, $accept_parse );
+			if ( $accept_parse ) {
+				$mimes = $accept_parse[1];
+				$qvalues = $accept_parse[5];
+				$indices = range( 0, count( $mimes ) - 2 );
+
+				foreach ( $indices as $index ) {
+					if ( $qvalues[$index] === '' ) {
+						$qvalues[$index] = 1;
+					} elseif ( $qvalues[$index] == 0 ) {
+						unset( $mimes[$index], $indices[$index] );
+					}
+				}
+
+				array_multisort( $qvalues, SORT_DESC, SORT_NUMERIC, $indices, $major_types, $minor_types );
+			}
+		}
+
+		$defaultAccept = ApiMain::API_DEFAULT_FORMAT;
+		$found = false;
+		foreach ( $mimes as $mime ) {
+			foreach ( self::$Formats as $format ) {
+				if ( fnmatch( $mime, $this->createPrinterByName( $format )->getMimeType() ) ) {
+					$defaultAccept = $format;
+					$found = true;
+					break;
+				}
+			}
+			if ( $found ) {
+				break;
+			}
+		}
+
 		return array(
 			'format' => array(
-				ApiBase::PARAM_DFLT => ApiMain::API_DEFAULT_FORMAT,
+				ApiBase::PARAM_DFLT => $defaultAccept,
 				ApiBase::PARAM_TYPE => $this->mModuleMgr->getNames( 'format' )
 			),
 			'action' => array(

@@ -293,7 +293,20 @@ class RequestContext implements IContextSource {
 			$request = $this->getRequest();
 			$user = $this->getUser();
 
-			$code = $request->getVal( 'uselang', $user->getOption( 'language' ) );
+			$code = null;
+			$acceptLang = $request->getAcceptLang();
+			foreach ( $acceptLang as $key => $val ) {
+				$key = self::sanitizeLangCode( $code );
+				if ( Language::isSupportedLanguage( $key ) ) {
+					$code = $key;
+					break;
+				}
+			}
+
+			$code = $request->getVal( 'uselang', $code );
+			if ( !$code ) {
+				$code = $user->getOption( 'language' );
+			}
 			$code = self::sanitizeLangCode( $code );
 
 			wfRunHooks( 'UserGetLanguageObject', array( $user, &$code, $this ) );
