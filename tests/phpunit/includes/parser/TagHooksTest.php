@@ -20,7 +20,6 @@ class TagHookTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideValidNames
-	 * @group Database
 	 */
 	function testTagHooks( $tag ) {
 		global $wgParserConf, $wgContLang;
@@ -48,7 +47,6 @@ class TagHookTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideValidNames
-	 * @group Database
 	 */
 	function testFunctionTagHooks( $tag ) {
 		global $wgParserConf, $wgContLang;
