@@ -148,6 +148,10 @@ class ObjectCache {
 	 * @return MemcachedPhpBagOStuff
 	 */
 	static function newMemcached( $params ) {
-		return new MemcachedPhpBagOStuff( $params );
+		if ( class_exists( 'Memcached' ) ) {
+			return new MemcachedPeclBagOStuff( $params );
+		} else {
+			return new MemcachedPhpBagOStuff( $params );
+		}
 	}
 }
