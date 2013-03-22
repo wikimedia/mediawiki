@@ -304,6 +304,59 @@ b
 !! end
 
 !! test
+Extra newlines: More paragraphs with indented comment
+!! input
+a
+
+   <!--boo-->
+
+b
+!!result
+<p>a
+</p><p><br />
+b
+</p>
+!!end
+
+!! test
+Extra newlines followed by heading
+!! input
+a
+
+
+
+=b=
+[[a]]
+
+
+=b=
+!! result
+<p>a
+</p><p><br />
+</p>
+<h1><span class="mw-headline" id="b">b</span><span class="mw-editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: b">edit</a>]</span></h1>
+<p><a href="/index.php?title=A&amp;action=edit&amp;redlink=1" class="new" title="A (page does not exist)">a</a>
+</p><p><br />
+</p>
+<h1><span class="mw-headline" id="b_2">b</span><span class="mw-editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: b">edit</a>]</span></h1>
+
+!! end
+
+!! test
+Extra newlines between heading and content are swallowed
+!! input
+=b=
+
+
+
+[[a]]
+!! result
+<h1><span class="mw-headline" id="b">b</span><span class="mw-editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: b">edit</a>]</span></h1>
+<p><a href="/index.php?title=A&amp;action=edit&amp;redlink=1" class="new" title="A (page does not exist)">a</a>
+</p>
+!! end
+
+!! test
 Parsing an URL
 !! input
 http://fr.wikipedia.org/wiki/🍺
