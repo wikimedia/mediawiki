@@ -38,7 +38,7 @@ class TitleTest extends MediaWikiTestCase {
 	function testBug31100FixSpecialName( $text, $expectedParam ) {
 		$title = Title::newFromText( $text );
 		$fixed = $title->fixSpecialName();
-		$stuff = explode( '/', $fixed->getDbKey(), 2 );
+		$stuff = explode( '/', $fixed->getDBkey(), 2 );
 		if ( count( $stuff ) == 2 ) {
 			$par = $stuff[1];
 		} else {

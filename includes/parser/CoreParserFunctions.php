@@ -555,7 +555,7 @@ class CoreParserFunctions {
 		$t = Title::newFromText( $title );
 		if ( is_null( $t ) || !$t->canTalk() )
 			return '';
-		return wfEscapeWikiText( $t->getTalkPage()->getPrefixedUrl() );
+		return wfEscapeWikiText( $t->getTalkPage()->getPrefixedURL() );
 	}
 	static function subjectpagename( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
@@ -567,7 +567,7 @@ class CoreParserFunctions {
 		$t = Title::newFromText( $title );
 		if ( is_null( $t ) )
 			return '';
-		return wfEscapeWikiText( $t->getSubjectPage()->getPrefixedUrl() );
+		return wfEscapeWikiText( $t->getSubjectPage()->getPrefixedURL() );
 	}
 
 	/**

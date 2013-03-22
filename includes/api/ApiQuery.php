@@ -513,7 +513,7 @@ class ApiQuery extends ApiBase {
 			ApiQueryBase::addTitleInfo( $vals, $title );
 			$vals['special'] = '';
 			if ( $title->isSpecialPage() &&
-					!SpecialPageFactory::exists( $title->getDbKey() ) ) {
+					!SpecialPageFactory::exists( $title->getDBkey() ) ) {
 				$vals['missing'] = '';
 			} elseif ( $title->getNamespace() == NS_MEDIA &&
 					!wfFindFile( $title ) ) {

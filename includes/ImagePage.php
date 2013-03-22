@@ -719,7 +719,7 @@ EOT
 		$limit = 100;
 
 		$out = $this->getContext()->getOutput();
-		$res = $this->queryImageLinks( $this->getTitle()->getDbKey(), $limit + 1 );
+		$res = $this->queryImageLinks( $this->getTitle()->getDBkey(), $limit + 1 );
 		$rows = array();
 		$redirects = array();
 		foreach ( $res as $row ) {
