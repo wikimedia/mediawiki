@@ -12,6 +12,7 @@
  *
  * See also:
  * - https://www.mediawiki.org/wiki/Compatibility#Browser
+ * - http://jquerymobile.com/gbs/
  * - http://jquery.com/browser-support/
  *
  * MediaWiki & jQuery compatibility:
@@ -20,19 +21,29 @@
  * - Safari 5.0+
  * - Opera 11+
  * - Internet Explorer 6.0+
+ * - Blackberry 6+
+ * - Open WebOS 1.4+
  */
 
 /*jshint unused: false */
 function isCompatible( ua ) {
+	var webkitBased;
+
 	if ( ua === undefined ) {
 		ua = navigator.userAgent;
 	}
+
+	webkitBased = ua.match( /WebKit/ );
 
 	return !(
 		// Internet Explorer < 6
 		( ua.indexOf( 'MSIE' ) !== -1 && parseFloat( ua.split( 'MSIE' )[1] ) < 6 ) ||
 			// Firefox < 10
-			( ua.indexOf( 'Firefox/' ) !== -1 && parseFloat( ua.split( 'Firefox/' )[1] ) < 10 )
+			( ua.indexOf( 'Firefox/' ) !== -1 && parseFloat( ua.split( 'Firefox/' )[1] ) < 10 ) ||
+			// BlackBerry < 6
+			ua.match( /BlackBerry[^\/]*\/[1-5]\./ ) ||
+			// Open WebOS < 1.5
+			ua.match( /webOS\/1\.[0-4]/ )
 	);
 }
 
