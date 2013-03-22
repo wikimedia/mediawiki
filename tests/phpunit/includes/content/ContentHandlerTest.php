@@ -10,9 +10,9 @@
  */
 class ContentHandlerTest extends MediaWikiTestCase {
 
-	public function setup() {
+	public function setUp() {
 		global $wgContLang;
-		parent::setup();
+		parent::setUp();
 
 		$this->setMwGlobals( array(
 			'wgExtraNamespaces' => array(

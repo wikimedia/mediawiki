@@ -346,33 +346,33 @@ class MWNamespaceTest extends MediaWikiTestCase {
 
 		$this->assertEquals(
 			array( NS_MAIN ),
-			MWNamespace::getcontentNamespaces(),
+			MWNamespace::getContentNamespaces(),
 			'$wgContentNamespaces is an array with only NS_MAIN by default'
 		);
 
 
 		# test !is_array( $wgcontentNamespaces )
 		$wgContentNamespaces = '';
-		$this->assertEquals( NS_MAIN, MWNamespace::getcontentNamespaces() );
+		$this->assertEquals( NS_MAIN, MWNamespace::getContentNamespaces() );
 
 		$wgContentNamespaces = false;
-		$this->assertEquals( NS_MAIN, MWNamespace::getcontentNamespaces() );
+		$this->assertEquals( NS_MAIN, MWNamespace::getContentNamespaces() );
 
 		$wgContentNamespaces = null;
-		$this->assertEquals( NS_MAIN, MWNamespace::getcontentNamespaces() );
+		$this->assertEquals( NS_MAIN, MWNamespace::getContentNamespaces() );
 
 		$wgContentNamespaces = 5;
-		$this->assertEquals( NS_MAIN, MWNamespace::getcontentNamespaces() );
+		$this->assertEquals( NS_MAIN, MWNamespace::getContentNamespaces() );
 
 		# test $wgContentNamespaces === array()
 		$wgContentNamespaces = array();
-		$this->assertEquals( NS_MAIN, MWNamespace::getcontentNamespaces() );
+		$this->assertEquals( NS_MAIN, MWNamespace::getContentNamespaces() );
 
 		# test !in_array( NS_MAIN, $wgContentNamespaces )
 		$wgContentNamespaces = array( NS_USER, NS_CATEGORY );
 		$this->assertEquals(
 			array( NS_MAIN, NS_USER, NS_CATEGORY ),
-			MWNamespace::getcontentNamespaces(),
+			MWNamespace::getContentNamespaces(),
 			'NS_MAIN is forced in $wgContentNamespaces even if unwanted'
 		);
 
@@ -380,13 +380,13 @@ class MWNamespaceTest extends MediaWikiTestCase {
 		$wgContentNamespaces = array( NS_MAIN );
 		$this->assertEquals(
 			array( NS_MAIN ),
-			MWNamespace::getcontentNamespaces()
+			MWNamespace::getContentNamespaces()
 		);
 
 		$wgContentNamespaces = array( NS_MAIN, NS_USER, NS_CATEGORY );
 		$this->assertEquals(
 			array( NS_MAIN, NS_USER, NS_CATEGORY ),
-			MWNamespace::getcontentNamespaces()
+			MWNamespace::getContentNamespaces()
 		);
 	}
 

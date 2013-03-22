@@ -11,10 +11,10 @@
  */
 class ApiEditPageTest extends ApiTestCase {
 
-	public function setup() {
+	public function setUp() {
 		global $wgExtraNamespaces, $wgNamespaceContentModels, $wgContentHandlers, $wgContLang;
 
-		parent::setup();
+		parent::setUp();
 
 		$wgExtraNamespaces[12312] = 'Dummy';
 		$wgExtraNamespaces[12313] = 'Dummy_talk';
@@ -28,7 +28,7 @@ class ApiEditPageTest extends ApiTestCase {
 		$this->doLogin();
 	}
 
-	public function teardown() {
+	public function tearDown() {
 		global $wgExtraNamespaces, $wgNamespaceContentModels, $wgContentHandlers, $wgContLang;
 
 		unset( $wgExtraNamespaces[12312] );
@@ -40,7 +40,7 @@ class ApiEditPageTest extends ApiTestCase {
 		MWNamespace::getCanonicalNamespaces( true ); # reset namespace cache
 		$wgContLang->resetNamespaces(); # reset namespace cache
 
-		parent::teardown();
+		parent::tearDown();
 	}
 
 	function testEdit() {
