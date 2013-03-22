@@ -51,11 +51,6 @@ class WikiPage implements Page, IDBAccessObject {
 	/**@}}*/
 
 	/**
-	 * @var int
-	 */
-	protected $mId = null;
-
-	/**
 	 * @var int; one of the READ_* constants
 	 */
 	protected $mDataLoadedFrom = self::READ_NONE;
@@ -233,7 +228,6 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @return void
 	 */
 	protected function clearCacheFields() {
-		$this->mId = null;
 		$this->mCounter = null;
 		$this->mRedirectTarget = null; // Title object if set
 		$this->mLastRevision = null; // Latest revision
@@ -386,7 +380,6 @@ class WikiPage implements Page, IDBAccessObject {
 			// Old-fashioned restrictions
 			$this->mTitle->loadRestrictions( $data->page_restrictions );
 
-			$this->mId          = intval( $data->page_id );
 			$this->mCounter     = intval( $data->page_counter );
 			$this->mTouched     = wfTimestamp( TS_MW, $data->page_touched );
 			$this->mIsRedirect  = intval( $data->page_is_redirect );
@@ -403,8 +396,6 @@ class WikiPage implements Page, IDBAccessObject {
 			$this->mTitle->loadFromRow( false );
 
 			$this->clearCacheFields();
-
-			$this->mId = 0;
 		}
 
 		$this->mDataLoaded = true;
@@ -415,20 +406,14 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @return int Page ID
 	 */
 	public function getId() {
-		if ( !$this->mDataLoaded ) {
-			$this->loadPageData();
-		}
-		return $this->mId;
+		return $this->mTitle->getArticleID();
 	}
 
 	/**
 	 * @return bool Whether or not the page exists in the database
 	 */
 	public function exists() {
-		if ( !$this->mDataLoaded ) {
-			$this->loadPageData();
-		}
-		return $this->mId > 0;
+		return $this->mTitle->exists();
 	}
 
 	/**
@@ -440,7 +425,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @return bool
 	 */
 	public function hasViewableContent() {
-		return $this->exists() || $this->mTitle->isAlwaysKnown();
+		return $this->mTitle->exists() || $this->mTitle->isAlwaysKnown();
 	}
 
 	/**
@@ -1082,7 +1067,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 		return $wgEnableParserCache
 			&& $parserOptions->getStubThreshold() == 0
-			&& $this->exists()
+			&& $this->mTitle->exists()
 			&& ( $oldid === null || $oldid === 0 || $oldid === $this->getLatest() )
 			&& $this->getContentHandler()->isParserCacheSupported();
 	}
@@ -1138,7 +1123,7 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		// Don't update page view counters on views from bot users (bug 14044)
-		if ( !$wgDisableCounters && !$user->isAllowed( 'bot' ) && $this->exists() ) {
+		if ( !$wgDisableCounters && !$user->isAllowed( 'bot' ) && $this->mTitle->exists() ) {
 			DeferredUpdates::addUpdate( new ViewCountUpdate( $this->getId() ) );
 			DeferredUpdates::addUpdate( new SiteStatsUpdate( 1, 0, 0 ) );
 		}
@@ -1175,7 +1160,7 @@ class WikiPage implements Page, IDBAccessObject {
 		if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
 			// @todo: move this logic to MessageCache
 
-			if ( $this->exists() ) {
+			if ( $this->mTitle->exists() ) {
 				// NOTE: use transclusion text for messages.
 				//       This is consistent with  MessageCache::getMsgFromNamespace()
 
@@ -1224,7 +1209,6 @@ class WikiPage implements Page, IDBAccessObject {
 
 		if ( $affected ) {
 			$newid = $dbw->insertId();
-			$this->mId = $newid;
 			$this->mTitle->resetArticleID( $newid );
 		}
 		wfProfileOut( __METHOD__ );
@@ -1522,7 +1506,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 */
 	function checkFlags( $flags ) {
 		if ( !( $flags & EDIT_NEW ) && !( $flags & EDIT_UPDATE ) ) {
-			if ( $this->exists() ) {
+			if ( $this->mTitle->getArticleID() ) {
 				$flags |= EDIT_UPDATE;
 			} else {
 				$flags |= EDIT_NEW;
@@ -2084,7 +2068,7 @@ class WikiPage implements Page, IDBAccessObject {
 			}
 		}
 
-		if ( !$this->exists() ) {
+		if ( !$this->mTitle->exists() ) {
 			wfProfileOut( __METHOD__ );
 			return;
 		}
@@ -2223,7 +2207,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 		$restrictionTypes = $this->mTitle->getRestrictionTypes();
 
-		$id = $this->getId();
+		$id = $this->mTitle->getArticleID();
 
 		if ( !$cascade ) {
 			$cascade = false;
@@ -2604,7 +2588,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 		// Now that it's safely backed up, delete it
 		$dbw->delete( 'page', array( 'page_id' => $id ), __METHOD__ );
-		$ok = ( $dbw->affectedRows() > 0 ); // $id could be laggy
+		$ok = ( $dbw->affectedRows() > 0 ); // getArticleID() uses slave, could be laggy
 
 		if ( !$ok ) {
 			$dbw->rollback( __METHOD__ );
@@ -2651,8 +2635,11 @@ class WikiPage implements Page, IDBAccessObject {
 		// Clear caches
 		WikiPage::onArticleDelete( $this->mTitle );
 
-		// Reset this object and the Title object
-		$this->loadFromRow( false, self::READ_LATEST );
+		// Reset this object
+		$this->clear();
+
+		// Clear the cached article id so the interface doesn't act like we exist
+		$this->mTitle->resetArticleID( 0 );
 	}
 
 	/**
@@ -2956,7 +2943,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 */
 	public function getHiddenCategories() {
 		$result = array();
-		$id = $this->getId();
+		$id = $this->mTitle->getArticleID();
 
 		if ( $id == 0 ) {
 			return array();
@@ -3091,7 +3078,7 @@ class WikiPage implements Page, IDBAccessObject {
 		// are visible.
 
 		// Get templates from templatelinks
-		$id = $this->getId();
+		$id = $this->mTitle->getArticleID();
 
 		$tlTemplates = array();
 
