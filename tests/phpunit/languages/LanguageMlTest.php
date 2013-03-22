@@ -14,7 +14,7 @@ class LanguageMlTest extends LanguageClassesTestCase {
 		$this->assertEquals( $result, $this->getLang()->formatNum( $value ) );
 	}
 
-	function providerFormatNum() {
+	public static function providerFormatNum() {
 		return array(
 			array( '12,34,567', '1234567' ),
 			array( '12,345', '12345' ),

@@ -47,7 +47,7 @@ class ServicesJsonTest extends MediaWikiTestCase {
 		}
 	}
 
-	function provideValuesToEncode() {
+	public static function provideValuesToEncode() {
 		$obj = new stdClass();
 		$obj->property = 'value';
 		$obj->property2 = null;
@@ -71,7 +71,7 @@ class ServicesJsonTest extends MediaWikiTestCase {
 		);
 	}
 
-	function provideValuesToDecode() {
+	public static function provideValuesToDecode() {
 		return array(
 			array( '1', 'basic integer' ),
 			array( '-1', 'negative integer' ),

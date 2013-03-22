@@ -19,7 +19,7 @@ class LanguageTest extends LanguageClassesTestCase {
 		$this->assertEquals( $expected, $this->getLang()->formatTimePeriod( $seconds, $format ), $desc );
 	}
 
-	function provideFormattableTimes() {
+	public static function provideFormattableTimes() {
 		return array(
 			array(
 				9.45,
@@ -251,7 +251,7 @@ class LanguageTest extends LanguageClassesTestCase {
 	/**
 	 * Array format is ($len, $ellipsis, $input, $expected)
 	 */
-	function provideHTMLTruncateData() {
+	public static function provideHTMLTruncateData() {
 		return array(
 			array( 0, 'XXX', "1234567890", "XXX" ),
 			array( 8, 'XXX', "1234567890", "12345XXX" ),
@@ -324,7 +324,7 @@ class LanguageTest extends LanguageClassesTestCase {
 	 * and distributed as free software, under the GNU General Public Licence.
 	 * http://www.bortzmeyer.org/gabuzomeu-parsing-language-tags.html
 	 */
-	function provideWellFormedLanguageTags() {
+	public static function provideWellFormedLanguageTags() {
 		return array(
 			array( 'fr', 'two-letter code' ),
 			array( 'fr-latn', 'two-letter code with lower case script code' ),
@@ -375,7 +375,7 @@ class LanguageTest extends LanguageClassesTestCase {
 	 * and distributed as free software, under the GNU General Public Licence.
 	 * http://www.bortzmeyer.org/gabuzomeu-parsing-language-tags.html
 	 */
-	function provideMalformedLanguageTags() {
+	public static function provideMalformedLanguageTags() {
 		return array(
 			array( 'f', 'language too short' ),
 			array( 'f-Latn', 'language too short with script' ),
@@ -437,7 +437,7 @@ class LanguageTest extends LanguageClassesTestCase {
 		);
 	}
 
-	function provideLanguageCodes() {
+	public static function provideLanguageCodes() {
 		return array(
 			array( 'fr', 'Two letters, minor case' ),
 			array( 'EN', 'Two letters, upper case' ),
@@ -460,7 +460,7 @@ class LanguageTest extends LanguageClassesTestCase {
 		);
 	}
 
-	function provideKnownLanguageTags() {
+	public static function provideKnownLanguageTags() {
 		return array(
 			array( 'fr', 'simple code' ),
 			array( 'bat-smg', 'an MW legacy tag' ),
@@ -493,7 +493,7 @@ class LanguageTest extends LanguageClassesTestCase {
 		);
 	}
 
-	function provideUnknownLanguageTags() {
+	public static function provideUnknownLanguageTags() {
 		return array(
 			array( 'mw', 'non-existent two-letter code' ),
 		);
@@ -530,7 +530,7 @@ class LanguageTest extends LanguageClassesTestCase {
 		date_default_timezone_set( $oldTZ );
 	}
 
-	function provideSprintfDateSamples() {
+	public static function provideSprintfDateSamples() {
 		return array(
 			array(
 				'xiY',
@@ -836,7 +836,7 @@ class LanguageTest extends LanguageClassesTestCase {
 		);
 	}
 
-	function provideFormatSizes() {
+	public static function provideFormatSizes() {
 		return array(
 			array(
 				0,
@@ -898,7 +898,7 @@ class LanguageTest extends LanguageClassesTestCase {
 		);
 	}
 
-	function provideFormatBitrate() {
+	public static function provideFormatBitrate() {
 		return array(
 			array(
 				0,
@@ -970,7 +970,7 @@ class LanguageTest extends LanguageClassesTestCase {
 		);
 	}
 
-	function provideFormatDuration() {
+	public static function provideFormatDuration() {
 		return array(
 			array(
 				0,
@@ -1106,7 +1106,7 @@ class LanguageTest extends LanguageClassesTestCase {
 		);
 	}
 
-	function provideCheckTitleEncodingData() {
+	public static function provideCheckTitleEncodingData() {
 		return array(
 			array( "" ),
 			array( "United States of America" ), // 7bit ASCII
@@ -1170,7 +1170,7 @@ class LanguageTest extends LanguageClassesTestCase {
 		);
 	}
 
-	function provideRomanNumeralsData() {
+	public static function provideRomanNumeralsData() {
 		return array(
 			array( 1, 'I' ),
 			array( 2, 'II' ),
@@ -1225,7 +1225,7 @@ class LanguageTest extends LanguageClassesTestCase {
 		$this->assertEquals( $expected, $chosen );
 	}
 
-	function providePluralData() {
+	public static function providePluralData() {
 		// Params are: [expected text, number given, [the plural forms]]
 		return array(
 			array( 'plural', 0, array(
@@ -1273,7 +1273,7 @@ class LanguageTest extends LanguageClassesTestCase {
 		$this->assertEquals( $expected, $lang->translateBlockExpiry( $str ), $desc );
 	}
 
-	function provideTranslateBlockExpiry() {
+	public static function provideTranslateBlockExpiry() {
 		return array(
 			array( '2 hours', '2 hours', 'simple data from ipboptions' ),
 			array( 'indefinite', 'infinite', 'infinite from ipboptions' ),
@@ -1302,7 +1302,7 @@ class LanguageTest extends LanguageClassesTestCase {
 		);
 	}
 
-	function provideCommafyData() {
+	public static function provideCommafyData() {
 		return array(
 			array( 1, '1' ),
 			array( 10, '10' ),
@@ -1341,7 +1341,7 @@ class LanguageTest extends LanguageClassesTestCase {
 		$this->assertEquals( $expected, Language::isSupportedLanguage( $code ), $comment );
 	}
 
-	static function provideIsSupportedLanguage() {
+	public static function provideIsSupportedLanguage() {
 		return array(
 			array( 'en', true, 'is supported language' ),
 			array( 'fi', true, 'is supported language' ),

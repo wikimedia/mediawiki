@@ -57,7 +57,7 @@ class StringUtilsTest extends MediaWikiTestCase {
 	 * Markus Kuhn:
 	 * http://www.cl.cam.ac.uk/~mgk25/ucs/examples/UTF-8-test.txt
 	 */
-	function provideStringsForIsUtf8Check() {
+	public static function provideStringsForIsUtf8Check() {
 		// Expected return values for StringUtils::isUtf8()
 		$PASS = true;
 		$FAIL = false;

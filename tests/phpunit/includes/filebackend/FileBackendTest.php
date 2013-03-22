@@ -88,7 +88,7 @@ class FileBackendTest extends MediaWikiTestCase {
 			"FileBackend::isStoragePath on path '$path'" );
 	}
 
-	function provider_testIsStoragePath() {
+	public static function provider_testIsStoragePath() {
 		return array(
 			array( 'mwstore://', true ),
 			array( 'mwstore://backend', true ),
@@ -112,7 +112,7 @@ class FileBackendTest extends MediaWikiTestCase {
 			"FileBackend::splitStoragePath on path '$path'" );
 	}
 
-	function provider_testSplitStoragePath() {
+	public static function provider_testSplitStoragePath() {
 		return array(
 			array( 'mwstore://backend/container', array( 'backend', 'container', '' ) ),
 			array( 'mwstore://backend/container/', array( 'backend', 'container', '' ) ),
@@ -136,7 +136,7 @@ class FileBackendTest extends MediaWikiTestCase {
 			"FileBackend::normalizeStoragePath on path '$path'" );
 	}
 
-	function provider_normalizeStoragePath() {
+	public static function provider_normalizeStoragePath() {
 		return array(
 			array( 'mwstore://backend/container', 'mwstore://backend/container' ),
 			array( 'mwstore://backend/container/', 'mwstore://backend/container' ),
@@ -162,7 +162,7 @@ class FileBackendTest extends MediaWikiTestCase {
 			"FileBackend::parentStoragePath on path '$path'" );
 	}
 
-	function provider_testParentStoragePath() {
+	public static function provider_testParentStoragePath() {
 		return array(
 			array( 'mwstore://backend/container/path/to/obj', 'mwstore://backend/container/path/to' ),
 			array( 'mwstore://backend/container/path/to', 'mwstore://backend/container/path' ),
@@ -927,7 +927,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		}
 	}
 
-	function provider_testConcatenate() {
+	public static function provider_testConcatenate() {
 		$cases = array();
 
 		$rand = mt_rand( 0, 2000000000 ) . time();
@@ -1041,7 +1041,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		}
 	}
 
-	function provider_testGetFileStat() {
+	public static function provider_testGetFileStat() {
 		$cases = array();
 
 		$base = self::baseStorePath();
@@ -1096,7 +1096,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		}
 	}
 
-	function provider_testGetFileContents() {
+	public static function provider_testGetFileContents() {
 		$cases = array();
 
 		$base = self::baseStorePath();
@@ -1164,7 +1164,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		$tmpFile->bind( $obj );
 	}
 
-	function provider_testGetLocalCopy() {
+	public static function provider_testGetLocalCopy() {
 		$cases = array();
 
 		$base = self::baseStorePath();
@@ -1230,7 +1230,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		}
 	}
 
-	function provider_testGetLocalReference() {
+	public static function provider_testGetLocalReference() {
 		$cases = array();
 
 		$base = self::baseStorePath();
@@ -1305,7 +1305,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		}
 	}
 
-	function provider_testGetFileHttpUrl() {
+	public static function provider_testGetFileHttpUrl() {
 		$cases = array();
 
 		$base = self::baseStorePath();
@@ -1329,7 +1329,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		$this->tearDownFiles();
 	}
 
-	function provider_testPrepareAndClean() {
+	public static function provider_testPrepareAndClean() {
 		$base = self::baseStorePath();
 		return array(
 			array( "$base/unittest-cont1/e/a/z/some_file1.txt", true ),

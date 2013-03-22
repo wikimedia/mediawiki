@@ -230,7 +230,7 @@ class TitleTest extends MediaWikiTestCase {
 		);
 	}
 
-	function provideCasesForGetpageviewlanguage() {
+	public static function provideCasesForGetpageviewlanguage() {
 		# Format:
 		# - expected
 		# - Title name
@@ -280,7 +280,7 @@ class TitleTest extends MediaWikiTestCase {
 		);
 	}
 
-	function provideBaseTitleCases() {
+	public static function provideBaseTitleCases() {
 		return array(
 			# Title, expected base, optional message
 			array( 'User:John_Doe/subOne/subTwo', 'John Doe/subOne' ),
@@ -319,7 +319,7 @@ class TitleTest extends MediaWikiTestCase {
 		);
 	}
 
-	function provideSubpageTitleCases() {
+	public static function provideSubpageTitleCases() {
 		return array(
 			# Title, expected base, optional message
 			array( 'User:John_Doe/subOne/subTwo', 'subTwo' ),

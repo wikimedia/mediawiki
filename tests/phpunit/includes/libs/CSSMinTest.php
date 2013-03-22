@@ -27,7 +27,7 @@ class CSSMinTest extends MediaWikiTestCase {
 		$this->assertEquals( $expectedOutput, $minified, 'Minified output should be in the form expected.' );
 	}
 
-	function provideMinifyCases() {
+	public static function provideMinifyCases() {
 		return array(
 			// Whitespace
 			array( "\r\t\f \v\n\r", "" ),
@@ -77,7 +77,7 @@ class CSSMinTest extends MediaWikiTestCase {
 		$this->assertEquals( $expectedOutput, $remapped, 'CSSMin::remap should return the expected url form.' . $messageAdd );
 	}
 
-	function provideRemapCases() {
+	public static function provideRemapCases() {
 		// Parameter signature:
 		// CSSMin::remap( $code, $local, $remote, $embedData = true )
 		return array(
@@ -119,7 +119,7 @@ class CSSMinTest extends MediaWikiTestCase {
 		$this->testMinifyOutput( $code, $expectedOutput );
 	}
 
-	function provideStringCases() {
+	public static function provideStringCases() {
 		return array(
 			// String values should be respected
 			// - More than one space in a string value

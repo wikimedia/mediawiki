@@ -418,7 +418,7 @@ class HtmlTest extends MediaWikiTestCase {
 	 * List of input element types values introduced by HTML5
 	 * Full list at http://www.w3.org/TR/html-markup/input.html
 	 */
-	function provideHtml5InputTypes() {
+	public static function provideHtml5InputTypes() {
 		$types = array(
 			'datetime',
 			'datetime-local',

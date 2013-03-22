@@ -18,7 +18,7 @@ class LanguageMtTest extends LanguageClassesTestCase {
 		$this->assertEquals( $result, $this->getLang()->getPluralRuleType( $value ) );
 	}
 
-	function providePlural() {
+	public static function providePlural() {
 		return array (
 			array( 'few',   0 ),
 			array( 'one',   1 ),
@@ -45,7 +45,7 @@ class LanguageMtTest extends LanguageClassesTestCase {
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
-	function providerPluralTwoForms() {
+	public static function providerPluralTwoForms() {
 		return array (
 			array( 'other',  0 ),
 			array( 'one',   1 ),

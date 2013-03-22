@@ -28,7 +28,7 @@ class WfBCP47Test extends MediaWikiTestCase {
 	/**
 	 * Array format is ($code, $expected)
 	 */
-	function provideLanguageCodes() {
+	public static function provideLanguageCodes() {
 		return array(
 			// Extracted from BCP47 (list not exhaustive)
 			# 2.1.1

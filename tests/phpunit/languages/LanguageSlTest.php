@@ -19,7 +19,7 @@ class LanguageSlTest extends LanguageClassesTestCase {
 		$this->assertEquals( $result, $this->getLang()->getPluralRuleType( $value ) );
 	}
 
-	function providerPlural() {
+	public static function providerPlural() {
 		return array (
 			array( 'other',  0 ),
 			array( 'one',   1 ),

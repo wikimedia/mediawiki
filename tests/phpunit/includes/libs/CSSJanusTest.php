@@ -54,7 +54,7 @@ class CSSJanusTest extends MediaWikiTestCase {
 	 * These transform cases are tested *in both directions*
 	 * No need to declare a principle twice in both directions here.
 	 */
-	function provideTransformCases() {
+	public static function provideTransformCases() {
 		return array(
 			// Property keys
 			array(
@@ -476,7 +476,7 @@ class CSSJanusTest extends MediaWikiTestCase {
 	 * If both ways can be tested, either put both versions in here or move
 	 * it to provideTransformCases().
 	 */
-	function provideTransformAdvancedCases() {
+	public static function provideTransformAdvancedCases() {
 		$bgPairs = array(
 			# [ - _ . ] <-> [ left right ltr rtl ]
 			'foo.jpg' => 'foo.jpg',
@@ -542,7 +542,7 @@ class CSSJanusTest extends MediaWikiTestCase {
 	 * Cases that are currently failing, but
 	 * should be looked at in the future as enhancements and/or bug fix
 	 */
-	function provideTransformBrokenCases() {
+	public static function provideTransformBrokenCases() {
 		return array(
 			// Guard against selectors that look flippable
 			array(

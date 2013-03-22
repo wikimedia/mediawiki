@@ -238,7 +238,7 @@ class ExifRotationTest extends MediaWikiTestCase {
 		$this->assertEquals( $expected, $result );
 	}
 
-	function provideBitmapExtractPreRotationDimensions() {
+	public static function provideBitmapExtractPreRotationDimensions() {
 		return array(
 			array(
 				0,

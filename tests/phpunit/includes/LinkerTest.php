@@ -17,7 +17,7 @@ class LinkerTest extends MediaWikiLangTestCase {
 		);
 	}
 
-	function provideCasesForUserLink() {
+	public static function provideCasesForUserLink() {
 		# Format:
 		# - expected
 		# - userid

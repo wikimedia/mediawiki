@@ -22,7 +22,7 @@ class BitmapScalingTest extends MediaWikiTestCase {
 		$this->assertEquals( $expectedParams, $params, $msg );
 	}
 
-	function provideNormaliseParams() {
+	public static function provideNormaliseParams() {
 		return array(
 			/* Regular resize operations */
 			array(

@@ -18,7 +18,7 @@ class LanguageSgsTest extends LanguageClassesTestCase {
 		$this->assertEquals( $result, $this->getLang()->getPluralRuleType( $value ) );
 	}
 
-	function providePluralAllForms() {
+	public static function providePluralAllForms() {
 		return array(
 			array( 'few', 0 ),
 			array( 'one', 1 ),
@@ -42,7 +42,7 @@ class LanguageSgsTest extends LanguageClassesTestCase {
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
-	function providePluralTwoForms() {
+	public static function providePluralTwoForms() {
 		return array(
 			array( 'other', 0 ),
 			array( 'one', 1 ),

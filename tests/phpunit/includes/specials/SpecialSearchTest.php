@@ -56,7 +56,7 @@ class SpecialSearchTest extends MediaWikiTestCase {
 
 	}
 
-	function provideSearchOptionsTests() {
+	public static function provideSearchOptionsTests() {
 		$defaultNS = SearchEngine::defaultNamespaces();
 		$EMPTY_REQUEST = array();
 		$NO_USER_PREF = null;

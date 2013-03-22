@@ -90,7 +90,7 @@ class SanitizerTest extends MediaWikiTestCase {
 	/**
 	 * Provide HTML5 tags
 	 */
-	function provideHtml5Tags() {
+	public static function provideHtml5Tags() {
 		$ESCAPED = true; # We want tag to be escaped
 		$VERBATIM = false; # We want to keep the tag
 		return array(
@@ -125,7 +125,7 @@ class SanitizerTest extends MediaWikiTestCase {
 		);
 	}
 
-	function provideTagAttributesToDecode() {
+	public static function provideTagAttributesToDecode() {
 		return array(
 			array( array( 'foo' => 'bar' ), 'foo=bar', 'Unquoted attribute' ),
 			array( array( 'foo' => 'bar' ), '    foo   =   bar    ', 'Spaced attribute' ),
@@ -229,7 +229,7 @@ class SanitizerTest extends MediaWikiTestCase {
 	/**
 	 * Test for support or lack of support for specific attributes in the attribute whitelist.
 	 */
-	function provideAttributeSupport() {
+	public static function provideAttributeSupport() {
 		/** array( <attributes>, <expected>, <message> ) */
 		return array(
 			array( 'div', ' role="presentation"', ' role="presentation"', 'Support for WAI-ARIA\'s role="presentation".' ),

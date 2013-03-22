@@ -31,7 +31,7 @@ class LanguageTrTest extends LanguageClassesTestCase {
 		$this->assertEquals( $expected, $res, $msg );
 	}
 
-	function provideDottedAndDotlessI() {
+	public static function provideDottedAndDotlessI() {
 		return array(
 			# function, input, input case, expected
 			# Case changed:

@@ -18,7 +18,7 @@ class LanguageHeTest extends LanguageClassesTestCase {
 		$this->assertEquals( $result, $this->getLang()->getPluralRuleType( $value ) );
 	}
 
-	function providePlural() {
+	public static function providePlural() {
 		return array (
 			array( 'other', 0 ),
 			array( 'one', 1 ),
@@ -35,7 +35,7 @@ class LanguageHeTest extends LanguageClassesTestCase {
 
 	// The comments in the beginning of the line help avoid RTL problems
 	// with text editors.
-	function provideGrammar() {
+	public static function provideGrammar() {
 		return array (
 			array(
 				/* result */ 'וויקיפדיה',

@@ -20,7 +20,7 @@ class InstallDocFormatterTest extends MediaWikiTestCase {
 	/**
 	 * Provider for testFormat()
 	 */
-	function provideDocFormattingTests() {
+	public static function provideDocFormattingTests() {
 		# Format: (expected string, unformattedText string, optional message)
 		return array(
 			# Escape some wikitext
