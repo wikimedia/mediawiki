@@ -20,10 +20,15 @@
 
 /*jshint unused: false */
 function isCompatible() {
-	// IE < 6.0
-	if ( navigator.appVersion.indexOf( 'MSIE' ) !== -1
-		&& parseFloat( navigator.appVersion.split( 'MSIE' )[1] ) < 6 )
-	{
+	// Blacklisted: IE < 6.0 and a bunch of mobile devices
+	if ( navigator.userAgent.match(
+		/^(lg-|lge-|nec-|pg-|sgh-|sie-)|(240x240|240x320|320x320|alcatel|audiovox|bada|benq|blackberry|cdm-|compal-|docomo|ericsson|hiptop|huawei|kddi-|kindle|meego|midp|mitsu|mmp\/|mobi|mot-|motor|msie [1-5]|ngm_|nintendo|opera.m|palm|panasonic|philips|phone|playstation|portalmmm|sagem-|samsung|sanyo|sec-|semc-browser|sendo|sharp|softbank|symbian|teleca|up.browser|vodafone|webos)/i
+	) ) {
+		if ( navigator.userAgent.match( /Android/ ) ||
+			( navigator.userAgent.match( /iphone/i ) && !navigator.userAgent.match( /Opera/ ) ) )
+		{
+			return true;
+		}
 		return false;
 	}
 	return true;
