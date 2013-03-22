@@ -3838,7 +3838,6 @@ class Title {
 
 		$this->resetArticleID( 0 );
 		$nt->resetArticleID( $oldid );
-		$newpage->loadPageData( WikiPage::READ_LOCKING ); // bug 46397
 
 		$newpage->updateRevisionOn( $dbw, $nullRevision );
 
