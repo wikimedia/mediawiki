@@ -68,20 +68,25 @@ class SpecialTags extends SpecialPage {
 			return '';
 		}
 
+		$user = $this->getUser();
 		$newRow = '';
 		$newRow .= Xml::tags( 'td', null, Xml::element( 'code', null, $tag ) );
 
 		$disp = ChangeTags::tagDescription( $tag );
-		$disp .= ' ';
-		$editLink = Linker::link( Title::makeTitle( NS_MEDIAWIKI, "Tag-$tag" ), $this->msg( 'tags-edit' )->escaped() );
-		$disp .= $this->msg( 'parentheses' )->rawParams( $editLink )->escaped();
+		if ( $user->isAllowed( 'editinterface' ) ) {
+			$disp .= ' ';
+			$editLink = Linker::link( Title::makeTitle( NS_MEDIAWIKI, "Tag-$tag" ), $this->msg( 'tags-edit' )->escaped() );
+			$disp .= $this->msg( 'parentheses' )->rawParams( $editLink )->escaped();
+		}
 		$newRow .= Xml::tags( 'td', null, $disp );
 
 		$msg = $this->msg( "tag-$tag-description" );
 		$desc = !$msg->exists() ? '' : $msg->parse();
-		$desc .= ' ';
-		$editDescLink = Linker::link( Title::makeTitle( NS_MEDIAWIKI, "Tag-$tag-description" ), $this->msg( 'tags-edit' )->escaped() );
-		$desc .= $this->msg( 'parentheses' )->rawParams( $editDescLink )->escaped();
+		if ( $user->isAllowed( 'editinterface' ) ) {
+			$desc .= ' ';
+			$editDescLink = Linker::link( Title::makeTitle( NS_MEDIAWIKI, "Tag-$tag-description" ), $this->msg( 'tags-edit' )->escaped() );
+			$desc .= $this->msg( 'parentheses' )->rawParams( $editDescLink )->escaped();
+		}
 		$newRow .= Xml::tags( 'td', null, $desc );
 
 		$hitcount = $this->msg( 'tags-hitcount' )->numParams( $hitcount )->escaped();
