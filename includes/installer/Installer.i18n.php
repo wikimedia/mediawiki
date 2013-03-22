@@ -315,7 +315,7 @@ This is '''not recommended''' unless you are having problems with your wiki.",
 	'config-upgrade-done-no-regenerate' => "Upgrade complete.
 
 You can now [$1 start using your wiki].",
-	'config-regenerate'               => 'Regenerate <code>LocalSettings.php</code> →',
+	'config-regenerate'               => 'Regenerate LocalSettings.php →',
 	'config-show-table-status'        => '<code>SHOW TABLE STATUS</code> query failed!',
 	'config-unknown-collation'        => "'''Warning:''' Database is using unrecognized collation.",
 	'config-db-web-account'           => 'Database account for web access',
