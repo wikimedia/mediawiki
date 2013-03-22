@@ -56,12 +56,18 @@ class MessageTest extends MediaWikiLangTestCase {
 		$this->assertEquals( 'abcdefghijka2', $msg->params( $params )->plain(), 'Params > 9 are replaced correctly' );
 	}
 
-	function testInContentLanguage() {
-		global $wgLang, $wgForceUIMsgAsContentMsg;
-		$wgLang = Language::factory( 'fr' );
+	function testInContentLanguageDisabled() {
+		$this->setMwGlobals( 'wgLang', Language::factory( 'fr' ) );
 
 		$this->assertEquals( 'Main Page', wfMessage( 'mainpage' )->inContentLanguage()->plain(), 'ForceUIMsg disabled' );
-		$wgForceUIMsgAsContentMsg['testInContentLanguage'] = 'mainpage';
+	}
+
+	function testInContentLanguageEnabled() {
+		$this->setMwGlobals( array(
+			'wgLang' => Language::factory( 'fr' ),
+			'wgForceUIMsgAsContentMsg' => array( 'mainpage' ),
+		) );
+
 		$this->assertEquals( 'Accueil', wfMessage( 'mainpage' )->inContentLanguage()->plain(), 'ForceUIMsg enabled' );
 	}
 
