@@ -377,7 +377,6 @@ class WikiPage implements Page, IDBAccessObject {
 	 */
 	public function loadFromRow( $data, $from ) {
 		$lc = LinkCache::singleton();
-		$lc->clearLink( $this->mTitle );
 
 		if ( $data ) {
 			$lc->addGoodLinkObjFromRow( $this->mTitle, $data );
