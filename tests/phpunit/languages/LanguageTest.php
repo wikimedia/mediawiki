@@ -511,10 +511,10 @@ class LanguageTest extends LanguageClassesTestCase {
 	}
 
 	/**
-	 * bug 33454. sprintfDate should always use UTC.
+	 * sprintfDate should always use UTC when no zone is given.
 	 * @dataProvider provideSprintfDateSamples
 	 */
-	function testSprintfDateTZ( $format, $ts, $expected, $msg ) {
+	function testSprintfDateNoZone( $format, $ts, $expected, $ignore, $msg ) {
 		$oldTZ = date_default_timezone_get();
 		$res = date_default_timezone_set( 'Asia/Seoul' );
 		if ( !$res ) {
@@ -530,17 +530,36 @@ class LanguageTest extends LanguageClassesTestCase {
 		date_default_timezone_set( $oldTZ );
 	}
 
+	/**
+	 * sprintfDate should use passed timezone
+	 * @dataProvider provideSprintfDateSamples
+	 */
+	function testSprintfDateTZ( $format, $ts, $ignore, $expected, $msg ) {
+		$tz = new DateTimeZone( 'Asia/Seoul' );
+		if ( !$tz ) {
+			$this->markTestSkipped( "Error getting Timezone" );
+		}
+
+		$this->assertEquals(
+			$expected,
+			$this->getLang()->sprintfDate( $format, $ts, $tz ),
+			"sprintfDate('$format', '$ts', 'Asia/Seoul'): $msg"
+		);
+	}
+
 	public static function provideSprintfDateSamples() {
 		return array(
 			array(
 				'xiY',
 				'20111212000000',
 				'1390', // note because we're testing English locale we get Latin-standard digits
+				'1390',
 				'Iranian calendar full year'
 			),
 			array(
 				'xiy',
 				'20111212000000',
+				'90',
 				'90',
 				'Iranian calendar short year'
 			),
@@ -548,11 +567,13 @@ class LanguageTest extends LanguageClassesTestCase {
 				'o',
 				'20120101235000',
 				'2011',
+				'2011',
 				'ISO 8601 (week) year'
 			),
 			array(
 				'W',
 				'20120101235000',
+				'52',
 				'52',
 				'Week number'
 			),
@@ -560,11 +581,13 @@ class LanguageTest extends LanguageClassesTestCase {
 				'W',
 				'20120102235000',
 				'1',
+				'1',
 				'Week number'
 			),
 			array(
 				'o-\\WW-N',
 				'20091231235000',
+				'2009-W53-4',
 				'2009-W53-4',
 				'leap week'
 			),
@@ -573,11 +596,13 @@ class LanguageTest extends LanguageClassesTestCase {
 				'Y',
 				'20120102090705',
 				'2012',
+				'2012',
 				'Full year'
 			),
 			array(
 				'y',
 				'20120102090705',
+				'12',
 				'12',
 				'2 digit year'
 			),
@@ -585,11 +610,13 @@ class LanguageTest extends LanguageClassesTestCase {
 				'L',
 				'20120102090705',
 				'1',
+				'1',
 				'Leap year'
 			),
 			array(
 				'n',
 				'20120102090705',
+				'1',
 				'1',
 				'Month index, not zero pad'
 			),
@@ -597,11 +624,13 @@ class LanguageTest extends LanguageClassesTestCase {
 				'N',
 				'20120102090705',
 				'01',
+				'01',
 				'Month index. Zero pad'
 			),
 			array(
 				'M',
 				'20120102090705',
+				'Jan',
 				'Jan',
 				'Month abbrev'
 			),
@@ -609,11 +638,13 @@ class LanguageTest extends LanguageClassesTestCase {
 				'F',
 				'20120102090705',
 				'January',
+				'January',
 				'Full month'
 			),
 			array(
 				'xg',
 				'20120102090705',
+				'January',
 				'January',
 				'Genitive month name (same in EN)'
 			),
@@ -621,11 +652,13 @@ class LanguageTest extends LanguageClassesTestCase {
 				'j',
 				'20120102090705',
 				'2',
+				'2',
 				'Day of month (not zero pad)'
 			),
 			array(
 				'd',
 				'20120102090705',
+				'02',
 				'02',
 				'Day of month (zero-pad)'
 			),
@@ -633,11 +666,13 @@ class LanguageTest extends LanguageClassesTestCase {
 				'z',
 				'20120102090705',
 				'1',
+				'1',
 				'Day of year (zero-indexed)'
 			),
 			array(
 				'D',
 				'20120102090705',
+				'Mon',
 				'Mon',
 				'Day of week (abbrev)'
 			),
@@ -645,11 +680,13 @@ class LanguageTest extends LanguageClassesTestCase {
 				'l',
 				'20120102090705',
 				'Monday',
+				'Monday',
 				'Full day of week'
 			),
 			array(
 				'N',
 				'20120101090705',
+				'7',
 				'7',
 				'Day of week (Mon=1, Sun=7)'
 			),
@@ -657,11 +694,13 @@ class LanguageTest extends LanguageClassesTestCase {
 				'w',
 				'20120101090705',
 				'0',
+				'0',
 				'Day of week (Sun=0, Sat=6)'
 			),
 			array(
 				'N',
 				'20120102090705',
+				'1',
 				'1',
 				'Day of week'
 			),
@@ -669,11 +708,13 @@ class LanguageTest extends LanguageClassesTestCase {
 				'a',
 				'20120102090705',
 				'am',
+				'am',
 				'am vs pm'
 			),
 			array(
 				'A',
 				'20120102120000',
+				'PM',
 				'PM',
 				'AM vs PM'
 			),
@@ -681,11 +722,13 @@ class LanguageTest extends LanguageClassesTestCase {
 				'a',
 				'20120102000000',
 				'am',
+				'am',
 				'AM vs PM'
 			),
 			array(
 				'g',
 				'20120102090705',
+				'9',
 				'9',
 				'12 hour, not Zero'
 			),
@@ -693,11 +736,13 @@ class LanguageTest extends LanguageClassesTestCase {
 				'h',
 				'20120102090705',
 				'09',
+				'09',
 				'12 hour, zero padded'
 			),
 			array(
 				'G',
 				'20120102090705',
+				'9',
 				'9',
 				'24 hour, not zero'
 			),
@@ -705,11 +750,13 @@ class LanguageTest extends LanguageClassesTestCase {
 				'H',
 				'20120102090705',
 				'09',
+				'09',
 				'24 hour, zero'
 			),
 			array(
 				'H',
 				'20120102110705',
+				'11',
 				'11',
 				'24 hour, zero'
 			),
@@ -717,11 +764,13 @@ class LanguageTest extends LanguageClassesTestCase {
 				'i',
 				'20120102090705',
 				'07',
+				'07',
 				'Minutes'
 			),
 			array(
 				's',
 				'20120102090705',
+				'05',
 				'05',
 				'seconds'
 			),
@@ -729,11 +778,13 @@ class LanguageTest extends LanguageClassesTestCase {
 				'U',
 				'20120102090705',
 				'1325495225',
+				'1325462825',
 				'unix time'
 			),
 			array(
 				't',
 				'20120102090705',
+				'31',
 				'31',
 				'Days in current month'
 			),
@@ -741,17 +792,20 @@ class LanguageTest extends LanguageClassesTestCase {
 				'c',
 				'20120102090705',
 				'2012-01-02T09:07:05+00:00',
+				'2012-01-02T09:07:05+09:00',
 				'ISO 8601 timestamp'
 			),
 			array(
 				'r',
 				'20120102090705',
 				'Mon, 02 Jan 2012 09:07:05 +0000',
+				'Mon, 02 Jan 2012 09:07:05 +0900',
 				'RFC 5322'
 			),
 			array(
 				'xmj xmF xmn xmY',
 				'20120102090705',
+				'7 Safar 2 1433',
 				'7 Safar 2 1433',
 				'Islamic'
 			),
@@ -759,11 +813,13 @@ class LanguageTest extends LanguageClassesTestCase {
 				'xij xiF xin xiY',
 				'20120102090705',
 				'12 Dey 10 1390',
+				'12 Dey 10 1390',
 				'Iranian'
 			),
 			array(
 				'xjj xjF xjn xjY',
 				'20120102090705',
+				'7 Tevet 4 5772',
 				'7 Tevet 4 5772',
 				'Hebrew'
 			),
@@ -771,11 +827,13 @@ class LanguageTest extends LanguageClassesTestCase {
 				'xjt',
 				'20120102090705',
 				'29',
+				'29',
 				'Hebrew number of days in month'
 			),
 			array(
 				'xjx',
 				'20120102090705',
+				'Tevet',
 				'Tevet',
 				'Hebrew genitive month name (No difference in EN)'
 			),
@@ -783,11 +841,13 @@ class LanguageTest extends LanguageClassesTestCase {
 				'xkY',
 				'20120102090705',
 				'2555',
+				'2555',
 				'Thai year'
 			),
 			array(
 				'xoY',
 				'20120102090705',
+				'101',
 				'101',
 				'Minguo'
 			),
@@ -795,11 +855,13 @@ class LanguageTest extends LanguageClassesTestCase {
 				'xtY',
 				'20120102090705',
 				'平成24',
+				'平成24',
 				'nengo'
 			),
 			array(
 				'xrxkYY',
 				'20120102090705',
+				'MMDLV2012',
 				'MMDLV2012',
 				'Roman numerals'
 			),
@@ -807,17 +869,20 @@ class LanguageTest extends LanguageClassesTestCase {
 				'xhxjYY',
 				'20120102090705',
 				'ה\'תשע"ב2012',
+				'ה\'תשע"ב2012',
 				'Hebrew numberals'
 			),
 			array(
 				'xnY',
 				'20120102090705',
 				'2012',
+				'2012',
 				'Raw numerals (doesn\'t mean much in EN)'
 			),
 			array(
 				'[[Y "(yea"\\r)]] \\"xx\\"',
 				'20120102090705',
+				'[[2012 (year)]] "x"',
 				'[[2012 (year)]] "x"',
 				'Various escaping'
 			),

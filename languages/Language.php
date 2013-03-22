@@ -1032,9 +1032,9 @@ class Language {
 	 * internationalisation, a reduced set of format characters, and a better
 	 * escaping format.
 	 *
-	 * Supported format characters are dDjlNwzWFmMntLoYyaAgGhHiscrU. See the
-	 * PHP manual for definitions. There are a number of extensions, which
-	 * start with "x":
+	 * Supported format characters are dDjlNwzWFmMntLoYyaAgGhHiscrU, plus
+	 * eIOPTZ if a DateTimeZone is given. See the PHP manual for definitions.
+	 * There are a number of extensions, which start with "x":
 	 *
 	 *    xn   Do not translate digits of the next numeric format character
 	 *    xN   Toggle raw digit (xn) flag, stays set until explicitly unset
@@ -1079,22 +1079,24 @@ class Language {
 	 * Backslash escaping is also supported.
 	 *
 	 * Input timestamp is assumed to be pre-normalized to the desired local
-	 * time zone, if any.
+	 * time zone, if any. Note that the format characters crU will assume $ts
+	 * is UTC if $zone is not given.
 	 *
 	 * @param $format String
 	 * @param $ts String: 14-character timestamp
 	 *      YYYYMMDDHHMMSS
 	 *      01234567890123
+	 * @param $zone DateTimeZone: Timezone of $ts; enables eIOPTZ conversions
 	 * @todo handling of "o" format character for Iranian, Hebrew, Hijri & Thai?
 	 *
 	 * @return string
 	 */
-	function sprintfDate( $format, $ts ) {
+	function sprintfDate( $format, $ts, $zone = null ) {
 		$s = '';
 		$raw = false;
 		$roman = false;
 		$hebrewNum = false;
-		$unix = false;
+		$dateTimeObj = false;
 		$rawToggle = false;
 		$iranian = false;
 		$hebrew = false;
@@ -1140,8 +1142,10 @@ class Language {
 					$num = substr( $ts, 6, 2 );
 					break;
 				case 'D':
-					if ( !$unix ) $unix = wfTimestamp( TS_UNIX, $ts );
-					$s .= $this->getWeekdayAbbreviation( gmdate( 'w', $unix ) + 1 );
+					if ( !$dateTimeObj ) {
+						$dateTimeObj = DateTime::createFromFormat( 'YmdHis', $ts, $zone ?: new DateTimeZone( 'UTC' ) );
+					}
+					$s .= $this->getWeekdayAbbreviation( $dateTimeObj->format( 'w' ) + 1 );
 					break;
 				case 'j':
 					$num = intval( substr( $ts, 6, 2 ) );
@@ -1165,35 +1169,35 @@ class Language {
 					$num = $hebrew[2];
 					break;
 				case 'l':
-					if ( !$unix ) {
-						$unix = wfTimestamp( TS_UNIX, $ts );
+					if ( !$dateTimeObj ) {
+						$dateTimeObj = DateTime::createFromFormat( 'YmdHis', $ts, $zone ?: new DateTimeZone( 'UTC' ) );
 					}
-					$s .= $this->getWeekdayName( gmdate( 'w', $unix ) + 1 );
+					$s .= $this->getWeekdayName( $dateTimeObj->format( 'w' ) + 1 );
 					break;
 				case 'N':
-					if ( !$unix ) {
-						$unix = wfTimestamp( TS_UNIX, $ts );
+					if ( !$dateTimeObj ) {
+						$dateTimeObj = DateTime::createFromFormat( 'YmdHis', $ts, $zone ?: new DateTimeZone( 'UTC' ) );
 					}
-					$w = gmdate( 'w', $unix );
+					$w = $dateTimeObj->format( 'w' );
 					$num = $w ? $w : 7;
 					break;
 				case 'w':
-					if ( !$unix ) {
-						$unix = wfTimestamp( TS_UNIX, $ts );
+					if ( !$dateTimeObj ) {
+						$dateTimeObj = DateTime::createFromFormat( 'YmdHis', $ts, $zone ?: new DateTimeZone( 'UTC' ) );
 					}
-					$num = gmdate( 'w', $unix );
+					$num = $dateTimeObj->format( 'w' );
 					break;
 				case 'z':
-					if ( !$unix ) {
-						$unix = wfTimestamp( TS_UNIX, $ts );
+					if ( !$dateTimeObj ) {
+						$dateTimeObj = DateTime::createFromFormat( 'YmdHis', $ts, $zone ?: new DateTimeZone( 'UTC' ) );
 					}
-					$num = gmdate( 'z', $unix );
+					$num = $dateTimeObj->format( 'z' );
 					break;
 				case 'W':
-					if ( !$unix ) {
-						$unix = wfTimestamp( TS_UNIX, $ts );
+					if ( !$dateTimeObj ) {
+						$dateTimeObj = DateTime::createFromFormat( 'YmdHis', $ts, $zone ?: new DateTimeZone( 'UTC' ) );
 					}
-					$num = gmdate( 'W', $unix );
+					$num = $dateTimeObj->format( 'W' );
 					break;
 				case 'F':
 					$s .= $this->getMonthName( substr( $ts, 4, 2 ) );
@@ -1244,10 +1248,10 @@ class Language {
 					$num = $hebrew[1];
 					break;
 				case 't':
-					if ( !$unix ) {
-						$unix = wfTimestamp( TS_UNIX, $ts );
+					if ( !$dateTimeObj ) {
+						$dateTimeObj = DateTime::createFromFormat( 'YmdHis', $ts, $zone ?: new DateTimeZone( 'UTC' ) );
 					}
-					$num = gmdate( 't', $unix );
+					$num = $dateTimeObj->format( 't' );
 					break;
 				case 'xjt':
 					if ( !$hebrew ) {
@@ -1256,16 +1260,16 @@ class Language {
 					$num = $hebrew[3];
 					break;
 				case 'L':
-					if ( !$unix ) {
-						$unix = wfTimestamp( TS_UNIX, $ts );
+					if ( !$dateTimeObj ) {
+						$dateTimeObj = DateTime::createFromFormat( 'YmdHis', $ts, $zone ?: new DateTimeZone( 'UTC' ) );
 					}
-					$num = gmdate( 'L', $unix );
+					$num = $dateTimeObj->format( 'L' );
 					break;
 				case 'o':
-					if ( !$unix ) {
-						$unix = wfTimestamp( TS_UNIX, $ts );
+					if ( !$dateTimeObj ) {
+						$dateTimeObj = DateTime::createFromFormat( 'YmdHis', $ts, $zone ?: new DateTimeZone( 'UTC' ) );
 					}
-					$num = gmdate( 'o', $unix );
+					$num = $dateTimeObj->format( 'o' );
 					break;
 				case 'Y':
 					$num = substr( $ts, 0, 4 );
@@ -1342,22 +1346,46 @@ class Language {
 					$num = substr( $ts, 12, 2 );
 					break;
 				case 'c':
-					if ( !$unix ) {
-						$unix = wfTimestamp( TS_UNIX, $ts );
+					if ( !$dateTimeObj ) {
+						$dateTimeObj = DateTime::createFromFormat( 'YmdHis', $ts, $zone ?: new DateTimeZone( 'UTC' ) );
 					}
-					$s .= gmdate( 'c', $unix );
+					$s .= $dateTimeObj->format( 'c' );
 					break;
 				case 'r':
-					if ( !$unix ) {
-						$unix = wfTimestamp( TS_UNIX, $ts );
+					if ( !$dateTimeObj ) {
+						$dateTimeObj = DateTime::createFromFormat( 'YmdHis', $ts, $zone ?: new DateTimeZone( 'UTC' ) );
 					}
-					$s .= gmdate( 'r', $unix );
+					$s .= $dateTimeObj->format( 'r' );
 					break;
 				case 'U':
-					if ( !$unix ) {
-						$unix = wfTimestamp( TS_UNIX, $ts );
+					if ( !$dateTimeObj ) {
+						$dateTimeObj = DateTime::createFromFormat( 'YmdHis', $ts, $zone ?: new DateTimeZone( 'UTC' ) );
 					}
-					$num = $unix;
+					$num = $dateTimeObj->format( 'U' );
+					break;
+				case 'e':
+				case 'O':
+				case 'P':
+				case 'T':
+					if ( $zone ) {
+						if ( !$dateTimeObj ) {
+							$dateTimeObj = DateTime::createFromFormat( 'YmdHis', $ts, $zone );
+						}
+						$s .= $dateTimeObj->format( $code );
+					} else {
+						$s .= $code;
+					}
+					break;
+				case 'I':
+				case 'Z':
+					if ( $zone ) {
+						if ( !$dateTimeObj ) {
+							$dateTimeObj = DateTime::createFromFormat( 'YmdHis', $ts, $zone );
+						}
+						$num = $dateTimeObj->format( $code );
+					} else {
+						$s .= $code;
+					}
 					break;
 				case '\\':
 					# Backslash escaping
