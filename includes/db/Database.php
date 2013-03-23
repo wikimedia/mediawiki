@@ -2488,7 +2488,7 @@ abstract class DatabaseBase implements DatabaseType {
 			}
 
 			# Now insert the row
-			$this->insert( $table, $row );
+			$this->insert( $table, $row, $fname );
 		}
 	}
 
