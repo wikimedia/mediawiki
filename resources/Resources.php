@@ -707,9 +707,12 @@ return array(
 
 	'mediawiki.action.edit' => array(
 		'scripts' => 'resources/mediawiki.action/mediawiki.action.edit.js',
+		'styles' => 'resources/mediawiki.action/mediawiki.action.edit.css',
 		'dependencies' => array(
 			'jquery.textSelection',
 			'jquery.byteLimit',
+			'jquery.makeCollapsible',
+			'mediawiki.icon',
 		),
 		'position' => 'top',
 	),
