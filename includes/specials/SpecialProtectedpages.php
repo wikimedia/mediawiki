@@ -83,9 +83,6 @@ class SpecialProtectedpages extends SpecialPage {
 			$infinity = wfGetDB( DB_SLAVE )->getInfinity();
 		}
 
-		$title = Title::makeTitleSafe( $row->page_namespace, $row->page_title );
-		$link = Linker::link( $title );
-
 		$description_items = array ();
 
 		$protType = wfMsgHtml( 'restriction-level-' . $row->pr_level );
@@ -98,6 +95,18 @@ class SpecialProtectedpages extends SpecialPage {
 
 		$stxt = '';
 		$lang = $this->getLanguage();
+		if(!is_null($size = $row->page_len)) {
+			$stxt = $lang->getDirMark() . ' ' . Linker::formatRevisionSize( $size );
+		}
+
+		$title = Title::makeTitleSafe( $row->page_namespace, $row->page_title );
+		if ( !$title ) {
+			return Html::rawElement(
+				'li',
+				array(),
+				$lang->specialList( wfMsg("badtitle") . $stxt, $lang->commaList( $description_items ), false ) ) . "\n";
+		}
+		$link = Linker::link( $title );
 
 		$expiry = $lang->formatExpiry( $row->pr_expiry, TS_MW );
 		if( $expiry != $infinity ) {
@@ -110,10 +119,6 @@ class SpecialProtectedpages extends SpecialPage {
 			);
 
 			$description_items[] = htmlspecialchars($expiry_description);
-		}
-
-		if(!is_null($size = $row->page_len)) {
-			$stxt = $lang->getDirMark() . ' ' . Linker::formatRevisionSize( $size );
 		}
 
 		# Show a link to the change protection form for allowed users otherwise a link to the protection log
