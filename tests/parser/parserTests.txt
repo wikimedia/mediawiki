@@ -165,6 +165,145 @@ baz
 !! end
 
 !! test
+Paragraphs with newline spacing with comment lines in between
+!! input
+----
+a
+<!--foo-->
+b
+----
+a
+<!--foo--><!--More than 1 comment disables stripping of this line!-->
+b
+----
+a
+<!--foo-->
+
+b
+----
+a
+
+<!--foo-->
+b
+----
+a
+<!--foo-->
+
+
+b
+----
+a
+
+
+<!--foo-->
+b
+----
+!! result
+<hr />
+<p>a
+b
+</p>
+<hr />
+<p>a
+</p><p>b
+</p>
+<hr />
+<p>a
+</p><p>b
+</p>
+<hr />
+<p>a
+</p><p>b
+</p>
+<hr />
+<p>a
+</p><p><br />
+b
+</p>
+<hr />
+<p>a
+</p><p><br />
+b
+</p>
+<hr />
+
+!! end
+
+!! test
+Paragraphs with newline spacing with non-empty white-space lines in between
+!! input
+----
+a
+ 
+b
+----
+a
+ 
+ 
+b
+----
+!! result
+<hr />
+<p>a
+</p><p>b
+</p>
+<hr />
+<p>a
+</p><p><br /> 
+b
+</p>
+<hr />
+
+!! end
+
+!! test
+Paragraphs with newline spacing with non-empty mixed comment and white-space lines in between
+!! input
+----
+a
+ <!--foo-->
+b
+----
+a
+ <!--foo--><!--More than 1 comment disables stripping of this line!-->
+b
+----
+a
+ 
+<!--foo-->
+ <!--bar-->
+b
+----
+a
+ 
+ <!--foo-->
+ <!--bar-->
+ 
+b
+----
+!! result
+<hr />
+<p>a
+b
+</p>
+<hr />
+<p>a
+</p><p>b
+</p>
+<hr />
+<p>a
+</p><p>b
+</p>
+<hr />
+<p>a
+</p><p><br /> 
+b
+</p>
+<hr />
+
+!! end
+
+!! test
 Parsing an URL
 !! input
 http://fr.wikipedia.org/wiki/🍺
