@@ -424,10 +424,10 @@
 		ts.dateRegex[0] = new RegExp( /^\s*(\d{1,2})[\,\.\-\/'\s]{1,2}(\d{1,2})[\,\.\-\/'\s]{1,2}(\d{2,4})\s*?/i);
 
 		// Written Month name, dmy
-		ts.dateRegex[1] = new RegExp( '^\\s*(\\d{1,2})[\\,\\.\\-\\/\'\\s]*(' + regex + ')' + '[\\,\\.\\-\\/\'\\s]*(\\d{2,4})\\s*$', 'i' );
+		ts.dateRegex[1] = new RegExp( '^\\s*(\\d{1,2})[\\,\\.\\-\\/\'\\s]+(' + regex + ')' + '[\\,\\.\\-\\/\'\\s]+(\\d{2,4})\\s*$', 'i' );
 
 		// Written Month name, mdy
-		ts.dateRegex[2] = new RegExp( '^\\s*(' + regex + ')' + '[\\,\\.\\-\\/\'\\s]*(\\d{1,2})[\\,\\.\\-\\/\'\\s]*(\\d{2,4})\\s*$', 'i' );
+		ts.dateRegex[2] = new RegExp( '^\\s*(' + regex + ')' + '[\\,\\.\\-\\/\'\\s]+(\\d{1,2})[\\,\\.\\-\\/\'\\s]+(\\d{2,4})\\s*$', 'i' );
 
 	}
 
