@@ -24,7 +24,7 @@
 	 * @param {Object|undefined} options
 	 */
 	function toggleElement( $collapsible, action, $defaultToggle, options ) {
-		var $collapsibleContent, $containers;
+		var $collapsibleContent, $containers, hookCallback;
 		options = options || {};
 
 		// Validate parameters
@@ -47,6 +47,14 @@
 			return;
 		}
 
+		// Trigger a custom event to allow callers to hook to the collapsing/expanding,
+		// allowing the module to be testable, and making it possible to
+		// e.g. implement persistence via cookies
+		$collapsible.trigger( action === 'expand' ? 'beforeExpand.mw-collapse' : 'beforeCollapse.mw-collapse' );
+		hookCallback = function () {
+			$collapsible.trigger( action === 'expand' ? 'afterExpand.mw-collapse' : 'afterCollapse.mw-collapse' );
+		};
+
 		// Handle different kinds of elements
 
 		if ( !options.plainMode && $collapsible.is( 'table' ) ) {
@@ -63,11 +71,12 @@
 				// http://stackoverflow.com/questions/467336#920480
 				if ( options.instantHide ) {
 					$containers.hide();
+					hookCallback();
 				} else {
-					$containers.stop( true, true ).fadeOut();
+					$containers.stop( true, true ).fadeOut( hookCallback );
 				}
 			} else {
-				$containers.stop( true, true ).fadeIn();
+				$containers.stop( true, true ).fadeIn( hookCallback );
 			}
 
 		} else if ( !options.plainMode && ( $collapsible.is( 'ul' ) || $collapsible.is( 'ol' ) ) ) {
@@ -81,11 +90,12 @@
 			if ( action === 'collapse' ) {
 				if ( options.instantHide ) {
 					$containers.hide();
+					hookCallback();
 				} else {
-					$containers.stop( true, true ).slideUp();
+					$containers.stop( true, true ).slideUp( hookCallback );
 				}
 			} else {
-				$containers.stop( true, true ).slideDown();
+				$containers.stop( true, true ).slideDown( hookCallback );
 			}
 
 		} else {
@@ -97,11 +107,12 @@
 				if ( action === 'collapse' ) {
 					if ( options.instantHide ) {
 						$collapsibleContent.hide();
+						hookCallback();
 					} else {
-						$collapsibleContent.slideUp();
+						$collapsibleContent.slideUp( hookCallback );
 					}
 				} else {
-					$collapsibleContent.slideDown();
+					$collapsibleContent.slideDown( hookCallback );
 				}
 
 			// Otherwise assume this is a customcollapse with a remote toggle
@@ -110,18 +121,19 @@
 				if ( action === 'collapse' ) {
 					if ( options.instantHide ) {
 						$collapsible.hide();
+						hookCallback();
 					} else {
 						if ( $collapsible.is( 'tr' ) || $collapsible.is( 'td' ) || $collapsible.is( 'th' ) ) {
-							$collapsible.fadeOut();
+							$collapsible.fadeOut( hookCallback );
 						} else {
-							$collapsible.slideUp();
+							$collapsible.slideUp( hookCallback );
 						}
 					}
 				} else {
 					if ( $collapsible.is( 'tr' ) || $collapsible.is( 'td' ) || $collapsible.is( 'th' ) ) {
-						$collapsible.fadeIn();
+						$collapsible.fadeIn( hookCallback );
 					} else {
-						$collapsible.slideDown();
+						$collapsible.slideDown( hookCallback );
 					}
 				}
 			}
