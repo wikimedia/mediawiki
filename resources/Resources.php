@@ -713,6 +713,14 @@ return array(
 		),
 		'position' => 'top',
 	),
+	'mediawiki.action.edit.collapsibleFooter' => array(
+		'scripts' => 'resources/mediawiki.action/mediawiki.action.edit.collapsibleFooter.js',
+		'styles' => 'resources/mediawiki.action/mediawiki.action.edit.collapsibleFooter.css',
+		'dependencies' => array(
+			'jquery.makeCollapsible',
+			'mediawiki.icon',
+		),
+	),
 	'mediawiki.action.edit.preview' => array(
 		'scripts' => 'resources/mediawiki.action/mediawiki.action.edit.preview.js',
 		'dependencies' => array(
