@@ -96,7 +96,7 @@
 	mw.toolbar = toolbar;
 
 	$( document ).ready( function () {
-		var buttons, i, b, $iframe;
+		var i, buttons, b, $iframe;
 
 		// currentFocus is used to determine where to insert tags
 		currentFocused = $( '#wpTextbox1' );
@@ -166,5 +166,4 @@
 				} );
 		}
 	});
-
 }( mediaWiki, jQuery ) );
