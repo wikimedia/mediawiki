@@ -213,7 +213,10 @@ class IcuCollation extends Collation {
 		'pl' => array( "Ą", "Ć", "Ę", "Ł", "Ń", "Ó", "Ś", "Ź", "Ż" ),
 		'pt' => array(),
 		'ru' => array(),
+		'sv' => array( "Å", "Ä", "Ö" ),
+		'-sv' => array( "Þ" ), // sorted as "th" in Swedish, causing unexpected output - bug 45446
 		'uk' => array( "Ґ", "Ь" ),
+		'vi' => array( "Ă", "Â", "Đ", "Ê", "Ô", "Ơ", "Ư" ),
 		// Not verified, but likely correct
 		'af' => array(),
 		'ast' => array( "Ch", "Ll", "Ñ" ),
@@ -266,14 +269,11 @@ class IcuCollation extends Collation {
 		'smn' => array( "Á", "Č", "Đ", "Ŋ", "Š", "Ŧ", "Ž", "Æ", "Ø", "Å", "Ä", "Ö" ),
 		'sq' => array( "Ç", "Dh", "Ë", "Gj", "Ll", "Nj", "Rr", "Sh", "Th", "Xh", "Zh" ),
 		'sr' => array(),
-		'sv' => array( "Å", "Ä", "Ö" ),
-		'-sv' => array( "Þ" ), // sorted as "th" in Swedish, causing unexpected output - bug 45446
 		'tk' => array( "Ç", "Ä", "Ž", "Ň", "Ö", "Ş", "Ü", "Ý" ),
 		'tl' => array( "Ñ", "Ng" ),
 		'tr' => array( "Ç", "Ğ", "İ", "Ö", "Ş", "Ü" ),
 		'tt' => array( "Ә", "Ө", "Ү", "Җ", "Ң", "Һ" ),
 		'uz' => array( "Ch", "G'", "Ng", "O'", "Sh" ),
-		'vi' => array( "Ă", "Â", "Đ", "Ê", "Ô", "Ơ", "Ư" ),
 	);
 
 	const RECORD_LENGTH = 14;
