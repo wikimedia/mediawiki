@@ -261,7 +261,10 @@ return array(
 		'scripts' => 'resources/jquery/jquery.tablesorter.js',
 		'styles' => 'resources/jquery/jquery.tablesorter.css',
 		'messages' => array( 'sort-descending', 'sort-ascending' ),
-		'dependencies' => 'jquery.mwExtension',
+		'dependencies' => array(
+			'jquery.mwExtension',
+			'mediawiki.language.months',
+		),
 	),
 	'jquery.textSelection' => array(
 		'scripts' => 'resources/jquery/jquery.textSelection.js',
