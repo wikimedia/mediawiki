@@ -1043,8 +1043,8 @@ class SkinTemplate extends Skin {
 							'class' => ( $code == $preferred ) ? 'selected' : false,
 							'text' => $varname,
 							'href' => $title->getLocalURL( array( 'variant' => $code ) + $params ),
-							'lang' => $code,
-							'hreflang' => $code
+							'lang' => wfBCP47( $code ),
+							'hreflang' => wfBCP47( $code ),
 						);
 					}
 				}
