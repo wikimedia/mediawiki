@@ -106,6 +106,9 @@ production.
 * LinkCache singleton can now be altered or cleared, letting one to specify
   another instance that does not rely on a database backend.
 * MediaWiki's PHPUnit tests can now use PHPUnit installed using composer --dev.
+* (bug 43689) The lists of templates used on the page and hidden categories it
+  is a member of, shown below the edit form, are now collapsible (and collapsed
+  by default).
 * New user rights have been added to increase granularity in rights management
   for extensions such as OAuth:
 ** editmyusercss controls whether a user may edit their own CSS subpages.

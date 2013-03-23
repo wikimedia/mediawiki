@@ -1,0 +1,11 @@
+/* Styles for collapsible lists of templates used and hidden categories */
+.mw-editfooter-toggler {
+	cursor: pointer;
+	background-position: left center;
+	padding-left: 16px;
+}
+
+.mw-editfooter-list {
+	margin-bottom: 1em;
+	margin-left: 2.5em;
+}
