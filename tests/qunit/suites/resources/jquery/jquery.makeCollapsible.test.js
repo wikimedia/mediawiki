@@ -11,6 +11,41 @@
 		return $parsed;
 	}
 
+	QUnit.asyncTest( 'testing hooks (triggers)', 4, function ( assert ) {
+		var $collapsible, $content, $toggle;
+		$collapsible = prepareCollapsible(
+			'<div class="mw-collapsible">' + loremIpsum + '</div>'
+		);
+		$content = $collapsible.find( '.mw-collapsible-content' );
+		$toggle = $collapsible.find( '.mw-collapsible-toggle' );
+
+		// In one full collapse-expand cycle, each event will be fired once
+
+		// On collapse...
+		$collapsible.on( 'beforeCollapse.mw-collapsible', function () {
+			assert.assertTrue( $content.is( ':visible' ), 'first beforeCollapseExpand: content is visible' );
+		} );
+		$collapsible.on( 'afterCollapse.mw-collapsible', function () {
+			assert.assertTrue( $content.is( ':hidden' ), 'first afterCollapseExpand: content is hidden' );
+
+			// On expand...
+			$collapsible.on( 'beforeExpand.mw-collapsible', function () {
+				assert.assertTrue( $content.is( ':hidden' ), 'second beforeCollapseExpand: content is hidden' );
+			} );
+			$collapsible.on( 'afterExpand.mw-collapsible', function () {
+				assert.assertTrue( $content.is( ':visible' ), 'second afterCollapseExpand: content is visible' );
+
+				QUnit.start();
+			} );
+
+			// ...expanding happens here
+			$toggle.trigger( 'click' );
+		} );
+
+		// ...collapsing happens here
+		$toggle.trigger( 'click' );
+	} );
+
 	QUnit.test( 'basic operation with instantHide (synchronous test)', 2, function ( assert ) {
 		var $collapsible, $content;
 		$collapsible = prepareCollapsible(
