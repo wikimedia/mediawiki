@@ -274,7 +274,6 @@ $wgAppleTouchIcon = false;
  *
  * @see wfTempDir()
  * @note Default changed to false in MediaWiki 1.20.
- *
  */
 $wgTmpDirectory = false;
 
@@ -606,7 +605,6 @@ $wgCopyUploadProxy = false;
  * @endcode
  * Sets the maximum for all uploads to 250 kB except for upload-by-url, which
  * will have a maximum of 500 kB.
- *
  */
 $wgMaxUploadSize = 1024 * 1024 * 100; # 100MB
 
@@ -692,7 +690,7 @@ $wgFileExtensions = array( 'png', 'gif', 'jpg', 'jpeg' );
  * Files with these extensions will never be allowed as uploads.
  * An array of file extensions to blacklist. You should append to this array
  * if you want to blacklist additional files.
- * */
+ */
 $wgFileBlacklist = array(
 	# HTML may contain cookie-stealing JavaScript and web bugs
 	'html', 'htm', 'js', 'jsb', 'mhtml', 'mht', 'xhtml', 'xht',
@@ -2764,7 +2762,6 @@ $wgEditPageFrameOptions = 'DENY';
  *   - 'SAMEORIGIN': Allow framing by pages on the same domain.
  *   - false: Allow all framing.
  */
-
 $wgApiFrameOptions = 'DENY';
 
 /**
@@ -3648,7 +3645,6 @@ $wgReservedUsernames = array(
  * preferences used by anonymous visitors and newly created accounts.
  * For instance, to disable section editing links:
  * $wgDefaultUserOptions ['editsection'] = 0;
- *
  */
 $wgDefaultUserOptions = array(
 	'ccmeonemails' => 0,
@@ -4077,7 +4073,6 @@ $wgImplicitGroups = array( '*', 'user', 'autoconfirmed' );
  * @endcode
  * This allows users in the '*' group (i.e. any user) to remove themselves from
  * any group that they happen to be in.
- *
  */
 $wgGroupsAddToSelf = array();
 
@@ -4416,14 +4411,13 @@ $wgPasswordAttemptThrottle = array( 'count' => 5, 'seconds' => 300 );
  * @warning Don't enable this. Many sysops will report "hostile TCP port scans"
  * to your ISP and ask for your server to be shut down.
  * You have been warned.
- *
  */
 $wgBlockOpenProxies = false;
 /** Port we want to scan for a proxy */
 $wgProxyPorts = array( 80, 81, 1080, 3128, 6588, 8000, 8080, 8888, 65506 );
 /** Script used to scan */
 $wgProxyScriptPath = "$IP/maintenance/proxyCheck.php";
-/** */
+/** Expiration time for cached proxy IPs */
 $wgProxyMemcExpiry = 86400;
 /** This should always be customised in LocalSettings.php */
 $wgSecretKey = false;
@@ -4530,7 +4524,7 @@ $wgSessionName = false;
  */
 $wgUseTeX = false;
 
-/* @} */ # end LaTeX }
+/** @} */ # end LaTeX }
 
 /************************************************************************//**
  * @name   Profiling, testing and debugging
@@ -4860,7 +4854,6 @@ $wgCountTotalSearchHits = false;
  * PHP wrapper to avoid firing up mediawiki for every keystroke
  *
  * Placeholders: {searchTerms}
- *
  */
 $wgOpenSearchTemplate = false;
 
@@ -4912,7 +4905,6 @@ $wgNamespacesToBeSearchedHelp = array(
  * logged-in users.
  * Useful for big wikis to maintain different search profiles for anonymous and
  * logged-in users.
- *
  */
 $wgSearchEverythingOnlyLoggedIn = false;
 
@@ -5840,8 +5832,9 @@ $wgDisableQueryPageUpdate = false;
  */
 $wgSpecialPageGroups = array();
 
-/** Whether or not to sort special pages in Special:Specialpages */
-
+/**
+ * Whether or not to sort special pages in Special:Specialpages
+ */
 $wgSortSpecialPages = true;
 
 /**
@@ -6112,7 +6105,6 @@ $wgCrossSiteAJAXdomains = array();
  * even if they match one of the domains allowed by $wgCrossSiteAJAXdomains
  * Uses the same syntax as $wgCrossSiteAJAXdomains
  */
-
 $wgCrossSiteAJAXdomainExceptions = array();
 
 /** @} */ # End AJAX and API }
