@@ -166,8 +166,8 @@ class VectorTemplate extends BaseTemplate {
 			<?php endif; ?>
 			<!-- firstHeading -->
 			<h1 id="firstHeading" class="firstHeading" lang="<?php
-				$this->data['pageLanguage'] = $this->getSkin()->getTitle()->getPageViewLanguage()->getCode();
-				$this->html( 'pageLanguage' );
+				$this->data['pageLanguage'] = $this->getSkin()->getTitle()->getPageViewLanguage()->getHtmlCode();
+				$this->text( 'pageLanguage' );
 			?>"><span dir="auto"><?php $this->html( 'title' ) ?></span></h1>
 			<!-- /firstHeading -->
 			<!-- bodyContent -->

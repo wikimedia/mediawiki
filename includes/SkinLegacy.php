@@ -464,7 +464,9 @@ class LegacyTemplate extends BaseTemplate {
 	 */
 	function pageTitle() {
 		global $wgOut;
-		$s = '<h1 class="pagetitle"><span dir="auto">' . $wgOut->getPageTitle() . '</span></h1>';
+		$s = '<h1 class="pagetitle" lang="' . htmlspecialchars(
+			$this->getSkin()->getTitle()->getPageViewLanguage()->getHtmlCode()
+		) . '"><span dir="auto">' . $wgOut->getPageTitle() . '</span></h1>';
 		return $s;
 	}
 
