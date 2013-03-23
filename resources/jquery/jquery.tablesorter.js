@@ -8,8 +8,9 @@
  * http://www.opensource.org/licenses/mit-license.php
  * http://www.gnu.org/licenses/gpl.html
  *
- * Depends on mw.config (wgDigitTransformTable, wgMonthNames, wgMonthNamesShort,
- * wgDefaultDateFormat, wgContentLanguage)
+ * Depends on mw.config (wgDigitTransformTable, wgDefaultDateFormat, wgContentLanguage)
+ * and mw.language.months.
+ *
  * Uses 'tableSorterCollation' in mw.config (if available)
  */
 /**
@@ -459,12 +460,15 @@
 		var regex = [];
 		ts.monthNames = {};
 
-		for ( var i = 1; i < 13; i++ ) {
-			var name = mw.config.get( 'wgMonthNames' )[i].toLowerCase();
-			ts.monthNames[name] = i;
+		for ( var i = 0; i < 12; i++ ) {
+			var name = mw.language.months.names[i].toLowerCase();
+			ts.monthNames[name] = i + 1;
 			regex.push( $.escapeRE( name ) );
-			name = mw.config.get( 'wgMonthNamesShort' )[i].toLowerCase().replace( '.', '' );
-			ts.monthNames[name] = i;
+			name = mw.language.months.genitive[i].toLowerCase().replace( '.', '' );
+			ts.monthNames[name] = i + 1;
+			regex.push( $.escapeRE( name ) );
+			name = mw.language.months.abbrev[i].toLowerCase();
+			ts.monthNames[name] = i + 1;
 			regex.push( $.escapeRE( name ) );
 		}
 
