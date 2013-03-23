@@ -460,7 +460,7 @@ class Xml {
 
 	/**
 	 * Convenience function to build an HTML drop-down list item.
-	 * @param string $text text for this item
+	 * @param string $text text for this item. Will be HTML escaped
 	 * @param string $value form submission value; if empty, use text
 	 * @param $selected boolean: if true, will be the default selected item
 	 * @param array $attribs optional additional HTML attributes
