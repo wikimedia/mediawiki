@@ -208,6 +208,7 @@ class IcuCollation extends Collation {
 		'be-tarask' => array( "Ё" ),
 		'en' => array(),
 		'fi' => array( "Å", "Ä", "Ö" ),
+		'-fi' => array( "Ǥ", "Ŋ", "Ŧ", "Ʒ" ), // sorted like G, N, T, Z - bug 46330
 		'hu' => array( "Cs", "Dz", "Dzs", "Gy", "Ly", "Ny", "Ö", "Sz", "Ty", "Ü", "Zs" ),
 		'it' => array(),
 		'pl' => array( "Ą", "Ć", "Ę", "Ł", "Ń", "Ó", "Ś", "Ź", "Ż" ),
