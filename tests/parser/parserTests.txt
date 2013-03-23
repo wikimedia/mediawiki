@@ -14060,6 +14060,26 @@ parsoid
 
 !! end
 
+!! test
+Parsoid-only: Don't wrap broken template tags in <nowiki> on wt2wt (Bug 42353)
+!! options
+parsoid
+!! input
+{{}}
+!! result
+{{}}
+!! end
+
+!! test
+Parsoid-only: Don't wrap broken template tags in <nowiki> on wt2wt (Bug 42353)
+!! options
+parsoid
+!! input
+}}{{
+!! result
+}}{{
+!! end
+
 !!test
 Accept empty td cell attribute
 !!input
