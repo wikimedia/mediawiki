@@ -1143,7 +1143,7 @@ If someone else made this request, or if you have remembered your password,
 and you no longer wish to change it, you may ignore this message and
 continue using your old password.',
 'noemail'                         => 'There is no email address recorded for user "$1".',
-'noemailcreate'                   => 'You need to provide a valid email address',
+'noemailcreate'                   => 'You need to provide a valid email address.',
 'passwordsent'                    => 'A new password has been sent to the email address registered for "$1".
 Please log in again after you receive it.',
 'blocked-mailpassword'            => 'Your IP address is blocked from editing, and so is not allowed to use the password recovery function to prevent abuse.',
