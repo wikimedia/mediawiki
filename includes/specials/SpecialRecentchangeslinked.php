@@ -183,7 +183,7 @@ class SpecialRecentchangeslinked extends SpecialRecentChanges {
 				}
 			}
 
-			if( $dbr->unionSupportsOrderAndLimit()) {
+			if( $dbr->unionSupportsOrderAndLimit() ) {
 				$order = array( 'ORDER BY' => 'rc_timestamp DESC' );
 			} else {
 				$order = array();
@@ -198,7 +198,7 @@ class SpecialRecentchangeslinked extends SpecialRecentChanges {
 				$join_conds + array( $link_table => array( 'INNER JOIN', $subjoin ) )
 			);
 
-			if( $dbr->unionSupportsOrderAndLimit())
+			if( $dbr->unionSupportsOrderAndLimit() )
 				$query = $dbr->limitResult( $query, $limit );
 
 			$subsql[] = $query;

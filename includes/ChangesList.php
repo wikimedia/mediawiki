@@ -936,7 +936,7 @@ class EnhancedChangesList extends ChangesList {
 		krsort( $userlinks );
 		asort( $userlinks );
 		$users = array();
-		foreach( $userlinks as $userlink => $count) {
+		foreach( $userlinks as $userlink => $count ) {
 			$text = $userlink;
 			$text .= $this->getLanguage()->getDirMark();
 			if( $count > 1 ) {

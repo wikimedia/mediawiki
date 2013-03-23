@@ -40,7 +40,7 @@ class RevisionDeleter {
 	 */
 	protected static function checkItem( $desc, $field, $diff, $new, &$arr ) {
 		if( $diff & $field ) {
-			$arr[ ( $new & $field ) ? 0 : 1 ][] = $desc;
+			$arr[( $new & $field ) ? 0 : 1][] = $desc;
 		}
 	}
 

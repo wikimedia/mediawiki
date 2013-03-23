@@ -1051,8 +1051,7 @@ class WebInstaller_Options extends WebInstallerPage {
 		}
 		$wrapperStyle = ($this->getVar( '_LicenseCode' ) == 'cc-choose') ? '' : 'display: none';
 
-		return
-			"<div class=\"config-cc-wrapper\" id=\"config-cc-wrapper\" style=\"$wrapperStyle\">\n" .
+		return "<div class=\"config-cc-wrapper\" id=\"config-cc-wrapper\" style=\"$wrapperStyle\">\n" .
 			Html::element( 'iframe', $iframeAttribs, '', false /* not short */ ) .
 			"</div>\n";
 	}
@@ -1062,8 +1061,7 @@ class WebInstaller_Options extends WebInstallerPage {
 		// If you change this height, also change it in config.css
 		$expandJs = str_replace( '$1', '54em', $js );
 		$reduceJs = str_replace( '$1', '70px', $js );
-		return
-			'<p>'.
+		return '<p>'.
 			Html::element( 'img', array( 'src' => $this->getVar( 'wgRightsIcon' ) ) ) .
 			'&#160;&#160;' .
 			htmlspecialchars( $this->getVar( 'wgRightsText' ) ) .
@@ -1242,7 +1240,7 @@ class WebInstaller_Complete extends WebInstallerPage {
 			// JS appears the only method that works consistently with IE7+
 			$this->addHtml( "\n<script type=\"" . $GLOBALS['wgJsMimeType'] .
 				'">jQuery( document ).ready( function() { document.location=' .
-				Xml::encodeJsVar( $lsUrl) . "; } );</script>\n" );
+				Xml::encodeJsVar( $lsUrl ) . "; } );</script>\n" );
 		} else {
 			$this->parent->request->response()->header( "Refresh: 0;url=$lsUrl" );
 		}

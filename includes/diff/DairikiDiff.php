@@ -508,7 +508,7 @@ class _DiffEngine {
 			reset( $seps );
 			$pt1 = $seps[0];
 			while ( $pt2 = next( $seps ) ) {
-				$this->_compareseq ( $pt1[0], $pt2[0], $pt1[1], $pt2[1] );
+				$this->_compareseq( $pt1[0], $pt2[0], $pt1[1], $pt2[1] );
 				$pt1 = $pt2;
 			}
 		}

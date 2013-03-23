@@ -148,7 +148,7 @@ class DatabaseMssql extends DatabaseBase {
 		}
 
 		// MSSQL doesn't have EXTRACT(epoch FROM XXX)
-		if ( preg_match('#\bEXTRACT\s*?\(\s*?EPOCH\s+FROM\b#i', $sql, $matches ) ) {
+		if ( preg_match( '#\bEXTRACT\s*?\(\s*?EPOCH\s+FROM\b#i', $sql, $matches ) ) {
 			// This is same as UNIX_TIMESTAMP, we need to calc # of seconds from 1970
 			$sql = str_replace( $matches[0], "DATEDIFF(s,CONVERT(datetime,'1/1/1970'),", $sql );
 		}
@@ -202,9 +202,9 @@ class DatabaseMssql extends DatabaseBase {
 		$retErrors = sqlsrv_errors( SQLSRV_ERR_ALL );
 		if ( $retErrors != null ) {
 			foreach ( $retErrors as $arrError ) {
-				$strRet .= "SQLState: " . $arrError[ 'SQLSTATE'] . "\n";
-				$strRet .= "Error Code: " . $arrError[ 'code'] . "\n";
-				$strRet .= "Message: " . $arrError[ 'message'] . "\n";
+				$strRet .= "SQLState: " . $arrError['SQLSTATE'] . "\n";
+				$strRet .= "Error Code: " . $arrError['code'] . "\n";
+				$strRet .= "Message: " . $arrError['message'] . "\n";
 			}
 		} else {
 			$strRet = "No errors found";
@@ -429,9 +429,9 @@ class DatabaseMssql extends DatabaseBase {
 			// if we have an identity column
 			if( $identity ) {
 				// iterate through
-				foreach ($a as $k => $v ) {
+				foreach ( $a as $k => $v ) {
 					if ( $k == $identity ) {
-						if( !is_null($v) ) {
+						if( !is_null( $v ) ) {
 							// there is a value being passed to us, we need to turn on and off inserted identity
 							$sqlPre = "SET IDENTITY_INSERT $table ON;";
 							$sqlPost = ";SET IDENTITY_INSERT $table OFF;";
@@ -501,7 +501,7 @@ class DatabaseMssql extends DatabaseBase {
 			} elseif ( $ret != null ) {
 				// remember number of rows affected
 				$this->mAffectedRows = sqlsrv_rows_affected( $ret );
-				if ( !is_null($identity) ) {
+				if ( !is_null( $identity ) ) {
 					// then we want to get the identity column value we were assigned and save it off
 					$row = sqlsrv_fetch_object( $ret );
 					$this->mInsertId = $row->$identity;

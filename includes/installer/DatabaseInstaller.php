@@ -510,8 +510,7 @@ abstract class DatabaseInstaller {
 	 * @return String
 	 */
 	public function getInstallUserBox() {
-		return
-			Html::openElement( 'fieldset' ) .
+		return Html::openElement( 'fieldset' ) .
 			Html::element( 'legend', array(), wfMessage( 'config-db-install-account' )->text() ) .
 			$this->getTextBox( '_InstallUser', 'config-db-username', array( 'dir' => 'ltr' ), $this->parent->getHelpBox( 'config-db-install-username' ) ) .
 			$this->getPasswordBox( '_InstallPassword', 'config-db-password', array( 'dir' => 'ltr' ), $this->parent->getHelpBox( 'config-db-install-password' ) ) .

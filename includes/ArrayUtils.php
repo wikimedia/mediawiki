@@ -39,7 +39,7 @@ class ArrayUtils {
 	 *
 	 * @return bool|int|string
 	 */
-	public static function pickRandom( $weights ){
+	public static function pickRandom( $weights ) {
 		if ( !is_array( $weights ) || count( $weights ) == 0 ) {
 			return false;
 		}

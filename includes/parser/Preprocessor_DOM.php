@@ -397,7 +397,7 @@ class Preprocessor_DOM implements Preprocessor {
 
 						if ( $stack->top ) {
 							$part = $stack->top->getCurrentPart();
-							if ( !(isset( $part->commentEnd ) && $part->commentEnd == $wsStart - 1 )) {
+							if ( !( isset( $part->commentEnd ) && $part->commentEnd == $wsStart - 1 ) ) {
 								$part->visualEnd = $wsStart;
 							}
 							// Else comments abutting, no change in visual end
@@ -746,7 +746,7 @@ class PPDStack {
 			$class = $this->elementClass;
 			$this->stack[] = new $class( $data );
 		}
-		$this->top = $this->stack[ count( $this->stack ) - 1 ];
+		$this->top = $this->stack[count( $this->stack ) - 1];
 		$this->accum =& $this->top->getAccum();
 	}
 
@@ -757,7 +757,7 @@ class PPDStack {
 		$temp = array_pop( $this->stack );
 
 		if ( count( $this->stack ) ) {
-			$this->top = $this->stack[ count( $this->stack ) - 1 ];
+			$this->top = $this->stack[count( $this->stack ) - 1];
 			$this->accum =& $this->top->getAccum();
 		} else {
 			$this->top = self::$false;
@@ -1014,11 +1014,13 @@ class PPFrame_DOM implements PPFrame {
 
 		while ( count( $iteratorStack ) > 1 ) {
 			$level = count( $outStack ) - 1;
-			$iteratorNode =& $iteratorStack[ $level ];
+			$iteratorNode =& $iteratorStack[$level];
 			$out =& $outStack[$level];
 			$index =& $indexStack[$level];
 
-			if ( $iteratorNode instanceof PPNode_DOM ) $iteratorNode = $iteratorNode->node;
+			if ( $iteratorNode instanceof PPNode_DOM ) {
+				$iteratorNode = $iteratorNode->node;
+			}
 
 			if ( is_array( $iteratorNode ) ) {
 				if ( $index >= count( $iteratorNode ) ) {
@@ -1148,9 +1150,7 @@ class PPFrame_DOM implements PPFrame {
 
 					# Insert a heading marker only for <h> children of <root>
 					# This is to stop extractSections from going over multiple tree levels
-					if ( $contextNode->parentNode->nodeName == 'root'
-					  && $this->parser->ot['html'] )
-					{
+					if ( $contextNode->parentNode->nodeName == 'root' && $this->parser->ot['html'] ) {
 						# Insert heading index marker
 						$headingIndex = $contextNode->getAttribute( 'i' );
 						$titleText = $this->title->getPrefixedDBkey();

@@ -32,7 +32,7 @@ class MWFunction {
 			if ( strpos( $callback, '::' ) !== false ) {
 				// PHP 5.1 cannot use call_user_func( 'Class::Method' )
 				// It can only handle only call_user_func( array( 'Class', 'Method' ) )
-				$callback = explode( '::', $callback, 2);
+				$callback = explode( '::', $callback, 2 );
 			}
 		}
 

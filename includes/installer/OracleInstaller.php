@@ -59,8 +59,7 @@ class OracleInstaller extends DatabaseInstaller {
 		if ( $this->getVar( 'wgDBserver' ) == 'localhost' ) {
 			$this->parent->setVar( 'wgDBserver', '' );
 		}
-		return
-			$this->getTextBox( 'wgDBserver', 'config-db-host-oracle', array(), $this->parent->getHelpBox( 'config-db-host-oracle-help' ) ) .
+		return $this->getTextBox( 'wgDBserver', 'config-db-host-oracle', array(), $this->parent->getHelpBox( 'config-db-host-oracle-help' ) ) .
 			Html::openElement( 'fieldset' ) .
 			Html::element( 'legend', array(), wfMessage( 'config-db-wiki-settings' )->text() ) .
 			$this->getTextBox( 'wgDBprefix', 'config-db-prefix' ) .

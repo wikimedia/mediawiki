@@ -70,17 +70,18 @@ abstract class UploadBase {
 	 * @return string
 	 */
 	public function getVerificationErrorCode( $error ) {
-		$code_to_status = array(self::EMPTY_FILE => 'empty-file',
-								self::FILE_TOO_LARGE => 'file-too-large',
-								self::FILETYPE_MISSING => 'filetype-missing',
-								self::FILETYPE_BADTYPE => 'filetype-banned',
-								self::MIN_LENGTH_PARTNAME => 'filename-tooshort',
-								self::ILLEGAL_FILENAME => 'illegal-filename',
-								self::OVERWRITE_EXISTING_FILE => 'overwrite',
-								self::VERIFICATION_ERROR => 'verification-error',
-								self::HOOK_ABORTED => 'hookaborted',
-								self::WINDOWS_NONASCII_FILENAME => 'windows-nonascii-filename',
-								self::FILENAME_TOO_LONG => 'filename-toolong',
+		$code_to_status = array(
+			self::EMPTY_FILE => 'empty-file',
+			self::FILE_TOO_LARGE => 'file-too-large',
+			self::FILETYPE_MISSING => 'filetype-missing',
+			self::FILETYPE_BADTYPE => 'filetype-banned',
+			self::MIN_LENGTH_PARTNAME => 'filename-tooshort',
+			self::ILLEGAL_FILENAME => 'illegal-filename',
+			self::OVERWRITE_EXISTING_FILE => 'overwrite',
+			self::VERIFICATION_ERROR => 'verification-error',
+			self::HOOK_ABORTED => 'hookaborted',
+			self::WINDOWS_NONASCII_FILENAME => 'windows-nonascii-filename',
+			self::FILENAME_TOO_LONG => 'filename-toolong',
 		);
 		if( isset( $code_to_status[$error] ) ) {
 			return $code_to_status[$error];
@@ -360,7 +361,7 @@ abstract class UploadBase {
 		global $wgVerifyMimeType;
 		wfProfileIn( __METHOD__ );
 		if ( $wgVerifyMimeType ) {
-			wfDebug ( "\n\nmime: <$mime> extension: <{$this->mFinalExtension}>\n\n" );
+			wfDebug( "\n\nmime: <$mime> extension: <{$this->mFinalExtension}>\n\n" );
 			global $wgMimeTypeBlacklist;
 			if ( $this->checkFileExtension( $mime, $wgMimeTypeBlacklist ) ) {
 				wfProfileOut( __METHOD__ );

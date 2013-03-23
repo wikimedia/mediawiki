@@ -112,7 +112,7 @@ class SpecialJavaScriptTest extends SpecialPage {
 		if( !in_array( $state, $validStates ) ) {
 			throw new MWException( __METHOD__
 				. ' given an invalid state. Must be one of "'
-				. join( '", "', $validStates) . '".'
+				. join( '", "', $validStates ) . '".'
 			);
 		}
 		return "<div id=\"mw-javascripttest-summary\" class=\"mw-javascripttest-$state\">$html</div>";

@@ -242,8 +242,7 @@ class RevDel_RevisionItem extends RevDel_Item {
 		if ( $this->isDeleted() && !$this->canViewContent() ) {
 			return $this->list->msg( 'diff' )->escaped();
 		} else {
-			return
-				Linker::linkKnown(
+			return Linker::linkKnown(
 					$this->list->title,
 					$this->list->msg( 'diff' )->escaped(),
 					array(),

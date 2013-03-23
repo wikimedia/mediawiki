@@ -214,9 +214,9 @@ class PNGMetadataExtractor {
 							continue;
 						}
 					}
-					$finalKeyword = self::$text_chunks[ $items[1] ];
-					$text[ $finalKeyword ][ $items[3] ] = $items[5];
-					$text[ $finalKeyword ]['_type'] = 'lang';
+					$finalKeyword = self::$text_chunks[$items[1]];
+					$text[$finalKeyword][$items[3]] = $items[5];
+					$text[$finalKeyword]['_type'] = 'lang';
 
 				} else {
 					// Error reading iTXt chunk
@@ -251,9 +251,9 @@ class PNGMetadataExtractor {
 					throw new Exception( __METHOD__ . ": Read error (error with iconv)" );
 				}
 
-				$finalKeyword = self::$text_chunks[ $keyword ];
-				$text[ $finalKeyword ][ 'x-default' ] = $content;
-				$text[ $finalKeyword ]['_type'] = 'lang';
+				$finalKeyword = self::$text_chunks[$keyword];
+				$text[$finalKeyword]['x-default'] = $content;
+				$text[$finalKeyword]['_type'] = 'lang';
 
 			} elseif ( $chunk_type == 'zTXt' ) {
 				if ( function_exists( 'gzuncompress' ) ) {
@@ -303,9 +303,9 @@ class PNGMetadataExtractor {
 						throw new Exception( __METHOD__ . ": Read error (error with iconv)" );
 					}
 
-					$finalKeyword = self::$text_chunks[ $keyword ];
-					$text[ $finalKeyword ][ 'x-default' ] = $content;
-					$text[ $finalKeyword ]['_type'] = 'lang';
+					$finalKeyword = self::$text_chunks[$keyword];
+					$text[$finalKeyword]['x-default'] = $content;
+					$text[$finalKeyword]['_type'] = 'lang';
 
 				} else {
 					wfDebug( __METHOD__ . " Cannot decompress zTXt chunk due to lack of zlib. Skipping." );

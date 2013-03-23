@@ -1041,9 +1041,10 @@ class SpecialUndelete extends SpecialPage {
 		$user = $this->getUser();
 		$lang = $this->getLanguage();
 		$rdel = Linker::getRevDeleteLink( $user, $rev, $this->mTargetObj );
-		if ( $rdel ) $rdel = " $rdel";
-		return
-			'<div id="mw-diff-' . $prefix . 'title1"><strong>' .
+		if ( $rdel ) {
+			$rdel = " $rdel";
+		}
+		return '<div id="mw-diff-' . $prefix . 'title1"><strong>' .
 				Linker::link(
 					$targetPage,
 					$this->msg(

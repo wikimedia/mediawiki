@@ -581,7 +581,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		foreach( $this->checks as $item ) {
 			list( /* message */, $name, $field ) = $item;
 			$val = $this->getRequest()->getInt( $name, 0 /* unchecked */ );
-			if( $val < -1 || $val > 1) {
+			if( $val < -1 || $val > 1 ) {
 				$val = -1; // -1 for existing value
 			}
 			$bitfield[$field] = $val;

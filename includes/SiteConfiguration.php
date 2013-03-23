@@ -228,7 +228,7 @@ class SiteConfiguration {
 							$retval = $thisSetting[$suffix];
 						}
 						break;
-					} elseif ( array_key_exists( "+$suffix", $thisSetting ) && is_array($thisSetting["+$suffix"]) ) {
+					} elseif ( array_key_exists( "+$suffix", $thisSetting ) && is_array( $thisSetting["+$suffix"] ) ) {
 						if ( !isset( $retval ) ) {
 							$retval = array();
 						}

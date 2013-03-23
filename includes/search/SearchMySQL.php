@@ -99,7 +99,7 @@ class SearchMySQL extends SearchEngine {
 				$strippedVariants = array_unique( $strippedVariants );
 
 				$searchon .= $modifier;
-				if( count( $strippedVariants) > 1 )
+				if( count( $strippedVariants ) > 1 )
 					$searchon .= '(';
 				foreach( $strippedVariants as $stripped ) {
 					$stripped = $this->normalizeText( $stripped );
@@ -111,7 +111,7 @@ class SearchMySQL extends SearchEngine {
 					}
 					$searchon .= "$quote$stripped$quote$wildcard ";
 				}
-				if( count( $strippedVariants) > 1 )
+				if( count( $strippedVariants ) > 1 )
 					$searchon .= ')';
 
 				// Match individual terms or quoted phrase in result highlighting...

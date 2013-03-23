@@ -765,16 +765,16 @@ class BitmapHandler extends ImageHandler {
 	public function rotate( $file, $params ) {
 		global $wgImageMagickConvertCommand;
 
-		$rotation = ( $params[ 'rotation' ] + $this->getRotation( $file ) ) % 360;
+		$rotation = ( $params['rotation'] + $this->getRotation( $file ) ) % 360;
 		$scene = false;
 
 		$scaler = self::getScalerType( null, false );
 		switch ( $scaler ) {
 			case 'im':
 				$cmd = wfEscapeShellArg( $wgImageMagickConvertCommand ) . " " .
-					wfEscapeShellArg( $this->escapeMagickInput( $params[ 'srcPath' ], $scene ) ) .
+					wfEscapeShellArg( $this->escapeMagickInput( $params['srcPath'], $scene ) ) .
 					" -rotate -$rotation " .
-					wfEscapeShellArg( $this->escapeMagickOutput( $params[ 'dstPath' ] ) ) . " 2>&1";
+					wfEscapeShellArg( $this->escapeMagickOutput( $params['dstPath'] ) ) . " 2>&1";
 				wfDebug( __METHOD__ . ": running ImageMagick: $cmd\n" );
 				wfProfileIn( 'convert' );
 				$retval = 0;

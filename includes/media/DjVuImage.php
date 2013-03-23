@@ -263,7 +263,7 @@ class DjVuImage {
 			$retval = '';
 			$txt = wfShellExec( $cmd, $retval, array(), array( 'memory' => self::DJVUTXT_MEMORY_LIMIT ) );
 			wfProfileOut( 'djvutxt' );
-			if( $retval == 0) {
+			if( $retval == 0 ) {
 				# Strip some control characters
 				$txt = preg_replace( "/[\013\035\037]/", "", $txt );
 				$reg = <<<EOR

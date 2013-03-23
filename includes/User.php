@@ -710,7 +710,7 @@ class User {
 				return 'passwordtooshort';
 			} elseif ( $wgContLang->lc( $password ) == $wgContLang->lc( $this->mName ) ) {
 				return 'password-name-match';
-			} elseif ( isset( $blockedLogins[ $this->getName() ] ) && $password == $blockedLogins[ $this->getName() ] ) {
+			} elseif ( isset( $blockedLogins[$this->getName()] ) && $password == $blockedLogins[$this->getName()] ) {
 				return 'password-login-forbidden';
 			} else {
 				//it seems weird returning true here, but this is because of the
@@ -1521,7 +1521,7 @@ class User {
 		// Set the user limit key
 		if ( $userLimit !== false ) {
 			wfDebug( __METHOD__ . ": effective user limit: $userLimit\n" );
-			$keys[ wfMemcKey( 'limiter', $action, 'user', $id ) ] = $userLimit;
+			$keys[wfMemcKey( 'limiter', $action, 'user', $id )] = $userLimit;
 		}
 
 		$triggered = false;
@@ -4018,7 +4018,7 @@ class User {
 		}
 
 		// Re-map numeric keys of AddToSelf/RemoveFromSelf to the 'user' key for backwards compatibility
-		if( empty( $wgGroupsAddToSelf['user']) || $wgGroupsAddToSelf['user'] !== true ) {
+		if( empty( $wgGroupsAddToSelf['user'] ) || $wgGroupsAddToSelf['user'] !== true ) {
 			foreach( $wgGroupsAddToSelf as $key => $value ) {
 				if( is_int( $key ) ) {
 					$wgGroupsAddToSelf['user'][] = $value;
@@ -4026,7 +4026,7 @@ class User {
 			}
 		}
 
-		if( empty( $wgGroupsRemoveFromSelf['user']) || $wgGroupsRemoveFromSelf['user'] !== true ) {
+		if( empty( $wgGroupsRemoveFromSelf['user'] ) || $wgGroupsRemoveFromSelf['user'] !== true ) {
 			foreach( $wgGroupsRemoveFromSelf as $key => $value ) {
 				if( is_int( $key ) ) {
 					$wgGroupsRemoveFromSelf['user'][] = $value;

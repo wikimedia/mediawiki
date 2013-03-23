@@ -256,7 +256,7 @@ class HTMLForm extends ContextSource {
 	 */
 	public function setDisplayFormat( $format ) {
 		if ( !in_array( $format, $this->availableDisplayFormats ) ) {
-			throw new MWException ( 'Display format must be one of ' . print_r( $this->availableDisplayFormats, true ) );
+			throw new MWException( 'Display format must be one of ' . print_r( $this->availableDisplayFormats, true ) );
 		}
 		$this->displayFormat = $format;
 		return $this;

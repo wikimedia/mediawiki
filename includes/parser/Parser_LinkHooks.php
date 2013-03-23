@@ -104,7 +104,7 @@ class Parser_LinkHooks extends Parser {
 	 * @return callback|null The old callback function for this name, if any
 	 */
 	public function setLinkHook( $ns, $callback, $flags = 0 ) {
-		if( $flags & SLH_PATTERN && !is_string($ns) )
+		if( $flags & SLH_PATTERN && !is_string( $ns ) )
 			throw new MWException( __METHOD__ . '() expecting a regex string pattern.' );
 		elseif( $flags | ~SLH_PATTERN && !is_int( $ns ) )
 			throw new MWException( __METHOD__ . '() expecting a namespace index.' );

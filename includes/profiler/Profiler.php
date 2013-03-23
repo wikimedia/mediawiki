@@ -537,7 +537,7 @@ class Profiler {
 				$eventCount = $this->mCalls[$name];
 				$timeSum = (float) ($elapsed * 1000);
 				$memorySum = (float)$this->mMemory[$name];
-				$name = substr($name, 0, 255);
+				$name = substr( $name, 0, 255 );
 
 				// Kludge
 				$timeSum = ($timeSum >= 0) ? $timeSum : 0;

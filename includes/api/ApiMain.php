@@ -83,7 +83,7 @@ class ApiMain extends ApiBase {
 		'import' => 'ApiImport',
 		'userrights' => 'ApiUserrights',
 		'options' => 'ApiOptions',
-		'imagerotate' =>'ApiImageRotate',
+		'imagerotate' => 'ApiImageRotate',
 	);
 
 	/**
@@ -418,7 +418,7 @@ class ApiMain extends ApiBase {
 		}
 
 		// Log the request whether or not there was an error
-		$this->logRequest( microtime( true ) - $t);
+		$this->logRequest( microtime( true ) - $t );
 
 		// Send cache headers after any code which might generate an error, to
 		// avoid sending public cache headers for errors.

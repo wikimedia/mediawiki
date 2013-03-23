@@ -993,15 +993,15 @@ class XMPReader {
 		if ( $elm !== self::NS_RDF . ' li' ) {
 			throw new MWException( __METHOD__ . " <rdf:li> expected but got $elm." );
 		}
-		if ( !isset( $attribs[ self::NS_XML . ' lang'] )
-			|| !preg_match( '/^[-A-Za-z0-9]{2,}$/D', $attribs[ self::NS_XML . ' lang' ] ) )
+		if ( !isset( $attribs[self::NS_XML . ' lang'] )
+			|| !preg_match( '/^[-A-Za-z0-9]{2,}$/D', $attribs[self::NS_XML . ' lang'] ) )
 		{
 			throw new MWException( __METHOD__
 				. " <rdf:li> did not contain, or has invalid xml:lang attribute in lang alternative" );
 		}
 
 		// Lang is case-insensitive.
-		$this->itemLang = strtolower( $attribs[ self::NS_XML . ' lang' ] );
+		$this->itemLang = strtolower( $attribs[self::NS_XML . ' lang'] );
 
 		// need to add curItem[0] on again since one is for the specific item
 		// and one is for the entire group.

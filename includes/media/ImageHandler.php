@@ -160,7 +160,7 @@ abstract class ImageHandler extends MediaHandler {
 		$width = intval( $width );
 
 		# Sanity check $width
-		if( $width <= 0) {
+		if( $width <= 0 ) {
 			wfDebug( __METHOD__ . ": Invalid destination width: $width\n" );
 			return false;
 		}

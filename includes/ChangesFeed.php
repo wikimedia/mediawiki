@@ -146,7 +146,7 @@ class ChangesFeed {
 			$feedLastmodUnix = wfTimestamp( TS_UNIX, $feedLastmod );
 			$lastmodUnix = wfTimestamp( TS_UNIX, $lastmod );
 
-			if( $feedAge < $wgFeedCacheTimeout || $feedLastmodUnix > $lastmodUnix) {
+			if( $feedAge < $wgFeedCacheTimeout || $feedLastmodUnix > $lastmodUnix ) {
 				wfDebug( "RC: loading feed from cache ($key; $feedLastmod; $lastmod)...\n" );
 				if ( $feedLastmodUnix < $lastmodUnix ) {
 					$wgOut->setLastModified( $feedLastmod ); // bug 21916

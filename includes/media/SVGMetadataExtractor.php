@@ -179,7 +179,7 @@ class SVGReader {
 	 * @param string $metafield that we will fill with the result
 	 */
 	private function readField( $name, $metafield=null ) {
-		$this->debug ( "Read field $metafield" );
+		$this->debug( "Read field $metafield" );
 		if( !$metafield || $this->reader->nodeType != XmlReader::ELEMENT ) {
 			return;
 		}
@@ -201,7 +201,7 @@ class SVGReader {
 	 * @throws MWException
 	 */
 	private function readXml( $metafield=null ) {
-		$this->debug ( "Read top level metadata" );
+		$this->debug( "Read top level metadata" );
 		if( !$metafield || $this->reader->nodeType != XmlReader::ELEMENT ) {
 			return;
 		}
@@ -220,7 +220,7 @@ class SVGReader {
 	 * @param string $name of the element that we are reading from
 	 */
 	private function animateFilter( $name ) {
-		$this->debug ( "animate filter for tag $name" );
+		$this->debug( "animate filter for tag $name" );
 		if( $this->reader->nodeType != XmlReader::ELEMENT ) {
 			return;
 		}

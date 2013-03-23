@@ -353,7 +353,7 @@ class WebInstaller extends Installer {
 	public function getFingerprint() {
 		// Get the base URL of the installation
 		$url = $this->request->getFullRequestURL();
-		if ( preg_match( '!^(.*\?)!', $url, $m) ) {
+		if ( preg_match( '!^(.*\?)!', $url, $m ) ) {
 			// Trim query string
 			$url = $m[1];
 		}
@@ -724,8 +724,7 @@ class WebInstaller extends Installer {
 			$attributes['for'] = $forId;
 		}
 
-		return
-			"<div class=\"config-block\">\n" .
+		return "<div class=\"config-block\">\n" .
 			"  <div class=\"config-block-label\">\n" .
 			Xml::tags( 'label',
 				$attributes,
@@ -767,8 +766,7 @@ class WebInstaller extends Installer {
 		if ( !isset( $params['help'] ) ) {
 			$params['help'] = "";
 		}
-		return
-			$this->label(
+		return $this->label(
 				$params['label'],
 				$params['controlName'],
 				Xml::input(
@@ -814,8 +812,7 @@ class WebInstaller extends Installer {
 		if ( !isset( $params['help'] ) ) {
 			$params['help'] = "";
 		}
-		return
-			$this->label(
+		return $this->label(
 				$params['label'],
 				$params['controlName'],
 				Xml::textarea(
@@ -898,8 +895,7 @@ class WebInstaller extends Installer {
 			$labelText = $this->parse( wfMessage( $params['label'] )->text() );
 		}
 
-		return
-			"<div class=\"config-input-check\">\n" .
+		return "<div class=\"config-input-check\">\n" .
 			$params['help'] .
 			"<label>\n" .
 			Xml::check(

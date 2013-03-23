@@ -76,7 +76,7 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 		if ( $dir == 'newer' ) {
 			$this->addWhereRange( 'cat_pages', 'newer', $min, $max );
 		} else {
-			$this->addWhereRange( 'cat_pages', 'older', $max, $min);
+			$this->addWhereRange( 'cat_pages', 'older', $max, $min );
 		}
 
 		if ( isset( $params['prefix'] ) ) {

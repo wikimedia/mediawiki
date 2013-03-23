@@ -563,8 +563,8 @@ class MWHttpRequest {
 			$this->parseHeader();
 		}
 
-		if ( isset( $this->respHeaders[strtolower ( $header ) ] ) ) {
-			$v = $this->respHeaders[strtolower ( $header ) ];
+		if ( isset( $this->respHeaders[strtolower ( $header )] ) ) {
+			$v = $this->respHeaders[strtolower ( $header )];
 			return $v[count( $v ) - 1];
 		}
 
@@ -646,17 +646,17 @@ class MWHttpRequest {
 		$headers = $this->getResponseHeaders();
 
 		//return full url (fix for incorrect but handled relative location)
-		if ( isset( $headers[ 'location' ] ) ) {
-			$locations = $headers[ 'location' ];
+		if ( isset( $headers['location'] ) ) {
+			$locations = $headers['location'];
 			$domain = '';
 			$foundRelativeURI = false;
 			$countLocations = count( $locations );
 
 			for ( $i = $countLocations - 1; $i >= 0; $i-- ) {
-				$url = parse_url( $locations[ $i ] );
+				$url = parse_url( $locations[$i] );
 
 				if ( isset( $url['host'] ) ) {
-					$domain = $url[ 'scheme' ] . '://' . $url[ 'host' ];
+					$domain = $url['scheme'] . '://' . $url['host'];
 					break; //found correct URI (with host)
 				} else {
 					$foundRelativeURI = true;
@@ -665,15 +665,15 @@ class MWHttpRequest {
 
 			if ( $foundRelativeURI ) {
 				if ( $domain ) {
-					return $domain . $locations[ $countLocations - 1 ];
+					return $domain . $locations[$countLocations - 1];
 				} else {
 					$url = parse_url( $this->url );
-					if ( isset($url[ 'host' ]) ) {
-						return $url[ 'scheme' ] . '://' . $url[ 'host' ] . $locations[ $countLocations - 1 ];
+					if ( isset( $url['host'] ) ) {
+						return $url['scheme'] . '://' . $url['host'] . $locations[$countLocations - 1];
 					}
 				}
 			} else {
-				return $locations[ $countLocations - 1 ];
+				return $locations[$countLocations - 1];
 			}
 		}
 
@@ -939,7 +939,7 @@ class PhpHttpRequest extends MWHttpRequest {
 		// If everything went OK, or we received some error code
 		// get the response body content.
 		if ( $this->status->isOK()
-				|| (int)$this->respStatus >= 300) {
+				|| (int)$this->respStatus >= 300 ) {
 			while ( !feof( $fh ) ) {
 				$buf = fread( $fh, 8192 );
 
