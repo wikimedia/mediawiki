@@ -61,6 +61,9 @@ production.
 * mediawiki.log: Added log.warn wrapper (uses console.warn and console.trace).
 * mediawiki.log: Implemented log.deprecate. This method defines a property and
   uses ES5 getter/setter to emit a warning when they are used.
+* (bug 43689) The lists of templates used on the page and hidden categories it
+  is a member of, shown below the edit form, are now collapsible (and collapsed
+  by default).
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail. Previously one could still

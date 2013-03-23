@@ -1,0 +1,19 @@
+/* Styles for collapsible lists of templates used and hidden categories */
+.mw-editfooter-toggler {
+	cursor: pointer;
+	/* @embed */
+	background-image: url(images/arrow-expanded.png);
+	background-repeat: no-repeat;
+	background-position: 2px center;
+	padding-left: 16px;
+}
+
+.mw-editfooter-toggler.collapsed {
+	/* @embed */
+	background-image: url(images/arrow-collapsed-ltr.png);
+}
+
+.mw-editfooter-list {
+	margin-bottom: 1em;
+	margin-left: 2.5em;
+}
