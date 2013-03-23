@@ -414,6 +414,9 @@
 			name = mw.config.get( 'wgMonthNamesShort' )[i].toLowerCase().replace( '.', '' );
 			ts.monthNames[name] = i;
 			regex.push( $.escapeRE( name ) );
+			name = mw.config.get( 'wgMonthNamesGen' )[i].toLowerCase();
+			ts.monthNames[name] = i;
+			regex.push( $.escapeRE( name ) );
 		}
 
 		// Build piped string

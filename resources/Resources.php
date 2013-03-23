@@ -269,7 +269,7 @@ return array(
 		'scripts' => 'resources/jquery/jquery.tablesorter.js',
 		'styles' => 'resources/jquery/jquery.tablesorter.css',
 		'messages' => array( 'sort-descending', 'sort-ascending' ),
-		'dependencies' => 'jquery.mwExtension',
+		'dependencies' => array( 'jquery.mwExtension', 'mediawiki.language.monthNames' ),
 	),
 	'jquery.textSelection' => array(
 		'scripts' => 'resources/jquery/jquery.textSelection.js',
@@ -816,6 +816,25 @@ return array(
 			'mediawiki.language',
 		),
 		'targets' => array( 'desktop', 'mobile' ),
+	),
+
+	'mediawiki.language.monthNames' => array(
+		'scripts' => 'resources/mediawiki.language/mediawiki.language.monthNames.js',
+		'dependencies' => 'mediawiki.language',
+		'messages' => array(
+			'january-gen',
+			'february-gen',
+			'march-gen',
+			'april-gen',
+			'may-gen',
+			'june-gen',
+			'july-gen',
+			'august-gen',
+			'september-gen',
+			'october-gen',
+			'november-gen',
+			'december-gen'
+		)
 	),
 
 	/* MediaWiki Libs */
