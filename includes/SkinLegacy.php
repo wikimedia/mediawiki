@@ -223,7 +223,11 @@ class LegacyTemplate extends BaseTemplate {
 				}
 				$s = $wgLang->pipeList( array(
 					$s,
-					'<a href="' . htmlspecialchars( $title->getLocalURL( 'variant=' . $code ) ) . '" lang="' . $code . '" hreflang="' . $code . '">' . htmlspecialchars( $varname ) . '</a>'
+					Html::element( 'a', array(
+						'href' => $title->getLocalURL( 'variant=' . $code ),
+						'lang' => wfBCP47( $code ),
+						'hreflang' => wfBCP47( $code ),
+					), $varname )
 				) );
 			}
 		}
