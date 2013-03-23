@@ -48,13 +48,6 @@
 
 			var start = opt.before.start,
 				end = opt.before.end;
-			if ( window.opera ) {
-				// Compensate for Opera's craziness converting \n to \r\n and counting that as two chars
-				var newLinesBefore = opt.before.text.substring( 0, start ).split( '\n' ).length - 1,
-					newLinesInside = opt.before.text.substring( start, end ).split( '\n' ).length - 1;
-				start += newLinesBefore;
-				end += newLinesBefore + newLinesInside;
-			}
 
 			var options = $.extend( {}, opt.replace ); // Clone opt.replace
 			options.selectionStart = start;
