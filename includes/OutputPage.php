@@ -3233,7 +3233,7 @@ $templates
 					foreach ( $variants as $_v ) {
 						$tags["variant-$_v"] = Html::element( 'link', array(
 							'rel' => 'alternate',
-							'hreflang' => $_v,
+							'hreflang' => wfBCP47( $_v ),
 							'href' => $this->getTitle()->getLocalURL( array( 'variant' => $_v ) ) )
 						);
 					}
