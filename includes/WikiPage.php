@@ -1924,6 +1924,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 		// Return the new revision (or null) to the caller
 		$status->value['revision'] = $revision;
+		$status->value['parseroutput'] = $this->mPreparedEdit->output;
 
 		$hook_args = array( &$this, &$user, $content, $summary,
 							$flags & EDIT_MINOR, null, null, &$flags, $revision, &$status, $baseRevId );
