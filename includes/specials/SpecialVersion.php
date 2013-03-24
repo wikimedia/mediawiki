@@ -578,16 +578,14 @@ class SpecialVersion extends SpecialPage {
 	}
 
 	/**
-	 * Generate wikitext showing hooks in $wgHooks.
+	 * Generate wikitext showing hooks.
 	 *
 	 * @return String: wikitext
 	 */
 	private function getWgHooks() {
-		global $wgHooks;
-
-		if ( count( $wgHooks ) ) {
-			$myWgHooks = $wgHooks;
-			ksort( $myWgHooks );
+		$hooks = Hooks::listHooks();
+		if ( count( $hooks ) ) {
+			ksort( $hooks );
 
 			$ret = Xml::element( 'h2', array( 'id' => 'mw-version-hooks' ), $this->msg( 'version-hooks' )->text() ) .
 				Xml::openElement( 'table', array( 'class' => 'wikitable', 'id' => 'sv-hooks' ) ) .
@@ -596,7 +594,7 @@ class SpecialVersion extends SpecialPage {
 					<th>" . $this->msg( 'version-hook-subscribedby' )->text() . "</th>
 				</tr>\n";
 
-			foreach ( $myWgHooks as $hook => $hooks ) {
+			foreach ( $hooks as $hook => $hooks ) {
 				$ret .= "<tr>
 						<td>$hook</td>
 						<td>" . $this->listToText( $hooks ) . "</td>

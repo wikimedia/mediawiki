@@ -4580,7 +4580,7 @@ $wgDebugTimestamps = false;
 $wgDebugPrintHttpHeaders = true;
 
 /**
- * Show the contents of $wgHooks in Special:Version
+ * Show the list of subscribed hooks in Special:Version
  */
 $wgSpecialVersionShowHooks = false;
 

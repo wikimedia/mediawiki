@@ -92,6 +92,33 @@ class Hooks {
 	}
 
 	/**
+	 * Returns an array of all the registered hooks.
+	 * This returns both new style registered hooks as well as the old $wgHooks
+	 * @since 1.21
+	 *
+	 * @return array
+	 */
+	public static function listHooks() {
+		global $wgHooks;
+
+		$hooks = array();
+
+		foreach ( Hooks::$handlers as $name => $handlers ) {
+			foreach ( $handlers as $handler ) {
+				$hooks[$name][] = $handler;
+			}
+		}
+
+		foreach ( $wgHooks as $name => $handlers ) {
+			foreach ( $handlers as $handler ) {
+				$hooks[$name][] = $handler;
+			}
+		}
+
+		return $hooks;
+	}
+
+	/**
 	 * Returns an array of all the event functions attached to a hook
 	 * This combines functions registered via Hooks::register and with $wgHooks.
 	 *
