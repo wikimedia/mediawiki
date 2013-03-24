@@ -88,7 +88,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 		$namespaces = $wgContLang->getNamespaces();
 
 		$out->setPageTitle(
-			( $namespace > 0 && in_array( $namespace, array_keys( $namespaces) ) ) ?
+			( $namespace > 0 && in_array( $namespace, array_keys( $namespaces ) ) ) ?
 			$this->msg( 'allinnamespace', str_replace( '_', ' ', $namespaces[$namespace] ) ) :
 			$this->msg( 'allarticles' )
 		);

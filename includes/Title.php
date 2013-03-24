@@ -993,7 +993,7 @@ class Title {
 	 */
 	public function getSkinFromCssJsSubpage() {
 		$subpage = explode( '/', $this->mTextform );
-		$subpage = $subpage[ count( $subpage ) - 1 ];
+		$subpage = $subpage[count( $subpage ) - 1];
 		$lastdot = strrpos( $subpage, '.' );
 		if ( $lastdot === false )
 			return $subpage; # Never happens: only called for names ending in '.css' or '.js'

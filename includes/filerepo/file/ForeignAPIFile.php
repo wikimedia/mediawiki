@@ -67,7 +67,7 @@ class ForeignAPIFile extends File {
 				? count( $data['query']['redirects'] ) - 1
 				: -1;
 			if( $lastRedirect >= 0 ) {
-				$newtitle = Title::newFromText( $data['query']['redirects'][$lastRedirect]['to']);
+				$newtitle = Title::newFromText( $data['query']['redirects'][$lastRedirect]['to'] );
 				$img = new self( $newtitle, $repo, $info, true );
 				if( $img ) {
 					$img->redirectedFrom( $title->getDBkey() );
@@ -166,7 +166,7 @@ class ForeignAPIFile extends File {
 		}
 		$ret = array();
 		foreach( $metadata as $meta ) {
-			$ret[ $meta['name'] ] = self::parseMetadata( $meta['value'] );
+			$ret[$meta['name']] = self::parseMetadata( $meta['value'] );
 		}
 		return $ret;
 	}

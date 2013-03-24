@@ -493,17 +493,17 @@ class Xml {
 
 		$options = self::option( $other, 'other', $selected === 'other' );
 
-		foreach ( explode( "\n", $list ) as $option) {
+		foreach ( explode( "\n", $list ) as $option ) {
 				$value = trim( $option );
 				if ( $value == '' ) {
 					continue;
-				} elseif ( substr( $value, 0, 1) == '*' && substr( $value, 1, 1) != '*' ) {
+				} elseif ( substr( $value, 0, 1 ) == '*' && substr( $value, 1, 1 ) != '*' ) {
 					// A new group is starting ...
 					$value = trim( substr( $value, 1 ) );
 					if( $optgroup ) $options .= self::closeElement( 'optgroup' );
 					$options .= self::openElement( 'optgroup', array( 'label' => $value ) );
 					$optgroup = true;
-				} elseif ( substr( $value, 0, 2) == '**' ) {
+				} elseif ( substr( $value, 0, 2 ) == '**' ) {
 					// groupmember
 					$value = trim( substr( $value, 2 ) );
 					$options .= self::option( $value, $value, $selected === $value );

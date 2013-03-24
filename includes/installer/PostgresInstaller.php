@@ -56,8 +56,7 @@ class PostgresInstaller extends DatabaseInstaller {
 	}
 
 	function getConnectForm() {
-		return
-			$this->getTextBox( 'wgDBserver', 'config-db-host', array(), $this->parent->getHelpBox( 'config-db-host-help' ) ) .
+		return $this->getTextBox( 'wgDBserver', 'config-db-host', array(), $this->parent->getHelpBox( 'config-db-host-help' ) ) .
 			$this->getTextBox( 'wgDBport', 'config-db-port' ) .
 			Html::openElement( 'fieldset' ) .
 			Html::element( 'legend', array(), wfMessage( 'config-db-wiki-settings' )->text() ) .
@@ -137,7 +136,8 @@ class PostgresInstaller extends DatabaseInstaller {
 				$this->getVar( 'wgDBserver' ),
 				$user,
 				$password,
-				$dbName);
+				$dbName
+			);
 			$status->value = $db;
 		} catch ( DBConnectionError $e ) {
 			$status->fatal( 'config-connection-error', $e->getMessage() );

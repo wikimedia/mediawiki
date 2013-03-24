@@ -224,7 +224,7 @@ class WebRequest {
 		}
 
 		$matches = self::getPathInfo( 'title' );
-		foreach( $matches as $key => $val) {
+		foreach( $matches as $key => $val ) {
 			$this->data[$key] = $_GET[$key] = $_REQUEST[$key] = $val;
 		}
 	}
@@ -603,7 +603,7 @@ class WebRequest {
 	 * @return Boolean
 	 */
 	public function checkSessionCookie() {
-		return isset( $_COOKIE[ session_name() ] );
+		return isset( $_COOKIE[session_name()] );
 	}
 
 	/**
@@ -844,7 +844,7 @@ class WebRequest {
 
 		if ( function_exists( 'apache_request_headers' ) ) {
 			foreach ( apache_request_headers() as $tempName => $tempValue ) {
-				$this->headers[ strtoupper( $tempName ) ] = $tempValue;
+				$this->headers[strtoupper( $tempName )] = $tempValue;
 			}
 		} else {
 			foreach ( $_SERVER as $name => $value ) {
@@ -1103,7 +1103,7 @@ HTML;
 				$curIP = IP::canonicalize( $curIP );
 				if ( wfIsTrustedProxy( $curIP ) ) {
 					if ( isset( $ipchain[$i + 1] ) ) {
-						if ( $wgUsePrivateIPs || IP::isPublic( $ipchain[$i + 1 ] ) ) {
+						if ( $wgUsePrivateIPs || IP::isPublic( $ipchain[$i + 1] ) ) {
 							$ip = $ipchain[$i + 1];
 						}
 					}

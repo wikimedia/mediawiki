@@ -563,8 +563,9 @@ class XmlDumpWriter {
 		foreach ( $wgContLang->getFormattedNamespaces() as $ns => $title ) {
 			$spaces .= '      ' .
 				Xml::element( 'namespace',
-					array(	'key' => $ns,
-							'case' => MWNamespace::isCapitalized( $ns ) ? 'first-letter' : 'case-sensitive',
+					array(
+						'key' => $ns,
+						'case' => MWNamespace::isCapitalized( $ns ) ? 'first-letter' : 'case-sensitive',
 					), $title ) . "\n";
 		}
 		$spaces .= "    </namespaces>";

@@ -387,9 +387,9 @@ class MWNamespace {
 		if ( in_array( $index, self::$alwaysCapitalizedNamespaces ) ) {
 			return true;
 		}
-		if ( isset( $wgCapitalLinkOverrides[ $index ] ) ) {
+		if ( isset( $wgCapitalLinkOverrides[$index] ) ) {
 			// $wgCapitalLinkOverrides is explicitly set
-			return $wgCapitalLinkOverrides[ $index ];
+			return $wgCapitalLinkOverrides[$index];
 		}
 		// Default to the global setting
 		return $wgCapitalLinks;

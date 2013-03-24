@@ -206,7 +206,7 @@ class DatabaseOracle extends DatabaseBase {
 	}
 
 	function __destruct() {
-		if ($this->mOpened) {
+		if ( $this->mOpened ) {
 			wfSuppressWarnings();
 			$this->close();
 			wfRestoreWarnings();
@@ -791,7 +791,7 @@ class DatabaseOracle extends DatabaseBase {
 		$endArray[] = strtoupper( $prefix . 'PAGE' );
 		$endArray[] = strtoupper( $prefix . 'IMAGE' );
 		$fixedOrderTabs = $endArray;
-		while ( ($row = $result->fetchRow()) !== false ) {
+		while ( ( $row = $result->fetchRow() ) !== false ) {
 			if ( !in_array( $row['table_name'], $fixedOrderTabs ) )
 				$endArray[] = $row['table_name'];
 		}
@@ -1125,12 +1125,12 @@ class DatabaseOracle extends DatabaseBase {
 		$conds2 = array();
 		foreach ( $conds as $col => $val ) {
 			if ( is_array( $val ) ) {
-				$conds2[$col] = $this->wrapConditionsForWhere ( $table, $val, $col );
+				$conds2[$col] = $this->wrapConditionsForWhere( $table, $val, $col );
 			} else {
 				if ( is_numeric( $col ) && $parentCol != null ) {
-					$this->wrapFieldForWhere ( $table, $parentCol, $val );
+					$this->wrapFieldForWhere( $table, $parentCol, $val );
 				} else {
-					$this->wrapFieldForWhere ( $table, $col, $val );
+					$this->wrapFieldForWhere( $table, $col, $val );
 				}
 				$conds2[$col] = $val;
 			}

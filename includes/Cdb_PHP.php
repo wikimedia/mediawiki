@@ -411,7 +411,7 @@ class CdbWriter_PHP extends CdbWriter {
 		// Calculate the number of items that will be in each hashtable
 		$counts = array_fill( 0, 256, 0 );
 		foreach ( $this->hplist as $item ) {
-			++ $counts[ 255 & $item['h'] ];
+			++ $counts[255 & $item['h']];
 		}
 
 		// Fill in $starts with the *end* indexes

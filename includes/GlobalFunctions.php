@@ -3338,7 +3338,7 @@ function wfCheckEntropy() {
  */
 function wfFixSessionID() {
 	// If the cookie or session id is already set we already have a session and should abort
-	if ( isset( $_COOKIE[ session_name() ] ) || session_id() ) {
+	if ( isset( $_COOKIE[session_name()] ) || session_id() ) {
 		return;
 	}
 

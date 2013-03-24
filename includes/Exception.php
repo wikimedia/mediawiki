@@ -75,11 +75,11 @@ class MWException extends Exception {
 			return null; // Just silently ignore
 		}
 
-		if ( !array_key_exists( $name, $wgExceptionHooks ) || !is_array( $wgExceptionHooks[ $name ] ) ) {
+		if ( !array_key_exists( $name, $wgExceptionHooks ) || !is_array( $wgExceptionHooks[$name] ) ) {
 			return null;
 		}
 
-		$hooks = $wgExceptionHooks[ $name ];
+		$hooks = $wgExceptionHooks[$name];
 		$callargs = array_merge( array( $this ), $args );
 
 		foreach ( $hooks as $hook ) {
@@ -130,8 +130,7 @@ class MWException extends Exception {
 				'</p><p>Backtrace:</p><p>' . nl2br( htmlspecialchars( $this->getTraceAsString() ) ) .
 				"</p>\n";
 		} else {
-			return
-				"<div class=\"errorbox\">" .
+			return "<div class=\"errorbox\">" .
 				'[' . $this->getLogId() . '] ' .
 				gmdate( 'Y-m-d H:i:s' ) .
 				": Fatal exception of type " . get_class( $this ) . "</div>\n" .

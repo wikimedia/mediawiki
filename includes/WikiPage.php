@@ -1274,7 +1274,7 @@ class WikiPage implements Page, IDBAccessObject {
 		);
 
 		if ( $wgContentHandlerUseDB ) {
-			$row[ 'page_content_model' ] = $revision->getContentModel();
+			$row['page_content_model'] = $revision->getContentModel();
 		}
 
 		$dbw->update( 'page',
@@ -2591,8 +2591,8 @@ class WikiPage implements Page, IDBAccessObject {
 		);
 
 		if ( $wgContentHandlerUseDB ) {
-			$row[ 'ar_content_model' ] = 'rev_content_model';
-			$row[ 'ar_content_format' ] = 'rev_content_format';
+			$row['ar_content_model'] = 'rev_content_model';
+			$row['ar_content_format'] = 'rev_content_format';
 		}
 
 		$dbw->insertSelect( 'archive', array( 'page', 'revision' ),

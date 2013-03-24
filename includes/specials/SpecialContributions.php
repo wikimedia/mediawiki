@@ -747,7 +747,7 @@ class ContribsPager extends ReverseChronologicalPager {
 			if ( !$this->associated ) {
 				return array( "page_namespace $eq_op $selectedNS" );
 			} else {
-				$associatedNS = $this->mDb->addQuotes (
+				$associatedNS = $this->mDb->addQuotes(
 					MWNamespace::getAssociated( $this->namespace )
 				);
 				return array(

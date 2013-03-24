@@ -219,7 +219,7 @@ class SquidUpdate {
 				// implementation exists, so adapt to Squid
 				$htcpPacket = pack( 'nxxnCxNxxa*n',
 					$htcpLen, $htcpDataLen, $htcpOpCLR,
-					$htcpTransID, $htcpSpecifier, 2);
+					$htcpTransID, $htcpSpecifier, 2 );
 
 				// Send out
 				wfDebug( "Purging URL $url via HTCP\n" );

@@ -227,7 +227,7 @@ class LocalSettingsGenerator {
 			case 'db':
 			case 'memcached':
 			case 'accel':
-				$cacheType = 'CACHE_' . strtoupper( $this->values['wgMainCacheType']);
+				$cacheType = 'CACHE_' . strtoupper( $this->values['wgMainCacheType'] );
 				break;
 			case 'none':
 			default:

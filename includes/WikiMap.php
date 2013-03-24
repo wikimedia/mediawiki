@@ -218,8 +218,7 @@ class WikiReference {
 	 * @return String: URL
 	 */
 	public function getFullUrl( $page ) {
-		return
-			$this->mServer .
+		return $this->mServer .
 			$this->getLocalUrl( $page );
 	}
 }

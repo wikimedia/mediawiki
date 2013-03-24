@@ -66,7 +66,7 @@ class SearchUpdate implements DeferrableUpdate {
 		$lc = SearchEngine::legalSearchChars() . '&#;';
 
 		if( $this->mText === false ) {
-			$search->updateTitle($this->mId,
+			$search->updateTitle( $this->mId,
 				$search->normalizeText( Title::indexTitle( $this->mNamespace, $this->mTitle ) ) );
 			wfProfileOut( __METHOD__ );
 			return;

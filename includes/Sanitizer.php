@@ -507,7 +507,7 @@ class Sanitizer {
 						!in_array( 'table', $tagstack ) ) {
 							$badtag = true;
 						} elseif ( in_array( $t, $tagstack ) &&
-						!isset( $htmlnest [$t ] ) ) {
+						!isset( $htmlnest[$t] ) ) {
 							$badtag = true;
 						# Is it a self closed htmlpair ? (bug 5487)
 						} elseif ( $brace == '/>' &&
@@ -555,12 +555,14 @@ class Sanitizer {
 						continue;
 					}
 				}
-				$text .= '&lt;' . str_replace( '>', '&gt;', $x);
+				$text .= '&lt;' . str_replace( '>', '&gt;', $x );
 			}
 			# Close off any remaining tags
-			while ( is_array( $tagstack ) && ($t = array_pop( $tagstack )) ) {
+			while ( is_array( $tagstack ) && ( $t = array_pop( $tagstack ) ) ) {
 				$text .= "</$t>\n";
-				if ( $t == 'table' ) { $tagstack = array_pop( $tablestack ); }
+				if ( $t == 'table' ) {
+					$tagstack = array_pop( $tablestack );
+				}
 			}
 		} else {
 			# this might be possible using tidy itself
@@ -585,7 +587,7 @@ class Sanitizer {
 						continue;
 					}
 				}
-				$text .= '&lt;' . str_replace( '>', '&gt;', $x);
+				$text .= '&lt;' . str_replace( '>', '&gt;', $x );
 			}
 		}
 		wfProfileOut( __METHOD__ );
@@ -723,7 +725,7 @@ class Sanitizer {
 			}
 
 			# Allow any attribute beginning with "data-", if in HTML5 mode
-			if ( !($wgHtml5 && preg_match( '/^data-/i', $attribute )) && !isset( $whitelist[$attribute] ) ) {
+			if ( !( $wgHtml5 && preg_match( '/^data-/i', $attribute ) ) && !isset( $whitelist[$attribute] ) ) {
 				continue;
 			}
 
@@ -1357,9 +1359,9 @@ class Sanitizer {
 		if( $matches[1] != '' ) {
 			return Sanitizer::decodeEntity( $matches[1] );
 		} elseif( $matches[2] != '' ) {
-			return  Sanitizer::decodeChar( intval( $matches[2] ) );
+			return Sanitizer::decodeChar( intval( $matches[2] ) );
 		} elseif( $matches[3] != '' ) {
-			return  Sanitizer::decodeChar( hexdec( $matches[3] ) );
+			return Sanitizer::decodeChar( hexdec( $matches[3] ) );
 		}
 		# Last case should be an ampersand by itself
 		return $matches[0];
@@ -1443,30 +1445,31 @@ class Sanitizer {
 		if ( $wgAllowRdfaAttributes ) {
 			#RDFa attributes as specified in section 9 of http://www.w3.org/TR/2008/REC-rdfa-syntax-20081014
 			$common = array_merge( $common, array(
-			    'about', 'property', 'resource', 'datatype', 'typeof',
+				'about', 'property', 'resource', 'datatype', 'typeof',
 			) );
 		}
 
 		if ( $wgHtml5 && $wgAllowMicrodataAttributes ) {
 			# add HTML5 microdata tags as specified by http://www.whatwg.org/specs/web-apps/current-work/multipage/microdata.html#the-microdata-model
 			$common = array_merge( $common, array(
-			    'itemid', 'itemprop', 'itemref', 'itemscope', 'itemtype'
+				'itemid', 'itemprop', 'itemref', 'itemscope', 'itemtype'
 			) );
 		}
 
 		$block = array_merge( $common, array( 'align' ) );
 		$tablealign = array( 'align', 'char', 'charoff', 'valign' );
-		$tablecell = array( 'abbr',
-		                    'axis',
-		                    'headers',
-		                    'scope',
-		                    'rowspan',
-		                    'colspan',
-		                    'nowrap', # deprecated
-		                    'width',  # deprecated
-		                    'height', # deprecated
-		                    'bgcolor' # deprecated
-		                    );
+		$tablecell = array(
+			'abbr',
+			'axis',
+			'headers',
+			'scope',
+			'rowspan',
+			'colspan',
+			'nowrap', # deprecated
+			'width', # deprecated
+			'height', # deprecated
+			'bgcolor', # deprecated
+		);
 
 		# Numbers refer to sections in HTML 4.01 standard describing the element.
 		# See: http://www.w3.org/TR/html4/

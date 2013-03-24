@@ -332,7 +332,7 @@ class Preprocessor_Hash implements Preprocessor {
 
 						if ( $stack->top ) {
 							$part = $stack->top->getCurrentPart();
-							if ( !(isset( $part->commentEnd ) && $part->commentEnd == $wsStart - 1 )) {
+							if ( !( isset( $part->commentEnd ) && $part->commentEnd == $wsStart - 1 ) ) {
 								$part->visualEnd = $wsStart;
 							}
 							// Else comments abutting, no change in visual end
@@ -952,7 +952,7 @@ class PPFrame_Hash implements PPFrame {
 
 		while ( count( $iteratorStack ) > 1 ) {
 			$level = count( $outStack ) - 1;
-			$iteratorNode =& $iteratorStack[ $level ];
+			$iteratorNode =& $iteratorStack[$level];
 			$out =& $outStack[$level];
 			$index =& $indexStack[$level];
 

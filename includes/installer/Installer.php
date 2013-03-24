@@ -997,7 +997,7 @@ abstract class Installer {
 		}
 
 		# Try the current value of LANG.
-		if ( isset( $candidatesByLocale[ getenv( 'LANG' ) ] ) ) {
+		if ( isset( $candidatesByLocale[getenv( 'LANG' )] ) ) {
 			$this->setVar( 'wgShellLocale', getenv( 'LANG' ) );
 			return true;
 		}
@@ -1408,10 +1408,10 @@ abstract class Installer {
 		// then adding any callbacks that wanted to attach after a given step
 		foreach( $coreInstallSteps as $step ) {
 			$this->installSteps[] = $step;
-			if( isset( $this->extraInstallSteps[ $step['name'] ] ) ) {
+			if( isset( $this->extraInstallSteps[$step['name']] ) ) {
 				$this->installSteps = array_merge(
 					$this->installSteps,
-					$this->extraInstallSteps[ $step['name'] ]
+					$this->extraInstallSteps[$step['name']]
 				);
 			}
 		}
@@ -1598,7 +1598,7 @@ abstract class Installer {
 		$status = Status::newGood();
 		try {
 			$page = WikiPage::factory( Title::newMainPage() );
-			$content = new WikitextContent (
+			$content = new WikitextContent(
 				wfMessage( 'mainpagetext' )->inContentLanguage()->text() . "\n\n" .
 				wfMessage( 'mainpagedocfooter' )->inContentLanguage()->text()
 			);
@@ -1608,7 +1608,7 @@ abstract class Installer {
 					EDIT_NEW,
 					false,
 					User::newFromName( 'MediaWiki default' ) );
-		} catch (MWException $e) {
+		} catch ( MWException $e ) {
 			//using raw, because $wgShowExceptionDetails can not be set yet
 			$status->fatal( 'config-install-mainpage-failed', $e->getMessage() );
 		}

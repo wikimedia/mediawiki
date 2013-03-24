@@ -1086,8 +1086,8 @@ abstract class ContentHandler {
 				$contentObjects[$k] = $v;
 
 				$v = $v->serialize();
-				$contentTexts[ $k ] = $v;
-				$args[ $k ] = $v;
+				$contentTexts[$k] = $v;
+				$args[$k] = $v;
 			}
 		}
 
@@ -1098,7 +1098,7 @@ abstract class ContentHandler {
 		foreach ( $contentTexts as $k => $orig ) {
 			/* @var Content $content */
 
-			$modified = $args[ $k ];
+			$modified = $args[$k];
 			$content = $contentObjects[$k];
 
 			if ( $modified !== $orig ) {
@@ -1106,7 +1106,7 @@ abstract class ContentHandler {
 				$content = $content->getContentHandler()->unserializeContent( $modified );
 			}
 
-			$args[ $k ] = $content;
+			$args[$k] = $content;
 		}
 
 		return $ok;

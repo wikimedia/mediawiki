@@ -595,7 +595,7 @@ class ApiPageSet extends ApiBase {
 		}
 
 		foreach ( $this->mRequestedPageFields as $fieldName => &$fieldValues ) {
-			$fieldValues[$pageId] = $row-> $fieldName;
+			$fieldValues[$pageId] = $row->$fieldName;
 		}
 	}
 

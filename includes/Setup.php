@@ -426,7 +426,7 @@ wfMemoryLimit();
  * that happens whenever you use a date function without the timezone being
  * explicitly set. Inspired by phpMyAdmin's treatment of the problem.
  */
-if ( is_null( $wgLocaltimezone) ) {
+if ( is_null( $wgLocaltimezone ) ) {
 	wfSuppressWarnings();
 	$wgLocaltimezone = date_default_timezone_get();
 	wfRestoreWarnings();

@@ -185,7 +185,7 @@ class MediaWikiSite extends Site {
 		// the single page in the "pages" substructure.
 		if ( isset( $externalData['query']['pages'] ) ) {
 			$pages = array_values( $externalData['query']['pages'] );
-			if ( count( $pages) === 1 ) {
+			if ( count( $pages ) === 1 ) {
 				return $pages[0];
 			}
 		}

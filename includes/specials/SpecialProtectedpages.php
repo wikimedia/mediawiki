@@ -202,16 +202,14 @@ class SpecialProtectedpages extends SpecialPage {
 	 * @return string Formatted HTML
 	 */
 	protected function getExpiryCheck( $indefOnly ) {
-		return
-			Xml::checkLabel( $this->msg( 'protectedpages-indef' )->text(), 'indefonly', 'indefonly', $indefOnly ) . "\n";
+		return Xml::checkLabel( $this->msg( 'protectedpages-indef' )->text(), 'indefonly', 'indefonly', $indefOnly ) . "\n";
 	}
 
 	/**
 	 * @return string Formatted HTML
 	 */
 	protected function getCascadeCheck( $cascadeOnly ) {
-		return
-			Xml::checkLabel( $this->msg( 'protectedpages-cascade' )->text(), 'cascadeonly', 'cascadeonly', $cascadeOnly ) . "\n";
+		return Xml::checkLabel( $this->msg( 'protectedpages-cascade' )->text(), 'cascadeonly', 'cascadeonly', $cascadeOnly ) . "\n";
 	}
 
 	/**
@@ -220,8 +218,7 @@ class SpecialProtectedpages extends SpecialPage {
 	protected function getSizeLimit( $sizetype, $size ) {
 		$max = $sizetype === 'max';
 
-		return
-			Xml::radioLabel( $this->msg( 'minimum-size' )->text(), 'sizetype', 'min', 'wpmin', !$max ) .
+		return Xml::radioLabel( $this->msg( 'minimum-size' )->text(), 'sizetype', 'min', 'wpmin', !$max ) .
 			'&#160;' .
 			Xml::radioLabel( $this->msg( 'maximum-size' )->text(), 'sizetype', 'max', 'wpmax', $max ) .
 			'&#160;' .

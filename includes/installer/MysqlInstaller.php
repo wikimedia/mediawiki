@@ -86,8 +86,7 @@ class MysqlInstaller extends DatabaseInstaller {
 	 * @return string
 	 */
 	public function getConnectForm() {
-		return
-			$this->getTextBox( 'wgDBserver', 'config-db-host', array(), $this->parent->getHelpBox( 'config-db-host-help' ) ) .
+		return $this->getTextBox( 'wgDBserver', 'config-db-host', array(), $this->parent->getHelpBox( 'config-db-host-help' ) ) .
 			Html::openElement( 'fieldset' ) .
 			Html::element( 'legend', array(), wfMessage( 'config-db-wiki-settings' )->text() ) .
 			$this->getTextBox( 'wgDBname', 'config-db-name', array( 'dir' => 'ltr' ), $this->parent->getHelpBox( 'config-db-name-help' ) ) .

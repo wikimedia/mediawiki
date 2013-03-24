@@ -1340,8 +1340,8 @@ class Revision implements IDBAccessObject {
 			$defaultModel = ContentHandler::getDefaultModelFor( $title );
 			$defaultFormat = ContentHandler::getForModelID( $defaultModel )->getDefaultFormat();
 
-			$row[ 'rev_content_model' ] = ( $model === $defaultModel ) ? null : $model;
-			$row[ 'rev_content_format' ] = ( $format === $defaultFormat ) ? null : $format;
+			$row['rev_content_model'] = ( $model === $defaultModel ) ? null : $model;
+			$row['rev_content_format'] = ( $format === $defaultFormat ) ? null : $format;
 		}
 
 		$dbw->insert( 'revision', $row, __METHOD__ );
@@ -1517,8 +1517,8 @@ class Revision implements IDBAccessObject {
 			);
 
 			if ( $wgContentHandlerUseDB ) {
-				$row[ 'content_model' ] = $current->rev_content_model;
-				$row[ 'content_format' ] = $current->rev_content_format;
+				$row['content_model'] = $current->rev_content_model;
+				$row['content_format'] = $current->rev_content_format;
 			}
 
 			$revision = new Revision( $row );

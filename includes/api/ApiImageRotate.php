@@ -56,7 +56,7 @@ class ApiImageRotate extends ApiBase {
 
 	public function execute() {
 		$params = $this->extractRequestParams();
-		$rotation = $params[ 'rotation' ];
+		$rotation = $params['rotation'];
 		$user = $this->getUser();
 
 		$pageSet = $this->getPageSet();
@@ -111,12 +111,12 @@ class ApiImageRotate extends ApiBase {
 				continue;
 			}
 			$ext = strtolower( pathinfo( "$srcPath", PATHINFO_EXTENSION ) );
-			$tmpFile = TempFSFile::factory( 'rotate_', $ext);
+			$tmpFile = TempFSFile::factory( 'rotate_', $ext );
 			$dstPath = $tmpFile->getPath();
 			$err = $handler->rotate( $file, array(
 				"srcPath" => $srcPath,
 				"dstPath" => $dstPath,
-				"rotation"=> $rotation
+				"rotation" => $rotation
 			) );
 			if ( !$err ) {
 				$comment = wfMessage( 'rotate-comment' )->numParams( $rotation )->text();
@@ -157,8 +157,8 @@ class ApiImageRotate extends ApiBase {
 	 */
 	protected function checkPermissions( $user, $title ) {
 		$permissionErrors = array_merge(
-			$title->getUserPermissionsErrors( 'edit' , $user ),
-			$title->getUserPermissionsErrors( 'upload' , $user )
+			$title->getUserPermissionsErrors( 'edit', $user ),
+			$title->getUserPermissionsErrors( 'upload', $user )
 		);
 
 		if ( $permissionErrors ) {

@@ -176,8 +176,7 @@ class SpecialProtectedtitles extends SpecialPage {
 			$options[] = Xml::option( $text, $type, $selected );
 		}
 
-		return
-			Xml::label( $this->msg( 'restriction-level' )->text(), $this->IdLevel ) . '&#160;' .
+		return Xml::label( $this->msg( 'restriction-level' )->text(), $this->IdLevel ) . '&#160;' .
 			Xml::tags( 'select',
 				array( 'id' => $this->IdLevel, 'name' => $this->IdLevel ),
 				implode( "\n", $options ) );
@@ -200,7 +199,7 @@ class ProtectedTitlesPager extends AlphabeticPager {
 		$this->mConds = $conds;
 		$this->level = $level;
 		$this->namespace = $namespace;
-		$this->size = intval($size);
+		$this->size = intval( $size );
 		parent::__construct( $form->getContext() );
 	}
 

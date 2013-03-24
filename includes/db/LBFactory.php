@@ -201,7 +201,7 @@ class LBFactory_Simple extends LBFactory {
 				$flags |= DBO_COMPRESS;
 			}
 
-			$servers = array(array(
+			$servers = array( array(
 				'host' => $wgDBserver,
 				'user' => $wgDBuser,
 				'password' => $wgDBpassword,

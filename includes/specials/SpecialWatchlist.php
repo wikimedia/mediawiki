@@ -246,7 +246,7 @@ class SpecialWatchlist extends SpecialPage {
 		# Show watchlist header
 		$form .= $this->msg( 'watchlist-details' )->numParams( $nitems )->parse() . "\n";
 
-		if( $user->getOption( 'enotifwatchlistpages' ) && $wgEnotifWatchlist) {
+		if( $user->getOption( 'enotifwatchlistpages' ) && $wgEnotifWatchlist ) {
 			$form .= $this->msg( 'wlheader-enotif' )->parseAsBlock() . "\n";
 		}
 		if( $wgShowUpdatedMarker ) {

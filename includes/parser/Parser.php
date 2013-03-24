@@ -3592,7 +3592,7 @@ class Parser {
 		}
 
 		$dom = $this->preprocessToDom( $text, self::PTD_FOR_INCLUSION );
-		$this->mTplDomCache[ $titleText ] = $dom;
+		$this->mTplDomCache[$titleText] = $dom;
 
 		if ( !$title->equals( $cacheTitle ) ) {
 			$this->mTplRedirCache[$cacheTitle->getPrefixedDBkey()] =
@@ -3811,8 +3811,8 @@ class Parser {
 		$dbw->replace( 'transcache', array( 'tc_url' ), array(
 			'tc_url' => $url,
 			'tc_time' => $dbw->timestamp( time() ),
-			'tc_contents' => $text)
-		);
+			'tc_contents' => $text
+		) );
 		return $text;
 	}
 

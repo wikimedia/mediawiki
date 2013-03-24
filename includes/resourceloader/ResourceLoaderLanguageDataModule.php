@@ -108,7 +108,7 @@ class ResourceLoaderLanguageDataModule extends ResourceLoaderModule {
 	 * @return array|int|Mixed
 	 */
 	public function getModifiedTime( ResourceLoaderContext $context ) {
-		$this->language = Language::factory( $context ->getLanguage() );
+		$this->language = Language::factory( $context->getLanguage() );
 		$cache = wfGetCache( CACHE_ANYTHING );
 		$key = wfMemcKey( 'resourceloader', 'langdatamodule', 'changeinfo' );
 

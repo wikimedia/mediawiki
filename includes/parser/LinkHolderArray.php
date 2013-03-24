@@ -406,7 +406,8 @@ class LinkHolderArray {
 		$text = preg_replace_callback(
 			'/(<!--LINK .*?-->)/',
 			$replacer->cb(),
-			$text);
+			$text
+		);
 
 		wfProfileOut( __METHOD__ . '-replace' );
 		wfProfileOut( __METHOD__ );

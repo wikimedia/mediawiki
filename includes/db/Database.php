@@ -1582,19 +1582,19 @@ abstract class DatabaseBase implements DatabaseType {
 	static function generalizeSQL( $sql ) {
 		# This does the same as the regexp below would do, but in such a way
 		# as to avoid crashing php on some large strings.
-		# $sql = preg_replace ( "/'([^\\\\']|\\\\.)*'|\"([^\\\\\"]|\\\\.)*\"/", "'X'", $sql);
+		# $sql = preg_replace( "/'([^\\\\']|\\\\.)*'|\"([^\\\\\"]|\\\\.)*\"/", "'X'", $sql );
 
-		$sql = str_replace ( "\\\\", '', $sql );
-		$sql = str_replace ( "\\'", '', $sql );
-		$sql = str_replace ( "\\\"", '', $sql );
-		$sql = preg_replace ( "/'.*'/s", "'X'", $sql );
-		$sql = preg_replace ( '/".*"/s', "'X'", $sql );
+		$sql = str_replace( "\\\\", '', $sql );
+		$sql = str_replace( "\\'", '', $sql );
+		$sql = str_replace( "\\\"", '', $sql );
+		$sql = preg_replace( "/'.*'/s", "'X'", $sql );
+		$sql = preg_replace( '/".*"/s', "'X'", $sql );
 
 		# All newlines, tabs, etc replaced by single space
-		$sql = preg_replace ( '/\s+/', ' ', $sql );
+		$sql = preg_replace( '/\s+/', ' ', $sql );
 
 		# All numbers => N
-		$sql = preg_replace ( '/-?[0-9]+/s', 'N', $sql );
+		$sql = preg_replace( '/-?[0-9]+/s', 'N', $sql );
 
 		return $sql;
 	}
