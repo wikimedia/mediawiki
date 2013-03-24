@@ -39,6 +39,8 @@ production.
   correctly.
 * (bug 45803) Whitespace within == Headline == syntax and within <hN> headings
   is now non-significant and not preserved in the HTML output.
+* (bug 111) Post-edit HTTP redirect sends the user to the correct section, when
+  the section's name occurs multiple times.
 
 === API changes in 1.22 ===
 * (bug 46626) xmldoublequote parameter was removed. Because of a bug, the
