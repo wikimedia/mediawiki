@@ -208,6 +208,10 @@ table {
 	font-size: 100%;
 }
 
+th {
+	text-align: center;
+}
+
 /* Forms */
 fieldset {
 	border: 1px solid #2f6fab;

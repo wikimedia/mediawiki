@@ -332,12 +332,15 @@ table.wikitable > * > tr > th, table.wikitable > * > tr > td,
 	border: 1px #aaa solid;
 	padding: 0.2em;
 }
-table.wikitable > tr > th,
-table.wikitable > * > tr > th,
 .mw_metadata th {
 	text-align: center;
 	background: white;
 	font-weight: bold;
+}
+table.wikitable > tr > th,
+table.wikitable > * > tr > th {
+	background: white;
+        font-weight: bold;
 }
 table.wikitable > caption,
 .mw_metadata caption {
