@@ -208,14 +208,12 @@ class IcuCollation extends Collation {
 		'be-tarask' => array( "Ё" ),
 		'en' => array(),
 		'fi' => array( "Å", "Ä", "Ö" ),
-		'-fi' => array( "Ǥ", "Ŋ", "Ŧ", "Ʒ" ), // sorted like G, N, T, Z - bug 46330
 		'hu' => array( "Cs", "Dz", "Dzs", "Gy", "Ly", "Ny", "Ö", "Sz", "Ty", "Ü", "Zs" ),
 		'it' => array(),
 		'pl' => array( "Ą", "Ć", "Ę", "Ł", "Ń", "Ó", "Ś", "Ź", "Ż" ),
 		'pt' => array(),
 		'ru' => array(),
 		'sv' => array( "Å", "Ä", "Ö" ),
-		'-sv' => array( "Þ" ), // sorted as "th" in Swedish, causing unexpected output - bug 45446
 		'uk' => array( "Ґ", "Ь" ),
 		'vi' => array( "Ă", "Â", "Đ", "Ê", "Ô", "Ơ", "Ư" ),
 		// Not verified, but likely correct
@@ -397,6 +395,72 @@ class IcuCollation extends Collation {
 			}
 		}
 		ksort( $letterMap, SORT_STRING );
+
+		// Remove duplicate prefixes
+		// Basically if something has a sortkey
+		// which is a prefix of some other sortkey, then
+		// it is an expansion and probably should not be
+		// considered a section header.
+		//
+		// For example þ is sometimes sorted as if
+		// it is the letters "th". Other times
+		// it is its own primary element. Another
+		// example is '₨'. Sometimes its a currency
+		// symbol. Sometimes it is an 'R' followed
+		// by an 's'.
+		//
+		// Additionally an expanded element should
+		// always sort directly after its first
+		// element due to they way sortkeys work.
+		//
+		// UCA sortkey elements are of variable length
+		// but no collation element should be a prefix
+		// of some other element, so I think this is safe.
+		// See https://ssl.icu-project.org/repos/icu/icuhtml/trunk/design/collation/ICU_collation_design.htm
+		// and http://site.icu-project.org/design/collation/uca-weight-allocation
+		//
+		// Additionally, there is something called primary
+		// compression to worry about. Basically, if you
+		// have two primary elements that are more than
+		// one byte and both start with the same byte
+		// then the first byte is dropped on the
+		// second primary. Additionally
+		// either \x03 or \xFF may be added to
+		// mean that the next primary does not
+		// start with the first byte of the first
+		// primary.
+		//
+		// This shouldn't matter much, as the
+		// first primary is not changed, and
+		// that is what we are comparing
+		// against.
+		$prev = false;
+		$duplicatePrefixes = array();
+		foreach( $letterMap as $key => $value ) {
+			if ( $prev === false || $prev === '' ) {
+				$prev = rtrim( $key, "\0" );
+				// We don't yet have a collation element
+				// to compare against, so continue.
+				continue;
+			}
+			// We have to strip the trailing null from the sortkey
+			// in order to make the prefix comparision work.
+			$trimmedKey = rtrim( $key, "\0" );
+			if ( substr( $trimmedKey, 0, strlen( $prev ) ) === $prev ) {
+				$duplicatePrefixes[] = $key;
+				// If this is an expansion, we don't
+				// want to compare the next element
+				// to this element, but to what
+				// is currently $prev
+				continue;
+			}
+			$prev = rtrim( $key, "\0" );
+		}
+		foreach( $duplicatePrefixes as $badKey ) {
+			wfDebug( "Removing '$letterMap[$badKey]' from first letters." );
+			unset( $letterMap[$badKey] );
+			// This code assumes that unsetting does not change sort order.
+		}
 		$data = array(
 			'chars' => array_values( $letterMap ),
 			'keys' => array_keys( $letterMap ),
