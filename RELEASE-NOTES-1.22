@@ -153,6 +153,8 @@ production.
   warning will instead be issued if 'title' is non-default, unless no props are
   requested.
 * Special:Recentchangeslinked will now include upload log entries
+* (bug 111) Post-edit HTTP redirect sends the user to the correct section, when
+  the section's name occurs multiple times.
 
 === API changes in 1.22 ===
 * (bug 25553) The JSON output formatter now leaves forward slashes unescaped
