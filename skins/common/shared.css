@@ -505,7 +505,6 @@ table.wikitable > * > tr > td {
 table.wikitable > tr > th,
 table.wikitable > * > tr > th {
 	background-color: #f2f2f2;
-	text-align: center;
 }
 table.wikitable > caption {
 	font-weight: bold;
