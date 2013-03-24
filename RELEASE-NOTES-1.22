@@ -129,6 +129,8 @@ production.
   is disabled, and AJAX patrolling and watching are now disabled when use of
   the write API is not allowed.
 * (bug 48294) API: Fix chunk upload async mode.
+* (bug 111) Post-edit HTTP redirect sends the user to the correct section, when
+  the section's name occurs multiple times.
 
 === API changes in 1.22 ===
 * (bug 46626) xmldoublequote parameter was removed. Because of a bug, the
