@@ -197,6 +197,7 @@ return array(
 	),
 	'jquery.getAttrs' => array(
 		'scripts' => 'resources/jquery/jquery.getAttrs.js',
+		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'jquery.hidpi' => array(
 		'scripts' => 'resources/jquery/jquery.hidpi.js',
