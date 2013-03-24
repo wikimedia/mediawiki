@@ -88,6 +88,8 @@ production.
 * A bias in wfRandomString() toward digits 1-7 has been corrected. Generated
   strings will now start with digits 0 and 8-f as often as they should.
 * (bug 45371) Removed Parser_LinkHooks and CoreLinkFunctions classes.
+* (bug 111) Post-edit HTTP redirect sends the user to the correct section, when
+  the section's name occurs multiple times.
 
 === API changes in 1.22 ===
 * (bug 46626) xmldoublequote parameter was removed. Because of a bug, the

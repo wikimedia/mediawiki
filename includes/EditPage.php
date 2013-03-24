@@ -1480,6 +1480,18 @@ class EditPage {
 
 		wfProfileOut( __METHOD__ . '-checks' );
 
+		// Save section for its anchor
+		$section = $this->section;
+
+		// Section title if section == "new"
+		// If sectiontitle is set, use it, otherwise use the summary as the
+		// section title (for backwards compatibility with old forms/bots).
+		if ( $this->sectiontitle !== '' ) {
+			$sectionTitle = $this->sectiontitle;
+		} else {
+			$sectionTitle = $this->summary;
+		}
+
 		# Load the page data from the master. If anything changes in the meantime,
 		# we detect it by using page_latest like a token in a 1 try compare-and-swap.
 		$this->mArticle->loadPageData( 'fromdbmaster' );
@@ -1509,15 +1521,13 @@ class EditPage {
 
 			$content = $textbox_content;
 
-			$result['sectionanchor'] = '';
 			if ( $this->section == 'new' ) {
+				// Insert the section title above the content.
+				if ( $sectionTitle !== '' ) {
+					$content = $content->addSectionHeader( $sectionTitle );
+				}
+
 				if ( $this->sectiontitle !== '' ) {
-					// Insert the section title above the content.
-					$content = $content->addSectionHeader( $this->sectiontitle );
-
-					// Jump to the new section
-					$result['sectionanchor'] = $wgParser->guessLegacySectionNameFromWikiText( $this->sectiontitle );
-
 					// If no edit summary was specified, create one automatically from the section
 					// title and have it link to the new section. Otherwise, respect the summary as
 					// passed.
@@ -1527,12 +1537,6 @@ class EditPage {
 							->rawParams( $cleanSectionTitle )->inContentLanguage()->text();
 					}
 				} elseif ( $this->summary !== '' ) {
-					// Insert the section title above the content.
-					$content = $content->addSectionHeader( $this->summary );
-
-					// Jump to the new section
-					$result['sectionanchor'] = $wgParser->guessLegacySectionNameFromWikiText( $this->summary );
-
 					// Create a link to the new section from the edit summary.
 					$cleanSummary = $wgParser->stripSectionName( $this->summary );
 					$this->summary = wfMessage( 'newsectionsummary' )
@@ -1571,14 +1575,6 @@ class EditPage {
 					wfDebug( __METHOD__ . ": Suppressing edit conflict, same user.\n" );
 					$this->isConflict = false;
 				}
-			}
-
-			// If sectiontitle is set, use it, otherwise use the summary as the section title (for
-			// backwards compatibility with old forms/bots).
-			if ( $this->sectiontitle !== '' ) {
-				$sectionTitle = $this->sectiontitle;
-			} else {
-				$sectionTitle = $this->summary;
 			}
 
 			$content = null;
@@ -1653,10 +1649,8 @@ class EditPage {
 
 			# All's well
 			wfProfileIn( __METHOD__ . '-sectionanchor' );
-			$sectionanchor = '';
 			if ( $this->section == 'new' ) {
 				if ( $this->sectiontitle !== '' ) {
-					$sectionanchor = $wgParser->guessLegacySectionNameFromWikiText( $this->sectiontitle );
 					// If no edit summary was specified, create one automatically from the section
 					// title and have it link to the new section. Otherwise, respect the summary as
 					// passed.
@@ -1666,31 +1660,20 @@ class EditPage {
 							->rawParams( $cleanSectionTitle )->inContentLanguage()->text();
 					}
 				} elseif ( $this->summary !== '' ) {
-					$sectionanchor = $wgParser->guessLegacySectionNameFromWikiText( $this->summary );
 					# This is a new section, so create a link to the new section
 					# in the revision summary.
 					$cleanSummary = $wgParser->stripSectionName( $this->summary );
 					$this->summary = wfMessage( 'newsectionsummary' )
 						->rawParams( $cleanSummary )->inContentLanguage()->text();
 				}
-			} elseif ( $this->section != '' ) {
-				# Try to get a section anchor from the section source, redirect to edited section if header found
-				# XXX: might be better to integrate this into Article::replaceSection
-				# for duplicate heading checking and maybe parsing
-				$hasmatch = preg_match( "/^ *([=]{1,6})(.*?)(\\1) *\\n/i", $this->textbox1, $matches );
-				# we can't deal with anchors, includes, html etc in the header for now,
-				# headline would need to be parsed to improve this
-				if ( $hasmatch && strlen( $matches[2] ) > 0 ) {
-					$sectionanchor = $wgParser->guessLegacySectionNameFromWikiText( $matches[2] );
-				}
 			}
-			$result['sectionanchor'] = $sectionanchor;
 			wfProfileOut( __METHOD__ . '-sectionanchor' );
 
 			// Save errors may fall down to the edit form, but we've now
 			// merged the section into full text. Clear the section field
 			// so that later submission of conflict forms won't try to
 			// replace that into a duplicated mess.
+			$origEditText = $this->textbox1;
 			$this->textbox1 = $this->toEditText( $content );
 			$this->section = '';
 
@@ -1730,6 +1713,33 @@ class EditPage {
 			return $doEditStatus;
 		}
 
+		// Section anchor
+		$sectionanchor = '';
+		if ( $section == 'new' ) {
+			if ( $sectionTitle !== '' ) {
+				$sectionanchor = $wgParser->guessLegacySectionNameFromWikiText( $sectionTitle );
+			}
+		} elseif ( !$new && $section != '' ) {
+			// Only redirect to the section if it is at the beginning of the text
+			// Fall back to this one if the section doesn't exist in the ParserOutput
+			$hasmatch = preg_match( "/^ *([=]{1,6})(.*?)(\\1) *\\n/i", $origEditText, $matches );
+			if ( $hasmatch && strlen( $matches[2] ) > 0 ) {
+				$sectionanchor = $wgParser->guessLegacySectionNameFromWikiText( $matches[2] );
+				$parserOutput = $doEditStatus->value['parseroutput'];
+				if ( $parserOutput ) {
+					$sections = $parserOutput->getSections();
+					// Now iterate over the parsed section and find the one the
+					// user was editing. If this is the case use that anchor for
+					// the redirect (bug 111)
+					foreach( $sections as $sectionArr ) {
+						if ( $sectionArr['index'] == $section ) {
+							$sectionanchor = '#' . $sectionArr['anchor'];
+						}
+					}
+				}
+			}
+		}
+		$result['sectionanchor'] = $sectionanchor;
 		$result['nullEdit'] = $doEditStatus->hasMessage( 'edit-no-change' );
 		$result['redirect'] = $content->isRedirect();
 		$this->updateWatchlist();
