@@ -210,8 +210,6 @@ production.
 * (bug 45143) jquery.badge: Treat non-Latin variants of zero as zero as well.
 * (bug 46151) mwdocgen.php should not ignore exit code of doxygen command.
 * (bug 41889) Fix $.tablesorter rowspan exploding for complex cases.
-* WDDX formatted output will actually be formatted (and normal output will no
-  longer be), and will no longer choke on booleans.
 
 === API changes in 1.21 ===
 * prop=revisions can now report the contentmodel and contentformat.
@@ -281,6 +279,8 @@ production.
   proper error instead of as an uncaught exception.
 * (bug 25325) added support for wlshow filtering (bots/anon/minor/patrolled)
   to action=feedwatchlist
+* WDDX formatted output will actually be formatted (and normal output will no
+  longer be), and will no longer choke on booleans.
 
 === API internal changes in 1.21 ===
 * For debugging only, a new global $wgDebugAPI removes many API restrictions when true.
