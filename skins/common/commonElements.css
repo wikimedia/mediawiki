@@ -207,6 +207,9 @@ pre, .mw-code {
 table {
 	font-size: 100%;
 }
+th {
+	text-align: center;
+}
 
 /* Forms */
 fieldset {
