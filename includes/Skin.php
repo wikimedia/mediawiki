@@ -1252,7 +1252,7 @@ abstract class Skin extends ContextSource {
 						}
 
 						global $wgExternalLinkTarget;
-						if ( $wgExternalLinkTarget) {
+						if ( $wgExternalLinkTarget ) {
 							$extraAttribs['target'] = $wgExternalLinkTarget;
 						}
 					} else {

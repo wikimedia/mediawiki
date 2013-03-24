@@ -518,7 +518,7 @@ abstract class File {
 	 * @param $version integer version number.
 	 * @return Array containing metadata, or what was passed to it on fail (unserializing if not array)
 	 */
-	public function convertMetadataVersion($metadata, $version) {
+	public function convertMetadataVersion( $metadata, $version ) {
 		$handler = $this->getHandler();
 		if ( !is_array( $metadata ) ) {
 			// Just to make the return type consistent
@@ -681,7 +681,7 @@ abstract class File {
 		if ( $mime === "unknown/unknown" ) {
 			return false; #unknown type, not trusted
 		}
-		if ( in_array( $mime, $wgTrustedMediaFormats) ) {
+		if ( in_array( $mime, $wgTrustedMediaFormats ) ) {
 			return true;
 		}
 

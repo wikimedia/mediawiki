@@ -1401,7 +1401,7 @@ class OutputPage extends ContextSource {
 	 * @param $timestamp Mixed: string, or null
 	 * @return Mixed: previous value
 	 */
-	public function setRevisionTimestamp( $timestamp) {
+	public function setRevisionTimestamp( $timestamp ) {
 		return wfSetVar( $this->mRevisionTimestamp, $timestamp );
 	}
 

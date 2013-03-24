@@ -182,7 +182,7 @@ class UploadFromChunks extends UploadFromFile {
 		// Get the offset before we add the chunk to the file system
 		$preAppendOffset = $this->getOffset();
 
-		if ( $preAppendOffset + $chunkSize > $this->getMaxUploadSize()) {
+		if ( $preAppendOffset + $chunkSize > $this->getMaxUploadSize() ) {
 			$status = Status::newFatal( 'file-too-large' );
 		} else {
 			// Make sure the client is uploading the correct chunk with a matching offset.

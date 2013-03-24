@@ -613,7 +613,7 @@ END;
 		}
 	}
 
-	protected function changeNullableField( $table, $field, $null) {
+	protected function changeNullableField( $table, $field, $null ) {
 		$fi = $this->db->fieldInfo( $table, $field );
 		if ( is_null( $fi ) ) {
 			$this->output( "...ERROR: expected column $table.$field to exist\n" );

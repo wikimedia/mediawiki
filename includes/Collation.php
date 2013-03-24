@@ -363,8 +363,8 @@ class IcuCollation extends Collation {
 			// Append additional characters
 			$letters = array_merge( $letters, self::$tailoringFirstLetters[$this->locale] );
 			// Remove unnecessary ones, if any
-			if ( isset( self::$tailoringFirstLetters[ '-' . $this->locale ] ) ) {
-				$letters = array_diff( $letters, self::$tailoringFirstLetters[ '-' . $this->locale ] );
+			if ( isset( self::$tailoringFirstLetters['-' . $this->locale] ) ) {
+				$letters = array_diff( $letters, self::$tailoringFirstLetters['-' . $this->locale] );
 			}
 		} else {
 			$letters = wfGetPrecompiledData( "first-letters-{$this->locale}.ser" );

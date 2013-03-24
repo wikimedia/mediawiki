@@ -337,7 +337,7 @@ class DateFormatter {
 	function makeIsoYear( $year ) {
 		# Assumes the year is in a nice format, as enforced by the regex
 		if ( substr( $year, -2 ) == 'BC' ) {
-			$num = intval(substr( $year, 0, -3 )) - 1;
+			$num = intval( substr( $year, 0, -3 ) ) - 1;
 			# PHP bug note: sprintf( "%04d", -1 ) fails poorly
 			$text = sprintf( '-%04d', $num );
 

@@ -55,9 +55,9 @@
  *              'compress_threshold' => 10240,
  *              'persistent' => true));
  *
- * $mc->add('key', array('some', 'array'));
- * $mc->replace('key', 'some random string');
- * $val = $mc->get('key');
+ * $mc->add( 'key', array( 'some', 'array' ) );
+ * $mc->replace( 'key', 'some random string' );
+ * $val = $mc->get( 'key' );
  *
  * @author  Ryan T. Dean <rtdean@cytherianage.net>
  * @version 0.1.2
@@ -489,17 +489,17 @@ class MWMemcached {
 			}
 			$key = is_array( $key ) ? $key[1] : $key;
 			if ( !isset( $sock_keys[$sock] ) ) {
-				$sock_keys[ intval( $sock ) ] = array();
+				$sock_keys[intval( $sock )] = array();
 				$socks[] = $sock;
 			}
-			$sock_keys[ intval( $sock ) ][] = $key;
+			$sock_keys[intval( $sock )][] = $key;
 		}
 
 		$gather = array();
 		// Send out the requests
 		foreach ( $socks as $sock ) {
 			$cmd = 'gets';
-			foreach ( $sock_keys[ intval( $sock ) ] as $key ) {
+			foreach ( $sock_keys[intval( $sock )] as $key ) {
 				$cmd .= ' ' . $key;
 			}
 			$cmd .= "\r\n";

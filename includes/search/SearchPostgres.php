@@ -86,18 +86,18 @@ class SearchPostgres extends SearchEngine {
 		wfDebug( "parseQuery received: $term \n" );
 
 		## No backslashes allowed
-		$term = preg_replace('/\\\/', '', $term);
+		$term = preg_replace( '/\\\/', '', $term );
 
 		## Collapse parens into nearby words:
-		$term = preg_replace('/\s*\(\s*/', ' (', $term);
-		$term = preg_replace('/\s*\)\s*/', ') ', $term);
+		$term = preg_replace( '/\s*\(\s*/', ' (', $term );
+		$term = preg_replace( '/\s*\)\s*/', ') ', $term );
 
 		## Treat colons as word separators:
-		$term = preg_replace('/:/', ' ', $term);
+		$term = preg_replace( '/:/', ' ', $term );
 
 		$searchstring = '';
 		$m = array();
-		if( preg_match_all('/([-!]?)(\S+)\s*/', $term, $m, PREG_SET_ORDER ) ) {
+		if( preg_match_all( '/([-!]?)(\S+)\s*/', $term, $m, PREG_SET_ORDER ) ) {
 			foreach( $m as $terms ) {
 				if ( strlen( $terms[1] ) ) {
 					$searchstring .= ' & !';
@@ -118,19 +118,19 @@ class SearchPostgres extends SearchEngine {
 		}
 
 		## Strip out leading junk
-		$searchstring = preg_replace('/^[\s\&\|]+/', '', $searchstring);
+		$searchstring = preg_replace( '/^[\s\&\|]+/', '', $searchstring );
 
 		## Remove any doubled-up operators
-		$searchstring = preg_replace('/([\!\&\|]) +(?:[\&\|] +)+/', "$1 ", $searchstring);
+		$searchstring = preg_replace( '/([\!\&\|]) +(?:[\&\|] +)+/', "$1 ", $searchstring );
 
 		## Remove any non-spaced operators (e.g. "Zounds!")
-		$searchstring = preg_replace('/([^ ])[\!\&\|]/', "$1", $searchstring);
+		$searchstring = preg_replace( '/([^ ])[\!\&\|]/', "$1", $searchstring );
 
 		## Remove any trailing whitespace or operators
-		$searchstring = preg_replace('/[\s\!\&\|]+$/', '', $searchstring);
+		$searchstring = preg_replace( '/[\s\!\&\|]+$/', '', $searchstring );
 
 		## Remove unnecessary quotes around everything
-		$searchstring = preg_replace('/^[\'"](.*)[\'"]$/', "$1", $searchstring);
+		$searchstring = preg_replace( '/^[\'"](.*)[\'"]$/', "$1", $searchstring );
 
 		## Quote the whole thing
 		$searchstring = $this->db->addQuotes( $searchstring );
@@ -169,7 +169,7 @@ class SearchPostgres extends SearchEngine {
 		}
 		else {
 			$m = array();
-			if( preg_match_all("/'([^']+)'/", $top, $m, PREG_SET_ORDER ) ) {
+			if( preg_match_all( "/'([^']+)'/", $top, $m, PREG_SET_ORDER ) ) {
 				foreach( $m as $terms ) {
 					$this->searchTerms[$terms[1]] = $terms[1];
 				}

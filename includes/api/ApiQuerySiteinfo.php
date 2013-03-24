@@ -675,7 +675,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				' variables             - Returns a list of variable IDs',
 				' protocols             - Returns a list of protocols that are allowed in external links.',
 			),
-			'filteriw' =>  'Return only local or only nonlocal entries of the interwiki map',
+			'filteriw' => 'Return only local or only nonlocal entries of the interwiki map',
 			'showalldb' => 'List all database servers, not just the one lagging the most',
 			'numberingroup' => 'Lists the number of users in user groups',
 			'inlanguagecode' => 'Language code for localised language names (best effort, use CLDR extension)',

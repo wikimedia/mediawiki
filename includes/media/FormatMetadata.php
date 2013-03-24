@@ -79,7 +79,7 @@ class FormatMetadata {
 			}
 
 			//This is done differently as the tag is an array.
-			if ( $tag == 'GPSTimeStamp' && count( $vals ) === 3) {
+			if ( $tag == 'GPSTimeStamp' && count( $vals ) === 3 ) {
 				//hour min sec array
 
 				$h = explode( '/', $vals[0] );
@@ -682,7 +682,7 @@ class FormatMetadata {
 						$urgency = 'high';
 					} elseif ( $val == 5 ) {
 						$urgency = 'normal';
-					} elseif ( $val <= 8 && $val > 5) {
+					} elseif ( $val <= 8 && $val > 5 ) {
 						$urgency = 'low';
 					}
 

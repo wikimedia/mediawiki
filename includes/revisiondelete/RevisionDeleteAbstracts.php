@@ -68,7 +68,7 @@ abstract class RevDel_List extends RevisionListBase {
 
 		for ( $this->reset(); $this->current(); $this->next() ) {
 			$item = $this->current();
-			unset( $missing[ $item->getId() ] );
+			unset( $missing[$item->getId()] );
 
 			$oldBits = $item->getBits();
 			// Build the actual new rev_deleted bitfield

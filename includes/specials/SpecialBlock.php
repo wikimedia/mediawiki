@@ -634,7 +634,7 @@ class SpecialBlock extends FormSpecialPage {
 			return array( 'badipaddress' );
 		}
 
-		if ( ( strlen( $data['Expiry'] ) == 0) || ( strlen( $data['Expiry'] ) > 50 )
+		if ( ( strlen( $data['Expiry'] ) == 0 ) || ( strlen( $data['Expiry'] ) > 50 )
 			|| !self::parseExpiryInput( $data['Expiry'] ) )
 		{
 			return array( 'ipb_expiry_invalid' );

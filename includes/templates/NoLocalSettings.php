@@ -22,7 +22,7 @@
  */
 
 if ( !defined( 'MEDIAWIKI' ) ) {
-        die( "NoLocalSettings.php is not a valid MediaWiki entry point\n" );
+	die( "NoLocalSettings.php is not a valid MediaWiki entry point\n" );
 }
 
 if ( !isset( $wgVersion ) ) {

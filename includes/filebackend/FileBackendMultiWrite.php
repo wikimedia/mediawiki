@@ -457,7 +457,7 @@ class FileBackendMultiWrite extends FileBackend {
 	 * @return bool Path container should have dir changes pushed to all backends
 	 */
 	protected function replicateContainerDirChanges( $path ) {
-		list( , $shortCont,  ) = self::splitStoragePath( $path );
+		list( , $shortCont, ) = self::splitStoragePath( $path );
 		return !in_array( $shortCont, $this->noPushDirConts );
 	}
 

@@ -141,7 +141,7 @@ class MWTimestamp {
 
 		try {
 			$final = new DateTime( $strtime, new DateTimeZone( 'GMT' ) );
-		} catch(Exception $e) {
+		} catch( Exception $e ) {
 			throw new TimestampException( __METHOD__ . ' Invalid timestamp format.' );
 		}
 

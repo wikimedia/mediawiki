@@ -119,11 +119,11 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 				throw new ThrottledError;
 			case 'mailnologin':
 			case 'usermaildisabled':
-				throw new  ErrorPageError( $error, "{$error}text" );
+				throw new ErrorPageError( $error, "{$error}text" );
 			default:
 				# It's a hook error
 				list( $title, $msg, $params ) = $error;
-				throw new  ErrorPageError( $title, $msg, $params );
+				throw new ErrorPageError( $title, $msg, $params );
 		}
 		// Got a valid target user name? Else ask for one.
 		$ret = self::getTarget( $this->mTarget );

@@ -170,21 +170,24 @@ class SpecialWhatLinksHere extends SpecialPage {
 			$options['ORDER BY'] = 'pl_from';
 			$plRes = $dbr->select( array( 'pagelinks', 'page', 'redirect' ), $fields,
 				$plConds, __METHOD__, $options,
-				$joinConds);
+				$joinConds
+			);
 		}
 
 		if( !$hidetrans ) {
 			$options['ORDER BY'] = 'tl_from';
 			$tlRes = $dbr->select( array( 'templatelinks', 'page', 'redirect' ), $fields,
 				$tlConds, __METHOD__, $options,
-				$joinConds);
+				$joinConds
+			);
 		}
 
 		if( !$hideimages ) {
 			$options['ORDER BY'] = 'il_from';
 			$ilRes = $dbr->select( array( 'imagelinks', 'page', 'redirect' ), $fields,
 				$ilConds, __METHOD__, $options,
-				$joinConds);
+				$joinConds
+			);
 		}
 
 		if( ( !$fetchlinks || !$plRes->numRows() ) && ( $hidetrans || !$tlRes->numRows() ) && ( $hideimages || !$ilRes->numRows() ) ) {

@@ -214,7 +214,7 @@ class XMPValidate {
 			// this only validates standalone properties, not arrays, etc
 			return;
 		}
-		if ( !preg_match( '/^[-A-Za-z0-9]{2,}$/D', $val) ) {
+		if ( !preg_match( '/^[-A-Za-z0-9]{2,}$/D', $val ) ) {
 			//this is a rather naive check.
 			wfDebugLog( 'XMP', __METHOD__ . " Expected Lang code but got $val" );
 			$val = null;

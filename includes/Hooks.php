@@ -190,7 +190,7 @@ class Hooks {
 					}
 				} elseif ( is_string( $hook[0] ) ) {
 					$func = $hook[0];
-					if ( count( $hook ) > 1) {
+					if ( count( $hook ) > 1 ) {
 						$data = $hook[1];
 						$have_data = true;
 					}

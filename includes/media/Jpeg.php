@@ -69,18 +69,18 @@ class JpegHandler extends ExifBitmapHandler {
 	public function rotate( $file, $params ) {
 		global $wgJpegTran;
 
-		$rotation = ( $params[ 'rotation' ] + $this->getRotation( $file ) ) % 360;
+		$rotation = ( $params['rotation'] + $this->getRotation( $file ) ) % 360;
 
-		if( $wgJpegTran && is_file( $wgJpegTran ) ){
+		if( $wgJpegTran && is_file( $wgJpegTran ) ) {
 			$cmd = wfEscapeShellArg( $wgJpegTran ) .
 				" -rotate " . wfEscapeShellArg( $rotation ) .
-				" -outfile " . wfEscapeShellArg( $params[ 'dstPath' ] ) .
-				" " . wfEscapeShellArg( $params[ 'srcPath' ] ) .  " 2>&1";
-				wfDebug( __METHOD__ . ": running jpgtran: $cmd\n" );
-				wfProfileIn( 'jpegtran' );
-				$retval = 0;
-				$err = wfShellExec( $cmd, $retval, $env );
-				wfProfileOut( 'jpegtran' );
+				" -outfile " . wfEscapeShellArg( $params['dstPath'] ) .
+				" " . wfEscapeShellArg( $params['srcPath'] ) . " 2>&1";
+			wfDebug( __METHOD__ . ": running jpgtran: $cmd\n" );
+			wfProfileIn( 'jpegtran' );
+			$retval = 0;
+			$err = wfShellExec( $cmd, $retval, $env );
+			wfProfileOut( 'jpegtran' );
 			if ( $retval !== 0 ) {
 				$this->logErrorForExternalProcess( $retval, $err, $cmd );
 				return new MediaTransformError( 'thumbnail_error', 0, 0, $err );

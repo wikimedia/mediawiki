@@ -912,8 +912,7 @@ class SpecialSearch extends SpecialPage {
 			$hidden .= Html::hidden( $key, $value );
 		}
 		// Return final output
-		return
-			Xml::openElement(
+		return Xml::openElement(
 				'fieldset',
 				array( 'id' => 'mw-searchoptions', 'style' => 'margin:0em;' )
 			) .
@@ -1098,7 +1097,8 @@ class SpecialSearch extends SpecialPage {
 			'a',
 			array(
 				'href' => $this->getTitle()->getLocalURL( $stParams ),
-				'title' => $tooltip),
+				'title' => $tooltip
+			),
 			$label
 		);
 	}

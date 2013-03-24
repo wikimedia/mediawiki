@@ -65,8 +65,8 @@ class BmpHandler extends BitmapHandler {
 		fclose( $f );
 
 		// Extract binary form of width and height from the header
-		$w = substr( $header, 18, 4);
-		$h = substr( $header, 22, 4);
+		$w = substr( $header, 18, 4 );
+		$h = substr( $header, 22, 4 );
 
 		// Convert the unsigned long 32 bits (little endian):
 		try {

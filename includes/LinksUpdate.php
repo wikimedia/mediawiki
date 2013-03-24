@@ -847,7 +847,7 @@ class LinksDeletionUpdate extends SqlDataUpdate {
 		$res = $this->mDb->select( 'categorylinks', 'cl_to', array( 'cl_from' => $id ), __METHOD__ );
 
 		foreach ( $res as $row ) {
-			$cats [] = $row->cl_to;
+			$cats[] = $row->cl_to;
 		}
 
 		$this->mPage->updateCategoryCounts( array(), $cats );

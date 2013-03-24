@@ -432,7 +432,7 @@ class MimeMagic {
 		$ext = explode( ' ', $ext );
 
 		$extension = strtolower( $extension );
-		return  in_array( $extension, $ext );
+		return in_array( $extension, $ext );
 	}
 
 	/**
@@ -689,11 +689,11 @@ class MimeMagic {
 		$script_type = null;
 
 		# detect by shebang
-		if ( substr( $head, 0, 2) == "#!" ) {
+		if ( substr( $head, 0, 2 ) == "#!" ) {
 			$script_type = "ASCII";
-		} elseif ( substr( $head, 0, 5) == "\xef\xbb\xbf#!" ) {
+		} elseif ( substr( $head, 0, 5 ) == "\xef\xbb\xbf#!" ) {
 			$script_type = "UTF-8";
-		} elseif ( substr( $head, 0, 7) == "\xfe\xff\x00#\x00!" ) {
+		} elseif ( substr( $head, 0, 7 ) == "\xfe\xff\x00#\x00!" ) {
 			$script_type = "UTF-16BE";
 		} elseif ( substr( $head, 0, 7 ) == "\xff\xfe#\x00!" ) {
 			$script_type = "UTF-16LE";
@@ -804,7 +804,7 @@ class MimeMagic {
 				 * These mime's are stored in the database, where we don't really want
 				 * x-opc+zip, because we use it only for internal purposes
 				 */
-				if ( $this->isMatchingExtension( $ext, $mime) ) {
+				if ( $this->isMatchingExtension( $ext, $mime ) ) {
 					/* A known file extension for an OPC file,
 					 * find the proper mime type for that file extension
 					 */
@@ -817,10 +817,10 @@ class MimeMagic {
 		} elseif ( substr( $header, 0, 8 ) == "\xd0\xcf\x11\xe0\xa1\xb1\x1a\xe1" &&
 				($headerpos = strpos( $tail, "PK\x03\x04" ) ) !== false &&
 				preg_match( $openxmlRegex, substr( $tail, $headerpos + 30 ) ) ) {
-			if ( substr( $header, 512, 4) == "\xEC\xA5\xC1\x00" ) {
+			if ( substr( $header, 512, 4 ) == "\xEC\xA5\xC1\x00" ) {
 				$mime = "application/msword";
 			}
-			switch( substr( $header, 512, 6) ) {
+			switch( substr( $header, 512, 6 ) ) {
 				case "\xEC\xA5\xC1\x00\x0E\x00":
 				case "\xEC\xA5\xC1\x00\x1C\x00":
 				case "\xEC\xA5\xC1\x00\x43\x00":
