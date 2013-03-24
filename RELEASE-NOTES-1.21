@@ -335,6 +335,9 @@ changes to languages because of Bugzilla reports.
   - ShowStats -> ShowSiteStats.
 * BREAKING CHANGE: (bug 38244) Removed the mediawiki.api.titleblacklist module
   and moved it to the TitleBlacklist extension.
+* SpecialVersion's static softwareInformation, getVersionLinked, getCopyrightAndAuthorList
+  methods have been deprecated. Please use the non-static getSoftwareInformation, getVersionLinkedText,
+  and getCopyrightAndAuthors methods.
 
 == Compatibility ==
 
