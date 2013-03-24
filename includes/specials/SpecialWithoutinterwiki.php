@@ -51,14 +51,14 @@ class WithoutInterwikiPage extends PageQueryPage {
 		$prefix = $this->prefix;
 		$t = $this->getTitle();
 
-		return Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) ) .
-			Xml::openElement( 'fieldset' ) .
-			Xml::element( 'legend', null, $this->msg( 'withoutinterwiki-legend' )->text() ) .
-			Html::hidden( 'title', $t->getPrefixedText() ) .
-			Xml::inputLabel( $this->msg( 'allpagesprefix' )->text(), 'prefix', 'wiprefix', 20, $prefix ) . ' ' .
-			Xml::submitButton( $this->msg( 'withoutinterwiki-submit' )->text() ) .
-			Xml::closeElement( 'fieldset' ) .
-			Xml::closeElement( 'form' );
+		return Html::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) ) . "\n" .
+			Html::openElement( 'fieldset' ) . "\n" .
+			Html::element( 'legend', null, $this->msg( 'withoutinterwiki-legend' )->text() ) . "\n" .
+			Html::hidden( 'title', $t->getPrefixedText() ) . "\n" .
+			Xml::inputLabel( $this->msg( 'allpagesprefix' )->text(), 'prefix', 'wiprefix', 20, $prefix ) . "\n" .
+			Xml::submitButton( $this->msg( 'withoutinterwiki-submit' )->text() ) . "\n" .
+			Html::closeElement( 'fieldset' ) . "\n" .
+			Html::closeElement( 'form' );
 	}
 
 	function sortDescending() {
