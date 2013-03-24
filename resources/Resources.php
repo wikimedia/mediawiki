@@ -99,7 +99,12 @@ return array(
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
 	),
 	'skins.vector.js' => array(
-		'scripts' => 'vector/vector.js',
+		'scripts' => array(
+			'vector/vector.js',
+			'vector/collapsibleTabs.js',
+		),
+		'position' => 'top',
+		'dependencies' => 'jquery.delayedBind',
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
 	),
