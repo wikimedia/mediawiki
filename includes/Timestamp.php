@@ -38,6 +38,7 @@ class MWTimestamp {
 		TS_DB => 'Y-m-d H:i:s',
 		TS_ISO_8601 => 'Y-m-d\TH:i:s\Z',
 		TS_ISO_8601_BASIC => 'Ymd\THis\Z',
+		TS_GIT => 'Y-m-d H:i:s +0000',
 		TS_EXIF => 'Y:m:d H:i:s', // This shouldn't ever be used, but is included for completeness
 		TS_RFC2822 => 'D, d M Y H:i:s',
 		TS_ORACLE => 'd-m-Y H:i:s.000000', // Was 'd-M-y h.i.s A' . ' +00:00' before r51500
@@ -92,6 +93,7 @@ class MWTimestamp {
 	public function setTimestamp( $ts = false ) {
 		$da = array();
 		$strtime = '';
+		$timezone = new DateTimeZone( 'GMT' );
 
 		if ( !$ts || $ts === "\0\0\0\0\0\0\0\0\0\0\0\0\0\0" ) { // We want to catch 0, '', null... but not date strings starting with a letter.
 			$uts = time();
@@ -113,6 +115,14 @@ class MWTimestamp {
 			# TS_ISO_8601
 		} elseif ( preg_match( '/^(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})(\d{2})(?:\.*\d*)?Z$/', $ts, $da ) ) {
 			#TS_ISO_8601_BASIC
+		} elseif ( preg_match( '/^(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2}) ([\+\- ])(\d{2})(\d{2})$/', $ts, $da ) ) {
+			# TS_GIT
+			$timezone = null; // Detect timezone from string
+			$sign = $da[7];
+			$da = array_map( 'intval', $da );
+			$da[7] = $sign;
+			$da[0] = "%04d-%02d-%02dT%02d:%02d:%02d.00%s%02d:%02d";
+			$strtime = call_user_func_array( "sprintf", $da );
 		} elseif ( preg_match( '/^(\d{4})\-(\d\d)\-(\d\d) (\d\d):(\d\d):(\d\d)\.*\d*[\+\- ](\d\d)$/', $ts, $da ) ) {
 			# TS_POSTGRES
 		} elseif ( preg_match( '/^(\d{4})\-(\d\d)\-(\d\d) (\d\d):(\d\d):(\d\d)\.*\d* GMT$/', $ts, $da ) ) {
@@ -140,9 +150,10 @@ class MWTimestamp {
 		}
 
 		try {
-			$final = new DateTime( $strtime, new DateTimeZone( 'GMT' ) );
+			$final = new DateTime( $strtime, $timezone );
+			$final->setTimezone( new DateTimeZone( 'GMT' ) );
 		} catch(Exception $e) {
-			throw new TimestampException( __METHOD__ . ' Invalid timestamp format.' );
+			$final = false;
 		}
 
 		if( $final === false ) {

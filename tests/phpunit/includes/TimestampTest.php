@@ -34,6 +34,15 @@ class TimestampTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * Test outputting valid timestamps to different formats.
+	 * @dataProvider provideInputTimestamps
+	 */
+	function testValidInput( $input, $mw ) {
+		$timestamp = new MWTimestamp( $input );
+		$this->assertEquals( (string)$timestamp->getTimestamp( TS_MW ), $mw );
+	}
+
+	/**
 	 * Test an invalid timestamp.
 	 * @expectedException TimestampException
 	 */
@@ -74,6 +83,7 @@ class TimestampTest extends MediaWikiTestCase {
 			array( TS_DB, '2012-07-31 19:01:08', '20120731190108' ),
 			array( TS_ISO_8601, '2012-07-31T19:01:08Z', '20120731190108' ),
 			array( TS_ISO_8601_BASIC, '20120731T190108Z', '20120731190108' ),
+			array( TS_GIT, '2012-07-31 19:01:08 +0000', '20120731190108' ),
 			array( TS_EXIF, '2012:07:31 19:01:08', '20120731190108' ),
 			array( TS_RFC2822, 'Tue, 31 Jul 2012 19:01:08 GMT', '20120731190108' ),
 			array( TS_ORACLE, '31-07-2012 19:01:08.000000', '20120731190108' ),
@@ -83,4 +93,28 @@ class TimestampTest extends MediaWikiTestCase {
 			array( TS_UNIX, '-62135596801', '00001231235959' )
 		);
 	}
+
+	/**
+	 * Returns a list of valid timestamps in the format:
+	 * array( timestamp_of_type, timestamp_in_MW )
+	 */
+	public static function provideInputTimestamps() {
+		return array(
+			// Various formats
+			array( /* TS_UNIX */ '1343761268', '20120731190108' ),
+			array( /* TS_MW */ '20120731190108', '20120731190108' ),
+			array( /* TS_DB */ '2012-07-31 19:01:08', '20120731190108' ),
+			array( /* TS_ISO_8601 */ '2012-07-31T19:01:08Z', '20120731190108' ),
+			array( /* TS_ISO_8601_BASIC */ '20120731T190108Z', '20120731190108' ),
+			array( /* TS_GIT */ '2012-07-31 19:01:08 -0800', '20120801030108' ),
+			array( /* TS_EXIF */ '2012:07:31 19:01:08', '20120731190108' ),
+			array( /* TS_RFC2822 */ 'Tue, 31 Jul 2012 19:01:08 GMT', '20120731190108' ),
+			array( /* TS_ORACLE */ '31-07-2012 19:01:08.000000', '20120731190108' ),
+			array( /* TS_POSTGRES */ '2012-07-31 19:01:08 GMT', '20120731190108' ),
+			// Some extremes and weird values
+			array( /* TS_ISO_8601 */ '9999-12-31T23:59:59Z', '99991231235959' ),
+			array( /* TS_UNIX */ '-62135596801', '00001231235959' )
+		);
+	}
+
 }

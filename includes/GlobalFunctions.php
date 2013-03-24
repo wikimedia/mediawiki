@@ -2435,6 +2435,13 @@ define( 'TS_POSTGRES', 7 );
 define( 'TS_ISO_8601_BASIC', 9 );
 
 /**
+ * Git's timestamp format.
+ * Looks like a modified ISO 8601 using a space instead of T and a space before the timezone.
+ * (eg: "2013-03-23 13:16:24 -0800")
+ */
+define( 'TS_GIT', 10 );
+
+/**
  * Get a timestamp string in one of various formats
  *
  * @param $outputtype Mixed: A timestamp in one of the supported formats, the
