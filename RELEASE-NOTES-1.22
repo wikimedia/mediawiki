@@ -54,6 +54,8 @@ production.
 * Pager's properly validate which fields are allowed to be sorted on.
 * mw.util.tooltipAccessKeyRegexp: The regex now matches "option-" as well.
   Support for Mac "option" was added in 1.16, but the regex was never updated.
+* (bug 111) Post-edit HTTP redirect sends the user to the correct section, when
+  the section's name occurs multiple times.
 
 === API changes in 1.22 ===
 * (bug 46626) xmldoublequote parameter was removed. Because of a bug, the
