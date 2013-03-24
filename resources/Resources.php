@@ -118,6 +118,7 @@ return array(
 	),
 	'skins.vector.js' => array(
 		'scripts' => 'vector/vector.js',
+		'dependencies' => 'jquery.collapsibleTabs',
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
 	),
@@ -165,6 +166,10 @@ return array(
 	'jquery.client' => array(
 		'scripts' => 'resources/jquery/jquery.client.js',
 		'targets' => array( 'desktop', 'mobile' ),
+	),
+	'jquery.collapsibleTabs' => array(
+		'scripts' => 'resources/jquery/jquery.collapsibleTabs.js',
+		'dependencies' => 'jquery.delayedBind',
 	),
 	'jquery.color' => array(
 		'scripts' => 'resources/jquery/jquery.color.js',
