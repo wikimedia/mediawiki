@@ -58,7 +58,7 @@ class SpecialVersion extends SpecialPage {
 		if ( $par !== 'Credits' ) {
 			$text =
 				$this->getMediaWikiCredits() .
-				$this->softwareInformation() .
+				$this->getSoftwareInformation() .
 				$this->getEntryPointInfo() .
 				$this->getExtensionCredits();
 			if ( $wgSpecialVersionShowHooks ) {
@@ -75,7 +75,7 @@ class SpecialVersion extends SpecialPage {
 			// Credits sub page
 
 			// Header
-			$out->addHTML( wfMessage( 'version-credits-summary' )->parseAsBlock() );
+			$out->addHTML( $this->msg( 'version-credits-summary' )->parseAsBlock() );
 
 			$wikiText = file_get_contents( $IP . '/CREDITS' );
 
@@ -91,17 +91,26 @@ class SpecialVersion extends SpecialPage {
 	 *
 	 * @return string
 	 */
-	private static function getMediaWikiCredits() {
-		$ret = Xml::element( 'h2', array( 'id' => 'mw-version-license' ), wfMessage( 'version-license' )->text() );
+	private function getMediaWikiCredits() {
+		$ret = Xml::element( 'h2', array( 'id' => 'mw-version-license' ), $this->msg( 'version-license' )->text() );
 
 		// This text is always left-to-right.
 		$ret .= '<div class="plainlinks">';
 		$ret .= "__NOTOC__
-		" . self::getCopyrightAndAuthorList() . "\n
-		" . wfMessage( 'version-license-info' )->text();
+		" . self::getCopyrightAndAuthors( $this->getLanguage() ) . "\n
+		" . $this->msg( 'version-license-info' )->text();
 		$ret .= '</div>';
 
 		return str_replace( "\t\t", '', $ret ) . "\n";
+	}
+
+	/**
+	 * @see self::getCopyrightAndAuthors
+	 * @deprecated Use self::getCopyrightAndAuthors
+	 */
+	public static function getCopyrightAndAuthorList() {
+		wfDeprecated( __METHOD__, '1.21' );
+		return self::getCopyrightAndAuthors( RequestContext::getMain()->getLanguage() );
 	}
 
 	/**
@@ -109,13 +118,11 @@ class SpecialVersion extends SpecialPage {
 	 *
 	 * @return String
 	 */
-	public static function getCopyrightAndAuthorList() {
-		global $wgLang;
-
+	public static function getCopyrightAndAuthors( $lang ) {
 		if ( defined( 'MEDIAWIKI_INSTALL' ) ) {
-			$othersLink = '[http://www.mediawiki.org/wiki/Special:Version/Credits ' . wfMessage( 'version-poweredby-others' )->text() . ']';
+			$othersLink = '[http://www.mediawiki.org/wiki/Special:Version/Credits ' . wfMessage( 'version-poweredby-others' )->inLanguage( $lang )->text() . ']';
 		} else {
-			$othersLink = '[[Special:Version/Credits|' . wfMessage( 'version-poweredby-others' )->text() . ']]';
+			$othersLink = '[[Special:Version/Credits|' . wfMessage( 'version-poweredby-others' )->inLanguage( $lang )->text() . ']]';
 		}
 
 		$authorList = array(
@@ -130,7 +137,18 @@ class SpecialVersion extends SpecialPage {
 		);
 
 		return wfMessage( 'version-poweredby-credits', date( 'Y' ),
-			$wgLang->listToText( $authorList ) )->text();
+			$lang->listToText( $authorList ) )->inLanguage( $lang )->text();
+	}
+
+	/**
+	 * @see self::getSoftwareInformation
+	 * @deprecated Use self::getSoftwareInformation
+	 */
+	static function softwareInformation() {
+		wfDeprecated( __METHOD__, '1.21' );
+		$specialPage = SpecialPageFactory::getPage( 'Version' );
+		$specialPage->setContext( RequestContext::getMain() );
+		return $specialPage->getSoftwareInformation();
 	}
 
 	/**
@@ -138,25 +156,25 @@ class SpecialVersion extends SpecialPage {
 	 *
 	 * @return string
 	 */
-	static function softwareInformation() {
+	function getSoftwareInformation() {
 		$dbr = wfGetDB( DB_SLAVE );
 
 		// Put the software in an array of form 'name' => 'version'. All messages should
 		// be loaded here, so feel free to use wfMessage in the 'name'. Raw HTML or
 		// wikimarkup can be used.
 		$software = array();
-		$software['[https://www.mediawiki.org/ MediaWiki]'] = self::getVersionLinked();
+		$software['[https://www.mediawiki.org/ MediaWiki]'] = $this->getVersionLinkedText();
 		$software['[http://www.php.net/ PHP]'] = phpversion() . " (" . PHP_SAPI . ")";
 		$software[$dbr->getSoftwareLink()] = $dbr->getServerInfo();
 
 		// Allow a hook to add/remove items.
 		wfRunHooks( 'SoftwareInfo', array( &$software ) );
 
-		$out = Xml::element( 'h2', array( 'id' => 'mw-version-software' ), wfMessage( 'version-software' )->text() ) .
+		$out = Xml::element( 'h2', array( 'id' => 'mw-version-software' ), $this->msg( 'version-software' )->text() ) .
 				Xml::openElement( 'table', array( 'class' => 'wikitable plainlinks', 'id' => 'sv-software' ) ) .
 				"<tr>
-					<th>" . wfMessage( 'version-software-product' )->text() . "</th>
-					<th>" . wfMessage( 'version-software-version' )->text() . "</th>
+					<th>" . $this->msg( 'version-software-product' )->text() . "</th>
+					<th>" . $this->msg( 'version-software-version' )->text() . "</th>
 				</tr>\n";
 
 		foreach ( $software as $name => $version ) {
@@ -206,6 +224,17 @@ class SpecialVersion extends SpecialPage {
 	}
 
 	/**
+	 * @see self::getVersionLinkedText
+	 * @deprecated Use self::getVersionLinkedText
+	 */
+	public static function getVersionLinked() {
+		wfDeprecated( __METHOD__, '1.21' );
+		$specialPage = SpecialPageFactory::getPage( 'Version' );
+		$specialPage->setContext( RequestContext::getMain() );
+		return $specialPage->getVersionLinkedText();
+	}
+
+	/**
 	 * Return a wikitext-formatted string of the MediaWiki version with a link to
 	 * the SVN revision or the git SHA1 of head if available.
 	 * Git is prefered over Svn
@@ -213,15 +242,15 @@ class SpecialVersion extends SpecialPage {
 	 *
 	 * @return mixed
 	 */
-	public static function getVersionLinked() {
+	public function getVersionLinkedText() { 
 		global $wgVersion;
 		wfProfileIn( __METHOD__ );
 
-		$gitVersion = self::getVersionLinkedGit();
+		$gitVersion = $this->getVersionLinkedGit();
 		if ( $gitVersion ) {
 			$v = $gitVersion;
 		} else {
-			$svnVersion = self::getVersionLinkedSvn();
+			$svnVersion = $this->getVersionLinkedSvn();
 			if ( $svnVersion ) {
 				$v = $svnVersion;
 			} else {
@@ -236,7 +265,7 @@ class SpecialVersion extends SpecialPage {
 	/**
 	 * @return string wgVersion + a link to subversion revision of svn BASE
 	 */
-	private static function getVersionLinkedSvn() {
+	private function getVersionLinkedSvn() {
 		global $IP;
 
 		$info = self::getSvnInfo( $IP );
@@ -244,7 +273,7 @@ class SpecialVersion extends SpecialPage {
 			return false;
 		}
 
-		$linkText = wfMessage(
+		$linkText = $this->msg(
 			'version-svn-revision',
 			isset( $info['directory-rev'] ) ? $info['directory-rev'] : '',
 			$info['checkout-rev']
@@ -277,8 +306,8 @@ class SpecialVersion extends SpecialPage {
 	 * @since 1.22 Returns the HEAD date in addition to the sha1 and link
 	 * @return bool|string wgVersion + HEAD sha1 stripped to the first 7 chars with link and date, or false on failure
 	 */
-	private static function getVersionLinkedGit() {
-		global $IP, $wgLang;
+	private function getVersionLinkedGit() {
+		global $IP;
 
 		$gitInfo = new GitInfo( $IP );
 		$headSHA1 = $gitInfo->getHeadSHA1();
@@ -295,7 +324,7 @@ class SpecialVersion extends SpecialPage {
 
 		$gitHeadCommitDate = $gitInfo->getHeadCommitDate();
 		if ( $gitHeadCommitDate ) {
-			$shortSHA1 .= "<br/>" . $wgLang->timeanddate( $gitHeadCommitDate, true );
+			$shortSHA1 .= "<br/>" . $this->getLanguage()->timeanddate( $gitHeadCommitDate, true );
 		}
 
 		return self::getwgVersionLinked() . " $shortSHA1";
