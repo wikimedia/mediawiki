@@ -191,7 +191,7 @@ a:link, a:visited {
 #content a.external.text:after,
 #content a.external.autonumber:after {
 	/* Expand URLs for printing */
-	content: " (" attr(href) ") ";
+	content: " (" attr(href) ")";
 }
 
 #globalWrapper {
