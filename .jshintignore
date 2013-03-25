@@ -1,3 +1,7 @@
+# Generated documentation
+docs/html/
+docs/js/
+
 # third-party libs
 extensions/
 node_modules/
