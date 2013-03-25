@@ -335,6 +335,7 @@ changes to languages because of Bugzilla reports.
   - ShowStats -> ShowSiteStats.
 * BREAKING CHANGE: (bug 38244) Removed the mediawiki.api.titleblacklist module
   and moved it to the TitleBlacklist extension.
+* Special:ActiveUsers is now disabled in miser mode.
 
 == Compatibility ==
 
