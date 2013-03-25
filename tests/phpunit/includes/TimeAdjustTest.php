@@ -4,22 +4,27 @@ class TimeAdjustTest extends MediaWikiLangTestCase {
 	protected function setUp() {
 		parent::setUp();
 
-		$this->setMwGlobals( array(
-			'wgLocalTZoffset' => null,
-			'wgContLang' => Language::factory( 'en' ),
-			'wgLanguageCode' => 'en',
-		) );
-
 		$this->iniSet( 'precision', 15 );
 	}
 
-	# Test offset usage for a given language::userAdjust
-	function testUserAdjust() {
-		global $wgLocalTZoffset, $wgContLang;
+	/**
+	 * Test offset usage for a given language::userAdjust
+	 * @dataProvider dataUserAdjust
+	 */
+	public function testUserAdjust( $date, $localTZoffset, $expected ) {
+		global $wgContLang;
 
-		#  Collection of parameters for Language_t_Offset.
-		# Format: date to be formatted, localTZoffset value, expected date
-		$userAdjust_tests = array(
+		$this->setMwGlobals( 'wgLocalTZoffset', $localTZoffset );
+
+		$this->assertEquals(
+			strval( $expected ),
+			strval( $wgContLang->userAdjust( $date, '' ) ),
+			"User adjust {$date} by {$localTZoffset} minutes should give {$expected}"
+		);
+	}
+
+	public static function dataUserAdjust() {
+		return array(
 			array( 20061231235959, 0, 20061231235959 ),
 			array( 20061231235959, 5, 20070101000459 ),
 			array( 20061231235959, 15, 20070101001459 ),
@@ -31,15 +36,5 @@ class TimeAdjustTest extends MediaWikiLangTestCase {
 			array( 20061231235959, -30, 20061231232959 ),
 			array( 20061231235959, -60, 20061231225959 ),
 		);
-
-		foreach ( $userAdjust_tests as $data ) {
-			$wgLocalTZoffset = $data[1];
-
-			$this->assertEquals(
-				strval( $data[2] ),
-				strval( $wgContLang->userAdjust( $data[0], '' ) ),
-				"User adjust {$data[0]} by {$data[1]} minutes should give {$data[2]}"
-			);
-		}
 	}
 }
