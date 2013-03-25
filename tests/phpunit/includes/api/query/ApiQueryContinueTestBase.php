@@ -36,7 +36,7 @@ abstract class ApiQueryContinueTestBase extends ApiQueryTestBase {
 	/**
 	 * Run query() and compare against expected values
 	 */
-	protected function checkC( $expected, $params, $expectedCount, $id, $continue = true  ) {
+	protected function checkC( $expected, $params, $expectedCount, $id, $continue = true ) {
 		$result = $this->query( $params, $expectedCount, $id, $continue );
 		$this->assertResult( $expected, $result, $id );
 	}
@@ -52,7 +52,7 @@ abstract class ApiQueryContinueTestBase extends ApiQueryTestBase {
 	 */
 	protected function query( $params, $expectedCount, $id, $useContinue = true ) {
 		if ( isset( $params['action'] ) ) {
-			$this->assertEquals( 'query', $params['action'], 'Invalid query action');
+			$this->assertEquals( 'query', $params['action'], 'Invalid query action' );
 		} else {
 			$params['action'] = 'query';
 		}
@@ -64,7 +64,7 @@ abstract class ApiQueryContinueTestBase extends ApiQueryTestBase {
 		$continue = array();
 		do {
 			$request = array_merge( $params, $continue );
-			uksort( $request, function( $a, $b ) {
+			uksort( $request, function ( $a, $b ) {
 				// put 'continue' params at the end - lazy method
 				$a = strpos( $a, 'continue' ) !== false ? 'zzz ' . $a : $a;
 				$b = strpos( $b, 'continue' ) !== false ? 'zzz ' . $b : $b;
@@ -74,7 +74,7 @@ abstract class ApiQueryContinueTestBase extends ApiQueryTestBase {
 			//$reqStr = str_replace( '&', ' & ', $reqStr );
 			$this->assertLessThan( $expectedCount, $count, "$id more data: $reqStr" );
 			if ( $this->mVerbose ) {
-				print ("$id (#$count): $reqStr\n");
+				print ( "$id (#$count): $reqStr\n" );
 			}
 			try {
 				$data = $this->doApiRequest( $request );
@@ -107,48 +107,52 @@ abstract class ApiQueryContinueTestBase extends ApiQueryTestBase {
 			} elseif ( !$useContinue ) {
 				$this->assertFalse( 'Non-smart query must be requested all at once' );
 			}
-		} while( true );
+		} while ( true );
 	}
 
 	private function printResult( $data ) {
 		$q = $data['query'];
 		$print = array();
-		if (isset($q['pages'])) {
-			foreach ($q['pages'] as $p) {
+		if ( isset( $q['pages'] ) ) {
+			foreach ( $q['pages'] as $p ) {
 				$m = $p['title'];
-				if (isset($p['links'])) {
-					$m .= '/[' . implode(',', array_map(
-						function ($v) {
+				if ( isset( $p['links'] ) ) {
+					$m .= '/[' . implode( ',', array_map(
+						function ( $v ) {
 							return $v['title'];
 						},
-						$p['links'])) . ']';
+						$p['links'] ) ) . ']';
 				}
-				if (isset($p['categories'])) {
-					$m .= '/(' . implode(',', array_map(
-						function ($v) {
-							return str_replace('Category:', '', $v['title']);
+				if ( isset( $p['categories'] ) ) {
+					$m .= '/(' . implode( ',', array_map(
+						function ( $v ) {
+							return str_replace( 'Category:', '', $v['title'] );
 						},
-						$p['categories'])) . ')';
+						$p['categories'] ) ) . ')';
 				}
 				$print[] = $m;
 			}
 		}
-		if (isset($q['allcategories'])) {
-			$print[] = '*Cats/(' . implode(',', array_map(
-				function ($v) { return $v['*']; },
-				$q['allcategories'])) . ')';
+		if ( isset( $q['allcategories'] ) ) {
+			$print[] = '*Cats/(' . implode( ',', array_map(
+				function ( $v ) {
+					return $v['*'];
+				},
+				$q['allcategories'] ) ) . ')';
 		}
 		self::GetItems( $q, 'allpages', 'Pages', $print );
 		self::GetItems( $q, 'alllinks', 'Links', $print );
 		self::GetItems( $q, 'alltransclusions', 'Trnscl', $print );
-		print(' ' . implode('  ', $print) . "\n");
+		print( ' ' . implode( '  ', $print ) . "\n" );
 	}
 
 	private static function GetItems( $q, $moduleName, $name, &$print ) {
-		if (isset($q[$moduleName])) {
-			$print[] = "*$name/[" . implode(',',
-				array_map( function ($v) { return $v['title']; },
-						$q[$moduleName])) . ']';
+		if ( isset( $q[$moduleName] ) ) {
+			$print[] = "*$name/[" . implode( ',',
+				array_map( function ( $v ) {
+						return $v['title'];
+					},
+					$q[$moduleName] ) ) . ']';
 		}
 	}
 
@@ -164,12 +168,12 @@ abstract class ApiQueryContinueTestBase extends ApiQueryTestBase {
 			$this->assertEquals( $results, $newResult, 'Repeated result must be the same as before' );
 		} else {
 			$sort = null;
-			foreach( $newResult as $key => $value ) {
+			foreach ( $newResult as $key => $value ) {
 				if ( !$numericIds && $sort === null ) {
 					if ( !is_array( $value ) ) {
 						$sort = false;
 					} elseif ( array_key_exists( 'title', $value ) ) {
-						$sort = function( $a, $b ) {
+						$sort = function ( $a, $b ) {
 							return strcmp( $a['title'], $b['title'] );
 						};
 					} else {

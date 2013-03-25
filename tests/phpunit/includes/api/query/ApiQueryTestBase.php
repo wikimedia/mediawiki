@@ -43,7 +43,7 @@ STR;
 	protected function merge( /*...*/ ) {
 		$request = array();
 		$expected = array();
-		foreach	( func_get_args() as $v ) {
+		foreach ( func_get_args() as $v ) {
 			list( $req, $exp ) = $this->validateRequestExpectedPair( $v );
 			$request = array_merge_recursive( $request, $req );
 			$this->mergeExpected( $expected, $exp );
@@ -57,7 +57,7 @@ STR;
 	 */
 	private function validateRequestExpectedPair( $v ) {
 		$this->assertType( 'array', $v, self::PARAM_ASSERT );
-		$this->assertEquals( 2, count($v), self::PARAM_ASSERT );
+		$this->assertEquals( 2, count( $v ), self::PARAM_ASSERT );
 		$this->assertArrayHasKey( 0, $v, self::PARAM_ASSERT );
 		$this->assertArrayHasKey( 1, $v, self::PARAM_ASSERT );
 		$this->assertType( 'array', $v[0], self::PARAM_ASSERT );
@@ -71,7 +71,7 @@ STR;
 	private function mergeExpected( &$all, $item ) {
 		foreach ( $item as $k => $v ) {
 			if ( array_key_exists( $k, $all ) ) {
-				if ( is_array ( $all[$k] ) ) {
+				if ( is_array( $all[$k] ) ) {
 					$this->mergeExpected( $all[$k], $v );
 				} else {
 					$this->assertEquals( $all[$k], $v );

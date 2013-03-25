@@ -50,8 +50,11 @@ class PHPUnitMaintClass extends Maintenance {
 
 		// Bug 44192 Do not attempt to send a real e-mail
 		Hooks::clear( 'AlternateUserMailer' );
-		Hooks::register( 'AlternateUserMailer',
-			function() { return false; }
+		Hooks::register(
+			'AlternateUserMailer',
+			function () {
+				return false;
+			}
 		);
 	}
 

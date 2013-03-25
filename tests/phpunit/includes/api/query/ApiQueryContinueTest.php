@@ -58,21 +58,21 @@ class ApiQueryContinueTest extends ApiQueryContinueTestBase {
 	 */
 	public function test1List() {
 		$this->mVerbose = false;
-		$mk = function( $l ) {
+		$mk = function ( $l ) {
 			return array(
 				'list' => 'allpages',
 				'apprefix' => 'AQCT-',
 				'aplimit' => "$l",
 			);
 		};
-		$data = $this->query( $mk(99), 1, '1L', false );
+		$data = $this->query( $mk( 99 ), 1, '1L', false );
 
 		// 1 list
-		$this->checkC( $data, $mk(1), 5, '1L-1' );
-		$this->checkC( $data, $mk(2), 3, '1L-2' );
-		$this->checkC( $data, $mk(3), 2, '1L-3' );
-		$this->checkC( $data, $mk(4), 2, '1L-4' );
-		$this->checkC( $data, $mk(5), 1, '1L-5' );
+		$this->checkC( $data, $mk( 1 ), 5, '1L-1' );
+		$this->checkC( $data, $mk( 2 ), 3, '1L-2' );
+		$this->checkC( $data, $mk( 3 ), 2, '1L-3' );
+		$this->checkC( $data, $mk( 4 ), 2, '1L-4' );
+		$this->checkC( $data, $mk( 5 ), 1, '1L-5' );
 	}
 
 	/**
@@ -81,7 +81,7 @@ class ApiQueryContinueTest extends ApiQueryContinueTestBase {
 	 */
 	public function test2Lists() {
 		$this->mVerbose = false;
-		$mk = function( $l1, $l2 ) {
+		$mk = function ( $l1, $l2 ) {
 			return array(
 				'list' => 'allpages|alltransclusions',
 				'apprefix' => 'AQCT-',
@@ -92,12 +92,12 @@ class ApiQueryContinueTest extends ApiQueryContinueTestBase {
 			);
 		};
 		// 2 lists
-		$data = $this->query( $mk(99,99), 1, '2L', false );
-		$this->checkC( $data, $mk(1,1), 5, '2L-11' );
-		$this->checkC( $data, $mk(2,2), 3, '2L-22' );
-		$this->checkC( $data, $mk(3,3), 2, '2L-33' );
-		$this->checkC( $data, $mk(4,4), 2, '2L-44' );
-		$this->checkC( $data, $mk(5,5), 1, '2L-55' );
+		$data = $this->query( $mk( 99, 99 ), 1, '2L', false );
+		$this->checkC( $data, $mk( 1, 1 ), 5, '2L-11' );
+		$this->checkC( $data, $mk( 2, 2 ), 3, '2L-22' );
+		$this->checkC( $data, $mk( 3, 3 ), 2, '2L-33' );
+		$this->checkC( $data, $mk( 4, 4 ), 2, '2L-44' );
+		$this->checkC( $data, $mk( 5, 5 ), 1, '2L-55' );
 	}
 
 	/**
@@ -106,7 +106,7 @@ class ApiQueryContinueTest extends ApiQueryContinueTestBase {
 	 */
 	public function testGen1Prop() {
 		$this->mVerbose = false;
-		$mk = function( $g, $p ) {
+		$mk = function ( $g, $p ) {
 			return array(
 				'generator' => 'allpages',
 				'gapprefix' => 'AQCT-',
@@ -116,12 +116,12 @@ class ApiQueryContinueTest extends ApiQueryContinueTestBase {
 			);
 		};
 		// generator + 1 prop
-		$data = $this->query( $mk(99,99), 1, 'G1P', false );
-		$this->checkC( $data, $mk(1,1), 11, 'G1P-11' );
-		$this->checkC( $data, $mk(2,2), 6, 'G1P-22' );
-		$this->checkC( $data, $mk(3,3), 4, 'G1P-33' );
-		$this->checkC( $data, $mk(4,4), 3, 'G1P-44' );
-		$this->checkC( $data, $mk(5,5), 2, 'G1P-55' );
+		$data = $this->query( $mk( 99, 99 ), 1, 'G1P', false );
+		$this->checkC( $data, $mk( 1, 1 ), 11, 'G1P-11' );
+		$this->checkC( $data, $mk( 2, 2 ), 6, 'G1P-22' );
+		$this->checkC( $data, $mk( 3, 3 ), 4, 'G1P-33' );
+		$this->checkC( $data, $mk( 4, 4 ), 3, 'G1P-44' );
+		$this->checkC( $data, $mk( 5, 5 ), 2, 'G1P-55' );
 	}
 
 	/**
@@ -130,7 +130,7 @@ class ApiQueryContinueTest extends ApiQueryContinueTestBase {
 	 */
 	public function testGen2Prop() {
 		$this->mVerbose = false;
-		$mk = function( $g, $p1, $p2 ) {
+		$mk = function ( $g, $p1, $p2 ) {
 			return array(
 				'generator' => 'allpages',
 				'gapprefix' => 'AQCT-',
@@ -141,17 +141,17 @@ class ApiQueryContinueTest extends ApiQueryContinueTestBase {
 			);
 		};
 		// generator + 2 props
-		$data = $this->query( $mk(99,99,99), 1, 'G2P', false );
-		$this->checkC( $data, $mk(1,1,1), 16, 'G2P-111' );
-		$this->checkC( $data, $mk(2,2,2), 9, 'G2P-222' );
-		$this->checkC( $data, $mk(3,3,3), 6, 'G2P-333' );
-		$this->checkC( $data, $mk(4,4,4), 4, 'G2P-444' );
-		$this->checkC( $data, $mk(5,5,5), 2, 'G2P-555' );
-		$this->checkC( $data, $mk(5,1,1), 10, 'G2P-511' );
-		$this->checkC( $data, $mk(4,2,2), 7, 'G2P-422' );
-		$this->checkC( $data, $mk(2,3,3), 7, 'G2P-233' );
-		$this->checkC( $data, $mk(2,4,4), 5, 'G2P-244' );
-		$this->checkC( $data, $mk(1,5,5), 5, 'G2P-155' );
+		$data = $this->query( $mk( 99, 99, 99 ), 1, 'G2P', false );
+		$this->checkC( $data, $mk( 1, 1, 1 ), 16, 'G2P-111' );
+		$this->checkC( $data, $mk( 2, 2, 2 ), 9, 'G2P-222' );
+		$this->checkC( $data, $mk( 3, 3, 3 ), 6, 'G2P-333' );
+		$this->checkC( $data, $mk( 4, 4, 4 ), 4, 'G2P-444' );
+		$this->checkC( $data, $mk( 5, 5, 5 ), 2, 'G2P-555' );
+		$this->checkC( $data, $mk( 5, 1, 1 ), 10, 'G2P-511' );
+		$this->checkC( $data, $mk( 4, 2, 2 ), 7, 'G2P-422' );
+		$this->checkC( $data, $mk( 2, 3, 3 ), 7, 'G2P-233' );
+		$this->checkC( $data, $mk( 2, 4, 4 ), 5, 'G2P-244' );
+		$this->checkC( $data, $mk( 1, 5, 5 ), 5, 'G2P-155' );
 	}
 
 	/**
@@ -160,7 +160,7 @@ class ApiQueryContinueTest extends ApiQueryContinueTestBase {
 	 */
 	public function testGen1Prop1List() {
 		$this->mVerbose = false;
-		$mk = function( $g, $p, $l ) {
+		$mk = function ( $g, $p, $l ) {
 			return array(
 				'generator' => 'allpages',
 				'gapprefix' => 'AQCT-',
@@ -174,24 +174,24 @@ class ApiQueryContinueTest extends ApiQueryContinueTestBase {
 			);
 		};
 		// generator + 1 prop + 1 list
-		$data = $this->query( $mk(99,99,99), 1, 'G1P1L', false );
-		$this->checkC( $data, $mk(1,1,1), 11, 'G1P1L-111' );
-		$this->checkC( $data, $mk(2,2,2), 6, 'G1P1L-222' );
-		$this->checkC( $data, $mk(3,3,3), 4, 'G1P1L-333' );
-		$this->checkC( $data, $mk(4,4,4), 3, 'G1P1L-444' );
-		$this->checkC( $data, $mk(5,5,5), 2, 'G1P1L-555' );
-		$this->checkC( $data, $mk(5,5,1), 4, 'G1P1L-551' );
-		$this->checkC( $data, $mk(5,5,2), 2, 'G1P1L-552' );
+		$data = $this->query( $mk( 99, 99, 99 ), 1, 'G1P1L', false );
+		$this->checkC( $data, $mk( 1, 1, 1 ), 11, 'G1P1L-111' );
+		$this->checkC( $data, $mk( 2, 2, 2 ), 6, 'G1P1L-222' );
+		$this->checkC( $data, $mk( 3, 3, 3 ), 4, 'G1P1L-333' );
+		$this->checkC( $data, $mk( 4, 4, 4 ), 3, 'G1P1L-444' );
+		$this->checkC( $data, $mk( 5, 5, 5 ), 2, 'G1P1L-555' );
+		$this->checkC( $data, $mk( 5, 5, 1 ), 4, 'G1P1L-551' );
+		$this->checkC( $data, $mk( 5, 5, 2 ), 2, 'G1P1L-552' );
 	}
 
 	/**
 	 * Test smart continue - generator=allpages, prop=links|templates,
-	 *					   list=alllinks|alltransclusions, meta=siteinfo
+	 *                       list=alllinks|alltransclusions, meta=siteinfo
 	 * @medium
 	 */
 	public function testGen2Prop2List1Meta() {
 		$this->mVerbose = false;
-		$mk = function( $g, $p1, $p2, $l1, $l2 ) {
+		$mk = function ( $g, $p1, $p2, $l1, $l2 ) {
 			return array(
 				'generator' => 'allpages',
 				'gapprefix' => 'AQCT-',
@@ -211,16 +211,16 @@ class ApiQueryContinueTest extends ApiQueryContinueTestBase {
 			);
 		};
 		// generator + 1 prop + 1 list
-		$data = $this->query( $mk(99,99,99,99,99), 1, 'G2P2L1M', false );
-		$this->checkC( $data, $mk(1,1,1,1,1), 16, 'G2P2L1M-11111' );
-		$this->checkC( $data, $mk(2,2,2,2,2), 9, 'G2P2L1M-22222' );
-		$this->checkC( $data, $mk(3,3,3,3,3), 6, 'G2P2L1M-33333' );
-		$this->checkC( $data, $mk(4,4,4,4,4), 4, 'G2P2L1M-44444' );
-		$this->checkC( $data, $mk(5,5,5,5,5), 2, 'G2P2L1M-55555' );
-		$this->checkC( $data, $mk(5,5,5,1,1), 4, 'G2P2L1M-55511' );
-		$this->checkC( $data, $mk(5,5,5,2,2), 2, 'G2P2L1M-55522' );
-		$this->checkC( $data, $mk(5,1,1,5,5), 10, 'G2P2L1M-51155' );
-		$this->checkC( $data, $mk(5,2,2,5,5), 5, 'G2P2L1M-52255' );
+		$data = $this->query( $mk( 99, 99, 99, 99, 99 ), 1, 'G2P2L1M', false );
+		$this->checkC( $data, $mk( 1, 1, 1, 1, 1 ), 16, 'G2P2L1M-11111' );
+		$this->checkC( $data, $mk( 2, 2, 2, 2, 2 ), 9, 'G2P2L1M-22222' );
+		$this->checkC( $data, $mk( 3, 3, 3, 3, 3 ), 6, 'G2P2L1M-33333' );
+		$this->checkC( $data, $mk( 4, 4, 4, 4, 4 ), 4, 'G2P2L1M-44444' );
+		$this->checkC( $data, $mk( 5, 5, 5, 5, 5 ), 2, 'G2P2L1M-55555' );
+		$this->checkC( $data, $mk( 5, 5, 5, 1, 1 ), 4, 'G2P2L1M-55511' );
+		$this->checkC( $data, $mk( 5, 5, 5, 2, 2 ), 2, 'G2P2L1M-55522' );
+		$this->checkC( $data, $mk( 5, 1, 1, 5, 5 ), 10, 'G2P2L1M-51155' );
+		$this->checkC( $data, $mk( 5, 2, 2, 5, 5 ), 5, 'G2P2L1M-52255' );
 	}
 
 	/**
@@ -229,7 +229,7 @@ class ApiQueryContinueTest extends ApiQueryContinueTestBase {
 	 */
 	public function testSameGenAndProp() {
 		$this->mVerbose = false;
-		$mk = function( $g, $gDir, $p, $pDir ) {
+		$mk = function ( $g, $gDir, $p, $pDir ) {
 			return array(
 				'titles' => 'AQCT-1',
 				'generator' => 'templates',
@@ -241,31 +241,31 @@ class ApiQueryContinueTest extends ApiQueryContinueTestBase {
 			);
 		};
 		// generator + 1 prop
-		$data = $this->query( $mk(99,true,99,true), 1, 'G=P', false );
+		$data = $this->query( $mk( 99, true, 99, true ), 1, 'G=P', false );
 
-		$this->checkC( $data, $mk(1,true,1,true), 4, 'G=P-1t1t' );
-		$this->checkC( $data, $mk(2,true,2,true), 2, 'G=P-2t2t' );
-		$this->checkC( $data, $mk(3,true,3,true), 2, 'G=P-3t3t' );
-		$this->checkC( $data, $mk(1,true,3,true), 4, 'G=P-1t3t' );
-		$this->checkC( $data, $mk(3,true,1,true), 2, 'G=P-3t1t' );
+		$this->checkC( $data, $mk( 1, true, 1, true ), 4, 'G=P-1t1t' );
+		$this->checkC( $data, $mk( 2, true, 2, true ), 2, 'G=P-2t2t' );
+		$this->checkC( $data, $mk( 3, true, 3, true ), 2, 'G=P-3t3t' );
+		$this->checkC( $data, $mk( 1, true, 3, true ), 4, 'G=P-1t3t' );
+		$this->checkC( $data, $mk( 3, true, 1, true ), 2, 'G=P-3t1t' );
 
-		$this->checkC( $data, $mk(1,true,1,false), 4, 'G=P-1t1f' );
-		$this->checkC( $data, $mk(2,true,2,false), 2, 'G=P-2t2f' );
-		$this->checkC( $data, $mk(3,true,3,false), 2, 'G=P-3t3f' );
-		$this->checkC( $data, $mk(1,true,3,false), 4, 'G=P-1t3f' );
-		$this->checkC( $data, $mk(3,true,1,false), 2, 'G=P-3t1f' );
+		$this->checkC( $data, $mk( 1, true, 1, false ), 4, 'G=P-1t1f' );
+		$this->checkC( $data, $mk( 2, true, 2, false ), 2, 'G=P-2t2f' );
+		$this->checkC( $data, $mk( 3, true, 3, false ), 2, 'G=P-3t3f' );
+		$this->checkC( $data, $mk( 1, true, 3, false ), 4, 'G=P-1t3f' );
+		$this->checkC( $data, $mk( 3, true, 1, false ), 2, 'G=P-3t1f' );
 
-		$this->checkC( $data, $mk(1,false,1,true), 4, 'G=P-1f1t' );
-		$this->checkC( $data, $mk(2,false,2,true), 2, 'G=P-2f2t' );
-		$this->checkC( $data, $mk(3,false,3,true), 2, 'G=P-3f3t' );
-		$this->checkC( $data, $mk(1,false,3,true), 4, 'G=P-1f3t' );
-		$this->checkC( $data, $mk(3,false,1,true), 2, 'G=P-3f1t' );
+		$this->checkC( $data, $mk( 1, false, 1, true ), 4, 'G=P-1f1t' );
+		$this->checkC( $data, $mk( 2, false, 2, true ), 2, 'G=P-2f2t' );
+		$this->checkC( $data, $mk( 3, false, 3, true ), 2, 'G=P-3f3t' );
+		$this->checkC( $data, $mk( 1, false, 3, true ), 4, 'G=P-1f3t' );
+		$this->checkC( $data, $mk( 3, false, 1, true ), 2, 'G=P-3f1t' );
 
-		$this->checkC( $data, $mk(1,false,1,false), 4, 'G=P-1f1f' );
-		$this->checkC( $data, $mk(2,false,2,false), 2, 'G=P-2f2f' );
-		$this->checkC( $data, $mk(3,false,3,false), 2, 'G=P-3f3f' );
-		$this->checkC( $data, $mk(1,false,3,false), 4, 'G=P-1f3f' );
-		$this->checkC( $data, $mk(3,false,1,false), 2, 'G=P-3f1f' );
+		$this->checkC( $data, $mk( 1, false, 1, false ), 4, 'G=P-1f1f' );
+		$this->checkC( $data, $mk( 2, false, 2, false ), 2, 'G=P-2f2f' );
+		$this->checkC( $data, $mk( 3, false, 3, false ), 2, 'G=P-3f3f' );
+		$this->checkC( $data, $mk( 1, false, 3, false ), 4, 'G=P-1f3f' );
+		$this->checkC( $data, $mk( 3, false, 1, false ), 2, 'G=P-3f1f' );
 	}
 
 	/**
@@ -274,7 +274,7 @@ class ApiQueryContinueTest extends ApiQueryContinueTestBase {
 	 */
 	public function testSameGenList() {
 		$this->mVerbose = false;
-		$mk = function( $g, $gDir, $l, $pDir ) {
+		$mk = function ( $g, $gDir, $l, $pDir ) {
 			return array(
 				'generator' => 'allpages',
 				'gapprefix' => 'AQCT-',
@@ -287,27 +287,27 @@ class ApiQueryContinueTest extends ApiQueryContinueTestBase {
 			);
 		};
 		// generator + 1 list
-		$data = $this->query( $mk(99,true,99,true), 1, 'G=L', false );
+		$data = $this->query( $mk( 99, true, 99, true ), 1, 'G=L', false );
 
-		$this->checkC( $data, $mk(1,true,1,true), 5, 'G=L-1t1t' );
-		$this->checkC( $data, $mk(2,true,2,true), 3, 'G=L-2t2t' );
-		$this->checkC( $data, $mk(3,true,3,true), 2, 'G=L-3t3t' );
-		$this->checkC( $data, $mk(1,true,3,true), 5, 'G=L-1t3t' );
-		$this->checkC( $data, $mk(3,true,1,true), 5, 'G=L-3t1t' );
-		$this->checkC( $data, $mk(1,true,1,false), 5, 'G=L-1t1f' );
-		$this->checkC( $data, $mk(2,true,2,false), 3, 'G=L-2t2f' );
-		$this->checkC( $data, $mk(3,true,3,false), 2, 'G=L-3t3f' );
-		$this->checkC( $data, $mk(1,true,3,false), 5, 'G=L-1t3f' );
-		$this->checkC( $data, $mk(3,true,1,false), 5, 'G=L-3t1f' );
-		$this->checkC( $data, $mk(1,false,1,true), 5, 'G=L-1f1t' );
-		$this->checkC( $data, $mk(2,false,2,true), 3, 'G=L-2f2t' );
-		$this->checkC( $data, $mk(3,false,3,true), 2, 'G=L-3f3t' );
-		$this->checkC( $data, $mk(1,false,3,true), 5, 'G=L-1f3t' );
-		$this->checkC( $data, $mk(3,false,1,true), 5, 'G=L-3f1t' );
-		$this->checkC( $data, $mk(1,false,1,false), 5, 'G=L-1f1f' );
-		$this->checkC( $data, $mk(2,false,2,false), 3, 'G=L-2f2f' );
-		$this->checkC( $data, $mk(3,false,3,false), 2, 'G=L-3f3f' );
-		$this->checkC( $data, $mk(1,false,3,false), 5, 'G=L-1f3f' );
-		$this->checkC( $data, $mk(3,false,1,false), 5, 'G=L-3f1f' );
+		$this->checkC( $data, $mk( 1, true, 1, true ), 5, 'G=L-1t1t' );
+		$this->checkC( $data, $mk( 2, true, 2, true ), 3, 'G=L-2t2t' );
+		$this->checkC( $data, $mk( 3, true, 3, true ), 2, 'G=L-3t3t' );
+		$this->checkC( $data, $mk( 1, true, 3, true ), 5, 'G=L-1t3t' );
+		$this->checkC( $data, $mk( 3, true, 1, true ), 5, 'G=L-3t1t' );
+		$this->checkC( $data, $mk( 1, true, 1, false ), 5, 'G=L-1t1f' );
+		$this->checkC( $data, $mk( 2, true, 2, false ), 3, 'G=L-2t2f' );
+		$this->checkC( $data, $mk( 3, true, 3, false ), 2, 'G=L-3t3f' );
+		$this->checkC( $data, $mk( 1, true, 3, false ), 5, 'G=L-1t3f' );
+		$this->checkC( $data, $mk( 3, true, 1, false ), 5, 'G=L-3t1f' );
+		$this->checkC( $data, $mk( 1, false, 1, true ), 5, 'G=L-1f1t' );
+		$this->checkC( $data, $mk( 2, false, 2, true ), 3, 'G=L-2f2t' );
+		$this->checkC( $data, $mk( 3, false, 3, true ), 2, 'G=L-3f3t' );
+		$this->checkC( $data, $mk( 1, false, 3, true ), 5, 'G=L-1f3t' );
+		$this->checkC( $data, $mk( 3, false, 1, true ), 5, 'G=L-3f1t' );
+		$this->checkC( $data, $mk( 1, false, 1, false ), 5, 'G=L-1f1f' );
+		$this->checkC( $data, $mk( 2, false, 2, false ), 3, 'G=L-2f2f' );
+		$this->checkC( $data, $mk( 3, false, 3, false ), 2, 'G=L-3f3f' );
+		$this->checkC( $data, $mk( 1, false, 3, false ), 5, 'G=L-1f3f' );
+		$this->checkC( $data, $mk( 3, false, 1, false ), 5, 'G=L-3f1f' );
 	}
 }

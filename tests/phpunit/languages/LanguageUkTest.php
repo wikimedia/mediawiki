@@ -20,7 +20,7 @@ class LanguageUkTest extends LanguageClassesTestCase {
 	}
 
 	public static function providePlural() {
-		return array (
+		return array(
 			array( 'one', 1 ),
 			array( 'many', 11 ),
 			array( 'one', 91 ),

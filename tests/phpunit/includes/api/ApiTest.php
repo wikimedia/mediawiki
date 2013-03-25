@@ -81,8 +81,7 @@ class ApiTest extends ApiTestCase {
 			"action" => "login",
 			"lgname" => $user->username,
 			"lgpassword" => "bad",
-			)
-		);
+		) );
 
 		$result = $ret[0];
 
@@ -136,7 +135,7 @@ class ApiTest extends ApiTestCase {
 		$token = $result["login"]["token"];
 
 		$ret = $this->doApiRequest(
-	 		array(
+			array(
 				"action" => "login",
 				"lgtoken" => $token,
 				"lgname" => $user->username,

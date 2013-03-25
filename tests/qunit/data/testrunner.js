@@ -55,8 +55,9 @@
 
 	/**
 	 * CompletenessTest
+	 *
+	 * Adds toggle checkbox to header
 	 */
-	// Adds toggle checkbox to header
 	QUnit.config.urlConfig.push( {
 		id: 'completenesstest',
 		label: 'Run CompletenessTest',
@@ -95,8 +96,9 @@
 
 	/**
 	 * Test environment recommended for all QUnit test modules
+	 *
+	 * Whether to log environment changes to the console
 	 */
-	 // Whether to log environment changes to the console
 	QUnit.config.urlConfig.push( 'mwlogenv' );
 
 	/**

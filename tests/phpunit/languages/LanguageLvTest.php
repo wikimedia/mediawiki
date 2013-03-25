@@ -19,7 +19,7 @@ class LanguageLvTest extends LanguageClassesTestCase {
 	}
 
 	public static function providePlural() {
-		return array (
+		return array(
 			array( 'zero', 0 ),
 			array( 'one', 1 ),
 			array( 'other', 11 ),

@@ -122,7 +122,7 @@ class LanguageSrTest extends LanguageClassesTestCase {
 	}
 
 	public static function providePlural() {
-		return array (
+		return array(
 			array( 'one', 1 ),
 			array( 'many', 11 ),
 			array( 'one', 91 ),
@@ -207,8 +207,8 @@ class LanguageSrTest extends LanguageClassesTestCase {
 		return $this->getLang()
 			->mConverter
 			->convertTo(
-			$text, $variant
-		);
+				$text, $variant
+			);
 	}
 
 	function convertToCyrillic( $text ) {

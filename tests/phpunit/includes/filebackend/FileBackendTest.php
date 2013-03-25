@@ -36,7 +36,7 @@ class FileBackendTest extends MediaWikiTestCase {
 			}
 		} else {
 			$this->singleBackend = new FSFileBackend( array(
-				'name'        => 'localtesting',
+				'name' => 'localtesting',
 				'lockManager' => 'fsLockManager',
 				#'parallelize' => 'implicit',
 				'containerPaths' => array(
@@ -45,23 +45,23 @@ class FileBackendTest extends MediaWikiTestCase {
 			) );
 		}
 		$this->multiBackend = new FileBackendMultiWrite( array(
-			'name'        => 'localtesting',
+			'name' => 'localtesting',
 			'lockManager' => 'fsLockManager',
 			'parallelize' => 'implicit',
-			'backends'    => array(
+			'backends' => array(
 				array(
-					'name'          => 'localmultitesting1',
-					'class'         => 'FSFileBackend',
-					'lockManager'   => 'nullLockManager',
+					'name' => 'localmultitesting1',
+					'class' => 'FSFileBackend',
+					'lockManager' => 'nullLockManager',
 					'containerPaths' => array(
 						'unittest-cont1' => "{$tmpPrefix}-localtestingmulti1-cont1",
 						'unittest-cont2' => "{$tmpPrefix}-localtestingmulti1-cont2" ),
 					'isMultiMaster' => false
 				),
 				array(
-					'name'          => 'localmultitesting2',
-					'class'         => 'FSFileBackend',
-					'lockManager'   => 'nullLockManager',
+					'name' => 'localmultitesting2',
+					'class' => 'FSFileBackend',
+					'lockManager' => 'nullLockManager',
 					'containerPaths' => array(
 						'unittest-cont1' => "{$tmpPrefix}-localtestingmulti2-cont1",
 						'unittest-cont2' => "{$tmpPrefix}-localtestingmulti2-cont2" ),
@@ -823,7 +823,7 @@ class FileBackendTest extends MediaWikiTestCase {
 			$status = $this->prepare( array( 'dir' => dirname( $path ) ) );
 			$this->assertGoodStatus( $status,
 				"Preparing $path succeeded without warnings ($backendName)." );
-			$ops[] = array( 'op' => 'create', 'dst' => $path, 'content' => mt_rand(0, 50000) );
+			$ops[] = array( 'op' => 'create', 'dst' => $path, 'content' => mt_rand( 0, 50000 ) );
 			$purgeOps[] = array( 'op' => 'delete', 'src' => $path );
 		}
 		$purgeOps[] = array( 'op' => 'null' );
@@ -873,8 +873,8 @@ class FileBackendTest extends MediaWikiTestCase {
 		foreach ( $srcs as $i => $source ) {
 			$this->prepare( array( 'dir' => dirname( $source ) ) );
 			$ops[] = array(
-				'op'      => 'create', // operation
-				'dst'     => $source, // source
+				'op' => 'create', // operation
+				'dst' => $source, // source
 				'content' => $srcsContent[$i]
 			);
 			$expContent .= $srcsContent[$i];
@@ -1834,7 +1834,9 @@ class FileBackendTest extends MediaWikiTestCase {
 		}
 
 		$iter = $this->backend->getFileList( array( 'dir' => "$base/unittest-cont1/not/exists" ) );
-		foreach ( $iter as $iter ) {} // no errors
+		foreach ( $iter as $iter ) {
+			// no errors
+		}
 	}
 
 	public function testGetDirectoryList() {
@@ -2031,7 +2033,10 @@ class FileBackendTest extends MediaWikiTestCase {
 		}
 
 		$iter = $this->backend->getDirectoryList( array( 'dir' => "$base/unittest-cont1/not/exists" ) );
-		foreach ( $iter as $file ) {} // no errors
+		foreach ( $iter as $file ) {
+			// no errors
+		}
+
 		$items = is_array( $iter ) ? $iter : iterator_to_array( $iter );
 		$this->assertEquals( array(), $items, "Directory listing is empty." );
 
@@ -2071,7 +2076,7 @@ class FileBackendTest extends MediaWikiTestCase {
 			"subdir2/subdir/sub/120-px-file.txt",
 		);
 
-		for ( $i=0; $i<25; $i++ ) {
+		for ( $i = 0; $i < 25; $i++ ) {
 			$status = $this->backend->lockFiles( $paths, LockManager::LOCK_EX );
 			$this->assertEquals( print_r( array(), true ), print_r( $status->errors, true ),
 				"Locking of files succeeded ($backendName) ($i)." );

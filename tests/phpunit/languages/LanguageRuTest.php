@@ -20,7 +20,7 @@ class LanguageRuTest extends LanguageClassesTestCase {
 	}
 
 	public static function providePlural() {
-		return array (
+		return array(
 			array( 'one', 1 ),
 			array( 'many', 11 ),
 			array( 'one', 91 ),
@@ -37,7 +37,7 @@ class LanguageRuTest extends LanguageClassesTestCase {
 
 	/** @dataProvider providePluralTwoForms */
 	function testPluralTwoForms( $result, $value ) {
-		$forms =  array( 'one', 'other' );
+		$forms = array( 'one', 'other' );
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 

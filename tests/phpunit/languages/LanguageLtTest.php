@@ -9,7 +9,7 @@
 class LanguageLtTest extends LanguageClassesTestCase {
 	/** @dataProvider providePlural */
 	function testPlural( $result, $value ) {
-		$forms =  array( 'one', 'few', 'other' );
+		$forms = array( 'one', 'few', 'other' );
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
@@ -19,7 +19,7 @@ class LanguageLtTest extends LanguageClassesTestCase {
 	}
 
 	public static function providePlural() {
-		return array (
+		return array(
 			array( 'other', 0 ),
 			array( 'one', 1 ),
 			array( 'few', 2 ),
@@ -36,13 +36,13 @@ class LanguageLtTest extends LanguageClassesTestCase {
 
 	/** @dataProvider providePluralTwoForms */
 	function testOneFewPlural( $result, $value ) {
-		$forms =  array( 'one', 'other' );
+		$forms = array( 'one', 'other' );
 		// This fails for 21, but not sure why.
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
 	public static function providePluralTwoForms() {
-		return array (
+		return array(
 			array( 'one', 1 ),
 			array( 'other', 2 ),
 			array( 'other', 15 ),
