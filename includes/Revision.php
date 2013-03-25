@@ -1296,7 +1296,7 @@ class Revision implements IDBAccessObject {
 					'old_flags' => $flags,
 				), __METHOD__
 			);
-			$this->mTextId = $dbw->insertId();
+			$this->mTextId = $old_id ?: $dbw->insertId();
 		}
 
 		if ( $this->mComment === null ) $this->mComment = "";
@@ -1346,7 +1346,7 @@ class Revision implements IDBAccessObject {
 
 		$dbw->insert( 'revision', $row, __METHOD__ );
 
-		$this->mId = !is_null( $rev_id ) ? $rev_id : $dbw->insertId();
+		$this->mId = $rev_id ?: $dbw->insertId();
 
 		wfRunHooks( 'RevisionInsertComplete', array( &$this, $data, $flags ) );
 
