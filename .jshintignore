@@ -1,3 +1,6 @@
+# Doxygen documentation
+docs/html
+
 # third-party libs
 extensions/
 node_modules/
