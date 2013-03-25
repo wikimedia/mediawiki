@@ -821,7 +821,7 @@ Sedema qedexekirina $3 ev e: ''$2''",
 'viewprevnext' => '($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-legend' => 'Vebijartinên lêgerrînê',
 'searchmenu-exists' => "'''Rûpeleke bi navê \"[[:\$1]]\" li ser vê wîkiyê heye.'''",
-'searchmenu-new' => 'Rûpela "[[:$1]]" li ser vê derê çêke!',
+'searchmenu-new' => 'Rûpela "[[:$1]]" çêke!',
 'searchhelp-url' => 'Help:Alîkarî',
 'searchprofile-articles' => 'Rûpelên naverokê',
 'searchprofile-project' => 'Rûpelên alîkariyê û projeyê',
@@ -1620,10 +1620,10 @@ Sedemekê binivîse!",
 'ipbreasonotherlist' => 'Sedemeke din',
 'ipbreason-dropdown' => '*Sedemên astengkirinê
 ** vandalîzm
-** agahiya şaş kire gotarekê
+** agahiya şaş dikire gotarekê
 ** naveroka rûpelekê vala kir
 ** girêdanên xerab tevlî rûpelan dikir
-** tiştên tewş dikir gotaran
+** tiştên tewş tevlî gotaran dikir
 ** heqaretkirin
 ** pir hesab bikaranîn
 ** navekî ku nayê pejirandin',
@@ -2120,6 +2120,7 @@ Ji kerema xwe zanibe ku tu bi rastî dixwazî vê rûpelê dîsa çêkî.",
 'blankpage' => 'Rûpela vala',
 
 # Special:Tags
+'tag-filter' => 'Parzûna [[Special:Tags|nîşankirinê]]:',
 'tag-filter-submit' => 'Parzûn',
 'tags-title' => 'Nîşankirin',
 'tags-tag' => 'Tag name',

@@ -11,6 +11,7 @@
  * @author Comp1089
  * @author Haqmar
  * @author Kaganer
+ * @author Matma Rex
  * @author Reedy
  * @author Roustammr
  * @author Sagan
@@ -958,7 +959,7 @@ $3 белдергән сәбәп: ''$2''",
 'currentrev' => 'Ағымдағы версия',
 'currentrev-asof' => '$1, ағымдағы версия',
 'revisionasof' => '$1 версияһы',
-'revision-info' => '<div id="viewingold-warning" style="background: #FFBDBD; border: 1px solid #BB7979; color: #000000; margin: 1em 0 .5em; padding: .5em 1em; vertical-align: middle; font-weight: bold; font-family: Palatino Linotype, Microsoft Sans Serif, Arial Unicode MS, Droid Sans; clear: both;">Хәҙер һеҙ был биттең иҫке, <span id="mw-revision-name">$2</span> тарафынан <span id="mw-revision-date">$1</span> һаҡланған версияһын ҡарайһығыҙ. Уның <span class="plainlinks">[{{fullurl:{{FULLPAGENAME}}}} ағымдағы версиянан] айырмаһы булыуы мөмкин</span>.</div>',
+'revision-info' => 'Версия: $1; $2',
 'previousrevision' => '← Алдағы',
 'nextrevision' => 'Киләһе →',
 'currentrevisionlink' => 'Ағымдағы версия',

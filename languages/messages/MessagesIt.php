@@ -3838,7 +3838,7 @@ Le immagini vengono mostrate alla massima risoluzione disponibile, per gli altri
 
 # Special:BlankPage
 'blankpage' => 'Pagina vuota',
-'intentionallyblankpage' => 'Questa pagina è lasciata volutamente vuota ed è usata per benchmark, ecc.',
+'intentionallyblankpage' => 'Questa pagina è lasciata volutamente vuota.',
 
 # External image whitelist
 'external_image_whitelist' => " #Lasciare questa riga esattamente com'è<pre>

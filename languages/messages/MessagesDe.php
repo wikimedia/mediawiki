@@ -3329,10 +3329,10 @@ Durch das Herunterladen und Öffnen der Datei kann dein Computer beschädigt wer
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'seconds' => '{{PLURAL:$1|$1 Sekunde|$1 Sekunden}}',
 'minutes' => '{{PLURAL:$1|$1 Minute|$1 Minuten}}',
-'hours' => '{{PLURAL:$1|einer Stunde|$1 Stunden}}',
+'hours' => '{{PLURAL:$1|1 Stunde|$1 Stunden}}',
 'days' => '{{PLURAL:$1|$1 Tag|$1 Tage}}',
-'months' => '{{PLURAL:$1|Ein Monat|$1 Monate}}',
-'years' => '{{PLURAL:$1|Ein Jahr|$1 Jahre}}',
+'months' => '{{PLURAL:$1|1 Monat|$1 Monate}}',
+'years' => '{{PLURAL:$1|1 Jahr|$1 Jahre}}',
 'ago' => 'vor $1',
 'just-now' => 'Gerade eben',
 

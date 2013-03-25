@@ -2525,7 +2525,7 @@ $1',
 'tooltip-invert' => 'Hak av boksen for å gøyma endringar på sider i det valde namnerommet (og det tilknytte namnerommet om det er haka av)',
 'namespace_association' => 'Tilknytt namnerom',
 'tooltip-namespace_association' => 'Hak av boksen for at diskusjonssida eller emnenamnerommet knytt til det valde namnerommet skal vera med òg',
-'blanknamespace' => '(Hovud)',
+'blanknamespace' => '(hovud)',
 
 # Contributions
 'contributions' => '{{GENDER:$1|Brukarbidrag}}',
@@ -3916,7 +3916,7 @@ Bilete vert viste i full oppløysing, andre filtypar vert starta direkte i dei t
 'logentry-newusers-create' => 'Brukarkontoen $1 vart oppretta',
 'logentry-newusers-create2' => 'Brukarkontoen $3 vart oppretta av $1',
 'logentry-newusers-byemail' => 'Brukarkontoen $3 vart oppretta av $1 og passord vart sendt med e-post',
-'logentry-newusers-autocreate' => 'Kontoen $1 vart oppretta av seg sjølv',
+'logentry-newusers-autocreate' => 'Brukarkontoen $1 vart {{GENDER:$2|oppretta}} av seg sjølv',
 'logentry-rights-rights' => '$1 endra gruppemedlemskap for $3 frå $4 til $5',
 'logentry-rights-rights-legacy' => '$1 endra gruppemedlemskap for $3',
 'logentry-rights-autopromote' => '$1 vart automatisk forfremja frå $4 til $5',

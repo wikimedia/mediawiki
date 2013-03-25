@@ -603,7 +603,7 @@ Por favor, comuníquello a un [[Special:ListUsers/sysop|administrador]] tomando 
 'filedeleteerror' => 'Non se deu borrado o ficheiro "$1".',
 'directorycreateerror' => 'Non se puido crear o directorio "$1".',
 'filenotfound' => 'Non se deu atopado o ficheiro "$1".',
-'fileexistserror' => 'Resultou imposíbel escribir no ficheiro "$1": O ficheiro xa existe.',
+'fileexistserror' => 'Non se pode escribir no ficheiro "$1": O ficheiro xa existe.',
 'unexpected' => 'Valor inesperado: "$1"="$2".',
 'formerror' => 'Erro: Non se pode enviar o formulario.',
 'badarticleerror' => 'Non pode efectuarse esa acción nesta páxina.',
@@ -1226,7 +1226,7 @@ Asegúrese de que esta modificación da páxina mantén a continuidade históric
 'mergehistory-box' => 'Fusionar as revisións de dúas páxinas:',
 'mergehistory-from' => 'Páxina de orixe:',
 'mergehistory-into' => 'Páxina de destino:',
-'mergehistory-list' => 'Historial de edicións fusionábeis',
+'mergehistory-list' => 'Historial de edicións fusionables',
 'mergehistory-merge' => 'As revisións seguintes de [[:$1]] pódense fusionar con [[:$2]]. Use a columna de botóns de selección para fusionar só as revisións creadasen e antes da hora indicada. Teña en conta que se usa as ligazóns de navegación a columna limparase.',
 'mergehistory-go' => 'Mostrar as edicións que se poden fusionar',
 'mergehistory-submit' => 'Fusionar as revisións',
@@ -2624,10 +2624,10 @@ Explique a razón específica do bloqueo (por exemplo, citando as páxinas concr
 ** Inserir información falsa
 ** Eliminar o contido de páxinas
 ** Ligazóns lixo a sitios externos
-** Inserir textos sen sentido ou inintelixíbeis
+** Inserir textos sen sentido ou inintelixibles
 ** Comportamento intimidatorio/acoso
 ** Abuso de múltiples contas de usuario
-** Nome de usuario inaceptábel',
+** Nome de usuario inaceptable',
 'ipb-hardblock' => 'Impedir que usuarios rexistrados editen desde este enderezo IP',
 'ipbcreateaccount' => 'Previr a creación de contas',
 'ipbemailban' => 'Impedir que o usuario envíe correos electrónicos',
@@ -2761,7 +2761,7 @@ Lembre [[Special:UnlockDB|eliminar o bloqueo]] unha vez completado o seu manteme
 O título vello vaise converter nunha páxina de redirección ao novo título.
 Pode actualizar automaticamente as redireccións que van dar ao título orixinal.
 Se escolle non facelo, asegúrese de verificar que non hai redireccións [[Special:DoubleRedirects|dobres]] ou [[Special:BrokenRedirects|crebadas]].
-Vostede é responsábel de asegurarse de que as ligazóns continúan a apuntar cara a onde se supón que deberían.
+Vostede é responsable de asegurarse de que as ligazóns continúan a apuntar cara a onde se supón que deberían.
 
 Teña en conta que a páxina '''non''' será trasladada se xa existe unha páxina co novo título, a menos que esta última sexa unha redirección e non teña historial de edicións.
 Isto significa que pode volver renomear unha páxina ao seu nome antigo se comete un erro, e que non pode sobrescribir unha páxina que xa existe.
@@ -2772,7 +2772,7 @@ por favor, asegúrese de que entende as consecuencias disto antes de proseguir."
 'movepagetext-noredirectfixer' => "Ao usar o formulario inferior vai cambiar o nome da páxina, movendo todo o seu historial ao novo nome.
 O título vello vaise converter nunha páxina de redirección ao novo título.
 Asegúrese de verificar que non hai redireccións [[Special:DoubleRedirects|dobres]] ou [[Special:BrokenRedirects|crebadas]].
-Vostede é responsábel de asegurarse de que as ligazóns continúan a apuntar cara a onde se supón que deberían.
+Vostede é responsable de asegurarse de que as ligazóns continúan a apuntar cara a onde se supón que deberían.
 
 Teña en conta que a páxina '''non''' será trasladada se xa existe unha páxina co novo título, a menos que esta última sexa unha redirección e non teña historial de edicións.
 Isto significa que pode volver renomear unha páxina ao seu nome antigo se comete un erro, e que non pode sobrescribir unha páxina que xa existe.

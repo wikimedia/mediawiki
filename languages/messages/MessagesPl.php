@@ -782,7 +782,7 @@ Po otrzymaniu go zaloguj się ponownie.',
 'eauthentsent' => 'Potwierdzenie zostało wysłane na adres e‐mail.
 Zanim jakiekolwiek inne wiadomości zostaną wysłane na ten adres, należy wykonać zawarte w mailu instrukcje. Potwierdzisz w ten sposób, że ten adres e‐mail należy do Ciebie.',
 'throttled-mailpassword' => 'Przypomnienie hasła zostało już wysłane w ciągu {{PLURAL:$1|ostatniej godziny|ostatnich $1 godzin}}.
-W celu powstrzymania nadużyć możliwość wysyłania przypomnień została ograniczona do jednego na {{PLURAL:$1|godzinę|$1 godziny|$1 godzin}}.',
+Aby zapobiec nadużyciom nadużyć możliwość wysyłania przypomnień została ograniczona do jednego na {{PLURAL:$1|godzinę|$1 godziny|$1 godzin}}.',
 'mailerror' => 'W trakcie wysyłania wiadomości e‐mail wystąpił błąd: $1',
 'acct_creation_throttle_hit' => 'Z adresu IP, z którego korzystasz {{PLURAL:$1|ktoś już utworzył dziś konto|utworzono dziś $1 konta|utworzono dziś $1 kont}}, co jest maksymalną dopuszczalną liczbą w tym czasie.
 W związku z tym, osoby korzystające z tego adresu IP w chwili obecnej nie mogą założyć kolejnego.',
@@ -2096,6 +2096,8 @@ Strona uznawana jest za ujednoznaczniającą, jeśli zawiera szablon linkowany p
 'pageswithprop' => 'Strony z właściwościami',
 'pageswithprop-legend' => 'Strony z właściwościami',
 'pageswithprop-text' => 'Ta strona zawiera listę stron korzystających z właściwości.',
+'pageswithprop-prop' => 'Nazwa właściwości:',
+'pageswithprop-submit' => 'Pokaż',
 
 'doubleredirects' => 'Podwójne przekierowania',
 'doubleredirectstext' => 'Lista zawiera strony z przekierowaniami do stron, które przekierowują do innej strony.
@@ -4071,7 +4073,7 @@ Grafiki są pokazywane w pełnej rozdzielczości. Inne typy plików są otwieran
 'logentry-newusers-create' => 'Konto użytkownika $1 zostało utworzone',
 'logentry-newusers-create2' => 'Konto użytkownika $3 zostało utworzone przez użytkownika $1',
 'logentry-newusers-byemail' => 'Konto $3 zostało utworzone przez użytkownika $1, hasło wysłano e-mailem',
-'logentry-newusers-autocreate' => '$1 automatycznie tworzy konto użytkownika',
+'logentry-newusers-autocreate' => '$1 automatycznie {{GENDER:$2|utworzył|utworzyła|utworzył}} konto użytkownika',
 'logentry-rights-rights' => '$1 {{GENDER:$2|zmienił|zmieniła}} przynależność $3 do grup ($4 → $5)',
 'logentry-rights-rights-legacy' => '$1 {{GENDER:$2|zmienił|zmieniła}} przynależność $3 do grup',
 'logentry-rights-autopromote' => '$1 automatycznie {{GENDER:$2|zmienił|zmieniła}} przynależność ($4 → $5)',

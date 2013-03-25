@@ -163,7 +163,7 @@ $messages = array(
 'vector-action-unprotect' => 'Хуьн дегишарун',
 'vector-simplesearch-preference' => 'Гегьенш жагъурунин рикIел гъун кутун (кьилди "Вектор" акунар патал)',
 'vector-view-create' => 'Туькlуьрун',
-'vector-view-edit' => 'Дуьзар хъувун',
+'vector-view-edit' => 'Дуьзарин',
 'vector-view-history' => 'Тарихдиз килигун',
 'vector-view-view' => 'Кlелун',
 'vector-view-viewsource' => 'Чешме къалурун',
@@ -315,7 +315,7 @@ $messages = array(
 'actionthrottled' => 'Фадвилин сергьятар',
 
 # Virus scanner
-'virus-scanfailed' => 'Сканди гъалатl (кулег$1)',
+'virus-scanfailed' => 'Сканди гъалатӀ (кулег$1)',
 'virus-unknownscanner' => 'Малумтушир антивирус',
 
 # Login and logout pages
@@ -327,7 +327,7 @@ $messages = array(
 'login' => 'Гьахьун',
 'nav-login-createaccount' => 'Гьахьун/аккаунт туькlуьрун',
 'loginprompt' => 'Системадиз гьахьун патал "куки" -яр куькlуьрна кIанзава',
-'userlogin' => 'ГЬахьун/аккаунт туькlуьрун',
+'userlogin' => 'Гьахьун/аккаунт туькӀуьрун',
 'userloginnocreate' => 'Гьахьун',
 'logout' => 'ЭкъечIун',
 'userlogout' => 'ЭкъечIун',
@@ -340,7 +340,7 @@ $messages = array(
 'userlogin-resetlink' => 'Гьахьунин куьлуь-шуьлуьяр рикlел алатнани?',
 'createaccountmail' => 'Э-чар галаз',
 'createaccountreason' => 'Себеб:',
-'loginerror' => 'ГЬахьунин гъалатI',
+'loginerror' => 'Гьахьунин гъалатӀ',
 'createaccounterror' => 'И аккаунт туькIуьриз мумкин ттуш: $1',
 'loginsuccesstitle' => 'Агалкьунралди гьахьун',
 'wrongpasswordempty' => 'Тавакъу ийида, ичIи тушир парол ттур.',
@@ -866,7 +866,7 @@ $messages = array(
 'disambiguationspage' => 'Template:гзафманавал',
 
 'brokenredirects-edit' => 'дегишарун',
-'brokenredirects-delete' => 'къакъудун',
+'brokenredirects-delete' => 'алудун',
 
 'withoutinterwiki-submit' => 'КЪалурун',
 

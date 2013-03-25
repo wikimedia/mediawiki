@@ -595,8 +595,8 @@ Vinarliga rita inn eftir at tú hevur fingið hana.',
 'blocked-mailpassword' => 'Tín IP adressa er stongd fyri at gera rættingar á síðum, og tí er tað ikki loyvt at brúka funkuna fyri endurskapan av loyniorði, hetta fyri at forða fyri misnýtslu.',
 'eauthentsent' => '↓ Ein váttanar t-postur er sendur til givna t-post bústaðin.
 Áðrenn aðrir teldupostar verða sendir til kontuna, mást tú fylgja leiðbeiningunum í t-postinum, fyri at vátta at kontoin veruliga er tín.',
-'throttled-mailpassword' => 'Ein teldupost við áminning um loyniorði er longu sendur fyri bert {{PLURAL:$1|tíma|$1 tímum}}.
-Fyri at fyribyrja misnýtslu, verður bert ein teldupostur við áminning um loyniorði sendur fyri hvønn/hvørjir {{PLURAL:$1|tíma|$1 tímar}}.',
+'throttled-mailpassword' => 'Ein teldupostur har loyniorðið verður nullstillað er longu sendur fyri bert {{PLURAL:$1|tíma|$1 tímum}} síðan.
+Fyri at fyribyrja misnýtslu, verður bert ein teldupostur við nullstillaðum loyniorði sendur fyri pr. {{PLURAL:$1|tíma|$1 tímar}}.',
 'mailerror' => 'Villa tá t-postur var sendur: $1',
 'acct_creation_throttle_hit' => 'Vitjandi á hesi wiki, sum nýta tína IP addressu, hava stovnað {{PLURAL:$1|1 kontu|$1 kontur}} seinastu dagarnar, sum er mest loyvda hetta tíðarskeið.
 Sum eitt úrslit av hesum, kunnu vitjandi sum brúka hesa IP adressuna ikki stovna fleiri kontur í løtuni.',
@@ -649,7 +649,7 @@ Møguliga hevur tú longu broytt títt loyniorð ella biðið um eitt nýtt fyri
 
 # Special:PasswordReset
 'passwordreset' => 'Nullstilla loyniorðið',
-'passwordreset-text' => 'Útfyll hetta skjalið fyri at fáa eina áminning við t-posti við tínum konto upplýsingum.',
+'passwordreset-text' => 'Útfyll hetta skjalið fyri at nullstilla títt loyniorð.',
 'passwordreset-legend' => 'Nulstilla loyniorðið',
 'passwordreset-disabled' => 'Tað ber ikki til at nullstilla loyniorðið á hesi wiki.',
 'passwordreset-pretext' => '{{PLURAL:$1||Skriva ein av upplýsingunum niðanfyri}}',
@@ -679,8 +679,8 @@ umbønina, ella um tú ert komin í tankar um títt uppruna loyniorð, og tú ik
 ynskir at broyta tað, so kanst tú síggja burtur frá hesum boðum og halda fram at brúka títt gamla loyniorð.',
 'passwordreset-emailelement' => 'Brúkaranavn: $1
 Fyribils loyniorð: $2',
-'passwordreset-emailsent' => 'Ein áminningar teldupostur er blivin sendur.',
-'passwordreset-emailsent-capture' => 'Ein áminningar teldupostur er blivin sendur, sum víst niðanfyri.',
+'passwordreset-emailsent' => 'Ein teldupostur har tú kanst nullstillað loyniorðið er blivin sendur.',
+'passwordreset-emailsent-capture' => 'Ein teldupostur, har ið tú kanst nullstilla loyniorðið, er blivin sendur, sum víst niðanfyri.',
 'passwordreset-emailerror-capture' => 'Ein áminningar teldupostur var gjørdur, sum víst niðanfyri, men tað miseydnaðist at senda til brúkaran: $1',
 
 # Special:ChangeEmail

@@ -2635,30 +2635,31 @@ Recordeu-vos de [[Special:UnlockDB|treure el bloqueig]] quan hàgiu acabat el ma
 'move-page' => 'Mou $1',
 'move-page-legend' => 'Reanomena la pàgina',
 'movepagetext' => "Amb el formulari següent reanomenareu una pàgina, movent tot el seu historial al nou nom.
-El títol anterior es convertirà en una redirecció al títol que hàgiu creat.
-Podeu actualitzar automàticament els enllaços a l'antic títol de la pàgina.
-Si no ho feu, assegureu-vos de verificar que no deixeu redireccions [[Special:DoubleRedirects|dobles]] o [[Special:BrokenRedirects|trencades]].
-Serà de la vostra responsabilitat verificar que els enllaços seguirien apuntant cap a on se suposa que ho han de fer.
+El títol anterior es convertirà en una pàgina de redirecció al nou títol.
+Podeu actualitzar automàticament les redireccions que apuntin al títol original.
+Si no ho feu, assegureu-vos de verificar les redireccions [[Special:DoubleRedirects|dobles]] o [[Special:BrokenRedirects|trencades]].
+Serà de la vostra responsabilitat verificar que els enllaços segueixin apuntant cap a on se suposa que ho han de fer.
 
-Tingueu en compte que la pàgina '''no''' serà traslladada si ja existeix una pàgina amb el títol nou, a no ser que sigui una pàgina buida o una ''redirecció'' sense historial.
+Tingueu en compte que la pàgina '''no''' serà traslladada si ja existeix una pàgina amb el títol nou, a no ser que sigui una redirecció sense més historial.
 Això significa que podeu reanomenar de nou una pàgina al seu títol original si cometeu un error, i que no podeu sobreescriure una pàgina existent.
 
-'''ADVERTÈNCIA!'''
-Açò pot ser un canvi dràstic i inesperat en una pàgina que sigui popular; assegureu-vos d'entendre les conseqüències que comporta abans de seguir endavant.",
-'movepagetext-noredirectfixer' => "El títol anterior es convertirà en un redireccionament al nou títol. 
+'''Atenció!'''
+Açò pot ser un canvi dràstic i inesperat en una pàgina que sigui popular; 
+assegureu-vos d'entendre les conseqüències que comporta abans de seguir endavant.",
+'movepagetext-noredirectfixer' => "Amb el formulari següent podeu reanomenar una pàgina movent tot el seu historial al nom nou.
+El títol anterior es convertirà en una pàgina de redirecció al nou títol. 
+Assegureu-vos de verificar les redireccions [[Special:DoubleRedirects|dobles]] o [[Special:BrokenRedirects|trencades]].
+És responsabilitat vostra assegurar que els enllaços continuen apuntant cap a on se suposa que han d'anar. 
 
-Assegureu-vos de verificar els redireccionaments [[Special:DoubleRedirects|doble]]s i els [[Special:BrokenRedirects|trencat]]s.
-
-Sigueu responsable de fer que els enllaços continuen apuntant cap a on se suposa que han d'anar. 
-
-Tingueu en compte que la pàgina '''no''' serà traslladada si ja existeix una pàgina amb el títol nou proposat, tret del cas que la pàgina és buida o no n'hi ha un historial de redireccionaments. 
-
-Això significa que si reanomeneu per equivocació una pàgina amb el seu nom anterior no ho podreu fer, ja que no es pot sobreescriure una pàgina existent.
+Tingueu en compte que la pàgina '''no''' serà traslladada si ja existeix una pàgina amb el títol nou, a no ser que sigui una redirecció i no tingui més historial. 
+Això significa que podeu reanomenar de nou una pàgina al seu títol original si cometeu un error, i que no podeu sobreescriure una pàgina existent.
  
-'''Avís:''' Això pot ser un canvi dràstic i inesperat per una pàgina popular; si us plau, assegureu-vos que sabeu el que feu abans de continuar.",
-'movepagetalktext' => "La pàgina de discussió associada, si existeix, serà traslladada automàticament '''tret dels següents casos''':
-* Ja hi existeix una pàgina de discussió no buida amb el nou nom, o si
-* la opció de davall es troba desactivada
+'''Atenció!''' 
+Això pot ser un canvi dràstic i inesperat per una pàgina popular; 
+assegureu-vos que sabeu el que feu abans de continuar.",
+'movepagetalktext' => "La pàgina de discussió associada també serà traslladada automàticament '''a no ser que''':
+* Ja existeix una pàgina de discussió no buida amb el nou nom, o
+* Desactiveu la opció de més avall.
 
 En aquests casos, haureu de traslladar o fusionar la pàgina manualment si ho desitgeu.",
 'movearticle' => 'Reanomena la pàgina',

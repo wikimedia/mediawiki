@@ -574,6 +574,7 @@ When that has been done, you can '''[$2 enter your wiki]'''.",
  * @author Shirayuki
  * @author Siebrand
  * @author Umherirrender
+ * @author Waldir
  */
 $messages['qqq'] = array(
 	'config-desc' => '{{desc}}',
@@ -602,6 +603,7 @@ Used as error message.',
 	'config-page-name' => '{{Identical|Name}}',
 	'config-page-options' => '{{Identical|Options}}',
 	'config-page-install' => '{{Identical|Install}}',
+	'config-page-releasenotes' => '{{Identical|Release notes}}',
 	'config-page-copying' => 'This is a link to the full GPL text',
 	'config-restart' => 'Button text to confirm the installation procedure has to be restarted.',
 	'config-copyright' => 'This message follows {{msg-mw|config-env-good}}.
@@ -744,6 +746,7 @@ See also:
 * $1 - full URL of index.php
 See also:
 * {{msg-mw|config-upgrade-done}}',
+	'config-regenerate' => 'This message appears in a button after LocalSettings.php is generated and downloaded at the end of the MediaWiki installation process.',
 	'config-show-table-status' => '{{doc-important|"<code>SHOW TABLE STATUS</code>" is a MySQL command. Do not translate this.}}',
 	'config-db-web-account-same' => 'checkbox label',
 	'config-db-web-create' => 'checkbox label',
@@ -1043,12 +1046,10 @@ U gebruik tans $2.',
 	'config-sqlite-dir' => 'Gids vir SQLite se data:',
 	'config-oracle-def-ts' => 'Standaard tabelruimte:',
 	'config-oracle-temp-ts' => 'Tydelike tabelruimte:',
-	'config-type-ibm_db2' => 'IBM DB2',
 	'config-header-mysql' => 'MySQL-instellings',
 	'config-header-postgres' => 'PostgreSQL-instellings',
 	'config-header-sqlite' => 'SQLite-instellings',
 	'config-header-oracle' => 'Oracle-instellings',
-	'config-header-ibm_db2' => 'Instellings vir IBM DB2',
 	'config-invalid-db-type' => 'Ongeldige databasistipe',
 	'config-missing-db-name' => 'U moet \'n waarde vir "Databasnaam" verskaf',
 	'config-sqlite-readonly' => 'Die lêer <code>$1</code> kan nie geskryf word nie.',
@@ -1056,7 +1057,7 @@ U gebruik tans $2.',
 	'config-upgrade-done-no-regenerate' => 'Opgradering is voltooi.
 
 U kan nou [$1 u wiki gebruik].',
-	'config-regenerate' => 'Herskep <code>LocalSettings.php</code> →',
+	'config-regenerate' => 'Herskep LocalSettings.php →',
 	'config-show-table-status' => 'Die uitvoer van <code>SHOW TABLE STATUS</code> het gefaal!',
 	'config-db-web-account' => 'Databasisgebruiker vir toegang tot die web',
 	'config-mysql-engine' => 'Stoor-enjin:',
@@ -1698,7 +1699,6 @@ ResourceLoader, складнік MediaWiki, будзе абходзіць гэт
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
-	'config-type-ibm_db2' => 'IBM DB2',
 	'config-support-info' => 'MediaWiki падтрымлівае наступныя сыстэмы базаў зьвестак:
 
 $1
@@ -1708,12 +1708,10 @@ $1
 	'config-support-postgres' => '* $1 — вядомая сыстэма базы зьвестак з адкрытым кодам, якая зьяўляецца альтэрнатывай MySQL ([http://www.php.net/manual/en/pgsql.installation.php як кампіляваць PHP з падтрымкай PostgreSQL]). Яна можа ўтрымліваць дробныя памылкі, і не рэкамэндуецца выкарыстоўваць яе для працуючых праектаў.',
 	'config-support-sqlite' => '* $1 — невялікая сыстэма базы зьвестак, якая мае вельмі добрую падтрымку. ([http://www.php.net/manual/en/pdo.installation.php як кампіляваць PHP з падтрымкай SQLite], выкарыстоўвае PDO)',
 	'config-support-oracle' => '* $1 зьяўляецца камэрцыйнай прафэсійнай базай зьвестак. ([http://www.php.net/manual/en/oci8.installation.php Як скампіляваць PHP з падтрымкай OCI8])',
-	'config-support-ibm_db2' => '* $1 — база зьвестак маштабу прадпрыемства. ([http://www.php.net/manual/en/ibm-db2.installation.php Як скампіляваць PHP з падтрымкай IBM DB2])',
 	'config-header-mysql' => 'Налады MySQL',
 	'config-header-postgres' => 'Налады PostgreSQL',
 	'config-header-sqlite' => 'Налады SQLite',
 	'config-header-oracle' => 'Налады Oracle',
-	'config-header-ibm_db2' => 'Налады IBM DB2',
 	'config-invalid-db-type' => 'Няслушны тып базы зьвестак',
 	'config-missing-db-name' => 'Вы павінны ўвесьці значэньне парамэтру «Імя базы зьвестак»',
 	'config-missing-db-host' => 'Вы павінны ўвесьці значэньне парамэтру «Хост базы зьвестак»',
@@ -1775,7 +1773,7 @@ chmod a+w $3</pre>',
 	'config-upgrade-done-no-regenerate' => 'Абнаўленьне скончанае.
 
 Цяпер Вы можаце [$1 пачаць працу з вікі].',
-	'config-regenerate' => 'Рэгенэраваць <code>LocalSettings.php</code> →',
+	'config-regenerate' => 'Рэгенэраваць LocalSettings.php →',
 	'config-show-table-status' => "Запыт '<code>SHOW TABLE STATUS</code>' не атрымаўся!",
 	'config-unknown-collation' => "'''Папярэджаньне:''' база зьвестак выкарыстоўвае нераспазнанае супастаўленьне.",
 	'config-db-web-account' => 'Рахунак базы зьвестак для вэб-доступу',
@@ -1805,7 +1803,6 @@ chmod a+w $3</pre>',
 Гэта болей эфэктыўна за рэжым MySQL UTF-8, і дазваляе Вам выкарыстоўваць увесь дыяпазон сымбаляў Unicode.
 
 У '''рэжыме UTF-8''', MySQL ведае, якая табліцы сымбаляў выкарыстоўваецца ў Вашых зьвестках, і можа адпаведна прадстаўляць і канвэртаваць іх, але гэта не дазволіць Вам захоўваць сымбалі па-за межамі [//en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Базавага шматмоўнага дыяпазону].",
-	'config-ibm_db2-low-db-pagesize' => "Вашая база зьвестак DB2 мае таблічную прасторну зь недастатковым памерам старонкі. Памер старонкі мусіць быць ня менш за '''32к'''.",
 	'config-site-name' => 'Назва вікі:',
 	'config-site-name-help' => 'Назва будзе паказвацца ў загалоўку браўзэра і ў некаторых іншых месцах.',
 	'config-site-name-blank' => 'Увядзіце назву сайта.',
@@ -2224,7 +2221,6 @@ $1
 Това включва сурови данни за потребителите (адреси за е-поща, хеширани пароли), както и изтрити версии на страници и друга чувствителна и с ограничен достъп информация от и за уикито.
 
 Базата от данни е препоръчително да се разположи на друго място, например в <code>/var/lib/mediawiki/yourwiki</code>.",
-	'config-type-ibm_db2' => 'IBM DB2',
 	'config-support-info' => 'МедияУики поддържа следните системи за бази от данни:
 
 $1
@@ -2234,12 +2230,10 @@ $1
 	'config-support-postgres' => '* $1 е популярна система за бази от данни с отворен изходен код, която е алтернатива на MySQL ([http://www.php.net/manual/en/pgsql.installation.php как се компилира PHP с поддръжка на PostgreSQL]). Възможно е все още да има грешки, затова не се препоръчва да се използва в общодостъпна среда.',
 	'config-support-sqlite' => '* $1 е лека система за база от данни, която е много добре поддържана. ([http://www.php.net/manual/en/pdo.installation.php Как се компилира PHP с поддръжка на SQLite], използва PDO)',
 	'config-support-oracle' => '* $1 е комерсиална корпоративна база от данни. ([http://www.php.net/manual/en/oci8.installation.php Как се компилира PHP с поддръжка на OCI8])',
-	'config-support-ibm_db2' => '* $1 е комерсиална фирмена база от данни. ([http://www.php.net/manual/en/ibm-db2.installation.php Как се компилира PHP с поддръжка на IBM DB2])',
 	'config-header-mysql' => 'Настройки за MySQL',
 	'config-header-postgres' => 'Настройки за PostgreSQL',
 	'config-header-sqlite' => 'Настройки за SQLite',
 	'config-header-oracle' => 'Настройки за Oracle',
-	'config-header-ibm_db2' => 'Настройки за IBM DB2',
 	'config-invalid-db-type' => 'Невалиден тип база от данни',
 	'config-missing-db-name' => 'Необходимо е да се въведе стойност за "Име на базата от данни"',
 	'config-missing-db-host' => 'Необходимо е да се въведе стойност за "Хост на базата от данни"',
@@ -2301,7 +2295,7 @@ chmod a+w $3</pre>',
 	'config-upgrade-done-no-regenerate' => 'Обновяването приключи.
 
 Вече е възможно [$1 да използвате уикито].',
-	'config-regenerate' => 'Създаване на <code>LocalSettings.php</code> →',
+	'config-regenerate' => 'Създаване на LocalSettings.php →',
 	'config-show-table-status' => 'Заявката <code>SHOW TABLE STATUS</code> не сполучи!',
 	'config-unknown-collation' => "'''Предупреждение:''' Базата от данни използва неразпозната колация.",
 	'config-db-web-account' => 'Сметка за уеб достъп до базата от данни',
@@ -2926,7 +2920,7 @@ Da hizivaat anezho da VediaWiki $1, klikañ war '''Kenderc'hel'''.",
 	'config-upgrade-done-no-regenerate' => 'Hizivadenn kaset da benn.
 
 Gallout a rit [$1 kregiñ da implijout ho wiki].',
-	'config-regenerate' => 'Adgenel <code>LocalSettings.php</code> →',
+	'config-regenerate' => 'Adgenel LocalSettings.php →',
 	'config-show-table-status' => "C'hwitet ar reked <code>SHOW TABLE STATUS</code> !",
 	'config-unknown-collation' => "'''Diwallit :''' Emañ an diaz roadennoù o renkañ an traoù diouzh un urzh lizherennek dianav.",
 	'config-db-web-account' => 'Kont an diaz roadennoù evit ar voned Kenrouedad',
@@ -3501,7 +3495,6 @@ Zvažte umístění databáze někam zcela jinam, například do <code>/var/lib/
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Věštba',
-	'config-type-ibm_db2' => 'IBM DB2',
 	'config-support-info' => 'MediaWiki podporuje následující databázové systémy:
 
 $1
@@ -3511,12 +3504,10 @@ Pokud v nabídce níže nevidíte databázový systém, který chcete použít, 
 	'config-support-postgres' => '* $1 je populární open-source databázový systém používaný jako alternativa k MySQL ([http://www.php.net/manual/en/pgsql.installation.php jak přeložit PHP s podporou PostgreSQL]). Mohou se vyskytnout ještě nějaké menší chyby, použití v produkčním prostředí se nedoporučuje.',
 	'config-support-sqlite' => '* $1 je velmi dobře podporovaný lehký databázový systém. ([http://www.php.net/manual/en/pdo.installation.php Jak přeložit PHP s podporou SQLite], používá PDO)',
 	'config-support-oracle' => '* $1 je komerční podniková databáze. ([http://www.php.net/manual/en/oci8.installation.php Jak přeložit PHP s podporou OCI8])',
-	'config-support-ibm_db2' => '* $1 je komerční podniková databáze. ([http://www.php.net/manual/en/ibm-db2.installation.php Jak přeložit PHP s podporou IBM DB2])',
 	'config-header-mysql' => 'Nastavení MySQL',
 	'config-header-postgres' => 'Nastavení PostgreSQL',
 	'config-header-sqlite' => 'Nastavení SQLite',
 	'config-header-oracle' => 'Nastavení Oracle',
-	'config-header-ibm_db2' => 'Nastavení IBM DB2',
 	'config-invalid-db-type' => 'Chybný typ databáze',
 	'config-missing-db-name' => 'Musíte zadat hodnotu pro „Jméno databáze“',
 	'config-missing-db-host' => 'Musíte zadat hodnotu pro „Databázový server“',
@@ -3578,7 +3569,7 @@ To se ale '''nedoporučuje''', pokud s wiki nemáte problémy.",
 	'config-upgrade-done-no-regenerate' => 'Aktualizace byla dokončena.
 
 Svou wiki teď můžete [$1 začít používat].',
-	'config-regenerate' => 'Přegenerovat <code>LocalSettings.php</code> →',
+	'config-regenerate' => 'Přegenerovat LocalSettings.php →',
 	'config-show-table-status' => 'Dotaz <code>SHOW TABLE STATUS</code> se nezdařil!',
 	'config-unknown-collation' => "'''Upozornění:''' Databáze používá nerozpoznané řazení.",
 	'config-db-web-account' => 'Databázový účet pro webový přístup',
@@ -3608,7 +3599,6 @@ Databáze MyISAM bývají poškozeny častěji než databáze InnoDB.",
 To je výkonnější než UTF-8 režim MySQL a umožňuje využít plný rozsah znaků Unicode.
 
 V '''režimu UTF-8''' bude MySQL znát znakovou sadu vašich dat a může je příslušně zobrazovat a převádět, ale neumožní vám uložit znaky mimo [//en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Basic Multilingual Plane].",
-	'config-ibm_db2-low-db-pagesize' => "Vaše DB2 databáze má implicitní tabulkový prostor s nedostatečnou velikostí stránky. Velikost stránky musí být minimálně '''32K'''.",
 	'config-site-name' => 'Název wiki:',
 	'config-site-name-help' => 'Bude se zobrazovat v titulku prohlížeče a na dalších místech.',
 	'config-site-name-blank' => 'Zadejte název serveru.',
@@ -3940,7 +3930,7 @@ Dieses Programm ist freie Software, d. h. es kann, gemäß den Bedingungen der v
 
 Dieses Programm wird in der Hoffnung verteilt, dass es nützlich sein wird, allerdings '''ohne jegliche Garantie''' und sogar ohne die implizierte Garantie einer '''Marktgängigkeit''' oder '''Eignung für einen bestimmten Zweck'''. Hierzu sind weitere Hinweise in der ''GNU General Public License'' enthalten.
 
-Eine <doclink href=Copying>Kopie der ''GNU General Public License''</doclink> sollte zusammen mit diesem Programm verteilt worden sein. Sofern dies nicht der Fall war, kann eine Kopie bei der Free Software Foundation Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA, schriftlich angefordert oder auf deren Website [http://www.gnu.org/copyleft/gpl.html online gelesen] werden.",
+Eine <doclink href=Copying>Kopie der GNU General Public License</doclink> sollte zusammen mit diesem Programm verteilt worden sein. Sofern dies nicht der Fall war, kann eine Kopie bei der Free Software Foundation Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA, schriftlich angefordert oder auf deren Website [http://www.gnu.org/copyleft/gpl.html online gelesen] werden.",
 	'config-sidebar' => '* [//www.mediawiki.org/wiki/MediaWiki/de Website von MediaWiki]
 * [//www.mediawiki.org/wiki/Help:Contents/de Benutzeranleitung]
 * [//www.mediawiki.org/wiki/Manual:Contents/de Administratorenanleitung]
@@ -4003,7 +3993,7 @@ Der Installationsvorgang könnte daher scheitern!",
 	'config-xcache' => '[http://xcache.lighttpd.net/ XCache] ist installiert',
 	'config-apc' => '[http://www.php.net/apc APC] ist installiert',
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] ist installiert',
-	'config-no-cache' => "'''Warnung:''' [http://www.php.net/apc APC], [http://xcache.lighttpd.net/ XCache] oder [http://www.iis.net/download/WinCacheForPhp WinCache] konnten nicht gefunden werden.
+	'config-no-cache' => "'''Warnung:''' [http://www.php.net/apc APC], [http://xcache.lighttpd.net/ XCache] oder [http://www.iis.net/download/WinCacheForPhp WinCache] wurden nicht gefunden.
 Das Objektcaching kann daher nicht aktiviert werden.",
 	'config-mod-security' => "'''Warnung:''' Auf dem Webserver wurde [http://modsecurity.org/ ModSecurity] aktiviert. Sofern falsch konfiguriert, kann dies zu Problemen mit MediaWiki sowie anderer Software auf dem Server führen und es Benutzern ermöglichen beliebige Inhalte im Wiki einzustellen.
 Für weitere Informationen empfehlen wir die [http://modsecurity.org/documentation/ Dokumentation zu ModSecurity] oder den Kontakt zum Hoster, sofern Fehler auftreten.",
@@ -4179,7 +4169,7 @@ Dies wird '''nicht empfohlen''', es sei denn, es treten Probleme mit dem Wiki au
 	'config-upgrade-done-no-regenerate' => 'Die Aktualisierung ist abgeschlossen.
 
 Das Wiki kann nun [$1 genutzt werden].',
-	'config-regenerate' => '<code>LocalSettings.php</code> neu erstellen →',
+	'config-regenerate' => 'LocalSettings.php neu erstellen →',
 	'config-show-table-status' => 'Die Abfrage <code>SHOW TABLE STATUS</code> ist gescheitert!',
 	'config-unknown-collation' => "'''Warnung:''' Die Datenbank nutzt eine unbekannte Kollation.",
 	'config-db-web-account' => 'Datenbankkonto für den Webzugriff',
@@ -4874,7 +4864,6 @@ Considere la posibilidad de poner la base de datos en algún otro sitio, por eje
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
-	'config-type-ibm_db2' => 'IBM DB2',
 	'config-support-info' => 'MediaWiki es compatible con los siguientes sistemas de bases de datos:
 
 $1
@@ -4884,12 +4873,10 @@ Si no encuentras en el listado el sistema de base de datos que estás intentando
 	'config-support-postgres' => '$1 es un popular sistema de base de datos de código abierto, alternativa a MySQL. ([http://www.php.net/manual/es/pgsql.installation.php cómo compilar PHP con compatibilidad PostgreSQL]). Puede haber algunos defectos menores destacables, y no es recomendable para uso en un entorno de producción.',
 	'config-support-sqlite' => '* $1 es una base de datos ligera con gran compatibilidad con MediaWiki ([http://www.php.net/manual/es/pdo.installation.php cómo compilar PHP con compatibilidad SQLite usando PDO]).',
 	'config-support-oracle' => '* $1 es una base de datos comercial a nivel empresarial ([http://www.php.net/manual/es/oci8.installation.php cómo compilar PHP con compatibilidad con OCI8])',
-	'config-support-ibm_db2' => '* $1 es una base de datos comercial a nivel empresarial ([http://www.php.net/manual/es/ibm-db2.installation.php cómo compilar PHP con compatibilidad con ibm_db2]).', # Fuzzy
 	'config-header-mysql' => 'Configuración de MySQL',
 	'config-header-postgres' => 'Configuración de PostgreSQL',
 	'config-header-sqlite' => 'Configuración de SQLite',
 	'config-header-oracle' => 'Configuración de Oracle',
-	'config-header-ibm_db2' => 'Configuración de IBM DB2',
 	'config-invalid-db-type' => 'Tipo de base de datos inválida',
 	'config-missing-db-name' => 'Debes introducir un valor para "Nombre de la base de datos"',
 	'config-missing-db-host' => 'Debe introducir un valor para "Servidor (host) de base de datos"',
@@ -4950,7 +4937,7 @@ Esto '''no se recomienda''' a menos que esté teniendo problemas con su wiki.",
 	'config-upgrade-done-no-regenerate' => 'Actualización completa.
 
 Usted puede ahora [$1  empezar a usar su wiki].',
-	'config-regenerate' => 'Regenerar <code>LocalSettings.php</code> →',
+	'config-regenerate' => 'Regenerar LocalSettings.php →',
 	'config-show-table-status' => '<code>SHOW TABLE STATUS</code> ha fallado!',
 	'config-unknown-collation' => "'''Advertencia:''' La base de datos está utilizando una intercalación no reconocida.",
 	'config-db-web-account' => 'Cuenta de base de datos para acceso Web',
@@ -4980,7 +4967,6 @@ Las bases de datos MyISAM tienden a corromperse más a menudo que las bases de d
 Esto es más eficiente que el modo UTF-8 de MySQL y le permite utilizar la gama completa de caracteres Unicode.
 
 En '''modo UTF-8''', MySQL sabrá qué conjunto de caracteres emplean sus datos y puede presentarlos y convertirlos adecuadamente, pero no le permitirá almacenar caracteres por encima del [//en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes plano multilingüe básico].",
-	'config-ibm_db2-low-db-pagesize' => "Su base de datos DB2 tiene un espacio de tablas por defecto con un tamaño de página insuficiente. El tamaño de página tiene que ser '''32 K''' o superior.",
 	'config-site-name' => 'Nombre del wiki:',
 	'config-site-name-help' => 'Esto aparecerá en la barra de título del navegador y en varios otros lugares.',
 	'config-site-name-blank' => 'Ingresar un nombre de sitio.',
@@ -5568,13 +5554,10 @@ Asennus saattaa epäonnistua!",
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
-	'config-type-ibm_db2' => 'IBM DB2',
-	'config-support-ibm_db2' => '* $1 on kaupallinen tietokanta yrityskäyttöön.', # Fuzzy
 	'config-header-mysql' => 'MySQL-asetukset',
 	'config-header-postgres' => 'PostgreSQL-asetukset',
 	'config-header-sqlite' => 'SQLite-asetukset',
 	'config-header-oracle' => 'Oracle-asetukset',
-	'config-header-ibm_db2' => 'IBM DB2 -asetukset',
 	'config-invalid-db-type' => 'Virheellinen tietokantatyyppi',
 	'config-missing-db-name' => 'Kenttä »Tietokannan nimi» on pakollinen',
 	'config-invalid-db-name' => '”$1” ei kelpaa tietokannan nimeksi.
@@ -5598,7 +5581,7 @@ Tämä '''ei ole suositeltavaa''', jos wikissäsi ei ole ongelmia.",
 	'config-upgrade-done-no-regenerate' => 'Päivitys valmis.
 
 Voit [$1 aloittaa wikin käytön].',
-	'config-regenerate' => 'Luo <code>LocalSettings.php</code> uudelleen →',
+	'config-regenerate' => 'Luo LocalSettings.php uudelleen →',
 	'config-show-table-status' => 'Kysely <code>SHOW TABLE STATUS</code> epäonnistui!',
 	'config-mysql-engine' => 'Tallennusmoottori',
 	'config-mysql-innodb' => 'InnoDB',
@@ -5903,7 +5886,6 @@ Envisagez de placer la base de données ailleurs, par exemple dans <code>/var/li
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
-	'config-type-ibm_db2' => 'IBM DB2',
 	'config-support-info' => "MediaWiki supporte ces systèmes de bases de données :
 
 $1
@@ -5913,12 +5895,10 @@ Si vous ne voyez pas le système de base de données que vous essayez d'utiliser
 	'config-support-postgres' => "* $1 est un système de base de données populaire et ''open source'' qui peut être une alternative à MySQL ([http://www.php.net/manual/en/pgsql.installation.php how to compile PHP with PostgreSQL support]). Il peut contenir quelques bogues mineurs et n'est pas recommandé dans un environnement de production.",
 	'config-support-sqlite' => '* $1 est un système de base de données léger qui est bien supporté. ([http://www.php.net/manual/en/pdo.installation.php How to compile PHP with SQLite support], utilise PDO)',
 	'config-support-oracle' => '* $1 est un système commercial de gestion de base de données d’entreprise. ([http://www.php.net/manual/en/oci8.installation.php Comment compiler PHP avec le support OCI8])',
-	'config-support-ibm_db2' => "* $1 est une base de données d'entreprise commerciale. ([http://www.php.net/manual/en/ibm-db2.installation.php Comment compiler PHP avec le support de DB2 d’IBM])",
 	'config-header-mysql' => 'Paramètres de MySQL',
 	'config-header-postgres' => 'Paramètres de PostgreSQL',
 	'config-header-sqlite' => 'Paramètres de SQLite',
 	'config-header-oracle' => 'Paramètres d’Oracle',
-	'config-header-ibm_db2' => 'paramètres de IBM DB2',
 	'config-invalid-db-type' => 'Type de base de données non valide',
 	'config-missing-db-name' => 'Vous devez saisir une valeur pour « Nom de la base de données »',
 	'config-missing-db-host' => "Vous devez entrer une valeur pour « l'hôte de la base de données »",
@@ -5980,7 +5960,7 @@ Ce '''n'est pas recommandé''' sauf si vous rencontrez des problèmes avec votre
 	'config-upgrade-done-no-regenerate' => 'Mise à jour terminée.
 
 Vous pouvez maintenant [$1 commencer à utiliser votre wiki].',
-	'config-regenerate' => 'Regénérer <code>LocalSettings.php</code> →',
+	'config-regenerate' => 'Regénérer LocalSettings.php →',
 	'config-show-table-status' => 'Échec de la requête <code>SHOW TABLE STATUS</code> !',
 	'config-unknown-collation' => "'''Attention:''' La base de données effectue un classement alphabétique (''collation'') inconnu.",
 	'config-db-web-account' => "Compte de la base de données pour l'accès Web",
@@ -6007,7 +5987,6 @@ Si votre installation MySQL supporte InnoDB, il est fortement recommandé que vo
 
 En ''mode binaire'', MediaWiki stocke le texte UTF-8 dans des champs binaires de la base de données. C'est plus efficace que le ''mode UTF-8'' de MySQL, et vous permet d'utiliser toute la gamme des caractères Unicode.
 En ''mode UTF-8'', MySQL connaîtra le jeu de caractères de vos données et pourra présenter et convertir les données de manière appropriée, mais il ne vous laissera pas stocker les caractères au-dessus du [//en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes plan multilingue de base] (en anglais).",
-	'config-ibm_db2-low-db-pagesize' => "Votre base de données DB2 a un espace de stockage par défaut avec un pagesize insuffisant. Le pagesize doit être au minimum '''32K'''.",
 	'config-site-name' => 'Nom du wiki :',
 	'config-site-name-help' => 'Il apparaîtra dans la barre de titre du navigateur et en divers autres endroits.',
 	'config-site-name-blank' => 'Entrez un nom de site.',
@@ -6286,18 +6265,16 @@ Portant, MediaWiki at fôta de PHP $2 ou ben ples hôt.',
 	'config-sqlite-dir' => 'Dossiér de les balyês SQLite :',
 	'config-oracle-def-ts' => "Èspâço de stocâjo (''tablespace'') per dèfôt :",
 	'config-oracle-temp-ts' => "Èspâço de stocâjo (''tablespace'') temporèro :",
-	'config-type-ibm_db2' => 'IBM DB2',
 	'config-header-mysql' => 'Paramètres de MySQL',
 	'config-header-postgres' => 'Paramètres de PostgreSQL',
 	'config-header-sqlite' => 'Paramètres de SQLite',
 	'config-header-oracle' => 'Paramètres d’Oracle',
-	'config-header-ibm_db2' => 'Paramètres d’IBM DB2',
 	'config-invalid-db-type' => 'Tipo de bâsa de balyês envalido',
 	'config-missing-db-name' => 'Vos dête buchiér una valor por « Nom de la bâsa de balyês »',
 	'config-missing-db-host' => 'Vos dête buchiér una valor por « Hôto de la bâsa de balyês »',
 	'config-missing-db-server-oracle' => 'Vos dête buchiér una valor por « TNS de la bâsa de balyês »',
 	'config-sqlite-readonly' => 'Lo fichiér <code>$1</code> est pas accèssiblo en ècritura.',
-	'config-regenerate' => 'Refâre <code>LocalSettings.php</code> →',
+	'config-regenerate' => 'Refâre LocalSettings.php →',
 	'config-show-table-status' => 'Falyita de la requéta <code>SHOW TABLE STATUS</code> !',
 	'config-db-web-account' => 'Compto de la bâsa de balyês por l’accès vouèbe',
 	'config-db-web-account-same' => 'Utilisâd lo mémo compto que por l’enstalacion',
@@ -6720,7 +6697,6 @@ Considere poñer a base de datos nun só lugar, por exemplo en <code>/var/lib/me
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
-	'config-type-ibm_db2' => 'IBM DB2',
 	'config-support-info' => 'MediaWiki soporta os seguintes sistemas de bases de datos:
 
 $1
@@ -6730,12 +6706,10 @@ Se non ve listado a continuación o sistema de base de datos que intenta usar, s
 	'config-support-postgres' => '* $1 é un sistema de base de datos popular e de código aberto como alternativa a MySQL ([http://www.php.net/manual/en/pgsql.installation.php como compilar o PHP con soporte PostgreSQL]). É posible que haxa algúns pequenos erros e non se recomenda o seu uso nunha contorna de produción.',
 	'config-support-sqlite' => '* $1 é un sistema de base de datos lixeiro moi ben soportado. ([http://www.php.net/manual/en/pdo.installation.php Como compilar o PHP con soporte SQLite], emprega PDO)',
 	'config-support-oracle' => '* $1 é un sistema comercial de xestión de base de datos de empresa. ([http://www.php.net/manual/en/oci8.installation.php Como compilar o PHP con soporte OCI8])',
-	'config-support-ibm_db2' => '* $1 é unha base de datos de empresa comercial. ([http://www.php.net/manual/en/ibm-db2.installation.php Como compilar o PHP con soporte IBM DB2])',
 	'config-header-mysql' => 'Configuración do MySQL',
 	'config-header-postgres' => 'Configuración do PostgreSQL',
 	'config-header-sqlite' => 'Configuración do SQLite',
 	'config-header-oracle' => 'Configuración do Oracle',
-	'config-header-ibm_db2' => 'Configuración de IBM DB2',
 	'config-invalid-db-type' => 'Tipo de base de datos incorrecto',
 	'config-missing-db-name' => 'Debe escribir un valor "Nome da base de datos"',
 	'config-missing-db-host' => 'Debe escribir un valor "Servidor da base de datos"',
@@ -6797,7 +6771,7 @@ Isto '''non é recomendable''' a menos que estea a ter problemas co seu wiki.",
 	'config-upgrade-done-no-regenerate' => 'Actualización completada.
 
 Xa pode [$1 comezar a usar o seu wiki].',
-	'config-regenerate' => 'Rexenerar <code>LocalSettings.php</code> →',
+	'config-regenerate' => 'Rexenerar LocalSettings.php →',
 	'config-show-table-status' => 'A pescuda <code>SHOW TABLE STATUS</code> fallou!',
 	'config-unknown-collation' => "'''Atención:''' A base de datos está a empregar unha clasificación alfabética irrecoñecible.",
 	'config-db-web-account' => 'Conta na base de datos para o acceso á internet',
@@ -6828,7 +6802,6 @@ Isto é máis eficaz ca o modo UTF-8 de MySQL e permítelle usar o rango complet
 
 No '''modo UTF-8''', MySQL saberá o xogo de caracteres dos seus datos e pode presentar e converter os datos de maneira axeitada,
 pero non lle deixará gardar caracteres por riba do [//en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes plan multilingüe básico].",
-	'config-ibm_db2-low-db-pagesize' => "A súa base de datos DB2 ten un espazo de táboa cun tamaño de páxina insuficiente. O tamaño de páxina debe ser '''32k''' ou maior.",
 	'config-site-name' => 'Nome do wiki:',
 	'config-site-name-help' => 'Isto aparecerá na barra de títulos do navegador e noutros lugares.',
 	'config-site-name-blank' => 'Escriba o nome do sitio.',
@@ -7438,7 +7411,6 @@ $1
 כדאי לשקול לשים את מסד הנתונים במקום אחר לגמרי, למשל ב־<code dir="ltr">/var/lib/mediawiki/yourwik</code>.',
 	'config-oracle-def-ts' => 'מרחב טבלאות לפי בררת מחדל (default tablespace):',
 	'config-oracle-temp-ts' => 'מרחב טבלאות זמני (temporary tablespace):',
-	'config-type-ibm_db2' => 'IBM DB2',
 	'config-support-info' => 'מדיה־ויקי תומכת במערכות מסדי הנתונים הבאות:
 
 $1
@@ -7448,12 +7420,10 @@ $1
 	'config-support-postgres' => '$1 הוא מסד נתונים נפוץ בקוד פתוח והוא נפוץ בתור חלופה ל־MySQL (ר׳ [http://www.php.net/manual/en/pgsql.installation.php how to compile PHP with PostgreSQL support]). ייתכן שיש בתצורה הזאת באגים מסוימים והיא לא מומלצת לסביבות מבצעיות.',
 	'config-support-sqlite' => '* $1 הוא מסד נתונים קליל עם תמיכה טובה מאוד. (ר׳ [http://www.php.net/manual/en/pdo.installation.php How to compile PHP with SQLite support], משתמש ב־PDO)',
 	'config-support-oracle' => '* $1 הוא מסד נתונים עסקי מסחרי. (ר׳ [http://www.php.net/manual/en/oci8.installation.php How to compile PHP with OCI8 support])',
-	'config-support-ibm_db2' => '* $1 הוא מסד נתונים מסחרי ארגוני. ([http://www.php.net/manual/en/ibm-db2.installation.php How to compile PHP with IBM DB2 support])',
 	'config-header-mysql' => 'הגדרות MySQL',
 	'config-header-postgres' => 'הגדרות PostgreSQL',
 	'config-header-sqlite' => 'הגדרות SQLite',
 	'config-header-oracle' => 'הגדרות Oracle',
-	'config-header-ibm_db2' => 'תצורת IBM DB2',
 	'config-invalid-db-type' => 'סוג מסד הנתונים שגוי',
 	'config-missing-db-name' => 'עליך להזין ערך עבור "שם מסד הנתונים"',
 	'config-missing-db-host' => 'יש להכניס ערך לשדה "שרת מסד הנתונים"',
@@ -7515,7 +7485,7 @@ chmod a+w $3</pre></div>',
 	'config-upgrade-done-no-regenerate' => 'השדרוג הושלם.
 
 עכשיו אפשר [$1 להתחיל להשתמש בוויקי שלכם].',
-	'config-regenerate' => 'לחולל מחדש את <code>LocalSettings.php</code> ←',
+	'config-regenerate' => 'לחולל מחדש את LocalSettings.php ←',
 	'config-show-table-status' => 'שאילתת <code>SHOW TABLE STATUS</code> נכשלה!',
 	'config-unknown-collation' => "'''אזהרה:''' מסד הנתונים משתמש בשיטת מיון שאינה מוּכּרת.",
 	'config-db-web-account' => 'חשבון במסד הנתונים לגישה מהרשת',
@@ -7545,7 +7515,6 @@ chmod a+w $3</pre></div>',
 זה יעיל יותר ממצב UTF-8 של MySQL ומאפשר לכם להשתמש בכל הטווח של תווי יוניקוד.
 
 ב'''מצב UTF-8'''&rlm; (UTF-8 mode)&rlm; MySQL יֵדַע מה קבוצת התווים (character set) של הטקסט שלכם ויציג וימיר אותו בהתאם, אבל לא יאפשר לכם לשמור תווים שאינם נמצאים בטווח הרב־לשוני הבסיסי ([//en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Basic Multilingual Plane]).",
-	'config-ibm_db2-low-db-pagesize' => "במסד הנתונים DB2 שלכם יש מרחב טבלאות לפי מחדלי עם גודל דף בלתי־מספיק. גודל הדף צריך להיות '''32K''' או יותר.",
 	'config-site-name' => 'שם הוויקי:',
 	'config-site-name-help' => 'זה יופיע בשורת הכותרת של הדפדפן ובמקומות רבים אחרים.',
 	'config-site-name-blank' => 'נא להזין שם לאתר.',
@@ -7992,7 +7961,7 @@ Zo by je na MediaWiki $1 aktualizował, klikń na '''Dale'''.",
 	'config-upgrade-done-no-regenerate' => 'Aktualizacija dokónčena.
 
 Móžeš nětko [$1 swój wiki wužiwać].',
-	'config-regenerate' => '<code>LocalSettings.php</code> znowa wutworić →',
+	'config-regenerate' => 'LocalSettings.php znowa wutworić →',
 	'config-show-table-status' => 'Naprašowanje <code>SHOW TABLE STATUS</code> je so njeporadźiło!',
 	'config-unknown-collation' => "'''Warnowanje:''' Datowa banka njeznatu kolaciju wužiwa.",
 	'config-db-web-account' => 'Konto datoweje banki za webpřistup',
@@ -8379,7 +8348,6 @@ A telepítő készít egy <code>.htaccess</code> fájlt az adatbázis mellé, az
 Fontold meg az adatbázis más helyre történő elhelyezését, például a <code>/var/lib/mediawiki/tewikid</code> könyvtárba.",
 	'config-oracle-def-ts' => 'Alapértelmezett táblatér:',
 	'config-oracle-temp-ts' => 'Ideiglenes táblatér:',
-	'config-type-ibm_db2' => 'IBM DB2',
 	'config-support-info' => 'A MediaWiki a következő adatbázisrendszereket támogatja:
 
 $1
@@ -8389,12 +8357,10 @@ Ha az alábbi listán nem találod azt a rendszert, melyet használni szeretnél
 	'config-support-postgres' => '* A $1 népszerű, nyílt forráskódú adatbázisrendszer, a MySQL alternatívája ([http://www.php.net/manual/en/pgsql.installation.php Hogyan fordítható a PHP PostgreSQL-támogatással]). Több apró, javítatlan hiba is előfordulhat, így nem ajánlott éles környezetben használni.',
 	'config-support-sqlite' => '* Az $1 egy könnyű, nagyon jól támogatott adatbázisrendszer. ([http://www.php.net/manual/en/pdo.installation.php Hogyan fordítható a PHP SQLite-támogatással], PDO-t használ)',
 	'config-support-oracle' => '* Az $1 kereskedelmi, vállalati adatbázisrendszer. ([http://www.php.net/manual/en/oci8.installation.php Hogyan fordítható a PHP OCI8-támogatással])',
-	'config-support-ibm_db2' => '* Az $1 kereskedelmi vállalati adatbázisrendszer.', # Fuzzy
 	'config-header-mysql' => 'MySQL-beállítások',
 	'config-header-postgres' => 'PostgreSQL-beállítások',
 	'config-header-sqlite' => 'SQLite-beállítások',
 	'config-header-oracle' => 'Oracle-beállítások',
-	'config-header-ibm_db2' => 'IBM DB2-beállítások',
 	'config-invalid-db-type' => 'Érvénytelen adatbázistípus',
 	'config-missing-db-name' => 'Meg kell adnod az „Adatbázisnév” értékét',
 	'config-missing-db-host' => 'Meg kell adnod az „Adatbázis hosztneve” értékét',
@@ -8456,7 +8422,7 @@ Ez '''nem ajánlott''', csak akkor, ha problémák vannak a wikivel.",
 	'config-upgrade-done-no-regenerate' => "A frissítés befejeződött.
 
 Most már '''[$1 beléphetsz a wikibe]'''.",
-	'config-regenerate' => '<code>LocalSettings.php</code> elkészítése újra →',
+	'config-regenerate' => 'LocalSettings.php elkészítése újra →',
 	'config-show-table-status' => 'A <code>SHOW TABLE STATUS</code> lekérdezés nem sikerült!',
 	'config-unknown-collation' => "'''Figyelmeztetés:''' az adatbázis ismeretlen egybevetést használ.",
 	'config-db-web-account' => 'A webes hozzáférésnél használt adatbázisfiók',
@@ -8485,7 +8451,6 @@ A '''MyISAM''' gyorsabb megoldás lehet egyfelhasználós vagy csak olvasható k
 Ez sokkal hatékonyabb a MySQL UTF-8-as módjánál, és lehetővé teszi a teljes Unicode-karakterkészlet használatát.
 
 '''UTF-8-as módban''' a MySQL tudni fogja,hogy az adatok milyen karakterkészlettel rendelkeznek, és megfelelően átalakítja őket, azonban nem tárolhatóak olyan karakterek, melyek a [//en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Basic Multilingual Plane] felett vannak.",
-	'config-ibm_db2-low-db-pagesize' => "A DB2 adatbázisodnak alapértelmezett táblatere van elégtelen lapmérettel. A lapméretnek legalább '''32K'''-nak kell lennie.",
 	'config-site-name' => 'A wiki neve:',
 	'config-site-name-help' => 'A böngésző címsorában és még számos más helyen jelenik meg.',
 	'config-site-name-blank' => 'Add meg az oldal nevét.',
@@ -9010,7 +8975,6 @@ Considera poner le base de datos in un loco completemente differente, per exempl
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
-	'config-type-ibm_db2' => 'IBM DB2',
 	'config-support-info' => 'MediaWiki supporta le sequente systemas de base de datos:
 
 $1
@@ -9020,12 +8984,10 @@ Si tu non vide hic infra le systema de base de datos que tu tenta usar, alora se
 	'config-support-postgres' => '* $1 es un systema de base de datos popular e open source, alternativa a MySQL ([http://www.php.net/manual/en/pgsql.installation.php como compilar PHP con supporto de PostgreSQL]). Es possibile que resta alcun minor defectos non resolvite, dunque illo non es recommendate pro uso in un ambiente de production.',
 	'config-support-sqlite' => '* $1 es un systema de base de datos legier que es multo ben supportate. ([http://www.php.net/manual/en/pdo.installation.php Como compilar PHP con supporto de SQLite], usa PDO)',
 	'config-support-oracle' => '* $1 es un banca de datos commercial pro interprisas. ([http://www.php.net/manual/en/oci8.installation.php Como compilar PHP con supporto de OCI8])',
-	'config-support-ibm_db2' => '* $1 es un systema commercial de base de datos pro interprisas.', # Fuzzy
 	'config-header-mysql' => 'Configuration de MySQL',
 	'config-header-postgres' => 'Configuration de PostgreSQL',
 	'config-header-sqlite' => 'Configuration de SQLite',
 	'config-header-oracle' => 'Configuration de Oracle',
-	'config-header-ibm_db2' => 'Configurationes pro IBM DB2',
 	'config-invalid-db-type' => 'Typo de base de datos invalide',
 	'config-missing-db-name' => 'Tu debe entrar un valor pro "Nomine de base de datos"',
 	'config-missing-db-host' => 'Tu debe entrar un valor pro "Host del base de datos"',
@@ -9087,7 +9049,7 @@ Isto '''non es recommendate''' si tu non ha problemas con tu wiki.",
 	'config-upgrade-done-no-regenerate' => 'Actualisation complete.
 
 Tu pote ora [$1 comenciar a usar tu wiki].',
-	'config-regenerate' => 'Regenerar <code>LocalSettings.php</code> →',
+	'config-regenerate' => 'Regenerar LocalSettings.php →',
 	'config-show-table-status' => 'Le consulta <code>SHOW TABLE STATUS</code> falleva!',
 	'config-unknown-collation' => "'''Aviso:''' Le base de datos usa un collation non recognoscite.",
 	'config-db-web-account' => 'Conto de base de datos pro accesso via web',
@@ -9117,7 +9079,6 @@ Le bases de datos MyISAM tende a esser corrumpite plus frequentemente que le bas
 Isto es plus efficiente que le modo UTF-8 de MySQL, e permitte usar le rango complete de characteres Unicode.
 
 In '''modo UTF-8''', MySQL cognoscera le codification de characteres usate pro tu dats, e pote presentar e converter lo appropriatemente, ma illo non permittera immagazinar characteres supra le [//en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Plano Multilingue Basic].",
-	'config-ibm_db2-low-db-pagesize' => 'Tu base de datos DB2 ha un "tablespace" (spatio de tabella) predefinite con un "pagesize" (dimension de pagina) insufficiente. Le "pagesize" debe esser \'\'\'32K\'\'\' o plus.',
 	'config-site-name' => 'Nomine del wiki:',
 	'config-site-name-help' => 'Isto apparera in le barra de titulo del navigator e in varie altere locos.',
 	'config-site-name-blank' => 'Entra un nomine de sito.',
@@ -9625,7 +9586,7 @@ Tindakan ini '''tidak dianjurkan''' kecuali jika Anda mengalami masalah dengan w
 	'config-upgrade-done-no-regenerate' => 'Pemutakhiran selesai.
 
 Anda sekarang dapat [$1 mulai menggunakan wiki Anda].',
-	'config-regenerate' => 'Regenerasi <code>LocalSettings.php</code> →',
+	'config-regenerate' => 'Regenerasi LocalSettings.php →',
 	'config-show-table-status' => 'Kueri <code>SHOW TABLE STATUS</code> gagal!',
 	'config-unknown-collation' => "'''Peringatan:''' basis data menggunakan kolasi yang tidak dikenal.",
 	'config-db-web-account' => 'Akun basis data untuk akses web',
@@ -10439,7 +10400,7 @@ chmod a+w $3</pre>',
 	'config-upgrade-done-no-regenerate' => 'アップグレードが完了しました。
 
 [$1 ウィキの使用を開始]することができます。',
-	'config-regenerate' => '<code>LocalSettings.php</code> を再生成→',
+	'config-regenerate' => 'LocalSettings.php を再生成→',
 	'config-show-table-status' => '<code>SHOW TABLE STATUS</code> クエリが失敗しました!',
 	'config-unknown-collation' => "'''警告:''' データベースは認識されない照合を使用しています。",
 	'config-db-web-account' => 'ウェブアクセスのためのデータベースアカウント',
@@ -11142,7 +11103,6 @@ MySQL의 UTF-8 모드를 보다 더 효율적이고 유니코드 문자의 전�
 	'config-oracle-def-ts' => '기본 테이블공간:',
 	'config-oracle-temp-ts' => '임시 테이블공간:',
 	'config-type-oracle' => '오라클',
-	'config-type-ibm_db2' => 'IBM DB2',
 	'config-support-info' => '미디어위키는 다음의 데이터베이스 시스템을 지원합니다:
 
 $1
@@ -11152,12 +11112,10 @@ $1
 	'config-support-postgres' => '* $1은 MySQL의 대안으로 인기 있는 오픈 소스 데이터베이스 시스템입니다. ([http://www.php.net/manual/en/pgsql.installation.php PostgreSQL을 지원하여 PHP를 컴파일하는 방법]) 몇가지 사소한 해결하지 못한 버그가 있을 수 있으며, 이를 제작 환경에서 사용하지 않는 것이 좋습니다.',
 	'config-support-sqlite' => '* $1는 매우 잘 지원하는 가벼운 데이터베이스 시스템입니다. ([http://www.php.net/manual/en/pdo.installation.php SQLite를 지원하여 PHP를 컴파일하는 방법], PDO 사용)',
 	'config-support-oracle' => '* $1은 상용 엔터프라이스 데이터베이스입니다. ([http://www.php.net/manual/en/oci8.installation.php OCI8을 지원하여 PHP를 컴파일하는 방법])',
-	'config-support-ibm_db2' => '* $1는 상용 엔터프라이즈 데이터베이스입니다.([http://www.php.net/manual/en/ibm-db2.installation.php IBM DB2를 지원하여 PHP를 컴파일하는 방법])',
 	'config-header-mysql' => 'MySQL 설정',
 	'config-header-postgres' => 'PostgreSQL 설정',
 	'config-header-sqlite' => 'SQLite 설정',
 	'config-header-oracle' => '오라클 설정',
-	'config-header-ibm_db2' => 'IBM DB2 설정',
 	'config-invalid-db-type' => '잘못된 데이터베이스 종류',
 	'config-missing-db-name' => '"데이터베이스 이름"에 대한 값을 입력해야 합니다',
 	'config-missing-db-host' => '"데이터베이스 호스트"에 대한 값을 입력해야 합니다',
@@ -11219,7 +11177,7 @@ chmod a+w $3</pre>',
 	'config-upgrade-done-no-regenerate' => '업그레이드가 완료되었습니다.
 
 이제 [$1 위키를 시작]할 수 있습니다.',
-	'config-regenerate' => '<code>LocalSettings.php</code> 다시 만들기 →',
+	'config-regenerate' => 'LocalSettings.php 다시 만들기 →',
 	'config-show-table-status' => '<code>SHOW TABLE STATUS</code> 쿼리를 실패했습니다!',
 	'config-unknown-collation' => "'''경고:''' 데이터베이스가 인식하지 않는 정렬을 사용하고 있습니다.",
 	'config-db-web-account' => '웹 접근을 위한 데이터베이스 계정',
@@ -11249,7 +11207,6 @@ MyISAM 데이터베이스는 InnoDB 데이터베이스보다 더 자주 손실�
 MySQL의 UTF-8 모드를 보다 더 효율적이고 유니코드 문자의 전체 범위를 사용할 수 있습니다.
 '''UTF-8 모드'''에서는 MySQL은 데이터를 설정하는 문자 집합을 알고 있기 때문에 적절하게 표현하고 변환할 수 있지만
 [//ko.wikipedia.org/wiki/%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C_%ED%8F%89%EB%A9%B4#.EA.B8.B0.EB.B3.B8_.EB.8B.A4.EA.B5.AD.EC.96.B4_.ED.8F.89.EB.A9.B4 기본 다국어 평면] 밖의 문자를 저장할 수 없습니다.",
-	'config-ibm_db2-low-db-pagesize' => "DB2 데이터베이스에 부족한 페이지 크기가 기본 테이블 공간에 있습니다. 페이지 크기는 '''32K''' 이상이어야 합니다.",
 	'config-site-name' => '위키 이름:',
 	'config-site-name-help' => '브라우저 제목 표시줄과 다른 여러 곳에 나타납니다.',
 	'config-site-name-blank' => '사이트 이름을 입력하세요.',
@@ -12179,13 +12136,10 @@ Wann et de Kont net gëtt, a wann den Installatiouns-Kont genuch Rechter huet, g
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
-	'config-type-ibm_db2' => 'IBM DB2',
-	'config-support-ibm_db2' => '* $1 ass eng kommerziell Firma fir Datebanken', # Fuzzy
 	'config-header-mysql' => 'MySQL-Astellungen',
 	'config-header-postgres' => 'PostgreSQL-Astellungen',
 	'config-header-sqlite' => 'SQLite-Astellungen',
 	'config-header-oracle' => 'Oracle-Astellungen',
-	'config-header-ibm_db2' => 'IBM DB2-Astellungen',
 	'config-invalid-db-type' => 'Net valabelen Datebank-Typ',
 	'config-missing-db-name' => 'Dir musst en Numm fir de Wäert "Numm vun der Datebank" uginn',
 	'config-missing-db-host' => 'Dir musst e Wäert fir "Database host" uginn',
@@ -12200,7 +12154,7 @@ E gëtt fir den Numm vum SQLite Date-Fichier benotzt.',
 	'config-upgrade-done-no-regenerate' => "D'Aktualisatioun ass ofgeschloss.
 
 Dir kënnt elo [$1 ufänken Är Wiki ze benotzen]",
-	'config-regenerate' => '<code>LocalSettings.php</code> regeneréieren →',
+	'config-regenerate' => 'LocalSettings.php regeneréieren →',
 	'config-db-web-account' => 'Datebankkont fir den Accès iwwer de Web',
 	'config-db-web-account-same' => 'Dee selwechte Kont wéi bei der Installatioun benotzen',
 	'config-db-web-create' => 'De Kont uleeë wann et e net scho gëtt',
@@ -12790,7 +12744,6 @@ $1
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
-	'config-type-ibm_db2' => 'IBM DB2',
 	'config-support-info' => 'МедијаВики ги поддржува следниве системи на бази на податоци:
 
 $1
@@ -12800,12 +12753,10 @@ $1
 	'config-support-postgres' => '* $1 е популарен систем на бази на податоци со отворен код кој претставува алтернатива на MySQL ([http://www.php.net/manual/en/pgsql.installation.php како да составите PHP со поддршка за PostgreSQL]). Може сè уште да има некои грешки. па затоа не се препорачува за употреба во производна средина.',
 	'config-support-sqlite' => '* $1 е лесен систем за бази на податоци кој е многу добро поддржан. ([http://www.php.net/manual/en/pdo.installation.php Како да составите PHP со поддршка за SQLite], користи PDO)',
 	'config-support-oracle' => '* $1 е база на податоци на комерцијално претпријатие. ([http://www.php.net/manual/en/oci8.installation.php Како да составите PHP со поддршка за OCI8])',
-	'config-support-ibm_db2' => '* $1 е комерцијална база на податоциза фирми. ([http://www.php.net/manual/en/ibm-db2.installation.php Како да составите PHP со поддршка за IBM DB2])',
 	'config-header-mysql' => 'Нагодувања на MySQL',
 	'config-header-postgres' => 'Нагодувања на PostgreSQL',
 	'config-header-sqlite' => 'Нагодувања на SQLite',
 	'config-header-oracle' => 'Нагодувања на Oracle',
-	'config-header-ibm_db2' => 'Нагодувања на IBM DB2',
 	'config-invalid-db-type' => 'Неважечки тип на база',
 	'config-missing-db-name' => 'Мора да внесете значење за параметарот „Име на базата“',
 	'config-missing-db-host' => 'Мора да внесете вредност за „Домаќин на базата на податоци“',
@@ -12867,7 +12818,7 @@ chmod a+w $3</pre>',
 	'config-upgrade-done-no-regenerate' => 'Надградбата заврши.
 
 Сега можете да [$1 почнете да го користите викито].',
-	'config-regenerate' => 'Пресоздај <code>LocalSettings.php</code> →',
+	'config-regenerate' => 'Пресоздај LocalSettings.php →',
 	'config-show-table-status' => 'Барањето <code>SHOW TABLE STATUS</code> не успеа!',
 	'config-unknown-collation' => "'''Предупредување:''' Базата корисни непрепознаена упатна споредба.",
 	'config-db-web-account' => 'Сметка на базата за мрежен пристап',
@@ -12897,7 +12848,6 @@ chmod a+w $3</pre>',
 Ова е поефикасно отколку  TF-8 режимот на MySQL, и ви овозможува да ја користите целата палета на уникодни знаци.
 
 Во '''UTF-8 режим''', MySQL ќе знае на кој збир знаци припаѓаат вашите податоци, и може соодветно да ги претстави и претвори, но нема да ви дозволи да складиратезнаци над [//en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Основната повеќејазична рамнина].",
-	'config-ibm_db2-low-db-pagesize' => "Вашата база на податоци DB2 има основно-зададен табеларен простор со недоволна големина на страниците. Таа треба да изнесува барем '''32 килобајти'''.",
 	'config-site-name' => 'Име на викито:',
 	'config-site-name-help' => 'Ова ќе се појавува во заглавната лента на прелистувачот и на разни други места.',
 	'config-site-name-blank' => 'Внесете име на мрежното место.',
@@ -13177,7 +13127,7 @@ $1
 	'config-connection-error' => '$1.
 
 താഴെ നൽകിയിരിക്കുന്ന ഹോസ്റ്റ്, ഉപയോക്തൃനാമം, രഹസ്യവാക്ക് എന്നിവ പരിശോധിച്ച് വീണ്ടും ശ്രമിക്കുക.',
-	'config-regenerate' => '<code>LocalSettings.php</code> പുനഃസൃഷ്ടിക്കുക →',
+	'config-regenerate' => 'LocalSettings.php പുനഃസൃഷ്ടിക്കുക →',
 	'config-mysql-engine' => 'സ്റ്റോറേജ് എൻജിൻ:',
 	'config-site-name' => 'വിക്കിയുടെ പേര്:',
 	'config-site-name-help' => 'ഇത് ബ്രൗസറിന്റെ ടൈറ്റിൽ ബാറിലും മറ്റനേകം ഇടങ്ങളിലും പ്രദർശിപ്പിക്കപ്പെടും.',
@@ -13532,7 +13482,7 @@ $messages['nan'] = array(
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki的公布列單]',
 );
 
-/** Norwegian Bokmål (norsk (bokmål)‎)
+/** Norwegian Bokmål (norsk bokmål)
  * @author Event
  * @author Nghtwlkr
  * @author 아라
@@ -13763,7 +13713,6 @@ Vurder å plassere databasen et helt annet sted, for eksempel i <code>/var/lib/m
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
-	'config-type-ibm_db2' => 'IBM DB2',
 	'config-support-info' => 'MediaWiki støtter følgende databasesystem:
 
 $1
@@ -13773,12 +13722,10 @@ Hvis du ikke ser databasesystemet du prøver å bruke i listen nedenfor, følg i
 	'config-support-postgres' => '* $1 er et populært åpen kildekode-databasesystem som er et alternativ til MySQL ([http://www.php.net/manual/en/pgsql.installation.php hvordan kompilere PHP med PostgreSQL-støtte]). Det kan være noen små utestående feil og det anbefales ikke for bruk i et produksjonsmiljø.',
 	'config-support-sqlite' => '* $1 er et lettvekts-databasesystem som er veldig godt støttet. ([http://www.php.net/manual/en/pdo.installation.php hvordan kompilere PHP med SQLite-støtte], bruker PDO)',
 	'config-support-oracle' => '* $1 er en kommersiell bedriftsdatabase. ([http://www.php.net/manual/en/oci8.installation.php Hvordan kompilere PHP med OCI8-støtte])',
-	'config-support-ibm_db2' => '* $1 er en kommersiell bedriftsdatabase.', # Fuzzy
 	'config-header-mysql' => 'MySQL-innstillinger',
 	'config-header-postgres' => 'PostgreSQL-innstillinger',
 	'config-header-sqlite' => 'SQLite-innstillinger',
 	'config-header-oracle' => 'Oracle-innstillinger',
-	'config-header-ibm_db2' => 'IBM DB2-innstillinger',
 	'config-invalid-db-type' => 'Ugyldig databasetype',
 	'config-missing-db-name' => 'Du må skrive inn en verdi for «Databasenavn»',
 	'config-missing-db-host' => 'Du må skrive inn en verdi for «Databasevert»',
@@ -13840,7 +13787,7 @@ Dette er '''ikke anbefalt''' med mindre du har problemer med wikien din.",
 	'config-upgrade-done-no-regenerate' => 'Oppgradering fullført.
 
 Du kan nå [$1 begynne å bruke wikien din].',
-	'config-regenerate' => 'Regenerer <code>LocalSettings.php</code> →',
+	'config-regenerate' => 'Regenerer LocalSettings.php →',
 	'config-show-table-status' => '<code>SHOW TABLE STATUS</code> etterspørselen mislyktes!',
 	'config-unknown-collation' => "'''Advarsel:''' Databasen bruker en ukjent sortering.",
 	'config-db-web-account' => 'Databasekonto for nettilgang',
@@ -13864,7 +13811,6 @@ Dette er mer effektivt enn MySQLs UTF-8 modus og tillater deg å bruke hele spek
 
 I '''UTF-8 mode''' vil MySQL vite hvilket tegnsett dataene dine er i og kan presentere og konvertere det på en riktig måte,
 men det vil ikke la deg lagre tegn over «[//en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes the Basic Multilingual Plane]».",
-	'config-ibm_db2-low-db-pagesize' => "DB2-databasen din har et standard tabellområde med en utilstrekkelig pagesize. Pagesize må være '''32K''' eller større.",
 	'config-site-name' => 'Navn på wiki:',
 	'config-site-name-help' => 'Dette vil vises i tittellinjen i nettleseren og diverse andre steder.',
 	'config-site-name-blank' => 'Skriv inn et nettstedsnavn.',
@@ -14268,7 +14214,6 @@ Overweeg om de database op een totaal andere plaats neer te zetten, bijvoorbeeld
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
-	'config-type-ibm_db2' => 'IBM DB2',
 	'config-support-info' => 'MediaWiki ondersteunt de volgende databasesystemen:
 
 $1
@@ -14278,12 +14223,10 @@ Als u het databasesysteem dat u wilt gebruiken niet in de lijst terugvindt, volg
 	'config-support-postgres' => '* $1 is een populair open source databasesysteem als alternatief voor MySQL ([http://www.php.net/manual/en/pgsql.installation.php hoe PHP gecompileerd moet zijn met ondersteuning voor PostgreSQL]). Het is mogelijk dat er een aantal bekende problemen zijn met MediaWiki in combinatie met deze database en daarom wordt PostgreSQL niet aanbevolen voor een productieomgeving.',
 	'config-support-sqlite' => '* $1 is een zeer goed ondersteund lichtgewicht databasesysteem ([http://www.php.net/manual/en/pdo.installation.php hoe PHP gecompileerd zijn met ondersteuning voor SQLite]; gebruikt PDO)',
 	'config-support-oracle' => '* $1 is een commerciële data voor grote bedrijven ([http://www.php.net/manual/en/oci8.installation.php PHP compileren met ondersteuning voor OCI8]).',
-	'config-support-ibm_db2' => '* $1 is een commerciële enterprisedatabase. ([http://www.php.net/manual/en/ibm-db2.installation.php Hoe PHP compolieren met ondersteuning voor IBM DB2])',
 	'config-header-mysql' => 'MySQL-instellingen',
 	'config-header-postgres' => 'PostgreSQL-instellingen',
 	'config-header-sqlite' => 'SQLite-instellingen',
 	'config-header-oracle' => 'Oracle-instellingen',
-	'config-header-ibm_db2' => 'Instellingen voor IBM DB2',
 	'config-invalid-db-type' => 'Ongeldig databasetype',
 	'config-missing-db-name' => 'U moet een waarde ingeven voor "Databasenaam"',
 	'config-missing-db-host' => 'U moet een waarde invoeren voor "Databaseserver"',
@@ -14347,7 +14290,7 @@ Dit is '''niet aan te raden''' tenzij u problemen hebt met uw wiki.",
 	'config-upgrade-done-no-regenerate' => 'Het bijwerken is afgerond.
 
 U kunt nu [$1 uw wiki gebruiken].',
-	'config-regenerate' => '<code>LocalSettings.php</code> opnieuw aanmaken →',
+	'config-regenerate' => 'LocalSettings.php opnieuw aanmaken →',
 	'config-show-table-status' => 'Het uitvoeren van <code>SHOW TABLE STATUS</code> is mislukt!',
 	'config-unknown-collation' => "'''Waarschuwing:''' de database gebruikt een collatie die niet wordt herkend.",
 	'config-db-web-account' => 'Databasegebruiker voor webtoegang',
@@ -14378,7 +14321,6 @@ Dit is efficiënter dan de UTF-8-modus van MySQL en stelt u in staat de volledig
 
 In '''UTF-8-modus''' kent MySQL de tekenset van uw gegevens en kan de databaseserver ze juist weergeven en converteren.
 Het is dat niet mogelijk tekens op te slaan die de \"[//nl.wikipedia.org/wiki/Lijst_van_Unicode-subbereiken#Basic_Multilingual_Plane Basic Multilingual Plane]\" te boven gaan.",
-	'config-ibm_db2-low-db-pagesize' => "Uw DB2-database heeft een standaard tablespace met een onvoldoende grote pagesize. De pagesize moet tenminste '''32K''' zijn.",
 	'config-site-name' => 'Naam van de wiki:',
 	'config-site-name-help' => 'Deze naam verschijnt in de titelbalk van browsers en op andere plaatsen.',
 	'config-site-name-blank' => 'Geef een naam op voor de site.',
@@ -15201,7 +15143,6 @@ Zawiera ona nieopracowane dane użytkownika (adresy e-mail, zahaszowane hasła) 
 Warto rozważyć umieszczenie w bazie danych zupełnie gdzie indziej, na przykład w <code>/var/lib/mediawiki/yourwiki</code> .",
 	'config-oracle-def-ts' => 'Domyślna przestrzeń tabel',
 	'config-oracle-temp-ts' => 'Przestrzeń tabel tymczasowych',
-	'config-type-ibm_db2' => 'IBM DB2',
 	'config-support-info' => 'MediaWiki może współpracować z następującymi systemami baz danych:
 
 $1
@@ -15211,12 +15152,10 @@ Poniżej wyświetlone są systemy baz danych gotowe do użycia. Jeżeli poniżej
 	'config-support-postgres' => '* $1 jest popularnym systemem baz danych, często stosowanym zamiast MySQL  ([http://www.php.net/manual/en/pgsql.installation.php Zobacz, jak skompilować PHP ze wsparciem dla PostgreSQL]). Z powodu możliwości wystąpienia drobnych błędów, nie jest zalecana do wymagających wdrożeń.',
 	'config-support-sqlite' => '* $1 jest niewielkim systemem bazy danych, z którym MediaWiki bardzo dobrze współpracuje. ([http://www.php.net/manual/en/pdo.installation.php Jak skompilować PHP ze wsparciem dla SQLite], korzystając z PDO)',
 	'config-support-oracle' => '* $1 jest komercyjną profesjonalną bazą danych. ([http://www.php.net/manual/en/oci8.installation.php Jak skompilować PHP ze wsparciem dla OCI8])',
-	'config-support-ibm_db2' => '* $1 jest komercyjną zaawansowaną bazą danych.', # Fuzzy
 	'config-header-mysql' => 'Ustawienia MySQL',
 	'config-header-postgres' => 'Ustawienia PostgreSQL',
 	'config-header-sqlite' => 'Ustawienia SQLite',
 	'config-header-oracle' => 'Ustawienia Oracle',
-	'config-header-ibm_db2' => 'ustawienia dla IBM DB2',
 	'config-invalid-db-type' => 'Nieprawidłowy typ bazy danych',
 	'config-missing-db-name' => 'Należy wpisać wartość w polu „Nazwa bazy danych”',
 	'config-missing-db-host' => 'Musisz wpisać wartość w polu „Serwer bazy danych”',
@@ -15278,7 +15217,7 @@ Jest to '''nie zalecane''', chyba że występują problemy z twoją wiki.",
 	'config-upgrade-done-no-regenerate' => 'Aktualizacja zakończona.
 
 Możesz wreszcie [$1 zacząć korzystać ze swojej wiki].',
-	'config-regenerate' => 'Ponowne generowanie <code>LocalSettings.php</code> →',
+	'config-regenerate' => 'Ponowne generowanie LocalSettings.php →',
 	'config-show-table-status' => 'Zapytanie „<code>SHOW TABLE STATUS</code>” nie powiodło się!',
 	'config-unknown-collation' => "'''Uwaga''' – bazy danych używa nierozpoznanej metody porównywania.",
 	'config-db-web-account' => 'Konto bazy danych dla dostępu przez WWW',
@@ -15308,7 +15247,6 @@ Bazy danych MyISAM mają tendencję do ulegania uszkodzeniom częściej niż baz
 Jest on bardziej wydajny niż tryb UTF-8 w MySQL i pozwala na używanie znaków pełnego zakresu Unicode.
 
 W '''trybie UTF-8''', MySQL będzie znać zestaw znaków w jakim zakodowano dane, można też przedstawić i przekonwertuj je odpowiednio, ale nie pozwoli Ci przechowywać znaków spoza [//en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes podstawowej płaszczyzny wielojęzyczności].",
-	'config-ibm_db2-low-db-pagesize' => "Baza danych DB2 posiada domyślny obszar tabel z niewystarczającym rozmiarem strony. Wartość rozmiaru strony musi być równa lub powyżej  '''32 K'''.",
 	'config-site-name' => 'Nazwa wiki',
 	'config-site-name-help' => 'Ten napis pojawi się w pasku tytułowym przeglądarki oraz w różnych innych miejscach.',
 	'config-site-name-blank' => 'Wprowadź nazwę witryny.',
@@ -15745,7 +15683,6 @@ Lòn a comprend ij dat brut ëd l'utent (adrëssa ëd pòsta eletrònica, ciav t
 Ch'a consìdera ëd buté la base ëd dàit tuta antrega da n'àutra part, për esempi an <code>/var/lib/mediawiki/yourwiki</code>.",
 	'config-oracle-def-ts' => 'Spassi dla tàula dë stàndard:',
 	'config-oracle-temp-ts' => 'Spassi dla tàula temporani:',
-	'config-type-ibm_db2' => 'IBM DB2',
 	'config-support-info' => "MediaWiki a manten ij sistema ëd base ëd dàit sì-dapress:
 
 $1
@@ -15755,12 +15692,10 @@ S'a vëd pa listà sì-sota ël sistema ëd base ëd dàit ch'a preuva a dovré,
 	'config-support-postgres' => "* $1 e l'é un sistema ëd base ëd dàit popolar a sorgiss duverta com alternativa a MySQL ([http://www.php.net/manual/en/pgsql.installation.php com compilé PHP con ël manteniment ëd PostgreSQL]). A peulo ess-ie chèich cit bigat, e a l'é nen arcomandà ëd dovrelo an n'ambient ëd produssion.",
 	'config-support-sqlite' => "* $1 e l'é un sistema ëd base ëd dàit leger che a l'é motobin bin mantnù ([http://www.php.net/manual/en/pdo.installation.php com compilé PHP con ël manteniment ëd SQLite], a deuvra PDO)",
 	'config-support-oracle' => "* $1 a l'é na base ëd dàit comersial për j'amprèise. ([http://www.php.net/manual/en/oci8.installation.php Com compilé PHP con ël manteniment OCI8])",
-	'config-support-ibm_db2' => "* $1 a l'é na base ëd dàit d'asiendal comersial.", # Fuzzy
 	'config-header-mysql' => 'Ampostassion MySQL',
 	'config-header-postgres' => 'Ampostassion PostgreSQL',
 	'config-header-sqlite' => 'Ampostassion SQLite',
 	'config-header-oracle' => 'Ampostassion Oracle',
-	'config-header-ibm_db2' => "Ampostassion d'IBM DB2",
 	'config-invalid-db-type' => 'Sòrt ëd ëd base ëd dàit pa bon-a',
 	'config-missing-db-name' => 'A dev buteje un valor për "Nòm ëd la base ëd dàit"',
 	'config-missing-db-host' => 'A dev buteje un valor për "l\'òspit ëd la base ëd dàit"',
@@ -15820,7 +15755,7 @@ Sòn a l'è '''pa arcomandà''' gavà ch'a rancontra dij problema con soa wiki."
 	'config-upgrade-done-no-regenerate' => 'Agiornament complet.
 
 It peule adess [$1 ancaminé a dovré toa wiki].',
-	'config-regenerate' => 'Generé torna <code>LocalSettings.php</code> →',
+	'config-regenerate' => 'Generé torna LocalSettings.php →',
 	'config-show-table-status' => 'Arcesta <code>SHOW TABLE STATUS</code> falìa!',
 	'config-unknown-collation' => "'''Avis:''' La base ëd dàit a deuvra na classificassion pa arconossùa.",
 	'config-db-web-account' => "Cont dla base ëd dàit për l'acess a l'aragnà",
@@ -15850,7 +15785,6 @@ La base ëd dàit MyISAM a tira a corompse pi 'd soens che la base ëd dàit Inn
 Sòn a l'é pi eficient che la manera UTF-8 ëd MySQL, e a-j përmët ëd dovré l'ansema antregh ëd caràter Unicode.
 
 An '''manera UTF-8''', MySQL a conossrà an che ansem ëd caràter a son ij sò dat, e a peul presenteje e convertije apropriatament, ma a-j lassa pa memorisé ij caràter ëdzora al [//en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes pian multilenghìstich ëd base].",
-	'config-ibm_db2-low-db-pagesize' => "Soa base ëd dàit DB2 a l'ha në spassi d'ambaronament predefinì con na dimension ëd pàgina insuficent. La dimension ëd pàgina a dev esse '''32K''' o pi gròssa.",
 	'config-site-name' => 'Nòm ëd la wiki:',
 	'config-site-name-help' => "Sòn a comparirà ant la bara dël tìtol dël navigador e an vàire d'àutri pòst.",
 	'config-site-name-blank' => "Ch'a buta un nòm ëd sit.",
@@ -16367,7 +16301,6 @@ Considere colocar a base de dados num local completamente diferente, como, por e
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
-	'config-type-ibm_db2' => 'IBM DB2',
 	'config-support-info' => 'O MediaWiki suporta as seguintes plataformas de base de dados:
 
 $1
@@ -16377,12 +16310,10 @@ Se a plataforma que pretende usar não está listada abaixo, siga as instruçõe
 	'config-support-postgres' => '* $1 é uma plataforma de base de dados comum, de fonte aberta, alternativa ao MySQL ([http://www.php.net/manual/en/pgsql.installation.php como compilar PHP com suporte PostgreSQL]). Poderão existir alguns pequenos problemas e não é recomendado o seu uso em ambientes de exploração/produção.',
 	'config-support-sqlite' => '* $1 é uma plataforma de base de dados ligeira muito bem suportada. ([http://www.php.net/manual/en/pdo.installation.php Como compilar PHP com suporte SQLite], usa PDO)',
 	'config-support-oracle' => '* $1 é uma base de dados de uma empresa comercial. ([http://www.php.net/manual/en/oci8.installation.php How to compile PHP with OCI8 support])',
-	'config-support-ibm_db2' => '* $1 é uma base de dados empresarial.', # Fuzzy
 	'config-header-mysql' => 'Definições MySQL',
 	'config-header-postgres' => 'Definições PostgreSQL',
 	'config-header-sqlite' => 'Definições SQLite',
 	'config-header-oracle' => 'Definições Oracle',
-	'config-header-ibm_db2' => 'Configurações da IBM DB2',
 	'config-invalid-db-type' => 'O tipo de base de dados é inválido',
 	'config-missing-db-name' => 'Tem de introduzir um valor para "Nome da base de dados"',
 	'config-missing-db-host' => 'Tem de introduzir um valor para "Servidor da base de dados"',
@@ -16444,7 +16375,7 @@ Esta operação '''não é recomendada''' a menos que esteja a ter problemas com
 	'config-upgrade-done-no-regenerate' => 'Actualização terminada.
 
 Agora pode [$1 começar a usar a sua wiki].',
-	'config-regenerate' => 'Regenerar o <code>LocalSettings.php</code> →',
+	'config-regenerate' => 'Regenerar o LocalSettings.php →',
 	'config-show-table-status' => 'A consulta <code>SHOW TABLE STATUS</code> falhou!',
 	'config-unknown-collation' => "'''Aviso:''' A base de dados está a utilizar uma colação ''(collation)'' desconhecida.",
 	'config-db-web-account' => 'Conta na base de dados para acesso pela internet',
@@ -16475,7 +16406,6 @@ Isto é mais eficiente do que o modo UTF-8 do MySQL e permite que sejam usados t
 
 No modo '''UTF-8''', o MySQL saberá em que conjunto de caracteres os seus dados estão e pode apresentá-los e convertê-los da forma mais adequada,
 mas não lhe permitirá armazenar caracteres acima do [//en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Plano Multilingue Básico].",
-	'config-ibm_db2-low-db-pagesize' => "A sua base de dados DB2 tem um tablespace padrão com um pagesize insuficiente. O pagesize tem de ser '''32K'' ou maior.",
 	'config-site-name' => 'Nome da wiki:',
 	'config-site-name-help' => 'Este nome aparecerá no título da janela do seu browser e em vários outros sítios.',
 	'config-site-name-blank' => 'Introduza o nome do site.',
@@ -16882,12 +16812,10 @@ Totuși, MediaWiki necesită PHP $2 sau mai nou.',
 	'config-sqlite-dir' => 'Director de date SQLite:',
 	'config-oracle-def-ts' => 'Spațiu de stocare („tablespace”) implicit:',
 	'config-oracle-temp-ts' => 'Spațiu de stocare („tablespace”) temporar:',
-	'config-type-ibm_db2' => 'IBM DB2',
 	'config-header-mysql' => 'Setările MySQL',
 	'config-header-postgres' => 'Setări PostgreSQL',
 	'config-header-sqlite' => 'Setări SQLite',
 	'config-header-oracle' => 'Setări Oracle',
-	'config-header-ibm_db2' => 'Setări IBM DB2',
 	'config-invalid-db-type' => 'Tip de bază de date incorect',
 	'config-missing-db-name' => 'Trebuie să introduci o valoare pentru „Numele bazei de date”',
 	'config-connection-error' => '$1.
@@ -16896,7 +16824,7 @@ Verificați gazda, numele de utilizator și parola și reîncercați.',
 	'config-upgrade-done-no-regenerate' => 'Actualizare completă.
 
 Acum puteți [$1 începe să vă folosiți wikiul].',
-	'config-regenerate' => 'Regenerare <code>LocalSettings.php</code> →',
+	'config-regenerate' => 'Regenerare LocalSettings.php →',
 	'config-unknown-collation' => 'AVERTISMENT: Baza de date folosește o colaționare nerecunoscută.',
 	'config-db-web-account' => 'Contul bazei de date pentru accesul web.',
 	'config-db-web-create' => 'Creați contul dacă nu există deja',
@@ -16994,6 +16922,8 @@ $messages['roa-tara'] = array(
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
+	'config-mysql-innodb' => 'InnoDB',
+	'config-mysql-myisam' => 'MyISAM',
 	'config-admin-email' => 'Indirizze e-mail:',
 	'config-install-step-done' => 'fatte',
 	'config-install-step-failed' => 'fallite',
@@ -17251,7 +17181,6 @@ MediaWiki требует поддержки UTF-8 для корректной р
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
-	'config-type-ibm_db2' => 'IBM DB2',
 	'config-support-info' => 'MediaWiki поддерживает следующие СУБД:
 
 $1
@@ -17261,12 +17190,10 @@ $1
 	'config-support-postgres' => '* $1 — популярная открытая СУБД, альтернатива MySQL ([http://www.php.net/manual/en/pgsql.installation.php инструкция, как собрать PHP с поддержкой PostgreSQL]). Могут встречаться небольшие неисправленные ошибки, не рекомендуется для использования в рабочей системе.',
 	'config-support-sqlite' => '* $1 — это легковесная система баз данных, имеющая очень хорошую поддержку. ([http://www.php.net/manual/en/pdo.installation.php инструкция, как собрать PHP с поддержкой SQLite], работающей посредством PDO)',
 	'config-support-oracle' => '* $1 — это коммерческая база данных масштаба предприятия. ([http://www.php.net/manual/en/oci8.installation.php Как собрать PHP с поддержкой OCI8])',
-	'config-support-ibm_db2' => '$1 — коммерческая база данных масштаба предприятия.', # Fuzzy
 	'config-header-mysql' => 'Настройки MySQL',
 	'config-header-postgres' => 'Настройки PostgreSQL',
 	'config-header-sqlite' => 'Настройки SQLite',
 	'config-header-oracle' => 'Настройки Oracle',
-	'config-header-ibm_db2' => 'Настройки IBM DB2',
 	'config-invalid-db-type' => 'Неверный тип базы данных',
 	'config-missing-db-name' => 'Вы должны ввести значение параметра «Имя базы данных»',
 	'config-missing-db-host' => 'Необходимо ввести значение параметра «Сервер базы данных»',
@@ -17328,7 +17255,7 @@ chmod a+w $3</pre>',
 	'config-upgrade-done-no-regenerate' => 'Обновление завершено.
 
 Теперь вы можете [$1 начать работу с вики].',
-	'config-regenerate' => 'Создать <code>LocalSettings.php</code> заново →',
+	'config-regenerate' => 'Создать LocalSettings.php заново →',
 	'config-show-table-status' => 'Запрос «<code>SHOW TABLE STATUS</code>» не выполнен!',
 	'config-unknown-collation' => "'''Внимание:''' База данных использует нераспознанные правила сортировки.",
 	'config-db-web-account' => 'Учётная запись для доступа к базе данных из веб-сервера',
@@ -17357,7 +17284,6 @@ chmod a+w $3</pre>',
 Это более эффективно, чем ''UTF-8 режим'' MySQL, и позволяет использовать полный набор символов Unicode.
 
 В '''режиме UTF-8''' MySQL будет знать в какой кодировке находятся Ваши данные и может отображать и преобразовывать их соответствующим образом, но это не позволит вам хранить символы выше [//en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Базовой Многоязыковой Плоскости].",
-	'config-ibm_db2-low-db-pagesize' => "В вашей базе данных DB2 по умолчанию задано табличное пространство с недостаточным размером страницы. Размер страницы должен быть не менее '''32K'''.",
 	'config-site-name' => 'Название вики:',
 	'config-site-name-help' => 'Название будет отображаться в заголовке окна браузера и в некоторых других местах вики.',
 	'config-site-name-blank' => 'Введите название сайта.',
@@ -17730,17 +17656,15 @@ $messages['si'] = array(
 	'config-sqlite-dir' => 'SQLite දත්ත නාමවලිය:',
 	'config-oracle-def-ts' => 'සාමාන්‍ය වගු අවකාශය:',
 	'config-oracle-temp-ts' => 'තාවකාලික වගු අවකාශය:',
-	'config-type-ibm_db2' => 'IBM DB2',
 	'config-header-mysql' => 'MySQL සැකසුම්',
 	'config-header-postgres' => 'PostgreSQL සැකසුම්',
 	'config-header-sqlite' => 'SQLite සැකසුම්',
 	'config-header-oracle' => 'ඔරකල් සැකසුම්',
-	'config-header-ibm_db2' => 'IBM DB2 සැකසුම්',
 	'config-invalid-db-type' => 'වලංගු නොවන දත්ත සංචිත වර්ගය',
 	'config-missing-db-name' => '"දත්ත සංචිත නාමය" සඳහා ඔබ විසින් අගයක් දිය යුතු වේ',
 	'config-missing-db-host' => '"දත්ත සංචිත ධාරකය" සඳහා ඔබ විසින් අගයක් දිය යුතු වේ',
 	'config-missing-db-server-oracle' => '"දත්ත සංචිත TNS" සඳහා ඔබ විසින් අගයක් දිය යුතු වේ',
-	'config-regenerate' => 'නැවත ජනිත කරන්න <code>LocalSettings.php</code> →',
+	'config-regenerate' => 'නැවත ජනිත කරන්න LocalSettings.php →',
 	'config-db-web-account' => 'ජාල ප්‍රවේශනය සඳහා දත්ත සංචිත ගිණුම',
 	'config-mysql-engine' => 'ආචයන එන්ජිම:',
 	'config-mysql-innodb' => 'InnoDB',
@@ -17938,7 +17862,6 @@ Vendar pa MediaWiki zahteva PHP $2 ali višji.',
 	'config-db-schema-help' => 'Ta shema je po navadi v redu.
 Spremenite jo samo, če veste, da jo morate.',
 	'config-sqlite-dir' => 'Mapa podatkov SQLite:',
-	'config-type-ibm_db2' => 'IBM DB2',
 	'config-support-info' => 'MediaWiki podpira naslednje sisteme zbirk podatkov:
 
 $1
@@ -17948,7 +17871,6 @@ $1
 	'config-header-postgres' => 'Nastavitve PostgreSQL',
 	'config-header-sqlite' => 'Nastavitve SQLite',
 	'config-header-oracle' => 'Nastavitve Oracle',
-	'config-header-ibm_db2' => 'Nastavitve IBM DB2',
 	'config-invalid-db-type' => 'Neveljavna vrsta zbirke podatkov',
 	'config-missing-db-name' => 'Vnesti morate vrednost za »Ime zbirke podatkov«',
 	'config-missing-db-host' => 'Vnesti morate vrednost za »Gostitelj zbirke podatkov«',
@@ -17971,7 +17893,7 @@ Preverite mapo podatkov in ime zbirke podatkov spodaj ter poskusite znova.',
 	'config-upgrade-done-no-regenerate' => 'Nadgradnja je končana.
 
 Sedaj lahko [$1 začnete uporabljati vaš wiki].',
-	'config-regenerate' => 'Ponovno ustvari <code>LocalSettings.php</code> →',
+	'config-regenerate' => 'Ponovno ustvari LocalSettings.php →',
 	'config-show-table-status' => 'Poizvedba <code>SHOW TABLE STATUS</code> ni uspela!',
 	'config-unknown-collation' => "'''Opozorilo:''' Zbirke podatkov uporablja neprepoznano razvrščanje znakov.",
 	'config-db-web-account' => 'Račun zbirke podatkov za spletni dostop',
@@ -18910,7 +18832,6 @@ Isaalang-alang ang paglalagay na magkakasama ang kalipunan ng dato sa ibang luga
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
-	'config-type-ibm_db2' => 'DB2 ng IBM',
 	'config-support-info' => 'Sinusuportahan ng MediaWiki ang sumusunod na mga sistema ng kalipunan ng dato:
 
 $1
@@ -18920,12 +18841,10 @@ Kung hindi mo makita ang sistema ng kalipunan ng dato na sinusubukan mong gamiti
 	'config-support-postgres' => '* Ang $1 ay isang bantog na sistema ng kalipunan ng dato na bukas ang pinagmulan na panghalili sa MySQL ([http://www.php.net/manual/en/pgsql.installation.php paano magtipon ng PHP na mayroong suporta ng PostgreSQL]). Maaaring mayroong ilang hindi pangunahing mga surot na natitira pa, at hindi iminumungkahi para gamitin sa loob ng isang kapaligiran ng produksiyon.',
 	'config-support-sqlite' => 'Ang $1 ay isang magaan ang timbang na sistema ng kalipunan ng dato na sinusuportahan nang napaka mainam. ([http://www.php.net/manual/en/pdo.installation.php Paano magtipon ng PHP na mayroong suporta ng SQLite], gumagamit ng PDO)',
 	'config-support-oracle' => '* Ang $1 ay isang kalipunan ng dato ng kasigasigang pangkalakal. ([http://www.php.net/manual/en/oci8.installation.php Paano magtipunan ng PHP na mayroong suporta ng OCI8])',
-	'config-support-ibm_db2' => '* Ang $1 ay isang kalipunan ng dato ng kasigasigang pangkalakal.', # Fuzzy
 	'config-header-mysql' => 'Mga katakdaan ng MySQL',
 	'config-header-postgres' => 'Mga katakdaan ng PostgreSQL',
 	'config-header-sqlite' => 'Mga katakdaan ng SQLite',
 	'config-header-oracle' => 'Mga katakdaan ng Oracle',
-	'config-header-ibm_db2' => 'Mga katakdaan ng DB2 ng IBM',
 	'config-invalid-db-type' => 'Hindi tanggap na uri ng kalipunan ng dato',
 	'config-missing-db-name' => 'Dapat kang magpasok ng isang halaga para sa "Pangalan ng kalipunan ng dato"',
 	'config-missing-db-host' => 'Dapat kang magpasok ng isang halaga para sa "Tagapagpasinaya ng kalipunan ng dato"',
@@ -18987,7 +18906,7 @@ Kung nais mong muling likhain ang iyong talaksang <code>LocalSettings.php</code>
 	'config-upgrade-done-no-regenerate' => 'Buo na ang pagsasapanahon.
 
 Maaari ka na ngayong [$1 magsimula sa paggamit ng wiki mo].',
-	'config-regenerate' => 'Muling likhain ang <code>LocalSettings.php</code> →',
+	'config-regenerate' => 'Muling likhain ang LocalSettings.php →',
 	'config-show-table-status' => 'Nabigo ang pagtatanong na IPAKITA ANG KALAGAYAN NG TALAHANAYAN!', # Fuzzy
 	'config-unknown-collation' => "'''Babala:''' Ang kalipunan ng dato ay gumagagamit ng hindi nakikilalang pag-iipon.",
 	'config-db-web-account' => 'Akawnt ng kalipunan ng dato para sa pagpunta sa web',
@@ -19017,7 +18936,6 @@ May gawi ang mga kalipunan ng dato ng MyISAM na masira nang mas madalas kaysa sa
 Mas kapaki-pakinabang ito kaysa sa gawi na UTF-8 ng MySQL, at nagpapahintulot sa iyo upang magamit ang buong kasaklawan ng mga panitik ng Unikodigo.
 
 Sa ''gawi na UTF-8''', malalaman ng MySQL kung sa anong pangkat ng panitik nakapaloob ang iyong dato, at angkop na makakapagharap at makapapagpalit nito, subalit hindi ka nito papayagan na mag-imbak ng mga panitik na nasa itaas ng [//en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Basic Multilingual Plane] o Saligang Tapyas na Pangmaramihang Wika.",
-	'config-ibm_db2-low-db-pagesize' => "Ang kalipunan mo ng dato na DB2 ay mayroong isang likas na nakatakdang puwang ng talahanayan na mayroong hindi sapat na sukat ng pahina. Ang sukat ng pahina ay dapat na maging '''32K''' o mas mataas.",
 	'config-site-name' => 'Pangalan ng wiki:',
 	'config-site-name-help' => "Lilitaw ito sa bareta ng pamagat ng pantingin-tingin at sa samu't saring ibang mga lugar.",
 	'config-site-name-blank' => 'Magpasok ng isang pangalan ng sityo.',
@@ -19522,7 +19440,6 @@ MediaWiki вимагає підтримку UTF-8 для коректної ро
 За можливості розташуйте базу даних десь окремо, наприклад в <code>/var/lib/mediawiki/yourwiki</code>.",
 	'config-oracle-def-ts' => 'Простір таблиць за замовчуванням:',
 	'config-oracle-temp-ts' => 'Тимчасовий простір таблиць:',
-	'config-type-ibm_db2' => 'IBM DB2',
 	'config-support-info' => 'MediaWiki підтримує таки системи баз даних:
 
 $1
@@ -19532,12 +19449,10 @@ $1
 	'config-support-postgres' => '* $1 — популярна відкрита СУБД, альтернатива MySQL ([http://www.php.net/manual/en/pgsql.installation.php як зібрати PHP з допомогою PostgreSQL]). Можуть зустрічатись деякі невеликі невиправлені помилки, не рекомендується використовувати у робочій системі.',
 	'config-support-sqlite' => '* $1 — легка система баз даних, яка дуже добре підтримується. ([http://www.php.net/manual/en/pdo.installation.php Як зібрати PHP з допомогою SQLite], що використовує PDO)',
 	'config-support-oracle' => '* $1 — комерційна база даних масштабу підприємства. ([http://www.php.net/manual/en/oci8.installation.php Як зібрати PHP з підтримкою OCI8])',
-	'config-support-ibm_db2' => '* $1 — комерційна база даних масштабу підприємства.', # Fuzzy
 	'config-header-mysql' => 'Налаштування MySQL',
 	'config-header-postgres' => 'Налаштування PostgreSQL',
 	'config-header-sqlite' => 'Налаштування SQLite',
 	'config-header-oracle' => 'Налаштування Oracle',
-	'config-header-ibm_db2' => 'Налаштування IBM DB2',
 	'config-invalid-db-type' => 'Невірний тип бази даних',
 	'config-missing-db-name' => "Ви повинні ввести значення параметру «Ім'я бази даних»",
 	'config-missing-db-host' => 'Ви повинні ввести значення параметру «Хост бази даних»',
@@ -19599,7 +19514,7 @@ chmod a+w $3</pre>',
 	'config-upgrade-done-no-regenerate' => 'Оновлення завершено.
 
 Ви можете зараз [$1 починати використовувати свою вікі].',
-	'config-regenerate' => 'Повторно згенерувати <code>LocalSettings.php</code> →',
+	'config-regenerate' => 'Повторно згенерувати LocalSettings.php →',
 	'config-show-table-status' => 'Запит <code>SHOW TABLE STATUS</code> не виконано!',
 	'config-unknown-collation' => "'''Увага:''' База даних використовує нерозпізнане сортування.",
 	'config-db-web-account' => 'Обліковий запис бази даних для інтернет-доступу',
@@ -19629,7 +19544,6 @@ chmod a+w $3</pre>',
 Це більш ефективно, ніж UTF-8 режим MySQL, і дозволяє використовувати увесь набір символів Юнікоду.
 
 У '''режимі UTF-8''' MySQL буде знати, якого символу стосуються Ваші дані, і могтиме відображати та конвертувати їх належним чином, але не дозволятиме зберігати символи, що виходять за межі [//en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Basic Multilingual Plane].",
-	'config-ibm_db2-low-db-pagesize' => "У Вашій базі даних DB2 за замовчуванням заданий табличний простір з недостатнім розміром сторінки. Розмір сторінки має бути '''32K''' і більше.",
 	'config-site-name' => 'Назва вікі:',
 	'config-site-name-help' => 'Це буде відображатись у заголовку вікна браузера та у деяких інших місцях.',
 	'config-site-name-blank' => 'Введіть назву сайту.',
@@ -20332,7 +20246,7 @@ chmod a+w $3</pre>',
 	'config-upgrade-done-no-regenerate' => '升级完成。
 
 现在您可以[$1 开始使用您的wiki]了。',
-	'config-regenerate' => '重新生成<code>LocalSettings.php</code> →',
+	'config-regenerate' => '重新生成LocalSettings.php →',
 	'config-show-table-status' => '<code>SHOW TABLE STATUS</code>语句执行失败！',
 	'config-unknown-collation' => "'''警告：'''数据库使用了无法识别的整理。",
 	'config-db-web-account' => '供网页访问使用的数据库帐号',
@@ -20772,7 +20686,7 @@ chmod a+w $3</pre>',
 	'config-upgrade-done-no-regenerate' => '升級完成。
 
 現在您可以[$1 開始使用您的wiki]了。',
-	'config-regenerate' => '重新生成<code>LocalSettings.php</code> →',
+	'config-regenerate' => '重新生成LocalSettings.php →',
 	'config-show-table-status' => '查詢<code>SHOW TABLE STATUS</code>失敗！',
 	'config-unknown-collation' => "'''警告：'''數據庫使用了無法識別的整理。",
 	'config-db-web-account' => '供網頁訪問使用的數據庫帳號',

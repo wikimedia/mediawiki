@@ -761,8 +761,8 @@ Pärast parooli saamist logige palun sisse.',
 'blocked-mailpassword' => 'Sinu IP-aadressi jaoks on toimetamine blokeeritud, seetõttu ei saa sa kasutada ka parooli meeldetuletamise funktsiooni.',
 'eauthentsent' => 'Sisestatud e-posti aadressile on saadetud kinnituse e-kiri.
 Enne kui su kontole ükskõik milline muu e-kiri saadetakse, pead sa e-kirjas olevat juhist järgides kinnitama, et konto on tõepoolest sinu.',
-'throttled-mailpassword' => 'Parooli meeldetuletus lähetatud viimase {{PLURAL:$1|tunni|$1 tunni}} jooksul.
-Väärtarvitamise vältimiseks saadetakse {{PLURAL:$1|tunni|$1 tunni}} jooksul ainult üks meeldetuletus.',
+'throttled-mailpassword' => 'Parooli lähtestamise e-kiri saadetud viimase {{PLURAL:$1|tunni|$1 tunni}} jooksul.
+Väärtarvitamise vältimiseks saadetakse {{PLURAL:$1|tunni|$1 tunni}} jooksul ainult üks lähtestamise e-kiri.',
 'mailerror' => 'Viga kirja saatmisel: $1',
 'acct_creation_throttle_hit' => 'Selle viki külastajad, kes kasutavad sinu IP-aadressi, on viimase ööpäeva jooksul loonud {{PLURAL:$1|ühe konto|$1 kontot}}, mis on selles ajavahemikus ülemmääraks.
 Seetõttu ei saa seda IP-aadressi kasutades hetkel rohkem kontosid luua.',
@@ -801,7 +801,8 @@ Sisselogimise lõpetamiseks pead siia uue parooli sisestama:',
 'newpassword' => 'Uus parool:',
 'retypenew' => 'Sisesta uus parool uuesti:',
 'resetpass_submit' => 'Sisesta parool ja logi sisse',
-'resetpass_success' => 'Sinu parool on edukalt muudetud! Sisselogimine...',
+'resetpass_success' => 'Sinu parool on edukalt muudetud!
+Sisselogimine...',
 'resetpass_forbidden' => 'Paroole ei saa muuta',
 'resetpass-no-info' => 'Pead olema sisselogitud, et sellele lehele pääseda.',
 'resetpass-submit-loggedin' => 'Muuda parool',
@@ -812,7 +813,7 @@ Võib-olla oled juba edukalt muudnud oma salasõna või taotlenud uut ajutist sa
 
 # Special:PasswordReset
 'passwordreset' => 'Parooli lähtestamine',
-'passwordreset-text' => 'Täida see vorm, et saada e-kiri oma konto andmetega.',
+'passwordreset-text' => 'Täida see vorm, et oma parool lähtestada.',
 'passwordreset-legend' => 'Parooli lähtestamine',
 'passwordreset-disabled' => 'Selles vikis on paroolide lähtestamine keelatud.',
 'passwordreset-pretext' => '{{PLURAL:$1||Sisesta üks järgmistest andmeüksustest}}',
@@ -822,13 +823,13 @@ Võib-olla oled juba edukalt muudnud oma salasõna või taotlenud uut ajutist sa
 'passwordreset-capture-help' => 'Kui valid selle märkeruudu, näidatakse sulle ajutist parooli sisaldavat e-kirja, mis ühtlasi kasutajale saadetakse.',
 'passwordreset-email' => 'E-posti aadress:',
 'passwordreset-emailtitle' => '{{GRAMMAR:genitive|{{SITENAME}}}} konto andmed',
-'passwordreset-emailtext-ip' => 'Keegi, arvatavasti sina ise, IP-aadressilt $1 palus meelde tuletada sinu {{GRAMMAR:genitive|{{SITENAME}}}} ($4) konto üksikasjad. Selle e-posti aadressiga on seotud {{PLURAL:$3|järgmine konto|järgmised kontod}}:
+'passwordreset-emailtext-ip' => 'Keegi, arvatavasti sina ise, IP-aadressilt $1 palus lähtestada sinu {{GRAMMAR:genitive|{{SITENAME}}}} ($4) parooli. Selle e-posti aadressiga on seotud {{PLURAL:$3|järgmine konto|järgmised kontod}}:
 
 $2
 
 {{PLURAL:$3|See ajutine parool aegub|Need ajutised paroolid aeguvad}} {{PLURAL:$5|ühe|$5}} päeva pärast.
 Peaksid nüüd sisse logima ja uue parooli valima. Kui selle palve esitas keegi teine või kui sulle meenus su parool ja sa ei soovi seda enam muuta, võid teadet eirata ja jätkata vana parooli kasutamist.',
-'passwordreset-emailtext-user' => '{{GRAMMAR:genitive|{{SITENAME}}}} kasutaja $1 palus meelde tuletada sinu {{GRAMMAR:genitive|{{SITENAME}}}} ($4) konto üksikasjad. Selle e-posti aadressiga on seotud {{PLURAL:$3|järgmine konto|järgmised kontod}}:
+'passwordreset-emailtext-user' => '{{GRAMMAR:genitive|{{SITENAME}}}} kasutaja $1 palus lähtestada sinu {{GRAMMAR:genitive|{{SITENAME}}}} ($4) parooli. Selle e-posti aadressiga on seotud {{PLURAL:$3|järgmine konto|järgmised kontod}}:
 
 $2
 
@@ -836,9 +837,9 @@ $2
 Peaksid nüüd sisse logima ja uue parooli valima. Kui selle palve esitas keegi teine või kui sulle meenus su parool ja sa ei soovi seda enam muuta, võid teadet eirata ja jätkata vana parooli kasutamist.',
 'passwordreset-emailelement' => 'Kasutajanimi: $1
 Ajutine parool: $2',
-'passwordreset-emailsent' => 'Meeldetuletuskiri on saadetud.',
-'passwordreset-emailsent-capture' => 'E-kirjatsi on saadetud allpool näidatav meeldetuletus.',
-'passwordreset-emailerror-capture' => 'Koostati allpool näidatav meeldetuletus, aga selle e-kirjatsi kasutajale saatmine ebaõnnestus: $1',
+'passwordreset-emailsent' => 'Parooli lähtestamise e-kiri on saadetud.',
+'passwordreset-emailsent-capture' => 'E-kirjatsi on saadetud allpool näidatav parooli lähtestuskiri.',
+'passwordreset-emailerror-capture' => 'Koostati allpool näidatav parooli lähtestuskiri, aga selle e-kirjatsi kasutajale saatmine ebaõnnestus: $1',
 
 # Special:ChangeEmail
 'changeemail' => 'E-posti aadressi muutmine',
@@ -870,7 +871,7 @@ Ajutine parool: $2',
 'media_sample' => 'Näidis.ogg',
 'media_tip' => 'Link failile',
 'sig_tip' => 'Sinu allkiri ajatempliga',
-'hr_tip' => 'Horisontaalkriips (kasuta säästlikult)',
+'hr_tip' => 'Rõhtkriips (kasuta liialdamata)',
 
 # Edit pages
 'summary' => 'Resümee:',
@@ -931,7 +932,7 @@ Võimalik, et see teisaldati või kustutati, sellal kui lehekülge vaatasid.',
 'loginreqtitle' => 'Vajalik on sisselogimine',
 'loginreqlink' => 'sisse logima',
 'loginreqpagetext' => 'Lehekülgede vaatamiseks pead $1.',
-'accmailtitle' => 'Parool saadetud.',
+'accmailtitle' => 'Parool saadetud',
 'accmailtext' => "Kasutajale '$1' genereeritud juhuslik parool saadeti aadressile $2.
 
 Seda parooli on võimalik muuta ''[[Special:ChangePassword|parooli muutmise lehel]]'' peale uuele kontole sisse logimist.",
@@ -1333,9 +1334,9 @@ Vahepeal saad otsimiseks Google'it kasutada.
 Pane tähele, et Google'is talletatud {{GRAMMAR:genitive|{{SITENAME}}}} sisu võib olla iganenud.",
 
 # Quickbar
-'qbsettings' => 'Kiirriba sätted',
-'qbsettings-none' => 'Ei_ole',
-'qbsettings-fixedleft' => 'Püsivalt_vasakul',
+'qbsettings' => 'Kiirriba',
+'qbsettings-none' => 'Puudub',
+'qbsettings-fixedleft' => 'Püsivalt vasakul',
 'qbsettings-fixedright' => 'Püsivalt paremal',
 'qbsettings-floatingleft' => 'Ujuvalt vasakul',
 'qbsettings-floatingright' => 'Ujuvalt paremal',
@@ -2409,6 +2410,7 @@ Mine tagasi eelmisele leheküljele ja taaslaadi see, seejärel proovi uuesti.',
 'prot_1movedto2' => 'Lehekülg "[[$1]]" teisaldatud pealkirja "[[$2]]" alla',
 'protect-badnamespace-title' => 'Kaitstamatu nimeruum',
 'protect-badnamespace-text' => 'Selles nimeruumis olevaid lehekülgi ei saa kaitsta.',
+'protect-norestrictiontypes-title' => 'Kaitstamatu lehekülg',
 'protect-legend' => 'Kaitse kinnitamine',
 'protectcomment' => 'Põhjus:',
 'protectexpiry' => 'Aegub:',
@@ -3860,17 +3862,17 @@ Pilt kuvatakse algupärases suuruses, muu fail avatakse koheselt seostuva progra
 'sqlite-no-fts' => '$1 ilma täistekstiotsingu toeta',
 
 # New logging system
-'logentry-delete-delete' => '$1 kustutas lehekülje $3',
-'logentry-delete-restore' => '$1 taastas lehekülje $3',
-'logentry-delete-event' => '$1 muutis leheküljel $3 {{PLURAL:$5|ühe|$5}} logisündmuse nähtavust: $4',
-'logentry-delete-revision' => '$1 muutis leheküljel $3 {{PLURAL:$5|ühe|$5}} redaktsiooni nähtavust: $4',
-'logentry-delete-event-legacy' => '$1 muutis leheküljel $3 logisündmuste nähtavust',
-'logentry-delete-revision-legacy' => '$1 muutis leheküljel $3 redaktsioonide nähtavust',
-'logentry-suppress-delete' => '$1 varjas lehekülje $3',
-'logentry-suppress-event' => '$1 muutis salaja leheküljel $3 {{PLURAL:$5|ühe|$5}} logisündmuse nähtavust: $4',
-'logentry-suppress-revision' => '$1 muutis salaja leheküljel $3 {{PLURAL:$5|ühe|$5}} redaktsiooni nähtavust: $4',
-'logentry-suppress-event-legacy' => '$1 muutis salaja leheküljel $3 logisündmuste nähtavust',
-'logentry-suppress-revision-legacy' => '$1 muutis salaja leheküljel $3 redaktsioonide nähtavust',
+'logentry-delete-delete' => '$1 {{GENDER:$2|kustutas}} lehekülje $3',
+'logentry-delete-restore' => '$1 {{GENDER:$2|taastas}} lehekülje $3',
+'logentry-delete-event' => '$1 {{GENDER:$2|muutis}} leheküljel $3 {{PLURAL:$5|ühe|$5}} logisündmuse nähtavust: $4',
+'logentry-delete-revision' => '$1 {{GENDER:$2|muutis}} leheküljel $3 {{PLURAL:$5|ühe|$5}} redaktsiooni nähtavust: $4',
+'logentry-delete-event-legacy' => '$1 {{GENDER:$2|muutis}} leheküljel $3 logisündmuste nähtavust',
+'logentry-delete-revision-legacy' => '$1 {{GENDER:$2|muutis}} leheküljel $3 redaktsioonide nähtavust',
+'logentry-suppress-delete' => '$1 {{GENDER:$2|varjas}} lehekülje $3',
+'logentry-suppress-event' => '$1 {{GENDER:$2|muutis}} salaja leheküljel $3 {{PLURAL:$5|ühe|$5}} logisündmuse nähtavust: $4',
+'logentry-suppress-revision' => '$1 {{GENDER:$2|muutis}} salaja leheküljel $3 {{PLURAL:$5|ühe|$5}} redaktsiooni nähtavust: $4',
+'logentry-suppress-event-legacy' => '$1 {{GENDER:$2|muutis}} salaja leheküljel $3 logisündmuste nähtavust',
+'logentry-suppress-revision-legacy' => '$1 {{GENDER:$2|muutis}} salaja leheküljel $3 redaktsioonide nähtavust',
 'revdelete-content-hid' => 'peideti sisu',
 'revdelete-summary-hid' => 'peideti resümee',
 'revdelete-uname-hid' => 'peideti kasutajanimi',
@@ -3879,16 +3881,16 @@ Pilt kuvatakse algupärases suuruses, muu fail avatakse koheselt seostuva progra
 'revdelete-uname-unhid' => 'nähtavaks tehti kasutajanimi',
 'revdelete-restricted' => 'kehtestati piirangud administraatoritele',
 'revdelete-unrestricted' => 'eemaldati administraatoritelt piirangud',
-'logentry-move-move' => '$1 teisaldas lehekülje $3 pealkirja $4 alla',
-'logentry-move-move-noredirect' => '$1 teisaldas lehekülje $3 pealkirja $4 alla ümbersuunamist maha jätmata',
-'logentry-move-move_redir' => '$1 teisaldas lehekülje $3 ümbersuunamise $4 asemele',
-'logentry-move-move_redir-noredirect' => '$1 teisaldas lehekülje $3 ümbersuunamise $4 asemele ümbersuunamist maha jätmata',
-'logentry-patrol-patrol' => '$1 märkis lehekülje $3 redaktsiooni $4 kontrollituks',
-'logentry-patrol-patrol-auto' => '$1 märkis automaatselt lehekülje $3 redaktsiooni $4 kontrollituks',
-'logentry-newusers-newusers' => 'Loodud kasutajakonto $1',
-'logentry-newusers-create' => 'Loodud kasutajakonto $1',
-'logentry-newusers-create2' => '$1 lõi kasutajakonto $3',
-'logentry-newusers-autocreate' => 'Konto $1 loodi automaatselt',
+'logentry-move-move' => '$1 {{GENDER:$2|teisaldas}} lehekülje $3 pealkirja $4 alla',
+'logentry-move-move-noredirect' => '$1 {{GENDER:$2|teisaldas}} lehekülje $3 pealkirja $4 alla ümbersuunamist maha jätmata',
+'logentry-move-move_redir' => '$1 {{GENDER:$2|teisaldas}} lehekülje $3 ümbersuunamise $4 asemele',
+'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|teisaldas}} lehekülje $3 ümbersuunamise $4 asemele ümbersuunamist maha jätmata',
+'logentry-patrol-patrol' => '$1 {{GENDER:$2|märkis}} lehekülje $3 redaktsiooni $4 kontrollituks',
+'logentry-patrol-patrol-auto' => '$1 {{GENDER:$2|märkis}} automaatselt lehekülje $3 redaktsiooni $4 kontrollituks',
+'logentry-newusers-newusers' => '{{GENDER:$2|Loodud}} kasutajakonto $1',
+'logentry-newusers-create' => '{{GENDER:$2|Loodud}} kasutajakonto $1',
+'logentry-newusers-create2' => '$1 {{GENDER:$2|lõi}} kasutajakonto $3',
+'logentry-newusers-autocreate' => 'Konto $1 {{GENDER:$2|loodi}} automaatselt',
 'rightsnone' => '(puudub)',
 
 # Feedback

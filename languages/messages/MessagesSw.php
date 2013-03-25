@@ -2243,7 +2243,7 @@ Rejea kumbukumbu ya uzuio ya mwisho inayoandikwa chini:',
 'whatlinkshere-hideredirs' => '$1 maelekezo',
 'whatlinkshere-hidetrans' => '$1 majumuisho',
 'whatlinkshere-hidelinks' => '$1 viungo',
-'whatlinkshere-hideimages' => 'viungo $1 vya faili',
+'whatlinkshere-hideimages' => 'Viungo vya faili $1',
 'whatlinkshere-filters' => 'Machujio',
 
 # Block/unblock

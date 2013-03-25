@@ -728,7 +728,7 @@ Vläicht hutt Dir Äert Passwuert scho geännert oder en neit temporäert Passwu
 'passwordreset-capture-help' => 'Wann Dir dës Këscht ukräizt, gëtt de Mail (mam temporäre Passwuert) Iech gewisen an dem Benotzer geschéckt.',
 'passwordreset-email' => 'E-Mailadress:',
 'passwordreset-emailtitle' => 'Detailer vum Benotzerkont op{{SITENAME}}',
-'passwordreset-emailtext-ip' => "Iergendee mat der IP-Adress $1, wahrscheinlech Dir selwer, huet eng Erënnerung fir Är Benotzerkonteninformatiounen op {{SITENAME}} gefrot ($4). {{PLURAL:$3|De Benotzerkont ass|D'Benutzerkonte si}} mat dëser E-Mail-Adress verbonn:
+'passwordreset-emailtext-ip' => "Iergendee mat der IP-Adress $1, wahrscheinlech Dir selwer, huet d'Zrécksetze vun Ärem Passwuert op {{SITENAME}} gefrot ($4). {{PLURAL:$3|De Benotzerkont ass|D'Benutzerkonte si}} mat dëser E-Mail-Adress verbonn:
 
 $2
 
@@ -1106,7 +1106,7 @@ Dir hutt keen Zougang dozou.',
 'revdelete-no-change' => "'''Opgepasst:''' D'Element vum $2 ëm $1 Auer huet schonn déi ugefrote Sichtbarkeetsastellung.",
 'revdelete-concurrent-change' => "Feeler beim Ännere vum Element vum $1 ëm $2 Auer: säit Statut schéngt geännert ginn ze si während Dir vericht hutt et z'änneren.
 Kuckt w.e.g. an de Logbicher no.",
-'revdelete-only-restricted' => 'Feler beim verstoppe vum Objet vum $2, $1: Dir kënnt keng Objete virun den Administrateure verstoppen ouni och eng vun den aneren Optiounen vum weisen erauszesichen.',
+'revdelete-only-restricted' => 'Feeler beim verstoppe vum Element vum $2, $1: Dir kënnt keng Elementer virun den Administrateure verstoppen ouni och eng vun den aneren Optiounen vum weisen erauszesichen.',
 'revdelete-reason-dropdown' => "* Generell Läschgrënn
 ** Verletzung vun den Droits d'Auteur
 ** Net ubruechte perséinlech Informatioun
@@ -3582,7 +3582,7 @@ Dëse Confirmatiouns-Code leeft den $4 of.',
 'table_pager_first' => 'Éischt Säit',
 'table_pager_last' => 'Lescht Säit',
 'table_pager_limit' => '$1 Objete pro Säit weisen',
-'table_pager_limit_label' => 'Objete pro Säit:',
+'table_pager_limit_label' => 'Elementer pro Säit:',
 'table_pager_limit_submit' => 'Lass',
 'table_pager_empty' => 'Keng Resultater',
 
@@ -3773,9 +3773,9 @@ Den ugefrote Fichier gëtt direkt gewise respektiv mat enger verbonner Applikati
 # New logging system
 'logentry-delete-delete' => "$1 {{GENDER:$2|huet}} d'Säit $3 geläscht",
 'logentry-delete-restore' => "$1 {{GENDER:$2|huet}} d'Säit $3 restauréiert",
-'logentry-delete-event' => "$1 huet d'Visibilitéit vun {{PLURAL:$5|engem Evenement|$5 Evenementer}} am Logbuch op $3:$4 geännert",
-'logentry-delete-event-legacy' => "$1 huet d'Visibilitéit vun Elementer am Log op $3 geännert",
-'logentry-delete-revision-legacy' => "$1 huet d'Visibilitéit vu Versioune vun der Säit $3 geännert",
+'logentry-delete-event' => "$1 huet d'Visibilitéit vun {{PLURAL:$5|engem Evenement|$5 Evenementer}} am Logbuch op $3:$4 {{GENDER:$2|geännert}}",
+'logentry-delete-event-legacy' => "$1 huet d'Visibilitéit vun Elementer am Log op $3 {{GENDER:$2|geännert}}",
+'logentry-delete-revision-legacy' => "$1 huet d'Visibilitéit vu Versioune vun der Säit $3 {{GENDER:$2|geännert}}",
 'logentry-suppress-delete' => "$1 {{GENDER:$2|huet}} d'Säit $3 ewechgeholl",
 'logentry-suppress-event-legacy' => "$1 {{GENDER:$2|huet}} diskret d'Visibilitéit vun Elementer am Log op $3 geännert",
 'logentry-suppress-revision-legacy' => "$1 huet diskret d'Visibilitéit vu Versioune vun der Säit $3 geännert",
