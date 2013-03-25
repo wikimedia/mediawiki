@@ -188,7 +188,6 @@ $wgIgnoredMessages = array(
 	'fewestrevisions-summary',
 	'upload-summary',
 	'wantedtemplates-summary',
-	'activeusers-summary',
 	'search-summary',
 	'editpage-head-copy-warn',
 	'editpage-tos-summary',
