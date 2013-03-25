@@ -110,10 +110,10 @@ class SpecialBlock extends FormSpecialPage {
 			$s = HTMLForm::formatErrors( $this->preErrors );
 			if ( $s ) {
 				$form->addHeaderText( Html::rawElement(
-						'div',
-						array( 'class' => 'error' ),
-						$s
-					) );
+					'div',
+					array( 'class' => 'error' ),
+					$s
+				) );
 			}
 		}
 	}
@@ -241,8 +241,7 @@ class SpecialBlock extends FormSpecialPage {
 		if ( $block instanceof Block && !$block->mAuto # The block exists and isn't an autoblock
 			&& ( $this->type != Block::TYPE_RANGE # The block isn't a rangeblock
 				|| $block->getTarget() == $this->target ) # or if it is, the range is what we're about to block
-			)
-		{
+		) {
 			$fields['HardBlock']['default'] = $block->isHardblock();
 			$fields['CreateAccount']['default'] = $block->prevents( 'createaccount' );
 			$fields['AutoBlock']['default'] = $block->isAutoblocking();
@@ -460,8 +459,8 @@ class SpecialBlock extends FormSpecialPage {
 		$i = 0;
 		$target = null;
 
-		while( true ) {
-			switch( $i++ ) {
+		while ( true ) {
+			switch ( $i++ ) {
 				case 0:
 					# The HTMLForm will check wpTarget first and only if it doesn't get
 					# a value use the default, which will be generated from the options
@@ -620,8 +619,8 @@ class SpecialBlock extends FormSpecialPage {
 			# but $data['target'] gets overriden by (non-normalized) request variable
 			# from previous request.
 			if ( $target === $performer->getName() &&
-				( $data['PreviousTarget'] !== $target || !$data['Confirm'] ) )
-			{
+				( $data['PreviousTarget'] !== $target || !$data['Confirm'] )
+			) {
 				return array( 'ipb-blockingself' );
 			}
 		} elseif ( $type == Block::TYPE_RANGE ) {
@@ -635,8 +634,8 @@ class SpecialBlock extends FormSpecialPage {
 		}
 
 		if ( ( strlen( $data['Expiry'] ) == 0 ) || ( strlen( $data['Expiry'] ) > 50 )
-			|| !self::parseExpiryInput( $data['Expiry'] ) )
-		{
+			|| !self::parseExpiryInput( $data['Expiry'] )
+		) {
 			return array( 'ipb_expiry_invalid' );
 		}
 
@@ -703,9 +702,9 @@ class SpecialBlock extends FormSpecialPage {
 			$reblockNotAllowed = ( array_key_exists( 'Reblock', $data ) && !$data['Reblock'] );
 
 			# Show form unless the user is already aware of this...
-			if( $blockNotConfirmed || $reblockNotAllowed ) {
+			if ( $blockNotConfirmed || $reblockNotAllowed ) {
 				return array( array( 'ipb_already_blocked', $block->getTarget() ) );
-			# Otherwise, try to update the block...
+				# Otherwise, try to update the block...
 			} else {
 				# This returns direct blocks before autoblocks/rangeblocks, since we should
 				# be sure the user is blocked by now it should work for our purposes
@@ -865,7 +864,7 @@ class SpecialBlock extends FormSpecialPage {
 				# User is trying to unblock themselves
 				if ( $performer->isAllowed( 'unblockself' ) ) {
 					return true;
-				# User blocked themselves and is now trying to reverse it
+					# User blocked themselves and is now trying to reverse it
 				} elseif ( $performer->blockedBy() === $performer->getName() ) {
 					return true;
 				} else {
