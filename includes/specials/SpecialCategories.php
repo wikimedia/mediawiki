@@ -42,12 +42,12 @@ class SpecialCategories extends SpecialPage {
 
 		$this->getOutput()->addHTML(
 			Html::openElement( 'div', array( 'class' => 'mw-spcontent' ) ) .
-			$this->msg( 'categoriespagetext', $cap->getNumRows() )->parseAsBlock() .
-			$cap->getStartForm( $from ) .
-			$cap->getNavigationBar() .
-			'<ul>' . $cap->getBody() . '</ul>' .
-			$cap->getNavigationBar() .
-			Html::closeElement( 'div' )
+				$this->msg( 'categoriespagetext', $cap->getNumRows() )->parseAsBlock() .
+				$cap->getStartForm( $from ) .
+				$cap->getNavigationBar() .
+				'<ul>' . $cap->getBody() . '</ul>' .
+				$cap->getNavigationBar() .
+				Html::closeElement( 'div' )
 		);
 	}
 
@@ -66,7 +66,7 @@ class CategoryPager extends AlphabeticPager {
 	function __construct( IContextSource $context, $from ) {
 		parent::__construct( $context );
 		$from = str_replace( ' ', '_', $from );
-		if( $from !== '' ) {
+		if ( $from !== '' ) {
 			$from = Title::capitalize( $from, NS_CATEGORY );
 			$this->setOffset( $from );
 			$this->setIncludeOffset( true );
@@ -92,6 +92,7 @@ class CategoryPager extends AlphabeticPager {
 		unset( $this->mDefaultQuery['from'] );
 		return $this->mDefaultQuery;
 	}
+
 #	protected function getOrderTypeMessages() {
 #		return array( 'abc' => 'special-categories-sort-abc',
 #			'count' => 'special-categories-sort-count' );
@@ -126,12 +127,19 @@ class CategoryPager extends AlphabeticPager {
 	public function getStartForm( $from ) {
 		global $wgScript;
 
-		return Xml::tags( 'form', array( 'method' => 'get', 'action' => $wgScript ),
-				Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) .
-				Xml::fieldset( $this->msg( 'categories' )->text(),
-					Xml::inputLabel( $this->msg( 'categoriesfrom' )->text(),
+		return Xml::tags(
+			'form',
+			array( 'method' => 'get', 'action' => $wgScript ),
+			Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) .
+				Xml::fieldset(
+					$this->msg( 'categories' )->text(),
+					Xml::inputLabel(
+						$this->msg( 'categoriesfrom' )->text(),
 						'from', 'from', 20, $from ) .
-					' ' .
-					Xml::submitButton( $this->msg( 'allpagessubmit' )->text() ) ) );
+							' ' .
+							Xml::submitButton( $this->msg( 'allpagessubmit' )->text()
+					)
+				)
+		);
 	}
 }

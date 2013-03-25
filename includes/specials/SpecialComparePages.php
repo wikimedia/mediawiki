@@ -110,7 +110,7 @@ class SpecialComparePages extends SpecialPage {
 		$rev1 = self::revOrTitle( $data['Revision1'], $data['Page1'] );
 		$rev2 = self::revOrTitle( $data['Revision2'], $data['Page2'] );
 
-		if( $rev1 && $rev2 ) {
+		if ( $rev1 && $rev2 ) {
 			$revision = Revision::newFromId( $rev1 );
 
 			if ( $revision ) { // NOTE: $rev1 was already checked, should exist.
@@ -128,11 +128,11 @@ class SpecialComparePages extends SpecialPage {
 	}
 
 	public static function revOrTitle( $revision, $title ) {
-		if( $revision ) {
+		if ( $revision ) {
 			return $revision;
-		} elseif( $title ) {
+		} elseif ( $title ) {
 			$title = Title::newFromText( $title );
-			if( $title instanceof Title ) {
+			if ( $title instanceof Title ) {
 				return $title->getLatestRevID();
 			}
 		}

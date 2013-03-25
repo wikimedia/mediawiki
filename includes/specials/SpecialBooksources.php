@@ -53,8 +53,8 @@ class SpecialBookSources extends SpecialPage {
 		$this->outputHeader();
 		$this->isbn = self::cleanIsbn( $isbn ? $isbn : $this->getRequest()->getText( 'isbn' ) );
 		$this->getOutput()->addHTML( $this->makeForm() );
-		if( strlen( $this->isbn ) > 0 ) {
-			if( !self::isValidISBN( $this->isbn ) ) {
+		if ( strlen( $this->isbn ) > 0 ) {
+			if ( !self::isValidISBN( $this->isbn ) ) {
 				$this->getOutput()->wrapWikiMsg( "<div class=\"error\">\n$1\n</div>", 'booksources-invalid-isbn' );
 			}
 			$this->showList();
@@ -69,29 +69,29 @@ class SpecialBookSources extends SpecialPage {
 	public static function isValidISBN( $isbn ) {
 		$isbn = self::cleanIsbn( $isbn );
 		$sum = 0;
-		if( strlen( $isbn ) == 13 ) {
-			for( $i = 0; $i < 12; $i++ ) {
-				if( $i % 2 == 0 ) {
+		if ( strlen( $isbn ) == 13 ) {
+			for ( $i = 0; $i < 12; $i++ ) {
+				if ( $i % 2 == 0 ) {
 					$sum += $isbn[$i];
 				} else {
 					$sum += 3 * $isbn[$i];
 				}
 			}
 
-			$check = (10 - ($sum % 10)) % 10;
+			$check = ( 10 - ( $sum % 10 ) ) % 10;
 			if ( $check == $isbn[12] ) {
 				return true;
 			}
-		} elseif( strlen( $isbn ) == 10 ) {
-			for( $i = 0; $i < 9; $i++ ) {
-				$sum += $isbn[$i] * ($i + 1);
+		} elseif ( strlen( $isbn ) == 10 ) {
+			for ( $i = 0; $i < 9; $i++ ) {
+				$sum += $isbn[$i] * ( $i + 1 );
 			}
 
 			$check = $sum % 11;
-			if( $check == 10 ) {
+			if ( $check == 10 ) {
 				$check = "X";
 			}
-			if( $check == $isbn[9] ) {
+			if ( $check == $isbn[9] ) {
 				return true;
 			}
 		}
@@ -143,7 +143,7 @@ class SpecialBookSources extends SpecialPage {
 		# Check for a local page such as Project:Book_sources and use that if available
 		$page = $this->msg( 'booksources' )->inContentLanguage()->text();
 		$title = Title::makeTitleSafe( NS_PROJECT, $page ); # Show list in content language
-		if( is_object( $title ) && $title->exists() ) {
+		if ( is_object( $title ) && $title->exists() ) {
 			$rev = Revision::newFromTitle( $title, false, Revision::READ_NORMAL );
 			$content = $rev->getContent();
 
@@ -162,7 +162,7 @@ class SpecialBookSources extends SpecialPage {
 		$this->getOutput()->addWikiMsg( 'booksources-text' );
 		$this->getOutput()->addHTML( '<ul>' );
 		$items = $wgContLang->getBookstoreList();
-		foreach( $items as $label => $url )
+		foreach ( $items as $label => $url )
 			$this->getOutput()->addHTML( $this->makeListItem( $label, $url ) );
 		$this->getOutput()->addHTML( '</ul>' );
 		return true;

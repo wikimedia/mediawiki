@@ -89,8 +89,8 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 		$this->mNewEmail = $request->getVal( 'wpNewEmail' );
 
 		if ( $request->wasPosted()
-			&& $user->matchEditToken( $request->getVal( 'token' ) ) )
-		{
+			&& $user->matchEditToken( $request->getVal( 'token' ) )
+		) {
 			$info = $this->attemptChange( $user, $this->mPassword, $this->mNewEmail );
 			if ( $info === true ) {
 				$this->doReturnTo();
@@ -138,15 +138,15 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 
 		$this->getOutput()->addHTML(
 			Xml::fieldset( $this->msg( 'changeemail-header' )->text() ) .
-			Xml::openElement( 'form',
-				array(
-					'method' => 'post',
-					'action' => $this->getTitle()->getLocalUrl(),
-					'id' => 'mw-changeemail-form' ) ) . "\n" .
-			Html::hidden( 'token', $user->getEditToken() ) . "\n" .
-			Html::hidden( 'returnto', $this->getRequest()->getVal( 'returnto' ) ) . "\n" .
-			$this->msg( 'changeemail-text' )->parseAsBlock() . "\n" .
-			Xml::openElement( 'table', array( 'id' => 'mw-changeemail-table' ) ) . "\n"
+				Xml::openElement( 'form',
+					array(
+						'method' => 'post',
+						'action' => $this->getTitle()->getLocalUrl(),
+						'id' => 'mw-changeemail-form' ) ) . "\n" .
+				Html::hidden( 'token', $user->getEditToken() ) . "\n" .
+				Html::hidden( 'returnto', $this->getRequest()->getVal( 'returnto' ) ) . "\n" .
+				$this->msg( 'changeemail-text' )->parseAsBlock() . "\n" .
+				Xml::openElement( 'table', array( 'id' => 'mw-changeemail-table' ) ) . "\n"
 		);
 		$items = array(
 			array( 'wpName', 'username', 'text', $user->getName() ),
@@ -159,17 +159,17 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 
 		$this->getOutput()->addHTML(
 			$this->pretty( $items ) .
-			"\n" .
-			"<tr>\n" .
+				"\n" .
+				"<tr>\n" .
 				"<td></td>\n" .
 				'<td class="mw-input">' .
-					Xml::submitButton( $this->msg( 'changeemail-submit' )->text() ) .
-					Xml::submitButton( $this->msg( 'changeemail-cancel' )->text(), array( 'name' => 'wpCancel' ) ) .
+				Xml::submitButton( $this->msg( 'changeemail-submit' )->text() ) .
+				Xml::submitButton( $this->msg( 'changeemail-cancel' )->text(), array( 'name' => 'wpCancel' ) ) .
 				"</td>\n" .
-			"</tr>\n" .
-			Xml::closeElement( 'table' ) .
-			Xml::closeElement( 'form' ) .
-			Xml::closeElement( 'fieldset' ) . "\n"
+				"</tr>\n" .
+				Xml::closeElement( 'table' ) .
+				Xml::closeElement( 'form' ) .
+				Xml::closeElement( 'fieldset' ) . "\n"
 		);
 	}
 
@@ -181,7 +181,7 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 		$out = '';
 		foreach ( $fields as $list ) {
 			list( $name, $label, $type, $value ) = $list;
-			if( $type == 'text' ) {
+			if ( $type == 'text' ) {
 				$field = htmlspecialchars( $value );
 			} else {
 				$attribs = array( 'id' => $name );
@@ -241,8 +241,8 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 		if ( !$status->isGood() ) {
 			$this->getOutput()->addHTML(
 				'<p class="error">' .
-				$this->getOutput()->parseInline( $status->getWikiText( 'mailerror' ) ) .
-				'</p>' );
+					$this->getOutput()->parseInline( $status->getWikiText( 'mailerror' ) ) .
+					'</p>' );
 			return false;
 		}
 

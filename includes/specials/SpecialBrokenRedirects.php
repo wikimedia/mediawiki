@@ -88,7 +88,7 @@ class BrokenRedirectsPage extends QueryPage {
 	 * @return array
 	 */
 	function getOrderFields() {
-		return array ( 'rd_namespace', 'rd_title', 'rd_from' );
+		return array( 'rd_namespace', 'rd_title', 'rd_from' );
 	}
 
 	/**
@@ -138,7 +138,7 @@ class BrokenRedirectsPage extends QueryPage {
 
 		$out = $from . $this->msg( 'word-separator' )->escaped();
 
-		if( $this->getUser()->isAllowed( 'delete' ) ) {
+		if ( $this->getUser()->isAllowed( 'delete' ) ) {
 			$links[] = Linker::linkKnown(
 				$fromObj,
 				$this->msg( 'brokenredirects-delete' )->escaped(),

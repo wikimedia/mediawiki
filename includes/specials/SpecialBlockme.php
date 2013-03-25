@@ -39,7 +39,7 @@ class SpecialBlockme extends UnlistedSpecialPage {
 		$this->outputHeader();
 
 		$ip = $this->getRequest()->getIP();
-		if( !$wgBlockOpenProxies || $this->getRequest()->getText( 'ip' ) != md5( $ip . $wgProxyKey ) ) {
+		if ( !$wgBlockOpenProxies || $this->getRequest()->getText( 'ip' ) != md5( $ip . $wgProxyKey ) ) {
 			$this->getOutput()->addWikiMsg( 'proxyblocker-disabled' );
 			return;
 		}
