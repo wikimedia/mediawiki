@@ -8,24 +8,43 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 
 	protected function setUp() {
 		parent::setUp();
+		$this->configureLanguages();
 		MessageCache::singleton()->enable();
 	}
 
-	function addDBData() {
-		// be sure english messages under $key, not $key/en
-		$this->setMwGlobals( array(
-			'wgLanguageCode' => 'en',
-			'wgContLang' => Language::factory( 'en' ),
-		) );
+	/**
+	 * Helper function -- setup site language for testing
+	 */
+	protected function configureLanguages() {
+		// for the test, we need the content language to be anything but English,
+		// let's choose e.g. German (de)
+		$langCode = 'de';
+		$langObj = Language::factory( $langCode );
 
-		// Set up messages and fallbacks ab -> ru -> en
+		$this->setMwGlobals( array(
+			'wgLanguageCode' => $langCode,
+			'wgLang' => $langObj,
+			'wgContLang' => $langObj,
+		) );
+	}
+
+	function addDBData() {
+		$this->configureLanguages();
+
+		// Set up messages and fallbacks ab -> ru -> de -> en
 		$this->makePage( 'FallbackLanguageTest-Full', 'ab' );
 		$this->makePage( 'FallbackLanguageTest-Full', 'ru' );
+		$this->makePage( 'FallbackLanguageTest-Full', 'de' );
 		$this->makePage( 'FallbackLanguageTest-Full', 'en' );
 
 		// Fallbacks where ab does not exist
 		$this->makePage( 'FallbackLanguageTest-Partial', 'ru' );
+		$this->makePage( 'FallbackLanguageTest-Partial', 'de' );
 		$this->makePage( 'FallbackLanguageTest-Partial', 'en' );
+
+		// Fallback to the content language
+		$this->makePage( 'FallbackLanguageTest-ContLang', 'de' );
+		$this->makePage( 'FallbackLanguageTest-ContLang', 'en' );
 
 		// Fallback to english
 		$this->makePage( 'FallbackLanguageTest-English', 'en' );
@@ -67,6 +86,7 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 		return array(
 			array( 'FallbackLanguageTest-Full', 'ab', 'ab' ),
 			array( 'FallbackLanguageTest-Partial', 'ab', 'ru' ),
+			array( 'FallbackLanguageTest-ContLang', 'ab', 'de' ),
 			array( 'FallbackLanguageTest-English', 'ab', 'en' ),
 			array( 'FallbackLanguageTest-None', 'ab', false ),
 		);
