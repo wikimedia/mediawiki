@@ -33,8 +33,9 @@
  */
 class ApiFeedWatchlist extends ApiBase {
 
-	private $linkToDiffs = false;
 	private $watchlistModule = null;
+	private $linkToDiffs = false;
+	private $linkToSections = false;
 
 	/**
 	 * This module uses a custom feed wrapper printer.
@@ -97,6 +98,12 @@ class ApiFeedWatchlist extends ApiBase {
 				$fauxReqArr['wlprop'] .= '|ids';
 			}
 
+			// Support linking directly to sections when possible
+			// (possible only if section name is present in comment)
+			if ( $params['linktosections'] ) {
+				$this->linkToSections = true;
+			}
+
 			// Check for 'allrev' parameter, and if found, show all revisions to each page on wl.
 			if ( $params['allrev'] ) {
 				$fauxReqArr['wlallrev'] = '';
@@ -151,6 +158,14 @@ class ApiFeedWatchlist extends ApiBase {
 		}
 	}
 
+	# doQuotes() added because of Parser::stripSectionName in line 193 below;
+	# Instead of this I may change:
+	# "$this->doQuotes( $text );" to "self::doQuotes( $text );"
+	# in Parser::stripSectionName() (line 5687)
+	public function doQuotes( $text ) {
+		return Parser::doQuotes( $text );
+	}
+
 	/**
 	 * @param $info array
 	 * @return FeedItem
@@ -164,6 +179,26 @@ class ApiFeedWatchlist extends ApiBase {
 			$titleUrl = $title->getFullURL();
 		}
 		$comment = isset( $info['comment'] ) ? $info['comment'] : null;
+
+		// Create an anchor to section.
+		// The anchor won't work for sections that have dupes on page;
+		// and there's no way to strip that info from ApiWatchlist (apparently?)
+		if ( $this->linkToSections && $comment !== null ) {
+			// Extract section name (RegExp equal to Linker::formatAutocomments)
+			$match = preg_match( '!(.*)/\*\s*(.*?)\s*\*/(.*)!', $comment, $matches );
+			if ( $match ) {
+				// Extract pure text and create anchor
+				$this->mUrlProtocols = wfUrlProtocols();
+					# above line from from Parser line 216 because of Parser::stripSectionName
+				$sectionTitle = Parser::stripSectionName( $matches[2] );
+					# or use RegEx from Linker line 1333?
+					# or use RegEx from Linker line 1386?
+				$sectionTitle = Sanitizer::escapeId( $sectionTitle );
+
+				$titleUrl .= '#' . $sectionTitle;
+			}
+		}
+
 		$timestamp = $info['timestamp'];
 		$user = $info['user'];
 
@@ -195,6 +230,7 @@ class ApiFeedWatchlist extends ApiBase {
 				ApiBase::PARAM_MAX => 72,
 			),
 			'linktodiffs' => false,
+			'linktosections' => false,
 		);
 		if ( $flags ) {
 			$wlparams = $this->getWatchlistModule()->getAllowedParams( $flags );
@@ -219,6 +255,7 @@ class ApiFeedWatchlist extends ApiBase {
 			'feedformat' => 'The format of the feed',
 			'hours' => 'List pages modified within this many hours from now',
 			'linktodiffs' => 'Link to change differences instead of article pages',
+			'linktosections' => 'Link directly to changed sections if possible',
 			'allrev' => $wldescr['allrev'],
 			'wlowner' => $wldescr['owner'],
 			'wltoken' => $wldescr['token'],
