@@ -4006,8 +4006,9 @@ class Language {
 			if ( end( $fallbacks ) === 'en' ) {
 				array_pop( $fallbacks );
 			}
-			// Append the site's fallback chain
+			// Append the site's fallback chain, including the site language itself
 			$siteFallbacks = self::getFallbacksFor( $wgLanguageCode );
+			array_unshift( $siteFallbacks, $wgLanguageCode );
 
 			// Eliminate any languages already included in the chain
 			$siteFallbacks = array_intersect( array_diff( $siteFallbacks, $fallbacks ), $siteFallbacks );
