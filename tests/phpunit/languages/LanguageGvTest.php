@@ -11,7 +11,7 @@ class LanguageGvTest extends LanguageClassesTestCase {
 	function testPlural( $result, $value ) {
 		// This is not compatible with CLDR plural rules http://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/language_plural_rules.html#gv
 		// What does this mean? Is there a hard-coded override for gv somewhere? -Ryan Kaldari 2013-01-28
-		$forms =  array( 'Form 1', 'Form 2', 'Form 3', 'Form 4' );
+		$forms = array( 'Form 1', 'Form 2', 'Form 3', 'Form 4' );
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
@@ -22,7 +22,7 @@ class LanguageGvTest extends LanguageClassesTestCase {
 	}
 
 	public static function providePlural() {
-		return array (
+		return array(
 			array( 'Form 4', 0 ),
 			array( 'Form 2', 1 ),
 			array( 'Form 3', 2 ),

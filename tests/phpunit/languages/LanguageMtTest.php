@@ -19,13 +19,13 @@ class LanguageMtTest extends LanguageClassesTestCase {
 	}
 
 	public static function providePlural() {
-		return array (
-			array( 'few',   0 ),
-			array( 'one',   1 ),
-			array( 'few',   2 ),
-			array( 'few',   10 ),
-			array( 'many',  11 ),
-			array( 'many',  19 ),
+		return array(
+			array( 'few', 0 ),
+			array( 'one', 1 ),
+			array( 'few', 2 ),
+			array( 'few', 10 ),
+			array( 'many', 11 ),
+			array( 'many', 19 ),
 			array( 'other', 20 ),
 			array( 'other', 99 ),
 			array( 'other', 100 ),
@@ -46,23 +46,23 @@ class LanguageMtTest extends LanguageClassesTestCase {
 	}
 
 	public static function providerPluralTwoForms() {
-		return array (
-			array( 'other',  0 ),
-			array( 'one',   1 ),
-			array( 'other',  2 ),
-			array( 'other',  10 ),
-			array( 'other',  11 ),
-			array( 'other',  19 ),
-			array( 'other',  20 ),
-			array( 'other',  99 ),
-			array( 'other',  100 ),
-			array( 'other',  101 ),
-			array( 'other',  102 ),
-			array( 'other',  110 ),
-			array( 'other',  111 ),
-			array( 'other',  119 ),
-			array( 'other',  120 ),
-			array( 'other',  201 ),
+		return array(
+			array( 'other', 0 ),
+			array( 'one', 1 ),
+			array( 'other', 2 ),
+			array( 'other', 10 ),
+			array( 'other', 11 ),
+			array( 'other', 19 ),
+			array( 'other', 20 ),
+			array( 'other', 99 ),
+			array( 'other', 100 ),
+			array( 'other', 101 ),
+			array( 'other', 102 ),
+			array( 'other', 110 ),
+			array( 'other', 111 ),
+			array( 'other', 119 ),
+			array( 'other', 120 ),
+			array( 'other', 201 ),
 		);
 	}
 }

@@ -43,7 +43,7 @@ class JobQueueTest extends MediaWikiTestCase {
 		foreach ( $variants as $q => $settings ) {
 			try {
 				$this->$q = JobQueue::factory( $settings + $baseConfig );
-				if ( ! ( $this->$q instanceof JobQueueDB ) ) {
+				if ( !( $this->$q instanceof JobQueueDB ) ) {
 					$this->$q->setTestingPrefix( 'unittests-' . wfRandomString( 32 ) );
 				}
 			} catch ( MWException $e ) {}; // unsupported? (@TODO: what if it was another error?)
@@ -52,10 +52,12 @@ class JobQueueTest extends MediaWikiTestCase {
 
 	protected function tearDown() {
 		parent::tearDown();
-		foreach ( array(
-			'queueRand', 'queueRandTTL', 'queueTimestamp', 'queueTimestampTTL',
-			'queueFifo', 'queueFifoTTL'
-		) as $q ) {
+		foreach (
+			array(
+				'queueRand', 'queueRandTTL', 'queueTimestamp', 'queueTimestampTTL',
+				'queueFifo', 'queueFifoTTL'
+			) as $q
+		) {
 			if ( $this->$q ) {
 				do {
 					$job = $this->$q->pop();
@@ -153,15 +155,16 @@ class JobQueueTest extends MediaWikiTestCase {
 			$this->markTestSkipped( $desc );
 		}
 
-
 		$this->assertTrue( $queue->isEmpty(), "Queue is empty ($desc)" );
 
 		$queue->flushCaches();
 		$this->assertEquals( 0, $queue->getSize(), "Queue is empty ($desc)" );
 		$this->assertEquals( 0, $queue->getAcquiredCount(), "Queue is empty ($desc)" );
 
-		$this->assertTrue( $queue->batchPush(
-				array( $this->newDedupedJob(), $this->newDedupedJob(), $this->newDedupedJob() ) ),
+		$this->assertTrue(
+			$queue->batchPush(
+				array( $this->newDedupedJob(), $this->newDedupedJob(), $this->newDedupedJob() )
+			),
 			"Push worked ($desc)" );
 
 		$this->assertFalse( $queue->isEmpty(), "Queue is not empty ($desc)" );
@@ -170,9 +173,12 @@ class JobQueueTest extends MediaWikiTestCase {
 		$this->assertEquals( 1, $queue->getSize(), "Queue size is correct ($desc)" );
 		$this->assertEquals( 0, $queue->getAcquiredCount(), "No jobs active ($desc)" );
 
-		$this->assertTrue( $queue->batchPush(
-				array( $this->newDedupedJob(), $this->newDedupedJob(), $this->newDedupedJob() ) ),
-			"Push worked ($desc)" );
+		$this->assertTrue(
+			$queue->batchPush(
+				array( $this->newDedupedJob(), $this->newDedupedJob(), $this->newDedupedJob() )
+			),
+			"Push worked ($desc)"
+		);
 
 		$this->assertFalse( $queue->isEmpty(), "Queue is not empty ($desc)" );
 
@@ -205,7 +211,6 @@ class JobQueueTest extends MediaWikiTestCase {
 		if ( !$queue ) {
 			$this->markTestSkipped( $desc );
 		}
-
 
 		$this->assertTrue( $queue->isEmpty(), "Queue is empty ($desc)" );
 
@@ -259,7 +264,6 @@ class JobQueueTest extends MediaWikiTestCase {
 		if ( !$queue ) {
 			$this->markTestSkipped( $desc );
 		}
-
 
 		$this->assertTrue( $queue->isEmpty(), "Queue is empty ($desc)" );
 

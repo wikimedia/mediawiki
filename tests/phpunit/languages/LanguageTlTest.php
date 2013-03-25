@@ -19,9 +19,9 @@ class LanguageTlTest extends LanguageClassesTestCase {
 	}
 
 	public static function providePlural() {
-		return array (
-			array( 'one',  0 ),
-			array( 'one',  1 ),
+		return array(
+			array( 'one', 0 ),
+			array( 'one', 1 ),
 			array( 'other', 2 ),
 		);
 	}

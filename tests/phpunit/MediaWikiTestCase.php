@@ -438,7 +438,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * even if using different parameters.
 	 *
 	 * @param DatabaseBase $db The database connection
-	 * @param String  $prefix The prefix to use for the new table set (aka schema).
+	 * @param String $prefix The prefix to use for the new table set (aka schema).
 	 *
 	 * @throws MWException if the database table prefix is already $prefix
 	 */

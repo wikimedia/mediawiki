@@ -29,7 +29,7 @@ class StringUtilsTest extends MediaWikiTestCase {
 	 */
 	function testIsUtf8WithPhpFallbackImplementation( $expected, $string ) {
 		$this->assertEquals( $expected,
-			StringUtils::isUtf8( $string, /** disable mbstring: */ true ),
+			StringUtils::isUtf8( $string, /** disable mbstring: */true ),
 			'Testing string "' . $this->escaped( $string ) . '" with pure PHP implementation'
 		);
 	}
@@ -116,7 +116,7 @@ class StringUtilsTest extends MediaWikiTestCase {
 			array( $FAIL, "\xff" ),
 			array( $FAIL, "\xfe\xfe\xff\xff" ),
 
-			/**
+			/*
 			# The PHP implementation does not handle characters
 			# being represented in a form which is too long :(
 
@@ -133,7 +133,7 @@ class StringUtilsTest extends MediaWikiTestCase {
 			array( $FAIL, "\xf0\x8F\xbf\xbf" ),
 			array( $FAIL, "\xf8\x87\xbf\xbf" ),
 			array( $FAIL, "\xfc\x83\xbf\xbf\xbf\xbf" ),
-			**/
+			*/
 
 			# non characters
 			array( $PASS, "\xef\xbf\xbe" ),

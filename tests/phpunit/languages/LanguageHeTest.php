@@ -43,7 +43,7 @@ class LanguageHeTest extends LanguageClassesTestCase {
 	}
 
 	public static function provideTwoPluralForms() {
-		return array (
+		return array(
 			array( 'other', 0 ), // Zero - plural
 			array( 'one', 1 ), // Singular
 			array( 'other', 2 ), // No third form provided, use it as plural
@@ -54,7 +54,7 @@ class LanguageHeTest extends LanguageClassesTestCase {
 	}
 
 	public static function provideThreePluralForms() {
-		return array (
+		return array(
 			array( 'other', 0 ), // Zero - plural
 			array( 'one', 1 ), // Singular
 			array( 'two', 2 ), // Dual
@@ -65,7 +65,7 @@ class LanguageHeTest extends LanguageClassesTestCase {
 	}
 
 	public static function provideFourPluralForms() {
-		return array (
+		return array(
 			array( 'other', 0 ), // Zero - plural
 			array( 'one', 1 ), // Singular
 			array( 'two', 2 ), // Dual
@@ -83,31 +83,31 @@ class LanguageHeTest extends LanguageClassesTestCase {
 	// The comments in the beginning of the line help avoid RTL problems
 	// with text editors.
 	public static function provideGrammar() {
-		return array (
+		return array(
 			array(
-				/* result */ 'וויקיפדיה',
-				/* word   */ 'ויקיפדיה',
-				/* case   */ 'תחילית',
+				/* result */'וויקיפדיה',
+				/* word   */'ויקיפדיה',
+				/* case   */'תחילית',
 			),
 			array(
-				/* result */ 'וולפגנג',
-				/* word   */ 'וולפגנג',
-				/* case   */ 'prefixed',
+				/* result */'וולפגנג',
+				/* word   */'וולפגנג',
+				/* case   */'prefixed',
 			),
 			array(
-				/* result */ 'קובץ',
-				/* word   */ 'הקובץ',
-				/* case   */ 'תחילית',
+				/* result */'קובץ',
+				/* word   */'הקובץ',
+				/* case   */'תחילית',
 			),
 			array(
-				/* result */ '־Wikipedia',
-				/* word   */ 'Wikipedia',
-				/* case   */ 'תחילית',
+				/* result */'־Wikipedia',
+				/* word   */'Wikipedia',
+				/* case   */'תחילית',
 			),
 			array(
-				/* result */ '־1995',
-				/* word   */ '1995',
-				/* case   */ 'תחילית',
+				/* result */'־1995',
+				/* word   */'1995',
+				/* case   */'תחילית',
 			),
 		);
 	}

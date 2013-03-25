@@ -16,9 +16,10 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
 	}
 
 	protected function setUp() {
-		global $wgParser, $wgParserConf, $IP, $messageMemc, $wgMemc,
-			$wgUser, $wgLang, $wgOut, $wgRequest, $wgStyleDirectory, $wgEnableParserCache,
-			$wgNamespaceAliases, $wgNamespaceProtection, $parserMemc;
+		global $wgParser, $wgParserConf, $IP, $messageMemc, $wgMemc, $wgUser,
+			$wgLang, $wgOut, $wgRequest, $wgStyleDirectory,
+			$wgEnableParserCache, $wgNamespaceAliases, $wgNamespaceProtection,
+			$parserMemc;
 
 		$tmpGlobals = array();
 

@@ -20,12 +20,12 @@ class LanguageSlTest extends LanguageClassesTestCase {
 	}
 
 	public static function providerPlural() {
-		return array (
-			array( 'other',  0 ),
-			array( 'one',   1 ),
-			array( 'two',   2 ),
-			array( 'few',   3 ),
-			array( 'few',   4 ),
+		return array(
+			array( 'other', 0 ),
+			array( 'one', 1 ),
+			array( 'two', 2 ),
+			array( 'few', 3 ),
+			array( 'few', 4 ),
 			array( 'other', 5 ),
 			array( 'other', 99 ),
 			array( 'other', 100 ),

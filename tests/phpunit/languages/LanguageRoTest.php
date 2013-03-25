@@ -19,11 +19,11 @@ class LanguageRoTest extends LanguageClassesTestCase {
 	}
 
 	public static function providePlural() {
-		return array (
-			array( 'few',   0 ),
-			array( 'one',   1 ),
-			array( 'few',   2 ),
-			array( 'few',   19 ),
+		return array(
+			array( 'few', 0 ),
+			array( 'one', 1 ),
+			array( 'few', 2 ),
+			array( 'few', 19 ),
 			array( 'other', 20 ),
 			array( 'other', 99 ),
 			array( 'other', 100 ),

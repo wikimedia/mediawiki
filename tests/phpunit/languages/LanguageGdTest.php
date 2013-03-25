@@ -14,7 +14,7 @@ class LanguageGdTest extends LanguageClassesTestCase {
 	}
 
 	public static function providerPlural() {
-		return array (
+		return array(
 			array( 'other', 0 ),
 			array( 'one', 1 ),
 			array( 'two', 2 ),
@@ -33,15 +33,15 @@ class LanguageGdTest extends LanguageClassesTestCase {
 	}
 
 	public static function providerPluralExplicit() {
-		return array (
-				array( 'other', 0 ),
-				array( 'one', 1 ),
-				array( 'two', 2 ),
-				array( 'Form11', 11 ),
-				array( 'Form12', 12 ),
-				array( 'few', 3 ),
-				array( 'few', 19 ),
-				array( 'other', 200 ),
+		return array(
+			array( 'other', 0 ),
+			array( 'one', 1 ),
+			array( 'two', 2 ),
+			array( 'Form11', 11 ),
+			array( 'Form12', 12 ),
+			array( 'few', 3 ),
+			array( 'few', 19 ),
+			array( 'other', 200 ),
 		);
 	}
 }

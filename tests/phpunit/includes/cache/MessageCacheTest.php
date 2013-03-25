@@ -64,7 +64,7 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 		global $wgContLang;
 
 		$title = Title::newFromText(
-			($lang == $wgContLang->getCode()) ? $title : "$title/$lang",
+			( $lang == $wgContLang->getCode() ) ? $title : "$title/$lang",
 			NS_MEDIAWIKI
 		);
 		$wikiPage = new WikiPage( $title );

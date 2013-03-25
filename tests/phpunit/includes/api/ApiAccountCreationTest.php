@@ -65,8 +65,7 @@ class ApiCreateAccountTest extends ApiTestCase {
 			'action' => 'login',
 			'lgname' => 'Apitestnew',
 			'lgpassword' => $password,
-			)
-		);
+		) );
 
 		$result = $ret[0];
 		$this->assertNotInternalType( 'bool', $result );
@@ -76,12 +75,14 @@ class ApiCreateAccountTest extends ApiTestCase {
 		$this->assertEquals( 'NeedToken', $a );
 		$token = $result['login']['token'];
 
-		$ret = $this->doApiRequest( array(
-			'action' => 'login',
-			'lgtoken' => $token,
-			'lgname' => 'Apitestnew',
-			'lgpassword' => $password,
-			), $ret[2]
+		$ret = $this->doApiRequest(
+			array(
+				'action' => 'login',
+				'lgtoken' => $token,
+				'lgname' => 'Apitestnew',
+				'lgpassword' => $password,
+			),
+			$ret[2]
 		);
 
 		$result = $ret[0];
@@ -92,9 +93,11 @@ class ApiCreateAccountTest extends ApiTestCase {
 		$this->assertEquals( 'Success', $a );
 
 		// log out to destroy the session
-		$ret = $this->doApiRequest( array(
-			'action' => 'logout',
-			), $ret[2]
+		$ret = $this->doApiRequest(
+			array(
+				'action' => 'logout',
+			),
+			$ret[2]
 		);
 		$this->assertEquals( array(), $ret[0] );
 	}

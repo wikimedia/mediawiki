@@ -48,7 +48,7 @@ class ApiQueryContinue2Test extends ApiQueryContinueTestBase {
 	 */
 	public function testA() {
 		$this->mVerbose = false;
-		$mk = function( $g, $p, $gDir ) {
+		$mk = function ( $g, $p, $gDir ) {
 			return array(
 				'generator' => 'allpages',
 				'gapprefix' => 'AQCT73462-',
@@ -59,10 +59,10 @@ class ApiQueryContinue2Test extends ApiQueryContinueTestBase {
 			);
 		};
 		// generator + 1 prop + 1 list
-		$data = $this->query( $mk(99,99,true), 1, 'g1p', false );
-		$this->checkC( $data, $mk(1,1,true), 6, 'g1p-11t' );
-		$this->checkC( $data, $mk(2,2,true), 3, 'g1p-22t' );
-		$this->checkC( $data, $mk(1,1,false), 6, 'g1p-11f' );
-		$this->checkC( $data, $mk(2,2,false), 3, 'g1p-22f' );
+		$data = $this->query( $mk( 99, 99, true ), 1, 'g1p', false );
+		$this->checkC( $data, $mk( 1, 1, true ), 6, 'g1p-11t' );
+		$this->checkC( $data, $mk( 2, 2, true ), 3, 'g1p-22t' );
+		$this->checkC( $data, $mk( 1, 1, false ), 6, 'g1p-11f' );
+		$this->checkC( $data, $mk( 2, 2, false ), 3, 'g1p-22f' );
 	}
 }

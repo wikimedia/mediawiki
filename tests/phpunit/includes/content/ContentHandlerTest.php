@@ -257,8 +257,7 @@ class ContentHandlerTest extends MediaWikiTestCase {
 		} catch ( MWException $ex ) {
 			if ( !$shouldFail ) {
 				$this->fail( "ContentHandler::makeContent failed unexpectedly: " . $ex->getMessage() );
-			}
-			else {
+			} else {
 				// dummy, so we don't get the "test did not perform any assertions" message.
 				$this->assertTrue( true );
 			}
