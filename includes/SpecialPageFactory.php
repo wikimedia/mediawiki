@@ -99,7 +99,6 @@ class SpecialPageFactory {
 		'Listusers'                 => 'SpecialListUsers',
 		'Listadmins'                => 'SpecialListAdmins',
 		'Listbots'                  => 'SpecialListBots',
-		'Activeusers'               => 'SpecialActiveUsers',
 		'Userrights'                => 'UserrightsPage',
 		'EditWatchlist'             => 'SpecialEditWatchlist',
 
