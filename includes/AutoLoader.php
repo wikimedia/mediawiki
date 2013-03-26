@@ -701,7 +701,7 @@ $wgAutoloadLocalClasses = array(
 
 	# includes/logging
 	'DatabaseLogEntry' => 'includes/logging/LogEntry.php',
-	'DeleteLogFormatter' => 'includes/logging/LogFormatter.php',
+	'DeleteLogFormatter' => 'includes/logging/DeleteLogFormatter.php',
 	'LegacyLogFormatter' => 'includes/logging/LogFormatter.php',
 	'LogEntry' => 'includes/logging/LogEntry.php',
 	'LogEventsList' => 'includes/logging/LogEventsList.php',
@@ -710,12 +710,12 @@ $wgAutoloadLocalClasses = array(
 	'LogPage' => 'includes/logging/LogPage.php',
 	'LogPager' => 'includes/logging/LogPager.php',
 	'ManualLogEntry' => 'includes/logging/LogEntry.php',
-	'MoveLogFormatter' => 'includes/logging/LogFormatter.php',
-	'NewUsersLogFormatter' => 'includes/logging/LogFormatter.php',
+	'MoveLogFormatter' => 'includes/logging/MoveLogFormatter.php',
+	'NewUsersLogFormatter' => 'includes/logging/NewUsersLogFormatter.php',
 	'PatrolLog' => 'includes/logging/PatrolLog.php',
-	'PatrolLogFormatter' => 'includes/logging/LogFormatter.php',
+	'PatrolLogFormatter' => 'includes/logging/PatrolLogFormatter.php',
 	'RCDatabaseLogEntry' => 'includes/logging/LogEntry.php',
-	'RightsLogFormatter' => 'includes/logging/LogFormatter.php',
+	'RightsLogFormatter' => 'includes/logging/RightsLogFormatter.php',
 
 	# includes/media
 	'BitmapHandler' => 'includes/media/Bitmap.php',
