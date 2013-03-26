@@ -30,6 +30,10 @@
  *
  * @ingroup UtfNormal
  * @group Large
+ *
+ * We ignore code coverage for this test suite until they are rewritten
+ * to use data providers (bug 46561).
+ * @codeCoverageIgnore
  */
 class CleanUpTest extends MediaWikiTestCase {
 	/** @todo document */
