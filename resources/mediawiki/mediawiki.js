@@ -463,6 +463,7 @@ var mw = ( function ( $, undefined ) {
 			function canExpandStylesheetWith( cssText ) {
 				// Debug hack to trace the source of garbage input to mw.loader
 				if ( typeof cssText !== 'string' ) {
+					log( cssText );
 					throw new Error( 'Illegal invokation of path mw.loader#canExpandStylesheetWith' );
 				}
 
