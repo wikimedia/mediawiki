@@ -941,7 +941,7 @@ class LanguageConverter {
 		$parsed[$key] = true;
 
 		if ( $subpage === '' ) {
-			$txt = MessageCache::singleton()->get( 'conversiontable', true, $code );
+			$txt = MessageCache::singleton()->getMsgFromNamespace( $key, $code );
 		} else {
 			$txt = false;
 			$title = Title::makeTitleSafe( NS_MEDIAWIKI, $key );
