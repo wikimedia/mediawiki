@@ -100,7 +100,7 @@ class MWTimestamp {
 			# TS_DB
 		} elseif ( preg_match( '/^(\d{4}):(\d\d):(\d\d) (\d\d):(\d\d):(\d\d)$/D', $ts, $da ) ) {
 			# TS_EXIF
-		} elseif ( preg_match( '/^(\d{4})(\d\d)(\d\d)(\d\d)(\d\d)(\d\d)$/D', $ts, $da ) ) {
+		} elseif ( preg_match( '/^(-?\d{4})(\d\d)(\d\d)(\d\d)(\d\d)(\d\d)$/D', $ts, $da ) ) {
 			# TS_MW
 		} elseif ( preg_match( '/^-?\d{1,13}$/D', $ts ) ) {
 			# TS_UNIX
@@ -135,8 +135,19 @@ class MWTimestamp {
 
 		if( !$strtime ) {
 			$da = array_map( 'intval', $da );
+	
+			$sign = false; //we assume no sign (positive)
+			if ( $da[1] < 0 ) { // If negative
+				$sign = true;
+				$da[1] = $da[1]*-1; //Turn year into positive
+			}
+
 			$da[0] = "%04d-%02d-%02dT%02d:%02d:%02d.00+00:00";
 			$strtime = call_user_func_array( "sprintf", $da );
+			if ( $sign ) {
+				// We add negative sign back if necessary
+				$strtime = "-".$strtime;
+			}
 		}
 
 		try {
