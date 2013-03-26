@@ -95,7 +95,7 @@
 class HTMLForm extends ContextSource {
 
 	// A mapping of 'type' inputs onto standard HTMLFormField subclasses
-	static $typeMappings = array(
+	private static $typeMappings = array(
 		'api' => 'HTMLApiField',
 		'text' => 'HTMLTextField',
 		'textarea' => 'HTMLTextAreaField',
@@ -1996,7 +1996,6 @@ class HTMLSelectField extends HTMLFormField {
  * Select dropdown field, with an additional "other" textbox.
  */
 class HTMLSelectOrOtherField extends HTMLTextField {
-	static $jsAdded = false;
 
 	function __construct( $params ) {
 		if ( !in_array( 'other', $params['options'], true ) ) {
