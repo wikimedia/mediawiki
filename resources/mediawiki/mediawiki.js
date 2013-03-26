@@ -461,12 +461,6 @@ var mw = ( function ( $, undefined ) {
 			 * @return {boolean} False if a new one must be created.
 			 */
 			function canExpandStylesheetWith( cssText ) {
-				// Debug hack to trace the source of garbage input to mw.loader
-				if ( typeof cssText !== 'string' ) {
-					log( cssText );
-					throw new Error( 'Illegal invokation of path mw.loader#canExpandStylesheetWith' );
-				}
-
 				// Makes sure that cssText containing `@import`
 				// rules will end up in a new stylesheet (as those only work when
 				// placed at the start of a stylesheet; bug 35562).
