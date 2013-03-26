@@ -3,6 +3,22 @@
 # - https://github.com/senchalabs/jsduck/wiki/Custom-tags
 require 'jsduck/meta_tag'
 
+class SourceTag < JsDuck::MetaTag
+  def initialize
+    # This defines the name of the @tag
+    @name = 'source'
+  end
+
+  # Generate HTML output for this tag.
+  # One can make use of the #format method to easily support
+  # Markdown and {@link} tags inside the contents of the tag.
+  #
+  # @param tags All matches of this tag on one class.
+  def to_html(tags)
+    '<h3 class="pa">Source</h3>' + tags.map {|tag| format(tag) }.join("\n")
+  end
+end
+
 class ContextTag < JsDuck::MetaTag
   def initialize
     @name = 'context'
