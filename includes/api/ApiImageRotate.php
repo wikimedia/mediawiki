@@ -119,7 +119,9 @@ class ApiImageRotate extends ApiBase {
 				"rotation" => $rotation
 			) );
 			if ( !$err ) {
-				$comment = wfMessage( 'rotate-comment' )->numParams( $rotation )->text();
+				$comment = wfMessage(
+					'rotate-comment'
+				)->numParams( $rotation )->inContentLanguage()->text();
 				$status = $file->upload( $dstPath,
 					$comment, $comment, 0, false, false, $this->getUser() );
 				if ( $status->isGood() ) {
