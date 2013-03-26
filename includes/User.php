@@ -71,6 +71,11 @@ class User {
 	const MAX_WATCHED_ITEMS_CACHE = 100;
 
 	/**
+	 * The current and preferred password storage scheme
+	 */
+	const PASSWORD_SCHEME = ":B:";
+
+	/**
 	 * Array of Strings List of member variables which are saved to the
 	 * shared cache (memcached). Any operation which changes the
 	 * corresponding database fields must call a cache-clearing function.
@@ -3424,6 +3429,10 @@ class User {
 			return false;
 		}
 		if ( self::comparePasswords( $this->mPassword, $password, $this->mId ) ) {
+			if ( substr( $this->mPassword, 0, strlen( self::PASSWORD_SCHEME ) ) !== self::PASSWORD_SCHEME ) {
+				/* Update the password storage to the latest and greatest scheme */
+				$this->setInternalPassword( $password );
+			}
 			return true;
 		} elseif ( $wgLegacyEncoding ) {
 			# Some wikis were converted from ISO 8859-1 to UTF-8, the passwords can't be converted
@@ -3432,6 +3441,9 @@ class User {
 			if ( $cp1252Password != $password &&
 				self::comparePasswords( $this->mPassword, $cp1252Password, $this->mId ) )
 			{
+				/* Update the password storage to the latest and greatest scheme in UTF-8 */
+				$this->setInternalPassword( $password );
+
 				return true;
 			}
 		}
