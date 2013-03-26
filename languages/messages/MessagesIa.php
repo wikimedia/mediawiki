@@ -2136,15 +2136,6 @@ Isto necessita specificar al minus le dominio de nivello superior, per exemplo "
 'listusers-noresult' => 'Nulle usator trovate.',
 'listusers-blocked' => '(blocate)',
 
-# Special:ActiveUsers
-'activeusers' => 'Lista de usatores active',
-'activeusers-intro' => 'Isto es un lista de usatores que habeva alcun typo de activitate intra le ultime $1 {{PLURAL:$1|die|dies}}.',
-'activeusers-count' => '$1 {{PLURAL:$1|action|actiones}} in le ultime {{PLURAL:$3|die|$3 dies}}',
-'activeusers-from' => 'Presentar usatores a partir de:',
-'activeusers-hidebots' => 'Celar bots',
-'activeusers-hidesysops' => 'Celar administratores',
-'activeusers-noresult' => 'Nulle usator trovate.',
-
 # Special:ListGroupRights
 'listgrouprights' => 'Derectos del gruppos de usatores',
 'listgrouprights-summary' => 'Lo sequente es un lista de gruppos de usatores definite in iste wiki, con lor derectos de accesso associate.

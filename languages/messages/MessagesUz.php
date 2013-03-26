@@ -1128,13 +1128,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'listusers-noresult' => 'Foydalanuvchilar topilmadi.',
 'listusers-blocked' => '(chetlashtirilgan)',
 
-# Special:ActiveUsers
-'activeusers' => 'Faol foydalanuvchilar roʻyxati',
-'activeusers-from' => 'Quyidagidan boshlanuvchi foydalanuvchilarni koʻrsatish:',
-'activeusers-hidebots' => 'Botlarni yashirish',
-'activeusers-hidesysops' => 'Maʼmurlarni yashirish',
-'activeusers-noresult' => 'Foydalanuvchilar topilmadi.',
-
 # Special:ListGroupRights
 'listgrouprights' => 'Foydalanuvchilar guruhi huquqlari',
 'listgrouprights-group' => 'Guruh',

@@ -1433,12 +1433,6 @@ An paglaladawan han iya [$2 fayl han paglaladawan nga pakli] didto in ginpapakit
 'listusers-noresult' => 'Waray gumaramit nga nahiagian.',
 'listusers-blocked' => '(ginpugngan)',
 
-# Special:ActiveUsers
-'activeusers' => 'Taramdan hin mga gumaramit nga nanggigios',
-'activeusers-hidebots' => 'Igtago an mga bot',
-'activeusers-hidesysops' => 'Igtago an mga magdudumara',
-'activeusers-noresult' => 'Waray gumaramit nga nahiagian.',
-
 # Special:ListGroupRights
 'listgrouprights-group' => 'Hugpo',
 'listgrouprights-rights' => 'Mga katungod',

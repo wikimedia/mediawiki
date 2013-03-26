@@ -2131,15 +2131,6 @@ $1',
 'listusers-noresult' => 'მომხმარებელი ვერ ვიპოვეთ.',
 'listusers-blocked' => '(დაბლოკილია)',
 
-# Special:ActiveUsers
-'activeusers' => 'აქტიურ მომხმარებელთა სია',
-'activeusers-intro' => 'ეს არის მომხმარებელთა სია, რომელთაც აქვს წვლილი უკანასკნელი $1 {{PLURAL:$1|დღის|დღის}} განმავლობაში.',
-'activeusers-count' => '$1 {{PLURAL:$1|მოქმედება|მოქმედება}} {{PLURAL:$3|დღის|$3 დღის}} განმავლობაში.',
-'activeusers-from' => 'მომხმარებელთა ჩვენება, დაწყებული:',
-'activeusers-hidebots' => 'რობოტების დამალვა',
-'activeusers-hidesysops' => 'ადმინისტრატორების დამალვა',
-'activeusers-noresult' => 'მომხმარებლები არ არიან ნაპოვნი.',
-
 # Special:ListGroupRights
 'listgrouprights' => 'მომხმარებელთა ჯგუფების უფლებები',
 'listgrouprights-summary' => 'ქვემოთ წარმოდგენილია ამ ვიკიში გარკვეულ ჯგუფთა სია და მათი უფლებები.

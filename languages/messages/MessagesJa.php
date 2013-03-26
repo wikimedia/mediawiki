@@ -2380,15 +2380,6 @@ contenttype/subtypeの形式で入力してください (例: <code>image/jpeg</
 'listusers-noresult' => '利用者が見つかりませんでした。',
 'listusers-blocked' => '(ブロック中)',
 
-# Special:ActiveUsers
-'activeusers' => '活動中の利用者一覧',
-'activeusers-intro' => 'これは過去 $1 {{PLURAL:$1|日|日間}}に何らかの活動をした利用者の一覧です。',
-'activeusers-count' => '過去 {{PLURAL:$3|1 日|$3 日間}}に $1 {{PLURAL:$1|回の操作}}',
-'activeusers-from' => '最初に表示する利用者:',
-'activeusers-hidebots' => 'ボットを隠す',
-'activeusers-hidesysops' => '管理者を隠す',
-'activeusers-noresult' => '利用者が見つかりませんでした。',
-
 # Special:ListGroupRights
 'listgrouprights' => '利用者グループの権限',
 'listgrouprights-summary' => '以下は、このウィキに登録されている利用者グループと、それぞれに割り当てられている権限の一覧です。
@@ -3058,7 +3049,7 @@ MediaWiki 全般のローカライズ (地域化) に貢献したい場合は、
 # Thumbnails
 'thumbnail-more' => '拡大',
 'filemissing' => 'ファイルがありません',
-'thumbnail_error' => 'サムネイルの作成中にエラーが発生しました: $1',
+'thumbnail_error' => 'サムネイルの作成エラー: $1',
 'djvu_page_error' => 'DjVuページが範囲外です',
 'djvu_no_xml' => 'DjVuファイルのXMLデータを取得できません',
 'thumbnail-temp-create' => '一時的なサムネイルファイルを作成できません',

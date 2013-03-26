@@ -2155,15 +2155,6 @@ Q\'imichisqa tantari {{PLURAL:$2|qillqa|qillqakuna}}: <code>$1</code> (mana mayq
 'listusers-noresult' => 'Ruraqqa manam tarisqachu.',
 'listusers-blocked' => "(hark'asqa)",
 
-# Special:ActiveUsers
-'activeusers' => "Llamk'achkaq ruraqkuna",
-'activeusers-intro' => "Kay qatiqpiqa ruraqkunatam rikunki, qhipaq $1 {{PLURAL:$1|p'unchawpi|p'unchawkunapi}} kay wikipi imatapas ruraq.",
-'activeusers-count' => "$1 {{PLURAL:$1|llamk'apusqa|llamk'apusqakuna}} ñaqha {{PLURAL:$3|p'unchawpi|$3 p'unchawkunapi}}",
-'activeusers-from' => 'Ruraqkunata rikuchiy, kaywan qallarispa:',
-'activeusers-hidebots' => 'Rurana antachakunata pakay',
-'activeusers-hidesysops' => 'Kamachiqkunata pakay',
-'activeusers-noresult' => 'Ruraqkunataqa manam tarinichu.',
-
 # Special:ListGroupRights
 'listgrouprights' => 'Ruraq huñup hayñinkuna',
 'listgrouprights-summary' => "Kay qatiq sutisuyupiqa kay wikipi sut'ichasqa ruraq huñukunatam, kikinpa chayamuna hayñinkunatawan rikunki.

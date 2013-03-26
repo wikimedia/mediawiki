@@ -1600,7 +1600,7 @@ $1",
 این کار بازگشت‌ناپذیر است.',
 'prefs-emailconfirm-label' => 'تأیید رایانامه:',
 'prefs-textboxsize' => 'اندازهٔ جعبهٔ ویرایش',
-'youremail' => 'رایانامه:',
+'youremail' => 'ایمیل (اختیاری)*',
 'username' => '{{GENDER:$1|نام کاربری}}:',
 'uid' => 'شناسهٔ {{GENDER:$1|کاربری}}:',
 'prefs-memberingroups' => '{{GENDER:$2|عضو}} {{PLURAL:$1|گروه|گروه}}:',
@@ -2407,15 +2407,6 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'listusers-noresult' => 'هیچ کاربری یافت نشد.',
 'listusers-blocked' => '(بسته شده)',
 
-# Special:ActiveUsers
-'activeusers' => 'فهرست کاربران فعال',
-'activeusers-intro' => 'در زیر فهرستی از کاربرانی را می‌بینید که در $1 {{PLURAL:$1|روز|روز}} گذشته فعالیتی داشته‌اند.',
-'activeusers-count' => '$1 {{PLURAL:$1|فعالیت|فعالیت}} در {{PLURAL:$3|روز|$3 روز}} اخیر',
-'activeusers-from' => 'نمایش کاربران با آغاز از:',
-'activeusers-hidebots' => 'نهفتن ربات‌ها',
-'activeusers-hidesysops' => 'نهفتن مدیران',
-'activeusers-noresult' => 'کاربری پیدا نشد.',
-
 # Special:ListGroupRights
 'listgrouprights' => 'اختیارات گروه‌های کاربری',
 'listgrouprights-summary' => 'فهرست زیر شامل گروه‌های کاربری تعریف شده در این ویکی و اختیارات داده شده به آن‌ها است.
@@ -2750,7 +2741,7 @@ $1',
 'mycontris' => 'مشارکت‌ها',
 'contribsub2' => 'برای $1 ($2)',
 'nocontribs' => 'هیچ تغییری با این مشخصات یافت نشد.',
-'uctop' => ' (بالا)',
+'uctop' => '(بالا)',
 'month' => 'در این ماه (و پیش از آن):',
 'year' => 'در این سال (و پیش از آن):',
 

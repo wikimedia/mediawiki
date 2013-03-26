@@ -1351,12 +1351,6 @@ Li [[Special:WantedCategories|kategoriyên xwestî]] binêre.',
 'listusers-noresult' => 'Bikarhêner nehate dîtin.',
 'listusers-blocked' => '(hate astengkirin)',
 
-# Special:ActiveUsers
-'activeusers' => 'Lîsteya bikarhênerên çalak',
-'activeusers-hidebots' => "Bot'an veşêre",
-'activeusers-hidesysops' => 'Rêveberan veşêre',
-'activeusers-noresult' => 'Tu bikarhêner nehate dîtin.',
-
 # Special:ListGroupRights
 'listgrouprights' => 'Mafên koma bikarhêner',
 'listgrouprights-group' => 'Kom',
@@ -1601,7 +1595,7 @@ Ji bo jêbirinan û çêkirinên nû, ji kerema xwe li [[{{ns:special}}:Log/dele
 'whatlinkshere-hideredirs' => 'Beralîkirinan $1',
 'whatlinkshere-hidetrans' => 'Naverokan $1',
 'whatlinkshere-hidelinks' => 'Girêdanan $1',
-'whatlinkshere-hideimages' => '$1 lînkên wêneyan',
+'whatlinkshere-hideimages' => 'Girêdanên wêneyan $1',
 'whatlinkshere-filters' => 'Parzûn',
 
 # Block/unblock
@@ -1743,6 +1737,7 @@ da bikarî navê wê rûpelê biguherînî.',
 'movepage-page-unmoved' => 'Rûpela $1 nikanî çûba ciha $2.',
 'movelogpage' => 'guhertina nav',
 'movelogpagetext' => 'Li jêr lîsteyek ji rûpelan ku navê wan hatiye guherandin heye.',
+'movenosubpage' => 'Binrûpelên vê rûpelê tune ne.',
 'movereason' => 'Sedem',
 'revertmove' => 'şûnde vegerîne',
 'delete_and_move' => 'Jêbibe û nav biguherîne',
@@ -1874,6 +1869,8 @@ Ji ber ku girêdaneke derve di wê rûpelê de heye ev pirsgirêk pêk hat.',
 'pageinfo-redirectsto-info' => 'agahî',
 'pageinfo-contentpage-yes' => 'Erê',
 'pageinfo-protect-cascading-yes' => 'Erê',
+'pageinfo-category-pages' => 'hejmara rûpelan',
+'pageinfo-category-subcats' => 'Hejmara binkategoriyan',
 
 # Patrolling
 'markaspatrolleddiff' => 'Wek serrastkirî nîşan bide',
@@ -2115,6 +2112,7 @@ Ji kerema xwe zanibe ku tu bi rastî dixwazî vê rûpelê dîsa çêkî.",
 'specialpages-group-users' => 'Bikarhêner û maf',
 'specialpages-group-pages' => 'Lîstên rûpelan',
 'specialpages-group-pagetools' => 'Amûrên rûpelê',
+'specialpages-group-wiki' => 'Dane û amûr',
 
 # Special:BlankPage
 'blankpage' => 'Rûpela vala',

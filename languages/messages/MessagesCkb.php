@@ -1962,15 +1962,6 @@ $1',
 'listusers-noresult' => 'ھیچ بەکارھێنەرێک نەدۆزرایەوە.',
 'listusers-blocked' => '(بەربەست کراوە)',
 
-# Special:ActiveUsers
-'activeusers' => 'پێرستی بەکارھێنەرە چالاکەکان',
-'activeusers-intro' => 'ئەمە لیستێکی ئەو بەکارھێنەرانەیە کە لە  $1 {{PLURAL:$1|ڕۆژ|ڕۆژ}}ی ڕابردوودا بە جۆرێک چالاکییەکیان ھەبووە.',
-'activeusers-count' => '$1 {{PLURAL:$1|کردەوە}} لە دوایین {{PLURAL:$3|ڕۆژ|$3 ڕۆژ}}دا',
-'activeusers-from' => 'نیشاندانی بەکارھێنەران بە دەستپێکردن لە:',
-'activeusers-hidebots' => 'بۆتەکان بشارەوە',
-'activeusers-hidesysops' => 'بەڕێوبەران بشارەوە',
-'activeusers-noresult' => 'هیچ بەکارهێنەرێک نەدۆزرایەوە',
-
 # Special:ListGroupRights
 'listgrouprights' => 'مافەکانی گرووپی بەکارھێنەر',
 'listgrouprights-summary' => 'ئەمە لیستێکە لە گرووپەکانی بەکارهێنەر لەسەر ئەم ویکی‌یە، دەگەڵ مافەکانی دەست‌پێ‌گەیشتنی هاوپەیوەندیان.

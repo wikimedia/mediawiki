@@ -2030,15 +2030,6 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization صحیفه‌‌سین
 'listusers-noresult' => 'هئچ ایستیفاده‌چی تاپیلمادی.',
 'listusers-blocked' => '(باغلانیب)',
 
-# Special:ActiveUsers
-'activeusers' => 'چالیشان ایستیفاده‌چیلرین لیستی',
-'activeusers-intro' => 'بوردا سون {{PLURAL:$1|بیر|$1}} گون‌ده بیر ایشلر گؤرن ایستیفاده‌چیلرین لیستی گؤستریلیر.',
-'activeusers-count' => 'سون {{PLURAL:$3|گون|$3 گون}}‌ده، {{PLURAL:$1|$1}} چالیشما',
-'activeusers-from' => 'بوندان باشلایاراق ایستیفاده‌چیلری گؤستر:',
-'activeusers-hidebots' => 'بوتلاری گیزلت',
-'activeusers-hidesysops' => 'ایداره‌چیلری گیزلت',
-'activeusers-noresult' => 'هئچ ایستیفاده‌چی تاپیلمادی.',
-
 # Special:ListGroupRights
 'listgrouprights' => 'ایستیفاده‌چی قروپ حاقلاری',
 'listgrouprights-summary' => 'آشاغیدا، بو ویکی‌ده تانیلان ایستیفاده‌چی گروپلاری و اونلارین حاقلاری گؤستریلیر.

@@ -1915,15 +1915,6 @@ Itifaki zinazoungwa mkono: <code>$1</code> (usiongeza hizi unapotafuta).',
 'listusers-noresult' => 'Mtumiaji hakupatikana.',
 'listusers-blocked' => '(imezuiwa)',
 
-# Special:ActiveUsers
-'activeusers' => 'Orodha ya watumiaji hai',
-'activeusers-intro' => 'Hii ni orodha ya watumiaji walioshughulika jambo fulani ndani ya siku $1 {{PLURAL:$1|iliyopita|zilizopita}}.',
-'activeusers-count' => '{{PLURAL:$1|haririo|maharirio}} $1 katika siku $3 {{PLURAL:$3|iliyopita|zilizopita}}',
-'activeusers-from' => 'Onyesha watumiaji kuanzia:',
-'activeusers-hidebots' => 'Ficha boti',
-'activeusers-hidesysops' => 'Ficha wakabidhi',
-'activeusers-noresult' => 'Watumiaji hawakupatikana.',
-
 # Special:ListGroupRights
 'listgrouprights' => 'Wezo za kundi za watumiaji',
 'listgrouprights-summary' => 'Inafuata orodha ya kundi za watumiaji wa wiki hii, pamoja na maelezo ya wezo zao za kushughulika mambo.
