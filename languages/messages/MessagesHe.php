@@ -2318,15 +2318,6 @@ $1',
 'listusers-noresult' => 'לא נמצאו משתמשים.',
 'listusers-blocked' => '(חסום)',
 
-# Special:ActiveUsers
-'activeusers' => 'רשימת משתמשים פעילים',
-'activeusers-intro' => 'זוהי רשימת המשתמשים שביצעו פעולה כלשהי {{PLURAL:$1|ביום האחרון|ביומיים האחרונים|ב־$1 הימים האחרונים}}.',
-'activeusers-count' => '{{PLURAL:$1|פעולה אחת|$1 פעולות}} ב{{PLURAL:$3|יום האחרון|יומיים האחרונים|־$3 הימים האחרונים}}',
-'activeusers-from' => 'הצגת משתמשים החל מ:',
-'activeusers-hidebots' => 'הסתרת בוטים',
-'activeusers-hidesysops' => 'הסתרת מפעילי מערכת',
-'activeusers-noresult' => 'לא נמצאו משתמשים.',
-
 # Special:ListGroupRights
 'listgrouprights' => 'רשימת הרשאות לקבוצה',
 'listgrouprights-summary' => 'זוהי רשימה של קבוצות המשתמש המוגדרות באתר זה, עם ההרשאות של כל אחת.

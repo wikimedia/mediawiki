@@ -2068,15 +2068,6 @@ Palaikomi protokolai: <code>$1</code> (nei vieno iš jų nenurodykite paieškoje
 'listusers-noresult' => 'Nerasta jokių naudotojų.',
 'listusers-blocked' => '(užblokuotas)',
 
-# Special:ActiveUsers
-'activeusers' => 'Aktyvių naudotojų sąrašas',
-'activeusers-intro' => 'Tai naudotojų sąrašas, kurie ką nors padarė per $1 {{PLURAL:$1|paskutinę dieną|paskutines dienas|paskutinių dienų}}.',
-'activeusers-count' => '$1 {{PLURAL:$1|keitimas|keitimai|keitimų}} per $3 {{PLURAL:$3|paskutinę dieną|paskutines dienas|paskutinių dienų}}',
-'activeusers-from' => 'Rodyti naudotojus, pradedant:',
-'activeusers-hidebots' => 'Slėpti robotus',
-'activeusers-hidesysops' => 'Slėpti administratorius',
-'activeusers-noresult' => 'Nerasta jokių naudotojų.',
-
 # Special:ListGroupRights
 'listgrouprights' => 'Naudotojų grupių teisės',
 'listgrouprights-summary' => 'Žemiau pateiktas naudotojų grupių, apibrėžtų šioje wiki, ir su jomis susijusių teisių sąrašas.

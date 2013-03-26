@@ -811,8 +811,8 @@ Silakan masuk log kembali setelah menerima surel tersebut.',
 'blocked-mailpassword' => 'Alamat IP Anda diblokir dari penyuntingan dan karenanya tidak diizinkan menggunakan fungsi pengingat kata sandi untuk mencegah penyalahgunaan.',
 'eauthentsent' => 'Sebuah surel untuk konfirmasi telah dikirim ke alamat surel.
 Anda harus mengikuti instruksi di dalam surel tersebut untuk melakukan konfirmasi bahwa alamat tersebut adalah benar kepunyaan Anda. {{SITENAME}} tidak akan mengaktifkan fitur surel jika langkah ini belum dilakukan.',
-'throttled-mailpassword' => 'Suatu pengingat kata sandi telah dikirimkan dalam {{PLURAL:$1|jam|$1 jam}} terakhir.
-Untuk menghindari penyalahgunaan, hanya satu kata sandi yang akan dikirimkan setiap {{PLURAL:$1|jam|$1 jam}}.',
+'throttled-mailpassword' => 'Suatu pengingat kata sandi telah dikirimkan dalam {{PLURAL:$1|$1 jam}} terakhir.
+Untuk menghindari penyalahgunaan, hanya satu kata sandi yang akan dikirimkan setiap {{PLURAL:$1|$1 jam}}.',
 'mailerror' => 'Kesalahan dalam mengirimkan surel: $1',
 'acct_creation_throttle_hit' => 'Pengunjung wiki ini dengan alamat IP yang sama dengan Anda telah membuat {{PLURAL:$1|1 akun|$1 akun}} dalam satu hari terakhir, hingga jumlah maksimum yang diijinkan.
 Karenanya, pengunjung dengan alamat IP ini tidak dapat lagi membuat akun lain untuk sementara.',
@@ -862,7 +862,7 @@ Anda mungkin telah berhasil mengganti kata sandi Anda atau telah meminta kata sa
 
 # Special:PasswordReset
 'passwordreset' => 'Setel ulang sandi',
-'passwordreset-text' => 'Lengkapi formulir ini untuk menerima surel pengingat detail akun Anda.',
+'passwordreset-text' => 'Lengkapi formulir ini untuk menyetel ulang kata sandi.',
 'passwordreset-legend' => 'Setel ulang sandi',
 'passwordreset-disabled' => 'Penyetelan ulang sandi telah dimatikan di wiki ini.',
 'passwordreset-pretext' => '{{PLURAL:$1||Masukkan salah satu data di bawah ini}}',
@@ -878,7 +878,7 @@ terkait dengan alamat surel ini:
 
 $2
 
-{{PLURAL:$3|Sandi sementara|Sandi sementara}} berikut akan kedaluwarsa dalam {{PLURAL:$5|satu hari|$5 hari}}.
+{{PLURAL:$3|Sandi sementara}} berikut akan kedaluwarsa dalam {{PLURAL:$5|$5 hari}}.
 Anda harus masuk dan memilih sandi baru sekarang. Jika orang lain membuat
 permintaan ini atau jika Anda ingat sandi asli dan tidak lagi
 ingin mengubahnya, Anda dapat mengabaikan pesan ini dan terus menggunakan sandi lama.',
@@ -887,15 +887,15 @@ ingin mengubahnya, Anda dapat mengabaikan pesan ini dan terus menggunakan sandi 
 
 $2
 
-{{PLURAL:$3|Sandi sementara|Sandi sementara}} berikut akan kedaluwarsa dalam {{PLURAL:$5|satu hari|$5 hari}}.
+{{PLURAL:$3|Sandi sementara}} berikut akan kedaluwarsa dalam {{PLURAL:$5|$5 hari}}.
 Anda harus masuk dan memilih sandi baru sekarang. Jika orang lain membuat
 permintaan ini atau jika Anda ingat sandi asli dan tidak lagi
 ingin mengubahnya, Anda dapat mengabaikan pesan ini dan terus menggunakan sandi lama.',
 'passwordreset-emailelement' => 'Nama pengguna: $1
 Sandi sementara: $2',
-'passwordreset-emailsent' => 'Surel pengingat telah dikirimkan.',
-'passwordreset-emailsent-capture' => 'Surel pengingat, yang ditampilkan di bawah, telah dikirim.',
-'passwordreset-emailerror-capture' => 'Surel pengingat, yang ditampilkan di bawah, telah dihasilkan, tetapi gagal mengirimkannya ke pengguna: $1',
+'passwordreset-emailsent' => 'Surel setel ulang kata sandi telah dikirimkan.',
+'passwordreset-emailsent-capture' => 'Surel setel ulang kata sandi telah dikirim, yang ditampilkan di bawah.',
+'passwordreset-emailerror-capture' => 'Surel setel ulang kata sandi telah dihasilkan, yang ditampilkan di bawah, tetapi gagal mengirimkannya ke pengguna: $1',
 
 # Special:ChangeEmail
 'changeemail' => 'Ubah alamat surel',
@@ -2281,15 +2281,6 @@ Perlu sedikitnya satu domain tingkat atas, misalnya "*.org".<br />
 'listusers-submit' => 'Tampilkan',
 'listusers-noresult' => 'Pengguna tidak ditemukan.',
 'listusers-blocked' => '(diblokir)',
-
-# Special:ActiveUsers
-'activeusers' => 'Daftar pengguna aktif',
-'activeusers-intro' => 'Berikut adalah daftar pengguna yang memiliki suatu bentuk aktivitas selama paling tidak $1 {{PLURAL:$1|hari|hari}} terakhir.',
-'activeusers-count' => '$1 {{PLURAL:$1|aktivitas|aktivitas}} dalam {{PLURAL:$3|1 hari|$3 hari}} terakhir',
-'activeusers-from' => 'Tampilkan pengguna mulai dari:',
-'activeusers-hidebots' => 'Sembunyikan bot',
-'activeusers-hidesysops' => 'Sembunyikan pengurus',
-'activeusers-noresult' => 'Pengguna tidak ditemukan.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Daftar kelompok pengguna',
@@ -4137,17 +4128,17 @@ Gambar ditampilkan dalam resolusi penuh dan tipe lain berkas akan dibuka langsun
 'sqlite-no-fts' => '$1 tanpa dukungan pencarian teks lengkap',
 
 # New logging system
-'logentry-delete-delete' => '$1 menghapus halaman $3',
-'logentry-delete-restore' => '$1 mengembalikan halaman $3',
-'logentry-delete-event' => '$1 mengubah ketertampilan {{PLURAL:$5||}} $5  log peristiwa di $3: $4',
-'logentry-delete-revision' => '$1 mengubah ketertampilan {{PLURAL:$5||}} $5  revisi di halaman $3: $4',
-'logentry-delete-event-legacy' => '$1 mengubah ketertampilan log peristiwa pada $3',
-'logentry-delete-revision-legacy' => '$1 mengubah ketertampilan revisi pada halaman $3',
-'logentry-suppress-delete' => '$1 mensupresi halaman $3',
-'logentry-suppress-event' => '$1 secara diam-diam mengubah ketertampilan  {{PLURAL:$5||}} $5  log peristiwa di $3: $4',
-'logentry-suppress-revision' => '$1 diam-diam mengubah ketertampilan {{PLURAL:$5||}} $5 revisi di halaman $3: $4',
-'logentry-suppress-event-legacy' => '$1 diam-diam mengubah ketertampilan log peristiwa pada $3',
-'logentry-suppress-revision-legacy' => '$1 diam-diam mengubah ketertampilan revisi pada halaman $3',
+'logentry-delete-delete' => '$1 {{GENDER:$2|menghapus}} halaman $3',
+'logentry-delete-restore' => '$1 {{GENDER:$2|mengembalikan}} halaman $3',
+'logentry-delete-event' => '$1 {{GENDER:$2|mengubah}} tampilan {{PLURAL:$5|$5 log peristiwa}} di $3: $4',
+'logentry-delete-revision' => '$1 {{GENDER:$2|mengubah}} tampilan {{PLURAL:$5|$5  revisi}} di halaman $3: $4',
+'logentry-delete-event-legacy' => '$1 {{GENDER:$2|mengubah}} tampilan log peristiwa pada $3',
+'logentry-delete-revision-legacy' => '$1 {{GENDER:$2|mengubah}} tampilan revisi pada halaman $3',
+'logentry-suppress-delete' => '$1 {{GENDER:$2|menimpa}} halaman $3',
+'logentry-suppress-event' => '$1 secara diam-diam {{GENDER:$2|mengubah}} tampilan  {{PLURAL:$5|$5 log peristiwa}} di $3: $4',
+'logentry-suppress-revision' => '$1 diam-diam {{GENDER:$2|mengubah}} tampilan {{PLURAL:$5|$5 revisi}} di halaman $3: $4',
+'logentry-suppress-event-legacy' => '$1 diam-diam {{GENDER:$2|mengubah}} tampilan log peristiwa pada $3',
+'logentry-suppress-revision-legacy' => '$1 diam-diam {{GENDER:$2|mengubah}} tampilan revisi pada halaman $3',
 'revdelete-content-hid' => 'konten disembunyikan',
 'revdelete-summary-hid' => 'ringkasan suntingan disembunyikan',
 'revdelete-uname-hid' => 'nama pengguna disembunyikan',
@@ -4156,20 +4147,20 @@ Gambar ditampilkan dalam resolusi penuh dan tipe lain berkas akan dibuka langsun
 'revdelete-uname-unhid' => 'nama pengguna tidak disembunyikan',
 'revdelete-restricted' => 'akses telah dibatasi untuk opsis',
 'revdelete-unrestricted' => 'pembatasan akses opsis dihapuskan',
-'logentry-move-move' => '$1 memindahkan halaman $3 ke $4',
-'logentry-move-move-noredirect' => '$1 memindahkan halaman $3 ke $4 tanpa membuat pengalihan',
-'logentry-move-move_redir' => '$1 memindahkan halaman $3 ke $4 menimpa pengalihan lama',
-'logentry-move-move_redir-noredirect' => '$1 memindahkan halaman $3 ke $4 menimpa pengalihan lama tanpa membuat pengalihan',
-'logentry-patrol-patrol' => '$1 menandai revisi $4 dari halaman $3 terpatroli',
-'logentry-patrol-patrol-auto' => '$1 secara otomatis menandai revisi $4 dari halaman $3 terpatroli',
-'logentry-newusers-newusers' => 'Akun pengguna $1 telah dibuat',
-'logentry-newusers-create' => '$1 membuat akun pengguna',
-'logentry-newusers-create2' => '$1 membuat akun pengguna $3',
-'logentry-newusers-byemail' => 'Akun pengguna  $3  diciptakan oleh  $1  dan password dikirim melalui surel',
-'logentry-newusers-autocreate' => 'Akun $1 dibuat secara otomatis',
-'logentry-rights-rights' => '$1 mengubah keanggotaan grup $3 dari $4 menjadi $5',
-'logentry-rights-rights-legacy' => '$1 mengubah keanggotaan grup $3',
-'logentry-rights-autopromote' => '$1 secara otomatis dipromosikan dari $4 menjadi $5',
+'logentry-move-move' => '$1 {{GENDER:$2|memindahkan}} halaman $3 ke $4',
+'logentry-move-move-noredirect' => '$1 {{GENDER:$2|memindahkan}} halaman $3 ke $4 tanpa membuat pengalihan',
+'logentry-move-move_redir' => '$1 {{GENDER:$2|memindahkan}} halaman $3 ke $4 menimpa pengalihan lama',
+'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|memindahkan}} halaman $3 ke $4 menimpa pengalihan lama tanpa membuat pengalihan',
+'logentry-patrol-patrol' => '$1 {{GENDER:$2|menandai}} revisi $4 dari halaman $3 terpatroli',
+'logentry-patrol-patrol-auto' => '$1 otomatis {{GENDER:$2|menandai}} revisi $4 dari halaman $3 terpatroli',
+'logentry-newusers-newusers' => 'Akun pengguna $1 telah {{GENDER:$2|dibuat}}',
+'logentry-newusers-create' => '$1 {{GENDER:$2|membuat}} akun pengguna',
+'logentry-newusers-create2' => '$1 {{GENDER:$2|membuat}} akun pengguna $3',
+'logentry-newusers-byemail' => 'Akun pengguna  $3  {{GENDER:$2|dibuat}} oleh  $1  dan password dikirim melalui surel',
+'logentry-newusers-autocreate' => 'Akun $1 {{GENDER:$2|dibuat}} secara otomatis',
+'logentry-rights-rights' => '$1 {{GENDER:$2|mengubah}} keanggotaan grup $3 dari $4 menjadi $5',
+'logentry-rights-rights-legacy' => '$1 {{GENDER:$2|mengubah}} keanggotaan grup $3',
+'logentry-rights-autopromote' => '$1 secara otomatis {{GENDER:$2|dipromosikan}} dari $4 menjadi $5',
 'rightsnone' => '(tidak ada)',
 
 # Feedback

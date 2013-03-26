@@ -2213,15 +2213,6 @@ Podržani {{PLURAL:$2|protokol|protokoli}}: <code>$1</code> (default je http:// 
 'listusers-noresult' => 'Nema takvih suradnika.',
 'listusers-blocked' => '(blokiran)',
 
-# Special:ActiveUsers
-'activeusers' => 'Popis aktivnih suradnika',
-'activeusers-intro' => 'Ovo je popis suradnika koji su napravili neku aktivnost u {{PLURAL:$1|zadnji $1 dan|zadnja $1 dana|zadnjih $1 dana}}.',
-'activeusers-count' => '{{PLURAL:$1|nedavna $1 izmjena|nedavne $1 izmjene|nedavnih $1 izmjena}} u {{PLURAL:$3|posljednji $3 dan|posljednja $3 dana|posljednjih $3 dana}}',
-'activeusers-from' => 'Prikaži suradnike počevši od:',
-'activeusers-hidebots' => 'Sakrij botove',
-'activeusers-hidesysops' => 'Sakrij administratore',
-'activeusers-noresult' => 'Niti jedan suradnik nije nađen.',
-
 # Special:ListGroupRights
 'listgrouprights' => 'Prava suradničkih skupina',
 'listgrouprights-summary' => 'Ovo je popis suradničkih skupina određenih na ovoj wiki, s njihovim pripadajućim pravima.

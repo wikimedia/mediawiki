@@ -873,6 +873,7 @@ $1',
 'recentchanges-label-newpage' => 'ܫܘܚܠܦܐ ܗܢܐ ܐܬܬܣܝܡ ܦܐܬܐ ܚܕܬܐ',
 'recentchanges-label-minor' => 'ܗܢܘ ܫܘܚܠܦܐ ܙܥܘܪܐ',
 'recentchanges-label-bot' => 'ܒܘܬ (bot) ܥܒܕ ܗܢܐ ܫܘܚܠܦܐ',
+'recentchanges-label-unpatrolled' => 'ܫܘܚܠܦܐ ܗܢܐ ܠܐ ܗܘ ܟܪܝܟܐ ܠܗܫܐ',
 'rcnotefrom' => "ܠܬܚܬ ܫܘܚܠܦ̈ܐ ܕܡܢ '''$2''' (ܥܕ '''$1''' ܡܬܚܙܝܢ̈ܐ).",
 'rclistfrom' => 'ܚܘܝ ܫܘܚܠܦ̈ܐ ܚܕ̈ܬܐ ܡܢ $1',
 'rcshowhideminor' => '$1 ܫܘܚܠܦ̈ܐ ܙܥܘܪ̈ܐ',
@@ -889,6 +890,8 @@ $1',
 'minoreditletter' => 'ܙ',
 'newpageletter' => 'ܚ',
 'boteditletter' => 'ܒ',
+'rc_categories_any' => 'ܐܝܢܐ ܕܗܘ',
+'rc-change-size-new' => '$1 {{PLURAL:$1|ܒܐܝܛ|ܒܐܝܛ̈ܐ}} ܒܬܪ ܫܘܚܠܦܐ',
 'newsectionsummary' => '/* $1 */ ܡܢܬܐ ܚܕܬܐ',
 'rc-enhanced-expand' => 'ܚܘܝ ܐܪ̈ܝܟܬܐ (ܒܥܐ ܠܟ JavaScript)',
 'rc-enhanced-hide' => 'ܛܫܝ ܐܪ̈ܝܟܬܐ',
@@ -951,6 +954,8 @@ $1',
 'upload_source_file' => ' (ܠܦܦܐ ܥܠ ܚܫܘܒܬܐ ܕܝܠܟ)',
 
 # Special:ListFiles
+'listfiles-summary' => 'ܦܐܬܐ ܕܝܠܢܝܬܐ ܗܕܐ ܬܓܠܚ ܟܠ ܠܦܦ̈ܐ ܡܣܩ̈ܐ.
+ܐܡܬܝ ܕܬܨܦܐ ܒܝܕ ܡܦܠܚܢܐ ܬܓܠܚ ܨܚܚܐ ܐܚܪܝܐ ܒܠܚܘܕ ܕܠܦܦ̈ܐ ܡܣܩ̈ܐ ܒܝܕ ܗܢܐ ܡܦܠܚܢܐ.',
 'listfiles_search_for' => 'ܒܨܝ ܥܠ ܫܡܐ ܕܡܝܕܝܐ:',
 'imgfile' => 'ܠܦܦܐ',
 'listfiles' => 'ܡܟܬܒܘܬܐ ܕܠܦܦ̈ܐ',
@@ -1038,6 +1043,11 @@ $1',
 
 'disambiguations' => 'ܦܐܬܬ̈ܐ ܐܣܝܪ̈ܬܐ ܒܦܐܬܬ̈ܐ ܕܬܘܚܡܐ ܐܚܪܢܐ',
 'disambiguationspage' => 'Template:ܬܘܚܡܐ ܐܚܪܢܐ',
+
+'pageswithprop' => 'ܦܐܬܬ̈ܐ ܥܡ ܕܝܠܝܬܐ ܕܦܐܬܐ',
+'pageswithprop-legend' => 'ܦܐܬܬ̈ܐ ܥܡ ܕܝܠܝܬܐ ܕܦܐܬܐ',
+'pageswithprop-prop' => 'ܫܡܐ ܕܕܝܠܝܬܐ',
+'pageswithprop-submit' => 'ܙܠ',
 
 'doubleredirects' => 'ܨܘܝܒ̈ܐ ܥܦܝܦ̈ܐ',
 'double-redirect-fixed-move' => '[[$1]] ܐܫܬܢܝܬ.
@@ -1167,14 +1177,6 @@ $1',
 'listusers-submit' => 'ܚܘܝ',
 'listusers-noresult' => 'ܠܐ ܐܫܬܟܚ ܡܦܠܚܢܐ ܚܕ.',
 'listusers-blocked' => '(ܚܪܝܡܐ)',
-
-# Special:ActiveUsers
-'activeusers' => 'ܡܟܬܒܘܬܐ ܕܗܕ̈ܡܐ ܙܪ̄ܝܙܐ',
-'activeusers-count' => '$1 {{PLURAL:$1|ܥܒܕܐ|ܥܒܕ̈ܐ}} ܒ {{PLURAL:$3|ܝܘܡܐ ܐܚܪܝܐ|$3 ܝܘܡܬ̈ܐ ܐܚܪ̈ܝܐ}}',
-'activeusers-from' => 'ܚܘܝ ܡܦܠܚܢ̈ܐ ܕܫܪܐ ܥܡ:',
-'activeusers-hidebots' => 'ܛܫܝ ܒܘܬ̈ܐ (bots)',
-'activeusers-hidesysops' => 'ܛܫܝ ܡܕܒܪ̈ܢܐ',
-'activeusers-noresult' => 'ܠܐ ܐܫܬܟܚ ܡܦܠܚܢ̈ܐ ܐܢܫ̈ܝܢ.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'ܙܕ̈ܩܐ ܕܟܢܘܫܬܐ ܕܡܦܠܚܢ̈ܐ',
@@ -1426,6 +1428,9 @@ $1',
 'contribslink' => 'ܫܘܬܦܘ̈ܬܐ',
 'blocklogpage' => 'ܣܓܠܐ ܕܚܪܡܐ',
 'blocklogentry' => 'ܚܪܡ [[$1]] ܠܡܬܚܐ ܕ $2 $3',
+'blocklogtext' => 'ܗܢܘ ܣܓܠܐ ܕܥܡܠܝܬ̈ܐ ܕܚܪܡܐ ܘܫܩܠ ܚܪܡܐ.
+ܡܘܢܥ̈ܐ ܕܐܝ ܦܝ (IP) ܚܪ̈ܝܡܐ ܝܬܐܝܬ ܠܐ ܓܠܝܚܝܢ ܐܢܘܢ.
+ܚܙܝ [[Special:BlockList|ܡܟܬܒܘܬܐ ܕܚܪܡܐ ܕܐܝ ܦܝ (IP)]]ܠܚܙܝܐ ܕܥܡܠܝܬ̈ܐ ܕܚܪܡܐ ܬܘܦܥܠ̈ܐ ܗܫܐܝܬ.',
 'unblocklogentry' => 'ܫܩܠ ܚܪܡܐ ܡܢ $1',
 'block-log-flags-anononly' => 'ܡܦܠܚܢ̈ܐ ܠܐ ܝܕ̈ܝܥܐ ܒܠܚܘܕ',
 'block-log-flags-nocreate' => 'ܒܪܝܬܐ ܕܚܘ̈ܫܒܢܐ ܠܐ ܐܝܬܝܗ ܡܬܩܒܠܢܐ',

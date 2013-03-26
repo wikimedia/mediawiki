@@ -1369,12 +1369,6 @@ Hetah hian [[Special:UnusedCategories|pawl hman lohho]] pholan tel a ni lo.
 'listusers-noresult' => 'Hmangtu an awm lo.',
 'listusers-blocked' => '(danbeh)',
 
-# Special:ActiveUsers
-'activeusers' => 'Hmangtu hlun tlarna',
-'activeusers-hidebots' => 'Khawlmi thupna',
-'activeusers-hidesysops' => 'Roreltu thupna',
-'activeusers-noresult' => 'Hmangtu awm lo.',
-
 # Special:ListGroupRights
 'listgrouprights' => 'Hmangtu pawl dikna-chanvote',
 'listgrouprights-key' => '* <span class="listgrouprights-granted">Dikna-chanvo phalsak</span>

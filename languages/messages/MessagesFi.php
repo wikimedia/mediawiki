@@ -2204,15 +2204,6 @@ Vaaditaan vähintään ylätason verkkotunnus, esimerkiksi "*.org".<br />
 'listusers-noresult' => 'Käyttäjiä ei löytynyt.',
 'listusers-blocked' => '(estetty)',
 
-# Special:ActiveUsers
-'activeusers' => 'Aktiivisten käyttäjien lista',
-'activeusers-intro' => 'Tämä on luettelo käyttäjistä, jotka ovat tehneet jotain viimeisen $1 {{PLURAL:$1|päivän}} sisällä.',
-'activeusers-count' => '$1 {{PLURAL:$1|toiminto|toimintoa}} viimeisen {{PLURAL:$3|päivän|$3 päivän}} aikana',
-'activeusers-from' => 'Näytä käyttäjät alkaen',
-'activeusers-hidebots' => 'Piilota botit',
-'activeusers-hidesysops' => 'Piilota ylläpitäjät',
-'activeusers-noresult' => 'Käyttäjiä ei löytynyt.',
-
 # Special:ListGroupRights
 'listgrouprights' => 'Käyttäjäryhmien oikeudet',
 'listgrouprights-summary' => 'Tämä lista sisältää tämän wikin käyttäjäryhmät sekä ryhmiin liitetyt käyttöoikeudet.
@@ -2474,9 +2465,8 @@ Viimeisimmän muokkauksen on tehnyt käyttäjä [[User:$3|$3]] ([[User talk:$3|k
 Voit palauttaa versioita valikoivasti valitsemalla vain niiden versioiden valintalaatikot, jotka haluat palauttaa.",
 'undeleterevisions' => '{{PLURAL:$1|Versio|$1 versiota}} arkistoitu.',
 'undeletehistory' => 'Jos palautat sivun, kaikki versiot lisätään sivun historiaan. Jos uusi sivu samalla nimellä on luotu poistamisen jälkeen, palautetut versiot lisätään sen historiaan.',
-'undeleterevdel' => "Palautusta ei tehdä, jos sen seurauksena sivun uusin versio olisi osittain piilotettu. 
-Tässä tilanteessa älä valitse palautettavaksi näkyviin viimeisintä poistettua versiota tai poista version piilotus.<br />
-Tiedostoversioita, joihin sinulla ei ole katseluoikeutta (''häivytetyt versiot''), ei palauteta.",
+'undeleterevdel' => 'Palautusta ei tehdä, jos sen seurauksena sivun uusin versio olisi osittain piilotettu. 
+Tässä tilanteessa älä valitse palautettavaksi näkyviin viimeisintä poistettua versiota tai poista version piilotus.',
 'undeletehistorynoadmin' => 'Tämä sivu on poistettu. Syy sivun poistamiseen näkyy yhteenvedossa, jossa on myös tiedot, ketkä ovat muokanneet tätä sivua ennen poistamista. Sivujen varsinainen sisältö on vain ylläpitäjien luettavissa.',
 'undelete-revision' => 'Poistettu sivu $1 hetkellä $4 kello $5. Tekijä: $3.',
 'undeleterevision-missing' => 'Virheellinen tai puuttuva versio. Se on saatettu palauttaa tai poistaa arkistosta.',

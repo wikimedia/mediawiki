@@ -2182,15 +2182,6 @@ $1',
 'listusers-noresult' => 'រកមិនឃើញអ្នកប្រើប្រាស់នេះទេ។',
 'listusers-blocked' => '(ស្ថិតក្រោមការហាមឃាត់)',
 
-# Special:ActiveUsers
-'activeusers' => 'បញ្ជីរាយនាមអ្នកប្រើប្រាស់សកម្ម',
-'activeusers-intro' => 'នេះជាបញ្ជីរាយនាមអ្នកប្រើប្រាស់ដែលមានសកម្មភាពក្នុងរូបភាពណាមួយក្នុងរយៈពេល $1 {{PLURAL:$1|ថ្ងៃ|ថ្ងៃ}}ចុងក្រោយ។',
-'activeusers-count' => '{{PLURAL:$1|សកម្មភាព|សកម្មភាព}}ចំនួន$1 ក្នុងរយៈពេល{{PLURAL:$3|១ថ្ងៃ|$3 ថ្ងៃ}}ចុងក្រោយ',
-'activeusers-from' => 'បង្ហាញអត្តនាមផ្ដើមដោយ៖',
-'activeusers-hidebots' => 'លាក់រូបយន្ត',
-'activeusers-hidesysops' => 'លាក់អភិបាល',
-'activeusers-noresult' => 'អ្នកប្រើប្រាស់​រកមិនឃើញ​។​',
-
 # Special:ListGroupRights
 'listgrouprights' => 'សិទ្ធិនិងក្រុមអ្នកប្រើប្រាស់',
 'listgrouprights-summary' => 'ខាងក្រោមនេះជាបញ្ជីរាយឈ្មោះក្រុមអ្នកប្រើប្រាស់ដែលបានកំណត់ជាមួយនឹងសិទ្ធិរបស់គេនៅលើវិគីនេះ។ មាន[[{{MediaWiki:Listgrouprights-helppage}}|ព័ត៌មានបន្ថែម]] អំពីសិទ្ធិផ្ទាល់ខ្លួន។',

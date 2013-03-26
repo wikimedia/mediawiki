@@ -667,7 +667,7 @@ Du bør logge på og ændre din adgangskode straks efter du har modtaget e-maile
 'eauthentsent' => 'En bekræftelsesmail er sendt til den angivne e-mail-adresse.
 
 Før en e-mail kan modtages af andre brugere af {{SITENAME}}-mailfunktionen, skal adressen og dens tilhørsforhold til denne bruger bekræftes. Følg venligst anvisningerne i denne mail.',
-'throttled-mailpassword' => 'Indenfor {{PLURAL:$1|den sidste time|de sidste $1 timer}} er der allerede sendt et nyt password. For at forhindre misbrug af funktionen, kan der kun bestilles et nyt password en gang for hver {{PLURAL:$1|time|$1 timer}}.',
+'throttled-mailpassword' => 'Indenfor {{PLURAL:$1|den sidste time|de sidste $1 timer}} er der allerede sendt en ny adgangskode. For at forhindre misbrug af funktionen, kan der kun bestilles en ny adgangskode én gang for hver {{PLURAL:$1|time|$1 timer}}.',
 'mailerror' => 'Fejl ved afsendelse af e-mail: $1',
 'acct_creation_throttle_hit' => 'Besøgende med samme IP-adresse som dig har oprettet {{PLURAL:$1|en konto|$1 kontoer}} det sidste døgn, og det er ikke tilladt at oprette flere.
 Derfor kan besøgende ikke oprette flere kontoer fra denne IP-adresse i øjeblikket.',
@@ -717,7 +717,7 @@ Du har muligvis allerede skiftet din adgangskode eller anmodet om en ny midlerti
 
 # Special:PasswordReset
 'passwordreset' => 'Nulstil adgangskode',
-'passwordreset-text' => 'Udfyld denne formular for at modtage en påmindelse om dine kontooplysninger som e-mail.',
+'passwordreset-text' => 'Udfyld denne formular for at nulstille din adgangskode.',
 'passwordreset-legend' => 'Nulstil adgangskode',
 'passwordreset-disabled' => 'Nulstilling af kodeord er slået fra på denne wiki.',
 'passwordreset-pretext' => '{{PLURAL:$1||Indtast en af de nedenstående oplysninger}}',
@@ -727,23 +727,23 @@ Du har muligvis allerede skiftet din adgangskode eller anmodet om en ny midlerti
 'passwordreset-capture-help' => 'Hvis du krydser dette felt af, vil emailen (med den midlertidige adgangskode) blive vist til dig i tillæg til at blive sendt til brugeren.',
 'passwordreset-email' => 'E-mail adresse:',
 'passwordreset-emailtitle' => 'Kontooplysninger på {{SITENAME}}',
-'passwordreset-emailtext-ip' => 'Nogen (sandsynligvis dig, fra IP-adressen $1) har anmodet om en påmindelse om dine kontooplysninger for {{SITENAME}} ($4). Følgende {{PLURAL:$3|brugerkonto|brugerkonti}} er associerede med denne e-mail-adresse:
+'passwordreset-emailtext-ip' => 'Nogen (sandsynligvis dig, fra IP-adressen $1) har anmodet om at få nulstillet din adgangskode til {{SITENAME}} ($4). {{PLURAL:$3|Den følgende brugerkonto er associeret|De følgende brugerkonti er associerede}} med denne e-mail-adresse:
 
 $2
 
 {{PLURAL:$3|Denne midlertidige adgangskode|Disse midlertidige adgangskoder}} vil udløbe om {{PLURAL:$5|en dag|$5 dage}}.
-Du bør logge på og vælge en ny adgangskode nu. Hvis en anden end dig har anmodet om denne påmindelse, eller hvis du er kommet i tanke om din oprindelig adgangskode og ikke længere ønsker at ændre den, kan du ignorere denne meddelelse og fortsætte med at bruge din gamle adgangskode.',
-'passwordreset-emailtext-user' => 'Brugeren $1 har anmodet om en påmindelse om dine kontooplysninger for {{SITENAME}} ($4). Følgende {{PLURAL:$3|brugerkonto|brugerkonti}} er associerede med denne e-mail-adresse:
+Du bør logge på og vælge en ny adgangskode nu. Hvis en anden end dig har gjort denne anmodning, eller hvis du er kommet i tanke om din oprindelig adgangskode og ikke længere ønsker at ændre den, kan du ignorere denne meddelelse og fortsætte med at bruge din gamle adgangskode.',
+'passwordreset-emailtext-user' => 'Brugeren $1 på {{SITENAME}} har anmodet om at få nulstillet din adgangskode til {{SITENAME}} ($4). {{PLURAL:$3|Den følgende brugerkonto er associeret|De følgende brugerkonti er associerede}} med denne e-mail-adresse:
 
 $2
 
 {{PLURAL:$3|Denne midlertidige adgangskode|Disse midlertidige adgangskoder}} vil udløbe om {{PLURAL:$5|en dag|$5 dage}}.
-Du bør logge på og vælge en ny adgangskode nu. Hvis en anden end dig har anmodet om denne påmindelse, eller hvis du er kommet i tanke om din oprindelig adgangskode og ikke længere ønsker at ændre den, kan du ignorere denne meddelelse og fortsætte med at bruge din gamle adgangskode.',
+Du bør logge på og vælge en ny adgangskode nu. Hvis en anden end dig har gjort denne anmodning, eller hvis du er kommet i tanke om din oprindelig adgangskode og ikke længere ønsker at ændre den, kan du ignorere denne meddelelse og fortsætte med at bruge din gamle adgangskode.',
 'passwordreset-emailelement' => 'Brugernavn: $1
 Midlertidig adgangskode: $2',
-'passwordreset-emailsent' => 'En påmindelse er blevet sendt som e-mail.',
-'passwordreset-emailsent-capture' => 'En påmindelsesemail, som vist nedenfor, er blevet sendt.',
-'passwordreset-emailerror-capture' => 'En påmindelsesemail, som vist nedenfor, blev genereret, men det lykkedes ikke at sende den til brugeren: $1',
+'passwordreset-emailsent' => 'En e-mail om nulstilling af adgangskode er blevet sendt.',
+'passwordreset-emailsent-capture' => 'En e-mail om nulstilling af adgangskode, som vist nedenfor, er blevet sendt.',
+'passwordreset-emailerror-capture' => 'En e-mail om nulstilling af adgangskode, som vist nedenfor, blev genereret, men det lykkedes ikke at sende den til brugeren: $1',
 
 # Special:ChangeEmail
 'changeemail' => 'Ændr email-adresse',
@@ -2121,15 +2121,6 @@ Der skal som minimum angives et topniveau-domæne som f. eks. "*.org".<br />
 'listusers-submit' => 'Vis',
 'listusers-noresult' => 'Ingen bruger fundet.',
 'listusers-blocked' => '(blokeret)',
-
-# Special:ActiveUsers
-'activeusers' => 'Liste over aktive brugere',
-'activeusers-intro' => 'Dette er en liste over brugere, som har haft en eller anden form for aktivitet inden for {{PLURAL:$1|den|de}} seneste {{PLURAL:$1|dag|$1 dage}}.',
-'activeusers-count' => '$1 {{PLURAL:$1|handling|handlinger}} i {{PLURAL:$3|det seneste døgn|de seneste $3 dage}}',
-'activeusers-from' => 'Vis brugere som starter med:',
-'activeusers-hidebots' => 'Skjul robotter',
-'activeusers-hidesysops' => 'Skjul administratorer',
-'activeusers-noresult' => 'Ingen brugere fundet.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Brugergrupperettigheder',
@@ -3803,12 +3794,12 @@ Billeder vises i fuld opløsning, og andre mediatyper vil blive aktiveret med de
 'sqlite-no-fts' => '$1 uden fuld-tekst søgnings support',
 
 # New logging system
-'logentry-delete-delete' => '$1 slettede siden $3',
-'logentry-delete-restore' => '$1 gendannede siden $3',
-'logentry-delete-event' => '$1 ændrede synligheden af {{PLURAL:$5|en loghændelse|$5 loghændelser}} for siden $3: $4',
-'logentry-delete-revision' => '$1 ændrede synligheden af {{PLURAL:$5|en version|$5 versioner}} af siden $3: $4',
-'logentry-delete-event-legacy' => '$1 ændrede synligheden af loghændelser for siden $3',
-'logentry-delete-revision-legacy' => '$1 ændrede synligheden af versioner af siden $3',
+'logentry-delete-delete' => '$1 {{GENDER:$2|slettede}} siden $3',
+'logentry-delete-restore' => '$1 {{GENDER:$2|gendannede}} siden $3',
+'logentry-delete-event' => '$1 {{GENDER:$2|ændrede}} synligheden af {{PLURAL:$5|en loghændelse|$5 loghændelser}} for siden $3: $4',
+'logentry-delete-revision' => '$1 {{GENDER:$2|ændrede}} synligheden af {{PLURAL:$5|en version|$5 versioner}} af siden $3: $4',
+'logentry-delete-event-legacy' => '$1 {{GENDER:$2|ændrede}} synligheden af loghændelser for siden $3',
+'logentry-delete-revision-legacy' => '$1 {{GENDER:$2|ændrede}} synligheden af versioner af siden $3',
 'logentry-suppress-delete' => '$1 skjulte hændelser for siden $3',
 'logentry-suppress-event' => '$1 ændrede hemmeligt synligheden af {{PLURAL:$5|en loghændelse|$5 loghændelser}} for siden $3: $4',
 'logentry-suppress-revision' => '$1 ændrede hemmeligt synligheden af {{PLURAL:$5|en version|$5 versioner}} af siden $3: $4',
@@ -3822,20 +3813,20 @@ Billeder vises i fuld opløsning, og andre mediatyper vil blive aktiveret med de
 'revdelete-uname-unhid' => 'brugernavnet er ikke længere skjult',
 'revdelete-restricted' => 'tilføjede begrænsninger for administratorer',
 'revdelete-unrestricted' => 'fjernede begrænsninger for administratorer',
-'logentry-move-move' => '$1 flyttede siden $3 til $4',
-'logentry-move-move-noredirect' => '$1 flyttede siden $3 til $4 uden at efterlade en omdirigering',
-'logentry-move-move_redir' => '$1 flyttede siden $3 til $4 hen over en omdirigering',
-'logentry-move-move_redir-noredirect' => '$1 flyttede siden $3 til $4 hen over en omdirigering og uden at efterlade en omdirigering',
-'logentry-patrol-patrol' => '$1 markerede version $4 af siden $3 som patruljeret',
-'logentry-patrol-patrol-auto' => '$1 markerede automatisk version $4 af siden $3 som patruljeret',
-'logentry-newusers-newusers' => 'Brugerkontoen $1 blev oprettet',
-'logentry-newusers-create' => 'Brugerkontoen $1 blev oprettet',
-'logentry-newusers-create2' => 'Brugerkontoen $3 blev oprettet af $1',
-'logentry-newusers-byemail' => 'Brugerkonto  $3  blev oprettet af  $1  og adgangskode er sendt via e-mail',
-'logentry-newusers-autocreate' => 'Kontoen $1 blev automatisk oprettet',
-'logentry-rights-rights' => '$1 ændrede gruppemedlemskabet for $3 fra $4 til $5',
-'logentry-rights-rights-legacy' => '$1 ændrede gruppemedlemskabet for $3',
-'logentry-rights-autopromote' => '$1 blev automatisk forfremmet fra $4 til $5',
+'logentry-move-move' => '$1 {{GENDER:$2|flyttede}} siden $3 til $4',
+'logentry-move-move-noredirect' => '$1 {{GENDER:$2|flyttede}} siden $3 til $4 uden at efterlade en omdirigering',
+'logentry-move-move_redir' => '$1 {{GENDER:$2|flyttede}} siden $3 til $4 hen over en omdirigering',
+'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|flyttede}} siden $3 til $4 hen over en omdirigering og uden at efterlade en omdirigering',
+'logentry-patrol-patrol' => '$1 {{GENDER:$2|markerede}} version $4 af siden $3 som patruljeret',
+'logentry-patrol-patrol-auto' => '$1 {{GENDER:$2|markerede automatisk}} version $4 af siden $3 som patruljeret',
+'logentry-newusers-newusers' => 'Brugerkontoen $1 blev {{GENDER:$2|oprettet}}',
+'logentry-newusers-create' => 'Brugerkontoen $1 blev {{GENDER:$2|oprettet}}',
+'logentry-newusers-create2' => 'Brugerkontoen $3 blev {{GENDER:$2|oprettet}} af $1',
+'logentry-newusers-byemail' => 'Brugerkontoen $3 blev {{GENDER:$2|oprettet}} af $1, og adgangskoden er sendt via e-mail',
+'logentry-newusers-autocreate' => 'Brugerkontoen $1 blev automatisk {{GENDER:$2|oprettet}}',
+'logentry-rights-rights' => '$1 {{GENDER:$2|ændrede}} gruppemedlemskabet for $3 fra $4 til $5',
+'logentry-rights-rights-legacy' => '$1 {{GENDER:$2|ændrede}} gruppemedlemskabet for $3',
+'logentry-rights-autopromote' => '$1 blev automatisk {{GENDER:$2|forfremmet}} fra $4 til $5',
 'rightsnone' => '(-)',
 
 # Feedback

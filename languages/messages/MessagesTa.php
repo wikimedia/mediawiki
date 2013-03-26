@@ -1936,15 +1936,6 @@ $1',
 'listusers-noresult' => 'ஒரு பயனரும் இல்லை.',
 'listusers-blocked' => '(தடை செய்யப்பட்டுள்ளது)',
 
-# Special:ActiveUsers
-'activeusers' => 'தொடர்பங்களிப்பாளர்களின் பட்டியல்',
-'activeusers-intro' => 'கடைசி $1 {{PLURAL:$1|நாள்|நாட்கள்}} ஏதேனும் செயலை செய்த பயனர்களின் பட்டியல் இது.',
-'activeusers-count' => '$1 {{PLURAL:$1|திருத்தம்|திருத்தங்கள்}} கடைசி {{PLURAL:$3|நாள்|$3 நாட்கள்}}',
-'activeusers-from' => 'பின்வரும் எழுத்துடன் தொடங்கும் பயனர்களைக் காட்டு:',
-'activeusers-hidebots' => 'தானியங்கிகளை மறை',
-'activeusers-hidesysops' => 'நிர்வாகிகளை மறை',
-'activeusers-noresult' => 'எந்தவொரு பயனர்களும் காணப்படவில்லை.',
-
 # Special:ListGroupRights
 'listgrouprights' => 'பயனர் குழு உரிமைகள்',
 'listgrouprights-key' => '<span class="listgrouprights-granted">உரிமை வழங்கப்பட்டது</span>

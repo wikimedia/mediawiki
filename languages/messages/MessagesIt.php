@@ -2193,15 +2193,6 @@ Vedi anche le [[Special:WantedCategories|categorie richieste]].',
 'listusers-noresult' => 'Nessun utente risponde ai criteri impostati.',
 'listusers-blocked' => '(bloccato)',
 
-# Special:ActiveUsers
-'activeusers' => 'Elenco degli utenti attivi',
-'activeusers-intro' => 'Questo è un elenco di utenti che hanno avuto qualche tipo di attività da $1 {{PLURAL:$1|giorno|giorni}} a questa parte.',
-'activeusers-count' => "$1 {{PLURAL:$1|azione|azioni}} {{PLURAL:$3|nell'ultimo giorno|negli ultimi $3 giorni}}",
-'activeusers-from' => 'Mostra gli utenti a partire da:',
-'activeusers-hidebots' => 'Nascondi i bot',
-'activeusers-hidesysops' => 'Nascondi gli amministratori',
-'activeusers-noresult' => 'Nessun utente risponde ai criteri impostati.',
-
 # Special:ListGroupRights
 'listgrouprights' => 'Diritti del gruppo utente',
 'listgrouprights-summary' => "Di seguito sono elencati i gruppi utente definiti per questo sito, con i diritti d'accesso loro associati.

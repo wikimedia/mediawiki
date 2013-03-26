@@ -399,7 +399,7 @@ $messages = array(
 'otherlanguages' => 'An anere Sproochen',
 'redirectedfrom' => '(Virugeleet vu(n) $1)',
 'redirectpagesub' => 'Viruleedungssäit',
-'lastmodifiedat' => "Dës Säit gouf den $1 ëm $2 Auer fir d'lescht geännert.",
+'lastmodifiedat' => "Dës Säit gouf de(n) $1 ëm $2 Auer fir d'lescht geännert.",
 'viewcount' => 'Dës Säit gouf bis elo {{PLURAL:$1|emol|$1-mol}} ofgefrot.',
 'protectedpage' => 'Gespaarte Säit',
 'jumpto' => 'Wiesselen op:',
@@ -2096,15 +2096,6 @@ Et muss mindestens en Top-Level-Domaine ugi ginn, wéi z. Bsp. ".org".<br />
 'listusers-submit' => 'Weis',
 'listusers-noresult' => 'Kee Benotzer fonnt.',
 'listusers-blocked' => '(gespaart)',
-
-# Special:ActiveUsers
-'activeusers' => 'Lëscht vun den aktive Benotzer',
-'activeusers-intro' => 'Dëst ass eng Lëscht vun de Benotzer déi op iergend eng Manéier an de leschten $1 {{PLURAL:$1|Dag|Deeg}} aktiv waren.',
-'activeusers-count' => '$1 {{PLURAL:$1|Aktioun|Aktiounen}} {{PLURAL:$3|gëschter|an de leschten $3 Deeg}}',
-'activeusers-from' => 'Benotzer weisen, ugefaang bäi:',
-'activeusers-hidebots' => 'Botte verstoppen',
-'activeusers-hidesysops' => 'Administrateure verstoppen',
-'activeusers-noresult' => 'Keng Benotzer fonnt.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Rechter vun de Benotzergruppen',

@@ -2311,15 +2311,6 @@ Ils ant fôta de por lo muens un domêno de nivél de dessus, per ègzemplo « *
 'listusers-noresult' => 'Nion utilisator trovâ.',
 'listusers-blocked' => '(blocâ{{GENDER:$1||ye|(ye)}})',
 
-# Special:ActiveUsers
-'activeusers' => 'Lista des utilisators actifs',
-'activeusers-intro' => 'O est na lista des utilisators qu’ant ègzèrciê un’activitât la quinta que seye pendent {{PLURAL:$1|lo jorn passâ|los $1 jorns passâs}}.',
-'activeusers-count' => '$1 accion{{PLURAL:$1||s}} pendent {{PLURAL:$3|lo jorn passâ|los $3 jorns passâs}}',
-'activeusers-from' => 'Fâre vêre los utilisators dês :',
-'activeusers-hidebots' => 'Cachiér los robots',
-'activeusers-hidesysops' => 'Cachiér los administrators',
-'activeusers-noresult' => 'Nion utilisator trovâ.',
-
 # Special:ListGroupRights
 'listgrouprights' => 'Drêts de les tropes d’utilisators',
 'listgrouprights-summary' => 'Vê-que na lista de les tropes d’utilisators dèfenies sur ceti vouiqui et pués los sins drêts d’accès.

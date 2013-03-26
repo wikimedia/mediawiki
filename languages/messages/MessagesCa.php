@@ -1938,6 +1938,12 @@ Potser voleu modificar-ne la descripció en la seva [$2 pàgina de descripció].
 És possible que hagin d'enllaçar a una altra pàgina més apropiada.<br />
 Una pàgina es tracta com de desambiguació si utilitza una plantilla que està enllaçada a [[MediaWiki:Disambiguationspage]].",
 
+'pageswithprop' => 'Pàgines amb una propietat de pàgina',
+'pageswithprop-legend' => 'Pàgines amb una propietat de pàgina',
+'pageswithprop-text' => 'Aquesta pàgina llista les pàgines que utilitzen una propietat de pàgina en particular.',
+'pageswithprop-prop' => 'Nom de la propietat:',
+'pageswithprop-submit' => 'Vés',
+
 'doubleredirects' => 'Redireccions dobles',
 'doubleredirectstext' => 'Aquesta pàgina llista les pàgines que redirigeixen a altres pàgines de redirecció.
 Cada fila conté enllaços a la primera i segona redireccions, així com el destí de la segona redirecció, què generalment és la pàgina destí "real", a la què hauria d\'apuntar la primera redirecció.
@@ -2099,15 +2105,6 @@ Es necessita com a mínim un domini de primer nivell, per exemple "*.org".<br />
 'listusers-submit' => 'Mostra',
 'listusers-noresult' => "No s'han trobat coincidències de noms d'usuaris. Si us plau, busqueu també amb variacions per majúscules i minúscules.",
 'listusers-blocked' => '({{GENDER:$1|blocat|blocada}})',
-
-# Special:ActiveUsers
-'activeusers' => "Llista d'usuaris actius",
-'activeusers-intro' => "Aquí hi ha una llista d'usuaris que han tingut algun tipus d'activitat en {{PLURAL:$1|el darrer dia|els darrers $1 dies}}.",
-'activeusers-count' => '$1 {{PLURAL:$1|modificació|modificacions}} en {{PLURAL:$3|el darrer dia|els $3 darrers dies}}',
-'activeusers-from' => 'Mostra els usuaris començant per:',
-'activeusers-hidebots' => 'Amaga bots',
-'activeusers-hidesysops' => 'Amaga administradors',
-'activeusers-noresult' => "No s'han trobat usuaris.",
 
 # Special:ListGroupRights
 'listgrouprights' => "Drets dels grups d'usuaris",

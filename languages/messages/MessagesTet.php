@@ -630,10 +630,6 @@ Ita-nia mudansa la armazenadu seidauk!",
 # Special:ListUsers
 'listusers-submit' => 'Hatudu',
 
-# Special:ActiveUsers
-'activeusers-hidebots' => 'Subar bot sira',
-'activeusers-hidesysops' => 'Subar administradór sira',
-
 # Special:ListGroupRights
 'listgrouprights-group' => 'Grupu',
 'listgrouprights-rights' => 'Priviléjiu',
