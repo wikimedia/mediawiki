@@ -556,8 +556,10 @@ class DatabasePostgres extends DatabaseBase {
 	}
 
 	/**
-	 * This must be called after nextSequenceVal
-	 * @return null
+	 * Return the result of the last call to nextSequenceValue();
+	 * This must be called after nextSequenceValue().
+	 *
+	 * @return integer|null
 	 */
 	function insertId() {
 		return $this->mInsertId;
