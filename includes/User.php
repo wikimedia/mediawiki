@@ -1969,28 +1969,29 @@ class User {
 	 * for reload on the next hit.
 	 */
 	public function invalidateCache() {
-		if( wfReadOnly() ) {
+		if ( wfReadOnly() ) {
 			return;
 		}
 		$this->load();
-		if( $this->mId ) {
+		if ( $this->mId ) {
 			$this->mTouched = self::newTouchedTimestamp();
 
 			$dbw = wfGetDB( DB_MASTER );
-
-			// Prevent contention slams by checking user_touched first
-			$now = $dbw->timestamp( $this->mTouched );
-			$needsPurge = $dbw->selectField( 'user', '1',
-				array( 'user_id' => $this->mId, 'user_touched < ' . $dbw->addQuotes( $now ) )
-			);
-			if ( $needsPurge ) {
-				$dbw->update( 'user',
-					array( 'user_touched' => $now ),
-					array( 'user_id' => $this->mId, 'user_touched < ' . $dbw->addQuotes( $now ) ),
-					__METHOD__
-				);
-			}
-
+			$userid = $this->mId;
+			$touched = $this->mTouched;
+			$dbw->onTransactionIdle( function() use ( $dbw, $userid, $touched ) {
+				// Prevent contention slams by checking user_touched first
+				$encTouched = $dbw->addQuotes( $dbw->timestamp( $touched ) );
+				$needsPurge = $dbw->selectField( 'user', '1',
+					array( 'user_id' => $userid, 'user_touched < ' . $encTouched ) );
+				if ( $needsPurge ) {
+					$dbw->update( 'user',
+						array( 'user_touched' => $dbw->timestamp( $touched ) ),
+						array( 'user_id' => $userid, 'user_touched < ' . $encTouched ),
+						__METHOD__
+					);
+				}
+			} );
 			$this->clearSharedCache();
 		}
 	}
