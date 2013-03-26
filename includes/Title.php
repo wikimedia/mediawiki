@@ -4501,16 +4501,21 @@ class Title {
 	 */
 	public function invalidateCache() {
 		global $wgMemc;
+
 		if ( wfReadOnly() ) {
 			return false;
 		}
+
 		$dbw = wfGetDB( DB_MASTER );
-		$success = $dbw->update(
-			'page',
-			array( 'page_touched' => $dbw->timestamp() ),
-			$this->pageCond(),
-			__METHOD__
-		);
+		$conds = $this->pageCond();
+		$dbw->onTransactionIdle( function() use ( $dbw, $conds ) {
+			$dbw->update(
+				'page',
+				array( 'page_touched' => $dbw->timestamp() ),
+				$conds,
+				__METHOD__
+			);
+		} );
 		HTMLFileCache::clearFileCache( $this );
 
 		// Clear page info.
