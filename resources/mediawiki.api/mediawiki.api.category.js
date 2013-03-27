@@ -14,12 +14,13 @@
 		 * @return {boolean} return.done.isCategory Whether the category exists.
 		 */
 		isCategory: function ( title, ok, err ) {
-			var d = $.Deferred();
+			var d = $.Deferred(),
+				apiPromise;
 			// Backwards compatibility (< MW 1.20)
 			d.done( ok );
 			d.fail( err );
 
-			this.get( {
+			apiPromise = this.get( {
 					prop: 'categoryinfo',
 					titles: title.toString()
 				} )
@@ -36,7 +37,7 @@
 				})
 				.fail( d.reject );
 
-			return d.promise();
+			return d.promise( { abort: apiPromise.abort } );
 		},
 
 		/**
@@ -50,13 +51,14 @@
 		 * @return {String[]} return.done.categories Matched categories
 		 */
 		getCategoriesByPrefix: function ( prefix, ok, err ) {
-			var d = $.Deferred();
+			var d = $.Deferred(),
+				apiPromise;
 			// Backwards compatibility (< MW 1.20)
 			d.done( ok );
 			d.fail( err );
 
 			// Fetch with allpages to only get categories that have a corresponding description page.
-			this.get( {
+			apiPromise = this.get( {
 					list: 'allpages',
 					apprefix: prefix,
 					apnamespace: mw.config.get('wgNamespaceIds').category
@@ -72,7 +74,7 @@
 				})
 				.fail( d.reject );
 
-			return d.promise();
+			return d.promise( { abort: apiPromise.abort } );
 		},
 
 
@@ -88,12 +90,13 @@
 		 *  if title was not found.
 		 */
 		getCategories: function ( title, ok, err, async ) {
-			var d = $.Deferred();
+			var d = $.Deferred(),
+				apiPromise;
 			// Backwards compatibility (< MW 1.20)
 			d.done( ok );
 			d.fail( err );
 
-			this.get( {
+			apiPromise = this.get( {
 					prop: 'categories',
 					titles: title.toString()
 				}, {
@@ -114,10 +117,10 @@
 						} );
 					}
 					d.resolve( ret );
-				})
+				} )
 				.fail( d.reject );
 
-			return d.promise();
+			return d.promise( { abort: apiPromise.abort } );
 		}
 
 	} );

@@ -115,7 +115,8 @@
 		 */
 		ajax: function ( parameters, ajaxOptions ) {
 			var token,
-				apiDeferred = $.Deferred();
+				apiDeferred = $.Deferred(),
+				xhr;
 
 			parameters = $.extend( {}, this.defaults.parameters, parameters );
 			ajaxOptions = $.extend( {}, this.defaults.ajax, ajaxOptions );
@@ -147,7 +148,7 @@
 			}
 
 			// Make the AJAX request
-			$.ajax( ajaxOptions )
+			xhr = $.ajax( ajaxOptions )
 				// If AJAX fails, reject API call with error code 'http'
 				// and details in second argument.
 				.fail( function ( xhr, textStatus, exception ) {
@@ -172,9 +173,9 @@
 				} );
 
 			// Return the Promise
-			return apiDeferred.promise().fail( function ( code, details ) {
+			return apiDeferred.promise( { abort: xhr.abort } ).fail( function ( code, details ) {
 				mw.log( 'mw.Api error: ', code, details );
-			});
+			} );
 		}
 
 	};
