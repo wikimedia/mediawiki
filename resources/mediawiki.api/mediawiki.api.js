@@ -147,7 +147,7 @@
 			}
 
 			// Make the AJAX request
-			$.ajax( ajaxOptions )
+			var xhr = $.ajax( ajaxOptions )
 				// If AJAX fails, reject API call with error code 'http'
 				// and details in second argument.
 				.fail( function ( xhr, textStatus, exception ) {
@@ -172,9 +172,9 @@
 				} );
 
 			// Return the Promise
-			return apiDeferred.promise().fail( function ( code, details ) {
+			return apiDeferred.promise( { abort: xhr.abort } ).fail( function ( code, details ) {
 				mw.log( 'mw.Api error: ', code, details );
-			});
+			} );
 		}
 
 	};

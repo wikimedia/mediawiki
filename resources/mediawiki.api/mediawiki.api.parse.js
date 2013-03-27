@@ -20,7 +20,7 @@
 			d.done( ok );
 			d.fail( err );
 
-			this.get( {
+			var apiPromise = this.get( {
 					action: 'parse',
 					text: wikitext
 				} )
@@ -31,7 +31,7 @@
 				} )
 				.fail( d.reject );
 
-			return d.promise();
+			return d.promise( { abort: apiPromise.abort } );
 		}
 	} );
 

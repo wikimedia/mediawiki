@@ -19,7 +19,7 @@
 			d.done( ok );
 			d.fail( err );
 
-			this.get( {
+			var apiPromise = this.get( {
 					prop: 'categoryinfo',
 					titles: title.toString()
 				} )
@@ -36,7 +36,7 @@
 				})
 				.fail( d.reject );
 
-			return d.promise();
+			return d.promise( { abort: apiPromise.abort } );
 		},
 
 		/**
@@ -56,7 +56,7 @@
 			d.fail( err );
 
 			// Fetch with allpages to only get categories that have a corresponding description page.
-			this.get( {
+			var apiPromise = this.get( {
 					list: 'allpages',
 					apprefix: prefix,
 					apnamespace: mw.config.get('wgNamespaceIds').category
@@ -72,7 +72,7 @@
 				})
 				.fail( d.reject );
 
-			return d.promise();
+			return d.promise( { abort: apiPromise.abort } );
 		},
 
 
@@ -93,7 +93,7 @@
 			d.done( ok );
 			d.fail( err );
 
-			this.get( {
+			var apiPromise = this.get( {
 					prop: 'categories',
 					titles: title.toString()
 				}, {
@@ -114,10 +114,10 @@
 						} );
 					}
 					d.resolve( ret );
-				})
+				} )
 				.fail( d.reject );
 
-			return d.promise();
+			return d.promise( { abort: apiPromise.abort } );
 		}
 
 	} );

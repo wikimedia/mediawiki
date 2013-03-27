@@ -62,7 +62,7 @@
 			d.done( ok );
 			d.fail( err );
 
-			this.get( {
+			var apiPromise = this.get( {
 					action: 'tokens',
 					type: 'edit'
 				}, {
@@ -87,7 +87,7 @@
 				})
 				.fail( d.reject );
 
-			return d.promise();
+			return d.promise( { abort: apiPromise.abort } );
 		},
 
 		/**

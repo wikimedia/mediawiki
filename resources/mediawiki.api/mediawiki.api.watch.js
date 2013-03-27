@@ -35,13 +35,13 @@
 			$.extend( params, addParams );
 		}
 
-		this.post( params )
+		var apiPromise = this.post( params )
 			.done( function ( data ) {
 				d.resolve( data.watch );
 			} )
 			.fail( d.reject );
 
-		return d.promise();
+		return d.promise( { abort: apiPromise.abort } );
 	}
 
 	$.extend( mw.Api.prototype, {
