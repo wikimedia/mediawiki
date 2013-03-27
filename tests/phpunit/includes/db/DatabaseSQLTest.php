@@ -11,7 +11,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 	protected function setUp() {
 		parent::setUp();
 		// TODO support other DBMS or find another way to do it
-		if ( $this->db->getType() !== 'mysql' ) {
+		if ( $this->db->getType() !== 'mysql' && $this->db->getType() !== 'mysqli' ) {
 			$this->markTestSkipped( 'No mysql database' );
 		}
 	}
