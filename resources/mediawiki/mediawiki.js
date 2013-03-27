@@ -487,7 +487,13 @@ var mw = ( function ( $, undefined ) {
 						// TODO: Use requestAnimationFrame in the future which will
 						// perform even better by not injecting styles while the browser
 						// is paiting.
-						setTimeout( addEmbeddedCSS );
+						setTimeout( function () {
+							// Can't pass addEmbeddedCSS to setTimeout directly because Firefox
+							// (below version 13) has the non-standard behaviour of passing a
+							// numerical "lateness" value as first argument to this callback
+							// http://benalman.com/news/2009/07/the-mysterious-firefox-settime/
+							addEmbeddedCSS();
+						} );
 						return;
 					}
 
