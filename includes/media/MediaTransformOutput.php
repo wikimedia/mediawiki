@@ -151,7 +151,12 @@ abstract class MediaTransformOutput {
 		if ( $this->isError() ) {
 			return false;
 		} elseif ( $this->path === null ) {
-			return $this->file->getLocalRefPath();
+			return $this->file->getLocalRefPath(); // assume thumb was not scaled
+		} elseif ( FileBackend::isStoragePath( $this->path ) ) {
+			$be = $this->file->getRepo()->getBackend();
+			// The temp file will be process cached by FileBackend
+			$fsFile = $be->getLocalReference( array( 'src' => $this->path ) );
+			return $fsFile ? $fsFile->getPath() : false;
 		} else {
 			return $this->path; // may return false
 		}
