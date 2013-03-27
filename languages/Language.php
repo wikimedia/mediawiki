@@ -3984,14 +3984,19 @@ class Language {
 	}
 
 	/**
-	 * Get the ordered list of fallback languages, ending with the fallback
-	 * language chain for the site language.
+	 * Get the ordered list of fallback languages, ending with the wiki's content
+	 * language.
+	 *
+	 * Note: English is not necessarily part of this chain! The authoritative language
+	 *       for a wiki should be the content language, so if a language has a terminal
+	 *       fallback of english (and the origin language was not english) we instead
+	 *       terminate with the content language.
 	 *
 	 * @since 1.21
 	 * @param $code string Language code
 	 * @return array
 	 */
-	public static function getFallbacksIncludingSiteLanguage( $code ) {
+	public static function getOnWikiFallbackLanguages( $code ) {
 		global $wgLanguageCode;
 
 		// Usually, we will only store a tiny number of fallback chains, so we
@@ -4000,25 +4005,31 @@ class Language {
 		$cacheKey = "{$code}-{$wgLanguageCode}";
 
 		if ( !array_key_exists( $cacheKey, $fallbackLanguageCache ) ) {
-			$fallbacks = self::getFallbacksFor( $code );
+			$siteFallbacks = array();
 
-			// Take the final 'en' off of the array before splicing
-			if ( end( $fallbacks ) === 'en' ) {
-				array_pop( $fallbacks );
-			}
-			// Append the site's fallback chain, including the site language itself
-			$siteFallbacks = self::getFallbacksFor( $wgLanguageCode );
-			array_unshift( $siteFallbacks, $wgLanguageCode );
+			// Shortcut if the $code is the contentLanguage; we don't return anything
+			// in that case
+			if ( $code !== $wgLanguageCode ) {
+				$fallbacks = self::getFallbacksFor( $code );
 
-			// Eliminate any languages already included in the chain
-			$siteFallbacks = array_intersect( array_diff( $siteFallbacks, $fallbacks ), $siteFallbacks );
-			if ( $siteFallbacks ) {
-				$fallbacks = array_merge( $fallbacks, $siteFallbacks );
+				// Normalize the fallback chain by removing the ending 'en' unless we
+				// are actually looking at an 'en' fallback chain!
+				if ( ( substr( reset( $fallbacks ), 0, 2 ) !== 'en' ) && ( end( $fallbacks ) === 'en' ) ) {
+					array_pop( $fallbacks );
+				}
+
+				// Now construct the authoritative chain; ending with the content language
+				foreach ( $fallbacks as $lang ) {
+					if ( $lang !== $wgLanguageCode ) {
+						$siteFallbacks[] = $lang;
+					} else {
+						break;
+					}
+				}
+				$siteFallbacks[] = $wgLanguageCode;
 			}
-			if ( end( $fallbacks ) !== 'en' ) {
-				$fallbacks[] = 'en';
-			}
-			$fallbackLanguageCache[$cacheKey] = $fallbacks;
+
+			$fallbackLanguageCache[$cacheKey] = $siteFallbacks;
 		}
 		return $fallbackLanguageCache[$cacheKey];
 	}
