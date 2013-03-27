@@ -626,8 +626,8 @@ Fadlan markale isku day. Hadii aysan weli shaqaynin, ka bax ee markale soo gudag
 '''Hadii wax ka bedlkaan uu yahay mid xaq ah, fadlan markale isku day. Hadii aysan weli shaqaynin, is kuday inaad  ka baxdo ee markale soo gudagal.'''",
 'editing' => 'Waxaad badalaysaa $1',
 'creating' => 'Sameyta $1',
-'editingsection' => 'Waxaa wax ka badaleysaa $1 (qeyb yar)',
-'editingcomment' => 'Waxaa wax ka badaleysaa $1 (qeyb yar)',
+'editingsection' => 'Waxaad wax ka bedelaysaa $1 (qeyb yar)',
+'editingcomment' => 'Waxaad wax ka bedelaysaa $1 (qeyb yar)',
 'editconflict' => 'Isku dhac badalaadka: $1',
 'yourtext' => 'Qoraalkaaga',
 'editingold' => "'''DIGNIIN: Waxaad wax ka bedeli rabtaa boggan caddadkiisa duqoobay.
