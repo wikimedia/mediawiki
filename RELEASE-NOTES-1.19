@@ -3,6 +3,14 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it '''off''' if you can.
 
+== MediaWiki 1.19.7 ==
+
+This is not yet a MediaWiki release
+
+=== Changes since 1.19.6 ===
+
+* (bug 46493) Handle invalid titles on ProtectedPages and ProtectedTitles
+
 == MediaWiki 1.19.6 ==
 
 This is a security and maintenance release of the MediaWiki 1.19 branch
