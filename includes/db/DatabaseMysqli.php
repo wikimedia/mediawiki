@@ -1,6 +1,6 @@
 <?php
 /**
- * This is the MySQL database abstraction layer.
+ * This is the MySQLi database abstraction layer.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,214 +28,171 @@
  * @ingroup Database
  * @see Database
  */
-class DatabaseMysql extends DatabaseMysqlBase {
+class DatabaseMysqli extends DatabaseMysql {
 
 	function extensionExists() {
-		return function_exists( 'mysql_connect' );
+		return class_exists( 'mysqli' );
 	}
 
 	function getType() {
-		return 'mysql';
+		return 'mysqli';
 	}
 
 	function doQuery( $sql ) {
-		if( $this->bufferResults() ) {
-			$ret = mysql_query( $sql, $this->mConn );
-		} else {
-			$ret = mysql_unbuffered_query( $sql, $this->mConn );
-		}
-		return $ret;
+		return $this->mConn->query( $sql, $this->bufferResults() ? MYSQLI_STORE_RESULT : MYSQLI_USE_RESULT );
 	}
 
-	function &doOpen( $realServer, $user, $password, $database, $flags ) {
+	function doBegin( $fname ) {
+		$this->mConn->autocommit( false );
+		$this->mTrxLevel = 1;
+	}
+
+	function doCommit( $fname ) {
+		if ( $this->mTrxLevel ) {
+			$this->mConn->commit();
+			$this->mConn->autocommit( true );
+			$this->mTrxLevel = 0;
+		}
+	}
+
+	function doRollback( $name ) {
+		if ( $this->mTrxLevel ) {
+			$this->mConn->rollback();
+			$this->mConn->autocommit( true );
+			$this->mTrxLevel = 0;
+		}
+	}
+
+	function &doOpen( $realServer, $user, $password, $databae, $flags ) {
+		$connFlags = 0;
+		if ( $this->mFlags & DBO_SSL ) {
+			$connFlags |= MYSQL_CLIENT_SSL;
+		}
+		if ( $this->mFlags & DBO_COMPRESS ) {
+			$connFlags |= MYSQL_CLIENT_COMPRESS;
+		}
+		if ( $this->mFlags & DBO_PERSISTENT ) {
+			$realServer = "p:$realServer";
+		}
+
 		// The kernel's default SYN retransmission period is far too slow for us,
 		// so we use a short timeout plus a manual retry. Retrying means that a small
 		// but finite rate of SYN packet loss won't cause user-visible errors.
-		$conn = false;
+		$this->mConn = false;
 		if ( ini_get( 'mysql.connect_timeout' ) <= 3 ) {
 			$numAttempts = 2;
 		} else {
 			$numAttempts = 1;
 		}
 
-		$connFlags = 0;
-		if ( $flags & DBO_SSL ) {
-			$connFlags |= MYSQL_CLIENT_SSL;
-		}
-		if ( $flags & DBO_COMPRESS ) {
-			$connFlags |= MYSQL_CLIENT_COMPRESS;
-		}
-
-		for ( $i = 0; $i < $numAttempts && !$this->mConn; $i++ ) {
+		$conn = mysqli_init();
+		$ok = false;
+		for ( $i = 0; $i < $numAttempts && !$ok; $i++ ) {
 			if ( $i > 1 ) {
 				usleep( 1000 );
 			}
-			if ( $flags & DBO_PERSISTENT ) {
-				$conn = mysql_pconnect( $realServer, $user, $password, $connFlags );
-			} else {
-				// Create a new connection...
-				$conn = mysql_connect( $realServer, $user, $password, true, $connFlags );
-			}
+			$ok = $conn->real_connect( $realServer, $user, $password, $database, /* port */ null, /* $socket */ null, $connFlags );
 		}
 
-		return $conn;
+		if ( $ok ) {
+			$this->mDBname = $database;
+			return $conn;
+		} else {
+			return false;
+		}
 	}
 
 	function doCloseConnection() {
-		return mysql_close( $this->mConn );
+		return $this->mConn->close();
 	}
 
-	/**
-	 * @param $res ResultWrapper
-	 * @throws DBUnexpectedError
-	 */
 	function freeResult( $res ) {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
-		wfSuppressWarnings();
-		$ok = mysql_free_result( $res );
-		wfRestoreWarnings();
-		if ( !$ok ) {
-			throw new DBUnexpectedError( $this, "Unable to free MySQL result" );
-		}
+		$res->close();
 	}
 
-	/**
-	 * @param $res ResultWrapper
-	 * @return object|bool
-	 * @throws DBUnexpectedError
-	 */
 	function fetchObject( $res ) {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
-		wfSuppressWarnings();
-		$row = mysql_fetch_object( $res );
-		wfRestoreWarnings();
+		$row = $res->fetch_object();
 
 		$errno = $this->lastErrno();
 		// Unfortunately, mysql_fetch_object does not reset the last errno.
 		// Only check for CR_SERVER_LOST and CR_UNKNOWN_ERROR, as
 		// these are the only errors mysql_fetch_object can cause.
-		// See http://dev.mysql.com/doc/refman/5.0/en/mysql-fetch-row.html.
+		// See http://dev.mysql.com/doc/refman/5.6/en/mysql-fetch-row.html.
 		if( $errno == 2000 || $errno == 2013 ) {
 			throw new DBUnexpectedError( $this, 'Error in fetchObject(): ' . htmlspecialchars( $this->lastError() ) );
 		}
-		return $row;
+
+		return $row ?: false;
 	}
 
-	/**
-	 * @param $res ResultWrapper
-	 * @return array|bool
-	 * @throws DBUnexpectedError
-	 */
 	function fetchRow( $res ) {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
-		wfSuppressWarnings();
-		$row = mysql_fetch_array( $res );
-		wfRestoreWarnings();
+		$row = $res->fetch_array();
 
 		$errno = $this->lastErrno();
 		// Unfortunately, mysql_fetch_array does not reset the last errno.
 		// Only check for CR_SERVER_LOST and CR_UNKNOWN_ERROR, as
 		// these are the only errors mysql_fetch_object can cause.
-		// See http://dev.mysql.com/doc/refman/5.0/en/mysql-fetch-row.html.
+		// See http://dev.mysql.com/doc/refman/5.6/en/mysql-fetch-row.html.
 		if( $errno == 2000 || $errno == 2013 ) {
 			throw new DBUnexpectedError( $this, 'Error in fetchRow(): ' . htmlspecialchars( $this->lastError() ) );
 		}
-		return $row;
+		return $row ?: false;
 	}
 
-	/**
-	 * @throws DBUnexpectedError
-	 * @param $res ResultWrapper
-	 * @return int
-	 */
 	function numRows( $res ) {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
-		wfSuppressWarnings();
-		$n = mysql_num_rows( $res );
-		wfRestoreWarnings();
-		// Unfortunately, mysql_num_rows does not reset the last errno.
-		// We are not checking for any errors here, since
-		// these are no errors mysql_num_rows can cause.
-		// See http://dev.mysql.com/doc/refman/5.0/en/mysql-fetch-row.html.
-		// See https://bugzilla.wikimedia.org/42430
-		return $n;
+		return $res->num_rows;
 	}
 
-	/**
-	 * @param $res ResultWrapper
-	 * @return int
-	 */
 	function numFields( $res ) {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
-		return mysql_num_fields( $res );
+		return $res->field_count;
 	}
 
-	/**
-	 * @param $res ResultWrapper
-	 * @param $n string
-	 * @return string
-	 */
 	function fieldName( $res, $n ) {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
-		return mysql_field_name( $res, $n );
+		return $res->fetch_field_direct( $n )->name;
 	}
 
-	/**
-	 * @return int
-	 */
 	function insertId() {
-		return mysql_insert_id( $this->mConn );
+		return $this->mConn->insert_id;
 	}
 
-	/**
-	 * @param $res ResultWrapper
-	 * @param $row
-	 * @return bool
-	 */
 	function dataSeek( $res, $row ) {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
-		return mysql_data_seek( $res, $row );
+		return $res->data_seek( $row );
 	}
 
-	/**
-	 * @return int
-	 */
 	function lastErrno() {
 		if ( $this->mConn ) {
-			return mysql_errno( $this->mConn );
+			return $this->mConn->errno;
 		} else {
-			return mysql_errno();
+			return mysqli_connect_errno();
 		}
 	}
 
-	/**
-	 * @return string
-	 */
 	function lastError() {
 		if ( $this->mConn ) {
-			# Even if it's non-zero, it can still be invalid
-			wfSuppressWarnings();
-			$error = mysql_error( $this->mConn );
-			if ( !$error ) {
-				$error = mysql_error();
-			}
-			wfRestoreWarnings();
+			$error = $this->mConn->error;
 		} else {
-			$error = mysql_error();
+			$error = mysqli_connect_error();
 		}
 		if( $error ) {
 			$error .= ' (' . $this->mServer . ')';
@@ -243,27 +200,18 @@ class DatabaseMysql extends DatabaseMysqlBase {
 		return $error;
 	}
 
-	/**
-	 * @return int
-	 */
 	function affectedRows() {
-		return mysql_affected_rows( $this->mConn );
+		return $this->mConn->affected_rows;
 	}
 
-	/**
-	 * @param $table string
-	 * @param $field string
-	 * @return bool|MySQLField
-	 */
 	function fieldInfo( $table, $field ) {
 		$table = $this->tableName( $table );
 		$res = $this->query( "SELECT * FROM $table LIMIT 1", __METHOD__, true );
 		if ( !$res ) {
 			return false;
 		}
-		$n = mysql_num_fields( $res->result );
-		for( $i = 0; $i < $n; $i++ ) {
-			$meta = mysql_fetch_field( $res->result, $i );
+		for( $i = 0; $i < $res->result->field_count; $i++ ) {
+			$meta = $res->result->fetch_field( $i );
 			if( $field == $meta->name ) {
 				return new MySQLField( $meta );
 			}
@@ -271,54 +219,39 @@ class DatabaseMysql extends DatabaseMysqlBase {
 		return false;
 	}
 
-	/**
-	 * @param $db
-	 * @return bool
-	 */
 	function selectDB( $db ) {
 		if ( $this->mDBname != $db ) {
 			$this->mDBname = $db;
-			return mysql_select_db( $db, $this->mConn );
+			return $this->mConn->select_db( $db );
 		} else {
 			return true;
 		}
 	}
 
-	/**
-	 * @param $s string
-	 *
-	 * @return string
-	 */
 	function strencode( $s ) {
-		$sQuoted = mysql_real_escape_string( $s, $this->mConn );
+		$sQuoted = $this->mConn->real_escape_string( $s );
 
 		if( $sQuoted === false ) {
 			$this->ping();
-			$sQuoted = mysql_real_escape_string( $s, $this->mConn );
+			$sQuoted = $this->mConn->real_escape_string( $s );
 		}
 		return $sQuoted;
 	}
 
-	/**
-	 * @return bool
-	 */
 	function ping() {
-		$ping = mysql_ping( $this->mConn );
+		$ping = $this->mConn->ping();
 		if ( $ping ) {
 			return true;
 		}
 
-		mysql_close( $this->mConn );
+		$this->mConn->close();
 		$this->mOpened = false;
 		$this->mConn = false;
 		$this->open( $this->mServer, $this->mUser, $this->mPassword, $this->mDBname );
 		return true;
 	}
 
-	/**
-	 * @return string
-	 */
 	function getServerVersion() {
-		return mysql_get_server_info( $this->mConn );
+		return $this->mConn->server_version;
 	}
 }
