@@ -753,7 +753,7 @@ class CoreParserFunctions {
 	 */
 	static function anchorencode( $parser, $text ) {
 		$text = $parser->killMarkers( $text );
-		return substr( $parser->guessSectionNameFromWikiText( $text ), 1);
+		return (string)substr( $parser->guessSectionNameFromWikiText( $text ), 1 );
 	}
 
 	static function special( $parser, $text ) {
