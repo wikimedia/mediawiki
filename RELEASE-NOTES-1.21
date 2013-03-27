@@ -284,6 +284,8 @@ production.
 * The JSON output formatter now leaves forward slashes unescaped to improve human
   readability of URLs and similar strings. Also, a "utf8" option is now provided
   to use UTF-8 encoding instead of hex escape codes for most non-ASCII characters.
+* action=opensearch no longer silently ignores the format parameter.
+* action=opensearch now supports format=jsonfm.
 
 === API internal changes in 1.21 ===
 * For debugging only, a new global $wgDebugAPI removes many API restrictions when true.
