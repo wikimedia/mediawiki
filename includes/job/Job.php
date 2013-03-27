@@ -212,10 +212,12 @@ abstract class Job {
 			'title'     => $this->getTitle()->getDBkey(),
 			'params'    => $this->getParams()
 		);
-		// Identical jobs with different "root" jobs should count as duplicates
 		if ( is_array( $info['params'] ) ) {
+			// Identical jobs with different "root" jobs should count as duplicates
 			unset( $info['params']['rootJobSignature'] );
 			unset( $info['params']['rootJobTimestamp'] );
+			// Likewise for jobs with different delay times
+			unset( $info['params']['jobReleaseTimestamp'] );
 		}
 		return $info;
 	}
