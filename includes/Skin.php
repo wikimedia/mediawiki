@@ -56,17 +56,19 @@ abstract class Skin extends ContextSource {
 
 			$skinDir = dir( $wgStyleDirectory );
 
-			# while code from www.php.net
-			while ( false !== ( $file = $skinDir->read() ) ) {
-				// Skip non-PHP files, hidden files, and '.dep' includes
-				$matches = array();
+			if ( $skinDir !== false && $skinDir !== null ) {
+				# while code from www.php.net
+				while ( false !== ( $file = $skinDir->read() ) ) {
+					// Skip non-PHP files, hidden files, and '.dep' includes
+					$matches = array();
 
-				if ( preg_match( '/^([^.]*)\.php$/', $file, $matches ) ) {
-					$aSkin = $matches[1];
-					$wgValidSkinNames[strtolower( $aSkin )] = $aSkin;
+					if ( preg_match( '/^([^.]*)\.php$/', $file, $matches ) ) {
+						$aSkin = $matches[1];
+						$wgValidSkinNames[strtolower( $aSkin )] = $aSkin;
+					}
 				}
+				$skinDir->close();
 			}
-			$skinDir->close();
 			$skinsInitialised = true;
 			wfProfileOut( __METHOD__ . '-init' );
 		}
