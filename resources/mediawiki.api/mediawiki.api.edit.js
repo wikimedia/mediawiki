@@ -57,12 +57,13 @@
 		 * @return {string} return.done.token Received token.
 		 */
 		getEditToken: function ( ok, err ) {
-			var d = $.Deferred();
+			var d = $.Deferred(),
+				apiPromise;
 			// Backwards compatibility (< MW 1.20)
 			d.done( ok );
 			d.fail( err );
 
-			this.get( {
+			apiPromise = this.get( {
 					action: 'tokens',
 					type: 'edit'
 				}, {
@@ -87,7 +88,7 @@
 				})
 				.fail( d.reject );
 
-			return d.promise();
+			return d.promise( { abort: apiPromise.abort } );
 		},
 
 		/**
