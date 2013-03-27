@@ -51,7 +51,7 @@ class DatabaseTest extends MediaWikiTestCase {
 
 	function testAddQuotesStringQuote() {
 		$check = "'string''s cause trouble'";
-		if ( $this->db->getType() === 'mysql' ) {
+		if ( $this->db->getType() === 'mysql' || $this->db->getType() === 'mysqli' ) {
 			$check = "'string\'s cause trouble'";
 		}
 		$this->assertEquals(
@@ -82,7 +82,7 @@ class DatabaseTest extends MediaWikiTestCase {
 	private function prefixAndQuote( $table, $database = null, $prefix = null, $format = 'quoted' ) {
 		if ( $this->db->getType() === 'sqlite' || $format !== 'quoted' ) {
 			$quote = '';
-		} elseif ( $this->db->getType() === 'mysql' ) {
+		} elseif ( $this->db->getType() === 'mysql' || $this->db->getType() === 'mysqli' ) {
 			$quote = '`';
 		} else {
 			$quote = '"';
@@ -165,7 +165,7 @@ class DatabaseTest extends MediaWikiTestCase {
 			array( 4, "Snicker's_paradox" ) );
 
 		$check = "SELECT * FROM cur WHERE cur_namespace='4' AND cur_title='Snicker''s_paradox'";
-		if ( $this->db->getType() === 'mysql' ) {
+		if ( $this->db->getType() === 'mysql' || $this->db->getType() === 'mysqli' ) {
 			$check = "SELECT * FROM cur WHERE cur_namespace='4' AND cur_title='Snicker\'s_paradox'";
 		}
 		$this->assertEquals( $check, $sql );
@@ -177,7 +177,7 @@ class DatabaseTest extends MediaWikiTestCase {
 			array( '"user"', "Slash's Dot" ) );
 
 		$check = "SELECT user_id FROM \"user\" WHERE user_name='Slash''s Dot'";
-		if ( $this->db->getType() === 'mysql' ) {
+		if ( $this->db->getType() === 'mysql' || $this->db->getType() === 'mysqli' ) {
 			$check = "SELECT user_id FROM \"user\" WHERE user_name='Slash\'s Dot'";
 		}
 		$this->assertEquals( $check, $sql );
@@ -193,7 +193,7 @@ class DatabaseTest extends MediaWikiTestCase {
 	}
 
 	function testStoredFunctions() {
-		if ( !in_array( wfGetDB( DB_MASTER )->getType(), array( 'mysql', 'postgres' ) ) ) {
+		if ( !in_array( wfGetDB( DB_MASTER )->getType(), array( 'mysql', 'mysqli', 'postgres' ) ) ) {
 			$this->markTestSkipped( 'MySQL or Postgres required' );
 		}
 		global $IP;
