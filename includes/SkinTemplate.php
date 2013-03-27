@@ -742,7 +742,7 @@ class SkinTemplate extends Skin {
 		return array(
 			'class' => implode( ' ', $classes ),
 			'text' => $text,
-			'href' => $title->getLocalUrl( $query ),
+			'href' => $title->getLocalURL( $query ),
 			'primary' => true );
 	}
 
@@ -1203,7 +1203,7 @@ class SkinTemplate extends Skin {
 
 		if ( $out->isArticleRelated() ) {
 			$nav_urls['whatlinkshere'] = array(
-				'href' => SpecialPage::getTitleFor( 'Whatlinkshere', $this->thispage )->getLocalUrl()
+				'href' => SpecialPage::getTitleFor( 'Whatlinkshere', $this->thispage )->getLocalURL()
 			);
 
 			$nav_urls['info'] = array(
@@ -1213,7 +1213,7 @@ class SkinTemplate extends Skin {
 
 			if ( $this->getTitle()->getArticleID() ) {
 				$nav_urls['recentchangeslinked'] = array(
-					'href' => SpecialPage::getTitleFor( 'Recentchangeslinked', $this->thispage )->getLocalUrl()
+					'href' => SpecialPage::getTitleFor( 'Recentchangeslinked', $this->thispage )->getLocalURL()
 				);
 			}
 		}

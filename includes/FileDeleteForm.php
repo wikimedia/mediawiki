@@ -379,7 +379,7 @@ class FileDeleteForm {
 			$q['oldimage'] = $this->oldimage;
 		}
 
-		return $this->title->getLocalUrl( $q );
+		return $this->title->getLocalURL( $q );
 	}
 
 	/**

@@ -187,7 +187,7 @@ class ChangesFeed {
 
 		foreach( $sorted as $obj ) {
 			$title = Title::makeTitle( $obj->rc_namespace, $obj->rc_title );
-			$talkpage = MWNamespace::canTalk( $obj->rc_namespace ) ? $title->getTalkPage()->getFullUrl() : '';
+			$talkpage = MWNamespace::canTalk( $obj->rc_namespace ) ? $title->getTalkPage()->getFullURL() : '';
 			// Skip items with deleted content (avoids partially complete/inconsistent output)
 			if( $obj->rc_deleted ) continue;
 

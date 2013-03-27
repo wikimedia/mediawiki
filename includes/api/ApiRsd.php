@@ -40,7 +40,7 @@ class ApiRsd extends ApiBase {
 		$service = array( 'apis' => $this->formatRsdApiList() );
 		ApiResult::setContent( $service, 'MediaWiki', 'engineName' );
 		ApiResult::setContent( $service, 'https://www.mediawiki.org/', 'engineLink' );
-		ApiResult::setContent( $service, Title::newMainPage()->getCanonicalUrl(), 'homePageLink' );
+		ApiResult::setContent( $service, Title::newMainPage()->getCanonicalURL(), 'homePageLink' );
 
 		$result->setIndexedTagName( $service['apis'], 'api' );
 

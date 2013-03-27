@@ -465,7 +465,7 @@ class SpecialPageFactory {
 				unset( $query['title'] );
 				$query = wfArrayToCgi( $query );
 				$title = $page->getTitle( $par );
-				$url = $title->getFullUrl( $query );
+				$url = $title->getFullURL( $query );
 				$context->getOutput()->redirect( $url );
 				wfProfileOut( __METHOD__ );
 				return $title;

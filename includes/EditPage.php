@@ -487,7 +487,7 @@ class EditPage {
 			// The edit page was reached via a red link.
 			// Redirect to the article page and let them click the edit tab if
 			// they really want a permission error.
-			$wgOut->redirect( $this->mTitle->getFullUrl() );
+			$wgOut->redirect( $this->mTitle->getFullURL() );
 			return;
 		}
 
@@ -540,7 +540,7 @@ class EditPage {
 			// The edit page was reached via a red link.
 			// Redirect to the article page and let them click the edit tab if
 			// they really want a permission error.
-			$wgOut->redirect( $this->mTitle->getFullUrl() );
+			$wgOut->redirect( $this->mTitle->getFullURL() );
 		} else {
 			$wgOut->readOnlyPage( $source, $protected, $reasons, $action );
 		}

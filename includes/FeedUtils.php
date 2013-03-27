@@ -223,7 +223,7 @@ class FeedUtils {
 		$queryParameters = ($oldid == null)
 			? "diff={$newid}"
 			: "diff={$newid}&oldid={$oldid}";
-		$diffUrl = $title->getFullUrl( $queryParameters );
+		$diffUrl = $title->getFullURL( $queryParameters );
 
 		$diffLink = Html::element( 'a', array( 'href' => $diffUrl ),
 			wfMessage( 'showdiff' )->inContentLanguage()->text() );

@@ -249,7 +249,7 @@ class SpecialPasswordReset extends FormSpecialPage {
 			$username,
 			$passwordBlock,
 			count( $passwords ),
-			'<' . Title::newMainPage()->getCanonicalUrl() . '>',
+			'<' . Title::newMainPage()->getCanonicalURL() . '>',
 			round( $wgNewPasswordExpiry / 86400 )
 		);
 

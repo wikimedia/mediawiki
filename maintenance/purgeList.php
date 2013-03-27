@@ -63,7 +63,7 @@ class PurgeList extends Maintenance {
 			} elseif ( $page !== '' ) {
 				$title = Title::newFromText( $page );
 				if ( $title ) {
-					$url = $title->getInternalUrl();
+					$url = $title->getInternalURL();
 					$this->output( "$url\n" );
 					$urls[] = $url;
 					if ( $this->getOption( 'purge' ) ) {
@@ -88,7 +88,7 @@ class PurgeList extends Maintenance {
 			$conds = array( 'page_namespace' => $namespace );
 		}
 		while ( true ) {
-			$res = $dbr->select( 'page', 
+			$res = $dbr->select( 'page',
 				array( 'page_id', 'page_namespace', 'page_title' ),
 				$conds + array( 'page_id > ' . $dbr->addQuotes( $startId ) ),
 				__METHOD__,
@@ -104,7 +104,7 @@ class PurgeList extends Maintenance {
 			$urls = array();
 			foreach ( $res as $row ) {
 				$title = Title::makeTitle( $row->page_namespace, $row->page_title );
-				$url = $title->getInternalUrl();
+				$url = $title->getInternalURL();
 				$urls[] = $url;
 				$startId = $row->page_id;
 			}

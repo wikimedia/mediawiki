@@ -116,13 +116,13 @@ class SideBarTest extends MediaWikiLangTestCase {
 				# ** Baz|Fred
 				array(
 					'text' => 'Fred',
-					'href' => Title::newFromText( 'Baz' )->getLocalUrl(),
+					'href' => Title::newFromText( 'Baz' )->getLocalURL(),
 					'id' => 'n-Fred',
 					'active' => null,
 				),
 				array(
 					'text' => 'title-to-display',
-					'href' => Title::newFromText( 'page-to-go-to' )->getLocalUrl(),
+					'href' => Title::newFromText( 'page-to-go-to' )->getLocalURL(),
 					'id' => 'n-title-to-display',
 					'active' => null,
 				),

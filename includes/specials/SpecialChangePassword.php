@@ -162,7 +162,7 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 				Xml::openElement( 'form',
 					array(
 						'method' => 'post',
-						'action' => $this->getTitle()->getLocalUrl(),
+						'action' => $this->getTitle()->getLocalURL(),
 						'id' => 'mw-resetpass-form' ) ) . "\n" .
 				$hiddenFieldsStr .
 				$this->msg( 'resetpass_text' )->parseAsBlock() . "\n" .

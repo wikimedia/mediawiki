@@ -50,7 +50,7 @@ class DumpSisterSites extends Maintenance {
 
 		foreach ( $result as $row ) {
 			$title = Title::makeTitle( $row->page_namespace, $row->page_title );
-			$url = $title->getFullUrl();
+			$url = $title->getFullURL();
 			$text = $title->getPrefixedText();
 			$this->output( "$url $text\n" );
 		}

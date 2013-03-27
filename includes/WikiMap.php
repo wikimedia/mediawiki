@@ -211,7 +211,7 @@ class WikiReference {
 	}
 
 	/**
-	 * Get a URL based on $wgServer, like Title::getFullUrl() would produce
+	 * Get a URL based on $wgServer, like Title::getFullURL() would produce
 	 * when called locally on the wiki.
 	 *
 	 * @param string $page page name (must be normalized before calling this function!)

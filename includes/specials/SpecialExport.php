@@ -187,7 +187,7 @@ class SpecialExport extends SpecialPage {
 		$out->addWikiMsg( 'exporttext' );
 
 		$form = Xml::openElement( 'form', array( 'method' => 'post',
-			'action' => $this->getTitle()->getLocalUrl( 'action=submit' ) ) );
+			'action' => $this->getTitle()->getLocalURL( 'action=submit' ) ) );
 		$form .= Xml::inputLabel( $this->msg( 'export-addcattext' )->text(), 'catname', 'catname', 40 ) . '&#160;';
 		$form .= Xml::submitButton( $this->msg( 'export-addcat' )->text(), array( 'name' => 'addcat' ) ) . '<br />';
 

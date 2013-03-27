@@ -971,7 +971,7 @@ class Linker {
 			return wfAppendQuery( $wgUploadNavigationUrl, $q );
 		} else {
 			$upload = SpecialPage::getTitleFor( 'Upload' );
-			return $upload->getLocalUrl( $q );
+			return $upload->getLocalURL( $q );
 		}
 	}
 

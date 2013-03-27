@@ -696,20 +696,20 @@ class EmailNotification {
 
 		$keys = array();
 		$postTransformKeys = array();
-		$pageTitleUrl = $this->title->getCanonicalUrl();
+		$pageTitleUrl = $this->title->getCanonicalURL();
 		$pageTitle = $this->title->getPrefixedText();
 
 		if ( $this->oldid ) {
 			// Always show a link to the diff which triggered the mail. See bug 32210.
 			$keys['$NEWPAGE'] = "\n\n" . wfMessage( 'enotif_lastdiff',
-				$this->title->getCanonicalUrl( 'diff=next&oldid=' . $this->oldid ) )
+				$this->title->getCanonicalURL( 'diff=next&oldid=' . $this->oldid ) )
 				->inContentLanguage()->text();
 
 			if ( !$wgEnotifImpersonal ) {
 				// For personal mail, also show a link to the diff of all changes
 				// since last visited.
 				$keys['$NEWPAGE'] .= "\n\n" . wfMessage( 'enotif_lastvisited',
-					$this->title->getCanonicalUrl( 'diff=0&oldid=' . $this->oldid ) )
+					$this->title->getCanonicalURL( 'diff=0&oldid=' . $this->oldid ) )
 					->inContentLanguage()->text();
 			}
 			$keys['$OLDID'] = $this->oldid;
@@ -724,10 +724,10 @@ class EmailNotification {
 		}
 
 		$keys['$PAGETITLE'] = $this->title->getPrefixedText();
-		$keys['$PAGETITLE_URL'] = $this->title->getCanonicalUrl();
+		$keys['$PAGETITLE_URL'] = $this->title->getCanonicalURL();
 		$keys['$PAGEMINOREDIT'] = $this->minorEdit ?
 			wfMessage( 'minoredit' )->inContentLanguage()->text() : '';
-		$keys['$UNWATCHURL'] = $this->title->getCanonicalUrl( 'action=unwatch' );
+		$keys['$UNWATCHURL'] = $this->title->getCanonicalURL( 'action=unwatch' );
 
 		if ( $this->editor->isAnon() ) {
 			# real anon (user:xxx.xxx.xxx.xxx)
@@ -738,10 +738,10 @@ class EmailNotification {
 		} else {
 			$keys['$PAGEEDITOR'] = $wgEnotifUseRealName ? $this->editor->getRealName() : $this->editor->getName();
 			$emailPage = SpecialPage::getSafeTitleFor( 'Emailuser', $this->editor->getName() );
-			$keys['$PAGEEDITOR_EMAIL'] = $emailPage->getCanonicalUrl();
+			$keys['$PAGEEDITOR_EMAIL'] = $emailPage->getCanonicalURL();
 		}
 
-		$keys['$PAGEEDITOR_WIKI'] = $this->editor->getUserPage()->getCanonicalUrl();
+		$keys['$PAGEEDITOR_WIKI'] = $this->editor->getUserPage()->getCanonicalURL();
 
 		# Replace this after transforming the message, bug 35019
 		$postTransformKeys['$PAGESUMMARY'] = $this->summary == '' ? ' - ' : $this->summary;

@@ -1714,7 +1714,7 @@ class ImportStreamSource {
 			if ( $history ) $params['history'] = 1;
 			if ( $templates ) $params['templates'] = 1;
 			if ( $pageLinkDepth ) $params['pagelink-depth'] = $pageLinkDepth;
-			$url = $link->getFullUrl( $params );
+			$url = $link->getFullURL( $params );
 			# For interwikis, use POST to avoid redirects.
 			return ImportStreamSource::newFromURL( $url, "POST" );
 		}

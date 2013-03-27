@@ -304,7 +304,7 @@ class DifferenceEngine extends ContextSource {
 				}
 				if ( !$this->mOldRev->isDeleted( Revision::DELETED_TEXT ) && !$this->mNewRev->isDeleted( Revision::DELETED_TEXT ) ) {
 					$undoLink = Html::element( 'a', array(
-							'href' => $this->mNewPage->getLocalUrl( array(
+							'href' => $this->mNewPage->getLocalURL( array(
 								'action' => 'edit',
 								'undoafter' => $this->mOldid,
 								'undo' => $this->mNewid ) ),
@@ -414,7 +414,7 @@ class DifferenceEngine extends ContextSource {
 					array( $msg ) );
 			} else {
 				# Give explanation and add a link to view the diff...
-				$link = $this->getTitle()->getFullUrl( $this->getRequest()->appendQueryValue( 'unhide', '1', true ) );
+				$link = $this->getTitle()->getFullURL( $this->getRequest()->appendQueryValue( 'unhide', '1', true ) );
 				$msg = $suppressed ? 'rev-suppressed-unhide-diff' : 'rev-deleted-unhide-diff';
 				$out->wrapWikiMsg( "<div id='mw-$msg' class='mw-warning plainlinks'>\n$1\n</div>\n", array( $msg, $link ) );
 			}

@@ -419,7 +419,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$feed = new $wgFeedClasses[$type](
 			$this->feedTitle(),
 			$this->msg( 'tagline' )->text(),
-			$this->getTitle()->getFullUrl()
+			$this->getTitle()->getFullURL()
 		);
 
 		$pager = new NewPagesPager( $this, $this->opts );

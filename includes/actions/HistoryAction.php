@@ -256,7 +256,7 @@ class HistoryAction extends FormlessAction {
 			$this->getTitle()->getPrefixedText() . ' - ' .
 			$this->msg( 'history-feed-title' )->inContentLanguage()->text(),
 			$this->msg( 'history-feed-description' )->inContentLanguage()->text(),
-			$this->getTitle()->getFullUrl( 'action=history' )
+			$this->getTitle()->getFullURL( 'action=history' )
 		);
 
 		// Get a limit on number of feed entries. Provide a sane default
@@ -283,10 +283,10 @@ class HistoryAction extends FormlessAction {
 		return new FeedItem(
 			$this->msg( 'nohistory' )->inContentLanguage()->text(),
 			$this->msg( 'history-feed-empty' )->inContentLanguage()->parseAsBlock(),
-			$this->getTitle()->getFullUrl(),
+			$this->getTitle()->getFullURL(),
 			wfTimestamp( TS_MW ),
 			'',
-			$this->getTitle()->getTalkPage()->getFullUrl()
+			$this->getTitle()->getTalkPage()->getFullURL()
 		);
 	}
 
@@ -323,10 +323,10 @@ class HistoryAction extends FormlessAction {
 		return new FeedItem(
 			$title,
 			$text,
-			$this->getTitle()->getFullUrl( 'diff=' . $rev->getId() . '&oldid=prev' ),
+			$this->getTitle()->getFullURL( 'diff=' . $rev->getId() . '&oldid=prev' ),
 			$rev->getTimestamp(),
 			$rev->getUserText(),
-			$this->getTitle()->getTalkPage()->getFullUrl()
+			$this->getTitle()->getTalkPage()->getFullURL()
 		);
 	}
 }

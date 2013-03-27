@@ -87,7 +87,7 @@ class SpecialWatchlist extends SpecialPage {
 					$mode = null;
 			}
 			$title = SpecialPage::getTitleFor( 'EditWatchlist', $mode );
-			$output->redirect( $title->getLocalUrl() );
+			$output->redirect( $title->getLocalURL() );
 			return;
 		}
 
@@ -181,7 +181,7 @@ class SpecialWatchlist extends SpecialPage {
 			$request->wasPosted() )
 		{
 			$user->clearAllNotifications();
-			$output->redirect( $this->getTitle()->getFullUrl( $nondefaults ) );
+			$output->redirect( $this->getTitle()->getFullURL( $nondefaults ) );
 			return;
 		}
 
@@ -251,7 +251,7 @@ class SpecialWatchlist extends SpecialPage {
 		}
 		if( $wgShowUpdatedMarker ) {
 			$form .= Xml::openElement( 'form', array( 'method' => 'post',
-						'action' => $this->getTitle()->getLocalUrl(),
+						'action' => $this->getTitle()->getLocalURL(),
 						'id' => 'mw-watchlist-resetbutton' ) ) . "\n" .
 					$this->msg( 'wlheader-showupdated' )->parse() .
 					Xml::submitButton( $this->msg( 'enotif_reset' )->text(), array( 'name' => 'dummy' ) ) . "\n" .
@@ -341,7 +341,7 @@ class SpecialWatchlist extends SpecialPage {
 		$form .= $wlInfo;
 		$form .= $cutofflinks;
 		$form .= $lang->pipeList( $links ) . "\n";
-		$form .= Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->getTitle()->getLocalUrl(), 'id' => 'mw-watchlist-form-namespaceselector' ) ) . "\n";
+		$form .= Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->getTitle()->getLocalURL(), 'id' => 'mw-watchlist-form-namespaceselector' ) ) . "\n";
 		$form .= "<hr />\n<p>";
 		$form .= Html::namespaceSelector(
 			array(

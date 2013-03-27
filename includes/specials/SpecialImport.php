@@ -182,7 +182,7 @@ class SpecialImport extends SpecialPage {
 	private function showForm() {
 		global $wgImportSources, $wgExportMaxLinkDepth;
 
-		$action = $this->getTitle()->getLocalUrl( array( 'action' => 'submit' ) );
+		$action = $this->getTitle()->getLocalURL( array( 'action' => 'submit' ) );
 		$user = $this->getUser();
 		$out = $this->getOutput();
 

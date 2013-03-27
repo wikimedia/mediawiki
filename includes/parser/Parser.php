@@ -1252,7 +1252,7 @@ class Parser {
 			));
 			$titleObj = SpecialPage::getTitleFor( 'Booksources', $num );
 			return'<a href="' .
-				htmlspecialchars( $titleObj->getLocalUrl() ) .
+				htmlspecialchars( $titleObj->getLocalURL() ) .
 				"\" class=\"internal mw-magiclink-isbn\">ISBN $isbn</a>";
 		} else {
 			return $m[0];
@@ -3775,7 +3775,7 @@ class Parser {
 			return wfMessage( 'scarytranscludedisabled' )->inContentLanguage()->text();
 		}
 
-		$url = $title->getFullUrl( "action=$action" );
+		$url = $title->getFullURL( "action=$action" );
 
 		if ( strlen( $url ) > 255 ) {
 			return wfMessage( 'scarytranscludetoolong' )->inContentLanguage()->text();

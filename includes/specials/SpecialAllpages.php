@@ -325,7 +325,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 		}
 
 		$link = htmlspecialchars(
-			$this->getTitle()->getLocalUrl( $queryParams ) );
+			$this->getTitle()->getLocalURL( $queryParams ) );
 
 		$out = $this->msg( 'alphaindexline' )->rawParams(
 			"<a href=\"$link\">$inpointf</a></td><td>",

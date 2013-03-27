@@ -1590,7 +1590,7 @@ class LocalFile extends File {
 	 * @return String
 	 */
 	function getDescriptionUrl() {
-		return $this->title->getLocalUrl();
+		return $this->title->getLocalURL();
 	}
 
 	/**

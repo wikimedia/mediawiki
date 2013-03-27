@@ -531,7 +531,7 @@ class LegacyTemplate extends BaseTemplate {
 		$s = array();
 
 		if ( !$wgOut->isPrintable() ) {
-			$printurl = htmlspecialchars( $this->getSkin()->getTitle()->getLocalUrl(
+			$printurl = htmlspecialchars( $this->getSkin()->getTitle()->getLocalURL(
 				$wgRequest->appendQueryValue( 'printable', 'yes', true ) ) );
 			$s[] = "<a href=\"$printurl\" rel=\"alternate\">"
 				. wfMessage( 'printableversion' )->text() . '</a>';

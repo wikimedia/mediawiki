@@ -70,7 +70,7 @@ class SpecialPagesWithProp extends QueryPage {
 			),
 		), $this->getContext() );
 		$form->setMethod( 'get' );
-		$form->setAction( $this->getTitle()->getFullUrl() );
+		$form->setAction( $this->getTitle()->getFullURL() );
 		$form->setSubmitCallback( array( $this, 'onSubmit' ) );
 		$form->setWrapperLegend( $this->msg( 'pageswithprop-legend' ) );
 		$form->addHeaderText( $this->msg( 'pageswithprop-text' )->parseAsBlock() );

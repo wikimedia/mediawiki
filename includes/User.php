@@ -3663,7 +3663,7 @@ class User {
 	protected function getTokenUrl( $page, $token ) {
 		// Hack to bypass localization of 'Special:'
 		$title = Title::makeTitle( NS_MAIN, "Special:$page/$token" );
-		return $title->getCanonicalUrl();
+		return $title->getCanonicalURL();
 	}
 
 	/**

@@ -107,7 +107,7 @@ abstract class RdfMetaData {
 	 * @param $title Title
 	 */
 	protected function page( $name, $title ) {
-		$this->url( $name, $title->getFullUrl() );
+		$this->url( $name, $title->getFullURL() );
 	}
 
 	protected function url( $name, $url ) {

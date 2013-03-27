@@ -312,7 +312,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			$this->getOutput()->addHTML(
 				Xml::openElement( 'form', array(
 					'method' => 'POST',
-					'action' => $this->getTitle()->getLocalUrl(
+					'action' => $this->getTitle()->getLocalURL(
 						'target=' . urlencode( $this->targetObj->getPrefixedDBkey() ) .
 						'&file=' . urlencode( $archiveName ) .
 						'&token=' . urlencode( $user->getEditToken( $archiveName ) ) )
@@ -393,7 +393,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		// Show form if the user can submit
 		if( $this->mIsAllowed ) {
 			$out = Xml::openElement( 'form', array( 'method' => 'post',
-					'action' => $this->getTitle()->getLocalUrl( array( 'action' => 'submit' ) ),
+					'action' => $this->getTitle()->getLocalURL( array( 'action' => 'submit' ) ),
 					'id' => 'mw-revdel-form-revisions' ) ) .
 				Xml::fieldset( $this->msg( 'revdelete-legend' )->text() ) .
 				$this->buildCheckBoxes() .
