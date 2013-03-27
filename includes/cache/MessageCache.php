@@ -587,34 +587,39 @@ class MessageCache {
 
 	/**
 	 * Get a message from either the content language or the user language. The fallback
-	 * language order is the users language fallback union the content language fallback.
+	 * language order is the users language fallback down to the content language. The
+	 * content language is appended to the end of the list if it did not exist in it
+	 * originally
+	 *
 	 * This list is then applied to find keys in the following order
-	 * 1) MediaWiki:$key/$langcode (for every language except the content language where
-	 *    we look at MediaWiki:$key)
+	 * 1) MediaWiki:$key/$langcode
 	 * 2) Built-in messages via the l10n cache which is also in fallback order
+	 * 3) MediaWiki:$key
+	 *
+	 * The order of (2) and (3) are reversed if $langcode === $wgContentLanguage
 	 *
 	 * @param string $key the message cache key
-	 * @param $useDB Boolean: If true will look for the message in the DB, false only
-	 *        get the message from the DB, false to use only the compiled l10n cache.
+	 * @param $useDB Boolean: If true will look for the message on wiki (in the database)
+	 *        otherwise use only the compiled l10n cache.
 	 * @param bool|string|object $langcode Code of the language to get the message for.
 	 *        - If string and a valid code, will create a standard language object
 	 *        - If string but not a valid code, will create a basic language object
 	 *        - If boolean and false, create object from the current users language
 	 *        - If boolean and true, create object from the wikis content language
 	 *        - If language object, use it as given
-	 * @param $isFullKey Boolean: specifies whether $key is a two part key
-	 *                   "msg/lang".
+	 * @param $isFullKey Boolean: specifies whether $key is a two part key: "msg/lang".
 	 *
 	 * @throws MWException
 	 * @return string|bool False if the message doesn't exist, otherwise the message
 	 */
 	function get( $key, $useDB = true, $langcode = true, $isFullKey = false ) {
-		global $wgLanguageCode, $wgContLang;
+		global $wgContLang;
 
 		wfProfileIn( __METHOD__ );
 
 		if ( is_int( $key ) ) {
-			// "Non-string key given" exception sometimes happens for numerical strings that become ints somewhere on their way here
+			// "Non-string key given" exception sometimes happens for numerical strings that
+			// become ints somewhere on their way here
 			$key = strval( $key );
 		}
 
@@ -629,7 +634,6 @@ class MessageCache {
 			return false;
 		}
 
-
 		# Obtain the initial language object
 		if ( $isFullKey ) {
 			$keyParts = explode( '/', $key );
@@ -642,14 +646,12 @@ class MessageCache {
 		}
 
 		# Obtain a language object for the requested language from the passed language code
-		# Note that the language code could in fact be a language object already but we assume
-		# it's a string further below.
+		# Note that the $langcode could actually be a language object already!
 		$requestedLangObj = wfGetLangObj( $langcode );
 		if ( !$requestedLangObj ) {
 			wfProfileOut( __METHOD__ );
 			throw new MWException( "Bad lang code $langcode given" );
 		}
-		$langcode = $requestedLangObj->getCode();
 
 		# Normalise title-case input (with some inlining)
 		$lckey = str_replace( ' ', '_', $key );
@@ -661,49 +663,13 @@ class MessageCache {
 			$uckey = $wgContLang->ucfirst( $lckey );
 		}
 
-		# Loop through each language in the fallback list until we find something useful
-		$message = false;
-
-		# Try the MediaWiki namespace
-		if ( !$this->mDisable && $useDB ) {
-			$fallbackChain = Language::getFallbacksIncludingSiteLanguage( $langcode );
-			array_unshift( $fallbackChain, $langcode );
-
-			foreach ( $fallbackChain as $langcode ) {
-				if ( $langcode === $wgLanguageCode ) {
-					# Messages created in the content language will not have the /lang extension
-					$message = $this->getMsgFromNamespace( $uckey, $langcode );
-				} else {
-					$message = $this->getMsgFromNamespace( "$uckey/$langcode", $langcode );
-				}
-
-				if ( $message !== false ) {
-					break;
-				}
-			}
-		}
-
-		# Try the array in the language object
-		if ( $message === false ) {
-			$message = $requestedLangObj->getMessage( $lckey );
-			if ( is_null ( $message ) ) {
-				$message = false;
-			}
-		}
-
-		# If we still have no message, maybe the key was in fact a full key so try that
-		if( $message === false ) {
-			$parts = explode( '/', $lckey );
-			# We may get calls for things that are http-urls from sidebar
-			# Let's not load nonexistent languages for those
-			# They usually have more than one slash.
-			if ( count( $parts ) == 2 && $parts[1] !== '' ) {
-				$message = Language::getMessageFor( $parts[0], $parts[1] );
-				if ( is_null( $message ) ) {
-					$message = false;
-				}
-			}
-		}
+		# Try all the normal fallbacks to get the message
+		$message = $this->getMessageFromFallbackChain(
+			$requestedLangObj,
+			$uckey,
+			$lckey,
+			( !$this->mDisable && $useDB )
+		);
 
 		# Final fallback
 		if( $message === false ) {
@@ -723,6 +689,89 @@ class MessageCache {
 
 		wfProfileOut( __METHOD__ );
 		return $message;
+	}
+
+	/**
+	 * Obtains the text of a message from any one of a number of fallback sources.
+	 *
+	 * If $lookupOnWiki is true we will look in on-wiki sources; otherwise we will only
+	 * look in the language object which pulls from a static source.
+	 *
+	 * When looking up on-wiki messages we will always look in every $UMessageName/code
+	 * down the fallback chain.
+	 *
+	 * When looking up on-wiki messages the behaviour changes depending on if the
+	 * $requestedLangObj->code() is the $wgLanguageCode. We will always look in
+	 * $UMessageName/code first; but the order in which we then lookup just $UMessageName
+	 * vs look in the language object will vary on if the requested language is the
+	 * site content language. If it is we do the $UMessageName lookup first then
+	 * the language object. This is to allow customization of local text as per:
+	 * https://bugzilla.wikimedia.org/show_bug.cgi?id=46579
+	 *
+	 * @param Language $requestedLangObj Language to start the fallback chain at.
+	 * @param string   $UMessageName     On-wiki name of the message
+	 * @param string   $LMessageName     Language object cache name of the message
+	 * @param bool     $lookupOnWiki     True if wiki (database) lookups are allowed.
+	 *
+	 * @return bool|string The message content if found; otherwise false.
+	 */
+	protected function getMessageFromFallbackChain( $requestedLangObj, $UMessageName, $LMessageName, $lookupOnWiki ) {
+		global $wgLanguageCode;
+
+		$requestedLangCode = $requestedLangObj->getCode();
+		$requestIsForContentLang = ( $requestedLangCode === $wgLanguageCode );
+		$message = false;
+
+		# Loop through each language in the fallback list on-wiki until we find something useful
+		if ( $lookupOnWiki ) {
+			$fallbackChain = Language::getOnWikiFallbackLanguages( $requestedLangCode );
+			array_unshift( $fallbackChain, $requestedLangCode );
+
+			foreach ( $fallbackChain as $lookupLang  ) {
+				$message = $this->getMsgFromNamespace( "$UMessageName/$lookupLang", $lookupLang );
+
+				# If we have no message; but the request came in for a message in the content
+				# language we will look in the root page. This allows for customizations that
+				# will not take precedence in the chain.
+				if ( $message === false && $requestIsForContentLang ) {
+					$message = $this->getMsgFromNamespace( $UMessageName, $requestedLangCode );
+				}
+
+				if ( $message !== false ) {
+					return $message;
+				}
+			}
+		}
+
+		# Try the array in the language object (static messages from CDB file)
+		$message = $requestedLangObj->getMessage( $LMessageName );
+		if ( !is_null( $message ) ) {
+			return $message;
+		}
+
+		# If we were not requesting originally in the content language; and still do not
+		# have a valid message -- let's look one last time on-wiki; except this time in
+		# the root page.
+		if ( !$requestIsForContentLang ) {
+			$message = $this->getMsgFromNamespace( $UMessageName, $wgLanguageCode );
+			if ( $message !== false ) {
+				return $message;
+			}
+		}
+
+		# If we still have no message, maybe the key was in fact a full key so try that.
+		# We may get calls for things that are http-urls from sidebar:  let's not load
+		# nonexistent languages for those. They usually have more than one slash.
+		$parts = explode( '/', $LMessageName );
+		if ( count( $parts ) === 2 && $parts[1] !== '' ) {
+			$message = Language::getMessageFor( $parts[0], $parts[1] );
+			if ( !is_null( $message ) ) {
+				return $message;
+			}
+		}
+
+		# All lookups failed :(
+		return false;
 	}
 
 	/**

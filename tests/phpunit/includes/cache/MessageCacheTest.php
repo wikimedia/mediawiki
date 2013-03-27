@@ -31,53 +31,66 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 	function addDBData() {
 		$this->configureLanguages();
 
-		// Set up messages and fallbacks ab -> ru -> de -> en
+		// Set up messages and fallbacks ab -> ru -> de
 		$this->makePage( 'FallbackLanguageTest-Full', 'ab' );
 		$this->makePage( 'FallbackLanguageTest-Full', 'ru' );
 		$this->makePage( 'FallbackLanguageTest-Full', 'de' );
-		$this->makePage( 'FallbackLanguageTest-Full', 'en' );
 
 		// Fallbacks where ab does not exist
 		$this->makePage( 'FallbackLanguageTest-Partial', 'ru' );
 		$this->makePage( 'FallbackLanguageTest-Partial', 'de' );
-		$this->makePage( 'FallbackLanguageTest-Partial', 'en' );
 
-		// Fallback to the content language
+		// Fallback to the content language (for both ab and en)
 		$this->makePage( 'FallbackLanguageTest-ContLang', 'de' );
-		$this->makePage( 'FallbackLanguageTest-ContLang', 'en' );
 
-		// Fallback to english
+		// Fallback chain explicitly including english
 		$this->makePage( 'FallbackLanguageTest-English', 'en' );
+		$this->makePage( 'FallbackLanguageTest-English', 'de' );
 
 		// Full key tests -- always want russian
 		$this->makePage( 'MessageCacheTest-FullKeyTest', 'ab' );
 		$this->makePage( 'MessageCacheTest-FullKeyTest', 'ru' );
+
+		// In content language -- get derivative
+		$this->makePage( 'FallbackLanguageTest-DervContLang', 'de', 'de/de' );
+		$this->makePage( 'FallbackLanguageTest-DervContLang', 'de', 'de/none', false );
+
+		// In content language -- get base if no derivative
+		$this->makePage( 'FallbackLanguageTest-NoDervContLang', 'de', 'de/none', false );
 	}
 
 	/**
 	 * Helper function for addDBData -- adds a simple page to the database
 	 *
-	 * @param string $title Title of page to be created
-	 * @param string $lang  Language and content of the created page
+	 * @param string $title         Title of page to be created
+	 * @param string $lang          Language and content of the created page
+	 * @param string $content       Content of the created page, if null will be a generic string
+	 * @param bool   $createSubPage Set to false if the page should be created at the root
 	 */
-	protected function makePage( $title, $lang ) {
+	protected function makePage( $title, $lang, $content = null, $createSubPage = true ) {
 		global $wgContLang;
 
-		$title = Title::newFromText(
-			( $lang == $wgContLang->getCode() ) ? $title : "$title/$lang",
-			NS_MEDIAWIKI
-		);
+		if ( is_null( $content ) ) {
+			$content = $lang;
+		}
+
+		if ( $lang !== $wgContLang->getCode() || $createSubPage ) {
+			$title = "$title/$lang";
+		}
+
+		$title = Title::newFromText( $title, NS_MEDIAWIKI );
 		$wikiPage = new WikiPage( $title );
-		$content = ContentHandler::makeContent( $lang, $title );
-		$wikiPage->doEditContent( $content, "$lang translation test case" );
+		$contentHandler = ContentHandler::makeContent( $content, $title );
+		$wikiPage->doEditContent( $contentHandler, "$lang translation test case" );
 	}
 
 	/**
-	 * Test message fallbacks, bug #1495
+	 * Test message fallbacks, bug #1495 & #46579
 	 *
 	 * @dataProvider provideMessagesForFallback
 	 */
 	function testMessageFallbacks( $message, $lang, $expectedContent ) {
+		MessageCache::singleton()->clear();
 		$result = MessageCache::singleton()->get( $message, true, $lang );
 		$this->assertEquals( $expectedContent, $result, "Message fallback failed." );
 	}
@@ -87,8 +100,17 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 			array( 'FallbackLanguageTest-Full', 'ab', 'ab' ),
 			array( 'FallbackLanguageTest-Partial', 'ab', 'ru' ),
 			array( 'FallbackLanguageTest-ContLang', 'ab', 'de' ),
-			array( 'FallbackLanguageTest-English', 'ab', 'en' ),
+			array( 'FallbackLanguageTest-ContLang', 'en', 'de' ),
+			array( 'FallbackLanguageTest-English', 'en', 'en' ),
 			array( 'FallbackLanguageTest-None', 'ab', false ),
+
+			// #46579
+			array( 'FallbackLanguageTest-DervContLang', 'de', 'de/de' ),
+			array( 'FallbackLanguageTest-NoDervContLang', 'de', 'de/none' ),
+			array( 'FallbackLanguageTest-DervContLang', 'fit', 'de/de' ),
+			// UI language different from content language should only use de/none as last option
+			array( 'FallbackLanguageTest-NoDervContLang', 'fit', 'de/none' ),
+
 		);
 	}
 
@@ -99,6 +121,7 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideMessagesForFullKeys
 	 */
 	function testFullKeyBehaviour( $message, $lang, $expectedContent ) {
+		MessageCache::singleton()->clear();
 		$result = MessageCache::singleton()->get( $message, true, $lang, true );
 		$this->assertEquals( $expectedContent, $result, "Full key message fallback failed." );
 	}
