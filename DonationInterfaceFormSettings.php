@@ -30,7 +30,7 @@ $forms_whitelist['bt'] = array(
 	'file' => $form_dirs['gc'] . '/bt/bt.html',
 	'gateway' => 'globalcollect',
 	'countries' => array(
-	//	'+' => 'ALL',
+		'-' => 'VN',
 	),
 	'currencies' => array(
 		'+' => array('AED', 'BGN', 'BHD', 'CAD', 'CLP', 'CZK', 'DKK', 'EEK', 'EGP', 'EUR', 'HRK',
@@ -132,7 +132,9 @@ $forms_whitelist['rtbt-eps'] = array(
 $forms_whitelist['rtbt-ideal-noadd'] = array(
 	'file' => $form_dirs['gc'] . '/rtbt/rtbt-ideal-noadd.html',
 	'gateway' => 'globalcollect',
-	'payment_methods' => array('rtbt' => 'rtbt_ideal')
+	'payment_methods' => array('rtbt' => 'rtbt_ideal'),
+	'countries' => array( '+' => 'NL' ),
+	'currencies' => array( '+' => 'EUR' ),
 );
 
 
@@ -289,7 +291,7 @@ $forms_whitelist['cc-vm'] = array(
 				 'MK', 'ML', 'MO', 'MP', 'MR', 'MV', 'MW', 'MX', 'MZ', 'NA', 'NE', 'NG',
 				 'NI', 'NR', 'PA', 'PE', 'PG', 'PS', 'PW', 'PY', 'RE', 'RS', 'SB', 'SC',
 				 'SD', 'SM', 'SN', 'SR', 'TD', 'TG', 'TM', 'TO', 'TP', 'TT', 'TZ', 'UY',
-				 'UZ', 'VA', 'VC', 'VE', 'VI', 'VN', 'VU', 'YE', 'ZA', 'ZM', 'ZW', )
+				 'UZ', 'VA', 'VC', 'VE', 'VI', 'VU', 'YE', 'ZA', 'ZM', 'ZW', )
 		),
 	),
 );
@@ -309,7 +311,8 @@ $forms_whitelist['cc-a'] = array(
 $forms_whitelist['cc'] = array(
 	'file' => $form_dirs['gc'] . '/cc/cc.html',
 	'gateway' => 'globalcollect',
-	'payment_methods' => array('cc' => 'ALL')
+	'payment_methods' => array('cc' => 'ALL'),
+	'countries' => array('-' => 'VN')
 );
 
 
