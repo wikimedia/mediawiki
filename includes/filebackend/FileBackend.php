@@ -265,14 +265,15 @@ abstract class FileBackend {
 	 *                           same contents, then do nothing to the destination file
 	 *                           instead of giving an error. This does not compare headers.
 	 *                           This option is ignored if 'overwrite' is already provided.
-	 *   - headers             : If supplied, the backend will return these headers when
-	 *                           GETs/HEADs of the destination file are made. Header values
-	 *                           should be smaller than 256 bytes, often options or numbers.
-	 *                           Content-Disposition headers can be longer, though the system
-	 *                           might ignore or truncate ones that are too long to store.
-	 *                           Existing headers will remain, but these will replace any
-	 *                           conflicting previous headers, and headers will be removed
-	 *                           if they are set to an empty string.
+	 *   - headers             : If supplied, the result of merging these headers with any
+	 *                           existing source file headers (replacing conflicting ones)
+	 *                           will be set as the destination file headers. Headers are
+	 *                           deleted if their value is set to the empty string. When a
+	 *                           file has headers they are included in responses to GET and
+	 *                           HEAD requests to the backing store for that file.
+	 *                           Header values should be no larger than 255 bytes, except for
+	 *                           Content-Disposition. The system might ignore or truncate any
+	 *                           headers that are too long to store (exact limits will vary).
 	 *                           Backends that don't support metadata ignore this. (since 1.21)
 	 *
 	 * $opts is an associative of boolean flags, including:
