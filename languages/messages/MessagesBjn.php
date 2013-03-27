@@ -150,7 +150,7 @@ $messages = array(
 'tog-hidepatrolled' => 'Sungkupakan babakan taawasi dalam parubahan tahanyar',
 'tog-newpageshidepatrolled' => 'Sungkupakan tungkaran nang diitihi matan daptar tungkaran hanyar',
 'tog-extendwatchlist' => 'Singkaiakan daptar itihan hagan manampaiakan samunyaan parubahan, kada nang hanyar haja.',
-'tog-usenewrc' => 'Purukakan panampaian parubahan tahanyar tingkat tinggi (parlu ada JavaScript)',
+'tog-usenewrc' => 'Purukakan panampaian paubahan pahanyarnya tingkat tinggi (parlu ada JavaScript)',
 'tog-numberheadings' => 'Bari numur judul utumatis',
 'tog-showtoolbar' => 'Tampaiakan bilah-pakakas babak (parlu ada JavaScript)',
 'tog-editondblclick' => 'Babak tutungkaran wan klik ganda (parlu ada JavaScript)',
@@ -2022,15 +2022,6 @@ Protokol nang didukung: <code>$1</code> (jangan tambahakan dalam panggagaian Pia
 'listusers-submit' => 'Tampaiakan',
 'listusers-noresult' => 'Kadada pamuruk tatamu.',
 'listusers-blocked' => '(diblukir)',
-
-# Special:ActiveUsers
-'activeusers' => 'Daptar pamuruk aktip',
-'activeusers-intro' => 'Ngini adalah sabuah daptar papamuruk sabuah bantuk kagiatan dalam tauncit $1 {{PLURAL:$1|hari|hahari}}.',
-'activeusers-count' => '$1 {{PLURAL:$1|babak|babakan}} dalam tauncit {{PLURAL:$3|hari|$3 hahari}}',
-'activeusers-from' => 'Manampaiakan papamuruk mulai matan:',
-'activeusers-hidebots' => 'Sungkupakan bot',
-'activeusers-hidesysops' => 'Sungkupakan pambakal',
-'activeusers-noresult' => 'Kadada papamuruk tatamu.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Galambang hak pamuruk',

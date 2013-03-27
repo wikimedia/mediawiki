@@ -1808,6 +1808,8 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization చూడండి.',
 'disambiguationspage' => 'Template:అయోమయ నివృత్తి',
 'disambiguations-text' => "కింది పేజీలు '''అయోమయ నివృత్తి''' పేజీకి లింకవుతున్నాయి. కానీ అవి సంబంధిత పేజీకి నేరుగా లింకు అవాలి. <br /> [[MediaWiki:Disambiguationspage]] నుంది లింకు ఉన్న మూసను వాడే పేజీని అయోమయ నివృత్తి పేజీగా భావిస్తారు.",
 
+'pageswithprop-submit' => 'వెళ్ళు',
+
 'doubleredirects' => 'జంట దారిమార్పులు',
 'doubleredirectstext' => 'ఇతర దారిమార్పు పుటలకి తీసుకెళ్ళే దారిమార్పులని ఈ పుట చూపిస్తుంది.
 ప్రతీ వరుసలో మొదటి మరియు రెండవ దారిమార్పులకు లంకెలు, ఆలానే రెండవ దారిమార్పు పుట యొక్క లక్ష్యం ఉన్నాయి. సాధారణంగా ఈ రెండవ దారిమార్పు యొక్క లక్ష్యమే "అసలైనది", అదే మొదటి దారిమార్పు యొక్క లక్ష్యంగా ఉండాలి.
@@ -1962,15 +1964,6 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization చూడండి.',
 'listusers-noresult' => 'వాడుకరి దొరకలేదు.',
 'listusers-blocked' => '(నిరోధించారు)',
 
-# Special:ActiveUsers
-'activeusers' => 'క్రియాశీల వాడుకరుల జాబితా',
-'activeusers-intro' => 'ఇది గత $1 {{PLURAL:$1|రోజులో|రోజులలో}} ఏదైనా కార్యకలాపం చేసిన వాడుకరుల జాబితా.',
-'activeusers-count' => 'గడచిన {{PLURAL:$3|ఒక రోజు|$3 రోజుల}}లో $1 {{PLURAL:$1|మార్పు|మార్పులు}}',
-'activeusers-from' => 'వాడుకరులను ఇక్కడ నుండి చూపించు:',
-'activeusers-hidebots' => 'బాట్లను దాచు',
-'activeusers-hidesysops' => 'నిర్వాహకులను దాచు',
-'activeusers-noresult' => 'వాడుకరులెవరూ లేరు.',
-
 # Special:ListGroupRights
 'listgrouprights' => 'వాడుకరి గుంపుల హక్కులు',
 'listgrouprights-summary' => 'కింది జాబితాలో ఈ వికీలో నిర్వచించిన వాడుకరి గుంపులు, వాటికి సంబంధించిన హక్కులు ఉన్నాయి.
@@ -2026,7 +2019,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization చూడండి.',
 'usermessage-editor' => 'వ్యవస్థ సందేశకులు',
 
 # Watchlist
-'watchlist' => 'నా వీక్షణ జాబితా',
+'watchlist' => 'వీక్షణ జాబితా',
 'mywatchlist' => 'వీక్షణ జాబితా',
 'watchlistfor2' => '$1 కొరకు $2',
 'nowatchlist' => 'మీ వీక్షణ జాబితా ఖాళీగా ఉంది.',
@@ -2750,6 +2743,8 @@ $UNWATCHURL కి వెళ్ళండి.
 'pageinfo-toolboxlink' => 'పేజీ సమాచారం',
 'pageinfo-contentpage-yes' => 'అవును',
 'pageinfo-protect-cascading-yes' => 'అవును',
+'pageinfo-category-info' => 'వర్గపు సమాచారం',
+'pageinfo-category-pages' => 'పేజీల సంఖ్య',
 
 # Skin names
 'skinname-standard' => 'సంప్రదాయ',

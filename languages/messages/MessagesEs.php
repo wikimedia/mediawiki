@@ -73,6 +73,7 @@
  * @author PoLuX124
  * @author Ralgis
  * @author Remember the dot
+ * @author Remux
  * @author Richard Wolf VI
  * @author Sanbec
  * @author Savh
@@ -842,8 +843,8 @@ Por favor, identifícate de nuevo tras recibirla.',
 'blocked-mailpassword' => 'Tu dirección IP está bloqueada, y no se te permite el uso de la función de recuperación de contraseñas para prevenir abusos.',
 'eauthentsent' => 'Se ha enviado un correo electrónico de confirmación a la dirección especificada.
 Antes de que se envíe cualquier otro correo a la cuenta tienes que seguir las instrucciones enviadas en el mensaje para así confirmar que la dirección te pertenece.',
-'throttled-mailpassword' => 'Ya se ha enviado un recordatorio de password en {{PLURAL:$1|la última hora|las últimas $1 horas}}.
-Para evitar los abusos, solo se enviará un recordatorio de password cada {{PLURAL:$1|hora|$1 horas}}.',
+'throttled-mailpassword' => 'Ya se ha enviado un recordatorio de contraseña en {{PLURAL:$1|la última hora|las últimas $1 horas}}.
+Para evitar los abusos, solo se enviará un recordatorio de contraseña cada {{PLURAL:$1|hora|$1 horas}}.',
 'mailerror' => 'Error al enviar correo: $1',
 'acct_creation_throttle_hit' => 'Los visitantes a este wiki usando tu dirección IP han creado {{PLURAL:$1|una cuenta|$1 cuentas}} en el último día, lo cual es lo máximo permitido en este periodo de tiempo.
 Como resultado, los visitantes usando esta dirección IP no pueden crear más cuentas en este momento.',
@@ -896,7 +897,7 @@ Puede que ya hayas cambiado la contraseña o que hayas pedido una temporal.',
 
 # Special:PasswordReset
 'passwordreset' => 'Restablecimiento de contraseña',
-'passwordreset-text' => 'Completa este formulario para recibir un recordatorio por correo electrónico de los detalles de tu cuenta.',
+'passwordreset-text' => 'Completa este formulario para restablecer la contraseña.',
 'passwordreset-legend' => 'Restablecer contraseña',
 'passwordreset-disabled' => 'Se ha desactivado el restablecimiento de contraseñas en este wiki.',
 'passwordreset-pretext' => '{{PLURAL:$1||Introduce uno de los elementos de datos siguientes}}',
@@ -927,9 +928,9 @@ o recuerdas tu contraseña original, y no deseas cambiarla, puedes
 ignorar este mensaje y continuar usando tu contraseña anterior.',
 'passwordreset-emailelement' => 'Nombre de usuario: $1
 Contraseña temporal: $2',
-'passwordreset-emailsent' => 'Se ha enviado un correo electrónico de recordatorio.',
-'passwordreset-emailsent-capture' => 'Un recordatorio por correo electrónico ha sido enviado, que se muestra a continuación.',
-'passwordreset-emailerror-capture' => 'Un recordatorio por correo electrónico fue generado, que se muestra a continuación, pero el envío al usuario falló: $1',
+'passwordreset-emailsent' => 'Se ha enviado un correo electrónico para el restablecimiento de tu contraseña.',
+'passwordreset-emailsent-capture' => 'Se ha enviado un correo para el restablecimiento de la contraseña, el cual se muestra a continuación.',
+'passwordreset-emailerror-capture' => 'Un correo para el restablecimiento de contraseña fue generado, el cual se muestra a continuación, pero el envío al usuario falló: $1',
 
 # Special:ChangeEmail
 'changeemail' => 'Cambiar la dirección de correo electrónico',
@@ -4031,9 +4032,9 @@ Este sitio está experimentando dificultades técnicas.',
 'sqlite-no-fts' => '$1 sin soporte para búsqueda de texto completo',
 
 # New logging system
-'logentry-delete-delete' => '$1 borró la página «$3»',
+'logentry-delete-delete' => '$1 página {{GENDER:$2|eliminada}} $3',
 'logentry-delete-restore' => '$1 restauró la página «$3»',
-'logentry-delete-event' => '$1 modificó la visibilidad de {{PLURAL:$5|un evento del registro|$5 eventos del registro}} en $3: $4',
+'logentry-delete-event' => '$1 {{GENDER:$2|modificó}} la visibilidad de {{PLURAL:$5|un evento del registro|$5 algunos eventos del registro}} en $3: $4',
 'logentry-delete-revision' => '$1 modificó la visibilidad de {{PLURAL:$5|una edición|$5 ediciones}} en la página $3: $4',
 'logentry-delete-event-legacy' => '$1 modificó la visibilidad de los eventos del registro en $3',
 'logentry-delete-revision-legacy' => '$1 modificó la visibilidad de las ediciones en la página $3',
