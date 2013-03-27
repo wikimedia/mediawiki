@@ -59,6 +59,17 @@ class UserCache {
 	}
 
 	/**
+	 * Get the name of a user or return $ip if the user ID is 0
+	 *
+	 * @param integer $userId
+	 * @param string $ip
+	 * @since 1.21
+	 */
+	public function getUserName( $userId, $ip ) {
+		return $userId > 0 ? $this->getProp( $userId, 'name' ) : $ip;
+	}
+
+	/**
 	 * Preloads user names for given list of users.
 	 * @param array $userIds List of user IDs
 	 * @param array $options Option flags; include 'userpage' and 'usertalk'
