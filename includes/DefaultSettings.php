@@ -172,14 +172,6 @@ $wgScriptExtension = '.php';
 $wgScript = false;
 
 /**
- * The URL path to redirect.php. This is a script that is used by the Nostalgia
- * skin.
- *
- * Defaults to "{$wgScriptPath}/redirect{$wgScriptExtension}".
- */
-$wgRedirectScript = false;
-
-/**
  * The URL path to load.php.
  *
  * Defaults to "{$wgScriptPath}/load{$wgScriptExtension}".
