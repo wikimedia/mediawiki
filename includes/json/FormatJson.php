@@ -168,7 +168,7 @@ class FormatJson {
 	private static function prettyPrint( $json ) {
 		$buf = '';
 		$indent = 0;
-		$json = str_replace( '\"', "\x01", $json );
+		$json = strtr( $json, array( '\\\\' => '\\\\', '\"' => "\x01" ) );
 		for ( $i = 0, $n = strlen( $json ); $i < $n; $i += $skip ) {
 			$skip = 1;
 			switch ( $json[$i] ) {
