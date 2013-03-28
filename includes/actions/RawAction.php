@@ -195,7 +195,7 @@ class RawAction extends FormlessAction {
 			case 'next':
 				# output next revision, or nothing if there isn't one
 				if( $oldid ) {
-					$oldid = $this->getTitle()->getNextRevisionId( $oldid );
+					$oldid = $this->getTitle()->getNextRevisionID( $oldid );
 				}
 				$oldid = $oldid ? $oldid : -1;
 				break;
@@ -205,7 +205,7 @@ class RawAction extends FormlessAction {
 					# get the current revision so we can get the penultimate one
 					$oldid = $this->page->getLatest();
 				}
-				$prev = $this->getTitle()->getPreviousRevisionId( $oldid );
+				$prev = $this->getTitle()->getPreviousRevisionID( $oldid );
 				$oldid = $prev ? $prev : -1;
 				break;
 			case 'cur':

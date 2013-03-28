@@ -100,7 +100,7 @@ class EditPage {
 
 	/**
 	 * Status: user tried to create this page, but is not allowed to do that
-	 * ( Title->usercan('create') == false )
+	 * ( Title->userCan('create') == false )
 	 */
 	const AS_NO_CREATE_PERMISSION = 223;
 

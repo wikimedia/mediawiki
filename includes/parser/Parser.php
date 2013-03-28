@@ -2770,7 +2770,7 @@ class Parser {
 				$value = wfEscapeWikiText( $subjPage->getPrefixedURL() );
 				break;
 			case 'pageid': // requested in bug 23427
-				$pageid = $this->getTitle()->getArticleId();
+				$pageid = $this->getTitle()->getArticleID();
 				if( $pageid == 0 ) {
 					# 0 means the page doesn't exist in the database,
 					# which means the user is previewing a new page.

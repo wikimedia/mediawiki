@@ -229,7 +229,7 @@ class InfoAction extends FormlessAction {
 		}
 
 		// Default sort key
-		$sortKey = $title->getCategorySortKey();
+		$sortKey = $title->getCategorySortkey();
 		if ( !empty( $pageProperties['defaultsort'] ) ) {
 			$sortKey = $pageProperties['defaultsort'];
 		}
