@@ -1100,7 +1100,7 @@ abstract class RedirectSpecialPage extends UnlistedSpecialPage {
 			$this->getOutput()->redirect( $url );
 			return $redirect;
 		} else {
-			$class = __CLASS__;
+			$class = get_class( $this );
 			throw new MWException( "RedirectSpecialPage $class doesn't redirect!" );
 		}
 	}
