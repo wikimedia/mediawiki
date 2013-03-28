@@ -701,6 +701,10 @@ class MessageCache {
 	 * Get a message from the MediaWiki namespace, with caching. The key must
 	 * first be converted to two-part lang/msg form if necessary.
 	 *
+	 * Unlike self::get(), this function doesn't resolve fallback chains, and
+	 * some callers require this behavior. LanguageConverter::parseCachedTable()
+	 * and self::get() are some examples in core.
+	 *
 	 * @param string $title Message cache key with initial uppercase letter.
 	 * @param string $code code denoting the language to try.
 	 *
