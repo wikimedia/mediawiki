@@ -9,6 +9,7 @@ MediaWiki 1.22 is an alpha-quality branch and is not recommended for use in
 production.
 
 === Configuration changes in 1.22 ===
+* $wgRedirectScript was removed. It was unused.
 
 === New features in 1.22 ===
 
@@ -23,7 +24,7 @@ regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Bugzilla reports.
 
 === Other changes in 1.22 ===
-
+* redirect.php was removed. It was unused.
 
 == Compatibility ==
 
