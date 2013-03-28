@@ -101,6 +101,8 @@ production.
 * LinkCache singleton can now be altered or cleared, letting one to specify
   another instance that does not rely on a database backend.
 * MediaWiki's PHPUnit tests can now use PHPUnit installed using composer --dev.
+* It is now possible to define a $wgValidSkinNames array value in the format
+  "{ClassName}" to use a class name that is not prefixed automatically with 'Skin'.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
