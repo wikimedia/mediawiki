@@ -180,7 +180,7 @@ class JobQueueRedis extends JobQueue {
 		$conn = $this->getConnection();
 		try {
 			// Actually push the non-duplicate jobs into the queue...
-			if ( $flags & self::QoS_Atomic ) {
+			if ( $flags & self::QOS_ATOMIC ) {
 				$batches = array( $items ); // all or nothing
 			} else {
 				$batches = array_chunk( $items, 500 ); // avoid tying up the server

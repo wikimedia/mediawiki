@@ -102,7 +102,7 @@ abstract class Job {
 	 * @deprecated 1.21
 	 */
 	public static function safeBatchInsert( $jobs ) {
-		return JobQueueGroup::singleton()->push( $jobs, JobQueue::QoS_Atomic );
+		return JobQueueGroup::singleton()->push( $jobs, JobQueue::QOS_ATOMIC );
 	}
 
 	/**
