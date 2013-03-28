@@ -131,7 +131,6 @@ abstract class Skin extends ContextSource {
 		// in the user preferences.
 		$fallback = array(
 			0 => $wgDefaultSkin,
-			1 => 'nostalgia',
 			2 => 'cologneblue'
 		);
 
