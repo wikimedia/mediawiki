@@ -350,6 +350,7 @@ changes to languages because of Bugzilla reports.
    function, which is now deprecated).
 * BREAKING CHANGE: The Services_JSON class has been removed; if necessary,
   be sure to upgrade affected extensions at the same time (e.g. Collection).
+* Calling Linker methods using a skin will now output deprecation warnings.
 
 == Compatibility ==
 
