@@ -354,6 +354,8 @@ changes to languages because of Bugzilla reports.
 * BREAKING CHANGE: The Services_JSON class has been removed; if necessary,
   be sure to upgrade affected extensions at the same time (e.g. Collection).
 * Calling Linker methods using a skin will now output deprecation warnings.
+* BREAKING CHANGE: Legacy skins Simple, MySkin and Standard were all removed.
+  Nostalgia was moved to an extension.
 
 == Compatibility ==
 
