@@ -3674,8 +3674,12 @@ class User {
 	 * @return bool
 	 */
 	public function confirmEmail() {
-		$this->setEmailAuthenticationTimestamp( wfTimestampNow() );
-		wfRunHooks( 'ConfirmEmailComplete', array( $this ) );
+		// Check if it's already confirmed, so we don't touch the database
+		// and fire the ConfirmEmailComplete hook on redundant confirmations.
+		if ( !$this->isEmailConfirmed() ) {
+			$this->setEmailAuthenticationTimestamp( wfTimestampNow() );
+			wfRunHooks( 'ConfirmEmailComplete', array( $this ) );
+		}
 		return true;
 	}
 
