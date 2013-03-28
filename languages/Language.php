@@ -3985,45 +3985,6 @@ class Language {
 	}
 
 	/**
-	 * Get the ordered list of fallback languages, ending with the fallback
-	 * language chain for the site language.
-	 *
-	 * @since 1.21
-	 * @param $code string Language code
-	 * @return array
-	 */
-	public static function getFallbacksIncludingSiteLanguage( $code ) {
-		global $wgLanguageCode;
-
-		// Usually, we will only store a tiny number of fallback chains, so we
-		// keep them in static memory.
-		static $fallbackLanguageCache = array();
-		$cacheKey = "{$code}-{$wgLanguageCode}";
-
-		if ( !array_key_exists( $cacheKey, $fallbackLanguageCache ) ) {
-			$fallbacks = self::getFallbacksFor( $code );
-
-			// Take the final 'en' off of the array before splicing
-			if ( end( $fallbacks ) === 'en' ) {
-				array_pop( $fallbacks );
-			}
-			// Append the site's fallback chain
-			$siteFallbacks = self::getFallbacksFor( $wgLanguageCode );
-
-			// Eliminate any languages already included in the chain
-			$siteFallbacks = array_intersect( array_diff( $siteFallbacks, $fallbacks ), $siteFallbacks );
-			if ( $siteFallbacks ) {
-				$fallbacks = array_merge( $fallbacks, $siteFallbacks );
-			}
-			if ( end( $fallbacks ) !== 'en' ) {
-				$fallbacks[] = 'en';
-			}
-			$fallbackLanguageCache[$cacheKey] = $fallbacks;
-		}
-		return $fallbackLanguageCache[$cacheKey];
-	}
-
-	/**
 	 * Get all messages for a given language
 	 * WARNING: this may take a long time. If you just need all message *keys*
 	 * but need the *contents* of only a few messages, consider using getMessageKeysFor().
