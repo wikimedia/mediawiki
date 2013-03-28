@@ -160,7 +160,7 @@ class JobQueueDB extends JobQueue {
 			}
 
 			$key = $this->getCacheKey( 'empty' );
-			$atomic = ( $flags & self::QoS_Atomic );
+			$atomic = ( $flags & self::QOS_ATOMIC );
 			$cache = $this->cache;
 
 			$dbw->onTransactionIdle(
