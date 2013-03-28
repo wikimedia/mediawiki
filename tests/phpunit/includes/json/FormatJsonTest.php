@@ -6,7 +6,7 @@ class FormatJsonTest extends MediaWikiTestCase {
 		$obj = array(
 			'emptyObject' => new stdClass,
 			'emptyArray' => array(),
-			'string' => 'foobar',
+			'string' => 'foobar\\',
 			'filledArray' => array(
 				array(
 					123,
@@ -24,7 +24,7 @@ class FormatJsonTest extends MediaWikiTestCase {
     "emptyArray": [
 
     ],
-    "string": "foobar",
+    "string": "foobar\\\\",
     "filledArray": [
         [
             123,
