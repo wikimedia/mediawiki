@@ -36,7 +36,8 @@ abstract class JobQueue {
 	protected $maxTries; // integer; maximum number of times to try a job
 	protected $checkDelay; // boolean; allow delayed jobs
 
-	const QoS_Atomic = 1; // integer; "all-or-nothing" job insertions
+	const QOS_ATOMIC = 1; // integer; "all-or-nothing" job insertions
+	const QoS_Atomic = 1; // integer; "all-or-nothing" job insertions (b/c)
 
 	const ROOTJOB_TTL = 2419200; // integer; seconds to remember root jobs (28 days)
 
@@ -243,7 +244,7 @@ abstract class JobQueue {
 	 * Outside callers should use JobQueueGroup::push() instead of this function.
 	 *
 	 * @param $jobs Job|Array
-	 * @param $flags integer Bitfield (supports JobQueue::QoS_Atomic)
+	 * @param $flags integer Bitfield (supports JobQueue::QOS_ATOMIC)
 	 * @return bool Returns false on failure
 	 * @throws MWException
 	 */
@@ -257,7 +258,7 @@ abstract class JobQueue {
 	 * Outside callers should use JobQueueGroup::push() instead of this function.
 	 *
 	 * @param array $jobs List of Jobs
-	 * @param $flags integer Bitfield (supports JobQueue::QoS_Atomic)
+	 * @param $flags integer Bitfield (supports JobQueue::QOS_ATOMIC)
 	 * @return bool Returns false on failure
 	 * @throws MWException
 	 */
