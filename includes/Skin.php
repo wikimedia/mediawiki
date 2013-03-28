@@ -37,6 +37,8 @@ abstract class Skin extends ContextSource {
 	protected $mRelevantTitle = null;
 	protected $mRelevantUser = null;
 
+	const CLASS_RE_PART = "\\\\?[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*(\\\\[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)*";
+
 	/**
 	 * Fetch the set of available skins.
 	 * @return array associative array of strings
@@ -159,12 +161,28 @@ abstract class Skin extends ContextSource {
 
 		$skinNames = Skin::getSkinNames();
 		$skinName = $skinNames[$key];
-		$className = "Skin{$skinName}";
+		$isPlainSkinName = true;
+
+		if ( preg_match( '/^\{(' . self::CLASS_RE_PART . ')\}$/', $skinName, $m ) ) {
+			$className = $m[1];
+			$isPlainSkinName = false;
+		} else {
+			$className = "Skin{$skinName}";
+		}
+
+		if ( !preg_match( '/^' . self::CLASS_RE_PART . '$/', $className ) ) {
+			// If we end up with an invalid class name load vector
+			// eg: If we add more syntax in a new version of MW and someone loads a new skin in this old version
+			wfDebug( "$className ($skinName) is not a valid class name for a skin." );
+			$skinName = 'Vector';
+			$className = 'SkinVector';
+		}
 
 		# Grab the skin class and initialise it.
 		if ( !class_exists( $className ) ) {
-
-			require_once "{$wgStyleDirectory}/{$skinName}.php";
+			if ( $isPlainSkinName ) {
+				require_once "{$wgStyleDirectory}/{$skinName}.php";
+			}
 
 			# Check if we got if not fallback to default skin
 			if ( !class_exists( $className ) ) {
