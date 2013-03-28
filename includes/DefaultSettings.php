@@ -2841,7 +2841,7 @@ $wgVectorUseSimpleSearch = true;
  *  - true = use an icon watch/unwatch button
  *  - false = use watch/unwatch text link
  */
-$wgVectorUseIconWatch = false;
+$wgVectorUseIconWatch = true;
 
 /**
  * Display user edit counts in various prominent places.

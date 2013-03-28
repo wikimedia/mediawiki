@@ -18,6 +18,7 @@ production.
 * $wgBug34832TransitionalRollback has been removed.
 * (bug 29472) $wgUseDynamicDates has been removed and its functionality
   disabled.
+* $wgVectorUseIconWatch is now enabled by default.
 
 === New features in 1.21 ===
 * (bug 38110) Schema changes (adding or dropping tables, indices and
