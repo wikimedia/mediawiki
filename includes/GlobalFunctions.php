@@ -1177,6 +1177,8 @@ function wfLogProfilingData() {
 	global $wgRequestTime, $wgDebugLogFile, $wgDebugRawPage, $wgRequest;
 	global $wgProfileLimit, $wgUser;
 
+	StatCounter::singleton()->flush();
+
 	$profiler = Profiler::instance();
 
 	# Profiling must actually be enabled...
@@ -1240,51 +1242,7 @@ function wfLogProfilingData() {
  * @return void
  */
 function wfIncrStats( $key, $count = 1 ) {
-	global $wgStatsMethod;
-
-	$count = intval( $count );
-	if ( $count == 0 ) {
-		return;
-	}
-
-	if( $wgStatsMethod == 'udp' ) {
-		global $wgUDPProfilerHost, $wgUDPProfilerPort, $wgAggregateStatsID;
-		static $socket;
-
-		$id = $wgAggregateStatsID !== false ? $wgAggregateStatsID : wfWikiID();
-
-		if ( !$socket ) {
-			$socket = socket_create( AF_INET, SOCK_DGRAM, SOL_UDP );
-			$statline = "stats/{$id} - 1 1 1 1 1 -total\n";
-			socket_sendto(
-				$socket,
-				$statline,
-				strlen( $statline ),
-				0,
-				$wgUDPProfilerHost,
-				$wgUDPProfilerPort
-			);
-		}
-		$statline = "stats/{$id} - {$count} 1 1 1 1 {$key}\n";
-		wfSuppressWarnings();
-		socket_sendto(
-			$socket,
-			$statline,
-			strlen( $statline ),
-			0,
-			$wgUDPProfilerHost,
-			$wgUDPProfilerPort
-		);
-		wfRestoreWarnings();
-	} elseif( $wgStatsMethod == 'cache' ) {
-		global $wgMemc;
-		$key = wfMemcKey( 'stats', $key );
-		if ( is_null( $wgMemc->incr( $key, $count ) ) ) {
-			$wgMemc->add( $key, $count );
-		}
-	} else {
-		// Disabled
-	}
+	StatCounter::singleton()->incr( $key, $count );
 }
 
 /**

@@ -243,6 +243,7 @@ $wgAutoloadLocalClasses = array(
 	'SpecialRedirectToSpecial' => 'includes/SpecialPage.php',
 	'SquidPurgeClient' => 'includes/SquidPurgeClient.php',
 	'SquidPurgeClientPool' => 'includes/SquidPurgeClient.php',
+	'StatCounter' => 'includes/StatCounter.php',
 	'Status' => 'includes/Status.php',
 	'StreamFile' => 'includes/StreamFile.php',
 	'StringUtils' => 'includes/StringUtils.php',
