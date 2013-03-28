@@ -112,9 +112,6 @@
 [submodule "extensions/DynamicSidebar"]
 	path = extensions/DynamicSidebar
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/DynamicSidebar.git
-[submodule "extensions/E3Experiments"]
-	path = extensions/E3Experiments
-	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/E3Experiments.git
 [submodule "extensions/Echo"]
 	path = extensions/Echo
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Echo.git
@@ -193,9 +190,6 @@
 [submodule "extensions/LandingCheck"]
 	path = extensions/LandingCheck
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/LandingCheck.git
-[submodule "extensions/LastModified"]
-	path = extensions/LastModified
-	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/LastModified.git
 [submodule "extensions/LdapAuthentication"]
 	path = extensions/LdapAuthentication
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/LdapAuthentication.git
