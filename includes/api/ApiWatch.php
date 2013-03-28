@@ -46,14 +46,6 @@ class ApiWatch extends ApiBase {
 
 		$res = array( 'title' => $title->getPrefixedText() );
 
-		// Currently unnecessary, code to act as a safeguard against any change in current behavior of uselang
-		// Copy from ApiParse
-		$oldLang = null;
-		if ( isset( $params['uselang'] ) && $params['uselang'] != $this->getContext()->getLanguage()->getCode() ) {
-			$oldLang = $this->getContext()->getLanguage(); // Backup language
-			$this->getContext()->setLanguage( Language::factory( $params['uselang'] ) );
-		}
-
 		if ( $params['unwatch'] ) {
 			$res['unwatched'] = '';
 			$res['message'] = $this->msg( 'removedwatchtext', $title->getPrefixedText() )->title( $title )->parseAsBlock();
@@ -62,10 +54,6 @@ class ApiWatch extends ApiBase {
 			$res['watched'] = '';
 			$res['message'] = $this->msg( 'addedwatchtext', $title->getPrefixedText() )->title( $title )->parseAsBlock();
 			$success = WatchAction::doWatch( $title, $user );
-		}
-
-		if ( !is_null( $oldLang ) ) {
-			$this->getContext()->setLanguage( $oldLang ); // Reset language to $oldLang
 		}
 
 		if ( !$success ) {
@@ -97,7 +85,6 @@ class ApiWatch extends ApiBase {
 				ApiBase::PARAM_REQUIRED => true
 			),
 			'unwatch' => false,
-			'uselang' => null,
 			'token' => array(
 				ApiBase::PARAM_TYPE => 'string',
 				ApiBase::PARAM_REQUIRED => true
@@ -109,7 +96,6 @@ class ApiWatch extends ApiBase {
 		return array(
 			'title' => 'The page to (un)watch',
 			'unwatch' => 'If set the page will be unwatched rather than watched',
-			'uselang' => 'Language to show the message in',
 			'token' => 'A token previously acquired via prop=info',
 		);
 	}

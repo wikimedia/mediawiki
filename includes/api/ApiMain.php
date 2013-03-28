@@ -1022,6 +1022,7 @@ class ApiMain extends ApiBase {
 			'requestid' => null,
 			'servedby'  => false,
 			'origin' => null,
+			'uselang' => null, # handled and validated low level in RequestContext
 		);
 	}
 
@@ -1052,6 +1053,7 @@ class ApiMain extends ApiBase {
 				'If this parameter does not match the Origin: header, a 403 response will be returned.',
 				'If this parameter matches the Origin: header and the origin is whitelisted, an Access-Control-Allow-Origin header will be set.',
 			),
+			'uselang' => 'User language to use, when parsing html or messages for result',
 		);
 	}
 
