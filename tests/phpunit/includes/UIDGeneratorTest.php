@@ -55,12 +55,37 @@ class UIDGeneratorTest extends MediaWikiTestCase {
 		);
 	}
 
+	public function testUUIDv1() {
+		$ids = array();
+		for ( $i = 0; $i < 100; $i++ ) {
+			$id = UIDGenerator::newUUIDv1();
+			$this->assertEquals( true,
+				preg_match( '!^[0-9a-f]{8}-[0-9a-f]{4}-1[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$!', $id ),
+				"UID $id has the right format" );
+			$ids[] = $id;
+
+			$id = UIDGenerator::newRawUUIDv1();
+			$this->assertEquals( true,
+				preg_match( '!^[0-9a-f]{12}1[0-9a-f]{3}[89ab][0-9a-f]{15}$!', $id ),
+				"UID $id has the right format" );
+
+			$id = UIDGenerator::newRawUUIDv1( UIDGenerator::QUICK_RAND );
+			$this->assertEquals( true,
+				preg_match( '!^[0-9a-f]{12}1[0-9a-f]{3}[89ab][0-9a-f]{15}$!', $id ),
+				"UID $id has the right format" );
+		}
+
+		$this->assertArrayEquals( array_unique( $ids ), $ids, "All generated IDs are unique." );
+	}
+
 	public function testUUIDv4() {
+		$ids = array();
 		for ( $i = 0; $i < 100; $i++ ) {
 			$id = UIDGenerator::newUUIDv4();
 			$this->assertEquals( true,
 				preg_match( '!^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$!', $id ),
 				"UID $id has the right format" );
+			$ids[] = $id;
 
 			$id = UIDGenerator::newRawUUIDv4();
 			$this->assertEquals( true,
@@ -72,5 +97,7 @@ class UIDGeneratorTest extends MediaWikiTestCase {
 				preg_match( '!^[0-9a-f]{12}4[0-9a-f]{3}[89ab][0-9a-f]{15}$!', $id ),
 				"UID $id has the right format" );
 		}
+
+		$this->assertArrayEquals( array_unique( $ids ), $ids, "All generated IDs are unique." );
 	}
 }
