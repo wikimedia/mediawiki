@@ -1613,14 +1613,14 @@ Sedemekê binivîse!",
 'ipbreason' => 'Sedem',
 'ipbreasonotherlist' => 'Sedemeke din',
 'ipbreason-dropdown' => '*Sedemên astengkirinê
-** vandalîzm
-** agahiya şaş dikire gotarekê
-** naveroka rûpelekê vala kir
-** girêdanên xerab tevlî rûpelan dikir
-** tiştên tewş tevlî gotaran dikir
-** heqaretkirin
-** pir hesab bikaranîn
-** navekî ku nayê pejirandin',
+** Vandalîzm
+** Agahiya şaş dikire gotarekê
+** Naveroka rûpelekê vala kir
+** Girêdanên xerab tevlî rûpelan dikir
+** Tiştên tewş tevlî gotaran dikir
+** Heqaretkirin
+** Pir hesab bikaranîn
+** Navekî ku nayê pejirandin',
 'ipbcreateaccount' => 'Çêkirina hesaban qedexe bike',
 'ipbemailban' => 'Ji bo şandina e-nameyan qedexe bike.',
 'ipbenableautoblock' => "Otomatîk IP'yên niha û yên nû yê vê bikarhênerê astengbike.",

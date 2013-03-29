@@ -39,6 +39,7 @@
  * @author Zack90
  * @author ZxxZxxZ
  * @author לערי ריינהארט
+ * @author جواد
  * @author محک
  */
 
@@ -1600,7 +1601,7 @@ $1",
 این کار بازگشت‌ناپذیر است.',
 'prefs-emailconfirm-label' => 'تأیید رایانامه:',
 'prefs-textboxsize' => 'اندازهٔ جعبهٔ ویرایش',
-'youremail' => 'ایمیل (اختیاری)*',
+'youremail' => 'رایانامه:',
 'username' => '{{GENDER:$1|نام کاربری}}:',
 'uid' => 'شناسهٔ {{GENDER:$1|کاربری}}:',
 'prefs-memberingroups' => '{{GENDER:$2|عضو}} {{PLURAL:$1|گروه|گروه}}:',

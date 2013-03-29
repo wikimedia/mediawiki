@@ -13941,11 +13941,17 @@ For mer informasjon om denne funksjonen, inklusive instruksjoner om hvordan man 
 );
 
 /** Low German (Plattdüütsch)
+ * @author Joachim Mos
  */
 $messages['nds'] = array(
+	'config-page-name' => 'Naam',
+	'config-ns-generic' => 'Projekt',
+	'config-admin-name' => 'Dien Naam:',
+	'config-admin-password' => 'Passwoord:',
+	'config-help' => 'Hülp',
 	'mainpagetext' => "'''De MediaWiki-Software is mit Spood installeert worrn.'''",
 	'mainpagedocfooter' => 'Kiek de [//meta.wikimedia.org/wiki/MediaWiki_localisation Dokumentatschoon för dat Anpassen vun de Brukerböversiet]
-un dat [//meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] för Hülp to de Bruuk un Konfiguratschoon.',
+un dat [//meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] för Hülp to de Bruuk un Konfiguratschoon.', # Fuzzy
 );
 
 /** Nedersaksisch (Nedersaksisch)

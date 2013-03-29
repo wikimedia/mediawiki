@@ -660,8 +660,8 @@ $messages = array(
 'create-this-page' => 'أنشئ هذه الصفحة',
 'delete' => 'حذف',
 'deletethispage' => 'احذف هذه الصفحة',
-'undelete_short' => 'استرجاع {{PLURAL:$1|تعديل واحد|تعديلين|$1 تعديلات|$1 تعديل|$1 تعديلا}}',
-'viewdeleted_short' => 'استعرض {{PLURAL:$1|تعديل محذوف|$1 تعديلات محذوفة}}',
+'undelete_short' => 'استرجاع {{PLURAL:$1||تعديل واحد|تعديلين|$1 تعديلات|$1 تعديلاً|$1 تعديل}}',
+'viewdeleted_short' => 'استعرض {{PLURAL:$1||تعديل واحد|تعديلين|$1 تعديلات|$1 تعديلاً|$1 تعديل}}',
 'protect' => 'احم',
 'protect_change' => 'غير',
 'protectthispage' => 'احم هذه الصفحة',
@@ -2458,15 +2458,6 @@ $1',
 'listusers-noresult' => 'لم يتم إيجاد مستخدم.',
 'listusers-blocked' => '(ممنوع)',
 
-# Special:ActiveUsers
-'activeusers' => 'قائمة المستخدمين النشطين',
-'activeusers-intro' => 'هذه قائمة بالمستخدمين الذين مارسوا نوعاً من النشاط خلال {{PLURAL:$1||اليوم الماضي|اليومين الماضيين|ال$1 أيام الماضية|ال$1 يوماً ماضياً|ال$1 يوم ماضي}}.',
-'activeusers-count' => '{{PLURAL:$1|لا أفعال|فعل واحد|فعلان اثنان|$1 أفعال|$1 فعلاً|$1 فعل}} منذ {{PLURAL:$3||يوم|يومين|$3 أيام|$3 يوماً|$1 يوم}}',
-'activeusers-from' => 'اعرض المستخدمين بدءاً من:',
-'activeusers-hidebots' => 'أخف البوتات',
-'activeusers-hidesysops' => 'أخف الإداريين',
-'activeusers-noresult' => 'لم يعثر على أي مستخدمين',
-
 # Special:ListGroupRights
 'listgrouprights' => 'صلاحيات مجموعات المستخدمين',
 'listgrouprights-summary' => 'التالي قائمة بمجموعات المستخدمين المعرفة في هذا الويكي، بصلاحياتهم المصاحبة.
@@ -2643,8 +2634,8 @@ $UNWATCHURL
 'rollback' => 'استرجاع التعديلات',
 'rollback_short' => 'استرجع',
 'rollbacklink' => 'استرجع',
-'rollbacklinkcount' => 'استرجع {{PLURAL:$1|لا تعديلات|تعديلا واحدا|تعديلين|$1 تعديلات|$1 تعديل}}',
-'rollbacklinkcount-morethan' => 'استرجاع أكثر من $1 {{PLURAL:$1|تعديل|تعديلات}}',
+'rollbacklinkcount' => 'استرجع {{PLURAL:$1|لا تعديلات|تعديلا واحدا|تعديلين|$1 تعديلات|$1 تعديلاً|تعديل}}',
+'rollbacklinkcount-morethan' => 'استرجاع أكثر من {{PLURAL:$1||تعديل|تعديلين|$1 تعديلات|$1 تعديلاً|$1 تعديل}}',
 'rollbackfailed' => 'لم ينجح الاسترجاع',
 'cantrollback' => 'لم يمكن استرجاع التعديل؛
 آخر مساهم هو المؤلف الوحيد لهذه الصفحة.',
