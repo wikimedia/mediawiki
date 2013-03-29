@@ -27,6 +27,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	/* Protected Members */
 
 	protected $modifiedTime = array();
+	protected $targets = array( 'desktop', 'mobile' );
 
 	/* Protected Methods */
 
