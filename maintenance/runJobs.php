@@ -82,10 +82,11 @@ class RunJobs extends Maintenance {
 			$this->runJobsLog( "Executed $count periodic queue task(s)." );
 		}
 
+		$flags = JobQueueGroup::USE_CACHE | JobQueueGroup::USE_PRIORITY;
 		$lastTime = time();
 		do {
 			$job = ( $type === false )
-				? $group->pop( JobQueueGroup::TYPE_DEFAULT, JobQueueGroup::USE_CACHE )
+				? $group->pop( JobQueueGroup::TYPE_DEFAULT, $flags )
 				: $group->pop( $type ); // job from a single queue
 			if ( $job ) { // found a job
 				++$jobsRun;
