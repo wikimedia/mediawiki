@@ -2291,7 +2291,6 @@ $wgMessageStructure = array(
 		'sorbs',
 		'sorbsreason',
 		'sorbs_create_account_reason',
-		'xffblockreason',
 		'cant-block-while-blocked',
 		'cant-see-hidden-user',
 		'ipbblocked',
