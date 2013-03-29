@@ -40,6 +40,7 @@ class JobQueueGroup {
 	const TYPE_ANY = 2; // integer; any job
 
 	const USE_CACHE = 1; // integer; use process or persistent cache
+	const USE_PRIORITY = 2; // integer; respect deprioritization
 
 	const PROC_CACHE_TTL = 15; // integer; seconds
 
@@ -146,6 +147,9 @@ class JobQueueGroup {
 	 */
 	public function pop( $qtype = self::TYPE_DEFAULT, $flags = 0 ) {
 		if ( is_string( $qtype ) ) { // specific job type
+			if ( ( $flags & self::USE_PRIORITY ) && $this->isQueueDeprioritized( $qtype ) ) {
+				return false; // back off
+			}
 			$job = $this->get( $qtype )->pop();
 			if ( !$job ) {
 				JobQueueAggregator::singleton()->notifyQueueEmpty( $this->wiki, $qtype );
@@ -167,6 +171,9 @@ class JobQueueGroup {
 			shuffle( $types ); // avoid starvation
 
 			foreach ( $types as $type ) { // for each queue...
+				if ( ( $flags & self::USE_PRIORITY ) && $this->isQueueDeprioritized( $type ) ) {
+					continue; // back off
+				}
 				$job = $this->get( $type )->pop();
 				if ( $job ) { // found
 					return $job;
@@ -264,10 +271,15 @@ class JobQueueGroup {
 	 * @return bool
 	 */
 	public function isQueueDeprioritized( $type ) {
+		if ( $this->cache->has( 'isDeprioritized', $type, 5 ) ) {
+			return $this->cache->get( 'isDeprioritized', $type );
+		}
 		if ( $type === 'refreshLinks2' ) {
 			// Don't keep converting refreshLinks2 => refreshLinks jobs if the
 			// later jobs have not been done yet. This helps throttle queue spam.
-			return !$this->get( 'refreshLinks' )->isEmpty();
+			$deprioritized = !$this->get( 'refreshLinks' )->isEmpty();
+			$this->cache->set( 'isDeprioritized', $type, $deprioritized );
+			return $deprioritized;
 		}
 		return false;
 	}
