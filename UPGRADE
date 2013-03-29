@@ -296,18 +296,3 @@ If you have a very old database (earlier than organized MediaWiki releases
 in late August 2003) you may need to manually run some of the update SQL
 scripts in maintenance/archives before the installer is able to pick up
 with remaining updates.
-
-
-== Upgrading from UseModWiki or old "phase 2" Wikipedia code ==
-
-There is a semi-maintained UseModWiki to MediaWiki conversion script at
-maintenance/importUseModWiki.php; it may require tweaking and customization
-to work for you.
-
-Install a new MediaWiki first, then use the conversion script which will
-output SQL statements; direct these to a file and then run that into your
-database.
-
-You will have to rebuild the links tables etc after importing.
-
-
