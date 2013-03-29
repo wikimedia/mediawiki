@@ -94,9 +94,6 @@
 [submodule "extensions/CustomData"]
 	path = extensions/CustomData
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/CustomData.git
-[submodule "extensions/CustomUserSignup"]
-	path = extensions/CustomUserSignup
-	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/CustomUserSignup.git
 [submodule "extensions/DisableAccount"]
 	path = extensions/DisableAccount
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/DisableAccount.git
