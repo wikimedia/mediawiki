@@ -2401,7 +2401,6 @@ $templates
 			$proto = PROTO_RELATIVE;
 		}
 
-		$this->addLink( array( 'rel' => 'next', 'href' => $title->getFullURL( '', false, $proto ) ) );
 		$link = $this->msg( 'returnto' )->rawParams(
 			Linker::link( $title, $text, array(), $query, $options ) )->escaped();
 		$this->addHTML( "<p id=\"mw-returnto\">{$link}</p>\n" );
