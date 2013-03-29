@@ -643,8 +643,8 @@ class HTMLForm extends ContextSource {
 			: 'application/x-www-form-urlencoded';
 		# Attributes
 		$attribs = array(
-			'action' => $this->mAction === false ? $this->getTitle()->getFullURL() : $this->mAction,
-			'method' => $this->mMethod,
+			'action' => $this->getAction(),
+			'method' => $this->getMethod(),
 			'class' => 'visualClear',
 			'enctype' => $encType,
 		);
@@ -1106,6 +1106,33 @@ class HTMLForm extends ContextSource {
 	public function setAction( $action ) {
 		$this->mAction = $action;
 		return $this;
+	}
+
+	/**
+	 * Get the value for the action attribute of the form.
+	 *
+	 * @since 1.22
+	 *
+	 * @return string
+	 */
+	public function getAction() {
+		global $wgScript, $wgArticlePath;
+
+		// If an action is alredy provided, return it
+		if ( $this->mAction !== false ) {
+			return $this->mAction;
+		}
+
+		// Check whether we are in GET mode and $wgArticlePath contains a "?"
+		// meaning that getLocalURL() would return something like "index.php?title=...".
+		// As browser remove the query string before submitting GET forms,
+		// it means that the title would be lost. In such case use $wgScript instead
+		// and put title in an hidden field (see getHiddenFields()).
+		if ( strpos( $wgArticlePath, '?' ) !== false && $this->getMethod() === 'get' ) {
+			return $wgScript;
+		}
+
+		return $this->getTitle()->getLocalURL();
 	}
 }
 
