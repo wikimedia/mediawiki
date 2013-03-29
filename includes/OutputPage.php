@@ -2401,7 +2401,13 @@ $templates
 			$proto = PROTO_RELATIVE;
 		}
 
-		$this->addLink( array( 'rel' => 'next', 'href' => $title->getFullURL( '', false, $proto ) ) );
+		$nextUrl = $title->getFullURL( '', false, $proto );
+		if ( $title->isSpecialPage() && strpos( $nextUrl, '?' ) === FALSE ) {
+			// Firefox pre-fetches rel=next, which can be undesired for special pages (e.g. Special:ConfirmEmail).
+			// This is not done for URLs with a query string.  See https://bugzilla.mozilla.org/show_bug.cgi?id=175418
+			$nextUrl .= '?no-prefetch';
+		}
+		$this->addLink( array( 'rel' => 'next', 'href' => $nextUrl ) );
 		$link = $this->msg( 'returnto' )->rawParams(
 			Linker::link( $title, $text, array(), $query, $options ) )->escaped();
 		$this->addHTML( "<p id=\"mw-returnto\">{$link}</p>\n" );
