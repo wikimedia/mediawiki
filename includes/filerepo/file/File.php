@@ -910,8 +910,7 @@ abstract class File {
 						// XXX: Pass in the storage path even though we are not rendering anything
 						// and the path is supposed to be an FS path. This is due to getScalerType()
 						// getting called on the path and clobbering $thumb->getUrl() if it's false.
-						$thumb = $handler->getTransform(
-							$this, $thumbPath, $thumbUrl, $params );
+						$thumb = $handler->getTransform( $this, $thumbPath, $thumbUrl, $params );
 						$thumb->setStoragePath( $thumbPath );
 						break;
 					}
