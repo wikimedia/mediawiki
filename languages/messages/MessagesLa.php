@@ -188,8 +188,8 @@ $messages = array(
 'tog-shownumberswatching' => 'Numerum usorum custodientium monstrare',
 'tog-oldsig' => 'Subscriptio ad tempus adhibita:',
 'tog-fancysig' => 'Subscriptio vicitext (sine nexu automatico)',
-'tog-externaleditor' => 'Utere editore externo semper (pro peritus solo, requirat speciales optiones in calculone. [//www.mediawiki.org/wiki/Manual:External_editors More information.])',
-'tog-externaldiff' => 'Utere editore dissimilitudine externa semper (pro peritus solo, requirat speciales optiones in calculone. [//www.mediawiki.org/wiki/Manial:External_editors More information.])',
+'tog-externaleditor' => 'Editore externo semper uti (periti tantum:  necesse est organa propria in ordinatore habere. [//www.mediawiki.org/wiki/Manual:External_editors adiutatum (anglice)]',
+'tog-externaldiff' => 'Editore dissimilitudinum externo semper uti (periti tantum:  necesse est organa propria in ordinatore habere. [//www.mediawiki.org/wiki/Manial:External_editors adiudatum (anglice)]',
 'tog-showjumplinks' => 'Sinere nexus ostendi forma "salire ad" monstrata',
 'tog-uselivepreview' => 'Praevisum viventem adhibere (JavaScript)',
 'tog-forceeditsummary' => 'Si recensionem non summatim descripsero, me roga si continuare velim',
@@ -274,6 +274,9 @@ $messages = array(
 'category-file-count' => '{{PLURAL:$2|Huic categoriae est solum unus fasciculus.|Huic categoriae {{PLURAL:$1|est hic fasciculus|sunt hi $1 fasciculi}} ex omnino $2 fasciculis.}}',
 'category-file-count-limited' => 'Huic categoriae {{PLURAL:$1|est hic fasciculus|sunt hi $1 fasciculi}}.',
 'listingcontinuesabbrev' => 'cont.',
+'index-category' => 'Paginae quae in indice sunt',
+'noindex-category' => 'Paginae quae non in indice sunt',
+'broken-file-category' => 'Paginae cum nexibus ad fasciculos ruptis',
 
 'about' => 'De hoc',
 'article' => 'Pagina contenta continens',
@@ -943,6 +946,7 @@ Conare praefixare tua inquisitionem cum ''all:'' ut quaeras contenta omnia (pagi
 'yourlanguage' => 'Lingua:',
 'yourvariant' => 'Differentia linguae contentorum:',
 'yournick' => 'Subscriptio nova:',
+'prefs-help-signature' => 'Cum in paginis disputationum scribas, "<nowiki>~~~~</nowiki>" conscribe, quod in subscriptionem tuam et indicationem temporis convertetur.',
 'badsig' => 'Subscriptio cruda non est valida; scrutina affixa HTML.',
 'badsiglength' => 'Subscriptio tua nimis longa est.
 {{PLURAL:$1|Una littera est|$1 litterae sunt}} longitudo maxima.',
@@ -1414,13 +1418,6 @@ Vide etiam [[Special:WantedCategories|categorias desideratas]].',
 'listusers-submit' => 'Monstrare',
 'listusers-noresult' => 'Nullus usor inventus.',
 'listusers-blocked' => '(obstructus)',
-
-# Special:ActiveUsers
-'activeusers' => 'Index usorum activorum',
-'activeusers-count' => '{{PLURAL:$1|una recensio recens|$1 recensiones recentes}} {{PLURAL:$3|die proximo|in diebus $3 proximis}}',
-'activeusers-hidebots' => 'Celare automata',
-'activeusers-hidesysops' => 'Celare magistratus',
-'activeusers-noresult' => 'Nullus usor inventus.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Gregum usorum potestates',

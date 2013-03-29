@@ -3742,7 +3742,7 @@ Du kan òg [[Special:EditWatchlist|nytte standardverktøyet]].',
 
 # Core parser functions
 'unknown_extension_tag' => 'Ukjend tilleggsmerking «$1»',
-'duplicate-defaultsort' => 'Åtvaring: Standarsorteringa «$2» tar over for den tidlegare sorteringa «$1».',
+'duplicate-defaultsort' => 'Åtvaring: Standardsorteringa «$2» tar over for den tidlegare sorteringa «$1».',
 
 # Special:Version
 'version' => 'Versjon',

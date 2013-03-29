@@ -384,7 +384,8 @@ Used as link title in your personal toolbox.
 See also:
 * {{msg-mw|Mytalk}}
 * {{msg-mw|Accesskey-pt-mytalk}}
-* {{msg-mw|Tooltip-pt-mytalk}}',
+* {{msg-mw|Tooltip-pt-mytalk}}
+{{Identical|Talk}}',
 'anontalk' => 'Link to the talk page appearing in [[mw:Help:Navigation#User_Links|user links]] for each anonymous users when [[mw:Manual:$wgShowIPinHeader|$wgShowIPinHeader]] is true.
 
 See also:

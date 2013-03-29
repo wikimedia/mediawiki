@@ -3769,7 +3769,7 @@ Den ugefrote Fichier gëtt direkt gewise respektiv mat enger verbonner Applikati
 'logentry-delete-revision-legacy' => "$1 huet d'Visibilitéit vu Versioune vun der Säit $3 {{GENDER:$2|geännert}}",
 'logentry-suppress-delete' => "$1 {{GENDER:$2|huet}} d'Säit $3 ewechgeholl",
 'logentry-suppress-event-legacy' => "$1 {{GENDER:$2|huet}} diskret d'Visibilitéit vun Elementer am Log op $3 geännert",
-'logentry-suppress-revision-legacy' => "$1 huet diskret d'Visibilitéit vu Versioune vun der Säit $3 geännert",
+'logentry-suppress-revision-legacy' => "$1 huet diskret d'Visibilitéit vu Versioune vun der Säit $3 {{GENDER:$2|geännert}}",
 'revdelete-content-hid' => 'Inhalt verstoppt',
 'revdelete-summary-hid' => 'Resumé vun der Ännerung verstoppt',
 'revdelete-uname-hid' => 'Benotzernumm verstoppt',
@@ -3779,8 +3779,8 @@ Den ugefrote Fichier gëtt direkt gewise respektiv mat enger verbonner Applikati
 'revdelete-restricted' => 'Limitatioune fir Administrateuren ageschalt',
 'revdelete-unrestricted' => 'Limitatioune fir Administrateuren opgehuewen',
 'logentry-move-move' => "$1 huet d'Säit $3 op $4 {{GENDER:$2|geréckelt}}",
-'logentry-move-move-noredirect' => "$1 huet d'Säit $3 op $4 geréckelt ouni eng Viruleedung unzeleeën",
-'logentry-move-move_redir' => "$1 huet d'Säit $3 op $4 geréckelt an dobäi gouf eng Viruleedung iwwerschriwwen",
+'logentry-move-move-noredirect' => "$1 huet d'Säit $3 op $4 {{GENDER:$2|geréckelt}} ouni eng Viruleedung unzeleeën",
+'logentry-move-move_redir' => "$1 huet d'Säit $3 op $4 {{GENDER:$2|geréckelt}} an dobäi gouf eng Viruleedung iwwerschriwwen",
 'logentry-move-move_redir-noredirect' => "$1 huet d'Säit $3 op $4 {{GENDER:$2|geréckelt}} an dobäi gouf eng Viruleedung iwwerschriwwen an et et gouf keng nei Viruleedung ugeluecht",
 'logentry-patrol-patrol' => "$1 huet d'Versioun $4 vun der Säit $3 als nogekuckt {{GENDER:$2|markéiert}}",
 'logentry-patrol-patrol-auto' => "$1 huet d'Versioun $4 vun der Säit $3 automatesch als nogekuckt  {{GENDER:$2|markéiert}}",
@@ -3864,5 +3864,8 @@ Soss kënnt Dir den einfache Formulär hei drënner benotzen. Är Bemierkung gë
 'duration-decades' => '$1 {{PLURAL:$1|Joerzéngt|Joerzéngten}}',
 'duration-centuries' => '$1 {{PLURAL:$1|Joerhonnert|Joerhonnerten}}',
 'duration-millennia' => '$1 {{PLURAL:$1|Millenaire|Millenairen}}',
+
+# Image rotation
+'rotate-comment' => 'Bild ëm $1 {{PLURAL:$1|Grad}} an der Richtung vun der Auer gedréint',
 
 );
