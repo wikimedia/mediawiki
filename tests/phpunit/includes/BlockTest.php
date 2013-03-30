@@ -51,6 +51,8 @@ class BlockTest extends MediaWikiLangTestCase {
 		} else {
 			throw new MWException( "Failed to insert block for BlockTest; old leftover block remaining?" );
 		}
+
+		$this->addXffBlocks();
 	}
 
 	/**
@@ -229,7 +231,14 @@ class BlockTest extends MediaWikiLangTestCase {
 		$this->assertEquals( 0, $block->getBy(), 'Correct blocker id' );
 	}
 
-	function testBlocksOnXff() {
+	protected function addXffBlocks() {
+		static $inited = false;
+
+		if ( $inited ) {
+			return;
+		}
+
+		$inited = true;
 
 		$blockList = array(
 			array( 'target' => '70.2.0.0/16',
@@ -288,8 +297,10 @@ class BlockTest extends MediaWikiLangTestCase {
 			$block->isAutoblocking( $insBlock['isAutoBlocking'] );
 			$block->insert();
 		}
+	}
 
-		$xffHeaders = array(
+	public static function providerXff() {
+		return array(
 			array( 'xff' => '1.2.3.4, 70.2.1.1, 60.2.1.1, 2.3.4.5',
 				'count' => 2,
 				'result' => 'Range Hardblock'
@@ -331,14 +342,16 @@ class BlockTest extends MediaWikiLangTestCase {
 				'result' => 'Range6 Hardblock'
 			),
 		);
+	}
 
-		foreach ( $xffHeaders as $test ) {
-			$list = array_map( 'trim', explode( ',', $test['xff'] ) );
-			$xffblocks = Block::getBlocksForIPList( $list, true );
-			$this->assertEquals( $test['count'], count( $xffblocks ), 'Number of blocks for ' . $test['xff'] );
-			$block = Block::chooseBlock( $xffblocks, $list );
-			$this->assertEquals( $test['result'], $block->mReason, 'Correct block type for XFF header ' . $test['xff'] );
-		}
-
+	/**
+	 * @dataProvider providerXff
+	 */
+	function testBlocksOnXff( $xff, $exCount, $exResult ) {
+		$list = array_map( 'trim', explode( ',', $xff ) );
+		$xffblocks = Block::getBlocksForIPList( $list, true );
+		$this->assertEquals( $exCount, count( $xffblocks ), 'Number of blocks for ' . $xff );
+		$block = Block::chooseBlock( $xffblocks, $list );
+		$this->assertEquals( $exResult, $block->mReason, 'Correct block type for XFF header ' . $xff );
 	}
 }
