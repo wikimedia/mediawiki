@@ -23,6 +23,11 @@
  * @file
  */
 
+# Include exactly once
+if ( defined( 'MEDIAWIKI' ) ) {
+	return;
+}
+
 # Protect against register_globals
 # This must be done before any globals are set by the code
 if ( ini_get( 'register_globals' ) ) {

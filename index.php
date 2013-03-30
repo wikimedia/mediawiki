@@ -55,5 +55,10 @@ if ( isset( $_SERVER['MW_COMPILED'] ) ) {
 	require ( __DIR__ . '/includes/WebStart.php' );
 }
 
+if ( $wgRequest->getBool( 'api' ) ) {
+	$wgRequest->unsetVal( 'api' );
+	require "$IP/api.php";
+	return;
+}
 $mediaWiki = new MediaWiki();
 $mediaWiki->run();
