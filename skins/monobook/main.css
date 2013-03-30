@@ -17,7 +17,7 @@ div#column-content {
 }
 div#content {
 	margin: 2.8em 0 0 12.2em;
-	padding: 0 1em 1em 1em;
+	padding: 1em;
 	position: relative;
 	z-index: 2;
 }
@@ -93,6 +93,9 @@ pre, .mw-code {
 	line-height: 1.1em;
 }
 
+#firstHeading {
+	padding-top: 0;
+}
 /*
 ** the main content area
 */
