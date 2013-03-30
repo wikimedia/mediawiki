@@ -46,6 +46,13 @@ if ( !function_exists( 'version_compare' ) || version_compare( phpversion(), '5.
 	wfPHPVersionError( 'index.php' );
 }
 
+if ( isset( $_REQUEST['api'] ) and $_REQUEST['api'] === "1" ) {
+	unset( $_GET['api'] );
+	unset( $_POST['api'] );
+	require __DIR__ . "/api.php";
+	die();
+}
+
 # Initialise common code.  This gives us access to GlobalFunctions, the
 # AutoLoader, and the globals $wgRequest, $wgOut, $wgUser, $wgLang and
 # $wgContLang, amongst others; it does *not* load $wgTitle
