@@ -489,8 +489,7 @@ $1",
 'viewsourceold' => 'shiko tekstin',
 'editlink' => 'redakto',
 'viewsourcelink' => 'Shiko tekstin',
-'editsectionhint' => 'Redaktoni seksionin:
-Edit section: $1',
+'editsectionhint' => 'Redaktoni seksionin: $1',
 'toc' => 'Përmbajtje',
 'showtoc' => 'trego',
 'hidetoc' => 'fshih',
@@ -2111,15 +2110,6 @@ Protokolle të mbështetura: <code>$1<code> (mos shtoni ndonjërin nga këta në
 'listusers-submit' => 'Trego',
 'listusers-noresult' => "Asnjë përdorues s'u gjet.",
 'listusers-blocked' => '(Bllokuar)',
-
-# Special:ActiveUsers
-'activeusers' => 'Lista e përdoruesve aktivë',
-'activeusers-intro' => 'Kjo është një listë e përdoruesve që kanë qenë aktivë për $1 {{PLURAL:$1|ditë|ditë}}.',
-'activeusers-count' => '$1 {{PLURAL:$1|redaktim|redaktime}} në {{PLURAL:$3|ditën|$3 ditët}} e fundit',
-'activeusers-from' => 'Trego përdoruesit duke filluar prej te:',
-'activeusers-hidebots' => 'Fshih robotët',
-'activeusers-hidesysops' => 'Fshih administratorët',
-'activeusers-noresult' => 'Asnjë përdorues nuk u gjet.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Grupime përdoruesish me privilegje',

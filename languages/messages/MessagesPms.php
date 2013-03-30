@@ -44,8 +44,8 @@ $messages = array(
 # User preference toggles
 'tog-underline' => 'Anliure con la sotliniadura',
 'tog-justify' => 'Paràgraf: giustificà',
-'tog-hideminor' => 'Stërma le modìfiche cite<br />ant sla pàgina "Ùltime Modìfiche"',
-'tog-hidepatrolled' => "Stërma le modìfiche verificà ant j'ùltime modìfiche",
+'tog-hideminor' => "Stërmé le modìfiche cite ant sla pàgina dj'ùltime modìfiche",
+'tog-hidepatrolled' => "Stërmé le modìfiche dzorvejà ant j'ùltime modìfiche",
 'tog-newpageshidepatrolled' => 'Stërma le pàgine verificà da la lista dle pàgine neuve',
 'tog-extendwatchlist' => 'Slarga la funsion "ten sot euj" an manera che a la smon-a tute le modìfiche, nen mach l\'ùltima',
 'tog-usenewrc' => "Deuvra j'ùltime modìfiche ameliorà (a-i và JavaScript)",
@@ -1982,15 +1982,6 @@ A-i é dabzògn almanch d\'un domini a livel pi àut, për esempi "*.org".<br />
 'listusers-submit' => 'Smon-e',
 'listusers-noresult' => 'Gnun utent përparèj.',
 'listusers-blocked' => '(blocà)',
-
-# Special:ActiveUsers
-'activeusers' => "Lista dj'utent ativ",
-'activeusers-intro' => "Costa a l'é na lista d'utent ch'a l'han avù n'atività qualsëssìa ant j'ùltim $1 {{PLURAL:$1|di|di}}.",
-'activeusers-count' => "$1 {{PLURAL:$1|modìfica neuva|modìfiche neuve}} ant {{PLURAL:$3|l'ùltim di|j'ùltim $3 di}}",
-'activeusers-from' => "Smon-me j'utent a parte da:",
-'activeusers-hidebots' => 'Stërmé ij trigomiro',
-'activeusers-hidesysops' => "Stërmé j'aministrator",
-'activeusers-noresult' => 'Pa gnun utent trovà.',
 
 # Special:ListGroupRights
 'listgrouprights' => "Drit dël grup d'utent",

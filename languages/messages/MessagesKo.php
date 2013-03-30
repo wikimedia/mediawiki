@@ -2024,7 +2024,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'license-header' => '라이선스',
 'nolicense' => '선택하지 않음',
 'license-nopreview' => '(미리 보기 불가능)',
-'upload_source_url' => ' (유효하고, 모든 사람이 접근 가능한 URL)',
+'upload_source_url' => '(올바르고, 공개적으로 접근할 수 있는 URL)',
 'upload_source_file' => ' (당신의 컴퓨터에 있는 파일)',
 
 # Special:ListFiles

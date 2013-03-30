@@ -3816,7 +3816,7 @@ um die Bestätigung der E-Mail-Adresse abzubrechen:
 $5
 
 Dieser Bestätigungscode ist gültig bis $4.',
-'confirmemail_invalidated' => 'E-Mail-Adressbestätigung abbrechen',
+'confirmemail_invalidated' => 'Die E-Mail-Adressbestätigung wurde abgebrochen.',
 'invalidateemail' => 'E-Mail-Adressbestätigung abbrechen',
 
 # Scary transclusion

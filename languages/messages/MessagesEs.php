@@ -661,7 +661,7 @@ $1',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main' => 'Página',
-'nstab-user' => 'Página de usuari{{gender:{{#titleparts:{{BASEPAGENAME}}|1}}|o|a|o}}',
+'nstab-user' => 'Página de usuario',
 'nstab-media' => 'Media',
 'nstab-special' => 'Página especial',
 'nstab-project' => 'Página del proyecto',

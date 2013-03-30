@@ -5456,9 +5456,6 @@ See also:
 * {{msg-mw|Sorbsreason}}
 * {{msg-mw|Sorbs create account_reason}}',
 'cant-see-hidden-user' => 'Used as (red) error message on [[Special:Block]] when you try to change (as sysop without the hideuser right) the block of a hidden user.',
-'xffblockreason' => "This text is shown to the user as a block reason and describes that the user is being blocked because an IP in the X-Forwarded-For header
-(which lists the user's IP as well as all IPs of the transparent proxy servers they went through) sent when they loaded the page has been blocked:
-* $1 is the original block reason for the IP address matched in the X-Forwarded-For header",
 'ipbblocked' => 'Error message shown when a user tries to alter block settings when they are themselves blocked.',
 'ipbnounblockself' => 'Error message shown when a user without the <tt>unblockself</tt> right tries to unblock themselves.',
 

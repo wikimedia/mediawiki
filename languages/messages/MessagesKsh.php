@@ -661,7 +661,7 @@ Wann De wells, künnts De Ding [[Special:Preferences|Enschtällonge aanpaße]].'
 'gotaccount' => "Do bes ald aanjemeldt {{GRAMMAR:en|{{SITENAME}}}}? Dann jangk nohm '''$1'''.",
 'gotaccountlink' => 'Enlogge',
 'userlogin-resetlink' => 'Häß De Ding Daate för et Enlogge verjäße?',
-'createaccountmail' => 'Scheck mer en E-Mail met Passwood',
+'createaccountmail' => 'Scheck mer en E-Mail met enem neu ußjedachte Passwood op Zick',
 'createaccountreason' => 'Jrond:',
 'badretype' => 'Ding zwëij ennjejovve Paßßwööter sinn nit ejaal. Do muss De Dich för ein entscheide.',
 'userexists' => 'Ene Metmaacher met däm Name jidd et ald.

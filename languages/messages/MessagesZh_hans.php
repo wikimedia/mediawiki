@@ -3755,8 +3755,8 @@ $5
 'watchlistedit-raw-removed' => '$1个标题被删除：',
 
 # Watchlist editing tools
-'watchlisttools-view' => '查看监视更改',
-'watchlisttools-edit' => '查看并编辑监视列表',
+'watchlisttools-view' => '查看监视的更改',
+'watchlisttools-edit' => '查看和编辑监视列表',
 'watchlisttools-raw' => '编辑原始监视列表',
 
 # Signatures

@@ -668,13 +668,14 @@ la vostra antiga contrasenya.",
 Inicieu una sessió després que la rebeu.",
 'blocked-mailpassword' => 'La vostra adreça IP ha estat blocada. Se us ha desactivat la funció de recuperació de contrasenya per a prevenir abusos.',
 'eauthentsent' => "S'ha enviat un correu electrònic a la direcció especificada. Abans no s'envïi cap altre correu electrònic a aquesta adreça, cal verificar que és realment vostra. Per tant, cal que seguiu les instruccions presents en el correu electrònic que se us ha enviat.",
-'throttled-mailpassword' => "Ja se us ha enviat un recordatori de contrasenya en {{PLURAL:$1|l'última hora|les últimes $1 hores}}. Per a prevenir abusos, només s'envia un recordatori de contrasenya cada {{PLURAL:$1|hora|$1 hores}}.",
+'throttled-mailpassword' => "Ja se us ha enviat un correu electrònic de reinicialització de contrasenya en {{PLURAL:$1|l'última hora|les últimes $1 hores}}.
+Per a prevenir abusos, només s'envia un correu electrònic de reinicialització de contrasenya cada {{PLURAL:$1|hora|$1 hores}}.",
 'mailerror' => "S'ha produït un error en enviar el missatge: $1",
 'acct_creation_throttle_hit' => "Des de la vostra adreça IP ja {{PLURAL:$1|s'ha creat un compte|s'han creat $1 comptes}} en l'últim dia i aquest és el màxim permès en aquest wiki per aquest període de temps.
 Així, des d'aquesta adreça IP no es poden crear més comptes actualment.",
 'emailauthenticated' => "S'ha autenticat la vostra adreça electrònica el $2 a les $3.",
 'emailnotauthenticated' => 'La vostra adreça de correu electrònic <strong>encara no està autenticada</strong>. No rebrà cap missatge de correu electrònic per a cap de les següents funcionalitats.',
-'noemailprefs' => 'Especifiqueu una adreça electrònica per a activar aquestes característiques.',
+'noemailprefs' => 'Especifiqueu una adreça electrònica per activar aquestes característiques.',
 'emailconfirmlink' => 'Confirmeu la vostra adreça electrònica',
 'invalidemailaddress' => "No es pot acceptar l'adreça electrònica perquè sembla que té un format no vàlid.
 Introduïu una adreça amb un format adequat o bé buideu el camp.",
@@ -719,7 +720,7 @@ Deveu haver canviat la vostra contrasenya o demanat una nova contrasenya tempora
 
 # Special:PasswordReset
 'passwordreset' => 'Restablir contrasenya',
-'passwordreset-text' => 'Completeu el següent formulari per rebre un recordatori per correu electrònic amb els detalls del vostre compte.',
+'passwordreset-text' => 'Completeu el següent formulari per reinicialitzar la vostra contrasenya',
 'passwordreset-legend' => 'Restablir contrasenya',
 'passwordreset-disabled' => "S'ha desactivat el restabliment de contranyes en aquest wiki.",
 'passwordreset-pretext' => '{{PLURAL:$1||Introduïu un dels elements de dades següents}}',
@@ -729,23 +730,23 @@ Deveu haver canviat la vostra contrasenya o demanat una nova contrasenya tempora
 'passwordreset-capture-help' => "Si marqueu aquesta casella, el missatge de correu electrònic (amb la contrasenya temporal) es mostrarà al mateix moment que sigui enviat a l'usuari.",
 'passwordreset-email' => 'Adreça de correu electrònic:',
 'passwordreset-emailtitle' => 'Detalls del compte a {{SITENAME}}',
-'passwordreset-emailtext-ip' => "Algú (vós mateix segurament, des de l'adreça IP $1) ha demanat un recordatori dels detalls dels vostres comptes al projecte {{SITENAME}} ($4). {{PLURAL:$3|El següent compte d'usuari està associat|Els següents comptes d'usuari estan associats}} amb aquesta adreça de correu electrònic:
+'passwordreset-emailtext-ip' => "Algú (vós mateix segurament, des de l'adreça IP $1) ha demanat una reinicialització de la vostra contrasenya al projecte {{SITENAME}} ($4). {{PLURAL:$3|El següent compte d'usuari està associat|Els següents comptes d'usuari estan associats}} amb aquesta adreça de correu electrònic:
 
 $2
 
 {{PLURAL:$3|Aquesta contrasenya temporal caducarà|Aquestes contrasenyes temporals caducaran}} en {{PLURAL:$5|un dia|$5 dies}}.
 Hauríeu d'entrar al compte per a fixar-hi una nova contrasenya al més aviat possible. Si algú que no sou vós és qui ha fet aquesta petició o si heu recordat la contrasenya original i ja no la voleu canviar, podeu ignorar aquest missatge i seguir utilitzant la vostra antiga contrasenya.",
-'passwordreset-emailtext-user' => "L'usuari $1 de {{SITENAME}} ha demanat un recordatori dels detalls dels vostres comptes al projecte {{SITENAME}} <$4>. {{PLURAL:$3|El següent compte d'usuari està associat|Els següents comptes d'usuari estan associats}} amb aquesta adreça de correu electrònic:
+'passwordreset-emailtext-user' => "L'usuari $1 de {{SITENAME}} ha demanat una reinicialització de la vostra contrasenya per al projecte {{SITENAME}} ($4). {{PLURAL:$3|El següent compte d'usuari està associat|Els següents comptes d'usuari estan associats}} amb aquesta adreça de correu electrònic:
 
 $2
 
 {{PLURAL:$3|Aquesta contrasenya temporal caducarà|Aquestes contrasenyes temporals caducaran}} en {{PLURAL:$5|un dia|$5 dies}}.
-Hauríeu d'entrar {{PLURAL:$3|al compte per a fixar-hi una nova contrasenya|als comptes per a fixar-hi noves contrasenyes}} al més aviat possible. Si algú que no sou vós és qui ha fet aquesta petició o si heu recordat la contrasenya original i ja no la voleu canviar, podeu ignorar aquest missatge i seguir utilitzant la vostra antiga contrasenya.",
+Hauríeu d'entrar ara per fixar una nova contrasenya. Si algú que no sou vós és qui ha fet aquesta petició o si heu recordat la contrasenya original i ja no la voleu canviar, podeu ignorar aquest missatge i seguir utilitzant la vostra antiga contrasenya.",
 'passwordreset-emailelement' => "Nom d'usuari: $1
 Contrasenya temporal: $2",
-'passwordreset-emailsent' => "S'ha enviat un correu de recordatori.",
-'passwordreset-emailsent-capture' => "S'ha enviat un recordatori per correu electrònic, tal com es mostra a continuació.",
-'passwordreset-emailerror-capture' => "S'ha generat un missatge recordatori de correu electrònic, que es mostra a continuació, però ha fallat l'enviament a l'usuari: $1",
+'passwordreset-emailsent' => "S'ha enviat un correu de reinicialització de contrasenya.",
+'passwordreset-emailsent-capture' => "S'ha enviat un correu electrònic de reinicialització de contrasenya, tal com es mostra a continuació.",
+'passwordreset-emailerror-capture' => "S'ha generat un correu electrònic de reinicialització de contrasenya, que es mostra a continuació, però ha fallat l'enviament a l'usuari: $1",
 
 # Special:ChangeEmail
 'changeemail' => 'Canvi de correu electrònic',
