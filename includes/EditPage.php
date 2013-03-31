@@ -1837,7 +1837,12 @@ class EditPage {
 
 		if ( $wgUser->getOption( 'uselivepreview', false ) ) {
 			$wgOut->addModules( 'mediawiki.action.edit.preview' );
-		}
+		}		
+
+		if ( $wgUser->getOption( 'editwarning', false ) ) {
+			$wgOut->addModules( 'mediawiki.action.edit.unsavedWarning' );
+                }
+
 		// Bug #19334: textarea jumps when editing articles in IE8
 		$wgOut->addStyle( 'common/IE80Fixes.css', 'screen', 'IE 8' );
 
