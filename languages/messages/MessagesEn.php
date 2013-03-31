@@ -1308,7 +1308,9 @@ If you click \"{{int:savearticle}}\" again, your edit will be saved without one.
 'summary-preview'                  => 'Summary preview:',
 'subject-preview'                  => 'Subject/headline preview:',
 'blockedtitle'                     => 'User is blocked',
-'blockedtext'                      => "'''Your username or IP address has been blocked.'''
+'blockedtext'                      => "'''Your username or IP address has been blocked.'''",
+'vector-editwarning-warning' => 'Leaving this page may cause you to lose any changes you have made.
+If you are logged in, you can disable this warning in the "Editing" section of your preferences.''
 
 The block was made by $1.
 The reason given is ''$2''.
@@ -1935,6 +1937,7 @@ Your e-mail address is not revealed when other users contact you.',
 'prefs-displaysearchoptions'    => 'Display options',
 'prefs-displaywatchlist'        => 'Display options',
 'prefs-diffs'                   => 'Diffs',
+'vector-editwarning-preference' => 'Warn me when I leave an edit page with unsaved changes',
 
 # User preference: e-mail validation using jQuery
 'email-address-validity-valid'   => 'E-mail address appears valid',
