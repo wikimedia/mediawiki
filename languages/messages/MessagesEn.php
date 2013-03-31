@@ -682,6 +682,7 @@ XHTML id names.
 'tog-showhiddencats'          => 'Show hidden categories',
 'tog-noconvertlink'           => 'Disable link title conversion', # only translate this message to other languages if you have to change it
 'tog-norollbackdiff'          => 'Omit diff after performing a rollback',
+'tog-editwarning'             => 'Warn me when I leave an edit page with unsaved changes',
 
 'underline-always'  => 'Always',
 'underline-never'   => 'Never',
@@ -1492,6 +1493,8 @@ It already exists.',
 'content-failed-to-parse'          => 'Failed to parse $2 content for $1 model: $3',
 'invalid-content-data'             => 'Invalid content data',
 'content-not-allowed-here'         => '"$1" content is not allowed on page [[$2]]',
+'editwarning-warning'              => 'Leaving this page may cause you to lose any changes you have made.
+If you are logged in, you can disable this warning in the "Editing" section of your preferences.',
 
 # Content models
 'content-model-wikitext'   => 'wikitext',

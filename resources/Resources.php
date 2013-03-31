@@ -737,6 +737,12 @@ return array(
 	'mediawiki.action.view.rightClickEdit' => array(
 		'scripts' => 'resources/mediawiki.action/mediawiki.action.view.rightClickEdit.js',
 	),
+	'mediawiki.action.edit.editWarning' => array(
+		'scripts' => 'resources/mediawiki.action/mediawiki.action.edit.editWarning.js',
+		'messages' => array(
+			'editwarning-warning',
+		),
+	),
 	// Alias for backwards compatibility
 	'mediawiki.action.watch.ajax' => array(
 		'dependencies' => 'mediawiki.page.watch.ajax'
