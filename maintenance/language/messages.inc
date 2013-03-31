@@ -72,6 +72,7 @@ $wgMessageStructure = array(
 		'tog-showhiddencats',
 		'tog-noconvertlink',
 		'tog-norollbackdiff',
+		'tog-useeditwarning',
 	),
 	'underline' => array(
 		'underline-always',
@@ -695,6 +696,7 @@ $wgMessageStructure = array(
 		'content-failed-to-parse',
 		'invalid-content-data',
 		'content-not-allowed-here',
+		'editwarning-warning',
 	),
 	'contentmodels' => array(
 		'content-model-wikitext',
