@@ -2663,6 +2663,7 @@ Gre za resno varnostno težavo, o kateri obvestite svojega internetnega ponudnik
 'sorbsreason' => 'Vaš IP-naslov je v DNSBL uvrščen med odprte posredniške strežnike.',
 'sorbs_create_account_reason' => 'Vaš IP-naslov je v DNSBL, ki ga uporablja {{GRAMMAR:tožilnik|{{SITENAME}}}}, naveden kot odprti posredniški strežnik (proxy).
 Računa žal ne morete ustvariti.',
+'xffblockreason' => 'IP-naslov, prisoten v glavi X-Forwarded-For, ali vaš ali od strežnika proxy, ki ga uporabljate, je blokiran. Izvirni razlog za blokado: $1',
 'cant-block-while-blocked' => 'Ne morete blokirati drugih uporabnikove, medtem ko ste sami blokirani.',
 'cant-see-hidden-user' => 'Uporabnik, ki ga poskušate blokirate, je že blokiran in skrit.
 Ker nimate pravice hideuser, si ne morete ogledati ali urejati uporabnikove blokade.',

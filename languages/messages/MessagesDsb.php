@@ -2057,15 +2057,6 @@ Jo nanejmjenjej głowna domena trěbna, na pśikład "*.org"<br />
 'listusers-noresult' => 'Žeden wužywaŕ njejo se namakał.',
 'listusers-blocked' => '(blokěrowany)',
 
-# Special:ActiveUsers
-'activeusers' => 'Lisćina aktiwnych wužywarjow',
-'activeusers-intro' => 'To jo lisćina wužywarjow, kotrež su byli aktiwne za {{PLURAL:$1|slědny źeń|slědnej $1 dnja|slědne $1 dny|slědnych $1 dnjow}}.',
-'activeusers-count' => '$1 {{PLURAL:$1|akcija|akciji|akcije|akcijow}} w {{PLURAL:$3|slědnem dnju|slědnyma $3 dnjoma|slědnych $3 dnjach}}',
-'activeusers-from' => 'Wužywarjow zwobrazniś, zachopinajucy z:',
-'activeusers-hidebots' => 'Boty schowaś',
-'activeusers-hidesysops' => 'Administratorow schowaś',
-'activeusers-noresult' => 'Žedne wužywarje namakane.',
-
 # Special:ListGroupRights
 'listgrouprights' => 'Pšawa wužywarskeje kupki',
 'listgrouprights-summary' => 'To jo lisćina wužywarskich kupkow definěrowanych w toś tom wikiju z jich zwězanymi pśistupnymi pšawami. Móžo [[{{MediaWiki:Listgrouprights-helppage}}|pśidatne informacije]] wó jadnotliwych pšawach daś.',
@@ -2537,6 +2528,7 @@ Glědaj do [[Special:BlockList|lisćiny blokěrowanjow]], aby blokěrowanja pśe
 'proxyblocksuccess' => 'Gótowe.',
 'sorbsreason' => 'Twója IP-adresa jo w DNSBL we {{GRAMMAR:lokatiw|{{SITENAME}}}} zapisana ako wócynjony proxy.',
 'sorbs_create_account_reason' => 'Twója IP-adresa jo w DNSBL {{GRAMMAR:genitiw|{{SITENAME}}}} ako wócynjony proxy zapisana. Njejo móžno, nowe wužywarske konta załožowaś.',
+'xffblockreason' => 'IP-adresa w header X-Forwarded-For, pak twója pak ta proksy-serwera, kótaryž wužywaš, jo se zablokěrowała. Spócetna pśicyna za blokěrowanje jo była: $1',
 'cant-block-while-blocked' => 'Njesmějoš žednych drugich wužywarjow blokěrowaś, mjaztym až ty sy blokěrowany.',
 'cant-see-hidden-user' => 'Wužywaŕ, kótaregož wopytujoš blokěrowaś, jo južo zablokěrowany a schowany. Dokulaž njamaš pšawo wužywarja schowaś, njamóžoš blokěrowanje wužywarja wiźeś abo wobźěłaś.',
 'ipbblocked' => 'Njamóžoš drugich wužywarjow blokěrowaś abo wótblokěrowaś, dokulaž ty sam jo zablokěrowany',

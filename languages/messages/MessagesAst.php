@@ -2528,6 +2528,7 @@ Pa ver los bloqueos qu'hai agora mesmo, mira na [[Special:BlockList|llista de bl
 'proxyblocksuccess' => 'Fecho.',
 'sorbsreason' => 'La to direición IP sal na llista de proxys abiertos en DNSBL usada por {{SITENAME}}.',
 'sorbs_create_account_reason' => 'La to direición IP sal na llista de proxys abiertos en DNSBL usada por {{SITENAME}}. Nun pues crear una cuenta',
+'xffblockreason' => "Una direición IP presente na testera X-Forwarded-For, o suya o d'un sirvidor proxy que ta usando, ta bloquiada. El motivu orixinal del bloquéu foi: $1",
 'cant-block-while-blocked' => 'Nun pues bloquiar a otros usuarios mentes tu teas bloquiáu.',
 'cant-see-hidden-user' => "L'usuariu que tentes bloquiar yá ta bloquiáu y anubríu.
 Como nun tienes permisos p'anubrir usuarios, nun pues ver o editar el bloquéu del usuariu.",

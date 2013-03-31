@@ -2741,6 +2741,7 @@ Vă rugăm să vă contactați furnizorul de servicii Internet sau tehnicienii I
 'sorbsreason' => 'Adresa dumneavoastră IP este listată ca un proxy deschis în DNSBL.',
 'sorbs_create_account_reason' => 'Adresa dumneavoastră IP este listată ca un proxy deschis în lista neagră DNS.
 Nu vă puteți crea un cont',
+'xffblockreason' => 'O adresă IP prezentă în antetul X-Forwarded-For — fie a dumneavoastră, fie a serverului proxy pe care îl folosiți — a fost blocată. Motivul original al blocării a fost: $1',
 'cant-block-while-blocked' => 'Nu puteți bloca alți utilizatori în timp ce sunteți dumneavoastră înșivă blocat.',
 'cant-see-hidden-user' => 'Utilizatorul pe care încercați să îl blocați este deja blocat și ascuns. Atata timp cât nu aveți drept de hideuser, nu puteți vedea sau modifica blocarea acestuia.',
 'ipbblocked' => 'Nu puteți bloca sau debloca alți utilizatori în timp ce sunteți dumneavoastră înșivă blocat.',

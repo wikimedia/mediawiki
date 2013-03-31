@@ -344,6 +344,7 @@ $messages = array(
 'newwindow' => '(Mäht e neu Finster op, wann Dinge Brauser dat kann)',
 'cancel' => 'Stopp! Avbreche!',
 'moredotdotdot' => 'Mieh&nbsp;…',
+'morenotlisted' => 'Et jeiht noch wigger&nbsp;&hellip;',
 'mypage' => 'Metmaachersigg',
 'mytalk' => 'Klaafsigg',
 'anontalk' => 'Klaaf för de IP-Adress',
@@ -769,6 +770,7 @@ Et süht us, wi wann ene kappodde Brauser udder <i lang=\"en\">proxy</i>ẞööv
 # Email sending
 'php-mail-error-unknown' => 'Nit bekannte Fähler met dä Funxjohn <code lang="en">mail()</code> vum PHP',
 'user-mail-no-addy' => 'Do häs versöhg en <i lang="en">e-mail</i> der ohne en Adräß ze verschecke',
+'user-mail-no-body' => 'En dä <i lang="en">e-mail</i> schteiht nix udder zoh winnisch dren.',
 
 # Change password dialog
 'resetpass' => 'Passwood tuusche udder neu ußjävve',
@@ -1354,7 +1356,7 @@ Mieh doh drövver fengk mer em [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAG
 'search-interwiki-default' => '$1 hät heh di Träffer jefonge:',
 'search-interwiki-more' => '(mieh)',
 'search-relatedarticle' => 'Ähnlesch',
-'mwsuggest-disable' => 'Kein automatische Hölp-Liss per Ajax beim Tippe em Feld för et Söke',
+'mwsuggest-disable' => 'Donn kein automattische Leß met Sigge beim Tippe em Feld för et Söhke aanzeije.',
 'searcheverything-enable' => 'En alle Appachtemangs söhke',
 'searchrelated' => 'ähnlesch',
 'searchall' => 'all',
@@ -2139,6 +2141,12 @@ Esu en Links sollte eijentlesch op en Sigg jon, di tirek jemeint es.
 
 Ene Atikel weed als en „(Watt ėßß datt?)“-Sigg jezallt, wann dä en Schablohn opröhf, op di ene Lenk en dä Sigg [[MediaWiki:Disambiguationspage]] dren es.',
 
+'pageswithprop' => 'Sigge med en beschtemmpte Eijeschaff',
+'pageswithprop-legend' => 'Sigge med en Eijeschaff',
+'pageswithprop-text' => 'Heh di Sigg zeisch Sigge, di en beschtemmpte Eijeschaf han',
+'pageswithprop-prop' => 'Dä name vun dä Eijeschaff:',
+'pageswithprop-submit' => 'Lohß Jonn!',
+
 'doubleredirects' => 'Ömleitunge op Ömleitunge',
 'doubleredirectstext' => 'Hee fings De en jede Reih ene Link op de iertste un de zweite Ömleitung, donoh ene Link op de Sigg, wo de
 zweite Ömleitung hin jeiht. För jewöhnlich es dat dann och de richtije Sigg, wo de iertste Ömleitung ald hen jonn sullt.
@@ -2314,7 +2322,7 @@ eins vun all däm op eimol.',
 'linksearch-ok' => 'Söhke',
 'linksearch-text' => 'Beim Söke künnd_Er Schtäänsche aanjevve för e Schtöcksche fun ennem Naame, wo mer nit jenou weiß, wi et heiß udder wat me nit kenne deit, zem Beishpöll esu: <code>http://*.example.com</code> un ene bövverschte Name för en Domain moß aanjejovve sin, zem Beishpöll esu: <code>http://*.org</code> 
 
-De Brauserprotokolle, di mer beim Söke aanjäjovve kann, sin: <code>$1</code>, un der Schtandatt es <code>http://</code> wann nix aanjejovve es.',
+{{PLURAL:$2|Dat Brauserprotokoll, wat|De Brauserprotokolle, di|Kein Brauserprotokolle, di}} mer beim Söhke aanjävve kann, sin: <code>$1</code>, un der Schtandatt es <code>http://</code> wann nix aanjejovve es.',
 'linksearch-line' => '„$2“ hät ene Link op $1',
 'linksearch-error' => 'Shternshe kam_mer nor aam Aanfang fum Domain-Name bruche.',
 
@@ -2533,6 +2541,8 @@ En Leß met de [[Special:ProtectedPages|em Momang jeschözde Sigge]] ham_mer och
 'prot_1movedto2' => 'hät de Sigg vun „[[$1]]“ en „[[$2]]“ ömjenannt.',
 'protect-badnamespace-title' => 'Appachtemang nit schözbaa.',
 'protect-badnamespace-text' => 'En dämm Appachtemang kam_mer kein Sigge schöze.',
+'protect-norestrictiontypes-text' => 'Heh di Sigg kam_mer nit schöze, weil et jaa_kein Zoote vun Schoz em Wiki jitt.',
+'protect-norestrictiontypes-title' => 'Di Sigg es nit schözbaa.',
 'protect-legend' => 'Sigg schötze',
 'protectcomment' => 'Aanlaß odder Jrund:',
 'protectexpiry' => 'Duur, wi lang:',
@@ -2824,6 +2834,7 @@ un verzäll dänne vun däm ärrje Risiko för de Secherheit fun dänne ehr Rä�
 'sorbs' => '<i lang="en">DNSBL</i>',
 'sorbsreason' => 'Ding IP-Adress weed en de DNSbl als ene offe Proxy jeliss. Schwaad met Dingem System-Minsch oder Netzwerk-Techniker (ISP Internet Service Provider) drüvver, un verzäll dänne vun däm Risiko för ehr Secherheit!',
 'sorbs_create_account_reason' => 'Ding IP-Adress weed en de DNSbl als ene offe Proxy jeliss. Dröm kanns De Dich heh em Wiki nit als ene neue Metmaacher aanmelde. Schwaad met Dingem System-Minsch oder Netzwerk-Techniker oder (ISP Internet Service Provider) drüvver, un verzäll dänne vun däm Risiko för ehr Secherheit!',
+'xffblockreason' => 'En <i lang="en">IP-</i>Adräs en ener <code lang="en">X-Forwarded-For</i> Koppreih es jeschpächt: Et künnt de Dinge udder enem <i lang="en">proxy server</i> zweschedren sing Adräß sin. Der Jrond för et Schpärre woh orschprönglesch: $1',
 'cant-block-while-blocked' => 'Do kanns ander Metmaacher nit sperre, esu lang wi De sellver jesperrt bes.',
 'cant-see-hidden-user' => 'Dä Metmaacher, dä De shperre wells, es al jeshperrt un verschtoche. Weil De nit dat Rääsch häs. Metmaacher ze vershteiche (<code>hideuser</code>), kanns De däm sing Sperr och nit ändere.',
 'ipbblocked' => 'Do kanns kein ander Metmaachere sperrre, weil De sellver jesperrt bes',
@@ -3219,6 +3230,7 @@ Esu kam_mer noch en Aanmerkung en „{{int:summary}}“ maache.',
 'pageinfo-robot-noindex' => 'kammer nit opnämme',
 'pageinfo-views' => 'De Aanzahl Affroofe',
 'pageinfo-watchers' => 'De Aanzahl Oppaßer för di Sigg',
+'pageinfo-few-watchers' => 'Et jidd_er winnijer wi {{PLURAL:$1|eine|$1|keine}} Oppaßer.',
 'pageinfo-redirects-name' => 'Ömleidong(e) op heh di Sigg',
 'pageinfo-subpages-name' => 'Ongersigg(e) vun heh dä Sigg',
 'pageinfo-subpages-value' => '$1 (dovun {{PLURAL:$2|ein Ömleidong|$2 Ömleidonge|kein Ömleidong}} un {{PLURAL:$3|ein nomaale Sigg|$3 nomaale Sigge|kein nomaale Sigg}})',
@@ -3241,6 +3253,10 @@ Esu kam_mer noch en Aanmerkung en „{{int:summary}}“ maache.',
 'pageinfo-protect-cascading' => 'Ene Siggeschoz weed vun heh verärf',
 'pageinfo-protect-cascading-yes' => 'Joh',
 'pageinfo-protect-cascading-from' => 'Ene Siggeschoz weed jeärf vun',
+'pageinfo-category-info' => 'Aanjaabe övver Saachjroppe',
+'pageinfo-category-pages' => 'De Aanzahl Sigge',
+'pageinfo-category-subcats' => 'De Aanzahl Ongerjroppe',
+'pageinfo-category-files' => 'De Aanzahl Dateie',
 
 # Skin names
 'skinname-standard' => 'Klassesch',
@@ -4159,8 +4175,18 @@ die De häs han welle. Se künnt jet ällder un nit mieh aktoäll sin.',
 'logentry-move-move_redir-noredirect' => '{{GENDER:$2|Dä|Dat|Dä Metmaacher|De|Dat}} $1 hätt di Sigg „$3“ en „$4“ ömjenannt un derbei en ahle Ömleidongßsigg fottjeschmeße un kein neue Ömleidongßsig aanjelaat.',
 'logentry-patrol-patrol' => '{{GENDER:$2|Dä|Dat|Dä Metmaacher|De|Dat}} $1 hät di Version $4 vun dä Sigg „$3“ nohjeloort.',
 'logentry-patrol-patrol-auto' => '{{GENDER:$2|Dä|Dat|Dä Metmaacher|De|Dat}} $1 hät di Version $4 vun dä Sigg „$3“ automattesch nohjeloort.',
-'logentry-newusers-newusers' => 'Dä neue Metmaacher $1 wood aanjelaat.',
-'logentry-newusers-create' => '{{GENDER:$4|Dä neue Metmaacher|De neue Metmaacherėn|Dä neue Metmaacher|De neue Metmaacherėn|Dä neue Metmaacher}} $1 wood aanjelaat.',
+'logentry-newusers-newusers' => '{{GENDER:$2
+|Dä neue Metmaacher $1 wood
+|Dat $1 wood als ene neue Metmaacherėn
+|Dä neue Metmaacher $1 wood
+|De $1 wood als en neue Metmaacherėn
+|Dat $1 wood als ene neue Metmaacher}} aanjelaat.',
+'logentry-newusers-create' => '{{GENDER:$4
+|Dä neue Metmaacher $1 wood
+|Dat $1 wood als ene neue Metmaacherėn
+|Dä neue Metmaacher $1 wood
+|De $1 wood als en neue Metmaacherėn
+|Dat $1 wood als ene neue Metmaacher}} aanjelaat.',
 'logentry-newusers-create2' => '{{GENDER:$4|Dä|Dat|Dä Metmaacher|De|Dat}} $3 wood {{GENDER:$2|vum|vum|vumm Metmaacher|vun dä|vum}} $1 aanjelaat.',
 'logentry-newusers-autocreate' => '{{GENDER:$4|Dä|Dat|Dä Metmaacher|De|Dat}} $1 wood automattesch {{GENDER:$4|als Metmaacher|als Metmaacher||als Metmaacher|als Metmaacher}} aanjelaat.',
 'logentry-rights-rights' => '{{GENDER:$2|Dä|Dat|Dä Metmaacher|De|Dat}} „$1“ hät däm Metmaacher „$3“ sing Jroppe-Räächde vun „$4“ op „$5“ ömjestallt.',
@@ -4240,5 +4266,8 @@ Wat De doh enjiß, kütt met Dingem Metmaachername un Dingem Brauser op die Sigg
 'duration-decades' => '{{PLURAL:$1|zehn Johre|$1 Johrzehnte|kei Johrzehnt}}',
 'duration-centuries' => '{{PLURAL:$1|e Johrhondert|$1 Johrhonderte|kei Johrhondert}}',
 'duration-millennia' => '{{PLURAL:$1|e Johrdousend|$1 Johrdousende|kei Johrdousend}}',
+
+# Image rotation
+'rotate-comment' => 'Dat Beld wood öm {{PLURAL:$1|$1 Jraad}} esu eröm jedrieht, wi der Ohrzeijer leuf.',
 
 );

@@ -2822,6 +2822,7 @@ Siehe die [[Special:BlockList|Liste der gesperrten IP-Adressen und Benutzernamen
 'proxyblocksuccess' => 'Erledigt.',
 'sorbsreason' => 'Die IP-Adresse ist in der DNSBL von {{SITENAME}} als offener PROXY gelistet.',
 'sorbs_create_account_reason' => 'Die IP-Adresse ist in der DNSBL von {{SITENAME}} als offener PROXY gelistet. Das Anlegen neuer Benutzer ist nicht möglich.',
+'xffblockreason' => 'Eine IP-Adresse im X-Forwarded-For-Header wurde gesperrt, entweder deine oder die des benutzten Proxyservers. Der ursprüngliche Sperrgrund war: $1',
 'cant-block-while-blocked' => 'Du kannst keine anderen Benutzer sperren, während du selbst gesperrt bist.',
 'cant-see-hidden-user' => 'Der Benutzer, den du versuchst zu sperren, wurde bereits gesperrt und verborgen. Da du das „hideuser“-Recht nicht hast, kannst du die Benutzersperre nicht sehen und nicht bearbeiten.',
 'ipbblocked' => 'Du kannst keine anderen Benutzer sperren oder entsperren, da du selbst gesperrt bist',

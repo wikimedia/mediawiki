@@ -59,6 +59,7 @@
  * @author Lucyin
  * @author McDutchie
  * @author Meithal
+ * @author Metroitendo
  * @author Moyg
  * @author Nicolas NALLET
  * @author Nicolas Raoul
@@ -2817,6 +2818,7 @@ Veuillez contacter votre fournisseur d'accès Internet ou votre support techniqu
 'sorbsreason' => 'Votre adresse IP est listée comme mandataire ouvert dans le DNSBL utilisé par {{SITENAME}}.',
 'sorbs_create_account_reason' => 'Votre adresse IP est listée comme mandataire ouvert dans le DNSBL utilisé par {{SITENAME}}.
 Vous ne pouvez pas créer un compte.',
+'xffblockreason' => "Une adresse IP dans l'en-tête X-Forwarded-For, soit la vôtre ou celle d'un serveur proxy que vous utilisez, a été bloquée. La raison du blocage initial est : $1",
 'cant-block-while-blocked' => "Vous ne pouvez pas bloquer d'autres utilisateurs tant que vous êtes bloqué{{GENDER:||e|(e)}}.",
 'cant-see-hidden-user' => "L'utilisateur que vous tentez de bloquer a déjà été bloqué et masqué. N'ayant pas le droit ''hideuser'', vous ne pouvez pas voir ou modifier le blocage de cet utilisateur.",
 'ipbblocked' => "Vous ne pouvez pas bloquer ou débloquer d'autres utilisateurs, parce que vous êtes vous-même bloqué",

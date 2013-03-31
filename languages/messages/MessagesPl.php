@@ -12,6 +12,7 @@
  * @author BdgwksxD
  * @author Beau
  * @author BeginaFelicysym
+ * @author Chrumps
  * @author Cysioland
  * @author Derbeth
  * @author Equadus
@@ -590,6 +591,7 @@ $1',
 'site-atom-feed' => 'Kanał Atom {{GRAMMAR:D.lp|$1}}',
 'page-rss-feed' => 'Kanał RSS „$1”',
 'page-atom-feed' => 'Kanał Atom „$1”',
+'feed-rss' => 'RSS',
 'red-link-title' => '$1 (strona nie istnieje)',
 'sort-descending' => 'Sortuj malejąco',
 'sort-ascending' => 'Sortuj rosnąco',
@@ -3079,6 +3081,8 @@ Pozwala na wpisanie powodu w opisie zmian.',
 'noscript.css' => '/* Umieszczony tu arkusz stylów CSS będzie wykorzystywany dla użytkowników z wyłączoną obsługą JavaScript */',
 'group-autoconfirmed.css' => '/* CSS tutaj umieszczony będzie dotyczyć tylko automatycznie zatwierdzonych użytkowników */',
 'group-bot.css' => '/* CSS tutaj umieszczony będzie obowiązywał tylko dla botów */',
+'group-sysop.css' => '/* Umieszczony tutaj kod CSS dotyczyć będzie tylko administratorów */',
+'group-bureaucrat.css' => '/* Umieszczony tutaj kod CSS dotyczyć będzie tylko biurokratów */',
 
 # Scripts
 'common.js' => '/* Umieszczony tutaj kod JavaScript zostanie załadowany przez każdego użytkownika, podczas każdego ładowania strony. */',

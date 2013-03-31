@@ -2060,15 +2060,6 @@ Znajmjeńša hłowna domena je trěbna, na přikład "*.org".<br />
 'listusers-noresult' => 'Njemóžno wužiwarjow namakać. Prošu wobkedźbuj, zo so mało- abo wulkopisanje na wotprašowanje wuskutkuje.',
 'listusers-blocked' => '(blokowany)',
 
-# Special:ActiveUsers
-'activeusers' => 'Lisćina aktiwnych wužiwarjow',
-'activeusers-intro' => 'To je lisćina wužiwarjow, kotřiž běchu aktiwni za {{PLURAL:$1|posledni dźeń|poslednjej $1 dnjej|poslednje $1 dny|poslednich $1 dnjow}}:',
-'activeusers-count' => '$1 {{PLURAL:$1|akcija|akciji|akcije|akcijow}} w {{PLURAL:$3|zańdźenej dnju|zańdźenymaj $3 dnjomaj|zańdźenych $3 dnjach}}',
-'activeusers-from' => 'Wužiwarjow zwobraznić, započinajo z:',
-'activeusers-hidebots' => 'Boćiki schować',
-'activeusers-hidesysops' => 'Administratorow schować',
-'activeusers-noresult' => 'Žani wužiwarjo namakani.',
-
 # Special:ListGroupRights
 'listgrouprights' => 'Prawa wužiwarskeje skupiny',
 'listgrouprights-summary' => 'Slěduje lisćina wužiwarskich skupinow na tutej wikiju z jich wotpowědnymi přistupnymi prawami. Tu móžeš [[{{MediaWiki:Listgrouprights-helppage}}|dalše informacije]] wo jednotliwych prawach namakać.',
@@ -2544,6 +2535,7 @@ Hlej [[Special:BlockList|lisćinu blokowanjow]], zo by zablokowanjow pruwował.'
 'sorbs' => 'SORBS DNSbl',
 'sorbsreason' => 'Twoja IP-adresa je jako wotewrjeny proksy na DNSBL {{GRAMMAR:genitiw|{{SITENAME}}}} zapisana.',
 'sorbs_create_account_reason' => 'Twoja IP-adresa je jako wotewrjeny proksy na DNSBL {{GRAMMAR:genitiw|{{SITENAME}}}} zapisana. Njemóžeš konto wutworić.',
+'xffblockreason' => 'IP-adresa w header X-Forwarded-For, pak twoja pak ta proksy-serwera, kotryž wužiwaš, je so zablokowała. Prěnjotna přičina za blokowanje bě: $1',
 'cant-block-while-blocked' => 'Njemóžeš druhich wužiwarjow blokować, mjeztym zo ty sy zablokowany.',
 'cant-see-hidden-user' => 'Wužiwar, kotrehož pospytuješ blokować, bu hižo zablokowany a schowany. Dokelž nimaš prawo wužiwarja schować, njemóžeš blokowanje wužiwarja widźeć abo wobdźěłać.',
 'ipbblocked' => 'Njemóžeš druhich wužiwarjow blokować abo wotblokować, dokelž ty sam sy zablokowany',

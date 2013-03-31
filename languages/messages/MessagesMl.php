@@ -3846,7 +3846,7 @@ $5
 
 ഈ പ്രോഗ്രാമിനൊപ്പം [{{SERVER}}{{SCRIPTPATH}}/COPYING ഗ്നു സാർവ്വജനിക അനുവാദപത്രത്തിന്റെ ഒരു പകർപ്പ്] താങ്കൾക്ക് ലഭിച്ചിരിക്കും; ഇല്ലെങ്കിൽ Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA എന്ന വിലാസത്തിലെഴുതുക അല്ലെങ്കിൽ [//www.gnu.org/licenses/old-licenses/gpl-2.0.html അനുവാദപത്രം ഓൺലൈനായി വായിക്കുക].',
 'version-software' => 'ഇൻസ്റ്റോൾ ചെയ്ത സോഫ്റ്റ്‌വെയർ',
-'version-software-product' => 'സോഫ്റ്റ്‌വെയർ ഉല്പന്നം',
+'version-software-product' => 'ഉല്പന്നം',
 'version-software-version' => 'വിവരണം',
 'version-entrypoints' => 'പ്രവേശനസ്ഥാന യു.ആർ.എല്ലുകൾ',
 'version-entrypoints-header-entrypoint' => 'പ്രവേശനസ്ഥാനം',

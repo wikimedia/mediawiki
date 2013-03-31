@@ -2635,6 +2635,7 @@ $1被封禁的理由是“$2”',
 'proxyblocksuccess' => '完成。',
 'sorbsreason' => '您的IP位址在{{SITENAME}}中被 DNSBL列為屬於開放代理服務器。',
 'sorbs_create_account_reason' => '由於您的IP位址在{{SITENAME}}中被 DNSBL列為屬於開放代理服務器，所以您無法建立賬號。',
+'xffblockreason' => '您或您使用的代理伺服器X-Forwarded-For字段所包含的一個IP地址已被封禁。原始封禁理由：$1',
 'cant-block-while-blocked' => '當您被封鎖時不可以封鎖其他用戶。',
 'cant-see-hidden-user' => '您現正嘗試封鎖的用戶已經被封鎖或隱藏。
 您現在沒有隱藏用戶的權限，您不可以檢視或者編輯這位用戶的封鎖。',

@@ -971,7 +971,7 @@ Se segue sen funcionar, probe a [[Special:UserLogout|saír do sistema]] e volver
 Se segue sen funcionar, probe a [[Special:UserLogout|saír do sistema]] e volver entrar.'''",
 'token_suffix_mismatch' => "'''Rexeitouse a súa edición porque o seu cliente confundiu os signos de puntuación na edición.'''
 Rexeitouse a edición para evitar que se corrompa o texto do artigo.
-Isto pode acontecer porque estea a empregar un servizo de ''proxy'' anónimo defectuoso baseado na web.",
+Isto pode acontecer porque estea a empregar un servizo de proxy anónimo defectuoso baseado na web.",
 'edit_form_incomplete' => "'''Algunhas partes do formulario de edición non chegaron ao servidor; comprobe que a súa modificación está intacta e inténteo de novo.'''",
 'editing' => 'Editando "$1"',
 'creating' => 'Creando "$1"',
@@ -2716,9 +2716,10 @@ Olle a [[Special:BlockList|lista de bloqueos]] para comprobar os bloqueos vixent
 'proxyblockreason' => 'O seu enderezo IP foi bloqueado porque é un proxy aberto.
 Por favor, contacte co seu fornecedor de acceso á Internet ou co seu soporte técnico e informe deste grave problema de seguridade.',
 'proxyblocksuccess' => 'Feito.',
-'sorbsreason' => "O seu enderezo IP está rexistrado como un ''proxy'' aberto na lista DNSBL usada por {{SITENAME}}.",
-'sorbs_create_account_reason' => "O seu enderezo IP está rexistrado como un ''proxy'' aberto na lista DNSBL usada por {{SITENAME}}.
-Polo tanto, non pode crear unha conta",
+'sorbsreason' => 'O seu enderezo IP está rexistrado como un proxy aberto na lista DNSBL usada por {{SITENAME}}.',
+'sorbs_create_account_reason' => 'O seu enderezo IP está rexistrado como un proxy aberto na lista DNSBL usada por {{SITENAME}}.
+Polo tanto, non pode crear unha conta',
+'xffblockreason' => 'Un enderezo IP presente na cabeceira X-Forwarded-For, ou ben seu ou ben dun servidor proxy que está utilizando, foi bloqueado. O motivo do bloqueo orixinal é: $1',
 'cant-block-while-blocked' => 'Non pode bloquear outros usuarios mentres vostede estea bloqueado.',
 'cant-see-hidden-user' => 'O usuario que intenta bloquear xa foi bloqueado e agochado. Dado que non ten o dereito necesario para agochar usuarios, non pode ver ou editar o bloqueo do usuario.',
 'ipbblocked' => 'Non pode bloquear ou desbloquear outros usuarios porque vostede está bloqueado',
