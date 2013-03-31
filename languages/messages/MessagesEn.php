@@ -1490,6 +1490,8 @@ It already exists.',
 'content-failed-to-parse'          => 'Failed to parse $2 content for $1 model: $3',
 'invalid-content-data'             => 'Invalid content data',
 'content-not-allowed-here'         => '"$1" content is not allowed on page [[$2]]',
+'vector-editwarning-warning'       => 'Leaving this page may cause you to lose any changes you have made.
+If you are logged in, you can disable this warning in the "Editing" section of your preferences.'
 
 # Content models
 'content-model-wikitext'   => 'wikitext',
@@ -1935,6 +1937,7 @@ Your e-mail address is not revealed when other users contact you.',
 'prefs-displaysearchoptions'    => 'Display options',
 'prefs-displaywatchlist'        => 'Display options',
 'prefs-diffs'                   => 'Diffs',
+'vector-editwarning-preference' => 'Warn me when I leave an edit page with unsaved changes',
 
 # User preference: e-mail validation using jQuery
 'email-address-validity-valid'   => 'E-mail address appears valid',
