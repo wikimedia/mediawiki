@@ -830,6 +830,13 @@ class Preferences {
 			'section' => 'editing/advancedediting',
 			'label-message' => 'tog-uselivepreview',
 		);
+
+		$defaultPreferences['editwarning'] = array(
+			'type' => 'toggle',
+			'section' => 'editing/advancedediting',
+			'label-message' => 'tog-editwarning',
+		);
+
 	}
 
 	/**
