@@ -695,6 +695,8 @@ $wgMessageStructure = array(
 		'content-failed-to-parse',
 		'invalid-content-data',
 		'content-not-allowed-here',
+		'editwarning-preference',
+		'editwarning-warning',
 	),
 	'contentmodels' => array(
 		'content-model-wikitext',
