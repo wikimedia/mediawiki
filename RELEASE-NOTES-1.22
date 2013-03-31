@@ -16,6 +16,11 @@ production.
 * (bug 44525) mediawiki.jqueryMsg can now parse (whitelisted) HTML elements and attributes.
 * (bug 33454) Language::sprintfDate now has a timezone parameter, and supports
   the "eIOPTZ" formatting characters.
+* EditWarning: A warning is shown when an editor leaves the edit form without
+  saving (enabled by default, users can opt-out via the 'useeditwarning'
+  preference). This feature was moved from the Vector extension, and is now part
+  of core for all skins. Take care when upgrading that you don't use an older
+  version of the Vector extension as this feature may conflict.
 
 === Bug fixes in 1.22 ===
 

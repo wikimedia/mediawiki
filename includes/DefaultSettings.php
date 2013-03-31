@@ -3693,6 +3693,7 @@ $wgDefaultUserOptions = array(
 	'watchlisthidepatrolled' => 0,
 	'watchmoves' => 0,
 	'wllimit' => 250,
+	'useeditwarning' => 0,
 );
 
 /** An array of preferences to not show for the user */
