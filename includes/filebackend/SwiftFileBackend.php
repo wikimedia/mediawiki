@@ -1316,7 +1316,7 @@ class SwiftFileBackend extends FileBackendStore {
 	 *                           matches the expression and the request is not for a listing.
 	 *                           Setting this to '*' effectively makes a container public.
 	 *   -".rlistings:<regex>" : Grants access if the request is from a referrer host that
-	 *                           matches the expression and the request for a listing.
+	 *                           matches the expression and the request is for a listing.
 	 *
 	 * $writeGrps is a list of the possible criteria for a request to have
 	 * access to write to a container. Each item is of the following format:
