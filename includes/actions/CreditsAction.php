@@ -79,17 +79,17 @@ class CreditsAction extends FormlessAction {
 
 	/**
 	 * Get the last author with the last modification time
-	 * @param $article Article object
+	 * @param Page $page
 	 * @return String HTML
 	 */
-	protected function getAuthor( Page $article ) {
-		$user = User::newFromName( $article->getUserText(), false );
+	protected function getAuthor( Page $page ) {
+		$user = User::newFromName( $page->getUserText(), false );
 
-		$timestamp = $article->getTimestamp();
+		$timestamp = $page->getTimestamp();
 		if ( $timestamp ) {
 			$lang = $this->getLanguage();
-			$d = $lang->date( $article->getTimestamp(), true );
-			$t = $lang->time( $article->getTimestamp(), true );
+			$d = $lang->date( $page->getTimestamp(), true );
+			$t = $lang->time( $page->getTimestamp(), true );
 		} else {
 			$d = '';
 			$t = '';
