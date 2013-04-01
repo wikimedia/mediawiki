@@ -134,8 +134,4 @@ class StatCounter {
 			// Disabled
 		}
 	}
-
-	function __destruct() {
-		$this->flush();
-	}
 }
