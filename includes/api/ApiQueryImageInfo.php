@@ -547,7 +547,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	 * Returns the descriptions for the properties provided by getPropertyNames()
 	 *
 	 * @param array $filter List of properties to filter out
-	 *
+	 * @param string $modulePrefix
 	 * @return array
 	 */
 	public static function getPropertyDescriptions( $filter = array(), $modulePrefix = '' ) {
