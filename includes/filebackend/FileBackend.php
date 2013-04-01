@@ -682,6 +682,8 @@ abstract class FileBackend {
 	 * The 'noAccess' and 'noListing' parameters works the same as in secure(),
 	 * except they are only applied *if* the directory/container had to be created.
 	 * These flags should always be set for directories that have private files.
+	 * However, setting them is not guaranteed to actually do anything.
+	 * Additional server configuration may be needed to achieve the desired effect.
 	 *
 	 * @param array $params
 	 * $params include:
@@ -709,7 +711,9 @@ abstract class FileBackend {
 	 * the container it belongs to. FS backends might add .htaccess
 	 * files whereas key/value store backends might revoke container
 	 * access to the storage user representing end-users in web requests.
-	 * This is not guaranteed to actually do anything.
+	 *
+	 * This is not guaranteed to actually make files or listings publically hidden.
+	 * Additional server configuration may be needed to achieve the desired effect.
 	 *
 	 * @param array $params
 	 * $params include:
@@ -738,6 +742,9 @@ abstract class FileBackend {
 	 * files whereas key/value store backends might grant container
 	 * access to the storage user representing end-users in web requests.
 	 * This essentially can undo the result of secure() calls.
+	 *
+	 * This is not guaranteed to actually make files or listings publically viewable.
+	 * Additional server configuration may be needed to achieve the desired effect.
 	 *
 	 * @param array $params
 	 * $params include:
