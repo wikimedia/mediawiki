@@ -183,7 +183,8 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	/**
 	 * Return an array with a ChangesFeed object and ChannelFeed object
 	 *
-	 * @return Array
+	 * @param string $feedFormat Feed's format (either 'rss' or 'atom')
+	 * @return array
 	 */
 	public function getFeedObject( $feedFormat ) {
 		$changesFeed = new ChangesFeed( $feedFormat, 'rcfeed' );

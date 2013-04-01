@@ -94,11 +94,11 @@ class SpecialWhatLinksHere extends SpecialPage {
 	}
 
 	/**
-	 * @param int $level     Recursion level
-	 * @param $target Title   Target title
-	 * @param int $limit     Number of entries to display
-	 * @param $from Title   Display from this article ID
-	 * @param $back Title   Display from this article ID at backwards scrolling
+	 * @param int $level Recursion level
+	 * @param Title $target Target title
+	 * @param int $limit Number of entries to display
+	 * @param int $from Display from this article ID (default: 0)
+	 * @param int $back Display from this article ID at backwards scrolling (default: 0)
 	 */
 	function showIndirectLinks( $level, $target, $limit, $from = 0, $back = 0 ) {
 		global $wgMaxRedirectLinksRetrieved;
