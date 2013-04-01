@@ -111,7 +111,7 @@ class SpecialStatistics extends SpecialPage {
 	 * @param $number  Float: a statistical number
 	 * @param $trExtraParams  Array: params to table row, see Html::elememt
 	 * @param $descMsg  String: message key
-	 * @param $descMsgParam  Array: message params
+	 * @param array|string $descMsgParam Message parameters
 	 * @return string table row in HTML format
 	 */
 	private function formatRow( $text, $number, $trExtraParams = array(), $descMsg = '', $descMsgParam = '' ) {

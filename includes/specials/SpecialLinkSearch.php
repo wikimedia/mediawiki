@@ -133,6 +133,8 @@ class LinkSearchPage extends QueryPage {
 	/**
 	 * Return an appropriately formatted LIKE query and the clause
 	 *
+	 * @param string $query
+	 * @param string $prot
 	 * @return array
 	 */
 	static function mungeQuery( $query, $prot ) {

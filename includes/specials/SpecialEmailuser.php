@@ -264,6 +264,8 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	 * getPermissionsError(). It is probably also a good
 	 * idea to check the edit token and ping limiter in advance.
 	 *
+	 * @param array $data
+	 * @param IContextSource $context
 	 * @return Mixed: Status object, or potentially a String on error
 	 * or maybe even true on success if anything uses the EmailUser hook.
 	 */
