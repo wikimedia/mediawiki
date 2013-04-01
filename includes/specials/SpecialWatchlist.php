@@ -491,7 +491,7 @@ class SpecialWatchlist extends SpecialPage {
 	/**
 	 * Count the number of items on a user's watchlist
 	 *
-	 * @param $dbr A database connection
+	 * @param DatabaseBase $dbr A database connection
 	 * @return Integer
 	 */
 	protected function countItems( $dbr ) {
