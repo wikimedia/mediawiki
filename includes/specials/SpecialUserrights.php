@@ -283,6 +283,7 @@ class UserrightsPage extends SpecialPage {
 	 * return a user (or proxy) object for manipulating it.
 	 *
 	 * Side effects: error output for invalid access
+	 * @param string $username
 	 * @return Status object
 	 */
 	public function fetchUser( $username ) {

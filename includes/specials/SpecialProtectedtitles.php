@@ -69,6 +69,7 @@ class SpecialProtectedtitles extends SpecialPage {
 	/**
 	 * Callback function to output a restriction
 	 *
+	 * @param $row
 	 * @return string
 	 */
 	function formatRow( $row ) {
@@ -156,6 +157,7 @@ class SpecialProtectedtitles extends SpecialPage {
 	}
 
 	/**
+	 * @param $pr_level
 	 * @return string Formatted HTML
 	 * @private
 	 */

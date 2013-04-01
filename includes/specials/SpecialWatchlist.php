@@ -469,6 +469,8 @@ class SpecialWatchlist extends SpecialPage {
 	/**
 	 * Returns html
 	 *
+	 * @param int $days
+	 * @param array $options
 	 * @return string
 	 */
 	protected function cutoffLinks( $days, $options = array() ) {
