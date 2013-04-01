@@ -382,6 +382,7 @@ class ApiQuery extends ApiBase {
 		$modules = $allModules;
 		$tmp = $completeModules;
 		$wasPosted = $this->getRequest()->wasPosted();
+		// @todo FIXME: Unused local variable?
 		$main = $this->getMain();
 
 		/** @var $module ApiQueryBase */
