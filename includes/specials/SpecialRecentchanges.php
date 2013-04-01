@@ -66,7 +66,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	/**
 	 * Create a FormOptions object with options as specified by the user
 	 *
-	 * @param $parameters array
+	 * @param array $parameters
 	 *
 	 * @return FormOptions
 	 */
@@ -91,7 +91,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	/**
 	 * Get custom show/hide filters
 	 *
-	 * @return Array Map of filter URL param names to properties (msg/default)
+	 * @return array Map of filter URL param names to properties (msg/default)
 	 */
 	protected function getCustomFilters() {
 		if ( $this->customFilters === null ) {
@@ -132,7 +132,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	/**
 	 * Main execution point
 	 *
-	 * @param $subpage String
+	 * @param string $subpage
 	 */
 	public function execute( $subpage ) {
 		$this->rcSubpage = $subpage;
@@ -172,6 +172,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		}
 		if( $feedFormat ) {
 			list( $changesFeed, $formatter ) = $this->getFeedObject( $feedFormat );
+			/** @var ChangesFeed $changesFeed */
 			$changesFeed->execute( $formatter, $rows, $lastmod, $opts );
 		} else {
 			$this->webOutput( $rows, $opts );
@@ -183,7 +184,8 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	/**
 	 * Return an array with a ChangesFeed object and ChannelFeed object
 	 *
-	 * @return Array
+	 * @param string $feedFormat Feed's format (either 'rss' or 'atom')
+	 * @return array
 	 */
 	public function getFeedObject( $feedFormat ) {
 		$changesFeed = new ChangesFeed( $feedFormat, 'rcfeed' );
@@ -199,8 +201,8 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	 * Process $par and put options found if $opts
 	 * Mainly used when including the page
 	 *
-	 * @param $par String
-	 * @param $opts FormOptions
+	 * @param string $par
+	 * @param FormOptions $opts
 	 */
 	public function parseParameters( $par, FormOptions $opts ) {
 		$bits = preg_split( '/\s*,\s*/', trim( $par ) );
@@ -252,8 +254,8 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	 * Don't use this if we are using the patrol feature, patrol changes don't
 	 * update the timestamp
 	 *
-	 * @param $feedFormat String
-	 * @return String or false
+	 * @param string $feedFormat
+	 * @return string|bool
 	 */
 	public function checkLastModified( $feedFormat ) {
 		$dbr = wfGetDB( DB_SLAVE );
@@ -270,7 +272,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	/**
 	 * Return an array of conditions depending of options set in $opts
 	 *
-	 * @param $opts FormOptions
+	 * @param FormOptions $opts
 	 * @return array
 	 */
 	public function buildMainQueryConds( FormOptions $opts ) {
@@ -362,9 +364,9 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	/**
 	 * Process the query
 	 *
-	 * @param $conds Array
-	 * @param $opts FormOptions
-	 * @return bool|ResultWrapper result or false (for Recentchangeslinked only)
+	 * @param array $conds
+	 * @param FormOptions $opts
+	 * @return bool|ResultWrapper Result or false (for Recentchangeslinked only)
 	 */
 	public function doMainQuery( $conds, $opts ) {
 		$tables = array( 'recentchanges' );
@@ -468,8 +470,8 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	/**
 	 * Send output to the OutputPage object, only called if not used feeds
 	 *
-	 * @param array $rows of database rows
-	 * @param $opts FormOptions
+	 * @param array $rows Database rows
+	 * @param FormOptions $opts
 	 */
 	public function webOutput( $rows, $opts ) {
 		global $wgRCShowWatchingUsers, $wgShowUpdatedMarker, $wgAllowCategorizedRecentChanges;
@@ -567,8 +569,8 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	/**
 	 * Return the text to be displayed above the changes
 	 *
-	 * @param $opts FormOptions
-	 * @return String: XHTML
+	 * @param FormOptions $opts
+	 * @return string XHTML
 	 */
 	public function doHeader( $opts ) {
 		global $wgScript;
@@ -629,8 +631,8 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	/**
 	 * Get options to be displayed in a form
 	 *
-	 * @param $opts FormOptions
-	 * @return Array
+	 * @param FormOptions $opts
+	 * @return array
 	 */
 	function getExtraOptions( $opts ) {
 		$extraOpts = array();
@@ -653,7 +655,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	/**
 	 * Send the text to be displayed above the options
 	 *
-	 * @param $opts FormOptions
+	 * @param FormOptions $opts Unused
 	 */
 	function setTopText( FormOptions $opts ) {
 		global $wgContLang;
@@ -675,7 +677,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	 * Send the text to be displayed after the options, for use in
 	 * Recentchangeslinked
 	 *
-	 * @param $opts FormOptions
+	 * @param FormOptions $opts
 	 */
 	function setBottomText( FormOptions $opts ) {}
 
@@ -683,8 +685,8 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	 * Creates the choose namespace selection
 	 *
 	 * @todo Uses radio buttons (HASHAR)
-	 * @param $opts FormOptions
-	 * @return String
+	 * @param FormOptions $opts
+	 * @return string
 	 */
 	protected function namespaceFilterForm( FormOptions $opts ) {
 		$nsSelect = Html::namespaceSelector(
@@ -708,8 +710,8 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	/**
 	 * Create a input to filter changes by categories
 	 *
-	 * @param $opts FormOptions
-	 * @return Array
+	 * @param FormOptions $opts
+	 * @return array
 	 */
 	protected function categoryFilterForm( FormOptions $opts ) {
 		list( $label, $input ) = Xml::inputLabelSep( $this->msg( 'rc_categories' )->text(),
@@ -724,8 +726,8 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	/**
 	 * Filter $rows by categories set in $opts
 	 *
-	 * @param array $rows of database rows
-	 * @param $opts FormOptions
+	 * @param array $rows Database rows
+	 * @param FormOptions $opts
 	 */
 	function filterByCategories( &$rows, FormOptions $opts ) {
 		$categories = array_map( 'trim', explode( '|', $opts['categories'] ) );
@@ -788,10 +790,10 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	/**
 	 * Makes change an option link which carries all the other options
 	 *
-	 * @param $title Title
-	 * @param array $override options to override
-	 * @param array $options current options
-	 * @param $active Boolean: whether to show the link in bold
+	 * @param string $title Title
+	 * @param array $override Options to override
+	 * @param array $options Current options
+	 * @param bool $active Whether to show the link in bold
 	 * @return string
 	 */
 	function makeOptionsLink( $title, $override, $options, $active = false ) {
@@ -816,8 +818,8 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	/**
 	 * Creates the options panel.
 	 *
-	 * @param $defaults Array
-	 * @param $nondefaults Array
+	 * @param array $defaults
+	 * @param array $nondefaults
 	 * @return string
 	 */
 	function optionsPanel( $defaults, $nondefaults ) {
@@ -849,6 +851,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		$wgRCLinkDays = array_unique( $wgRCLinkDays );
 
 		// limit links
+		$cl = array();
 		foreach( $wgRCLinkLimits as $value ) {
 			$cl[] = $this->makeOptionsLink( $lang->formatNum( $value ),
 				array( 'limit' => $value ), $nondefaults, $value == $options['limit'] );
@@ -856,6 +859,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		$cl = $lang->pipeList( $cl );
 
 		// day links, reset 'from' to none
+		$dl = array();
 		foreach( $wgRCLinkDays as $value ) {
 			$dl[] = $this->makeOptionsLink( $lang->formatNum( $value ),
 				array( 'days' => $value, 'from' => '' ), $nondefaults, $value == $options['days'] );
