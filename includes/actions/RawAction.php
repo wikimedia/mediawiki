@@ -251,6 +251,10 @@ class RawAction extends FormlessAction {
 class RawPage extends RawAction {
 	public $mOldId;
 
+	/**
+	 * @param Page $page
+	 * @param WebRequest|bool $request The WebRequest (default: false).
+	 */
 	function __construct( Page $page, $request = false ) {
 		wfDeprecated( __CLASS__, '1.19' );
 		parent::__construct( $page );
