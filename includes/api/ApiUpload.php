@@ -444,9 +444,9 @@ class ApiUpload extends ApiBase {
 		$verification = $this->mUpload->verifyUpload();
 		if ( $verification['status'] === UploadBase::OK ) {
 			return;
-		} else {
-			return $this->checkVerification( $verification );
 		}
+
+		$this->checkVerification( $verification );
 	}
 
 	/**
@@ -455,7 +455,7 @@ class ApiUpload extends ApiBase {
 	protected function checkVerification( array $verification ) {
 		global $wgFileExtensions;
 
-		// TODO: Move them to ApiBase's message map
+		// @todo Move them to ApiBase's message map
 		switch( $verification['status'] ) {
 			// Recoverable errors
 			case UploadBase::MIN_LENGTH_PARTNAME:
