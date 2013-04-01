@@ -843,10 +843,13 @@ class UploadForm extends HTMLForm {
 			'upload-type' => 'File',
 			'radio' => &$radio,
 			'help' => $this->msg( 'upload-maxfilesize',
-					$this->getContext()->getLanguage()->formatSize( $this->mMaxUploadSize['file'] )
-				)->parse() . ' ' . $this->msg( 'upload_source_file' )->escaped(),
+				$this->getContext()->getLanguage()->formatSize( $this->mMaxUploadSize['file'] ) )
+				->parse() .
+				$this->msg( 'word-separator' )->escaped() .
+				$this->msg( 'upload_source_file' )->escaped(),
 			'checked' => $selectedSourceType == 'file',
 		);
+
 		if ( $canUploadByUrl ) {
 			$this->mMaxUploadSize['url'] = UploadBase::getMaxUploadSize( 'url' );
 			$descriptor['UploadFileURL'] = array(
@@ -857,8 +860,10 @@ class UploadForm extends HTMLForm {
 				'upload-type' => 'url',
 				'radio' => &$radio,
 				'help' => $this->msg( 'upload-maxfilesize',
-						$this->getContext()->getLanguage()->formatSize( $this->mMaxUploadSize['url'] )
-					)->parse() . ' ' . $this->msg( 'upload_source_url' )->escaped(),
+					$this->getContext()->getLanguage()->formatSize( $this->mMaxUploadSize['url'] ) )
+					->parse() .
+					$this->msg( 'word-separator' )->escaped() .
+					$this->msg( 'upload_source_url' )->escaped(),
 				'checked' => $selectedSourceType == 'url',
 			);
 		}
