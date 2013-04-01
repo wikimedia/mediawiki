@@ -152,6 +152,7 @@ class ApiImageRotate extends ApiBase {
 	/**
 	 * Checks that the user has permissions to perform rotations.
 	 * @param $user User The user to check.
+	 * @param Title $title
 	 * @return string|null Permission error message, or null if there is no error
 	 */
 	protected function checkPermissions( $user, $title ) {
