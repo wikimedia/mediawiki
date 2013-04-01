@@ -88,7 +88,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		# was $wgUser
 		if( $mode instanceof User ) {
 			$args = func_get_args();
-			if( count( $args >= 4 ) ) {
+			if ( count( $args ) >= 4 ) {
 				$mode = $args[3];
 			}
 		}
