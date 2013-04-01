@@ -43,8 +43,6 @@ class ApiCreateAccount extends ApiBase {
 
 		$params = $this->extractRequestParams();
 
-		$result = array();
-
 		// Init session if necessary
 		if ( session_id() == '' ) {
 			wfSetupSession();

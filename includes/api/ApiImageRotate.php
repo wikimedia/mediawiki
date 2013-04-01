@@ -53,16 +53,13 @@ class ApiImageRotate extends ApiBase {
 		}
 	}
 
-
 	public function execute() {
 		$params = $this->extractRequestParams();
 		$rotation = $params['rotation'];
-		$user = $this->getUser();
 
 		$pageSet = $this->getPageSet();
 		$pageSet->execute();
 
-		$result = array();
 		$result = array();
 
 		self::addValues( $result, $pageSet->getInvalidTitles(), 'invalid', 'title' );
@@ -181,7 +178,6 @@ class ApiImageRotate extends ApiBase {
 	}
 
 	public function getAllowedParams( $flags = 0 ) {
-		$pageSet = $this->getPageSet();
 		$result = array(
 			'rotation' => array(
 				ApiBase::PARAM_TYPE => array( '90', '180', '270' ),

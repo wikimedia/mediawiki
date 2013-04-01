@@ -382,7 +382,6 @@ class ApiQuery extends ApiBase {
 		$modules = $allModules;
 		$tmp = $completeModules;
 		$wasPosted = $this->getRequest()->wasPosted();
-		$main = $this->getMain();
 
 		/** @var $module ApiQueryBase */
 		foreach ( $allModules as $moduleName => $module ) {
