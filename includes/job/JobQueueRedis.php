@@ -598,8 +598,9 @@ LUA;
 			local released,abandoned,pruned = 0,0,0
 			-- Get all non-dead jobs that have an expired claim on them.
 			-- The score for each item is the last claim timestamp (UNIX).
-			local staleClaims = redis.call('zRangeByScore',KEYS[1],0,ARGV[1],'WITHSCORES')
-			for id,timestamp in ipairs(staleClaims) do
+			local staleClaims = redis.call('zRangeByScore',KEYS[1],0,ARGV[1])
+			for k,id in ipairs(staleClaims) do
+				local timestamp = redis.call('zScore',KEYS[1],id)
 				local attempts = redis.call('hGet',KEYS[2],id)
 				if attempts < ARGV[3] then
 					-- Claim expired and retries left: re-enqueue the job
@@ -615,8 +616,8 @@ LUA;
 			end
 			-- Get all of the dead jobs that have been marked as dead for too long.
 			-- The score for each item is the last claim timestamp (UNIX).
-			local deadClaims = redis.call('zRangeByScore',KEYS[5],0,ARGV[2],'WITHSCORES')
-			for id,timestamp in ipairs(deadClaims) do
+			local deadClaims = redis.call('zRangeByScore',KEYS[5],0,ARGV[2])
+			for k,id in ipairs(deadClaims) do
 				-- Stale and out of retries: remove any traces of the job
 				redis.call('zRem',KEYS[5],id)
 				redis.call('hDel',KEYS[2],id)
