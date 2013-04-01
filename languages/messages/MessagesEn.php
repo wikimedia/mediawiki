@@ -2414,8 +2414,8 @@ You may want to try at a less busy time.',
 'nolicense'          => 'None selected',
 'licenses'           => '-', # do not translate or duplicate this message to other languages
 'license-nopreview'  => '(Preview not available)',
-'upload_source_url'  => ' (a valid, publicly accessible URL)',
-'upload_source_file' => ' (a file on your computer)',
+'upload_source_url'  => '(a valid, publicly accessible URL)',
+'upload_source_file' => '(a file on your computer)',
 
 # Special:ListFiles
 'listfiles-summary'     => 'This special page shows all uploaded files.
