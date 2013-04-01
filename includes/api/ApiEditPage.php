@@ -344,59 +344,75 @@ class ApiEditPage extends ApiBase {
 
 		switch( $status->value ) {
 			case EditPage::AS_HOOK_ERROR:
+			/** @noinspection PhpMissingBreakStatementInspection */
 			case EditPage::AS_HOOK_ERROR_EXPECTED:
 				$this->dieUsageMsg( 'hookaborted' );
 
+			/** @noinspection PhpMissingBreakStatementInspection */
 			case EditPage::AS_PARSE_ERROR:
 				$this->dieUsage( $status->getMessage(), 'parseerror' );
 
+			/** @noinspection PhpMissingBreakStatementInspection */
 			case EditPage::AS_IMAGE_REDIRECT_ANON:
 				$this->dieUsageMsg( 'noimageredirect-anon' );
 
+			/** @noinspection PhpMissingBreakStatementInspection */
 			case EditPage::AS_IMAGE_REDIRECT_LOGGED:
 				$this->dieUsageMsg( 'noimageredirect-logged' );
 
+			/** @noinspection PhpMissingBreakStatementInspection */
 			case EditPage::AS_SPAM_ERROR:
 				$this->dieUsageMsg( array( 'spamdetected', $result['spam'] ) );
 
+			/** @noinspection PhpMissingBreakStatementInspection */
 			case EditPage::AS_BLOCKED_PAGE_FOR_USER:
 				$this->dieUsageMsg( 'blockedtext' );
 
 			case EditPage::AS_MAX_ARTICLE_SIZE_EXCEEDED:
+			/** @noinspection PhpMissingBreakStatementInspection */
 			case EditPage::AS_CONTENT_TOO_BIG:
 				$this->dieUsageMsg( array( 'contenttoobig', $wgMaxArticleSize ) );
 
+			/** @noinspection PhpMissingBreakStatementInspection */
 			case EditPage::AS_READ_ONLY_PAGE_ANON:
 				$this->dieUsageMsg( 'noedit-anon' );
 
+			/** @noinspection PhpMissingBreakStatementInspection */
 			case EditPage::AS_READ_ONLY_PAGE_LOGGED:
 				$this->dieUsageMsg( 'noedit' );
 
+			/** @noinspection PhpMissingBreakStatementInspection */
 			case EditPage::AS_READ_ONLY_PAGE:
 				$this->dieReadOnly();
 
+			/** @noinspection PhpMissingBreakStatementInspection */
 			case EditPage::AS_RATE_LIMITED:
 				$this->dieUsageMsg( 'actionthrottledtext' );
 
+			/** @noinspection PhpMissingBreakStatementInspection */
 			case EditPage::AS_ARTICLE_WAS_DELETED:
 				$this->dieUsageMsg( 'wasdeleted' );
 
+			/** @noinspection PhpMissingBreakStatementInspection */
 			case EditPage::AS_NO_CREATE_PERMISSION:
 				$this->dieUsageMsg( 'nocreate-loggedin' );
 
+			/** @noinspection PhpMissingBreakStatementInspection */
 			case EditPage::AS_BLANK_ARTICLE:
 				$this->dieUsageMsg( 'blankpage' );
 
+			/** @noinspection PhpMissingBreakStatementInspection */
 			case EditPage::AS_CONFLICT_DETECTED:
 				$this->dieUsageMsg( 'editconflict' );
 
 			// case EditPage::AS_SUMMARY_NEEDED: Can't happen since we set wpIgnoreBlankSummary
+			/** @noinspection PhpMissingBreakStatementInspection */
 			case EditPage::AS_TEXTBOX_EMPTY:
 				$this->dieUsageMsg( 'emptynewsection' );
 
+			/** @noinspection PhpMissingBreakStatementInspection */
 			case EditPage::AS_SUCCESS_NEW_ARTICLE:
 				$r['new'] = '';
-				// fall-through
 
 			case EditPage::AS_SUCCESS_UPDATE:
 				$r['result'] = 'Success';
@@ -414,6 +430,7 @@ class ApiEditPage extends ApiBase {
 				}
 				break;
 
+			/** @noinspection PhpMissingBreakStatementInspection */
 			case EditPage::AS_SUMMARY_NEEDED:
 				$this->dieUsageMsg( 'summaryrequired' );
 
