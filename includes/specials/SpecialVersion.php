@@ -430,7 +430,6 @@ class SpecialVersion extends SpecialPage {
 			$out .= $this->openExtType( $message, 'credits-' . $type );
 
 			usort( $wgExtensionCredits[$type], array( $this, 'compare' ) );
-
 			foreach ( $wgExtensionCredits[$type] as $extension ) {
 				$out .= $this->getCreditsForExtension( $extension );
 			}
