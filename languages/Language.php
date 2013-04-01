@@ -3984,6 +3984,57 @@ class Language {
 	}
 
 	/**
+	 * Get the ordered list of fallback languages, ending with the wiki's content
+	 * language.
+	 *
+	 * Note: English is not necessarily part of this chain! The authoritative language
+	 *       for a wiki should be the content language, so if a language has a terminal
+	 *       fallback of english (and the origin language was not english) we instead
+	 *       terminate with the content language.
+	 *
+	 * @since 1.21
+	 * @param $code string Language code
+	 * @return array
+	 */
+	public static function getOnWikiFallbackLanguages( $code ) {
+		global $wgLanguageCode;
+
+		// Usually, we will only store a tiny number of fallback chains, so we
+		// keep them in static memory.
+		static $fallbackLanguageCache = array();
+		$cacheKey = "{$code}-{$wgLanguageCode}";
+
+		if ( !array_key_exists( $cacheKey, $fallbackLanguageCache ) ) {
+			$siteFallbacks = array();
+
+			// Shortcut if the $code is the contentLanguage; we don't return anything
+			// in that case
+			if ( $code !== $wgLanguageCode ) {
+				$fallbacks = self::getFallbacksFor( $code );
+
+				// Normalize the fallback chain by removing the ending 'en' unless we
+				// are actually looking at an 'en' fallback chain!
+				if ( ( substr( reset( $fallbacks ), 0, 2 ) !== 'en' ) && ( end( $fallbacks ) === 'en' ) ) {
+					array_pop( $fallbacks );
+				}
+
+				// Now construct the authoritative chain; ending with the content language
+				foreach ( $fallbacks as $lang ) {
+					if ( $lang !== $wgLanguageCode ) {
+						$siteFallbacks[] = $lang;
+					} else {
+						break;
+					}
+				}
+				$siteFallbacks[] = $wgLanguageCode;
+			}
+
+			$fallbackLanguageCache[$cacheKey] = $siteFallbacks;
+		}
+		return $fallbackLanguageCache[$cacheKey];
+	}
+
+	/**
 	 * Get all messages for a given language
 	 * WARNING: this may take a long time. If you just need all message *keys*
 	 * but need the *contents* of only a few messages, consider using getMessageKeysFor().
