@@ -126,7 +126,7 @@ class InfoAction extends FormlessAction {
 	/**
 	 * Creates a header that can be added to the output.
 	 *
-	 * @param $header The header text.
+	 * @param string $header The header text.
 	 * @return string The HTML.
 	 */
 	protected function makeHeader( $header ) {
