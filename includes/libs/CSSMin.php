@@ -185,12 +185,10 @@ class CSSMin {
 					) {
 						// Strip off any trailing = symbols (makes browsers freak out)
 						$data = base64_encode( file_get_contents( $file ) );
-						// Build 2 CSS properties; one which uses a base64 encoded data URI in place
-						// of the @embed comment to try and retain line-number integrity, and the
-						// other with a remapped an versioned URL and an Internet Explorer hack
-						// making it ignored in all browsers that support data URIs
+						// Build 1 CSS properties which uses a base64 encoded data URI in place
+						// of the @embed comment to try and retain line-number integrity
+						// Note no non-data uri browser fallback is provided
 						$replacement = "{$pre}url(data:{$type};base64,{$data}){$post};";
-						$replacement .= "{$pre}url({$url}){$post}!ie;";
 					}
 				}
 				if ( $replacement === false ) {
