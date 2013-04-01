@@ -4307,6 +4307,8 @@ Idealerweise sollte es nicht über das Internet zugänglich sein.',
 	'config-logo-help' => 'Die Standardoberfläche von MediaWiki verfügt links oberhalb der Seitenleiste über Platz für eine Logo mit den Maßen 135x160 Pixel.
 Bitte ein Logo in entsprechender Größe hochladen und die zugehörige URL an dieser Stelle angeben.
 
+Du kannst $wgStylePath oder $wgScriptPath verwenden, falls dein Logo relativ zu diesen Pfaden ist.
+
 Sofern kein Logo benötigt wird, kann dieses Datenfeld leer bleiben.',
 	'config-instantcommons' => '„InstantCommons“ aktivieren',
 	'config-instantcommons-help' => '[//www.mediawiki.org/wiki/InstantCommons InstantCommons] ist eine Funktion, die es Wikis ermöglicht, Bild-, Klang- und andere Mediendateien zu nutzen, die auf der Website [//commons.wikimedia.org/ Wikimedia Commons] verfügbar sind.
@@ -4630,6 +4632,7 @@ $messages['eo'] = array(
 
 /** Spanish (español)
  * @author Armando-Martin
+ * @author Ciencia Al Poder
  * @author Crazymadlover
  * @author Danke7
  * @author Locos epraix
@@ -5071,14 +5074,14 @@ Para obtener más información, lea la [//www.mediawiki.org/wiki/Manual:Security
 
 Para habilitar la carga de archivos, cambie el modo en el subdirectorio <code>images</code> bajo el directorio raíz de MediaWiki para que el servidor web pueda escribir en él.
 A continuación, habilite esta opción.',
-	'config-upload-deleted' => '*Directório para los archivos eliminados:',
+	'config-upload-deleted' => '*Directorio para los archivos eliminados:',
 	'config-upload-deleted-help' => 'Elige un directorio en el que guardar los archivos eliminados.
 Lo ideal es una carpeta no accesible desde la red.',
 	'config-logo' => 'URL del logo :',
 	'config-logo-help' => 'La apariencia por defecto de MediaWiki incluye espacio para un logotipo de 135x160 píxeles encima del menú de la barra lateral.
 Cargue una imagen de tamaño adecuado e introduzca la dirección URL aquí.
 
-Si no desea un logotipo, deje esta casilla en blanco.',
+Si no desea un logotipo, deje esta casilla en blanco.', # Fuzzy
 	'config-instantcommons' => 'Habilitar Instant Commons',
 	'config-instantcommons-help' => '[//www.mediawiki.org/wiki/InstantCommons Instant Commons] es una característica que permite que los wikis puedan utilizar imágenes, sonidos y otros archivos multimedia que se encuentran en el sitio [//commons.wikimedia.org/ Wikimedia Commons].
 Para ello, MediaWiki requiere acceso a Internet.
@@ -6912,7 +6915,7 @@ O ideal é que non sexa accesible desde a web.',
 	'config-logo-help' => 'A aparencia de MediaWiki por defecto inclúe espazo para un logo de 135x160 píxeles por riba do menú lateral.
 Cargue unha imaxe do tamaño axeitado e introduza o enderezo URL aquí.
 
-Se non quere un logo, deixe esta caixa en branco.',
+Se non quere un logo, deixe esta caixa en branco.', # Fuzzy
 	'config-instantcommons' => 'Activar Instant Commons',
 	'config-instantcommons-help' => '[//www.mediawiki.org/wiki/InstantCommons InstantCommons] é unha característica que permite aos wikis usar imaxes, sons e outros ficheiros multimedia atopados no sitio da [//commons.wikimedia.org/wiki/Portada_galega Wikimedia Commons].
 Para facer isto, MediaWiki necesita acceso á internet.
@@ -14438,7 +14441,7 @@ Idealiter is deze map niet via het web te benaderen.',
 	'config-logo-help' => 'Het standaarduiterlijk van MediaWiki bevat ruimte voor een logo van 135x160 pixels boven het menu.
 Upload een afbeelding met de juiste afmetingen en voer de URL hier in.
 
-Als u geen logo wilt gebruiken, kunt u dit veld leeg laten.',
+Als u geen logo wilt gebruiken, kunt u dit veld leeg laten.', # Fuzzy
 	'config-instantcommons' => 'Instant Commons inschakelen',
 	'config-instantcommons-help' => '[//www.mediawiki.org/wiki/InstantCommons Instant Commons] is functie die het mogelijk maakt om afbeeldingen, geluidsbestanden en andere mediabestanden te gebruiken van de website [//commons.wikimedia.org/ Wikimedia Commons].
 Hiervoor heeft MediaWiki toegang nodig tot Internet.

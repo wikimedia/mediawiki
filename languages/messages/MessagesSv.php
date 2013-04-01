@@ -2753,6 +2753,7 @@ Se [[Special:BlockList|blockeringslistan]] för en översikt av gällande blocke
 'sorbsreason' => 'Din IP-adress är listad som öppen proxy i den DNSBL {{SITENAME}} använder.',
 'sorbs_create_account_reason' => 'Din IP-adress är listad som en öppen proxy i den DNSBL som används av {{SITENAME}}.
 Du får inte skapa ett användarkonto',
+'xffblockreason' => 'En IP-adress i sidhuvudet X-Forwarded-For, antingen din adress eller en proxyserver som du använder, har blockerats. Den ursprungliga anledningen till blockeringen var: $1',
 'cant-block-while-blocked' => 'Du kan inte blockera andra användare medan du är blockerad.',
 'cant-see-hidden-user' => 'Användaren du försöker blockera är redan blockerad och gömd. Eftersom du inte har hideuser-rättigheter, kan du inte se eller redigera användarens blockering.',
 'ipbblocked' => 'Du kan inte blockera eller avblockera andra användare, eftersom du själv är blockerad',

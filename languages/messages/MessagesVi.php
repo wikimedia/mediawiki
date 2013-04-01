@@ -3787,7 +3787,7 @@ Xin hãy xác nhận bạn thực sự muốn tạo lại trang này.",
 'recreate' => 'Tạo ra lại',
 
 # action=purge
-'confirm_purge_button' => 'Làm mới',
+'confirm_purge_button' => 'Làm tươi',
 'confirm-purge-top' => 'Làm sạch vùng nhớ đệm của trang này?',
 'confirm-purge-bottom' => 'Làm mới một trang sẽ giúp xóa bộ đệm và buộc hiển thị phiên bản gần nhất.',
 

@@ -18,6 +18,7 @@
  * @author Froztbyte
  * @author Gorbi
  * @author H92
+ * @author HenrikKbh
  * @author Hylle
  * @author Jan Friberg
  * @author Jon Harald Søby
@@ -2608,6 +2609,7 @@ Se [[Special:BlockList|blokeringslisten]] for den nuværende liste med aktuelle 
 'proxyblocksuccess' => 'Færdig.',
 'sorbsreason' => 'IP-adressen er opført i DNSBL på {{SITENAME}} som åben PROXY.',
 'sorbs_create_account_reason' => 'IP-adressen er opført i DNSBL på {{SITENAME}} som åben PROXY. Oprettelse af nye brugere er ikke mulig.',
+'xffblockreason' => 'En IP-adresse der er indeholdt i X-Fremsendt-Til hovedet, enten din egen eller en på en proxy-server, du bruger, er blevet blokeret. Den oprindelige grund til blokeringen var:$1',
 'cant-block-while-blocked' => 'Du kan ikke blokkere andre brugere mens du selv er blokkeret.',
 'cant-see-hidden-user' => 'Brugeren du prøver at blokerer er allerede blokeret og skjult. Siden du ikke har rettigheden til at skjule brugere, kan du ikke se eller ændre brugerens blokering.',
 'ipbblocked' => 'Du kan ikke ændre blokeringer, da du selv er blokeret',
