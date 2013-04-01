@@ -311,6 +311,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	 * Note the stash has to be recreated since this is being called in a static context.
 	 * This works, because there really is only one stash per logged-in user, despite appearances.
 	 *
+	 * @param array $formData
 	 * @return Status
 	 */
 	public static function tryClearStashedUploads( $formData ) {
