@@ -1974,7 +1974,7 @@ Poida que queira editar a descrición da [$2 páxina de descrición do ficheiro]
 'upload-disallowed-here' => 'Non pode sobrescribir este ficheiro.',
 
 # File reversion
-'filerevert' => 'Reverter $1',
+'filerevert' => 'Reverter "$1"',
 'filerevert-legend' => 'Reverter o ficheiro',
 'filerevert-intro' => 'Está a piques de reverter o ficheiro "\'\'\'[[Media:$1|$1]]\'\'\'" ata a [$4 versión do $2 ás $3].',
 'filerevert-comment' => 'Motivo:',

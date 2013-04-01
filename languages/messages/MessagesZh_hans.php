@@ -1345,9 +1345,9 @@ $1",
 'qbsettings-directionality' => '根据您的语言文本方向固定位置',
 
 # Preferences page
-'preferences' => '参数设置',
+'preferences' => '系统设置',
 'mypreferences' => '系统设置',
-'prefs-edits' => '编辑数量：',
+'prefs-edits' => '编辑数：',
 'prefsnologin' => '未登录',
 'prefsnologintext' => '您必须先<span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} 登录]</span>才能设置个人参数。',
 'changepassword' => '更改密码',

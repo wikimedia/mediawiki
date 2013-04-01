@@ -3946,7 +3946,7 @@ Wells Do jetz met en neu Version die Sigg widder neu aanläje?',
 'bitrate-yottabits' => '$1&nbps;Ybps',
 
 # Live preview
-'livepreview-loading' => 'Ben am Lade …',
+'livepreview-loading' => 'Ben aam Laade{{int:ellipsis}}',
 'livepreview-ready' => 'Fädesch jelaade.',
 'livepreview-failed' => 'De lebendije Vör-Ansich klapp jrad nit.
 Don de nomaale Vör-Ansich nemme.',

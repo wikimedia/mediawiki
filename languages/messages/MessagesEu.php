@@ -244,9 +244,9 @@ $messages = array(
 'hidden-category-category' => 'Kategoria ezkutuak',
 'category-subcat-count' => '{{PLURAL:$2|Kategoria honek beste honako azpikategoria baino ez du.|Kategoria honek honako {{PLURAL:$1|azpikategoria du|$1 azpikategoriak ditu}}, guztira dauden $2tik.}}',
 'category-subcat-count-limited' => 'Kategoria honek {{PLURAL:$1|azpikategoria hau du|$1 azpikategoria hauek ditu}}.',
-'category-article-count' => '{{PLURAL:$2|Kategoria honek ondorengo orri hau baino ez du.|Ondorengo {{PLURAL:$1|orri hau kategoria honetan dago|$1 orriak kategoria honetan daude}}. Guztira $2 orri dira kategoria honetan.}}',
+'category-article-count' => '{{PLURAL:$2|Kategoria honek ondorengo orri hau baino ez du.|Ondorengo {{PLURAL:$1|orri hau kategoria honetan dago|$1 orriak kategoria honetan daude}}, eta guztira $2 orri dira kategoria honetan.}}',
 'category-article-count-limited' => 'Ondorengo {{PLURAL:$1|orri hau kategoria honetan dago.|$1 orri hauek kategoria honetan daude.}}',
-'category-file-count' => '{{PLURAL:$2|Kategoria honek ondorengo fitxategi hau baino ez du.|Ondorengo {{PLURAL:$1|fitxategi hau kategoria honetan dago|$1 fitxategiak kategoria honetan daude}}. Guztira $2 fitxategi dira kategoria honetan.}}',
+'category-file-count' => '{{PLURAL:$2|Kategoria honek ondorengo fitxategi hau baino ez du.|Ondorengo {{PLURAL:$1|fitxategi hau kategoria honetan dago|$1 fitxategiak kategoria honetan daude}}, eta guztira $2 fitxategi dira kategoria honetan.}}',
 'category-file-count-limited' => 'Ondorengo {{PLURAL:$1|fitxategia kategoria honetan dago.|$1 fitxategiak kategoria honetan daude.}}',
 'listingcontinuesabbrev' => 'jarr.',
 'index-category' => 'Indexatutako orrialdeak',
@@ -1874,14 +1874,6 @@ Baimendutako protokoloak: <code>$1</code> (protokoloa zehazten ez bada http:// h
 'listusers-submit' => 'Erakutsi',
 'listusers-noresult' => 'Ez da erabiltzailerik aurkitu.',
 'listusers-blocked' => '(blokeatua)',
-
-# Special:ActiveUsers
-'activeusers' => 'Lankide aktiboen zerrenda',
-'activeusers-count' => '{{PLURAL:$1|Ekintza berri bat|$1 ekintza berri}} azken {{PLURAL:$3|egunean|$3 egunetan}}',
-'activeusers-from' => 'Bilatu honela hasten diren lankideak:',
-'activeusers-hidebots' => 'Ezkutatu bot-ak',
-'activeusers-hidesysops' => 'Ezkutatu administratzaileak',
-'activeusers-noresult' => 'Ez da lankiderik aurkitu.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Erabiltzaile talde eskumenak',

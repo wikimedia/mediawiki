@@ -1219,7 +1219,7 @@ $1",
 'search-interwiki-default' => '$1 වෙතින් ප්‍රතිඵල:',
 'search-interwiki-more' => '(තවත්)',
 'search-relatedarticle' => 'සහසම්බන්ධිත',
-'mwsuggest-disable' => 'AJAX ඇඟවිලි අක්‍රීය කරන්න',
+'mwsuggest-disable' => 'සෙවුම් යෝජනා අක්‍රීය කරන්න',
 'searcheverything-enable' => 'සියළු නාමඅවකාශයන්හි ගවේෂණය කරන්න',
 'searchrelated' => 'ආශ්‍රිත',
 'searchall' => 'සියල්ල',
@@ -2110,15 +2110,6 @@ When filtered by user, only files where that user uploaded the most recent versi
 'listusers-noresult' => 'පරිශීලකයෙකු සොයාගත නොහැකි විය.',
 'listusers-blocked' => '(වාරණය කොට)',
 
-# Special:ActiveUsers
-'activeusers' => 'සක්‍රීය පරිශීලකයන් ලැයිස්තුව',
-'activeusers-intro' => 'මෙය පසුගිය $1 {{PLURAL:$1|දිනය|දින}}තුළ යම් ක්‍රියාකාරකමක් කළ පරිශීලකයන්ගේ ලැයිස්තුවකි.',
-'activeusers-count' => '{{PLURAL:$1|එක් සංස්කරණයක්|සංස්කරණ $1 ක්}} අවසන් {{PLURAL:$3|දිනය|දින $3}} තුළ',
-'activeusers-from' => 'මෙයින් ඇරඹෙන පරිශීලකයන් පෙන්වන්න:',
-'activeusers-hidebots' => ' bots සඟවන්න',
-'activeusers-hidesysops' => 'පරිපාලකයින් සඟවන්න',
-'activeusers-noresult' => 'කිසිදු පරිශීලකයෙකු හමුනොවිණි.',
-
 # Special:ListGroupRights
 'listgrouprights' => 'පරිශීලක කාණ්ඩ හිමිකම්',
 'listgrouprights-summary' => 'මෙම විකියේ අර්ථදක්වා ඇති පරිශීලක කාණ්ඩ ලැයිස්තුවක් ඔවුනට අදාළ ප්‍රවේශ හිමිකම්ද සමගින් මෙහි පහත ලැයිස්තුගත කොට ඇත.
@@ -2174,7 +2165,7 @@ When filtered by user, only files where that user uploaded the most recent versi
 'usermessage-editor' => 'පද්ධති පණිවුඩ කරු',
 
 # Watchlist
-'watchlist' => 'මගේ මුර-ලැයිස්තුව',
+'watchlist' => 'මුරලැයිස්තුව',
 'mywatchlist' => 'මුර-ලැයිස්තුව',
 'watchlistfor2' => '$1 සඳහා ($2)',
 'nowatchlist' => 'ඔබගේ මුර-ලැයිස්තුවේ කිසිදු අයිතමයක් නොමැත.',

@@ -2752,7 +2752,7 @@ $UNWATCHURL
 'undeletereset' => 'أعد الضبط',
 'undeleteinvert' => 'اعكس الاختيار',
 'undeletecomment' => 'السبب:',
-'undeletedrevisions' => 'تم استرجاع {{PLURAL:$1|تعديل واحد|تعديلين|$1 تعديلات|$1 تعديل|$1 تعديلا}}',
+'undeletedrevisions' => 'تم استرجاع {{PLURAL:$1||تعديل واحد|تعديلين|$1 تعديلات|$1 تعديلا|$1 تعديل}}',
 'undeletedrevisions-files' => 'أسترجعت {{PLURAL:$1||مراجعة واحدة|مراجعتان|$1 مراجعات|$1 مراجعة}}  و{{PLURAL:$2||ملف واحد|ملفان|$2 ملفات|$2 ملفًا|$2 ملف}}',
 'undeletedfiles' => 'أسترجع {{PLURAL:$1||ملف واحد|ملفان|$1 ملفات|$1 ملفًا|$1 ملف}}',
 'cannotundelete' => 'فشل الاسترجاع؛
