@@ -3530,7 +3530,6 @@ parsoid
 <table>
 <tbody>
 <tr>
-<td></td>
 <td>foo</td></tr></tbody></table>
 !! end
 
@@ -14305,6 +14304,25 @@ Empty TD followed by TD with tpl-generated attribute
 !!end
 
 !!test
+Indented table with an empty td
+!!input
+ {|
+ |-
+ |
+ |foo
+ |}
+!!result
+<table>
+
+<tr>
+<td>
+</td>
+<td>foo
+</td></tr></table>
+
+!!end
+
+!!test
 Empty TR followed by a template-generated TR
 (Parsoid-specific since PHP parser doesn't handle this mixed tbl-wikitext)
 !!options
@@ -14318,9 +14336,34 @@ disabled parsoid
 <table>
 <tbody>
 <tr>
-<td></td></tr>
+</tr>
 <tr>
 <td>foo</td></tr></tbody></table>
+!!end
+
+## PHP and parsoid output differ for this, and since this is primarily
+## for testing Parsoid's serializer, marking this Parsoid only
+!!test
+Empty TR followed by mixed-ws-comment line should RT correctly
+!!options
+parsoid
+!!input
+{|
+|-
+ <!--c-->
+|-
+<!--c--> <!--d-->
+|}
+!!result
+<table>
+<tbody>
+<tr>
+<td> <!--c--></td></tr>
+<tr>
+<!--c-->
+<td> <!--d--></td></tr>
+</table>
+
 !!end
 
 !!test
@@ -14334,6 +14377,21 @@ parsoid
 <div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/index.php?title=Special:Upload&amp;wpDestFile=Foo.jpg" class="new" title="File:Foo.jpg">File:Foo.jpg</a>  <div class="thumbcaption">foo\nA\nB\nC</div></div></div>
 <div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/index.php?title=Special:Upload&amp;wpDestFile=Foo.jpg" class="new" title="File:Foo.jpg">File:Foo.jpg</a>  <div class="thumbcaption">foo\nA\nB\nC\n\n</div></div></div>
 
+!!end
+
+## PHP emits broken html for this, and since this is primarily
+## parsoid serializer test, marking this Parsoid only
+!!test
+Improperly nested inline or quotes tags with whitespace in between
+!!options
+parsoid
+!!input
+<span> <s>x</span> </s>
+''' ''x''' ''
+!!result
+<p><span> <s>x</s></span><s> </s>
+<b> <i>x</i></b><i> </i></span>
+</p>
 !!end
 
 TODO:
