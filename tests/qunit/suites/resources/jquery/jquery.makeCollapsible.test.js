@@ -46,6 +46,24 @@
 		$toggle.trigger( 'click' );
 	} );
 
+	QUnit.asyncTest( 'basic operation', 3, function ( assert ) {
+		var $collapsible, $content;
+		$collapsible = prepareCollapsible(
+			'<div class="mw-collapsible">' + loremIpsum + '</div>'
+		);
+		$content = $collapsible.find( '.mw-collapsible-content' );
+
+		assert.equal( $content.length, 1, 'content is present' );
+		assert.assertTrue( $content.is( ':visible' ), 'content is visible' );
+
+		$collapsible.on( 'afterCollapse.mw-collapsible', function () {
+			assert.assertTrue( $content.is( ':hidden' ), 'after collapsing: content is hidden' );
+			QUnit.start();
+		} );
+
+		$collapsible.find( '.mw-collapsible-toggle' ).trigger( 'click' );
+	} );
+
 	QUnit.test( 'basic operation with instantHide (synchronous test)', 2, function ( assert ) {
 		var $collapsible, $content;
 		$collapsible = prepareCollapsible(
@@ -61,7 +79,7 @@
 		assert.assertTrue( $content.is( ':hidden' ), 'after collapsing: content is hidden' );
 	} );
 
-	QUnit.test( 'initially collapsed - mw-collapsed class', 1, function ( assert ) {
+	QUnit.asyncTest( 'initially collapsed - mw-collapsed class', 2, function ( assert ) {
 		var $collapsible, $content;
 		$collapsible = prepareCollapsible(
 			'<div class="mw-collapsible mw-collapsed">' + loremIpsum + '</div>'
@@ -70,9 +88,16 @@
 
 		// Synchronous - mw-collapsed should cause instantHide: true to be used on initial collapsing
 		assert.assertTrue( $content.is( ':hidden' ), 'content is hidden' );
+
+		$collapsible.on( 'afterExpand.mw-collapsible', function () {
+			assert.assertTrue( $content.is( ':visible' ), 'after expanding: content is visible' );
+			QUnit.start();
+		} );
+
+		$collapsible.find( '.mw-collapsible-toggle' ).trigger( 'click' );
 	} );
 
-	QUnit.test( 'initially collapsed - options', 1, function ( assert ) {
+	QUnit.asyncTest( 'initially collapsed - options', 2, function ( assert ) {
 		var $collapsible, $content;
 		$collapsible = prepareCollapsible(
 			'<div class="mw-collapsible">' + loremIpsum + '</div>',
@@ -80,7 +105,14 @@
 		);
 		$content = $collapsible.find( '.mw-collapsible-content' );
 
-		// Synchronous - mw-collapsed should cause instantHide: true to be used on initial collapsing
+		// Synchronous - collapsed: true should cause instantHide: true to be used on initial collapsing
 		assert.assertTrue( $content.is( ':hidden' ), 'content is hidden' );
+
+		$collapsible.on( 'afterExpand.mw-collapsible', function () {
+			assert.assertTrue( $content.is( ':visible' ), 'after expanding: content is visible' );
+			QUnit.start();
+		} );
+
+		$collapsible.find( '.mw-collapsible-toggle' ).trigger( 'click' );
 	} );
 }( mediaWiki, jQuery ) );
