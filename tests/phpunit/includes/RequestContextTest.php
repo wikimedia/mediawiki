@@ -5,6 +5,21 @@
  */
 class RequestContextTest extends MediaWikiTestCase {
 
+	public function setUp() {
+		global $wgUseDatabaseMessages;
+
+		parent::setUp();
+
+		$this->oldwgUseDatabaseMessages = $wgUseDatabaseMessages;
+		$wgUseDatabaseMessages = true;
+	}
+
+	public function tearDown() {
+		$wgUseDatabaseMessages = $this->oldwgUseDatabaseMessages;
+
+		parent::tearDown();
+	}
+
 	/**
 	 * Test the relationship between title and wikipage in RequestContext
 	 * @covers RequestContext::getWikiPage
@@ -69,5 +84,34 @@ class RequestContextTest extends MediaWikiTestCase {
 		$this->assertEquals( $oInfo['headers'], $info['headers'], "Correct initial headers." );
 		$this->assertEquals( $oInfo['sessionId'], $info['sessionId'], "Correct initial session ID." );
 		$this->assertEquals( $oInfo['userId'], $info['userId'], "Correct initial user ID." );
+	}
+
+	public function testContextLanguage() {
+		global $wgLanguageCode;
+
+		$context = new RequestContext();
+
+		// Pick a language other than the site default
+		$lang = ( $wgLanguageCode === 'aa' ) ? 'ab' : 'aa';
+		$dbKey = "A";
+		$transDbKey = "{$dbKey}/{$lang}";
+		$nativeText = "default";
+		$transText = "trans";
+
+		$context->setLanguage( $lang );
+
+		$msgTitle = Title::newFromText( $dbKey, NS_MEDIAWIKI );
+
+		$page = new WikiPage( $msgTitle );
+		$content = ContentHandler::makeContent( $nativeText, $msgTitle, null );
+		$page->doEditContent( $content, "a comment", EDIT_NEW );
+
+		$transTitle = Title::newFromText( $transDbKey, NS_MEDIAWIKI );
+		$page = new WikiPage( $transTitle );
+		$content = ContentHandler::makeContent( $transText, $transTitle, null );
+		$page->doEditContent( $content, "a comment", EDIT_NEW );
+
+		$this->assertEquals( $context->msg( $dbKey )->text(), $transText,
+			"RequestContext->setLanguage causes the translated message to be fetched." );
 	}
 }
