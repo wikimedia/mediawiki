@@ -194,7 +194,9 @@ class ApiCreateAccount extends ApiBase {
 				ApiBase::PARAM_DFLT => false
 			),
 			'reason' => null,
-			'language' => null
+			'language' => array(
+				ApiBase::PARAM_TYPE => 'language',
+			),
 		);
 	}
 
