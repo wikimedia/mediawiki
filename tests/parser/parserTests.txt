@@ -3530,7 +3530,6 @@ parsoid
 <table>
 <tbody>
 <tr>
-<td></td>
 <td>foo</td></tr></tbody></table>
 !! end
 
@@ -14305,6 +14304,25 @@ Empty TD followed by TD with tpl-generated attribute
 !!end
 
 !!test
+Indented table with an empty td
+!!input
+ {|
+ |-
+ |
+ |foo
+ |}
+!!result
+<table>
+
+<tr>
+<td>
+</td>
+<td>foo
+</td></tr></table>
+
+!!end
+
+!!test
 Empty TR followed by a template-generated TR
 (Parsoid-specific since PHP parser doesn't handle this mixed tbl-wikitext)
 !!options
@@ -14318,7 +14336,7 @@ disabled parsoid
 <table>
 <tbody>
 <tr>
-<td></td></tr>
+</tr>
 <tr>
 <td>foo</td></tr></tbody></table>
 !!end
