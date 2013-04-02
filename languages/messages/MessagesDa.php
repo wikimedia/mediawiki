@@ -2994,13 +2994,8 @@ Dette skyldes sandsynligvis en henvisning til et sortlistet eksternt websted.',
 'pageinfo-category-files' => 'Antal filer',
 
 # Skin names
-'skinname-standard' => 'Klassik',
-'skinname-nostalgia' => 'Nostalgi',
 'skinname-cologneblue' => 'Kølnerblå',
 'skinname-monobook' => 'MonoBook',
-'skinname-myskin' => 'Eget udseende',
-'skinname-chick' => 'Chick',
-'skinname-simple' => 'Enkelt',
 'skinname-modern' => 'Moderne',
 
 # Patrolling

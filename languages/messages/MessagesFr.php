@@ -3128,13 +3128,8 @@ Permet de rétablir la version précédente et d'ajouter un motif dans la boîte
 
 # Stylesheets
 'common.css' => '/* Le CSS placé ici sera appliqué à tous les habillages. */',
-'standard.css' => '/* Le CSS placé ici affectera les utilisateurs de l’habillage Standard. */',
-'nostalgia.css' => '/* Le CSS placé ici affectera les utilisateurs de l’habillage Nostalgia. */',
 'cologneblue.css' => '/* Le CSS placé ici affectera les utilisateurs de l’habillage Cologne Blue. */',
 'monobook.css' => '/* Le CSS placé ici affectera les utilisateurs de l’habillage Monobook. */',
-'myskin.css' => '/* Le CSS placé ici affectera les utilisateurs de l’habillage MySkin. */',
-'chick.css' => '/* Le CSS placé ici affectera les utilisateurs de l’habillage Chick. */',
-'simple.css' => '/* Le CSS placé ici affectera les utilisateurs de l’habillage Simple. */',
 'modern.css' => '/* Le CSS placé ici affectera les utilisateurs de l’habillage Modern. */',
 'vector.css' => '/* Le CSS placé ici affectera les utilisateurs de l’habillage Vector. */',
 'print.css' => '/* Le CSS placé ici affectera les impressions */',
@@ -3147,13 +3142,8 @@ Permet de rétablir la version précédente et d'ajouter un motif dans la boîte
 
 # Scripts
 'common.js' => '/* Tout JavaScript ici sera chargé avec chaque page accédée par n’importe quel utilisateur. */',
-'standard.js' => '/* Tout JavaScript ici sera chargé avec les pages accédées par les utilisateurs de l’habillage Standard uniquement */',
-'nostalgia.js' => '/* Tout JavaScript ici sera chargé avec les pages accédées par les utilisateurs de l’habillage Nostalgie uniquement */',
 'cologneblue.js' => '/* Tout JavaScript ici sera chargé avec les pages accédées par les utilisateurs de l’habillage Bleu de cologne uniquement */',
 'monobook.js' => '/* Tout JavaScript ici sera chargé avec les pages accédées par les utilisateurs de l’habillage MonoBook uniquement. */',
-'myskin.js' => '/* Tout JavaScript ici sera chargé avec les pages accédées par les utilisateurs de l’habillage Mon habillage uniquement */',
-'chick.js' => '/* Tout JavaScript ici sera chargé avec les pages accédées par les utilisateurs de l’habillage Poussin uniquement */',
-'simple.js' => '/* Tout JavaScript ici sera chargé avec les pages accédées par les utilisateurs de l’habillage Simple uniquement */',
 'modern.js' => '/* Tout JavaScript ici sera chargé avec les pages accédées par les utilisateurs de l’habillage Moderne uniquement */',
 'vector.js' => '/* Tout code JavaScript placé ici sera chargé pour les utilisateurs de l’habillage Vector */',
 'group-autoconfirmed.js' => '/* Le JavaScript inclus ici n’affectera que les utilisateurs auto-confirmés */',
@@ -3232,13 +3222,8 @@ Permet de rétablir la version précédente et d'ajouter un motif dans la boîte
 'pageinfo-category-files' => 'Nombre de fichiers',
 
 # Skin names
-'skinname-standard' => 'Standard',
-'skinname-nostalgia' => 'Nostalgie',
 'skinname-cologneblue' => 'Bleu de Cologne',
 'skinname-monobook' => 'Monobook',
-'skinname-myskin' => 'Mon Interface',
-'skinname-chick' => 'Poussin',
-'skinname-simple' => 'Simple',
 'skinname-modern' => 'Moderne',
 'skinname-vector' => 'Vector',
 

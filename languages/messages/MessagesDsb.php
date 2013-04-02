@@ -2912,13 +2912,8 @@ W zespominanju dajo se pśicyna pódaś.',
 'pageinfo-category-files' => 'Licba datajow',
 
 # Skin names
-'skinname-standard' => 'Klasiski',
-'skinname-nostalgia' => 'Nostalgiski',
 'skinname-cologneblue' => 'Kölnski Módry',
 'skinname-monobook' => 'MonoBook',
-'skinname-myskin' => 'Mój šat',
-'skinname-chick' => 'Kurjetko',
-'skinname-simple' => 'Jadnorje',
 'skinname-modern' => 'Moderny',
 
 # Patrolling

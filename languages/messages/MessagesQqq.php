@@ -610,7 +610,8 @@ For explanation of 'lock' see [[w:Lock_(computer_science)|wikipedia]].",
 'pool-queuefull' => 'Part of {{msg-mw|view-pool-error}}
 
 "Pool" refers to a pool of processes.',
-'pool-errorunknown' => 'Part of {{msg-mw|view-pool-error}}.',
+'pool-errorunknown' => 'Part of {{msg-mw|view-pool-error}}.
+{{Identical|Unknown error}}',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite' => 'Used as the label of the link that appears at the footer of every page on the wiki (in most of  the skins) and leads to the page that contains the site description. The link target is {{msg-mw|aboutpage}}.
@@ -3835,7 +3836,8 @@ See also:
 
 See also:
 * {{msg-mw|Mimesearch|page title}}
-* {{msg-mw|Ilsubmit|Submit button text}}',
+* {{msg-mw|Ilsubmit|Submit button text}}
+{{Identical|MIME type}}',
 'download' => 'Direct download link in each line returned by [[Special:MIMESearch]]. Points to the actual file, rather than the image description page.
 {{Identical|Download}}',
 
@@ -6585,14 +6587,9 @@ See also:
 # Stylesheets
 'common.css' => '{{optional}}
 CSS applied to all users.',
-'standard.css' => '{{optional}}',
-'nostalgia.css' => '{{optional}}',
 'cologneblue.css' => '{{optional}}',
 'monobook.css' => '{{optional}}
 CSS applied to users using Monobook skin.',
-'myskin.css' => '{{optional}}',
-'chick.css' => '{{optional}}',
-'simple.css' => '{{optional}}',
 'modern.css' => '{{optional}}',
 'vector.css' => '{{optional}}',
 'print.css' => '{{optional}}',
@@ -6607,14 +6604,9 @@ Style that can be applied on [[w:handheld devices|handheld devices]] (e.g. mobil
 # Scripts
 'common.js' => '{{optional}}
 JS for all users.',
-'standard.js' => '{{optional}}',
-'nostalgia.js' => '{{optional}}',
 'cologneblue.js' => '{{optional}}',
 'monobook.js' => '{{optional}}
 JS for users using Monobook skin.',
-'myskin.js' => '{{optional}}',
-'chick.js' => '{{optional}}',
-'simple.js' => '{{optional}}',
 'modern.js' => '{{optional}}',
 'vector.js' => '{{optional}}',
 'group-autoconfirmed.js' => '{{doc-group|autoconfirmed|js}}',
@@ -6800,14 +6792,8 @@ See also:
 * {{msg-mw|Pageinfo-category-subcats}}',
 
 # Skin names
-'skinname-standard' => '{{optional}}
-{{Identical|Classic}}',
-'skinname-nostalgia' => '{{optional}}',
 'skinname-cologneblue' => '{{optional}}',
 'skinname-monobook' => '{{optional}}',
-'skinname-myskin' => '{{optional}}',
-'skinname-chick' => '{{optional}}',
-'skinname-simple' => '{{optional}}',
 'skinname-modern' => '{{optional}}',
 'skinname-vector' => '{{optional}}',
 

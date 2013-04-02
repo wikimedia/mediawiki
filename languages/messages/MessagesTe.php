@@ -2747,13 +2747,8 @@ $UNWATCHURL కి వెళ్ళండి.
 'pageinfo-category-pages' => 'పేజీల సంఖ్య',
 
 # Skin names
-'skinname-standard' => 'సంప్రదాయ',
-'skinname-nostalgia' => 'నాస్టాల్జియా',
 'skinname-cologneblue' => 'కలోన్ నీలం',
 'skinname-monobook' => 'మోనోబుక్',
-'skinname-myskin' => 'నాఅలంకారం',
-'skinname-chick' => 'చిక్',
-'skinname-simple' => 'సరళ',
 'skinname-modern' => 'ఆధునిక',
 'skinname-vector' => 'వెక్టర్',
 

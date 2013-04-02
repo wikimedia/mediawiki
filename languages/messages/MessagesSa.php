@@ -3041,12 +3041,8 @@ $2 इति प्रकारस्य अवरोधं कर्तुं �
 'pageinfo-category-files' => 'सञ्चिकानां सङ्ख्या',
 
 # Skin names
-'skinname-standard' => 'पूर्व',
-'skinname-nostalgia' => 'पुराण',
 'skinname-cologneblue' => 'नील',
 'skinname-monobook' => 'पुस्तक',
-'skinname-myskin' => 'मे चर्मन्',
-'skinname-chick' => 'Chick',
 
 # Patrolling
 'markaspatrolleddiff' => 'आरक्षितमिति अङ्कयतु ।',

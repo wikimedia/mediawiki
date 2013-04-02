@@ -2985,8 +2985,6 @@ Això deu ser degut per un enllaç a un lloc extern inclòs a la llista negra.',
 'pageinfo-protect-cascading-from' => 'Proteccions en cascada des de',
 
 # Skin names
-'skinname-standard' => 'Clàssic',
-'skinname-nostalgia' => 'Nostàlgia',
 'skinname-cologneblue' => 'Colònia blava',
 
 # Patrolling

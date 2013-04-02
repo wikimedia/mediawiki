@@ -2909,13 +2909,8 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{#Special:Expor
 'pageinfo-category-files' => 'Ličba datajow',
 
 # Skin names
-'skinname-standard' => 'Klasiski',
-'skinname-nostalgia' => 'Nostalgija',
 'skinname-cologneblue' => 'Kölnjanska módrina',
 'skinname-monobook' => 'MonoBook',
-'skinname-myskin' => 'MySkin',
-'skinname-chick' => 'Ćipka',
-'skinname-simple' => 'Jednory',
 'skinname-modern' => 'Moderny',
 
 # Patrolling

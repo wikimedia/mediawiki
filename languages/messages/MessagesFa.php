@@ -3299,13 +3299,8 @@ $1',
 'pageinfo-category-files' => 'تعداد پرونده‌ها',
 
 # Skin names
-'skinname-standard' => 'کلاسیک',
-'skinname-nostalgia' => 'نوستالژی',
 'skinname-cologneblue' => 'آبی کلن',
 'skinname-monobook' => 'مونوبوک',
-'skinname-myskin' => 'پوستهٔ من',
-'skinname-chick' => 'شیک',
-'skinname-simple' => 'ساده',
 'skinname-modern' => 'مدرن',
 'skinname-vector' => 'برداری',
 

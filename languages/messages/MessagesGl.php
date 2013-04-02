@@ -3031,13 +3031,8 @@ Pode ver o código fonte.',
 
 # Stylesheets
 'common.css' => '/** O CSS que se coloque aquí será aplicado a todas as aparencias */',
-'standard.css' => '/* O CSS que se coloque aquí afectará a quen use a aparencia Clásica */',
-'nostalgia.css' => '/* O CSS que se coloque aquí afectará a quen use a aparencia Morriña */',
 'cologneblue.css' => '/* O CSS que se coloque aquí afectará a quen use a aparencia Azul colonial */',
 'monobook.css' => '/* O CSS que se coloque aquí afectará a quen use a aparencia Monobook */',
-'myskin.css' => '/* O CSS que se coloque aquí afectará a quen use a aparencia A miña aparencia */',
-'chick.css' => '/* O CSS que se coloque aquí afectará a quen use a aparencia Parrulo */',
-'simple.css' => '/* O CSS que se coloque aquí afectará a quen use a aparencia Sinxela */',
 'modern.css' => '/* O CSS que se coloque aquí afectará a quen use a aparencia Moderna */',
 'vector.css' => '/* O CSS que se coloque aquí afectará a quen use a aparencia Vector */',
 'print.css' => '/* O CSS que se coloque aquí afectará ás impresións */',
@@ -3050,13 +3045,8 @@ Pode ver o código fonte.',
 
 # Scripts
 'common.js' => '/* Calquera JavaScript que haxa aquí será cargado para todos os usuarios en cada páxina que vexan. */',
-'standard.js' => '/* Calquera JavaScript que haxa aquí será cargado para os usuarios que usen a aparencia Clásica */',
-'nostalgia.js' => '/* Calquera JavaScript que haxa aquí será cargado para os usuarios que usen a aparencia Morriña */',
 'cologneblue.js' => '/* Calquera JavaScript que haxa aquí será cargado para os usuarios que usen a aparencia Azul colonial */',
 'monobook.js' => '/* Calquera JavaScript que haxa aquí será cargado para os usuarios que usen a aparencia MonoBook */',
-'myskin.js' => '/* O JavaScript que se coloque aquí afectará a quen use a aparencia A miña aparencia */',
-'chick.js' => '/* Calquera JavaScript que haxa aquí será cargado para os usuarios que usen a aparencia Parrulo */',
-'simple.js' => '/* Calquera JavaScript que haxa aquí será cargado para os usuarios que usen a aparencia Sinxela */',
 'modern.js' => '/* Calquera JavaScript que haxa aquí será cargado para os usuarios que usen a aparencia Moderna */',
 'vector.js' => '/* Calquera JavaScript que haxa aquí será cargado para os usuarios que usen a aparencia Vector */',
 'group-autoconfirmed.js' => '/* Calquera JavaScript que haxa aquí será cargado soamente para os usuarios autoconfirmados */',
@@ -3136,13 +3126,8 @@ Isto, probabelmente, se debe a unha ligazón cara a un sitio externo que está n
 'pageinfo-category-files' => 'Número de ficheiros',
 
 # Skin names
-'skinname-standard' => 'Clásica',
-'skinname-nostalgia' => 'Morriña',
 'skinname-cologneblue' => 'Azul colonial',
 'skinname-monobook' => 'MonoBook',
-'skinname-myskin' => 'A miña aparencia',
-'skinname-chick' => 'Parrulo',
-'skinname-simple' => 'Sinxela',
 'skinname-modern' => 'Moderna',
 
 # Patrolling

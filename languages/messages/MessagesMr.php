@@ -2987,13 +2987,8 @@ $1',
 'pageinfo-category-files' => 'संचिकांची संख्या',
 
 # Skin names
-'skinname-standard' => 'अभिजात',
-'skinname-nostalgia' => 'रम्य',
 'skinname-cologneblue' => 'सुरेखनीळी',
 'skinname-monobook' => 'मोनोबुक',
-'skinname-myskin' => 'माझीकांती',
-'skinname-chick' => 'मस्त',
-'skinname-simple' => 'साधी',
 'skinname-modern' => 'आधुनिक',
 'skinname-vector' => 'सदिश',
 

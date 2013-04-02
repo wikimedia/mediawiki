@@ -3061,13 +3061,8 @@ Vinsamlegast reyndu aftur.',
 'pageinfo-category-files' => 'Fjöldi skráa',
 
 # Skin names
-'skinname-standard' => 'Sígilt',
-'skinname-nostalgia' => 'Gamaldags',
 'skinname-cologneblue' => 'Kölnarblátt',
 'skinname-monobook' => 'EinBók',
-'skinname-myskin' => 'Mitt þema',
-'skinname-chick' => 'Gella',
-'skinname-simple' => 'Einfalt',
 'skinname-modern' => 'Nútímalegt',
 
 # Patrolling

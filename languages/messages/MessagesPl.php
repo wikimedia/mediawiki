@@ -2754,6 +2754,7 @@ O tym poważnym problemie dotyczącym bezpieczeństwa należy poinformować dost
 'sorbsreason' => 'Twój adres IP znajduje się na liście serwerów open proxy w DNSBL, używanej przez {{GRAMMAR:B.lp|{{SITENAME}}}}.',
 'sorbs_create_account_reason' => 'Twój adres IP znajduje się na liście serwerów open proxy w DNSBL, używanej przez {{GRAMMAR:B.lp|{{SITENAME}}}}.
 Nie możesz utworzyć konta',
+'xffblockreason' => 'Adres IP obecny w nagłówku X-Forwarded-For – twój lub serwera proxy, z którego korzystasz – został zablokowany. Powód blokady to: $1',
 'cant-block-while-blocked' => 'Nie możesz zablokować innych użytkowników, kiedy sam jesteś zablokowany.',
 'cant-see-hidden-user' => 'Konto użytkownika, które próbujesz zablokować, zostało już zablokowane oraz ukryte. Bez uprawnienia do ukrywania kont nie możesz zobaczyć oraz modyfikować blokady tego użytkownika.',
 'ipbblocked' => 'Nie możesz blokować i odblokowywać innych użytkowników, ponieważ sam jesteś zablokowany',
@@ -3067,13 +3068,8 @@ Pozwala na wpisanie powodu w opisie zmian.',
 
 # Stylesheets
 'common.css' => '/* Umieszczony tutaj kod CSS zostanie zastosowany we wszystkich skórkach */',
-'standard.css' => '/* Umieszczony tutaj kod CSS wpłynie na wygląd skórki Standardowa */',
-'nostalgia.css' => '/* Umieszczony tutaj kod CSS wpłynie na wygląd skórki Tęsknota */',
 'cologneblue.css' => '/* Umieszczony tutaj kod CSS wpłynie na wygląd skórki Błękit */',
 'monobook.css' => '/* Umieszczony tutaj kod CSS wpłynie na wygląd skórki Książka */',
-'myskin.css' => '/* Umieszczony tutaj kod CSS wpłynie na wygląd skórki Moja skórka */',
-'chick.css' => '/* Umieszczony tutaj kod CSS wpłynie na wygląd skórki Kurczaczek */',
-'simple.css' => '/* Umieszczony tutaj kod CSS wpłynie na wygląd skórki Prosta */',
 'modern.css' => '/* Umieszczony tutaj kod CSS wpłynie na wygląd skórki Nowoczesna */',
 'vector.css' => '/* Umieszczony tutaj kod CSS wpłynie na wygląd skórki Wektor */',
 'print.css' => '/* Umieszczony tutaj kod CSS wpłynie na wygląd wydruku */',
@@ -3086,13 +3082,8 @@ Pozwala na wpisanie powodu w opisie zmian.',
 
 # Scripts
 'common.js' => '/* Umieszczony tutaj kod JavaScript zostanie załadowany przez każdego użytkownika, podczas każdego ładowania strony. */',
-'standard.js' => '/* Umieszczony tutaj kod JavaScript zostanie załadowany wyłącznie przez użytkowników korzystających ze skórki Standardowa */',
-'nostalgia.js' => '/* Umieszczony tutaj kod JavaScript zostanie załadowany wyłącznie przez użytkowników korzystających ze skórki Tęsknota */',
 'cologneblue.js' => '/* Umieszczony tutaj kod JavaScript zostanie załadowany wyłącznie przez użytkowników korzystających ze skórki Błękit */',
 'monobook.js' => '/* Umieszczony tutaj kod JavaScript zostanie załadowany wyłącznie przez użytkowników korzystających ze skórki Książka */',
-'myskin.js' => '/* Umieszczony tutaj kod JavaScript zostanie załadowany wyłącznie przez użytkowników korzystających ze skórki Moja skórka */',
-'chick.js' => '/* Umieszczony tutaj kod JavaScript zostanie załadowany wyłącznie przez użytkowników korzystających ze skórki Kurczaczek */',
-'simple.js' => '/* Umieszczony tutaj kod JavaScript zostanie załadowany wyłącznie przez użytkowników korzystających ze skórki Prosta */',
 'modern.js' => '/* Umieszczony tutaj kod JavaScript zostanie załadowany wyłącznie przez użytkowników korzystających ze skórki Nowoczesna */',
 'vector.js' => '/* Umieszczony tutaj kod JavaScript zostanie załadowany wyłącznie przez użytkowników korzystających ze skórki Wektor */',
 
@@ -3168,13 +3159,8 @@ Najprawdopodobniej zostało to spowodowane przez link do zewnętrznej strony int
 'pageinfo-category-files' => 'Liczba plików',
 
 # Skin names
-'skinname-standard' => 'Standardowa',
-'skinname-nostalgia' => 'Tęsknota',
 'skinname-cologneblue' => 'Błękit',
 'skinname-monobook' => 'Książka',
-'skinname-myskin' => 'Moja skórka',
-'skinname-chick' => 'Kurczaczek',
-'skinname-simple' => 'Prosta',
 'skinname-modern' => 'Nowoczesna',
 'skinname-vector' => 'Wektor',
 

@@ -2781,13 +2781,8 @@ $1',
 'pageinfo-category-files' => 'ژمارەی پەڕگەکان',
 
 # Skin names
-'skinname-standard' => 'کلاسیک',
-'skinname-nostalgia' => 'غەریبی',
 'skinname-cologneblue' => 'شینی کۆلۆن',
 'skinname-monobook' => 'مۆنۆ',
-'skinname-myskin' => 'پێستی خۆم',
-'skinname-chick' => 'جووچک',
-'skinname-simple' => 'ساکار',
 'skinname-modern' => 'مۆدێڕن',
 'skinname-vector' => 'ڤێکتۆر',
 

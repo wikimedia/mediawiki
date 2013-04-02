@@ -3073,13 +3073,8 @@ $1',
 'pageinfo-category-files' => 'Колькасьць файлаў',
 
 # Skin names
-'skinname-standard' => 'Клясычнае',
-'skinname-nostalgia' => 'Настальгія',
 'skinname-cologneblue' => 'Кёльнскі смутак',
 'skinname-monobook' => 'Монакніга',
-'skinname-myskin' => 'MySkin',
-'skinname-chick' => 'Цыпа',
-'skinname-simple' => 'Простае',
 'skinname-modern' => 'Сучаснае',
 'skinname-vector' => 'Вэктар',
 

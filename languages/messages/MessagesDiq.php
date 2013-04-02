@@ -3130,13 +3130,8 @@ Tı eşkeno yew sebeb bınus.',
 'pageinfo-category-files' => 'Amarê dosyeyan',
 
 # Skin names
-'skinname-standard' => 'Klasik',
-'skinname-nostalgia' => 'Nostalciya',
 'skinname-cologneblue' => 'Cologne Blue',
 'skinname-monobook' => 'MonoBook',
-'skinname-myskin' => 'MySkin',
-'skinname-chick' => 'Şıq',
-'skinname-simple' => 'Rehat',
 'skinname-modern' => 'Modern',
 'skinname-vector' => 'Vektor',
 

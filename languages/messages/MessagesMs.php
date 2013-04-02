@@ -2932,13 +2932,8 @@ Simpan dalam komputer anda dan muat naiknya di sini.',
 
 # Stylesheets
 'common.css' => '/* CSS yang terletak di sini akan digunakan pada semua kulit */',
-'standard.css' => '/* CSS yang terletak di sini akan mempengaruhi pengguna kulit Klasik */',
-'nostalgia.css' => '/* CSS yang terletak di sini akan mempengaruhi pengguna kulit Nostalgia */',
 'cologneblue.css' => '/* CSS yang terletak di sini akan mempengaruhi pengguna kulit Cologne Blue */',
 'monobook.css' => '/* CSS yang terletak di sini akan mempengaruhi pengguna kulit Monobook */',
-'myskin.css' => '/* CSS yang terletak di sini akan mempengaruhi pengguna kulit MySkin */',
-'chick.css' => '/* CSS yang terletak di sini akan mempengaruhi pengguna kulit Chick */',
-'simple.css' => '/* CSS yang terletak di sini akan mempengaruhi pengguna kulit Ringkas */',
 'modern.css' => '/* CSS yang terletak di sini akan mempengaruhi pengguna kulit Moden */',
 'vector.css' => '/* CSS yang terletak di sini akan mempengaruhi pengguna kulit Vector */',
 
@@ -3013,13 +3008,8 @@ Simpan dalam komputer anda dan muat naiknya di sini.',
 'pageinfo-category-files' => 'Bilangan fail',
 
 # Skin names
-'skinname-standard' => 'Klasik',
-'skinname-nostalgia' => 'Nostalgia',
 'skinname-cologneblue' => 'Cologne Blue',
 'skinname-monobook' => 'MonoBook',
-'skinname-myskin' => 'MySkin',
-'skinname-chick' => 'Chick',
-'skinname-simple' => 'Ringkas',
 'skinname-modern' => 'Moden',
 'skinname-vector' => 'Vector',
 

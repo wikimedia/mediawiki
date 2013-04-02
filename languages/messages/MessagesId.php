@@ -3076,13 +3076,8 @@ Simpan ke komputer Anda dan unggah ke sini.',
 
 # Stylesheets
 'common.css' => '/* CSS yang ada di sini akan diterapkan pada semua kulit. */',
-'standard.css' => '/* CSS yang ada di sini akan diterapkan pada kulit Standar. */',
-'nostalgia.css' => '/* CSS yang ada di sini akan diterapkan pada kulit Nostalgia. */',
 'cologneblue.css' => '/* CSS yang ada di sini akan diterapkan pada kulit Cologne Blue. */',
 'monobook.css' => '/* CSS yang ada di sini akan diterapkan pada kulit Monobook. */',
-'myskin.css' => '/* CSS yang ada di sini akan diterapkan pada kulit MySkin. */',
-'chick.css' => '/* CSS yang ada di sini akan diterapkan pada kulit Chick. */',
-'simple.css' => '/* CSS yang ada di sini akan diterapkan pada kulit Sederhana. */',
 'modern.css' => '/* CSS yang ada di sini akan diterapkan pada kulit Modern. */',
 'vector.css' => '/* CSS yang ada di sini akan diterapkan pada kulit Vektor. */',
 'print.css' => '/* CSS yang ada di sini akan diterapkan pada tampilan cetak. */',
@@ -3095,13 +3090,8 @@ Simpan ke komputer Anda dan unggah ke sini.',
 
 # Scripts
 'common.js' => '/* JavaScript yang ada di sini akan diterapkan untuk semua kulit. */',
-'standard.js' => '/* Semua JavaScript di sini akan dimuatkan untuk para pengguna yang menggunakan kulit Standard */',
-'nostalgia.js' => '/* Semua JavaScript di sini akan dimuatkan untuk para pengguna yang menggunakan kulit Nostalgia */',
 'cologneblue.js' => '/* Semua JavaScript di sini akan dimuatkan untuk para pengguna yang menggunakan kulit Cologne Blue */',
 'monobook.js' => '/* Semua JavaScript di sini akan dimuatkan untuk para pengguna yang menggunakan kulit MonoBook */',
-'myskin.js' => '/* Semua JavaScript di sini akan dimuatkan untuk para pengguna yang menggunakan kulit MySkin */',
-'chick.js' => '/* Semua JavaScript di sini akan dimuatkan untuk para pengguna yang menggunakan kulit Chick */',
-'simple.js' => '/* Semua JavaScript di sini akan dimuatkan untuk para pengguna yang menggunakan kulit Simple */',
 'modern.js' => '/* Semua JavaScript di sini akan dimuatkan untuk para pengguna yang menggunakan kulit Modern */',
 'vector.js' => '/* Semua JavaScript di sini akan dimuatkan untuk para pengguna yang menggunakan kulit Vector */',
 'group-autoconfirmed.js' => '/* Semua JavaScript di sini hanya dimuatkan untuk pengguna terkonfirmasi otomatis */',
@@ -3182,13 +3172,8 @@ Ini mungkin disebabkan oleh pranala ke situs luar yang termasuk dalam daftar hit
 'pageinfo-category-files' => 'Jumlah berkas',
 
 # Skin names
-'skinname-standard' => 'Klasik',
-'skinname-nostalgia' => 'Nostalgia',
 'skinname-cologneblue' => 'Biru Köln',
 'skinname-monobook' => 'MonoBook',
-'skinname-myskin' => 'MySkin',
-'skinname-chick' => 'Chick',
-'skinname-simple' => 'Sederhana',
 'skinname-modern' => 'Modern',
 'skinname-vector' => 'Vektor',
 

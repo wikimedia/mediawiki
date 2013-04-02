@@ -2862,6 +2862,7 @@ Neem contact op met uw internetprovider of uw helpdesk en stel die op de hoogte 
 'sorbsreason' => 'Uw IP-adres staat bekend als open proxyserver in de DNS-blacklist die {{SITENAME}} gebruikt.',
 'sorbs_create_account_reason' => 'Uw IP-adres staat bekend als open proxyserver in de DNS-blacklist die {{SITENAME}} gebruikt.
 U kunt geen gebruiker registreren.',
+'xffblockreason' => 'Een IP-adres dat u gebruikt is geblokkeerd. Dit staat de X-Forwarded-For van de header. De oorspronkelijke blokkadereden is: $1',
 'cant-block-while-blocked' => 'U kunt andere gebruikers niet blokkeren terwijl u zelf geblokkeerd bent.',
 'cant-see-hidden-user' => 'De gebruiker die u probeert te blokken is al geblokkeerd en verborgen.
 Omdat u het recht "hideuser" niet hebt, kunt u de blokkade van de gebruiker niet bekijken of bewerken.',
@@ -3180,13 +3181,8 @@ U kunt wel de broncode bekijken.',
 
 # Stylesheets
 'common.css' => '/** CSS die hier wordt geplaatst heeft invloed op alle skins */',
-'standard.css' => '/* CSS die hier wordt geplaatst heeft alleen invloed op de skin Standard */',
-'nostalgia.css' => '/* CSS die hier wordt geplaatst heeft alleen invloed op de skin Nostalgie */',
 'cologneblue.css' => '/* CSS die hier wordt geplaatst heeft alleen invloed op de skin Keuls blauw */',
 'monobook.css' => '/* CSS die hier wordt geplaatst heeft alleen invloed op de skin Monobook */',
-'myskin.css' => '/* CSS die hier wordt geplaatst heeft alleen invloed op de skin MijnSkin */',
-'chick.css' => '/* CSS die hier wordt geplaatst heeft alleen invloed op de skin Chick */',
-'simple.css' => '/* CSS die hier wordt geplaatst heeft alleen invloed op de skin Eenvoudig */',
 'modern.css' => '/* CSS die hier wordt geplaatst heeft alleen invloed op de skin Modern */',
 'vector.css' => '/* CSS die hier wordt geplaatst heeft alleen invloed op de skin Vector */',
 'print.css' => '/* CSS die hier wordt geplaatst heeft alleen invloed op de printuitvoer */',
@@ -3199,13 +3195,8 @@ U kunt wel de broncode bekijken.',
 
 # Scripts
 'common.js' => "/* JavaScript die hier wordt geplaatst heeft invloed op alle pagina's voor alle gebruikers */",
-'standard.js' => '/* JavaScript die hier wordt geplaatst heeft alleen invloed op gebruikers die de skin Standaard gebruiken */',
-'nostalgia.js' => '/* JavaScript die hier wordt geplaatst heeft alleen invloed op gebruikers die de skin Nostalgie gebruiken */',
 'cologneblue.js' => '/* JavaScript die hier wordt geplaatst heeft alleen invloed op gebruikers die de skin Keuls blauw gebruiken */',
 'monobook.js' => '/* JavaScript die hier wordt geplaatst heeft alleen invloed op gebruikers die de skin Monobook gebruiken */',
-'myskin.js' => '/* JavaScript die hier wordt geplaatst heeft alleen invloed op gebruikers die de skin MijnSkin gebruiken */',
-'chick.js' => '/* JavaScript die hier wordt geplaatst heeft alleen invloed op gebruikers die de skin Chick gebruiken */',
-'simple.js' => '/* JavaScript die hier wordt geplaatst heeft alleen invloed op gebruikers die de skin Eenvoudig gebruiken */',
 'modern.js' => '/* JavaScript die hier wordt geplaatst heeft alleen invloed op gebruikers die de skin Modern gebruiken */',
 'vector.js' => '/* JavaScript die hier wordt geplaatst heeft alleen invloed op gebruikers die de skin Vector gebruiken */',
 'group-autoconfirmed.js' => '/* JavaScript die hier wordt geplaatst heeft alleen invloed op automatisch bevestigde gebruikers */',
@@ -3285,13 +3276,8 @@ Meestal wordt dit door een externe koppeling op een zwarte lijst veroorzaakt.',
 'pageinfo-category-files' => 'Aantal bestanden',
 
 # Skin names
-'skinname-standard' => 'Klassiek',
-'skinname-nostalgia' => 'Nostalgie',
 'skinname-cologneblue' => 'Keuls blauw',
 'skinname-monobook' => 'Monobook',
-'skinname-myskin' => 'MijnSkin',
-'skinname-chick' => 'Chick',
-'skinname-simple' => 'Eenvoudig',
 'skinname-modern' => 'Modern',
 'skinname-vector' => 'Vector',
 
