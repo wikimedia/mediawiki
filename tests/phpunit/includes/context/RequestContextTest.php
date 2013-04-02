@@ -93,4 +93,37 @@ class RequestContextTest extends MediaWikiTestCase {
 		$this->assertEquals( $oInfo['sessionId'], $info['sessionId'], "Correct restored session ID." );
 		$this->assertEquals( $oInfo['userId'], $info['userId'], "Correct restored user ID." );
 	}
+
+	public function testContextLanguage() {
+		$this->setMwGlobals( array(
+			'wgUseDatabaseMessages' => true,
+			'wgLanguageCode' => 'eo',
+		) );
+
+		$context = new RequestContext();
+
+		// Pick a language other than the site default
+		$lang = 'aa';
+		$dbKey = 'A';
+		$transDbKey = "{$dbKey}/{$lang}";
+		$nativeText = 'default';
+		$transText = 'trans';
+
+		$msgTitle = Title::newFromText( $dbKey, NS_MEDIAWIKI );
+
+		$page = new WikiPage( $msgTitle );
+		$content = ContentHandler::makeContent( $nativeText, $msgTitle, null );
+		$page->doEditContent( $content, '', EDIT_NEW );
+
+		$transTitle = Title::newFromText( $transDbKey, NS_MEDIAWIKI );
+		$page = new WikiPage( $transTitle );
+		$content = ContentHandler::makeContent( $transText, $transTitle, null );
+		$page->doEditContent( $content, '', EDIT_NEW );
+
+		// We are testing that this works.
+		$context->setLanguage( $lang );
+
+		$this->assertEquals( $context->msg( $dbKey )->text(), $transText,
+			'RequestContext->setLanguage causes the translated message to be fetched.' );
+	}
 }
