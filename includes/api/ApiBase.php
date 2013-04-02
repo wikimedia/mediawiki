@@ -934,12 +934,7 @@ abstract class ApiBase extends ContextSource {
 				// accidentally uploaded as a field fails spectacularly)
 				$value = $this->getMain()->getRequest()->unsetVal( $encParamName );
 				if ( $value !== null ) {
-					$this->dieUsage(
-						"File upload param $encParamName is not a file upload; " .
-						"be sure to use multipart/form-data for your POST and include " .
-						"a filename in the Content-Disposition header.",
-						"badupload_{$encParamName}"
-					);
+					$this->dieUsageMsg( array( 'badupload', $encParamName ) );
 				}
 			}
 		} else {
@@ -1157,7 +1152,7 @@ abstract class ApiBase extends ContextSource {
 	function validateTimestamp( $value, $encParamName ) {
 		$unixTimestamp = wfTimestamp( TS_UNIX, $value );
 		if ( $unixTimestamp === false ) {
-			$this->dieUsage( "Invalid value '$value' for timestamp parameter $encParamName", "badtimestamp_{$encParamName}" );
+			$this->dieUsageMsg( array( 'badtimestamp', $encParamName, $value ) );
 		}
 		return wfTimestamp( TS_MW, $unixTimestamp );
 	}
@@ -1171,7 +1166,7 @@ abstract class ApiBase extends ContextSource {
 	private function validateUser( $value, $encParamName ) {
 		$title = Title::makeTitleSafe( NS_USER, $value );
 		if ( $title === null ) {
-			$this->dieUsage( "Invalid value '$value' for user parameter $encParamName", "baduser_{$encParamName}" );
+			$this->dieUsageMsg( array( 'baduser', $encParamName, $value ) );
 		}
 		return $title->getText();
 	}
@@ -1300,6 +1295,10 @@ abstract class ApiBase extends ContextSource {
 		'writedisabled' => array( 'code' => 'noapiwrite', 'info' => "Editing of this wiki through the API is disabled. Make sure the \$wgEnableWriteAPI=true; statement is included in the wiki's LocalSettings.php file" ),
 		'writerequired' => array( 'code' => 'writeapidenied', 'info' => "You're not allowed to edit this wiki through the API" ),
 		'missingparam' => array( 'code' => 'no$1', 'info' => "The \$1 parameter must be set" ),
+		'badcontinue' => array( 'code' => 'badcontinue', 'info' => 'Invalid continue param. You should pass the original value returned by the previous query' ),
+		'badtimestamp' => array( 'code' => 'badtimestamp_$1', 'info' => 'Invalid value \'$2\' for timestamp parameter $1' ),
+		'baduser' => array( 'code' => 'baduser_$1', 'info' => 'Invalid value \'$2\' for user parameter $1' ),
+		'badupload' => array( 'code' => 'badupload_$1', 'info' => 'File upload param $1 is not a file upload; be sure to use multipart/form-data for your POST and include a filename in the Content-Disposition header.' ),
 		'invalidtitle' => array( 'code' => 'invalidtitle', 'info' => "Bad title \"\$1\"" ),
 		'nosuchpageid' => array( 'code' => 'nosuchpageid', 'info' => "There is no page with ID \$1" ),
 		'nosuchrevid' => array( 'code' => 'nosuchrevid', 'info' => "There is no revision with ID \$1" ),
@@ -1425,15 +1424,13 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
-	 * Die with the $prefix.'badcontinue' error. This call is common enough to make it into the base method.
+	 * Die with the 'badcontinue' error. This call is common enough to make it into the base method.
 	 * @param $condition boolean will only die if this value is true
 	 * @since 1.21
 	 */
 	protected function dieContinueUsageIf( $condition ) {
 		if ( $condition ) {
-			$this->dieUsage(
-				'Invalid continue param. You should pass the original value returned by the previous query',
-				'badcontinue' );
+			$this->dieUsageMsg( array( 'badcontinue' ) );
 		}
 	}
 
@@ -1571,13 +1568,23 @@ abstract class ApiBase extends ContextSource {
 				if ( isset( $paramSettings[ApiBase::PARAM_REQUIRED] ) && $paramSettings[ApiBase::PARAM_REQUIRED] ) {
 					$ret[] = array( 'missingparam', $paramName );
 				}
+				if ( isset( $paramSettings[self::PARAM_TYPE] ) ) {
+					$encParamName = $this->encodeParamName( $paramName );
+					switch ( $paramSettings[self::PARAM_TYPE] ) {
+						case 'timestamp':
+							$ret[] = array( 'badtimestamp', $encParamName, 'value' );
+							break;
+						case 'user':
+							$ret[] = array( 'baduser', $encParamName, 'value' );
+							break;
+						case 'upload':
+							$ret[] = array( 'badupload', $encParamName );
+							break;
+					}
+				}
 			}
 			if ( array_key_exists( 'continue', $params ) ) {
-				$ret[] = array(
-					array(
-						'code' => 'badcontinue',
-						'info' => 'Invalid continue param. You should pass the original value returned by the previous query'
-					) );
+				$ret[] = array( 'badcontinue' );
 			}
 		}
 
