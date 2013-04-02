@@ -286,8 +286,12 @@ class ResourceLoader {
 
 		// Add the testrunner (which configures QUnit) to the dependencies.
 		// Since it must be ready before any of the test suites are executed.
-		foreach( $testModules['qunit'] as $moduleName => $moduleProps ) {
-			$testModules['qunit'][$moduleName]['dependencies'][] = 'mediawiki.tests.qunit.testrunner';
+		foreach( $testModules['qunit'] as &$module ) {
+			// Make sure all test modules are top-loading so that when QUnit starts
+			// on document-ready, it will run once and finish. If some tests arrive
+			// later (possibly after QUnit has already finished) they will be ignored.
+			$module['position'] = 'top';
+			$module['dependencies'][] = 'mediawiki.tests.qunit.testrunner';
 		}
 
 		foreach( $testModules as $id => $names ) {
