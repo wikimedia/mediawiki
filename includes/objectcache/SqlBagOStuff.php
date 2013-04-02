@@ -222,8 +222,8 @@ class SqlBagOStuff extends BagOStuff {
 
 		$dataRows = array();
 		foreach ( $keysByTable as $serverIndex => $serverKeys ) {
-			$db = $this->getDB( $serverIndex );
 			try {
+				$db = $this->getDB( $serverIndex );
 				foreach ( $serverKeys as $tableName => $tableKeys ) {
 					$res = $db->select( $tableName,
 						array( 'keyname', 'value', 'exptime' ),
@@ -244,10 +244,10 @@ class SqlBagOStuff extends BagOStuff {
 			if ( isset( $dataRows[$key] ) ) { // HIT?
 				$row = $dataRows[$key];
 				$this->debug( "get: retrieved data; expiry time is " . $row->exptime );
-				$db = $this->getDB( $row->serverIndex );
-				if ( $this->isExpired( $db, $row->exptime ) ) { // MISS
-					$this->debug( "get: key has expired, deleting" );
-					try {
+				try {
+					$db = $this->getDB( $row->serverIndex );
+					if ( $this->isExpired( $db, $row->exptime ) ) { // MISS
+						$this->debug( "get: key has expired, deleting" );
 						$db->begin( __METHOD__ );
 						# Put the expiry time in the WHERE condition to avoid deleting a
 						# newly-inserted value
@@ -255,12 +255,12 @@ class SqlBagOStuff extends BagOStuff {
 							array( 'keyname' => $key, 'exptime' => $row->exptime ),
 							__METHOD__ );
 						$db->commit( __METHOD__ );
-					} catch ( DBQueryError $e ) {
-						$this->handleWriteError( $e, $row->serverIndex );
+						$values[$key] = false;
+					} else { // HIT
+						$values[$key] = $this->unserialize( $db->decodeBlob( $row->value ) );
 					}
-					$values[$key] = false;
-				} else { // HIT
-					$values[$key] = $this->unserialize( $db->decodeBlob( $row->value ) );
+				} catch ( DBQueryError $e ) {
+					$this->handleWriteError( $e, $row->serverIndex );
 				}
 			} else { // MISS
 				$values[$key] = false;
