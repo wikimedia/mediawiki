@@ -274,7 +274,7 @@
 						.parent()
 						.prepend( '&nbsp;[' )
 						.append( ']&nbsp;' )
-						.on( 'click.mw-collapse', function ( e, opts ) {
+						.on( 'click.mw-collapsible', function ( e, opts ) {
 							opts = $.extend( { toggleText: { collapseText: collapsetext, expandText: expandtext } }, options, opts );
 							toggleLinkDefault( $(this), e, opts );
 						} );
@@ -298,7 +298,7 @@
 
 			// Bind the custom togglers
 			if ( $customTogglers && $customTogglers.length ) {
-				$customTogglers.on( 'click.mw-collapse', function ( e, opts ) {
+				$customTogglers.on( 'click.mw-collapsible', function ( e, opts ) {
 					opts = $.extend( {}, options, opts );
 					toggleLinkCustom( $(this), e, opts, $collapsible );
 				} );
@@ -324,7 +324,7 @@
 					if ( !$toggle.length ) {
 						$firstItem.eq(-1).prepend( $toggleLink );
 					} else {
-						$toggleLink = $toggle.off( 'click.mw-collapse' ).on( 'click.mw-collapse', function ( e, opts ) {
+						$toggleLink = $toggle.off( 'click.mw-collapsible' ).on( 'click.mw-collapsible', function ( e, opts ) {
 							opts = $.extend( {}, options, opts );
 							toggleLinkPremade( $toggle, e, opts );
 						} );
@@ -346,7 +346,7 @@
 						}
 						$collapsible.prepend( $toggleLink.wrap( '<li class="mw-collapsible-toggle-li"></li>' ).parent() );
 					} else {
-						$toggleLink = $toggle.off( 'click.mw-collapse' ).on( 'click.mw-collapse', function ( e, opts ) {
+						$toggleLink = $toggle.off( 'click.mw-collapsible' ).on( 'click.mw-collapsible', function ( e, opts ) {
 							opts = $.extend( {}, options, opts );
 							toggleLinkPremade( $toggle, e, opts );
 						} );
@@ -366,7 +366,7 @@
 					if ( !$toggle.length ) {
 						$collapsible.prepend( $toggleLink );
 					} else {
-						$toggleLink = $toggle.off( 'click.mw-collapse' ).on( 'click.mw-collapse', function ( e, opts ) {
+						$toggleLink = $toggle.off( 'click.mw-collapsible' ).on( 'click.mw-collapsible', function ( e, opts ) {
 							opts = $.extend( {}, options, opts );
 							toggleLinkPremade( $toggle, e, opts );
 						} );
