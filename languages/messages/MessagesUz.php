@@ -1557,12 +1557,7 @@ Umumiy omborda [[:$1]] mavjud. Faylning bu nomga qayta nomlanishi faylning umumi
 'pageinfo-redirectsto' => 'Qayta yoʻnaltirish',
 
 # Skin names
-'skinname-standard' => 'Klassik',
-'skinname-nostalgia' => "Sog'inch",
 'skinname-cologneblue' => "Kyolncha sog'inch",
-'skinname-myskin' => "O'zimniki",
-'skinname-chick' => "Jo'ja",
-'skinname-simple' => 'Oddiy',
 'skinname-modern' => 'Zamonaviy',
 'skinname-vector' => 'Vektor',
 

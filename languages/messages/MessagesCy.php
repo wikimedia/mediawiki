@@ -2910,8 +2910,6 @@ Achos hyn yn fwy na thebyg yw presenoldeb cysylltiad i wefan ar y rhestr wahardd
 'pageinfo-category-files' => 'Nifer y ffeiliau',
 
 # Skin names
-'skinname-standard' => 'Safonol',
-'skinname-nostalgia' => 'Hiraeth',
 'skinname-cologneblue' => 'Glas Cwlen',
 
 # Patrolling

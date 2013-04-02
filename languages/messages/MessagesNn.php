@@ -2980,26 +2980,16 @@ Vitja [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [//trans
 
 # Stylesheets
 'common.css' => '/* CSS plassert i denne fila vil gjelde for alle utsjånader. */',
-'standard.css' => '/* CSS i denne fila vil gjelde alle som nyttar drakta Standard */',
-'nostalgia.css' => '/* CSS i denne fila vil gjelde alle som nyttar drakta Nostalgia */',
 'cologneblue.css' => '/* CSS i denne fila vil gjelde alle som nyttar drakta Kølnerblå */',
 'monobook.css' => '/* CSS-tekst som vert plassert her, endrar utsjånaden til sidedrakta Monobook */',
-'myskin.css' => '/* CSS i denne fila vil gjelde alle som nyttar drakta MySkin */',
-'chick.css' => '/* CSS i denne fila vil gjelde alle som nyttar drakta Chick */',
-'simple.css' => '/* CSS i denne fila vil gjelde alle som nyttar drakta Simple */',
 'modern.css' => '/* CSS i denne fila vil gjelde alle som nyttar drakta Modern */',
 'print.css' => '/* CSS i denne fila vil påverke utskriftsversjonen */',
 'handheld.css' => '/* CSS i denne fila vil gjelde alle handheldte innretnigar konfigurert i $wgHandheldStyle */',
 
 # Scripts
 'common.js' => '/* Javascript i denne fila vil gjelde for alle drakter. */',
-'standard.js' => '/* Javascript i denne fila vil gjelde for brukarar av drakta Standard */',
-'nostalgia.js' => '/* Javascript i denne fila vil gjelde for brukarar av drakta Nostalgia */',
 'cologneblue.js' => '/* Javascript i denne fila vil gjelde for brukarar av drakta Kølnerblå */',
 'monobook.js' => '/* Javascript i denne fila vil gjelde for brukarar av drakta Monobook */',
-'myskin.js' => '* Javascript i denne fila vil gjelde for brukarar av drakta MySkin */',
-'chick.js' => '* Javascript i denne fila vil gjelde for brukarar av drakta Chick */',
-'simple.js' => '* Javascript i denne fila vil gjelde for brukarar av drakta Simple */',
 'modern.js' => '* Javascript i denne fila vil gjelde for brukarar av drakta Modern */',
 
 # Metadata
@@ -3073,13 +3063,8 @@ Vitja [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [//trans
 'pageinfo-category-files' => 'Tal filer',
 
 # Skin names
-'skinname-standard' => 'Klassisk',
-'skinname-nostalgia' => 'Nostalgi',
 'skinname-cologneblue' => 'Kölnerblå',
 'skinname-monobook' => 'MonoBook',
-'skinname-myskin' => 'MiDrakt',
-'skinname-chick' => 'Chick',
-'skinname-simple' => 'Enkel',
 'skinname-modern' => 'Moderne',
 
 # Patrolling

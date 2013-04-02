@@ -3110,13 +3110,8 @@ Permite añadir una razón al resumen de edición.',
 
 # Stylesheets
 'common.css' => '/* El CSS colocado en esta página sera aplicado a todas las pieles (skins) */',
-'standard.css' => '/* El CSS colocado en esta página afectará a los usuarios que usen la piel "Standard" */',
-'nostalgia.css' => '/* El CSS colocado en esta página afectará a los usuarios que usen la piel "Nostalgia" */',
 'cologneblue.css' => '/* El CSS colocado en esta página afectará a los usuarios que usen la piel "Cologne Blue" */',
 'monobook.css' => '/* El CSS colocado en esta página afectará a los usuarios que usen la piel "MonoBook" */',
-'myskin.css' => '/* El CSS colocado en esta página afectará a los usuarios que usen la piel "MySkin" */',
-'chick.css' => '/* El CSS colocado en esta página afectará a los usuarios que usen la piel ""Chick" */',
-'simple.css' => '/* El CSS colocado en esta página afectará a los usuarios que usen la piel "Simple" */',
 'modern.css' => '/* El CSS colocado en esta página afectará a los usuarios que usen la piel "Modern" */',
 'vector.css' => '/* El CSS colocado en esta página afectará a los usuarios que usen la piel "Vector" */',
 'print.css' => '/* Los estilos CSS colocados aquí afectarán la impresión */',
@@ -3129,13 +3124,8 @@ Permite añadir una razón al resumen de edición.',
 
 # Scripts
 'common.js' => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios en cada carga de página */',
-'standard.js' => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Estandar */',
-'nostalgia.js' => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Nostalgia. */',
 'cologneblue.js' => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Colonia azul */',
 'monobook.js' => '/* El código JavaScript que se ponga aquí será cargado por los usuarios de la piel MonoBook */',
-'myskin.js' => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Mi piel */',
-'chick.js' => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Pollito */',
-'simple.js' => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Simple */',
 'modern.js' => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Moderna */',
 'vector.js' => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Vector */',
 'group-autoconfirmed.js' => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios del grupo Usuarios autoconfirmados */',
@@ -3216,13 +3206,8 @@ Esto podría estar causado por un enlace a un sitio externo incluido en la lista
 'pageinfo-category-files' => 'Número de archivos',
 
 # Skin names
-'skinname-standard' => 'Estándar',
-'skinname-nostalgia' => 'Nostalgia',
 'skinname-cologneblue' => 'Colonia azul',
 'skinname-monobook' => 'MonoBook',
-'skinname-myskin' => 'Mi piel',
-'skinname-chick' => 'Pollito',
-'skinname-simple' => 'Simple',
 'skinname-modern' => 'Moderna',
 'skinname-vector' => 'Vector',
 

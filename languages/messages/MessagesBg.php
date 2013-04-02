@@ -2906,13 +2906,8 @@ $1',
 'pageinfo-category-files' => 'Брой файлове',
 
 # Skin names
-'skinname-standard' => 'Класика',
-'skinname-nostalgia' => 'Носталгия',
 'skinname-cologneblue' => 'Кьолнско синьо',
 'skinname-monobook' => 'Монобук',
-'skinname-myskin' => 'Моят облик',
-'skinname-chick' => 'Пиленце',
-'skinname-simple' => 'Семпъл',
 'skinname-modern' => 'Модерен',
 
 # Patrolling

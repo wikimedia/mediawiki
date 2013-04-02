@@ -2974,13 +2974,8 @@ Tallenna tiedot koneellesi ja tuo ne tällä sivulla.',
 
 # Stylesheets
 'common.css' => '/* Tämä sivu sisältää koko sivustoa muuttavia tyylejä. */',
-'standard.css' => '/* Tämä sivu sisältää Perus-ulkoasua muuttavia tyylejä. */',
-'nostalgia.css' => '/* Tämä sivu sisältää Nostalgia-ulkoasua muuttavia tyylejä. */',
 'cologneblue.css' => '/* Tämä sivu sisältää Kölnin sininen -ulkoasua muuttavia tyylejä. */',
 'monobook.css' => '/* Tämä sivu sisältää Monobook-ulkoasua muuttavia tyylejä. */',
-'myskin.css' => '/* Tämä sivu sisältää Oma tyylisivu -ulkoasua muuttavia tyylejä. */',
-'chick.css' => '/* Tämä sivu sisältää Chick-ulkoasua muuttavia tyylejä. */',
-'simple.css' => '/* Tämä sivu sisältää Yksinkertainen-ulkoasua muuttavia tyylejä. */',
 'modern.css' => '/* Tämä sivu sisältää Moderni-ulkoasua muuttavia tyylejä. */',
 'vector.css' => '/* Tämä sivu sisältää Vector-ulkoasua muuttavia tyylejä. */',
 'print.css' => '/* Tämä sivu sisältää tulostettua sivua muuttavia tyylejä */',
@@ -2992,13 +2987,8 @@ Tallenna tiedot koneellesi ja tuo ne tällä sivulla.',
 
 # Scripts
 'common.js' => '/* Tämän sivun JavaScript-koodi liitetään jokaiseen sivulataukseen */',
-'standard.js' => '/* Tämän sivun JavaScript-koodi liitetään Perus-tyyliin */',
-'nostalgia.js' => '/* Tämän sivun JavaScript-koodi liitetään Nostalgia-tyyliin */',
 'cologneblue.js' => '/* Tämän sivun JavaScript-koodi liitetään Kölnin sininen -tyyliin */',
 'monobook.js' => '/* Tämän sivun JavaScript-koodi liitetään Monobook-tyyliin */',
-'myskin.js' => '/* Tämän sivun JavaScript-koodi liitetään Oma tyylisivu -tyyliin */',
-'chick.js' => '/* Tämän sivun JavaScript-koodi liitetään Chick-tyyliin */',
-'simple.js' => '/* Tämän sivun JavaScript-koodi liitetään Yksinkertaistettuun tyyliin */',
 'modern.js' => '/* Tämän sivun JavaScript-koodi liitetään Moderni-tyyliin */',
 'vector.js' => '/* Tämän sivun JavaScript-koodi liitetään Vector-tyyliin */',
 'group-autoconfirmed.js' => '/* Tämän sivun JavaScript-koodi liitetään vain automaattisesti hyväksytyille käyttäjille */',
@@ -3074,13 +3064,8 @@ Tallenna tiedot koneellesi ja tuo ne tällä sivulla.',
 'pageinfo-category-files' => 'Tiedostojen määrä',
 
 # Skin names
-'skinname-standard' => 'Perus',
-'skinname-nostalgia' => 'Nostalgia',
 'skinname-cologneblue' => 'Kölnin sininen',
 'skinname-monobook' => 'Monobook',
-'skinname-myskin' => 'Oma tyylisivu',
-'skinname-chick' => 'Chick',
-'skinname-simple' => 'Yksinkertainen',
 'skinname-modern' => 'Moderni',
 
 # Patrolling

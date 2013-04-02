@@ -2656,6 +2656,7 @@ $1被封禁的理由是：“$2”',
 'proxyblocksuccess' => '完成。',
 'sorbsreason' => '在{{SITENAME}}使用的DNSBL中，您的IP地址被列为公开代理。',
 'sorbs_create_account_reason' => '在{{SITENAME}}使用的DNSBL中，您的IP地址被列为公开代理，因此您不能创建新账户。',
+'xffblockreason' => '您或您正在使用的代理服务器呈现在X-Forwarded-For数据包头的一个IP地址已被封禁。封禁原因为：$1',
 'cant-block-while-blocked' => '您无法在封禁期内封禁其他用户。',
 'cant-see-hidden-user' => '您尝试封禁的用户已被封禁并隐藏。
 由于您尚无隐藏用户的权限，您无法查看或编辑此用户的封禁。',
@@ -2961,13 +2962,8 @@ $1被封禁的理由是：“$2”',
 
 # Stylesheets
 'common.css' => '/* 此处的 CSS 将应用于所有的皮肤 */',
-'standard.css' => '/* 此处的 CSS 将影响使用标准皮肤的用户 */',
-'nostalgia.css' => '/* 此处的 CSS 将影响使用怀旧皮肤的用户 */',
 'cologneblue.css' => '/* 此处的 CSS 将影响使用科隆香水蓝皮肤的用户 */',
 'monobook.css' => '/* 此处的 CSS 将影响使用 Monobook 皮肤的用户 */',
-'myskin.css' => '/* 此处的 CSS 将影响使用 MySkin 皮肤的用户 */',
-'chick.css' => '/* 此处的 CSS 将影响使用 Chick 皮肤的用户 */',
-'simple.css' => '/* 此处的 CSS 将影响使用 Simple 皮肤的用户 */',
 'modern.css' => '/* 此处的 CSS 将影响使用 Modern 皮肤的用户 */',
 'vector.css' => '/* 此处的 CSS 将影响使用 Vector 皮肤的用户 */',
 'print.css' => '/* 此处的 CSS 将影响打印输出 */',
@@ -2980,13 +2976,8 @@ $1被封禁的理由是：“$2”',
 
 # Scripts
 'common.js' => '/* 此处的JavaScript将加载于所有用户每一个页面。 */',
-'standard.js' => '/* 此处的JavaScript将加载于使用标准皮肤的用户 */',
-'nostalgia.js' => '/* 此处的JavaScript将加载于使用怀旧皮肤的用户 */',
 'cologneblue.js' => '/* 此处的JavaScript将加载于使用科隆香水蓝皮肤的用户 */',
 'monobook.js' => '/* 此处的JavaScript将加载于使用Monobook皮肤的用户 */',
-'myskin.js' => '/* 此处的JavaScript将加载于使用MySkin皮肤的用户 */',
-'chick.js' => '/* 此处的JavaScript将加载于使用Chick皮肤的用户 */',
-'simple.js' => '/* 此处的JavaScript将加载于使用Simple皮肤的用户 */',
 'modern.js' => '/* 此处的JavaScript将加载于使用Modern皮肤的用户 */',
 'vector.js' => '/* 此处的JavaScript将加载于使用Vector皮肤的用户 */',
 'group-autoconfirmed.js' => '/* 此处的JavaScript将仅加载于自动确认用户 */',
@@ -3066,10 +3057,7 @@ $1被封禁的理由是：“$2”',
 'pageinfo-category-files' => '文件数',
 
 # Skin names
-'skinname-standard' => '标准',
-'skinname-nostalgia' => '怀旧',
 'skinname-cologneblue' => '科隆香水蓝',
-'skinname-simple' => '简单',
 'skinname-modern' => '现代',
 
 # Patrolling

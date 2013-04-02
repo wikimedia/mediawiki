@@ -2891,13 +2891,8 @@ Erlaabt et e Grond an de Resumé derbäizesetzen.',
 
 # Stylesheets
 'common.css' => "/* Dës CSS huet nëmmen Afloss op de Skin ''Chick''  */",
-'standard.css' => "/* Dës CSS huet nëmmen Afloss op de Skin ''Klassesch''  */",
-'nostalgia.css' => "/* Dës CSS huet nëmmen Afloss op de Skin ''Nostalgie''  */",
 'cologneblue.css' => "/* Dës CSS huet nëmmen Afloss op de Skin ''Köln Blo''  */",
 'monobook.css' => "/* Dës CSS huet nëmmen Afloss op de Skin ''Monobook''  */",
-'myskin.css' => "/* Dës CSS huet nëmmen Afloss op de Skin ''MySkin''  */",
-'chick.css' => '/* Dës CSS huet nëmmen Afloss op de Skin "Chick" */',
-'simple.css' => "/* Dës CSS huet nëmmen Afloss op de Skin ''Einfach''  */",
 'modern.css' => "/* Dës CSS huet nëmmen Afloss op de Skin ''Modern''  */",
 
 # Scripts
@@ -2975,13 +2970,8 @@ Dëst warscheinlech duerch en externe Link den op der schwaarzer Lëscht (blackl
 'pageinfo-category-files' => 'Zuel vun de Fichieren',
 
 # Skin names
-'skinname-standard' => 'Klassesch',
-'skinname-nostalgia' => 'Nostalgie',
 'skinname-cologneblue' => 'Köln Blo',
 'skinname-monobook' => 'MonoBook',
-'skinname-myskin' => 'MySkin',
-'skinname-chick' => 'Chick',
-'skinname-simple' => 'Einfach',
 'skinname-modern' => 'Modern',
 
 # Patrolling

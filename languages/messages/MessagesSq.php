@@ -2949,8 +2949,6 @@ Ju lutemi provoni përsëri.',
 'pageinfo-authors' => 'Numri i autorëve të veçantë',
 
 # Skin names
-'skinname-standard' => 'Standarte',
-'skinname-nostalgia' => 'Nostalgjike',
 'skinname-cologneblue' => 'Kolonjë Blu',
 
 # Patrolling

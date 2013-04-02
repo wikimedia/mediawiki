@@ -2649,10 +2649,7 @@ Baliteke zerrenda beltzean dagoen kanpo lotura batek sortzea arazo hori.',
 'pageinfo-protect-cascading-from' => 'Serieko babesak aktibatuta. Sorburua:',
 
 # Skin names
-'skinname-standard' => 'Lehenetsia',
-'skinname-nostalgia' => 'Nostalgia',
 'skinname-cologneblue' => 'Cologne Blue',
-'skinname-simple' => 'Arrunta',
 'skinname-modern' => 'Modernoa',
 
 # Patrolling

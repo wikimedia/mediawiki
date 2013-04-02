@@ -2895,9 +2895,6 @@ $1 آدلی ایستیفاده‌چی‌نین باغلانما سببی: "$2"',
 'pageinfo-category-subcats' => 'آلت‌بؤلمه‌لرین سایی',
 'pageinfo-category-files' => 'فایل‌لارین سایی',
 
-# Skin names
-'skinname-myskin' => 'منیم قابیغیم',
-
 # Patrolling
 'markaspatrolleddiff' => 'ایداره ائدیلمیش اولا‌راق ایشاره‌له',
 'markaspatrolledtext' => 'صحیفنی پاتروللانمیش کیمی ایشاره‌له',

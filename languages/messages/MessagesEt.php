@@ -3000,7 +3000,6 @@ Samuti võimaldab see resümee reale põhjenduse lisamist.',
 
 # Stylesheets
 'common.css' => '/* Siin olevat CSS-i kasutavad kõik kujundused. */',
-'standard.css' => '/* Siin olev CSS puudutab Standard-kujunduse kasutajaid. */',
 
 # Scripts
 'common.js' => '/* Siinne JavaScript laaditakse igale kasutajatele igal laaditud leheküljel. */',
@@ -3076,13 +3075,8 @@ See on ilmselt põhjustatud linkimisest mustas nimekirjas olevasse välisvõrguk
 'pageinfo-category-files' => 'Failide arv',
 
 # Skin names
-'skinname-standard' => 'Algeline',
-'skinname-nostalgia' => 'Nostalgia',
 'skinname-cologneblue' => 'Kölni sinine',
 'skinname-monobook' => 'MonoBook',
-'skinname-myskin' => 'Minu kujundus',
-'skinname-chick' => 'Tibu',
-'skinname-simple' => 'Lihtne',
 'skinname-modern' => 'Uudne',
 'skinname-vector' => 'Vektor',
 

@@ -2880,13 +2880,8 @@ $1',
 
 # Stylesheets
 'common.css' => '/* CSS געשריבן דא וועט אפילירן און באיינפלוסן אלע סקינס */',
-'standard.css' => '/* CSS געשטעלט דא ווירקט אויפן סטאנדארט סקין */',
-'nostalgia.css' => '/* CSS געשטעלט דא ווירקט נאר אויפן נאסטאלגיע סקין */',
 'cologneblue.css' => '/* CSS געשטעלט דא ווירקט נאר אויפן קעלנישן־בלוי סקין */',
 'monobook.css' => '/* סטייל דא געלייגט וועט באאיינפלוסן דעם Monobook סקין */',
-'myskin.css' => '/* CSS געשטעלט דא ווירקט אויפן MySkin סקין */',
-'chick.css' => '/* CSS געשטעלט דא ווירקט אויפן טשיק סקין */',
-'simple.css' => '/* CSS געשטעלט דא ווירקט אויפן איינפאך סקין */',
 'modern.css' => '/* CSS געשטעלט דא ווירקט אויפן מאדערנעם סקין */',
 'vector.css' => '/* CSS געשטעלט דא ווירקט נאר אויפן וועקטאר סקין */',
 
@@ -2962,13 +2957,8 @@ $1',
 'pageinfo-category-files' => 'צאָל טעקעס',
 
 # Skin names
-'skinname-standard' => 'קלאסיש',
-'skinname-nostalgia' => 'נאסטאלגיע',
 'skinname-cologneblue' => 'קעלניש בלוי',
 'skinname-monobook' => 'מאנאבוק',
-'skinname-myskin' => 'מיין סקין',
-'skinname-chick' => 'טשיק',
-'skinname-simple' => 'איינפֿאַך',
 'skinname-modern' => 'מאדערן',
 'skinname-vector' => 'וועקטאר',
 

@@ -188,8 +188,8 @@ $messages = array(
 'tog-shownumberswatching' => 'Numerum usorum custodientium monstrare',
 'tog-oldsig' => 'Subscriptio ad tempus adhibita:',
 'tog-fancysig' => 'Subscriptio vicitext (sine nexu automatico)',
-'tog-externaleditor' => 'Editore externo semper uti (periti tantum:  necesse est organa propria in ordinatore habere. [//www.mediawiki.org/wiki/Manual:External_editors adiutatum (anglice)]',
-'tog-externaldiff' => 'Editore dissimilitudinum externo semper uti (periti tantum:  necesse est organa propria in ordinatore habere. [//www.mediawiki.org/wiki/Manial:External_editors adiudatum (anglice)]',
+'tog-externaleditor' => 'Editore externo semper uti (periti tantum: necesse est organa propria in computatro habere. [//www.mediawiki.org/wiki/Manual:External_editors adiutatum (Anglice)])',
+'tog-externaldiff' => 'Editore dissimilitudinum externo semper uti (periti tantum: necesse est organa propria in computatro habere. [//www.mediawiki.org/wiki/Manual:External_editors adiutatum (Anglice)])',
 'tog-showjumplinks' => 'Sinere nexus ostendi forma "salire ad" monstrata',
 'tog-uselivepreview' => 'Praevisum viventem adhibere (JavaScript)',
 'tog-forceeditsummary' => 'Si recensionem non summatim descripsero, me roga si continuare velim',
@@ -1981,7 +1981,6 @@ Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic m
 'pageinfo-toolboxlink' => 'De hac pagina',
 
 # Skin names
-'skinname-standard' => 'Norma',
 'skinname-cologneblue' => 'Caerulus Colonia',
 
 # Patrolling
