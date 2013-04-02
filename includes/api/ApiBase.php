@@ -444,6 +444,13 @@ abstract class ApiBase extends ContextSource {
 									100, $descWordwrap );
 								$hintPipeSeparated = false;
 								break;
+							case 'language':
+								$langCodes = array_keys( Language::fetchLanguageNames( null, 'all' ) );
+								sort( $langCodes );
+								$desc .= $paramPrefix . $prompt;
+								$desc .= wordwrap( implode( ', ', $langCodes ),
+									100, $descWordwrap );
+								break;
 							case 'limit':
 								$desc .= $paramPrefix . "No more than {$paramSettings[self :: PARAM_MAX]}";
 								if ( isset( $paramSettings[self::PARAM_MAX2] ) ) {
@@ -945,8 +952,15 @@ abstract class ApiBase extends ContextSource {
 		} else {
 			$value = $this->getMain()->getVal( $encParamName, $default );
 
-			if ( isset( $value ) && $type == 'namespace' ) {
-				$type = MWNamespace::getValidNamespaces();
+			if ( isset( $value ) ) {
+				switch( $type ) {
+					case 'namespace':
+						$type = MWNamespace::getValidNamespaces();
+						break;
+					case 'language':
+						$type = Language::fetchLanguageNames( null, 'all' );
+						break;
+				}
 			}
 		}
 

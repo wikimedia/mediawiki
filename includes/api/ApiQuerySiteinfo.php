@@ -646,7 +646,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			),
 			'showalldb' => false,
 			'numberingroup' => false,
-			'inlanguagecode' => null,
+			'inlanguagecode' => array(
+				ApiBase::PARAM_TYPE => 'language',
+			),
 		);
 	}
 

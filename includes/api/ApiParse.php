@@ -575,7 +575,9 @@ class ApiParse extends ApiBase {
 			),
 			'pst' => false,
 			'onlypst' => false,
-			'uselang' => null,
+			'uselang' => array(
+				ApiBase::PARAM_TYPE => 'language',
+			),
 			'section' => null,
 			'disablepp' => false,
 			'generatexml' => false,

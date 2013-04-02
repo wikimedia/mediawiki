@@ -97,7 +97,9 @@ class ApiWatch extends ApiBase {
 				ApiBase::PARAM_REQUIRED => true
 			),
 			'unwatch' => false,
-			'uselang' => null,
+			'uselang' => array(
+				ApiBase::PARAM_TYPE => 'language',
+			),
 			'token' => array(
 				ApiBase::PARAM_TYPE => 'string',
 				ApiBase::PARAM_REQUIRED => true
