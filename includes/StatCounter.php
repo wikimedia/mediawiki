@@ -40,6 +40,9 @@ class StatCounter {
 
 	protected function __construct() {}
 
+	/**
+	 * @return StatCounter
+	 */
 	public static function singleton() {
 		static $instance = null;
 		if ( !$instance ) {
@@ -56,13 +59,10 @@ class StatCounter {
 	 * @return void
 	 */
 	public function incr( $key, $count = 1 ) {
+		$this->deltas[$key] = isset( $this->deltas[$key] ) ? $this->deltas[$key] : 0;
+		$this->deltas[$key] += $count;
 		if ( PHP_SAPI === 'cli' ) {
-			$this->sendDelta( $key, $count );
-		} else {
-			if ( !isset( $this->deltas[$key] ) ) {
-				$this->deltas[$key] = 0;
-			}
-			$this->deltas[$key] += $count;
+			$this->flush();
 		}
 	}
 
@@ -72,9 +72,16 @@ class StatCounter {
 	 * @return void
 	 */
 	public function flush() {
+		global $wgStatsMethod;
+
+		$deltas = array_filter( $this->deltas ); // remove 0 valued entries
 		try {
-			foreach ( $this->deltas as $key => $count ) {
-				$this->sendDelta( $key, $count );
+			if ( $wgStatsMethod === 'udp' ) {
+				$this->sendDeltasUDP( $deltas );
+			} elseif ( $wgStatsMethod === 'cache' ) {
+				$this->sendDeltasMemc( $deltas );
+			} else {
+				// disabled
 			}
 		} catch ( MWException $e ) {
 			trigger_error( "Caught exception: {$e->getMessage()}");
@@ -82,56 +89,57 @@ class StatCounter {
 		$this->deltas = array();
 	}
 
-	/**
-	 * @param string $key
-	 * @param string $count
-	 * @return void
-	 */
-	protected function sendDelta( $key, $count ) {
-		global $wgStatsMethod;
+	protected function sendDeltasUDP( array $deltas ) {
+		global $wgUDPProfilerHost, $wgUDPProfilerPort, $wgAggregateStatsID;
 
-		$count = intval( $count );
-		if ( $count == 0 ) {
-			return;
+		$id = strlen( $wgAggregateStatsID ) ? $wgAggregateStatsID : wfWikiID();
+
+		$lines = array();
+		foreach ( $deltas as $key => $count ) {
+			$lines[] = "stats/{$id} - {$count} 1 1 1 1 {$key}\n";
 		}
 
-		if ( $wgStatsMethod == 'udp' ) {
-			global $wgUDPProfilerHost, $wgUDPProfilerPort, $wgAggregateStatsID;
-			static $socket;
-
-			$id = $wgAggregateStatsID !== false ? $wgAggregateStatsID : wfWikiID();
-
+		if ( count( $lines ) ) {
+			static $socket = null;
 			if ( !$socket ) {
 				$socket = socket_create( AF_INET, SOCK_DGRAM, SOL_UDP );
-				$statline = "stats/{$id} - 1 1 1 1 1 -total\n";
+				array_unshift( $lines, "stats/{$id} - 1 1 1 1 1 -total\n" );
+			}
+			$packet = '';
+			$packets = array();
+			foreach ( $lines as $line ) {
+				if ( ( strlen( $packet ) + strlen( $line ) ) > 1450 ) {
+					$packets[] = $packet;
+					$packet = '';
+				}
+				$packet .= $line;
+			}
+			if ( $packet != '' ) {
+				$packets[] = $packet;
+			}
+			foreach ( $packets as $packet ) {
+				wfSuppressWarnings();
 				socket_sendto(
 					$socket,
-					$statline,
-					strlen( $statline ),
+					$packet,
+					strlen( $packet ),
 					0,
 					$wgUDPProfilerHost,
 					$wgUDPProfilerPort
 				);
+				wfRestoreWarnings();
 			}
-			$statline = "stats/{$id} - {$count} 1 1 1 1 {$key}\n";
-			wfSuppressWarnings();
-			socket_sendto(
-				$socket,
-				$statline,
-				strlen( $statline ),
-				0,
-				$wgUDPProfilerHost,
-				$wgUDPProfilerPort
-			);
-			wfRestoreWarnings();
-		} elseif ( $wgStatsMethod == 'cache' ) {
-			global $wgMemc;
-			$key = wfMemcKey( 'stats', $key );
-			if ( is_null( $wgMemc->incr( $key, $count ) ) ) {
-				$wgMemc->add( $key, $count );
+		}
+	}
+
+	protected function sendDeltasMemc( array $deltas ) {
+		global $wgMemc;
+
+		foreach ( $deltas as $key => $count ) {
+			$ckey = wfMemcKey( 'stats', $key );
+			if ( $wgMemc->incr( $ckey, $count ) === null ) {
+				$wgMemc->add( $ckey, $count );
 			}
-		} else {
-			// Disabled
 		}
 	}
 }
