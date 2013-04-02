@@ -201,7 +201,10 @@ class ResourceLoader {
 		$this->addSource( $wgResourceLoaderSources );
 
 		// Register core modules
-		$this->register( include( "$IP/resources/Resources.php" ) );
+		$coreModules = include( "$IP/resources/Resources.php" );
+		// Allow extensions to modify core modules, e.g. override or add a new target
+		wfRunHooks( 'ResourceLoaderCoreModules', array( $this, &$coreModules ) );
+		$this->register( $coreModules );
 		// Register extension modules
 		wfRunHooks( 'ResourceLoaderRegisterModules', array( &$this ) );
 		$this->register( $wgResourceModules );

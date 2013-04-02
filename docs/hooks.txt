@@ -1865,6 +1865,11 @@ IContextSource $context: The RequestContext the skin is being created for.
 &$skin: A variable reference you may set a Skin instance or string key on to
   override the skin that will be used for the context.
 
+'ResourceLoaderCoreModules': Called before ResourceLoader registers core
+modules, allowing to override or modify them.
+ResourceLoader $this: Calling ResourceLoader object
+&$coreModules: Array of modules
+
 'ResourceLoaderGetConfigVars': Called at the end of
 ResourceLoaderStartUpModule::getConfig(). Use this to export static
 configuration variables to JavaScript. Things that depend on the current page

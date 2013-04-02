@@ -12,6 +12,8 @@ production.
 * $wgRedirectScript was removed. It was unused.
 
 === New features in 1.22 ===
+* Added ResourceLoaderCoreModules hook to allow modifying the core
+  ResourceLoader modules properties.
 
 === Bug fixes in 1.22 ===
 
