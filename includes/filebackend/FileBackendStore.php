@@ -277,7 +277,7 @@ abstract class FileBackendStore extends FileBackend {
 	protected function doMoveInternal( array $params ) {
 		unset( $params['async'] ); // two steps, won't work here :)
 		$nsrc = FileBackend::normalizeStoragePath( $params['src'] );
-		$ndst = Filebackend::normalizeStoragePath( $params['dst'] );
+		$ndst = FileBackend::normalizeStoragePath( $params['dst'] );
 		// Copy source to dest
 		$status = $this->copyInternal( $params );
 		if ( $nsrc !== $ndst && $status->isOK() ) {
