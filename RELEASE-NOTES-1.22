@@ -14,6 +14,7 @@ production.
 === New features in 1.22 ===
 
 === Bug fixes in 1.22 ===
+* (bug 22471) Show local image usage of foreign file redirects (ForeignDB only).
 
 === API changes in 1.22 ===
 
