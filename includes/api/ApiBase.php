@@ -1081,7 +1081,7 @@ abstract class ApiBase extends ContextSource {
 
 		if ( !$allowMultiple && count( $valuesList ) != 1 ) {
 			// Bug 33482 - Allow entries with | in them for non-multiple values
-			if ( in_array( $value, $allowedValues ) ) {
+			if ( in_array( $value, $allowedValues, true ) ) {
 				return $value;
 			}
 
