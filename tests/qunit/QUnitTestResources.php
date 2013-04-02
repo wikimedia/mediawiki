@@ -61,6 +61,5 @@ return array(
 			'mediawiki.language',
 			'mediawiki.cldr',
 		),
-		'position' => 'top',
 	)
 );
