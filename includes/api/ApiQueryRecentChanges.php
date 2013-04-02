@@ -159,15 +159,20 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 			$timestamp = $this->getDB()->addQuotes( wfTimestamp( TS_MW, $cont[0] ) );
 			$id = intval( $cont[1] );
-			$op = $params['dir'] == 'descending' ? '<' : '>';
+			$op = $params['dir'] === 'older' ? '<' : '>';
 
 			$this->addWhere(
 				"rc_timestamp $op $timestamp OR " .
 				"(rc_timestamp = $timestamp AND " .
-				"rc_id <= $id)"
+				"rc_id $op= $id)"
 			);
 		}
 
+		$order = $params['dir'] === 'older' ? 'DESC' : 'ASC';
+		$this->addOption( 'ORDER BY', array(
+			"rc_timestamp $order",
+			"rc_id $order",
+		) );
 
 		$this->addWhereFld( 'rc_namespace', $params['namespace'] );
 		$this->addWhereFld( 'rc_deleted', 0 );
