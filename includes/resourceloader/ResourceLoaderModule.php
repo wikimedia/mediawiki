@@ -319,7 +319,7 @@ abstract class ResourceLoaderModule {
 			), __METHOD__
 		);
 		if ( !is_null( $deps ) ) {
-			$this->fileDeps[$skin] = (array) FormatJson::decode( $deps, true );
+			$this->fileDeps[$skin] = (array)FormatJson::decode( $deps, true );
 		} else {
 			$this->fileDeps[$skin] = array();
 		}
