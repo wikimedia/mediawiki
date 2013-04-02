@@ -27,6 +27,8 @@ changes to languages because of Bugzilla reports.
 * redirect.php was removed. It was unused.
 * BREAKING CHANGE: Legacy skins Simple, MySkin and Standard were all removed.
   Nostalgia was moved to an extension.
+* Event namespace used by jquery.makeCollapsible has been changed from
+  'mw-collapse' to 'mw-collapsible' for consistency with the module name.
 
 == Compatibility ==
 
