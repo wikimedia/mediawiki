@@ -82,6 +82,7 @@ class SpecialProtectedtitles extends SpecialPage {
 
 		$title = Title::makeTitleSafe( $row->pt_namespace, $row->pt_title );
 		if( !$title ) {
+			wfProfileOut( __METHOD__ );
 			return Html::rawElement( 'li', array(),
 				Html::element( 'span', array( 'class' => 'mw-invalidtitle' ),
 					Linker::getInvalidTitleDescription( $this->getContext(), $row->pt_namespace, $row->pt_title ) ) ) . "\n";
