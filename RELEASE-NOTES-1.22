@@ -16,6 +16,8 @@ production.
 === Bug fixes in 1.22 ===
 
 === API changes in 1.22 ===
+* The new hook 'APIGetPossibleErrors' to modify the list of possible errors was
+  added.
 
 === Languages updated in 1.22===
 

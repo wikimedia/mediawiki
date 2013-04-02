@@ -371,6 +371,11 @@ result.
 &$module: ApiBase Module object
 &$properties: Array of properties
 
+'APIGetPossibleErrors': Use this hook to modify the module's list of possible
+errors.
+&$module: ApiBase Module object
+&$possibleErrors: Array of possible errors
+
 'APIQueryAfterExecute': After calling the execute() method of an
 action=query submodule. Use this to extend core API modules.
 &$module: Module object
