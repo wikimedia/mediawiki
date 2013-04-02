@@ -1161,7 +1161,6 @@ class WikiPage implements Page, IDBAccessObject {
 
 		// Invalidate the cache
 		$this->mTitle->invalidateCache();
-		$this->clear();
 
 		if ( $wgUseSquid ) {
 			// Commit the transaction before the purge is sent
