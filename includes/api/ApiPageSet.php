@@ -69,6 +69,9 @@ class ApiPageSet extends ApiBase {
 	private $mFakePageId = -1;
 	private $mCacheMode = 'public';
 	private $mRequestedPageFields = array();
+	/**
+	 * @var int
+	 */
 	private $mDefaultNamespace = NS_MAIN;
 
 	/**
