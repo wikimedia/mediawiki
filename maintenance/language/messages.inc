@@ -1480,7 +1480,6 @@ $wgMessageStructure = array(
 		'http-read-error',
 		'http-timed-out',
 		'http-curl-error',
-		'http-host-unreachable',
 		'http-bad-status',
 	),
 
