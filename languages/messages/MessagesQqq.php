@@ -2328,6 +2328,8 @@ See also:
 In this sentence, "their indexes" refers to "Google\'s indexes".
 
 Shown on [[Special:Search]] when the internal search is disabled.',
+'search-error' => 'Shown when an error has occurred when performing a search
+* $1 is the localized error that was returned',
 
 # Preferences page
 'preferences' => 'Title of the [[Special:Preferences]] page.
