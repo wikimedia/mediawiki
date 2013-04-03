@@ -247,7 +247,7 @@ class MWException extends Exception {
 	 * It will be either HTML or plain text based on isCommandLine().
 	 */
 	function report() {
-		global $wgLogExceptionBacktrace;
+		global $wgLogExceptionBacktrace, $wgMimeType;
 		$log = $this->getLogMessage();
 
 		if ( $log ) {
@@ -267,6 +267,7 @@ class MWException extends Exception {
 		} else {
 			header( "HTTP/1.1 500 MediaWiki exception" );
 			header( "Status: 500 MediaWiki exception", true );
+			header( "Content-Type: $wgMimeType; charset=utf-8", true );
 
 			$this->reportHTML();
 		}
