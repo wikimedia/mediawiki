@@ -2668,6 +2668,9 @@ class User {
 		}
 		$this->loadGroups();
 		$this->mGroups[] = $group;
+		// In case loadGroups was not called before, we now have the right twice.
+		// Get rid of the duplicate.
+		$this->mGroups = array_unique( $this->mGroups );
 		$this->mRights = User::getGroupPermissions( $this->getEffectiveGroups( true ) );
 
 		$this->invalidateCache();
