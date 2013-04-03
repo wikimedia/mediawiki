@@ -173,7 +173,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 					break;
 				}
 
-				$titles[] = Title :: makeTitle( NS_CATEGORY, $row->cl_to );
+				$titles[] = Title::makeTitle( NS_CATEGORY, $row->cl_to );
 			}
 			$resultPageSet->populateFromTitles( $titles );
 		}

@@ -445,7 +445,7 @@ abstract class ApiBase extends ContextSource {
 								$hintPipeSeparated = false;
 								break;
 							case 'limit':
-								$desc .= $paramPrefix . "No more than {$paramSettings[self :: PARAM_MAX]}";
+								$desc .= $paramPrefix . "No more than {$paramSettings[self::PARAM_MAX]}";
 								if ( isset( $paramSettings[self::PARAM_MAX2] ) ) {
 									$desc .= " ({$paramSettings[self::PARAM_MAX2]} for bots)";
 								}
