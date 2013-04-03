@@ -2671,7 +2671,6 @@ class User {
 			}
 		}
 		$this->loadGroups();
-		$this->mGroups[] = $group;
 		$this->mRights = User::getGroupPermissions( $this->getEffectiveGroups( true ) );
 
 		$this->invalidateCache();
