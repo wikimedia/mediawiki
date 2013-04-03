@@ -467,39 +467,9 @@ class ThrottledError extends ErrorPageError {
  */
 class UserBlockedError extends ErrorPageError {
 	public function __construct( Block $block ) {
-		global $wgLang, $wgRequest;
-
-		$blocker = $block->getBlocker();
-		if ( $blocker instanceof User ) { // local user
-			$blockerUserpage = $block->getBlocker()->getUserPage();
-			$link = "[[{$blockerUserpage->getPrefixedText()}|{$blockerUserpage->getText()}]]";
-		} else { // foreign user
-			$link = $blocker;
-		}
-
-		$reason = $block->mReason;
-		if ( $reason == '' ) {
-			$reason = wfMessage( 'blockednoreason' )->text();
-		}
-
-		/* $ip returns who *is* being blocked, $intended contains who was meant to be blocked.
-		 * This could be a username, an IP range, or a single IP. */
-		$intended = $block->getTarget();
-
-		parent::__construct(
-			'blockedtitle',
-			$block->mAuto ? 'autoblockedtext' : 'blockedtext',
-			array(
-				$link,
-				$reason,
-				$wgRequest->getIP(),
-				$block->getByName(),
-				$block->getId(),
-				$wgLang->formatExpiry( $block->mExpiry ),
-				$intended,
-				$wgLang->timeanddate( wfTimestamp( TS_MW, $block->mTimestamp ), true )
-			)
-		);
+		// @todo FIXME: Implement a more proper way to get context here.
+		$params = $block->getPermissionsError( RequestContext::getMain() );
+		parent::__construct( 'blockedtitle', array_shift( $params ), $params );
 	}
 }
 
