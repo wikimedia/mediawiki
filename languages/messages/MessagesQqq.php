@@ -2328,6 +2328,8 @@ See also:
 In this sentence, "their indexes" refers to "Google\'s indexes".
 
 Shown on [[Special:Search]] when the internal search is disabled.',
+'search-error' => 'Shown when an error has occurred when performing a search
+* $1 is the localized error that was returned',
 
 # Quickbar
 'qbsettings' => 'The title of the section in [[Special:Preferences]], only shown when using the skins "Standard/Classic" or "Cologne Blue". The quicbar is the same as the sidebar.',

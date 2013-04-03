@@ -254,7 +254,18 @@ class SpecialSearch extends SpecialPage {
 
 		$titleMatches = $search->searchTitle( $rewritten );
 		if( !( $titleMatches instanceof SearchResultTooMany ) ) {
-			$textMatches = $search->searchText( $rewritten );
+			$textMatches = $search->searchText( SpecialPage::getTitleFor( 'Search' ) );
+		}
+
+		if( $titleMatches instanceof Status ) {
+			wfProfileOut( __METHOD__ );
+			throw new ErrorPageError( $this->getTitle(), 'search-error',
+				$titleMatches->getWikiText() );
+		}
+		if( $textMatches instanceof Status ) {
+			wfProfileOut( __METHOD__ );
+			throw new ErrorPageError( $this->getTitle(), 'search-error',
+				$textMatches->getWikiText() );
 		}
 
 		// did you mean... suggestions
