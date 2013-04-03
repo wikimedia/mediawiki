@@ -171,11 +171,7 @@ class SpecialStatistics extends SpecialPage {
 				$this->formatRow( $this->msg( 'statistics-users' )->parse(),
 						$this->getLanguage()->formatNum( $this->users ),
 						array( 'class' => 'mw-statistics-users' ) ) .
-				$this->formatRow( $this->msg( 'statistics-users-active' )->parse() . ' ' .
-							Linker::linkKnown(
-								SpecialPage::getTitleFor( 'Activeusers' ),
-								$this->msg( 'listgrouprights-members' )->escaped()
-							),
+				$this->formatRow( $this->msg( 'statistics-users-active' )->parse(),
 						$this->getLanguage()->formatNum( $this->activeUsers ),
 						array( 'class' => 'mw-statistics-users-active' ),
 						'statistics-users-active-desc',
