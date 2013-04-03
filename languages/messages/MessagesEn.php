@@ -1804,6 +1804,7 @@ Note that their indexes of {{SITENAME}} content may be out of date.',
 
 # OpenSearch description
 'opensearch-desc' => '{{SITENAME}} ({{CONTENTLANGUAGE}})', # do not translate or duplicate this message to other languages
+'search-error' => 'An error has occurred while searching: $1',
 
 # Quickbar
 'qbsettings'                => 'Quickbar',
