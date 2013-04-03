@@ -258,7 +258,7 @@ class SpecialSearch extends SpecialPage {
 		}
 
 		// did you mean... suggestions
-		if( $textMatches && $textMatches->hasSuggestion() ) {
+		if( $textMatches && $textMatches->hasSuggestion() && !$textMatches->errMsg() ) {
 			$st = SpecialPage::getTitleFor( 'Search' );
 
 			# mirror Go/Search behavior of original request ..
@@ -381,7 +381,7 @@ class SpecialSearch extends SpecialPage {
 			}
 			$titleMatches->free();
 		}
-		if( $textMatches ) {
+		if( $textMatches && !$textMatches->errMsg() ) {
 			// output appropriate heading
 			if( $numTextMatches > 0 && $numTitleMatches > 0 ) {
 				// if no title matches the heading is redundant
@@ -402,8 +402,15 @@ class SpecialSearch extends SpecialPage {
 			$textMatches->free();
 		}
 		if( $num === 0 ) {
-			$out->wrapWikiMsg( "<p class=\"mw-search-nonefound\">\n$1</p>", array( 'search-nonefound', wfEscapeWikiText( $term ) ) );
-			$this->showCreateLink( $t );
+			$fmt = "<p class=\"mw-search-nonefound\">\n$1</p>";
+			$sTerm = wfEscapeWikiText( $term );
+			if ( $textMatches && $textMatches->errMsg() ) {
+				$out->wrapWikiMsg( $fmt, array( 'search-error', $sTerm ) );
+				$out->addWikiText( '<div class="error">' . $textMatches->errMsg() . '</div>' );
+			} else {
+				$out->wrapWikiMsg( $fmt, array( 'search-nonefound', $sTerm ) );
+				$this->showCreateLink( $t );
+			}
 		}
 		$out->addHtml( "</div>" );
 
