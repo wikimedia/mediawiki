@@ -357,7 +357,7 @@ class Language {
 			throw new MWException( __METHOD__ . " must be passed a string, $type given$addmsg" );
 		}
 
-		return (bool)preg_match( '/^[a-z0-9-]+$/i', $code );
+		return (bool)preg_match( '/^[a-z0-9-]{2,}$/i', $code );
 	}
 
 	/**
