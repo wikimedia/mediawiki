@@ -10,6 +10,7 @@ production.
 
 === Configuration changes in 1.22 ===
 * $wgRedirectScript was removed. It was unused.
+* Removed $wgLocalMessageCacheSerialized, it is now always true.
 
 === New features in 1.22 ===
 
