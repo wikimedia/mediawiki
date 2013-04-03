@@ -351,6 +351,25 @@
 		assert.equal( mw.messages.get( 'testMsg' ), 'Foo.', 'messages object restored and re-applied after test()' );
 	} );
 
+	QUnit.test( 'Loader status', 2, function ( assert ) {
+		var i, len, state,
+			modules = mw.loader.getModuleNames(),
+			error = [],
+			missing = [];
+
+		for ( i = 0, len = modules.length; i < len; i++ ) {
+			state = mw.loader.getState( modules[i] );
+			if ( state === 'error' ) {
+				error.push( modules[i] );
+			} else if ( state === 'missing' ) {
+				missing.push( modules[i] );
+			}
+		}
+
+		assert.deepEqual( error, [], 'Modules in error state' );
+		assert.deepEqual( missing, [], 'Modules in missing state' );
+	} );
+
 	QUnit.test( 'htmlEqual', 8, function ( assert ) {
 		assert.htmlEqual(
 			'<div><p class="some classes" data-length="10">Child paragraph with <a href="http://example.com">A link</a></p>Regular text<span>A span</span></div>',
