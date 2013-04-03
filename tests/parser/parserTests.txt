@@ -12464,6 +12464,60 @@ title=[[Parser test]]
 ### Note: Above tests excludes the "{{NUMBEROFADMINS}}" magic word because it generates a MySQL error when included.
 
 !! test
+Say the magic word (localized)
+!! options
+language=es
+!! input
+* {{PAGENAME}}
+* {{PAGENAMEE}}
+* {{FULLPAGENAME}}
+* {{FULLPAGENAMEE}}
+* {{BASEPAGENAME}}
+* {{BASEPAGENAMEE}}
+* {{SUBPAGENAME}}
+* {{SUBPAGENAMEE}}
+* {{ROOTPAGENAME}}
+* {{ROOTPAGENAMEE}}
+* {{TALKPAGENAME}}
+* {{TALKPAGENAMEE}}
+* {{SUBJECTPAGENAME}}
+* {{SUBJECTPAGENAMEE}}
+* {{NAMESPACEE}}
+* {{NAMESPACE}}
+* {{NAMESPACENUMBER}}
+* {{TALKSPACE}}
+* {{TALKSPACEE}}
+* {{SUBJECTSPACE}}
+* {{SUBJECTSPACEE}}
+* {{Dynamic|{{NUMBEROFUSERS}}|{{NUMBEROFPAGES}}|{{CURRENTVERSION}}|{{CONTENTLANGUAGE}}|{{DIRECTIONMARK}}|{{CURRENTTIMESTAMP}}|{{NUMBEROFARTICLES}}}}
+!! result
+<ul><li> Parser test
+</li><li> Parser_test
+</li><li> Parser test
+</li><li> Parser_test
+</li><li> Parser test
+</li><li> Parser_test
+</li><li> Parser test
+</li><li> Parser_test
+</li><li> Parser test
+</li><li> Parser_test
+</li><li> Discusión:Parser test
+</li><li> Discusi%C3%B3n:Parser_test
+</li><li> Parser test
+</li><li> Parser_test
+</li><li> 
+</li><li> 
+</li><li> 0
+</li><li> Discusión
+</li><li> Discusi%C3%B3n
+</li><li> 
+</li><li> 
+</li><li> <a href="/index.php?title=Plantilla:Dynamic&amp;action=edit&amp;redlink=1" class="new" title="Plantilla:Dynamic (la página no existe)">Plantilla:Dynamic</a>
+</li></ul>
+
+!! end
+
+!! test
 Gallery
 !! input
 <gallery>
