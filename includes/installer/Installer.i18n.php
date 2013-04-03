@@ -3710,6 +3710,8 @@ Tento adresář by ideálně neměl být dostupný z webu.',
 	'config-logo-help' => 'Základní vzhled MediaWiki zahrnuje místo pro logo o velikosti 135×160 pixelů nad bočním menu.
 Načtěte obrázek odpovídající velikosti a zadejte sem jeho URL.
 
+Pokud je vaše logo umístěno relativně vůči $wgStylePath nebo $wgScriptPath, můžete zde tyto proměnné použít.
+
 Pokud logo nechcete, ponechte toto pole prázdné.',
 	'config-instantcommons' => 'Zapnout Instant Commons',
 	'config-instantcommons-help' => '[//www.mediawiki.org/wiki/InstantCommons Instant Commons] je funkce, která umožňuje wiki používat obrázky, zvuky a další mediální soubory ze serveru [//commons.wikimedia.org/wiki/Hlavn%C3%AD_strana Wikimedia Commons].
@@ -6096,10 +6098,12 @@ Ensuite, activez cette option.",
 	'config-upload-deleted-help' => 'Choisissez un répertoire qui servira à archiver les fichiers supprimés.
 Idéalement, il ne devrait pas être accessible depuis le web.',
 	'config-logo' => 'URL du logo :',
-	'config-logo-help' => "L'habillage (''skin'') par défaut de MediaWiki comprend l'espace pour un logo de 135x160 pixels dans le coin supérieur gauche.
-Téléchargez une image de la taille appropriée, et entrez l'URL ici.
+	'config-logo-help' => 'L’habillage par défaut de MediaWiki comprend l’espace pour un logo de 135x160 pixels au-dessus de la barre de menu latérale.
+Téléchargez une image de la taille appropriée, et entrez son URL ici.
 
-Si vous ne voulez pas d'un logo, laissez cette case vide.",
+Vous pouvez utiliser $wgStylePath ou $wgScriptPath si votre logo est relatif à ces chemins.
+
+Si vous ne voulez pas de logo, laissez cette case vide.',
 	'config-instantcommons' => "Activer ''InstantCommons''",
 	'config-instantcommons-help' => "[//www.mediawiki.org/wiki/InstantCommons InstantCommons] est un service qui permet d'utiliser les images, les sons et les autres médias disponibles sur le site [//commons.wikimedia.org/ Wikimedia Commons].
 Pour se faire, il faut que MediaWiki accède à Internet.

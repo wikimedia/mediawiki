@@ -30,6 +30,7 @@
  * @author Daniyar
  * @author Dim Grits
  * @author Don Alessandro
+ * @author Ekulikovdo
  * @author Eleferen
  * @author Erdemaslancan
  * @author EugeneZelenko
@@ -826,17 +827,17 @@ $2',
 'yourdomainname' => 'Ваш домен:',
 'password-change-forbidden' => 'Вы не можете изменить пароль в этой вики.',
 'externaldberror' => 'Произошла ошибка при аутентификации с помощью внешней базы данных или у вас недостаточно прав для внесения изменений в свою внешнюю учётную запись.',
-'login' => 'Представиться системе',
+'login' => 'Войти в систему',
 'nav-login-createaccount' => 'Представиться / зарегистрироваться',
 'loginprompt' => 'Вы должны разрешить «cookies», чтобы представиться системе.',
 'userlogin' => 'Представиться или зарегистрироваться',
 'userloginnocreate' => 'Представиться',
-'logout' => 'Завершение сеанса',
-'userlogout' => 'Завершение сеанса',
+'logout' => 'Выход из системы',
+'userlogout' => 'Выйти',
 'notloggedin' => 'Вы не представились системе',
 'nologin' => 'Нет учётной записи? $1.',
 'nologinlink' => 'Создать учётную запись',
-'createaccount' => 'Создать учётную запись',
+'createaccount' => 'Зарегистрироваться',
 'gotaccount' => "Вы уже зарегистрированы? '''$1'''.",
 'gotaccountlink' => 'Представьтесь',
 'userlogin-resetlink' => 'Забыли данные для входа?',
@@ -2420,7 +2421,7 @@ $1',
 
 # Watchlist
 'watchlist' => 'Список наблюдения',
-'mywatchlist' => 'Список наблюдения',
+'mywatchlist' => 'Наблюдение',
 'watchlistfor2' => 'Для $1 $2',
 'nowatchlist' => 'Ваш список наблюдения пуст.',
 'watchlistanontext' => 'Вы должны $1, чтобы просмотреть или отредактировать список наблюдения.',
@@ -4085,7 +4086,7 @@ MediaWiki распространяется в надежде, что она бу
 'specialpages-group-highuse' => 'Интенсивно используемые страницы',
 'specialpages-group-pages' => 'Списки страниц',
 'specialpages-group-pagetools' => 'Инструменты для страниц',
-'specialpages-group-wiki' => 'Данные и инструменты',
+'specialpages-group-wiki' => 'Панель управления',
 'specialpages-group-redirects' => 'Перенаправляющие служебные страницы',
 'specialpages-group-spam' => 'Инструменты против спама',
 

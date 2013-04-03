@@ -2093,6 +2093,9 @@ En side anses om en pekerside om den inneholder en mal som det lenkes til fra [[
 
 'pageswithprop' => 'Sider med sideverdi',
 'pageswithprop-legend' => 'Sider med en sideverdi',
+'pageswithprop-text' => 'Denne siden lister opp sider som bruker en viss sideverdi.',
+'pageswithprop-prop' => 'Verdinavn:',
+'pageswithprop-submit' => 'Gå',
 
 'doubleredirects' => 'Doble omdirigeringer',
 'doubleredirectstext' => 'Denne siden lister opp de sidene som er omdirigeringer til andre omdirigeringssider.
@@ -2733,6 +2736,7 @@ Skjulingsloggen vises nedenfor.',
 'proxyblocksuccess' => 'Utført.',
 'sorbsreason' => 'Din IP-adresse angis som en åpen proxy i DNSBL-en brukt av {{SITENAME}}.',
 'sorbs_create_account_reason' => 'Din IP-adresse angis som en åpen proxy i DNSBL-en brukt av {{SITENAME}}. Du kan ikke opprette en konto',
+'xffblockreason' => 'En IP-adresse som er tilstede i X-Forwarded-For-headeren, enten din eller en som tilhører en proxyserver du bruker, har blitt blokkert. Den opprinnelige blokkeringsgrunnen var: $1',
 'cant-block-while-blocked' => 'Du kan ikke blokkere andre mens du selv er blokkert.',
 'cant-see-hidden-user' => 'Brukeren du prøver å blokkere har allerede blitt blokkert og skjult. Ettersom du ikke har rett til å skjule brukere (hideuser), kan du ikke se eller endre brukerens blokkering.',
 'ipbblocked' => 'Du kan ikke blokkere eller avblokkere andre brukere, siden du selv er blokkert',
@@ -3046,24 +3050,14 @@ Du kan se på kildeteksten',
 
 # Stylesheets
 'common.css' => '/* CSS plassert i denne fila vil gjelde for alle utseender. */',
-'standard.css' => '/* CSS i denne fila vil gjelde alle som bruker drakta Standard */',
-'nostalgia.css' => '/* CSS i denne fila vil gjelde alle som bruker drakta Nostalgia */',
 'cologneblue.css' => '/* CSS i denne fila vil gjelde alle som bruker drakta Kølnerblå */',
 'monobook.css' => '/* CSS i denne fila vil gjelde alle som bruker drakta Monobook */',
-'myskin.css' => '/* CSS i denne fila vil gjelde alle som bruker drakta MySkin */',
-'chick.css' => '/* CSS i denne fila vil gjelde alle som bruker drakta Chick */',
-'simple.css' => '/* CSS i denne fila vil gjelde alle som bruker drakta Simple */',
 'modern.css' => '/* CSS i denne fila vil gjelde alle som bruker drakta Modern */',
 
 # Scripts
 'common.js' => '/* Javascript i denne fila vil gjelde for alle drakter. */',
-'standard.js' => '/* Javascript i denne fila vil gjelde for brukere av drakta Standard */',
-'nostalgia.js' => '/* Javascript i denne fila vil gjelde for brukere av drakta Nostalgia */',
 'cologneblue.js' => '/* Javascript i denne fila vil gjelde for brukere av drakta Kølnerblå */',
 'monobook.js' => '/* Javascript i denne fila vil gjelde for brukere av drakta Monobook */',
-'myskin.js' => '/* Javascript i denne fila vil gjelde for brukere av drakta MySkin */',
-'chick.js' => '/* Javascript i denne fila vil gjelde for brukere av drakta Chick */',
-'simple.js' => '/* Javascript i denne fila vil gjelde for brukere av drakta Simple */',
 'modern.js' => '/* Javascript i denne fila vil gjelde for brukere av drakta Modern */',
 
 # Metadata
@@ -3108,6 +3102,7 @@ Dette er sannsynligvis forårsaket av en lenke til et svartelistet eksternt nett
 'pageinfo-robot-noindex' => 'Ikke indekserbar',
 'pageinfo-views' => 'Antall visninger',
 'pageinfo-watchers' => 'Antall overvåkere av siden',
+'pageinfo-few-watchers' => 'Færre enn $1 {{PLURAL:$1|overvåker|overvåkere}}',
 'pageinfo-redirects-name' => 'Omdirigeringer til siden',
 'pageinfo-subpages-name' => 'Undersider av siden',
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|omdirigering|omdirigeringer}}; $3 {{PLURAL:$3|ikke-omdirigering|ikke-omdirigeringer}})',
@@ -3137,12 +3132,8 @@ Dette er sannsynligvis forårsaket av en lenke til et svartelistet eksternt nett
 'pageinfo-category-files' => 'Antall filer',
 
 # Skin names
-'skinname-standard' => 'Standard',
-'skinname-nostalgia' => 'Nostalgi',
 'skinname-cologneblue' => 'Kølnerblå',
 'skinname-monobook' => 'Monobook',
-'skinname-myskin' => 'Eget utseende',
-'skinname-simple' => 'Enkel',
 'skinname-modern' => 'Moderne',
 
 # Patrolling
@@ -4076,5 +4067,8 @@ Om det ikke er tilfellet, kan du bruke det enkle skjemaet som du finner under. K
 'duration-decades' => '$1 {{PLURAL:$1|tiår|tiår}}',
 'duration-centuries' => '$1 {{PLURAL:$1|århundre|århundrer}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennier}}',
+
+# Image rotation
+'rotate-comment' => 'Bildet snudd $1{{PLURAL:°}} med klokka',
 
 );

@@ -2541,6 +2541,7 @@ Pe piacere condatte 'u provider de Indernette tue o 'u supporte tecniche e 'mbor
 'sorbsreason' => "L'indirizze IP tue jè elegate cumme a 'nu proxy apirte jndr'à DNSBL ausate da {{SITENAME}}.",
 'sorbs_create_account_reason' => "L'indirizze IP tue jè elegate cumme a 'nu proxy apirte jndr'à DNSBL ausate da {{SITENAME}}.
 Tu nonge puè ccrejà 'nu cunde utende",
+'xffblockreason' => "'N'indirizze IP presende jndr'à testate X-Forwarded-For, tutte e doje le tune o 'nu server proxy ca ste ause, onne state bloccate. 'U mutive d'u blocche origgenale ere: $1",
 'cant-block-while-blocked' => 'Tu non ge puè bloccà otre utinde quanne tu si blocchete.',
 'cant-see-hidden-user' => "L'utende ca tu ste pruève a bloccà ha state già bloccate e scunnute. Ce tu non ge tine le deritte ''hideuser'', tu non ge puè vedè o cangià 'u blocche de l'utende.",
 'ipbblocked' => 'Tu non ge puè bloccà o sbloccà otre utinde, purcé tu sì ppure bloccate',
@@ -2861,13 +2862,8 @@ Permette de aggiungere 'nu mutive jndr'à 'u riepileghe",
 
 # Stylesheets
 'common.css' => "/* 'U CSS ca se iacchie aqquà avène applicate a tutte le masckere */",
-'standard.css' => "/* 'U CSS ca se iacchie aqquà 'u 'ndrucane le utinde d'a masckere Standard */",
-'nostalgia.css' => "/* 'U CSS ca se iacchie aqquà 'u 'ndrucane le utinde d'a masckere Nostalgie */",
 'cologneblue.css' => "/* 'U CSS ca se iacchie aqquà 'u 'ndrucane le utinde d'a masckere Blu Cologne */",
 'monobook.css' => "/* 'U CSS ca se iacchie aqquà 'u 'ndrucane le utinde d'a masckere Monobook */",
-'myskin.css' => "/* 'U CSS ca se iacchie aqquà 'u 'ndrucane le utinde d'a masckere Personalizzate */",
-'chick.css' => "/* 'U CSS ca se iacchie aqquà 'u 'ndrucane le utinde d'a masckere Purecine */",
-'simple.css' => "/* 'U CSS ca se iacchie aqquà 'u 'ndrucane le utinde d'a masckere Semblice */",
 'modern.css' => "/* 'U CSS ca se iacchie aqquà 'u 'ndrucane le utinde d'a masckere Moderne */",
 'vector.css' => "/* 'U CSS ca se iacchie aqquà 'u 'ndrucane le utinde d'a masckere Vettore */",
 'print.css' => "/* 'U CSS ca se iacchie aqquà avène applicate a 'u resultate d'a stambe */",
@@ -2880,12 +2876,8 @@ Permette de aggiungere 'nu mutive jndr'à 'u riepileghe",
 
 # Scripts
 'common.js' => '/* Ogne JavaScript aqquà avène carecate pe tutte le utinde sus a ogne pàgene carecate. */',
-'standard.js' => "/* Ogne JavaScript aqquà avène carecate pe le utinde ca ausane 'a masckere Standard */",
-'nostalgia.js' => "/* Ogne JavaScript aqquà avène carecate pe le utinde ca ausane 'a masckere Nostalgie */",
 'cologneblue.js' => "/* Ogne JavaScript aqquà avène carecate pe le utinde ca ausane 'a masckere Blu Cologne */",
 'monobook.js' => "/* Ogne JavaScript aqquà avène carecate pe le utinde ca ausane 'a masckere MonoBook */",
-'myskin.js' => "/* Ogne JavaScript aqquà avène carecate pe le utinde ca ausane 'a masckere Personalizzate */",
-'chick.js' => "/* Ogne JavaScript aqquà avène carecate pe le utinde ca ausane 'a masckere Purecine */",
 'modern.js' => "/* Ogne JavaScript aqquà avène carecate pe le utinde ca ausane 'a masckere Moderne */",
 'vector.js' => "/* Ogne JavaScript aqquà avène carecate pe le utinde ca ausane 'a masckere Vettore */",
 'group-autoconfirmed.js' => '/* Ogne JavaScript aqquà avène carecate pe le utinde autoconfirmatarie */',
@@ -2966,13 +2958,8 @@ Stu fatte ha state causate da 'nu collegamende a 'nu site esterne ca appartene a
 'pageinfo-category-files' => 'Numere de file',
 
 # Skin names
-'skinname-standard' => 'Classeche',
-'skinname-nostalgia' => 'Nostalgie',
 'skinname-cologneblue' => 'Blu Cologne',
 'skinname-monobook' => 'MonoBook',
-'skinname-myskin' => 'Personalizzate',
-'skinname-chick' => 'Purecine',
-'skinname-simple' => 'Semblice',
 'skinname-modern' => 'Moderne',
 'skinname-vector' => 'Vettore',
 

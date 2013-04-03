@@ -2526,6 +2526,7 @@ Gallwch weld rhestr y rhwystrau a'r gwaharddiadau sydd yn weithredol ar hyn o br
 'sorbsreason' => 'Mae eich cyfeiriad IP wedi cael ei osod ymhlith y dirprwyon agored ar y Rhestr DNS Gwaharddedig a ddefnyddir gan {{SITENAME}}.',
 'sorbs_create_account_reason' => 'Mae eich cyfeiriad IP wedi cael ei osod ymhlith y dirprwyon agored ar y Rhestr DNS Gwaharddedig a ddefnyddir gan {{SITENAME}}.
 Ni allwch greu cyfrif',
+'xffblockreason' => "Mae un o'r cyfeiriadau IP yn y pennyn 'X-Forwarded-For' wedi cael ei atal; naill ai eich cyfeiriad chi neu un o'r gweinyddion dirprwyol a ddefnyddiwyd gennych. Y rheswm gwreiddiol dros atal oedd: $1",
 'cant-block-while-blocked' => 'Ni allwch flocio defnyddwyr eraill tra bod rhwystr arnoch chithau.',
 'cant-see-hidden-user' => "Mae'r defnyddiwr yr ydych yn ceisio'i rwystro wedi ei rwystro a'i guddio'n barod.
 Gan nad yw'r gallu i guddio defnyddwyr gennych, ni allwch weld y rhwystr sydd ar y defnyddiwr na'i olygu.",
@@ -2746,6 +2747,7 @@ Mae ffolder dros dro yn eisiau.',
 'import-error-interwiki' => 'Ni fewnforwyd y dudalen "$1" oherwydd bod yr enw arni wedi ei neilltuo at ddiben cysylltu\'n allanol (rhyngwici).',
 'import-error-special' => 'Ni fewnforiwyd y dudalen "$1" oherwydd ei bod yn perthyn i barth arbennig lle nad oes tudalennau i\'w cael.',
 'import-error-invalid' => 'Ni fewnforwyd y dudalen "$1" oherwydd bod yr enw arni yn annilys.',
+'import-error-unserialize' => "Ni allwyd ddad-gyfresu'r diwygiad $2 o'r dudalen '$1'. Adroddwyd bod y diwygiad yn defnyddio'r model cynnwys $3, wedi ei gyfresu fel $4.",
 'import-options-wrong' => '{{PLURAL:$2|Dewis|Dewis|Dewisiadau}} annilys: <nowiki>$1</nowiki>',
 'import-rootpage-invalid' => 'Mae teitl y dudalen wraidd a roddir yn annilys.',
 'import-rootpage-nosubpage' => 'Nid yw\'r parth "$1", sef parth y brif dudalen y mewnforir iddi, yn caniatau is-dudalennau.',
@@ -3736,7 +3738,7 @@ Dangosir delweddau ar eu maint llawn, dechreuir ffeiliau o fathau eraill yn unio
 'logentry-newusers-autocreate' => '{{GENDER:$2|Crëwyd}} y cyfrif $1 yn awtomatig',
 'logentry-rights-rights' => '{{GENDER:$2|Newidiodd}} $1 y grwpiau y mae $3 yn aelod ohonynt o $4 i $5',
 'logentry-rights-rights-legacy' => '{{GENDER:$2|Newidiodd}} $1 y grwpiau y mae $3 yn aelod ohonynt',
-'logentry-rights-autopromote' => 'Dyrchafwyd $1 yn awtomatig o $4 i $5',
+'logentry-rights-autopromote' => '{{GENDER:$2|Dyrchafwyd}} $1 yn awtomatig o $4 i $5',
 'rightsnone' => '(dim)',
 
 # Feedback
