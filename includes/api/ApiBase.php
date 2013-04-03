@@ -444,6 +444,9 @@ abstract class ApiBase extends ContextSource {
 									100, $descWordwrap );
 								$hintPipeSeparated = false;
 								break;
+							case 'language':
+								$desc .= $paramPrefix . 'Must be a valid language code (letters a-z, 0-9 or - are allowed)';
+								break;
 							case 'limit':
 								$desc .= $paramPrefix . "No more than {$paramSettings[self :: PARAM_MAX]}";
 								if ( isset( $paramSettings[self::PARAM_MAX2] ) ) {
@@ -1029,6 +1032,15 @@ abstract class ApiBase extends ContextSource {
 							$value = $this->validateUser( $value, $encParamName );
 						}
 						break;
+					case 'language':
+						if ( is_array( $value ) ) {
+							foreach ( $value as $key => $val ) {
+								$value[$key] = $this->validateLanguage( $val, $encParamName );
+							}
+						} else {
+							$value = $this->validateLanguage( $value, $encParamName );
+						}
+						break;
 					case 'upload': // nothing to do
 						break;
 					default:
@@ -1174,6 +1186,20 @@ abstract class ApiBase extends ContextSource {
 			$this->dieUsage( "Invalid value '$value' for user parameter $encParamName", "baduser_{$encParamName}" );
 		}
 		return $title->getText();
+	}
+
+	/**
+	 * Validate and normalize of parameters of type 'language'
+	 * @param string $value Parameter value
+	 * @param string $encParamName Parameter value
+	 * @return string Validated and normalized parameter
+	 */
+	private function validateLanguage( $value, $encParamName ) {
+		$lcvalue = strtolower( $value );
+		if ( !Language::isValidCode( $lcvalue ) ) {
+			$this->dieUsage( "Invalid value '$value' for language parameter $encParamName", "badlanguage_{$encParamName}" );
+		}
+		return $lcvalue;
 	}
 
 	/**
