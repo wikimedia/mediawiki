@@ -1893,13 +1893,6 @@ $wgMemCachedTimeout = 500000;
 $wgUseLocalMessageCache = false;
 
 /**
- * Defines format of local cache.
- *  - true: Serialized object
- *  - false: PHP source file (Warning - security risk)
- */
-$wgLocalMessageCacheSerialized = true;
-
-/**
  * Instead of caching everything, only cache those messages which have
  * been customised in the site content language. This means that
  * MediaWiki:Foo/ja is ignored if MediaWiki:Foo doesn't exist.
