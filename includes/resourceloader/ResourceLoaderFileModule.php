@@ -187,8 +187,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @endcode
 	 */
 	public function __construct( $options = array(), $localBasePath = null,
-		$remoteBasePath = null )
-	{
+		$remoteBasePath = null
+	) {
 		global $IP, $wgScriptPath, $wgResourceBasePath;
 		$this->localBasePath = $localBasePath === null ? $IP : $localBasePath;
 		if ( $remoteBasePath !== null ) {
@@ -209,7 +209,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 				case 'debugScripts':
 				case 'loaderScripts':
 				case 'styles':
-					$this->{$member} = (array) $option;
+					$this->{$member} = (array)$option;
 					break;
 				// Collated lists of file paths
 				case 'languageScripts':
@@ -228,26 +228,26 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 								"'$key' given, string expected."
 							);
 						}
-						$this->{$member}[$key] = (array) $value;
+						$this->{$member}[$key] = (array)$value;
 					}
 					break;
 				// Lists of strings
 				case 'dependencies':
 				case 'messages':
 				case 'targets':
-					$this->{$member} = (array) $option;
+					$this->{$member} = (array)$option;
 					break;
 				// Single strings
 				case 'group':
 				case 'position':
 				case 'localBasePath':
 				case 'remoteBasePath':
-					$this->{$member} = (string) $option;
+					$this->{$member} = (string)$option;
 					break;
 				// Single booleans
 				case 'debugRaw':
 				case 'raw':
-					$this->{$member} = (bool) $option;
+					$this->{$member} = (bool)$option;
 					break;
 			}
 		}
@@ -481,7 +481,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 */
 	protected static function collateFilePathListByOption( array $list, $option, $default ) {
 		$collatedFiles = array();
-		foreach ( (array) $list as $key => $value ) {
+		foreach ( (array)$list as $key => $value ) {
 			if ( is_int( $key ) ) {
 				// File name as the value
 				if ( !isset( $collatedFiles[$default] ) ) {

@@ -598,7 +598,7 @@ class ResourceLoader {
 				// no matter how often we call ob_get_clean(), so instead of doing
 				// the more intuitive while ( ob_get_level() > 0 ) ob_get_clean();
 				// we have to be safe here and avoid an infinite loop.
-				for ( $i = 0; $i < ob_get_level(); $i++ ) {
+				for ( $i = 0, $len = ob_get_level(); $i < $len; $i++ ) {
 					ob_end_clean();
 				}
 
@@ -675,8 +675,8 @@ class ResourceLoader {
 	 * @return String: Response data
 	 */
 	public function makeModuleResponse( ResourceLoaderContext $context,
-		array $modules, $missing = array() )
-	{
+		array $modules, $missing = array()
+	) {
 		$out = '';
 		$exceptions = '';
 		if ( $modules === array() && $missing === array() ) {
@@ -898,7 +898,7 @@ class ResourceLoader {
 			// ResourceLoaderFileModule::getStyle can return the styles
 			// as a string or an array of strings. This is to allow separation in
 			// the front-end.
-			$styles = (array) $styles;
+			$styles = (array)$styles;
 			foreach ( $styles as $style ) {
 				$style = trim( $style );
 				// Don't output an empty "@media print { }" block (bug 40498)
@@ -990,12 +990,12 @@ class ResourceLoader {
 	 * @return string
 	 */
 	public static function makeLoaderRegisterScript( $name, $version = null,
-		$dependencies = null, $group = null, $source = null )
-	{
+		$dependencies = null, $group = null, $source = null
+	) {
 		if ( is_array( $name ) ) {
 			return Xml::encodeJsCall( 'mw.loader.register', array( $name ) );
 		} else {
-			$version = (int) $version > 1 ? (int) $version : 1;
+			$version = (int)$version > 1 ? (int)$version : 1;
 			return Xml::encodeJsCall( 'mw.loader.register',
 				array( $name, $version, $dependencies, $group, $source ) );
 		}
