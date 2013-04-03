@@ -14,6 +14,7 @@ production.
 === New features in 1.22 ===
 
 === Bug fixes in 1.22 ===
+* (bug 46768) Usernames of blocking users now display correctly, even if numeric.
 
 === API changes in 1.22 ===
 
