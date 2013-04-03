@@ -305,7 +305,7 @@ class MWHttpRequest {
 
 	/**
 	 * Set the parameters of the request
-
+	 *
 	 * @param $args Array
 	 * @todo overload the args param
 	 */
