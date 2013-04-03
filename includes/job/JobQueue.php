@@ -427,12 +427,11 @@ abstract class JobQueue {
 	protected function doDeduplicateRootJob( Job $job ) {
 		global $wgMemc;
 
-		$params = $job->getParams();
-		if ( !isset( $params['rootJobSignature'] ) ) {
-			throw new MWException( "Cannot register root job; missing 'rootJobSignature'." );
-		} elseif ( !isset( $params['rootJobTimestamp'] ) ) {
-			throw new MWException( "Cannot register root job; missing 'rootJobTimestamp'." );
+		if ( !$job->hasRootJobParams() ) {
+			throw new MWException( "Cannot register root job; missing parameters." );
 		}
+		$params = $job->getRootJobParams();
+
 		$key = $this->getRootJobCacheKey( $params['rootJobSignature'] );
 		// Callers should call batchInsert() and then this function so that if the insert
 		// fails, the de-duplication registration will be aborted. Since the insert is
@@ -473,13 +472,10 @@ abstract class JobQueue {
 	protected function doIsRootJobOldDuplicate( Job $job ) {
 		global $wgMemc;
 
-		$params = $job->getParams();
-		if ( !isset( $params['rootJobSignature'] ) ) {
+		if ( !$job->hasRootJobParams() ) {
 			return false; // job has no de-deplication info
-		} elseif ( !isset( $params['rootJobTimestamp'] ) ) {
-			trigger_error( "Cannot check root job; missing 'rootJobTimestamp'." );
-			return false;
 		}
+		$params = $job->getRootJobParams();
 
 		// Get the last time this root job was enqueued
 		$timestamp = $wgMemc->get( $this->getRootJobCacheKey( $params['rootJobSignature'] ) );

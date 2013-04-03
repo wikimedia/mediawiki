@@ -202,7 +202,10 @@ abstract class Job {
 	}
 
 	/**
-	 * Subclasses may need to override this to make duplication detection work
+	 * Subclasses may need to override this to make duplication detection work.
+	 * The resulting map conveys everything that makes the job unique. This is
+	 * only checked if ignoreDuplicates() returns true, meaning that duplicate
+	 * jobs are supposed to be ignored.
 	 *
 	 * @return Array Map of key/values
 	 * @since 1.21
@@ -225,6 +228,7 @@ abstract class Job {
 	}
 
 	/**
+	 * @see JobQueue::deduplicateRootJob()
 	 * @param string $key A key that identifies the task
 	 * @return Array
 	 * @since 1.21
@@ -237,7 +241,9 @@ abstract class Job {
 	}
 
 	/**
+	 * @see JobQueue::deduplicateRootJob()
 	 * @return Array
+	 * @since 1.21
 	 */
 	public function getRootJobParams() {
 		return array(
@@ -248,6 +254,16 @@ abstract class Job {
 				? $this->params['rootJobTimestamp']
 				: null
 		);
+	}
+
+	/**
+	 * @see JobQueue::deduplicateRootJob()
+	 * @return bool
+	 * @since 1.22
+	 */
+	public function hasRootJobParams() {
+		return isset( $this->params['rootJobSignature'] )
+			&& isset( $this->params['rootJobTimestamp'] );
 	}
 
 	/**

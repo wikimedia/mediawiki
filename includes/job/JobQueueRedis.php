@@ -441,12 +441,11 @@ LUA;
 	 * @throws MWException
 	 */
 	protected function doDeduplicateRootJob( Job $job ) {
-		$params = $job->getParams();
-		if ( !isset( $params['rootJobSignature'] ) ) {
-			throw new MWException( "Cannot register root job; missing 'rootJobSignature'." );
-		} elseif ( !isset( $params['rootJobTimestamp'] ) ) {
-			throw new MWException( "Cannot register root job; missing 'rootJobTimestamp'." );
+		if ( !$job->hasRootJobParams() ) {
+			throw new MWException( "Cannot register root job; missing parameters." );
 		}
+		$params = $job->getRootJobParams();
+
 		$key = $this->getRootJobCacheKey( $params['rootJobSignature'] );
 
 		$conn = $this->getConnection();
