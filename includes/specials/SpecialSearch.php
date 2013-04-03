@@ -257,8 +257,14 @@ class SpecialSearch extends SpecialPage {
 			$textMatches = $search->searchText( $rewritten );
 		}
 
+		$textStatus = null;
+		if( $textMatches instanceof Status ) {
+			$textStatus = $textMatches;
+			$textMatches = null;
+		}
+
 		// did you mean... suggestions
-		if( $textMatches && $textMatches->hasSuggestion() ) {
+		if( $textMatches && !$textStatus && $textMatches->hasSuggestion() ) {
 			$st = SpecialPage::getTitleFor( 'Search' );
 
 			# mirror Go/Search behavior of original request ..
@@ -381,7 +387,7 @@ class SpecialSearch extends SpecialPage {
 			}
 			$titleMatches->free();
 		}
-		if( $textMatches ) {
+		if( $textMatches && !$textStatus ) {
 			// output appropriate heading
 			if( $numTextMatches > 0 && $numTitleMatches > 0 ) {
 				// if no title matches the heading is redundant
@@ -402,8 +408,14 @@ class SpecialSearch extends SpecialPage {
 			$textMatches->free();
 		}
 		if( $num === 0 ) {
-			$out->wrapWikiMsg( "<p class=\"mw-search-nonefound\">\n$1</p>", array( 'search-nonefound', wfEscapeWikiText( $term ) ) );
-			$this->showCreateLink( $t );
+			if ( $textStatus ) {
+				$out->addHTML( '<div class="error">' .
+					htmlspecialchars( $textStatus->getWikiText( 'search-error' ) ) . '</div>' );
+			} else {
+				$out->wrapWikiMsg( "<p class=\"mw-search-nonefound\">\n$1</p>",
+					array( 'search-nonefound', wfEscapeWikiText( $term ) ) );
+				$this->showCreateLink( $t );
+			}
 		}
 		$out->addHtml( "</div>" );
 
