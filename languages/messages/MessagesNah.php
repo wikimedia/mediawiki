@@ -1030,32 +1030,31 @@ Nò mà mỏta in tlèn [[Special:WantedCategories|ìpan kineki tlaìxmatkàtlà
 
 'enotif_impersonal_salutation' => 'tlatequitiltilīlli īpan {{SITENAME}}',
 'enotif_anon_editor' => 'ahtōcātlatequitiltilīlli $1',
-'enotif_body' => 'Māhuizzoh $WATCHINGUSERNAME,
+'enotif_body' => 'Māhuiztic $WATCHINGUSERNAME,
 
-In {{SITENAME}} āmatl "$PAGETITLE" $CHANGEDORCREATED in tlatequitiltilīlli $PAGEEDITOR īpan $PAGEEDITDATE.
-In āxcān tlachiyaliztli onca īpan $PAGETITLE_URL
+$PAGEINTRO $NEWPAGE
 
-$NEWPAGE
+Tlapatlani ītlahtōlpehuallo:  $PAGESUMMARY $PAGEMINOREDIT
 
-In tlapatlaliztli īxtlamatiliztli cah: $PAGESUMMARY $PAGEMINOREDIT
- 
 Xicnotzāz in tlapatlani:
-Correo electrónico: {{canonicalurl:Special:Emailuser|target=$PAGEEDITOR}}
-Huiqui: {{canonicalurl:User:$PAGEEDITOR}}
+īnetitlanizyeyān:$PAGEEDITOR_EMAIL
+īhuiqui:$PAGEEDITOR_WIKI
 
-Ahmo onyez occē tēmachitīliztli ītech occē tlapatlaliztli, zan mā tiquihitta inīn āmoxtli yancuīcān.
-Nō tihuelīti quitlahtlālīz, in tēmachitīliztli in mochi tlachixqui mozāzanilhuīc in motlachiyaliz āmatl.
+Ahmo occēppa mitztlamachiztīz intlā yancuīc tlapatlaliztli, zā mā tiquittaz inīn āmatl. Tihueliti ticcencahulīz in tēmachiztīlizpāmitl in mochintin motlachixāmatl in motlachiyaliz.
 
-	In {{SITENAME}} tēmachitīliztli sistema.
+In {{SITENAME}} icnīuhtīliztica motēmachiztīliztlacentetilīz.
 
---
-Ic ticpatlaz in tlachiyaliztli motlapōhualāma, xiquihitta:
+Intlā ticnequi ticpatlaz in maltzinteyōtl monetitlanizyeyān, xiquihitta:
+{{canonicalurl:{{#special:Preferences}}}}
+
+
+Intlā ticnequi ticpatlaz in motlachiyaliz tlaēlēhuiliztli, xiquihitta:
 {{canonicalurl:{{#special:EditWatchlist}}}}
 
-Ic ticpolōz in āmatl in tlachiyaliztli motlapōhualāma, xiquihitta:
+Intlā ticnequi ticpolōz in āmatl ītech motlachiyaliz, xiquihitta:
 $UNWATCHURL
 
-Tētlamachītīliztli īhuān oc yeh tēpalehuiliztli:
+Motlahtōlcaquiliztīlōni īhuān ocachi tēpalēhuiliztli, xiquihitta:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
 'created' => 'ōmochīuh',
 'changed' => 'ōmotlacuep',

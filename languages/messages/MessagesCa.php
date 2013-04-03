@@ -2638,7 +2638,7 @@ Podeu actualitzar automàticament les redireccions que apuntin al títol origina
 Si no ho feu, assegureu-vos de verificar les redireccions [[Special:DoubleRedirects|dobles]] o [[Special:BrokenRedirects|trencades]].
 Serà de la vostra responsabilitat verificar que els enllaços segueixin apuntant cap a on se suposa que ho han de fer.
 
-Tingueu en compte que la pàgina '''no''' serà traslladada si ja existeix una pàgina amb el títol nou, a no ser que sigui una redirecció sense més historial.
+Tingueu en compte que la pàgina '''no''' serà traslladada si ja existeix una pàgina amb el títol nou, tret que sigui una redirecció sense més historial.
 Això significa que podeu reanomenar de nou una pàgina al seu títol original si cometeu un error, i que no podeu sobreescriure una pàgina existent.
 
 '''Atenció!'''
@@ -2649,13 +2649,13 @@ El títol anterior es convertirà en una pàgina de redirecció al nou títol.
 Assegureu-vos de verificar les redireccions [[Special:DoubleRedirects|dobles]] o [[Special:BrokenRedirects|trencades]].
 És responsabilitat vostra assegurar que els enllaços continuen apuntant cap a on se suposa que han d'anar. 
 
-Tingueu en compte que la pàgina '''no''' serà traslladada si ja existeix una pàgina amb el títol nou, a no ser que sigui una redirecció i no tingui més historial. 
+Tingueu en compte que la pàgina '''no''' serà traslladada si ja existeix una pàgina amb el títol nou, tret que sigui una redirecció i no tingui més historial. 
 Això significa que podeu reanomenar de nou una pàgina al seu títol original si cometeu un error, i que no podeu sobreescriure una pàgina existent.
  
 '''Atenció!''' 
 Això pot ser un canvi dràstic i inesperat per una pàgina popular; 
 assegureu-vos que sabeu el que feu abans de continuar.",
-'movepagetalktext' => "La pàgina de discussió associada també serà traslladada automàticament '''a no ser que''':
+'movepagetalktext' => "La pàgina de discussió associada també serà traslladada automàticament '''tret que''':
 * Ja existeix una pàgina de discussió no buida amb el nou nom, o
 * Desactiveu la opció de més avall.
 
