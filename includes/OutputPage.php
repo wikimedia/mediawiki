@@ -2637,8 +2637,7 @@ $templates
 				|| ( $module->getOrigin() > $this->getAllowedModules( ResourceLoaderModule::TYPE_STYLES )
 					&& $only == ResourceLoaderModule::TYPE_STYLES )
 				|| ( $this->mTarget && !in_array( $this->mTarget, $module->getTargets() ) )
-				)
-			{
+			) {
 				continue;
 			}
 
@@ -2684,13 +2683,9 @@ $templates
 			if ( count( $emptyModules ) > 0 && $only !== ResourceLoaderModule::TYPE_STYLES ) {
 				// If we're only getting the styles, we don't need to do anything for empty modules.
 				$links .= Html::inlineScript(
-
 						ResourceLoader::makeLoaderConditionalScript(
-
 								ResourceLoader::makeLoaderStateScript( $emptyModules )
-
 						)
-
 				) . "\n";
 			}
 
@@ -2872,8 +2867,8 @@ $templates
 			);
 			$defaultModules['site'] = 'loading';
 		} else {
-			// The wiki is configured to not allow a site module.
-			$defaultModules['site'] = 'missing';
+			// Site module is empty, save request by marking ready in advance (bug 46857)
+			$defaultModules['site'] = 'ready';
 		}
 
 		// Add user JS if enabled
@@ -2899,15 +2894,14 @@ $templates
 				}
 				$defaultModules['user'] = 'loading';
 			} else {
-				// Non-logged-in users have no user module. Treat it as empty and 'ready' to avoid
-				// blocking default gadgets that might depend on it. Although arguably default-enabled
-				// gadgets should not depend on the user module, it's harmless and less error-prone to
-				// handle this case.
+				// Non-logged-in users have an empty user module.
+				// Save request by marking ready in advance (bug 46857)
 				$defaultModules['user'] = 'ready';
 			}
 		} else {
-			// User JS disabled
-			$defaultModules['user'] = 'missing';
+			// User modules are disabled on this wiki.
+			// Save request by marking ready in advance (bug 46857)
+			$defaultModules['user'] = 'ready';
 		}
 
 		// Group JS is only enabled if site JS is enabled.
@@ -2918,13 +2912,13 @@ $templates
 				);
 				$defaultModules['user.groups'] = 'loading';
 			} else {
-				// Non-logged-in users have no user.groups module. Treat it as empty and 'ready' to
-				// avoid blocking gadgets that might depend upon the module.
+				// Non-logged-in users have no user.groups module.
+				// Save request by marking ready in advance (bug 46857)
 				$defaultModules['user.groups'] = 'ready';
 			}
 		} else {
 			// Site (and group JS) disabled
-			$defaultModules['user.groups'] = 'missing';
+			$defaultModules['user.groups'] = 'ready';
 		}
 
 		$loaderInit = '';
