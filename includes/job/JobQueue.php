@@ -567,7 +567,7 @@ abstract class JobQueue {
 	 * This does not include jobs that are currently acquired or delayed.
 	 * This should only be called on a queue that is no longer being popped.
 	 *
-	 * @return Iterator|Traversable|Array
+	 * @return Iterator
 	 * @throws MWException
 	 */
 	abstract public function getAllQueuedJobs();
@@ -576,12 +576,12 @@ abstract class JobQueue {
 	 * Get an iterator to traverse over all delayed jobs in this queue.
 	 * This should only be called on a queue that is no longer being popped.
 	 *
-	 * @return Iterator|Traversable|Array
+	 * @return Iterator
 	 * @throws MWException
 	 * @since 1.22
 	 */
 	public function getAllDelayedJobs() {
-		return array(); // not implemented
+		return new ArrayIterator( array() ); // not implemented
 	}
 
 	/**
