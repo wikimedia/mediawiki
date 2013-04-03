@@ -1393,4 +1393,43 @@ class Block {
 	public function setBlocker( $user ) {
 		$this->blocker = $user;
 	}
+
+	/**
+	 * Get the key and parameters for the corresponding error message.
+	 *
+	 * @since 1.22
+	 * @param IContextSource $context
+	 * @return array
+	 */
+	public function getPermissionsError( IContextSource $context ) {
+		$blocker = $this->getBlocker();
+		if ( $blocker instanceof User ) { // local user
+			$blockerUserpage = $blocker->getUserPage();
+			$link = "[[{$blockerUserpage->getPrefixedText()}|{$blockerUserpage->getText()}]]";
+		} else { // foreign user
+			$link = $blocker;
+		}
+
+		$reason = $this->mReason;
+		if ( $reason == '' ) {
+			$reason = $context->msg( 'blockednoreason' )->text();
+		}
+
+		/* $ip returns who *is* being blocked, $intended contains who was meant to be blocked.
+		 * This could be a username, an IP range, or a single IP. */
+		$intended = $this->getTarget();
+
+		$lang = $context->getLanguage();
+		return array(
+			$this->mAuto ? 'autoblockedtext' : 'blockedtext',
+			$link,
+			$reason,
+			$context->getRequest()->getIP(),
+			$this->getByName(),
+			$this->getId(),
+			$lang->formatExpiry( $this->mExpiry ),
+			(string)$intended,
+			$lang->timeanddate( wfTimestamp( TS_MW, $this->mTimestamp ), true ),
+		);
+	}
 }
