@@ -4083,15 +4083,14 @@ class Language {
 	 * @since 1.18
 	 */
 	public function formatExpiry( $expiry, $format = true ) {
-		static $infinity, $infinityMsg;
+		static $infinity;
 		if ( $infinity === null ) {
-			$infinityMsg = wfMessage( 'infiniteblock' );
 			$infinity = wfGetDB( DB_SLAVE )->getInfinity();
 		}
 
 		if ( $expiry == '' || $expiry == $infinity ) {
 			return $format === true
-				? $infinityMsg
+				? $this->getMessageFromDB( 'infiniteblock' )
 				: $infinity;
 		} else {
 			return $format === true
