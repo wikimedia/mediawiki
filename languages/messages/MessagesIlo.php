@@ -1690,7 +1690,6 @@ Para iti kangatuan a talinaay, nabaldado ti img_auth.php.',
 'http-read-error' => 'Biddut ti panagbasa ti HTTP.',
 'http-timed-out' => 'Nagsardeng ti panagtulod ti HTTP.',
 'http-curl-error' => 'Biddut ti panagala ti URL: $1',
-'http-host-unreachable' => 'Di madanon ti URL',
 'http-bad-status' => 'Adda pakirut idi las-ud ti panagkiddaw ti HTTP: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>

@@ -53,8 +53,8 @@ $messages = array(
 'tog-showtoolbar' => "Smon-e la bara dj'utiss ëd modìfica (a-i va Javascript)",
 'tog-editondblclick' => "Dobia sgnacà për modifiché l'artìcol (a-i va JavaScript)",
 'tog-editsection' => "Abilité le modìfiche ëd session con j'anliure [modifiché]",
-'tog-editsectiononrightclick' => 'Abilité la modìfica dle session ën sgnacand-je ansima<br />  al tìtol col tast drit dël rat (a-i va Javascript)',
-'tog-showtoc' => "Buta le tàole dij contnù<br />(për j'artìcoj che l'han pì che 3 session)",
+'tog-editsectiononrightclick' => 'Abilité la modìfica dle session ën sgnacand-je ansima al tìtol col tast drit dël rat (a-i va Javascript)',
+'tog-showtoc' => "Smon-e la tàula dij contnù (për le pàgine che l'han pì che 3 session)",
 'tog-rememberpassword' => "Visesse ëd mia ciav ansima a 's navigador (për al pi $1 {{PLURAL:$1|di|di}})",
 'tog-watchcreations' => "Gionta le pàgine che i creo mi e j'archivi che i cario mi a la lista ëd lòn che im ten-o sot euj",
 'tog-watchdefault' => "Gionta le pàgine che i modìfico mi a la lista dle ròbe ch'i ten-o sot-euj",
@@ -1664,7 +1664,6 @@ Për na sicurëssa otimal, img_auth.php a l'é disabilità.",
 'http-read-error' => 'Eror ëd letura HTTP.',
 'http-timed-out' => "L'arcesta HTTP a l'ha finì sò temp.",
 'http-curl-error' => "Eror an sërcand d'arcuperé l'adrëssa dl'aragnà: $1.",
-'http-host-unreachable' => "L'anliura a rispond pa.",
 'http-bad-status' => "A l'é staje un problema durant l'arcesta HTTP: $1 $2",
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>

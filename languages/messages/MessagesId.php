@@ -12,6 +12,7 @@
  * @author Aldnonymous
  * @author Anakmalaysia
  * @author ArdWar
+ * @author Bawoor
  * @author Bennylin
  * @author Borgx
  * @author Dosmiin Barsbold
@@ -1825,7 +1826,7 @@ Jika Anda tetap ingin memuatkan berkas Anda, harap kembali dan gunakan nama lain
 'uploadjava' => 'Berkas ini adalah berkas ZIP yang mengnadung berkas .class Java.
 Penggunggahan berkas Java tidak diperbolehkan karena dapat menyebabkan pengabaian batasan keamanan.',
 'upload-source' => 'Berkas sumber',
-'sourcefilename' => 'Nama berkas sumber:',
+'sourcefilename' => 'Jeneng berkas sumber:',
 'sourceurl' => 'URL sumber:',
 'destfilename' => 'Nama berkas tujuan:',
 'upload-maxfilesize' => 'Ukuran berkas maksimum: $1',
@@ -1956,7 +1957,6 @@ Untuk pilihan keamanan, img_auth.php dinonaktifkan.',
 'http-read-error' => 'Kesalahan pembacaan HTTP',
 'http-timed-out' => 'Permintaan HTTP lewat tenggat.',
 'http-curl-error' => 'Kesalahan saat mengambil URL: $1',
-'http-host-unreachable' => 'Tidak dapat mencapai URL.',
 'http-bad-status' => 'Ada masalah saat permintaan halaman HTTP: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>

@@ -1785,7 +1785,6 @@ Per seguretat, img_auth.php està desactivat.",
 'http-read-error' => 'Error de lectura HTTP.',
 'http-timed-out' => 'La petició HTTP ha expirat.',
 'http-curl-error' => "Error en recuperar l'URL: $1",
-'http-host-unreachable' => "No s'ha pogut accedir a l'URL.",
 'http-bad-status' => 'Hi ha hagut un problema durant la petició HTTP: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>

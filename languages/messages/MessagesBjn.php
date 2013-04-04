@@ -1739,7 +1739,6 @@ Gasan kaamanan baik, img_auth.php dipajahakan.',
 'http-read-error' => 'Kasalahan baca HTTP.',
 'http-timed-out' => 'Parmintaan HTTP habis wayahnya.',
 'http-curl-error' => 'Kasalahan pas maambil URL: $1',
-'http-host-unreachable' => 'Kada kawa mancapai URL.',
 'http-bad-status' => 'Ada sabuah masalah pas maminta HTTP: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>

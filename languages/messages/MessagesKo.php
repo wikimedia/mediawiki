@@ -2008,7 +2008,6 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization 을 참고하십시오
 'http-read-error' => 'HTTP 읽기 오류.',
 'http-timed-out' => 'HTTP 요청 시간 초과.',
 'http-curl-error' => 'URL 열기 오류: $1',
-'http-host-unreachable' => 'URL에 접근하지 못했습니다.',
 'http-bad-status' => 'HTTP 요청 중 오류 발생: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>

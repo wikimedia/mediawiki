@@ -1891,7 +1891,6 @@ For best tryggleik, er img_auth.php sett ut av funksjon.',
 'http-read-error' => 'HTTP-lesefeil.',
 'http-timed-out' => 'Tidsavbrot på HTTP-førespurnad.',
 'http-curl-error' => 'Feil under henting av nettadressa: $1',
-'http-host-unreachable' => 'Kunne ikkje nå nettadressa',
 'http-bad-status' => 'Det var eit problem under HTTP-førespurnaden: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>

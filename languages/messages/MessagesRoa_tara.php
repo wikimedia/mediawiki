@@ -1702,7 +1702,6 @@ Pe 'na securezze a uerre proprie, img_auth.php jè disabbilitate.",
 'http-read-error' => "Errore jndr'à letture de l' HTTP",
 'http-timed-out' => 'Richieste HTTP fore timbe.',
 'http-curl-error' => "Errore analizzanne l'URL: $1",
-'http-host-unreachable' => "Non ge riesche a raggiungere l'URL",
 'http-bad-status' => "Ha state 'nu probbleme duranne 'a richieste HTTP: $1, $2",
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>

@@ -1847,7 +1847,6 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization कृपया हे
 'http-read-error' => 'एचटीटीपी वाचन त्रुटी.',
 'http-timed-out' => 'विनंती वेळ सपला आहे',
 'http-curl-error' => 'आंतरजालपत्ता पकडताना चूक: $1',
-'http-host-unreachable' => 'आंतरजाल पत्त्यापाशी पोहोचले नाही',
 'http-bad-status' => 'एचटीटीपी मागणीदरम्यान एक चूक उद्भवली: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>

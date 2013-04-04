@@ -1854,7 +1854,6 @@ Vegna öryggissjónarmiða er img_auth.php óvirkt.',
 'http-read-error' => 'HTTP lesturs villa.',
 'http-timed-out' => 'Tímamörk HTTP beiðni rann út.',
 'http-curl-error' => 'Villa við að sækja vefslóð: $1',
-'http-host-unreachable' => 'Gat ekki náð í vefslóðina',
 'http-bad-status' => 'Mistök við HTTP beiðnina: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>

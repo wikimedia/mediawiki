@@ -1922,7 +1922,6 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization കാണുക.',
 'http-read-error' => 'എച്ച്.റ്റി.റ്റി.പി. വിവരം പ്രദർശിപ്പിക്കുന്നതിൽ പിഴവ്.',
 'http-timed-out' => 'എച്ച്.റ്റി.റ്റി.പി. അഭ്യർത്ഥന സമയം കഴിഞ്ഞു.',
 'http-curl-error' => 'യു.ആർ.എൽ. ശേഖരിക്കുന്നതിൽ പിഴവ്: $1',
-'http-host-unreachable' => 'യു.ആർ.എൽ.-ല്‍ എത്തിപ്പെടാന്‍ സാധിച്ചില്ല',
 'http-bad-status' => 'എച്ച്.റ്റി.റ്റി.പി. അഭ്യർത്ഥനാ വേളയിൽ ഒരു പിഴവുണ്ടായി: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>

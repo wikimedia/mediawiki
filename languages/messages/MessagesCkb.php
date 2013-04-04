@@ -1654,9 +1654,6 @@ $1',
 'img-auth-nofile' => 'فایلی "$1" بوونی نیه‌',
 'img-auth-isdir' => 'هه‌وڵ ده‌ده‌ی بۆ کردنه‌وه‌ی بوخچه‌ی "$1" له‌ کاتێکدا ته‌نیا کردنه‌وه‌ی فایل رێپێدراوه‌',
 
-# HTTP errors
-'http-host-unreachable' => 'توانای دەست‌پێ‌گەیشتنی URL نیە',
-
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'توانای دەست‌پێ‌گەیشتنی URL نیە',
 'upload-curl-error6-text' => 'ئەو URL کە ڕاچاوت کردووە توانای دەست‌پێ‌گەیشتنی نییە.

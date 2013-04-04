@@ -2126,7 +2126,6 @@ $1',
 'http-read-error' => 'خطأ قراءة HTTP.',
 'http-timed-out' => 'انتهت مهلة طلب HTTP.',
 'http-curl-error' => 'فشل جلب المسار: $1',
-'http-host-unreachable' => 'تعذر الوصول إلى المسار.',
 'http-bad-status' => 'ثمة مشكلة أثناء طلب HTTP: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>

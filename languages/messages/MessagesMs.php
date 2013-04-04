@@ -1801,7 +1801,6 @@ Untuk keselamatan optimum, img_auth.php telah dilumpuhkan.',
 'http-read-error' => 'Ralat baca HTTP.',
 'http-timed-out' => 'Permintaan HTTP melebihi waktu tamat.',
 'http-curl-error' => 'Ralat mendapatkan URL: $1',
-'http-host-unreachable' => 'URL tidak dapat dicapai.',
 'http-bad-status' => 'Berlaku masalah ketika permintaan HTTP: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>

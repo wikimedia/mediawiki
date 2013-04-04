@@ -1856,7 +1856,6 @@ See https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'http-read-error' => 'HTTP पठनदोषः।',
 'http-timed-out' => 'HTTP अभ्यर्थनं कालातीतम् ।',
 'http-curl-error' => 'दोषाहरणस्य URL: $1',
-'http-host-unreachable' => 'URL प्राप्तुं न शक्यते ।',
 'http-bad-status' => 'HTTP : $1 $2अभ्यर्थने समस्या आसीत् ।',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>

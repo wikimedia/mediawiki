@@ -1709,7 +1709,6 @@ Er mwyn sicrhau'r diogelwch gorau posib, analluogwyd img_auth.php.",
 'http-read-error' => 'Cafwyd gwall wrth ddarllen yr HTTP.',
 'http-timed-out' => 'Goroedi wedi digwydd ar y cais HTTP.',
 'http-curl-error' => 'Cafwyd gwall wrth nôl yr URL: $1',
-'http-host-unreachable' => 'Wedi methu cyrraedd yr URL.',
 'http-bad-status' => 'Cafwyd trafferth yn ystod y cais HTTP: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
