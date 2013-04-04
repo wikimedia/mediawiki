@@ -576,6 +576,13 @@ div#footer #footer-places li {
 	background-position: center center;
 	text-decoration: none;
 }
+div#change-logo-url {
+	position: absolute;
+	margin-top: 2em;
+	margin-left: 1em;
+	width: 7em;
+	text-align: center;
+}
 
 /*
  *

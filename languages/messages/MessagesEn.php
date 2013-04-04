@@ -688,6 +688,7 @@ XHTML id names.
 'underline-never'   => 'Never',
 'underline-default' => 'Skin or browser default',
 
+'change-logo-url'	=> 'Set $WgLogo to the URL path of your own logo image',
 # Font style option in Special:Preferences
 'editfont-style'     => 'Edit area font style:',
 'editfont-default'   => 'Browser default',
