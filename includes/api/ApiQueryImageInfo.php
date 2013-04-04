@@ -569,11 +569,12 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		return array(
 			'prop' => self::getPropertyDescriptions( array(), $p ),
 			'urlwidth' => array( "If {$p}prop=url is set, a URL to an image scaled to this width will be returned.",
-						'Only the current version of the image can be scaled' ),
+				'For performance reasons if this option is used, ' .
+					'no more than ' . self::TRANSFORM_LIMIT . ' scaled images will be returned.' ),
 			'urlheight' => "Similar to {$p}urlwidth. Cannot be used without {$p}urlwidth",
 			'urlparam' => array( "A handler specific parameter string. For example, pdf's ",
 				"might use 'page15-100px'. {$p}urlwidth must be used and be consistent with {$p}urlparam" ),
-			'limit' => 'How many image revisions to return',
+			'limit' => 'How many image revisions to return per image',
 			'start' => 'Timestamp to start listing from',
 			'end' => 'Timestamp to stop listing at',
 			'metadataversion' => array( "Version of metadata to use. if 'latest' is specified, use latest version.",
