@@ -1413,7 +1413,13 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * Like resolveStoragePath() except null values are returned if
-	 * the container is sharded and the shard could not be determined.
+	 * the container is sharded and the shard could not be determined
+	 * or if the path ends with '/'. The later case is illegal for FS
+	 * backends and can confuse listings for object store backends.
+	 *
+	 * This function is used when resolving paths that must be valid
+	 * locations for files. Directory and listing functions should
+	 * generally just use resolveStoragePath() instead.
 	 *
 	 * @see FileBackendStore::resolveStoragePath()
 	 *
@@ -1422,7 +1428,7 @@ abstract class FileBackendStore extends FileBackend {
 	 */
 	final protected function resolveStoragePathReal( $storagePath ) {
 		list( $container, $relPath, $cShard ) = $this->resolveStoragePath( $storagePath );
-		if ( $cShard !== null ) {
+		if ( $cShard !== null && substr( $relPath, -1 ) !== '/' ) {
 			return array( $container, $relPath );
 		}
 		return array( null, null );
