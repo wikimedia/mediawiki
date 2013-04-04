@@ -213,7 +213,7 @@
 	 */
 	function toggleLinkPremade( $that, e, options ) {
 		var $collapsible = $that.eq( 0 ).closest( '.mw-collapsible' );
-		options = $.extend( { toggleClasses: true }, options );
+		options = $.extend( { toggleClasses: true, linksPassthru: true }, options );
 		togglingHandler( $that, $collapsible, e, options );
 	}
 
@@ -226,7 +226,6 @@
 	 * @param {jQuery} $collapsible
 	 */
 	function toggleLinkCustom( $that, e, options, $collapsible ) {
-		options = $.extend( { linksPassthru: true }, options );
 		togglingHandler( $that, $collapsible, e, options );
 	}
 
