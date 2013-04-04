@@ -54,7 +54,7 @@
 	'arn' => 'mapudungun',	# Mapuche, Mapudungu, Araucanian (Araucano)
 	'ary' => 'Maġribi',	# Moroccan Spoken Arabic
 	'arz' => 'مصرى',	# Egyptian Spoken Arabic
-	'as' => 'অসমীয়া',	# Assamese
+	'as' => 'অসমীয়া',	# Assamese
 	'ast' => 'asturianu',	# Asturian
 	'av' => 'авар',	# Avar
 	'avk' => 'Kotava', # Kotava
@@ -288,7 +288,7 @@
 	'ny' => 'Chi-Chewa',	# Chichewa
 	'oc' => 'occitan',		# Occitan
 	'om' => 'Oromoo',		# Oromo
-	'or' => 'ଓଡ଼ିଆ',		# Oriya
+	'or' => 'ଓଡ଼ିଆ',		# Oriya
 	'os' => 'Ирон', # Ossetic -- fixed per bug 29091
 	'pa' => 'ਪੰਜਾਬੀ', # Eastern Punjabi (Gurmukhi script) (pan)
 	'pag' => 'Pangasinan',	# Pangasinan
