@@ -1872,7 +1872,6 @@ Turvakaalutlustel on img_auth.php kasutus keelatud.',
 'http-read-error' => 'HTTP-lugemistõrge.',
 'http-timed-out' => 'HTTP-päring aegus.',
 'http-curl-error' => 'Tõrge URL-i $1 lugemisel',
-'http-host-unreachable' => 'Internetiaadress pole kättesaadav.',
 'http-bad-status' => 'HTTP-päringu ajal ilmnes tõrge: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>

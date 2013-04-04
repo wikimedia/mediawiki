@@ -1826,7 +1826,6 @@ $1',
 'http-read-error' => 'HTTP讀取錯誤。',
 'http-timed-out' => 'HTTP請求已過時。',
 'http-curl-error' => '擷取URL時出錯：$1',
-'http-host-unreachable' => '無法到達URL。',
 'http-bad-status' => '進行HTTP請求時出現問題：$1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>

@@ -1500,7 +1500,7 @@ Mangga priksa panyetèlan pangunggahan berkas.',
 'uploadjava' => 'Berkas kuwi berkas ZIP sing kaisi berkas .class Java.
 Ngungga berkas Java ora dililakaké amarga bisa nyebabaké ngluwèhaké wates kamanan.',
 'upload-source' => 'Berkas sumber',
-'sourcefilename' => 'Jeneng berkas sumber',
+'sourcefilename' => 'Jeneng berkas sumber:',
 'sourceurl' => 'URL sumber:',
 'destfilename' => 'Jeneng berkas sing dituju',
 'upload-maxfilesize' => 'Ukuran maksimal berkas: $1',
@@ -1617,7 +1617,6 @@ Kanggo kamanan paling apik, img_auth.php dipatèni.',
 'http-read-error' => 'Kasalahan maca HTTP.',
 'http-timed-out' => 'Panjalukan HTTP kliwat wates wektu.',
 'http-curl-error' => 'Kasalahan nalika njupuk URL: $1',
-'http-host-unreachable' => 'Ora bisa ngranggèh URL.',
 'http-bad-status' => 'Ana masalah nalika njaluk HTTP: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>

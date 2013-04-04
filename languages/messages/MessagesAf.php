@@ -1833,7 +1833,6 @@ Vir veiligheidsredes is img_auth.php gedeaktiveer.",
 'http-read-error' => 'Fout met die lees van HTTP.',
 'http-timed-out' => 'HTTP-versoek se tyd is verstreke.',
 'http-curl-error' => 'Fout met die ophaal van URL: $1',
-'http-host-unreachable' => 'Die URL is nie bereikbaar nie.',
 'http-bad-status' => "Daar was 'n probleem tydens die HTTP-versoek: $1 $2",
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>

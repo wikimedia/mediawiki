@@ -1734,7 +1734,6 @@ $1',
 'http-read-error' => 'การอ่านข้อมูล HTTP ผิดพลาด',
 'http-timed-out' => 'คำขอข้อมูล HTTP เกินเวลาที่กำหนด',
 'http-curl-error' => 'เกิดข้อผิดพลาดในการเรียกข้อมูลจาก URL: $1',
-'http-host-unreachable' => 'ไม่สามารถเข้าถึง URL',
 'http-bad-status' => 'พบปัญหาในระหว่างการข้อข้อมูล HTTP: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>

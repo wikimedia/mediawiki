@@ -1780,7 +1780,6 @@ $1',
 'http-read-error' => 'HTTP грешка при четене.',
 'http-timed-out' => 'Пресрочено време за HTTP заявка.',
 'http-curl-error' => 'Грешка при извличането на URL: $1',
-'http-host-unreachable' => 'Недостъпен URL.',
 'http-bad-status' => 'Настъпи проблем по време на HTTP заявката: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>

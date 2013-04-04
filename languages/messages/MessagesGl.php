@@ -1898,7 +1898,6 @@ Para unha seguridade óptima, img_auth.php está desactivado.',
 'http-read-error' => 'Erro de lectura HTTP.',
 'http-timed-out' => 'O pedido HTTP expirou.',
 'http-curl-error' => 'Ocorreu un erro ao acceder ao URL: $1',
-'http-host-unreachable' => 'Non se puido acceder ao URL.',
 'http-bad-status' => 'Houbo un problema durante a solicitude HTTP: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>

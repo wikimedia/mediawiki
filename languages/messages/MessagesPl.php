@@ -517,7 +517,7 @@ $messages = array(
 'otherlanguages' => 'W innych językach',
 'redirectedfrom' => '(Przekierowano z $1)',
 'redirectpagesub' => 'Strona przekierowująca',
-'lastmodifiedat' => 'Tę stronę ostatnio zmodyfikowano $2, $1.',
+'lastmodifiedat' => 'Tę stronę ostatnio zmodyfikowano o $2, $1.',
 'viewcount' => 'Tę stronę obejrzano {{PLURAL:$1|tylko raz|$1 razy}}.',
 'protectedpage' => 'Strona zabezpieczona',
 'jumpto' => 'Skocz do:',
@@ -1936,7 +1936,6 @@ Ponieważ ta wiki została skonfigurowana jako publiczna dla zapewnienia optymal
 'http-read-error' => 'Błąd odczytu HTTP.',
 'http-timed-out' => 'Przekroczony czas żądania HTTP.',
 'http-curl-error' => 'Błąd pobierania z adresu $1',
-'http-host-unreachable' => 'Adres jest nieosiągalny.',
 'http-bad-status' => 'Wystąpił problem z realizacją żądania HTTP $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -2458,8 +2457,8 @@ Naciśnij „wstecz” w przeglądarce, przeładuj stronę, po czym ponownie wyd
 'protectlogpage' => 'Zabezpieczone',
 'protectlogtext' => 'Poniżej znajduje się lista zmian w zabezpieczeniu pojedynczych stron.
 Wszystkie aktywne zabezpieczenia odnajdziesz na liście [[Special:ProtectedPages|zabezpieczonych stron]].',
-'protectedarticle' => '{{GENDER:$2|zabezpieczył|zabezpieczyła}} [[$1]]',
-'modifiedarticleprotection' => '{{GENDER:$2|zmienił|zmieniła}} poziom zabezpieczenia [[$1]]',
+'protectedarticle' => 'zabezpieczono "[[$1]]"',
+'modifiedarticleprotection' => 'zmieniono poziom zabezpieczenia "[[$1]]"',
 'unprotectedarticle' => 'odbezpieczył [[$1]]',
 'movedarticleprotection' => 'przeniósł ustawienia zabezpieczeń z [[$2]] do [[$1]]',
 'protect-title' => 'Zmiana poziomu zabezpieczenia „$1”',
@@ -2724,7 +2723,7 @@ Przyczyna blokady $1 to: „$2”',
 'blocklogtext' => 'Poniżej znajduje się lista blokad założonych i zdjętych z poszczególnych adresów IP.
 Na liście nie znajdą się adresy IP, które zablokowano w sposób automatyczny.
 By przejrzeć listę obecnie aktywnych blokad, przejdź na stronę [[Special:BlockList|zablokowanych adresów i użytkowników]].',
-'unblocklogentry' => '{{GENDER:$2|zdjął|zdjęła}} blokadę $1',
+'unblocklogentry' => 'zdjęto blokadę z $1',
 'block-log-flags-anononly' => 'tylko anonimowi',
 'block-log-flags-nocreate' => 'blokada tworzenia konta',
 'block-log-flags-noautoblock' => 'automatyczne blokowanie wyłączone',
@@ -4031,7 +4030,7 @@ Grafiki są pokazywane w pełnej rozdzielczości. Inne typy plików są otwieran
 'logentry-delete-revision' => '$1 {{GENDER:$2|zmienił|zmieniła}} widoczność {{PLURAL:$5|wersji|$5 wersji}} strony $3, wykonano następujące operacje: $4',
 'logentry-delete-event-legacy' => '$1 {{GENDER:$2|zmienił|zmieniła}} widoczność zdarzeń w rejestrze strony $3',
 'logentry-delete-revision-legacy' => '$1 {{GENDER:$2|zmienił|zmieniła}} widoczność wersji strony $3',
-'logentry-suppress-delete' => '$1 ukrywa stronę $3',
+'logentry-suppress-delete' => '$1 {{GENDER:$2|ukrył|ukryła}} stronę $3',
 'logentry-suppress-event' => '$1 potajemnie zmienia widoczność {{PLURAL:$5|zdarzenia|$5 zdarzeń}} w $3, wykonano następujące operacje: $4',
 'logentry-suppress-revision' => '$1 potajemnie zmienia widoczność {{PLURAL:$5|wersji|$5 wersji}} strony $3, wykonano następujące operacje: $4',
 'logentry-suppress-event-legacy' => '$1 potajemnie zmienia widoczność zdarzenia w rejestrze $3',

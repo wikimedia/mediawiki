@@ -1880,7 +1880,6 @@ Parhaan turvallisuuden vuoksi img_auth.php on poissa käytöstä.',
 'http-read-error' => 'HTTP-lukuvirhe.',
 'http-timed-out' => 'HTTP-pyyntö aikakatkaistiin.',
 'http-curl-error' => 'Virhe noudettaessa verkko-osoitetta: $1',
-'http-host-unreachable' => 'Ei voitu tavoittaa verkko-osoitetta',
 'http-bad-status' => 'HTTP-pyynnön aikana oli ongelma: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>

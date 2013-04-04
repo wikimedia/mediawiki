@@ -1,5 +1,8 @@
 <?php
-/** Message documentation (Message documentation)
+/** Message documentation (This is the name of the message documentation language code (qqq). Follow the rules of your languages and use small first letter if it doesn't capitalize language names always.
+
+It might be easier to translate it as "translation guidelines" or "translation help".
+{{Identical|Message documentation}})
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -3585,12 +3588,6 @@ See also:
 Known messages are:
 * {{msg-mw|http-host-unreachable}}
 * {{msg-mw|http-timed-out}}',
-'http-host-unreachable' => 'Used as error message when executing HTTP request.
-
-See also:
-* {{msg-mw|Http-request-error}}
-* {{msg-mw|Http-read-error}}
-* {{msg-mw|Http-timed-out|28}}',
 'http-bad-status' => 'Parameters:
 * $1 - an HTTP error code (e.g. 404)
 * $2 - the HTTP error message (e.g. File Not Found)',

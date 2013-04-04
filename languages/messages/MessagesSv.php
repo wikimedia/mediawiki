@@ -1942,7 +1942,6 @@ För optimal säkerhet, har img_auth.php blivit avaktiverad.',
 'http-read-error' => 'HTTP-läsfel.',
 'http-timed-out' => 'Time out för HTTP-begäran.',
 'http-curl-error' => 'Fel vid hämtning av URL: $1',
-'http-host-unreachable' => 'URL:en kunde inte nås.',
 'http-bad-status' => 'Det uppstod ett problem under HTTP-begäran: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>

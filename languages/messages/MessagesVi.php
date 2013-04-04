@@ -984,9 +984,9 @@ Nó chưa được lưu!'''",
 Các thay đổi của bạn vẫn chưa được lưu!",
 'continue-editing' => 'Đi đến hộp sửa đổi',
 'previewconflict' => 'Phần xem thử này là kết quả của văn bản trong vùng soạn thảo phía trên và nó sẽ xuất hiện như vậy nếu bạn chọn lưu trang.',
-'session_fail_preview' => "'''Những sửa đổi của bạn chưa được lưu giữ do mất dữ liệu về phiên làm việc.
+'session_fail_preview' => "'''Rất tiếc, những sửa đổi của bạn chưa được lưu giữ do mất dữ liệu về phiên làm việc.'''
 Xin hãy thử lần nữa.
-Nếu vẫn không thành công, hãy thử [[Special:UserLogout|đăng xuất]] rồi đăng nhập lại.'''",
+Nếu vẫn không thành công, hãy thử [[Special:UserLogout|đăng xuất]] rồi đăng nhập lại.",
 'session_fail_preview_html' => "'''Những sửa đổi của bạn chưa được lưu giữ do mất dữ liệu về phiên làm việc.'''
 
 ''Do {{SITENAME}} cho phép dùng mã HTML, trang xem thử được ẩn đi để đề phòng bị tấn công bằng JavaScript.''
@@ -1911,7 +1911,6 @@ Vì lý do bảo mật, img_auth.php đã bị tắt.',
 'http-read-error' => 'Lỗi đọc HTTP.',
 'http-timed-out' => 'Hết thời gian yêu cầu HTTP.',
 'http-curl-error' => 'Có lỗi khi truy xuất URL: $1',
-'http-host-unreachable' => 'Không thể truy cập URL',
 'http-bad-status' => 'Có vấn đề khi yêu cầu HTTP: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>

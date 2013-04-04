@@ -1915,7 +1915,6 @@ Pentru securitate optimă, img_auth.php este dezactivat.',
 'http-read-error' => 'S-a produs o eroare în timpul citirii HTTP.',
 'http-timed-out' => 'Cererea HTTP a expirat.',
 'http-curl-error' => 'Eroare la preluarea adresei URL: $1',
-'http-host-unreachable' => 'Adresa URL nu a putut fi accesată.',
 'http-bad-status' => 'A apărut o problemă în timpul solicitării HTTP: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>

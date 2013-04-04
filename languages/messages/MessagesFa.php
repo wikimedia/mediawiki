@@ -2079,7 +2079,6 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'http-read-error' => 'خطای خواندن اچ‌تی‌تی‌پی.',
 'http-timed-out' => 'مهلت درخواست اچ‌تی‌تی‌پی به سر رسید.',
 'http-curl-error' => 'خطا در آوردن نشانی اینترنتی: $1',
-'http-host-unreachable' => 'دسترسی به نشانی اینترنتی ممکن نشد.',
 'http-bad-status' => 'در حین درخواست اچ‌تی‌تی‌پی خطایی رخ داد: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>

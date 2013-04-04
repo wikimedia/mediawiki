@@ -1838,7 +1838,6 @@ Za optimalno varnost je img_auth.php onemogočen.',
 'http-read-error' => 'Napaka branja HTTP.',
 'http-timed-out' => 'Zahteva HTTP je potekla.',
 'http-curl-error' => 'Napaka pri doseganju URL: $1',
-'http-host-unreachable' => 'Ni mogoče doseči URL.',
 'http-bad-status' => 'Med zahtevo HTTP je prišlo do težave: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>

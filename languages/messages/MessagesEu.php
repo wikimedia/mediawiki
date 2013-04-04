@@ -1582,7 +1582,6 @@ Fitxategien sarbidea baino ez da onartzen.',
 'http-read-error' => 'HTTP irakurketa-akatsa.',
 'http-timed-out' => 'HTTP eskaera iraungi da.',
 'http-curl-error' => 'Errorea URLa bilatzerakoan: $1',
-'http-host-unreachable' => 'Ezin da URL-a atzeman.',
 'http-bad-status' => 'Arazo bat egon da HTTP eskaera bitartean: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>

@@ -1772,7 +1772,6 @@ Fir eng oprimal Sécherheet ass img_auth.php ausgeschalt.",
 'http-read-error' => 'HTTP-Feeler beim Liesen.',
 'http-timed-out' => 'HTTP-Ufro huet ze laang gebraucht (time out).',
 'http-curl-error' => 'Feeler beim Ofruff vun der URL: $1',
-'http-host-unreachable' => "D'URL konnt net erreecht ginn.",
 'http-bad-status' => 'Et gouf e Problem bäi der HTTP-Ufro: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>

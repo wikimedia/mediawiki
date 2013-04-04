@@ -2048,7 +2048,6 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization をご覧ください�
 'http-read-error' => 'HTTP読み込みエラーです。',
 'http-timed-out' => 'HTTP要求がタイムアウトしました。',
 'http-curl-error' => 'URLからの取得に失敗しました: $1',
-'http-host-unreachable' => 'URLに到達できません。',
 'http-bad-status' => 'HTTP リクエストで問題が発生しました: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>

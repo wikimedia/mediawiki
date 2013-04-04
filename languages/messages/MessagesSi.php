@@ -1799,7 +1799,6 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization බලන්න.',
 'http-read-error' => 'HTTP කියැවුම් දෝෂය.',
 'http-timed-out' => 'HTTP අයැදුම සඳහා වූ කාලය ඉක්මව ඇත.',
 'http-curl-error' => 'අන්තර්ජාල ලිපිනය පමුණුවාගෙන ඒමේ දෝෂය : $1',
-'http-host-unreachable' => 'අන්තර්ජාල ලිපිනය වෙත සේන්දු විය නොහැකි විය',
 'http-bad-status' => 'HTTP ආයාචනයෙහිදී ගැටළුවක් පැන නැගුනි: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>

@@ -1801,7 +1801,6 @@ $1',
 'http-read-error' => 'HTTP წაკითხვის შეცდომა.',
 'http-timed-out' => 'HTTP მოთხოვნის დრო გავიდა.',
 'http-curl-error' => 'შეცდომა URL: $1-ის მოთხოვნისას',
-'http-host-unreachable' => 'URL მიუწვდომელია',
 'http-bad-status' => 'HTTP მოთხოვნისას აღმოჩენილია შეცდომა - $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>

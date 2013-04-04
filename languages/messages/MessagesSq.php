@@ -1795,7 +1795,6 @@ Për siguri optimale, img_auth.php është çaktivizuar.',
 'http-read-error' => 'Gabim në leximin e HTTP.',
 'http-timed-out' => 'Kërkesës HTTP i kaloi koha.',
 'http-curl-error' => 'Gabim gjatë gjetjes së URL-së: $1',
-'http-host-unreachable' => 'Nuk mund të lidheni me adresën URL.',
 'http-bad-status' => 'Ndodhi një problem gjatë kërkesës HTTP: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>

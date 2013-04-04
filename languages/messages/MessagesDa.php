@@ -1799,7 +1799,6 @@ For optimal sikkerhed er img_auth.php deaktiveret.",
 'http-read-error' => 'HTTP-læsefejl.',
 'http-timed-out' => 'HTTP-forespørgslen tog for lang tid.',
 'http-curl-error' => 'Fejl under hentning af URL: $1',
-'http-host-unreachable' => 'Webadresse er ikke tilgængelig.',
 'http-bad-status' => 'Der opstod et problem under HTTP-forespørgslen: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>

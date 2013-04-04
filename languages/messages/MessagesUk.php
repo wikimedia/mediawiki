@@ -2006,7 +2006,6 @@ $1',
 'http-read-error' => 'Помилка читання HTTP.',
 'http-timed-out' => 'Перевищення часу очікування HTTP-запиту.',
 'http-curl-error' => 'Помилка звертання до URL: $1',
-'http-host-unreachable' => 'Неможливо досягнути вказану URL-адресу.',
 'http-bad-status' => 'Під час HTTP-запиту виникла проблема: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>

@@ -1697,7 +1697,6 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization صحیفه‌‌سین
 'http-read-error' => 'اچ‌تی‌تی‌پی اوخوما ختاسی',
 'http-timed-out' => 'اچ‌تی‌تی‌پی ایستیی‌نین واختی بیتدی.',
 'http-curl-error' => 'مراجعت نشانی ده یانلیش : $1',
-'http-host-unreachable' => 'آدرسه چاتماق اولمادی (خطا).',
 'http-bad-status' => 'اچ‌تی‌تی‌پی مراجعتین یوخلانماسی زامانی پروبلئم آشکارلانمیش‌دیر: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>

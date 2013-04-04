@@ -6919,7 +6919,9 @@ O ideal é que non sexa accesible desde a web.',
 	'config-logo-help' => 'A aparencia de MediaWiki por defecto inclúe espazo para un logo de 135x160 píxeles por riba do menú lateral.
 Cargue unha imaxe do tamaño axeitado e introduza o enderezo URL aquí.
 
-Se non quere un logo, deixe esta caixa en branco.', # Fuzzy
+Pode utilizar $wgStylePath ou $wgScriptPath se o seu logo está relacionado con esas rutas.
+
+Se non quere un logo, deixe esta caixa en branco.',
 	'config-instantcommons' => 'Activar Instant Commons',
 	'config-instantcommons-help' => '[//www.mediawiki.org/wiki/InstantCommons InstantCommons] é unha característica que permite aos wikis usar imaxes, sons e outros ficheiros multimedia atopados no sitio da [//commons.wikimedia.org/wiki/Portada_galega Wikimedia Commons].
 Para facer isto, MediaWiki necesita acceso á internet.

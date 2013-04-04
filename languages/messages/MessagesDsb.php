@@ -1739,7 +1739,6 @@ Za optimalnu wěstotu img_auth.php jo znjemóžnjony.',
 'http-read-error' => 'Cytańska zmólka HTTP.',
 'http-timed-out' => 'HTTP-napšašowanje jo cas pśekšocyło.',
 'http-curl-error' => 'Zmólka pśi wótwółowanju URL: $1',
-'http-host-unreachable' => 'URL njejo był pśistupny.',
 'http-bad-status' => 'Wob cas HTTP-napšašowanje jo problem był: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>

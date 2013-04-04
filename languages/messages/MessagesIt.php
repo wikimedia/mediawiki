@@ -577,6 +577,7 @@ $1',
 'site-atom-feed' => 'Feed Atom di $1',
 'page-rss-feed' => 'Feed RSS per "$1"',
 'page-atom-feed' => 'Feed Atom per "$1"',
+'feed-rss' => 'RSS',
 'red-link-title' => '$1 (la pagina non esiste)',
 'sort-descending' => 'Ordinamento decrescente',
 'sort-ascending' => 'Ordinamento crescente',
@@ -1869,7 +1870,6 @@ Per una sicurezza ottimale, img_auth.php è disattivato.',
 'http-read-error' => 'Errore di lettura HTTP.',
 'http-timed-out' => 'Richiesta HTTP scaduta.',
 'http-curl-error' => "Errore durante il recupero dell'URL: $1",
-'http-host-unreachable' => 'URL non raggiungibile.',
 'http-bad-status' => "C'è stato un problema durante la richiesta HTTP: $1 $2",
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -2968,13 +2968,8 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 
 # Stylesheets
 'common.css' => '/* Gli stili CSS inseriti qui si applicano a tutte le skin */',
-'standard.css' => '/* Gli stili CSS inseriti qui si applicano agli utenti che usano la skin Standard */',
-'nostalgia.css' => '/* Gli stili CSS inseriti qui si applicano agli utenti che usano la skin Nostalgia */',
 'cologneblue.css' => '/* Gli stili CSS inseriti qui si applicano agli utenti che usano la skin Cologne Blue */',
 'monobook.css' => '/* Gli stili CSS inseriti qui si applicano agli utenti che usano la skin Monobook */',
-'myskin.css' => '/* Gli stili CSS inseriti qui si applicano agli utenti che usano la skin MySkin */',
-'chick.css' => '/* Gli stili CSS inseriti qui si applicano agli utenti che usano la skin Chick */',
-'simple.css' => '/* Gli stili CSS inseriti qui si applicano agli utenti che usano la skin Simple */',
 'modern.css' => '/* Gli stili CSS inseriti qui si applicano agli utenti che usano la skin Modern */',
 'vector.css' => '/* Gli stili CSS inseriti qui si applicano agli utenti che usano la skin Vector */',
 'print.css' => "/* Gli stili CSS inseriti qui si applicano all'output in stampa */",
@@ -2987,13 +2982,8 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 
 # Scripts
 'common.js' => '/* Il codice JavaScript inserito qui viene caricato da ciascuna pagina, per tutti gli utenti. */',
-'standard.js' => '/* Il codice JavaScript inserito qui viene caricato dagli utenti che usano la skin Standard */',
-'nostalgia.js' => '/* Il codice JavaScript inserito qui viene caricato dagli utenti che usano la skin Nostalgia */',
 'cologneblue.js' => '/* Il codice JavaScript inserito qui viene caricato dagli utenti che usano la skin Cologne Blue */',
 'monobook.js' => '/* Il codice JavaScript inserito qui viene caricato dagli utenti che usano la skin MonoBook */',
-'myskin.js' => '/* Il codice JavaScript inserito qui viene caricato dagli utenti che usano la skin MySkin */',
-'chick.js' => '/* Il codice JavaScript inserito qui viene caricato dagli utenti che usano la skin Chick */',
-'simple.js' => '/* Il codice JavaScript inserito qui viene caricato dagli utenti che usano la skin Simple */',
 'modern.js' => '/* Il codice JavaScript inserito qui viene caricato dagli utenti che usano la skin Modern */',
 'vector.js' => '/* Il codice JavaScript inserito qui viene caricato dagli utenti che usano la skin Vector */',
 'group-autoconfirmed.js' => '/ * Il codice JavaScript inserito qui viene caricato solo per gli utenti autoconvalidati * /',

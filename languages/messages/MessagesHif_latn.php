@@ -1655,7 +1655,6 @@ Puura surakchha ke khatir, img_auth.php ke band kar dewa gais hae.',
 'http-read-error' => 'HTTP ke parrhe me galti hae',
 'http-timed-out' => 'HTTP ke khatir time nai hae.',
 'http-curl-error' => 'URL ke laawe me galti hoe gais hae: $1',
-'http-host-unreachable' => 'URL pahunche nai sakaa hae',
 'http-bad-status' => 'HTTP ke maange ke time kuch garrbarr hoe gais hae: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
