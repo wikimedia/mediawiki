@@ -115,4 +115,26 @@
 		$collapsible.find( '.mw-collapsible-toggle' ).trigger( 'click' );
 	} );
 
+	QUnit.test( 'premade toggler - clicking on a link should not collapse' , 2, function ( assert ) {
+		var $collapsible, $content;
+
+		$collapsible = prepareCollapsible(
+			'<div class="mw-collapsible">' +
+				'<div class="mw-collapsible-toggle">' +
+					'Toggle <a href="http://example.com/">toggle</a> toggle' +
+				'</div>' +
+				'<div class="mw-collapsible-content">' + loremIpsum + '</div>' +
+			'</div>',
+			// Can't do asynchronous because we're testing that the event *doesn't* happen
+			{ instantHide: true }
+		);
+		$content = $collapsible.find( '.mw-collapsible-content' );
+
+		$collapsible.find( '.mw-collapsible-toggle a' ).trigger( 'click' );
+		assert.assertTrue( $content.is( ':visible' ), 'content does not get hidden after clicking on a link' );
+
+		$collapsible.find( '.mw-collapsible-toggle' ).trigger( 'click' );
+		assert.assertTrue( $content.is( ':hidden' ), 'content gets hidden after clicking outside the link' );
+	} );
+
 }( mediaWiki, jQuery ) );
