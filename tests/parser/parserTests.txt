@@ -3199,16 +3199,30 @@ Plain ''italic'''s plain
 # is the bare minimun required by the spec, see:
 # http://www.w3.org/TR/xhtml-modularization/dtd_module_defs.html#a_module_Basic_Tables
 !! test
-A table with no data.
+A table with no data. (php)
+!! options
+php
 !! input
 {||}
 !! result
+!! end
+# Parsoid team replies: empty table tags are legal in HTML5
+!! test
+A table with no data. (parsoid)
+!! options
+parsoid
+!! input
+{||}
+!! result
+<table></table>
 !! end
 
 # A table with nothing but a caption is invalid XHTML, we might want to render
 # this as <p>caption</p>
 !! test
-A table with nothing but a caption
+A table with nothing but a caption (php)
+!! options
+php
 !! input
 {|
 |+ caption
@@ -3218,6 +3232,18 @@ A table with nothing but a caption
 <caption> caption
 </caption><tr><td></td></tr></table>
 
+!! end
+# Parsoid team replies: table with only a caption is legal in HTML5
+!! test
+A table with nothing but a caption (parsoid)
+!! options
+parsoid
+!! input
+{|
+|+ caption
+|}
+!! result
+<table><caption> caption</caption></table>
 !! end
 
 !! test
