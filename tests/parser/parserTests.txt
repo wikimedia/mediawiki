@@ -2854,7 +2854,9 @@ Bracketed external links with template-generated invalid target
 !! end
 
 !! test
-Bug 2702: Mismatched <i>, <b> and <a> tags are invalid
+Bug 2702: Mismatched <i>, <b> and <a> tags are invalid (php)
+!! options
+php
 !! input
 ''[http://example.com text'']
 [http://example.com '''text]'''
@@ -2867,6 +2869,27 @@ Bug 2702: Mismatched <i>, <b> and <a> tags are invalid
 <i>Something </i><a rel="nofollow" class="external text" href="http://example.com"><i>in italic</i></a>
 <i>Something </i><a rel="nofollow" class="external text" href="http://example.com"><i>mixed</i><b>, even bold</b></a>
 <i><b>Now </b></i><a rel="nofollow" class="external text" href="http://example.com"><i><b>both</b></i></a>
+</p>
+!! end
+# Italic/link nesting is changed in this test, but the rendered result is the
+# same. Currently the parsoid result is actually an improvement over the
+# PHP output (although the <a> is broken into two pieces in the mixed example)
+!! test
+Bug 2702: Mismatched <i>, <b> and <a> tags are invalid (parsoid)
+!! options
+parsoid
+!! input
+''[http://example.com text'']
+[http://example.com '''text]'''
+''Something [http://example.com in italic'']
+''Something [http://example.com mixed''''', even bold]'''
+'''''Now [http://example.com both''''']
+!! result
+<p><i><a href="http://example.com">text</a></i>
+<a href="http://example.com"><b>text</b></a>
+<i>Something <a href="http://example.com">in italic</a></i>
+<i>Something <a href="http://example.com">mixed</a></i><a href="http://example.com"><b>, even bold</b></a>
+<i><b>Now <a href="http://example.com">both</a></b></i>
 </p>
 !! end
 
@@ -2966,11 +2989,24 @@ Some [http://example.com/ pretty ''italics'' and stuff]!
 !! end
 
 !! test
-External link containing double-single-quotes in text embedded in italics (bug 4598 sanity check)
+External link containing double-single-quotes in text embedded in italics (bug 4598 sanity check) (php)
+!! options
+php
 !! input
 ''Some [http://example.com/ pretty ''italics'' and stuff]!''
 !! result
 <p><i>Some </i><a rel="nofollow" class="external text" href="http://example.com/"><i>pretty </i>italics<i> and stuff</i></a><i>!</i>
+</p>
+!! end
+# parsoid nests the <i> and <a> differently.
+!! test
+External link containing double-single-quotes in text embedded in italics (bug 4598 sanity check) (parsoid)
+!! options
+parsoid
+!! input
+''Some [http://example.com/ pretty ''italics'' and stuff]!''
+!! result
+<p><i>Some <a href="http://example.com/">pretty </a></i><a href="http://example.com/">italics<i> and stuff</i></a><i>!</i>
 </p>
 !! end
 
@@ -3952,12 +3988,27 @@ Some [[Link|pretty ''italics'' and stuff]]!
 </p>
 !! end
 
+# The Parsoid team notes that the expected result for the PHP parser
+# is broken html (<i> nested inside <i>).
 !! test
-Link containing double-single-quotes '' in text embedded in italics (bug 4598 sanity check)
+Link containing double-single-quotes '' in text embedded in italics (bug 4598 sanity check) (php)
+!! options
+php
 !! input
 ''Some [[Link|pretty ''italics'' and stuff]]!
 !! result
 <p><i>Some <a href="/index.php?title=Link&amp;action=edit&amp;redlink=1" class="new" title="Link (page does not exist)">pretty <i>italics</i> and stuff</a>!</i>
+</p>
+!! end
+# parsoid output for this test case (valid html!)
+!! test
+Link containing double-single-quotes '' in text embedded in italics (bug 4598 sanity check) (parsoid)
+!! options
+parsoid
+!! input
+''Some [[Link|pretty ''italics'' and stuff]]!
+!! result
+<p><i>Some <a href="/index.php?title=Link&amp;action=edit&amp;redlink=1" class="new" title="Link (page does not exist)">pretty </a></i><a href="/index.php?title=Link&amp;action=edit&amp;redlink=1" class="new" title="Link (page does not exist)">italics<i> and stuff</i></a><i>!</i>
 </p>
 !! end
 
