@@ -397,11 +397,24 @@ Italics and bold: 2-quote opening sequence: (2,4)
 
 
 !! test
-Italics and bold: 2-quote opening sequence: (2,5)
+Italics and bold: 2-quote opening sequence: (2,5) (php)
+!! options
+php
 !! input
 ''foo'''''
 !! result
 <p><i>foo</i>
+</p>
+!!end
+# The PHP parser strips the empty tags out for giggles; parsoid doesn't.
+!! test
+Italics and bold: 2-quote opening sequence: (2,5) (parsoid)
+!! options
+parsoid
+!! input
+''foo'''''
+!! result
+<p><i>foo</i><b></b>
 </p>
 !!end
 
@@ -441,11 +454,24 @@ Italics and bold: 3-quote opening sequence: (3,4)
 
 
 !! test
-Italics and bold: 3-quote opening sequence: (3,5)
+Italics and bold: 3-quote opening sequence: (3,5) (php)
+!! options
+php
 !! input
 '''foo'''''
 !! result
 <p><b>foo</b>
+</p>
+!!end
+# The PHP parser strips the empty tags out for giggles; parsoid doesn't.
+!! test
+Italics and bold: 3-quote opening sequence: (3,5) (parsoid)
+!! options
+parsoid
+!! input
+'''foo'''''
+!! result
+<p><b>foo<i></i></b>
 </p>
 !!end
 
@@ -485,11 +511,24 @@ Italics and bold: 4-quote opening sequence: (4,4)
 
 
 !! test
-Italics and bold: 4-quote opening sequence: (4,5)
+Italics and bold: 4-quote opening sequence: (4,5) (php)
+!! options
+php
 !! input
 ''''foo'''''
 !! result
 <p>'<b>foo</b>
+</p>
+!!end
+# The PHP parser strips the empty tags out for giggles; parsoid doesn't.
+!! test
+Italics and bold: 4-quote opening sequence: (4,5) (parsoid)
+!! options
+parsoid
+!! input
+''''foo'''''
+!! result
+<p>'<b>foo<i></i></b>
 </p>
 !!end
 
@@ -499,11 +538,24 @@ Italics and bold: 4-quote opening sequence: (4,5)
 ###
 
 !! test
-Italics and bold: 5-quote opening sequence: (5,2)
+Italics and bold: 5-quote opening sequence: (5,2) (php)
+!! options
+php
 !! input
 '''''foo''
 !! result
 <p><b><i>foo</i></b>
+</p>
+!!end
+# Parsoid reverses the nesting order, compared to the PHP parser
+!! test
+Italics and bold: 5-quote opening sequence: (5,2) (parsoid)
+!! options
+parsoid
+!! input
+'''''foo''
+!! result
+<p><i><b>foo</b></i>
 </p>
 !!end
 
@@ -571,21 +623,47 @@ Italics and bold: multiple quote sequences: (2,4,4)
 
 
 !! test
-Italics and bold: multiple quote sequences: (3,4,2)
+Italics and bold: multiple quote sequences: (3,4,2) (php)
+!! options
+php
 !! input
 '''foo''''bar''
 !! result
 <p><b>foo'</b>bar
 </p>
 !!end
+# The PHP parser strips the empty tags out for giggles; parsoid doesn't.
+!! test
+Italics and bold: multiple quote sequences: (3,4,2) (parsoid)
+!! options
+parsoid
+!! input
+'''foo''''bar''
+!! result
+<p><b>foo'</b>bar<i></i>
+</p>
+!!end
 
 
 !! test
-Italics and bold: multiple quote sequences: (3,4,3)
+Italics and bold: multiple quote sequences: (3,4,3) (php)
+!! options
+php
 !! input
 '''foo''''bar'''
 !! result
 <p><b>foo'</b>bar
+</p>
+!!end
+# The PHP parser strips the empty tags out for giggles; parsoid doesn't.
+!! test
+Italics and bold: multiple quote sequences: (3,4,3) (parsoid)
+!! options
+parsoid
+!! input
+'''foo''''bar'''
+!! result
+<p><b>foo'</b>bar<b></b>
 </p>
 !!end
 
@@ -622,12 +700,30 @@ Italics and bold: other quote tests: (3,2,3,2)
 !!end
 
 
+# The Parsoid team believes the PHP parser's output on this test is wrong.
+# It only checks for convert-to-bold-on-single-character-word when the word
+# matches with a bold tag ("'''") that is *odd* in the list of quote tokens.
+# This means that the bold token in position 2 (0-indexed) gets converted by
+# parsoid, but doesn't get changed by the PHP parser.
 !! test
-Italics and bold: other quote tests: (3,2,3,3)
+Italics and bold: other quote tests: (3,2,3,3) (php)
+!! options
+php
 !! input
 '''this is about ''foo'''s family'''
 !! result
 <p>'<i>this is about </i>foo<b>s family</b>
+</p>
+!!end
+# This is the output the Parsoid team believes to be correct.
+!! test
+Italics and bold: other quote tests: (3,2,3,3) (parsoid)
+!! options
+parsoid
+!! input
+'''this is about ''foo'''s family'''
+!! result
+<p><b>this is about <i>foo'</i>s family</b>
 </p>
 !!end
 
@@ -2932,7 +3028,9 @@ Normal text. '''''Bold italic text.''''' Normal text.
 
 
 !! test
-Unclosed and unmatched quotes
+Unclosed and unmatched quotes (php)
+!! options
+php
 !! input
 '''''Bold italic text '''with bold deactivated''' in between.'''''
 
@@ -2959,6 +3057,48 @@ Plain ''italic'''s plain
 </p><p><b><i>Bold italic text </i>with italic deactivated<i> in between.</i></b>
 </p><p><b>Bold text..</b>
 </p><p>..spanning two paragraphs (should not work).
+</p><p><b>Bold tag left open</b>
+</p><p><i>Italic tag left open</i>
+</p><p>Normal text.
+</p><p><b>This year'</b>s election <i>should</i> beat <b>last year'</b>s.
+</p><p><i>Tom<b>s car is bigger than </b></i><b>Susan</b>s.
+</p><p>Plain <i>italic'</i>s plain
+</p>
+!! end
+# Parsoid inserts an empty bold tag pair at the end of the line, that the PHP
+# parser strips. The wikitext contains just the first half of the bold
+# quote pair. (There's also a case where Parsoid nests <b> and <i>
+# differently than the PHP parser.)
+!! test
+Unclosed and unmatched quotes (parsoid)
+!! options
+parsoid
+!! input
+'''''Bold italic text '''with bold deactivated''' in between.'''''
+
+'''''Bold italic text ''with italic deactivated'' in between.'''''
+
+'''Bold text..
+
+..spanning two paragraphs (should not work).'''
+
+'''Bold tag left open
+
+''Italic tag left open
+
+Normal text.
+
+<!-- Unmatching number of opening, closing tags: -->
+'''This year''''s election ''should'' beat '''last year''''s.
+
+''Tom'''s car is bigger than ''Susan'''s.
+
+Plain ''italic'''s plain
+!! result
+<p><i><b>Bold italic text </b>with bold deactivated<b> in between.</b></i>
+</p><p><i><b>Bold italic text </b></i><b>with italic deactivated<i> in between.</i></b>
+</p><p><b>Bold text..</b>
+</p><p>..spanning two paragraphs (should not work).<b></b>
 </p><p><b>Bold tag left open</b>
 </p><p><i>Italic tag left open</i>
 </p><p>Normal text.
@@ -10701,10 +10841,22 @@ Handling of &#x0A; in URLs
 !!end
 
 !! test
-5 quotes, code coverage +1 line
+5 quotes, code coverage +1 line (php)
+!! options
+php
 !! input
 '''''
 !! result
+!! end
+# The PHP parser strips the empty tags out for giggles; parsoid doesn't.
+!! test
+5 quotes, code coverage +1 line (parsoid)
+!! options
+parsoid
+!! input
+'''''
+!! result
+<p><i><b></b></i></p>
 !! end
 
 !! test
