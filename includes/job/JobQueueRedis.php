@@ -467,13 +467,10 @@ LUA;
 	 * @return bool
 	 */
 	protected function doIsRootJobOldDuplicate( Job $job ) {
-		$params = $job->getParams();
-		if ( !isset( $params['rootJobSignature'] ) ) {
+		if ( !$job->hasRootJobParams() ) {
 			return false; // job has no de-deplication info
-		} elseif ( !isset( $params['rootJobTimestamp'] ) ) {
-			wfDebugLog( 'JobQueueRedis', "Cannot check root job; missing 'rootJobTimestamp'." );
-			return false;
 		}
+		$params = $job->getRootJobParams();
 
 		$conn = $this->getConnection();
 		try {
@@ -493,9 +490,6 @@ LUA;
 	 */
 	public function getAllQueuedJobs() {
 		$conn = $this->getConnection();
-		if ( !$conn ) {
-			throw new MWException( "Unable to connect to redis server." );
-		}
 		try {
 			$that = $this;
 			return new MappedIterator(
@@ -515,9 +509,6 @@ LUA;
 	 */
 	public function getAllDelayedJobs() {
 		$conn = $this->getConnection();
-		if ( !$conn ) {
-			throw new MWException( "Unable to connect to redis server." );
-		}
 		try {
 			$that = $this;
 			return new MappedIterator( // delayed jobs
