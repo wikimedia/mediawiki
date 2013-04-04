@@ -1603,6 +1603,8 @@ See also:
 'content-not-allowed-here' => 'Error message indicating that the desired content model is not supported in given localtion.
 * $1 - the human readable name of the content model: {{msg-mw|Content-model-wikitext}}, {{msg-mw|Content-model-javascript}}, {{msg-mw|Content-model-css}} or {{msg-mw|Content-model-text}}
 * $2 - the title of the page in question',
+'editwarning-warning' => 'Warning message that is displayed when a user moves to an other page without saving his changes',
+'editwarning-preference' => 'Caption of the editwarning preference,displayed on the right side of the checkbox',
 
 # Content models
 'content-model-wikitext' => 'Name for the wikitext content model, used when decribing what type of content a page contains.
