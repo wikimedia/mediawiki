@@ -32,8 +32,8 @@ var mw = ( function ( $, undefined ) {
 		 *
 		 * If called with no arguments, all values will be returned.
 		 *
-		 * @param selection mixed String key or array of keys to get values for.
-		 * @param fallback mixed Value to use in case key(s) do not exist (optional).
+		 * @param {string|Array} selection String key or array of keys to get values for.
+		 * @param {Mixed} [fallback] Value to use in case key(s) do not exist.
 		 * @return mixed If selection was a string returns the value or null,
 		 *  If selection was an array, returns an object of key/values (value is null if not found),
 		 *  If selection was not passed or invalid, will return the 'values' object member (be careful as
@@ -73,8 +73,8 @@ var mw = ( function ( $, undefined ) {
 		/**
 		 * Sets one or multiple key/value pairs.
 		 *
-		 * @param selection {mixed} String key or array of keys to set values for.
-		 * @param value {mixed} Value to set (optional, only in use when key is a string)
+		 * @param {string|Object} selection String key to set value for, or object mapping keys to values.
+		 * @param {Mixed} [value] Value to set (optional, only in use when key is a string)
 		 * @return {Boolean} This returns true on success, false on failure.
 		 */
 		set: function ( selection, value ) {
@@ -96,7 +96,7 @@ var mw = ( function ( $, undefined ) {
 		/**
 		 * Checks if one or multiple keys exist.
 		 *
-		 * @param selection {mixed} String key or array of keys to check
+		 * @param {Mixed} selection String key or array of keys to check
 		 * @return {boolean} Existence of key(s)
 		 */
 		exists: function ( selection ) {
@@ -649,7 +649,7 @@ var mw = ( function ( $, undefined ) {
 			 *
 			 * @private
 			 * @param {string|string[]} states Module states to filter by
-			 * @param {Array} modules List of module names to filter (optional, by default the entire
+			 * @param {Array} [modules] List of module names to filter (optional, by default the entire
 			 * registry is used)
 			 * @return {Array} List of filtered module names
 			 */
@@ -1267,12 +1267,12 @@ var mw = ( function ( $, undefined ) {
 				 * Registers a module, letting the system know about it and its
 				 * properties. Startup modules contain calls to this function.
 				 *
-				 * @param module {String}: Module name
-				 * @param version {Number}: Module version number as a timestamp (falls backs to 0)
-				 * @param dependencies {String|Array|Function}: One string or array of strings of module
+				 * @param {string} module Module name
+				 * @param {number} version Module version number as a timestamp (falls backs to 0)
+				 * @param {string|Array|Function} dependencies One string or array of strings of module
 				 *  names on which this module depends, or a function that returns that array.
-				 * @param group {String}: Group which the module is in (optional, defaults to null)
-				 * @param source {String}: Name of the source. Defaults to local.
+				 * @param {string} [group=null] Group which the module is in
+				 * @param {string} [source='local'] Name of the source
 				 */
 				register: function ( module, version, dependencies, group, source ) {
 					var m;
@@ -1374,10 +1374,10 @@ var mw = ( function ( $, undefined ) {
 				/**
 				 * Executes a function as soon as one or more required modules are ready
 				 *
-				 * @param dependencies {String|Array} Module name or array of modules names the callback
+				 * @param {string|Array} dependencies Module name or array of modules names the callback
 				 *  dependends on to be ready before executing
-				 * @param ready {Function} callback to execute when all dependencies are ready (optional)
-				 * @param error {Function} callback to execute when if dependencies have a errors (optional)
+				 * @param {Function} [ready] callback to execute when all dependencies are ready
+				 * @param {Function} [error] callback to execute when if dependencies have a errors
 				 */
 				using: function ( dependencies, ready, error ) {
 					var tod = typeof dependencies;
@@ -1411,15 +1411,15 @@ var mw = ( function ( $, undefined ) {
 				/**
 				 * Loads an external script or one or more modules for future use
 				 *
-				 * @param modules {mixed} Either the name of a module, array of modules,
+				 * @param {string|Array} modules Either the name of a module, array of modules,
 				 *  or a URL of an external script or style
-				 * @param type {String} mime-type to use if calling with a URL of an
+				 * @param {string} [type='text/javascript'] mime-type to use if calling with a URL of an
 				 *  external script or style; acceptable values are "text/css" and
 				 *  "text/javascript"; if no type is provided, text/javascript is assumed.
-				 * @param async {Boolean} (optional) If true, load modules asynchronously
-				 *  even if document ready has not yet occurred. If false (default),
-				 *  block before document ready and load async after. If not set, true will
-				 *  be assumed if loading a URL, and false will be assumed otherwise.
+				 * @param {boolean} [async] If true, load modules asynchronously
+				 *  even if document ready has not yet occurred. If false, block before
+				 *  document ready and load async after. If not set, true will be
+				 *  assumed if loading a URL, and false will be assumed otherwise.
 				 */
 				load: function ( modules, type, async ) {
 					var filtered, m, module, l;
@@ -1491,8 +1491,8 @@ var mw = ( function ( $, undefined ) {
 				/**
 				 * Changes the state of a module
 				 *
-				 * @param module {String|Object} module name or object of module name/state pairs
-				 * @param state {String} state name
+				 * @param {string|Object} module module name or object of module name/state pairs
+				 * @param {string} state state name
 				 */
 				state: function ( module, state ) {
 					var m;
@@ -1520,7 +1520,7 @@ var mw = ( function ( $, undefined ) {
 				/**
 				 * Gets the version of a module
 				 *
-				 * @param module string name of module to get version for
+				 * @param {string} module name of module to get version for
 				 */
 				getVersion: function ( module ) {
 					if ( registry[module] !== undefined && registry[module].version !== undefined ) {
@@ -1539,7 +1539,7 @@ var mw = ( function ( $, undefined ) {
 				/**
 				 * Gets the state of a module
 				 *
-				 * @param module string name of module to get state for
+				 * @param {string} module name of module to get state for
 				 */
 				getState: function ( module ) {
 					if ( registry[module] !== undefined && registry[module].state !== undefined ) {
@@ -1617,9 +1617,9 @@ var mw = ( function ( $, undefined ) {
 				/**
 				 * Create an HTML element string, with safe escaping.
 				 *
-				 * @param name The tag name.
-				 * @param attrs An object with members mapping element names to values
-				 * @param contents The contents of the element. May be either:
+				 * @param {string} name The tag name.
+				 * @param {Object} attrs An object with members mapping element names to values
+				 * @param {Mixed} contents The contents of the element. May be either:
 				 *  - string: The string is escaped.
 				 *  - null or undefined: The short closing form is used, e.g. <br/>.
 				 *  - this.Raw: The value attribute is included without escaping.
