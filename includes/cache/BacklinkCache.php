@@ -20,6 +20,7 @@
  *
  * @file
  * @author Tim Starling
+ * @author Aaron Schulz
  * @copyright © 2009, Tim Starling, Domas Mituzas
  * @copyright © 2010, Max Sem
  * @copyright © 2011, Antoine Musso
@@ -103,7 +104,7 @@ class BacklinkCache {
 			self::$cache = new ProcessCacheLRU( 1 );
 		}
 		$dbKey = $title->getPrefixedDBkey();
-		if ( !self::$cache->has( $dbKey, 'obj' ) ) {
+		if ( !self::$cache->has( $dbKey, 'obj', 3600 ) ) {
 			self::$cache->set( $dbKey, 'obj', new self( $title ) );
 		}
 		return self::$cache->get( $dbKey, 'obj' );
@@ -147,35 +148,53 @@ class BacklinkCache {
 		if ( !isset( $this->db ) ) {
 			$this->db = wfGetDB( DB_SLAVE );
 		}
-
 		return $this->db;
 	}
 
 	/**
 	 * Get the backlinks for a given table. Cached in process memory only.
 	 * @param $table String
-	 * @param $startId Integer or false
-	 * @param $endId Integer or false
+	 * @param $startId Integer|false
+	 * @param $endId Integer|false
+	 * @param $max Integer|INF
 	 * @return TitleArrayFromResult
 	 */
-	public function getLinks( $table, $startId = false, $endId = false ) {
+	public function getLinks( $table, $startId = false, $endId = false, $max = INF ) {
+		return TitleArray::newFromResult( $this->queryLinks( $table, $startId, $endId, $max ) );
+	}
+
+	/**
+	 * Get the backlinks for a given table. Cached in process memory only.
+	 * @param $table String
+	 * @param $startId Integer|false
+	 * @param $endId Integer|false
+	 * @param $max Integer|INF
+	 * @return ResultWrapper
+	 */
+	protected function queryLinks( $table, $startId, $endId, $max ) {
 		wfProfileIn( __METHOD__ );
 
 		$fromField = $this->getPrefix( $table ) . '_from';
 
-		if ( $startId || $endId ) {
-			// Partial range, not cached
-			wfDebug( __METHOD__ . ": from DB (uncacheable range)\n" );
+		if ( !$startId && !$endId && is_infinite( $max )
+			&& isset( $this->fullResultCache[$table] ) )
+		{
+			wfDebug( __METHOD__ . ": got results from cache\n" );
+			$res = $this->fullResultCache[$table];
+		} else {
+			wfDebug( __METHOD__ . ": got results from DB\n" );
 			$conds = $this->getConditions( $table );
-
 			// Use the from field in the condition rather than the joined page_id,
 			// because databases are stupid and don't necessarily propagate indexes.
 			if ( $startId ) {
 				$conds[] = "$fromField >= " . intval( $startId );
 			}
-
 			if ( $endId ) {
 				$conds[] = "$fromField <= " . intval( $endId );
+			}
+			$options = array( 'STRAIGHT_JOIN', 'ORDER BY' => $fromField );
+			if ( is_finite( $max ) && $max > 0 ) {
+				$options['LIMIT'] = $max;
 			}
 
 			$res = $this->getDB()->select(
@@ -183,35 +202,19 @@ class BacklinkCache {
 				array( 'page_namespace', 'page_title', 'page_id' ),
 				$conds,
 				__METHOD__,
-				array(
-					'STRAIGHT_JOIN',
-					'ORDER BY' => $fromField
-				) );
-			$ta = TitleArray::newFromResult( $res );
+				$options
+			);
 
-			wfProfileOut( __METHOD__ );
-			return $ta;
+			if ( !$startId && !$endId && $res->numRows() < $max ) {
+				// The full results fit within the limit, so cache them
+				$this->fullResultCache[$table] = $res;
+			} else {
+				wfDebug( __METHOD__ . ": results from DB were uncacheable\n" );
+			}
 		}
-
-		// @todo FIXME: Make this a function?
-		if ( !isset( $this->fullResultCache[$table] ) ) {
-			wfDebug( __METHOD__ . ": from DB\n" );
-			$res = $this->getDB()->select(
-				array( $table, 'page' ),
-				array( 'page_namespace', 'page_title', 'page_id' ),
-				$this->getConditions( $table ),
-				__METHOD__,
-				array(
-					'STRAIGHT_JOIN',
-					'ORDER BY' => $fromField,
-				) );
-			$this->fullResultCache[$table] = $res;
-		}
-
-		$ta = TitleArray::newFromResult( $this->fullResultCache[$table] );
 
 		wfProfileOut( __METHOD__ );
-		return $ta;
+		return $res;
 	}
 
 	/**
@@ -309,7 +312,7 @@ class BacklinkCache {
 	/**
 	 * Get the approximate number of backlinks
 	 * @param $table String
-	 * @param $max integer Only count up to this many backlinks
+	 * @param $max integer|INF Only count up to this many backlinks
 	 * @return integer
 	 */
 	public function getNumLinks( $table, $max = INF ) {
@@ -335,20 +338,12 @@ class BacklinkCache {
 		}
 
 		// 4) fetch from the database ...
-		if ( is_infinite( $max ) ) { // full count
-			$count = $this->getLinks( $table )->count();
+		$count = $this->getLinks( $table, false, false, $max )->count();
+		if ( $count < $max ) { // full count
 			$wgMemc->set( $memcKey, $count, self::CACHE_EXPIRY );
-		} else { // with limit
-			$count = $this->getDB()->select(
-				array( $table, 'page' ),
-				'1',
-				$this->getConditions( $table ),
-				__METHOD__,
-				array( 'LIMIT' => $max )
-			)->numRows();
 		}
 
-		return $count;
+		return min( $max, $count );
 	}
 
 	/**
@@ -395,8 +390,28 @@ class BacklinkCache {
 		}
 
 		// 4) ... finally fetch from the slow database :(
-		$this->getLinks( $table );
-		$cacheEntry = $this->partitionResult( $this->fullResultCache[$table], $batchSize );
+		$cacheEntry = array( 'numRows' => 0, 'batches' => array() ); // final result
+		// Do the selects in batches to avoid client-side OOMs (bug 43452).
+		// Use a LIMIT that plays well with $batchSize to keep equal sized partitions.
+		$selectSize = max( $batchSize, 200000 - ( 200000 % $batchSize ) );
+		$start = false;
+		do {
+			$res = $this->queryLinks( $table, $start, false, $selectSize );
+			$partitions = $this->partitionResult( $res, $batchSize, false );
+			// Merge the link count and range partitions for this chunk
+			$cacheEntry['numRows'] += $partitions['numRows'];
+			$cacheEntry['batches'] = array_merge( $cacheEntry['batches'], $partitions['batches'] );
+			if ( count( $partitions['batches'] ) ) {
+				list( $lStart, $lEnd ) = end( $partitions['batches'] );
+				$start = $lEnd + 1; // pick up after this inclusive range
+			}
+		} while ( $partitions['numRows'] >= $selectSize );
+		// Make sure the first range has start=false and the last one has end=false
+		if ( count( $cacheEntry['batches'] ) ) {
+			$cacheEntry['batches'][0][0] = false;
+			$cacheEntry['batches'][count( $cacheEntry['batches'] ) - 1][1] = false;
+		}
+
 		// Save partitions to memcached
 		$wgMemc->set( $memcKey, $cacheEntry, self::CACHE_EXPIRY );
 
@@ -412,31 +427,32 @@ class BacklinkCache {
 	 * Partition a DB result with backlinks in it into batches
 	 * @param $res ResultWrapper database result
 	 * @param $batchSize integer
+	 * @param $isComplete bool Whether $res includes all the backlinks
 	 * @throws MWException
-	 * @return array @see
+	 * @return array
 	 */
-	protected function partitionResult( $res, $batchSize ) {
+	protected function partitionResult( $res, $batchSize, $isComplete = true ) {
 		$batches = array();
 		$numRows = $res->numRows();
 		$numBatches = ceil( $numRows / $batchSize );
 
 		for ( $i = 0; $i < $numBatches; $i++ ) {
-			if ( $i == 0  ) {
+			if ( $i == 0 && $isComplete ) {
 				$start = false;
 			} else {
-				$rowNum = intval( $numRows * $i / $numBatches );
+				$rowNum = $i * $batchSize;
 				$res->seek( $rowNum );
 				$row = $res->fetchObject();
-				$start = $row->page_id;
+				$start = (int)$row->page_id;
 			}
 
-			if ( $i == $numBatches - 1 ) {
+			if ( $i == ( $numBatches - 1 ) && $isComplete ) {
 				$end = false;
 			} else {
-				$rowNum = intval( $numRows * ( $i + 1 ) / $numBatches );
+				$rowNum = min( $numRows - 1, ( $i + 1 ) * $batchSize - 1 );
 				$res->seek( $rowNum );
 				$row = $res->fetchObject();
-				$end = $row->page_id - 1;
+				$end = (int)$row->page_id;
 			}
 
 			# Sanity check order
