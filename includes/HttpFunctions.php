@@ -696,11 +696,6 @@ class MWHttpRequest {
 class CurlHttpRequest extends MWHttpRequest {
 	const SUPPORTS_FILE_POSTS = true;
 
-	static $curlMessageMap = array(
-		6 => 'http-host-unreachable',
-		28 => 'http-timed-out'
-	);
-
 	protected $curlOptions = array();
 	protected $headerText = "";
 
@@ -780,13 +775,7 @@ class CurlHttpRequest extends MWHttpRequest {
 		}
 
 		if ( false === curl_exec( $curlHandle ) ) {
-			$code = curl_error( $curlHandle );
-
-			if ( isset( self::$curlMessageMap[$code] ) ) {
-				$this->status->fatal( self::$curlMessageMap[$code] );
-			} else {
-				$this->status->fatal( 'http-curl-error', curl_error( $curlHandle ) );
-			}
+			$this->status->fatal( 'http-curl-error', curl_error( $curlHandle ) );
 		} else {
 			$this->headerList = explode( "\r\n", $this->headerText );
 		}
