@@ -52,6 +52,10 @@ class ApiCreateAccount extends ApiBase {
 			$this->dieUsageMsg( 'noemail' );
 		}
 
+		if ( $params['language'] && !Language::isSupportedLanguage( $params['language'] ) ) {
+			$this->dieUsage( 'Invalid language parameter', 'langinvalid' );
+		}
+
 		$context = new DerivativeContext( $this->getContext() );
 		$context->setRequest( new DerivativeRequest(
 			$this->getContext()->getRequest(),
@@ -78,12 +82,10 @@ class ApiCreateAccount extends ApiBase {
 		$result = array();
 		if( $status->isGood() ) {
 			// Success!
+			global $wgEmailAuthentication;
 			$user = $status->getValue();
 
-			// If we showed up language selection links, and one was in use, be
-			// smart (and sensible) and save that language as the user's preference
-			global $wgLoginLanguageSelector, $wgEmailAuthentication;
-			if( $wgLoginLanguageSelector && $params['language'] ) {
+			if( $params['language'] ) {
 				$user->setOption( 'language', $params['language'] );
 			}
 
@@ -272,6 +274,10 @@ class ApiCreateAccount extends ApiBase {
 		$errors[] = array(
 			'code' => 'aborted',
 			'info' => 'Account creation aborted by hook (info may vary)'
+		);
+		$errors[] = array(
+			'code' => 'langinvalid',
+			'info' => 'Invalid language parameter'
 		);
 
 		// 'passwordtooshort' has parameters. :(
