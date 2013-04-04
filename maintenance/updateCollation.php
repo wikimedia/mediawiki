@@ -82,10 +82,6 @@ TEXT;
 			$collation = Collation::singleton();
 		}
 
-		// Collation sanity check: in some cases the constructor will work,
-		// but this will raise an exception, breaking all category pages
-		$collation->getFirstLetterData();
-
 		$options = array(
 			'LIMIT' => self::BATCH_SIZE,
 			'ORDER BY' => 'cl_to, cl_type, cl_from',
