@@ -2167,8 +2167,13 @@ Definition Lists: Nesting: Test 4
 !! end
 
 
+## The Parsoid team believes the following three test exposes a
+## bug in the PHP parser.  (Parsoid team thinks the PHP parser is
+## wrong to close the <dl> after the <dt> containing the <ul>.)
 !! test
-Definition Lists: Mixed Lists: Test 1
+Definition Lists: Mixed Lists: Test 1 (php)
+!! options
+php
 !! input
 :;* foo
 ::* bar
@@ -2183,7 +2188,19 @@ Definition Lists: Mixed Lists: Test 1
 </dd></dl>
 
 !! end
-
+!! test
+Definition Lists: Mixed Lists: Test 1 (parsoid)
+!! options
+parsoid
+!! input
+:;* foo
+::* bar
+:; baz
+!! result
+<dl><dd><dl><dt><ul><li> foo
+</li></ul></dt><dd><ul><li> bar
+</li></ul></dd><dt> baz</dt></dl></dd></dl>
+!! end
 
 !! test
 Definition Lists: Mixed Lists: Test 2
@@ -2315,9 +2332,15 @@ Definition Lists: Mixed Lists: Test 10
 
 !! end
 
+# The Parsoid team disagrees with the PHP parser's seemingly-random
+# rules regarding dd/dt on the next two tests.  Parsoid is more
+# consistent, and recognizes the shared nesting and keeps the
+# still-open tags around until the nesting is complete.
 
 !! test
-Definition Lists: Mixed Lists: Test 11
+Definition Lists: Mixed Lists: Test 11 (php)
+!! options
+php
 !! input
 *#*#;*;;foo :bar
 *#*#;boo :baz
@@ -2335,10 +2358,23 @@ Definition Lists: Mixed Lists: Test 11
 </li></ul>
 
 !! end
+!! test
+Definition Lists: Mixed Lists: Test 11 (parsoid)
+!! options
+parsoid
+!! input
+*#*#;*;;foo :bar
+*#*#;boo :baz
+!! result
+<ul><li><ol><li><ul><li><ol><li><dl><dt><ul><li><dl><dt><dl><dt>foo&nbsp;</dt><dd>bar
+</dd></dl></dt></dl></li></ul></dt><dt>boo&nbsp;</dt><dd>baz</dd></dl></li></ol></li></ul></li></ol></li></ul>
+!! end
 
 
 !! test
-Definition Lists: Weird Ones: Test 1
+Definition Lists: Weird Ones: Test 1 (php)
+!! options
+php
 !! input
 *#;*::;; foo : bar (who uses this?)
 !! result
@@ -2352,6 +2388,15 @@ Definition Lists: Weird Ones: Test 1
 </li></ol>
 </li></ul>
 
+!! end
+!! test
+Definition Lists: Weird Ones: Test 1 (parsoid)
+!! options
+parsoid
+!! input
+*#;*::;; foo : bar (who uses this?)
+!! result
+<ul><li><ol><li><dl><dt><ul><li><dl><dd><dl><dd><dl><dt><dl><dt> foo&nbsp;</dt><dd> bar (who uses this?)</dd></dl></dt></dl></dd></dl></dd></dl></li></ul></dt></dl></li></ol></li></ul>
 !! end
 
 ###
