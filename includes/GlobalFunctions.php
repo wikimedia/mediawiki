@@ -3615,7 +3615,11 @@ function wfWaitForSlaves( $maxLag = false, $wiki = false ) {
 	if ( $lb->getServerCount() > 1 ) {
 		$dbw = $lb->getConnection( DB_MASTER, array(), $wiki );
 		$pos = $dbw->getMasterPos();
-		$lb->waitForAll( $pos );
+		// The DBMS may not support getMasterPos() or the whole
+		// load balancer might be fake (e.g. $wgAllDBsAreLocalhost).
+		if ( $pos !== false ) {
+			$lb->waitForAll( $pos );
+		}
 	}
 }
 
