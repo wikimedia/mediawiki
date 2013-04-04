@@ -1,20 +1,11 @@
 ( function ( mw, $ ) {
-	var mwLanguageCache = {}, oldGetOuterHtml, formatnumTests, specialCharactersPageName,
+	var mwLanguageCache = {}, formatnumTests, specialCharactersPageName,
 		expectedListUsers, expectedEntrypoints;
 
 	QUnit.module( 'mediawiki.jqueryMsg', QUnit.newMwEnvironment( {
 		setup: function () {
 			this.orgMwLangauge = mw.language;
 			mw.language = $.extend( true, {}, this.orgMwLangauge );
-			oldGetOuterHtml = $.fn.getOuterHtml;
-			$.fn.getOuterHtml = function () {
-				var $div = $( '<div>' ), html;
-				$div.append( $( this ).eq( 0 ).clone() );
-				html = $div.html();
-				$div.empty();
-				$div = undefined;
-				return html;
-			};
 
 			// Messages that are reused in multiple tests
 			mw.messages.set( {
@@ -39,18 +30,18 @@
 				'external-link-replace': 'Foo [$1 bar]'
 			} );
 
+			mw.config.set( {
+				wgArticlePath: '/wiki/$1'
+			} );
+
 			specialCharactersPageName = '"Who" wants to be a millionaire & live on \'Exotic Island\'?';
 
-			expectedListUsers = '注册' + $( '<a>' ).attr( {
-				title: 'Special:ListUsers',
-				href: mw.util.wikiGetlink( 'Special:ListUsers' )
-			} ).text( '用户' ).getOuterHtml();
+			expectedListUsers = '注册<a title="Special:ListUsers" href="/wiki/Special:ListUsers">用户</a>';
 
 			expectedEntrypoints = '<a href="https://www.mediawiki.org/wiki/Manual:index.php">index.php</a>';
 		},
 		teardown: function () {
 			mw.language = this.orgMwLangauge;
-			$.fn.getOuterHtml = oldGetOuterHtml;
 		}
 	} ) );
 
@@ -252,25 +243,23 @@
 		 the bold was removed because it is not yet implemented.
 		 */
 
-		assert.equal(
+		assert.htmlEqual(
 			parser( 'jquerymsg-test-statistics-users' ),
 			expectedListUsers,
 			'Piped wikilink'
 		);
 
 		expectedDisambiguationsText = 'The following pages contain at least one link to a disambiguation page.\nThey may have to link to a more appropriate page instead.\nA page is treated as a disambiguation page if it uses a template that is linked from ' +
-			$( '<a>' ).attr( {
-				title: 'MediaWiki:Disambiguationspage',
-				href: mw.util.wikiGetlink( 'MediaWiki:Disambiguationspage' )
-			} ).text( 'MediaWiki:Disambiguationspage' ).getOuterHtml() + '.';
+			'<a title="MediaWiki:Disambiguationspage" href="/wiki/MediaWiki:Disambiguationspage">MediaWiki:Disambiguationspage</a>.';
+
 		mw.messages.set( 'disambiguations-text', 'The following pages contain at least one link to a disambiguation page.\nThey may have to link to a more appropriate page instead.\nA page is treated as a disambiguation page if it uses a template that is linked from [[MediaWiki:Disambiguationspage]].' );
-		assert.equal(
+		assert.htmlEqual(
 			parser( 'disambiguations-text' ),
 			expectedDisambiguationsText,
 			'Wikilink without pipe'
 		);
 
-		assert.equal(
+		assert.htmlEqual(
 			parser( 'jquerymsg-test-version-entrypoints-index-php' ),
 			expectedEntrypoints,
 			'External link'
@@ -284,24 +273,18 @@
 			'Pipe trick should return error string.'
 		);
 
-		expectedMultipleBars = $( '<a>' ).attr( {
-			title: 'Main Page',
-			href: mw.util.wikiGetlink( 'Main Page' )
-		} ).text( 'Main|Page' ).getOuterHtml();
+		expectedMultipleBars = '<a title="Main Page" href="/wiki/Main_Page">Main|Page</a>';
 		mw.messages.set( 'multiple-bars', '[[Main Page|Main|Page]]' );
-		assert.equal(
+		assert.htmlEqual(
 			parser( 'multiple-bars' ),
 			expectedMultipleBars,
 			'Bar in anchor'
 		);
 
-		expectedSpecialCharacters = $( '<a>' ).attr( {
-			title: specialCharactersPageName,
-			href: mw.util.wikiGetlink( specialCharactersPageName )
-		} ).text( specialCharactersPageName ).getOuterHtml();
+		expectedSpecialCharacters = '<a title="&quot;Who&quot; wants to be a millionaire &amp; live on &#039;Exotic Island&#039;?" href="/wiki/%22Who%22_wants_to_be_a_millionaire_%26_live_on_%27Exotic_Island%27%3F">&quot;Who&quot; wants to be a millionaire &amp; live on &#039;Exotic Island&#039;?</a>';
 
 		mw.messages.set( 'special-characters', '[[' + specialCharactersPageName + ']]' );
-		assert.equal(
+		assert.htmlEqual(
 			parser( 'special-characters' ),
 			expectedSpecialCharacters,
 			'Special characters'
@@ -345,7 +328,7 @@
 			mw.messages.get( 'jquerymsg-test-statistics-users' ),
 			'Internal link message unchanged when format is \'text\''
 		);
-		assert.equal(
+		assert.htmlEqual(
 			formatParse( 'jquerymsg-test-statistics-users' ),
 			expectedListUsers,
 			'Internal link message parsed when format is \'parse\''
@@ -357,7 +340,7 @@
 			mw.messages.get( 'jquerymsg-test-version-entrypoints-index-php' ),
 			'External link message unchanged when format is \'text\''
 		);
-		assert.equal(
+		assert.htmlEqual(
 			formatParse( 'jquerymsg-test-version-entrypoints-index-php' ),
 			expectedEntrypoints,
 			'External link message processed when format is \'parse\''
@@ -369,7 +352,7 @@
 			'Foo [http://example.com bar]',
 			'External link message only substitutes parameter when format is \'text\''
 		);
-		assert.equal(
+		assert.htmlEqual(
 			formatParse( 'external-link-replace', 'http://example.com' ),
 			'Foo <a href="http://example.com">bar</a>',
 			'External link message processed when format is \'parse\''
@@ -381,19 +364,17 @@
 	QUnit.test( 'Int', 4, function ( assert ) {
 		var parser = mw.jqueryMsg.getMessageFunction(),
 			newarticletextSource = 'You have followed a link to a page that does not exist yet. To create the page, start typing in the box below (see the [[{{Int:Helppage}}|help page]] for more info). If you are here by mistake, click your browser\'s back button.',
-			expectedNewarticletext;
+			expectedNewarticletext,
+			helpPageTitle = 'Help:Contents';
 
-		mw.messages.set( 'helppage', 'Help:Contents' );
+		mw.messages.set( 'helppage', helpPageTitle );
 
 		expectedNewarticletext = 'You have followed a link to a page that does not exist yet. To create the page, start typing in the box below (see the ' +
-			$( '<a>' ).attr( {
-				title: mw.msg( 'helppage' ),
-				href: mw.util.wikiGetlink( mw.msg( 'helppage' ) )
-			} ).text( 'help page' ).getOuterHtml() + ' for more info). If you are here by mistake, click your browser\'s back button.';
+			'<a title="Help:Contents" href="/wiki/Help:Contents">help page</a> for more info). If you are here by mistake, click your browser\'s back button.';
 
 		mw.messages.set( 'newarticletext', newarticletextSource );
 
-		assert.equal(
+		assert.htmlEqual(
 			parser( 'newarticletext' ),
 			expectedNewarticletext,
 			'Link with nested message'
@@ -408,7 +389,7 @@
 		mw.messages.set( 'newarticletext-lowercase',
 			newarticletextSource.replace( 'Int:Helppage', 'int:helppage' ) );
 
-		assert.equal(
+		assert.htmlEqual(
 			parser( 'newarticletext-lowercase' ),
 			expectedNewarticletext,
 			'Link with nested message, lowercase include'
