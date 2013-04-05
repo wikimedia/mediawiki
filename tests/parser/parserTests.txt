@@ -363,6 +363,16 @@ Italics and bold
 
 !! end
 
+# this example taken from the simple/Moon article
+!! test
+Italics and possessives
+!! input
+obtained by ''[[Lunar Prospector]]'''s gamma-ray spectrometer
+!! result
+<p>obtained by <i><a href="/index.php?title=Lunar_Prospector&amp;action=edit&amp;redlink=1" class="new" title="Lunar Prospector (page does not exist)">Lunar Prospector</a>'</i>s gamma-ray spectrometer
+</p>
+!! end
+
 ###
 ### 2-quote opening sequence tests
 ###
