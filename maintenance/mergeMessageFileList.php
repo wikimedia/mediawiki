@@ -98,7 +98,10 @@ foreach ( $mmfl['setupFiles'] as $fileName ) {
 	if ( empty( $mmfl['quiet'] ) ) {
 		fwrite( STDERR, "Loading data from $fileName\n" );
 	}
-	include_once( $fileName );
+	if ( !include_once( $fileName ) ) {
+		fwrite( STDERR, "Unable to read $fileName\n" );
+		exit( 1 );
+	}
 }
 fwrite( STDERR, "\n" );
 $s =
