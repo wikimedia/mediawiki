@@ -1560,6 +1560,10 @@ abstract class ApiBase extends ContextSource {
 
 	/**
 	 * Returns a list of all possible errors returned by the module
+	 *
+	 * Don't call this function directly: use getFinalPossibleErrors() to allow
+	 * hooks to modify parameters as needed.
+	 *
 	 * @return array in the format of array( key, param1, param2, ... ) or array( 'code' => ..., 'info' => ... )
 	 */
 	public function getPossibleErrors() {
@@ -1600,6 +1604,19 @@ abstract class ApiBase extends ContextSource {
 		}
 
 		return $ret;
+	}
+
+	/**
+	 * Get final list of possible errors, after hooks have had a chance to
+	 * tweak it as needed.
+	 *
+	 * @return array
+	 * @since 1.22
+	 */
+	public function getFinalPossibleErrors() {
+		$possibleErrors = $this->getPossibleErrors();
+		wfRunHooks( 'APIGetPossibleErrors', array( $this, &$possibleErrors ) );
+		return $possibleErrors;
 	}
 
 	/**
