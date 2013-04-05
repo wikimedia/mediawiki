@@ -354,7 +354,6 @@ class LocalisationCache {
 	 * @param $code
 	 * @param $key
 	 * @param $subkey
-	 * @return
 	 */
 	protected function loadSubitem( $code, $key, $subkey ) {
 		if ( !in_array( $key, self::$splitKeys ) ) {
@@ -384,6 +383,9 @@ class LocalisationCache {
 
 	/**
 	 * Returns true if the cache identified by $code is missing or expired.
+	 *
+	 * @param string $code
+	 *
 	 * @return bool
 	 */
 	public function isExpired( $code ) {
@@ -494,6 +496,7 @@ class LocalisationCache {
 	 * @return array
 	 */
 	protected function readPHPFile( $_fileName, $_fileType ) {
+		wfProfileIn( __METHOD__ );
 		// Disable APC caching
 		$_apcEnabled = ini_set( 'apc.cache_by_default', '0' );
 		include( $_fileName );
@@ -504,8 +507,10 @@ class LocalisationCache {
 		} elseif ( $_fileType == 'aliases' ) {
 			$data = compact( 'aliases' );
 		} else {
+			wfProfileOut( __METHOD__ );
 			throw new MWException( __METHOD__ . ": Invalid file type: $_fileType" );
 		}
+		wfProfileOut( __METHOD__ );
 		return $data;
 	}
 
@@ -607,6 +612,7 @@ class LocalisationCache {
 	protected function readSourceFilesAndRegisterDeps( $code, &$deps ) {
 		global $IP;
 
+		wfProfileIn( __METHOD__ );
 		$fileName = Language::getMessagesFileName( $code );
 		if ( !file_exists( $fileName ) ) {
 			return false;
@@ -624,6 +630,7 @@ class LocalisationCache {
 
 		$deps['plurals'] = new FileDependency( "$IP/languages/data/plurals.xml" );
 		$deps['plurals-mw'] = new FileDependency( "$IP/languages/data/plurals-mediawiki.xml" );
+		wfProfileOut( __METHOD__ );
 
 		return $data;
 	}
@@ -783,6 +790,7 @@ class LocalisationCache {
 		# This is done after the core because we know the fallback sequence now.
 		# But it has a higher precedence for merging so that we can support things
 		# like site-specific message overrides.
+		wfProfileIn( __METHOD__ . '-extensions' );
 		$allData = $initialData;
 		foreach ( $wgExtensionMessagesFiles as $fileName ) {
 			$data = $this->readPHPFile( $fileName, 'extension' );
@@ -803,6 +811,7 @@ class LocalisationCache {
 		foreach ( $coreData as $key => $item ) {
 			$this->mergeItem( $key, $allData[$key], $item );
 		}
+		wfProfileOut( __METHOD__ . '-extensions' );
 
 		# Add cache dependencies for any referenced globals
 		$deps['wgExtensionMessagesFiles'] = new GlobalDependency( 'wgExtensionMessagesFiles' );
@@ -856,6 +865,7 @@ class LocalisationCache {
 		}
 
 		# Save to the persistent cache
+		wfProfileIn( __METHOD__ . '-write' );
 		$this->store->startWrite( $code );
 		foreach ( $allData as $key => $value ) {
 			if ( in_array( $key, self::$splitKeys ) ) {
@@ -867,6 +877,7 @@ class LocalisationCache {
 			}
 		}
 		$this->store->finishWrite();
+		wfProfileOut( __METHOD__ . '-write' );
 
 		# Clear out the MessageBlobStore
 		# HACK: If using a null (i.e. disabled) storage backend, we
@@ -967,7 +978,7 @@ interface LCStore {
 
 	/**
 	 * Start a write transaction.
-	 * @param $code Language code
+	 * @param string $code Language code
 	 */
 	function startWrite( $code );
 
@@ -979,8 +990,8 @@ interface LCStore {
 	/**
 	 * Set a key to a given value. startWrite() must be called before this
 	 * is called, and finishWrite() must be called afterwards.
-	 * @param $key
-	 * @param $value
+	 * @param string $key
+	 * @param mixed $value
 	 */
 	function set( $key, $value );
 }
