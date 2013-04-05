@@ -10,23 +10,30 @@
  * This function will be deleted after it's used, so do not expand it to be
  * generally useful beyond startup.
  *
+ * See also:
+ * - https://www.mediawiki.org/wiki/Compatibility#Browser
+ * - http://jquery.com/browser-support/
+ *
  * MediaWiki & jQuery compatibility:
- * - Internet Explorer 6.0+
+ * - Chrome
  * - Firefox 10+
  * - Safari 5.0+
  * - Opera 11+
- * - Chrome
+ * - Internet Explorer 6.0+
  */
 
 /*jshint unused: false */
-function isCompatible() {
-	// IE < 6.0
-	if ( navigator.appVersion.indexOf( 'MSIE' ) !== -1
-		&& parseFloat( navigator.appVersion.split( 'MSIE' )[1] ) < 6 )
-	{
-		return false;
+function isCompatible( ua ) {
+	if ( ua === undefined ) {
+		ua = navigator.userAgent;
 	}
-	return true;
+
+	return !(
+		// Internet Explorer < 6
+		( ua.indexOf( 'MSIE' ) !== -1 && parseFloat( ua.split( 'MSIE' )[1] ) < 6 ) ||
+			// Firefox < 10
+			( ua.indexOf( 'Firefox/' ) !== -1 && parseFloat( ua.split( 'Firefox/' )[1] ) < 10 )
+	);
 }
 
 /**
