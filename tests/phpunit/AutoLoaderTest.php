@@ -12,7 +12,6 @@ class AutoLoaderTest extends MediaWikiTestCase {
 
 	protected static function checkAutoLoadConf() {
 		global $wgAutoloadLocalClasses, $wgAutoloadClasses, $IP;
-		static $supportsParsekit;
 		$supportsParsekit = function_exists( 'parsekit_compile_file' );
 
 		// wgAutoloadLocalClasses has precedence, just like in includes/AutoLoader.php
