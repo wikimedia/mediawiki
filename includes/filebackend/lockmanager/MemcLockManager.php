@@ -85,7 +85,7 @@ class MemcLockManager extends QuorumLockManager {
 			}
 		}
 
-		$this->session = wfRandomString( 32 );
+		$this->session = UIDGenerator::newRawUUIDv4( UIDGenerator::QUICK_RAND );
 	}
 
 	/**

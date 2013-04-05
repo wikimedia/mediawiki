@@ -82,7 +82,7 @@ class LSLockManager extends QuorumLockManager {
 			$this->connTimeout = 3; // use some sane amount
 		}
 
-		$this->session = wfRandomString( 32 ); // 128 bits
+		$this->session = UIDGenerator::newRawUUIDv4( UIDGenerator::QUICK_RAND );
 	}
 
 	/**
