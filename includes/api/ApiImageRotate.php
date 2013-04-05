@@ -196,7 +196,7 @@ class ApiImageRotate extends ApiBase {
 
 	public function getParamDescription() {
 		$pageSet = $this->getPageSet();
-		return $pageSet->getParamDescription() + array(
+		return $pageSet->getFinalParamDescription() + array(
 			'rotation' => 'Degrees to rotate image clockwise',
 			'token' => 'Edit token. You can get one of these through action=tokens',
 		);
