@@ -56,14 +56,22 @@ class FormatJson {
 	const ALL_OK = 3;
 
 	/**
-	 * Characters problematic in JavaScript and their corresponding escape sequences.
+	 * Characters problematic in JavaScript.
 	 *
 	 * @note These are listed in ECMA-262 (5.1 Ed.), §7.3 Line Terminators along with U+000A (LF)
 	 *       and U+000D (CR). However, PHP already escapes LF and CR according to RFC 4627.
 	 */
 	private static $badChars = array(
-		"\xe2\x80\xa8" => '\u2028', // LINE SEPARATOR
-		"\xe2\x80\xa9" => '\u2029', // PARAGRAPH SEPARATOR
+		"\xe2\x80\xa8", // U+2028 LINE SEPARATOR
+		"\xe2\x80\xa9", // U+2029 PARAGRAPH SEPARATOR
+	);
+
+	/**
+	 * Escape sequences for characters listed in FormatJson::$badChars.
+	 */
+	private static $badCharsEscaped = array(
+		'\u2028', // U+2028 LINE SEPARATOR
+		'\u2029', // U+2029 PARAGRAPH SEPARATOR
 	);
 
 	/**
@@ -123,7 +131,10 @@ class FormatJson {
 		if ( $json === false ) {
 			return false;
 		}
-		return ( $escaping & self::UTF8_OK ) ? strtr( $json, self::$badChars ) : $json;
+		if ( $escaping & self::UTF8_OK ) {
+			$json = str_replace( self::$badChars, self::$badCharsEscaped, $json );
+		}
+		return $json;
 	}
 
 	/**
@@ -151,9 +162,9 @@ class FormatJson {
 			//   each double-escaped backslash (\\\\) is replaced with \\\u005c.
 			// * We strip one of the backslashes from each of the escape sequences to unescape.
 			// * Then the JSON decoder can perform the actual unescaping.
-			$doubled = str_replace( "\\\\\\\\", "\\\\\\u005c", json_encode( $json ) );
-			$json = json_decode( preg_replace( "/\\\\\\\\u(?!00[0-7])/", "\\\\u", $doubled ) );
-			$json = strtr( $json, self::$badChars );
+			$json = str_replace( "\\\\\\\\", "\\\\\\u005c", addcslashes( $json, '\"' ) );
+			$json = json_decode( preg_replace( "/\\\\\\\\u(?!00[0-7])/", "\\\\u", "\"$json\"" ) );
+			$json = str_replace( self::$badChars, self::$badCharsEscaped, $json );
 		}
 		return $pretty ? self::prettyPrint( $json ) : $json;
 	}
