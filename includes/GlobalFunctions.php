@@ -3619,9 +3619,12 @@ function wfGetNull() {
  *
  * @param $maxLag Integer (deprecated)
  * @param $wiki mixed Wiki identifier accepted by wfGetLB
+ * @param $cluster string cluster name accepted by LBFactory
  */
-function wfWaitForSlaves( $maxLag = false, $wiki = false ) {
-	$lb = wfGetLB( $wiki );
+function wfWaitForSlaves( $maxLag = false, $wiki = false, $cluster = false ) {
+	$lb = ( $cluster !== false )
+		? wfGetLBFactory()->getExternalLB( $cluster )
+		: wfGetLB( $wiki );
 	// bug 27975 - Don't try to wait for slaves if there are none
 	// Prevents permission error when getting master position
 	if ( $lb->getServerCount() > 1 ) {
