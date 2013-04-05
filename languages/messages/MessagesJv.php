@@ -1414,13 +1414,13 @@ Alamat layang èlèktronik Sampéyan ora dituduhaké nalika wong liya ngubungi S
 'upload-recreate-warning' => "'''Pèngetan: Berkas mawa jeneng kuwi wis dibusak utawa disingkiraké.'''
 
 Log pambusakan lan panyingkiran saka kaca iki sumadhiya nèng kéné:",
-'uploadtext' => "Gunakna formulir neng ngisor kiyé kanggo ngunggah berkas.
-Kanggo ndeleng utawa nggoleti berkas sing sedurunge uwis diunggah tuju maring [[Special:FileList|dhaftar berkas sing wis diunggah]], gambar sing uwis diunggah (maning) uga kecathet neng [[Special:Log/upload|log pengunggahan]], sing dibusek neng [[Special:Log/delete|Log pembusekan]].
+'uploadtext' => "Anggé formulir ing ngandhap punika kanggé nginggahaké gambar.
+Kanggé mirsani utawi madosi gambar ingkang sampun dipununggah sakdèrèngipun pigunakaken [[Special:FileList|dhaftar berkas sing wis diunggah]], gambar ingkang dipununggah ulang ugi kadhaftar ing [[Special:Log/upload|log pangunggahan]], pambusakan ing [[Special:Log/delete|Log pambusakan]].
 
-Nèk nglampirna berkas neng kaca(artikel), gunakna salah siji format sekang pranala kiyé:
-* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Berkas.jpg]]</nowiki></code>''' nek nggunakna versi pepek berkas
-* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Berkas.png|200px|thumb|left|tèks alt]]</nowiki></code>''' nek dienggo kanggo gambar sing ambané 200 piksel neng njero kothak manggon neng sisih kiwe karo 'tèks alt' kanggo penjelasané
-* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Berkas.ogg]]</nowiki></code>''' kanggo ngaitna langsung maring berkas tur ora perlu ditampilaken berkasé.",
+Kanggé nyertakaken gambar ing satunggiling kaca, pigunakaken pranala salah setunggal saking format ing ngandhap punika:
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Berkas.jpg]]</nowiki></code>''' kanggé migunakaken versi pepak gambar
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Berkas.png|200px|thumb|left|tèks alt]]</nowiki></code>''' kanggé migunakaken gambar wiyaripun 200 piksel ing kothak ing sisih kiwa kanthi 'tèks alt' minangka panjelasan
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Berkas.ogg]]</nowiki></code>''' kanggé nggandhèng langsung dhumateng gambar tanpi nampilaké gambar",
 'upload-permitted' => 'Jenis berkas sing diidinaké: $1.',
 'upload-preferred' => 'Jenis berkas sing disaranaké: $1.',
 'upload-prohibited' => 'Jenis berkas sing dilarang: $1.',

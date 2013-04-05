@@ -26,6 +26,7 @@
  * @author Pasqual (ca)
  * @author Paucabot
  * @author PerroVerd
+ * @author Pintor Smeargle
  * @author Pitort
  * @author Pérez
  * @author Qllach
@@ -915,11 +916,10 @@ A més a més, en enviar el vostre text, doneu fe que és vostra l'autoria, o b�
 '''No feu servir textos amb drets d'autor sense permís!'''",
 'longpageerror' => "'''Error: El text que heu introduït és {{PLURAL:$1|d'un kilobyte|de $1 kilobytes}} i sobrepassa el màxim permès de {{PLURAL:$2|one kilobyte|$2 kilobytes}}.'''
 No es pot desar.",
-'readonlywarning' => "'''ADVERTÈNCIA: La base de dades està tancada per manteniment
-i no podeu desar les vostres contribucions en aquests moments. Podeu retallar i enganxar el codi
-en un fitxer de text i desar-lo més tard.'''
+'readonlywarning' => "'''Avís: La base de dades està tancada per manteniment, de manera que no podreu desar els canvis ara mateix.'''
+És possible que vulgueu copiar i enganxar el text en un arxiu de text i desar-ho més tard.
 
-L'administrador que l'ha tancada n'ha donat aquesta justificació: $1",
+L'administrador que l'ha bloquejada ha donat la següent explicació: $1",
 'protectedpagewarning' => "'''ATENCIÓ: Aquesta pàgina està bloquejada i només els usuaris amb drets d'administrador la poden modificar.
 A continuació es mostra la darrera entrada del registre com a referència:",
 'semiprotectedpagewarning' => "'''Avís:''' Aquesta pàgina està bloquejada i només pot ser modificada per usuaris registrats.
@@ -1223,7 +1223,7 @@ Es pot trobar més informació en el [{{fullurl:{{#Special:Log}}/delete|page={{F
 'search-interwiki-default' => '$1 resultats:',
 'search-interwiki-more' => '(més)',
 'search-relatedarticle' => 'Relacionat',
-'mwsuggest-disable' => 'Inhabilita els suggeriments en AJAX',
+'mwsuggest-disable' => 'Desactivar suggeriments de cerca',
 'searcheverything-enable' => 'Cerca a tots els espais de noms',
 'searchrelated' => 'relacionat',
 'searchall' => 'tots',
@@ -2330,9 +2330,9 @@ Ací hi ha els paràmetres actuals de la pàgina '''$1''':",
 Ací es troben els paràmetres actuals de la pàgina '''$1''':",
 'protect-cascadeon' => "Aquesta pàgina es troba protegida perquè està inclosa en {{PLURAL:$1|la següent pàgina que té|les següents pàgines que tenen}} activada una protecció en cascada. Podeu canviar el nivell de protecció d'aquesta pàgina però això no afectarà la protecció en cascada.",
 'protect-default' => 'Permet tots els usuaris',
-'protect-fallback' => 'Cal el permís de «$1»',
-'protect-level-autoconfirmed' => 'Bloca els usuaris novells i no registrats',
-'protect-level-sysop' => 'Bloqueja tots els usuaris excepte administradors',
+'protect-fallback' => 'Permetre només a usuaris amb permisos de "$1"',
+'protect-level-autoconfirmed' => 'Permetre només usuaris autoconfirmats',
+'protect-level-sysop' => 'Permetre només administradors',
 'protect-summary-cascade' => 'en cascada',
 'protect-expiring' => 'expira el dia $1 (UTC)',
 'protect-expiring-local' => 'caduca el $1',
@@ -2960,6 +2960,7 @@ Això deu ser degut per un enllaç a un lloc extern inclòs a la llista negra.',
 'pageinfo-robot-noindex' => 'No indexable',
 'pageinfo-views' => 'Número de visites',
 'pageinfo-watchers' => "Número d'usuaris que vigilen la pàgina",
+'pageinfo-few-watchers' => 'Menys de $1 {{PLURAL:$1|observador|observadors}}',
 'pageinfo-redirects-name' => 'Redireccions a aquesta pàgina',
 'pageinfo-subpages-name' => "Subpàgines d'aquesta pàgina",
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|redirecció|redireccions}}; $3 {{PLURAL:$3|no redireció|no redireccions}})',
@@ -2974,6 +2975,7 @@ Això deu ser degut per un enllaç a un lloc extern inclòs a la llista negra.',
 'pageinfo-magic-words' => '{{PLURAL:$1|Paraula clau|Paraules clau}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Categoria oculta|Categories ocultes}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|plantilla inclosa|plantilles incloses}} ($1)',
+'pageinfo-transclusions' => '{{PLURAL:$1|Pàgina|Pàgines}} incloses en ($1)',
 'pageinfo-toolboxlink' => 'Informació de la pàgina',
 'pageinfo-redirectsto' => 'Redirigeix a',
 'pageinfo-redirectsto-info' => 'info',
@@ -2982,6 +2984,10 @@ Això deu ser degut per un enllaç a un lloc extern inclòs a la llista negra.',
 'pageinfo-protect-cascading' => "Proteccions en cascada des d'aquí",
 'pageinfo-protect-cascading-yes' => 'Sí',
 'pageinfo-protect-cascading-from' => 'Proteccions en cascada des de',
+'pageinfo-category-info' => 'Informació de categoria',
+'pageinfo-category-pages' => 'Nombre de pàgines',
+'pageinfo-category-subcats' => 'ombre de subcategories',
+'pageinfo-category-files' => "Nombre d'arxius",
 
 # Skin names
 'skinname-cologneblue' => 'Colònia blava',
@@ -3062,6 +3068,8 @@ Si l'executeu, podeu comprometre la seguretat del vostre sistema.",
 'minutes' => '{{PLURAL:$1|$1 minut|$1 minuts}}',
 'hours' => '{{PLURAL:$1|$1 hora|$1 hores}}',
 'days' => '{{PLURAL:$1|$1 dia|$1 dies}}',
+'months' => '{{PLURAL:$1|$1 mes|$1 mesos}}',
+'years' => '{{PLURAL:$1|$1 any|$1 anys}}',
 'ago' => 'fa $1',
 'just-now' => 'ara mateix',
 
@@ -3722,7 +3730,7 @@ Les imatges es mostren en plena resolució; altres tipus de fitxer s'inicien dir
 'specialpages-group-highuse' => "Pàgines d'alt ús",
 'specialpages-group-pages' => 'Llistes de pàgines',
 'specialpages-group-pagetools' => "Pàgines d'eines",
-'specialpages-group-wiki' => 'Eines i dades del wiki',
+'specialpages-group-wiki' => 'Dades i eines',
 'specialpages-group-redirects' => 'Pàgines especials de redirecció',
 'specialpages-group-spam' => 'Eines de spam',
 
@@ -3791,13 +3799,13 @@ Les imatges es mostren en plena resolució; altres tipus de fitxer s'inicien dir
 'sqlite-no-fts' => '$1, sense supor de búsqueda de text íntegre',
 
 # New logging system
-'logentry-delete-delete' => '$1 ha esborrat la pàgina $3',
-'logentry-delete-restore' => '$1 ha restaurat la pàgina $3',
+'logentry-delete-delete' => '$1 ha esborrat $3',
+'logentry-delete-restore' => '$1 ha restaurat $3',
 'logentry-delete-event' => "$1 ha canviat la visibilitat {{PLURAL:$5|d'un esdeveniment al registre|de $5 esdeveniments al registre}} de $3: $4",
 'logentry-delete-revision' => "$1 ha canviat la visibilitat {{PLURAL:$5|d'una revisió|de $5 revisions}} a la pàgina $3: $4",
 'logentry-delete-event-legacy' => "$1 ha canviat la visibilitat d'esdeveniments al registre de $3",
 'logentry-delete-revision-legacy' => '$1 ha canviat la visibilitat de revisions a la pàgina $3',
-'logentry-suppress-delete' => '$1 ha suprimit la pàgina $3',
+'logentry-suppress-delete' => '$1 ha suprimit $3',
 'logentry-suppress-event' => "$1 secretament ha canviat la visibilitat {{PLURAL:$5|d'un esdeveniment al registre|de $5 esdeveniments al registre}} de $3: $4",
 'logentry-suppress-revision' => "$1 secretament ha canviat la visibilitat {{PLURAL:$5|d'una revisió|de $5 revisions}} a la pàgina $3: $4",
 'logentry-suppress-event-legacy' => "$1 secretament ha canviat la visibilitat d'esdeveniments al registre de $3",
@@ -3810,11 +3818,11 @@ Les imatges es mostren en plena resolució; altres tipus de fitxer s'inicien dir
 'revdelete-uname-unhid' => "ha revelat un nom d'usuari que era ocult",
 'revdelete-restricted' => 'ha aplicat restriccions als administradors',
 'revdelete-unrestricted' => 'ha tret les restriccions als administradors',
-'logentry-move-move' => '$1 ha desplaçat la pàgina $3 a $4',
-'logentry-move-move-noredirect' => '$1 ha desplaçat la pàgina $3 a $4 sense deixar cap redirecció',
-'logentry-move-move_redir' => '$1 ha desplaçat la pàgina $3 a $4, on hi havia una redirecció',
+'logentry-move-move' => '$1 ha mogut $3 a $4',
+'logentry-move-move-noredirect' => '$1 ha mogut $3 a $4 sense deixar una redirecció',
+'logentry-move-move_redir' => '$1 ha mogut $3 a $4 sobre una redirecció',
 'logentry-move-move_redir-noredirect' => '$1 ha desplaçat la pàgina $3 a $4 on hi havia una redirecció i sense crear una nova redirecció',
-'logentry-patrol-patrol' => '$1 ha marcat la versió $4 de la pàgina $3 com a patrullada',
+'logentry-patrol-patrol' => '1 $ va marcar la revisió $ 4 de "$ 3" com a supervisada',
 'logentry-patrol-patrol-auto' => '$1 ha marcat automàticament la versió $4 de la pàgina $3 com a patrullada',
 'logentry-newusers-newusers' => "El compte d'usuari $1 {{GENDER:$2|ha estat creat}}",
 'logentry-newusers-create' => "El compte d'usuari $1 {{GENDER:$2|ha estat creat}}",

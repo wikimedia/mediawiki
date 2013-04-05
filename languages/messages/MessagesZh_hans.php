@@ -1345,7 +1345,7 @@ $1",
 'qbsettings-directionality' => '根据您的语言文本方向固定位置',
 
 # Preferences page
-'preferences' => '系统设置',
+'preferences' => '参数设置',
 'mypreferences' => '系统设置',
 'prefs-edits' => '编辑数：',
 'prefsnologin' => '未登录',

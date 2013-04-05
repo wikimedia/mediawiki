@@ -672,7 +672,7 @@ Hueliz ōmopolo huiqui nozo ōmozacac.
 'prefs-files' => 'Tlahcuilōlli',
 'youremail' => 'Maltzinteyōtl netitlanizyeyāntli:',
 'username' => '{{GENDER:$1|Tlatequitiltilīltōcāitl}}:',
-'uid' => '{{GENDER:$|Tlatequitiltilīlli}} ID:',
+'uid' => '{{GENDER:$1|Tlatequitiltilīlli}} ID:',
 'prefs-memberingroups' => '{{GENDER:$2|Tlacotōncayōtl}} in {{PLURAL:$1|tēolōlolli|tēolōloltin}}',
 'yourrealname' => 'Melāhuac motōcā:',
 'yourlanguage' => 'Tlâtòlli:',

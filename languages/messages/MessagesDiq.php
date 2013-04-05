@@ -1906,7 +1906,7 @@ Kontrolê emeleyey oyo veş nêbeno.',
 'img-auth-accessdenied' => 'Cıresnayış vındarnayo.',
 'img-auth-nopathinfo' => 'PATH_INFO kemiyo.
 Teqdimkerê şıma seba ravurnayışê nê melumati eyar nêkerdo.
-Beno ke be CGI-bıngeyın bo u img_auth rê destek nêbeno.
+Beno ke be CGI-bıngeyın bo u img_auth rê desteg nêbeno.
 https://www.mediawiki.org/wiki/Manual:Image_Authorization Selahiyetê resımi bıvêne.',
 'img-auth-notindir' => 'Patikayê ke ti wazeno direktorê bar biyayişî de çin o.',
 'img-auth-badtitle' => '"$1" ra nieşkeno yew seroğê raştî virazî.',
@@ -1928,7 +1928,6 @@ qey pawıtışi, img_auth.php battal verdiyayo.",
 'http-read-error' => 'Wendişê HTTP de xeta esta.',
 'http-timed-out' => 'Waştişê HTTP qediya.',
 'http-curl-error' => 'Xetayê URLi: $1',
-'http-host-unreachable' => 'URL rê niresa.',
 'http-bad-status' => 'Waştişê tu HTTP yew problem biya: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -3337,7 +3336,7 @@ Eg ena dosya, kondisyonê orcinali ra bıvuriya, belki detayanê hemi nıeseno.'
 'exif-artist' => 'Nuştoğ',
 'exif-copyright' => 'Wahirê copyrighti',
 'exif-exifversion' => 'Versiyonê Exif',
-'exif-flashpixversion' => 'Versiyonê Flashpix destek bike',
+'exif-flashpixversion' => 'Versiyonê Flashpix rê biyo desteg',
 'exif-colorspace' => 'Cayê rengi',
 'exif-componentsconfiguration' => 'manayê qisimê hemi',
 'exif-compressedbitsperpixel' => 'Modê komprasyonê resimi',
