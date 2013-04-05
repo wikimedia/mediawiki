@@ -270,7 +270,7 @@ class ApiSetNotificationTimestamp extends ApiBase {
 		$ps = $this->getPageSet();
 		return array_merge(
 			parent::getPossibleErrors(),
-			$ps->getPossibleErrors(),
+			$ps->getFinalPossibleErrors(),
 			$this->getRequireMaxOneParameterErrorMessages(
 				array( 'timestamp', 'torevid', 'newerthanrevid' ) ),
 			$this->getRequireOnlyOneParameterErrorMessages(

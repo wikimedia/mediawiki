@@ -218,7 +218,7 @@ class ApiImageRotate extends ApiBase {
 		$pageSet = $this->getPageSet();
 		return array_merge(
 			parent::getPossibleErrors(),
-			$pageSet->getPossibleErrors()
+			$pageSet->getFinalPossibleErrors()
 		);
 	}
 
