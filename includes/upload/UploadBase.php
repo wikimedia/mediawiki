@@ -331,7 +331,7 @@ abstract class UploadBase {
 	 * @return mixed true if valid, otherwise and array with 'status'
 	 * and other keys
 	 **/
-	protected function validateName() {
+	public function validateName() {
 		$nt = $this->getTitle();
 		if( is_null( $nt ) ) {
 			$result = array( 'status' => $this->mTitleError );
