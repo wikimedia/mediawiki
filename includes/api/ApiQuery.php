@@ -722,7 +722,7 @@ class ApiQuery extends ApiBase {
 	public function getPossibleErrors() {
 		return array_merge(
 			parent::getPossibleErrors(),
-			$this->getPageSet()->getPossibleErrors()
+			$this->getPageSet()->getFinalPossibleErrors()
 		);
 	}
 
