@@ -1374,7 +1374,7 @@ Vous pouvez trouver des détails dans le [{{fullurl:{{#Special:Log}}/delete|page
 'searchresulttext' => "Pour plus d'informations sur la recherche dans {{SITENAME}}, voir [[{{MediaWiki:Helppage}}|{{int:help}}]].",
 'searchsubtitle' => "Vous avez recherché « '''[[:$1]]''' » ([[Special:Prefixindex/$1|toutes les pages commençant par « $1 »]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|toutes les pages qui ont un lien vers « $1 »]])",
 'searchsubtitleinvalid' => "Vous avez recherché « '''$1''' »",
-'toomanymatches' => "Un trop grand nombre d'occurrences a été renvoyé, veuillez soumettre une requête différente.",
+'toomanymatches' => 'Un trop grand nombre d’occurrences a été renvoyé, veuillez soumettre une requête différente.',
 'titlematches' => 'Correspondances dans les titres des pages',
 'notitlematches' => 'Aucun titre de page ne correspond à la recherche.',
 'textmatches' => 'Correspondances dans le texte des pages',
@@ -3118,10 +3118,10 @@ Vous pouvez toutefois en visualiser la source.',
 'tooltip-watchlistedit-normal-submit' => 'Enlever les titres',
 'tooltip-watchlistedit-raw-submit' => 'Mise à jour de la liste de suivi',
 'tooltip-recreate' => 'Recréer la page même si celle-ci a été effacée',
-'tooltip-upload' => "Démarrer l'import",
+'tooltip-upload' => 'Démarrer l’import',
 'tooltip-rollback' => '« Révoquer » annule en un clic la ou les modification(s) de cette page par son dernier contributeur.',
-'tooltip-undo' => "« Défaire » révoque cette modification et ouvre la fenêtre de modification en mode prévisualisation.
-Permet de rétablir la version précédente et d'ajouter un motif dans la boîte de résumé.",
+'tooltip-undo' => '« Défaire » révoque cette modification et ouvre la fenêtre de modification en mode prévisualisation.
+Permet de rétablir la version précédente et d’ajouter un motif dans la boîte de résumé.',
 'tooltip-preferences-save' => 'Sauvegarder les préférences',
 'tooltip-summary' => 'Entrez un bref résumé',
 

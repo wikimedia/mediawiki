@@ -7885,7 +7885,8 @@ See also:
 {{Related|Exif-gpsdop}}',
 'exif-gpsdop-moderate' => 'Parameters:
 * $1 - the actual HDOP/PDOP value (5-10 for moderate). See http://en.wikipedia.org/wiki/Dilution_of_precision_(GPS)
-{{Related|Exif-gpsdop}}',
+{{Related|Exif-gpsdop}}
+{{Identical|Moderate}}',
 'exif-gpsdop-fair' => 'Parameters:
 * $1 - the actual HDOP/PDOP value (10-20 for fair). See http://en.wikipedia.org/wiki/Dilution_of_precision_(GPS)
 {{Related|Exif-gpsdop}}',
