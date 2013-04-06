@@ -1165,7 +1165,7 @@ abstract class ApiBase extends ContextSource {
 	/**
 	 * Validate and normalize of parameters of type 'user'
 	 * @param string $value Parameter value
-	 * @param string $encParamName Parameter value
+	 * @param string $encParamName Parameter name
 	 * @return string Validated and normalized parameter
 	 */
 	private function validateUser( $value, $encParamName ) {
