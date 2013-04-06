@@ -16,6 +16,11 @@
 	font-size: 0.8em;
 }
 
+/* Put some space under template's header, which may contain CAPTCHA HTML.*/
+section.mw-form-header {
+	margin-bottom: 10px;
+}
+
 /*
  * Besides errorbox there could be warningbox, successbox, msgbox, though
  * spage has never seen these in practice.
@@ -35,4 +40,13 @@
 	background-color: #fae3e3;
 	text-shadow: 0 1px #fae3e3;
 	word-wrap: break-word;
+}
+
+/*
+ * Override the right margin of the form to give space in case a benefits
+ * column appears to the side.
+ *
+ */
+.mw-ui-container #userloginForm {
+	margin-right: 100px;
 }
