@@ -1023,10 +1023,10 @@ class LoginForm extends SpecialPage {
 	 * @return Boolean
 	 */
 	private function shouldShowVForm() {
-		global $wgUseVFormUserLogin;
+		global $wgUseVFormCreateAccount, $wgUseVFormUserLogin;
 
 		if ( $this->mType == 'signup' ) {
-			return false;
+			return $this->mRequest->getBool( 'useNew', $wgUseVFormCreateAccount );
 		} else {
 			return $this->mRequest->getBool( 'useNew', $wgUseVFormUserLogin );
 		}
@@ -1070,11 +1070,20 @@ class LoginForm extends SpecialPage {
 		}
 
 		if ( $this->mType == 'signup' ) {
-			$template = new UsercreateTemplate();
+			$out->addModules( 'mediawiki.special.userlogin.signup' );
+			if (  $this->mShowVForm ) {
+				$template = new UsercreateTemplateVForm();
+				$out->addModuleStyles( array(
+					'mediawiki.ui',
+					'mediawiki.special.createaccount.vform'
+				) );
+				$out->addModules( 'mediawiki.special.createaccount.vform.js' );
+			} else {
+				$template = new UsercreateTemplate();
+			}
 			$q = 'action=submitlogin&type=signup';
 			$linkq = 'type=login';
 			$linkmsg = 'gotaccount';
-			$out->addModules( 'mediawiki.special.userlogin.signup' );
 		} else {
 			if ( $this->mShowVForm ) {
 				$template = new UserloginTemplateVForm();

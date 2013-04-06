@@ -1,6 +1,6 @@
 /*
- * When inside the VForm style, disable the border that Vector puts on the div
- * surrounding the login/create account form.
+ * When inside the VForm style, disable the border that Vector and other skins
+ * put on the div surrounding the login/create account form.
  * Also disable the margin and padding that Vector puts around the form.
  */
 .mw-ui-container #userloginForm,
