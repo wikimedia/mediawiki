@@ -12,7 +12,8 @@ production.
 * $wgRedirectScript was removed. It was unused.
 * Removed $wgLocalMessageCacheSerialized, it is now always true.
 * When $wgUseVFormUserLogin is true, the redesign of Special:UserLogin is
-  activated.
+  activated; when $wgUseVFormCreateAccount is true, the redesign of
+  Special:UserLogin/signup is activated.
 * $wgVectorUseIconWatch is now enabled by default.
 
 === New features in 1.22 ===
@@ -24,8 +25,12 @@ production.
   preference). This feature was moved from the Vector extension, and is now part
   of core for all skins. Take care when upgrading that you don't use an older
   version of the Vector extension as this feature may conflict.
-* New version of Special:UserLogin form. It is opt-in for now, controlled by
-  the $wgUseVFormUserLogin setting or a 'useNew' URL parameter trigger.
+* New 'mediawiki.ui' CSS module providing mw-ui-* styles for buttons and a
+  compact vertical form layout.
+* New versions of login (Special:UserLogin) and create account
+  (Special:UserLogin/signup) forms. They are opt-in for now, controlled by
+  the $wgUseVFormUserLogin and $wgUseVFormCreateAccount settings or a 'useNew'
+  URL parameter trigger.
 * Added 'SpecialSearchResultsPrepend' and 'SpecialSearchResultsAppend' hooks.
 * (bug 23343) Implemented ability to apply IP blocks to the contents of X-Forwarded-For headers
   by adding a new configuration variable $wgApplyIpBlocksToXff (disabled by default).

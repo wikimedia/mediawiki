@@ -1,0 +1,98 @@
+/* Disable the underline that Vector puts on h2 headings, and bold them. */
+.mw-ui-container h2 {
+	border: 0;
+	font-weight: bold;
+}
+
+/* shuffled CAPTCHA */
+#wpCaptchaWord {
+	margin-top: 6px;
+}
+
+.mw-createacct-captcha-container {
+	background-color: #f8f8f8;
+	border: 1px solid #c9c9c9;
+	padding: 10px;
+	text-align: center;
+}
+
+.mw-createacct-captcha-image-container {
+	background-color: #fff;
+	min-height: 95px;
+}
+
+.mw-createacct-captcha-assisted {
+	display: block;
+	margin-top: 0.5em;
+}
+
+.mw-createacct-captcha-and-reload {
+	border: 1px solid #c9c9c9;
+	display: table-cell;
+	width: 270px;
+	background-color: #FFF;
+}
+
+.mw-createacct-captcha-and-reload .confirmedit-captcha-reload {
+	display: block;
+	float: right;
+}
+
+/* Benefits column CSS to the right (if it fits) of the form. */
+.mw-ui-container #userloginForm {
+	float: left;
+}
+
+div.mw-createacct-benefits-container {
+	float: left
+}
+
+div.mw-createacct-benefits-container h2 {
+	margin-bottom: 30px;
+}
+
+div.mw-benefits-icon {
+	display: inline-block;
+	padding: 0;
+	float: left;
+	width: 80px;
+	height: 75px;
+	margin-right: 15px;
+	border: 0;
+}
+
+.mw-benefits-icon.icon-edits {
+	/* @embed */
+	background: url(images/icon-edits.png) no-repeat right;
+}
+
+.mw-benefits-icon.icon-pages {
+	/* @embed */
+	background: url(images/icon-pages.png) no-repeat right;
+}
+
+.mw-benefits-icon.icon-contributors {
+	/* @embed */
+	background: url(images/icon-contributors.png) no-repeat right;
+}
+
+/* Special font for numbers in benefits*/
+div.mw-number-text h3 {
+	top: 0;
+	margin: 0;
+	padding: 0;
+	color: #252525;
+	font-family: 'Georgia', serif;
+	font-weight: normal;
+	font-size: 2.2em;
+	line-height: 1.2;
+	text-align: center;
+}
+
+div.mw-number-text {
+	display: block;
+	font-size: 1.2em;
+	color: #444;
+	margin-top: 1em;
+	text-align: center;
+}
