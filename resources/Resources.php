@@ -61,7 +61,10 @@ return array(
 	 * See Vector for an example.
 	 */
 	'skins.cologneblue' => array(
-		'styles' => array( 'cologneblue/screen.css' => array( 'media' => 'screen' ) ),
+		'styles' => array(
+			'cologneblue/screen.css' => array( 'media' => 'screen' ),
+			'cologneblue/print.css' => array( 'media' => 'print' ),
+		),
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
 	),
