@@ -1,5 +1,6 @@
 {
-	"--title": "MediaWiki Code Documentation",
+	"--title": "MediaWiki core - Documentation",
+	"--footer": "Documentation for MediaWiki core. Generated on {DATE} by {JSDUCK} {VERSION}.",
 	"--categories": "./categories.json",
 	"--meta-tags": "./MetaTags.rb",
 	"--warnings": ["-no_doc"],
