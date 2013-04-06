@@ -1,9 +1,4 @@
-/**
- * Provide Agora appearance for mw-ui-* classes when using a skin other than
- * Vector.
- * Compass builds these Agora styles from source Sass files in
- * extensions/Agora/modules/sccs
- */
+/* Agora styles */
 /* _effects.scss */
 /* Mixins for visual effects in CSS3 */
 /* line 7, ../scss/components/_utilities.scss */
@@ -27,8 +22,8 @@
   margin-right: auto;
 }
 
-/* line 10, ../scss/components/default/_buttons.scss */
-button.mw-ui-button, input[type="submit"].mw-ui-button, a.mw-ui-button {
+/* line 4, ../scss/components/default/_buttons.scss */
+.mw-ui-button {
   display: -moz-inline-stack;
   display: inline-block;
   vertical-align: middle;
@@ -54,19 +49,16 @@ button.mw-ui-button, input[type="submit"].mw-ui-button, a.mw-ui-button {
   -ms-border-radius: 3px;
   -o-border-radius: 3px;
   border-radius: 3px;
-  line-height: 1.4em;
   vertical-align: middle;
   text-align: center;
   text-decoration: none;
-  font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-  font-size: 1em;
   font-weight: bold;
   cursor: pointer;
 }
 /* line 38, ../scss/mixins/_effects.scss */
-button.mw-ui-button:hover, button.mw-ui-button.hover, input[type="submit"].mw-ui-button:hover, input[type="submit"].mw-ui-button.hover, a.mw-ui-button:hover, a.mw-ui-button.hover {
-  background-color: gainsboro;
-  *background-color: gainsboro;
+.mw-ui-button:hover, .mw-ui-button.hover {
+  background-color: #dcdcdc;
+  *background-color: #dcdcdc;
   *zoom: 1;
   filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FFE9E9E9', endColorstr='#FFDCDCDC');
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #e9e9e9), color-stop(100%, #dcdcdc));
@@ -77,36 +69,34 @@ button.mw-ui-button:hover, button.mw-ui-button.hover, input[type="submit"].mw-ui
   text-decoration: none;
 }
 /* line 44, ../scss/mixins/_effects.scss */
-button.mw-ui-button:active, button.mw-ui-button.active, input[type="submit"].mw-ui-button:active, input[type="submit"].mw-ui-button.active, a.mw-ui-button:active, a.mw-ui-button.active {
+.mw-ui-button:active, .mw-ui-button.active {
   background-image: none;
   background-color: #c1c1c1;
   text-shadow: none;
 }
 /* line 54, ../scss/mixins/_effects.scss */
-button.mw-ui-button:disabled, button.mw-ui-button.disabled, input[type="submit"].mw-ui-button:disabled, input[type="submit"].mw-ui-button.disabled, a.mw-ui-button:disabled, a.mw-ui-button.disabled {
+.mw-ui-button:disabled, .mw-ui-button.disabled {
   background-image: none;
   background-color: #c9c9c9;
   opacity: 0.5;
   text-shadow: none;
 }
-/* line 39, ../scss/components/default/_buttons.scss */
-button.mw-ui-button:disabled, button.mw-ui-button.disabled, input[type="submit"].mw-ui-button:disabled, input[type="submit"].mw-ui-button.disabled, a.mw-ui-button:disabled, a.mw-ui-button.disabled {
+/* line 30, ../scss/components/default/_buttons.scss */
+.mw-ui-button:disabled, .mw-ui-button.disabled {
   cursor: default;
 }
-/* line 45, ../scss/components/default/_buttons.scss */
-button.mw-ui-button.big, input[type="submit"].mw-ui-button.big, a.mw-ui-button.big {
+/* line 36, ../scss/components/default/_buttons.scss */
+.mw-ui-button.big {
   font-size: 1.3em;
 }
-/* line 50, ../scss/components/default/_buttons.scss */
-button.mw-ui-button.block, input[type="submit"].mw-ui-button.block, a.mw-ui-button.block {
+/* line 41, ../scss/components/default/_buttons.scss */
+.mw-ui-button.block {
   display: block;
   width: 100%;
 }
 
-/* line 59, ../scss/components/default/_buttons.scss */
-.mw-ui-button-group button,
-.mw-ui-button-group input[type="submit"],
-.mw-ui-button-group a {
+/* line 48, ../scss/components/default/_buttons.scss */
+.mw-ui-button-group > * {
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   -ms-border-radius: 0;
@@ -114,10 +104,8 @@ button.mw-ui-button.block, input[type="submit"].mw-ui-button.block, a.mw-ui-butt
   border-radius: 0;
   float: left;
 }
-/* line 63, ../scss/components/default/_buttons.scss */
-.mw-ui-button-group button:first-child,
-.mw-ui-button-group input[type="submit"]:first-child,
-.mw-ui-button-group a:first-child {
+/* line 52, ../scss/components/default/_buttons.scss */
+.mw-ui-button-group > *:first-child {
   -moz-border-radius-topleft: 3px;
   -webkit-border-top-left-radius: 3px;
   border-top-left-radius: 3px;
@@ -125,10 +113,8 @@ button.mw-ui-button.block, input[type="submit"].mw-ui-button.block, a.mw-ui-butt
   -webkit-border-bottom-left-radius: 3px;
   border-bottom-left-radius: 3px;
 }
-/* line 68, ../scss/components/default/_buttons.scss */
-.mw-ui-button-group button:last-child,
-.mw-ui-button-group input[type="submit"]:last-child,
-.mw-ui-button-group a:last-child {
+/* line 57, ../scss/components/default/_buttons.scss */
+.mw-ui-button-group > *:last-child {
   -moz-border-radius-topright: 3px;
   -webkit-border-top-right-radius: 3px;
   border-top-right-radius: 3px;
@@ -142,22 +128,17 @@ button.mw-ui-button.block, input[type="submit"].mw-ui-button.block, a.mw-ui-butt
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-  font-size: 1em;
-  line-height: 1.4em;
   width: 290px;
 }
-/* line 18, ../scss/components/default/_forms.scss */
+/* line 17, ../scss/components/default/_forms.scss */
 .mw-ui-vform > div {
   display: block;
   margin: 0 0 15px 0;
   padding: 0;
   width: 100%;
 }
-/* line 27, ../scss/components/default/_forms.scss */
-.mw-ui-vform > div input,
-.mw-ui-vform > div label,
-.mw-ui-vform > div .mw-ui-button {
+/* line 26, ../scss/components/default/_forms.scss */
+.mw-ui-vform > div input, .mw-ui-vform > div label, .mw-ui-vform > div .mw-ui-button {
   display: block;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -165,27 +146,23 @@ button.mw-ui-button.block, input[type="submit"].mw-ui-button.block, a.mw-ui-butt
   margin: 0;
   width: 100%;
 }
-/* line 34, ../scss/components/default/_forms.scss */
+/* line 33, ../scss/components/default/_forms.scss */
 .mw-ui-vform > div input {
   outline: 0;
-  font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-  font-size: 1em;
-  line-height: 1.4em;
-  font-size: 1em;
   border-style: solid;
   border-width: 1px;
   border-color: #c9c9c9;
   color: #252525;
   padding: 0.35em 0 0.35em 0.5em;
 }
-/* line 15, ../scss/mixins/_forms.scss */
+/* line 12, ../scss/mixins/_forms.scss */
 .mw-ui-vform > div input:focus {
   -webkit-box-shadow: #4091ed 0px 0px 5px;
   -moz-box-shadow: #4091ed 0px 0px 5px;
   box-shadow: #4091ed 0px 0px 5px;
   border-color: #4091ed;
 }
-/* line 38, ../scss/components/default/_forms.scss */
+/* line 37, ../scss/components/default/_forms.scss */
 .mw-ui-vform > div label {
   font-size: 0.9em;
   color: #7d7d7d;
@@ -193,11 +170,11 @@ button.mw-ui-button.block, input[type="submit"].mw-ui-button.block, a.mw-ui-butt
   margin: 0 0 0.2em 0;
   padding: 0;
 }
-/* line 34, ../scss/mixins/_forms.scss */
+/* line 31, ../scss/mixins/_forms.scss */
 .mw-ui-vform > div label * {
   font-weight: normal;
 }
-/* line 45, ../scss/components/default/_forms.scss */
+/* line 44, ../scss/components/default/_forms.scss */
 .mw-ui-vform > div label.mw-ui-checkbox-label, .mw-ui-vform > div label.mw-ui-radio-label {
   margin-bottom: 0.5em;
   cursor: pointer;
@@ -205,7 +182,7 @@ button.mw-ui-button.block, input[type="submit"].mw-ui-button.block, a.mw-ui-butt
   line-height: normal;
   font-weight: normal;
 }
-/* line 50, ../scss/mixins/_forms.scss */
+/* line 47, ../scss/mixins/_forms.scss */
 .mw-ui-vform > div label.mw-ui-checkbox-label > input[type="checkbox"], .mw-ui-vform > div label.mw-ui-checkbox-label > input[type="radio"], .mw-ui-vform > div label.mw-ui-radio-label > input[type="checkbox"], .mw-ui-vform > div label.mw-ui-radio-label > input[type="radio"] {
   width: auto;
   height: auto;
@@ -216,9 +193,8 @@ button.mw-ui-button.block, input[type="submit"].mw-ui-button.block, a.mw-ui-butt
   border-color: #c9c9c9;
   cursor: pointer;
 }
-/* line 52, ../scss/components/default/_forms.scss */
-.mw-ui-vform > div input[type="checkbox"],
-.mw-ui-vform > div input[type="radio"] {
+/* line 51, ../scss/components/default/_forms.scss */
+.mw-ui-vform > div input[type="checkbox"], .mw-ui-vform > div input[type="radio"] {
   display: inline;
   -webkit-box-sizing: content-box;
   -moz-box-sizing: content-box;
@@ -226,20 +202,16 @@ button.mw-ui-button.block, input[type="submit"].mw-ui-button.block, a.mw-ui-butt
   width: auto;
 }
 
-/* line 67, ../scss/components/default/_forms.scss */
+/* line 66, ../scss/components/default/_forms.scss */
 .mw-ui-input {
   outline: 0;
-  font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-  font-size: 1em;
-  line-height: 1.4em;
-  font-size: 1em;
   border-style: solid;
   border-width: 1px;
   border-color: #c9c9c9;
   color: #252525;
   padding: 0.35em 0 0.35em 0.5em;
 }
-/* line 15, ../scss/mixins/_forms.scss */
+/* line 12, ../scss/mixins/_forms.scss */
 .mw-ui-input:focus {
   -webkit-box-shadow: #4091ed 0px 0px 5px;
   -moz-box-shadow: #4091ed 0px 0px 5px;
@@ -247,17 +219,17 @@ button.mw-ui-button.block, input[type="submit"].mw-ui-button.block, a.mw-ui-butt
   border-color: #4091ed;
 }
 
-/* line 72, ../scss/components/default/_forms.scss */
-.mw-ui-block-label, .mw-ui-formlist div label {
+/* line 71, ../scss/components/default/_forms.scss */
+.mw-ui-block-label, .mw-ui-vform > div label {
   font-size: 0.9em;
   color: #7d7d7d;
 }
-/* line 34, ../scss/mixins/_forms.scss */
-.mw-ui-block-label *, .mw-ui-formlist div label * {
+/* line 31, ../scss/mixins/_forms.scss */
+.mw-ui-block-label *, .mw-ui-vform > div label * {
   font-weight: normal;
 }
 
-/* line 81, ../scss/components/default/_forms.scss */
+/* line 80, ../scss/components/default/_forms.scss */
 .mw-ui-checkbox-label, .mw-ui-radio-label {
   margin-bottom: 0.5em;
   cursor: pointer;
@@ -265,7 +237,7 @@ button.mw-ui-button.block, input[type="submit"].mw-ui-button.block, a.mw-ui-butt
   line-height: normal;
   font-weight: normal;
 }
-/* line 50, ../scss/mixins/_forms.scss */
+/* line 47, ../scss/mixins/_forms.scss */
 .mw-ui-checkbox-label > input[type="checkbox"], .mw-ui-checkbox-label > input[type="radio"], .mw-ui-radio-label > input[type="checkbox"], .mw-ui-radio-label > input[type="radio"] {
   width: auto;
   height: auto;
