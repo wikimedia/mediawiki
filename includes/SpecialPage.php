@@ -1270,9 +1270,9 @@ abstract class RedirectSpecialArticle extends RedirectSpecialPage {
 			'action',
 			'redirect', 'rdfrom',
 			# Options for preloaded edits
-			'preload', 'editintro', 'preloadtitle', 'summary',
+			'preload', 'editintro', 'preloadtitle', 'summary', 'nosummary',
 			# Options for overriding user settings
-			'preview', 'internaledit', 'externaledit', 'mode',
+			'preview', 'internaledit', 'externaledit', 'mode', 'minor', 'watchthis',
 			# Options for history/diffs
 			'section', 'oldid', 'diff', 'dir',
 			'limit', 'offset', 'feed',
