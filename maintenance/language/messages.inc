@@ -947,15 +947,6 @@ $wgMessageStructure = array(
 	'opensearch' => array(
 		'opensearch-desc',
 	),
-	'quickbar' => array(
-		'qbsettings',
-		'qbsettings-none',
-		'qbsettings-fixedleft',
-		'qbsettings-fixedright',
-		'qbsettings-floatingleft',
-		'qbsettings-floatingright',
-		'qbsettings-directionality',
-	),
 	'preferences' => array(
 		'preferences',
 		'preferences-summary',
@@ -3878,7 +3869,6 @@ XHTML id names.",
 	'diffs'               => 'Diffs',
 	'search'              => 'Search results',
 	'opensearch'          => 'OpenSearch description',
-	'quickbar'            => 'Quickbar',
 	'preferences'         => 'Preferences page',
 	'preferences-email'   => 'User preference: email validation using jQuery',
 	'userrights'          => 'User rights',
