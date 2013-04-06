@@ -390,3 +390,10 @@
   font-size: 1em;
   line-height: 1.4em;
 }
+
+/* line 3, sourcefiles/scss/components/vector/_containers.scss */
+.mw-ui-container {
+  font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  font-size: 1em;
+  line-height: 1.4em;
+}
