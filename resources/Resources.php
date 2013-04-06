@@ -944,6 +944,17 @@ return array(
 		),
 		'position' => 'top',
 	),
+	'mediawiki.special.createaccount.vform' => array(
+		'styles' => array(
+			'resources/mediawiki.special/mediawiki.special.logincreate.vform.css',
+			'resources/mediawiki.special/mediawiki.special.createaccount.vform.css',
+		),
+		'position' => 'top',
+	),
+	'mediawiki.special.createaccount.vform.js' => array(
+		'scripts' => 'resources/mediawiki.special/mediawiki.special.createaccount.vform.js',
+		'position' => 'top',
+	),
 	'mediawiki.special.javaScriptTest' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.javaScriptTest.js',
 		'messages' => array_merge( Skin::getSkinNameMessages(), array(
@@ -952,7 +963,6 @@ return array(
 		) ),
 		'dependencies' => array( 'jquery.qunit' ),
 		'position' => 'top',
-		'targets' => array( 'desktop', 'mobile' ),
 	),
 
 	/* MediaWiki Tests */
@@ -967,7 +977,6 @@ return array(
 			'mediawiki.page.ready',
 		),
 		'position' => 'top',
-		'targets' => array( 'desktop', 'mobile' ),
 	),
 
 	/* MediaWiki Legacy */
