@@ -945,6 +945,7 @@ abstract class Installer {
 
 	/**
 	 * Environment check for setting the preferred PHP file extension.
+	 * @return bool
 	 */
 	protected function envCheckExtension() {
 		// @todo FIXME: Detect this properly
@@ -958,7 +959,7 @@ abstract class Installer {
 	}
 
 	/**
-	 * TODO: document
+	 * Environment check for preferred locale in shell
 	 * @return bool
 	 */
 	protected function envCheckShellLocale() {
@@ -1032,7 +1033,7 @@ abstract class Installer {
 	}
 
 	/**
-	 * TODO: document
+	 * Environment check for the permissions of the uploads directory
 	 * @return bool
 	 */
 	protected function envCheckUploadsDirectory() {
