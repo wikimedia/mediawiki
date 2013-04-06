@@ -1061,7 +1061,12 @@ In user preferences.
 'userlogin-yourpassword' => 'In new vertical user login & create account forms, label for password field.
 {{Identical|Password}}',
 'userlogin-yourpassword-ph' => 'Placeholder text in new userlogin form for password field.',
+'createacct-helpusername-url' => 'The URL of a page providing username guidance for the wiki.',
+'createacct-helpusername-link' => 'Message in new create account form providing guidance for username.',
+'createacct-yourpassword-ph' => 'Placeholder text in new create account form for password field.',
 'yourpasswordagain' => 'In user preferences',
+'createacct-yourpasswordagain' => 'In new create account form, label for field to re-enter password',
+'createacct-yourpasswordagain-ph' => 'Placeholder text in new create account form for re-enter password field.',
 'remembermypassword' => 'A check box in [[Special:UserLogin]]
 
 {{Identical|Remember my login on this computer}}',
@@ -1129,8 +1134,28 @@ Wikitext linking to login help.
 
 See also:
 * {{msg-mw|Helplogin-url}}',
+'createacct-join' => 'Subheading of vertical-layout create account form encouraging user to join the wiki.',
+'createacct-emailrequired'  => 'Label in vertical-layout create account form for email field when it is required.',
+'createacct-emailoptional' => 'Label in vertical-layout create account form for email field when it is optional.',
+'createacct-email-ph'  => 'Placeholder in vertical-layout create account form for email field.',
 'createaccountmail' => 'Button text for creating a new account and sending the new password to the specified e-mail address directly, as used on [[Special:UserLogin/signup]] if creating accounts by e-mail is allowed.',
+'createacct-realname' => 'In vertical-layout create account form, label for field to enter optional real name.',
 'createaccountreason' => '{{Identical|Reason}}',
+'createacct-reason' => 'In vertical-layout create account form, label for field to enter reason to create an account when already logged-in.',
+'createacct-captcha' => 'Label in vertical-layout create account form for CAPTCHA input field when repositioned by JavaScript.',
+'createacct-captcha-help-url' => 'The URL of a page providing CAPTCHA assistance for the wiki.',
+'createacct-imgcaptcha-help' => 'Help text in vertical-layout create account form for image CAPTCHA input field when repositioned by JavaScript.',
+'createacct-imgcaptcha-ph' => 'Placehodler text in vertical-layout create account form for image CAPTCHA input field when repositioned by JavaScript.',
+'createacct-benefit-heading' => 'In vertical-layout create account form, the heading for the section describing the benefits of creating an account.',
+'createacct-benefit-icon1' => 'In vertical-layout create account form, the CSS style for the div next to the first benefit. If you replace this you will need probably need to adjust CSS.',
+'createacct-benefit-head1' => 'In vertical-layout create account form, the text in the heading for the first benefit. Do not edit the magic word; if you replace it you will probably need to adjust CSS.',
+'createacct-benefit-body1' => 'In vertical-layout create account form, the text for the first benefit.',
+'createacct-benefit-icon2' => 'In vertical-layout create account form, the CSS style for the div next to the second benefit. If you replace this you will need probably need to adjust CSS.',
+'createacct-benefit-head2' => 'In vertical-layout create account form, the text in the heading for the second benefit. Do not edit the magic word; if you replace it you will probably need to adjust CSS.',
+'createacct-benefit-body2' => 'In vertical-layout create account form, the text for the second benefit.',
+'createacct-benefit-icon3' => 'In vertical-layout create account form, the CSS style for the div next to the third benefit. If you replace this you will need probably need to adjust CSS.',
+'createacct-benefit-head3' => 'In vertical-layout create account form, the text in the heading for the third benefit. Do not edit the magic word; if you replace it you will probably need to adjust CSS.',
+'createacct-benefit-body3' => 'In vertical-layout create account form, the text for the third benefit.',
 'badretype' => 'Used as error message when the new password and its retype do not match.',
 'userexists' => 'Used as error message in creating a user account.',
 'loginerror' => 'Used as title of error message.
@@ -1180,7 +1205,7 @@ $1 is the minimum number of characters in the password.',
 
 Parameters:
 * $1 is a user name. This parameter can be used with GENDER.',
-'noemailcreate' => 'Used as error message in [[Special:UserLogin]].',
+'noemailcreate' => 'Used as error message when one user creates an account for another and there is no email.',
 'passwordsent' => '* $1 - username',
 'blocked-mailpassword' => 'Used as error message in password recovery.',
 'eauthentsent' => "This message appears after entering an e-mail address in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}, then clicking on '{{int:saveprefs}}'.",
