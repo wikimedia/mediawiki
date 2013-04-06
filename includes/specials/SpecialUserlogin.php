@@ -1048,18 +1048,18 @@ class LoginForm extends SpecialPage {
 		}
 	}
 
-	/**
+	/*
 	 * Whether to show new vertically laid out login form.
 	 * ?useNew=1 forces new style, ?useNew=0 forces old style,
 	 * otherwise consult $wgUseVFormUserLogin.
-	 * @var WebRequest
+	 * @param WebRequest $request
 	 * @return Boolean
 	 */
 	private function shouldShowVForm( $request ) {
-		global $wgUseVFormUserLogin;
+		global $wgUseVFormCreateAccount, $wgUseVFormUserLogin;
 
 		if ( $this->mType == 'signup' ) {
-			return false;
+			return $request->getBool( 'useNew', $wgUseVFormCreateAccount );
 		} else {
 			return $request->getBool( 'useNew', $wgUseVFormUserLogin );
 		}
@@ -1103,16 +1103,26 @@ class LoginForm extends SpecialPage {
 		}
 
 		if ( $this->mType == 'signup' ) {
-			$template = new UsercreateTemplate();
+			$out->addModules( 'mediawiki.special.userlogin.signup' );
+			if (  $this->mShowVForm ) {
+				$template = new UsercreateTemplateVForm();
+				$out->addModuleStyles( array(
+					'mediawiki.ui',
+					'mediawiki.special.logincreate.vform'
+				) );
+				$out->addModules( 'mediawiki.special.createaccount.vform' );
+			} else {
+				$template = new UsercreateTemplate();
+			}
 			$q = 'action=submitlogin&type=signup';
 			$linkq = 'type=login';
 			$linkmsg = 'gotaccount';
-			$out->addModules( 'mediawiki.special.userlogin.signup' );
 		} else {
 			if ( $this->mShowVForm ) {
 				$template = new UserloginTemplateVForm();
 				$out->addModuleStyles( array(
 					'mediawiki.ui',
+					'mediawiki.special.logincreate.vform',
 					'mediawiki.special.userlogin.vform'
 				) );
 			} else {
@@ -1147,7 +1157,7 @@ class LoginForm extends SpecialPage {
 
 			} else {
 				// Supply hyperlink, login template creates the button.
-				// (The template 'link' key is obsolete in the new design.)
+				// (The template 'link' key is obsolete in the VForm design.)
 				$template->set( 'createOrLoginHref', $titleObj->getLocalURL( $linkq ) );
 				$template->set( 'link', '' );
 			}
