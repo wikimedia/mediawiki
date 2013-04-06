@@ -944,6 +944,22 @@ return array(
 		),
 		'position' => 'top',
 	),
+	'mediawiki.special.createaccount.vform' => array(
+		'styles' => array(
+			'resources/mediawiki.special/mediawiki.special.vforms.css',
+			'resources/mediawiki.special/mediawiki.special.createAccount.vform.css',
+		),
+		'position' => 'top',
+	),
+	'mediawiki.special.createaccount.vform.js' => array(
+		'scripts' => 'resources/mediawiki.special/mediawiki.special.createAccount.vform.js',
+		'messages' => array(
+			'createacct-captcha',
+			'createacct-imgcaptcha-ph'
+		),
+		'dependencies' => 'mediawiki.jqueryMsg',
+		'position' => 'top',
+	),
 	'mediawiki.special.javaScriptTest' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.javaScriptTest.js',
 		'messages' => array_merge( Skin::getSkinNameMessages(), array(
