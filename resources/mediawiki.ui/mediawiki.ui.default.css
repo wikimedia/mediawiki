@@ -128,23 +128,22 @@
   border-bottom-right-radius: 3px;
 }
 
-/* line 12, sourcefiles/scss/components/default/_forms.scss */
+/* line 14, sourcefiles/scss/components/default/_forms.scss */
 .mw-ui-vform {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   width: 290px;
 }
-/* line 17, sourcefiles/scss/components/default/_forms.scss */
+/* line 19, sourcefiles/scss/components/default/_forms.scss */
 .mw-ui-vform > div {
   display: block;
   margin: 0 0 15px 0;
   padding: 0;
   width: 100%;
 }
-/* line 26, sourcefiles/scss/components/default/_forms.scss */
+/* line 27, sourcefiles/scss/components/default/_forms.scss */
 .mw-ui-vform > div input,
-.mw-ui-vform > div label,
 .mw-ui-vform > div .mw-ui-button {
   display: block;
   -webkit-box-sizing: border-box;
@@ -153,7 +152,7 @@
   margin: 0;
   width: 100%;
 }
-/* line 33, sourcefiles/scss/components/default/_forms.scss */
+/* line 34, sourcefiles/scss/components/default/_forms.scss */
 .mw-ui-vform > div input {
   outline: 0;
   border-style: solid;
@@ -167,8 +166,12 @@
   box-shadow: #4091ed 0px 0px 5px;
   border-color: #4091ed;
 }
-/* line 37, sourcefiles/scss/components/default/_forms.scss */
+/* line 38, sourcefiles/scss/components/default/_forms.scss */
 .mw-ui-vform > div label {
+  display: block;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
   font-size: 0.9em;
   color: #7d7d7d;
   width: auto;
@@ -179,26 +182,7 @@
 .mw-ui-vform > div label * {
   font-weight: normal;
 }
-/* line 44, sourcefiles/scss/components/default/_forms.scss */
-.mw-ui-vform > div label.mw-ui-checkbox-label, .mw-ui-vform > div label.mw-ui-radio-label {
-  margin-bottom: 0.5em;
-  cursor: pointer;
-  vertical-align: bottom;
-  line-height: normal;
-  font-weight: normal;
-}
-/* line 50, sourcefiles/scss/mixins/_forms.scss */
-.mw-ui-vform > div label.mw-ui-checkbox-label > input[type="checkbox"], .mw-ui-vform > div label.mw-ui-checkbox-label > input[type="radio"], .mw-ui-vform > div label.mw-ui-radio-label > input[type="checkbox"], .mw-ui-vform > div label.mw-ui-radio-label > input[type="radio"] {
-  width: auto;
-  height: auto;
-  margin: 0 0.1em 0em 0;
-  padding: 0;
-  border-style: solid;
-  border-width: 1px;
-  border-color: #c9c9c9;
-  cursor: pointer;
-}
-/* line 51, sourcefiles/scss/components/default/_forms.scss */
+/* line 49, sourcefiles/scss/components/default/_forms.scss */
 .mw-ui-vform > div input[type="checkbox"],
 .mw-ui-vform > div input[type="radio"] {
   display: inline;
@@ -208,7 +192,7 @@
   width: auto;
 }
 
-/* line 66, sourcefiles/scss/components/default/_forms.scss */
+/* line 65, sourcefiles/scss/components/default/_forms.scss */
 .mw-ui-input {
   outline: 0;
   border-style: solid;
@@ -223,17 +207,17 @@
   border-color: #4091ed;
 }
 
-/* line 71, sourcefiles/scss/components/default/_forms.scss */
-.mw-ui-block-label, .mw-ui-formlist div label {
+/* line 72, sourcefiles/scss/components/default/_forms.scss */
+.mw-ui-label {
   font-size: 0.9em;
   color: #7d7d7d;
 }
 /* line 34, sourcefiles/scss/mixins/_forms.scss */
-.mw-ui-block-label *, .mw-ui-formlist div label * {
+.mw-ui-label * {
   font-weight: normal;
 }
 
-/* line 80, sourcefiles/scss/components/default/_forms.scss */
+/* line 81, sourcefiles/scss/components/default/_forms.scss */
 .mw-ui-checkbox-label, .mw-ui-radio-label {
   margin-bottom: 0.5em;
   cursor: pointer;

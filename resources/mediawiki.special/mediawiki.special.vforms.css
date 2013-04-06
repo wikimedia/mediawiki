@@ -1,6 +1,6 @@
 /*
- * When inside the VForm style, disable the border that Vector puts on the div
- * surrounding the login/create account form.
+ * When inside the VForm style, disable the border that Vector and other skins
+ * put on the div surrounding the login/create account form.
  * Also disable the margin and padding that Vector puts around the form.
  */
 .mw-ui-container #userloginForm,
@@ -12,7 +12,7 @@
 
 /* Reposition and resize language links, which appear on a per-wiki basis */
 .mw-ui-container #languagelinks {
-	margin-bottom: 3em;
+	margin-bottom: 2em;
 	font-size: 0.8em;
 }
 
@@ -34,4 +34,14 @@
 	border: 1px solid #fac5c5;
 	background-color: #fae3e3;
 	text-shadow: 0 1px #fae3e3;
+	word-wrap: break-word;
+}
+
+/*
+ * Override the right margin of the form to give space in case a benefits
+ * column appears to the side.
+ *
+ */
+.mw-ui-container #userloginForm {
+	margin-right: 100px;
 }
