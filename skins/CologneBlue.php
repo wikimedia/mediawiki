@@ -39,7 +39,7 @@ class SkinCologneBlue extends SkinTemplate {
 	 * @param $out OutputPage
 	 */
 	function setupSkinUserCss( OutputPage $out ) {
-		$out->addModuleStyles( 'mediawiki.legacy.shared' );
+		parent::setupSkinUserCss( $out );
 		$out->addModuleStyles( 'mediawiki.legacy.oldshared' );
 		$out->addModuleStyles( 'skins.cologneblue' );
 	}
@@ -316,7 +316,8 @@ class CologneBlueTemplate extends BaseTemplate {
 		ob_start();
 ?>
 	</div>
-	<div id="footer" role="contentinfo">
+	<div id="footer">
+		<div id="footer-navigation" role="navigation">
 <?php
 		// Page-related links
 		echo $this->bottomLinks();
@@ -328,8 +329,10 @@ class CologneBlueTemplate extends BaseTemplate {
 			$this->getSkin()->aboutLink(),
 			$this->searchForm( 'footer' )
 		) );
-		echo "\n<br />";
-
+?>
+		</div>
+		<div id="footer-info" role="contentinfo">
+<?php
 		// Standard footer info
 		$footlinks = $this->getFooterLinks();
 		if ( $footlinks['info'] ) {
@@ -338,6 +341,7 @@ class CologneBlueTemplate extends BaseTemplate {
 			}
 		}
 ?>
+		</div>
 	</div>
 </div>
 <div id="mw-navigation">
