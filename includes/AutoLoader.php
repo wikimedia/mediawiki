@@ -1007,9 +1007,10 @@ $wgAutoloadLocalClasses = array(
 
 	# includes/templates
 	'UserloginTemplate' => 'includes/templates/Userlogin.php',
-	'VFormTemplate' => 'includes/templates/UserloginVForm.php',
+	'VFormTemplate' => 'includes/VFormTemplate.php',
 	'UserloginTemplateVForm' => 'includes/templates/UserloginVForm.php',
 	'UsercreateTemplate' => 'includes/templates/Usercreate.php',
+	'UsercreateTemplateVForm' => 'includes/templates/UsercreateVForm.php',
 
 	# includes/upload
 	'UploadBase' => 'includes/upload/UploadBase.php',

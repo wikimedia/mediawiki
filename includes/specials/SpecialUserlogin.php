@@ -267,22 +267,10 @@ class LoginForm extends SpecialPage {
 
 		$u = $status->getValue();
 
-		# Only save preferences if the user is not creating an account for someone else.
-		if ( $this->getUser()->isAnon() ) {
-			# If we showed up language selection links, and one was in use, be
-			# smart (and sensible) and save that language as the user's preference
-			if( $wgLoginLanguageSelector && $this->mLanguage ) {
-				$u->setOption( 'language', $this->mLanguage );
-			} else {
-
-				# Otherwise the user's language preference defaults to $wgContLang,
-				# but it may be better to set it to their preferred $wgContLang variant,
-				# based on browser preferences or URL parameters.
-				$u->setOption( 'language', $wgContLang->getPreferredVariant() );
-			}
-			if ( $wgContLang->hasVariants() ) {
-				$u->setOption( 'variant', $wgContLang->getPreferredVariant() );
-			}
+		# If we showed up language selection links, and one was in use, be
+		# smart (and sensible) and save that language as the user's preference
+		if( $wgLoginLanguageSelector && $this->mLanguage ) {
+			$u->setOption( 'language', $this->mLanguage );
 		}
 
 		$out = $this->getOutput();
@@ -1052,14 +1040,13 @@ class LoginForm extends SpecialPage {
 	 * Whether to show new vertically laid out login form.
 	 * ?useNew=1 forces new style, ?useNew=0 forces old style,
 	 * otherwise consult $wgUseVFormUserLogin.
-	 * @var WebRequest
 	 * @return Boolean
 	 */
 	private function shouldShowVForm( $request ) {
-		global $wgUseVFormUserLogin;
+		global $wgUseVFormCreateAccount, $wgUseVFormUserLogin;
 
 		if ( $this->mType == 'signup' ) {
-			return false;
+			return $request->getBool( 'useNew', $wgUseVFormCreateAccount );
 		} else {
 			return $request->getBool( 'useNew', $wgUseVFormUserLogin );
 		}
@@ -1103,16 +1090,26 @@ class LoginForm extends SpecialPage {
 		}
 
 		if ( $this->mType == 'signup' ) {
-			$template = new UsercreateTemplate();
+			$out->addModules( 'mediawiki.special.userlogin.signup' );
+			if (  $this->mShowVForm ) {
+				$template = new UsercreateTemplateVForm();
+				$out->addModuleStyles( array(
+					'mediawiki.ui',
+					'mediawiki.special.logincreate.vform'
+				) );
+				$out->addModules( 'mediawiki.special.createaccount.vform' );
+			} else {
+				$template = new UsercreateTemplate();
+			}
 			$q = 'action=submitlogin&type=signup';
 			$linkq = 'type=login';
 			$linkmsg = 'gotaccount';
-			$out->addModules( 'mediawiki.special.userlogin.signup' );
 		} else {
 			if ( $this->mShowVForm ) {
 				$template = new UserloginTemplateVForm();
 				$out->addModuleStyles( array(
 					'mediawiki.ui',
+					'mediawiki.special.logincreate.vform',
 					'mediawiki.special.userlogin.vform'
 				) );
 			} else {

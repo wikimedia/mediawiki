@@ -20,59 +20,6 @@
  */
 
 /**
- * Parent class for the vertically-stacked template design that provides
- * helper methods for some VForm-specific layouts.
- * Inherit from BaseTemplate instead of QuickTemplate for its proper
- * context-based msg() implementation.
- */
-abstract class VFormTemplate extends BaseTemplate {
-
-	/**
-	 * Get the Skin object related to this object, so that BaseTemplate msg
-	 * methods work.
-	 *
-	 * @return Skin object
-	 */
-	public function getSkin() {
-		global $wgOut;
-		return $wgOut->getSkin();
-	}
-
-	/**
-	 * Convenience function to build a VForm HTML checkbox nested inside a
-	 * label.  This arguably belongs in class Html, but then VForm clients
-	 * would have to apply an VForm class to the label as well as attrs for the
-	 * checkbox.
-	 *
-	 * @param $label string text for label
-	 * @param $name string form element name
-	 * @param $id
-	 * @param $checked bool (default: false)
-	 * @param $attribs array additional attributes for the input checkbox
-	 *
-	 * @return string HTML
-	 * @see Xml:checkLabel
-	 */
-	public function labelledCheck( $label, $name, $id, $checked = false, $attribs = array() ) {
-		return Html::rawElement(
-				'label',
-				array(
-					'for' => $id,
-					'class' => 'mw-ui-checkbox-label'
-				),
-				Xml::check(
-					$id,
-					$checked,
-					array( 'id' => $id ) + $attribs
-				) .
-				// Html:rawElement doesn't escape contents.
-				htmlspecialchars( $label )
-			);
-	}
-
-}
-
-/**
  * Html form for user login with new VForm appearance.
  */
 

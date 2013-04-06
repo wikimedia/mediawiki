@@ -1,8 +1,4 @@
-/**
- * Provide Agora appearance for mw-ui-* classes when using the Vector skin.
- * Compass builds these Agora styles from source Sass files in
- * extensions/Agora/modules/sccs
- */
+/* Agora styles */
 /* _effects.scss */
 /* Mixins for visual effects in CSS3 */
 /* line 7, ../scss/components/_utilities.scss */
@@ -26,8 +22,8 @@
   margin-right: auto;
 }
 
-/* line 10, ../scss/components/default/_buttons.scss */
-button.mw-ui-button, input[type="submit"].mw-ui-button, a.mw-ui-button {
+/* line 4, ../scss/components/default/_buttons.scss */
+.mw-ui-button {
   display: -moz-inline-stack;
   display: inline-block;
   vertical-align: middle;
@@ -53,19 +49,16 @@ button.mw-ui-button, input[type="submit"].mw-ui-button, a.mw-ui-button {
   -ms-border-radius: 3px;
   -o-border-radius: 3px;
   border-radius: 3px;
-  line-height: 1.4em;
   vertical-align: middle;
   text-align: center;
   text-decoration: none;
-  font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-  font-size: 1em;
   font-weight: bold;
   cursor: pointer;
 }
 /* line 38, ../scss/mixins/_effects.scss */
-button.mw-ui-button:hover, button.mw-ui-button.hover, input[type="submit"].mw-ui-button:hover, input[type="submit"].mw-ui-button.hover, a.mw-ui-button:hover, a.mw-ui-button.hover {
-  background-color: gainsboro;
-  *background-color: gainsboro;
+.mw-ui-button:hover, .mw-ui-button.hover {
+  background-color: #dcdcdc;
+  *background-color: #dcdcdc;
   *zoom: 1;
   filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FFE9E9E9', endColorstr='#FFDCDCDC');
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #e9e9e9), color-stop(100%, #dcdcdc));
@@ -76,36 +69,34 @@ button.mw-ui-button:hover, button.mw-ui-button.hover, input[type="submit"].mw-ui
   text-decoration: none;
 }
 /* line 44, ../scss/mixins/_effects.scss */
-button.mw-ui-button:active, button.mw-ui-button.active, input[type="submit"].mw-ui-button:active, input[type="submit"].mw-ui-button.active, a.mw-ui-button:active, a.mw-ui-button.active {
+.mw-ui-button:active, .mw-ui-button.active {
   background-image: none;
   background-color: #c1c1c1;
   text-shadow: none;
 }
 /* line 54, ../scss/mixins/_effects.scss */
-button.mw-ui-button:disabled, button.mw-ui-button.disabled, input[type="submit"].mw-ui-button:disabled, input[type="submit"].mw-ui-button.disabled, a.mw-ui-button:disabled, a.mw-ui-button.disabled {
+.mw-ui-button:disabled, .mw-ui-button.disabled {
   background-image: none;
   background-color: #c9c9c9;
   opacity: 0.5;
   text-shadow: none;
 }
-/* line 39, ../scss/components/default/_buttons.scss */
-button.mw-ui-button:disabled, button.mw-ui-button.disabled, input[type="submit"].mw-ui-button:disabled, input[type="submit"].mw-ui-button.disabled, a.mw-ui-button:disabled, a.mw-ui-button.disabled {
+/* line 30, ../scss/components/default/_buttons.scss */
+.mw-ui-button:disabled, .mw-ui-button.disabled {
   cursor: default;
 }
-/* line 45, ../scss/components/default/_buttons.scss */
-button.mw-ui-button.big, input[type="submit"].mw-ui-button.big, a.mw-ui-button.big {
+/* line 36, ../scss/components/default/_buttons.scss */
+.mw-ui-button.big {
   font-size: 1.3em;
 }
-/* line 50, ../scss/components/default/_buttons.scss */
-button.mw-ui-button.block, input[type="submit"].mw-ui-button.block, a.mw-ui-button.block {
+/* line 41, ../scss/components/default/_buttons.scss */
+.mw-ui-button.block {
   display: block;
   width: 100%;
 }
 
-/* line 59, ../scss/components/default/_buttons.scss */
-.mw-ui-button-group button,
-.mw-ui-button-group input[type="submit"],
-.mw-ui-button-group a {
+/* line 48, ../scss/components/default/_buttons.scss */
+.mw-ui-button-group > * {
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   -ms-border-radius: 0;
@@ -113,10 +104,8 @@ button.mw-ui-button.block, input[type="submit"].mw-ui-button.block, a.mw-ui-butt
   border-radius: 0;
   float: left;
 }
-/* line 63, ../scss/components/default/_buttons.scss */
-.mw-ui-button-group button:first-child,
-.mw-ui-button-group input[type="submit"]:first-child,
-.mw-ui-button-group a:first-child {
+/* line 52, ../scss/components/default/_buttons.scss */
+.mw-ui-button-group > *:first-child {
   -moz-border-radius-topleft: 3px;
   -webkit-border-top-left-radius: 3px;
   border-top-left-radius: 3px;
@@ -124,10 +113,8 @@ button.mw-ui-button.block, input[type="submit"].mw-ui-button.block, a.mw-ui-butt
   -webkit-border-bottom-left-radius: 3px;
   border-bottom-left-radius: 3px;
 }
-/* line 68, ../scss/components/default/_buttons.scss */
-.mw-ui-button-group button:last-child,
-.mw-ui-button-group input[type="submit"]:last-child,
-.mw-ui-button-group a:last-child {
+/* line 57, ../scss/components/default/_buttons.scss */
+.mw-ui-button-group > *:last-child {
   -moz-border-radius-topright: 3px;
   -webkit-border-top-right-radius: 3px;
   border-top-right-radius: 3px;
@@ -136,8 +123,14 @@ button.mw-ui-button.block, input[type="submit"].mw-ui-button.block, a.mw-ui-butt
   border-bottom-right-radius: 3px;
 }
 
+/* line 3, ../scss/components/vector/_buttons.scss */
+.mw-ui-button {
+  font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  font-size: 1em;
+  line-height: 1.4em;
+}
 /* line 7, ../scss/components/vector/_buttons.scss */
-button.mw-ui-button.blue, button.mw-ui-button.primary, input[type="submit"].mw-ui-button.blue, input[type="submit"].mw-ui-button.primary, a.mw-ui-button.blue, a.mw-ui-button.primary {
+.mw-ui-button.blue, .mw-ui-button.primary {
   background-color: #3366bb;
   *background-color: #3366bb;
   *zoom: 1;
@@ -152,7 +145,7 @@ button.mw-ui-button.blue, button.mw-ui-button.primary, input[type="submit"].mw-u
   border: 1px solid #3162b3;
 }
 /* line 38, ../scss/mixins/_effects.scss */
-button.mw-ui-button.blue:hover, button.mw-ui-button.blue.hover, button.mw-ui-button.primary:hover, button.mw-ui-button.primary.hover, input[type="submit"].mw-ui-button.blue:hover, input[type="submit"].mw-ui-button.blue.hover, input[type="submit"].mw-ui-button.primary:hover, input[type="submit"].mw-ui-button.primary.hover, a.mw-ui-button.blue:hover, a.mw-ui-button.blue.hover, a.mw-ui-button.primary:hover, a.mw-ui-button.primary.hover {
+.mw-ui-button.blue:hover, .mw-ui-button.blue.hover, .mw-ui-button.primary:hover, .mw-ui-button.primary.hover {
   background-color: #4779cd;
   *background-color: #4779cd;
   *zoom: 1;
@@ -165,20 +158,20 @@ button.mw-ui-button.blue:hover, button.mw-ui-button.blue.hover, button.mw-ui-but
   text-decoration: none;
 }
 /* line 44, ../scss/mixins/_effects.scss */
-button.mw-ui-button.blue:active, button.mw-ui-button.blue.active, button.mw-ui-button.primary:active, button.mw-ui-button.primary.active, input[type="submit"].mw-ui-button.blue:active, input[type="submit"].mw-ui-button.blue.active, input[type="submit"].mw-ui-button.primary:active, input[type="submit"].mw-ui-button.primary.active, a.mw-ui-button.blue:active, a.mw-ui-button.blue.active, a.mw-ui-button.primary:active, a.mw-ui-button.primary.active {
+.mw-ui-button.blue:active, .mw-ui-button.blue.active, .mw-ui-button.primary:active, .mw-ui-button.primary.active {
   background-image: none;
   background-color: #305faf;
   text-shadow: none;
 }
 /* line 54, ../scss/mixins/_effects.scss */
-button.mw-ui-button.blue:disabled, button.mw-ui-button.blue.disabled, button.mw-ui-button.primary:disabled, button.mw-ui-button.primary.disabled, input[type="submit"].mw-ui-button.blue:disabled, input[type="submit"].mw-ui-button.blue.disabled, input[type="submit"].mw-ui-button.primary:disabled, input[type="submit"].mw-ui-button.primary.disabled, a.mw-ui-button.blue:disabled, a.mw-ui-button.blue.disabled, a.mw-ui-button.primary:disabled, a.mw-ui-button.primary.disabled {
+.mw-ui-button.blue:disabled, .mw-ui-button.blue.disabled, .mw-ui-button.primary:disabled, .mw-ui-button.primary.disabled {
   background-image: none;
   background-color: #3366bb;
   opacity: 0.5;
   text-shadow: none;
 }
 /* line 12, ../scss/components/vector/_buttons.scss */
-button.mw-ui-button.green, button.mw-ui-button.constructive, input[type="submit"].mw-ui-button.green, input[type="submit"].mw-ui-button.constructive, a.mw-ui-button.green, a.mw-ui-button.constructive {
+.mw-ui-button.green, .mw-ui-button.constructive {
   background-color: #27aa65;
   *background-color: #27aa65;
   *zoom: 1;
@@ -193,7 +186,7 @@ button.mw-ui-button.green, button.mw-ui-button.constructive, input[type="submit"
   border: 1px solid #25a260;
 }
 /* line 38, ../scss/mixins/_effects.scss */
-button.mw-ui-button.green:hover, button.mw-ui-button.green.hover, button.mw-ui-button.constructive:hover, button.mw-ui-button.constructive.hover, input[type="submit"].mw-ui-button.green:hover, input[type="submit"].mw-ui-button.green.hover, input[type="submit"].mw-ui-button.constructive:hover, input[type="submit"].mw-ui-button.constructive.hover, a.mw-ui-button.green:hover, a.mw-ui-button.green.hover, a.mw-ui-button.constructive:hover, a.mw-ui-button.constructive.hover {
+.mw-ui-button.green:hover, .mw-ui-button.green.hover, .mw-ui-button.constructive:hover, .mw-ui-button.constructive.hover {
   background-color: #2ec977;
   *background-color: #2ec977;
   *zoom: 1;
@@ -206,20 +199,20 @@ button.mw-ui-button.green:hover, button.mw-ui-button.green.hover, button.mw-ui-b
   text-decoration: none;
 }
 /* line 44, ../scss/mixins/_effects.scss */
-button.mw-ui-button.green:active, button.mw-ui-button.green.active, button.mw-ui-button.constructive:active, button.mw-ui-button.constructive.active, input[type="submit"].mw-ui-button.green:active, input[type="submit"].mw-ui-button.green.active, input[type="submit"].mw-ui-button.constructive:active, input[type="submit"].mw-ui-button.constructive.active, a.mw-ui-button.green:active, a.mw-ui-button.green.active, a.mw-ui-button.constructive:active, a.mw-ui-button.constructive.active {
+.mw-ui-button.green:active, .mw-ui-button.green.active, .mw-ui-button.constructive:active, .mw-ui-button.constructive.active {
   background-image: none;
   background-color: #249e5e;
   text-shadow: none;
 }
 /* line 54, ../scss/mixins/_effects.scss */
-button.mw-ui-button.green:disabled, button.mw-ui-button.green.disabled, button.mw-ui-button.constructive:disabled, button.mw-ui-button.constructive.disabled, input[type="submit"].mw-ui-button.green:disabled, input[type="submit"].mw-ui-button.green.disabled, input[type="submit"].mw-ui-button.constructive:disabled, input[type="submit"].mw-ui-button.constructive.disabled, a.mw-ui-button.green:disabled, a.mw-ui-button.green.disabled, a.mw-ui-button.constructive:disabled, a.mw-ui-button.constructive.disabled {
+.mw-ui-button.green:disabled, .mw-ui-button.green.disabled, .mw-ui-button.constructive:disabled, .mw-ui-button.constructive.disabled {
   background-image: none;
   background-color: #27aa65;
   opacity: 0.5;
   text-shadow: none;
 }
 /* line 17, ../scss/components/vector/_buttons.scss */
-button.mw-ui-button.red, button.mw-ui-button.destructive, input[type="submit"].mw-ui-button.red, input[type="submit"].mw-ui-button.destructive, a.mw-ui-button.red, a.mw-ui-button.destructive {
+.mw-ui-button.red, .mw-ui-button.destructive {
   background-color: #cc0000;
   *background-color: #cc0000;
   *zoom: 1;
@@ -234,7 +227,7 @@ button.mw-ui-button.red, button.mw-ui-button.destructive, input[type="submit"].m
   border: 1px solid #c20000;
 }
 /* line 38, ../scss/mixins/_effects.scss */
-button.mw-ui-button.red:hover, button.mw-ui-button.red.hover, button.mw-ui-button.destructive:hover, button.mw-ui-button.destructive.hover, input[type="submit"].mw-ui-button.red:hover, input[type="submit"].mw-ui-button.red.hover, input[type="submit"].mw-ui-button.destructive:hover, input[type="submit"].mw-ui-button.destructive.hover, a.mw-ui-button.red:hover, a.mw-ui-button.red.hover, a.mw-ui-button.destructive:hover, a.mw-ui-button.destructive.hover {
+.mw-ui-button.red:hover, .mw-ui-button.red.hover, .mw-ui-button.destructive:hover, .mw-ui-button.destructive.hover {
   background-color: #f20000;
   *background-color: #f20000;
   *zoom: 1;
@@ -247,13 +240,13 @@ button.mw-ui-button.red:hover, button.mw-ui-button.red.hover, button.mw-ui-butto
   text-decoration: none;
 }
 /* line 44, ../scss/mixins/_effects.scss */
-button.mw-ui-button.red:active, button.mw-ui-button.red.active, button.mw-ui-button.destructive:active, button.mw-ui-button.destructive.active, input[type="submit"].mw-ui-button.red:active, input[type="submit"].mw-ui-button.red.active, input[type="submit"].mw-ui-button.destructive:active, input[type="submit"].mw-ui-button.destructive.active, a.mw-ui-button.red:active, a.mw-ui-button.red.active, a.mw-ui-button.destructive:active, a.mw-ui-button.destructive.active {
+.mw-ui-button.red:active, .mw-ui-button.red.active, .mw-ui-button.destructive:active, .mw-ui-button.destructive.active {
   background-image: none;
   background-color: #bd0000;
   text-shadow: none;
 }
 /* line 54, ../scss/mixins/_effects.scss */
-button.mw-ui-button.red:disabled, button.mw-ui-button.red.disabled, button.mw-ui-button.destructive:disabled, button.mw-ui-button.destructive.disabled, input[type="submit"].mw-ui-button.red:disabled, input[type="submit"].mw-ui-button.red.disabled, input[type="submit"].mw-ui-button.destructive:disabled, input[type="submit"].mw-ui-button.destructive.disabled, a.mw-ui-button.red:disabled, a.mw-ui-button.red.disabled, a.mw-ui-button.destructive:disabled, a.mw-ui-button.destructive.disabled {
+.mw-ui-button.red:disabled, .mw-ui-button.red.disabled, .mw-ui-button.destructive:disabled, .mw-ui-button.destructive.disabled {
   background-image: none;
   background-color: #cc0000;
   opacity: 0.5;
@@ -265,19 +258,16 @@ button.mw-ui-button.red:disabled, button.mw-ui-button.red.disabled, button.mw-ui
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-  font-size: 1em;
-  line-height: 1.4em;
   width: 290px;
 }
-/* line 18, ../scss/components/default/_forms.scss */
+/* line 17, ../scss/components/default/_forms.scss */
 .mw-ui-vform > div {
   display: block;
   margin: 0 0 15px 0;
   padding: 0;
   width: 100%;
 }
-/* line 27, ../scss/components/default/_forms.scss */
+/* line 26, ../scss/components/default/_forms.scss */
 .mw-ui-vform > div input,
 .mw-ui-vform > div label,
 .mw-ui-vform > div .mw-ui-button {
@@ -288,27 +278,23 @@ button.mw-ui-button.red:disabled, button.mw-ui-button.red.disabled, button.mw-ui
   margin: 0;
   width: 100%;
 }
-/* line 34, ../scss/components/default/_forms.scss */
+/* line 33, ../scss/components/default/_forms.scss */
 .mw-ui-vform > div input {
   outline: 0;
-  font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-  font-size: 1em;
-  line-height: 1.4em;
-  font-size: 1em;
   border-style: solid;
   border-width: 1px;
   border-color: #c9c9c9;
   color: #252525;
   padding: 0.35em 0 0.35em 0.5em;
 }
-/* line 15, ../scss/mixins/_forms.scss */
+/* line 12, ../scss/mixins/_forms.scss */
 .mw-ui-vform > div input:focus {
   -webkit-box-shadow: #4091ed 0px 0px 5px;
   -moz-box-shadow: #4091ed 0px 0px 5px;
   box-shadow: #4091ed 0px 0px 5px;
   border-color: #4091ed;
 }
-/* line 38, ../scss/components/default/_forms.scss */
+/* line 37, ../scss/components/default/_forms.scss */
 .mw-ui-vform > div label {
   font-size: 0.9em;
   color: #7d7d7d;
@@ -316,11 +302,11 @@ button.mw-ui-button.red:disabled, button.mw-ui-button.red.disabled, button.mw-ui
   margin: 0 0 0.2em 0;
   padding: 0;
 }
-/* line 34, ../scss/mixins/_forms.scss */
+/* line 31, ../scss/mixins/_forms.scss */
 .mw-ui-vform > div label * {
   font-weight: normal;
 }
-/* line 45, ../scss/components/default/_forms.scss */
+/* line 44, ../scss/components/default/_forms.scss */
 .mw-ui-vform > div label.mw-ui-checkbox-label, .mw-ui-vform > div label.mw-ui-radio-label {
   margin-bottom: 0.5em;
   cursor: pointer;
@@ -328,7 +314,7 @@ button.mw-ui-button.red:disabled, button.mw-ui-button.red.disabled, button.mw-ui
   line-height: normal;
   font-weight: normal;
 }
-/* line 50, ../scss/mixins/_forms.scss */
+/* line 47, ../scss/mixins/_forms.scss */
 .mw-ui-vform > div label.mw-ui-checkbox-label > input[type="checkbox"], .mw-ui-vform > div label.mw-ui-checkbox-label > input[type="radio"], .mw-ui-vform > div label.mw-ui-radio-label > input[type="checkbox"], .mw-ui-vform > div label.mw-ui-radio-label > input[type="radio"] {
   width: auto;
   height: auto;
@@ -339,7 +325,7 @@ button.mw-ui-button.red:disabled, button.mw-ui-button.red.disabled, button.mw-ui
   border-color: #c9c9c9;
   cursor: pointer;
 }
-/* line 52, ../scss/components/default/_forms.scss */
+/* line 51, ../scss/components/default/_forms.scss */
 .mw-ui-vform > div input[type="checkbox"],
 .mw-ui-vform > div input[type="radio"] {
   display: inline;
@@ -349,20 +335,16 @@ button.mw-ui-button.red:disabled, button.mw-ui-button.red.disabled, button.mw-ui
   width: auto;
 }
 
-/* line 67, ../scss/components/default/_forms.scss */
+/* line 66, ../scss/components/default/_forms.scss */
 .mw-ui-input {
   outline: 0;
-  font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-  font-size: 1em;
-  line-height: 1.4em;
-  font-size: 1em;
   border-style: solid;
   border-width: 1px;
   border-color: #c9c9c9;
   color: #252525;
   padding: 0.35em 0 0.35em 0.5em;
 }
-/* line 15, ../scss/mixins/_forms.scss */
+/* line 12, ../scss/mixins/_forms.scss */
 .mw-ui-input:focus {
   -webkit-box-shadow: #4091ed 0px 0px 5px;
   -moz-box-shadow: #4091ed 0px 0px 5px;
@@ -370,17 +352,17 @@ button.mw-ui-button.red:disabled, button.mw-ui-button.red.disabled, button.mw-ui
   border-color: #4091ed;
 }
 
-/* line 72, ../scss/components/default/_forms.scss */
-.mw-ui-block-label, .mw-ui-formlist div label {
+/* line 71, ../scss/components/default/_forms.scss */
+.mw-ui-block-label, .mw-ui-vform > div label {
   font-size: 0.9em;
   color: #7d7d7d;
 }
-/* line 34, ../scss/mixins/_forms.scss */
-.mw-ui-block-label *, .mw-ui-formlist div label * {
+/* line 31, ../scss/mixins/_forms.scss */
+.mw-ui-block-label *, .mw-ui-vform > div label * {
   font-weight: normal;
 }
 
-/* line 81, ../scss/components/default/_forms.scss */
+/* line 80, ../scss/components/default/_forms.scss */
 .mw-ui-checkbox-label, .mw-ui-radio-label {
   margin-bottom: 0.5em;
   cursor: pointer;
@@ -388,7 +370,7 @@ button.mw-ui-button.red:disabled, button.mw-ui-button.red.disabled, button.mw-ui
   line-height: normal;
   font-weight: normal;
 }
-/* line 50, ../scss/mixins/_forms.scss */
+/* line 47, ../scss/mixins/_forms.scss */
 .mw-ui-checkbox-label > input[type="checkbox"], .mw-ui-checkbox-label > input[type="radio"], .mw-ui-radio-label > input[type="checkbox"], .mw-ui-radio-label > input[type="radio"] {
   width: auto;
   height: auto;
@@ -398,4 +380,13 @@ button.mw-ui-button.red:disabled, button.mw-ui-button.red.disabled, button.mw-ui
   border-width: 1px;
   border-color: #c9c9c9;
   cursor: pointer;
+}
+
+/* line 5, ../scss/components/vector/_forms.scss */
+.mw-ui-vform,
+.mw-ui-vform > div input,
+.mw-ui-input {
+  font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  font-size: 1em;
+  line-height: 1.4em;
 }

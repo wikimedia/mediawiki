@@ -931,10 +931,21 @@ return array(
 	'mediawiki.special.userlogin.signup' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.userLogin.signup.js',
 	),
+	'mediawiki.special.logincreate.vform' => array(
+		'styles' => 'resources/mediawiki.special/mediawiki.special.logincreate.vform.css',
+		'position' => 'top',
+	),
 	'mediawiki.special.userlogin.vform' => array(
 		'styles' => array(
-			'resources/mediawiki.special/mediawiki.special.logincreate.vform.css',
 			'resources/mediawiki.special/mediawiki.special.userlogin.vform.css',
+		),
+		'position' => 'top',
+	),
+	'mediawiki.special.createaccount.vform' => array(
+		'scripts' => 'resources/mediawiki.special/mediawiki.special.createaccount.vform.js',
+		'styles' => array(
+			'resources/mediawiki.special/mediawiki.special.logincreate.vform.css',
+			'resources/mediawiki.special/mediawiki.special.createaccount.vform.css',
 		),
 		'position' => 'top',
 	),
@@ -946,7 +957,6 @@ return array(
 		) ),
 		'dependencies' => array( 'jquery.qunit' ),
 		'position' => 'top',
-		'targets' => array( 'desktop', 'mobile' ),
 	),
 
 	/* MediaWiki Tests */
@@ -961,7 +971,6 @@ return array(
 			'mediawiki.page.ready',
 		),
 		'position' => 'top',
-		'targets' => array( 'desktop', 'mobile' ),
 	),
 
 	/* MediaWiki Legacy */
