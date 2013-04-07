@@ -329,6 +329,8 @@ class SkinTemplate extends Skin {
 		$tpl->setRef( 'userpageurl', $this->userpageUrlDetails['href'] );
 		$tpl->set( 'userlang', $userLangCode );
 
+		$tpl->set( 'pageviewlang', $title->getPageViewLanguage()->getHtmlCode() );
+
 		// Users can have their language set differently than the
 		// content of the wiki. For these users, tell the web browser
 		// that interface elements are in a different language.
