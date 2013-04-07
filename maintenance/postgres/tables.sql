@@ -726,3 +726,9 @@ CREATE TABLE site_identifiers (
 CREATE UNIQUE INDEX si_type_key ON site_identifiers (si_type, si_key);
 CREATE INDEX si_site ON site_identifiers (si_site);
 CREATE INDEX si_key ON site_identifiers (si_key);
+
+CREATE TABLE config (
+  cf_name   TEXT  NOT NULL  PRIMARY KEY,
+  cf_value  TEXT  NOT NULL
+);
+CREATE INDEX cf_name_value ON config (cf_name, cf_value);

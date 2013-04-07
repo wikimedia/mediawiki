@@ -65,6 +65,7 @@ class OracleUpdater extends DatabaseUpdater {
 			array( 'doPageRestrictionsPKUKFix' ),
 
 			//1.20
+			array( 'addTable', 'config', 'patch-config.sql' ),
 			array( 'addIndex', 'ipblocks', 'i05', 'patch-ipblocks_i05_index.sql' ),
 			array( 'addIndex', 'revision', 'i05', 'patch-revision_i05_index.sql' ),
 			array( 'dropField', 'category', 'cat_hidden', 'patch-cat_hidden.sql' ),
