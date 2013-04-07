@@ -605,6 +605,7 @@ class EmailNotification {
 
 		wfRunHooks( 'UpdateUserMailerFormattedPageStatus', array( &$formattedPageStatus ) );
 		if ( !in_array( $this->pageStatus, $formattedPageStatus ) ) {
+			wfProfileOut( __METHOD__ );
 			throw new MWException( 'Not a valid page status!' );
 		}
 

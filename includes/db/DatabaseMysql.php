@@ -68,6 +68,7 @@ class DatabaseMysql extends DatabaseBase {
 		# Fail now
 		# Otherwise we get a suppressed fatal error, which is very hard to track down
 		if ( !function_exists( 'mysql_connect' ) ) {
+			wfProfileOut( __METHOD__ );
 			throw new DBConnectionError( $this, "MySQL functions missing, have you compiled PHP with the --with-mysql option?\n" );
 		}
 

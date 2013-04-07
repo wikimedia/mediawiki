@@ -621,6 +621,7 @@ class EditPage {
 		$this->section = $request->getVal( 'wpSection', $request->getVal( 'section' ) );
 
 		if ( $this->section !== null && $this->section !== '' && !$this->isSectionEditSupported() ) {
+			wfProfileOut( __METHOD__ );
 			throw new ErrorPageError( 'sectioneditnotsupported-title', 'sectioneditnotsupported-text' );
 		}
 

@@ -369,8 +369,10 @@ class MessageCache {
 			// effects like gadgets and sidebar getting cached with their
 			// default content
 			if ( $exception instanceof Exception ) {
+				wfProfileOut( __METHOD__ );
 				throw $exception;
 			} else {
+				wfProfileOut( __METHOD__ );
 				throw new MWException( "MessageCache failed to load messages" );
 			}
 		} else {

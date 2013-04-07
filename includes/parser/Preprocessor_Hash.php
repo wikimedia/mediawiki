@@ -591,9 +591,19 @@ class Preprocessor_Hash implements Preprocessor {
 								$lastNode = $node;
 							}
 							if ( !$node ) {
+								if ( $cacheable ) {
+									wfProfileOut( __METHOD__ . '-cache-miss' );
+									wfProfileOut( __METHOD__ . '-cacheable' );
+								}
+								wfProfileOut( __METHOD__ );
 								throw new MWException( __METHOD__ . ': eqpos not found' );
 							}
 							if ( $node->name !== 'equals' ) {
+								if ( $cacheable ) {
+									wfProfileOut( __METHOD__ . '-cache-miss' );
+									wfProfileOut( __METHOD__ . '-cacheable' );
+								}
+								wfProfileOut( __METHOD__ );
 								throw new MWException( __METHOD__ . ': eqpos is not equals' );
 							}
 							$equalsNode = $node;

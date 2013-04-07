@@ -1278,6 +1278,7 @@ class Revision implements IDBAccessObject {
 			// Store and get the URL
 			$data = ExternalStore::insertToDefault( $data );
 			if( !$data ) {
+				wfProfileOut( __METHOD__ );
 				throw new MWException( "Unable to store text to external storage" );
 			}
 			if( $flags ) {
@@ -1334,6 +1335,7 @@ class Revision implements IDBAccessObject {
 			$title = $this->getTitle();
 
 			if ( $title === null ) {
+				wfProfileOut( __METHOD__ );
 				throw new MWException( "Insufficient information to determine the title of the revision's page!" );
 			}
 

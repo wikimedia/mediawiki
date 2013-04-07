@@ -234,6 +234,7 @@ class ResourceLoader {
 		foreach ( $registrations as $name => $info ) {
 			// Disallow duplicate registrations
 			if ( isset( $this->moduleInfos[$name] ) ) {
+				wfProfileOut( __METHOD__ );
 				// A module has already been registered by this name
 				throw new MWException(
 					'ResourceLoader duplicate registration error. ' .
@@ -243,6 +244,7 @@ class ResourceLoader {
 
 			// Check $name for validity
 			if ( !self::isValidModuleName( $name ) ) {
+				wfProfileOut( __METHOD__ );
 				throw new MWException( "ResourceLoader module name '$name' is invalid, see ResourceLoader::isValidModuleName()" );
 			}
 
@@ -251,6 +253,7 @@ class ResourceLoader {
 				// Old calling convention
 				// Validate the input
 				if ( !( $info instanceof ResourceLoaderModule ) ) {
+					wfProfileOut( __METHOD__ );
 					throw new MWException( 'ResourceLoader invalid module error. ' .
 						'Instances of ResourceLoaderModule expected.' );
 				}
