@@ -359,8 +359,6 @@ changes to languages because of Bugzilla reports.
 * Calling Linker methods using a skin will now output deprecation warnings.
 * Pages with a returnto (such as the page when you login or logout), no
   longer have a rel="next" link tag.
-* The Quickbar feature of the legacy skin model and the last remnants of it
-  throughout the code base have been removed.
 
 == Compatibility ==
 

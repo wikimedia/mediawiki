@@ -35,6 +35,8 @@ changes to languages because of Bugzilla reports.
   with its associated globals of $wgExternalAuthType, $wgExternalAuthConf,
   $wgAutocreatePolicy and $wgAllowPrefChange. Affected users are encouraged to
   use AuthPlugin for external authentication/authorization needs.
+* The Quickbar feature of the legacy skin model and the last remnants of it
+  throughout the code base have been removed.
 
 == Compatibility ==
 
