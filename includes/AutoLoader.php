@@ -707,6 +707,7 @@ $wgAutoloadLocalClasses = array(
 	'PatrolLogFormatter' => 'includes/logging/PatrolLogFormatter.php',
 	'RCDatabaseLogEntry' => 'includes/logging/LogEntry.php',
 	'RightsLogFormatter' => 'includes/logging/RightsLogFormatter.php',
+	'GroupRightsLogFormatter' => 'includes/logging/GroupRightsLogFormatter.php',
 
 	# includes/media
 	'BitmapHandler' => 'includes/media/Bitmap.php',
@@ -943,6 +944,7 @@ $wgAutoloadLocalClasses = array(
 	'SpecialEmailUser' => 'includes/specials/SpecialEmailuser.php',
 	'SpecialExport' => 'includes/specials/SpecialExport.php',
 	'SpecialFilepath' => 'includes/specials/SpecialFilepath.php',
+	'SpecialGroupPermissions' => 'includes/specials/SpecialGroupPermissions.php',
 	'SpecialImport' => 'includes/specials/SpecialImport.php',
 	'SpecialJavaScriptTest' => 'includes/specials/SpecialJavaScriptTest.php',
 	'SpecialListFiles' => 'includes/specials/SpecialListfiles.php',

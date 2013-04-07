@@ -398,6 +398,7 @@ $specialPageAliases = array(
 	'Fewestrevisions'           => array( 'FewestRevisions' ),
 	'FileDuplicateSearch'       => array( 'FileDuplicateSearch' ),
 	'Filepath'                  => array( 'FilePath' ),
+	'GroupPermissions'          => array( 'GroupPermissions' ),
 	'Import'                    => array( 'Import' ),
 	'Invalidateemail'           => array( 'InvalidateEmail' ),
 	'JavaScriptTest'            => array( 'JavaScriptTest' ),
@@ -4867,6 +4868,7 @@ This site is experiencing technical difficulties.',
 'logentry-rights-rights'              => '$1 {{GENDER:$2|changed}} group membership for $3 from $4 to $5',
 'logentry-rights-rights-legacy'       => '$1 {{GENDER:$2|changed}} group membership for $3',
 'logentry-rights-autopromote'         => '$1 was automatically {{GENDER:$2|promoted}} from $4 to $5',
+'logentry-rights-modifygroup'         => '$1 {{GENDER:$2|changed}} group rights for $3. Added $4; Removed $5',
 'rightsnone'                          => '(none)',
 
 # For IRC, see bug 34508. Do not change
@@ -4970,4 +4972,18 @@ Otherwise, you can use the easy form below. Your comment will be added to the pa
 # Image rotation
 'rotate-comment' => 'Image rotated by $1 {{PLURAL:$1|degree|degrees}} clockwise',
 
+# Special:GroupPermissions
+'grouppermissions' => 'Group permissions',
+'grouppermissions-grouplistitem'      => '$1 ([[Special:GroupPermissions/$2|view/edit]])',
+'grouppermissions-grouplistheader' => 'The following groups have been configured.
+You may view or edit the permissions assigned to a group, if you have permission to.
+A group may be deleted by removing all rights from it.',
+'grouppermissions-members-link' => '[[Special:ListUsers/$1|List of users with $2 rights]]',
+'grouppermissions-submit' => 'Save group changes',
+'grouppermissions-grouptype' => 'Group type',
+'grouppermissions-implicit' => 'Implicit',
+'grouppermissions-explicit' => 'Explicit',
+'grouppermissions-success-subtitle' => 'Group rights changed',
+'grouppermissions-success-text' => 	'Successfully updated the group $1.
+[[Special:GroupPermissions|Return to group management]]',
 );

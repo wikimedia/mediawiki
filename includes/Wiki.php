@@ -496,7 +496,7 @@ class MediaWiki {
 	}
 
 	private function main() {
-		global $wgUseFileCache, $wgTitle, $wgUseAjax;
+		global $wgUseFileCache, $wgTitle, $wgUseAjax, $wgGroupConfigSource, $wgGroupPermissions;
 
 		wfProfileIn( __METHOD__ );
 
@@ -517,6 +517,20 @@ class MediaWiki {
 			$output->output();
 			wfProfileOut( __METHOD__ );
 			return;
+		}
+
+		if ( $wgGroupConfigSource == 'database' ) {
+			$wgGroupPermissions = array(); // !
+			foreach ( wfGetDB( DB_SLAVE )->select(
+				'groups',
+				array( 'group_internal_name', 'group_permissions' ),
+				array(),
+				__METHOD__
+			) as $row ) {
+				foreach ( json_decode( $row->group_permissions ) as $permission => $value ) {
+					$wgGroupPermissions[$row->group_internal_name][$permission] = $value;
+				}
+			}
 		}
 
 		// Send Ajax requests to the Ajax dispatcher.
