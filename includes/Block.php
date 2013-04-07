@@ -1252,6 +1252,7 @@ class Block {
 		} elseif ( $blocksList['auto'] ) {
 			$chosenBlock = $blocksList['auto'];
 		} else {
+			wfProfileOut( __METHOD__ );
 			throw new MWException( "Proxy block found, but couldn't be classified." );
 		}
 

@@ -1481,6 +1481,7 @@ class WikiPage implements Page, IDBAccessObject {
 			$newContent = $sectionContent;
 		} else {
 			if ( !$this->supportsSections() ) {
+				wfProfileOut( __METHOD__ );
 				throw new MWException( "sections not supported for content model " . $this->getContentHandler()->getModelID() );
 			}
 
@@ -1746,6 +1747,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 			if ( $changed ) {
 				if ( !$content->isValid() ) {
+					wfProfileOut( __METHOD__ );
 					throw new MWException( "New content failed validity check!" );
 				}
 

@@ -296,6 +296,7 @@ class WikiExporter {
 				}
 
 				// Inform caller about problem
+				wfProfileOut( __METHOD__ );
 				throw $e;
 			}
 		# For page dumps...

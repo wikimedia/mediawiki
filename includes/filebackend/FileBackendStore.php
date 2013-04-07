@@ -1252,8 +1252,12 @@ abstract class FileBackendStore extends FileBackend {
 		wfProfileIn( __METHOD__ . '-' . $this->name );
 		foreach ( $fileOpHandles as $fileOpHandle ) {
 			if ( !( $fileOpHandle instanceof FileBackendStoreOpHandle ) ) {
+				wfProfileOut( __METHOD__ . '-' . $this->name );
+				wfProfileOut( __METHOD__ );
 				throw new MWException( "Given a non-FileBackendStoreOpHandle object." );
 			} elseif ( $fileOpHandle->backend->getName() !== $this->getName() ) {
+				wfProfileOut( __METHOD__ . '-' . $this->name );
+				wfProfileOut( __METHOD__ );
 				throw new MWException( "Given a FileBackendStoreOpHandle for the wrong backend." );
 			}
 		}

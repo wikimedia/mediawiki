@@ -945,6 +945,10 @@ abstract class DatabaseBase implements DatabaseType {
 		}
 
 		if ( istainted( $sql ) & TC_MYSQL ) {
+			if ( !Profiler::instance()->isStub() ) {
+				wfProfileOut( $queryProf );
+				wfProfileOut( $totalProf );
+			}
 			throw new MWException( 'Tainted query found' );
 		}
 

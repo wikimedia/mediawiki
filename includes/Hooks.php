@@ -168,6 +168,7 @@ class Hooks {
 			 */
 			if ( is_array( $hook ) ) {
 				if ( count( $hook ) < 1 ) {
+					wfProfileOut( 'hook: ' . $event );
 					throw new MWException( 'Empty array in hooks for ' . $event . "\n" );
 				} elseif ( is_object( $hook[0] ) ) {
 					$object = $hook[0];
@@ -195,6 +196,7 @@ class Hooks {
 						$have_data = true;
 					}
 				} else {
+					wfProfileOut( 'hook: ' . $event );
 					throw new MWException( 'Unknown datatype in hooks for ' . $event . "\n" );
 				}
 			} elseif ( is_string( $hook ) ) { # functions look like strings, too
@@ -207,6 +209,7 @@ class Hooks {
 					$method = "on" . $event;
 				}
 			} else {
+				wfProfileOut( 'hook: ' . $event );
 				throw new MWException( 'Unknown datatype in hooks for ' . $event . "\n" );
 			}
 
@@ -276,11 +279,13 @@ class Hooks {
 					$prettyFunc = strval( $callback );
 				}
 				if ( $badhookmsg ) {
+					wfProfileOut( 'hook: ' . $event );
 					throw new MWException(
 						'Detected bug in an extension! ' .
 						"Hook $prettyFunc has invalid call signature; " . $badhookmsg
 					);
 				} else {
+					wfProfileOut( 'hook: ' . $event );
 					throw new MWException(
 						'Detected bug in an extension! ' .
 						"Hook $prettyFunc failed to return a value; " .

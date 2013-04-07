@@ -219,6 +219,7 @@ class LoadBalancer {
 		}
 
 		if ( !$nonErrorLoads ) {
+			wfProfileOut( __METHOD__ );
 			throw new MWException( "Empty server array given to LoadBalancer" );
 		}
 
@@ -443,8 +444,10 @@ class LoadBalancer {
 		wfProfileIn( __METHOD__ );
 
 		if ( $i == DB_LAST ) {
+			wfProfileOut( __METHOD__ );
 			throw new MWException( 'Attempt to call ' . __METHOD__ . ' with deprecated server index DB_LAST' );
 		} elseif ( $i === null || $i === false ) {
+			wfProfileOut( __METHOD__ );
 			throw new MWException( 'Attempt to call ' . __METHOD__ . ' with invalid server index' );
 		}
 

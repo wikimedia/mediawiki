@@ -309,6 +309,7 @@ class MagicWord {
 		$wgContLang->getMagic( $this );
 		if ( !$this->mSynonyms ) {
 			$this->mSynonyms = array( 'dkjsagfjsgashfajsh' );
+			wfProfileOut( __METHOD__ );
 			throw new MWException( "Error: invalid magic word '$id'" );
 			#wfDebugLog( 'exception', "Error: invalid magic word '$id'\n" );
 		}

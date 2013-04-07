@@ -1533,6 +1533,7 @@ class Parser {
 
 		$bits = preg_split( $this->mExtLinkBracketedRegex, $text, -1, PREG_SPLIT_DELIM_CAPTURE );
 		if ( $bits === false ) {
+			wfProfileOut( __METHOD__ );
 			throw new MWException( "PCRE needs to be compiled with --enable-unicode-properties in order for MediaWiki to function" );
 		}
 		$s = array_shift( $bits );
@@ -2606,6 +2607,7 @@ class Parser {
 				}
 				break;
 			default:
+				wfProfileOut( __METHOD__ );
 				throw new MWException( "State machine error in " . __METHOD__ );
 			}
 		}
@@ -3245,6 +3247,7 @@ class Parser {
 					$result = $this->callParserFunction( $frame, $func, $funcArgs );
 				} catch ( Exception $ex ) {
 					wfProfileOut( __METHOD__ . '-pfunc' );
+					wfProfileOut( __METHOD__ );
 					throw $ex;
 				}
 

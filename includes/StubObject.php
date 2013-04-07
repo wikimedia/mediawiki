@@ -122,6 +122,7 @@ class StubObject {
 			wfProfileIn( $fname );
 			$caller = wfGetCaller( $level );
 			if ( ++$recursionLevel > 2 ) {
+				wfProfileOut( $fname );
 				throw new MWException( "Unstub loop detected on call of \${$this->mGlobal}->$name from $caller\n" );
 			}
 			wfDebug( "Unstubbing \${$this->mGlobal} on call of \${$this->mGlobal}::$name from $caller\n" );

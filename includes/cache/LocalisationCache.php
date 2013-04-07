@@ -715,6 +715,7 @@ class LocalisationCache {
 		wfProfileIn( __METHOD__ );
 
 		if ( !$code ) {
+			wfProfileOut( __METHOD__ );
 			throw new MWException( "Invalid language code requested" );
 		}
 		$this->recachedLangs[$code] = true;
@@ -842,6 +843,7 @@ class LocalisationCache {
 		wfRunHooks( 'LocalisationCacheRecache', array( $this, $code, &$allData ) );
 
 		if ( is_null( $allData['namespaceNames'] ) ) {
+			wfProfileOut( __METHOD__ );
 			throw new MWException( __METHOD__ . ': Localisation data failed sanity check! ' .
 				'Check that your languages/messages/MessagesEn.php file is intact.' );
 		}

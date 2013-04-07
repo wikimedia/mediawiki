@@ -190,6 +190,7 @@ class SquidUpdate {
 			$urlArr = array_unique( $urlArr ); // Remove duplicates
 			foreach ( $urlArr as $url ) {
 				if( !is_string( $url ) ) {
+					wfProfileOut( __METHOD__ );
 					throw new MWException( 'Bad purge URL' );
 				}
 				$url = SquidUpdate::expand( $url );
@@ -199,6 +200,7 @@ class SquidUpdate {
 					continue;
 				}
 				if ( !isset( $conf['host'] ) || !isset( $conf['port'] ) ) {
+					wfProfileOut( __METHOD__ );
 					throw new MWException( "Invalid HTCP rule for URL $url\n" );
 				}
 

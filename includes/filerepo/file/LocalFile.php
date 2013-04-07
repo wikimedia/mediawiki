@@ -382,6 +382,7 @@ class LocalFile extends File {
 				$this->$name = $value;
 			}
 		} else {
+			wfProfileOut( $fname );
 			throw new MWException( "Could not find data for image '{$this->getName()}'." );
 		}
 

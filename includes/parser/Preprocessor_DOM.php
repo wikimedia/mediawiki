@@ -169,6 +169,10 @@ class Preprocessor_DOM implements Preprocessor {
 		$this->parser->mGeneratedPPNodeCount += substr_count( $xml, '<' );
 		$max = $this->parser->mOptions->getMaxGeneratedPPNodeCount();
 		if ( $this->parser->mGeneratedPPNodeCount > $max ) {
+			if ( $cacheable ) {
+				wfProfileOut( __METHOD__ . '-cacheable' );
+			}
+			wfProfileOut( __METHOD__ );
 			throw new MWException( __METHOD__ . ': generated node count limit exceeded' );
 		}
 
@@ -183,6 +187,11 @@ class Preprocessor_DOM implements Preprocessor {
 			// 1 << 19 == XML_PARSE_HUGE, needed so newer versions of libxml2 don't barf when the XML is >256 levels deep
 			$result = $dom->loadXML( $xml, 1 << 19 );
 			if ( !$result ) {
+				wfProfileOut( __METHOD__ . '-loadXML' );
+				if ( $cacheable ) {
+					wfProfileOut( __METHOD__ . '-cacheable' );
+				}
+				wfProfileOut( __METHOD__ );
 				throw new MWException( __METHOD__ . ' generated invalid XML' );
 			}
 		}
