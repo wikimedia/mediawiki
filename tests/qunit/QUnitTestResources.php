@@ -6,6 +6,7 @@ return array(
 
 	'mediawiki.tests.qunit.suites' => array(
 		'scripts' => array(
+			'tests/qunit/suites/resources/startup.test.js',
 			'tests/qunit/suites/resources/jquery/jquery.autoEllipsis.test.js',
 			'tests/qunit/suites/resources/jquery/jquery.byteLength.test.js',
 			'tests/qunit/suites/resources/jquery/jquery.byteLimit.test.js',
