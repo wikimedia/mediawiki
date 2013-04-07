@@ -526,6 +526,11 @@ $wgTitle = null;
 
 $wgDeferredUpdateList = array();
 
+$wgConfiguration = array(
+	'type' => 'database',
+	'wikiId' => wfWikiID(),
+);
+
 wfProfileOut( $fname . '-globals' );
 wfProfileIn( $fname . '-extensions' );
 

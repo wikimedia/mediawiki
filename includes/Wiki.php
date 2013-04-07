@@ -496,7 +496,7 @@ class MediaWiki {
 	}
 
 	private function main() {
-		global $wgUseFileCache, $wgTitle, $wgUseAjax;
+		global $wgUseFileCache, $wgTitle, $wgUseAjax, $wgGroupConfigSource, $wgGroupPermissions;
 
 		wfProfileIn( __METHOD__ );
 
@@ -517,6 +517,15 @@ class MediaWiki {
 			$output->output();
 			wfProfileOut( __METHOD__ );
 			return;
+		}
+
+		if ( $wgGroupConfigSource != 'config' ) {
+			$perms = Conf::get( 'GroupPermissions' );
+			if ( $perms ) {
+				$wgGroupPermissions = $perms;
+			} else {
+				wfDebugLog( 'exception', 'Failed to get groups! Falling back to default.' );
+			}
 		}
 
 		// Send Ajax requests to the Ajax dispatcher.
