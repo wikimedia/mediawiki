@@ -101,6 +101,7 @@ class SpecialPageFactory {
 		'Listbots'                  => 'SpecialListBots',
 		'Userrights'                => 'UserrightsPage',
 		'EditWatchlist'             => 'SpecialEditWatchlist',
+		'GroupPermissions'          => 'SpecialGroupPermissions',
 
 		// Recent changes and logs
 		'Newimages'                 => 'SpecialNewFiles',

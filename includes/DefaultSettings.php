@@ -3951,6 +3951,33 @@ $wgGroupPermissions['bureaucrat']['noratelimit'] = true;
 #$wgGroupPermissions['bureaucrat']['userrights-interwiki'] = true;
 // Permission to export pages including linked pages regardless of $wgExportMaxLinkDepth
 #$wgGroupPermissions['bureaucrat']['override-export-depth'] = true;
+// Permission to edit group permissions
+#$wgGroupConfigSource = 'database';
+#$wgGroupPermissions['bureaucrat']['editgrouppermissions'] = true;
+$wgRestrictedRights = array(
+	'bigdelete',
+	'siteadmin',
+	'suppressionlog',
+	'suppressrevision',
+	'userrights-interwiki',
+
+	# Rights defined by extensions. These should remain listed in core for security reasons (people using an old version of an extension with a new version of core etc.), but extensions should also add to it (duplicates won't really hurt)
+	'centralauth-oversight',
+	'centralauth-lock',
+	'centralauth-unmerge',
+
+	'checkuser',
+	'checkuser-log',
+
+	'globalblock',
+	'globalgroupmembership',
+	'globalgrouppermissions',
+	'globalunblock',
+
+	'hiderevision',
+	'oversight',
+	'hideuser',
+);
 
 #$wgGroupPermissions['sysop']['deletelogentry'] = true;
 #$wgGroupPermissions['sysop']['deleterevision'] = true;
@@ -5740,6 +5767,7 @@ $wgLogActionsHandlers = array(
 	'patrol/patrol' => 'PatrolLogFormatter',
 	'rights/rights' => 'RightsLogFormatter',
 	'rights/autopromote' => 'RightsLogFormatter',
+	'rights/modifygroup' => 'GroupRightsLogFormatter',
 );
 
 /**
