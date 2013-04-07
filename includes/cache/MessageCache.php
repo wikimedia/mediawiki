@@ -41,13 +41,21 @@ class MessageCache {
 	 * second level is message key and the values are either message
 	 * content prefixed with space, or !NONEXISTENT for negative
 	 * caching.
+	 * @var Array|bool
 	 */
 	protected $mCache;
 
-	// Should  mean that database cannot be used, but check
+	/**
+	 * Should mean that database cannot be used, but check
+	 * @var bool
+	 */
 	protected $mDisable;
 
-	/// Lifetime for cache, used by object caching
+	/**
+	 * Lifetime for cache, used by object caching.
+	 * @see #$wgMsgCacheExpiry
+	 * @var int
+	 */
 	protected $mExpiry;
 
 	/**
@@ -56,7 +64,10 @@ class MessageCache {
 	 */
 	protected $mParserOptions, $mParser;
 
-	/// Variable for tracking which variables are already loaded
+	/**
+	 * Variable for tracking which variables are already loaded
+	 * @var array
+	 */
 	protected $mLoadedLanguages = array();
 
 	/**
@@ -122,8 +133,8 @@ class MessageCache {
 	 * Actual format of the file depends on the $wgLocalMessageCacheSerialized
 	 * setting.
 	 *
-	 * @param string $hash the hash of contents, to check validity.
-	 * @param $code Mixed: Optional language code, see documenation of load().
+	 * @param string $hash The hash of contents, to check validity.
+	 * @param Mixed $code Optional language code, see documenation of load().
 	 * @return bool on failure.
 	 */
 	function loadFromLocal( $hash, $code ) {

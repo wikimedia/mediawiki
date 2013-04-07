@@ -162,7 +162,7 @@ class OutputPage extends ContextSource {
 	);
 
 	/**
-	 * @EasterEgg I just love the name for this self documenting variable.
+	 * EasterEgg: I just love the name for this self documenting variable.
 	 * @todo document
 	 */
 	var $mDoNothing = false;
@@ -198,7 +198,7 @@ class OutputPage extends ContextSource {
 
 	/**
 	 * Comes from the parser. This was probably made to load CSS/JS only
-	 * if we had "<gallery>". Used directly in CategoryPage.php
+	 * if we had `<gallery>`. Used directly in CategoryPage.php
 	 * Looks like resource loader can replace this.
 	 */
 	var $mNoGallery = false;
@@ -303,7 +303,7 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Add a new "<meta>" tag
+	 * Add a new `<meta>` tag
 	 * To add an http-equiv meta tag, precede the name with "http:"
 	 *
 	 * @param string $name tag name
@@ -327,9 +327,9 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Add a new \<link\> tag to the page header.
+	 * Add a new `<link>` tag to the page header.
 	 *
-	 * Note: use setCanonicalUrl() for rel=canonical.
+	 * Note: use setCanonicalUrl() for `rel=canonical`.
 	 *
 	 * @param array $linkarr associative array of attributes.
 	 */
@@ -338,11 +338,11 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Add a new \<link\> with "rel" attribute set to "meta"
+	 * Add a new `<link>` with "rel" attribute set to "meta".
 	 *
-	 * @param array $linkarr associative array mapping attribute names to their
-	 *                 values, both keys and values will be escaped, and the
-	 *                 "rel" attribute will be automatically added
+	 * @param array $linkarr Associative array mapping attribute names to their
+	 *  values, both keys and values will be escaped, and the
+	 *  "rel" attribute will be automatically added
 	 */
 	function addMetadataLink( $linkarr ) {
 		$linkarr['rel'] = $this->getMetadataAttribute();
@@ -350,7 +350,7 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Set the URL to be used for the <link rel=canonical>. This should be used
+	 * Set the URL to be used for the `<link rel=canonical>`. This should be used
 	 * in preference to addLink(), to avoid duplicate link tags.
 	 */
 	function setCanonicalUrl( $url ) {

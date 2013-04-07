@@ -184,7 +184,7 @@ function wfAppendToArrayIfNotDefault( $key, $value, $default, &$changed ) {
  * XXX: will not darn your socks for you.
  *
  * @param $array1 Array
- * @param [$array2, [...]] Arrays
+ * @param ... Arrays
  * @return Array
  */
 function wfArrayMerge( $array1/* ... */ ) {
@@ -212,7 +212,7 @@ function wfArrayMerge( $array1/* ... */ ) {
  *   		array( 'x' ),
  *   		array( 'y' )
  *   	)
- * @param varargs
+ * @param ...
  * @return Array
  */
 function wfMergeErrorArrays( /*...*/ ) {
@@ -1362,7 +1362,7 @@ function wfUILang() {
  * This function replaces all old wfMsg* functions.
  *
  * @param $key \string Message key.
- * Varargs: normal message parameters.
+ * @param  ... Normal message parameters.
  * @return Message
  * @since 1.17
  */
@@ -1379,7 +1379,7 @@ function wfMessage( $key /*...*/) {
  * This function accepts multiple message keys and returns a message instance
  * for the first message which is non-empty. If all messages are empty then an
  * instance of the first message key is returned.
- * @param varargs: message keys
+ * @param ... message keys
  * @return Message
  * @since 1.18
  */
@@ -1580,8 +1580,8 @@ function wfMsgReplaceArgs( $message, $args ) {
  *
  * @deprecated since 1.18
  *
- * @param $key String
- * @param string ... parameters
+ * @param string $key
+ * @param ... Parameters
  * @return string
  */
 function wfMsgHtml( $key ) {
@@ -1601,8 +1601,8 @@ function wfMsgHtml( $key ) {
  *
  * @deprecated since 1.18
  *
- * @param $key String
- * @param string ... parameters
+ * @param string $key
+ * @param ... Parameters
  * @return string
  */
 function wfMsgWikiHtml( $key ) {
@@ -2677,7 +2677,7 @@ function wfDl( $extension, $fileName = null ) {
  * Also fixes the locale problems on Linux in PHP 5.2.6+ (bug backported to
  * earlier distro releases of PHP)
  *
- * @param varargs
+ * @param ...
  * @return String
  */
 function wfEscapeShellArg() {
@@ -3067,7 +3067,7 @@ function wfUsePHP( $req_ver ) {
  * @see perldoc -f use
  *
  * @param $req_ver Mixed: the version to check, can be a string, an integer, or
- *                 a float
+ *  a float
  * @throws MWException
  */
 function wfUseMW( $req_ver ) {
@@ -3080,11 +3080,11 @@ function wfUseMW( $req_ver ) {
 
 /**
  * Return the final portion of a pathname.
- * Reimplemented because PHP5's "basename()" is buggy with multibyte text.
+ * Reimplemented because PHP5's `basename()` is buggy with multibyte text.
  * http://bugs.php.net/bug.php?id=33898
  *
- * PHP's basename() only considers '\' a pathchar on Windows and Netware.
- * We'll consider it so always, as we don't want '\s' in our Unix paths either.
+ * PHP's basename() only considers `\` a pathchar on Windows and Netware.
+ * We'll consider it so always, as we don't want `\s` in our Unix paths either.
  *
  * @param $path String
  * @param string $suffix to remove if present
@@ -3383,7 +3383,7 @@ function wfGetPrecompiledData( $name ) {
 /**
  * Get a cache key
  *
- * @param varargs
+ * @param ...
  * @return String
  */
 function wfMemcKey( /*... */ ) {
@@ -3400,7 +3400,7 @@ function wfMemcKey( /*... */ ) {
  *
  * @param $db String
  * @param $prefix String
- * @param varargs String
+ * @param ... String
  * @return String
  */
 function wfForeignMemcKey( $db, $prefix /*, ... */ ) {

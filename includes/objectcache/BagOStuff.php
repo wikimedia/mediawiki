@@ -33,10 +33,10 @@
  * the PHP memcached client.
  *
  * backends for local hash array and SQL table included:
- * <code>
- *   $bag = new HashBagOStuff();
- *   $bag = new SqlBagOStuff(); # connect to db first
- * </code>
+ * @code
+ *     $bag = new HashBagOStuff();
+ *     $bag = new SqlBagOStuff(); // connect to db first
+ * @endcode
  *
  * @ingroup Cache
  */

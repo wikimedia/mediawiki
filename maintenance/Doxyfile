@@ -1,13 +1,4 @@
-# Doxyfile 1.7.5.1
-
-#
-# Some placeholders have been added for MediaWiki usage:
-# {{OUTPUT_DIRECTORY}}
-# {{CURRENT_VERSION}}
-# {{STRIP_FROM_PATH}}
-# {{INPUT}}
-#
-# To generate documentation run: php mwdocgen.php --no-extensions
+# Doxyfile 1.8.3.1
 
 #---------------------------------------------------------------------------
 # Project related configuration options
@@ -45,30 +36,33 @@ MULTILINE_CPP_IS_BRIEF = NO
 INHERIT_DOCS           = YES
 SEPARATE_MEMBER_PAGES  = NO
 TAB_SIZE               = 8
-ALIASES =	"type{1}=<b> \1 </b>:" \
-		"types{2}=<b> \1 </b> or <b> \2 </b>:" \
-		"types{3}=<b> \1 </b>, <b> \2 </b>, or <b> \3 </b>:" \
-		"arrayof{2}=<b> Array </b> of \2" \
-		"null=\type{Null}" \
-		"boolean=\type{Boolean}" \
-		"bool=\type{Boolean}" \
-		"integer=\type{Integer}" \
-		"int=\type{Integer}" \
-		"string=\type{String}" \
-		"str=\type{String}" \
-		"mixed=\type{Mixed}" \
-		"access=\par Access:\n" \
-		"private=\access private" \
-		"protected=\access protected" \
-		"public=\access public" \
-		"copyright=\note" \
-		"license=\note" \
-		"codeCoverageIgnore="
+ALIASES                = "type{1}=<b> \1 </b>:" \
+                         "types{2}=<b> \1 </b> or <b> \2 </b>:" \
+                         "types{3}=<b> \1 </b>, <b> \2 </b>, or <b> \3 </b>:" \
+                         "arrayof{2}=<b> Array </b> of \2" \
+                         "null=\type{Null}" \
+                         "boolean=\type{Boolean}" \
+                         "bool=\type{Boolean}" \
+                         "integer=\type{Integer}" \
+                         "int=\type{Integer}" \
+                         "string=\type{String}" \
+                         "str=\type{String}" \
+                         "mixed=\type{Mixed}" \
+                         "access=\par Access:\n" \
+                         "private=\access private" \
+                         "protected=\access protected" \
+                         "public=\access public" \
+                         "copyright=\note" \
+                         "license=\note" \
+                         "codeCoverageIgnore="
+TCL_SUBST              =
 OPTIMIZE_OUTPUT_FOR_C  = NO
 OPTIMIZE_OUTPUT_JAVA   = NO
 OPTIMIZE_FOR_FORTRAN   = NO
 OPTIMIZE_OUTPUT_VHDL   = NO
 EXTENSION_MAPPING      =
+MARKDOWN_SUPPORT       = YES
+AUTOLINK_SUPPORT       = YES
 BUILTIN_STL_SUPPORT    = NO
 CPP_CLI_SUPPORT        = NO
 SIP_SUPPORT            = NO
@@ -79,11 +73,13 @@ INLINE_GROUPED_CLASSES = NO
 INLINE_SIMPLE_STRUCTS  = NO
 TYPEDEF_HIDES_STRUCT   = NO
 SYMBOL_CACHE_SIZE      = 0
+LOOKUP_CACHE_SIZE      = 0
 #---------------------------------------------------------------------------
 # Build related configuration options
 #---------------------------------------------------------------------------
 EXTRACT_ALL            = YES
 EXTRACT_PRIVATE        = YES
+EXTRACT_PACKAGE        = NO
 EXTRACT_STATIC         = YES
 EXTRACT_LOCAL_CLASSES  = YES
 EXTRACT_LOCAL_METHODS  = NO
@@ -111,7 +107,6 @@ GENERATE_DEPRECATEDLIST= YES
 ENABLED_SECTIONS       =
 MAX_INITIALIZER_LINES  = 30
 SHOW_USED_FILES        = YES
-SHOW_DIRECTORIES       = YES
 SHOW_FILES             = YES
 SHOW_NAMESPACES        = NO
 FILE_VERSION_FILTER    =
@@ -176,8 +171,14 @@ FILE_PATTERNS          = *.c \
                          *.txt \
                          README
 RECURSIVE              = YES
+EXCLUDE                =
 EXCLUDE_SYMLINKS       = YES
-EXCLUDE_PATTERNS       = LocalSettings.php AdminSettings.php StartProfiler.php .svn */.git/* {{EXCLUDE_PATTERNS}}
+EXCLUDE_PATTERNS       = LocalSettings.php \
+                         AdminSettings.php \
+                         StartProfiler.php \
+                         .svn \
+                         */.git/* \
+                         {{EXCLUDE_PATTERNS}}
 EXCLUDE_SYMBOLS        =
 EXAMPLE_PATH           =
 EXAMPLE_PATTERNS       = *
@@ -187,6 +188,7 @@ INPUT_FILTER           = "{{INPUT_FILTER}}"
 FILTER_PATTERNS        =
 FILTER_SOURCE_FILES    = NO
 FILTER_SOURCE_PATTERNS =
+USE_MDFILE_AS_MAINPAGE =
 #---------------------------------------------------------------------------
 # configuration options related to source browsing
 #---------------------------------------------------------------------------
@@ -213,13 +215,14 @@ HTML_FILE_EXTENSION    = .html
 HTML_HEADER            =
 HTML_FOOTER            =
 HTML_STYLESHEET        =
+HTML_EXTRA_STYLESHEET  =
 HTML_EXTRA_FILES       =
 HTML_COLORSTYLE_HUE    = 220
 HTML_COLORSTYLE_SAT    = 100
-HTML_COLORSTYLE_GAMMA  =  80
+HTML_COLORSTYLE_GAMMA  = 80
 HTML_TIMESTAMP         = YES
-HTML_ALIGN_MEMBERS     = YES
 HTML_DYNAMIC_SECTIONS  = NO
+HTML_INDEX_NUM_ENTRIES = 100
 GENERATE_DOCSET        = NO
 DOCSET_FEEDNAME        = "Doxygen generated docs"
 DOCSET_BUNDLE_ID       = org.doxygen.Project
@@ -243,18 +246,23 @@ QHG_LOCATION           =
 GENERATE_ECLIPSEHELP   = NO
 ECLIPSE_DOC_ID         = org.doxygen.Project
 DISABLE_INDEX          = NO
-ENUM_VALUES_PER_LINE   = 4
 GENERATE_TREEVIEW      = YES
-USE_INLINE_TREES       = YES
+ENUM_VALUES_PER_LINE   = 4
 TREEVIEW_WIDTH         = 250
 EXT_LINKS_IN_WINDOW    = NO
 FORMULA_FONTSIZE       = 10
 FORMULA_TRANSPARENT    = YES
 USE_MATHJAX            = NO
+MATHJAX_FORMAT         = HTML-CSS
 MATHJAX_RELPATH        = http://www.mathjax.org/mathjax
 MATHJAX_EXTENSIONS     =
 SEARCHENGINE           = YES
 SERVER_BASED_SEARCH    = YES
+EXTERNAL_SEARCH        = NO
+SEARCHENGINE_URL       =
+SEARCHDATA_FILE        = searchdata.xml
+EXTERNAL_SEARCH_ID     =
+EXTRA_SEARCH_MAPPINGS  =
 #---------------------------------------------------------------------------
 # configuration options related to the LaTeX output
 #---------------------------------------------------------------------------
@@ -343,6 +351,7 @@ CLASS_GRAPH            = YES
 COLLABORATION_GRAPH    = YES
 GROUP_GRAPHS           = YES
 UML_LOOK               = NO
+UML_LIMIT_NUM_FIELDS   = 10
 TEMPLATE_RELATIONS     = NO
 INCLUDE_GRAPH          = YES
 INCLUDED_BY_GRAPH      = YES
@@ -361,4 +370,3 @@ DOT_TRANSPARENT        = NO
 DOT_MULTI_TARGETS      = NO
 GENERATE_LEGEND        = YES
 DOT_CLEANUP            = YES
-

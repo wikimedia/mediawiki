@@ -33,12 +33,11 @@ class JobQueueAggregatorRedis extends JobQueueAggregator {
 	protected $redisPool;
 
 	/**
-	 * @params include:
+	 * @param array $params
 	 *   - redisConfig : An array of parameters to RedisConnectionPool::__construct().
 	 *   - redisServer : A hostname/port combination or the absolute path of a UNIX socket.
 	 *                   If a hostname is specified but no port, the standard port number
 	 *                   6379 will be used. Required.
-	 * @param array $params
 	 */
 	protected function __construct( array $params ) {
 		parent::__construct( $params );

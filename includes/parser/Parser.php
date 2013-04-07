@@ -577,9 +577,9 @@ class Parser {
 	}
 
 	/**
-	 * Process the wikitext for the "?preload=" feature. (bug 5210)
+	 * Process the wikitext for the `?preload=` feature. (bug 5210)
 	 *
-	 * "<noinclude>", "<includeonly>" etc. are parsed as for template
+	 * `<noinclude>`, `<includeonly>` etc. are parsed as for template
 	 * transclusion, comments, templates, arguments, tags hooks and parser
 	 * functions are untouched.
 	 *
@@ -2987,7 +2987,7 @@ class Parser {
 	 *
 	 * @param string $text The text to parse
 	 * @param $flags Integer: bitwise combination of:
-	 *          self::PTD_FOR_INCLUSION    Handle "<noinclude>" and "<includeonly>" as if the text is being
+	 *          self::PTD_FOR_INCLUSION    Handle `<noinclude>` and `<includeonly>` as if the text is being
 	 *                                     included. Default is to assume a direct page view.
 	 *
 	 * The generated DOM tree must depend only on the input text and the flags.
@@ -5428,7 +5428,7 @@ class Parser {
 	 * was derived during a template inclusion parse, in other words this is a template
 	 * section edit link. If no flags are given, it was an ordinary section edit link.
 	 * This flag is required to avoid a section numbering mismatch when a section is
-	 * enclosed by "<includeonly>" (bug 6563).
+	 * enclosed by `<includeonly>` (bug 6563).
 	 *
 	 * The section number 0 pulls the text before the first heading; other numbers will
 	 * pull the given section along with its lower-level subsections. If the section is

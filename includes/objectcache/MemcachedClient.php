@@ -1191,7 +1191,7 @@ class MWMemcached {
 
 	/**
 	 * Read a line from a stream. If there is an error, mark the socket dead.
-	 * The \r\n line ending is stripped from the response.
+	 * The `\r\n` line ending is stripped from the response.
 	 *
 	 * @param $sock The socket
 	 * @return The string on success, false on failure

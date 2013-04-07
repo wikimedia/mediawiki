@@ -31,6 +31,7 @@ sublime-*
 /maintenance/.mweval_history
 /maintenance/.mwsql_history
 /maintenance/dev/data
+/maintenance/Doxyfile.bak
 /AdminSettings.php
 /LocalSettings.php
 /StartProfiler.php

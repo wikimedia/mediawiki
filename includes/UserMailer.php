@@ -90,7 +90,6 @@ class UserMailer {
 	 * @param $dest
 	 * @param $headers
 	 * @param $body
-	 *
 	 * @return Status
 	 */
 	protected static function sendWithPear( $mailer, $dest, $headers, $body ) {
@@ -109,13 +108,13 @@ class UserMailer {
 	 * Creates a single string from an associative array
 	 *
 	 * @param array $headers Associative Array: keys are header field names,
-	 *                 values are ... values.
-	 * @param string $endl The end of line character.  Defaults to "\n"
+	 *  values are ... values.
+	 * @param string $endl The end of line character.  Defaults to `\n`
 	 *
-	 * Note RFC2822 says newlines must be CRLF (\r\n)
-	 * but php mail naively "corrects" it and requires \n for the "correction" to work
+	 * Note RFC2822 says newlines must be CRLF (`\r\n`)
+	 * but php mail naively "corrects" it and requires `\n` for the "correction" to work
 	 *
-	 * @return String
+	 * @return string
 	 */
 	static function arrayToHeaderString( $headers, $endl = "\n" ) {
 		$strings = array();
@@ -126,9 +125,9 @@ class UserMailer {
 	}
 
 	/**
-	 * Create a value suitable for the MessageId Header
+	 * Create a value suitable for the MessageId Header.
 	 *
-	 * @return String
+	 * @return string
 	 */
 	static function makeMsgId() {
 		global $wgSMTP, $wgServer;
