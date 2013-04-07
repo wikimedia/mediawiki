@@ -398,6 +398,7 @@ $specialPageAliases = array(
 	'Fewestrevisions'           => array( 'FewestRevisions' ),
 	'FileDuplicateSearch'       => array( 'FileDuplicateSearch' ),
 	'Filepath'                  => array( 'FilePath' ),
+	'GroupPermissions'          => array( 'GroupPermissions' ),
 	'Import'                    => array( 'Import' ),
 	'Invalidateemail'           => array( 'InvalidateEmail' ),
 	'JavaScriptTest'            => array( 'JavaScriptTest' ),
@@ -4970,4 +4971,15 @@ Otherwise, you can use the easy form below. Your comment will be added to the pa
 # Image rotation
 'rotate-comment' => 'Image rotated by $1 {{PLURAL:$1|degree|degrees}} clockwise',
 
+# Special:GroupPermissions
+'grouppermissions' => 'Group permissions',
+'grouppermissions-grouplistitem'      => '$1 ([[Special:GroupPermissions/$2|view/edit]])',
+'grouppermissions-grouplistheader' => 'The following groups have been configured.
+You may view or edit the permissions assigned to a group, if you have permission to.
+A group may be deleted by removing all rights from it.',
+'grouppermissions-members-link' => '[[Special:ListUsers/$1|List of users with $2 rights]]',
+'grouppermissions-submit' => 'Save group changes',
+'grouppermissions-grouptype' => 'Group type',
+'grouppermissions-implicit' => 'Implicit',
+'grouppermissions-explicit' => 'Explicit',
 );
