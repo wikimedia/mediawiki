@@ -60,20 +60,28 @@ class JobQueueRedis extends JobQueue {
 	/** @var RedisConnectionPool */
 	protected $redisPool;
 
-	protected $server; // string; server address
-
-	const MAX_AGE_PRUNE = 604800; // integer; seconds a job can live once claimed (7 days)
-
-	protected $key; // string; key to prefix the queue keys with (used for testing)
+	/**
+	 * @var string Server address
+	 */
+	protected $server;
 
 	/**
-	 * @params include:
+	 * Seconds a job can live once claimed (7 days)
+	 */
+	const MAX_AGE_PRUNE = 604800;
+
+	/**
+	 * @var string Key to prefix the queue keys with (used for testing)
+	 */
+	protected $key;
+
+	/**
+	 * @param array $params
 	 *   - redisConfig : An array of parameters to RedisConnectionPool::__construct().
 	 *                   Note that the serializer option is ignored "none" is always used.
 	 *   - redisServer : A hostname/port combination or the absolute path of a UNIX socket.
 	 *                   If a hostname is specified but no port, the standard port number
 	 *                   6379 will be used. Required.
-	 * @param array $params
 	 */
 	public function __construct( array $params ) {
 		parent::__construct( $params );

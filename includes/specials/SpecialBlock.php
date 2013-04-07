@@ -28,27 +28,42 @@
  * @ingroup SpecialPage
  */
 class SpecialBlock extends FormSpecialPage {
-	/** The maximum number of edits a user can have and still be hidden
-	 * TODO: config setting? */
+	/**
+	 * The maximum number of edits a user can have and still be hidden
+	 * @todo Config setting?
+	 */
 	const HIDEUSER_CONTRIBLIMIT = 1000;
 
-	/** @var User user to be blocked, as passed either by parameter (url?wpTarget=Foo)
-	 * or as subpage (Special:Block/Foo) */
+	/**
+	 * User to be blocked, as passed either by parameter (`url?wpTarget=Foo`)
+	 * or as subpage (Special:Block/Foo).
+	 * @var User
+	 */
 	protected $target;
 
-	/// @var Block::TYPE_ constant
+	/**
+	 * @var Block::TYPE_ constant
+	 */
 	protected $type;
 
-	/// @var  User|String the previous block target
+	/**
+	 * @var User|string The previous block target
+	 */
 	protected $previousTarget;
 
-	/// @var Bool whether the previous submission of the form asked for HideUser
+	/**
+	 * @var bool Whether the previous submission of the form asked for HideUser
+	 */
 	protected $requestedHideUser;
 
-	/// @var Bool
+	/**
+	 * @var bool
+	 */
 	protected $alreadyBlocked;
 
-	/// @var Array
+	/**
+	 * @var Array
+	 */
 	protected $preErrors = array();
 
 	public function __construct() {
@@ -74,7 +89,7 @@ class SpecialBlock extends FormSpecialPage {
 	/**
 	 * Handle some magic here
 	 *
-	 * @param $par String
+	 * @param string $par
 	 */
 	protected function setParameter( $par ) {
 		# Extract variables from the request.  Try not to get into a situation where we

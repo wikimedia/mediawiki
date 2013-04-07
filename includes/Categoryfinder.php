@@ -26,10 +26,10 @@
  * parents etc.). From this representation, it determines which of these
  * articles are in one or all of a given subset of categories.
  *
- * Example use :
- * <code>
- *     # Determines whether the article with the page_id 12345 is in both
- *     # "Category 1" and "Category 2" or their subcategories, respectively
+ * @par Example:
+ * @code
+ *     // Determines whether the article with the page_id 12345 is in both
+ *     // "Category 1" and "Category 2" or their subcategories, respectively
  *
  *     $cf = new Categoryfinder;
  *     $cf->seed(
@@ -39,7 +39,7 @@
  *     );
  *     $a = $cf->run();
  *     print implode( ',' , $a );
- * </code>
+ * @endcode
  *
  */
 class Categoryfinder {

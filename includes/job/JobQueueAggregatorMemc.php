@@ -31,14 +31,16 @@ class JobQueueAggregatorMemc extends JobQueueAggregator {
 	/** @var BagOStuff */
 	protected $cache;
 
-	protected $cacheTTL; // integer; seconds
+	/**
+	 * @var int In seconds
+	 */
+	protected $cacheTTL;
 
 	/**
-	 * @params include:
+	 * @param array $params
 	 *   - objectCache : Name of an object cache registered in $wgObjectCaches.
 	 *                   This defaults to the one specified by $wgMainCacheType.
 	 *   - cacheTTL    : Seconds to cache the aggregate data before regenerating.
-	 * @param array $params
 	 */
 	protected function __construct( array $params ) {
 		parent::__construct( $params );

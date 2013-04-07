@@ -618,7 +618,7 @@ class FileBackendMultiWrite extends FileBackend {
 	/**
 	 * @see FileBackend::streamFile()
 	 * @param $params array
-	 * @return \Status
+	 * @return Status
 	 */
 	public function streamFile( array $params ) {
 		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
@@ -689,7 +689,7 @@ class FileBackendMultiWrite extends FileBackend {
 	/**
 	 * @see FileBackend::getFileList()
 	 * @param $params array
-	 * @return Array|null|\Traversable
+	 * @return Array|null|Traversable
 	 */
 	public function getFileList( array $params ) {
 		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
