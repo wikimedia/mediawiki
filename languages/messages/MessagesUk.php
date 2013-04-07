@@ -1430,15 +1430,6 @@ $1",
 'search-external' => 'Зовнішній пошук',
 'searchdisabled' => '<p>Вибачте, повнотекстовий пошук тимчасово недоступний через перевантаження сервера; передбачається, що ця функція буде знову включена після установки нового обладнання. Поки що ми пропонуємо вам скористатися Google чи Yahoo!:</p>',
 
-# Quickbar
-'qbsettings' => 'Панель навігації',
-'qbsettings-none' => 'Не показувати панель',
-'qbsettings-fixedleft' => 'Фіксована ліворуч',
-'qbsettings-fixedright' => 'Фіксована праворуч',
-'qbsettings-floatingleft' => 'Плаваюча ліворуч',
-'qbsettings-floatingright' => 'Плаваюча праворуч',
-'qbsettings-directionality' => 'Фіксована, залежно від напрямку письма вашої мови',
-
 # Preferences page
 'preferences' => 'Налаштування',
 'mypreferences' => 'Налаштування',

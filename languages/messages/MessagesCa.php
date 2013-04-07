@@ -1243,15 +1243,6 @@ Es pot trobar més informació en el [{{fullurl:{{#Special:Log}}/delete|page={{F
 'search-external' => 'Cerca externa',
 'searchdisabled' => 'La cerca dins el projecte {{SITENAME}} està inhabilitada. Mentrestant, podeu cercar a través de Google, però tingueu en compte que la seua base de dades no estarà actualitzada.',
 
-# Quickbar
-'qbsettings' => 'Quickbar',
-'qbsettings-none' => 'Cap',
-'qbsettings-fixedleft' => "Fixa a l'esquerra",
-'qbsettings-fixedright' => 'Fixa a la dreta',
-'qbsettings-floatingleft' => "Surant a l'esquerra",
-'qbsettings-floatingright' => 'Surant a la dreta',
-'qbsettings-directionality' => "Fix, segons la direcció d'escriptura del vostre idioma",
-
 # Preferences page
 'preferences' => 'Preferències',
 'mypreferences' => 'Preferències',

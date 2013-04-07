@@ -1248,15 +1248,6 @@ $1",
 'search-external' => 'გარე ძიება',
 'searchdisabled' => '{{SITENAME}}ში ძებნა გაუქმებულია. თქვენ შეგიძლიათ დროის შუალედით Google-ით ძებნა. მიაქციეთ ყურადღება, რომ {{SITENAME}}ში შესაძლებელია მათი ინდექსები აქტუალური არ არის.',
 
-# Quickbar
-'qbsettings' => 'სწრაფი ზოლი',
-'qbsettings-none' => 'არაფერი',
-'qbsettings-fixedleft' => 'ფიქსირებული მარცხნივ',
-'qbsettings-fixedright' => 'ფიქსირებული მარჯვნივ',
-'qbsettings-floatingleft' => 'მარცხნივ მცურავი',
-'qbsettings-floatingright' => 'მარჯვნივ მცურავი',
-'qbsettings-directionality' => 'ფიქსირებული, დამოკიდებული თქვენი ენის წერილობით მიმართულებაზე',
-
 # Preferences page
 'preferences' => 'კონფიგურაცია',
 'mypreferences' => 'კონფიგურაცია',

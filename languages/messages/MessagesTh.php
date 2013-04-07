@@ -1224,14 +1224,6 @@ $1",
 'search-external' => 'ค้นหาภายนอก',
 'searchdisabled' => 'การค้นหา {{SITENAME}} ปิดใช้งาน คุณสามารถค้นหาผ่านกูเกิลหรือเซิร์ชเอนจินอื่นในเวลาไม่นาน โปรดทราบว่าดัชนีเนื้อหาของ {{SITENAME}} บนเซิร์ชเอนจินอาจเป็นข้อมูลเก่า',
 
-# Quickbar
-'qbsettings' => 'แถบพิเศษ',
-'qbsettings-none' => 'ไม่มี',
-'qbsettings-fixedleft' => 'ตรึงไว้ทางซ้าย',
-'qbsettings-fixedright' => 'ตรึงไว้ทางขวา',
-'qbsettings-floatingleft' => 'ด้านซ้าย',
-'qbsettings-floatingright' => 'ด้านขวา',
-
 # Preferences page
 'preferences' => 'ตั้งค่าส่วนตัว',
 'mypreferences' => 'การตั้งค่า',

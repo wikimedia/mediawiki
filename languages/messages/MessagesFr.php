@@ -1431,15 +1431,6 @@ Essayez en utilisant le préfixe ''all:'' pour rechercher dans tout le contenu (
 'search-external' => 'Recherche externe',
 'searchdisabled' => 'La recherche sur {{SITENAME}} est désactivée. En attendant la réactivation, vous pouvez effectuer une recherche via Google. Attention, leur indexation du contenu de {{SITENAME}} peut ne pas être à jour.',
 
-# Quickbar
-'qbsettings' => "Barre d'outils",
-'qbsettings-none' => 'Aucune',
-'qbsettings-fixedleft' => 'Gauche',
-'qbsettings-fixedright' => 'Droite',
-'qbsettings-floatingleft' => 'Flottante à gauche',
-'qbsettings-floatingright' => 'Flottante à droite',
-'qbsettings-directionality' => "Fixe, en fonction de la directivité d'écriture de votre langue",
-
 # Preferences page
 'preferences' => 'Préférences',
 'mypreferences' => 'Préférences',

@@ -1102,15 +1102,6 @@ Aapan query ke ''all:'' se suruu kar ke visay suchi me khojo (including talk pag
 Aap tab tak Google se khoje sakta hai.
 Yaad rakhna ki uu log ke {{SITENAME}} ke index saait purana hoi.',
 
-# Quickbar
-'qbsettings' => 'Quickbar',
-'qbsettings-none' => 'Koi nai',
-'qbsettings-fixedleft' => 'Left me fixed hai',
-'qbsettings-fixedright' => 'Right me fixed hai',
-'qbsettings-floatingleft' => 'Baaen or baho',
-'qbsettings-floatingright' => 'Daaen or baho',
-'qbsettings-directionality' => 'Banae dewa gais hae, lekin ii aap ke bhasa ke script directionality ke uppar nibhar hae',
-
 # Preferences page
 'preferences' => 'Pasand',
 'mypreferences' => 'Pasand',

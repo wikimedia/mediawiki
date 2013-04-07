@@ -1432,15 +1432,6 @@ $1",
 기능이 작동하지 않는 동안에는 구글(Google)을 이용해 찾을 수 있습니다.
 검색 엔진의 내용은 최신이 아닐 수 있다는 점을 주의해주세요.',
 
-# Quickbar
-'qbsettings' => '빨리가기 맞춤',
-'qbsettings-none' => '없음',
-'qbsettings-fixedleft' => '왼쪽 고정',
-'qbsettings-fixedright' => '오른쪽 고정',
-'qbsettings-floatingleft' => '왼쪽 유동',
-'qbsettings-floatingright' => '오른쪽 유동',
-'qbsettings-directionality' => '사용자 언어의 문자 입력 방향에 맞추어 고정',
-
 # Preferences page
 'preferences' => '사용자 환경 설정',
 'mypreferences' => '환경 설정',

@@ -1182,14 +1182,6 @@ $1",
 دەتوانی بۆ ئێستا لە گەڕانی گووگڵ کەڵک وەرگری.
 لەیادت بێت لەوانەیە پێرستەکانیان بۆ گەڕانی ناو {{SITENAME}}، کات‌بەسەرچوو بێت.',
 
-# Quickbar
-'qbsettings' => 'خێرا-تووڵ',
-'qbsettings-none' => 'هیچ',
-'qbsettings-fixedleft' => 'چەپ‌ سەپێندراو',
-'qbsettings-fixedright' => 'ڕاست سەپێندراو',
-'qbsettings-floatingleft' => 'سەراوی چەپ',
-'qbsettings-floatingright' => 'سەراوی ڕاست',
-
 # Preferences page
 'preferences' => 'ھەڵبەژاردەکان',
 'mypreferences' => 'ھەڵبژاردەکان',

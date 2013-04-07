@@ -1182,15 +1182,6 @@ Drobnostki móžoš w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}
 'search-external' => 'Eksterne pytanje',
 'searchdisabled' => 'Pytanje we {{SITENAME}} jo se deaktiwěrowało. Tak dłujko móžoš w googlu pytaś. Pšosym wobmysli, až móžo pytanski indeks za {{SITENAME}} njeaktualny byś.',
 
-# Quickbar
-'qbsettings' => 'Bocna lejstwa',
-'qbsettings-none' => 'Žedne',
-'qbsettings-fixedleft' => 'nalěwo fiksěrowane',
-'qbsettings-fixedright' => 'napšawo fiksěrowane',
-'qbsettings-floatingleft' => 'nalěwo se znosujuce',
-'qbsettings-floatingright' => 'napšawo se znosujuce',
-'qbsettings-directionality' => 'Kšuty, wótwisny wót pisańskego směra twójeje rěcy',
-
 # Preferences page
 'preferences' => 'Nastajenja',
 'mypreferences' => 'Nastajenja',

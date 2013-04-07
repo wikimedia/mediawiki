@@ -1329,15 +1329,6 @@ Probe a fixar a súa petición con ''all:'' para procurar en todo o contido (inc
 Mentres tanto pode procurar usando o Google.
 Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados.',
 
-# Quickbar
-'qbsettings' => 'Opcións da barra rápida',
-'qbsettings-none' => 'Ningunha',
-'qbsettings-fixedleft' => 'Fixa á esquerda',
-'qbsettings-fixedright' => 'Fixa á dereita',
-'qbsettings-floatingleft' => 'Flotante á esquerda',
-'qbsettings-floatingright' => 'Flotante á dereita',
-'qbsettings-directionality' => 'Fixa, segundo a dirección de escritura da súa lingua',
-
 # Preferences page
 'preferences' => 'Preferencias',
 'mypreferences' => 'Preferencias',

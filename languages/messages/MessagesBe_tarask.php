@@ -1317,15 +1317,6 @@ $1",
 'searchdisabled' => 'Функцыя пошуку ў {{GRAMMAR:месны|{{SITENAME}}}} адключаная.
 Вы можаце пашукаць з дапамогай Google, але заўважце, што там інфармацыя пра старонкі {{GRAMMAR:родны|{{SITENAME}}}} можа быць састарэлай.',
 
-# Quickbar
-'qbsettings' => 'Панэль хуткага доступу',
-'qbsettings-none' => 'Не паказваць',
-'qbsettings-fixedleft' => 'Замацаваная зьлева',
-'qbsettings-fixedright' => 'Замацаваная справа',
-'qbsettings-floatingleft' => 'Плавае зьлева',
-'qbsettings-floatingright' => 'Плавае справа',
-'qbsettings-directionality' => 'Замацаваная, у залежнасьці ад накірунку напісаньня ў Вашай мове',
-
 # Preferences page
 'preferences' => 'Налады',
 'mypreferences' => 'Налады',

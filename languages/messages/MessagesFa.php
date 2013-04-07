@@ -1515,15 +1515,6 @@ $1",
 موقتاً می‌توانید از جستجوی Google استفاده کنید.
 توجه کنید که نتایج حاصل از جستجو با آن روش ممکن است به‌روز نباشند.',
 
-# Quickbar
-'qbsettings' => 'نوار سریع',
-'qbsettings-none' => 'نباشد',
-'qbsettings-fixedleft' => 'ثابت چپ',
-'qbsettings-fixedright' => 'ثابت راست',
-'qbsettings-floatingleft' => 'شناور چپ',
-'qbsettings-floatingright' => 'شناور راست',
-'qbsettings-directionality' => 'ثابت، بسته به جهت نگارش زبان شما',
-
 # Preferences page
 'preferences' => 'ترجیحات',
 'mypreferences' => 'ترجیحات',

@@ -1122,14 +1122,6 @@ Saia zaitez zure eskeraren aurretik ''all:'' jartzen eduki guztien artean bilatz
 'search-external' => 'Kanpo bilaketa',
 'searchdisabled' => '{{SITENAME}}(e)n ezgaituta dago bilaketa. Dena dela, Google erabiliz ere egin dezakezu bilaketa. Kontuan izan bertan dituzten {{SITENAME}}(e)ko emaitzak zaharkituta egon daitezkeela.',
 
-# Quickbar
-'qbsettings' => 'Laster-barra',
-'qbsettings-none' => 'Ezein ere',
-'qbsettings-fixedleft' => 'Eskuinean',
-'qbsettings-fixedright' => 'Ezkerrean',
-'qbsettings-floatingleft' => 'Ezkerrean mugikor',
-'qbsettings-floatingright' => 'Eskubian flotatzen',
-
 # Preferences page
 'preferences' => 'Hobespenak',
 'mypreferences' => 'Hobespenak',

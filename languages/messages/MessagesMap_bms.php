@@ -910,15 +910,6 @@ Jajal aweh awalan ''all:'' kanggo nggolèti kabèh isi (kalebu kaca dhiskusi, ci
 Rika teyeng nggoleti nganggo Google disit.
 Ningen Rika kudu eling nek indeks Google kanggo {{SITENAME}} bisa baen isine anu sing lawas lan durung dianyari.',
 
-# Quickbar
-'qbsettings' => 'Pangaturan bar pintas',
-'qbsettings-none' => 'Ora ana',
-'qbsettings-fixedleft' => 'Tetep sisih kiwa',
-'qbsettings-fixedright' => 'Tetep sisih tengen',
-'qbsettings-floatingleft' => 'Ngambang sisih kiwa',
-'qbsettings-floatingright' => 'Ngambang sisih tengen',
-'qbsettings-directionality' => 'Tetep, ngetutna maring bentuk skrip sekang basane Rika',
-
 # Preferences page
 'preferences' => 'Preferensi',
 'mypreferences' => 'Preferensi',

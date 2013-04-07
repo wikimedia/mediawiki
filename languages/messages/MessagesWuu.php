@@ -11,6 +11,7 @@
  * @author O
  * @author Reedy
  * @author Wu-chinese.com
+ * @author Yfdyh000
  */
 
 $fallback = 'zh-hans';
@@ -900,14 +901,6 @@ $1",
 'search-external' => '外部搜索',
 'searchdisabled' => '{{SITENAME}}个搜索已禁用。侬可以暂时使用Google搜索，须注意渠拉索引个{{SITENAME}}内容作兴会过时。',
 
-# Quickbar
-'qbsettings' => '快速导航排',
-'qbsettings-none' => '呒',
-'qbsettings-fixedleft' => '左许固定',
-'qbsettings-fixedright' => '右许固定',
-'qbsettings-floatingleft' => '左许氽移',
-'qbsettings-floatingright' => '右许氽移',
-
 # Preferences page
 'preferences' => '偏好',
 'mypreferences' => '个人设置',
@@ -1574,12 +1567,12 @@ Variants for Chinese language
 'autosumm-new' => '新页面：$1',
 
 # Watchlist editor
-'watchlistedit-normal-title' => '编辑监控列表',
+'watchlistedit-normal-title' => '编辑监视列表',
 
 # Watchlist editing tools
 'watchlisttools-view' => '查看搭界个修改',
 'watchlisttools-edit' => '查看并编辑监控列表',
-'watchlisttools-raw' => '编辑源监控列表',
+'watchlisttools-raw' => '编辑原始监视列表',
 
 # Special:Version
 'version' => '版本',

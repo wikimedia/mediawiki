@@ -1368,15 +1368,6 @@ Zazwyczaj jest to spowodowane przestarzałym linkiem do usuniętej strony. Powó
 W międzyczasie możesz skorzystać z wyszukiwania Google.
 Jednak informacje o treści {{GRAMMAR:D.lp|{{SITENAME}}}} mogą być w Google nieaktualne.',
 
-# Quickbar
-'qbsettings' => 'Pasek szybkiego dostępu',
-'qbsettings-none' => 'Brak',
-'qbsettings-fixedleft' => 'Stały, z lewej',
-'qbsettings-fixedright' => 'Stały, z prawej',
-'qbsettings-floatingleft' => 'Unoszący się, z lewej',
-'qbsettings-floatingright' => 'Unoszący się, z prawej',
-'qbsettings-directionality' => 'Ustawione na stałe, zgodnie z kierunkiem zapisywania w wybranym języku',
-
 # Preferences page
 'preferences' => 'Preferencje',
 'mypreferences' => 'Preferencje',
@@ -4031,10 +4022,10 @@ Grafiki są pokazywane w pełnej rozdzielczości. Inne typy plików są otwieran
 'logentry-delete-event-legacy' => '$1 {{GENDER:$2|zmienił|zmieniła}} widoczność zdarzeń w rejestrze strony $3',
 'logentry-delete-revision-legacy' => '$1 {{GENDER:$2|zmienił|zmieniła}} widoczność wersji strony $3',
 'logentry-suppress-delete' => '$1 {{GENDER:$2|ukrył|ukryła}} stronę $3',
-'logentry-suppress-event' => '$1 potajemnie zmienia widoczność {{PLURAL:$5|zdarzenia|$5 zdarzeń}} w $3, wykonano następujące operacje: $4',
-'logentry-suppress-revision' => '$1 potajemnie zmienia widoczność {{PLURAL:$5|wersji|$5 wersji}} strony $3, wykonano następujące operacje: $4',
-'logentry-suppress-event-legacy' => '$1 potajemnie zmienia widoczność zdarzenia w rejestrze $3',
-'logentry-suppress-revision-legacy' => '$1 potajemnie zmienia widoczność wersji strony $3',
+'logentry-suppress-event' => '$1 potajemnie {{GENDER:$2|zmienił|zmieniła}} widoczność {{PLURAL:$5|zdarzenia|$5 zdarzeń}} w $3, wykonano następujące operacje: $4',
+'logentry-suppress-revision' => '$1 potajemnie {{GENDER:$2|zmienił|zmieniła}} widoczność {{PLURAL:$5|wersji|$5 wersji}} strony $3, wykonano następujące operacje: $4',
+'logentry-suppress-event-legacy' => '$1 potajemnie {{GENDER:$2|zmienił|zmieniła}} widoczność zdarzenia w rejestrze dla strony $3',
+'logentry-suppress-revision-legacy' => '$1 potajemnie {{GENDER:$2|zmienił|zmieniła}} widoczność wersji strony $3',
 'revdelete-content-hid' => 'treść została ukryta',
 'revdelete-summary-hid' => 'opis zmian został ukryty',
 'revdelete-uname-hid' => 'nazwa użytkownika została ukryta',
@@ -4049,9 +4040,9 @@ Grafiki są pokazywane w pełnej rozdzielczości. Inne typy plików są otwieran
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|przeniósł|przeniosła}} stronę $3 na $4 w miejsce przekierowania i bez pozostawienia przekierowania pod starym tytułem',
 'logentry-patrol-patrol' => '$1 {{GENDER:$2|oznaczył|oznaczyła}} wersję $4 strony $3 jako sprawdzoną',
 'logentry-patrol-patrol-auto' => '$1 automatycznie {{GENDER:$2|oznaczył|oznaczyła}} wersję $4 strony $3 jako sprawdzoną',
-'logentry-newusers-newusers' => 'Konto użytkownika $1 zostało utworzone',
-'logentry-newusers-create' => 'Konto użytkownika $1 zostało utworzone',
-'logentry-newusers-create2' => 'Konto użytkownika $3 zostało utworzone przez użytkownika $1',
+'logentry-newusers-newusers' => 'Konto {{GENDER:$2|użytkownika|użytkowniczki}} $1 zostało utworzone',
+'logentry-newusers-create' => 'Konto {{GENDER:$2|użytkownika|użytkowniczki}} $1 zostało utworzone',
+'logentry-newusers-create2' => '$1 {{GENDER:$2|utworzył|utworzyła}} konto użytkownika $3',
 'logentry-newusers-byemail' => 'Konto $3 zostało utworzone przez użytkownika $1, hasło wysłano e-mailem',
 'logentry-newusers-autocreate' => '$1 automatycznie {{GENDER:$2|utworzył|utworzyła|utworzył}} konto użytkownika',
 'logentry-rights-rights' => '$1 {{GENDER:$2|zmienił|zmieniła}} przynależność $3 do grup ($4 → $5)',

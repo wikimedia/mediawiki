@@ -1388,15 +1388,6 @@ Et es nit jesaht,
 dat dänne ihr Daate topaktuell sin,
 ävver et es besser wie jaa_nix.',
 
-# Quickbar
-'qbsettings' => '„Flöcke Links“',
-'qbsettings-none' => 'Fottlooße, dat well ich nit sinn',
-'qbsettings-fixedleft' => 'Am linke Rand fass aanjepapp',
-'qbsettings-fixedright' => 'Am rächte Rand fass aanjepapp',
-'qbsettings-floatingleft' => 'Am linke Rand am Schwevve',
-'qbsettings-floatingright' => 'Am rächte Rand am Schwevve',
-'qbsettings-directionality' => 'Faß, passend för wi eröm de Schreff för Ding Schprooch jeiht',
-
 # Preferences page
 'preferences' => 'ming Enstellunge',
 'mypreferences' => 'Enstellunge',
@@ -2658,8 +2649,7 @@ $1',
 'blanknamespace' => '(Atikkele)',
 
 # Contributions
-'contributions' => '{{GENDER:$1|Däm Metmaacher|Däm|Däm Metmaacher|Dä Metmaacherėn|Däm Metmaacher}} $1
-{{GENDER:$1|singe|singe|singe|iere|singe}} Beidräch',
+'contributions' => '{{GENDER:$1|Däm Metmaacher|Däm|Däm Metmaacher|Dä Metmaacherėn|Däm}} $1 {{GENDER:$1|singe|singe|singe|iere|singe}} Beidräch',
 'contributions-title' => 'Beidräsch fum  $1',
 'mycontris' => 'Beidrähch',
 'contribsub2' => 'För dä Metmaacher: $1 ($2)',

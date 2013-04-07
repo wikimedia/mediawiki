@@ -1224,15 +1224,6 @@ Gallout a reot kavout munudoù e [{{fullurl:{{#Special:Log}}/delete|page={{FULLP
 'search-external' => 'Klask diavaez',
 'searchdisabled' => "<p>Diweredekaet eo bet an arc'hwel klask war an destenn a-bezh evit ur frapad rak ur samm re vras e oa evit ar servijer. Emichañs e vo tu d'e adlakaat pa vo ur servijer galloudusoc'h ganeomp. Da c'hortoz e c'hallit klask gant Google:</p>",
 
-# Quickbar
-'qbsettings' => 'Personelaat ar varrenn ostilhoù',
-'qbsettings-none' => 'Hini ebet',
-'qbsettings-fixedleft' => 'Kleiz',
-'qbsettings-fixedright' => 'Dehou',
-'qbsettings-floatingleft' => 'War-neuñv a-gleiz',
-'qbsettings-floatingright' => 'War-neuñv a-zehou',
-'qbsettings-directionality' => 'Difiñv, hervez an tu ma vez skrivet ho yezh',
-
 # Preferences page
 'preferences' => 'Penndibaboù',
 'mypreferences' => 'Penndibaboù',
@@ -1787,7 +1778,6 @@ Diweredekaet eo bet img_auth.php evit ur surentez eus ar gwellañ",
 'http-read-error' => 'Fazi lenn HTTP.',
 'http-timed-out' => 'Erru eo termen ar reked HTTP.',
 'http-curl-error' => 'Fazi adtapout an URL : $1',
-'http-host-unreachable' => "N'eus ket bet gallet tizhout an URL.",
 'http-bad-status' => 'Ur gudenn a zo bet e-pad ar reked HTTP : $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -2107,15 +2097,6 @@ Rekis eo dezho un domani a-us da nebeutañ evel, da skouer, "*.org".<br />
 'listusers-submit' => 'Diskouez',
 'listusers-noresult' => "N'eus bet kavet implijer ebet.",
 'listusers-blocked' => '(stanket)',
-
-# Special:ActiveUsers
-'activeusers' => 'Roll an implijerien oberiant',
-'activeusers-intro' => 'Setu aze ur roll eus an implijerien zo bet oberiant mui pe vui e-pad an $1 {{PLURAL:$1|deiz|deiz}} diwezhañ.',
-'activeusers-count' => '$1 {{PLURAL:$1|oberiadenn}} abaoe an {{PLURAL:$3|deiz|$3 deiz}} diwezhañ',
-'activeusers-from' => 'Diskouez an implijerien adal :',
-'activeusers-hidebots' => 'Kuzhat ar robotoù',
-'activeusers-hidesysops' => 'Kuzhat ar verourien',
-'activeusers-noresult' => "N'eus bet kavet implijer ebet.",
 
 # Special:ListGroupRights
 'listgrouprights' => 'Gwirioù ar strolladoù implijer',
@@ -2904,13 +2885,8 @@ Talvezout a ra da ouzhpennañ un displegadenn er c\'hombod diverrañ.',
 
 # Stylesheets
 'common.css' => '/** Talvezout a raio ar CSS lakaet amañ evit an holl wiskadurioù */',
-'standard.css' => '/* Talvezout a raio ar CSS lakaet amañ evit implijerien ar gwiskadur Standard */',
-'nostalgia.css' => '/* Talvezout a raio ar CSS lakaet amañ evit implijerien ar gwiskadur Melkoni */',
 'cologneblue.css' => '/* Talvezout a raio ar CSS lakaet amañ evit implijerien ar gwiskadur Glaz Kologn */',
 'monobook.css' => '/* Talvezout a raio ar CSS lakaet amañ evit implijerien ar gwiskadur Monobook */',
-'myskin.css' => '/* Talvezout a raio ar CSS lakaet amañ evit implijerien ar gwiskadur MySkin */',
-'chick.css' => '/* Talvezout a raio ar CSS lakaet amañ evit implijerien ar gwiskadur Plogig */',
-'simple.css' => '/* Talvezout a raio ar CSS lakaet amañ implijerien ar gwiskadur Eeun */',
 'modern.css' => '/* Talvezout a raio ar CSS lakaet amañ evit implijerien ar gwiskadur Modern */',
 'vector.css' => '/* Talvezout a raio ar CSS lakaet amañ evit implijerien ar gwiskadur Vektor */',
 'print.css' => '/* Talvezout a raio ar CSS lakaet amañ evit ar moullañ */',
@@ -2923,13 +2899,8 @@ Talvezout a ra da ouzhpennañ un displegadenn er c\'hombod diverrañ.',
 
 # Scripts
 'common.js' => '/* Kement JavaScript amañ a vo karget evit an holl implijerien war kement pajenn lennet ganto. */',
-'standard.js' => '/* Kement JavaScript amañ a vo karget evit an implijerien a ra gant ar gwiskadur Standard */',
-'nostalgia.js' => '/* Kement JavaScript amañ a vo karget evit an implijerien a ra gant ar gwiskadur Melkoni */',
 'cologneblue.js' => '/* Kement JavaScript amañ a vo karget evit an implijerien a ra gant ar gwiskadur Glaz Kologn */',
 'monobook.js' => '/* Kement JavaScript amañ a vo karget evit an implijerien a ra gant ar gwiskadur MonoBook */',
-'myskin.js' => '/* Kement JavaScript amañ a vo karget evit an implijerien a ra gant ar gwiskadur MySkin */',
-'chick.js' => '/* Kement JavaScript amañ a vo karget evit an implijerien a ra gant ar gwiskadur Plogig */',
-'simple.js' => '/* Kement JavaScript amañ a vo karget evit an implijerien a ra gant ar gwiskadur Eeun */',
 'modern.js' => '/* Kement JavaScript amañ a vo karget evit an implijerien a ra gant ar gwiskadur Modern */',
 'vector.js' => '/* Kement JavaScript amañ a vo karget evit an implijerien a ra gant ar gwiskadur Vektor */',
 
@@ -2975,6 +2946,7 @@ Sur a-walc'h abalamour d'ul liamm enni a gas d'ul lec'hienn ziavaez berzet.",
 'pageinfo-robot-noindex' => "Ne c'haller ket menegeriñ",
 'pageinfo-views' => 'Niver a weladennoù',
 'pageinfo-watchers' => 'Niver a dud o heuliañ',
+'pageinfo-few-watchers' => "Nebeutoc'h eget $1 {{PLURAL:$1|lenner}}",
 'pageinfo-redirects-name' => 'Adkas war-zu ar bajenn-mañ',
 'pageinfo-subpages-name' => 'Ispajennoù eus ar bajenn-mañ',
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|kasadur|kasadurioù}}; $3 {{PLURAL:$3|nann kasaduri|nann kasadurioù}})',
@@ -2989,6 +2961,7 @@ Sur a-walc'h abalamour d'ul liamm enni a gas d'ul lec'hienn ziavaez berzet.",
 'pageinfo-magic-words' => '{{PLURAL:$1|Ger hud |Gerioù hud}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Rumm kuzh|Rummoù kuzh}} ($1)',
 'pageinfo-templates' => "{{PLURAL:$1|Patrom endalc'het|Patromoù endalc'het}} ($1)",
+'pageinfo-transclusions' => '{{PLURAL:$1|Pajenn|Pajennoù}} treuzkludet war ($1)',
 'pageinfo-toolboxlink' => 'Titouroù ar bajenn',
 'pageinfo-redirectsto' => 'Adkas a ra da',
 'pageinfo-redirectsto-info' => 'Titouroù',
@@ -3000,13 +2973,8 @@ Sur a-walc'h abalamour d'ul liamm enni a gas d'ul lec'hienn ziavaez berzet.",
 'pageinfo-category-files' => 'Niver a restroù',
 
 # Skin names
-'skinname-standard' => 'Standard',
-'skinname-nostalgia' => 'Melkoni',
 'skinname-cologneblue' => 'Glaz Kologn',
 'skinname-monobook' => 'MonoBook',
-'skinname-myskin' => 'MySkin',
-'skinname-chick' => 'Plogig',
-'skinname-simple' => 'Eeun',
 'skinname-modern' => 'Modern',
 'skinname-vector' => 'Vektor',
 
@@ -3083,8 +3051,8 @@ Ma vez erounezet ganeoc'h e c'hallje tagañ ho reizhiad.",
 'minutes' => '{{PLURAL:$1|$1 vunutenn|$1 munutenn}}',
 'hours' => '{{PLURAL:$1|$1 eurvezh|$1 eurvezh}}',
 'days' => '{{PLURAL:$1|$1 deiz|$1 deiz}}',
-'months' => '{{PLURAL: $1|$1 miz|$1 miz}}',
-'years' => '{{PLURAL: $1|$1 bloaz|$1 bloaz}}',
+'months' => '{{PLURAL:$1|$1 miz|$1 miz}}',
+'years' => '{{PLURAL:$1|$1 bloaz|$1 bloaz}}',
 'ago' => '$1 zo',
 'just-now' => 'bremañ diouzhtu',
 

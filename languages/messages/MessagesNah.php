@@ -628,9 +628,6 @@ Hueliz ōmopolo huiqui nozo ōmozacac.
 'powersearch-togglenone' => 'Ahtlein',
 'search-external' => 'Tlatēmotiliztli calāmpa',
 
-# Quickbar
-'qbsettings-none' => 'Ahtlein',
-
 # Preferences page
 'preferences' => 'Tlaēlēhuiliztli',
 'mypreferences' => 'Notlaēlēhuiliz',

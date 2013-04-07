@@ -1284,15 +1284,6 @@ $1",
 'search-external' => '外部搜索',
 'searchdisabled' => '{{SITENAME}}由於性能方面的原因，全文搜索已被暫時停用。您可以暫時透過Google搜索。請留意他們的索引可能會過時。',
 
-# Quickbar
-'qbsettings' => '快速導航條',
-'qbsettings-none' => '無',
-'qbsettings-fixedleft' => '左側固定',
-'qbsettings-fixedright' => '右側固定',
-'qbsettings-floatingleft' => '左側漂移',
-'qbsettings-floatingright' => '右側漂移',
-'qbsettings-directionality' => '固定，取決於你的語言腳本的方向性',
-
 # Preferences page
 'preferences' => '偏好設定',
 'mypreferences' => '偏好設定',

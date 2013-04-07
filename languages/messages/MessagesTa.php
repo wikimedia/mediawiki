@@ -1105,15 +1105,6 @@ $1",
 'search-external' => 'வெளித்தேடல்',
 'searchdisabled' => '{{SITENAME}} தளத்தின் தேடல் வசதிகள் தற்காலிகமாக முடக்கப்பட்டுள்ளது. அதுவரை நீங்கள் கீழேயுள்ள கூகிள் தேடலைப் பயன்படுத்தலாம். இது சில சமயம் இற்றைப்படுத்தப்படாததாய் இருக்கக்கூடும்.',
 
-# Quickbar
-'qbsettings' => 'விரைவுச் சட்ட அமைவுகள்',
-'qbsettings-none' => 'எதுவுமில்லை',
-'qbsettings-fixedleft' => 'நிலைத்த இடது',
-'qbsettings-fixedright' => 'நிலைத்த வலது',
-'qbsettings-floatingleft' => 'மிதப்பு இடது',
-'qbsettings-floatingright' => 'மிதப்பு வலது',
-'qbsettings-directionality' => 'உங்கள் மொழியைப் படிக்கும் திசைக்கு ஏற்ப, நிறுவப்பட்டது',
-
 # Preferences page
 'preferences' => 'விருப்பங்கள்',
 'mypreferences' => 'விருப்பத்தேர்வுகள்',
@@ -1635,7 +1626,6 @@ $1',
 'http-read-error' => 'HTTP படிப்பதில் பிழை.',
 'http-timed-out' => 'HTTP கோரியதற்கான நேரம் முடிவடைந்துவிட்டது.',
 'http-curl-error' => '$1 உரலியை பெறுவதில் பிழை நேரிட்டது',
-'http-host-unreachable' => 'இணைய முகவரியை (URL) சென்றடைய முடியவில்லை',
 'http-bad-status' => 'HTTP கோரிக்கையில் பிரச்சினை ஏற்பட்டுள்ளது:$1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -1783,6 +1773,7 @@ $1',
 'disambiguationspage' => 'Template:பக்கவழி நெறிப்படுத்தல்',
 'disambiguations-text' => "பின்வரும் பக்கங்கள் '''பக்கவழி நெறிப்படுத்தல் பக்கத்துக்கு''' இணைக்கப்பட்டுள்ளன. மாறாக இவை பொருத்தமன தலைப்பிற்கு இணைக்கப்பட வேண்டும். <br />[[MediaWiki:Disambiguationspage|பக்கவழி நெறிப்படுத்தல் பக்கங்கத்தில்]] உள்ள வார்ப்புரு இணைக்கப்பட்ட பக்கங்கள்  பக்கவழி நெறிப்படுத்தல் பக்கங்கள் என் கருதப்படும்.",
 
+'pageswithprop' => 'பக்கப் பண்புடைய பக்கங்கள்',
 'pageswithprop-submit' => 'செல்க',
 
 'doubleredirects' => 'இரட்டை வழிமாற்றுகள்',
@@ -1993,7 +1984,7 @@ $1',
 'usermessage-editor' => 'அமைப்பு தூதன்(messenger).',
 
 # Watchlist
-'watchlist' => 'என் கவனிப்புப் பட்டியல்',
+'watchlist' => 'கவனிப்புப் பட்டியல்',
 'mywatchlist' => 'கவனிப்புப் பட்டியல்',
 'watchlistfor2' => '$1 பயனரின் ($2)',
 'nowatchlist' => 'உங்களுடைய கவனிப்புப் பட்டியலில் ஒரு விடயமும் இல்லை.',
@@ -2142,7 +2133,7 @@ $NEWPAGE
 'protect-default' => 'அனைத்துப் பயனரையும் உள்ளிடு',
 'protect-fallback' => '"$1" அனுமதி தேவை',
 'protect-level-autoconfirmed' => 'புதிய, பதிவு செய்யாத பயனர்களைத் தடை செய்',
-'protect-level-sysop' => 'நிருவாகிகள் மட்டும்',
+'protect-level-sysop' => 'நிருவாகிகளை மட்டும் அனுமதிக்கவும்',
 'protect-summary-cascade' => 'படிநிலை',
 'protect-expiring' => '$1 (UTC) மணிக்கு காலாவதியாகிறது',
 'protect-expiring-local' => 'காலாவதியாகும்$1',
@@ -2207,7 +2198,7 @@ $NEWPAGE
 'undeletedrevisions' => '{{PLURAL:$1|1 திருத்தம் மீட்கப்பட்டது|$1 திருத்தங்கள் மீட்கப்பட்டன}}',
 'undeletedrevisions-files' => '{{PLURAL:$1|1 திருத்தம்|$1 திருத்தங்கள்}} மற்றும் {{PLURAL:$2|1 கோப்பு|$2 கோப்புகள்}} மீட்கப்பட்டன.',
 'undeletedfiles' => '{{PLURAL:$1|ஒரு கோப்பு மீட்டெடுக்கப்பட்டது|$1 கோப்புகள் மீட்டெடுக்கப்பட்டன}}',
-'cannotundelete' => 'நீக்கம் தோல்வி; வேறு யாராவது முன்னதாக இப்பக்கத்தை நீக்கியிருக்கலாம்.',
+'cannotundelete' => 'நீக்கம் தோல்வி;',
 'undeletedpage' => "'''$1 மீட்கப்பட்டது'''
 
 அண்மைய நீக்கல்களுக்கும் மீட்புக்களுக்கும் [[Special:Log/delete|நீக்கல் பதிவைப்]] பார்க்கவும்.",
@@ -2756,8 +2747,6 @@ $1',
 'pageinfo-category-files' => 'கோப்புகளின் எண்ணிக்கை',
 
 # Skin names
-'skinname-standard' => 'இயல்பான',
-'skinname-nostalgia' => 'பசுமை நினைவு (Nostalgia)',
 'skinname-cologneblue' => 'கொலோன் (Cologne) நீலம் Blue',
 
 # Patrolling

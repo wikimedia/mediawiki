@@ -1362,15 +1362,6 @@ Detalii se pot găsi în [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE
 'search-external' => 'Căutare externă',
 'searchdisabled' => '<p>Ne pare rău! Căutarea după text a fost dezactivată temporar, din motive de performanță. Între timp puteți folosi căutarea prin Google mai jos, însă aceasta poate să dea rezultate învechite.</p>',
 
-# Quickbar
-'qbsettings' => 'Setări pentru bara rapidă',
-'qbsettings-none' => 'Fără',
-'qbsettings-fixedleft' => 'Fixă, în stânga',
-'qbsettings-fixedright' => 'Fixă, în dreapta',
-'qbsettings-floatingleft' => 'Liberă',
-'qbsettings-floatingright' => 'Plutire la dreapta',
-'qbsettings-directionality' => 'Fixat, în funcție de direcția în care se face scrierea în limba dumneavoastră',
-
 # Preferences page
 'preferences' => 'Preferințe',
 'mypreferences' => 'Preferințe',

@@ -892,14 +892,6 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'powersearch-togglenone' => 'Арась мезе невтемс',
 'search-external' => 'Ушо йондонь вешнема',
 
-# Quickbar
-'qbsettings' => 'Навигациянь лазнэ',
-'qbsettings-none' => 'Арась мезе невтемс',
-'qbsettings-fixedleft' => 'Керш ёндо кирдезь',
-'qbsettings-fixedright' => 'Вить ёндо кирдезь',
-'qbsettings-floatingleft' => 'Керш ёнга уи',
-'qbsettings-floatingright' => 'Вить ёнга уи',
-
 # Preferences page
 'preferences' => 'Аравтомат',
 'mypreferences' => 'Аравтомат',

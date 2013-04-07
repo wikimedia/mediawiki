@@ -1363,15 +1363,6 @@ Pe verbendi ''all:'', vaceyê xo bıvurni ki contenti hemi cıgeyro (pelanê mı
 'search-external' => 'Cıgeyrayışê teberi',
 'searchdisabled' => '{{SITENAME}} no keyepel de cıgerayiş muweqqet bıryayo. no benatê de şıma pê Google eşkeni zerreyê {{SITENAME}} de cıgerayiş bıkeri.',
 
-# Quickbar
-'qbsettings' => 'Çûwo pêt',
-'qbsettings-none' => 'Çıniyo',
-'qbsettings-fixedleft' => 'Rêcaene çhep',
-'qbsettings-fixedright' => 'Rêcaene raşt',
-'qbsettings-floatingleft' => 'rêcaene çhep',
-'qbsettings-floatingright' => 'rêcaene raşt',
-'qbsettings-directionality' => 'Sabito, hereket de dosya da zıwan de şımaya gıredayeyo',
-
 # Preferences page
 'preferences' => 'Tercihi',
 'mypreferences' => 'Tercihi',

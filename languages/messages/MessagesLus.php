@@ -779,15 +779,6 @@ Lamtawi hmante: '''({{int:cur}})'''= ennawnna thar ber nena danglamna, '''({{int
 Google hmangin i lo zawng hrih thei ang.
 {{SITENAME}} chhung zawnawlna hi a hlui lutuk tawh mai thei tih hria ang che.',
 
-# Quickbar
-'qbsettings' => 'Hmanrawliang',
-'qbsettings-none' => 'Pakhat mah',
-'qbsettings-fixedleft' => 'Veilam',
-'qbsettings-fixedright' => 'Dinglam',
-'qbsettings-floatingleft' => 'Veilama lang',
-'qbsettings-floatingright' => 'Dinglama lang',
-'qbsettings-directionality' => 'Bet, i ţawng inziahdàn hawzawnga zirin',
-
 # Preferences page
 'preferences' => 'Duhdàn',
 'mypreferences' => 'Duhthlanna',

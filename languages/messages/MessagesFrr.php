@@ -1073,15 +1073,6 @@ Dü könst det uun't [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}
 'search-external' => 'Extern säkj',
 'searchdisabled' => 'Jü {{SITENAME}}-säkj as deaktiviird. Dü koost intwasche ma Google säke. Betånk, dåt di säkindäks for {{SITENAME}} ferüüljet weese koon.',
 
-# Quickbar
-'qbsettings' => 'Sidjenliist',
-'qbsettings-none' => 'Niinj',
-'qbsettings-fixedleft' => 'Lachts, fääst',
-'qbsettings-fixedright' => 'Rochts, fääst',
-'qbsettings-floatingleft' => 'Lachts, auergung',
-'qbsettings-floatingright' => 'Rochts, auergung',
-'qbsettings-directionality' => 'Fääst, hinget faan di skriiwwai faan det spriak uf',
-
 # Preferences page
 'preferences' => 'Önjstalinge',
 'mypreferences' => 'Iinstelangen',
@@ -1632,6 +1623,7 @@ $1",
 'blocklist' => 'Spärd brükere',
 'ipblocklist' => 'Spärd brükere',
 'ipblocklist-legend' => 'Spärd brükere fine',
+'ipblocklist-submit' => 'Sjük',
 'expiringblock' => 'iinjet aw e $1 am e klook $2',
 'blocklink' => 'späre',
 'unblocklink' => 'frijeewe',
@@ -1784,6 +1776,9 @@ Hål di '''naie''' tiitel uner '''muul''' önjdreege, deeruner jü ambenååming
 'svg-long-desc' => 'SVG-dåtäi, basisgrutelse: $1 × $2 pixel, dåtäigrutelse: $3',
 'show-big-image' => 'Färsjon önj huuger apliising',
 
+# Special:NewFiles
+'ilsubmit' => 'Sjük',
+
 # Bad image list
 'bad_image_list' => 'Formååt:
 
@@ -1843,8 +1838,12 @@ Deeraw föliende sidelinke önj dåtseelwi ra definiire ütnååme, önj di kont
 'version-software-product' => 'Produkt',
 'version-software-version' => 'Färsjoon',
 
+# Special:FileDuplicateSearch
+'fileduplicatesearch-submit' => 'Sjük',
+
 # Special:SpecialPages
 'specialpages' => 'Spetsjåålside',
+'specialpages-group-login' => 'Melde di uun of skriiw di iin',
 
 # External image whitelist
 'external_image_whitelist' => " #Feranere detheer rä ei<pre>
@@ -1863,26 +1862,32 @@ Deeraw föliende sidelinke önj dåtseelwi ra definiire ütnååme, önj di kont
 'htmlform-selectorother-other' => 'Oudere',
 
 # New logging system
-'logentry-delete-delete' => '$1 hää det sidj $3 stregen',
-'logentry-delete-restore' => '$1 hää det sidj $3 weder iinsteld',
-'logentry-delete-event' => '$1 hää det uunlukin feranert faan {{PLURAL:$5|en logbuk iindrach|$5 logbuk iindracher}} üüb $3: $4',
-'logentry-delete-revision' => '$1 hää det uunlukin feranert faan {{PLURAL:$5|ian wersjuun|$5 wersjuunen}} faan det sidj $3: $4',
-'logentry-delete-event-legacy' => '$1 hää det uunlukin feranert faan logbuk iindracher üüb $3',
-'logentry-delete-revision-legacy' => '$1 hää det uunlukin feranert faan wersjuunen faan det sidj $3',
-'logentry-suppress-delete' => '$1 hää det sidj $3 wechtrakt',
-'logentry-suppress-event' => '$1 hää stalswigin det uunlukin feranert faan {{PLURAL:$5|en logbuk iindrach|$5 logbuk iindracher}} üüb $3: $4',
-'logentry-suppress-revision' => '$1 hää stalswigin det uunlukin feranert faan {{PLURAL:$5|ian wersjuun|$5 wersjuunen}} faan det sidj $3: $4',
-'logentry-suppress-event-legacy' => '$1 hää stalswigin det uunlukin fernanert faan logbuk iindracher üüb $3',
-'logentry-suppress-revision-legacy' => '$1 hää stalswigin det uunlukin feranert faan wersjuunen faan det sidj $3',
+'logentry-delete-delete' => '$1 {{Gender:$2}} hää det sidj $3 stregen',
+'logentry-delete-restore' => '$1 {{GENDER:$2}} hää det sidj $3 weder iinsteld',
+'logentry-delete-event' => '$1 {{GENDER:$2}} hää det uunsicht feranert faan {{PLURAL:$5|en logbuk iindrach|$5 logbuk iindracher}} üüb $3: $4',
+'logentry-delete-revision' => '$1 {{GENDER:$2}} hää det uunsicht feranert faan {{PLURAL:$5|ian wersjuun|$5 wersjuunen}} faan det sidj $3: $4',
+'logentry-delete-event-legacy' => '$1 {{GENDER:$2}} hää det uunsicht feranert faan logbuk iindracher üüb $3',
+'logentry-delete-revision-legacy' => '$1 {{GENDER:$2}} hää det uunsicht feranert faan wersjuunen faan det sidj $3',
+'logentry-suppress-delete' => '$1 {{GENDER:$2}} hää det sidj $3 wechtrakt',
+'logentry-suppress-event' => '$1 {{GENDER:$2}} hää stalswigin det uunsicht feranert faan {{PLURAL:$5|en logbuk iindrach|$5 logbuk iindracher}} üüb $3: $4',
+'logentry-suppress-revision' => '$1 {{GENDER:$2}} hää stalswigin det uunsicht feranert faan {{PLURAL:$5|ian wersjuun|$5 wersjuunen}} faan det sidj $3: $4',
+'logentry-suppress-event-legacy' => '$1 {{GENDER:$2}} hää stalswigin det uunsicht feranert faan logbuk iindracher üüb $3',
+'logentry-suppress-revision-legacy' => '$1 {{GENDER:$2}} hää stalswigin det uunlukin feranert faan wersjuunen faan det sidj $3',
 'revdelete-uname-hid' => 'brükernoome ferstäägen',
 'revdelete-uname-unhid' => 'brükernoome frijääwen',
 'revdelete-restricted' => 'gränse jüle uk for administratoore',
 'revdelete-unrestricted' => 'gränse for administratoore wächnümen',
-'logentry-move-move' => '$1 hää det sidj $3 efter $4 fersköwen.',
-'logentry-move-move-noredirect' => '$1 hää det sidj $3 efter $4 saner widjerfeerang fersköwen.',
-'logentry-move-move_redir' => '$1 hää det sidj $3 efter $4 fersköwen an diarbi en widjerfeerang auerskrewen.',
-'logentry-move-move_redir-noredirect' => '$1 hää det sidj $3 efter $4 fersköwen an diarbi en widjerfeerang auerskrewen saner salew en widjerfeerang uuntuleien.',
+'logentry-move-move' => '$1 {{GENDER:$2}} hää det sidj $3 efter $4 fersköwen.',
+'logentry-move-move-noredirect' => '$1 {{GENDER:$2}} hää det sidj $3 efter $4 saner widjerfeerang fersköwen.',
+'logentry-move-move_redir' => '$1 {{GENDER:$2}} hää det sidj $3 efter $4 fersköwen an diarbi en widjerfeerang auerskrewen.',
+'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2}} hää det sidj $3 efter $4 fersköwen an diarbi en widjerfeerang auerskrewen saner salew en widjerfeerang uuntuleien.',
+'logentry-newusers-newusers' => 'Brükerkonto $1 as {{GENDER:$2|iinracht}} wurden',
+'logentry-newusers-create2' => 'Brükerkonto $3 as faan $1 {{GENDER:$2|iinracht}} wurden',
+'logentry-newusers-autocreate' => 'Brükerkonto $1 as automaatisk {{GENDER:$2|iinracht}} wurden',
 'rightsnone' => '(-)',
+
+# Search suggestions
+'searchsuggest-search' => 'Sjük',
 
 # Durations
 'duration-seconds' => '$1 {{PLURAL:$1|sekund|sekunden}}',

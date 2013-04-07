@@ -1346,15 +1346,6 @@ Xem chi tiết trong [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}
 'search-external' => 'Tìm kiếm từ bên ngoài',
 'searchdisabled' => 'Chức năng tìm kiếm tại {{SITENAME}} đã bị tắt. Bạn có tìm kiếm bằng Google trong thời gian này. Chú ý rằng các chỉ mục từ {{SITENAME}} của chúng có thể đã lỗi thời.',
 
-# Quickbar
-'qbsettings' => 'Thanh công cụ',
-'qbsettings-none' => 'Không có',
-'qbsettings-fixedleft' => 'Cố định trái',
-'qbsettings-fixedright' => 'Cố định phải',
-'qbsettings-floatingleft' => 'Nổi bên trái',
-'qbsettings-floatingright' => 'Nổi bên phải',
-'qbsettings-directionality' => 'Cố định, tùy theo hướng viết ngôn ngữ của bạn',
-
 # Preferences page
 'preferences' => 'Tùy chọn',
 'mypreferences' => 'Tùy chọn',

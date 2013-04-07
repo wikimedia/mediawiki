@@ -377,7 +377,7 @@ $messages = array(
 'navigation-heading' => 'Navigasie-keuseskerm',
 'errorpagetitle' => 'Fout',
 'returnto' => 'Keer terug na $1.',
-'tagline' => 'Vanuit {{SITENAME}}',
+'tagline' => 'in {{SITENAME}}',
 'help' => 'Hulp',
 'search' => 'Soek',
 'searchbutton' => 'Soek',
@@ -1264,15 +1264,6 @@ U kan ook 'n naamruimte as voorvoegsel gebruik.",
 'powersearch-togglenone' => 'Geen',
 'search-external' => 'Eksterne soektog',
 'searchdisabled' => '{{SITENAME}} se soekfunksie is tans afgeskakel ter wille van werkverrigting. Gebruik gerus intussen Google of Yahoo! Let daarop dat hulle indekse van die {{SITENAME}}-inhoud verouderd mag wees.',
-
-# Quickbar
-'qbsettings' => 'Snelbalkvoorkeure',
-'qbsettings-none' => 'Geen',
-'qbsettings-fixedleft' => 'Links vas.',
-'qbsettings-fixedright' => 'Regs vas.',
-'qbsettings-floatingleft' => 'Dryf links.',
-'qbsettings-floatingright' => 'Dryf regs.',
-'qbsettings-directionality' => 'Vas, afhanklik van die skryfrigting van u taal',
 
 # Preferences page
 'preferences' => 'Voorkeure',

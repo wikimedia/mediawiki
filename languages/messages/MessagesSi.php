@@ -1242,14 +1242,6 @@ $1",
 මේ අතරතුර ඔබ හට ගූගල් ඔස්සේ ගවේෂණය කල හැක.
 {{SITENAME}} අන්තර්ගතය පිළිබඳ ඔවුන්ගේ සූචි යල් පැන ගොස් ඇතිවා විය හැකි බව සටහන් කර ගන්න.',
 
-# Quickbar
-'qbsettings' => 'යුහුතීරුව',
-'qbsettings-none' => 'කිසිවක් නොමැත',
-'qbsettings-fixedleft' => 'ස්ථාවර වම',
-'qbsettings-fixedright' => 'ස්ථාවර දකුණ',
-'qbsettings-floatingleft' => 'ප්ලාවක වම',
-'qbsettings-floatingright' => 'ප්ලාවක දකුණ',
-
 # Preferences page
 'preferences' => 'අභිරුචි',
 'mypreferences' => 'අභිරුචීන්',

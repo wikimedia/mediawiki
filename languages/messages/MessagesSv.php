@@ -1378,15 +1378,6 @@ Detaljer kan hittas i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}
 Du kan istället göra sökningar med hjälp av Google.
 Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 
-# Quickbar
-'qbsettings' => 'Snabbmeny',
-'qbsettings-none' => 'Ingen',
-'qbsettings-fixedleft' => 'Fast vänster',
-'qbsettings-fixedright' => 'Fast höger',
-'qbsettings-floatingleft' => 'Flytande vänster',
-'qbsettings-floatingright' => 'Flytande höger',
-'qbsettings-directionality' => 'Fast, beroende på riktningen av ditt skript och språk',
-
 # Preferences page
 'preferences' => 'Inställningar',
 'mypreferences' => 'Inställningar',

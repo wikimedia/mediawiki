@@ -1463,15 +1463,6 @@ $1",
 さしあたってはGoogleなどで検索できます。
 ただし外部の検索エンジンの索引にある{{SITENAME}}のコンテンツは古い場合があります。',
 
-# Quickbar
-'qbsettings' => 'クイックバー',
-'qbsettings-none' => 'なし',
-'qbsettings-fixedleft' => '左端',
-'qbsettings-fixedright' => '右端',
-'qbsettings-floatingleft' => 'ウィンドウの左上に固定',
-'qbsettings-floatingright' => 'ウィンドウの右上に固定',
-'qbsettings-directionality' => 'あなたの言語の文字体系の書字方向に応じて固定',
-
 # Preferences page
 'preferences' => '個人設定',
 'mypreferences' => '個人設定',

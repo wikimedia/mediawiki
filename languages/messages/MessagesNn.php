@@ -1337,15 +1337,6 @@ For å søkja i alle, bruk prefikset ''all:'' (det inkluderer diskusjonssider, m
 I mellomtida kan du søkje gjennom Google.
 Ver merksam på at registra deira kan vera utdaterte.',
 
-# Quickbar
-'qbsettings' => 'Snøggmeny',
-'qbsettings-none' => 'Ingen',
-'qbsettings-fixedleft' => 'Venstre',
-'qbsettings-fixedright' => 'Høgre',
-'qbsettings-floatingleft' => 'Flytande venstre',
-'qbsettings-floatingright' => 'Flytande høgre',
-'qbsettings-directionality' => 'Fast, avhengig av kva retning språket ditt vert lese',
-
 # Preferences page
 'preferences' => 'Innstillingar',
 'mypreferences' => 'Innstillingar',

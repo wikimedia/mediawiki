@@ -1138,15 +1138,6 @@ $1",
 ایندی گوگل ایله آختارا بیلرسینیز.
 دیقت ائدین کی اونون {{SITENAME}} ایندئکسی، کؤهنه اولا بیلر.',
 
-# Quickbar
-'qbsettings' => 'سورعت پانئلی',
-'qbsettings-none' => 'هئچ بیری',
-'qbsettings-fixedleft' => 'سولا ثابیت',
-'qbsettings-fixedright' => 'ساغا ثابیت',
-'qbsettings-floatingleft' => 'سولا اوزن',
-'qbsettings-floatingright' => 'ساغا اوزن',
-'qbsettings-directionality' => 'ثابیت، سیزین دیل یازینیزین یولویلا',
-
 # Preferences page
 'preferences' => 'ترجیحلر',
 'mypreferences' => 'ترجیحلر',

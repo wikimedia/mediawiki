@@ -1158,15 +1158,6 @@ Mae manylion pellach i'w cael yn [{{fullurl:{{#Special:Log}}/delete|page={{FULLP
 Yn y cyfamser gallwch chwilio drwy Google.
 Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 
-# Quickbar
-'qbsettings' => 'Panel llywio',
-'qbsettings-none' => 'Dim',
-'qbsettings-fixedleft' => 'Sefydlog ar y chwith',
-'qbsettings-fixedright' => 'Sefydlog ar y dde',
-'qbsettings-floatingleft' => 'Yn arnofio ar y chwith',
-'qbsettings-floatingright' => 'Yn arnofio ar y dde',
-'qbsettings-directionality' => "Yn sefydlog, ar yr ochr o'r ddalen lle rydych yn dechrau ysgrifennu eich iaith",
-
 # Preferences page
 'preferences' => 'Dewisiadau',
 'mypreferences' => 'Dewisiadau',

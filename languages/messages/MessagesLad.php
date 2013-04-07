@@ -239,7 +239,7 @@ $messages = array(
 'editfont-serif' => 'Tipografía serif',
 
 # Dates
-'sunday' => 'Aljhadh',
+'sunday' => 'Aljhad',
 'monday' => 'Lunes',
 'tuesday' => 'Martes',
 'wednesday' => 'Miércoles',
@@ -256,7 +256,7 @@ $messages = array(
 'january' => 'Enero',
 'february' => 'Hevrero',
 'march' => 'Março',
-'april' => 'Avril',
+'april' => 'Abril',
 'may_long' => 'Mayo',
 'june' => 'Juño',
 'july' => 'Jullo',

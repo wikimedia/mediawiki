@@ -1243,15 +1243,6 @@ Cuba berikan awalan ''all:'' untuk mencari semua kandungan (termasuk laman perbi
 'search-external' => 'Carian luar',
 'searchdisabled' => 'Ciri pencarian dalam {{SITENAME}} dimatikan. Anda boleh mencari melalui Google. Sila ambil perhatian bahawa indeks dalam Google mungkin bukan yang terkini.',
 
-# Quickbar
-'qbsettings' => 'Bar pantas',
-'qbsettings-none' => 'Tiada',
-'qbsettings-fixedleft' => 'Tetap sebelah kiri',
-'qbsettings-fixedright' => 'Tetap sebelah kanan',
-'qbsettings-floatingleft' => 'Berubah-ubah sebelah kiri',
-'qbsettings-floatingright' => 'Berubah-ubah sebelah kanan',
-'qbsettings-directionality' => 'Tetap, bergantung pada kearahan tulisan bahasa anda',
-
 # Preferences page
 'preferences' => 'Keutamaan',
 'mypreferences' => 'Keutamaan',

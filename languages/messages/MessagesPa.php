@@ -1072,14 +1072,6 @@ $3|'''1''' ਨਤੀਜਾ|'''$3''' ਨਤੀਜੇ}} ਵਖਾਓ।",
 'powersearch-togglenone' => 'ਕੋਈ ਨਹੀਂ',
 'search-external' => 'ਬਾਹਰੀ ਖੋਜ',
 
-# Quickbar
-'qbsettings' => 'ਤੁਰੰਤ ਬਾਰ',
-'qbsettings-none' => 'ਕੋਈ ਨਹੀਂ',
-'qbsettings-fixedleft' => 'ਕਾਬ੍ਬ੍ਹੇ ਨੂ ਸਥਾਪਿਤ',
-'qbsettings-fixedright' => 'ਸੱਜੇ ਨੂ ਸਥਾਪਿਤ',
-'qbsettings-floatingleft' => 'ਕਾਬ੍ਬ੍ਹੇ ਨੂ ਰੁਲਦੀ',
-'qbsettings-floatingright' => 'ਸੱਜੇ ਨੂ ਰੁਲਦੀ',
-
 # Preferences page
 'preferences' => 'ਮੇਰੀ ਪਸੰਦ',
 'mypreferences' => 'ਪਸੰਦਾਂ',

@@ -1194,15 +1194,6 @@ Tarai pamintaan Pian lawan ''all:'' gasan manggagai samunyaan isi (tamasuk tungk
 Pian kawa manggagai lung Google parhatan ini.
 Catatan nang dihaharnya matan isi {{SITENAME}} kawa-ai sudah kadaluarsa.',
 
-# Quickbar
-'qbsettings' => 'Bilahhancap',
-'qbsettings-none' => 'Kadada',
-'qbsettings-fixedleft' => 'Tatap di kiwa',
-'qbsettings-fixedright' => 'Tatap di kanan',
-'qbsettings-floatingleft' => 'Mangambang sabalah kiwa',
-'qbsettings-floatingright' => 'Mangambang sabalah kanan',
-'qbsettings-directionality' => 'Tatap, tagantung pada ampah skrip matan bahasa Pian',
-
 # Preferences page
 'preferences' => 'Kakatujuan',
 'mypreferences' => 'Nang ulun katuju',

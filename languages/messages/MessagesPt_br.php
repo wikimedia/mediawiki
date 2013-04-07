@@ -28,6 +28,7 @@
  * @author GKnedo
  * @author Giro720
  * @author GoEThe
+ * @author Gusta
  * @author Hamilton Abreu
  * @author Helder.wiki
  * @author Jaideraf
@@ -316,7 +317,7 @@ $magicWords = array(
 
 $messages = array(
 # User preference toggles
-'tog-underline' => 'Sublinhar linques:',
+'tog-underline' => 'Sublinhar links:',
 'tog-justify' => 'Justificar parágrafos',
 'tog-hideminor' => 'Ocultar edições menores nas mudanças recentes',
 'tog-hidepatrolled' => 'Ocultar edições patrulhadas nas mudanças recentes',
@@ -1382,15 +1383,6 @@ Tente utilizar o prefixo ''all:'' em sua busca, para pesquisar por todos os cont
 Você poderá pesquisar através do Google enquanto isso.
 Note que os índices do sistema de busca externo poderão conter referências desatualizadas a {{SITENAME}}.',
 
-# Quickbar
-'qbsettings' => 'Configurações da Barra Rápida',
-'qbsettings-none' => 'Nenhuma',
-'qbsettings-fixedleft' => 'Fixo à esquerda',
-'qbsettings-fixedright' => 'Fixo à direita',
-'qbsettings-floatingleft' => 'Flutuando à esquerda',
-'qbsettings-floatingright' => 'Flutuando à direita',
-'qbsettings-directionality' => 'Fixado, dependendo da direcionalidade do seu alfabeto e da sua língua',
-
 # Preferences page
 'preferences' => 'Preferências',
 'mypreferences' => 'Preferências',
@@ -1958,7 +1950,6 @@ Para melhor segurança, o img_auth.php está desativado.',
 'http-read-error' => 'Erro de leitura HTTP.',
 'http-timed-out' => 'Esgotado o tempo de espera da requisição HTTP.',
 'http-curl-error' => 'Erro ao requisitar a URL: $1',
-'http-host-unreachable' => 'Não foi possível atingir a URL.',
 'http-bad-status' => 'Ocorreu um problema durante a requisição HTTP: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -2281,15 +2272,6 @@ Necessário no mínimo um domínio de nível superior, por exemplo "*.org".<br /
 'listusers-submit' => 'Exibir',
 'listusers-noresult' => 'Não foram encontrados usuários para a forma pesquisada.',
 'listusers-blocked' => '({{GENDER:$1|bloqueado|bloqueada}})',
-
-# Special:ActiveUsers
-'activeusers' => 'Lista de usuários ativos',
-'activeusers-intro' => 'Esta é uma lista de usuários com algum tipo de atividade nos últimos $1 {{PLURAL:$1|dia|dias}}.',
-'activeusers-count' => '$1 {{PLURAL:$1|ação|ações}} {{PLURAL:$3|no último dia|nos últimos $3 dias}}',
-'activeusers-from' => 'Mostrar usuários começando em:',
-'activeusers-hidebots' => 'Esconder robôs',
-'activeusers-hidesysops' => 'Esconder administradores',
-'activeusers-noresult' => 'Nenhum usuário encontrado.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Privilégios de grupo de usuários',
@@ -3093,13 +3075,8 @@ Permite colocar uma justificativa no sumário da edição.',
 
 # Scripts
 'common.js' => '/* Códigos JavaScript aqui colocados serão carregados por todos aqueles que acessarem alguma página deste wiki */',
-'standard.js' => '/* Qualquer JavaScript aqui colocado afetará os usuários do skin Clássico */',
-'nostalgia.js' => '/* Qualquer JavaScript aqui colocado afetará os usuários do skin Nostalgia */',
 'cologneblue.js' => '/* Qualquer JavaScript aqui colocado afetará os usuários do skin Azul colonial */',
 'monobook.js' => '/* Qualquer JavaScript aqui colocado afetará os usuários do skin MonoBook */',
-'myskin.js' => '/* Qualquer JavaScript aqui colocado afetará os usuários do skin MySkin */',
-'chick.js' => '/* Qualquer JavaScript aqui colocado afetará os usuários do skin Chique */',
-'simple.js' => '/* Qualquer JavaScript aqui colocado afetará os usuários do skin Simples */',
 'modern.js' => '/* Qualquer JavaScript aqui colocado afetará os usuários do skin Moderno */',
 'vector.js' => '/* Qualquer JavaScript aqui colocado afetará os usuários do skin Vector */',
 
@@ -3175,13 +3152,8 @@ Tal bloqueio foi provavelmente causado por uma ligação para um ''website'' ext
 'pageinfo-category-files' => 'Número de arquivos',
 
 # Skin names
-'skinname-standard' => 'Clássico',
-'skinname-nostalgia' => 'Nostalgia',
 'skinname-cologneblue' => 'Azul colonial',
 'skinname-monobook' => 'MonoBook',
-'skinname-myskin' => 'MySkin',
-'skinname-chick' => 'Chique',
-'skinname-simple' => 'Simples',
 'skinname-modern' => 'Moderno',
 
 # Patrolling
@@ -4015,7 +3987,7 @@ As imagens serão exibidas em sua resolução máxima, outros tipos de arquivos 
 'logentry-move-move_redir-noredirect' => '$1 moveu a página $3 para $4 sem um redirecionamento',
 'logentry-patrol-patrol' => '$1 marcou a revisão $4 da página $3 como patrulhada',
 'logentry-patrol-patrol-auto' => '$1 marcou automaticamente a revisão $4 da página $3 como patrulhada',
-'logentry-newusers-newusers' => 'A conta de usuário $1 foi criada',
+'logentry-newusers-newusers' => 'A conta de usuário $1 foi {{GENDER:$2|criada}}',
 'logentry-newusers-create' => 'A conta de usuário $1 foi criada',
 'logentry-newusers-create2' => 'A conta de usuário $3 foi criada por $1',
 'logentry-newusers-byemail' => 'A conta de usuário $3 foi criada por $1, com a senha sendo enviada por e-mail',

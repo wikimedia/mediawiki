@@ -986,15 +986,6 @@ Feuch ri ''all:'' a chuir air beulaibh an iarrtais agad gus rannsachadh a dhèan
 'S urrainn dhut lorg a dhèanamh air Google san eadar-àm.
 Faodaidh gum bi inneacsan susbaint {{SITENAME}} tuilleadh 's sean ge-tà.",
 
-# Quickbar
-'qbsettings' => 'Grad-bhàr',
-'qbsettings-none' => 'Chan eil gin',
-'qbsettings-fixedleft' => 'Socraichte air an taobh chlì',
-'qbsettings-fixedright' => 'Socraichte air an taobh deas',
-'qbsettings-floatingleft' => 'Air fleòd air an taobh chlì',
-'qbsettings-floatingright' => 'Air fleòd air an taobh deas',
-'qbsettings-directionality' => 'Socraichte a-rèir comhair sgriobt do chànain',
-
 # Preferences page
 'preferences' => 'Roghainnean',
 'mypreferences' => 'Na roghainnean agam',

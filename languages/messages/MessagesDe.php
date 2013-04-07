@@ -1460,15 +1460,6 @@ Einzelheiten sind im [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}
 'search-external' => 'Externe Suche',
 'searchdisabled' => 'Die {{SITENAME}}-Suche ist deaktiviert. Du kannst unterdessen mit Google suchen. Bitte bedenke, dass der Suchindex von {{SITENAME}} veraltet sein kann.',
 
-# Quickbar
-'qbsettings' => 'Seitenleiste',
-'qbsettings-none' => 'Keine',
-'qbsettings-fixedleft' => 'Links, fest',
-'qbsettings-fixedright' => 'Rechts, fest',
-'qbsettings-floatingleft' => 'Links, schwebend',
-'qbsettings-floatingright' => 'Rechts, schwebend',
-'qbsettings-directionality' => 'Fest, abhängig von der Schreibrichtung der gewählten Sprache',
-
 # Preferences page
 'preferences' => 'Einstellungen',
 'mypreferences' => 'Einstellungen',

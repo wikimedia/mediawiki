@@ -1557,15 +1557,6 @@ $1",
 يمكنك البحث من خلال جوجل في الوقت الحالي.
 لاحظ أن فهارسه لمحتوى {{SITENAME}} ربما تكون غير محدثة.',
 
-# Quickbar
-'qbsettings' => 'لوح سريع',
-'qbsettings-none' => 'بلا تحديد',
-'qbsettings-fixedleft' => 'مثبت لليسار',
-'qbsettings-fixedright' => 'مثبت لليمين',
-'qbsettings-floatingleft' => 'حر لليسار',
-'qbsettings-floatingright' => 'حر لليمين',
-'qbsettings-directionality' => 'ثابت، بناءً على اتجاه كتابة لغتك',
-
 # Preferences page
 'preferences' => 'تفضيلات',
 'mypreferences' => 'تفضيلاتي',

@@ -1071,15 +1071,6 @@ Rinciané bisa ditemokaké nèng [{{fullurl:{{#Special:Log}}/delete|page={{FULLP
 'search-external' => 'Panggolèkan èkstèrnal',
 'searchdisabled' => 'Sawetara wektu iki panjenengan ora bisa nggolèk mawa fungsi golèk {{SITENAME}}. Kanggo saiki mangga panjenengan bisa golèk nganggo Google. Nanging isi indèks Google kanggo {{SITENAME}} bisa waé lawas lan durung dianyari.',
 
-# Quickbar
-'qbsettings' => 'Pengaturan bar sidhatan',
-'qbsettings-none' => 'Ora ana',
-'qbsettings-fixedleft' => 'Tetep sisih kiwa',
-'qbsettings-fixedright' => 'Tetep sisih tengen',
-'qbsettings-floatingleft' => 'Ngambang sisih kiwa',
-'qbsettings-floatingright' => 'Ngambang sisih tengen',
-'qbsettings-directionality' => 'Wis pesthi, gumantung saka wujud skrip basané Sampéyan',
-
 # Preferences page
 'preferences' => 'Preferensi (pilihan)',
 'mypreferences' => 'Préferènsi',

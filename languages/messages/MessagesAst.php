@@ -1142,15 +1142,6 @@ Se puen alcontrar más detalles nel [{{fullurl:{{#Special:Log}}/delete|page={{FU
 'search-external' => 'Busca esterna',
 'searchdisabled' => "La busca en {{SITENAME}} ta desactivada. Mentanto, pues buscar en Google. Has fixate en que'l conteníu de los sos índices de {{SITENAME}} pue tar desfasáu.",
 
-# Quickbar
-'qbsettings' => 'Barra rápida',
-'qbsettings-none' => 'Nenguna',
-'qbsettings-fixedleft' => 'Fixa a manzorga',
-'qbsettings-fixedright' => 'Fixa a mandrecha',
-'qbsettings-floatingleft' => 'Flotante a manzorga',
-'qbsettings-floatingright' => 'Flotante a mandrecha',
-'qbsettings-directionality' => "Fixa, según la direición d'escritura de la to llingua",
-
 # Preferences page
 'preferences' => 'Preferencies',
 'mypreferences' => 'Preferencies',

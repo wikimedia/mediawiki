@@ -962,13 +962,6 @@ $1",
 Pagaidām vari meklēt, izmantojot Google vai Yahoo.
 Ņem vērā, ka meklētāju indeksētais {{grammar:ģenitīvs|{{SITENAME}}}} saturs var būt novecojis.',
 
-# Quickbar
-'qbsettings' => 'Rīku joslas stāvoklis',
-'qbsettings-fixedleft' => 'Fiksēts pa kreisi',
-'qbsettings-fixedright' => 'Fiksēts pa labi',
-'qbsettings-floatingleft' => 'Peldošs pa kreisi',
-'qbsettings-floatingright' => 'Peldošs pa labi',
-
 # Preferences page
 'preferences' => 'Izvēles',
 'mypreferences' => 'Iestatījumi',

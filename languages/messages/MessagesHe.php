@@ -1422,15 +1422,6 @@ $1",
 בינתיים אפשר לחפש באמצעות גוגל.
 שימו לב שייתכן שהמידע של {{SITENAME}} שם אינו מעודכן.',
 
-# Quickbar
-'qbsettings' => 'הגדרות סרגל כלים',
-'qbsettings-none' => 'ללא',
-'qbsettings-fixedleft' => 'קבוע משמאל',
-'qbsettings-fixedright' => 'קבוע מימין',
-'qbsettings-floatingleft' => 'צף משמאל',
-'qbsettings-floatingright' => 'צף מימין',
-'qbsettings-directionality' => 'קבוע, תלוי בכיוון הכתב של השפה שלך',
-
 # Preferences page
 'preferences' => 'העדפות',
 'mypreferences' => 'העדפות',

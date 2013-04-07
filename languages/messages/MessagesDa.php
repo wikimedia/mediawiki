@@ -1240,15 +1240,6 @@ Du kan prøve at bruge \"all:\" som præfiks for at søge i alt indhold (inkl. d
 'search-external' => 'Brug anden søgemaskine',
 'searchdisabled' => '<p>Beklager! Fuldtekstsøgningen er midlertidigt afbrudt på grund af for stor belastning på serverne. I mellemtidem kan du anvende Google- eller Yahoo!-søgefelterne herunder. Bemærk at deres kopier af {{SITENAME}}s indhold kan være forældet.</p>',
 
-# Quickbar
-'qbsettings' => 'Hurtigmenu',
-'qbsettings-none' => 'Ingen',
-'qbsettings-fixedleft' => 'Fast venstre',
-'qbsettings-fixedright' => 'Fast højre',
-'qbsettings-floatingleft' => 'Flydende venstre',
-'qbsettings-floatingright' => 'Flydende højre',
-'qbsettings-directionality' => 'Fast, afhængigt af dit sprogs skriveretning',
-
 # Preferences page
 'preferences' => 'Indstillinger',
 'mypreferences' => 'Indstillinger',

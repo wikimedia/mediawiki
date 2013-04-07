@@ -871,14 +871,6 @@ Conare praefixare tua inquisitionem cum ''all:'' ut quaeras contenta omnia (pagi
 'search-external' => 'Inquisitio externalis',
 'searchdisabled' => 'Per {{grammar:accusative|{{SITENAME}}}} ad tempus non potes quaerere. Interea per [http://www.google.com Googlem] quaeras. Nota indices {{grammar:genitive|{{SITENAME}}}} contentorum apud Googlem fortasse antiquiores esse.',
 
-# Quickbar
-'qbsettings' => 'Figuratio claustri celeris',
-'qbsettings-none' => 'Nullus',
-'qbsettings-fixedleft' => 'Constituere a sinistra',
-'qbsettings-fixedright' => 'Constituere a dextra',
-'qbsettings-floatingleft' => 'Innens a sinistra',
-'qbsettings-floatingright' => 'Innens a dextra',
-
 # Preferences page
 'preferences' => 'Praeferentiae',
 'mypreferences' => 'Praeferentiae',

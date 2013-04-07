@@ -986,14 +986,6 @@ $1',
 'powersearch-togglenone' => 'هېڅ',
 'search-external' => 'باندنۍ پلټنه',
 
-# Quickbar
-'qbsettings' => 'چټک پټه',
-'qbsettings-none' => 'هېڅ',
-'qbsettings-fixedleft' => 'ثابته کيڼ',
-'qbsettings-fixedright' => 'ثابته ښي',
-'qbsettings-floatingleft' => 'کيڼه لامبا',
-'qbsettings-floatingright' => 'ښي لامبا',
-
 # Preferences page
 'preferences' => 'غوره توبونه',
 'mypreferences' => 'غوره توبونه',

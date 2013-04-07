@@ -1125,15 +1125,6 @@ Prueve mettènne nnande a l'inderrogaziona toje 'u prefisse '''all:''' pe cercà
 Tu puè cercà ausanne Google.
 Però fa attenzione purcè l'indice lore sus a {{SITENAME}} ponne condenè pàggene ca non ge sonde aggiornate.",
 
-# Quickbar
-'qbsettings' => 'Barra veloce',
-'qbsettings-none' => 'Ninde',
-'qbsettings-fixedleft' => 'Fissete a sinistre (Fixed left)',
-'qbsettings-fixedright' => 'Fissete a destre (Fixed right)',
-'qbsettings-floatingleft' => 'Volanne a sinistre (Floating left)',
-'qbsettings-floatingright' => 'Volanne a destre (Floating right)',
-'qbsettings-directionality' => "Corrette, depende da 'a direzionalità d'u script tune e da 'a lènga toje",
-
 # Preferences page
 'preferences' => 'Me piece accussì',
 'mypreferences' => 'Me piace accussì',

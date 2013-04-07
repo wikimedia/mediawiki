@@ -1272,15 +1272,6 @@ $1",
 'search-external' => 'Външно търсене',
 'searchdisabled' => 'Търсенето в {{SITENAME}} е временно изключено. Междувременно можете да търсите чрез Google. Обърнете внимание, че съхранените при тях страници най-вероятно са остарели.',
 
-# Quickbar
-'qbsettings' => 'Лента за бърз избор',
-'qbsettings-none' => 'Без меню',
-'qbsettings-fixedleft' => 'Неподвижно вляво',
-'qbsettings-fixedright' => 'Неподвижно вдясно',
-'qbsettings-floatingleft' => 'Плаващо вляво',
-'qbsettings-floatingright' => 'Плаващо вдясно',
-'qbsettings-directionality' => 'Фиксирана, в зависимост от посоката на писане на вашия език',
-
 # Preferences page
 'preferences' => 'Настройки',
 'mypreferences' => 'Настройки',

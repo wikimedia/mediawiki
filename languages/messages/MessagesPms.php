@@ -59,8 +59,8 @@ $messages = array(
 'tog-watchcreations' => "Gionté le pàgine che i creo mi e j'archivi che i cario mi a la lista ëd lòn che im ten-o sot-euj",
 'tog-watchdefault' => "Gionté le pàgine e j'archivi che i modìfico mi a la lista dle ròbe ch'i ten-o sot-euj",
 'tog-watchmoves' => "Gionté le pàgine e j'archivi che i tramudo a lòn che im ten-o sot-euj",
-'tog-watchdeletion' => "Gionta le pàgine e j'archivi che i scancelo via a la lista ëd lòn che im ten-o sot euj",
-'tog-minordefault' => 'Marca tute le modìfice coma cite<br />(mach coma predefinission dla casela)',
+'tog-watchdeletion' => "Gionté le pàgine e j'archivi che i scancelo via a la lista ëd lòn che im ten-o sot-euj",
+'tog-minordefault' => 'Marché tute le modìfice coma cite coma predefinission',
 'tog-previewontop' => 'Smon-e la preuva dzora al quàder ëd modìfica dël test e nen sota',
 'tog-previewonfirst' => 'Smon na preuva la prima vira che as fa na modìfica',
 'tog-nocache' => 'Disabilité la memòria local ëd le pàgine dël navigador',
@@ -1093,15 +1093,6 @@ Ch'a preuva a gionté dnans a soa arserca ël prefiss ''all:'' për sërché an 
 'powersearch-togglenone' => 'Gnun',
 'search-external' => 'Arserca esterna',
 'searchdisabled' => "L'arserca anterna ëd {{SITENAME}} a l'é nen abilità; për adess a peul prové a dovré un motor d'arserca estern coma Google. (Però che a ten-a da ment che ij contnù ëd {{SITENAME}} listà ant ij motor pùblich a podrìo ëdcò esse nen d'autut agiornà)",
-
-# Quickbar
-'qbsettings' => 'Regolassion dla bara dij menù',
-'qbsettings-none' => 'Gnun',
-'qbsettings-fixedleft' => 'Fissà a la man ësnista',
-'qbsettings-fixedright' => 'Fissà a la man drita',
-'qbsettings-floatingleft' => 'Flotant a la man ësnista',
-'qbsettings-floatingright' => 'Flotant a la man drita',
-'qbsettings-directionality' => 'A pòst, an dipendensa dla diressionalità dë scritura ëd soa lenga',
 
 # Preferences page
 'preferences' => 'Mè gust',

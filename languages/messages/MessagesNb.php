@@ -1376,15 +1376,6 @@ For å søke i alle, bruk prefikset ''all:'' (inkluderer diskusjonssider, maler,
 'search-external' => 'Eksternt søk',
 'searchdisabled' => 'Søkefunksjonen er slått av. Du kan søke via Google i mellomtiden. Merk at Googles indeksering av {{SITENAME}} muligens er utdatert.',
 
-# Quickbar
-'qbsettings' => 'Brukerinnstillinger for hurtigmeny.',
-'qbsettings-none' => 'Ingen',
-'qbsettings-fixedleft' => 'Fast venstre',
-'qbsettings-fixedright' => 'Fast høyre',
-'qbsettings-floatingleft' => 'Flytende venstre',
-'qbsettings-floatingright' => 'Flytende til høyre',
-'qbsettings-directionality' => '"Låst", f. eks. i posisjon "låst til venstre eller til høyre". For venstre-mot-høyre-språk vil hurtigvelgeren være satt til venstre, for høyre-mot-venstre-språk til høyre.',
-
 # Preferences page
 'preferences' => 'Innstillinger',
 'mypreferences' => 'Innstillinger',

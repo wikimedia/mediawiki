@@ -1183,15 +1183,6 @@ Spytaj swoje naprašowanje z prefiksom ''all:'' wužiwać, zo by wšón wobsah (
 'search-external' => 'Eksterne pytanje',
 'searchdisabled' => 'Pytanje w {{GRAMMAR:lokatiw|{{SITENAME}}}} tuchwilu móžne njeje. Móžeš mjeztym z Google pytać. Wobkedźbuj, zo móža wuslědki z wobsaha {{GRAMMAR:genitiw|{{SITENAME}}}} zestarjene być.',
 
-# Quickbar
-'qbsettings' => 'Pobóčna lajsta',
-'qbsettings-none' => 'Žane',
-'qbsettings-fixedleft' => 'Leži nalěwo',
-'qbsettings-fixedright' => 'Leži naprawo',
-'qbsettings-floatingleft' => 'Wisa nalěwo',
-'qbsettings-floatingright' => 'Wisa naprawo',
-'qbsettings-directionality' => 'Kruty, wotwisny wot pisanskeho směra twojeje rěče',
-
 # Preferences page
 'preferences' => 'Nastajenja',
 'mypreferences' => 'Nastajenja',
