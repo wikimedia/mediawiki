@@ -17,7 +17,7 @@
  * Documentation is in the source and on:
  * http://www.mediawiki.org/wiki/Manual:Configuration_settings
  *
- * @warning  Note: this (and other things) will break if the autoloader is not
+ * @warning This (and other things) will break if the autoloader is not
  * enabled. Please include includes/AutoLoader.php before including this file.
  *
  * This program is free software; you can redistribute it and/or modify
@@ -51,6 +51,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	echo "This file is part of MediaWiki and is not a valid entry point\n";
 	die( 1 );
 }
+/** @endcond */
 
 /**
  * wgConf hold the site configuration.
@@ -887,14 +888,14 @@ $wgSVGMaxSize = 2048;
 $wgSVGMetadataCutoff = 262144;
 
 /**
- * Disallow <title> element in SVG files.
+ * Disallow `<title>` element in SVG files.
  *
  * MediaWiki will reject HTMLesque tags in uploaded files due to idiotic
  * browsers which can not perform basic stuff like MIME detection and which are
  * vulnerable to further idiots uploading crap files as images.
  *
- * When this directive is on, "<title>" will be allowed in files with an
- * "image/svg+xml" MIME type. You should leave this disabled if your web server
+ * When this directive is on, `<title>` will be allowed in files with an
+ * `image/svg+xml` MIME type. You should leave this disabled if your web server
  * is misconfigured and doesn't send appropriate MIME types for SVG images.
  */
 $wgAllowTitlesInSVG = false;
@@ -917,7 +918,7 @@ $wgMaxImageArea = 1.25e7;
  * Force thumbnailing of animated GIFs above this size to a single
  * frame instead of an animated thumbnail.  As of MW 1.17 this limit
  * is checked against the total size of all frames in the animation.
- * It probably makes sense to keep this equal to $wgMaxImageArea.
+ * It probably makes sense to keep this equal to #$wgMaxImageArea.
  */
 $wgMaxAnimatedGifArea = 1.25e7;
 /**
@@ -944,7 +945,7 @@ $wgTiffThumbnailType = false;
 $wgThumbnailEpoch = '20030516000000';
 
 /**
- * If set, inline scaled images will still produce "<img>" tags ready for
+ * If set, inline scaled images will still produce \<img> tags ready for
  * output instead of showing an error message.
  *
  * This may be useful if errors are transitory, especially if the site
@@ -970,7 +971,9 @@ $wgGenerateThumbnailOnParse = true;
  */
 $wgShowArchiveThumbnails = true;
 
-/** Obsolete, always true, kept for compatibility with extensions */
+/**
+ * Obsolete, always true, kept for compatibility with extensions.
+ */
 $wgUseImageResize = true;
 
 /**
@@ -990,7 +993,7 @@ $wgAntivirus = null;
 /**
  * Configuration for different virus scanners. This an associative array of
  * associative arrays. It contains one setup array per known scanner type.
- * The entry is selected by $wgAntivirus, i.e.
+ * The entry is selected by #$wgAntivirus, i.e.
  * valid values for $wgAntivirus are the keys defined in this array.
  *
  * The configuration array for each scanner contains the following keys:
@@ -1065,7 +1068,7 @@ $wgLoadFileinfoExtension = false;
  *
  * @par Example:
  * @code
- * #$wgMimeDetectorCommand = "file -bi"; # use external mime detector (Linux)
+ *     $wgMimeDetectorCommand = "file -bi"; # use external mime detector (Linux)
  * @endcode
  */
 $wgMimeDetectorCommand = null;
@@ -1079,7 +1082,9 @@ $wgTrivialMimeDetection = false;
 
 /**
  * Additional XML types we can allow via mime-detection.
- * array = ( 'rootElement' => 'associatedMimeType' )
+ * @code
+ *     array` = ( 'rootElement' => 'associatedMimeType' )
+ * @endcode
  */
 $wgXMLMimeTypes = array(
 	'http://www.w3.org/2000/svg:svg' => 'image/svg+xml',
@@ -1120,7 +1125,7 @@ $wgThumbLimits = array(
 );
 
 /**
- * Default parameters for the "<gallery>" tag
+ * Default parameters for the `<gallery>` tag
  */
 $wgGalleryOptions = array(
 	'imagesPerRow' => 0, // Default number of images per-row in the gallery. 0 -> Adapt to screensize
@@ -1665,8 +1670,6 @@ $wgExternalServers = array();
  * @code
  * $wgDefaultExternalStore = array( 'DB://cluster1', 'DB://cluster2' );
  * @endcode
- *
- * @var array
  */
 $wgDefaultExternalStore = false;
 
@@ -2789,7 +2792,7 @@ $wgExperimentalHtmlIds = false;
  * The value should be either a string or an array. If it is a string it will be output
  * directly as html, however some skins may choose to ignore it. An array is the preferred format
  * for the icon, the following keys are used:
- *  - src: An absolute url to the image to use for the icon, this is recommended
+ * - src: An absolute url to the image to use for the icon, this is recommended
  *        but not required, however some skins will ignore icons without an image
  * - url: The url to use in the a element around the text or icon, if not set an a element will not be outputted
  * - alt: This is the text form of the icon, it will be displayed without an image in
@@ -2872,7 +2875,7 @@ $wgSend404Code = true;
 $wgShowRollbackEditCount = 10;
 
 /**
- * Output a <link rel="canonical"> tag on every page indicating the canonical
+ * Output a `<link rel="canonical">` tag on every page indicating the canonical
  * server which should be used, i.e. $wgServer or $wgCanonicalServer. Since
  * detection of the current server is unreliable, the link is sent
  * unconditionally.
@@ -3397,8 +3400,8 @@ $wgAllowExternalImages = false;
  *
  * @par Examples:
  * @code
- * $wgAllowExternalImagesFrom = 'http://127.0.0.1/';
- * $wgAllowExternalImagesFrom = array( 'http://127.0.0.1/', 'http://example.com' );
+ *     $wgAllowExternalImagesFrom = 'http://127.0.0.1/';
+ *     $wgAllowExternalImagesFrom = array( 'http://127.0.0.1/', 'http://example.com' );
  * @endcode
  */
 $wgAllowExternalImagesFrom = '';
@@ -3414,7 +3417,7 @@ $wgAllowExternalImagesFrom = '';
 $wgEnableImageWhitelist = true;
 
 /**
- * A different approach to the above: simply allow the "<img>" tag to be used.
+ * A different approach to the above: simply allow the \<img> tag to be used.
  * This allows you to specify alt text and other attributes, copy-paste HTML to
  * your wiki more easily, etc.  However, allowing external images in any manner
  * will allow anyone with editing rights to snoop on your visitors' IP
@@ -3436,7 +3439,7 @@ $wgAllowImageTag = false;
  *   of spawning a separate program.
  *   Normally you shouldn't need to override the setting except for
  *   debugging. To install, use 'pear install tidy' and add a line
- *   'extension=tidy.so' to php.ini.
+ *   `extension=tidy.so` to php.ini.
  */
 $wgUseTidy = false;
 /** @see $wgUseTidy */
@@ -3456,8 +3459,8 @@ $wgTidyInternal = extension_loaded( 'tidy' );
  */
 $wgDebugTidy = false;
 
-/** Allow raw, unchecked HTML in "<html>...</html>" sections.
- * THIS IS VERY DANGEROUS on a publicly editable site, so USE wgGroupPermissions
+/** Allow raw, unchecked HTML in `<html>...</html>` sections.
+ * THIS IS VERY DANGEROUS on a publicly editable site, so USE #$wgGroupPermissions
  * TO RESTRICT EDITING to only those that you trust
  */
 $wgRawHtml = false;
@@ -5428,7 +5431,6 @@ $wgExtensionCredits = array();
 
 /**
  * Authentication plugin.
- * @var $wgAuth AuthPlugin
  */
 $wgAuth = null;
 
@@ -6235,7 +6237,7 @@ $wgExternalDiffEngine = false;
  * Disable redirects to special pages and interwiki redirects, which use a 302
  * and have no "redirected from" link.
  *
- * @note This is only for articles with #REDIRECT in them. URL's containing a
+ * @note This is only for articles with REDIRECT in them. URL's containing a
  * local interwiki prefix (or a non-canonical special page name) are still hard
  * redirected regardless of this setting.
  */

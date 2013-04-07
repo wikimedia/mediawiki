@@ -4,6 +4,9 @@
  * Base class for objects that allow access to other wiki's databases using
  * the foreign database access mechanism implemented by LBFactory_multi.
  *
+ * @since 1.21
+ * @author Daniel Kinzler
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -19,13 +22,8 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
- * @since 1.21
- *
  * @file
  * @ingroup Database
- *
- * @licence GNU GPL v2+
- * @author Daniel Kinzler
  */
 abstract class DBAccessBase implements IDBAccessObject {
 

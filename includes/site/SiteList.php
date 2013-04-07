@@ -237,8 +237,8 @@ class SiteList extends GenericArrayObject {
 	 * and unserialize(). This is useful for constructing cache keys in cases where the cache relies
 	 * on serialization for storing the SiteList.
 	 *
-	 * @var string A string uniquely identifying the version of the serialization structure,
-	 *             not including any sub-structures.
+	 * A string uniquely identifying the version of the serialization structure,
+	 * not including any sub-structures.
 	 */
 	const SERIAL_VERSION_ID = '2013-02-07';
 
@@ -249,7 +249,7 @@ class SiteList extends GenericArrayObject {
 	 * on serialization for storing the SiteList.
 	 *
 	 * @return string A string uniquely identifying the version of the serialization structure,
-	 *                including any sub-structures.
+	 *  including any sub-structures.
 	 */
 	public static function getSerialVersionId() {
 		return self::SERIAL_VERSION_ID . '+Site:' . Site::SERIAL_VERSION_ID;

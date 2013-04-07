@@ -264,8 +264,8 @@ class Message {
 	 * intended to be used instead of the real constructor, because it allows
 	 * chaining method calls, while new objects don't.
 	 * @since 1.17
-	 * @param string $key message key
-	 * @param Varargs: parameters as Strings
+	 * @param string $key Message key
+	 * @param ... Parameters as strings
 	 * @return Message: $this
 	 */
 	public static function newFromKey( $key /*...*/ ) {
@@ -279,7 +279,7 @@ class Message {
 	 * for the first message which is non-empty. If all messages are empty then an
 	 * instance of the first message key is returned.
 	 * @since 1.18
-	 * @param Varargs: message keys (or first arg as an array of all the message keys)
+	 * @param ... Message keys (or first arg as an array of all the message keys)
 	 * @return Message: $this
 	 */
 	public static function newFallbackSequence( /*...*/ ) {
@@ -299,7 +299,7 @@ class Message {
 	/**
 	 * Adds parameters to the parameter list of this message.
 	 * @since 1.17
-	 * @param Varargs: parameters as Strings, or a single argument that is an array of Strings
+	 * @param ... Parameters as strings, or a single argument that is an array of Strings
 	 * @return Message: $this
 	 */
 	public function params( /*...*/ ) {
@@ -318,7 +318,7 @@ class Message {
 	 * of this type of parameter, and you need to make sure it is
 	 * sanitized beforehand.  The parser will see "$n", instead.
 	 * @since 1.17
-	 * @param Varargs: raw parameters as Strings (or single argument that is an array of raw parameters)
+	 * @param ... Raw parameters as strings (or single argument that is an array of raw parameters)
 	 * @return Message: $this
 	 */
 	public function rawParams( /*...*/ ) {
@@ -336,7 +336,7 @@ class Message {
 	 * Add parameters that are numeric and will be passed through
 	 * Language::formatNum before substitution
 	 * @since 1.18
-	 * @param Varargs: numeric parameters (or single argument that is array of numeric parameters)
+	 * @param ... numeric parameters (or single argument that is array of numeric parameters)
 	 * @return Message: $this
 	 */
 	public function numParams( /*...*/ ) {

@@ -31,22 +31,22 @@ class Block {
 		$mCreateAccount,
 		$mParentBlockId;
 
-	/// @var User|String
+	/** @var User|string */
 	protected $target;
 
-	// @var Integer Hack for foreign blocking (CentralAuth)
+	/** @var int Hack for foreign blocking (CentralAuth) */
 	protected $forcedTargetID;
 
-	/// @var Block::TYPE_ constant.  Can only be USER, IP or RANGE internally
+	/** @var Block::TYPE_ constant.  Can only be USER, IP or RANGE internally */
 	protected $type;
 
-	/// @var User
+	/** @var User */
 	protected $blocker;
 
-	/// @var Bool
+	/** @var bool */
 	protected $isHardblock = true;
 
-	/// @var Bool
+	/** @var bool */
 	protected $isAutoblocking = true;
 
 	# TYPE constants
@@ -63,8 +63,8 @@ class Block {
 	 */
 	function __construct( $address = '', $user = 0, $by = 0, $reason = '',
 		$timestamp = 0, $auto = 0, $expiry = '', $anonOnly = 0, $createAccount = 0, $enableAutoblock = 0,
-		$hideName = 0, $blockEmail = 0, $allowUsertalk = 0, $byText = '' )
-	{
+		$hideName = 0, $blockEmail = 0, $allowUsertalk = 0, $byText = ''
+	) {
 		if( $timestamp === 0 ) {
 			$timestamp = wfTimestampNow();
 		}
@@ -107,8 +107,8 @@ class Block {
 	 * the address.
 	 *
 	 * @param string $address IP address of user/anon
-	 * @param $user Integer: user id of user
-	 * @return Block Object
+	 * @param int $user User id of user
+	 * @return Block
 	 * @deprecated since 1.18
 	 */
 	public static function newFromDB( $address, $user = 0 ) {
@@ -119,7 +119,7 @@ class Block {
 	/**
 	 * Load a blocked user from their block id.
 	 *
-	 * @param $id Integer: Block id to search for
+	 * @param int $id Block id to search for
 	 * @return Block object or null
 	 */
 	public static function newFromID( $id ) {
@@ -1156,12 +1156,12 @@ class Block {
 	 *  - Other softblocks are chosen over autoblocks
 	 *  - If there are multiple exact or range blocks at the same level, the one chosen
 	 *    is random
-
+	 *
+	 * @param Array $blocks Array of blocks
 	 * @param Array $ipChain list of IPs (strings). This is used to determine how "close"
 	 * 	  a block is to the server, and if a block matches exactly, or is in a range.
 	 *	  The order is furthest from the server to nearest e.g., (Browser, proxy1, proxy2,
 	 *	  local-squid, ...)
-	 * @param Array $block Array of blocks
 	 * @return Block|null the "best" block from the list
 	 */
 	public static function chooseBlock( array $blocks, array $ipChain  ) {

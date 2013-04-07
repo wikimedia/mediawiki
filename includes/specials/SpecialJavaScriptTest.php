@@ -27,7 +27,7 @@
 class SpecialJavaScriptTest extends SpecialPage {
 
 	/**
-	 * @var $frameworks Array: Mapping of framework ids and their initilizer methods
+	 * @var Array Mapping of framework ids and their initilizer methods
 	 * in this class. If a framework is requested but not in this array,
 	 * the 'unknownframework' error is served.
 	 */

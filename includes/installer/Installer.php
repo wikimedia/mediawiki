@@ -75,11 +75,11 @@ abstract class Installer {
 	protected $parserOptions;
 
 	/**
-	 * Known database types. These correspond to the class names <type>Installer,
-	 * and are also MediaWiki database types valid for $wgDBtype.
+	 * Known database types. These correspond to the class names `<type>Installer`,
+	 * and are also MediaWiki database types valid for #$wgDBtype.
 	 *
-	 * To add a new type, create a <type>Installer class and a Database<type>
-	 * class, and add a config-type-<type> message to MessagesEn.php.
+	 * To add a new type, create a `<type>Installer` class and a `Database<type>`
+	 * class, and add a `config-type-<type>` message to MessagesEn.php.
 	 *
 	 * @var array
 	 */

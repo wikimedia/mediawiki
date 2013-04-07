@@ -553,7 +553,7 @@ class LoadBalancer {
 	 * @param string $wiki wiki ID to open
 	 * @return DatabaseBase
 	 *
-	 * @access private
+	 * @private
 	 */
 	function openConnection( $i, $wiki = false ) {
 		wfProfileIn( __METHOD__ );
@@ -658,7 +658,7 @@ class LoadBalancer {
 	 * Test if the specified index represents an open connection
 	 *
 	 * @param $index Integer: server index
-	 * @access private
+	 * @private
 	 * @return bool
 	 */
 	function isOpen( $index ) {
@@ -671,7 +671,7 @@ class LoadBalancer {
 	/**
 	 * Really opens a connection. Uncached.
 	 * Returns a Database object whether or not the connection was successful.
-	 * @access private
+	 * @private
 	 *
 	 * @param $server
 	 * @param $dbNameOverride bool

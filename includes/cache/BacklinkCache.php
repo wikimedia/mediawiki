@@ -41,7 +41,9 @@
  * @internal documentation reviewed on 18 Mar 2011 by hashar
  */
 class BacklinkCache {
-	/** @var ProcessCacheLRU */
+	/**
+	 * @var ProcessCacheLRU
+	 */
 	protected static $cache;
 
 	/**

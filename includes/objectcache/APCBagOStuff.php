@@ -29,7 +29,7 @@
 class APCBagOStuff extends BagOStuff {
 	/**
 	 * @param $key string
-	 * @param $casToken[optional] int
+	 * @param $casToken int
 	 * @return mixed
 	 */
 	public function get( $key, &$casToken = null ) {

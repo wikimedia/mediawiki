@@ -53,10 +53,13 @@ abstract class PoolCounter {
 
 	/** @var string All workers with the same key share the lock */
 	protected $key;
-	/** @var integer Maximum number of workers doing the task simultaneously */
+
+	/** @var int Maximum number of workers doing the task simultaneously */
 	protected $workers;
-	/** @var integer If this number of workers are already working/waiting, fail instead of wait */
+
+	/** @var int If this number of workers are already working/waiting, fail instead of wait */
 	protected $maxqueue;
+
 	/** @var float Maximum time in seconds to wait for the lock */
 	protected $timeout;
 

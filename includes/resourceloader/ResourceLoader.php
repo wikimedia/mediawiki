@@ -535,7 +535,7 @@ class ResourceLoader {
 	 * Send content type and last modified headers to the client.
 	 * @param $context ResourceLoaderContext
 	 * @param string $mtime TS_MW timestamp to use for last-modified
-	 * @param bool $error Whether there are commented-out errors in the response
+	 * @param bool $errors Whether there are commented-out errors in the response
 	 * @return void
 	 */
 	protected function sendResponseHeaders( ResourceLoaderContext $context, $mtime, $errors ) {

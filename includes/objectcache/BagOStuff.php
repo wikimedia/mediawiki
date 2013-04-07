@@ -33,10 +33,10 @@
  * the PHP memcached client.
  *
  * backends for local hash array and SQL table included:
- * <code>
- *   $bag = new HashBagOStuff();
- *   $bag = new SqlBagOStuff(); # connect to db first
- * </code>
+ * @code
+ *     $bag = new HashBagOStuff();
+ *     $bag = new SqlBagOStuff(); // connect to db first
+ * @endcode
  *
  * @ingroup Cache
  */
@@ -56,7 +56,7 @@ abstract class BagOStuff {
 	/**
 	 * Get an item with the given key. Returns false if it does not exist.
 	 * @param $key string
-	 * @param $casToken[optional] mixed
+	 * @param $casToken mixed
 	 * @return mixed Returns false on failure
 	 */
 	abstract public function get( $key, &$casToken = null );

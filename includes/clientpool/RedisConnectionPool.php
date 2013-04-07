@@ -44,12 +44,19 @@ class RedisConnectionPool {
 
 	protected $idlePoolSize = 0; // integer; current idle pool size
 
-	/** @var Array (server name => ((connection info array),...) */
+	/**
+	 * @var Array (server name => ((connection info array),...)
+	 */
 	protected $connections = array();
-	/** @var Array (server name => UNIX timestamp) */
+
+	/**
+	 * @var Array (server name => UNIX timestamp)
+	 */
 	protected $downServers = array();
 
-	/** @var Array */
+	/**
+	 * @var Array
+	 */
 	protected static $instances = array(); // (pool ID => RedisConnectionPool)
 
 	const SERVER_DOWN_TTL = 30; // integer; seconds to cache servers as "down"

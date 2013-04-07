@@ -452,7 +452,7 @@ class Sites extends SiteSQLStore {
 	 * @since 1.21
 	 * @deprecated
 	 *
-	 * @param string|boolean false $globalId
+	 * @param string|boolean $globalId
 	 *
 	 * @return Site
 	 */
