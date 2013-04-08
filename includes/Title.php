@@ -575,10 +575,12 @@ class Title {
 	 */
 	public function isLocal() {
 		if ( $this->mInterwiki != '' ) {
-			return Interwiki::fetch( $this->mInterwiki )->isLocal();
-		} else {
-			return true;
+			$iw = Interwiki::fetch( $this->mInterwiki );
+			if ( $iw ) {
+				return $iw->isLocal();
+			}
 		}
+		return true;
 	}
 
 	/**
