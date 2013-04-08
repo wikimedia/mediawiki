@@ -3191,7 +3191,7 @@ $1',
 'mycontris'             => 'Contributions',
 'contribsub2'           => 'For $1 ($2)',
 'nocontribs'            => 'No changes were found matching these criteria.',
-'uctop'                 => '(top)',
+'uctop'                 => '(current)',
 'month'                 => 'From month (and earlier):',
 'year'                  => 'From year (and earlier):',
 
