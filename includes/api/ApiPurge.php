@@ -158,7 +158,7 @@ class ApiPurge extends ApiBase {
 	}
 
 	public function getParamDescription() {
-		return $this->getPageSet()->getParamDescription()
+		return $this->getPageSet()->getFinalParamDescription()
 			+ array( 'forcelinkupdate' => 'Update the links tables' );
 	}
 

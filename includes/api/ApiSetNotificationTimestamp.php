@@ -212,7 +212,7 @@ class ApiSetNotificationTimestamp extends ApiBase {
 	}
 
 	public function getParamDescription() {
-		return $this->getPageSet()->getParamDescription() + array(
+		return $this->getPageSet()->getFinalParamDescription() + array(
 			'entirewatchlist' => 'Work on all watched pages',
 			'timestamp' => 'Timestamp to which to set the notification timestamp',
 			'torevid' => 'Revision to set the notification timestamp to (one page only)',
