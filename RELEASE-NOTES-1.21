@@ -122,6 +122,9 @@ production.
   quotmarks, order and whitespace in the attribute list).
 
 === Bug fixes in 1.21 ===
+* (bug 42649) PHP Fatal error: Call to a member function isLocal() on a
+  non-object in Title.php
+* (bug 46787) API: Fix rccontinue handling
 * (bug 46719) Remove link to Special:ActiveUsers from Special:Statistics
 * (bug 46493) Special:ProtectedPages results in whitepage when a bad title is protected
 * (bug 40617) Installer can now customize the logo in LocalSettings.php
