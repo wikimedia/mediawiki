@@ -2329,7 +2329,7 @@ Mieh övver de einzel Rääschte fenkt Er op de [[{{MediaWiki:Listgrouprights-he
 'listgrouprights-key' => 'Lejend:
 * Dat es e <span class="listgrouprights-granted">jejovve Rääsch</span>
 * Dat es e <span class="listgrouprights-revoked">fottjenumme Rääsch</span>',
-'listgrouprights-group' => 'Jrupp',
+'listgrouprights-group' => 'Jropp',
 'listgrouprights-rights' => 'Räächte',
 'listgrouprights-helppage' => 'Help:Jrupperäächte',
 'listgrouprights-members' => '(opliste)',

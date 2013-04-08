@@ -2663,6 +2663,7 @@ Consultare l'[[Special:BlockList|elenco dei blocchi]] per l'elenco dei bandi o b
 'proxyblocksuccess' => 'Fatto.',
 'sorbsreason' => 'Questo indirizzo IP è elencato come proxy aperto nella blacklist DNSBL utilizzata da {{SITENAME}}.',
 'sorbs_create_account_reason' => 'Non è possibile creare nuovi accessi da questo indirizzo IP perché è elencato come proxy aperto nella blacklist DNSBL utilizzata da {{SITENAME}}.',
+'xffblockreason' => "Un indirizzo IP presente nell'intestazione X-Forwarded-For, tuo o del server proxy che stai utilizzando, è stato bloccato. La motivazione originale del blocco è: $1",
 'cant-block-while-blocked' => 'Non è possibile bloccare altri utenti mentre si è bloccati.',
 'cant-see-hidden-user' => 'L\'utente che si sta tentando di bloccare è stato già bloccato e nascosto. Poiché non hai il permesso "hideuser", non è possibile visualizzare o modificare il blocco dell\'utente.',
 'ipbblocked' => 'Non puoi bloccare o sbloccare altri utenti, perché tu stesso sei bloccato',

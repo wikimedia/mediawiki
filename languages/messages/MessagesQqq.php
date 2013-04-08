@@ -2406,7 +2406,8 @@ When changing this message, please also update {{msg-mw|vector-editwarning-warni
 {{Identical|Search}}',
 'resultsperpage' => "Option on the 'Search options' tab of [[Special:Preferences]]",
 'stub-threshold' => 'Used in [[Special:Preferences]], tab "Misc".',
-'stub-threshold-disabled' => 'Used in [[Special:Preferences]].',
+'stub-threshold-disabled' => 'Used in [[Special:Preferences]].
+{{Identical|Disabled}}',
 'recentchangesdays' => 'Used in [[Special:Preferences]], tab "Recent changes".',
 'recentchangesdays-max' => 'Shown as hint in [[Special:Preferences]], tab "Recent changes"',
 'recentchangescount' => 'Used in [[Special:Preferences]], tab "Recent changes".',

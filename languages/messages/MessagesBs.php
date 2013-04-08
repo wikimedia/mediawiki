@@ -430,14 +430,14 @@ $messages = array(
 
 # Vector skin
 'vector-action-addsection' => 'Dodaj temu',
-'vector-action-delete' => 'Brisanje',
+'vector-action-delete' => 'Izbriši',
 'vector-action-move' => 'Pomjeri',
 'vector-action-protect' => 'Zaštiti',
 'vector-action-undelete' => 'Vrati obrisano',
 'vector-action-unprotect' => 'Promijeni zaštitu',
 'vector-simplesearch-preference' => 'Omogući pojednostavljenu traku pretrage (samo vektorski izgled)',
 'vector-view-create' => 'Napravi',
-'vector-view-edit' => 'Uređivanje',
+'vector-view-edit' => 'Uredi',
 'vector-view-history' => 'Pregled historije',
 'vector-view-view' => 'Čitanje',
 'vector-view-viewsource' => 'Pogledaj izvor',
@@ -526,7 +526,7 @@ $1',
 'mainpage-description' => 'Početna strana',
 'policy-url' => 'Project:Pravila',
 'portal' => 'Portal zajednice',
-'portal-url' => 'Project:Portal_zajednice',
+'portal-url' => 'Project:Portal zajednice',
 'privacy' => 'Politika privatnosti',
 'privacypage' => 'Project:Pravila o anonimnosti',
 
@@ -537,7 +537,7 @@ $1',
 'versionrequired' => 'Potrebna je verzija $1 MediaWikija',
 'versionrequiredtext' => 'Potrebna je verzija $1 MediaWikija da bi se koristila ova strana. Pogledaj [[Special:Version|verziju]].',
 
-'ok' => 'da',
+'ok' => 'U redu',
 'retrievedfrom' => 'Dobavljeno iz "$1"',
 'youhavenewmessages' => 'Imate $1 ($2).',
 'newmessageslink' => 'novih poruka',
@@ -545,7 +545,7 @@ $1',
 'youhavenewmessagesfromusers' => 'Imate $1 od {{PLURAL:$3|drugog korisnika|$3 korisnika}} ($2).',
 'youhavenewmessagesmanyusers' => 'Imate $1 od mnogo korisnika ($2).',
 'newmessageslinkplural' => '{{PLURAL:$1|novu poruku|nove poruke}}',
-'newmessagesdifflinkplural' => '{{PLURAL:$1|zadnja izmjena|zadnje izmjene}}',
+'newmessagesdifflinkplural' => '{{PLURAL:$1|posljednja izmjena|posljednje izmjene}}',
 'youhavenewmessagesmulti' => 'Imate nove poruke na $1',
 'editsection' => 'uredi',
 'editsection-brackets' => '[$1]',
@@ -557,7 +557,7 @@ $1',
 'toc' => 'Sadržaj',
 'showtoc' => 'pokaži',
 'hidetoc' => 'sakrij',
-'collapsible-collapse' => 'Sakrij',
+'collapsible-collapse' => 'sklopi',
 'collapsible-expand' => 'Proširi',
 'thisisdeleted' => 'Pogledaj ili vrati $1?',
 'viewdeleted' => 'Pogledaj $1?',
@@ -1342,15 +1342,6 @@ Pokušajte u Vaš upit uključiti prefiks ''all:'' da bi ste pretražili sav sad
 'search-external' => 'Vanjska pretraga',
 'searchdisabled' => '<p>Izvinjavamo se!  Puno pretraga teksta je privremeno onemogućena.  U međuvremenu, možete koristiti Google za pretragu.  Indeks može biti stariji.',
 
-# Quickbar
-'qbsettings' => 'Podešavanja brze palete',
-'qbsettings-none' => 'Nikakva',
-'qbsettings-fixedleft' => 'Pričvršćena lijevo',
-'qbsettings-fixedright' => 'Pričvršćena desno',
-'qbsettings-floatingleft' => 'Plutajuća lijevo',
-'qbsettings-floatingright' => 'Plutajući desno',
-'qbsettings-directionality' => 'Čvrsto, u zavisnosti od usmjerenosti pisma Vašeg jezika',
-
 # Preferences page
 'preferences' => 'Podešavanja',
 'mypreferences' => 'Postavke',
@@ -1895,7 +1886,6 @@ Za optimalnu sigurnost, img_auth.php je onemogućena.',
 'http-read-error' => 'Greška pri čitanju HTTP.',
 'http-timed-out' => 'Istekao HTTP zahtjev.',
 'http-curl-error' => 'Greška pri otvaranju URLa: $1',
-'http-host-unreachable' => 'Ovaj URL nije bilo moguće otvoriti',
 'http-bad-status' => 'Nastao je problem tokom HTTP zahtjeva: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -2217,15 +2207,6 @@ Podržani protokoli: <code>$1</code> (ne dodavajte bilo koji od ovih u vašu pre
 'listusers-submit' => 'Pokaži',
 'listusers-noresult' => 'Nije pronađen korisnik.',
 'listusers-blocked' => '(blokiran)',
-
-# Special:ActiveUsers
-'activeusers' => 'Spisak aktivnih korisnika',
-'activeusers-intro' => 'Ovo je spisak korisnika koji su napravili neku aktivnost u {{PLURAL:$1|zadnji $1 dan|zadnja $1 dana|zadnjih $1 dana}}.',
-'activeusers-count' => '{{PLURAL:$1|nedavna $1 izmjena|nedavne $1 izmjene|nedavnih $1 izmjena}} u {{PLURAL:$3|posljednji $3 dan|posljednja $3 dana|posljednjih $3 dana}}',
-'activeusers-from' => 'Prikaži korisnike koji počinju sa:',
-'activeusers-hidebots' => 'Sakrij botove',
-'activeusers-hidesysops' => 'Sakrij administratore',
-'activeusers-noresult' => 'Nije pronađen korisnik.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Prava korisničkih grupa',
@@ -3035,26 +3016,16 @@ Dopušta unos razloga u sažetak.',
 
 # Stylesheets
 'common.css' => '/* CSS umetnut ovdje primijenit će se na sve skinove */',
-'standard.css' => '/* CSS umetnut ovdje uticat će na korisnike koji koriste Standard skin */',
-'nostalgia.css' => '/* CSS umetnut ovdje uticat će na korisnike koji koriste Nostalgia skin */',
 'cologneblue.css' => '/* CSS umetnut ovdje uticat će na korisnike koji koriste Cologne Blue skin */',
 'monobook.css' => '/* CSS umetnut ovdje uticat će na korisnike koji koriste Monobook skin */',
-'myskin.css' => '/* CSS umetnut ovdje uticat će na korisnike koji koriste MySkin skin */',
-'chick.css' => '/* CSS umetnut ovdje uticat će na korisnike koji koriste Chick skin */',
-'simple.css' => '/* CSS umetnut ovdje uticat će na korisnike koji koriste Simple skin */',
 'modern.css' => '/* CSS umetnut ovdje uticat će na korisnike koji koriste Modern skin */',
 'print.css' => '/* CSS umetnut ovdje uticat će na izgled isprintane stranice */',
 'handheld.css' => '/* CSS umetnut ovdje uticat će na ručne sprave koji rade na skinu konfigurisanom u $wgHandheldStyle */',
 
 # Scripts
 'common.js' => '/* Bilo koja JavaScript će biti učitana za sve korisnike pri svakom učitavanju stranice. */',
-'standard.js' => '/* Bilo koja JavaScript će biti učitana za sve korisnike koji koriste Standard skin */',
-'nostalgia.js' => '/* Bilo koja JavaScript će biti učitana za sve korisnike koji koriste Nostalgia skin */',
 'cologneblue.js' => '/* Bilo koja JavaScript će biti učitana za sve korisnike koji koriste Cologne Blue skin */',
 'monobook.js' => '/* Bilo koja JavaScript će biti učitana za sve korisnike koji koriste MonoBook skin */',
-'myskin.js' => '/* Bilo koja JavaScript će biti učitana za sve korisnike koji koriste MySkin skin */',
-'chick.js' => '/* Bilo koja JavaScript će biti učitana za sve korisnike koji koriste Chick skin */',
-'simple.js' => '/* Bilo koja JavaScript će biti učitana za sve korisnike koji koriste Simple skin */',
 'modern.js' => '/* Bilo koja JavaScript će biti učitana za sve korisnike koji koriste Modern skin */',
 
 # Metadata
@@ -3118,13 +3089,8 @@ Ovo je vjerovatno izazvao vezom ka vanjskoj nepoželjnoj stranici.',
 'pageinfo-category-pages' => 'Broj stranica',
 
 # Skin names
-'skinname-standard' => 'Klasično',
-'skinname-nostalgia' => 'Nostalgija',
 'skinname-cologneblue' => 'Kelnsko plavo',
 'skinname-monobook' => 'MonoKnjiga',
-'skinname-myskin' => 'MojaKoža',
-'skinname-chick' => 'Pile (chick)',
-'skinname-simple' => 'Jednostavna',
 'skinname-modern' => 'Moderna',
 
 # Patrolling
@@ -3983,8 +3949,8 @@ Slike su prikazane u punoj veličini, ostale vrste datoteka su prikazane direktn
 'sqlite-no-fts' => '$1 bez podrške pretrage cijelog teksta',
 
 # New logging system
-'logentry-delete-delete' => '$1 je obrisao stranicu $3',
-'logentry-delete-restore' => '$1 je vratio stranicu $3',
+'logentry-delete-delete' => '$1 je {{GENDER:$2|obrisao|obrisala}} stranicu $3',
+'logentry-delete-restore' => '$1 je {{GENDER:$2|vratio|vratila}} stranicu $3',
 'logentry-delete-event' => '$1 je {{GENDER:|promijenio|promijenila}} vidljivost {{PLURAL:$5|događaja|$5 događaja}} u evidenciji na $3: $4',
 'logentry-delete-revision' => '$1 je {{GENDER:|promijenio|promijenila}} vidljivost {{PLURAL:$5|izmjene|$5 izmjene|$5 izmjena}} na stranici  $3: $4',
 'logentry-delete-event-legacy' => '$1 je {{GENDER:|promijenio|promijenila}} vidljivost događaja u evidenciji na $3',
