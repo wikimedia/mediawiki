@@ -457,7 +457,7 @@ var mw = ( function ( $, undefined ) {
 
 			/**
 			 * Checks whether it is safe to add this css to a stylesheet.
-			 *
+                         * 
 			 * @private
 			 * @param {string} cssText
 			 * @return {boolean} False if a new one must be created.
@@ -472,7 +472,7 @@ var mw = ( function ( $, undefined ) {
 			/**
 			 * @param {string} [cssText=cssBuffer] If called without cssText,
 			 * the internal buffer will be inserted instead.
-			 * @param {Function} callback
+			 * @param {Function} [callback]
 			 */
 			function addEmbeddedCSS( cssText, callback ) {
 				var $style, styleEl;
