@@ -457,7 +457,7 @@ var mw = ( function ( $, undefined ) {
 
 			/**
 			 * Checks whether it is safe to add this css to a stylesheet.
-			 *
+                         * 
 			 * @private
 			 * @param {string} cssText
 			 * @return {boolean} False if a new one must be created.
