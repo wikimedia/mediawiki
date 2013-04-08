@@ -611,10 +611,11 @@ class LocalisationCache {
 	 */
 	protected function readSourceFilesAndRegisterDeps( $code, &$deps ) {
 		global $IP;
-
 		wfProfileIn( __METHOD__ );
+
 		$fileName = Language::getMessagesFileName( $code );
 		if ( !file_exists( $fileName ) ) {
+			wfProfileOut( __METHOD__ );
 			return false;
 		}
 
@@ -630,8 +631,8 @@ class LocalisationCache {
 
 		$deps['plurals'] = new FileDependency( "$IP/languages/data/plurals.xml" );
 		$deps['plurals-mw'] = new FileDependency( "$IP/languages/data/plurals-mediawiki.xml" );
-		wfProfileOut( __METHOD__ );
 
+		wfProfileOut( __METHOD__ );
 		return $data;
 	}
 
