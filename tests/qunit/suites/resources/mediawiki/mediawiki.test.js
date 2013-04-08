@@ -250,7 +250,7 @@
 	function assertStyleAsync( assert, $element, prop, val, fn ) {
 		var styleTestStart,
 			el = $element.get( 0 ),
-			styleTestTimeout = ( QUnit.config.testTimeout || 5000 ) - 200;
+			styleTestTimeout = ( QUnit.config.testTimeout - 200 ) || 5000;
 
 		function isCssImportApplied() {
 			// Trigger reflow, repaint, redraw, whatever (cross-browser)
@@ -321,7 +321,7 @@
 		} );
 	} );
 
-	QUnit.asyncTest( 'mw.loader.implement( styles={ "css": [text, ..] } )', 2, function ( assert ) {
+	QUnit.test( 'mw.loader.implement( styles={ "css": [text, ..] } )', 2, function ( assert ) {
 		var $element = $( '<div class="mw-test-implement-a"></div>' ).appendTo( '#qunit-fixture' );
 
 		assert.notEqual(
@@ -333,12 +333,15 @@
 		mw.loader.implement(
 			'test.implement.a',
 			function () {
-				assert.equal(
-					$element.css( 'float' ),
-					'right',
-					'style is applied'
-				);
-				QUnit.start();
+				QUnit.stop();
+				setTimeout(function () {
+					assert.equal(
+						$element.css( 'float' ),
+						'right',
+						'style is applied'
+					);
+					QUnit.start();
+				});
 			},
 			{
 				'all': '.mw-test-implement-a { float: right; }'
@@ -414,8 +417,8 @@
 		] );
 	} );
 
-	// Backwards compatibility
-	QUnit.asyncTest( 'mw.loader.implement( styles={ <media>: text } ) (back-compat)', 2, function ( assert ) {
+// Backwards compatibility
+	QUnit.test( 'mw.loader.implement( styles={ <media>: text } ) (back-compat)', 2, function ( assert ) {
 		var $element = $( '<div class="mw-test-implement-c"></div>' ).appendTo( '#qunit-fixture' );
 
 		assert.notEqual(
@@ -427,12 +430,15 @@
 		mw.loader.implement(
 			'test.implement.c',
 			function () {
-				assert.equal(
-					$element.css( 'float' ),
-					'right',
-					'style is applied'
-				);
-				QUnit.start();
+				QUnit.stop();
+				setTimeout(function () {
+					assert.equal(
+						$element.css( 'float' ),
+						'right',
+						'style is applied'
+					);
+					QUnit.start();
+				});
 			},
 			{
 				'all': '.mw-test-implement-c { float: right; }'
@@ -445,7 +451,7 @@
 		] );
 	} );
 
-	// Backwards compatibility
+// Backwards compatibility
 	QUnit.asyncTest( 'mw.loader.implement( styles={ <media>: [url, ..] } ) (back-compat)', 4, function ( assert ) {
 		var $element = $( '<div class="mw-test-implement-d"></div>' ).appendTo( '#qunit-fixture' ),
 			$element2 = $( '<div class="mw-test-implement-d2"></div>' ).appendTo( '#qunit-fixture' );
@@ -483,7 +489,7 @@
 		] );
 	} );
 
-	// @import (bug 31676)
+// @import (bug 31676)
 	QUnit.asyncTest( 'mw.loader.implement( styles has @import)', 5, function ( assert ) {
 		var isJsExecuted, $element;
 

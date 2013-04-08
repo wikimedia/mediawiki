@@ -363,7 +363,7 @@ var mw = ( function ( $, undefined ) {
 			 *             'dependencies': ['required.foo', 'bar.also', ...], (or) function () {}
 			 *             'group': 'somegroup', (or) null,
 			 *             'source': 'local', 'someforeignwiki', (or) null
-			 *             'state': 'registered', 'loaded', 'loading', 'ready', 'error' or 'missing'
+			 *             'state': 'registered', 'loading', 'loaded', 'ready', 'error' or 'missing'
 			 *             'script': ...,
 			 *             'style': ...,
 			 *             'messages': { 'key': 'value' },
@@ -393,9 +393,7 @@ var mw = ( function ( $, undefined ) {
 				// Selector cache for the marker element. Use getMarker() to get/use the marker!
 				$marker = null,
 				// Buffer for addEmbeddedCSS.
-				cssBuffer = '',
-				// Callbacks for addEmbeddedCSS.
-				cssCallbacks = $.Callbacks();
+				cssBuffer = '';
 
 			/* Private methods */
 
@@ -472,14 +470,9 @@ var mw = ( function ( $, undefined ) {
 			/**
 			 * @param {string} [cssText=cssBuffer] If called without cssText,
 			 * the internal buffer will be inserted instead.
-			 * @param {Function} callback
 			 */
-			function addEmbeddedCSS( cssText, callback ) {
+			function addEmbeddedCSS( cssText ) {
 				var $style, styleEl;
-
-				if ( callback ) {
-					cssCallbacks.add( callback );
-				}
 
 				// Yield once before inserting the <style> tag. There are likely
 				// more calls coming up which we can combine this way.
@@ -538,14 +531,11 @@ var mw = ( function ( $, undefined ) {
 						} else {
 							styleEl.appendChild( document.createTextNode( String( cssText ) ) );
 						}
-						cssCallbacks.fire().empty();
 						return;
 					}
 				}
 
 				$( addStyleTag( cssText, getMarker() ) ).data( 'ResourceLoaderDynamicStyleTag', true );
-
-				cssCallbacks.fire().empty();
 			}
 
 			/**
@@ -890,8 +880,7 @@ var mw = ( function ( $, undefined ) {
 			 * @param {string} module Module name to execute
 			 */
 			function execute( module ) {
-				var key, value, media, i, urls, cssHandle, checkCssHandles,
-					cssHandlesRegistered = false;
+				var key, value, media, i, urls, script, markModuleReady, nestedAddScript;
 
 				if ( registry[module] === undefined ) {
 					throw new Error( 'Module has not been registered yet: ' + module );
@@ -900,7 +889,7 @@ var mw = ( function ( $, undefined ) {
 				} else if ( registry[module].state === 'loading' ) {
 					throw new Error( 'Module has not completed loading yet: ' + module );
 				} else if ( registry[module].state === 'ready' ) {
-					throw new Error( 'Module has already been executed: ' + module );
+					throw new Error( 'Module has already been loaded: ' + module );
 				}
 
 				/**
@@ -917,80 +906,6 @@ var mw = ( function ( $, undefined ) {
 					}
 					el.href = url;
 				}
-
-				function runScript() {
-					var script, markModuleReady, nestedAddScript;
-					try {
-						script = registry[module].script;
-						markModuleReady = function () {
-							registry[module].state = 'ready';
-							handlePending( module );
-						};
-						nestedAddScript = function ( arr, callback, async, i ) {
-							// Recursively call addScript() in its own callback
-							// for each element of arr.
-							if ( i >= arr.length ) {
-								// We're at the end of the array
-								callback();
-								return;
-							}
-
-							addScript( arr[i], function () {
-								nestedAddScript( arr, callback, async, i + 1 );
-							}, async );
-						};
-
-						if ( $.isArray( script ) ) {
-							nestedAddScript( script, markModuleReady, registry[module].async, 0 );
-						} else if ( $.isFunction( script ) ) {
-							registry[module].state = 'ready';
-							script( $ );
-							handlePending( module );
-						}
-					} catch ( e ) {
-						// This needs to NOT use mw.log because these errors are common in production mode
-						// and not in debug mode, such as when a symbol that should be global isn't exported
-						log( 'Exception thrown by ' + module + ': ' + e.message, e );
-						registry[module].state = 'error';
-						handlePending( module );
-					}
-				}
-
-				// This used to be inside runScript, but since that is now fired asychronously
-				// (after CSS is loaded) we need to set it here right away. It is crucial that
-				// when execute() is called this is set synchronously, otherwise modules will get
-				// executed multiple times as the registry will state that it isn't loading yet.
-				registry[module].state = 'loading';
-
-				// Add localizations to message system
-				if ( $.isPlainObject( registry[module].messages ) ) {
-					mw.messages.set( registry[module].messages );
-				}
-
-				// Make sure we don't run the scripts until all (potentially asynchronous)
-				// stylesheet insertions have completed.
-				( function () {
-					var pending = 0;
-					checkCssHandles = function () {
-						// cssHandlesRegistered ensures we don't take off too soon, e.g. when
-						// one of the cssHandles is fired while we're still creating more handles.
-						if ( cssHandlesRegistered && pending === 0 && runScript ) {
-							runScript();
-							runScript = undefined; // Revoke
-						}
-					};
-					cssHandle = function () {
-						var check = checkCssHandles;
-						pending++;
-						return function () {
-							if (check) {
-								pending--;
-								check();
-								check = undefined; // Revoke
-							}
-						};
-					};
-				}() );
 
 				// Process styles (see also mw.loader.implement)
 				// * back-compat: { <media>: css }
@@ -1010,7 +925,7 @@ var mw = ( function ( $, undefined ) {
 								// Strings are pre-wrapped in "@media". The media-type was just ""
 								// (because it had to be set to something).
 								// This is one of the reasons why this format is no longer used.
-								addEmbeddedCSS( value, cssHandle() );
+								addEmbeddedCSS( value );
 							} else {
 								// back-compat: { <media>: [url, ..] }
 								media = key;
@@ -1027,7 +942,7 @@ var mw = ( function ( $, undefined ) {
 									addLink( media, value[i] );
 								} else if ( key === 'css' ) {
 									// { "css": [css, ..] }
-									addEmbeddedCSS( value[i], cssHandle() );
+									addEmbeddedCSS( value[i] );
 								}
 							}
 						// Not an array, but a regular object
@@ -1044,9 +959,47 @@ var mw = ( function ( $, undefined ) {
 					}
 				}
 
-				// Kick off.
-				cssHandlesRegistered = true;
-				checkCssHandles();
+				// Add localizations to message system
+				if ( $.isPlainObject( registry[module].messages ) ) {
+					mw.messages.set( registry[module].messages );
+				}
+
+				// Execute script
+				try {
+					script = registry[module].script;
+					markModuleReady = function () {
+						registry[module].state = 'ready';
+						handlePending( module );
+					};
+					nestedAddScript = function ( arr, callback, async, i ) {
+						// Recursively call addScript() in its own callback
+						// for each element of arr.
+						if ( i >= arr.length ) {
+							// We're at the end of the array
+							callback();
+							return;
+						}
+
+						addScript( arr[i], function () {
+							nestedAddScript( arr, callback, async, i + 1 );
+						}, async );
+					};
+
+					if ( $.isArray( script ) ) {
+						registry[module].state = 'loading';
+						nestedAddScript( script, markModuleReady, registry[module].async, 0 );
+					} else if ( $.isFunction( script ) ) {
+						registry[module].state = 'ready';
+						script( $ );
+						handlePending( module );
+					}
+				} catch ( e ) {
+					// This needs to NOT use mw.log because these errors are common in production mode
+					// and not in debug mode, such as when a symbol that should be global isn't exported
+					log( 'Exception thrown by ' + module + ': ' + e.message, e );
+					registry[module].state = 'error';
+					handlePending( module );
+				}
 			}
 
 			/**
