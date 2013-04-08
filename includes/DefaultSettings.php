@@ -6167,6 +6167,12 @@ $wgAsyncHTTPTimeout = 25;
  */
 $wgHTTPProxy = false;
 
+/**
+ * Timeout for connections done internally (in seconds)
+ * Only works for curl
+ */
+$wgHTTPConnectTimeout = 5e0;
+
 /** @} */ # End HTTP client }
 
 /************************************************************************//**
