@@ -14743,6 +14743,206 @@ parsoid
 </p>
 !!end
 
+# Parsoid-specific testing for images
+# http://www.mediawiki.org/wiki/Parsoid/MediaWiki_DOM_spec#Images
+# Currently imperfect due to a flaw in the Parsoid testrunner
+# Work in progress
+
+!! test
+Parsoid-specific image handling - simple image
+!! options
+parsoid
+!! input
+[[Image:Foobar.jpg]]
+!! result
+<p>
+<span class="mw-default-size" style="vertical-align: middle;" typeof="mw:Image" about="_:autoGen12345">
+<a href="File:Foobar.jpg">
+<img resource="./File:Foobar.jpg" src="http://upload.wikimedia.org/wikipedia/commons/3/3a/Foobar.jpg" height="220" width="1941">
+</a>
+</span>
+</p>
+!! end
+
+!! test
+Parsoid-specific image handling - simple image without link
+!! options
+parsoid
+!! input
+[[Image:Foobar.jpg|link=]]
+!! result
+<p>
+<span class="mw-default-size" style="vertical-align: middle;" typeof="mw:Image" about="_:autoGen12345">
+<span>
+<img resource="./File:Foobar.jpg" src="http://upload.wikimedia.org/wikipedia/commons/3/3a/Foobar.jpg" height="220" width="1941">
+</span>
+</span>
+</p>
+!! end
+
+!! test
+Parsoid-specific image handling - simple image with specific link
+!! options
+parsoid
+!! input
+[[Image:Foobar.jpg|link=Main Page]]
+!! result
+<p>
+<span class="mw-default-size" style="vertical-align: middle;" typeof="mw:Image" about="_:autoGen12345">
+<a href="Main_Page">
+<img resource="./File:Foobar.jpg" src="http://upload.wikimedia.org/wikipedia/commons/3/3a/Foobar.jpg" height="220" width="1941">
+</a>
+</span>
+</p>
+!! end
+
+!! test
+Parsoid-specific image handling - simple image with size and middle alignment
+!! options
+parsoid
+!! input
+[[Image:Foobar.jpg|50px|middle]]
+!! result
+<p>
+<span class="mw-valign-middle" style="vertical-align: middle;" typeof="mw:Image" about="_:autoGen12345">
+<a href="File:Foobar.jpg">
+<img resource="./File:Foobar.jpg" src="http://upload.wikimedia.org/wikipedia/commons/3/3a/Foobar.jpg/50px-Foobar.jpg" height="6" width="50">
+</a>
+</span>
+</p>
+!! end
+
+!! test
+Parsoid-specific image handling - simple image with both sizes, a baseline alignment, and a caption
+!! options
+parsoid
+!! input
+[[Image:Foobar.jpg|500x10px|baseline|caption]]
+!! result
+<p>
+<span class="mw-valign-baseline" style="vertical-align: baseline;" typeof="mw:Image" about="_:autoGen12345">
+<a href="File:Foobar.jpg">
+<img resource="./File:Foobar.jpg" src="http://upload.wikimedia.org/wikipedia/commons/3/3a/Foobar.jpg/89px-Foobar.jpg" height="10" width="89">
+</a>
+<span class="mw-figcaption">
+caption
+</span>
+</span>
+</p>
+!! end
+
+!! test
+Parsoid-specific image handling - simple image with border and size spec
+!! options
+parsoid
+!! input
+[[Image:Foobar.jpg|50px|border|caption]]
+!! result
+<p>
+<span class="mw-image-border" style="vertical-align: middle;" typeof="mw:Image" about="_:autoGen12345">
+<a href="File:Foobar.jpg">
+<img resource="./File:Foobar.jpg" src="http://upload.wikimedia.org/wikipedia/commons/3/3a/Foobar.jpg/50px-Foobar.jpg" height="6" width="50">
+</a>
+<span class="mw-figcaption">
+caption
+</span>
+</span>
+</p>
+!! end
+
+!! test
+Parsoid-specific image handling - thumbnail with halign, valign, and caption
+!! options
+parsoid
+!! input
+[[Image:Foobar.jpg|thumb|left|baseline|caption content]]
+!! result
+<figure class="mw-default-size mw-halign-left mw-valign-baseline mw-thumb" style="float: left; display: block;" typeof="mw:Image/Thumb">
+<a href="File:Foobar.jpg">
+<img resource="./File:Foobar.jpg" src="http://upload.wikimedia.org/wikipedia/commons/3/3a/Foobar.jpg/180px-Foobar.jpg" height="21" width="180" />
+</a>
+<figcaption class="mw-figcaption">caption content</figcaption>
+</figure>
+!! end
+
+!! test
+Parsoid-specific image handling - thumbnail with specific size, halign, valign, and caption
+!! options
+parsoid
+!! input
+[[Image:Foobar.jpg|thumb|50x50px|right|middle|caption]]
+!! result
+<figure class="mw-halign-right mw-valign-middle mw-thumb" style="float: right; display: block;" typeof="mw:Image/Thumb">
+<a href="File:Foobar.jpg">
+<img resource="./File:Foobar.jpg" src="http://upload.wikimedia.org/wikipedia/commons/3/3a/Foobar.jpg/50px-Foobar.jpg" height="6" width="50" />
+</a>
+<figcaption class="mw-figcaption">caption</figcaption>
+</figure>
+!! end
+
+!! test
+Parsoid-specific image handling - framed image with specific size and caption
+!! options
+parsoid
+!! input
+[[Image:Foobar.jpg|500x50px|frame|caption]]
+!! result
+<figure class="mw-frame" style="float: right; display: block;" typeof="mw:Image/Frame">
+<a href="File:Foobar.jpg">
+<img resource="./File:Foobar.jpg" src="http://upload.wikimedia.org/wikipedia/commons/3/3a/Foobar.jpg/442px-Foobar.jpg" height="50" width="442" />
+</a>
+<figcaption class="mw-figcaption">caption</figcaption>
+</figure>
+!! end
+
+!! test
+Parsoid-specific image handling - framed image with specific size, halign, valign, and caption
+!! options
+parsoid
+!! input
+[[Image:Foobar.jpg|500x50px|frame|left|baseline|caption]]
+!! result
+<figure class="mw-halign-left mw-valign-baseline mw-frame" style="float: left; display: block;" typeof="mw:Image/Frame">
+<a href="File:Foobar.jpg">
+<img resource="./File:Foobar.jpg" src="http://upload.wikimedia.org/wikipedia/commons/3/3a/Foobar.jpg/442px-Foobar.jpg" height="50" width="442" />
+</a>
+<figcaption class="mw-figcaption">caption</figcaption>
+</figure>
+!! end
+
+!! test
+Parsoid-specific image handling - frameless image with specific size, border, and caption
+!! options
+parsoid
+!! input
+[[Image:Foobar.jpg|frameless|500x50px|border|caption]]
+!! result
+<p>
+<span class="mw-image-border mw-frameless" style="vertical-align: middle;" typeof="mw:Image/Frameless">
+<a href="File:Foobar.jpg">
+<img resource="./File:Foobar.jpg" src="http://upload.wikimedia.org/wikipedia/commons/3/3a/Foobar.jpg/442px-Foobar.jpg" height="50" width="442" />
+</a>
+<span class="mw-figcaption">caption</span>
+</span>
+</p>
+!! end
+
+#!! test
+#Parsoid-specific image handling - simple image with a formatted caption
+#!! options
+#parsoid
+#!! input
+#[[Image:Foobar.jpg|<table><tr><td>a</td><td>b</td></tr><tr><td>c</td></tr></table>]]
+#!! result
+#<p>
+#<span typeof="mw:Image">
+#<a class="mw-default-size" href="Image:Foobar.jpg">
+#<img alt="Foobar.jpg" style="vertical-align: middle;" class="mw-default-size" src="http://upload.wikimedia.org/wikipedia/commons/3/3a/Foobar.jpg" height="220" width="1941">
+#</a>
+#<span>abc</span>
+#</span>
+#</p>
+
 TODO:
 more images
 more tables
