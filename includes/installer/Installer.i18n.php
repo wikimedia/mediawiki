@@ -4306,7 +4306,7 @@ Hernach kann diese Option aktiviert werden.',
 	'config-upload-deleted-help' => 'Bitte ein Verzeichnis auswählen, in dem gelöschte Dateien archiviert werden sollen.
 Idealerweise sollte es nicht über das Internet zugänglich sein.',
 	'config-logo' => 'URL des Logos:',
-	'config-logo-help' => 'Die Standardoberfläche von MediaWiki verfügt links oberhalb der Seitenleiste über Platz für eine Logo mit den Maßen 135x160 Pixel.
+	'config-logo-help' => 'Die Standardoberfläche von MediaWiki verfügt links oberhalb der Seitenleiste über Platz für ein Logo mit den Maßen 135x160 Pixel.
 Bitte ein Logo in entsprechender Größe hochladen und die zugehörige URL an dieser Stelle angeben.
 
 Du kannst $wgStylePath oder $wgScriptPath verwenden, falls dein Logo relativ zu diesen Pfaden ist.
@@ -12205,7 +12205,7 @@ Dir kënnt elo déi Astellungen déi nach iwwreg sinn iwwersprangen an d'Wiki el
 	'config-optional-continue' => 'Stellt mir méi Froen.',
 	'config-optional-skip' => "Ech hunn es genuch, installéier just d'Wiki.",
 	'config-profile' => 'Profil vun de Benotzerrechter:',
-	'config-profile-wiki' => 'Traditionell Wiki', # Fuzzy
+	'config-profile-wiki' => 'Oppe Wiki',
 	'config-profile-no-anon' => 'Uleeë vun engem Benotzerkont verlaangt',
 	'config-profile-fishbowl' => 'Nëmmen autoriséiert Editeuren',
 	'config-profile-private' => 'Privat Wiki',
@@ -14248,9 +14248,9 @@ Als u het databasesysteem dat u wilt gebruiken niet in de lijst terugvindt, volg
 	'config-header-sqlite' => 'SQLite-instellingen',
 	'config-header-oracle' => 'Oracle-instellingen',
 	'config-invalid-db-type' => 'Ongeldig databasetype',
-	'config-missing-db-name' => 'U moet een waarde ingeven voor "Databasenaam"',
+	'config-missing-db-name' => 'U moet een waarde opgeven voor "Databasenaam"',
 	'config-missing-db-host' => 'U moet een waarde invoeren voor "Databaseserver"',
-	'config-missing-db-server-oracle' => 'U moet een waarde voor "Database-TNS" ingeven',
+	'config-missing-db-server-oracle' => 'U moet een waarde opgeven voor "Database-TNS"',
 	'config-invalid-db-server-oracle' => 'Ongeldige database-TMS "$1".
 Gebruik alleen letters (a-z, A-Z), cijfers (0-9) en liggende streepjes (_).',
 	'config-invalid-db-name' => 'Ongeldige databasenaam "$1".
@@ -14350,11 +14350,11 @@ Het is dat niet mogelijk tekens op te slaan die de \"[//nl.wikipedia.org/wiki/Li
 	'config-ns-other' => 'Andere (geef aan welke)',
 	'config-ns-other-default' => 'MijnWiki',
 	'config-project-namespace-help' => "In het kielzog van Wikipedia beheren veel wiki's hun beleidspagina's apart van hun inhoudelijke pagina's in een \"'''projectnaamruimte'''\".
-Alle paginanamen in deze naamruimte beginnen met een bepaald voorvoegsel dat u hier kunt aangeven.
+Alle paginanamen in deze naamruimte beginnen met een bepaald voorvoegsel dat u hier kunt opgeven.
 Dit voorvoegsel wordt meestal afgeleid van de naam van de wiki, maar het kan geen bijzondere tekens bevatten als \"#\" of \":\".",
-	'config-ns-invalid' => 'De aangegeven naamruimte "<nowiki>$1</nowiki>" is ongeldig.
+	'config-ns-invalid' => 'De opgegeven naamruimte "<nowiki>$1</nowiki>" is ongeldig.
 Geef een andere naamruimte op.',
-	'config-ns-conflict' => 'De aangegeven naamruimte "<nowiki>$1</nowiki>" conflicteert met een standaard naamruimte in MediaWiki.
+	'config-ns-conflict' => 'De opgegeven naamruimte "<nowiki>$1</nowiki>" conflicteert met een standaard naamruimte in MediaWiki.
 Geef een andere naam op voor de projectnaamruimte.',
 	'config-admin-box' => 'Beheerdersgebruiker',
 	'config-admin-name' => 'Uw naam:',
@@ -14459,7 +14459,7 @@ Meer informatie over deze functie en hoe deze in te stellen voor andere wiki\'s 
 	'config-cc-error' => 'De licentiekiezer van Creative Commons heeft geen resultaat opgeleverd.
 Voer de licentie handmatig in.',
 	'config-cc-again' => 'Opnieuw kiezen...',
-	'config-cc-not-chosen' => 'Kies alstublieft de Creative Commonslicentie die u wilt gebruiken en klik op "doorgaan".',
+	'config-cc-not-chosen' => 'Kies de Creative Commonslicentie die u wilt gebruiken en klik op "doorgaan".',
 	'config-advanced-settings' => 'Gevorderde instellingen',
 	'config-cache-options' => 'Instellingen voor het cachen van objecten:',
 	'config-cache-help' => 'Het cachen van objecten wordt gebruikt om de snelheid van MediaWiki te verbeteren door vaak gebruikte gegevens te bewaren.
@@ -14484,7 +14484,7 @@ De standaardpoort is 11211.',
 
 Mogelijk moet u aanvullende instellingen maken, maar u kunt deze uitbreidingen nu inschakelen.',
 	'config-install-alreadydone' => "'''Waarschuwing:''' het lijkt alsof u MediaWiki al hebt geïnstalleerd en probeert het programma opnieuw te installeren.
-Ga alstublieft door naar de volgende pagina.",
+Ga door naar de volgende pagina.",
 	'config-install-begin' => 'Als u nu op "{{int:config-continue}}" klikt, begint de installatie van MediaWiki.
 Als u nog wijzigingen wilt maken, klik dan op "{{int:config-back}}".',
 	'config-install-step-done' => 'afgerond',
@@ -14679,9 +14679,9 @@ Overweeg om de database op een totaal andere plaats neer te zetten, bijvoorbeeld
 $1
 
 Als je het databasesysteem dat je wilt gebruiken niet in de lijst terugvindt, volg dan de handleiding waarnaar hierboven wordt verwezen om ondersteuning toe te voegen.',
-	'config-missing-db-name' => 'Je moet een waarde ingeven voor "Databasenaam"',
+	'config-missing-db-name' => 'Je moet een waarde opgeven voor "Databasenaam"',
 	'config-missing-db-host' => 'Je moet een waarde invoeren voor "Databaseserver"',
-	'config-missing-db-server-oracle' => 'Je moet een waarde voor "Database-TNS" ingeven',
+	'config-missing-db-server-oracle' => 'Je moet een waarde opgeven voor "Database-TNS"',
 	'config-postgres-old' => 'PostgreSQL $1 of hoger is vereist.
 Jij gebruikt $2.',
 	'config-sqlite-name-help' => 'Kies een naam die je wiki identificeert.
@@ -14710,9 +14710,8 @@ Dit is efficiënter dan de UTF-8-modus van MySQL en stelt je in staat de volledi
 
 In '''UTF-8-modus''' kent MySQL de tekenset van je gegevens en kan de databaseserver ze juist weergeven en converteren.
 Het is dat niet mogelijk tekens op te slaan die de \"[//nl.wikipedia.org/wiki/Lijst_van_Unicode-subbereiken#Basic_Multilingual_Plane Basic Multilingual Plane]\" te boven gaan.",
-	'config-ibm_db2-low-db-pagesize' => "Je DB2-database heeft een standaard tablespace met een onvoldoende grote pagesize. De pagesize moet tenminste '''32K''' zijn.",
 	'config-project-namespace-help' => "In het kielzog van Wikipedia beheren veel wiki's hun beleidspagina's apart van hun inhoudelijke pagina's in een \"'''projectnaamruimte'''\".
-Alle paginanamen in deze naamruimte beginnen met een bepaald voorvoegsel dat je hier kunt aangeven.
+Alle paginanamen in deze naamruimte beginnen met een bepaald voorvoegsel dat je hier kunt opgeven.
 Dit voorvoegsel wordt meestal afgeleid van de naam van de wiki, maar het kan geen bijzondere tekens bevatten als \"#\" of \":\".",
 	'config-admin-name' => 'Je naam:',
 	'config-admin-password-mismatch' => 'De twee door jou ingevoerde wachtwoorden komen niet overeen.',
@@ -14756,8 +14755,8 @@ Daarmee wordt deze functie ingeschakeld.",
 	'config-logo-help' => 'Het standaarduiterlijk van MediaWiki bevat ruimte voor een logo van 135x160 pixels boven het menu.
 Upload een afbeelding met de juiste afmetingen en voer de URL hier in.
 
-Als je geen logo wilt gebruiken, kan je dit veld leeg laten.',
-	'config-cc-not-chosen' => 'Kies alsjeblieft de Creative Commonslicentie die je wilt gebruiken en klik op "doorgaan".',
+Als je geen logo wilt gebruiken, kan je dit veld leeg laten.', # Fuzzy
+	'config-cc-not-chosen' => 'Kies de Creative Commonslicentie die je wilt gebruiken en klik op "doorgaan".',
 	'config-memcache-needservers' => 'Je hebt Memcached geselecteerd als je cache, maar je hebt geen servers opgegeven.',
 	'config-memcache-badip' => 'Je hebt een ongeldig IP-adres ingevoerd voor Memcached: $1.',
 	'config-memcache-noport' => 'Je hebt geen poort opgegeven voor de Memcachedserver: $1.
@@ -14766,7 +14765,7 @@ De standaardpoort is 11211.',
 
 Mogelijk moet je aanvullende instellingen maken, maar je kunt deze uitbreidingen nu inschakelen.',
 	'config-install-alreadydone' => "'''Waarschuwing:''' het lijkt alsof je MediaWiki al hebt geïnstalleerd en probeert het programma opnieuw te installeren.
-Ga alsjeblieft door naar de volgende pagina.",
+Ga door naar de volgende pagina.",
 	'config-install-begin' => 'Als je nu op "{{int:config-continue}}" klikt, begint de installatie van MediaWiki.
 Als je nog wijzigingen wilt maken, klik dan op "Terug".', # Fuzzy
 	'config-pg-no-plpgsql' => 'Je moet de taal PL/pgSQL installeren in de database $1',
@@ -14936,6 +14935,7 @@ $messages['pdc'] = array(
 /** Polish (polski)
  * @author Beau
  * @author BeginaFelicysym
+ * @author Chrumps
  * @author Holek
  * @author Saper
  * @author Sp5uhe
@@ -15309,7 +15309,7 @@ Możesz pominąć pozostałe czynności konfiguracyjne i zainstalować wiki.',
 	'config-optional-continue' => 'Zadaj mi więcej pytań.',
 	'config-optional-skip' => 'Jestem już znudzony, po prostu zainstaluj wiki.',
 	'config-profile' => 'Profil uprawnień użytkowników',
-	'config-profile-wiki' => 'Tradycyjne wiki', # Fuzzy
+	'config-profile-wiki' => 'Otwarte wiki',
 	'config-profile-no-anon' => 'Wymagane utworzenie konta',
 	'config-profile-fishbowl' => 'Wyłącznie zatwierdzeni edytorzy',
 	'config-profile-private' => 'Prywatna wiki',
@@ -15375,7 +15375,7 @@ Najlepiej, aby nie był on dostępny z internetu.',
 	'config-logo-help' => 'Domyślny motyw MediaWiki zawiera miejsce na logo wielkości 135 x 160 pikseli powyżej menu na pasku bocznym.
 Prześlij obrazek o odpowiednim rozmiarze, a następnie wpisz jego URL tutaj.
 
-Jeśli nie chcesz logo, pozostaw to pole puste.',
+Jeśli nie chcesz logo, pozostaw to pole puste.', # Fuzzy
 	'config-instantcommons' => 'Włącz Instant Commons',
 	'config-instantcommons-help' => '[//www.mediawiki.org/wiki/InstantCommons Instant Commons] jest funkcją, która pozwala wiki używać obrazów, dźwięków i innych mediów znalezionych na  witrynie [//commons.wikimedia.org/ Wikimedia Commons].
 Aby to zrobić, MediaWiki wymaga dostępu do internetu.

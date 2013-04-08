@@ -889,9 +889,6 @@ Vikide bu saifege oşağan saifelerni [[Special:Search|tapıp baqıñız]].',
 'search-external' => 'Tış qıdıruv',
 'searchdisabled' => '{{SITENAME}} saytında qıdıruv yapma vaqtınca toqtatıldı. Bu arada Google qullanıp {{SITENAME}} içinde qıdıruv yapıp olasıñız. Qıdıruv saytlarında indekslemeleriniñ biraz eski qalğan ola bilecegini köz ögüne alıñız.',
 
-# Quickbar
-'qbsettings' => 'Vızlı irişim sutun sazlamaları',
-
 # Preferences page
 'preferences' => 'Sazlamalar',
 'mypreferences' => 'Sazlamalar',
@@ -1812,13 +1809,8 @@ MediaWiki interfeysiniñ çeşit tillerge tercime etüvde iştirak etmege istese
 'spam_blanking' => 'Bar olğan versiyalarda $1 saytına bağlantılar bar, temizlev',
 
 # Skin names
-'skinname-standard' => 'Standart',
-'skinname-nostalgia' => 'Nostalgiya',
 'skinname-cologneblue' => 'Köln asretligi',
 'skinname-monobook' => 'MonoBook',
-'skinname-myskin' => 'Öz resimleme',
-'skinname-chick' => 'Çipçe',
-'skinname-simple' => 'Adiy',
 
 # Patrol log
 'patrol-log-page' => 'Teşkerüv jurnalı',
@@ -2099,6 +2091,11 @@ Bitirgen soñ "{{int:Watchlistedit-raw-submit}}" yazısına basıñız.
 # Special:BlankPage
 'blankpage' => 'Bоş saife',
 'intentionallyblankpage' => 'Bu saife aselet boş qaldırılğan',
+
+# Special:ComparePages
+'comparepages' => 'Saifelerni teñeştirüv',
+'compare-selector' => 'Saifelerniñ versiyalarını teñeştirüv',
+'compare-submit' => 'Teñeştir',
 
 # HTML forms
 'htmlform-reset' => 'Deñişikliklerni keri al',
