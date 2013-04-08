@@ -40,6 +40,7 @@ class Http {
 	 * @param array $options options to pass to MWHttpRequest object.
 	 *	Possible keys for the array:
 	 *    - timeout             Timeout length in seconds
+	 *    - connectTimeout      Timeout for connection, in seconds (curl only)
 	 *    - postData            An array of key-value pairs or a url-encoded form data
 	 *    - proxy               The proxy to use.
 	 *                          Otherwise it will use $wgHTTPProxy (if set)
@@ -64,6 +65,9 @@ class Http {
 
 		if ( !isset( $options['timeout'] ) ) {
 			$options['timeout'] = 'default';
+		}
+		if( !isset( $options['connectTimeout'] ) ) {
+			$options['connectTimeout'] = 'default';
 		}
 
 		$req = MWHttpRequest::factory( $url, $options );
@@ -231,6 +235,11 @@ class MWHttpRequest {
 			$this->timeout = $options['timeout'];
 		} else {
 			$this->timeout = $wgHTTPTimeout;
+		}
+		if ( isset( $options['connectTimeout'] ) && $options['connectTimeout'] != 'default' ) {
+			$this->connectTimeout = $options['connectTimeout'];
+		} else {
+			$this->connectTimeout = $wgHTTPConnectTimeout;
 		}
 		if( isset( $options['userAgent'] ) ) {
 			$this->setUserAgent( $options['userAgent'] );
@@ -721,6 +730,7 @@ class CurlHttpRequest extends MWHttpRequest {
 
 		$this->curlOptions[CURLOPT_PROXY] = $this->proxy;
 		$this->curlOptions[CURLOPT_TIMEOUT] = $this->timeout;
+		$this->curlOptions[CURLOPT_CONNECTTIMEOUT_MS] = $this->connectTimeout * 1000;
 		$this->curlOptions[CURLOPT_HTTP_VERSION] = CURL_HTTP_VERSION_1_0;
 		$this->curlOptions[CURLOPT_WRITEFUNCTION] = $this->callback;
 		$this->curlOptions[CURLOPT_HEADERFUNCTION] = array( $this, "readHeader" );
