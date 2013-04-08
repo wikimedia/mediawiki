@@ -1325,8 +1325,8 @@ class Title {
 	}
 
 	/**
-	 * Helper to fix up the get{Local,Full,Link,Canonical}URL args
-	 * get{Canonical,Full,Link,Local}URL methods accepted an optional
+	 * Helper to fix up the get{Canonical,Full,Link,Local,Internal}URL args
+	 * get{Canonical,Full,Link,Local,Internal}URL methods accepted an optional
 	 * second argument named variant. This was deprecated in favor
 	 * of passing an array of option with a "variant" key
 	 * Once $query2 is removed for good, this helper can be dropped
@@ -1339,7 +1339,9 @@ class Title {
 	 */
 	private static function fixUrlQueryArgs( $query, $query2 = false ) {
 		if( $query2 !== false ) {
-			wfDeprecated( "Title::get{Canonical,Full,Link,Local} method called with a second parameter is deprecated. Add your parameter to an array passed as the first parameter.", "1.19" );
+			wfDeprecated( "Title::get{Canonical,Full,Link,Local,Internal}URL " .
+				"method called with a second parameter is deprecated. Add your " .
+				"parameter to an array passed as the first parameter.", "1.19" );
 		}
 		if ( is_array( $query ) ) {
 			$query = wfArrayToCgi( $query );
@@ -1397,7 +1399,6 @@ class Title {
 	 * Get a URL with no fragment or server name.  If this page is generated
 	 * with action=render, $wgServer is prepended.
 	 *
-
 	 * @param string|array $query an optional query string,
 	 *   not used for interwiki links. Can be specified as an associative array as well,
 	 *   e.g., array( 'action' => 'edit' ) (keys and values will be URL-escaped).
