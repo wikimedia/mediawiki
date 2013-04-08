@@ -14569,6 +14569,67 @@ parsoid
 
 !!end
 
+# Parsoid-specific testing for images
+# http://www.mediawiki.org/wiki/Parsoid/MediaWiki_DOM_spec#Images
+# Currently imperfect due to a flaw in the Parsoid testrunner
+# Work in progress
+
+!! test
+Parsoid-specific image handling - simple image
+!! options
+parsoid
+!! input
+[[Image:Foobar.jpg]]
+!! result
+<p>
+<a typeof="mw:Image" href="File:Foobar.jpg" about="_:autoGen12345">
+<img alt="Foobar.jpg" height="220" width="1941" style="vertical-align: middle;" class="mw-default-size" src="http://upload.wikimedia.org/wikipedia/commons/3/3a/Foobar.jpg">
+</a>
+</p>
+!! end
+
+!! test
+Parsoid-specific image handling - simple image without link
+!! options
+parsoid
+!! input
+[[Image:Foobar.jpg|link=]]
+!! result
+<p>
+<span typeof="mw:Image" about="_:autoGen12345">
+<img alt="Foobar.jpg" height="220" width="1941" style="vertical-align: middle;" class="mw-default-size" src="http://upload.wikimedia.org/wikipedia/commons/3/3a/Foobar.jpg">
+</span>
+</p>
+!! end
+
+!! test
+Parsoid-specific image handling - simple image with size and middle alignment
+!! options
+parsoid
+!! input
+[[Image:Foobar.jpg|50px|middle]]
+!! result
+<p>
+<a typeof="mw:Image" href="File:Foobar.jpg" about="_:autoGen12345">
+<img alt="Foobar.jpg" height="6" width="50" style="vertical-align: middle;" class="mw-valign-middle" src="http://upload.wikimedia.org/wikipedia/commons/3/3a/Foobar.jpg/50px-Foobar.jpg">
+</a>
+</p>
+!! end
+
+!! test
+Parsoid-specific image handling - simple image with both sizes, a baseline alignment, and a caption
+!! options
+parsoid
+!! input
+[[Image:Foobar.jpg|500x10px|baseline|caption]]
+!! result
+<p>
+<a typeof="mw:Image" href="File:Foobar.jpg" about="_:autoGen12345">
+<img alt="Foobar.jpg" height="10" width="89" style="vertical-align: baseline;" class="mw-valign-baseline" src="http://upload.wikimedia.org/wikipedia/commons/3/3a/Foobar.jpg/89px-Foobar.jpg">
+</a>
+</p>
+!! end
+
 TODO:
 more images
 more tables
