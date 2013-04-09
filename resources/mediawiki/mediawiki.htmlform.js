@@ -1,7 +1,7 @@
 /**
  * Utility functions for jazzing up HTMLForm elements.
  */
-( function ( $ ) {
+( function ( mw, $ ) {
 
 	/**
 	 * jQuery plugin to fade or snap to visible state.
@@ -59,4 +59,56 @@
 
 	} );
 
-}( jQuery ) );
+	$.fn.addMulti = function( $container ) {
+		var $oldContainer = $(this),
+		$name = $oldContainer.find( 'input:first-child' ).attr( 'name' ),
+		$select = $( '<select>' ),
+		$dataPlaceholder = mw.message( 'htmlform-chosen-placeholder' );
+		$select.attr( {
+			name: $name,
+			multiple: 'multiple',
+			class: 'chzn-select mw-input',
+			'data-placeholder': $dataPlaceholder.escaped()
+		} );
+		$oldContainer.find( 'input' ).each( function() {
+			var $checked = $oldContainer.attr( 'checked' ),
+			$option = $( '<option>' );
+			$option.attr( 'value', $oldContainer.attr( 'value' ) );
+			if ( $checked === 'checked' ) {
+				$option.attr( 'selected', 'selected' );
+			}
+			$option.text( $oldContainer.attr( 'value' ) );
+			$select.append( $option );
+		} );
+		$container.append( $select );
+	};
+
+	$.fn.convertCheckboxesToMulti = function( $type ) {
+		var $oldContainer = $(this),
+		$fieldLabel = $( '<td>' ),
+		$td = $( '<td>' ),
+		$container = $( '<tr>' ),
+		$fieldLabelText = $( '<label>' );
+		if ( $type === 'table' ) {
+			$oldContainer.addMulti( $td );
+			$container.append( $td );
+		} else if ( $type === 'div' ) {
+			$fieldLabel = $( '<div>' );
+			$container = $( '<div>' );
+			$oldContainer.addMulti( $container );
+		}
+		$fieldLabel.attr( 'class', 'mw-label' );
+		$fieldLabelText.text( $oldContainer.find( '.mw-label label' ).text() );
+		$fieldLabel.append( $fieldLabelText );
+		$container.prepend( $fieldLabel );
+		$oldContainer.parent().append( $container );
+		$oldContainer.remove();
+	};
+
+	mw.loader.using( 'jquery.chosen', function () {
+		$( 'table .chosen' ).convertCheckboxesToMulti( 'table' );
+		$( 'div .chosen' ).convertCheckboxesToMulti( 'div' );
+		$( '.chzn-select' ).chosen();
+	} );
+
+}( mediaWiki, jQuery ) );

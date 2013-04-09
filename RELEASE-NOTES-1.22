@@ -21,6 +21,9 @@ production.
   preference). This feature was moved from the Vector extension, and is now part
   of core for all skins. Take care when upgrading that you don't use an older
   version of the Vector extension as this feature may conflict.
+* Chosen (http://harvesthq.github.io/chosen/) support was added to HTMLForm
+  multiselect. Adding the chosen class to a multiselect's cssclass parameter
+  will enable it for that specific field.
 
 === Bug fixes in 1.22 ===
 
