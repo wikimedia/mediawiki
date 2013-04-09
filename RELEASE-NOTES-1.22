@@ -12,6 +12,9 @@ production.
 * $wgRedirectScript was removed. It was unused.
 
 === New features in 1.22 ===
+* Chosen (http://harvesthq.github.io/chosen/) support was added to HTMLForm
+  multiselect. Adding the chosen class to a multiselect's cssclass parameter
+  will enable it for that specific field.
 
 === Bug fixes in 1.22 ===
 * (bug 46768) Usernames of blocking users now display correctly, even if numeric.
