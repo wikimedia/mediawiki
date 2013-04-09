@@ -17,6 +17,9 @@ production.
 === Bug fixes in 1.22 ===
 
 === API changes in 1.22 ===
+* (bug 46626) xmldoublequote parameter was removed. Because of a bug, the
+  parameter has had no effect since MediaWiki 1.16, and so its removal is
+  unlikely to impact existing clients.
 
 === Languages updated in 1.22===
 
