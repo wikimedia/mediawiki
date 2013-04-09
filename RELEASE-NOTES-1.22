@@ -21,6 +21,8 @@ production.
   preference). This feature was moved from the Vector extension, and is now part
   of core for all skins. Take care when upgrading that you don't use an older
   version of the Vector extension as this feature may conflict.
+* Chosen (http://harvesthq.github.io/chosen/) support was added as module 'jquery.chosen'
+* HTMLForm will turn multiselect checkboxes into a Chosen interface when setting cssclass 'mw-chosen'
 
 === Bug fixes in 1.22 ===
 
