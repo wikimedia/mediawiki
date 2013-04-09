@@ -54,6 +54,8 @@ production.
   well.
 * (bug 45535) introduced the new 'LanguageLinks' hook for manipulating the
   language links associated with a page before display.
+* Chosen (http://harvesthq.github.io/chosen/) was added as module 'jquery.chosen'
+* HTMLForm will turn multiselect checkboxes into a Chosen interface when setting cssclass 'mw-chosen'
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail. Previously one could still

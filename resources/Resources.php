@@ -141,6 +141,10 @@ return array(
 		'scripts' => 'resources/jquery/jquery.checkboxShiftClick.js',
 		'targets' => array( 'desktop', 'mobile' ),
 	),
+	'jquery.chosen' => array(
+		'scripts' => 'resources/jquery.chosen/chosen.jquery.js',
+		'styles' => 'resources/jquery.chosen/chosen.css',
+	),
 	'jquery.client' => array(
 		'scripts' => 'resources/jquery/jquery.client.js',
 		'targets' => array( 'desktop', 'mobile' ),
@@ -636,6 +640,7 @@ return array(
 	),
 	'mediawiki.htmlform' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.htmlform.js',
+		'messages' => array( 'htmlform-chosen-placeholder' ),
 	),
 	'mediawiki.notification' => array(
 		'styles' => 'resources/mediawiki/mediawiki.notification.css',
