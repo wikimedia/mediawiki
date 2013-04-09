@@ -4894,7 +4894,10 @@ See also:
 'nocontribs' => 'Optional parameter: $1 is the user name',
 'uctop' => 'This message is used in [[Special:Contributions]]. It is used to show that a particular edit was the last made to a page. Example: 09:57, 11 February 2008 (hist) (diff) Pagename‎ (edit summary) (top)',
 'month' => 'Used in [[Special:Contributions]] and history pages ([{{fullurl:Sandbox|action=history}} example]), as label for a dropdown box to select a specific month to view the edits made in that month, and the earlier months. See also {{msg-mw|year}}.',
-'year' => 'Used in [[Special:Contributions]] and history pages ([{{fullurl:Sandbox|action=history}} example]), as label for a inputbox to select a specific year to view the edits made in that year, and the earlier years. See also {{msg-mw|month}}.',
+'year' => 'Used in [[Special:Contributions]] and history pages ([{{fullurl:Sandbox|action=history}} example]), as label for an input box to select a specific year to view the edits made in that year, and the earlier years.
+
+See also:
+* {{msg-mw|month}}',
 
 'sp-contributions-newbies' => 'Text of radio button on special page [[Special:Contributions]].',
 'sp-contributions-newbies-sub' => "Note at the top of the page of results for a search on [[Special:Contributions]] where 'Show contributions for new accounts only' has been selected.",

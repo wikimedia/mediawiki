@@ -1336,7 +1336,7 @@ $1",
 'searchdisabled' => '{{SITENAME}}的搜索已被禁用。您可以暂时使用Google进行搜索，须注意他们索引的{{SITENAME}}内容可能会过时。',
 
 # Preferences page
-'preferences' => '参数设置',
+'preferences' => '设置',
 'mypreferences' => '系统设置',
 'prefs-edits' => '编辑数：',
 'prefsnologin' => '未登录',

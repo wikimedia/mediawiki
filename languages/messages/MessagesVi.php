@@ -1345,6 +1345,7 @@ Xem chi tiết trong [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}
 'powersearch-togglenone' => 'Không',
 'search-external' => 'Tìm kiếm từ bên ngoài',
 'searchdisabled' => 'Chức năng tìm kiếm tại {{SITENAME}} đã bị tắt. Bạn có tìm kiếm bằng Google trong thời gian này. Chú ý rằng các chỉ mục từ {{SITENAME}} của chúng có thể đã lỗi thời.',
+'search-error' => 'Đã xuất hiện lỗi khi tìm kiếm: $1',
 
 # Preferences page
 'preferences' => 'Tùy chọn',

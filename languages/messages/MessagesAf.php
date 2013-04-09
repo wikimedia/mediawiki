@@ -1204,7 +1204,7 @@ Details kan in die [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} s
 # Search results
 'searchresults' => 'Soekresultate',
 'searchresults-title' => 'Soekresultate vir "$1"',
-'searchresulttext' => 'Vir meer inligting oor {{SITENAME}} soekresultate, lees [[{{MediaWiki:Helppage}}|{{int:help}}]].',
+'searchresulttext' => 'Vir meer inligting oor {{SITENAME}}-soekresultate, sien [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle' => 'U soek vir \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|alle bladsye wat met "$1" begin]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|alle bladsye wat aan "$1" skakel]])',
 'searchsubtitleinvalid' => 'Vir navraag "$1"',
 'toomanymatches' => "Te veel resultate. Probeer asseblief 'n ander soektog.",
@@ -1956,8 +1956,8 @@ Miskien wil u eerder die beskrywing daar op die [$2 lêerbeskrywing] bywerk.',
 
 # Statistics
 'statistics' => 'Statistieke',
-'statistics-header-pages' => 'Bladsy statistieke',
-'statistics-header-edits' => 'Wysig statistieke',
+'statistics-header-pages' => 'Bladsystatistiek',
+'statistics-header-edits' => 'Wysigingstatistiek',
 'statistics-header-views' => 'Wys statistieke',
 'statistics-header-users' => 'Gebruikerstatistiek',
 'statistics-header-hooks' => 'Ander statistieke',

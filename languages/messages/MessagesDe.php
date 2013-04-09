@@ -1459,6 +1459,7 @@ Einzelheiten sind im [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}
 'powersearch-togglenone' => 'Keine',
 'search-external' => 'Externe Suche',
 'searchdisabled' => 'Die {{SITENAME}}-Suche ist deaktiviert. Du kannst unterdessen mit Google suchen. Bitte bedenke, dass der Suchindex von {{SITENAME}} veraltet sein kann.',
+'search-error' => 'Bei der Suche ist ein Fehler aufgetreten: $1',
 
 # Preferences page
 'preferences' => 'Einstellungen',

@@ -1328,6 +1328,7 @@ Probe a fixar a súa petición con ''all:'' para procurar en todo o contido (inc
 'searchdisabled' => 'As procuras en {{SITENAME}} están deshabilitadas por cuestións de rendemento.
 Mentres tanto pode procurar usando o Google.
 Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados.',
+'search-error' => 'Produciuse un erro durante a procura: $1',
 
 # Preferences page
 'preferences' => 'Preferencias',
@@ -1670,8 +1671,8 @@ Para incluír un ficheiro nunha páxina, use unha ligazón do seguinte xeito:
 * '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|texto alternativo]]</nowiki></code>''' para usar unha resolución de 200 píxeles de ancho nunha caixa na marxe esquerda cunha descrición (\"texto alternativo\")
 * '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code>''' para ligar directamente co ficheiro sen que este saia na páxina",
 'upload-permitted' => 'Tipos de ficheiro permitidos: $1.',
-'upload-preferred' => 'Tipos de arquivos preferidos: $1.',
-'upload-prohibited' => 'Tipos de arquivos prohibidos: $1.',
+'upload-preferred' => 'Tipos de ficheiro preferidos: $1.',
+'upload-prohibited' => 'Tipos de ficheiro prohibidos: $1.',
 'uploadlog' => 'rexistro de cargas',
 'uploadlogpage' => 'Rexistro de cargas',
 'uploadlogpagetext' => 'A continuación está a lista cos últimos ficheiros cargados no servidor.
@@ -1682,9 +1683,9 @@ Vexa a [[Special:NewFiles|galería de imaxes novas]] para ollar unha visión má
 'filereuploadsummary' => 'Cambios no ficheiro:',
 'filestatus' => 'Estado dos dereitos de autor:',
 'filesource' => 'Fonte:',
-'uploadedfiles' => 'Ficheiros cargados en {{SITENAME}}',
+'uploadedfiles' => 'Ficheiros cargados',
 'ignorewarning' => 'Ignorar a advertencia e gardar o ficheiro de calquera xeito',
-'ignorewarnings' => 'Ignorar os avisos',
+'ignorewarnings' => 'Ignorar as advertencias',
 'minlength1' => 'Os nomes dos ficheiros deben ter cando menos unha letra.',
 'illegalfilename' => 'O nome de ficheiro "$1" contén caracteres que non están permitidos nos títulos das páxinas.
 Por favor, cambie o nome do ficheiro e intente cargalo de novo.',
@@ -1749,7 +1750,7 @@ Se aínda quere cargar o seu ficheiro, volva atrás e use outro nome.
 'uploadfromurl-queued' => 'A súa carga púxese á cola.',
 'uploaddisabledtext' => 'A carga de ficheiros está desactivada.',
 'php-uploaddisabledtext' => 'As cargas de ficheiros PHP están desactivadas. Por favor, comprobe a característica file_uploads.',
-'uploadscripted' => 'Este ficheiro contén HTML ou código (script code) que pode producir erros ao ser interpretado polo navegador.',
+'uploadscripted' => 'Este ficheiro contén código HTML ou script que pode producir erros ao ser interpretado polo navegador.',
 'uploadvirus' => 'O ficheiro contén un virus! Detalles: $1',
 'uploadjava' => 'O ficheiro é un ZIP que contén un ficheiro .class de Java.
 Non están permitidas as cargas de ficheiros Java, dado que poden causar restricións de seguridade.',
@@ -1788,8 +1789,8 @@ $1',
 'upload-warning-subj' => 'Advertencia ao cargar',
 'upload-warning-msg' => 'Houbo un problema durante a carga desde [$2]. Pode volver ao [[Special:Upload/stash/$1|formulario de subidas]] para corrixilo.',
 
-'upload-proto-error' => 'Protocolo erróneo',
-'upload-proto-error-text' => 'A carga remota require URLs que comecen por <code>http://</code> ou <code>ftp://</code>.',
+'upload-proto-error' => 'Protocolo incorrecto',
+'upload-proto-error-text' => 'A carga remota require enderezos URL que comecen por <code>http://</code> ou <code>ftp://</code>.',
 'upload-file-error' => 'Erro interno',
 'upload-file-error-text' => 'Produciuse un erro interno ao intentar crear un ficheiro temporal no servidor.
 Por favor, contacte cun [[Special:ListUsers/sysop|administrador]] do sistema.',
@@ -1892,8 +1893,9 @@ Para unha seguridade óptima, img_auth.php está desactivado.',
 'http-bad-status' => 'Houbo un problema durante a solicitude HTTP: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
-'upload-curl-error6' => 'Non se logrou acceder a ese URL',
-'upload-curl-error6-text' => 'Non se logrou acceder ao URL que indicou. Comprobe que ese URL é correcto e que o sitio está activo.',
+'upload-curl-error6' => 'Non se puido acceder ao enderezo URL',
+'upload-curl-error6-text' => 'Non se puido acceder ao enderezo URL especificado.
+Comprobe que ese enderezo URL é correcto e que o sitio está activo.',
 'upload-curl-error28' => 'Rematou o tempo de espera',
 'upload-curl-error28-text' => 'O sitio tardou demasiado en responder.
 Por favor, comprobe que está activo, agarde un anaco e inténteo de novo.

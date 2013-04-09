@@ -1361,6 +1361,7 @@ Detalii se pot găsi în [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE
 'powersearch-togglenone' => 'Nimic',
 'search-external' => 'Căutare externă',
 'searchdisabled' => '<p>Ne pare rău! Căutarea după text a fost dezactivată temporar, din motive de performanță. Între timp puteți folosi căutarea prin Google mai jos, însă aceasta poate să dea rezultate învechite.</p>',
+'search-error' => 'A apărut o eroare în timpul căutării: $1',
 
 # Preferences page
 'preferences' => 'Preferințe',

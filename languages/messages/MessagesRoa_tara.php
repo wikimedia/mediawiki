@@ -1124,6 +1124,7 @@ Prueve mettènne nnande a l'inderrogaziona toje 'u prefisse '''all:''' pe cercà
 'searchdisabled' => "'A ricerche sus a {{SITENAME}} ha state disabbilitete.
 Tu puè cercà ausanne Google.
 Però fa attenzione purcè l'indice lore sus a {{SITENAME}} ponne condenè pàggene ca non ge sonde aggiornate.",
+'search-error' => "S'ha verificate 'n'errore mendre ste cercave: $1",
 
 # Preferences page
 'preferences' => 'Me piece accussì',

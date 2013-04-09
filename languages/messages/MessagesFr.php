@@ -1430,6 +1430,7 @@ Essayez en utilisant le préfixe ''all:'' pour rechercher dans tout le contenu (
 'powersearch-togglenone' => 'Aucune',
 'search-external' => 'Recherche externe',
 'searchdisabled' => 'La recherche sur {{SITENAME}} est désactivée. En attendant la réactivation, vous pouvez effectuer une recherche via Google. Attention, leur indexation du contenu de {{SITENAME}} peut ne pas être à jour.',
+'search-error' => 'Une erreur s’est produite en recherchant : $1',
 
 # Preferences page
 'preferences' => 'Préférences',

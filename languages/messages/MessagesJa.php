@@ -1462,6 +1462,7 @@ $1",
 'searchdisabled' => '{{SITENAME}}の検索機能は無効化されています。
 さしあたってはGoogleなどで検索できます。
 ただし外部の検索エンジンの索引にある{{SITENAME}}のコンテンツは古い場合があります。',
+'search-error' => '検索する際にエラーが発生しました: $1',
 
 # Preferences page
 'preferences' => '個人設定',

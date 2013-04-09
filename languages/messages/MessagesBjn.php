@@ -357,10 +357,10 @@ $messages = array(
 'viewhelppage' => 'Tiringi tungkaran patulung',
 'categorypage' => 'Tiringi tungkaran tumbung',
 'viewtalkpage' => 'Tiringi tungkaran pamandiran',
-'otherlanguages' => 'Dalam bahasa lain',
+'otherlanguages' => 'Dalam basa lain',
 'redirectedfrom' => '(Diugahakan matan $1)',
 'redirectpagesub' => 'Tungkaran paugahan',
-'lastmodifiedat' => 'Tungkaran ngini tauncit diubah pada $1, $2.',
+'lastmodifiedat' => 'Tungkaran ngini pauncitnya diubah pada $1, $2.',
 'viewcount' => 'Tungkaran ini sudah diungkai {{PLURAL:$1|kali|$1 kali}}.',
 'protectedpage' => 'Tungkaran nang dilindungi',
 'jumpto' => 'Malacung ka',
@@ -380,8 +380,8 @@ $1",
 'aboutpage' => 'Project:Pasal',
 'copyright' => 'Isi tasadia sasuai lawan $1.',
 'copyrightpage' => '{{ns:project}}:Hak cipta',
-'currentevents' => 'Paristiwa damini',
-'currentevents-url' => 'Project:Paristiwa damini',
+'currentevents' => 'Kajadian wayahini',
+'currentevents-url' => 'Project:Kajadian wayahini',
 'disclaimers' => 'Panyangkalan',
 'disclaimerpage' => 'Project:Panyangkalan umum',
 'edithelp' => 'Patulung mambabak',
@@ -506,8 +506,8 @@ Silakan lapurakan ngini ka saurang [[Special:ListUsers/sysop|pambakal]], ulah ca
 'delete-hook-aborted' => 'Pahapusan diwalangakan ulih kait parser.
 Kadada katarangan.',
 'badtitle' => 'Judul buruk',
-'badtitletext' => 'Judul tungkaran nang diminta kada sah, kada baisi, atawa kada pasnya tautan judul antar-bahasa atawa antar-wiki.
-Nangini bisa baisi satu atawa labih hurup nang saharusnya kadada di judul.',
+'badtitletext' => 'Judul tungkaran nang diminta kada sah, kada baisi, atawa kada pasnya tautan judul antar-basa atawa antar-wiki.
+Nangini kawa baisi satu atawa labih hurup nang saharusnya kadada di judul.',
 'perfcached' => 'Data barikut adalah timbuluk wan pina kada mutakhir. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
 'perfcachedts' => 'Data nang dudi ni adalah timbuluk, wan tauncit dihahanyari pada $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Pamugaan matan tungkaran ngini rahat dipajahkan. Data nang ada di sia wayahini kada akan dimuat ulang.',
@@ -623,7 +623,7 @@ Muhun babuat log pulang habis Pian manarima nangini.',
 'blocked-mailpassword' => 'Alamat IP Pian diblukir hagan mambabak, wan kada dibulihakan mamakai pungsi pamulihan kata sunduk hagan mancagah salah puruk.',
 'eauthentsent' => 'Sabuting suril payakinan hudah dikirim ka alamat suril.
 Sabalum ada suril lain nang takirim ka akun, Pian akan parlu maumpati anjuran dalam suril nangitu, hagan mayakinakan bahwasanya akun nangitu bujur-bujur ampun Pian.',
-'throttled-mailpassword' => 'Sabuting pangingat kata sunduk hudah takirim, dalam {{PLURAL:$1|jam|$1 jam}} tauncit. Hagan mancagah salah puruk, asa pangingat kata sunduk haja nang dikirim saban {{PLURAL:$1|jam|$1 jam}}.',
+'throttled-mailpassword' => 'Sabuting pangingat kata sunduk hudah takirim, dalam {{PLURAL:$1|jam|$1 jam}} pauncitnya. Hagan mancagah salah puruk, asa pangingat kata sunduk haja nang dikirim saban {{PLURAL:$1|jam|$1 jam}}.',
 'mailerror' => 'Kasalahan pangiriman suril: $1',
 'acct_creation_throttle_hit' => "Pa'ilang wiki nangini mamuruk alamat IP Pian hudah maulah {{PLURAL:$1|1 akun|$1 akun}} dalam asa harian ini, dimana nangitu jumlah paling banyak nang diijinakan. Sawagai hasilnya, pa'ilang awan alamat IP nangini kada kawa maulah akun pulang gasan pahadangan.",
 'emailauthenticated' => 'Alamat suril Pian rasuk pada  $2, $3',
@@ -646,8 +646,8 @@ Pian kawa kada mahual pasan ngini, amun paulahan akun ini adalah kasalahan.',
 'login-throttled' => 'Pian sudah kabanyakan mancuba babuat log.
 Muhun hadangi dahulu sapandang hanyar cubai pulang.',
 'login-abort-generic' => 'Pian kada ruhui babuat  log - Diwalangi',
-'loginlanguagelabel' => 'Bahasa: $1',
-'suspicious-userlogout' => 'Parmintaan Pian hagan kaluar log kada ditarima karana nangkaya dikirim matan panjalajah web rakai atawa tatangkap proxy.',
+'loginlanguagelabel' => 'Basa: $1',
+'suspicious-userlogout' => 'Pamintaan Pian hagan kaluar log kada ditarima marga nangkaya dikirim matan panjalajah web rakai atawa tatangkap proxy.',
 
 # Email sending
 'php-mail-error-unknown' => 'Kasalahan kada dipinandui dalam pungsi surat () PHP',
@@ -685,7 +685,7 @@ Pian pinanya sudah barhasil maubah katasunduk Pian atawa maminta sabuting katasu
 'passwordreset-capture-help' => 'Amun Pian cintang kutak ngini, suril (awan katasunduk pahadangan) akan ditampaiakan ka Pian bahwasa lagi dikirim ka pamakai.',
 'passwordreset-email' => 'Alamat suril:',
 'passwordreset-emailtitle' => 'Rarincian akun pada {{SITENAME}}',
-'passwordreset-emailtext-ip' => 'Ada urang (pinanya Pian, matan alamat IP $1) maminta sabuting pangingat hagan rarincian akun Pian gasan {{SITENAME}} ($4). pPamakai barikut {{PLURAL:$3|akun|akun}}
+'passwordreset-emailtext-ip' => 'Ada urang (pinanya Pian, matan alamat IP $1) maminta sabuting pangingat hagan rarincian akun Pian gasan {{SITENAME}} ($4). Pamakai barikut {{PLURAL:$3|akun|akun}}
 tarait awan suril:
 
 $2
@@ -937,7 +937,7 @@ Babarapa citakan akan kada taumpatakan.",
 'post-expand-template-argument-category' => 'Tungkaran-tungkaran nang mangandung kalimat-kalimat citakan diabaiakan',
 'parser-template-loop-warning' => 'Citakan baulang takantup: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Citakan batas kadalaman recursi limpuar ($1)',
-'language-converter-depth-warning' => 'Batas kadalaman pakonversi bahasa limpuar ($1)',
+'language-converter-depth-warning' => 'Batas kadalaman pangonversi basa limpuar ($1)',
 'node-count-exceeded-category' => 'Tungkaran di mana node-count tarlalui',
 'node-count-exceeded-warning' => 'Tungkaran malabihi node-count',
 'expansion-depth-exceeded-category' => 'Tungkaran dimana kadalaman ikspansi talalui',
