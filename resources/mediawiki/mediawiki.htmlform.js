@@ -1,7 +1,7 @@
 /**
  * Utility functions for jazzing up HTMLForm elements.
  */
-( function ( $ ) {
+( function ( mw, $ ) {
 
 	/**
 	 * jQuery plugin to fade or snap to visible state.
@@ -59,4 +59,67 @@
 
 	} );
 
-}( jQuery ) );
+	function addMulti( $oldContainer, $container ) {
+		var name = $oldContainer.find( 'input:first-child' ).attr( 'name' ),
+		$select = $( '<select>' ),
+		dataPlaceholder = mw.message( 'htmlform-chosen-placeholder' );
+		$select.attr( {
+			name: name,
+			multiple: 'multiple',
+			'data-placeholder': dataPlaceholder.plain()
+		} );
+		$select.addClass( 'htmlform-chzn-select mw-input' );
+		$oldContainer.find( 'input' ).each( function () {
+			var $oldInput = $(this),
+			checked = $oldInput.prop( 'checked' ),
+			$option = $( '<option>' );
+			$option.attr( 'value', $oldInput.attr( 'value' ) );
+			if ( checked ) {
+				$option.prop( 'selected', true );
+			}
+			$option.text( $oldInput.attr( 'value' ) );
+			$select.append( $option );
+		} );
+		$container.append( $select );
+	}
+
+	function convertCheckboxesToMulti( $oldContainer, type ) {
+		var $fieldLabel = $( '<td>' ),
+		$td = $( '<td>' ),
+		$fieldLabelText = $( '<label>' ),
+		$container;
+		if ( type === 'table' ) {
+			addMulti( $oldContainer, $td );
+			$container = $( '<tr>' );
+			$container.append( $td );
+		} else if ( type === 'div' ) {
+			$fieldLabel = $( '<div>' );
+			$container = $( '<div>' );
+			addMulti( $oldContainer, $container );
+		}
+		$fieldLabel.attr( 'class', 'mw-label' );
+		$fieldLabelText.text( $oldContainer.find( '.mw-label label' ).text() );
+		$fieldLabel.append( $fieldLabelText );
+		$container.prepend( $fieldLabel );
+		$oldContainer.parent().append( $container );
+		$oldContainer.remove();
+		return $container;
+	}
+
+	if ( $( '.mw-chosen' ).length ) {
+		mw.loader.using( 'jquery.chosen', function () {
+			var $toConvert,
+			$converted;
+			$toConvert = $( 'table .mw-chosen' );
+			if ( $toConvert.length ) {
+				$converted = convertCheckboxesToMulti( $toConvert, 'table' );
+			}
+			$toConvert = $( 'div .mw-chosen' );
+			if ( $toConvert.length ) {
+				$converted = convertCheckboxesToMulti( $toConvert, 'div' );
+			}
+			$( '.htmlform-chzn-select' ).chosen();
+		} );
+	}
+
+}( mediaWiki, jQuery ) );

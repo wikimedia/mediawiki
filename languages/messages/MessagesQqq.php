@@ -8634,6 +8634,7 @@ See also:
 {{Identical|No}}',
 'htmlform-yes' => 'Used in form, such as with radio buttons, for generic yes / no questions.
 {{Identical|Yes}}',
+'htmlform-chosen-placeholder' => 'Used as initial placeholder text in select multiple "chosen" input boxes',
 
 # SQLite database support
 'sqlite-has-fts' => 'Shown on [[Special:Version]].
