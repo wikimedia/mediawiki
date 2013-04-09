@@ -70,9 +70,8 @@ class SpecialPagesWithProp extends QueryPage {
 			),
 		), $this->getContext() );
 		$form->setMethod( 'get' );
-		$form->setAction( $this->getTitle()->getFullURL() );
 		$form->setSubmitCallback( array( $this, 'onSubmit' ) );
-		$form->setWrapperLegend( $this->msg( 'pageswithprop-legend' ) );
+		$form->setWrapperLegendMsg( 'pageswithprop-legend' );
 		$form->addHeaderText( $this->msg( 'pageswithprop-text' )->parseAsBlock() );
 		$form->setSubmitTextMsg( 'pageswithprop-submit' );
 
@@ -125,7 +124,7 @@ class SpecialPagesWithProp extends QueryPage {
 		$ret = Linker::link( $title, null, array(), array(), array( 'known' ) );
 		if ( $result->pp_value !== '' ) {
 			$value = $this->msg( 'parentheses' )
-				->rawParams( Xml::span( $result->pp_value, 'prop-value' ) )
+				->rawParams( Html::element( 'span', array( 'class' => 'prop-value' ), $result->pp_value ) )
 				->escaped();
 			$ret .= " $value";
 		}
