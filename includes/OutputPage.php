@@ -687,7 +687,7 @@ class OutputPage extends ContextSource {
 	 * @return Boolean: true iff cache-ok headers was sent.
 	 */
 	public function checkLastModified( $timestamp ) {
-		global $wgCachePages, $wgCacheEpoch;
+		global $wgCachePages, $wgCacheEpoch, $wgUseSquid, $wgSquidMaxage;
 
 		if ( !$timestamp || $timestamp == '19700101000000' ) {
 			wfDebug( __METHOD__ . ": CACHE DISABLED, NO TIMESTAMP\n" );
@@ -704,10 +704,14 @@ class OutputPage extends ContextSource {
 
 		$timestamp = wfTimestamp( TS_MW, $timestamp );
 		$modifiedTimes = array(
-			'page' => $timestamp,
-			'user' => $this->getUser()->getTouched(),
-			'epoch' => $wgCacheEpoch
+			'page'   => $timestamp,
+			'user'   => $this->getUser()->getTouched(),
+			'epoch'  => $wgCacheEpoch
 		);
+		if ( $wgUseSquid ) {
+			// bug 44570: the core page itself may not change, but resources might
+			$modifiedTimes['sepoch'] = wfTimestamp( TS_MW, time() - $wgSquidMaxage );
+		}
 		wfRunHooks( 'OutputPageCheckLastModified', array( &$modifiedTimes ) );
 
 		$maxModified = max( $modifiedTimes );
