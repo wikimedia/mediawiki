@@ -10,23 +10,37 @@
  * This function will be deleted after it's used, so do not expand it to be
  * generally useful beyond startup.
  *
- * MediaWiki & jQuery compatibility:
- * - Internet Explorer 6.0+
- * - Firefox 10+
- * - Safari 5.0+
- * - Opera 11+
- * - Chrome
+ * See also:
+ * - https://www.mediawiki.org/wiki/Compatibility#Browser
+ * - http://jquerymobile.com/gbs/
+ * - http://jquery.com/browser-support/
  */
 
 /*jshint unused: false */
-function isCompatible() {
-	// IE < 6.0
-	if ( navigator.appVersion.indexOf( 'MSIE' ) !== -1
-		&& parseFloat( navigator.appVersion.split( 'MSIE' )[1] ) < 6 )
-	{
-		return false;
+function isCompatible( ua ) {
+	if ( ua === undefined ) {
+		ua = navigator.userAgent;
 	}
-	return true;
+
+	// MediaWiki JS or jQuery is known to have issues with:
+	return !(
+		// Internet Explorer < 6
+		( ua.indexOf( 'MSIE' ) !== -1 && parseFloat( ua.split( 'MSIE' )[1] ) < 6 ) ||
+		// Firefox < 4
+		( ua.indexOf( 'Firefox/' ) !== -1 && parseFloat( ua.split( 'Firefox/' )[1] ) < 4 ) ||
+		// BlackBerry < 6
+		ua.match( /BlackBerry[^\/]*\/[1-5]\./ ) ||
+		// Open WebOS < 1.5
+		ua.match( /webOS\/1\.[0-4]/ ) ||
+		// Anything PlayStation based.
+		ua.match( /PlayStation/i ) ||
+		// Any Symbian based browsers
+		ua.match( /SymbianOS|Series60/ ) ||
+		// Any NetFront based browser
+		ua.match( /NetFront/ ) ||
+		// Opera Mini < 7
+		ua.match( /Opera Mini\/[0-6]\./ )
+	);
 }
 
 /**
