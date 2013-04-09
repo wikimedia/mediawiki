@@ -1387,6 +1387,7 @@ Sigge us {{GRAMMAR:Dative|{{SITENAME}}}} finge.
 Et es nit jesaht,
 dat dänne ihr Daate topaktuell sin,
 ävver et es besser wie jaa_nix.',
+'search-error' => 'An error has occurred while searching: $1',
 
 # Preferences page
 'preferences' => 'ming Enstellunge',

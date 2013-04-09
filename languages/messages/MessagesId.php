@@ -1392,6 +1392,7 @@ Rinciannya dapat ditemukan di [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGE
 'searchdisabled' => 'Pencarian {{SITENAME}} sementara dimatikan.
 Anda dapat mencari melalui Google untuk sementara waktu.
 Perlu diingat bahwa indeks Google untuk konten {{SITENAME}} mungkin belum mencakup perubahan-perubahan terakhir.',
+'search-error' => 'Kesalahan terjadi saat mencari: $1',
 
 # Preferences page
 'preferences' => 'Preferensi',
@@ -2759,6 +2760,7 @@ Lihat [[Special:BlockList|daftar pemblokiran]] untuk semua pengguna yang saat in
 'sorbs' => 'DNSBL',
 'sorbsreason' => 'Alamat IP anda terdaftar sebagai proxy terbuka di DNSBL.',
 'sorbs_create_account_reason' => 'Alamat IP anda terdaftar sebagai proxy terbuka di DNSBL. Anda tidak dapat membuat akun.',
+'xffblockreason' => 'Sebuah alamat IP di kepala X-Forwarded-For, entah milik Anda atau server proxy yang Anda pakai, telah diblokir. Alasan pemblokirannya adalah: $1',
 'cant-block-while-blocked' => 'Anda tidak dapat memblokir pengguna lain ketika Anda sendiri sedang diblokir.',
 'cant-see-hidden-user' => 'Pengguna yang anda coba blokir telah di blokir dan di sembunyikan. Selama anda tidak memiliki hak sembunyikan pengguna, anda tidak dapat melihat atau menyunting pemblokiran pengguna ini.',
 'ipbblocked' => 'Anda tidak dapat memblokir atau membuka blokir pengguna lain, karena anda sendiri diblokir',

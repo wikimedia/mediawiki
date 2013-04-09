@@ -1242,6 +1242,7 @@ Cuba berikan awalan ''all:'' untuk mencari semua kandungan (termasuk laman perbi
 'powersearch-togglenone' => 'Tiada',
 'search-external' => 'Carian luar',
 'searchdisabled' => 'Ciri pencarian dalam {{SITENAME}} dimatikan. Anda boleh mencari melalui Google. Sila ambil perhatian bahawa indeks dalam Google mungkin bukan yang terkini.',
+'search-error' => 'Berlakunya ralat ketika mencari: $1',
 
 # Preferences page
 'preferences' => 'Keutamaan',

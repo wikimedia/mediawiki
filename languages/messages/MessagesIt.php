@@ -1320,6 +1320,7 @@ I dettagli possono essere trovati nel [{{fullurl:{{#Special:Log}}/delete|page={{
 'powersearch-togglenone' => 'Nessuno',
 'search-external' => 'Ricerca esterna',
 'searchdisabled' => 'La ricerca interna di {{SITENAME}} non è attiva; nel frattempo si può provare ad usare un motore di ricerca esterno come Google. (Si noti però che i contenuti di {{SITENAME}} presenti in tali motori potrebbero non essere aggiornati.)',
+'search-error' => 'Si è verificato un errore durante la ricerca: $1',
 
 # Preferences page
 'preferences' => 'Preferenze',
