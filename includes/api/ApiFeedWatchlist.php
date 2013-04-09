@@ -33,8 +33,9 @@
  */
 class ApiFeedWatchlist extends ApiBase {
 
-	private $linkToDiffs = false;
 	private $watchlistModule = null;
+	private $linkToDiffs = false;
+	private $linkToSections = false;
 
 	/**
 	 * This module uses a custom feed wrapper printer.
@@ -95,6 +96,12 @@ class ApiFeedWatchlist extends ApiBase {
 			if ( $params['linktodiffs'] ) {
 				$this->linkToDiffs = true;
 				$fauxReqArr['wlprop'] .= '|ids';
+			}
+
+			// Support linking directly to sections when possible
+			// (possible only if section name is present in comment)
+			if ( $params['linktosections'] ) {
+				$this->linkToSections = true;
 			}
 
 			// Check for 'allrev' parameter, and if found, show all revisions to each page on wl.
@@ -164,6 +171,18 @@ class ApiFeedWatchlist extends ApiBase {
 			$titleUrl = $title->getFullURL();
 		}
 		$comment = isset( $info['comment'] ) ? $info['comment'] : null;
+
+		// Create an anchor to section.
+		// The anchor won't work for sections that have dupes on page
+		// as there's no way to strip that info from ApiWatchlist (apparently?).
+		// RegExp in the line below is equal to Linker::formatAutocomments().
+		if ( $this->linkToSections && $comment !== null && preg_match( '!(.*)/\*\s*(.*?)\s*\*/(.*)!', $comment, $matches ) ) {
+			global $wgParser;
+			$sectionTitle = $wgParser->stripSectionName( $matches[2] );
+			$sectionTitle = Sanitizer::normalizeSectionNameWhitespace( $sectionTitle );
+			$titleUrl .= Title::newFromText( '#' . $sectionTitle )->getFragmentForURL();
+		}
+
 		$timestamp = $info['timestamp'];
 		$user = $info['user'];
 
@@ -195,6 +214,7 @@ class ApiFeedWatchlist extends ApiBase {
 				ApiBase::PARAM_MAX => 72,
 			),
 			'linktodiffs' => false,
+			'linktosections' => false,
 		);
 		if ( $flags ) {
 			$wlparams = $this->getWatchlistModule()->getAllowedParams( $flags );
@@ -219,6 +239,7 @@ class ApiFeedWatchlist extends ApiBase {
 			'feedformat' => 'The format of the feed',
 			'hours' => 'List pages modified within this many hours from now',
 			'linktodiffs' => 'Link to change differences instead of article pages',
+			'linktosections' => 'Link directly to changed sections if possible',
 			'allrev' => $wldescr['allrev'],
 			'wlowner' => $wldescr['owner'],
 			'wltoken' => $wldescr['token'],
