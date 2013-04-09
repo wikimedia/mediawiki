@@ -8624,6 +8624,7 @@ See also:
 * stub threshold (appearance tab)
 
 {{Identical|Other}}',
+'htmlform-chosen-placeholder' => 'Used as initial placeholder text in select multiple "chosen" input boxes',
 
 # SQLite database support
 'sqlite-has-fts' => 'Shown on [[Special:Version]].

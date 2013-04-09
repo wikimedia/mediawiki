@@ -59,4 +59,54 @@
 
 	} );
 
+	$.fn.addMulti = function( $container ) {
+		var $name = $(this).find( 'input:first-child' ).attr( 'name' ),
+		$select = $( '<select>' ),
+		$dataPlaceholder = mw.message( 'htmlform-chosen-placeholder' );
+		$select.attr( {
+			name: $name,
+			multiple: 'multiple',
+			class: 'chzn-select mw-input',
+			'data-placeholder': $dataPlaceholder.escaped()
+		} );
+		$(this).find( 'input' ).each( function() {
+			var $checked = $(this).attr( 'checked' ),
+			$option = $( '<option>' );
+			$option.attr( 'value', $(this).attr( 'value' ) );
+			if ( $checked === 'checked' ) {
+				$option.attr( 'selected', 'selected' );
+			}
+			$option.text( $(this).attr( 'value' ) );
+			$select.append( $option );
+		} );
+		$container.append( $select );
+	};
+
+	$.fn.convertCheckboxesToMulti = function( $type ) {
+		var $fieldLabel = $( '<td>' ),
+		$container = $( '<tr>' ),
+		$fieldLabelText = $( '<label>' );
+		if ( $type === 'table' ) {
+			$td = $( '<td>' );
+			$(this).addMulti( $td );
+			$container.append( $td );
+		} else if ( $type === 'div' ) {
+			$fieldLabel = $( '<div>' );
+			$container = $( '<div>' );
+			$(this).addMulti( $container );
+		}
+		$fieldLabel.attr( 'class', 'mw-label' );
+		$fieldLabelText.text( $(this).find( '.mw-label label' ).text() );
+		$fieldLabel.append( $fieldLabelText );
+		$container.prepend( $fieldLabel );
+		$(this).parent().append( $container );
+		$(this).remove();
+	};
+
+	mw.loader.using( 'jquery.chosen', function () {
+		$( 'table .chosen' ).convertCheckboxesToMulti( 'table' );
+		$( 'div .chosen' ).convertCheckboxesToMulti( 'div' );
+		$( '.chzn-select' ).chosen();
+	} );
+
 }( jQuery ) );
