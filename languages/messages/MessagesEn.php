@@ -4829,6 +4829,8 @@ This site is experiencing technical difficulties.',
 'htmlform-submit'              => 'Submit',
 'htmlform-reset'               => 'Undo changes',
 'htmlform-selectorother-other' => 'Other',
+'htmlform-no'                  => 'No',
+'htmlform-yes'                 => 'Yes',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 with full-text search support',

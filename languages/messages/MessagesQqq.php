@@ -8627,6 +8627,8 @@ See also:
 * stub threshold (appearance tab)
 
 {{Identical|Other}}',
+'htmlform-no' => 'Used in form, such as with radio buttons, for generic yes / no questions',
+'htmlform-yes' => 'Used in form, such as with radio buttons, for generic yes / no questions',
 
 # SQLite database support
 'sqlite-has-fts' => 'Shown on [[Special:Version]].
