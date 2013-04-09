@@ -170,9 +170,12 @@ class ApiQueryImageInfo extends ApiQueryBase {
 						}
 						break;
 					}
-					$fit = $this->addPageSubItem( $pageId,
-						self::getInfo( $oldie, $prop, $result,
-							$finalThumbParams, $params['metadataversion'] ) );
+					$fit = self::getTransformCount() < self::TRANSFORM_LIMIT &&
+						$this->addPageSubItem( $pageId,
+							self::getInfo( $oldie, $prop, $result,
+								$finalThumbParams, $params['metadataversion']
+							)
+						);
 					if ( !$fit ) {
 						if ( count( $pageIds[NS_FILE] ) == 1 ) {
 							$this->setContinueEnumParameter( 'start',
