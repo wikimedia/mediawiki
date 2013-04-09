@@ -454,3 +454,6 @@
 [submodule "extensions/Validator"]
 	path = extensions/Validator
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Validator.git
+[submodule "extensions/Nostalgia"]
+	path = extensions/Nostalgia
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Nostalgia.git
