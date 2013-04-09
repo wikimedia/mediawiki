@@ -4834,6 +4834,7 @@ This site is experiencing technical difficulties.',
 'htmlform-selectorother-other' => 'Other',
 'htmlform-no'                  => 'No',
 'htmlform-yes'                 => 'Yes',
+'htmlform-chosen-placeholder'  => 'Select an option',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 with full-text search support',
