@@ -601,7 +601,9 @@ class ResourceLoader {
 				// no matter how often we call ob_get_clean(), so instead of doing
 				// the more intuitive while ( ob_get_level() > 0 ) ob_get_clean();
 				// we have to be safe here and avoid an infinite loop.
-				for ( $i = 0, $len = ob_get_level(); $i < $len; $i++ ) {
+				// Caching the level is not an option, need to allow it to
+				// shorten the loop on-the-fly (bug 46836)
+				for ( $i = 0; $i < ob_get_level(); $i++ ) {
 					ob_end_clean();
 				}
 
