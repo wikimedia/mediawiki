@@ -108,7 +108,7 @@ class RunJobs extends Maintenance {
 					$group->ack( $job ); // done
 				}
 
-				if ( !$status ) {
+				if ( $status === false ) {
 					$this->runJobsLog( $job->toString() . " t=$timeMs error={$error}" );
 				} else {
 					$this->runJobsLog( $job->toString() . " t=$timeMs good" );
