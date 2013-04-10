@@ -409,6 +409,7 @@ $messages = array(
 'tog-showhiddencats' => '隠しカテゴリを表示',
 'tog-noconvertlink' => 'リンクタイトル変換を無効にする',
 'tog-norollbackdiff' => '巻き戻し後の差分を表示しない',
+'tog-useeditwarning' => '変更を保存せずに編集画面から離れようとしたら警告',
 
 'underline-always' => '常に付ける',
 'underline-never' => '常に付けない',
@@ -1175,6 +1176,7 @@ $1または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこのブロッ�
 'content-failed-to-parse' => '$2のコンテンツを$1モデルとして構文解析できませんでした: $3',
 'invalid-content-data' => '本文データが無効です',
 'content-not-allowed-here' => 'ページ [[$2]] では、「$1」コンテンツは許可されていません',
+'editwarning-warning' => 'このページを離れると、あなたが行った変更はすべて失われてしまうかもしれません。ログインしている場合、個人設定の「{{int:prefs-editing}}」タブでこの警告を表示しないようにすることができます。',
 
 # Content models
 'content-model-wikitext' => 'ウィキテキスト',
@@ -4239,6 +4241,8 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'htmlform-submit' => '送信',
 'htmlform-reset' => '変更を取り消す',
 'htmlform-selectorother-other' => 'その他',
+'htmlform-no' => 'いいえ',
+'htmlform-yes' => 'はい',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 (全文検索あり)',

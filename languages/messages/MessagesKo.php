@@ -390,6 +390,7 @@ $messages = array(
 'tog-showhiddencats' => '숨은 분류 보기',
 'tog-noconvertlink' => '링크 제목 변환을 비활성화',
 'tog-norollbackdiff' => '되돌리기 후 차이를 보이지 않기',
+'tog-useeditwarning' => '수정한 내용을 저장하지 않고 편집 양식을 닫거나 다른 페이지로 이동할 때 알림',
 
 'underline-always' => '항상',
 'underline-never' => '치지 않음',
@@ -1145,6 +1146,8 @@ IP 주소는 여러 사용자가 공유할 수 있습니다.
 'content-failed-to-parse' => '$1 모델에 대한 $2 내용을 구문 분석하는 데 실패했습니다: $3',
 'invalid-content-data' => '잘못된 내용 데이터입니다',
 'content-not-allowed-here' => '"$1" 내용은 [[$2]] 문서예 허용하지 않습니다',
+'editwarning-warning' => '이 창에서 벗어나면 저장하지 않은 편집이 모두 사라집니다.
+로그인한 경우, 환경 설정 ‘{{int:prefs-editing}}’란에서 이 경고창을 띄우지 않도록 설정할 수 있습니다.',
 
 # Content models
 'content-model-wikitext' => '위키텍스트',
@@ -1431,6 +1434,7 @@ $1",
 'searchdisabled' => '{{SITENAME}} 찾기 기능이 비활성화되어 있습니다.
 기능이 작동하지 않는 동안에는 구글(Google)을 이용해 찾을 수 있습니다.
 검색 엔진의 내용은 최신이 아닐 수 있다는 점을 주의해주세요.',
+'search-error' => '찾는 동안 오류가 발생했습니다: $1',
 
 # Preferences page
 'preferences' => '사용자 환경 설정',
@@ -4067,6 +4071,8 @@ $5
 'htmlform-submit' => '저장',
 'htmlform-reset' => '바꾼 것을 되돌리기',
 'htmlform-selectorother-other' => '기타',
+'htmlform-no' => '아니오',
+'htmlform-yes' => '예',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 (본문 전체 찾기)',

@@ -332,6 +332,7 @@ $messages = array(
 'tog-showhiddencats' => 'Mostra categorie nascoste',
 'tog-noconvertlink' => 'Disattiva la conversione dei titoli dei link',
 'tog-norollbackdiff' => 'Non mostrare il confronto tra versioni dopo aver effettuato un rollback',
+'tog-useeditwarning' => 'Avvisa quando si lascia una pagina di modifica con modifiche non salvate',
 
 'underline-always' => 'Sempre',
 'underline-never' => 'Mai',
@@ -1046,6 +1047,8 @@ Esiste già.',
 'content-failed-to-parse' => 'Impossibile analizzare $2 per il modello $1: $3',
 'invalid-content-data' => 'Dati contenuti non validi',
 'content-not-allowed-here' => 'Contenuto in "$1" non consentito nella pagine [[$2]]',
+'editwarning-warning' => 'Lasciare questa pagina potrebbe costarti la perdita di tutti i cambiamenti effettuati.
+Se sei loggato, puoi disattivare questo avviso nella sezione "{{int:prefs-editing}}" delle tue preferenze.',
 
 # Content models
 'content-model-wikitext' => 'wikitesto',

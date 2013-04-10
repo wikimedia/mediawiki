@@ -252,6 +252,7 @@ $messages = array(
 'tog-diffonly' => "Moenie 'n bladsy se inhoud onder die wysigingsverskil wys nie",
 'tog-showhiddencats' => 'Wys versteekte kategorië',
 'tog-norollbackdiff' => 'Laat verskille weg na terugrol',
+'tog-useeditwarning' => "Waarsku my as ek 'n gewysigde bladsy verlaat alvorens dit gestoor is",
 
 'underline-always' => 'Altyd',
 'underline-never' => 'Nooit',
@@ -980,6 +981,8 @@ Dit bestaan alreeds.',
 'content-failed-to-parse' => 'Dit was nie moontlik om die inhoud van die MIME-tipe $2 vir die model $1 te verwerk nie: $3.',
 'invalid-content-data' => 'Ongeldige inhoud',
 'content-not-allowed-here' => '"$1" word nie op bladsy [[$2]] toegelaat nie.',
+'editwarning-warning' => 'As u hierdie bladsy verlaat, verloor u moontlik die wysigings wat u aangebring het.
+Indien u aangemeld is, kan u hierdie waarskuwing in die {{int:prefs-editing}}"-afdeling van u voorkeure afskakel.',
 
 # Content models
 'content-model-wikitext' => 'Wikiteks',
@@ -2415,7 +2418,7 @@ Hier is die huidige verstellings vir bladsy '''$1''':",
 
 # Undelete
 'undelete' => 'Besigtig geskrapte bladsye',
-'undeletepage' => 'Kyk na en herstel geskrapte bladsye',
+'undeletepage' => 'Wys en herstel geskrapte bladsye',
 'undeletepagetitle' => "'''Hier onder is die verwyderde weergawes van [[:$1]]'''.",
 'viewdeletedpage' => 'Bekyk geskrapte bladsye',
 'undeletepagetext' => 'Die volgende {{PLURAL:$1|bladsy|$1 bladsye}} is geskrap, maar is nog in die argief en kan teruggeplaas word. Die argief van geskrapte blaaie kan periodiek skoongemaak word.',
@@ -2430,7 +2433,7 @@ In sulke gevalle, verwyder die mees onlangs verwyderde weergawe uit die seleksie
 'undeletehistorynoadmin' => 'Die bladsy is geskrap.
 Die rede hiervoor word onder in die opsomming aangedui, saam met besonderhede van die gebruikers wat die bladsy gewysig het voordat dit verwyder is.
 Die verwyderde inhoud is slegs vir administrateurs sigbaar.',
-'undelete-revision' => 'Verwyder weergawe van $1 (per $4 om $5) deur $3:',
+'undelete-revision' => 'Verwyderde weergawe van $1 (soos op $4 om $5) deur $3:',
 'undeleterevision-missing' => "Ongeldige of vermiste weergawe.
 U mag moontlik 'n foutiewe skakel hê, of die weergawe is reeds herstel of uit die argief verwyder.",
 'undelete-nodiff' => 'Geen vorige wysigings gevind.',
@@ -3609,8 +3612,9 @@ Die bevestigingskode sal om $4 verval.',
 
 # Delete conflict
 'deletedwhileediting' => "'''Let op''': die bladsy is verwyder terwyl u besig was om dit te wysig!",
-'confirmrecreate' => "Gebruiker [[User:$1|$1]] ([[User talk:$1|bespreek]]) het hierdie blad uitgevee ná u begin redigeer het met rede: : ''$2''
-Bevestig asseblief dat u regtig hierdie blad oor wil skep.",
+'confirmrecreate' => "Gebruiker [[User:$1|$1]] ([[User talk:$1|kontak]]) het hierdie bladsy uitgevee nádat u begin redigeer het met rede:
+:''$2''
+Bevestig asseblief dat u hierdie blad weer wil skep.",
 'confirmrecreate-noreason' => 'Gebruiker [[User:$1|$1]] ([[User talk:$1|bespreking]]) het die bladsy geskrap nadat u dit begin wysig het.
 Bevestig dat u die bladsy wil herskep.',
 'recreate' => 'Herskep',
@@ -3696,7 +3700,7 @@ U kan ook die [[Special:EditWatchlist|standaard opdaterigskerm gebruik]].',
 'watchlisttools-raw' => 'Wysig bronkode',
 
 # Signatures
-'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|bespreek]])',
+'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|kontak]])',
 
 # Core parser functions
 'unknown_extension_tag' => 'Onbekende etiket "$1"',

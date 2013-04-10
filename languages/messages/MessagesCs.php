@@ -406,6 +406,7 @@ $messages = array(
 'tog-showhiddencats' => 'Zobrazit skryté kategorie',
 'tog-noconvertlink' => 'Vypnout konverzi názvů',
 'tog-norollbackdiff' => 'Po vrácení změny nezobrazovat porovnání rozdílů',
+'tog-useeditwarning' => 'Upozornit, když budu opouštět editaci bez uložení změn',
 
 'underline-always' => 'Vždy',
 'underline-never' => 'Nikdy',
@@ -1126,6 +1127,8 @@ Zřejmě byla smazána.',
 'content-failed-to-parse' => 'Nepodařilo se zpracovat data $2 do modelu $1: $3',
 'invalid-content-data' => 'Obsažená data jsou chybná',
 'content-not-allowed-here' => 'Obsah typu $1 není na stránce [[$2]] dovolen.',
+'editwarning-warning' => 'Opuštěním této stránky se mohou veškeré provedené změny ztratit.
+Pokud jste {{GENDER:|přihlášen|přihlášena|přihlášeni}}, můžete si toto varování vypnout na záložce „{{int:prefs-editing}}“ v uživatelském nastavení.',
 
 # Content models
 'content-model-wikitext' => 'wikitext',

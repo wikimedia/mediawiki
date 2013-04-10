@@ -383,6 +383,7 @@ $messages = array(
 'tog-showhiddencats' => 'Tampilkan kategori tersembunyi',
 'tog-noconvertlink' => 'Matikan konversi judul pranala',
 'tog-norollbackdiff' => 'Jangan tampilkan perbedaan setelah melakukan pengembalian',
+'tog-useeditwarning' => 'Ingatkan saya bila meninggalkan halaman penyuntingan sebelum menyimpan perubahan',
 
 'underline-always' => 'Selalu',
 'underline-never' => 'Tidak pernah',
@@ -1111,6 +1112,8 @@ karena telah ada.',
 'content-failed-to-parse' => 'Gagal menjabarkan konten $2 untuk model $1: $3',
 'invalid-content-data' => 'Data konten tidak sah',
 'content-not-allowed-here' => 'Konten "$1" tidak diizinkan di halaman [[$2]]',
+'editwarning-warning' => 'Meninggalkan halaman ini dapat menyebabkan semua perubahan yang belum tersimpan hilang.
+Jika Anda telah masuk log, Anda dapat mematikan peringatan ini lewat "{{int:prefs-editing}}" pada halaman preferensi Anda.',
 
 # Content models
 'content-model-wikitext' => 'teks wiki',

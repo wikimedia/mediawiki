@@ -367,6 +367,7 @@ $messages = array(
 'tog-showhiddencats' => 'Visa dolda kategorier',
 'tog-noconvertlink' => 'Stäng av konvertering av sidtitlar',
 'tog-norollbackdiff' => 'Visa inte diff efter tillbakarullning',
+'tog-useeditwarning' => 'Varna mig om jag lämnar en redigeringssida där jag gjort ändringar men inte sparat.',
 
 'underline-always' => 'Alltid',
 'underline-never' => 'Aldrig',
@@ -1092,6 +1093,8 @@ Den finns redan.',
 'content-failed-to-parse' => 'Det gick inte att parsa $2 innehåll för $1 modell: $3',
 'invalid-content-data' => 'Ogiltig innehållsdata',
 'content-not-allowed-here' => 'innehåll av "$1" är inte tillåtet på sidan [[$2]]',
+'editwarning-warning' => 'Om du lämnar den här sidan kommer du att förlora alla ändringar du har gjort.
+Om du är inloggad kan du slå av den här varningen under "{{int:prefs-editing}}" i dina inställningar.',
 
 # Content models
 'content-model-wikitext' => 'wikitext',
@@ -1377,6 +1380,7 @@ Detaljer kan hittas i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}
 'searchdisabled' => 'Sökfunktionen på {{SITENAME}} är avstängd.
 Du kan istället göra sökningar med hjälp av Google.
 Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
+'search-error' => 'Ett fel uppstod under sökningen: $1',
 
 # Preferences page
 'preferences' => 'Inställningar',
@@ -3956,6 +3960,8 @@ Bilder visas i full upplösning, andra filtyper öppnas direkt i de program som 
 'htmlform-submit' => 'Spara',
 'htmlform-reset' => 'Ogör ändringar',
 'htmlform-selectorother-other' => 'Andra',
+'htmlform-no' => 'Nej',
+'htmlform-yes' => 'Ja',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 med stöd för fulltextsökning',

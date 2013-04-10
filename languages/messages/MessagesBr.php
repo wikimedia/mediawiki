@@ -224,6 +224,7 @@ $messages = array(
 'tog-showhiddencats' => 'Diskouez ar rummadoù kuzhet',
 'tog-noconvertlink' => 'Diweredekaat amdroadur an titloù',
 'tog-norollbackdiff' => 'Na ziskouez an diff goude un distaoladenn',
+'tog-useeditwarning' => 'Kas keloù din pa guitaan ur bajenn degaset kemmoù enni hep enrollañ',
 
 'underline-always' => 'Atav',
 'underline-never' => 'Morse',
@@ -944,6 +945,8 @@ Krouet e oa bet c'hoazh.",
 'content-failed-to-parse' => "C'hwitet eo dielfennadur endalc'had $2 evit ar patrom $1: $3",
 'invalid-content-data' => "n'eo ket mat roadennoù an endalc'had",
 'content-not-allowed-here' => 'N\'eo ket aotreet an endalc\'had "$1" er bajenn [[$2]]',
+'editwarning-warning' => "Mar kuitait ar bajenn-mañ e c'hallit koll ar c'hemmoù degaset ganeoc'h.
+Ma'z oc'h kevreet e c'hallit diweredekaat ar c'hemenn-diwall-mañ e rann \"{{int:prefs-editing}}\" ho penndibaboù.",
 
 # Content models
 'content-model-wikitext' => 'wikitestenn',

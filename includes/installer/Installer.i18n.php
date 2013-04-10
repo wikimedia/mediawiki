@@ -3862,6 +3862,7 @@ $messages['da'] = array(
 );
 
 /** German (Deutsch)
+ * @author Geitost
  * @author Kghbln
  * @author LWChris
  * @author Metalhead64
@@ -4086,12 +4087,12 @@ Nur Änderungen daran vornehmen, sofern es gute Gründe dafür gibt.',
 
 Das für sie vorgesehene Verzeichnis muss während des Installationsvorgangs beschreibbar sein.
 
-Es sollte '''nicht'' über das Web zugänglich sein, was der Grund ist, warum die Datei nicht dort abgelegt wird, wo sich die PHP-Dateien befinden.
+Es sollte '''nicht''' über das Web zugänglich sein, was der Grund ist, warum die Datei nicht dort abgelegt wird, wo sich die PHP-Dateien befinden.
 
 Das Installationsprogramm wird mit der Datei zusammen eine zusätzliche <code>.htaccess</code>-Datei erstellen. Sofern dies scheitert, können Dritte auf die Datendatei zugreifen.
 Dies umfasst die Nutzerdaten (E-Mail-Adressen, Passwörter, etc.) wie auch gelöschte Seitenversionen und andere vertrauliche Daten, die im Wiki gespeichert sind.
 
-Es ist daher zu erwägen die Datendatei an gänzlich anderer Stelle abzulegen, beispielsweise im Verzeichnis <code>./var/lib/mediawiki/yourwiki</code>.",
+Es ist daher zu erwägen, die Datendatei an gänzlich anderer Stelle abzulegen, beispielsweise im Verzeichnis <code>./var/lib/mediawiki/yourwiki</code>.",
 	'config-oracle-def-ts' => 'Standardtabellenraum:',
 	'config-oracle-temp-ts' => 'Temporärer Tabellenraum:',
 	'config-type-mysql' => 'MySQL',
@@ -11326,8 +11327,10 @@ GFDL 하에 사용을 허가한 내용을 재사용하는 것도 어렵습니다
 	'config-upload-deleted-help' => '삭제된 파일을 보관할 디렉토리를 선택하세요.
 이상적으로 웹에서 접근할 수 없게 해야 합니다.',
 	'config-logo' => '로고 URL:',
-	'config-logo-help' => '미디어위키의 기본 스킨은 사이드바 메뉴 위에 135×160 픽셀의 로고를 포함하고 있습니다.
-적당한 크기로 이미지를 올리고 URL을 여기에 입력하세요.
+	'config-logo-help' => '미디어위키의 기본 스킨은 사이드바 메뉴 위에 135×160 픽셀의 로고의 공간을 포함하고 있습니다.
+적당한 크기로 그림을 올리고 여기에 URL을 입력하세요.
+
+로고가 상대적인 경로에 있으면 $wgStylePath나 $wgScriptPath를 사용할 수 있습니다.
 
 로고 사용을 원하지 않으면 이 상자를 비우세요.',
 	'config-instantcommons' => '인스턴트 공용 활성화',

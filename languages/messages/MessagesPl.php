@@ -345,6 +345,7 @@ $messages = array(
 'tog-showhiddencats' => 'Pokazuj ukryte kategorie',
 'tog-noconvertlink' => 'Wyłącz konwersję tytułów w linkach',
 'tog-norollbackdiff' => 'Pomiń pokazywanie zmian po użyciu funkcji „cofnij”',
+'tog-useeditwarning' => 'Ostrzegaj mnie, gdy opuszczam stronę edycji bez zapisania zmian',
 
 'underline-always' => 'zawsze',
 'underline-never' => 'nigdy',
@@ -1085,6 +1086,8 @@ Strona już istnieje.',
 'content-failed-to-parse' => 'Format zawartości typu $2 (dla modelu: $1) nieprawidłowy: $3',
 'invalid-content-data' => 'Zawartość strony zawiera nieprawidłowe dane',
 'content-not-allowed-here' => 'Zawartość tego typu ($1) nie jest dozwolona na stronie [[$2]]',
+'editwarning-warning' => 'Opuszczenie tej strony może spowodować utratę wprowadzonych przez Ciebie zmian.
+Jeśli jesteś zalogowany możesz wyłączyć wyświetlanie tego ostrzeżenia w zakładce {{int:prefs-editing}} w swoich preferencjach.',
 
 # Content models
 'content-model-wikitext' => 'wikitekst',
@@ -2449,7 +2452,7 @@ Naciśnij „wstecz” w przeglądarce, przeładuj stronę, po czym ponownie wyd
 'protectlogtext' => 'Poniżej znajduje się lista zmian w zabezpieczeniu pojedynczych stron.
 Wszystkie aktywne zabezpieczenia odnajdziesz na liście [[Special:ProtectedPages|zabezpieczonych stron]].',
 'protectedarticle' => 'zabezpieczono "[[$1]]"',
-'modifiedarticleprotection' => 'zmieniono poziom zabezpieczenia "[[$1]]"',
+'modifiedarticleprotection' => 'zmieniono stopień zabezpieczenia "[[$1]]"',
 'unprotectedarticle' => 'odbezpieczył [[$1]]',
 'movedarticleprotection' => 'przeniósł ustawienia zabezpieczeń z [[$2]] do [[$1]]',
 'protect-title' => 'Zmiana poziomu zabezpieczenia „$1”',
@@ -2465,12 +2468,12 @@ Wszystkie aktywne zabezpieczenia odnajdziesz na liście [[Special:ProtectedPages
 'protect_expiry_invalid' => 'Podany czas automatycznego odbezpieczenia jest nieprawidłowy.',
 'protect_expiry_old' => 'Podany czas automatycznego odblokowania znajduje się w przeszłości.',
 'protect-unchain-permissions' => 'Odblokuj dodatkowe opcje zabezpieczania',
-'protect-text' => "Możesz tu sprawdzić i zmienić poziom zabezpieczenia strony '''$1'''.",
+'protect-text' => "Możesz tu sprawdzić i zmienić stopień zabezpieczenia strony '''$1'''.",
 'protect-locked-blocked' => "Nie możesz zmienić poziomów zabezpieczenia, ponieważ jesteś zablokowany.
 Obecne ustawienia dla strony '''$1''' to:",
 'protect-locked-dblock' => "Nie można zmienić poziomu zabezpieczenia z powodu działającej blokady bazy danych. Obecne ustawienia dla strony '''$1''' to:",
 'protect-locked-access' => "Nie masz uprawnień do zmiany poziomu zabezpieczenia strony. Obecne ustawienia dla strony '''$1''' to:",
-'protect-cascadeon' => 'Ta strona jest zabezpieczona przed edycją, ponieważ jest używana przez {{PLURAL:$1|następującą stronę, która została zabezpieczona|następujące strony, które zostały zabezpieczone}} z włączoną opcją dziedziczenia. Możesz zmienić poziom zabezpieczenia strony, ale nie wpłynie to na dziedziczenie zabezpieczenia.',
+'protect-cascadeon' => 'Ta strona jest zabezpieczona przed edycją, ponieważ jest używana przez {{PLURAL:$1|następującą stronę, która została zabezpieczona|następujące strony, które zostały zabezpieczone}} z włączoną opcją dziedziczenia. Możesz zmienić stopień zabezpieczenia strony, ale nie wpłynie to na dziedziczenie zabezpieczenia.',
 'protect-default' => 'Dostęp mają wszyscy użytkownicy',
 'protect-fallback' => 'Wymaga uprawnień „$1”',
 'protect-level-autoconfirmed' => 'Dozwolone dla wszystkich poza nowymi i niezalogowanymi użytkownikami',
@@ -2494,7 +2497,7 @@ Obecne ustawienia dla strony '''$1''' to:",
 'protect-edit-reasonlist' => 'Edytuj listę przyczyn zabezpieczenia',
 'protect-expiry-options' => '1 godzina:1 hour,1 dzień:1 day,1 tydzień:1 week,2 tygodnie:2 weeks,1 miesiąc:1 month,3 miesiące:3 months,6 miesięcy:6 months,1 rok:1 year,na zawsze:infinite',
 'restriction-type' => 'Ograniczenia',
-'restriction-level' => 'Poziom',
+'restriction-level' => 'Stopień',
 'minimum-size' => 'Minimalny rozmiar',
 'maximum-size' => 'Maksymalny rozmiar',
 'pagesize' => '(bajtów)',
@@ -2508,7 +2511,7 @@ Obecne ustawienia dla strony '''$1''' to:",
 # Restriction levels
 'restriction-level-sysop' => 'całkowite zabezpieczenie',
 'restriction-level-autoconfirmed' => 'częściowe zabezpieczenie',
-'restriction-level-all' => 'dowolny poziom',
+'restriction-level-all' => 'dowolny stopień',
 
 # Undelete
 'undelete' => 'Odtwórz usuniętą stronę',

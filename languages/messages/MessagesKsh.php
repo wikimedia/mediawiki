@@ -256,6 +256,7 @@ $messages = array(
 'tog-showhiddencats' => 'Donn de verstoche Saachjroppe aanzeije',
 'tog-noconvertlink' => 'Don de Tittele nit ümwandelle',
 'tog-norollbackdiff' => 'Donn noh „{{int:Rollback}}“ de Ungerscheide nit aanzeije',
+'tog-useeditwarning' => 'Donn mesch warne, wann esch vun en Sigg fott jonn, ih dat esch all ming Änderunge avjeschpeischert hann.',
 
 'underline-always' => 'jo, ongershtriishe',
 'underline-never' => 'nä',
@@ -1095,6 +1096,8 @@ Ene Jrond weße mer nit.',
 'content-failed-to-parse' => 'Et wohr nit müjjelesch, dä Enhalld met däm <i lang="en">MIME-Typ</i> $2 för en Dattei met $1 dren ze verwooschte: $3.',
 'invalid-content-data' => 'Di Daate en dä Sigg sen onjöltesch.',
 'content-not-allowed-here' => 'Ene Enhalld vun dä Zoot „$1“ es op dä Sigg „[[$2]]“ nit zohjelohße.',
+'editwarning-warning' => 'Wann de vun hee dä Sigg fott jeihß, doh künnte all Ding Änderunge aan dä Sigg verschött jonn.
+Do kanns heh di Warnung affschallde, wann de aanjemelldt un enjelogg bes, dann kriß de se nieh mieh wider. Jangk doför en dä Affschnett „{{int:prefs-editing}}“ en Dinge Enshtellunge.',
 
 # Content models
 'content-model-wikitext' => 'Wikitäx',

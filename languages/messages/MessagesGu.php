@@ -195,6 +195,7 @@ $messages = array(
 'tog-showhiddencats' => 'છુપી શ્રેણીઓ દર્શાવો',
 'tog-noconvertlink' => 'Disable link title conversion',
 'tog-norollbackdiff' => 'રોલબેક કર્યા પછીના તફાવતો છુપાવો',
+'tog-useeditwarning' => 'સાચવ્યા વગર જો હું પૃષ્ઠ છોડું તો મને ચેતવણી આપો',
 
 'underline-always' => 'હંમેશાં',
 'underline-never' => 'કદી નહિ',
@@ -285,6 +286,7 @@ $messages = array(
 'newwindow' => '(નવા પાનામાં ખુલશે)',
 'cancel' => 'રદ કરો',
 'moredotdotdot' => 'વધારે...',
+'morenotlisted' => 'વધુ યાદી કરેલી નથી...',
 'mypage' => 'પાનું',
 'mytalk' => 'ચર્ચા',
 'anontalk' => 'આ IP માટેનું ચર્ચા પાનું',
@@ -518,6 +520,8 @@ $1',
 'cannotdelete' => 'ફાઇલ કે પાનું "$1" હટાવી શકાયું નથી.
 શક્ય છે કે અન્ય કોઈએ પહેલેથી હટાવી દીધું હોય.',
 'cannotdelete-title' => '"$1" પાનું કાઢી શકતા નથી',
+'delete-hook-aborted' => 'દૂર કરવાનું હૂક વડે રોકી રાખવામાં આવ્યું.
+તે કોઇ કારણ આપતું નથી.',
 'badtitle' => 'ખરાબ નામ',
 'badtitletext' => 'આપનું ઈચ્છિત શીર્ષક અમાન્ય છે, ખાલી છે, અથવાતો અયોગ્ય રીતે આંતર-ભાષિય કે આંતર-વિકિ સાથે જોડાયેલું શીર્ષક છે.
 શક્ય છે કે તેમાં એક કે વધુ એવા અક્ષર કે ચિહ્નો છે કે જે પાનાનાં શીર્ષક માટે અવૈધ છે.',
@@ -589,7 +593,7 @@ $2',
 'gotaccount' => "પહેલેથી ખાતું ખોલેલું છે? '''$1'''.",
 'gotaccountlink' => 'પ્રવેશ કરો',
 'userlogin-resetlink' => 'પોતાની પ્રવેશ માહિતી ભૂલી ગયા છો?',
-'createaccountmail' => 'ઇ-મેઇલ દ્વારા',
+'createaccountmail' => 'કામચલાઉ ગમે-તેમ પાસવર્ડ વાપરો અને તેને નીચે આપેલ ઇમેલ સરનામા પર મોકલો',
 'createaccountreason' => 'કારણ:',
 'badretype' => 'તમે દાખલ કરેલ ગુપ્તસંજ્ઞા મળતી આવતી નથી.',
 'userexists' => 'દાખલ કરેલું સભ્ય નુ નામ વપરાશમાં છે.</br>
@@ -692,7 +696,7 @@ $2',
 
 # Special:PasswordReset
 'passwordreset' => 'પાસવર્ડ રીસેટ કરો',
-'passwordreset-text' => 'આપના ઈ મેલ ખાતા ની માહિતી મેળવવા માટે આ ફોર્મ માં વિગતો ભરો.',
+'passwordreset-text' => 'તમારો પાસવર્ડ બદલવા માટે આ ફોર્મ પૂરુ કરો.',
 'passwordreset-legend' => 'પાસવર્ડ રીસેટ કરો',
 'passwordreset-disabled' => 'આ વિકી પર પાસવર્ડ રીસેટ કરવા પર પ્રતિબંધ છે.',
 'passwordreset-pretext' => '{{PLURAL: $1| | એક નીચે માહિતીના ટુકડાઓ દાખલ}}',
@@ -716,8 +720,8 @@ $2
 {{PLURAL:$3|આ કામચલાઉ પાસવર્ડ|આ બધા કામચલાઉ પાસવર્ડ}} {{PLURAL:$5|એક દિવસ|$5 દિવસ}} માં નષ્ટ થઇ જશે. તમારે અત્યારે જ ખાતું ખોલીને નવો પાસવર્ડ સેટ કરી લેવો જોઈએ .જો કોઈ બીજા એ આ રજૂઆત કરી હોય, અથવા જો તમને પોતાનો અસલ પાસવર્ડ યાદ હોય, અને તેને બદલવા નથી માગતા, તો આ સંદેશાને જતો કરીને પોતાના અસલ પાસવર્ડ ને વાપરી શકો છો..',
 'passwordreset-emailelement' => 'વપરાશકર્તા નામ: $1
 કામચલાઉ પાસવર્ડ: $2',
-'passwordreset-emailsent' => 'એક સ્મૃતિપત્ર ઈ મેલ મોકલવામાં આવ્યો છે.',
-'passwordreset-emailsent-capture' => 'એક સ્મૃતિપત્ર ઈ મેલ મોકલવામાં આવ્યો છે, જે આ પ્રમાણે છે.',
+'passwordreset-emailsent' => 'પાસવર્ડ બદલવાનો ઇમેલ મોકલવામાં આવ્યો છે.',
+'passwordreset-emailsent-capture' => 'પાસવર્ડ બદલવાનો ઇમેલ મોકલવામાં આવ્યો છે, જે નીચે પ્રમાણે છે.',
 'passwordreset-emailerror-capture' => 'એક સ્મૃતિપત્ર ઈ મેલ બનાવવા માં આવ્યો છે, જે આ પ્રમાણે છે, પરંતુ તે યુઝર ને મોકલવા માં નિષ્ફળ થયો છે: $1',
 
 # Special:ChangeEmail
@@ -935,6 +939,8 @@ $2
 તે પહેલેથી હાજર છે.',
 'defaultmessagetext' => 'મૂળભૂત સંદેશ લખાણ',
 'invalid-content-data' => 'અયોગ્ય વિગત માહિતી',
+'editwarning-warning' => 'આ પાનું છોડી દેશો તો તમારા ફેરફારો સચવાશે નહીં.
+જો તમે પ્રવેશ કરેલો હોય તો તમે આ ચેતવણીને તમારી પસંદના "ફેરફાર" વિભાગના વિકલ્પો બદલીને બંધ કરી શકો છો.',
 
 # Content models
 'content-model-wikitext' => 'વિકિલખાણ',
@@ -1190,7 +1196,7 @@ $1",
 'search-interwiki-default' => '$1 પરીણામો:',
 'search-interwiki-more' => '(વધુ)',
 'search-relatedarticle' => 'શોધ સંબંધિત',
-'mwsuggest-disable' => 'AJAX સુઝાવો નિષ્ક્રીય કરો',
+'mwsuggest-disable' => 'શોધ સુઝાવો નિષ્ક્રીય કરો',
 'searcheverything-enable' => 'નામસ્થળોમાં શોધો:',
 'searchrelated' => 'શોધ સંબંધિત',
 'searchall' => 'બધા',
@@ -1212,15 +1218,7 @@ $1",
 'searchdisabled' => "{{SITENAME}} ઉપર શોધ બંધ કરી દેવામાં આવી છે.
 ત્યાં સુધી તમે ગુગલ દ્વારા શોધ કરી શકો.
 '''નોંધઃ'''{{SITENAME}}નાં તેમના (ગુગલના) ઈન્ડેક્સ જુના હોઇ શકે.",
-
-# Quickbar
-'qbsettings' => 'શીઘ્રપટ્ટ',
-'qbsettings-none' => 'કોઇપણ નહીં',
-'qbsettings-fixedleft' => 'અચળ ડાબે',
-'qbsettings-fixedright' => 'અચળ જમણે',
-'qbsettings-floatingleft' => 'ચલિત ડાબે',
-'qbsettings-floatingright' => 'ચલિત જમણે',
-'qbsettings-directionality' => 'નિશ્ચિત, તમારી ભાષા સ્ક્રિપ્ટ directionality પર આધાર રાખીને',
+'search-error' => 'શોધ કરતી વખતે ક્ષતિ આવી: $1',
 
 # Preferences page
 'preferences' => 'પસંદ',
@@ -1764,7 +1762,6 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization. જુઓ',
 'http-read-error' => 'HTTP વાચન ત્રુટિ.',
 'http-timed-out' => ' HTTP અરજી કાલાતિત થઇ ગઇ.',
 'http-curl-error' => 'URL: $1 ખેંચી લાવવામાં ત્રુટિ',
-'http-host-unreachable' => 'URL સુધી ન પહોંચી શકાયું.',
 'http-bad-status' => 'HTTP અરજી વખતે કોઈ અડચણ આવી : $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -1833,6 +1830,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization. જુઓ',
 'uploadnewversion-linktext' => 'આ ફાઇલની નવી આવૃત્તિ ચઢાવો',
 'shared-repo-from' => '$1 થી',
 'shared-repo' => 'સાંઝો ભંડાર',
+'upload-disallowed-here' => 'તમે આ ફાઇલ ઉપર લખી શકતા નથી.',
 
 # File reversion
 'filerevert' => '$1 હતું તેવું કરો',
@@ -1917,6 +1915,11 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization. જુઓ',
 'disambiguations-text' => "નીચેના પાના  '''સંદિગ્ધ વાક્યો વાળા પાના''' સાથે ઓછામાં ઓછી એક કડી દ્વારા જોડાયેલા છે.
 તેઓ વધુ યોગ્ય પાનાં સાથે જોડાયેલા હોવા જોઇએ.<br />
 પાનાને સંદિગ્ધ વાક્યો વાળું પાનું ત્યારે કહી શકાય જ્યારે તે [[MediaWiki:Disambiguationspage]] નામના માળખા સાથે જોડાયેલું હોય.",
+
+'pageswithprop' => 'પાનાં ગુણધર્મ સાથેનાં પાનાંઓ',
+'pageswithprop-legend' => 'પાનાં ગુણધર્મ સાથેનાં પાનાંઓ',
+'pageswithprop-prop' => 'ગુણધર્મ નામ:',
+'pageswithprop-submit' => 'જાઓ',
 
 'doubleredirects' => 'બમણું દિશાનિર્દેશન',
 'doubleredirectstext' => 'આ પાનું દિશા નિર્દેશિત પાના પર થયેલા દિશા નિર્દેશિત પાનાની યાદિ બતાવે છે.
@@ -2079,15 +2082,6 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization. જુઓ',
 'listusers-noresult' => 'કોઇ સભ્ય ન મળ્યો',
 'listusers-blocked' => '(પ્રતિબંધિત)',
 
-# Special:ActiveUsers
-'activeusers' => 'સક્રિય સભ્યોની યાદી',
-'activeusers-intro' => 'છેલ્લા  $1 {{PLURAL:$1|દિવસ|દિવસો}}માં જે સભ્યોએ કંઈક યોગદાન કર્યું હોય તેમની યાદી.',
-'activeusers-count' => '$1 {{PLURAL:$1|ફેરફાર|ફેરફારો}} છેલ્લા {{PLURAL:$3|દિવસ |$3 દિવસો }}માં',
-'activeusers-from' => 'આનાથી શરૂ થતા સભ્યો દર્શાવો:',
-'activeusers-hidebots' => 'બોટને છુપાવો',
-'activeusers-hidesysops' => 'પ્રબંધકો છુપાવો',
-'activeusers-noresult' => 'કોઇ સક્રીય સભ્ય ન મળ્યો',
-
 # Special:ListGroupRights
 'listgrouprights' => 'સભ્ય જૂથ ના હક્કો',
 'listgrouprights-summary' => 'નીચે આ વિકિ પર વ્યાખ્યાયિત સભ્ય જૂથોની યાદી, તેમની સાથે સંકળાયેલા હક્કો સાથે આપી છે.
@@ -2145,7 +2139,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization. જુઓ',
 'usermessage-editor' => 'તંત્ર સંદેશાઓ',
 
 # Watchlist
-'watchlist' => 'મારી ધ્યાનસૂચી',
+'watchlist' => 'ધ્યાનસૂચી',
 'mywatchlist' => 'ધ્યાનસૂચિ',
 'watchlistfor2' => 'ધ્યાન સૂચિ $1 $2',
 'nowatchlist' => 'તમારી ધ્યાન સૂચિ ખાલી છે',
@@ -2300,6 +2294,7 @@ Deleting it may disrupt database operations of {{SITENAME}};',
 'prot_1movedto2' => '[[$1]]નું નામ બદલીને [[$2]] કરવામાં આવ્યું છે.',
 'protect-badnamespace-title' => 'સંરક્ષિત ન કરી શકાતું નામસ્થળ',
 'protect-badnamespace-text' => 'આ નામસ્થળમાં પાના સુરક્ષિત કરી શકાતા નથી.',
+'protect-norestrictiontypes-title' => 'અસુરક્ષિત પાનું',
 'protect-legend' => 'સંરક્ષણ બહાલી આપો',
 'protectcomment' => 'કારણ:',
 'protectexpiry' => 'સમાપ્તિ:',
@@ -2317,9 +2312,9 @@ Deleting it may disrupt database operations of {{SITENAME}};',
 
 તમે આ પાનાઓનું સંરક્ષણ સ્તર બદલી શકો છો, પરંતુ તેની અસર ધોધાકાર સંરક્ષણ પર પડવી જોઇએ નહીં.',
 'protect-default' => 'બધા સભ્યોને પરવાનગી',
-'protect-fallback' => '"$1" પરવાનગી જરૂરી',
-'protect-level-autoconfirmed' => 'નવા અને નહી નોંધાયેલા સભ્યો પર પ્રતિબંધ',
-'protect-level-sysop' => 'માત્ર પ્રબંધકો',
+'protect-fallback' => 'માત્ર "$1" પરવાનગી સાથેના સભ્યોને માન્ય રાખો',
+'protect-level-autoconfirmed' => 'માત્ર આપમેળે ખાતરી થયેલા સભ્યોને માન્ય રાખો',
+'protect-level-sysop' => 'માત્ર પ્રબંધકોને માન્ય રાખો',
 'protect-summary-cascade' => 'ધોધાકાર',
 'protect-expiring' => '$1 (UTC) એ સમાપ્ત થાય છે',
 'protect-expiring-local' => '$1ના નિવૃત્ત થશે',
@@ -2930,12 +2925,19 @@ $1',
 'pageinfo-title' => ' $1 પાના ની માહિતી નૂ મથાડૂ',
 'pageinfo-header-basic' => 'સામાન્ય માહિતી',
 'pageinfo-header-edits' => 'ઇતિહાસ સંપાદન',
+'pageinfo-header-restrictions' => 'પાનાંની સુરક્ષા',
 'pageinfo-header-properties' => 'પાનાંના ગુણધર્મો',
 'pageinfo-display-title' => 'દેખાવ શિર્ષક',
+'pageinfo-default-sort' => 'મૂળભૂત ગોઠવણી કળ',
 'pageinfo-length' => 'પૃષ્ઠની લંબાઇ (બાઇટમાં)',
+'pageinfo-article-id' => 'પાનાં ઓળખ',
+'pageinfo-language' => 'પાનાંની વિગતની ભાષા',
 'pageinfo-robot-policy' => 'શોધ એન્જિન સ્થિતિ',
+'pageinfo-robot-index' => 'અનુક્રમિય',
+'pageinfo-robot-noindex' => 'અનુક્રમિય નહી',
 'pageinfo-views' => 'જોનારાની સંખ્યા',
 'pageinfo-watchers' => 'પાના નીરીક્ષકોની સંખ્યા',
+'pageinfo-subpages-name' => 'આ પાનાંનું ઉપપાનું',
 'pageinfo-firstuser' => 'પૃષ્ઠ સર્જક',
 'pageinfo-firsttime' => 'પૃષ્ઠ સર્જનની તારીખ',
 'pageinfo-lastuser' => 'છેલ્લો ફેરફાર કરનાર',
@@ -2947,6 +2949,10 @@ $1',
 'pageinfo-redirectsto-info' => 'માહિતી',
 'pageinfo-contentpage-yes' => 'હા',
 'pageinfo-protect-cascading-yes' => 'હા',
+'pageinfo-category-info' => 'શ્રેણી માહિતી',
+'pageinfo-category-pages' => 'પાનાંઓની સંખ્યા',
+'pageinfo-category-subcats' => 'ઉપશ્રેણીઓની સંખ્યા',
+'pageinfo-category-files' => 'ફાઇલ્સની સંખ્યા',
 
 # Patrolling
 'markaspatrolleddiff' => 'નિરીક્ષીત અંકિત કરો',
@@ -3666,7 +3672,7 @@ $5
 'specialpages-group-highuse' => 'વધુ વપરાશ ધરાવતા પાના',
 'specialpages-group-pages' => 'પાનાની યાદીઓ',
 'specialpages-group-pagetools' => 'પાના સાધનો',
-'specialpages-group-wiki' => 'વિકિ માહિતીસંચ અને સાધનો',
+'specialpages-group-wiki' => 'માહિતી અને સાધનો',
 'specialpages-group-redirects' => 'ખાસ પાના પરના સમૂહ દિશાનિર્દેશન',
 'specialpages-group-spam' => 'સ્પેમ સાધનો',
 
@@ -3761,10 +3767,10 @@ $5
 'logentry-move-move_redir-noredirect' => '$1એ દિશાનિર્દેશન કરીને પાના $3ને $4 પર વાળ્યું પણ પાછળ દિશાનિર્દેશન છોડ્યું નહી',
 'logentry-patrol-patrol' => '$1 આવૃત્તિ ચિહ્નિત થયેલ પાનાં $4 $3 ચોકી કરવા ફરવા નીકળવું',
 'logentry-patrol-patrol-auto' => '$1 આપોઆપ ચિહ્નિત ચોકી પહેરો કરવા લાગ્યા આવૃત્તિ પાનું $4 $3',
-'logentry-newusers-newusers' => 'સભ્ય ખાતું $1 બનાવવામાં આવ્યું',
-'logentry-newusers-create' => 'સભ્ય ખાતું $1 બનાવવામાં આવ્યું',
-'logentry-newusers-create2' => 'સભ્ય ખાતું $3 $1 વડે બનાવવામાં આવ્યું',
-'logentry-newusers-autocreate' => 'એકાઉન્ટ $1 બનાવનાર આપોઆપ',
+'logentry-newusers-newusers' => 'સભ્ય ખાતું $1 {{GENDER:$2|બનાવવામાં આવ્યું}}',
+'logentry-newusers-create' => 'સભ્ય ખાતું $1 {{GENDER:$2|બનાવવામાં આવ્યું}}',
+'logentry-newusers-create2' => 'સભ્ય ખાતું $3 $1 વડે {{GENDER:$2|બનાવવામાં આવ્યું હતું}}',
+'logentry-newusers-autocreate' => 'વપરાશકર્તા ખાતું $1 આપમેળે {{GENDER:$2|બનાવવામાં આવ્યું હતું}}',
 'rightsnone' => '(કંઈ નહી)',
 
 # Feedback

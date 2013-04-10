@@ -354,6 +354,7 @@ $messages = array(
 'tog-showhiddencats' => 'Kategoriyanê dızdine bımocne',
 'tog-noconvertlink' => 'Greyê sernami çerx kerdışi bıqefılne',
 'tog-norollbackdiff' => 'Peyserardışi ra dıme ferqi caverde',
+'tog-useeditwarning' => 'wexta ke ez pelo nêqeydbiyaye ra veciyaya mı hişyar bıker',
 
 'underline-always' => 'Tım',
 'underline-never' => 'Qet',
@@ -1080,6 +1081,8 @@ Pel ca ra esto.',
 'content-failed-to-parse' => 'Qandê madela $3 zereyê $1, $2 sero nêagozyayo',
 'invalid-content-data' => 'Zerrey malumati nêravêrdeyo',
 'content-not-allowed-here' => '"$1" sero per da [[$2]] rê mısade nêdeyêno',
+'editwarning-warning' => 'ihtimal o ke wexta şıma peli ra bıveci, vurnayiş o ke şıma kerdo, hewna şiyêro .
+eke şıma kewtê hesabê xo, no hişyari tercihanê xo ra şıma eşkeni "{{int:prefs-editing}}" bıvındarnî .',
 
 # Content models
 'content-model-wikitext' => 'wikimetin',

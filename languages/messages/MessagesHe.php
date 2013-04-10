@@ -397,6 +397,7 @@ $messages = array(
 'tog-showhiddencats' => 'הצגת קטגוריות מוסתרות',
 'tog-noconvertlink' => 'ביטול המרת קישורים לכותרות',
 'tog-norollbackdiff' => 'השמטת ההבדלים בין הגרסאות לאחר ביצוע שחזור',
+'tog-useeditwarning' => 'הצגת אזהרה בעת עזיבת דף עריכה עם שינויים שטרם נשמרו',
 
 'underline-always' => 'תמיד',
 'underline-never' => 'לעולם לא',
@@ -1138,6 +1139,8 @@ $2
 'content-failed-to-parse' => 'פענוח $2 כתוכן מסוג $1 נכשל: $3',
 'invalid-content-data' => 'מידע שגוי על התוכן',
 'content-not-allowed-here' => 'תוכן מסוג "$1" אינו מותר בדף [[$2]]',
+'editwarning-warning' => 'עזיבת דף זה עשויה לגרום לאובדן כל השינויים שביצעתם.
+אם אתם מחוברים לחשבון, תוכלו לבטל אזהרה זו בחלק "{{int:prefs-editing}}" שבהעדפות שלכם.',
 
 # Content models
 'content-model-wikitext' => 'טקסט ויקי',
@@ -4073,6 +4076,8 @@ $5
 'htmlform-submit' => 'שליחה',
 'htmlform-reset' => 'ביטול השינויים',
 'htmlform-selectorother-other' => 'אחר',
+'htmlform-no' => 'לא',
+'htmlform-yes' => 'כן',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 עם תמיכה בחיפוש בטקסט מלא',

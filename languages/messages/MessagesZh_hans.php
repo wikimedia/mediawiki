@@ -393,6 +393,7 @@ $messages = array(
 'tog-showhiddencats' => '显示隐藏分类',
 'tog-noconvertlink' => '停用链接文字转换',
 'tog-norollbackdiff' => '执行回退后不显示差异',
+'tog-useeditwarning' => '如在更改未保存时离开页面，则发出警告',
 
 'underline-always' => '总是使用',
 'underline-never' => '从不使用',
@@ -1072,6 +1073,7 @@ $2
 'content-failed-to-parse' => '未能将 $2 内容转换为 $1：$3',
 'invalid-content-data' => '无效的内容数据',
 'content-not-allowed-here' => '[[$2]]页面上不允许“$1”内容',
+'editwarning-warning' => '离开这个页面会令您遗失之前的所有更改。若您已经登入，您可在您参数设置的“{{int:prefs-editing}}”节中关闭此警告。',
 
 # Content models
 'content-model-wikitext' => 'wiki语法',

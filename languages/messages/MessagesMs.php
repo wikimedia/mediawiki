@@ -236,6 +236,7 @@ $messages = array(
 'tog-showhiddencats' => 'Tunjukkan kategori tersembunyi',
 'tog-noconvertlink' => 'Lumpuhkan penukaran tajuk pautan',
 'tog-norollbackdiff' => 'Abaikan perbezaan selepas melakukan pengunduran suntingan.',
+'tog-useeditwarning' => 'Beri saya amaran apabila saya meninggalkan sesebuah laman penyuntingan tanpa menyimpan perubahan.',
 
 'underline-always' => 'Sentiasa',
 'underline-never' => 'Jangan',
@@ -958,6 +959,8 @@ Log penghapusan bagi laman ini dilampirkan di bawah untuk rujukan.',
 'content-failed-to-parse' => 'Kandungan $2 tidak dapat dihuraikan untuk model $1: $3',
 'invalid-content-data' => 'Data kandungan tidak sah',
 'content-not-allowed-here' => 'Kandungan "$1" tidak dibenarkan di halaman [[$2]]',
+'editwarning-warning' => 'Meninggalkan laman ini mungkin akan menyebabkan anda kehilangan sebarang perubahan yang telah anda lakukan.
+Anda boleh melumpuhkan amaran in di bahagian "{{int:prefs-editing}}" dalam keutamaan anda.',
 
 # Content models
 'content-model-wikitext' => 'wikiteks',

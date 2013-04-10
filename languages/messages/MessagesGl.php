@@ -294,6 +294,7 @@ $messages = array(
 'tog-showhiddencats' => 'Mostrar as categorías ocultas',
 'tog-noconvertlink' => 'Desactivar a conversión dos títulos de ligazón',
 'tog-norollbackdiff' => 'Omitir as diferenzas despois de levar a cabo unha reversión de edicións',
+'tog-useeditwarning' => 'Avisádeme cando deixe unha páxina de edición cos cambios sen gardar',
 
 'underline-always' => 'Sempre',
 'underline-never' => 'Nunca',
@@ -1043,6 +1044,8 @@ Esta xa existe.',
 'content-failed-to-parse' => 'Erro ao analizar o contido de "$2" para o modelo de $1: $3',
 'invalid-content-data' => 'Datos de contido inválidos',
 'content-not-allowed-here' => 'O contido "$1" non está permitido na páxina "[[$2]]"',
+'editwarning-warning' => 'Deixar esta páxina pode causar a perda de calquera cambio feito.
+Se accedeu ao sistema, pode desactivar esta mensaxe de advertencia na sección "{{int:prefs-editing}}" das súas preferencias.',
 
 # Content models
 'content-model-wikitext' => 'texto wiki',
@@ -3928,6 +3931,8 @@ As imaxes móstranse na súa resolución completa; outros tipos de ficheiros in�
 'htmlform-submit' => 'Enviar',
 'htmlform-reset' => 'Desfacer os cambios',
 'htmlform-selectorother-other' => 'Outro',
+'htmlform-no' => 'Non',
+'htmlform-yes' => 'Si',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 con soporte para procuras de texto completo',

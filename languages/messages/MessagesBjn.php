@@ -188,6 +188,7 @@ $messages = array(
 'tog-diffonly' => 'Kada usah manampaiakan isi tungkaran di bawah balain',
 'tog-showhiddencats' => 'Tampaiakan tutumbung tasungkup',
 'tog-norollbackdiff' => 'Kada usah manampaiakan lainan imbah mambulikakan',
+'tog-useeditwarning' => 'Ingatakan ulun pabila maninggalakan tungkaran pambabakan sabalum manyimpan parubahan',
 
 'underline-always' => 'Tarus',
 'underline-never' => 'Kada suah',

@@ -455,6 +455,7 @@ $messages = array(
 'tog-showhiddencats' => 'Anzeige versteckter Kategorien',
 'tog-noconvertlink' => 'Konvertierung des Titels deaktivieren',
 'tog-norollbackdiff' => 'Unterschied nach dem Zurücksetzen unterdrücken',
+'tog-useeditwarning' => 'Warnen, sofern eine zur Bearbeitung geöffnete Seite verlassen wird, die nicht gespeicherte Änderungen enthält',
 
 'underline-always' => 'immer',
 'underline-never' => 'nie',
@@ -1012,7 +1013,7 @@ Temporäres Passwort: $2',
 'showpreview' => 'Vorschau zeigen',
 'showlivepreview' => 'Sofortige Vorschau',
 'showdiff' => 'Änderungen zeigen',
-'anoneditwarning' => "Du bearbeitest diese Seite unangemeldet. Wenn du sie speicherst, wird deine aktuelle IP-Adresse in der Versionsgeschichte aufgezeichnet und ist damit unwiderruflich '''öffentlich''' einsehbar.",
+'anoneditwarning' => "Du bearbeitest diese Seite unangemeldet. Wenn du sie abspeicherst, wird deine aktuelle IP-Adresse in der Versionsgeschichte aufgezeichnet und ist damit unwiderruflich '''öffentlich''' einsehbar.",
 'anonpreviewwarning' => "''Du bist nicht angemeldet. Beim Speichern wird deine IP-Adresse in der Versionsgeschichte aufgezeichnet.''",
 'missingsummary' => "'''Hinweis:''' Du hast keine Zusammenfassung angegeben. Wenn du erneut auf „{{int:savearticle}}“ klickst, wird deine Änderung ohne Zusammenfassung übernommen.",
 'missingcommenttext' => 'Dein Abschnitt enthält keinen Text.',
@@ -1181,6 +1182,8 @@ Sie wurde anscheinend gelöscht.',
 'content-failed-to-parse' => 'Parsen des Inhalts $2 für Modell $1 fehlgeschlagen: $3',
 'invalid-content-data' => 'Ungültige Inhaltsdaten',
 'content-not-allowed-here' => 'Der Inhalt „$1“ ist auf der Seite [[$2]] nicht erlaubt',
+'editwarning-warning' => 'Das Verlassen dieser Seite kann dazu führen, dass deine Änderungen verloren gehen.
+Wenn du angemeldet bist, kannst du das Anzeigen dieser Warnung im „{{int:prefs-editing}}“-Bereich deiner Einstellungen abschalten.',
 
 # Content models
 'content-model-wikitext' => 'Wikitext',
@@ -2721,7 +2724,7 @@ Bitte gib den Grund für die Sperre an.',
 'ipbenableautoblock' => 'Sperre die aktuell von diesem Benutzer genutzte IP-Adresse sowie automatisch alle folgenden, von denen aus er Bearbeitungen oder das Anlegen von Benutzerkonten versucht',
 'ipbsubmit' => 'IP-Adresse/Benutzer sperren',
 'ipbother' => 'Andere Dauer (englisch):',
-'ipboptions' => '2 Stunden:2 hours,1 Tag:1 day,3 Tage:3 days,1 Woche:1 week,2 Wochen:2 weeks,1 Monat:1 month,3 Monate:3 months,6 Monate:6 months,1 Jahr:1 year,Unbeschränkt:infinite',
+'ipboptions' => '2 Stunden:2 hours,1 Tag:1 day,3 Tage:3 days,1 Woche:1 week,2 Wochen:2 weeks,1 Monat:1 month,3 Monate:3 months,6 Monate:6 months,1 Jahr:1 year,unbeschränkt:infinite',
 'ipbotheroption' => 'Andere Dauer',
 'ipbotherreason' => 'Anderer/ergänzender Grund:',
 'ipbhidename' => 'Benutzername in Bearbeitungen und Listen verstecken',
@@ -2846,7 +2849,7 @@ Du kannst Weiterleitungen, die auf den Originaltitel verlinken, automatisch korr
 Stelle sicher, dass du im Anschluss alle [[Special:DoubleRedirects|doppelten]] oder [[Special:BrokenRedirects|defekten Weiterleitungen]] überprüfst.
 Du bist dafür verantwortlich, dass Links weiterhin auf das korrekte Ziel verweisen.
 
-Die Seite wird '''nicht''' verschoben, sofern es bereits eine Seite mit dem vorgesehenen Titel gibt, es sei denn, diese eine Weiterleitung ohne Versionsgeschichte.
+Die Seite wird '''nicht''' verschoben, sofern es bereits eine Seite mit dem vorgesehenen Titel gibt, es sei denn, letztere ist eine Weiterleitung ohne Versionsgeschichte.
 Dies bedeutet, dass du die Umbenennung rückgängig machen kannst, sofern du einen Fehler gemacht hast. Du kannst hingegen keine existierende Seite überschreiben.
 
 '''Warnung!'''
@@ -4040,6 +4043,8 @@ Eine [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie der ''GNU General Public License'']
 'htmlform-submit' => 'Speichern',
 'htmlform-reset' => 'Änderungen rückgängig machen',
 'htmlform-selectorother-other' => 'Andere',
+'htmlform-no' => 'Nein',
+'htmlform-yes' => 'Ja',
 
 # SQLite database support
 'sqlite-has-fts' => 'Version $1 mit Unterstützung für die Volltextsuche',

@@ -400,6 +400,7 @@ $messages = array(
 'tog-showhiddencats' => 'Verborgen categorieën weergeven',
 'tog-noconvertlink' => 'Paginanaamconversie uitschakelen',
 'tog-norollbackdiff' => 'Wijzigingen weglaten na terugdraaien',
+'tog-useeditwarning' => 'Waarschuw mij als ik een bewerkte pagina die nog niet is opgeslagen wil verlaten',
 
 'underline-always' => 'Altijd',
 'underline-never' => 'Nooit',
@@ -1159,6 +1160,8 @@ Deze bestaat al.',
 'content-failed-to-parse' => 'Het was niet mogelijk de inhoud van het MIME-type $2 voor het model $1 te verwerken: $3.',
 'invalid-content-data' => 'Ongeldige inhoudsgegevens',
 'content-not-allowed-here' => 'De inhoud "$1" is niet toegestaan op pagina [[$2]].',
+'editwarning-warning' => 'Als u deze pagina verlaat verliest u mogelijk wijzigingen die u hebt gemaakt.
+Als u bent aangemeld, kunt u deze waarschuwing uitschakelen in het tabblad "{{int:prefs-editing}}" in uw voorkeuren.',
 
 # Content models
 'content-model-wikitext' => 'wikitekst',

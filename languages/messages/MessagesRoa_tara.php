@@ -72,6 +72,7 @@ $messages = array(
 'tog-showhiddencats' => 'Fa vedè le categorije scunnute',
 'tog-noconvertlink' => "Disabbilite 'a conversione d'u titele de collegamende",
 'tog-norollbackdiff' => "Non sce penzanne a le differenze apprisse l'esecuzione de 'nu rollback",
+'tog-useeditwarning' => "Avvisave quanne jie lasse 'na pàgene cangiate senze ca agghie sarvate le cangiaminde",
 
 'underline-always' => 'Sembre',
 'underline-never' => 'Maje',
@@ -835,6 +836,8 @@ Pare proprie ca l'onne scangellete.",
 'content-failed-to-parse' => "L'analise d'u condenute $2 pu modelle $1 ha fallite: $3",
 'invalid-content-data' => "Condenute d'u date invalide",
 'content-not-allowed-here' => '"$1" condenute non g\'è permesse sus \'a pàgene [[$2]]',
+'editwarning-warning' => 'Assenne da sta pàgene tu puè perdè tutte le date ca è cangiate.
+Ce tu è trasute, tu puè disabbilità st\'avvertimende jndr\'à sezione "Cangiaminde..." de le preferenze tune.',
 
 # Content models
 'content-model-wikitext' => 'Uicchiteste',
@@ -3950,6 +3953,8 @@ Le immaggine sonde fatte vedè jndr'à resoluziona megghie, otre tipe de file re
 'htmlform-submit' => 'Conferme',
 'htmlform-reset' => 'Annulle le cangiaminde',
 'htmlform-selectorother-other' => 'Otre',
+'htmlform-no' => 'None',
+'htmlform-yes' => 'Sìne',
 
 # SQLite database support
 'sqlite-has-fts' => "$1 cu 'u supporte d'a ricerche full-text",

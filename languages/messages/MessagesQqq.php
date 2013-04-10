@@ -223,7 +223,6 @@ This option means "underline links as in your user skin or your browser", there 
 
 {{Gender}}
 {{Identical|Browser default}}',
-'tog-useeditwarning' => 'Caption of the editwarning preference, displayed on the right side of the checkbox',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Used in [[Special:Preferences]], tab Editing. {{Gender}}',
@@ -1604,7 +1603,9 @@ See also:
 'content-not-allowed-here' => 'Error message indicating that the desired content model is not supported in given localtion.
 * $1 - the human readable name of the content model: {{msg-mw|Content-model-wikitext}}, {{msg-mw|Content-model-javascript}}, {{msg-mw|Content-model-css}} or {{msg-mw|Content-model-text}}
 * $2 - the title of the page in question',
-'editwarning-warning' => 'Warning message that is displayed when a user moves to an other page without saving his changes',
+'editwarning-warning' => "{{doc-important|Do ''not'' use <nowiki>{{int:prefs-editing}}</nowiki> for \"Editing\". It is forbidden in this message, see [[mwr:68405]].}}
+
+but you can see the text of that button here: {{msg-mw|Prefs-editing}}",
 
 # Content models
 'content-model-wikitext' => 'Name for the wikitext content model, used when decribing what type of content a page contains.
@@ -8629,8 +8630,10 @@ See also:
 * stub threshold (appearance tab)
 
 {{Identical|Other}}',
-'htmlform-no' => 'Used in form, such as with radio buttons, for generic yes / no questions',
-'htmlform-yes' => 'Used in form, such as with radio buttons, for generic yes / no questions',
+'htmlform-no' => 'Used in form, such as with radio buttons, for generic yes / no questions.
+{{Identical|No}}',
+'htmlform-yes' => 'Used in form, such as with radio buttons, for generic yes / no questions.
+{{Identical|Yes}}',
 
 # SQLite database support
 'sqlite-has-fts' => 'Shown on [[Special:Version]].

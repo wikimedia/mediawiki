@@ -298,6 +298,7 @@ $messages = array(
 'tog-showhiddencats' => '顯示隱藏分類',
 'tog-noconvertlink' => '不轉換連結標題',
 'tog-norollbackdiff' => '進行回退後略過差異比較',
+'tog-useeditwarning' => '當我在更改未儲存時離開頁面時警告我',
 
 'underline-always' => '總是使用',
 'underline-never' => '從不使用',
@@ -1019,6 +1020,8 @@ $2
 'content-failed-to-parse' => '未能轉換$2 內容成為$1：$3',
 'invalid-content-data' => '內容資料無效',
 'content-not-allowed-here' => '[[$2]]頁面上不允許「$1」內容',
+'editwarning-warning' => '離開這個頁面會令您所作的更改遺失。
+您可在您參數設置的「{{int:prefs-editing}}」一節中關閉此警告。',
 
 # Content models
 'content-model-wikitext' => 'wiki語法',
@@ -1283,6 +1286,7 @@ $1",
 'powersearch-togglenone' => '無',
 'search-external' => '外部搜索',
 'searchdisabled' => '{{SITENAME}}由於性能方面的原因，全文搜索已被暫時停用。您可以暫時透過Google搜索。請留意他們的索引可能會過時。',
+'search-error' => '搜尋時發生錯誤：$1',
 
 # Preferences page
 'preferences' => '偏好設定',
@@ -3852,6 +3856,8 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 'htmlform-submit' => '提交',
 'htmlform-reset' => '撤銷更改',
 'htmlform-selectorother-other' => '其他',
+'htmlform-no' => '否',
+'htmlform-yes' => '是',
 
 # SQLite database support
 'sqlite-has-fts' => '帶全文搜尋的版本$1',

@@ -170,6 +170,7 @@ $messages = array(
 'tog-diffonly' => "''Diff''-ak agertzen direnean, orrialdearen edukiera ezkutatu",
 'tog-showhiddencats' => 'Ikusi kategoria ezkutuak',
 'tog-norollbackdiff' => 'Rollback bat egin ondoren ezberdintasunak ez hartu aintzat',
+'tog-useeditwarning' => 'Abisa nazazu gorde gabeko aldaketak eginez orrialde bat uzten dudanean',
 
 'underline-always' => 'Beti',
 'underline-never' => 'Inoiz ez',
@@ -852,6 +853,8 @@ Ez du azalpenik eman.',
 'edit-no-change' => 'Zure edizioa baztertu da testua aldatu ez duzulako.',
 'edit-already-exists' => 'Ezin izan da orri berria sortu.
 Jada existitzen da.',
+'editwarning-warning' => 'Orrialde honetatik irteten bazara, egindako aldaketak galdu egingo dira.
+Saioa hasi baduzu, mezu hau kendu dezakezu zure hobespenen orrialdeko "{{int:prefs-editing}}" atalean.',
 
 # Content models
 'content-model-wikitext' => 'wikitestua',

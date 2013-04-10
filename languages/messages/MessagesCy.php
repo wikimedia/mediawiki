@@ -162,6 +162,7 @@ $messages = array(
 'tog-diffonly' => "Peidio â dangos cynnwys y dudalen islaw'r gymhariaeth ar dudalennau cymharu",
 'tog-showhiddencats' => 'Dangos categorïau cuddiedig',
 'tog-norollbackdiff' => 'Hepgor dangos cymhariaeth ar ôl gwrthdroi golygiad',
+'tog-useeditwarning' => "Tynnwch fy sylw pan wyf ar fin gadael tudalen olygu heb roi'r newidiadau ar gadw",
 
 'underline-always' => 'Bob amser',
 'underline-never' => 'Byth',
@@ -874,6 +875,8 @@ Mae ar gael yn barod.',
 'content-failed-to-parse' => "Ni lwyddwyd i ddosrannu'r cynnwys sydd ar ffurf $2 yn ôl y model $1: $3",
 'invalid-content-data' => "Data annilys i'r cynnwys",
 'content-not-allowed-here' => 'Nid yw cynnwys ar ffurf "$1" yn cael ei ganiatau ar y dudalen [[$2]]',
+'editwarning-warning' => 'Os y gadewch y dudalen hon mae\'n bosib y collwch eich newidiadau iddi.
+Gallwch ddiddymu\'r rhybudd hwn yn yr adran "{{int:prefs-editing}}" yn eich dewisiadau.',
 
 # Content models
 'content-model-wikitext' => 'cystrawen wici',

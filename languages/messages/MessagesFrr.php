@@ -64,6 +64,7 @@ $messages = array(
 'tog-diffonly' => 'Wis bai di fersjoonsferglik bloot da unerschiise, ai jü hiilj sid',
 'tog-showhiddencats' => 'Wis ferstäägene kategoriie',
 'tog-norollbackdiff' => 'Unerschiis eefter dåt tübäägseeten unerdrüke',
+'tog-useeditwarning' => 'Waarskaue mi, wan en sidj slööden woort, huar noch ünseekert feranrangen maaget wurden san',
 
 'underline-always' => 'Åltens',
 'underline-never' => 'uler',
@@ -793,6 +794,8 @@ Dåt bestöö ål.',
 'content-failed-to-parse' => "Parsing faan $2 för't model $1 ging skiaf: $3",
 'invalid-content-data' => 'Diar stäänt wat uun, wat diar ei hen hiart',
 'content-not-allowed-here' => '„$1“ mut ei skrewen wurd üüb sidj [[$2]]',
+'editwarning-warning' => 'Wan dü detheer sidj slotst, kön feranrangen ferleesen gung.
+Üs uunmeldet brüker könst dü detheer wäärnang bi din iinstelangen oner „Bewerke“ wechknipse.',
 
 # Content models
 'content-model-wikitext' => 'wikitekst',

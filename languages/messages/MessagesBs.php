@@ -324,6 +324,7 @@ $messages = array(
 'tog-showhiddencats' => 'Prikaži skrivene kategorije',
 'tog-noconvertlink' => 'Onemogući konverziju naslova linkova',
 'tog-norollbackdiff' => 'Nakon vraćanja zanemari prikaz razlika',
+'tog-useeditwarning' => 'Upozori me kada napustim stranicu za izmjene bez spašenih promjena',
 
 'underline-always' => 'Uvijek',
 'underline-never' => 'Nikad',
@@ -1062,6 +1063,8 @@ Izgleda da je obrisana.',
 'edit-already-exists' => 'Stranica nije mogla biti kreirana.
 Izgleda da već postoji.',
 'defaultmessagetext' => 'Uobičajeni tekst poruke',
+'editwarning-warning' => 'Napuštanje ove stranice može dovesti do gubitka svih promjena koje ste načinili.
+Ako ste prijavljeni, možete isključiti ovo upozorenje u "{{int:prefs-editing}}" dijelu vaših opcija.',
 
 # Content models
 'content-model-wikitext' => 'wikitekst',

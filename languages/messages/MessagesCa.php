@@ -243,6 +243,7 @@ $messages = array(
 'tog-showhiddencats' => 'Mostra les categories ocultes',
 'tog-noconvertlink' => 'Inhabilita la conversió dels títols dels enllaços',
 'tog-norollbackdiff' => 'Omet la pàgina de diferències després de realitzar una reversió',
+'tog-useeditwarning' => "Avisa'm quan surti d'una pàgina d'edició amb canvis sense desar",
 
 'underline-always' => 'Sempre',
 'underline-never' => 'Mai',
@@ -961,6 +962,8 @@ Ja existeix.",
 'content-failed-to-parse' => "Ha fallat l'anàlisi del contingut de $2 per al model $1: $3",
 'invalid-content-data' => 'Dades de contingut no vàlides',
 'content-not-allowed-here' => 'No és permés el contingut "$1" a la pàgina [[$2]]',
+'editwarning-warning' => "Si sortiu d'aquesta pàgina perdreu tots els canvis que hàgiu fet.
+Si teniu un compte d'usuari, podeu eliminar aquest avís a la secció «{{int:prefs-editing}}» de les vostres preferències.",
 
 # Content models
 'content-model-wikitext' => 'wikitext',

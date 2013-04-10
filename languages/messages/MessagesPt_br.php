@@ -362,6 +362,7 @@ $messages = array(
 'tog-showhiddencats' => 'Exibir categorias ocultas',
 'tog-noconvertlink' => 'Desabilitar conversão de títulos de links',
 'tog-norollbackdiff' => 'Omitir diferenças depois de desfazer edições em bloco',
+'tog-useeditwarning' => 'Avisar-me quando eu deixar uma janela de edição sem ter salvo as alterações',
 
 'underline-always' => 'Sempre',
 'underline-never' => 'Nunca',
@@ -1099,6 +1100,8 @@ Ela já existia.',
 'content-failed-to-parse' => 'Falha ao analisar o conteúdo $2 para o modelo $1: $3',
 'invalid-content-data' => 'Dados de conteúdo inválidos',
 'content-not-allowed-here' => 'Conteúdo do tipo "$1" não é permitido na página [[$2]]',
+'editwarning-warning' => 'Abandonar esta página pode fazer com que você perca todas as alterações que fez.
+Se você estiver autenticado, você pode desabilitar este aviso na seção "{{int:prefs-editing}}" de suas preferências.',
 
 # Content models
 'content-model-wikitext' => 'wikitexto',

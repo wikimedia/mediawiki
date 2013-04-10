@@ -361,6 +361,7 @@ $messages = array(
 'tog-diffonly' => 'Ikke vis sideinnhold under differ',
 'tog-showhiddencats' => 'Vis skjulte kategorier',
 'tog-norollbackdiff' => 'Ikke vis diff etter tilbakestilling',
+'tog-useeditwarning' => 'Si ifra dersom jeg forlater en side jeg har gjort redigeringer på men ikke har lagret siden.',
 
 'underline-always' => 'Alltid',
 'underline-never' => 'Aldri',
@@ -1094,6 +1095,8 @@ Slette- og flytteloggen vises nedenfor.',
 'content-failed-to-parse' => 'Klarte ikke å tolke innholdet $2 for innholdsmodellen $1: $3',
 'invalid-content-data' => 'Ugyldig innhold',
 'content-not-allowed-here' => 'Innholdsmodellen «$1» er ikke tillatt på siden [[$2]]',
+'editwarning-warning' => 'Ved å forlate siden vil du miste alle endringer du har utført.
+Denne advarselen kan slås av under {{int:prefs-editing}} i instillingene dine.',
 
 # Content models
 'content-model-wikitext' => 'WikiTekst',

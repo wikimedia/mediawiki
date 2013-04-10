@@ -192,6 +192,7 @@ $messages = array(
 'tog-showhiddencats' => 'ھاوپۆلە شاراوەکان نیشان بدە',
 'tog-noconvertlink' => 'لەکارخستنی ئاڵوگۆڕی سەرناوی بەستەر',
 'tog-norollbackdiff' => 'لە دوای گەڕاندنەوە جیاوازی نیشان مەدە',
+'tog-useeditwarning' => 'ھۆشیارم بکەوە کاتێک لە پەڕەیەکی دەستکاری بە گۆڕانکاریی پاشەکەوت‌نەکراو دەردەچم',
 
 'underline-always' => 'ھەمیشە',
 'underline-never' => 'قەت',
@@ -910,6 +911,7 @@ $2
 ئەوە لەپێش‌دا هەبوو.',
 'defaultmessagetext' => 'دەقی پەیامی هەمیشەیی',
 'invalid-content-data' => 'دراوەی ناوەرۆکی نادروست',
+'editwarning-warning' => 'بەجێ‌هێشتنی ئەم لاپەڕەیە دەبێتە هۆی لە‌دەست چوونی هەموو ئەو گۆڕانکاریانەی کردووتە.',
 
 # Content models
 'content-model-wikitext' => 'ویکیدەق',

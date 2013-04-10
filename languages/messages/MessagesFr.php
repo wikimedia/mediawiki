@@ -432,6 +432,7 @@ $messages = array(
 'tog-showhiddencats' => 'Afficher les catégories cachées',
 'tog-noconvertlink' => 'Désactiver la conversion des titres',
 'tog-norollbackdiff' => "Ne pas afficher le diff lors d'une révocation",
+'tog-useeditwarning' => 'M’avertir quand je quitte une page de modification sans publier les changements',
 
 'underline-always' => 'Toujours',
 'underline-never' => 'Jamais',
@@ -1153,6 +1154,8 @@ Elle existe déjà.",
 'content-failed-to-parse' => "Échec de l'analyse du contenu de $2 pour le modèle $1: $3",
 'invalid-content-data' => 'Données du contenu non valides',
 'content-not-allowed-here' => 'Le contenu "$1" n\'est pas autorisé sur la page [[$2]]',
+'editwarning-warning' => 'Quitter cette page vous fera perdre toutes les modifications que vous avez faites.
+Si vous êtes connecté avec votre compte, vous pouvez retirer cet avertissement dans la section « {{int:prefs-editing}} » de vos préférences.',
 
 # Content models
 'content-model-wikitext' => 'wikitexte',
@@ -4096,6 +4099,8 @@ Les images sont montrées dans leur pleine résolution, les autres fichiers sont
 'htmlform-submit' => 'Soumettre',
 'htmlform-reset' => 'Défaire les modifications',
 'htmlform-selectorother-other' => 'Autre',
+'htmlform-no' => 'Non',
+'htmlform-yes' => 'Oui',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 avec recherche en texte intégral supportée',

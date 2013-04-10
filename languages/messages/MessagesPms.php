@@ -68,9 +68,9 @@ $messages = array(
 'tog-enotifusertalkpages' => 'Mandeme un mëssagi ëd pòsta eletrònica quand a-i son dle modìfiche a mia pàgina dle ciaciarade',
 'tog-enotifminoredits' => "Mandeme un mëssagi an pòsta eletrònica bele che për le modìfiche cite dle pàgine o dj'archivi",
 'tog-enotifrevealaddr' => 'Lassé che a së s-ciàira mia adrëssa ëd pòsta eletrònica ant ij mëssagi ëd notìfica',
-'tog-shownumberswatching' => "Smon ël nùmer d'utent che as ten-o la pàgina sot euj",
+'tog-shownumberswatching' => "Smon-e ël nùmer d'utent che as ten-o la pàgina sot-euj",
 'tog-oldsig' => 'Firma esistenta:',
-'tog-fancysig' => "Trata la firma com test wiki (sensa n'anliura automàtica)",
+'tog-fancysig' => "Traté la firma com dël test wiki (sensa n'anliura automàtica)",
 'tog-externaleditor' => "Dovré coma stàndard n'editor estern (mach për espert, a-i é dabzògn d'ampostassion speciaj dzora a sò ordinator. [//www.mediawiki.org/wiki/Manual:External_editors Për savèjne ëd pi.])",
 'tog-externaldiff' => "Dovré për stàndard un programa comparator estern (mach për espert, a-i é dabzògn d'ampostassion speciaj ansima a sò ordinator [//www.mediawiki.org/wiki/Manual:External_editors Për savèjne ëd pi.])",
 'tog-showjumplinks' => 'Dovré j\'anliure d\'acessibilità dla sòrt "Va a"',
@@ -87,6 +87,7 @@ $messages = array(
 'tog-showhiddencats' => 'Smon le categorìe stërmà',
 'tog-noconvertlink' => "Disativé la conversion dij tìtoj ant j'anliure",
 'tog-norollbackdiff' => "Fa nen vëdde le diferense apress d'avèj ripristinà",
+'tog-useeditwarning' => 'Avisme quand che i lasso na pàgina ëd modìfiche con modìfiche nen salvà',
 
 'underline-always' => 'Sempe',
 'underline-never' => 'Mai',
@@ -811,6 +812,8 @@ A esist già.',
 'content-failed-to-parse' => "Faliment ëd l'anàlisi dël contnù ëd $2 për ël model $1: $3",
 'invalid-content-data' => 'Dat dël contnù pa bon',
 'content-not-allowed-here' => "Ël contnù «$1» a l'é nen autorisà an sla pàgina [[$2]]",
+'editwarning-warning' => "Lassé sta pàgina-sì a peul fé an manera che it perde tute le modìfiche ch'it l'has fàit.
+S'it ses logà, it peule disabilité st'avis-sì ant la session \"{{int:prefs-editing}}\" dij tò gust.",
 
 # Content models
 'content-model-wikitext' => 'test wiki',

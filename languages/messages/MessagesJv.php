@@ -98,6 +98,7 @@ $messages = array(
 'tog-diffonly' => 'Aja dituduhaké isi kaca ing ngisor bédané suntingan',
 'tog-showhiddencats' => 'Tuduhna kategori sing didelikaké',
 'tog-norollbackdiff' => 'Lirwaaké prabédan sawusé nglakokaké sawijining pambalikan.',
+'tog-useeditwarning' => 'Èlingaké kula yèn kula ninggalaké suntingan sing durung kasimpen',
 
 'underline-always' => 'Tansah',
 'underline-never' => 'Ora',

@@ -96,6 +96,7 @@ $messages = array(
 'tog-diffonly' => 'Nerādīt lapu saturu zem izmaiņām',
 'tog-showhiddencats' => 'Rādīt slēptās kategorijas',
 'tog-norollbackdiff' => 'Neņemt vērā atšķirības, veicot atriti',
+'tog-useeditwarning' => 'Brīdināt mani, kad es atstāju lapas rediģēšanu nesaglabājot izmaiņas',
 
 'underline-always' => 'vienmēr',
 'underline-never' => 'nekad',
@@ -749,6 +750,8 @@ Izskatās, ka lapa ir dzēsta.',
 Tā jau eksistē.',
 'defaultmessagetext' => 'Noklusētais ziņojuma teksts',
 'invalid-content-data' => 'Nederīgi satura dati',
+'editwarning-warning' => 'Atstājot šo lapu tu zaudēsi izdarītās izmaiņas. 
+Ja esi pieteicies, jūs vari atspējot šo brīdinājumu savās izvēlēs sadaļā "rediģēšana"',
 
 # Content models
 'content-model-javascript' => 'JavaScript kods',

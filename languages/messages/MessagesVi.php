@@ -346,6 +346,7 @@ $messages = array(
 'tog-showhiddencats' => 'Hiển thị thể loại ẩn',
 'tog-noconvertlink' => 'Tắt liên kết chuyển đổi tựa đề',
 'tog-norollbackdiff' => 'Không so sánh sau khi lùi sửa',
+'tog-useeditwarning' => 'Cảnh báo khi tôi thoát trang sửa đổi mà chưa lưu trang',
 
 'underline-always' => 'Luôn luôn',
 'underline-never' => 'Không bao giờ',
@@ -1064,6 +1065,8 @@ Nó đã tồn tại.',
 'content-failed-to-parse' => 'Thất bại phân tích nội dung $2 cho mô hình $1: $3',
 'invalid-content-data' => 'Dữ liệu nội dung không hợp lệ',
 'content-not-allowed-here' => 'Không cho phép đưa nội dung “$1” vào trang [[$2]]',
+'editwarning-warning' => 'Rời khỏi trang này sẽ khiến bạn mất các sửa đổi đã thực hiện.
+Nếu đã đăng nhập, bạn có thể tắt cảnh báo này tại mục “{{int:prefs-editing}}” trong tùy chọn cá nhân.',
 
 # Content models
 'content-model-wikitext' => 'mã wiki',

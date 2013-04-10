@@ -344,6 +344,7 @@ pe titlul secțiunii (JavaScript)',
 'tog-showhiddencats' => 'Arată categoriile ascunse',
 'tog-noconvertlink' => 'Dezactivează conversia titlurilor',
 'tog-norollbackdiff' => 'Nu arăta diferența după efectuarea unei reveniri',
+'tog-useeditwarning' => 'Avertizează-mă când părăsesc o pagină fără a salva modificările',
 
 'underline-always' => 'Întotdeauna',
 'underline-never' => 'Niciodată',
@@ -1080,6 +1081,8 @@ Ea există deja.',
 'content-failed-to-parse' => 'Nu s-a putut analiza conținutul de tip $2 pentru modelul $1: $3',
 'invalid-content-data' => 'Date de conținut invalide',
 'content-not-allowed-here' => 'Conținutul de tip „$1” nu este permis pe pagina [[$2]]',
+'editwarning-warning' => 'Părăsind această pagină, există riscul pierderii modificărilor efectuate.
+Dacă sunteți autentificat, puteți dezactiva această avertizare în secțiunea „Modificare” a preferințelor dumneavoastră.',
 
 # Content models
 'content-model-wikitext' => 'wikitext',
