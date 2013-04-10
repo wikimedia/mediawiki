@@ -26,8 +26,8 @@ function isCompatible( ua ) {
 	return !(
 		// Internet Explorer < 6
 		( ua.indexOf( 'MSIE' ) !== -1 && parseFloat( ua.split( 'MSIE' )[1] ) < 6 ) ||
-		// Firefox < 4
-		( ua.indexOf( 'Firefox/' ) !== -1 && parseFloat( ua.split( 'Firefox/' )[1] ) < 4 ) ||
+		// Firefox < 3
+		( ua.indexOf( 'Firefox/' ) !== -1 && parseFloat( ua.split( 'Firefox/' )[1] ) < 3 ) ||
 		// BlackBerry < 6
 		ua.match( /BlackBerry[^\/]*\/[1-5]\./ ) ||
 		// Open WebOS < 1.5

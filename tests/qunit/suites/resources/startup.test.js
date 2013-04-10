@@ -48,10 +48,9 @@
 			'Mozilla/4.0 (compatible; MSIE 4.01; Windows 95)',
 			'Mozilla/4.0 (compatible; MSIE 5.0; Windows 98;)',
 			'Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)',
-			// Firefox < 4
+			// Firefox < 3.6
 			'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.0.2) Gecko/20060308 Firefox/1.5.0.2',
 			'Mozilla/5.0 (X11; U; Linux i686; nl; rv:1.8.1.1) Gecko/20070311 Firefox/2.0.0.1',
-			'Mozilla/5.0 (Windows; U; Windows NT 6.1; ru; rv:1.9.2.3) Gecko/20100401 Firefox/3.6.3',
 			// BlackBerry < 6
 			'BlackBerry9300/5.0.0.716 Profile/MIDP-2.1 Configuration/CLDC-1.1 VendorID/133',
 			'BlackBerry7250/4.0.0 Profile/MIDP-2.0 Configuration/CLDC-1.1',
@@ -75,6 +74,8 @@
 		// No explicit support for or against these browsers, they're
 		// given a shot at Grade A at their own risk.
 		gradeX: [
+			// Firefox 3.6
+			'Mozilla/5.0 (Windows; U; Windows NT 6.1; ru; rv:1.9.2.3) Gecko/20100401 Firefox/3.6.3',
 			// Gecko
 			'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.0.7) Gecko/20060928 (Debian|Debian-1.8.0.7-1) Epiphany/2.14',
 			'Mozilla/5.0 (X11; U; Linux i686 (x86_64); en-US; rv:1.8.1.6) Gecko/20070817 IceWeasel/2.0.0.6-g2',
