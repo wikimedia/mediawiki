@@ -14,6 +14,8 @@ production.
 
 === New features in 1.22 ===
 * (bug 44525) mediawiki.jqueryMsg can now parse (whitelisted) HTML elements and attributes.
+* (bug 33454) Language::sprintfDate now has a timezone parameter, and supports
+  the "eIOPTZ" formatting characters.
 
 === Bug fixes in 1.22 ===
 
