@@ -948,7 +948,7 @@ abstract class FormSpecialPage extends SpecialPage {
 
 		$form = new HTMLForm( $this->fields, $this->getContext(), $this->getMessagePrefix() );
 		$form->setSubmitCallback( array( $this, 'onSubmit' ) );
-		$form->setWrapperLegend( $this->msg( $this->getMessagePrefix() . '-legend' ) );
+		$form->setWrapperLegendMsg( $this->getMessagePrefix() . '-legend' );
 		$form->addHeaderText(
 			$this->msg( $this->getMessagePrefix() . '-text' )->parseAsBlock() );
 
