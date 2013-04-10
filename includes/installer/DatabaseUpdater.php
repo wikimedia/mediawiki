@@ -865,6 +865,7 @@ abstract class DatabaseUpdater {
 		if ( $wgLocalisationCacheConf['manualRecache'] ) {
 			$this->rebuildLocalisationCache();
 		}
+		MessageBlobStore::clear();
 		$this->output( "done.\n" );
 	}
 
