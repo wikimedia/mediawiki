@@ -265,6 +265,8 @@ define( 'APCOND_ISBOT', 9 );
  * Protocol constants for wfExpandUrl()
  */
 define( 'PROTO_HTTP', 'http://' );
+// PROTO_HTTPS indicates that HTTPS should be preferred when expanding a url.
+// It should not be used as a placeholder for the literal string.
 define( 'PROTO_HTTPS', 'https://' );
 define( 'PROTO_RELATIVE', '//' );
 define( 'PROTO_CURRENT', null );
