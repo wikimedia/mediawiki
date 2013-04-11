@@ -106,6 +106,9 @@ class JobQueueTest extends MediaWikiTestCase {
 		$queue->flushCaches();
 		$this->assertEquals( 2, $queue->getSize(), "Queue size is correct ($desc)" );
 		$this->assertEquals( 0, $queue->getAcquiredCount(), "No jobs active ($desc)" );
+		$jobs = iterator_to_array( $queue->getAllQueuedJobs() );
+		$this->assertEquals( 2, count( $jobs ), "Queue iterator size is correct ($desc)" );
+
 
 		$job1 = $queue->pop();
 		$this->assertFalse( $queue->isEmpty(), "Queue is not empty ($desc)" );
