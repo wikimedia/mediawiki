@@ -500,8 +500,6 @@ $messages = array(
 'tog-shownumberswatching' => 'اعرض عدد المستخدمين المراقبِين',
 'tog-oldsig' => 'التوقيع الحالي:',
 'tog-fancysig' => 'عامل التوقيع كنص ويكي (بدون وصلة أوتوماتيكية)',
-'tog-externaleditor' => 'استخدم محررًا خارجيًا مبدئيا (للخبراء فقط، يتطلب إعدادات خاصة على حاسوبك) ([//www.mediawiki.org/wiki/Manual:External_editors لمزيد من المعلومات].)',
-'tog-externaldiff' => 'استخدم مستعرض فروقات خارجيًا مبدئيا (للخبراء فقط، يتطلّب إعدادات خاصة على حاسوبك) ([//www.mediawiki.org/wiki/Manual:External_editors للمزيد من المعلومات].)',
 'tog-showjumplinks' => 'مكن وصلات "اذهب إلى" المساعدة',
 'tog-uselivepreview' => 'استخدم الاستعراض السريع (جافاسكريبت) (تجريبي)',
 'tog-forceeditsummary' => 'نبهني عند إدخال ملخص تحرير فارغ',
@@ -516,6 +514,7 @@ $messages = array(
 'tog-showhiddencats' => 'أظهر التصنيفات المخفية',
 'tog-noconvertlink' => 'عطل تحويل عناوين الروابط',
 'tog-norollbackdiff' => 'أزل الفرق بعد القيام باسترجاع',
+'tog-useeditwarning' => 'حذّرني عندما أغادر تحرير صفحة ذات تغييرات غير محفوظة',
 
 'underline-always' => 'دائما',
 'underline-never' => 'أبدا',
@@ -1268,6 +1267,8 @@ $2
 'content-failed-to-parse' => 'فشل في تحليل $2 محتوى لـ $1 نموذج: $3',
 'invalid-content-data' => 'بيانات المحتوى غير صالحة',
 'content-not-allowed-here' => '"$1" المحتوى غير مسموح على صفحة [[$2]]',
+'editwarning-warning' => 'قد تتسبب مغادرة هذه الصفحة بخسارتك لأي تغييرات قمت بها.
+يمكنك تعطيل هذا التحذير إذا كنت والجلًا في قسم "{{int:prefs-editing}}" في تفضيلاتك.',
 
 # Content models
 'content-model-wikitext' => 'نص ويكي',
@@ -4299,15 +4300,15 @@ $5
 'sqlite-no-fts' => '$1 بدون دعم البحث في كامل النص',
 
 # New logging system
-'logentry-delete-delete' => '$1 حذف الصفحة $3',
+'logentry-delete-delete' => 'حذف{{GENDER:$2|ت}} $1 الصفحة $3',
 'logentry-delete-restore' => 'استعاد $1 صفحة $3',
 'logentry-delete-event' => '$1 غير خاصية العرض لـ {{PLURAL:$5|مدخل السجل|$5 مدخلات السجل}} في $3: $4',
-'logentry-delete-revision' => 'غيّر $1 إمكانية مشاهدة {{PLURAL:$5||مراجعة واحدة|مراجعتين|$5 مراجعات|$5 مراجعة}} في صفحة $3: $4',
+'logentry-delete-revision' => 'غيّر{{GENDER:$2|ت}} $1 إمكانية مشاهدة {{PLURAL:$5||مراجعة واحدة|مراجعتين|$5 مراجعات|$5 مراجعة}} في صفحة $3: $4',
 'logentry-delete-event-legacy' => 'غيّر $1 إمكانية رؤية أحداث سجل $3',
 'logentry-delete-revision-legacy' => 'غيّر $1 إمكانية رؤية مراجعات صفحة $3',
 'logentry-suppress-delete' => '$1 suppressed صفحة $3',
-'logentry-suppress-event' => 'غيّر $1 بسرية إمكانية مشاهدة {{PLURAL:$5||حدث|حدثين|$5 أحداث|$5 حدثًا|$5 حدث}} في سجل $3: $4',
-'logentry-suppress-revision' => 'غيّر $1 بسرية إمكانية مشاهدة {{PLURAL:$5||مراجعة واحدة|مراجعتين|$5 مراجعات|$5 مراجعة}} في صفحة $3: $4',
+'logentry-suppress-event' => 'غيّر{{GENDER:$2|ت}} $1 بسرية إمكانية مشاهدة {{PLURAL:$5||حدث|حدثين|$5 أحداث|$5 حدثًا|$5 حدث}} في سجل $3: $4',
+'logentry-suppress-revision' => 'غيّر{{GENDER:$2|ت}} $1 سراً إمكانية مشاهدة {{PLURAL:$5||مراجعة واحدة|مراجعتين|$5 مراجعات|$5 مراجعة}} في صفحة $3: $4',
 'logentry-suppress-event-legacy' => 'غيّر $1 بسرية إمكانية رؤية أحداث سجل $3',
 'logentry-suppress-revision-legacy' => 'غيّر $1 بسرية إمكانية رؤية مراجعات صفحة $3',
 'revdelete-content-hid' => 'محتوى مخفي',

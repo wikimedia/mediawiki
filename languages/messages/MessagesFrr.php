@@ -48,9 +48,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Wis di tål foon wåchende brükere',
 'tog-oldsig' => 'Aktuel signatuur:',
 'tog-fancysig' => 'Signatuur behoonle ås wikitäkst',
-'tog-externaleditor' => 'Gewöönlik äksterne ediitor for färsjoonsunerschiise brüke (bloot for ekspärte, deer mönje spetsjäle önjstalinge aw di äine kompjuuter fornümen wårde
-[//www.mediawiki.org/wiki/Manual:External_editors Mör informatsjoone.])',
-'tog-externaldiff' => 'Gewöönlik äkstern program for färsjoonsunerschiise brüke (bloot for ekspärte, deer mönje spetsjäle önjstalinge aw di äine kompjuuter fornümen wårde[//www.mediawiki.org/wiki/Manual:External_editors Mör informatsjoone.])',
 'tog-showjumplinks' => '"Schafte tu"-ferbininge aktiwiire',
 'tog-uselivepreview' => 'Live-forbekiik ferwiinje (brükt JavaScript) (äksperimentäl)',
 'tog-forceeditsummary' => 'Woorschoue, wan bai dåt spiikern jü tuhuupefooting breecht',

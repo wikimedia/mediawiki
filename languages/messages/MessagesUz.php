@@ -133,8 +133,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Sahifani kuzatuv roʻyxatiga olgan foydalanuvchilar sonini koʻrsatish',
 'tog-oldsig' => 'Joriy imzo:',
 'tog-fancysig' => 'Imzoni viki-belgi qilib koʻrsatish (avtomatik ishoratsiz)',
-'tog-externaleditor' => 'Sukut boʻyicha tashqi tahrirlash dasturidan foydalanish (faqat mutaxassislar uchun, kompyuteringizda maxsus moslamalar boʻlishi zarur. [//www.mediawiki.org/wiki/Manual:External_editors Batafsil])',
-'tog-externaldiff' => 'Sukut boʻyicha tashqi taqqoslash dasturidan foydalanish (faqat mutaxassislar uchun, kompyuteringizda maxsus moslamalar boʻlishi zarur. [//www.mediawiki.org/wiki/Manual:External_editors Batafsil])',
 'tog-showjumplinks' => 'yordamchi "tez oʻtish" havolalarini yoqish',
 'tog-uselivepreview' => 'Tez koʻrib chiqish (JavaScript orqali) (sinovda)',
 'tog-forceeditsummary' => 'Qisqa tavsif oynasi toʻldirilmagani haqida ogohlantirish koʻrsatilsin',
@@ -403,14 +401,14 @@ $1',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main' => 'Maqola',
-'nstab-user' => 'Foydalanuvchi sahifasi',
+'nstab-user' => 'Foydalanuvchi',
 'nstab-media' => 'Media sahifasi',
 'nstab-special' => 'Maxsus sahifa',
-'nstab-project' => 'Loyiha haqida',
+'nstab-project' => 'Vikipediya',
 'nstab-image' => 'Fayl',
 'nstab-mediawiki' => 'Xabar',
 'nstab-template' => 'Andoza',
-'nstab-help' => 'Yordam sahifasi',
+'nstab-help' => 'Yordam',
 'nstab-category' => 'Turkum',
 
 # Main script and global functions
@@ -429,7 +427,7 @@ $1',
 'viewsource' => 'Manbasini koʻrish',
 'viewsource-title' => "$1 sahifasining manbasini ko'rish",
 'actionthrottled' => "Tezlik bo'yicha cheklov",
-'protectedpagetext' => 'Bu sahifa tahrirlashdan saqlanish maqsadida qulflangan.',
+'protectedpagetext' => 'Bu sahifa tahrirlash va boshqa oʻzgartirishlar kiritishdan himoyalangan.',
 'viewsourcetext' => 'Siz bu sahifaning manbasini koʻrishingiz va uni nusxasini olishingiz mumkin:',
 'editinginterface' => "'''Diqqat:''' Siz dasturiy ta'minot interfeysi matni mavjud bo'lgan sahifani tahrirlamoqdasiz.
 Uning o'zgartirilishi ushbu vikidagi boshqa foydalanuvchilar uchun ham interfeysning tashqi ko'rinishiga ta'sir qiladi.
@@ -615,7 +613,7 @@ Ortga qaytib, mavjud sahifani tahrirlashingiz yoki [[Special:UserLogin|tizimga k
 'sectioneditnotsupported-title' => "Bo'limlarni tahrirlash imkoniyati yo'q",
 'sectioneditnotsupported-text' => "Ushbu sahifada bo'limlarni tahrirlash imkoniyati yo'q.",
 'permissionserrors' => 'Ruxsat huquqida xato',
-'permissionserrorstext-withaction' => "Sizda quyidagi {{PLURAL:$1|sabab|sabablar}}ga ko'ra '''$2'''ga ruxsat mavjud emas:",
+'permissionserrorstext-withaction' => "Sizda quyidagi {{PLURAL:$1|sabab|sabablar}}ga koʻra '''$2'''ga ruxsat mavjud emas:",
 'recreate-moveddeleted-warn' => "'''Diqqat: Siz avval yoʻqotilgan sahifani yana yaratmoqchisiz.'''
 
 Bu sahifani yaratishda davom etishdan avval uning nega avval yoʻqotilgani bilan qiziqib koʻring.
@@ -768,14 +766,6 @@ Bu yerda: (joriy) = hozirgi koʻrinish bilan farq,
 'powersearch-toggleall' => 'Hammasini',
 'powersearch-togglenone' => 'Hech qaysini',
 'search-external' => 'Tashqi qidiruv',
-
-# Quickbar
-'qbsettings' => 'Saytda harakatlanish darchasi',
-'qbsettings-none' => "Ko'rsatmaslik",
-'qbsettings-fixedleft' => "Qo'zg'almas chap",
-'qbsettings-fixedright' => "Qo'zg'almas o'ng",
-'qbsettings-floatingleft' => 'Suzuvchi chap',
-'qbsettings-floatingright' => "Suzuvchi o'ng",
 
 # Preferences page
 'preferences' => 'Moslamalar',
@@ -1524,14 +1514,14 @@ Umumiy omborda [[:$1]] mavjud. Faylning bu nomga qayta nomlanishi faylning umumi
 'tooltip-t-print' => 'Ushbu sahifaning bosma uchun versiyasi',
 'tooltip-t-permalink' => 'Sahifaning ushbu versiyasiga doimiy ishorat',
 'tooltip-ca-nstab-main' => 'Sahifani ko‘rish',
-'tooltip-ca-nstab-user' => "Foydalanuvchi sahifasini ko'rish",
-'tooltip-ca-nstab-media' => "Media sahifasini ko'rish",
+'tooltip-ca-nstab-user' => 'Foydalanuvchi sahifasini koʻrish',
+'tooltip-ca-nstab-media' => 'Media sahifasini koʻrish',
 'tooltip-ca-nstab-special' => 'Bu maxsus sahifa, uni tahrirlay olmaysiz.',
-'tooltip-ca-nstab-project' => "Loyiha sahifasini ko'rish",
-'tooltip-ca-nstab-image' => "Rasm sahifasini ko'rish",
-'tooltip-ca-nstab-mediawiki' => "Tizim xabarini ko'rish",
+'tooltip-ca-nstab-project' => 'Loyiha sahifasini koʻrish',
+'tooltip-ca-nstab-image' => 'Rasm sahifasini koʻrish',
+'tooltip-ca-nstab-mediawiki' => 'MediaWiki tizimining xabarini koʻrish',
 'tooltip-ca-nstab-template' => 'Andozani koʻrish',
-'tooltip-ca-nstab-help' => "Yordam sahifasini ko'rish",
+'tooltip-ca-nstab-help' => 'Yordam sahifasini koʻrish',
 'tooltip-ca-nstab-category' => 'Turkum sahifasini koʻrish',
 'tooltip-minoredit' => 'Kichik o‘zgartirish sifatida belgilash',
 'tooltip-save' => 'Oʻzgarishlarni saqlash',

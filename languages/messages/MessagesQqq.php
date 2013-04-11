@@ -185,8 +185,6 @@ Is only shown if {{msg-mw|tog-enotifusertalkpages}} or/and {{msg-mw|tog-enotifwa
 'tog-shownumberswatching' => 'Toggle option used in [[Special:Preferences]], in the section for recent changes. When this option is activated, the entries in recent changes includes the number of users who watch pages. {{Gender}}',
 'tog-oldsig' => 'Used in [[Special:Preferences]], tab User profile. {{Gender}}',
 'tog-fancysig' => 'In user preferences under the signature box.  {{Gender}}',
-'tog-externaleditor' => "[[Special:Preferences]], tab 'Edit'. Offers user to use an external editor by default. {{Gender}}",
-'tog-externaldiff' => "[[Special:Preferences]], tab 'Edit'. Offers user to use an external diff program by default. {{Gender}}",
 'tog-showjumplinks' => 'Toggle option used in [[Special:Preferences]]. The "jump to" part should be the same with {{msg-mw|jumpto}} (or you can use <nowiki>{{int:jumpto}}</nowiki>). These links are shown in some of the older skins as "jump to: navigation, search" but they are hidden by default (you can enable them with this option). {{Gender}}',
 'tog-uselivepreview' => 'Toggle option used in [[Special:Preferences]]. Live preview is an experimental feature (unavailable by default) to use edit preview without loading the page again. {{Gender}}',
 'tog-forceeditsummary' => "Toggle option used in [[Special:Preferences]] to force an edit ''{{msg-mw|summary}}''. {{Gender}}",
@@ -204,6 +202,7 @@ Is only shown if {{msg-mw|tog-enotifusertalkpages}} or/and {{msg-mw|tog-enotifwa
 ''(the message is considered optional because it is only used in wikis with language variants)''",
 'tog-norollbackdiff' => "Option in [[Special:Preferences]], 'Misc' tab. Only shown for users with the rollback right. By default a diff is shown below the return screen of a rollback. Checking this preference toggle will suppress that. {{Gender}}
 {{Identical|Rollback}}",
+'tog-useeditwarning' => 'Used as label for the checkbox in [[Special:Preferences#mw-prefsection-editing|Special:Preferences]].',
 
 'underline-always' => 'Used in [[Special:Preferences#mw-prefsection-rendering|Preferences]].
 

@@ -390,8 +390,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Zobrazovat počet sledujících uživatelů',
 'tog-oldsig' => 'Stávající podpis:',
 'tog-fancysig' => 'Používat v podpisu wikitext (bez automatického odkazu)',
-'tog-externaleditor' => 'Implicitně používat externí editor (pouze pro pokročilé, vyžaduje speciální nastavení počítače; [//www.mediawiki.org/wiki/Manual:External_editors další informace])',
-'tog-externaldiff' => 'Implicitně používat externí porovnávací program (pouze pro pokročilé, vyžaduje speciální nastavení počítače; [//www.mediawiki.org/wiki/Manual:External_editors další informace])',
 'tog-showjumplinks' => 'Používat odkazy „skočit na“ pro vyšší přístupnost',
 'tog-uselivepreview' => 'Používat rychlý náhled (JavaScript) (Experimentální)',
 'tog-forceeditsummary' => 'Upozornit, když nevyplním shrnutí editace',
@@ -1411,6 +1409,7 @@ Pokud na začátek dotazu přidáte ''all:'', bude se hledat všude (včetně di
 'powersearch-togglenone' => 'Nic',
 'search-external' => 'Externí hledání',
 'searchdisabled' => '<p>Omlouváme se. Plnotextové vyhledávání je dočasně nedostupné. Zatím můžete zkusit vyhledávání Googlem; je ale možné, že jeho výsledky nemusí být aktuální.</p>',
+'search-error' => 'Při hledání došlo k chybě: $1',
 
 # Preferences page
 'preferences' => 'Nastavení',
@@ -4015,6 +4014,8 @@ Obrázky se zobrazí v plném rozlišení, jiné typy souborů se otevřenou v p
 'htmlform-submit' => 'Odeslat',
 'htmlform-reset' => 'Vrátit změny',
 'htmlform-selectorother-other' => 'Jiná hodnota',
+'htmlform-no' => 'Ne',
+'htmlform-yes' => 'Ano',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 s podporou plnotextového vyhledávání',

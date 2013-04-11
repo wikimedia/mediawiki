@@ -434,8 +434,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Показывать число участников, включивших страницу в свой список наблюдения',
 'tog-oldsig' => 'Текущая подпись:',
 'tog-fancysig' => 'Собственная вики-разметка подписи (без автоматической ссылки)',
-'tog-externaleditor' => 'Использовать по умолчанию внешний редактор (только для специалистов, необходима особая настройка компьютера; [//www.mediawiki.org/wiki/Manual:External_editors подробнее])',
-'tog-externaldiff' => 'Использовать по умолчанию внешнюю программу сравнения (только для специалистов, необходима особая настройка компьютера; [//www.mediawiki.org/wiki/Manual:External_editors подробнее])',
 'tog-showjumplinks' => 'Включить вспомогательные ссылки «перейти к»',
 'tog-uselivepreview' => 'Использовать быстрый предварительный просмотр (JavaScript, экспериментально)',
 'tog-forceeditsummary' => 'Предупреждать, когда не заполнено поле описания правки',
@@ -4143,6 +4141,8 @@ MediaWiki распространяется в надежде, что она бу
 'htmlform-submit' => 'Отправить',
 'htmlform-reset' => 'Отменить изменения',
 'htmlform-selectorother-other' => 'Иное',
+'htmlform-no' => 'Нет',
+'htmlform-yes' => 'Да',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 с поддержкой полнотекстового поиска',
