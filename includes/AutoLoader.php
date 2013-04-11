@@ -471,7 +471,7 @@ $wgAutoloadLocalClasses = array(
 
 	# includes/db
 	'Blob' => 'includes/db/DatabaseUtility.php',
-	'ChronologyProtector' => 'includes/db/LBFactory.php',
+	'ChronologyProtector' => 'includes/db/ChronologyProtector.php',
 	'CloneDatabase' => 'includes/db/CloneDatabase.php',
 	'DatabaseBase' => 'includes/db/Database.php',
 	'DatabaseMssql' => 'includes/db/DatabaseMssql.php',
