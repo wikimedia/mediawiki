@@ -31,17 +31,20 @@
  */
 class UserloginTemplate extends QuickTemplate {
 	function execute() {
-		if( $this->data['message'] ) {
+		if ( $this->data['message'] ) {
 ?>
 	<div class="<?php $this->text('messagetype') ?>box">
-		<?php if ( $this->data['messagetype'] == 'error' ) { ?>
-			<strong><?php $this->msg( 'loginerror' )?></strong><br />
-		<?php } ?>
+		<?php
+		if ( $this->data['messagetype'] == 'error' ) {
+			?><strong><?php $this->msg( 'loginerror' ) ?></strong><br /><?php
+		}
+		?>
 		<?php $this->html('message') ?>
 	</div>
-	<div class="visualClear"></div>
-<?php } ?>
+	<div class="visualClear"></div><?php
 
+		}
+?>
 <div id="loginstart"><?php $this->msgWiki( 'loginstart' ); ?></div>
 <div id="userloginForm">
 <form name="userlogin" method="post" action="<?php $this->text('action') ?>">
@@ -49,7 +52,11 @@ class UserloginTemplate extends QuickTemplate {
 	<p id="userloginlink"><?php $this->html('link') ?></p>
 	<?php $this->html('header'); /* pre-table point for form plugins... */ ?>
 	<div id="userloginprompt"><?php  $this->msgWiki('loginprompt') ?></div>
-	<?php if( $this->haveData( 'languages' ) ) { ?><div id="languagelinks"><p><?php $this->html( 'languages' ); ?></p></div><?php } ?>
+<?php
+		if ( $this->haveData( 'languages' ) ) {
+			?><div id="languagelinks"><p><?php $this->html( 'languages' ); ?></p></div><?php
+		}
+?>
 	<table>
 		<tr>
 			<td class="mw-label"><label for='wpName1'><?php $this->msg('yourname') ?></label></td>
@@ -80,12 +87,13 @@ class UserloginTemplate extends QuickTemplate {
 
 			</td>
 		</tr>
-	<?php if( isset( $this->data['usedomain'] ) && $this->data['usedomain'] ) {
+<?php
+		if ( isset( $this->data['usedomain'] ) && $this->data['usedomain'] ) {
 		$doms = "";
-		foreach( $this->data['domainnames'] as $dom ) {
+		foreach ( $this->data['domainnames'] as $dom ) {
 			$doms .= "<option>" . htmlspecialchars( $dom ) . "</option>";
 		}
-	?>
+?>
 		<tr id="mw-user-domain-section">
 			<td class="mw-label"><?php $this->msg( 'yourdomainname' ) ?></td>
 			<td class="mw-input">
@@ -95,13 +103,15 @@ class UserloginTemplate extends QuickTemplate {
 				</select>
 			</td>
 		</tr>
-	<?php }
+<?php
+		}
 
-	if( $this->haveData( 'extrafields' ) ) {
-		echo $this->data['extrafields'];
-	}
+		if ( $this->haveData( 'extrafields' ) ) {
+			echo $this->data['extrafields'];
+		}
 
-	if( $this->data['canremember'] ) { ?>
+		if ( $this->data['canremember'] ) {
+?>
 		<tr>
 			<td></td>
 			<td class="mw-input">
@@ -118,8 +128,11 @@ class UserloginTemplate extends QuickTemplate {
 				?>
 			</td>
 		</tr>
-<?php } ?>
-<?php if( $this->data['cansecurelogin'] ) { ?>
+<?php
+		}
+
+		if ( $this->data['cansecurelogin'] ) {
+?>
 		<tr>
 			<td></td>
 			<td class="mw-input">
@@ -131,26 +144,28 @@ class UserloginTemplate extends QuickTemplate {
 				$this->data['stickHTTPS'],
 				array( 'tabindex' => '9' )
 			);
-		?>
+?>
 			</td>
 		</tr>
-<?php } ?>
+<?php
+		}
+?>
 		<tr>
 			<td></td>
 			<td class="mw-submit">
-				<?php
-		echo Html::input( 'wpLoginAttempt', wfMessage( 'login' )->text(), 'submit', array(
-			'id' => 'wpLoginAttempt',
-			'tabindex' => '9'
-		) );
+			<?php
+			echo Html::input( 'wpLoginAttempt', wfMessage( 'login' )->text(), 'submit', array(
+				'id' => 'wpLoginAttempt',
+				'tabindex' => '9'
+			) );
 		if ( $this->data['useemail'] && $this->data['canreset'] ) {
-			if( $this->data['resetlink'] === true ) {
+			if ( $this->data['resetlink'] === true ) {
 				echo '&#160;';
 				echo Linker::link(
 					SpecialPage::getTitleFor( 'PasswordReset' ),
 					wfMessage( 'userlogin-resetlink' )
 				);
-			} elseif( $this->data['resetlink'] === null ) {
+			} elseif ( $this->data['resetlink'] === null ) {
 				echo '&#160;';
 				echo Html::input(
 					'wpMailmypassword',
@@ -161,13 +176,20 @@ class UserloginTemplate extends QuickTemplate {
 					)
 				);
 			}
-		} ?>
-
+		}
+?>
 			</td>
 		</tr>
 	</table>
-<?php if( $this->haveData( 'uselang' ) ) { ?><input type="hidden" name="uselang" value="<?php $this->text( 'uselang' ); ?>" /><?php } ?>
-<?php if( $this->haveData( 'token' ) ) { ?><input type="hidden" name="wpLoginToken" value="<?php $this->text( 'token' ); ?>" /><?php } ?>
+<?php
+	if ( $this->haveData( 'uselang' ) ) {
+		?><input type="hidden" name="uselang" value="<?php $this->text( 'uselang' ); ?>" /><?php
+	}
+
+	if ( $this->haveData( 'token' ) ) {
+		?><input type="hidden" name="wpLoginToken" value="<?php $this->text( 'token' ); ?>" /><?php
+	}
+?>
 </form>
 </div>
 <div id="loginend"><?php $this->html( 'loginend' ); ?></div>

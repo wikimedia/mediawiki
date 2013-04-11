@@ -160,7 +160,9 @@ class UploadFromUrl extends UploadBase {
 	/**
 	 * @return string
 	 */
-	public function getSourceType() { return 'url'; }
+	public function getSourceType() {
+		return 'url';
+	}
 
 	/**
 	 * @return Status

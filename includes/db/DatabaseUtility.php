@@ -253,7 +253,8 @@ class FakeResultWrapper extends ResultWrapper {
 		$this->pos = $row;
 	}
 
-	function free() {}
+	function free() {
+	}
 
 	// Callers want to be able to access fields with $this->fieldName
 	function fetchObject() {

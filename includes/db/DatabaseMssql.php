@@ -37,24 +37,31 @@ class DatabaseMssql extends DatabaseBase {
 	function cascadingDeletes() {
 		return true;
 	}
+
 	function cleanupTriggers() {
 		return true;
 	}
+
 	function strictIPs() {
 		return true;
 	}
+
 	function realTimestamps() {
 		return true;
 	}
+
 	function implicitGroupby() {
 		return false;
 	}
+
 	function implicitOrderby() {
 		return false;
 	}
+
 	function functionalIndexes() {
 		return true;
 	}
+
 	function unionSupportsOrderAndLimit() {
 		return false;
 	}
@@ -1093,37 +1100,96 @@ class MssqlResult {
 			$i++;
 		}
 		// http://msdn.microsoft.com/en-us/library/cc296183.aspx contains type table
-		switch( $intType ) {
-			case SQLSRV_SQLTYPE_BIGINT: 		$strType = 'bigint'; break;
-			case SQLSRV_SQLTYPE_BINARY: 		$strType = 'binary'; break;
-			case SQLSRV_SQLTYPE_BIT: 			$strType = 'bit'; break;
-			case SQLSRV_SQLTYPE_CHAR: 			$strType = 'char'; break;
-			case SQLSRV_SQLTYPE_DATETIME: 		$strType = 'datetime'; break;
-			case SQLSRV_SQLTYPE_DECIMAL/*($precision, $scale)*/: $strType = 'decimal'; break;
-			case SQLSRV_SQLTYPE_FLOAT: 			$strType = 'float'; break;
-			case SQLSRV_SQLTYPE_IMAGE: 			$strType = 'image'; break;
-			case SQLSRV_SQLTYPE_INT: 			$strType = 'int'; break;
-			case SQLSRV_SQLTYPE_MONEY: 			$strType = 'money'; break;
-			case SQLSRV_SQLTYPE_NCHAR/*($charCount)*/: $strType = 'nchar'; break;
-			case SQLSRV_SQLTYPE_NUMERIC/*($precision, $scale)*/: $strType = 'numeric'; break;
-			case SQLSRV_SQLTYPE_NVARCHAR/*($charCount)*/: $strType = 'nvarchar'; break;
-			// case SQLSRV_SQLTYPE_NVARCHAR('max'): $strType = 'nvarchar(MAX)'; break;
-			case SQLSRV_SQLTYPE_NTEXT: 			$strType = 'ntext'; break;
-			case SQLSRV_SQLTYPE_REAL: 			$strType = 'real'; break;
-			case SQLSRV_SQLTYPE_SMALLDATETIME: 	$strType = 'smalldatetime'; break;
-			case SQLSRV_SQLTYPE_SMALLINT: 		$strType = 'smallint'; break;
-			case SQLSRV_SQLTYPE_SMALLMONEY: 	$strType = 'smallmoney'; break;
-			case SQLSRV_SQLTYPE_TEXT: 			$strType = 'text'; break;
-			case SQLSRV_SQLTYPE_TIMESTAMP: 		$strType = 'timestamp'; break;
-			case SQLSRV_SQLTYPE_TINYINT: 		$strType = 'tinyint'; break;
-			case SQLSRV_SQLTYPE_UNIQUEIDENTIFIER: $strType = 'uniqueidentifier'; break;
-			case SQLSRV_SQLTYPE_UDT: 			$strType = 'UDT'; break;
-			case SQLSRV_SQLTYPE_VARBINARY/*($byteCount)*/: $strType = 'varbinary'; break;
-			// case SQLSRV_SQLTYPE_VARBINARY('max'): $strType = 'varbinary(MAX)'; break;
-			case SQLSRV_SQLTYPE_VARCHAR/*($charCount)*/: $strType = 'varchar'; break;
-			// case SQLSRV_SQLTYPE_VARCHAR('max'): $strType = 'varchar(MAX)'; break;
-			case SQLSRV_SQLTYPE_XML: 			$strType = 'xml'; break;
-			default: $strType = $intType;
+		switch ( $intType ) {
+			case SQLSRV_SQLTYPE_BIGINT:
+				$strType = 'bigint';
+				break;
+			case SQLSRV_SQLTYPE_BINARY:
+				$strType = 'binary';
+				break;
+			case SQLSRV_SQLTYPE_BIT:
+				$strType = 'bit';
+				break;
+			case SQLSRV_SQLTYPE_CHAR:
+				$strType = 'char';
+				break;
+			case SQLSRV_SQLTYPE_DATETIME:
+				$strType = 'datetime';
+				break;
+			case SQLSRV_SQLTYPE_DECIMAL: // ($precision, $scale)
+				$strType = 'decimal';
+				break;
+			case SQLSRV_SQLTYPE_FLOAT:
+				$strType = 'float';
+				break;
+			case SQLSRV_SQLTYPE_IMAGE:
+				$strType = 'image';
+				break;
+			case SQLSRV_SQLTYPE_INT:
+				$strType = 'int';
+				break;
+			case SQLSRV_SQLTYPE_MONEY:
+				$strType = 'money';
+				break;
+			case SQLSRV_SQLTYPE_NCHAR: // ($charCount):
+				$strType = 'nchar';
+				break;
+			case SQLSRV_SQLTYPE_NUMERIC: // ($precision, $scale):
+				$strType = 'numeric';
+				break;
+			case SQLSRV_SQLTYPE_NVARCHAR: // ($charCount)
+				$strType = 'nvarchar';
+				break;
+			// case SQLSRV_SQLTYPE_NVARCHAR('max'):
+			//	 $strType = 'nvarchar(MAX)';
+			//	 break;
+			case SQLSRV_SQLTYPE_NTEXT:
+				$strType = 'ntext';
+				break;
+			case SQLSRV_SQLTYPE_REAL:
+				$strType = 'real';
+				break;
+			case SQLSRV_SQLTYPE_SMALLDATETIME:
+				$strType = 'smalldatetime';
+				break;
+			case SQLSRV_SQLTYPE_SMALLINT:
+				$strType = 'smallint';
+				break;
+			case SQLSRV_SQLTYPE_SMALLMONEY:
+				$strType = 'smallmoney';
+				break;
+			case SQLSRV_SQLTYPE_TEXT:
+				$strType = 'text';
+				break;
+			case SQLSRV_SQLTYPE_TIMESTAMP:
+				$strType = 'timestamp';
+				break;
+			case SQLSRV_SQLTYPE_TINYINT:
+				$strType = 'tinyint';
+				break;
+			case SQLSRV_SQLTYPE_UNIQUEIDENTIFIER:
+				$strType = 'uniqueidentifier';
+				break;
+			case SQLSRV_SQLTYPE_UDT:
+				$strType = 'UDT';
+				break;
+			case SQLSRV_SQLTYPE_VARBINARY: // ($byteCount)
+				$strType = 'varbinary';
+				break;
+			// case SQLSRV_SQLTYPE_VARBINARY('max'):
+			//	 $strType = 'varbinary(MAX)';
+			//	 break;
+			case SQLSRV_SQLTYPE_VARCHAR: // ($charCount)
+				$strType = 'varchar';
+				break;
+			// case SQLSRV_SQLTYPE_VARCHAR('max'):
+			//	 $strType = 'varchar(MAX)';
+			//	 break;
+			case SQLSRV_SQLTYPE_XML:
+				$strType = 'xml';
+				break;
+			default:
+				$strType = $intType;
 		}
 		return $strType;
 	}

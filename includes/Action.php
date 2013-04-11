@@ -374,18 +374,23 @@ abstract class FormAction extends Action {
 	 * Add pre- or post-text to the form
 	 * @return String HTML which will be sent to $form->addPreText()
 	 */
-	protected function preText() { return ''; }
+	protected function preText() {
+		return '';
+	}
 
 	/**
 	 * @return string
 	 */
-	protected function postText() { return ''; }
+	protected function postText() {
+		return '';
+	}
 
 	/**
 	 * Play with the HTMLForm if you need to more substantially
 	 * @param $form HTMLForm
 	 */
-	protected function alterForm( HTMLForm $form ) {}
+	protected function alterForm( HTMLForm $form ) {
+	}
 
 	/**
 	 * Get the HTMLForm to control behavior
