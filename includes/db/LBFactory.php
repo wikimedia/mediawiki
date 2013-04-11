@@ -257,6 +257,7 @@ class LBFactory_Simple extends LBFactory {
 		if ( !isset( $this->extLBs[$cluster] ) ) {
 			$this->extLBs[$cluster] = $this->newExternalLB( $cluster, $wiki );
 			$this->extLBs[$cluster]->parentInfo( array( 'id' => "ext-$cluster" ) );
+			$this->chronProt->initLB( $this->extLBs[$cluster] );
 		}
 		return $this->extLBs[$cluster];
 	}
@@ -280,6 +281,9 @@ class LBFactory_Simple extends LBFactory {
 	function shutdown() {
 		if ( $this->mainLB ) {
 			$this->chronProt->shutdownLB( $this->mainLB );
+		}
+		foreach ( $this->extLBs as $extLB ) {
+			$this->chronProt->shutdownLB( $extLB );
 		}
 		$this->chronProt->shutdown();
 		$this->commitMasterChanges();
