@@ -238,7 +238,7 @@ class Linker {
 		# Note: we want the href attribute first, for prettiness.
 		$attribs = array( 'href' => self::linkUrl( $target, $query, $options ) );
 		if ( in_array( 'forcearticlepath', $options ) && $oldquery ) {
-			$attribs['href'] = wfAppendQuery( $attribs['href'], wfArrayToCgi( $oldquery ) );
+			$attribs['href'] = wfAppendQuery( $attribs['href'], $oldquery );
 		}
 
 		$attribs = array_merge(
@@ -840,7 +840,7 @@ class Linker {
 		# zoom icon still needs it, so we make a unique query for it. See bug 14771
 		$url = $title->getLocalURL( $query );
 		if ( $page ) {
-			$url = wfAppendQuery( $url, 'page=' . urlencode( $page ) );
+			$url = wfAppendQuery( $url, array( 'page' => $page ) );
 		}
 		if ( $manualthumb &&
 		     !isset( $fp['link-title'] ) &&
