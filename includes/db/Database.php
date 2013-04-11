@@ -230,11 +230,10 @@ abstract class DatabaseBase implements DatabaseType {
 	protected $mConn = null;
 	protected $mOpened = false;
 
-	/**
-	 * @since 1.20
-	 * @var array of Closure
-	 */
+	/** @var array of Closure */
 	protected $mTrxIdleCallbacks = array();
+	/** @var array of Closure */
+	protected $mTrxPreCommitCallbacks = array();
 
 	protected $mTablePrefix;
 	protected $mFlags;
@@ -553,12 +552,14 @@ abstract class DatabaseBase implements DatabaseType {
 
 	/**
 	 * Returns true if there is a transaction open with possible write
-	 * queries or transaction idle callbacks waiting on it to finish.
+	 * queries or transaction pre-commit/idle callbacks waiting on it to finish.
 	 *
 	 * @return bool
 	 */
 	public function writesOrCallbacksPending() {
-		return $this->mTrxLevel && ( $this->mTrxDoneWrites || $this->mTrxIdleCallbacks );
+		return $this->mTrxLevel && (
+			$this->mTrxDoneWrites || $this->mTrxIdleCallbacks || $this->mTrxPreCommitCallbacks
+		);
 	}
 
 	/**
@@ -964,6 +965,7 @@ abstract class DatabaseBase implements DatabaseType {
 			# Transaction is gone, like it or not
 			$this->mTrxLevel = 0;
 			$this->mTrxIdleCallbacks = array(); // cancel
+			$this->mTrxPreCommitCallbacks = array(); // cancel
 			wfDebug( "Connection lost, reconnecting...\n" );
 
 			if ( $this->ping() ) {
@@ -2967,21 +2969,39 @@ abstract class DatabaseBase implements DatabaseType {
 	 * Callbacks must commit any transactions that they begin.
 	 *
 	 * This is useful for updates to different systems or separate transactions are needed.
-	 *
-	 * @since 1.20
+	 * It can also be used for updates that easily cause deadlocks if locks are held too long.
 	 *
 	 * @param Closure $callback
+	 * @since 1.20
 	 */
 	final public function onTransactionIdle( Closure $callback ) {
-		if ( $this->mTrxLevel ) {
-			$this->mTrxIdleCallbacks[] = $callback;
-		} else {
-			$callback();
+		$this->mTrxIdleCallbacks[] = $callback;
+		if ( !$this->mTrxLevel ) {
+			$this->runOnTransactionIdleCallbacks();
 		}
 	}
 
 	/**
-	 * Actually run the "on transaction idle" callbacks.
+	 * Run an anonymous function before the current transaction commits or now if there is none.
+	 * If there is a transaction and it is rolled back, then the callback is cancelled.
+	 * Callbacks must not start nor commit any transactions.
+	 *
+	 * This is useful for updates that easily cause deadlocks if locks are held too long
+	 * but where atomicity is strongly desired for these and some related updates.
+	 *
+	 * @param Closure $callback
+	 * @since 1.22
+	 */
+	final public function onTransactionPreCommitOrIdle( Closure $callback ) {
+		if ( $this->mTrxLevel ) {
+			$this->mTrxPreCommitCallbacks[] = $callback;
+		} else {
+			$this->onTransactionIdle( $callback ); // this will trigger immediately
+		}
+	}
+
+	/**
+	 * Actually any "on transaction idle" callbacks.
 	 *
 	 * @since 1.20
 	 */
@@ -3001,6 +3021,28 @@ abstract class DatabaseBase implements DatabaseType {
 				}
 			}
 		} while ( count( $this->mTrxIdleCallbacks ) );
+
+		if ( $e instanceof Exception ) {
+			throw $e; // re-throw any last exception
+		}
+	}
+
+	/**
+	 * Actually any "on transaction pre-commit" callbacks.
+	 *
+	 * @since 1.22
+	 */
+	protected function runOnTransactionPreCommitCallbacks() {
+		$e = null; // last exception
+		do { // callbacks may add callbacks :)
+			$callbacks = $this->mTrxPreCommitCallbacks;
+			$this->mTrxPreCommitCallbacks = array(); // recursion guard
+			foreach ( $callbacks as $callback ) {
+				try {
+					$callback();
+				} catch ( Exception $e ) {}
+			}
+		} while ( count( $this->mTrxPreCommitCallbacks ) );
 
 		if ( $e instanceof Exception ) {
 			throw $e; // re-throw any last exception
@@ -3040,6 +3082,7 @@ abstract class DatabaseBase implements DatabaseType {
 				}
 			}
 
+			$this->runOnTransactionPreCommitCallbacks();
 			$this->doCommit( $fname );
 			$this->runOnTransactionIdleCallbacks();
 		}
@@ -3088,6 +3131,7 @@ abstract class DatabaseBase implements DatabaseType {
 			}
 		}
 
+		$this->runOnTransactionPreCommitCallbacks();
 		$this->doCommit( $fname );
 		$this->runOnTransactionIdleCallbacks();
 	}
@@ -3119,6 +3163,7 @@ abstract class DatabaseBase implements DatabaseType {
 		}
 		$this->doRollback( $fname );
 		$this->mTrxIdleCallbacks = array(); // cancel
+		$this->mTrxPreCommitCallbacks = array(); // cancel
 	}
 
 	/**
@@ -3704,8 +3749,8 @@ abstract class DatabaseBase implements DatabaseType {
 	}
 
 	public function __destruct() {
-		if ( count( $this->mTrxIdleCallbacks ) ) { // sanity
-			trigger_error( "Transaction idle callbacks still pending." );
+		if ( count( $this->mTrxIdleCallbacks ) || count( $this->mTrxPreCommitCallbacks ) ) {
+			trigger_error( "Transaction idle or pre-commit callbacks still pending." ); // sanity
 		}
 	}
 }
