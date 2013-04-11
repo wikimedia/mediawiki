@@ -145,8 +145,8 @@ class LBFactory_Multi extends LBFactory {
 		$section = $this->getSectionForWiki( $wiki );
 		if ( !isset( $this->mainLBs[$section] ) ) {
 			$lb = $this->newMainLB( $wiki, $section );
-			$this->chronProt->initLB( $lb );
 			$lb->parentInfo( array( 'id' => "main-$section" ) );
+			$this->chronProt->initLB( $lb );
 			$this->mainLBs[$section] = $lb;
 		}
 		return $this->mainLBs[$section];
@@ -181,6 +181,7 @@ class LBFactory_Multi extends LBFactory {
 		if ( !isset( $this->extLBs[$cluster] ) ) {
 			$this->extLBs[$cluster] = $this->newExternalLB( $cluster, $wiki );
 			$this->extLBs[$cluster]->parentInfo( array( 'id' => "ext-$cluster" ) );
+			$this->chronProt->initLB( $this->extLBs[$cluster] );
 		}
 		return $this->extLBs[$cluster];
 	}
@@ -295,6 +296,9 @@ class LBFactory_Multi extends LBFactory {
 	function shutdown() {
 		foreach ( $this->mainLBs as $lb ) {
 			$this->chronProt->shutdownLB( $lb );
+		}
+		foreach ( $this->extLBs as $extLB ) {
+			$this->chronProt->shutdownLB( $extLB );
 		}
 		$this->chronProt->shutdown();
 		$this->commitMasterChanges();
