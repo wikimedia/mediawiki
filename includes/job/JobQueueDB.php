@@ -195,12 +195,13 @@ class JobQueueDB extends JobQueue {
 			$key = $this->getCacheKey( 'empty' );
 			$atomic = ( $flags & self::QOS_ATOMIC );
 			$cache = $this->cache;
+			$method = __METHOD__;
 
 			$dbw->onTransactionIdle(
-				function() use ( $dbw, $cache, $rowSet, $rowList, $atomic, $key, $scope
+				function() use ( $dbw, $cache, $rowSet, $rowList, $atomic, $key, $method, $scope
 			) {
 				if ( $atomic ) {
-					$dbw->begin( __METHOD__ ); // wrap all the job additions in one transaction
+					$dbw->begin( $method ); // wrap all the job additions in one transaction
 				}
 				try {
 					// Strip out any duplicate jobs that are already in the queue...
@@ -211,7 +212,7 @@ class JobQueueDB extends JobQueue {
 								'job_sha1'  => array_keys( $rowSet ),
 								'job_token' => '' // unclaimed
 							),
-							__METHOD__
+							$method
 						);
 						foreach ( $res as $row ) {
 							wfDebug( "Job with hash '{$row->job_sha1}' is a duplicate." );
@@ -222,19 +223,19 @@ class JobQueueDB extends JobQueue {
 					$rows = array_merge( $rowList, array_values( $rowSet ) );
 					// Insert the job rows in chunks to avoid slave lag...
 					foreach ( array_chunk( $rows, 50 ) as $rowBatch ) {
-						$dbw->insert( 'job', $rowBatch, __METHOD__ );
+						$dbw->insert( 'job', $rowBatch, $method );
 					}
 					wfIncrStats( 'job-insert', count( $rows ) );
 					wfIncrStats( 'job-insert-duplicate',
 						count( $rowSet ) + count( $rowList ) - count( $rows ) );
 				} catch ( DBError $e ) {
 					if ( $atomic ) {
-						$dbw->rollback( __METHOD__ );
+						$dbw->rollback( $method );
 					}
 					throw $e;
 				}
 				if ( $atomic ) {
-					$dbw->commit( __METHOD__ );
+					$dbw->commit( $method );
 				}
 
 				$cache->set( $key, 'false', JobQueueDB::CACHE_TTL_LONG );
