@@ -1094,17 +1094,22 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @return String
 	 */
 	protected function fillPreparedArg( $matches ) {
-		switch( $matches[1] ) {
-			case '\\?': return '?';
-			case '\\!': return '!';
-			case '\\&': return '&';
+		switch ( $matches[1] ) {
+			case '\\?':
+				return '?';
+			case '\\!':
+				return '!';
+			case '\\&':
+				return '&';
 		}
 
 		list( /* $n */, $arg ) = each( $this->preparedArgs );
 
-		switch( $matches[1] ) {
-			case '?': return $this->addQuotes( $arg );
-			case '!': return $arg;
+		switch ( $matches[1] ) {
+			case '?':
+				return $this->addQuotes( $arg );
+			case '!':
+				return $arg;
 			case '&':
 				# return $this->addQuotes( file_get_contents( $arg ) );
 				throw new DBUnexpectedError( $this, '& mode is not implemented. If it\'s really needed, uncomment the line above.' );
@@ -1120,7 +1125,8 @@ abstract class DatabaseBase implements DatabaseType {
 	 *
 	 * @param $res Mixed: A SQL result
 	 */
-	public function freeResult( $res ) {}
+	public function freeResult( $res ) {
+	}
 
 	/**
 	 * A SELECT wrapper which returns a single field from a single result row.
@@ -1140,8 +1146,8 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @return bool|mixed The value from the field, or false on failure.
 	 */
 	public function selectField( $table, $var, $cond = '', $fname = 'DatabaseBase::selectField',
-		$options = array() )
-	{
+		$options = array()
+	) {
 		if ( !is_array( $options ) ) {
 			$options = array( $options );
 		}
@@ -2991,7 +2997,8 @@ abstract class DatabaseBase implements DatabaseType {
 					$this->clearFlag( DBO_TRX ); // make each query its own transaction
 					$callback();
 					$this->setFlag( $autoTrx ? DBO_TRX : 0 ); // restore automatic begin()
-				} catch ( Exception $e ) {}
+				} catch ( Exception $e ) {
+				}
 			}
 		} while ( count( $this->mTrxIdleCallbacks ) );
 
@@ -3028,7 +3035,8 @@ abstract class DatabaseBase implements DatabaseType {
 				// log it if $wgDebugDBTransactions is enabled.
 				if ( $this->mTrxDoneWrites && $wgDebugDBTransactions ) {
 					wfDebug( "$fname: Automatic transaction with writes in progress" .
-						" (from {$this->mTrxFname}), performing implicit commit!\n" );
+						" (from {$this->mTrxFname}), performing implicit commit!\n"
+					);
 				}
 			}
 
@@ -3142,8 +3150,8 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @return Boolean: true if operation was successful
 	 */
 	public function duplicateTableStructure( $oldName, $newName, $temporary = false,
-		$fname = 'DatabaseBase::duplicateTableStructure' )
-	{
+		$fname = 'DatabaseBase::duplicateTableStructure'
+	) {
 		throw new MWException(
 			'DatabaseBase::duplicateTableStructure is not implemented in descendant class' );
 	}
@@ -3288,7 +3296,8 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @param $options Array
 	 * @return void
 	 */
-	public function setSessionOptions( array $options ) {}
+	public function setSessionOptions( array $options ) {
+	}
 
 	/**
 	 * Read and execute SQL commands from a file.

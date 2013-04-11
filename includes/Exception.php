@@ -721,8 +721,10 @@ class MWExceptionHandler {
 		// Final cleanup
 		if ( $wgFullyInitialised ) {
 			try {
-				wfLogProfilingData(); // uses $wgRequest, hence the $wgFullyInitialised condition
-			} catch ( Exception $e ) {}
+				// uses $wgRequest, hence the $wgFullyInitialised condition
+				wfLogProfilingData();
+			} catch ( Exception $e ) {
+			}
 		}
 
 		// Exit value should be nonzero for the benefit of shell jobs
