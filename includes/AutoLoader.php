@@ -90,7 +90,6 @@ $wgAutoloadLocalClasses = array(
 	'EnhancedChangesList' => 'includes/ChangesList.php',
 	'ErrorPageError' => 'includes/Exception.php',
 	'ExplodeIterator' => 'includes/StringUtils.php',
-	'ExternalEdit' => 'includes/ExternalEdit.php',
 	'ExternalStore' => 'includes/externalstore/ExternalStore.php',
 	'ExternalStoreDB' => 'includes/externalstore/ExternalStoreDB.php',
 	'ExternalStoreHttp' => 'includes/externalstore/ExternalStoreHttp.php',
