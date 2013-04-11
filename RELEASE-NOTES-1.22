@@ -49,6 +49,8 @@ changes to languages because of Bugzilla reports.
   use AuthPlugin for external authentication/authorization needs.
 * The Quickbar feature of the legacy skin model and the last remnants of it
   throughout the code base have been removed.
+* Externaledit/externaldiff preference was removed. Very few users used this
+  feature, and improper configuration can actually prevent a user from editing
 
 == Compatibility ==
 
