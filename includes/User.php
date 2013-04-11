@@ -3869,6 +3869,7 @@ class User {
 	/**
 	 * Check, if the given group has the given permission
 	 *
+	 * @since 1.21
 	 * @param string $group Group to check
 	 * @param string $role Role to check
 	 * @return bool
