@@ -134,7 +134,8 @@ abstract class LBFactory {
 	 * Prepare all tracked load balancers for shutdown
 	 * STUB
 	 */
-	function shutdown() {}
+	function shutdown() {
+	}
 
 	/**
 	 * Call a method of each tracked load balancer
@@ -292,21 +293,27 @@ class LBFactory_Simple extends LBFactory {
  * LBFactory::enableBackend() to return to normal behavior
  */
 class LBFactory_Fake extends LBFactory {
-	function __construct( $conf ) {}
+	function __construct( $conf ) {
+	}
 
 	function newMainLB( $wiki = false) {
 		throw new DBAccessError;
 	}
+
 	function getMainLB( $wiki = false ) {
 		throw new DBAccessError;
 	}
+
 	function newExternalLB( $cluster, $wiki = false ) {
 		throw new DBAccessError;
 	}
+
 	function &getExternalLB( $cluster, $wiki = false ) {
 		throw new DBAccessError;
 	}
-	function forEachLB( $callback, $params = array() ) {}
+
+	function forEachLB( $callback, $params = array() ) {
+	}
 }
 
 /**

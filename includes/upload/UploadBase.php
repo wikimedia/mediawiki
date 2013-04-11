@@ -187,7 +187,9 @@ abstract class UploadBase {
 	 * @since 1.18
 	 * @return string
 	 */
-	public function getSourceType() { return null; }
+	public function getSourceType() {
+		return null;
+	}
 
 	/**
 	 * Initialize the path information
