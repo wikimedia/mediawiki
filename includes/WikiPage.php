@@ -3020,68 +3020,73 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param array $deleted The names of categories that were deleted
 	 */
 	public function updateCategoryCounts( $added, $deleted ) {
-		$ns = $this->mTitle->getNamespace();
+		$that = $this;
+		$method = __METHOD__;
 		$dbw = wfGetDB( DB_MASTER );
 
-		// First make sure the rows exist.  If one of the "deleted" ones didn't
-		// exist, we might legitimately not create it, but it's simpler to just
-		// create it and then give it a negative value, since the value is bogus
-		// anyway.
-		//
-		// Sometimes I wish we had INSERT ... ON DUPLICATE KEY UPDATE.
-		$insertCats = array_merge( $added, $deleted );
-		if ( !$insertCats ) {
-			// Okay, nothing to do
-			return;
-		}
+		// Do this at the end of the commit to reduce lock wait timeouts
+		$dbw->onTransactionPreCommitOrIdle( function() use ( $dbw, $that, $method ) {
+			$ns = $that->getTitle()->getNamespace();
 
-		$insertRows = array();
+			// First make sure the rows exist.  If one of the "deleted" ones didn't
+			// exist, we might legitimately not create it, but it's simpler to just
+			// create it and then give it a negative value, since the value is bogus
+			// anyway.
+			//
+			// Sometimes I wish we had INSERT ... ON DUPLICATE KEY UPDATE.
+			$insertCats = array_merge( $added, $deleted );
+			if ( !$insertCats ) {
+				// Okay, nothing to do
+				return;
+			}
 
-		foreach ( $insertCats as $cat ) {
-			$insertRows[] = array(
-				'cat_id' => $dbw->nextSequenceValue( 'category_cat_id_seq' ),
-				'cat_title' => $cat
-			);
-		}
-		$dbw->insert( 'category', $insertRows, __METHOD__, 'IGNORE' );
+			$insertRows = array();
+			foreach ( $insertCats as $cat ) {
+				$insertRows[] = array(
+					'cat_id' => $dbw->nextSequenceValue( 'category_cat_id_seq' ),
+					'cat_title' => $cat
+				);
+			}
+			$dbw->insert( 'category', $insertRows, $method, 'IGNORE' );
 
-		$addFields = array( 'cat_pages = cat_pages + 1' );
-		$removeFields = array( 'cat_pages = cat_pages - 1' );
+			$addFields = array( 'cat_pages = cat_pages + 1' );
+			$removeFields = array( 'cat_pages = cat_pages - 1' );
 
-		if ( $ns == NS_CATEGORY ) {
-			$addFields[] = 'cat_subcats = cat_subcats + 1';
-			$removeFields[] = 'cat_subcats = cat_subcats - 1';
-		} elseif ( $ns == NS_FILE ) {
-			$addFields[] = 'cat_files = cat_files + 1';
-			$removeFields[] = 'cat_files = cat_files - 1';
-		}
+			if ( $ns == NS_CATEGORY ) {
+				$addFields[] = 'cat_subcats = cat_subcats + 1';
+				$removeFields[] = 'cat_subcats = cat_subcats - 1';
+			} elseif ( $ns == NS_FILE ) {
+				$addFields[] = 'cat_files = cat_files + 1';
+				$removeFields[] = 'cat_files = cat_files - 1';
+			}
 
-		if ( $added ) {
-			$dbw->update(
-				'category',
-				$addFields,
-				array( 'cat_title' => $added ),
-				__METHOD__
-			);
-		}
+			if ( $added ) {
+				$dbw->update(
+					'category',
+					$addFields,
+					array( 'cat_title' => $added ),
+					$method
+				);
+			}
 
-		if ( $deleted ) {
-			$dbw->update(
-				'category',
-				$removeFields,
-				array( 'cat_title' => $deleted ),
-				__METHOD__
-			);
-		}
+			if ( $deleted ) {
+				$dbw->update(
+					'category',
+					$removeFields,
+					array( 'cat_title' => $deleted ),
+					$method
+				);
+			}
 
-		foreach( $added as $catName ) {
-			$cat = Category::newFromName( $catName );
-			wfRunHooks( 'CategoryAfterPageAdded', array( $cat, $this ) );
-		}
-		foreach( $deleted as $catName ) {
-			$cat = Category::newFromName( $catName );
-			wfRunHooks( 'CategoryAfterPageRemoved', array( $cat, $this ) );
-		}
+			foreach( $added as $catName ) {
+				$cat = Category::newFromName( $catName );
+				wfRunHooks( 'CategoryAfterPageAdded', array( $cat, $that ) );
+			}
+			foreach( $deleted as $catName ) {
+				$cat = Category::newFromName( $catName );
+				wfRunHooks( 'CategoryAfterPageRemoved', array( $cat, $that ) );
+			}
+		} );
 	}
 
 	/**
