@@ -842,11 +842,11 @@ class SpecialPage {
 	protected function addFeedLinks( $params ) {
 		global $wgFeedClasses;
 
-		$feedTemplate = wfScript( 'api' ) . '?';
+		$feedTemplate = wfScript( 'api' );
 
 		foreach ( $wgFeedClasses as $format => $class ) {
 			$theseParams = $params + array( 'feedformat' => $format );
-			$url = $feedTemplate . wfArrayToCgi( $theseParams );
+			$url = wfAppendQuery( $feedTemplate, $theseParams );
 			$this->getOutput()->addFeedLink( $format, $url );
 		}
 	}
@@ -1093,10 +1093,9 @@ abstract class RedirectSpecialPage extends UnlistedSpecialPage {
 			$url = $redirect->getFullURL( $query );
 			$this->getOutput()->redirect( $url );
 			return $redirect;
-		// Redirect to index.php with query parameters
 		} elseif ( $redirect === true ) {
-			global $wgScript;
-			$url = $wgScript . '?' . wfArrayToCgi( $query );
+			// Redirect to index.php with query parameters
+			$url = wfAppendQuery( wfScript( 'index' ), $query );
 			$this->getOutput()->redirect( $url );
 			return $redirect;
 		} else {

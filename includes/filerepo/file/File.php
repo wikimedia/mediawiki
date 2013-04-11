@@ -737,7 +737,7 @@ abstract class File {
 			if ( $this->repo ) {
 				$script = $this->repo->getThumbScriptUrl();
 				if ( $script ) {
-					$this->transformScript = "$script?f=" . urlencode( $this->getName() );
+					$this->transformScript = wfAppendQuery( $script, array( 'f' => $this->getName() ) );
 				}
 			}
 		}
