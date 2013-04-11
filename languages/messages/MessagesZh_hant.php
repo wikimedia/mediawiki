@@ -282,8 +282,6 @@ $messages = array(
 'tog-shownumberswatching' => '顯示監視用戶的數目',
 'tog-oldsig' => '原有簽名：',
 'tog-fancysig' => '將簽名以維基文字對待 （不產生自動連結）',
-'tog-externaleditor' => '預設使用外部編輯器 （進階者專用，需要在您的電腦上作出一些特別設定。[//www.mediawiki.org/wiki/Manual:External_editors 更多信息。]）',
-'tog-externaldiff' => '預設使用外部差異分析 （進階者專用，需要在您的電腦上作出一些特別設定。[//www.mediawiki.org/wiki/Manual:External_editors 更多信息。]）',
 'tog-showjumplinks' => '啟用「跳轉到」訪問連結',
 'tog-uselivepreview' => '使用實時預覽 （需要JavaScript）（試驗中）',
 'tog-forceeditsummary' => '當沒有輸入摘要時提醒我',
@@ -1020,8 +1018,8 @@ $2
 'content-failed-to-parse' => '未能轉換$2 內容成為$1：$3',
 'invalid-content-data' => '內容資料無效',
 'content-not-allowed-here' => '[[$2]]頁面上不允許「$1」內容',
-'editwarning-warning' => '離開這個頁面會令您所作的更改遺失。
-您可在您參數設置的「{{int:prefs-editing}}」一節中關閉此警告。',
+'editwarning-warning' => '離開這個頁面可能會令您失去之前的所有更改。
+若您已經登入，您可在您偏好設定的「編輯」節中關閉此警告。',
 
 # Content models
 'content-model-wikitext' => 'wiki語法',

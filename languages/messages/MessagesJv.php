@@ -53,11 +53,11 @@ $namespaceAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Garisen ngisoré pranala:',
-'tog-justify' => 'Ratakna paragraf',
-'tog-hideminor' => 'Delikna suntingan cilik ing owah-owahan pungkasan',
-'tog-hidepatrolled' => 'Delikna suntingan sing wis dipatroli ing kaca owah-owahan',
-'tog-newpageshidepatrolled' => 'Delikna kaca sing wis dipatroli saka daftar kaca anyar',
-'tog-extendwatchlist' => 'Kembangna daftar pangawasan kanggo nuduhaké kabèh pangowahan, ora mung sing paling anyar',
+'tog-justify' => 'Ratakaké paragrap',
+'tog-hideminor' => 'Dhelikaké suntingan cilik ing owah-owahan pungkasan',
+'tog-hidepatrolled' => 'Dhelikaké suntingan kapanto ing owah-owahan pungkasan',
+'tog-newpageshidepatrolled' => 'Dhelikaké kaca kapanto saka daptar kaca anyar',
+'tog-extendwatchlist' => 'Jembaraké daptar pangawasan kanggo nuduhaké kabèh owahan, ora mung sing paling anyar',
 'tog-usenewrc' => 'Owah-owahané paguyuban miturut kaca nèng owah-owahan anyar lan daptar panto (mbutuhaké JavaScript)',
 'tog-numberheadings' => 'Wènèhana nomer judul secara otomatis',
 'tog-showtoolbar' => 'Tuduhna <em>toolbar</em> (batang piranti) panyuntingan',
@@ -81,10 +81,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Tuduhna cacahé pangawas',
 'tog-oldsig' => 'Tapak asma sing ana:',
 'tog-fancysig' => 'Anggepen tapak asta minangka teks wiki (tanpa pranala otomatis)',
-'tog-externaleditor' => 'Pigunakaken program pangolah tembung jawi (namung tumrap ahli, perlu pangaturan mligi ing komputer panjenengan. 
-[//www.mediawiki.org/wiki/Manual:External_editors Informasi sajangkepipun].)',
-'tog-externaldiff' => 'Pigunakaken diff eksternal sacara bektan (namung tumrap para ahli, perlu pangaturan mligi ing komputer panjenengan.
-[//www.mediawiki.org/wiki/Manual:External_editors Informasi sajangkepipun].)',
 'tog-showjumplinks' => 'Aktifna pranala pambiyantu "langsung menyang"',
 'tog-uselivepreview' => 'Nganggoa pratayang langsung (JavaScript) (eksperimental)',
 'tog-forceeditsummary' => 'Élingna aku menawa kothak ringkesan suntingan isih kosong',

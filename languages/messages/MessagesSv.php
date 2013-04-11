@@ -350,9 +350,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Visa antalet användare som bevakar',
 'tog-oldsig' => 'Nuvarande signatur:',
 'tog-fancysig' => 'Rå signatur som wikitext (utan en automatisk länk)',
-'tog-externaleditor' => 'Använd extern editor som standard (endast för avancerade användare, speciella inställningar på din dator krävs. [//www.mediawiki.org/wiki/Manual:External_editors Mer information.])',
-'tog-externaldiff' => 'Använd externt diff-verktyg som förval (endast för avancerade användare, kräver speciella inställningar i din dator.
-[//www.mediawiki.org/wiki/Manual:External_editors Mer information.])',
 'tog-showjumplinks' => 'Aktivera "hoppa till"-tillgänglighetslänkar',
 'tog-uselivepreview' => 'Använd direktuppdaterad förhandsgranskning (Javascript, på försöksstadiet)',
 'tog-forceeditsummary' => 'Påminn mig om jag inte fyller i en redigeringskommentar',

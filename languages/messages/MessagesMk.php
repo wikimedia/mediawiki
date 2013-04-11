@@ -376,8 +376,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Прикажи го бројот на корисници кои набљудуваат',
 'tog-oldsig' => 'Постоечки потпис:',
 'tog-fancysig' => 'Сметај го потписот за викитекст (без автоматска врска)',
-'tog-externaleditor' => 'По основно користи надворешен уредувач (само за стручњаци, потребно е посебно нагодување на сметачот. [//www.mediawiki.org/wiki/Manual:External_editors?uselang=mk Повеќе информации.])',
-'tog-externaldiff' => 'По основно користи надворешен програм за споредување верзии (само за стручњаци, потребно е специјално нагодување на сметачот. [//www.mediawiki.org/wiki/Manual:External_editors?uselang=mk Повеќе информации.])',
 'tog-showjumplinks' => 'Овозможи врски на пристапност „скокни на“',
 'tog-uselivepreview' => 'Користи преглед во живо (бара JavaScript) (експериментално)',
 'tog-forceeditsummary' => 'Извести ме кога нема опис на промените',

@@ -381,8 +381,6 @@ $messages = array(
 'tog-shownumberswatching' => 'הצגת מספר המשתמשים העוקבים אחרי הדף',
 'tog-oldsig' => 'החתימה הקיימת:',
 'tog-fancysig' => 'פירוש החתימה כקוד ויקי (ללא קישור אוטומטי)',
-'tog-externaleditor' => 'שימוש בעורך חיצוני כברירת מחדל (למשתמשים מומחים בלבד, דורש הגדרות מיוחדות במחשב. [//www.mediawiki.org/wiki/Manual:External_editors למידע נוסף.])',
-'tog-externaldiff' => 'שימוש בתוכנת השוואת הגרסאות החיצונית כברירת מחדל (למשתמשים מומחים בלבד, דורש הגדרות מיוחדות במחשב. [//www.mediawiki.org/wiki/Manual:External_editors למידע נוסף.])',
 'tog-showjumplinks' => 'הצגת קישורי נגישות מסוג "קפוץ אל"',
 'tog-uselivepreview' => 'שימוש בתצוגה מקדימה מהירה (דרוש JavaScript) (ניסיוני)',
 'tog-forceeditsummary' => 'הצגת אזהרה בעת הכנסת תקציר עריכה ריק',
@@ -1140,7 +1138,7 @@ $2
 'invalid-content-data' => 'מידע שגוי על התוכן',
 'content-not-allowed-here' => 'תוכן מסוג "$1" אינו מותר בדף [[$2]]',
 'editwarning-warning' => 'עזיבת דף זה עשויה לגרום לאובדן כל השינויים שביצעתם.
-אם אתם מחוברים לחשבון, תוכלו לבטל אזהרה זו בחלק "{{int:prefs-editing}}" שבהעדפות שלכם.',
+אם אתם מחוברים לחשבון, תוכלו לבטל אזהרה זו בחלק "עריכה" שבהעדפות שלכם.',
 
 # Content models
 'content-model-wikitext' => 'טקסט ויקי',

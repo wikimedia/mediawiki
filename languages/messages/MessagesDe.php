@@ -439,8 +439,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Anzahl der beobachtenden Benutzer anzeigen',
 'tog-oldsig' => 'Vorhandene Signatur:',
 'tog-fancysig' => 'Signatur als Wikitext behandeln (ohne automatische Verlinkung)',
-'tog-externaleditor' => 'Externen Editor standardmäßig nutzen (nur für Experten, erfordert spezielle Einstellungen auf dem eigenen Computer. [//www.mediawiki.org/wiki/Manual:External_editors Weitere Informationen hierzu.])',
-'tog-externaldiff' => 'Externes Programm standardmäßig für Versionsunterschiede nutzen (nur für Experten, erfordert spezielle Einstellungen auf dem eigenen Computer. [//www.mediawiki.org/wiki/Manual:External_editors Weitere Informationen hierzu.])',
 'tog-showjumplinks' => '„Wechseln-zu“-Links aktivieren',
 'tog-uselivepreview' => 'Vorschau sofort anzeigen (benötigt JavaScript) (experimentell)',
 'tog-forceeditsummary' => 'Warnen, sofern beim Speichern die Zusammenfassung fehlt',
@@ -946,7 +944,7 @@ Möglicherweise hast du dein Passwort bereits erfolgreich geändert oder ein neu
 'passwordreset-username' => 'Benutzername:',
 'passwordreset-domain' => 'Domain:',
 'passwordreset-capture' => 'Die E-Mail-Nachricht ansehen?',
-'passwordreset-capture-help' => 'Sofern Du dieses Kästchen ankreuzt, wird die E-Mail-Nachricht mit dem temporären Passwort, sowohl dir angezeigt, als auch dem Benutzer zugesandt.',
+'passwordreset-capture-help' => 'Wenn du dieses Kästchen ankreuzt, wird die E-Mail-Nachricht mit dem temporären Passwort sowohl dir angezeigt als auch dem Benutzer zugesandt.',
 'passwordreset-email' => 'E-Mail-Adresse:',
 'passwordreset-emailtitle' => 'Benutzerkontoinformationen auf {{SITENAME}}',
 'passwordreset-emailtext-ip' => 'Jemand mit der IP-Adresse $1, wahrscheinlich du selbst, hat eine Zurücksetzung deines
@@ -3769,15 +3767,15 @@ $5
 
 Dieser Bestätigungscode ist gültig bis $6, $7 Uhr.',
 'confirmemail_body_changed' => 'Jemand mit der IP-Adresse $1, wahrscheinlich du selbst,
-hat die E-Mail-Adresse des Benutzerkontos „$2“ zu dieser Adresse auf {{SITENAME}} geändert.
+hat die E-Mail-Adresse des Benutzerkontos „$2“ zu dieser Adresse bei {{SITENAME}} geändert.
 
-Um zu bestätigen, dass dieses Benutzerkonto wirklich dir gehört
-und um die E-Mail-Features auf {{SITENAME}} zu reaktivieren, öffne diesen Link in deinem Browser:
+Um zu bestätigen, dass dieses Benutzerkonto wirklich dir gehört,
+und um die E-Mail-Features bei {{SITENAME}} zu reaktivieren, öffne diesen Link in deinem Browser:
 
 $3
 
 Falls das Konto *nicht* dir gehört, folge diesem Link,
-um die E-Mail-Adress-Bestätigung abzubrechen:
+um die E-Mail-Bestätigung abzubrechen:
 
 $5
 

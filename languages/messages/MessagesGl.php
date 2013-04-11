@@ -278,8 +278,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Mostrar o número de usuarios que están a vixiar',
 'tog-oldsig' => 'Sinatura actual:',
 'tog-fancysig' => 'Tratar a sinatura como se fose texto wiki (sen ligazón automática)',
-'tog-externaleditor' => 'Usar un editor externo por defecto (só para expertos; cómpre configurar o computador. [//www.mediawiki.org/wiki/Manual:External_editors Máis información.])',
-'tog-externaldiff' => 'Usar as diferenzas externas por defecto (só para expertos; cómpre configurar o computador. [//www.mediawiki.org/wiki/Manual:External_editors Máis información.])',
 'tog-showjumplinks' => 'Permitir as ligazóns de accesibilidade "ir a"',
 'tog-uselivepreview' => 'Usar a vista previa en tempo real (cómpre JavaScript) (experimental)',
 'tog-forceeditsummary' => 'Avisádeme cando o campo resumo estea baleiro',
@@ -3656,7 +3654,7 @@ Pode ser que caducase.',
 'confirmemail_success' => 'Confirmouse o seu enderezo de correo electrónico. Agora xa pode [[Special:UserLogin|acceder ao sistema]] e facer uso do wiki.',
 'confirmemail_loggedin' => 'Xa se confirmou o seu enderezo de correo electrónico.',
 'confirmemail_error' => 'Houbo un problema ao gardar a súa confirmación.',
-'confirmemail_subject' => '{{SITENAME}} - Verificación do enderezo de correo electrónico',
+'confirmemail_subject' => 'Confirmación do enderezo de correo electrónico de {{SITENAME}}',
 'confirmemail_body' => 'Alguén, probablemente vostede, desde o enderezo IP $1,
 rexistrou a conta "$2" con este enderezo de correo electrónico en {{SITENAME}}.
 

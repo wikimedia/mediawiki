@@ -316,8 +316,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Mostra il numero di utenti che hanno la pagina in osservazione',
 'tog-oldsig' => 'Firma attuale:',
 'tog-fancysig' => 'Tratta la firma come wikitesto (senza un collegamento automatico)',
-'tog-externaleditor' => "Usa per default un editor di testi esterno (solo per utenti esperti, richiede l'uso di impostazioni particolari sul proprio computer. [//www.mediawiki.org/wiki/Manual:External_editors Ulteriori informazioni.])",
-'tog-externaldiff' => "Usa per default un programma di diff esterno (solo per utenti esperti, richiede l'uso di impostazioni particolari sul proprio computer. [//www.mediawiki.org/wiki/Manual:External_editors Ulteriori informazioni.])",
 'tog-showjumplinks' => 'Attiva i collegamenti accessibili "vai a"',
 'tog-uselivepreview' => "Abilita la funzione ''Live preview'' (anteprima in diretta - richiede JavaScript; sperimentale)",
 'tog-forceeditsummary' => 'Chiedi conferma se il campo oggetto è vuoto',
@@ -647,13 +645,14 @@ Si prega di segnalare l\'accaduto a un [[Special:ListUsers/sysop|amministratore]
 'unexpected' => 'Valore imprevisto: "$1"="$2".',
 'formerror' => 'Errore: impossibile inviare il modulo',
 'badarticleerror' => 'Operazione non consentita per questa pagina.',
-'cannotdelete' => 'Non è stato possibile cancellare il file "$1".
+'cannotdelete' => 'Non è stato possibile cancellare la pagina o il file "$1".
 Potrebbe essere stato già cancellato da qualcun altro.',
 'cannotdelete-title' => 'Impossibile eliminare la pagina "$1"',
 'delete-hook-aborted' => "La cancellazione è stata annullata dall'hook.
 Non è stata restituita alcuna spiegazione.",
 'badtitle' => 'Titolo non corretto',
-'badtitletext' => 'Il titolo della pagina richiesta è vuoto, errato o con caratteri non ammessi oppure deriva da un errore nei collegamenti tra siti wiki diversi o versioni in lingue diverse dello stesso sito.',
+'badtitletext' => 'Il titolo della pagina richiesta è vuoto, errato oppure deriva da un errore nei collegamenti interlingua o interwiki.
+Potrebbe inoltre contenere uno o più caratteri il cui uso non è ammesso nei titoli.',
 'perfcached' => "I dati che seguono sono estratti da una copia ''cache'' del database, e potrebbero non essere aggiornati. Un massimo di {{PLURAL:$1|un risultato è disponibile|$1 risultati sono disponibili}} in cache.",
 'perfcachedts' => "I dati che seguono sono estratti da una copia ''cache'' del database, il cui ultimo aggiornamento risale al $1. Un massimo di {{PLURAL:$4|un risultato è disponibile|$4 risultati sono disponibili}} in cache.",
 'querypage-no-updates' => 'Gli aggiornamenti della pagina sono temporaneamente sospesi. I dati in essa contenuti non verranno aggiornati.',
@@ -1255,7 +1254,7 @@ Vedi l'[[Special:BlockList|elenco dei blocchi]] per l'elenco dei bandi e dei blo
 'compareselectedversions' => 'Confronta le versioni selezionate',
 'showhideselectedversions' => 'Mostra/nascondi versioni selezionate',
 'editundo' => 'annulla',
-'diff-multi' => '({{PLURAL:$1|Una revisione intermedia|$1 revisioni intermedie}} di {{PLURAL:$2|un utente|$2 utenti}} non mostrate)',
+'diff-multi' => '({{PLURAL:$1|Una revisione intermedia|$1 revisioni intermedie}} di {{PLURAL:$2|un utente|$2 utenti}} non {{PLURAL:$1|mostrata|mostrate}})',
 'diff-multi-manyusers' => '({{PLURAL:$1|Una revisione intermedia|$1 revisioni intermedie}} di oltre $2 {{PLURAL:$2|utente|utenti}} non mostrate)',
 'difference-missing-revision' => '{{PLURAL:$2|Una versione|$2 versioni}} di questa differenza ($1) {{PLURAL:$2|non è stata trovata|non sono state trovate}}.
 
@@ -3872,6 +3871,8 @@ Le immagini vengono mostrate alla massima risoluzione disponibile, per gli altri
 'htmlform-submit' => 'Invia',
 'htmlform-reset' => 'Annulla modifiche',
 'htmlform-selectorother-other' => 'Altro',
+'htmlform-no' => 'No',
+'htmlform-yes' => 'Sì',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 con la possibilità di ricerca completa nel testo',

@@ -328,8 +328,6 @@ pe titlul secțiunii (JavaScript)',
 'tog-shownumberswatching' => 'Arată numărul utilizatorilor care urmăresc',
 'tog-oldsig' => 'Semnătură actuală:',
 'tog-fancysig' => 'Tratează semnătura ca wikitext (fără o legătură automată)',
-'tog-externaleditor' => 'Utilizează, în mod implicit, un editor extern (Doar pentru experți; necesită setări speciale pe calculatorul dumneavoastră. [//www.mediawiki.org/wiki/Manual:External_editors Mai multe informații.])',
-'tog-externaldiff' => 'Utilizează, în mod implicit, un program extern pentru diferențele între versiuni (Doar pentru experți; necesită setări speciale pe calculatorul dumneavoastră. [//www.mediawiki.org/wiki/Manual:External_editors Mai multe informații.])',
 'tog-showjumplinks' => 'Activează legăturile de accesibilitate „sari la”',
 'tog-uselivepreview' => 'Folosește previzualizarea în timp real (JavaScript) (experimental)',
 'tog-forceeditsummary' => 'Avertizează-mă când uit să descriu modificările',
@@ -3928,6 +3926,8 @@ Imaginile sunt afișate la rezoluția lor maximă, în timp ce alte tipuri de fi
 'htmlform-submit' => 'Trimite',
 'htmlform-reset' => 'Anulează modificările',
 'htmlform-selectorother-other' => 'Altul',
+'htmlform-no' => 'Nu',
+'htmlform-yes' => 'Da',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 cu suport de căutare în tot textul',

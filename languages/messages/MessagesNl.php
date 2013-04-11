@@ -384,8 +384,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Het aantal gebruikers weergeven dat deze pagina volgt',
 'tog-oldsig' => 'Bestaande ondertekening:',
 'tog-fancysig' => 'Als wikitekst behandelen (zonder automatische koppeling)',
-'tog-externaleditor' => 'Standaard een externe tekstbewerker gebruiken (alleen voor experts - voor deze functie zijn speciale instellingen nodig. [//www.mediawiki.org/wiki/Manual:External_editors Meer informatie]).',
-'tog-externaldiff' => 'Standaard een extern vergelijkingsprogramma gebruiken (alleen voor experts - voor deze functie zijn speciale instellingen nodig. [//www.mediawiki.org/wiki/Manual:External_editors Meer informatie]).',
 'tog-showjumplinks' => '"ga naar"-toegankelijkheidskoppelingen inschakelen',
 'tog-uselivepreview' => '"live voorvertoning" gebruiken (vereist JavaScript – experimenteel)',
 'tog-forceeditsummary' => 'Een melding geven bij een lege bewerkingssamenvatting',
@@ -1451,6 +1449,7 @@ U kunt ook een naamruimte als voorvoegsel gebruiken.",
 'searchdisabled' => 'Zoeken in {{SITENAME}} is niet mogelijk.
 U kunt gebruik maken van Google.
 De gegevens over {{SITENAME}} zijn mogelijk niet bijgewerkt.',
+'search-error' => 'Er is een fout opgetreden tijdens het zoeken: $1',
 
 # Preferences page
 'preferences' => 'Voorkeuren',
@@ -4093,6 +4092,8 @@ Andere bestandstypen worden direct in het met het MIME-type verbonden programma 
 'htmlform-submit' => 'Opslaan',
 'htmlform-reset' => 'Wijzigingen ongedaan maken',
 'htmlform-selectorother-other' => 'Anders',
+'htmlform-no' => 'Nee',
+'htmlform-yes' => 'Ja',
 
 # SQLite database support
 'sqlite-has-fts' => 'Versie $1 met ondersteuning voor "full-text" zoeken',

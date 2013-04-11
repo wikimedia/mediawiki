@@ -237,8 +237,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Wys die aantal gebruikers wat dophou',
 'tog-oldsig' => 'Bestaande handtekening:',
 'tog-fancysig' => 'Doodgewone handtekening (sonder outomatiese skakel)',
-'tog-externaleditor' => "Gebruik outomaties 'n eksterne redigeringsprogram (vir kundiges; [//www.mediawiki.org/wiki/Manual:External_editors benodig verdere verstellings])",
-'tog-externaldiff' => "Gebruik outomaties 'n eksterne vergelykingsprogram (net vir kundiges - benodig spesiale verstellings op u rekenaar)",
 'tog-showjumplinks' => 'Wys "spring na"-skakels vir toeganklikheid',
 'tog-uselivepreview' => 'Gebruik lewendige voorskou (JavaScript) (eksperimenteel)',
 'tog-forceeditsummary' => "Let my daarop as ek nie 'n opsomming van my wysiging gee nie",
@@ -252,7 +250,7 @@ $messages = array(
 'tog-diffonly' => "Moenie 'n bladsy se inhoud onder die wysigingsverskil wys nie",
 'tog-showhiddencats' => 'Wys versteekte kategorië',
 'tog-norollbackdiff' => 'Laat verskille weg na terugrol',
-'tog-useeditwarning' => "Waarsku my as ek 'n gewysigde bladsy verlaat alvorens dit gestoor is",
+'tog-useeditwarning' => "Waarsku my as ek 'n gewysigde bladsy verlaat voordat dit gestoor is",
 
 'underline-always' => 'Altyd',
 'underline-never' => 'Nooit',
@@ -981,8 +979,8 @@ Dit bestaan alreeds.',
 'content-failed-to-parse' => 'Dit was nie moontlik om die inhoud van die MIME-tipe $2 vir die model $1 te verwerk nie: $3.',
 'invalid-content-data' => 'Ongeldige inhoud',
 'content-not-allowed-here' => '"$1" word nie op bladsy [[$2]] toegelaat nie.',
-'editwarning-warning' => 'As u hierdie bladsy verlaat, verloor u moontlik die wysigings wat u aangebring het.
-Indien u aangemeld is, kan u hierdie waarskuwing in die {{int:prefs-editing}}"-afdeling van u voorkeure afskakel.',
+'editwarning-warning' => 'As u hierdie bladsy verlaat, verloor u moontlik al die wysigings wat u aangebring het.
+Indien u aangemeld is, kan u hierdie waarskuwing in die "{{int:prefs-editing}}"-afdeling van u voorkeure afskakel.',
 
 # Content models
 'content-model-wikitext' => 'Wikiteks',

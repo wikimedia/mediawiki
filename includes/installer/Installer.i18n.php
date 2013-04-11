@@ -4291,11 +4291,11 @@ Für den Fall, dass die E-Mail-Funktionen nicht benötigt werden, können sie hi
 	'config-email-auth' => 'E-Mail-Authentifizierung ermöglichen',
 	'config-email-auth-help' => "Sofern diese Funktion aktiviert ist, müssen Benutzer ihre E-Mail-Adresse bestätigen, indem sie den Bestätigungslink nutzen, der ihnen immer dann zugesandt wird, wenn sie ihre E-Mail-Adresse angeben oder ändern.
 Nur bestätigte E-Mail-Adressen können Nachrichten von anderen Benutzer oder Benachrichtigungsmitteilungen erhalten.
-Die Aktivierung dieser Funktion wird bei offenen Wikis, mit Hinblick auf möglichen Missbrauch der E-Mailfunktionen, '''empfohlen'''.",
+Die Aktivierung dieser Funktion wird bei offenen Wikis, mit Hinblick auf möglichen Missbrauch der E-Mail-Funktionen, '''empfohlen.'''",
 	'config-email-sender' => 'E-Mail-Adresse für Antworten:',
 	'config-email-sender-help' => 'Bitte hier die E-Mail-Adresse angeben, die als Absenderadresse bei ausgehenden E-Mails eingesetzt werden soll.
 Rücklaufende E-Mails werden an diese E-Mail-Adresse gesandt.
-Bei viele E-Mail-Servern muss der Teil der E-Mail-Adresse mit der Domainangabe korrekt sein.',
+Bei vielen E-Mail-Servern muss der Teil der E-Mail-Adresse mit der Domainangabe korrekt sein.',
 	'config-upload-settings' => 'Hochladen von Bildern und Dateien',
 	'config-upload-enable' => 'Das Hochladen von Dateien ermöglichen',
 	'config-upload-help' => 'Das Hochladen von Dateien macht den Server für potentielle Sicherheitsprobleme anfällig.

@@ -54,10 +54,6 @@ $messages = array(
 'tog-shownumberswatching' => "Fa vedè 'u numere de le utinde ca uardene",
 'tog-oldsig' => 'Firme esistende:',
 'tog-fancysig' => "Firma grezze cumme a 'nu teste de Uicchi (senza collegamende automatiche)",
-'tog-externaleditor' => "Ause n'editore esterne pe default (sulamende pe l'esperte, abbesogne de 'na configurazione speciele sus a 'u combiuter tune. <br />
-[//www.mediawiki.org/wiki/Manual:External_editors Pe cchiù 'mbormaziune.])",
-'tog-externaldiff' => "Ause 'na differenze esterne pe default (sulamende pe l'esperte, abbesogne de 'na configuraziona speciele sus a 'u computer tune. <br />
-[//www.mediawiki.org/wiki/Manual:External_editors More information.])",
 'tog-showjumplinks' => 'Abbilite "zumbe a" pe scè sus a le collegaminde',
 'tog-uselivepreview' => "Ause l'andeprime da 'u vive (JavaScript) (Sperimendale)",
 'tog-forceeditsummary' => "Ciércame conferme quanne stoche a 'nzerische 'nu riepighe vianghe",
