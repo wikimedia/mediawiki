@@ -1408,7 +1408,8 @@ SQL;
 		return array( $startOpts, $useIndex, $preLimitTail, $postLimitTail );
 	}
 
-	function setFakeMaster( $enabled = true ) {}
+	function setFakeMaster( $enabled = true ) {
+	}
 
 	function getDBname() {
 		return $this->mDBname;

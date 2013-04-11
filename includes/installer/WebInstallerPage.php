@@ -1311,7 +1311,9 @@ abstract class WebInstaller_Document extends WebInstallerPage {
 }
 
 class WebInstaller_Readme extends WebInstaller_Document {
-	protected function getFileName() { return 'README'; }
+	protected function getFileName() {
+		return 'README';
+	}
 }
 
 class WebInstaller_ReleaseNotes extends WebInstaller_Document {
@@ -1327,9 +1329,13 @@ class WebInstaller_ReleaseNotes extends WebInstaller_Document {
 }
 
 class WebInstaller_UpgradeDoc extends WebInstaller_Document {
-	protected function getFileName() { return 'UPGRADE'; }
+	protected function getFileName() {
+		return 'UPGRADE';
+	}
 }
 
 class WebInstaller_Copying extends WebInstaller_Document {
-	protected function getFileName() { return 'COPYING'; }
+	protected function getFileName() {
+		return 'COPYING';
+	}
 }

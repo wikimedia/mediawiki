@@ -801,7 +801,8 @@ class Block {
 			case self::TYPE_RANGE:
 				list( $start, /*...*/ ) = IP::parseRange( $this->target );
 				return $start;
-			default: throw new MWException( "Block with invalid type" );
+			default:
+				throw new MWException( "Block with invalid type" );
 		}
 	}
 
@@ -819,7 +820,8 @@ class Block {
 			case self::TYPE_RANGE:
 				list( /*...*/, $end ) = IP::parseRange( $this->target );
 				return $end;
-			default: throw new MWException( "Block with invalid type" );
+			default:
+				throw new MWException( "Block with invalid type" );
 		}
 	}
 

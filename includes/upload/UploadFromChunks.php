@@ -31,7 +31,7 @@ class UploadFromChunks extends UploadFromFile {
 	protected $mOffset, $mChunkIndex, $mFileKey, $mVirtualTempPath;
 
 	/**
-	 * Setup local pointers to stash, repo and user ( similar to UploadFromStash )
+	 * Setup local pointers to stash, repo and user (similar to UploadFromStash)
 	 *
 	 * @param $user User
 	 * @param $stash UploadStash
@@ -72,7 +72,7 @@ class UploadFromChunks extends UploadFromFile {
 		$this->mOffset = 0;
 		// Create a local stash target
 		$this->mLocalFile = parent::stashFile();
-		// Update the initial file offset ( based on file size )
+		// Update the initial file offset (based on file size)
 		$this->mOffset = $this->mLocalFile->getSize();
 		$this->mFileKey = $this->mLocalFile->getFileKey();
 
@@ -132,7 +132,7 @@ class UploadFromChunks extends UploadFromFile {
 		}
 		wfDebugLog( 'fileconcatenate', "Combined $i chunks in $tAmount seconds.\n" );
 		// Update the mTempPath and mLocalFile
-		// ( for FileUpload or normal Stash to take over )
+		// (for FileUpload or normal Stash to take over)
 		$this->mTempPath = $tmpPath; // file system path
 		$tStart = microtime( true );
 		$this->mLocalFile = parent::stashFile( $this->user );
