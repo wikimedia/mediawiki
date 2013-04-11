@@ -33,14 +33,14 @@
  *   - z-abandoned  : A sorted set of (job ID, UNIX timestamp as score) used for broken jobs
  *   - z-delayed    : A sorted set of (job ID, UNIX timestamp as score) used for delayed jobs
  *   - h-idBySha1   : A hash of (SHA1 => job ID) for unclaimed jobs used for de-duplication
- *   - h-sha1Byid   : A hash of (job ID => SHA1) for unclaimed jobs used for de-duplication
+ *   - h-sha1ById   : A hash of (job ID => SHA1) for unclaimed jobs used for de-duplication
  *   - h-attempts   : A hash of (job ID => attempt count) used for job claiming/retries
  *   - h-data       : A hash of (job ID => serialized blobs) for job storage
  * A job ID can be in only one of z-delayed, l-unclaimed, z-claimed, and z-abandoned.
  * If an ID appears in any of those lists, it should have a h-data entry for its ID.
  * If a job has a SHA1 de-duplication value and its ID is in l-unclaimed or z-delayed, then
- * there should be no other such jobs with that SHA1. Every h-idBySha1 entry has an h-sha1Byid
- * entry and every h-sha1Byid must refer to an ID that is l-unclaimed. If a job has its
+ * there should be no other such jobs with that SHA1. Every h-idBySha1 entry has an h-sha1ById
+ * entry and every h-sha1ById must refer to an ID that is l-unclaimed. If a job has its
  * ID in z-claimed or z-abandoned, then it must also have an h-attempts entry for its ID.
  *
  * Additionally, "rootjob:* keys track "root jobs" used for additional de-duplication.
