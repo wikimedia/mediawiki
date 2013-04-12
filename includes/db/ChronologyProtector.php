@@ -24,32 +24,45 @@
 /**
  * Class for ensuring a consistent ordering of events as seen by the user, despite replication.
  * Kind of like Hawking's [[Chronology Protection Agency]].
+ *
+ * When closing a connection, the position will be saved in session. Upon opening a follow-up
+ * connection, that/those position(s) will be read from session and we'll wait for the connection
+ * to catch up to that/those position(s), to ensure no data is read that lags behind their
+ * previous state.
  */
 class ChronologyProtector {
-	var $startupPos;
-	var $shutdownPos = array();
+	/**
+	 * Arrays of connection positions loaded from session (startup) and positions to
+	 * be saved to session (shutdown)
+	 *
+	 * @var array
+	 */
+	protected $startupPositions = array(), $shutdownPositions = array();
 
 	/**
 	 * Initialise a LoadBalancer to give it appropriate chronology protection.
 	 *
 	 * @param $lb LoadBalancer
 	 */
-	function initLB( $lb ) {
-		if ( $this->startupPos === null ) {
+	public function initLB( $lb ) {
+		// Load previously saved LB positions from session
+		if ( $this->startupPositions === null ) {
 			if ( !empty( $_SESSION[__CLASS__] ) ) {
-				$this->startupPos = $_SESSION[__CLASS__];
+				$this->startupPositions = $_SESSION[__CLASS__];
 			}
 		}
-		if ( !$this->startupPos ) {
+		if ( !$this->startupPositions ) {
 			return;
 		}
 		$masterName = $lb->getServerName( 0 );
 
-		if ( $lb->getServerCount() > 1 && !empty( $this->startupPos[$masterName] ) ) {
+		if ( $lb->getServerCount() > 1 && !empty( $this->startupPositions[$masterName] ) ) {
 			$info = $lb->parentInfo();
-			$pos = $this->startupPos[$masterName];
+			$pos = $this->startupPositions[$masterName];
 			wfDebug( __METHOD__ . ": LB " . $info['id'] . " waiting for master pos $pos\n" );
-			$lb->waitFor( $this->startupPos[$masterName] );
+
+			// Wait for previously saved position
+			$lb->waitFor( $this->startupPositions[$masterName] );
 		}
 	}
 
@@ -59,13 +72,13 @@ class ChronologyProtector {
 	 *
 	 * @param $lb LoadBalancer
 	 */
-	function shutdownLB( $lb ) {
+	public function shutdownLB( $lb ) {
 		// Don't start a session, don't bother with non-replicated setups
 		if ( strval( session_id() ) == '' || $lb->getServerCount() <= 1 ) {
 			return;
 		}
 		$masterName = $lb->getServerName( 0 );
-		if ( isset( $this->shutdownPos[$masterName] ) ) {
+		if ( isset( $this->shutdownPositions[$masterName] ) ) {
 			// Already done
 			return;
 		}
@@ -78,18 +91,18 @@ class ChronologyProtector {
 		}
 		$pos = $db->getMasterPos();
 		wfDebug( __METHOD__ . ": LB {$info['id']} has master pos $pos\n" );
-		$this->shutdownPos[$masterName] = $pos;
+		$this->shutdownPositions[$masterName] = $pos;
 	}
 
 	/**
 	 * Notify the ChronologyProtector that the LBFactory is done calling shutdownLB() for now.
 	 * May commit chronology data to persistent storage.
 	 */
-	function shutdown() {
-		if ( session_id() != '' && count( $this->shutdownPos ) ) {
+	public function shutdown() {
+		if ( session_id() != '' && count( $this->shutdownPositions ) ) {
 			wfDebug( __METHOD__ . ": saving master pos for " .
-				count( $this->shutdownPos ) . " master(s)\n" );
-			$_SESSION[__CLASS__] = $this->shutdownPos;
+				count( $this->shutdownPositions ) . " master(s)\n" );
+			$_SESSION[__CLASS__] = $this->shutdownPositions;
 		}
 	}
 }
