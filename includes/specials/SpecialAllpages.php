@@ -335,7 +335,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 	}
 
 	/**
-	 * @param $namespace Integer (Default NS_MAIN)
+	 * @param int $namespace Namespace (Default NS_MAIN)
 	 * @param string $from list all pages from this name (default FALSE)
 	 * @param string $to list all pages to this name (default FALSE)
 	 * @param bool $hideredirects dont show redirects (default FALSE)

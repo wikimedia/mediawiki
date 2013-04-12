@@ -526,6 +526,11 @@ class SpecialExport extends SpecialPage {
 
 	/**
 	 * Expand a list of pages to include items used in those pages.
+	 * @param array $inputPages Array of page titles
+	 * @param array $pageSet
+	 * @param string $table
+	 * @param array $fields Array of field names
+	 * @param array $join
 	 * @return array
 	 */
 	private function getLinks( $inputPages, $pageSet, $table, $fields, $join ) {

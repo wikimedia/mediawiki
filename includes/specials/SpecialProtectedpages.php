@@ -206,6 +206,7 @@ class SpecialProtectedpages extends SpecialPage {
 	}
 
 	/**
+	 * @param bool $indefOnly
 	 * @return string Formatted HTML
 	 */
 	protected function getExpiryCheck( $indefOnly ) {
@@ -213,6 +214,7 @@ class SpecialProtectedpages extends SpecialPage {
 	}
 
 	/**
+	 * @param bool $cascadeOnly
 	 * @return string Formatted HTML
 	 */
 	protected function getCascadeCheck( $cascadeOnly ) {
@@ -220,6 +222,8 @@ class SpecialProtectedpages extends SpecialPage {
 	}
 
 	/**
+	 * @param string $sizetype "min" or "max"
+	 * @param mixed $size
 	 * @return string Formatted HTML
 	 */
 	protected function getSizeLimit( $sizetype, $size ) {
