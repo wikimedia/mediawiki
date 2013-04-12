@@ -141,8 +141,6 @@ class LoginForm extends SpecialPage {
 			$this->mReturnTo = '';
 			$this->mReturnToQuery = '';
 		}
-
-		$this->mShowVForm = $this->shouldShowVForm();
 	}
 
 	function getDescription() {
@@ -171,6 +169,8 @@ class LoginForm extends SpecialPage {
 		if ( $par == 'signup' ) { # Check for [[Special:Userlogin/signup]]
 			$this->mType = 'signup';
 		}
+
+		$this->mShowVForm = $this->shouldShowVForm();
 
 		// If logging in and not on HTTPS, either redirect to it or offer a link.
 		global $wgSecureLogin;
