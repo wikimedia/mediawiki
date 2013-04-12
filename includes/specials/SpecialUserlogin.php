@@ -141,8 +141,6 @@ class LoginForm extends SpecialPage {
 			$this->mReturnTo = '';
 			$this->mReturnToQuery = '';
 		}
-
-		$this->mShowVForm = $this->shouldShowVForm();
 	}
 
 	function getDescription() {
@@ -160,17 +158,24 @@ class LoginForm extends SpecialPage {
 		}
 	}
 
-	public function execute( $par ) {
+	/*
+	 * @param $subPage string|null
+	 */
+	public function execute( $subPage ) {
 		if ( session_id() == '' ) {
 			wfSetupSession();
 		}
 
 		$this->load();
-		$this->setHeaders();
 
-		if ( $par == 'signup' ) { # Check for [[Special:Userlogin/signup]]
+		// Check for [[Special:Userlogin/signup]. This affects form display and
+		// page title.
+		if ( $subPage == 'signup' ) {
 			$this->mType = 'signup';
 		}
+		$this->mShowVForm = $this->shouldShowVForm();
+
+		$this->setHeaders();
 
 		// If logging in and not on HTTPS, either redirect to it or offer a link.
 		global $wgSecureLogin;
