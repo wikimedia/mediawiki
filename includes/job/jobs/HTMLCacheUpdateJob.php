@@ -79,8 +79,15 @@ class HTMLCacheUpdateJob extends Job {
 	 * Update all of the backlinks
 	 */
 	protected function doFullUpdate() {
+		global $wgMaxBacklinksInvalidate;
+
 		# Get an estimate of the number of rows from the BacklinkCache
 		$numRows = $this->blCache->getNumLinks( $this->params['table'] );
+		if ( $wgMaxBacklinksInvalidate !== false && $numRows > $wgMaxBacklinksInvalidate ) {
+			wfDebug( "Skipped HTML cache invalidation of {$this->title->getPrefixedText()}." );
+			return true;
+		}
+
 		if ( $numRows > $this->rowsPerJob * 2 ) {
 			# Do fast cached partition
 			$this->insertPartitionJobs();
@@ -96,6 +103,7 @@ class HTMLCacheUpdateJob extends Job {
 				$this->invalidateTitles( $titleArray ); // just do the query
 			}
 		}
+
 		return true;
 	}
 
