@@ -1260,6 +1260,7 @@ class Preferences {
 	}
 
 	/**
+	 * @param $context IContextSource
 	 * @return array
 	 */
 	static function getTimezoneOptions( IContextSource $context ) {
@@ -1364,6 +1365,8 @@ class Preferences {
 	}
 
 	/**
+	 * Handle the form submission if everything validated properly
+	 *
 	 * @param $formData
 	 * @param $form PreferencesForm
 	 * @param $entryPoint string
