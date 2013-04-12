@@ -36,6 +36,7 @@ class Exif {
 	const SHORT = 3; //!< A 16-bit (2-byte) unsigned integer.
 	const LONG = 4; //!< A 32-bit (4-byte) unsigned integer.
 	const RATIONAL = 5; //!< Two LONGs. The first LONG is the numerator and the second LONG expresses the denominator
+	const SHORT_OR_LONG = 6; //!< A 16-bit (2-byte) or 32-bit (4-byte) unsigned integer.
 	const UNDEFINED = 7; //!< An 8-bit byte that can take any value depending on the field definition
 	const SLONG = 9; //!< A 32-bit (4-byte) signed integer (2's complement notation),
 	const SRATIONAL = 10; //!< Two SLONGs. The first SLONG is the numerator and the second SLONG is the denominator.
@@ -124,8 +125,8 @@ class Exif {
 			# TIFF Rev. 6.0 Attribute Information (p22)
 			'IFD0' => array(
 				# Tags relating to image structure
-				'ImageWidth' => Exif::SHORT.','.Exif::LONG,		# Image width
-				'ImageLength' => Exif::SHORT.','.Exif::LONG,		# Image height
+				'ImageWidth' => Exif::SHORT_OR_LONG,		# Image width
+				'ImageLength' => Exif::SHORT_OR_LONG,		# Image height
 				'BitsPerSample' => array( Exif::SHORT, 3 ),		# Number of bits per component
 				# "When a primary image is JPEG compressed, this designation is not"
 				# "necessary and is omitted." (p23)
@@ -134,25 +135,25 @@ class Exif {
 				'Orientation' => Exif::SHORT,				# Orientation of image #p24
 				'SamplesPerPixel' => Exif::SHORT,			# Number of components
 				'PlanarConfiguration' => Exif::SHORT,			# Image data arrangement #p24
-				'YCbCrSubSampling' => array( Exif::SHORT, 2),		# Subsampling ratio of Y to C #p24
+				'YCbCrSubSampling' => array( Exif::SHORT, 2 ),		# Subsampling ratio of Y to C #p24
 				'YCbCrPositioning' => Exif::SHORT,			# Y and C positioning #p24-25
 				'XResolution' => Exif::RATIONAL,			# Image resolution in width direction
 				'YResolution' => Exif::RATIONAL,			# Image resolution in height direction
 				'ResolutionUnit' => Exif::SHORT,			# Unit of X and Y resolution #(p26)
 
 				# Tags relating to recording offset
-				'StripOffsets' => Exif::SHORT.','.Exif::LONG,			# Image data location
-				'RowsPerStrip' => Exif::SHORT.','.Exif::LONG,			# Number of rows per strip
-				'StripByteCounts' => Exif::SHORT.','.Exif::LONG,		# Bytes per compressed strip
-				'JPEGInterchangeFormat' => Exif::SHORT.','.Exif::LONG,		# Offset to JPEG SOI
-				'JPEGInterchangeFormatLength' => Exif::SHORT.','.Exif::LONG,	# Bytes of JPEG data
+				'StripOffsets' => Exif::SHORT_OR_LONG,			# Image data location
+				'RowsPerStrip' => Exif::SHORT_OR_LONG,			# Number of rows per strip
+				'StripByteCounts' => Exif::SHORT_OR_LONG,		# Bytes per compressed strip
+				'JPEGInterchangeFormat' => Exif::SHORT_OR_LONG,		# Offset to JPEG SOI
+				'JPEGInterchangeFormatLength' => Exif::SHORT_OR_LONG,	# Bytes of JPEG data
 
 				# Tags relating to image data characteristics
 				'TransferFunction' => Exif::IGNORE,			# Transfer function
-				'WhitePoint' => array( Exif::RATIONAL, 2),		# White point chromaticity
-				'PrimaryChromaticities' => array( Exif::RATIONAL, 6),	# Chromaticities of primarities
-				'YCbCrCoefficients' => array( Exif::RATIONAL, 3),	# Color space transformation matrix coefficients #p27
-				'ReferenceBlackWhite' => array( Exif::RATIONAL, 6),	# Pair of black and white reference values
+				'WhitePoint' => array( Exif::RATIONAL, 2 ),		# White point chromaticity
+				'PrimaryChromaticities' => array( Exif::RATIONAL, 6 ),	# Chromaticities of primarities
+				'YCbCrCoefficients' => array( Exif::RATIONAL, 3 ),	# Color space transformation matrix coefficients #p27
+				'ReferenceBlackWhite' => array( Exif::RATIONAL, 6 ),	# Pair of black and white reference values
 
 				# Other tags
 				'DateTime' => Exif::ASCII,				# File change date and time
@@ -177,8 +178,8 @@ class Exif {
 				# Tags relating to image configuration
 				'ComponentsConfiguration' => Exif::UNDEFINED,			# Meaning of each component #p33
 				'CompressedBitsPerPixel' => Exif::RATIONAL,			# Image compression mode
-				'PixelYDimension' => Exif::SHORT.','.Exif::LONG,		# Valid image width
-				'PixelXDimension' => Exif::SHORT.','.Exif::LONG,		# Valid image height
+				'PixelYDimension' => Exif::SHORT_OR_LONG,		# Valid image width
+				'PixelXDimension' => Exif::SHORT_OR_LONG,		# Valid image height
 
 				# Tags relating to related user information
 				'MakerNote' => Exif::IGNORE,				# Manufacturer notes
@@ -218,7 +219,7 @@ class Exif {
 				'FocalPlaneXResolution' => Exif::RATIONAL,		# Focal plane X resolution
 				'FocalPlaneYResolution' => Exif::RATIONAL,		# Focal plane Y resolution
 				'FocalPlaneResolutionUnit' => Exif::SHORT,		# Focal plane resolution unit #p46
-				'SubjectLocation' => array( Exif::SHORT, 2),		# Subject location
+				'SubjectLocation' => array( Exif::SHORT, 2 ),		# Subject location
 				'ExposureIndex' => Exif::RATIONAL,			# Exposure index
 				'SensingMethod' => Exif::SHORT,				# Sensing method #p46
 				'FileSource' => Exif::UNDEFINED,			# File source #p47
@@ -250,12 +251,12 @@ class Exif {
 				'GPSLatitudeRef' => Exif::ASCII,			# North or South Latitude #p52-53
 				'GPSLatitude' => array( Exif::RATIONAL, 3 ),		# Latitude
 				'GPSLongitudeRef' => Exif::ASCII,			# East or West Longitude #p53
-				'GPSLongitude' => array( Exif::RATIONAL, 3),		# Longitude
+				'GPSLongitude' => array( Exif::RATIONAL, 3 ),		# Longitude
 				'GPSAltitudeRef' => Exif::UNDEFINED,
 				# Altitude reference. Note, the exif standard says this should be an EXIF::Byte,
 				# but php seems to disagree.
 				'GPSAltitude' => Exif::RATIONAL,			# Altitude
-				'GPSTimeStamp' => array( Exif::RATIONAL, 3),		# GPS time (atomic clock)
+				'GPSTimeStamp' => array( Exif::RATIONAL, 3 ),		# GPS time (atomic clock)
 				'GPSSatellites' => Exif::ASCII,				# Satellites used for measurement
 				'GPSStatus' => Exif::ASCII,				# Receiver status #p54
 				'GPSMeasureMode' => Exif::ASCII,			# Measurement mode #p54-55
@@ -772,6 +773,9 @@ class Exif {
 			case (string)Exif::RATIONAL:
 				$this->debug( $val, __FUNCTION__, $debug );
 				return $this->isRational( $val );
+			case (string)Exif::SHORT_OR_LONG:
+				$this->debug( $val, __FUNCTION__, $debug );
+				return $this->isShort( $val ) || $this->isLong( $val );
 			case (string)Exif::UNDEFINED:
 				$this->debug( $val, __FUNCTION__, $debug );
 				return $this->isUndefined( $val );
@@ -781,9 +785,6 @@ class Exif {
 			case (string)Exif::SRATIONAL:
 				$this->debug( $val, __FUNCTION__, $debug );
 				return $this->isSrational( $val );
-			case (string)Exif::SHORT.','.Exif::LONG:
-				$this->debug( $val, __FUNCTION__, $debug );
-				return $this->isShort( $val ) || $this->isLong( $val );
 			case (string)Exif::IGNORE:
 				$this->debug( $val, __FUNCTION__, $debug );
 				return false;
