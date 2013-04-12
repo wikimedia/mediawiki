@@ -185,8 +185,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Mostra el numaro de utenti che i ga ła pajina en oservasion',
 'tog-oldsig' => 'Anteprima de ła firma:',
 'tog-fancysig' => 'Interpreta i comandi wiki in te la firma (sensa colegamento automatego)',
-'tog-externaleditor' => "Dopara par default un editor de testo esterno (soło par utenti esperti. Richiede l'uxo de inpostasion particołari sol proprio computer)",
-'tog-externaldiff' => "Dopara par default un programa de diff esterno (soło par utenti esperti. Richiede l'uxo de inpostasion particołari sol proprio computer)",
 'tog-showjumplinks' => 'Ativa i cołegamenti acesibiłi "va a"',
 'tog-uselivepreview' => 'Ativa ła funsion "Line preview" (el dimanda JavaScript; sperimentałe)',
 'tog-forceeditsummary' => "Chiedi conferma se l'ozeto de ła modifega el xé vodo",
@@ -200,6 +198,7 @@ $messages = array(
 'tog-diffonly' => 'No visuałisar el contenuo de ła pajina dopo el confronto tra version',
 'tog-showhiddencats' => 'Mostra łe categorie sconte',
 'tog-norollbackdiff' => 'No mostrare el confronto tra version dopo aver efetuà on rollback',
+'tog-useeditwarning' => 'Dime se sto lassando na pagina de modifica sensa aver salvà',
 
 'underline-always' => 'Senpre',
 'underline-never' => 'Mai',
@@ -569,9 +568,15 @@ Ocio che serte pagine podarìa èssar che ti 'e vedi come se te fussi 'ncora dre
 'welcomecreation-msg' => 'El to nome utente el xe stà creà.
 Nó desmentegarte de personałixare łe [[Special:Preferences|prefarense de {{SITENAME}}]].',
 'yourname' => 'Nome utente:',
+'userlogin-yourname' => 'Nome utente',
+'userlogin-yourname-ph' => 'Inserissi el to nome utente',
 'yourpassword' => 'Password:',
+'userlogin-yourpassword' => 'Password',
+'userlogin-yourpassword-ph' => 'Inserisi ła to password',
 'yourpasswordagain' => 'De novo la password:',
 'remembermypassword' => 'Tiente in mente la password su sto conputer (par un massimo de $1 {{PLURAL:$1|zorno|zorni}})',
+'userlogin-remembermypassword' => 'Tiente in mente chi son',
+'userlogin-signwithsecure' => 'Entra con un server seguro',
 'securelogin-stick-https' => 'Resta tacà par HTTPS dopo èssar entrà',
 'yourdomainname' => 'Spesifegare el dominio',
 'password-change-forbidden' => 'Nó xe posibiłe canbiar ła password so sta wiki.',
@@ -584,12 +589,15 @@ Nó desmentegarte de personałixare łe [[Special:Preferences|prefarense de {{SI
 'logout' => 'Và fora',
 'userlogout' => 'và fora',
 'notloggedin' => 'No te sì entrà col to nome utente',
+'userlogin-noaccount' => 'Gheto mia na utensa?',
+'userlogin-joinproject' => 'Unìssete a {{SITENAME}}',
 'nologin' => "No te sito gnancora iscrito? '''$1'''.",
 'nologinlink' => 'Falo desso',
 'createaccount' => 'Crea un utente novo',
 'gotaccount' => "Sito zà iscrito? '''$1'''.",
 'gotaccountlink' => 'Entra',
 'userlogin-resetlink' => "Desmentegà i to dati d'aceso?",
+'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Ajuto col login]]',
 'createaccountmail' => 'Dopara na password caxuałe tenporanea e inviała al indiriso e-mail spesifegà cuà soto',
 'createaccountreason' => 'Motivassion:',
 'badretype' => 'Le do password le xe difarenti.',
@@ -914,6 +922,8 @@ La esiste de zà.',
 'content-failed-to-parse' => "Inposibiłe anałixare $2 pa'l modèl $1: $3",
 'invalid-content-data' => 'Dati contegnui nó vałidi',
 'content-not-allowed-here' => 'Contegnùo in "$1" nó consentio inte ła pàjina [[$2]]',
+'editwarning-warning' => 'Se te vè via da sta pagina te podaressi pèrdar tute le modìfeghe che te ghè fato.
+Se te sì loggà, te poli disabilitar sto aviso in te la sezion "{{int:prefs-editing}} de le to preferense.',
 
 # Content models
 'content-model-wikitext' => 'wikitesto',
@@ -1192,15 +1202,6 @@ Prova a métarghe \"all:\" davanti al testo che te serchi par vardar in tuti i n
 'powersearch-togglenone' => 'Nissun',
 'search-external' => 'Riserca esterna',
 'searchdisabled' => 'La riserca interna de {{SITENAME}} no la xe ativa; par intanto te pol proár a doparar un motore de riserca esterno come Google. (Nota però che i contenuti de {{SITENAME}} presenti in sti motori i podarìa èssar mìà agiornà.)',
-
-# Quickbar
-'qbsettings' => 'Settaggio barra menu',
-'qbsettings-none' => 'Nessun',
-'qbsettings-fixedleft' => 'Fisso a sinistra',
-'qbsettings-fixedright' => 'Fisso a destra',
-'qbsettings-floatingleft' => 'Fluttuante a sinistra',
-'qbsettings-floatingright' => 'Fluttuante a destra',
-'qbsettings-directionality' => 'Fiso, a seconda de ła diresion del testo nte ła to lengua',
 
 # Preferences page
 'preferences' => 'Prefarense',
@@ -1738,7 +1739,6 @@ Par na major sicuressa, img_auth.php el xe disabilità.',
 'http-read-error' => 'Eror de letura HTTP.',
 'http-timed-out' => 'Richiesta HTTP scadùa.',
 'http-curl-error' => "Eror nel recupero de l'URL: $1",
-'http-host-unreachable' => 'URL mìa ragiungibile',
 'http-bad-status' => 'Ghe xe stà un problema durante la richiesta HTTP: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -1891,6 +1891,11 @@ Probabilmente te vui modifegar ła descrision prexente inte ła [$2 pàjina de d
 'disambiguations-text' => "Łe pàjine inte ła lista cuà soto łe ga drento almanco un ligamento a na '''pàjina de dixanbiguasion'''.
 Łe podaria dover puntar a na pàjina pì apropià.<br />
 Vien considerae pàjine de dixanbiguasion tute cuełe che łe ga drento i modełi elencai in [[MediaWiki:Disambiguationspage]].",
+
+'pageswithprop' => 'Pagine co na proprietà de pagina',
+'pageswithprop-legend' => 'Pagine co na proprietà de pagina',
+'pageswithprop-prop' => 'Nome proprietà:',
+'pageswithprop-submit' => 'Và',
 
 'doubleredirects' => 'Redirect dopi',
 'doubleredirectstext' => 'Sta pagina le elenca pagine che rimanda a altre pagine de rimando.
@@ -2053,15 +2058,6 @@ Xe nesesario almanco un dominio de primo liveło, tipo "*.org".<br />
 'listusers-submit' => 'Mostra',
 'listusers-noresult' => 'Nissun utente el risponde ai criteri inpostà.',
 'listusers-blocked' => '(blocà)',
-
-# Special:ActiveUsers
-'activeusers' => 'Lista dei utenti ativi',
-'activeusers-intro' => 'Sta qua xe la lista dei utenti che ga fato calcossa {{PLURAL:$1|sto ultimo zorno|sti ultimi $1 zorni}}.',
-'activeusers-count' => "$1 {{PLURAL:$1|asion}} {{PLURAL:$3|inte'l ultimo xorno|inte i ultimi $3 xorni}}",
-'activeusers-from' => 'Fà védar i utenti a partir da:',
-'activeusers-hidebots' => 'Scondi i bot',
-'activeusers-hidesysops' => 'Scondi i aministradori',
-'activeusers-noresult' => 'Nissun utente catà.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Diriti dei grupi utenti',
@@ -3706,14 +3702,16 @@ Le imagini le vien mostrà a la risoluzion pi granda che se pol, par i altri tip
 'htmlform-submit' => 'Manda',
 'htmlform-reset' => 'Scancèla modifiche',
 'htmlform-selectorother-other' => 'Altro',
+'htmlform-no' => 'No',
+'htmlform-yes' => 'Sì',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 con la possibilità de riserca completa nel testo',
 'sqlite-no-fts' => '$1 sensa la possibilità de riserca completa nel testo',
 
 # New logging system
-'logentry-delete-delete' => '$1 ga scansełà ła pajina $3',
-'logentry-delete-restore' => '$1 ga ripristinà "$3"',
+'logentry-delete-delete' => '$1 {{GENDER:$2|el|la}} ga scansełà ła pajina $3',
+'logentry-delete-restore' => '$1 {{GENDER:$2|el|la}} ga ripristinà "$3"',
 'logentry-delete-event' => '$1 ga canbià ła vixibiłità de {{PLURAL:$5|n\'asion del registro|$5 asion del registro}} de "$3": $4',
 'logentry-delete-revision' => '$1 ga canbià ła vixibiłità de {{PLURAL:$5|na revixion|$5 revixion}} de ła pajina"$3": $4',
 'logentry-delete-event-legacy' => '$1 ga canbià ła vixibiłità de calche asion del registro de "$3"',
@@ -3818,5 +3816,8 @@ Le imagini le vien mostrà a la risoluzion pi granda che se pol, par i altri tip
 'duration-decades' => '$1 {{PLURAL:$1|decenio|deceni}}',
 'duration-centuries' => '$1 {{PLURAL:$1|secolo|secoli}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenio|mileni}}',
+
+# Image rotation
+'rotate-comment' => 'Imagine girà de $1 {{PLURAL:$1|grado|gradi}} in senso orario',
 
 );

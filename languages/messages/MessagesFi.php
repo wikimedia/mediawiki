@@ -342,8 +342,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Näytä sivua tarkkailevien käyttäjien määrä',
 'tog-oldsig' => 'Nykyinen allekirjoitus',
 'tog-fancysig' => 'Muotoilematon allekirjoitus ilman automaattista linkkiä',
-'tog-externaleditor' => 'Käytä ulkoista tekstieditoria oletuksena. Vain kokeneille käyttäjille, vaatii selaimen asetusten muuttamista. (<span class="plainlinks">[//www.mediawiki.org/wiki/Manual:External_editors Ohje]</span>)',
-'tog-externaldiff' => 'Käytä oletuksena ulkoista työkalua sivun eri versioiden välisten erojen tarkasteluun. Vain kokeneille käyttäjille, vaatii selaimen asetusten muuttamista. (<span class="plainlinks">[//www.mediawiki.org/wiki/Manual:External_editors Ohje]</span>)',
 'tog-showjumplinks' => 'Lisää loikkaa-käytettävyyslinkit sivun alkuun',
 'tog-uselivepreview' => 'Käytä pikaesikatselua (JavaScript) (kokeellinen)',
 'tog-forceeditsummary' => 'Huomauta, jos yhteenvetoa ei ole annettu',
@@ -358,6 +356,7 @@ $messages = array(
 'tog-showhiddencats' => 'Näytä piilotetut luokat',
 'tog-noconvertlink' => 'Älä muunna linkkien otsikoita toiseen kirjoitusjärjestelmään',
 'tog-norollbackdiff' => 'Älä näytä eroavaisuuksia palauttamisen jälkeen',
+'tog-useeditwarning' => 'Varoita minua, kun poistun muokkaussivulta tallentamatta muutoksia',
 
 'underline-always' => 'Aina',
 'underline-never' => 'Ei koskaan',
@@ -724,6 +723,7 @@ Huomaa, että jotkut sivut saattavat näkyä edelleen kuin olisit kirjautunut si
 'yourpassword' => 'Salasana',
 'yourpasswordagain' => 'Salasana uudelleen',
 'remembermypassword' => 'Muista minut (enintään $1 {{PLURAL:$1|päivä|päivää}})',
+'userlogin-remembermypassword' => 'Muista minut',
 'securelogin-stick-https' => 'Jatka salatun yhteyden käyttämistä sisäänkirjautumisen jälkeen',
 'yourdomainname' => 'Verkkonimi',
 'password-change-forbidden' => 'Et voi muuttaa salasanoja tässä wikissä.',
@@ -773,7 +773,7 @@ Jos joku muu on tehnyt tämän pyynnön, tai jos olet muistanut salasanasi ja et
 'passwordsent' => 'Uusi salasana on lähetetty käyttäjän <b>$1</b> sähköpostiosoitteeseen.',
 'blocked-mailpassword' => 'Osoitteellesi on asetettu muokkausesto, joka estää käyttämästä salasanamuistutustoimintoa.',
 'eauthentsent' => 'Varmennussähköposti on lähetetty annettuun sähköpostiosoitteeseen. Muita viestejä ei lähetetä, ennen kuin olet toiminut viestin ohjeiden mukaan ja varmistanut, että sähköpostiosoite kuuluu sinulle.',
-'throttled-mailpassword' => 'Salasanamuistutus on lähetetty {{PLURAL:$1|kuluvan|kuluvien $1}} tunnin aikana. Salasanamuistutuksia lähetään enintään {{PLURAL:$1|tunnin|$1 tunnin}} välein.',
+'throttled-mailpassword' => 'Salasananpalautusviesti on lähetetty {{PLURAL:$1|kuluvan|kuluvien $1}} tunnin aikana. Salasananpalautusviestejä lähetetään enintään {{PLURAL:$1|tunnin|$1 tunnin}} välein.',
 'mailerror' => 'Virhe lähetettäessä sähköpostia: $1',
 'acct_creation_throttle_hit' => 'IP-osoitteestasi on luotu tähän wikiin jo {{PLURAL:$1|yksi tunnus|$1 tunnusta}} päivän aikana, joka suurin sallittu määrä tälle ajalle.
 Tästä johtuen tästä IP-osoitteesta ei voi tällä hetkellä luoda uusia tunnuksia.',
@@ -823,9 +823,10 @@ Olet saattanut jo onnistuneesti vaihtaa salasanasi tai pyytää uutta väliaikai
 
 # Special:PasswordReset
 'passwordreset' => 'Salasanan alustus',
-'passwordreset-text' => 'Saat sähköpostimuistutuksen tunnuksesi tiedoista, kun täytät tämän lomakkeen.',
+'passwordreset-text' => 'Täytä tämä lomake vaihtaaksesi salasanasi.',
 'passwordreset-legend' => 'Salasanan vaihto',
 'passwordreset-disabled' => 'Salasanojen alustus ei ole mahdollista tässä wikissä.',
+'passwordreset-emaildisabled' => 'Sähköpostitoiminnot on poistettu käytöstä tässä wikissä.',
 'passwordreset-pretext' => '{{PLURAL:$1||Kirjoita jokin jäljempänä pyydetty tieto}}',
 'passwordreset-username' => 'Käyttäjätunnus',
 'passwordreset-domain' => 'Verkkotunnus',
@@ -1055,6 +1056,8 @@ Se on jo olemassa.',
 'content-failed-to-parse' => 'Sisältö tyypiltään $2 ei jäsenny tyypiksi $1: $3',
 'invalid-content-data' => 'Virheellinen sisältö',
 'content-not-allowed-here' => 'Sivun [[$2]] sisältö ei voi olla tyyppiä $1.',
+'editwarning-warning' => 'Tältä sivulta poistuminen saattaa aiheuttaa kaikkien tekemiesi muutosten katoamisen.
+Jos olet kirjautuneena sisään, voit poistaa tämän varoituksen käytöstä asetuksissa osiossa ”{{int:prefs-editing}}”.',
 
 # Content models
 'content-model-wikitext' => 'wikiteksti',
@@ -1333,15 +1336,6 @@ Kokeile lisätä haun alkuun ''all:'', niin haku kohdistuu kaikkeen sisältöön
 'powersearch-togglenone' => 'Poista valinnat',
 'search-external' => 'Ulkoinen haku',
 'searchdisabled' => 'Tekstihaku on poistettu toistaiseksi käytöstä suuren kuorman vuoksi. Voit käyttää alla olevaa Googlen hakukenttää sivujen etsimiseen, kunnes haku tulee taas käyttöön. <small>Huomaa, että ulkopuoliset kopiot {{GRAMMAR:genitive|{{SITENAME}}}} sisällöstä eivät välttämättä ole ajan tasalla.</small>',
-
-# Quickbar
-'qbsettings' => 'Pikavalikko',
-'qbsettings-none' => 'Ei mitään',
-'qbsettings-fixedleft' => 'Tekstin mukana, vasen',
-'qbsettings-fixedright' => 'Tekstin mukana, oikea',
-'qbsettings-floatingleft' => 'Pysyen vasemmalla',
-'qbsettings-floatingright' => 'Pysyen oikealla',
-'qbsettings-directionality' => 'Kiinteä, riippuen käyttämäsi kielen kirjoitusjärjestelmän suunnasta',
 
 # Preferences page
 'preferences' => 'Asetukset',
@@ -3859,6 +3853,8 @@ Kuvat näytetään täysikokoisina. Muut tiedostot avataan niille määritetyss�
 'htmlform-submit' => 'Lähetä',
 'htmlform-reset' => 'Kumoa muutokset',
 'htmlform-selectorother-other' => 'Muu',
+'htmlform-no' => 'Ei',
+'htmlform-yes' => 'Kyllä',
 
 # SQLite database support
 'sqlite-has-fts' => '$1, jossa on tuki kokotekstihaulle',

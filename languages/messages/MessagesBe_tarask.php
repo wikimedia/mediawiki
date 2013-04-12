@@ -289,8 +289,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Паказваць колькасьць назіральнікаў',
 'tog-oldsig' => 'Цяперашні подпіс:',
 'tog-fancysig' => 'Апрацоўваць подпіс як вікі-тэкст (без аўтаматычнай спасылкі)',
-'tog-externaleditor' => 'Выкарыстоўваць вонкавы рэдактар па змоўчваньні (толькі для адмыслоўцаў, патрабуе спэцыяльных наладак на вашым кампутары. [//www.mediawiki.org/wiki/Manual:External_editors Падрабязнасьці.])',
-'tog-externaldiff' => 'Выкарыстоўваць вонкавую праграму параўнаньня вэрсіяў па змоўчваньні (толькі для адмыслоўцаў, патрабуе спэцыяльных наладак на вашым кампутары. [//www.mediawiki.org/wiki/Manual:External_editors Падрабязнасьці.])',
 'tog-showjumplinks' => 'Актываваць дапаможныя спасылкі «перайсьці да»',
 'tog-uselivepreview' => 'Выкарыстоўваць хуткі папярэдні прагляд (патрабуе JavaScript) (экспэрымэнтальна)',
 'tog-forceeditsummary' => 'Папярэджваць пра адсутнасьць кароткага апісаньня зьменаў',
@@ -305,6 +303,7 @@ $messages = array(
 'tog-showhiddencats' => 'Паказваць схаваныя катэгорыі',
 'tog-noconvertlink' => 'Забараніць канвэртацыю назваў спасылак',
 'tog-norollbackdiff' => 'Не паказваць зьмены пасьля выкарыстаньня функцыі адкату',
+'tog-useeditwarning' => 'Папярэджваць мяне, калі я буду пакідаць старонку рэдагаваньня зь незахаванымі зьменамі',
 
 'underline-always' => 'Заўсёды',
 'underline-never' => 'Ніколі',
@@ -792,6 +791,7 @@ $2',
 'passwordreset-text' => 'Запоўніце гэтую форму, каб скінуць пароль.',
 'passwordreset-legend' => 'Ачысьціць пароль',
 'passwordreset-disabled' => 'Магчымасьць ачысткі паролю была забароненая ў {{GRAMMAR:месны|{{SITENAME}}}}.',
+'passwordreset-emaildisabled' => 'Функцыі e-mail у гэтай вікі былі адключаныя.',
 'passwordreset-pretext' => '{{PLURAL:$1||Увядзіце ніжэй частку зьвестак}}',
 'passwordreset-username' => 'Імя ўдзельніка:',
 'passwordreset-domain' => 'Дамэн:',
@@ -1033,6 +1033,8 @@ $2
 'content-failed-to-parse' => 'Зьмест «$2» не адпавядае тыпу $1: $3.',
 'invalid-content-data' => 'Няслушныя зьвесткі',
 'content-not-allowed-here' => 'Зьмест тыпу «$1» на старонцы [[$2]] не дазволены',
+'editwarning-warning' => 'Усе зробленыя Вамі зьмены могуць быць страчаныя, калі Вы пакінеце гэтую старонку.
+Калі Вы ўвайшлі ў сыстэму, Вы можаце адключыць гэтае папярэджаньне у сэкцыі «{{int:prefs-editing}}» Вашых наладаў.',
 
 # Content models
 'content-model-wikitext' => 'вікі-тэкст',
@@ -1316,6 +1318,7 @@ $1",
 'search-external' => 'Вонкавы пошук',
 'searchdisabled' => 'Функцыя пошуку ў {{GRAMMAR:месны|{{SITENAME}}}} адключаная.
 Вы можаце пашукаць з дапамогай Google, але заўважце, што там інфармацыя пра старонкі {{GRAMMAR:родны|{{SITENAME}}}} можа быць састарэлай.',
+'search-error' => 'Узьнікла памылка пры пошуку: $1',
 
 # Preferences page
 'preferences' => 'Налады',
@@ -3879,6 +3882,8 @@ MediaWiki распаўсюджваецца з надзеяй, што будзе 
 'htmlform-submit' => 'Захаваць',
 'htmlform-reset' => 'Адмяніць зьмены',
 'htmlform-selectorother-other' => 'Іншае',
+'htmlform-no' => 'Не',
+'htmlform-yes' => 'Так',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 з падтрымкай поўнатэкстнага пошуку',

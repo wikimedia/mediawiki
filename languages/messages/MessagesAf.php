@@ -2338,7 +2338,8 @@ Die mees onlangse wysiging is gemaak deur [[User:$3|$3]] ([[User talk:$3|besprek
 'editcomment' => "Die wysigsopsomming was: \"''\$1''\".",
 'revertpage' => 'Wysigings deur [[Special:Contributions/$2|$2]] teruggerol na laaste weergawe deur $1',
 'revertpage-nouser' => 'Rol wysigings deur (gebruikersnaam verwyder) terug na die laaste weergawe deur [[User:$1|$1]]',
-'rollback-success' => 'Wysigings deur $1 teruggerol; terugverander na laaste weergawe deur $2.',
+'rollback-success' => 'Wysigings deur $1 is teruggerol.
+Die laaste weergawe van $2 is teruggeplaas.',
 
 # Edit tokens
 'sessionfailure-title' => 'Sessie het gefaal',
@@ -2953,7 +2954,7 @@ Die lêer is slegs gedeeltelik opgelaai.',
 'tooltip-watchlistedit-raw-submit' => 'Opdateer dophoulys',
 'tooltip-recreate' => 'Herskep hierdie bladsy al is dit voorheen geskrap',
 'tooltip-upload' => 'Begin oplaai',
-'tooltip-rollback' => '"Terugrol" rol met een kliek wysiging(s) terug wat die laaste gebruiker aan hierdie bladsy aangebring het.',
+'tooltip-rollback' => 'Rol met een kliek die laaste gebruiker se wysiging(s) van aan hierdie bladsy terug.',
 'tooltip-undo' => 'Met "ongedaan maak" maak u hierdie wysiging ongedaan en land u in die wysigingsvenster.
 U kan daar \'n wysigingsopsomming byvoeg.',
 'tooltip-preferences-save' => 'Stoor voorkeure',
