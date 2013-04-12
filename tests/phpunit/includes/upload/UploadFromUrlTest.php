@@ -6,7 +6,6 @@
  * @group Database
  */
 class UploadFromUrlTest extends ApiTestCase {
-
 	protected function setUp() {
 		parent::setUp();
 
@@ -236,7 +235,7 @@ class UploadFromUrlTest extends ApiTestCase {
 
 		$this->assertFalse( (bool)$talk->getArticleID( Title::GAID_FOR_UPDATE ), 'User talk does not exist' );
 
-		$data = $this->doApiRequest( array(
+		$this->doApiRequest( array(
 			'action' => 'upload',
 			'filename' => 'UploadFromUrlTest.png',
 			'url' => 'http://bits.wikimedia.org/skins-1.5/common/images/poweredby_mediawiki_88x31.png',
@@ -260,7 +259,7 @@ class UploadFromUrlTest extends ApiTestCase {
 
 		$exception = false;
 		try {
-			$data = $this->doApiRequest( array(
+			$this->doApiRequest( array(
 				'action' => 'upload',
 				'filename' => 'UploadFromUrlTest.png',
 				'url' => 'http://bits.wikimedia.org/skins-1.5/common/images/poweredby_mediawiki_88x31.png',
@@ -330,7 +329,6 @@ class UploadFromUrlTest extends ApiTestCase {
 
 		return $data;
 	}
-
 
 	/**
 	 *

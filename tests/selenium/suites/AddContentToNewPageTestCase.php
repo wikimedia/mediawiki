@@ -105,8 +105,6 @@ class AddContentToNewPageTestCase extends SeleniumTestCase {
 
 	// Add level 2 headline and verify output in the preview
 	public function testAddLevel2HeadLine() {
-		$blnElementPresent = false;
-		$blnTextPresent = false;
 		$this->getExistingPage();
 		$this->clickEditLink();
 		$this->loadWikiEditor();

@@ -161,13 +161,13 @@ class ApiEditPageTest extends ApiTestCase {
 		if ( $text !== null ) {
 			if ( $text === '' ) {
 				// can't create an empty page, so create it with some content
-				list( $re, , ) = $this->doApiRequestWithToken( array(
+				$this->doApiRequestWithToken( array(
 					'action' => 'edit',
 					'title' => $name,
 					'text' => '(dummy)', ) );
 			}
 
-			list( $re, , ) = $this->doApiRequestWithToken( array(
+			list( $re ) = $this->doApiRequestWithToken( array(
 				'action' => 'edit',
 				'title' => $name,
 				'text' => $text, ) );
@@ -176,7 +176,7 @@ class ApiEditPageTest extends ApiTestCase {
 		}
 
 		// -- try append/prepend --------------------------------------------
-		list( $re, , ) = $this->doApiRequestWithToken( array(
+		list( $re ) = $this->doApiRequestWithToken( array(
 			'action' => 'edit',
 			'title' => $name,
 			$op . 'text' => $append, ) );
@@ -224,7 +224,7 @@ class ApiEditPageTest extends ApiTestCase {
 
 		// try to save edit, expect conflict
 		try {
-			list( $re, , ) = $this->doApiRequestWithToken( array(
+			$this->doApiRequestWithToken( array(
 				'action' => 'edit',
 				'title' => $name,
 				'text' => 'nix bar!',
@@ -280,7 +280,7 @@ class ApiEditPageTest extends ApiTestCase {
 
 		// try again, without following the redirect. Should fail.
 		try {
-			list( $re, , ) = $this->doApiRequestWithToken( array(
+			$this->doApiRequestWithToken( array(
 				'action' => 'edit',
 				'title' => $rname,
 				'text' => 'nix bar!',

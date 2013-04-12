@@ -7,7 +7,6 @@
  * @todo This test suite is severly broken and need a full review
  */
 class ApiWatchTest extends ApiTestCase {
-
 	protected function setUp() {
 		parent::setUp();
 		$this->doLogin();
@@ -95,8 +94,7 @@ class ApiWatchTest extends ApiTestCase {
 	/**
 	 */
 	function testGetRollbackToken() {
-
-		$pageinfo = $this->getTokens();
+		$this->getTokens();
 
 		if ( !Title::newFromText( 'Help:UTPage' )->exists() ) {
 			$this->markTestSkipped( "The article [[Help:UTPage]] does not exist" ); //TODO: just create it?
@@ -168,7 +166,7 @@ class ApiWatchTest extends ApiTestCase {
 		$this->assertArrayHasKey( 'delete', $data[0] );
 		$this->assertArrayHasKey( 'title', $data[0]['delete'] );
 
-		$data = $this->doApiRequest( array(
+		$this->doApiRequest( array(
 			'action' => 'query',
 			'list' => 'watchlist' ) );
 
