@@ -764,10 +764,11 @@ Per prevenire abusi, la funzione di reimpostazione della password può essere us
 'mailerror' => "Errore nell'invio del messaggio: $1",
 'acct_creation_throttle_hit' => "I visitatori del sito che usano il tuo indirizzo IP hanno creato {{PLURAL:$1|1 account|$1 account}} nell'ultimo giorno, che è il massimo consentito in questo periodo di tempo.
 Perciò, gli utenti che usano questo indirizzo IP non possono creare altri account per il momento.",
-'emailauthenticated' => "L'indirizzo e-mail è stato confermato il $2 alle $3.",
-'emailnotauthenticated' => "L'indirizzo e-mail non è stato ancora confermato. Non verranno inviati messaggi e-mail attraverso le funzioni elencate di seguito.",
+'emailauthenticated' => "L'indirizzo email è stato confermato il $2 alle $3.",
+'emailnotauthenticated' => "L'indirizzo di posta elettronica non è stato ancora confermato.
+Non verranno inviati messaggi email per le funzioni elencate di seguito.",
 'noemailprefs' => 'Indicare un indirizzo e-mail per attivare queste funzioni.',
-'emailconfirmlink' => 'Confermare il proprio indirizzo e-mail',
+'emailconfirmlink' => 'Conferma il tuo indirizzo email',
 'invalidemailaddress' => "L'indirizzo e-mail indicato ha un formato non valido. Inserire un indirizzo valido o svuotare la casella.",
 'cannotchangeemail' => 'Gli indirizzi e-mail non possono essere modificati in questo wiki.',
 'emaildisabled' => 'Questo sito non può inviare messaggi di posta elettronica.',
@@ -998,7 +999,7 @@ Se non desideri che i tuoi testi possano essere modificati e ridistribuiti da ch
 Inviando il testo dichiari inoltre, sotto tua responsabilità, che è stato scritto da te personalmente oppure è stato copiato da una fonte di pubblico dominio o similarmente libera.
 '''Non inviare materiale protetto da copyright senza autorizzazione!'''",
 'copyrightwarning2' => "Per favore tieni presente che tutti i contributi a {{SITENAME}} possono essere modificati, stravolti o cancellati da altri contributori.
-Se non desideri che i tuoi testi possano essere alterati, non inviarli qui.<br />
+Se non vuoi che i tuoi testi possano essere alterati, allora non inserirli.<br />
 Inviando il testo dichiari inoltre, sotto tua responsabilità, che è stato scritto da te personalmente oppure è stato copiato da una fonte di pubblico dominio o similarmente libera (vedi $1 per maggiori dettagli).
 '''Non inviare materiale protetto da copyright senza autorizzazione!'''",
 'longpageerror' => "'''Errore: il testo inviato è lungo {{PLURAL:$1|1|$1}} kilobyte, che è maggiore della dimensione massima consentita ({{PLURAL:$2|1|$2}} kilobyte).'''
@@ -1255,7 +1256,7 @@ Vedi l'[[Special:BlockList|elenco dei blocchi]] per l'elenco dei bandi e dei blo
 'showhideselectedversions' => 'Mostra/nascondi versioni selezionate',
 'editundo' => 'annulla',
 'diff-multi' => '({{PLURAL:$1|Una revisione intermedia|$1 revisioni intermedie}} di {{PLURAL:$2|un utente|$2 utenti}} non {{PLURAL:$1|mostrata|mostrate}})',
-'diff-multi-manyusers' => '({{PLURAL:$1|Una revisione intermedia|$1 revisioni intermedie}} di oltre $2 {{PLURAL:$2|utente|utenti}} non mostrate)',
+'diff-multi-manyusers' => '({{PLURAL:$1|Una revisione intermedia|$1 revisioni intermedie}} di oltre $2 {{PLURAL:$2|utente|utenti}} non {{PLURAL:$1|mostrata|mostrate}})',
 'difference-missing-revision' => '{{PLURAL:$2|Una versione|$2 versioni}} di questa differenza ($1) {{PLURAL:$2|non è stata trovata|non sono state trovate}}.
 
 Questo si verifica solitamente seguendo un collegamento obsoleto di un diff a una pagina cancellata.
@@ -1389,7 +1390,7 @@ I dettagli possono essere trovati nel [{{fullurl:{{#Special:Log}}/delete|page={{
 'allowemail' => 'Abilita la ricezione di messaggi e-mail da altri utenti',
 'prefs-searchoptions' => 'Ricerca',
 'prefs-namespaces' => 'Namespace',
-'defaultns' => 'In caso contrario, cerca in questi namespace:',
+'defaultns' => 'Altrimenti, cerca in questi namespace:',
 'default' => 'predefinito',
 'prefs-files' => 'File',
 'prefs-custom-css' => 'CSS personalizzato',
@@ -1941,7 +1942,7 @@ Probabilmente vuoi modificare la descrizione presente nella [$2 pagina di descri
 'filerevert-legend' => 'Ripristina file',
 'filerevert-intro' => "Si sta per ripristinare il file '''[[Media:$1|$1]]''' alla [$4 versione del $2, $3].",
 'filerevert-comment' => 'Motivo:',
-'filerevert-defaultcomment' => 'Ripristinata la versione delle $2, $1',
+'filerevert-defaultcomment' => 'Ripristinata la versione del $2, $1',
 'filerevert-submit' => 'Ripristina',
 'filerevert-success' => "'''Il file [[Media:$1|$1]]''' è stato ripristinato alla [$4 versione del $2, $3].",
 'filerevert-badversion' => 'Non esistono versioni locali precedenti del file con il timestamp richiesto.',
@@ -2623,7 +2624,7 @@ Sei sicuro di voler continuare?',
 'emailblock' => 'e-mail bloccate',
 'blocklist-nousertalk' => 'non può modificare la propria pagina di discussione',
 'ipblocklist-empty' => "L'elenco dei blocchi è vuoto.",
-'ipblocklist-no-results' => "L'indirizzo IP o nome utente richiesto non è bloccato.",
+'ipblocklist-no-results' => "L'indirizzo IP o il nome utente richiesto non è bloccato.",
 'blocklink' => 'blocca',
 'unblocklink' => 'sblocca',
 'change-blocklink' => 'cambia blocco',
@@ -3591,7 +3592,7 @@ Messaggio di errore del mailer: $1',
 'confirmemail_invalid' => 'Codice di conferma non valido. Il codice potrebbe essere scaduto.',
 'confirmemail_needlogin' => 'È necessario $1 per confermare il proprio indirizzo e-mail.',
 'confirmemail_success' => "L'indirizzo e-mail è confermato. Ora è possibile [[Special:UserLogin|eseguire l'accesso]] e fare pieno uso del sito.",
-'confirmemail_loggedin' => "L'indirizzo e-mail è stato confermato.",
+'confirmemail_loggedin' => "L'indirizzo email è stato confermato.",
 'confirmemail_error' => 'Errore nel salvataggio della conferma.',
 'confirmemail_subject' => "{{SITENAME}}: richiesta di conferma dell'indirizzo",
 'confirmemail_body' => 'Qualcuno, probabilmente tu stesso dall\'indirizzo IP $1, ha registrato l\'account "$2" su {{SITENAME}} indicando questo indirizzo e-mail.
@@ -3645,9 +3646,9 @@ Questo codice di conferma scadrà automaticamente alle $4.',
 # Delete conflict
 'deletedwhileediting' => "'''Attenzione''': questa pagina è stata cancellata dopo che hai cominciato a modificarla!",
 'confirmrecreate' => "L'utente [[User:$1|$1]] ([[User talk:$1|discussioni]]) ha cancellato questa pagina dopo che hai iniziato a modificarla, per il seguente motivo: ''$2''
-Per favore, conferma che desideri veramente ricreare questa pagina.",
+Per favore, conferma che vuoi veramente ricreare questa pagina.",
 'confirmrecreate-noreason' => "L'utente [[User:$1|$1]] ([[User talk:$1|discussioni]]) ha cancellato questa pagina dopo che hai iniziato a modificarla.
-Per favore, conferma che desideri veramente ricreare questa pagina.",
+Per favore, conferma che vuoi veramente ricreare questa pagina.",
 'recreate' => 'Ricrea',
 
 # action=purge

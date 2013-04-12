@@ -65,8 +65,6 @@ $messages = array(
 'tog-shownumberswatching' => "Nochd àireamh nan cleachdaichean a tha a' cumail sùil air",
 'tog-oldsig' => 'An t-earr-sgrìobhadh làithreach:',
 'tog-fancysig' => 'Làimhsich an t-earr-sgrìobhadh mar wikitext (gun cheangal leis fhèin)',
-'tog-externaleditor' => "Cleachd deasaichear on taobh a-muigh a ghnàth (do shàr-eòlaichean a-mhàin, feumaidh seo roghainnean sònraichte air a' choimpiutair agad [//www.mediawiki.org/wiki/Manual:External_editors Barrachd fiosrachaidh.])",
-'tog-externaldiff' => "Cleachd diff on taobh a-muigh a ghnàth (do shàr-eòlaichean a-mhàin, feumaidh seo roghainnean sònraichte air a' choimpiutair agad. [//www.mediawiki.org/wiki/Manual:External_editors Barrachd fiosrachaidh.])",
 'tog-showjumplinks' => 'Cuir an comas ceanglaichean so-inntrigeachd "gearr leum gu"',
 'tog-uselivepreview' => 'Cleachd an ro-shealladh beò (feumaidh seo JavaScript) (deuchainneach)',
 'tog-forceeditsummary' => "Cuir ceist nuair a dh'fhàgas mi gearr-chunntas an deasachaidh bàn",
@@ -80,6 +78,7 @@ $messages = array(
 'tog-diffonly' => 'Na seall susbaint nan duilleagan fo na diofaichean',
 'tog-showhiddencats' => 'Seall na roinnean falaichte',
 'tog-norollbackdiff' => 'Na dèan diof às dèidh roiligeadh air ais',
+'tog-useeditwarning' => 'Thoir rabhadh dhomh ma bhios mi an impis duilleag deasachaidh fhàgail mus do shàbhail mi na mùthaidhean agam',
 
 'underline-always' => 'An-còmhnaidh',
 'underline-never' => 'Na dèan seo idir',
@@ -826,6 +825,8 @@ Tha e ann mu thràth.",
 'content-failed-to-parse' => "Dh'fhàillig parsadh susbaint $2 airson modail $1: $3",
 'invalid-content-data' => 'Dàta susbaint a tha mì-dhligheach',
 'content-not-allowed-here' => 'Chan eil susbaint "$1" ceadaichte air an duilleag [[$2]]',
+'editwarning-warning' => 'Ma dh\'fhàgas tu an duilleag seo, faodaidh gun caill thu mùthadh sam bith a rinn thu.
+Ma tha thu air logadh a-steach, \'s urrainn dhut an rabhadh seo a chur dheth san roinn "Deasachadh" sna roghainnean agad.',
 
 # Content models
 'content-model-wikitext' => 'wikitext',
@@ -1213,7 +1214,7 @@ Tha duilleagan air [[Special:Watchlist|do chlàr-faire]] ann an litrichean '''tr
 'filehist-revert' => 'till',
 'filehist-current' => 'làithreach',
 'filehist-datetime' => 'Ceann-là/Àm',
-'filehist-thumb' => 'Meabh-dhealbh',
+'filehist-thumb' => 'Meanbh-dhealbh',
 'filehist-thumbtext' => 'Meanbh-dhealbh airson an tionndaidh on $1',
 'filehist-user' => 'Neach-cleachdaidh',
 'filehist-dimensions' => 'Meud',

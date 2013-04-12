@@ -824,9 +824,15 @@ Beachte, dass einige Seiten noch anzeigen können, dass du angemeldet bist, sola
 'welcomecreation-msg' => 'Dein Benutzerkonto wurde erstellt.
 Vergiss nicht, deine [[Special:Preferences|{{SITENAME}}-Einstellungen]] zu ändern.',
 'yourname' => 'Benutzername:',
+'userlogin-yourname' => 'Benutzername',
+'userlogin-yourname-ph' => 'Gib deinen Benutzernamen ein',
 'yourpassword' => 'Passwort:',
+'userlogin-yourpassword' => 'Passwort',
+'userlogin-yourpassword-ph' => 'Gib dein Passwort ein',
 'yourpasswordagain' => 'Passwort wiederholen:',
 'remembermypassword' => 'Mit diesem Browser dauerhaft angemeldet bleiben (maximal $1 {{PLURAL:$1|Tag|Tage}})',
+'userlogin-remembermypassword' => 'Angemeldet bleiben',
+'userlogin-signwithsecure' => 'Mit dem sicheren Server anmelden',
 'securelogin-stick-https' => 'Nach dem Anmelden mit HTTPS verbunden bleiben',
 'yourdomainname' => 'Deine Domain:',
 'password-change-forbidden' => 'Du kannst auf diesem Wiki keine Passwörter ändern.',
@@ -839,12 +845,16 @@ Vergiss nicht, deine [[Special:Preferences|{{SITENAME}}-Einstellungen]] zu ände
 'logout' => 'Abmelden',
 'userlogout' => 'Abmelden',
 'notloggedin' => 'Nicht angemeldet',
+'userlogin-noaccount' => 'Du hast noch kein Benutzerkonto?',
+'userlogin-joinproject' => '{{SITENAME}} beitreten',
 'nologin' => "Du hast kein Benutzerkonto? '''$1'''.",
 'nologinlink' => 'Neues Benutzerkonto anlegen',
 'createaccount' => 'Benutzerkonto anlegen',
 'gotaccount' => "Du hast bereits ein Benutzerkonto? '''$1'''.",
 'gotaccountlink' => 'Anmelden',
 'userlogin-resetlink' => 'Die Anmeldedaten vergessen?',
+'helplogin-url' => 'Help:Anmelden',
+'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Hilfe beim Anmelden]]',
 'createaccountmail' => 'Ein temporäres Zufallspasswort verwenden und an die unten angegebene E-Mail-Adresse versenden',
 'createaccountreason' => 'Grund:',
 'badretype' => 'Die beiden Passwörter stimmen nicht überein.',
@@ -940,6 +950,7 @@ Möglicherweise hast du dein Passwort bereits erfolgreich geändert oder ein neu
 'passwordreset-text' => 'Bitte dieses Formular ausfüllen, um dein Passwort zurückzusetzen.',
 'passwordreset-legend' => 'Passwort zurücksetzen',
 'passwordreset-disabled' => 'Das Zurücksetzen von Passwörtern wurde in diesem Wiki deaktiviert.',
+'passwordreset-emaildisabled' => 'Die E-Mail-Funktionen wurden auf diesem Wiki deaktiviert.',
 'passwordreset-pretext' => '{{PLURAL:$1||Gib eines der folgenden Daten ein.}}',
 'passwordreset-username' => 'Benutzername:',
 'passwordreset-domain' => 'Domain:',
@@ -948,7 +959,7 @@ Möglicherweise hast du dein Passwort bereits erfolgreich geändert oder ein neu
 'passwordreset-email' => 'E-Mail-Adresse:',
 'passwordreset-emailtitle' => 'Benutzerkontoinformationen auf {{SITENAME}}',
 'passwordreset-emailtext-ip' => 'Jemand mit der IP-Adresse $1, wahrscheinlich du selbst, hat eine Zurücksetzung deines
-Passworts für {{SITENAME}} angefordert ($4). {{PLURAL:$3|Das folgende Benutzerkonto ist|Die folgenden Benutzerkonten sind}}
+Passworts bei {{SITENAME}} angefordert ($4). {{PLURAL:$3|Das folgende Benutzerkonto ist|Die folgenden Benutzerkonten sind}}
 mit dieser E-Mail-Adresse verknüpft:
 
 $2
@@ -958,7 +969,7 @@ Du solltest dich anmelden und ein neues Passwort vergeben. Falls jemand anderes 
 Anfrage getätigt hat oder du dich wieder an dein ursprüngliches Passwort erinnern kannst und es nicht länger
 ändern möchtest, kannst du diese Nachricht ignorieren und weiterhin dein altes
 Passwort benutzen.',
-'passwordreset-emailtext-user' => 'Benutzer $1 auf {{SITENAME}} hat eine Zurücksetzung deines Passworts für {{SITENAME}} angefordert ($4). {{PLURAL:$3|Das folgende Benutzerkonto ist|Die folgenden Benutzerkonten sind}} mit dieser E-Mail-Adresse verknüpft:
+'passwordreset-emailtext-user' => 'Benutzer $1 bei {{SITENAME}} hat eine Zurücksetzung deines Passworts bei {{SITENAME}} angefordert ($4). {{PLURAL:$3|Das folgende Benutzerkonto ist|Die folgenden Benutzerkonten sind}} mit dieser E-Mail-Adresse verknüpft:
 
 $2
 
@@ -2364,7 +2375,7 @@ Zusätzliche Informationen über einzelne Rechte können [[{{MediaWiki:Listgroup
 'emailuser-title-notarget' => 'E-Mail an Benutzer',
 'emailpage' => 'E-Mail an Benutzer',
 'emailpagetext' => 'Du kannst {{GENDER:$1|dem Benutzer|der Benutzerin}} mit dem unten stehenden Formular eine E-Mail senden.
-Als Absender wird die E-Mail-Adresse aus deinen [[Special:Preferences|Einstellungen]] eingetragen, damit {{GENDER:$1|der Benutzer|die Benutzerin}} dir antworten kann.',
+Als Absender wird die E-Mail-Adresse aus deinen [[Special:Preferences|Einstellungen]] eingetragen, damit {{GENDER:$1|der Benutzer|die Benutzerin}} dir direkt antworten kann.',
 'usermailererror' => 'Das E-Mail-Objekt gab einen Fehler zurück:',
 'defemailsubject' => '{{SITENAME}} – E-Mail von Benutzer „$1“',
 'usermaildisabled' => 'E-Mail-Empfang deaktiviert',
@@ -2456,16 +2467,16 @@ Kontakt zum Bearbeiter:
 E-Mail: $PAGEEDITOR_EMAIL
 Wiki: $PAGEEDITOR_WIKI
 
-Es werden dir solange keine weiteren Benachrichtigungs-E-Mails gesendet, bis du die Seite wieder besucht hast. Auf deiner Beobachtungsliste kannst du alle Benachrichtigungsmarkierungen zusammen zurücksetzen.
+Bei weiterer Aktivität auf der Seite werden dir so lange keine weiteren Benachrichtigungs-E-Mails gesendet, bis du die Seite wieder besucht hast. Auf deiner Beobachtungsliste kannst du alle Benachrichtigungsmarkierungen zusammen zurücksetzen.
 
-             Dein freundliches {{SITENAME}}-Benachrichtigungssystem
+Dein freundliches {{SITENAME}}-Benachrichtigungssystem
 
 --
-Um die Einstellungen der E-Mail-Benachrichtigung anzupassen, besuche {{canonicalurl:{{#special:Preferences}}}}
+Um die Einstellungen der E-Mail-Benachrichtigung anzupassen, besuche {{canonicalurl:{{#special:Preferences}}}}.
 
-Um die Einstellungen deiner Beobachtungsliste anzupassen, besuche {{canonicalurl:{{#special:EditWatchlist}}}}
+Um die Einstellungen deiner Beobachtungsliste anzupassen, besuche {{canonicalurl:{{#special:EditWatchlist}}}}.
 
-Um die Seite von deiner Beobachtungsliste herunterzunehmen, besuche $UNWATCHURL
+Um die Seite von deiner Beobachtungsliste herunterzunehmen, besuche $UNWATCHURL.
 
 Rückmeldungen und weitere Hilfe: {{canonicalurl:{{MediaWiki:Helppage}}}}',
 'created' => 'erstellt',
@@ -3752,20 +3763,18 @@ Rückmeldung des Mailservers: $1',
 'confirmemail_subject' => '[{{SITENAME}}] Bestätigung der E-Mail-Adresse',
 'confirmemail_body' => 'Hallo,
 
-jemand mit der IP-Adresse $1, wahrscheinlich du selbst, hat das Benutzerkonto „$2“ in {{SITENAME}} registriert.
+jemand mit der IP-Adresse $1, wahrscheinlich du selbst, hat das Benutzerkonto „$2“ bei {{SITENAME}} registriert.
 
-Um die E-Mail-Funktion von {{SITENAME}} (wieder) zu aktivieren und um zu bestätigen,
-dass dieses Benutzerkonto wirklich zu deiner E-Mail-Adresse und damit zu dir gehört, öffne bitte die folgende Web-Adresse:
+Um die E-Mail-Funktionen von {{SITENAME}} (wieder) zu aktivieren und um zu bestätigen,
+dass dieses Benutzerkonto wirklich zu deiner E-Mail-Adresse und damit zu dir gehört, öffne bitte folgenden Link in deinem Browser:
 
 $3
-
-Sollte die vorstehende Adresse in deinem E-Mail-Programm über mehrere Zeilen gehen, musst du sie eventuell per Hand in die Adresszeile deines Web-Browsers einfügen.
 
 Wenn du das genannte Benutzerkonto *nicht* registriert hast, folge diesem Link, um den Bestätigungsprozess abzubrechen:
 
 $5
 
-Dieser Bestätigungscode ist gültig bis $6, $7 Uhr.',
+Dieser Bestätigungscode ist gültig bis zum $6, $7 Uhr.',
 'confirmemail_body_changed' => 'Jemand mit der IP-Adresse $1, wahrscheinlich du selbst,
 hat die E-Mail-Adresse des Benutzerkontos „$2“ zu dieser Adresse bei {{SITENAME}} geändert.
 

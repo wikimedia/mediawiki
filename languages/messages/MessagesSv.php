@@ -849,6 +849,7 @@ Du kanske redan har lyckats ändra ditt lösenord eller begärt ett nytt tillfä
 'passwordreset-text' => 'Fyll i detta formulär för att återställa ditt lösenord.',
 'passwordreset-legend' => 'Återställ lösenord',
 'passwordreset-disabled' => 'Lösenordsåterställning har inaktiverats på denna wiki.',
+'passwordreset-emaildisabled' => 'E-postfunktioner har inaktiverats på denna wiki.',
 'passwordreset-pretext' => '{{PLURAL:$1||Ange en av datadelarna nedan}}',
 'passwordreset-username' => 'Användarnamn:',
 'passwordreset-domain' => 'Domän:',

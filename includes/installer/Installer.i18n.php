@@ -3710,7 +3710,7 @@ Tento adresář by ideálně neměl být dostupný z webu.',
 	'config-logo-help' => 'Základní vzhled MediaWiki zahrnuje místo pro logo o velikosti 135×160 pixelů nad bočním menu.
 Načtěte obrázek odpovídající velikosti a zadejte sem jeho URL.
 
-Pokud je vaše logo umístěno relativně vůči $wgStylePath nebo $wgScriptPath, můžete zde tyto proměnné použít.
+Pokud je vaše logo umístěno relativně vůči <code>$wgStylePath</code> nebo <code>$wgScriptPath</code>, můžete zde tyto proměnné použít.
 
 Pokud logo nechcete, ponechte toto pole prázdné.',
 	'config-instantcommons' => 'Zapnout Instant Commons',
@@ -4310,7 +4310,7 @@ Idealerweise sollte es nicht über das Internet zugänglich sein.',
 	'config-logo-help' => 'Die Standardoberfläche von MediaWiki verfügt links oberhalb der Seitenleiste über Platz für ein Logo mit den Maßen 135x160 Pixel.
 Bitte ein Logo in entsprechender Größe hochladen und die zugehörige URL an dieser Stelle angeben.
 
-Du kannst $wgStylePath oder $wgScriptPath verwenden, falls dein Logo relativ zu diesen Pfaden ist.
+Du kannst <code>$wgStylePath</code> oder <code>$wgScriptPath</code> verwenden, falls dein Logo relativ zu diesen Pfaden ist.
 
 Sofern kein Logo benötigt wird, kann dieses Datenfeld leer bleiben.',
 	'config-instantcommons' => '„InstantCommons“ aktivieren',
@@ -5459,6 +5459,7 @@ $messages['fa'] = array(
  * @author Crt
  * @author Nike
  * @author Olli
+ * @author Silvonen
  * @author Str4nd
  * @author VezonThunder
  * @author 아라
@@ -5554,6 +5555,7 @@ Asennus saattaa epäonnistua!",
 	'config-db-install-help' => 'Anna käyttäjätunnus ja salasana, joita käytetään asennuksen aikana.',
 	'config-db-account-lock' => 'Käytä samaa tunnusta ja salasanaa myös asennuksen jälkeen',
 	'config-db-prefix' => 'Tietokantataulujen etuliite',
+	'config-db-charset' => 'Tietokannan merkistö',
 	'config-charset-mysql5-binary' => 'MySQL 4.1/5.0, binääri',
 	'config-charset-mysql5' => 'MySQL 4.1/5.0, UTF-8',
 	'config-charset-mysql4' => 'MySQL 4.0, taaksepäin yhteensopiva UTF-8',
@@ -6102,7 +6104,7 @@ Idéalement, il ne devrait pas être accessible depuis le web.',
 	'config-logo-help' => 'L’habillage par défaut de MediaWiki comprend l’espace pour un logo de 135x160 pixels au-dessus de la barre de menu latérale.
 Téléchargez une image de la taille appropriée, et entrez son URL ici.
 
-Vous pouvez utiliser $wgStylePath ou $wgScriptPath si votre logo est relatif à ces chemins.
+Vous pouvez utiliser <code>$wgStylePath</code> ou <code>$wgScriptPath</code> si votre logo est relatif à ces chemins.
 
 Si vous ne voulez pas de logo, laissez cette case vide.',
 	'config-instantcommons' => "Activer ''InstantCommons''",
@@ -6920,7 +6922,7 @@ O ideal é que non sexa accesible desde a web.',
 	'config-logo-help' => 'A aparencia de MediaWiki por defecto inclúe espazo para un logo de 135x160 píxeles por riba do menú lateral.
 Cargue unha imaxe do tamaño axeitado e introduza o enderezo URL aquí.
 
-Pode utilizar $wgStylePath ou $wgScriptPath se o seu logo está relacionado con esas rutas.
+Pode utilizar <code>$wgStylePath</code> ou <code>$wgScriptPath</code> se o seu logo está relacionado con esas rutas.
 
 Se non quere un logo, deixe esta caixa en branco.',
 	'config-instantcommons' => 'Activar Instant Commons',
@@ -10540,7 +10542,7 @@ GFDLは有効なライセンスですが、内容を理解するのは困難で�
 	'config-logo-help' => 'MediaWiki の既定の外装では、サイドバー上部に135x160ピクセルのロゴ用の余白があります。
 適切なサイズの画像をアップロードして、その URL をここに入力してください。
 
-ロゴが相対パスの場合は、$wgStylePath や $wgScriptPath を使用できます。
+ロゴが相対パスの場合は、<code>$wgStylePath</code> や <code>$wgScriptPath</code> を使用できます。
 
 ロゴが不要の場合は、この欄を空白のままにしてください。',
 	'config-instantcommons' => 'Instant Commons 機能を有効にする',
@@ -11330,7 +11332,7 @@ GFDL 하에 사용을 허가한 내용을 재사용하는 것도 어렵습니다
 	'config-logo-help' => '미디어위키의 기본 스킨은 사이드바 메뉴 위에 135×160 픽셀의 로고의 공간을 포함하고 있습니다.
 적당한 크기로 그림을 올리고 여기에 URL을 입력하세요.
 
-로고가 상대적인 경로에 있으면 $wgStylePath나 $wgScriptPath를 사용할 수 있습니다.
+로고가 상대적인 경로에 있으면 <code>$wgStylePath</code>나 <code>$wgScriptPath</code>를 사용할 수 있습니다.
 
 로고 사용을 원하지 않으면 이 상자를 비우세요.',
 	'config-instantcommons' => '인스턴트 공용 활성화',
@@ -12972,7 +12974,7 @@ chmod a+w $3</pre>',
 	'config-logo' => 'URL за логото:',
 	'config-logo-help' => 'Матичното руво на МедијаВики има простор за лого од 135x160 пиксели над страничната лента.
 
-Можете да употребите $wgStylePath или $wgScriptPath ако вашето лого е релативно на тие патеки.
+Можете да употребите <code>$wgStylePath</code> или <code>$wgScriptPath</code> ако вашето лого е релативно на тие патеки.
 
 Ако не сакате да имате лого, тогаш оставете го ова поле празно.',
 	'config-instantcommons' => 'Овозможи Instant Commons',
@@ -14453,7 +14455,9 @@ Idealiter is deze map niet via het web te benaderen.',
 	'config-logo-help' => 'Het standaarduiterlijk van MediaWiki bevat ruimte voor een logo van 135x160 pixels boven het menu.
 Upload een afbeelding met de juiste afmetingen en voer de URL hier in.
 
-Als u geen logo wilt gebruiken, kunt u dit veld leeg laten.', # Fuzzy
+U kunt <code>$wgStylePath</code> of <code>$wgScriptPath</code> gebruiken als uw logo relatief is aan een van deze paden.
+
+Als u geen logo wilt gebruiken, kunt u dit veld leeg laten.',
 	'config-instantcommons' => 'Instant Commons inschakelen',
 	'config-instantcommons-help' => '[//www.mediawiki.org/wiki/InstantCommons Instant Commons] is functie die het mogelijk maakt om afbeeldingen, geluidsbestanden en andere mediabestanden te gebruiken van de website [//commons.wikimedia.org/ Wikimedia Commons].
 Hiervoor heeft MediaWiki toegang nodig tot Internet.

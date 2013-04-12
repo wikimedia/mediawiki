@@ -1041,19 +1041,22 @@ Parameters:
 'yourname' => "{{doc-important|<nowiki>{{</nowiki>[[Gender|GENDER]]<nowiki>}}</nowiki> is '''NOT''' supported.}}
 In user preferences.
 {{Identical|Username}}",
-'userlogin-yourname' => "In new vertical user login & create account forms, label for username field",
-'userlogin-yourname-ph' => "Placeholder text in new userlogin/create account form field.",
+'userlogin-yourname' => 'In new vertical user login & create account forms, label for username field.
+{{Identical|Username}}',
+'userlogin-yourname-ph' => 'Placeholder text in new userlogin/create account form field.',
 'yourpassword' => 'In user preferences
 
 {{Identical|Password}}',
-'userlogin-yourpassword' => "In new vertical user login & create account forms, label for password field",
-'userlogin-yourpassword-ph' => "Placeholder text in new userlogin form for password field.",
+'userlogin-yourpassword' => 'In new vertical user login & create account forms, label for password field.
+{{Identical|Password}}',
+'userlogin-yourpassword-ph' => 'Placeholder text in new userlogin form for password field.',
 'yourpasswordagain' => 'In user preferences',
 'remembermypassword' => 'A check box in [[Special:UserLogin]]
 
 {{Identical|Remember my login on this computer}}',
-'userlogin-remembermypassword' => 'The text for a check box in the new-style [[Special:UserLogin]]',
-'userlogin-signwithsecure'   => 'Text of link to HTTPS login form',
+'userlogin-remembermypassword' => 'The text for a check box in the new-style [[Special:UserLogin]].
+{{Identical|Remember me}}',
+'userlogin-signwithsecure' => 'Text of link to HTTPS login form',
 'securelogin-stick-https' => 'Used as label for checkbox.',
 'yourdomainname' => 'Used as label for listbox.',
 'password-change-forbidden' => 'Error message shown when an external authentication source does not allow the password to be changed.',
@@ -1086,10 +1089,12 @@ See also:
 'notloggedin' => 'This message is displayed in the standard skin when not logged in. The message is placed above the login link in the top right corner of pages.
 
 {{Identical|Not logged in}}',
-'userlogin-noaccount' => 'In the new-style [[Special:Userlogin]] form, this is the text prior to button inviting user to join project',
+'userlogin-noaccount' => 'In the new-style [[Special:Userlogin]] form, this is the text prior to button inviting user to join project.
+{{Identical|Do not have an account}}',
 'userlogin-joinproject' => 'Text of button inviting user to create an account',
 'nologin' => 'A message shown in the log in form. Parameters:
-* $1 - a link to the account creation form, and the text of it is {{msg-mw|Nologinlink}}',
+* $1 - a link to the account creation form, and the text of it is {{msg-mw|Nologinlink}}
+{{Identical|Do not have an account}}',
 'nologinlink' => 'Text of the link to the account creation form. Before that link, the message {{msg-mw|Nologin}} appears.
 {{Identical|Create an account}}',
 'createaccount' => '{{doc-special|CreateAccount}}
@@ -1104,8 +1109,11 @@ It is also used on the top of the page for logged out users, where it appears ne
 'gotaccountlink' => 'Text of the link to the log in form. Before that link, the message {{msg-mw|Gotaccount}} appears.
 {{Identical|Log in}}',
 'userlogin-resetlink' => 'Used on the login page.',
-'helplogin-url' => 'Page that provides information about logging into the wiki.',
-'userlogin-helplink' => 'Wikitext linking to login help.',
+'helplogin-url' => 'Page that provides information about logging into the wiki.
+
+Used in the message {{msg-mw|Userlogin-helplink}}.',
+'userlogin-helplink' => '{{doc-important|Do not change <code><nowiki>{{MediaWiki:helplogin-url}}</nowiki></code>.}}
+Wikitext linking to login help.',
 'createaccountmail' => 'Button text for creating a new account and sending the new password to the specified e-mail address directly, as used on [[Special:UserLogin/signup]] if creating accounts by e-mail is allowed.',
 'createaccountreason' => '{{Identical|Reason}}',
 'badretype' => 'Used as error message when the new password and its retype do not match.',
@@ -1237,7 +1245,7 @@ See also:
 'passwordreset-text' => 'Text on [[Special:PasswordReset]]',
 'passwordreset-legend' => '{{Identical|Reset password}}',
 'passwordreset-disabled' => 'Used as error message in changing password.',
-'passwordreset-emaildisabled' => 'Used as error message in changing password when site\'s email feature is disabled.',
+'passwordreset-emaildisabled' => "Used as error message in changing password when site's email feature is disabled.",
 'passwordreset-pretext' => 'These instructions are shown on the password reset dialogue, which can, in principle, take the user\'s email address as well as, or instead of, their username. This text displays above one or more fields, at least one of which needs to be completed, and the message does not know which routes are available, so it needs to refer to some vague noun rather than specifically "username".
 "One of the pieces of data" means "an info"/"a datum" (probably to be translatea with a singular noun in your language if available). Parameters:
 * $1 is the number of password reset routes. This is never 1, but always two or more. Thus, the first plural option is empty in English.',

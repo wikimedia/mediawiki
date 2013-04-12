@@ -159,6 +159,7 @@ $messages = array(
 'tog-watchlisthideanons' => 'ܛܫܝ ܫܘܚܠܦ̈ܐ ܕܡܦܠܚܢ̈ܐ ܠܐ ܝܕ̈ܝܥܐ ܡܢ ܪ̈ܗܝܬܐ',
 'tog-ccmeonemails' => 'ܫܕܪ ܠܝ ܨܚܚ̈ܐ ܕܒܝܠܕܪ̈ܐ ܐܠܩܛܪ̈ܘܢܝܐ ܕܫܕܪ ܐܢܐ ܠܡܦܠܚܢ̈ܐ ܐܚܪ̈ܢܐ',
 'tog-showhiddencats' => 'ܚܘܝ ܣܕܪ̈ܐ ܛܘܫܝ̈ܐ',
+'tog-useeditwarning' => 'ܙܗܪ ܠܝ ܐܡܬܝ ܫܒܩ ܐܢܐ ܦܐܬܐ ܕܫܘܚܠܦܐ ܕܐܝܬ ܒܗ ܫܘܚܠܦ̈ܐ ܠܐ ܠܒܝܟ̈ܐ',
 
 'underline-always' => 'ܐܡܝܢ',
 'underline-never' => 'ܠܐ ܡܡܬܘܡ',
@@ -287,7 +288,7 @@ $messages = array(
 'edit' => 'ܫܚܠܦ',
 'create' => 'ܒܪܝ',
 'editthispage' => 'ܫܚܠܦ ܦܐܬܐ ܗܕܐ',
-'create-this-page' => 'ܣܝܡ ܦܐܬܐ ܗܕܐ',
+'create-this-page' => 'ܒܪܝ ܗܕܐ ܦܐܬܐ',
 'delete' => 'ܫܘܦ',
 'deletethispage' => 'ܫܘܦ ܦܐܬܐ ܗܕܐ',
 'undelete_short' => 'ܠܐ ܫܘܦ {{PLURAL:$1|ܚܕ ܫܘܚܠܦܐ|$1 ܫܘܚܠܦ̈ܐ}}',
@@ -560,6 +561,8 @@ $1',
 'log-fulllog' => 'ܚܙܝ ܣܓܠܐ ܓܡܝܪܐ',
 'edit-already-exists' => 'ܒܪܝܐ ܕܦܐܬܐ ܚܕܬܐ ܠܐ ܡܬܡܨܝܢܐ.
 ܗܕܐ ܦܐܬܐ ܐܝܬ ܡܢ ܟܕܘ.',
+'editwarning-warning' => 'ܐܢ ܫܒܩܬ ܦܐܬܐ ܗܕܐ ܡܬܡܨܝܢܬܐ ܐܝܬܝܗ ܕܚܣܪܬ ܟܠ ܫܘܚܠܦ̈ܐ ܕܥܒܝܕܬ ܗܪܟܐ.
+ܡܨܬ ܕܬܒܛܠ ܙܘܗܪܐ ܗܢܐ ܐܢ ܥܠܝܠܐ ܐܝܬܝܟ ܒܡܢܬܐ ܕ"ܫܚܠܦܬܐ" ܒܨܒܝܢܝܘܬ̈ܐ.',
 
 # "Undo" feature
 'undo-summary' => 'ܠܐ ܬܥܒܕ $1 ܒܝܕ [[Special:Contributions/$2|$2]] ([[User talk:$2|ܡܡܠܠܐ]])',
@@ -667,7 +670,7 @@ $1',
 'viewprevnext' => 'ܚܘܝ ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-legend' => 'ܓܒܝܬ̈ܐ ܕܒܨܝܐ',
 'searchmenu-exists' => "'''ܐܝܬ ܦܐܬܐ ܒܫܡ \"[[:\$1]]\" ܥܠ ܗܢܐ ܘܝܩܝ'''",
-'searchmenu-new' => "'''ܣܝܡ ܦܐܬܐ \"[[:\$1]]\" ܥܠ ܗܢܐ ܘܝܩܝ!'''",
+'searchmenu-new' => "'''ܒܪܝ ܦܐܬܐ \"[[:\$1]]\" ܥܠ ܗܢܐ ܘܝܩܝ!'''",
 'searchhelp-url' => 'Help:ܚܒܝܫܬ̈ܐ',
 'searchprofile-articles' => 'ܦܐܬܬ̈ܐ ܕܚܒܝܫܬ̈ܐ',
 'searchprofile-project' => 'ܦܐܬܬ̈ܐ ܕܬܪ̈ܡܝܬܐ ܘܕܥܘܕܪܢܐ',
@@ -702,9 +705,6 @@ $1',
 'powersearch-toggleall' => 'ܟܠ',
 'powersearch-togglenone' => 'ܠܐ ܡܕܡ',
 'search-external' => 'ܒܨܝܐ ܒܪܝܐ',
-
-# Quickbar
-'qbsettings-none' => 'ܠܐ ܡܕܡ',
 
 # Preferences page
 'preferences' => 'ܨܒܝܢܝܘܬ̈ܐ',

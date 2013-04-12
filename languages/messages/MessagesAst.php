@@ -88,8 +88,6 @@ $messages = array(
 'tog-shownumberswatching' => "Amosar el númberu d'usuarios que tán vixilando la páxina",
 'tog-oldsig' => 'Firma esistente:',
 'tog-fancysig' => 'Tratar la firma como testu wiki (ensin enllaz automáticu)',
-'tog-externaleditor' => 'Usar un editor esternu por defeutu (namái pa espertos, necesita configuraciones especiales nel to ordenador. [//www.mediawiki.org/wiki/Manual:External_editors Más información.])',
-'tog-externaldiff' => 'Usar un diff esternu por defutu (namái pa espertos, necesita configuraciones especiales nel to ordenador. [//www.mediawiki.org/wiki/Manual:External_editors Más información.])',
 'tog-showjumplinks' => 'Activar los enllaces d\'accesibilidá "saltar a"',
 'tog-uselivepreview' => 'Usar vista previa en tiempu real (necesita JavaScript) (en pruebes)',
 'tog-forceeditsummary' => "Avisame cuando grabe col resume d'edición en blanco",
@@ -104,6 +102,7 @@ $messages = array(
 'tog-showhiddencats' => 'Amosar categoríes anubríes',
 'tog-noconvertlink' => 'Desactivar la conversión del títulu del enllaz',
 'tog-norollbackdiff' => 'Desaniciar les diferencies depués de facer una restauración',
+'tog-useeditwarning' => "Avisame cuando salga d'una páxina d'edición con cambios ensin guardar",
 
 'underline-always' => 'Siempre',
 'underline-never' => 'Nunca',
@@ -605,6 +604,7 @@ Seique yá camudaras correutamente la clave o que pidieras una nueva clave provi
 'passwordreset-text' => 'Complete esti formulariu pa reaniciar la contraseña.',
 'passwordreset-legend' => 'Reaniciar clave',
 'passwordreset-disabled' => 'Los reanicios de clave tán desactivaos nesta wiki.',
+'passwordreset-emaildisabled' => 'Les funciones de corréu electrónicu tan desactivaes nesta wiki.',
 'passwordreset-pretext' => "{{PLURAL:$1||Escribi ún de los elementos de los datos d'abaxo}}",
 'passwordreset-username' => "Nome d'usuariu:",
 'passwordreset-domain' => 'Dominiu:',
@@ -859,6 +859,8 @@ Yá esiste.',
 'content-failed-to-parse' => 'Fallu al analizar el conteníu $2 pal modelu $1: $3',
 'invalid-content-data' => 'Datos del conteníu inválidos',
 'content-not-allowed-here' => 'El conteníu «$1» nun se permite na páxina [[$2]]',
+'editwarning-warning' => 'Salir d\'esta páxina pue facer que se pierda cualesquier cambiu fechu.
+Si aniciasti sesión, puedes desactivar esti avisu na seición "Edición" de les tos preferencies.',
 
 # Content models
 'content-model-wikitext' => 'testu wiki',
@@ -1141,6 +1143,7 @@ Se puen alcontrar más detalles nel [{{fullurl:{{#Special:Log}}/delete|page={{FU
 'powersearch-togglenone' => 'Dengún',
 'search-external' => 'Busca esterna',
 'searchdisabled' => "La busca en {{SITENAME}} ta desactivada. Mentanto, pues buscar en Google. Has fixate en que'l conteníu de los sos índices de {{SITENAME}} pue tar desfasáu.",
+'search-error' => 'Hebo un error al guetar: $1',
 
 # Preferences page
 'preferences' => 'Preferencies',
@@ -3732,6 +3735,8 @@ Les imáxenes amuésense a resolución completa; les demás tribes d'archivu exe
 'htmlform-submit' => 'Unviar',
 'htmlform-reset' => 'Desfacer los cambios',
 'htmlform-selectorother-other' => 'Otros',
+'htmlform-no' => 'Non',
+'htmlform-yes' => 'Sí',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 con sofitu pa gueta en testu completu',

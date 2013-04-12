@@ -42,6 +42,7 @@
  * @author Mark85296341
  * @author MarkAHershberger
  * @author Mys 721tx
+ * @author Nemo bis
  * @author O
  * @author Onecountry
  * @author PhiLiP
@@ -2274,10 +2275,10 @@ $1',
 'enotif_subject_restored' => '{{SITENAME}}页面$1已被$2恢复',
 'enotif_subject_changed' => '{{SITENAME}}页面$1已被$2更改',
 'enotif_body_intro_deleted' => '{{SITENAME}}页面$1已于$PAGEEDITDATE被$2{{GENDER:$2|删除}}，请见$3。',
-'enotif_body_intro_created' => '{{SITENAME}}页面$1已于$PAGEEDITDATE被$2{{GENDER:$2|创建}}，请浏览$3查看当前版本。',
-'enotif_body_intro_moved' => '{{SITENAME}}页面$1已于$PAGEEDITDATE被$2{{GENDER:$2|移动}}，请浏览$3查看当前版本。',
-'enotif_body_intro_restored' => '{{SITENAME}}页面$1已于$PAGEEDITDATE被$2{{GENDER:$2|恢复}}，请浏览$3查看当前版本。',
-'enotif_body_intro_changed' => '{{SITENAME}}页面$1已于$PAGEEDITDATE被$2{{GENDER:$2|更改}}，请浏览$3查看当前版本。',
+'enotif_body_intro_created' => '{{SITENAME}}页面$1已于$PAGEEDITDATE被$2{{GENDER:$2|创建}}，请浏览<$3>查看当前版本。',
+'enotif_body_intro_moved' => '{{SITENAME}}页面$1已于$PAGEEDITDATE被$2{{GENDER:$2|移动}}，请浏览<$3>查看当前版本。',
+'enotif_body_intro_restored' => '{{SITENAME}}页面$1已于$PAGEEDITDATE被$2{{GENDER:$2|恢复}}，请浏览<$3>查看当前版本。',
+'enotif_body_intro_changed' => '{{SITENAME}}页面$1已于$PAGEEDITDATE被$2{{GENDER:$2|更改}}，请浏览<$3>查看当前版本。',
 'enotif_lastvisited' => '请浏览$1查看你上次访问后的所有更改。',
 'enotif_lastdiff' => '请浏览$1查看该更改。',
 'enotif_anon_editor' => '匿名用户$1',
