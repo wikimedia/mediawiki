@@ -6,7 +6,6 @@
  * @group medium
  */
 class ApiBlockTest extends ApiTestCase {
-
 	protected function setUp() {
 		parent::setUp();
 		$this->doLogin();
@@ -36,7 +35,6 @@ class ApiBlockTest extends ApiTestCase {
 	 * previously always considered valid (bug 34212).
 	 */
 	function testMakeNormalBlock() {
-
 		$data = $this->getTokens();
 
 		$user = User::newFromName( 'UTApiBlockee' );
@@ -53,7 +51,7 @@ class ApiBlockTest extends ApiTestCase {
 		$key = array_pop( $keys );
 		$pageinfo = $data[0]['query']['pages'][$key];
 
-		$data = $this->doApiRequest( array(
+		$this->doApiRequest( array(
 			'action' => 'block',
 			'user' => 'UTApiBlockee',
 			'reason' => 'Some reason',
@@ -66,7 +64,6 @@ class ApiBlockTest extends ApiTestCase {
 		$this->assertEquals( 'UTApiBlockee', (string)$block->getTarget() );
 		$this->assertEquals( 'Some reason', $block->mReason );
 		$this->assertEquals( 'infinity', $block->mExpiry );
-
 	}
 
 	/**
