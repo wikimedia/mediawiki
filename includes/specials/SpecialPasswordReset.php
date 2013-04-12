@@ -34,6 +34,11 @@ class SpecialPasswordReset extends FormSpecialPage {
 	private $email;
 
 	/**
+	 * @var User
+	 */
+	private $firstUser;
+
+	/**
 	 * @var Status
 	 */
 	private $result;
@@ -257,8 +262,11 @@ class SpecialPasswordReset extends FormSpecialPage {
 
 		$this->result = $firstUser->sendMail( $title->escaped(), $this->email->text() );
 
-		// Blank the email if the user is not supposed to see it
-		if( !isset( $data['Capture'] ) || !$data['Capture'] ) {
+		if( isset( $data['Capture'] ) && $data['Capture'] ) {
+			// Save the user, will be used if an error occurs when sending the email
+			$this->firstUser = $firstUser;
+		} else {
+			// Blank the email if the user is not supposed to see it
 			$this->email = null;
 		}
 
@@ -281,7 +289,8 @@ class SpecialPasswordReset extends FormSpecialPage {
 			if( $this->result->isGood() ) {
 				$this->getOutput()->addWikiMsg( 'passwordreset-emailsent-capture' );
 			} else {
-				$this->getOutput()->addWikiMsg( 'passwordreset-emailerror-capture', $this->result->getMessage() );
+				$this->getOutput()->addWikiMsg( 'passwordreset-emailerror-capture',
+					$this->result->getMessage(), $this->firstUser->getName() );
 			}
 
 			$this->getOutput()->addHTML( Html::rawElement( 'pre', array(), $this->email->escaped() ) );
