@@ -38,7 +38,7 @@ class TimestampTest extends MediaWikiTestCase {
 	 * @expectedException TimestampException
 	 */
 	function testInvalidParse() {
-		$timestamp = new MWTimestamp( "This is not a timestamp." );
+		new MWTimestamp( "This is not a timestamp." );
 	}
 
 	/**

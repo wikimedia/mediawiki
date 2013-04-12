@@ -27,7 +27,6 @@ require_once( 'ApiTestCaseUpload.php' );
  * This is pretty sucky... needs to be prettified.
  */
 class ApiUploadTest extends ApiTestCaseUpload {
-
 	/**
 	 * Testing login
 	 * XXX this is a funny way of getting session context
@@ -298,7 +297,7 @@ class ApiUploadTest extends ApiTestCaseUpload {
 
 		$exception = false;
 		try {
-			list( $result, $request, $session ) = $this->doApiRequestWithToken( $params, $session,
+			list( $result, , $session ) = $this->doApiRequestWithToken( $params, $session,
 				self::$users['uploader']->user );
 		} catch ( UsageException $e ) {
 			$exception = true;
@@ -324,7 +323,7 @@ class ApiUploadTest extends ApiTestCaseUpload {
 
 		$exception = false;
 		try {
-			list( $result, $request, $session ) = $this->doApiRequestWithToken( $params, $session,
+			list( $result ) = $this->doApiRequestWithToken( $params, $session,
 				self::$users['uploader']->user ); // FIXME: leaks a temporary file
 		} catch ( UsageException $e ) {
 			$exception = true;
@@ -340,7 +339,6 @@ class ApiUploadTest extends ApiTestCaseUpload {
 		$this->deleteFileByFilename( $fileNames[1] );
 		unlink( $filePaths[0] );
 	}
-
 
 	/**
 	 * @depends testLogin
@@ -382,7 +380,7 @@ class ApiUploadTest extends ApiTestCaseUpload {
 
 		$exception = false;
 		try {
-			list( $result, $request, $session ) = $this->doApiRequestWithToken( $params, $session,
+			list( $result, , $session ) = $this->doApiRequestWithToken( $params, $session,
 				self::$users['uploader']->user ); // FIXME: leaks a temporary file
 		} catch ( UsageException $e ) {
 			$exception = true;
@@ -411,7 +409,7 @@ class ApiUploadTest extends ApiTestCaseUpload {
 		$this->clearFakeUploads();
 		$exception = false;
 		try {
-			list( $result, $request, $session ) = $this->doApiRequestWithToken( $params, $session,
+			list( $result ) = $this->doApiRequestWithToken( $params, $session,
 				self::$users['uploader']->user );
 		} catch ( UsageException $e ) {
 			$exception = true;
@@ -482,7 +480,7 @@ class ApiUploadTest extends ApiTestCaseUpload {
 			if ( !$chunkSessionKey ) {
 				// Upload fist chunk ( and get the session key )
 				try {
-					list( $result, $request, $session ) = $this->doApiRequestWithToken( $params, $session,
+					list( $result, , $session ) = $this->doApiRequestWithToken( $params, $session,
 						self::$users['uploader']->user );
 				} catch ( UsageException $e ) {
 					$this->markTestIncomplete( $e->getMessage() );
@@ -509,7 +507,7 @@ class ApiUploadTest extends ApiTestCaseUpload {
 			$this->assertEquals( $resultOffset, $params['offset'] );
 			// Upload current chunk
 			try {
-				list( $result, $request, $session ) = $this->doApiRequestWithToken( $params, $session,
+				list( $result, , $session ) = $this->doApiRequestWithToken( $params, $session,
 					self::$users['uploader']->user );
 			} catch ( UsageException $e ) {
 				$this->markTestIncomplete( $e->getMessage() );
@@ -548,7 +546,7 @@ class ApiUploadTest extends ApiTestCaseUpload {
 		$this->clearFakeUploads();
 		$exception = false;
 		try {
-			list( $result, $request, $session ) = $this->doApiRequestWithToken( $params, $session,
+			list( $result ) = $this->doApiRequestWithToken( $params, $session,
 				self::$users['uploader']->user );
 		} catch ( UsageException $e ) {
 			$exception = true;

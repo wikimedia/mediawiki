@@ -74,7 +74,6 @@ class HooksTest extends MediaWikiTestCase {
 		Hooks::run( 'MediaWikiHooksTest001', array( &$foo, &$bar ) );
 
 		$this->assertEquals( 'bah', $foo, 'Standard static method' );
-		$foo = 'Foo';
 
 		Hooks::clear( 'MediaWikiHooksTest001' );
 	}

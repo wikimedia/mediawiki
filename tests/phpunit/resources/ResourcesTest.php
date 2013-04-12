@@ -91,7 +91,7 @@ class ResourcesTest extends MediaWikiTestCase {
 				$property = $reflectedModule->getProperty( $propName );
 				$property->setAccessible( true );
 				$lists = $property->getValue( $module );
-				foreach ( $lists as $group => $list ) {
+				foreach ( $lists as $list ) {
 					foreach ( $list as $key => $value ) {
 						// We need the same filter as for 'lists',
 						// due to 'skinStyles'.

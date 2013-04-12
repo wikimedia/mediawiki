@@ -70,7 +70,7 @@ class ProcessCacheLRUTest extends MediaWikiTestCase {
 	 * @expectedException MWException
 	 */
 	function testConstructorGivenInvalidValue( $maxSize ) {
-		$c = new ProcessCacheLRUTestable( $maxSize );
+		new ProcessCacheLRUTestable( $maxSize );
 	}
 
 	/**
