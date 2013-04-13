@@ -72,9 +72,8 @@ class Preprocessor_DOM implements Preprocessor {
 		$xml = "<list>";
 
 		foreach ( $values as $k => $val ) {
-
 			if ( is_int( $k ) ) {
-				$xml .= "<part><name index=\"$k\"/><value>" . htmlspecialchars( $val ) ."</value></part>";
+				$xml .= "<part><name index=\"$k\"/><value>" . htmlspecialchars( $val ) . "</value></part>";
 			} else {
 				$xml .= "<part><name>" . htmlspecialchars( $k ) . "</name>=<value>" . htmlspecialchars( $val ) . "</value></part>";
 			}
@@ -441,7 +440,7 @@ class Preprocessor_DOM implements Preprocessor {
 				}
 
 				$tagStartPos = $i;
-				if ( $text[$tagEndPos-1] == '/' ) {
+				if ( $text[$tagEndPos - 1] == '/' ) {
 					$attrEnd = $tagEndPos - 1;
 					$inner = null;
 					$i = $tagEndPos + 1;
@@ -578,7 +577,7 @@ class Preprocessor_DOM implements Preprocessor {
 						'open' => $curChar,
 						'close' => $rule['end'],
 						'count' => $count,
-						'lineStart' => ($i > 0 && $text[$i-1] == "\n"),
+						'lineStart' => ($i > 0 && $text[$i - 1] == "\n"),
 					);
 
 					$stack->push( $piece );

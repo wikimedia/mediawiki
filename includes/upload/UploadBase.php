@@ -900,7 +900,7 @@ abstract class UploadBase {
 					"unrecognized extension '$extension', can't verify\n" );
 				return true;
 			} else {
-				wfDebug( __METHOD__ . ": rejecting file with unknown detected mime type; ".
+				wfDebug( __METHOD__ . ": rejecting file with unknown detected mime type; " .
 					"recognized extension '$extension', so probably invalid file\n" );
 				return false;
 			}
@@ -1454,7 +1454,7 @@ abstract class UploadBase {
 				// Remove additional comments after a prefix
 				$comment = strpos( $line, '#' );
 				if ( $comment > 0 ) {
-					$line = substr( $line, 0, $comment-1 );
+					$line = substr( $line, 0, $comment - 1 );
 				}
 				$blacklist[] = trim( $line );
 			}

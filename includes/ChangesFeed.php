@@ -176,9 +176,9 @@ class ChangesFeed {
 			if( $n > 0 &&
 				$obj->rc_type == RC_EDIT &&
 				$obj->rc_namespace >= 0 &&
-				$obj->rc_cur_id == $sorted[$n-1]->rc_cur_id &&
-				$obj->rc_user_text == $sorted[$n-1]->rc_user_text ) {
-				$sorted[$n-1]->rc_last_oldid = $obj->rc_last_oldid;
+				$obj->rc_cur_id == $sorted[$n - 1]->rc_cur_id &&
+				$obj->rc_user_text == $sorted[$n - 1]->rc_user_text ) {
+				$sorted[$n - 1]->rc_last_oldid = $obj->rc_last_oldid;
 			} else {
 				$sorted[$n] = $obj;
 				$n++;

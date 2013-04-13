@@ -357,10 +357,10 @@ class CompressOld extends Maintenance {
 						}
 						# Store External Storage URLs instead of Stub placeholders
 						foreach ($stubs as $stub) {
-							if ($stub===false)
+							if ( $stub === false )
 								continue;
 							# $stored should provide base path to a BLOB
-							$url = $stored."/".$stub->getHash();
+							$url = $stored . "/" . $stub->getHash();
 							$dbw->update( 'text',
 								array( /* SET */
 									'old_text' => $url,

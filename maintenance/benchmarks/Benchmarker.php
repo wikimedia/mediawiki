@@ -54,14 +54,14 @@ abstract class Benchmarker extends Maintenance {
 
 			$bench_number++;
 			$start = microtime( true );
-			for( $i=0; $i<$count; $i++ ) {
+			for( $i=0; $i < $count; $i++ ) {
 				call_user_func_array( $bench['function'], $bench['args'] );
 			}
 			$delta = microtime( true ) - $start;
 
 			// function passed as a callback
 			if( is_array( $bench['function'] ) ) {
-				$ret = get_class( $bench['function'][0] ). '->' . $bench['function'][1];
+				$ret = get_class( $bench['function'][0] ) . '->' . $bench['function'][1];
 				$bench['function'] = $ret;
 			}
 
@@ -85,7 +85,7 @@ abstract class Benchmarker extends Maintenance {
 				join( ', ', $res['arguments'] )
 			);
 			$ret .= sprintf( "   %6.2fms (%6.2fms each)\n",
-				$res['delta']   * 1000,
+				$res['delta'] * 1000,
 				$res['average'] * 1000
 			);
 		}

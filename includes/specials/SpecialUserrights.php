@@ -448,12 +448,12 @@ class UserrightsPage extends SpecialPage {
 		$count = count( $list );
 		if ( $count > 0 ) {
 			$grouplist = $this->msg( 'userrights-groupsmember', $count, $user->getName() )->parse();
-			$grouplist = '<p>' . $grouplist  . ' ' . $displayedList . "</p>\n";
+			$grouplist = '<p>' . $grouplist . ' ' . $displayedList . "</p>\n";
 		}
 		$count = count( $autoList );
 		if ( $count > 0 ) {
 			$autogrouplistintro = $this->msg( 'userrights-groupsmember-auto', $count, $user->getName() )->parse();
-			$grouplist .= '<p>' . $autogrouplistintro  . ' ' . $displayedAutolist . "</p>\n";
+			$grouplist .= '<p>' . $autogrouplistintro . ' ' . $displayedAutolist . "</p>\n";
 		}
 
 		$userToolLinks = Linker::userToolLinks(

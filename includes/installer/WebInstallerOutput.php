@@ -223,7 +223,7 @@ class WebInstallerOutput {
 			$this->parent->request->response()->header( 'X-Frame-Options: DENY' );
 		}
 		if ( $this->redirectTarget ) {
-			$this->parent->request->response()->header( 'Location: '.$this->redirectTarget );
+			$this->parent->request->response()->header( 'Location: ' . $this->redirectTarget );
 			return;
 		}
 

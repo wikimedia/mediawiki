@@ -532,7 +532,7 @@ class MovePageForm extends UnlistedSpecialPage {
 		) ) {
 			$conds = array(
 				'page_title' . $dbr->buildLike( $ot->getDBkey() . '/', $dbr->anyString() )
-					.' OR page_title = ' . $dbr->addQuotes( $ot->getDBkey() )
+					. ' OR page_title = ' . $dbr->addQuotes( $ot->getDBkey() )
 			);
 			$conds['page_namespace'] = array();
 			if( MWNamespace::hasSubpages( $nt->getNamespace() ) ) {
@@ -571,7 +571,7 @@ class MovePageForm extends UnlistedSpecialPage {
 			}
 
 			$newPageName = preg_replace(
-				'#^'.preg_quote( $ot->getDBkey(), '#' ).'#',
+				'#^' . preg_quote( $ot->getDBkey(), '#' ) . '#',
 				StringUtils::escapeRegexReplacement( $nt->getDBkey() ), # bug 21234
 				$oldSubpage->getDBkey()
 			);

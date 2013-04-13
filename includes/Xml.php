@@ -200,9 +200,9 @@ class Xml {
 			$encYear = '';
 		}
 		$inputAttribs = array( 'id' => 'year', 'maxlength' => 4, 'size' => 7 );
-		return self::label( wfMessage( 'year' )->text(), 'year' ) . ' '.
-			Html::input( 'year', $encYear, 'number', $inputAttribs ) . ' '.
-			self::label( wfMessage( 'month' )->text(), 'month' ) . ' '.
+		return self::label( wfMessage( 'year' )->text(), 'year' ) . ' ' .
+			Html::input( 'year', $encYear, 'number', $inputAttribs ) . ' ' .
+			self::label( wfMessage( 'month' )->text(), 'month' ) . ' ' .
 			self::monthSelector( $encMonth, -1 );
 	}
 

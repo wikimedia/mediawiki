@@ -673,7 +673,7 @@ class RevDel_FileItem extends RevDel_Item {
 			' (' . $this->list->msg( 'nbytes' )->numParams( $this->file->getSize() )->text() . ')';
 
 		return '<li>' . $this->getLink() . ' ' . $this->getUserTools() . ' ' .
-			$data . ' ' . $this->getComment(). '</li>';
+			$data . ' ' . $this->getComment() . '</li>';
 	}
 }
 

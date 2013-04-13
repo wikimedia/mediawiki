@@ -51,17 +51,17 @@ class ProfilerSimpleText extends ProfilerSimple {
 			uasort( $this->mCollated, array( 'self', 'sort' ) );
 			array_walk( $this->mCollated, array( 'self', 'format' ), $totalReal );
 			if ( PHP_SAPI === 'cli' ) {
-				print "<!--\n".self::$out."\n-->\n";
+				print "<!--\n" . self::$out . "\n-->\n";
 			} elseif ( $this->getContentType() === 'text/html' ) {
 				if ( $this->visible ) {
-					print '<pre>'.self::$out.'</pre>';
+					print '<pre>' . self::$out . '</pre>';
 				} else {
-					print "<!--\n".self::$out."\n-->\n";
+					print "<!--\n" . self::$out . "\n-->\n";
 				}
 			} elseif ( $this->getContentType() === 'text/javascript' ) {
-				print "\n/*\n".self::$out."*/\n";
+				print "\n/*\n" . self::$out . "*/\n";
 			} elseif ( $this->getContentType() === 'text/css' ) {
-				print "\n/*\n".self::$out."*/\n";
+				print "\n/*\n" . self::$out . "*/\n";
 			}
 		}
 	}
@@ -71,7 +71,7 @@ class ProfilerSimpleText extends ProfilerSimple {
 	}
 
 	static function format( $item, $key, $totalReal ) {
-		$perc = $totalReal ? $item['real']/$totalReal*100 : 0;
+		$perc = $totalReal ? $item['real'] / $totalReal * 100 : 0;
 		self::$out .= sprintf( "%6.2f%% %3.6f %6d - %s\n",
 			$perc, $item['real'], $item['count'], $key );
 	}

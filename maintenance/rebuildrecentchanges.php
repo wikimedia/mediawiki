@@ -61,9 +61,9 @@ class RebuildRecentchanges extends Maintenance {
 		$this->output( '$wgRCMaxAge=' . $wgRCMaxAge );
 		$days = $wgRCMaxAge / 24 / 3600;
 		if ( intval( $days ) == $days ) {
-				$this->output( " (" . $days . " days)\n" );
+			$this->output( " (" . $days . " days)\n" );
 		} else {
-				$this->output( " (approx. " .  intval( $days ) . " days)\n" );
+			$this->output( " (approx. " . intval( $days ) . " days)\n" );
 		}
 
 		$cutoff = time() - $wgRCMaxAge;

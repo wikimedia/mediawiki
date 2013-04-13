@@ -157,7 +157,7 @@ class GIFMetadataExtractor {
 
 					$commentCount = count( $comment );
 					if ( $commentCount === 0
-						|| $comment[$commentCount-1] !== $data )
+						|| $comment[$commentCount - 1] !== $data )
 					{
 						// Some applications repeat the same comment on each
 						// frame of an animated GIF image, so if this comment

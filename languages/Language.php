@@ -1637,7 +1637,7 @@ class Language {
 	private static function hebrewYearStart( $year ) {
 		$a = intval( ( 12 * ( $year - 1 ) + 17 ) % 19 );
 		$b = intval( ( $year - 1 ) % 4 );
-		$m = 32.044093161144 + 1.5542417966212 * $a +  $b / 4.0 - 0.0031777940220923 * ( $year - 1 );
+		$m = 32.044093161144 + 1.5542417966212 * $a + $b / 4.0 - 0.0031777940220923 * ( $year - 1 );
 		if ( $m < 0 ) {
 			$m--;
 		}
@@ -3031,7 +3031,7 @@ class Language {
 			preg_match( "/\d+/", $number, $integerPart );
 			preg_match( "/\.\d*/", $number, $decimalPart );
 			$groupedNumber = ( count( $decimalPart ) > 0 ) ? $decimalPart[0]:"";
-			if ( $groupedNumber  === $number ) {
+			if ( $groupedNumber === $number ) {
 				// the string does not have any number part. Eg: .12345
 				return $sign . $groupedNumber;
 			}

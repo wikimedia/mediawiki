@@ -113,7 +113,7 @@ class SpecialVersion extends SpecialPage {
 		global $wgLang;
 
 		if ( defined( 'MEDIAWIKI_INSTALL' ) ) {
-			$othersLink = '[http://www.mediawiki.org/wiki/Special:Version/Credits ' .	wfMessage( 'version-poweredby-others' )->text() . ']';
+			$othersLink = '[http://www.mediawiki.org/wiki/Special:Version/Credits ' . wfMessage( 'version-poweredby-others' )->text() . ']';
 		} else {
 			$othersLink = '[[Special:Version/Credits|' . wfMessage( 'version-poweredby-others' )->text() . ']]';
 		}
@@ -395,7 +395,7 @@ class SpecialVersion extends SpecialPage {
 				$tags[$i] = "&lt;{$tags[$i]}&gt;";
 			}
 			$out .= $this->openExtType( $this->msg( 'version-parser-extensiontags' )->text(), 'parser-tags' );
-			$out .= '<tr><td colspan="4">' . $this->listToText( $tags ). "</td></tr>\n";
+			$out .= '<tr><td colspan="4">' . $this->listToText( $tags ) . "</td></tr>\n";
 		}
 
 		$fhooks = $wgParser->getFunctionHooks();

@@ -188,7 +188,7 @@ class SpecialImport extends SpecialPage {
 
 		if( $user->isAllowed( 'importupload' ) ) {
 			$out->addHTML(
-				Xml::fieldset( $this->msg( 'import-upload' )->text() ).
+				Xml::fieldset( $this->msg( 'import-upload' )->text() ) .
 				Xml::openElement( 'form', array( 'enctype' => 'multipart/form-data', 'method' => 'post',
 					'action' => $action, 'id' => 'mw-import-upload-form' ) ) .
 				$this->msg( 'importtext' )->parseAsBlock() .
@@ -228,7 +228,7 @@ class SpecialImport extends SpecialPage {
 						Xml::submitButton( $this->msg( 'uploadbtn' )->text() ) .
 					"</td>
 				</tr>" .
-				Xml::closeElement( 'table' ).
+				Xml::closeElement( 'table' ) .
 				Html::hidden( 'editToken', $user->getEditToken() ) .
 				Xml::closeElement( 'form' ) .
 				Xml::closeElement( 'fieldset' )
@@ -335,7 +335,7 @@ class SpecialImport extends SpecialPage {
 						Xml::submitButton( $this->msg( 'import-interwiki-submit' )->text(), Linker::tooltipAndAccesskeyAttribs( 'import' ) ) .
 					"</td>
 				</tr>" .
-				Xml::closeElement( 'table' ).
+				Xml::closeElement( 'table' ) .
 				Xml::closeElement( 'form' ) .
 				Xml::closeElement( 'fieldset' )
 			);

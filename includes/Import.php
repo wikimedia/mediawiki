@@ -432,7 +432,7 @@ class WikiImporter {
 			$lookup[$this->reader->nodeType],
 			$this->reader->name,
 			$this->reader->value
-		)."\n\n" );
+		) . "\n\n" );
 	}
 
 	/**
@@ -444,7 +444,7 @@ class WikiImporter {
 		$this->reader->read();
 
 		if ( $this->reader->name != 'mediawiki' ) {
-			throw new MWException( "Expected <mediawiki> tag, got ".
+			throw new MWException( "Expected <mediawiki> tag, got " .
 				$this->reader->name );
 		}
 		$this->debug( "<mediawiki> tag is correct." );

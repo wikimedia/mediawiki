@@ -185,7 +185,7 @@ class DjVuHandler extends ImageHandler {
 		}
 		$cmd .= ' > ' . wfEscapeShellArg( $dstPath ) . ') 2>&1';
 		wfProfileIn( 'ddjvu' );
-		wfDebug( __METHOD__.": $cmd\n" );
+		wfDebug( __METHOD__ . ": $cmd\n" );
 		$retval = '';
 		$err = wfShellExec( $cmd, $retval );
 		wfProfileOut( 'ddjvu' );
@@ -311,7 +311,7 @@ class DjVuHandler extends ImageHandler {
 			return false;
 		}
 
-		$o = $tree->BODY[0]->OBJECT[$page-1];
+		$o = $tree->BODY[0]->OBJECT[$page - 1];
 		if ( $o ) {
 			return array(
 				'width' => intval( $o['width'] ),
@@ -328,7 +328,7 @@ class DjVuHandler extends ImageHandler {
 			return false;
 		}
 
-		$o = $tree->BODY[0]->PAGE[$page-1];
+		$o = $tree->BODY[0]->PAGE[$page - 1];
 		if ( $o ) {
 			$txt = $o['value'];
 			return $txt;

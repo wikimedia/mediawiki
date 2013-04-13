@@ -1118,7 +1118,7 @@ class successfulUserLoginTest extends pageTest {
 				'wpRemember'      => wikiFuzz::makeFuzz( 2 )
 				);
 
-		$this->cookie = "wikidb_session=" .  wikiFuzz::chooseInput( array( "1" , wikiFuzz::makeFuzz( 2 ) ) );
+		$this->cookie = "wikidb_session=" . wikiFuzz::chooseInput( array( "1" , wikiFuzz::makeFuzz( 2 ) ) );
 	}
 }
 
@@ -2280,7 +2280,7 @@ function saveTestAsPHP( pageTest $test, $filename ) {
 		. "curl_setopt(\$ch, CURLOPT_POSTFIELDS, \$params );\n"
 		. "curl_setopt(\$ch, CURLOPT_URL, " . var_export( WIKI_BASE_URL . $test->getPagePath(), true ) . ");\n"
 		. "curl_setopt(\$ch, CURLOPT_RETURNTRANSFER,1);\n"
-		.  ( $test->getCookie() ? "curl_setopt(\$ch, CURLOPT_COOKIE, " . var_export( $test->getCookie(), true ) . ");\n" : "" )
+		. ( $test->getCookie() ? "curl_setopt(\$ch, CURLOPT_COOKIE, " . var_export( $test->getCookie(), true ) . ");\n" : "" )
 		. "\$result=curl_exec(\$ch);\n"
 		. "curl_close (\$ch);\n"
 		. "print \$result;\n"
