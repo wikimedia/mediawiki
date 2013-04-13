@@ -8474,6 +8474,16 @@ A short description of the script path entry point. Links to the mediawiki.org d
 {{Identical|Go}}',
 'filepath-summary' => 'Shown in [[Special:FilePath]]',
 
+# Special:Userbyid
+'userbyid' => 'Main heading of [[Special:UserById]] page.',
+'userbyid-summary' => 'Shown at top of [[Special:UserById]]',
+'userbyid-legend' => 'Legend of fieldset around input box in [[Special:UserById]].',
+'userbyid-text' => 'Inside fieldset for [[Special:UserById]]',
+'userbyid-value' => 'Shown next to input box in [[Special:UserById]]',
+'userbyid-submit' => 'Button label in [[Special:UserById]].
+{{Identical|Go}}',
+'userbyid-not-exists' => 'Used as error message in [[Special:UserById]]',
+
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Name of special page [[Special:FileDuplicateSearch]].',
 'fileduplicatesearch-summary' => 'Summary of [[Special:FileDuplicateSearch]]',
