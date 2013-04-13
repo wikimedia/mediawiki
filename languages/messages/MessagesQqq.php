@@ -8514,6 +8514,20 @@ A short description of the script path entry point. Links to the mediawiki.org d
 {{Identical|Go}}',
 'filepath-summary' => 'Shown in [[Special:FilePath]]',
 
+# Special:Redirect
+'redirect'         => 'Main heading of [[Special:Redirect]] page',
+'redirect-legend'  => 'Legend of fieldset around input box in [[Special:Redirect]]',
+'redirect-text'    => 'Inside fieldset for [[Special:Redirect]]',
+'redirect-summary' => 'Shown at top of [[Special:Redirect]]',
+'redirect-submit'  => 'Button label in [[Special:Redirect]].
+{{Identical|Go}}',
+'redirect-lookup'  => 'First field label in [[Special:Redirect]]',
+'redirect-value'   => 'Second field label in [[Special:Redirect]]',
+'redirect-user'     => 'Description of lookup type for [[Special:Redirect]]',
+'redirect-revision' => 'Description of lookup type for [[Special:Redirect]]',
+'redirect-file'     => 'Description of lookup type for [[Special:Redirect]]',
+'redirect-not-exists' => 'Used as error message in [[Special:Redirect]]',
+
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Name of special page [[Special:FileDuplicateSearch]].',
 'fileduplicatesearch-summary' => 'Summary of [[Special:FileDuplicateSearch]]',
