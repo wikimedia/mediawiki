@@ -1336,7 +1336,7 @@ SQL;
 		if ( is_null( $s ) ) {
 			return 'NULL';
 		} elseif ( is_bool( $s ) ) {
-			return intval( $s );
+			return "'" . intval( $s ) . "'";
 		} elseif ( $s instanceof Blob ) {
 			return "'" . $s->fetch( $s ) . "'";
 		}
