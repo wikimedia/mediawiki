@@ -53,6 +53,7 @@
  * @author Timpul
  * @author ToSter
  * @author Tsca
+ * @author Ty221
  * @author WTM
  * @author Woytecr
  * @author Wpedzich
@@ -323,7 +324,7 @@ $messages = array(
 'tog-previewonfirst' => 'Pokazuj podgląd strony podczas pierwszej edycji',
 'tog-nocache' => 'Wyłącz pamięć podręczną przeglądarki',
 'tog-enotifwatchlistpages' => 'Wyślij do mnie e‐mail, gdy strona lub plik z mojej listy obserwowanych zostaną zmodyfikowane',
-'tog-enotifusertalkpages' => 'Wyślij do mnie e‐mail kiedy moja strona dyskusji zostanie zmodyfikowana',
+'tog-enotifusertalkpages' => 'Wyślij do mnie e‐mail, gdy moja strona dyskusji zostanie zmodyfikowana',
 'tog-enotifminoredits' => 'Wyślij e‐mail także w przypadku drobnych zmian na stronach lub w plikach',
 'tog-enotifrevealaddr' => 'Nie ukrywaj mojego adresu e‐mail w powiadomieniach',
 'tog-shownumberswatching' => 'Pokaż liczbę użytkowników obserwujących stronę',
@@ -364,13 +365,13 @@ $messages = array(
 'thursday' => 'czwartek',
 'friday' => 'piątek',
 'saturday' => 'sobota',
-'sun' => 'Nie',
-'mon' => 'Pon',
-'tue' => 'Wto',
-'wed' => 'Śro',
-'thu' => 'Czw',
-'fri' => 'Pią',
-'sat' => 'Sob',
+'sun' => 'N',
+'mon' => 'Pn',
+'tue' => 'Wt',
+'wed' => 'Śr',
+'thu' => 'Cz',
+'fri' => 'Pt',
+'sat' => 'So',
 'january' => 'styczeń',
 'february' => 'luty',
 'march' => 'marzec',
@@ -476,7 +477,7 @@ $messages = array(
 'go' => 'Przejdź',
 'searcharticle' => 'Przejdź',
 'history' => 'Historia strony',
-'history_short' => 'Historia i autorzy',
+'history_short' => 'Historia',
 'updatedmarker' => 'zmienione od ostatniej wizyty',
 'printableversion' => 'Wersja do druku',
 'permalink' => 'Link do tej wersji',
@@ -714,9 +715,15 @@ Zauważ, że do momentu wyczyszczenia pamięci podręcznej przeglądarki niektó
 'welcomecreation-msg' => 'Twoje konto zostało utworzone.
 Nie zapomnij dostosować [[Special:Preferences|preferencji]].',
 'yourname' => 'Nazwa {{GENDER:|użytkownika|użytkowniczki}}',
+'userlogin-yourname' => 'Nazwa użytkownika',
+'userlogin-yourname-ph' => 'Wprowadź swoją nazwę użytkownika',
 'yourpassword' => 'Hasło',
+'userlogin-yourpassword' => 'Hasło',
+'userlogin-yourpassword-ph' => 'Wpisz swoje hasło',
 'yourpasswordagain' => 'Powtórz hasło',
 'remembermypassword' => 'Zapamiętaj moje hasło na tym komputerze (maksymalnie przez $1 {{PLURAL:$1|dzień|dni}})',
+'userlogin-remembermypassword' => 'Zapamiętaj mnie',
+'userlogin-signwithsecure' => 'Zaloguj się na bezpiecznym serwerze',
 'securelogin-stick-https' => 'Po zalogowaniu utrzymuj połączenie poprzez HTTPS',
 'yourdomainname' => 'Twoja domena',
 'password-change-forbidden' => 'Nie można zmieniać haseł na tej wiki.',
@@ -729,12 +736,16 @@ Nie zapomnij dostosować [[Special:Preferences|preferencji]].',
 'logout' => 'Wyloguj',
 'userlogout' => 'Wyloguj',
 'notloggedin' => 'Nie jesteś zalogowany',
+'userlogin-noaccount' => 'Nie masz konta?',
+'userlogin-joinproject' => 'Dołącz do {{SITENAME}}',
 'nologin' => "Nie masz konta? '''$1'''.",
 'nologinlink' => 'Zarejestruj się',
 'createaccount' => 'Załóż nowe konto',
 'gotaccount' => "Masz już konto? '''$1'''.",
 'gotaccountlink' => 'Zaloguj się',
 'userlogin-resetlink' => 'Zapomniałeś danych do zalogowania się?',
+'helplogin-url' => 'Help:Logowanie',
+'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Pomoc z logowaniem]]',
 'createaccountmail' => 'Użyj tymczasowego hasła wygenerowanego losowo i wyślij je na podany poniżej adres e-mail',
 'createaccountreason' => 'Powód',
 'badretype' => 'Wprowadzone hasła różnią się między sobą.',
@@ -839,6 +850,7 @@ Być może właśnie zmienił{{GENDER:|eś|aś|eś(‐aś)}} swoje hasło lub po
 'passwordreset-text' => 'Wypełnij formularz, aby zresetować swoje hasło.',
 'passwordreset-legend' => 'Zresetuj hasło',
 'passwordreset-disabled' => 'Na tej wiki wyłączono możliwość resetowania haseł.',
+'passwordreset-emaildisabled' => 'Wysyłanie emaili zostało wyłączone na tej wiki',
 'passwordreset-pretext' => '{{PLURAL:$1||Wprowadź jedną z danych poniżej}}',
 'passwordreset-username' => 'Nazwa użytkownika:',
 'passwordreset-domain' => 'Domena',
@@ -1368,6 +1380,7 @@ Zazwyczaj jest to spowodowane przestarzałym linkiem do usuniętej strony. Powó
 'searchdisabled' => 'Wyszukiwanie w {{GRAMMAR:MS.lp|{{SITENAME}}}} zostało wyłączone.
 W międzyczasie możesz skorzystać z wyszukiwania Google.
 Jednak informacje o treści {{GRAMMAR:D.lp|{{SITENAME}}}} mogą być w Google nieaktualne.',
+'search-error' => 'Wystąpił błąd podczas wyszukiwania:$1',
 
 # Preferences page
 'preferences' => 'Preferencje',
@@ -2972,7 +2985,7 @@ Brak katalogu dla plików tymczasowych.',
 # Import log
 'importlogpage' => 'Rejestr importu',
 'importlogpagetext' => 'Rejestr przeprowadzonych importów stron z innych serwisów wiki.',
-'import-logentry-upload' => '{{GENDER:$2|zaimportował|zaimportowała}} [[$1]] przez przesłanie pliku',
+'import-logentry-upload' => 'Zaimportowano [[$1]] przez pobieranie plików',
 'import-logentry-upload-detail' => '$1 {{PLURAL:$1|wersja|wersje|wersji}}',
 'import-logentry-interwiki' => '{{GENDER:$2|zaimportował|zaimportowała}} $1 używając transwiki',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|wersja|wersje|wersji}} z $2',
@@ -4010,6 +4023,8 @@ Grafiki są pokazywane w pełnej rozdzielczości. Inne typy plików są otwieran
 'htmlform-submit' => 'Zapisz',
 'htmlform-reset' => 'Cofnij zmiany',
 'htmlform-selectorother-other' => 'Inne',
+'htmlform-no' => 'Nie',
+'htmlform-yes' => 'Tak',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 z obsługą pełnotekstowego wyszukiwania',

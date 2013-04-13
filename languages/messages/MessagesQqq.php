@@ -79,6 +79,7 @@
  * @author Mido
  * @author Mihai
  * @author Minh Nguyen
+ * @author Moha
  * @author Mormegil
  * @author Mpradeep
  * @author Murma174
@@ -6375,12 +6376,7 @@ See also:
 * {{msg-mw|Currentevents-url}}
 * {{msg-mw|Accesskey-n-currentevents}}
 * {{msg-mw|Tooltip-n-currentevents}}',
-'tooltip-n-recentchanges' => 'The tooltip when hovering over the {{msg-mw|Recentchanges}} link in the sidebar going to the special page [[Special:RecentChanges]].
-
-See also:
-* {{msg-mw|Recentchanges}}
-* {{msg-mw|Accesskey-n-recentchanges}}
-* {{msg-mw|Tooltip-n-recentchanges}}',
+'tooltip-n-recentchanges' => 'Tabdart n isenfilen imaynuten di Wiki.',
 'tooltip-n-randompage' => "Tooltip shown when hovering over the link to 'Random page' shown in the side bar menu on all pages. Clicking the link will show a random page in from the wiki's main namespace.
 
 See also:
@@ -7494,7 +7490,7 @@ This is who originally owned the image (a person, stock photo agency, etc). This
 'exif-editstatus' => 'Editorial status of image. This is more intended for use with people making news papers. This denotes whether the image is on the main page, is part of a correction, etc. See 2:07 of http://www.iptc.org/std/IIM/4.1/specification/IIMV4.1.pdf',
 'exif-urgency' => 'Urgency. How urgent this image is. 1 is very urgent, 5 is normal, 8 is  very low priority.
 {{Related|Exif-urgency}}',
-'exif-fixtureidentifier' => 'Fixture name. Identifies frequently occuring object data, for example a regular column in a news paper.',
+'exif-fixtureidentifier' => 'Fixture name. Identifies frequently occurring object data, for example a regular column in a news paper.',
 'exif-locationdest' => 'Full printable name of location.',
 'exif-locationdestcode' => 'Code of location depicted. Typically this is an ISO country code, but the IPTC-iim standard also defines other codes like XSP for outer space. See appendix D (and tag 2:100) of http://www.iptc.org/std/IIM/4.1/specification/IIMV4.1.pdf',
 'exif-objectcycle' => 'Time of day that media is intended for. Either morning only, evening only, or all day. Typically only used for news related things that might only be broadcast at a specific time of day.

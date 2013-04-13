@@ -43,6 +43,7 @@
  * @author ManoDbo
  * @author McDutchie
  * @author MetalBrasil
+ * @author MisterSanderson
  * @author Opraco
  * @author Pedroca cerebral
  * @author Ppena
@@ -3966,14 +3967,14 @@ As imagens serão exibidas em sua resolução máxima, outros tipos de arquivos 
 'logentry-delete-delete' => '$1 apagou a página $3',
 'logentry-delete-restore' => '$1 restaurou a página $3',
 'logentry-delete-event' => '$1 alterou a visibilidade {{PLURAL:$5|de uma entrada|de $5 entradas}} do registro $3: $4',
-'logentry-delete-revision' => '$1 alterou a visibilidade de {{PLURAL:$5|uma revisão|$5 revisões}} em $3: $4',
-'logentry-delete-event-legacy' => '$1 alterou a visibilidade de uma entrada em $3',
-'logentry-delete-revision-legacy' => '$1 alterou a visibilidade de uma revisão em $3',
+'logentry-delete-revision' => '$1 alterou a visibilidade de {{PLURAL:$5|uma revisão|$5 revisões}} na página $3: $4',
+'logentry-delete-event-legacy' => '$1 alterou a visibilidade de eventos de log em $3',
+'logentry-delete-revision-legacy' => '$1 alterou a visibilidade de revisões na página $3',
 'logentry-suppress-delete' => '$1 suprimiu a página $3',
 'logentry-suppress-event' => '$1 alterou secretamente a visibilidade {{PLURAL:$5|de uma entrada|das $5 entradas}} em $3: $4',
 'logentry-suppress-revision' => '$1 alterou secretamente a visibilidade {{PLURAL:$5|de uma revisão|das $5 revisões}} em $3: $4',
 'logentry-suppress-event-legacy' => '$1 alterou secretamente a visibilidade das entradas em $3',
-'logentry-suppress-revision-legacy' => '$1 alterou secretamente a visibilidade das revisões em $3',
+'logentry-suppress-revision-legacy' => '$1 alterou secretamente a visibilidade de revisões na página $3',
 'revdelete-content-hid' => 'conteúdo oculto',
 'revdelete-summary-hid' => 'sumário de edição oculto',
 'revdelete-uname-hid' => 'nome de usuário oculto',
@@ -3992,7 +3993,7 @@ As imagens serão exibidas em sua resolução máxima, outros tipos de arquivos 
 'logentry-newusers-create' => 'A conta de usuário $1 foi criada',
 'logentry-newusers-create2' => 'A conta de usuário $3 foi criada por $1',
 'logentry-newusers-byemail' => 'A conta de usuário $3 foi criada por $1, com a senha sendo enviada por e-mail',
-'logentry-newusers-autocreate' => 'A conta $1 foi criada automaticamente',
+'logentry-newusers-autocreate' => 'A conta de usuário $1 foi criada automaticamente',
 'logentry-rights-rights' => '$1 alterou os grupos de usuário de $3 de $4 para $5',
 'logentry-rights-rights-legacy' => '$1 alterou os grupos de $3',
 'logentry-rights-autopromote' => '$1 foi promovido automaticamente de $4 a $5',

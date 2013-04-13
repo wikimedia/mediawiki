@@ -320,8 +320,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Näita jälgivate kasutajate hulka',
 'tog-oldsig' => 'Praegune allkiri:',
 'tog-fancysig' => 'Kasuta vikiteksti vormingus allkirja (ilma automaatse lingita kasutajalehele)',
-'tog-externaleditor' => 'Kasuta vaikimisi välist redaktorit (ainult asjatundjatele, tarvis arvuti eriseadistust – [//www.mediawiki.org/wiki/Manual:External_editors lisateave])',
-'tog-externaldiff' => 'Kasuta vaikimisi välist võrdlusvahendit (ainult asjatundjatele, tarvis arvuti eriseadistust – [//www.mediawiki.org/wiki/Manual:External_editors lisateave])',
 'tog-showjumplinks' => 'Kuva lehekülje ülaservas "mine"-lingid',
 'tog-uselivepreview' => 'Kasuta elavat eelvaadet (vaja JavaScripti) (katseline)',
 'tog-forceeditsummary' => 'Nõua redigeerimisel resümee välja täitmist',
@@ -335,6 +333,7 @@ $messages = array(
 'tog-diffonly' => 'Ära näita erinevuste vaate all lehe sisu',
 'tog-showhiddencats' => 'Näita peidetud kategooriaid',
 'tog-norollbackdiff' => 'Ära näita erinevusi pärast tühistamist',
+'tog-useeditwarning' => 'Hoiata mind, kui lahkun redigeerimisleheküljelt muudatusi salvestamata',
 
 'underline-always' => 'Alati',
 'underline-never' => 'Mitte kunagi',
@@ -703,9 +702,15 @@ Pane tähele, et seni kuni sa pole oma võrgulehitseja puhvrit tühjendanud, võ
 'welcomecreation-msg' => 'Sinu konto on loodud.
 Ära unusta seada oma {{GRAMMAR:genitive|{{SITENAME}}}} [[Special:Preferences|eelistusi]].',
 'yourname' => 'Kasutajanimi:',
+'userlogin-yourname' => 'Kasutajanimi',
+'userlogin-yourname-ph' => 'Sisesta oma kasutajanimi',
 'yourpassword' => 'Parool:',
+'userlogin-yourpassword' => 'Parool',
+'userlogin-yourpassword-ph' => 'Sisesta oma parool',
 'yourpasswordagain' => 'Sisesta parool uuesti:',
 'remembermypassword' => 'Jäta parool meelde (kuni $1 {{PLURAL:$1|päevaks|päevaks}})',
+'userlogin-remembermypassword' => 'Pea mind meeles',
+'userlogin-signwithsecure' => 'Logi sisse turvaserveri kaudu',
 'securelogin-stick-https' => 'Jätka pärast sisselogimist HTTPS-ühenduse kasutamist',
 'yourdomainname' => 'Sinu domeen:',
 'password-change-forbidden' => 'Selles vikis ei saa paroole muuta.',
@@ -718,12 +723,16 @@ Pane tähele, et seni kuni sa pole oma võrgulehitseja puhvrit tühjendanud, võ
 'logout' => 'Logi välja',
 'userlogout' => 'Logi välja',
 'notloggedin' => 'Sisse logimata',
+'userlogin-noaccount' => 'Kas sul pole kontot?',
+'userlogin-joinproject' => 'Ühine projektiga {{SITENAME}}',
 'nologin' => "Sul pole kontot? '''$1'''.",
 'nologinlink' => 'Registreeru siin',
 'createaccount' => 'Loo uus konto',
 'gotaccount' => "Kui sul on juba konto, '''$1'''.",
 'gotaccountlink' => 'logi sisse',
 'userlogin-resetlink' => 'Kas oled unustanud oma sisselogimisandmed?',
+'helplogin-url' => 'Help:Sisselogimine',
+'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Sisselogimisabi]]',
 'createaccountmail' => 'Kasuta juhuslikku parooli ja saada see allpool määratud e-posti aadressile',
 'createaccountreason' => 'Põhjus:',
 'badretype' => 'Sisestatud paroolid ei lange kokku.',
@@ -790,6 +799,7 @@ Palun pea nüüd pisut vahet.',
 # Email sending
 'php-mail-error-unknown' => 'Tundmatu tõrge PHP funktsioonis mail().',
 'user-mail-no-addy' => 'Püüdsid saata e-kirja ilma meiliaadressita.',
+'user-mail-no-body' => 'Püüti saata tühja või ebamõistlikult lühikese sisuosaga e-kirja.',
 
 # Change password dialog
 'resetpass' => 'Parooli muutmine',
@@ -816,6 +826,7 @@ Võib-olla oled juba edukalt muudnud oma salasõna või taotlenud uut ajutist sa
 'passwordreset-text' => 'Täida see vorm, et oma parool lähtestada.',
 'passwordreset-legend' => 'Parooli lähtestamine',
 'passwordreset-disabled' => 'Selles vikis on paroolide lähtestamine keelatud.',
+'passwordreset-emaildisabled' => 'E-posti funktsioonid on selles vikis keelatud.',
 'passwordreset-pretext' => '{{PLURAL:$1||Sisesta üks järgmistest andmeüksustest.}}',
 'passwordreset-username' => 'Kasutajanimi:',
 'passwordreset-domain' => 'Domeen:',
@@ -1055,6 +1066,8 @@ See on juba olemas.',
 'defaultmessagetext' => 'Sõnumi vaiketekst',
 'invalid-content-data' => 'Vigased sisuandmed',
 'content-not-allowed-here' => 'Lehekülg [[$2]] ei või sisaldada $1.',
+'editwarning-warning' => 'Sellelt leheküljelt lahkumise tõttu võivad tehtud muudatused kaotsi minna.
+Kui oled sisse loginud, saad selle hoiatuse eelistuste alaosas "{{int:prefs-editing}}" keelata.',
 
 # Content models
 'content-model-wikitext' => 'vikiteksti',
@@ -1332,15 +1345,6 @@ päringu ees prefiksit ''all:''. Konkreetsest nimeruumist otsimiseks kasuta pref
 'searchdisabled' => "Otsimine on preagu keelatud.
 Vahepeal saad otsimiseks Google'it kasutada.
 Pane tähele, et Google'is talletatud {{GRAMMAR:genitive|{{SITENAME}}}} sisu võib olla iganenud.",
-
-# Quickbar
-'qbsettings' => 'Kiirriba',
-'qbsettings-none' => 'Puudub',
-'qbsettings-fixedleft' => 'Püsivalt vasakul',
-'qbsettings-fixedright' => 'Püsivalt paremal',
-'qbsettings-floatingleft' => 'Ujuvalt vasakul',
-'qbsettings-floatingright' => 'Ujuvalt paremal',
-'qbsettings-directionality' => 'Fikseeritud, tulenevalt sinu keeles kasutatava kirja suunast',
 
 # Preferences page
 'preferences' => 'Eelistused',
@@ -3839,6 +3843,8 @@ Pilt kuvatakse algupärases suuruses, muu fail avatakse koheselt seostuva progra
 'htmlform-submit' => 'Saada',
 'htmlform-reset' => 'Tühista muudatused',
 'htmlform-selectorother-other' => 'Muu',
+'htmlform-no' => 'Ei',
+'htmlform-yes' => 'Jah',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 koos täistekstiotsingu toega',
@@ -3939,15 +3945,15 @@ Kui ei, kasuta allolevat lihtsat vormi. Sinu kommentaar lisatakse koos kasutajan
 'api-error-verification-error' => 'See fail võib olla rikutud või vale laiendiga.',
 
 # Durations
-'duration-seconds' => '$1 {{PLURAL:$1|sekundi}}',
-'duration-minutes' => '$1 {{PLURAL:$1|minuti}}',
-'duration-hours' => '$1 {{PLURAL:$1|tunni}}',
-'duration-days' => '$1 {{PLURAL:$1|päeva}}',
-'duration-weeks' => '$1 {{PLURAL:$1|nädala}}',
-'duration-years' => '$1 {{PLURAL:$1|aasta}}',
-'duration-decades' => '$1 {{PLURAL:$1|kümnendi}}',
-'duration-centuries' => '$1 {{PLURAL:$1|sajandi}}',
-'duration-millennia' => '$1 {{PLURAL:$1|aastatuhande}}',
+'duration-seconds' => '$1 {{PLURAL:$1|sekund|sekundit}}',
+'duration-minutes' => '$1 {{PLURAL:$1|minut|minutit}}',
+'duration-hours' => '$1 {{PLURAL:$1|tund|tundi}}',
+'duration-days' => '$1 {{PLURAL:$1|päev|päeva}}',
+'duration-weeks' => '$1 {{PLURAL:$1|nädal|nädalat}}',
+'duration-years' => '$1 {{PLURAL:$1|aasta|aastat}}',
+'duration-decades' => '$1 {{PLURAL:$1|kümnend|kümnendit}}',
+'duration-centuries' => '$1 {{PLURAL:$1|sajand|sajandit}}',
+'duration-millennia' => '$1 {{PLURAL:$1|aastatuhat|aastatuhandet}}',
 
 # Image rotation
 'rotate-comment' => 'Pilti pööratud $1 {{PLURAL:$1|kraad|kraadi}} päripäeva',

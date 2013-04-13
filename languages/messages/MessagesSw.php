@@ -154,8 +154,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Onyesha idadi ya watumiaji waangalizi',
 'tog-oldsig' => 'Sahihi iliyopo:',
 'tog-fancysig' => 'Weka sahihi tu (bila kujiweka kiungo yenyewe)',
-'tog-externaleditor' => 'Tumia kiharirio cha nje inaposhindikana (kwa wataalamu tu, inahitaji marekebisho maalum kwenye tarakilishi yako. [//www.mediawiki.org/wiki/Manual:External_editors Maelezo zaidi.])',
-'tog-externaldiff' => 'Tumia diff za nje inaposhindikana (kwa wataalamu tu, inahitaji marekebisho maalum kwenye tarakilishi yako. [//www.mediawiki.org/wiki/Manual:External_editors Maelezo zaidi.])',
 'tog-showjumplinks' => 'Wezesha "ruka hadi" viungo vya mafikio',
 'tog-uselivepreview' => 'Tumia kihakikio cha papohapo (JavaScript) (Experimental)',
 'tog-forceeditsummary' => 'Nishtue pale ninapoingiza muhtasari mtupu wa kuhariri',
@@ -170,6 +168,7 @@ $messages = array(
 'tog-showhiddencats' => 'Onyesha jamii zilizofichwa',
 'tog-noconvertlink' => 'Lemaza kiungo cha jina la badiliko',
 'tog-norollbackdiff' => 'Ondoa faili za diff baada ya kufanyakazi ya kurejesha',
+'tog-useeditwarning' => 'Unionyeshe ilani ninapotaka kutoka kwenye ukurasa ninouhariri, bila kuhifadhi mabadiliko',
 
 'underline-always' => 'Muda wote',
 'underline-never' => 'Kamwe',
@@ -530,7 +529,11 @@ Sababu zilizotolewa ni "\'\'$2\'\'".',
 Unaweza kuendelea kutumia {{SITENAME}} bila kutaja jina lako, au unaweza <span class='plainlinks'>[$1 kuingia tena]</span> kwenye akaunti yako. Kumbuka kwamba kurasa nyingine zitaendelea kuonekana kana kwamba bado hujatoka kwenye akaunti yako, hadi utakaposafisha kache ya kivinjari.",
 'welcomeuser' => 'Karibu, $1!',
 'yourname' => 'Jina la mtumiaji:',
+'userlogin-yourname' => 'Jina la mtumiaji',
+'userlogin-yourname-ph' => 'Weka jina lako la mtumiaji',
 'yourpassword' => 'Neno la siri:',
+'userlogin-yourpassword' => 'Neno la siri',
+'userlogin-yourpassword-ph' => 'Weka neno lako la siri',
 'yourpasswordagain' => 'Andika tena neno la siri',
 'remembermypassword' => 'Kumbuka kuingia kwangu katika kivinjari hiki (kwa muda usiozidi {{PLURAL:$1|siku}} $1)',
 'securelogin-stick-https' => 'Endelea kuunganishwa na HTTPS baada ya kuingia',
@@ -545,6 +548,8 @@ Unaweza kuendelea kutumia {{SITENAME}} bila kutaja jina lako, au unaweza <span c
 'logout' => 'Toka',
 'userlogout' => 'Toka',
 'notloggedin' => 'Hujaingia',
+'userlogin-noaccount' => 'Huna akaunti ya kuingilia?',
+'userlogin-joinproject' => 'Jiunga na {{SITENAME}}',
 'nologin' => "Huna akaunti ya kuingilia? '''$1'''.",
 'nologinlink' => 'Sajili akaunti',
 'createaccount' => 'Sajili akaunti',
@@ -884,6 +889,8 @@ Inaonekana kwamba ukurasa umefutwa.',
 'edit-already-exists' => 'Haikufanikiwa kuanzisha ukurasa mpya.
 Ukurasa wa jina hilo unapatikana tayari.',
 'defaultmessagetext' => 'Ujumbe uliopo',
+'editwarning-warning' => 'Ukitoka kwenye ukurasa huu labda utapoteza madabiliko uliyoyafanya.
+Unaweza kuondoa ilani hii ukienda kwenye sehemu ya "{{int:prefs-editing}}" kwenye mapendekezo yako.',
 
 # Content models
 'content-model-javascript' => 'HatiJava',
@@ -991,7 +998,7 @@ Wakabidhi wengine wa {{SITENAME}} bado wataweza kuliona lile lililofichwa pamoja
 'revdelete-hide-restricted' => 'Wakabidhi (vilevile wengine) wasiweze kuona data',
 'revdelete-radio-same' => '(isibadilishwe)',
 'revdelete-radio-set' => 'Ndiyo',
-'revdelete-radio-unset' => 'Siyo',
+'revdelete-radio-unset' => 'Hapana',
 'revdelete-suppress' => 'Wakabidhi (vilevile wengine) wasiweze kuona data',
 'revdelete-unsuppress' => 'Uzuio wa kuona mapitio uondolewe, mapitio yanaporudishwa',
 'revdelete-log' => 'Sababu:',
@@ -1121,14 +1128,6 @@ Ukitaka kutafuta kwenye maeneo yote (pamoja na kurasa za majadiliano, vigezo, nk
 'searchdisabled' => 'Kutafuta {{SITENAME}} kumesimamishwa.
 Unaweza kutafuta kwa kutumia Google punde si punde.
 Ujue lakini kwamba kumbukumbu za {{SITENAME}} kule Google labda zilipitwa na wakati.',
-
-# Quickbar
-'qbsettings' => 'Mwambaa pembe',
-'qbsettings-none' => 'Hakuna',
-'qbsettings-fixedleft' => 'Kushoto tuli',
-'qbsettings-fixedright' => 'Kulia tuli',
-'qbsettings-floatingleft' => 'Kushoto geugeu',
-'qbsettings-floatingright' => 'Kulia geugeu',
 
 # Preferences page
 'preferences' => 'Mapendekezo',
@@ -1609,7 +1608,6 @@ Haliwezi kukaguliwa vilivyo kwa sababu za kiusalama.',
 'http-read-error' => 'Hitilafu ya kusoma HTTP.',
 'http-timed-out' => 'Ombi la HTTP muda umepita.',
 'http-curl-error' => 'Hitilafu ya kuleta URL: $1',
-'http-host-unreachable' => 'KISARA (URL) haikupatikana',
 'http-bad-status' => 'Kulikuwa na tatizo wakati wa kutekeleza ombi la HTTP: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -3123,6 +3121,8 @@ Tovuti hii inapata matatatizo wakati huu.',
 'htmlform-submit' => 'Wasilisha',
 'htmlform-reset' => 'Tengua mabadiliko',
 'htmlform-selectorother-other' => 'Nyingine',
+'htmlform-no' => 'Hapana',
+'htmlform-yes' => 'Ndiyo',
 
 # New logging system
 'logentry-delete-delete' => '$1 alifuta ukurasa wa $3',

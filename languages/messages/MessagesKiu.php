@@ -82,8 +82,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Amorê karberunê şêrkerdoğu bıasne',
 'tog-oldsig' => 'İmza mewcude:',
 'tog-fancysig' => 'İmza rê mamelê wikimeqaley bıke (bê girewo otomatik)',
-'tog-externaleditor' => 'Editorê teberi standart bıgurene (teyna serba ekspertuno, komputerê sıma de ayarê xusışiy lazımê. [//www.mediawiki.org/wiki/Manual:External_editors Melumato jêdêr.])',
-'tog-externaldiff' => 'Têversanaene pê programê teberi vıraze (teyna serba ekspertuno, komputerê sıma de ayarê xısuşiy lazımê. [//www.mediawiki.org/wiki/Manual:External_editors Melumato jêdêr.])',
 'tog-showjumplinks' => 'Girê "so"y feal ke',
 'tog-uselivepreview' => 'Verqayto cande bıgurene (JavaScript) (hona cerrebnayene dero)',
 'tog-forceeditsummary' => 'Mı ke xulasa kerde cı vira, hay be mı ser de',
@@ -782,14 +780,6 @@ Verê cıfeteliyaene de be ilawekerdena verbendê '''all:'''i ra (ebe pelunê hu
 Sıma şikinê na sıre ''Google'' de şêr kerê.
 Diqet kerê, beno ke tedeestê {{SITENAME}} uza endi rozane niyê.",
 
-# Quickbar
-'qbsettings' => 'Herbişiyaena hedefi',
-'qbsettings-none' => 'Qet',
-'qbsettings-fixedleft' => 'Çhep de bestniyo pa',
-'qbsettings-fixedright' => 'Rast de bestniyo pa',
-'qbsettings-floatingleft' => 'Çhepi ser aznino',
-'qbsettings-floatingright' => 'Rasti ser aznino',
-
 # Preferences page
 'preferences' => 'Tercihi',
 'mypreferences' => 'Tercihê mı',
@@ -803,7 +793,7 @@ Diqet kerê, beno ke tedeestê {{SITENAME}} uza endi rozane niyê.",
 'prefs-datetime' => 'Tarix u zeman',
 'prefs-personal' => 'Dosya karberi',
 'prefs-rc' => 'Vurnaisê peyêni',
-'prefs-watchlist' => 'Lista şêr-kerdişi',
+'prefs-watchlist' => 'Lista şêrkerdene',
 'prefs-watchlist-days' => 'Rozê ke lista şêr-kerdişi de asenê:',
 'prefs-watchlist-edits' => 'Miqdarê tewr jêdêr vurnaisuno ke lista şêr-kerdişia hirakerdiye derê:',
 'prefs-misc' => 'Ğelet',
@@ -844,8 +834,8 @@ Diqet kerê, beno ke tedeestê {{SITENAME}} uza endi rozane niyê.",
 'prefs-files' => 'Dosyey',
 'youremail' => 'E-poste:',
 'username' => 'Namê karberi:',
-'uid' => 'Kamiya karberi:',
-'prefs-memberingroups' => 'Ezaê de {{PLURAL:$1|gruba|grubunê}}:',
+'uid' => 'Kamiya {{GENDER:$1|karberi}}:',
+'prefs-memberingroups' => '{{GENDER:$2|Ezayê}} {{PLURAL:$1|grube|grubu}}:',
 'yourrealname' => 'Namo rastıkên:',
 'yourlanguage' => 'Zon:',
 'yourvariant' => 'Varyant:',
@@ -1125,9 +1115,6 @@ Cêr [$2 pela arezekerdena dosya de] arezekerdene asnina.',
 'listusers-noresult' => 'Karber nêdiya.',
 'listusers-blocked' => '(kilıt biyo)',
 
-# Special:ActiveUsers
-'activeusers' => 'Lista karberunê fealu',
-
 # Special:ListGroupRights
 'listgrouprights-group' => 'Kome',
 'listgrouprights-rights' => 'Heqi',
@@ -1148,7 +1135,7 @@ Cêr [$2 pela arezekerdena dosya de] arezekerdene asnina.',
 'emailsend' => 'Bırusne',
 
 # Watchlist
-'watchlist' => 'Pela mına şêrkerdene',
+'watchlist' => 'Lista şêrkerdene',
 'mywatchlist' => 'Lista şêrkerdışi',
 'watchlistfor2' => 'Serba $1 ($2)',
 'addedwatchtext' => "Pela \"[[:\$1]]\"i ilawe biye be [[Special:Watchlist|pela şêrkerdişi]].
@@ -1200,7 +1187,7 @@ Tı şikina sewiya sevekiyaena na pele bıvurnê, hema yê nae sevekiyaena qedem
 'protect-default' => 'Destur bıde be karberu pêrune',
 'protect-fallback' => 'Desturê "$1"i lazımo',
 'protect-level-autoconfirmed' => 'Karberunê newun u qeydnêbiyaoğu kilıt ke',
-'protect-level-sysop' => 'Teyna idarekeri',
+'protect-level-sysop' => 'Teyna idarekeru rê izıne bıde',
 'protect-summary-cascade' => 'qedemein',
 'protect-expiring' => 'tarixê qediyaene $1 (UTC)',
 'protect-expiring-local' => '$1 de qedino',

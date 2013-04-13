@@ -394,8 +394,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Mostrar el número de usuarios que la vigilan',
 'tog-oldsig' => 'Firma actual:',
 'tog-fancysig' => 'Tratar la firma como wikitexto (sin un enlace automático)',
-'tog-externaleditor' => 'Utilizar editor externo por defecto (sólo para expertos: son necesarios ajustes especiales en la computadora; [//www.mediawiki.org/wiki/Manual:External_editors más información])',
-'tog-externaldiff' => "Utilizar ''diferencia'' externa por defecto (sólo para expertos: son necesarios ajustes especiales en la computadora; [//www.mediawiki.org/wiki/Manual:External_editors más información])",
 'tog-showjumplinks' => 'Habilitar los enlaces de accesibilidad «saltar a»',
 'tog-uselivepreview' => 'Usar previsualización en vivo (requiere JavaScript) (experimental)',
 'tog-forceeditsummary' => 'Avisarme cuando grabe la página sin introducir un resumen de edición',
@@ -410,6 +408,7 @@ $messages = array(
 'tog-showhiddencats' => 'Mostrar las categorías escondidas',
 'tog-noconvertlink' => 'Desactivar la conversión de título de enlace',
 'tog-norollbackdiff' => "Omitir la ''diferencia'' después de revertir",
+'tog-useeditwarning' => 'Advertirme cuando abandone una página editada con cambios sin grabar',
 
 'underline-always' => 'Siempre',
 'underline-never' => 'Nunca',
@@ -1145,6 +1144,8 @@ Ya existe.',
 'content-failed-to-parse' => 'No se pudo analizar el contenido $2 del modelo $1: $3',
 'invalid-content-data' => 'Datos de contenido inválidos',
 'content-not-allowed-here' => 'El contenido "$1" no está permitido en la página [[$2]]',
+'editwarning-warning' => 'Dejar esta página le causará la pérdida de cualquier cambio que haya hecho.
+Si está "logueado", puede deshabilitar esta advertencia en la sección "{{int:prefs-editing}}" de sus preferencias.',
 
 # Content models
 'content-model-wikitext' => 'texto wiki',
@@ -1430,15 +1431,6 @@ Prueba a usar el prefijo ''all:'' para buscar en todo el contenido (incluyendo p
 'search-external' => 'Búsqueda externa',
 'searchdisabled' => 'Las búsquedas en {{SITENAME}} están temporalmente desactivadas.
 Mientras tanto puedes buscar mediante Google, pero ten en cuenta que sus índices relativos a {{SITENAME}} pueden estar desactualizados.',
-
-# Quickbar
-'qbsettings' => 'Quickbar',
-'qbsettings-none' => 'Ninguna',
-'qbsettings-fixedleft' => 'Fija a la izquierda',
-'qbsettings-fixedright' => 'Fija a la derecha',
-'qbsettings-floatingleft' => 'Flotante a la izquierda',
-'qbsettings-floatingright' => 'Flotante a la derecha',
-'qbsettings-directionality' => 'Fijos, dependiendo de la direccionalidad de la escritura de su idioma',
 
 # Preferences page
 'preferences' => 'Preferencias',
@@ -2736,7 +2728,7 @@ Véase la [[Special:BlockList|lista de bloqueos]] para revisarlo.',
 'blocklist-tempblocks' => 'Ocultar bloqueos temporales',
 'blocklist-addressblocks' => 'Ocultar bloqueos de una sola dirección IP',
 'blocklist-rangeblocks' => 'Ocultar bloqueos de rango',
-'blocklist-timestamp' => 'Marca de tiempo',
+'blocklist-timestamp' => 'Fecha y hora',
 'blocklist-target' => 'Destino',
 'blocklist-expiry' => 'Caduca',
 'blocklist-by' => 'Administrador bloqueante',
