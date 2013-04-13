@@ -962,6 +962,7 @@ $wgAutoloadLocalClasses = array(
 	'SpecialRandomredirect' => 'includes/specials/SpecialRandomredirect.php',
 	'SpecialRecentChanges' => 'includes/specials/SpecialRecentchanges.php',
 	'SpecialRecentchangeslinked' => 'includes/specials/SpecialRecentchangeslinked.php',
+	'SpecialRedirect' => 'includes/specials/SpecialRedirect.php',
 	'SpecialRevisionDelete' => 'includes/specials/SpecialRevisiondelete.php',
 	'SpecialSearch' => 'includes/specials/SpecialSearch.php',
 	'SpecialSpecialpages' => 'includes/specials/SpecialSpecialpages.php',
