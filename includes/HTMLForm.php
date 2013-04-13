@@ -1623,16 +1623,19 @@ class HTMLTextField extends HTMLFormField {
 	}
 }
 class HTMLTextAreaField extends HTMLFormField {
+	const DEFAULT_COLS = 80;
+	const DEFAULT_ROWS = 25;
+
 	function getCols() {
 		return isset( $this->mParams['cols'] )
 			? $this->mParams['cols']
-			: 80;
+			: static::DEFAULT_COLS;
 	}
 
 	function getRows() {
 		return isset( $this->mParams['rows'] )
 			? $this->mParams['rows']
-			: 25;
+			: static::DEFAULT_ROWS;
 	}
 
 	function getInputHTML( $value ) {
