@@ -161,6 +161,7 @@ class SpecialPageFactory {
 		'Mytalk'                    => 'SpecialMytalk',
 		'Myuploads'                 => 'SpecialMyuploads',
 		'PermanentLink'             => 'SpecialPermanentLink',
+		'Redirect'                  => 'SpecialRedirect',
 		'Revisiondelete'            => 'SpecialRevisionDelete',
 		'Specialpages'              => 'SpecialSpecialpages',
 		'Userlogout'                => 'SpecialUserlogout',
