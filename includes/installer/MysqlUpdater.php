@@ -220,6 +220,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			array( 'addField',	'page',     'page_content_model',		'patch-page-page_content_model.sql' ),
 			array( 'dropField', 'site_stats',   'ss_admins',        'patch-drop-ss_admins.sql' ),
 			array( 'dropField', 'recentchanges', 'rc_moved_to_title',            'patch-rc_moved.sql' ),
+<<<<<<< HEAD   (e913cc Merge "(bug 44459) Ensure jqueryMsg treats plain messages as)
 			array( 'addTable', 'sites',                            'patch-sites.sql' ),
 			array( 'addField', 'filearchive',   'fa_sha1',          'patch-fa_sha1.sql' ),
 			array( 'addField', 'job',           'job_token',         'patch-job_token.sql' ),
@@ -228,6 +229,9 @@ class MysqlUpdater extends DatabaseUpdater {
 			array( 'addField', 'uploadstash',      'us_props',      'patch-uploadstash-us_props.sql' ),
 			array( 'modifyField', 'user_groups', 'ug_group', 'patch-ug_group-length-increase-255.sql' ),
 			array( 'modifyField', 'user_former_groups', 'ufg_group', 'patch-ufg_group-length-increase-255.sql' ),
+=======
+			array( 'doCategorylinksCollationIndicesUpdate' ),
+>>>>>>> BRANCH (d7c9f5 Allow localized collation names in {{DEFAULTCOLLATION: }} to)
 		);
 	}
 
@@ -765,6 +769,15 @@ class MysqlUpdater extends DatabaseUpdater {
 	protected function doCategorylinksIndicesUpdate() {
 		if ( !$this->indexHasField( 'categorylinks', 'cl_sortkey', 'cl_from' ) ) {
 			$this->applyPatch( 'patch-categorylinksindex.sql', false, "Updating categorylinks Indices" );
+		}
+	}
+
+	protected function doCategorylinksCollationIndicesUpdate() {
+		if ( !$this->indexHasField( 'categorylinks', 'cl_from', 'cl_collation' ) ||
+			!$this->indexHasField( 'categorylinks', 'cl_sortkey', 'cl_collation' )
+		) {
+			$this->applyPatch( 'patch-categorylinks-multiple-collations.sql' );
+			$this->output( "...categorylinks collation indices updated\n" );
 		}
 	}
 

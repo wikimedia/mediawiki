@@ -761,7 +761,11 @@ ChangePassword form via the Preferences form.
 $unpatrolled: Whether or not we are showing unpatrolled changes.
 $watched: Whether or not the change is watched by the user.
 
+<<<<<<< HEAD   (e913cc Merge "(bug 44459) Ensure jqueryMsg treats plain messages as)
 'Collation::factory': Called if $wgCategoryCollation is an unknown collation.
+=======
+'Collation::factory': Called if $wgCategoryCollations contains an unknown collation
+>>>>>>> BRANCH (d7c9f5 Allow localized collation names in {{DEFAULTCOLLATION: }} to)
 $collationName: Name of the collation in question
 &$collationObject: Null. Replace with a subclass of the Collation class that
   implements the collation given in $collationName.
