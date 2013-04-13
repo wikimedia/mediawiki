@@ -126,7 +126,7 @@ class SVGReader {
 		}
 
 		if ( $this->reader->localName != 'svg' || $this->reader->namespaceURI != self::NS_SVG ) {
-			throw new MWException( "Expected <svg> tag, got ".
+			throw new MWException( "Expected <svg> tag, got " .
 				$this->reader->localName . " in NS " . $this->reader->namespaceURI );
 		}
 		$this->debug( "<svg> tag is correct." );
@@ -178,7 +178,7 @@ class SVGReader {
 	 * @param string $name of the element that we are reading from
 	 * @param string $metafield that we will fill with the result
 	 */
-	private function readField( $name, $metafield=null ) {
+	private function readField( $name, $metafield = null ) {
 		$this->debug( "Read field $metafield" );
 		if( !$metafield || $this->reader->nodeType != XmlReader::ELEMENT ) {
 			return;
@@ -200,7 +200,7 @@ class SVGReader {
 	 * @param string $metafield that we will fill with the result
 	 * @throws MWException
 	 */
-	private function readXml( $metafield=null ) {
+	private function readXml( $metafield = null ) {
 		$this->debug( "Read top level metadata" );
 		if( !$metafield || $this->reader->nodeType != XmlReader::ELEMENT ) {
 			return;

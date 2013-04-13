@@ -209,7 +209,7 @@ class UploadStash {
 		list( $usec, $sec ) = explode( ' ', microtime() );
 		$usec = substr( $usec, 2 );
 		$key = wfBaseConvert( $sec . $usec, 10, 36 ) . '.' .
-			wfBaseConvert( mt_rand(), 10, 36 ) . '.'.
+			wfBaseConvert( mt_rand(), 10, 36 ) . '.' .
 			$this->userId . '.' .
 			$extension;
 

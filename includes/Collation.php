@@ -62,7 +62,7 @@ abstract class Collation {
 				}
 
 				// If all else fails...
-				throw new MWException( __METHOD__.": unknown collation type \"$collationName\"" );
+				throw new MWException( __METHOD__ . ": unknown collation type \"$collationName\"" );
 		}
 	}
 

@@ -29,7 +29,7 @@ if ( !function_exists( 'version_compare' ) || ( version_compare( phpversion(), '
 define( 'MW_CONFIG_CALLBACK', 'Installer::overrideConfig' );
 define( 'MEDIAWIKI_INSTALL', true );
 
-require_once( dirname( __DIR__ )."/maintenance/Maintenance.php" );
+require_once( dirname( __DIR__ ) . "/maintenance/Maintenance.php" );
 
 /**
  * Maintenance script to install and configure MediaWiki

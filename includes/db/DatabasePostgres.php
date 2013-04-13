@@ -320,7 +320,7 @@ class DatabasePostgres extends DatabaseBase {
 
 	function hasConstraint( $name ) {
 		$SQL = "SELECT 1 FROM pg_catalog.pg_constraint c, pg_catalog.pg_namespace n WHERE c.connamespace = n.oid AND conname = '" .
-				pg_escape_string( $this->mConn, $name ) . "' AND n.nspname = '" . pg_escape_string( $this->mConn, $this->getCoreSchema() ) ."'";
+				pg_escape_string( $this->mConn, $name ) . "' AND n.nspname = '" . pg_escape_string( $this->mConn, $this->getCoreSchema() ) . "'";
 		$res = $this->doQuery( $SQL );
 		return $this->numRows( $res );
 	}
@@ -705,7 +705,7 @@ __INDEXATTR__;
 	}
 
 	function indexUnique( $table, $index, $fname = 'DatabasePostgres::indexUnique' ) {
-		$sql = "SELECT indexname FROM pg_indexes WHERE tablename='{$table}'".
+		$sql = "SELECT indexname FROM pg_indexes WHERE tablename='{$table}'" .
 			" AND indexdef LIKE 'CREATE UNIQUE%(" .
 			$this->strencode( $this->indexName( $index ) ) .
 			")'";
@@ -960,7 +960,7 @@ __INDEXATTR__;
 			FROM pg_class c, pg_attribute a, pg_type t
 			WHERE relname='$table' AND a.attrelid=c.oid AND
 				a.atttypid=t.oid and a.attname='$field'";
-		$res =$this->query( $sql );
+		$res = $this->query( $sql );
 		$row = $this->fetchObject( $res );
 		if ( $row->ftype == 'varchar' ) {
 			$size = $row->size - 4;
@@ -1024,7 +1024,7 @@ __INDEXATTR__;
 	 */
 	function pg_array_parse( $text, &$output, $limit = false, $offset = 1 ) {
 		if( false === $limit ) {
-			$limit = strlen( $text )-1;
+			$limit = strlen( $text ) - 1;
 			$output = array();
 		}
 		if( '{}' == $text ) {
@@ -1042,7 +1042,7 @@ __INDEXATTR__;
 					return $output;
 				}
 			} else {
-				$offset = $this->pg_array_parse( $text, $output, $limit, $offset+1 );
+				$offset = $this->pg_array_parse( $text, $output, $limit, $offset + 1 );
 			}
 		} while ( $limit > $offset );
 		return $output;
@@ -1476,7 +1476,7 @@ SQL;
 				sleep( 1 );
 			}
 		}
-		wfDebug( __METHOD__." failed to acquire lock\n" );
+		wfDebug( __METHOD__ . " failed to acquire lock\n" );
 		return false;
 	}
 

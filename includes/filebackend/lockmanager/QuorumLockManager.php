@@ -125,7 +125,7 @@ abstract class QuorumLockManager extends LockManager {
 
 		$yesVotes = 0; // locks made on trustable servers
 		$votesLeft = count( $this->srvsByBucket[$bucket] ); // remaining peers
-		$quorum = floor( $votesLeft/2 + 1 ); // simple majority
+		$quorum = floor( $votesLeft / 2 + 1 ); // simple majority
 		// Get votes for each peer, in order, until we have enough...
 		foreach ( $this->srvsByBucket[$bucket] as $lockSrv ) {
 			if ( !$this->isServerUp( $lockSrv ) ) {

@@ -306,12 +306,12 @@ class SiteStatsUpdate implements DeferrableUpdate {
 				}
 				$pd = $this->getPendingDeltas();
 				// Piggy-back the async deltas onto those of this stats update....
-				$this->views    += ( $pd['ss_total_views']['+'] - $pd['ss_total_views']['-'] );
-				$this->edits    += ( $pd['ss_total_edits']['+'] - $pd['ss_total_edits']['-'] );
+				$this->views += ( $pd['ss_total_views']['+'] - $pd['ss_total_views']['-'] );
+				$this->edits += ( $pd['ss_total_edits']['+'] - $pd['ss_total_edits']['-'] );
 				$this->articles += ( $pd['ss_good_articles']['+'] - $pd['ss_good_articles']['-'] );
-				$this->pages    += ( $pd['ss_total_pages']['+'] - $pd['ss_total_pages']['-'] );
-				$this->users    += ( $pd['ss_users']['+'] - $pd['ss_users']['-'] );
-				$this->images   += ( $pd['ss_images']['+'] - $pd['ss_images']['-'] );
+				$this->pages += ( $pd['ss_total_pages']['+'] - $pd['ss_total_pages']['-'] );
+				$this->users += ( $pd['ss_users']['+'] - $pd['ss_users']['-'] );
+				$this->images += ( $pd['ss_images']['+'] - $pd['ss_images']['-'] );
 			}
 
 			// Need a separate transaction because this a global lock
@@ -356,7 +356,7 @@ class SiteStatsUpdate implements DeferrableUpdate {
 				'rc_user != 0',
 				'rc_bot' => 0,
 				'rc_log_type != ' . $dbr->addQuotes( 'newusers' ) . ' OR rc_log_type IS NULL',
-				'rc_timestamp >= ' . $dbr->addQuotes( $dbr->timestamp( wfTimestamp( TS_UNIX ) - $wgActiveUserDays*24*3600 ) ),
+				'rc_timestamp >= ' . $dbr->addQuotes( $dbr->timestamp( wfTimestamp( TS_UNIX ) - $wgActiveUserDays * 24 * 3600 ) ),
 			),
 			__METHOD__
 		);

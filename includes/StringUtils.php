@@ -452,16 +452,16 @@ class ReplacementArray {
 	 */
 	function replace( $subject ) {
 		if ( function_exists( 'fss_prep_replace' ) ) {
-			wfProfileIn( __METHOD__.'-fss' );
+			wfProfileIn( __METHOD__ . '-fss' );
 			if ( $this->fss === false ) {
 				$this->fss = fss_prep_replace( $this->data );
 			}
 			$result = fss_exec_replace( $this->fss, $subject );
-			wfProfileOut( __METHOD__.'-fss' );
+			wfProfileOut( __METHOD__ . '-fss' );
 		} else {
-			wfProfileIn( __METHOD__.'-strtr' );
+			wfProfileIn( __METHOD__ . '-strtr' );
 			$result = strtr( $subject, $this->data );
-			wfProfileOut( __METHOD__.'-strtr' );
+			wfProfileOut( __METHOD__ . '-strtr' );
 		}
 		return $result;
 	}

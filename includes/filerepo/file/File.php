@@ -1096,7 +1096,7 @@ abstract class File {
 	 *
 	 * @return array
 	 */
-	function getHistory( $limit = null, $start = null, $end = null, $inc=true ) {
+	function getHistory( $limit = null, $start = null, $end = null, $inc = true ) {
 		return array();
 	}
 

@@ -887,7 +887,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		$links = array();
 		foreach ( $filters as $key => $msg ) {
 			$link = $this->makeOptionsLink( $showhide[1 - $options[$key]],
-				array( $key => 1-$options[$key] ), $nondefaults );
+				array( $key => 1 - $options[$key] ), $nondefaults );
 			$links[] = $this->msg( $msg )->rawParams( $link )->escaped();
 		}
 

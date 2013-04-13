@@ -346,8 +346,8 @@ class XMPValidate {
 			$val, $m )
 		) {
 			$coord = intval( $m[1] );
-			$coord += intval( $m[2] ) * (1/60);
-			$coord += intval( $m[3] ) * (1/3600);
+			$coord += intval( $m[2] ) * ( 1 / 60 );
+			$coord += intval( $m[3] ) * ( 1 / 3600 );
 			if ( $m[4] === 'S' || $m[4] === 'W' ) {
 				$coord = -$coord;
 			}
@@ -358,7 +358,7 @@ class XMPValidate {
 			$val, $m )
 		) {
 			$coord = intval( $m[1] );
-			$coord += floatval( $m[2] ) * (1/60);
+			$coord += floatval( $m[2] ) * ( 1 / 60 );
 			if ( $m[3] === 'S' || $m[3] === 'W' ) {
 				$coord = -$coord;
 			}

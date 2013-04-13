@@ -863,7 +863,7 @@ class ApiMain extends ApiBase {
 			' ' . $request->getMethod() .
 			' ' . wfUrlencode( str_replace( ' ', '_', $this->getUser()->getName() ) ) .
 			' ' . $request->getIP() .
-			' T=' . $milliseconds .'ms';
+			' T=' . $milliseconds . 'ms';
 		foreach ( $this->getParamsUsed() as $name ) {
 			$value = $request->getVal( $name );
 			if ( $value === null ) {

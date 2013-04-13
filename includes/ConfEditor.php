@@ -537,7 +537,7 @@ class ConfEditor {
 	 */
 	function getIndent( $pos, $key = false, $arrowPos = false ) {
 		$arrowIndent = ' ';
-		if ( $pos == 0 || $this->text[$pos-1] == "\n" ) {
+		if ( $pos == 0 || $this->text[$pos - 1] == "\n" ) {
 			$indentLength = strspn( $this->text, " \t", $pos );
 			$indent = substr( $this->text, $pos, $indentLength );
 		} else {
@@ -1056,7 +1056,7 @@ class ConfEditorParseError extends MWException {
 		$lines = StringUtils::explode( "\n", $text );
 		foreach ( $lines as $lineNum => $line ) {
 			if ( $lineNum == $this->lineNum - 1 ) {
-				return "$line\n" .str_repeat( ' ', $this->colNum - 1 ) . "^\n";
+				return "$line\n" . str_repeat( ' ', $this->colNum - 1 ) . "^\n";
 			}
 		}
 		return '';

@@ -1229,7 +1229,7 @@ class User {
 		$defOpt['variant'] = $wgContLang->getCode();
 		$defOpt['language'] = $wgContLang->getCode();
 		foreach( SearchEngine::searchableNamespaces() as $nsnum => $nsname ) {
-			$defOpt['searchNs'.$nsnum] = !empty( $wgNamespacesToBeSearchedDefault[$nsnum] );
+			$defOpt['searchNs' . $nsnum] = !empty( $wgNamespacesToBeSearchedDefault[$nsnum] );
 		}
 		$defOpt['skin'] = $wgDefaultSkin;
 
@@ -1268,7 +1268,7 @@ class User {
 		}
 
 		wfProfileIn( __METHOD__ );
-		wfDebug( __METHOD__.": checking...\n" );
+		wfDebug( __METHOD__ . ": checking...\n" );
 
 		// Initialize data...
 		// Otherwise something ends up stomping on $this->mBlockedby when
@@ -3244,7 +3244,7 @@ class User {
 				}
 			}
 			if ( !$loaded ) {
-				throw new MWException( __METHOD__. ": hit a key conflict attempting " .
+				throw new MWException( __METHOD__ . ": hit a key conflict attempting " .
 					"to insert a user row, but then it doesn't exist when we select it!" );
 			}
 			return Status::newFatal( 'userexists' );
@@ -4254,7 +4254,7 @@ class User {
 		} elseif ( $type == ':B:' ) {
 			# Salted
 			list( $salt, $realHash ) = explode( ':', substr( $hash, 3 ), 2 );
-			return md5( $salt.'-'.md5( $password ) ) === $realHash;
+			return md5( $salt . '-' . md5( $password ) ) === $realHash;
 		} else {
 			# Old-style
 			return self::oldCrypt( $password, $userId ) === $hash;

@@ -333,7 +333,7 @@ class SearchSqlite extends SearchEngine {
  * @ingroup Search
  */
 class SqliteSearchResultSet extends SqlSearchResultSet {
-	function __construct( $resultSet, $terms, $totalHits=null ) {
+	function __construct( $resultSet, $terms, $totalHits = null ) {
 		parent::__construct( $resultSet, $terms );
 		$this->mTotalHits = $totalHits;
 	}

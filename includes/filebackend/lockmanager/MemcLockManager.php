@@ -145,7 +145,7 @@ class MemcLockManager extends QuorumLockManager {
 			foreach ( $paths as $path ) {
 				$locksKey = $this->recordKeyForPath( $path );
 				$locksHeld = $lockRecords[$locksKey];
-				$ok = $memc->set( $locksKey, $locksHeld, 7*86400 );
+				$ok = $memc->set( $locksKey, $locksHeld, 7 * 86400 );
 				if ( !$ok ) {
 					$status->fatal( 'lockmanager-fail-acquirelock', $path );
 				} else {
@@ -297,7 +297,7 @@ class MemcLockManager extends QuorumLockManager {
 		$start = microtime( true );
 		do {
 			if ( ( ++$rounds % 4 ) == 0 ) {
-				usleep( 1000*50 ); // 50 ms
+				usleep( 1000 * 50 ); // 50 ms
 			}
 			foreach ( array_diff( $keys, $lockedKeys ) as $key ) {
 				if ( $memc->add( "$key:mutex", 1, 180 ) ) { // lock record

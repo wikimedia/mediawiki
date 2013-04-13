@@ -74,7 +74,7 @@ class PurgeList extends Maintenance {
 				}
 			}
 		}
-		$this->output( "Purging " . count( $urls ). " urls\n" );
+		$this->output( "Purging " . count( $urls ) . " urls\n" );
 		$this->sendPurgeRequest( $urls );
 	}
 

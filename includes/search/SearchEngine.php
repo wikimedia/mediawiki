@@ -1006,7 +1006,7 @@ class SearchHighlighter {
 								$len = strlen( $endMatches[2][0] );
 								$off = $endMatches[2][1];
 								$this->splitAndAdd( $otherExt, $count,
-									substr( $text, $start, $off + $len  - $start ) );
+									substr( $text, $start, $off + $len - $start ) );
 								$start = $off + $len;
 								$found = true;
 								break;

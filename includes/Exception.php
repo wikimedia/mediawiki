@@ -617,7 +617,7 @@ class HttpError extends MWException {
 			$content = htmlspecialchars( $this->content );
 		}
 
-		return "<!DOCTYPE html>\n".
+		return "<!DOCTYPE html>\n" .
 			"<html><head><title>$header</title></head>\n" .
 			"<body><h1>$header</h1><p>$content</p></body></html>\n";
 	}

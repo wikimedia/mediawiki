@@ -3874,7 +3874,7 @@ function wfRunHooks( $event, $args = array() ) {
  * @throws MWException if $data not long enough, or if unpack fails
  * @return array Associative array of the extracted data
  */
-function wfUnpack( $format, $data, $length=false ) {
+function wfUnpack( $format, $data, $length = false ) {
 	if ( $length !== false ) {
 		$realLen = strlen( $data );
 		if ( $realLen < $length ) {

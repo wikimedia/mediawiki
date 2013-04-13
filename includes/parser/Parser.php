@@ -531,7 +531,7 @@ class Parser {
 	 *
 	 * @return string
 	 */
-	function recursiveTagParse( $text, $frame=false ) {
+	function recursiveTagParse( $text, $frame = false ) {
 		wfProfileIn( __METHOD__ );
 		wfRunHooks( 'ParserBeforeStrip', array( &$this, &$text, &$this->mStripState ) );
 		wfRunHooks( 'ParserAfterStrip', array( &$this, &$text, &$this->mStripState ) );
@@ -1374,12 +1374,12 @@ class Parser {
 					# If there are ever four apostrophes, assume the first is supposed to
 					# be text, and the remaining three constitute mark-up for bold text.
 					if ( strlen( $arr[$i] ) == 4 ) {
-						$arr[$i-1] .= "'";
+						$arr[$i - 1] .= "'";
 						$arr[$i] = "'''";
 					} elseif ( strlen( $arr[$i] ) > 5 ) {
 						# If there are more than 5 apostrophes in a row, assume they're all
 						# text except for the last 5.
-						$arr[$i-1] .= str_repeat( "'", strlen( $arr[$i] ) - 5 );
+						$arr[$i - 1] .= str_repeat( "'", strlen( $arr[$i] ) - 5 );
 						$arr[$i] = "'''''";
 					}
 					# Count the number of occurrences of bold and italics mark-ups.
@@ -1406,8 +1406,8 @@ class Parser {
 				$firstspace = -1;
 				foreach ( $arr as $r ) {
 					if ( ( $i % 2 == 1 ) and ( strlen( $r ) == 3 ) ) {
-						$x1 = substr( $arr[$i-1], -1 );
-						$x2 = substr( $arr[$i-1], -2, 1 );
+						$x1 = substr( $arr[$i - 1], -1 );
+						$x2 = substr( $arr[$i - 1], -2, 1 );
 						if ( $x1 === ' ' ) {
 							if ( $firstspace == -1 ) {
 								$firstspace = $i;
@@ -1428,17 +1428,17 @@ class Parser {
 				# If there is a single-letter word, use it!
 				if ( $firstsingleletterword > -1 ) {
 					$arr[$firstsingleletterword] = "''";
-					$arr[$firstsingleletterword-1] .= "'";
+					$arr[$firstsingleletterword - 1] .= "'";
 				} elseif ( $firstmultiletterword > -1 ) {
 					# If not, but there's a multi-letter word, use that one.
 					$arr[$firstmultiletterword] = "''";
-					$arr[$firstmultiletterword-1] .= "'";
+					$arr[$firstmultiletterword - 1] .= "'";
 				} elseif ( $firstspace > -1 ) {
 					# ... otherwise use the first one that has neither.
 					# (notice that it is possible for all three to be -1 if, for example,
 					# there is only one pentuple-apostrophe in the line)
 					$arr[$firstspace] = "''";
-					$arr[$firstspace-1] .= "'";
+					$arr[$firstspace - 1] .= "'";
 				}
 			}
 
@@ -1539,7 +1539,7 @@ class Parser {
 		$s = array_shift( $bits );
 
 		$i = 0;
-		while ( $i<count( $bits ) ) {
+		while ( $i < count( $bits ) ) {
 			$url = $bits[$i++];
 			$i++; // protocol
 			$text = $bits[$i++];
@@ -2155,7 +2155,7 @@ class Parser {
 	function closeParagraph() {
 		$result = '';
 		if ( $this->mLastSection != '' ) {
-			$result = '</' . $this->mLastSection  . ">\n";
+			$result = '</' . $this->mLastSection . ">\n";
 		}
 		$this->mInPre = false;
 		$this->mLastSection = '';
@@ -2350,13 +2350,13 @@ class Parser {
 
 				# Close all the prefixes which aren't shared.
 				while ( $commonPrefixLength < $lastPrefixLength ) {
-					$output .= $this->closeList( $lastPrefix[$lastPrefixLength-1] );
+					$output .= $this->closeList( $lastPrefix[$lastPrefixLength - 1] );
 					--$lastPrefixLength;
 				}
 
 				# Continue the current prefix if appropriate.
 				if ( $prefixLength <= $commonPrefixLength && $commonPrefixLength > 0 ) {
-					$output .= $this->nextItem( $prefix[$commonPrefixLength-1] );
+					$output .= $this->nextItem( $prefix[$commonPrefixLength - 1] );
 				}
 
 				# Open prefixes where appropriate.
@@ -2383,8 +2383,8 @@ class Parser {
 				# XXX: use a stack for nestable elements like span, table and div
 				$openmatch = preg_match( '/(?:<table|<blockquote|<h1|<h2|<h3|<h4|<h5|<h6|<pre|<tr|<p|<ul|<ol|<dl|<li|<\\/tr|<\\/td|<\\/th)/iS', $t );
 				$closematch = preg_match(
-					'/(?:<\\/table|<\\/blockquote|<\\/h1|<\\/h2|<\\/h3|<\\/h4|<\\/h5|<\\/h6|'.
-					'<td|<th|<\\/?div|<hr|<\\/pre|<\\/p|'.$this->mUniqPrefix . '-pre|<\\/li|<\\/ul|<\\/ol|<\\/dl|<\\/?center)/iS', $t );
+					'/(?:<\\/table|<\\/blockquote|<\\/h1|<\\/h2|<\\/h3|<\\/h4|<\\/h5|<\\/h6|' .
+					'<td|<th|<\\/?div|<hr|<\\/pre|<\\/p|' . $this->mUniqPrefix . '-pre|<\\/li|<\\/ul|<\\/ol|<\\/dl|<\\/?center)/iS', $t );
 				if ( $openmatch or $closematch ) {
 					$paragraphStack = false;
 					# TODO bug 5718: paragraph closed
@@ -2441,7 +2441,7 @@ class Parser {
 			}
 		}
 		while ( $prefixLength ) {
-			$output .= $this->closeList( $prefix2[$prefixLength-1] );
+			$output .= $this->closeList( $prefix2[$prefixLength - 1] );
 			--$prefixLength;
 		}
 		if ( $this->mLastSection != '' ) {
@@ -2477,7 +2477,7 @@ class Parser {
 		if ( $lt === false || $lt > $pos ) {
 			# Easy; no tag nesting to worry about
 			$before = substr( $str, 0, $pos );
-			$after = substr( $str, $pos+1 );
+			$after = substr( $str, $pos + 1 );
 			wfProfileOut( __METHOD__ );
 			return $pos;
 		}
@@ -3089,7 +3089,7 @@ class Parser {
 				$assocArgs[$index++] = $arg;
 			} else {
 				$name = trim( substr( $arg, 0, $eqpos ) );
-				$value = trim( substr( $arg, $eqpos+1 ) );
+				$value = trim( substr( $arg, $eqpos + 1 ) );
 				if ( $value === false ) {
 					$value = '';
 				}
@@ -4094,7 +4094,7 @@ class Parser {
 	 * @return mixed|string
 	 * @private
 	 */
-	function formatHeadings( $text, $origText, $isMain=true ) {
+	function formatHeadings( $text, $origText, $isMain = true ) {
 		global $wgMaxTocLevel, $wgHtml5, $wgExperimentalHtmlIds;
 
 		# Inhibit editsection links if requested in the page
@@ -4111,7 +4111,7 @@ class Parser {
 		# Get all headlines for numbering them and adding funky stuff like [edit]
 		# links - this is for later, but we need the number of headlines right now
 		$matches = array();
-		$numMatches = preg_match_all( '/<H(?P<level>[1-6])(?P<attrib>.*?'.'>)\s*(?P<header>[\s\S]*?)\s*<\/H[1-6] *>/i', $text, $matches );
+		$numMatches = preg_match_all( '/<H(?P<level>[1-6])(?P<attrib>.*?' . '>)\s*(?P<header>[\s\S]*?)\s*<\/H[1-6] *>/i', $text, $matches );
 
 		# if there are fewer than 4 headlines in the article, do not show TOC
 		# unless it's been explicitly enabled.
@@ -4260,14 +4260,14 @@ class Parser {
 			# We strip any parameter from accepted tags (second regex), except dir="rtl|ltr" from <span>,
 			# to allow setting directionality in toc items.
 			$tocline = preg_replace(
-				array( '#<(?!/?(span|sup|sub|i|b)(?: [^>]*)?>).*?'.'>#', '#<(/?(?:span(?: dir="(?:rtl|ltr)")?|sup|sub|i|b))(?: .*?)?'.'>#' ),
+				array( '#<(?!/?(span|sup|sub|i|b)(?: [^>]*)?>).*?' . '>#', '#<(/?(?:span(?: dir="(?:rtl|ltr)")?|sup|sub|i|b))(?: .*?)?' . '>#' ),
 				array( '', '<$1>' ),
 				$safeHeadline
 			);
 			$tocline = trim( $tocline );
 
 			# For the anchor, strip out HTML-y stuff period
-			$safeHeadline = preg_replace( '/<.*?'.'>/', '', $safeHeadline );
+			$safeHeadline = preg_replace( '/<.*?' . '>/', '', $safeHeadline );
 			$safeHeadline = Sanitizer::normalizeSectionNameWhitespace( $safeHeadline );
 
 			# Save headline for section edit hint before it's escaped

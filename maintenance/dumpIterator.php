@@ -47,7 +47,7 @@ abstract class DumpIterator extends Maintenance {
 	}
 
 	public function execute() {
-		if (! ( $this->hasOption('file') ^ $this->hasOption('dump') ) ) {
+		if ( !( $this->hasOption('file') ^ $this->hasOption('dump') ) ) {
 			$this->error("You must provide a file or dump", true);
 		}
 
@@ -96,7 +96,7 @@ abstract class DumpIterator extends Maintenance {
 		if ( $this->getDbType() == Maintenance::DB_NONE ) {
 			global $wgUseDatabaseMessages, $wgLocalisationCacheConf, $wgHooks;
 			$wgUseDatabaseMessages = false;
-			$wgLocalisationCacheConf['storeClass'] =  'LCStore_Null';
+			$wgLocalisationCacheConf['storeClass'] = 'LCStore_Null';
 			$wgHooks['InterwikiLoadPrefix'][] = 'DumpIterator::disableInterwikis';
 		}
 	}

@@ -1406,7 +1406,7 @@ class LocalFile extends File {
 
 		$this->lock(); // begin
 
-		$archiveName = wfTimestamp( TS_MW ) . '!'. $this->getName();
+		$archiveName = wfTimestamp( TS_MW ) . '!' . $this->getName();
 		$archiveRel = 'archive/' . $this->getHashPath() . $archiveName;
 		$flags = $flags & File::DELETE_SOURCE ? LocalRepo::DELETE_SOURCE : 0;
 		$status = $this->repo->publish( $srcPath, $dstRel, $archiveRel, $flags, $options );

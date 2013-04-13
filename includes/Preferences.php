@@ -432,7 +432,7 @@ class Preferences {
 								SpecialPage::getTitleFor( 'Confirmemail' ),
 								$context->msg( 'emailconfirmlink' )->escaped()
 							) . '<br />';
-						$emailauthenticationclass="mw-email-not-authenticated";
+						$emailauthenticationclass = "mw-email-not-authenticated";
 					}
 				} else {
 					$disableEmailPrefs = true;

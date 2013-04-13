@@ -302,7 +302,7 @@ class ImageGallery {
 				$thumbhtml = "\n\t\t\t" . '<div style="height: ' . ( self::THUMB_PADDING + $this->mHeights ) . 'px;">'
 					. htmlspecialchars( $img->getLastError() ) . '</div>';
 			} else {
-				$vpad = ( self::THUMB_PADDING + $this->mHeights - $thumb->height ) /2;
+				$vpad = ( self::THUMB_PADDING + $this->mHeights - $thumb->height ) / 2;
 
 				$imageParameters = array(
 					'desc-link' => true,

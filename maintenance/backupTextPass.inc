@@ -298,7 +298,7 @@ class TextPassDumper extends BackupDumper {
 	}
 
 	function checkIfTimeExceeded() {
-		if ( $this->maxTimeAllowed &&  ( $this->lastTime - $this->timeOfCheckpoint  > $this->maxTimeAllowed ) ) {
+		if ( $this->maxTimeAllowed && ( $this->lastTime - $this->timeOfCheckpoint > $this->maxTimeAllowed ) ) {
 			return true;
 		}
 		return false;

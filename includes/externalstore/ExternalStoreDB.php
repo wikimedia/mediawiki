@@ -64,7 +64,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 			__METHOD__ );
 		$id = $dbw->insertId();
 		if ( !$id ) {
-			throw new MWException( __METHOD__.': no insert ID' );
+			throw new MWException( __METHOD__ . ': no insert ID' );
 		}
 		if ( $dbw->getFlag( DBO_TRX ) ) {
 			$dbw->commit( __METHOD__ );

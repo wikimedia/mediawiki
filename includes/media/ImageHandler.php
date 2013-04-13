@@ -58,7 +58,7 @@ abstract class ImageHandler extends MediaHandler {
 		} elseif ( isset( $params['width'] ) ) {
 			$width = $params['width'];
 		} else {
-			throw new MWException( 'No width specified to '.__METHOD__ );
+			throw new MWException( 'No width specified to ' . __METHOD__ );
 		}
 		# Removed for ProofreadPage
 		#$width = intval( $width );

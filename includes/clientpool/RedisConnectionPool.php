@@ -59,7 +59,7 @@ class RedisConnectionPool {
 	 */
 	protected function __construct( array $options ) {
 		if ( !extension_loaded( 'redis' ) ) {
-			throw new MWException( __CLASS__. ' requires the phpredis extension: ' .
+			throw new MWException( __CLASS__ . ' requires the phpredis extension: ' .
 				'https://github.com/nicolasff/phpredis' );
 		}
 		$this->connectTimeout = $options['connectTimeout'];
@@ -164,7 +164,7 @@ class RedisConnectionPool {
 			// TCP connection
 			$hostPort = IP::splitHostAndPort( $server );
 			if ( !$hostPort ) {
-				throw new MWException( __CLASS__.": invalid configured server \"$server\"" );
+				throw new MWException( __CLASS__ . ": invalid configured server \"$server\"" );
 			}
 			list( $host, $port ) = $hostPort;
 			if ( $port === false ) {

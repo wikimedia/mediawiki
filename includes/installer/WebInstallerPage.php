@@ -336,7 +336,7 @@ class WebInstaller_ExistingWiki extends WebInstallerPage {
 	protected function showKeyForm() {
 		$this->startForm();
 		$this->addHTML(
-			$this->parent->getInfoBox( wfMessage( 'config-localsettings-upgrade' )->plain() ).
+			$this->parent->getInfoBox( wfMessage( 'config-localsettings-upgrade' )->plain() ) .
 			'<br />' .
 			$this->parent->getTextBox( array(
 				'var' => 'wgUpgradeKey',
@@ -1066,7 +1066,7 @@ class WebInstaller_Options extends WebInstallerPage {
 		// If you change this height, also change it in config.css
 		$expandJs = str_replace( '$1', '54em', $js );
 		$reduceJs = str_replace( '$1', '70px', $js );
-		return '<p>'.
+		return '<p>' .
 			Html::element( 'img', array( 'src' => $this->getVar( 'wgRightsIcon' ) ) ) .
 			'&#160;&#160;' .
 			htmlspecialchars( $this->getVar( 'wgRightsText' ) ) .

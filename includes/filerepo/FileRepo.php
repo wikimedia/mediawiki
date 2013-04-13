@@ -259,19 +259,19 @@ class FileRepo {
 	 */
 	public function resolveVirtualUrl( $url ) {
 		if ( substr( $url, 0, 9 ) != 'mwrepo://' ) {
-			throw new MWException( __METHOD__.': unknown protocol' );
+			throw new MWException( __METHOD__ . ': unknown protocol' );
 		}
 		$bits = explode( '/', substr( $url, 9 ), 3 );
 		if ( count( $bits ) != 3 ) {
-			throw new MWException( __METHOD__.": invalid mwrepo URL: $url" );
+			throw new MWException( __METHOD__ . ": invalid mwrepo URL: $url" );
 		}
 		list( $repo, $zone, $rel ) = $bits;
 		if ( $repo !== $this->name ) {
-			throw new MWException( __METHOD__.": fetching from a foreign repo is not supported" );
+			throw new MWException( __METHOD__ . ": fetching from a foreign repo is not supported" );
 		}
 		$base = $this->getZonePath( $zone );
 		if ( !$base ) {
-			throw new MWException( __METHOD__.": invalid zone: $zone" );
+			throw new MWException( __METHOD__ . ": invalid zone: $zone" );
 		}
 		return $base . '/' . rawurldecode( $rel );
 	}
@@ -987,7 +987,7 @@ class FileRepo {
 
 		$temp = $this->getVirtualUrl( 'temp' );
 		if ( substr( $virtualUrl, 0, strlen( $temp ) ) != $temp ) {
-			wfDebug( __METHOD__.": Invalid temp virtual URL\n" );
+			wfDebug( __METHOD__ . ": Invalid temp virtual URL\n" );
 			return false;
 		}
 
@@ -1306,9 +1306,9 @@ class FileRepo {
 		foreach ( $sourceDestPairs as $pair ) {
 			list( $srcRel, $archiveRel ) = $pair;
 			if ( !$this->validateFilename( $srcRel ) ) {
-				throw new MWException( __METHOD__.':Validation error in $srcRel' );
+				throw new MWException( __METHOD__ . ':Validation error in $srcRel' );
 			} elseif ( !$this->validateFilename( $archiveRel ) ) {
-				throw new MWException( __METHOD__.':Validation error in $archiveRel' );
+				throw new MWException( __METHOD__ . ':Validation error in $archiveRel' );
 			}
 
 			$publicRoot = $this->getZonePath( 'public' );

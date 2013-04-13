@@ -797,7 +797,7 @@ class WikiPage implements Page, IDBAccessObject {
 	public function setCachedLastEditTime( $timestamp ) {
 		global $wgMemc;
 		$key = wfMemcKey( 'page-lastedit', md5( $this->mTitle->getPrefixedDBkey() ) );
-		$wgMemc->set( $key, wfTimestamp( TS_MW, $timestamp ), 60*15 );
+		$wgMemc->set( $key, wfTimestamp( TS_MW, $timestamp ), 60 * 15 );
 	}
 
 	/**

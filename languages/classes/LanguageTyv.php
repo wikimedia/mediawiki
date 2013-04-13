@@ -150,7 +150,7 @@ class LanguageTyv extends Language {
 						$word = implode( "", $ar[0] ) . "ты";
 					} else {
 					}
-				} elseif ( $wordEnding === "л"  || $wordEnding === "l" ) {
+				} elseif ( $wordEnding === "л" || $wordEnding === "l" ) {
 					if ( in_array( $wordLastVowel, $roundFrontVowels ) ) {
 						$word = implode( "", $ar[0] ) . "дү";
 					} elseif ( in_array( $wordLastVowel, $unroundFrontVowels ) ) {

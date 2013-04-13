@@ -21,7 +21,7 @@
  * @ingroup MaintenanceLanguage
  */
 
-require_once( __DIR__ .'/../Maintenance.php' );
+require_once( __DIR__ . '/../Maintenance.php' );
 
 /**
  * Generate first letter data files for Collation.php
@@ -102,7 +102,7 @@ class GenerateCollationData extends Maintenance {
 				$error .= "You are using outdated version of ICU ($icuVersion), intended for "
 					. ( $unicodeVersion ? "Unicode $unicodeVersion" : "an unknown version of Unicode" )
 					. "; this file might not be avalaible for it, and it's not supported by MediaWiki. "
-					." You are on your own; consider upgrading PHP's intl extension or try "
+					. " You are on your own; consider upgrading PHP's intl extension or try "
 					. "one of the files available at:";
 			} elseif ( version_compare( $icuVersion, "51.0", ">=" ) ) {
 				// Extra recent version
@@ -386,7 +386,7 @@ class UcdXmlReader {
 		$this->xml = new XMLReader;
 		$this->xml->open( $this->fileName );
 		if ( !$this->xml ) {
-			throw new MWException( __METHOD__.": unable to open {$this->fileName}" );
+			throw new MWException( __METHOD__ . ": unable to open {$this->fileName}" );
 		}
 		while ( $this->xml->name !== 'ucd' && $this->xml->read() );
 		$this->xml->read();

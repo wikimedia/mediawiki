@@ -100,7 +100,7 @@ class ApiEditPage extends ApiBase {
 			$name = $titleObj->getPrefixedDBkey();
 			$model = $contentHandler->getModelID();
 
-			$this->dieUsage( "The requested format $contentFormat is not supported for content model ".
+			$this->dieUsage( "The requested format $contentFormat is not supported for content model " .
 							" $model used by $name", 'badformat' );
 		}
 

@@ -127,7 +127,7 @@ class FeedUtils {
 		}
 
 		if( $oldid ) {
-			wfProfileIn( __METHOD__."-dodiff" );
+			wfProfileIn( __METHOD__ . "-dodiff" );
 
 			#$diffText = $de->getDiff( wfMessage( 'revisionasof',
 			#	$wgLang->timeanddate( $timestamp ),
@@ -168,7 +168,7 @@ class FeedUtils {
 				$diffText = UtfNormal::cleanUp( $diffText );
 				$diffText = self::applyDiffStyle( $diffText );
 			}
-			wfProfileOut( __METHOD__."-dodiff" );
+			wfProfileOut( __METHOD__ . "-dodiff" );
 		} else {
 			$rev = Revision::newFromId( $newid );
 			if( $wgFeedDiffCutoff <= 0 || is_null( $rev ) ) {

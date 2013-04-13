@@ -205,7 +205,7 @@ class DateFormatter {
 		$key = $this->keys[$this->mSource];
 		for ( $p = 0; $p < strlen( $key ); $p++ ) {
 			if ( $key[$p] != ' ' ) {
-				$bits[$key[$p]] = $matches[$p+1];
+				$bits[$key[$p]] = $matches[$p + 1];
 			}
 		}
 

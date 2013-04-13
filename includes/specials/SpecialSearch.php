@@ -733,7 +733,7 @@ class SpecialSearch extends SpecialPage {
 		wfProfileIn( __METHOD__ );
 		$terms = $wgContLang->convertForSearchResult( $matches->termMatches() );
 
-		$out = "<div id='mw-search-interwiki'><div id='mw-search-interwiki-caption'>".
+		$out = "<div id='mw-search-interwiki'><div id='mw-search-interwiki-caption'>" .
 			$this->msg( 'search-interwiki-caption' )->text() . "</div>\n";
 		$out .= "<ul class='mw-search-iwresults'>\n";
 

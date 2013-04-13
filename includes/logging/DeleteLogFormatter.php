@@ -55,8 +55,8 @@ class DeleteLogFormatter extends LogFormatter {
 			) {
 				$paramStart = $subtype === 'revision' ? 4 : 3;
 
-				$old = $this->parseBitField( $params[$paramStart+1] );
-				$new = $this->parseBitField( $params[$paramStart+2] );
+				$old = $this->parseBitField( $params[$paramStart + 1] );
+				$new = $this->parseBitField( $params[$paramStart + 2] );
 				list( $hid, $unhid, $extra ) = RevisionDeleter::getChanges( $new, $old );
 				$changes = array();
 				foreach ( $hid as $v ) {

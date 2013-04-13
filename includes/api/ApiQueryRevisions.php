@@ -550,7 +550,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 				if ( !$content->isSupportedFormat( $format ) ) {
 					$name = $title->getPrefixedDBkey();
 
-					$this->dieUsage( "The requested format {$this->contentFormat} is not supported ".
+					$this->dieUsage( "The requested format {$this->contentFormat} is not supported " .
 									"for content model $model used by $name", 'badformat' );
 				}
 
@@ -593,7 +593,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 
 						$name = $title->getPrefixedDBkey();
 
-						$this->dieUsage( "The requested format {$this->contentFormat} is not supported for ".
+						$this->dieUsage( "The requested format {$this->contentFormat} is not supported for " .
 											"content model $model used by $name", 'badformat' );
 					}
 

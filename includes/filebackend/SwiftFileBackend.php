@@ -132,7 +132,7 @@ class SwiftFileBackend extends FileBackendStore {
 			: false;
 		$this->swiftCDNExpiry = isset( $config['swiftCDNExpiry'] )
 			? $config['swiftCDNExpiry']
-			: 12*3600; // 12 hours is safe (tokens last 24 hours per http://docs.openstack.org)
+			: 12 * 3600; // 12 hours is safe (tokens last 24 hours per http://docs.openstack.org)
 		$this->swiftCDNPurgable = isset( $config['swiftCDNPurgable'] )
 			? $config['swiftCDNPurgable']
 			: true;
@@ -1397,12 +1397,12 @@ class SwiftFileBackend extends FileBackendStore {
 			if ( is_array( $creds ) ) { // cache hit
 				$this->auth->load_cached_credentials(
 					$creds['auth_token'], $creds['storage_url'], $creds['cdnm_url'] );
-				$this->sessionStarted = time() - ceil( $this->authTTL/2 ); // skew for worst case
+				$this->sessionStarted = time() - ceil( $this->authTTL / 2 ); // skew for worst case
 			} else { // cache miss
 				try {
 					$this->auth->authenticate();
 					$creds = $this->auth->export_credentials();
-					$this->srvCache->add( $cacheKey, $creds, ceil( $this->authTTL/2 ) ); // cache
+					$this->srvCache->add( $cacheKey, $creds, ceil( $this->authTTL / 2 ) ); // cache
 					$this->sessionStarted = time();
 				} catch ( CloudFilesException $e ) {
 					$this->connException = $e; // don't keep re-trying
