@@ -24,7 +24,7 @@ if (webkit_match) {
 
 // For accesskeys; note that FF3+ is included here!
 window.is_ff2 = /firefox\/[2-9]|minefield\/3/.test( clientPC );
-window.ff2_bugs = /firefox\/2/.test( clientPC );
+window.ff2_bugs = /firefox\/2\./.test( clientPC );
 // These aren't used here, but some custom scripts rely on them
 window.is_ff2_win = is_ff2 && clientPC.indexOf('windows') != -1;
 window.is_ff2_x11 = is_ff2 && clientPC.indexOf('x11') != -1;
