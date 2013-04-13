@@ -3643,6 +3643,18 @@ $wgMessageStructure = array(
 		'filepath-submit',
 		'filepath-summary',
 	),
+	'redirect' => array(
+		'redirect',
+		'redirect-legend',
+		'redirect-text',
+		'redirect-summary',
+		'redirect-submit',
+		'redirect-lookup',
+		'redirect-value',
+		'redirect-user',
+		'redirect-revision',
+		'redirect-file',
+	),
 	'fileduplicatesearch' => array(
 		'fileduplicatesearch',
 		'fileduplicatesearch-summary',

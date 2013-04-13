@@ -3305,7 +3305,7 @@ $wgMaxRedirects = 1;
  * As of now, this only checks special pages. Redirects to pages in
  * other namespaces cannot be invalidated by this variable.
  */
-$wgInvalidRedirectTargets = array( 'Filepath', 'Mypage', 'Mytalk' );
+$wgInvalidRedirectTargets = array( 'Filepath', 'Mypage', 'Mytalk', 'Redirect' );
 
 /** @} */ # End of title and interwiki settings }
 
