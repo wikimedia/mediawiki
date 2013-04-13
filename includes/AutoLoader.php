@@ -973,6 +973,7 @@ $wgAutoloadLocalClasses = array(
 	'SpecialUpload' => 'includes/specials/SpecialUpload.php',
 	'SpecialUploadStash' => 'includes/specials/SpecialUploadStash.php',
 	'SpecialUploadStashTooLargeException' => 'includes/specials/SpecialUploadStash.php',
+	'SpecialUserbyid' => 'includes/specials/SpecialUserbyid.php',
 	'SpecialUserlogout' => 'includes/specials/SpecialUserlogout.php',
 	'SpecialVersion' => 'includes/specials/SpecialVersion.php',
 	'SpecialWatchlist' => 'includes/specials/SpecialWatchlist.php',

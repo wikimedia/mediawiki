@@ -460,6 +460,7 @@ $specialPageAliases = array(
 	'Unwatchedpages'            => array( 'UnwatchedPages' ),
 	'Upload'                    => array( 'Upload' ),
 	'UploadStash'               => array( 'UploadStash' ),
+	'Userbyid'                  => array( 'UserById' ),
 	'Userlogin'                 => array( 'UserLogin' ),
 	'Userlogout'                => array( 'UserLogout' ),
 	'Userrights'                => array( 'UserRights', 'MakeSysop', 'MakeBot' ),
@@ -4748,6 +4749,12 @@ You should have received [{{SERVER}}{{SCRIPTPATH}}/COPYING a copy of the GNU Gen
 'filepath-submit'  => 'Go',
 'filepath-summary' => 'This special page returns the complete path for a file.
 Images are shown in full resolution, other file types are started with their associated program directly.',
+
+# Special:Userbyid
+'userbyid'         => 'User by ID',
+'userbyid-page'    => 'User ID:',
+'userbyid-submit'  => 'Go',
+'userbyid-summary' => 'This special page returns the User page for a given numeric user iD.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'Search for duplicate files',
