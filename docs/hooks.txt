@@ -482,7 +482,8 @@ $logEntry: the ManualLogEntry used to record the deletion
 
 'ArticleEditUpdateNewTalk': Before updating user_newtalk when a user talk page
 was changed.
-$wikiPage: WikiPage (object) of the user talk page
+&$wikiPage: WikiPage (object) of the user talk page
+$recipient: User (object) who's talk page was edited
 
 'ArticleEditUpdates': When edit updates (mainly link tracking) are made when an
 article has been changed.
