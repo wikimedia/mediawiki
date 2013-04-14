@@ -78,6 +78,7 @@ class AncientPagesPage extends QueryPage {
 			$title,
 			htmlspecialchars( $wgContLang->convert( $title->getPrefixedText() ) )
 		);
+
 		return $this->getLanguage()->specialList( $link, htmlspecialchars( $d ) );
 	}
 
