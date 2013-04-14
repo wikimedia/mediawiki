@@ -42,15 +42,15 @@ class FewestrevisionsPage extends QueryPage {
 	}
 
 	function getQueryInfo() {
-		return array (
-			'tables' => array ( 'revision', 'page' ),
-			'fields' => array ( 'namespace' => 'page_namespace',
+		return array(
+			'tables' => array( 'revision', 'page' ),
+			'fields' => array( 'namespace' => 'page_namespace',
 					'title' => 'page_title',
 					'value' => 'COUNT(*)',
 					'redirect' => 'page_is_redirect' ),
-			'conds' => array ( 'page_namespace' => MWNamespace::getContentNamespaces(),
+			'conds' => array( 'page_namespace' => MWNamespace::getContentNamespaces(),
 					'page_id = rev_page' ),
-			'options' => array ( 'HAVING' => 'COUNT(*) > 1',
+			'options' => array( 'HAVING' => 'COUNT(*) > 1',
 			// ^^^ This was probably here to weed out redirects.
 			// Since we mark them as such now, it might be
 			// useful to remove this. People _do_ create pages

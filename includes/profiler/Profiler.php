@@ -53,8 +53,8 @@ function wfProfileOut( $functionname = 'missing' ) {
  * @todo document
  */
 class Profiler {
-	protected $mStack = array(), $mWorkStack = array (), $mCollated = array (),
-		$mCalls = array (), $mTotals = array ();
+	protected $mStack = array(), $mWorkStack = array(), $mCollated = array(),
+		$mCalls = array(), $mTotals = array();
 	protected $mTimeMetric = 'wall';
 	protected $mProfileID = false, $mCollateDone = false, $mTemplated = false;
 	private static $__instance = null;
@@ -257,11 +257,11 @@ class Profiler {
 		if( count( $stack ) < 2 ) {
 			return $stack;
 		}
-		$outputs = array ();
+		$outputs = array();
 		for( $max = count( $stack ) - 1; $max > 0; ) {
 			/* Find all items under this entry */
 			$level = $stack[$max][1];
-			$working = array ();
+			$working = array();
 			for( $i = $max -1; $i >= 0; $i-- ) {
 				if( $stack[$i][1] > $level ) {
 					$working[] = $stack[$i];
@@ -557,9 +557,9 @@ class Profiler {
 
 				$rc = $dbw->affectedRows();
 				if ( $rc == 0 ) {
-					$dbw->insert( 'profiling', array ( 'pf_name' => $name, 'pf_count' => $eventCount,
+					$dbw->insert( 'profiling', array( 'pf_name' => $name, 'pf_count' => $eventCount,
 						'pf_time' => $timeSum, 'pf_memory' => $memorySum, 'pf_server' => $pfhost ),
-						__METHOD__, array ( 'IGNORE' ) );
+						__METHOD__, array( 'IGNORE' ) );
 				}
 				// When we upgrade to mysql 4.1, the insert+update
 				// can be merged into just a insert with this construct added:

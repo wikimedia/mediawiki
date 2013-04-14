@@ -218,7 +218,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 	}
 
 	public function getAllowedParams() {
-		return array (
+		return array(
 			'from' => null,
 			'continue' => null,
 			'to' => null,

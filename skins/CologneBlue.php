@@ -234,7 +234,7 @@ class CologneBlueTemplate extends BaseTemplate {
 
 		// Use the regular navigational link, but replace its text. Everything else stays unmodified.
 		$namespacesLinks = $this->data['content_navigation']['namespaces'];
-		return $this->processBottomLink( $message,  $namespacesLinks[$key], $message );
+		return $this->processBottomLink( $message, $namespacesLinks[$key], $message );
 	}
 
 	/**
@@ -376,7 +376,7 @@ class CologneBlueTemplate extends BaseTemplate {
 		);
 
 		$personalUrls = $this->getPersonalTools();
-		foreach ( array ( 'logout', 'createaccount', 'login', 'anonlogin' ) as $key ) {
+		foreach ( array( 'logout', 'createaccount', 'login', 'anonlogin' ) as $key ) {
 			if ( $personalUrls[$key] ) {
 				$s[] = $this->makeListItem( $key, $personalUrls[$key], array( 'tag' => 'span' ) );
 			}
@@ -417,7 +417,7 @@ class CologneBlueTemplate extends BaseTemplate {
 
 		// Personal tools ("My pages")
 		$qbmyoptions = $this->getPersonalTools();
-		foreach ( array ( 'logout', 'createaccount', 'login', 'anonlogin' ) as $key ) {
+		foreach ( array( 'logout', 'createaccount', 'login', 'anonlogin' ) as $key ) {
 			$qbmyoptions[$key] = null;
 		}
 

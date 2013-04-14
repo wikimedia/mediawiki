@@ -47,7 +47,7 @@ class UncategorizedImagesPage extends ImageQueryPage {
 	}
 
 	function getQueryInfo() {
-		return array (
+		return array(
 			'tables' => array( 'page', 'categorylinks' ),
 			'fields' => array( 'namespace' => 'page_namespace',
 					'title' => 'page_title',

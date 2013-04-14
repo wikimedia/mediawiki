@@ -149,7 +149,7 @@ class MagicWord {
 	);
 
 	/* Array of caching hints for ParserCache */
-	static public $mCacheTTLs = array (
+	static public $mCacheTTLs = array(
 		'currentmonth' => 86400,
 		'currentmonth1' => 86400,
 		'currentmonthname' => 86400,

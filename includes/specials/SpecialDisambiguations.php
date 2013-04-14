@@ -91,7 +91,7 @@ class DisambiguationsPage extends QueryPage {
 
 	function getQueryInfo() {
 		// @todo FIXME: What are pagelinks and p2 doing here?
-		return array (
+		return array(
 			'tables' => array(
 				'templatelinks',
 				'p1' => 'page',

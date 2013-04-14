@@ -50,23 +50,23 @@ class LonelyPagesPage extends PageQueryPage {
 	}
 
 	function getQueryInfo() {
-		return array (
-			'tables' => array ( 'page', 'pagelinks',
+		return array(
+			'tables' => array( 'page', 'pagelinks',
 					'templatelinks' ),
-			'fields' => array ( 'namespace' => 'page_namespace',
+			'fields' => array( 'namespace' => 'page_namespace',
 					'title' => 'page_title',
 					'value' => 'page_title' ),
-			'conds' => array ( 'pl_namespace IS NULL',
+			'conds' => array( 'pl_namespace IS NULL',
 					'page_namespace' => MWNamespace::getContentNamespaces(),
 					'page_is_redirect' => 0,
 					'tl_namespace IS NULL' ),
-			'join_conds' => array (
-					'pagelinks' => array (
-						'LEFT JOIN', array (
+			'join_conds' => array(
+					'pagelinks' => array(
+						'LEFT JOIN', array(
 						'pl_namespace = page_namespace',
 						'pl_title = page_title' ) ),
-					'templatelinks' => array (
-						'LEFT JOIN', array (
+					'templatelinks' => array(
+						'LEFT JOIN', array(
 						'tl_namespace = page_namespace',
 						'tl_title = page_title' ) ) )
 		);

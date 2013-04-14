@@ -258,7 +258,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 			'prop' => array(
 				ApiBase::PARAM_DFLT => 'ids|title',
 				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => array (
+				ApiBase::PARAM_TYPE => array(
 					'ids',
 					'title',
 					'sortkey',
@@ -267,7 +267,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 					'timestamp',
 				)
 			),
-			'namespace' => array (
+			'namespace' => array(
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_TYPE => 'namespace',
 			),

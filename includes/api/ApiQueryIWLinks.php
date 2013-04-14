@@ -90,7 +90,7 @@ class ApiQueryIWLinks extends ApiQueryBase {
 			if ( count( $this->getPageSet()->getGoodTitles() ) == 1 ) {
 				$this->addOption( 'ORDER BY', 'iwl_prefix' . $sort );
 			} else {
-				$this->addOption( 'ORDER BY', array (
+				$this->addOption( 'ORDER BY', array(
 						'iwl_from' . $sort,
 						'iwl_prefix' . $sort,
 						'iwl_title' . $sort

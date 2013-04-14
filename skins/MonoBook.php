@@ -205,18 +205,18 @@ echo $footerEnd;
 		global $wgUseTwoButtonsSearchForm;
 ?>
 	<div id="p-search" class="portlet" role="search">
-		<h3><label for="searchInput"><?php $this->msg('search') ?></label></h3>
+		<h3><label for="searchInput"><?php $this->msg( 'search' ) ?></label></h3>
 		<div id="searchBody" class="pBody">
-			<form action="<?php $this->text('wgScript') ?>" id="searchform">
-				<input type='hidden' name="title" value="<?php $this->text('searchtitle') ?>"/>
-				<?php echo $this->makeSearchInput(array( "id" => "searchInput" )); ?>
+			<form action="<?php $this->text( 'wgScript' ) ?>" id="searchform">
+				<input type='hidden' name="title" value="<?php $this->text( 'searchtitle' ) ?>"/>
+				<?php echo $this->makeSearchInput( array( "id" => "searchInput" ) ); ?>
 
-				<?php echo $this->makeSearchButton("go", array( "id" => "searchGoButton", "class" => "searchButton" ));
-				if ($wgUseTwoButtonsSearchForm): ?>&#160;
-				<?php echo $this->makeSearchButton("fulltext", array( "id" => "mw-searchButton", "class" => "searchButton" ));
+				<?php echo $this->makeSearchButton( "go", array( "id" => "searchGoButton", "class" => "searchButton" ) );
+				if ( $wgUseTwoButtonsSearchForm ): ?>&#160;
+				<?php echo $this->makeSearchButton( "fulltext", array( "id" => "mw-searchButton", "class" => "searchButton" ) );
 				else: ?>
 
-				<div><a href="<?php $this->text('searchaction') ?>" rel="search"><?php $this->msg('powersearch-legend') ?></a></div><?php
+				<div><a href="<?php $this->text( 'searchaction' ) ?>" rel="search"><?php $this->msg( 'powersearch-legend' ) ?></a></div><?php
 				endif; ?>
 
 			</form>
@@ -232,10 +232,10 @@ echo $footerEnd;
 	function cactions() {
 ?>
 	<div id="p-cactions" class="portlet" role="navigation">
-		<h3><?php $this->msg('views') ?></h3>
+		<h3><?php $this->msg( 'views' ) ?></h3>
 		<div class="pBody">
 			<ul><?php
-				foreach($this->data['content_actions'] as $key => $tab) {
+				foreach( $this->data['content_actions'] as $key => $tab ) {
 					echo '
 				' . $this->makeListItem( $key, $tab );
 				} ?>
@@ -249,12 +249,12 @@ echo $footerEnd;
 	function toolbox() {
 ?>
 	<div class="portlet" id="p-tb" role="navigation">
-		<h3><?php $this->msg('toolbox') ?></h3>
+		<h3><?php $this->msg( 'toolbox' ) ?></h3>
 		<div class="pBody">
 			<ul>
 <?php
 		foreach ( $this->getToolbox() as $key => $tbitem ) { ?>
-				<?php echo $this->makeListItem($key, $tbitem); ?>
+				<?php echo $this->makeListItem( $key, $tbitem ); ?>
 
 <?php
 		}
@@ -272,11 +272,11 @@ echo $footerEnd;
 		if( $this->data['language_urls'] ) {
 ?>
 	<div id="p-lang" class="portlet" role="navigation">
-		<h3<?php $this->html('userlangattributes') ?>><?php $this->msg('otherlanguages') ?></h3>
+		<h3<?php $this->html( 'userlangattributes' ) ?>><?php $this->msg( 'otherlanguages' ) ?></h3>
 		<div class="pBody">
 			<ul>
-<?php		foreach($this->data['language_urls'] as $key => $langlink) { ?>
-				<?php echo $this->makeListItem($key, $langlink); ?>
+<?php		foreach( $this->data['language_urls'] as $key => $langlink ) { ?>
+				<?php echo $this->makeListItem( $key, $langlink ); ?>
 
 <?php		} ?>
 			</ul>
@@ -304,8 +304,8 @@ echo $footerEnd;
 		<div class='pBody'>
 <?php   if ( is_array( $cont ) ) { ?>
 			<ul>
-<?php 			foreach($cont as $key => $val) { ?>
-				<?php echo $this->makeListItem($key, $val); ?>
+<?php 			foreach( $cont as $key => $val ) { ?>
+				<?php echo $this->makeListItem( $key, $val ); ?>
 
 <?php			} ?>
 			</ul>

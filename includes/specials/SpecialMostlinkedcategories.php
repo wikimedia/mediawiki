@@ -40,9 +40,9 @@ class MostlinkedCategoriesPage extends QueryPage {
 	}
 
 	function getQueryInfo() {
-		return array (
-			'tables' => array ( 'category' ),
-			'fields' => array ( 'title' => 'cat_title',
+		return array(
+			'tables' => array( 'category' ),
+			'fields' => array( 'title' => 'cat_title',
 					'namespace' => NS_CATEGORY,
 					'value' => 'cat_pages' ),
 		);

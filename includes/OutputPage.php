@@ -2672,7 +2672,7 @@ $templates
 			);
 			$context = new ResourceLoaderContext( $resourceLoader, new FauxRequest( $query ) );
 			// Extract modules that know they're empty
-			$emptyModules = array ();
+			$emptyModules = array();
 			foreach ( $grpModules as $key => $module ) {
 				if ( $module->isKnownEmpty( $context ) ) {
 					$emptyModules[$key] = 'ready';

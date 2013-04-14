@@ -157,7 +157,7 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_TYPE => array_diff( $wgRestrictionLevels, array( '' ) )
 			),
-			'limit' => array (
+			'limit' => array(
 				ApiBase::PARAM_DFLT => 10,
 				ApiBase::PARAM_TYPE => 'limit',
 				ApiBase::PARAM_MIN => 1,

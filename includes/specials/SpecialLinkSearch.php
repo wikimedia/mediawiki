@@ -100,8 +100,8 @@ class LinkSearchPage extends QueryPage {
 					'all' => '',
 					'label' => $this->msg( 'linksearch-ns' )->text()
 				), array(
-					'name'  => 'namespace',
-					'id'    => 'namespace',
+					'name' => 'namespace',
+					'id' => 'namespace',
 					'class' => 'namespaceselector',
 				)
 			);
@@ -174,12 +174,12 @@ class LinkSearchPage extends QueryPage {
 
 		$stripped = LinkFilter::keepOneWildcard( $this->mMungedQuery );
 		$like = $dbr->buildLike( $stripped );
-		$retval = array (
-			'tables' => array ( 'page', 'externallinks' ),
-			'fields' => array ( 'namespace' => 'page_namespace',
+		$retval = array(
+			'tables' => array( 'page', 'externallinks' ),
+			'fields' => array( 'namespace' => 'page_namespace',
 					'title' => 'page_title',
 					'value' => 'el_index', 'url' => 'el_to' ),
-			'conds' => array ( 'page_id = el_from',
+			'conds' => array( 'page_id = el_from',
 					"$clause $like" ),
 			'options' => array( 'USE INDEX' => $clause )
 		);

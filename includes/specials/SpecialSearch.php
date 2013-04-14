@@ -705,7 +705,7 @@ class SpecialSearch extends SpecialPage {
 
 		$html = null;
 
-		if ( wfRunHooks( 'ShowSearchHit', array (
+		if ( wfRunHooks( 'ShowSearchHit', array(
 			$this, $result, $terms,
 			&$link, &$redirect, &$section, &$extract,
 			&$score, &$size, &$date, &$related,

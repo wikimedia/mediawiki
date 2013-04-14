@@ -52,8 +52,8 @@ class DoubleRedirectsPage extends QueryPage {
 	function reallyGetQueryInfo( $namespace = null, $title = null ) {
 		$limitToTitle = !( $namespace === null && $title === null );
 		$dbr = wfGetDB( DB_SLAVE );
-		$retval = array (
-			'tables' => array (
+		$retval = array(
+			'tables' => array(
 				'ra' => 'redirect',
 				'rb' => 'redirect',
 				'pa' => 'page',
@@ -103,7 +103,7 @@ class DoubleRedirectsPage extends QueryPage {
 	}
 
 	function getOrderFields() {
-		return array ( 'ra.rd_namespace', 'ra.rd_title' );
+		return array( 'ra.rd_namespace', 'ra.rd_title' );
 	}
 
 	function formatResult( $skin, $result ) {

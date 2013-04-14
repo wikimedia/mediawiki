@@ -92,7 +92,7 @@ class SpecialProtectedpages extends SpecialPage {
 
 		$link = Linker::link( $title );
 
-		$description_items = array ();
+		$description_items = array();
 
 		$protType = $this->msg( 'restriction-level-' . $row->pr_level )->escaped();
 
@@ -197,8 +197,8 @@ class SpecialProtectedpages extends SpecialPage {
 					'all' => '',
 					'label' => $this->msg( 'namespace' )->text()
 				), array(
-					'name'  => 'namespace',
-					'id'    => 'namespace',
+					'name' => 'namespace',
+					'id' => 'namespace',
 					'class' => 'namespaceselector',
 				)
 			)

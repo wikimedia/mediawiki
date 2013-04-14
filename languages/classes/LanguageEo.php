@@ -78,7 +78,7 @@ class LanguageEo extends Language {
 	 * @return string
 	 */
 	function strrtuxCallback( $matches ) {
-		static $ux = array (
+		static $ux = array(
 			'x' => 'xx' , 'X' => 'Xx' ,
 			"\xc4\x88" => "Cx" , "\xc4\x89" => "cx" ,
 			"\xc4\x9c" => "Gx" , "\xc4\x9d" => "gx" ,
@@ -95,7 +95,7 @@ class LanguageEo extends Language {
 	 * @return string
 	 */
 	function strrtxuCallback( $matches ) {
-		static $xu = array (
+		static $xu = array(
 			'xx' => 'x' , 'xX' => 'x' ,
 			'Xx' => 'X' , 'XX' => 'X' ,
 			"Cx" => "\xc4\x88" , "CX" => "\xc4\x88" ,

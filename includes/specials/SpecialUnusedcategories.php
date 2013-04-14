@@ -39,15 +39,15 @@ class UnusedCategoriesPage extends QueryPage {
 	}
 
 	function getQueryInfo() {
-		return array (
-			'tables' => array ( 'page', 'categorylinks' ),
-			'fields' => array ( 'namespace' => 'page_namespace',
+		return array(
+			'tables' => array( 'page', 'categorylinks' ),
+			'fields' => array( 'namespace' => 'page_namespace',
 					'title' => 'page_title',
 					'value' => 'page_title' ),
-			'conds' => array ( 'cl_from IS NULL',
+			'conds' => array( 'cl_from IS NULL',
 					'page_namespace' => NS_CATEGORY,
 					'page_is_redirect' => 0 ),
-			'join_conds' => array ( 'categorylinks' => array (
+			'join_conds' => array( 'categorylinks' => array(
 					'LEFT JOIN', 'cl_to = page_title' ) )
 		);
 	}

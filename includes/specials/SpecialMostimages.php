@@ -44,12 +44,12 @@ class MostimagesPage extends ImageQueryPage {
 	}
 
 	function getQueryInfo() {
-		return array (
-			'tables' => array ( 'imagelinks' ),
-			'fields' => array ( 'namespace' => NS_FILE,
+		return array(
+			'tables' => array( 'imagelinks' ),
+			'fields' => array( 'namespace' => NS_FILE,
 					'title' => 'il_to',
 					'value' => 'COUNT(*)' ),
-			'options' => array ( 'GROUP BY' => 'il_to',
+			'options' => array( 'GROUP BY' => 'il_to',
 					'HAVING' => 'COUNT(*) > 1' )
 		);
 	}

@@ -42,7 +42,7 @@ class PopularPagesPage extends QueryPage {
 	}
 
 	function getQueryInfo() {
-		return array (
+		return array(
 			'tables' => array( 'page' ),
 			'fields' => array( 'namespace' => 'page_namespace',
 					'title' => 'page_title',

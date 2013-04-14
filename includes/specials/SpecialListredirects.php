@@ -67,7 +67,7 @@ class ListredirectsPage extends QueryPage {
 	}
 
 	function getOrderFields() {
-		return array ( 'p1.page_namespace', 'p1.page_title' );
+		return array( 'p1.page_namespace', 'p1.page_title' );
 	}
 
 	/**

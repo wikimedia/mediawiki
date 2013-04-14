@@ -44,24 +44,24 @@ class MostinterwikisPage extends QueryPage {
 	}
 
 	function getQueryInfo() {
-		return array (
-			'tables' => array (
+		return array(
+			'tables' => array(
 				'langlinks',
 				'page'
-			), 'fields' => array (
+			), 'fields' => array(
 				'namespace' => 'page_namespace',
 				'title' => 'page_title',
 				'value' => 'COUNT(*)'
-			), 'conds' => array (
+			), 'conds' => array(
 				'page_namespace' => MWNamespace::getContentNamespaces()
-			), 'options' => array (
+			), 'options' => array(
 				'HAVING' => 'COUNT(*) > 1',
-				'GROUP BY' => array (
+				'GROUP BY' => array(
 					'page_namespace',
 					'page_title'
 				)
-			), 'join_conds' => array (
-				'page' => array (
+			), 'join_conds' => array(
+				'page' => array(
 					'LEFT JOIN',
 					'page_id = ll_from'
 				)

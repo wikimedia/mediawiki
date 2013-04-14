@@ -45,17 +45,17 @@ class MostlinkedPage extends QueryPage {
 	}
 
 	function getQueryInfo() {
-		return array (
-			'tables' => array ( 'pagelinks', 'page' ),
-			'fields' => array ( 'namespace' => 'pl_namespace',
+		return array(
+			'tables' => array( 'pagelinks', 'page' ),
+			'fields' => array( 'namespace' => 'pl_namespace',
 					'title' => 'pl_title',
 					'value' => 'COUNT(*)',
 					'page_namespace' ),
-			'options' => array ( 'HAVING' => 'COUNT(*) > 1',
+			'options' => array( 'HAVING' => 'COUNT(*) > 1',
 				'GROUP BY' => array( 'pl_namespace', 'pl_title',
 						'page_namespace' ) ),
-			'join_conds' => array ( 'page' => array ( 'LEFT JOIN',
-					array ( 'page_namespace = pl_namespace',
+			'join_conds' => array( 'page' => array( 'LEFT JOIN',
+					array( 'page_namespace = pl_namespace',
 						'page_title = pl_title' ) ) )
 		);
 	}

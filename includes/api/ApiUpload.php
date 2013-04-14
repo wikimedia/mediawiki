@@ -143,7 +143,7 @@ class ApiUpload extends ApiBase {
 	 * @return array
 	 */
 	private function getStashResult( $warnings ) {
-		$result = array ();
+		$result = array();
 		// Some uploads can request they be stashed, so as not to publish them immediately.
 		// In this case, a failure to stash ought to be fatal
 		try {
@@ -222,9 +222,9 @@ class ApiUpload extends ApiBase {
 				$ok = JobQueueGroup::singleton()->push( new AssembleUploadChunksJob(
 					Title::makeTitle( NS_FILE, $this->mParams['filekey'] ),
 					array(
-						'filename'  => $this->mParams['filename'],
-						'filekey'   => $this->mParams['filekey'],
-						'session'   => $this->getContext()->exportSession()
+						'filename' => $this->mParams['filename'],
+						'filekey' => $this->mParams['filekey'],
+						'session' => $this->getContext()->exportSession()
 					)
 				) );
 				if ( $ok ) {
@@ -588,12 +588,12 @@ class ApiUpload extends ApiBase {
 			$ok = JobQueueGroup::singleton()->push( new PublishStashedFileJob(
 				Title::makeTitle( NS_FILE, $this->mParams['filename'] ),
 				array(
-					'filename'  => $this->mParams['filename'],
-					'filekey'   => $this->mParams['filekey'],
-					'comment'   => $this->mParams['comment'],
-					'text'      => $this->mParams['text'],
-					'watch'     => $watch,
-					'session'   => $this->getContext()->exportSession()
+					'filename' => $this->mParams['filename'],
+					'filekey' => $this->mParams['filekey'],
+					'comment' => $this->mParams['comment'],
+					'text' => $this->mParams['text'],
+					'watch' => $watch,
+					'session' => $this->getContext()->exportSession()
 				)
 			) );
 			if ( $ok ) {
