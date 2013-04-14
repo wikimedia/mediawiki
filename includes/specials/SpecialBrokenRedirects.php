@@ -51,6 +51,7 @@ class BrokenRedirectsPage extends QueryPage {
 
 	function getQueryInfo() {
 		$dbr = wfGetDB( DB_SLAVE );
+
 		return array(
 			'tables' => array(
 				'redirect',
@@ -149,6 +150,7 @@ class BrokenRedirectsPage extends QueryPage {
 
 		$out .= $this->msg( 'parentheses' )->rawParams( $this->getLanguage()->pipeList( $links ) )->escaped();
 		$out .= " {$arr} {$to}";
+
 		return $out;
 	}
 

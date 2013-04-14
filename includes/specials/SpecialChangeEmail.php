@@ -49,6 +49,7 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 	 */
 	function isListed() {
 		global $wgAuth;
+
 		return $wgAuth->allowPropChange( 'emailaddress' );
 	}
 
@@ -67,6 +68,7 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 
 		if ( !$wgAuth->allowPropChange( 'emailaddress' ) ) {
 			$this->error( 'cannotchangeemail' );
+
 			return;
 		}
 
@@ -75,11 +77,13 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 
 		if ( !$request->wasPosted() && !$user->isLoggedIn() ) {
 			$this->error( 'changeemail-no-info' );
+
 			return;
 		}
 
 		if ( $request->wasPosted() && $request->getBool( 'wpCancel' ) ) {
 			$this->doReturnTo();
+
 			return;
 		}
 
@@ -203,6 +207,7 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 			$out .= "</td>\n";
 			$out .= "</tr>";
 		}
+
 		return $out;
 	}
 
@@ -217,18 +222,21 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 
 		if ( $newaddr != '' && !Sanitizer::validateEmail( $newaddr ) ) {
 			$this->error( 'invalidemailaddress' );
+
 			return false;
 		}
 
 		$throttleCount = LoginForm::incLoginThrottle( $user->getName() );
 		if ( $throttleCount === true ) {
 			$this->error( 'login-throttled' );
+
 			return false;
 		}
 
 		global $wgRequirePasswordforEmailChange;
 		if ( $wgRequirePasswordforEmailChange && !$user->checkTemporaryPassword( $pass ) && !$user->checkPassword( $pass ) ) {
 			$this->error( 'wrongpassword' );
+
 			return false;
 		}
 
@@ -243,6 +251,7 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 				'<p class="error">' .
 					$this->getOutput()->parseInline( $status->getWikiText( 'mailerror' ) ) .
 					'</p>' );
+
 			return false;
 		}
 

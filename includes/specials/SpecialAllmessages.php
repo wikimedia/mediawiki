@@ -55,6 +55,7 @@ class SpecialAllmessages extends SpecialPage {
 		global $wgUseDatabaseMessages;
 		if ( !$wgUseDatabaseMessages ) {
 			$out->addWikiMsg( 'allmessagesnotsupportedDB' );
+
 			return;
 		} else {
 			$this->outputHeader( 'allmessagestext' );
@@ -74,7 +75,6 @@ class SpecialAllmessages extends SpecialPage {
 			$this->table->getNavigationBar() .
 			$this->table->getBody() .
 			$this->table->getNavigationBar() );
-
 	}
 
 	protected function getGroupName() {
@@ -213,6 +213,7 @@ class AllmessagesTablePager extends TablePager {
 			$this->getHiddenFields( array( 'title', 'prefix', 'filter', 'lang', 'limit' ) ) .
 			Xml::closeElement( 'fieldset' ) .
 			Xml::closeElement( 'form' );
+
 		return $out;
 	}
 
@@ -229,6 +230,7 @@ class AllmessagesTablePager extends TablePager {
 		$messageNames = array_map( array( $this->lang, 'ucfirst' ), $messageNames );
 
 		wfProfileOut( __METHOD__ );
+
 		return $messageNames;
 	}
 
@@ -319,6 +321,7 @@ class AllmessagesTablePager extends TablePager {
 				break;
 			}
 		}
+
 		return $result;
 	}
 
@@ -367,6 +370,7 @@ class AllmessagesTablePager extends TablePager {
 						array( 'broken' )
 					);
 				}
+
 				return $title . ' ' . $this->msg( 'parentheses' )->rawParams( $talk )->escaped();
 
 			case 'am_default' :
@@ -390,6 +394,7 @@ class AllmessagesTablePager extends TablePager {
 			$s .= Xml::tags( 'td', $this->getCellAttrs( 'am_actual', $row->am_actual ), $formatted )
 				. "</tr>\n";
 		}
+
 		return $s;
 	}
 
@@ -401,6 +406,7 @@ class AllmessagesTablePager extends TablePager {
 		if ( !$isSecond ) {
 			$arr['id'] = Sanitizer::escapeId( 'msg_' . $this->getLanguage()->lcfirst( $row->am_title ) );
 		}
+
 		return $arr;
 	}
 
