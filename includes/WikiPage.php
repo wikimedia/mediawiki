@@ -2121,17 +2121,20 @@ class WikiPage implements Page, IDBAccessObject {
 			&& $shortTitle != $user->getTitleKey()
 			&& !( $revision->isMinor() && $user->isAllowed( 'nominornewtalk' ) )
 		) {
-			if ( wfRunHooks( 'ArticleEditUpdateNewTalk', array( &$this ) ) ) {
-				$other = User::newFromName( $shortTitle, false );
-				if ( !$other ) {
-					wfDebug( __METHOD__ . ": invalid username\n" );
-				} elseif ( User::isIP( $shortTitle ) ) {
-					// An anonymous user
-					$other->setNewtalk( true, $revision );
-				} elseif ( $other->isLoggedIn() ) {
-					$other->setNewtalk( true, $revision );
-				} else {
-					wfDebug( __METHOD__ . ": don't need to notify a nonexistent user\n" );
+			$recipient = User::newFromName( $shortTitle, false );
+			if ( !$recipient ) {
+				wfDebug( __METHOD__ . ": invalid username\n" );
+			} else {
+				// Allow extensions to prevent user notification when a new message is added to their talk page
+				if ( wfRunHooks( 'ArticleEditUpdateNewTalk', array( &$this, $recipient ) ) ) {
+					if ( User::isIP( $shortTitle ) ) {
+						// An anonymous user
+						$recipient->setNewtalk( true, $revision );
+					} elseif ( $recipient->isLoggedIn() ) {
+						$recipient->setNewtalk( true, $revision );
+					} else {
+						wfDebug( __METHOD__ . ": don't need to notify a nonexistent user\n" );
+					}
 				}
 			}
 		}
