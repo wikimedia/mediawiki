@@ -819,7 +819,7 @@ class LoginForm extends SpecialPage {
 				$this->resetLoginForm( $this->msg( 'resetpass_announce' )->text() );
 				break;
 			case self::CREATE_BLOCKED:
-				$this->userBlockedMessage( $this->getUser()->mBlock );
+				$this->userBlockedMessage( $this->getUser()->isBlockedFromCreateAccount() );
 				break;
 			case self::THROTTLED:
 				$this->mainLoginForm( $this->msg( 'login-throttled' )->text() );
