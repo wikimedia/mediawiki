@@ -29,7 +29,8 @@ production.
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail. Previously one could still
   navigate to the page by entering the URL directly.
-
+* (bug 47138) Fixed a fatal error when a blocked user tries to automatically
+  create an account on login due external authentication in some circumstances.
 
 === API changes in 1.22 ===
 * (bug 46626) xmldoublequote parameter was removed. Because of a bug, the
