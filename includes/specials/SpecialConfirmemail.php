@@ -125,6 +125,7 @@ class EmailConfirmation extends UnlistedSpecialPage {
 		$user = User::newFromConfirmationCode( $code );
 		if ( !is_object( $user ) ) {
 			$this->getOutput()->addWikiMsg( 'confirmemail_invalid' );
+
 			return;
 		}
 
@@ -167,6 +168,7 @@ class EmailInvalidation extends UnlistedSpecialPage {
 		$user = User::newFromConfirmationCode( $code );
 		if ( !is_object( $user ) ) {
 			$this->getOutput()->addWikiMsg( 'confirmemail_invalid' );
+
 			return;
 		}
 

@@ -159,6 +159,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 		$out .= Xml::closeElement( 'fieldset' );
 		$out .= Xml::closeElement( 'form' );
 		$out .= Xml::closeElement( 'div' );
+
 		return $out;
 	}
 
@@ -258,6 +259,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 			} else {
 				$output->addHTML( $this->namespaceForm( $namespace, $from, $to, $hideredirects ) );
 			}
+
 			return;
 		}
 
@@ -317,7 +319,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 			'to' => $outpoint,
 		);
 
-		if( $namespace ) {
+		if ( $namespace ) {
 			$queryParams['namespace'] = $namespace;
 		}
 		if ( $hideRedirects ) {
@@ -331,6 +333,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 			"<a href=\"$link\">$inpointf</a></td><td>",
 			"</td><td><a href=\"$link\">$outpointf</a>"
 		)->escaped();
+
 		return '<tr><td class="mw-allpages-alphaindexline">' . $out . '</td></tr>';
 	}
 
@@ -531,7 +534,6 @@ class SpecialAllpages extends IncludableSpecialPage {
 					)
 			);
 		}
-
 	}
 
 	/**
