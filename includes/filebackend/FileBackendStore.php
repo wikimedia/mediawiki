@@ -1575,9 +1575,10 @@ abstract class FileBackendStore extends FileBackend {
 	 * Set the cached info for a container
 	 *
 	 * @param string $container Resolved container name
-	 * @param $val mixed Information to cache
+	 * @param array $val Information to cache
+	 * @return void
 	 */
-	final protected function setContainerCache( $container, $val ) {
+	final protected function setContainerCache( $container, array $val ) {
 		$this->memCache->add( $this->containerCacheKey( $container ), $val, 14 * 86400 );
 	}
 
@@ -1586,6 +1587,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * The cache key is salted for a while to prevent race conditions.
 	 *
 	 * @param string $container Resolved container name
+	 * @return void
 	 */
 	final protected function deleteContainerCache( $container ) {
 		if ( !$this->memCache->set( $this->containerCacheKey( $container ), 'PURGED', 300 ) ) {
@@ -1666,14 +1668,17 @@ abstract class FileBackendStore extends FileBackend {
 	 * salting for the case when a file is created at a path were there was none before.
 	 *
 	 * @param string $path Storage path
-	 * @param $val mixed Information to cache
+	 * @param array $val Stat information to cache
+	 * @return void
 	 */
-	final protected function setFileCache( $path, $val ) {
+	final protected function setFileCache( $path, array $val ) {
 		$path = FileBackend::normalizeStoragePath( $path );
 		if ( $path === null ) {
 			return; // invalid storage path
 		}
-		$this->memCache->add( $this->fileCacheKey( $path ), $val, 7 * 86400 );
+		$age = time() - wfTimestamp( TS_UNIX, $val['mtime'] );
+		$ttl = min( 7 * 86400, max( 300, floor( .1 * $age ) ) );
+		$this->memCache->add( $this->fileCacheKey( $path ), $val, $ttl );
 	}
 
 	/**
@@ -1683,6 +1688,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * a file is created at a path were there was none before.
 	 *
 	 * @param string $path Storage path
+	 * @return void
 	 */
 	final protected function deleteFileCache( $path ) {
 		$path = FileBackend::normalizeStoragePath( $path );
