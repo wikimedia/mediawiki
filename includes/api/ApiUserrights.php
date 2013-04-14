@@ -83,7 +83,7 @@ class ApiUserrights extends ApiBase {
 	}
 
 	public function getAllowedParams() {
-		return array (
+		return array(
 			'user' => array(
 				ApiBase::PARAM_TYPE => 'string',
 				ApiBase::PARAM_REQUIRED => true

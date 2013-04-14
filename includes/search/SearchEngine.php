@@ -1119,7 +1119,7 @@ class SearchHighlighter {
 			// if begin of the article contains the whole phrase, show only that !!
 			if ( array_key_exists( $first, $snippets ) && preg_match( $pat1, $snippets[$first] )
 				&& $offsets[$first] < $contextchars * 2 ) {
-				$snippets = array ( $first => $snippets[$first] );
+				$snippets = array( $first => $snippets[$first] );
 			}
 
 			// calc by how much to extend existing snippets

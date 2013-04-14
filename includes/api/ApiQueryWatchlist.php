@@ -135,7 +135,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 		if ( !$params['allrev'] ) {
 			$this->addTables( 'page' );
-			$this->addJoinConds( array( 'page' => array( 'LEFT JOIN','rc_cur_id=page_id' ) ) );
+			$this->addJoinConds( array( 'page' => array( 'LEFT JOIN', 'rc_cur_id=page_id' ) ) );
 			$this->addWhere( 'rc_this_oldid=page_latest OR rc_type=' . RC_LOG );
 		}
 
@@ -321,7 +321,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			'end' => array(
 				ApiBase::PARAM_TYPE => 'timestamp'
 			),
-			'namespace' => array (
+			'namespace' => array(
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_TYPE => 'namespace'
 			),

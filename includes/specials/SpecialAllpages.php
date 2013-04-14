@@ -312,7 +312,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 		$inpointf = $wgContLang->truncate( $inpointf, $this->maxPageLength );
 		$outpointf = $wgContLang->truncate( $outpointf, $this->maxPageLength );
 
-		$queryParams = array (
+		$queryParams = array(
 			'from' => $inpoint,
 			'to' => $outpoint,
 		);

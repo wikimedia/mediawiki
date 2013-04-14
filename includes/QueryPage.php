@@ -422,7 +422,7 @@ abstract class QueryPage extends SpecialPage {
 	 */
 	function fetchFromCache( $limit, $offset = false ) {
 		$dbr = wfGetDB( DB_SLAVE );
-		$options = array ();
+		$options = array();
 		if ( $limit !== false ) {
 			$options['LIMIT'] = intval( $limit );
 		}

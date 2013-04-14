@@ -91,7 +91,7 @@ class SpecialProtectedtitles extends SpecialPage {
 
 		$link = Linker::link( $title );
 
-		$description_items = array ();
+		$description_items = array();
 
 		$protType = $this->msg( 'restriction-level-' . $row->pt_create_perm )->escaped();
 
@@ -150,8 +150,8 @@ class SpecialProtectedtitles extends SpecialPage {
 				'all' => '',
 				'label' => $this->msg( 'namespace' )->text()
 			), array(
-				'name'  => 'namespace',
-				'id'    => 'namespace',
+				'name' => 'namespace',
+				'id' => 'namespace',
 				'class' => 'namespaceselector',
 			)
 		);

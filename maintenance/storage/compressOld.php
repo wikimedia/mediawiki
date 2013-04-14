@@ -53,7 +53,7 @@ class CompressOld extends Maintenance {
 	 * @todo document
 	 */
 	const LS_INDIVIDUAL = 0;
-	const LS_CHUNKED    = 1;
+	const LS_CHUNKED = 1;
 
 	public function __construct() {
 		parent::__construct();
@@ -113,7 +113,7 @@ class CompressOld extends Maintenance {
 		$this->output( "Starting from old_id $start...\n" );
 		$dbw = wfGetDB( DB_MASTER );
 		do {
-			$res = $dbw->select( 'text', array( 'old_id','old_flags','old_text' ),
+			$res = $dbw->select( 'text', array( 'old_id', 'old_flags', 'old_text' ),
 				"old_id>=$start", __METHOD__, array( 'ORDER BY' => 'old_id', 'LIMIT' => $chunksize, 'FOR UPDATE' ) );
 			if( $res->numRows() == 0 ) {
 				break;
@@ -254,8 +254,8 @@ class CompressOld extends Maintenance {
 
 			# Get the page row
 			$pageRes = $dbr->select( 'page',
-				array('page_id', 'page_namespace', 'page_title','page_latest'),
-				$pageConds + array('page_id' => $pageId), __METHOD__ );
+				array( 'page_id', 'page_namespace', 'page_title', 'page_latest' ),
+				$pageConds + array( 'page_id' => $pageId ), __METHOD__ );
 			if ( $pageRes->numRows() == 0 ) {
 				continue;
 			}
@@ -365,7 +365,7 @@ class CompressOld extends Maintenance {
 								array( /* SET */
 									'old_text' => $url,
 									'old_flags' => 'external,utf-8',
-								), array ( /* WHERE */
+								), array( /* WHERE */
 									'old_id' => $stub->getReferrer(),
 								)
 							);

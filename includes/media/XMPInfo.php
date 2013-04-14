@@ -428,7 +428,7 @@ class XMPInfo {
 				'mode'      => XMPReader::MODE_SIMPLE,
 				'validate'  => 'validateClosed',
 				/* can't use a range, as it skips... */
-				'choices'   =>  array( '0' => true, '1' => true,
+				'choices'   => array( '0' => true, '1' => true,
 					'2' => true, '3' => true, '4' => true,
 					'9' => true, '10' => true, '11' => true,
 					'12' => true, '13' => true,

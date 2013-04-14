@@ -294,7 +294,7 @@ class DjVuHandler extends ImageHandler {
 	}
 
 	function isMetadataValid( $image, $metadata ) {
-		return !empty( $metadata ) && $metadata != serialize(array());
+		return !empty( $metadata ) && $metadata != serialize( array() );
 	}
 
 	function pageCount( $image ) {

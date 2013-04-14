@@ -229,11 +229,11 @@ class SpecialStatistics extends SpecialPage {
 			Xml::closeElement( 'tr' ) .
 				$this->formatRow( $this->msg( 'statistics-views-total' )->parse(),
 					$this->getLanguage()->formatNum( $this->views ),
-						array ( 'class' => 'mw-statistics-views-total' ), 'statistics-views-total-desc' ) .
+						array( 'class' => 'mw-statistics-views-total' ), 'statistics-views-total-desc' ) .
 				$this->formatRow( $this->msg( 'statistics-views-peredit' )->parse(),
 					$this->getLanguage()->formatNum( sprintf( '%.2f', $this->edits ?
 						$this->views / $this->edits : 0 ) ),
-						array ( 'class' => 'mw-statistics-views-peredit' ) );
+						array( 'class' => 'mw-statistics-views-peredit' ) );
 	}
 
 	private function getMostViewedPages() {

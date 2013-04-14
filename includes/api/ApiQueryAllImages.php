@@ -260,7 +260,7 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 	}
 
 	public function getAllowedParams() {
-		return array (
+		return array(
 			'sort' => array(
 				ApiBase::PARAM_DFLT => 'name',
 				ApiBase::PARAM_TYPE => array(

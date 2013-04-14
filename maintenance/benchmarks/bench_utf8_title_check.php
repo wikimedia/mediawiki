@@ -38,7 +38,7 @@ class bench_utf8_title_check extends Benchmarker {
 	public function __construct() {
 		parent::__construct();
 
-		$this->data = array (
+		$this->data = array(
 			"",
 			"United States of America", // 7bit ASCII
 			"S%C3%A9rie%20t%C3%A9l%C3%A9vis%C3%A9e",

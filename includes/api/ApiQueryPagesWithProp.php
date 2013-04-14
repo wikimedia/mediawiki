@@ -133,7 +133,7 @@ class ApiQueryPagesWithProp extends ApiQueryGeneratorBase {
 			'prop' => array(
 				ApiBase::PARAM_DFLT => 'ids|title',
 				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => array (
+				ApiBase::PARAM_TYPE => array(
 					'ids',
 					'title',
 					'value',

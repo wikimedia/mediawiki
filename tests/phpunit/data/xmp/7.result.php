@@ -1,26 +1,26 @@
 <?php
-$result = array (
+$result = array(
 	'xmp-exif' =>
-	array (
+	array(
 		'CameraOwnerName' => 'Me!',
 	),
 	'xmp-general' =>
-	array (
+	array(
 		'LicenseUrl' => 'http://creativecommons.com/cc-by-2.9',
 		'ImageDescription' =>
-		array (
+		array(
 			'x-default' => 'Test image for the cc: xmp: xmpRights: namespaces in xmp',
 			'_type' => 'lang',
 		),
 		'ObjectName' =>
-		array (
+		array(
 			'x-default' => 'xmp core/xmp rights/cc ns test',
 			'_type' => 'lang',
 		),
 		'DateTimeDigitized' => '2005:04:03',
 		'Software' => 'The one true editor: Vi (ok i used gimp)',
 		'Identifier' =>
-		array (
+		array(
 			0 => 'http://example.com/identifierurl',
 			1 => 'urn:sha1:342524abcdef',
 			'_type' => 'ul',
@@ -33,12 +33,12 @@ $result = array (
 		'RightsCertificate' => 'http://example.com/rights-certificate/',
 		'Copyrighted' => 'True',
 		'CopyrightOwner' =>
-		array (
+		array(
 			0 => 'Bawolff is copyright owner',
 			'_type' => 'ul',
 		),
 		'UsageTerms' =>
-		array (
+		array(
 			'x-default' => 'do whatever you want',
 			'en-gb' => 'Do whatever you want in british english',
 			'_type' => 'lang',
@@ -46,7 +46,7 @@ $result = array (
 		'WebStatement' => 'http://example.com/web_statement',
 	),
 	'xmp-deprecated' =>
-	array (
+	array(
 		'Identifier' => 'http://example.com/identifierurl/wrong',
 	),
 );
