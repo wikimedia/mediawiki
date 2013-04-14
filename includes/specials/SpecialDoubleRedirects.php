@@ -122,10 +122,17 @@ class DoubleRedirectsPage extends QueryPage {
 		// using the filter of reallyGetQueryInfo.
 		if ( $result && !isset( $result->nsb ) ) {
 			$dbr = wfGetDB( DB_SLAVE );
-			$qi = $this->reallyGetQueryInfo( $result->namespace,
-					$result->title );
-			$res = $dbr->select( $qi['tables'], $qi['fields'],
-					$qi['conds'], __METHOD__ );
+			$qi = $this->reallyGetQueryInfo(
+				$result->namespace,
+				$result->title
+			);
+			$res = $dbr->select(
+				$qi['tables'],
+				$qi['fields'],
+				$qi['conds'],
+				__METHOD__
+			);
+
 			if ( $res ) {
 				$result = $dbr->fetchObject( $res );
 			}
@@ -166,7 +173,7 @@ class DoubleRedirectsPage extends QueryPage {
 		$lang = $this->getLanguage();
 		$arr = $lang->getArrow() . $lang->getDirMark();
 
-		return( "{$linkA} {$edit} {$arr} {$linkB} {$arr} {$linkC}" );
+		return ( "{$linkA} {$edit} {$arr} {$linkB} {$arr} {$linkC}" );
 	}
 
 	protected function getGroupName() {

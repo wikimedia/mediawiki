@@ -27,7 +27,6 @@
  * @ingroup SpecialPage
  */
 class SpecialFilepath extends SpecialPage {
-
 	function __construct() {
 		parent::__construct( 'Filepath' );
 	}
@@ -41,7 +40,7 @@ class SpecialFilepath extends SpecialPage {
 
 		$title = Title::newFromText( $file, NS_FILE );
 
-		if ( ! $title instanceof Title || $title->getNamespace() != NS_FILE ) {
+		if ( !$title instanceof Title || $title->getNamespace() != NS_FILE ) {
 			$this->showForm( $title );
 		} else {
 			$file = wfFindFile( $title );
@@ -55,6 +54,7 @@ class SpecialFilepath extends SpecialPage {
 				// If a width is requested...
 				if ( $width != -1 ) {
 					$mto = $file->transform( array( 'width' => $width, 'height' => $height ) );
+
 					// ... and we can
 					if ( $mto && !$mto->isError() ) {
 						// ... change the URL to point to a thumbnail.
@@ -76,14 +76,23 @@ class SpecialFilepath extends SpecialPage {
 		global $wgScript;
 
 		$this->getOutput()->addHTML(
-			Html::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript, 'id' => 'specialfilepath' ) ) .
-			Html::openElement( 'fieldset' ) .
-			Html::element( 'legend', null, $this->msg( 'filepath' )->text() ) .
-			Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) .
-			Xml::inputLabel( $this->msg( 'filepath-page' )->text(), 'file', 'file', 25, is_object( $title ) ? $title->getText() : '' ) . ' ' .
-			Xml::submitButton( $this->msg( 'filepath-submit' )->text() ) . "\n" .
-			Html::closeElement( 'fieldset' ) .
-			Html::closeElement( 'form' )
+			Html::openElement(
+				'form',
+				array( 'method' => 'get', 'action' => $wgScript, 'id' => 'specialfilepath' )
+			) .
+				Html::openElement( 'fieldset' ) .
+				Html::element( 'legend', null, $this->msg( 'filepath' )->text() ) .
+				Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) .
+				Xml::inputLabel(
+					$this->msg( 'filepath-page' )->text(),
+					'file',
+					'file',
+					25,
+					is_object( $title ) ? $title->getText() : ''
+				) . ' ' .
+				Xml::submitButton( $this->msg( 'filepath-submit' )->text() ) . "\n" .
+				Html::closeElement( 'fieldset' ) .
+				Html::closeElement( 'form' )
 		);
 	}
 
