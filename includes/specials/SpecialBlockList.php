@@ -49,7 +49,7 @@ class SpecialBlockList extends SpecialPage {
 
 		$request = $this->getRequest();
 		$par = $request->getVal( 'ip', $par );
-		$this->target = trim( $request->getVal( 'wpTarget', $par ) );
+		$this->target = trim( str_replace( '_', ' ', $request->getVal( 'wpTarget', $par ) ) );
 
 		$this->options = $request->getArray( 'wpOptions', array() );
 
