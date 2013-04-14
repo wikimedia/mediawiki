@@ -141,7 +141,7 @@ class SpecialBlockList extends SpecialPage {
 					break;
 
 				case Block::TYPE_USER:
-					$conds['ipb_address'] = (string)$this->target;
+					$conds['ipb_address'] = (string)$target;
 					$conds['ipb_auto'] = 0;
 					break;
 			}
