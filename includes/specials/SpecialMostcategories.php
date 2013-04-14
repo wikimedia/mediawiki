@@ -30,7 +30,6 @@
  * @ingroup SpecialPage
  */
 class MostcategoriesPage extends QueryPage {
-
 	function __construct( $name = 'Mostcategories' ) {
 		parent::__construct( $name );
 	}
@@ -58,8 +57,8 @@ class MostcategoriesPage extends QueryPage {
 	}
 
 	/**
-	 * @param $db DatabaseBase
-	 * @param $res
+	 * @param DatabaseBase $db
+	 * @param ResultWrapper $res
 	 */
 	function preprocessResults( $db, $res ) {
 		# There's no point doing a batch check if we aren't caching results;
@@ -78,8 +77,8 @@ class MostcategoriesPage extends QueryPage {
 	}
 
 	/**
-	 * @param $skin Skin
-	 * @param $result
+	 * @param Skin $skin
+	 * @param object $result Result row
 	 * @return string
 	 */
 	function formatResult( $skin, $result ) {

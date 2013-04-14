@@ -76,7 +76,7 @@ class MostlinkedTemplatesPage extends QueryPage {
 	 * Pre-cache page existence to speed up link generation
 	 *
 	 * @param $db DatabaseBase connection
-	 * @param $res ResultWrapper
+	 * @param ResultWrapper $res
 	 */
 	public function preprocessResults( $db, $res ) {
 		if ( !$res->numRows() ) {
@@ -95,9 +95,9 @@ class MostlinkedTemplatesPage extends QueryPage {
 	/**
 	 * Format a result row
 	 *
-	 * @param $skin Skin to use for UI elements
-	 * @param $result Result row
-	 * @return String
+	 * @param Skin $skin
+	 * @param object $result Result row
+	 * @return string
 	 */
 	public function formatResult( $skin, $result ) {
 		$title = Title::makeTitleSafe( $result->namespace, $result->title );
@@ -115,8 +115,8 @@ class MostlinkedTemplatesPage extends QueryPage {
 	/**
 	 * Make a "what links here" link for a given title
 	 *
-	 * @param $title Title to make the link for
-	 * @param $result Result row
+	 * @param Title $title Title to make the link for
+	 * @param object $result Result row
 	 * @return String
 	 */
 	private function makeWlhLink( $title, $result ) {

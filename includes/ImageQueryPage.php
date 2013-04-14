@@ -29,17 +29,16 @@
  * @author Rob Church <robchur@gmail.com>
  */
 abstract class ImageQueryPage extends QueryPage {
-
 	/**
 	 * Format and output report results using the given information plus
 	 * OutputPage
 	 *
-	 * @param $out OutputPage to print to
-	 * @param $skin Skin: user skin to use [unused]
-	 * @param $dbr DatabaseBase (read) connection to use
-	 * @param $res Integer: result pointer
-	 * @param $num Integer: number of available result rows
-	 * @param $offset Integer: paging offset
+	 * @param OutputPage $out OutputPage to print to
+	 * @param Skin $skin User skin to use [unused]
+	 * @param DatabaseBase $dbr (read) connection to use
+	 * @param int $res Result pointer
+	 * @param int $num Number of available result rows
+	 * @param int $offset Paging offset
 	 */
 	protected function outputResults( $out, $skin, $dbr, $res, $num, $offset ) {
 		if( $num > 0 ) {
@@ -65,11 +64,10 @@ abstract class ImageQueryPage extends QueryPage {
 	/**
 	 * Get additional HTML to be shown in a results' cell
 	 *
-	 * @param $row Object: result row
-	 * @return String
+	 * @param object $row Result row
+	 * @return string
 	 */
 	protected function getCellHtml( $row ) {
 		return '';
 	}
-
 }

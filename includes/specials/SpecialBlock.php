@@ -527,6 +527,7 @@ class SpecialBlock extends FormSpecialPage {
 	public static function validateTarget( $value, User $user ) {
 		global $wgBlockCIDRLimit;
 
+		/** @var User $target */
 		list( $target, $type ) = self::getTargetAndType( $value );
 		$status = Status::newGood( $target );
 
@@ -605,6 +606,7 @@ class SpecialBlock extends FormSpecialPage {
 		# can come from it
 		$data['Confirm'] = !in_array( $data['Confirm'], array( '', '0', null, false ), true );
 
+		/** @var User $target */
 		list( $target, $type ) = self::getTargetAndType( $data['Target'] );
 		if ( $type == Block::TYPE_USER ) {
 			$user = $target;

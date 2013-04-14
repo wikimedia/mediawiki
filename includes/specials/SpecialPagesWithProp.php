@@ -119,6 +119,11 @@ class SpecialPagesWithProp extends QueryPage {
 		return array( 'page_id' );
 	}
 
+	/**
+	 * @param Skin $skin
+	 * @param object $result Result row
+	 * @return string
+	 */
 	function formatResult( $skin, $result ) {
 		$title = Title::newFromRow( $result );
 		$ret = Linker::link( $title, null, array(), array(), array( 'known' ) );

@@ -27,7 +27,6 @@
  * @ingroup SpecialPage
  */
 class DisambiguationsPage extends QueryPage {
-
 	function __construct( $name = 'Disambiguations' ) {
 		parent::__construct( $name );
 	}
@@ -86,6 +85,7 @@ class DisambiguationsPage extends QueryPage {
 			$set = 'FALSE';
 			wfDebug( "Mediawiki:disambiguationspage message does not link to any templates!\n" );
 		}
+
 		return $set;
 	}
 
@@ -125,8 +125,8 @@ class DisambiguationsPage extends QueryPage {
 	/**
 	 * Fetch links and cache their existence
 	 *
-	 * @param $db DatabaseBase
-	 * @param $res
+	 * @param DatabaseBase $db
+	 * @param ResultWrapper $res
 	 */
 	function preprocessResults( $db, $res ) {
 		if ( !$res->numRows() ) {
@@ -142,6 +142,11 @@ class DisambiguationsPage extends QueryPage {
 		$res->seek( 0 );
 	}
 
+	/**
+	 * @param Skin $skin
+	 * @param object $result Result row
+	 * @return string
+	 */
 	function formatResult( $skin, $result ) {
 		$title = Title::newFromID( $result->value );
 		$dp = Title::makeTitle( $result->namespace, $result->title );

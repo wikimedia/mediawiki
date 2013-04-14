@@ -65,8 +65,8 @@ class FewestrevisionsPage extends QueryPage {
 	}
 
 	/**
-	 * @param $skin Skin object
-	 * @param $result Object: database row
+	 * @param Skin $skin
+	 * @param object $result Database row
 	 * @return String
 	 */
 	function formatResult( $skin, $result ) {

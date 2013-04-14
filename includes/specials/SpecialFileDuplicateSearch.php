@@ -59,7 +59,7 @@ class FileDuplicateSearchPage extends QueryPage {
 	/**
 	 * Fetch dupes from all connected file repositories.
 	 *
-	 * @return Array of File objects
+	 * @return array of File objects
 	 */
 	function getDupes() {
 		return RepoGroup::singleton()->findBySha1( $this->hash );

@@ -45,6 +45,11 @@ class UserrightsPage extends SpecialPage {
 		return $this->userCanChangeRights( $user, false );
 	}
 
+	/**
+	 * @param User $user
+	 * @param bool $checkIfSelf
+	 * @return bool
+	 */
 	public function userCanChangeRights( $user, $checkIfSelf = true ) {
 		$available = $this->changeableGroups();
 		if ( $user->getId() == 0 ) {

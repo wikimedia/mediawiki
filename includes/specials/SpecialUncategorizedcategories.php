@@ -34,8 +34,8 @@ class UncategorizedCategoriesPage extends UncategorizedPagesPage {
 
 	/**
 	 * Formats the result
-	 * @param $skin The current skin
-	 * @param $result The query result
+	 * @param Skin $skin The current skin
+	 * @param object $result The query result
 	 * @return string The category link
 	 */
 	function formatResult( $skin, $result ) {

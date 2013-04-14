@@ -189,6 +189,11 @@ class LinkSearchPage extends QueryPage {
 		return $retval;
 	}
 
+	/**
+	 * @param Skin $skin
+	 * @param object $result Result row
+	 * @return string
+	 */
 	function formatResult( $skin, $result ) {
 		$title = Title::makeTitle( $result->namespace, $result->title );
 		$url = $result->url;

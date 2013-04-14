@@ -69,7 +69,7 @@ class SpecialProtectedtitles extends SpecialPage {
 	/**
 	 * Callback function to output a restriction
 	 *
-	 * @param Object $row Database row
+	 * @param object $row Database row
 	 * @return string
 	 */
 	function formatRow( $row ) {

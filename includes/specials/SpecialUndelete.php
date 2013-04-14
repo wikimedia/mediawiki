@@ -271,7 +271,7 @@ class PageArchive {
 	/**
 	 * Get the text from an archive row containing ar_text, ar_flags and ar_text_id
 	 *
-	 * @param Object $row Database row
+	 * @param object $row Database row
 	 * @return string
 	 */
 	function getTextFromRow( $row ) {

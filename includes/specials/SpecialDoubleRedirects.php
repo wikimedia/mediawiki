@@ -28,7 +28,6 @@
  * @ingroup SpecialPage
  */
 class DoubleRedirectsPage extends QueryPage {
-
 	function __construct( $name = 'DoubleRedirects' ) {
 		parent::__construct( $name );
 	}
@@ -91,10 +90,12 @@ class DoubleRedirectsPage extends QueryPage {
 				'rb.rd_from = pb.page_id',
 			)
 		);
+
 		if ( $limitToTitle ) {
 			$retval['conds']['pa.page_namespace'] = $namespace;
 			$retval['conds']['pa.page_title'] = $title;
 		}
+
 		return $retval;
 	}
 
@@ -106,6 +107,11 @@ class DoubleRedirectsPage extends QueryPage {
 		return array ( 'ra.rd_namespace', 'ra.rd_title' );
 	}
 
+	/**
+	 * @param Skin $skin
+	 * @param object $result Result row
+	 * @return string
+	 */
 	function formatResult( $skin, $result ) {
 		$titleA = Title::makeTitle( $result->namespace, $result->title );
 

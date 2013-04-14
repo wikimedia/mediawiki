@@ -73,8 +73,8 @@ class ListredirectsPage extends QueryPage {
 	/**
 	 * Cache page existence for performance
 	 *
-	 * @param $db DatabaseBase
-	 * @param $res ResultWrapper
+	 * @param DatabaseBase $db
+	 * @param ResultWrapper $res
 	 */
 	function preprocessResults( $db, $res ) {
 		$batch = new LinkBatch;
@@ -104,6 +104,11 @@ class ListredirectsPage extends QueryPage {
 		}
 	}
 
+	/**
+	 * @param Skin $skin
+	 * @param object $result Result row
+	 * @return string
+	 */
 	function formatResult( $skin, $result ) {
 		# Make a link to the redirect itself
 		$rd_title = Title::makeTitle( $result->namespace, $result->title );

@@ -72,8 +72,8 @@ class MostinterwikisPage extends QueryPage {
 	/**
 	 * Pre-fill the link cache
 	 *
-	 * @param $db DatabaseBase
-	 * @param $res
+	 * @param DatabaseBase $db
+	 * @param ResultWrapper $res
 	 */
 	function preprocessResults( $db, $res ) {
 		# There's no point doing a batch check if we aren't caching results;

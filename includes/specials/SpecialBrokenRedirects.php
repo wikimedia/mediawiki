@@ -92,9 +92,9 @@ class BrokenRedirectsPage extends QueryPage {
 	}
 
 	/**
-	 * @param $skin Skin
-	 * @param $result
-	 * @return String
+	 * @param Skin $skin
+	 * @param object $result Result row
+	 * @return string
 	 */
 	function formatResult( $skin, $result ) {
 		$fromObj = Title::makeTitle( $result->namespace, $result->title );

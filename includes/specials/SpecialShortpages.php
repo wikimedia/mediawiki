@@ -56,8 +56,7 @@ class ShortPagesPage extends QueryPage {
 
 	/**
 	 * @param $db DatabaseBase
-	 * @param $res
-	 * @return void
+	 * @param ResultWrapper $res
 	 */
 	function preprocessResults( $db, $res ) {
 		# There's no point doing a batch check if we aren't caching results;
@@ -79,6 +78,11 @@ class ShortPagesPage extends QueryPage {
 		return false;
 	}
 
+	/**
+	 * @param Skin $skin
+	 * @param object $result Result row
+	 * @return string
+	 */
 	function formatResult( $skin, $result ) {
 		$dm = $this->getLanguage()->getDirMark();
 

@@ -63,8 +63,8 @@ class MostlinkedPage extends QueryPage {
 	/**
 	 * Pre-fill the link cache
 	 *
-	 * @param $db DatabaseBase
-	 * @param $res
+	 * @param DatabaseBase $db
+	 * @param ResultWrapper $res
 	 */
 	function preprocessResults( $db, $res ) {
 		if ( $res->numRows() > 0 ) {
@@ -92,8 +92,8 @@ class MostlinkedPage extends QueryPage {
 	/**
 	 * Make links to the page corresponding to the item, and the "what links here" page for it
 	 *
-	 * @param $skin Skin to be used
-	 * @param $result Result row
+	 * @param Skin $skin Skin to be used
+	 * @param object $result Result row
 	 * @return string
 	 */
 	function formatResult( $skin, $result ) {

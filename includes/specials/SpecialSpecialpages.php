@@ -60,6 +60,7 @@ class SpecialSpecialpages extends UnlistedSpecialPage {
 
 		/** Put them into a sortable array */
 		$groups = array();
+		/** @var SpecialPage $page */
 		foreach ( $pages as $page ) {
 			if ( $page->isListed() ) {
 				$group = $page->getFinalGroupName();

@@ -55,8 +55,8 @@ class MostlinkedCategoriesPage extends QueryPage {
 	/**
 	 * Fetch user page links and cache their existence
 	 *
-	 * @param $db DatabaseBase
-	 * @param $res DatabaseResult
+	 * @param DatabaseBase $db
+	 * @param ResultWrapper $res
 	 */
 	function preprocessResults( $db, $res ) {
 		if ( !$res->numRows() ) {
@@ -74,8 +74,8 @@ class MostlinkedCategoriesPage extends QueryPage {
 	}
 
 	/**
-	 * @param $skin Skin
-	 * @param  $result
+	 * @param Skin $skin
+	 * @param object $result Result row
 	 * @return string
 	 */
 	function formatResult( $skin, $result ) {

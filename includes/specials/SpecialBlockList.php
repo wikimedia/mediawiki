@@ -420,7 +420,7 @@ class BlockListPager extends TablePager {
 
 	/**
 	 * Do a LinkBatch query to minimise database load when generating all these links
-	 * @param $result
+	 * @param ResultWrapper $result
 	 */
 	function preprocessResults( $result ) {
 		wfProfileIn( __METHOD__ );

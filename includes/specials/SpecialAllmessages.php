@@ -28,7 +28,6 @@
  * @ingroup SpecialPage
  */
 class SpecialAllmessages extends SpecialPage {
-
 	/**
 	 * @var AllmessagesTablePager
 	 */
@@ -87,7 +86,6 @@ class SpecialAllmessages extends SpecialPage {
  * getting data from a table when in fact not all of it comes from the database.
  */
 class AllmessagesTablePager extends TablePager {
-
 	protected $filter, $prefix, $langcode, $displayPrefix;
 
 	public $mLimitsShown;
