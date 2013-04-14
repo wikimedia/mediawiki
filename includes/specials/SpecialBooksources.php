@@ -95,6 +95,7 @@ class SpecialBookSources extends SpecialPage {
 				return true;
 			}
 		}
+
 		return false;
 	}
 
@@ -123,6 +124,7 @@ class SpecialBookSources extends SpecialPage {
 		$form .= '&#160;' . Xml::submitButton( $this->msg( 'booksources-go' )->text() ) . '</p>';
 		$form .= Xml::closeElement( 'form' );
 		$form .= '</fieldset>';
+
 		return $form;
 	}
 
@@ -152,6 +154,7 @@ class SpecialBookSources extends SpecialPage {
 
 				$text = $content->getNativeData();
 				$this->getOutput()->addWikiText( str_replace( 'MAGICNUMBER', $this->isbn, $text ) );
+
 				return true;
 			} else {
 				throw new MWException( "Unexpected content type for book sources: " . $content->getModel() );
@@ -165,6 +168,7 @@ class SpecialBookSources extends SpecialPage {
 		foreach ( $items as $label => $url )
 			$this->getOutput()->addHTML( $this->makeListItem( $label, $url ) );
 		$this->getOutput()->addHTML( '</ul>' );
+
 		return true;
 	}
 
@@ -177,6 +181,7 @@ class SpecialBookSources extends SpecialPage {
 	 */
 	private function makeListItem( $label, $url ) {
 		$url = str_replace( '$1', $this->isbn, $url );
+
 		return '<li><a href="' . htmlspecialchars( $url ) . '" class="external">' . htmlspecialchars( $label ) . '</a></li>';
 	}
 

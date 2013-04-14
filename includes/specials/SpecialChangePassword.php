@@ -54,11 +54,13 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 		$user = $this->getUser();
 		if ( !$request->wasPosted() && !$user->isLoggedIn() ) {
 			$this->error( $this->msg( 'resetpass-no-info' )->text() );
+
 			return;
 		}
 
 		if ( $request->wasPosted() && $request->getBool( 'wpCancel' ) ) {
 			$this->doReturnTo();
+
 			return;
 		}
 
@@ -69,6 +71,7 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 				$this->mDomain = $wgAuth->getDomain();
 				if ( !$wgAuth->allowPasswordChange() ) {
 					$this->error( $this->msg( 'resetpass_forbidden' )->text() );
+
 					return;
 				}
 
@@ -90,6 +93,7 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 					$login->setContext( $this->getContext() );
 					$login->execute( null );
 				}
+
 				return;
 			} catch ( PasswordError $e ) {
 				$this->error( $e->getMessage() );
@@ -218,6 +222,7 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 			$out .= "</td>\n";
 			$out .= "</tr>";
 		}
+
 		return $out;
 	}
 

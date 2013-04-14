@@ -444,6 +444,7 @@ class SpecialBlock extends FormSpecialPage {
 		} elseif ( IP::isIPAddress( $target ) ) {
 			return Title::makeTitleSafe( NS_USER, $target );
 		}
+
 		return null;
 	}
 
@@ -510,6 +511,7 @@ class SpecialBlock extends FormSpecialPage {
 		$status = self::validateTarget( $value, $form->getUser() );
 		if ( !$status->isOK() ) {
 			$errors = $status->getErrorsArray();
+
 			return call_user_func_array( array( $form, 'msg' ), $errors[0] );
 		} else {
 			return true;
@@ -952,4 +954,5 @@ class SpecialBlock extends FormSpecialPage {
 }
 
 # BC @since 1.18
-class IPBlockForm extends SpecialBlock {}
+class IPBlockForm extends SpecialBlock {
+}

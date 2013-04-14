@@ -64,6 +64,7 @@ class SpecialContributions extends SpecialPage {
 
 		if ( !strlen( $target ) ) {
 			$out->addHTML( $this->getForm() );
+
 			return;
 		}
 
@@ -76,11 +77,13 @@ class SpecialContributions extends SpecialPage {
 		$nt = Title::makeTitleSafe( NS_USER, $target );
 		if ( !$nt ) {
 			$out->addHTML( $this->getForm() );
+
 			return;
 		}
 		$userObj = User::newFromName( $nt->getText(), false );
 		if ( !$userObj ) {
 			$out->addHTML( $this->getForm() );
+
 			return;
 		}
 		$id = $userObj->getID();
@@ -158,6 +161,7 @@ class SpecialContributions extends SpecialPage {
 			$url = wfAppendQuery( wfScript( 'api' ), $apiParams );
 
 			$out->redirect( $url, '301' );
+
 			return;
 		}
 
@@ -270,6 +274,7 @@ class SpecialContributions extends SpecialPage {
 		$oldMsg = $this->msg( 'contribsub' );
 		if ( $oldMsg->exists() ) {
 			$linksWithParentheses = $this->msg( 'parentheses' )->rawParams( $links )->escaped();
+
 			return $oldMsg->rawParams( "$user $linksWithParentheses" );
 		}
 
@@ -347,6 +352,7 @@ class SpecialContributions extends SpecialPage {
 		}
 
 		wfRunHooks( 'ContributionsToolLinks', array( $id, $userpage, &$tools ) );
+
 		return $tools;
 	}
 
@@ -496,32 +502,32 @@ class SpecialContributions extends SpecialPage {
 					'class' => 'namespaceselector',
 				)
 			) . '&#160;' .
-			Html::rawElement(
-				'span',
-				array( 'style' => 'white-space: nowrap' ),
-				Xml::checkLabel(
-					$this->msg( 'invert' )->text(),
-					'nsInvert',
-					'nsInvert',
-					$this->opts['nsInvert'],
-					array(
-						'title' => $this->msg( 'tooltip-invert' )->text(),
-						'class' => 'mw-input'
-					)
-				) . '&#160;'
-			) .
-			Html::rawElement( 'span', array( 'style' => 'white-space: nowrap' ),
-				Xml::checkLabel(
-					$this->msg( 'namespace_association' )->text(),
-					'associated',
-					'associated',
-					$this->opts['associated'],
-					array(
-						'title' => $this->msg( 'tooltip-namespace_association' )->text(),
-						'class' => 'mw-input'
-					)
-				) . '&#160;'
-			)
+				Html::rawElement(
+					'span',
+					array( 'style' => 'white-space: nowrap' ),
+					Xml::checkLabel(
+						$this->msg( 'invert' )->text(),
+						'nsInvert',
+						'nsInvert',
+						$this->opts['nsInvert'],
+						array(
+							'title' => $this->msg( 'tooltip-invert' )->text(),
+							'class' => 'mw-input'
+						)
+					) . '&#160;'
+				) .
+				Html::rawElement( 'span', array( 'style' => 'white-space: nowrap' ),
+					Xml::checkLabel(
+						$this->msg( 'namespace_association' )->text(),
+						'associated',
+						'associated',
+						$this->opts['associated'],
+						array(
+							'title' => $this->msg( 'tooltip-namespace_association' )->text(),
+							'class' => 'mw-input'
+						)
+					) . '&#160;'
+				)
 		);
 
 		if ( $this->getUser()->isAllowed( 'deletedhistory' ) ) {
@@ -644,6 +650,7 @@ class ContribsPager extends ReverseChronologicalPager {
 	function getDefaultQuery() {
 		$query = parent::getDefaultQuery();
 		$query['target'] = $this->target;
+
 		return $query;
 	}
 
@@ -753,6 +760,7 @@ class ContribsPager extends ReverseChronologicalPager {
 		);
 
 		wfRunHooks( 'ContribsPager::getQueryInfo', array( &$this, &$queryInfo ) );
+
 		return $queryInfo;
 	}
 
@@ -1030,6 +1038,7 @@ class ContribsPager extends ReverseChronologicalPager {
 		}
 
 		wfProfileOut( __METHOD__ );
+
 		return $ret;
 	}
 

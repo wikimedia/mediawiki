@@ -49,6 +49,7 @@ class DeletedContribsPager extends IndexPager {
 	function getDefaultQuery() {
 		$query = parent::getDefaultQuery();
 		$query['target'] = $this->target;
+
 		return $query;
 	}
 
@@ -63,6 +64,7 @@ class DeletedContribsPager extends IndexPager {
 			$conds[] = $this->mDb->bitAnd( 'ar_deleted', Revision::SUPPRESSED_USER ) .
 				' != ' . Revision::SUPPRESSED_USER;
 		}
+
 		return array(
 			'tables' => array( 'archive' ),
 			'fields' => array(
@@ -255,6 +257,7 @@ class DeletedContribsPager extends IndexPager {
 		$ret = Html::rawElement( 'li', array(), $ret ) . "\n";
 
 		wfProfileOut( __METHOD__ );
+
 		return $ret;
 	}
 
@@ -290,6 +293,7 @@ class DeletedContributionsPage extends SpecialPage {
 
 		if ( !$this->userCanExecute( $user ) ) {
 			$this->displayRestrictionError();
+
 			return;
 		}
 
@@ -307,6 +311,7 @@ class DeletedContributionsPage extends SpecialPage {
 
 		if ( !strlen( $target ) ) {
 			$out->addHTML( $this->getForm( '' ) );
+
 			return;
 		}
 
@@ -316,6 +321,7 @@ class DeletedContributionsPage extends SpecialPage {
 		$userObj = User::newFromName( $target, false );
 		if ( !$userObj ) {
 			$out->addHTML( $this->getForm( '' ) );
+
 			return;
 		}
 		$this->getSkin()->setRelevantUser( $userObj );
@@ -334,6 +340,7 @@ class DeletedContributionsPage extends SpecialPage {
 		$pager = new DeletedContribsPager( $this->getContext(), $target, $options['namespace'] );
 		if ( !$pager->getNumRows() ) {
 			$out->addWikiMsg( 'nocontribs' );
+
 			return;
 		}
 

@@ -55,43 +55,47 @@ class DisambiguationsPage extends QueryPage {
 		# If the text can be treated as a title, use it verbatim.
 		# Otherwise, pull the titles from the links table
 		$dp = Title::newFromText( $dMsgText );
-		if( $dp ) {
-			if( $dp->getNamespace() != NS_TEMPLATE ) {
+		if ( $dp ) {
+			if ( $dp->getNamespace() != NS_TEMPLATE ) {
 				# @todo FIXME: We assume the disambiguation message is a template but
 				# the page can potentially be from another namespace :/
 				wfDebug( "Mediawiki:disambiguationspage message does not refer to a template!\n" );
 			}
 			$linkBatch->addObj( $dp );
 		} else {
-				# Get all the templates linked from the Mediawiki:Disambiguationspage
-				$disPageObj = Title::makeTitleSafe( NS_MEDIAWIKI, 'disambiguationspage' );
-				$res = $dbr->select(
-					array( 'pagelinks', 'page' ),
-					'pl_title',
-					array( 'page_id = pl_from',
-						'pl_namespace' => NS_TEMPLATE,
-						'page_namespace' => $disPageObj->getNamespace(),
-						'page_title' => $disPageObj->getDBkey()
-					), __METHOD__ );
+			# Get all the templates linked from the Mediawiki:Disambiguationspage
+			$disPageObj = Title::makeTitleSafe( NS_MEDIAWIKI, 'disambiguationspage' );
+			$res = $dbr->select(
+				array( 'pagelinks', 'page' ),
+				'pl_title',
+				array(
+					'page_id = pl_from',
+					'pl_namespace' => NS_TEMPLATE,
+					'page_namespace' => $disPageObj->getNamespace(),
+					'page_title' => $disPageObj->getDBkey()
+				),
+				__METHOD__
+			);
 
-				foreach ( $res as $row ) {
-					$linkBatch->addObj( Title::makeTitle( NS_TEMPLATE, $row->pl_title ));
-				}
+			foreach ( $res as $row ) {
+				$linkBatch->addObj( Title::makeTitle( NS_TEMPLATE, $row->pl_title ) );
+			}
 		}
 		$set = $linkBatch->constructSet( 'tl', $dbr );
 
-		if( $set === false ) {
+		if ( $set === false ) {
 			# We must always return a valid SQL query, but this way
 			# the DB will always quickly return an empty result
 			$set = 'FALSE';
 			wfDebug( "Mediawiki:disambiguationspage message does not link to any templates!\n" );
 		}
+
 		return $set;
 	}
 
 	function getQueryInfo() {
 		// @todo FIXME: What are pagelinks and p2 doing here?
-		return array (
+		return array(
 			'tables' => array(
 				'templatelinks',
 				'p1' => 'page',

@@ -59,6 +59,7 @@ class SpecialBlockList extends SpecialPage {
 			# B/C @since 1.18: Unblock interface is now at Special:Unblock
 			$title = SpecialPage::getTitleFor( 'Unblock', $this->target );
 			$out->redirect( $title->getFullURL() );
+
 			return;
 		}
 
@@ -182,10 +183,8 @@ class SpecialBlockList extends SpecialPage {
 					$pager->getBody() .
 					$pager->getNavigationBar()
 			);
-
 		} elseif ( $this->target ) {
 			$out->addWikiMsg( 'ipblocklist-no-results' );
-
 		} else {
 			$out->addWikiMsg( 'ipblocklist-empty' );
 		}
@@ -482,5 +481,4 @@ class HTMLBlockedUsersItemSelect extends HTMLSelectField {
 
 		return true;
 	}
-
 }

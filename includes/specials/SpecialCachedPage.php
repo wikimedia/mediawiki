@@ -194,5 +194,4 @@ abstract class SpecialCachedPage extends SpecialPage implements ICacheHelper {
 			$this->getOutput()->setSubtitle( $this->cacheHelper->getCachedNotice( $this->getContext() ) );
 		}
 	}
-
 }

@@ -136,6 +136,7 @@ class SpecialComparePages extends SpecialPage {
 				return $title->getLatestRevID();
 			}
 		}
+
 		return null;
 	}
 
@@ -150,6 +151,7 @@ class SpecialComparePages extends SpecialPage {
 		if ( !$title->exists() ) {
 			return $this->msg( 'compare-title-not-exists' )->parseAsBlock();
 		}
+
 		return true;
 	}
 
@@ -161,6 +163,7 @@ class SpecialComparePages extends SpecialPage {
 		if ( $revision === null ) {
 			return $this->msg( 'compare-revision-not-exists' )->parseAsBlock();
 		}
+
 		return true;
 	}
 

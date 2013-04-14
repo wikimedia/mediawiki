@@ -90,6 +90,7 @@ class CategoryPager extends AlphabeticPager {
 	function getDefaultQuery() {
 		parent::getDefaultQuery();
 		unset( $this->mDefaultQuery['from'] );
+
 		return $this->mDefaultQuery;
 	}
 
@@ -114,6 +115,7 @@ class CategoryPager extends AlphabeticPager {
 		}
 		$batch->execute();
 		$this->mResult->rewind();
+
 		return parent::getBody();
 	}
 
@@ -121,6 +123,7 @@ class CategoryPager extends AlphabeticPager {
 		$title = Title::makeTitle( NS_CATEGORY, $result->cat_title );
 		$titleText = Linker::link( $title, htmlspecialchars( $title->getText() ) );
 		$count = $this->msg( 'nmembers' )->numParams( $result->cat_pages )->escaped();
+
 		return Xml::tags( 'li', null, $this->getLanguage()->specialList( $titleText, $count ) ) . "\n";
 	}
 
