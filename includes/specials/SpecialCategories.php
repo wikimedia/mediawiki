@@ -139,9 +139,9 @@ class CategoryPager extends AlphabeticPager {
 					Xml::inputLabel(
 						$this->msg( 'categoriesfrom' )->text(),
 						'from', 'from', 20, $from ) .
-							' ' .
-							Xml::submitButton( $this->msg( 'allpagessubmit' )->text()
-					)
+						' ' .
+						Xml::submitButton( $this->msg( 'allpagessubmit' )->text()
+						)
 				)
 		);
 	}
