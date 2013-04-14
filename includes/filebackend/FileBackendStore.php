@@ -1578,7 +1578,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * @param $val mixed Information to cache
 	 */
 	final protected function setContainerCache( $container, $val ) {
-		$this->memCache->add( $this->containerCacheKey( $container ), $val, 14*86400 );
+		$this->memCache->add( $this->containerCacheKey( $container ), $val, 14 * 86400 );
 	}
 
 	/**
@@ -1673,7 +1673,7 @@ abstract class FileBackendStore extends FileBackend {
 		if ( $path === null ) {
 			return; // invalid storage path
 		}
-		$this->memCache->add( $this->fileCacheKey( $path ), $val, 7*86400 );
+		$this->memCache->add( $this->fileCacheKey( $path ), $val, 7 * 86400 );
 	}
 
 	/**

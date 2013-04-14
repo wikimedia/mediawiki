@@ -72,7 +72,7 @@ class LinkSearchPage extends QueryPage {
 		} elseif ( !$pr_sl && $pr_cl ) {
 			// For protocols without '//' like 'mailto:'
 			$protocol = substr( $target2, 0, $pr_cl + 1 );
-			$target2 = substr( $target2, $pr_cl+1 );
+			$target2 = substr( $target2, $pr_cl + 1 );
 		} elseif ( $protocol == '' && $target2 != '' ) {
 			// default
 			$protocol = 'http://';

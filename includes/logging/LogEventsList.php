@@ -97,7 +97,7 @@ class LogEventsList extends ContextSource {
 	 * @param $filter: array
 	 * @param $tagFilter: array?
 	 */
-	public function showOptions( $types=array(), $user = '', $page = '', $pattern = '', $year = '',
+	public function showOptions( $types = array(), $user = '', $page = '', $pattern = '', $year = '',
 		$month = '', $filter = null, $tagFilter = '' ) {
 		global $wgScript, $wgMiserMode;
 
@@ -467,7 +467,7 @@ class LogEventsList extends ContextSource {
 	 * @return Integer Number of total log items (not limited by $lim)
 	 */
 	public static function showLogExtract(
-		&$out, $types=array(), $page = '', $user = '', $param = array()
+		&$out, $types = array(), $page = '', $user = '', $param = array()
 	) {
 		$defaultParameters = array(
 			'lim' => 25,

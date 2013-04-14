@@ -183,7 +183,12 @@ class OracleUpdater extends DatabaseUpdater {
 	 * cascading taken in account in the deleting function
 	 */
 	protected function doRecentchangesFK2Cascade() {
-		$meta = $this->db->query( 'SELECT 1 FROM all_constraints WHERE owner = \''.strtoupper($this->db->getDBname()).'\' AND constraint_name = \''.$this->db->tablePrefix().'RECENTCHANGES_FK2\' AND delete_rule = \'CASCADE\'' );
+		$meta = $this->db->query( 'SELECT 1 FROM all_constraints WHERE owner = \'' .
+			strtoupper( $this->db->getDBname() ) .
+			'\' AND constraint_name = \'' .
+			$this->db->tablePrefix() .
+			'RECENTCHANGES_FK2\' AND delete_rule = \'CASCADE\''
+		);
 		$row = $meta->fetchRow();
 		if ( $row ) {
 			return;
@@ -198,7 +203,10 @@ class OracleUpdater extends DatabaseUpdater {
 	protected function doPageRestrictionsPKUKFix() {
 		$this->output( "Altering PAGE_RESTRICTIONS keys ... " );
 
-		$meta = $this->db->query( 'SELECT column_name FROM all_cons_columns WHERE owner = \''.strtoupper($this->db->getDBname()).'\' AND constraint_name = \'MW_PAGE_RESTRICTIONS_PK\' AND rownum = 1' );
+		$meta = $this->db->query( 'SELECT column_name FROM all_cons_columns WHERE owner = \'' .
+			strtoupper( $this->db->getDBname() ) .
+			'\' AND constraint_name = \'MW_PAGE_RESTRICTIONS_PK\' AND rownum = 1'
+		);
 		$row = $meta->fetchRow();
 		if ( $row['column_name'] == 'PR_ID' ) {
 			$this->output( "seems to be up to date.\n" );
@@ -234,7 +242,7 @@ class OracleUpdater extends DatabaseUpdater {
 		# We can't guarantee that the user will be able to use TRUNCATE,
 		# but we know that DELETE is available to us
 		$this->output( "Purging caches..." );
-		$this->db->delete( '/*Q*/'.$this->db->tableName( 'objectcache' ), '*', __METHOD__ );
+		$this->db->delete( '/*Q*/' . $this->db->tableName( 'objectcache' ), '*', __METHOD__ );
 		$this->output( "done.\n" );
 	}
 

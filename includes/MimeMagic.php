@@ -231,7 +231,7 @@ class MimeMagic {
 			}
 
 			$mime = substr( $s, 0, $i );
-			$ext = trim( substr( $s, $i+1 ) );
+			$ext = trim( substr( $s, $i + 1 ) );
 
 			if ( empty( $ext ) ) {
 				continue;
@@ -628,7 +628,7 @@ class MimeMagic {
 			$doctype = strpos( $head, "\x42\x82" );
 			if ( $doctype ) {
 				// Next byte is datasize, then data (sizes larger than 1 byte are very stupid muxers)
-				$data = substr( $head, $doctype+3, 8 );
+				$data = substr( $head, $doctype + 3, 8 );
 				if ( strncmp( $data, "matroska", 8 ) == 0 ) {
 					wfDebug( __METHOD__ . ": recognized file as video/x-matroska\n" );
 					return "video/x-matroska";
@@ -897,7 +897,7 @@ class MimeMagic {
 				$m = finfo_file( $mime_magic_resource, $file );
 				finfo_close( $mime_magic_resource );
 			} else {
-				wfDebug( __METHOD__ . ": finfo_open failed on ".FILEINFO_MIME."!\n" );
+				wfDebug( __METHOD__ . ": finfo_open failed on " . FILEINFO_MIME . "!\n" );
 			}
 		} elseif ( function_exists( "mime_content_type" ) ) {
 

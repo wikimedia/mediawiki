@@ -107,12 +107,12 @@ $timestamp = isset( $options['timestamp'] ) ? $options['timestamp'] : false;
 $comment = 'Importing image file';
 
 if ( isset( $options['comment-file'] ) ) {
-	$comment =  file_get_contents( $options['comment-file'] );
+	$comment = file_get_contents( $options['comment-file'] );
 	if ( $comment === false || $comment === null ) {
 		die( "failed to read comment file: {$options['comment-file']}\n" );
 	}
 } elseif ( isset( $options['comment'] ) ) {
-	$comment =  $options['comment'];
+	$comment = $options['comment'];
 }
 
 $commentExt = isset( $options['comment-ext'] ) ? $options['comment-ext'] : false;

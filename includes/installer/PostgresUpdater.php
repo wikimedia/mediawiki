@@ -744,7 +744,7 @@ END;
 	protected function dropIndex( $table, $index, $patch = '', $fullpath = false ) {
 		if ( $this->db->indexExists( $table, $index ) ) {
 			$this->output( "Dropping obsolete index '$index'\n" );
-			$this->db->query( "DROP INDEX \"". $index ."\"" );
+			$this->db->query( "DROP INDEX \"" . $index . "\"" );
 		}
 	}
 
@@ -752,7 +752,7 @@ END;
 		$pu = $this->db->indexAttributes( $index );
 		if ( !empty( $pu ) && $pu != $should_be ) {
 			$this->output( "Dropping obsolete version of index '$index'\n" );
-			$this->db->query( "DROP INDEX \"". $index ."\"" );
+			$this->db->query( "DROP INDEX \"" . $index . "\"" );
 			$pu = array();
 		} else {
 			$this->output( "...no need to drop index '$index'\n" );

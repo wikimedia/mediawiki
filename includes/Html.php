@@ -926,22 +926,22 @@ class Html {
 		global $wgStylePath;
 
 		if ( $useStylePath ) {
-			$icon = $wgStylePath.'/common/images/'.$icon;
+			$icon = $wgStylePath . '/common/images/' . $icon;
 		}
 
 		$s = Html::openElement( 'div', array( 'class' => "mw-infobox $class" ) );
 
-		$s .= Html::openElement( 'div', array( 'class' => 'mw-infobox-left' ) ).
+		$s .= Html::openElement( 'div', array( 'class' => 'mw-infobox-left' ) ) .
 				Html::element( 'img',
 					array(
 						'src' => $icon,
 						'alt' => $alt,
 					)
-				).
+				) .
 				Html::closeElement( 'div' );
 
-		$s .= Html::openElement( 'div', array( 'class' => 'mw-infobox-right' ) ).
-				$text.
+		$s .= Html::openElement( 'div', array( 'class' => 'mw-infobox-right' ) ) .
+				$text .
 				Html::closeElement( 'div' );
 		$s .= Html::element( 'div', array( 'style' => 'clear: left;' ), ' ' );
 

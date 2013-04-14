@@ -190,7 +190,7 @@ class Status {
 				$s = wfMessage( $longContext, "* $s\n" )->plain();
 			}
 		} else {
-			$s = '* '. implode( "\n* ",
+			$s = '* ' . implode( "\n* ",
 				$this->getErrorMessageArray( $this->errors ) ) . "\n";
 			if ( $longContext ) {
 				$s = wfMessage( $longContext, $s )->plain();

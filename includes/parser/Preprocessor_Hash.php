@@ -367,7 +367,7 @@ class Preprocessor_Hash implements Preprocessor {
 				}
 
 				$tagStartPos = $i;
-				if ( $text[$tagEndPos-1] == '/' ) {
+				if ( $text[$tagEndPos - 1] == '/' ) {
 					// Short end tag
 					$attrEnd = $tagEndPos - 1;
 					$inner = null;
@@ -515,7 +515,7 @@ class Preprocessor_Hash implements Preprocessor {
 						'open' => $curChar,
 						'close' => $rule['end'],
 						'count' => $count,
-						'lineStart' => ($i > 0 && $text[$i-1] == "\n"),
+						'lineStart' => ($i > 0 && $text[$i - 1] == "\n"),
 					);
 
 					$stack->push( $piece );

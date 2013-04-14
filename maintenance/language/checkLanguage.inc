@@ -25,7 +25,7 @@
  * @ingroup MaintenanceLanguage
  */
 class CheckLanguageCLI {
-	protected $code  = null;
+	protected $code = null;
 	protected $level = 2;
 	protected $doLinks = false;
 	protected $linksPrefix = '';

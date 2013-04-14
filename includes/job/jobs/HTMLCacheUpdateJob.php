@@ -97,7 +97,7 @@ class HTMLCacheUpdateJob extends Job {
 			# Check if the row count estimate was correct
 			if ( $titleArray->count() > $this->rowsPerJob * 2 ) {
 				# Not correct, do accurate partition
-				wfDebug( __METHOD__.": row count estimate was incorrect, repartitioning\n" );
+				wfDebug( __METHOD__ . ": row count estimate was incorrect, repartitioning\n" );
 				$this->insertJobsFromTitles( $titleArray );
 			} else {
 				$this->invalidateTitles( $titleArray ); // just do the query
@@ -169,13 +169,13 @@ class HTMLCacheUpdateJob extends Job {
 				'end'   => $this->params['end']
 			) + $rootJobParams // carry over information for de-duplication
 		);
-		wfDebug( __METHOD__.": repartitioning into " . count( $jobs ) . " jobs\n" );
+		wfDebug( __METHOD__ . ": repartitioning into " . count( $jobs ) . " jobs\n" );
 
 		if ( count( $jobs ) < 2 ) {
 			# I don't think this is possible at present, but handling this case
 			# makes the code a bit more robust against future code updates and
 			# avoids a potential infinite loop of repartitioning
-			wfDebug( __METHOD__.": repartitioning failed!\n" );
+			wfDebug( __METHOD__ . ": repartitioning failed!\n" );
 			$this->invalidateTitles( $titleArray );
 		} else {
 			JobQueueGroup::singleton()->push( $jobs );

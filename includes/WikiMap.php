@@ -73,7 +73,7 @@ class WikiMap {
 	 * @param string $text link's text; optional, default to "User:$user"
 	 * @return String: HTML link or false if the wiki was not found
 	 */
-	public static function foreignUserLink( $wikiID, $user, $text=null ) {
+	public static function foreignUserLink( $wikiID, $user, $text = null ) {
 		return self::makeForeignLink( $wikiID, "User:$user", $text );
 	}
 
@@ -85,7 +85,7 @@ class WikiMap {
 	 * @param string $text link's text; optional, default to $page
 	 * @return String: HTML link or false if the wiki was not found
 	 */
-	public static function makeForeignLink( $wikiID, $page, $text=null ) {
+	public static function makeForeignLink( $wikiID, $page, $text = null ) {
 		if ( !$text ) {
 			$text = $page;
 		}

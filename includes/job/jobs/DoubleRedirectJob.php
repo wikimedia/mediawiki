@@ -90,33 +90,33 @@ class DoubleRedirectJob extends Job {
 
 		$targetRev = Revision::newFromTitle( $this->title, false, Revision::READ_LATEST );
 		if ( !$targetRev ) {
-			wfDebug( __METHOD__.": target redirect already deleted, ignoring\n" );
+			wfDebug( __METHOD__ . ": target redirect already deleted, ignoring\n" );
 			return true;
 		}
 		$content = $targetRev->getContent();
 		$currentDest = $content ? $content->getRedirectTarget() : null;
 		if ( !$currentDest || !$currentDest->equals( $this->redirTitle ) ) {
-			wfDebug( __METHOD__.": Redirect has changed since the job was queued\n" );
+			wfDebug( __METHOD__ . ": Redirect has changed since the job was queued\n" );
 			return true;
 		}
 
 		# Check for a suppression tag (used e.g. in periodically archived discussions)
 		$mw = MagicWord::get( 'staticredirect' );
 		if ( $content->matchMagicWord( $mw ) ) {
-			wfDebug( __METHOD__.": skipping: suppressed with __STATICREDIRECT__\n" );
+			wfDebug( __METHOD__ . ": skipping: suppressed with __STATICREDIRECT__\n" );
 			return true;
 		}
 
 		# Find the current final destination
 		$newTitle = self::getFinalDestination( $this->redirTitle );
 		if ( !$newTitle ) {
-			wfDebug( __METHOD__.": skipping: single redirect, circular redirect or invalid redirect destination\n" );
+			wfDebug( __METHOD__ . ": skipping: single redirect, circular redirect or invalid redirect destination\n" );
 			return true;
 		}
 		if ( $newTitle->equals( $this->redirTitle ) ) {
 			# The redirect is already right, no need to change it
 			# This can happen if the page was moved back (say after vandalism)
-			wfDebug( __METHOD__.": skipping, already good\n" );
+			wfDebug( __METHOD__ . " : skipping, already good\n" );
 		}
 
 		# Preserve fragment (bug 14904)

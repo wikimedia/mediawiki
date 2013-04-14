@@ -304,7 +304,7 @@ class UIDGenerator {
 			if ( $ct >= $time ) { // http://php.net/manual/en/language.operators.comparison.php
 				return $ct; // current timestamp is higher than $time
 			}
-		} while ( ( ( $time[0] - $ct[0] )*1000 + ( $time[1] - $ct[1] ) ) <= 10 );
+		} while ( ( ( $time[0] - $ct[0] ) * 1000 + ( $time[1] - $ct[1] ) ) <= 10 );
 
 		return false;
 	}

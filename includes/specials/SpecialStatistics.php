@@ -64,7 +64,7 @@ class SpecialStatistics extends SpecialPage {
 			if( !$wgMemc->get( $key ) ) {
 				$dbw = wfGetDB( DB_MASTER );
 				SiteStatsUpdate::cacheUpdate( $dbw );
-				$wgMemc->set( $key, '1', 24*3600 ); // don't update for 1 day
+				$wgMemc->set( $key, '1', 24 * 3600 ); // don't update for 1 day
 			}
 		}
 

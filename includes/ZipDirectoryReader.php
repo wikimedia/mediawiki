@@ -162,7 +162,7 @@ class ZipDirectoryReader {
 					|| $this->eocdr['CD entries total'] == 0xffff )
 				{
 					$this->error( 'zip-unsupported', 'Central directory header indicates ZIP64, ' .
-						'but we are in legacy mode. Rejecting this upload is necessary to avoid '.
+						'but we are in legacy mode. Rejecting this upload is necessary to avoid ' .
 						'opening vulnerabilities on clients using OpenJDK 7 or later.' );
 				}
 

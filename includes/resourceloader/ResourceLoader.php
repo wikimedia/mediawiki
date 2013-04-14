@@ -472,7 +472,7 @@ class ResourceLoader {
 			$this->hasErrors = true;
 		}
 
-		wfProfileIn( __METHOD__.'-getModifiedTime' );
+		wfProfileIn( __METHOD__ . '-getModifiedTime' );
 
 		// To send Last-Modified and support If-Modified-Since, we need to detect
 		// the last modified time
@@ -491,7 +491,7 @@ class ResourceLoader {
 			}
 		}
 
-		wfProfileOut( __METHOD__.'-getModifiedTime' );
+		wfProfileOut( __METHOD__ . '-getModifiedTime' );
 
 		// If there's an If-Modified-Since header, respond with a 304 appropriately
 		if ( $this->tryRespondLastModified( $context, $mtime ) ) {

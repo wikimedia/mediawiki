@@ -66,8 +66,8 @@ class OracleInstaller extends DatabaseInstaller {
 			$this->getTextBox( '_OracleDefTS', 'config-oracle-def-ts' ) .
 			$this->getTextBox( '_OracleTempTS', 'config-oracle-temp-ts', array(), $this->parent->getHelpBox( 'config-db-oracle-help' ) ) .
 			Html::closeElement( 'fieldset' ) .
-			$this->parent->getWarningBox( wfMessage( 'config-db-account-oracle-warn' )->text() ).
-			$this->getInstallUserBox().
+			$this->parent->getWarningBox( wfMessage( 'config-db-account-oracle-warn' )->text() ) .
+			$this->getInstallUserBox() .
 			$this->getWebUserBox();
 	}
 

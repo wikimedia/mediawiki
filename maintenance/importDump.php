@@ -266,7 +266,7 @@ TEXT;
 			$importer->setNoUpdates( true );
 		}
 		$importer->setPageCallback( array( &$this, 'reportPage' ) );
-		$this->importCallback =  $importer->setRevisionCallback(
+		$this->importCallback = $importer->setRevisionCallback(
 			array( &$this, 'handleRevision' ) );
 		$this->uploadCallback = $importer->setUploadCallback(
 			array( &$this, 'handleUpload' ) );

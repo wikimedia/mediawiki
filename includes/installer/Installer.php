@@ -464,7 +464,7 @@ abstract class Installer {
 		$type = strtolower( $type );
 
 		if ( !isset( $this->dbInstallers[$type] ) ) {
-			$class = ucfirst( $type ). 'Installer';
+			$class = ucfirst( $type ) . 'Installer';
 			$this->dbInstallers[$type] = new $class( $this );
 		}
 

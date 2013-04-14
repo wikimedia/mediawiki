@@ -200,9 +200,9 @@ class Xml {
 			$encYear = '';
 		}
 		$inputAttribs = array( 'id' => 'year', 'maxlength' => 4, 'size' => 7 );
-		return self::label( wfMessage( 'year' )->text(), 'year' ) . ' '.
-			Html::input( 'year', $encYear, 'number', $inputAttribs ) . ' '.
-			self::label( wfMessage( 'month' )->text(), 'month' ) . ' '.
+		return self::label( wfMessage( 'year' )->text(), 'year' ) . ' ' .
+			Html::input( 'year', $encYear, 'number', $inputAttribs ) . ' ' .
+			self::label( wfMessage( 'month' )->text(), 'month' ) . ' ' .
 			self::monthSelector( $encMonth, -1 );
 	}
 
@@ -330,7 +330,7 @@ class Xml {
 	 * @param array $attribs other attributes
 	 * @return string HTML
 	 */
-	public static function check( $name, $checked = false, $attribs=array() ) {
+	public static function check( $name, $checked = false, $attribs = array() ) {
 		return self::element( 'input', array_merge(
 			array(
 				'name' => $name,
@@ -389,7 +389,7 @@ class Xml {
 	 * @param array $attribs other attributes
 	 * @return string HTML
 	 */
-	public static function inputLabel( $label, $name, $id, $size=false, $value=false, $attribs = array() ) {
+	public static function inputLabel( $label, $name, $id, $size = false, $value = false, $attribs = array() ) {
 		list( $label, $input ) = self::inputLabelSep( $label, $name, $id, $size, $value, $attribs );
 		return $label . '&#160;' . $input;
 	}
@@ -466,7 +466,7 @@ class Xml {
 	 * @param array $attribs optional additional HTML attributes
 	 * @return string HTML
 	 */
-	public static function option( $text, $value=null, $selected = false,
+	public static function option( $text, $value = null, $selected = false,
 			$attribs = array() ) {
 		if( !is_null( $value ) ) {
 			$attribs['value'] = $value;
@@ -488,7 +488,7 @@ class Xml {
 	 * @param $tabindex Mixed: Value of the tabindex attribute
 	 * @return string
 	 */
-	public static function listDropDown( $name= '', $list = '', $other = '', $selected = '', $class = '', $tabindex = null ) {
+	public static function listDropDown( $name = '', $list = '', $other = '', $selected = '', $class = '', $tabindex = null ) {
 		$optgroup = false;
 
 		$options = self::option( $other, 'other', $selected === 'other' );

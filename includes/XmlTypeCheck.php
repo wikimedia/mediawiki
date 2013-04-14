@@ -47,7 +47,7 @@ class XmlTypeCheck {
 	 *        namespace, name, and attributes, but not to text contents.
 	 *        Filter should return 'true' to toggle on $this->filterMatch
 	 */
-	function __construct( $file, $filterCallback=null ) {
+	function __construct( $file, $filterCallback = null ) {
 		$this->filterCallback = $filterCallback;
 		$this->run( $file );
 	}

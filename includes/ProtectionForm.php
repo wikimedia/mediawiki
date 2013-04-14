@@ -371,7 +371,7 @@ class ProtectionForm {
 		foreach( $this->mRestrictions as $action => $selected ) {
 			/* Not all languages have V_x <-> N_x relation */
 			$msg = wfMessage( 'restriction-' . $action );
-			$out .= "<tr><td>".
+			$out .= "<tr><td>" .
 			Xml::openElement( 'fieldset' ) .
 			Xml::element( 'legend', null, $msg->exists() ? $msg->text() : $action ) .
 			Xml::openElement( 'table', array( 'id' => "mw-protect-table-$action" ) ) .

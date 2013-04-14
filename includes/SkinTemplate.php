@@ -127,7 +127,7 @@ class SkinTemplate extends Skin {
 	 *
 	 * @param $out OutputPage
 	 */
-	function outputPage( OutputPage $out=null ) {
+	function outputPage( OutputPage $out = null ) {
 		global $wgContLang;
 		global $wgScript, $wgStylePath;
 		global $wgMimeType, $wgJsMimeType;
@@ -761,7 +761,7 @@ class SkinTemplate extends Skin {
 
 	function makeArticleUrlDetails( $name, $urlaction = '' ) {
 		$title = Title::newFromText( $name );
-		$title= $title->getSubjectPage();
+		$title = $title->getSubjectPage();
 		self::checkTitle( $title, $name );
 		return array(
 			'href' => $title->getLocalURL( $urlaction ),

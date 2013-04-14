@@ -243,10 +243,10 @@ $blockComment
 
 			if( strpos( $value, $single ) === false ) {
 				# Nothing ugly, just use '
-				$blockText .= $single.$value.$single;
+				$blockText .= $single . $value . $single;
 			} elseif( strpos( $value, $double ) === false && !preg_match('/\$[a-zA-Z_\x7f-\xff]/', $value) ) {
 				# No "-quotes, no variables that need quoting, use "
-				$blockText .= $double.$value.$double;
+				$blockText .= $double . $value . $double;
 			} else {
 				# Something needs quoting, pick the quote which causes less quoting
 				$quote = substr_count( $value, $double ) + substr_count( $value, '$' ) >= substr_count( $value, $single ) ? $single : $double;

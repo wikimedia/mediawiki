@@ -188,7 +188,7 @@ class DBConnectionError extends DBError {
 					# Hack: extend the body for error messages
 					$cache = str_replace( array( '</html>', '</body>' ), '', $cache );
 					# Add cache notice...
-					$cache .= '<div style="color:red;font-size:150%;font-weight:bold;">'.
+					$cache .= '<div style="color:red;font-size:150%;font-weight:bold;">' .
 						htmlspecialchars( $this->msg( 'dberr-cachederror',
 							'This is a cached copy of the requested page, and may not be up to date. ' ) ) .
 						'</div>';
