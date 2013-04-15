@@ -1,7 +1,7 @@
 /*
  * Core MediaWiki JavaScript Library
  */
-
+/*global mw:true */
 var mw = ( function ( $, undefined ) {
 	"use strict";
 
