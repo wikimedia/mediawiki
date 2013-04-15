@@ -121,6 +121,32 @@ class GitInfo {
 	}
 
 	/**
+	 * Return the commit date of HEAD entry of the git code repository
+	 *
+	 * @since 1.22
+	 * @return int|bool Commit date (UNIX timestamp) or false
+	 */
+	public function getHeadCommitDate() {
+		global $wgGitBin;
+
+		if ( !is_file( $wgGitBin ) || !is_executable( $wgGitBin ) ) {
+			return false;
+		}
+
+		$environment = array( "GIT_DIR" => $this->basedir );
+		$cmd = wfEscapeShellArg( $wgGitBin ) . " show -s --format=format:%ct HEAD";
+		$retc = false;
+		$commitDate = wfShellExec( $cmd, $retc, $environment );
+
+		if ( $retc !== 0 ) {
+			return false;
+		} else {
+			return (int)$commitDate;
+		}
+
+	 }
+
+	/**
 	 * Return the name of the current branch, or HEAD if not found
 	 * @return string The branch name, HEAD, or false
 	 */
