@@ -912,6 +912,10 @@ class WebInstaller_Options extends WebInstallerPage {
 				$this->getVar( 'wgDeletedDirectory' )
 			)
 		);
+		// If we're using the default, let the user set it relative to $wgScriptPath
+		$curLogo = $this->getVar( 'wgLogo' );
+		$logoString = ( $curLogo == "/wiki/skins/common/images/wiki.png" ) ?
+			'$wgStylePath/common/images/wiki.png' : $curLogo;
 
 		$uploadwrapperStyle = $this->getVar( 'wgEnableUploads' ) ? '' : 'display: none';
 		$this->addHTML(
@@ -933,6 +937,7 @@ class WebInstaller_Options extends WebInstallerPage {
 			'</div>' .
 			$this->parent->getTextBox( array(
 				'var' => 'wgLogo',
+				'value' => $logoString,
 				'label' => 'config-logo',
 				'attribs' => array( 'dir' => 'ltr' ),
 				'help' => $this->parent->getHelpBox( 'config-logo-help' )
