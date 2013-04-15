@@ -3,6 +3,14 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it '''off''' if you can.
 
+== MediaWiki 1.20.4 ==
+
+This is a security release of the MediaWiki 1.20 branch.
+
+=== Changes since 1.20.3 ===
+* (bug 47251) SECURITY: Disable external entities in Import
+* (bug 46859) SECURITY: Disable external entities in XMLReader
+* (bug 46084) SECURITY: Sanitize $limitReport before outputting
 
 == MediaWiki 1.20.3 ==
 
