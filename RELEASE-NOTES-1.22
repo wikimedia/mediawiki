@@ -31,6 +31,8 @@ production.
   navigate to the page by entering the URL directly.
 * (bug 47138) Fixed a fatal error when a blocked user tries to automatically
   create an account on login due external authentication in some circumstances.
+* (bug 46749) Broken files tracking category removed from pages if an image
+  with that name is uploaded.
 
 === API changes in 1.22 ===
 * (bug 46626) xmldoublequote parameter was removed. Because of a bug, the

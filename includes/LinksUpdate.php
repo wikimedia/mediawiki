@@ -237,24 +237,38 @@ class LinksUpdate extends SqlDataUpdate {
 		wfProfileOut( __METHOD__ );
 	}
 
+	/**
+	 * Queue recursive jobs for this page
+	 *
+	 * Which means do LinksUpdate on all templates
+	 * that include the current page, using the job queue.
+	 */
 	function queueRecursiveJobs() {
-		wfProfileIn( __METHOD__ );
-
-		if ( $this->mTitle->getBacklinkCache()->hasLinks( 'templatelinks' ) ) {
-			$job = new RefreshLinksJob2(
-				$this->mTitle,
-				array(
-					'table' => 'templatelinks',
-				) + Job::newRootJobParams( // "overall" refresh links job info
-					"refreshlinks:templatelinks:{$this->mTitle->getPrefixedText()}"
-				)
-			);
-			JobQueueGroup::singleton()->push( $job );
-			JobQueueGroup::singleton()->deduplicateRootJob( $job );
-		}
-
-		wfProfileOut( __METHOD__ );
+		self::queueRefreshLinksJob( $this->mTitle );
 	}
+
+	/**
+	 * Queue a RefreshLinks job for any table.
+	 *
+	 * @param Title $title Title to do job for
+	 * @param String $table Table to use (default templatelinks)
+	 */
+        public static function queueRefreshLinksJob( Title $title, $table = 'templatelinks' ) {
+                wfProfileIn( __METHOD__ );
+                if ( $title->getBacklinkCache()->hasLinks( $table ) ) {
+                        $job = new RefreshLinksJob2(
+                                $title,
+                                array(
+                                        'table' => $table,
+                                ) + Job::newRootJobParams( // "overall" refresh links job info
+                                        "refreshlinks:{$table}:{$title->getPrefixedText()}"
+                                )
+                        );
+                        JobQueueGroup::singleton()->push( $job );
+                        JobQueueGroup::singleton()->deduplicateRootJob( $job );
+                }
+                wfProfileOut( __METHOD__ );
+        }
 
 	/**
 	 * @param $cats
