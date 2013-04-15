@@ -130,7 +130,7 @@ class MediaWikiSite extends Site {
 				// Also consider smaxage if maxage is used.
 			);
 
-			$url = wfAppendQuery( $this->getFileUrl( wfScript( 'api' ) ), $args );
+			$url = wfAppendQuery( $this->getFileUrl( 'api.php' ), $args );
 
 			// Go on call the external site
 			//@todo: we need a good way to specify a timeout here.
