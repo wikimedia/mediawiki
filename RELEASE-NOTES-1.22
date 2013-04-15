@@ -106,6 +106,8 @@ production.
 * (bug 46626) xmldoublequote parameter was removed. Because of a bug, the
   parameter has had no effect since MediaWiki 1.16, and so its removal is
   unlikely to impact existing clients.
+* (bug 47216) action=query&meta=siteinfo&siprop=skins will now indicate which
+  skin is the default and which are unusable (e.g. listed in $wgSkipSkins).
 * (bug 25325) Added support for wlshow filtering (bots/anon/minor/patrolled)
   to action=feedwatchlist.
 * WDDX formatted output will actually be formatted (and normal output will no
