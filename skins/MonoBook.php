@@ -25,8 +25,9 @@
  * @ingroup Skins
  */
 
-if( !defined( 'MEDIAWIKI' ) )
+if ( !defined( 'MEDIAWIKI' ) ) {
 	die( -1 );
+}
 
 /**
  * Inherit main code from SkinTemplate, set the CSS and template filter.
@@ -48,7 +49,7 @@ class SkinMonoBook extends SkinTemplate {
 		$out->addModuleStyles( 'skins.monobook' );
 
 		// Ugh. Can't do this properly because $wgHandheldStyle may be a URL
-		if( $wgHandheldStyle ) {
+		if ( $wgHandheldStyle ) {
 			// Currently in testing... try 'chick/main.css'
 			$out->addStyle( $wgHandheldStyle, 'handheld' );
 		}
@@ -82,39 +83,39 @@ class MonoBookTemplate extends BaseTemplate {
 ?><div id="globalWrapper">
 <div id="column-content"><div id="content" class="mw-body-primary" role="main">
 	<a id="top"></a>
-	<?php if($this->data['sitenotice']) { ?><div id="siteNotice"><?php $this->html('sitenotice') ?></div><?php } ?>
+	<?php if ( $this->data['sitenotice'] ) { ?><div id="siteNotice"><?php $this->html( 'sitenotice' ) ?></div><?php } ?>
 
 	<h1 id="firstHeading" class="firstHeading" lang="<?php
 		$this->data['pageLanguage'] = $this->getSkin()->getTitle()->getPageViewLanguage()->getCode();
 		$this->html( 'pageLanguage' );
-	?>"><span dir="auto"><?php $this->html('title') ?></span></h1>
+	?>"><span dir="auto"><?php $this->html( 'title' ) ?></span></h1>
 	<div id="bodyContent" class="mw-body">
-		<div id="siteSub"><?php $this->msg('tagline') ?></div>
-		<div id="contentSub"<?php $this->html('userlangattributes') ?>><?php $this->html('subtitle') ?></div>
-<?php if($this->data['undelete']) { ?>
-		<div id="contentSub2"><?php $this->html('undelete') ?></div>
-<?php } ?><?php if($this->data['newtalk'] ) { ?>
-		<div class="usermessage"><?php $this->html('newtalk')  ?></div>
-<?php } ?><?php if($this->data['showjumplinks']) { ?>
-		<div id="jump-to-nav" class="mw-jump"><?php $this->msg('jumpto') ?> <a href="#column-one"><?php $this->msg('jumptonavigation') ?></a><?php $this->msg( 'comma-separator' ) ?><a href="#searchInput"><?php $this->msg('jumptosearch') ?></a></div>
+		<div id="siteSub"><?php $this->msg( 'tagline' ) ?></div>
+		<div id="contentSub"<?php $this->html( 'userlangattributes' ) ?>><?php $this->html( 'subtitle' ) ?></div>
+<?php if ( $this->data['undelete'] ) { ?>
+		<div id="contentSub2"><?php $this->html( 'undelete' ) ?></div>
+<?php } ?><?php if ( $this->data['newtalk'] ) { ?>
+		<div class="usermessage"><?php $this->html( 'newtalk' )  ?></div>
+<?php } ?><?php if ( $this->data['showjumplinks'] ) { ?>
+		<div id="jump-to-nav" class="mw-jump"><?php $this->msg( 'jumpto' ) ?> <a href="#column-one"><?php $this->msg( 'jumptonavigation' ) ?></a><?php $this->msg( 'comma-separator' ) ?><a href="#searchInput"><?php $this->msg( 'jumptosearch' ) ?></a></div>
 <?php } ?>
 		<!-- start content -->
-<?php $this->html('bodytext') ?>
-		<?php if($this->data['catlinks']) { $this->html('catlinks'); } ?>
+<?php $this->html( 'bodytext' ) ?>
+		<?php if ( $this->data['catlinks'] ) { $this->html( 'catlinks' ); } ?>
 		<!-- end content -->
-		<?php if($this->data['dataAfterContent']) { $this->html ('dataAfterContent'); } ?>
+		<?php if ( $this->data['dataAfterContent'] ) { $this->html( 'dataAfterContent' ); } ?>
 		<div class="visualClear"></div>
 	</div>
 </div></div>
-<div id="column-one"<?php $this->html('userlangattributes')  ?>>
+<div id="column-one"<?php $this->html( 'userlangattributes' )  ?>>
 	<h2><?php $this->msg( 'navigation-heading' ) ?></h2>
 <?php $this->cactions(); ?>
 	<div class="portlet" id="p-personal" role="navigation">
-		<h3><?php $this->msg('personaltools') ?></h3>
+		<h3><?php $this->msg( 'personaltools' ) ?></h3>
 		<div class="pBody">
-			<ul<?php $this->html('userlangattributes') ?>>
-<?php		foreach($this->getPersonalTools() as $key => $item) { ?>
-				<?php echo $this->makeListItem($key, $item); ?>
+			<ul<?php $this->html( 'userlangattributes' ) ?>>
+<?php		foreach ( $this->getPersonalTools() as $key => $item ) { ?>
+				<?php echo $this->makeListItem( $key, $item ); ?>
 
 <?php		} ?>
 			</ul>
@@ -125,7 +126,7 @@ class MonoBookTemplate extends BaseTemplate {
 			echo Html::element( 'a', array(
 				'href' => $this->data['nav_urls']['mainpage']['href'],
 				'style' => "background-image: url({$this->data['logopath']});" )
-				+ Linker::tooltipAndAccesskeyAttribs('p-logo') ); ?>
+				+ Linker::tooltipAndAccesskeyAttribs( 'p-logo' ) ); ?>
 
 	</div>
 <?php
@@ -138,7 +139,7 @@ class MonoBookTemplate extends BaseTemplate {
 	$validFooterLinks = $this->getFooterLinks( "flat" ); // Additional footer links
 
 	if ( count( $validFooterIcons ) + count( $validFooterLinks ) > 0 ) { ?>
-<div id="footer" role="contentinfo"<?php $this->html('userlangattributes') ?>>
+<div id="footer" role="contentinfo"<?php $this->html( 'userlangattributes' ) ?>>
 <?php
 		$footerEnd = '</div>';
 	} else {
@@ -157,7 +158,7 @@ class MonoBookTemplate extends BaseTemplate {
 		if ( count( $validFooterLinks ) > 0 ) {
 ?>	<ul id="f-list">
 <?php
-			foreach( $validFooterLinks as $aLink ) { ?>
+			foreach ( $validFooterLinks as $aLink ) { ?>
 		<li id="<?php echo $aLink ?>"><?php $this->html($aLink) ?></li>
 <?php
 			}
@@ -181,13 +182,20 @@ echo $footerEnd;
 	 * @param $sidebar array
 	 */
 	protected function renderPortals( $sidebar ) {
-		if ( !isset( $sidebar['SEARCH'] ) ) $sidebar['SEARCH'] = true;
-		if ( !isset( $sidebar['TOOLBOX'] ) ) $sidebar['TOOLBOX'] = true;
-		if ( !isset( $sidebar['LANGUAGES'] ) ) $sidebar['LANGUAGES'] = true;
+		if ( !isset( $sidebar['SEARCH'] ) ) {
+			$sidebar['SEARCH'] = true;
+		}
+		if ( !isset( $sidebar['TOOLBOX'] ) ) {
+			$sidebar['TOOLBOX'] = true;
+		}
+		if ( !isset( $sidebar['LANGUAGES'] ) ) {
+			$sidebar['LANGUAGES'] = true;
+		}
 
-		foreach( $sidebar as $boxName => $content ) {
-			if ( $content === false )
+		foreach ( $sidebar as $boxName => $content ) {
+			if ( $content === false ) {
 				continue;
+			}
 
 			if ( $boxName == 'SEARCH' ) {
 				$this->searchBox();
@@ -212,12 +220,12 @@ echo $footerEnd;
 				<?php echo $this->makeSearchInput( array( "id" => "searchInput" ) ); ?>
 
 				<?php echo $this->makeSearchButton( "go", array( "id" => "searchGoButton", "class" => "searchButton" ) );
-				if ( $wgUseTwoButtonsSearchForm ): ?>&#160;
+				if ( $wgUseTwoButtonsSearchForm ) { ?>&#160;
 				<?php echo $this->makeSearchButton( "fulltext", array( "id" => "mw-searchButton", "class" => "searchButton" ) );
-				else: ?>
+				} else { ?>
 
 				<div><a href="<?php $this->text( 'searchaction' ) ?>" rel="search"><?php $this->msg( 'powersearch-legend' ) ?></a></div><?php
-				endif; ?>
+				} ?>
 
 			</form>
 		</div>
@@ -235,7 +243,7 @@ echo $footerEnd;
 		<h3><?php $this->msg( 'views' ) ?></h3>
 		<div class="pBody">
 			<ul><?php
-				foreach( $this->data['content_actions'] as $key => $tab ) {
+				foreach ( $this->data['content_actions'] as $key => $tab ) {
 					echo '
 				' . $this->makeListItem( $key, $tab );
 				} ?>
@@ -269,13 +277,13 @@ echo $footerEnd;
 
 	/*************************************************************************************************/
 	function languageBox() {
-		if( $this->data['language_urls'] ) {
+		if ( $this->data['language_urls'] ) {
 ?>
 	<div id="p-lang" class="portlet" role="navigation">
 		<h3<?php $this->html( 'userlangattributes' ) ?>><?php $this->msg( 'otherlanguages' ) ?></h3>
 		<div class="pBody">
 			<ul>
-<?php		foreach( $this->data['language_urls'] as $key => $langlink ) { ?>
+<?php		foreach ( $this->data['language_urls'] as $key => $langlink ) { ?>
 				<?php echo $this->makeListItem( $key, $langlink ); ?>
 
 <?php		} ?>
@@ -304,7 +312,7 @@ echo $footerEnd;
 		<div class='pBody'>
 <?php   if ( is_array( $cont ) ) { ?>
 			<ul>
-<?php 			foreach( $cont as $key => $val ) { ?>
+<?php 			foreach ( $cont as $key => $val ) { ?>
 				<?php echo $this->makeListItem( $key, $val ); ?>
 
 <?php			} ?>

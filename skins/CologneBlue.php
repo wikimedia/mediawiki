@@ -22,7 +22,7 @@
  * @ingroup Skins
  */
 
-if( !defined( 'MEDIAWIKI' ) ) {
+if ( !defined( 'MEDIAWIKI' ) ) {
 	die( -1 );
 }
 
@@ -533,16 +533,16 @@ class CologneBlueTemplate extends BaseTemplate {
 		$search = $this->getSkin()->getRequest()->getText( 'search' );
 		$action = $this->data['searchaction'];
 		$s = "<form id=\"searchform-" . htmlspecialchars($which) . "\" method=\"get\" class=\"inline\" action=\"$action\">";
-		if( $which == 'footer' ) {
+		if ( $which == 'footer' ) {
 			$s .= wfMessage( 'qbfind' )->text() . ": ";
 		}
 
 		$s .= "<input type='text' class=\"mw-searchInput\" name=\"search\" size=\"14\" value=\""
 			. htmlspecialchars( substr( $search, 0, 256 ) ) . "\" />"
-			. ($which == 'footer' ? " " : "<br />")
+			. ( $which == 'footer' ? " " : "<br />" )
 			. "<input type='submit' class=\"searchButton\" name=\"go\" value=\"" . wfMessage( 'searcharticle' )->escaped() . "\" />";
 
-		if( $wgUseTwoButtonsSearchForm ) {
+		if ( $wgUseTwoButtonsSearchForm ) {
 			$s .= " <input type='submit' class=\"searchButton\" name=\"fulltext\" value=\"" . wfMessage( 'searchbutton' )->escaped() . "\" />\n";
 		} else {
 			$s .= '<div><a href="' . $action . '" rel="search">' . wfMessage( 'powersearch-legend' )->escaped() . "</a></div>\n";

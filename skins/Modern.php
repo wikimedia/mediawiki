@@ -22,8 +22,9 @@
  * @ingroup Skins
  */
 
-if( !defined( 'MEDIAWIKI' ) )
+if ( !defined( 'MEDIAWIKI' ) ) {
 	die( -1 );
+}
 
 /**
  * Inherit main code from SkinTemplate, set the CSS and template filter.
@@ -39,7 +40,7 @@ class SkinModern extends SkinTemplate {
 	 */
 	function setupSkinUserCss( OutputPage $out ) {
 		parent::setupSkinUserCss( $out );
-		$out->addModuleStyles ('skins.modern');
+		$out->addModuleStyles( 'skins.modern' );
 	}
 }
 
@@ -68,7 +69,7 @@ class ModernTemplate extends MonoBookTemplate {
 	<div id="mw_header"><h1 id="firstHeading" lang="<?php
 		$this->data['pageLanguage'] = $this->getSkin()->getTitle()->getPageViewLanguage()->getCode();
 		$this->html( 'pageLanguage' );
-	?>"><span dir="auto"><?php $this->html('title') ?></span></h1></div>
+	?>"><span dir="auto"><?php $this->html( 'title' ) ?></span></h1></div>
 
 	<div id="mw_main">
 	<div id="mw_contentwrapper">
@@ -82,30 +83,30 @@ class ModernTemplate extends MonoBookTemplate {
 	     for the margins -->
 	<div id="mw_contentholder" class="mw-body">
 		<div class='mw-topboxes'>
-			<div id="mw-js-message" style="display:none;"<?php $this->html('userlangattributes')?>></div>
-			<div class="mw-topbox" id="siteSub"><?php $this->msg('tagline') ?></div>
-			<?php if($this->data['newtalk'] ) {
-				?><div class="usermessage mw-topbox"><?php $this->html('newtalk')  ?></div>
+			<div id="mw-js-message" style="display:none;"<?php $this->html( 'userlangattributes' )?>></div>
+			<div class="mw-topbox" id="siteSub"><?php $this->msg( 'tagline' ) ?></div>
+			<?php if ( $this->data['newtalk'] ) {
+				?><div class="usermessage mw-topbox"><?php $this->html( 'newtalk' ) ?></div>
 			<?php } ?>
-			<?php if($this->data['sitenotice']) {
-				?><div class="mw-topbox" id="siteNotice"><?php $this->html('sitenotice') ?></div>
+			<?php if ( $this->data['sitenotice'] ) {
+				?><div class="mw-topbox" id="siteNotice"><?php $this->html( 'sitenotice' ) ?></div>
 			<?php } ?>
 		</div>
 
-		<div id="contentSub"<?php $this->html('userlangattributes') ?>><?php $this->html('subtitle') ?></div>
+		<div id="contentSub"<?php $this->html( 'userlangattributes' ) ?>><?php $this->html( 'subtitle' ) ?></div>
 
-		<?php if($this->data['undelete']) { ?><div id="contentSub2"><?php     $this->html('undelete') ?></div><?php } ?>
-		<?php if($this->data['showjumplinks']) { ?><div id="jump-to-nav"><?php $this->msg('jumpto') ?> <a href="#mw_portlets"><?php $this->msg('jumptonavigation') ?></a><?php $this->msg( 'comma-separator' ) ?><a href="#searchInput"><?php $this->msg('jumptosearch') ?></a></div><?php } ?>
+		<?php if ( $this->data['undelete'] ) { ?><div id="contentSub2"><?php $this->html( 'undelete' ) ?></div><?php } ?>
+		<?php if ( $this->data['showjumplinks'] ) { ?><div id="jump-to-nav"><?php $this->msg( 'jumpto' ) ?> <a href="#mw_portlets"><?php $this->msg( 'jumptonavigation' ) ?></a><?php $this->msg( 'comma-separator' ) ?><a href="#searchInput"><?php $this->msg( 'jumptosearch' ) ?></a></div><?php } ?>
 
-		<?php $this->html('bodytext') ?>
+		<?php $this->html( 'bodytext' ) ?>
 		<div class='mw_clear'></div>
-		<?php if($this->data['catlinks']) { $this->html('catlinks'); } ?>
-		<?php $this->html ('dataAfterContent') ?>
+		<?php if ( $this->data['catlinks'] ) { $this->html( 'catlinks' ); } ?>
+		<?php $this->html( 'dataAfterContent' ) ?>
 	</div><!-- mw_contentholder -->
 	</div><!-- mw_content -->
 	</div><!-- mw_contentwrapper -->
 
-	<div id="mw_portlets"<?php $this->html("userlangattributes") ?>>
+	<div id="mw_portlets"<?php $this->html( "userlangattributes" ) ?>>
 	<h2><?php $this->msg( 'navigation-heading' ) ?></h2>
 
 	<!-- portlets -->
@@ -120,11 +121,11 @@ class ModernTemplate extends MonoBookTemplate {
 
 	<!-- personal portlet -->
 	<div class="portlet" id="p-personal" role="navigation">
-		<h3><?php $this->msg('personaltools') ?></h3>
+		<h3><?php $this->msg( 'personaltools' ) ?></h3>
 		<div class="pBody">
 			<ul>
-<?php		foreach($this->getPersonalTools() as $key => $item) { ?>
-				<?php echo $this->makeListItem($key, $item); ?>
+<?php		foreach ( $this->getPersonalTools() as $key => $item ) { ?>
+				<?php echo $this->makeListItem( $key, $item ); ?>
 
 <?php		} ?>
 			</ul>
@@ -133,19 +134,19 @@ class ModernTemplate extends MonoBookTemplate {
 
 
 	<!-- footer -->
-	<div id="footer" role="contentinfo"<?php $this->html('userlangattributes') ?>>
+	<div id="footer" role="contentinfo"<?php $this->html( 'userlangattributes' ) ?>>
 			<ul id="f-list">
 <?php
-		foreach( $this->getFooterLinks("flat") as $aLink ) {
-			if( isset( $this->data[$aLink] ) && $this->data[$aLink] ) {
+		foreach ( $this->getFooterLinks( "flat" ) as $aLink ) {
+			if ( isset( $this->data[$aLink] ) && $this->data[$aLink] ) {
 ?>				<li id="<?php echo$aLink?>"><?php $this->html($aLink) ?></li>
 <?php 		}
 		}
 ?>
 			</ul>
 <?php
-		foreach ( $this->getFooterIcons("nocopyright") as $blockName => $footerIcons ) { ?>
-			<div id="mw_<?php echo htmlspecialchars($blockName); ?>">
+		foreach ( $this->getFooterIcons( "nocopyright" ) as $blockName => $footerIcons ) { ?>
+			<div id="mw_<?php echo htmlspecialchars( $blockName ); ?>">
 <?php
 			foreach ( $footerIcons as $icon ) { ?>
 				<?php echo $this->getSkin()->makeFooterIcon( $icon, 'withoutImage' ); ?>
