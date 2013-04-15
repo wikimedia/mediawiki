@@ -20,7 +20,7 @@
  * @file
  */
 
-if( !defined( 'MEDIAWIKI' ) ) {
+if ( !defined( 'MEDIAWIKI' ) ) {
 	die( 'Not an entry point.' );
 }
 
@@ -902,7 +902,7 @@ return array(
 	),
 	'mediawiki.special.preferences' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.preferences.js',
-		'styles'  => 'resources/mediawiki.special/mediawiki.special.preferences.css',
+		'styles' => 'resources/mediawiki.special/mediawiki.special.preferences.css',
 	),
 	'mediawiki.special.recentchanges' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.recentchanges.js',
