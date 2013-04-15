@@ -1451,6 +1451,12 @@ Informasi dari [$2 laman katarangannyo] ado di bawah.',
 'wantedpages' => 'Laman nan diinginan',
 'wantedfiles' => 'Berkas nan diinginan',
 'wantedtemplates' => 'Templat nan diinginan',
+'mostlinked' => 'Laman nan acok dituju',
+'mostlinkedcategories' => 'Kategori nan acok digunoan',
+'mostlinkedtemplates' => 'Templat nan acok dituju',
+'mostcategories' => 'Laman jo kategori tabanyak',
+'mostimages' => 'Berkas nan paliang acok digunoan',
+'mostinterwikis' => 'Laman jo interwiki paliang banyak',
 'prefixindex' => 'Sado laman jo awalan',
 'prefixindex-namespace' => 'Sado laman jo awalan (ruang namo $1)',
 'shortpages' => 'Laman pendek',
@@ -1890,6 +1896,7 @@ Silakan piliah namo lain.',
 'thumbnail_error' => 'Gagal mambuek miniatur: $1',
 
 # Special:Import
+'import' => 'Impor laman',
 'importstart' => 'Mangimpor laman...',
 
 # Import log

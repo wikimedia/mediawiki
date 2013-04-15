@@ -2425,7 +2425,7 @@ Spätere Änderungen an dieser Seite und der zugehörigen Diskussionsseite werde
 'notanarticle' => 'Keine Seite',
 'notvisiblerev' => 'Version wurde gelöscht',
 'watchnochange' => 'Keine der von dir beobachteten Seiten wurde während des angezeigten Zeitraums bearbeitet.',
-'watchlist-details' => 'Du beobachtest {{PLURAL:$1|1 Seite|$1 Seiten}}.',
+'watchlist-details' => 'Du beobachtest {{PLURAL:$1|eine Seite|$1 Seiten}}, ausschließlich Diskussionsseiten.',
 'wlheader-enotif' => '* Der E-Mail-Benachrichtigungsdienst ist aktiviert.',
 'wlheader-showupdated' => "* Seiten mit noch nicht gesehenen Änderungen werden '''fett''' dargestellt.",
 'watchmethod-recent' => 'Überprüfen der letzten Bearbeitungen für die Beobachtungsliste',

@@ -778,9 +778,9 @@ $2",
 'ns-specialprotected' => "Les pages dans l'espace de noms « {{ns:special}} » ne peuvent pas être modifiées.",
 'titleprotected' => "Ce titre a été protégé à la création par [[User:$1|$1]].
 Le motif avancé est « ''$2'' ».",
-'filereadonlyerror' => "Impossible de modifier le fichier « $1 » parce que le répertoire de fichiers « $2 » est en lecture seule.
+'filereadonlyerror' => 'Impossible de modifier le fichier « $1 » parce que le répertoire de fichiers « $2 » est en lecture seule.
 
-L'administrateur qui l'a verrouillé a fourni ce motif: « $3 ».",
+L’administrateur qui l’a verrouillé a fourni ce motif : « $3 ».',
 'invalidtitle-knownnamespace' => "Titre invalide avec l'espace de noms « $2 » et l'intitulé « $3 »",
 'invalidtitle-unknownnamespace' => "Titre invalide avec le numéro d'espace de noms $1 et l'intitulé « $2 » inconnus",
 'exception-nologin' => 'Non connecté',
@@ -1994,7 +1994,7 @@ Pour une sécurité optimale, img_auth.php est désactivé.",
 
 # HTTP errors
 'http-invalid-url' => 'URL incorrecte : $1',
-'http-invalid-scheme' => 'Les URL avec le schéma « $1 » ne sont pas supportées.',
+'http-invalid-scheme' => 'Les URL avec le schéma « $1 » ne sont pas prises en charge.',
 'http-request-error' => "Erreur inconnue lors de l'envoi de la requête.",
 'http-read-error' => 'Erreur de lecture HTTP.',
 'http-timed-out' => 'La requête HTTP a expiré.',
@@ -2998,7 +2998,7 @@ Toutes les actions d'importation inter-wiki sont consignées dans l'[[Special:Lo
 'import-interwiki-templates' => 'Inclure tous les modèles',
 'import-interwiki-submit' => 'Importer',
 'import-interwiki-namespace' => 'Espace de noms de destination :',
-'import-interwiki-rootpage' => 'Page racine de destination (optionnelle):',
+'import-interwiki-rootpage' => 'Page racine de destination (optionnelle) :',
 'import-upload-filename' => 'Nom du fichier :',
 'import-comment' => 'Commentaire :',
 'importtext' => "Veuillez exporter le fichier depuis le wiki d'origine en utilisant son [[Special:Export|outil d'exportation]].
@@ -3032,12 +3032,12 @@ Un dossier temporaire est manquant.",
 'import-error-edit' => "La page « $1 » n'a pas été importée parce que vous n'êtes pas autorisés à la modifier.",
 'import-error-create' => "La page « $1 » n'a pas été importée parce que vous n'êtes pas autorisés à la créer.",
 'import-error-interwiki' => "La page « $1 » n'est pas importée parce que son nom est réservé pour un lien externe (interwiki).",
-'import-error-special' => 'La page " $1 " n\'est pas importée parce qu\'elle appartient à un espace de noms special qui n\'en autorise aucune.',
+'import-error-special' => 'La page « $1 » n’est pas importée parce qu’elle appartient à un espace de noms spécial qui n’en autorise aucune.',
 'import-error-invalid' => "Page « $1 » n'est pas importée parce que son nom n'est pas valide.",
-'import-error-unserialize' => 'La révision $2 de la page "$1" ne peut pas être désérialisée. La révision est indiquée comme utilisant le modèle de contenu $3 sérialisé en $4.',
-'import-options-wrong' => '{{PLURAL:$2|Mauvaise option|Mauvaises options}}: <nowiki>$1</nowiki>',
+'import-error-unserialize' => 'La révision $2 de la page « $1 » ne peut pas être désérialisée. La révision est indiquée comme utilisant le modèle de contenu $3 sérialisé en $4.',
+'import-options-wrong' => '{{PLURAL:$2|Mauvaise option|Mauvaises options}} : <nowiki>$1</nowiki>',
 'import-rootpage-invalid' => 'La page racine fournie est un titre non valide.',
-'import-rootpage-nosubpage' => 'L\'espace de noms "$1" de la page racine n\'autorise pas les sous-pages.',
+'import-rootpage-nosubpage' => 'L’espace de noms « $1 » de la page racine n’autorise pas les sous-pages.',
 
 # Import log
 'importlogpage' => 'Journal des importations',
@@ -3051,7 +3051,7 @@ Un dossier temporaire est manquant.",
 'javascripttest' => 'Test de JavaScript',
 'javascripttest-title' => 'Exécution des tests $1',
 'javascripttest-pagetext-noframework' => "Cette page est réservée pour l'exécution des tests JavaScript.",
-'javascripttest-pagetext-unknownframework' => 'Structure "$1" inconnue.',
+'javascripttest-pagetext-unknownframework' => 'Structure « $1 » inconnue.',
 'javascripttest-pagetext-frameworks' => "Veuillez choisir l'une des structures de test suivantes : $1",
 'javascripttest-pagetext-skins' => 'Choisissez un habillage avec lequel lancer les tests :',
 'javascripttest-qunit-intro' => 'Voir [$1 la documentation de test] sur mediawiki.org.',
@@ -3271,7 +3271,7 @@ Si vous l'exécutez, votre système peut être compromis.",
 'widthheightpage' => '$1 × $2, $3 page{{PLURAL:$3||s}}',
 'file-info' => 'Taille du fichier : $1, type MIME : $2',
 'file-info-size' => '$1 × $2 pixels, taille du fichier : $3, type MIME : $4',
-'file-info-size-pages' => '$1 × $2 pixels, taille de fichier: $3, type MIME: $4, $5 {{PLURAL:$5|page|pages}}',
+'file-info-size-pages' => '$1 × $2 pixels, taille de fichier : $3, type MIME : $4, $5 page{{PLURAL:$5||s}}',
 'file-nohires' => 'Pas de plus haute résolution disponible.',
 'svg-long-desc' => 'Fichier SVG, résolution de $1 × $2 pixels, taille : $3',
 'svg-long-desc-animated' => 'Fichier SVG animé, taille $1 x $2 pixels, taille du fichier: $3',
@@ -3283,10 +3283,10 @@ Si vous l'exécutez, votre système peut être compromis.",
 'file-info-gif-looped' => 'en boucle',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|image|images}}',
 'file-info-png-looped' => 'en boucle',
-'file-info-png-repeat' => 'joué $1 {{PLURAL:$1|fois|fois}}',
+'file-info-png-repeat' => 'joué $1 {{PLURAL:$1|fois}}',
 'file-info-png-frames' => '$1 {{PLURAL:$1|image|images}}',
-'file-no-thumb-animation' => "'''Remarque: En raison de limitations techniques, les vignettes de ce fichier ne seront pas animées.'''",
-'file-no-thumb-animation-gif' => "'''Remarque: En raison de limitations techniques, les vignettes d'images GIF en haute résolution telles que celle-ci ne seront pas animées.'''",
+'file-no-thumb-animation' => "'''Remarque : En raison de limitations techniques, les vignettes de ce fichier ne seront pas animées.'''",
+'file-no-thumb-animation-gif' => "'''Remarque : En raison de limitations techniques, les vignettes d’images GIF en haute résolution telles que celle-ci ne seront pas animées.'''",
 
 # Special:NewFiles
 'newimages' => 'Galerie des nouveaux fichiers',
@@ -4051,7 +4051,7 @@ Les images sont montrées dans leur pleine résolution, les autres fichiers sont
 
 # Special:BlankPage
 'blankpage' => 'Page vide',
-'intentionallyblankpage' => 'Cette page est laissée intentionellement vide.',
+'intentionallyblankpage' => 'Cette page est laissée intentionnellement (presque) vide.',
 
 # External image whitelist
 'external_image_whitelist' => " #Laisser cette ligne exactement telle quelle.<pre>
@@ -4159,7 +4159,7 @@ Sinon, vous pouvez utiliser le formulaire simplifié ci-dessous. Votre commentai
 'feedback-cancel' => 'Annuler',
 'feedback-submit' => 'Envoyer vos commentaires',
 'feedback-adding' => 'Ajout de vos commentaires à la page...',
-'feedback-error1' => "Erreur : Résultat de l'API non reconnu",
+'feedback-error1' => 'Erreur : Résultat de l’IPA non reconnu',
 'feedback-error2' => 'Erreur : la modification a échoué',
 'feedback-error3' => "Erreur : aucune réponse de l'API",
 'feedback-thanks' => 'Merci ! Votre commentaire a été publié sur la page "[$2 $1]".',
