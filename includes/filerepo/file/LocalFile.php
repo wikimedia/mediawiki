@@ -1352,11 +1352,17 @@ class LocalFile extends File {
 		# Invalidate cache for all pages using this file
 		$update = new HTMLCacheUpdate( $this->getTitle(), 'imagelinks' );
 		$update->doUpdate();
+		if ( !$reupload ) {
+			$this->queueRefreshLinks( $this->getTitle() );
+		}
 
 		# Invalidate cache for all pages that redirects on this page
 		$redirs = $this->getTitle()->getRedirectsHere();
 
 		foreach ( $redirs as $redir ) {
+			if ( !$reupload ) {
+				$this->queueRefreshLinks( $redir );
+			}
 			$update = new HTMLCacheUpdate( $redir, 'imagelinks' );
 			$update->doUpdate();
 		}
@@ -1364,6 +1370,37 @@ class LocalFile extends File {
 		wfProfileOut( __METHOD__ );
 		return true;
 	}
+
+
+	/**
+	 * Get rid of "Broken file links" on pages where it no longer applies.
+	 *
+	 * Only need to do on a new upload, not a reupload.
+	 * @param $title Title What page to refresh imagelinks back links for.
+	 */
+	private function queueRefreshLinks( Title $title ) {
+		wfProfileIn( __METHOD__ );
+		if ( $title->getNamespace() !== NS_FILE ) {
+			// Don't care about non-file redirects.
+			return;
+		}
+		if ( $title->getBacklinkCache()->hasLinks( 'imagelinks' ) ) {
+			$job = new RefreshLinksJob2(
+				$title,
+				array(
+					'table' => 'imagelinks',
+				) + Job::newRootJobParams( // "overall" refresh links job info
+					"refreshlinks:imagelinks:{$title->getPrefixedText()}"
+				)
+			);
+			JobQueueGroup::singleton()->push( $job );
+			// Not sure if deduplication really needed here
+			JobQueueGroup::singleton()->deduplicateRootJob( $job );
+		}
+                wfProfileOut( __METHOD__ );
+	}
+
+
 
 	/**
 	 * Move or copy a file to its public location. If a file exists at the
