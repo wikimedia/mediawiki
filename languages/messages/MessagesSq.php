@@ -246,8 +246,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Trego numrin e përdoruesve që vëzhgojnë këtë faqe',
 'tog-oldsig' => 'Nënshkrimi ekzistues:',
 'tog-fancysig' => 'Mbaje nënshkrimin si wikitekst (pa lidhje automatike)',
-'tog-externaleditor' => 'Përdor si rregull program të jashtëm redaktimi (vetëm për ekspertë, kërkon regjistrime speciale të kompjuterit. [//www.mediawiki.org/wiki/Manual:External_editors More information.])',
-'tog-externaldiff' => 'Përdor si rregull program të jashtëm diff (vetëm për ekspertë, kërkon regjistrime speciale të kompjuterit. [//www.mediawiki.org/wiki/Manual:External_editors More information.])',
 'tog-showjumplinks' => 'Lejo lidhje "shko tek"',
 'tog-uselivepreview' => 'Trego bocetin në mënyrë të drejtëpërdrejtë (kërkon JavaScript) (eksperimentale)',
 'tog-forceeditsummary' => 'Më njofto kur e lë përmbledhjen e redaktimit bosh',
@@ -261,6 +259,7 @@ $messages = array(
 'tog-diffonly' => 'Mos trego përmbajtjen e faqes nën diff-e',
 'tog-showhiddencats' => 'Trego kategoritë e fshehura',
 'tog-norollbackdiff' => 'Ndryshimi pas rikthimit do të fshihet',
+'tog-useeditwarning' => 'Më paralajmëro kur unë lë një redaktim faqeje me ndryshime të paruajtura',
 
 'underline-always' => 'Gjithmonë',
 'underline-never' => 'Asnjëherë',
@@ -350,7 +349,7 @@ $messages = array(
 'cancel' => 'Anulo',
 'moredotdotdot' => 'Më shumë...',
 'mypage' => 'Faqja ime',
-'mytalk' => 'diskutimet',
+'mytalk' => 'Diskutimet',
 'anontalk' => 'Diskutimet për këtë IP',
 'navigation' => 'Shfleto',
 'and' => '&#32;dhe',
@@ -982,6 +981,8 @@ Duket se është grisur.',
 'edit-already-exists' => 'Faqja nuk mundej të hapet.
 Ajo tanimë ekziston.',
 'defaultmessagetext' => 'Teksti i porosisë së parazgjedhur',
+'editwarning-warning' => 'Lënia e kësaj faqeje mund t\'ju shkaktojë humbjen e çdo ndryshimi që keni bërë.
+Nëse keni hyrë brenda, ju mund ta hiqni këtë paralajmërim në seksionin "Redaktimi" tek preferencat tuaja.',
 
 # Content models
 'content-model-text' => 'tekst i thejshtë',
@@ -1248,15 +1249,6 @@ Kini kujdes se përdorimi i lidhjeve të shfletimit do të ndryshojë përzgjedh
 'powersearch-togglenone' => 'Asnji',
 'search-external' => 'Kërkim i jashtëm',
 'searchdisabled' => '<p>Kërkimi me tekst të plotë është bllokuar tani për tani ngaqë shërbyesi është shumë i ngarkuar; shpresojmë ta nxjerrim prapë në gjendje normale pas disa punimeve. Deri atëherë mund të përdorni Google-in për kërkime:</p>',
-
-# Quickbar
-'qbsettings' => 'Vendime të shpejta',
-'qbsettings-none' => 'Asnjë',
-'qbsettings-fixedleft' => 'Lidhur majtas',
-'qbsettings-fixedright' => 'Lidhur djathtas',
-'qbsettings-floatingleft' => 'Pezull majtas',
-'qbsettings-floatingright' => 'Pezull djathtas',
-'qbsettings-directionality' => 'Fikse, në varësi të skriptës së drejtuar në gjuhën tuaj',
 
 # Preferences page
 'preferences' => 'Parapëlqimet',

@@ -619,6 +619,7 @@ Vergiesst net fir Är [[Special:Preferences|{{SITENAME}} Astellungen]] z'ännere
 'userlogout' => 'Ausloggen',
 'notloggedin' => 'Net ageloggt',
 'userlogin-noaccount' => 'Hutt Dir kee Benotzerkont?',
+'userlogin-joinproject' => 'Maacht mat bäi {{SITENAME}}',
 'nologin' => "Hutt Dir kee Benotzerkont? '''$1'''.",
 'nologinlink' => 'Neie Benotzerkont maachen',
 'createaccount' => 'Neie Kont opmaachen',
@@ -1934,6 +1935,7 @@ Eng Säite gëtt als Homonymie-Säit behandelt, wa si eng Schabloun benotzt déi
 
 'pageswithprop' => 'Säite mat enger Säiten-Eegeschaft',
 'pageswithprop-legend' => 'Säite mat enger Säiten-Eegeschaft',
+'pageswithprop-text' => 'Op dëser Säit sti Säiten déi eng speziell Säiteneegeschaft benotzen.',
 'pageswithprop-prop' => 'Numm vun der Eegeschaft:',
 'pageswithprop-submit' => 'Lass',
 
@@ -2820,6 +2822,7 @@ Späichert en op Ärem Computer of a luet en hei nees erop.',
 'javascripttest-pagetext-unknownframework' => 'Onbekannten Test-Framework "$1".',
 'javascripttest-pagetext-frameworks' => 'Sicht w.e.g. eng vun dësen Test-Strukturen eraus: $1',
 'javascripttest-qunit-intro' => "Kuckt d'[$1 Dokumentatioun vun den Tester] op mediawiki.org",
+'javascripttest-qunit-heading' => 'JavaScript-QUnit Testserie op MediaWiki',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'Är Benotzersäit',
@@ -3251,6 +3254,7 @@ Déi aner sinn am Standard verstoppt.
 'exif-giffilecomment' => 'Bemierkung zum GIF-Fichier',
 'exif-intellectualgenre' => 'Typ vum Element',
 'exif-subjectnewscode' => 'Code vum Sujet',
+'exif-event' => 'Duergestallten Evenement',
 'exif-organisationinimage' => 'Organisatioun um Bild',
 'exif-personinimage' => 'Persoun um Bild',
 'exif-originalimageheight' => 'Héicht vum Bild virum Ofschneiden',
@@ -3783,6 +3787,8 @@ Den ugefrote Fichier gëtt direkt gewise respektiv mat enger verbonner Applikati
 'logentry-newusers-create2' => 'De Benotzerkont $3 gouf vum $1 {{GENDER:$2|ugeluecht}}',
 'logentry-newusers-byemail' => "De Benotzerkont $3 gouf vum $1 {{GENDER:$2|ugeluecht}} an d'Passwuert gouf per E-Mail geschéckt.",
 'logentry-newusers-autocreate' => 'De Benotzerkont $1 gouf automatesch {{GENDER:$2|ugeluecht}}',
+'logentry-rights-rights' => "$1 {{GENDER:$2|huet}} d'Gruppen zou deenen de Benotzer $3 gehéiert vu(n) $4 op $5 geännert",
+'logentry-rights-rights-legacy' => "$1 {{GENDER:$2|huet}} d'Gruppen zou deenen de Benotzer $3 gehéiert geännert",
 'logentry-rights-autopromote' => "De Benotzer $1 {{GENDER:$2|krut}} d'Benotzerrechter automatesch vu(n) $4 op $5 geännert",
 'rightsnone' => '(keen)',
 

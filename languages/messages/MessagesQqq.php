@@ -1110,11 +1110,15 @@ It is also used on the top of the page for logged out users, where it appears ne
 'gotaccountlink' => 'Text of the link to the log in form. Before that link, the message {{msg-mw|Gotaccount}} appears.
 {{Identical|Log in}}',
 'userlogin-resetlink' => 'Used on the login page.',
-'helplogin-url' => 'Page that provides information about logging into the wiki.
+'helplogin-url' => 'Used as name of the page that provides information about logging into the wiki.
+"Help" is the namespace name and should not be translated.
 
-Used in the message {{msg-mw|Userlogin-helplink}}.',
+Used as a link target in the message {{msg-mw|Userlogin-helplink}}.',
 'userlogin-helplink' => '{{doc-important|Do not change <code><nowiki>{{MediaWiki:helplogin-url}}</nowiki></code>.}}
-Wikitext linking to login help.',
+Wikitext linking to login help.
+
+See also:
+* {{msg-mw|Helplogin-url}}',
 'createaccountmail' => 'Button text for creating a new account and sending the new password to the specified e-mail address directly, as used on [[Special:UserLogin/signup]] if creating accounts by e-mail is allowed.',
 'createaccountreason' => '{{Identical|Reason}}',
 'badretype' => 'Used as error message when the new password and its retype do not match.',
@@ -6376,7 +6380,12 @@ See also:
 * {{msg-mw|Currentevents-url}}
 * {{msg-mw|Accesskey-n-currentevents}}
 * {{msg-mw|Tooltip-n-currentevents}}',
-'tooltip-n-recentchanges' => 'Tabdart n isenfilen imaynuten di Wiki.',
+'tooltip-n-recentchanges' => 'The tooltip when hovering over the {{msg-mw|Recentchanges}} link in the sidebar going to the special page [[Special:RecentChanges]].
+
+See also:
+* {{msg-mw|Recentchanges}}
+* {{msg-mw|Accesskey-n-recentchanges}}
+* {{msg-mw|Tooltip-n-recentchanges}}',
 'tooltip-n-randompage' => "Tooltip shown when hovering over the link to 'Random page' shown in the side bar menu on all pages. Clicking the link will show a random page in from the wiki's main namespace.
 
 See also:

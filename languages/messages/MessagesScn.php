@@ -182,8 +182,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Ammustra lu nùmmiru di utenti ca sèquinu la pàggina',
 'tog-oldsig' => 'Firma attuali:',
 'tog-fancysig' => 'Interpitra li cumanna wiki nâ firma (senza liami automaticu)',
-'tog-externaleditor' => 'Usa di default nu editor esternu (sulu pi li esperti, abbisognanu mpustazzioni particulari pô tò computer. [//www.mediawiki.org/wiki/Manual:External_editors More information.])',
-'tog-externaldiff' => "Usa di default un prugramma di diff sternu (sulu pi utilizzatura sperti, addumanna l'usu di mpustazzioni particulari supra lu sò computer. [//www.mediawiki.org/wiki/Manual:External_editors Pi cchiossai nfurmazzioni.])",
 'tog-showjumplinks' => "Attiva li culligamenti accissìbbili 'và a'",
 'tog-uselivepreview' => "Attiva la funzioni ''Live preview'' (richiedi JavaScript; spirimintali)",
 'tog-forceeditsummary' => "Chiedi cunferma siddu l'uggettu dû canciamentu è vacanti",
@@ -1033,14 +1031,6 @@ S'havi accirtari ca la cuntinuità storica di la pàggina nun veni altirata.",
 'search-external' => 'Ricerca sterna',
 'searchdisabled' => 'La circata nterna di {{SITENAME}} hà statu disabbilitata. Nta stu mentri, poi usari la circata supra Google o supra àutri muturi di circata. Accura ca li sò ìnnici dê cuntinuti di {{SITENAME}} ponnu nun èssiri aggiurnati.',
 
-# Quickbar
-'qbsettings' => 'Pusizzioni QuickBar',
-'qbsettings-none' => 'Nuddu',
-'qbsettings-fixedleft' => 'Fissu a manu manca',
-'qbsettings-fixedright' => 'Fissu a manu dritta',
-'qbsettings-floatingleft' => 'Fluttuanti a manu manca',
-'qbsettings-floatingright' => 'Fluttuanti a manu dritta',
-
 # Preferences page
 'preferences' => 'prifirenzi',
 'mypreferences' => 'Li mè prifirenzi',
@@ -1727,14 +1717,6 @@ Protucolli suppurtati: <code>$1</code>',
 'listusers-noresult' => "Nuddu utenti attruvatu. Virificari l'usu di caràttiri maiùsculi/minùsculi.",
 'listusers-blocked' => '(bloccatu)',
 
-# Special:ActiveUsers
-'activeusers' => 'Lista dî utenti attivi',
-'activeusers-count' => "$1 {{PLURAL:$1|canciamentu|canciamenti}} nti {{PLURAL:$3|l'ùrtimu jornu| nti l'ùrtimi $3 jorna}}",
-'activeusers-from' => 'Ammustra li utenti a pàrtiri da:',
-'activeusers-hidebots' => 'Bot ammucciati',
-'activeusers-hidesysops' => 'Amministratura ammucciati',
-'activeusers-noresult' => 'Nussun utenti truvatu.',
-
 # Special:ListGroupRights
 'listgrouprights' => 'Diritti dô gruppu utenti',
 'listgrouprights-summary' => "Ccà sutta sunnu elincati li gruppi utenti difiniti pi sta wiki, cu li dritti d'accessu assuciati a iddi. Pi sapìrinni chiossai supra li dritti, lèggiti [[{{MediaWiki:Listgrouprights-helppage}}|sta pàggina]].",
@@ -2016,7 +1998,7 @@ $1',
 'sp-contributions-userrights' => 'gistioni dî dritti utenti',
 'sp-contributions-search' => 'Ricerca cuntribbuti',
 'sp-contributions-username' => 'Nnirizzu IP o nomu utenti:',
-'sp-contributions-toponly' => "Ammuscia sulu li cuntribbuti ca sunnu l'ùrtimi rivisioni pâ pàggina",
+'sp-contributions-toponly' => "Ammuccia sulu li cuntribbuta ca sunnu l'ùrtimi rivisioni pâ pàggina",
 'sp-contributions-submit' => 'Risciduta',
 
 # What links here
@@ -2411,13 +2393,8 @@ Visita [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [//trans
 'pageinfo-toolboxlink' => 'Nfurmazzioni ncapu la pàggina',
 
 # Skin names
-'skinname-standard' => 'Classicu',
-'skinname-nostalgia' => 'Nustargìa',
 'skinname-cologneblue' => 'Cologne Blu',
 'skinname-monobook' => 'MonoBook',
-'skinname-myskin' => 'MySkin',
-'skinname-chick' => 'Chick',
-'skinname-simple' => 'Sìmprici',
 'skinname-modern' => 'Mudernu',
 
 # Patrolling

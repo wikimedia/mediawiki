@@ -44,8 +44,6 @@ $messages = array(
 'tog-shownumberswatching' => "I'tus tirada isticmaalayaasha wax waardiyeynaayo",
 'tog-oldsig' => 'Saxiixa jiro:',
 'tog-fancysig' => "u isticmaal saxiixa sida qoraalada wiki  (ayada oo linki auomaatik la'aan)",
-'tog-externaleditor' => "Isticmaal qoraal wax ka bedelyaal ka madaxbanaan (La'iskuogyahay)",
-'tog-externaldiff' => "Isticmaal qoraal wax ka bedelyaal ka madaxbanaan oo (La'iskuogyahay)",
 'tog-showjumplinks' => 'Shid "ku bood" links-ka la geli karo',
 'tog-uselivepreview' => 'Isticmaal horfiirinta tooska ah (JavaScript) (Wuxuu ku jiraa tijaabo)',
 'tog-forceeditsummary' => "I'xasuusi markii uusan qoraalkeyga raacsiisnay faahfaahin gaaban",
@@ -776,9 +774,6 @@ sababteeda neh waxaa laga heli kartaa  [{{fullurl:{{#Special:Log}}/delete|page={
 'powersearch-toggleall' => 'Dhamaan',
 'powersearch-togglenone' => 'Waxna',
 
-# Quickbar
-'qbsettings-none' => 'Waxna',
-
 # Preferences page
 'preferences' => 'Dooqyada',
 'mypreferences' => 'Dooqyadeyda',
@@ -1126,12 +1121,12 @@ $PAGEINTRO $NEWPAGE
 
 Qaybta wax laga bedelay: $PAGESUMMARY $PAGEMINOREDIT
 
-La xariirka Tafaftiraha:
+La xariirka Tifaftiraha:
 mail: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
 Lama soo diri doono ogeysiin dambe hadii isbedel kale lagu sii sameeyo ilaa aad ka soo booqato bogga.
-Waxaad awoodaa inaad ka saarto liiska waardiyeha booga.
+Waxaad awoodaa inaad ka saarto liiska waardiyeha bogga.
 
 			 Nidaamka war gelinta {{SITENAME}} ee E-mailka
 

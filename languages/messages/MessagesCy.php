@@ -556,7 +556,7 @@ Sylwer y bydd rhai tudalennau yn parhau i ymddangos fel ag yr oeddent pan oeddec
 'gotaccount' => "Oes cyfrif gennych eisoes? '''$1'''.",
 'gotaccountlink' => 'Mewngofnodwch',
 'userlogin-resetlink' => 'Ydych chi wedi anghofio eich manylion mewngofnodi?',
-'helplogin-url' => 'Cymorth: Mewngofnodi',
+'helplogin-url' => 'Help:Mewngofnodi',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Cymorth i fewngofnodi]]',
 'createaccountmail' => "Defnyddier cyfrinair ar hap dros dro a'i anfon i'r cyfeiriad e-bost isod",
 'createaccountreason' => 'Rheswm:',

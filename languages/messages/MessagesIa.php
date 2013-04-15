@@ -172,8 +172,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Monstrar le numero de usatores que observa le pagina',
 'tog-oldsig' => 'Signatura existente:',
 'tog-fancysig' => 'Tractar signatura como wikitexto (sin ligamine automatic)',
-'tog-externaleditor' => 'Usar un editor externe qua standard (pro expertos solmente, necessita configuration special in tu computator. [//www.mediawiki.org/wiki/Manual:External_editors Plus informationes.])',
-'tog-externaldiff' => "Usar un programma ''diff'' externe qua standard (pro expertos solmente, necessita configuration special in tu computator. [//www.mediawiki.org/wiki/Manual:External_editors Plus informationes.])",
 'tog-showjumplinks' => 'Activar ligamines de accessibilitate "saltar a"',
 'tog-uselivepreview' => 'Usar previsualisation in directo (require JavaScript) (experimental)',
 'tog-forceeditsummary' => 'Avisar me si io non entra un summario de modification',
@@ -188,6 +186,7 @@ $messages = array(
 'tog-showhiddencats' => 'Monstrar categorias celate',
 'tog-noconvertlink' => 'Disactivar conversion de titulos de ligamines',
 'tog-norollbackdiff' => 'Omitter le diff post le execution de un revocation',
+'tog-useeditwarning' => 'Advertir me quando io quita un pagina de modification sin publicar le cambiamentos',
 
 'underline-always' => 'Sempre',
 'underline-never' => 'Nunquam',
@@ -559,7 +558,9 @@ Nota que alcun paginas pote continuar a apparer como si tu esserea ancora authen
 'welcomecreation-msg' => 'Tu conto ha essite create.
 Non oblida personalisar tu [[Special:Preferences|preferentias in {{SITENAME}}]].',
 'yourname' => 'Nomine de usator:',
+'userlogin-yourname' => 'Nomine de usator�',
 'yourpassword' => 'Contrasigno:',
+'userlogin-yourpassword' => 'Contrasigno',
 'yourpasswordagain' => 'Repete contrasigno:',
 'remembermypassword' => 'Memorar mi contrasigno in iste navigator (pro un maximo de $1 {{PLURAL:$1|die|dies}})',
 'securelogin-stick-https' => 'Remaner connectite via HTTPS post apertura de session',
@@ -946,6 +947,8 @@ Illo existe ja.',
 'content-failed-to-parse' => 'Impossibile processar le contento $2 pro le modello $1: $3',
 'invalid-content-data' => 'Datos de contento invalide',
 'content-not-allowed-here' => 'Le contento "$1" non es permittite in le pagina [[$2]]',
+'editwarning-warning' => 'Quitar iste pagina pote causar le perdita de omne modificationes que tu ha facite.
+Si tu ha aperite un session, tu pote disactivar iste aviso in le section "{{int:prefs-editing}}" de tu preferentias.',
 
 # Content models
 'content-model-wikitext' => 'wikitexto',
@@ -1235,15 +1238,6 @@ Tenta prefixar tu consulta con ''all:'' pro cercar in tote le contento (includen
 'searchdisabled' => 'Le recerca in {{SITENAME}} es disactivate.
 Tu pote cercar via Google in le interim.
 Nota que lor indices del contento de {{SITENAME}} pote esser obsolete.',
-
-# Quickbar
-'qbsettings' => 'Barra rapide',
-'qbsettings-none' => 'Necun',
-'qbsettings-fixedleft' => 'Fixe a sinistra',
-'qbsettings-fixedright' => 'Fixe a dextra',
-'qbsettings-floatingleft' => 'Flottante a sinistra',
-'qbsettings-floatingright' => 'Flottante a dextra',
-'qbsettings-directionality' => 'Fixe, dependente del direction de scriptura de tu lingua',
 
 # Preferences page
 'preferences' => 'Preferentias',
@@ -1806,7 +1800,6 @@ Pro securitate optimal, img_auth.php es disactivate.',
 'http-read-error' => 'Error de lectura HTTP.',
 'http-timed-out' => 'Le requesta HTTP ha expirate.',
 'http-curl-error' => 'Error al obtener datos del URL: $1',
-'http-host-unreachable' => 'Non poteva acceder al URL',
 'http-bad-status' => 'Un problema occurreva durante le requesta HTTP: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -2960,13 +2953,8 @@ Es possibile adder un motivo in le summario.',
 
 # Stylesheets
 'common.css' => '/* Le CSS placiate hic se applicara a tote le stilos */',
-'standard.css' => '/* Le CSS placiate hic afficera le usatores del apparentia Classic */',
-'nostalgia.css' => '/* Le CSS placiate hic afficera le usatores del apparentia Nostalgia */',
 'cologneblue.css' => '/* Le CSS placiate hic afficera le usatores del apparentia Colonia Blau */',
 'monobook.css' => '/* Le CSS placiate hic afficera le usatores del apparentia MonoBook */',
-'myskin.css' => '/* Le CSS placiate hic afficera le usatores del apparentia "Mi apparentia" */',
-'chick.css' => '/* Le CSS placiate hic afficera le usatores del apparentia Chique */',
-'simple.css' => '/* Le CSS placiate hic afficera le usatores del apparentia Simple */',
 'modern.css' => '/* Le CSS placiate hic afficera le usatores del apparentia Moderne */',
 'vector.css' => '/* Le CSS placiate hic afficera le usatores del apparentia Vector */',
 'print.css' => '/* Le CSS placiate hic influentiara le apparentia del paginas imprimite */',
@@ -2974,13 +2962,8 @@ Es possibile adder un motivo in le summario.',
 
 # Scripts
 'common.js' => '/* Omne JavaScript hic se executara pro tote le usatores a cata cargamento de pagina. */',
-'standard.js' => '/* Omne JavaScript hic se executara pro le usatores del apparentia Classic */',
-'nostalgia.js' => '/* Omne JavaScript hic se executara pro le usatores del apparentia Nostalgia */',
 'cologneblue.js' => '/* Omne JavaScript hic se executara pro le usatores del apparentia Colonia Blau */',
 'monobook.js' => '/* Omne JavaScript hic se executara pro le usatores del apparentia MonoBook */',
-'myskin.js' => '/* Omne JavaScript hic se executara pro le usatores del apparentia "Mi apparentia" */',
-'chick.js' => '/* Omne JavaScript hic se executara pro le usatores del apparentia Chique */',
-'simple.js' => '/* Omne JavaScript hic se executara pro le usatores del apparentia Simple */',
 'modern.js' => '/* Omne JavaScript hic se executara pro le usatores del apparentia Moderne */',
 'vector.js' => '/* Omne JavaScript hic se executara pro le usatores del apparentia Vector */',
 
@@ -3056,13 +3039,8 @@ Le causa es probabilemente un ligamine verso un sito externe que es presente in 
 'pageinfo-category-files' => 'Numero de files',
 
 # Skin names
-'skinname-standard' => 'Classic',
-'skinname-nostalgia' => 'Nostalgia',
 'skinname-cologneblue' => 'Colonia Blau',
 'skinname-monobook' => 'MonoBook',
-'skinname-myskin' => 'Mi apparentia',
-'skinname-chick' => 'Chique',
-'skinname-simple' => 'Simple',
 'skinname-modern' => 'Moderne',
 
 # Patrolling

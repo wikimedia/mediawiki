@@ -9,6 +9,7 @@
  *
  * @author Apple
  * @author Arisa
+ * @author Cheers!
  * @author DHN
  * @author Kaganer
  * @author Minh Nguyen
@@ -710,9 +711,15 @@ Bạn có thể tiếp tục dùng {{SITENAME}} một cách vô danh, hoặc b�
 'welcomecreation-msg' => 'Tài khoản của bạn đã được mở.
 Hãy nhớ thay đổi [[Special:Preferences|tùy chọn cá nhân {{SITENAME}}]] của bạn.',
 'yourname' => 'Tên người dùng:',
+'userlogin-yourname' => 'Tên đăng nhập',
+'userlogin-yourname-ph' => 'Nhập tên đăng nhập',
 'yourpassword' => 'Mật khẩu:',
+'userlogin-yourpassword' => 'Mật khẩu',
+'userlogin-yourpassword-ph' => 'Nhập mật khẩu',
 'yourpasswordagain' => 'Gõ lại mật khẩu',
 'remembermypassword' => 'Nhớ thông tin đăng nhập của tôi trên máy tính này (cho đến $1 ngày)',
+'userlogin-remembermypassword' => 'Nhớ thông tin đăng nhập của tôi',
+'userlogin-signwithsecure' => 'Đăng nhập bằng máy chủ an toàn',
 'securelogin-stick-https' => 'Giữ kết nối với HTTPS sau khi đăng nhập',
 'yourdomainname' => 'Tên miền của bạn:',
 'password-change-forbidden' => 'Bạn không thể đổi mật khẩu trên wiki này.',
@@ -725,12 +732,16 @@ Hãy nhớ thay đổi [[Special:Preferences|tùy chọn cá nhân {{SITENAME}}]
 'logout' => 'Đăng xuất',
 'userlogout' => 'Đăng xuất',
 'notloggedin' => 'Chưa đăng nhập',
+'userlogin-noaccount' => 'Bạn chưa có tài khoản?',
+'userlogin-joinproject' => 'Tham gia {{SITENAME}}',
 'nologin' => "Bạn chưa có tài khoản ở đây? '''$1'''.",
 'nologinlink' => 'Mở tài khoản mới',
 'createaccount' => 'Mở tài khoản',
 'gotaccount' => "Đã mở tài khoản rồi? '''$1'''.",
 'gotaccountlink' => 'Đăng nhập',
 'userlogin-resetlink' => 'Quên mất thông tin đăng nhập?',
+'helplogin-url' => 'Help:Đăng nhập',
+'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Trợ giúp đăng nhập]]',
 'createaccountmail' => 'Sử dụng mật khẩu ngẫu nhiên tạm và gửi nó cho địa chỉ thư điện tử được chỉ định ở dưới',
 'createaccountreason' => 'Lý do:',
 'badretype' => 'Hai mật khẩu không khớp.',
@@ -818,6 +829,7 @@ Có thể bạn đã thay đổi thành công mật khẩu của mình hoặc đ
 'passwordreset-text' => 'Hãy điền mẫu đơn này để tái tạo mật khẩu.',
 'passwordreset-legend' => 'Tái tạo mật khẩu',
 'passwordreset-disabled' => 'Chức năng tái tạo mật khẩu đã bị tắt trên wiki này.',
+'passwordreset-emaildisabled' => 'Tính năng gửi thư điện tử không được kích hoạt trên wiki này.',
 'passwordreset-pretext' => '{{PLURAL:$1||Nhập một trong những thông tin được yêu cầu ở dưới}}',
 'passwordreset-username' => 'Tên người dùng:',
 'passwordreset-domain' => 'Tên miền:',
@@ -4038,6 +4050,8 @@ Các hình ảnh được hiển thị ở kích thước tối đa, còn các l
 'htmlform-submit' => 'Đăng',
 'htmlform-reset' => 'Hủy các thay đổi',
 'htmlform-selectorother-other' => 'Khác',
+'htmlform-no' => 'Không',
+'htmlform-yes' => 'Có',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 với sự hỗ trợ tìm kiếm toàn văn',
