@@ -544,9 +544,17 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 	public function appendSkins( $property ) {
 		$data = array();
+		$usable = Skin::getUsableSkins();
+		$default = Skin::normalizeKey( 'default' );
 		foreach ( Skin::getSkinNames() as $name => $displayName ) {
 			$skin = array( 'code' => $name );
 			ApiResult::setContent( $skin, $displayName );
+			if ( !isset( $usable[$name] ) ) {
+				$skin['unusable'] = '';
+			}
+			if ( $name === $default ) {
+				$skin['default'] = '';
+			}
 			$data[] = $skin;
 		}
 		$this->getResult()->setIndexedTagName( $data, 'skin' );
