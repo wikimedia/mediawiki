@@ -490,6 +490,11 @@ class Parser {
 				"Highest expansion depth: {$this->mHighestExpansionDepth}/{$this->mOptions->getMaxPPExpandDepth()}\n".
 				$PFreport;
 			wfRunHooks( 'ParserLimitReport', array( $this, &$limitReport ) );
+
+			// Sanitize for comment. Note '‐' in the replacement is U+2010,
+			// which looks much like the problematic '-'.
+			$limitReport = str_replace( array( '-', '&' ), array( '‐', '&amp;' ), $limitReport );
+
 			$text .= "\n<!-- \n$limitReport-->\n";
 		}
 		$this->mOutput->setText( $text );
