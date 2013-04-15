@@ -155,81 +155,52 @@ class VectorTemplate extends BaseTemplate {
 ?>
 		<div id="mw-page-base" class="noprint"></div>
 		<div id="mw-head-base" class="noprint"></div>
-		<!-- content -->
 		<div id="content" class="mw-body" role="main">
 			<a id="top"></a>
 			<div id="mw-js-message" style="display:none;"<?php $this->html( 'userlangattributes' ) ?>></div>
 			<?php if ( $this->data['sitenotice'] ) { ?>
-			<!-- sitenotice -->
 			<div id="siteNotice"><?php $this->html( 'sitenotice' ) ?></div>
-			<!-- /sitenotice -->
 			<?php } ?>
-			<!-- firstHeading -->
 			<h1 id="firstHeading" class="firstHeading" lang="<?php
 				$this->data['pageLanguage'] = $this->getSkin()->getTitle()->getPageViewLanguage()->getCode();
 				$this->html( 'pageLanguage' );
 			?>"><span dir="auto"><?php $this->html( 'title' ) ?></span></h1>
-			<!-- /firstHeading -->
-			<!-- bodyContent -->
 			<div id="bodyContent">
 				<?php if ( $this->data['isarticle'] ) { ?>
-				<!-- tagline -->
 				<div id="siteSub"><?php $this->msg( 'tagline' ) ?></div>
-				<!-- /tagline -->
 				<?php } ?>
-				<!-- subtitle -->
 				<div id="contentSub"<?php $this->html( 'userlangattributes' ) ?>><?php $this->html( 'subtitle' ) ?></div>
-				<!-- /subtitle -->
 				<?php if ( $this->data['undelete'] ) { ?>
-				<!-- undelete -->
 				<div id="contentSub2"><?php $this->html( 'undelete' ) ?></div>
-				<!-- /undelete -->
 				<?php } ?>
 				<?php if ( $this->data['newtalk'] ) { ?>
-				<!-- newtalk -->
 				<div class="usermessage"><?php $this->html( 'newtalk' ) ?></div>
-				<!-- /newtalk -->
 				<?php } ?>
 				<?php if ( $this->data['showjumplinks'] ) { ?>
-				<!-- jumpto -->
 				<div id="jump-to-nav" class="mw-jump">
 					<?php $this->msg( 'jumpto' ) ?>
 					<a href="#mw-navigation"><?php $this->msg( 'jumptonavigation' ) ?></a><?php $this->msg( 'comma-separator' ) ?>
 					<a href="#p-search"><?php $this->msg( 'jumptosearch' ) ?></a>
 				</div>
-				<!-- /jumpto -->
 				<?php } ?>
-				<!-- bodycontent -->
 				<?php $this->html( 'bodycontent' ) ?>
-				<!-- /bodycontent -->
 				<?php if ( $this->data['printfooter'] ) { ?>
-				<!-- printfooter -->
 				<div class="printfooter">
 				<?php $this->html( 'printfooter' ); ?>
 				</div>
-				<!-- /printfooter -->
 				<?php } ?>
 				<?php if ( $this->data['catlinks'] ) { ?>
-				<!-- catlinks -->
 				<?php $this->html( 'catlinks' ); ?>
-				<!-- /catlinks -->
 				<?php } ?>
 				<?php if ( $this->data['dataAfterContent'] ) { ?>
-				<!-- dataAfterContent -->
 				<?php $this->html( 'dataAfterContent' ); ?>
-				<!-- /dataAfterContent -->
 				<?php } ?>
 				<div class="visualClear"></div>
-				<!-- debughtml -->
 				<?php $this->html( 'debughtml' ); ?>
-				<!-- /debughtml -->
 			</div>
-			<!-- /bodyContent -->
 		</div>
-		<!-- /content -->
 		<div id="mw-navigation">
 			<h2><?php $this->msg( 'navigation-heading' ) ?></h2>
-			<!-- header -->
 			<div id="mw-head">
 				<?php $this->renderNavigation( 'PERSONAL' ); ?>
 				<div id="left-navigation">
@@ -239,17 +210,11 @@ class VectorTemplate extends BaseTemplate {
 					<?php $this->renderNavigation( array( 'VIEWS', 'ACTIONS', 'SEARCH' ) ); ?>
 				</div>
 			</div>
-			<!-- /header -->
-			<!-- panel -->
 			<div id="mw-panel">
-				<!-- logo -->
 					<div id="p-logo" role="banner"><a style="background-image: url(<?php $this->text( 'logopath' ) ?>);" href="<?php echo htmlspecialchars( $this->data['nav_urls']['mainpage']['href'] ) ?>" <?php echo Xml::expandAttributes( Linker::tooltipAndAccesskeyAttribs( 'p-logo' ) ) ?>></a></div>
-				<!-- /logo -->
 				<?php $this->renderPortals( $this->data['sidebar'] ); ?>
 			</div>
-			<!-- /panel -->
 		</div>
-		<!-- footer -->
 		<div id="footer" role="contentinfo"<?php $this->html( 'userlangattributes' ) ?>>
 			<?php foreach ( $this->getFooterLinks() as $category => $links ) { ?>
 				<ul id="footer-<?php echo $category ?>">
@@ -273,7 +238,6 @@ class VectorTemplate extends BaseTemplate {
 			<?php } ?>
 			<div style="clear:both"></div>
 		</div>
-		<!-- /footer -->
 		<?php $this->printTrail(); ?>
 
 	</body>
@@ -303,7 +267,6 @@ class VectorTemplate extends BaseTemplate {
 				continue;
 			}
 
-			echo "\n<!-- {$name} -->\n";
 			switch ( $name ) {
 				case 'SEARCH':
 					break;
@@ -319,7 +282,6 @@ class VectorTemplate extends BaseTemplate {
 					$this->renderPortal( $name, $content );
 				break;
 			}
-			echo "\n<!-- /{$name} -->\n";
 		}
 	}
 
@@ -381,7 +343,6 @@ class VectorTemplate extends BaseTemplate {
 		}
 		// Render elements
 		foreach ( $elements as $name => $element ) {
-			echo "\n<!-- {$name} -->\n";
 			switch ( $element ) {
 				case 'NAMESPACES':
 ?>
@@ -490,7 +451,6 @@ class VectorTemplate extends BaseTemplate {
 
 				break;
 			}
-			echo "\n<!-- /{$name} -->\n";
 		}
 	}
 }
