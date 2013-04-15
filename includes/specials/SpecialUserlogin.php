@@ -975,6 +975,29 @@ class LoginForm extends SpecialPage {
 
 	/**
 	 * Add a "return to" link or redirect to it.
+	 * Extensions can use this to reuse the "return to" logic after
+	 * inject steps (such as redirection) into the login process.
+	 *
+	 * @param $type string, one of the following:
+	 *    - error: display a return to link ignoring $wgRedirectOnLogin
+	 *    - success: display a return to link using $wgRedirectOnLogin if needed
+	 *    - successredirect: send an HTTP redirect using $wgRedirectOnLogin if needed
+	 * @param string $returnTo
+	 * @param array|string $returnToQuery
+	 * @param bool $stickHTTPs Keep redirect link on HTTPs
+	 * @since 1.22
+	 */
+	public function showReturnToPage(
+		$type, $returnTo = '', $returnToQuery = '', $stickHTTPs = false
+	) {
+		$this->mReturnTo = $returnTo;
+		$this->mReturnToQuery = $returnToQuery;
+		$this->mStickHTTPS = $stickHTTPs;
+		$this->executeReturnTo( $type );
+	}
+
+	/**
+	 * Add a "return to" link or redirect to it.
 	 *
 	 * @param $type string, one of the following:
 	 *    - error: display a return to link ignoring $wgRedirectOnLogin
