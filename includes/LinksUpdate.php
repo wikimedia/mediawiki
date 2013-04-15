@@ -237,22 +237,36 @@ class LinksUpdate extends SqlDataUpdate {
 		wfProfileOut( __METHOD__ );
 	}
 
+	/**
+	 * Queue recursive jobs for this page
+	 *
+	 * Which means do LinksUpdate on all templates
+	 * that include the current page, using the job queue.
+	 */
 	function queueRecursiveJobs() {
-		wfProfileIn( __METHOD__ );
+		self::queueRecursiveJobsForTable( $this->mTitle, 'templatelinks' );
+	}
 
-		if ( $this->mTitle->getBacklinkCache()->hasLinks( 'templatelinks' ) ) {
+	/**
+	 * Queue a RefreshLinks job for any table.
+	 *
+	 * @param Title $title Title to do job for
+	 * @param String $table Table to use (e.g. 'templatelinks')
+	 */
+	public static function queueRecursiveJobsForTable( Title $title, $table ) {
+		wfProfileIn( __METHOD__ );
+		if ( $title->getBacklinkCache()->hasLinks( $table ) ) {
 			$job = new RefreshLinksJob2(
-				$this->mTitle,
+				$title,
 				array(
-					'table' => 'templatelinks',
+					'table' => $table,
 				) + Job::newRootJobParams( // "overall" refresh links job info
-					"refreshlinks:templatelinks:{$this->mTitle->getPrefixedText()}"
+					"refreshlinks:{$table}:{$title->getPrefixedText()}"
 				)
 			);
 			JobQueueGroup::singleton()->push( $job );
 			JobQueueGroup::singleton()->deduplicateRootJob( $job );
 		}
-
 		wfProfileOut( __METHOD__ );
 	}
 

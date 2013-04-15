@@ -39,6 +39,8 @@ production.
   correctly.
 * (bug 45803) Whitespace within == Headline == syntax and within <hN> headings
   is now non-significant and not preserved in the HTML output.
+* (bug 46749) Broken files tracking category removed from pages if an image
+  with that name is uploaded.
 
 === API changes in 1.22 ===
 * (bug 46626) xmldoublequote parameter was removed. Because of a bug, the
