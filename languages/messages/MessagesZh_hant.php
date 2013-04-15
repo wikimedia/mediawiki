@@ -27,6 +27,7 @@
  * @author Kuailong
  * @author Lauhenry
  * @author Liangent
+ * @author Liflon
  * @author Mark85296341
  * @author Oapbtommy
  * @author Pbdragonwang
@@ -668,9 +669,15 @@ $2',
 'welcomecreation-msg' => '您的賬號已經建立。
 不要忘記設置[[Special:Preferences|{{SITENAME}}的個人參數]]。',
 'yourname' => '用戶名：',
+'userlogin-yourname' => '用戶名',
+'userlogin-yourname-ph' => '輸入你的用戶名',
 'yourpassword' => '您的密碼：',
+'userlogin-yourpassword' => '密碼',
+'userlogin-yourpassword-ph' => '輸入密碼',
 'yourpasswordagain' => '再次輸入密碼：',
 'remembermypassword' => '在這個瀏覽器上記住我的登入資訊（可維持 $1 {{PLURAL:$1|天|天}}）',
+'userlogin-remembermypassword' => '記住我',
+'userlogin-signwithsecure' => '使用安全伺服器登入',
 'securelogin-stick-https' => '登入後繼續以HTTPS連接',
 'yourdomainname' => '您的網域：',
 'password-change-forbidden' => '您不可更改此wiki上的密碼。',
@@ -683,12 +690,16 @@ $2',
 'logout' => '登出',
 'userlogout' => '登出',
 'notloggedin' => '未登入',
+'userlogin-noaccount' => '沒有帳戶嗎？',
+'userlogin-joinproject' => '參與 {{SITENAME}}',
 'nologin' => '您還沒有帳號嗎？$1。',
 'nologinlink' => '建立新帳號',
 'createaccount' => '建立新帳號',
 'gotaccount' => '已經擁有帳號？$1。',
 'gotaccountlink' => '登入',
 'userlogin-resetlink' => '忘記了你的登錄信息？',
+'helplogin-url' => 'Help:登入',
+'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|登入説明]]',
 'createaccountmail' => '使用一個臨時的隨機密碼，並將它發送到以下指定的電子郵件地址',
 'createaccountreason' => '理由：',
 'badretype' => '您所輸入的密碼並不相同。',
@@ -782,6 +793,7 @@ $2',
 'passwordreset-text' => '完成此表格以重置您的密碼。',
 'passwordreset-legend' => '重設密碼',
 'passwordreset-disabled' => '此維基上已禁止了重設密碼。',
+'passwordreset-emaildisabled' => '電子郵件功能在此 wiki 上已禁用。',
 'passwordreset-pretext' => '{{PLURAL:$1||輸入下列其中一個}}',
 'passwordreset-username' => '用戶名：',
 'passwordreset-domain' => '域名：',
@@ -1018,8 +1030,7 @@ $2
 'content-failed-to-parse' => '未能轉換$2 內容成為$1：$3',
 'invalid-content-data' => '內容資料無效',
 'content-not-allowed-here' => '[[$2]]頁面上不允許「$1」內容',
-'editwarning-warning' => '離開這個頁面可能會令您失去之前的所有更改。
-若您已經登入，您可在您偏好設定的「編輯」節中關閉此警告。',
+'editwarning-warning' => '離開這個頁面可能會令您失去之前作出的所有更改。若您已經登入，您可在偏好設定的「編輯」部份裡關閉此警告。',
 
 # Content models
 'content-model-wikitext' => 'wiki語法',

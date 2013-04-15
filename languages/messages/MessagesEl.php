@@ -384,8 +384,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Εμφάνιση του αριθμού των συνδεδεμένων χρηστών',
 'tog-oldsig' => 'Υπάρχουσα υπογραφή:',
 'tog-fancysig' => 'Μεταχείριση υπογραφής ως κώδικα wiki (χωρίς αυτόματο σύνδεσμο)',
-'tog-externaleditor' => 'Χρήση εξωτερικού επεξεργαστή από προεπιλογή (για προχωρημένους μόνο, χρειάζεται ειδικές ρυθμίσεις του υπολογιστή σας. [//www.mediawiki.org/wiki/Manual:External_editors Περισσότερες πληροφορίες.])',
-'tog-externaldiff' => 'Χρήση εξωτερικού diff από προεπιλογή (για προχωρημένους μόνο, χρειάζεται ειδικές ρυθμίσεις του υπολογιστή σας. [//www.mediawiki.org/wiki/Manual:External_editors Περισσότερες πληροφορίες.])',
 'tog-showjumplinks' => 'Ενεργοποίησε τους συνδέσμους προσβασιμότητας του τύπου "μετάβαση σε"',
 'tog-uselivepreview' => 'Χρήση ζωντανής προεπισκόπησης (απαιτεί JavaScript) (πειραματικό)',
 'tog-forceeditsummary' => 'Να ειδοποιούμαι κατά την εισαγωγή κενής σύνοψης επεξεργασίας',
@@ -400,6 +398,7 @@ $messages = array(
 'tog-showhiddencats' => 'Εμφάνιση κρυμμένων κατηγοριών',
 'tog-noconvertlink' => 'Απενεργοποίησε την μετατροπή τίτλου συνδέσμου',
 'tog-norollbackdiff' => 'Παράλειψη διαφοράς μετά την εκτέλεση επαναφοράς',
+'tog-useeditwarning' => 'Προειδοποίηση όταν εγκαταλείπω μία σελίδα επεξεργασίας χωρίς να έχω πρώτα αποθηκεύσει τις αλλαγές',
 
 'underline-always' => 'Πάντα',
 'underline-never' => 'Ποτέ',
@@ -767,9 +766,15 @@ $2',
 'welcomecreation-msg' => 'Ο λογαριασμός σας έχει δημιουργηθεί.
 Μην ξεχάσετε να αλλάξετε τις [[Special:Preferences|{{SITENAME}} προτιμήσεις]] σας.',
 'yourname' => 'Όνομα χρήστη:',
+'userlogin-yourname' => 'Όνομα χρήστη',
+'userlogin-yourname-ph' => 'Εισάγετε το όνομα χρήστη σας',
 'yourpassword' => 'Κωδικός:',
+'userlogin-yourpassword' => 'Κωδικός',
+'userlogin-yourpassword-ph' => 'Εισάγετε τον κωδικό σας',
 'yourpasswordagain' => 'Πληκτρολογήστε ξανά τον κωδικό',
 'remembermypassword' => 'Διατήρηση του κωδικού πρόσβασης σε αυτόν τον υπολογιστή (για μέγιστο $1 {{PLURAL:$1|ημέρα|ημέρες}})',
+'userlogin-remembermypassword' => 'Να με θυμάστε',
+'userlogin-signwithsecure' => 'Συνδεθείτε με ασφαλή διακομιστή',
 'securelogin-stick-https' => 'Μείνετε συνδεδεμένοι με HTTPS μετά την είσοδο',
 'yourdomainname' => 'Το domain σας:',
 'password-change-forbidden' => 'Δεν μπορείτε να αλλάξετε τους κωδικούς πρόσβασης σε αυτό το βίκι.',
@@ -782,12 +787,15 @@ $2',
 'logout' => 'Έξοδος',
 'userlogout' => 'Έξοδος',
 'notloggedin' => 'Δεν έχετε συνδεθεί.',
+'userlogin-noaccount' => 'Δεν έχετε λογαριασμό;',
+'userlogin-joinproject' => 'Συνδεθείτε σε {{SITENAME}}',
 'nologin' => "Δεν έχετε λογαριασμό; '''$1'''.",
 'nologinlink' => 'Δημιουργήστε έναν λογαριασμό',
 'createaccount' => 'Δημιουργία νέου λογαριασμού',
 'gotaccount' => "Έχετε ήδη έναν λογαριασμό; '''$1'''.",
 'gotaccountlink' => 'Είσοδος',
 'userlogin-resetlink' => 'Ξεχάσατε τα στοιχεία σύνδεσής σας;',
+'helplogin-url' => 'Βοήθεια:Σύνδεση',
 'createaccountmail' => 'Χρήση τυχαίου προσωρινού κωδικού πρόσβασης και αποστολή του στη διεύθυνση ηλεκτρονικού ταχυδρομείου που καθορίζεται παρακάτω',
 'createaccountreason' => 'Αιτία:',
 'badretype' => 'Οι κωδικοί που έχετε δηλώσει δεν συμφωνούν μεταξύ τους.',
@@ -879,6 +887,7 @@ $2',
 'passwordreset-text' => 'Συμπληρώστε αυτή τη φόρμα για να επαναφέρετε τον κωδικό σας.',
 'passwordreset-legend' => 'Επαναφορά κωδικού πρόσβασης',
 'passwordreset-disabled' => 'Η επαναφορά κωδικού πρόσβασης έχει απενεργοποιηθεί σε αυτό το wiki',
+'passwordreset-emaildisabled' => "Τα χαρακτηριστικά ηλεκτρονικού ταχυδρομείου έχουν απενεργοποιηθεί σ' αυτό το wiki.",
 'passwordreset-pretext' => '{{PLURAL:$1||Εισάγεται ένα από τα στοιχεία δεδομένων που βλέπετε παρακάτω}}',
 'passwordreset-username' => 'Όνομα χρήστη:',
 'passwordreset-domain' => 'Domain:',
@@ -1109,8 +1118,11 @@ $2
 'edit-already-exists' => 'Δεν ήταν εφικτό να δημιουργηθεί η νέα σελίδα.
 Υπάρχει ήδη.',
 'defaultmessagetext' => 'Προεπιλεγμένο κείμενο μηνύματος',
+'content-failed-to-parse' => 'Απέτυχε η ανάλυση  περιεχομένου του $2 για το μοντέλο $1:$3',
 'invalid-content-data' => 'Μη έγκυρα δεδομένα περιεχομένου',
 'content-not-allowed-here' => 'Το περιεχόμενο «$1» δεν επιτρέπεται στη σελίδα [[$2]]',
+'editwarning-warning' => 'Αφήνοντας αυτή τη σελίδα μπορεί να σας κάνει να χάσετε κάποιες αλλαγές που έχετε κάνει.
+Αν έχετε συνδεθεί, μπορείτε να απενεργοποιήσετε αυτή την προειδοποίηση στο τμήμα "{{int:prefs-editing}}" των προτιμήσεών σας.',
 
 # Content models
 'content-model-wikitext' => 'βικικείμενο',
@@ -1132,6 +1144,10 @@ $2
 'parser-template-loop-warning' => 'Εντοπίστηκε πρότυπο σε βρόχο: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Το όριο του μάκρους της αναδρομής του πρότυπου έχει ξεπεραστεί ($1)',
 'language-converter-depth-warning' => 'Το όριο βάθους του μετατροπέα γλώσσας έχει ξεπεραστεί ($1)',
+'node-count-exceeded-category' => 'Σελίδες υπέρβασης του αριθμού κόμβων',
+'node-count-exceeded-warning' => 'Η σελίδα έχει υπερβεί τον αριθμό κόμβων',
+'expansion-depth-exceeded-category' => 'Σελίδες υπέρβασης της επέκτασης σε βάθος',
+'expansion-depth-exceeded-warning' => 'Η σελίδα υπερέβη το βάθος επέκτασης',
 'converter-manual-rule-error' => 'Εντοπίστηκε σφάλμα σε μη αυτόματο κανόνα μετατροπής γλώσσας',
 
 # "Undo" feature
@@ -1385,15 +1401,7 @@ $1",
 'powersearch-togglenone' => 'Καμία',
 'search-external' => 'Εξωτερική αναζήτηση',
 'searchdisabled' => 'Η αναζήτηση για τον ιστότοπο "{{SITENAME}}" είναι απενεργοποιημένη. Μπορείτε να αναζητήσετε μέσω του Google εν τω μεταξύ. Σημειώστε ότι οι κατάλογοί τους για το περιεχόμενο του ιστοτόπου "{{SITENAME}}" μπορεί να είναι απαρχαιωμένοι.',
-
-# Quickbar
-'qbsettings' => 'Γρήγορη πρόσβαση',
-'qbsettings-none' => 'Καμία',
-'qbsettings-fixedleft' => 'Σταθερά αριστερά',
-'qbsettings-fixedright' => 'Σταθερά δεξιά',
-'qbsettings-floatingleft' => 'Πλανώμενα αριστερά',
-'qbsettings-floatingright' => 'Πλανώμενα δεξιά',
-'qbsettings-directionality' => 'Διορθώθηκε, ανάλογα με τις κατευθύνσεις του σεναρίου εντολών της γλώσσας σας',
+'search-error' => 'Παρουσιάστηκε σφάλμα κατά την αναζήτηση:$1',
 
 # Preferences page
 'preferences' => 'Προτιμήσεις',
@@ -1884,10 +1892,15 @@ $1',
 'backend-fail-contenttype' => 'Δεν μπόρεσε να προσδιοριστεί ο τύπος περιεχομένου του αρχείου για την αποθήκευση σε "$1".',
 'backend-fail-usable' => 'Δεν ήταν δυνατή η ανάγνωση ή εγγραφή του αρχείου "$1" λόγω ανεπαρκών δικαιωμάτων ή απουσίας καταλόγων/φακέλων.',
 
+# File journal errors
+'filejournal-fail-dbconnect' => 'Δεν ήταν δυνατή η σύνδεση με τη βάση δεδομένων εγγραφών για αποθηκευτικό σύστημα υποστήριξης "$1".',
+'filejournal-fail-dbquery' => 'Δεν ήταν δυνατή η ενημέρωση της βάσης δεδομένων εγγραφών για αποθηκευτικό σύστημα υποστήριξης "$1".',
+
 # Lock manager
 'lockmanager-notlocked' => 'Δεν μπορέσατε να  ξεκλειδώσετε το " $1 ". Δεν είναι κλειδωμένο.',
 'lockmanager-fail-closelock' => 'Δεν μπόρεσε να κλείσει το κλειδωμένο αρχείο για "$1".',
 'lockmanager-fail-deletelock' => 'Δεν μπόρεσε να διαγράψει το αρχείο κλειδώματος για το "$1".',
+'lockmanager-fail-acquirelock' => 'Δεν ήταν δυνατή η απόκτηση κλειδώματος για "$1".',
 'lockmanager-fail-openlock' => 'Δεν μπόρεσε να ανοίξει το αρχείο κλειδώματος για το "$1".',
 
 # ZipDirectoryReader
@@ -1932,7 +1945,6 @@ $1',
 'http-read-error' => 'Σφάλμα ανάγνωσης HTTP.',
 'http-timed-out' => 'Ο χρόνος του αιτήματος HTTP έληξε.',
 'http-curl-error' => 'Σφάλμα κατά τη λήψη του URL: $1',
-'http-host-unreachable' => 'Το URL δεν ήταν προσβάσιμο.',
 'http-bad-status' => 'Υπήρξε πρόβλημα κατά τη διάρκεια του αιτήματος HTTP: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -2246,15 +2258,6 @@ $1',
 'listusers-submit' => 'Δείξε',
 'listusers-noresult' => 'Δεν βρέθηκε χρήστης.',
 'listusers-blocked' => '(υπό φραγή)',
-
-# Special:ActiveUsers
-'activeusers' => 'Κατάλογος ενεργών χρηστών',
-'activeusers-intro' => 'Αυτή είναι μια λίστα από χρήστες που είχαν κάποιου είδους δραστηριότητα {{PLURAL:$1|την τελευταία $1 μέρα|τις τελευταίες $1 μέρες}}.',
-'activeusers-count' => '$1 {{PLURAL:$1|ενέργεια|ενέργειες}} {{PLURAL:$3|την τελευταία μέρα|τις τελευταίες $3 μέρες}}',
-'activeusers-from' => 'Προβολή χρηστών ξεκινώντας από:',
-'activeusers-hidebots' => 'Απόκρυψη bots',
-'activeusers-hidesysops' => 'Απόκρυψη διαχειριστών',
-'activeusers-noresult' => 'Δεν βρέθηκε χρήστης.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Δικαιώματα ομάδων χρηστών',
@@ -3050,13 +3053,8 @@ $1',
 
 # Stylesheets
 'common.css' => '/* Το τοποθετημένο εδώ CSS θα εφαρμοστεί σε όλα τα skins */',
-'standard.css' => '/* Το τοποθετημένο εδώ CSS θα επηρεάσει χρήστες του Standard skin */',
-'nostalgia.css' => '/* Το τοποθετημένο εδώ CSS θα επηρεάσει χρήστες του Nostalgia skin */',
 'cologneblue.css' => '/* Το τοποθετημένο εδώ CSS θα επηρεάσει χρήστες του Cologne Blue skin */',
 'monobook.css' => '/* Το τοποθετημένο εδώ CSS θα επηρεάσει χρήστες του Monobook skin */',
-'myskin.css' => '/* Το τοποθετημένο εδώ CSS θα επηρεάσει χρήστες του MySkin skin */',
-'chick.css' => '/* Το τοποθετημένο εδώ CSS θα επηρεάσει χρήστες του Chick skin */',
-'simple.css' => '/* Το τοποθετημένο εδώ CSS θα επηρεάσει χρήστες του Simple skin */',
 'modern.css' => '/* Το τοποθετημένο εδώ CSS θα επηρεάσει χρήστες του Modern skin */',
 'vector.css' => '/* Το τοποθετημένο εδώ CSS θα επηρεάσει χρήστες του Vector skin */',
 'print.css' => '/* Το τοποθετημένο εδώ CSS θα επηρεάσει το αποτέλεσμα της εκτύπωσης */',
@@ -3064,13 +3062,8 @@ $1',
 
 # Scripts
 'common.js' => '/* Οποιοσδήποτε κώδικας JavaScript εδώ θα φορτωθεί για όλους τους χρήστες σε κάθε φόρτωση σελίδας. */',
-'standard.js' => '/* Οποιοσδήποτε κώδικας JavaScript εδώ θα φορτωθεί για χρήστες που χρησιμοποιούν το Standard skin */',
-'nostalgia.js' => '/* Οποιοσδήποτε κώδικας JavaScript εδώ θα φορτωθεί για χρήστες που χρησιμοποιούν το Nostalgia skin */',
 'cologneblue.js' => '/* Οποιοσδήποτε κώδικας JavaScript εδώ θα φορτωθεί για χρήστες που χρησιμοποιούν το Cologne Blue skin */',
 'monobook.js' => '/* Οποιοσδήποτε κώδικας JavaScript εδώ θα φορτωθεί για χρήστες που χρησιμοποιούν το MonoBook skin */',
-'myskin.js' => '/* Οποιοσδήποτε κώδικας JavaScript εδώ θα φορτωθεί για χρήστες που χρησιμοποιούν το MySkin skin */',
-'chick.js' => '/* Οποιοσδήποτε κώδικας JavaScript εδώ θα φορτωθεί για χρήστες που χρησιμοποιούν το Chick skin */',
-'simple.js' => '/* Οποιοσδήποτε κώδικας JavaScript εδώ θα φορτωθεί για χρήστες που χρησιμοποιούν το Simple skin */',
 'modern.js' => '/* Οποιοσδήποτε κώδικας JavaScript εδώ θα φορτωθεί για χρήστες που χρησιμοποιούν το Modern skin */',
 'vector.js' => '/* Οποιοσδήποτε κώδικας JavaScript εδώ θα φορτωθεί για χρήστες που χρησιμοποιούν το Vector skin */',
 
@@ -3146,10 +3139,6 @@ $1',
 'pageinfo-category-files' => 'Αριθμός αρχείων',
 
 # Skin names
-'skinname-standard' => 'Κλασσικό',
-'skinname-nostalgia' => 'Νοσταλγία',
-'skinname-myskin' => 'ΤοSkinΜου',
-'skinname-simple' => 'Απλό',
 'skinname-modern' => 'Μοντέρνο',
 
 # Patrolling
@@ -3948,6 +3937,8 @@ $5
 'htmlform-submit' => 'Υποβολή',
 'htmlform-reset' => 'Αναστροφή αλλαγών',
 'htmlform-selectorother-other' => 'Άλλο',
+'htmlform-no' => 'Όχι',
+'htmlform-yes' => 'Ναι',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 με υποστήριξη αναζήτησης πλήρους κειμένου',
@@ -3955,7 +3946,7 @@ $5
 
 # New logging system
 'logentry-delete-delete' => '{{GENDER:$1|Ο|Η}} $1 διέγραψε τη σελίδα $3',
-'logentry-delete-restore' => 'Ο/η $1 αποκατέστησε τη σελίδα $3',
+'logentry-delete-restore' => 'Ο/Η $1 αποκατέστησε τη σελίδα $3',
 'logentry-delete-event' => '{{GENDER:$1|Ο|Η}} $1 άλλαξε την ορατότητα σε {{PLURAL:$5|ένα γεγονός καταγραφής|$5 log events}} στο $3: $4',
 'logentry-delete-revision' => '{{GENDER:$1|Ο|Η}} $1 άλλαξε την ορατότητα {{PLURAL:$5|μιας έκδοσης|$5 εκδόσεων}} στη σελίδα $3: $4',
 'logentry-delete-event-legacy' => '{{GENDER:$2|Ο|Η}} $1 άλλαξε την ορατότητα των καταγραφόμενων συμβάντων στη σελίδα $3',

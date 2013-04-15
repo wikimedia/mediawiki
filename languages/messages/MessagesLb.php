@@ -211,8 +211,6 @@ $messages = array(
 'tog-shownumberswatching' => "D'Zuel vun de Benotzer déi dës Säit iwwerwaache weisen",
 'tog-oldsig' => 'Aktuell Ënnerschrëft:',
 'tog-fancysig' => 'Ënnerschrëft als Wiki-Text behandelen (Ouni automatesche Link)',
-'tog-externaleditor' => 'Externen Editeur als Standard benotzen (Nëmme fir Experten, et musse speziell Astellungen op ärem Computer gemaach ginn. [//www.mediawiki.org/wiki/Manual:External_editors Méi Informatiounen.])',
-'tog-externaldiff' => 'En Externen Diff-Programm als Standard benotzen (nëmme fir Experten, et musse speziell Astellungen op ärem Computer gemaach ginn. [//www.mediawiki.org/wiki/Manual:External_editors Méi Informatiounen])',
 'tog-showjumplinks' => 'Aktivéiere vun de "Sprang op"-Linken',
 'tog-uselivepreview' => 'Live-Preview benotzen (JavaScript) (experimentell)',
 'tog-forceeditsummary' => 'Warnen, wa beim Späicheren de Resumé feelt',
@@ -227,6 +225,7 @@ $messages = array(
 'tog-showhiddencats' => 'Verstoppt Kategorië weisen',
 'tog-noconvertlink' => 'Ëmwandlung vum Titel desaktivéieren',
 'tog-norollbackdiff' => 'Ënnerscheed nom Zrécksetzen ënnerdrécken',
+'tog-useeditwarning' => "Mech warne wann ech d'Ännerung vun enger Säit verloosen, ouni Ännerunge gespäichert ze hunn",
 
 'underline-always' => 'Ëmmer',
 'underline-never' => 'Ni',
@@ -497,7 +496,7 @@ Et kann awer och sinn datt et e Bug a(n) der Software op {{SITENAME}} gëtt.',
 'nosuchspecialpage' => 'Spezialsäit gëtt et net',
 'nospecialpagetext' => '<strong>Dir hutt eng Spezialsäit ofgefrot déi et net gëtt.</strong>
 
-All Spezialsäiten déi et gëtt, sinn op der [[Special:SpecialPages|Lëscht vun de Spezialsäiten]] ze fannen.',
+All Spezialsäiten déi et gëtt, sinn op der [[Special:SpecialPages|{{int:specialpages}}]] ze fannen.',
 
 # General errors
 'error' => 'Feeler',
@@ -598,9 +597,15 @@ Opgepasst: Op verschiddene Säite kann et nach esou aus gesinn, wéi wann Dir na
 'welcomecreation-msg' => "Äre Benotzerkont gouf ugeluecht.
 Vergiesst net fir Är [[Special:Preferences|{{SITENAME}} Astellungen]] z'änneren",
 'yourname' => 'Benotzernumm:',
+'userlogin-yourname' => 'Benotzernumm',
+'userlogin-yourname-ph' => 'Gitt Äre Benotzernumm an',
 'yourpassword' => 'Passwuert:',
+'userlogin-yourpassword' => 'Passwuert',
+'userlogin-yourpassword-ph' => 'Gitt Ärt Passwuert an',
 'yourpasswordagain' => 'Passwuert nach eemol antippen:',
 'remembermypassword' => 'Meng Umeldung op dësem Computer (fir maximal $1 {{PLURAL:$1|Dag|Deeg}}) verhalen',
+'userlogin-remembermypassword' => 'Sech u mech erënneren',
+'userlogin-signwithsecure' => 'Mat engem séchere Server umellen',
 'securelogin-stick-https' => 'Nom Umelle mat HTTPS verbonn bleiwen',
 'yourdomainname' => 'Ären Domain',
 'password-change-forbidden' => 'Dir däerft op dëser Wiki Passwierder net änneren.',
@@ -613,12 +618,15 @@ Vergiesst net fir Är [[Special:Preferences|{{SITENAME}} Astellungen]] z'ännere
 'logout' => 'Ofmellen',
 'userlogout' => 'Ausloggen',
 'notloggedin' => 'Net ageloggt',
+'userlogin-noaccount' => 'Hutt Dir kee Benotzerkont?',
 'nologin' => "Hutt Dir kee Benotzerkont? '''$1'''.",
 'nologinlink' => 'Neie Benotzerkont maachen',
 'createaccount' => 'Neie Kont opmaachen',
 'gotaccount' => "Dir hutt schonn e Benotzerkont? '''$1'''.",
 'gotaccountlink' => 'Umellen',
 'userlogin-resetlink' => "Hutt Dir d'Detailer vun Ärem Login vergiess?",
+'helplogin-url' => 'Help:Aloggen',
+'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Hëllef beim aloggen]]',
 'createaccountmail' => 'En temporäert Passwuert benotzen an et per E-Mail un déi E-Mailadress schécken déi hei drënner steet',
 'createaccountreason' => 'Grond:',
 'badretype' => 'Är Passwierder stëmmen net iwwerdeneen.',
@@ -721,6 +729,7 @@ Vläicht hutt Dir Äert Passwuert scho geännert oder en neit temporäert Passwu
 'passwordreset-text' => 'Fëllt dëse Formulaire aus fir Äert Passwuert zréckzesetzen.',
 'passwordreset-legend' => 'Passwuert zrécksetzen',
 'passwordreset-disabled' => "D'Zerécksetze vum Passwuert ass op dëser Wiki ausgeschalt.",
+'passwordreset-emaildisabled' => "D'E-Mail-Fonctioune goufen op dëser Wiki ausgeschalt.",
 'passwordreset-pretext' => '{{PLURAL:$1||Gitt eng vun dësen Donnéeën an}}',
 'passwordreset-username' => 'Benotzernumm:',
 'passwordreset-domain' => 'Domaine:',
@@ -953,6 +962,8 @@ Si gouf anscheinend geläscht.",
 'defaultmessagetext' => 'Standardtext',
 'invalid-content-data' => 'Donnéeë vum Inhalt sinn net valabel',
 'content-not-allowed-here' => '"$1"-Inhalt ass op der Säit [[$2]] net erlaabt',
+'editwarning-warning' => 'Wann Dir dës Säit verloosst kann dat dozou féieren datt Dir all Ännerungen, déi Dir gemaach hutt, verléiert.
+Wann Dir ageloggt sidd, kënnt Dir dës Warnung an der Sektioun "{{int:prefs-editing}}" vun Ären Astellungen ausschalten.',
 
 # Content models
 'content-model-wikitext' => 'Wikitext',
@@ -1232,15 +1243,7 @@ Detailer fannt Dir am [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}
 'powersearch-togglenone' => 'Keen',
 'search-external' => 'Extern sichen',
 'searchdisabled' => "D'Sichfunktioun op {{SITENAME}} ass ausgeschalt. Dir kënnt iwwerdeems mat Hëllef vu Google sichen. Bedenkt awer, datt deenen hire  Sichindex fir {{SITENAME}} eventuell net dem aktuellste Stand entsprecht.",
-
-# Quickbar
-'qbsettings' => 'Geschirläischt',
-'qbsettings-none' => 'Keen',
-'qbsettings-fixedleft' => 'Lénks, fest',
-'qbsettings-fixedright' => 'Riets, fest',
-'qbsettings-floatingleft' => 'schwiewt lenks',
-'qbsettings-floatingright' => 'Schwiewt riets',
-'qbsettings-directionality' => 'Fix, ofhängeg vun der Schreiwrichtung vun Ärer Sprooch',
+'search-error' => 'Beim Sichen ass e Feeler geschitt: $1',
 
 # Preferences page
 'preferences' => 'Astellungen',
@@ -3745,6 +3748,8 @@ Den ugefrote Fichier gëtt direkt gewise respektiv mat enger verbonner Applikati
 'htmlform-submit' => 'Späicheren',
 'htmlform-reset' => 'Ännerungen zrécksetzen',
 'htmlform-selectorother-other' => 'Anerer',
+'htmlform-no' => 'Neen',
+'htmlform-yes' => 'Jo',
 
 # SQLite database support
 'sqlite-has-fts' => "$1 ënnerstëtzt d'Volltextsich",

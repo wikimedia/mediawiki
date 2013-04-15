@@ -2007,8 +2007,8 @@ $1',
 'license-header' => 'רישיון',
 'nolicense' => 'אין',
 'license-nopreview' => '(תצוגה מקדימה לא זמינה)',
-'upload_source_url' => ' (כתובת URL תקפה ונגישה)',
-'upload_source_file' => ' (קובץ במחשב שלך)',
+'upload_source_url' => '(כתובת URL תקפה ונגישה)',
+'upload_source_file' => '(קובץ במחשב שלך)',
 
 # Special:ListFiles
 'listfiles-summary' => 'דף מיוחד זה מציג את כל הקבצים שהועלו.

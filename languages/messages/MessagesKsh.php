@@ -1996,7 +1996,7 @@ Wann ene Metmaacher ußjesöhk es, kritt mer bloß die Dateie, di dä Metmaacher
 'listfiles_name' => 'Name',
 'listfiles_user' => 'Metmaacher',
 'listfiles_size' => 'Byte',
-'listfiles_description' => 'Wat en dä Datei dren shtish',
+'listfiles_description' => 'Wat en dä Datei dren schtisch',
 'listfiles_count' => 'Versione',
 
 # File description page

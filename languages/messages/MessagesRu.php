@@ -47,6 +47,7 @@
  * @author Ignatus
  * @author Illusion
  * @author Iltever
+ * @author Iluvatar
  * @author Incnis Mrsi
  * @author Iniquity
  * @author Innv
@@ -819,9 +820,15 @@ $2',
 'welcomecreation-msg' => 'Ваша учётная запись создана.
 Не забудьте провести [[Special:Preferences|персональную настройку]] сайта {{SITENAME}}.',
 'yourname' => 'Имя учётной записи:',
+'userlogin-yourname' => 'Имя учётной записи',
+'userlogin-yourname-ph' => 'Введите имя вашей учётной записи',
 'yourpassword' => 'Пароль:',
+'userlogin-yourpassword' => 'Пароль',
+'userlogin-yourpassword-ph' => 'Введите ваш пароль',
 'yourpasswordagain' => 'Повторный набор пароля:',
 'remembermypassword' => 'Помнить мою учётную запись на этом компьютере (не более $1 {{PLURAL:$1|дня|дней|дней}})',
+'userlogin-remembermypassword' => 'Запомнить меня',
+'userlogin-signwithsecure' => 'Выполните вход, используя безопасный сервер',
 'securelogin-stick-https' => 'Продолжить подключение по HTTPS после входа',
 'yourdomainname' => 'Ваш домен:',
 'password-change-forbidden' => 'Вы не можете изменить пароль в этой вики.',
@@ -834,12 +841,14 @@ $2',
 'logout' => 'Завершение сеанса',
 'userlogout' => 'Завершение сеанса',
 'notloggedin' => 'Вы не представились системе',
+'userlogin-noaccount' => 'Нет аккаунта?',
 'nologin' => 'Нет учётной записи? $1.',
 'nologinlink' => 'Создать учётную запись',
 'createaccount' => 'Создать учётную запись',
 'gotaccount' => "Вы уже зарегистрированы? '''$1'''.",
 'gotaccountlink' => 'Представьтесь',
 'userlogin-resetlink' => 'Забыли данные для входа?',
+'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Помощь со входом в систему]]',
 'createaccountmail' => 'Использовать сгенерированный случайным образом временный пароль и выслать мне его на указанный ниже адрес электронной почты:',
 'createaccountreason' => 'Причина:',
 'badretype' => 'Введённые вами пароли не совпадают.',

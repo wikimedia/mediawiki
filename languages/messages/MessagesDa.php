@@ -220,8 +220,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Vis antal brugere, der overvåger',
 'tog-oldsig' => 'Nuværende signatur:',
 'tog-fancysig' => 'Behandl signatur som wikitekst uden automatisk henvisning',
-'tog-externaleditor' => 'Brug ekstern editor automatisk (kun for rutinerede brugere, da det kræver særlige indstillinger på din computer. [//www.mediawiki.org/wiki/Manual:External_editors Flere oplysninger.])',
-'tog-externaldiff' => 'Brug ekstern forskelsvisning automatisk (kun for rutinerede brugere, da det kræver særlige indstillinger på din computer. [//www.mediawiki.org/wiki/Manual:External_editors Flere oplysninger.])',
 'tog-showjumplinks' => 'Vis tilgængeligheds-henvisninger',
 'tog-uselivepreview' => 'Brug automatisk forhåndsvisning (kræver JavaScript og er på forsøgsstadiet)',
 'tog-forceeditsummary' => 'Advar mig hvis jeg ikke udfylder beskrivelsesfeltet',
@@ -236,6 +234,7 @@ $messages = array(
 'tog-showhiddencats' => 'Vis skjulte kategorier',
 'tog-noconvertlink' => 'Slå konvertering af sidetitler fra',
 'tog-norollbackdiff' => 'Vis ikke forskel efter tilbagerulning',
+'tog-useeditwarning' => 'Advar mig, hvis jeg forlader en redigeringsside med ændringer, der ikke er gemt.',
 
 'underline-always' => 'Altid',
 'underline-never' => 'Aldrig',
@@ -603,9 +602,15 @@ Bemærk, at nogle sider stadigvæk kan vises som om du var logget på, indtil du
 'welcomecreation-msg' => 'Din konto er blevet oprettet.
 Glem ikke at ændre dine [[Special:Preferences|{{SITENAME}} indstillinger]].',
 'yourname' => 'Dit brugernavn:',
+'userlogin-yourname' => 'Brugernavn',
+'userlogin-yourname-ph' => 'Indtast dit brugernavn',
 'yourpassword' => 'Din adgangskode:',
+'userlogin-yourpassword' => 'Adgangskode',
+'userlogin-yourpassword-ph' => 'Indtast din adgangskode',
 'yourpasswordagain' => 'Gentag adgangskode',
 'remembermypassword' => 'Husk mit brugernavn i denne browser (højst $1 {{PLURAL:$1|dag|dage}})',
+'userlogin-remembermypassword' => 'Husk mig',
+'userlogin-signwithsecure' => 'Log ind på den sikre server',
 'securelogin-stick-https' => 'Behold forbindelsen til HTTPS efter login',
 'yourdomainname' => 'Dit domænenavn:',
 'password-change-forbidden' => 'Du kan ikke ændre adgangskoder på denne wiki.',
@@ -618,12 +623,16 @@ Glem ikke at ændre dine [[Special:Preferences|{{SITENAME}} indstillinger]].',
 'logout' => 'Log af',
 'userlogout' => 'Log af',
 'notloggedin' => 'Ikke logget på',
+'userlogin-noaccount' => 'Har du ikke en konto?',
+'userlogin-joinproject' => 'Slut dig til {{SITENAME}}',
 'nologin' => 'Har du ingen konto? $1.',
 'nologinlink' => 'Opret en ny brugerkonto',
 'createaccount' => 'Opret en ny brugerkonto',
 'gotaccount' => 'Har du allerede en konto? $1.',
 'gotaccountlink' => 'Log på',
 'userlogin-resetlink' => 'Har du glemt dine login oplysninger?',
+'helplogin-url' => 'Help:Logget ind',
+'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Hjælp til at logge på]]',
 'createaccountmail' => 'Brug en midlertidig tilfældig adgangskode og send den til e-mailadressen angivet nedenfor',
 'createaccountreason' => 'Begrundelse:',
 'badretype' => 'De indtastede adgangskoder er ikke ens.',
@@ -721,6 +730,7 @@ Du har muligvis allerede skiftet din adgangskode eller anmodet om en ny midlerti
 'passwordreset-text' => 'Udfyld denne formular for at nulstille din adgangskode.',
 'passwordreset-legend' => 'Nulstil adgangskode',
 'passwordreset-disabled' => 'Nulstilling af kodeord er slået fra på denne wiki.',
+'passwordreset-emaildisabled' => 'E-mailfunktioner er slået fra på denne wiki.',
 'passwordreset-pretext' => '{{PLURAL:$1||Indtast en af de nedenstående oplysninger}}',
 'passwordreset-username' => 'Brugernavn:',
 'passwordreset-domain' => 'Domæne:',
@@ -961,6 +971,8 @@ Den ser du til at være slettet.',
 'content-failed-to-parse' => 'Kunne ikke fortolke $2-indholdet af $1-modellen: $3',
 'invalid-content-data' => 'Ugyldig indholdsdata',
 'content-not-allowed-here' => '"$1" indhold er ikke tilladt på siden [[$2]]',
+'editwarning-warning' => 'Hvis du forlader siden nu, risikerer du at miste alle ændringer, som du har lavet.
+Denne advarsel kan slås fra under "Redigering" i dine indstillinger.',
 
 # Content models
 'content-model-wikitext' => 'wikitekst',
@@ -1239,6 +1251,7 @@ Du kan prøve at bruge \"all:\" som præfiks for at søge i alt indhold (inkl. d
 'powersearch-togglenone' => 'Ingen',
 'search-external' => 'Brug anden søgemaskine',
 'searchdisabled' => '<p>Beklager! Fuldtekstsøgningen er midlertidigt afbrudt på grund af for stor belastning på serverne. I mellemtidem kan du anvende Google- eller Yahoo!-søgefelterne herunder. Bemærk at deres kopier af {{SITENAME}}s indhold kan være forældet.</p>',
+'search-error' => 'Der opstod en fejl under søgning: $1',
 
 # Preferences page
 'preferences' => 'Indstillinger',
@@ -3732,7 +3745,7 @@ Billeder vises i fuld opløsning, og andre mediatyper vil blive aktiveret med de
 
 # Special:Tags
 'tags' => 'Tags til sideversioner',
-'tag-filter' => '[[Special:Tags|tag]]filter:',
+'tag-filter' => '[[Special:Tags|Tag]]filter:',
 'tag-filter-submit' => 'Filtrér',
 'tags-title' => 'Tags',
 'tags-intro' => 'Denne side oplister de tags som programmet kan mærke en redigering med, og deres betydning.',
@@ -3775,6 +3788,8 @@ Billeder vises i fuld opløsning, og andre mediatyper vil blive aktiveret med de
 'htmlform-submit' => 'Gem',
 'htmlform-reset' => 'Annuller ændringer',
 'htmlform-selectorother-other' => 'Anden',
+'htmlform-no' => 'Nej',
+'htmlform-yes' => 'Ja',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 med fuld-tekst søgnings support',
