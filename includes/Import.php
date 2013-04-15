@@ -396,10 +396,16 @@ class WikiImporter {
 	 * Primary entry point
 	 */
 	public function doImport() {
+
+		// Calls to reader->read need to be wrapped in calls to
+		// libxml_disable_entity_loader() to avoid local file
+		// inclusion attacks (bug 46932).
+		$oldDisable = libxml_disable_entity_loader( true );
 		$this->reader->read();
 
 		if ( $this->reader->name != 'mediawiki' ) {
-			throw new MWException( "Expected <mediawiki> tag, got ".
+			libxml_disable_entity_loader( $oldDisable );
+			throw new MWException( "Expected <mediawiki> tag, got " .
 				$this->reader->name );
 		}
 		$this->debug( "<mediawiki> tag is correct." );
@@ -437,6 +443,7 @@ class WikiImporter {
 			}
 		}
 
+		libxml_disable_entity_loader( $oldDisable );
 		return true;
 	}
 
