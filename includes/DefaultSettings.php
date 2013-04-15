@@ -63,7 +63,11 @@ $wgConf = new SiteConfiguration;
  * MediaWiki version number
  * @since 1.2
  */
+<<<<<<< HEAD   (569183 1.20.0rc2)
 $wgVersion = '1.21.0rc2';
+=======
+$wgVersion = '1.21.0rc1';
+>>>>>>> BRANCH (04ee0f Merge "Cleared ResourceLoader blob store after update.php fi)
 
 /**
  * Name of the site. It must be changed in LocalSettings.php

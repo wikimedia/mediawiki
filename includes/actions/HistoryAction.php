@@ -224,7 +224,7 @@ class HistoryAction extends FormlessAction {
 		}
 
 		if ( $offset ) {
-			$offsets = array( 'rev_timestamp $oper ' . $dbr->addQuotes( $dbr->timestamp( $offset ) ) );
+			$offsets = array( "rev_timestamp $oper " . $dbr->addQuotes( $dbr->timestamp( $offset ) ) );
 		} else {
 			$offsets = array();
 		}
