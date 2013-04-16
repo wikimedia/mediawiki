@@ -278,7 +278,7 @@ class SpecialVersion extends SpecialPage {
 	 * @return bool|string wgVersion + HEAD sha1 stripped to the first 7 chars with link and date, or false on failure
 	 */
 	private static function getVersionLinkedGit() {
-		global $IP, $wgLang;
+		global $IP, $wgLang, $wgGitShowLocalUpdateTimestamp;
 
 		$gitInfo = new GitInfo( $IP );
 		$headSHA1 = $gitInfo->getHeadSHA1();
@@ -295,7 +295,14 @@ class SpecialVersion extends SpecialPage {
 
 		$gitHeadCommitDate = $gitInfo->getHeadCommitDate();
 		if ( $gitHeadCommitDate ) {
-			$shortSHA1 .= "<br/>" . $wgLang->timeanddate( $gitHeadCommitDate, true );
+			$shortSHA1 .= '<br/>' . $wgLang->timeanddate( $gitHeadCommitDate, true );
+		}
+
+		if ( $wgGitShowLocalUpdateTimestamp ) {
+			$gitLocalUpdateDate = $gitInfo->getLocalUpdateDate();
+			if ( $gitLocalUpdateDate ) {
+				$shortSHA1 .= '<br/>' . $wgLang->timeanddate( $gitLocalUpdateDate, true );
+			}
 		}
 
 		return self::getwgVersionLinked() . " $shortSHA1";
@@ -469,7 +476,7 @@ class SpecialVersion extends SpecialPage {
 	 * @return string
 	 */
 	function getCreditsForExtension( array $extension ) {
-		global $wgLang;
+		global $wgLang, $wgGitShowLocalUpdateTimestamp;
 
 		$name = isset( $extension['name'] ) ? $extension['name'] : '[no name]';
 
@@ -488,6 +495,14 @@ class SpecialVersion extends SpecialPage {
 				if ( $gitHeadCommitDate ) {
 					$vcsText .= "<br/>" . $wgLang->timeanddate( $gitHeadCommitDate, true );
 				}
+
+				if ( $wgGitShowLocalUpdateTimestamp ) {
+					$gitLocalUpdateDate = $gitInfo->getLocalUpdateDate();
+					if ( $gitLocalUpdateDate ) {
+						$vcsText .= "<br/>" . $wgLang->timeanddate( $gitLocalUpdateDate, true );
+					}
+				}
+
 			} else {
 				$svnInfo = self::getSvnInfo( dirname( $extension['path'] ) );
 				# Make subversion text/link.
