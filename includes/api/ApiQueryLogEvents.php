@@ -106,6 +106,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			list( $type, $action ) = explode( '/', $params['action'] );
 			$this->addWhereFld( 'log_type', $type );
 			$this->addWhereFld( 'log_action', $action );
+			$index['logging'] = 'type_action';
 		} elseif ( !is_null( $params['type'] ) ) {
 			$this->addWhereFld( 'log_type', $params['type'] );
 			$index['logging'] = 'type_time';
