@@ -2506,20 +2506,31 @@ $templates
 			$ret .= "$closeHead\n";
 		}
 
-		$bodyAttrs = array();
+		$bodyClasses = array();
+		$bodyClasses[] = 'mediawiki';
 
 		# Classes for LTR/RTL directionality support
-		$bodyAttrs['class'] = "mediawiki $userdir sitedir-$sitedir";
+		$bodyClasses[] = $userdir;
+		$bodyClasses[] = "sitedir-$sitedir";
 
 		if ( $this->getLanguage()->capitalizeAllNouns() ) {
 			# A <body> class is probably not the best way to do this . . .
-			$bodyAttrs['class'] .= ' capitalize-all-nouns';
+			$bodyClasses[] = 'capitalize-all-nouns';
 		}
-		$bodyAttrs['class'] .= ' ' . $sk->getPageClasses( $this->getTitle() );
-		$bodyAttrs['class'] .= ' skin-' . Sanitizer::escapeClass( $sk->getSkinName() );
-		$bodyAttrs['class'] .= ' action-' . Sanitizer::escapeClass( Action::getActionName( $this->getContext() ) );
 
-		$sk->addToBodyAttributes( $this, $bodyAttrs ); // Allow skins to add body attributes they need
+		$bodyClasses[] = $sk->getPageClasses( $this->getTitle() );
+		$bodyClasses[] = 'skin-' . Sanitizer::escapeClass( $sk->getSkinName() );
+		$bodyClasses[] = 'action-' . Sanitizer::escapeClass( Action::getActionName( $this->getContext() ) );
+
+		// Allow skins and extensions to add body classes they need
+		$sk->addToBodyClasses( $this, $bodyClasses );
+		wfRunHooks( 'OutputPageBodyClasses', array( $this, $sk, &$bodyClasses ) );
+
+		$bodyAttrs = array();
+		$bodyAttrs['class'] = implode( ' ', $bodyClasses );
+
+		// Allow skins and extensions to add other body attributes they need
+		$sk->addToBodyAttributes( $this, $bodyAttrs );
 		wfRunHooks( 'OutputPageBodyAttributes', array( $this, $sk, &$bodyAttrs ) );
 
 		$ret .= Html::openElement( 'body', $bodyAttrs ) . "\n";
