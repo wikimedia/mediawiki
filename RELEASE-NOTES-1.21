@@ -124,6 +124,7 @@ production.
   quotmarks, order and whitespace in the attribute list).
 
 === Bug fixes in 1.21 ===
+* (bug 47271) $wgContentHandlerUseDB should be set to false during the upgrade
 * (bug 46084) Sanitize $limitReport before outputting.
 * (bug 46859) Disable external entities in XMLReader.
 * (bug 47251) Disable external entities in Import.
