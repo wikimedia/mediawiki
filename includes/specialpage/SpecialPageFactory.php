@@ -243,11 +243,14 @@ class SpecialPageFactory {
 			$missingPages = clone self::getList();
 
 			self::$aliases = array();
-			foreach ( $aliases as $realName => $aliasList ) {
-				foreach ( $aliasList as $alias ) {
-					self::$aliases[$wgContLang->caseFold( $alias )] = $realName;
+			// Check for $aliases being an array since Language::getSpecialPageAliases can return null
+			if ( is_array( $aliases ) ) {
+				foreach ( $aliases as $realName => $aliasList ) {
+					foreach ( $aliasList as $alias ) {
+						self::$aliases[$wgContLang->caseFold( $alias )] = $realName;
+					}
+					unset( $missingPages->$realName );
 				}
-				unset( $missingPages->$realName );
 			}
 			foreach ( $missingPages as $name => $stuff ) {
 				self::$aliases[$wgContLang->caseFold( $name )] = $name;
@@ -567,13 +570,16 @@ class SpecialPageFactory {
 		} else {
 			// Try harder in case someone misspelled the correct casing
 			$found = false;
-			foreach ( $aliases as $n => $values ) {
-				if ( strcasecmp( $name, $n ) === 0 ) {
-					wfWarn( "Found alias defined for $n when searching for " .
-						"special page aliases for $name. Case mismatch?" );
-					$name = $values[0];
-					$found = true;
-					break;
+			// Check for $aliases being an array since Language::getSpecialPageAliases can return null
+			if ( is_array( $aliases ) ) {
+				foreach ( $aliases as $n => $values ) {
+					if ( strcasecmp( $name, $n ) === 0 ) {
+						wfWarn( "Found alias defined for $n when searching for " .
+							"special page aliases for $name. Case mismatch?" );
+						$name = $values[0];
+						$found = true;
+						break;
+					}
 				}
 			}
 			if ( !$found ) {
