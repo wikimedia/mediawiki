@@ -338,7 +338,7 @@ abstract class JobQueue {
 		// Flag this job as an old duplicate based on its "root" job...
 		try {
 			if ( $job && $this->isRootJobOldDuplicate( $job ) ) {
-				wfIncrStats( 'job-pop-duplicate' );
+				JobQueue::incrStats( 'job-pop-duplicate', $this->type );
 				$job = DuplicateJob::newFromJob( $job ); // convert to a no-op
 			}
 		} catch ( MWException $e ) {} // don't lose jobs over this
@@ -578,6 +578,19 @@ abstract class JobQueue {
 	 */
 	public function getAllDelayedJobs() {
 		return new ArrayIterator( array() ); // not implemented
+	}
+
+	/**
+	 * Call wfIncrStats() for the queue overall and for the queue type
+	 *
+	 * @param string $key Event type
+	 * @param string $type Job type
+	 * @param integer $delta
+	 * @since 1.22
+	 */
+	public static function incrStats( $key, $type, $delta = 1 ) {
+		wfIncrStats( $key, $delta );
+		wfIncrStats( "{$key}-{$type}", $delta );
 	}
 
 	/**
