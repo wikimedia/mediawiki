@@ -898,7 +898,9 @@ class EditPage {
 				$orig = $this->getOriginalContent();
 				$content = $orig ? $orig->getSection( $this->section ) : null;
 
-				if ( !$content ) $content = $def_content;
+				if ( !$content ) {
+					$content = $def_content;
+				}
 			} else {
 				$undoafter = $wgRequest->getInt( 'undoafter' );
 				$undo = $wgRequest->getInt( 'undo' );
@@ -986,7 +988,9 @@ class EditPage {
 		}
 		$revision = $this->mArticle->getRevisionFetched();
 		if ( $revision === null ) {
-			if ( !$this->contentModel ) $this->contentModel = $this->getTitle()->getContentModel();
+			if ( !$this->contentModel ) {
+				$this->contentModel = $this->getTitle()->getContentModel();
+			}
 			$handler = ContentHandler::getForModelID( $this->contentModel );
 
 			return $handler->makeEmptyContent();
@@ -1008,7 +1012,9 @@ class EditPage {
 		$content = $rev ? $rev->getContent( Revision::RAW ) : null;
 
 		if ( $content === false || $content === null ) {
-			if ( !$this->contentModel ) $this->contentModel = $this->getTitle()->getContentModel();
+			if ( !$this->contentModel ) {
+				$this->contentModel = $this->getTitle()->getContentModel();
+			}
 			$handler = ContentHandler::getForModelID( $this->contentModel );
 
 			return $handler->makeEmptyContent();
@@ -1934,14 +1940,14 @@ class EditPage {
 		if ( $namespace == NS_MEDIAWIKI ) {
 			# Show a warning if editing an interface message
 			$wgOut->wrapWikiMsg( "<div class='mw-editinginterface'>\n$1\n</div>", 'editinginterface' );
-		} else if( $namespace == NS_FILE ) {
+		} elseif ( $namespace == NS_FILE ) {
 			# Show a hint to shared repo
 			$file = wfFindFile( $this->mTitle );
-			if( $file && !$file->isLocal() ) {
+			if ( $file && !$file->isLocal() ) {
 				$descUrl = $file->getDescriptionUrl();
 				# there must be a description url to show a hint to shared repo
-				if( $descUrl ) {
-					if( !$this->mTitle->exists() ) {
+				if ( $descUrl ) {
+					if ( !$this->mTitle->exists() ) {
 						$wgOut->wrapWikiMsg( "<div class=\"mw-sharedupload-desc-create\">\n$1\n</div>", array(
 									'sharedupload-desc-create', $file->getRepo()->getDisplayName(), $descUrl
 						) );
@@ -2167,7 +2173,7 @@ class EditPage {
 		}
 
 		# When the summary is hidden, also hide them on preview/show changes
-		if( $this->nosummary ) {
+		if ( $this->nosummary ) {
 			$wgOut->addHTML( Html::hidden( 'nosummary', true ) );
 		}
 
@@ -2708,9 +2714,9 @@ HTML
 
 		$oldtitlemsg = 'currentrev';
 		# if message does not exist, show diff against the preloaded default
-		if( $this->mTitle->getNamespace() == NS_MEDIAWIKI && !$this->mTitle->exists() ) {
+		if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI && !$this->mTitle->exists() ) {
 			$oldtext = $this->mTitle->getDefaultMessageText();
-			if( $oldtext !== false ) {
+			if ( $oldtext !== false ) {
 				$oldtitlemsg = 'defaultmessagetext';
 				$oldContent = $this->toEditContent( $oldtext );
 			} else {
@@ -3034,9 +3040,9 @@ HTML
 
 			# don't parse non-wikitext pages, show message about preview
 			if ( $this->mTitle->isCssJsSubpage() || $this->mTitle->isCssOrJsPage() ) {
-				if( $this->mTitle->isCssJsSubpage() ) {
+				if ( $this->mTitle->isCssJsSubpage() ) {
 					$level = 'user';
-				} elseif( $this->mTitle->isCssOrJsPage() ) {
+				} elseif ( $this->mTitle->isCssOrJsPage() ) {
 					$level = 'site';
 				} else {
 					$level = false;
@@ -3052,7 +3058,7 @@ HTML
 
 				# Used messages to make sure grep find them:
 				# Messages: usercsspreview, userjspreview, sitecsspreview, sitejspreview
-				if( $level && $format ) {
+				if ( $level && $format ) {
 					$note = "<div id='mw-{$level}{$format}preview'>" . wfMessage( "{$level}{$format}preview" )->text() . "</div>";
 				}
 			}
@@ -3512,7 +3518,7 @@ HTML
 		global $wgOut, $wgLang;
 		$this->textbox2 = $this->textbox1;
 
-		if( is_array( $match ) ) {
+		if ( is_array( $match ) ) {
 			$match = $wgLang->listToText( $match );
 		}
 		$wgOut->prepareErrorPage( wfMessage( 'spamprotectiontitle' ) );

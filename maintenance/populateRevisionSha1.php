@@ -48,7 +48,7 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 			$this->error( "revision table does not exist", true );
 		} elseif ( !$db->tableExists( 'archive' ) ) {
 			$this->error( "archive table does not exist", true );
-		} else if ( !$db->fieldExists( 'revision', 'rev_sha1', __METHOD__ ) ) {
+		} elseif ( !$db->fieldExists( 'revision', 'rev_sha1', __METHOD__ ) ) {
 			$this->output( "rev_sha1 column does not exist\n\n", true );
 			return false;
 		}
@@ -189,9 +189,9 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 				array( 'ar_sha1' => Revision::base36Sha1( $text ) ),
 				array(
 					'ar_namespace' => $row->ar_namespace,
-					'ar_title'     => $row->ar_title,
+					'ar_title' => $row->ar_title,
 					'ar_timestamp' => $row->ar_timestamp,
-					'ar_len'       => $row->ar_len // extra sanity
+					'ar_len' => $row->ar_len // extra sanity
 				),
 				__METHOD__
 			);
