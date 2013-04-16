@@ -2968,7 +2968,9 @@ abstract class DatabaseBase implements DatabaseType {
 	 * If there is a transaction and it is rolled back, then the callback is cancelled.
 	 * Callbacks must commit any transactions that they begin.
 	 *
-	 * This is useful for updates to different systems or separate transactions are needed.
+	 * This is useful for updates to different systems or when separate transactions are needed.
+	 * For example, one might want to enqueue jobs into a system outside the database, but only
+	 * after the database is updated so that the jobs will see the data when they actually run.
 	 * It can also be used for updates that easily cause deadlocks if locks are held too long.
 	 *
 	 * @param Closure $callback
@@ -2987,7 +2989,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * Callbacks must not start nor commit any transactions.
 	 *
 	 * This is useful for updates that easily cause deadlocks if locks are held too long
-	 * but where atomicity is strongly desired for these and some related updates.
+	 * but where atomicity is strongly desired for these updates and some related updates.
 	 *
 	 * @param Closure $callback
 	 * @since 1.22
