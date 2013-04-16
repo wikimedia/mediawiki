@@ -39,6 +39,7 @@ production.
   correctly.
 * (bug 45803) Whitespace within == Headline == syntax and within <hN> headings
   is now non-significant and not preserved in the HTML output.
+* (bug 41281) Ugly output if file size could not be extracted for multi-page media.
 
 === API changes in 1.22 ===
 * (bug 46626) xmldoublequote parameter was removed. Because of a bug, the
