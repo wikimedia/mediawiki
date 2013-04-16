@@ -147,6 +147,35 @@ class GitInfo {
 	 }
 
 	/**
+	 * Return the last local (reflog) update date of HEAD entry of the git code repository
+	 *
+	 * @return int|bool Last local update date (UNIX timestamp) or false
+	 */
+	public function getLocalUpdateDate() {
+		global $wgGitBin;
+
+		if ( !is_file( $wgGitBin ) || !is_executable( $wgGitBin ) ) {
+			return false;
+		}
+
+		$environment = array( "GIT_DIR" => $this->basedir );
+		$cmd = wfEscapeShellArg( $wgGitBin ) . " reflog --date=raw -1";
+		$retc = false;
+		$out = wfShellExec( $cmd, $retc, $environment );
+
+		if ( $retc !== 0 ) {
+			return false;
+		} else {
+			if ( preg_match( "!\{(\d+) [+-\d]+\}!", $out, $res ) ) {
+				return (int)$res[1];
+			} else {
+				return false;
+			}
+		}
+
+	 }
+
+	/**
 	 * Return the name of the current branch, or HEAD if not found
 	 * @return string The branch name, HEAD, or false
 	 */
