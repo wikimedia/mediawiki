@@ -674,7 +674,7 @@ class Preferences {
 			'section' => 'rendering/advancedrendering',
 			'options' => $stubThresholdOptions,
 			'size' => 20,
-			'label' => $context->msg( 'stub-threshold' )->text(), // Raw HTML message. Yay?
+			'label-raw' => $context->msg( 'stub-threshold' )->text(), // Raw HTML message. Yay?
 		);
 
 		if ( $wgAllowUserCssPrefs ) {
