@@ -388,7 +388,7 @@ class SpecialContributions extends SpecialPage {
 		}
 
 		if ( !isset( $this->opts['year'] ) ) {
-			$this->opts['year'] = '';
+			$this->opts['year'] =  date('Y');
 		}
 
 		if ( !isset( $this->opts['month'] ) ) {
