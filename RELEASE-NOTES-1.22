@@ -150,6 +150,7 @@ production.
   'pageid', 'page', 'title', and 'text' (e.g. if only passed 'summary'). A
   warning will instead be issued if 'title' is non-default, unless no props are
   requested.
+* (bug 41281) Ugly output if file size could not be extracted for multi-page media.
 
 === API changes in 1.22 ===
 * (bug 46626) xmldoublequote parameter was removed. Because of a bug, the
