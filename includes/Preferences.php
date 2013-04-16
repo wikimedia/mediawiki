@@ -215,7 +215,7 @@ class Preferences {
 
 		$defaultPreferences['usergroups'] = array(
 			'type' => 'info',
-			'label' => $context->msg( 'prefs-memberingroups' )->numParams(
+			'label-raw' => $context->msg( 'prefs-memberingroups' )->numParams(
 				count( $userGroups ) )->params( $userName )->parse(),
 			'default' => $context->msg( 'prefs-memberingroups-type',
 				$lang->commaList( $userGroups ),
@@ -285,7 +285,7 @@ class Preferences {
 		if ( $wgCookieExpiration > 0 ) {
 			$defaultPreferences['rememberpassword'] = array(
 				'type' => 'toggle',
-				'label' => $context->msg( 'tog-rememberpassword' )->numParams(
+				'label-raw' => $context->msg( 'tog-rememberpassword' )->numParams(
 					ceil( $wgCookieExpiration / ( 3600 * 24 ) ) )->text(),
 				'section' => 'personal/info',
 			);
@@ -674,7 +674,7 @@ class Preferences {
 			'section' => 'rendering/advancedrendering',
 			'options' => $stubThresholdOptions,
 			'size' => 20,
-			'label' => $context->msg( 'stub-threshold' )->text(), // Raw HTML message. Yay?
+			'label-raw' => $context->msg( 'stub-threshold' )->text(), // Raw HTML message. Yay?
 		);
 
 		if ( $wgAllowUserCssPrefs ) {
