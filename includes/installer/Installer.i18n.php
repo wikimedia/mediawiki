@@ -552,6 +552,9 @@ When that has been done, you can '''[$2 enter your wiki]'''.",
 	'config-download-localsettings' => 'Download <code>LocalSettings.php</code>',
 	'config-help' => 'help',
 	'config-nofile'     => 'File "$1" could not be found. Has it been deleted?',
+	'config-extension-link' => 'Did you know that your wiki supports [//www.mediawiki.org/wiki/Manual:Extensions extensions]?
+
+You can browse [//www.mediawiki.org/wiki/Category:Extensions_by_category extentions by category] or the [//www.mediawiki.org/wiki/Extension_Matrix Extension Matrix] to see the full list of extensions.',
 	'mainpagetext'      => "'''MediaWiki has been successfully installed.'''",
 	'mainpagedocfooter' => "Consult the [//meta.wikimedia.org/wiki/Help:Contents User's Guide] for information on using the wiki software.
 
@@ -972,6 +975,7 @@ See also:
 {{Identical|Help}}',
 	'config-nofile' => 'Used as failure message. Parameters:
 * $1 - filename',
+	'config-extension-link' => 'Shown on last page of installation to inform about possible extensions.',
 	'mainpagetext' => 'Along with {{msg-mw|mainpagedocfooter}}, the text you will see on the Main Page when your wiki is installed.',
 	'mainpagedocfooter' => 'Along with {{msg-mw|mainpagetext}}, the text you will see on the Main Page when your wiki is installed.
 This might be a good place to put information about <nowiki>{{GRAMMAR:}}</nowiki>. See [[{{NAMESPACE}}:{{BASEPAGENAME}}/fi]] for an example. For languages having grammatical distinctions and not having an appropriate <nowiki>{{GRAMMAR:}}</nowiki> software available, a suggestion to check and possibly amend the messages having <nowiki>{{SITENAME}}</nowiki> may be valuable. See [[{{NAMESPACE}}:{{BASEPAGENAME}}/ksh]] for an example.',
