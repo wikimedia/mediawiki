@@ -106,6 +106,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			list( $type, $action ) = explode( '/', $params['action'] );
 			$this->addWhereFld( 'log_type', $type );
 			$this->addWhereFld( 'log_action', $action );
+			$index['logging'] = 'type_action';
 		} elseif ( !is_null( $params['type'] ) ) {
 			$this->addWhereFld( 'log_type', $params['type'] );
 			$index['logging'] = 'type_time';
@@ -123,7 +124,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				$this->dieUsage( "User name $user not found", 'param_user' );
 			}
 			$this->addWhereFld( 'log_user', $userid );
-			$index['logging'] = 'user_time';
+			$index['logging'] = ( is_null( $params['type'] ) ? 'user_time' : 'log_user_type_time' );
 		}
 
 		$title = $params['title'];
