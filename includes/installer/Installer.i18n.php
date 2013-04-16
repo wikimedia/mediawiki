@@ -13,6 +13,8 @@ $messages = array();
 /** English */
 $messages['en'] = array(
 	'config-desc'                     => 'The installer for MediaWiki',
+	'extension-link'				  => 'Did you know that your mediawiki supports  [//www.mediawiki.org/wiki/Manual:Extensions extensions]. 
+	You can browse [http://www.mediawiki.org/wiki/Category:Extensions_by_category extentions by category] or the [http://www.mediawiki.org/wiki/Extension_Matrix Extension Matrix] to see the full range of extensions that have already been written',
 	'config-title'                    => 'MediaWiki $1 installation',
 	'config-information'              => 'Information',
 	'config-localsettings-upgrade'    => "A <code>LocalSettings.php</code> file has been detected.
@@ -553,6 +555,8 @@ When that has been done, you can '''[$2 enter your wiki]'''.",
 	'config-help' => 'help',
 	'config-nofile'     => 'File "$1" could not be found. Has it been deleted?',
 	'mainpagetext'      => "'''MediaWiki has been successfully installed.'''",
+	'extension-link' => 'Did you know that your wiki supports  [//www.mediawiki.org/wiki/Manual:Extensions extensions]?
+Browse through these categories of [//www.mediawiki.org/wiki/Category:Extensions_by_category extensions] to find one suitable for your wiki.',
 	'mainpagedocfooter' => "Consult the [//meta.wikimedia.org/wiki/Help:Contents User's Guide] for information on using the wiki software.
 
 == Getting started ==
@@ -968,6 +972,8 @@ See also:
 * $2 is a link to the wiki.
 * $3 is a download link with attached download icon. The config-download-localsettings message will be used as the link text.',
 	'config-download-localsettings' => 'The link text used in the download link in config-install-done.',
+	'extension-link' => 'Link to the extensions manual to make the user aware of MediaWiki extensions. 
+Link to the list of all the extensions available sorted by there category that the user can add to his wiki.',
 	'config-help' => 'This is used in help boxes.
 {{Identical|Help}}',
 	'config-nofile' => 'Used as failure message. Parameters:
