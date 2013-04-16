@@ -1092,7 +1092,6 @@ class HTMLForm extends ContextSource {
 		$this->mAction = $action;
 		return $this;
 	}
-
 }
 
 /**
@@ -1109,6 +1108,12 @@ abstract class HTMLFormField {
 	protected $mID;
 	protected $mClass = '';
 	protected $mDefault;
+
+	/**
+	 * @var bool If true will generate empty an empty div element with no label
+	 * @since 1.22
+	 */
+	protected $mShowEmptyLabels = true;
 
 	/**
 	 * @var HTMLForm
@@ -1264,6 +1269,10 @@ abstract class HTMLFormField {
 
 		if ( isset( $params['flatlist'] ) ) {
 			$this->mClass .= ' mw-htmlform-flatlist';
+		}
+
+		if ( isset( $params['hidelabel'] ) ) {
+			$this->mShowEmptyLabels = false;
 		}
 	}
 
@@ -1468,20 +1477,32 @@ abstract class HTMLFormField {
 			$for['for'] = $this->mID;
 		}
 
-		$displayFormat = $this->mParent->getDisplayFormat();
-		$labelElement = Html::rawElement( 'label', $for, $this->getLabel() );
-
-		if ( $displayFormat == 'table' ) {
-			return Html::rawElement( 'td', array( 'class' => 'mw-label' ) + $cellAttributes,
-				Html::rawElement( 'label', $for, $this->getLabel() )
-			);
-		} elseif ( $displayFormat == 'div' ) {
-			return Html::rawElement( 'div', array( 'class' => 'mw-label' ) + $cellAttributes,
-				Html::rawElement( 'label', $for, $this->getLabel() )
-			);
-		} else {
-			return $labelElement;
+		$labelValue = trim( $this->getLabel() );
+		$hasLabel = false;
+		if ( $labelValue != '&#160;' && $labelValue !== '' ) {
+			$hasLabel = true;
 		}
+
+		$displayFormat = $this->mParent->getDisplayFormat();
+		$html = '';
+
+		if ( $displayFormat === 'table' ) {
+			$html = Html::rawElement( 'td', array( 'class' => 'mw-label' ) + $cellAttributes,
+				Html::rawElement( 'label', $for, $labelValue )
+			);
+		} elseif ( $hasLabel || $this->mShowEmptyLabels ) {
+			if ( $displayFormat === 'div' ) {
+				$html = Html::rawElement(
+					'div',
+					array( 'class' => 'mw-label' ) + $cellAttributes,
+					Html::rawElement( 'label', $for, $labelValue )
+				);
+			} else {
+				$html = Html::rawElement( 'label', $for, $labelValue );
+			}
+		}
+
+		return $html;
 	}
 
 	function getDefault() {
