@@ -1263,6 +1263,7 @@ class WebInstaller_Complete extends WebInstallerPage {
 				)->plain(), 'tick-32.png'
 			)
 		);
+		$this->addHtml("<b>Check out these <a href = 'http://www.mediawiki.org/wiki/Category:Extensions_by_category'> extentions</a> to your wiki </b>");
 		$this->parent->restoreLinkPopups();
 		$this->endForm( false, false );
 	}
