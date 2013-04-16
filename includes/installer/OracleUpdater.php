@@ -38,6 +38,8 @@ class OracleUpdater extends DatabaseUpdater {
 
 	protected function getCoreUpdateList() {
 		return array(
+			array( 'disableContentHandlerUseDB' ),
+
 			// 1.17
 			array( 'doNamespaceDefaults' ),
 			array( 'doFKRenameDeferr' ),
@@ -75,6 +77,8 @@ class OracleUpdater extends DatabaseUpdater {
 			array( 'addField',	'archive',	'ar_content_format',		'patch-archive-ar_content_format.sql' ),
 			array( 'addField',	'archive',	'ar_content_model',		    'patch-archive-ar_content_model.sql' ),
 			array( 'addField',	'page',     'page_content_model',		'patch-page-page_content_model.sql' ),
+			array( 'enableContentHandlerUseDB' ),
+
 			array( 'dropField', 'site_stats', 'ss_admins',  'patch-ss_admins.sql' ),
 			array( 'dropField', 'recentchanges', 'rc_moved_to_title', 'patch-rc_moved.sql' ),
 			array( 'addTable', 'sites',                            'patch-sites.sql' ),

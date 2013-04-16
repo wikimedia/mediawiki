@@ -123,6 +123,7 @@ production.
   quotmarks, order and whitespace in the attribute list).
 
 === Bug fixes in 1.21 ===
+* (bug 47271) $wgContentHandlerUseDB should be set to false during the upgrade
 * (bug 42649) PHP Fatal error: Call to a member function isLocal() on a
   non-object in Title.php
 * (bug 46493) Special:ProtectedPages results in whitepage when a bad title is protected
