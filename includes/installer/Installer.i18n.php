@@ -4009,6 +4009,8 @@ Das Objektcaching kann daher nicht aktiviert werden.",
 	'config-mod-security' => "'''Warnung:''' Auf dem Webserver wurde [http://modsecurity.org/ ModSecurity] aktiviert. Sofern falsch konfiguriert, kann dies zu Problemen mit MediaWiki sowie anderer Software auf dem Server führen und es Benutzern ermöglichen beliebige Inhalte im Wiki einzustellen.
 Für weitere Informationen empfehlen wir die [http://modsecurity.org/documentation/ Dokumentation zu ModSecurity] oder den Kontakt zum Hoster, sofern Fehler auftreten.",
 	'config-diff3-bad' => 'GNU diff3 wurde nicht gefunden.',
+	'config-git' => 'Die Git-Versionsverwaltungssoftware wurde gefunden: <code>$1</code>.',
+	'config-git-bad' => 'Die Git-Versionsverwaltungssoftware wurde nicht gefunden.',
 	'config-imagemagick' => 'ImageMagick wurde gefunden: <code>$1</code>.
 Miniaturansichten von Bildern werden möglich sein, sobald das Hochladen von Dateien aktiviert wurde.',
 	'config-gd' => 'Die im System integrierte GD-Grafikbibliothek wurde gefunden.
@@ -7167,6 +7169,7 @@ Miniaturaasichte vu Bilder sin megli, sobald s Uffelade vu Dateie aktiviert isch
 );
 
 /** Gujarati (ગુજરાતી)
+ * @author Ashok modhvadia
  * @author Dineshjk
  */
 $messages['gu'] = array(
@@ -7176,7 +7179,8 @@ $messages['gu'] = array(
 == શરૂઆતના તબક્કે ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings કોનફીગ્યુરેશન સેટીંગ્સની યાદી]
 * [//www.mediawiki.org/wiki/Manual:FAQ વારંવાર પુછાતા પ્રશ્નો]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce મિડીયાવિકિ રીલીઝ મેઇલીંગ લીસ્ટ]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce મિડીયાવિકિ રીલીઝ મેઇલીંગ લીસ્ટ]
+* [//www.mediawiki.org/wiki/Localisation#Translation_resources Localise MediaWiki for your language]',
 );
 
 /** Manx (Gaelg)
@@ -10256,6 +10260,8 @@ MediaWiki を正しく動作させるには、UTF-8 対応が必要です。",
 	'config-no-cache' => "'''警告:''' [http://www.php.net/apc APC]、[http://xcache.lighttpd.net/ XCache]、[http://www.iis.net/download/WinCacheForPhp WinCache] のいずれも見つかりませんでした。
 オブジェクトのキャッシュは有効化されません。",
 	'config-diff3-bad' => 'GNU diff3 が見つかりません。',
+	'config-git' => 'バージョン管理ソフトウェア Git が見つかりました: <code>$1</code>',
+	'config-git-bad' => 'バージョン管理ソフトウェア Git が見つかりません。',
 	'config-imagemagick' => 'ImageMagickが見つかりました: <code>$1</code>。
 アップロードが有効であれば、画像のサムネイルを利用できます。',
 	'config-gd' => 'GD画像ライブラリが内蔵されていることが確認されました。
@@ -12675,6 +12681,8 @@ $1
 	'config-mod-security' => "'''Предупредување''': на вашиот опслужувач има овозможено [http://modsecurity.org/ mod_security]. Ако не е поставено како што треба, ова може да предизвика проблеми кај МедијаВики и други програми што им овозможуваат на корисниците да објавуваат произволни содржини.
 Погледнете ја [http://modsecurity.org/documentation/ mod_security документацијата] или обратете се кај домаќинот ако наидете на случајни грешки.",
 	'config-diff3-bad' => 'GNU diff3 не е пронајден.',
+	'config-git' => 'Го пронајдов Git програмот за контрола на верзии: <code>$1</code>.',
+	'config-git-bad' => 'Не го пронајдов Git-програмот за контрола на верзии.',
 	'config-imagemagick' => 'Пронајден е ImageMagick: <code>$1</code>.
 Ако овозможите подигање, тогаш ќе биде овозможена минијатуризација на сликите.',
 	'config-gd' => 'Утврдив дека има вградена GD графичка библиотека.
@@ -19784,10 +19792,13 @@ $3
 );
 
 /** Urdu (اردو)
+ * @author Noor2020
  * @author පසිඳු කාවින්ද
  */
 $messages['ur'] = array(
 	'config-information' => 'معلومات',
+	'config-git' => 'Git ورژن کنٹرول مصنع لطیف ملا: <code>$1</code> ۔',
+	'config-git-bad' => 'GIT ورژن کنٹرول مصنع لطیف نہيں ملا ۔',
 	'config-profile-fishbowl' => 'صرف مجاز ایڈیٹرز',
 	'config-license-pd' => 'پبلک ڈومین',
 	'config-email-settings' => 'ای میل کی ترتیبات',

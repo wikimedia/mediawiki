@@ -919,6 +919,7 @@ $2',
 'gotaccountlink' => 'تسجيل الدخول',
 'userlogin-resetlink' => 'نسيت تفاصيل الدخول؟',
 'helplogin-url' => 'Help:تسجيل الدخول',
+'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|المساعدة في تسجيل الدخول]]',
 'createaccountmail' => 'استخدم كلمة سر عشوائية مؤقتة وارسلها إلى عنوان البريد الإلكتروني المحدد أدناه',
 'createaccountreason' => 'السبب:',
 'badretype' => 'كلمات السر التي أدخلتها لا تتطابق.',
@@ -1024,6 +1025,7 @@ $2',
 'passwordreset-text' => 'أكمل هذا النموذج لإعادة ضبط كلمة السر الخاصة بك.',
 'passwordreset-legend' => 'إعادة تعيين كلمة السر',
 'passwordreset-disabled' => 'عُطّلت إعادة تعيين كلمة السر على هذه الويكي.',
+'passwordreset-emaildisabled' => 'تم تعطيل ميزات البريد الإلكتروني على هذه الويكي.',
 'passwordreset-pretext' => '{{PLURAL:$1||أدخل أحد أجزاء البيانات أدناه}}',
 'passwordreset-username' => 'اسم المستخدم:',
 'passwordreset-domain' => 'النطاق:',
@@ -1045,9 +1047,9 @@ $2
 يمكنك تسجيل الدخول واختيار كلمة سر جديدة. إذا كان هذا الطلب تم بواسطة شخص أخر، أو إذا تذكرت كلمة السر الأصلية الخاصة بك، ولم تعد ترغب في تغييرها، يمكنك تجاهل هذه الرسالة ومتابعة استخدام كلمة السر القديمة.',
 'passwordreset-emailelement' => 'اسم {{GENDER:$1|المستخدم|المستخدمة}}: $1
 كلمة السر المؤقتة: $2',
-'passwordreset-emailsent' => 'أرسل بريد إلكتروني تذكيري',
-'passwordreset-emailsent-capture' => 'أرسل بريد إلكتروني تذكيري وهو معروض بالأسفل.',
-'passwordreset-emailerror-capture' => 'ولّد بريد إلكتروني تذكيري وهو معروض بالأسفل لكن فشل إرساله للمستخدم: $1',
+'passwordreset-emailsent' => 'أُرسل بريد إلكتروني لإعادة ضبط كلمة السر.',
+'passwordreset-emailsent-capture' => 'أُرسل بريد إلكتروني لإعادة ضبط كلمة السر، وهو معروض بالأسفل.',
+'passwordreset-emailerror-capture' => 'ولّد بريد إلكتروني لإعادة ضبط كلمة السر وهو معروض بالأسفل لكن فشل إرساله للمستخدم: $1',
 
 # Special:ChangeEmail
 'changeemail' => 'تغيير عنوان البريد الإلكتروني',
@@ -1564,6 +1566,7 @@ $1",
 'searchdisabled' => 'البحث في {{SITENAME}} معطل.
 يمكنك البحث من خلال جوجل في الوقت الحالي.
 لاحظ أن فهارسه لمحتوى {{SITENAME}} ربما تكون غير محدثة.',
+'search-error' => 'حدث خطأ ما أثناء البحث: $1',
 
 # Preferences page
 'preferences' => 'تفضيلات',
@@ -4301,19 +4304,21 @@ $5
 'htmlform-submit' => 'إرسال',
 'htmlform-reset' => 'الرجوع عن التغييرات',
 'htmlform-selectorother-other' => 'أخرى',
+'htmlform-no' => 'لا',
+'htmlform-yes' => 'نعم',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 بدعم البحث في كامل النص',
 'sqlite-no-fts' => '$1 بدون دعم البحث في كامل النص',
 
 # New logging system
-'logentry-delete-delete' => '{{GENDER:$2|حذف|حذفت}} $1 الصفحة $3',
-'logentry-delete-restore' => 'استعاد $1 صفحة $3',
-'logentry-delete-event' => '$1 غير خاصية العرض لـ {{PLURAL:$5|مدخل السجل|$5 مدخلات السجل}} في $3: $4',
+'logentry-delete-delete' => '{{GENDER:$2|حذف|حذفت}} $1 صفحة $3',
+'logentry-delete-restore' => '{{GENDER:$2|استعاد|استعادت}} $1 صفحة $3',
+'logentry-delete-event' => '{{GENDER:$2|غيّر|غيّرت}} $1 إمكانية مشاهدة {{PLURAL:$5||حدث|حدثين|$5 أحداث|$5 حدثًا|$5 حدث}} في سجل $3: $4',
 'logentry-delete-revision' => 'غيّر{{GENDER:$2||ت}} $1 إمكانية مشاهدة {{PLURAL:$5||مراجعة واحدة|مراجعتين|$5 مراجعات|$5 مراجعة}} في صفحة $3: $4',
-'logentry-delete-event-legacy' => 'غيّر $1 إمكانية رؤية أحداث سجل $3',
-'logentry-delete-revision-legacy' => 'غيّر $1 إمكانية رؤية مراجعات صفحة $3',
-'logentry-suppress-delete' => '$1 suppressed صفحة $3',
+'logentry-delete-event-legacy' => '{{GENDER:$2|غيّر|غيّرت}} $1 إمكانية رؤية أحداث في سجل $3',
+'logentry-delete-revision-legacy' => '{{GENDER:$2|غيّر|غيّرت}} $1 إمكانية رؤية مراجعات من صفحة $3',
+'logentry-suppress-delete' => '{{GENDER:$2|أخفى|أخفت}} $1 صفحة $3',
 'logentry-suppress-event' => 'غيّر{{GENDER:$2||ت}} $1 بسرية إمكانية مشاهدة {{PLURAL:$5||حدث|حدثين|$5 أحداث|$5 حدثًا|$5 حدث}} في سجل $3: $4',
 'logentry-suppress-revision' => 'غيّر{{GENDER:$2||ت}} $1 سراً إمكانية مشاهدة {{PLURAL:$5||مراجعة واحدة|مراجعتين|$5 مراجعات|$5 مراجعة}} في صفحة $3: $4',
 'logentry-suppress-event-legacy' => 'غيّر $1 بسرية إمكانية رؤية أحداث سجل $3',

@@ -1089,7 +1089,8 @@ Alcuni template non verranno inclusi.",
 'converter-manual-rule-error' => 'Rilevato errore nella regola manuale di conversione della lingua',
 
 # "Undo" feature
-'undo-success' => 'Questa modifica può essere annullata. Verificare il confronto presentato di seguito per accertarsi che il contenuto corrisponda a quanto desiderato e quindi salvare le modifiche per completare la procedura di annullamento.',
+'undo-success' => 'Questa modifica può essere annullata.
+Controlla le differenze mostrate sotto fra le due versioni per essere certo che il contenuto corrisponda a quanto desiderato, e quindi salvare le modifiche per completare la procedura di annullamento.',
 'undo-failure' => 'Impossibile annullare la modifica a causa di un conflitto con modifiche intermedie.',
 'undo-norev' => 'La modifica non può essere annullata perché non esiste o è stata cancellata.',
 'undo-summary' => 'Annullata la modifica $1 di [[Special:Contributions/$2|$2]] ([[User talk:$2|discussione]])',
@@ -1462,7 +1463,7 @@ Il tuo indirizzo non viene rivelato quando gli altri utenti ti contattano.',
 'editinguser' => "Modifica diritti utente dell'utente '''[[User:$1|$1]]''' $2",
 'userrights-editusergroup' => 'Modifica gruppi utente',
 'saveusergroups' => 'Salva gruppi utente',
-'userrights-groupsmember' => 'Appartiene ai gruppi:',
+'userrights-groupsmember' => 'Appartiene {{PLURAL:$1|al gruppo|ai gruppi}}:',
 'userrights-groupsmember-auto' => 'Membro implicito di:',
 'userrights-groups-help' => "È possibile modificare i gruppi cui è assegnato l'utente.
 * Una casella di spunta selezionata indica l'appartenenza dell'utente al gruppo
@@ -1736,7 +1737,7 @@ Se si dispone dell'immagine nella risoluzione originale, si prega di caricarla. 
 'savefile' => 'Salva file',
 'uploadedimage' => 'ha caricato "[[$1]]"',
 'overwroteimage' => 'ha caricato una nuova versione di "[[$1]]"',
-'uploaddisabled' => 'Il caricamento dei file è temporaneamente sospeso.',
+'uploaddisabled' => 'Il caricamento dei file è disabilitato.',
 'copyuploaddisabled' => 'Il caricamento tramite URL è disabilitato.',
 'uploadfromurl-queued' => 'Il caricamento è stato accodato.',
 'uploaddisabledtext' => 'Il caricamento dei file non è attivo.',
@@ -2463,7 +2464,8 @@ Le impostazioni correnti per la pagina sono '''$1''':",
 'undeleteextrahelp' => "Per recuperare l'intera cronologia della pagina, lasciare tutte le caselle deselezionate e fare clic su '''''{{int:undeletebtn}}'''''.
 Per effettuare un ripristino selettivo, selezionare le caselle corrispondenti alle revisioni da ripristinare e fare clic su '''''{{int:undeletebtn}}'''''.",
 'undeleterevisions' => '{{PLURAL:$1|Una revisione|$1 revisioni}} in archivio',
-'undeletehistory' => 'Recuperando questa pagina, tutte le sue revisioni verranno ripristinate nella relativa cronologia. Se dopo la cancellazione è stata creata una nuova pagina con lo stesso titolo, le revisioni recuperate saranno inserite nella cronologia precedente.',
+'undeletehistory' => 'Recuperando questa pagina, tutte le sue versioni verranno ripristinate nella relativa cronologia.
+Se dopo la cancellazione è stata creata una nuova pagina con lo stesso titolo, le revisioni recuperate saranno inserite nella cronologia precedente.',
 'undeleterevdel' => "Il ripristino non verrà effettuato se determina la cancellazione parziale della versione attuale della pagina o del file interessato. In tal caso, è necessario rimuovere il segno di spunta o l'oscuramento dalle revisioni cancellate più recenti.",
 'undeletehistorynoadmin' => "Questa pagina è stata cancellata.
 Il motivo della cancellazione è mostrato qui sotto, assieme ai dettagli dell'utente che ha modificato questa pagina prima della cancellazione.
@@ -2487,7 +2489,7 @@ $1',
 Consultare il [[Special:Log/delete|log delle cancellazioni]] per vedere le cancellazioni e i recuperi più recenti.",
 'undelete-header' => 'Consultare il [[Special:Log/delete|log delle cancellazioni]] per vedere le cancellazioni più recenti.',
 'undelete-search-title' => 'Ricerca nelle pagine cancellate',
-'undelete-search-box' => 'Ricerca nelle pagine cancellate',
+'undelete-search-box' => 'Ricerca le pagine cancellate',
 'undelete-search-prefix' => 'Mostra le pagine il cui titolo inizia con:',
 'undelete-search-submit' => 'Cerca',
 'undelete-no-results' => "Nessuna pagina corrispondente nell'archivio delle cancellazioni.",

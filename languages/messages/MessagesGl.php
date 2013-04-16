@@ -690,7 +690,7 @@ Non esqueza personalizar as súas [[Special:Preferences|preferencias de {{SITENA
 'nologin' => 'Non está rexistrado? $1.',
 'nologinlink' => 'Cree unha conta',
 'createaccount' => 'Crear unha conta nova',
-'gotaccount' => "Xa ten unha conta? '''$1'''.",
+'gotaccount' => 'Xa ten unha conta? $1.',
 'gotaccountlink' => 'Acceda ao sistema',
 'userlogin-resetlink' => 'Esqueceu os seus datos de rexistro?',
 'helplogin-url' => 'Help:Rexistro',

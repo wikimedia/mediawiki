@@ -608,9 +608,15 @@ $1',
 'welcomecreation-msg' => 'บัญชีของคุณถูกสร้างขึ้นแล้ว
 อย่าลืมเปลี่ยนแปลง[[Special:Preferences|การตั้งค่าใน {{SITENAME}}]] ของคุณ',
 'yourname' => 'ชื่อผู้ใช้',
+'userlogin-yourname' => 'ชื่อผู้ใช้',
+'userlogin-yourname-ph' => 'กรอกชื่อผู้ใช้',
 'yourpassword' => 'รหัสผ่าน',
+'userlogin-yourpassword' => 'รหัสผ่าน',
+'userlogin-yourpassword-ph' => 'กรอกรหัสผ่าน',
 'yourpasswordagain' => 'พิมพ์รหัสผ่านอีกครั้ง:',
 'remembermypassword' => 'จำการล็อกอินของฉันบนเบราเซอร์นี้ (นานสุด $1 วัน)',
+'userlogin-remembermypassword' => 'จำฉัน',
+'userlogin-signwithsecure' => 'ล็อกอินในเซิร์ฟเวอร์ปลอดภัย',
 'securelogin-stick-https' => 'ยังคงเชื่อมต่อกับ HTTPS หลังจากล็อกอิน',
 'yourdomainname' => 'โดเมนของคุณ:',
 'password-change-forbidden' => 'คุณไม่สามารถเปลี่ยนรหัสผ่านบนวิกินี้',
@@ -623,12 +629,16 @@ $1',
 'logout' => 'ล็อกเอาต์',
 'userlogout' => 'ล็อกเอาต์',
 'notloggedin' => 'ไม่ได้ล็อกอิน',
+'userlogin-noaccount' => 'ไม่มีบัญชีหรือ',
+'userlogin-joinproject' => 'เข้าร่วม {{SITENAME}}',
 'nologin' => 'ไม่มีบัญชีหรือ $1',
 'nologinlink' => 'สร้างบัญชี',
 'createaccount' => 'สร้างบัญชี',
 'gotaccount' => "มีบัญชีแล้วใช่ไหม '''$1'''",
 'gotaccountlink' => 'ล็อกอิน',
 'userlogin-resetlink' => 'ลืมรายละเอียดล็อกอินของคุณหรือ',
+'helplogin-url' => 'Help:การล็อกอิน',
+'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|คำอธิบายเรื่องการล็อกอิน]]',
 'createaccountmail' => 'ใช้รหัสผ่านสุ่มชั่วคราวและส่งไปยังที่อยู่อีเมลที่ระบุด้านล่าง',
 'createaccountreason' => 'เหตุผล:',
 'badretype' => 'รหัสผ่านที่ใส่ไม่ตรงกัน',
@@ -718,8 +728,11 @@ $1',
 'passwordreset-text' => 'กรอกแบบฟอร์มนี้เพื่อตั้งรหัสผ่านใหม่',
 'passwordreset-legend' => 'เปลี่ยนรหัสผ่าน',
 'passwordreset-disabled' => 'การตั้งรหัสผ่านใหม่ปิดใช้งานบนวิกินี้',
+'passwordreset-emaildisabled' => 'คุณลักษณะอีเมลถูกปิดใช้งานบนวิกินี้',
 'passwordreset-username' => 'ชื่อผู้ใช้:',
 'passwordreset-domain' => 'โดเมน:',
+'passwordreset-capture' => 'ดูอีเมลที่ได้หรือไม่',
+'passwordreset-capture-help' => 'หากคุณเลือกกล่องนี้ อีเมลดังกล่าว (พร้อมรหัสผ่านชั่วคราว) จะแสดงแก่คุณ เช่นเดียวกับส่งไปยังผู้ใช้',
 'passwordreset-email' => 'ที่อยู่อีเมล:',
 'passwordreset-emailtitle' => 'รายละเอียดบัญชีบน {{SITENAME}}',
 'passwordreset-emailtext-ip' => 'ใครบางคน (ซึ่งอาจเป็นคุณ ที่ใช้เลขที่อยู่ไอพี $1) ขอตัวเตือนรายละเอียดบัญชีของคุณบน {{SITENAME}} ($4) บัญชีผู้ใช้ดังกล่าวเกี่ยวข้องกับที่อยู่อีเมลนี้:
@@ -736,9 +749,9 @@ $2
 ตอนนี้คุณควรล็อกอินและเลือกรหัสผ่านใหม่ หากบุคคลอื่นขอตัวเตือนรายละเอียดบัญชี หรือคุณจำรหัสผ่านเดิมของคุณได้แล้ว และคุณไม่ต้องการเปลี่ยนรหัสผ่านอีกต่อไป คุณอาจละเลยข้อความนี้และใช้รหัสผ่านเก่าของคุณต่อไป',
 'passwordreset-emailelement' => 'ชื่อผู้ใช้: $1
 รหัสผ่านชั่วคราว: $2',
-'passwordreset-emailsent' => 'อีเมลแจ้งเตือนได้ถูกส่งไปแล้ว',
-'passwordreset-emailsent-capture' => 'อีเมลแจ้งเตือนได้ถูกส่งไปแล้ว ซึ่งแสดงด้านล่าง',
-'passwordreset-emailerror-capture' => 'อีเมลแจ้งเตือนถูกสร้างขึ้นแล้ว ซึ่งแสดงข้างล่าง แต่การส่งไปยังผู้ใช้ล้มเหลว: $1',
+'passwordreset-emailsent' => 'อีเมลตั้งรหัสผ่านใหม่ถูกส่งไปแล้ว',
+'passwordreset-emailsent-capture' => 'อีเมลตั้งรหัสผ่านใหม่ถูกส่งไปแล้ว ซึ่งแสดงด้านล่าง',
+'passwordreset-emailerror-capture' => 'อีเมลตั้งรหัสผ่านใหม่ถูกสร้างขึ้นแล้ว ซึ่งแสดงข้างล่าง แต่การส่งไปยังผู้ใช้ล้มเหลว: $1',
 
 # Special:ChangeEmail
 'changeemail' => 'เปลี่ยนที่อยู่อีเมล',
@@ -948,6 +961,8 @@ $2
 'edit-already-exists' => 'ไม่สามารถสร้างหน้าใหม่ได้
 เพราะมีหน้านี้แล้ว',
 'defaultmessagetext' => 'ข้อความสารโดยปริยาย',
+'invalid-content-data' => 'ข้อมูลเนื้อหาไม่ถูกต้อง',
+'content-not-allowed-here' => 'เนื้อหา "$1" ไม่อนุญาตในหน้า [[$2]]',
 'editwarning-warning' => 'การออกจากหน้านี้อาจทำให้ความเปลี่ยนแปลงที่คุณกระทำสูญหาย
 ถ้าคุณล็อกอินแล้ว คุณสามารถปิดคำเตือนนี้ได้ที่ส่วน "การแก้ไข" ในการตั้งค่าของคุณ',
 
@@ -2743,6 +2758,9 @@ $1',
 'import-token-mismatch' => 'ข้อมูลเซชชันสูญหาย ให้ลองใหม่อีกครั้ง',
 'import-invalid-interwiki' => 'ไม่สามารถนำข้อมูลเข้าจากวิกิที่กำหนดได้',
 'import-error-create' => 'หน้า "$1" ยังไม่ได้ถูกนำเข้า เนื่องจากคุณไม่ได้รับอนุญาตให้สามารถสร้างได้',
+'import-options-wrong' => '{{PLURAL:$2|ตัวเลือก|ตัวเลือก}}ผิด:<nowiki>$1</nowiki>',
+'import-rootpage-invalid' => 'หน้าต้นทางที่กำหนดมีชื่อเรื่องไม่ถูกต้อง',
+'import-rootpage-nosubpage' => 'เนมสเปซ "$1" ของหน้าต้นทางไม่อนุญาตหน้าย่อย',
 
 # Import log
 'importlogpage' => 'ปูมการนำเข้า',
@@ -2754,6 +2772,10 @@ $1',
 
 # JavaScriptTest
 'javascripttest' => 'การทดสอบจาวาสคริปต์',
+'javascripttest-title' => 'กำลังดำเนินงานทดสอบ $1',
+'javascripttest-pagetext-noframework' => 'หน้านี้สงวนไว้สำหรับดำเนินงานการทดสอบจาวาสคริปต์',
+'javascripttest-pagetext-skins' => 'เลือกสกินที่จะดำเนินงานการทดสอบ:',
+'javascripttest-qunit-intro' => 'ดู[$1 เอกสารกำกับการทดสอบ]บน mediawiki.org',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'หน้าผู้ใช้ของคุณ',
@@ -2929,6 +2951,8 @@ $1',
 'markedaspatrollederror' => 'ไม่สามารถทำเครื่องหมายว่าตรวจสอบแล้ว',
 'markedaspatrollederrortext' => 'คุณจำเป็นต้องระบุรุ่นการแก้ไขที่กำหนดว่าตรวจสอบแล้ว',
 'markedaspatrollederror-noautopatrol' => 'คุณไม่สามารถทำเครื่องหมายการแก้ไขของคุณเองว่าตรวจสอบแล้ว',
+'markedaspatrollednotify' => 'การเปลี่ยนแปลงไปยัง $1 ถูกทำเครื่องหมายว่าตรวจสอบแล้ว',
+'markedaspatrollederrornotify' => 'การทำเครื่องหมายว่าตรวจสอบแล้วล้มเหลว',
 
 # Patrol log
 'patrol-log-page' => 'ปูมการตรวจสอบ',
@@ -3137,6 +3161,7 @@ $1',
 'exif-gpsareainformation' => 'ชื่อของพื้นที่จีพีเอส',
 'exif-gpsdatestamp' => 'วันที่จีพีเอส',
 'exif-gpsdifferential' => 'การปรับแค่ข้อแตกต่างจีพีเอส',
+'exif-jpegfilecomment' => 'ความเห็นไฟล์ JPEG',
 'exif-keywords' => 'คำสำคัญ',
 'exif-objectname' => 'ชื่อเรื่องสั้น',
 'exif-headline' => 'พาดหัวข่าว',
@@ -3625,6 +3650,8 @@ $5
 'htmlform-submit' => 'ส่งข้อมูล',
 'htmlform-reset' => 'ยกเลิกการเปลื่ยนแปลง',
 'htmlform-selectorother-other' => 'อื่น ๆ',
+'htmlform-no' => 'ไม่',
+'htmlform-yes' => 'ใช่',
 
 # SQLite database support
 'sqlite-has-fts' => 'รุ่น $1 พร้อมการสนับสนุนการค้นหาข้อความแบบเต็ม',
@@ -3663,23 +3690,31 @@ $5
 'rightsnone' => '(ไม่มี)',
 
 # Feedback
+'feedback-bugornote' => 'หากคุณได้อธิบายปัญหาทางเทคนิคในรายละเอียดแล้ว โปรด[$1 รายงานจุดบกพร่อง]
+มิฉะนั้น คุณสามารถแบบอย่างง่ายด้านล่าง ความเห็นของคุณจะถูกเพิ่มเข้าสู่ "[$3 $2]" ร่วมกับชื่อผู้ใช้ของคุณ',
+'feedback-subject' => 'เรื่อง:',
 'feedback-message' => 'ข้อความ:',
 'feedback-cancel' => 'ยกเลิก',
 'feedback-submit' => 'ส่งคำติชม',
 'feedback-adding' => 'เพิ่มคำติชมเข้าไปที่หน้า...',
+'feedback-thanks' => 'ขอบคุณ! ผลป้อนกลับของคุณถูกโพสต์ไปยังหน้า "[$2 $1]" แล้ว',
 'feedback-close' => 'เสร็จสิ้น',
+'feedback-bugcheck' => 'ยอดเยี่ยม! เพียงตรวจสอบว่าจุดบกพร่องนั้นมิใช่หนึ่งใน[$1 จุดบกพร่องที่ทราบแล้ว]',
+'feedback-bugnew' => 'ฉันตรวจสอบแล้ว รายงานจุดบกพร่องใหม่',
 
 # Search suggestions
 'searchsuggest-search' => 'ค้นหา',
 'searchsuggest-containing' => 'ประกอบไปด้วย...',
 
 # API errors
+'api-error-badaccess-groups' => 'คุณไม่ได้รับอนุญาตให้อัปโหลดไฟล์มายังวิกินี้',
 'api-error-empty-file' => 'ไฟล์ที่คุณส่งมานั้นว่าง',
 'api-error-emptypage' => 'ไม่อนุญาตให้สร้างหน้าใหม่ที่ว่าง',
 'api-error-file-too-large' => 'ไฟล์ที่คุณส่งมาใหญ่เกินไป',
 'api-error-filename-tooshort' => 'ชื่อไฟล์สั้นเกินไป',
 'api-error-filetype-banned' => 'ไฟล์ประเภทนี้ถูกห้าม',
 'api-error-mustbeloggedin' => 'กรุณาลงชื่อเข้าใช้เพื่ออัปโหลดไฟล์',
+'api-error-uploaddisabled' => 'การอัปโหลดถูกปิดใช้งานบนวิกินี้',
 
 # Durations
 'duration-seconds' => '$1 วินาที',

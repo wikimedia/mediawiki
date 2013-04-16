@@ -486,15 +486,15 @@ $1',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main' => 'Side',
-'nstab-user' => 'brugerside',
-'nstab-media' => 'medie',
-'nstab-special' => 'speciel',
+'nstab-user' => 'Brugerside',
+'nstab-media' => 'Medieside',
+'nstab-special' => 'Specialside',
 'nstab-project' => 'Projektside',
 'nstab-image' => 'Fil',
 'nstab-mediawiki' => 'Besked',
-'nstab-template' => 'skabelon',
-'nstab-help' => 'hjælp',
-'nstab-category' => 'kategori',
+'nstab-template' => 'Skabelon',
+'nstab-help' => 'Hjælp',
+'nstab-category' => 'Kategori',
 
 # Main script and global functions
 'nosuchaction' => 'Funktionen findes ikke',

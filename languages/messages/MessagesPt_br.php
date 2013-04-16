@@ -54,6 +54,7 @@
  * @author Teles
  * @author TheGabrielZaum
  * @author Urhixidur
+ * @author Vivaelcelta
  * @author Vuln
  * @author Waldir
  * @author Yves Marques Junqueira
