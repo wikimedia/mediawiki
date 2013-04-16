@@ -5010,6 +5010,12 @@ $wgReadOnlyFile = false;
 $wgUpgradeKey = false;
 
 /**
+ * If the Special:Version page also shows the local Git update time of 
+ * core and extensions
+ */
+$wgGitShowLocalUpdateTimestamp = true;
+
+/**
  * Fully specified path to git binary
  */
 $wgGitBin = '/usr/bin/git';
