@@ -726,7 +726,13 @@ class WebInstaller_Name extends WebInstallerPage {
 			$this->parent->showError( 'config-site-name-blank' );
 			$retVal = false;
 		}
+		if(strval($this->getVar('wgSitename')) === 'MediaWiki'){
+			$this->parent->showError('prohibited-name-MediaWiki');
+		}
 
+		if(strval($this->getVar('wgSitename')) === '#'){
+			$this->parent->showError('prohibited-name-hash');
+		}
 		// Fetch namespace
 		$nsType = $this->getVar( '_NamespaceType' );
 		if ( $nsType == 'site-name' ) {
