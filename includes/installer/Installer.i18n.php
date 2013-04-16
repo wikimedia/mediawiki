@@ -13,6 +13,8 @@ $messages = array();
 /** English */
 $messages['en'] = array(
 	'config-desc'                     => 'The installer for MediaWiki',
+	'extension-link'				  => 'Did you know that your mediawiki supports  [//www.mediawiki.org/wiki/Manual:Extensions extensions]. 
+	You can browse [http://www.mediawiki.org/wiki/Category:Extensions_by_category extentions by category] or the [http://www.mediawiki.org/wiki/Extension_Matrix Extension Matrix] to see the full range of extensions that have already been written',
 	'config-title'                    => 'MediaWiki $1 installation',
 	'config-information'              => 'Information',
 	'config-localsettings-upgrade'    => "A <code>LocalSettings.php</code> file has been detected.
