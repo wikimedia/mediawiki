@@ -235,11 +235,15 @@ class SpecialPageFactory {
 			$missingPages = clone self::getList();
 
 			self::$mAliases = array();
-			foreach ( $aliases as $realName => $aliasList ) {
-				foreach ( $aliasList as $alias ) {
-					self::$mAliases[$wgContLang->caseFold( $alias )] = $realName;
+
+			//Do a check is $aliases is an array since $wgContLang->getSpecialPageAliases(); can return null.
+			if ( is_array( $aliases ) ) {
+				foreach ( $aliases as $realName => $aliasList ) {
+					foreach ( $aliasList as $alias ) {
+						self::$mAliases[$wgContLang->caseFold( $alias )] = $realName;
+					}
+					unset( $missingPages->$realName );
 				}
-				unset( $missingPages->$realName );
 			}
 			foreach ( $missingPages as $name => $stuff ) {
 				self::$mAliases[$wgContLang->caseFold( $name )] = $name;
@@ -551,8 +555,9 @@ class SpecialPageFactory {
 		} else {
 			// Try harder in case someone misspelled the correct casing
 			$found = false;
+
 			//Do a check is $aliases is an array since $wgContLang->getSpecialPageAliases(); can return null.
-			if (is_array($aliases)) {
+			if ( is_array( $aliases ) ) {
 				foreach ( $aliases as $n => $values ) {
 					if ( strcasecmp( $name, $n ) === 0 ) {
 						wfWarn( "Found alias defined for $n when searching for " .
