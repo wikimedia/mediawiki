@@ -31,6 +31,8 @@ class MysqlUpdater extends DatabaseUpdater {
 
 	protected function getCoreUpdateList() {
 		return array(
+			array( 'disableContentHandlerUseDB' ),
+
 			// 1.2
 			array( 'addField', 'ipblocks',      'ipb_id',           'patch-ipblocks.sql' ),
 			array( 'addField', 'ipblocks',      'ipb_expiry',       'patch-ipb_expiry.sql' ),
@@ -215,6 +217,8 @@ class MysqlUpdater extends DatabaseUpdater {
 			array( 'addField',	'archive',	'ar_content_format',		'patch-archive-ar_content_format.sql' ),
 			array( 'addField',	'archive',	'ar_content_model',		    'patch-archive-ar_content_model.sql' ),
 			array( 'addField',	'page',     'page_content_model',		'patch-page-page_content_model.sql' ),
+			array( 'enableContentHandlerUseDB' ),
+
 			array( 'dropField', 'site_stats',   'ss_admins',        'patch-drop-ss_admins.sql' ),
 			array( 'dropField', 'recentchanges', 'rc_moved_to_title',            'patch-rc_moved.sql' ),
 			array( 'addTable', 'sites',                            'patch-sites.sql' ),
