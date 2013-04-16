@@ -61,8 +61,7 @@ class SkinVector extends SkinTemplate {
 	}
 
 	/**
-	 * Load skin and user CSS files in the correct order
-	 * fixes bug 22916
+	 * Loads skin and user CSS files.
 	 * @param $out OutputPage object
 	 */
 	function setupSkinUserCss( OutputPage $out ) {
