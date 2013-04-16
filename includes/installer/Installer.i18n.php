@@ -349,6 +349,8 @@ This is more efficient than MySQL's UTF-8 mode, and allows you to use the full r
 In '''UTF-8 mode''', MySQL will know what character set your data is in, and can present and convert it appropriately, but it will not let you store characters above the [//en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Basic Multilingual Plane].",
 
 	'config-site-name'                => 'Name of wiki:',
+	'prohibited-name-hash'			  => "Site name cannot be #",
+	'prohibited-name-MediaWiki'    	  => "Site name cannont be MediaWiki",
 	'config-site-name-help'           => "This will appear in the title bar of the browser and in various other places.",
 	'config-site-name-blank'          => 'Enter a site name.',
 	'config-project-namespace'        => 'Project namespace:',
