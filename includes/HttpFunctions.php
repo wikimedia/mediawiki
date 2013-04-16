@@ -774,7 +774,10 @@ class CurlHttpRequest extends MWHttpRequest {
 			wfRestoreWarnings();
 		}
 
-		if ( false === curl_exec( $curlHandle ) ) {
+		$curlRes = curl_exec( $curlHandle );
+		if ( curl_errno( $curlHandle ) == CURLE_OPERATION_TIMEOUTED ) {
+			$this->status->fatal( 'http-timed-out', $this->url );
+		} elseif ( $curlRes === false ) {
 			$this->status->fatal( 'http-curl-error', curl_error( $curlHandle ) );
 		} else {
 			$this->headerList = explode( "\r\n", $this->headerText );
