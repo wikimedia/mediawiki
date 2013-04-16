@@ -1265,6 +1265,11 @@ class WebInstaller_Complete extends WebInstallerPage {
 				)->plain(), 'tick-32.png'
 			)
 		);
+		$this->addHTML(
+			$this->parent->getInfoBox(
+				wfMessage('extension-link')->text()
+			)
+		);
 		$this->parent->restoreLinkPopups();
 		$this->endForm( false, false );
 	}
