@@ -122,8 +122,15 @@ production.
 * (bug 45526) Add QUnit assertion helper "QUnit.assert.htmlEqual" for asserting
   structual equality of HTML (ignoring insignificant differences like
   quotmarks, order and whitespace in the attribute list).
+* (bug 23393) HTML <hN> headings containing line breaks are now handled
+  correctly.
+* (bug 45803) Whitespace within == Headline == syntax and within <hN> headings
+  is now non-significant and not preserved in the HTML output.
+* (bug 23343) Implemented ability to apply IP blocks to the contents of X-Forwarded-For headers
+  by adding a new configuration variable $wgApplyIpBlocksToXff (disabled by default).
 
 === Bug fixes in 1.21 ===
+* (bug 47271) $wgContentHandlerUseDB should be set to false during the upgrade
 * (bug 46084) Sanitize $limitReport before outputting.
 * (bug 46859) Disable external entities in XMLReader.
 * (bug 47251) Disable external entities in Import.
