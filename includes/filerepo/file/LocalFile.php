@@ -604,7 +604,7 @@ class LocalFile extends File {
 	 * Return the width of the image
 	 *
 	 * @param $page int
-	 * @return bool|int Returns false on error
+	 * @return int
 	 */
 	public function getWidth( $page = 1 ) {
 		$this->load();
@@ -614,7 +614,9 @@ class LocalFile extends File {
 			if ( $dim ) {
 				return $dim['width'];
 			} else {
-				return false;
+				// For non-paged media, the false goes through an
+				// intval, turning failure into 0, so do same here.
+				return 0;
 			}
 		} else {
 			return $this->width;
@@ -625,7 +627,7 @@ class LocalFile extends File {
 	 * Return the height of the image
 	 *
 	 * @param $page int
-	 * @return bool|int Returns false on error
+	 * @return int
 	 */
 	public function getHeight( $page = 1 ) {
 		$this->load();
@@ -635,7 +637,9 @@ class LocalFile extends File {
 			if ( $dim ) {
 				return $dim['height'];
 			} else {
-				return false;
+				// For non-paged media, the false goes through an
+				// intval, turning failure into 0, so do same here.
+				return 0;
 			}
 		} else {
 			return $this->height;
