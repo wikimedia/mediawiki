@@ -294,8 +294,12 @@ class SpecialVersion extends SpecialPage {
 		}
 
 		$gitHeadCommitDate = $gitInfo->getHeadCommitDate();
+		$gitLocalUpdateDate = $gitInfo->getLocalUpdateDate();
 		if ( $gitHeadCommitDate ) {
 			$shortSHA1 .= "<br/>" . $wgLang->timeanddate( $gitHeadCommitDate, true );
+		}
+		if ( $gitLocalUpdateDate ) {
+			$shortSHA1 .= "<br/>" . $wgLang->timeanddate( $gitLocalUpdateDate, true );
 		}
 
 		return self::getwgVersionLinked() . " $shortSHA1";
@@ -485,8 +489,12 @@ class SpecialVersion extends SpecialPage {
 					$vcsText = "[$gitViewerUrl $vcsText]";
 				}
 				$gitHeadCommitDate = $gitInfo->getHeadCommitDate();
+				$gitLocalUpdateDate = $gitInfo->getLocalUpdateDate();
 				if ( $gitHeadCommitDate ) {
 					$vcsText .= "<br/>" .  $wgLang->timeanddate( $gitHeadCommitDate, true );
+				}
+				if ( $gitLocalUpdateDate ) {
+					$vcsText .= "<br/>" . $wgLang->timeanddate( $gitLocalUpdateDate, true );
 				}
 			} else {
 				$svnInfo = self::getSvnInfo( dirname( $extension['path'] ) );
