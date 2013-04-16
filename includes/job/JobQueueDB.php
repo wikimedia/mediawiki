@@ -225,8 +225,8 @@ class JobQueueDB extends JobQueue {
 					foreach ( array_chunk( $rows, 50 ) as $rowBatch ) {
 						$dbw->insert( 'job', $rowBatch, $method );
 					}
-					wfIncrStats( 'job-insert', count( $rows ) );
-					wfIncrStats( 'job-insert-duplicate',
+					JobQueue::incrStats( 'job-insert', $this->type, count( $rows ) );
+					JobQueue::incrStats( 'job-insert-duplicate', $this->type,
 						count( $rowSet ) + count( $rowList ) - count( $rows ) );
 				} catch ( DBError $e ) {
 					if ( $atomic ) {
@@ -273,7 +273,7 @@ class JobQueueDB extends JobQueue {
 				$this->cache->set( $this->getCacheKey( 'empty' ), 'true', self::CACHE_TTL_LONG );
 				break; // nothing to do
 			}
-			wfIncrStats( 'job-pop' );
+			JobQueue::incrStats( 'job-pop', $this->type );
 			// Get the job object from the row...
 			$title = Title::makeTitleSafe( $row->job_namespace, $row->job_title );
 			if ( !$title ) {
@@ -576,7 +576,7 @@ class JobQueueDB extends JobQueue {
 					__METHOD__
 				);
 				$count += $dbw->affectedRows();
-				wfIncrStats( 'job-recycle', $dbw->affectedRows() );
+				JobQueue::incrStats( 'job-recycle', $this->type, $dbw->affectedRows() );
 				$this->cache->set( $this->getCacheKey( 'empty' ), 'false', self::CACHE_TTL_LONG );
 			}
 		}
