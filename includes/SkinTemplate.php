@@ -1021,11 +1021,6 @@ class SkinTemplate extends Skin {
 					foreach( $variants as $code ) {
 						// Gets variant name from language code
 						$varname = $pageLang->getVariantname( $code );
-						// Checks if the variant is marked as disabled
-						if( $varname == 'disable' ) {
-							// Skips this variant
-							continue;
-						}
 						// Appends variant link
 						$content_navigation['variants'][] = array(
 							'class' => ( $code == $preferred ) ? 'selected' : false,
