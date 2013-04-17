@@ -290,8 +290,7 @@ $messages = array(
 'grouppage-sysop' => '{{ns:project}}:𐍃𐌴𐌹𐌳𐍉𐍆𐌰𐌸𐍃',
 
 # User rights log
-'rightslog'  => 'Niutandis stutjanlog',
-'rightsnone' => '(ni áinshun)',
+'rightslog' => 'Niutandis stutjanlog',
 
 # Recent changes
 'nchanges'        => '$1 {{PLURAL:$1|máidein|máideins}}',
@@ -387,7 +386,7 @@ $messages = array(
 # Special:LinkSearch
 'linksearch-ns' => '𐍃𐌴𐌹𐌳𐍉𐍆𐌴𐍂𐌰:',
 
-# E-mail user
+# Email user
 'emailuser' => '𐍃𐌰𐌽𐌳𐌾𐌰𐌽 𐌸𐍉 𐌽𐌹𐌿𐍄𐌰𐌽𐌳 𐌱𐍉𐌺𐍉𐌼',
 
 # Watchlist
@@ -531,5 +530,8 @@ $messages = array(
 
 # Special:SpecialPages
 'specialpages' => '𐌿𐍃𐍃𐌹𐌽𐌳𐍃𐌴𐌹𐌳𐍉𐍃',
+
+# New logging system
+'rightsnone' => '(ni áinshun)',
 
 );

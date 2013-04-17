@@ -83,9 +83,6 @@ $messages = array(
 # Diffs
 'editundo' => '撤銷',
 
-# Search results
-'search-mwsuggest-disabled' => '沒有意見',
-
 # Preferences page
 'prefs-help-gender' => '可選：用於軟件中的性別指定。此項資料將會被公開。',
 
@@ -99,9 +96,6 @@ $messages = array(
 # Recent changes
 'recentchanges-label-bot' => '這次編輯是由機械人進行',
 'rcshowhidebots'          => '$1機械人的編輯',
-
-# Special:ActiveUsers
-'activeusers-hidebots' => '隱藏機械人',
 
 # Block/unblock
 'contribslink' => '貢獻',
@@ -120,5 +114,9 @@ $messages = array(
 
 # Special:SpecialPages
 'specialpages' => '特殊頁面',
+
+# Unknown messages
+'activeusers-hidebots'      => '隱藏機械人',
+'search-mwsuggest-disabled' => '沒有意見',
 
 );

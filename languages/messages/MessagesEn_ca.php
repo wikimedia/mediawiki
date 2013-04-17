@@ -47,7 +47,7 @@ Go back to the previous page, reload that page and then try again.',
 
 'exif-ycbcrpositioning-1' => 'Centred',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail_invalidated' => 'E-mail address confirmation cancelled',
 
 # Special:Version

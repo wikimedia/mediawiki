@@ -244,9 +244,6 @@ $messages = array(
 
 您可以以匿名方式繼續使用{{SITENAME}}，或者以相同或不同用戶身份[[Special:UserLogin|登入]]。
 請注意，如果你再次登入，此頁或會繼續顯示，直到您清除瀏覽器快取。',
-'welcomecreation'            => '== 歡迎，$1！ ==
-您的帳號已經建立。
-請不要忘記設定[[Special:Preferences|{{SITENAME}}的個人參數]]。',
 'yourname'                   => '您的使用者名:',
 'yourpassword'               => '密碼：',
 'login'                      => '登入',
@@ -344,7 +341,6 @@ $messages = array(
 'protectedpagewarning'       => "'''警告: 本頁已經被保護，只有擁有管理員許可權的使用者才可修改。'''",
 'semiprotectedpagewarning'   => "'''注意:''' 本頁面被鎖定，僅限註冊使用者編輯。",
 'cascadeprotectedwarning'    => '警告: 本頁已經被保護，只有擁有管理員權限的使用者才可修改，因為本頁已被以下連鎖保護的{{PLURAL:$1|一個|多個}}頁面所包含:',
-'nocreatetitle'              => '建立頁面受限',
 'nocreatetext'               => '此網站限制了建立新頁面的功能。你可以返回並編輯已有的頁面，或者[[Special:UserLogin|登錄或建立新帳號]]。',
 'nocreate-loggedin'          => '您在這個wiki中並無許可權去建立新頁面。',
 'recreate-moveddeleted-warn' => "'''警告: 你現在重新建立一個先前曾經刪除過的頁面。'''
@@ -587,10 +583,7 @@ $messages = array(
 'listusersfrom'      => '給定顯示使用者條件:',
 'listusers-noresult' => '找不到使用者。',
 
-# Special:ActiveUsers
-'activeusers-hidebots' => '隱藏機器人',
-
-# E-mail user
+# Email user
 'mailnologin'     => '無E-mail地址',
 'mailnologintext' => '您必須先[[Special:UserLogin|登入]]
 並在[[Special:Preferences|偏好設定]]
@@ -877,8 +870,6 @@ $NEWPAGE
 
 /*
 Short names for language variants used for language conversion links.
-To disable showing a particular link, set it to 'disable', e.g.
-'variantname-zh-sg' => 'disable',
 Variants for Chinese language
 */
 'variantname-zh-tw' => '台灣繁體',
@@ -917,7 +908,7 @@ Variants for Chinese language
 # External editor support
 'edit-externally-help' => '請參見[//www.mediawiki.org/wiki/Manual:External_editors 設定步驟]了解詳細資訊。',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail'            => '確認電子郵件地址',
 'confirmemail_noemail'    => '您沒有在您的[[Special:Preferences|使用者設定]]裡面輸入一個有效的 email 位址。',
 'confirmemail_text'       => '此網站要求您在使用郵件功能之前驗證您的電子郵件地址。
@@ -955,5 +946,12 @@ Variants for Chinese language
 
 # Special:SpecialPages
 'specialpages' => '特殊頁面',
+
+# Unknown messages
+'activeusers-hidebots' => '隱藏機器人',
+'nocreatetitle'        => '建立頁面受限',
+'welcomecreation'      => '== 歡迎，$1！ ==
+您的帳號已經建立。
+請不要忘記設定[[Special:Preferences|{{SITENAME}}的個人參數]]。',
 
 );

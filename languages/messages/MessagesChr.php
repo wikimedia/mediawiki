@@ -16,62 +16,61 @@
 
 $messages = array(
 # Dates
-'january' => 'ᏚᏃᎸᏔᏂ',
-'february' => 'ᎧᎦᎵ',
-'march' => 'ᎠᏄᏱ',
-'april' => 'ᎧᏩᏂ',
-'may_long' => 'ᎠᎾᎠᎬᏘ',
-'june' => 'ᏕᎭᎷᏱ',
-'july' => 'ᎫᏰᏉᏂ',
-'august' => 'ᎦᎶᏂᎢ',
+'january'   => 'ᏚᏃᎸᏔᏂ',
+'february'  => 'ᎧᎦᎵ',
+'march'     => 'ᎠᏄᏱ',
+'april'     => 'ᎧᏩᏂ',
+'may_long'  => 'ᎠᎾᎠᎬᏘ',
+'june'      => 'ᏕᎭᎷᏱ',
+'july'      => 'ᎫᏰᏉᏂ',
+'august'    => 'ᎦᎶᏂᎢ',
 'september' => 'ᏚᎵᎢᏍᏗ',
-'october' => 'ᏚᏂᏅᏗ',
-'november' => 'ᏄᏓᏕᏆ',
-'december' => 'ᎥᏍᎩᎦ',
-'jan' => 'ᏚᏃᎸ',
-'feb' => 'ᎧᎦᎵ',
-'mar' => 'ᎠᏄᏱ',
-'apr' => 'ᎧᏩᏂ',
-'may' => 'ᎠᎾᎠ',
-'jun' => 'ᏕᎭᎷ',
-'jul' => 'ᎫᏰᏉ',
-'aug' => 'ᎦᎶᏂ',
-'sep' => 'ᏚᎵᎢ',
-'oct' => 'ᏚᏂᏅ',
-'nov' => 'ᏄᏓᏕ',
-'dec' => 'ᎥᏍᎩ',
+'october'   => 'ᏚᏂᏅᏗ',
+'november'  => 'ᏄᏓᏕᏆ',
+'december'  => 'ᎥᏍᎩᎦ',
+'jan'       => 'ᏚᏃᎸ',
+'feb'       => 'ᎧᎦᎵ',
+'mar'       => 'ᎠᏄᏱ',
+'apr'       => 'ᎧᏩᏂ',
+'may'       => 'ᎠᎾᎠ',
+'jun'       => 'ᏕᎭᎷ',
+'jul'       => 'ᎫᏰᏉ',
+'aug'       => 'ᎦᎶᏂ',
+'sep'       => 'ᏚᎵᎢ',
+'oct'       => 'ᏚᏂᏅ',
+'nov'       => 'ᏄᏓᏕ',
+'dec'       => 'ᎥᏍᎩ',
 
-'about' => 'ᎬᏩᏚᏫᏛ',
-'article' => 'ᎤᏓᏡᎬ',
+'about'      => 'ᎬᏩᏚᏫᏛ',
+'article'    => 'ᎤᏓᏡᎬ',
 'navigation' => 'ᎠᏂᎩᏍᏗ ᏥᏳ',
 
 # Cologne Blue skin
-'qbpageinfo' => 'ᎦᎷᎯᏍᏗ',
 'qbspecialpages' => 'ᎤᏤᎵᏛ',
 
-'help' => 'ᎠᎵᏍᏕᎸᏗ',
-'search' => 'ᎠᏯᏍᏗ',
-'searchbutton' => 'ᎠᏯᏍᏗ',
-'go' => 'ᎮᎦ',
-'history' => 'ᏆᏥ ᎧᏃᎮᏍᎩ',
-'history_short' => 'ᎧᏃᎮᏍᎩ',
+'help'             => 'ᎠᎵᏍᏕᎸᏗ',
+'search'           => 'ᎠᏯᏍᏗ',
+'searchbutton'     => 'ᎠᏯᏍᏗ',
+'go'               => 'ᎮᎦ',
+'history'          => 'ᏆᏥ ᎧᏃᎮᏍᎩ',
+'history_short'    => 'ᎧᏃᎮᏍᎩ',
 'printableversion' => 'ᎦᎴᏯᏛ ᏅᎬᎪᏔᏅᎯ',
-'permalink' => 'ᏂᎪᎯᎸ ᏕᎬᏔᏛ',
+'permalink'        => 'ᏂᎪᎯᎸ ᏕᎬᏔᏛ',
 'talkpagelinktext' => 'ᎧᏃᎮᎸᏗ',
-'talk' => 'ᎧᏃᎮᎸᏗ',
-'toolbox' => 'ᎪᎱᏍᏗ ᎬᏔᏂᏓᏍᏗ ᎧᏁᏌᎢ',
-'otherlanguages' => 'ᎭᏫᎾᏗᏢ ᏐᎢ ᏗᎦᏬᏂᎯᏍᏗ',
-'jumptosearch' => 'ᎡᏗt',
+'talk'             => 'ᎧᏃᎮᎸᏗ',
+'toolbox'          => 'ᎪᎱᏍᏗ ᎬᏔᏂᏓᏍᏗ ᎧᏁᏌᎢ',
+'otherlanguages'   => 'ᎭᏫᎾᏗᏢ ᏐᎢ ᏗᎦᏬᏂᎯᏍᏗ',
+'jumptosearch'     => 'ᎡᏗt',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutpage' => 'Project:ᎬᏩᏚᏫᏛ',
-'currentevents' => 'ᏗᏤᎢ',
-'mainpage' => 'ᎤᎵᎮᎵᏍᏗ',
+'aboutpage'            => 'Project:ᎬᏩᏚᏫᏛ',
+'currentevents'        => 'ᏗᏤᎢ',
+'mainpage'             => 'ᎤᎵᎮᎵᏍᏗ',
 'mainpage-description' => 'ᎤᎵᎮᎵᏍᏗ',
-'portal' => 'ᎾᎥ ᏄᎾᏓᎸ ᎠᏍᏚᎢᏍᏗ',
+'portal'               => 'ᎾᎥ ᏄᎾᏓᎸ ᎠᏍᏚᎢᏍᏗ',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main' => 'ᎤᏓᏡᎬ',
+'nstab-main'     => 'ᎤᏓᏡᎬ',
 'nstab-category' => 'ᏗᎦᎪᏗ',
 
 # General errors
@@ -93,8 +92,8 @@ $messages = array(
 'recentchanges' => 'ᎾᏞᎬ ᏗᎦᏁᏟᏴᏍᏗ',
 
 # Recent changes linked
-'recentchangeslinked' => 'ᎪᎱᏍᏗ ᎠᎾᏓᏛᏂ ᏗᎦᏁᏟᏴᏍᏗ',
-'recentchangeslinked-feed' => 'ᎪᎱᏍᏗ ᎠᎾᏓᏛᏂ ᏗᎦᏁᏟᏴᏍᏗ',
+'recentchangeslinked'         => 'ᎪᎱᏍᏗ ᎠᎾᏓᏛᏂ ᏗᎦᏁᏟᏴᏍᏗ',
+'recentchangeslinked-feed'    => 'ᎪᎱᏍᏗ ᎠᎾᏓᏛᏂ ᏗᎦᏁᏟᏴᏍᏗ',
 'recentchangeslinked-toolbox' => 'ᎪᎱᏍᏗ ᎠᎾᏓᏛᏂ ᏗᎦᏁᏟᏴᏍᏗ',
 
 # Upload
@@ -122,5 +121,8 @@ $messages = array(
 
 # Special:SpecialPages
 'specialpages' => 'ᎤᏤᎵᏛ ᏚᏆᏓᏛ',
+
+# Unknown messages
+'qbpageinfo' => 'ᎦᎷᎯᏍᏗ',
 
 );
