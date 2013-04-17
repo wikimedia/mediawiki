@@ -265,6 +265,11 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				$vals[$type] = $vals2;
 				$params = null;
 				break;
+			case 'upload':
+				if ( isset( $params['img_timestamp'] ) ) {
+					$params['img_timestamp'] = wfTimestamp( TS_ISO_8601, $params['img_timestamp'] );
+				}
+				break;
 		}
 		if ( !is_null( $params ) ) {
 			$logParams = array();

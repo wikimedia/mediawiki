@@ -50,6 +50,8 @@ production.
   longer be), and will no longer choke on booleans.
 * action=opensearch no longer silently ignores the format parameter.
 * action=opensearch now supports format=jsonfm.
+* New upload log entries will now contain information on the relavent
+  image (sha1 and timestamp).
 
 === Languages updated in 1.22===
 
