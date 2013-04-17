@@ -46,8 +46,6 @@ production.
   unlikely to impact existing clients.
 * (bug 25325) Added support for wlshow filtering (bots/anon/minor/patrolled)
   to action=feedwatchlist.
-* WDDX formatted output will actually be formatted (and normal output will no
-  longer be), and will no longer choke on booleans.
 * action=opensearch no longer silently ignores the format parameter.
 * action=opensearch now supports format=jsonfm.
 
