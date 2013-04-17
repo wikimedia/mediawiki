@@ -59,7 +59,7 @@ class BlockTest extends MediaWikiLangTestCase {
 	 * debug function : dump the ipblocks table
 	 */
 	function dumpBlocks() {
-		$v = $this->db->query( 'SELECT * FROM unittest_ipblocks' );
+                $v = $this->db->select( 'ipblocks', '*' );
 		print "Got " . $v->numRows() . " rows. Full dump follow:\n";
 		foreach ( $v as $row ) {
 			print_r( $row );
