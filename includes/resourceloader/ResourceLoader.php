@@ -289,7 +289,7 @@ class ResourceLoader {
 
 		// Add the testrunner (which configures QUnit) to the dependencies.
 		// Since it must be ready before any of the test suites are executed.
-		foreach( $testModules['qunit'] as &$module ) {
+		foreach ( $testModules['qunit'] as &$module ) {
 			// Make sure all test modules are top-loading so that when QUnit starts
 			// on document-ready, it will run once and finish. If some tests arrive
 			// later (possibly after QUnit has already finished) they will be ignored.
@@ -297,7 +297,7 @@ class ResourceLoader {
 			$module['dependencies'][] = 'mediawiki.tests.qunit.testrunner';
 		}
 
-		foreach( $testModules as $id => $names ) {
+		foreach ( $testModules as $id => $names ) {
 			// Register test modules
 			$this->register( $testModules[$id] );
 
@@ -914,7 +914,7 @@ class ResourceLoader {
 
 					if ( $media === '' || $media == 'all' ) {
 						$out[] = $style;
-					} else if ( is_string( $media ) ) {
+					} elseif ( is_string( $media ) ) {
 						$out[] = "@media $media {\n" . str_replace( "\n", "\n\t", "\t" . $style ) . "}";
 					}
 					// else: skip

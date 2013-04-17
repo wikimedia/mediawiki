@@ -319,7 +319,7 @@ class OutputPage extends ContextSource {
 	 * @param string $text or array of strings
 	 */
 	function addKeyword( $text ) {
-		if( is_array( $text ) ) {
+		if ( is_array( $text ) ) {
 			$this->mKeywords = array_merge( $this->mKeywords, $text );
 		} else {
 			array_push( $this->mKeywords, $text );
@@ -413,13 +413,14 @@ class OutputPage extends ContextSource {
 	public function addScriptFile( $file, $version = null ) {
 		global $wgStylePath, $wgStyleVersion;
 		// See if $file parameter is an absolute URL or begins with a slash
-		if( substr( $file, 0, 1 ) == '/' || preg_match( '#^[a-z]*://#i', $file ) ) {
+		if ( substr( $file, 0, 1 ) == '/' || preg_match( '#^[a-z]*://#i', $file ) ) {
 			$path = $file;
 		} else {
 			$path = "{$wgStylePath}/common/{$file}";
 		}
-		if ( is_null( $version ) )
+		if ( is_null( $version ) ) {
 			$version = $wgStyleVersion;
+		}
 		$this->addScript( Html::linkedScript( wfAppendQuery( $path, $version ) ) );
 	}
 
@@ -452,9 +453,9 @@ class OutputPage extends ContextSource {
 	protected function filterModules( $modules, $position = null, $type = ResourceLoaderModule::TYPE_COMBINED ) {
 		$resourceLoader = $this->getResourceLoader();
 		$filteredModules = array();
-		foreach( $modules as $val ) {
+		foreach ( $modules as $val ) {
 			$module = $resourceLoader->getModule( $val );
-			if( $module instanceof ResourceLoaderModule
+			if ( $module instanceof ResourceLoaderModule
 				&& $module->getOrigin() <= $this->getAllowedModules( $type )
 				&& ( is_null( $position ) || $module->getPosition() == $position )
 				&& ( !$this->mTarget || in_array( $this->mTarget, $module->getTargets() ) ) )
@@ -693,20 +694,20 @@ class OutputPage extends ContextSource {
 			wfDebug( __METHOD__ . ": CACHE DISABLED, NO TIMESTAMP\n" );
 			return false;
 		}
-		if( !$wgCachePages ) {
+		if ( !$wgCachePages ) {
 			wfDebug( __METHOD__ . ": CACHE DISABLED\n", false );
 			return false;
 		}
-		if( $this->getUser()->getOption( 'nocache' ) ) {
+		if ( $this->getUser()->getOption( 'nocache' ) ) {
 			wfDebug( __METHOD__ . ": USER DISABLED CACHE\n", false );
 			return false;
 		}
 
 		$timestamp = wfTimestamp( TS_MW, $timestamp );
 		$modifiedTimes = array(
-			'page'   => $timestamp,
-			'user'   => $this->getUser()->getTouched(),
-			'epoch'  => $wgCacheEpoch
+			'page' => $timestamp,
+			'user' => $this->getUser()->getTouched(),
+			'epoch' => $wgCacheEpoch
 		);
 		if ( $wgUseSquid ) {
 			// bug 44570: the core page itself may not change, but resources might
@@ -750,7 +751,7 @@ class OutputPage extends ContextSource {
 			wfTimestamp( TS_ISO_8601, $clientHeaderTime ) . "\n", false );
 		wfDebug( __METHOD__ . ": effective Last-Modified: " .
 			wfTimestamp( TS_ISO_8601, $maxModified ) . "\n", false );
-		if( $clientHeaderTime < $maxModified ) {
+		if ( $clientHeaderTime < $maxModified ) {
 			wfDebug( __METHOD__ . ": STALE, $info\n", false );
 			return false;
 		}
@@ -792,10 +793,10 @@ class OutputPage extends ContextSource {
 	public function setRobotPolicy( $policy ) {
 		$policy = Article::formatRobotPolicy( $policy );
 
-		if( isset( $policy['index'] ) ) {
+		if ( isset( $policy['index'] ) ) {
 			$this->setIndexPolicy( $policy['index'] );
 		}
-		if( isset( $policy['follow'] ) ) {
+		if ( isset( $policy['follow'] ) ) {
 			$this->setFollowPolicy( $policy['follow'] );
 		}
 	}
@@ -809,7 +810,7 @@ class OutputPage extends ContextSource {
 	 */
 	public function setIndexPolicy( $policy ) {
 		$policy = trim( $policy );
-		if( in_array( $policy, array( 'index', 'noindex' ) ) ) {
+		if ( in_array( $policy, array( 'index', 'noindex' ) ) ) {
 			$this->mIndexPolicy = $policy;
 		}
 	}
@@ -823,7 +824,7 @@ class OutputPage extends ContextSource {
 	 */
 	public function setFollowPolicy( $policy ) {
 		$policy = trim( $policy );
-		if( in_array( $policy, array( 'follow', 'nofollow' ) ) ) {
+		if ( in_array( $policy, array( 'follow', 'nofollow' ) ) ) {
 			$this->mFollowPolicy = $policy;
 		}
 	}
@@ -1310,7 +1311,7 @@ class OutputPage extends ContextSource {
 	 * @return Int ResourceLoaderModule ORIGIN_ class constant
 	 */
 	public function getAllowedModules( $type ) {
-		if( $type == ResourceLoaderModule::TYPE_COMBINED ) {
+		if ( $type == ResourceLoaderModule::TYPE_COMBINED ) {
 			return min( array_values( $this->mAllowedModules ) );
 		} else {
 			return isset( $this->mAllowedModules[$type] )
@@ -1652,7 +1653,7 @@ class OutputPage extends ContextSource {
 	public function parse( $text, $linestart = true, $interface = false, $language = null ) {
 		global $wgParser;
 
-		if( is_null( $this->getTitle() ) ) {
+		if ( is_null( $this->getTitle() ) ) {
 			throw new MWException( 'Empty $mTitle in ' . __METHOD__ );
 		}
 
@@ -1776,8 +1777,8 @@ class OutputPage extends ContextSource {
 	public function addVaryHeader( $header, $option = null ) {
 		if ( !array_key_exists( $header, $this->mVaryHeader ) ) {
 			$this->mVaryHeader[$header] = (array)$option;
-		} elseif( is_array( $option ) ) {
-			if( is_array( $this->mVaryHeader[$header] ) ) {
+		} elseif ( is_array( $option ) ) {
+			if ( is_array( $this->mVaryHeader[$header] ) ) {
 				$this->mVaryHeader[$header] = array_merge( $this->mVaryHeader[$header], $option );
 			} else {
 				$this->mVaryHeader[$header] = $option;
@@ -1811,7 +1812,7 @@ class OutputPage extends ContextSource {
 		$this->addVaryHeader( 'Cookie', $cookiesOption );
 
 		$headers = array();
-		foreach( $this->mVaryHeader as $header => $option ) {
+		foreach ( $this->mVaryHeader as $header => $option ) {
 			$newheader = $header;
 			if ( is_array( $option ) && count( $option ) > 0 ) {
 				$newheader .= ';' . implode( ';', $option );
@@ -1833,11 +1834,11 @@ class OutputPage extends ContextSource {
 	 */
 	function addAcceptLanguage() {
 		$lang = $this->getTitle()->getPageLanguage();
-		if( !$this->getRequest()->getCheck( 'variant' ) && $lang->hasVariants() ) {
+		if ( !$this->getRequest()->getCheck( 'variant' ) && $lang->hasVariants() ) {
 			$variants = $lang->getVariants();
 			$aloption = array();
 			foreach ( $variants as $variant ) {
-				if( $variant === $lang->getCode() ) {
+				if ( $variant === $lang->getCode() ) {
 					continue;
 				} else {
 					$aloption[] = 'string-contains=' . $variant;
@@ -1918,12 +1919,11 @@ class OutputPage extends ContextSource {
 			$response->header( $this->getXVO() );
 		}
 
-		if( $this->mEnableClientCache ) {
-			if(
+		if ( $this->mEnableClientCache ) {
+			if (
 				$wgUseSquid && session_id() == '' && !$this->isPrintable() &&
 				$this->mSquidMaxage != 0 && !$this->haveCacheVaryCookies()
-			)
-			{
+			) {
 				if ( $wgUseESI ) {
 					# We'll purge the proxy cache explicitly, but require end user agents
 					# to revalidate against the proxy on each visit.
@@ -1950,7 +1950,7 @@ class OutputPage extends ContextSource {
 				$response->header( 'Expires: ' . gmdate( 'D, d M Y H:i:s', 0 ) . ' GMT' );
 				$response->header( "Cache-Control: private, must-revalidate, max-age=0" );
 			}
-			if( $this->mLastModified ) {
+			if ( $this->mLastModified ) {
 				$response->header( "Last-Modified: {$this->mLastModified}" );
 			}
 		} else {
@@ -1985,7 +1985,7 @@ class OutputPage extends ContextSource {
 	public function output() {
 		global $wgLanguageCode, $wgDebugRedirects, $wgMimeType, $wgVaryOnXFP;
 
-		if( $this->mDoNothing ) {
+		if ( $this->mDoNothing ) {
 			return;
 		}
 
@@ -2000,9 +2000,9 @@ class OutputPage extends ContextSource {
 			$redirect = $this->mRedirect;
 			$code = $this->mRedirectCode;
 
-			if( wfRunHooks( "BeforePageRedirect", array( $this, &$redirect, &$code ) ) ) {
-				if( $code == '301' || $code == '303' ) {
-					if( !$wgDebugRedirects ) {
+			if ( wfRunHooks( "BeforePageRedirect", array( $this, &$redirect, &$code ) ) ) {
+				if ( $code == '301' || $code == '303' ) {
+					if ( !$wgDebugRedirects ) {
 						$message = HttpStatus::getMessage( $code );
 						$response->header( "HTTP/1.1 $code $message" );
 					}
@@ -2014,7 +2014,7 @@ class OutputPage extends ContextSource {
 				$this->sendCacheControl();
 
 				$response->header( "Content-Type: text/html; charset=utf-8" );
-				if( $wgDebugRedirects ) {
+				if ( $wgDebugRedirects ) {
 					$url = htmlspecialchars( $redirect );
 					print "<html>\n<head>\n<title>Redirect</title>\n</head>\n<body>\n";
 					print "<p>Location: <a href=\"$url\">$url</a></p>\n";
@@ -2123,7 +2123,7 @@ class OutputPage extends ContextSource {
 	 * @param array $params message parameters; ignored if $msg is a Message object
 	 */
 	public function showErrorPage( $title, $msg, $params = array() ) {
-		if( !$title instanceof Message ) {
+		if ( !$title instanceof Message ) {
 			$title = $this->msg( $title );
 		}
 
@@ -2264,7 +2264,7 @@ class OutputPage extends ContextSource {
 		if ( count( $errors ) > 1 ) {
 			$text .= '<ul class="permissions-errors">' . "\n";
 
-			foreach( $errors as $error ) {
+			foreach ( $errors as $error ) {
 				$text .= '<li>';
 				$text .= call_user_func_array( array( $this, 'msg' ), $error )->plain();
 				$text .= "</li>\n";
@@ -2312,7 +2312,7 @@ class OutputPage extends ContextSource {
 
 		if ( !empty( $reasons ) ) {
 			// Permissions error
-			if( $source ) {
+			if ( $source ) {
 				$this->setPageTitle( $this->msg( 'viewsource-title', $this->getTitle()->getPrefixedText() ) );
 				$this->addBacklinkSubtitle( $this->getTitle() );
 			} else {
@@ -2325,7 +2325,7 @@ class OutputPage extends ContextSource {
 		}
 
 		// Show source, if supplied
-		if( is_string( $source ) ) {
+		if ( is_string( $source ) ) {
 			$this->addWikiMsg( 'viewsourcetext' );
 
 			$pageLang = $this->getTitle()->getPageLanguage();
@@ -2351,7 +2351,7 @@ $templates
 		# If the title doesn't exist, it's fairly pointless to print a return
 		# link to it.  After all, you just tried editing it and couldn't, so
 		# what's there to do there?
-		if( $this->getTitle()->exists() ) {
+		if ( $this->getTitle()->exists() ) {
 			$this->returnToMain( null, $this->getTitle() );
 		}
 	}
@@ -2375,7 +2375,7 @@ $templates
 	 */
 	public function showLagWarning( $lag ) {
 		global $wgSlaveLagWarning, $wgSlaveLagCritical;
-		if( $lag >= $wgSlaveLagWarning ) {
+		if ( $lag >= $wgSlaveLagWarning ) {
 			$message = $lag < $wgSlaveLagCritical
 				? 'lag-warn-normal'
 				: 'lag-warn-high';
@@ -2419,9 +2419,9 @@ $templates
 	 * @param $options Options array to pass to Linker
 	 */
 	public function addReturnTo( $title, $query = array(), $text = null, $options = array() ) {
-		if( in_array( 'http', $options ) ) {
+		if ( in_array( 'http', $options ) ) {
 			$proto = PROTO_HTTP;
-		} elseif( in_array( 'https', $options ) ) {
+		} elseif ( in_array( 'https', $options ) ) {
 			$proto = PROTO_HTTPS;
 		} else {
 			$proto = PROTO_RELATIVE;
@@ -2556,7 +2556,7 @@ $templates
 
 			wfRunHooks( 'AjaxAddScript', array( &$this ) );
 
-			if( $wgAjaxWatch && $this->getUser()->isLoggedIn() ) {
+			if ( $wgAjaxWatch && $this->getUser()->isLoggedIn() ) {
 				$this->addModules( 'mediawiki.page.watch.ajax' );
 			}
 
@@ -2756,7 +2756,7 @@ $templates
 				// Automatically select style/script elements
 				if ( $only === ResourceLoaderModule::TYPE_STYLES ) {
 					$link = Html::linkedStyle( $url );
-				} else if ( $loadCall ) {
+				} elseif ( $loadCall ) {
 					$link = Html::inlineScript(
 						ResourceLoader::makeLoaderConditionalScript(
 							Xml::encodeJsCall( 'mw.loader.load', array( $url, 'text/javascript', true ) )
@@ -2767,7 +2767,7 @@ $templates
 				}
 			}
 
-			if( $group == 'noscript' ) {
+			if ( $group == 'noscript' ) {
 				$links .= Html::rawElement( 'noscript', array(), $link ) . "\n";
 			} else {
 				$links .= $link . "\n";
@@ -2878,7 +2878,7 @@ $templates
 		// Add user JS if enabled
 		if ( $wgAllowUserJs ) {
 			if ( $this->getUser()->isLoggedIn() ) {
-				if( $this->getTitle() && $this->getTitle()->isJsSubpage() && $this->userCanPreview() ) {
+				if ( $this->getTitle() && $this->getTitle()->isJsSubpage() && $this->userCanPreview() ) {
 					# XXX: additional security check/prompt?
 					// We're on a preview of a JS subpage
 					// Exclude this page from the user module in case it's in there (bug 26283)
@@ -3141,7 +3141,7 @@ $templates
 		) );
 
 		$p = "{$this->mIndexPolicy},{$this->mFollowPolicy}";
-		if( $p !== 'index,follow' ) {
+		if ( $p !== 'index,follow' ) {
 			// http://www.robotstxt.org/wc/meta-user.html
 			// Only show if it's different from the default robots policy
 			$tags['meta-robots'] = Html::element( 'meta', array(
@@ -3289,7 +3289,7 @@ $templates
 
 		# Feeds
 		if ( $wgFeed ) {
-			foreach( $this->getSyndicationLinks() as $format => $link ) {
+			foreach ( $this->getSyndicationLinks() as $format => $link ) {
 				# Use the page name for the title.  In principle, this could
 				# lead to issues with having the same name for different feeds
 				# corresponding to the same page, but we can't avoid that at
@@ -3391,13 +3391,13 @@ $templates
 		$options = array();
 		// Even though we expect the media type to be lowercase, but here we
 		// force it to lowercase to be safe.
-		if( $media ) {
+		if ( $media ) {
 			$options['media'] = $media;
 		}
-		if( $condition ) {
+		if ( $condition ) {
 			$options['condition'] = $condition;
 		}
-		if( $dir ) {
+		if ( $dir ) {
 			$options['dir'] = $dir;
 		}
 		$this->styles[$style] = $options;
@@ -3409,7 +3409,7 @@ $templates
 	 * @param string $flip Set to 'flip' to flip the CSS if needed
 	 */
 	public function addInlineStyle( $style_css, $flip = 'noflip' ) {
-		if( $flip === 'flip' && $this->getLanguage()->isRTL() ) {
+		if ( $flip === 'flip' && $this->getLanguage()->isRTL() ) {
 			# If wanted, and the interface is right-to-left, flip the CSS
 			$style_css = CSSJanus::transform( $style_css, true, false );
 		}
@@ -3439,7 +3439,7 @@ $templates
 		if ( $wgUseSiteCss ) {
 			$moduleStyles[] = 'site';
 			$moduleStyles[] = 'noscript';
-			if( $this->getUser()->isLoggedIn() ) {
+			if ( $this->getUser()->isLoggedIn() ) {
 				$moduleStyles[] = 'user.groups';
 			}
 		}
@@ -3520,9 +3520,9 @@ $templates
 		}
 		$this->mExtStyles = array();
 
-		foreach( $this->styles as $file => $options ) {
+		foreach ( $this->styles as $file => $options ) {
 			$link = $this->styleLink( $file, $options );
-			if( $link ) {
+			if ( $link ) {
 				$links[$file] = $link;
 			}
 		}
@@ -3538,22 +3538,22 @@ $templates
 	 * @return String: HTML fragment
 	 */
 	protected function styleLink( $style, $options ) {
-		if( isset( $options['dir'] ) ) {
-			if( $this->getLanguage()->getDir() != $options['dir'] ) {
+		if ( isset( $options['dir'] ) ) {
+			if ( $this->getLanguage()->getDir() != $options['dir'] ) {
 				return '';
 			}
 		}
 
-		if( isset( $options['media'] ) ) {
+		if ( isset( $options['media'] ) ) {
 			$media = self::transformCssMedia( $options['media'] );
-			if( is_null( $media ) ) {
+			if ( is_null( $media ) ) {
 				return '';
 			}
 		} else {
 			$media = 'all';
 		}
 
-		if( substr( $style, 0, 1 ) == '/' ||
+		if ( substr( $style, 0, 1 ) == '/' ||
 			substr( $style, 0, 5 ) == 'http:' ||
 			substr( $style, 0, 6 ) == 'https:' ) {
 			$url = $style;
@@ -3564,7 +3564,7 @@ $templates
 
 		$link = Html::linkedStyle( $url, $media );
 
-		if( isset( $options['condition'] ) ) {
+		if ( isset( $options['condition'] ) ) {
 			$condition = htmlspecialchars( $options['condition'] );
 			$link = "<!--[if $condition]>$link<![endif]-->";
 		}
@@ -3589,11 +3589,11 @@ $templates
 			'printable' => 'print',
 			'handheld' => 'handheld',
 		);
-		foreach( $switches as $switch => $targetMedia ) {
-			if( $wgRequest->getBool( $switch ) ) {
-				if( $media == $targetMedia ) {
+		foreach ( $switches as $switch => $targetMedia ) {
+			if ( $wgRequest->getBool( $switch ) ) {
+				if ( $media == $targetMedia ) {
 					$media = '';
-				} elseif( preg_match( $screenMediaQueryRegex, $media ) === 1 ) {
+				} elseif ( preg_match( $screenMediaQueryRegex, $media ) === 1 ) {
 					// This regex will not attempt to understand a comma-separated media_query_list
 					//
 					// Example supported values for $media: 'screen', 'only screen', 'screen and (min-width: 982px)' ),
@@ -3604,7 +3604,7 @@ $templates
 					// we don't want simple 'screen' but we might want screen queries that
 					// have a max-width or something, so we'll pass all others on and let the
 					// client do the query.
-					if( $targetMedia == 'print' || $media == 'screen' ) {
+					if ( $targetMedia == 'print' || $media == 'screen' ) {
 						return null;
 					}
 				}
@@ -3612,13 +3612,13 @@ $templates
 		}
 
 		// Expand longer media queries as iPhone doesn't grok 'handheld'
-		if( $wgHandheldForIPhone ) {
+		if ( $wgHandheldForIPhone ) {
 			$mediaAliases = array(
 				'screen' => 'screen and (min-device-width: 481px)',
 				'handheld' => 'handheld, only screen and (max-device-width: 480px)',
 			);
 
-			if( isset( $mediaAliases[$media] ) ) {
+			if ( isset( $mediaAliases[$media] ) ) {
 				$media = $mediaAliases[$media];
 			}
 		}

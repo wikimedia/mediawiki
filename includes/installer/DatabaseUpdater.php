@@ -157,7 +157,7 @@ abstract class DatabaseUpdater {
 	 */
 	public static function newForDB( &$db, $shared = false, $maintenance = null ) {
 		$type = $db->getType();
-		if( in_array( $type, Installer::getDBTypes() ) ) {
+		if ( in_array( $type, Installer::getDBTypes() ) ) {
 			$class = ucfirst( $type ) . 'Updater';
 			return new $class( $db, $shared, $maintenance );
 		} else {
@@ -184,7 +184,7 @@ abstract class DatabaseUpdater {
 			return;
 		}
 		global $wgCommandLineMode;
-		if( !$wgCommandLineMode ) {
+		if ( !$wgCommandLineMode ) {
 			$str = htmlspecialchars( $str );
 		}
 		echo $str;
@@ -357,7 +357,7 @@ abstract class DatabaseUpdater {
 		$updates = $this->updatesSkipped;
 		$this->updatesSkipped = array();
 
-		foreach( $updates as $funcList ) {
+		foreach ( $updates as $funcList ) {
 			$func = $funcList[0];
 			$arg = $funcList[1];
 			$origParams = $funcList[2];
@@ -400,7 +400,7 @@ abstract class DatabaseUpdater {
 
 		$this->setAppliedUpdates( $wgVersion, $this->updates );
 
-		if( $this->fileHandle ) {
+		if ( $this->fileHandle ) {
 			$this->skipSchema = false;
 			$this->writeSchemaUpdateFile();
 			$this->setAppliedUpdates( "$wgVersion-schema", $this->updatesSkipped );
@@ -422,14 +422,14 @@ abstract class DatabaseUpdater {
 		foreach ( $updates as $params ) {
 			$origParams = $params;
 			$func = array_shift( $params );
-			if( !is_array( $func ) && method_exists( $this, $func ) ) {
+			if ( !is_array( $func ) && method_exists( $this, $func ) ) {
 				$func = array( $this, $func );
 			} elseif ( $passSelf ) {
 				array_unshift( $params, $this );
 			}
 			$ret = call_user_func_array( $func, $params );
 			flush();
-			if( $ret !== false ) {
+			if ( $ret !== false ) {
 				$updatesDone[] = $origParams;
 			} else {
 				$updatesSkipped[] = array( $func, $params, $origParams );
@@ -445,7 +445,7 @@ abstract class DatabaseUpdater {
 	 */
 	protected function setAppliedUpdates( $version, $updates = array() ) {
 		$this->db->clearFlag( DBO_DDLMODE );
-		if( !$this->canUseNewUpdatelog() ) {
+		if ( !$this->canUseNewUpdatelog() ) {
 			return;
 		}
 		$key = "updatelist-$version-" . time();
@@ -483,7 +483,7 @@ abstract class DatabaseUpdater {
 	public function insertUpdateRow( $key, $val = null ) {
 		$this->db->clearFlag( DBO_DDLMODE );
 		$values = array( 'ul_key' => $key );
-		if( $val && $this->canUseNewUpdatelog() ) {
+		if ( $val && $this->canUseNewUpdatelog() ) {
 			$values['ul_value'] = $val;
 		}
 		$this->db->insert( 'updatelog', $values, __METHOD__, 'IGNORE' );
@@ -600,7 +600,7 @@ abstract class DatabaseUpdater {
 	 */
 	public function appendLine( $line ) {
 		$line = rtrim( $line ) . ";\n";
-		if( fwrite( $this->fileHandle, $line ) === false ) {
+		if ( fwrite( $this->fileHandle, $line ) === false ) {
 			throw new MWException( "trouble writing file" );
 		}
 		return false;
@@ -628,7 +628,7 @@ abstract class DatabaseUpdater {
 		if ( !$isFullPath ) {
 			$path = $this->db->patchPath( $path );
 		}
-		if( $this->fileHandle !== null ) {
+		if ( $this->fileHandle !== null ) {
 			$this->copyFile( $path );
 		} else {
 			$this->db->sourceFile( $path );
@@ -698,7 +698,7 @@ abstract class DatabaseUpdater {
 
 		if ( !$this->db->tableExists( $table, __METHOD__ ) ) {
 			$this->output( "...skipping: '$table' table doesn't exist yet.\n" );
-		} else if ( $this->db->indexExists( $table, $index, __METHOD__ ) ) {
+		} elseif ( $this->db->indexExists( $table, $index, __METHOD__ ) ) {
 			$this->output( "...index $index already set on $table table.\n" );
 		} else {
 			return $this->applyPatch( $patch, $fullpath, "Adding index $index to table $table" );
@@ -844,7 +844,7 @@ abstract class DatabaseUpdater {
 			$this->output( "...$table table does not exist, skipping modify field patch.\n" );
 		} elseif ( !$this->db->fieldExists( $table, $field, __METHOD__ ) ) {
 			$this->output( "...$field field does not exist in $table table, skipping modify field patch.\n" );
-		} elseif( $this->updateRowExists( $updateKey ) ) {
+		} elseif ( $this->updateRowExists( $updateKey ) ) {
 			$this->output( "...$field in table $table already modified by patch $patch.\n" );
 		} else {
 			$this->insertUpdateRow( $updateKey );
@@ -978,7 +978,7 @@ abstract class DatabaseUpdater {
 	 * Migrates user options from the user table blob to user_properties
 	 */
 	protected function doMigrateUserOptions() {
-		if( $this->db->tableExists( 'user_properties' ) ) {
+		if ( $this->db->tableExists( 'user_properties' ) ) {
 			$cl = $this->maintenance->runChild( 'ConvertUserOptions', 'convertUserOptions.php' );
 			$cl->execute();
 			$this->output( "done.\n" );

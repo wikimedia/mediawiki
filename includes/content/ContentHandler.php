@@ -1060,7 +1060,7 @@ abstract class ContentHandler {
 					if ( isset( $handler[1] ) ) {
 						$info .= '::' . $handler[1];
 					}
-				} else if ( is_object( $handler ) ) {
+				} elseif ( is_object( $handler ) ) {
 					$info = get_class( $handler[0] );
 					$info .= '::on' . $event;
 				} else {

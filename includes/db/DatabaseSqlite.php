@@ -52,9 +52,9 @@ class DatabaseSqlite extends DatabaseBase {
 		$this->mName = $dbName;
 		parent::__construct( $server, $user, $password, $dbName, $flags );
 		// parent doesn't open when $user is false, but we can work with $dbName
-		if( $dbName ) {
+		if ( $dbName ) {
 			global $wgSharedDB;
-			if( $this->open( $server, $user, $password, $dbName ) && $wgSharedDB ) {
+			if ( $this->open( $server, $user, $password, $dbName ) && $wgSharedDB ) {
 				$this->attachDatabase( $wgSharedDB );
 			}
 		}
@@ -471,7 +471,7 @@ class DatabaseSqlite extends DatabaseBase {
 	 */
 	function makeSelectOptions( $options ) {
 		foreach ( $options as $k => $v ) {
-			if ( is_numeric( $k ) && ($v == 'FOR UPDATE' || $v == 'LOCK IN SHARE MODE') ) {
+			if ( is_numeric( $k ) && ( $v == 'FOR UPDATE' || $v == 'LOCK IN SHARE MODE' ) ) {
 				$options[$k] = '';
 			}
 		}
@@ -542,7 +542,9 @@ class DatabaseSqlite extends DatabaseBase {
 	 * @return bool|ResultWrapper
 	 */
 	function replace( $table, $uniqueIndexes, $rows, $fname = 'DatabaseSqlite::replace' ) {
-		if ( !count( $rows ) ) return true;
+		if ( !count( $rows ) ) {
+			return true;
+		}
 
 		# SQLite can't handle multi-row replaces, so divide up into multiple single-row queries
 		if ( isset( $rows[0] ) && is_array( $rows[0] ) ) {
@@ -707,7 +709,7 @@ class DatabaseSqlite extends DatabaseBase {
 	function addQuotes( $s ) {
 		if ( $s instanceof Blob ) {
 			return "x'" . bin2hex( $s->fetch() ) . "'";
-		} else if ( strpos( $s, "\0" ) !== false ) {
+		} elseif ( strpos( $s, "\0" ) !== false ) {
 			// SQLite doesn't support \0 in strings, so use the hex representation as a workaround.
 			// This is a known limitation of SQLite's mprintf function which PDO should work around,
 			// but doesn't. I have reported this to php.net as bug #63419:
@@ -848,11 +850,11 @@ class DatabaseSqlite extends DatabaseBase {
 
 		$endArray = array();
 
-		foreach( $result as $table ) {
+		foreach ( $result as $table ) {
 			$vars = get_object_vars( $table );
 			$table = array_pop( $vars );
 
-			if( !$prefix || strpos( $table, $prefix ) === 0 ) {
+			if ( !$prefix || strpos( $table, $prefix ) === 0 ) {
 				if ( strpos( $table, 'sqlite_' ) !== 0 ) {
 					$endArray[] = $table;
 				}

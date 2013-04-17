@@ -48,7 +48,7 @@ class PopulateRevisionLength extends LoggedUpdateMaintenance {
 		$db = $this->getDB( DB_MASTER );
 		if ( !$db->tableExists( 'revision' ) ) {
 			$this->error( "revision table does not exist", true );
-		} else if ( !$db->fieldExists( 'revision', 'rev_len', __METHOD__ ) ) {
+		} elseif ( !$db->fieldExists( 'revision', 'rev_len', __METHOD__ ) ) {
 			$this->output( "rev_len column does not exist\n\n", true );
 			return false;
 		}
