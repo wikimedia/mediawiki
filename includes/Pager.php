@@ -922,16 +922,15 @@ abstract class TablePager extends IndexPager {
 	 */
 	function getStartBody() {
 		global $wgStylePath;
-		$tableClass = htmlspecialchars( $this->getTableClass() );
-		$sortClass = htmlspecialchars( $this->getSortHeaderClass() );
+		$sortClass = $this->getSortHeaderClass();
 
-		$s = "<table style='border:1px;' class=\"mw-datatable $tableClass\"><thead><tr>\n";
+		$s = '';
 		$fields = $this->getFieldNames();
 
 		# Make table header
 		foreach ( $fields as $field => $name ) {
 			if ( strval( $name ) == '' ) {
-				$s .= "<th>&#160;</th>\n";
+				$s .= Html::rawElement( 'th', array(), '&#160;' ) . "\n";
 			} elseif ( $this->isFieldSortable( $field ) ) {
 				$query = array( 'sort' => $field, 'limit' => $this->mLimit );
 				if ( $field == $this->mSort ) {
@@ -950,20 +949,26 @@ abstract class TablePager extends IndexPager {
 						$query['desc'] = '1';
 						$alt = $this->msg( 'ascending_abbrev' )->escaped();
 					}
-					$image = htmlspecialchars( "$wgStylePath/common/images/$image" );
+					$image = "$wgStylePath/common/images/$image";
 					$link = $this->makeLink(
-						"<img width=\"12\" height=\"12\" alt=\"$alt\" src=\"$image\" />" .
-							htmlspecialchars( $name ), $query );
-					$s .= "<th class=\"$sortClass\">$link</th>\n";
+						Html::element( 'img', array( 'width' => 12, 'height' => 12,
+							'alt' => $alt, 'src' => $image ) ) . htmlspecialchars( $name ), $query );
+					$s .= Html::rawElement( 'th', array( 'class' => $sortClass ), $link ) . "\n";
 				} else {
-					$s .= '<th>' . $this->makeLink( htmlspecialchars( $name ), $query ) . "</th>\n";
+					$s .= Html::rawElement( 'th', array(),
+						$this->makeLink( htmlspecialchars( $name ), $query ) ) . "\n";
 				}
 			} else {
-				$s .= '<th>' . htmlspecialchars( $name ) . "</th>\n";
+				$s .= Html::element( 'th', array(), $name ) . "\n";
 			}
 		}
-		$s .= "</tr></thead><tbody>\n";
-		return $s;
+
+		$tableClass = $this->getTableClass();
+		$ret = Html::openElement( 'table', array( 'style' => 'border:1px;', 'class' => "mw-datatable $tableClass" ) );
+		$ret .= Html::rawElement( 'thead', array(), Html::rawElement( 'tr', array(), "\n" . $s . "\n" ) );
+		$ret .= Html::openElement( 'tbody' ) . "\n";
+
+		return $ret;
 	}
 
 	/**
@@ -980,8 +985,9 @@ abstract class TablePager extends IndexPager {
 	 */
 	function getEmptyBody() {
 		$colspan = count( $this->getFieldNames() );
-		$msgEmpty = $this->msg( 'table_pager_empty' )->escaped();
-		return "<tr><td colspan=\"$colspan\">$msgEmpty</td></tr>\n";
+		$msgEmpty = $this->msg( 'table_pager_empty' )->text();
+		return Html::rawElement( 'tr', array(),
+			Html::element( 'td', array( 'colspan' => $colspan ), $msgEmpty ) );
 	}
 
 	/**
@@ -991,7 +997,7 @@ abstract class TablePager extends IndexPager {
 	 */
 	function formatRow( $row ) {
 		$this->mCurrentRow = $row; // In case formatValue etc need to know
-		$s = Xml::openElement( 'tr', $this->getRowAttrs( $row ) );
+		$s = Html::openElement( 'tr', $this->getRowAttrs( $row ) ) . "\n";
 		$fieldNames = $this->getFieldNames();
 
 		foreach ( $fieldNames as $field => $name ) {
@@ -1002,10 +1008,10 @@ abstract class TablePager extends IndexPager {
 				$formatted = '&#160;';
 			}
 
-			$s .= Xml::tags( 'td', $this->getCellAttrs( $field, $value ), $formatted );
+			$s .= Html::rawElement( 'td', $this->getCellAttrs( $field, $value ), $formatted ) . "\n";
 		}
 
-		$s .= "</tr>\n";
+		$s .= Html::closeElement( 'tr' ) . "\n";
 
 		return $s;
 	}
@@ -1127,18 +1133,20 @@ abstract class TablePager extends IndexPager {
 		$disabledTexts = array();
 		foreach ( $labels as $type => $label ) {
 			$msgLabel = $this->msg( $label )->escaped();
-			$linkTexts[$type] = "<img src=\"$path/{$images[$type]}\" alt=\"$msgLabel\"/><br />$msgLabel";
-			$disabledTexts[$type] = "<img src=\"$path/{$disabledImages[$type]}\" alt=\"$msgLabel\"/><br />$msgLabel";
+			$linkTexts[$type] = Html::element( 'img', array( 'src' => "$path/{$images[$type]}",
+				'alt' => $msgLabel ) ) . "<br />$msgLabel";
+			$disabledTexts[$type] = Html::element( 'img', array( 'src' => "$path/{$disabledImages[$type]}",
+				'alt' => $msgLabel ) ) . "<br />$msgLabel";
 		}
 		$links = $this->getPagingLinks( $linkTexts, $disabledTexts );
 
-		$navClass = htmlspecialchars( $this->getNavClass() );
-		$s = "<table class=\"$navClass\"><tr>\n";
+		$s = Html::openElement( 'table', array( 'class' => $this->getNavClass() ) );
+		$s .= Html::openElement( 'tr' ) . "\n";
 		$width = 100 / count( $links ) . '%';
 		foreach ( $labels as $type => $label ) {
-			$s .= "<td style='width:$width;'>{$links[$type]}</td>\n";
+			$s .= Html::rawElement( 'td', array( 'style' => "width:$width;" ), $links[$type] ) . "\n";
 		}
-		$s .= "</tr></table>\n";
+		$s .= Html::closeElement( 'tr' ) . Html::closeElement( 'table' ) . "\n";
 		return $s;
 	}
 
@@ -1188,9 +1196,7 @@ abstract class TablePager extends IndexPager {
 		}
 		$s = '';
 		foreach ( $query as $name => $value ) {
-			$encName = htmlspecialchars( $name );
-			$encValue = htmlspecialchars( $value );
-			$s .= "<input type=\"hidden\" name=\"$encName\" value=\"$encValue\"/>\n";
+			$s .= Html::hidden( $name, $value ) . "\n";
 		}
 		return $s;
 	}
@@ -1203,12 +1209,14 @@ abstract class TablePager extends IndexPager {
 	function getLimitForm() {
 		global $wgScript;
 
-		return Xml::openElement(
+		return Html::rawElement(
 			'form',
 			array(
 				'method' => 'get',
 				'action' => $wgScript
-			) ) . "\n" . $this->getLimitDropdown() . "</form>\n";
+			),
+			"\n" . $this->getLimitDropdown()
+		) . "\n";
 	}
 
 	/**
