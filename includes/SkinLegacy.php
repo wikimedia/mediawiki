@@ -218,9 +218,6 @@ class LegacyTemplate extends BaseTemplate {
 			foreach ( $variants as $code ) {
 				$varname = $lang->getVariantname( $code );
 
-				if ( $varname == 'disable' ) {
-					continue;
-				}
 				$s = $wgLang->pipeList( array(
 					$s,
 					'<a href="' . htmlspecialchars( $title->getLocalURL( 'variant=' . $code ) ) . '" lang="' . $code . '" hreflang="' . $code . '">' . htmlspecialchars( $varname ) . '</a>'
