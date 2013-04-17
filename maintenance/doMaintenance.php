@@ -60,10 +60,15 @@ if ( isset( $_SERVER['MW_COMPILED'] ) ) {
 	# Get the MWInit class
 	require_once( "$IP/includes/Init.php" );
 	require_once( "$IP/includes/AutoLoader.php" );
+	# Stub the profiler
+	require_once( "$IP/includes/profiler/Profiler.php" );
 }
 
-# Stub the profiler
-require_once( MWInit::compiledPath( 'includes/profiler/Profiler.php' ) );
+# Start the profiler
+$wgProfiler = array();
+if ( file_exists( "$IP/StartProfiler.php" ) ) {
+	require( "$IP/StartProfiler.php" );
+}
 
 // Some other requires
 if ( !defined( 'MW_COMPILED' ) ) {
