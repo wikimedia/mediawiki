@@ -4428,8 +4428,18 @@ class User {
 		}
 
 		$dbw = wfGetDB( DB_MASTER );
-		$dbw->delete( 'user_properties', array( 'up_user' => $userId ), __METHOD__ );
-		$dbw->insert( 'user_properties', $insert_rows, __METHOD__ );
+		$hasRows = $dbw->selectField( 'user_properties', '1',
+			array( 'up_user' => $userId ), __METHOD__ );
+
+		if ( $hasRows ) {
+			// Only do this delete if there is something there. A very large portion of
+			// calls to this function are for setting 'rememberpassword' for new accounts.
+			// Doing this delete for new accounts with no rows in the table rougly causes
+			// gap locks on [max user ID,+infinity) which causes high contention since many
+			// updates will pile up on each other since they are for higher (newer) user IDs.
+			$dbw->delete( 'user_properties', array( 'up_user' => $userId ), __METHOD__ );
+		}
+		$dbw->insert( 'user_properties', $insert_rows, __METHOD__, array( 'IGNORE' ) );
 	}
 
 	/**
