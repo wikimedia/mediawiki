@@ -36,12 +36,13 @@ class UserRightsProxy {
 	 * @param string $name user name
 	 * @param $id Integer: user ID
 	 */
-	private function __construct( $db, $database, $name, $id ) {
+	private function __construct( $db, $database, $name, $id, $touched ) {
 		$this->db = $db;
 		$this->database = $database;
 		$this->name = $name;
 		$this->id = intval( $id );
 		$this->newOptions = array();
+		$this->touched = $touched;
 	}
 
 	/**
@@ -116,13 +117,15 @@ class UserRightsProxy {
 		$db = self::getDB( $database, $ignoreInvalidDB );
 		if( $db ) {
 			$row = $db->selectRow( 'user',
-				array( 'user_id', 'user_name' ),
+				array( 'user_id', 'user_name', 'user_touched' ),
 				array( $field => $value ),
 				__METHOD__ );
 			if( $row !== false ) {
 				return new UserRightsProxy( $db, $database,
 					$row->user_name,
-					intval( $row->user_id ) );
+					intval( $row->user_id ),
+					$row->user_touched
+				);
 			}
 		}
 		return null;
@@ -257,5 +260,9 @@ class UserRightsProxy {
 		global $wgMemc;
 		$key = wfForeignMemcKey( $this->database, false, 'user', 'id', $this->id );
 		$wgMemc->delete( $key );
+	}
+
+	function getTouched() {
+		return $this->touched;
 	}
 }
