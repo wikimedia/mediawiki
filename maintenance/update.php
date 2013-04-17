@@ -83,7 +83,7 @@ class UpdateMediaWiki extends Maintenance {
 	function execute() {
 		global $wgVersion, $wgTitle, $wgLang, $wgAllowSchemaUpdates;
 
-		if( !$wgAllowSchemaUpdates && !( $this->hasOption( 'force' ) || $this->hasOption( 'schema' ) || $this->hasOption( 'noschema' ) ) ) {
+		if ( !$wgAllowSchemaUpdates && !( $this->hasOption( 'force' ) || $this->hasOption( 'schema' ) || $this->hasOption( 'noschema' ) ) ) {
 			$this->error( "Do not run update.php on this wiki. If you're seeing this you should\n"
 				. "probably ask for some help in performing your schema updates or use\n"
 				. "the --noschema and --schema options to get an SQL file for someone\n"
@@ -92,12 +92,12 @@ class UpdateMediaWiki extends Maintenance {
 		}
 
 		$this->fileHandle = null;
-		if( substr( $this->getOption( 'schema' ), 0, 2 ) === "--" ) {
+		if ( substr( $this->getOption( 'schema' ), 0, 2 ) === "--" ) {
 			$this->error( "The --schema option requires a file as an argument.\n", true );
-		} else if( $this->hasOption( 'schema' ) ) {
+		} elseif ( $this->hasOption( 'schema' ) ) {
 			$file = $this->getOption( 'schema' );
 			$this->fileHandle = fopen( $file, "w" );
-			if( $this->fileHandle === false ) {
+			if ( $this->fileHandle === false ) {
 				$err = error_get_last();
 				$this->error( "Problem opening the schema file for writing: $file\n\t{$err['message']}", true );
 			}
@@ -122,7 +122,7 @@ class UpdateMediaWiki extends Maintenance {
 		$db = wfGetDB( DB_MASTER );
 
 		$this->output( "Going to run database updates for " . wfWikiID() . "\n" );
-		if( $db->getType() === 'sqlite' ) {
+		if ( $db->getType() === 'sqlite' ) {
 			$this->output( "Using SQLite file: '{$db->mDatabaseFile}'\n" );
 		}
 		$this->output( "Depending on the size of your database this may take a while!\n" );
@@ -135,13 +135,13 @@ class UpdateMediaWiki extends Maintenance {
 		$shared = $this->hasOption( 'doshared' );
 
 		$updates = array( 'core', 'extensions' );
-		if( !$this->hasOption('schema') ) {
-			if( $this->hasOption('noschema') ) {
+		if ( !$this->hasOption( 'schema' ) ) {
+			if ( $this->hasOption( 'noschema' ) ) {
 				$updates[] = 'noschema';
 			}
 			$updates[] = 'stats';
 
-			if( !$this->hasOption('nopurge') ) {
+			if ( !$this->hasOption( 'nopurge' ) ) {
 				$updates[] = 'purge';
 			}
 		}
@@ -149,7 +149,7 @@ class UpdateMediaWiki extends Maintenance {
 		$updater = DatabaseUpdater::newForDb( $db, $shared, $this );
 		$updater->doUpdates( $updates );
 
-		foreach( $updater->getPostDatabaseUpdateMaintenance() as $maint ) {
+		foreach ( $updater->getPostDatabaseUpdateMaintenance() as $maint ) {
 			$child = $this->runChild( $maint );
 
 			// LoggedUpdateMaintenance is checking the updatelog itself
@@ -166,7 +166,7 @@ class UpdateMediaWiki extends Maintenance {
 			}
 		}
 
-		if( !$this->hasOption('nopurge') ) {
+		if ( !$this->hasOption( 'nopurge' ) ) {
 			$updater->purgeCache();
 		}
 

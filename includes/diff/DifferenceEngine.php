@@ -365,8 +365,9 @@ class DifferenceEngine extends ContextSource {
 
 		if ( $this->mNewRev->isDeleted( Revision::DELETED_TEXT ) ) {
 			$deleted = true; // new revisions text is hidden
-			if ( $this->mNewRev->isDeleted( Revision::DELETED_RESTRICTED ) )
+			if ( $this->mNewRev->isDeleted( Revision::DELETED_RESTRICTED ) ) {
 				$suppressed = true; // also suppressed
+			}
 		}
 
 		# If the diff cannot be shown due to a deleted revision, then output
@@ -428,11 +429,11 @@ class DifferenceEngine extends ContextSource {
 					$change = RecentChange::newFromConds(
 						array(
 						// Redundant user,timestamp condition so we can use the existing index
-							'rc_user_text'  => $this->mNewRev->getRawUserText(),
-							'rc_timestamp'  => $db->timestamp( $this->mNewRev->getTimestamp() ),
+							'rc_user_text' => $this->mNewRev->getRawUserText(),
+							'rc_timestamp' => $db->timestamp( $this->mNewRev->getTimestamp() ),
 							'rc_this_oldid' => $this->mNewid,
 							'rc_last_oldid' => $this->mOldid,
-							'rc_patrolled'  => 0
+							'rc_patrolled' => 0
 						),
 						__METHOD__
 					);
@@ -513,9 +514,9 @@ class DifferenceEngine extends ContextSource {
 					$txt = $po ? $po->getText() : '';
 					$out->addHTML( $txt );
 				}
-			} elseif( !wfRunHooks( 'ArticleContentViewCustom', array( $this->mNewContent, $this->mNewPage, $out ) ) ) {
+			} elseif ( !wfRunHooks( 'ArticleContentViewCustom', array( $this->mNewContent, $this->mNewPage, $out ) ) ) {
 				// Handled by extension
-			} elseif( !ContentHandler::runLegacyHooks( 'ArticleViewCustom', array( $this->mNewContent, $this->mNewPage, $out ) ) ) {
+			} elseif ( !ContentHandler::runLegacyHooks( 'ArticleViewCustom', array( $this->mNewContent, $this->mNewPage, $out ) ) ) {
 				// NOTE: deprecated hook, B/C only
 				// Handled by extension
 			} else {
@@ -544,7 +545,7 @@ class DifferenceEngine extends ContextSource {
 						# Show categories etc.
 						$out->addParserOutputNoText( $parserOutput );
 					}
-				} else if ( $parserOutput ) {
+				} elseif ( $parserOutput ) {
 					$out->addParserOutput( $parserOutput );
 				}
 			}
@@ -861,7 +862,9 @@ class DifferenceEngine extends ContextSource {
 	}
 
 	function localiseLineNumbersCb( $matches ) {
-		if ( $matches[1] === '1' && $this->mReducedLineNumbers ) return '';
+		if ( $matches[1] === '1' && $this->mReducedLineNumbers ) {
+			return '';
+		}
 		return $this->msg( 'lineno' )->numParams( $matches[1] )->escaped();
 	}
 

@@ -289,18 +289,23 @@ class Title {
 	 */
 	public function loadFromRow( $row ) {
 		if ( $row ) { // page found
-			if ( isset( $row->page_id ) )
+			if ( isset( $row->page_id ) ) {
 				$this->mArticleID = (int)$row->page_id;
-			if ( isset( $row->page_len ) )
+			}
+			if ( isset( $row->page_len ) ) {
 				$this->mLength = (int)$row->page_len;
-			if ( isset( $row->page_is_redirect ) )
+			}
+			if ( isset( $row->page_is_redirect ) ) {
 				$this->mRedirect = (bool)$row->page_is_redirect;
-			if ( isset( $row->page_latest ) )
+			}
+			if ( isset( $row->page_latest ) ) {
 				$this->mLatestID = (int)$row->page_latest;
-			if ( isset( $row->page_content_model ) )
+			}
+			if ( isset( $row->page_content_model ) ) {
 				$this->mContentModel = strval( $row->page_content_model );
-			else
+			} else {
 				$this->mContentModel = false; # initialized lazily in getContentModel()
+			}
 		} else { // page not found
 			$this->mArticleID = 0;
 			$this->mLength = 0;
@@ -689,7 +694,7 @@ class Title {
 			$this->mContentModel = ContentHandler::getDefaultModelFor( $this );
 		}
 
-		if( !$this->mContentModel ) {
+		if ( !$this->mContentModel ) {
 			throw new MWException( 'Failed to determine content model!' );
 		}
 
@@ -997,8 +1002,9 @@ class Title {
 		$subpage = explode( '/', $this->mTextform );
 		$subpage = $subpage[count( $subpage ) - 1];
 		$lastdot = strrpos( $subpage, '.' );
-		if ( $lastdot === false )
+		if ( $lastdot === false ) {
 			return $subpage; # Never happens: only called for names ending in '.css' or '.js'
+		}
 		return substr( $subpage, 0, $lastdot );
 	}
 
@@ -1340,7 +1346,7 @@ class Title {
 	 * @return String
 	 */
 	private static function fixUrlQueryArgs( $query, $query2 = false ) {
-		if( $query2 !== false ) {
+		if ( $query2 !== false ) {
 			wfDeprecated( "Title::get{Canonical,Full,Link,Local,Internal}URL " .
 				"method called with a second parameter is deprecated. Add your " .
 				"parameter to an array passed as the first parameter.", "1.19" );
@@ -1954,8 +1960,9 @@ class Title {
 					$right = ( $right == 'sysop' ) ? 'protect' : $right;
 					if ( $right != '' && !$user->isAllowed( $right ) ) {
 						$pages = '';
-						foreach ( $cascadingSources as $page )
+						foreach ( $cascadingSources as $page ) {
 							$pages .= '* [[:' . $page->getPrefixedText() . "]]\n";
+						}
 						$errors[] = array( 'cascadeprotected', count( $cascadingSources ), $pages );
 					}
 				}
@@ -1986,11 +1993,11 @@ class Title {
 			}
 		} elseif ( $action == 'create' ) {
 			$title_protection = $this->getTitleProtection();
-			if( $title_protection ) {
-				if( $title_protection['pt_create_perm'] == 'sysop' ) {
+			if ( $title_protection ) {
+				if ( $title_protection['pt_create_perm'] == 'sysop' ) {
 					$title_protection['pt_create_perm'] = 'protect'; // B/C
 				}
-				if( $title_protection['pt_create_perm'] == '' ||
+				if ( $title_protection['pt_create_perm'] == '' ||
 					!$user->isAllowed( $title_protection['pt_create_perm'] ) )
 				{
 					$errors[] = array( 'titleprotected', User::whoIs( $title_protection['pt_user'] ), $title_protection['pt_reason'] );
@@ -2035,7 +2042,7 @@ class Title {
 	private function checkUserBlock( $action, $user, $errors, $doExpensiveQueries, $short ) {
 		// Account creation blocks handled at userlogin.
 		// Unblocking handled in SpecialUnblock
-		if( !$doExpensiveQueries || in_array( $action, array( 'createaccount', 'unblock' ) ) ) {
+		if ( !$doExpensiveQueries || in_array( $action, array( 'createaccount', 'unblock' ) ) ) {
 			return $errors;
 		}
 
@@ -2048,7 +2055,7 @@ class Title {
 		if ( ( $action == 'edit' || $action == 'create' ) && !$user->isBlockedFrom( $this ) ) {
 			// Don't block the user from editing their own talk page unless they've been
 			// explicitly blocked from that too.
-		} elseif( $user->isBlocked() && $user->mBlock->prevents( $action ) !== false ) {
+		} elseif ( $user->isBlocked() && $user->mBlock->prevents( $action ) !== false ) {
 			$block = $user->getBlock();
 
 			// This is from OutputPage::blockedPage
@@ -2166,7 +2173,7 @@ class Title {
 			}
 		}
 
-		if( !$whitelisted && is_array( $wgWhitelistReadRegexp ) && !empty( $wgWhitelistReadRegexp ) ) {
+		if ( !$whitelisted && is_array( $wgWhitelistReadRegexp ) && !empty( $wgWhitelistReadRegexp ) ) {
 			$name = $this->getPrefixedText();
 			// Check for regex whitelisting
 			foreach ( $wgWhitelistReadRegexp as $listItem ) {
@@ -2251,7 +2258,7 @@ class Title {
 		}
 
 		$errors = array();
-		while( count( $checks ) > 0 &&
+		while ( count( $checks ) > 0 &&
 				!( $short && count( $errors ) > 0 ) ) {
 			$method = array_shift( $checks );
 			$errors = $this->$method( $action, $user, $errors, $doExpensiveQueries, $short );
@@ -2446,7 +2453,7 @@ class Title {
 		$restrictionTypes = $this->getRestrictionTypes();
 
 		# Special pages have inherent protection
-		if( $this->isSpecialPage() ) {
+		if ( $this->isSpecialPage() ) {
 			return true;
 		}
 
@@ -2693,7 +2700,7 @@ class Title {
 					$this->mRestrictions['move'] = explode( ',', trim( $temp[0] ) );
 				} else {
 					$restriction = trim( $temp[1] );
-					if( $restriction != '' ) { //some old entries are empty
+					if ( $restriction != '' ) { //some old entries are empty
 						$this->mRestrictions[$temp[0]] = explode( ',', $restriction );
 					}
 				}
@@ -2712,8 +2719,9 @@ class Title {
 			foreach ( $rows as $row ) {
 
 				// Don't take care of restrictions types that aren't allowed
-				if ( !in_array( $row->pr_type, $restrictionTypes ) )
+				if ( !in_array( $row->pr_type, $restrictionTypes ) ) {
 					continue;
+				}
 
 				// This code should be refactored, now that it's being used more generally,
 				// But I don't really see any harm in leaving it in Block for now -werdna
@@ -3302,7 +3310,7 @@ class Title {
 			array(
 				"{$prefix}_from=page_id",
 				"{$prefix}_namespace" => $this->getNamespace(),
-				"{$prefix}_title"     => $this->getDBkey() ),
+				"{$prefix}_title" => $this->getDBkey() ),
 			__METHOD__,
 			$options
 		);
@@ -3367,7 +3375,9 @@ class Title {
 		$titleField = "{$prefix}_title";
 
 		$fields = array( $namespaceFiled, $titleField, 'page_id', 'page_len', 'page_is_redirect', 'page_latest' );
-		if ( $wgContentHandlerUseDB ) $fields[] = 'page_content_model';
+		if ( $wgContentHandlerUseDB ) {
+			$fields[] = 'page_content_model';
+		}
 
 		$res = $db->select(
 			array( $table, 'page' ),
@@ -3712,12 +3722,12 @@ class Title {
 			# Protect the redirect title as the title used to be...
 			$dbw->insertSelect( 'page_restrictions', 'page_restrictions',
 				array(
-					'pr_page'    => $redirid,
-					'pr_type'    => 'pr_type',
-					'pr_level'   => 'pr_level',
+					'pr_page' => $redirid,
+					'pr_type' => 'pr_type',
+					'pr_level' => 'pr_level',
 					'pr_cascade' => 'pr_cascade',
-					'pr_user'    => 'pr_user',
-					'pr_expiry'  => 'pr_expiry'
+					'pr_user' => 'pr_user',
+					'pr_expiry' => 'pr_expiry'
 				),
 				array( 'pr_page' => $pageid ),
 				__METHOD__,
@@ -3831,7 +3841,7 @@ class Title {
 		$dbw->update( 'page',
 			/* SET */ array(
 				'page_namespace' => $nt->getNamespace(),
-				'page_title'     => $nt->getDBkey(),
+				'page_title' => $nt->getDBkey(),
 			),
 			/* WHERE */ array( 'page_id' => $oldid ),
 			__METHOD__
@@ -3861,10 +3871,10 @@ class Title {
 			$newid = $redirectArticle->insertOn( $dbw );
 			if ( $newid ) { // sanity
 				$redirectRevision = new Revision( array(
-					'title'   => $this, // for determining the default content model
-					'page'    => $newid,
+					'title' => $this, // for determining the default content model
+					'page' => $newid,
 					'comment' => $comment,
-					'content'    => $redirectContent ) );
+					'content' => $redirectContent ) );
 				$redirectRevision->insertOn( $dbw );
 				$redirectArticle->updateRevisionOn( $dbw, $redirectRevision, 0 );
 
@@ -3966,7 +3976,9 @@ class Title {
 
 		# Is it a redirect?
 		$fields = array( 'page_is_redirect', 'page_latest', 'page_id' );
-		if ( $wgContentHandlerUseDB ) $fields[] = 'page_content_model';
+		if ( $wgContentHandlerUseDB ) {
+			$fields[] = 'page_content_model';
+		}
 
 		$row = $dbw->selectRow( 'page',
 			$fields,
@@ -4020,7 +4032,7 @@ class Title {
 		}
 		# Get the article text
 		$rev = Revision::newFromTitle( $nt, false, Revision::READ_LATEST );
-		if( !is_object( $rev ) ) {
+		if ( !is_object( $rev ) ) {
 			return false;
 		}
 		$content = $rev->getContent();
@@ -4322,7 +4334,7 @@ class Title {
 		// No DB query needed if $old and $new are the same or successive revisions:
 		if ( $old->getId() === $new->getId() ) {
 			return ( $old_cmp === '>' && $new_cmp === '<' ) ? 0 : 1;
-		} else if ( $old->getId() === $new->getParentId() ) {
+		} elseif ( $old->getId() === $new->getParentId() ) {
 			if ( $old_cmp === '>' || $new_cmp === '<' ) {
 				return ( $old_cmp === '>' && $new_cmp === '<' ) ? 0 : 1;
 			}
