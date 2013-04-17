@@ -1275,9 +1275,27 @@ class LocalFile extends File {
 		$wikiPage->setFile( $this );
 
 		# Add the log entry
-		$log = new LogPage( 'upload' );
 		$action = $reupload ? 'overwrite' : 'upload';
-		$logId = $log->addEntry( $action, $descTitle, $comment, array(), $user );
+
+		$logEntry = new ManualLogEntry( 'upload', $action );
+		$logEntry->setPerformer( $user );
+		$logEntry->setComment( $comment );
+		$logEntry->setTarget( $descTitle );
+
+		// Allow people using the api to associate log entries with the upload.
+		// Log has a timestamp, but sometimes different from upload timestamp.
+		$logEntry->setParameters(
+			array(
+				'img_sha1' => $this->sha1,
+				'img_timestamp' => $timestamp,
+			)
+		);
+		// Note we keep $logId around since during new image
+		// creation, page doesn't exist yet, so log_page = 0
+		// but we want it to point to the page we're making,
+		// so we later modify the log entry.
+		$logId = $logEntry->insert();
+		$logEntry->publish( $logId );
 
 		wfProfileIn( __METHOD__ . '-edit' );
 		$exists = $descTitle->exists();
@@ -1285,10 +1303,12 @@ class LocalFile extends File {
 		if ( $exists ) {
 			# Create a null revision
 			$latest = $descTitle->getLatestRevID();
+			$editSummary = LogFormatter::newFromEntry( $logEntry )->getPlainActionText();
+
 			$nullRevision = Revision::newNullRevision(
 				$dbw,
 				$descTitle->getArticleID(),
-				$log->getRcComment(),
+				$editSummary,
 				false
 			);
 			if ( !is_null( $nullRevision ) ) {
