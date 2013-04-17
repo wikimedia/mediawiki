@@ -344,7 +344,7 @@ class LanguageConverter {
 			}
 		}
 
-		if( $this->guessVariant( $text, $toVariant ) ) {
+		if ( $this->guessVariant( $text, $toVariant ) ) {
 			wfProfileOut( __METHOD__ );
 			return $text;
 		}
@@ -644,14 +644,14 @@ class LanguageConverter {
 			if ( $pos === false ) {
 				// No more markup, append final segment
 				$fragment = substr( $text, $startPos );
-				$out .= $shouldConvert? $this->autoConvert( $fragment, $variant ): $fragment;
+				$out .= $shouldConvert ? $this->autoConvert( $fragment, $variant ) : $fragment;
 				return $out;
 			}
 
 			// Markup found
 			// Append initial segment
 			$fragment = substr( $text, $startPos, $pos - $startPos );
-			$out .= $shouldConvert? $this->autoConvert( $fragment, $variant ): $fragment;
+			$out .= $shouldConvert ? $this->autoConvert( $fragment, $variant ) : $fragment;
 
 			// Advance position
 			$startPos = $pos;
@@ -687,7 +687,7 @@ class LanguageConverter {
 
 		while ( $startPos < $length ) {
 			$m = false;
-			preg_match( '/-\{|\}-/', $text, $m,  PREG_OFFSET_CAPTURE, $startPos );
+			preg_match( '/-\{|\}-/', $text, $m, PREG_OFFSET_CAPTURE, $startPos );
 			if ( !$m ) {
 				// Unclosed rule
 				break;
@@ -1259,14 +1259,14 @@ class ConverterRule {
 		$choice = preg_split( $varsep_pattern, $rules );
 
 		foreach ( $choice as $c ) {
-			$v  = explode( ':', $c, 2 );
+			$v = explode( ':', $c, 2 );
 			if ( count( $v ) != 2 ) {
 				// syntax error, skip
 				continue;
 			}
 			$to = trim( $v[1] );
-			$v  = trim( $v[0] );
-			$u  = explode( '=>', $v, 2 );
+			$v = trim( $v[0] );
+			$u = explode( '=>', $v, 2 );
 			// if $to is empty, strtr() could return a wrong result
 			if ( count( $u ) == 1 && $to && in_array( $v, $variants ) ) {
 				$bidtable[$v] = $to;
@@ -1439,7 +1439,7 @@ class ConverterRule {
 				   // then we check its fallback variants.
 				$variantFallbacks =
 					$this->mConverter->getVariantFallbacks( $variant );
-				if( is_array( $variantFallbacks ) ) {
+				if ( is_array( $variantFallbacks ) ) {
 					foreach ( $variantFallbacks as $variantFallback ) {
 						// if current variant's fallback exist in flags
 						if ( isset( $this->mVariantFlags[$variantFallback] ) ) {

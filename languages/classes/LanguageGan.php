@@ -50,7 +50,7 @@ class GanConverter extends LanguageConverter {
 									$flags,
 									$manualLevel );
 		$names = array(
-			'gan'      => '原文',
+			'gan' => '原文',
 			'gan-hans' => '简体',
 			'gan-hant' => '繁體',
 		);
@@ -62,7 +62,7 @@ class GanConverter extends LanguageConverter {
 		$this->mTables = array(
 			'gan-hans' => new ReplacementArray( $zh2Hans ),
 			'gan-hant' => new ReplacementArray( $zh2Hant ),
-			'gan'      => new ReplacementArray
+			'gan' => new ReplacementArray
 		);
 	}
 
@@ -89,12 +89,12 @@ class LanguageGan extends LanguageZh {
 
 		$variants = array( 'gan', 'gan-hans', 'gan-hant' );
 		$variantfallbacks = array(
-			'gan'      => array( 'gan-hans', 'gan-hant' ),
+			'gan' => array( 'gan-hans', 'gan-hant' ),
 			'gan-hans' => array( 'gan' ),
 			'gan-hant' => array( 'gan' ),
 		);
 		$ml = array(
-			'gan'      => 'disable',
+			'gan' => 'disable',
 		);
 
 		$this->mConverter = new GanConverter( $this, 'gan',

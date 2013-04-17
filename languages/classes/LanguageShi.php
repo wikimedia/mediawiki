@@ -42,25 +42,25 @@ class ShiConverter extends LanguageConverter {
 	public $mToLatin = array(
 		'ⴰ' => 'a', 'ⴱ' => 'b', 'ⴳ' => 'g', 'ⴷ' => 'd', 'ⴹ' => 'ḍ', 'ⴻ' => 'e',
 		'ⴼ' => 'f', 'ⴽ' => 'k', 'ⵀ' => 'h', 'ⵃ' => 'ḥ', 'ⵄ' => 'ε', 'ⵅ' => 'x',
-		'ⵇ' => 'q', 'ⵉ' => 'i', 'ⵊ' => 'j',  'ⵍ' => 'l', 'ⵎ' => 'm', 'ⵏ' => 'n',
+		'ⵇ' => 'q', 'ⵉ' => 'i', 'ⵊ' => 'j', 'ⵍ' => 'l', 'ⵎ' => 'm', 'ⵏ' => 'n',
 		'ⵓ' => 'u', 'ⵔ' => 'r', 'ⵕ' => 'ṛ', 'ⵖ' => 'γ', 'ⵙ' => 's', 'ⵚ' => 'ṣ',
 		'ⵛ' => 'š', 'ⵜ' => 't', 'ⵟ' => 'ṭ', 'ⵡ' => 'w', 'ⵢ' => 'y', 'ⵣ' => 'z',
 		'ⵥ' => 'ẓ', 'ⵯ' => 'ʷ', 'ⵖ' => 'ɣ', 'ⵠ' => 'v', 'ⵒ' => 'p',
 	);
 
 	public $mUpperToLowerCaseLatin = array(
-		'A' => 'a',	'B' => 'b',	'C' => 'c',	'D' => 'd',	'E' => 'e',
-		'F' => 'f',	'G' => 'g',	'H' => 'h',	'I' => 'i',	'J' => 'j',
-		'K' => 'k',	'L' => 'l',	'M' => 'm',	'N' => 'n',	'O' => 'o',
-		'P' => 'p',	'Q' => 'q',	'R' => 'r',	'S' => 's',	'T' => 't',
-		'U' => 'u',	'V' => 'v',	'W' => 'w',	'X' => 'x',	'Y' => 'y',
+		'A' => 'a', 'B' => 'b', 'C' => 'c', 'D' => 'd', 'E' => 'e',
+		'F' => 'f', 'G' => 'g', 'H' => 'h', 'I' => 'i', 'J' => 'j',
+		'K' => 'k', 'L' => 'l', 'M' => 'm', 'N' => 'n', 'O' => 'o',
+		'P' => 'p', 'Q' => 'q', 'R' => 'r', 'S' => 's', 'T' => 't',
+		'U' => 'u', 'V' => 'v', 'W' => 'w', 'X' => 'x', 'Y' => 'y',
 		'Z' => 'z', 'Ɣ' => 'ɣ',
 	);
 
 	public $mToTifinagh = array(
 		'a' => 'ⴰ', 'b' => 'ⴱ', 'g' => 'ⴳ', 'd' => 'ⴷ', 'ḍ' => 'ⴹ', 'e' => 'ⴻ',
 		'f' => 'ⴼ', 'k' => 'ⴽ', 'h' => 'ⵀ', 'ḥ' => 'ⵃ', 'ε' => 'ⵄ', 'x' => 'ⵅ',
-		'q' => 'ⵇ', 'i' => 'ⵉ', 'j' => 'ⵊ',  'l' => 'ⵍ', 'm' => 'ⵎ', 'n' => 'ⵏ',
+		'q' => 'ⵇ', 'i' => 'ⵉ', 'j' => 'ⵊ', 'l' => 'ⵍ', 'm' => 'ⵎ', 'n' => 'ⵏ',
 		'u' => 'ⵓ', 'r' => 'ⵔ', 'ṛ' => 'ⵕ', 'γ' => 'ⵖ', 's' => 'ⵙ', 'ṣ' => 'ⵚ',
 		'š' => 'ⵛ', 't' => 'ⵜ', 'ṭ' => 'ⵟ', 'w' => 'ⵡ', 'y' => 'ⵢ', 'z' => 'ⵣ',
 		'ẓ' => 'ⵥ', 'ʷ' => 'ⵯ', 'ɣ' => 'ⵖ', 'v' => 'ⵠ', 'p' => 'ⵒ',
@@ -71,7 +71,7 @@ class ShiConverter extends LanguageConverter {
 			'lowercase' => new ReplacementArray( $this->mUpperToLowerCaseLatin ),
 			'shi-tfng' => new ReplacementArray( $this->mToTifinagh ),
 			'shi-latn' => new ReplacementArray( $this->mToLatin ),
-			'shi'    => new ReplacementArray()
+			'shi' => new ReplacementArray()
 		);
 	}
 
@@ -123,17 +123,19 @@ class ShiConverter extends LanguageConverter {
 	 * @param $ignoreOtherCond bool
 	 */
 	function findVariantLink( &$link, &$nt, $ignoreOtherCond = false ) {
-		 // check for user namespace
+		// check for user namespace
 		if ( is_object( $nt ) ) {
 			$ns = $nt->getNamespace();
-			if ( $ns == NS_USER || $ns == NS_USER_TALK )
+			if ( $ns == NS_USER || $ns == NS_USER_TALK ) {
 				return;
+			}
 		}
 
 		$oldlink = $link;
 		parent::findVariantLink( $link, $nt, $ignoreOtherCond );
-		if ( $this->getPreferredVariant() == $this->mMainLanguageCode )
+		if ( $this->getPreferredVariant() == $this->mMainLanguageCode ) {
 			$link = $oldlink;
+		}
 	}
 
 	/**
@@ -149,7 +151,9 @@ class ShiConverter extends LanguageConverter {
 		global $wgTitle;
 		if ( is_object( $wgTitle ) && $wgTitle->getNamespace() == NS_FILE ) {
 			$imagename = $wgTitle->getNsText();
-			if ( preg_match( "/^$imagename:/", $text ) ) return $text;
+			if ( preg_match( "/^$imagename:/", $text ) ) {
+				return $text;
+			}
 		}
 		return parent::autoConvert( $text, $toVariant );
 	}
@@ -168,7 +172,7 @@ class ShiConverter extends LanguageConverter {
 		if ( trim( $text ) ) {
 			$this->loadTables();
 			// To Tifinagh, first translate uppercase to lowercase Latin
-			if( $toVariant == 'shi-tfng' ) {
+			if ( $toVariant == 'shi-tfng' ) {
 				$text = $this->mTables['lowercase']->replace( $text );
 			}
 			$text = $this->mTables[$toVariant]->replace( $text );
@@ -190,7 +194,7 @@ class LanguageShi extends Language {
 
 		$variants = array( 'shi', 'shi-tfng', 'shi-latn' );
 		$variantfallbacks = array(
-			'shi'    => 'shi-tfng',
+			'shi' => 'shi-tfng',
 			'shi-tfng' => 'shi',
 			'shi-latn' => 'shi',
 		);

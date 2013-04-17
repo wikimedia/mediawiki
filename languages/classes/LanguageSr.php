@@ -75,7 +75,7 @@ class SrConverter extends LanguageConverter {
 		$this->mTables = array(
 			'sr-ec' => new ReplacementArray( $this->mToCyrillics ),
 			'sr-el' => new ReplacementArray( $this->mToLatin ),
-			'sr'    => new ReplacementArray()
+			'sr' => new ReplacementArray()
 		);
 	}
 
@@ -118,14 +118,16 @@ class SrConverter extends LanguageConverter {
 		// check for user namespace
 		if ( is_object( $nt ) ) {
 			$ns = $nt->getNamespace();
-			if ( $ns == NS_USER || $ns == NS_USER_TALK )
+			if ( $ns == NS_USER || $ns == NS_USER_TALK ) {
 				return;
+			}
 		}
 
 		$oldlink = $link;
 		parent::findVariantLink( $link, $nt, $ignoreOtherCond );
-		if ( $this->getPreferredVariant() == $this->mMainLanguageCode )
+		if ( $this->getPreferredVariant() == $this->mMainLanguageCode ) {
 			$link = $oldlink;
+		}
 	}
 
 	/**
@@ -141,7 +143,9 @@ class SrConverter extends LanguageConverter {
 		global $wgTitle;
 		if ( is_object( $wgTitle ) && $wgTitle->getNamespace() == NS_FILE ) {
 			$imagename = $wgTitle->getNsText();
-			if ( preg_match( "/^$imagename:/", $text ) ) return $text;
+			if ( preg_match( "/^$imagename:/", $text ) ) {
+				return $text;
+			}
 		}
 		return parent::autoConvert( $text, $toVariant );
 	}
@@ -194,13 +198,13 @@ class SrConverter extends LanguageConverter {
 	 * @since 1.19
 	 */
 	public function guessVariant( $text, $variant ) {
-		$numCyrillic = preg_match_all("/[шђчћжШЂЧЋЖ]/u", $text, $dummy);
-		$numLatin = preg_match_all("/[šđčćžŠĐČĆŽ]/u", $text, $dummy);
+		$numCyrillic = preg_match_all( "/[шђчћжШЂЧЋЖ]/u", $text, $dummy );
+		$numLatin = preg_match_all( "/[šđčćžŠĐČĆŽ]/u", $text, $dummy );
 
-		if( $variant == 'sr-ec' ) {
-			return (boolean) ($numCyrillic > $numLatin);
-		} elseif( $variant == 'sr-el' ) {
-			return (boolean) ($numLatin > $numCyrillic);
+		if ( $variant == 'sr-ec' ) {
+			return (boolean) ( $numCyrillic > $numLatin );
+		} elseif ( $variant == 'sr-el' ) {
+			return (boolean) ( $numLatin > $numCyrillic );
 		} else {
 			return false;
 		}
@@ -222,14 +226,14 @@ class LanguageSr extends LanguageSr_ec {
 
 		$variants = array( 'sr', 'sr-ec', 'sr-el' );
 		$variantfallbacks = array(
-			'sr'    => 'sr-ec',
+			'sr' => 'sr-ec',
 			'sr-ec' => 'sr',
 			'sr-el' => 'sr',
 		);
 
 		$flags = array(
 			'S' => 'S', 'писмо' => 'S', 'pismo' => 'S',
-			'W' => 'W', 'реч'   => 'W', 'reč'   => 'W', 'ријеч' => 'W', 'riječ' => 'W'
+			'W' => 'W', 'реч' => 'W', 'reč' => 'W', 'ријеч' => 'W', 'riječ' => 'W'
 		);
 		$this->mConverter = new SrConverter( $this, 'sr', $variants, $variantfallbacks, $flags );
 		$wgHooks['PageContentSaveComplete'][] = $this->mConverter;
@@ -262,10 +266,10 @@ class LanguageSr extends LanguageSr_ec {
 			return $forms[2];
 		} else {
 			switch ( $count % 10 ) {
-				case 1:  return $forms[0];
+				case 1: return $forms[0];
 				case 2:
 				case 3:
-				case 4:  return $forms[1];
+				case 4: return $forms[1];
 				default: return $forms[2];
 			}
 		}

@@ -275,7 +275,7 @@ class Language {
 		$alpha = '[a-z]';
 		$digit = '[0-9]';
 		$alphanum = '[a-z0-9]';
-		$x = 'x' ; # private use singleton
+		$x = 'x'; # private use singleton
 		$singleton = '[a-wy-z]'; # other singleton
 		$s = $lenient ? '[-_]' : '-';
 
@@ -1121,7 +1121,9 @@ class Language {
 					$s .= $this->getMonthNameGen( substr( $ts, 4, 2 ) );
 					break;
 				case 'xjx':
-					if ( !$hebrew ) $hebrew = self::tsToHebrew( $ts );
+					if ( !$hebrew ) {
+						$hebrew = self::tsToHebrew( $ts );
+					}
 					$s .= $this->getHebrewCalendarMonthNameGen( $hebrew[1] );
 					break;
 				case 'd':
@@ -1811,7 +1813,7 @@ class Language {
 		}
 		if ( strlen( $s ) == 2 ) {
 			$str = $s . "'";
-		} else  {
+		} else {
 			$str = substr( $s, 0, strlen( $s ) - 2 ) . '"';
 			$str .= substr( $s, strlen( $s ) - 2, 2 );
 		}
@@ -1900,12 +1902,12 @@ class Language {
 		# will normalize out-of-range values so we don't have to split $minDiff
 		# into hours and minutes.
 		$t = mktime( (
-		  (int)substr( $ts, 8, 2 ) ), # Hours
-		  (int)substr( $ts, 10, 2 ) + $minDiff, # Minutes
-		  (int)substr( $ts, 12, 2 ), # Seconds
-		  (int)substr( $ts, 4, 2 ), # Month
-		  (int)substr( $ts, 6, 2 ), # Day
-		  (int)substr( $ts, 0, 4 ) ); # Year
+			(int)substr( $ts, 8, 2 ) ), # Hours
+			(int)substr( $ts, 10, 2 ) + $minDiff, # Minutes
+			(int)substr( $ts, 12, 2 ), # Seconds
+			(int)substr( $ts, 4, 2 ), # Month
+			(int)substr( $ts, 6, 2 ), # Day
+			(int)substr( $ts, 0, 4 ) ); # Year
 
 		$date = date( 'YmdHis', $t );
 		wfRestoreWarnings();
@@ -2781,7 +2783,9 @@ class Language {
 	 * @since 1.20
 	 */
 	function getDirMarkEntity( $opposite = false ) {
-		if ( $opposite ) { return $this->isRTL() ? '&lrm;' : '&rlm;'; }
+		if ( $opposite ) {
+			return $this->isRTL() ? '&lrm;' : '&rlm;';
+		}
 		return $this->isRTL() ? '&rlm;' : '&lrm;';
 	}
 
@@ -2798,7 +2802,9 @@ class Language {
 	function getDirMark( $opposite = false ) {
 		$lrm = "\xE2\x80\x8E"; # LEFT-TO-RIGHT MARK, commonly abbreviated LRM
 		$rlm = "\xE2\x80\x8F"; # RIGHT-TO-LEFT MARK, commonly abbreviated RLM
-		if ( $opposite ) { return $this->isRTL() ? $lrm : $rlm; }
+		if ( $opposite ) {
+			return $this->isRTL() ? $lrm : $rlm;
+		}
 		return $this->isRTL() ? $rlm : $lrm;
 	}
 
@@ -3030,20 +3036,20 @@ class Language {
 			$numMatches = preg_match_all( "/(#+)/", $digitGroupingPattern, $matches );
 			preg_match( "/\d+/", $number, $integerPart );
 			preg_match( "/\.\d*/", $number, $decimalPart );
-			$groupedNumber = ( count( $decimalPart ) > 0 ) ? $decimalPart[0]:"";
+			$groupedNumber = ( count( $decimalPart ) > 0 ) ? $decimalPart[0] : "";
 			if ( $groupedNumber === $number ) {
 				// the string does not have any number part. Eg: .12345
 				return $sign . $groupedNumber;
 			}
 			$start = $end = strlen( $integerPart[0] );
 			while ( $start > 0 ) {
-				$match = $matches[0][$numMatches -1] ;
+				$match = $matches[0][$numMatches - 1];
 				$matchLen = strlen( $match );
 				$start = $end - $matchLen;
 				if ( $start < 0 ) {
 					$start = 0;
 				}
-				$groupedNumber = substr( $number, $start, $end -$start ) . $groupedNumber ;
+				$groupedNumber = substr( $number, $start, $end -$start ) . $groupedNumber;
 				$end = $start;
 				if ( $numMatches > 1 ) {
 					// use the last pattern for the rest of the number
@@ -3220,9 +3226,9 @@ class Language {
 				# We got the first byte only of a multibyte char; remove it.
 				$string = substr( $string, 0, -1 );
 			} elseif ( $char >= 0x80 &&
-				  preg_match( '/^(.*)(?:[\xe0-\xef][\x80-\xbf]|' .
-							  '[\xf0-\xf7][\x80-\xbf]{1,2})$/', $string, $m ) )
-			{
+				preg_match( '/^(.*)(?:[\xe0-\xef][\x80-\xbf]|' .
+					'[\xf0-\xf7][\x80-\xbf]{1,2})$/', $string, $m )
+			) {
 				# We chopped in the middle of a character; remove it
 				$string = $m[1];
 			}
@@ -3306,7 +3312,9 @@ class Language {
 					break;
 				}
 			}
-			if ( $pos >= $textLen ) break; // extra iteration just for above checks
+			if ( $pos >= $textLen ) {
+				break; // extra iteration just for above checks
+			}
 
 			# Read the next char...
 			$ch = $text[$pos];
@@ -3439,7 +3447,7 @@ class Language {
 	function getGrammarForms() {
 		global $wgGrammarForms;
 		if ( isset( $wgGrammarForms[$this->getCode()] ) && is_array( $wgGrammarForms[$this->getCode()] ) ) {
-			 return $wgGrammarForms[$this->getCode()];
+			return $wgGrammarForms[$this->getCode()];
 		}
 		return array();
 	}
