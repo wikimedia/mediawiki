@@ -263,9 +263,9 @@ If you do not see the database system you are trying to use listed below, then f
 	'config-invalid-db-server-oracle' => 'Invalid database TNS "$1".
 Use only ASCII letters (a-z, A-Z), numbers (0-9), underscores (_) and dots (.).',
 	'config-invalid-db-name'          => 'Invalid database name "$1".
-Use only ASCII letters (a-z, A-Z), numbers (0-9), underscores (_) and hyphens (-).',
+Use only ASCII letters (a-z, A-Z), numbers (0-9) and underscores (_).',
 	'config-invalid-db-prefix'        => 'Invalid database prefix "$1".
-Use only ASCII letters (a-z, A-Z), numbers (0-9), underscores (_) and hyphens (-).',
+Use only ASCII letters (a-z, A-Z), numbers (0-9) and underscores (_).',
 	'config-connection-error'         => '$1.
 
 Check the host, username and password and try again.',
