@@ -13,6 +13,7 @@ production.
 * Removed $wgLocalMessageCacheSerialized, it is now always true.
 * When $wgUseVFormUserLogin is true, the redesign of Special:UserLogin is
   activated.
+* $wgVectorUseIconWatch is now enabled by default.
 
 === New features in 1.22 ===
 * (bug 44525) mediawiki.jqueryMsg can now parse (whitelisted) HTML elements and attributes.
@@ -25,17 +26,30 @@ production.
   version of the Vector extension as this feature may conflict.
 * New version of Special:UserLogin form. It is opt-in for now, controlled by
   the $wgUseVFormUserLogin setting or a 'useNew' URL parameter trigger.
+* Added 'SpecialSearchResultsPrepend' and 'SpecialSearchResultsAppend' hooks.
+* (bug 23343) Implemented ability to apply IP blocks to the contents of X-Forwarded-For headers
+  by adding a new configuration variable $wgApplyIpBlocksToXff (disabled by default).
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail. Previously one could still
   navigate to the page by entering the URL directly.
 * (bug 47138) Fixed a fatal error when a blocked user tries to automatically
   create an account on login due external authentication in some circumstances.
+* (bug 23393) HTML <hN> headings containing line breaks are now handled
+  correctly.
+* (bug 45803) Whitespace within == Headline == syntax and within <hN> headings
+  is now non-significant and not preserved in the HTML output.
 
 === API changes in 1.22 ===
 * (bug 46626) xmldoublequote parameter was removed. Because of a bug, the
   parameter has had no effect since MediaWiki 1.16, and so its removal is
   unlikely to impact existing clients.
+* (bug 25325) Added support for wlshow filtering (bots/anon/minor/patrolled)
+  to action=feedwatchlist.
+* WDDX formatted output will actually be formatted (and normal output will no
+  longer be), and will no longer choke on booleans.
+* action=opensearch no longer silently ignores the format parameter.
+* action=opensearch now supports format=jsonfm.
 
 === Languages updated in 1.22===
 
@@ -59,6 +73,8 @@ changes to languages because of Bugzilla reports.
   throughout the code base have been removed.
 * Externaledit/externaldiff preference was removed. Very few users used this
   feature, and improper configuration can actually prevent a user from editing
+* Calling Linker methods using a skin will now output deprecation warnings.
+* (bug 46680) "Return to" links are no longer tagged with rel="next".
 
 == Compatibility ==
 
