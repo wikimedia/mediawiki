@@ -2032,7 +2032,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 
 # Special:ListFiles
 'listfiles-summary' => '이 위키에 올라와 있는 모든 파일이 나열되어 있습니다.
-사용자별로 필터링했을 경우에는 사용자가 올린 가장 최신 버전만이 보여집니다.',
+사용자별로 필터링했을 경우에는 사용자가 올린 가장 최신 판만이 보여집니다.',
 'listfiles_search_for' => '다음 이름을 가진 미디어 찾기:',
 'imgfile' => '파일',
 'listfiles' => '파일 목록',
@@ -3352,8 +3352,6 @@ $1',
 
 /*
 Short names for language variants used for language conversion links.
-To disable showing a particular link, set it to 'disable', e.g.
-'variantname-zh-sg' => 'disable',
 Variants for Chinese language
 */
 'variantname-zh-hans' => '간체',

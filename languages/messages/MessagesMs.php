@@ -238,11 +238,11 @@ $messages = array(
 
 'underline-always' => 'Sentiasa',
 'underline-never' => 'Jangan',
-'underline-default' => 'Tetapan azali kulit/pelayar',
+'underline-default' => 'Tetapan lalai kulit/pelayar',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Gaya fon ruang sunting:',
-'editfont-default' => 'Pelayar web utama',
+'editfont-default' => 'Lalaian pelayar web',
 'editfont-monospace' => 'Fon monospace',
 'editfont-sansserif' => 'Fon sans-serif',
 'editfont-serif' => 'Fon serif',
@@ -323,7 +323,7 @@ $messages = array(
 'about' => 'Perihal',
 'article' => 'Laman kandungan',
 'newwindow' => '(dibuka di tetingkap baru)',
-'cancel' => 'Batalkan',
+'cancel' => 'Batal',
 'moredotdotdot' => 'Lagi...',
 'morenotlisted' => 'Lain-lain yang tidak tersenarai...',
 'mypage' => 'Halaman',
@@ -968,8 +968,8 @@ Log penghapusan bagi laman ini dilampirkan di bawah untuk rujukan.',
 'content-failed-to-parse' => 'Kandungan $2 tidak dapat dihuraikan untuk model $1: $3',
 'invalid-content-data' => 'Data kandungan tidak sah',
 'content-not-allowed-here' => 'Kandungan "$1" tidak dibenarkan di halaman [[$2]]',
-'editwarning-warning' => 'Meninggalkan laman ini mungkin akan menyebabkan anda kehilangan sebarang perubahan yang telah anda lakukan.
-Anda boleh melumpuhkan amaran in di bahagian "Menyunting" dalam keutamaan anda.',
+'editwarning-warning' => 'Meninggalkan laman ini mungkin akan menyebabkan sebarang perubahan yang telah anda lakukan hilang.
+Jika anda sudah log masuk, anda boleh melumpuhkan amaran ini di bahagian "Menyunting" dalam keutamaan anda.',
 
 # Content models
 'content-model-wikitext' => 'wikiteks',

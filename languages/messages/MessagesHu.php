@@ -343,8 +343,6 @@ $messages = array(
 'tog-shownumberswatching' => 'A lapot figyelő szerkesztők számának megjelenítése',
 'tog-oldsig' => 'A jelenlegi aláírás:',
 'tog-fancysig' => 'Az aláírás wikiszöveg (nem lesz automatikusan hivatkozásba rakva)',
-'tog-externaleditor' => 'Külső szerkesztőprogram használata (Csak haladók számára, speciális beállításokra van szükség a számítógépen. [//www.mediawiki.org/wiki/Manual:External_editors További információ angolul.])',
-'tog-externaldiff' => 'Külső diff program használata (Csak haladók számára, speciális beállításokra van szükség a számítógépen. [//www.mediawiki.org/wiki/Manual:External_editors További információ angolul.])',
 'tog-showjumplinks' => 'Helyezzen el hivatkozást („Ugrás”) a beépített eszköztárra',
 'tog-uselivepreview' => 'Élő előnézet használata (JavaScript-alapú, kísérleti)',
 'tog-forceeditsummary' => 'Figyelmeztessen, ha nem adok meg szerkesztési összefoglalót',
@@ -358,6 +356,7 @@ $messages = array(
 'tog-diffonly' => 'Ne mutassa a lap tartalmát a lapváltozatok közötti eltérések megtekintésekor',
 'tog-showhiddencats' => 'Rejtett kategóriák megjelenítése',
 'tog-norollbackdiff' => 'Ne jelenjenek meg az eltérések visszaállítás után',
+'tog-useeditwarning' => 'Figyelmeztessen, ha szerkesztéskor a módosítások mentése nélkül akarom elhagyni a lapot',
 
 'underline-always' => 'mindig',
 'underline-never' => 'soha',
@@ -723,9 +722,13 @@ Lehetséges, hogy néhány oldalon továbbra is azt látod, be vagy jelentkezve,
 'welcomecreation-msg' => 'A felhasználói fiókod elkészült.
 Ne felejtsd el módosítani a [[Special:Preferences|{{SITENAME}} beállításaidat]].',
 'yourname' => 'Szerkesztőneved:',
+'userlogin-yourname' => 'Felhasználónév',
 'yourpassword' => 'Jelszavad:',
+'userlogin-yourpassword' => 'Jelszó',
 'yourpasswordagain' => 'Jelszavad ismét:',
 'remembermypassword' => 'Emlékezzen rám ezen a számítógépen (legfeljebb $1 napig)',
+'userlogin-remembermypassword' => 'Emlékezzen rám',
+'userlogin-signwithsecure' => 'Bejelentkezés a biztonságos kiszolgálón keresztül',
 'securelogin-stick-https' => 'Kapcsolódás HTTPS-en keresztül bejelentkezés után is',
 'yourdomainname' => 'A domainneved:',
 'password-change-forbidden' => 'Nem módosíthatod a jelszót ezen a wikin.',
@@ -738,12 +741,16 @@ Ne felejtsd el módosítani a [[Special:Preferences|{{SITENAME}} beállításaid
 'logout' => 'Kijelentkezés',
 'userlogout' => 'Kijelentkezés',
 'notloggedin' => 'Nem vagy bejelentkezve',
+'userlogin-noaccount' => 'Nem rendelkezel még felhasználói fiókkal?',
+'userlogin-joinproject' => 'Csatlakozz a(z) {{SITENAME}} wikihez',
 'nologin' => "Nem rendelkezel még felhasználói fiókkal? '''$1'''.",
 'nologinlink' => 'Itt regisztrálhatsz',
 'createaccount' => 'Regisztráció',
 'gotaccount' => "Ha már korábban regisztráltál, '''$1'''.",
 'gotaccountlink' => 'Bejelentkezés',
 'userlogin-resetlink' => 'Elfelejtetted a bejelentkezési adataidat?',
+'helplogin-url' => 'Help:Bejelentkezés',
+'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Segítség a bejelentkezéshez]]',
 'createaccountmail' => 'Átmeneti, véletlenszerű jelszó használata és kiküldése az alábbi e-mail címre',
 'createaccountreason' => 'Indoklás:',
 'badretype' => 'A megadott jelszavak nem egyeznek.',
@@ -837,9 +844,10 @@ Lehet, hogy már sikeresen megváltoztattad a jelszavad, vagy pedig időközben 
 
 # Special:PasswordReset
 'passwordreset' => 'Jelszó törlése',
-'passwordreset-text' => 'Az alábbi űrlap kitöltése után egy értesítő e-mailt kapsz a fiókod adataival.',
+'passwordreset-text' => 'Az alábbi űrlap kitöltése után egy jelszóemlékeztető e-mailt kapsz a fiókod adataival.',
 'passwordreset-legend' => 'Új jelszó kérése',
 'passwordreset-disabled' => 'Új jelszó kérése nem engedélyezett ezen a wikin.',
+'passwordreset-emaildisabled' => 'Az e-mail funkció le van tiltva ezen a wikin.',
 'passwordreset-pretext' => '{{PLURAL:$1||Írd be az alábbi adatok egyikét}}',
 'passwordreset-username' => 'Felhasználónév:',
 'passwordreset-domain' => 'Tartomány:',
@@ -1075,6 +1083,8 @@ Már létezik.',
 'content-failed-to-parse' => 'Hiba történt a $2 tartalom $1 modellre történő konvertálása során: $3',
 'invalid-content-data' => 'Érvénytelen tartalom adat',
 'content-not-allowed-here' => '"$1" tartalom nem engedélyezett a [[$2]] oldalon',
+'editwarning-warning' => 'A lap elhagyásával az összes itt végzett változtatás elveszhet.
+Ha be vagy jelentkezve letilthatod ezt a figyelmeztetést a beállításaid „{{int:prefs-editing}}” szakaszában.',
 
 # Content models
 'content-model-wikitext' => 'wikiszöveg',
@@ -1350,15 +1360,6 @@ Ezt általában egy elavult, törölt oldalra mutató laptörténeti hivatkozás
 'powersearch-togglenone' => 'Egyik sem',
 'search-external' => 'Külső kereső',
 'searchdisabled' => 'Elnézésed kérjük, de a teljes szöveges keresés terhelési okok miatt átmenetileg nem használható. Ezidő alatt használhatod a lenti Google keresést, mely viszont lehetséges, hogy nem teljesen friss adatokkal dolgozik.',
-
-# Quickbar
-'qbsettings' => 'Gyorsmenü',
-'qbsettings-none' => 'Nincs',
-'qbsettings-fixedleft' => 'Fix baloldali',
-'qbsettings-fixedright' => 'Fix jobboldali',
-'qbsettings-floatingleft' => 'Lebegő baloldali',
-'qbsettings-floatingright' => 'Lebegő jobboldali',
-'qbsettings-directionality' => 'Rögzített, a nyelved írásának irányától függően',
 
 # Preferences page
 'preferences' => 'Beállítások',
@@ -1909,7 +1910,6 @@ Ez a wiki publikus, így a biztonság miatt az img_auth.php ki van kapcsolva.',
 'http-read-error' => 'HTTP-olvasási hiba.',
 'http-timed-out' => 'A HTTP-kérés túllépte a határidőt.',
 'http-curl-error' => 'Hiba történt az URL lekérésekor: $1',
-'http-host-unreachable' => 'Nem sikerült elérni az URL-t.',
 'http-bad-status' => 'Probléma történt a HTTP-kérés közben: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -2223,15 +2223,6 @@ Támogatott {{PLURAL:$2|protokoll|protokollok}}: <code>$1</code> (http:// az ala
 'listusers-submit' => 'Megjelenítés',
 'listusers-noresult' => 'Nem található szerkesztő.',
 'listusers-blocked' => '(blokkolva)',
-
-# Special:ActiveUsers
-'activeusers' => 'Aktív szerkesztők listája',
-'activeusers-intro' => 'Ez a lap azon felhasználók listáját tartalmazza, akik csináltak valamilyen tevékenységet az elmúlt {{PLURAL:$1|egy|$1}} napban.',
-'activeusers-count' => '$1 szerkesztés az utolsó $3 napban',
-'activeusers-from' => 'Szerkesztők listázása a következő névtől kezdve:',
-'activeusers-hidebots' => 'Botok elrejtése',
-'activeusers-hidesysops' => 'Adminisztrátorok elrejtése',
-'activeusers-noresult' => 'Nem található ilyen szerkesztő.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Szerkesztői csoportok jogai',
@@ -3033,13 +3024,8 @@ Mentsd el a számítógépedre, majd töltsd fel ide.',
 
 # Stylesheets
 'common.css' => '/* Közös CSS az összes felületnek */',
-'standard.css' => '/* Az ide elhelyezett CSS hatással lesz a Klasszikus felület használóira */',
-'nostalgia.css' => '/* Az ide elhelyezett CSS hatással lesz a Nosztalgia felület használóira */',
 'cologneblue.css' => '/* Az ide elhelyezett CSS hatással lesz a Kölni kék felület használóira */',
 'monobook.css' => '/* Az ide elhelyezett CSS hatással lesz a Monobook felület használóira */',
-'myskin.css' => '/* Az ide elhelyezett CSS hatással lesz a MySkin felület használóira */',
-'chick.css' => '/* Az ide elhelyezett CSS hatással lesz a Chick felület használóira */',
-'simple.css' => '/* Az ide elhelyezett CSS hatással lesz a Egyszerű felület használóira */',
 'modern.css' => '/* Az ide elhelyezett CSS hatással lesz a Modern felület használóira */',
 'vector.css' => '/* Az ide elhelyezett CSS hatással lesz a Vector felület használóira */',
 'print.css' => '/* Az ide elhelyezett CSS hatással lesz a nyomtatás kimenetelére */',
@@ -3052,13 +3038,8 @@ Mentsd el a számítógépedre, majd töltsd fel ide.',
 
 # Scripts
 'common.js' => '/* Az ide elhelyezett JavaScript kód minden felhasználó számára lefut az oldalak betöltésekor. */',
-'standard.js' => '/* A Klasszikus felületet használó szerkesztők számára betöltendő JavaScriptek */',
-'nostalgia.js' => '/* A Nosztalgia felületet használó szerkesztők számára betöltendő JavaScriptek */',
 'cologneblue.js' => '/* A Kölni kék felületet használó szerkesztők számára betöltendő JavaScriptek */',
 'monobook.js' => '/* A Monobook felületet használó szerkesztők számára betöltendő JavaScriptek */',
-'myskin.js' => '/* A MySkin felületet használó szerkesztők számára betöltendő JavaScriptek */',
-'chick.js' => '/* A Chick felületet használó szerkesztők számára betöltendő JavaScriptek */',
-'simple.js' => '/* Az Egyszerű felületet használó szerkesztők számára betöltendő JavaScriptek */',
 'modern.js' => '/* A Modern felületet használó szerkesztők számára betöltendő JavaScriptek */',
 'vector.js' => '/* A Vector felületet használó szerkesztők számára betöltendő JavaScriptek */',
 'group-autoconfirmed.js' => '/* Az ide elhelyezett JavaScript csak automatikusan megerősített felhasználóknak töltődik be */',
@@ -3135,13 +3116,8 @@ Ez valószínűleg egy olyan link miatt van, ami egy feketelistán lévő oldalr
 'pageinfo-category-files' => 'Fájlok száma',
 
 # Skin names
-'skinname-standard' => 'Klasszikus',
-'skinname-nostalgia' => 'Nosztalgia',
 'skinname-cologneblue' => 'Kölni kék',
 'skinname-monobook' => 'MonoBook',
-'skinname-myskin' => 'MySkin',
-'skinname-chick' => 'Chick',
-'skinname-simple' => 'Egyszerű',
 'skinname-modern' => 'Modern',
 
 # Patrolling
@@ -3946,14 +3922,14 @@ A képek teljes méretben jelennek meg, más fájltípusok közvetlenül a hozz�
 # New logging system
 'logentry-delete-delete' => '$1 törölte a következő lapot: $3',
 'logentry-delete-restore' => '$1 helyreállította a következő lapot: $3',
-'logentry-delete-event' => '$1 megváltoztatta {{PLURAL:$5|egy napló bejegyzés|$5 napló bejegyzés}} láthatóságát $3 lapon: $4',
+'logentry-delete-event' => '$1 megváltoztatta {{PLURAL:$5|egy napló bejegyzés|$5 napló bejegyzés}} láthatóságát a(z) $3 című lapon: $4',
 'logentry-delete-revision' => '$1 módosította a(z) $3 című lap {{PLURAL:$5|egy|$1}} lapváltozatának láthatóságát: $4',
 'logentry-delete-event-legacy' => '$1 módosította a(z) $3 című lap naplóbejegyzéseinek láthatóságát',
 'logentry-delete-revision-legacy' => '$1 módosította a(z) $3 című lap lapváltozatainak láthatóságát',
 'logentry-suppress-delete' => '$1 elrejtette a következő lapot: $3',
-'logentry-suppress-event' => '$1 rejtetten megváltoztatta {{PLURAL:$5|egy napló bejegyzés|$5 napló bejegyzés}} láthatóságát $3 lapon: $4',
-'logentry-suppress-revision' => '$1 rejtetten megváltoztatta {{PLURAL:$5|egy változat|$5 változat}} láthatóságát $3 lapon: $4',
-'logentry-suppress-event-legacy' => '$1 rejtetten megváltoztatta napló bejegyzések láthatóságát a(z) $3 lapon',
+'logentry-suppress-event' => '$1 rejtetten megváltoztatta {{PLURAL:$5|egy napló bejegyzés|$5 napló bejegyzés}} láthatóságát a(z) $3 című lapon: $4',
+'logentry-suppress-revision' => '$1 rejtetten megváltoztatta {{PLURAL:$5|egy változat|$5 változat}} láthatóságát a(z) $3 című lapon: $4',
+'logentry-suppress-event-legacy' => '$1 rejtetten megváltoztatta napló bejegyzések láthatóságát a(z) $3 című lapon',
 'logentry-suppress-revision-legacy' => '$1 rejtetten megváltoztatta változatok láthatóságát a(z) $3 lapon',
 'revdelete-content-hid' => 'tartalom elrejtve',
 'revdelete-summary-hid' => 'szerkesztési összefoglaló elrejtve',

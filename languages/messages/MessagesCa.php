@@ -609,6 +609,7 @@ Tingueu en compte que algunes pàgines poden continuar mostrant-se com si encara
 'welcomecreation-msg' => 'El vostre compte ha estat creat.
 No oblideu de canviar les vostres [[Special:Preferences|preferències de {{SITENAME}}]].',
 'yourname' => "Nom d'usuari",
+'userlogin-yourname' => "Nom d'usuari",
 'yourpassword' => 'Contrasenya',
 'userlogin-yourpassword' => 'Contrasenya',
 'userlogin-yourpassword-ph' => 'Introduïu la vostra contrasenya',
@@ -3805,7 +3806,7 @@ Les imatges es mostren en plena resolució; altres tipus de fitxer s'inicien dir
 'logentry-delete-revision' => "$1 ha canviat la visibilitat {{PLURAL:$5|d'una revisió|de $5 revisions}} a la pàgina $3: $4",
 'logentry-delete-event-legacy' => "$1 ha canviat la visibilitat d'esdeveniments al registre de $3",
 'logentry-delete-revision-legacy' => '$1 ha canviat la visibilitat de revisions a la pàgina $3',
-'logentry-suppress-delete' => '$1 ha suprimit $3',
+'logentry-suppress-delete' => '$1 {{GENDER:$2|ha suprimit}} la pàgina $3',
 'logentry-suppress-event' => "$1 secretament ha canviat la visibilitat {{PLURAL:$5|d'un esdeveniment al registre|de $5 esdeveniments al registre}} de $3: $4",
 'logentry-suppress-revision' => "$1 secretament ha canviat la visibilitat {{PLURAL:$5|d'una revisió|de $5 revisions}} a la pàgina $3: $4",
 'logentry-suppress-event-legacy' => "$1 secretament ha canviat la visibilitat d'esdeveniments al registre de $3",

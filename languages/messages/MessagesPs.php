@@ -1200,7 +1200,10 @@ $1',
 'action-suppressionlog' => 'دا شخصي يادښت کتل',
 'action-block' => 'پر دې کارن د سمون د آسانتياوؤ بنديز لګول',
 'action-protect' => 'د دې مخ د ژغورنې کچه بدلول',
+'action-mergehistory' => 'د دې مخ پېښليک سره اخږل',
 'action-userrights' => 'د کارن ټولې رښتې سمول',
+'action-userrights-interwiki' => 'په نورو ويکي ګانو د کارنانو رښتې سمول',
+'action-siteadmin' => 'توکبنسټ کولپول يا نه کولپول',
 'action-sendemail' => 'برېښليکونه لېږل',
 
 # Recent changes
@@ -1232,9 +1235,11 @@ $1',
 'boteditletter' => 'روباټ',
 'number_of_watching_users_pageview' => '[$1  {{PLURAL:$1|کارن|کارنان}} يې ګوري]',
 'rc_categories_any' => 'هر يو',
+'rc-change-size-new' => '$1 {{PLURAL:$1|بايټ|بايټونه}} د بدلون وروسته',
 'newsectionsummary' => '/* $1 */ نوې برخه',
 'rc-enhanced-expand' => 'تفصيل ښکاره کول (د دې لپاره د JavaScript اړتيا ده)',
 'rc-enhanced-hide' => 'تفصيل پټول',
+'rc-old-title' => 'اصلاً د "$1" په توګه جوړ شو',
 
 # Recent changes linked
 'recentchangeslinked' => 'اړونده بدلونونه',
@@ -1250,6 +1255,8 @@ $1',
 # Upload
 'upload' => 'دوتنه پورته کول',
 'uploadbtn' => 'دوتنه پورته کول',
+'reuploaddesc' => 'پورته کېدنه ناګارل او بېرته د پورته کېدنې فورمې ته ورګرځېدل',
+'upload-tryagain' => 'د بدلون موندلې دوتنې څرګندونې سپارل',
 'uploadnologin' => 'غونډال کې نه ياست ننوتي',
 'uploadnologintext' => 'ددې لپاره چې دوتنې پورته کړای شۍ، نو لومړی غونډال کې [[Special:UserLogin|ورننوځۍ]].',
 'uploaderror' => 'د پورته کولو ستونزه',
@@ -1455,6 +1462,8 @@ $1',
 
 'disambiguations' => 'د مبهمو مخونو سره تړلي مخونه',
 'disambiguationspage' => 'Template:ناجوت',
+
+'pageswithprop-submit' => 'ورځه',
 
 'doubleredirects' => 'دوه ځلي ورګرځېدنې',
 

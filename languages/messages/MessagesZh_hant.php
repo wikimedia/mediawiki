@@ -2385,7 +2385,7 @@ $UNWATCHURL
 'protect-summary-cascade' => '連鎖',
 'protect-expiring' => '終止於 $1 （UTC）',
 'protect-expiring-local' => '$1到期',
-'protect-expiry-indefinite' => '永久',
+'protect-expiry-indefinite' => '無限期',
 'protect-cascade' => '保護本頁中包含的頁面 （連鎖保護）',
 'protect-cantedit' => '您無法更改這個頁面的保護等級，因為您沒有權限去編輯它。',
 'protect-othertime' => '其它時間:',
@@ -2548,7 +2548,7 @@ $1',
 'ipbenableautoblock' => '自動查封此用戶最後所用的IP位址，以及後來試圖編輯所用的所有位址',
 'ipbsubmit' => '查封該地址',
 'ipbother' => '其它時間:',
-'ipboptions' => '2小時:2 hours,1天:1 day,3天:3 days,1周:1 week,2周:2 weeks,1個月:1 month,3個月:3 months,6個月:6 months,1年:1 year,永久:infinite',
+'ipboptions' => '2小時:2 hours,1天:1 day,3天:3 days,1周:1 week,2周:2 weeks,1個月:1 month,3個月:3 months,6個月:6 months,1年:1 year,無限期:infinite',
 'ipbotheroption' => '其他',
 'ipbotherreason' => '其它／附帶原因:',
 'ipbhidename' => '在編輯及列表中隱藏用戶名',
@@ -2589,7 +2589,7 @@ $1',
 'ipblocklist-submit' => '搜尋',
 'ipblocklist-localblock' => '本地封鎖',
 'ipblocklist-otherblocks' => '其他{{PLURAL:$1|封鎖|封鎖}}',
-'infiniteblock' => '永久',
+'infiniteblock' => '無限期',
 'expiringblock' => '$1 $2 到期',
 'anononlyblock' => '僅限匿名用戶',
 'noautoblockblock' => '禁用自動查封',
@@ -3136,8 +3136,6 @@ $1',
 
 /*
 Short names for language variants used for language conversion links.
-To disable showing a particular link, set it to 'disable', e.g.
-'variantname-zh-sg' => 'disable',
 Variants for Chinese language
 */
 'variantname-zh-hans' => '‪中文(简体)',

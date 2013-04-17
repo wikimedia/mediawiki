@@ -3273,6 +3273,7 @@ $messages['crh-latn'] = array(
 
 /** Czech (česky)
  * @author Danny B.
+ * @author Jezevec
  * @author Mormegil
  * @author 아라
  */
@@ -3405,6 +3406,8 @@ Kešování objektů bude vypnuto.",
 	'config-mod-security' => "'''Upozornění''': váš webový server má zapnuto [http://modsecurity.org/ mod_security]. Při chybné konfiguraci může způsobovat potíže MediaWiki či dalším programům, které umožňují ukládat libovolný obsah.
 Pokud narazíte na náhodné chyby, podívejte se do [http://modsecurity.org/documentation/ dokumentace mod_security] nebo kontaktujte technickou podporu vašeho poskytovatele.",
 	'config-diff3-bad' => 'Nebyl nalezen GNU diff3.',
+	'config-git' => 'Nalezen software pro správu verzí Git: <code>$1</code>.',
+	'config-git-bad' => 'Software pro správu verzí Git nebyl nalezen.',
 	'config-imagemagick' => 'Nalezen ImageMagick: <code>$1</code>.
 Pokud povolíte načítání souborů, bude zapnuto vytváření náhledů.',
 	'config-gd' => 'Nalezena vestavěná grafická knihovna GD.
@@ -5811,6 +5814,8 @@ La mise en cache d'objets n'est pas activée.",
 	'config-mod-security' => "'''Attention''': Votre serveur web a [http://modsecurity.org/ mod_security] activé. S&il est mal configuré, cela peut poser des problèmes à MediaWiki ou à d'autres applications qui permettent aux utilisateurs de publier un contenu quelconque.
 Reportez-vous à [http://modsecurity.org/documentation/ la documentation de mod_security] ou contactez le support de votre hébergeur si vous rencontrez des erreurs aléatoires.",
 	'config-diff3-bad' => 'GNU diff3 introuvable.',
+	'config-git' => 'Logiciel de contrôle de version Git trouvé : <code>$1</code>.',
+	'config-git-bad' => 'Logiciel de contrôle de version Git non trouvé.',
 	'config-imagemagick' => "ImageMagick trouvé : <code>$1</code>.
 La miniaturisation d'images sera activée si vous activez le téléversement de fichiers.",
 	'config-gd' => "La bibliothèque graphique GD intégrée a été trouvée.
@@ -14156,6 +14161,8 @@ Het cachen van objecten is niet ingeschakeld.",
 	'config-mod-security' => "'''Waarschuwing:''' uw webserver heeft de module [http://modsecurity.org/ mod_security] ingeschakeld. Als deze onjuist is ingesteld, kan dit problemen geven in combinatie met MediaWiki of andere software die gebruikers in staat stelt willekeurige inhoud te posten.
 Lees de [http://modsecurity.org/documentation/ documentatie over mod_security] of neem contact op met de helpdesk van uw provider als u tegen problemen aanloopt.",
 	'config-diff3-bad' => 'GNU diff3 niet aangetroffen.',
+	'config-git' => 'Versiecontrolesoftware git is aangetroffen: <code>$1</code>',
+	'config-git-bad' => 'Geen git versiecontrolesoftware aangetroffen.',
 	'config-imagemagick' => 'ImageMagick aangetroffen: <code>$1</code>.
 Het aanmaken van miniaturen van afbeeldingen wordt ingeschakeld als u uploaden inschakelt.',
 	'config-gd' => 'Ingebouwde GD grafische bibliotheek aangetroffen.
@@ -20050,6 +20057,7 @@ $messages['zea'] = array(
  * @author Hydra
  * @author Hzy980512
  * @author Liangent
+ * @author Makecat
  * @author PhiLiP
  * @author Xiaomingyan
  * @author Yfdyh000
@@ -20155,6 +20163,8 @@ $1',
 Object caching is not enabled.",
 	'config-mod-security' => "'''警告'''：您的服务器已启动[http://modsecurity.org/ mod_security]。若其配置错误, 会导致MediaWiki和其他软件的错误并允许用户任意发布内容。如果您遇到任何错误，请查阅[http://modsecurity.org/documentation/ mod_security文档]或联系您的客服。",
 	'config-diff3-bad' => '找不到GNU diff3。',
+	'config-git' => '发现Git版本控制软件：<code>$1</code>',
+	'config-git-bad' => 'Git版本控制软件未找到。',
 	'config-imagemagick' => '已找到ImageMagick：<code>$1</code>。如果你启用了上传功能，缩略图功能也将被启用。',
 	'config-gd' => '已找到内建的GD图形库。如果你启用了上传功能，缩略图功能也将被启用。',
 	'config-no-scaling' => '找不到GD库或ImageMagick。缩略图功能将不可用。',
@@ -20398,6 +20408,8 @@ GNU自由文档许可证是维基百科曾经使用过的许可证，并迄今�
 	'config-upload-deleted-help' => '指定用于存放被删除文件的目录。理想情况下，该目录不应能通过web访问。',
 	'config-logo' => '标志URL：',
 	'config-logo-help' => '在MediaWiki的默认外观中，左侧栏菜单之上有一块135x160像素的标志区。请上传一幅相应大小的图像，并在此输入URL。
+
+你可以用<code>$wgStylePath</code>或<code>$wgScriptPath</code>来表示相对于这些位置的路径。
 
 如果您不希望使用标志，请将本处留空。',
 	'config-instantcommons' => '启用即时共享资源',

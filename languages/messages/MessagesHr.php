@@ -343,8 +343,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Prikaži broj suradnika koji prate stranicu (u nedavnim izmjenama, popisu praćenja i samim člancima)',
 'tog-oldsig' => 'Pregled postojećeg potpisa:',
 'tog-fancysig' => 'Običan potpis kao wikitekst (bez automatske poveznice)',
-'tog-externaleditor' => 'Uvijek koristi vanjski program za uređivanje (samo za napredne, potrebne su posebne postavke na računalu. [//www.mediawiki.org/wiki/Manual:External_editors Dodatne informacije.])',
-'tog-externaldiff' => 'Uvijek koristi vanjski program za usporedbu (samo za napredne, potrebne su posebne postavke na računalu. [//www.mediawiki.org/wiki/Manual:External_editors Dodatne informacije.])',
 'tog-showjumplinks' => 'Uključi pomoćne poveznice "Skoči na"',
 'tog-uselivepreview' => 'Uključi trenutačni pretpregled (JavaScript) (eksperimentalno)',
 'tog-forceeditsummary' => 'Podsjeti me ako sažetak uređivanja ostavljam praznim',
@@ -358,6 +356,7 @@ $messages = array(
 'tog-diffonly' => 'Ne prikazuj sadržaj stranice prilikom usporedbe inačica',
 'tog-showhiddencats' => 'Prikaži skrivene kategorije',
 'tog-norollbackdiff' => 'Izostavi razliku nakon upotrebe ukloni',
+'tog-useeditwarning' => 'Upozori me kad napuštam stranicu za uređivanje bez spremanja izmjena',
 
 'underline-always' => 'Uvijek',
 'underline-never' => 'Nikad',
@@ -430,7 +429,7 @@ $messages = array(
 'category-empty' => "''U ovoj kategoriji trenutačno nema članaka ni medija.''",
 'hidden-categories' => '{{PLURAL:$1|Skrivena kategorija|Skrivene kategorije|Skrivenih kategorija}}',
 'hidden-category-category' => 'Skrivene kategorije',
-'category-subcat-count' => '{{PLURAL:$2|Ova kategorija ima samo sljedeću podkategoriju.|Ova kategorija ima {{PLURAL:$1|podkategoriju|$1 podkategorije|$1 podkategorija}}, od njih $2 ukupno.}}',
+'category-subcat-count' => 'Ova kategorija sadrži $2 {{PLURAL:$2|podkategoriju|podkategorije|podkategorija}}, ovaj popis prikazuje $1.',
 'category-subcat-count-limited' => 'Ova kategorija ima {{PLURAL:$1|podkategoriju|$1 podkategorije|$1 podkategorija}}.',
 'category-article-count' => '{{PLURAL:$2|Ova kategorija sadrži $2 članak.|{{PLURAL:$1|Prikazano je $1 članak|Prikazana su $1 članka|Prikazano je $1 članaka}} od njih $2 ukupno.}}',
 'category-article-count-limited' => '{{PLURAL:$1|stranica je|$1 stranice su|$1 stranica je}} u ovoj kategoriji.',
@@ -1076,6 +1075,8 @@ Stranica već postoji.',
 'content-failed-to-parse' => "Obrada (''parsiranje'') formata $2 za model $1 nije uspjela: $3",
 'invalid-content-data' => 'Nevaljani sadržaj',
 'content-not-allowed-here' => 'Sadržaj napisan u obliku "$1"-a nije dozvoljen na stranici [[$2]]',
+'editwarning-warning' => 'Napuštanje ove stranice može uzrokovati gubitak svake izmjene koju ste napravili.
+Možete onemogućiti ovo upozorenje u odjeljku "{{int:prefs-editing}}" Vaših postavki.',
 
 # Content models
 'content-model-wikitext' => 'wikitekst',
@@ -1355,15 +1356,6 @@ Više informacija možete pronaći u [{{fullurl:{{#Special:Log}}/delete|page={{F
 'powersearch-togglenone' => 'Ništa',
 'search-external' => 'Vanjski pretraživač',
 'searchdisabled' => '<p>Oprostite! Pretraga po cjelokupnoj bazi je zbog bržeg rada projekta {{SITENAME}} trenutačno onemogućena. Možete se poslužiti tražilicom Google.</p>',
-
-# Quickbar
-'qbsettings' => 'Traka',
-'qbsettings-none' => 'Bez',
-'qbsettings-fixedleft' => 'Lijevo nepomično',
-'qbsettings-fixedright' => 'Desno nepomično',
-'qbsettings-floatingleft' => 'Lijevo leteće',
-'qbsettings-floatingright' => 'Desno leteće',
-'qbsettings-directionality' => 'Fiksno, ovisno o smjeru pisma Vašeg jezika',
 
 # Preferences page
 'preferences' => 'Postavke',
@@ -1897,7 +1889,6 @@ Za optimalnu sigurnost, img_auth.php je onemogućena.',
 'http-read-error' => 'Pogrješka pri čitanju HTTP.',
 'http-timed-out' => 'HTTP zahtjev je istekao.',
 'http-curl-error' => 'Pogrješka pri otvaranju URL-a: $1',
-'http-host-unreachable' => 'URL nije dostupan.',
 'http-bad-status' => 'Došlo je do problema tijekom HTTP zahtjeva: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -3082,12 +3073,8 @@ Razlog je vjerojatno vanjska poveznica koja se nalazi na crnom popisu.',
 'pageinfo-protect-cascading-from' => 'Prenosiva zaštita počinje od',
 
 # Skin names
-'skinname-standard' => 'Standardna',
-'skinname-nostalgia' => 'Nostalgija',
 'skinname-cologneblue' => 'Kölnska plava',
 'skinname-monobook' => 'MonoBook',
-'skinname-myskin' => 'MySkin',
-'skinname-chick' => 'Chick',
 
 # Patrolling
 'markaspatrolleddiff' => 'Označi za pregledano',

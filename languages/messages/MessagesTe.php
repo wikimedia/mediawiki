@@ -174,8 +174,6 @@ $messages = array(
 'tog-shownumberswatching' => 'వీక్షకుల సంఖ్యను చూపించు',
 'tog-oldsig' => 'ప్రస్తుత సంతకం:',
 'tog-fancysig' => 'సంతకాన్ని వికీపాఠ్యంగా తీసుకో (ఆటోమెటిక్‌ లింకు లేకుండా)',
-'tog-externaleditor' => 'మామూలుగా బయటి ఎడిటరును వాడు (నిపుణులకు మాత్రమే. మీ కంప్యూటర్లో ప్రత్యేక అమరికలు అవసరమవుతాయి. [//www.mediawiki.org/wiki/Manual:External_editors మరింత సమాచారం.])',
-'tog-externaldiff' => 'మార్పులను చూడటానికి బయటి సాఫ్టువేరును వాడు (నిపుణులకు మాత్రమే, మీ కంప్యూటర్లో ప్రత్యేక అమరికలు అవసరమవుతాయి. [//www.mediawiki.org/wiki/Manual:External_editors మరింత సమాచారం.])',
 'tog-showjumplinks' => '"ఇక్కడికి గెంతు" లింకులను చూపించు',
 'tog-uselivepreview' => 'రాస్తున్నదానిని ఎప్పటికప్పుడు సరిచూడండి (జావాస్క్రిప్టు) (పరీక్షాదశలో ఉంది)',
 'tog-forceeditsummary' => 'దిద్దుబాటు సారాంశం ఖాళీగా ఉంటే ఆ విషయాన్ని నాకు సూచించు',
@@ -189,6 +187,7 @@ $messages = array(
 'tog-diffonly' => 'తేడాలను చూపిస్తున్నపుడు, కింద చూపించే పేజీలోని సమాచారాన్ని చూపించొద్దు',
 'tog-showhiddencats' => 'దాచిన వర్గాలను చూపించు',
 'tog-norollbackdiff' => 'రద్దు చేసాక తేడాలు చూపించవద్దు',
+'tog-useeditwarning' => 'ఏదైనా పేజీని నేను వదిలివెళ్తున్నప్పుడు దానిలో భద్రపరచని మార్పులు ఉంటే నన్ను హెచ్చరించు',
 
 'underline-always' => 'ఎల్లప్పుడూ',
 'underline-never' => 'ఎప్పటికీ వద్దు',
@@ -552,9 +551,14 @@ $2',
 *వికీని త్వరగా అర్థం చేసుకునేందుకు [[వికీపీడియా:5 నిమిషాల్లో వికీ|5 నిమిషాల్లో వికీ]] పేజీని చూడండి.
 *తెలుగులో రాసేందుకు ఇంగ్లీషు అక్షరాల ఉచ్ఛారణతో తెలుగు టైపు చేసే [[వికీపీడియా:టైపింగు సహాయం| టైపింగ్  సహాయం]] వాడవచ్చు. మరిన్ని ఉపకరణాల కొరకు [[కీ బోర్డు]] మరియు   తెరపై తెలుగు సరిగా లేకపోతే[[వికీపీడియా:Setting up your browser for Indic scripts|ఈ పేజీ]]  చూడండి.',
 'yourname' => 'వాడుకరి పేరు:',
+'userlogin-yourname' => 'వాడుకరి పేరు',
+'userlogin-yourname-ph' => 'మీ వాడుకరి పేరును ఇవ్వండి',
 'yourpassword' => 'సంకేతపదం:',
+'userlogin-yourpassword' => 'సంకేతపదం',
+'userlogin-yourpassword-ph' => 'మీ సంకేతపదాన్ని ఇవ్వండి',
 'yourpasswordagain' => 'సంకేతపదాన్ని మళ్ళీ ఇవ్వండి:',
 'remembermypassword' => 'ఈ కంప్యూటరులో నా ప్రవేశాన్ని గుర్తుంచుకో (గరిష్ఠంగా $1 {{PLURAL:$1|రోజు|రోజుల}}కి)',
+'userlogin-remembermypassword' => 'నన్ను గుర్తుంచుకో',
 'securelogin-stick-https' => 'ప్రవేశం తర్వాత కూడా HTTPSకి అనుసంధానమై ఉండు',
 'yourdomainname' => 'మీ డోమైను',
 'password-change-forbidden' => 'ఈ వికీలో మీరు సంకేతపదాలను మార్చలేరు.',
@@ -567,6 +571,8 @@ $2',
 'logout' => 'నిష్క్రమించు',
 'userlogout' => 'నిష్క్రమించు',
 'notloggedin' => 'లోనికి ప్రవేశించి లేరు',
+'userlogin-noaccount' => 'మీకు ఖాతా లేదా?',
+'userlogin-joinproject' => '{{SITENAME}}లో చేరండి',
 'nologin' => "ఖాతా లేదా? '''$1'''.",
 'nologinlink' => 'ఖాతాని సృష్టించుకోండి',
 'createaccount' => 'ఖాతాని సృష్టించు',
@@ -701,6 +707,7 @@ $2
 'changeemail-oldemail' => 'ప్రస్తుత ఈ-మెయిలు చిరునామా:',
 'changeemail-newemail' => 'కొత్త ఈ-మెయిలు చిరునామా:',
 'changeemail-none' => '(ఏమీలేదు)',
+'changeemail-password' => 'మీ {{SITENAME}} సంకేతపదం:',
 'changeemail-submit' => 'ఈ-మెయిల్ మార్చు',
 'changeemail-cancel' => 'రద్దుచేయి',
 
@@ -887,6 +894,8 @@ $2
 అది ఇప్పటికే ఉంది.',
 'defaultmessagetext' => 'అప్రమేయ సందేశపు పాఠ్యం',
 'invalid-content-data' => 'తప్పుడు విషయం',
+'editwarning-warning' => 'ఈ పేజీని వదిలివెళ్ళడం వల్ల మీరు చేసిన మార్పులను కోల్పోయే అవకాశం ఉంది.
+మీరు ప్రవేశించివుంటే, ఈ హెచ్చరికని మీ అభిరుచులలో "మరపులు" అనే విభాగంలో అచేతనం చేసుకోవచ్చు.',
 
 # Content models
 'content-model-wikitext' => 'వికీపాఠ్యం',
@@ -1156,15 +1165,6 @@ $1",
 'powersearch-togglenone' => 'ఏదీకాదు',
 'search-external' => 'బయటి అన్వేషణ',
 'searchdisabled' => '{{SITENAME}} అన్వేషణ తాత్కాలికంగా పని చెయ్యడం లేదు. ఈలోగా మీరు గూగుల్‌ ఉపయోగించి అన్వేషించవచ్చు. ఒక గమనిక: గూగుల్‌ ద్వారా కాలదోషం పట్టిన ఫలితాలు రావడానికి అవకాశం ఉంది.',
-
-# Quickbar
-'qbsettings' => 'క్విక్‌బార్',
-'qbsettings-none' => 'ఏదీకాదు',
-'qbsettings-fixedleft' => 'స్థిర ఎడమ',
-'qbsettings-fixedright' => 'స్థిర కుడి',
-'qbsettings-floatingleft' => 'ఎడమకు ఒదిగి',
-'qbsettings-floatingright' => 'కుడికి ఒదిగి',
-'qbsettings-directionality' => 'స్థిరం, మీ లిపి మరియు భాషల యొక్క దిశ ఆధారంగా',
 
 # Preferences page
 'preferences' => 'అభిరుచులు',

@@ -13,6 +13,7 @@
  * @author Haqmar
  * @author Himiq Dzyu
  * @author KhayR
+ * @author MF-Warburg
  * @author Marat Vildanov
  * @author Reedy
  * @author Rinatus
@@ -239,8 +240,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Битне күзәтү исемлекләренә өстәгән кулланучылар санын күрсәтелсен',
 'tog-oldsig' => 'Хәзерге имза:',
 'tog-fancysig' => 'Имзаның шәхси вики-билгеләмәсе (автоматик сылтамасыз)',
-'tog-externaleditor' => 'Тышкы редактор куллану (бары тик белгечләргә генә һәм санак махсус көйләнгән булу зарур; [//www.mediawiki.org/wiki/Manual:External_editors тулырак...])',
-'tog-externaldiff' => 'Тышкы версия чагыштыру программасын куллану (бары тик белгечләр өчен һшм санак махсус көйләнгән булу зарур; [//www.mediawiki.org/wiki/Manual:External_editors тулырак...])',
 'tog-showjumplinks' => '«Күчү» ярдәмче сылтамалары ялгансын',
 'tog-uselivepreview' => 'Тиз карап алу кулланылсын (JavaScript, эксперименталь)',
 'tog-forceeditsummary' => 'Үзгәртүләрне тасвирлау юлы тутырылмаган булса, кисәтү',
@@ -254,6 +253,7 @@ $messages = array(
 'tog-diffonly' => 'Юрама чагыштыру астында бит эчтәлеге күрсәтелмәсен',
 'tog-showhiddencats' => 'Яшерен төркемнәр күрсәтелсен',
 'tog-norollbackdiff' => 'Кире кайтару ясагач юрамалар аермасы күрсәтелмәсен',
+'tog-useeditwarning' => 'Битне сакламыйча китү вакытында мине кисәтергә',
 
 'underline-always' => 'Һәрвакыт',
 'underline-never' => 'Бервакытта да',
@@ -952,6 +952,8 @@ $2
 'edit-no-change' => 'Текстта үзгәешләр ясалмау сәбәпле, сезнең үзгәртү кире кагыла.',
 'edit-already-exists' => 'Яңа бит төзеп булмый.
 Ул инде бар.',
+'editwarning-warning' => 'Башка биткә күчү вакытында бу мәкаләгә керткән үзгәрешләр югалырга мөмкин.
+Әгәрдә сез теркәлгән булсагыз, бу искәрмәне сез «Көйләнмәләрем» өлешендә үзгәртә аласыз.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => "'''Игътибар:''' бу биттә хәтерне еш кулланучы функцияләр артык күп.
@@ -1168,14 +1170,6 @@ $1",
 'powersearch-toggleall' => 'Барысы',
 'powersearch-togglenone' => 'Бирни дә юк',
 'search-external' => 'Тышкы эзләү',
-
-# Quickbar
-'qbsettings' => 'Күчешләр аслыгы',
-'qbsettings-none' => 'Күрсәтмәү',
-'qbsettings-fixedleft' => 'Сулда күчерелмәс',
-'qbsettings-fixedright' => 'Уңда күчерелмәс',
-'qbsettings-floatingleft' => 'Сулда йөзмә',
-'qbsettings-floatingright' => 'Уңда йөзмә',
 
 # Preferences page
 'preferences' => 'Көйләнмәләр',
@@ -1703,12 +1697,6 @@ PICT # төрле
 'listusers-noresult' => 'Кулланучыларны табылмады.',
 'listusers-blocked' => '(тыелган)',
 
-# Special:ActiveUsers
-'activeusers' => 'Актив кулланучылар исемлеге',
-'activeusers-hidebots' => 'Ботларны яшер',
-'activeusers-hidesysops' => 'Идарәчеләрне яшер',
-'activeusers-noresult' => 'Кулланучылар табылмады.',
-
 # Special:ListGroupRights
 'listgrouprights' => 'Кулланучы төркемнәренең хокуклары',
 'listgrouprights-group' => 'Төркем',
@@ -1911,7 +1899,7 @@ $1',
 'blanknamespace' => '(Төп)',
 
 # Contributions
-'contributions' => '{{GENDER:$1|Кулланучының} кертеме',
+'contributions' => '{{GENDER:$1|Кулланучының}} кертеме',
 'contributions-title' => '$1 исемле кулланучының кертеме',
 'mycontris' => 'Кертем',
 'contribsub2' => '$1 ($2) өчен',
@@ -2161,14 +2149,12 @@ $1',
 # Spam protection
 'spamprotectiontitle' => 'Спам фильтры',
 
+# Info page
+'pageinfo-toolboxlink' => 'Бит турында мәгълүмат',
+
 # Skin names
-'skinname-standard' => 'Классик',
-'skinname-nostalgia' => 'Искә алу',
 'skinname-cologneblue' => 'Зәңгәр сагыш',
 'skinname-monobook' => 'Китап',
-'skinname-myskin' => 'Үзем',
-'skinname-chick' => 'Чеби',
-'skinname-simple' => 'Гади',
 'skinname-modern' => 'Замана',
 'skinname-vector' => 'Сызымлы',
 

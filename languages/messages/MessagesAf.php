@@ -909,7 +909,7 @@ Onthou dat u eie .css- en .js-bladsye met 'n kleinletter begin, byvoorbeeld {{ns
 'previewnote' => "'''Onthou dat hierdie slegs 'n voorskou is.'''
 U teks is nog nie gestoor nie!",
 'continue-editing' => 'Wysig verder',
-'previewconflict' => 'Hierdie voorskou vertoon die teks in die boonste teksarea soos dit sou lyk indien u die bladsy stoor.',
+'previewconflict' => 'Hierdie voorskou vertoon die teks in die boonste teksarea soos dit sou lyk as u die bladsy stoor.',
 'session_fail_preview' => "'''Jammer! Weens verlies aan sessie-inligting is die wysiging nie verwerk nie.
 Probeer asseblief weer. As dit steeds nie werk nie, probeer om [[Special:UserLogout|af te teken]] en dan weer aan te meld.'''",
 'session_fail_preview_html' => "'''Jammer! U wysigings is nie verwerk nie omdat sessie-data verlore gegaan het.'''
@@ -1377,7 +1377,8 @@ Dit mag nie meer as $1 {{PLURAL:$1|karakter|karakters}} bevat nie.',
 'prefs-help-gender' => 'Opsioneel: dit word gebruik om gebruikers korrek aan te spreek in die sagteware.
 Die inligting is vir ander gebruikers sigbaar.',
 'email' => 'E-pos',
-'prefs-help-realname' => 'Regte naam (opsioneel): as u hierdie verskaf, kan dit gebruik word om erkenning vir u werk te gee.',
+'prefs-help-realname' => 'Regte naam is opsioneel.
+As u dit verskaf, sal dit gebruik word om erkenning vir u werk te gee.',
 'prefs-help-email' => 'E-posadres is opsioneel, maar is nodig om u wagwoord aan u te stuur sou u dit vergeet.',
 'prefs-help-email-others' => 'U kan ook kies om ander toe te laat om u deur u gebruikers- en besprekingsbladsy te kontak sonder om u identiteit te openbaar.',
 'prefs-help-email-required' => 'E-pos adres word benodig.',
@@ -2148,7 +2149,7 @@ Sien ook [[Special:WantedCategories|nie-bestaande kategorieë met verwysings]].'
 'sp-deletedcontributions-contribs' => 'bydraes',
 
 # Special:LinkSearch
-'linksearch' => 'Eksterne skakels soek',
+'linksearch' => 'Soek eksterne skakels',
 'linksearch-pat' => 'Soekpatroon:',
 'linksearch-ns' => 'Naamruimte:',
 'linksearch-ok' => 'Soek',
@@ -2185,7 +2186,7 @@ Daar kan [[{{MediaWiki:Listgrouprights-helppage}}|extra inligting]] oor individu
 
 # Email user
 'mailnologin' => 'Geen versendadres beskikbaar',
-'mailnologintext' => "U moet [[Special:UserLogin|ingeteken]] wees en 'n geldige e-posadres in die [[Special:Preferences|voorkeure]] hê om e-pos aan ander gebruikers te stuur.",
+'mailnologintext' => "U moet [[Special:UserLogin|ingeteken]] wees en 'n geldige e-posadres in u [[Special:Preferences|voorkeure]] hê om e-pos aan ander gebruikers te kan stuur.",
 'emailuser' => 'Stuur e-pos na hierdie gebruiker',
 'emailuser-title-target' => 'E-pos die {{GENDER:$1|gebruiker}}',
 'emailuser-title-notarget' => 'E-pos gebruiker',
