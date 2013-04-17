@@ -116,7 +116,8 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	protected function appendGeneralInfo( $property ) {
 		global $wgContLang,
 			$wgDisableLangConversion,
-			$wgDisableTitleConversion;
+			$wgDisableTitleConversion,
+			$wgNamespacesWithSubpages;
 
 		$data = array();
 		$mainPage = Title::newMainPage();
@@ -221,6 +222,15 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		}
 
 		$data['maxuploadsize'] = UploadBase::getMaxUploadSize();
+		
+		$subpages = array();
+		foreach ( $wgNamespacesWithSubpages as $ns => $value ) {
+			if ( $value ) {
+				$subpages[] = $ns;
+			}
+		}
+		$this->getResult()->setIndexedTagName( $subpages, 'namespaceId' );
+		$data['namespaceswithsubpages'] = $subpages;
 
 		wfRunHooks( 'APIQuerySiteInfoGeneralInfo', array( $this, &$data ) );
 
