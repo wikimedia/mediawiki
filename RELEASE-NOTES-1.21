@@ -319,7 +319,7 @@ changes to languages because of Bugzilla reports.
   were using it, you have to either copy it to your extension, or install the
   Vector extension (and possibly disable its features using config settings if
   you don't want them).
-* Experimental IBM DB2 support was removed due to lack of interest and maintainership
+* Experimental IBM DB2 support was removed due to lack of interest and maintainership.
 * BREAKING CHANGE: Filenames of maintenance scripts were standardized into
   lowerCamelCase format, and made more explicit:
   - clear_stats.php -> clearCacheStats.php
@@ -344,7 +344,7 @@ changes to languages because of Bugzilla reports.
 ** The sets of characters escaped by default, along with the precise escape
    sequences used, have changed (except for the Xml::escapeJsString()
    function, which is now deprecated).
-* BREAKING CHANGE: The Services_JSON class has been removed; if necessary,
+* BREAKING CHANGE: The Services_JSON class has been removed. If necessary,
   be sure to upgrade affected extensions at the same time (e.g. Collection).
 
 == Compatibility ==
