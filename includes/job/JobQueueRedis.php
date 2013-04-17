@@ -232,7 +232,7 @@ class JobQueueRedis extends JobQueue {
 	 * @throws RedisException
 	 */
 	protected function pushBlobs( RedisConnRef $conn, array $items ) {
-		$args = array(); // ([id, sha1, blob [, id, sha1, blob ... ] ] )
+		$args = array(); // ([id, sha1, rtime, blob [, id, sha1, rtime, blob ... ] ] )
 		foreach ( $items as $item ) {
 			$args[] = (string)$item['uuid'];
 			$args[] = (string)$item['sha1'];
