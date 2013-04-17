@@ -25,17 +25,6 @@
  */
 class UserloginTemplateVForm extends BaseTemplate {
 
-	/**
-	 * Get the Skin object related to this object, so that BaseTemplate msg	31
-	 * methods work.
-	 *
-	 * @return Skin object
-	 */
-	public function getSkin() {
-		global $wgOut;
-		return $wgOut->getSkin();
-	}
-
 	function execute() {
 		global $wgCookieExpiration;
 		$expirationDays = ceil( $wgCookieExpiration / ( 3600 * 24 ) );
