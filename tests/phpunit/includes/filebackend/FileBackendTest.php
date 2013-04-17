@@ -889,6 +889,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		$this->backend = $this->singleBackend;
 		$this->tearDownFiles();
 		$this->doTestConcatenate( $op, $srcs, $srcsContent, $alreadyExists, $okStatus );
+		$this->filesToPrune[] = $op['dst']; # avoid file leaking
 		$this->tearDownFiles();
 
 		$this->backend = $this->multiBackend;
@@ -2193,7 +2194,9 @@ class FileBackendTest extends MediaWikiTestCase {
 
 	function tearDownFiles() {
 		foreach ( $this->filesToPrune as $file ) {
-			@unlink( $file );
+			if ( is_file( $file ) ) {
+				unlink( $file );
+			}
 		}
 		$containers = array( 'unittest-cont1', 'unittest-cont2' );
 		foreach ( $containers as $container ) {
