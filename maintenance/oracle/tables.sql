@@ -522,12 +522,12 @@ CREATE TABLE &mw_prefix.job (
   job_namespace  NUMBER  DEFAULT 0 NOT NULL,
   job_title      VARCHAR2(255)      NOT NULL,
   job_timestamp	 TIMESTAMP(6) WITH TIME ZONE NULL,
-  job_params     CLOB      NOT NULL
-  job_random NUMBER NOT NULL default 0,
+  job_params     CLOB      NOT NULL,
+  job_random NUMBER DEFAULT 0 NOT NULL,
   job_token VARCHAR2(32),
   job_token_timestamp TIMESTAMP(6) WITH TIME ZONE,
   job_sha1 VARCHAR2(32),
-  job_attempts NUMBER NOT NULL default 0
+  job_attempts NUMBER DEFAULT 0 NOT NULL
 );
 ALTER TABLE &mw_prefix.job ADD CONSTRAINT &mw_prefix.job_pk PRIMARY KEY (job_id);
 CREATE INDEX &mw_prefix.job_i01 ON &mw_prefix.job (job_cmd, job_namespace, job_title);
@@ -703,7 +703,7 @@ CREATE TABLE &mw_prefix.site_identifiers (
   si_type VARCHAR2(32) NOT NULL,
   si_key VARCHAR2(32) NOT NULL
 );
-CREATE UNIQUE INDEX &mw_prefix.site_identifiers_u01 ON &mw_prefix.sites (si_type, si_key);
+CREATE UNIQUE INDEX &mw_prefix.site_identifiers_u01 ON &mw_prefix.site_identifiers (si_type, si_key);
 CREATE INDEX &mw_prefix.site_identifiers_i01 ON &mw_prefix.site_identifiers (si_site);
 CREATE INDEX &mw_prefix.site_identifiers_i02 ON &mw_prefix.site_identifiers (si_key);
 
