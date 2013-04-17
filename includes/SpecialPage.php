@@ -909,6 +909,11 @@ class SpecialPage {
  * a new structure for SpecialPages
  */
 abstract class FormSpecialPage extends SpecialPage {
+	/**
+	 * The sub-page of the special page.
+	 * @var string
+	 */
+	protected $par = null;
 
 	/**
 	 * Get an HTMLForm descriptor array
@@ -949,8 +954,11 @@ abstract class FormSpecialPage extends SpecialPage {
 		$form = new HTMLForm( $this->fields, $this->getContext(), $this->getMessagePrefix() );
 		$form->setSubmitCallback( array( $this, 'onSubmit' ) );
 		$form->setWrapperLegendMsg( $this->getMessagePrefix() . '-legend' );
-		$form->addHeaderText(
-			$this->msg( $this->getMessagePrefix() . '-text' )->parseAsBlock() );
+
+		$headerMsg = $this->msg( $this->getMessagePrefix() . '-text' );
+		if ( !$headerMsg->disabled() ) {
+			$form->addHeaderText( $headerMsg->parseAsBlock() );
+		}
 
 		// Retain query parameters (uselang etc)
 		$params = array_diff_key(
@@ -977,8 +985,9 @@ abstract class FormSpecialPage extends SpecialPage {
 	/**
 	 * Do something exciting on successful processing of the form, most likely to show a
 	 * confirmation message
+	 * @since 1.22 Default is to do nothing
 	 */
-	abstract public function onSuccess();
+	public function onSuccess() {}
 
 	/**
 	 * Basic SpecialPage workflow: get a form, send it to the user; get some data back,
@@ -1000,9 +1009,11 @@ abstract class FormSpecialPage extends SpecialPage {
 
 	/**
 	 * Maybe do something interesting with the subpage parameter
-	 * @param $par String
+	 * @param string $par
 	 */
-	protected function setParameter( $par ) {}
+	protected function setParameter( $par ) {
+		$this->par = $par;
+	}
 
 	/**
 	 * Called from execute() to check if the given user can perform this action.
