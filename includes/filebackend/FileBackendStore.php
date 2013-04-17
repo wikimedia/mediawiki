@@ -1798,20 +1798,14 @@ abstract class FileBackendStoreOpHandle {
  *
  * @ingroup FileBackend
  */
-abstract class FileBackendStoreShardListIterator implements Iterator {
+abstract class FileBackendStoreShardListIterator extends FilterIterator {
 	/** @var FileBackendStore */
 	protected $backend;
 	/** @var Array */
 	protected $params;
-	/** @var Array */
-	protected $shardSuffixes;
+
 	protected $container; // string; full container name
 	protected $directory; // string; resolved relative path
-
-	/** @var Traversable */
-	protected $iter;
-	protected $curShard = 0; // integer
-	protected $pos = 0; // integer
 
 	/** @var Array */
 	protected $multiShardPaths = array(); // (rel path => 1)
@@ -1829,142 +1823,56 @@ abstract class FileBackendStoreShardListIterator implements Iterator {
 		$this->backend = $backend;
 		$this->container = $container;
 		$this->directory = $dir;
-		$this->shardSuffixes = $suffixes;
 		$this->params = $params;
-	}
 
-	/**
-	 * @see Iterator::key()
-	 * @return integer
-	 */
-	public function key() {
-		return $this->pos;
-	}
-
-	/**
-	 * @see Iterator::valid()
-	 * @return bool
-	 */
-	public function valid() {
-		if ( $this->iter instanceof Iterator ) {
-			return $this->iter->valid();
-		} elseif ( is_array( $this->iter ) ) {
-			return ( current( $this->iter ) !== false ); // no paths can have this value
+		$iter = new AppendIterator();
+		foreach ( $suffixes as $suffix ) {
+			$iter->append( $this->listFromShard( $this->container . $suffix ) );
 		}
-		return false; // some failure?
+
+		parent::__construct( $iter );
 	}
 
-	/**
-	 * @see Iterator::current()
-	 * @return string|bool String or false
-	 */
-	public function current() {
-		return ( $this->iter instanceof Iterator )
-			? $this->iter->current()
-			: current( $this->iter );
+	public function accept() {
+		$rel = $this->getInnerIterator()->current(); // path relative to given directory
+		$path = $this->params['dir'] . "/{$rel}"; // full storage path
+		if ( $this->backend->isSingleShardPathInternal( $path ) ) {
+			return true; // path is only on one shard; no issue with duplicates
+		} elseif ( isset( $this->multiShardPaths[$rel] ) ) {
+			// Don't keep listing paths that are on multiple shards
+			return false;
+		} else {
+			$this->multiShardPaths[$rel] = 1;
+			return true;
+		}
 	}
 
-	/**
-	 * @see Iterator::next()
-	 * @return void
-	 */
-	public function next() {
-		++$this->pos;
-		( $this->iter instanceof Iterator ) ? $this->iter->next() : next( $this->iter );
-		do {
-			$continue = false; // keep scanning shards?
-			$this->filterViaNext(); // filter out duplicates
-			// Find the next non-empty shard if no elements are left
-			if ( !$this->valid() ) {
-				$this->nextShardIteratorIfNotValid();
-				$continue = $this->valid(); // re-filter unless we ran out of shards
-			}
-		} while ( $continue );
-	}
-
-	/**
-	 * @see Iterator::rewind()
-	 * @return void
-	 */
 	public function rewind() {
-		$this->pos = 0;
-		$this->curShard = 0;
-		$this->setIteratorFromCurrentShard();
-		do {
-			$continue = false; // keep scanning shards?
-			$this->filterViaNext(); // filter out duplicates
-			// Find the next non-empty shard if no elements are left
-			if ( !$this->valid() ) {
-				$this->nextShardIteratorIfNotValid();
-				$continue = $this->valid(); // re-filter unless we ran out of shards
-			}
-		} while ( $continue );
-	}
-
-	/**
-	 * Filter out duplicate items by advancing to the next ones
-	 */
-	protected function filterViaNext() {
-		while ( $this->valid() ) {
-			$rel = $this->iter->current(); // path relative to given directory
-			$path = $this->params['dir'] . "/{$rel}"; // full storage path
-			if ( $this->backend->isSingleShardPathInternal( $path ) ) {
-				break; // path is only on one shard; no issue with duplicates
-			} elseif ( isset( $this->multiShardPaths[$rel] ) ) {
-				// Don't keep listing paths that are on multiple shards
-				( $this->iter instanceof Iterator ) ? $this->iter->next() : next( $this->iter );
-			} else {
-				$this->multiShardPaths[$rel] = 1;
-				break;
-			}
-		}
-	}
-
-	/**
-	 * If the list iterator for this container shard is out of items,
-	 * then move on to the next container that has items.
-	 * If there are none, then it advances to the last container.
-	 */
-	protected function nextShardIteratorIfNotValid() {
-		while ( !$this->valid() && ++$this->curShard < count( $this->shardSuffixes ) ) {
-			$this->setIteratorFromCurrentShard();
-		}
-	}
-
-	/**
-	 * Set the list iterator to that of the current container shard
-	 */
-	protected function setIteratorFromCurrentShard() {
-		$this->iter = $this->listFromShard(
-			$this->container . $this->shardSuffixes[$this->curShard],
-			$this->directory, $this->params );
-		// Start loading results so that current() works
-		if ( $this->iter ) {
-			( $this->iter instanceof Iterator ) ? $this->iter->rewind() : reset( $this->iter );
-		}
+		parent::rewind();
+		$this->multiShardPaths = array();
 	}
 
 	/**
 	 * Get the list for a given container shard
 	 *
 	 * @param string $container Resolved container name
-	 * @param string $dir Resolved path relative to container
-	 * @param array $params
-	 * @return Traversable|Array|null
+	 * @return Iterator
 	 */
-	abstract protected function listFromShard( $container, $dir, array $params );
+	abstract protected function listFromShard( $container );
 }
 
 /**
  * Iterator for listing directories
  */
 class FileBackendStoreShardDirIterator extends FileBackendStoreShardListIterator {
-	/**
-	 * @see FileBackendStoreShardListIterator::listFromShard()
-	 * @return Array|null|Traversable
-	 */
-	protected function listFromShard( $container, $dir, array $params ) {
-		return $this->backend->getDirectoryListInternal( $container, $dir, $params );
+	protected function listFromShard( $container ) {
+		$list = $this->backend->getDirectoryListInternal(
+			$container, $this->directory, $this->params );
+		if ( $list === null ) {
+			return new ArrayIterator( array() );
+		} else {
+			return is_array( $list ) ? new ArrayIterator( $list ) : $list;
+		}
 	}
 }
 
@@ -1972,11 +1880,13 @@ class FileBackendStoreShardDirIterator extends FileBackendStoreShardListIterator
  * Iterator for listing regular files
  */
 class FileBackendStoreShardFileIterator extends FileBackendStoreShardListIterator {
-	/**
-	 * @see FileBackendStoreShardListIterator::listFromShard()
-	 * @return Array|null|Traversable
-	 */
-	protected function listFromShard( $container, $dir, array $params ) {
-		return $this->backend->getFileListInternal( $container, $dir, $params );
+	protected function listFromShard( $container ) {
+		$list = $this->backend->getFileListInternal(
+			$container, $this->directory, $this->params );
+		if ( $list === null ) {
+			return new ArrayIterator( array() );
+		} else {
+			return is_array( $list ) ? new ArrayIterator( $list ) : $list;
+		}
 	}
 }
