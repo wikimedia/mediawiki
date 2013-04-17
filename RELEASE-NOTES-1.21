@@ -18,6 +18,7 @@ production.
 * $wgBug34832TransitionalRollback has been removed.
 * (bug 29472) $wgUseDynamicDates has been removed and its functionality
   disabled.
+* $wgVectorUseIconWatch is now enabled by default.
 
 === New features in 1.21 ===
 * (bug 38110) Schema changes (adding or dropping tables, indices and
@@ -115,18 +116,20 @@ production.
   uz, vi.
 * Added 'CategoryAfterPageAdded' and 'CategoryAfterPageRemoved' hooks.
 * Added 'HistoryRevisionTools' and 'DiffRevisionTools' hooks.
+* Added 'SpecialSearchResultsPrepend' and 'SpecialSearchResultsAppend' hooks.
 * (bug 33186) Add image rotation api "imagerotate"
 * (bug 34040) Add "User rights management" link on user page toolbox.
 * (bug 45526) Add QUnit assertion helper "QUnit.assert.htmlEqual" for asserting
   structual equality of HTML (ignoring insignificant differences like
   quotmarks, order and whitespace in the attribute list).
+* (bug 23393) HTML <hN> headings containing line breaks are now handled
+  correctly.
+* (bug 45803) Whitespace within == Headline == syntax and within <hN> headings
+  is now non-significant and not preserved in the HTML output.
+* (bug 23343) Implemented ability to apply IP blocks to the contents of X-Forwarded-For headers
+  by adding a new configuration variable $wgApplyIpBlocksToXff (disabled by default).
 
 === Bug fixes in 1.21 ===
-* (bug 42649) PHP Fatal error: Call to a member function isLocal() on a
-  non-object in Title.php
-* (bug 46787) API: Fix rccontinue handling
-* (bug 46719) Remove link to Special:ActiveUsers from Special:Statistics
-* (bug 46493) Special:ProtectedPages results in whitepage when a bad title is protected
 * (bug 40617) Installer can now customize the logo in LocalSettings.php
 * (bug 40353) SpecialDoubleRedirect should support interwiki redirects.
 * (bug 40352) fixDoubleRedirects.php should support interwiki redirects.
@@ -278,9 +281,15 @@ production.
 * (bug 33304) list=allpages will now find really old indefinite protections.
 * (bug 45937) meta=allmessages will report a syntactically invalid lang as a
   proper error instead of as an uncaught exception.
+* (bug 25325) added support for wlshow filtering (bots/anon/minor/patrolled)
+  to action=feedwatchlist
+* WDDX formatted output will actually be formatted (and normal output will no
+  longer be), and will no longer choke on booleans.
 * The JSON output formatter now leaves forward slashes unescaped to improve human
   readability of URLs and similar strings. Also, a "utf8" option is now provided
   to use UTF-8 encoding instead of hex escape codes for most non-ASCII characters.
+* action=opensearch no longer silently ignores the format parameter.
+* action=opensearch now supports format=jsonfm.
 
 === API internal changes in 1.21 ===
 * For debugging only, a new global $wgDebugAPI removes many API restrictions when true.
@@ -319,7 +328,7 @@ changes to languages because of Bugzilla reports.
   were using it, you have to either copy it to your extension, or install the
   Vector extension (and possibly disable its features using config settings if
   you don't want them).
-* Experimental IBM DB2 support was removed due to lack of interest and maintainership
+* Experimental IBM DB2 support was removed due to lack of interest and maintainership.
 * BREAKING CHANGE: Filenames of maintenance scripts were standardized into
   lowerCamelCase format, and made more explicit:
   - clear_stats.php -> clearCacheStats.php
@@ -335,6 +344,7 @@ changes to languages because of Bugzilla reports.
   - ShowStats -> ShowSiteStats.
 * BREAKING CHANGE: (bug 38244) Removed the mediawiki.api.titleblacklist module
   and moved it to the TitleBlacklist extension.
+* The Special:ActiveUsers special page was removed.
 * BREAKING CHANGE: Implementation of MediaWiki's JS and JSON value encoding
   has changed:
 ** MediaWiki no longer supports PHP installations in which the native JSON
@@ -344,8 +354,11 @@ changes to languages because of Bugzilla reports.
 ** The sets of characters escaped by default, along with the precise escape
    sequences used, have changed (except for the Xml::escapeJsString()
    function, which is now deprecated).
-* BREAKING CHANGE: The Services_JSON class has been removed; if necessary,
+* BREAKING CHANGE: The Services_JSON class has been removed. If necessary,
   be sure to upgrade affected extensions at the same time (e.g. Collection).
+* Calling Linker methods using a skin will now output deprecation warnings.
+* Pages with a returnto (such as the page when you login or logout), no
+  longer have a rel="next" link tag.
 
 == Compatibility ==
 
