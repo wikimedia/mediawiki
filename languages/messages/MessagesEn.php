@@ -1970,6 +1970,7 @@ Your email address is not revealed when other users contact you.',
 'userrights-changeable-col'      => 'Groups you can change',
 'userrights-unchangeable-col'    => 'Groups you cannot change',
 'userrights-irreversible-marker' => '$1*', # only translate this message to other languages if you have to change it
+'userrights-conflict'            => 'User rights conflict! Please apply your changes again.',
 
 # Groups
 'group'               => 'Group:',

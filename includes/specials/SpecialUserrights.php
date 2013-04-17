@@ -128,20 +128,31 @@ class UserrightsPage extends SpecialPage {
 			$this->switchForm();
 		}
 
-		if ( $request->wasPosted() ) {
+		if (
+			$request->wasPosted() &&
+			$request->getCheck( 'saveusergroups' ) &&
+			$user->matchEditToken( $request->getVal( 'wpEditToken' ), $this->mTarget )
+		) {
 			// save settings
-			if ( $request->getCheck( 'saveusergroups' ) ) {
-				$reason = $request->getVal( 'user-reason' );
-				$tok = $request->getVal( 'wpEditToken' );
-				if ( $user->matchEditToken( $tok, $this->mTarget ) ) {
-					$this->saveUserGroups(
-						$this->mTarget,
-						$reason
-					);
+			$status = $this->fetchUser( $this->mTarget );
+			if ( !$status->isOK() ) {
+				$this->getOutput()->addWikiText( $status->getWikiText() );
+				return;
+			}
 
-					$out->redirect( $this->getSuccessURL() );
-					return;
-				}
+			$targetUser = $status->value;
+
+			if ( $request->getVal( 'conflictcheck-originalgroups' ) !== implode( ',', $targetUser->getGroups() ) ) {
+				$out->addWikiMsg( 'userrights-conflict' );
+			} else {
+				$this->saveUserGroups(
+					$this->mTarget,
+					$request->getVal( 'user-reason' ),
+					$targetUser
+				);
+
+				$out->redirect( $this->getSuccessURL() );
+				return;
 			}
 		}
 
@@ -161,17 +172,10 @@ class UserrightsPage extends SpecialPage {
 	 *
 	 * @param string $username username to apply changes to.
 	 * @param string $reason reason for group change
+	 * @param User|UserRightsProxy $user Target user object.
 	 * @return null
 	 */
-	function saveUserGroups( $username, $reason = '' ) {
-		$status = $this->fetchUser( $username );
-		if ( !$status->isOK() ) {
-			$this->getOutput()->addWikiText( $status->getWikiText() );
-			return;
-		} else {
-			$user = $status->value;
-		}
-
+	function saveUserGroups( $username, $reason, $user ) {
 		$allgroups = $this->getAllGroups();
 		$addgroup = array();
 		$removegroup = array();
@@ -473,6 +477,7 @@ class UserrightsPage extends SpecialPage {
 			Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->getTitle()->getLocalURL(), 'name' => 'editGroup', 'id' => 'mw-userrights-form2' ) ) .
 			Html::hidden( 'user', $this->mTarget ) .
 			Html::hidden( 'wpEditToken', $this->getUser()->getEditToken( $this->mTarget ) ) .
+			Html::hidden( 'conflictcheck-originalgroups', implode( ',', $user->getGroups() ) ) . // Conflict detection
 			Xml::openElement( 'fieldset' ) .
 			Xml::element( 'legend', array(), $this->msg( 'userrights-editusergroup', $user->getName() )->text() ) .
 			$this->msg( 'editinguser' )->params( wfEscapeWikiText( $user->getName() ) )->rawParams( $userToolLinks )->parse() .
