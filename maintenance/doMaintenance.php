@@ -65,6 +65,12 @@ if ( isset( $_SERVER['MW_COMPILED'] ) ) {
 # Stub the profiler
 require_once( MWInit::compiledPath( 'includes/profiler/Profiler.php' ) );
 
+# Start the profiler
+$wgProfiler = array();
+if ( file_exists( "$IP/StartProfiler.php" ) ) {
+	require( "$IP/StartProfiler.php" );
+}
+
 // Some other requires
 if ( !defined( 'MW_COMPILED' ) ) {
 	require_once( "$IP/includes/Defines.php" );
