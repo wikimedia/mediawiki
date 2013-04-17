@@ -110,6 +110,8 @@ production.
 * (bug 47219) Allow specifying change type of Wikipedia feed items
 * prop=imageinfo now allows setting iiurlheight without setting iiurlwidth
 * prop=info now adds the content model of the title.
+* New upload log entries will now contain information on the relavent
+  image (sha1 and timestamp).
 
 === Languages updated in 1.22===
 
