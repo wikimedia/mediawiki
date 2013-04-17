@@ -1263,7 +1263,7 @@ password.',
 Temporary password: $2',
 'passwordreset-emailsent'          => 'A password reset email has been sent.',
 'passwordreset-emailsent-capture'  => 'A password reset email has been sent, which is shown below.',
-'passwordreset-emailerror-capture' => 'A password reset email was generated, which is shown below, but sending it to the user failed: $1',
+'passwordreset-emailerror-capture' => 'A password reset email was generated, which is shown below, but sending it to the {{GENDER:$2|user}} failed: $1',
 
 # Special:ChangeEmail
 'changeemail'          => 'Change email address',
