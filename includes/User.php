@@ -1937,7 +1937,7 @@ class User {
 	 * user_touched field when we update things.
 	 * @return String Timestamp in TS_MW format
 	 */
-	private static function newTouchedTimestamp() {
+	public static function newTouchedTimestamp() {
 		global $wgClockSkewFudge;
 		return wfTimestamp( TS_MW, time() + $wgClockSkewFudge );
 	}
