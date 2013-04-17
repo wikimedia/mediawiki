@@ -41,23 +41,23 @@ class KuConverter extends LanguageConverter {
 
 		/* Doppel- und Halbvokale */
 		'ڵ' => 'll', # ll
-		'ڕ'  => 'rr', # rr
-		'ا'  => 'a',
+		'ڕ' => 'rr', # rr
+		'ا' => 'a',
 		# 'ئێ' => 'ê', # initial e
-		'ە'  => 'e',
-		'ه‌'  => 'e', # with one non-joiner
-		'ه‌‌'  => 'e', # with two non-joiner
-		'ة'  => 'e',
+		'ە' => 'e',
+		'ه‌' => 'e', # with one non-joiner
+		'ه‌‌' => 'e', # with two non-joiner
+		'ة' => 'e',
 		'ێ' => 'ê',
-		'ي'  => 'î',
-		'ی'  => 'î', # U+06CC  db 8c  ARABIC LETTER FARSI YEH
-		'ى'  => 'î', # U+0649  d9 89  ARABIC LETTER ALEF MAKSURA
-		'ۆ'  => 'o',
-		'و'  => 'w',
-		'ئ'  => '', # initial hemze should not be shown
-		'،'  => ',',
-		'ع'  => '\'', # ayn
-		'؟'  => '?',
+		'ي' => 'î',
+		'ی' => 'î', # U+06CC  db 8c  ARABIC LETTER FARSI YEH
+		'ى' => 'î', # U+0649  d9 89  ARABIC LETTER ALEF MAKSURA
+		'ۆ' => 'o',
+		'و' => 'w',
+		'ئ' => '', # initial hemze should not be shown
+		'،' => ',',
+		'ع' => '\'', # ayn
+		'؟' => '?',
 
 		# digits
 		'٠' => '0', # &#x0660;
@@ -113,13 +113,13 @@ class KuConverter extends LanguageConverter {
 		' o' => 'ئۆ ',
 		' u' => 'ئو ',
 		' û' => 'ئوو ',
-		'A'  => 'ئا',
-		'E'  => 'ئە',
-		'Ê'  => 'ئێ',
-		'Î'  => 'ئی',
-		'O'  => 'ئۆ',
-		'U'  => 'ئو',
-		'Û'  => 'ئوو',
+		'A' => 'ئا',
+		'E' => 'ئە',
+		'Ê' => 'ئێ',
+		'Î' => 'ئی',
+		'O' => 'ئۆ',
+		'U' => 'ئو',
+		'Û' => 'ئوو',
 		' A' => 'ئا ',
 		' E' => 'ئە ',
 		' Ê' => 'ئێ ',
@@ -149,7 +149,7 @@ class KuConverter extends LanguageConverter {
 		$this->mTables = array(
 			'ku-latn' => new ReplacementArray( $this->mArabicToLatin ),
 			'ku-arab' => new ReplacementArray( $this->mLatinToArabic ),
-			'ku'      => new ReplacementArray()
+			'ku' => new ReplacementArray()
 		);
 	}
 
@@ -167,14 +167,16 @@ class KuConverter extends LanguageConverter {
 		// check for user namespace
 		if ( is_object( $nt ) ) {
 			$ns = $nt->getNamespace();
-			if ( $ns == NS_USER || $ns == NS_USER_TALK )
+			if ( $ns == NS_USER || $ns == NS_USER_TALK ) {
 				return;
+			}
 		}
 
 		$oldlink = $link;
 		parent::findVariantLink( $link, $nt, $ignoreOtherCond );
-		if ( $this->getPreferredVariant() == $this->mMainLanguageCode )
+		if ( $this->getPreferredVariant() == $this->mMainLanguageCode ) {
 			$link = $oldlink;
+		}
 	}
 
 	/**
@@ -190,7 +192,9 @@ class KuConverter extends LanguageConverter {
 		global $wgTitle;
 		if ( is_object( $wgTitle ) && $wgTitle->getNamespace() == NS_FILE ) {
 			$imagename = $wgTitle->getNsText();
-			if ( preg_match( "/^$imagename:/", $text ) ) return $text;
+			if ( preg_match( "/^$imagename:/", $text ) ) {
+				return $text;
+			}
 		}
 		return parent::autoConvert( $text, $toVariant );
 	}
@@ -253,7 +257,7 @@ class LanguageKu extends LanguageKu_ku {
 
 		$variants = array( 'ku', 'ku-arab', 'ku-latn' );
 		$variantfallbacks = array(
-			'ku'      => 'ku-latn',
+			'ku' => 'ku-latn',
 			'ku-arab' => 'ku-latn',
 			'ku-latn' => 'ku-arab',
 		);

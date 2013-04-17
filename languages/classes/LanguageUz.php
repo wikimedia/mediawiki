@@ -75,9 +75,9 @@ class UzConverter extends LanguageConverter {
 		'f' => 'ф', 'F' => 'Ф',
 		'g' => 'г', 'G' => 'Г',
 		'g‘' => 'ғ', 'G‘' => 'Ғ', 'gʻ' => 'ғ', 'Gʻ' => 'Ғ',
-		'h'  => 'ҳ', 'H' => 'Ҳ',
+		'h' => 'ҳ', 'H' => 'Ҳ',
 		'i' => 'и', 'I' => 'И',
-		'k'  => 'к', 'K' => 'К',
+		'k' => 'к', 'K' => 'К',
 		'l' => 'л', 'L' => 'Л',
 		'm' => 'м', 'M' => 'М',
 		'n' => 'н', 'N' => 'Н',
@@ -108,7 +108,7 @@ class UzConverter extends LanguageConverter {
 		$this->mTables = array(
 			'uz-cyrl' => new ReplacementArray( $this->toCyrillic ),
 			'uz-latn' => new ReplacementArray( $this->toLatin ),
-			'uz'      => new ReplacementArray()
+			'uz' => new ReplacementArray()
 		);
 	}
 
@@ -126,7 +126,7 @@ class LanguageUz extends Language {
 
 		$variants = array( 'uz', 'uz-latn', 'uz-cyrl' );
 		$variantfallbacks = array(
-			'uz'    => 'uz-latn',
+			'uz' => 'uz-latn',
 			'uz-cyrl' => 'uz',
 			'uz-latn' => 'uz',
 		);

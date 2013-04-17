@@ -305,7 +305,7 @@ class CLDRPluralRuleConverter {
 				continue;
 			} else {
 				// Operator
-				if  ( !$expectOperator ) {
+				if ( !$expectOperator ) {
 					$token->error( 'unexpected operator' );
 				}
 				// Resolve higher precedence levels
@@ -381,7 +381,7 @@ class CLDRPluralRuleConverter {
 
 		// Word
 		if ( !preg_match( self::WORD_REGEX, $this->rule, $m, 0, $this->pos ) ) {
-			$this->error( 'unexpected character "' . $this->rule[$this->pos] . '"'  );
+			$this->error( 'unexpected character "' . $this->rule[$this->pos] . '"' );
 		}
 		$word1 = strtolower( $m[0] );
 		$word2 = '';

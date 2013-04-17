@@ -49,17 +49,18 @@ class LanguageHy extends Language {
 		# join and array_slice instead mb_substr
 		$ar = array();
 		preg_match_all( '/./us', $word, $ar );
-		if ( !preg_match( "/[a-zA-Z_]/us", $word ) )
+		if ( !preg_match( "/[a-zA-Z_]/us", $word ) ) {
 			switch ( $case ) {
 				case 'genitive': # սեռական հոլով
-					if ( join( '', array_slice( $ar[0], -1 ) ) == 'ա' )
+					if ( join( '', array_slice( $ar[0], -1 ) ) == 'ա' ) {
 						$word = join( '', array_slice( $ar[0], 0, -1 ) ) . 'այի';
-					elseif ( join( '', array_slice( $ar[0], -1 ) ) == 'ո' )
+					} elseif ( join( '', array_slice( $ar[0], -1 ) ) == 'ո' ) {
 						$word = join( '', array_slice( $ar[0], 0, -1 ) ) . 'ոյի';
-					elseif ( join( '', array_slice( $ar[0], -4 ) ) == 'գիրք' )
+					} elseif ( join( '', array_slice( $ar[0], -4 ) ) == 'գիրք' ) {
 						$word = join( '', array_slice( $ar[0], 0, -4 ) ) . 'գրքի';
-					else
+					} else {
 						$word .= 'ի';
+					}
 					break;
 				case 'dative':  # Տրական հոլով
 					# stub
@@ -74,6 +75,7 @@ class LanguageHy extends Language {
 					# stub
 					break;
 			}
+		}
 		return $word;
 	}
 

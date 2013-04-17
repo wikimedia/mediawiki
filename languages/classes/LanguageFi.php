@@ -53,12 +53,14 @@ class LanguageFi extends Language {
 		# The general case cannot be handled without a dictionary, but there's at least one notable
 		# special case we should check for:
 
-		if ( preg_match( '/wiki$/i', $word ) )
+		if ( preg_match( '/wiki$/i', $word ) ) {
 			$aou = false;
+		}
 
 		# append i after final consonant
-		if ( preg_match( '/[bcdfghjklmnpqrstvwxz]$/i', $word ) )
+		if ( preg_match( '/[bcdfghjklmnpqrstvwxz]$/i', $word ) ) {
 			$word .= 'i';
+		}
 
 		switch ( $case ) {
 			case 'genitive':

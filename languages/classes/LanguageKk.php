@@ -68,18 +68,18 @@ class KkConverter extends LanguageConverter {
 		$kk2Cyrl = array();
 		$kk2Latn = array();
 		$kk2Arab = array();
-		$kk2KZ   = array();
-		$kk2TR   = array();
-		$kk2CN   = array();
+		$kk2KZ = array();
+		$kk2TR = array();
+		$kk2CN = array();
 
 		$this->mTables = array(
 			'kk-cyrl' => new ReplacementArray( $kk2Cyrl ),
 			'kk-latn' => new ReplacementArray( $kk2Latn ),
 			'kk-arab' => new ReplacementArray( $kk2Arab ),
-			'kk-kz'   => new ReplacementArray( array_merge( $kk2Cyrl, $kk2KZ ) ),
-			'kk-tr'   => new ReplacementArray( array_merge( $kk2Latn, $kk2TR ) ),
-			'kk-cn'   => new ReplacementArray( array_merge( $kk2Arab, $kk2CN ) ),
-			'kk'      => new ReplacementArray()
+			'kk-kz' => new ReplacementArray( array_merge( $kk2Cyrl, $kk2KZ ) ),
+			'kk-tr' => new ReplacementArray( array_merge( $kk2Latn, $kk2TR ) ),
+			'kk-cn' => new ReplacementArray( array_merge( $kk2Arab, $kk2CN ) ),
+			'kk' => new ReplacementArray()
 		);
 	}
 
@@ -173,9 +173,9 @@ class KkConverter extends LanguageConverter {
 			# # Punctuation -> Arabic
 			'/#|№|No\./u' => '؀', # &#x0600;
 			'/\,/' => '،', # &#x060C;
-			'/;/'  => '؛', # &#x061B;
+			'/;/' => '؛', # &#x061B;
 			'/\?/' => '؟', # &#x061F;
-			'/%/'  => '٪', # &#x066A;
+			'/%/' => '٪', # &#x066A;
 			'/\*/' => '٭', # &#x066D;
 			# # Digits -> Arabic
 			'/0/' => '۰', # &#x06F0;
@@ -259,14 +259,16 @@ class KkConverter extends LanguageConverter {
 		// check for user namespace
 		if ( is_object( $nt ) ) {
 			$ns = $nt->getNamespace();
-			if ( $ns == NS_USER || $ns == NS_USER_TALK )
+			if ( $ns == NS_USER || $ns == NS_USER_TALK ) {
 				return;
+			}
 		}
 
 		$oldlink = $link;
 		parent::findVariantLink( $link, $nt, $ignoreOtherCond );
-		if ( $this->getPreferredVariant() == $this->mMainLanguageCode )
+		if ( $this->getPreferredVariant() == $this->mMainLanguageCode ) {
 			$link = $oldlink;
+		}
 	}
 
 	/**
@@ -282,7 +284,9 @@ class KkConverter extends LanguageConverter {
 		global $wgTitle;
 		if ( is_object( $wgTitle ) && $wgTitle->getNamespace() == NS_FILE ) {
 			$imagename = $wgTitle->getNsText();
-			if ( preg_match( "/^$imagename:/", $text ) ) return $text;
+			if ( preg_match( "/^$imagename:/", $text ) ) {
+				return $text;
+			}
 		}
 		return parent::autoConvert( $text, $toVariant );
 	}
@@ -414,13 +418,13 @@ class LanguageKk extends LanguageKk_cyrl {
 
 		$variants = array( 'kk', 'kk-cyrl', 'kk-latn', 'kk-arab', 'kk-kz', 'kk-tr', 'kk-cn' );
 		$variantfallbacks = array(
-			'kk'      => 'kk-cyrl',
+			'kk' => 'kk-cyrl',
 			'kk-cyrl' => 'kk',
 			'kk-latn' => 'kk',
 			'kk-arab' => 'kk',
-			'kk-kz'   => 'kk-cyrl',
-			'kk-tr'   => 'kk-latn',
-			'kk-cn'   => 'kk-arab'
+			'kk-kz' => 'kk-cyrl',
+			'kk-tr' => 'kk-latn',
+			'kk-cn' => 'kk-arab'
 		);
 
 		$this->mConverter = new KkConverter( $this, 'kk', $variants, $variantfallbacks );

@@ -34,7 +34,9 @@ class LanguagePl extends Language {
 	 * @return string
 	 */
 	function convertPlural( $count, $forms ) {
-		if ( !count( $forms ) ) { return ''; }
+		if ( !count( $forms ) ) {
+			return '';
+		}
 		$forms = $this->preConvertPlural( $forms, 3 );
 		$count = abs( $count );
 		if ( $count == 1 ) {

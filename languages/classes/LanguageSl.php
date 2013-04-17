@@ -45,9 +45,11 @@ class LanguageSl extends Language {
 
 		switch ( $case ) {
 			case 'mestnik': # locative
-				$word = 'o ' . $word; break;
+				$word = 'o ' . $word;
+				break;
 			case 'orodnik': # instrumental
 				$word = 'z ' . $word;
+				break;
 		}
 
 		return $word; # this will return the original value for 'imenovalnik' (nominativ) and all undefined case values
