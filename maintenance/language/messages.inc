@@ -548,7 +548,6 @@ $wgMessageStructure = array(
 		'passwordreset-legend',
 		'passwordreset-disabled',
 		'passwordreset-emaildisabled',
-		'passwordreset-pretext',
 		'passwordreset-username',
 		'passwordreset-domain',
 		'passwordreset-capture',
