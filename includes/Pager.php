@@ -904,7 +904,9 @@ abstract class TablePager extends IndexPager {
 		}
 
 		$this->mSort = $this->getRequest()->getText( 'sort' );
-		if ( !array_key_exists( $this->mSort, $this->getFieldNames() ) ) {
+		if ( !array_key_exists( $this->mSort, $this->getFieldNames() )
+			|| !$this->isFieldSortable( $this->mSort )
+		 ) {
 			$this->mSort = $this->getDefaultSort();
 		}
 		if ( $this->getRequest()->getBool( 'asc' ) ) {
