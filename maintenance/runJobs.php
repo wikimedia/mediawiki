@@ -96,7 +96,9 @@ class RunJobs extends Maintenance {
 				// Run the job...
 				$t = microtime( true );
 				try {
+					wfProfileIn( __METHOD__ . '-' . get_class( $job ) );
 					$status = $job->run();
+					wfProfileOut( __METHOD__ . '-' . get_class( $job ) );
 					$error = $job->getLastError();
 				} catch ( MWException $e ) {
 					$status = false;

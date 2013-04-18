@@ -37,14 +37,11 @@ class RefreshLinksJob extends Job {
 	 * @return boolean success
 	 */
 	function run() {
-		wfProfileIn( __METHOD__ );
-
 		$linkCache = LinkCache::singleton();
 		$linkCache->clear();
 
 		if ( is_null( $this->title ) ) {
 			$this->error = "refreshLinks: Invalid title";
-			wfProfileOut( __METHOD__ );
 			return false;
 		}
 
@@ -59,13 +56,11 @@ class RefreshLinksJob extends Job {
 		if ( !$revision ) {
 			$this->error = 'refreshLinks: Article not found "' .
 				$this->title->getPrefixedDBkey() . '"';
-			wfProfileOut( __METHOD__ );
 			return false; // XXX: what if it was just deleted?
 		}
 
 		self::runForTitleInternal( $this->title, $revision, __METHOD__ );
 
-		wfProfileOut( __METHOD__ );
 		return true;
 	}
 
@@ -123,14 +118,11 @@ class RefreshLinksJob2 extends Job {
 	function run() {
 		global $wgUpdateRowsPerJob;
 
-		wfProfileIn( __METHOD__ );
-
 		$linkCache = LinkCache::singleton();
 		$linkCache->clear();
 
 		if ( is_null( $this->title ) ) {
 			$this->error = "refreshLinks2: Invalid title";
-			wfProfileOut( __METHOD__ );
 			return false;
 		}
 
@@ -181,7 +173,6 @@ class RefreshLinksJob2 extends Job {
 			JobQueueGroup::singleton()->push( $jobs );
 		}
 
-		wfProfileOut( __METHOD__ );
 		return true;
 	}
 
