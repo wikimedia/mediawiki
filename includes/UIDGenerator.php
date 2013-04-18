@@ -315,25 +315,12 @@ class UIDGenerator {
 	 */
 	protected function millisecondsSinceEpochBinary( array $time ) {
 		list( $sec, $msec ) = $time;
-		if ( PHP_INT_SIZE >= 8 ) { // 64 bit integers
-			$ts = ( 1000 * $sec + $msec );
-			$id_bin = str_pad( decbin( $ts % pow( 2, 46 ) ), 46, '0', STR_PAD_LEFT );
-		} elseif ( extension_loaded( 'gmp' ) ) {
-			$ts = gmp_mod( // wrap around
-				gmp_add( gmp_mul( (string) $sec, (string) 1000 ), (string) $msec ),
-				gmp_pow( '2', '46' )
-			);
-			$id_bin = str_pad( gmp_strval( $ts, 2 ), 46, '0', STR_PAD_LEFT );
-		} elseif ( extension_loaded( 'bcmath' ) ) {
-			$ts = bcmod( // wrap around
-				bcadd( bcmul( $sec, 1000 ), $msec ),
-				bcpow( 2, 46 )
-			);
-			$id_bin = wfBaseConvert( $ts, 10, 2, 46 );
-		} else {
-			throw new MWException( 'bcmath or gmp extension required for 32 bit machines.' );
+		$ts = 1000 * $sec + $msec;
+		if ( $ts > pow( 2, 52 ) ) {
+			throw new MWException( __METHOD__ .
+				': sorry, this function doesn\'t work after the year 144680' );
 		}
-		return $id_bin;
+		return substr( wfBaseConvert( $ts, 10, 2, 46 ), -46 );
 	}
 
 	/**
