@@ -906,7 +906,7 @@ class SkinTemplate extends Skin {
 						$content_navigation['views']['addsection'] = array(
 							'class' => ( $isEditing && $section == 'new' ) ? 'selected' : false,
 							'text' => wfMessageFallback( "$skname-action-addsection", 'addsection' )->setContext( $this->getContext() )->text(),
-							'href' => $title->getLocalURL( 'action=edit&section=new' )
+							'href' => $title->getLocalURL( array( 'action' => 'edit', 'section' => 'new' ) )
 						);
 					}
 				// Checks if the page has some kind of viewable content
@@ -928,7 +928,7 @@ class SkinTemplate extends Skin {
 					$content_navigation['views']['history'] = array(
 						'class' => ( $onPage && $action == 'history' ) ? 'selected' : false,
 						'text' => wfMessageFallback( "$skname-view-history", 'history_short' )->setContext( $this->getContext() )->text(),
-						'href' => $title->getLocalURL( 'action=history' ),
+						'href' => $title->getLocalURL( array( 'action' => 'history' ) ),
 						'rel' => 'archives',
 					);
 
@@ -936,7 +936,7 @@ class SkinTemplate extends Skin {
 						$content_navigation['actions']['delete'] = array(
 							'class' => ( $onPage && $action == 'delete' ) ? 'selected' : false,
 							'text' => wfMessageFallback( "$skname-action-delete", 'delete' )->setContext( $this->getContext() )->text(),
-							'href' => $title->getLocalURL( 'action=delete' )
+							'href' => $title->getLocalURL( array( 'action' => 'delete' ) )
 						);
 					}
 
@@ -971,7 +971,7 @@ class SkinTemplate extends Skin {
 					$content_navigation['actions'][$mode] = array(
 						'class' => ( $onPage && $action == $mode ) ? 'selected' : false,
 						'text' => wfMessageFallback( "$skname-action-$mode", $mode )->setContext( $this->getContext() )->text(),
-						'href' => $title->getLocalURL( "action=$mode" )
+						'href' => $title->getLocalURL( array( 'action' => $mode ) )
 					);
 				}
 
@@ -1187,7 +1187,7 @@ class SkinTemplate extends Skin {
 			if ( $revid ) {
 				$nav_urls['permalink'] = array(
 					'text' => $this->msg( 'permalink' )->text(),
-					'href' => $this->getTitle()->getLocalURL( "oldid=$revid" )
+					'href' => $this->getTitle()->getLocalURL( array( 'oldid' => $revid ) )
 				);
 			}
 
@@ -1203,7 +1203,7 @@ class SkinTemplate extends Skin {
 
 			$nav_urls['info'] = array(
 				'text' => $this->msg( 'pageinfo-toolboxlink' )->text(),
-				'href' => $this->getTitle()->getLocalURL( "action=info" )
+				'href' => $this->getTitle()->getLocalURL( array( 'action' => 'info' ) )
 			);
 
 			if ( $this->getTitle()->getArticleID() ) {

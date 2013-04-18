@@ -190,7 +190,7 @@ class ProtectionForm {
 
 		if( $wgRequest->wasPosted() ) {
 			if( $this->save() ) {
-				$q = $this->mArticle->isRedirect() ? 'redirect=no' : '';
+				$q = $this->mArticle->isRedirect() ? array( 'redirect' => 'no' ) : array();
 				$wgOut->redirect( $this->mTitle->getFullURL( $q ) );
 			}
 		} else {
@@ -359,7 +359,7 @@ class ProtectionForm {
 		if( !$this->disabled ) {
 			$wgOut->addModules( 'mediawiki.legacy.protect' );
 			$out .= Xml::openElement( 'form', array( 'method' => 'post',
-				'action' => $this->mTitle->getLocalURL( 'action=protect' ),
+				'action' => $this->mTitle->getLocalURL( array( 'action' => 'protect' ) ),
 				'id' => 'mw-Protect-Form', 'onsubmit' => 'ProtectionForm.enableUnchainedInputs(true)' ) );
 		}
 

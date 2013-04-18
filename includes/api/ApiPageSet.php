@@ -477,7 +477,7 @@ class ApiPageSet extends ApiBase {
 			);
 			if ( $iwUrl ) {
 				$title = Title::newFromText( $rawTitleStr );
-				$item['url'] = $title->getFullURL( '', false, PROTO_CURRENT );
+				$item['url'] = $title->getFullURL( array(), false, PROTO_CURRENT );
 			}
 			$values[] = $item;
 		}

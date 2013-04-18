@@ -339,7 +339,7 @@ class Article implements Page {
 				$oldid = $nextid;
 				$this->mRevision = null;
 			} else {
-				$this->mRedirectUrl = $this->getTitle()->getFullURL( 'redirect=no' );
+				$this->mRedirectUrl = $this->getTitle()->getFullURL( array( 'redirect' => 'no' ) );
 			}
 		} elseif ( $request->getVal( 'direction' ) == 'prev' ) {
 			$previd = $this->getTitle()->getPreviousRevisionID( $oldid );
@@ -1189,7 +1189,7 @@ class Article implements Page {
 		} elseif ( $this->getContext()->getRequest()->getInt( 'unhide' ) != 1 ) {
 			# Give explanation and add a link to view the revision...
 			$oldid = intval( $this->getOldID() );
-			$link = $this->getTitle()->getFullURL( "oldid={$oldid}&unhide=1" );
+			$link = $this->getTitle()->getFullURL( array( 'oldid' => $oldid, 'unhide' => '1' ) );
 			$msg = $this->mRevision->isDeleted( Revision::DELETED_RESTRICTED ) ?
 				'rev-suppressed-text-unhide' : 'rev-deleted-text-unhide';
 			$outputPage->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1\n</div>\n",
@@ -1549,7 +1549,7 @@ class Article implements Page {
 		$checkWatch = $user->getBoolOption( 'watchdeletion' ) || $user->isWatched( $this->getTitle() );
 
 		$form = Xml::openElement( 'form', array( 'method' => 'post',
-			'action' => $this->getTitle()->getLocalURL( 'action=delete' ), 'id' => 'deleteconfirm' ) ) .
+			'action' => $this->getTitle()->getLocalURL( array( 'action' => 'delete' ) ), 'id' => 'deleteconfirm' ) ) .
 			Xml::openElement( 'fieldset', array( 'id' => 'mw-delete-table' ) ) .
 			Xml::tags( 'legend', null, wfMessage( 'delete-legend' )->escaped() ) .
 			Xml::openElement( 'table', array( 'id' => 'mw-deleteconfirm-table' ) ) .

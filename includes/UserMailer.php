@@ -703,14 +703,14 @@ class EmailNotification {
 		if ( $this->oldid ) {
 			// Always show a link to the diff which triggered the mail. See bug 32210.
 			$keys['$NEWPAGE'] = "\n\n" . wfMessage( 'enotif_lastdiff',
-				$this->title->getCanonicalURL( 'diff=next&oldid=' . $this->oldid ) )
+				$this->title->getCanonicalURL( array( 'diff' => 'next', 'oldid' => $this->oldid ) ) )
 				->inContentLanguage()->text();
 
 			if ( !$wgEnotifImpersonal ) {
 				// For personal mail, also show a link to the diff of all changes
 				// since last visited.
 				$keys['$NEWPAGE'] .= "\n\n" . wfMessage( 'enotif_lastvisited',
-					$this->title->getCanonicalURL( 'diff=0&oldid=' . $this->oldid ) )
+					$this->title->getCanonicalURL( array( 'diff' => '0', 'oldid' => $this->oldid ) ) )
 					->inContentLanguage()->text();
 			}
 			$keys['$OLDID'] = $this->oldid;
@@ -728,7 +728,7 @@ class EmailNotification {
 		$keys['$PAGETITLE_URL'] = $this->title->getCanonicalURL();
 		$keys['$PAGEMINOREDIT'] = $this->minorEdit ?
 			wfMessage( 'minoredit' )->inContentLanguage()->text() : '';
-		$keys['$UNWATCHURL'] = $this->title->getCanonicalURL( 'action=unwatch' );
+		$keys['$UNWATCHURL'] = $this->title->getCanonicalURL( array( 'action' => 'unwatch' ) );
 
 		if ( $this->editor->isAnon() ) {
 			# real anon (user:xxx.xxx.xxx.xxx)

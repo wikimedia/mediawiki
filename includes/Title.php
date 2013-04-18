@@ -1626,7 +1626,7 @@ class Title {
 		if ( $this->mInterwiki != '' ) {
 			return '';
 		}
-		$s = $this->getLocalURL( 'action=edit' );
+		$s = $this->getLocalURL( array( 'action' => 'edit' ) );
 
 		return $s;
 	}
@@ -3465,14 +3465,14 @@ class Title {
 	public function getSquidURLs() {
 		$urls = array(
 			$this->getInternalURL(),
-			$this->getInternalURL( 'action=history' )
+			$this->getInternalURL( array( 'action' => 'history' ) )
 		);
 
 		$pageLang = $this->getPageLanguage();
 		if ( $pageLang->hasVariants() ) {
 			$variants = $pageLang->getVariants();
 			foreach ( $variants as $vCode ) {
-				$urls[] = $this->getInternalURL( '', $vCode );
+				$urls[] = $this->getInternalURL( array(), $vCode );
 			}
 		}
 

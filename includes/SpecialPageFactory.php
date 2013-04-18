@@ -463,7 +463,6 @@ class SpecialPageFactory {
 			if ( $name != $page->getLocalName() && !$context->getRequest()->wasPosted() ) {
 				$query = $context->getRequest()->getQueryValues();
 				unset( $query['title'] );
-				$query = wfArrayToCgi( $query );
 				$title = $page->getTitle( $par );
 				$url = $title->getFullURL( $query );
 				$context->getOutput()->redirect( $url );

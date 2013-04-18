@@ -1219,7 +1219,7 @@ class EditPage {
 				return true;
 
 			case self::AS_SUCCESS_NEW_ARTICLE:
-				$query = $resultDetails['redirect'] ? 'redirect=no' : '';
+				$query = $resultDetails['redirect'] ? array( 'redirect' => 'no' ) : array();
 				$anchor = isset ( $resultDetails['sectionanchor'] ) ? $resultDetails['sectionanchor'] : '';
 				$wgOut->redirect( $this->mTitle->getFullURL( $query ) . $anchor );
 				return false;

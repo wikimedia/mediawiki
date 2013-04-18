@@ -707,8 +707,12 @@ class FileRepo {
 	 */
 	public function getDescriptionStylesheetUrl() {
 		if ( isset( $this->scriptDirUrl ) ) {
-			return $this->makeUrl( 'title=MediaWiki:Filepage.css&' .
-				wfArrayToCgi( Skin::getDynamicStylesheetQuery() ) );
+			return $this->makeUrl( array_merge(
+				array(
+					'title' => 'MediaWiki:Filepage.css',
+				),
+				Skin::getDynamicStylesheetQuery()
+			) );
 		}
 		return false;
 	}

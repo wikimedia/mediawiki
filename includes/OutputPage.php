@@ -3199,13 +3199,13 @@ $templates
 					'rel' => 'alternate',
 					'type' => 'application/x-wiki',
 					'title' => $msg,
-					'href' => $this->getTitle()->getLocalURL( 'action=edit' )
+					'href' => $this->getTitle()->getLocalURL( array( 'action' => 'edit' ) )
 				) );
 				// Alternate edit link
 				$tags['alternative-edit'] = Html::element( 'link', array(
 					'rel' => 'edit',
 					'title' => $msg,
-					'href' => $this->getTitle()->getLocalURL( 'action=edit' )
+					'href' => $this->getTitle()->getLocalURL( array( 'action' => 'edit' ) )
 				) );
 			}
 		}
@@ -3324,7 +3324,7 @@ $templates
 				foreach ( $wgAdvertisedFeedTypes as $format ) {
 					$tags[] = $this->feedLink(
 						$format,
-						$rctitle->getLocalURL( "feed={$format}" ),
+						$rctitle->getLocalURL( array( 'feed' => $format ) ),
 						$this->msg( "site-{$format}-feed", $wgSitename )->text() # For grep: 'site-rss-feed', 'site-atom-feed'.
 					);
 				}
