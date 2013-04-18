@@ -37,11 +37,11 @@ class SpecialFilepath extends SpecialPage {
 		$this->outputHeader();
 
 		$request = $this->getRequest();
-		$file = !is_null( $par ) ? $par : $request->getText( 'file' );
+		$file = $par ?: $request->getText( 'file' );
 
 		$title = Title::newFromText( $file, NS_FILE );
 
-		if ( ! $title instanceof Title || $title->getNamespace() != NS_FILE ) {
+		if ( !( $title instanceof Title ) || $title->getNamespace() != NS_FILE ) {
 			$this->showForm( $title );
 		} else {
 			$file = wfFindFile( $title );
@@ -70,7 +70,7 @@ class SpecialFilepath extends SpecialPage {
 	}
 
 	/**
-	 * @param $title Title
+	 * @param Title $title Title requested, or null.
 	 */
 	function showForm( $title ) {
 		global $wgScript;
