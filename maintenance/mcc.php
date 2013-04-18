@@ -48,7 +48,7 @@ if ( $cache ) {
 	$servers = $wgObjectCaches[$cache]['servers'];
 } elseif ( $wgMainCacheType === CACHE_MEMCACHED ) {
 	$mcc->set_servers( $wgMemCachedServers );
-} elseif( isset( $wgObjectCaches[$wgMainCacheType]['servers'] ) ) {
+} elseif ( isset( $wgObjectCaches[$wgMainCacheType]['servers'] ) ) {
 	$mcc->set_servers( $wgObjectCaches[$wgMainCacheType]['servers'] );
 } else {
 	print "MediaWiki isn't configured for Memcached usage\n";
@@ -116,7 +116,9 @@ do {
 	$quit = false;
 
 	$line = Maintenance::readconsole();
-	if ( $line === false ) exit;
+	if ( $line === false ) {
+		exit;
+	}
 
 	$args = explode( ' ', $line );
 	$command = array_shift( $args );

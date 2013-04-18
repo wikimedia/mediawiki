@@ -82,12 +82,14 @@ if ( $run ) {
 	}
 	include( $messagesFile );
 	$messageExist = isset( $messages );
-	if ( $messageExist )
+	if ( $messageExist ) {
 		$wgMessages[$langCode] = $messages;
+	}
 	include( $messagesFileC );
 	$messageCExist = isset( $messages );
-	if ( $messageCExist )
+	if ( $messageCExist ) {
 		$wgMessages[$langCodeC] = $messages;
+	}
 	$count = 0;
 
 	if ( ( $messageExist ) && ( $messageCExist ) ) {
@@ -126,9 +128,11 @@ if ( $run ) {
 			}
 		}
 	} else {
-		if ( !$messageExist )
+		if ( !$messageExist ) {
 			echo "There are no messages defined in $langCode.\n";
-		if ( !$messageCExist )
+		}
+		if ( !$messageCExist ) {
 			echo "There are no messages defined in $langCodeC.\n";
+		}
 	}
 }

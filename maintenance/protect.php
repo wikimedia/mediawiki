@@ -67,7 +67,7 @@ class Protect extends Maintenance {
 		}
 
 		$restrictions = array();
-		foreach( $t->getRestrictionTypes() as $type ) {
+		foreach ( $t->getRestrictionTypes() as $type ) {
 			$restrictions[$type] = $protection;
 		}
 

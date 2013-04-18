@@ -70,12 +70,16 @@ class PopulateRevisionLength extends LoggedUpdateMaintenance {
 		$fields = Revision::selectFields();
 		while ( $blockStart <= $end ) {
 			$this->output( "...doing rev_id from $blockStart to $blockEnd\n" );
-			$res = $db->select( 'revision',
-						$fields,
-						array( "rev_id >= $blockStart",
-						   "rev_id <= $blockEnd",
-						   "rev_len IS NULL" ),
-						__METHOD__ );
+			$res = $db->select(
+				'revision',
+				$fields,
+				array(
+					"rev_id >= $blockStart",
+					"rev_id <= $blockEnd",
+					"rev_len IS NULL"
+				),
+				__METHOD__
+			);
 			# Go through and update rev_len from these rows.
 			foreach ( $res as $row ) {
 				$rev = new Revision( $row );

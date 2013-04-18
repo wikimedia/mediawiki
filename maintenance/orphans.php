@@ -171,7 +171,7 @@ class Orphans extends Maintenance {
 	 */
 	private function checkSeparation( $fix ) {
 		$dbw = wfGetDB( DB_MASTER );
-		$page     = $dbw->tableName( 'page' );
+		$page = $dbw->tableName( 'page' );
 		$revision = $dbw->tableName( 'revision' );
 
 		if ( $fix ) {
@@ -209,7 +209,7 @@ class Orphans extends Maintenance {
 							'revision',
 							'rev_id',
 							array(
-								'rev_page'      => $row->page_id,
+								'rev_page' => $row->page_id,
 								'rev_timestamp' => $row2->max_timestamp ) );
 						$this->output( "... updating to revision $maxId\n" );
 						$maxRev = Revision::newFromId( $maxId );

@@ -167,7 +167,7 @@ class GenerateSitemap extends Maintenance {
 		}
 		$this->identifier = $this->getOption( 'identifier', wfWikiID() );
 		$this->compress = $this->getOption( 'compress', 'yes' ) !== 'no';
-		$this->skipRedirects = $this->getOption( 'skip-redirects', false ) !== false ;
+		$this->skipRedirects = $this->getOption( 'skip-redirects', false ) !== false;
 		$this->dbr = wfGetDB( DB_SLAVE );
 		$this->generateNamespaces();
 		$this->timestamp = wfTimestamp( TS_ISO_8601, wfTimestampNow() );
@@ -231,7 +231,7 @@ class GenerateSitemap extends Maintenance {
 			wfMkdirParents( $fspath, null, __METHOD__ ) or die( "Can not create directory $fspath.\n" );
 		}
 
-		return realpath( $fspath ) . DIRECTORY_SEPARATOR ;
+		return realpath( $fspath ) . DIRECTORY_SEPARATOR;
 	}
 
 	/**
@@ -255,8 +255,9 @@ class GenerateSitemap extends Maintenance {
 			)
 		);
 
-		foreach ( $res as $row )
+		foreach ( $res as $row ) {
 			$this->namespaces[] = $row->page_namespace;
+		}
 	}
 
 	/**
@@ -346,7 +347,9 @@ class GenerateSitemap extends Maintenance {
 				if ( $wgContLang->hasVariants() ) {
 					$variants = $wgContLang->getVariants();
 					foreach ( $variants as $vCode ) {
-						if ( $vCode == $wgContLang->getCode() ) continue; // we don't want default variant
+						if ( $vCode == $wgContLang->getCode() ) {
+							continue; // we don't want default variant
+						}
 						$entry = $this->fileEntry( $title->getCanonicalURL( '', $vCode ), $date, $this->priority( $namespace ) );
 						$length += strlen( $entry );
 						$this->write( $this->file, $entry );
@@ -374,7 +377,7 @@ class GenerateSitemap extends Maintenance {
 	 */
 	function open( $file, $flags ) {
 		$resource = $this->compress ? gzopen( $file, $flags ) : fopen( $file, $flags );
-		if( $resource === false ) {
+		if ( $resource === false ) {
 			wfDebugDieBacktrace( __METHOD__ . " error opening file $file with flags $flags. Check permissions?" );
 		}
 		return $resource;
@@ -384,23 +387,25 @@ class GenerateSitemap extends Maintenance {
 	 * gzwrite() / fwrite() wrapper
 	 */
 	function write( &$handle, $str ) {
-		if( $handle === true || $handle === false ) {
+		if ( $handle === true || $handle === false ) {
 			wfDebugDieBacktrace( __METHOD__ . " was passed a boolean as a file handle.\n" );
 		}
-		if ( $this->compress )
+		if ( $this->compress ) {
 			gzwrite( $handle, $str );
-		else
+		} else {
 			fwrite( $handle, $str );
+		}
 	}
 
 	/**
 	 * gzclose() / fclose() wrapper
 	 */
 	function close( &$handle ) {
-		if ( $this->compress )
+		if ( $this->compress ) {
 			gzclose( $handle );
-		else
+		} else {
 			fclose( $handle );
+		}
 	}
 
 	/**

@@ -66,7 +66,7 @@ class NukeNS extends Maintenance {
 		foreach ( $res as $row ) {
 			// echo "$ns_name:".$row->page_title, "\n";
 			$title = Title::makeTitle( $ns, $row->page_title );
-			$id   = $title->getArticleID();
+			$id = $title->getArticleID();
 
 			// Get corresponding revisions
 			$res2 = $dbw->query( "SELECT rev_id FROM $tbl_rev WHERE rev_page = $id" );
@@ -94,7 +94,7 @@ class NukeNS extends Maintenance {
 					$n_deleted ++;
 				}
 			} else {
-			  $this->output( "skip: " . $title->getPrefixedText() . "\n" );
+				$this->output( "skip: " . $title->getPrefixedText() . "\n" );
 			}
 		}
 		$dbw->commit( __METHOD__ );

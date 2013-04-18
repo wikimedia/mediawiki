@@ -54,7 +54,7 @@ class NukePage extends Maintenance {
 		$this->output( "Searching for \"$name\"..." );
 		$title = Title::newFromText( $name );
 		if ( $title ) {
-			$id   = $title->getArticleID();
+			$id = $title->getArticleID();
 			$real = $title->getPrefixedText();
 			$isGoodArticle = $title->isContentPage();
 			$this->output( "found \"$real\" with ID $id.\n" );

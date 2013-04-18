@@ -60,7 +60,7 @@ class ShowSiteStats extends Maintenance {
 		$max_length_value = $max_length_desc = 0;
 		foreach ( $fields as $field => $desc ) {
 			$max_length_value = max( $max_length_value, strlen( $stats->$field ) );
-			$max_length_desc  = max( $max_length_desc,  strlen( $desc ) ) ;
+			$max_length_desc = max( $max_length_desc, strlen( $desc ) );
 		}
 
 		// Show them

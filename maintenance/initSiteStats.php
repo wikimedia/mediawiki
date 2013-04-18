@@ -48,7 +48,7 @@ class InitSiteStats extends Maintenance {
 		$edits = $counter->edits();
 		$this->output( "{$edits}\nCounting number of articles..." );
 
-		$good  = $counter->articles();
+		$good = $counter->articles();
 		$this->output( "{$good}\nCounting total pages..." );
 
 		$pages = $counter->pages();

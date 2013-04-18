@@ -70,8 +70,9 @@ class DumpRenderer extends Maintenance {
 
 		$delta = microtime( true ) - $this->startTime;
 		$this->error( "Rendered {$this->count} pages in " . round($delta, 2) . " seconds " );
-		if ($delta > 0)
+		if ( $delta > 0 ) {
 			$this->error( round($this->count / $delta, 2) . " pages/sec" );
+		}
 		$this->error( "\n" );
 	}
 

@@ -85,10 +85,10 @@ class CLIParser extends Maintenance {
 	 */
 	protected function Wikitext() {
 
-		$php_stdin  = 'php://stdin';
+		$php_stdin = 'php://stdin';
 		$input_file = $this->getArg( 0, $php_stdin );
 
-		if( $input_file === $php_stdin ) {
+		if ( $input_file === $php_stdin ) {
 			$ctrl = wfIsWindows() ? 'CTRL+Z' : 'CTRL+D';
 			$this->error( basename(__FILE__) . ": warning: reading wikitext from STDIN. Press $ctrl to parse.\n" );
 		}
@@ -113,7 +113,7 @@ class CLIParser extends Maintenance {
 		$title =
 			$this->getOption( 'title' )
 			? $this->getOption( 'title' )
-			: 'CLIParser' ;
+			: 'CLIParser';
 		return Title::newFromText( $title );
 	}
 

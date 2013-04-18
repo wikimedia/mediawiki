@@ -151,7 +151,7 @@ class RefreshImageMetadata extends Maintenance {
 			}
 			$conds2 = array( 'img_name > ' . $dbw->addQuotes( $row->img_name ) );
 			wfWaitForSlaves();
-		} while( $res->numRows() === $this->mBatchSize );
+		} while ( $res->numRows() === $this->mBatchSize );
 
 		$total = $upgraded + $leftAlone;
 		if ( $force ) {
@@ -173,7 +173,7 @@ class RefreshImageMetadata extends Maintenance {
 		$like = $this->getOption( 'metadata-contains', false );
 
 		if ( $end !== false ) {
-			$conds[] = 'img_name <= ' . $dbw->addQuotes( $end ) ;
+			$conds[] = 'img_name <= ' . $dbw->addQuotes( $end );
 		}
 		if ( $mime !== false ) {
 			list( $major, $minor ) = File::splitMime( $mime );

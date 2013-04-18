@@ -54,8 +54,9 @@ class DeleteOrphanedRevisions extends Maintenance {
 
 		# Stash 'em all up for deletion (if needed)
 		$revisions = array();
-		foreach ( $res as $row )
+		foreach ( $res as $row ) {
 			$revisions[] = $row->rev_id;
+		}
 		$count = count( $revisions );
 		$this->output( "found {$count}.\n" );
 
@@ -83,8 +84,9 @@ class DeleteOrphanedRevisions extends Maintenance {
 	 * @param $dbw DatabaseBase class (needs to be a master)
 	 */
 	private function deleteRevs( $id, &$dbw ) {
-		if ( !is_array( $id ) )
+		if ( !is_array( $id ) ) {
 			$id = array( $id );
+		}
 		$dbw->delete( 'revision', array( 'rev_id' => $id ), __METHOD__ );
 	}
 }

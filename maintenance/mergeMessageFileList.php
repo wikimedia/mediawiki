@@ -61,7 +61,7 @@ class MergeMessageFileList extends Maintenance {
 		if ( $this->hasOption( 'extensions-dir' ) ) {
 			$extdir = $this->getOption( 'extensions-dir' );
 			$entries = scandir( $extdir );
-			foreach( $entries as $extname ) {
+			foreach ( $entries as $extname ) {
 				if ( $extname == '.' || $extname == '..' || !is_dir( "$extdir/$extname" ) ) {
 					continue;
 				}

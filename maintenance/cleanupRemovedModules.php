@@ -58,7 +58,7 @@ class CleanupRemovedModules extends Maintenance {
 			$this->output( "Batch $i: $numRows rows\n" );
 			$i++;
 			wfWaitForSlaves( $maxlag );
-		} while( $numRows > 0 );
+		} while ( $numRows > 0 );
 		$this->output( "done\n" );
 
 		$this->output( "Cleaning up msg_resource table...\n" );
@@ -72,7 +72,7 @@ class CleanupRemovedModules extends Maintenance {
 			$this->output( "Batch $i: $numRows rows\n" );
 			$i++;
 			wfWaitForSlaves( $maxlag );
-		} while( $numRows > 0 );
+		} while ( $numRows > 0 );
 		$this->output( "done\n" );
 
 		$this->output( "Cleaning up msg_resource_links table...\n" );
@@ -85,7 +85,7 @@ class CleanupRemovedModules extends Maintenance {
 			$this->output( "Batch $i: $numRows rows\n" );
 			$i++;
 			wfWaitForSlaves( $maxlag );
-		} while( $numRows > 0 );
+		} while ( $numRows > 0 );
 		$this->output( "done\n" );
 	}
 }
