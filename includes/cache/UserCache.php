@@ -81,6 +81,8 @@ class UserCache {
 		$usersToCheck = array();
 		$usersToQuery = array();
 
+		$userIds = array_unique( $userIds );
+
 		foreach ( $userIds as $userId ) {
 			$userId = (int)$userId;
 			if ( $userId <= 0 ) {
