@@ -64,6 +64,7 @@ class RefreshLinksJob extends Job {
 		}
 
 		self::runForTitleInternal( $this->title, $revision, __METHOD__ );
+		InfoAction::invalidateCache( $this->title );
 
 		wfProfileOut( __METHOD__ );
 		return true;
