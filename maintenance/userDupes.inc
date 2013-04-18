@@ -112,9 +112,9 @@ class UserDupes {
 		$count = count( $dupes );
 
 		$this->out( "Found $count accounts with duplicate records on " . wfWikiID() . ".\n" );
-		$this->trimmed    = 0;
+		$this->trimmed = 0;
 		$this->reassigned = 0;
-		$this->failed     = 0;
+		$this->failed = 0;
 		foreach ( $dupes as $name ) {
 			$this->examine( $name, $doDelete );
 		}
@@ -223,7 +223,7 @@ class UserDupes {
 			__METHOD__ );
 
 		$firstRow = $this->db->fetchObject( $result );
-		$firstId  = $firstRow->user_id;
+		$firstId = $firstRow->user_id;
 		$this->out( "Record that will be used for '$name' is user_id=$firstId\n" );
 
 		foreach ( $result as $row ) {

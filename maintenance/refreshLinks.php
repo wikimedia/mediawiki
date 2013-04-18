@@ -281,12 +281,13 @@ class RefreshLinks extends Maintenance {
 			$this->output( "Retrieving illegal entries from $table... " );
 
 			// SELECT DISTINCT( $field ) FROM $table LEFT JOIN page ON $field=page_id WHERE page_id IS NULL;
-			$results = $dbr->select( array( $table, 'page' ),
-						  $field,
-						  array( 'page_id' => null ),
-						  __METHOD__,
-						  'DISTINCT',
-						  array( 'page' => array( 'LEFT JOIN', "$field=page_id" ) )
+			$results = $dbr->select(
+				array( $table, 'page' ),
+				$field,
+				array( 'page_id' => null ),
+				__METHOD__,
+				'DISTINCT',
+				array( 'page' => array( 'LEFT JOIN', "$field=page_id" ) )
 			);
 
 			$counter = 0;

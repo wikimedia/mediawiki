@@ -59,13 +59,15 @@ class DeleteImageCache extends Maintenance {
 		$total = $this->getImageCount();
 
 		foreach ( $res as $row ) {
-			if ( $i % $this->report == 0 )
+			if ( $i % $this->report == 0 ) {
 				$this->output( sprintf( "%s: %13s done (%s)\n", wfWikiID(), "$i/$total", wfPercent( $i / $total * 100 ) ) );
+			}
 			$md5 = md5( $row->img_name );
 			$wgMemc->delete( wfMemcKey( 'Image', $md5 ) );
 
-			if ( $sleep != 0 )
+			if ( $sleep != 0 ) {
 				usleep( $sleep );
+			}
 
 			++$i;
 		}

@@ -73,7 +73,9 @@ class Sqlite {
 
 			$tables = $db->query( "SELECT name FROM sqlite_master WHERE type='table'", __METHOD__ );
 			foreach ( $tables as $table ) {
-				if ( strpos( $table->name, 'sqlite_' ) === 0 ) continue;
+				if ( strpos( $table->name, 'sqlite_' ) === 0 ) {
+					continue;
+				}
 
 				$columns = $db->query( "PRAGMA table_info({$table->name})", __METHOD__ );
 				foreach ( $columns as $col ) {
@@ -89,4 +91,4 @@ class Sqlite {
 		$db->close();
 		return true;
 	}
- };
+};

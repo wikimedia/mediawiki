@@ -29,7 +29,7 @@ class PPFuzzTester {
 	public $hairs = array(
 		'[[', ']]', '{{', '{{', '}}', '}}', '{{{', '}}}',
 		'<', '>', '<nowiki', '<gallery', '</nowiki>', '</gallery>', '<nOwIkI>', '</NoWiKi>',
-		'<!--' , '-->',
+		'<!--', '-->',
 		"\n==", "==\n",
 		'|', '=', "\n", ' ', "\t", "\x7f",
 		'~~', '~~~', '~~~~', 'subst:',

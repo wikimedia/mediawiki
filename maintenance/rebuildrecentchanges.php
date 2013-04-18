@@ -105,7 +105,7 @@ class RebuildRecentchanges extends Maintenance {
 
 		# Fill in the rc_last_oldid field, which points to the previous edit
 		$sql = "SELECT rc_cur_id,rc_this_oldid,rc_timestamp FROM $recentchanges " .
-		  "ORDER BY rc_cur_id,rc_timestamp";
+			"ORDER BY rc_cur_id,rc_timestamp";
 		$res = $dbw->query( $sql, DB_MASTER );
 
 		$lastCurId = 0;
@@ -142,12 +142,12 @@ class RebuildRecentchanges extends Maintenance {
 				$dbw->update( 'recentchanges',
 					array(
 						'rc_last_oldid' => $lastOldId,
-						'rc_new'        => $new,
-						'rc_type'       => $new,
-						'rc_old_len'    => $lastSize,
-						'rc_new_len'    => $size,
+						'rc_new' => $new,
+						'rc_type' => $new,
+						'rc_old_len' => $lastSize,
+						'rc_new_len' => $size,
 					), array(
-						'rc_cur_id'     => $lastCurId,
+						'rc_cur_id' => $lastCurId,
 						'rc_this_oldid' => $obj->rc_this_oldid,
 					),
 					__METHOD__

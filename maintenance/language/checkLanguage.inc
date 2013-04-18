@@ -384,7 +384,7 @@ ENDS;
 						echo "[messages are hidden]\n";
 					} else {
 						foreach ( $messages as $key => $value ) {
-							if( !in_array( $check, $this->nonMessageChecks() ) ) {
+							if ( !in_array( $check, $this->nonMessageChecks() ) ) {
 								$key = $this->formatKey( $key, $code );
 							}
 							if ( $this->level == 2 || empty( $value ) ) {
@@ -411,7 +411,7 @@ ENDS;
 			$problems = 0;
 			$detailTextForLangChecks = array();
 			foreach ( $results as $check => $messages ) {
-				if( in_array( $check, $this->nonMessageChecks() ) ) {
+				if ( in_array( $check, $this->nonMessageChecks() ) ) {
 					continue;
 				}
 				$count = count( $messages );
@@ -463,9 +463,9 @@ EOL;
 	 * @return bool True if there are any results, false if not.
 	 */
 	protected function isEmpty() {
-		foreach( $this->results as $results ) {
-			foreach( $results as $messages ) {
-				if( !empty( $messages ) ) {
+		foreach ( $this->results as $results ) {
+			foreach ( $results as $messages ) {
+				if ( !empty( $messages ) ) {
 					return false;
 				}
 			}
@@ -645,15 +645,15 @@ ENDS;
 	 * @throws MWException
 	 */
 	protected function checkLanguage( $code ) {
-		foreach( $this->extensions as $extension ) {
+		foreach ( $this->extensions as $extension ) {
 			$this->L = $extension;
 			$this->results = array();
 			$this->results[$code] = parent::checkLanguage( $code );
 
-			if( !$this->isEmpty() ) {
+			if ( !$this->isEmpty() ) {
 				echo $extension->name() . ":\n";
 
-				if( $this->level > 0 ) {
+				if ( $this->level > 0 ) {
 					switch( $this->output ) {
 						case 'plain':
 							$this->outputText();

@@ -53,8 +53,8 @@ class PurgeDeletedFiles extends Maintenance {
 
 		$conds = array(
 			'log_namespace' => NS_FILE,
-			'log_type'      => $logType,
-			'log_action'    => array( 'delete', 'revision' )
+			'log_type' => $logType,
+			'log_action' => array( 'delete', 'revision' )
 		);
 		$start = $this->getOption( 'starttime' );
 		if ( $start ) {

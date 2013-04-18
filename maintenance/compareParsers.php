@@ -55,8 +55,8 @@ class CompareParsers extends DumpIterator {
 	}
 
 	public function checkOptions() {
-		if ( $this->hasOption('save-failed') ) {
-			$this->saveFailed = $this->getOption('save-failed');
+		if ( $this->hasOption( 'save-failed' ) ) {
+			$this->saveFailed = $this->getOption( 'save-failed' );
 		}
 
 		$this->stripParametersEnabled = $this->hasOption( 'strip-parameters' );
@@ -87,8 +87,9 @@ class CompareParsers extends DumpIterator {
 
 	public function conclusions() {
 		$this->error( "{$this->failed} failed revisions out of {$this->count}" );
-		if ($this->count > 0)
+		if ( $this->count > 0 ) {
 			$this->output( " (" . ( $this->failed / $this->count ) . "%)\n" );
+		}
 	}
 
 	function stripParameters( $text ) {

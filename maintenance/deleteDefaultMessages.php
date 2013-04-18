@@ -51,7 +51,7 @@ class DeleteDefaultMessages extends Maintenance {
 			)
 		);
 
-		if( $dbr->numRows( $res ) == 0 ) {
+		if ( $dbr->numRows( $res ) == 0 ) {
 			# No more messages left
 			$this->output( "done.\n" );
 			return;

@@ -82,7 +82,7 @@ This gives a huge speed improvement for very large links tables which are MyISAM
 
 		list ( $cur, $links, $links_temp, $links_backup ) = $dbw->tableNamesN( 'cur', 'links', 'links_temp', 'links_backup' );
 
-		if( $dbw->tableExists( 'pagelinks' ) ) {
+		if ( $dbw->tableExists( 'pagelinks' ) ) {
 			$this->output( "...have pagelinks; skipping old links table updates\n" );
 			return;
 		}
@@ -183,9 +183,10 @@ This gives a huge speed improvement for very large links tables which are MyISAM
 					}
 					$dbw->query( implode( "", $sqlWrite ) );
 					$totalTuplesInserted += $tuplesAdded;
-					if ( $reportLinksConvProgress )
+					if ( $reportLinksConvProgress ) {
 						$this->output( " done. Total $totalTuplesInserted tuples inserted.\n" );
-						$this->performanceLog( $fh, $totalTuplesInserted . " " . ( $this->getMicroTime() - $baseTime ) . "\n"  );
+						$this->performanceLog( $fh, $totalTuplesInserted . " " . ( $this->getMicroTime() - $baseTime ) . "\n" );
+					}
 				}
 			}
 			$this->output( "$totalTuplesInserted valid titles and $numBadLinks invalid titles were processed.\n\n" );

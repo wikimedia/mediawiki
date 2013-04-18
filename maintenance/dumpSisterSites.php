@@ -43,8 +43,9 @@ class DumpSisterSites extends Maintenance {
 		$dbr->bufferResults( false );
 		$result = $dbr->select( 'page',
 			array( 'page_namespace', 'page_title' ),
-			array( 'page_namespace'   => NS_MAIN,
-				   'page_is_redirect' => 0,
+			array(
+				'page_namespace' => NS_MAIN,
+				'page_is_redirect' => 0,
 			),
 			__METHOD__ );
 

@@ -53,7 +53,7 @@ class AlterSharedConstraints extends Maintenance {
 			if ( $wgSharedPrefix != null ) {
 				$ltable = preg_replace( "/^$wgSharedPrefix(.*)/i", "$wgDBprefix\\1", $stable );
 			} else {
-				$ltable = "{$wgDBprefix}{$stable}" ;
+				$ltable = "{$wgDBprefix}{$stable}";
 			}
 
 			$result = $dbw->query( "SELECT uc.constraint_name, uc.table_name, ucc.column_name, uccpk.table_name pk_table_name, uccpk.column_name pk_column_name, uc.delete_rule, uc.deferrable, uc.deferred

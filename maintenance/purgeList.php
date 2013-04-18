@@ -44,7 +44,7 @@ class PurgeList extends Maintenance {
 		if ( $this->hasOption( 'all' ) ) {
 			$this->purgeNamespace( false );
 		} elseif ( $this->hasOption( 'namespace' ) ) {
-			$this->purgeNamespace( intval( $this->getOption( 'namespace') ) );
+			$this->purgeNamespace( intval( $this->getOption( 'namespace' ) ) );
 		} else {
 			$this->doPurge();
 		}
@@ -129,7 +129,7 @@ class PurgeList extends Maintenance {
 			}
 		} else {
 			if ( $this->hasOption( 'verbose' ) ) {
-				$this->output( implode( "\n", $urls ) . "\n"  );
+				$this->output( implode( "\n", $urls ) . "\n" );
 			}
 			$u = new SquidUpdate( $urls );
 			$u->doUpdate();

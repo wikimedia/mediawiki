@@ -34,16 +34,16 @@ require_once( __DIR__ . '/Maintenance.php' );
 class BackupReader extends Maintenance {
 	public $reportingInterval = 100;
 	public $pageCount = 0;
-	public $revCount  = 0;
-	public $dryRun    = false;
-	public $uploads   = false;
+	public $revCount = 0;
+	public $dryRun = false;
+	public $uploads = false;
 	public $imageBasePath = false;
-	public $nsFilter  = false;
+	public $nsFilter = false;
 
 	function __construct() {
 		parent::__construct();
-		$gz = in_array('compress.zlib', stream_get_wrappers()) ? 'ok' : '(disabled; requires PHP zlib module)';
-		$bz2 = in_array('compress.bzip2', stream_get_wrappers()) ? 'ok' : '(disabled; requires PHP bzip2 module)';
+		$gz = in_array( 'compress.zlib', stream_get_wrappers() ) ? 'ok' : '(disabled; requires PHP zlib module)';
+		$bz2 = in_array( 'compress.bzip2', stream_get_wrappers() ) ? 'ok' : '(disabled; requires PHP bzip2 module)';
 
 		$this->mDescription = <<<TEXT
 This script reads pages from an XML file as produced from Special:Export or
@@ -73,7 +73,7 @@ TEXT;
 	}
 
 	public function execute() {
-		if( wfReadOnly() ) {
+		if ( wfReadOnly() ) {
 			$this->error( "Wiki is in read-only mode; you'll need to disable it for import to work.", true );
 		}
 
@@ -91,7 +91,7 @@ TEXT;
 			$this->setNsfilter( explode( '|', $this->getOption( 'namespaces' ) ) );
 		}
 
-		if( $this->hasArg() ) {
+		if ( $this->hasArg() ) {
 			$this->importFromFile( $this->getArg() );
 		} else {
 			$this->importFromStdin();
@@ -247,7 +247,7 @@ TEXT;
 
 	function importFromStdin() {
 		$file = fopen( 'php://stdin', 'rt' );
-		if( self::posix_isatty( $file ) ) {
+		if ( self::posix_isatty( $file ) ) {
 			$this->maybeHelp( true );
 		}
 		return $this->importFromHandle( $file );
@@ -259,7 +259,7 @@ TEXT;
 		$source = new ImportStreamSource( $handle );
 		$importer = new WikiImporter( $source );
 
-		if( $this->hasOption( 'debug' ) ) {
+		if ( $this->hasOption( 'debug' ) ) {
 			$importer->setDebug( true );
 		}
 		if ( $this->hasOption( 'no-updates' ) ) {

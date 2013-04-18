@@ -65,7 +65,7 @@ class UploadStashCleanup extends Maintenance {
 		} else {
 			// finish the read before starting writes.
 			$keys = array();
-			foreach( $res as $row ) {
+			foreach ( $res as $row ) {
 				array_push( $keys, $row->us_key );
 			}
 
@@ -76,7 +76,7 @@ class UploadStashCleanup extends Maintenance {
 			$stash = new UploadStash( $repo );
 
 			$i = 0;
-			foreach( $keys as $key ) {
+			foreach ( $keys as $key ) {
 				$i++;
 				try {
 					$stash->getFile( $key, true );
@@ -94,7 +94,7 @@ class UploadStashCleanup extends Maintenance {
 		}
 
 		// Delete all the corresponding thumbnails...
-		$dir      = $tempRepo->getZonePath( 'thumb' );
+		$dir = $tempRepo->getZonePath( 'thumb' );
 		$iterator = $tempRepo->getBackend()->getFileList( array( 'dir' => $dir ) );
 		$this->output( "Deleting old thumbnails...\n" );
 		$i = 0;
@@ -112,7 +112,7 @@ class UploadStashCleanup extends Maintenance {
 		$this->output( "$i done\n" );
 
 		// Apparently lots of stash files are not registered in the DB...
-		$dir      = $tempRepo->getZonePath( 'public' );
+		$dir = $tempRepo->getZonePath( 'public' );
 		$iterator = $tempRepo->getBackend()->getFileList( array( 'dir' => $dir ) );
 		$this->output( "Deleting orphaned temp files...\n" );
 		if ( strpos( $dir, '/local-temp' ) === false ) { // sanity check

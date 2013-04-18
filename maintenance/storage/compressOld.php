@@ -115,7 +115,7 @@ class CompressOld extends Maintenance {
 		do {
 			$res = $dbw->select( 'text', array( 'old_id', 'old_flags', 'old_text' ),
 				"old_id>=$start", __METHOD__, array( 'ORDER BY' => 'old_id', 'LIMIT' => $chunksize, 'FOR UPDATE' ) );
-			if( $res->numRows() == 0 ) {
+			if ( $res->numRows() == 0 ) {
 				break;
 			}
 			$last = $start;
@@ -126,7 +126,7 @@ class CompressOld extends Maintenance {
 			}
 			$start = $last + 1; # Deletion may leave long empty stretches
 			$this->output( "$start...\n" );
-		} while( true );
+		} while ( true );
 	}
 
 	/**
@@ -352,13 +352,14 @@ class CompressOld extends Maintenance {
 						# Move blob objects to External Storage
 						$stored = $storeObj->store( $extdb, serialize( $chunk ));
 						if ($stored === false) {
-							$this->error(  "Unable to store object" );
+							$this->error( "Unable to store object" );
 							return false;
 						}
 						# Store External Storage URLs instead of Stub placeholders
 						foreach ($stubs as $stub) {
-							if ( $stub === false )
+							if ( $stub === false ) {
 								continue;
+							}
 							# $stored should provide base path to a BLOB
 							$url = $stored . "/" . $stub->getHash();
 							$dbw->update( 'text',

@@ -27,7 +27,7 @@
 
 $originalDir = getcwd();
 
-$optionsWithArgs = array( 'pagelist', 'start', 'end', 'revstart', 'revend');
+$optionsWithArgs = array( 'pagelist', 'start', 'end', 'revstart', 'revend' );
 
 require_once( __DIR__ . '/commandLine.inc' );
 require_once( __DIR__ . '/backup.inc' );

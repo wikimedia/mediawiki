@@ -42,7 +42,7 @@ class DeleteArchivedFilesImplementation {
 			$group = $row->fa_storage_group;
 			$id = $row->fa_id;
 			$path = $repo->getZonePath( 'deleted' ) . '/' . $repo->getDeletedHashPath( $key ) . $key;
-			if( isset( $row->fa_sha1 ) ) {
+			if ( isset( $row->fa_sha1 ) ) {
 				$sha1 = $row->fa_sha1;
 			} else {
 				// old row, populate from key

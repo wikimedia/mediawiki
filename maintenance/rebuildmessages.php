@@ -45,8 +45,9 @@ class RebuildMessages extends Maintenance {
 		foreach ( $databases as $db ) {
 			$this->output( "Deleting message cache for {$db}... " );
 			$messageMemc->delete( "{$db}:messages" );
-			if ( $wgEnableSidebarCache )
+			if ( $wgEnableSidebarCache ) {
 				$messageMemc->delete( "{$db}:sidebar" );
+			}
 			$this->output( "Deleted\n" );
 		}
 	}

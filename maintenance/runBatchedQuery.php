@@ -38,8 +38,9 @@ class BatchedQueryRunner extends Maintenance {
 	}
 
 	public function execute() {
-		if ( !$this->hasArg() )
+		if ( !$this->hasArg() ) {
 			$this->error( "No query specified. Specify the query as a command line parameter.", true );
+		}
 
 		$query = $this->getArg();
 		$n = 1;

@@ -46,7 +46,7 @@ class DumpRev extends Maintenance {
 			$this->error( "Row not found", true );
 		}
 
-		$flags = explode( ',',  $row->old_flags );
+		$flags = explode( ',', $row->old_flags );
 		$text = $row->old_text;
 		if ( in_array( 'external', $flags ) ) {
 			$this->output( "External $text\n" );

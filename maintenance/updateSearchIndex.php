@@ -60,7 +60,7 @@ class UpdateSearchIndex extends Maintenance {
 			# We can safely delete the file when we're done though.
 			$start = file_get_contents( 'searchUpdate.pos' );
 			unlink( 'searchUpdate.pos' );
-		} elseif( is_readable( $posFile ) ) {
+		} elseif ( is_readable( $posFile ) ) {
 			$start = file_get_contents( $posFile );
 		} else {
 			$start = wfTimestamp( TS_MW, time() - 86400 );
@@ -97,9 +97,8 @@ class UpdateSearchIndex extends Maintenance {
 
 		$page = $dbw->tableName( 'page' );
 		$sql = "SELECT rc_cur_id FROM $recentchanges
-		  JOIN $page ON rc_cur_id=page_id AND rc_this_oldid=page_latest
-		  WHERE rc_type != " . RC_LOG . " AND rc_timestamp BETWEEN '$start' AND '$end'
-		  ";
+			JOIN $page ON rc_cur_id=page_id AND rc_this_oldid=page_latest
+			WHERE rc_type != " . RC_LOG . " AND rc_timestamp BETWEEN '$start' AND '$end'";
 		$res = $dbw->query( $sql, __METHOD__ );
 
 		$this->updateSearchIndex( $maxLockTime, array( $this, 'searchIndexUpdateCallback' ), $dbw, $res );

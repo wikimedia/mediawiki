@@ -21,7 +21,7 @@
  * @ingroup Maintenance
  */
 
-if( PHP_SAPI != 'cli' ) {
+if ( PHP_SAPI != 'cli' ) {
 	die( 1 );
 }
 
@@ -42,7 +42,7 @@ if ( ( isset( $_REQUEST ) && array_key_exists( 'argv', $_REQUEST ) ) || count( $
 	$ip = $argv[1];
 	$port = $argv[2];
 	$url = $argv[3];
-	$host = trim(`hostname`);
+	$host = trim( `hostname` );
 	$output = "Connecting to $ip:$port, target $url, this hostname $host\n";
 
 	# Open socket

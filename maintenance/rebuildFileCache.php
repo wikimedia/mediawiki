@@ -153,8 +153,9 @@ class RebuildFileCache extends Maintenance {
 		$this->output( "Done!\n" );
 
 		// Remove these to be safe
-		if ( isset( $wgTitle ) )
+		if ( isset( $wgTitle ) ) {
 			unset( $wgTitle );
+		}
 	}
 }
 

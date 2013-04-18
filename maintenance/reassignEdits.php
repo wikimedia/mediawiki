@@ -46,7 +46,7 @@ class ReassignEdits extends Maintenance {
 		if ( $this->hasArg( 0 ) && $this->hasArg( 1 ) ) {
 			# Set up the users involved
 			$from = $this->initialiseUser( $this->getArg( 0 ) );
-			$to   = $this->initialiseUser( $this->getArg( 1 ) );
+			$to = $this->initialiseUser( $this->getArg( 1 ) );
 
 			# If the target doesn't exist, and --force is not set, stop here
 			if ( $to->getId() || $this->hasOption( 'force' ) ) {

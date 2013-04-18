@@ -47,13 +47,13 @@ abstract class DumpIterator extends Maintenance {
 	}
 
 	public function execute() {
-		if ( !( $this->hasOption('file') ^ $this->hasOption('dump') ) ) {
-			$this->error("You must provide a file or dump", true);
+		if ( !( $this->hasOption( 'file' ) ^ $this->hasOption( 'dump' ) ) ) {
+			$this->error( "You must provide a file or dump", true );
 		}
 
 		$this->checkOptions();
 
-		if ( $this->hasOption('file') ) {
+		if ( $this->hasOption( 'file' ) ) {
 			$revision = new WikiRevision;
 
 			$revision->setText( file_get_contents( $this->getOption( 'file' ) ) );
@@ -64,10 +64,10 @@ abstract class DumpIterator extends Maintenance {
 
 		$this->startTime = microtime( true );
 
-		if ( $this->getOption('dump') == '-' ) {
+		if ( $this->getOption( 'dump' ) == '-' ) {
 			$source = new ImportStreamSource( $this->getStdin() );
 		} else {
-			$this->error("Sorry, I don't support dump filenames yet. Use - and provide it on stdin on the meantime.", true);
+			$this->error( "Sorry, I don't support dump filenames yet. Use - and provide it on stdin on the meantime.", true );
 		}
 		$importer = new WikiImporter( $source );
 
@@ -82,8 +82,9 @@ abstract class DumpIterator extends Maintenance {
 
 		$delta = microtime( true ) - $this->startTime;
 		$this->error( "Done {$this->count} revisions in " . round($delta, 2) . " seconds " );
-		if ($delta > 0)
+		if ( $delta > 0 ) {
 			$this->error( round($this->count / $delta, 2) . " pages/sec" );
+		}
 
 		# Perform the memory_get_peak_usage() when all the other data has been output so there's no damage if it dies.
 		# It is only available since 5.2.0 (since 5.2.1 if you haven't compiled with --enable-memory-limit)
@@ -122,8 +123,9 @@ abstract class DumpIterator extends Maintenance {
 
 		$this->count++;
 		if ( isset( $this->from ) ) {
-			if ( $this->from != $title )
+			if ( $this->from != $title ) {
 				return;
+			}
 			$this->output( "Skipped " . ($this->count - 1) . " pages\n" );
 
 			$this->count = 1;

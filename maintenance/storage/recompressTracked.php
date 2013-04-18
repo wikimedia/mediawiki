@@ -279,7 +279,7 @@ class RecompressTracked {
 	 */
 	function dispatchToSlave( $slaveId, $args ) {
 		$args = (array)$args;
-		$cmd = implode( ' ',  $args );
+		$cmd = implode( ' ', $args );
 		fwrite( $this->slavePipes[$slaveId], "$cmd\n" );
 	}
 

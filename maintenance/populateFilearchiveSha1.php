@@ -86,7 +86,7 @@ class PopulateFilearchiveSha1 extends LoggedUpdateMaintenance {
 			}
 
 			$done += $i;
-			if( $i !== $batchSize ) {
+			if ( $i !== $batchSize ) {
 				break;
 			}
 
@@ -94,7 +94,7 @@ class PopulateFilearchiveSha1 extends LoggedUpdateMaintenance {
 			$this->output( sprintf(
 				"id %d done (up to %d), %5.3f%%  \r", $lastId, $endId, $lastId / $endId * 100 ) );
 			wfWaitForSlaves();
-		} while( true );
+		} while ( true );
 
 		$processingTime = microtime( true ) - $startTime;
 		$this->output( sprintf( "\nDone %d files in %.1f seconds\n", $done, $processingTime ) );

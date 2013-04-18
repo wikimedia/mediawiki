@@ -98,8 +98,9 @@ class PopulateParentId extends LoggedUpdateMaintenance {
 					}
 				}
 				$previousID = intval( $previousID );
-				if ( $previousID != $row->rev_parent_id )
+				if ( $previousID != $row->rev_parent_id ) {
 					$changed++;
+				}
 				# Update the row...
 				$db->update( 'revision',
 					array( 'rev_parent_id' => $previousID ),

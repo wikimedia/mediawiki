@@ -141,8 +141,9 @@ class TextPassDumper extends BackupDumper {
 	function dump( $history, $text = WikiExporter::TEXT ) {
 		// Notice messages will foul up your XML output even if they're
 		// relatively harmless.
-		if ( ini_get( 'display_errors' ) )
+		if ( ini_get( 'display_errors' ) ) {
 			ini_set( 'display_errors', 'stderr' );
+		}
 
 		$this->initProgress( $this->history );
 
@@ -611,17 +612,21 @@ class TextPassDumper extends BackupDumper {
 
 	private function closeSpawn() {
 		wfSuppressWarnings();
-		if ( $this->spawnRead )
+		if ( $this->spawnRead ) {
 			fclose( $this->spawnRead );
+		}
 		$this->spawnRead = false;
-		if ( $this->spawnWrite )
+		if ( $this->spawnWrite ) {
 			fclose( $this->spawnWrite );
+		}
 		$this->spawnWrite = false;
-		if ( $this->spawnErr )
+		if ( $this->spawnErr ) {
 			fclose( $this->spawnErr );
+		}
 		$this->spawnErr = false;
-		if ( $this->spawnProc )
+		if ( $this->spawnProc ) {
 			pclose( $this->spawnProc );
+		}
 		$this->spawnProc = false;
 		wfRestoreWarnings();
 	}
@@ -631,11 +636,15 @@ class TextPassDumper extends BackupDumper {
 
 		$ok = fwrite( $this->spawnWrite, "$id\n" );
 		// $this->progress( ">> $id" );
-		if ( !$ok ) return false;
+		if ( !$ok ) {
+			return false;
+		}
 
 		$ok = fflush( $this->spawnWrite );
 		// $this->progress( ">> [flush]" );
-		if ( !$ok ) return false;
+		if ( !$ok ) {
+			return false;
+		}
 
 		// check that the text id they are sending is the one we asked for
 		// this avoids out of sync revision text errors we have encountered in the past
@@ -649,18 +658,24 @@ class TextPassDumper extends BackupDumper {
 
 		$len = fgets( $this->spawnRead );
 		// $this->progress( "<< " . trim( $len ) );
-		if ( $len === false ) return false;
+		if ( $len === false ) {
+			return false;
+		}
 
 		$nbytes = intval( $len );
 		// actual error, not zero-length text
-		if ( $nbytes < 0 ) return false;
+		if ( $nbytes < 0 ) {
+			return false;
+		}
 
 		$text = "";
 
 		// Subprocess may not send everything at once, we have to loop.
 		while ( $nbytes > strlen( $text ) ) {
 			$buffer = fread( $this->spawnRead, $nbytes - strlen( $text ) );
-			if ( $buffer === false ) break;
+			if ( $buffer === false ) {
+				break;
+			}
 			$text .= $buffer;
 		}
 

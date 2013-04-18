@@ -185,10 +185,11 @@ if ( $count > 0 ) {
 		if ( isset( $options['source-wiki-url'] ) ) {
 			/* find comment text directly from source wiki, through MW's API */
 			$real_comment = getFileCommentFromSourceWiki( $options['source-wiki-url'], $base );
-			if ( $real_comment === false )
+			if ( $real_comment === false ) {
 				$commentText = $comment;
-			else
+			} else {
 				$commentText = $real_comment;
+			}
 
 			/* find user directly from source wiki, through MW's API */
 			$real_user = getFileUserFromSourceWiki( $options['source-wiki-url'], $base );
@@ -273,7 +274,7 @@ if ( $count > 0 ) {
 
 					$cascade = false;
 					$restrictions = array();
-					foreach( $title->getRestrictionTypes() as $type ) {
+					foreach ( $title->getRestrictionTypes() as $type ) {
 						$restrictions[$type] = $protectLevel;
 					}
 
@@ -304,8 +305,9 @@ if ( $count > 0 ) {
 	foreach ( array( 'count' => 'Found', 'limit' => 'Limit', 'ignored' => 'Ignored',
 		'added' => 'Added', 'skipped' => 'Skipped', 'overwritten' => 'Overwritten',
 		'failed' => 'Failed' ) as $var => $desc ) {
-		if ( $$var > 0 )
+		if ( $$var > 0 ) {
 			echo( "{$desc}: {$$var}\n" );
+		}
 	}
 
 } else {

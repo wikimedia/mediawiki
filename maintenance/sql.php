@@ -70,9 +70,9 @@ class MwSql extends Maintenance {
 
 		$wholeLine = '';
 		$newPrompt = '> ';
-		$prompt    = $newPrompt;
+		$prompt = $newPrompt;
 		while ( ( $line = Maintenance::readconsole( $prompt ) ) !== false ) {
-			if( !$line ) {
+			if ( !$line ) {
 				# User simply pressed return key
 				continue;
 			}
@@ -94,9 +94,9 @@ class MwSql extends Maintenance {
 			try{
 				$res = $dbw->query( $wholeLine );
 				$this->sqlPrintResult( $res, $dbw );
-				$prompt    = $newPrompt;
+				$prompt = $newPrompt;
 				$wholeLine = '';
-			} catch (DBQueryError $e) {
+			} catch ( DBQueryError $e ) {
 				$doDie = ! Maintenance::posix_isatty( 0 );
 				$this->error( $e, $doDie );
 			}

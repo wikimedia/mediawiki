@@ -34,7 +34,7 @@ if ( !defined( 'RUN_MAINTENANCE_IF_MAIN' ) ) {
 // Wasn't included from the file scope, halt execution (probably wanted the class)
 // If a class is using commandLine.inc (old school maintenance), they definitely
 // cannot be included and will proceed with execution
-if( !Maintenance::shouldExecute() && $maintClass != 'CommandLineInc' ) {
+if ( !Maintenance::shouldExecute() && $maintClass != 'CommandLineInc' ) {
 	return;
 }
 
@@ -100,8 +100,9 @@ if ( $maintenance->getDbType() === Maintenance::DB_ADMIN &&
 }
 
 if ( $maintenance->getDbType() === Maintenance::DB_NONE ) {
-	if ( $wgLocalisationCacheConf['storeClass'] === false && ( $wgLocalisationCacheConf['store'] == 'db' || ( $wgLocalisationCacheConf['store'] == 'detect' && !$wgCacheDirectory ) ) )
+	if ( $wgLocalisationCacheConf['storeClass'] === false && ( $wgLocalisationCacheConf['store'] == 'db' || ( $wgLocalisationCacheConf['store'] == 'detect' && !$wgCacheDirectory ) ) ) {
 		$wgLocalisationCacheConf['storeClass'] = 'LCStore_Null';
+	}
 }
 $maintenance->finalSetup();
 // Some last includes

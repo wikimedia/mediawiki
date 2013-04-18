@@ -44,7 +44,7 @@ class ShowJobs extends Maintenance {
 		$group = JobQueueGroup::singleton();
 		if ( $this->hasOption( 'group' ) ) {
 			foreach ( $group->getQueueTypes() as $type ) {
-				$queue   = $group->get( $type );
+				$queue = $group->get( $type );
 				$pending = $queue->getSize();
 				$claimed = $queue->getAcquiredCount();
 				$abandoned = $queue->getAbandonedCount();
