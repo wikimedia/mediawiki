@@ -599,7 +599,7 @@ class MediaWiki {
 	 * Do a job from the job queue
 	 */
 	private function doJobs() {
-		global $wgJobRunRate;
+		global $wgJobRunRate, $IP;
 
 		if ( $wgJobRunRate <= 0 || wfReadOnly() ) {
 			return;
@@ -615,23 +615,13 @@ class MediaWiki {
 			$n = intval( $wgJobRunRate );
 		}
 
-		$group = JobQueueGroup::singleton();
-		do {
-			$job = $group->pop( JobQueueGroup::USE_CACHE ); // job from any queue
-			if ( $job ) {
-				$output = $job->toString() . "\n";
-				$t = - microtime( true );
-				$success = $job->run();
-				$group->ack( $job ); // done
-				$t += microtime( true );
-				$t = round( $t * 1000 );
-				if ( !$success ) {
-					$output .= "Error: " . $job->getLastError() . ", Time: $t ms\n";
-				} else {
-					$output .= "Success, Time: $t ms\n";
-				}
-				wfDebugLog( 'jobqueue', $output );
-			}
-		} while ( --$n && $job );
+		// Start a background process to run some of the jobs.
+		// This will be asynchronous on *nix and but not on Windows.
+		$retVal = 1;
+		$cmd = wfShellWikiCmd( "$IP/maintenance/runJobs.php", array( '--maxjobs', 3 ) );
+		wfShellExec( "$cmd &", $retVal );
+		if ( $retVal != 0 ) {
+			wfDebugLog( 'JobQueue', __METHOD__ . ": Failed to spawn runJobs.php." );
+		}
 	}
 }
