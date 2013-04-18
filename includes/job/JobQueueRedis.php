@@ -216,8 +216,9 @@ class JobQueueRedis extends JobQueue {
 				wfDebugLog( 'JobQueueRedis', "Could not insert {$failed} {$this->type} job(s)." );
 				return false;
 			}
-			wfIncrStats( 'job-insert', count( $items ) );
-			wfIncrStats( 'job-insert-duplicate', count( $items ) - $failed - $pushed );
+			JobQueue::incrStats( 'job-insert', $this->type, count( $items ) );
+			JobQueue::incrStats( 'job-insert-duplicate', $this->type,
+				count( $items ) - $failed - $pushed );
 		} catch ( RedisException $e ) {
 			$this->throwRedisException( $this->server, $conn, $e );
 		}
@@ -308,7 +309,7 @@ LUA;
 					break; // no jobs; nothing to do
 				}
 
-				wfIncrStats( 'job-pop' );
+				JobQueue::incrStats( 'job-pop', $this->type );
 				$item = unserialize( $blob );
 				if ( $item === false ) {
 					wfDebugLog( 'JobQueueRedis', "Could not unserialize {$this->type} job." );
@@ -649,7 +650,7 @@ LUA;
 			if ( $res ) {
 				list( $released, $abandoned, $pruned ) = $res;
 				$count += $released + $pruned;
-				wfIncrStats( 'job-recycle', count( $released ) );
+				JobQueue::incrStats( 'job-recycle', $this->type, count( $released ) );
 			}
 		} catch ( RedisException $e ) {
 			$this->throwRedisException( $this->server, $conn, $e );
