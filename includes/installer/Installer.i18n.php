@@ -550,6 +550,7 @@ $3
 
 When that has been done, you can '''[$2 enter your wiki]'''.",
 	'config-download-localsettings' => 'Download <code>LocalSettings.php</code>',
+	'extension-link'			    => 'Did you know that your wiki supports  [//www.mediawiki.org/wiki/Manual:Extensions extensions]? Browse through these categories of [http://www.mediawiki.org/wiki/Category:Extensions_by_category extentions] to find one suitable for your wiki.',
 	'config-help' => 'help',
 	'config-nofile'     => 'File "$1" could not be found. Has it been deleted?',
 	'mainpagetext'      => "'''MediaWiki has been successfully installed.'''",
@@ -968,6 +969,7 @@ See also:
 * $2 is a link to the wiki.
 * $3 is a download link with attached download icon. The config-download-localsettings message will be used as the link text.',
 	'config-download-localsettings' => 'The link text used in the download link in config-install-done.',
+	'extension-link' => 'Link to the extentions manual to make the user aware of MediaWiki extentions. Link to the list of all the extensions available sorted by there category that the user can add to his wiki.',
 	'config-help' => 'This is used in help boxes.
 {{Identical|Help}}',
 	'config-nofile' => 'Used as failure message. Parameters:
