@@ -1345,7 +1345,10 @@ See also:
 # Special:PasswordReset
 'passwordreset' => 'Title of [[Special:PasswordReset]].
 {{Identical|Reset password}}',
-'passwordreset-text' => 'Text on [[Special:PasswordReset]]',
+'passwordreset-text-one' => 'Text on [[Special:PasswordReset]] that appears when there is only one way of resetting the password.',
+'passwordreset-text-many' => 'Text on [[Special:PasswordReset]] that appears when there are multiple ways of resetting the password.
+
+* $1 is the number of password reset routes.',
 'passwordreset-legend' => '{{Identical|Reset password}}',
 'passwordreset-disabled' => 'Used as error message in changing password.',
 'passwordreset-emaildisabled' => "Used as error message in changing password when site's email feature is disabled.",
@@ -8684,7 +8687,7 @@ See also:
 'specialpages-group-media' => '{{doc-special-group|like=[[Special:FilePath]], [[Special:MIMESearch]] and [[Special:Upload]]}}',
 'specialpages-group-users' => '{{doc-special-group|like=[[Special:ActiveUsers]], [[Special:Contributions]] and [[Special:ListGroupRights]]}}',
 'specialpages-group-highuse' => '{{doc-special-group|like=[[Special:MostCategories]], [[Special:MostLinked]] and [[Special:MostRevisions]]}}',
-'specialpages-group-pages' => '{{doc-special-group|like=[[Special:AllPages]], [[Special:PrefixIndex]], [[Special:Categories]], 
+'specialpages-group-pages' => '{{doc-special-group|like=[[Special:AllPages]], [[Special:PrefixIndex]], [[Special:Categories]],
 [[Special:Disambiguations]], etc}}',
 'specialpages-group-pagetools' => '{{doc-special-group|like=[[Special:MovePage]], [[Special:Undelete]], [[Special:WhatLinksHere]], [[Special:Export]] etc}}',
 'specialpages-group-wiki' => '{{doc-special-group|like=[[Special:Version]], [[Special:Statistics]], [[Special:LockDB]], etc}}',
