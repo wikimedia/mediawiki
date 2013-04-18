@@ -26,7 +26,6 @@ production.
   version of the Vector extension as this feature may conflict.
 * New version of Special:UserLogin form. It is opt-in for now, controlled by
   the $wgUseVFormUserLogin setting or a 'useNew' URL parameter trigger.
-* Added 'SpecialSearchResultsPrepend' and 'SpecialSearchResultsAppend' hooks.
 * (bug 23343) Implemented ability to apply IP blocks to the contents of X-Forwarded-For headers
   by adding a new configuration variable $wgApplyIpBlocksToXff (disabled by default).
 * The new hook 'APIGetPossibleErrors' to modify the list of possible errors was
