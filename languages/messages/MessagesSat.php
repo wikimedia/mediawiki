@@ -49,8 +49,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Ńelok laṛcaṛkoaḱ songkha uduḱme',
 'tog-oldsig' => 'Menaḱ signạtar',
 'tog-fancysig' => 'Signạcar do wikiṭesk hisạbte moneyemẽ (jahan acte hoyoḱ joṛao bạgikate)',
-'tog-externaleditor' => 'Etohoṕre bahre reaḱ sompadonićaḱ beohar hoyoḱma (khali sẽṛa beoharić lạgit́te, kompeuṭare asokae seṭing jạruṛa. [//www.mediawiki.org/wiki/manual:External_editors More information.])',
-'tog-externaldiff' => 'Etohoṕre bahre reaḱ sompadonićaḱ beohar hoyoḱma (khali sẽṛa beoharić lạgit́te, kompeuṭare asokae seṭing jạruṛa. [//www.mediawiki.org/wiki/manual:External_editors More information.])',
 'tog-showjumplinks' => '"Calaḱmẽ" beohar joṛao ehop hoyoḱma',
 'tog-uselivepreview' => 'Jewet́ ńeloḱ beoharme (JavaScript jaruṛ menaḱa)',
 'tog-forceeditsummary' => 'Khạli sompadon guṭkatha em oktere iń baḍae ocoyiń hoyoḱma',
@@ -736,9 +734,6 @@ Unuduḱ: '''({{int:cur}})''' = nahaḱ nãwã aroeko saõte tulạo, '''({{int:
 'powersearch-togglelabel' => 'Sendra',
 'powersearch-toggleall' => 'Sanamaḱ',
 'powersearch-togglenone' => 'Okaṭaḱ hõ baṅ',
-
-# Quickbar
-'qbsettings-none' => 'Okaṭaḱ hõ baṅ',
 
 # Preferences page
 'preferences' => 'Pạsindko',

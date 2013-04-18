@@ -615,7 +615,7 @@ Tu avissa trasè e scacchià 'na passuord nova. Ce quacchedun'otre ha fatte sta 
 Passuord temboranèe: $2',
 'passwordreset-emailsent' => "'N'e-mail pe arrecurdarte ha state mannate.",
 'passwordreset-emailsent-capture' => "'Na e-mail pe azzeramende d'a passuord ha state mannate, ca jè fatte vedè aqquà sotte.",
-'passwordreset-emailerror-capture' => "'Na e-mail de azzeramende d'a passuord ha state generate, ca jè fatte vedè aqquà sotte, ma 'u 'nvie a l'utende ha fallite: $1",
+'passwordreset-emailerror-capture' => "'Na e-mail de azzeramende d'a passuord ha state generate, ca jè fatte vedè aqquà sotte, ma 'u 'nvie a {{GENDER:$2|l'utende}} ha fallite: $1",
 
 # Special:ChangeEmail
 'changeemail' => "Cange 'u 'ndirizze e-mail",

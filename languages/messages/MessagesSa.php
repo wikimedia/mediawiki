@@ -308,8 +308,6 @@ $messages = array(
 'tog-shownumberswatching' => 'निरीक्षमाणानां योजकानां संख्या दर्श्यताम्',
 'tog-oldsig' => 'विद्यमानं हस्ताङ्कनम्:',
 'tog-fancysig' => 'हस्ताक्षराणि विकिपाठवत् सन्तु (स्वचालित-संबंधनेभ्यः रहितानि)।',
-'tog-externaleditor' => 'Use external editor by default (for experts only, needs special settings on your computer. [//www.mediawiki.org/wiki/Manual:External_editors More information.])',
-'tog-externaldiff' => 'अकथिते (बाइ डिफाल्ट् इति), बाह्य अंतरक्रमादेशं प्रयोजयतु (केवलेभ्यः निपुणेभ्यः, भवतः संगणके विशेषाः न्यासाः आवश्यकाः)।',
 'tog-showjumplinks' => '"इत्येतत् प्रति कूर्दयतु" इति संबंधनानि समर्थयतु।',
 'tog-uselivepreview' => 'संपादनेन सहैव प्राग्दृश्यं दर्शयतु (जावालिपिः अपेक्ष्यते) (प्रयोगात्मकम्)।',
 'tog-forceeditsummary' => 'सम्पादनसारांशः न ददामि चेत् तदा मां ज्ञापयतु।',
@@ -323,6 +321,7 @@ $messages = array(
 'tog-diffonly' => 'आवृत्तिसु अंतरं दर्शयन् पुरातनाः आवृत्तयः मा दर्शयतु।',
 'tog-showhiddencats' => 'निगूढाः वर्गाः दर्श्यन्ताम्',
 'tog-norollbackdiff' => 'पूर्णप्रतिगमने कृते मा दर्शयतु तद् अंतरम्।',
+'tog-useeditwarning' => 'सम्पादनानन्तरं रक्षणेन विना पृष्ठत्यागावसरे स्मार्यताम्',
 
 'underline-always' => 'सर्वदा',
 'underline-never' => 'कदापि न',
@@ -1039,6 +1038,8 @@ $2
 'defaultmessagetext' => 'सन्देशपाठं स्थिरयतु ।',
 'invalid-content-data' => 'अमान्यः सामग्रीदत्तांशः',
 'content-not-allowed-here' => '[[$2]] इति पृष्ठे "$1" सामग्री अनुमता नास्ति।',
+'editwarning-warning' => 'अस्मात् पृष्ठात् गमनेन अत्र भवता कृतानि परिवर्तनानि निष्फलानि भवेयुः ।
+भवता यदि प्रविष्टं तर्हि मम इष्टतमानि इत्यत्र अस्मिन् विभागे सम्पादनेन एषः प्रबोधः यथा न आगच्छेत् तथा कर्तुं शक्यते ।',
 
 # Content models
 'content-model-wikitext' => 'विकिपाठः',
@@ -1305,15 +1306,6 @@ You can still [$1 view this revision]",
 'searchdisabled' => '{{SITENAME}} अन्वेषणं निष्क्रियम्
 अश्मिन् समये भवान् गूगल माध्यमेन अन्वेषणं कर्तुं शक्नोति
 स्मरयतु यत् {{SITENAME}} इति स्थलस्य क्रमाङ्का नैव अद्यातना  इति सोच्यते।',
-
-# Quickbar
-'qbsettings' => 'शीघ्रपट',
-'qbsettings-none' => 'नास्ति',
-'qbsettings-fixedleft' => 'बामे स्थापितः',
-'qbsettings-fixedright' => 'दक्षिणे स्थापितः',
-'qbsettings-floatingleft' => 'वामप्लवनम् ।',
-'qbsettings-floatingright' => 'दक्षिणे प्लवनम् ।',
-'qbsettings-directionality' => 'निश्चितम् । ते भाषालिप्याः दिशात्मकतानुसारं भवति ।',
 
 # Preferences page
 'preferences' => 'इष्टतमानि',

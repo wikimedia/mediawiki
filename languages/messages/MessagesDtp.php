@@ -44,8 +44,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Pokitono ginumu do momomoguno minongintong',
 'tog-oldsig' => 'Sain poinsandad:',
 'tog-fancysig' => 'Pokitono sain sobaagi do tikwiki (ingaa oporian toput )',
-'tog-externaleditor' => 'Pomoguno pongigidit poinlabus sobaagi do pongoiso (montok di angasampin nopo, mongoguno do nuludan pointantu id kompiutonu. [//www.mediawiki.org/wiki/Manual:External_editors Lobi pomoilaan.])',
-'tog-externaldiff' => 'Pomoguno pongigidit poinlabus sobaagi do pongoiso (montok di angasampin nopo, mongoguno do nuludan pointantu id kompiutonu. [//www.mediawiki.org/wiki/Manual:External_editors Lobi pomoilaan.])',
 'tog-showjumplinks' => 'Pasagao "tumopik hilo" noputan awayaan',
 'tog-uselivepreview' => 'Momoguno pongingintong poimpasi (momoguno JawaSikrip) (pogumbalan)',
 'tog-forceeditsummary' => 'Posoroho oku no nung awu nosuangan kutak koinibaan niditan',
@@ -992,14 +990,6 @@ Umbalai momogonop it ihumonnu miampai do ''all:'' mooi do oihum ot oinsanan suan
 'searchdisabled' => 'Pogigihum maya{{SITENAME}} nopisok.
 Milo ko mogihum maya Googol do daamot.
 Imurai no do indik suang diti {{SITENAME}} nopo nga nokolipas.',
-
-# Quickbar
-'qbsettings' => 'Barposikap',
-'qbsettings-none' => 'Ingaa',
-'qbsettings-fixedleft' => 'Pogolibango',
-'qbsettings-fixedright' => 'Pawanano',
-'qbsettings-floatingleft' => 'Posoibaho gibang',
-'qbsettings-floatingright' => 'Posoibaho wanan',
 
 # Preferences page
 'preferences' => 'Pipilion',

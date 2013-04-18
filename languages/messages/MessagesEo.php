@@ -343,8 +343,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Montri la nombron da priatentaj uzantoj',
 'tog-oldsig' => 'Ekzistanta subskribo:',
 'tog-fancysig' => 'Trakti subskribon kiel vikitekston (sen aŭtomata ligo)',
-'tog-externaleditor' => 'Defaŭlte uzi eksteran tekstprilaborilon (nur por ekspertoj, ĉar tio necesigas specialajn agordojn en via komputilo. [//www.mediawiki.org/wiki/Manual:External_editors Pliaj informoj.])',
-'tog-externaldiff' => 'Defaŭlte uzi eksteran ŝanĝmontrilon (nur por ekspertoj, ĉar tio necesigas specialajn agordojn en via komputilo. [//www.mediawiki.org/wiki/Manual:External_editors Pliaj informoj.])',
 'tog-showjumplinks' => 'Ebligi alirligojn "salti al"
 <!-- Bonvolu kontroli ĉu ĝustas la traduko de : Enable "jump to" accessibility links -->',
 'tog-uselivepreview' => 'Uzi tujan antaŭrigardon (ĜavaSkripto) (Eksperimenta)',
@@ -359,6 +357,7 @@ $messages = array(
 'tog-diffonly' => 'Ne montri paĝan enhavon sub la ŝanĝoj',
 'tog-showhiddencats' => 'Montri kaŝitajn kategoriojn',
 'tog-norollbackdiff' => 'Preterlasi ŝanĝoelmontron post malfaro',
+'tog-useeditwarning' => 'Averti min kiam mi forlasas redaktan paĝon kun nekonservitaj ŝanĝoj',
 
 'underline-always' => 'Ĉiam',
 'underline-never' => 'Neniam',
@@ -1096,6 +1095,8 @@ Verŝajne ĝi estis forigita.',
 'content-failed-to-parse' => 'Oni malsukcesis analizi $2-entenon laŭ la $1-modelo: $3',
 'invalid-content-data' => 'Enhavo estas malvalida',
 'content-not-allowed-here' => 'Enhavo de $1 ne estas permesita en paĝo [[$2]]',
+'editwarning-warning' => 'Forlasante ĉi tiun paĝon kaŭzos al vi perdi iun ajn ŝanĝojn kiujn vi faris.
+Se vi ensalutas, vi povas malŝalti ĉi tiun averton en la sekcio "{{int:prefs-editing}}" de viaj preferoj.',
 
 # Content models
 'content-model-wikitext' => 'vikiteksto',
@@ -1379,15 +1380,6 @@ Provu prefiksi vian mendon kun ''all:'' por serĉi ĉiun enhavon (inkluzivante d
 'search-external' => 'Ekstera serĉo',
 'searchdisabled' => '<p>Oni provizore malŝaltis serĉadon per la plenteksta
 indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per <i>guglo</i> aŭ per <i>jahu!</i>:</p>',
-
-# Quickbar
-'qbsettings' => 'Preferoj pri ilaro',
-'qbsettings-none' => 'Neniu',
-'qbsettings-fixedleft' => 'Fiksiĝas maldekstre',
-'qbsettings-fixedright' => 'Fiksiĝas dekstre',
-'qbsettings-floatingleft' => 'Ŝvebas maldekstre',
-'qbsettings-floatingright' => 'Ŝvebas dekstre',
-'qbsettings-directionality' => 'Fiksita, laŭ la teksto-direkteco de via lingvo',
 
 # Preferences page
 'preferences' => 'Preferoj',
@@ -1929,7 +1921,6 @@ Por optimuma sekureco, img_auth.php estas malŝalta.',
 'http-read-error' => 'HTTP-legeraro.',
 'http-timed-out' => 'HTTP-peto eltempiĝis.',
 'http-curl-error' => 'Eraro venigante URL-on: $1',
-'http-host-unreachable' => 'URL-o ne estis atingebla.',
 'http-bad-status' => 'Estis problemo dum la HTTP-peto: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -2250,15 +2241,6 @@ Subtenataj {{PLURAL:$2|protokolo|protokoloj}}:: <code>$1</code> (ne aldonu ĉi t
 'listusers-submit' => 'Montri',
 'listusers-noresult' => 'Neniu uzanto trovita.',
 'listusers-blocked' => '(forbarita)',
-
-# Special:ActiveUsers
-'activeusers' => 'Listo de aktivaj uzantoj',
-'activeusers-intro' => 'Jen listo de uzantoj kiu faris iom da agoj dum la lastaj $1 {{PLURAL:$1|tago|tagoj}}.',
-'activeusers-count' => '$1 {{PLURAL:$1|redakto|redaktoj}} dum la {{PLURAL:$3|lasta tago|lastaj $3 tagoj}}',
-'activeusers-from' => 'Montri uzantojn ekde:',
-'activeusers-hidebots' => 'kaŝi robotojn',
-'activeusers-hidesysops' => 'Kaŝi administrantojn',
-'activeusers-noresult' => 'Neniuj uzantoj trovitaj.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Gruprajtoj de uzantoj',
@@ -3059,13 +3041,8 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 
 # Stylesheets
 'common.css' => '/* La jena CSS influos la aspekton de ĉiaj temoj. */',
-'standard.css' => '/* La jena CSS influos la paĝaspekton por uzantoj de la Klasika temo. */',
-'nostalgia.css' => '/* La jena CSS influos la paĝaspekton por uzantoj de la Nostalgia temo. */',
 'cologneblue.css' => '/* La jena CSS influos la paĝaspekton por uzantoj de la Kolonja Blua temo. */',
 'monobook.css' => '/* La jena CSS influos la paĝaspekton por uzantoj de la Libreja temo. */',
-'myskin.css' => '/* La jena CSS influos la paĝaspekton por uzantoj de la Miŝela temo. */',
-'chick.css' => '/* La jena CSS influos la paĝaspekton por uzantoj de la Kokida temo. */',
-'simple.css' => '/* La jena CSS influos la paĝaspekton por uzantoj de la Simpla temo. */',
 'modern.css' => '/* La jena CSS influos la paĝaspekton por uzantoj de la Moderna temo. */',
 'vector.css' => '/* La jena CSS influos la paĝaspekton por uzantoj de la Vektora temo. */',
 'print.css' => '/* La jena CSS influos la prezentadon de la presaĵo. */',
@@ -3078,13 +3055,8 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 
 # Scripts
 'common.js' => '/* La jena Ĝavaskripto ŝargiĝos por ĉiaj uzantoj ĉe ĉiu paĝoŝargado. */',
-'standard.js' => '/* La jena Ĝavaskripto ŝargiĝos por uzantoj de la Klasika temo. */',
-'nostalgia.js' => '/* La jena Ĝavaskripto ŝargiĝos por uzantoj de la Nostalgia temo. */',
 'cologneblue.js' => '/* La jena Ĝavaskripto ŝargiĝos por uzantoj de la Kolonja Blua temo. */',
 'monobook.js' => '/* La jena Ĝavaskripto ŝargiĝos por uzantoj de la Libreja temo. */',
-'myskin.js' => '/* La jena Ĝavaskripto ŝargiĝos por uzantoj de la Miŝela temo. */',
-'chick.js' => '/* La jena Ĝavaskripto ŝargiĝos por uzantoj de la Kokida temo. */',
-'simple.js' => '/* La jena Ĝavaskripto ŝargiĝos por uzantoj de la Simpla temo. */',
 'modern.js' => '/* La jena Ĝavaskripto ŝargiĝos por uzantoj de la Moderna temo. */',
 'vector.js' => '/* La jena Ĝavaskripto ŝargiĝos por uzantoj de la Vektora temo. */',
 'group-autoconfirmed.js' => '/* La jena Ĝavaskripto sole ŝargiĝos por auxtokonfirmataj uzantoj. */',
@@ -3162,13 +3134,8 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 'pageinfo-category-files' => 'Nombro de dosieroj',
 
 # Skin names
-'skinname-standard' => 'Klasiko',
-'skinname-nostalgia' => 'Nostalgio',
 'skinname-cologneblue' => 'Kolonja Bluo',
 'skinname-monobook' => 'Librejo',
-'skinname-myskin' => 'Miŝelo',
-'skinname-chick' => 'Kokido',
-'skinname-simple' => 'Simplo',
 'skinname-modern' => 'Moderno',
 'skinname-vector' => 'Vektoro',
 

@@ -66,9 +66,6 @@ $messages = array(
 'tog-shownumberswatching' => 'بۇ بەتنى كۆزىتىۋاتقان ئىشلەتكۈچى سانىنى كۆرسەت',
 'tog-oldsig' => 'نۆۋەتتىكى ئىمزا:',
 'tog-fancysig' => 'ئىمزاغا wiki تېكستى سۈپىتىدە مۇئامىلە قىل (ئۆزلۈكىدىن ئۇلانما ھاسىل بولمايدۇ)',
-'tog-externaleditor' => 'كۆڭۈلدىكى ئەھۋالدا سىرتقى تەھرىرلىگۈچ ئىشلىتىدۇ (ئالىي ئىشلەتكۈچىگە تەمىنلىنىدۇ، كومپيۇتېرىڭىزدا بىر قىسىم ئالاھىدە تەڭشەش ئېلىپ بېرىشىڭىز لازىم
-[//www.mediawiki.org/wiki/Manual:External_editors تېخىمۇ كۆپ ئۇچۇر.])',
-'tog-externaldiff' => 'كۆڭۈلدىكى ئەھۋالدا سىرتقى پەرق تەھلىلى ئىشلىتىدۇ (ئالىي ئىشلەتكۈچىگە تەمىنلىنىدۇ، كومپيۇتېرىڭىزدا بىر قىسىم ئالاھىدە تەڭشەش ئېلىپ بېرىشىڭىز لازىم. [//www.mediawiki.org/wiki/Manual:External_editors تېخىمۇ كۆپ ئۇچۇر.])',
 'tog-showjumplinks' => '"ئاتلا" زىيارەت ئۇلانمىسىنى قوزغات',
 'tog-uselivepreview' => 'رىئال ۋاقىتلىق ئالدىن كۆزىتىشنى ئىشلەت (JavaScript زۆرۈر) (سىناق)',
 'tog-forceeditsummary' => 'ئۈزۈندە كىرگۈزمىگەندە مېنى ئەسكەرت',
@@ -1156,15 +1153,6 @@ $1",
 'searchdisabled' => '{{SITENAME}} نىڭ ئىزدىشى چەكلەنگەن. سىز ھازىرچە Google ئىشلىتىپ ئىزدەپ تۇرۇڭ،.
 دىققەت ئۇلار ئىندېكسلىغان {{SITENAME}} مەزمۇنىنىڭ ۋاقتى ئۆتكەن بولۇشى مۇمكىن.',
 
-# Quickbar
-'qbsettings' => 'تېز يولباشچى ستونى',
-'qbsettings-none' => 'يوق',
-'qbsettings-fixedleft' => 'سول تەرەپ مۇقىم',
-'qbsettings-fixedright' => 'ئوڭ تەرەپ مۇقىم',
-'qbsettings-floatingleft' => 'سول تەرەپ لەيلىمە',
-'qbsettings-floatingright' => 'ئوڭ تەرەپ لەيلىمە',
-'qbsettings-directionality' => 'تىلىڭىزدىكى تېكىست ۋە قوليازمىنىڭ يۆنىلىشىگە ئاساسەن مۇقىملاشتۇرىدۇ.',
-
 # Preferences page
 'preferences' => 'مايىللىق',
 'mypreferences' => 'مايىللىق',
@@ -1726,7 +1714,6 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization',
 'http-read-error' => 'HTTP ئوقۇش خاتالىقى.',
 'http-timed-out' => 'HTTP ئىلتىماسى ۋاقىت ھالقىدى.',
 'http-curl-error' => 'URL ئاجراتقاندا خاتالىق كۆرۈلدى: $1',
-'http-host-unreachable' => 'URL غا ئۇلىشالمىدى.',
 'http-bad-status' => 'HTTP ئىلتىماس قىلغاندا مەسىلە كۆرۈلدى: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -2048,15 +2035,6 @@ URL نىڭ توغرىلىقى ۋە تور بېكەتنى زىيارەت قىلى
 'listusers-submit' => 'كۆرسەت',
 'listusers-noresult' => 'ئىشلەتكۈچى تېپىلمىدى.',
 'listusers-blocked' => '(چەكلەنگەن)',
-
-# Special:ActiveUsers
-'activeusers' => 'ئاكتىپ ئەزالار تىزىملىكى',
-'activeusers-intro' => 'بۇ يېقىنقى $1 {{PLURAL:$1| كۈن|كۈن}}دىكى مەشغۇلات قىلغان ئىشلەتكۈچىلەر تىزىملىكى.',
-'activeusers-count' => 'يېقىنقى {{PLURAL:$3|كۈن|$3 كۈن}}دىكى {{PLURAL:$1|مەشغۇلات}} قېتىم سانى $1',
-'activeusers-from' => 'باشلانغان ئىشلەتكۈچىنى كۆرسەت:',
-'activeusers-hidebots' => 'ماشىنا ئادەمنى يوشۇر',
-'activeusers-hidesysops' => 'باشقۇرغۇچىنى يوشۇر',
-'activeusers-noresult' => 'ئىشلەتكۈچى تېپىلمىدى.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'ئىشلەتكۈچى گۇرۇپپا ھوقۇقى',
@@ -2886,13 +2864,8 @@ $1',
 
 # Stylesheets
 'common.css' => '/* CSS placed here will be applied to all skins */',
-'standard.css' => '/* CSS placed here will affect users of the Standard skin */',
-'nostalgia.css' => '/* CSS placed here will affect users of the Nostalgia skin */',
 'cologneblue.css' => '/* CSS placed here will affect users of the Cologne Blue skin */',
 'monobook.css' => '/* CSS placed here will affect users of the Monobook skin */',
-'myskin.css' => '/* CSS placed here will affect users of the MySkin skin */',
-'chick.css' => '/* CSS placed here will affect users of the Chick skin */',
-'simple.css' => '/* CSS placed here will affect users of the Simple skin */',
 'modern.css' => '/* CSS placed here will affect users of the Modern skin */',
 'vector.css' => '/* CSS placed here will affect users of the Vector skin */',
 'print.css' => '/* CSS placed here will affect the print output */',
@@ -2904,13 +2877,8 @@ $1',
 
 # Scripts
 'common.js' => '/* Any JavaScript here will be loaded for all users on every page load. */',
-'standard.js' => '/* Any JavaScript here will be loaded for users using the Standard skin */',
-'nostalgia.js' => '/* Any JavaScript here will be loaded for users using the Nostalgia skin */',
 'cologneblue.js' => '/* Any JavaScript here will be loaded for users using the Cologne Blue skin */',
 'monobook.js' => '/* Any JavaScript here will be loaded for users using the MonoBook skin */',
-'myskin.js' => '/* Any JavaScript here will be loaded for users using the MySkin skin */',
-'chick.js' => '/* Any JavaScript here will be loaded for users using the Chick skin */',
-'simple.js' => '/* Any JavaScript here will be loaded for users using the Simple skin */',
 'modern.js' => '/* Any JavaScript here will be loaded for users using the Modern skin */',
 'vector.js' => '/* Any JavaScript here will be loaded for users using the Vector skin */',
 'group-autoconfirmed.js' => '/* Any JavaScript here will be loaded for autoconfirmed users only */',
@@ -2990,13 +2958,8 @@ $1',
 'pageinfo-category-files' => 'ھۆججەت سانى',
 
 # Skin names
-'skinname-standard' => 'Classic',
-'skinname-nostalgia' => 'Nostalgia',
 'skinname-cologneblue' => 'Cologne Blue',
 'skinname-monobook' => 'MonoBook',
-'skinname-myskin' => 'MySkin',
-'skinname-chick' => 'Chick',
-'skinname-simple' => 'Simple',
 'skinname-modern' => 'Modern',
 'skinname-vector' => 'Vector',
 
@@ -3095,8 +3058,6 @@ $1',
 
 /*
 Short names for language variants used for language conversion links.
-To disable showing a particular link, set it to 'disable', e.g.
-'variantname-zh-sg' => 'disable',
 Variants for Chinese language
 */
 'variantname-zh-hans' => 'hans',

@@ -224,10 +224,6 @@ $messages = array(
 'tog-shownumberswatching' => 'ווייזן דעם נומער פון בלאט אויפֿפאסערס',
 'tog-oldsig' => 'איצטיגער אונטערשריפֿט:',
 'tog-fancysig' => 'באַהאַנדלן  אונטערשריפט אַלס וויקיטעקסט (אָן אויטאמאטישן לינק)',
-'tog-externaleditor' => 'ניצן א דרויסנדיגן רעדאקטירער גרונטלעך (נאר פֿאר מומחים, דאס פֿאדערט באזונדערע קאמפיוטער שטעלונגען).
-[//www.mediawiki.org/wiki/Manual:External_editors ווײַטערע אינפֿארמאַציע.]',
-'tog-externaldiff' => 'ניצן א דרויסנדיגן פֿאַרגלײַכער גרונטלעך (נאר פֿאר מומחים, דאס פֿאדערט באזונדערע קאמפיוטער שטעלונגען)
-[//www.mediawiki.org/wiki/Manual:External_editors ווײַטערע אינפֿארמאַציע.]',
 'tog-showjumplinks' => 'באמעגלעך צוטריט לינקס פון "שפרינג צו"',
 'tog-uselivepreview' => 'באנוצט זיך מיט לייוו פאראויסדיגע ווייזונג (JavaScript) (עקספירענמעטל)',
 'tog-forceeditsummary' => 'ווארן מיך ווען איך לייג א ליידיג קורץ ווארט ענדערונג',
@@ -241,6 +237,7 @@ $messages = array(
 'tog-diffonly' => 'ווייז נישט אינהאלט אונטער די דיפערענץ',
 'tog-showhiddencats' => 'ווײַז באהאלטענע קאטעגאריעס',
 'tog-norollbackdiff' => 'היפט איבער ווײַזן אונטערשייד נאכן אויספֿירן א צוריקדריי',
+'tog-useeditwarning' => 'שטעלן א ווארענונג ווען איך לאז איבער א רעדאקטירונג בלאט מיט נישט אויפגעהיטענע ענדערונגען',
 
 'underline-always' => 'אייביג',
 'underline-never' => 'קיינמאל',
@@ -614,9 +611,15 @@ $2',
 'welcomecreation-msg' => "מ'האט געשאפן אייער קאנטע.
 פארגעסט נישט צו ענדערן אייערע [[Special:Preferences|{{SITENAME}} פרעפערענצן]].",
 'yourname' => 'באַניצער נאָמען:',
+'userlogin-yourname' => 'באַניצער נאָמען',
+'userlogin-yourname-ph' => 'גיט אריין אייער באניצער נאמען',
 'yourpassword' => 'פאסווארט',
+'userlogin-yourpassword' => 'פאַסווארט',
+'userlogin-yourpassword-ph' => 'אַרײַנגעבן אײַער פאַסווארט',
 'yourpasswordagain' => 'ווידער אריינקלאפן פאסווארט',
 'remembermypassword' => 'געדיינק מײַן אַרײַנלאגירן אויף דעם קאמפיוטער (ביז  $1 {{PLURAL:$1|טאָג|טעג}})',
+'userlogin-remembermypassword' => 'געדענק מיך',
+'userlogin-signwithsecure' => 'איינשרייבן מיט זיכערן סארווער',
 'securelogin-stick-https' => 'בלייַבן פארבונדן צו HTTPS נאָכן ארײַנלאָגירן',
 'yourdomainname' => 'אײַער געביט:',
 'password-change-forbidden' => 'איר קען נישט ענדערן פאסווערטער אויף דער וויקי.',
@@ -629,12 +632,16 @@ $2',
 'logout' => 'אַרױסלאָגירן',
 'userlogout' => 'אַרױסלאָגירן',
 'notloggedin' => 'נישט איינגעשריבן',
+'userlogin-noaccount' => 'איר האט נישט קיין קאנטע?',
+'userlogin-joinproject' => 'איינטרעטן ביי {{SITENAME}}',
 'nologin' => "איר האט נישט קיין קאנטע? '''$1'''.",
 'nologinlink' => 'שאַפֿן אַ קאנטע',
 'createaccount' => 'שאַפֿן אַ נײַע קאנטע',
 'gotaccount' => "האסטו שוין א קאנטע? '''$1'''.",
 'gotaccountlink' => 'אַרײַנלאגירן',
 'userlogin-resetlink' => 'פארגעסן אײַערע אַרײַנלאָגירן פרטים?',
+'helplogin-url' => 'Help:אריינלאגירן',
+'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|הילף מיט אריינלאגירן]]',
 'createaccountmail' => 'ניצן א פראוויזאריש פאסווארט און שיקן צום ע-פאסט אדרעס געצייכנט אונטן',
 'createaccountreason' => 'אורזאַך:',
 'badretype' => 'די פאסווערטער וואס איר האט אריינגעלייגט זענען נישט אייניג.',
@@ -737,6 +744,7 @@ $2',
 'passwordreset-text' => 'דערגאַנצט די פאָרעם צוריקצושטעלן אײַער פאַסווארט.',
 'passwordreset-legend' => 'צוריקשטעלן פאַסווארט',
 'passwordreset-disabled' => 'מען האט אומאַקטיוויטר צוריקשטעלן פאַסווערטער אויף דער וויקי.',
+'passwordreset-emaildisabled' => 'ע-פאסט דינסטן זענען געווארן אומאקטיווירט אויף דער דאזיקער וויקי.',
 'passwordreset-pretext' => '{{PLURAL:$1| | קלאַפט אַרײַן איינע פֿון די דאַטן אונטן}}',
 'passwordreset-username' => 'באַניצער נאָמען:',
 'passwordreset-domain' => 'דאמען:',
@@ -766,7 +774,7 @@ $2
 פראוויזארישער פּאַראָל: $2',
 'passwordreset-emailsent' => "מ'האט געשיקט א פאסווארט צוריקשטעלן ע-פּאָסט.",
 'passwordreset-emailsent-capture' => 'מען האט געשיקט א פאסווארט צוריקשטעלן בליצבריוו, וואס ווערט געוויזן אונטן.',
-'passwordreset-emailerror-capture' => 'מען האט געשאפן א פאסווארט צוריקשטעלן בליצבריוו, וואס ווערט געוויזן אונטן, אבער שיקן צום באניצער איז דורכגעפאלן: $1',
+'passwordreset-emailerror-capture' => 'מען האט געשאפן א פאסווארט צוריקשטעלן בליצבריוו, וואס ווערט געוויזן אונטן, אבער שיקן צום {{GENDER:$2|באניצער}}איז דורכגעפאלן: $1',
 
 # Special:ChangeEmail
 'changeemail' => 'ענדערן ע-פּאָסט אַדרעס',
@@ -987,6 +995,8 @@ $2
 'content-failed-to-parse' => 'פארזן $2 אינהאלט פאר $1 מאדעל דורכגעפאלן: $3',
 'invalid-content-data' => 'אומגילטיקע אינהאלט דאטן',
 'content-not-allowed-here' => '"$1" אינהאלט נישט דערלויבט אויף בלאט [[$2]]',
+'editwarning-warning' => 'איבערלאזן דעם בלאט קען גורם זײַן פֿארלירן אײַערע ענדערונגען.
+אויב איר זענט ארײַנלאגירט, קענט איר מבטל זײַן די דאזיגע ווארענונג אין דער "{{int:prefs-editing}}" אפטיילונג פון אײַערע פרעפערענצן.',
 
 # Content models
 'content-model-wikitext' => 'וויקיטעקסט',
@@ -1268,15 +1278,6 @@ $1",
 'searchdisabled' => "{{SITENAME}} זוך איז אָפאַקטיווירט.
 צווישנצײַט קענט איר זוכן מיט גוגל.
 געב אכט אז ס'איז מעגלעך אַז זייער אינדעקס פֿון {{SITENAME}} אינהאַלט איז אפשר פֿאַרעלטערט.",
-
-# Quickbar
-'qbsettings' => 'גיכפאַס',
-'qbsettings-none' => 'גארנישט',
-'qbsettings-fixedleft' => 'קבוע לינקס',
-'qbsettings-fixedright' => 'קבוע רעכטס',
-'qbsettings-floatingleft' => 'שווימנדיג לינקס',
-'qbsettings-floatingright' => 'שווימנדיג רעכטס',
-'qbsettings-directionality' => 'פֿעסט, אפהענגיק אויף דער שריפֿט ריכטונג פֿון אײַער שפראַך.',
 
 # Preferences page
 'preferences' => 'פרעפֿערענצן',
@@ -1774,7 +1775,6 @@ $1",
 'http-read-error' => 'HTTP לייענען גרײַז.',
 'http-timed-out' => 'HTTP בקשה אויסגעגאַנגען.',
 'http-curl-error' => 'גרײַז בײַם ברענגען URL: $1',
-'http-host-unreachable' => "מ'קען נישט דערגרייכן דעם URL",
 'http-bad-status' => "ס'איז געווען א פראבלעם ביים HTTP פֿאַרלאַנג: $1 $2",
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -3602,6 +3602,7 @@ $5
 'version-version' => '(ווערסיע $1)',
 'version-license' => 'ליצענץ',
 'version-poweredby-others' => 'אַנדערע',
+'version-credits-summary' => 'מיר ווילן אנערקענען די פֿאלגנדע מענטשן פֿאר זייער בײַשטײַערוג צו [[Special:Version|מעדיעוויקי]].',
 'version-software' => 'אינסטאַלירט ווייכוואַרג',
 'version-software-product' => 'פראדוקט',
 'version-software-version' => 'ווערסיע',
@@ -3700,6 +3701,8 @@ $5
 'htmlform-submit' => 'אײַנגעבן',
 'htmlform-reset' => 'צוריקשטעלן ענדערונגען',
 'htmlform-selectorother-other' => 'אַנדער',
+'htmlform-no' => 'ניין',
+'htmlform-yes' => 'יא',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 מיט פולן-טעקסט זוכן שטיץ',

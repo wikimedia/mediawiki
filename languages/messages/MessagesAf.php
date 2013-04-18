@@ -774,7 +774,7 @@ Meld asseblief aan en verander u wagwoord nou. As u dit nie versoek het nie, of 
 Tydelike wagwoord: $2',
 'passwordreset-emailsent' => "'n E-pos is gestuur om u wagwoord te herstel.",
 'passwordreset-emailsent-capture' => "'n E-pos vir die herstel van 'n wagwoord is gestuur. Dit word hieronder vertoon.",
-'passwordreset-emailerror-capture' => "'n E-pos vir die herstel van 'n wagwoord is saamgestel. Dit word hieronder vertoon. Die uitstuur daarvan het egter gefaal: $1",
+'passwordreset-emailerror-capture' => "'n E-pos vir die herstel van 'n wagwoord is saamgestel. Dit word hieronder vertoon. Die uitstuur daarvan na die {{GENDER:$2|gebruiker}} het egter gefaal: $1",
 
 # Special:ChangeEmail
 'changeemail' => 'Wysig E-posadres',

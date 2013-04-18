@@ -66,6 +66,7 @@ $messages = array(
 'tog-watchlisthidepatrolled' => 'Follee arraghyn er nyn scrutaghey er my rolley arrey',
 'tog-ccmeonemails' => 'Cur coip dou jeh dagh post-l verrym da ymmydeyr elley',
 'tog-showhiddencats' => 'Taishbyn ny ronnaghyn follit',
+'tog-useeditwarning' => 'Cur raaue dou my ta mee faagail duillag reaghey gyn sauail yn obbyr jeant aym',
 
 'underline-always' => 'Dagh keayrt',
 'underline-never' => 'Ny jean eh arragh',
@@ -500,6 +501,8 @@ Foddee shiu goll er ash as reaghey duillag t'ayn nish, ny [[Special:UserLogin|lo
 
 By chair dhyt smooinagh vel eh kiart goll er oai lesh reaghey yn duillag shoh.<br />
 Ta lioar ny scryssaghyn magh kiarit ayns shoh rere dty chaays hene:",
+'editwarning-warning' => "My faagys oo y duillag, hed caghlaaghyn erbee er coayl, foddee.
+My t'ou uss loggalt stiagh, foddee oo lhiettal y raaue shoh 'sy tosheeaghtyn ayd, 'sy rheynn \"Reaghey\".",
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Cha nod coontys y chroo',
@@ -593,9 +596,6 @@ My t'ou uss son ronsaghey dagh cooid (as shen goaill stiagh duillagyn resooney, 
 'powersearch-redir' => 'Cur aa-enmyssyn er y rolley',
 'powersearch-field' => 'Ronsee er son',
 'search-external' => 'Ronsaghey mooie',
-
-# Quickbar
-'qbsettings-none' => 'Veg',
 
 # Preferences page
 'preferences' => 'Tosheeaghtyn',

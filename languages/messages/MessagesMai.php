@@ -57,8 +57,6 @@ $messages = array(
 'tog-shownumberswatching' => 'ध्यान राखैबला प्रयोक्ताक संख्या',
 'tog-oldsig' => 'अखुनका दस्खत',
 'tog-fancysig' => 'हस्ताक्षरकें विकिटेक्सटक रूपमे देखू (स्वचालित श्रृंखला हीन)',
-'tog-externaleditor' => "↓पूर्वनिर्धारित रूपेँ बाह्य सम्पादक क' उपयोग करू (केवल विशेषज्ञसभक लेल, एकरा लेल संगणक पर विशेष सेटिंग चाही। [//www.mediawiki.org/wiki/Manual:External_editors आओर जानकारी।])",
-'tog-externaldiff' => 'पुरान संस्करणमे अंतर देखेबाक हेतु पूर्वनिविष्ट रूपमे बाहरक परिवर्तनक प्रयोग करू',
 'tog-showjumplinks' => 'करू "तड़पान" भेटैबला लिंक सभ',
 'tog-uselivepreview' => 'करू चल पूर्वावलोकन (जावास्क्रिप्ट चाही) (प्रायोगिक)',
 'tog-forceeditsummary' => 'हमरा सचेत करू जखन हम खाली सम्पादम सारांशमे जाइ',
@@ -1038,15 +1036,6 @@ $3 द्वारा देल कारण अछि ''$2''",
 अहाँक गूगलक माध्यमसँ ऐ बीच ताकि सकै छी।
 मोन राखू जे तकर विवरणी {{अन्तर्जाल}} सामिग्री समयातीत भऽ सकैए।',
 
-# Quickbar
-'qbsettings' => 'त्वरित दृश्य',
-'qbsettings-none' => 'कोनो नै',
-'qbsettings-fixedleft' => 'वाम कात सटल',
-'qbsettings-fixedright' => 'दहिन दिस सटल',
-'qbsettings-floatingleft' => 'वाम कात घुमैत',
-'qbsettings-floatingright' => 'दहिन कात घुमैत',
-'qbsettings-directionality' => 'कीलित, अहाँक भाषाक लिपि दिशा-निर्देशपर आधारित',
-
 # Preferences page
 'preferences' => 'विकल्प',
 'mypreferences' => 'खासमखास',
@@ -1554,7 +1543,6 @@ $1',
 'http-read-error' => 'परिसंविद पठन भ्रम',
 'http-timed-out' => 'परिसंविद आग्रह कालातीत',
 'http-curl-error' => 'भ्रम निकालैबला सार्वत्रिक विभव संकेत:$1',
-'http-host-unreachable' => 'सार्वत्रिक विभव संकेत नै पाबि सकल',
 'http-bad-status' => 'परिसंविद आग्रह काल एकटा समस्या छल: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -1859,15 +1847,6 @@ $1',
 'listusers-submit' => 'देखाउ',
 'listusers-noresult' => 'कोनो प्रयोक्ता नै',
 'listusers-blocked' => '(प्रतिबन्धित)',
-
-# Special:ActiveUsers
-'activeusers' => 'सक्रिय प्रयोक्ता सभक सूची',
-'activeusers-intro' => 'ई ओहेन प्रयोक्ता सभक सूची अछि जे पछिला $1 {{PLURAL:$1|दिन|दिन}} मे किछु सक्रियता देखेने छथि।',
-'activeusers-count' => '$1 {{PLURAL:$1|सम्पादन|सम्पादन सभ}} paChilaa {{PLURAL:$3|दिन|$3 दिन}}',
-'activeusers-from' => 'प्रयोक्ता प्रदर्शन प्रारम्भ भेल:',
-'activeusers-hidebots' => 'स्वचालन नुकाउ',
-'activeusers-hidesysops' => 'संचालक नुकाउ',
-'activeusers-noresult' => 'कोनो प्रयोक्ता नै भेटल',
 
 # Special:ListGroupRights
 'listgrouprights' => 'प्रयोक्ता संवर्ग अधिकार',
@@ -2679,9 +2658,6 @@ $1 एकर प्रतिबन्धक कारण अछि : "$2"',
 'pageinfo-authors' => 'भिन्न लेखक संख्या',
 
 # Skin names
-'skinname-standard' => 'प्राचीन',
-'skinname-nostalgia' => 'गामसँ प्रेम',
-'skinname-simple' => 'साधारण',
 'skinname-modern' => 'आधुनिक',
 'skinname-vector' => 'सदिश',
 
@@ -2770,8 +2746,6 @@ $1',
 
 /*
 Short names for language variants used for language conversion links.
-To disable showing a particular link, set it to 'disable', e.g.
-'variantname-zh-sg' => 'disable',
 Variants for Chinese language
 */
 'variantname-zh-cn' => 'cn',

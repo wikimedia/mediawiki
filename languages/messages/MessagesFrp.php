@@ -338,8 +338,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Montrar lo nombro d’utilisators que siuvont na pâge',
 'tog-oldsig' => 'Signatura ègzistenta :',
 'tog-fancysig' => 'Trètar la signatura coment de vouiquitèxto (sen lim ôtomatico)',
-'tog-externaleditor' => 'Empleyér per dèfôt un changior de tèxto de defôr (solament por los utilisators avanciês, at fôta d’una configuracion spèciâla sur voutron ordenator. [//www.mediawiki.org/wiki/Manual:External_editors Més d’enformacions.])',
-'tog-externaldiff' => 'Empleyér per dèfôt un comparator de defôr (solament por los utilisators avanciês, at fôta d’una configuracion spèciâla sur voutron ordenator. [//www.mediawiki.org/wiki/Manual:External_editors Més d’enformacions.])',
 'tog-showjumplinks' => 'Activar los lims d’accèssibilitât « {{int:jumpto}} »',
 'tog-uselivepreview' => 'Empleyér l’apèrçu rapido (at fôta de JavaScript) (èxpèrimentâl)',
 'tog-forceeditsummary' => 'Mè balyér na semonce quand j’é pas buchiê de rèsumâ de changement',
@@ -354,6 +352,7 @@ $messages = array(
 'tog-showhiddencats' => 'Montrar les catègories cachiêes',
 'tog-noconvertlink' => 'Dèsactivar la convèrsion des titros des lims',
 'tog-norollbackdiff' => 'Pas fâre vêre la dif pendent na rèvocacion',
+'tog-useeditwarning' => 'M’avèrtir quand quito una pâge de changement sen sôvar los changements',
 
 'underline-always' => 'Tojorn',
 'underline-never' => 'Jamés',
@@ -1114,6 +1113,8 @@ Semble que seye étâye suprimâye.',
 'content-failed-to-parse' => 'Falyita de l’analisa du contegnu de $2 por lo modèlo $1 : $3',
 'invalid-content-data' => 'Balyês du contegnu pas justes',
 'content-not-allowed-here' => 'Lo contegnu « $1 » est pas ôtorisâ sur la pâge [[$2]]',
+'editwarning-warning' => 'Quitar ceta pâge vos farat pèrdre tôs los changements que vos éd fêts.
+Se vos éte branchiê, vos pouede enlevar ceti avèrtissement dens la sèccion « Fenétra d’èdicion » de voutres prèferences.',
 
 # Content models
 'content-model-wikitext' => 'vouiquitèxto',
@@ -1402,15 +1403,6 @@ Vos pouede trovar més de dètalys sur lo [{{fullurl:{{#Special:Log}}/delete|pag
 'searchdisabled' => 'La rechèrche dessus {{SITENAME}} est dèsactivâye.
 Pendent cél temps, vos pouede fâre na rechèrche avouéc Google.
 Notâd que lor endèxacion du contegnu de {{SITENAME}} pôt pas étre a jorn.',
-
-# Quickbar
-'qbsettings' => 'Bârra rapida',
-'qbsettings-none' => 'Pas yona',
-'qbsettings-fixedleft' => 'Fix’a gôche',
-'qbsettings-fixedright' => 'Fix’a drêta',
-'qbsettings-floatingleft' => 'Fllotent’a gôche',
-'qbsettings-floatingright' => 'Fllotent’a drêta',
-'qbsettings-directionality' => 'Fixa, d’aprés la dirèccionalitât d’ècritura de voutra lengoua',
 
 # Preferences page
 'preferences' => 'Prèferences',
@@ -1980,7 +1972,6 @@ Por na sècuritât pèrfèta, img_auth.php est dèsactivâ.',
 'http-read-error' => 'Fôta de lèctura HTTP.',
 'http-timed-out' => 'La demanda HTTP at èxpirâ.',
 'http-curl-error' => 'Fôta pendent la rècupèracion de l’URL : $1',
-'http-host-unreachable' => 'Y at pas moyen d’avengiér l’URL.',
 'http-bad-status' => 'Y at avu un problèmo pendent la demanda HTTP : $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -3124,13 +3115,8 @@ Pèrmèt de rètablir la vèrsion devant et pués d’apondre una rêson dens la
 
 # Stylesheets
 'common.css' => '/* Lo code CSS betâ ique serat aplicâ a tôs los habelyâjos. */',
-'standard.css' => '/* Lo code CSS betâ ique afècterat los usanciérs de l’habelyâjo « Estandârd ». */',
-'nostalgia.css' => '/* Lo code CSS betâ ique afècterat los usanciérs de l’habelyâjo « Cafârd ». */',
 'cologneblue.css' => '/* Lo code CSS betâ ique afècterat los usanciérs de l’habelyâjo « Blu de Cologne ». */',
 'monobook.css' => '/* Lo code CSS betâ ique afècterat los usanciérs de l’habelyâjo « MonoBook ». */',
-'myskin.css' => '/* Lo code CSS betâ ique afècterat los usanciérs de l’habelyâjo « MonHabelyâjo ». */',
-'chick.css' => '/* Lo code CSS betâ ique afècterat los usanciérs de l’habelyâjo « Pugin ». */',
-'simple.css' => '/* Lo code CSS betâ ique afècterat los usanciérs de l’habelyâjo « Simplo ». */',
 'modern.css' => '/* Lo code CSS betâ ique afècterat los usanciérs de l’habelyâjo « Modèrno ». */',
 'vector.css' => '/* Lo code CSS betâ ique afècterat los usanciérs de l’habelyâjo « Vèctor ». */',
 'print.css' => '/* Lo code CSS betâ ique afècterat les emprèssions. */',
@@ -3143,13 +3129,8 @@ Pèrmèt de rètablir la vèrsion devant et pués d’apondre una rêson dens la
 
 # Scripts
 'common.js' => '/* Tot code JavaScript betâ ique serat chargiê per tôs los usanciérs avouéc châque chargement de pâge. */',
-'standard.js' => '/* Tot code JavaScript betâ ique serat chargiê per los usanciérs de l’habelyâjo « Estandârd ». */',
-'nostalgia.js' => '/* Tot code JavaScript betâ ique serat chargiê per los usanciérs de l’habelyâjo « Cafârd ». */',
 'cologneblue.js' => '/* Tot code JavaScript betâ ique serat chargiê per los usanciérs de l’habelyâjo « Blu de Cologne ». */',
 'monobook.js' => '/* Tot code JavaScript betâ ique serat chargiê per los usanciérs de l’habelyâjo « MonoBook ». */',
-'myskin.js' => '/* Tot code JavaScript betâ ique serat chargiê per los usanciérs de l’habelyâjo « MonHabelyâjo ». */',
-'chick.js' => '/* Tot code JavaScript betâ ique serat chargiê per los usanciérs de l’habelyâjo « Pugin ». */',
-'simple.js' => '/* Tot code JavaScript betâ ique serat chargiê per los usanciérs de l’habelyâjo « Simplo ». */',
 'modern.js' => '/* Tot code JavaScript betâ ique serat chargiê per los usanciérs de l’habelyâjo « Modèrno ». */',
 'vector.js' => '/* Tot code JavaScript betâ ique serat chargiê per los usanciérs de l’habelyâjo « Vèctor ». */',
 'group-autoconfirmed.js' => '/* Tot code JavaScript betâ ique serat chargiê ren que por los usanciérs encartâs. */',
@@ -3220,13 +3201,8 @@ O est probâblament diu a un lim de vers un seto de defôr qu’aparêt sur la l
 'pageinfo-protect-cascading-yes' => 'Ouè',
 
 # Skin names
-'skinname-standard' => 'Estandârd',
-'skinname-nostalgia' => 'Cafârd',
 'skinname-cologneblue' => 'Blu de Cologne',
 'skinname-monobook' => 'MonoBook',
-'skinname-myskin' => 'MonHabelyâjo',
-'skinname-chick' => 'Pugin',
-'skinname-simple' => 'Simplo',
 'skinname-modern' => 'Modèrno',
 'skinname-vector' => 'Vèctor',
 

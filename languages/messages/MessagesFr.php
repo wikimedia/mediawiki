@@ -949,7 +949,7 @@ $2
 Mot de passe temporaire : $2",
 'passwordreset-emailsent' => 'Un courriel de réinitialisation de mot de passe a été envoyé.',
 'passwordreset-emailsent-capture' => 'Un courriel de réinitialisation de mot de passe a été envoyé, qui est affiché ci-dessous.',
-'passwordreset-emailerror-capture' => "Un courriel de réinitialisation de mot de passe a été généré, qui est affiché ci-dessous, mais l'envoi à l'utilisateur a échoué : $1",
+'passwordreset-emailerror-capture' => "Un courriel de réinitialisation de mot de passe a été généré, qui est affiché ci-dessous, mais l'envoi à l'{{GENDER:$2|utilisateur}} a échoué : $1",
 
 # Special:ChangeEmail
 'changeemail' => "Changer l'adresse de courriel",

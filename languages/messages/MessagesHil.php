@@ -48,8 +48,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Ipakita ang numero sang mga nagalantaw nga manug-gamit',
 'tog-oldsig' => 'Nagapabilin nga pirma:',
 'tog-fancysig' => 'Tratoha ang pirma bilang wikitext (wala sang tabid nga dayon)',
-'tog-externaleditor' => 'Gamiton dayon ang pang-guha nga manug-ilis (para sa mga sagad lamang, nagakinahanglan sang espesyal nga pagkay-o sa imo computer. [//www.mediawiki.org/wiki/Manual:External_editors Mas madamo pa nga impormasyon.])',
-'tog-externaldiff' => 'Gamiton dayon ang pang-guha nga diff (para sa mga sagad lamang, nagakinahanglan sang espesyal nga pagkay-o sa imo computer. [//www.mediawiki.org/wiki/Manual:External_editors Mas madamo pa nga impormasyon.])',
 'tog-showjumplinks' => 'Sugtan ang "maglumpat sa" nga mga tabid sang paalagyan',
 'tog-uselivepreview' => 'Gamiton ang preview nga live (nagakinahanglan sang JavaScript) (experimentohanon)',
 'tog-forceeditsummary' => 'Sugidi ako kon magasulod ako sa blanko nga kabilogan sang pag-ilis',
@@ -1109,15 +1107,6 @@ Testingan mo i-prefiks ang imo pamangkot upod sang ''tanan:'' para makita mo ang
 'searchdisabled' => 'Ang pagpangita sa {{SITENAME}} gin-untat.
 Mahimo ka nga magpangita gamit ang Google sa sini nga tion.
 Tandai nga ang ila nga palasulundan sang mga unod sang {{SITENAME}} mahimo nga madaan na.',
-
-# Quickbar
-'qbsettings' => 'Bar nga mahapos',
-'qbsettings-none' => 'Wala',
-'qbsettings-fixedleft' => 'Gintadlong sa wala',
-'qbsettings-fixedright' => 'Gintadlong sa too',
-'qbsettings-floatingleft' => 'Nagalutaw sa wala',
-'qbsettings-floatingright' => 'Nagalutaw sa too',
-'qbsettings-directionality' => 'Indi na maliwat, depende sa direksyon sang iskrip sang imo lenggwahe',
 
 # Preferences page
 'preferences' => 'Mga Ginabasehan',

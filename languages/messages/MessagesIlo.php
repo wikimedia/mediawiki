@@ -65,8 +65,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Ipakita ti bilang dagiti agbuybuya nga agar-aramat',
 'tog-oldsig' => 'Ti adda a pirma:',
 'tog-fancysig' => 'Tratuen ti pirma a kas wikitext (nga awan ti automatiko a panagsilpo)',
-'tog-externaleditor' => 'Isigud ti panag-usar iti ruar a pnag-urnos (para dagiti eksperto laeng, masapul ti nangruna a kasasaad a panagikabil idiay kompiutermo. [//www.mediawiki.org/wiki/Manual:External_editors Adu pay a pakaammo.])',
-'tog-externaldiff' => 'Isigud ti panag-usar iti ruar a  sabali (para dagiti eksperto laeng, masapul ti nangruna a kasasaad a panagikabil idiay kompiutermo. [//www.mediawiki.org/wiki/Manual:External_editors Adu pay a pakaammo.])',
 'tog-showjumplinks' => 'Pakabaelan a "lumaktaw kadagiti" naipalaka a pagserkan a silpo',
 'tog-uselivepreview' => 'Usaren ti agdama a panagpadas (masapul ti JavaScript) (eksperimento)',
 'tog-forceeditsummary' => 'Pakaammuannak no sumrek ti blanko a pakabuklan ti panag-urnos',
@@ -80,6 +78,7 @@ $messages = array(
 'tog-diffonly' => 'Saan nga iparang ti linaon ti panid dita baba dagiti pagiddiatan',
 'tog-showhiddencats' => 'Ipakita dagiti nailemmeng a kategoria',
 'tog-norollbackdiff' => 'Laksiden ti paggiddiatan kalpasan ti panagaramid ti panagisubli',
+'tog-useeditwarning' => 'Pakaunaannak no pumanawak ti pagurnosan a panid nga adda ti saan a naidulin a sinuksukatan',
 
 'underline-always' => 'Kanayon',
 'underline-never' => 'Saan uray kaanoman',
@@ -839,6 +838,8 @@ Adda met daytoyen.',
 'content-failed-to-parse' => 'Napaay a nausig ti $2 a linaon para iti $1 a modelo: $3',
 'invalid-content-data' => 'Imbalido a datos ti linaon',
 'content-not-allowed-here' => 'Ti "$1" a linaon ket saan a maipalubos idiay [[$2]] a panid',
+'editwarning-warning' => 'Ti ipapanaw ti daytoy a panid ket makapataud ti panakapukaw kadagiti amiaman a binalbaliwam.
+No nakastrekka, mabalinmo nga ibaldado daytoy a ballaag idiay "Panagurnos" a paset kadagiti kakaykayatam.',
 
 # Content models
 'content-model-wikitext' => 'wikitext',
@@ -1126,15 +1127,6 @@ Padasem a  pasarunuan ti panagbiruk mo ti ''all:'' tapno birukem amin a nagyan (
 'searchdisabled' => 'Ti panagbiruk iti {{SITENAME}} ket nabaldado.
 Mabalin mo ti agbiruk idiay Google tattan.
 Laglagipem laeng a dagiti pagsurotan nagyan ti {{SITENAME}} ket baka baak.',
-
-# Quickbar
-'qbsettings' => 'Quickbar',
-'qbsettings-none' => 'Awan',
-'qbsettings-fixedleft' => 'Agyan latta iti kanigid',
-'qbsettings-fixedright' => 'Agyan latta iti kanawan',
-'qbsettings-floatingleft' => 'Tumpaw ti kanigid',
-'qbsettings-floatingright' => 'Tumpaw ti kanawan',
-'qbsettings-directionality' => 'Nasimpa, gapu laeng ti papanan ti panagsurat ti pagsasaom',
 
 # Preferences page
 'preferences' => 'Kakaykayatan',

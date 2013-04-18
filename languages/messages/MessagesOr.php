@@ -1,5 +1,5 @@
 <?php
-/** Oriya (ଓଡ଼ିଆ)
+/** Oriya (ଓଡ଼ିଆ)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -286,8 +286,6 @@ $messages = array(
 'tog-shownumberswatching' => 'ଦେଖୁଥିବା ବ୍ୟବହାରକାରୀଙ୍କ ସଂଖ୍ୟା ଦେଖାଇବେ',
 'tog-oldsig' => 'ଏବେ ଥିବା ନାମ:',
 'tog-fancysig' => 'ଦସ୍ତଖତକୁ ଉଇକିଟେକ୍ସଟ ଭାବରେ ଗଣିବେ (ଆପେଆପେ ଥିବା ଲିଙ୍କ ବିନା)',
-'tog-externaleditor' => 'ବାହାର ସମ୍ପାଦକଟି ଆପଣାଛାଏଁ ବ୍ୟବହାର କରିବେ (କେବଳ ପଟୁ ସଭ୍ୟଙ୍କ ପାଇଁ, ଏଥି ନିମନ୍ତେ ଆପଣଙ୍କ କମ୍ପୁଟରରେ ବିଶେଷ ସଜାଣି ଲୋଡ଼ା । [//www.mediawiki.org/wiki/Manual:External_editors ଅଧିକ ସୂଚନା])',
-'tog-externaldiff' => 'ବାହାର ବାଛିବା (external diff) ଆପଣାଛାଏଁ ବ୍ୟବହାର କରିବେ (କେବଳ ପଟୁ ସଭ୍ୟଙ୍କ ପାଇଁ, ଏଥି ନିମନ୍ତେ ଆପଣଙ୍କ କମ୍ପୁଟରରେ ବିଶେଷ ସଜାଣି ଲୋଡ଼ା । [//www.mediawiki.org/wiki/Manual:External_editors ଅଧିକ ସୂଚନା])',
 'tog-showjumplinks' => '"ଡେଇଁଯିବେ" ଲିଙ୍କସବୁକୁ ସଚଳ କରିବେ',
 'tog-uselivepreview' => 'ସାଥେ ସାଥେ ଚାଲିଥିବା ଦେଖଣା ବ୍ୟବହାର କରିବେ (ଜାଭାସ୍କ୍ରିପ୍ଟ ଲୋଡ଼ା)',
 'tog-forceeditsummary' => 'ଖାଲି ସମ୍ପାଦନା ସାରକଥାକୁ ଯିବା ବେଳେ ମୋତେ ଜଣାଇବେ',
@@ -301,6 +299,7 @@ $messages = array(
 'tog-diffonly' => 'ତୁଳନା ତଳେ ପୃଷ୍ଠାର ଭିତର ଭାଗ ଦେଖାନ୍ତୁ ନାହିଁ',
 'tog-showhiddencats' => 'ଲୁଚାଯାଇଥିବା ଶ୍ରେଣୀଗୁଡ଼ିକ ଦେଖାଇବେ',
 'tog-norollbackdiff' => 'ରୋଲବ୍ୟାକ କଲାପରେ ତୁଳନା ଦେଖାନ୍ତୁ ନାହିଁ',
+'tog-useeditwarning' => 'ଯେତେବେଳେ ମୁଁ ଗୋଟିଏ ସାଇତାଯାଇନଥିବା ପୃଷ୍ଠାକୁ ବନ୍ଦ କରିଦିଏ ମୋତେ ଚେତାବନୀ ଦେବେ',
 
 'underline-always' => 'ସବୁବେଳେ',
 'underline-never' => 'କେବେନୁହେଁ',
@@ -1053,6 +1052,8 @@ $1 ଦ୍ଵାରା ପ୍ରତିରୋଧ କରାଯାଇଛି
 'content-failed-to-parse' => '$1 ପ୍ରକାର ପାଇଁ $2 ଲେଖାକୁ ବର୍ଣ୍ଣନା କରିପାରିଲା ନାହିଁ: $3',
 'invalid-content-data' => 'ଅବୈଧ ଆଧାର ତଥ୍ୟ',
 'content-not-allowed-here' => '"$1" ବିଷୟଗୁଡିକ [[$2]]ପୃଷ୍ଠାରେ ରହିପାରିବ ନାହିଁ',
+'editwarning-warning' => 'ଏହି ପୃଷ୍ଠାକୁ ଛାଡ଼ି ଚାଲିଗଲେ ହୁଏ ତ ଆପଣ କରିଥିବା କିଛି ସମ୍ପାଦନା ହରାଇ ପାରନ୍ତି ।
+ଯଦି ଆପଣ ଲଗ ଇନ କରିଥାନ୍ତି ତେବେ ଆପଣଙ୍କ ପସନ୍ଦର "ସମ୍ପାଦନା" ଭାଗରେ ଏହି ଚେତାବନୀଟିକୁ ଅଚଳ କରିପାରିବେ ।',
 
 # Content models
 'content-model-wikitext' => 'ଉଇକିଟେକ୍ସଟ',
@@ -1339,15 +1340,6 @@ $1",
 'searchdisabled' => '{{SITENAME}} ଖୋଜା ଅଚଳ କରାଗଲା ।
 ଆପଣ ଏହି ଭିତରେ ଗୁଗଲ ଦେଖିପାରନ୍ତି ।
 ଜାଣିରଖନ୍ତୁ ଯେ {{SITENAME}}ର ବିଷୟ ସୂଚି ପୁରାତନ ହୋଇଥାଇପାରେ ।',
-
-# Quickbar
-'qbsettings' => 'ସହଳ ପଟି (Quickbar)',
-'qbsettings-none' => 'କିଛି ନାହିଁ',
-'qbsettings-fixedleft' => 'ବାମକୁ ଥୟ କରାଗଲା',
-'qbsettings-fixedright' => 'ଡାହାଣକୁ ଥୟ କରାଗଲା',
-'qbsettings-floatingleft' => 'ବାମରେ ଭାସନ୍ତା',
-'qbsettings-floatingright' => 'ଡାହାଣରେ ଭାସନ୍ତା',
-'qbsettings-directionality' => 'ଆପଣଙ୍କ ଭାଷାର ବାମ-ଡାହାଣ ଲିଖନ ଶୈଳୀ ଅନୁସାରେ ସଜାଡ଼ି ଦିଆଗଲା',
 
 # Preferences page
 'preferences' => 'ପସନ୍ଦ',
@@ -1903,7 +1895,6 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization ଦେଖନ୍ତୁ 
 'http-read-error' => 'HTTP ପଢ଼ିବା ଭୁଲ ।',
 'http-timed-out' => 'HTTP ଅନୁରୋଧ ମିଆଦ ପୁରିଗଲା ।',
 'http-curl-error' => '$1 URL କୁ ପାଇବାରେ ବିଫଳ',
-'http-host-unreachable' => 'URLଟି ପାଇଲୁ ନାହିଁ ।',
 'http-bad-status' => 'HTTP ଅନୁରୋଧ ବେଳେ କିଛି ଅସୁବିଧା ହେଲା : $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>

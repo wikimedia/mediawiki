@@ -295,8 +295,6 @@ $messages = array(
 'tog-shownumberswatching' => "Rikuchiy hayk'a watiqaq ruraqkuna",
 'tog-oldsig' => "Kachkaqña silq'uy:",
 'tog-fancysig' => "Silq'uyta wiki qillqa hinata llamk'achiy (mana kikinmanta t'inkichaq silq'uy)",
-'tog-externaleditor' => "Kikinmanta hawa llamk'apunata llamk'achiy (kamayuqkunallapaq, antañiqiqniykipi sapaq allinkachinakuna kananmi. [//www.mediawiki.org/wiki/Manual:External_editors Astawan ñawiriy.])",
-'tog-externaldiff' => "Kikinmanta hawa ''diff'' (wakin kay) nisqata llamk'achiy (kamayuqkunallapaq, antañiqiqniykipi sapaq allinkachinakuna kananmi. [//www.mediawiki.org/wiki/Manual:External_editors Astawan ñawiriy.])",
 'tog-showjumplinks' => "«Chayman phinkiy» aypanalla t'inkikunata saqillay",
 'tog-uselivepreview' => "''Live preview'' nisqa ñawpaq qhawayta llamk'achiy (JavaScript) (llamiy aknaraq)",
 'tog-forceeditsummary' => "Ch'usaq llamk'apuy waqaychasqa kachkaptinqa ch'itiyay.",
@@ -311,6 +309,7 @@ $messages = array(
 'tog-showhiddencats' => 'Pakasqa katiguriyakunata rikuchiy',
 'tog-noconvertlink' => "T'inki suti t'ikrayman ama niy",
 'tog-norollbackdiff' => 'Ruraqpa hukchasqankunata kutichispa ama wakin kayta willaychu',
+'tog-useeditwarning' => "Yuyampaway p'anqata saqiptiy manaraq rurarqusqay hukchasqakunata waqaychaspay.",
 
 'underline-always' => "Hayk'appas",
 'underline-never' => "Mana hayk'appas",
@@ -1018,6 +1017,8 @@ Kachkañam.",
 'defaultmessagetext' => 'Ñawpaq qillqa',
 'invalid-content-data' => 'Samiqmanta willaykunaqa manam allinchu',
 'content-not-allowed-here' => '"$1" nisqa samiqqa [[$2]] sutiyuq p\'anqapi manam saqillasqachu',
+'editwarning-warning' => "Kay p'anqata saqispaykiqa lliw rurarqusqayki hukchasqakunatachá chinkachiykiman.
+Yaykusqa kaspaykiqa, kay yuyampayta hark'ayta atinki allinkachinaykikunapi \"Llamk'apusqa\" rakipi.",
 
 # Content models
 'content-model-wikitext' => 'wiki qillqa',
@@ -1297,15 +1298,6 @@ Imaymanata [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} qulluy ha
 'powersearch-togglenone' => 'Mana imapas',
 'search-external' => 'Hawapi maskay',
 'searchdisabled' => "{{SITENAME}} nisqapi maskaymanqa ama nisqam. Hinachkaptinqa, maskariy google nisqawan icha huk hawa maskanakunawan, ichataq yuyariy, {{SITENAME}}manta hallch'asqankunaqa manañachá musuqllachu.",
-
-# Quickbar
-'qbsettings' => 'Utqaytawna ("Quickbar") allinkachinakuna',
-'qbsettings-none' => 'Mana imapas',
-'qbsettings-fixedleft' => "Lluq'iman watay",
-'qbsettings-fixedright' => 'Pañaman watay',
-'qbsettings-floatingleft' => "Lluq'iman tuytuy",
-'qbsettings-floatingright' => 'Pañaman tuytuy',
-'qbsettings-directionality' => 'Watasqa, rimayniykip qillqa puririyninmanta wachariq',
 
 # Preferences page
 'preferences' => 'Allinkachinakuna',
@@ -1834,7 +1826,6 @@ Lliwmanta aswan alliku kanapaqqa, img_auth.php manam atinchu.',
 'http-read-error' => 'HTTP ñawiriy pantasqa.',
 'http-timed-out' => "HTTP mañakuypa mit'anqa lluqsikusqañam.",
 'http-curl-error' => 'URL apamuypi pantasqa: $1',
-'http-host-unreachable' => 'Manam aypanichu URL-ta.',
 'http-bad-status' => 'HTTP mañakuypi sasachakuymi tukukurqan: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -2927,26 +2918,16 @@ Tukuy hawa wikimanta chaskisqakunaqa [[Special:Log/import|hawamanta chaskiy hall
 
 # Stylesheets
 'common.css' => "/* Churamusqa CSS chantakunaqa tukuy qarakunapim llamk'anqa */",
-'standard.css' => "/* Churamusqa CSS chantakunaqa ''Standard skin'' nisqa qarata llamk'achiq ruraqkunapaq llamk'anqa */",
-'nostalgia.css' => "/* Churamusqa CSS chantakunaqa ''Nostalgia skin'' nisqa qarata llamk'achiq ruraqkunapaq llamk'anqa */",
 'cologneblue.css' => "/* Churamusqa CSS chantakunaqa ''Cologne Blue skin'' nisqa qarata llamk'achiq ruraqkunapaq llamk'anqa */",
 'monobook.css' => '/* Kayman churasqa CSS nisqaqa Monobook qaratam hukchanqa tukuy internet tiyanapaq */',
-'myskin.css' => "/* Churamusqa CSS chantakunaqa ''MySkin'' nisqa qarata llamk'achiq ruraqkunapaq llamk'anqa */",
-'chick.css' => "/* Churamusqa CSS chantakunaqa ''Chick skin'' nisqa qarata llamk'achiq ruraqkunapaq llamk'anqa */",
-'simple.css' => "/* Churamusqa CSS chantakunaqa ''Simple skin'' nisqa qarata llamk'achiq ruraqkunapaq llamk'anqa */",
 'modern.css' => "/* Churamusqa CSS chantakunaqa ''Modern skin'' nisqa qarata llamk'achiq ruraqkunapaq llamk'anqa */",
 'print.css' => "/* Churamusqa CSS chantakunaqa ch'ipachinap rikch'akuynintam hukchanqa */",
 'handheld.css' => "/* Churamusqa CSS chantakunaqa makiwan hap'isqa qarapi tiksisqa \$wgHandheldStyle nisqapi allichasqa antakunap llamk'aynintam hukchanqa */",
 
 # Scripts
 'common.js' => "/* Ima kaypi kaq JavaScript qillqapas tukuy ruraqkunapaq tukuy p'anqakunap tukuy chaqnankunapi chaqnamusqa kanqa. */",
-'standard.js' => "/* Ima kaypi qillqamusqa JavaScript nisqa wakichi qillqapas ''Standard skin'' nisqa sapsi qarata llamk'achiq ruraqkunapaq chaqnasqa kanqa */",
-'nostalgia.js' => "/* Ima kaypi qillqamusqa JavaScript nisqa wakichi qillqapas ''Nostalgia skin'' nisqa qarata llamk'achiq ruraqkunapaq chaqnasqa kanqa */",
 'cologneblue.js' => "/* Ima kaypi qillqamusqa JavaScript nisqa wakichi qillqapas ''Cologne Blue skin'' nisqa qarata llamk'achiq ruraqkunapaq chaqnasqa kanqa */",
 'monobook.js' => "/* Ima kaypi qillqamusqa JavaScript nisqa wakichi qillqapas MonoBook nisqata llamk'achiq ruraqkunapaq chaqnasqa kanqa */",
-'myskin.js' => "/* Ima kaypi qillqamusqa JavaScript nisqa wakichi qillqapas ''MySkin'' nisqa qarata llamk'achiq ruraqkunapaq chaqnasqa kanqa */",
-'chick.js' => "/* Ima kaypi qillqamusqa JavaScript nisqa wakichi qillqapas ''Chick skin'' nisqa qarata llamk'achiq ruraqkunapaq chaqnasqa kanqa */",
-'simple.js' => "/* Ima kaypi qillqamusqa JavaScript nisqa wakichi qillqapas ''Simple skin'' nisqa qarata llamk'achiq ruraqkunapaq chaqnasqa kanqa */",
 'modern.js' => "/* Ima kaypi qillqamusqa JavaScript nisqa wakichi qillqapas ''Modern skin'' nisqa qarata llamk'achiq ruraqkunapaq chaqnasqa kanqa */",
 
 # Metadata

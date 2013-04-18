@@ -303,8 +303,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Ցույց տալ էջ հսկող մասնակիցների թիվը',
 'tog-oldsig' => 'Ներկայիս ստորագրությունն է․',
 'tog-fancysig' => 'Ստորագրությունը վիքիտեքստի տեսքով (առանց ավտոմատ հղման)',
-'tog-externaleditor' => 'Օգտագործել արտաքին խմբագրիչ ըստ լռության (պահանջում է հատուկ նախընտրություններ ձեր համակարգչում)',
-'tog-externaldiff' => 'Օգտագործել տարբերակների համեմատման արտաքին ծրագիր ըստ լռության (պահանջում է հատուկ նախընտրություններ ձեր համակարգչում)',
 'tog-showjumplinks' => 'Միացնել «անցնել դեպի» օգնական հղումները',
 'tog-uselivepreview' => 'Օգտագործել ուղիղ նախադիտում (JavaScript) (Փորձնական)',
 'tog-forceeditsummary' => 'Նախազգուշացնել խմբագրման ամփոփումը դատարկ թողնելու դեպքում',
@@ -318,6 +316,7 @@ $messages = array(
 'tog-diffonly' => 'Չցուցադրել էջի պարունակությունը տարբերությունների ներքևից',
 'tog-showhiddencats' => 'Ցուցադրել թաքնված կատեգորիաները',
 'tog-norollbackdiff' => 'Չցուցադրել տարբերությունները հետ գլորելուց հետո',
+'tog-useeditwarning' => 'Զգուշացնել ինձ, երբ ես լքում եմ խմբագրման էջը առանց կատարած փոփոխությունները հիշելու։',
 
 'underline-always' => 'Միշտ',
 'underline-never' => 'Երբեք',
@@ -1004,6 +1003,8 @@ $2',
 'edit-conflict' => 'Խմբագրման ընհարում։',
 'edit-no-change' => 'Ձեր խմբագրումը անտեսվել է, քանի որ ոչ մի փոփոխություն չի կատարվել տեքստի մեջ։',
 'defaultmessagetext' => 'Լռելյան տեքստը',
+'editwarning-warning' => 'Այս էջը լքելով դուք կարող եք կորցնել ձեր կատարած փոփոխությունները։
+Եթե դուք գրանցված եք համակարգում, կարող եք անջատել այս նախազգուշացումը ձեր նախընրությունների «{{int:prefs-editing}}» բաժնում։',
 
 # Content models
 'content-model-wikitext' => 'վիքիտեքստ',
@@ -1180,14 +1181,6 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'powersearch-togglenone' => 'Ոչ մեկը',
 'search-external' => 'Արտաքին որոնում',
 'searchdisabled' => '{{SITENAME}} կայքի ներքին որոնումը անջատված է։ Դուք կարող եք որոնել կայքի պարունակությունը արտաքին որոնման շարժիչներով (Google, Yahoo...), սակայն, ի նկատի ունեցեք, որ կայքի իրենց ինդեքսները կարող են հնացած լինել։',
-
-# Quickbar
-'qbsettings' => 'Արագ անցման վահանակ',
-'qbsettings-none' => 'Չցուցադրել',
-'qbsettings-fixedleft' => 'Ձախից անշարժ',
-'qbsettings-fixedright' => 'Աջից անշարժ',
-'qbsettings-floatingleft' => 'Ձախից լողացող',
-'qbsettings-floatingright' => 'Աջից լողացող',
 
 # Preferences page
 'preferences' => 'Նախընտրություններ',
@@ -1754,10 +1747,6 @@ $1-ը հղվել է $2 ից',
 'listusers-submit' => 'Ցուցադրել',
 'listusers-noresult' => 'Այդպիսի մասնակիցներ չգտնվեցին։',
 'listusers-blocked' => '(արգելափակված)',
-
-# Special:ActiveUsers
-'activeusers' => 'Ակտիվ մասնակիցների ցանկ',
-'activeusers-noresult' => 'Այդպիսի մասնակիցներ չեն գտնվել։',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(անդամների ցանկ)',
@@ -2440,13 +2429,8 @@ Please visit [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and 
 'pageinfo-protect-cascading-yes' => 'Այո',
 
 # Skin names
-'skinname-standard' => 'Դասական',
-'skinname-nostalgia' => 'Հայրենաբաղձություն',
 'skinname-cologneblue' => 'Քյոլնի թախիծ',
 'skinname-monobook' => 'ՄիաԳիրք',
-'skinname-myskin' => 'ԻմՏեսք',
-'skinname-chick' => 'Ծիտ',
-'skinname-simple' => 'Պարզ',
 'skinname-modern' => 'Մոդերն',
 'skinname-vector' => 'Սովորական',
 

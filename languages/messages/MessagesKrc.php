@@ -98,8 +98,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Бетни, кёзде тургъан тизмелерине къошханланы санын кёргюз',
 'tog-oldsig' => 'Бусагъатдагъы къол салыннган:',
 'tog-fancysig' => 'Энчи вики-тексти къол салыуну (автомат джибериусюз)',
-'tog-externaleditor' => 'Тынгылау бла тыш редакторну хайырландырыу (къуру усталагъа, компьютерни энчи джарашдырылыуу керекди; [//www.mediawiki.org/wiki/Manual:External_editors толуракъ])',
-'tog-externaldiff' => 'Версияланы тенглешдириучу тыш программа хайырландырыу  (къуру усталагъа, компьютерни энчи джарашдырылыуу керекди; [//www.mediawiki.org/wiki/Manual:External_editors толуракъ])',
 'tog-showjumplinks' => '«Бар» болушлукъ джибериуню джандыр',
 'tog-uselivepreview' => 'Терк ал къарауну хайырландыр (JavaScript, экспериментал халда)',
 'tog-forceeditsummary' => 'Тюрлендириуню ачыкълау тизгини бош къалса, билдир',
@@ -113,6 +111,7 @@ $messages = array(
 'tog-diffonly' => 'Версия тенглешдириуню тюбю бла бетни ичиндегисин кёргюзме',
 'tog-showhiddencats' => 'Джашыртын категорияланы кёргюз',
 'tog-norollbackdiff' => 'Къайтарыудан сора версияланы башхалыкъларын кёргюзме',
+'tog-useeditwarning' => 'Тюрлендириулени сакълатмай редакторлау бетден кетген сагъатымда билдир',
 
 'underline-always' => 'Хаманда',
 'underline-never' => 'Бирзаманда да',
@@ -806,6 +805,8 @@ $2',
 'content-failed-to-parse' => '$2 контент $1 типге келишмейди: $3',
 'invalid-content-data' => 'Джаламагъан билгиле',
 'content-not-allowed-here' => '[[$2]] бетни ичинде "$1" контент джарамайды',
+'editwarning-warning' => 'Башха бетге кёчсегиз, этген тюрлениулеригиз тас болургъа боллукъдула.
+Системада регистрацияны ётген эсегиз, бу билдириуню джарашдырыуларыгъызны «Тюрлендириу» деген бёлюмюнде джукълатыргъа боллукъсуз.',
 
 # Content models
 'content-model-wikitext' => 'вики-текст',
@@ -1088,15 +1089,6 @@ $1",
 'powersearch-togglenone' => 'Бири да',
 'search-external' => 'Тыш излеу',
 'searchdisabled' => '{{SITENAME}} сайтда излеу талай заманнга тохтатылгъанды. Бусагъатда Google бла хайырланыб {{SITENAME}} ичинде излеу этерге боллукъсуз. Излеу сайтлада индекслери бир кесек эски болургъа боллугъун унутмагъыз.',
-
-# Quickbar
-'qbsettings' => 'Джюрютюуню панели',
-'qbsettings-none' => 'Кёргюзтме',
-'qbsettings-fixedleft' => 'Солу къатды',
-'qbsettings-fixedright' => 'Онгу къатды',
-'qbsettings-floatingleft' => 'Солгъа джюзеди',
-'qbsettings-floatingright' => 'Оннга джюзеди',
-'qbsettings-directionality' => 'Тилигизни джазмасыны онг/сол таба джазылгъанына кёре бегитилибди',
 
 # Preferences page
 'preferences' => 'Джарашдырыула',
@@ -1609,7 +1601,6 @@ CGI тамалында ишлерге эмда <code>img_auth</code> бла иш
 'http-read-error' => 'HTTP окъууну халаты.',
 'http-timed-out' => 'HTTP-сорууну сакълау заман ётдю.',
 'http-curl-error' => 'Бу URL-гъа сорууну халаты: $1',
-'http-host-unreachable' => 'URL-ге джетелмеди',
 'http-bad-status' => 'HTTP-соруу ишлеген заманында проблема чыкъгъанды: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -2705,13 +2696,8 @@ MediaWiki локализациясына юлюш къошаргъа излей 
 'pageinfo-protect-cascading-yes' => 'Хоу',
 
 # Skin names
-'skinname-standard' => 'Стандарт',
-'skinname-nostalgia' => 'Ностальгия',
 'skinname-cologneblue' => 'Кёльн такъылыкъ',
 'skinname-monobook' => 'Моно-китаб',
-'skinname-myskin' => 'Меники',
-'skinname-chick' => 'Шик',
-'skinname-simple' => 'Бош',
 'skinname-modern' => 'Бусагъатдагъы',
 'skinname-vector' => 'Вектор',
 

@@ -162,8 +162,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Aazahl Benutzer aazeige, wo ne Syten am Aaluege sy (i den Artikelsyte, i de «letschten Änderigen» und i der Beobachtigslischte)',
 'tog-oldsig' => 'Vorschau vu dr Unterschrift:',
 'tog-fancysig' => 'Signatur as Wikitext behandle (ohni automatischi Vergleichig)',
-'tog-externaleditor' => 'Externe Editor als Standard bruche (nume fir Experte, doderzue brucht s speziälli Yystellige uf em Computer. [//www.mediawiki.org/wiki/Manual:External_editors Wyteri Informatione doderzue.])',
-'tog-externaldiff' => 'Extern Programm fir Versionsunterschid als Standard bruche (nume fir Experte, doderzue brucht s speziälli Yystellige uf em Computer. [//www.mediawiki.org/wiki/Manual:External_editors Wyteri Informatione doderzue.])',
 'tog-showjumplinks' => '«Wächsle-zu»-Links ermügleche',
 'tog-uselivepreview' => 'Live-Vorschau bruche (JavaScript) (experimentell)',
 'tog-forceeditsummary' => 'Sag mer s, wänn i s Zämmefassigsfeld läär loss',
@@ -178,6 +176,7 @@ $messages = array(
 'tog-showhiddencats' => 'Zeig di versteckte Kategorie',
 'tog-noconvertlink' => 'Konvertierig vum Titel deaktiviere',
 'tog-norollbackdiff' => 'Unterschid noch em Zrucksetze unterdrucke',
+'tog-useeditwarning' => 'Warn mi, wänn I ne Syte verloss mit Bearbeitige, wu nonig gspycheret sin',
 
 'underline-always' => 'immer',
 'underline-never' => 'nie',
@@ -893,6 +892,8 @@ Si isch schyns glescht wore.',
 'content-failed-to-parse' => 'Parse vum Inhalt $2 fir Modell $1 fählgschlaa: $3',
 'invalid-content-data' => 'Uugiltigi Inhaltsdate',
 'content-not-allowed-here' => 'Dr Inhalt „$1“ isch uf dr Syte [[$2]] nit erlaubt',
+'editwarning-warning' => 'Wänn Du die Syte verlosch, cha s syy, ass Du alli Bearbeitige verliersch, wu Du do dra gmacht hesch.
+Wänn Du aagmäldet bisch, chasch s Anzeige vu däre Warnig im „{{int:prefs-editing}}“-Beryych vu Dyyne Yystelligen abstelle.',
 
 # Content models
 'content-model-wikitext' => 'Wikitext',
@@ -1169,15 +1170,6 @@ Einzelheite chasch im [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}
 'powersearch-togglenone' => 'Keini',
 'search-external' => 'Externi Suech',
 'searchdisabled' => 'D {{SITENAME}}-Suech isch deaktiviert. Du chasch mit Google sueche, s cha aber syy ass dr Suechindex vu Google fir {{SITENAME}} veraltet isch.',
-
-# Quickbar
-'qbsettings' => 'Syteleischte',
-'qbsettings-none' => 'Keini',
-'qbsettings-fixedleft' => 'Links, fescht',
-'qbsettings-fixedright' => 'Rächts, fescht',
-'qbsettings-floatingleft' => 'Links, in dr Schwebi',
-'qbsettings-floatingright' => 'Rächts, in dr Schwebi',
-'qbsettings-directionality' => 'Fescht, abhängig vu dr Schrybrichtig vu dr gwehlte Sproch',
 
 # Preferences page
 'preferences' => 'Yystellige',
@@ -1717,7 +1709,6 @@ Us Sicherheitsgrinde isch img_auth.php deaktiviert.',
 'http-read-error' => 'Fähler bim Läse vu HTTP.',
 'http-timed-out' => 'Uuszyt bim HTTP-Versuech.',
 'http-curl-error' => 'Fähler bim Ufsueche vu dr URL: $1',
-'http-host-unreachable' => 'URL isch nit z verwitsche',
 'http-bad-status' => 'Bi dr HTTP-Aafrog isch e Fähler ufdrätte: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -2028,15 +2019,6 @@ Lueg au d Lischt vu dr [[Special:WantedCategories|gwinschte Kategorie]].',
 'listusers-submit' => 'Zeig',
 'listusers-noresult' => 'Kei Benutzer gfunde.',
 'listusers-blocked' => '(gsperrt)',
-
-# Special:ActiveUsers
-'activeusers' => 'Lischt vu dr aktive Benutzer',
-'activeusers-intro' => 'Des isch e Lischt vu Benutzer, wu irgedebis bearbeitet hän {{PLURAL:$1|am letschte Tag|in dr letschte $1 Täg}}.',
-'activeusers-count' => '$1 {{PLURAL:$1|Bearbeitig|Bearbeitige}} {{PLURAL:$3|am letschte Tag|in dr letschte $3 Täg}}',
-'activeusers-from' => 'Zeig Benutzer ab:',
-'activeusers-hidebots' => 'Bötli uusblände',
-'activeusers-hidesysops' => 'Ammanne (Administratore) uusblände',
-'activeusers-noresult' => 'Kei Benutzer gfunde.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Benutzergruppe-Rächt',

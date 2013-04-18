@@ -883,7 +883,7 @@ Du bör logga in och välja ett nytt lösenord nu. Om någon annan gjorde denna 
 Tillfälligt lösenord: $2',
 'passwordreset-emailsent' => 'En lösenordsåterställning via e-post har skickats.',
 'passwordreset-emailsent-capture' => 'En lösenordsåterställning via e-post har skickats, som visas nedan.',
-'passwordreset-emailerror-capture' => 'En lösenordsåterställning via e-post har skapats, som visas nedan, men det gick inte att skicka den till användaren: $1',
+'passwordreset-emailerror-capture' => 'En lösenordsåterställning via e-post har skapats, som visas nedan, men det gick inte att skicka den till {{GENDER:$2|användaren}}: $1',
 
 # Special:ChangeEmail
 'changeemail' => 'Ändra e-postadress',

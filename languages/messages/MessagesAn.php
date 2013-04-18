@@ -161,8 +161,6 @@ $messages = array(
 'tog-shownumberswatching' => "Amostrar o numero d'usuarios que cosiran un articlo",
 'tog-oldsig' => 'Sinyadura actual',
 'tog-fancysig' => 'Tratar as sinyaduras como wikitexto (sin de vinclo automatico)',
-'tog-externaleditor' => "Fer servir l'editor externo por defecto (nomás ta espiertos, cal que faiga achustes especials en o suyo ordenador.  [//www.mediawiki.org/wiki/Manual:External_editors Mas información.])",
-'tog-externaldiff' => 'Fer servir o visualizador de diferencias externo por defecto (nomás ta expertos, cal que faiga achustes especials en o suyo ordenador.  [//www.mediawiki.org/wiki/Manual:External_editors Mas información.])',
 'tog-showjumplinks' => 'Activar vinclos d\'accesibilidat "blincar enta"',
 'tog-uselivepreview' => 'Activar previsualización automatica (cal JavaScript) (Esperimental)',
 'tog-forceeditsummary' => 'Avisar-me quan o campo de resumen siga buedo.',
@@ -177,6 +175,7 @@ $messages = array(
 'tog-showhiddencats' => 'Amostrar categorías amagatas',
 'tog-noconvertlink' => 'Desactivar a conversión de titol de vinclo',
 'tog-norollbackdiff' => 'No amostrar as diferencias dimpués de revertir',
+'tog-useeditwarning' => "Alvertir-me quan salga d'una pachina d'edición sin alzar os cambios",
 
 'underline-always' => 'Siempre',
 'underline-never' => 'Nunca',
@@ -840,6 +839,7 @@ Pareix que la hesen borrau.",
 'edit-no-change' => "S'ha ignorato a suya edición, pos no s'ha feito garra cambeo ta o texto.",
 'edit-already-exists' => "No s'ha puesto creyar una pachina nueva.
 Ya existe.",
+'editwarning-warning' => "Si sale d'ista pachina perderá totz os cambios que haiga feito. Si tiene una cuenta d'usuario, puet eliminar ista alvertencia en a sección «Caixa d'edición» d'as suyas preferencies.",
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Pare cuenta: Ista pachina tiene masiadas cridas ta funcions de preproceso (parser functions) costosas.
@@ -1100,15 +1100,6 @@ Asegure-se que iste cambio no trencará a continidat de l'historial d'a pachina.
 'powersearch-togglenone' => 'Garra',
 'search-external' => 'Busca externa',
 'searchdisabled' => 'A busca en {{SITENAME}} ye temporalment desactivata. Entremistanto, puede mirar en {{SITENAME}} fendo servir buscadors externos, pero pare cuenta que os suyos endices de {{SITENAME}} puede no estar esviellatos.',
-
-# Quickbar
-'qbsettings' => 'Preferencias de "Quickbar"',
-'qbsettings-none' => 'Garra',
-'qbsettings-fixedleft' => 'Fixa a la zurda',
-'qbsettings-fixedright' => 'Fixa a la dreita',
-'qbsettings-floatingleft' => 'Flotant a la zurda',
-'qbsettings-floatingright' => 'Flotant a la dreita',
-'qbsettings-directionality' => "Fixato, pendendo en a direccionalidat d'o suyo script y o suyo luengache",
 
 # Preferences page
 'preferences' => 'Preferencias',
@@ -1646,7 +1637,6 @@ Por seguridat, s'ha desactivau img_auth.php.",
 'http-read-error' => 'Error de lectura HTTP.',
 'http-timed-out' => 'A requesta HTTP ha circumducito.',
 'http-curl-error' => 'Error en recuperar a URL: $1',
-'http-host-unreachable' => "No s'ha puesto acceder t'a URL.",
 'http-bad-status' => 'Ha habiu un problema en a requesta HTTP: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -1947,15 +1937,6 @@ Protocolos suportados: <code>$1</code> (no los adhiba en a suya busca).',
 'listusers-submit' => 'Amostrar',
 'listusers-noresult' => "No s'ha trobato ixe usuario.",
 'listusers-blocked' => '({{GENDER:$1|bloqueyato|bloqueyata}})',
-
-# Special:ActiveUsers
-'activeusers' => "Lista d'usuarios activos",
-'activeusers-intro' => "Ista ye una lista d'usuarios que han teniu bella actividat en os zaguers $1 {{PLURAL:$1|diya|diyas}}.",
-'activeusers-count' => '$1 {{PLURAL:$1|edición|edicions}} en os zaguers {{PLURAL:$3|diya|$3 diyas}}',
-'activeusers-from' => "Amostrar nombres d'usuario que prencipien por:",
-'activeusers-hidebots' => 'Amagar robots',
-'activeusers-hidesysops' => 'Amagar administradors',
-'activeusers-noresult' => "No s'han trobato usuarios.",
 
 # Special:ListGroupRights
 'listgrouprights' => "Dreitos d'a colla d'usuarios",
@@ -2718,13 +2699,8 @@ Puede veyer-ne, manimenos, o codigo fuent.',
 
 # Stylesheets
 'common.css' => '/* Os estilos CSS definius aquí aplicarán a todas as apariencias (skins) */',
-'standard.css' => "/* Os estilos CSS colocaus aquí s'aplicarán ta totz os usuarios que faigan servir l'apariencia Standard */",
-'nostalgia.css' => "/* Os estilos CSS colocaus aquí s'aplicarán ta totz os usuarios que faigan servir l'apariencia Nostalgia */",
 'cologneblue.css' => "/* Os estilos CSS colocaus aquí s'aplicarán ta totz os usuarios que faigan servir l'apariencia Cologne Blue */",
 'monobook.css' => "/* Os estilos CSS colocaus aquí s'aplicarán ta totz os usuarios que faigan servir l'apariencia Monobook */",
-'myskin.css' => "/* Os estilos CSS colocaus aquí s'aplicarán ta totz os usuarios que que faigan servir l'apariencia MySkin */",
-'chick.css' => "/* Os estilos CSS colocaus aquí s'aplicarán ta totz os usuarios que faigan servir l'apariencia Chick */",
-'simple.css' => "/* Os estilos CSS colocaus aquí s'aplicarán ta totz os usuarios que faigan servir l'apariencia Simpla */",
 'modern.css' => "/* Os estilos CSS colocaus aquí s'aplicarán ta totz os usuarios que faigan servir l'apariencia Modern */",
 'vector.css' => "/* Os estilos CSS colocaus aquí s'aplicarán ta totz os usuarios que faigan servir l'apariencia Vector */",
 'print.css' => '/* Os estilos CSS colocaus aquí afectarán a la impresión */',
@@ -2737,13 +2713,8 @@ Puede veyer-ne, manimenos, o codigo fuent.',
 
 # Scripts
 'common.js' => '/* Qualsiquier codigo Javascript escrito aquí se cargará ta totz os usuarios en cada carga de pachina */',
-'standard.js' => "/* Qualsiquier codigo Javascript escrito aquí se cargará ta totz os usuarios que faigan servir l'apariencia Estandar */",
-'nostalgia.js' => "/* Qualsiquier codigo Javascript escrito aquí se cargará ta totz os usuarios que faigan servir l'apariencia Nostalgia. */",
 'cologneblue.js' => "/* Qualsiquier codigo Javascript escrito aquí se cargará ta totz os usuarios que faigan servir l'apariencia Colonia azul */",
 'monobook.js' => "/* O codigo Javascript que se meta aquí será cargau por os usuarios faigan servir l'apariencia MonoBook */",
-'myskin.js' => "/* Qualsiquier codigo Javascript escrito aquí se cargará ta totz os usuarios que faigan servir l'apariencia MySkin */",
-'chick.js' => "/* Qualsiquier codigo Javascript escrito aquí se cargará ta totz os usuarios que faigan servir l'apariencia Chick */",
-'simple.js' => "/* Qualsiquier codigo Javascript escrito aquí se cargará ta totz os usuarios que faigan servir l'apariencia Simple */",
 'modern.js' => "/* O codigo Javascript que se meta aquí será cargau por os usuarios faigan servir l'apariencia Modern */",
 'vector.js' => '/* Qualsiquier codigo Javascript escrito aquí se cargará ta totz os usuarios que usen a piel Vector */',
 'group-autoconfirmed.js' => '/* Qualsiquier codigo Javascript escrito aquí se cargará nomás ta os usuarios autoconfirmatos */',
@@ -2783,13 +2754,8 @@ Puede veyer-ne, manimenos, o codigo fuent.',
 'pageinfo-authors' => "Numero d'autors diferents",
 
 # Skin names
-'skinname-standard' => 'Clasica (Classic)',
-'skinname-nostalgia' => 'Recosiros (Nostalgia)',
 'skinname-cologneblue' => 'Colonia Azul (Cologne Blue)',
 'skinname-monobook' => 'MonoBook',
-'skinname-myskin' => 'A mía aparencia (MySkin)',
-'skinname-chick' => 'Chick',
-'skinname-simple' => 'Simpla (Simple)',
 'skinname-modern' => 'Moderna',
 'skinname-vector' => 'Vector',
 

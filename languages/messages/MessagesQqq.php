@@ -1110,8 +1110,8 @@ It is also used on the top of the page for logged out users, where it appears ne
 'gotaccountlink' => 'Text of the link to the log in form. Before that link, the message {{msg-mw|Gotaccount}} appears.
 {{Identical|Log in}}',
 'userlogin-resetlink' => 'Used on the login page.',
-'helplogin-url' => 'Used as name of the page that provides information about logging into the wiki.
-"Help" is the namespace name and should not be translated.
+'helplogin-url' => '{{doc-important|Do not translate the namespace name <code>Help</code>.}}
+Used as name of the page that provides information about logging into the wiki.
 
 Used as a link target in the message {{msg-mw|Userlogin-helplink}}.',
 'userlogin-helplink' => '{{doc-important|Do not change <code><nowiki>{{MediaWiki:helplogin-url}}</nowiki></code>.}}
@@ -1287,8 +1287,9 @@ See also:
 See also:
 * {{msg-mw|Passwordreset-emailsent}}
 * {{msg-mw|Passwordreset-emailerror-capture}}',
-'passwordreset-emailerror-capture' => 'Error message displayed in [[Special:PasswordReset]] when sending an e-mail fails. Parameters:
+'passwordreset-emailerror-capture' => 'Error message displayed in [[Special:PasswordReset]] when sending an email fails. Parameters:
 * $1 - error message
+* $2 - username, used for GENDER
 See also:
 * {{msg-mw|Passwordreset-emailsent}}
 * {{msg-mw|Passwordreset-emailsent-capture}}',

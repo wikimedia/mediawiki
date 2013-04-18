@@ -1,5 +1,5 @@
 <?php
-/** Assamese (অসমীয়া)
+/** Assamese (অসমীয়া)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -212,8 +212,6 @@ $messages = array(
 'tog-shownumberswatching' => 'লক্ষ্য কৰি থকা সদস্য সমূহৰ সংখ্যা দেখুৱাওক',
 'tog-oldsig' => 'বৰ্তমানৰ স্বাক্ষৰ:',
 'tog-fancysig' => 'স্বাক্ষৰ ৱিকিটেক্সট হিচাপে ব্যৱহাৰ কৰক (স্বয়ংক্ৰিয় সংযোগ অবিহনে)',
-'tog-externaleditor' => 'ডিফ’ল্ট ভাবে বাহ্যিক সম্পাদন-সঁজুলি ব্যৱহাৰ কৰক (দক্ষ জনৰ বাবেহে, আপোনাৰ কম্পিউটাৰত বিশেষ ব্যৱস্থা থাকিব লাগিব । [//www.mediawiki.org/wiki/Manual:External_editors সবিশেষ ।])',
-'tog-externaldiff' => 'ডিফ’ল্ট ভাবে বাহ্যিক তফাৎ (diff) ব্যৱহাৰ কৰক (দক্ষ জনৰ বাবেহে, আপোনাৰ কম্পিউটাৰত বিশেষ ব্যৱস্থা থাকিব লাগিব । [//www.mediawiki.org/wiki/Manual:External_editors সবিশেষ ।])',
 'tog-showjumplinks' => '"জঁপিয়াই যাওক" সংযোগ সক্ৰিয় কৰক',
 'tog-uselivepreview' => 'সম্পাদনাৰ লগে লগে খচৰা দেখুৱাওক (জাভাস্ক্ৰিপ্টৰ প্ৰয়োজন) (পৰীক্ষামূলক)',
 'tog-forceeditsummary' => 'সম্পাদনাৰ সাৰাংশ নিদিলে মোক জনাব',
@@ -227,6 +225,7 @@ $messages = array(
 'tog-diffonly' => 'পার্থক্যৰ তলত পৃষ্ঠাৰ বিষয়বস্তু নেদেখুৱাব',
 'tog-showhiddencats' => 'নিহিত শ্ৰেণী সমূহ দেখুৱাওক',
 'tog-norollbackdiff' => 'পূৰ্বৱত কৰা পাছত পাৰ্থক্য নেদেখুৱাব',
+'tog-useeditwarning' => 'সালসলনি সংৰক্ষণ নকৰাকৈ সম্পাদনা পৃষ্ঠা ত্যাগৰ সময়ত মোক সাৱধান কৰক',
 
 'underline-always' => 'সদায়',
 'underline-never' => 'কেতিয়াও নহয়',
@@ -966,6 +965,7 @@ $1ৰ দ্বাৰা এই অৱৰোধ কৰা হৈছে ।
 'content-failed-to-parse' => '$1 মডেলৰ বাবে $2ৰ তথ্য নিকা কৰিব পৰা নগ’ল: $3',
 'invalid-content-data' => 'অবৈধ সমল তথ্য',
 'content-not-allowed-here' => '[[$2]] পৃষ্ঠাত "$1" সমল অনুমোদিত নহয়',
+'editwarning-warning' => 'এই পৃষ্ঠাটো এৰিলে আপুনি কৰা পৰিবৰ্তনসমূহ হেৰাব পাৰে। যদি আপুনি প্ৰৱেশ কৰা অৱস্থাত আছে, আপুনি এই সতৰ্কবাৰ্তাক আপোনাৰ পছন্দসমূহৰ "সম্পাদনা" অংশত অসামৰ্থবান কৰিব পাৰিব।',
 
 # Content models
 'content-model-wikitext' => 'ৱিকিপাঠ্য',
@@ -1255,15 +1255,6 @@ $1",
 'searchdisabled' => '{{SITENAME}} ত অনুসন্ধান কৰা সাময়িক ভাবে নিষ্ক্ৰিয় কৰা হৈছে।
 তেতিয়ালৈকে গুগলত অনুসন্ধান কৰক।
 মনত ৰাখিব যে তেঁওলোকৰ {{SITENAME}}ৰ ইণ্ডেক্স পুৰণি হব পাৰে।',
-
-# Quickbar
-'qbsettings' => 'শীঘ্ৰদণ্ডিকা',
-'qbsettings-none' => 'একেবাৰে নহয়',
-'qbsettings-fixedleft' => 'বাঁওফাল স্থিৰ',
-'qbsettings-fixedright' => 'সোঁফাল স্থিৰ',
-'qbsettings-floatingleft' => 'বাঁওফাল অস্থিৰ',
-'qbsettings-floatingright' => 'সোঁফাল অস্থিৰ',
-'qbsettings-directionality' => 'আপোনাৰ ভাষাৰ আৰু লিপিৰ দিশৰ ওপৰত নিৰ্ভৰ কৰি ঠিক কৰা হ’ল',
 
 # Preferences page
 'preferences' => 'পছন্দসমূহ',
@@ -1816,7 +1807,6 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization চাওক।",
 'http-read-error' => 'HTTP পঠন ত্ৰুটি ।',
 'http-timed-out' => 'HTTP অনুৰোধৰ সময় পাৰ হৈছে ।',
 'http-curl-error' => 'URL অনাত ত্ৰুটি হৈছে: $1',
-'http-host-unreachable' => 'URL পাব পৰা নগ’ল ।',
 'http-bad-status' => 'HTTP অনুৰোধৰ সময়ত কোনো সমস্যা হৈছে: $1, $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -2140,15 +2130,6 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization চাওক।",
 'listusers-submit' => 'দেখুৱাওক',
 'listusers-noresult' => 'ব্যৱহাৰকাৰী বিচাৰি পোৱা নগ’ল',
 'listusers-blocked' => '(বাৰণ কৰা)',
-
-# Special:ActiveUsers
-'activeusers' => 'সক্ৰিয় ব্যবহাৰকাৰীৰ তালিকা',
-'activeusers-intro' => 'যোৱা  {{PLURAL:$1|দিন|দিন}}ৰ ভিতৰত অৱদান আগবঢ়োৱা ব্যৱহাৰকাৰীৰ তালিকা',
-'activeusers-count' => 'যোৱা {{PLURAL:$3|দিনত|$3 দিনত}} সৰ্বমুঠ {{PLURAL:$1|কামৰ|কামৰ}} সংখ্যা $1',
-'activeusers-from' => 'ইয়াৰে আৰম্ভ হোৱা ব্যৱহাৰকাৰী সকল দেখুৱাওক:',
-'activeusers-hidebots' => 'বট নেদেখুৱাব',
-'activeusers-hidesysops' => 'প্ৰশাসক নেদেখুৱাব',
-'activeusers-noresult' => "কোনো সদস্য পোৱা নগ'ল।",
 
 # Special:ListGroupRights
 'listgrouprights' => 'ব্যৱহাৰকাৰী গোটৰ অধিকাৰ',

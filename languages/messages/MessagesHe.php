@@ -934,7 +934,7 @@ $2
 סיסמה זמנית: $2',
 'passwordreset-emailsent' => 'נשלח דואר אלקטרוני לאיפוס הסיסמה.',
 'passwordreset-emailsent-capture' => 'נשלח דואר אלקטרוני לאיפוס הסיסמה, והוא מוצג להלן.',
-'passwordreset-emailerror-capture' => 'נוצר דואר אלקטרוני לאיפוס הסיסמה, והוא מוצג להלן, אך שליחתו למשתמש נכשלה: $1',
+'passwordreset-emailerror-capture' => 'נוצר דואר אלקטרוני לאיפוס הסיסמה, והוא מוצג להלן, אך שליחתו ל{{GENDER:$2|משתמש|משתמשת}} נכשלה: $1',
 
 # Special:ChangeEmail
 'changeemail' => 'שינוי כתובת דוא"ל',

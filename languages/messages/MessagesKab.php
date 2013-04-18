@@ -73,8 +73,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Ssken geddac yellan n yimseqdacen iɛessasen',
 'tog-oldsig' => 'Azmul yellan :',
 'tog-fancysig' => 'ǧǧ azmul am yettili (war azday awurman)',
-'tog-externaleditor' => 'Sseqdec ambeddel n berra d ameslugen',
-'tog-externaldiff' => 'Sseqdec ambeddel n berra iwakken ad ẓreɣ imgerraden',
 'tog-showjumplinks' => 'Eǧǧ izdayen "neggez ar"',
 'tog-uselivepreview' => 'Sseqdec pre-timeẓriwt taǧiḥbuṭ (JavaScript) (Experimental)',
 'tog-forceeditsummary' => 'Ini-iyi-d mi sskecmeɣ agzul amecluc',
@@ -1060,15 +1058,6 @@ Tzemreḍ ad affeḍ tilɣa deg [{{fullurl:{{#Special:Log}}/delete|page={{FULLPA
 'search-external' => 'Anadi yeffɣen',
 'searchdisabled' => 'Anadi deg {{SITENAME}} yettwakkes. Tzemreḍ ad tnadiḍ s Google. Meɛna ur tettuḍ ara, tasmult n google taqdimt.',
 
-# Quickbar
-'qbsettings' => 'Tanuga taǧiḥbuṭ',
-'qbsettings-none' => 'Ulac',
-'qbsettings-fixedleft' => 'Aẓelmaḍ',
-'qbsettings-fixedright' => 'Ayeffus',
-'qbsettings-floatingleft' => 'Tufeg aẓelmaḍ',
-'qbsettings-floatingright' => 'Tufeg ayeffus',
-'qbsettings-directionality' => 'Usbiḍ, ɣef wayen n unamud n tira n tutlayt ik/im',
-
 # Preferences page
 'preferences' => 'Isemyifiyen',
 'mypreferences' => 'Isemyifiyen inu',
@@ -1607,7 +1596,6 @@ I taɣellist tameqqṛant, img_auth.php yensa.',
 'http-read-error' => 'Anezri n taɣuri HTTP.',
 'http-timed-out' => 'Tuttra HTTP teneffeṛ.',
 'http-curl-error' => 'Anezri deg tiririt n URL : $1',
-'http-host-unreachable' => 'Ulamek an siḍes URL',
 'http-bad-status' => 'Yella ugur deg tuttra HTTP : $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -1921,15 +1909,6 @@ Ineggafen imazdayen : <code>$1</code> (ur d-renu acemma deg unadi inek/inem)',
 'listusers-submit' => 'Ssken',
 'listusers-noresult' => 'Ur yufi ḥedd (amseqdac).',
 'listusers-blocked' => '(yekyef)',
-
-# Special:ActiveUsers
-'activeusers' => 'Umuɣ n iseqdacen urmiden',
-'activeusers-intro' => 'Wagi d umuɣ n iseqdacen yexedmen armud deg {{PLURAL:$1|ass agi aneggaru|$1 ussan agi ineggura}}.',
-'activeusers-count' => '$1 {{PLURAL:$1|abeddel n ussan agi ineggura|ibeddilen n ussan agi ineggura}} deg {{PLURAL:$3|ass aneggaru|$3 ussan ineggura}}',
-'activeusers-from' => 'Ssken iseqdacen seg :',
-'activeusers-hidebots' => 'Ffer iṛubuten',
-'activeusers-hidesysops' => 'Ffer inedbalen',
-'activeusers-noresult' => 'Ur yufi aseqdac.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Izerfan n igrawen n iseqdacen',

@@ -51,9 +51,6 @@ $messages = array(
 'tog-shownumberswatching' => 'ویکھن آلے لوکاں دی گنتی وکھاؤ۔',
 'tog-oldsig' => 'ہن والے دسخط:',
 'tog-fancysig' => 'دستخط نوں وکی ٹیکسڈ ونگوں؎ ورتو(without an automatic link)',
-'tog-externaleditor' => 'ہمیشہ بارلا لکھن والا ورتو (ماہر لوکاں واسطے، اس واسطے تواڑے کمپیوٹر تے خاص تبدیلیاں چائیدیاں نیں۔ [//www.mediawiki.org/wiki/Manual:External_editors مزید معلومات.])',
-'tog-externaldiff' => '
-ہمیشہ بارلا تبدیلی کرن والا ورتو (ماہر لوکاں واسطے، اس واسطے تواڑے کمپیوٹر تے خاص تبدیلیاں چائیدیاں نیں۔ [//www.mediawiki.org/wiki/Manual:External_editors مزید معلومات۔])',
 'tog-showjumplinks' => '"ایدر چلو" نوں رلن والے جوڑان نال جوڑو',
 'tog-uselivepreview' => 'لائیو پریویو ورتو',
 'tog-forceeditsummary' => 'مینون اوسے ویلے دسو جدوں خالی سمری تے آؤ۔',
@@ -67,6 +64,7 @@ $messages = array(
 'tog-diffonly' => 'تبدیلی توں علاوہ صفحہ نا وکھاؤ',
 'tog-showhiddencats' => 'لکیاں کیٹاگریاں وکھاؤ',
 'tog-norollbackdiff' => 'صفحے دی واپسی تے تبدیلی کڈ دو',
+'tog-useeditwarning' => 'جدوں میں کوئی صفحہ تبدیلی کر کے بچاۓ بغیر چھڈن لگاں تے منوں دس دیو',
 
 'underline-always' => 'ہمیشہ',
 'underline-never' => 'کدی وی نئیں',
@@ -757,6 +755,8 @@ Custom .css تے .js pages use a lowercase title, e.g. {{ns:user}}:Foo/vector.cs
 'edit-no-change' => 'تواڈی تبدیلی ول کوئی توجہ نئیں، کیوں جے لکھت چ کوئی تبدیلی نئیں۔',
 'edit-already-exists' => 'نواں صفہ نئیں بن سکدا۔
 ایہ پہلے ای ہیگا اے۔',
+'editwarning-warning' => 'اے صفے توں جان تے ہو سکدا اوہ ساریاں تبدیلیاں مک جان جیہڑیاں تساں بناياں نیں۔
+اگر تسیں لاکان او، تسیں ایڈیٹنگ سیکشن چ  اپنی پسنداں چ ایس خبرداری نوں پعلے ناں۔',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => "'''خبردار:''' ایس صفے تے چوکھیاں ساریاں پارسر کلز نیں۔
@@ -1020,15 +1020,6 @@ $1",
 'searchdisabled' => '{{SITENAME}} کھوج کم نئیں کررئی۔
 تسیں گوگل تے کھوج کرو۔
 اے گل یاد رکھنا جے انڈیکس {{SITENAME}} دے پرانے ہون۔',
-
-# Quickbar
-'qbsettings' => 'کوئکبار',
-'qbsettings-none' => 'کوئی نئیں',
-'qbsettings-fixedleft' => 'فکسڈ کھبے',
-'qbsettings-fixedright' => 'فکسڈ سجے',
-'qbsettings-floatingleft' => 'ہلدا کھبے',
-'qbsettings-floatingright' => 'ہلدا سجے',
-'qbsettings-directionality' => '!!!!فکسڈ، تھاڈی بولی تے لپی نال',
 
 # Preferences page
 'preferences' => 'تانگاں',
@@ -1573,7 +1564,6 @@ $1",
 'http-read-error' => 'ایچ ٹی ٹی پی  غلطی پڑھدی اے۔',
 'http-timed-out' => 'ایچ ٹی ٹی پی  دی مانگ ویلیوں بار۔',
 'http-curl-error' => 'ایچ ٹی ٹی پی  : $1 لیان چ غلطی۔',
-'http-host-unreachable' => 'ایچ ٹی ٹی پی  تک ناں پونچ سکیا۔',
 'http-bad-status' => 'ایچ ٹی ٹی پی : $1 $2 دی مانگ ویلے رپھڑ',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -1880,15 +1870,6 @@ $1",
 'listusers-submit' => 'وکھاؤ',
 'listusers-noresult' => 'ورتن آلا نئیں لبیا۔',
 'listusers-blocked' => '(روکیا گیا)',
-
-# Special:ActiveUsers
-'activeusers' => 'کم کرن والیاں دی لسٹ',
-'activeusers-intro' => 'اے اوناں ورتن والیاں دی لسٹ اے جنان پچھلے $1 {{PLURAL:$1|دن|دناں}} چ کم کیتا اے۔',
-'activeusers-count' => '$1 {{PLURAL:$1|تبدیلی|تبدیلیاں}} پچھلے{{PLURAL:$3|دن|$3 دن}} چ',
-'activeusers-from' => 'ورتن والے ایس توں شروع ہون والے دسو:',
-'activeusers-hidebots' => 'بوٹ چھپاؤ',
-'activeusers-hidesysops' => 'مکھۓ لکاؤ',
-'activeusers-noresult' => 'کوئی ورتن والا نئیں لبیا۔',
 
 # Special:ListGroupRights
 'listgrouprights' => 'ورتن ٹرلی حق',

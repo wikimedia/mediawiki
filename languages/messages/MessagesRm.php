@@ -72,8 +72,6 @@ $messages = array(
 'tog-shownumberswatching' => "Mussar il dumber d'utilisaders che obervan questa pagina",
 'tog-oldsig' => 'Signatura actuala:',
 'tog-fancysig' => "Suttascripziun senza link automatic tar la pagina da l'utilisader.",
-'tog-externaleditor' => 'Utilisar sco standard in editur extern (be per experts, basegna ina configuraziun speziala da des computer. [//www.mediawiki.org/wiki/Manual:External_editors Dapli infurmaziuns.])',
-'tog-externaldiff' => 'Utilisar sco standard in program extern per visualisar differenzas tranter versiuns (be per experts, basegna ina configuraziun speziala da des computer. [//www.mediawiki.org/wiki/Manual:External_editors Dapli infurmaziuns.])',
 'tog-showjumplinks' => 'Activar las colliaziuns "seglir a"',
 'tog-uselivepreview' => 'Utilisar la prevista dinamica (basegna JavaScript) (experiment!)',
 'tog-forceeditsummary' => 'Avertir durant memoriar sche la resumaziun manca',
@@ -1113,15 +1111,6 @@ Scriva il prefix ''all:'' avant il term che ti vuls tschertgar, per tschertgar e
 Ti pos tschertgar en il fratemp cun Google. 
 Considerescha che lur index da {{SITENAME}} po cuntegnair datas ch'èn betg pli actualas.",
 
-# Quickbar
-'qbsettings' => 'Glista laterala',
-'qbsettings-none' => 'Nagins',
-'qbsettings-fixedleft' => 'Sanester, fixà',
-'qbsettings-fixedright' => 'Dretg, fixà',
-'qbsettings-floatingleft' => 'Sanester, flottand',
-'qbsettings-floatingright' => 'Dretg, flottand',
-'qbsettings-directionality' => 'Fixà, dependent da la direcziun da scriver da tia lingua',
-
 # Preferences page
 'preferences' => 'Preferenzas',
 'mypreferences' => 'Preferenzas',
@@ -1672,7 +1661,6 @@ Per cuntanscher segirezza opgimala è img_auth.php deactivà.",
 'http-read-error' => 'Sbagl da leger HTTP.',
 'http-timed-out' => 'Surpassà il temp durant la dumonda HTTP.',
 'http-curl-error' => "Errur cun recuperar l'URL: $1",
-'http-host-unreachable' => "Impussibel da cuntanscher l'URL.",
 'http-bad-status' => 'Durant la dumonda HTTP è ina errur capitada: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -1994,15 +1982,6 @@ Dovra almain ina top-level domain, per exempel "*.org".<br />
 'listusers-submit' => 'Mussar',
 'listusers-noresult' => 'Betg chattà in utilisader.',
 'listusers-blocked' => '(bloccà)',
-
-# Special:ActiveUsers
-'activeusers' => 'Glista dals utilisaders activs',
-'activeusers-intro' => "Quai è ina glista dals utilisaders che han gì activitads {{PLURAL:$1|l'ultim di|en ils ultims $1 dis}}.",
-'activeusers-count' => "$1 {{PLURAL:$1|modificaziun|modificaziuns}} {{PLURAL:$3|l'ultim di|ils ultims $3 dis}}",
-'activeusers-from' => 'Mussar utilisaders davent da:',
-'activeusers-hidebots' => 'Zuppentar bots',
-'activeusers-hidesysops' => 'Zuppentar administraturs',
-'activeusers-noresult' => 'Chattà nagins utilisaders.',
 
 # Special:ListGroupRights
 'listgrouprights' => "Dretgs da las gruppas d'utilisaders",

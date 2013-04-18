@@ -6626,6 +6626,8 @@ A caché de obxectos está desactivada.",
 	'config-mod-security' => "'''Atención:''' O seu servidor web ten o [http://modsecurity.org/ mod_security] activado. Se estivese mal configurado, pode causar problemas a MediaWiki ou calquera outro software que permita aos usuarios publicar contidos arbitrarios.
 Olle a [http://modsecurity.org/documentation/ documentación do mod_security] ou póñase en contacto co soporte do seu servidor se atopa erros aleatorios.",
 	'config-diff3-bad' => 'GNU diff3 non se atopou.',
+	'config-git' => 'Atopouse o software de control da versión de Git: <code>$1</code>.',
+	'config-git-bad' => 'Non se atopou o software de control da versión de Git.',
 	'config-imagemagick' => 'ImageMagick atopado: <code>$1</code>.
 As miniaturas de imaxes estarán dispoñibles se activa as cargas.',
 	'config-gd' => 'Atopouse a biblioteca gráfica GD integrada.

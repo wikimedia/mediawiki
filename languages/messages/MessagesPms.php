@@ -82,9 +82,9 @@ $messages = array(
 'tog-watchlisthidepatrolled' => "Stërmé le modìfiche dzorvejà da 'nt la ròba che im ten-o sot-euj",
 'tog-ccmeonemails' => "Mandeme na còpia dij mëssagi ëd pòsta eletrònica che i-j mando a j'àotri utent",
 'tog-diffonly' => 'Smon-e pa ël contnù dle pàgine sota le diferense',
-'tog-showhiddencats' => 'Smon le categorìe stërmà',
+'tog-showhiddencats' => 'Smon-e le categorìe stërmà',
 'tog-noconvertlink' => "Disativé la conversion dij tìtoj ant j'anliure",
-'tog-norollbackdiff' => "Fa nen vëdde le diferense apress d'avèj ripristinà",
+'tog-norollbackdiff' => "Fé nen vëdde le diferense apress d'avèj ripristinà",
 'tog-useeditwarning' => 'Avisme quand che i lasso na pàgina ëd modìfiche con modìfiche nen salvà',
 
 'underline-always' => 'Sempe',

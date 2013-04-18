@@ -72,8 +72,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Харж буй хэрэглэгчдийн тоог үзүүлэх',
 'tog-oldsig' => 'Одоогийн гарын үсэг:',
 'tog-fancysig' => 'Түүхий гарын үсэг （автомат холбоосгүй）',
-'tog-externaleditor' => 'Үндсэн горимд нэмэлт засварлах багаж хэрэглэх（экспертүүдэд зориулагдсан, таны компьютерт тусгай тохиргоо шаардлагатай）',
-'tog-externaldiff' => 'Үндсэн горим гадаад харьцуулагч программ ашиглах （экспертүүдэд зориулав, таны компьютерт тусгай тохиргоо шаардлагатай）',
 'tog-showjumplinks' => '"Шууд очих" хялбар линкүүдийг ажиллагаатай болгох',
 'tog-uselivepreview' => 'Шууд байдлаар урьдчилж харах （ЖаваСкрипт） （Туршилт）',
 'tog-forceeditsummary' => 'Товч агуулгын талбарыг хоосон үлдээхэд надад мэдэгдэх',
@@ -1097,15 +1095,6 @@ $1",
 Та одоохондоо Google-г ашиглан хайх боломжтой.
 Анхааруулж хэлэхэд, тэдний {{SITENAME}}-н агуулгын индексүүд хоцрогдсон байж магадгүй.',
 
-# Quickbar
-'qbsettings' => 'Шуурхай тавцан',
-'qbsettings-none' => 'Байхгүй',
-'qbsettings-fixedleft' => 'Зүүн талд бэхжүүлсэн',
-'qbsettings-fixedright' => 'Баруун талд бэхжүүлсэн',
-'qbsettings-floatingleft' => 'Зүүн талд хөвсөн',
-'qbsettings-floatingright' => 'Баруун талд хөвсөн',
-'qbsettings-directionality' => 'Тухай хэлний барилаас хамаарч хэлбэрийг бий болгох',
-
 # Preferences page
 'preferences' => 'Хэрэглэгчийн тохиргоо',
 'mypreferences' => 'Миний тохиргоо',
@@ -1659,7 +1648,6 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization -г харна уу.',
 'http-read-error' => 'HTTP-г унших алдаа.',
 'http-timed-out' => 'HTTP хүсэлтийн хугацаа дуусав.',
 'http-curl-error' => 'Дараах URL-г авчрахад алдаа гарав: $1',
-'http-host-unreachable' => 'URL-д хүрч чадсангүй.',
 'http-bad-status' => 'HTTP хандалтын үед асуудал үүсэв: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -1960,15 +1948,6 @@ URL нь зөв болон сайт ажиллагаатай байгаа эсэ
 'listusers-submit' => 'Үзүүлэх',
 'listusers-noresult' => 'Хэрэглэгч олдсонгүй.',
 'listusers-blocked' => '(түгжигдсэн)',
-
-# Special:ActiveUsers
-'activeusers' => 'Идэвхитэй хэрэглэгчдийн жагсаалт',
-'activeusers-intro' => 'Энэ нь сүүлийн $1 {{PLURAL:$1|өдөрт|өдөрт}} ямар нэг байдлаар үйлдэл хийсэн хэрэглэгчдийн жагсаалт юм.',
-'activeusers-count' => 'Сүүлийн {{PLURAL:$3|нэг өдөрт|$3 өдөрт}} $1 {{PLURAL:$1|засвар|засвар}}',
-'activeusers-from' => 'Хамгийн эхэлж харуулах хэрэглэгч:',
-'activeusers-hidebots' => 'Ботуудыг нуух',
-'activeusers-hidesysops' => 'Администраторуудыг нуух',
-'activeusers-noresult' => 'Хэрэглэгч олдсонгүй.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Хэрэглэгчийн бүлгийн эрхүүд',

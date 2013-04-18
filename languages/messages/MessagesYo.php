@@ -83,8 +83,6 @@ $messages = array(
 'tog-shownumberswatching' => "S'àfihàn iye àwọn oníṣe tí wọn tẹjú mọ́ọ",
 'tog-oldsig' => 'Ìtọwọ́bọ̀wé tówà:',
 'tog-fancysig' => 'Ṣe ìtọwọ́bọ̀wé bíi ìkọ wiki (láìní ìjápọ̀ fúnrararẹ̀)',
-'tog-externaleditor' => 'Lo aláàtúnṣe ọ̀tọ̀ látìbẹ̀rẹ̀ (fún àwọn tó mọ̀ nìkan, ìtò ọ̀tọ̀ọ̀tọ̀ pọndandan lórí kọ̀mpútà yín. [//www.mediawiki.org/wiki/Manual:External_editors More information.])',
-'tog-externaldiff' => 'Lo awoìyàtò ọ̀tọ̀ látìbẹ̀rẹ̀ (fún àwọn tó mọ̀ nìkan, ìtò ọ̀tọ̀ọ̀tọ̀ pọndandan lórí kọ̀mpútà yín. [//www.mediawiki.org/wiki/Manual:External_editors Ìfọ̀rọ̀tónilétí mìhínhìn.])',
 'tog-showjumplinks' => 'Ìgbàláyè "fò lọ sí" àwọn ìjápọ̀ ìṣeégbà',
 'tog-uselivepreview' => 'Ìlo àkọ́kọ́yẹ̀wò lẹ́ṣẹ̀kẹṣẹ̀ (JavaScript pọndandan) (aládànhánwò)',
 'tog-forceeditsummary' => 'Kìlọ̀ fún mi tí àkótán àtúnṣe bá jẹ́ òfo',
@@ -98,6 +96,7 @@ $messages = array(
 'tog-diffonly' => 'Kò gbọdọ̀ ṣàfihàn àkóónú ojúewé lábẹ́ àwọn ìyàtọ̀',
 'tog-showhiddencats' => "Ṣ'àfihàn àwọn ẹ̀ka pípamọ́",
 'tog-norollbackdiff' => 'Fo ìyàtọ̀ lẹ́yín síṣe ìyísẹ́yìn',
+'tog-useeditwarning' => 'Kìlọ̀ fún mi tí mo bá únkúrò ní ojúewé àtúnṣe láì tíì mupamọ́',
 
 'underline-always' => 'Nígbà gbogbo',
 'underline-never' => 'Rárá',
@@ -842,6 +841,8 @@ Kò ṣe àlàyé kankan.',
 'content-failed-to-parse' => 'Ìkùnà láti ṣàtúwò àkóónú $2 fún àfijúwe $1: $3',
 'invalid-content-data' => 'Àkóónú dátà tí kò yẹ',
 'content-not-allowed-here' => 'Àkóónú "$1" kò ní ìyọ̀nda lórí ojúewé [[$2]]',
+'editwarning-warning' => 'Kíkúrò ní ojúewé yìí yíò jẹ́ kí ẹ pòfo àwọn àtúnṣe tí ẹ ti ṣe.
+Tó bá jẹ́ pé ẹ ti wọlé, ẹ lè dẹ́kun ìkìlọ̀ yìí nínù abala "Àtúnṣe ṣíṣe" ti àwọn ìfẹ́ràn yín.',
 
 # Content models
 'content-model-wikitext' => 'ìkọ̀rọ̀ wiki',
@@ -1129,15 +1130,6 @@ Kò ṣe é bòmọ́lẹ̀.',
 'searchdisabled' => 'Ṣíṣàwárí nínú {{SITENAME}} wà ní dídálẹ́kun.
 Ní báyìí ná ẹ le ṣàwárí lọ́dọ̀ Google.
 Àkíyèsí pé àwọn atọ́ka wọn fún àkóónú {{SITENAME}} le mọ́ jẹ́ tuntun.',
-
-# Quickbar
-'qbsettings' => 'Pẹpẹ ìṣárémúlò',
-'qbsettings-none' => 'Ìkankan',
-'qbsettings-fixedleft' => 'Kíkàn sí òsì',
-'qbsettings-fixedright' => 'Kíkàn sí ọ̀tún',
-'qbsettings-floatingleft' => 'Léfòó sí òsì',
-'qbsettings-floatingright' => 'Léfòó sí ọ̀tún',
-'qbsettings-directionality' => 'Fi sí ẹ̀gbẹ́, gẹ́gẹ́ bí ìdojúkọ lẹ́tà-ọ̀rọ̀ èdè yín bá ṣe rí',
 
 # Preferences page
 'preferences' => 'Àwọn ìfẹ́ràn',
@@ -1693,7 +1685,6 @@ Fún àbò kúnkún, img_auth.php ti jẹ́ dídálẹ́kun.',
 'http-read-error' => 'Àṣìṣe kíkà HTTP.',
 'http-timed-out' => 'Àsìkò ìtọrọ HTTP ti tán.',
 'http-curl-error' => 'Àsìṣe ìmúwá URL: $1',
-'http-host-unreachable' => 'Kò le dé ibi URL.',
 'http-bad-status' => 'Ìṣòro kan ṣẹlẹ̀ nìgbà ìtọrọ HTTP: $1, $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -2015,15 +2006,6 @@ Orúkọ ibiàyè pọndandan, fún àpẹrẹ "*.org".<br />
 'listusers-submit' => 'Ìfihan',
 'listusers-noresult' => 'Kò rí oníṣe kankan.',
 'listusers-blocked' => '(dídínà)',
-
-# Special:ActiveUsers
-'activeusers' => 'Àtòjọ àwọn oníṣe aláàgbéṣe',
-'activeusers-intro' => 'Èyí ni àtòjọ àwọn oníṣe tí wọ́n ní irú àgbéṣe kan láàrin {{PLURAL:$1|ọjọ́|ọjọ́}} $1 sẹ́yìn.',
-'activeusers-count' => '{{PLURAL:$1|Àtúnṣe|Àwọn àtúnṣe}} $1 ní {{PLURAL:$3|ọjọ́|ọjọ́}} $3 sẹ́yìn',
-'activeusers-from' => 'Ìfihàn àwọn oníṣe nípa bíbẹ̀rẹ̀ láti:',
-'activeusers-hidebots' => 'Ìbòmọ́lẹ̀ àwọn bọt',
-'activeusers-hidesysops' => 'Ìbòmọ́lẹ̀ àwọn olùmójútó',
-'activeusers-noresult' => 'Kò rí oníṣe kankan.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Àwọn ẹ̀tọ́ ẹgbẹ́ oníṣe',

@@ -332,8 +332,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Prikaži broj korisnika koji nadgledaju',
 'tog-oldsig' => 'Tekući potpis:',
 'tog-fancysig' => 'Smatraj potpis kao vikitekst (bez samopovezivanja)',
-'tog-externaleditor' => 'Uvek koristi spoljni uređivač (samo za napredne — potrebne su posebne postavke na računaru)',
-'tog-externaldiff' => 'Uvek koristi spoljni program za upoređivanje (samo za napredne — potrebne su posebne postavke na računaru)',
 'tog-showjumplinks' => 'Omogući pomoćne veze „Idi na“',
 'tog-uselivepreview' => 'Koristi trenutan pregled (javaskript, probna mogućnost)',
 'tog-forceeditsummary' => 'Opomeni me pri unosu praznog opisa',
@@ -348,6 +346,7 @@ $messages = array(
 'tog-showhiddencats' => 'Prikaži skrivene kategorije',
 'tog-noconvertlink' => 'Onemogući pretvaranje naslova veza',
 'tog-norollbackdiff' => 'Izostavi razliku nakon izvršenog vraćanja',
+'tog-useeditwarning' => 'Upozori me kada napustim stranicu sa nesačuvanim promenama',
 
 'underline-always' => 'uvek podvlači',
 'underline-never' => 'nikad ne podvlači',
@@ -1095,6 +1094,8 @@ Izgleda da ona već postoji.',
 'content-failed-to-parse' => 'Ne mogu da raščlanim sadržaj tipa $2 za model $1: $3',
 'invalid-content-data' => 'Neispravni podaci sadržaja',
 'content-not-allowed-here' => 'Sadržaj modela „$1“ nije dozvoljen na stranici [[$2]]',
+'editwarning-warning' => 'Ako napustite ovu stranicu, izgubićete sve izmene koje ste napravili.
+Ako ste prijavljeni, možete onemogućiti ovo upozorenje u svojim podešavanjima, u odeljku „Uređivanje“.',
 
 # Content models
 'content-model-wikitext' => 'vikitekst',
@@ -1382,15 +1383,6 @@ Ako želite sve da pretražite, dodajte prefiks '''all:''' ispred traženog sadr
 'searchdisabled' => 'Pretraga je onemogućena.
 U međuvremenu možete tražiti preko Gugla.
 Upamtite da njegovi popisi ovog vikija mogu biti zastareli.',
-
-# Quickbar
-'qbsettings' => 'Bočna paleta',
-'qbsettings-none' => 'Ništa',
-'qbsettings-fixedleft' => 'Pričvršćena levo',
-'qbsettings-fixedright' => 'Pričvršćena desno',
-'qbsettings-floatingleft' => 'Plutajuća levo',
-'qbsettings-floatingright' => 'Plutajuća desno',
-'qbsettings-directionality' => 'Fiksno, u zavisnosti od smera pisanja vašeg jezika',
 
 # Preferences page
 'preferences' => 'Podešavanja',
@@ -1963,7 +1955,6 @@ Radi sigurnosti, img_auth.php je onemogućen.',
 'http-read-error' => 'HTTP greška pri čitanju.',
 'http-timed-out' => 'Zahtev HTTP je istekao.',
 'http-curl-error' => 'Greška pri otvaranju adrese: $1',
-'http-host-unreachable' => 'Ne mogu da pristupim adresi.',
 'http-bad-status' => 'Došlo je do problema tokom zahteva HTTP: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -2288,15 +2279,6 @@ Podržani protokoli: <code>$1</code> (zadaje http:// ako ne navedete protokol).'
 'listusers-submit' => 'Prikaži',
 'listusers-noresult' => 'Korisnik nije pronađen.',
 'listusers-blocked' => '({{GENDER:$1|blokiran|blokirana|blokiran}})',
-
-# Special:ActiveUsers
-'activeusers' => 'Spisak aktivnih korisnika',
-'activeusers-intro' => 'Ovo je spisak korisnika koji su bili aktivni {{PLURAL:$1|prethodni dan|u poslednja $1 dana|u poslednjih $1 dana}}.',
-'activeusers-count' => '$1 {{PLURAL:$1|izmena|izmene|izmena}} {{PLURAL:$3|prethodni dan|u poslednja $3 dana|u poslednjih $3 dana}}',
-'activeusers-from' => 'Prikaži korisnike počev od:',
-'activeusers-hidebots' => 'Sakrij botove',
-'activeusers-hidesysops' => 'Sakrij administratore',
-'activeusers-noresult' => 'Korisnik nije pronađen.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Prava korisničkih grupa',
@@ -3111,13 +3093,8 @@ Pokušajte ponovo.',
 
 # Stylesheets
 'common.css' => '/** CSS postavljen ovde će se odraziti na sve teme */',
-'standard.css' => '/* CSS postavljen ovde će uticati na sve korisnike teme „Standardno“ */',
-'nostalgia.css' => '/* CSS postavljen ovde će uticati na sve korisnike teme „Nostalgija“ */',
 'cologneblue.css' => '/* CSS postavljen ovde će uticati na sve korisnike teme „Kelnsko plava“ */',
 'monobook.css' => '/* CSS postavljen ovde će uticati na sve korisnike teme „Monobuk“ */',
-'myskin.css' => '/* CSS postavljen ovde će uticati na sve korisnike teme „Moja tema“ */',
-'chick.css' => '/* CSS postavljen ovde će uticati na sve korisnike teme „Šik“ */',
-'simple.css' => '/* CSS postavljen ovde će uticati na sve korisnike teme „Prosto“ */',
 'modern.css' => '/* CSS postavljen ovde će uticati na sve korisnike teme „Savremeno“ */',
 'vector.css' => '/* CSS postavljen ovde će uticati na sve korisnike teme „Vektorsko“ */',
 'print.css' => '/* CSS postavljen ovde će uticati na izdanje za štampu */',
@@ -3130,13 +3107,8 @@ Pokušajte ponovo.',
 
 # Scripts
 'common.js' => '/* Javaskript postavljen ovde će se koristiti za sve korisnike pri otvaranju svake stranice. */',
-'standard.js' => '/* Javaskript postavljen ovde će se učitati za sve one koji koriste temu „Standardno“ */',
-'nostalgia.js' => '/* Javaskript postavljen ovde će se učitati za sve one koji koriste temu „Nostalgija“ */',
 'cologneblue.js' => '/* Javaskript postavljen ovde će se učitati za sve one koji koriste temu „Kelnsko plava“ */',
 'monobook.js' => '/* Javaskript postavljen ovde će se učitati za sve one koji koriste temu „Monobuk“ */',
-'myskin.js' => '/* Javaskript postavljen ovde će se učitati za sve one koji koriste „Moju temu“ */',
-'chick.js' => '/* Javaskript postavljen ovde će se učitati za sve one koji koriste temu „Šik“ */',
-'simple.js' => '/* Javaskript postavljen ovde će se učitati za sve one koji koriste temu „Prosto“ */',
 'modern.js' => '/* Javaskript postavljen ovde će se učitati za sve one koji koriste temu „Savremeno“ */',
 'vector.js' => '/* Javaskript postavljen ovde će se učitati za sve one koji koriste temu „Vektorsko“ */',
 'group-autoconfirmed.js' => '/* Javaskript postavljen ovde će se učitati za samopotvrđene korisnike */',
@@ -3210,13 +3182,8 @@ Ovo je verovatno izazvano vezom do spoljašnjeg sajta koji se nalazi na crnoj li
 'pageinfo-protect-cascading-from' => 'Stranice sa prenosivom zaštitom od',
 
 # Skin names
-'skinname-standard' => 'Klasično',
-'skinname-nostalgia' => 'Nostalgija',
 'skinname-cologneblue' => 'Kelnsko plava',
 'skinname-monobook' => 'Monobuk',
-'skinname-myskin' => 'Moja tema',
-'skinname-chick' => 'Šik',
-'skinname-simple' => 'Prosto',
 'skinname-modern' => 'Savremeno',
 'skinname-vector' => 'Vektorsko',
 
@@ -3311,8 +3278,6 @@ Sve daljnje veze u istom redu smatraju se izuzecima.',
 
 /*
 Short names for language variants used for language conversion links.
-To disable showing a particular link, set it to 'disable', e.g.
-'variantname-zh-sg' => 'disable',
 Variants for Chinese language
 */
 'variantname-zh-hans' => 'hans',

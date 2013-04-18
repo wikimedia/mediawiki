@@ -302,8 +302,6 @@ $messages = array(
 'tog-shownumberswatching' => "Uri n-numru ta' utenti li qegħdin isegwu din il-paġna",
 'tog-oldsig' => 'Firma attwali:',
 'tog-fancysig' => 'Interpreta l-firma bħala test tal-wiki (mingħajr ħolqa awtomatika)',
-'tog-externaleditor' => 'Uża awtomatikament editur estern (għal utenti esperti biss, hemm bżonn preferenzi speċjali fuq il-komputer tiegħek. [//www.mediawiki.org/wiki/Manual:External_editors Iktar informazzjoni.])',
-'tog-externaldiff' => 'Uża awtomatikament diff estern (għal utenti esperti biss, hemm bżonn preferenzi speċjali fuq il-komputer tiegħek. [//www.mediawiki.org/wiki/Manual:External_editors Iktar informazzjoni.])',
 'tog-showjumplinks' => 'Attiva l-ħoloq aċċessibbli "aqbeż għal"',
 'tog-uselivepreview' => "Attiva l-funzjoni ''Live preview'' (bżonn tal-JavaScript; sperimentali)",
 'tog-forceeditsummary' => 'Nebbaħni meta ndaħħal taqsira tal-modifika vojta',
@@ -317,6 +315,7 @@ $messages = array(
 'tog-diffonly' => 'Turiex kontenut tal-paġni wara li tkun għamilt paragun bejn il-verżjonijiet',
 'tog-showhiddencats' => 'Uri kategoriji moħbija',
 'tog-norollbackdiff' => "Turix il-paragun bejn il-verżjonijiet wara li tkun effettwajt ir-''rollback''",
+'tog-useeditwarning' => "Avżani kull meta nħalli paġna ta' modifika b'modifiki li għadhom ma ġewx salvati",
 
 'underline-always' => 'Dejjem',
 'underline-never' => 'Qatt',
@@ -1012,6 +1011,7 @@ Jidher li din ġiet imħassra.',
 'edit-no-change' => 'Il-modifika li għamilt ġiet injorata, minħabba li ebda bidla ma saret lejn it-test.',
 'edit-already-exists' => 'Ma tistax tinħoloq din il-paġna.
 Din teżisti diġà.',
+'editwarning-warning' => 'Jekk tħalli din il-paġna jista\' jwassal sabiex titlef kwalunkwe tibdil li tkun għamilt. Jekk int tinsab fil-kont tiegħek, tista\' tneħħi dan l-avviż fis-sezzjoni "Modifiki" tal-preferenzi tiegħek.',
 
 # Content models
 'content-model-wikitext' => 'test tal-wiki',
@@ -1281,15 +1281,6 @@ Ipprova għamel prefiss għall-inkjesta tiegħek ma' ''all:'' sabiex tfittex il-
 'searchdisabled' => "It-Tfittxija fil-{{SITENAME}} mhux attiva.
 Sadanittant, tista' tipprova tfittex bil-Google.
 Innota però li l-werreja tal-kontenut ta' {{SITENAME}} f'dawn is-siti, jistgħu ma jkunux aġġornati.",
-
-# Quickbar
-'qbsettings' => "''Quickbar''",
-'qbsettings-none' => 'Xejn',
-'qbsettings-fixedleft' => 'Mehmuż fix-xellug',
-'qbsettings-fixedright' => 'Mehmuż fil-lemin',
-'qbsettings-floatingleft' => "''Floating'' lejn ix-xellug",
-'qbsettings-floatingright' => "''Floating'' lejn il-lemin",
-'qbsettings-directionality' => 'Fiss, skont id-direzzjoni tat-test fil-lingwa tiegħek',
 
 # Preferences page
 'preferences' => 'Preferenzi',
@@ -1800,7 +1791,6 @@ Għal sigurtà ottimali, img_auth.php hija diżattivata.",
 'http-read-error' => 'Żball fil-qari HTTP.',
 'http-timed-out' => 'Rikjesta HTTP skaduta.',
 'http-curl-error' => 'Żball fil-kisba tal-URL: $1',
-'http-host-unreachable' => 'Il-URL ma setgħetx tintlaħaq.',
 'http-bad-status' => 'Kien hemm problema matul ir-rikjesta HTTP: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -2115,15 +2105,6 @@ Protokolli aċċettati: <code>$1</code> (jekk ma jiġi speċifikat l-ebda protok
 'listusers-submit' => 'Uri',
 'listusers-noresult' => 'L-ebda utent ma nstab.',
 'listusers-blocked' => '(imblukkat)',
-
-# Special:ActiveUsers
-'activeusers' => 'Lista tal-utenti attivi',
-'activeusers-intro' => "Din hija lista ta' utenti li kellhom xi tip ta' attività f'dawn l-aħħar $1 {{PLURAL:$1|ġurnata|ġurnata}}.",
-'activeusers-count' => '$1 {{PLURAL:$1|modifika|modifika}} fl-aħħar {{PLURAL:$3|jum|$3 jum}}',
-'activeusers-from' => 'Uri utenti li jibdew minn:',
-'activeusers-hidebots' => 'Aħbi l-bots',
-'activeusers-hidesysops' => 'Aħbi amministraturi',
-'activeusers-noresult' => 'L-ebda utent ma nstab.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Drittijiet tal-grupp tal-utenti',
@@ -2891,24 +2872,14 @@ Kull azzjonijiet ta' importazzjoni tal-transwiki jiġu reġistrati fil-[[Special
 
 # Stylesheets
 'common.css' => '/* CSS li tpoġġa hawnhekk irrid jiġi applikat fl-iskins kollha */',
-'standard.css' => '/* CSS li tpoġġa hawnhekk se jaffetwa l-utenti li jagħmlu użu mill-iskin Standard */',
-'nostalgia.css' => '/* CSS li tpoġġa hawnhekk se jaffetwa l-utenti li jagħmlu użu mill-aspett grafiku Nostalgia */',
 'cologneblue.css' => '/* CSS li tpoġġa hawnhekk se jaffetwa dawk l-utenti li jagħmlu użu mill-aspett grafiku Cologne Blue */',
 'monobook.css' => "/* CSS li tpoġġa hawnhekk se jaffetwa dawk l-utenti li jagħmlu użu mill-iskin ''Monobook'' */",
-'myskin.css' => "/* CSS li tpoġġa hawnhekk se jaffetwa dawk l-utenti li jagħmlu użu mill-iskin ''L-Iskin tiegħi'' */",
-'chick.css' => '/* CSS li tpoġġa hawnhekk se jaffetwa dawk l-utenti li jagħmlu użu mill-aspett grafiku Ckick */',
-'simple.css' => '/* CSS li tpoġġa hawnhekk se jaffetwa dawk l-utenti li jagħmlu użu mill-aspett grafiku Simple */',
 'modern.css' => '/* CSS li tpoġġa hawnhekk se jaffetwa dawk l-utenti li jagħmlu użu mill-aspett grafiku Modern */',
 
 # Scripts
 'common.js' => "/* Kull ''JavaScript'' hawnhekk jiġi mniżżel għal kull utent f'kull tniżżil ta' paġna. */",
-'standard.js' => "/* Kull ''JavaScript'' hawnhekk jiġi mniżżel għal dawk l-utenti li qegħdin jagħmlu użu mill-iskin ''Standard'' */",
-'nostalgia.js' => "/* Kull ''JavaScript'' hawnhekk jiġi mniżżel għal dawk l-utenti li qegħdin jagħmlu użu mill-iskin ''Nostalgia'' */",
 'cologneblue.js' => "/* Kull ''JavaScript'' hawnhekk jiġi mniżżel għal dawk l-utenti li qegħdin jagħmlu użu mill-iskin ''Cologne Blue'' */",
 'monobook.js' => "/* Kull ''JavaScript'' hawnhekk jiġi mniżżel għal dawk l-utenti li qegħdin jagħmlu użu mill-iskin ''Monobook'' */",
-'myskin.js' => "/* Kull ''JavaScript'' hawnhekk jiġi mniżżel għal dawk l-utenti li qegħdin jagħmlu użu mill-iskin ''MySkin'' */",
-'chick.js' => "/* Kull ''JavaScript'' hawnhekk jiġi mniżżel għal dawk l-utenti li qegħdin jagħmlu użu mill-iskin ''Chick'' */",
-'simple.js' => "/* Kull ''JavaScript'' hawnhekk jiġi mniżżel għal dawk l-utenti li qegħdin jagħmlu użu mill-iskin ''Simple'' */",
 'modern.js' => "/* Kull ''JavaScript'' hawnhekk jiġi mniżżel għal dawk l-utenti li qegħdin jagħmlu użu mill-iskin ''Modern''*/",
 
 # Metadata
@@ -2974,13 +2945,8 @@ Kull azzjonijiet ta' importazzjoni tal-transwiki jiġu reġistrati fil-[[Special
 'pageinfo-protect-cascading-from' => 'Protezzjoni li tintiret minn',
 
 # Skin names
-'skinname-standard' => 'Classic',
-'skinname-nostalgia' => 'Nostalgia',
 'skinname-cologneblue' => 'Cologne Blue',
 'skinname-monobook' => 'Monobook',
-'skinname-myskin' => 'MySkin',
-'skinname-chick' => 'Chick',
-'skinname-simple' => 'Simple',
 'skinname-modern' => 'Modern',
 
 # Patrolling

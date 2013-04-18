@@ -176,8 +176,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Ipakita ang bilang ng mga nagbabantay na tagagamit',
 'tog-oldsig' => 'Umiiral na lagda:',
 'tog-fancysig' => 'Ituring ang lagda bilang teksto ng wiki (walang automatikong pagkawing)',
-'tog-externaleditor' => 'Gumamit ng nakatakdang panlabas na pampatnugot ayon sa likas na pagkakatakda (para sa mga dalubhasa lamang, kailangan ng natatanging mga pagtatakda sa iyong kompyuter. [//www.mediawiki.org/wiki/Manual:External_editors Marami pang kabatiran.])',
-'tog-externaldiff' => 'Gumamit ng likas na nakatakdang panlabas na pagkakaiba (para sa mga dalubhasa lamang, kailangan ng natatanging mga pagtatakda sa iyong kompyuter. [//www.mediawiki.org/wiki/Manual:External_editors Mas marami pang kabatiran.])',
 'tog-showjumplinks' => 'Payagan ang mga "tumalon sa" na kawing pampagamit',
 'tog-uselivepreview' => 'Gamitin ang buhay na paunang tingin (JavaScript) (Eksperimental)',
 'tog-forceeditsummary' => 'Pagsabihan ako kapag nagpapasok ng walang-lamang buod ng pagbabago',
@@ -192,6 +190,7 @@ $messages = array(
 'tog-showhiddencats' => 'Ipakita ang mga nakatagong kategorya',
 'tog-noconvertlink' => 'Huwag paganahin ang pagpapalit ng pamagat na pangkawing',
 'tog-norollbackdiff' => 'Alisin ang mga pagkakaiba pagkatapos isagawa ang pagpapagulong na pabalik sa dati',
+'tog-useeditwarning' => 'Magbabala sa akin kapag umalis ako sa isang pahina ng pampatnugot na hindi pa nasasagip ang mga pagbabago',
 
 'underline-always' => 'Palagi',
 'underline-never' => 'Hindi magpakailanman',
@@ -950,6 +949,8 @@ Tila binura na ito.',
 'edit-already-exists' => 'Hindi makalikha ng isang bagong pahina.
 Umiiral na ito.',
 'defaultmessagetext' => 'Nakatakdang teksto ng mensahe',
+'editwarning-warning' => 'Ang paglisan mula sa pahinang ito ay maaaring makasanhi sa iyo ng pagkawala ng anumang mga pagbabagong ginawa mo.
+Kung nakalagda ka, maaari mong huwag paganahin ang babalang ito sa loob ng seksyong "May binabago" ng mga nais mo.',
 
 # Content models
 'content-model-wikitext' => 'wikiteksto',
@@ -1230,15 +1231,6 @@ Subuking lagyan ng unlapi/paunang ''all:'' upang hanapin ang lahat ng mga nialal
 'powersearch-togglenone' => 'Wala',
 'search-external' => 'Panlabas na paghahanap',
 'searchdisabled' => 'Nakapatay ang paghahanap sa {{SITENAME}}. Maaari kang pansamantalang maghanap sa pamamagitan ng Google. Tandaan na maaaring luma na ang kanilang mga indeks sa nilalaman ng {{SITENAME}}.',
-
-# Quickbar
-'qbsettings' => 'Quickbar',
-'qbsettings-none' => 'Wala',
-'qbsettings-fixedleft' => 'Inayos ang kaliwa',
-'qbsettings-fixedright' => 'Inayos ang kanan',
-'qbsettings-floatingleft' => 'Kaliwa lumulutang',
-'qbsettings-floatingright' => 'Kanan lumulutang',
-'qbsettings-directionality' => 'Naayos na, ayon sa kapupuntahan ng panitik ng wika mo',
 
 # Preferences page
 'preferences' => 'Mga kagustuhan',
@@ -1797,7 +1789,6 @@ Para sa pinakamatatag na kaligtasan, hindi pinagana ang img_auth.php.',
 'http-read-error' => 'Kamalian sa pagbasa ng HTTP.',
 'http-timed-out' => 'Huminto ang kahilingang HTTP.',
 'http-curl-error' => 'Kamalian sa pagsalok ng URL: $1',
-'http-host-unreachable' => 'Hindi marating ang URL.',
 'http-bad-status' => 'Nagkaroon ng suliranin habang hinihiling ang HTTP na: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -2118,15 +2109,6 @@ Sinusuportahang mga protokolo: <code>$1</code> (huwag idagdag ang anuman sa mga 
 'listusers-submit' => 'Ipakita',
 'listusers-noresult' => 'Walang nahanap na tagagamit.',
 'listusers-blocked' => '(hinarang)',
-
-# Special:ActiveUsers
-'activeusers' => 'Tala ng mga aktibong tagagamit',
-'activeusers-intro' => 'Isa itong talaan ng mga tagagamit na nagkaroon ng ilang uri ng galaw sa loob ng huling $1 {{PLURAL:$1|araw|mga araw}}.',
-'activeusers-count' => '$1 {{PLURAL:$1|pagbabago|mga pagbabago}} sa loob ng huling {{PLURAL:$3|araw|$3 mga araw}}',
-'activeusers-from' => 'Ipakita ang mga tagagamit simula sa:',
-'activeusers-hidebots' => 'Itago ang mga bots',
-'activeusers-hidesysops' => 'Itago ang mga tagapangasiwa',
-'activeusers-noresult' => 'Walang natagpuang mga tagagamit.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Mga uri ng tagagamit',
@@ -2924,13 +2906,8 @@ Sagipin mo ito sa iyong kompyuter at papaitaas na ikarga ito rito.',
 
 # Stylesheets
 'common.css' => '/* Ang inilagay na CSS dito ay gagamitin para sa lahat ng mga pabalat */',
-'standard.css' => '/* Ang inilagay na CSS dito ay makakaapekto sa mga tagagamit ng Karaniwang pabalat */',
-'nostalgia.css' => '/* Ang CSS na inilagay dito ay makakaapekto sa mga tagagamit ng pabalat na Nostalgia */',
 'cologneblue.css' => "/* Ang Cascading Style Sheets na inilagay dito ay makakaapekto sa mga tagagamit ng pabalat na Bughaw na Kolown (''Cologne Blue'') */",
 'monobook.css' => '/* Ang CSS na inilagay dito ay makakaapekto sa mga tagagamit ng pabalat na Monobook */',
-'myskin.css' => "/* Ang CSS na inilagay dito ay makakaapekto sa lahat ng mga tagagamit ng pabalat na Balatko (''MySkin'') */",
-'chick.css' => "/* Ang CSS na inilagay dito ay makakaapekto sa mga tagagamit ng pabalat na ''Chick'' */",
-'simple.css' => "/* Ang CSS na iniligay dito ay makakaapekto sa mga tagagamit ng Payak (''Simple'') na pabalat */",
 'modern.css' => "/* Ang CSS na iniligay dito ay makakaapekto sa tagagamit ng Makabagong (''Modern'') pabalat */",
 'vector.css' => '/* Ang inilagay na CSS dito ay makakaapekto sa mga tagagamit ng pabalat na Vector */',
 'print.css' => '/* Ang CSS na inilagay dito ay makakaapekto sa kalalabasan o resulta ng paglilimbag */',
@@ -2943,13 +2920,8 @@ Sagipin mo ito sa iyong kompyuter at papaitaas na ikarga ito rito.',
 
 # Scripts
 'common.js' => '/* Ang anumang JavaScript dito ay ikakarga para sa lahat ng mga tagagamit ng bawat pahinang ikinarga. */',
-'standard.js' => '/* Ang anumang JavaScript dito ay ikakarga para sa mga tagagamit na gumagamit ng Karaniwang pabalat */',
-'nostalgia.js' => '/* Ang anumang JavaScript dito ay ikakarga para sa mga tagagamit na gumagamit ng pabalat na Nostalgia */',
 'cologneblue.js' => '/* Ang anumang JavaScript dito ay ikakarga para sa mga tagagamit ng pabalat na Cologne Blue o Bughaw na Kolown */',
 'monobook.js' => '/* Ang anumang JavaScript dito ay ikakarga para sa mga tagagamit na gumagamit ng pabalat na MonoBook */',
-'myskin.js' => '/* Ang anumang JavaScript dito ay ikakarga para sa tagagamit na gumagamit ng pabalat na MySkin o Balat Ko */',
-'chick.js' => '/* Ang anumang JavaScript dito ay ikakarga para sa mga tagagamit na gumagamit ng pabalat na Chick */',
-'simple.js' => '/* Ang anumang JavaScript dito ay ikakarga para sa mga tagagamit na gumagamit ng Payak na pabalat */',
 'modern.js' => '/* Ang anumang JavaScript dito ay ikakarga para sa mga tagagamit na gumagamit ng Modernong pabalat */',
 'vector.js' => '/* Ang anumang JavaScript dito ay ikakarga para sa mga tagagamit na gumagamit ng pabalat na Vector */',
 'group-autoconfirmed.js' => '/* Ang anumang JavaScript dito ay ikakarga para sa mga tagagamit na kusang natiyak lamang */',
@@ -3015,13 +2987,8 @@ Maaaring dahil ito sa isang kawing sa isang nakatalang hinarang dahil di-kinaisn
 'pageinfo-templates' => '{{PLURAL:$1|Suleras|Mga suleras}} ($1) na nasa transklusyon (kasama sa maraming mga lugar)',
 
 # Skin names
-'skinname-standard' => 'Klasiko',
-'skinname-nostalgia' => 'Nostalhiya',
 'skinname-cologneblue' => 'Bughaw na Kolown',
 'skinname-monobook' => 'MonoAklat ("isang aklat")',
-'skinname-myskin' => 'PabalatKo',
-'skinname-chick' => "\"Pambabae\" (''Chick'')",
-'skinname-simple' => 'Payak',
 'skinname-modern' => 'Makabago (Moderno)',
 'skinname-vector' => 'Vector',
 
@@ -3114,8 +3081,6 @@ Anumang susunod na mga kawing sa pinanggalingang linya ay tinuturing na mga ekse
 
 /*
 Short names for language variants used for language conversion links.
-To disable showing a particular link, set it to 'disable', e.g.
-'variantname-zh-sg' => 'disable',
 Variants for Chinese language
 */
 'variantname-zh-hans' => 'hans',

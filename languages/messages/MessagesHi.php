@@ -217,8 +217,6 @@ $messages = array(
 'tog-shownumberswatching' => 'ध्यान रखने वाले सदस्यों की संख्या दिखाएँ',
 'tog-oldsig' => 'वर्तमान हस्ताक्षर:',
 'tog-fancysig' => 'हस्ताक्षर का विकिपाठ के समान उपयोग करें (बिना स्वचालित कड़ी के)',
-'tog-externaleditor' => 'डिफ़ॉल्ट रूप से बाह्य सम्पादक का उपयोग करें (केवल विशेषज्ञों के लिए, इसके लिए संगणक पर विशेष जमाव चाहिए होंगे। [//www.mediawiki.org/wiki/Manual:External_editors अधिक जानकारी।])',
-'tog-externaldiff' => 'डिफ़ॉल्ट रूप से बाह्य अन्तर का उपयोग करें (केवल विशेषज्ञों के लिए, इसके लिए संगणक पर विशेष जमाव चाहिए होंगे। [//www.mediawiki.org/wiki/Manual:External_editors अधिक जानकारी।])',
 'tog-showjumplinks' => '"की ओर जाएं" कड़ियाँ उपलब्ध कराएँ',
 'tog-uselivepreview' => 'सजीवन झलक का उपयोग करें (जावास्क्रिप्ट चाहिए) (प्रयोगक्षम)',
 'tog-forceeditsummary' => 'यदि बदलाव सारांश ना दिया गया हो तो मुझे सूचित करें',
@@ -1237,15 +1235,6 @@ $1",
 आप गूगल से खोज कर सकते हैं।
 ध्यान रखें कि उनकी {{SITENAME}} सामग्री की सूची पुरानी हो सकती है।',
 
-# Quickbar
-'qbsettings' => 'शीघ्रपट',
-'qbsettings-none' => 'बिल्कुल नहीं',
-'qbsettings-fixedleft' => 'स्थिर बाईं ओर',
-'qbsettings-fixedright' => 'स्थिर दाहिनी ओर',
-'qbsettings-floatingleft' => 'अस्थिर बाईं ओर',
-'qbsettings-floatingright' => 'अस्थिर दाहिनी ओर',
-'qbsettings-directionality' => 'निश्चित, आपकी भाषा की लिपि की दिशात्मकता पर निर्भर',
-
 # Preferences page
 'preferences' => 'मेरी वरीयताएँ',
 'mypreferences' => 'पसंद',
@@ -1805,7 +1794,6 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization देखें।',
 'http-read-error' => 'एच॰टी॰टी॰पी पढ़ने में त्रुटि।',
 'http-timed-out' => 'एच॰टी॰टी॰पी अनुरोध का समय समाप्त (टाइम आउट)',
 'http-curl-error' => 'यू॰आर॰एल $1 पाने में त्रुटि',
-'http-host-unreachable' => 'यू॰आर॰एल तक पहुँचा नहीं जा सका।',
 'http-bad-status' => 'एच॰टी॰टी॰पी अनुरोध के दौरान समस्या थी: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -2124,15 +2112,6 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization देखें।',
 'listusers-submit' => 'दिखाएँ',
 'listusers-noresult' => 'सदस्य नहीं मिला।',
 'listusers-blocked' => '(अवरोधित)',
-
-# Special:ActiveUsers
-'activeusers' => 'सक्रिय सदस्यों की सूची',
-'activeusers-intro' => 'यह सक्रिय सदस्यों की सूची है जिन्होंने पिछले $1 {{PLURAL:$1|दिन|दिनों}} में कुछ गतिविधि करी है।',
-'activeusers-count' => '$1 {{PLURAL:$1|सम्पादन}} पिछले $3 {{PLURAL:$3|दिन|दिनों}} में',
-'activeusers-from' => 'इस अक्षर से शुरू होने वाले सदस्य दिखाएँ:',
-'activeusers-hidebots' => 'बॉट छुपाएँ',
-'activeusers-hidesysops' => 'प्रबंधक छुपाएँ',
-'activeusers-noresult' => 'कोई सदस्य नहीं मिले।',
 
 # Special:ListGroupRights
 'listgrouprights' => 'सदस्य समूह अधिकार',

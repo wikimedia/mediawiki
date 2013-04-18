@@ -597,6 +597,7 @@ Nó desmentegarte de personałixare łe [[Special:Preferences|prefarense de {{SI
 'gotaccount' => "Sito zà iscrito? '''$1'''.",
 'gotaccountlink' => 'Entra',
 'userlogin-resetlink' => "Desmentegà i to dati d'aceso?",
+'helplogin-url' => 'Help:Login',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Ajuto col login]]',
 'createaccountmail' => 'Dopara na password caxuałe tenporanea e inviała al indiriso e-mail spesifegà cuà soto',
 'createaccountreason' => 'Motivassion:',
@@ -688,6 +689,7 @@ Forse te ghè zà canbià la to password o te ghè domandà na password tenporan
 'passwordreset-text' => 'Conpleta sto moduło par riçevare i detaji del to account via posta ełetronega.',
 'passwordreset-legend' => 'Rinposta ła password',
 'passwordreset-disabled' => 'Ła rinpostasion deła password xe stà dixabiłità so sto projeto wiki.',
+'passwordreset-emaildisabled' => 'Le funsionalità de posta eletrònega le xe stà disabilità su sta wiki.',
 'passwordreset-pretext' => '{{PLURAL:$1|| Inserisi una dełe porsion de dati cua soto}}',
 'passwordreset-username' => 'Nome utente:',
 'passwordreset-domain' => 'Dominio',
@@ -1202,6 +1204,7 @@ Prova a métarghe \"all:\" davanti al testo che te serchi par vardar in tuti i n
 'powersearch-togglenone' => 'Nissun',
 'search-external' => 'Riserca esterna',
 'searchdisabled' => 'La riserca interna de {{SITENAME}} no la xe ativa; par intanto te pol proár a doparar un motore de riserca esterno come Google. (Nota però che i contenuti de {{SITENAME}} presenti in sti motori i podarìa èssar mìà agiornà.)',
+'search-error' => 'Se gà verifegà un eror durante la riserca: $1',
 
 # Preferences page
 'preferences' => 'Prefarense',
@@ -1894,6 +1897,7 @@ Vien considerae pàjine de dixanbiguasion tute cuełe che łe ga drento i modeł
 
 'pageswithprop' => 'Pagine co na proprietà de pagina',
 'pageswithprop-legend' => 'Pagine co na proprietà de pagina',
+'pageswithprop-text' => 'Sta pagina la elenca le pagine che dòpara na particolare proprietà de pagina.',
 'pageswithprop-prop' => 'Nome proprietà:',
 'pageswithprop-submit' => 'Và',
 
@@ -2536,6 +2540,7 @@ Qua soto ghe xe el registro de le sopression:',
 'proxyblocksuccess' => 'Fatto.',
 'sorbsreason' => 'Sto indirizo IP el xe elencà come proxy verto ne la lista nera DNSBL doparà da {{SITENAME}}.',
 'sorbs_create_account_reason' => 'No se pol crear acessi novi da sto indirizo IP parché el xe elencà come proxy verto ne la lista nera DNSBL doparà da {{SITENAME}}.',
+'xffblockreason' => "Un indiriso IP presente ne l'intestasion X-Forwarded-For, tuo o del server proxy che te sì drio doparar, el xe stà blocà. La motivasion originale del bloco la xe: $1",
 'cant-block-while-blocked' => 'No se pode blocar altri utenti finché se xe blocài.',
 'cant-see-hidden-user' => "L'utente che te vol blocar el xe zà stà blocà e sconto. Sicome a no te ghè mia i diriti de hideuser, no te pol mia védar o canbiar el bloco de l'utente.",
 'ipbblocked' => 'No te pui blocare o sblocare altri utenti, parché ti steso te si blocà',
@@ -2882,6 +2887,7 @@ Questo xe probabilmente dovùo a la presenza de un colegamento a un sito foresto
 'pageinfo-robot-noindex' => 'Mia indicizabile',
 'pageinfo-views' => 'Nùmaro de visite',
 'pageinfo-watchers' => "Nùmaro de utenti che tien d'ocio sta pagina",
+'pageinfo-few-watchers' => 'Manco de $1 {{PLURAL:$1|oservador|oservadori}}',
 'pageinfo-redirects-name' => 'Rimandi verso sta pagina',
 'pageinfo-subpages-name' => 'Sotopagine de sta pagina',
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|rimandi}}; $3 {{PLURAL:$3|no rimandi}})',

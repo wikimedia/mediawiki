@@ -610,6 +610,7 @@ Tingueu en compte que algunes pàgines poden continuar mostrant-se com si encara
 No oblideu de canviar les vostres [[Special:Preferences|preferències de {{SITENAME}}]].',
 'yourname' => "Nom d'usuari",
 'userlogin-yourname' => "Nom d'usuari",
+'userlogin-yourname-ph' => "Introduïu el vostre nom d'usuari",
 'yourpassword' => 'Contrasenya',
 'userlogin-yourpassword' => 'Contrasenya',
 'userlogin-yourpassword-ph' => 'Introduïu la vostra contrasenya',
@@ -2458,7 +2459,7 @@ Per més detalls, la última entrada del registre es mostra a continuació:',
 
 # What links here
 'whatlinkshere' => 'Què hi enllaça',
-'whatlinkshere-title' => 'Pàgines que enllacen amb $1',
+'whatlinkshere-title' => 'Pàgines que enllacen amb «$1»',
 'whatlinkshere-page' => 'Pàgina:',
 'linkshere' => "Les següents pàgines enllacen amb '''[[:$1]]''':",
 'nolinkshere' => "Cap pàgina no enllaça amb '''[[:$1]]'''.",

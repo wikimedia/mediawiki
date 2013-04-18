@@ -94,8 +94,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Igpakita an ihap han mga nangingita nga mga nagamit',
 'tog-oldsig' => 'Aada nga pirma:',
 'tog-fancysig' => 'Tratuha it pirma komo uska wikitext (nga waray automatiko nga sumpay)',
-'tog-externaleditor' => 'Gamit hin ha-gawas nga pagliwat ha default (ha mga experto la ini, nakinahanglan hin mga pinaurog nga mga seting ha imo kompyuter. [//www.mediawiki.org/wiki/Manual:External_editors More information.]  )',
-'tog-externaldiff' => 'Gamit hin ha-gawas nga diff ha default (ha mga experto la, nakinahanglan hin mga pinaurog nga mga seting ha imo kompyuter.  [//www.mediawiki.org/wiki/Manual:External_editors More information.])',
 'tog-showjumplinks' => 'Enable "jump to" accessibility links',
 'tog-uselivepreview' => 'Gamita an buhi nga pahiuna nga pagawas (nagkikinahanglan hin JavaScript) (eksperimental)',
 'tog-forceeditsummary' => 'Pasabti ako kun waray ko ginsurat ha dalikyat-nga-tigaman han pagliwat (edit summary)',
@@ -847,14 +845,6 @@ Diri mo ini malalabtan.',
 Pamilnga la anay pinaagi ha Google ha pagkayana.
 Ginpapasabot nga an sulod han mga panudlok han {{SITENAME}} in bangin daan an.',
 
-# Quickbar
-'qbsettings' => 'Quickbar',
-'qbsettings-none' => 'Waray',
-'qbsettings-fixedleft' => 'Ginayad an wala',
-'qbsettings-fixedright' => 'Gin-ayad an to-o',
-'qbsettings-floatingleft' => 'Nalutaw pawala',
-'qbsettings-floatingright' => 'Nalutaw pato-o',
-
 # Preferences page
 'preferences' => 'Mga karuyag',
 'mypreferences' => 'Mga akon karuyag',
@@ -1213,7 +1203,6 @@ $1',
 'http-read-error' => 'HTTP maysayop ha pagbasa.',
 'http-timed-out' => 'Naubosan hin oras ha pagpaalayon ha HTTP.',
 'http-curl-error' => 'May sayop ha pagkuha hin URL: $1',
-'http-host-unreachable' => 'Diri nakakaabot ha URL.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'Diri nakakaabot ha URL',

@@ -957,7 +957,7 @@ $2
 仮パスワード: $2',
 'passwordreset-emailsent' => 'パスワード再設定メールをお送りしました。',
 'passwordreset-emailsent-capture' => '下記の内容の、パスワード再設定メールをお送りしました。',
-'passwordreset-emailerror-capture' => '以下の内容のパスワード再設定メールを生成しましたが、利用者への送信に失敗しました: $1',
+'passwordreset-emailerror-capture' => '以下の内容のパスワード再設定メールを生成しましたが、{{GENDER:$2|利用者}}への送信に失敗しました: $1',
 
 # Special:ChangeEmail
 'changeemail' => 'メールアドレスの変更',

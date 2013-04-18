@@ -262,8 +262,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Sýna fjölda vaktandi notenda',
 'tog-oldsig' => 'Núverandi undirskrift:',
 'tog-fancysig' => 'Meðhöndla undirskrift sem wikimál (án sjálfvirks tengils)',
-'tog-externaleditor' => 'Nota utanaðkomandi ritil sjálfgefið (eingöngu fyrir reynda, þarfnast sérstakra stillinga á tölvunni þinni. [//www.mediawiki.org/wiki/Manual:External_editors Frekari upplýsingar.])',
-'tog-externaldiff' => 'Nota utanaðkomandi mismun sjálfgefið (eingöngu fyrir reynda, þarfnast sérstakra stillinga á tölvunni þinni. [//www.mediawiki.org/wiki/Manual:External_editors Frekari upplýsingar.])',
 'tog-showjumplinks' => 'Virkja „stökkva á“ aðgengitengla',
 'tog-uselivepreview' => 'Nota beina forskoðun (JavaScript) (Á tilraunastigi)',
 'tog-forceeditsummary' => 'Birta áminningu þegar breytingarágripið er tómt',
@@ -277,6 +275,7 @@ $messages = array(
 'tog-diffonly' => 'Ekki sýna síðuefni undir mismunum',
 'tog-showhiddencats' => 'Sýna falda flokka',
 'tog-norollbackdiff' => 'Sleppa breytingu eftir að endurvakning síðu hefur verið gerð.',
+'tog-useeditwarning' => 'Vara mig við þegar ég fer frá breytingarsíðu með óvistaðar breytingar',
 
 'underline-always' => 'Alltaf',
 'underline-never' => 'Aldrei',
@@ -1010,6 +1009,8 @@ Hún er nú þegar til.',
 'content-failed-to-parse' => 'Gat ekki þáttað $2 efni samkvæmt $1 líkani: $3',
 'invalid-content-data' => 'Ógild efnisgögn.',
 'content-not-allowed-here' => '„$1“ efni er ekki leyfilegt á síðunni [[$2]]',
+'editwarning-warning' => 'Ef farið er frá þessari síðu gætu þær breytingar sem þú hefur gert tapast.
+Ef þú ert skráður inn, þá getur þú óvirkjað þessi skilaboð í „Breytingarflipanum" undir stillingum.',
 
 # Content models
 'content-model-wikitext' => 'wiki-texti',

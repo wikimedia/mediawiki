@@ -94,8 +94,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Pokoż, wjela sprowjorzy dowo pozůr',
 'tog-oldsig' => 'Teroźni wyglůnd Twojygo szrajbowańo',
 'tog-fancysig' => 'Szrajbńij s kodůma wiki (bez autůmatycznygo linka)',
-'tog-externaleditor' => 'Sztandardowo używej zewnyntrzny edytor (jyno do ekspertůw, trza mjyć ekstra sztalowańy we systymje)',
-'tog-externaldiff' => 'Sztandardowo używej zewnyntrzny program do filowańo we pomjyńańach (jyno do ekspertůw, trza mjyć ekstra sztalowańy we systymje)',
 'tog-showjumplinks' => 'Zapńij cajchnůndzki "przyńdź do"',
 'tog-uselivepreview' => 'Używej dynamiczne uobźyrańy (JavaScript) (eksperymentalny)',
 'tog-forceeditsummary' => 'Pedź, kejbych ńic ńy naszkryfloł we uopiśe pomjyńań',
@@ -983,14 +981,6 @@ $1',
 'search-external' => 'Šnupańy zewnyntřne',
 'searchdisabled' => 'Šnupańy we {{GRAMMAR:MS.lp|{{SITENAME}}}} zostouo zawarte. Zańim go zouůnčům, možeš sprůbować šnupańo bez Google. Ino zauwaž, co informacyje uo treśći {{GRAMMAR:MS.lp|{{SITENAME}}}} můgům być we Google ńyakuratne.',
 
-# Quickbar
-'qbsettings' => 'Gurt šybkigo dostympu',
-'qbsettings-none' => 'Brak',
-'qbsettings-fixedleft' => 'Stouy, s lewyj',
-'qbsettings-fixedright' => 'Stouy, s prawyj',
-'qbsettings-floatingleft' => 'Unošůncy śe, s lewyj',
-'qbsettings-floatingright' => 'Unošůncy śe, s prawyj',
-
 # Preferences page
 'preferences' => 'Preferyncyje',
 'mypreferences' => 'Moje preferyncyje',
@@ -1623,11 +1613,6 @@ Uobsůgiwane protokoły: <code>$1</code>',
 'listusersfrom' => 'Pokaž užytkowńikůw začynojůnc uod:',
 'listusers-submit' => 'Pokož',
 'listusers-noresult' => 'Ńy znejdźůno žodnygo užytkowńika.',
-
-# Special:ActiveUsers
-'activeusers-hidebots' => 'Schrůń boty',
-'activeusers-hidesysops' => 'Schrůń adminy',
-'activeusers-noresult' => 'Ńy sům używacze.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Uprawńyńo grup użytkowńikůw',

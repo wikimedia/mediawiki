@@ -187,8 +187,6 @@ $messages = array(
 'tog-shownumberswatching' => "'t Aantal gebroekers tuine die dees pagina volg",
 'tog-oldsig' => 'Bestaonde ongerteikening:',
 'tog-fancysig' => 'Es wikiteks behanjele (zonder autematische verwiezing)',
-'tog-externaleditor' => "Sjtanderd 'ne externe teksbewirker gebroeke (inkel veur experts, speciaal instellinge zien nudig. [//www.mediawiki.org/wiki/Manual:External_editors Mie infermasie])",
-'tog-externaldiff' => "Sjtanderd 'n extern vergeliekingsprogramma gebroeke (inkel veur experts, speciaal instellinge zien nudig [//www.mediawiki.org/wiki/Manual:External_editors Mie infermasie])",
 'tog-showjumplinks' => '"gank nao"-toegankelikheidslinks mäögelik make',
 'tog-uselivepreview' => '"live veurbesjouwing" gebroeke (vereis JavaScript - experimenteel)',
 'tog-forceeditsummary' => "'n Melding gaeve bie 'n laeg samevatting",
@@ -202,6 +200,7 @@ $messages = array(
 'tog-diffonly' => 'Pagina-inhaud zónger verangeringe neet tuine',
 'tog-showhiddencats' => 'Verbórge categorië tuine',
 'tog-norollbackdiff' => 'Wieziginge eweglaote nao trökdrieje',
+'tog-useeditwarning' => "Waorssjoew mich es ich 'n bewerkdje pagina die nag neet is opgeslage wil verlaote",
 
 'underline-always' => 'Altied',
 'underline-never' => 'Noets',
@@ -892,6 +891,8 @@ Ze lik eweggesjaf te zien.',
 'edit-already-exists' => 'De pagina is neet aangemaak.
 Zie besjteit al.',
 'defaultmessagetext' => 'Obligaten teks',
+'editwarning-warning' => "Es se dees pagina verleets verluus se meugelik wieziginge die se haes gemaak.
+Es se bös aangemeld, kins se dees waorsjoewing oetzètten in 't bewerkingstabblaad in dien veurkäöre.",
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => "'''Waarschuwing:''' dees pagina gebroek te väöl kosbare parserfuncties.
@@ -1166,15 +1167,6 @@ Doe kans ouch 'n naamruumde es veurvoegsel gebroeke.",
 'searchdisabled' => 'Zeuke op {{SITENAME}} is oetgesjakeld vanweige gebrek aan servercapaciteit.
 Zoelang as de servers nog neet sjterk genog zunt kins e zeuke bie Google.
 Mèrk op dat hun indexe van {{SITENAME}} content e bietje gedatierd kint zien.',
-
-# Quickbar
-'qbsettings' => 'Menubalkinsjtèllinge',
-'qbsettings-none' => 'Oetgesjakeld',
-'qbsettings-fixedleft' => 'Links vas',
-'qbsettings-fixedright' => 'Rechts vas',
-'qbsettings-floatingleft' => 'Links zjwevend',
-'qbsettings-floatingright' => 'Rechs zjwevend',
-'qbsettings-directionality' => 'Vas, aafhenkelik vanne sjrifrichting van dien sjpraok',
 
 # Preferences page
 'preferences' => 'Veurkäöre',
@@ -1715,7 +1707,6 @@ Om beveiligingsrede is img_auth.php oetgesjakeld.",
 'http-read-error' => 'HTTP-laezingsfout.',
 'http-timed-out' => 'HTTP-verzeuktimeout',
 'http-curl-error' => 'Óphaolingsfout URL: $1',
-'http-host-unreachable' => 'Kòs de URL neet bereike',
 'http-bad-status' => "d'r Is e perbleem ópgetraoje bie 't HTTP-verzeuk: $1 $2",
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -2027,15 +2018,6 @@ Haet mèndestes e toepleveldomein, wie beveurbeildj "*.org".<br />
 'listusers-submit' => 'Tuin',
 'listusers-noresult' => 'Gein(e) gebroeker(s) gevonje.',
 'listusers-blocked' => '(geblok)',
-
-# Special:ActiveUsers
-'activeusers' => 'Aktief gebroekers',
-'activeusers-intro' => "Dit is 'n lies mit gebroekers die aktief zeen gewaes in de aafgeloupe {{PLURAL:$1|daag|$1 daag}}.",
-'activeusers-count' => '$1 {{PLURAL:$1|bewèrking|bewèrkinger}} inne {{PLURAL:$3|lèsten daag|lès $3 daag}}',
-'activeusers-from' => 'Tuin gebroekers vanaaf:',
-'activeusers-hidebots' => 'Verberg bots',
-'activeusers-hidesysops' => 'Verberg admins',
-'activeusers-noresult' => 'Gein gebroekers gevónje.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Rechte van gebroekersgróppe',
@@ -2830,8 +2812,6 @@ Meistal wörd dit door 'ne zwarte externe link veroorzaak.",
 'pageinfo-authors' => 'Aantal versjillende sjrievers',
 
 # Skin names
-'skinname-standard' => 'Standaard',
-'skinname-nostalgia' => 'Nostalgie',
 'skinname-cologneblue' => 'Keuls blauw',
 
 # Patrolling

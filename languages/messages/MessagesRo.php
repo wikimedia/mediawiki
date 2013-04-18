@@ -869,7 +869,7 @@ Ar trebui să vă autentificați și să alegeți acum o nouă parolă. Dacă al
 Parolă temporară: $2',
 'passwordreset-emailsent' => 'A fost trimis un e-mail de resetare a parolei.',
 'passwordreset-emailsent-capture' => 'Un mesaj de resetare a parolei a fost trimis, fiind afișat mai jos.',
-'passwordreset-emailerror-capture' => 'Un mesaj de resetare a parolei a fost generat (fiind afișat mai jos), dar trimiterea sa către utilizator a eșuat: $1',
+'passwordreset-emailerror-capture' => 'Un mesaj de resetare a parolei a fost generat (fiind afișat mai jos), dar trimiterea sa către {{GENDER:$2|utilizator}} a eșuat: $1',
 
 # Special:ChangeEmail
 'changeemail' => 'Modificare adresă de e-mail',

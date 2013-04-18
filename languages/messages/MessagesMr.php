@@ -354,8 +354,6 @@ $messages = array(
 'tog-shownumberswatching' => 'पहारा दिलेले सदस्य दाखवा',
 'tog-oldsig' => 'सध्याची सही:',
 'tog-fancysig' => 'सही विकिसंज्ञा म्हणून वापरा (आपोआप दुव्याशिवाय)',
-'tog-externaleditor' => 'कायम बाह्य संपादक वापरा (फक्त प्रशिक्षित सदस्यांसाठीच, संगणकावर विशेष प्रणाली लागते) ([//www.mediawiki.org/wiki/Manual:External_editors अधिक माहिती])',
-'tog-externaldiff' => 'इतिहास पानावर निवडलेल्या आवृत्त्यांमधील बदल दाखविण्यासाठी बाह्य प्रणाली वापरा (फक्त प्रशिक्षित सदस्यांसाठीच, संगणकावर विशेष प्रणाली लागते) ([//www.mediawiki.org/wiki/Manual:External_editors अधिक माहिती])',
 'tog-showjumplinks' => '"कडे जा" सुगम दुवे, उपलब्ध करा.',
 'tog-uselivepreview' => 'संपादन करता करताच झलक दाखवा (जावास्क्रीप्ट)(प्रयोगक्षम)',
 'tog-forceeditsummary' => 'जर ’बदलांचा आढावा’ दिला नसेल तर मला सूचित करा',
@@ -369,6 +367,7 @@ $messages = array(
 'tog-diffonly' => 'निवडलेल्या आवृत्त्यांमधील बदल दाखवताना जुनी आवृत्ती दाखवू नका.',
 'tog-showhiddencats' => 'लपविलेले वर्ग दाखवा',
 'tog-norollbackdiff' => 'द्रुतमाघार घेतल्यास बदल वगळा',
+'tog-useeditwarning' => 'जर मी संपादित करीत असलेल्या पानावरील माझे संपादिलेले बदल जतन न केल्यास मला इशारा द्या',
 
 'underline-always' => 'नेहेमी',
 'underline-never' => 'कधीच नाही',
@@ -1039,6 +1038,8 @@ $2',
 या नावाचे पान आधीच अस्तित्वात आहे.',
 'defaultmessagetext' => 'कसूर पाठ्य मजकूर',
 'invalid-content-data' => 'अवैध माहिती',
+'editwarning-warning' => "या पानावरुन दुसर्‍या पानावर गेल्यास, तुम्ही येथे केलेले बदल जतन होणार नाहीत.
+ही सूचना घालवण्यासाठी ''माझ्या पसंती'' मधील संपादनपसंतीत बदल करा.",
 
 # Content models
 'content-model-wikitext' => 'विकिमजकूर',
@@ -1313,15 +1314,6 @@ $1",
 'powersearch-togglenone' => 'काहीही नाही',
 'search-external' => 'बाह्य शोध',
 'searchdisabled' => '{{SITENAME}} शोध अनुपलब्ध केला आहे.तो पर्यंत गूगलवरून शोध घ्या.{{SITENAME}}च्या मजकुराची त्यांची सूचिबद्धता शिळी असण्याची शक्यता असू शकते हे लक्षात घ्या.',
-
-# Quickbar
-'qbsettings' => 'शीघ्रपट',
-'qbsettings-none' => 'नाही',
-'qbsettings-fixedleft' => 'स्थिर डावे',
-'qbsettings-fixedright' => 'स्थिर ऊजवे',
-'qbsettings-floatingleft' => 'तरंगते डावे',
-'qbsettings-floatingright' => 'तरंगते ऊजवे',
-'qbsettings-directionality' => 'तुमच्या भाशा ची पद्धत दिशात्मक असली पाहिजे.',
 
 # Preferences page
 'preferences' => 'माझ्या पसंती',

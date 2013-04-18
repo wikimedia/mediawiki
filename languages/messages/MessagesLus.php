@@ -42,8 +42,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Ralvèngtu zât tilang rawh',
 'tog-oldsig' => 'Khàrna hming hman mék:',
 'tog-fancysig' => 'Khàrna hming wikithu angah ngai rawh (zawmna insiam ţül lovin)',
-'tog-externaleditor' => 'Sawi ngai lovin pawnlam siamţhatu hmang rawh (mithiam tan chauh, i khawlthluakneiah setting bîk a ngai. [//www.mediawiki.org/wiki/Manual:External_editors More information.])',
-'tog-externaldiff' => 'Sawi ngai lovin pawnlam diff hmang rawh (mithiam tan chauh, i khawlthluakneiah setting bîk a ngai. [//www.mediawiki.org/wiki/Manual:External_editors More information.])',
 'tog-showjumplinks' => '"Zuan kahlên rawh" tih zawmna awmtir rawh',
 'tog-uselivepreview' => 'Endikna nung hmang rawh (JavaScript a ngai) (hei hi chhinna chauh a la ni)',
 'tog-forceeditsummary' => 'Siamţhatna ruak ka dahluh palhin min hrilh rawh',
@@ -57,6 +55,7 @@ $messages = array(
 'tog-diffonly' => 'Dnglmn hnuaiah phêk chhúng tilang suh',
 'tog-showhiddencats' => 'Pawl thuhrûkho tilang rawh',
 'tog-norollbackdiff' => 'Lumlêt hnuah dnglmn kalkan rawh',
+'tog-useeditwarning' => 'Ka phêk siam danglamna ka dahţhat theihnghilh palh chuan min hrilh rawh',
 
 'underline-always' => 'Ziah/ngei ngei',
 'underline-never' => 'Ngai lo',

@@ -927,7 +927,7 @@ tedy změnit, můžete tuto zprávu ignorovat a nadále používat původní hes
 Dočasné heslo: $2',
 'passwordreset-emailsent' => 'E-mail pro získání nového hesla byl odeslán.',
 'passwordreset-emailsent-capture' => 'Byl odeslán e-mail pro získání nového hesla, který je zobrazen níže.',
-'passwordreset-emailerror-capture' => 'Byl vygenerován e-mail pro získání nového hesla, který je zobrazen níže, ale nepodařilo se ho odeslat uživateli: $1',
+'passwordreset-emailerror-capture' => 'Byl vygenerován e-mail pro získání nového hesla, který je zobrazen níže, ale nepodařilo se ho odeslat {{GENDER:$2|uživateli|uživatelce}}: $1',
 
 # Special:ChangeEmail
 'changeemail' => 'Změna e-mailové adresy',

@@ -978,7 +978,7 @@ $2
 Temporäres Passwort: $2',
 'passwordreset-emailsent' => 'Eine Passwortzurücksetzungs-E-Mail wurde versandt.',
 'passwordreset-emailsent-capture' => 'Eine Passwortzurücksetzungs-E-Mail wurde versandt, die unten angezeigt wird.',
-'passwordreset-emailerror-capture' => 'Die unten angezeigte Passwortzurücksetzungs-E-Mail wurde generiert, allerdings ist der Versand an den Benutzer gescheitert: $1',
+'passwordreset-emailerror-capture' => 'Die unten angezeigte Passwortzurücksetzungs-E-Mail wurde generiert, allerdings ist der Versand an {{GENDER:$2|den Benutzer|die Benutzerin}} gescheitert: $1',
 
 # Special:ChangeEmail
 'changeemail' => 'E-Mail-Adresse ändern',
@@ -2425,7 +2425,7 @@ Spätere Änderungen an dieser Seite und der zugehörigen Diskussionsseite werde
 'notanarticle' => 'Keine Seite',
 'notvisiblerev' => 'Version wurde gelöscht',
 'watchnochange' => 'Keine der von dir beobachteten Seiten wurde während des angezeigten Zeitraums bearbeitet.',
-'watchlist-details' => 'Du beobachtest {{PLURAL:$1|1 Seite|$1 Seiten}}. Diskussionsseiten werden nicht extra gezählt.',
+'watchlist-details' => 'Du beobachtest {{PLURAL:$1|eine Seite|$1 Seiten}}, ohne dass Diskussionsseiten gezählt werden.',
 'wlheader-enotif' => '* Der E-Mail-Benachrichtigungsdienst ist aktiviert.',
 'wlheader-showupdated' => "* Seiten mit noch nicht gesehenen Änderungen werden '''fett''' dargestellt.",
 'watchmethod-recent' => 'Überprüfen der letzten Bearbeitungen für die Beobachtungsliste',

@@ -833,7 +833,7 @@ ignore esta mensaxe e continúe empregando o seu contrasinal vello.',
 Contrasinal temporal: $2',
 'passwordreset-emailsent' => 'Enviouse o correo electrónico de restablecemento do contrasinal.',
 'passwordreset-emailsent-capture' => 'Enviouse un correo electrónico de restablecemento do contrasinal, mostrado a continuación.',
-'passwordreset-emailerror-capture' => 'Xerouse un correo electrónico de restablecemento do contrasinal, mostrado a continuación, pero o envío ao usuario fallou: $1',
+'passwordreset-emailerror-capture' => 'Xerouse un correo electrónico de restablecemento do contrasinal, mostrado a continuación, pero o envío {{GENDER:$2|ao usuario|á usuaria}} fallou: $1',
 
 # Special:ChangeEmail
 'changeemail' => 'Cambiar o enderezo de correo electrónico',

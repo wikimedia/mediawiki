@@ -222,8 +222,6 @@ $messages = array(
 'tog-shownumberswatching' => 'මුර කරනු ලබන පරිශීලකයන් සංඛ්‍යාව පෙන්වන්න',
 'tog-oldsig' => 'පවතින අත්සන:',
 'tog-fancysig' => 'අත්සන විකිපෙළ (ස්වයංක්‍රීය සබැඳියක් විරහිතව) ලෙසින් සලකන්න',
-'tog-externaleditor' => 'බාහිර සම්පාදකයක් භාවිත කරන්න (ප්‍රවීණයන් සඳහා පමණි, ඔබගේ පරිගණකයේ විශේෂිත වූ සැකසුම් අවශ්‍ය වේ. [//www.mediawiki.org/wiki/Manual:External_editors තවත් තොරතුරු.])',
-'tog-externaldiff' => 'බාහිර ප්‍රභේදයක් භාවිත කරන්න (ප්‍රවීණයන් සඳහා පමණි, ඔබගේ පරිගණකයේ විශේෂිත වූ සැකසුම් අවශ්‍ය වේ. [//www.mediawiki.org/wiki/Manual:External_editors තවත් තොරතුරු.])',
 'tog-showjumplinks' => '"වෙත පනින්න"  යන ප්‍රවේශතා සබැඳියන් සක්‍රීය කරන්න',
 'tog-uselivepreview' => 'තත්කාල පෙර-දසුන භාවිතා කරන්න (ජාවාස්ක්‍රිප්ට්) (පරීක්ෂණාත්මක)',
 'tog-forceeditsummary' => 'හිස් සංස්කරණ සාරාංශයකට මා ඇතුළු වන විට මාහට ඉඟි කරන්න',
@@ -238,6 +236,7 @@ $messages = array(
 'tog-showhiddencats' => 'සැඟවුනු ප්‍රවර්ග පෙන්වන්න',
 'tog-noconvertlink' => 'සබැඳියන්ගේ ශීර්ෂ පෙරැළීම අක්‍රීය කරන්න',
 'tog-norollbackdiff' => 'පුනරාවර්තනයක් කිරීමෙන් පසු වෙනස්වීම් අත්හරින්න',
+'tog-useeditwarning' => 'මා සංස්කරණ පිටුවක් සුරකිනු නොලැබූ වෙනස්කිරීම් සමඟ අතහැර යන විට අවවාද කරන්න',
 
 'underline-always' => 'සැමවිටම කරන්න',
 'underline-never' => 'කිසිවිටෙක නොකරන්න',
@@ -967,6 +966,8 @@ $2
 එය දැනටමත් පවතියි.',
 'defaultmessagetext' => 'සාමාන්‍ය පණිවුඩ පෙළ',
 'invalid-content-data' => 'වලංගු නොවන අන්තර්ගත දත්ත',
+'editwarning-warning' => 'අවධානයට: මෙම පිටුවෙන් නික්ම යාම ඔබ සිදු කළ වෙනස්කම් නැතිවී යෑමට හේතු විය හැක.
+ඔබ ප්‍රවිෂ්ටවී ඇත්නම්, ඔබගේ වරණයන්වල "සංසකරණය කිරීම්" කොටසේ ඇති මෙම අනතුරු ඇඟවීම අක්‍රීය කළ හැක.',
 
 # Content models
 'content-model-wikitext' => 'විකිපෙළ',
@@ -3054,8 +3055,6 @@ $1',
 
 /*
 Short names for language variants used for language conversion links.
-To disable showing a particular link, set it to 'disable', e.g.
-'variantname-zh-sg' => 'disable',
 Variants for Chinese language
 */
 'variantname-zh-hans' => 'hans',

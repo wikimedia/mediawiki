@@ -119,8 +119,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Паказваць колькасць назіральнікаў',
 'tog-oldsig' => 'Існуючы подпіс:',
 'tog-fancysig' => 'Апрацоўваць подпіс як вікі-тэкст (без аўтаматычнай спасылкі)',
-'tog-externaleditor' => "Карыстацца вонкавай праграмай для праўкі (edit); рэкамендуецца толькі для спецыялістаў, бо патрабуе адмысловых настаўленняў на камп'ютары; [//www.mediawiki.org/wiki/Manual:External_editors гл. падрабязна.]",
-'tog-externaldiff' => "Карыстацца вонкавай праграмай для параўнання (diff); рэкамендуецца толькі для спецыялістаў, бо патрабуе адмысловых настаўленняў на камп'ютары; [//www.mediawiki.org/wiki/Manual:External_editors гл. падрабязна.]",
 'tog-showjumplinks' => 'Дазволіць дапаможныя спасылкі "jump to"',
 'tog-uselivepreview' => 'Жывы перадпаказ (Яваскрыпт, эксперыментальн.)',
 'tog-forceeditsummary' => 'Папярэджваць пра пустое поле тлумачэння праўкі',
@@ -134,6 +132,7 @@ $messages = array(
 'tog-diffonly' => 'Не паказваць рэшты старонкі пад розніцай',
 'tog-showhiddencats' => 'Паказаць схаваныя катэгорыі',
 'tog-norollbackdiff' => 'Не паказваць розніцу ў выніку адкату',
+'tog-useeditwarning' => 'Папярэдзіць мяне, калі я пакідаю старонку з незахаванымі праўкамі',
 
 'underline-always' => 'Заўсёды',
 'underline-never' => 'Ніколі',
@@ -815,6 +814,8 @@ $2
 'edit-no-change' => 'Вашая праўка была праігнараваная, таму што не мяняўся тэкст.',
 'edit-already-exists' => 'Не ўдалося стварыць новую старонку.
 Такая ўжо існуе.',
+'editwarning-warning' => 'Выхад з гэтай старонкі прывядзе да страты правак, якія вы зрабілі. 
+Калі Вы зарэгістраваныя ў сістэме, Вы можаце адключыць гэта папярэджанне ў закладцы "Праца" Вашых настаўленняў.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => "Увага: На старонцы занадта шмат працаёмістых зваротаў да парсера.
@@ -1074,15 +1075,6 @@ $1",
 'powersearch-togglenone' => 'Няма',
 'search-external' => 'Вонкавы пошук',
 'searchdisabled' => 'Функцыя пошуку {{SITENAME}} не працуе. Тымчасова можна шукаць з дапамогай Google. Заўважце, што тамтэйшыя індэксы зместу {{SITENAME}} могуць не быць актуальнымі.',
-
-# Quickbar
-'qbsettings' => 'Хуткая стужка',
-'qbsettings-none' => 'Няма',
-'qbsettings-fixedleft' => 'Прымацавана злева',
-'qbsettings-fixedright' => 'Прымацавана справа',
-'qbsettings-floatingleft' => 'Плавае злева',
-'qbsettings-floatingright' => 'Плавае справа',
-'qbsettings-directionality' => 'Фіксаваная, у залежнасці ад накіравання вашай мовы',
 
 # Preferences page
 'preferences' => 'Настаўленні',
@@ -1600,7 +1592,6 @@ $1',
 'http-read-error' => 'Памылка чытання HTTP',
 'http-timed-out' => 'Мінуў час чакання HTTP-запыту.',
 'http-curl-error' => 'Памылка звароту да URL: $1',
-'http-host-unreachable' => 'Не ўдалося адкрыць URL',
 'http-bad-status' => 'Пад час апрацоўкі HTTP-запыту выяўлена праблема: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -1900,15 +1891,6 @@ $1',
 'listusers-submit' => 'Паказаць',
 'listusers-noresult' => 'Удзельнікі не знойдзеныя.',
 'listusers-blocked' => '(Заблакаваны)',
-
-# Special:ActiveUsers
-'activeusers' => 'Актыўныя ўдзельнікі',
-'activeusers-intro' => 'Гэта пералік удзельнікаў, якія нешта рабілі за апошнія $1 {{PLURAL:$1|дзень|дзён}}.',
-'activeusers-count' => '$1 {{PLURAL:$1|праўка|праўкі|правак}} за апошні{{PLURAL:$3| дзень|я $3 дзён}}',
-'activeusers-from' => 'Паказ, пачынаючы з:',
-'activeusers-hidebots' => 'Без робатаў',
-'activeusers-hidesysops' => 'Без адміністратараў',
-'activeusers-noresult' => 'Няма такіх удзельнікаў.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Дазволы для груп удзельнікаў',
@@ -2717,13 +2699,8 @@ $1',
 'pageinfo-authors' => 'Колькасць розных аўтараў',
 
 # Skin names
-'skinname-standard' => 'Класіка',
-'skinname-nostalgia' => 'Настальгія',
 'skinname-cologneblue' => 'Сіні Кёльн',
 'skinname-monobook' => 'Манабук',
-'skinname-myskin' => 'Майскін',
-'skinname-chick' => 'Чык',
-'skinname-simple' => 'Проста',
 'skinname-modern' => 'Сучаснасць',
 
 # Patrolling

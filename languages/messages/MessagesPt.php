@@ -342,8 +342,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Mostrar o número de utilizadores a vigiar',
 'tog-oldsig' => 'Assinatura existente:',
 'tog-fancysig' => 'Tratar assinatura como texto wiki (sem link automático)',
-'tog-externaleditor' => 'Por omissão, utilizar um editor externo (só para utilizadores avançados, exige configurações adicionais no seu computador. [//www.mediawiki.org/wiki/Manual:External_editors Mais informações.])',
-'tog-externaldiff' => 'Por omissão, utilizar diferenças externas (só para utilizadores avançados, exige configurações adicionais no seu computador. [//www.mediawiki.org/wiki/Manual:External_editors Mais informações.])',
 'tog-showjumplinks' => 'Possibilitar links de acessibilidade "{{int:jumpto}}"',
 'tog-uselivepreview' => 'Usar a antevisão ao vivo (requer JavaScript; é experimental)',
 'tog-forceeditsummary' => 'Avisar-me se deixar o resumo da edição vazio',
@@ -358,6 +356,7 @@ $messages = array(
 'tog-showhiddencats' => 'Mostrar categorias ocultas',
 'tog-noconvertlink' => 'Impossibilitar a conversão dos títulos de links',
 'tog-norollbackdiff' => 'Omitir diferenças depois de reverter edições em bloco',
+'tog-useeditwarning' => 'Avisar-me ao abandonar uma página editada sem gravar as alterações.',
 
 'underline-always' => 'Sempre',
 'underline-never' => 'Nunca',
@@ -1095,6 +1094,8 @@ Ela parece ter sido eliminada.',
 Ela já existia.',
 'defaultmessagetext' => 'Texto da mensagem padrão',
 'content-not-allowed-here' => 'Conteúdo do tipo "$1" não é permitido na página [[$2]]',
+'editwarning-warning' => 'Sair desta página fará com que você perca todas as alterações feitas por você.
+Se você fez login, pode desabilitar este aviso na seção "{{int:prefs-editing}}" das suas preferências.',
 
 # Content models
 'content-model-wikitext' => 'wikitexto',
@@ -1385,15 +1386,6 @@ Tente usar o prefixo ''all:'' para pesquisar todo o conteúdo (incluindo página
 'searchdisabled' => 'Foi impossibilitada a realização de pesquisas na {{SITENAME}}.
 Entretanto, pode realizar pesquisas através do Google.
 Note, no entanto, que a indexação da {{SITENAME}} neste motor de busca pode estar desactualizada.',
-
-# Quickbar
-'qbsettings' => 'Barra Rápida',
-'qbsettings-none' => 'Nenhuma',
-'qbsettings-fixedleft' => 'Fixa à esquerda',
-'qbsettings-fixedright' => 'Fixa à direita',
-'qbsettings-floatingleft' => 'Flutuante à esquerda',
-'qbsettings-floatingright' => 'Flutuante à direita',
-'qbsettings-directionality' => 'Fixa, conforme a direccionalidade da escrita na sua língua',
 
 # Preferences page
 'preferences' => 'Preferências',
@@ -1958,7 +1950,6 @@ Para optimizar a segurança, o img_auth.php está impossibilitado de executar.',
 'http-read-error' => 'Erro de leitura HTTP.',
 'http-timed-out' => 'O pedido HTTP expirou.',
 'http-curl-error' => 'Ocorreu um erro ao aceder à URL: $1',
-'http-host-unreachable' => 'Não foi possível aceder à URL',
 'http-bad-status' => 'Ocorreu um problema durante o pedido HTTP: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -3068,13 +3059,8 @@ Permite colocar uma justificação no resumo da edição.',
 
 # Stylesheets
 'common.css' => '/* Código CSS colocado aqui será aplicado a todos os temas */',
-'standard.css' => '/* Código CSS colocado aqui afectará os utilizadores do tema Clássico */',
-'nostalgia.css' => '/* Código CSS colocado aqui afectará os utilizadores do tema Nostalgia */',
 'cologneblue.css' => '/* Código CSS colocado aqui afectará os utilizadores do tema Azul colonial */',
 'monobook.css' => '/* Código CSS colocado aqui afectará os utilizadores do tema Monobook */',
-'myskin.css' => '/* Código CSS colocado aqui afectará os utilizadores do tema MySkin */',
-'chick.css' => '/* Código CSS colocado aqui afectará os utilizadores do tema Chique */',
-'simple.css' => '/* Código CSS colocado aqui afectará os utilizadores do tema Simples */',
 'modern.css' => '/* Código CSS colocado aqui afectará os utilizadores do tema Moderno */',
 'vector.css' => '/* Código CSS colocado aqui afectará os utilizadores do tema Vector */',
 'print.css' => '/* Código CSS colocado aqui afectará as impressões */',
@@ -3082,13 +3068,8 @@ Permite colocar uma justificação no resumo da edição.',
 
 # Scripts
 'common.js' => '/* Código Javascript colocado aqui será carregado para todos os utilizadores em cada carregamento de página */',
-'standard.js' => '/* Código Javascript colocado aqui será carregado para utilizadores do tema Clássico */',
-'nostalgia.js' => '/* Código Javascript colocado aqui será carregado para utilizadores do tema Nostalgia */',
 'cologneblue.js' => '/* Código Javascript colocado aqui será carregado para utilizadores do tema Azul colonial */',
 'monobook.js' => '/* Código Javascript colocado aqui será carregado para utilizadores do tema Monobook */',
-'myskin.js' => '/* Código Javascript colocado aqui será carregado para utilizadores do tema MySkin */',
-'chick.js' => '/* Código Javascript colocado aqui será carregado para utilizadores do tema Chick */',
-'simple.js' => '/* Código Javascript colocado aqui será carregado para utilizadores do tema Simples */',
 'modern.js' => '/* Código Javascript colocado aqui será carregado para utilizadores do tema Moderno */',
 'vector.js' => '/* Código Javascript colocado aqui será carregado para utilizadores do tema Vector */',
 
@@ -3158,13 +3139,8 @@ Este bloqueio foi provavelmente causado por um link para um site externo que con
 'pageinfo-category-files' => 'Número de ficheiros',
 
 # Skin names
-'skinname-standard' => 'Clássico',
-'skinname-nostalgia' => 'Nostalgia',
 'skinname-cologneblue' => 'Azul colonial',
 'skinname-monobook' => 'MonoBook',
-'skinname-myskin' => 'MySkin',
-'skinname-chick' => 'Chique',
-'skinname-simple' => 'Simples',
 'skinname-modern' => 'Moderno',
 'skinname-vector' => 'Vector',
 

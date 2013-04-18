@@ -213,8 +213,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Rodyti stebinčių naudotojų skaičių',
 'tog-oldsig' => 'Esamo parašo peržiūra:',
 'tog-fancysig' => 'Laikyti parašą vikitekstu (be automatinių nuorodų)',
-'tog-externaleditor' => 'Pagal nutylėjimą naudoti išorinį redaktorių (skirta tik ekspertams, nes reikia atitinkamai paruošti jūsų kompiuterį. [//www.mediawiki.org/wiki/Manual:External_editors More information.])',
-'tog-externaldiff' => 'Pagal nutylėjimą naudoti išorinę skirtumų rodymo programą (tik ekspertams, nes reikia atitinkamai  paruošti jūsų kompiuterį. [//www.mediawiki.org/wiki/Manual:External_editors More information.])',
 'tog-showjumplinks' => 'Įjungti „peršokti į“ pasiekiamumo nuorodas',
 'tog-uselivepreview' => 'Naudoti tiesioginę peržiūrą (JavaScript) (Eksperimentinis)',
 'tog-forceeditsummary' => 'Klausti, kai palieku tuščią keitimo komentarą',
@@ -228,6 +226,7 @@ $messages = array(
 'tog-diffonly' => 'Nerodyti puslapio turinio po skirtumais',
 'tog-showhiddencats' => 'Rodyti paslėptas kategorijas',
 'tog-norollbackdiff' => 'Nepaisyti skirtumo atlikus atmetimą',
+'tog-useeditwarning' => 'Perspėti mane, kai palieku redagavimo puslapį, o jame yra neišsaugotų pakeitimų',
 
 'underline-always' => 'Visada',
 'underline-never' => 'Niekada',
@@ -946,6 +945,7 @@ Jis jau egzistuoja.',
 'defaultmessagetext' => 'Numatytasis pranešimo tekstas',
 'invalid-content-data' => 'Neleistinas turinys.',
 'content-not-allowed-here' => 'Turinys "$1" puslapyje [[$2]] nėra leistinas.',
+'editwarning-warning' => 'Palikdamas šį puslapį jūs prarasite visus padarytus pakeitimus.',
 
 # Content models
 'content-model-wikitext' => 'wikitekstas',
@@ -1218,15 +1218,6 @@ Prašome patikrinti sąrašus.',
 'powersearch-togglenone' => 'Nieko',
 'search-external' => 'Išorinė paieška',
 'searchdisabled' => 'Projekto {{SITENAME}} paieška yra uždrausta. Galite pamėginti ieškoti Google paieškos sistemoje. Paieškos sistemoje projekto {{SITENAME}} duomenys gali būti pasenę.',
-
-# Quickbar
-'qbsettings' => 'Greitasis pasirinkimas',
-'qbsettings-none' => 'Nerodyti',
-'qbsettings-fixedleft' => 'Fiksuoti kairėje',
-'qbsettings-fixedright' => 'Fiksuoti dešinėje',
-'qbsettings-floatingleft' => 'Plaukiojantis kairėje',
-'qbsettings-floatingright' => 'Plaukiojantis dešinėje',
-'qbsettings-directionality' => 'Pataisyta, priklausomai nuo jūsų rašybos ir kalbos krypties',
 
 # Preferences page
 'preferences' => 'Nustatymai',
@@ -1755,7 +1746,6 @@ Dėl saugumo, img_auth.php yra išjungtas.',
 'http-read-error' => 'HTTP skaitymo klaida.',
 'http-timed-out' => 'HTTP užklausos laikas baigėsi.',
 'http-curl-error' => 'Klaida siunčiantis URL: $1',
-'http-host-unreachable' => 'Nepavyko pasiekti URL.',
 'http-bad-status' => 'Iškilo problemų vykdant HTTP užklausą: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -2950,13 +2940,8 @@ Leidžia pridėti atmetimo priežastį komentaruose',
 'pageinfo-category-files' => 'Failų skaičius',
 
 # Skin names
-'skinname-standard' => 'Klasikinė',
-'skinname-nostalgia' => 'Nostalgija',
 'skinname-cologneblue' => 'Kelno mėlyna',
 'skinname-monobook' => 'MonoBook',
-'skinname-myskin' => 'Mano išvaizda',
-'skinname-chick' => 'Chick',
-'skinname-simple' => 'Paprasta',
 'skinname-modern' => 'Moderni',
 'skinname-vector' => 'Vektorinė',
 

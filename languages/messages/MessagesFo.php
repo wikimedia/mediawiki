@@ -141,8 +141,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Vís tal av brúkarum sum fylgja við',
 'tog-oldsig' => 'Verandi undirskrift:',
 'tog-fancysig' => 'Viðgerð undirskriftina sum wikitekstur (uttan sjálvvirkandi leinkju)',
-'tog-externaleditor' => 'Nýt útvortis ritil sum fyrimynd (bert fyri fólk við serkunnleika, tað er tørvur á serligum innstillingum á tínari teldu. [//www.mediawiki.org/wiki/Manual:External_editors More information.])',
-'tog-externaldiff' => 'Nýt útvortis diff sum fyrimynd (bert fyri serfrøðingar, tín telda tørvar serligar innstillingar. [//www.mediawiki.org/wiki/Manual:External_editors More information.])',
 'tog-showjumplinks' => 'Ger "far til"-tilgongd virkna',
 'tog-uselivepreview' => 'Nýt "live preview" (tørvar JavaScript) (á royndarstøði)',
 'tog-forceeditsummary' => 'Gev mær boð, um eg ikki havi skrivað ein samandrátt um mína rætting',
@@ -1134,14 +1132,6 @@ Tú kanst royna at brúka ''all:'' sum fyrsta stavilsi fyri at søkja í øllum 
 Tú kanst leita via Google ímeðan.
 Legg til merkis, at teirra innihaldsyvirlit av {{SITENAME}} kann vera gamalt og ikki dagført.',
 
-# Quickbar
-'qbsettings' => 'Skundfjøl innstillingar',
-'qbsettings-none' => 'Eingin',
-'qbsettings-fixedleft' => 'Fast vinstru',
-'qbsettings-fixedright' => 'Fast høgru',
-'qbsettings-floatingleft' => 'Flótandi vinstru',
-'qbsettings-floatingright' => 'Flótandi høgra',
-
 # Preferences page
 'preferences' => 'Innstillingar',
 'mypreferences' => 'Innstillingar',
@@ -1528,7 +1518,6 @@ Bert fílu atgongd er loyvd.',
 'http-read-error' => 'HTTP lesifeilur.',
 'http-timed-out' => 'HTTP fyrispurningurin tók ov langa tíð.',
 'http-curl-error' => 'Feilur meðan vit heintaðu URL: $1',
-'http-host-unreachable' => 'Internetadressan er ikki atkomulig.',
 'http-bad-status' => 'Tað hendi ein feilur undir viðgerðini av HTTP fyrispurnininum: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -2133,8 +2122,6 @@ Vinarliga vitja [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] o
 'pageinfo-authors' => 'Tal av ymiskum høvundum',
 
 # Skin names
-'skinname-standard' => 'Standardur',
-'skinname-nostalgia' => 'Nostalgiskur',
 'skinname-cologneblue' => 'Cologne-bláur',
 
 # Patrolling

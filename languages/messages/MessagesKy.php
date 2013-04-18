@@ -61,8 +61,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Көзөмөлдөп жаткан катышуучулардын санын көрсөтүү',
 'tog-oldsig' => 'Кезектеги кол тамга:',
 'tog-fancysig' => 'Кол тамганын өз уики-белгиси (автоматтык шилтемесиз)',
-'tog-externaleditor' => 'Тышкы редакторду жарыяланбасча колдонуу (адистер үчүн гана, компьютериңизде өзгөчө ырастоолор керек. [//www.mediawiki.org/wiki/Manual:External_editors кошумча маалымат.])',
-'tog-externaldiff' => 'Салыштыруу үчүн тышкы программаны жарыяланбасча колдонуу (адистер үчүн гана, компьютериңизде өзгөчө ырастоолор керек. [//www.mediawiki.org/wiki/Manual:External_editors кошумча маалымат.])',
 'tog-showjumplinks' => '«өтүү» деген жардамчы шилтемелерди күйгүзүү',
 'tog-uselivepreview' => 'Тез алдын ала көрсөтүүнү колдонуу (JavaScript талап кылынат) (эксперименталдык)',
 'tog-forceeditsummary' => 'Оңдоо баяндоосунун талаасы бош болгон кезинде мага алдын ала эскертүү',
@@ -721,14 +719,6 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'powersearch-togglenone' => 'Эчтеке',
 'search-external' => 'Тышкы издөө',
 
-# Quickbar
-'qbsettings' => 'Навигация панели',
-'qbsettings-none' => 'Көрсөтпөө',
-'qbsettings-fixedleft' => 'Жылбаган сол',
-'qbsettings-fixedright' => 'Жылбаган оң',
-'qbsettings-floatingleft' => 'Оома сол',
-'qbsettings-floatingright' => 'Оома оң',
-
 # Preferences page
 'preferences' => 'Ырастоолор',
 'mypreferences' => 'Ырастоолор',
@@ -1098,12 +1088,6 @@ HTML-тегдеринин тууралыгын текшериңиз.',
 'listusers-submit' => 'Көрсөтүү',
 'listusers-noresult' => 'Катышуучу табылган жок.',
 'listusers-blocked' => '(блокировкаланды)',
-
-# Special:ActiveUsers
-'activeusers' => 'Активдүү катышуучулардын тизмеси',
-'activeusers-hidebots' => 'Ботторду жашыруу',
-'activeusers-hidesysops' => 'Администраторлорду жашыруу',
-'activeusers-noresult' => 'Катышуучулар табылган жок.',
 
 # Special:ListGroupRights
 'listgrouprights-group' => 'Топ',

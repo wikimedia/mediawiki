@@ -336,8 +336,6 @@ $messages = array(
 'tog-shownumberswatching' => 't Antal gebrukers bekieken die disse zied volgt',
 'tog-oldsig' => 'Bestaonde haandtekening:',
 'tog-fancysig' => 'Ondertekening zien as wikitekste (zonder automatiese verwiezing)',
-'tog-externaleditor' => 'Standard n externe tekstbewarker gebruken (allinnig veur gevorderden - veur disse funksie bin spesiale instellingen neudig. [//www.mediawiki.org/wiki/Manual:External_editors Meer informasie]).',
-'tog-externaldiff' => 'Standard n extern vergeliekingsprogramma gebruken (allinnig veur gevorderden - veur disse funksie bin spesiale instellingen neudig. [//www.mediawiki.org/wiki/Manual:External_editors Meer informasie]).',
 'tog-showjumplinks' => '"Gao naor"-verwiezingen toelaoten',
 'tog-uselivepreview' => 'Gebruuk "rechtstreeks naokieken" (mu\'j JavaScript veur hebben - experimenteel)',
 'tog-forceeditsummary' => 'Geef n melding bie n lege samenvatting',
@@ -352,6 +350,7 @@ $messages = array(
 'tog-showhiddencats' => 'Laot verbörgen kategorieën zien',
 'tog-noconvertlink' => 'Ziednaamkonversie uutschakelen',
 'tog-norollbackdiff' => 'Wiezigingen vortlaoten nao t weerummedreien',
+'tog-useeditwarning' => "Waorschuw mien a'k n bewörken zied aof wil sluten die nog niet op-esleugen is",
 
 'underline-always' => 'Altied',
 'underline-never' => 'Nooit',
@@ -1070,6 +1069,8 @@ t Schient dat t vortedaon is.',
 'edit-already-exists' => 'De zied kon niet an-emaakt wörden.
 t Besteet al.',
 'defaultmessagetext' => 'Standardtekste',
+'editwarning-warning' => "A'j disse zied aofsluten dan kan t ween dat der wieziging die'j emaakt hebben kwiet raken.
+A'j an-emeld bin, dan ku'j disse waorschuwing uutzetten in t tabblad \"Bewarken\" in joew veurkeuren.",
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Waorschuwing: disse zied gebruukt te veule kostbaore parserfunksies.
@@ -1339,15 +1340,6 @@ Waorschienlik ku'j der meer gegevens over vienen in t [{{fullurl:{{#Special:Log}
 'powersearch-togglenone' => 'Gien',
 'search-external' => 'Extern zeuken',
 'searchdisabled' => 'Zeuken in {{SITENAME}} is niet meugelik. Je kunnen gebruukmaken van Google. De gegevens over {{SITENAME}} bin misschien niet bie-ewörken.',
-
-# Quickbar
-'qbsettings' => 'Lieste mit ziejen',
-'qbsettings-none' => 'Gien',
-'qbsettings-fixedleft' => 'Links, vaste',
-'qbsettings-fixedright' => 'Rechts, vaste',
-'qbsettings-floatingleft' => 'Links, zweven',
-'qbsettings-floatingright' => 'Rechts, zweven',
-'qbsettings-directionality' => 'Vaste, aofhankelik van de schriefrichtige van joew taal',
 
 # Preferences page
 'preferences' => 'Veurkeuren',
@@ -1891,7 +1883,6 @@ Um beveiligingsredens is img_auth.php uutezet.',
 'http-read-error' => 'Fout bie t lezen van HTTP',
 'http-timed-out' => 'Wachttied bie t HTTP verzeuk',
 'http-curl-error' => 'Fout bie t ophaolen van t webadres: $1',
-'http-host-unreachable' => 'Kon webadres niet bereiken.',
 'http-bad-status' => 'Der is n probleem mit t HTTP-verzeuk: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -2208,15 +2199,6 @@ Ondersteunde protokollen: <code>$1</code> (zet t niet in joew zeukopdrachte).',
 'listusers-submit' => 'Bekiek',
 'listusers-noresult' => 'Gien gebrukers evunnen. Zeuk oek naor variaanten mit kleine letters of heufdletters.',
 'listusers-blocked' => '(eblokkeerd)',
-
-# Special:ActiveUsers
-'activeusers' => 'Aktieve gebrukers',
-'activeusers-intro' => 'Dit is n lieste van gebrukers die de aofgeleupen $1 {{PLURAL:$1|dag|dagen}} enigszins aktief ewest hebben.',
-'activeusers-count' => '$1 leste {{PLURAL:$1|bewarking|bewarkingen}} in de aofgeleupen {{PLURAL:$3|dag|$3 dagen}}',
-'activeusers-from' => 'Laot gebrukers zien vanaof:',
-'activeusers-hidebots' => 'Bots verbargen',
-'activeusers-hidesysops' => 'Beheerders verbargen',
-'activeusers-noresult' => 'Gien aktieve gebrukers evunnen.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Rechten van gebrukersgroepen',
@@ -3055,13 +3037,8 @@ Meestentieds kömp dit deur n uutgaonde verwiezing die op de zwarte lieste steet
 'pageinfo-templates' => '{{PLURAL:$1|Gebruukten mal|Gebruukten mallen}} ($1)',
 
 # Skin names
-'skinname-standard' => 'Klassiek',
-'skinname-nostalgia' => 'Nostalgie',
 'skinname-cologneblue' => 'Keuls blauw',
 'skinname-monobook' => 'Monobook',
-'skinname-myskin' => 'MienSkin',
-'skinname-chick' => 'Deftig',
-'skinname-simple' => 'Eenvoudig',
 'skinname-modern' => 'Niejmoeds',
 
 # Patrolling

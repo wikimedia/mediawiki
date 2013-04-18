@@ -852,7 +852,7 @@ Se non sei stato tu a fare la richiesta, o se ti sei ricordato la password origi
 Password temporanea: $2',
 'passwordreset-emailsent' => 'È stata inviata una email di reimpostazione della password.',
 'passwordreset-emailsent-capture' => 'È stata inviata una email di reimpostazione della password, il contenuto è riportato di seguito.',
-'passwordreset-emailerror-capture' => "È stata generata una email di reimpostazione della password riportata di seguito. L'invio all'utente non è riuscito: $1",
+'passwordreset-emailerror-capture' => "È stata generata una email di reimpostazione della password, riportata di seguito. L'invio {{GENDER:$2|all'utente}} non è riuscito: $1",
 
 # Special:ChangeEmail
 'changeemail' => "Modifica l'indirizzo e-mail",

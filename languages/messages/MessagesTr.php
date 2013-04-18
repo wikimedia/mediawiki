@@ -377,8 +377,6 @@ $messages = array(
 'tog-shownumberswatching' => 'İzleyen kullanıcı sayısını göster',
 'tog-oldsig' => 'Mevcut imza:',
 'tog-fancysig' => 'İmzaya vikimetin muamelesi yap (otomatik bir bağlantı olmadan)',
-'tog-externaleditor' => 'Varsayılan olarak harici düzenleyici kullan (deneyimli kullanıcılar içindir ve bilgisayarınızda özel ayarlar gerektirir. [//www.mediawiki.org/wiki/Manual:External_editors Ayrıntılı bilgi için tıklayın.])',
-'tog-externaldiff' => 'Varsayılan olarak harici karşılaştırıcı kullan (deneyimli kullanıcılar içindir ve bilgisayarınızda özel ayarlar gerektirir. [//www.mediawiki.org/wiki/Manual:External_editors Ayrıntılı bilgi için tıklayın.])',
 'tog-showjumplinks' => '"{{int:jumpto}}" erişilebilirlik bağlantısı etkinleştir',
 'tog-uselivepreview' => 'Canlı ön izlemeyi kullan (JavaScript gerektirir ve özellik deneme aşamasındadır)',
 'tog-forceeditsummary' => 'Özeti boş bıraktığımda beni uyar',
@@ -393,6 +391,7 @@ $messages = array(
 'tog-showhiddencats' => 'Gizli kategorileri göster',
 'tog-noconvertlink' => 'Bağlantı başlığı dönüştürmesini devre dışı bırakma',
 'tog-norollbackdiff' => 'Geridönüş uygulandıktan sonra değişikliği atla',
+'tog-useeditwarning' => 'Kaydedilmemiş değişikliğe sahip bir değişiklik sayfasından çıkarken beni uyar',
 
 'underline-always' => 'Daima',
 'underline-never' => 'Asla',
@@ -1103,6 +1102,8 @@ Sayfa zaten mevcut.',
 'defaultmessagetext' => 'Varsayılan mesaj metni',
 'invalid-content-data' => 'Geçersiz içerik verisi',
 'content-not-allowed-here' => '"$1" içeriğine, [[$2]] sayfasında izin verilmemekte.',
+'editwarning-warning' => 'Bu sayfadan ayrılmak yaptığınız herhangi bir değişikliği kaybetmenize sebep olabilir.
+Eğer giriş yaptıysanız, bu uyarıyı, tercihlerinizin "{{int:prefs-editing}}" bölümünde devre dışı bırakabilirsiniz.',
 
 # Content models
 'content-model-wikitext' => 'vikimetin',
@@ -1380,15 +1381,6 @@ Aramanızın başına '''all:''' önekini ekleyerek tüm içeriği aramayı (tar
 'powersearch-togglenone' => 'Hiçbiri',
 'search-external' => 'Dış arama',
 'searchdisabled' => '{{SITENAME}} sitesinde arama yapma geçici olarak durdurulmuştur. Bu arada Google kullanarak {{SITENAME}} içinde arama yapabilirsiniz. Arama sitelerinde dizinlerin biraz eski kalmış olabileceğini göz önünde bulundurunuz.',
-
-# Quickbar
-'qbsettings' => 'Hızlı erişim sütun ayarları',
-'qbsettings-none' => 'Hiçbiri',
-'qbsettings-fixedleft' => 'Sola sabitlendi',
-'qbsettings-fixedright' => 'Sağa sabitlendi',
-'qbsettings-floatingleft' => 'Sola yaslanıyor',
-'qbsettings-floatingright' => 'Sağa yaslanıyor',
-'qbsettings-directionality' => 'Sabit, dilinizin komut dosyasının yönüne bağlı',
 
 # Preferences page
 'preferences' => 'Tercihler',
@@ -1912,7 +1904,6 @@ En uygun güvenlik için, img_auth.php devre dışı bırakıldı.",
 'http-read-error' => 'HTTP okuma hatası.',
 'http-timed-out' => 'HTTP isteği zaman aşımına uğradı.',
 'http-curl-error' => 'URL alınırken hata: $1',
-'http-host-unreachable' => "URL'ye ulaşılamıyor.",
 'http-bad-status' => 'HTTP isteği sırasında bir sorun oluştu: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -2220,15 +2211,6 @@ Desteklenen {{PLURAL:$2|iletişim kuralı|iletişim kuralları}}: <code>$1</code
 'listusers-submit' => 'Göster',
 'listusers-noresult' => 'Kullanıcı bulunamadı.',
 'listusers-blocked' => '(engellenmiş)',
-
-# Special:ActiveUsers
-'activeusers' => 'Aktif kullanıcı listesi',
-'activeusers-intro' => 'Bu, son $1 {{PLURAL:$1|günde|günde}} bir çeşit etkinlik göstermiş kullanıcıların listesidir.',
-'activeusers-count' => 'Son {{PLURAL:$3|günde|$3 günde}} $1 {{PLURAL:$1|eylem|eylem}}',
-'activeusers-from' => 'Şununla başlayan kullanıcıları görüntüle:',
-'activeusers-hidebots' => 'Botları gizle',
-'activeusers-hidesysops' => 'Yöneticileri gizle',
-'activeusers-noresult' => 'Kullanıcı bulunamadı.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Kullanıcı grubu hakları',
@@ -3078,10 +3060,6 @@ Geçici dosya kayıp.',
 'pageinfo-category-files' => 'Dosya sayısı',
 
 # Skin names
-'skinname-standard' => 'Klasik',
-'skinname-nostalgia' => 'Nostaljik',
-'skinname-chick' => 'Şık',
-'skinname-simple' => 'Basit',
 'skinname-modern' => 'Modern',
 
 # Patrolling

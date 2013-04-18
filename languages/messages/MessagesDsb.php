@@ -188,8 +188,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Licbu wobglědujucych wužywarjow pokazaś',
 'tog-oldsig' => 'Eksistěrujuca signatura:',
 'tog-fancysig' => 'Ze signaturu kaž z wikitekstom wobchadaś (bźez awtomatiskego wótkaza)',
-'tog-externaleditor' => 'Eksterny editor ako standard wužywaś (jano za ekspertow, pomina sebje specialne nastajenja na wašom licadle. [//www.mediawiki.org/wiki/Manual:External_editors Dalšne informacije.])',
-'tog-externaldiff' => 'Eksterny diff ako standard wužywaś (jano za ekspertow, pomina sebje specialne nastajenja na wašom licadle. [//www.mediawiki.org/wiki/Manual:External_editors Dalšne informacije.])',
 'tog-showjumplinks' => 'Wótkaze typa „źi do” zmóžniś',
 'tog-uselivepreview' => 'Live-pśeglěd wužywaś (JavaScript) (eksperimentelnje)',
 'tog-forceeditsummary' => 'Warnowaś, gaž pśi składowanju zespominanje felujo',
@@ -203,6 +201,7 @@ $messages = array(
 'tog-diffonly' => 'Pśi pśirownowanju wersijow jano rozdźěle pokazaś',
 'tog-showhiddencats' => 'Schowane kategorije pokazaś',
 'tog-norollbackdiff' => 'Rozdźěl pó slědkstajenju zanjechaś',
+'tog-useeditwarning' => 'Warnowaś, gaž bok spušća se z njeskłaźonymi změnami',
 
 'underline-always' => 'pśecej',
 'underline-never' => 'žednje',
@@ -902,6 +901,7 @@ Eksistěrujo južo.',
 'content-failed-to-parse' => 'Parsowanje wopśimjeśa $2 za model $1 jo se njeraźiło: $3',
 'invalid-content-data' => 'Njepłaśiwe wopśimjeśowe daty',
 'content-not-allowed-here' => 'Wopśimjeśe "$1" njejo na boku [[$2]] dowólone',
+'editwarning-warning' => 'Gaž toś ten bok se spušća, mógu se změny zgubiś, kótarež sy pśewjadł. Jolic sy pśizjawjeny, móžoš toś to warnowanje we wótrězku {{int:prefs-editing}} swójich nastajenjow znjemóžniś.',
 
 # Content models
 'content-model-wikitext' => 'wikitekst',

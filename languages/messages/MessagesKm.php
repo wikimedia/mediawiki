@@ -291,8 +291,6 @@ $messages = array(
 'tog-shownumberswatching' => 'បង្ហាញ​ចំនួនអ្នកប្រើប្រាស់​ដែលតាមដាន​ទំព័រនេះ',
 'tog-oldsig' => 'ហត្ថលេខាមានហើយ៖',
 'tog-fancysig' => 'ចុះហត្ថលេខា​ជា​អត្ថបទវិគី​ (ដោយ​គ្មានតំណភ្ជាប់​ស្វ័យប្រវត្តិ)',
-'tog-externaleditor' => 'ប្រើប្រាស់​ឧបករណ៍​កែប្រែខាងក្រៅ​តាមលំនាំដើម (សម្រាប់តែអ្នកមានជំនាញប៉ុណ្ណោះនិងត្រូវការការកំណត់ពិសេសៗនៅលើកុំព្យូទ័ររបស់អ្នក។ [//www.mediawiki.org/wiki/Manual:External_editors ព័ត៌មានបន្ថែម]។)',
-'tog-externaldiff' => 'ប្រើប្រាស់​ឧបករណ៍​ប្រៀបធៀបខាងក្រៅ​តាមលំនាំដើម (សម្រាប់តែអ្នកមានជំនាញប៉ុណ្ណោះនិងត្រូវការការកំណត់ពិសេសៗនៅលើកុំព្យូទ័ររបស់អ្នក។ [//www.mediawiki.org/wiki/Manual:External_editors ព័ត៌មានបន្ថែម]។)',
 'tog-showjumplinks' => 'ប្រើតំណភ្ជាប់ "លោតទៅ"',
 'tog-uselivepreview' => 'ប្រើប្រាស់​ការមើលមុនរហ័ស​ (តម្រូវអោយមាន JavaScript) (ស្ថិតក្រោមការពិសោធន៍នៅឡើយ)',
 'tog-forceeditsummary' => 'សូមរំលឹកខ្ញុំ​កាលបើខ្ញុំទុកប្រអប់ចំណារពន្យល់ឱ្យនៅទំនេរ',
@@ -306,6 +304,7 @@ $messages = array(
 'tog-diffonly' => 'កុំបង្ហាញខ្លឹមសារទំព័រនៅពីក្រោមតារាងប្រៀបធៀបចំណុចខុសគ្នា',
 'tog-showhiddencats' => 'បង្ហាញចំណាត់ថ្នាក់ក្រុមដែលត្រូវបានលាក់',
 'tog-norollbackdiff' => 'បំភ្លេច​ភាព​ខុស​គ្នា​បន្ទាប់​ពី​អនុវត្តការ​ស្ដារវិញ',
+'tog-useeditwarning' => 'សូមព្រមាន​ខ្ញុំ​ ពេលដែលខ្ញុំ​ចាកចេញ​ពី​ទំព័រ​កែប្រែដោយមិន​បានរក្សា​ទុកបំលាស់ប្ដូរ​នានា​',
 
 'underline-always' => 'ជានិច្ច',
 'underline-never' => 'កុំអោយសោះ',
@@ -1073,6 +1072,8 @@ $2
 
 ទំព័រនេះមានរួចហើយ។',
 'defaultmessagetext' => 'អត្ថបទសារតាមលំនាំដើម',
+'editwarning-warning' => 'ចាកចេញពីទំព័រនេះ នឹងធ្វើឲ្យអ្នកបាត់បង់កំណែប្រែដែលអ្នកបានធ្វើ។
+ប្រសិនបើអ្នកបាន​ឡុកអ៊ីនរួចហើយ អ្នកអាច​បិទ​បម្រាម​នេះ​នៅ​ក្នុងផ្នែក​ "{{int:prefs-editing}}" នៃ​ចំណូល​ចិត្ត​របស់​អ្នក​។',
 
 # Content models
 'content-model-wikitext' => 'អត្ថបទវិគី',
@@ -1338,15 +1339,6 @@ $1",
 'searchdisabled' => 'ឧបករណ៍​ស្វែងរក​របស់​{{SITENAME}} មិនបានអនុញ្ញាត​។
 ក្នុង​ពេល​ឥឡូវ​នេះ​ អ្នកអាច​ស្វែង​រក​តាម​រយៈ​ Google បាន​។
 សូមចងចាំ​ថា​ លិបិក្រម​នៃ​មាតិការ​របស់​{{SITENAME}} អាចហួស​សម័យ​។​',
-
-# Quickbar
-'qbsettings' => 'របារទាន់ចិត្ត',
-'qbsettings-none' => 'ទទេ',
-'qbsettings-fixedleft' => 'ចុងខាងឆ្វេង',
-'qbsettings-fixedright' => 'ចុងខាងស្តាំ',
-'qbsettings-floatingleft' => 'អណ្តែតឆ្វេង',
-'qbsettings-floatingright' => 'អណ្តែតស្តាំ',
-'qbsettings-directionality' => 'នៅមួយកន្លែង, អាស្រ័យលើទិសដៅសរសេររបស់ភាសារបស់អ្នក',
 
 # Preferences page
 'preferences' => 'ចំណង់ចំណូលចិត្ត',
@@ -1857,7 +1849,6 @@ $1',
 
 # HTTP errors
 'http-invalid-url' => 'URLមិនត្រឹមត្រូវ៖ $1',
-'http-host-unreachable' => 'មិនអាចទៅកាន់URLបានទេ',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'មិនអាច ចូលទៅដល់ URL',
@@ -2915,13 +2906,8 @@ $1',
 
 # Stylesheets
 'common.css' => '/* CSS បានដាក់ទីនេះនឹងមានអនុភាពលើគ្រប់សំបកទាំងអស់ */',
-'standard.css' => '/* CSS បានដាក់ទីនេះនឹងមានអនុភាពលើអ្នកប្រើប្រាស់នៃសំបក Standard */',
-'nostalgia.css' => '/* CSS បានដាក់ទីនេះនឹងមានអនុភាពលើអ្នកប្រើប្រាស់នៃសំបក Nostalgia */',
 'cologneblue.css' => '/* CSS បានដាក់ទីនេះនឹងមានអនុភាពលើអ្នកប្រើប្រាស់នៃសំបក Cologne Blue */',
 'monobook.css' => '/* CSS បានដាក់ទីនេះនឹងមានអនុភាពលើអ្នកប្រើប្រាស់នៃសំបក Monobook */',
-'myskin.css' => '/* CSS បានដាក់ទីនេះនឹងមានអនុភាពលើអ្នកប្រើប្រាស់នៃសំបក MySkin */',
-'chick.css' => '/* CSS បានដាក់ទីនេះនឹងមានអនុភាពលើអ្នកប្រើប្រាស់នៃសំបក Chick */',
-'simple.css' => '/* CSS បានដាក់ទីនេះនឹងមានអនុភាពលើអ្នកប្រើប្រាស់នៃសំបក Simple */',
 'modern.css' => '/* CSS បានដាក់ទីនេះនឹងមានអនុភាពលើអ្នកប្រើប្រាស់នៃសំបក Modern */',
 'vector.css' => '/* CSS បានដាក់ទីនេះនឹងមានអនុភាពលើអ្នកប្រើប្រាស់នៃសំបក Vector */',
 
@@ -2986,13 +2972,8 @@ $1',
 'pageinfo-protect-cascading-from' => 'ការការពារត្រូវបានដាក់ជាថ្នាក់ពី',
 
 # Skin names
-'skinname-standard' => 'បុរាណ',
-'skinname-nostalgia' => 'អាឡោះអាល័យ',
 'skinname-cologneblue' => 'ទឹកអប់ខៀវ',
 'skinname-monobook' => 'សៀវភៅឯក',
-'skinname-myskin' => 'សំបកខ្ញុំ',
-'skinname-chick' => 'កូនមាន់',
-'skinname-simple' => 'សាមញ្ញ',
 'skinname-modern' => 'ទំនើប',
 'skinname-vector' => 'វ៉ិចទ័រ​​',
 

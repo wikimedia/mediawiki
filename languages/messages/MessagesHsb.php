@@ -184,8 +184,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Ličbu wobkedźbowacych wužiwarjow pokazać',
 'tog-oldsig' => 'Eksistowaca signatura:',
 'tog-fancysig' => 'Ze signaturu kaž z wikitekstom wobchadźeć  (bjez awtomatiskeho wotkaza)',
-'tog-externaleditor' => 'Eksterny editor jako standard wužiwać (jenož za ekspertow, žada sej specialne nastajenja na wašim ličaku. [//www.mediawiki.org/wiki/Manual:External_editors Dalše informacije.])',
-'tog-externaldiff' => 'Eksterny diff-program jako standard wužiwać (jenož za ekspertow, žada sej specialne nastajenja na wašim ličaku. [//www.mediawiki.org/wiki/Manual:External_editors Dalše informacije.])',
 'tog-showjumplinks' => 'Wotkazy typa „dźi do” zmóžnić',
 'tog-uselivepreview' => 'Live-přehlad wužiwać (wužaduje sej JavaScript) (eksperimentalny)',
 'tog-forceeditsummary' => 'Mje skedźbnić, jeli zabudu zjeće',
@@ -199,6 +197,7 @@ $messages = array(
 'tog-diffonly' => 'Jenož rozdźěle pokazać (nic pak zbytny wobsah)',
 'tog-showhiddencats' => 'Schowane kategorije pokazać',
 'tog-norollbackdiff' => 'Rozdźěl po wróćostajenju zanjechać',
+'tog-useeditwarning' => 'Warnować, hdyž so wobdźěłowanska strona z njeskładowanymi změnami wopušća',
 
 'underline-always' => 'Přeco',
 'underline-never' => 'Ženje',
@@ -904,6 +903,7 @@ Eksistuje hižo.',
 'content-failed-to-parse' => 'Parsowanje wobsaha $2 za model $1 je so njeporadźiło: $3',
 'invalid-content-data' => 'Njepłaćiwe wobsahowe daty',
 'content-not-allowed-here' => 'Wobsah "$1" njeje na stronje [[$2]] dowoleny',
+'editwarning-warning' => 'Hdyž so strona wopušća, móžeja so změny zhubić, kotrež sy přewjedł. Jeli sy přizjewjeny, móžeš tute warnowanje we wotrězku {{int:prefs-editing}} swojich nastajenjow znjemóžnić.',
 
 # Content models
 'content-model-wikitext' => 'wikitekst',

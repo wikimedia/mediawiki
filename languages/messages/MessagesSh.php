@@ -237,8 +237,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Prikaži broj korisnika koji prate',
 'tog-oldsig' => 'Postojeći potpis:',
 'tog-fancysig' => 'Smatraj potpis kao wikitekst (bez automatskog linka)',
-'tog-externaleditor' => 'Redovno koristite eksterni editor (samo za naprednije korisnike, potrebne su posebne postavke na vašem računaru)',
-'tog-externaldiff' => 'Redovno koristi vanjski (diff) program za prikaz razlika (samo za naprednije korisnike, potrebne posebne postavke na vašem računaru [//www.mediawiki.org/wiki/Manual:External_editors Više informacija.])',
 'tog-showjumplinks' => 'Omogući opciju "skoči na" linkove',
 'tog-uselivepreview' => 'Koristite pretpregled uživo (potreban JavaScript) (eksperimentalno)',
 'tog-forceeditsummary' => 'Opomeni me pri unosu praznog sažetka',
@@ -1286,15 +1284,6 @@ Pokušajte u svoju pretragu staviti ''all:'' da se pretražuje cjelokupan sadrž
 U međuvremenu možete pretraživati preko Googlea.
 Uzmite u obzir da njegovi indeksi za ovu Wiki ne moraju biti ažurirani.',
 
-# Quickbar
-'qbsettings' => 'Podešavanja brze palete',
-'qbsettings-none' => 'Nikakva',
-'qbsettings-fixedleft' => 'Fiksirana lijevo',
-'qbsettings-fixedright' => 'Fiksirana desno',
-'qbsettings-floatingleft' => 'Plutajuća lijevo',
-'qbsettings-floatingright' => 'Plutajuća desno',
-'qbsettings-directionality' => 'Fiksno, ovisno o smjeru pisma Vašeg jezika',
-
 # Preferences page
 'preferences' => 'Postavke',
 'mypreferences' => 'Postavke',
@@ -1844,7 +1833,6 @@ Za optimalnu sigurnost, img_auth.php je onemogućena.',
 'http-read-error' => 'Greška pri čitanju HTTP.',
 'http-timed-out' => 'Istekao HTTP zahtjev.',
 'http-curl-error' => 'Greška pri otvaranju URLa: $1',
-'http-host-unreachable' => 'Ovaj URL nije bilo moguće otvoriti',
 'http-bad-status' => 'Nastao je problem tokom HTTP zahtjeva: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -2166,15 +2154,6 @@ Podržani {{PLURAL:$2|protokol|protokoli}}: <code>$1</code> (default je http:// 
 'listusers-submit' => 'Pokaži',
 'listusers-noresult' => 'Nije pronađen korisnik.',
 'listusers-blocked' => '(blokiran)',
-
-# Special:ActiveUsers
-'activeusers' => 'Spisak aktivnih korisnika',
-'activeusers-intro' => 'Ovo je spisak korisnika koji su napravili neku aktivnost u {{PLURAL:$1|zadnji $1 dan|zadnja $1 dana|zadnjih $1 dana}}.',
-'activeusers-count' => '{{PLURAL:$1|$1 izmjena|$1 izmjene|$1 izmjena}} u {{PLURAL:$3|posljednji $3 dan|posljednja $3 dana|posljednjih $3 dana}}',
-'activeusers-from' => 'Prikaži korisnike koji počinju sa:',
-'activeusers-hidebots' => 'Sakrij botove',
-'activeusers-hidesysops' => 'Sakrij administratore',
-'activeusers-noresult' => 'Nije pronađen korisnik.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Prava korisničkih grupa',

@@ -625,8 +625,8 @@ $1',
 'hidetoc' => '숨기기',
 'collapsible-collapse' => '접기',
 'collapsible-expand' => '펼치기',
-'thisisdeleted' => '$1을 보거나 되살리겠습니까?',
-'viewdeleted' => '$1을 보겠습니까?',
+'thisisdeleted' => '$1 문서를 보거나 되살리겠습니까?',
+'viewdeleted' => '$1 문서를 보겠습니까?',
 'restorelink' => '{{PLURAL:$1|삭제된 편집 $1개}}',
 'feedlinks' => '피드:',
 'feed-invalid' => '잘못된 구독 피드 방식입니다.',
@@ -708,7 +708,7 @@ URL을 잘못 입력하였거나, 잘못된 링크를 따라갔을 수 있습니
 'delete-hook-aborted' => '훅에 의해 삭제가 중단되었습니다.
 아무런 설명도 주어지지 않았습니다.',
 'badtitle' => '잘못된 제목',
-'badtitletext' => '문서 제목이 잘못되었거나 비어있습니다. 또는 잘못된 인터위키 제목으로 링크했습니다.
+'badtitletext' => '요청한 문서 제목이 잘못되었거나, 비어있거나, 잘못된 인터위키 제목으로 링크했습니다.
 문서 제목에 사용할 수 없는 문자를 사용했을 수 있습니다.',
 'perfcached' => '다음 자료는 캐시된 것이므로 현재 상황을 반영하지 않을 수 있습니다. 캐시에 최대 {{PLURAL:$1|결과 $1개}}가 있습니다.',
 'perfcachedts' => '다음 자료는 캐시된 것으로, $1에 마지막으로 새로 고쳐졌습니다.  캐시에 최대 {{PLURAL:$4|결과 $4개}}가 있습니다.',
@@ -794,7 +794,7 @@ $2',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|로그인에 관한 도움말]]',
 'createaccountmail' => '임시 임의 비밀번호를 아래에 지정한 이메일로 보내기',
 'createaccountreason' => '이유:',
-'badretype' => '입력한 비밀번호가 서로 다릅니다.',
+'badretype' => '입력한 비밀번호가 일치하지 않습니다.',
 'userexists' => '입력하신 사용자 이름이 이미 등록되어 있습니다.
 다른 이름을 선택하세요.',
 'loginerror' => '로그인 오류',
@@ -864,7 +864,7 @@ $2',
 실수로 계정을 잘못 만들었다면 이 메시지는 무시해도 됩니다.',
 'usernamehasherror' => '사용자 이름에는 해시 문자가 들어갈 수 없습니다',
 'login-throttled' => '로그인에 연속으로 실패하였습니다.
-잠시 후에 다시 시도해주세요.',
+잠시 후에 다시 시도하세요.',
 'login-abort-generic' => '로그인에 실패했습니다 - 중지됨',
 'loginlanguagelabel' => '언어: $1',
 'suspicious-userlogout' => '브라우저에 이상이 있거나 캐싱 프록시에서 로그아웃을 요청했기 때문에 로그아웃이 거부되었습니다.',
@@ -1021,7 +1021,7 @@ $1 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 대
 'loginreqlink' => '로그인',
 'loginreqpagetext' => '다른 문서를 보기 위해서는 $1해야 합니다.',
 'accmailtitle' => '비밀번호를 보냈습니다',
-'accmailtext' => '[[User talk:$1|$1]] 사용자의 비밀번호가 임의로 만들어져 $2로 전송되었습니다.
+'accmailtext' => '[[User talk:$1|$1]] 사용자의 비밀번호가 임의로 만들어져 $2(으)로 보냈습니다.
 
 새 비밀번호는 로그인한 후 [[Special:ChangePassword|비밀번호를 바꿀]] 수 있습니다.',
 'newarticle' => '(새 문서)',
@@ -1191,7 +1191,7 @@ $2개 보다 적게 {{PLURAL:$2|써야}} 하지만 {{PLURAL:$1|지금은 $1개�
 편집 되돌리기를 완료하려면 이 편집을 되돌리려면 아래의 바뀐 내용을 확인한 후 저장해주세요.',
 'undo-failure' => '중간의 다른 편집과 충돌하여 이 편집을 되돌릴 수 없습니다.',
 'undo-norev' => '문서가 없거나 삭제되었기 때문에 편집을 되돌릴 수 없습니다.',
-'undo-summary' => '[[Special:Contributions/$2|$2]] ([[User talk:$2|토론]]) 의 $1판 편집을 되돌림',
+'undo-summary' => '[[Special:Contributions/$2|$2]] ([[User talk:$2|토론]])의 $1판 편집을 되돌림',
 
 # Account creation failure
 'cantcreateaccounttitle' => '계정을 만들 수 없음',
@@ -1544,8 +1544,8 @@ HTML 태그를 확인하세요.',
 'prefs-help-gender' => '선택 사항: 소프트웨어에서 성별에 따른 언어 문제를 해결하기 위해 사용됩니다.
 이 정보는 공개됩니다.',
 'email' => '이메일',
-'prefs-help-realname' => '실명 기입은 자유입니다.
-실명을 입력할 경우 문서 기여에 자신의 이름이 들어가게 됩니다.',
+'prefs-help-realname' => '실명은 선택 사항입니다.
+실명을 입력하면 문서 기여에 자신의 이름이 들어가게 됩니다.',
 'prefs-help-email' => '이메일 주소 입력은 선택 사항입니다. 다만 비밀번호를 잊었을 때 비밀번호 바꾸기를 위해 필요합니다.',
 'prefs-help-email-others' => '자신의 문서나 토론 문서에 있는 이메일 보내기 링크로 다른 사용자가 연락할 수 있게 할 수도 있습니다.
 이 경우에도 이메일 주소는 다른 사용자가 연락할 때 공개되지 않습니다.',
@@ -1567,7 +1567,7 @@ HTML 태그를 확인하세요.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => '이메일 주소가 유효한 것으로 보입니다.',
-'email-address-validity-invalid' => '유효한 이메일 주소를 입력해주세요.',
+'email-address-validity-invalid' => '올바른 이메일 주소를 입력하세요',
 
 # User rights
 'userrights' => '사용자 권한 관리',
@@ -1918,7 +1918,7 @@ $1',
 [[Special:ListUsers/sysop|관리자]]에게 연락해주세요.',
 'upload-misc-error' => '알 수 없는 파일 올리기 오류',
 'upload-misc-error-text' => '파일을 올리는 중 알 수 없는 오류가 발생했습니다.
-URL이 올바르고 접근 가능한지를 확인하고 다시 시도해주세요.
+URL이 올바르고 접근 가능한지를 확인하고 다시 시도하세요.
 문제가 계속되면 [[Special:ListUsers/sysop|관리자]]에게 연락해주세요.',
 'upload-too-many-redirects' => 'URL이 너무 많은 넘겨주기에 연결되어 있습니다.',
 'upload-unknown-size' => '크기를 알 수 없음',
@@ -2020,8 +2020,8 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization 을 참고하십시오
 URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'upload-curl-error28' => '업로드 시간 초과',
 'upload-curl-error28-text' => '사이트에서 응답하는 시간이 너무 깁니다.
-사이트 접속이 가능한지 확인한 다음 다시 시도해주세요.
-해당 사이트에 접속이 많을 경우 접속이 원활한 시간대에 시도해주세요.',
+사이트 접속이 가능한지 확인한 다음 다시 시도하세요.
+해당 사이트에 접속이 많을 경우 접속이 원활한 시간대에 시도하세요.',
 
 'license' => '라이선스:',
 'license-header' => '라이선스',
@@ -2172,8 +2172,8 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 그 링크는 다른 적절한 문서로 연결할 필요가 있습니다.<br />
 [[MediaWiki:Disambiguationspage]]에서 링크된 틀을 사용하는 문서를 동음이의 문서로 간주합니다.",
 
-'pageswithprop' => '문서 속성으로 된 문서',
-'pageswithprop-legend' => '문서 속성으로 된 문서',
+'pageswithprop' => '문서 속성이 있는 문서',
+'pageswithprop-legend' => '문서 속성이 있는 문서',
 'pageswithprop-text' => '이 문서는 특정 문서 속성을 사용한 문서를 나타냅니다.',
 'pageswithprop-prop' => '속성 이름:',
 'pageswithprop-submit' => '가기',
@@ -2218,7 +2218,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'uncategorizedtemplates' => '분류되지 않은 틀 목록',
 'unusedcategories' => '사용하지 않는 분류 목록',
 'unusedimages' => '사용하지 않는 파일 목록',
-'popularpages' => '인기있는 문서 목록',
+'popularpages' => '인기 있는 문서 목록',
 'wantedcategories' => '필요한 분류 목록',
 'wantedpages' => '필요한 문서 목록',
 'wantedpages-badtitle' => '문서 제목이 잘못되었습니다: $1',
@@ -2262,7 +2262,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'unusedcategoriestext' => '사용하지 않는 분류 문서의 목록입니다.',
 'notargettitle' => '해당하는 문서 없음',
 'notargettext' => '기능을 수행할 대상 문서나 사용자를 지정하지 않았습니다.',
-'nopagetitle' => '해당 문서 없음',
+'nopagetitle' => '해당하는 문서 없음',
 'nopagetext' => '찾는 문서가 존재하지 않습니다.',
 'pager-newer-n' => '{{PLURAL:$1|다음 1개|다음 $1개}}',
 'pager-older-n' => '{{PLURAL:$1|이전 1개|이전 $1개}}',
@@ -2302,7 +2302,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'allpagesnext' => '다음',
 'allpagessubmit' => '보기',
 'allpagesprefix' => '다음으로 시작하는 문서 보기:',
-'allpagesbadtitle' => '문서 제목이 잘못되었거나 다른 사이트로 연결되는 인터위키를 가지고 있습니다.
+'allpagesbadtitle' => '주어진 문서 제목이 잘못되었거나 다른 사이트로 연결되는 인터위키가 있습니다.
 문서 제목에 사용할 수 없는 문자를 사용했을 수 있습니다.',
 'allpages-bad-ns' => '{{SITENAME}}에서는 "$1" 이름공간을 사용하지 않습니다.',
 'allpages-hide-redirects' => '넘겨주기 숨기기',
@@ -2345,13 +2345,13 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 
 # Special:ListGroupRights
 'listgrouprights' => '사용자 권한 목록',
-'listgrouprights-summary' => '다음은 이 위키에서 설정된 사용자 권한 그룹의 목록입니다.
-각각의 권한에 대해서는 [[{{MediaWiki:Listgrouprights-helppage}}|이곳]]을 참고하세요.',
+'listgrouprights-summary' => '다음은 이 위키에 있는 사용자 권한 그룹의 목록입니다.
+각각의 권한에 대해서는 [[{{MediaWiki:Listgrouprights-helppage}}|추가 정보]]를 참고하세요.',
 'listgrouprights-key' => '* <span class="listgrouprights-granted">부여된 권한</span>
 * <span class="listgrouprights-revoked">해제된 권한</span>',
 'listgrouprights-group' => '그룹',
 'listgrouprights-rights' => '권한',
-'listgrouprights-helppage' => 'Help:사용자 권한 그룹',
+'listgrouprights-helppage' => 'Help:사용자 권한',
 'listgrouprights-members' => '(사용자 목록)',
 'listgrouprights-addgroup' => '{{PLURAL:$2|권한}} 부여: $1',
 'listgrouprights-removegroup' => '{{PLURAL:$2|권한}} 회수: $1',
@@ -2523,7 +2523,7 @@ $UNWATCHURL
 'rollbacklinkcount-morethan' => '{{PLURAL:$1|편집}} $1회 이상 되돌리기',
 'rollbackfailed' => '되돌리기 실패',
 'cantrollback' => '편집을 되돌릴 수 없습니다.
-문서를 편집한 사용자가 한명뿐입니다.',
+문서를 편집한 사용자가 한 명뿐입니다.',
 'alreadyrolled' => '[[:$1]]에서 [[User:$2|$2]] ([[User talk:$2|토론]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]])의 편집을 되돌릴 수 없습니다.
 누군가가 이미 문서를 고치거나 되돌렸습니다.
 
@@ -2826,7 +2826,7 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 'ipb_expiry_invalid' => '차단 기간이 잘못되었습니다.',
 'ipb_expiry_temp' => '사용자 이름을 숨기는 차단은 반드시 무기한이어야 합니다.',
 'ipb_hide_invalid' => '해당 계정은 막을 수 없습니다. 기여량이 너무 많습니다.',
-'ipb_already_blocked' => '"$1" 사용자는 이미 차단됨',
+'ipb_already_blocked' => '"$1" 사용자는 이미 차단되었습니다',
 'ipb-needreblock' => '$1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습니까?',
 'ipb-otherblocks-header' => '다른 {{PLURAL:$1|차단}} 기록',
 'unblock-hideuser' => '이 사용자 이름이 숨겨져 있기 때문에 이 사용자를 차단 해제할 수 없습니다.',
@@ -2905,13 +2905,13 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 
 이 경우에는 문서를 직접 이동하거나 두 문서를 합쳐야 합니다.",
 'movearticle' => '문서 이동하기',
-'moveuserpage-warning' => "'''경고:''' 사용자 문서를 옮기려 하고 있습니다. 사용자 문서만 이동되며 사용자 이름이 바뀌지 '''않는다'''는 점을 참고해주시기 바랍니다.",
+'moveuserpage-warning' => "'''경고:''' 사용자 문서를 옮기려 하고 있습니다. 사용자 문서만 이동되며 사용자 이름이 바뀌지 '''않는다'''는 점을 참고하세요.",
 'movenologin' => '로그인하지 않음',
 'movenologintext' => '문서를 이동하려면 [[Special:UserLogin|로그인]]해야 합니다.',
-'movenotallowed' => '문서를 이동할 권한이 없습니다.',
-'movenotallowedfile' => '파일을 이동할 권한이 없습니다.',
-'cant-move-user-page' => '사용자 문서를 이동할 권한이 없습니다(하위 문서는 예외).',
-'cant-move-to-user-page' => '문서를 사용자 문서로 이동할 권한이 없습니다(하위 문서는 예외).',
+'movenotallowed' => '문서를 옮길 권한이 없습니다.',
+'movenotallowedfile' => '파일을 옮길 권한이 없습니다.',
+'cant-move-user-page' => '사용자 문서를 옮길 권한이 없습니다(하위 문서는 예외).',
+'cant-move-to-user-page' => '문서를 사용자 문서로 옮길 권한이 없습니다(하위 문서는 예외).',
 'newtitle' => '새 문서 이름',
 'move-watch' => '문서 주시하기',
 'movepagebtn' => '이동',
@@ -2920,17 +2920,17 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 'movepage-moved-redirect' => '넘겨주기 문서를 만들었습니다.',
 'movepage-moved-noredirect' => '넘겨주기 문서를 남기지 않았습니다.',
 'articleexists' => '문서가 이미 존재하거나 이름이 올바르지 않습니다.
-다른 제목으로 시도해주세요.',
-'cantmove-titleprotected' => '새로운 제목으로 문서를 만드는 것이 금지되어 있어 문서를 이동할 수 없습니다.',
+다른 이름을 선택하세요.',
+'cantmove-titleprotected' => '새로운 제목으로 문서를 만드는 것이 금지되어 있어 문서를 옮길 수 없습니다',
 'talkexists' => "'''문서는 이동되었습니다. 하지만 딸린 토론 문서의 새 이름으로 된 문서가 이미 있기 때문에 토론 문서는 옮기지 못했습니다. 직접 문서를 합쳐 주세요.'''",
 'movedto' => '새 이름',
 'movetalk' => '딸린 토론도 함께 이동합니다.',
 'move-subpages' => '하위 문서도 함께 ($1개 이하) 이동합니다.',
 'move-talk-subpages' => '토론 문서의 하위 문서도 ($1개까지) 함께 이동합니다.',
-'movepage-page-exists' => '이동할 수 없습니다. "$1" 문서가 이미 존재합니다.',
+'movepage-page-exists' => '$1 문서가 이미 존재하므로 자동으로 덮어쓸 수 없습니다.',
 'movepage-page-moved' => '"$1" 문서를 "$2" 문서로 옮겼습니다.',
-'movepage-page-unmoved' => '"$1" 문서를 "$2" 문서로 이동할 수 없습니다.',
-'movepage-max-pages' => '{{PLURAL:$1|문서}}를 최대 $1개 이동했습니다. 나머지 문서는 자동 이동하지 않습니다.',
+'movepage-page-unmoved' => '$1 문서를 $2 문서로 옮길 수 없습니다.',
+'movepage-max-pages' => '{{PLURAL:$1|문서}}를 최대 $1개 옮겼으며 나머지 문서는 자동으로 옮기지 않습니다.',
 'movelogpage' => '이동 기록',
 'movelogpagetext' => '아래는 이동한 문서의 목록입니다.',
 'movesubpage' => '{{PLURAL:$1|하위 문서}}',
@@ -2945,11 +2945,11 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 'delete_and_move_confirm' => '네. 문서를 삭제합니다',
 'delete_and_move_reason' => '"[[$1]]"에서 문서를 이동하기 위해 삭제함',
 'selfmove' => '이동하려는 제목이 원래 제목과 같습니다.
-이동할 수 없습니다.',
+같은 제목으로는 옮길 수 없습니다.',
 'immobile-source-namespace' => '"$1" 이름공간에 속한 문서는 이동시킬 수 없습니다.',
 'immobile-target-namespace' => '"$1" 이름공간에 속한 문서는 이동시킬 수 없습니다.',
-'immobile-target-namespace-iw' => '인터위키 링크를 넘어 문서를 이동할 수 없습니다.',
-'immobile-source-page' => '이 문서는 이동할 수 없습니다.',
+'immobile-target-namespace-iw' => '인터위키 링크를 넘어 문서를 옮길 수 없습니다.',
+'immobile-source-page' => '이 문서는 옮길 수 없습니다.',
 'immobile-target-page' => '새 이름으로 옮길 수 없습니다.',
 'bad-target-model' => '원하는 대상은 다른 내용 모델을 사용합니다. $1에서 $2로 변환할 수 없습니다.',
 'imagenocrossnamespace' => '파일을 파일이 아닌 이름공간으로 옮길 수 없습니다.',
@@ -3206,7 +3206,7 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 바깥 사이트로 연결하는 링크 중에 블랙리스트에 포함된 사이트가 있을 것입니다.',
 'spamprotectionmatch' => '문제가 되는 부분은 다음과 같습니다: $1',
 'spambot_username' => 'MediaWiki 스팸 제거',
-'spam_reverting' => '$1을 포함하지 않는 최신 버전으로 되돌림',
+'spam_reverting' => '$1(을)를 포함하지 않는 최신 버전으로 되돌림',
 'spam_blanking' => '모든 버전에 $1 링크를 포함하고 있어 차단함',
 'spam_deleting' => '모든 버전에 $1 링크를 포함하고 있어 삭제함',
 
@@ -3784,7 +3784,7 @@ Variants for Chinese language
 
 # Email address confirmation
 'confirmemail' => '이메일 주소 확인',
-'confirmemail_noemail' => '[[Special:Preferences|환경 설정]]에 이메일을 설정하지 않았습니다.',
+'confirmemail_noemail' => '[[Special:Preferences|사용자 환경 설정]]에 올바른 이메일주소를 설정하지 않았습니다.',
 'confirmemail_text' => '{{SITENAME}}에서는 이메일 기능을 사용하기 전에 이메일 인증을 받아야 합니다.
 아래의 버튼을 누르면 인증 메일을 보냅니다.
 메일에는 인증 코드가 들어있는 링크가 있습니다.
@@ -4061,7 +4061,7 @@ $5
 'dberr-header' => '이 위키에 문제가 있습니다.',
 'dberr-problems' => '죄송합니다!
 이 사이트는 기술적인 문제가 있습니다.',
-'dberr-again' => '잠시 후에 다시 시도해주세요.',
+'dberr-again' => '잠시 기다리고 나서 다시 불러오세요.',
 'dberr-info' => '(데이터베이스에 접속할 수 없습니다: $1)',
 'dberr-usegoogle' => '그 동안 구글을 통해 검색할 수도 있습니다.',
 'dberr-outofdate' => '참고로 구글의 내용 개요는 오래된 것일 수도 있습니다.',

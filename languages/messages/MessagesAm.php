@@ -77,8 +77,6 @@ $messages = array(
 'tog-shownumberswatching' => 'የሚከታተሉ ተጠቃሚዎችን ቁጥር አሳይ',
 'tog-oldsig' => 'የቀድሞው ፊርማ ቅደመ እይታ',
 'tog-fancysig' => 'ጥሬ ፊርማ (ያለራስገዝ ማያያዣ)',
-'tog-externaleditor' => 'በቀዳሚነት ውጪያዊ አራሚን ተጠቀም',
-'tog-externaldiff' => 'በቀዳሚነት የውጭ ልዩነት-ማሳያን ተጠቀም',
 'tog-showjumplinks' => 'የ"ዝለል" አቅላይ መያያዣዎችን አስችል',
 'tog-uselivepreview' => 'ቀጥታ ቅድመ-ዕይታን ይጠቀሙ (JavaScript) (የሙከራ)',
 'tog-forceeditsummary' => 'ማጠቃለያው ባዶ ከሆነ ማስታወሻ ይስጠኝ',
@@ -846,13 +844,6 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'search-external' => 'አፍአዊ ፍለጋ',
 'searchdisabled' => '{{SITENAME}} ፍለጋ አሁን እንዳይሠራ ተደርጓል። ለጊዜው ግን በGoogle ላይ መፈልግ ይችላሉ። የ{{SITENAME}} ይዞታ ማውጫ በዚያ እንዳልታደሰ ማቻሉ ያስታውሱ።',
 
-# Quickbar
-'qbsettings-none' => ' ምንም',
-'qbsettings-fixedleft' => 'በግራ የተለጠፈ',
-'qbsettings-fixedright' => 'በቀኝ የተለጠፈ',
-'qbsettings-floatingleft' => 'በግራ ተንሳፋፊ',
-'qbsettings-floatingright' => 'በቀኝ ተንሳፋፊ',
-
 # Preferences page
 'preferences' => 'ምርጫዎች፤',
 'mypreferences' => 'ምርጫዎች፤',
@@ -1473,14 +1464,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'listusers-submit' => 'ይታይ',
 'listusers-noresult' => 'ማንም ተጠቃሚ አልተገኘም።',
 'listusers-blocked' => '(ታግዷል)',
-
-# Special:ActiveUsers
-'activeusers' => 'ተግባራዊ አባላት ዝርዝር',
-'activeusers-intro' => 'እነዚህ አባላት ባለፈው $1 ቀን ውስጥ ማናቸውንም አይነት ተግባር ፈጸሙ።',
-'activeusers-count' => '$1 {{PLURAL:$1|ለውጥ|ለውጦች}} ባለፈው $3 ቀን ውስጥ',
-'activeusers-hidebots' => 'ሎሌዎች ይደበቁ',
-'activeusers-hidesysops' => 'መጋቢዎች ይደበቁ',
-'activeusers-noresult' => 'ማንም ተጠቃሚ አልተገኘም።',
 
 # Special:ListGroupRights
 'listgrouprights' => 'የተጠቃሚ ስብስባ መብቶች',

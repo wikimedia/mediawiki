@@ -177,8 +177,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Битте күҙәтеү исемлегенә өҫтәгән ҡулланыусылар һанын күрһәтергә',
 'tog-oldsig' => 'Хәҙерге имза:',
 'tog-fancysig' => 'Имзаның үҙ вики-тамғаһы (автоматик һылтанмаһыҙ)',
-'tog-externaleditor' => 'Махсус билдәләнмәһә, тышҡы мөхәррирләүсе ҡулланырға (белгестәр өсөн генә, компьютер махсус көйләнгән булырға тейеш)',
-'tog-externaldiff' => 'Махсус билдәләнмәһә, версияларҙы сағыштырыу өсөн тышҡы программа ҡулланырға (белгестәр өсөн генә, компьютер махсус көйләнгән булырға тейеш)',
 'tog-showjumplinks' => '«Күс» ярҙамсы һылтанмалары асылһын',
 'tog-uselivepreview' => 'Тиҙ ҡарап алыуҙы ҡулланырға (JavaScript, эксперименталь)',
 'tog-forceeditsummary' => 'Төҙәтеүҙе тасуирлау юлы тултырылмаһа, мине киҫәт',
@@ -192,6 +190,7 @@ $messages = array(
 'tog-diffonly' => 'Версия сағыштырыу аҫтында бит эстәлеге күрһәтелмәһен',
 'tog-showhiddencats' => 'Йәшерен категорияларҙы күрһәтергә',
 'tog-norollbackdiff' => 'Кире ҡайтарыуҙан һуң версия айырмалары күрһәтелмәһен',
+'tog-useeditwarning' => 'Мөхәррирләү битенән үҙгәртеүҙәрҙе һаҡламайынса сыҡҡан ваҡытта мине киҫәтергә',
 
 'underline-always' => 'Һәр ваҡыт',
 'underline-never' => 'Бер ҡасан да',
@@ -912,6 +911,8 @@ $2
 'content-failed-to-parse' => '$2 эстәлеге $1 төрөнә тура килмәй: $3.',
 'invalid-content-data' => 'Ярамаған мәғлүмәт',
 'content-not-allowed-here' => '"$1" эстәлеге [[$2]] бит өсөн ярамай',
+'editwarning-warning' => 'Икенсе биткә күсеү һеҙ индергән үҙгәрештәрҙең юғалыуына килтереүе мөмкин.
+Әгәр системала танылыу үтһәгеҙ, көйләүҙәрегеҙ битенең "Мөхәррирләү" бүлегендә был киҫәтеүҙе һүндерә алаһығыҙ.',
 
 # Content models
 'content-model-wikitext' => 'викияҙма',
@@ -1195,15 +1196,6 @@ $1",
 'searchdisabled' => '{{SITENAME}} эҙләүе ябыҡ.
 Хәҙергә эҙләүҙе Google менән үтәй алаһығыҙ.
 Тик унда {{SITENAME}} өсөн индекслауҙың иҫке булыуы мөмкинлеген онотмағыҙ.',
-
-# Quickbar
-'qbsettings' => 'Тиҙ күсеү',
-'qbsettings-none' => 'Һис бере',
-'qbsettings-fixedleft' => 'Һулда нығытылған',
-'qbsettings-fixedright' => 'Уңда нығытылған',
-'qbsettings-floatingleft' => 'Һулда күсеүсе',
-'qbsettings-floatingright' => 'Уңда күсеүсе',
-'qbsettings-directionality' => 'Беркетелгән, телегеҙҙең яҙыу йүнәлешенә бәйле',
 
 # Preferences page
 'preferences' => 'Көйләүҙәр',
@@ -1753,7 +1745,6 @@ $1',
 'http-read-error' => 'HTTP уҡыу хатаһы.',
 'http-timed-out' => 'HTTP-һорауҙы көтөү ваҡыты үтте.',
 'http-curl-error' => 'URL адрес буйынса мөрәжәғәт итеү хатаһы: $1',
-'http-host-unreachable' => 'URL адрес буйынса мөрәжәғәт итеү мөмкин түгел.',
 'http-bad-status' => 'HTTP-һорауҙы эшкәрткән ваҡытта ҡыйынлыҡтар тыуҙы: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -2951,11 +2942,7 @@ The wiki server cannot provide data in a format your client can read.',
 'pageinfo-protect-cascading-from' => 'Бынан башлап һикәлтәле һаҡлау',
 
 # Skin names
-'skinname-standard' => 'Классик',
 'skinname-cologneblue' => 'Кёльн һағышы',
-'skinname-myskin' => 'Шәхси',
-'skinname-chick' => 'Себеш',
-'skinname-simple' => 'Ябай',
 'skinname-modern' => 'Заманса',
 'skinname-vector' => 'Векторлы',
 

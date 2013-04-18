@@ -216,8 +216,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Цал архайæджы фарсмæ сæ цæст дарынц, уый равдис',
 'tog-oldsig' => 'Ныры къухæрфыст:',
 'tog-fancysig' => 'Сæвæрын къухæрфыст викитекстæй (æнæ хæдæвзæргæ æрвитæнæй)',
-'tog-externaleditor' => 'Архайын æддаг ивæнæй (æрмæст эксперттæн, домы сæрмагонд æвæрдтытæ компьютерыл. [//www.mediawiki.org/wiki/Manual:External_editors Лæмбынæг.])',
-'tog-externaldiff' => 'Архайын æндæр иртасæнæй (æрмæст эксперттæн, домы сæрмагонд æвæрдтытæ компьютерыл. [//www.mediawiki.org/wiki/Manual:External_editors Лæмбынæг.])',
 'tog-showjumplinks' => 'Тагъд æрвитæнтæй пайда кæн',
 'tog-uselivepreview' => 'Архайын тагъд разбакастæй (домы JavaScript) (эксперименталон)',
 'tog-forceeditsummary' => 'Фæдзæхсæд иу мæ, кæд ивды афыст афтид уа',
@@ -1013,13 +1011,6 @@ $2
 'powersearch-field' => 'Агуырд',
 'powersearch-toggleall' => 'Иууылдæр',
 
-# Quickbar
-'qbsettings' => 'Навигацион таг',
-'qbsettings-none' => 'Ма равдис',
-'qbsettings-fixedleft' => 'Галиуырдыгæй',
-'qbsettings-fixedright' => 'Рахизырдыгæй',
-'qbsettings-floatingleft' => 'Рахизырдыгæй ленккæнгæ',
-
 # Preferences page
 'preferences' => 'Уагæвæрдтæ',
 'mypreferences' => 'Уагæвæрдтæ',
@@ -1612,12 +1603,8 @@ $3',
 'spamprotectiontitle' => 'Спамы ныхмæ фильтр',
 
 # Skin names
-'skinname-standard' => 'Стандартон',
-'skinname-nostalgia' => 'Æнкъард',
 'skinname-cologneblue' => 'Кёльны æрхæндæг',
 'skinname-monobook' => 'Моно-чиныг',
-'skinname-myskin' => 'Мæхи',
-'skinname-chick' => 'Карк',
 
 # Browsing diffs
 'previousdiff' => '← Зæронддæр ивд',
