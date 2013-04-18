@@ -93,6 +93,8 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		}
 		if ( is_null( $matches ) ) {
 			$this->dieUsage( "{$what} search is disabled", "search-{$what}-disabled" );
+		} elseif( $matches instanceof Status && !$matches->isGood() ) {
+			$this->dieUsage( $matches->getWikiText(), 'search-error' );
 		}
 
 		$apiResult = $this->getResult();
@@ -345,6 +347,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'code' => 'search-text-disabled', 'info' => 'text search is disabled' ),
 			array( 'code' => 'search-title-disabled', 'info' => 'title search is disabled' ),
+			array( 'code' => 'search-error', 'info' => 'search error has occurred' ),
 		) );
 	}
 
