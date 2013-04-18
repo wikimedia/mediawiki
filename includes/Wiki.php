@@ -599,7 +599,7 @@ class MediaWiki {
 	 * Do a job from the job queue
 	 */
 	private function doJobs() {
-		global $wgJobRunRate;
+		global $wgJobRunRate, $wgPhpCli, $IP;
 
 		if ( $wgJobRunRate <= 0 || wfReadOnly() ) {
 			return;
@@ -615,25 +615,36 @@ class MediaWiki {
 			$n = intval( $wgJobRunRate );
 		}
 
-		$group = JobQueueGroup::singleton();
-		do {
-			$job = $group->pop( JobQueueGroup::USE_CACHE ); // job from any queue
-			if ( $job ) {
-				$output = $job->toString() . "\n";
-				$t = - microtime( true );
-				wfProfileIn( __METHOD__ . '-' . get_class( $job ) );
-				$success = $job->run();
-				wfProfileOut( __METHOD__ . '-' . get_class( $job ) );
-				$group->ack( $job ); // done
-				$t += microtime( true );
-				$t = round( $t * 1000 );
-				if ( $success === false ) {
-					$output .= "Error: " . $job->getLastError() . ", Time: $t ms\n";
-				} else {
-					$output .= "Success, Time: $t ms\n";
+		if ( !wfShellExecDisabled() && is_executable( $wgPhpCli ) ) {
+			// Start a background process to run some of the jobs.
+			// This will be asynchronous on *nix though not on Windows.
+			wfProfileIn( __METHOD__ . '-exec' );
+			$retVal = 1;
+			$cmd = wfShellWikiCmd( "$IP/maintenance/runJobs.php", array( '--maxjobs', $n ) );
+			wfShellExec( "$cmd &", $retVal );
+			wfProfileOut( __METHOD__ . '-exec' );
+		} else {
+			// Fallback to running the jobs here while the user waits
+			$group = JobQueueGroup::singleton();
+			do {
+				$job = $group->pop( JobQueueGroup::USE_CACHE ); // job from any queue
+				if ( $job ) {
+					$output = $job->toString() . "\n";
+					$t = - microtime( true );
+					wfProfileIn( __METHOD__ . '-' . get_class( $job ) );
+					$success = $job->run();
+					wfProfileOut( __METHOD__ . '-' . get_class( $job ) );
+					$group->ack( $job ); // done
+					$t += microtime( true );
+					$t = round( $t * 1000 );
+					if ( $success === false ) {
+						$output .= "Error: " . $job->getLastError() . ", Time: $t ms\n";
+					} else {
+						$output .= "Success, Time: $t ms\n";
+					}
+					wfDebugLog( 'jobqueue', $output );
 				}
-				wfDebugLog( 'jobqueue', $output );
-			}
-		} while ( --$n && $job );
+			} while ( --$n && $job );
+		}
 	}
 }

@@ -2736,22 +2736,12 @@ function wfEscapeShellArg() {
 }
 
 /**
- * Execute a shell command, with time and memory limits mirrored from the PHP
- * configuration if supported.
- * @param string $cmd Command line, properly escaped for shell.
- * @param &$retval null|Mixed optional, will receive the program's exit code.
- *                 (non-zero is usually failure)
- * @param array $environ optional environment variables which should be
- *                 added to the executed command environment.
- * @param array $limits optional array with limits(filesize, memory, time, walltime)
- *                 this overwrites the global wgShellMax* limits.
- * @return string collected stdout as a string (trailing newlines stripped)
+ * Check if wfShellExec() is effectively disabled via php.ini config
+ * @return bool|string False or one of (safemode,disabled)
+ * @since 1.22
  */
-function wfShellExec( $cmd, &$retval = null, $environ = array(), $limits = array() ) {
-	global $IP, $wgMaxShellMemory, $wgMaxShellFileSize, $wgMaxShellTime,
-		$wgMaxShellWallClockTime, $wgShellCgroup;
-
-	static $disabled;
+function wfShellExecDisabled() {
+	static $disabled = null;
 	if ( is_null( $disabled ) ) {
 		$disabled = false;
 		if ( wfIniGetBool( 'safe_mode' ) ) {
@@ -2767,6 +2757,26 @@ function wfShellExec( $cmd, &$retval = null, $environ = array(), $limits = array
 			}
 		}
 	}
+	return $disabled;
+}
+
+/**
+ * Execute a shell command, with time and memory limits mirrored from the PHP
+ * configuration if supported.
+ * @param string $cmd Command line, properly escaped for shell.
+ * @param &$retval null|Mixed optional, will receive the program's exit code.
+ *                 (non-zero is usually failure)
+ * @param array $environ optional environment variables which should be
+ *                 added to the executed command environment.
+ * @param array $limits optional array with limits(filesize, memory, time, walltime)
+ *                 this overwrites the global wgShellMax* limits.
+ * @return string collected stdout as a string (trailing newlines stripped)
+ */
+function wfShellExec( $cmd, &$retval = null, $environ = array(), $limits = array() ) {
+	global $IP, $wgMaxShellMemory, $wgMaxShellFileSize, $wgMaxShellTime,
+		$wgMaxShellWallClockTime, $wgShellCgroup;
+
+	$disabled = wfShellExecDisabled();
 	if ( $disabled ) {
 		$retval = 1;
 		return $disabled == 'safemode' ?
