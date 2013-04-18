@@ -187,6 +187,8 @@ production.
   the #toc CSS id and the .toc CSS class). However, particularly bad abuse of
   the id or the class can possibly break.
 * CSSJanus now supports rgb, hsl, rgba, and hsla color syntaxes.
+* Special:Listfiles can no longer be sorted by image name when filtering
+  by user in miser mode.
 
 === API changes in 1.22 ===
 * (bug 25553) The JSON output formatter now leaves forward slashes unescaped
