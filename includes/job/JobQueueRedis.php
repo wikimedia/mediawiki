@@ -263,7 +263,7 @@ class JobQueueRedis extends JobQueue {
 		end
 		return pushed
 LUA;
-		return $this->redisEval( $conn, $script,
+		return $conn->luaEval( $script,
 			array_merge(
 				array(
 					$this->getQueueKey( 'l-unclaimed' ), # KEYS[1]
@@ -346,7 +346,7 @@ LUA;
 		-- Return the job data
 		return item
 LUA;
-		return $this->redisEval( $conn, $script,
+		return $conn->luaEval( $script,
 			array(
 				$this->getQueueKey( 'l-unclaimed' ), # KEYS[1]
 				$this->getQueueKey( 'h-sha1ById' ), # KEYS[2]
@@ -377,7 +377,7 @@ LUA;
 		redis.call('hIncrBy',KEYS[5],id,1)
 		return redis.call('hGet',KEYS[6],id)
 LUA;
-		return $this->redisEval( $conn, $script,
+		return $conn->luaEval( $script,
 			array(
 				$this->getQueueKey( 'l-unclaimed' ), # KEYS[1]
 				$this->getQueueKey( 'h-sha1ById' ), # KEYS[2]
@@ -413,7 +413,7 @@ LUA;
 				-- Delete the job data itself
 				return redis.call('hDel',KEYS[3],ARGV[1])
 LUA;
-				$res = $this->redisEval( $conn, $script,
+				$res = $conn->luaEval( $script,
 					array(
 						$this->getQueueKey( 'z-claimed' ), # KEYS[1]
 						$this->getQueueKey( 'h-attempts' ), # KEYS[2]
@@ -567,7 +567,7 @@ LUA;
 			end
 			return #ids
 LUA;
-			$count += (int)$this->redisEval( $conn, $script,
+			$count += (int)$conn->luaEval( $script,
 				array(
 					$this->getQueueKey( 'z-delayed' ), // KEYS[1]
 					$this->getQueueKey( 'l-unclaimed' ), // KEYS[2]
@@ -633,7 +633,7 @@ LUA;
 			end
 			return {released,abandoned,pruned}
 LUA;
-			$res = $this->redisEval( $conn, $script,
+			$res = $conn->luaEval( $script,
 				array(
 					$this->getQueueKey( 'z-claimed' ), # KEYS[1]
 					$this->getQueueKey( 'h-attempts' ), # KEYS[2]
@@ -676,33 +676,6 @@ LUA;
 			);
 		}
 		return $tasks;
-	}
-
-	/**
-	 * @param RedisConnRef $conn
-	 * @param string $script
-	 * @param array $params
-	 * @param integer $numKeys
-	 * @return mixed
-	 */
-	protected function redisEval( RedisConnRef $conn, $script, array $params, $numKeys ) {
-		$sha1 = sha1( $script ); // 40 char hex
-
-		// Try to run the server-side cached copy of the script
-		$conn->clearLastError();
-		$res = $conn->evalSha( $sha1, $params, $numKeys );
-		// If the script is not in cache, use eval() to retry and cache it
-		if ( $conn->getLastError() && $conn->script( 'exists', $sha1 ) === array( 0 ) ) {
-			$conn->clearLastError();
-			$res = $conn->eval( $script, $params, $numKeys );
-			wfDebugLog( 'JobQueueRedis', "Used eval() for Lua script $sha1." );
-		}
-
-		if ( $conn->getLastError() ) { // script bug?
-			wfDebugLog( 'JobQueueRedis', "Lua script error: " . $conn->getLastError() );
-		}
-
-		return $res;
 	}
 
 	/**
