@@ -95,6 +95,7 @@ class RunJobs extends Maintenance {
 
 				// Run the job...
 				$t = microtime( true );
+				wfProfileIn( __METHOD__ . '-' . get_class( $job ) );
 				try {
 					$status = $job->run();
 					$error = $job->getLastError();
@@ -102,6 +103,7 @@ class RunJobs extends Maintenance {
 					$status = false;
 					$error = get_class( $e ) . ': ' . $e->getMessage();
 				}
+				wfProfileOut( __METHOD__ . '-' . get_class( $job ) );
 				$timeMs = intval( ( microtime( true ) - $t ) * 1000 );
 
 				// Mark the job as done on success or when the job cannot be retried

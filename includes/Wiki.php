@@ -621,11 +621,13 @@ class MediaWiki {
 			if ( $job ) {
 				$output = $job->toString() . "\n";
 				$t = - microtime( true );
+				wfProfileIn( __METHOD__ . '-' . get_class( $job ) );
 				$success = $job->run();
+				wfProfileOut( __METHOD__ . '-' . get_class( $job ) );
 				$group->ack( $job ); // done
 				$t += microtime( true );
 				$t = round( $t * 1000 );
-				if ( !$success ) {
+				if ( $success === false ) {
 					$output .= "Error: " . $job->getLastError() . ", Time: $t ms\n";
 				} else {
 					$output .= "Success, Time: $t ms\n";
