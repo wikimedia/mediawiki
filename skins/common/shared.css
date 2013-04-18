@@ -528,6 +528,7 @@ table.collapsed tr.collapsable {
 .success {
 	color: green;
 	font-size: larger;
+	font-weight: bold;
 }
 .warning {
 	color: #FFA500; /* orange */
