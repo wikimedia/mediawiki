@@ -158,7 +158,7 @@ class RefreshLinksJob2 extends Job {
 			$jobs = array_merge( $jobs, $this->getSingleTitleJobs( $table, $masterPos ) );
 		} else {
 			# This is a base job to trigger the insertion of partitioned jobs...
-			if ( $tbc->getNumLinks( $table ) <= $wgUpdateRowsPerJob ) {
+			if ( $tbc->getNumLinks( $table, $wgUpdateRowsPerJob + 1 ) <= $wgUpdateRowsPerJob ) {
 				# Just directly insert the single per-title jobs
 				$jobs = array_merge( $jobs, $this->getSingleTitleJobs( $table, $masterPos ) );
 			} else {

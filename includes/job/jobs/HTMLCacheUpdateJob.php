@@ -82,7 +82,8 @@ class HTMLCacheUpdateJob extends Job {
 		global $wgMaxBacklinksInvalidate;
 
 		# Get an estimate of the number of rows from the BacklinkCache
-		$numRows = $this->blCache->getNumLinks( $this->params['table'] );
+		$max = max( $this->rowsPerJob * 2, $wgMaxBacklinksInvalidate ) + 1;
+		$numRows = $this->blCache->getNumLinks( $this->params['table'], $max );
 		if ( $wgMaxBacklinksInvalidate !== false && $numRows > $wgMaxBacklinksInvalidate ) {
 			wfDebug( "Skipped HTML cache invalidation of {$this->title->getPrefixedText()}." );
 			return true;
