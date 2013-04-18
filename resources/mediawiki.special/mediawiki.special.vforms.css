@@ -12,7 +12,7 @@
 
 /* Reposition and resize language links, which appear on a per-wiki basis */
 .mw-ui-container #languagelinks {
-	margin-bottom: 3em;
+	margin-bottom: 2em;
 	font-size: 0.8em;
 }
 
@@ -34,4 +34,5 @@
 	border: 1px solid #fac5c5;
 	background-color: #fae3e3;
 	text-shadow: 0 1px #fae3e3;
+	word-wrap: break-word;
 }
