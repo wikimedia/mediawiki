@@ -126,13 +126,18 @@ class ImageListPager extends TablePager {
 	}
 
 	function isFieldSortable( $field ) {
+		global $wgMiserMode;
 		if ( $this->mIncluding ) {
 			return false;
 		}
-		static $sortable = array( 'img_timestamp', 'img_name' );
-		if ( $field == 'img_size' ) {
-			# No index for both img_size and img_user_text
-			return !isset( $this->mQueryConds['img_user_text'] );
+		$sortable = array( 'img_timestamp', 'img_name', 'img_size' );
+		if ( $wgMiserMode && isset( $this->mQueryConds['img_user_text'] ) ) {
+			// If we're sorting by user, the index only supports sorting by time
+			if ( $field === 'img_timestamp' ) {
+				return true;
+			} else {
+				return false;
+			}
 		}
 		return in_array( $field, $sortable );
 	}
