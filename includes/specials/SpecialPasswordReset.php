@@ -103,11 +103,8 @@ class SpecialPasswordReset extends FormSpecialPage {
 	}
 
 	public function alterForm( HTMLForm $form ) {
-		$form->setSubmitTextMsg( 'mailmypassword' );
-	}
-
-	protected function preText() {
 		global $wgPasswordResetRoutes;
+
 		$i = 0;
 		if ( isset( $wgPasswordResetRoutes['username'] ) && $wgPasswordResetRoutes['username'] ) {
 			$i++;
@@ -118,7 +115,10 @@ class SpecialPasswordReset extends FormSpecialPage {
 		if ( isset( $wgPasswordResetRoutes['domain'] ) && $wgPasswordResetRoutes['domain'] ) {
 			$i++;
 		}
-		return $this->msg( 'passwordreset-pretext', $i )->parseAsBlock();
+		$message = ( $i > 1 ) ? 'passwordreset-text-many' : 'passwordreset-text-one';
+
+		$form->setHeaderText( $this->msg( $message, $i )->parseAsBlock() );
+		$form->setSubmitTextMsg( 'mailmypassword' );
 	}
 
 	/**

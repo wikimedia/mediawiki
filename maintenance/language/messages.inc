@@ -555,11 +555,11 @@ $wgMessageStructure = array(
 	),
 	'passwordreset' => array(
 		'passwordreset',
-		'passwordreset-text',
+		'passwordreset-text-one',
+		'passwordreset-text-many',
 		'passwordreset-legend',
 		'passwordreset-disabled',
 		'passwordreset-emaildisabled',
-		'passwordreset-pretext',
 		'passwordreset-username',
 		'passwordreset-domain',
 		'passwordreset-capture',
