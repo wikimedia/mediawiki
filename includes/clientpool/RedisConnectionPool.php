@@ -302,6 +302,38 @@ class RedisConnRef {
 		return call_user_func_array( array( $this->conn, $name ), $arguments );
 	}
 
+	/**
+	 * @param string $script
+	 * @param array $params
+	 * @param integer $numKeys
+	 * @return mixed
+	 * @throws RedisException
+	 */
+	protected function luaEval( $script, array $params, $numKeys ) {
+		$sha1 = sha1( $script ); // 40 char hex
+		$conn = $this->conn; // convenience
+
+		// Try to run the server-side cached copy of the script
+		$conn->clearLastError();
+		$res = $conn->evalSha( $sha1, $params, $numKeys );
+		// If the script is not in cache, use eval() to retry and cache it
+		if ( $conn->getLastError() && $conn->script( 'exists', $sha1 ) === array( 0 ) ) {
+			$conn->clearLastError();
+			$res = $conn->eval( $script, $params, $numKeys );
+			wfDebugLog( 'redis', "Used eval() for Lua script $sha1." );
+		}
+
+		if ( $conn->getLastError() ) { // script bug?
+			wfDebugLog( 'redis', "Lua script error: " . $conn->getLastError() );
+		}
+
+		return $res;
+	}
+
+	/**
+	 * @param RedisConnRef $conn
+	 * @return bool
+	 */
 	public function isConnIdentical( Redis $conn ) {
 		return $this->conn === $conn;
 	}
