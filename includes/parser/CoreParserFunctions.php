@@ -577,6 +577,7 @@ class CoreParserFunctions {
 	 * @return string
 	 */
 	static function pagesincategory( $parser, $name = '', $arg1 = null, $arg2 = null ) {
+		global $wgContLang;
 		static $magicWords = null;
 		if ( is_null( $magicWords ) ) {
 			$magicWords = new MagicWordArray( array(
@@ -606,6 +607,7 @@ class CoreParserFunctions {
 		if( !$title ) { # invalid title
 			return self::formatRaw( 0, $raw );
 		}
+		$wgContLang->findVariantLink( $name, $title, true );
 
 		// Normalize name for cache
 		$name = $title->getDBkey();
