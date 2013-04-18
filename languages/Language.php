@@ -482,6 +482,9 @@ class Language {
 	}
 
 	/**
+	 * Returns an array of localised namespaces indexed by their numbers. If the namespace is not
+	 * available in localised form, it will be included in English.
+	 *
 	 * @return array
 	 */
 	public function getNamespaces() {
