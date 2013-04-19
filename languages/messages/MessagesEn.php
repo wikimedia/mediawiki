@@ -373,6 +373,7 @@ $magicWords = array(
  */
 $specialPageAliases = array(
 	'Allmessages'               => array( 'AllMessages' ),
+	'AllMyUploads'              => array( 'AllMyUploads' ),
 	'Allpages'                  => array( 'AllPages' ),
 	'Ancientpages'              => array( 'AncientPages' ),
 	'Badtitle'                  => array( 'Badtitle' ),
@@ -2433,6 +2434,10 @@ When filtered by user, only files where that user uploaded the most recent versi
 'listfiles_size'        => 'Size',
 'listfiles_description' => 'Description',
 'listfiles_count'       => 'Versions',
+'listfiles-show-all'    => 'Include old versions of images',
+'listfiles-latestversion' => 'Current version',
+'listfiles-latestversion-yes' => 'Yes',
+'listfiles-latestversion-no' => 'No',
 
 # File description page
 'file-anchor-link'                  => 'File',
