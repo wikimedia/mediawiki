@@ -1609,6 +1609,10 @@ class OutputPage extends ContextSource {
 			}
 		}
 
+		// Link flags are ignored for now, but may in the future be
+		// used to mark individual language links.
+		$linkFlags = array();
+		wfRunHooks( 'LanguageLinks', array( $this->getTitle(), &$this->mLanguageLinks, &$linkFlags ) );
 		wfRunHooks( 'OutputPageParserOutput', array( &$this, $parserOutput ) );
 	}
 
