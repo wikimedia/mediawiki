@@ -517,7 +517,7 @@ $messages = array(
 
 'navigation-heading' => '导航菜单',
 'errorpagetitle' => '错误',
-'returnto' => '返回到$1。',
+'returnto' => '返回$1。',
 'tagline' => '来自{{SITENAME}}',
 'help' => '帮助',
 'search' => '搜索',
@@ -595,8 +595,8 @@ $1',
 'mainpage' => '首页',
 'mainpage-description' => '首页',
 'policy-url' => 'Project:方针',
-'portal' => '社区专页',
-'portal-url' => 'Project:社区专页',
+'portal' => '社区主页',
+'portal-url' => 'Project:社区主页',
 'privacy' => '隐私政策',
 'privacypage' => 'Project:隐私权政策',
 
@@ -894,7 +894,7 @@ $2
 临时密码：$2',
 'passwordreset-emailsent' => '密码重置邮件已发送。',
 'passwordreset-emailsent-capture' => '密码重设电子邮件已发送，并在下面显示。',
-'passwordreset-emailerror-capture' => '生成的密码重设电子邮件如下所示，但发送失败：$1',
+'passwordreset-emailerror-capture' => '重置密码邮件已生成，但是无法向下列用户发送：$1',
 
 # Special:ChangeEmail
 'changeemail' => '更改电子邮件地址',

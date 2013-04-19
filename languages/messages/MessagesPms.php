@@ -85,11 +85,11 @@ $messages = array(
 'tog-showhiddencats' => 'Smon-e le categorìe stërmà',
 'tog-noconvertlink' => "Disativé la conversion dij tìtoj ant j'anliure",
 'tog-norollbackdiff' => "Fé nen vëdde le diferense apress d'avèj ripristinà",
-'tog-useeditwarning' => 'Avisme quand che i lasso na pàgina ëd modìfiche con modìfiche nen salvà',
+'tog-useeditwarning' => 'Aviseme quand che i chito na pàgina ëd modìfiche con dle modìfiche nen salvà',
 
 'underline-always' => 'Sempe',
 'underline-never' => 'Mai',
-'underline-default' => 'Stàndard dël navigator',
+'underline-default' => 'Stàndard dël navigatoro dël tema',
 
 # Font style option in Special:Preferences
 'editfont-style' => "Stil dël font ëd l'àrea ëd modìfica:",

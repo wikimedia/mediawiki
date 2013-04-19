@@ -60,7 +60,7 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Sorrayar enllaces:',
-'tog-justify' => 'Xustificar parágrafos',
+'tog-justify' => 'Xustificar párrafos',
 'tog-hideminor' => 'Anubrir les ediciones menores nos cambeos recientes',
 'tog-hidepatrolled' => 'Anubrir les ediciones vixilaes nos cambeos recientes',
 'tog-newpageshidepatrolled' => 'Anubrir les páxines vixilaes na llista de páxines nueves',
@@ -383,11 +383,11 @@ La postrer consulta a la base de datos que s'intentó foi:
 <blockquote><code>$1</code></blockquote>
 dende la función «<code>$2</code>».
 La base datos dio'l fallu «<samp>$3: $4</samp>».",
-'dberrortextcl' => "Hebo un fallu de sintaxis nuna consulta a la base de datos.
-La postrer consulta de la base de datos que s'intentó foi:
+'dberrortextcl' => "Hebo un error de sintaxis nuna consulta a la base de datos.
+La última consulta a la base de datos que s'intentó foi:
 «$1»
 dende la función «$2».
-La base de datos dio'l fallu «$3: $4».",
+La base de datos devolvió l'error «$3: $4».",
 'laggedslavemode' => "'''Avisu:''' Esta páxina pue que nun tenga actualizaciones recientes.",
 'readonly' => 'Base de datos candada',
 'enterlockreason' => 'Introduz un motivu pal candáu, amestando una estimación de cuándo va tener llugar el descandáu',
@@ -401,7 +401,7 @@ Esto débese davezu a siguir una \"dif\" caducada o un enllaz d'historial a una 
 Si esti nun ye'l casu, seique tengas atopao un bug nel software.
 Por favor informa d'esto a un [[Special:ListUsers/sysop|alministrador]], anotando la URL.",
 'missingarticle-rev' => '(núm. revisión: $1)',
-'missingarticle-diff' => '(dif: $1, $2)',
+'missingarticle-diff' => '(Diff: $1, $2)',
 'readonly_lag' => 'La base de datos candóse automáticamente mentes los sirvidores de la base de datos esclava se sincronicen cola maestra',
 'internalerror' => 'Fallu internu',
 'internalerror_info' => 'Fallu internu: $1',
@@ -412,7 +412,7 @@ Por favor informa d'esto a un [[Special:ListUsers/sysop|alministrador]], anotand
 'filedeleteerror' => 'Nun se pudo desaniciar el ficheru «$1».',
 'directorycreateerror' => 'Nun se pudo crear el direutoriu «$1».',
 'filenotfound' => 'Nun se pudo atopar el ficheru «$1».',
-'fileexistserror' => 'Nun se pue escribir nel archivu «$1»: yá esiste',
+'fileexistserror' => 'Nun se pue escribir nel ficheru «$1»: yá esiste',
 'unexpected' => 'Valor inesperáu: «$1»=«$2».',
 'formerror' => 'Fallu: Nun se pudo unviar el formulariu.',
 'badarticleerror' => 'Esta aición nun pue facese nesta páxina.',
@@ -432,7 +432,7 @@ Estos datos nun van refrescase nestos momentos.",
 Función: $1<br />
 Consulta: $2',
 'viewsource' => 'Ver fonte',
-'viewsource-title' => 'Ver la fonte de «$1»',
+'viewsource-title' => 'Ver la fonte de $1',
 'actionthrottled' => 'Aición llendada',
 'actionthrottledtext' => 'Como midida anti-spam, nun se pue repetir esta aición munches vegaes en pocu tiempu, y trespasasti esi llímite.
 Por favor vuelvi intentalo nunos minutos.',
@@ -642,7 +642,7 @@ Tendría d'aniciar sesión y escoyer una contraseña nueva agora. Si esta solici
 Clave provisional: $2",
 'passwordreset-emailsent' => 'Unvióse un corréu electrónicu pa reaniciar la contraseña.',
 'passwordreset-emailsent-capture' => "Unvióse un corréu electrónicu pa reaniciar la contraseña, que s'amuesa abaxo.",
-'passwordreset-emailerror-capture' => "Unvióse un corréu electrónicu pa reaniciar la contraseña, que s'amuesa abaxo, pero falló l'unviu al usuariu: $1",
+'passwordreset-emailerror-capture' => "Unvióse un corréu electrónicu pa reaniciar la contraseña, que s'amuesa abaxo, pero falló l'unviu {{GENDER:$2|al usuariu|a la usuaria}}: $1",
 
 # Special:ChangeEmail
 'changeemail' => 'Camudar la direición de corréu electrónicu',

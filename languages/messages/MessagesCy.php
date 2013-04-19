@@ -672,7 +672,7 @@ Dylech fewngofnodi nawr a dewis cyfrinair newydd. Os mai rhywun arall a ofynodd 
 Y cyfrinair dros dro: $2",
 'passwordreset-emailsent' => 'Anfonwyd e-bost i ailosod eich cyfrinair atoch.',
 'passwordreset-emailsent-capture' => "Anfonwyd e-bost i ailosod cyfrinair, ac fe'i ddangosir isod.",
-'passwordreset-emailerror-capture' => "Lluniwyd e-bost i ailosod cyfrinair fel ag a welir isod, ond ni lwyddwyd i'w anfon at y defnyddiwr: $1",
+'passwordreset-emailerror-capture' => "Lluniwyd e-bost i ailosod cyfrinair fel ag a welir isod, ond ni lwyddwyd i'w anfon at y {{GENDER:$2|defnyddiwr}}: $1",
 
 # Special:ChangeEmail
 'changeemail' => 'Newid y cyfeiriad e-bost',

@@ -17,6 +17,7 @@
  * @author Gemmaa
  * @author Grondin
  * @author Iradigalesc
+ * @author Jmarchn
  * @author Jordi Roqué
  * @author Juanpabl
  * @author Kaganer
@@ -1251,6 +1252,7 @@ Es pot trobar més informació en el [{{fullurl:{{#Special:Log}}/delete|page={{F
 'powersearch-togglenone' => 'Cap',
 'search-external' => 'Cerca externa',
 'searchdisabled' => 'La cerca dins el projecte {{SITENAME}} està inhabilitada. Mentrestant, podeu cercar a través de Google, però tingueu en compte que la seua base de dades no estarà actualitzada.',
+'search-error' => "S'ha produït un error durant la recerca: $1",
 
 # Preferences page
 'preferences' => 'Preferències',

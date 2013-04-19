@@ -540,7 +540,7 @@ Dae malingaw na liwaton an saimong [[Special:Preferences|{{SITENAME}} mga kamuya
 'gotaccount' => 'Igwa ka na tabi nin panindog? $1.',
 'gotaccountlink' => 'Maglaog',
 'userlogin-resetlink' => 'Nakalingaw ka sa panlaog mong detalye?',
-'helplogin-url' => 'Tabang:Paglalaog',
+'helplogin-url' => 'Help:Paglalaog',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Tabang sa paglalaog]]',
 'createaccountmail' => 'Gumamit nin sarong random na temporaryong sekretong panlaog asin ipadara ini sa adres kan e-surat na pinaghaya sa ibaba',
 'createaccountreason' => 'Rason:',
@@ -667,7 +667,7 @@ Ika dapat na maglaog asin magpili nin sarong bagong sekretong panlaog ngunyan. K
 Temporaryong sekretong panlaog: $2',
 'passwordreset-emailsent' => 'Sarong e-surat sa pagliliwat kan sekretong panlaog an ipinadara na.',
 'passwordreset-emailsent-capture' => 'Sarong e-surat sa pagliliwat kan sekretong panlaog an ipinadara na, yaon ipinapahiling sa ibaba.',
-'passwordreset-emailerror-capture' => 'Sarong e-surat sa pagliliwat kan sekretong panlaog an pinaghimo na,yaon ipinapahiling sa ibaba, alagad sa pagpapadara kaini sa paragamit nagpalya: $1',
+'passwordreset-emailerror-capture' => 'Sarong e-surat sa pagliliwat kan sekretong panlaog an pinagpuyos na, yaon ipinapahiling sa ibaba, alagad sa pagpapadara kaini sa {{GENDER:$2|paragamit}} nagpalya: $1',
 
 # Special:ChangeEmail
 'changeemail' => 'Ribayan an e-koreong address',
