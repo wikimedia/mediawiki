@@ -658,7 +658,7 @@ LUA;
 			if ( $res ) {
 				list( $released, $abandoned, $pruned ) = $res;
 				$count += $released + $pruned;
-				wfIncrStats( 'job-recycle', count( $released ) );
+				wfIncrStats( 'job-recycle', $released );
 			}
 		} catch ( RedisException $e ) {
 			$this->throwRedisException( $this->server, $conn, $e );
