@@ -863,9 +863,7 @@ class ResourceLoader {
 				// output javascript "[]" instead of "{}". This fixes that.
 				(object)$styles,
 				(object)$messages
-			),
-			ResourceLoader::inDebugMode()
-		);
+			) );
 	}
 
 	/**
@@ -1041,7 +1039,7 @@ class ResourceLoader {
 	 * @return string
 	 */
 	public static function makeConfigSetScript( array $configuration ) {
-		return Xml::encodeJsCall( 'mw.config.set', array( $configuration ), ResourceLoader::inDebugMode() );
+		return Xml::encodeJsCall( 'mw.config.set', array( $configuration ) );
 	}
 
 	/**

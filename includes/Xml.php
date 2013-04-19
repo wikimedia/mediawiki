@@ -590,7 +590,6 @@ class Xml {
 	 * for JavaScript source code.
 	 * Illegal control characters are assumed not to be present.
 	 *
-	 * @deprecated since 1.21; use Xml::encodeJsVar() or Xml::encodeJsCall() instead
 	 * @param string $string to escape
 	 * @return String
 	 */
@@ -622,46 +621,72 @@ class Xml {
 	}
 
 	/**
-	 * Encode a variable of arbitrary type to JavaScript.
-	 * If the value is an XmlJsCode object, pass through the object's value verbatim.
+	 * Encode a variable of unknown type to JavaScript.
+	 * Arrays are converted to JS arrays, objects are converted to JS associative
+	 * arrays (objects). So cast your PHP associative arrays to objects before
+	 * passing them to here.
 	 *
-	 * @note Only use this function for generating JavaScript code. If generating output
-	 *       for a proper JSON parser, just call FormatJson::encode() directly.
+	 * @param $value
 	 *
-	 * @param mixed $value The value being encoded. Can be any type except a resource.
-	 * @param bool $pretty If true, add non-significant whitespace to improve readability.
-	 * @return string|bool: String if successful; false upon failure
+	 * @return string
 	 */
-	public static function encodeJsVar( $value, $pretty = false ) {
-		if ( $value instanceof XmlJsCode ) {
-			return $value->value;
+	public static function encodeJsVar( $value ) {
+		if ( is_bool( $value ) ) {
+			$s = $value ? 'true' : 'false';
+		} elseif ( is_null( $value ) ) {
+			$s = 'null';
+		} elseif ( is_int( $value ) || is_float( $value ) ) {
+			$s = strval( $value );
+		} elseif ( is_array( $value ) && // Make sure it's not associative.
+					array_keys( $value ) === range( 0, count( $value ) - 1 ) ||
+					count( $value ) == 0
+				) {
+			$s = '[';
+			foreach ( $value as $elt ) {
+				if ( $s != '[' ) {
+					$s .= ',';
+				}
+				$s .= self::encodeJsVar( $elt );
+			}
+			$s .= ']';
+		} elseif ( $value instanceof XmlJsCode ) {
+			$s = $value->value;
+		} elseif ( is_object( $value ) || is_array( $value ) ) {
+			// Objects and associative arrays
+			$s = '{';
+			foreach ( (array)$value as $name => $elt ) {
+				if ( $s != '{' ) {
+					$s .= ',';
+				}
+
+				$s .= '"' . self::escapeJsString( $name ) . '":' .
+					self::encodeJsVar( $elt );
+			}
+			$s .= '}';
+		} else {
+			$s = '"' . self::escapeJsString( $value ) . '"';
 		}
-		return FormatJson::encode( $value, $pretty, FormatJson::UTF8_OK );
+		return $s;
 	}
 
 	/**
 	 * Create a call to a JavaScript function. The supplied arguments will be
 	 * encoded using Xml::encodeJsVar().
 	 *
-	 * @since 1.17
 	 * @param string $name The name of the function to call, or a JavaScript expression
 	 *    which evaluates to a function object which is called.
-	 * @param array $args The arguments to pass to the function.
-	 * @param bool $pretty If true, add non-significant whitespace to improve readability.
-	 * @return string|bool: String if successful; false upon failure
+	 * @param array $args of arguments to pass to the function.
+	 *
+	 * @since 1.17
+	 *
+	 * @return string
 	 */
-	public static function encodeJsCall( $name, $args, $pretty = false ) {
+	public static function encodeJsCall( $name, $args ) {
 		foreach ( $args as &$arg ) {
-			$arg = Xml::encodeJsVar( $arg, $pretty );
-			if ( $arg === false ) {
-				return false;
-			}
+			$arg = Xml::encodeJsVar( $arg );
 		}
 
-		return "$name(" . ( $pretty
-			? ( ' ' . implode( ', ', $args ) . ' ' )
-			: implode( ',', $args )
-		) . ");";
+		return "$name(" . implode( ', ', $args ) . ");\n";
 	}
 
 	/**
@@ -938,11 +963,6 @@ class XmlSelect {
  *    Xml::encodeJsVar( new XmlJsCode( 'a + b' ) );
  *
  * Returns "a + b".
- *
- * @note As of 1.21, XmlJsCode objects cannot be nested inside objects or arrays. The sole
- *       exception is the $args argument to Xml::encodeJsCall() because Xml::encodeJsVar() is
- *       called for each individual element in that array.
- *
  * @since 1.17
  */
 class XmlJsCode {

@@ -24,7 +24,6 @@
  */
 header( 'Content-Type: text/javascript; charset=utf-8' );
 
-require_once __DIR__ . '/../../../includes/json/FormatJson.php';
 require_once __DIR__ . '/../../../includes/Xml.php';
 
 $moduleImplementations = array(
@@ -51,7 +50,7 @@ if ( isset( $_GET['modules'] ) ) {
 		if ( isset( $moduleImplementations[$module] ) ) {
 			$response .= $moduleImplementations[$module];
 		} else {
-			$response .= Xml::encodeJsCall( 'mw.loader.state', array( $module, 'missing' ), true );
+			$response .= Xml::encodeJsCall( 'mw.loader.state', array( $module, 'missing' ) );
 		}
 	}
 }
