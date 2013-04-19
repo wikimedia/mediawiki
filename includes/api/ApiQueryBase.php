@@ -551,7 +551,6 @@ abstract class ApiQueryBase extends ApiBase {
 		$errors = parent::getPossibleErrors();
 		$errors = array_merge( $errors, array(
 			array( 'invalidtitle', 'title' ),
-			array( 'invalidtitle', 'key' ),
 		) );
 		return $errors;
 	}
