@@ -304,7 +304,10 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 			'prtype' => 'Limit to protected pages only',
 			'prlevel' => "The protection level (must be used with {$p}prtype= parameter)",
 			'prfiltercascade' => "Filter protections based on cascadingness (ignored when {$p}prtype isn't set)",
-			'filterlanglinks' => 'Filter based on whether a page has langlinks',
+			'filterlanglinks' => array(
+				'Filter based on whether a page has langlinks',
+				'Note that this may not consider langlinks added by extensions.',
+			),
 			'limit' => 'How many total pages to return.',
 			'prexpiry' => array(
 				'Which protection expiry to filter the page on',
