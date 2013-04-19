@@ -76,7 +76,7 @@ class SpecialExport extends SpecialPage {
 				}
 			}
 		}
-		elseif( $request->getCheck( 'addns' ) && $wgExportFromNamespaces ) {
+		elseif ( $request->getCheck( 'addns' ) && $wgExportFromNamespaces ) {
 			$page = $request->getText( 'pages' );
 			$nsindex = $request->getText( 'nsindex', '' );
 
@@ -90,7 +90,7 @@ class SpecialExport extends SpecialPage {
 				}
 			}
 		}
-		elseif( $request->getCheck( 'exportall' ) && $wgExportAllowAll ) {
+		elseif ( $request->getCheck( 'exportall' ) && $wgExportAllowAll ) {
 			$this->doExport = true;
 			$exportall = true;
 
@@ -101,12 +101,12 @@ class SpecialExport extends SpecialPage {
 			$page = '';
 			$history = '';
 		}
-		elseif( $request->wasPosted() && $par == '' ) {
+		elseif ( $request->wasPosted() && $par == '' ) {
 			$page = $request->getText( 'pages' );
 			$this->curonly = $request->getCheck( 'curonly' );
 			$rawOffset = $request->getVal( 'offset' );
 
-			if( $rawOffset ) {
+			if ( $rawOffset ) {
 				$offset = wfTimestamp( TS_MW, $rawOffset );
 			} else {
 				$offset = null;
@@ -135,7 +135,7 @@ class SpecialExport extends SpecialPage {
 				}
 			}
 
-			if( $page != '' ) {
+			if ( $page != '' ) {
 				$this->doExport = true;
 			}
 		} else {
@@ -143,18 +143,18 @@ class SpecialExport extends SpecialPage {
 			$page = $request->getText( 'pages', $par );
 			$historyCheck = $request->getCheck( 'history' );
 
-			if( $historyCheck ) {
+			if ( $historyCheck ) {
 				$history = WikiExporter::FULL;
 			} else {
 				$history = WikiExporter::CURRENT;
 			}
 
-			if( $page != '' ) {
+			if ( $page != '' ) {
 				$this->doExport = true;
 			}
 		}
 
-		if( !$wgExportAllowHistory ) {
+		if ( !$wgExportAllowHistory ) {
 			// Override
 			$history = WikiExporter::CURRENT;
 		}
@@ -172,7 +172,7 @@ class SpecialExport extends SpecialPage {
 			wfResetOutputBuffers();
 			$request->response()->header( "Content-type: application/xml; charset=utf-8" );
 
-			if( $request->getCheck( 'wpDownload' ) ) {
+			if ( $request->getCheck( 'wpDownload' ) ) {
 				// Provide a sane filename suggestion
 				$filename = urlencode( $wgSitename . '-' . wfTimestampNow() . '.xml' );
 				$request->response()->header( "Content-disposition: attachment;filename={$filename}" );
@@ -197,8 +197,8 @@ class SpecialExport extends SpecialPage {
 					'selected' => $nsindex,
 					'label' => $this->msg( 'export-addnstext' )->text()
 				), array(
-					'name'  => 'nsindex',
-					'id'    => 'namespace',
+					'name' => 'nsindex',
+					'id' => 'namespace',
 					'class' => 'namespaceselector',
 				)
 			) . '&#160;';
@@ -217,7 +217,7 @@ class SpecialExport extends SpecialPage {
 		$form .= Xml::element( 'textarea', array( 'name' => 'pages', 'cols' => 40, 'rows' => 10 ), $page, false );
 		$form .= '<br />';
 
-		if( $wgExportAllowHistory ) {
+		if ( $wgExportAllowHistory ) {
 			$form .= Xml::checkLabel(
 				$this->msg( 'exportcuronly' )->text(),
 				'curonly',
@@ -235,7 +235,7 @@ class SpecialExport extends SpecialPage {
 			$request->wasPosted() ? $request->getCheck( 'templates' ) : false
 		) . '<br />';
 
-		if( $wgExportMaxLinkDepth || $this->userCanOverrideExportDepth() ) {
+		if ( $wgExportMaxLinkDepth || $this->userCanOverrideExportDepth() ) {
 			$form .= Xml::inputLabel( $this->msg( 'export-pagelinks' )->text(), 'pagelink-depth', 'pagelink-depth', 20, 0 ) . '<br />';
 		}
 		// Enable this when we can do something useful exporting/importing image information. :)
@@ -288,10 +288,10 @@ class SpecialExport extends SpecialPage {
 			$pageSet = array(); // Inverted index of all pages to look up
 
 			// Split up and normalize input
-			foreach( explode( "\n", $page ) as $pageName ) {
+			foreach ( explode( "\n", $page ) as $pageName ) {
 				$pageName = trim( $pageName );
 				$title = Title::newFromText( $pageName );
-				if( $title && $title->getInterwiki() == '' && $title->getText() !== '' ) {
+				if ( $title && $title->getInterwiki() == '' && $title->getText() !== '' ) {
 					// Only record each page once!
 					$pageSet[$title->getPrefixedText()] = true;
 				}
@@ -301,11 +301,11 @@ class SpecialExport extends SpecialPage {
 			$inputPages = array_keys( $pageSet );
 
 			// Look up any linked pages if asked...
-			if( $this->templates ) {
+			if ( $this->templates ) {
 				$pageSet = $this->getTemplates( $inputPages, $pageSet );
 			}
 			$linkDepth = $this->pageLinkDepth;
-			if( $linkDepth ) {
+			if ( $linkDepth ) {
 				$pageSet = $this->getPageLinks( $inputPages, $pageSet, $linkDepth );
 			}
 
@@ -319,7 +319,7 @@ class SpecialExport extends SpecialPage {
 			$pages = array_keys( $pageSet );
 
 			// Normalize titles to the same format and remove dupes, see bug 17374
-			foreach( $pages as $k => $v ) {
+			foreach ( $pages as $k => $v ) {
 				$pages[$k] = str_replace( " ", "_", $v );
 			}
 
@@ -327,7 +327,7 @@ class SpecialExport extends SpecialPage {
 		}
 
 		/* Ok, let's get to it... */
-		if( $history == WikiExporter::CURRENT ) {
+		if ( $history == WikiExporter::CURRENT ) {
 			$lb = false;
 			$db = wfGetDB( DB_SLAVE );
 			$buffer = WikiExporter::BUFFER;
@@ -350,7 +350,7 @@ class SpecialExport extends SpecialPage {
 		if ( $exportall ) {
 			$exporter->allPages();
 		} else {
-			foreach( $pages as $page ) {
+			foreach ( $pages as $page ) {
 			/*
 			 if( $wgExportMaxHistory && !$this->curonly ) {
 			 $title = Title::newFromText( $page );
@@ -365,10 +365,10 @@ class SpecialExport extends SpecialPage {
 			 }*/
 			#Bug 8824: Only export pages the user can read
 				$title = Title::newFromText( $page );
-				if( is_null( $title ) ) {
+				if ( is_null( $title ) ) {
 					continue; #TODO: perhaps output an <error> tag or something.
 				}
-				if( !$title->userCan( 'read', $this->getUser() ) ) {
+				if ( !$title->userCan( 'read', $this->getUser() ) ) {
 					continue; #TODO: perhaps output an <error> tag or something.
 				}
 
@@ -378,7 +378,7 @@ class SpecialExport extends SpecialPage {
 
 		$exporter->closeStream();
 
-		if( $lb ) {
+		if ( $lb ) {
 			$lb->closeAll();
 		}
 	}
@@ -468,12 +468,12 @@ class SpecialExport extends SpecialPage {
 	private function validateLinkDepth( $depth ) {
 		global $wgExportMaxLinkDepth;
 
-		if( $depth < 0 ) {
+		if ( $depth < 0 ) {
 			return 0;
 		}
 
 		if ( !$this->userCanOverrideExportDepth() ) {
-			if( $depth > $wgExportMaxLinkDepth ) {
+			if ( $depth > $wgExportMaxLinkDepth ) {
 				return $wgExportMaxLinkDepth;
 			}
 		}
@@ -494,7 +494,7 @@ class SpecialExport extends SpecialPage {
 	 * @return array
 	 */
 	private function getPageLinks( $inputPages, $pageSet, $depth ) {
-		for( ; $depth > 0; --$depth ) {
+		for ( ; $depth > 0; --$depth ) {
 			$pageSet = $this->getLinks(
 				$inputPages, $pageSet, 'pagelinks',
 				array( 'namespace' => 'pl_namespace', 'title' => 'pl_title' ),
@@ -536,10 +536,10 @@ class SpecialExport extends SpecialPage {
 	private function getLinks( $inputPages, $pageSet, $table, $fields, $join ) {
 		$dbr = wfGetDB( DB_SLAVE );
 
-		foreach( $inputPages as $page ) {
+		foreach ( $inputPages as $page ) {
 			$title = Title::newFromText( $page );
 
-			if( $title ) {
+			if ( $title ) {
 				$pageSet[$title->getPrefixedText()] = true;
 				/// @todo FIXME: May or may not be more efficient to batch these
 				///        by namespace when given multiple input pages.
@@ -556,7 +556,7 @@ class SpecialExport extends SpecialPage {
 					__METHOD__
 				);
 
-				foreach( $result as $row ) {
+				foreach ( $result as $row ) {
 					$template = Title::makeTitle( $row->namespace, $row->title );
 					$pageSet[$template->getPrefixedText()] = true;
 				}

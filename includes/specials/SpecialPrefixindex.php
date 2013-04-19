@@ -62,11 +62,11 @@ class SpecialPrefixindex extends SpecialAllpages {
 		);
 
 		$showme = '';
-		if( isset( $par ) ) {
+		if ( isset( $par ) ) {
 			$showme = $par;
-		} elseif( $prefix != '' ) {
+		} elseif ( $prefix != '' ) {
 			$showme = $prefix;
-		} elseif( $from != '' && $ns === null ) {
+		} elseif ( $from != '' && $ns === null ) {
 			// For back-compat with Special:Allpages
 			// Don't do this if namespace is passed, so paging works when doing NS views.
 			$showme = $from;
@@ -112,8 +112,8 @@ class SpecialPrefixindex extends SpecialAllpages {
 				Html::namespaceSelector( array(
 						'selected' => $namespace,
 					), array(
-						'name'  => 'namespace',
-						'id'    => 'namespace',
+						'name' => 'namespace',
+						'id' => 'namespace',
 						'class' => 'namespaceselector',
 				) ) .
 				Xml::checkLabel(
@@ -178,8 +178,8 @@ class SpecialPrefixindex extends SpecialAllpages {
 				$conds,
 				__METHOD__,
 				array(
-					'ORDER BY'  => 'page_title',
-					'LIMIT'     => $this->maxPerPage + 1,
+					'ORDER BY' => 'page_title',
+					'LIMIT' => $this->maxPerPage + 1,
 					'USE INDEX' => 'name_title',
 				)
 			);
@@ -187,12 +187,12 @@ class SpecialPrefixindex extends SpecialAllpages {
 			### @todo FIXME: Side link to previous
 
 			$n = 0;
-			if( $res->numRows() > 0 ) {
+			if ( $res->numRows() > 0 ) {
 				$out = Xml::openElement( 'table', array( 'id' => 'mw-prefixindex-list-table' ) );
 
-				while( ( $n < $this->maxPerPage ) && ( $s = $res->fetchObject() ) ) {
+				while ( ( $n < $this->maxPerPage ) && ( $s = $res->fetchObject() ) ) {
 					$t = Title::makeTitle( $s->page_namespace, $s->page_title );
-					if( $t ) {
+					if ( $t ) {
 						$link = ($s->page_is_redirect ? '<div class="allpagesredirect">' : '' ) .
 							Linker::linkKnown(
 								$t,
@@ -203,16 +203,16 @@ class SpecialPrefixindex extends SpecialAllpages {
 					} else {
 						$link = '[[' . htmlspecialchars( $s->page_title ) . ']]';
 					}
-					if( $n % 3 == 0 ) {
+					if ( $n % 3 == 0 ) {
 						$out .= '<tr>';
 					}
 					$out .= "<td>$link</td>";
 					$n++;
-					if( $n % 3 == 0 ) {
+					if ( $n % 3 == 0 ) {
 						$out .= '</tr>';
 					}
 				}
-				if( ($n % 3) != 0 ) {
+				if ( ($n % 3) != 0 ) {
 					$out .= '</tr>';
 				}
 				$out .= Xml::closeElement( 'table' );
@@ -234,14 +234,14 @@ class SpecialPrefixindex extends SpecialAllpages {
 					'</td>
 					<td id="mw-prefixindex-nav-form" class="mw-prefixindex-nav">';
 
-			if( isset( $res ) && $res && ( $n == $this->maxPerPage ) && ( $s = $res->fetchObject() ) ) {
+			if ( isset( $res ) && $res && ( $n == $this->maxPerPage ) && ( $s = $res->fetchObject() ) ) {
 				$query = array(
 					'from' => $s->page_title,
 					'prefix' => $prefix,
 					'hideredirects' => $hideredirects,
 				);
 
-				if( $namespace || $prefix == '' ) {
+				if ( $namespace || $prefix == '' ) {
 					// Keep the namespace even if it's 0 for empty prefixes.
 					// This tells us we're not just a holdover from old links.
 					$query['namespace'] = $namespace;

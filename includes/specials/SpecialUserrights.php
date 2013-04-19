@@ -80,13 +80,13 @@ class UserrightsPage extends SpecialPage {
 		 * (e.g. they don't have the userrights permission), then don't
 		 * allow them to use Special:UserRights.
 		 */
-		if( $user->isBlocked() && !$user->isAllowed( 'userrights' ) ) {
+		if ( $user->isBlocked() && !$user->isAllowed( 'userrights' ) ) {
 			throw new UserBlockedError( $user->getBlock() );
 		}
 
 		$request = $this->getRequest();
 
-		if( $par !== null ) {
+		if ( $par !== null ) {
 			$this->mTarget = $par;
 		} else {
 			$this->mTarget = $request->getVal( 'user' );
@@ -100,15 +100,16 @@ class UserrightsPage extends SpecialPage {
 			 * edit their own groups, automatically set them as the
 			 * target.
 			 */
-			if ( !count( $available['add'] ) && !count( $available['remove'] ) )
+			if ( !count( $available['add'] ) && !count( $available['remove'] ) ) {
 				$this->mTarget = $user->getName();
+			}
 		}
 
 		if ( User::getCanonicalName( $this->mTarget ) == $user->getName() ) {
 			$this->isself = true;
 		}
 
-		if( !$this->userCanChangeRights( $user, true ) ) {
+		if ( !$this->userCanChangeRights( $user, true ) ) {
 			// @todo FIXME: There may be intermediate groups we can mention.
 			$msg = $user->isAnon() ? 'userrights-nologin' : 'userrights-notallowed';
 			throw new PermissionsError( null, array( array( $msg ) ) );
@@ -127,12 +128,12 @@ class UserrightsPage extends SpecialPage {
 			$this->switchForm();
 		}
 
-		if( $request->wasPosted() ) {
+		if ( $request->wasPosted() ) {
 			// save settings
-			if( $request->getCheck( 'saveusergroups' ) ) {
+			if ( $request->getCheck( 'saveusergroups' ) ) {
 				$reason = $request->getVal( 'user-reason' );
 				$tok = $request->getVal( 'wpEditToken' );
-				if( $user->matchEditToken( $tok, $this->mTarget ) ) {
+				if ( $user->matchEditToken( $tok, $this->mTarget ) ) {
 					$this->saveUserGroups(
 						$this->mTarget,
 						$reason
@@ -145,7 +146,7 @@ class UserrightsPage extends SpecialPage {
 		}
 
 		// show some more forms
-		if( $this->mTarget !== null ) {
+		if ( $this->mTarget !== null ) {
 			$this->editUserGroupsForm( $this->mTarget );
 		}
 	}
@@ -164,7 +165,7 @@ class UserrightsPage extends SpecialPage {
 	 */
 	function saveUserGroups( $username, $reason = '' ) {
 		$status = $this->fetchUser( $username );
-		if( !$status->isOK() ) {
+		if ( !$status->isOK() ) {
 			$this->getOutput()->addWikiText( $status->getWikiText() );
 			return;
 		} else {
@@ -218,15 +219,15 @@ class UserrightsPage extends SpecialPage {
 		$newGroups = $oldGroups;
 
 		// remove then add groups
-		if( $remove ) {
+		if ( $remove ) {
 			$newGroups = array_diff( $newGroups, $remove );
-			foreach( $remove as $group ) {
+			foreach ( $remove as $group ) {
 				$user->removeGroup( $group );
 			}
 		}
-		if( $add ) {
+		if ( $add ) {
 			$newGroups = array_merge( $newGroups, $add );
-			foreach( $add as $group ) {
+			foreach ( $add as $group ) {
 				$user->addGroup( $group );
 			}
 		}
@@ -239,7 +240,7 @@ class UserrightsPage extends SpecialPage {
 		wfDebug( 'newGroups: ' . print_r( $newGroups, true ) );
 		wfRunHooks( 'UserRights', array( &$user, $add, $remove ) );
 
-		if( $newGroups != $oldGroups ) {
+		if ( $newGroups != $oldGroups ) {
 			$this->addLogEntry( $user, $oldGroups, $newGroups, $reason );
 		}
 		return array( $add, $remove );
@@ -267,7 +268,7 @@ class UserrightsPage extends SpecialPage {
 	 */
 	function editUserGroupsForm( $username ) {
 		$status = $this->fetchUser( $username );
-		if( !$status->isOK() ) {
+		if ( !$status->isOK() ) {
 			$this->getOutput()->addWikiText( $status->getWikiText() );
 			return;
 		} else {
@@ -295,57 +296,57 @@ class UserrightsPage extends SpecialPage {
 		global $wgUserrightsInterwikiDelimiter;
 
 		$parts = explode( $wgUserrightsInterwikiDelimiter, $username );
-		if( count( $parts ) < 2 ) {
+		if ( count( $parts ) < 2 ) {
 			$name = trim( $username );
 			$database = '';
 		} else {
 			list( $name, $database ) = array_map( 'trim', $parts );
 
-			if( $database == wfWikiID() ) {
+			if ( $database == wfWikiID() ) {
 				$database = '';
 			} else {
-				if( !$this->getUser()->isAllowed( 'userrights-interwiki' ) ) {
+				if ( !$this->getUser()->isAllowed( 'userrights-interwiki' ) ) {
 					return Status::newFatal( 'userrights-no-interwiki' );
 				}
-				if( !UserRightsProxy::validDatabase( $database ) ) {
+				if ( !UserRightsProxy::validDatabase( $database ) ) {
 					return Status::newFatal( 'userrights-nodatabase', $database );
 				}
 			}
 		}
 
-		if( $name === '' ) {
+		if ( $name === '' ) {
 			return Status::newFatal( 'nouserspecified' );
 		}
 
-		if( $name[0] == '#' ) {
+		if ( $name[0] == '#' ) {
 			// Numeric ID can be specified...
 			// We'll do a lookup for the name internally.
 			$id = intval( substr( $name, 1 ) );
 
-			if( $database == '' ) {
+			if ( $database == '' ) {
 				$name = User::whoIs( $id );
 			} else {
 				$name = UserRightsProxy::whoIs( $database, $id );
 			}
 
-			if( !$name ) {
+			if ( !$name ) {
 				return Status::newFatal( 'noname' );
 			}
 		} else {
 			$name = User::getCanonicalName( $name );
-			if( $name === false ) {
+			if ( $name === false ) {
 				// invalid name
 				return Status::newFatal( 'nosuchusershort', $username );
 			}
 		}
 
-		if( $database == '' ) {
+		if ( $database == '' ) {
 			$user = User::newFromName( $name );
 		} else {
 			$user = UserRightsProxy::newFromName( $database, $name );
 		}
 
-		if( !$user || $user->isAnon() ) {
+		if ( !$user || $user->isAnon() ) {
 			return Status::newFatal( 'nosuchusershort', $username );
 		}
 
@@ -353,7 +354,7 @@ class UserrightsPage extends SpecialPage {
 	}
 
 	function makeGroupNameList( $ids ) {
-		if( empty( $ids ) ) {
+		if ( empty( $ids ) ) {
 			return $this->msg( 'rightsnone' )->inContentLanguage()->text();
 		} else {
 			return implode( ', ', $ids );
@@ -370,7 +371,7 @@ class UserrightsPage extends SpecialPage {
 	function makeGroupNameListForLog( $ids ) {
 		wfDeprecated( __METHOD__, '1.21' );
 
-		if( empty( $ids ) ) {
+		if ( empty( $ids ) ) {
 			return '';
 		} else {
 			return $this->makeGroupNameList( $ids );
@@ -425,7 +426,7 @@ class UserrightsPage extends SpecialPage {
 	protected function showEditUserGroupsForm( $user, $groups ) {
 		$list = array();
 		$membersList = array();
-		foreach( $groups as $group ) {
+		foreach ( $groups as $group ) {
 			$list[] = self::buildGroupLink( $group );
 			$membersList[] = self::buildGroupMemberLink( $group );
 		}
@@ -433,7 +434,7 @@ class UserrightsPage extends SpecialPage {
 		$autoList = array();
 		$autoMembersList = array();
 		if ( $user instanceof User ) {
-			foreach( Autopromote::getAutopromoteGroups( $user ) as $group ) {
+			foreach ( Autopromote::getAutopromoteGroups( $user ) as $group ) {
 				$autoList[] = self::buildGroupLink( $group );
 				$autoMembersList[] = self::buildGroupMemberLink( $group );
 			}
@@ -545,7 +546,7 @@ class UserrightsPage extends SpecialPage {
 		# more easily manage it.
 		$columns = array( 'unchangeable' => array(), 'changeable' => array() );
 
-		foreach( $allgroups as $group ) {
+		foreach ( $allgroups as $group ) {
 			$set = in_array( $group, $usergroups );
 			# Should the checkbox be disabled?
 			$disabled = !(
@@ -562,7 +563,7 @@ class UserrightsPage extends SpecialPage {
 				'irreversible' => $irreversible
 			);
 
-			if( $disabled ) {
+			if ( $disabled ) {
 				$columns['unchangeable'][$group] = $checkbox;
 			} else {
 				$columns['changeable'][$group] = $checkbox;
@@ -572,17 +573,19 @@ class UserrightsPage extends SpecialPage {
 		# Build the HTML table
 		$ret .= Xml::openElement( 'table', array( 'class' => 'mw-userrights-groups' ) ) .
 			"<tr>\n";
-		foreach( $columns as $name => $column ) {
-			if( $column === array() )
+		foreach ( $columns as $name => $column ) {
+			if ( $column === array() ) {
 				continue;
+			}
 			$ret .= Xml::element( 'th', null, $this->msg( 'userrights-' . $name . '-col', count( $column ) )->text() );
 		}
 		$ret .= "</tr>\n<tr>\n";
-		foreach( $columns as $column ) {
-			if( $column === array() )
+		foreach ( $columns as $column ) {
+			if ( $column === array() ) {
 				continue;
+			}
 			$ret .= "\t<td style='vertical-align:top;'>\n";
-			foreach( $column as $group => $checkbox ) {
+			foreach ( $column as $group => $checkbox ) {
 				$attr = $checkbox['disabled'] ? array( 'disabled' => 'disabled' ) : array();
 
 				$member = User::getGroupMember( $group, $user->getName() );

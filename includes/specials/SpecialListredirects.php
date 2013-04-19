@@ -121,7 +121,7 @@ class ListredirectsPage extends QueryPage {
 
 		# Find out where the redirect leads
 		$target = $this->getRedirectTarget( $result );
-		if( $target ) {
+		if ( $target ) {
 			# Make a link to the destination page
 			$lang = $this->getLanguage();
 			$arr = $lang->getArrow() . $lang->getDirMark();

@@ -317,7 +317,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 			'to' => $outpoint,
 		);
 
-		if( $namespace ) {
+		if ( $namespace ) {
 			$queryParams['namespace'] = $namespace;
 		}
 		if ( $hideRedirects ) {

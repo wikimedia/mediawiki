@@ -77,12 +77,12 @@ class SpecialProtectedtitles extends SpecialPage {
 
 		static $infinity = null;
 
-		if( is_null( $infinity ) ) {
+		if ( is_null( $infinity ) ) {
 			$infinity = wfGetDB( DB_SLAVE )->getInfinity();
 		}
 
 		$title = Title::makeTitleSafe( $row->pt_namespace, $row->pt_title );
-		if( !$title ) {
+		if ( !$title ) {
 			wfProfileOut( __METHOD__ );
 			return Html::rawElement( 'li', array(),
 				Html::element( 'span', array( 'class' => 'mw-invalidtitle' ),
@@ -99,7 +99,7 @@ class SpecialProtectedtitles extends SpecialPage {
 
 		$lang = $this->getLanguage();
 		$expiry = strlen( $row->pt_expiry ) ? $lang->formatExpiry( $row->pt_expiry, TS_MW ) : $infinity;
-		if( $expiry != $infinity ) {
+		if ( $expiry != $infinity ) {
 			$user = $this->getUser();
 			$description_items[] = $this->msg(
 				'protect-expiring-local',
@@ -169,18 +169,18 @@ class SpecialProtectedtitles extends SpecialPage {
 		$options = array();
 
 		// First pass to load the log names
-		foreach( $wgRestrictionLevels as $type ) {
+		foreach ( $wgRestrictionLevels as $type ) {
 			if ( $type != '' && $type != '*' ) {
 				$text = $this->msg( "restriction-level-$type" )->text();
 				$m[$text] = $type;
 			}
 		}
 		// Is there only one level (aside from "all")?
-		if( count( $m ) <= 2 ) {
+		if ( count( $m ) <= 2 ) {
 			return '';
 		}
 		// Third pass generates sorted XHTML content
-		foreach( $m as $text => $type ) {
+		foreach ( $m as $text => $type ) {
 			$selected = ($type == $pr_level );
 			$options[] = Xml::option( $text, $type, $selected );
 		}
@@ -244,10 +244,12 @@ class ProtectedTitlesPager extends AlphabeticPager {
 	function getQueryInfo() {
 		$conds = $this->mConds;
 		$conds[] = 'pt_expiry>' . $this->mDb->addQuotes( $this->mDb->timestamp() );
-		if( $this->level )
+		if ( $this->level ) {
 			$conds['pt_create_perm'] = $this->level;
-		if( !is_null( $this->namespace ) )
+		}
+		if ( !is_null( $this->namespace ) ) {
 			$conds[] = 'pt_namespace=' . $this->mDb->addQuotes( $this->namespace );
+		}
 		return array(
 			'tables' => 'protected_titles',
 			'fields' => array( 'pt_namespace', 'pt_title', 'pt_create_perm',

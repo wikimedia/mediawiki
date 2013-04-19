@@ -54,7 +54,7 @@ class SpecialTags extends SpecialPage {
 			$html .= $this->doTagRow( $row->ct_tag, $row->hitcount );
 		}
 
-		foreach( ChangeTags::listDefinedTags() as $tag ) {
+		foreach ( ChangeTags::listDefinedTags() as $tag ) {
 			$html .= $this->doTagRow( $tag, 0 );
 		}
 

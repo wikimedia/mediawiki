@@ -73,9 +73,9 @@ class NewFilesPager extends ReverseChronologicalPager {
 		$conds = $jconds = array();
 		$tables = array( 'image' );
 
-		if( !$this->showbots ) {
+		if ( !$this->showbots ) {
 			$groupsWithBotPermission = User::getGroupsWithPermission( 'bot' );
-			if( count( $groupsWithBotPermission ) ) {
+			if ( count( $groupsWithBotPermission ) ) {
 				$tables[] = 'user_groups';
 				$conds[] = 'ug_group IS NULL';
 				$jconds['user_groups'] = array(
@@ -88,10 +88,10 @@ class NewFilesPager extends ReverseChronologicalPager {
 			}
 		}
 
-		if( !$wgMiserMode && $this->like !== null ) {
+		if ( !$wgMiserMode && $this->like !== null ) {
 			$dbr = wfGetDB( DB_SLAVE );
 			$likeObj = Title::newFromURL( $this->like );
-			if( $likeObj instanceof Title ) {
+			if ( $likeObj instanceof Title ) {
 				$like = $dbr->buildLike( $dbr->anyString(), strtolower( $likeObj->getDBkey() ), $dbr->anyString() );
 				$conds[] = "LOWER(img_name) $like";
 			}
@@ -164,7 +164,7 @@ class NewFilesPager extends ReverseChronologicalPager {
 			),
 		);
 
-		if( $wgMiserMode ) {
+		if ( $wgMiserMode ) {
 			unset( $fields['like'] );
 		}
 

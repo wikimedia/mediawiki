@@ -56,7 +56,7 @@ class SpecialUnblock extends SpecialPage {
 		$form->setSubmitTextMsg( 'ipusubmit' );
 		$form->addPreText( $this->msg( 'unblockiptext' )->parseAsBlock() );
 
-		if( $form->show() ) {
+		if ( $form->show() ) {
 			switch( $this->type ) {
 				case Block::TYPE_USER:
 				case Block::TYPE_IP:
@@ -92,14 +92,14 @@ class SpecialUnblock extends SpecialPage {
 			)
 		);
 
-		if( $this->block instanceof Block ) {
+		if ( $this->block instanceof Block ) {
 			list( $target, $type ) = $this->block->getTargetAndType();
 
 			# Autoblocks are logged as "autoblock #123 because the IP was recently used by
 			# User:Foo, and we've just got any block, auto or not, that applies to a target
 			# the user has specified.  Someone could be fishing to connect IPs to autoblocks,
 			# so don't show any distinction between unblocked IPs and autoblocked IPs
-			if( $type == Block::TYPE_AUTO && $this->type == Block::TYPE_IP ) {
+			if ( $type == Block::TYPE_AUTO && $this->type == Block::TYPE_IP ) {
 				$fields['Target']['default'] = $this->target;
 				unset( $fields['Name'] );
 
@@ -159,7 +159,7 @@ class SpecialUnblock extends SpecialPage {
 		$target = $data['Target'];
 		$block = Block::newFromTarget( $data['Target'] );
 
-		if( !$block instanceof Block ) {
+		if ( !$block instanceof Block ) {
 			return array( array( 'ipb_cant_unblock', $target ) );
 		}
 
@@ -174,14 +174,14 @@ class SpecialUnblock extends SpecialPage {
 		# If the specified IP is a single address, and the block is a range block, don't
 		# unblock the whole range.
 		list( $target, $type ) = SpecialBlock::getTargetAndType( $target );
-		if( $block->getType() == Block::TYPE_RANGE && $type == Block::TYPE_IP ) {
+		if ( $block->getType() == Block::TYPE_RANGE && $type == Block::TYPE_IP ) {
 			$range = $block->getTarget();
 			return array( array( 'ipb_blocked_as_range', $target, $range ) );
 		}
 
 		# If the name was hidden and the blocking user cannot hide
 		# names, then don't allow any block removals...
-		if( !$performer->isAllowed( 'hideuser' ) && $block->mHideName ) {
+		if ( !$performer->isAllowed( 'hideuser' ) && $block->mHideName ) {
 			return array( 'unblock-hideuser' );
 		}
 
@@ -191,7 +191,7 @@ class SpecialUnblock extends SpecialPage {
 		}
 
 		# Unset _deleted fields as needed
-		if( $block->mHideName ) {
+		if ( $block->mHideName ) {
 			# Something is deeply FUBAR if this is not a User object, but who knows?
 			$id = $block->getTarget() instanceof User
 				? $block->getTarget()->getID()

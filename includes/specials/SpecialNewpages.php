@@ -63,17 +63,19 @@ class SpecialNewpages extends IncludableSpecialPage {
 
 		$this->customFilters = array();
 		wfRunHooks( 'SpecialNewPagesFilters', array( $this, &$this->customFilters ) );
-		foreach( $this->customFilters as $key => $params ) {
+		foreach ( $this->customFilters as $key => $params ) {
 			$opts->add( $key, $params['default'] );
 		}
 
 		// Set values
 		$opts->fetchValuesFromRequest( $this->getRequest() );
-		if ( $par ) $this->parseParams( $par );
+		if ( $par ) {
+			$this->parseParams( $par );
+		}
 
 		// Validate
 		$opts->validateIntBounds( 'limit', 0, 5000 );
-		if( !$wgEnableNewpagesUserFilter ) {
+		if ( !$wgEnableNewpagesUserFilter ) {
 			$opts->setValue( 'username', '' );
 		}
 	}
@@ -113,7 +115,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 			}
 			if ( preg_match( '/^namespace=(.*)$/', $bit, $m ) ) {
 				$ns = $this->getLanguage()->getNsIndex( $m[1] );
-				if( $ns !== false ) {
+				if ( $ns !== false ) {
 					$this->opts->setValue( 'namespace', $ns );
 				}
 			}
@@ -135,12 +137,12 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$this->showNavigation = !$this->including(); // Maybe changed in setup
 		$this->setup( $par );
 
-		if( !$this->including() ) {
+		if ( !$this->including() ) {
 			// Settings
 			$this->form();
 
 			$feedType = $this->opts->getValue( 'feed' );
-			if( $feedType ) {
+			if ( $feedType ) {
 				$this->feed( $feedType );
 				return;
 			}
@@ -154,7 +156,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$pager->mLimit = $this->opts->getValue( 'limit' );
 		$pager->mOffset = $this->opts->getValue( 'offset' );
 
-		if( $pager->getNumRows() ) {
+		if ( $pager->getNumRows() ) {
 			$navigation = '';
 			if ( $this->showNavigation ) {
 				$navigation = $pager->getNavigationBar();
@@ -244,8 +246,8 @@ class SpecialNewpages extends IncludableSpecialPage {
 							'selected' => $namespace,
 							'all' => 'all',
 						), array(
-							'name'  => 'namespace',
-							'id'    => 'namespace',
+							'name' => 'namespace',
+							'id' => 'namespace',
 							'class' => 'namespaceselector',
 						)
 					) . '&#160;' .
@@ -331,7 +333,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 
 		$query = array( 'redirect' => 'no' );
 
-		if( $this->patrollable( $result ) ) {
+		if ( $this->patrollable( $result ) ) {
 			$query['rcid'] = $result->rc_id;
 		}
 
@@ -369,7 +371,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 		}
 
 		# Tags, if any.
-		if( isset( $result->ts_tags ) ) {
+		if ( isset( $result->ts_tags ) ) {
 			list( $tagDisplay, $newClasses ) = ChangeTags::formatSummaryRow( $result->ts_tags, 'newpages' );
 			$classes = array_merge( $classes, $newClasses );
 		} else {
@@ -411,7 +413,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 			return;
 		}
 
-		if( !isset( $wgFeedClasses[$type] ) ) {
+		if ( !isset( $wgFeedClasses[$type] ) ) {
 			$this->getOutput()->addWikiMsg( 'feed-invalid' );
 			return;
 		}
@@ -427,7 +429,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$pager->mLimit = min( $limit, $wgFeedLimit );
 
 		$feed->outHeader();
-		if( $pager->getNumRows() > 0 ) {
+		if ( $pager->getNumRows() > 0 ) {
 			foreach ( $pager->mResult as $row ) {
 				$feed->outItem( $this->feedItem( $row ) );
 			}
@@ -443,7 +445,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 
 	protected function feedItem( $row ) {
 		$title = Title::makeTitle( intval( $row->rc_namespace ), $row->rc_title );
-		if( $title ) {
+		if ( $title ) {
 			$date = $row->rc_timestamp;
 			$comments = $title->getTalkPage()->getFullURL();
 
@@ -466,7 +468,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 
 	protected function feedItemDesc( $row ) {
 		$revision = Revision::newFromId( $row->rev_id );
-		if( $revision ) {
+		if ( $revision ) {
 			//XXX: include content model/type in feed item?
 			return '<p>' . htmlspecialchars( $revision->getUserText() ) .
 				$this->msg( 'colon-separator' )->inContentLanguage()->escaped() .
@@ -511,7 +513,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 		$username = $this->opts->getValue( 'username' );
 		$user = Title::makeTitleSafe( NS_USER, $username );
 
-		if( $namespace !== false ) {
+		if ( $namespace !== false ) {
 			if ( $this->opts->getValue( 'invert' ) ) {
 				$conds[] = 'rc_namespace != ' . $this->mDb->addQuotes( $namespace );
 			} else {
@@ -523,18 +525,18 @@ class NewPagesPager extends ReverseChronologicalPager {
 		}
 
 		# $wgEnableNewpagesUserFilter - temp WMF hack
-		if( $wgEnableNewpagesUserFilter && $user ) {
+		if ( $wgEnableNewpagesUserFilter && $user ) {
 			$conds['rc_user_text'] = $user->getText();
 			$rcIndexes = 'rc_user_text';
 		# If anons cannot make new pages, don't "exclude logged in users"!
-		} elseif( User::groupHasPermission( '*', 'createpage' ) && $this->opts->getValue( 'hideliu' ) ) {
+		} elseif ( User::groupHasPermission( '*', 'createpage' ) && $this->opts->getValue( 'hideliu' ) ) {
 			$conds['rc_user'] = 0;
 		}
 		# If this user cannot see patrolled edits or they are off, don't do dumb queries!
-		if( $this->opts->getValue( 'hidepatrolled' ) && $this->getUser()->useNPPatrol() ) {
+		if ( $this->opts->getValue( 'hidepatrolled' ) && $this->getUser()->useNPPatrol() ) {
 			$conds['rc_patrolled'] = 0;
 		}
-		if( $this->opts->getValue( 'hidebots' ) ) {
+		if ( $this->opts->getValue( 'hidebots' ) ) {
 			$conds['rc_bot'] = 0;
 		}
 
@@ -546,7 +548,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 		$tables = array( 'recentchanges', 'page' );
 		$fields = array(
 			'rc_namespace', 'rc_title', 'rc_cur_id', 'rc_user', 'rc_user_text',
-			'rc_comment', 'rc_timestamp', 'rc_patrolled','rc_id', 'rc_deleted',
+			'rc_comment', 'rc_timestamp', 'rc_patrolled', 'rc_id', 'rc_deleted',
 			'length' => 'page_len', 'rev_id' => 'page_latest', 'rc_this_oldid',
 			'page_namespace', 'page_title'
 		);
@@ -556,10 +558,10 @@ class NewPagesPager extends ReverseChronologicalPager {
 			array( &$this, $this->opts, &$conds, &$tables, &$fields, &$join_conds ) );
 
 		$info = array(
-			'tables' 	 => $tables,
-			'fields' 	 => $fields,
-			'conds' 	 => $conds,
-			'options' 	 => array( 'USE INDEX' => array( 'recentchanges' => $rcIndexes ) ),
+			'tables' => $tables,
+			'fields' => $fields,
+			'conds' => $conds,
+			'options' => array( 'USE INDEX' => array( 'recentchanges' => $rcIndexes ) ),
 			'join_conds' => $join_conds
 		);
 
