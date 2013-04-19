@@ -167,8 +167,9 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		if ( $user->isNewbie() ) {
 			$categories[] = 'ip';
 			$categories[] = 'subnet';
-			if ( !$user->isAnon() )
+			if ( !$user->isAnon() ) {
 				$categories[] = 'newbie';
+			}
 		}
 		$categories = array_merge( $categories, $user->getGroups() );
 

@@ -37,15 +37,15 @@ class ApiImageRotate extends ApiBase {
 	 */
 	private static function addValues( array &$result, $values, $flag = null, $name = null ) {
 		foreach ( $values as $val ) {
-			if( $val instanceof Title ) {
+			if ( $val instanceof Title ) {
 				$v = array();
 				ApiQueryBase::addTitleInfo( $v, $val );
-			} elseif( $name !== null ) {
+			} elseif ( $name !== null ) {
 				$v = array( $name => $val );
 			} else {
 				$v = $val;
 			}
-			if( $flag !== null ) {
+			if ( $flag !== null ) {
 				$v[$flag] = '';
 			}
 			$result[] = $v;

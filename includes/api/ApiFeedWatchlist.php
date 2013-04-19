@@ -56,11 +56,11 @@ class ApiFeedWatchlist extends ApiBase {
 		try {
 			$params = $this->extractRequestParams();
 
-			if( !$wgFeed ) {
+			if ( !$wgFeed ) {
 				$this->dieUsage( 'Syndication feeds are not available', 'feed-unavailable' );
 			}
 
-			if( !isset( $wgFeedClasses[$params['feedformat']] ) ) {
+			if ( !isset( $wgFeedClasses[$params['feedformat']] ) ) {
 				$this->dieUsage( 'Invalid subscription feed type', 'feed-invalid' );
 			}
 

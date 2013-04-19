@@ -48,7 +48,7 @@ class ApiCreateAccount extends ApiBase {
 			wfSetupSession();
 		}
 
-		if( $params['mailpassword'] && !$params['email'] ) {
+		if ( $params['mailpassword'] && !$params['email'] ) {
 			$this->dieUsageMsg( 'noemail' );
 		}
 
@@ -80,20 +80,20 @@ class ApiCreateAccount extends ApiBase {
 
 		$status = $loginForm->addNewaccountInternal();
 		$result = array();
-		if( $status->isGood() ) {
+		if ( $status->isGood() ) {
 			// Success!
 			global $wgEmailAuthentication;
 			$user = $status->getValue();
 
-			if( $params['language'] ) {
+			if ( $params['language'] ) {
 				$user->setOption( 'language', $params['language'] );
 			}
 
-			if( $params['mailpassword'] ) {
+			if ( $params['mailpassword'] ) {
 				// If mailpassword was set, disable the password and send an email.
 				$user->setPassword( null );
 				$status->merge( $loginForm->mailPasswordInternal( $user, false, 'createaccount-title', 'createaccount-text' ) );
-			} elseif( $wgEmailAuthentication && Sanitizer::validateEmail( $user->getEmail() ) ) {
+			} elseif ( $wgEmailAuthentication && Sanitizer::validateEmail( $user->getEmail() ) ) {
 				// Send out an email authentication message if needed
 				$status->merge( $user->sendConfirmationMail() );
 			}
@@ -120,18 +120,18 @@ class ApiCreateAccount extends ApiBase {
 
 		$apiResult = $this->getResult();
 
-		if( $status->hasMessage( 'sessionfailure' ) || $status->hasMessage( 'nocookiesfornew' ) ) {
+		if ( $status->hasMessage( 'sessionfailure' ) || $status->hasMessage( 'nocookiesfornew' ) ) {
 			// Token was incorrect, so add it to result, but don't throw an exception
 			// since not having the correct token is part of the normal
 			// flow of events.
 			$result['token'] = LoginForm::getCreateaccountToken();
 			$result['result'] = 'needtoken';
-		} elseif( !$status->isOK() ) {
+		} elseif ( !$status->isOK() ) {
 			// There was an error. Die now.
 			// Cannot use dieUsageMsg() directly because extensions
 			// might return custom error messages.
 			$errors = $status->getErrorsArray();
-			if( $errors[0] instanceof Message ) {
+			if ( $errors[0] instanceof Message ) {
 				$code = 'aborted';
 				$desc = $errors[0];
 			} else {
@@ -139,14 +139,14 @@ class ApiCreateAccount extends ApiBase {
 				$desc = wfMessage( $code, $errors[0] );
 			}
 			$this->dieUsage( $desc, $code );
-		} elseif( !$status->isGood() ) {
+		} elseif ( !$status->isGood() ) {
 			// Status is not good, but OK. This means warnings.
 			$result['result'] = 'warning';
 
 			// Add any warnings to the result
 			$warnings = $status->getErrorsByType( 'warning' );
-			if( $warnings ) {
-				foreach( $warnings as &$warning ) {
+			if ( $warnings ) {
+				foreach ( $warnings as &$warning ) {
 					$apiResult->setIndexedTagName( $warning['params'], 'param' );
 				}
 				$apiResult->setIndexedTagName( $warnings, 'warning' );
@@ -259,7 +259,7 @@ class ApiCreateAccount extends ApiBase {
 
 		$errors = parent::getPossibleErrors();
 		// All local errors are from LoginForm, which means they're actually message keys.
-		foreach( $localErrors as $error ) {
+		foreach ( $localErrors as $error ) {
 			$errors[] = array( 'code' => $error, 'info' => wfMessage( $error )->parse() );
 		}
 

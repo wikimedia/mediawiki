@@ -58,7 +58,7 @@ class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 		}
 		$images = $namespaces[NS_FILE];
 
-		if( $params['dir'] == 'descending' ) {
+		if ( $params['dir'] == 'descending' ) {
 			$images = array_reverse( $images );
 		}
 
@@ -79,7 +79,7 @@ class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 		}
 
 		$filesToFind = array_keys( $images );
-		if( $params['localonly'] ) {
+		if ( $params['localonly'] ) {
 			$files = RepoGroup::singleton()->getLocalRepo()->findFiles( $filesToFind );
 		} else {
 			$files = RepoGroup::singleton()->findFiles( $filesToFind );
@@ -97,29 +97,29 @@ class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 
 		// find all files with the hashes, result format is: array( hash => array( dup1, dup2 ), hash1 => ... )
 		$filesToFindBySha1s = array_unique( array_values( $sha1s ) );
-		if( $params['localonly'] ) {
+		if ( $params['localonly'] ) {
 			$filesBySha1s = RepoGroup::singleton()->getLocalRepo()->findBySha1s( $filesToFindBySha1s );
 		} else {
 			$filesBySha1s = RepoGroup::singleton()->findBySha1s( $filesToFindBySha1s );
 		}
 
 		// iterate over $images to handle continue param correct
-		foreach( $images as $image => $pageId ) {
-			if( !isset( $sha1s[$image] ) ) {
+		foreach ( $images as $image => $pageId ) {
+			if ( !isset( $sha1s[$image] ) ) {
 				continue; //file does not exist
 			}
 			$sha1 = $sha1s[$image];
 			$dupFiles = $filesBySha1s[$sha1];
-			if( $params['dir'] == 'descending' ) {
+			if ( $params['dir'] == 'descending' ) {
 				$dupFiles = array_reverse( $dupFiles );
 			}
 			/** @var $dupFile File */
 			foreach ( $dupFiles as $dupFile ) {
 				$dupName = $dupFile->getName();
-				if( $image == $dupName && $dupFile->isLocal() ) {
+				if ( $image == $dupName && $dupFile->isLocal() ) {
 					continue; //ignore the local file itself
 				}
-				if( $skipUntilThisDup !== false && $dupName < $skipUntilThisDup ) {
+				if ( $skipUntilThisDup !== false && $dupName < $skipUntilThisDup ) {
 					continue; //skip to pos after the image from continue param
 				}
 				$skipUntilThisDup = false;
@@ -138,7 +138,7 @@ class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 						'user' => $dupFile->getUser( 'text' ),
 						'timestamp' => wfTimestamp( TS_ISO_8601, $dupFile->getTimestamp() )
 					);
-					if( !$dupFile->isLocal() ) {
+					if ( !$dupFile->isLocal() ) {
 						$r['shared'] = '';
 					}
 					$fit = $this->addPageSubItem( $pageId, $r );
@@ -148,7 +148,7 @@ class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 					}
 				}
 			}
-			if( !$fit ) {
+			if ( !$fit ) {
 				break;
 			}
 		}

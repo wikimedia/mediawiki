@@ -83,10 +83,10 @@ class ApiQueryContributions extends ApiQueryBase {
 		// Do the actual query.
 		$res = $this->select( __METHOD__ );
 
-		if( $this->fld_sizediff ) {
+		if ( $this->fld_sizediff ) {
 			$revIds = array();
 			foreach ( $res as $row ) {
-				if( $row->rev_parent_id ) {
+				if ( $row->rev_parent_id ) {
 					$revIds[] = $row->rev_parent_id;
 				}
 			}

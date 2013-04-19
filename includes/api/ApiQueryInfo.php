@@ -60,7 +60,7 @@ class ApiQueryInfo extends ApiQueryBase {
 
 		$pageSet->requestField( 'page_restrictions' );
 		// when resolving redirects, no page will have this field
-		if( !$pageSet->isResolvingRedirects() ) {
+		if ( !$pageSet->isResolvingRedirects() ) {
 			$pageSet->requestField( 'page_is_redirect' );
 		}
 		$pageSet->requestField( 'page_is_new' );
@@ -476,7 +476,7 @@ class ApiQueryInfo extends ApiQueryBase {
 				$this->protections[$title->getNamespace()][$title->getDBkey()][] = $a;
 			}
 			// Also check old restrictions
-			foreach( $this->titles as $pageId => $title ) {
+			foreach ( $this->titles as $pageId => $title ) {
 				if ( $this->pageRestrictions[$pageId] ) {
 					$namespace = $title->getNamespace();
 					$dbKey = $title->getDBkey();

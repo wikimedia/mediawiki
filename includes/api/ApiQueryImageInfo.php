@@ -72,7 +72,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 
 			$result = $this->getResult();
 			//search only inside the local repo
-			if( $params['localonly'] ) {
+			if ( $params['localonly'] ) {
 				$images = RepoGroup::singleton()->getLocalRepo()->findFiles( $titles );
 			} else {
 				$images = RepoGroup::singleton()->findFiles( $titles );

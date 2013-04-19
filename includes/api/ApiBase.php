@@ -311,8 +311,7 @@ abstract class ApiBase extends ContextSource {
 					);
 				}
 				$msg .= "Example" . ( count( $examples ) > 1 ? 's' : '' ) . ":\n";
-				foreach( $examples as $k => $v ) {
-
+				foreach ( $examples as $k => $v ) {
 					if ( is_numeric( $k ) ) {
 						$msg .= "  $v\n";
 					} else {
@@ -1397,7 +1396,7 @@ abstract class ApiBase extends ContextSource {
 	public function dieUsageMsg( $error ) {
 		# most of the time we send a 1 element, so we might as well send it as
 		# a string and make this an array here.
-		if( is_string( $error ) ) {
+		if ( is_string( $error ) ) {
 			$error = array( $error );
 		}
 		$parsed = $this->parseMsg( $error );
@@ -1412,10 +1411,10 @@ abstract class ApiBase extends ContextSource {
 	 */
 	public function dieUsageMsgOrDebug( $error ) {
 		global $wgDebugAPI;
-		if( $wgDebugAPI !== true ) {
+		if ( $wgDebugAPI !== true ) {
 			$this->dieUsageMsg( $error );
 		} else {
-			if( is_string( $error ) ) {
+			if ( is_string( $error ) ) {
 				$error = array( $error );
 			}
 			$parsed = $this->parseMsg( $error );
@@ -1448,7 +1447,7 @@ abstract class ApiBase extends ContextSource {
 
 		// Check whether the error array was nested
 		// array( array( <code>, <params> ), array( <another_code>, <params> ) )
-		if( is_array( $key ) ) {
+		if ( is_array( $key ) ) {
 			$error = $key;
 			$key = array_shift( $error );
 		}

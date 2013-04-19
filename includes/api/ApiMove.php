@@ -88,7 +88,7 @@ class ApiMove extends ApiBase {
 			$r['redirectcreated'] = '';
 		}
 
-		if( $toTitleExists ) {
+		if ( $toTitleExists ) {
 			$r['moveoverredirect'] = '';
 		}
 
@@ -99,7 +99,7 @@ class ApiMove extends ApiBase {
 			if ( $retval === true ) {
 				$r['talkfrom'] = $fromTalk->getPrefixedText();
 				$r['talkto'] = $toTalk->getPrefixedText();
-				if( $toTalkExists ) {
+				if ( $toTalkExists ) {
 					$r['talkmoveoverredirect'] = '';
 				}
 			} else {
