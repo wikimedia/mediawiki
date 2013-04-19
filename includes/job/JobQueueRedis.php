@@ -650,6 +650,7 @@ LUA;
 				list( $released, $abandoned, $pruned ) = $res;
 				$count += $released + $pruned;
 				JobQueue::incrStats( 'job-recycle', $this->type, count( $released ) );
+				JobQueue::incrStats( 'job-abandon', $this->type, count( $abandoned ) );
 			}
 		} catch ( RedisException $e ) {
 			$this->throwRedisException( $this->server, $conn, $e );

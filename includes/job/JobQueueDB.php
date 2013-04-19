@@ -614,6 +614,7 @@ class JobQueueDB extends JobQueue {
 		if ( count( $ids ) ) {
 			$dbw->delete( 'job', array( 'job_id' => $ids ), __METHOD__ );
 			$count += $dbw->affectedRows();
+			JobQueue::incrStats( 'job-abandon', $this->type, $dbw->affectedRows() );
 		}
 
 		$dbw->unlock( "jobqueue-recycle-{$this->type}", __METHOD__ );
