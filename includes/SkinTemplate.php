@@ -123,6 +123,49 @@ class SkinTemplate extends Skin {
 	}
 
 	/**
+	 * Generates array of language links for the current page
+	 *
+	 * @return array
+	 * @public
+	 */
+	public function getLanguages() {
+		global $wgHideInterlanguageLinks;
+		$out = $this->getOutput();
+
+		# Language links
+		$language_urls = array();
+
+		if ( !$wgHideInterlanguageLinks ) {
+			foreach( $out->getLanguageLinks() as $languageLinkText ) {
+				$languageLinkParts = explode( ':', $languageLinkText, 2 );
+				$class = 'interwiki-' . $languageLinkParts[0];
+				unset( $languageLinkParts );
+				$languageLinkTitle = Title::newFromText( $languageLinkText );
+				if ( $languageLinkTitle ) {
+					$ilInterwikiCode = $languageLinkTitle->getInterwiki();
+					$ilLangName = Language::fetchLanguageName( $ilInterwikiCode );
+
+					if ( strval( $ilLangName ) === '' ) {
+						$ilLangName = $languageLinkText;
+					} else {
+						$ilLangName = $this->formatLanguageName( $ilLangName );
+					}
+
+					$language_urls[] = array(
+						'href' => $languageLinkTitle->getFullURL(),
+						'text' => $ilLangName,
+						'title' => $languageLinkTitle->getText(),
+						'class' => $class,
+						'lang' => $ilInterwikiCode,
+						'hreflang' => $ilInterwikiCode
+					);
+				}
+			}
+		}
+		return $language_urls;
+	}
+
+	/**
 	 * initialize various variables and generate the template
 	 *
 	 * @param $out OutputPage
@@ -132,7 +175,7 @@ class SkinTemplate extends Skin {
 		global $wgScript, $wgStylePath;
 		global $wgMimeType, $wgJsMimeType;
 		global $wgXhtmlDefaultNamespace, $wgXhtmlNamespaces, $wgHtml5Version;
-		global $wgDisableCounters, $wgSitename, $wgLogo, $wgHideInterlanguageLinks;
+		global $wgDisableCounters, $wgSitename, $wgLogo;
 		global $wgMaxCredits, $wgShowCreditsIfMax;
 		global $wgPageShowWatchingUsers;
 		global $wgArticlePath, $wgScriptPath, $wgServer;
@@ -409,36 +452,7 @@ class SkinTemplate extends Skin {
 		$out->mBodytext = Html::rawElement( 'div', $realBodyAttribs, $out->mBodytext );
 		$tpl->setRef( 'bodytext', $out->mBodytext );
 
-		# Language links
-		$language_urls = array();
-
-		if ( !$wgHideInterlanguageLinks ) {
-			foreach( $out->getLanguageLinks() as $languageLinkText ) {
-				$languageLinkParts = explode( ':', $languageLinkText, 2 );
-				$class = 'interwiki-' . $languageLinkParts[0];
-				unset( $languageLinkParts );
-				$languageLinkTitle = Title::newFromText( $languageLinkText );
-				if ( $languageLinkTitle ) {
-					$ilInterwikiCode = $languageLinkTitle->getInterwiki();
-					$ilLangName = Language::fetchLanguageName( $ilInterwikiCode );
-
-					if ( strval( $ilLangName ) === '' ) {
-						$ilLangName = $languageLinkText;
-					} else {
-						$ilLangName = $this->formatLanguageName( $ilLangName );
-					}
-
-					$language_urls[] = array(
-						'href' => $languageLinkTitle->getFullURL(),
-						'text' => $ilLangName,
-						'title' => $languageLinkTitle->getText(),
-						'class' => $class,
-						'lang' => $ilInterwikiCode,
-						'hreflang' => $ilInterwikiCode
-					);
-				}
-			}
-		}
+		$language_urls = $this->getLanguages();
 		if ( count( $language_urls ) ) {
 			$tpl->setRef( 'language_urls', $language_urls );
 		} else {
