@@ -1804,6 +1804,7 @@ abstract class BaseTemplate extends QuickTemplate {
 		$realAttrs = array(
 			'type' => 'search',
 			'name' => 'search',
+			'placeholder' => wfMessage( 'searchsuggest-search' )->text(),
 			'value' => isset( $this->data['search'] ) ? $this->data['search'] : '',
 		);
 		$realAttrs = array_merge( $realAttrs, Linker::tooltipAndAccesskeyAttribs( 'search' ), $attrs );
