@@ -1609,6 +1609,7 @@ class OutputPage extends ContextSource {
 			}
 		}
 
+		wfRunHooks( 'LanguageLinks', array( $this->getTitle(), &$this->mLanguageLinks ) );
 		wfRunHooks( 'OutputPageParserOutput', array( &$this, $parserOutput ) );
 	}
 

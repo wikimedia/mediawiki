@@ -1370,6 +1370,13 @@ $lang: language code (string)
 &$names: array of language code => language name
 $code language of the preferred translations
 
+'LanguageLinks': Manipulate a page's language links. This is called
+in various places to allow extensions to define the effective language
+links for a page.
+$title: The page's Title.
+&$links: List of sitelinks as an array of strings. Each entry is of the
+  form "language:title".
+
 'LinkBegin': Used when generating internal and interwiki links in
 Linker::link(), before processing starts.  Return false to skip default
 processing and return $ret. See documentation for Linker::link() for details on
