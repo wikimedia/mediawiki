@@ -16,6 +16,11 @@
 	font-size: 0.8em;
 }
 
+/* Put some space under CAPTCHAs.*/
+section.mw-form-header {
+	margin-bottom: 10px;
+}
+
 /*
  * Besides errorbox there could be warningbox, successbox, msgbox, though
  * spage has never seen these in practice.
