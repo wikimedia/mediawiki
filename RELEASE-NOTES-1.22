@@ -29,6 +29,8 @@ production.
 * Added 'SpecialSearchResultsPrepend' and 'SpecialSearchResultsAppend' hooks.
 * (bug 23343) Implemented ability to apply IP blocks to the contents of X-Forwarded-For headers
   by adding a new configuration variable $wgApplyIpBlocksToXff (disabled by default).
+* (bug 45535) introduced the new 'LanguageLinks' hook for manipulating the
+  language links associated with a page before display.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail. Previously one could still
@@ -53,6 +55,12 @@ production.
   longer be), and will no longer choke on booleans.
 * action=opensearch no longer silently ignores the format parameter.
 * action=opensearch now supports format=jsonfm.
+* action=parse got a new effectivelanglinks parameter; when used together with
+  pprop=langlinks, the new LanguageLinks hook is applied to determine the
+  effective language links.
+* list=allpages, list=langbacklinks, and prop=langlinks do not apply the new
+  LanguageLinks hook, and thus only consider language links stored in the
+  database.
 
 === Languages updated in 1.22===
 
