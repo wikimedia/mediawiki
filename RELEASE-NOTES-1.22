@@ -84,6 +84,9 @@ production.
   MediaWiki will try outputting markup acording to XHTML5 rules.
 * New hook 'TitleSquidURLs' for manipulating the list of URLs to be purged from
   HTTP caches when a page is changed.
+* (bug 30607) Special:ListFiles can now show old versions of files. Additionally
+  Special:AllMyUploads was introduced so the user can get a list of all things
+  they have ever uploaded, even if it was subsequently overriden.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
