@@ -166,8 +166,9 @@ class SpecialBookSources extends SpecialPage {
 		$this->getOutput()->addWikiMsg( 'booksources-text' );
 		$this->getOutput()->addHTML( '<ul>' );
 		$items = $wgContLang->getBookstoreList();
-		foreach ( $items as $label => $url )
+		foreach ( $items as $label => $url ) {
 			$this->getOutput()->addHTML( $this->makeListItem( $label, $url ) );
+		}
 		$this->getOutput()->addHTML( '</ul>' );
 
 		return true;

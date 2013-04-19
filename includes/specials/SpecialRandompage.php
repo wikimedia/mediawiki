@@ -42,7 +42,7 @@ class RandomPage extends SpecialPage {
 	}
 
 	public function setNamespace( $ns ) {
-		if( !$ns || $ns < NS_MAIN ) {
+		if ( !$ns || $ns < NS_MAIN ) {
 			$ns = NS_MAIN;
 		}
 		$this->namespaces = array( $ns );
@@ -62,7 +62,7 @@ class RandomPage extends SpecialPage {
 
 		$title = $this->getRandomTitle();
 
-		if( is_null( $title ) ) {
+		if ( is_null( $title ) ) {
 			$this->setHeaders();
 			$this->getOutput()->addWikiMsg( strtolower( $this->getName() ) . '-nopages',
 				$this->getNsList(), count( $this->namespaces ) );
@@ -83,8 +83,8 @@ class RandomPage extends SpecialPage {
 	private function getNsList() {
 		global $wgContLang;
 		$nsNames = array();
-		foreach( $this->namespaces as $n ) {
-			if( $n === NS_MAIN ) {
+		foreach ( $this->namespaces as $n ) {
+			if ( $n === NS_MAIN ) {
 				$nsNames[] = $this->msg( 'blanknamespace' )->plain();
 			} else {
 				$nsNames[] = $wgContLang->getNsText( $n );
@@ -113,11 +113,11 @@ class RandomPage extends SpecialPage {
 		 * any more bias than what the page_random scheme
 		 * causes anyway.  Trust me, I'm a mathematician. :)
 		 */
-		if( !$row ) {
+		if ( !$row ) {
 			$row = $this->selectRandomPageFromDB( "0" );
 		}
 
-		if( $row ) {
+		if ( $row ) {
 			return Title::makeTitleSafe( $row->page_namespace, $row->page_title );
 		} else {
 			return null;

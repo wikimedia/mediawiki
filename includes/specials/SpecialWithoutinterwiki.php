@@ -44,7 +44,7 @@ class WithoutInterwikiPage extends PageQueryPage {
 		global $wgScript;
 
 		# Do not show useless input form if special page is cached
-		if( $this->isCached() ) {
+		if ( $this->isCached() ) {
 			return '';
 		}
 

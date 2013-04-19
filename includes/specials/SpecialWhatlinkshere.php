@@ -77,7 +77,7 @@ class SpecialWhatLinksHere extends SpecialPage {
 		$this->opts = $opts;
 
 		$this->target = Title::newFromURL( $opts->getValue( 'target' ) );
-		if( !$this->target ) {
+		if ( !$this->target ) {
 			$out->addHTML( $this->whatlinkshereForm() );
 			return;
 		}
@@ -111,7 +111,7 @@ class SpecialWhatLinksHere extends SpecialPage {
 		$hidetrans = $this->opts->getValue( 'hidetrans' );
 		$hideimages = $target->getNamespace() != NS_FILE || $this->opts->getValue( 'hideimages' );
 
-		$fetchlinks = (!$hidelinks || !$hideredirs);
+		$fetchlinks = ( !$hidelinks || !$hideredirs );
 
 		// Make the query
 		$plConds = array(
@@ -119,9 +119,9 @@ class SpecialWhatLinksHere extends SpecialPage {
 			'pl_namespace' => $target->getNamespace(),
 			'pl_title' => $target->getDBkey(),
 		);
-		if( $hideredirs ) {
+		if ( $hideredirs ) {
 			$plConds['rd_from'] = null;
-		} elseif( $hidelinks ) {
+		} elseif ( $hidelinks ) {
 			$plConds[] = 'rd_from is NOT NULL';
 		}
 
@@ -166,7 +166,7 @@ class SpecialWhatLinksHere extends SpecialPage {
 			'rd_interwiki = ' . $dbr->addQuotes( '' ) . ' OR rd_interwiki IS NULL'
 		)));
 
-		if( $fetchlinks ) {
+		if ( $fetchlinks ) {
 			$options['ORDER BY'] = 'pl_from';
 			$plRes = $dbr->select( array( 'pagelinks', 'page', 'redirect' ), $fields,
 				$plConds, __METHOD__, $options,
@@ -174,7 +174,7 @@ class SpecialWhatLinksHere extends SpecialPage {
 			);
 		}
 
-		if( !$hidetrans ) {
+		if ( !$hidetrans ) {
 			$options['ORDER BY'] = 'tl_from';
 			$tlRes = $dbr->select( array( 'templatelinks', 'page', 'redirect' ), $fields,
 				$tlConds, __METHOD__, $options,
@@ -182,7 +182,7 @@ class SpecialWhatLinksHere extends SpecialPage {
 			);
 		}
 
-		if( !$hideimages ) {
+		if ( !$hideimages ) {
 			$options['ORDER BY'] = 'il_from';
 			$ilRes = $dbr->select( array( 'imagelinks', 'page', 'redirect' ), $fields,
 				$ilConds, __METHOD__, $options,
@@ -190,13 +190,14 @@ class SpecialWhatLinksHere extends SpecialPage {
 			);
 		}
 
-		if( ( !$fetchlinks || !$plRes->numRows() ) && ( $hidetrans || !$tlRes->numRows() ) && ( $hideimages || !$ilRes->numRows() ) ) {
+		if ( ( !$fetchlinks || !$plRes->numRows() ) && ( $hidetrans || !$tlRes->numRows() ) && ( $hideimages || !$ilRes->numRows() ) ) {
 			if ( 0 == $level ) {
 				$out->addHTML( $this->whatlinkshereForm() );
 
 				// Show filters only if there are links
-				if( $hidelinks || $hidetrans || $hideredirs || $hideimages )
+				if ( $hidelinks || $hidetrans || $hideredirs || $hideimages ) {
 					$out->addHTML( $this->getFilterPanel() );
+				}
 
 				$errMsg = is_int( $namespace ) ? 'nolinkshere-ns' : 'nolinkshere';
 				$out->addWikiMsg( $errMsg, $this->target->getPrefixedText() );
@@ -207,21 +208,21 @@ class SpecialWhatLinksHere extends SpecialPage {
 		// Read the rows into an array and remove duplicates
 		// templatelinks comes second so that the templatelinks row overwrites the
 		// pagelinks row, so we get (inclusion) rather than nothing
-		if( $fetchlinks ) {
+		if ( $fetchlinks ) {
 			foreach ( $plRes as $row ) {
 				$row->is_template = 0;
 				$row->is_image = 0;
 				$rows[$row->page_id] = $row;
 			}
 		}
-		if( !$hidetrans ) {
+		if ( !$hidetrans ) {
 			foreach ( $tlRes as $row ) {
 				$row->is_template = 1;
 				$row->is_image = 0;
 				$rows[$row->page_id] = $row;
 			}
 		}
-		if( !$hideimages ) {
+		if ( !$hideimages ) {
 			foreach ( $ilRes as $row ) {
 				$row->is_template = 0;
 				$row->is_image = 1;
@@ -272,7 +273,7 @@ class SpecialWhatLinksHere extends SpecialPage {
 
 		$out->addHTML( $this->listEnd() );
 
-		if( $level == 0 ) {
+		if ( $level == 0 ) {
 			$out->addHTML( $prevnext );
 		}
 	}
@@ -295,7 +296,7 @@ class SpecialWhatLinksHere extends SpecialPage {
 			}
 		}
 
-		if( $row->rd_from ) {
+		if ( $row->rd_from ) {
 			$query = array( 'redirect' => 'no' );
 		} else {
 			$query = array();
@@ -311,12 +312,15 @@ class SpecialWhatLinksHere extends SpecialPage {
 		// Display properties (redirect or template)
 		$propsText = '';
 		$props = array();
-		if ( $row->rd_from )
+		if ( $row->rd_from ) {
 			$props[] = $msgcache['isredirect'];
-		if ( $row->is_template )
+		}
+		if ( $row->is_template ) {
 			$props[] = $msgcache['istemplate'];
-		if( $row->is_image )
+		}
+		if ( $row->is_image ) {
 			$props[] = $msgcache['isimage'];
+		}
 
 		if ( count( $props ) ) {
 			$propsText = $this->msg( 'parentheses' )->rawParams( implode( $msgcache['semicolon-separator'], $props ) )->escaped();
@@ -337,8 +341,9 @@ class SpecialWhatLinksHere extends SpecialPage {
 
 	protected function wlhLink( Title $target, $text ) {
 		static $title = null;
-		if ( $title === null )
+		if ( $title === null ) {
 			$title = $this->getTitle();
+		}
 
 		return Linker::linkKnown(
 			$title,
@@ -422,8 +427,8 @@ class SpecialWhatLinksHere extends SpecialPage {
 				'all' => '',
 				'label' => $this->msg( 'namespace' )->text()
 			), array(
-				'name'  => 'namespace',
-				'id'    => 'namespace',
+				'name' => 'namespace',
+				'id' => 'namespace',
 				'class' => 'namespaceselector',
 			)
 		);
@@ -453,12 +458,13 @@ class SpecialWhatLinksHere extends SpecialPage {
 
 		$links = array();
 		$types = array( 'hidetrans', 'hidelinks', 'hideredirs' );
-		if( $this->target->getNamespace() == NS_FILE )
+		if ( $this->target->getNamespace() == NS_FILE ) {
 			$types[] = 'hideimages';
+		}
 
 		// Combined message keys: 'whatlinkshere-hideredirs', 'whatlinkshere-hidetrans', 'whatlinkshere-hidelinks', 'whatlinkshere-hideimages'
 		// To be sure they will be found by grep
-		foreach( $types as $type ) {
+		foreach ( $types as $type ) {
 			$chosen = $this->opts->getValue( $type );
 			$msg = $chosen ? $show : $hide;
 			$overrides = array( $type => !$chosen );

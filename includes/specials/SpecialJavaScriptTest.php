@@ -85,7 +85,7 @@ class SpecialJavaScriptTest extends SpecialPage {
 	 */
 	private function getFrameworkListHtml() {
 		$list = '<ul>';
-		foreach( self::$frameworks as $framework => $initFn ) {
+		foreach ( self::$frameworks as $framework => $initFn ) {
 			$list .= Html::rawElement(
 				'li',
 				array(),
@@ -109,7 +109,7 @@ class SpecialJavaScriptTest extends SpecialPage {
 	 */
 	private function wrapSummaryHtml( $html, $state ) {
 		$validStates = array( 'noframework', 'unknownframework', 'frameworkfound' );
-		if( !in_array( $state, $validStates ) ) {
+		if ( !in_array( $state, $validStates ) ) {
 			throw new MWException( __METHOD__
 				. ' given an invalid state. Must be one of "'
 				. join( '", "', $validStates ) . '".'

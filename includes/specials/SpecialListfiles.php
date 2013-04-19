@@ -118,7 +118,7 @@ class ImageListPager extends TablePager {
 				'img_user_text' => $this->msg( 'listfiles_user' )->text(),
 				'img_description' => $this->msg( 'listfiles_description' )->text(),
 			);
-			if( !$wgMiserMode ) {
+			if ( !$wgMiserMode ) {
 				$this->mFieldNames['count'] = $this->msg( 'listfiles_count' )->text();
 			}
 		}
@@ -145,7 +145,7 @@ class ImageListPager extends TablePager {
 		$options = $join_conds = array();
 
 		# Depends on $wgMiserMode
-		if( isset( $this->mFieldNames['count'] ) ) {
+		if ( isset( $this->mFieldNames['count'] ) ) {
 			$tables[] = 'oldimage';
 
 			# Need to rewrite this one
@@ -157,7 +157,7 @@ class ImageListPager extends TablePager {
 			unset( $field );
 
 			$dbr = wfGetDB( DB_SLAVE );
-			if( $dbr->implicitGroupby() ) {
+			if ( $dbr->implicitGroupby() ) {
 				$options = array( 'GROUP BY' => 'img_name' );
 			} else {
 				$columnlist = preg_grep( '/^img/', array_keys( $this->getFieldNames() ) );
@@ -166,10 +166,10 @@ class ImageListPager extends TablePager {
 			$join_conds = array( 'oldimage' => array( 'LEFT JOIN', 'oi_name = img_name' ) );
 		}
 		return array(
-			'tables'     => $tables,
-			'fields'     => $fields,
-			'conds'      => $this->mQueryConds,
-			'options'    => $options,
+			'tables' => $tables,
+			'fields' => $fields,
+			'conds' => $this->mQueryConds,
+			'options' => $options,
 			'join_conds' => $join_conds
 		);
 	}
@@ -198,11 +198,13 @@ class ImageListPager extends TablePager {
 				return htmlspecialchars( $this->getLanguage()->userTimeAndDate( $value, $this->getUser() ) );
 			case 'img_name':
 				static $imgfile = null;
-				if ( $imgfile === null ) $imgfile = $this->msg( 'imgfile' )->text();
+				if ( $imgfile === null ) {
+					$imgfile = $this->msg( 'imgfile' )->text();
+				}
 
 				// Weird files can maybe exist? Bug 22227
 				$filePage = Title::makeTitleSafe( NS_FILE, $value );
-				if( $filePage ) {
+				if ( $filePage ) {
 					$link = Linker::linkKnown( $filePage, htmlspecialchars( $filePage->getText() ) );
 					$download = Xml::element( 'a',
 						array( 'href' => wfLocalFile( $filePage )->getURL() ),
@@ -240,15 +242,15 @@ class ImageListPager extends TablePager {
 		if ( !$wgMiserMode ) {
 			$inputForm['listfiles_search_for'] = Html::input( 'ilsearch', $this->mSearch, 'text',
 				array(
-					'size' 		=> '40',
+					'size' => '40',
 					'maxlength' => '255',
-					'id' 		=> 'mw-ilsearch',
+					'id' => 'mw-ilsearch',
 			) );
 		}
 		$inputForm['username'] = Html::input( 'user', $this->mUserName, 'text', array(
-			'size' 		=> '40',
+			'size' => '40',
 			'maxlength' => '255',
-			'id' 		=> 'mw-listfiles-user',
+			'id' => 'mw-listfiles-user',
 		) );
 		return Html::openElement( 'form',
 				array( 'method' => 'get', 'action' => $wgScript, 'id' => 'mw-listfiles-form' ) ) .
