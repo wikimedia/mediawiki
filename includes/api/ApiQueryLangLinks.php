@@ -67,6 +67,10 @@ class ApiQueryLangLinks extends ApiQueryBase {
 			);
 		}
 
+		//FIXME: (follow-up) To allow extensions to add to the language links, we need
+		//       to load them all, add the extra links, then apply paging.
+		//       Should not be terrible, it's not going to be more than a few hundred links.
+
 		// Note that, since (ll_from, ll_lang) is a unique key, we don't need
 		// to sort by ll_title to ensure deterministic ordering.
 		$sort = ( $params['dir'] == 'descending' ? ' DESC' : '' );

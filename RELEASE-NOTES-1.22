@@ -52,6 +52,8 @@ production.
   still be visible on cached page renders until they are purged); extensions
   using the DoEditSectionLink or EditSectionLink hooks might need adjustments as
   well.
+* (bug 45535) introduced the new 'LanguageLinks' hook for manipulating the
+  language links associated with a page before display.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail. Previously one could still
@@ -84,6 +86,13 @@ production.
 * action=opensearch no longer silently ignores the format parameter.
 * action=opensearch now supports format=jsonfm.
 * list=usercontribs&ucprop=ids will now include the parent revision id.
+* BREAKING CHANGE: action=parse no longer returns all langlinks for the page
+  with prop=langlinks by default. The new effectivelanglinks parameter will
+  request that the LanguageLinks hook be called to determine the effective
+  language links.
+* BREAKING CHANGE: list=allpages, list=langbacklinks, and prop=langlinks do not
+  apply the new LanguageLinks hook, and thus only consider language links
+  stored in the database.
 
 === Languages updated in 1.22===
 
