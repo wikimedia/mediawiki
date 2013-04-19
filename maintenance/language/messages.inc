@@ -1556,6 +1556,10 @@ $wgMessageStructure = array(
 		'listfiles_size',
 		'listfiles_description',
 		'listfiles_count',
+		'listfiles-show-all',
+		'listfiles-latestversion',
+		'listfiles-latestversion-yes',
+		'listfiles-latestversion-no',
 	),
 	'filedescription' => array(
 		'file-anchor-link',

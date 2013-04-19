@@ -100,6 +100,9 @@ production.
   handlers can take further action based on the status of the patrol footer
 * LinkCache singleton can now be altered or cleared, letting one to specify
   another instance that does not rely on a database backend.
+* (bug 30607) Special:ListFiles can now show old versions of files. Additionally
+  Special:AllMyUploads was introduced so the user can get a list of all things
+  they have ever uploaded, even if it was subsequently overriden.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
