@@ -31,8 +31,6 @@ class UserloginTemplateVForm extends BaseTemplate {
 ?>
 <div class="mw-ui-container">
 	<?php
-	// Some extensions including CAPTCHAs add content to header on UserLoginForm hook.
-	$this->html('header');
 	if( $this->haveData( 'languages' ) ) {
 	?>
 		<div id="languagelinks">
@@ -43,6 +41,9 @@ class UserloginTemplateVForm extends BaseTemplate {
 	?>
 <div id="userloginForm">
 <form name="userlogin" class="mw-ui-vform" method="post" action="<?php $this->text('action') ?>">
+	<section class="mw-form-header">
+		<?php $this->html('header'); /* extensions such as ConfirmEdit add form HTML here */ ?>
+	</section>
 	<?php
 
 	if( $this->data['message'] ) {
