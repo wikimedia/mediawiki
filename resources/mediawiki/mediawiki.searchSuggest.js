@@ -196,11 +196,6 @@
 			return;
 		}
 
-		// Placeholder text for search box
-		$searchInput
-			.attr( 'placeholder', mw.msg( 'searchsuggest-search' ) )
-			.placeholder();
-
 		// Special suggestions functionality for skin-provided search box
 		$searchInput.suggestions( {
 			result: {
