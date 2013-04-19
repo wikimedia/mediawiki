@@ -233,11 +233,25 @@ class ApiParse extends ApiBase {
 			$result->setContent( $result_array['parsedsummary'], Linker::formatComment( $params['summary'], $titleObj ) );
 		}
 
+		if ( isset( $prop['langlinks'] ) || isset( $prop['languageshtml'] ) ) {
+			$langlinks = $p_result->getLanguageLinks();
+
+			if ( $params['effectivelanglinks'] ) {
+				// Link flags are ignored for now, but may in the future be
+				// included in the result.
+				$linkFlags = array();
+				wfRunHooks( 'LanguageLinks', array( $titleObj, &$langlinks, &$linkFlags ) );
+			}
+		} else {
+			$langlinks = false;
+		}
+
 		if ( isset( $prop['langlinks'] ) ) {
-			$result_array['langlinks'] = $this->formatLangLinks( $p_result->getLanguageLinks() );
+			$result_array['langlinks'] = $this->formatLangLinks( $langlinks );
 		}
 		if ( isset( $prop['languageshtml'] ) ) {
-			$languagesHtml = $this->languagesHtml( $p_result->getLanguageLinks() );
+			$languagesHtml = $this->languagesHtml( $langlinks );
+
 			$result_array['languageshtml'] = array();
 			$result->setContent( $result_array['languageshtml'], $languagesHtml );
 		}
@@ -575,6 +589,7 @@ class ApiParse extends ApiBase {
 			),
 			'pst' => false,
 			'onlypst' => false,
+			'effectivelanglinks' => false,
 			'uselang' => null,
 			'section' => null,
 			'disablepp' => false,
@@ -617,6 +632,10 @@ class ApiParse extends ApiBase {
 				' iwlinks        - Gives interwiki links in the parsed wikitext',
 				' wikitext       - Gives the original wikitext that was parsed',
 				' properties     - Gives various properties defined in the parsed wikitext',
+			),
+			'effectivelanglinks' => array(
+				'Includes language links supplied by extensions',
+				'(for use with prop=langlinks|languageshtml)',
 			),
 			'pst' => array(
 				'Do a pre-save transform on the input before parsing it',
