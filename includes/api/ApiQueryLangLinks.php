@@ -46,57 +46,42 @@ class ApiQueryLangLinks extends ApiQueryBase {
 			$this->dieUsageMsg( array( 'missingparam', 'lang' ) );
 		}
 
-		$this->addFields( array(
-			'll_from',
-			'll_lang',
-			'll_title'
-		) );
+		$fromPageIds = array_keys( $this->getPageSet()->getGoodTitles() );
+		$dir = $params['dir'];
+		$limit  = $params['limit'];
 
-		$this->addTables( 'langlinks' );
-		$this->addWhereFld( 'll_from', array_keys( $this->getPageSet()->getGoodTitles() ) );
+		$forLang = isset( $params['lang'] ) ? $params['lang'] : null;
+		$forTitle = isset( $params['title'] ) ? $params['title'] : null;
+
+		$continueFrom = null;
+		$continueLang = null;
+
 		if ( !is_null( $params['continue'] ) ) {
 			$cont = explode( '|', $params['continue'] );
 			$this->dieContinueUsageIf( count( $cont ) != 2 );
-			$op = $params['dir'] == 'descending' ? '<' : '>';
-			$llfrom = intval( $cont[0] );
-			$lllang = $this->getDB()->addQuotes( $cont[1] );
-			$this->addWhere(
-				"ll_from $op $llfrom OR " .
-				"(ll_from = $llfrom AND " .
-				"ll_lang $op= $lllang)"
-			);
+
+			$continueFrom = intval( $cont[0] );
+			$continueLang = strval( $cont[1] );
 		}
 
-		//FIXME: (follow-up) To allow extensions to add to the language links, we need
-		//       to load them all, add the extra links, then apply paging.
-		//       Should not be terrible, it's not going to be more than a few hundred links.
+		$loader = new DBLangLinkLoader();
 
-		// Note that, since (ll_from, ll_lang) is a unique key, we don't need
-		// to sort by ll_title to ensure deterministic ordering.
-		$sort = ( $params['dir'] == 'descending' ? ' DESC' : '' );
-		if ( isset( $params['lang'] ) ) {
-			$this->addWhereFld( 'll_lang', $params['lang'] );
-			if ( isset( $params['title'] ) ) {
-				$this->addWhereFld( 'll_title', $params['title'] );
-			}
-			$this->addOption( 'ORDER BY', 'll_from' . $sort );
-		} else {
-			// Don't order by ll_from if it's constant in the WHERE clause
-			if ( count( $this->getPageSet()->getGoodTitles() ) == 1 ) {
-				$this->addOption( 'ORDER BY', 'll_lang' . $sort );
-			} else {
-				$this->addOption( 'ORDER BY', array(
-							'll_from' . $sort,
-							'll_lang' . $sort
-				));
-			}
+		if ( $params['effective'] ) {
+			$loader = new HookedLangLinkLoader( $loader );
 		}
 
-		$this->addOption( 'LIMIT', $params['limit'] + 1 );
-		$res = $this->select( __METHOD__ );
+		//TODO: catch & handle (some) errors
+		$links = $loader->loadLanguageLinks(
+			$fromPageIds,
+			$dir,
+			$limit +1, // +1 to detect continuation point
+			$forLang,
+			$forTitle,
+			$continueFrom,
+			$continueLang );
 
 		$count = 0;
-		foreach ( $res as $row ) {
+		foreach ( $links as $row ) {
 			if ( ++$count > $params['limit'] ) {
 				// We've reached the one extra which shows that
 				// there are additional pages to be had. Stop here...
@@ -109,6 +94,9 @@ class ApiQueryLangLinks extends ApiQueryBase {
 				if ( $title ) {
 					$entry['url'] = wfExpandUrl( $title->getFullURL(), PROTO_CURRENT );
 				}
+			}
+			if ( isset( $row->ll_flags ) ) {
+				$entry['flags'] = implode( '|', (array)$row->ll_flags );
 			}
 			ApiResult::setContent( $entry, $row->ll_title );
 			$fit = $this->addPageSubItem( $row->ll_from, $entry );
@@ -134,6 +122,7 @@ class ApiQueryLangLinks extends ApiQueryBase {
 			),
 			'continue' => null,
 			'url' => false,
+			'effective' => false,
 			'lang' => null,
 			'title' => null,
 			'dir' => array(
@@ -151,6 +140,9 @@ class ApiQueryLangLinks extends ApiQueryBase {
 			'limit' => 'How many langlinks to return',
 			'continue' => 'When more results are available, use this to continue',
 			'url' => 'Whether to get the full URL',
+			'effective' => array(
+				'Whether to determine effective language links,',
+				'including all provided by extensions' ),
 			'lang' => 'Language code',
 			'title' => "Link to search for. Must be used with {$this->getModulePrefix()}lang",
 			'dir' => 'The direction in which to list',
@@ -161,6 +153,7 @@ class ApiQueryLangLinks extends ApiQueryBase {
 		return array(
 			'' => array(
 				'lang' => 'string',
+				'flags' => 'string',
 				'url' => array(
 					ApiBase::PROP_TYPE => 'string',
 					ApiBase::PROP_NULLABLE => true
@@ -177,6 +170,7 @@ class ApiQueryLangLinks extends ApiQueryBase {
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'missingparam', 'lang' ),
+			array( 'code' => 'toomanylinks', 'info' => 'If too many links were found in "effective" mode.' ),
 		) );
 	}
 
