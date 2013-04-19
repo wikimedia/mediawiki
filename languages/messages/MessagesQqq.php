@@ -3672,6 +3672,10 @@ See also:
 {{Identical|Description}}',
 'listfiles_count' => 'One of the table column headers in [[Special:Listfiles]] denoting the amount of saved versions of that file.
 {{Identical|Version}}',
+'listfiles-show-all'    => 'Label for a checkbox in the options section of [[Special:ListFiles]]. The checkbox controls if old versions of image files are shown in Special:Listfiles (as opposed to only the most recent version of an image).',
+'listfiles-latestversion' => 'Column header for the result table on [[Special:Listfiles]]. The column is for if the entry is for a current version of the file, or if it is for a historic version of the file that has since been overriden',
+'listfiles-latestversion-yes' => 'Text to display in latestversion column if the entry is the latest version of the file. See also {{msg-mw|listfiles-latestversion-no}} and {{msg-mw|listfiles-latestversion}}.',
+'listfiles-latestversion-no' => 'Text to display in latestversion column if the entry is an old version of the file. See also {{msg-mw|listfiles-latestversion-yes}} and {{msg-mw|listfiles-latestversion}}.',
 
 # File description page
 'file-anchor-link' => '{{Identical|File}}',

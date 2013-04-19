@@ -231,6 +231,7 @@ $wgAutoloadLocalClasses = array(
 	'SpecialMypage' => 'includes/SpecialPage.php',
 	'SpecialMytalk' => 'includes/SpecialPage.php',
 	'SpecialMyuploads' => 'includes/SpecialPage.php',
+	'SpecialAllMyUploads' => 'includes/SpecialPage.php',
 	'SpecialPage' => 'includes/SpecialPage.php',
 	'SpecialPageFactory' => 'includes/SpecialPageFactory.php',
 	'SpecialRedirectToSpecial' => 'includes/SpecialPage.php',

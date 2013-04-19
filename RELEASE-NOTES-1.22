@@ -38,6 +38,9 @@ production.
   an accesskey in it already). As such it now rountrips. Creating a link with a
   message as tooltip, grabbing the title attribute and using it to create
   another portlet will work as expected.
+* (bug 30607) Special:ListFiles can now show old versions of files. Additionally
+  Special:AllMyUploads was introduced so the user can get a list of all things
+  they have ever uploaded, even if it was subsequently overriden.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail. Previously one could still
