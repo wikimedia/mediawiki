@@ -379,6 +379,7 @@ $magicWords = array(
  */
 $specialPageAliases = array(
 	'Allmessages'               => array( 'AllMessages' ),
+	'AllMyUploads'              => array( 'AllMyUploads' ),
 	'Allpages'                  => array( 'AllPages' ),
 	'Ancientpages'              => array( 'AncientPages' ),
 	'Badtitle'                  => array( 'Badtitle' ),
@@ -2427,8 +2428,7 @@ You may want to try at a less busy time.',
 'upload_source_file' => '(a file on your computer)',
 
 # Special:ListFiles
-'listfiles-summary'     => 'This special page shows all uploaded files.
-When filtered by user, only files where that user uploaded the most recent version of the file are shown.',
+'listfiles-summary'     => 'This special page shows all uploaded files.',
 'listfiles_search_for'  => 'Search for media name:',
 'imgfile'               => 'file',
 'listfiles'             => 'File list',
@@ -2439,6 +2439,10 @@ When filtered by user, only files where that user uploaded the most recent versi
 'listfiles_size'        => 'Size',
 'listfiles_description' => 'Description',
 'listfiles_count'       => 'Versions',
+'listfiles-show-all'    => 'Include old versions of images',
+'listfiles-latestversion' => 'Current version',
+'listfiles-latestversion-yes' => 'Yes',
+'listfiles-latestversion-no' => 'No',
 
 # File description page
 'file-anchor-link'                  => 'File',
