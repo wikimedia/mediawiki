@@ -53,15 +53,15 @@ class SpecialStatistics extends SpecialPage {
 
 		# Staticic - views
 		$viewsStats = '';
-		if( !$wgDisableCounters ) {
+		if ( !$wgDisableCounters ) {
 			$viewsStats = $this->getViewsStats();
 		}
 
 		# Set active user count
-		if( !$wgMiserMode ) {
+		if ( !$wgMiserMode ) {
 			$key = wfMemcKey( 'sitestats', 'activeusers-updated' );
 			// Re-calculate the count if the last tally is old...
-			if( !$wgMemc->get( $key ) ) {
+			if ( !$wgMemc->get( $key ) ) {
 				$dbw = wfGetDB( DB_MASTER );
 				SiteStatsUpdate::cacheUpdate( $dbw );
 				$wgMemc->set( $key, '1', 24 * 3600 ); // don't update for 1 day
@@ -84,13 +84,13 @@ class SpecialStatistics extends SpecialPage {
 		$text .= $viewsStats;
 
 		# Statistic - popular pages
-		if( !$wgDisableCounters && !$wgMiserMode ) {
+		if ( !$wgDisableCounters && !$wgMiserMode ) {
 			$text .= $this->getMostViewedPages();
 		}
 
 		# Statistic - other
 		$extraStats = array();
-		if( wfRunHooks( 'SpecialStatsAddExtra', array( &$extraStats ) ) ) {
+		if ( wfRunHooks( 'SpecialStatsAddExtra', array( &$extraStats ) ) ) {
 			$text .= $this->getOtherStats( $extraStats );
 		}
 
@@ -115,11 +115,11 @@ class SpecialStatistics extends SpecialPage {
 	 * @return string table row in HTML format
 	 */
 	private function formatRow( $text, $number, $trExtraParams = array(), $descMsg = '', $descMsgParam = '' ) {
-		if( $descMsg ) {
+		if ( $descMsg ) {
 			$msg = $this->msg( $descMsg, $descMsgParam );
 			if ( $msg->exists() ) {
 				$descriptionText = $this->msg( 'parentheses' )->rawParams( $msg->parse() )->escaped();
-				$text .= "<br />" . Xml::element( 'small', array( 'class' => 'mw-statistic-desc'),
+				$text .= "<br />" . Xml::element( 'small', array( 'class' => 'mw-statistic-desc' ),
 					" $descriptionText" );
 			}
 		}
@@ -181,7 +181,7 @@ class SpecialStatistics extends SpecialPage {
 	private function getGroupStats() {
 		global $wgGroupPermissions, $wgImplicitGroups;
 		$text = '';
-		foreach( $wgGroupPermissions as $group => $permissions ) {
+		foreach ( $wgGroupPermissions as $group => $permissions ) {
 			# Skip generic * and implicit groups
 			if ( in_array( $group, $wgImplicitGroups ) || $group == '*' ) {
 				continue;
@@ -213,7 +213,7 @@ class SpecialStatistics extends SpecialPage {
 			# Add a class when a usergroup contains no members to allow hiding these rows
 			$classZero = '';
 			$countUsers = SiteStats::numberingroup( $groupname );
-			if( $countUsers == 0 ) {
+			if ( $countUsers == 0 ) {
 				$classZero = ' statistics-group-zero';
 			}
 			$text .= $this->formatRow( $grouppage . ' ' . $grouplink,
@@ -256,13 +256,13 @@ class SpecialStatistics extends SpecialPage {
 					'LIMIT' => 10,
 				)
 			);
-			if( $res->numRows() > 0 ) {
+			if ( $res->numRows() > 0 ) {
 				$text .= Xml::openElement( 'tr' );
 				$text .= Xml::tags( 'th', array( 'colspan' => '2' ), $this->msg( 'statistics-mostpopular' )->parse() );
 				$text .= Xml::closeElement( 'tr' );
 				foreach ( $res as $row ) {
 					$title = Title::makeTitleSafe( $row->page_namespace, $row->page_title );
-					if( $title instanceof Title ) {
+					if ( $title instanceof Title ) {
 						$text .= $this->formatRow( Linker::link( $title ),
 								$this->getLanguage()->formatNum( $row->page_counter ) );
 
@@ -283,8 +283,7 @@ class SpecialStatistics extends SpecialPage {
 	private function getOtherStats( array $stats ) {
 		$return = '';
 
-		foreach( $stats as $header => $items ) {
-
+		foreach ( $stats as $header => $items ) {
 			// Identify the structure used
 			if ( is_array( $items ) ) {
 
@@ -294,7 +293,7 @@ class SpecialStatistics extends SpecialPage {
 				}
 
 				// Collect all items that belong to the same header
-				foreach( $items as $key => $value ) {
+				foreach ( $items as $key => $value ) {
 					$name = $this->msg( $key )->inContentLanguage()->parse();
 					$number = htmlspecialchars( $value );
 

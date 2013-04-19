@@ -71,7 +71,7 @@ class SpecialRecentchangeslinked extends SpecialRecentChanges {
 		}
 		$outputPage = $this->getOutput();
 		$title = Title::newFromURL( $target );
-		if( !$title || $title->getInterwiki() != '' ) {
+		if ( !$title || $title->getInterwiki() != '' ) {
 			$outputPage->wrapWikiMsg( "<div class=\"errorbox\">\n$1\n</div><br style=\"clear: both\" />", 'allpagesbadtitle' );
 			return false;
 		}
@@ -99,7 +99,7 @@ class SpecialRecentchangeslinked extends SpecialRecentChanges {
 
 		// left join with watchlist table to highlight watched rows
 		$uid = $this->getUser()->getId();
-		if( $uid ) {
+		if ( $uid ) {
 			$tables[] = 'watchlist';
 			$select[] = 'wl_user';
 			$join_conds['watchlist'] = array( 'LEFT JOIN', array(
@@ -126,7 +126,7 @@ class SpecialRecentchangeslinked extends SpecialRecentChanges {
 			return false;
 		}
 
-		if( $ns == NS_CATEGORY && !$showlinkedto ) {
+		if ( $ns == NS_CATEGORY && !$showlinkedto ) {
 			// special handling for categories
 			// XXX: should try to make this less kludgy
 			$link_tables = array( 'categorylinks' );
@@ -135,12 +135,12 @@ class SpecialRecentchangeslinked extends SpecialRecentChanges {
 			// for now, always join on these tables; really should be configurable as in whatlinkshere
 			$link_tables = array( 'pagelinks', 'templatelinks' );
 			// imagelinks only contains links to pages in NS_FILE
-			if( $ns == NS_FILE || !$showlinkedto ) {
+			if ( $ns == NS_FILE || !$showlinkedto ) {
 				$link_tables[] = 'imagelinks';
 			}
 		}
 
-		if( $id == 0 && !$showlinkedto ) {
+		if ( $id == 0 && !$showlinkedto ) {
 			return false; // nonexistent pages can't link to any pages
 		}
 
@@ -149,22 +149,22 @@ class SpecialRecentchangeslinked extends SpecialRecentChanges {
 
 		$subsql = array(); // SELECT statements to combine with UNION
 
-		foreach( $link_tables as $link_table ) {
+		foreach ( $link_tables as $link_table ) {
 			$pfx = $prefix[$link_table];
 
 			// imagelinks and categorylinks tables have no xx_namespace field, and have xx_to instead of xx_title
-			if( $link_table == 'imagelinks' ) {
+			if ( $link_table == 'imagelinks' ) {
 				$link_ns = NS_FILE;
-			} elseif( $link_table == 'categorylinks' ) {
+			} elseif ( $link_table == 'categorylinks' ) {
 				$link_ns = NS_CATEGORY;
 			} else {
 				$link_ns = 0;
 			}
 
-			if( $showlinkedto ) {
+			if ( $showlinkedto ) {
 				// find changes to pages linking to this page
-				if( $link_ns ) {
-					if( $ns != $link_ns ) {
+				if ( $link_ns ) {
+					if ( $ns != $link_ns ) {
 						continue;
 					} // should never happen, but check anyway
 					$subconds = array( "{$pfx}_to" => $dbkey );
@@ -175,7 +175,7 @@ class SpecialRecentchangeslinked extends SpecialRecentChanges {
 			} else {
 				// find changes to pages linked from this page
 				$subconds = array( "{$pfx}_from" => $id );
-				if( $link_table == 'imagelinks' || $link_table == 'categorylinks' ) {
+				if ( $link_table == 'imagelinks' || $link_table == 'categorylinks' ) {
 					$subconds["rc_namespace"] = $link_ns;
 					$subjoin = "rc_title = {$pfx}_to";
 				} else {
@@ -183,7 +183,7 @@ class SpecialRecentchangeslinked extends SpecialRecentChanges {
 				}
 			}
 
-			if( $dbr->unionSupportsOrderAndLimit() ) {
+			if ( $dbr->unionSupportsOrderAndLimit() ) {
 				$order = array( 'ORDER BY' => 'rc_timestamp DESC' );
 			} else {
 				$order = array();
@@ -198,16 +198,17 @@ class SpecialRecentchangeslinked extends SpecialRecentChanges {
 				$join_conds + array( $link_table => array( 'INNER JOIN', $subjoin ) )
 			);
 
-			if( $dbr->unionSupportsOrderAndLimit() )
+			if ( $dbr->unionSupportsOrderAndLimit() ) {
 				$query = $dbr->limitResult( $query, $limit );
+			}
 
 			$subsql[] = $query;
 		}
 
-		if( count( $subsql ) == 0 ) {
+		if ( count( $subsql ) == 0 ) {
 			return false; // should never happen
 		}
-		if( count( $subsql ) == 1 && $dbr->unionSupportsOrderAndLimit() ) {
+		if ( count( $subsql ) == 1 && $dbr->unionSupportsOrderAndLimit() ) {
 			$sql = $subsql[0];
 		} else {
 			// need to resort and relimit after union
@@ -217,7 +218,7 @@ class SpecialRecentchangeslinked extends SpecialRecentChanges {
 
 		$res = $dbr->query( $sql, __METHOD__ );
 
-		if( $res->numRows() == 0 ) {
+		if ( $res->numRows() == 0 ) {
 			$this->mResultEmpty = true;
 		}
 
@@ -260,13 +261,13 @@ class SpecialRecentchangeslinked extends SpecialRecentChanges {
 
 	function setTopText( FormOptions $opts ) {
 		$target = $this->getTargetTitle();
-		if( $target ) {
+		if ( $target ) {
 			$this->getOutput()->addBacklinkSubtitle( $target );
 		}
 	}
 
 	function setBottomText( FormOptions $opts ) {
-		if( isset( $this->mResultEmpty ) && $this->mResultEmpty ) {
+		if ( isset( $this->mResultEmpty ) && $this->mResultEmpty ) {
 			$this->getOutput()->addWikiMsg( 'recentchangeslinked-noresult' );
 		}
 	}

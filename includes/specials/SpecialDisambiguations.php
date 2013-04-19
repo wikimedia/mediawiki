@@ -54,8 +54,8 @@ class DisambiguationsPage extends QueryPage {
 		# If the text can be treated as a title, use it verbatim.
 		# Otherwise, pull the titles from the links table
 		$dp = Title::newFromText( $dMsgText );
-		if( $dp ) {
-			if( $dp->getNamespace() != NS_TEMPLATE ) {
+		if ( $dp ) {
+			if ( $dp->getNamespace() != NS_TEMPLATE ) {
 				# @todo FIXME: We assume the disambiguation message is a template but
 				# the page can potentially be from another namespace :/
 				wfDebug( "Mediawiki:disambiguationspage message does not refer to a template!\n" );
@@ -79,7 +79,7 @@ class DisambiguationsPage extends QueryPage {
 		}
 		$set = $linkBatch->constructSet( 'tl', $dbr );
 
-		if( $set === false ) {
+		if ( $set === false ) {
 			# We must always return a valid SQL query, but this way
 			# the DB will always quickly return an empty result
 			$set = 'FALSE';

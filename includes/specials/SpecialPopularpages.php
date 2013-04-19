@@ -60,7 +60,7 @@ class PopularPagesPage extends QueryPage {
 		global $wgContLang;
 
 		$title = Title::makeTitleSafe( $result->namespace, $result->title );
-		if( !$title ) {
+		if ( !$title ) {
 			return Html::element( 'span', array( 'class' => 'mw-invalidtitle' ),
 				Linker::getInvalidTitleDescription( $this->getContext(), $result->namespace, $result->title ) );
 		}

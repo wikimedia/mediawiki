@@ -75,7 +75,7 @@ class LonelyPagesPage extends PageQueryPage {
 	function getOrderFields() {
 		// For some crazy reason ordering by a constant
 		// causes a filesort in MySQL 5
-		if( count( MWNamespace::getContentNamespaces() ) > 1 ) {
+		if ( count( MWNamespace::getContentNamespaces() ) > 1 ) {
 			return array( 'page_namespace', 'page_title' );
 		} else {
 			return array( 'page_title' );

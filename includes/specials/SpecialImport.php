@@ -108,13 +108,13 @@ class SpecialImport extends SpecialPage {
 			$source = Status::newFatal( 'import-token-mismatch' );
 		} elseif ( $sourceName == 'upload' ) {
 			$isUpload = true;
-			if( $user->isAllowed( 'importupload' ) ) {
+			if ( $user->isAllowed( 'importupload' ) ) {
 				$source = ImportStreamSource::newFromUpload( "xmlimport" );
 			} else {
 				throw new PermissionsError( 'importupload' );
 			}
 		} elseif ( $sourceName == "interwiki" ) {
-			if( !$user->isAllowed( 'import' ) ) {
+			if ( !$user->isAllowed( 'import' ) ) {
 				throw new PermissionsError( 'import' );
 			}
 			$this->interwiki = $request->getVal( 'interwiki' );
@@ -136,16 +136,16 @@ class SpecialImport extends SpecialPage {
 		}
 
 		$out = $this->getOutput();
-		if( !$source->isGood() ) {
+		if ( !$source->isGood() ) {
 			$out->wrapWikiMsg( "<p class=\"error\">\n$1\n</p>", array( 'importfailed', $source->getWikiText() ) );
 		} else {
 			$importer = new WikiImporter( $source->value );
-			if( !is_null( $this->namespace ) ) {
+			if ( !is_null( $this->namespace ) ) {
 				$importer->setTargetNamespace( $this->namespace );
 			}
-			if( !is_null( $this->rootpage ) ) {
+			if ( !is_null( $this->rootpage ) ) {
 				$statusRootPage = $importer->setTargetRootPage( $this->rootpage );
-				if( !$statusRootPage->isGood() ) {
+				if ( !$statusRootPage->isGood() ) {
 					$out->wrapWikiMsg( "<p class=\"error\">\n$1\n</p>", array( 'import-options-wrong', $statusRootPage->getWikiText(), count( $statusRootPage->getErrorsArray() ) ) );
 					return;
 				}
@@ -168,7 +168,7 @@ class SpecialImport extends SpecialPage {
 			if ( $exception ) {
 				# No source or XML parse error
 				$out->wrapWikiMsg( "<p class=\"error\">\n$1\n</p>", array( 'importfailed', $exception->getMessage() ) );
-			} elseif( !$result->isGood() ) {
+			} elseif ( !$result->isGood() ) {
 				# Zero revisions
 				$out->wrapWikiMsg( "<p class=\"error\">\n$1\n</p>", array( 'importfailed', $result->getWikiText() ) );
 			} else {
@@ -186,7 +186,7 @@ class SpecialImport extends SpecialPage {
 		$user = $this->getUser();
 		$out = $this->getOutput();
 
-		if( $user->isAllowed( 'importupload' ) ) {
+		if ( $user->isAllowed( 'importupload' ) ) {
 			$out->addHTML(
 				Xml::fieldset( $this->msg( 'import-upload' )->text() ) .
 				Xml::openElement( 'form', array( 'enctype' => 'multipart/form-data', 'method' => 'post',
@@ -234,15 +234,15 @@ class SpecialImport extends SpecialPage {
 				Xml::closeElement( 'fieldset' )
 			);
 		} else {
-			if( empty( $wgImportSources ) ) {
+			if ( empty( $wgImportSources ) ) {
 				$out->addWikiMsg( 'importnosources' );
 			}
 		}
 
-		if( $user->isAllowed( 'import' ) && !empty( $wgImportSources ) ) {
+		if ( $user->isAllowed( 'import' ) && !empty( $wgImportSources ) ) {
 			# Show input field for import depth only if $wgExportMaxLinkDepth > 0
 			$importDepth = '';
-			if( $wgExportMaxLinkDepth > 0 ) {
+			if ( $wgExportMaxLinkDepth > 0 ) {
 				$importDepth = "<tr>
 							<td class='mw-label'>" .
 								$this->msg( 'export-pagelinks' )->parse() .
@@ -268,7 +268,7 @@ class SpecialImport extends SpecialPage {
 					<td class='mw-input'>" .
 						Xml::openElement( 'select', array( 'name' => 'interwiki', 'id' => 'interwiki' ) )
 			);
-			foreach( $wgImportSources as $prefix ) {
+			foreach ( $wgImportSources as $prefix ) {
 				$selected = ( $this->interwiki === $prefix ) ? ' selected="selected"' : '';
 				$out->addHTML( Xml::option( $prefix, $prefix, $selected ) );
 			}
@@ -303,8 +303,8 @@ class SpecialImport extends SpecialPage {
 								'selected' => $this->namespace,
 								'all' => '',
 							), array(
-								'name'  => 'namespace',
-								'id'    => 'namespace',
+								'name' => 'namespace',
+								'id' => 'namespace',
 								'class' => 'namespaceselector',
 							)
 						) .
@@ -403,14 +403,14 @@ class ImportReporter extends ContextSource {
 
 		$this->mPageCount++;
 
-		if( $successCount > 0 ) {
+		if ( $successCount > 0 ) {
 			$this->getOutput()->addHTML( "<li>" . Linker::linkKnown( $title ) . " " .
 				$this->msg( 'import-revision-count' )->numParams( $successCount )->escaped() .
 				"</li>\n"
 			);
 
 			$log = new LogPage( 'import' );
-			if( $this->mIsUpload ) {
+			if ( $this->mIsUpload ) {
 				$detail = $this->msg( 'import-logentry-upload-detail' )->numParams(
 					$successCount )->inContentLanguage()->text();
 				if ( $this->reason ) {
@@ -450,7 +450,7 @@ class ImportReporter extends ContextSource {
 		if ( $this->mLogItemCount > 0 ) {
 			$msg = $this->msg( 'imported-log-entries' )->numParams( $this->mLogItemCount )->parse();
 			$out->addHTML( Xml::tags( 'li', null, $msg ) );
-		} elseif( $this->mPageCount == 0 && $this->mLogItemCount == 0 ) {
+		} elseif ( $this->mPageCount == 0 && $this->mLogItemCount == 0 ) {
 			$out->addHTML( "</ul>\n" );
 			return Status::newFatal( 'importnopages' );
 		}

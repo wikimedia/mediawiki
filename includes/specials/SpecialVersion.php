@@ -55,7 +55,7 @@ class SpecialVersion extends SpecialPage {
 		$out = $this->getOutput();
 		$out->allowClickjacking();
 
-		if( $par !== 'Credits' ) {
+		if ( $par !== 'Credits' ) {
 			$text =
 				$this->getMediaWikiCredits() .
 				$this->softwareInformation() .
@@ -159,7 +159,7 @@ class SpecialVersion extends SpecialPage {
 					<th>" . wfMessage( 'version-software-version' )->text() . "</th>
 				</tr>\n";
 
-		foreach( $software as $name => $version ) {
+		foreach ( $software as $name => $version ) {
 			$out .= "<tr>
 					<td>" . $name . "</td>
 					<td dir=\"ltr\">" . $version . "</td>
@@ -218,11 +218,11 @@ class SpecialVersion extends SpecialPage {
 		wfProfileIn( __METHOD__ );
 
 		$gitVersion = self::getVersionLinkedGit();
-		if( $gitVersion ) {
+		if ( $gitVersion ) {
 			$v = $gitVersion;
 		} else {
 			$svnVersion = self::getVersionLinkedSvn();
-			if( $svnVersion ) {
+			if ( $svnVersion ) {
 				$v = $svnVersion;
 			} else {
 				$v = $wgVersion; // fallback
@@ -240,7 +240,7 @@ class SpecialVersion extends SpecialPage {
 		global $IP;
 
 		$info = self::getSvnInfo( $IP );
-		if( !isset( $info['checkout-rev'] ) ) {
+		if ( !isset( $info['checkout-rev'] ) ) {
 			return false;
 		}
 
@@ -265,7 +265,7 @@ class SpecialVersion extends SpecialPage {
 	private static function getwgVersionLinked() {
 		global $wgVersion;
 		$versionUrl = "";
-		if( wfRunHooks( 'SpecialVersionVersionUrl', array( $wgVersion, &$versionUrl ) ) ) {
+		if ( wfRunHooks( 'SpecialVersionVersionUrl', array( $wgVersion, &$versionUrl ) ) ) {
 			$versionParts = array();
 			preg_match( "/^(\d+\.\d+)/", $wgVersion, $versionParts );
 			$versionUrl = "https://www.mediawiki.org/wiki/MediaWiki_{$versionParts[1]}";
@@ -282,7 +282,7 @@ class SpecialVersion extends SpecialPage {
 
 		$gitInfo = new GitInfo( $IP );
 		$headSHA1 = $gitInfo->getHeadSHA1();
-		if( !$headSHA1 ) {
+		if ( !$headSHA1 ) {
 			return false;
 		}
 
@@ -407,7 +407,7 @@ class SpecialVersion extends SpecialPage {
 		}
 
 		$fhooks = $wgParser->getFunctionHooks();
-		if( count( $fhooks ) ) {
+		if ( count( $fhooks ) ) {
 			$out .= $this->openExtType( $this->msg( 'version-parser-function-hooks' )->text(), 'parser-function-hooks' );
 			$out .= '<tr><td colspan="4">' . $this->listToText( $fhooks ) . "</td></tr>\n";
 		}
@@ -452,7 +452,7 @@ class SpecialVersion extends SpecialPage {
 	 * @return int
 	 */
 	function compare( $a, $b ) {
-		if( $a['name'] === $b['name'] ) {
+		if ( $a['name'] === $b['name'] ) {
 			return 0;
 		} else {
 			return $this->getLanguage()->lc( $a['name'] ) > $this->getLanguage()->lc( $b['name'] )
@@ -486,7 +486,7 @@ class SpecialVersion extends SpecialPage {
 				}
 				$gitHeadCommitDate = $gitInfo->getHeadCommitDate();
 				if ( $gitHeadCommitDate ) {
-					$vcsText .= "<br/>" .  $wgLang->timeanddate( $gitHeadCommitDate, true );
+					$vcsText .= "<br/>" . $wgLang->timeanddate( $gitHeadCommitDate, true );
 				}
 			} else {
 				$svnInfo = self::getSvnInfo( dirname( $extension['path'] ) );
@@ -517,11 +517,11 @@ class SpecialVersion extends SpecialPage {
 		# Make description text.
 		$description = isset ( $extension['description'] ) ? $extension['description'] : '';
 
-		if( isset ( $extension['descriptionmsg'] ) ) {
+		if ( isset ( $extension['descriptionmsg'] ) ) {
 			# Look for a localized description.
 			$descriptionMsg = $extension['descriptionmsg'];
 
-			if( is_array( $descriptionMsg ) ) {
+			if ( is_array( $descriptionMsg ) ) {
 				$descriptionMsgKey = $descriptionMsg[0]; // Get the message key
 				array_shift( $descriptionMsg ); // Shift out the message key to get the parameters only
 				array_map( "htmlspecialchars", $descriptionMsg ); // For sanity
@@ -576,21 +576,22 @@ class SpecialVersion extends SpecialPage {
 
 			$ret .= Xml::closeElement( 'table' );
 			return $ret;
-		} else
+		} else {
 			return '';
+		}
 	}
 
 	private function openExtType( $text, $name = null ) {
 		$opt = array( 'colspan' => 4 );
 		$out = '';
 
-		if( $this->firstExtOpened ) {
+		if ( $this->firstExtOpened ) {
 			// Insert a spacing line
 			$out .= '<tr class="sv-space">' . Html::element( 'td', $opt ) . "</tr>\n";
 		}
 		$this->firstExtOpened = true;
 
-		if( $name ) {
+		if ( $name ) {
 			$opt['id'] = "sv-$name";
 		}
 
@@ -617,7 +618,7 @@ class SpecialVersion extends SpecialPage {
 	 */
 	function listAuthors( $authors ) {
 		$list = array();
-		foreach( (array)$authors as $item ) {
+		foreach ( (array)$authors as $item ) {
 			if ( $item == '...' ) {
 				$list[] = $this->msg( 'version-poweredby-others' )->text();
 			} elseif ( substr( $item, -5 ) == ' ...]' ) {
@@ -662,16 +663,16 @@ class SpecialVersion extends SpecialPage {
 	 * @return Mixed
 	 */
 	public static function arrayToString( $list ) {
-		if( is_array( $list ) && count( $list ) == 1 ) {
+		if ( is_array( $list ) && count( $list ) == 1 ) {
 			$list = $list[0];
 		}
-		if( is_object( $list ) ) {
+		if ( is_object( $list ) ) {
 			$class = wfMessage( 'parentheses' )->params( get_class( $list ) )->escaped();
 			return $class;
 		} elseif ( !is_array( $list ) ) {
 			return $list;
 		} else {
-			if( is_object( $list[0] ) ) {
+			if ( is_object( $list[0] ) ) {
 				$class = get_class( $list[0] );
 			} else {
 				$class = $list[0];
@@ -700,7 +701,7 @@ class SpecialVersion extends SpecialPage {
 		// http://svnbook.red-bean.com/nightly/en/svn.developer.insidewc.html
 		$entries = $dir . '/.svn/entries';
 
-		if( !file_exists( $entries ) ) {
+		if ( !file_exists( $entries ) ) {
 			return false;
 		}
 
@@ -710,9 +711,9 @@ class SpecialVersion extends SpecialPage {
 		}
 
 		// check if file is xml (subversion release <= 1.3) or not (subversion release = 1.4)
-		if( preg_match( '/^<\?xml/', $lines[0] ) ) {
+		if ( preg_match( '/^<\?xml/', $lines[0] ) ) {
 			// subversion is release <= 1.3
-			if( !function_exists( 'simplexml_load_file' ) ) {
+			if ( !function_exists( 'simplexml_load_file' ) ) {
 				// We could fall back to expat... YUCK
 				return false;
 			}
@@ -722,11 +723,11 @@ class SpecialVersion extends SpecialPage {
 			$xml = simplexml_load_file( $entries );
 			wfRestoreWarnings();
 
-			if( $xml ) {
-				foreach( $xml->entry as $entry ) {
-					if( $xml->entry[0]['name'] == '' ) {
+			if ( $xml ) {
+				foreach ( $xml->entry as $entry ) {
+					if ( $xml->entry[0]['name'] == '' ) {
 						// The directory entry should always have a revision marker.
-						if( $entry['revision'] ) {
+						if ( $entry['revision'] ) {
 							return array( 'checkout-rev' => intval( $entry['revision'] ) );
 						}
 					}

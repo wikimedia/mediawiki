@@ -73,7 +73,7 @@ class FewestrevisionsPage extends QueryPage {
 		global $wgContLang;
 
 		$nt = Title::makeTitleSafe( $result->namespace, $result->title );
-		if( !$nt ) {
+		if ( !$nt ) {
 			return Html::element( 'span', array( 'class' => 'mw-invalidtitle' ),
 				Linker::getInvalidTitleDescription( $this->getContext(), $result->namespace, $result->title ) );
 		}

@@ -55,7 +55,7 @@ class LinkSearchPage extends QueryPage {
 		$namespace = $request->getIntorNull( 'namespace', null );
 
 		$protocols_list = array();
-		foreach( $wgUrlProtocols as $prot ) {
+		foreach ( $wgUrlProtocols as $prot ) {
 			if ( $prot !== '//' ) {
 				$protocols_list[] = $prot;
 			}
@@ -111,14 +111,15 @@ class LinkSearchPage extends QueryPage {
 			Html::closeElement( 'form' ) . "\n";
 		$out->addHTML( $s );
 
-		if( $target != '' ) {
+		if ( $target != '' ) {
 			$this->setParams( array(
 				'query' => $target2,
 				'namespace' => $namespace,
 				'protocol' => $protocol ) );
 			parent::execute( $par );
-			if( $this->mMungedQuery === false )
+			if ( $this->mMungedQuery === false ) {
 				$out->addWikiMsg( 'linksearch-error' );
+			}
 		}
 	}
 
@@ -155,7 +156,7 @@ class LinkSearchPage extends QueryPage {
 		global $wgMiserMode;
 		$params = array();
 		$params['target'] = $this->mProt . $this->mQuery;
-		if( isset( $this->mNs ) && !$wgMiserMode ) {
+		if ( isset( $this->mNs ) && !$wgMiserMode ) {
 			$params['namespace'] = $this->mNs;
 		}
 		return $params;
@@ -168,9 +169,10 @@ class LinkSearchPage extends QueryPage {
 		// index-based-only lookup would be done
 		list( $this->mMungedQuery, $clause ) = self::mungeQuery(
 				$this->mQuery, $this->mProt );
-		if( $this->mMungedQuery === false )
+		if ( $this->mMungedQuery === false ) {
 			// Invalid query; return no results
 			return array( 'tables' => 'page', 'fields' => 'page_id', 'conds' => '0=1' );
+		}
 
 		$stripped = LinkFilter::keepOneWildcard( $this->mMungedQuery );
 		$like = $dbr->buildLike( $stripped );
@@ -208,7 +210,7 @@ class LinkSearchPage extends QueryPage {
 	 */
 	function doQuery( $offset = false, $limit = false ) {
 		list( $this->mMungedQuery, ) = LinkSearchPage::mungeQuery( $this->mQuery, $this->mProt );
-		if( $this->mMungedQuery === false ) {
+		if ( $this->mMungedQuery === false ) {
 			$this->getOutput()->addWikiMsg( 'linksearch-error' );
 		} else {
 			// For debugging

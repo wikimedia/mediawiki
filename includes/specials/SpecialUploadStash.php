@@ -222,7 +222,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		global $wgUploadStashScalerBaseUrl;
 		$scalerBaseUrl = $wgUploadStashScalerBaseUrl;
 
-		if( preg_match( '/^\/\//', $scalerBaseUrl ) ) {
+		if ( preg_match( '/^\/\//', $scalerBaseUrl ) ) {
 			// this is apparently a protocol-relative URL, which makes no sense in this context,
 			// since this is used for communication that's internal to the application.
 			// default to http.
