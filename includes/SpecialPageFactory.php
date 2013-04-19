@@ -163,6 +163,7 @@ class SpecialPageFactory {
 		'Mypage'                    => 'SpecialMypage',
 		'Mytalk'                    => 'SpecialMytalk',
 		'Myuploads'                 => 'SpecialMyuploads',
+		'AllMyUploads'              => 'SpecialAllMyUploads',
 		'PermanentLink'             => 'SpecialPermanentLink',
 		'Redirect'                  => 'SpecialRedirect',
 		'Revisiondelete'            => 'SpecialRevisionDelete',
