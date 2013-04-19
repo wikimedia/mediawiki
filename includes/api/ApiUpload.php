@@ -56,7 +56,7 @@ class ApiUpload extends ApiBase {
 		$this->mParams['chunk'] = $request->getFileName( 'chunk' );
 
 		// Copy the session key to the file key, for backward compatibility.
-		if( !$this->mParams['filekey'] && $this->mParams['sessionkey'] ) {
+		if ( !$this->mParams['filekey'] && $this->mParams['sessionkey'] ) {
 			$this->mParams['filekey'] = $this->mParams['sessionkey'];
 		}
 
@@ -82,7 +82,7 @@ class ApiUpload extends ApiBase {
 		// Check if the uploaded file is sane
 		if ( $this->mParams['chunk'] ) {
 			$maxSize = $this->mUpload->getMaxUploadSize();
-			if( $this->mParams['filesize'] > $maxSize ) {
+			if ( $this->mParams['filesize'] > $maxSize ) {
 				$this->dieUsage( 'The file you submitted was too large', 'file-too-large' );
 			}
 			if ( !$this->mUpload->getTitle() ) {
@@ -354,7 +354,7 @@ class ApiUpload extends ApiBase {
 		if ( $this->mParams['chunk'] ) {
 			// Chunk upload
 			$this->mUpload = new UploadFromChunks();
-			if( isset( $this->mParams['filekey'] ) ) {
+			if ( isset( $this->mParams['filekey'] ) ) {
 				// handle new chunk
 				$this->mUpload->continueChunks(
 					$this->mParams['filename'],

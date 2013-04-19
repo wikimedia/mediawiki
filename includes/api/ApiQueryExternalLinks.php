@@ -88,7 +88,7 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 			$entry = array();
 			$to = $row->el_to;
 			// expand protocol-relative urls
-			if( $params['expandurl'] ) {
+			if ( $params['expandurl'] ) {
 				$to = wfExpandUrl( $to, PROTO_CANONICAL );
 			}
 			ApiResult::setContent( $entry, $to );

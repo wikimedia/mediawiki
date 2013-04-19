@@ -127,7 +127,7 @@ class ApiQueryUsers extends ApiQueryBase {
 				$this->addFields( array( 'user_name', 'ug_group' ) );
 				$userGroupsRes = $this->select( __METHOD__ );
 
-				foreach( $userGroupsRes as $row ) {
+				foreach ( $userGroupsRes as $row ) {
 					$userGroups[$row->user_name][] = $row->ug_group;
 				}
 			}

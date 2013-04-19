@@ -170,15 +170,15 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$data['lang'] = $GLOBALS['wgLanguageCode'];
 
 		$fallbacks = array();
-		foreach( $wgContLang->getFallbackLanguages() as $code ) {
+		foreach ( $wgContLang->getFallbackLanguages() as $code ) {
 			$fallbacks[] = array( 'code' => $code );
 		}
 		$data['fallback'] = $fallbacks;
 		$this->getResult()->setIndexedTagName( $data['fallback'], 'lang' );
 
-		if( $wgContLang->hasVariants() ) {
+		if ( $wgContLang->hasVariants() ) {
 			$variants = array();
-			foreach( $wgContLang->getVariants() as $code ) {
+			foreach ( $wgContLang->getVariants() as $code ) {
 				$variants[] = array( 'code' => $code );
 			}
 			$data['variants'] = $variants;
@@ -345,10 +345,10 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				$val['language'] = $langNames[$prefix];
 			}
 			$val['url'] = wfExpandUrl( $row['iw_url'], PROTO_CURRENT );
-			if( isset( $row['iw_wikiid'] ) ) {
+			if ( isset( $row['iw_wikiid'] ) ) {
 				$val['wikiid'] = $row['iw_wikiid'];
 			}
-			if( isset( $row['iw_api'] ) ) {
+			if ( isset( $row['iw_api'] ) ) {
 				$val['api'] = $row['iw_api'];
 			}
 
@@ -520,7 +520,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 		$data = array(
 			'url' => $url ? $url : '',
-			'text' => $text ?  $text : ''
+			'text' => $text ? $text : ''
 		);
 
 		return $this->getResult()->addValue( 'query', $property, $data );

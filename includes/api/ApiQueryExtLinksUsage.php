@@ -123,7 +123,7 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 				if ( $fld_url ) {
 					$to = $row->el_to;
 					// expand protocol-relative urls
-					if( $params['expandurl'] ) {
+					if ( $params['expandurl'] ) {
 						$to = wfExpandUrl( $to, PROTO_CANONICAL );
 					}
 					$vals['url'] = $to;

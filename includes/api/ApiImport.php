@@ -66,7 +66,7 @@ class ApiImport extends ApiBase {
 		}
 		if ( isset( $params['rootpage'] ) ) {
 			$statusRootPage = $importer->setTargetRootPage( $params['rootpage'] );
-			if( !$statusRootPage->isGood() ) {
+			if ( !$statusRootPage->isGood() ) {
 				$this->dieUsageMsg( $statusRootPage->getErrorsArray() );
 			}
 		}

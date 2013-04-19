@@ -788,7 +788,7 @@ class ApiMain extends ApiBase {
 
 		// Allow extensions to stop execution for arbitrary reasons.
 		$message = false;
-		if( !wfRunHooks( 'ApiCheckCanExecute', array( $module, $user, &$message ) ) ) {
+		if ( !wfRunHooks( 'ApiCheckCanExecute', array( $module, $user, &$message ) ) ) {
 			$this->dieUsageMsg( $message );
 		}
 	}
@@ -950,7 +950,7 @@ class ApiMain extends ApiBase {
 			$unusedParams = array_diff( $allParams, $paramsUsed );
 		}
 
-		if( count( $unusedParams ) ) {
+		if ( count( $unusedParams ) ) {
 			$s = count( $unusedParams ) > 1 ? 's' : '';
 			$this->setWarning( "Unrecognized parameter$s: '" . implode( $unusedParams, "', '" ) . "'" );
 		}
@@ -963,7 +963,7 @@ class ApiMain extends ApiBase {
 	 */
 	protected function printResult( $isError ) {
 		global $wgDebugAPI;
-		if( $wgDebugAPI !== false ) {
+		if ( $wgDebugAPI !== false ) {
 			$this->setWarning( 'SECURITY WARNING: $wgDebugAPI is enabled' );
 		}
 
@@ -1008,7 +1008,7 @@ class ApiMain extends ApiBase {
 				ApiBase::PARAM_DFLT => 'help',
 				ApiBase::PARAM_TYPE => $this->mModuleMgr->getNames( 'action' )
 			),
-			'maxlag'  => array(
+			'maxlag' => array(
 				ApiBase::PARAM_TYPE => 'integer'
 			),
 			'smaxage' => array(
@@ -1020,7 +1020,7 @@ class ApiMain extends ApiBase {
 				ApiBase::PARAM_DFLT => 0
 			),
 			'requestid' => null,
-			'servedby'  => false,
+			'servedby' => false,
 			'origin' => null,
 		);
 	}

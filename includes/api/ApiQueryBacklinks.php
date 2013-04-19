@@ -229,10 +229,10 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		$orderBy = array();
 		$sort = ( $this->params['dir'] == 'descending' ? ' DESC' : '' );
 		// Don't order by namespace/title if it's constant in the WHERE clause
-		if( $this->hasNS && count( array_unique( $allRedirNs ) ) != 1 ) {
+		if ( $this->hasNS && count( array_unique( $allRedirNs ) ) != 1 ) {
 			$orderBy[] = $this->bl_ns . $sort;
 		}
-		if( count( array_unique( $allRedirDBkey ) ) != 1 ) {
+		if ( count( array_unique( $allRedirDBkey ) ) != 1 ) {
 			$orderBy[] = $this->bl_title . $sort;
 		}
 		$orderBy[] = $this->bl_from . $sort;

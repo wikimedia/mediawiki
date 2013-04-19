@@ -52,7 +52,7 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 		global $wgQueryPages;
 		$this->qpMap = array();
 		foreach ( $wgQueryPages as $page ) {
-			if( !in_array( $page[1], $this->uselessQueryPages ) ) {
+			if ( !in_array( $page[1], $this->uselessQueryPages ) ) {
 				$this->qpMap[$page[1]] = $page[0];
 			}
 		}

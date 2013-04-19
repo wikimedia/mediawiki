@@ -241,7 +241,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				break;
 			case 'rights':
 				$vals2 = array();
-				if( $legacy ) {
+				if ( $legacy ) {
 					list( $vals2['old'], $vals2['new'] ) = $params;
 				} else {
 					$vals2['new'] = implode( ', ', $params['5::newgroups'] );

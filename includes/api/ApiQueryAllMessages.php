@@ -87,7 +87,7 @@ class ApiQueryAllMessages extends ApiQueryBase {
 			foreach ( $messages_target as $message ) {
 				// === 0: must be at beginning of string (position 0)
 				if ( strpos( $message, $params['prefix'] ) === 0 ) {
-					if( !$skip ) {
+					if ( !$skip ) {
 						$skip = true;
 					}
 					$messages_filtered[] = $message;
