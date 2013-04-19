@@ -3324,7 +3324,7 @@ $templates
 				foreach ( $wgAdvertisedFeedTypes as $format ) {
 					$tags[] = $this->feedLink(
 						$format,
-						$rctitle->getLocalURL( "feed={$format}" ),
+						$rctitle->getLocalURL( array( 'feed' => $format ) ),
 						$this->msg( "site-{$format}-feed", $wgSitename )->text() # For grep: 'site-rss-feed', 'site-atom-feed'.
 					);
 				}

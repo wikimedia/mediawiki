@@ -194,10 +194,10 @@ class ChangesFeed {
 			}
 
 			if ( $obj->rc_this_oldid ) {
-				$url = $title->getFullURL(
-					'diff=' . $obj->rc_this_oldid .
-					'&oldid=' . $obj->rc_last_oldid
-				);
+				$url = $title->getFullURL( array(
+					'diff' => $obj->rc_this_oldid,
+					'oldid' => $obj->rc_last_oldid,
+				) );
 			} else {
 				// log entry or something like that.
 				$url = $title->getFullURL();

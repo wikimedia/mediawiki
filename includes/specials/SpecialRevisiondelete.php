@@ -312,10 +312,11 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			$this->getOutput()->addHTML(
 				Xml::openElement( 'form', array(
 					'method' => 'POST',
-					'action' => $this->getTitle()->getLocalURL(
-						'target=' . urlencode( $this->targetObj->getPrefixedDBkey() ) .
-						'&file=' . urlencode( $archiveName ) .
-						'&token=' . urlencode( $user->getEditToken( $archiveName ) ) )
+					'action' => $this->getTitle()->getLocalURL( array(
+							'target' => $this->targetObj->getPrefixedDBkey(),
+							'file' => $archiveName,
+							'token' => $user->getEditToken( $archiveName ),
+						) )
 					)
 				) .
 				Xml::submitButton( $this->msg( 'revdelete-show-file-submit' )->text() ) .

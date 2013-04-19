@@ -1115,10 +1115,11 @@ class SpecialUndelete extends SpecialPage {
 		$out->addHTML(
 			Xml::openElement( 'form', array(
 					'method' => 'POST',
-					'action' => $this->getTitle()->getLocalURL(
-						'target=' . urlencode( $this->mTarget ) .
-							'&file=' . urlencode( $key ) .
-							'&token=' . urlencode( $user->getEditToken( $key ) ) )
+					'action' => $this->getTitle()->getLocalURL( array(
+						'target' => $this->mTarget,
+						'file' => $key,
+						'token' => $user->getEditToken( $key ),
+					) ),
 				)
 			) .
 				Xml::submitButton( $this->msg( 'undelete-show-file-submit' )->text() ) .

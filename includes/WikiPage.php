@@ -946,7 +946,7 @@ class WikiPage implements Page, IDBAccessObject {
 				// This can be hard to reverse and may produce loops,
 				// so they may be disabled in the site configuration.
 				$source = $this->mTitle->getFullURL( 'redirect=no' );
-				return $rt->getFullURL( 'rdfrom=' . urlencode( $source ) );
+				return $rt->getFullURL( array( 'rdfrom' => $source ) );
 			} else {
 				// External pages pages without "local" bit set are not valid
 				// redirect targets
