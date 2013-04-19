@@ -820,7 +820,7 @@ $2
 臨時密碼：$2',
 'passwordreset-emailsent' => '已發送重置密碼電郵。',
 'passwordreset-emailsent-capture' => '重置密碼電子郵件已發送，並在下面顯示。',
-'passwordreset-emailerror-capture' => '生成的重置密碼電子郵件如下所示，但發送失敗：$1',
+'passwordreset-emailerror-capture' => '生成的重置密碼電子郵件如下所示，但發送給{{GENDER:$2|用戶}}失敗：$1',
 
 # Special:ChangeEmail
 'changeemail' => '更改電郵地址',

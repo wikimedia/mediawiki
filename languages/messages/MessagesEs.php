@@ -930,7 +930,7 @@ ignorar este mensaje y continuar usando tu contraseña anterior.',
 Contraseña temporal: $2',
 'passwordreset-emailsent' => 'Se ha enviado un correo electrónico para el restablecimiento de tu contraseña.',
 'passwordreset-emailsent-capture' => 'Se ha enviado un correo para el restablecimiento de la contraseña, el cual se muestra a continuación.',
-'passwordreset-emailerror-capture' => 'Se generó un correo electrónico de restablecimiento de contraseña, que se muestra a continuación, pero el envío al usuario falló: $1',
+'passwordreset-emailerror-capture' => 'Se generó un correo electrónico de restablecimiento de contraseña, que se muestra a continuación, pero el envío {{GENDER:$2|al usuario|a la usuaria}} falló. $1',
 
 # Special:ChangeEmail
 'changeemail' => 'Cambiar la dirección de correo electrónico',
