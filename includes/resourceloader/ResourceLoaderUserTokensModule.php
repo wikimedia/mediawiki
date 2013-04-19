@@ -54,9 +54,7 @@ class ResourceLoaderUserTokensModule extends ResourceLoaderModule {
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
 		return Xml::encodeJsCall( 'mw.user.tokens.set',
-			array( $this->contextUserTokens( $context ) ),
-			ResourceLoader::inDebugMode()
-		);
+			array( $this->contextUserTokens( $context ) ) );
 	}
 
 	/**

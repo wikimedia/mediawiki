@@ -1322,10 +1322,8 @@ abstract class QuickTemplate {
 
 	/**
 	 * @private
-	 * @deprecated since 1.21; use Xml::encodeJsVar() or Xml::encodeJsCall() instead
 	 */
 	function jstext( $str ) {
-		wfDeprecated( __METHOD__, '1.21' );
 		echo Xml::escapeJsString( $this->data[$str] );
 	}
 

@@ -678,6 +678,8 @@ $wgAutoloadLocalClasses = array(
 
 	# includes/json
 	'FormatJson' => 'includes/json/FormatJson.php',
+	'Services_JSON' => 'includes/json/Services_JSON.php',
+	'Services_JSON_Error' => 'includes/json/Services_JSON.php',
 
 	# includes/libs
 	'CSSJanus' => 'includes/libs/CSSJanus.php',

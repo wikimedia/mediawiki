@@ -56,9 +56,7 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 	public function getScript( ResourceLoaderContext $context ) {
 		global $wgUser;
 		return Xml::encodeJsCall( 'mw.user.options.set',
-			array( $wgUser->getOptions() ),
-			ResourceLoader::inDebugMode()
-		);
+			array( $wgUser->getOptions() ) );
 	}
 
 	/**
