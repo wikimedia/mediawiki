@@ -227,7 +227,7 @@ class MediaWiki {
 		if ( $title->getInterwiki() != '' ) {
 			$rdfrom = $request->getVal( 'rdfrom' );
 			if ( $rdfrom ) {
-				$url = $title->getFullURL( 'rdfrom=' . urlencode( $rdfrom ) );
+				$url = $title->getFullURL( array( 'rdfrom' => $rdfrom ) );
 			} else {
 				$query = $request->getValues();
 				unset( $query['title'] );
