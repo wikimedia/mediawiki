@@ -28,6 +28,8 @@ class MediaWikiParserTest {
 /**
  * @group Database
  * @group Parser
+ * @group ParserTests
+ * @group ParserTests_$parserTestClassName
  */
 class $parserTestClassName extends NewParserTest {
 	protected \$file = '$escapedFileName';
