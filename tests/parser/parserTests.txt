@@ -7400,9 +7400,9 @@ Special:RecentChanges/param
 !! options
 msg
 !! input
-{{#special:foobarnonexistent}}
+{{#special:foobar nonexistent}}
 !! result
-No such special page
+Special:Foobar nonexistent
 !! end
 
 !! test
@@ -7430,9 +7430,9 @@ Special:RecentChanges/param
 !! options
 msg
 !! input
-{{#speciale:foobarnonexistent}}
+{{#speciale:foobar nonexistent}}
 !! result
-No_such_special_page
+Special:Foobar_nonexistent
 !! end
 
 ###
@@ -13966,6 +13966,19 @@ Padleft and padright as substr
 !! result
 <p>abc
 abc
+</p>
+!! end
+
+!!test
+Special parser function
+!! input
+{{#special:RandomPage}}
+{{#special:BaDtItLe}}
+{{#special:Foobar}}
+!! result
+<p>Special:Random
+Special:Badtitle
+Special:Foobar
 </p>
 !! end
 
