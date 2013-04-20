@@ -92,7 +92,7 @@ abstract class ImageHandler extends MediaHandler {
 
 		if ( !isset( $params['page'] ) ) {
 			$params['page'] = 1;
-		} else  {
+		} else {
 			if ( $params['page'] > $image->pageCount() ) {
 				$params['page'] = $image->pageCount();
 			}
@@ -160,7 +160,7 @@ abstract class ImageHandler extends MediaHandler {
 		$width = intval( $width );
 
 		# Sanity check $width
-		if( $width <= 0 ) {
+		if ( $width <= 0 ) {
 			wfDebug( __METHOD__ . ": Invalid destination width: $width\n" );
 			return false;
 		}
@@ -189,7 +189,7 @@ abstract class ImageHandler extends MediaHandler {
 		}
 		$url = wfAppendQuery( $script, $this->getScriptParams( $params ) );
 
-		if( $image->mustRender() || $params['width'] < $image->getWidth() ) {
+		if ( $image->mustRender() || $params['width'] < $image->getWidth() ) {
 			return new ThumbnailImage( $image, $url, false, $params );
 		}
 	}

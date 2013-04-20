@@ -46,9 +46,9 @@ class PostgresUpdater extends DatabaseUpdater {
 			# r15791 Change reserved word table names "user" and "text"
 			array( 'renameTable', 'user', 'mwuser' ),
 			array( 'renameTable', 'text', 'pagecontent' ),
-			array( 'renameIndex', 'mwuser', 'user_pkey', 'mwuser_pkey'),
+			array( 'renameIndex', 'mwuser', 'user_pkey', 'mwuser_pkey' ),
 			array( 'renameIndex', 'mwuser', 'user_user_name_key', 'mwuser_user_name_key' ),
-			array( 'renameIndex', 'pagecontent','text_pkey', 'pagecontent_pkey' ),
+			array( 'renameIndex', 'pagecontent', 'text_pkey', 'pagecontent_pkey' ),
 
 			# renamed sequences
 			array( 'renameSequence', 'ipblocks_ipb_id_val', 'ipblocks_ipb_id_seq'         ),
@@ -252,9 +252,9 @@ class PostgresUpdater extends DatabaseUpdater {
 			),
 			'CREATE INDEX cl_sortkey ON "categorylinks" USING "btree" ("cl_to", "cl_sortkey", "cl_from")' ),
 			array( 'checkIndex', 'iwl_prefix_title_from', array(
-				array('iwl_prefix', 'text_ops', 'btree', 0),
-				array('iwl_title', 'text_ops', 'btree', 0),
-				array('iwl_from', 'int4_ops', 'btree', 0),
+				array( 'iwl_prefix', 'text_ops', 'btree', 0 ),
+				array( 'iwl_title', 'text_ops', 'btree', 0 ),
+				array( 'iwl_from', 'int4_ops', 'btree', 0 ),
 			),
 			'CREATE INDEX iwl_prefix_title_from ON "iwlinks" USING "btree" ("iwl_prefix", "iwl_title", "iwl_from")' ),
 			array( 'checkIndex', 'logging_times', array(
@@ -308,11 +308,11 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'checkOiNameConstraint' ),
 			array( 'checkPageDeletedTrigger' ),
 			array( 'checkRevUserFkey' ),
-			array( 'dropIndex', 'ipblocks', 'ipb_address'),
+			array( 'dropIndex', 'ipblocks', 'ipb_address' ),
 			array( 'checkIndex', 'ipb_address_unique', array(
 				array( 'ipb_address', 'text_ops', 'btree', 0 ),
-				array( 'ipb_user',    'int4_ops', 'btree', 0 ),
-				array( 'ipb_auto',    'int2_ops', 'btree', 0 ),
+				array( 'ipb_user', 'int4_ops', 'btree', 0 ),
+				array( 'ipb_auto', 'int2_ops', 'btree', 0 ),
 				array( 'ipb_anon_only', 'int2_ops', 'btree', 0 ),
 			),
 			'CREATE UNIQUE INDEX ipb_address_unique ON ipblocks (ipb_address,ipb_user,ipb_auto,ipb_anon_only)' ),
@@ -515,7 +515,7 @@ END;
 		if ( !$this->db->sequenceExists( $ns ) ) {
 			$this->output( "Creating sequence $ns\n" );
 			$this->db->query( "CREATE SEQUENCE $ns" );
-			if( $pkey !== false ) {
+			if ( $pkey !== false ) {
 				$this->setDefault( $table, $pkey, '"nextval"(\'"' . $ns . '"\'::"regclass")' );
 			}
 		}
@@ -538,7 +538,7 @@ END;
 			$old = $this->db->realTableName( $old, "quoted" );
 			$new = $this->db->realTableName( $new, "quoted" );
 			$this->db->query( "ALTER TABLE $old RENAME TO $new" );
-			if( $patch !== false ) {
+			if ( $patch !== false ) {
 				$this->applyPatch( $patch );
 			}
 		}
@@ -592,9 +592,9 @@ END;
 			exit( 1 );
 		}
 
-		if ( $fi->type() === $newtype )
+		if ( $fi->type() === $newtype ) {
 			$this->output( "...column '$table.$field' is already of type '$newtype'\n" );
-		else {
+		} else {
 			$this->output( "Changing column type of '$table.$field' from '{$fi->type()}' to '$newtype'\n" );
 			$sql = "ALTER TABLE $table ALTER $field TYPE $newtype";
 			if ( strlen( $default ) ) {

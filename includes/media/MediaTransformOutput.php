@@ -205,7 +205,7 @@ abstract class MediaTransformOutput {
 		if ( $this->page && $this->page !== 1 ) {
 			$query = 'page=' . urlencode( $this->page );
 		}
-		if( $params ) {
+		if ( $params ) {
 			$query .= $query ? '&' . $params : $params;
 		}
 		$attribs = array(
@@ -242,7 +242,7 @@ class ThumbnailImage extends MediaTransformOutput {
 		# Previous parameters:
 		#   $file, $url, $width, $height, $path = false, $page = false
 
-		if( is_array( $parameters ) ) {
+		if ( is_array( $parameters ) ) {
 			$defaults = array(
 				'page' => false
 			);

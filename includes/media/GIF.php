@@ -86,7 +86,7 @@ class GIFHandler extends BitmapHandler {
 		$ser = $image->getMetadata();
 		if ( $ser ) {
 			$metadata = unserialize( $ser );
-			if( $metadata['frameCount'] > 1 ) {
+			if ( $metadata['frameCount'] > 1 ) {
 				return true;
 			}
 		}

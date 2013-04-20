@@ -180,12 +180,12 @@ class XMPReader {
 		) {
 			// the is_array is just paranoia. It should always
 			// be an array.
-			foreach( $data['xmp-special']['LocationShown'] as $loc ) {
+			foreach ( $data['xmp-special']['LocationShown'] as $loc ) {
 				if ( !is_array( $loc ) ) {
 					// To avoid copying over the _type meta-fields.
 					continue;
 				}
-				foreach( $loc as $field => $val ) {
+				foreach ( $loc as $field => $val ) {
 					$data['xmp-general'][$field . 'Dest'][] = $val;
 				}
 			}
@@ -195,12 +195,12 @@ class XMPReader {
 		) {
 			// the is_array is just paranoia. It should always
 			// be an array.
-			foreach( $data['xmp-special']['LocationCreated'] as $loc ) {
+			foreach ( $data['xmp-special']['LocationCreated'] as $loc ) {
 				if ( !is_array( $loc ) ) {
 					// To avoid copying over the _type meta-fields.
 					continue;
 				}
-				foreach( $loc as $field => $val ) {
+				foreach ( $loc as $field => $val ) {
 					$data['xmp-general'][$field . 'Created'][] = $val;
 				}
 			}
@@ -391,7 +391,9 @@ class XMPReader {
 			throw new MWException( 'Unexpected character data before first rdf:Description element' );
 		}
 
-		if ( $this->mode[0] === self::MODE_IGNORE ) return;
+		if ( $this->mode[0] === self::MODE_IGNORE ) {
+			return;
+		}
 
 		if ( $this->mode[0] !== self::MODE_SIMPLE
 			&& $this->mode[0] !== self::MODE_QDESC

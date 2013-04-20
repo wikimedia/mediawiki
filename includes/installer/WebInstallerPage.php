@@ -254,7 +254,9 @@ class WebInstaller_Language extends WebInstallerPage {
 		$languages = Language::fetchLanguageNames();
 		ksort( $languages );
 		foreach ( $languages as $code => $lang ) {
-			if ( isset( $wgDummyLanguageCodes[$code] ) ) continue;
+			if ( isset( $wgDummyLanguageCodes[$code] ) ) {
+				continue;
+			}
 			$s .= "\n" . Xml::option( "$code - $lang", $code, $code == $selectedCode );
 		}
 		$s .= "\n</select>\n";
@@ -310,7 +312,7 @@ class WebInstaller_ExistingWiki extends WebInstallerPage {
 		$r = $this->parent->request;
 		if ( $r->wasPosted() ) {
 			$key = $r->getText( 'config_wgUpgradeKey' );
-			if( !$key || $key !== $vars['wgUpgradeKey'] ) {
+			if ( !$key || $key !== $vars['wgUpgradeKey'] ) {
 				$this->parent->showError( 'config-localsettings-badkey' );
 				$this->showKeyForm();
 				return 'output';
@@ -458,7 +460,7 @@ class WebInstaller_DBConnect extends WebInstallerPage {
 		// Give grep a chance to find the usages:
 		// config-support-mysql, config-support-postgres, config-support-oracle, config-support-sqlite
 		$dbSupport = '';
-		foreach( $this->parent->getDBTypes() as $type ) {
+		foreach ( $this->parent->getDBTypes() as $type ) {
 			$link = DatabaseBase::factory( $type )->getSoftwareLink();
 			$dbSupport .= wfMessage( "config-support-$type", $link )->plain() . "\n";
 		}
@@ -552,7 +554,7 @@ class WebInstaller_Upgrade extends WebInstallerPage {
 			if ( $result ) {
 				// If they're going to possibly regenerate LocalSettings, we
 				// need to create the upgrade/secret keys. Bug 26481
-				if( !$this->getVar( '_ExistingDBSettings' ) ) {
+				if ( !$this->getVar( '_ExistingDBSettings' ) ) {
 					$this->parent->generateKeys();
 				}
 				$this->setVar( '_UpgradeDone', true );
@@ -764,7 +766,7 @@ class WebInstaller_Name extends WebInstallerPage {
 		// Make sure it won't conflict with any existing namespaces
 		global $wgContLang;
 		$nsIndex = $wgContLang->getNsIndex( $name );
-		if( $nsIndex !== false && $nsIndex !== NS_PROJECT ) {
+		if ( $nsIndex !== false && $nsIndex !== NS_PROJECT ) {
 			$this->parent->showError( 'config-ns-conflict', $name );
 			$retVal = false;
 		}
@@ -812,13 +814,13 @@ class WebInstaller_Name extends WebInstallerPage {
 
 		// Validate e-mail if provided
 		$email = $this->getVar( '_AdminEmail' );
-		if( $email && !Sanitizer::validateEmail( $email ) ) {
+		if ( $email && !Sanitizer::validateEmail( $email ) ) {
 			$this->parent->showError( 'config-admin-error-bademail' );
 			$retVal = false;
 		}
 		// If they asked to subscribe to mediawiki-announce but didn't give
 		// an e-mail, show an error. Bug 29332
-		if( !$email && $this->getVar( '_Subscribe' ) ) {
+		if ( !$email && $this->getVar( '_Subscribe' ) ) {
 			$this->parent->showError( 'config-subscribe-noemail' );
 			$retVal = false;
 		}
@@ -911,10 +913,10 @@ class WebInstaller_Options extends WebInstallerPage {
 
 		$extensions = $this->parent->findExtensions();
 
-		if( $extensions ) {
+		if ( $extensions ) {
 			$extHtml = $this->getFieldSetStart( 'config-extensions' );
 
-			foreach( $extensions as $ext ) {
+			foreach ( $extensions as $ext ) {
 				$extHtml .= $this->parent->getCheckBox( array(
 					'var' => "ext-$ext",
 					'rawtext' => $ext,
@@ -974,7 +976,7 @@ class WebInstaller_Options extends WebInstallerPage {
 		);
 
 		$caches = array( 'none' );
-		if( count( $this->getVar( '_Caches' ) ) ) {
+		if ( count( $this->getVar( '_Caches' ) ) ) {
 			$caches[] = 'accel';
 		}
 		$caches[] = 'memcached';
@@ -987,7 +989,7 @@ class WebInstaller_Options extends WebInstallerPage {
 			// or going back!
 			$cacheval = 'none';
 		}
-		$hidden = ($cacheval == 'memcached') ? '' : 'display: none';
+		$hidden = ( $cacheval == 'memcached' ) ? '' : 'display: none';
 		$this->addHTML(
 			# Advanced settings
 			$this->getFieldSetStart( 'config-advanced-settings' ) .
@@ -1054,7 +1056,7 @@ class WebInstaller_Options extends WebInstallerPage {
 		} else {
 			$iframeAttribs['src'] = $this->getCCPartnerUrl();
 		}
-		$wrapperStyle = ($this->getVar( '_LicenseCode' ) == 'cc-choose') ? '' : 'display: none';
+		$wrapperStyle = ( $this->getVar( '_LicenseCode' ) == 'cc-choose' ) ? '' : 'display: none';
 
 		return "<div class=\"config-cc-wrapper\" id=\"config-cc-wrapper\" style=\"$wrapperStyle\">\n" .
 			Html::element( 'iframe', $iframeAttribs, '', false /* not short */ ) .
@@ -1139,31 +1141,31 @@ class WebInstaller_Options extends WebInstallerPage {
 
 		$extsAvailable = $this->parent->findExtensions();
 		$extsToInstall = array();
-		foreach( $extsAvailable as $ext ) {
-			if( $this->parent->request->getCheck( 'config_ext-' . $ext ) ) {
+		foreach ( $extsAvailable as $ext ) {
+			if ( $this->parent->request->getCheck( 'config_ext-' . $ext ) ) {
 				$extsToInstall[] = $ext;
 			}
 		}
 		$this->parent->setVar( '_Extensions', $extsToInstall );
 
-		if( $this->getVar( 'wgMainCacheType' ) == 'memcached' ) {
+		if ( $this->getVar( 'wgMainCacheType' ) == 'memcached' ) {
 			$memcServers = explode( "\n", $this->getVar( '_MemCachedServers' ) );
-			if( !$memcServers ) {
+			if ( !$memcServers ) {
 				$this->parent->showError( 'config-memcache-needservers' );
 				return false;
 			}
 
-			foreach( $memcServers as $server ) {
+			foreach ( $memcServers as $server ) {
 				$memcParts = explode( ":", $server, 2 );
 				if ( !isset( $memcParts[0] )
 						|| ( !IP::isValid( $memcParts[0] )
 							&& ( gethostbyname( $memcParts[0] ) == $memcParts[0] ) ) ) {
 					$this->parent->showError( 'config-memcache-badip', $memcParts[0] );
 					return false;
-				} elseif( !isset( $memcParts[1] )  ) {
+				} elseif ( !isset( $memcParts[1] ) ) {
 					$this->parent->showError( 'config-memcache-noport', $memcParts[0] );
 					return false;
-				} elseif( $memcParts[1] < 1 || $memcParts[1] > 65535 ) {
+				} elseif ( $memcParts[1] < 1 || $memcParts[1] > 65535 ) {
 					$this->parent->showError( 'config-memcache-badport', 1, 65535 );
 					return false;
 				}
@@ -1180,11 +1182,11 @@ class WebInstaller_Install extends WebInstallerPage {
 	}
 
 	public function execute() {
-		if( $this->getVar( '_UpgradeDone' ) ) {
+		if ( $this->getVar( '_UpgradeDone' ) ) {
 			return 'skip';
-		} elseif( $this->getVar( '_InstallDone' ) ) {
+		} elseif ( $this->getVar( '_InstallDone' ) ) {
 			return 'continue';
-		} elseif( $this->parent->request->wasPosted() ) {
+		} elseif ( $this->parent->request->wasPosted() ) {
 			$this->startForm();
 			$this->addHTML( "<ul>" );
 			$results = $this->parent->performInstallation(
@@ -1227,7 +1229,7 @@ class WebInstaller_Install extends WebInstallerPage {
 			$html = "<span class=\"error\">$html</span>";
 		}
 		$this->addHTML( $html . "</li>\n" );
-		if( !$status->isGood() ) {
+		if ( !$status->isGood() ) {
 			$this->parent->showStatusBox( $status );
 		}
 	}
@@ -1302,7 +1304,7 @@ abstract class WebInstaller_Document extends WebInstallerPage {
 
 	public function getFileContents() {
 		$file = __DIR__ . '/../../' . $this->getFileName();
-		if( ! file_exists( $file ) ) {
+		if ( ! file_exists( $file ) ) {
 			return wfMessage( 'config-nofile', $file )->plain();
 		}
 		return file_get_contents( $file );
@@ -1320,7 +1322,7 @@ class WebInstaller_ReleaseNotes extends WebInstaller_Document {
 	protected function getFileName() {
 		global $wgVersion;
 
-		if( !preg_match( '/^(\d+)\.(\d+).*/i', $wgVersion, $result ) ) {
+		if ( !preg_match( '/^(\d+)\.(\d+).*/i', $wgVersion, $result ) ) {
 			throw new MWException( 'Variable $wgVersion has an invalid value.' );
 		}
 

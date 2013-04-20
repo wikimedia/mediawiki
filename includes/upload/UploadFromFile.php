@@ -40,7 +40,7 @@ class UploadFromFile extends UploadBase {
 	function initializeFromRequest( &$request ) {
 		$upload = $request->getUpload( 'wpUploadFile' );
 		$desiredDestName = $request->getText( 'wpDestFile' );
-		if( !$desiredDestName ) {
+		if ( !$desiredDestName ) {
 			$desiredDestName = $upload->getName();
 		}
 

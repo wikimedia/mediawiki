@@ -307,11 +307,11 @@ class FormatMetadata {
 
 				case 'Flash':
 					$flashDecode = array(
-						'fired'    => $val & bindec( '00000001' ),
-						'return'   => ( $val & bindec( '00000110' ) ) >> 1,
-						'mode'     => ( $val & bindec( '00011000' ) ) >> 3,
+						'fired' => $val & bindec( '00000001' ),
+						'return' => ( $val & bindec( '00000110' ) ) >> 1,
+						'mode' => ( $val & bindec( '00011000' ) ) >> 3,
 						'function' => ( $val & bindec( '00100000' ) ) >> 5,
-						'redeye'   => ( $val & bindec( '01000000' ) ) >> 6,
+						'redeye' => ( $val & bindec( '01000000' ) ) >> 6,
 //						'reserved' => ($val & bindec( '10000000' )) >> 7,
 					);
 					$flashMsgs = array();
@@ -1015,8 +1015,9 @@ class FormatMetadata {
 	static function msg( $tag, $val, $arg = null, $arg2 = null ) {
 		global $wgContLang;
 
-		if ( $val === '' )
+		if ( $val === '' ) {
 			$val = 'value';
+		}
 		return wfMessage( $wgContLang->lc( "exif-$tag-$val" ), $arg, $arg2 )->text();
 	}
 
@@ -1031,9 +1032,9 @@ class FormatMetadata {
 	static function formatNum( $num, $round = false ) {
 		global $wgLang;
 		$m = array();
-		if( is_array( $num ) ) {
+		if ( is_array( $num ) ) {
 			$out = array();
-			foreach( $num as $number ) {
+			foreach ( $num as $number ) {
 				$out[] = self::formatNum( $number );
 			}
 			return $wgLang->commaList( $out );
@@ -1071,7 +1072,7 @@ class FormatMetadata {
 			$numerator = intval( $m[1] );
 			$denominator = intval( $m[2] );
 			$gcd = self::gcd( abs( $numerator ), $denominator );
-			if( $gcd != 0 ) {
+			if ( $gcd != 0 ) {
 				// 0 shouldn't happen! ;)
 				return self::formatNum( $numerator / $gcd ) . '/' . self::formatNum( $denominator / $gcd );
 			}
@@ -1096,7 +1097,7 @@ class FormatMetadata {
 			else
 				return gcd( $b, $a % $b );
 		*/
-		while( $b != 0 ) {
+		while ( $b != 0 ) {
 			$remainder = $a % $b;
 
 			// tail recursion...
@@ -1236,7 +1237,7 @@ class FormatMetadata {
 	 * @return String of html-ish looking wikitext
 	 */
 	public static function collapseContactInfo( $vals ) {
-		if( !( isset( $vals['CiAdrExtadr'] )
+		if ( !( isset( $vals['CiAdrExtadr'] )
 			|| isset( $vals['CiAdrCity'] )
 			|| isset( $vals['CiAdrCtry'] )
 			|| isset( $vals['CiEmailWork'] )
@@ -1254,7 +1255,7 @@ class FormatMetadata {
 			// because people often insert >, etc into
 			// the metadata which should not be interpreted
 			// but we still want to auto-link urls.
-			foreach( $vals as &$val ) {
+			foreach ( $vals as &$val ) {
 				$val = htmlspecialchars( $val );
 			}
 			return self::flattenArray( $vals );

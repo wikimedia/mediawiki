@@ -87,7 +87,7 @@ class JpegMetadataExtractor {
 			}
 
 			$buffer = fread( $fh, 1 );
-			while( $buffer === "\xFF" && !feof( $fh ) ) {
+			while ( $buffer === "\xFF" && !feof( $fh ) ) {
 				// Skip through any 0xFF padding bytes.
 				$buffer = fread( $fh, 1 );
 			}
@@ -155,7 +155,9 @@ class JpegMetadataExtractor {
 			} else {
 				// segment we don't care about, so skip
 				$size = wfUnpack( "nint", fread( $fh, 2 ), 2 );
-				if ( $size['int'] <= 2 ) throw new MWException( "invalid marker size in jpeg" );
+				if ( $size['int'] <= 2 ) {
+					throw new MWException( "invalid marker size in jpeg" );
+				}
 				fseek( $fh, $size['int'] - 2, SEEK_CUR );
 			}
 
@@ -243,7 +245,9 @@ class JpegMetadataExtractor {
 			// PHP can take issue with very large unsigned ints and make them negative.
 			// Which should never ever happen, as this has to be inside a segment
 			// which is limited to a 16 bit number.
-			if ( $lenData['len'] < 0 ) throw new MWException( "Too big PSIR (" . $lenData['len'] . ')' );
+			if ( $lenData['len'] < 0 ) {
+				throw new MWException( "Too big PSIR (" . $lenData['len'] . ')' );
+			}
 
 			$offset += 4; // 4bytes length field;
 
@@ -267,7 +271,9 @@ class JpegMetadataExtractor {
 
 			// if odd, add 1 to length to account for
 			// null pad byte.
-			if ( $lenData['len'] % 2 == 1 ) $lenData['len']++;
+			if ( $lenData['len'] % 2 == 1 ) {
+				$lenData['len']++;
+			}
 			$offset += $lenData['len'];
 
 		}

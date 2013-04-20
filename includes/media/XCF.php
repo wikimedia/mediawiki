@@ -78,7 +78,7 @@ class XCFHandler extends BitmapHandler {
 	static function getXCFMetaData( $filename ) {
 		# Decode master structure
 		$f = fopen( $filename, 'rb' );
-		if( !$f ) {
+		if ( !$f ) {
 			return false;
 		}
 		# The image structure always starts at offset 0 in the XCF file.
@@ -115,7 +115,7 @@ class XCFHandler extends BitmapHandler {
 		}
 
 		# Check values
-		if( $header['magic'] !== 'gimp xcf' ) {
+		if ( $header['magic'] !== 'gimp xcf' ) {
 			wfDebug( __METHOD__ . " '$filename' has invalid magic signature.\n" );
 			return false;
 		}

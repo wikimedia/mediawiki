@@ -353,7 +353,7 @@ class MysqlInstaller extends DatabaseInstaller {
 		$s .= $this->parent->getWarningBox( wfMessage( 'config-mysql-myisam-dep' )->text() );
 		$s .= Xml::closeElement( 'div' );
 
-		if( $this->getVar( '_MysqlEngine' ) != 'MyISAM' ) {
+		if ( $this->getVar( '_MysqlEngine' ) != 'MyISAM' ) {
 			$s .= Xml::openElement( 'script', array( 'type' => 'text/javascript' ) );
 			$s .= '$(\'#dbMyisamWarning\').hide();';
 			$s .= Xml::closeElement( 'script' );
@@ -371,10 +371,12 @@ class MysqlInstaller extends DatabaseInstaller {
 				'itemAttribs' => array(
 					'MyISAM' => array(
 						'class' => 'showHideRadio',
-						'rel'   => 'dbMyisamWarning'),
+						'rel' => 'dbMyisamWarning'
+					),
 					'InnoDB' => array(
 						'class' => 'hideShowRadio',
-						'rel'   => 'dbMyisamWarning')
+						'rel' => 'dbMyisamWarning'
+					)
 			)));
 			$s .= $this->parent->getHelpBox( 'config-mysql-engine-help' );
 		}
@@ -470,7 +472,7 @@ class MysqlInstaller extends DatabaseInstaller {
 		}
 		$conn = $status->value;
 		$dbName = $this->getVar( 'wgDBname' );
-		if( !$conn->selectDB( $dbName ) ) {
+		if ( !$conn->selectDB( $dbName ) ) {
 			$conn->query( "CREATE DATABASE " . $conn->addIdentifierQuotes( $dbName ), __METHOD__ );
 			$conn->selectDB( $dbName );
 		}
@@ -483,7 +485,7 @@ class MysqlInstaller extends DatabaseInstaller {
 	 */
 	public function setupUser() {
 		$dbUser = $this->getVar( 'wgDBuser' );
-		if( $dbUser == $this->getVar( '_InstallUser' ) ) {
+		if ( $dbUser == $this->getVar( '_InstallUser' ) ) {
 			return Status::newGood();
 		}
 		$status = $this->getConnection();
@@ -520,7 +522,7 @@ class MysqlInstaller extends DatabaseInstaller {
 			$tryToCreate = false;
 		}
 
-		if( $tryToCreate ) {
+		if ( $tryToCreate ) {
 			$createHostList = array(
 				$server,
 				'localhost',
@@ -531,16 +533,16 @@ class MysqlInstaller extends DatabaseInstaller {
 			$createHostList = array_unique( $createHostList );
 			$escPass = $this->db->addQuotes( $password );
 
-			foreach( $createHostList as $host ) {
+			foreach ( $createHostList as $host ) {
 				$fullName = $this->buildFullUserName( $dbUser, $host );
-				if( !$this->userDefinitelyExists( $dbUser, $host ) ) {
+				if ( !$this->userDefinitelyExists( $dbUser, $host ) ) {
 					try{
 						$this->db->begin( __METHOD__ );
 						$this->db->query( "CREATE USER $fullName IDENTIFIED BY $escPass", __METHOD__ );
 						$this->db->commit( __METHOD__ );
 						$grantableNames[] = $fullName;
 					} catch( DBQueryError $dqe ) {
-						if( $this->db->lastErrno() == 1396 /* ER_CANNOT_USER */ ) {
+						if ( $this->db->lastErrno() == 1396 /* ER_CANNOT_USER */ ) {
 							// User (probably) already exists
 							$this->db->rollback( __METHOD__ );
 							$status->warning( 'config-install-user-alreadyexists', $dbUser );
@@ -563,7 +565,7 @@ class MysqlInstaller extends DatabaseInstaller {
 
 		// Try to grant to all the users we know exist or we were able to create
 		$dbAllTables = $this->db->addIdentifierQuotes( $dbName ) . '.*';
-		foreach( $grantableNames as $name ) {
+		foreach ( $grantableNames as $name ) {
 			try {
 				$this->db->begin( __METHOD__ );
 				$this->db->query( "GRANT ALL PRIVILEGES ON $dbAllTables TO $name", __METHOD__ );

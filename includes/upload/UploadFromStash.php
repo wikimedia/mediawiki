@@ -45,16 +45,16 @@ class UploadFromStash extends UploadBase {
 		// user object. sometimes this won't exist, as when running from cron.
 		$this->user = $user;
 
-		if( $repo ) {
+		if ( $repo ) {
 			$this->repo = $repo;
 		} else {
 			$this->repo = RepoGroup::singleton()->getLocalRepo();
 		}
 
-		if( $stash ) {
+		if ( $stash ) {
 			$this->stash = $stash;
 		} else {
-			if( $user ) {
+			if ( $user ) {
 				wfDebug( __METHOD__ . " creating new UploadStash instance for " . $user->getId() . "\n" );
 			} else {
 				wfDebug( __METHOD__ . " creating new UploadStash instance with no user\n" );

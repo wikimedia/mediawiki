@@ -331,7 +331,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			return;
 		}
 
-		if( $this->applyPatch( 'patch-fix-il_from.sql', false, "Fixing ancient broken imagelinks table." ) ) {
+		if ( $this->applyPatch( 'patch-fix-il_from.sql', false, "Fixing ancient broken imagelinks table." ) ) {
 			$this->output( "NOTE: you will have to run maintenance/refreshLinks.php after this." );
 		}
 	}
@@ -368,7 +368,7 @@ class MysqlUpdater extends DatabaseUpdater {
 		$this->output( wfTimestamp( TS_DB ) );
 		$this->output( "......checking for duplicate entries.\n" );
 
-		list ( $cur, $old, $page, $revision, $text ) = $this->db->tableNamesN( 'cur', 'old', 'page', 'revision', 'text' );
+		list( $cur, $old, $page, $revision, $text ) = $this->db->tableNamesN( 'cur', 'old', 'page', 'revision', 'text' );
 
 		$rows = $this->db->query( "SELECT cur_title, cur_namespace, COUNT(cur_namespace) AS c
 				FROM $cur GROUP BY cur_title, cur_namespace HAVING c>1", __METHOD__ );
@@ -525,12 +525,12 @@ class MysqlUpdater extends DatabaseUpdater {
 
 	protected function doNamespaceSize() {
 		$tables = array(
-			'page'          => 'page',
-			'archive'       => 'ar',
+			'page' => 'page',
+			'archive' => 'ar',
 			'recentchanges' => 'rc',
-			'watchlist'     => 'wl',
-			'querycache'    => 'qc',
-			'logging'       => 'log',
+			'watchlist' => 'wl',
+			'querycache' => 'qc',
+			'logging' => 'log',
 		);
 		foreach ( $tables as $table => $prefix ) {
 			$field = $prefix . '_namespace';
@@ -651,7 +651,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			foreach ( $groups as $group ) {
 				$this->db->insert( 'user_groups',
 					array(
-						'ug_user'  => $row->ur_user,
+						'ug_user' => $row->ur_user,
 						'ug_group' => $group ),
 					__METHOD__ );
 			}
@@ -686,7 +686,7 @@ class MysqlUpdater extends DatabaseUpdater {
 		$this->db->query( "UPDATE $page SET page_random = RAND() WHERE page_random = 0", __METHOD__ );
 		$rows = $this->db->affectedRows();
 
-		if( $rows ) {
+		if ( $rows ) {
 			$this->output( "Set page_random to a random value on $rows rows where it was set to 0\n" );
 		} else {
 			$this->output( "...no page_random rows needed to be set\n" );

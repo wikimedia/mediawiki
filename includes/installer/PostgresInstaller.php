@@ -431,7 +431,7 @@ class PostgresInstaller extends DatabaseInstaller {
 			'callback' => array( $this, 'setupSchema' )
 		);
 
-		if( $this->getVar( '_CreateDBAccount' ) ) {
+		if ( $this->getVar( '_CreateDBAccount' ) ) {
 			$this->parent->addInstallStep( $createDbAccount, 'database' );
 		}
 		$this->parent->addInstallStep( $commitCB, 'interwiki' );
@@ -469,7 +469,7 @@ class PostgresInstaller extends DatabaseInstaller {
 		$schema = $this->getVar( 'wgDBmwschema' );
 		$safeschema = $conn->addIdentifierQuotes( $schema );
 		$safeuser = $conn->addIdentifierQuotes( $this->getVar( 'wgDBuser' ) );
-		if( !$conn->schemaExists( $schema ) ) {
+		if ( !$conn->schemaExists( $schema ) ) {
 			try {
 				$conn->query( "CREATE SCHEMA $safeschema AUTHORIZATION $safeuser" );
 			} catch ( DBQueryError $e ) {
@@ -557,7 +557,7 @@ class PostgresInstaller extends DatabaseInstaller {
 		 */
 		$conn = $status->value;
 
-		if( $conn->tableExists( 'archive' ) ) {
+		if ( $conn->tableExists( 'archive' ) ) {
 			$status->warning( 'config-install-tables-exist' );
 			$this->enableLB();
 			return $status;
@@ -565,12 +565,12 @@ class PostgresInstaller extends DatabaseInstaller {
 
 		$conn->begin( __METHOD__ );
 
-		if( !$conn->schemaExists( $schema ) ) {
+		if ( !$conn->schemaExists( $schema ) ) {
 			$status->fatal( 'config-install-pg-schema-not-exist' );
 			return $status;
 		}
 		$error = $conn->sourceFile( $conn->getSchemaPath() );
-		if( $error !== true ) {
+		if ( $error !== true ) {
 			$conn->reportQueryError( $error, 0, '', __METHOD__ );
 			$conn->rollback( __METHOD__ );
 			$status->fatal( 'config-install-tables-failed', $error );
@@ -578,7 +578,7 @@ class PostgresInstaller extends DatabaseInstaller {
 			$conn->commit( __METHOD__ );
 		}
 		// Resume normal operations
-		if( $status->isOk() ) {
+		if ( $status->isOk() ) {
 			$this->enableLB();
 		}
 		return $status;

@@ -142,7 +142,7 @@ class PNGMetadataExtractor {
 				}
 			} elseif ( $chunk_type == "acTL" ) {
 				$buf = fread( $fh, $chunk_size );
-				if( !$buf || strlen( $buf ) < $chunk_size || $chunk_size < 4 ) {
+				if ( !$buf || strlen( $buf ) < $chunk_size || $chunk_size < 4 ) {
 					throw new Exception( __METHOD__ . ": Read error" );
 				}
 

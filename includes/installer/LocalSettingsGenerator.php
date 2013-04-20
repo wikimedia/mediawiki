@@ -73,10 +73,10 @@ class LocalSettingsGenerator {
 			'wgEnotifWatchlist', 'wgEmailAuthentication', 'wgEnableUploads', 'wgUseInstantCommons'
 		);
 
-		foreach( $confItems as $c ) {
+		foreach ( $confItems as $c ) {
 			$val = $installer->getVar( $c );
 
-			if( in_array( $c, $boolItems ) ) {
+			if ( in_array( $c, $boolItems ) ) {
 				$val = wfBoolToStr( $val );
 			}
 
@@ -136,13 +136,13 @@ class LocalSettingsGenerator {
 	public function getText() {
 		$localSettings = $this->getDefaultText();
 
-		if( count( $this->extensions ) ) {
+		if ( count( $this->extensions ) ) {
 			$localSettings .= "
 # Enabled Extensions. Most extensions are enabled by including the base extension file here
 # but check specific extension documentation for more details
 # The following extensions were automatically enabled:\n";
 
-			foreach( $this->extensions as $extName ) {
+			foreach ( $this->extensions as $extName ) {
 				$encExtName = self::escapePhpString( $extName );
 				$localSettings .= "require_once( \"\$IP/extensions/$encExtName/$encExtName.php\" );\n";
 			}
@@ -169,13 +169,13 @@ class LocalSettingsGenerator {
 	protected function buildMemcachedServerList() {
 		$servers = $this->values['_MemCachedServers'];
 
-		if( !$servers ) {
+		if ( !$servers ) {
 			return 'array()';
 		} else {
 			$ret = 'array( ';
 			$servers = explode( ',', $servers );
 
-			foreach( $servers as $srv ) {
+			foreach ( $servers as $srv ) {
 				$srv = trim( $srv );
 				$ret .= "'$srv', ";
 			}
@@ -188,14 +188,14 @@ class LocalSettingsGenerator {
 	 * @return String
 	 */
 	protected function getDefaultText() {
-		if( !$this->values['wgImageMagickConvertCommand'] ) {
+		if ( !$this->values['wgImageMagickConvertCommand'] ) {
 			$this->values['wgImageMagickConvertCommand'] = '/usr/bin/convert';
 			$magic = '#';
 		} else {
 			$magic = '';
 		}
 
-		if( !$this->values['wgShellLocale'] ) {
+		if ( !$this->values['wgShellLocale'] ) {
 			$this->values['wgShellLocale'] = 'en_US.UTF-8';
 			$locale = '#';
 		} else {
@@ -205,16 +205,16 @@ class LocalSettingsGenerator {
 		//$rightsUrl = $this->values['wgRightsUrl'] ? '' : '#'; // TODO: Fixme, I'm unused!
 		$hashedUploads = $this->safeMode ? '' : '#';
 		$metaNamespace = '';
-		if( $this->values['wgMetaNamespace'] !== $this->values['wgSitename'] ) {
+		if ( $this->values['wgMetaNamespace'] !== $this->values['wgSitename'] ) {
 			$metaNamespace = "\$wgMetaNamespace = \"{$this->values['wgMetaNamespace']}\";\n";
 		}
 
 		$groupRights = '';
-		if( $this->groupPermissions ) {
+		if ( $this->groupPermissions ) {
 			$groupRights .= "# The following permissions were set based on your choice in the installer\n";
-			foreach( $this->groupPermissions as $group => $rightArr ) {
+			foreach ( $this->groupPermissions as $group => $rightArr ) {
 				$group = self::escapePhpString( $group );
-				foreach( $rightArr as $right => $perm ) {
+				foreach ( $rightArr as $right => $perm ) {
 					$right = self::escapePhpString( $right );
 					$groupRights .= "\$wgGroupPermissions['$group']['$right'] = " .
 						wfBoolToStr( $perm ) . ";\n";

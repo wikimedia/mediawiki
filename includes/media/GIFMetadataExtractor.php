@@ -90,7 +90,7 @@ class GIFMetadataExtractor {
 		// Skip over the GCT
 		self::readGCT( $fh, $bpp );
 
-		while( !feof( $fh ) ) {
+		while ( !feof( $fh ) ) {
 			$buf = fread( $fh, 1 );
 
 			if ( $buf == self::$gif_frame_sep ) {
@@ -110,7 +110,9 @@ class GIFMetadataExtractor {
 				self::skipBlock( $fh );
 			} elseif ( $buf == self::$gif_extension_sep ) {
 				$buf = fread( $fh, 1 );
-				if ( strlen( $buf ) < 1 ) throw new Exception( "Ran out of input" );
+				if ( strlen( $buf ) < 1 ) {
+					throw new Exception( "Ran out of input" );
+				}
 				$extension_code = unpack( 'C', $buf );
 				$extension_code = $extension_code[1];
 
@@ -121,7 +123,9 @@ class GIFMetadataExtractor {
 					fread( $fh, 1 ); // Transparency, disposal method, user input
 
 					$buf = fread( $fh, 2 ); // Delay, in hundredths of seconds.
-					if ( strlen( $buf ) < 2 ) throw new Exception( "Ran out of input" );
+					if ( strlen( $buf ) < 2 ) {
+						throw new Exception( "Ran out of input" );
+					}
 					$delay = unpack( 'v', $buf );
 					$delay = $delay[1];
 					$duration += $delay * 0.01;
@@ -129,7 +133,9 @@ class GIFMetadataExtractor {
 					fread( $fh, 1 ); // Transparent colour index
 
 					$term = fread( $fh, 1 ); // Should be a terminator
-					if ( strlen( $term ) < 1 ) throw new Exception( "Ran out of input" );
+					if ( strlen( $term ) < 1 ) {
+						throw new Exception( "Ran out of input" );
+					}
 					$term = unpack( 'C', $term );
 					$term = $term[1];
 					if ( $term != 0 ) {
@@ -168,7 +174,9 @@ class GIFMetadataExtractor {
 					// Application extension (Netscape info about the animated gif)
 					// or XMP (or theoretically any other type of extension block)
 					$blockLength = fread( $fh, 1 );
-					if ( strlen( $blockLength ) < 1 ) throw new Exception( "Ran out of input" );
+					if ( strlen( $blockLength ) < 1 ) {
+						throw new Exception( "Ran out of input" );
+					}
 					$blockLength = unpack( 'C', $blockLength );
 					$blockLength = $blockLength[1];
 					$data = fread( $fh, $blockLength );
@@ -190,7 +198,9 @@ class GIFMetadataExtractor {
 
 						// Unsigned little-endian integer, loop count or zero for "forever"
 						$loopData = fread( $fh, 2 );
-						if ( strlen( $loopData ) < 2 ) throw new Exception( "Ran out of input" );
+						if ( strlen( $loopData ) < 2 ) {
+							throw new Exception( "Ran out of input" );
+						}
 						$loopData = unpack( 'v', $loopData );
 						$loopCount = $loopData[1];
 
@@ -228,7 +238,9 @@ class GIFMetadataExtractor {
 			} elseif ( $buf == self::$gif_term ) {
 				break;
 			} else {
-				if ( strlen( $buf ) < 1 ) throw new Exception( "Ran out of input" );
+				if ( strlen( $buf ) < 1 ) {
+					throw new Exception( "Ran out of input" );
+				}
 				$byte = unpack( 'C', $buf );
 				$byte = $byte[1];
 				throw new Exception( "At position: " . ftell( $fh ) . ", Unknown byte " . $byte );
@@ -251,7 +263,7 @@ class GIFMetadataExtractor {
 	 */
 	static function readGCT( $fh, $bpp ) {
 		if ( $bpp > 0 ) {
-			for( $i = 1; $i <= pow( 2, $bpp ); ++$i ) {
+			for ( $i = 1; $i <= pow( 2, $bpp ); ++$i ) {
 				fread( $fh, 3 );
 			}
 		}
@@ -263,7 +275,9 @@ class GIFMetadataExtractor {
 	 * @return int
 	 */
 	static function decodeBPP( $data ) {
-		if ( strlen( $data ) < 1 ) throw new Exception( "Ran out of input" );
+		if ( strlen( $data ) < 1 ) {
+			throw new Exception( "Ran out of input" );
+		}
 		$buf = unpack( 'C', $data );
 		$buf = $buf[1];
 		$bpp = ( $buf & 7 ) + 1;
@@ -281,7 +295,9 @@ class GIFMetadataExtractor {
 	static function skipBlock( $fh ) {
 		while ( !feof( $fh ) ) {
 			$buf = fread( $fh, 1 );
-			if ( strlen( $buf ) < 1 ) throw new Exception( "Ran out of input" );
+			if ( strlen( $buf ) < 1 ) {
+				throw new Exception( "Ran out of input" );
+			}
 			$block_len = unpack( 'C', $buf );
 			$block_len = $block_len[1];
 			if ( $block_len == 0 ) {
@@ -310,7 +326,7 @@ class GIFMetadataExtractor {
 		$subLength = fread( $fh, 1 );
 		$blocks = 0;
 
-		while( $subLength !== "\0" ) {
+		while ( $subLength !== "\0" ) {
 			$blocks++;
 			if ( $blocks > self::MAX_SUBBLOCKS ) {
 				throw new Exception( "MAX_SUBBLOCKS exceeded (over $blocks sub-blocks)" );

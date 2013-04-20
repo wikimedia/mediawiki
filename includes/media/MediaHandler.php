@@ -116,7 +116,9 @@ abstract class MediaHandler {
 	 * @param string $path the filename
 	 * @return String
 	 */
-	function getMetadata( $image, $path ) { return ''; }
+	function getMetadata( $image, $path ) {
+		return '';
+	}
 
 	/**
 	 * Get metadata version.
@@ -166,7 +168,9 @@ abstract class MediaHandler {
 	 *
 	 * @return string
 	 */
-	function getMetadataType( $image ) { return false; }
+	function getMetadataType( $image ) {
+		return false;
+	}
 
 	/**
 	 * Check if the metadata string is valid for this handler.
@@ -255,46 +259,69 @@ abstract class MediaHandler {
 	 * True if the handled types can be transformed
 	 * @return bool
 	 */
-	function canRender( $file ) { return true; }
+	function canRender( $file ) {
+		return true;
+	}
+
 	/**
 	 * True if handled types cannot be displayed directly in a browser
 	 * but can be rendered
 	 * @return bool
 	 */
-	function mustRender( $file ) { return false; }
+	function mustRender( $file ) {
+		return false;
+	}
+
 	/**
 	 * True if the type has multi-page capabilities
 	 * @return bool
 	 */
-	function isMultiPage( $file ) { return false; }
+	function isMultiPage( $file ) {
+		return false;
+	}
+
 	/**
 	 * Page count for a multi-page document, false if unsupported or unknown
 	 * @return bool
 	 */
-	function pageCount( $file ) { return false; }
+	function pageCount( $file ) {
+		return false;
+	}
+
 	/**
 	 * The material is vectorized and thus scaling is lossless
 	 * @return bool
 	 */
-	function isVectorized( $file ) { return false; }
+	function isVectorized( $file ) {
+		return false;
+	}
+
 	/**
 	 * The material is an image, and is animated.
 	 * In particular, video material need not return true.
 	 * @note Before 1.20, this was a method of ImageHandler only
 	 * @return bool
 	 */
-	function isAnimatedImage( $file ) { return false; }
+	function isAnimatedImage( $file ) {
+		return false;
+	}
+
 	/**
 	 * If the material is animated, we can animate the thumbnail
 	 * @since 1.20
 	 * @return bool If material is not animated, handler may return any value.
 	 */
-	function canAnimateThumbnail( $file ) { return true; }
+	function canAnimateThumbnail( $file ) {
+		return true;
+	}
+
 	/**
 	 * False if the handler is disabled for all files
 	 * @return bool
 	 */
-	function isEnabled() { return true; }
+	function isEnabled() {
+		return true;
+	}
 
 	/**
 	 * Get an associative array of page dimensions
@@ -394,9 +421,9 @@ abstract class MediaHandler {
 	function visibleMetadataFields() {
 		$fields = array();
 		$lines = explode( "\n", wfMessage( 'metadata-fields' )->inContentLanguage()->text() );
-		foreach( $lines as $line ) {
+		foreach ( $lines as $line ) {
 			$matches = array();
-			if( preg_match( '/^\\*\s*(.*?)\s*$/', $line, $matches ) ) {
+			if ( preg_match( '/^\\*\s*(.*?)\s*$/', $line, $matches ) ) {
 				$fields[] = $matches[1];
 			}
 		}
@@ -496,7 +523,7 @@ abstract class MediaHandler {
 	public static function fitBoxWidth( $boxWidth, $boxHeight, $maxHeight ) {
 		$idealWidth = $boxWidth * $maxHeight / $boxHeight;
 		$roundedUp = ceil( $idealWidth );
-		if( round( $roundedUp * $boxHeight / $boxWidth ) > $maxHeight ) {
+		if ( round( $roundedUp * $boxHeight / $boxWidth ) > $maxHeight ) {
 			return floor( $idealWidth );
 		} else {
 			return $roundedUp;
@@ -535,9 +562,9 @@ abstract class MediaHandler {
 	 * @return bool True if removed, false otherwise
 	 */
 	function removeBadFile( $dstPath, $retval = 0 ) {
-		if( file_exists( $dstPath ) ) {
+		if ( file_exists( $dstPath ) ) {
 			$thumbstat = stat( $dstPath );
-			if( $thumbstat['size'] == 0 || $retval != 0 ) {
+			if ( $thumbstat['size'] == 0 || $retval != 0 ) {
 				$result = unlink( $dstPath );
 
 				if ( $result ) {

@@ -297,7 +297,7 @@ class Exif {
 		}
 
 		$this->debugFile( $this->basename, __FUNCTION__, true );
-		if( function_exists( 'exif_read_data' ) ) {
+		if ( function_exists( 'exif_read_data' ) ) {
 			wfSuppressWarnings();
 			$data = exif_read_data( $this->file, 0, true );
 			wfRestoreWarnings();
@@ -738,19 +738,20 @@ class Exif {
 		$debug = "tag is '$tag'";
 		$etype = $this->mExifTags[$section][$tag];
 		$ecount = 1;
-		if( is_array( $etype ) ) {
+		if ( is_array( $etype ) ) {
 			list( $etype, $ecount ) = $etype;
-			if ( $recursive )
+			if ( $recursive ) {
 				$ecount = 1; // checking individual elements
+			}
 		}
 		$count = count( $val );
-		if( $ecount != $count ) {
+		if ( $ecount != $count ) {
 			$this->debug( $val, __FUNCTION__, "Expected $ecount elements for $tag but got $count" );
 			return false;
 		}
-		if( $count > 1 ) {
-			foreach( $val as $v ) {
-				if( !$this->validate( $section, $tag, $v, true ) ) {
+		if ( $count > 1 ) {
+			foreach ( $val as $v ) {
+				if ( !$this->validate( $section, $tag, $v, true ) ) {
 					return false;
 				}
 			}

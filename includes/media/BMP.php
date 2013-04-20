@@ -58,7 +58,7 @@ class BmpHandler extends BitmapHandler {
 	 */
 	function getImageSize( $image, $filename ) {
 		$f = fopen( $filename, 'rb' );
-		if( !$f ) {
+		if ( !$f ) {
 			return false;
 		}
 		$header = fread( $f, 54 );

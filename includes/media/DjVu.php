@@ -246,12 +246,11 @@ class DjVuHandler extends ImageHandler {
 			$image->dejaMetaTree = false;
 			$image->djvuTextTree = false;
 			$tree = new SimpleXMLElement( $metadata );
-			if( $tree->getName() == 'mw-djvu' ) {
-				foreach( $tree->children() as $b ) {
-					if( $b->getName() == 'DjVuTxt' ) {
+			if ( $tree->getName() == 'mw-djvu' ) {
+				foreach ( $tree->children() as $b ) {
+					if ( $b->getName() == 'DjVuTxt' ) {
 						$image->djvuTextTree = $b;
-					}
-					elseif ( $b->getName() == 'DjVuXML' ) {
+					} elseif ( $b->getName() == 'DjVuXML' ) {
 						$image->dejaMetaTree = $b;
 					}
 				}
@@ -263,7 +262,7 @@ class DjVuHandler extends ImageHandler {
 		}
 		wfRestoreWarnings();
 		wfProfileOut( __METHOD__ );
-		if( $gettext ) {
+		if ( $gettext ) {
 			return $image->djvuTextTree;
 		} else {
 			return $image->dejaMetaTree;

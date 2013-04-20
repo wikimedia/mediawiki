@@ -46,12 +46,12 @@ class UsercreateTemplate extends QuickTemplate {
 	function execute() {
 		if ( $this->data['message'] ) {
 ?>
-	<div class="<?php $this->text('messagetype') ?>box">
+	<div class="<?php $this->text( 'messagetype' ); ?>box">
 <?php
 			if ( $this->data['messagetype'] == 'error' ) {
-				?><strong><?php $this->msg( 'loginerror' ) ?></strong><br /><?php
+				?><strong><?php $this->msg( 'loginerror' ); ?></strong><br /><?php
 			}
-			$this->html('message');
+			$this->html( 'message' );
 ?>
 	</div>
 	<div class="visualClear"></div>
@@ -62,10 +62,10 @@ class UsercreateTemplate extends QuickTemplate {
 <div id="signupstart"><?php $this->msgWiki( 'signupstart' ); ?></div>
 <div id="userlogin">
 
-<form name="userlogin2" id="userlogin2" method="post" action="<?php $this->text('action') ?>">
-	<h2><?php $this->msg('createaccount') ?></h2>
-	<p id="userloginlink"><?php $this->html('link') ?></p>
-	<?php $this->html('header'); /* pre-table point for form plugins... */ ?>
+<form name="userlogin2" id="userlogin2" method="post" action="<?php $this->text( 'action' ); ?>">
+	<h2><?php $this->msg( 'createaccount' ); ?></h2>
+	<p id="userloginlink"><?php $this->html( 'link' ); ?></p>
+	<?php $this->html( 'header' ); /* pre-table point for form plugins... */ ?>
 <?php
 	if ( $this->haveData( 'languages' ) ) {
 		?><div id="languagelinks"><p><?php $this->html( 'languages' ); ?></p></div><?php
@@ -73,7 +73,7 @@ class UsercreateTemplate extends QuickTemplate {
 ?>
 	<table>
 		<tr>
-			<td class="mw-label"><label for='wpName2'><?php $this->msg('yourname') ?></label></td>
+			<td class="mw-label"><label for='wpName2'><?php $this->msg( 'yourname' ); ?></label></td>
 			<td class="mw-input">
 				<?php
 			echo Html::input( 'wpName', $this->data['name'], 'text', array(
@@ -103,7 +103,7 @@ class UsercreateTemplate extends QuickTemplate {
 			</td>
 		</tr>
 		<tr class="mw-row-password">
-			<td class="mw-label"><label for='wpPassword2'><?php $this->msg('yourpassword') ?></label></td>
+			<td class="mw-label"><label for='wpPassword2'><?php $this->msg( 'yourpassword' ); ?></label></td>
 			<td class="mw-input">
 <?php
 			echo Html::input( 'wpPassword', null, 'password', array(
@@ -122,9 +122,9 @@ class UsercreateTemplate extends QuickTemplate {
 		}
 ?>
 		<tr id="mw-user-domain-section">
-			<td class="mw-label"><?php $this->msg( 'yourdomainname' ) ?></td>
+			<td class="mw-label"><?php $this->msg( 'yourdomainname' ); ?></td>
 			<td class="mw-input">
-				<select name="wpDomain" value="<?php $this->text( 'domain' ) ?>"
+				<select name="wpDomain" value="<?php $this->text( 'domain' ); ?>"
 					tabindex="4">
 					<?php echo $doms ?>
 				</select>
@@ -134,7 +134,7 @@ class UsercreateTemplate extends QuickTemplate {
 		}
 ?>
 		<tr class="mw-row-password">
-			<td class="mw-label"><label for='wpRetype'><?php $this->msg('yourpasswordagain') ?></label></td>
+			<td class="mw-label"><label for='wpRetype'><?php $this->msg( 'yourpasswordagain' ); ?></label></td>
 			<td class="mw-input">
 				<?php
 		echo Html::input( 'wpRetype', null, 'password', array(
@@ -149,7 +149,7 @@ class UsercreateTemplate extends QuickTemplate {
 <?php
 		if ( $this->data['useemail'] ) {
 ?>
-				<td class="mw-label"><label for='wpEmail'><?php $this->msg('youremail') ?></label></td>
+				<td class="mw-label"><label for='wpEmail'><?php $this->msg( 'youremail' ); ?></label></td>
 				<td class="mw-input">
 					<?php
 		echo Html::input( 'wpEmail', $this->data['email'], 'email', array(
@@ -160,13 +160,13 @@ class UsercreateTemplate extends QuickTemplate {
 		) ); ?>
 					<div class="prefsectiontip">
 						<?php  // duplicated in Preferences.php profilePreferences()
-							if( $this->data['emailrequired'] ) {
-								$this->msgWiki('prefs-help-email-required');
+							if ( $this->data['emailrequired'] ) {
+								$this->msgWiki( 'prefs-help-email-required' );
 							} else {
-								$this->msgWiki('prefs-help-email');
+								$this->msgWiki( 'prefs-help-email' );
 							}
-							if( $this->data['emailothers'] ) {
-								$this->msgWiki('prefs-help-email-others');
+							if ( $this->data['emailothers'] ) {
+								$this->msgWiki( 'prefs-help-email-others' );
 							} ?>
 					</div>
 				</td>
@@ -177,13 +177,13 @@ class UsercreateTemplate extends QuickTemplate {
 ?>
 				</tr>
 				<tr>
-					<td class="mw-label"><label for='wpRealName'><?php $this->msg('yourrealname') ?></label></td>
+					<td class="mw-label"><label for='wpRealName'><?php $this->msg( 'yourrealname' ); ?></label></td>
 					<td class="mw-input">
 						<input type='text' class='loginText' name="wpRealName" id="wpRealName"
 							tabindex="7"
-							value="<?php $this->text('realname') ?>" size='20' />
+							value="<?php $this->text( 'realname' ); ?>" size='20' />
 						<div class="prefsectiontip">
-							<?php $this->msgWiki('prefs-help-realname'); ?>
+							<?php $this->msgWiki( 'prefs-help-realname' ); ?>
 						</div>
 					</td>
 <?php
@@ -193,11 +193,11 @@ class UsercreateTemplate extends QuickTemplate {
 ?>
 				</tr>
 				<tr>
-					<td class="mw-label"><label for='wpReason'><?php $this->msg('createaccountreason') ?></label></td>
+					<td class="mw-label"><label for='wpReason'><?php $this->msg( 'createaccountreason' ); ?></label></td>
 					<td class="mw-input">
 						<input type='text' class='loginText' name="wpReason" id="wpReason"
 							tabindex="8"
-							value="<?php $this->text('reason') ?>" size='20' />
+							value="<?php $this->text( 'reason' ); ?>" size='20' />
 					</td>
 <?php
 		}
@@ -233,13 +233,13 @@ class UsercreateTemplate extends QuickTemplate {
 				if ( !empty( $inputItem['msg'] ) && $inputItem['type'] != 'checkbox' ) {
 					?><td class="mw-label"><label for="<?php
 					echo htmlspecialchars( $inputItem['name'] ); ?>"><?php
-					$this->msgWiki( $inputItem['msg'] ) ?></label><?php
+					$this->msgWiki( $inputItem['msg'] ); ?></label><?php
 				} else {
 					?><td><?php
 				}
 			?></td>
 			<td class="mw-input">
-				<input type="<?php echo htmlspecialchars( $inputItem['type'] ) ?>" name="<?php
+				<input type="<?php echo htmlspecialchars( $inputItem['type'] ); ?>" name="<?php
 				echo htmlspecialchars( $inputItem['name'] ); ?>"
 					tabindex="<?php echo $tabIndex++; ?>"
 					value="<?php
@@ -250,13 +250,14 @@ class UsercreateTemplate extends QuickTemplate {
 				}
 					?>" id="<?php echo htmlspecialchars( $inputItem['name'] ); ?>"
 					<?php
-				if ( $inputItem['type'] == 'checkbox' && !empty( $inputItem['value'] ) )
+				if ( $inputItem['type'] == 'checkbox' && !empty( $inputItem['value'] ) ) {
 					echo 'checked="checked"';
+				}
 					?> /> <?php
 					if ( $inputItem['type'] == 'checkbox' && !empty( $inputItem['msg'] ) ) {
 						?>
 				<label for="<?php echo htmlspecialchars( $inputItem['name'] ); ?>"><?php
-					$this->msgHtml( $inputItem['msg'] ) ?></label><?php
+					$this->msgHtml( $inputItem['msg'] ); ?></label><?php
 					}
 				if ( $inputItem['helptext'] !== false ) {
 				?>
@@ -276,7 +277,7 @@ class UsercreateTemplate extends QuickTemplate {
 			<td class="mw-submit">
 				<input type='submit' name="wpCreateaccount" id="wpCreateaccount"
 					tabindex="<?php echo $tabIndex++; ?>"
-					value="<?php $this->msg('createaccount') ?>" />
+					value="<?php $this->msg( 'createaccount' ); ?>" />
 			</td>
 		</tr>
 	</table>
