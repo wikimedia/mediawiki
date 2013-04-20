@@ -602,7 +602,7 @@ class InfoAction extends FormlessAction {
 			'COUNT(*)',
 			array(
 				'wl_namespace' => $title->getNamespace(),
-				'wl_title'     => $title->getDBkey(),
+				'wl_title' => $title->getDBkey(),
 			),
 			__METHOD__
 		);

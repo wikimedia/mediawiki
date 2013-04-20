@@ -91,7 +91,7 @@ class JobQueueAggregatorMemc extends JobQueueAggregator {
 			if ( $this->cache->add( "$key:rebuild", 1, 1800 ) ) { // lock
 				$pendingDbInfo = array(
 					'pendingDBs' => $this->findPendingWikiQueues(),
-					'timestamp'  => time()
+					'timestamp' => time()
 				);
 				for ( $attempts = 1; $attempts <= 25; ++$attempts ) {
 					if ( $this->cache->add( "$key:lock", 1, 60 ) ) { // lock

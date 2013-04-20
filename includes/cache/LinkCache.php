@@ -156,8 +156,13 @@ class LinkCache {
 		unset( $this->mGoodLinkFields[$dbkey] );
 	}
 
-	public function getGoodLinks() { return $this->mGoodLinks; }
-	public function getBadLinks() { return array_keys( $this->mBadLinks ); }
+	public function getGoodLinks() {
+		return $this->mGoodLinks;
+	}
+
+	public function getBadLinks() {
+		return array_keys( $this->mBadLinks );
+	}
 
 	/**
 	 * Add a title to the link cache, return the page_id or zero if non-existent
@@ -167,7 +172,7 @@ class LinkCache {
 	 */
 	public function addLink( $title ) {
 		$nt = Title::newFromDBkey( $title );
-		if( $nt ) {
+		if ( $nt ) {
 			return $this->addLinkObj( $nt );
 		} else {
 			return 0;
@@ -215,7 +220,9 @@ class LinkCache {
 		}
 
 		$f = array( 'page_id', 'page_len', 'page_is_redirect', 'page_latest' );
-		if ( $wgContentHandlerUseDB ) $f[] = 'page_content_model';
+		if ( $wgContentHandlerUseDB ) {
+			$f[] = 'page_content_model';
+		}
 
 		$s = $db->selectRow( 'page', $f,
 			array( 'page_namespace' => $nt->getNamespace(), 'page_title' => $nt->getDBkey() ),

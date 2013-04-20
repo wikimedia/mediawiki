@@ -577,7 +577,7 @@ class FSFileBackend extends FileBackendStore {
 		if ( $stat ) {
 			return array(
 				'mtime' => wfTimestamp( TS_MW, $stat['mtime'] ),
-				'size'  => $stat['size']
+				'size' => $stat['size']
 			);
 		} elseif ( !$hadError ) {
 			return false; // file does not exist
@@ -862,7 +862,7 @@ abstract class FSFileBackendList implements Iterator {
 	 */
 	public function __construct( $dir, array $params ) {
 		$path = realpath( $dir ); // normalize
-		if( $path === false ) {
+		if ( $path === false ) {
 			$path = $dir;
 		}
 		$this->suffixStart = strlen( $path ) + 1; // size of "path/to/dir/"
@@ -963,7 +963,7 @@ abstract class FSFileBackendList implements Iterator {
 	 */
 	protected function getRelPath( $dir ) {
 		$path = realpath( $dir );
-		if( $path === false ) {
+		if ( $path === false ) {
 			$path = $dir;
 		}
 		return strtr( substr( $path, $this->suffixStart ), '\\', '/' );

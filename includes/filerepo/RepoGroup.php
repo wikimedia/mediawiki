@@ -209,7 +209,7 @@ class RepoGroup {
 		}
 
 		$redir = $this->localRepo->checkRedirect( $title );
-		if( $redir ) {
+		if ( $redir ) {
 			return $redir;
 		}
 		foreach ( $this->foreignRepos as $repo ) {
@@ -238,7 +238,9 @@ class RepoGroup {
 		if ( !$file ) {
 			foreach ( $this->foreignRepos as $repo ) {
 				$file = $repo->findFileFromKey( $hash, $options );
-				if ( $file ) break;
+				if ( $file ) {
+					break;
+				}
 			}
 		}
 		return $file;
@@ -279,7 +281,7 @@ class RepoGroup {
 			$result = array_merge_recursive( $result, $repo->findBySha1s( $hashes ) );
 		}
 		//sort the merged (and presorted) sublist of each hash
-		foreach( $result as $hash => $files ) {
+		foreach ( $result as $hash => $files ) {
 			usort( $result[$hash], 'File::compare' );
 		}
 		return $result;
@@ -339,9 +341,9 @@ class RepoGroup {
 	 * @return bool
 	 */
 	function forEachForeignRepo( $callback, $params = array() ) {
-		foreach( $this->foreignRepos as $repo ) {
+		foreach ( $this->foreignRepos as $repo ) {
 			$args = array_merge( array( $repo ), $params );
-			if( call_user_func_array( $callback, $args ) ) {
+			if ( call_user_func_array( $callback, $args ) ) {
 				return true;
 			}
 		}

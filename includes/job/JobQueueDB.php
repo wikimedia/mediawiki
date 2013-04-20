@@ -225,7 +225,7 @@ class JobQueueDB extends JobQueue {
 				$res = $dbw->select( 'job', 'job_sha1',
 					array(
 						// No job_type condition since it's part of the job_sha1 hash
-						'job_sha1'  => array_keys( $rowSet ),
+						'job_sha1' => array_keys( $rowSet ),
 						'job_token' => '' // unclaimed
 					),
 					$method
@@ -300,7 +300,7 @@ class JobQueueDB extends JobQueue {
 			$job->metadata['id'] = $row->job_id;
 			$job->id = $row->job_id; // XXX: work around broken subclasses
 			break; // done
-		} while( true );
+		} while ( true );
 
 		return $job;
 	}
@@ -332,7 +332,7 @@ class JobQueueDB extends JobQueue {
 				$dir = $gte ? 'ASC' : 'DESC';
 				$row = $dbw->selectRow( 'job', '*', // find a random job
 					array(
-						'job_cmd'   => $this->type,
+						'job_cmd' => $this->type,
 						'job_token' => '', // unclaimed
 						"job_random {$ineq} {$dbw->addQuotes( $rand )}" ),
 					__METHOD__,
@@ -349,7 +349,7 @@ class JobQueueDB extends JobQueue {
 				// instead of job_random for reducing excess claim retries.
 				$row = $dbw->selectRow( 'job', '*', // find a random job
 					array(
-						'job_cmd'   => $this->type,
+						'job_cmd' => $this->type,
 						'job_token' => '', // unclaimed
 					),
 					__METHOD__,
@@ -364,7 +364,7 @@ class JobQueueDB extends JobQueue {
 			if ( $row ) { // claim the job
 				$dbw->update( 'job', // update by PK
 					array(
-						'job_token'           => $uuid,
+						'job_token' => $uuid,
 						'job_token_timestamp' => $dbw->timestamp(),
 						'job_attempts = job_attempts+1' ),
 					array( 'job_cmd' => $this->type, 'job_id' => $row->job_id, 'job_token' => '' ),
@@ -415,7 +415,7 @@ class JobQueueDB extends JobQueue {
 				// This uses as much of the DB wrapper functions as possible.
 				$dbw->update( 'job',
 					array(
-						'job_token'           => $uuid,
+						'job_token' => $uuid,
 						'job_token_timestamp' => $dbw->timestamp(),
 						'job_attempts = job_attempts+1' ),
 					array( 'job_id = (' .
@@ -514,7 +514,7 @@ class JobQueueDB extends JobQueue {
 		return array(
 			'recycleAndDeleteStaleJobs' => array(
 				'callback' => array( $this, 'recycleAndDeleteStaleJobs' ),
-				'period'   => ceil( $this->claimTTL / 2 )
+				'period' => ceil( $this->claimTTL / 2 )
 			)
 		);
 	}
@@ -578,7 +578,11 @@ class JobQueueDB extends JobQueue {
 					"job_attempts < {$dbw->addQuotes( $this->maxTries )}" ), // retries left
 				__METHOD__
 			);
-			$ids = array_map( function( $o ) { return $o->job_id; }, iterator_to_array( $res ) );
+			$ids = array_map(
+				function( $o ) {
+					return $o->job_id;
+				}, iterator_to_array( $res )
+			);
 			if ( count( $ids ) ) {
 				// Reset job_token for these jobs so that other runners will pick them up.
 				// Set the timestamp to the current time, as it is useful to now that the job
@@ -610,7 +614,11 @@ class JobQueueDB extends JobQueue {
 		// Get the IDs of jobs that are considered stale and should be removed. Selecting
 		// the IDs first means that the UPDATE can be done by primary key (less deadlocks).
 		$res = $dbw->select( 'job', 'job_id', $conds, __METHOD__ );
-		$ids = array_map( function( $o ) { return $o->job_id; }, iterator_to_array( $res ) );
+		$ids = array_map(
+			function( $o ) {
+				return $o->job_id;
+			}, iterator_to_array( $res )
+		);
 		if ( count( $ids ) ) {
 			$dbw->delete( 'job', array( 'job_id' => $ids ), __METHOD__ );
 			$count += $dbw->affectedRows();

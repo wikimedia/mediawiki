@@ -807,8 +807,8 @@ class SwiftFileBackend extends FileBackendStore {
 			$stat = array(
 				// Convert dates like "Tue, 03 Jan 2012 22:01:04 GMT" to TS_MW
 				'mtime' => wfTimestamp( TS_MW, $srcObj->last_modified ),
-				'size'  => (int)$srcObj->content_length,
-				'sha1'  => $srcObj->getMetadataValue( 'Sha1base36' )
+				'size' => (int)$srcObj->content_length,
+				'sha1' => $srcObj->getMetadataValue( 'Sha1base36' )
 			);
 		} catch ( NoSuchContainerException $e ) {
 		} catch ( NoSuchObjectException $e ) {
@@ -1239,8 +1239,8 @@ class SwiftFileBackend extends FileBackendStore {
 						str_replace( '/swift/v1', '', // S3 API is the rgw default
 							$sContObj->cfs_http->getStorageUrl() . $spath ),
 						array(
-							'Signature'      => $signature,
-							'Expires'        => $expires,
+							'Signature' => $signature,
+							'Expires' => $expires,
 							'AWSAccessKeyId' => $this->rgwS3AccessKey )
 					);
 				}

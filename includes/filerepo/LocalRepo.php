@@ -176,7 +176,7 @@ class LocalRepo extends FileRepo {
 		} // else $cachedValue is false or null: cache miss
 
 		$id = $this->getArticleID( $title );
-		if( !$id ) {
+		if ( !$id ) {
 			$wgMemc->set( $memcKey, " ", $expiry );
 			return false;
 		}
@@ -188,7 +188,7 @@ class LocalRepo extends FileRepo {
 			__METHOD__
 		);
 
-		if( $row && $row->rd_namespace == NS_FILE ) {
+		if ( $row && $row->rd_namespace == NS_FILE ) {
 			$targetTitle = Title::makeTitle( $row->rd_namespace, $row->rd_title );
 			$wgMemc->set( $memcKey, $targetTitle->getDBkey(), $expiry );
 			return $targetTitle;
@@ -206,7 +206,7 @@ class LocalRepo extends FileRepo {
 	 * @return bool|int|mixed
 	 */
 	protected function getArticleID( $title ) {
-		if( !$title instanceof Title ) {
+		if ( !$title instanceof Title ) {
 			return 0;
 		}
 		$dbr = $this->getSlaveDB();
@@ -258,7 +258,7 @@ class LocalRepo extends FileRepo {
 	 * @return array An Array of arrays or iterators of file objects and the hash as key
 	 */
 	function findBySha1s( array $hashes ) {
-		if( !count( $hashes ) ) {
+		if ( !count( $hashes ) ) {
 			return array(); //empty parameter
 		}
 

@@ -201,9 +201,9 @@ abstract class File {
 			'mpeg' => 'mpg',
 			'tiff' => 'tif',
 			'ogv' => 'ogg' );
-		if( isset( $squish[$lower] ) ) {
+		if ( isset( $squish[$lower] ) ) {
 			return $squish[$lower];
-		} elseif( preg_match( '/^[0-9a-z]+$/', $lower ) ) {
+		} elseif ( preg_match( '/^[0-9a-z]+$/', $lower ) ) {
 			return $lower;
 		} else {
 			return '';
@@ -241,7 +241,7 @@ abstract class File {
 	 * @return array ("text", "html") etc
 	 */
 	public static function splitMime( $mime ) {
-		if( strpos( $mime, '/' ) !== false ) {
+		if ( strpos( $mime, '/' ) !== false ) {
 			return explode( '/', $mime, 2 );
 		} else {
 			return array( $mime, 'unknown' );

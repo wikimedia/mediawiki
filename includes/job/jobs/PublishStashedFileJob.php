@@ -94,11 +94,11 @@ class PublishStashedFileJob extends Job {
 			UploadBase::setSessionStatus(
 				$this->params['filekey'],
 				array(
-					'result'    => 'Success',
-					'stage'     => 'publish',
-					'filename'  => $upload->getLocalFile()->getName(),
+					'result' => 'Success',
+					'stage' => 'publish',
+					'filename' => $upload->getLocalFile()->getName(),
 					'imageinfo' => $imageInfo,
-					'status'    => Status::newGood()
+					'status' => Status::newGood()
 				)
 			);
 		} catch ( MWException $e ) {
@@ -106,7 +106,7 @@ class PublishStashedFileJob extends Job {
 				$this->params['filekey'],
 				array(
 					'result' => 'Failure',
-					'stage'  => 'publish',
+					'stage' => 'publish',
 					'status' => Status::newFatal( 'api-error-publishfailed' )
 				)
 			);

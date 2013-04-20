@@ -95,17 +95,17 @@ class FileBackendGroup {
 				: 0644;
 			// Get the FS backend configuration
 			$autoBackends[] = array(
-				'name'           => $backendName,
-				'class'          => 'FSFileBackend',
-				'lockManager'    => 'fsLockManager',
+				'name' => $backendName,
+				'class' => 'FSFileBackend',
+				'lockManager' => 'fsLockManager',
 				'containerPaths' => array(
-					"{$repoName}-public"  => "{$directory}",
-					"{$repoName}-thumb"   => $thumbDir,
-					"{$repoName}-transcoded"   => $transcodedDir,
+					"{$repoName}-public" => "{$directory}",
+					"{$repoName}-thumb" => $thumbDir,
+					"{$repoName}-transcoded" => $transcodedDir,
 					"{$repoName}-deleted" => $deletedDir,
-					"{$repoName}-temp"    => "{$directory}/temp"
+					"{$repoName}-temp" => "{$directory}/temp"
 				),
-				'fileMode'       => $fileMode,
+				'fileMode' => $fileMode,
 			);
 		}
 
@@ -135,8 +135,8 @@ class FileBackendGroup {
 
 			unset( $config['class'] ); // backend won't need this
 			$this->backends[$name] = array(
-				'class'    => $class,
-				'config'   => $config,
+				'class' => $class,
+				'config' => $config,
 				'instance' => null
 			);
 		}

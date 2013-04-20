@@ -90,7 +90,7 @@ class ArchivedFile {
 		$this->exists = false;
 		$this->sha1 = '';
 
-		if( $title instanceof Title ) {
+		if ( $title instanceof Title ) {
 			$this->title = File::normalizeTitle( $title, 'exception' );
 			$this->name = $title->getDBkey();
 		}
@@ -119,22 +119,22 @@ class ArchivedFile {
 		}
 		$conds = array();
 
-		if( $this->id > 0 ) {
+		if ( $this->id > 0 ) {
 			$conds['fa_id'] = $this->id;
 		}
-		if( $this->key ) {
+		if ( $this->key ) {
 			$conds['fa_storage_group'] = $this->group;
 			$conds['fa_storage_key'] = $this->key;
 		}
-		if( $this->title ) {
+		if ( $this->title ) {
 			$conds['fa_name'] = $this->title->getDBkey();
 		}
 
-		if( !count( $conds ) ) {
+		if ( !count( $conds ) ) {
 			throw new MWException( "No specific information for retrieving archived file" );
 		}
 
-		if( !$this->title || $this->title->getNamespace() == NS_FILE ) {
+		if ( !$this->title || $this->title->getNamespace() == NS_FILE ) {
 			$this->dataLoaded = true; // set it here, to have also true on miss
 			$dbr = wfGetDB( DB_SLAVE );
 			$row = $dbr->selectRow(
@@ -224,7 +224,7 @@ class ArchivedFile {
 		$this->user_text = $row->fa_user_text;
 		$this->timestamp = $row->fa_timestamp;
 		$this->deleted = $row->fa_deleted;
-		if( isset( $row->fa_sha1 ) ) {
+		if ( isset( $row->fa_sha1 ) ) {
 			$this->sha1 = $row->fa_sha1;
 		} else {
 			// old row, populate from key
@@ -409,7 +409,7 @@ class ArchivedFile {
 	 */
 	public function getUser() {
 		$this->load();
-		if( $this->isDeleted( File::DELETED_USER ) ) {
+		if ( $this->isDeleted( File::DELETED_USER ) ) {
 			return 0;
 		} else {
 			return $this->user;
@@ -423,7 +423,7 @@ class ArchivedFile {
 	 */
 	public function getUserText() {
 		$this->load();
-		if( $this->isDeleted( File::DELETED_USER ) ) {
+		if ( $this->isDeleted( File::DELETED_USER ) ) {
 			return 0;
 		} else {
 			return $this->user_text;
@@ -437,7 +437,7 @@ class ArchivedFile {
 	 */
 	public function getDescription() {
 		$this->load();
-		if( $this->isDeleted( File::DELETED_COMMENT ) ) {
+		if ( $this->isDeleted( File::DELETED_COMMENT ) ) {
 			return 0;
 		} else {
 			return $this->description;

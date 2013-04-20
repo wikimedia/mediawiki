@@ -114,9 +114,10 @@ class CreditsAction extends FormlessAction {
 		# Hmm... too many to fit!
 		if ( $cnt > 0 && $contributors->count() > $cnt ) {
 			$others_link = $this->othersLink();
-			if ( !$showIfMax )
+			if ( !$showIfMax ) {
 				return $this->msg( 'othercontribs' )->rawParams(
 					$others_link )->params( $contributors->count() )->escaped();
+			}
 		}
 
 		$real_names = array();

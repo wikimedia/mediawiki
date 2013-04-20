@@ -154,7 +154,7 @@ class HTMLCacheUpdateJob extends Job {
 					array(
 						'table' => $this->params['table'],
 						'start' => $start,
-						'end'   => $id - 1
+						'end' => $id - 1
 					) + $rootJobParams // carry over information for de-duplication
 				);
 				$start = $id;
@@ -167,7 +167,7 @@ class HTMLCacheUpdateJob extends Job {
 			array(
 				'table' => $this->params['table'],
 				'start' => $start,
-				'end'   => $this->params['end']
+				'end' => $this->params['end']
 			) + $rootJobParams // carry over information for de-duplication
 		);
 		wfDebug( __METHOD__ . ": repartitioning into " . count( $jobs ) . " jobs\n" );
@@ -203,7 +203,7 @@ class HTMLCacheUpdateJob extends Job {
 				array(
 					'table' => $this->params['table'],
 					'start' => $start,
-					'end'   => $end,
+					'end' => $end,
 				) + $rootJobParams // carry over information for de-duplication
 			);
 		}
@@ -254,7 +254,7 @@ class HTMLCacheUpdateJob extends Job {
 		}
 
 		# Update file cache
-		if  ( $wgUseFileCache ) {
+		if ( $wgUseFileCache ) {
 			foreach ( $titleArray as $title ) {
 				HTMLFileCache::clearFileCache( $title );
 			}

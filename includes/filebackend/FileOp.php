@@ -212,22 +212,22 @@ abstract class FileOp {
 		$pathsUsed = array_merge( $this->storagePathsRead(), $this->storagePathsChanged() );
 		foreach ( array_unique( $pathsUsed ) as $path ) {
 			$nullEntries[] = array( // assertion for recovery
-				'op'      => 'null',
-				'path'    => $path,
+				'op' => 'null',
+				'path' => $path,
 				'newSha1' => $this->fileSha1( $path, $oPredicates )
 			);
 		}
 		foreach ( $this->storagePathsChanged() as $path ) {
 			if ( $nPredicates['sha1'][$path] === false ) { // deleted
 				$deleteEntries[] = array(
-					'op'      => 'delete',
-					'path'    => $path,
+					'op' => 'delete',
+					'path' => $path,
 					'newSha1' => ''
 				);
 			} else { // created/updated
 				$updateEntries[] = array(
-					'op'      => $this->fileExists( $path, $oPredicates ) ? 'update' : 'create',
-					'path'    => $path,
+					'op' => $this->fileExists( $path, $oPredicates ) ? 'update' : 'create',
+					'path' => $path,
 					'newSha1' => $nPredicates['sha1'][$path]
 				);
 			}

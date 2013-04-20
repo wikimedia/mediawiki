@@ -61,7 +61,7 @@ class JobQueueFederated extends JobQueue {
 	protected $cache;
 
 	const CACHE_TTL_SHORT = 30; // integer; seconds to cache info without re-validating
-	const CACHE_TTL_LONG  = 300; // integer; seconds to cache info that is kept up to date
+	const CACHE_TTL_LONG = 300; // integer; seconds to cache info that is kept up to date
 
 	/**
 	 * @params include:

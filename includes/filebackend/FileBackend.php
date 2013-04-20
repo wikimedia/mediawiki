@@ -803,7 +803,9 @@ abstract class FileBackend {
 	final protected function getScopedPHPBehaviorForOps() {
 		if ( php_sapi_name() != 'cli' ) { // http://bugs.php.net/bug.php?id=47540
 			$old = ignore_user_abort( true ); // avoid half-finished operations
-			return new ScopedCallback( function() use ( $old ) { ignore_user_abort( $old ); } );
+			return new ScopedCallback( function() use ( $old ) {
+				ignore_user_abort( $old );
+			} );
 		}
 		return null;
 	}

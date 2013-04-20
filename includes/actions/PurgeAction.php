@@ -71,7 +71,7 @@ class PurgeAction extends FormAction {
 				$this->getRequest()->getQueryValues(),
 				array( 'title' => null, 'action' => null )
 			) );
-			if( $this->onSubmit( array() ) ) {
+			if ( $this->onSubmit( array() ) ) {
 				$this->onSuccess();
 			}
 		} else {

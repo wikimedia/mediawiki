@@ -532,15 +532,15 @@ class LocalFile extends File {
 
 		$dbw->update( 'image',
 			array(
-				'img_size'       => $this->size, // sanity
-				'img_width'      => $this->width,
-				'img_height'     => $this->height,
-				'img_bits'       => $this->bits,
+				'img_size' => $this->size, // sanity
+				'img_width' => $this->width,
+				'img_height' => $this->height,
+				'img_bits' => $this->bits,
 				'img_media_type' => $this->media_type,
 				'img_major_mime' => $major,
 				'img_minor_mime' => $minor,
-				'img_metadata'   => $this->metadata,
-				'img_sha1'       => $this->sha1,
+				'img_metadata' => $this->metadata,
+				'img_sha1' => $this->sha1,
 			),
 			array( 'img_name' => $this->getName() ),
 			__METHOD__
@@ -803,7 +803,7 @@ class LocalFile extends File {
 		$oldKey = $this->repo->getSharedCacheKey( 'oldfile', $hashedName );
 
 		// Must purge thumbnails for old versions too! bug 30192
-		foreach( $this->getHistory() as $oldFile ) {
+		foreach ( $this->getHistory() as $oldFile ) {
 			$oldFile->purgeThumbnails();
 		}
 
@@ -845,7 +845,7 @@ class LocalFile extends File {
 		// Purge the squid
 		if ( $wgUseSquid ) {
 			$urls = array();
-			foreach( $files as $file ) {
+			foreach ( $files as $file ) {
 				$urls[] = $this->getArchiveThumbUrl( $archiveName, $file );
 			}
 			SquidUpdate::purge( $urls );
@@ -866,7 +866,7 @@ class LocalFile extends File {
 		// Always purge all files from squid regardless of handler filters
 		if ( $wgUseSquid ) {
 			$urls = array();
-			foreach( $files as $file ) {
+			foreach ( $files as $file ) {
 				$urls[] = $this->getThumbUrl( $file );
 			}
 			array_shift( $urls ); // don't purge directory
@@ -1196,20 +1196,20 @@ class LocalFile extends File {
 		# doesn't deadlock. SELECT FOR UPDATE causes a deadlock for every race condition.
 		$dbw->insert( 'image',
 			array(
-				'img_name'        => $this->getName(),
-				'img_size'        => $this->size,
-				'img_width'       => intval( $this->width ),
-				'img_height'      => intval( $this->height ),
-				'img_bits'        => $this->bits,
-				'img_media_type'  => $this->media_type,
-				'img_major_mime'  => $this->major_mime,
-				'img_minor_mime'  => $this->minor_mime,
-				'img_timestamp'   => $timestamp,
+				'img_name' => $this->getName(),
+				'img_size' => $this->size,
+				'img_width' => intval( $this->width ),
+				'img_height' => intval( $this->height ),
+				'img_bits' => $this->bits,
+				'img_media_type' => $this->media_type,
+				'img_major_mime' => $this->major_mime,
+				'img_minor_mime' => $this->minor_mime,
+				'img_timestamp' => $timestamp,
 				'img_description' => $comment,
-				'img_user'        => $user->getId(),
-				'img_user_text'   => $user->getName(),
-				'img_metadata'    => $this->metadata,
-				'img_sha1'        => $this->sha1
+				'img_user' => $user->getId(),
+				'img_user_text' => $user->getName(),
+				'img_metadata' => $this->metadata,
+				'img_sha1' => $this->sha1
 			),
 			__METHOD__,
 			'IGNORE'
@@ -1602,9 +1602,13 @@ class LocalFile extends File {
 	 */
 	function getDescriptionText() {
 		$revision = Revision::newFromTitle( $this->title, false, Revision::READ_NORMAL );
-		if ( !$revision ) return false;
+		if ( !$revision ) {
+			return false;
+		}
 		$content = $revision->getContent();
-		if ( !$content ) return false;
+		if ( !$content ) {
+			return false;
+		}
 		$pout = $content->getParserOutput( $this->title, null, new ParserOptions() );
 		return $pout->getText();
 	}
@@ -2174,7 +2178,7 @@ class LocalFileRestoreBatch {
 			$deletedRel = $this->file->repo->getDeletedHashPath( $row->fa_storage_key ) . $row->fa_storage_key;
 			$deletedUrl = $this->file->repo->getVirtualUrl() . '/deleted/' . $deletedRel;
 
-			if( isset( $row->fa_sha1 ) ) {
+			if ( isset( $row->fa_sha1 ) ) {
 				$sha1 = $row->fa_sha1;
 			} else {
 				// old row, populate from key

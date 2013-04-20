@@ -211,7 +211,7 @@ class HistoryAction extends FormlessAction {
 	 */
 	function fetchRevisions( $limit, $offset, $direction ) {
 		// Fail if article doesn't exist.
-		if( !$this->getTitle()->exists() ) {
+		if ( !$this->getTitle()->exists() ) {
 			return new FakeResultWrapper( array() );
 		}
 
@@ -367,14 +367,14 @@ class HistoryPager extends ReverseChronologicalPager {
 
 	function getQueryInfo() {
 		$queryInfo = array(
-			'tables'  => array( 'revision', 'user' ),
-			'fields'  => array_merge( Revision::selectFields(), Revision::selectUserFields() ),
-			'conds'   => array_merge(
+			'tables' => array( 'revision', 'user' ),
+			'fields' => array_merge( Revision::selectFields(), Revision::selectUserFields() ),
+			'conds' => array_merge(
 				array( 'rev_page' => $this->getWikiPage()->getId() ),
 				$this->conds ),
 			'options' => array( 'USE INDEX' => array( 'revision' => 'page_timestamp' ) ),
 			'join_conds' => array(
-				'user'        => Revision::userJoinCond(),
+				'user' => Revision::userJoinCond(),
 				'tag_summary' => array( 'LEFT JOIN', 'ts_rev_id=rev_id' ) ),
 		);
 		ChangeTags::modifyDisplayQuery(
@@ -413,10 +413,10 @@ class HistoryPager extends ReverseChronologicalPager {
 		$batch = new LinkBatch();
 		$revIds = array();
 		foreach ( $this->mResult as $row ) {
-			if( $row->rev_parent_id ) {
+			if ( $row->rev_parent_id ) {
 				$revIds[] = $row->rev_parent_id;
 			}
-			if( !is_null( $row->user_name ) ) {
+			if ( !is_null( $row->user_name ) ) {
 				$batch->add( NS_USER, $row->user_name );
 				$batch->add( NS_USER_TALK, $row->user_name );
 			} else { # for anons or usernames of imported revisions
@@ -649,9 +649,9 @@ class HistoryPager extends ReverseChronologicalPager {
 					$this->msg( 'editundo' )->escaped(),
 					$undoTooltip,
 					array(
-						'action'    => 'edit',
+						'action' => 'edit',
 						'undoafter' => $prevRev->getId(),
-						'undo'      => $rev->getId()
+						'undo' => $rev->getId()
 					)
 				);
 				$tools[] = "<span class=\"mw-history-undo\">{$undolink}</span>";
@@ -788,13 +788,13 @@ class HistoryPager extends ReverseChronologicalPager {
 	function diffButtons( $rev, $firstInList ) {
 		if ( $this->getNumRows() > 1 ) {
 			$id = $rev->getId();
-			$radio = array( 'type'  => 'radio', 'value' => $id );
+			$radio = array( 'type' => 'radio', 'value' => $id );
 			/** @todo: move title texts to javascript */
 			if ( $firstInList ) {
 				$first = Xml::element( 'input',
 					array_merge( $radio, array(
 						'style' => 'visibility:hidden',
-						'name'  => 'oldid',
+						'name' => 'oldid',
 						'id' => 'mw-oldid-null' ) )
 				);
 				$checkmark = array( 'checked' => 'checked' );
@@ -811,13 +811,13 @@ class HistoryPager extends ReverseChronologicalPager {
 				}
 				$first = Xml::element( 'input',
 					array_merge( $radio, $checkmark, array(
-						'name'  => 'oldid',
+						'name' => 'oldid',
 						'id' => "mw-oldid-$id" ) ) );
 				$checkmark = array();
 			}
 			$second = Xml::element( 'input',
 				array_merge( $radio, $checkmark, array(
-					'name'  => 'diff',
+					'name' => 'diff',
 					'id' => "mw-diff-$id" ) ) );
 			return $first . $second;
 		} else {

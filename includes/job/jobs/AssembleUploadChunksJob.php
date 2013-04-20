@@ -82,11 +82,11 @@ class AssembleUploadChunksJob extends Job {
 			UploadBase::setSessionStatus(
 				$this->params['filekey'],
 				array(
-					'result'    => 'Success',
-					'stage'     => 'assembling',
-					'filekey'   => $newFileKey,
+					'result' => 'Success',
+					'stage' => 'assembling',
+					'filekey' => $newFileKey,
 					'imageinfo' => $imageInfo,
-					'status'    => Status::newGood()
+					'status' => Status::newGood()
 				)
 			);
 		} catch ( MWException $e ) {
@@ -94,7 +94,7 @@ class AssembleUploadChunksJob extends Job {
 				$this->params['filekey'],
 				array(
 					'result' => 'Failure',
-					'stage'  => 'assembling',
+					'stage' => 'assembling',
 					'status' => Status::newFatal( 'api-error-stashfailed' )
 				)
 			);

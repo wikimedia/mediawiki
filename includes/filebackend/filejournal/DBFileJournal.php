@@ -65,11 +65,11 @@ class DBFileJournal extends FileJournal {
 		foreach ( $entries as $entry ) {
 			$data[] = array(
 				'fj_batch_uuid' => $batchId,
-				'fj_backend'    => $this->backend,
-				'fj_op'         => $entry['op'],
-				'fj_path'       => $entry['path'],
-				'fj_new_sha1'   => $entry['newSha1'],
-				'fj_timestamp'  => $dbw->timestamp( $now )
+				'fj_backend' => $this->backend,
+				'fj_op' => $entry['op'],
+				'fj_path' => $entry['path'],
+				'fj_new_sha1' => $entry['newSha1'],
+				'fj_timestamp' => $dbw->timestamp( $now )
 			);
 		}
 

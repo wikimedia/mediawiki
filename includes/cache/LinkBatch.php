@@ -39,7 +39,7 @@ class LinkBatch {
 	protected $caller;
 
 	function __construct( $arr = array() ) {
-		foreach( $arr as $item ) {
+		foreach ( $arr as $item ) {
 			$this->addObj( $item );
 		}
 	}

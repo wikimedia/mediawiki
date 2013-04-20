@@ -667,13 +667,13 @@ LUA;
 		if ( $this->claimTTL > 0 ) {
 			$tasks['recycleAndDeleteStaleJobs'] = array(
 				'callback' => array( $this, 'recycleAndDeleteStaleJobs' ),
-				'period'   => ceil( $this->claimTTL / 2 )
+				'period' => ceil( $this->claimTTL / 2 )
 			);
 		}
 		if ( $this->checkDelay ) {
 			$tasks['releaseReadyDelayedJobs'] = array(
 				'callback' => array( $this, 'releaseReadyDelayedJobs' ),
-				'period'   => 300 // 5 minutes
+				'period' => 300 // 5 minutes
 			);
 		}
 		return $tasks;

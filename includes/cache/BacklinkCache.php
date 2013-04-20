@@ -237,7 +237,7 @@ class BacklinkCache {
 		} else {
 			$prefix = null;
 			wfRunHooks( 'BacklinkCacheGetPrefix', array( $table, &$prefix ) );
-			if( $prefix ) {
+			if ( $prefix ) {
 				return $prefix;
 			} else {
 				throw new MWException( "Invalid table \"$table\" in " . __CLASS__ );
@@ -292,7 +292,7 @@ class BacklinkCache {
 			default:
 				$conds = null;
 				wfRunHooks( 'BacklinkCacheGetConditions', array( $table, $this->title, &$conds ) );
-				if( !$conds ) {
+				if ( !$conds ) {
 					throw new MWException( "Invalid table \"$table\" in " . __CLASS__ );
 				}
 		}

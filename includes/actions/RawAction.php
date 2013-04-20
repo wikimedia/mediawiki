@@ -125,7 +125,7 @@ class RawAction extends FormlessAction {
 		global $wgParser;
 
 		# No longer used
-		if( $this->mGen ) {
+		if ( $this->mGen ) {
 			return '';
 		}
 
@@ -194,14 +194,14 @@ class RawAction extends FormlessAction {
 		switch ( $this->getRequest()->getText( 'direction' ) ) {
 			case 'next':
 				# output next revision, or nothing if there isn't one
-				if( $oldid ) {
+				if ( $oldid ) {
 					$oldid = $this->getTitle()->getNextRevisionID( $oldid );
 				}
 				$oldid = $oldid ? $oldid : -1;
 				break;
 			case 'prev':
 				# output previous revision, or nothing if there isn't one
-				if( !$oldid ) {
+				if ( !$oldid ) {
 					# get the current revision so we can get the penultimate one
 					$oldid = $this->page->getLatest();
 				}

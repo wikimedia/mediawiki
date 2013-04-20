@@ -97,8 +97,8 @@ class LockManagerGroup {
 			$class = $config['class'];
 			unset( $config['class'] ); // lock manager won't need this
 			$this->managers[$name] = array(
-				'class'    => $class,
-				'config'   => $config,
+				'class' => $class,
+				'config' => $config,
 				'instance' => null
 			);
 		}

@@ -159,10 +159,10 @@ class RefreshLinksJob2 extends Job {
 					list( $start, $end ) = $batch;
 					$jobs[] = new RefreshLinksJob2( $this->title,
 						array(
-							'table'            => $table,
-							'start'            => $start,
-							'end'              => $end,
-							'masterPos'        => $masterPos,
+							'table' => $table,
+							'start' => $start,
+							'end' => $end,
+							'masterPos' => $masterPos,
 						) + $this->getRootJobParams() // carry over information for de-duplication
 					);
 				}

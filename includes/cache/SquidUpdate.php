@@ -125,7 +125,7 @@ class SquidUpdate {
 	static function purge( $urlArr ) {
 		global $wgSquidServers, $wgHTCPMulticastRouting;
 
-		if( !$urlArr ) {
+		if ( !$urlArr ) {
 			return;
 		}
 
@@ -172,7 +172,7 @@ class SquidUpdate {
 		$htcpOpCLR = 4; // HTCP CLR
 
 		// @todo FIXME: PHP doesn't support these socket constants (include/linux/in.h)
-		if( !defined( "IPPROTO_IP" ) ) {
+		if ( !defined( "IPPROTO_IP" ) ) {
 			define( "IPPROTO_IP", 0 );
 			define( "IP_MULTICAST_LOOP", 34 );
 			define( "IP_MULTICAST_TTL", 33 );
@@ -183,13 +183,14 @@ class SquidUpdate {
 		if ( $conn ) {
 			// Set socket options
 			socket_set_option( $conn, IPPROTO_IP, IP_MULTICAST_LOOP, 0 );
-			if ( $wgHTCPMulticastTTL != 1 )
+			if ( $wgHTCPMulticastTTL != 1 ) {
 				socket_set_option( $conn, IPPROTO_IP, IP_MULTICAST_TTL,
 					$wgHTCPMulticastTTL );
+			}
 
 			$urlArr = array_unique( $urlArr ); // Remove duplicates
 			foreach ( $urlArr as $url ) {
-				if( !is_string( $url ) ) {
+				if ( !is_string( $url ) ) {
 					wfProfileOut( __METHOD__ );
 					throw new MWException( 'Bad purge URL' );
 				}

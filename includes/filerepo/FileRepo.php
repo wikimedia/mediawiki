@@ -67,7 +67,7 @@ class FileRepo {
 	 */
 	public function __construct( array $info = null ) {
 		// Verify required settings presence
-		if(
+		if (
 			$info === null
 			|| !array_key_exists( 'name', $info )
 			|| !array_key_exists( 'backend', $info )
@@ -794,10 +794,10 @@ class FileRepo {
 				}
 			}
 			$operations[] = array(
-				'op'            => $opName,
-				'src'           => $srcPath,
-				'dst'           => $dstPath,
-				'overwrite'     => $flags & self::OVERWRITE,
+				'op' => $opName,
+				'src' => $srcPath,
+				'dst' => $dstPath,
+				'overwrite' => $flags & self::OVERWRITE,
 				'overwriteSame' => $flags & self::OVERWRITE_SAME,
 			);
 		}
@@ -917,9 +917,9 @@ class FileRepo {
 			$src = $this->resolveToStoragePath( $src );
 			$dst = $this->resolveToStoragePath( $dst );
 			$operations[] = array(
-				'op'          => FileBackend::isStoragePath( $src ) ? 'copy' : 'store',
-				'src'         => $src,
-				'dst'         => $dst,
+				'op' => FileBackend::isStoragePath( $src ) ? 'copy' : 'store',
+				'src' => $src,
+				'dst' => $dst,
 				'disposition' => isset( $triple[2] ) ? $triple[2] : null
 			);
 			$status->merge( $this->initDirectory( dirname( $dst ) ) );
@@ -942,8 +942,8 @@ class FileRepo {
 		$operations = array();
 		foreach ( $paths as $path ) {
 			$operations[] = array(
-				'op'                  => 'delete',
-				'src'                 => $this->resolveToStoragePath( $path ),
+				'op' => 'delete',
+				'src' => $this->resolveToStoragePath( $path ),
 				'ignoreMissingSource' => true
 			);
 		}
@@ -1132,9 +1132,9 @@ class FileRepo {
 			// race conditions unless an functioning LockManager is used.
 			// LocalFile also uses SELECT FOR UPDATE for synchronization.
 			$operations[] = array(
-				'op'                  => 'copy',
-				'src'                 => $dstPath,
-				'dst'                 => $archivePath,
+				'op' => 'copy',
+				'src' => $dstPath,
+				'dst' => $archivePath,
 				'ignoreMissingSource' => true
 			);
 
@@ -1142,28 +1142,28 @@ class FileRepo {
 			if ( FileBackend::isStoragePath( $srcPath ) ) {
 				if ( $flags & self::DELETE_SOURCE ) {
 					$operations[] = array(
-						'op'        => 'move',
-						'src'       => $srcPath,
-						'dst'       => $dstPath,
+						'op' => 'move',
+						'src' => $srcPath,
+						'dst' => $dstPath,
 						'overwrite' => true, // replace current
-						'headers'   => $headers
+						'headers' => $headers
 					);
 				} else {
 					$operations[] = array(
-						'op'        => 'copy',
-						'src'       => $srcPath,
-						'dst'       => $dstPath,
+						'op' => 'copy',
+						'src' => $srcPath,
+						'dst' => $dstPath,
 						'overwrite' => true, // replace current
-						'headers'   => $headers
+						'headers' => $headers
 					);
 				}
 			} else { // FS source path
 				$operations[] = array(
-					'op'        => 'store',
-					'src'       => $srcPath,
-					'dst'       => $dstPath,
+					'op' => 'store',
+					'src' => $srcPath,
+					'dst' => $dstPath,
 					'overwrite' => true, // replace current
-					'headers'   => $headers
+					'headers' => $headers
 				);
 				if ( $flags & self::DELETE_SOURCE ) {
 					$sourceFSFilesToDelete[] = $srcPath;
@@ -1324,9 +1324,9 @@ class FileRepo {
 			}
 
 			$operations[] = array(
-				'op'            => 'move',
-				'src'           => $srcPath,
-				'dst'           => $archivePath,
+				'op' => 'move',
+				'src' => $srcPath,
+				'dst' => $archivePath,
 				// We may have 2+ identical files being deleted,
 				// all of which will map to the same destination file
 				'overwriteSame' => true // also see bug 31792
@@ -1671,29 +1671,29 @@ class FileRepo {
 	 */
 	public function getTempRepo() {
 		return new TempFileRepo( array(
-			'name'      => "{$this->name}-temp",
-			'backend'   => $this->backend,
-			'zones'     => array(
+			'name' => "{$this->name}-temp",
+			'backend' => $this->backend,
+			'zones' => array(
 				'public' => array(
 					'container' => $this->zones['temp']['container'],
 					'directory' => $this->zones['temp']['directory']
 				),
-				'thumb'  => array(
+				'thumb' => array(
 					'container' => $this->zones['thumb']['container'],
 					'directory' => ( $this->zones['thumb']['directory'] == '' )
 						? 'temp'
 						: $this->zones['thumb']['directory'] . '/temp'
 				),
-				'transcoded'  => array(
+				'transcoded' => array(
 					'container' => $this->zones['transcoded']['container'],
 					'directory' => ( $this->zones['transcoded']['directory'] == '' )
 						? 'temp'
 						: $this->zones['transcoded']['directory'] . '/temp'
 				)
 			),
-			'url'        => $this->getZoneUrl( 'temp' ),
-			'thumbUrl'   => $this->getZoneUrl( 'thumb' ) . '/temp',
-			'transcodedUrl'   => $this->getZoneUrl( 'transcoded' ) . '/temp',
+			'url' => $this->getZoneUrl( 'temp' ),
+			'thumbUrl' => $this->getZoneUrl( 'thumb' ) . '/temp',
+			'transcodedUrl' => $this->getZoneUrl( 'transcoded' ) . '/temp',
 			'hashLevels' => $this->hashLevels // performance
 		) );
 	}

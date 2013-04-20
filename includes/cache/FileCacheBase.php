@@ -138,7 +138,7 @@ abstract class FileCacheBase {
 	 * @return string
 	 */
 	public function fetchText() {
-		if( $this->useGzip() ) {
+		if ( $this->useGzip() ) {
 			$fh = gzopen( $this->cachePath(), 'rb' );
 			return stream_get_contents( $fh );
 		} else {

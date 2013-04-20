@@ -68,7 +68,7 @@ abstract class Job {
 	 */
 	public static function factory( $command, Title $title, $params = false, $id = 0 ) {
 		global $wgJobClasses;
-		if( isset( $wgJobClasses[$command] ) ) {
+		if ( isset( $wgJobClasses[$command] ) ) {
 			$class = $wgJobClasses[$command];
 			return new $class( $title, $params, $id );
 		}
@@ -213,10 +213,10 @@ abstract class Job {
 	 */
 	public function getDeduplicationInfo() {
 		$info = array(
-			'type'      => $this->getType(),
+			'type' => $this->getType(),
 			'namespace' => $this->getTitle()->getNamespace(),
-			'title'     => $this->getTitle()->getDBkey(),
-			'params'    => $this->getParams()
+			'title' => $this->getTitle()->getDBkey(),
+			'params' => $this->getParams()
 		);
 		if ( is_array( $info['params'] ) ) {
 			// Identical jobs with different "root" jobs should count as duplicates

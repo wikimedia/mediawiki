@@ -205,7 +205,7 @@ class MessageCache {
 	function load( $code = false ) {
 		global $wgUseLocalMessageCache;
 
-		if( !is_string( $code ) ) {
+		if ( !is_string( $code ) ) {
 			# This isn't really nice, so at least make a note about it and try to
 			# fall back
 			wfDebug( __METHOD__ . " called without providing a language code\n" );
