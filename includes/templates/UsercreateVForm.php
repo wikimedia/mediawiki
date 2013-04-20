@@ -42,6 +42,61 @@ class UsercreateTemplateVForm extends BaseTemplate {
 		);
 	}
 
+	/**
+	 * Add CAPTCHA HTML to the form according to keys passed in.
+	 * @return string
+	 */
+	private function outputCaptcha( $captchaArr, $tabIndex ) {
+		?>
+		<label for="wpCaptchaWord"><?php $this->msg( 'createacct-captcha' ) ?></label>
+		<?php
+		switch ( $captchaArr['type'] ) {
+			case 'simple':
+				?>
+				<p>
+					<? echo htmlspecialchars( $captchaArr['question'] ); ?> =
+					<input id="wpCaptchaWord" name="wpCaptchaWord" type="text"
+						class="mw-vforms-captcha" size="5">
+				</p>
+				<?php
+				break;
+			case 'image':
+				?>
+				<div class="mw-createacct-captcha-container">
+					<div class="mw-createacct-captcha-and-reload">
+						<div class="mw-createacct-captcha-image-container">
+							<img id="mw-createacct-captcha"
+								src="<?php echo $captchaArr['url'] ?>"
+							>
+						</div>
+					</div>
+					<input id="wpCaptchaWord" name="wpCaptchaWord" type="text"
+						placeholder="<?php $this->msg( 'createacct-imgcaptcha-ph' ); ?>"
+						tabindex="<?php $tabindex; ?>"
+						autocapitalize="off" autocorrect="off"
+					>
+					<small class="mw-createacct-captcha-assisted"><?php echo $this->getMsg( 'createacct-imgcaptcha-help' )->parse() ?></small>
+				</div>
+				<?php
+				break;
+
+			default:
+				echo Html::element( 'p', array(), 'XXX Unknown type');
+				echo Xml::element( 'input', array(
+					'name' => 'wpCaptchaWord',
+					'id'   => 'wpCaptchaWord',
+					'class' => 'mw-vforms-captcha',
+					'tabindex' => $tabIndex ) );
+				break;
+
+		}
+		echo Xml::element( 'input', array(
+			'type'  => 'hidden',
+			'name'  => 'wpCaptchaId',
+			'id'    => 'wpCaptchaId',
+			'value' => $captchaArr['id'] ) );
+	}
+
 	function execute() {
 		global $wgCookieExpiration;
 		$expirationDays = ceil( $wgCookieExpiration / ( 3600 * 24 ) );
@@ -240,10 +295,10 @@ class UsercreateTemplateVForm extends BaseTemplate {
 			<?php
 			}
 		}
-		// JS attempts to move the image CAPTCHA below this part of the form,
-		// so skip one index.
-		$tabIndex++;
 		?>
+		<div class="captcha">
+			<?php $this->outputCaptcha( $this->data['captcha'] , $tabIndex ); ?>
+		</div>
 		<div class="mw-submit">
 			<input type='submit' class="mw-ui-button mw-ui-big mw-ui-block mw-ui-primary" name="wpCreateaccount" id="wpCreateaccount"
 				tabindex="<?php echo $tabIndex++; ?>"

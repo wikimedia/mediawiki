@@ -36,3 +36,11 @@
 	text-shadow: 0 1px #fae3e3;
 	word-wrap: break-word;
 }
+
+/*
+ * Captcha input fields should not get full-width block styling, bug 47520
+ */
+.mw-vforms-captcha {
+	display: inline !important;
+	width: auto !important;
+}

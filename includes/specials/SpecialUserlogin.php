@@ -1210,6 +1210,7 @@ class LoginForm extends SpecialPage {
 		} else {
 			wfRunHooks( 'UserLoginForm', array( &$template ) );
 		}
+if ( isset( $template->data['captcha;'] ) ) { var_dump( $template->data['captcha'] ); } // TEMP DEBUGGING
 
 		$out->disallowUserJs(); // just in case...
 		$out->addTemplate( $template );
