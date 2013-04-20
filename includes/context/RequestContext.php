@@ -401,10 +401,10 @@ class RequestContext implements IContextSource {
 	 */
 	public function exportSession() {
 		return array(
-			'ip'        => $this->getRequest()->getIP(),
-			'headers'   => $this->getRequest()->getAllHeaders(),
+			'ip' => $this->getRequest()->getIP(),
+			'headers' => $this->getRequest()->getAllHeaders(),
 			'sessionId' => session_id(),
-			'userId'    => $this->getUser()->getId()
+			'userId' => $this->getUser()->getId()
 		);
 	}
 

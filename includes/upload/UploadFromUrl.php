@@ -77,7 +77,7 @@ class UploadFromUrl extends UploadBase {
 			return false;
 		}
 		$valid = false;
-		foreach( $wgCopyUploadsDomains as $domain ) {
+		foreach ( $wgCopyUploadsDomains as $domain ) {
 			// See if the domain for the upload matches this whitelisted domain
 			$whitelistedDomainPieces = explode( '.', $domain );
 			$uploadDomainPieces = explode( '.', $parsedUrl['host'] );
@@ -172,7 +172,7 @@ class UploadFromUrl extends UploadBase {
 			return Status::newFatal( 'http-invalid-url' );
 		}
 
-		if( !self::isAllowedHost( $this->mUrl ) ) {
+		if ( !self::isAllowedHost( $this->mUrl ) ) {
 			return Status::newFatal( 'upload-copy-upload-invalid-domain' );
 		}
 		if ( !$this->mAsync ) {

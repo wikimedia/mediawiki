@@ -154,7 +154,7 @@ class WebInstaller extends Installer {
 		$this->exportVars();
 		$this->setupLanguage();
 
-		if( ( $this->getVar( '_InstallDone' ) || $this->getVar( '_UpgradeDone' ) )
+		if ( ( $this->getVar( '_InstallDone' ) || $this->getVar( '_UpgradeDone' ) )
 			&& $this->request->getVal( 'localsettings' ) )
 		{
 			$this->request->response()->header( 'Content-type: application/x-httpd-php' );
@@ -164,7 +164,7 @@ class WebInstaller extends Installer {
 
 			$ls = InstallerOverrides::getLocalSettingsGenerator( $this );
 			$rightsProfile = $this->rightsProfiles[$this->getVar( '_RightsProfile' )];
-			foreach( $rightsProfile as $group => $rightsArr ) {
+			foreach ( $rightsProfile as $group => $rightsArr ) {
 				$ls->setGroupRights( $group, $rightsArr );
 			}
 			echo $ls->getText();
@@ -172,7 +172,7 @@ class WebInstaller extends Installer {
 		}
 
 		$cssDir = $this->request->getVal( 'css' );
-		if( $cssDir ) {
+		if ( $cssDir ) {
 			$cssDir = ( $cssDir == 'rtl' ? 'rtl' : 'ltr' );
 			$this->request->response()->header( 'Content-type: text/css' );
 			echo $this->output->getCSS( $cssDir );
@@ -250,7 +250,7 @@ class WebInstaller extends Installer {
 				do {
 					$nextPageId--;
 					$nextPage = $this->pageSequence[$nextPageId];
-				} while( isset( $this->skippedPages[$nextPage] ) );
+				} while ( isset( $this->skippedPages[$nextPage] ) );
 			} else {
 				$nextPage = $this->pageSequence[$lowestUnhappy];
 			}
@@ -263,7 +263,7 @@ class WebInstaller extends Installer {
 		$this->currentPageName = $page->getName();
 		$this->startPageWrapper( $pageName );
 
-		if( $page->isSlow() ) {
+		if ( $page->isSlow() ) {
 			$this->disableTimeLimit();
 		}
 
@@ -324,7 +324,7 @@ class WebInstaller extends Installer {
 	 * @return bool
 	 */
 	public function startSession() {
-		if( wfIniGetBool( 'session.auto_start' ) || session_id() ) {
+		if ( wfIniGetBool( 'session.auto_start' ) || session_id() ) {
 			// Done already
 			return true;
 		}
@@ -889,7 +889,7 @@ class WebInstaller extends Installer {
 		if ( !isset( $params['help'] ) ) {
 			$params['help'] = "";
 		}
-		if( isset( $params['rawtext'] ) ) {
+		if ( isset( $params['rawtext'] ) ) {
 			$labelText = $params['rawtext'];
 		} else {
 			$labelText = $this->parse( wfMessage( $params['label'] )->text() );
@@ -983,10 +983,10 @@ class WebInstaller extends Installer {
 	 * @param $status Status
 	 */
 	public function showStatusBox( $status ) {
-		if( !$status->isGood() ) {
+		if ( !$status->isGood() ) {
 			$text = $status->getWikiText();
 
-			if( $status->isOk() ) {
+			if ( $status->isOk() ) {
 				$box = $this->getWarningBox( $text );
 			} else {
 				$box = $this->getErrorBox( $text );

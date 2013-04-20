@@ -401,7 +401,7 @@ abstract class Installer {
 	 */
 	public function doEnvironmentChecks() {
 		$phpVersion = phpversion();
-		if( version_compare( $phpVersion, self::MINIMUM_PHP_VERSION, '>=' ) ) {
+		if ( version_compare( $phpVersion, self::MINIMUM_PHP_VERSION, '>=' ) ) {
 			$this->showMessage( 'config-env-php', $phpVersion );
 			$good = true;
 		} else {
@@ -409,7 +409,7 @@ abstract class Installer {
 			$good = false;
 		}
 
-		if( $good ) {
+		if ( $good ) {
 			foreach ( $this->envChecks as $check ) {
 				$status = $this->$check();
 				if ( $status === false ) {
@@ -486,7 +486,7 @@ abstract class Installer {
 		$_lsExists = file_exists( "$IP/LocalSettings.php" );
 		wfRestoreWarnings();
 
-		if( !$_lsExists ) {
+		if ( !$_lsExists ) {
 			return false;
 		}
 		unset( $_lsExists );
@@ -684,7 +684,7 @@ abstract class Installer {
 	 * Environment check for register_globals.
 	 */
 	protected function envCheckRegisterGlobals() {
-		if( wfIniGetBool( 'register_globals' ) ) {
+		if ( wfIniGetBool( 'register_globals' ) ) {
 			$this->showMessage( 'config-register-globals' );
 		}
 	}
@@ -722,7 +722,7 @@ abstract class Installer {
 	 * @return bool
 	 */
 	protected function envCheckMagicQuotes() {
-		if( wfIniGetBool( "magic_quotes_runtime" ) ) {
+		if ( wfIniGetBool( "magic_quotes_runtime" ) ) {
 			$this->showError( 'config-magic-quotes-runtime' );
 			return false;
 		}
@@ -830,10 +830,10 @@ abstract class Installer {
 
 		$n = wfShorthandToInteger( $limit );
 
-		if( $n < $this->minMemorySize * 1024 * 1024 ) {
+		if ( $n < $this->minMemorySize * 1024 * 1024 ) {
 			$newLimit = "{$this->minMemorySize}M";
 
-			if( ini_set( "memory_limit", $newLimit ) === false ) {
+			if ( ini_set( "memory_limit", $newLimit ) === false ) {
 				$this->showMessage( 'config-memory-bad', $limit );
 			} else {
 				$this->showMessage( 'config-memory-raised', $limit, $newLimit );
@@ -1082,7 +1082,7 @@ abstract class Installer {
 	protected function envCheckSuhosinMaxValueLength() {
 		$maxValueLength = ini_get( 'suhosin.get.max_value_length' );
 		if ( $maxValueLength > 0 ) {
-			if( $maxValueLength < 1024 ) {
+			if ( $maxValueLength < 1024 ) {
 				# Only warn if the value is below the sane 1024
 				$this->showMessage( 'config-suhosin-max-value-length', $maxValueLength );
 			}
@@ -1140,14 +1140,14 @@ abstract class Installer {
 		 * We're going to prefer the pecl extension here unless
 		 * utf8_normalize is more up to date.
 		 */
-		if( $utf8 ) {
+		if ( $utf8 ) {
 			$useNormalizer = 'utf8';
 			$utf8 = utf8_normalize( $not_normal_c, UtfNormal::UNORM_NFC );
 			if ( $utf8 !== $normal_c ) {
 				$needsUpdate = true;
 			}
 		}
-		if( $intl ) {
+		if ( $intl ) {
 			$useNormalizer = 'intl';
 			$intl = normalizer_normalize( $not_normal_c, Normalizer::FORM_C );
 			if ( $intl !== $normal_c ) {
@@ -1156,11 +1156,11 @@ abstract class Installer {
 		}
 
 		// Uses messages 'config-unicode-using-php', 'config-unicode-using-utf8', 'config-unicode-using-intl'
-		if( $useNormalizer === 'php' ) {
+		if ( $useNormalizer === 'php' ) {
 			$this->showMessage( 'config-unicode-pure-php-warning' );
 		} else {
 			$this->showMessage( 'config-unicode-using-' . $useNormalizer );
-			if( $needsUpdate ) {
+			if ( $needsUpdate ) {
 				$this->showMessage( 'config-unicode-update-warning' );
 			}
 		}
@@ -1243,9 +1243,9 @@ abstract class Installer {
 	 * @return bool|string
 	 */
 	public static function locateExecutableInDefaultPaths( $names, $versionInfo = false ) {
-		foreach( self::getPossibleBinPaths() as $path ) {
+		foreach ( self::getPossibleBinPaths() as $path ) {
 			$exe = self::locateExecutable( $path, $names, $versionInfo );
-			if( $exe !== false ) {
+			if ( $exe !== false ) {
 				return $exe;
 			}
 		}
@@ -1344,7 +1344,7 @@ abstract class Installer {
 	 * @return array
 	 */
 	public function findExtensions() {
-		if( $this->getVar( 'IP' ) === null ) {
+		if ( $this->getVar( 'IP' ) === null ) {
 			return array();
 		}
 
@@ -1356,10 +1356,10 @@ abstract class Installer {
 		$dh = opendir( $extDir );
 		$exts = array();
 		while ( ( $file = readdir( $dh ) ) !== false ) {
-			if( !is_dir( "$extDir/$file" ) ) {
+			if ( !is_dir( "$extDir/$file" ) ) {
 				continue;
 			}
-			if( file_exists( "$extDir/$file/$file.php" ) ) {
+			if ( file_exists( "$extDir/$file/$file.php" ) ) {
 				$exts[] = $file;
 			}
 		}
@@ -1392,7 +1392,7 @@ abstract class Installer {
 
 		require( "$IP/includes/DefaultSettings.php" );
 
-		foreach( $exts as $e ) {
+		foreach ( $exts as $e ) {
 			require_once( "$IP/extensions/$e/$e.php" );
 		}
 
@@ -1431,9 +1431,9 @@ abstract class Installer {
 
 		// Build the array of install steps starting from the core install list,
 		// then adding any callbacks that wanted to attach after a given step
-		foreach( $coreInstallSteps as $step ) {
+		foreach ( $coreInstallSteps as $step ) {
 			$this->installSteps[] = $step;
-			if( isset( $this->extraInstallSteps[$step['name']] ) ) {
+			if ( isset( $this->extraInstallSteps[$step['name']] ) ) {
 				$this->installSteps = array_merge(
 					$this->installSteps,
 					$this->extraInstallSteps[$step['name']]
@@ -1442,7 +1442,7 @@ abstract class Installer {
 		}
 
 		// Prepend any steps that want to be at the beginning
-		if( isset( $this->extraInstallSteps['BEGINNING'] ) ) {
+		if ( isset( $this->extraInstallSteps['BEGINNING'] ) ) {
 			$this->installSteps = array_merge(
 				$this->extraInstallSteps['BEGINNING'],
 				$this->installSteps
@@ -1450,7 +1450,7 @@ abstract class Installer {
 		}
 
 		// Extensions should always go first, chance to tie into hooks and such
-		if( count( $this->getVar( '_Extensions' ) ) ) {
+		if ( count( $this->getVar( '_Extensions' ) ) ) {
 			array_unshift( $this->installSteps,
 				array( 'name' => 'extensions', 'callback' => array( $this, 'includeExtensions' ) )
 			);
@@ -1475,7 +1475,7 @@ abstract class Installer {
 		$installer = $this->getDBInstaller();
 		$installer->preInstall();
 		$steps = $this->getInstallSteps( $installer );
-		foreach( $steps as $stepObj ) {
+		foreach ( $steps as $stepObj ) {
 			$name = $stepObj['name'];
 			call_user_func_array( $startCB, array( $name ) );
 
@@ -1488,11 +1488,11 @@ abstract class Installer {
 
 			// If we've hit some sort of fatal, we need to bail.
 			// Callback already had a chance to do output above.
-			if( !$status->isOk() ) {
+			if ( !$status->isOk() ) {
 				break;
 			}
 		}
-		if( $status->isOk() ) {
+		if ( $status->isOk() ) {
 			$this->setVar( '_InstallDone', true );
 		}
 		return $installResults;
@@ -1566,7 +1566,7 @@ abstract class Installer {
 
 			$user->addGroup( 'sysop' );
 			$user->addGroup( 'bureaucrat' );
-			if( $this->getVar( '_AdminEmail' ) ) {
+			if ( $this->getVar( '_AdminEmail' ) ) {
 				$user->setEmail( $this->getVar( '_AdminEmail' ) );
 			}
 			$user->saveSettings();
@@ -1577,7 +1577,7 @@ abstract class Installer {
 		}
 		$status = Status::newGood();
 
-		if( $this->getVar( '_Subscribe' ) && $this->getVar( '_AdminEmail' ) ) {
+		if ( $this->getVar( '_Subscribe' ) && $this->getVar( '_AdminEmail' ) ) {
 			$this->subscribeToMediaWikiAnnounce( $status );
 		}
 
@@ -1589,23 +1589,23 @@ abstract class Installer {
 	 */
 	private function subscribeToMediaWikiAnnounce( Status $s ) {
 		$params = array(
-			'email'    => $this->getVar( '_AdminEmail' ),
+			'email' => $this->getVar( '_AdminEmail' ),
 			'language' => 'en',
-			'digest'   => 0
+			'digest' => 0
 		);
 
 		// Mailman doesn't support as many languages as we do, so check to make
 		// sure their selected language is available
 		$myLang = $this->getVar( '_UserLang' );
-		if( in_array( $myLang, $this->mediaWikiAnnounceLanguages ) ) {
+		if ( in_array( $myLang, $this->mediaWikiAnnounceLanguages ) ) {
 			$myLang = $myLang == 'pt-br' ? 'pt_BR' : $myLang; // rewrite to Mailman's pt_BR
 			$params['language'] = $myLang;
 		}
 
-		if( MWHttpRequest::canMakeRequests() ) {
+		if ( MWHttpRequest::canMakeRequests() ) {
 			$res = MWHttpRequest::factory( $this->mediaWikiAnnounceUrl,
 				array( 'method' => 'POST', 'postData' => $params ) )->execute();
-			if( !$res->isOK() ) {
+			if ( !$res->isOK() ) {
 				$s->warning( 'config-install-subscribe-fail', $res->getMessage() );
 			}
 		} else {

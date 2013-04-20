@@ -33,13 +33,13 @@ class UserloginTemplate extends QuickTemplate {
 	function execute() {
 		if ( $this->data['message'] ) {
 ?>
-	<div class="<?php $this->text('messagetype') ?>box">
+	<div class="<?php $this->text( 'messagetype' ); ?>box">
 		<?php
 		if ( $this->data['messagetype'] == 'error' ) {
-			?><strong><?php $this->msg( 'loginerror' ) ?></strong><br /><?php
+			?><strong><?php $this->msg( 'loginerror' ); ?></strong><br /><?php
 		}
 		?>
-		<?php $this->html('message') ?>
+		<?php $this->html( 'message' ); ?>
 	</div>
 	<div class="visualClear"></div><?php
 
@@ -47,11 +47,11 @@ class UserloginTemplate extends QuickTemplate {
 ?>
 <div id="loginstart"><?php $this->msgWiki( 'loginstart' ); ?></div>
 <div id="userloginForm">
-<form name="userlogin" method="post" action="<?php $this->text('action') ?>">
-	<h2><?php $this->msg('login') ?></h2>
-	<p id="userloginlink"><?php $this->html('link') ?></p>
-	<?php $this->html('header'); /* pre-table point for form plugins... */ ?>
-	<div id="userloginprompt"><?php  $this->msgWiki('loginprompt') ?></div>
+<form name="userlogin" method="post" action="<?php $this->text( 'action' ); ?>">
+	<h2><?php $this->msg( 'login' ); ?></h2>
+	<p id="userloginlink"><?php $this->html( 'link' ); ?></p>
+	<?php $this->html( 'header' ); /* pre-table point for form plugins... */ ?>
+	<div id="userloginprompt"><?php  $this->msgWiki( 'loginprompt' ); ?></div>
 <?php
 		if ( $this->haveData( 'languages' ) ) {
 			?><div id="languagelinks"><p><?php $this->html( 'languages' ); ?></p></div><?php
@@ -59,7 +59,7 @@ class UserloginTemplate extends QuickTemplate {
 ?>
 	<table>
 		<tr>
-			<td class="mw-label"><label for='wpName1'><?php $this->msg('yourname') ?></label></td>
+			<td class="mw-label"><label for='wpName1'><?php $this->msg( 'yourname' ); ?></label></td>
 			<td class="mw-input">
 				<?php
 			echo Html::input( 'wpName', $this->data['name'], 'text', array(
@@ -75,7 +75,7 @@ class UserloginTemplate extends QuickTemplate {
 			</td>
 		</tr>
 		<tr>
-			<td class="mw-label"><label for='wpPassword1'><?php $this->msg('yourpassword') ?></label></td>
+			<td class="mw-label"><label for='wpPassword1'><?php $this->msg( 'yourpassword' ); ?></label></td>
 			<td class="mw-input">
 				<?php
 			echo Html::input( 'wpPassword', null, 'password', array(

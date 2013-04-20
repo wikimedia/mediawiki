@@ -398,7 +398,7 @@ class BitmapHandler extends ImageHandler {
 					$im->sharpenImage( $radius, $sigma );
 				}
 				$im->setCompressionQuality( 80 );
-			} elseif( $params['mimeType'] == 'image/png' ) {
+			} elseif ( $params['mimeType'] == 'image/png' ) {
 				$im->setCompressionQuality( 95 );
 			} elseif ( $params['mimeType'] == 'image/gif' ) {
 				if ( $this->getImageArea( $image ) > $wgMaxAnimatedGifArea ) {

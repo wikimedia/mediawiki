@@ -156,7 +156,7 @@ class BitmapMetadataHandler {
 			$meta->addMetadata( Array( 'JPEGFileComment' => $seg['COM'] ), 'native' );
 		}
 		if ( isset( $seg['PSIR'] ) && count( $seg['PSIR'] ) > 0 ) {
-			foreach( $seg['PSIR'] as $curPSIRValue ) {
+			foreach ( $seg['PSIR'] as $curPSIRValue ) {
 				$meta->doApp13( $curPSIRValue );
 			}
 		}
@@ -286,7 +286,9 @@ class BitmapMetadataHandler {
 	 */
 	static function getTiffByteOrder( $filename ) {
 		$fh = fopen( $filename, 'rb' );
-		if ( !$fh ) return false;
+		if ( !$fh ) {
+			return false;
+		}
 		$head = fread( $fh, 2 );
 		fclose( $fh );
 

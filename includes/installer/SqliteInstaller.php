@@ -60,7 +60,7 @@ class SqliteInstaller extends DatabaseInstaller {
 			$result->fatal( 'config-outdated-sqlite', $db->getServerVersion(), self::MINIMUM_VERSION );
 		}
 		// Check for FTS3 full-text search module
-		if( DatabaseSqlite::getFulltextSearchModule() != 'FTS3' ) {
+		if ( DatabaseSqlite::getFulltextSearchModule() != 'FTS3' ) {
 			$result->warning( 'config-no-fts3' );
 		}
 		return $result;

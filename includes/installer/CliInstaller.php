@@ -114,7 +114,7 @@ class CliInstaller extends Installer {
 	 */
 	public function execute() {
 		$vars = Installer::getExistingLocalSettings();
-		if( $vars ) {
+		if ( $vars ) {
 			$this->showStatusMessage(
 				Status::newFatal( "config-localsettings-cli-upgrade" )
 			);

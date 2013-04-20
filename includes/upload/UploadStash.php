@@ -338,7 +338,7 @@ class UploadStash {
 			__METHOD__
 		);
 
-		if( !$row ) {
+		if ( !$row ) {
 			throw new UploadStashNoSuchKeyException( "No such key ($key), cannot remove" );
 		}
 
@@ -454,7 +454,7 @@ class UploadStash {
 	protected function fetchFileMetadata( $key, $readFromDB = DB_SLAVE ) {
 		// populate $fileMetadata[$key]
 		$dbr = null;
-		if( $readFromDB === DB_MASTER ) {
+		if ( $readFromDB === DB_MASTER ) {
 			// sometimes reading from the master is necessary, if there's replication lag.
 			$dbr = $this->repo->getMasterDb();
 		} else {

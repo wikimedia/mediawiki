@@ -146,7 +146,7 @@ class WebInstallerOutput {
 		}
 		wfRestoreWarnings();
 
-		if( $dir == 'rtl' ) {
+		if ( $dir == 'rtl' ) {
 			$css = CSSJanus::transform( $css, true );
 		}
 
