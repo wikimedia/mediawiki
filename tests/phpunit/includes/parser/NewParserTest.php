@@ -19,7 +19,6 @@ class NewParserTest extends MediaWikiTestCase {
 	public $runParsoid = false;
 	public $regex = '';
 	public $showProgress = true;
-	public $savedInitialGlobals = array();
 	public $savedWeirdGlobals = array();
 	public $savedGlobals = array();
 	public $hooks = array();
@@ -33,7 +32,7 @@ class NewParserTest extends MediaWikiTestCase {
 	protected $file = false;
 
 	protected function setUp() {
-		global $wgNamespaceProtection, $wgNamespaceAliases;
+		global $wgNamespaceAliases;
 		global $wgHooks, $IP;
 
 		parent::setUp();
@@ -52,11 +51,17 @@ class NewParserTest extends MediaWikiTestCase {
 
 		$tmpGlobals['wgLanguageCode'] = 'en';
 		$tmpGlobals['wgContLang'] = Language::factory( 'en' );
+		$tmpGlobals['wgSitename'] = 'MediaWiki';
+		$tmpGlobals['wgServer'] = 'http://example.org';
 		$tmpGlobals['wgScript'] = '/index.php';
 		$tmpGlobals['wgScriptPath'] = '/';
 		$tmpGlobals['wgArticlePath'] = '/wiki/$1';
+		$tmpGlobals['wgActionPaths'] = array();
+		$tmpGlobals['wgVariantArticlePath'] = false;
+		$tmpGlobals['wgExtensionAssetsPath'] = '/extensions';
 		$tmpGlobals['wgStyleSheetPath'] = '/skins';
 		$tmpGlobals['wgStylePath'] = '/skins';
+		$tmpGlobals['wgEnableUploads'] = true;
 		$tmpGlobals['wgThumbnailScriptPath'] = false;
 		$tmpGlobals['wgLocalFileRepo'] = array(
 			'class' => 'LocalRepo',
@@ -67,50 +72,62 @@ class NewParserTest extends MediaWikiTestCase {
 			'backend' => 'local-backend'
 		);
 		$tmpGlobals['wgForeignFileRepos'] = array();
+		$tmpGlobals['wgDefaultExternalStore'] = array();
 		$tmpGlobals['wgEnableParserCache'] = false;
-		$tmpGlobals['wgHooks'] = $wgHooks;
+		$tmpGlobals['wgCapitalLinks'] = true;
+		$tmpGlobals['wgNoFollowLinks'] = true;
+		$tmpGlobals['wgNoFollowDomainExceptions'] = array();
+		$tmpGlobals['wgExternalLinkTarget'] = false;
+		$tmpGlobals['wgThumbnailScriptPath'] = false;
+		$tmpGlobals['wgUseImageResize'] = true;
+		$tmpGlobals['wgAllowExternalImages'] = true;
+		$tmpGlobals['wgRawHtml'] = false;
+		$tmpGlobals['wgUseTidy'] = false;
+		$tmpGlobals['wgAlwaysUseTidy'] = false;
+		$tmpGlobals['wgHtml5'] = true;
+		$tmpGlobals['wgWellFormedXml'] = true;
+		$tmpGlobals['wgAllowMicrodataAttributes'] = true;
+		$tmpGlobals['wgExperimentalHtmlIds'] = false;
+		$tmpGlobals['wgAdaptiveMessageCache'] = true;
+		$tmpGlobals['wgUseDatabaseMessages'] = true;
+		$tmpGlobals['wgLocaltimezone'] = 'UTC';
 		$tmpGlobals['wgDeferredUpdateList'] = array();
-		$tmpGlobals['wgMemc'] = wfGetMainCache();
+		$tmpGlobals['wgGroupPermissions'] = array(
+			'*' => array(
+				'createaccount' => true,
+				'read' => true,
+				'edit' => true,
+				'createpage' => true,
+				'createtalk' => true,
+		) );
+		$tmpGlobals['wgNamespaceProtection'] = array( NS_MEDIAWIKI => 'editinterface' );
+		$tmpGlobals['wgMemc'] = new EmptyBagOStuff;
 		$tmpGlobals['messageMemc'] = wfGetMessageCacheStorage();
 		$tmpGlobals['parserMemc'] = wfGetParserCacheStorage();
 
-		// $tmpGlobals['wgContLang'] = new StubContLang;
-		$tmpGlobals['wgUser'] = new User;
-		$context = new RequestContext();
-		$tmpGlobals['wgLang'] = $context->getLanguage();
-		$tmpGlobals['wgOut'] = $context->getOutput();
 		$tmpGlobals['wgParser'] = new StubObject( 'wgParser', $GLOBALS['wgParserConf']['class'], array( $GLOBALS['wgParserConf'] ) );
-		$tmpGlobals['wgRequest'] = $context->getRequest();
 
 		if ( $GLOBALS['wgStyleDirectory'] === false ) {
 			$tmpGlobals['wgStyleDirectory'] = "$IP/skins";
 		}
 
-		foreach ( $tmpGlobals as $var => $val ) {
-			if ( array_key_exists( $var, $GLOBALS ) ) {
-				$this->savedInitialGlobals[$var] = $GLOBALS[$var];
-			}
+		$tmpHooks = $wgHooks;
+		$tmpHooks['ParserTestParser'][] = 'ParserTestParserHook::setup';
+		$tmpHooks['ParserGetVariableValueTs'][] = 'ParserTest::getFakeTimestamp';
+		$tmpGlobals['wgHooks'] = $tmpHooks;
 
-			$GLOBALS[$var] = $val;
-		}
+		$this->setMwGlobals( $tmpGlobals );
 
-		$this->savedWeirdGlobals['mw_namespace_protection'] = $wgNamespaceProtection[NS_MEDIAWIKI];
 		$this->savedWeirdGlobals['image_alias'] = $wgNamespaceAliases['Image'];
 		$this->savedWeirdGlobals['image_talk_alias'] = $wgNamespaceAliases['Image_talk'];
 
-		$wgNamespaceProtection[NS_MEDIAWIKI] = 'editinterface';
 		$wgNamespaceAliases['Image'] = NS_FILE;
 		$wgNamespaceAliases['Image_talk'] = NS_FILE_TALK;
 	}
 
 	protected function tearDown() {
-		foreach ( $this->savedInitialGlobals as $var => $val ) {
-			$GLOBALS[$var] = $val;
-		}
+		global $wgNamespaceAliases;
 
-		global $wgNamespaceProtection, $wgNamespaceAliases;
-
-		$wgNamespaceProtection[NS_MEDIAWIKI] = $this->savedWeirdGlobals['mw_namespace_protection'];
 		$wgNamespaceAliases['Image'] = $this->savedWeirdGlobals['image_alias'];
 		$wgNamespaceAliases['Image_talk'] = $this->savedWeirdGlobals['image_talk_alias'];
 
@@ -299,12 +316,6 @@ class NewParserTest extends MediaWikiTestCase {
 		}
 
 		$settings = array(
-			'wgServer' => 'http://example.org',
-			'wgScript' => '/index.php',
-			'wgScriptPath' => '/',
-			'wgArticlePath' => '/wiki/$1',
-			'wgExtensionAssetsPath' => '/extensions',
-			'wgActionPaths' => array(),
 			'wgLocalFileRepo' => array(
 				'class' => 'LocalRepo',
 				'name' => 'local',
@@ -314,47 +325,15 @@ class NewParserTest extends MediaWikiTestCase {
 				'backend' => $backend
 			),
 			'wgEnableUploads' => self::getOptionValue( 'wgEnableUploads', $opts, true ),
-			'wgStylePath' => '/skins',
-			'wgStyleSheetPath' => '/skins',
-			'wgSitename' => 'MediaWiki',
 			'wgLanguageCode' => $lang,
 			'wgDBprefix' => $this->db->getType() != 'oracle' ? 'unittest_' : 'ut_',
 			'wgRawHtml' => isset( $opts['rawhtml'] ),
-			'wgLang' => null,
-			'wgContLang' => null,
 			'wgNamespacesWithSubpages' => array( NS_MAIN => isset( $opts['subpage'] ) ),
 			'wgMaxTocLevel' => $maxtoclevel,
-			'wgCapitalLinks' => true,
-			'wgNoFollowLinks' => true,
-			'wgNoFollowDomainExceptions' => array(),
-			'wgThumbnailScriptPath' => false,
-			'wgUseImageResize' => true,
 			'wgUseTeX' => isset( $opts['math'] ),
 			'wgMathDirectory' => $uploadDir . '/math',
-			'wgLocaltimezone' => 'UTC',
-			'wgAllowExternalImages' => true,
-			'wgUseTidy' => false,
 			'wgDefaultLanguageVariant' => $variant,
-			'wgVariantArticlePath' => false,
-			'wgGroupPermissions' => array( '*' => array(
-				'createaccount' => true,
-				'read' => true,
-				'edit' => true,
-				'createpage' => true,
-				'createtalk' => true,
-			) ),
-			'wgNamespaceProtection' => array( NS_MEDIAWIKI => 'editinterface' ),
-			'wgDefaultExternalStore' => array(),
-			'wgForeignFileRepos' => array(),
 			'wgLinkHolderBatchSize' => $linkHolderBatchSize,
-			'wgExperimentalHtmlIds' => false,
-			'wgExternalLinkTarget' => false,
-			'wgAlwaysUseTidy' => false,
-			'wgHtml5' => true,
-			'wgWellFormedXml' => true,
-			'wgAllowMicrodataAttributes' => true,
-			'wgAdaptiveMessageCache' => true,
-			'wgUseDatabaseMessages' => true,
 		);
 
 		if ( $config ) {
@@ -372,6 +351,15 @@ class NewParserTest extends MediaWikiTestCase {
 		/** @since 1.20 */
 		wfRunHooks( 'ParserTestGlobals', array( &$settings ) );
 
+		$langObj = Language::factory( $lang );
+		$settings['wgContLang'] = $langObj;
+		$settings['wgLang'] = $langObj;
+
+		$context = new RequestContext();
+		$settings['wgOut'] = $context->getOutput();
+		$settings['wgUser'] = $context->getUser();
+		$settings['wgRequest'] = $context->getRequest();
+
 		foreach ( $settings as $var => $val ) {
 			if ( array_key_exists( $var, $GLOBALS ) ) {
 				$this->savedGlobals[$var] = $GLOBALS[$var];
@@ -379,20 +367,6 @@ class NewParserTest extends MediaWikiTestCase {
 
 			$GLOBALS[$var] = $val;
 		}
-
-		$langObj = Language::factory( $lang );
-		$GLOBALS['wgContLang'] = $langObj;
-		$context = new RequestContext();
-		$GLOBALS['wgLang'] = $context->getLanguage();
-
-		$GLOBALS['wgMemc'] = new EmptyBagOStuff;
-		$GLOBALS['wgOut'] = $context->getOutput();
-		$GLOBALS['wgUser'] = $context->getUser();
-
-		global $wgHooks;
-
-		$wgHooks['ParserTestParser'][] = 'ParserTestParserHook::setup';
-		$wgHooks['ParserGetVariableValueTs'][] = 'ParserTest::getFakeTimestamp';
 
 		MagicWord::clearCache();
 		RepoGroup::destroySingleton();
