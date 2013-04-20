@@ -11713,7 +11713,6 @@ Donn Ding Daatebangk et beß janz woh anders hen, noh <code lang="en">/var/lib/m
 	'config-type-postgres' => '<i lang="en">PostgreSQL</i>',
 	'config-type-sqlite' => '<i lang="en">SQLite</i>',
 	'config-type-oracle' => '<i lang="en">Oracle</i>',
-	'config-type-ibm_db2' => 'Dä <i lang="en">IBM</i> ier <i lang="en">DB2</i>',
 	'config-support-info' => 'MediaWiki kann met heh dä Daatebangk_Süßteeme zosamme jonn:
 
 $1
@@ -11723,12 +11722,10 @@ Wann dat Daatebangk_Süßteem, wat De nämme wells, onge nit dobei es, dann donn
 	'config-support-postgres' => '* <i lang="en">$1</i> es e bikannt Daatebangksüßteem met offe Quälltäxde, un en och en Wahl nävve <i lang="en">MySQL</i> ([http://www.php.net/manual/de/pgsql.installation.php Aanleidung för et Övversäze un Enreeschte von PHP met <i lang="en">PostgreSQL</i> dobei, op Deutsch]) Et sinn_er ävver paa klein Fählershe bekannt, um kunne dat em Momang för et reschtijje Werke nit emfähle.',
 	'config-support-sqlite' => '* <i lang="en">$1</i> es e eijfach Daatebangksüßteem, wat joot ongershtöz weed. ([http://www.php.net/manual/de/pdo.installation.php Aanleidong för et Övversäze un Enreeschte von PHP met <i lang="en">SQLite</i> dobei, op Deutsch])',
 	'config-support-oracle' => '* <i lang="en">$1</i> es e jeschäfflesch Daatebangksüßteem för Ferme. ([http://www.php.net/manual/de/oci8.installation.php Aanleidong för et Övversäze un Enreeschte von PHP met <i lang="en">OCI8</i> dobei, op Deutsch])',
-	'config-support-ibm_db2' => '* $1 es en Datebengk för et Jeschäff un fö Ongernehme.', # Fuzzy
 	'config-header-mysql' => 'De Enshtällunge för de <i lang="en">MySQL</i> Daatebangk',
 	'config-header-postgres' => 'De Enshtällunge för de <i lang="en">PostgreSQL</i> Daatebangk',
 	'config-header-sqlite' => 'De Enshtällunge för de <i lang="en">SQLite</i> Daatebangk',
 	'config-header-oracle' => 'De Enshtällunge för de <i lang="en">Oracle</i> Daatebangk',
-	'config-header-ibm_db2' => 'De Enshtällunge för de <i lang="en">IBM</i> ier <i lang="en">DB2</i>',
 	'config-invalid-db-type' => 'Dat es en onjöltijje Zoot Daatebangk.',
 	'config-missing-db-name' => 'Do moß jät enjävve för dä Name vun dä Daatebangk.',
 	'config-missing-db-host' => 'Do moß jät enjävve för dä Name vun däm Rääschner met dä Daatebangk.',
@@ -11817,7 +11814,6 @@ Dat es flöcker un spaasaamer wi et UTF-8 Fommaat vum <i lang=\"en\">MySQL</i> u
 
 Beim Shpeishere em '''UTF-8 Fomaat''' deiht et <i lang=\"en\">MySQL</i> der Zeishesaz un de Kodeerung vun dä Daate känne, un kann se akeraat aanzeije un ömwandelle,
 allerdengs künne kein Zeishe ußerhalv vum [//de.wikipedia.org/wiki/Basic_Multilingual_Plane#Gliederung_in_Ebenen_und_Bl.C3.B6cke jrundlääje Knubbel för vill Shprooche (<i lang=\"en\">Basic Multilingual Plane — BMP</i>)] afjeshpeishert wääde.",
-	'config-ibm_db2-low-db-pagesize' => "De <i lang=\"en\">DB2</i> Daatebangk heh hät ene standattmääßeje Plaz för Tabälle met zoh klein Sigge. Dä Plaz en de Sigge moß '''32K''' udder mieh sin.",
 	'config-site-name' => 'Däm Wiki singe Name:',
 	'config-site-name-help' => 'Dä douch em Tittel vun de Brauserfinstere un aan ätlije andere Shtälle op.',
 	'config-site-name-blank' => 'Donn ene Name för di Sait aanjävve.',
@@ -11927,7 +11923,7 @@ Et bäß es, wam_mer vum <i lang="en">world wide web</i> doh nit drahn kumme kan
 	'config-logo-help' => 'De Schtandart_Bedeen_Bovverfläsch vum MediaWiki hät e Logo bovve en der Eck met 135x160 Pixele.
 Donn e zopaß Logo huh laade, un donn däm sing URL heh endraare.
 
-Wells De kei Logo han, draach heh nix en.',
+Wells De kei Logo han, draach heh nix en.', # Fuzzy
 	'config-instantcommons' => 'Donn <i lang="en">InstantCommons</i> zohlohße.',
 	'config-instantcommons-help' => '<i lang="en">[//www.mediawiki.org/wiki/InstantCommons InstantCommons]</i> es en Eijeschaff, di et för Wikis müjjelesch määt, Belder, Tondatteie un ander Meedijedatteie enzebenge, di op dä Webßait vun de <i lang="en">[//commons.wikimedia.org/ Wikimedia Commons]</i> ongerjebraat sin. Öm dat noze ze künne, moß dä ẞööver vum MediaWiki en Verbendung nohm Internet opnämme künne.
 
@@ -11953,7 +11949,7 @@ Se sullte ein pro Reih opjeschrevve sin, un en Pooz (<i lang="en">port</i>) ier 
 	'config-memcache-noport' => 'Do has kein Pooz (<code lang="en">port</code>) Nommer aanjejovve för mem <code lang="en">memcached</code> ẞööver ze bruche: $1.
 Wann De di Nommer nit weiß, der Shtandatt es 11211.',
 	'config-memcache-badport' => 'Dem <code lang="en">memcached</code> ẞööver singe Pooz (<code lang="en">port</code>) Nommere sullte zwesche $1 un $2 sin.',
-	'config-extensions' => 'Projramm-Zosätz (<i lang="en">extensions</i>)',
+	'config-extensions' => 'Projramm-Zohsäz (<i lang="en">Extensions</i>)',
 	'config-extensions-help' => 'Di bovve opjeleß Zohsazprojramme för et MediaWiki sin em Verzeischneß <code lang="en">./extensions</code> ald ze fenge.
 
 Do kann se heh un jez aanschallde, ävver se künnte noch zohsäzlesch Enshtellunge bruche.',

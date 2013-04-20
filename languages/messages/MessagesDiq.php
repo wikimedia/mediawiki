@@ -476,7 +476,7 @@ $messages = array(
 'vector-view-view' => 'Bıwane',
 'vector-view-viewsource' => 'Çımey bıvêne',
 'actions' => 'Kerdışi',
-'namespaces' => 'Cayê namam',
+'namespaces' => 'Cayê namey',
 'variants' => 'Varyanti',
 
 'navigation-heading' => 'Menuya Navigasyoni',
@@ -1430,7 +1430,7 @@ Etıya şıma rê yew kılito raştameo ke şıma şenê bıgurenê/bıxebetnê:
 'timezoneregion-pacific' => 'Okyanuso Pasifik',
 'allowemail' => 'Karberê bini wa bışê mı rê e-posta bırışê.',
 'prefs-searchoptions' => 'Cı geyre',
-'prefs-namespaces' => 'Cayê namam',
+'prefs-namespaces' => 'Cayê namey',
 'defaultns' => 'Eke heni, enê cayanê namey de cı geyre (sae ke):',
 'default' => 'qısur',
 'prefs-files' => 'Dosyey',
@@ -2227,7 +2227,7 @@ hem zi bıewnê [[Special:WantedCategories|kategori yê ke waziyeni]].',
 # Special:LinkSearch
 'linksearch' => 'Gıreyê teberi cı geyrê',
 'linksearch-pat' => 'bıgêr motif:',
-'linksearch-ns' => 'Cayênameyî:',
+'linksearch-ns' => 'Cayê namey:',
 'linksearch-ok' => 'Cı geyre',
 'linksearch-text' => 'Jokeri ê zey "*.wikipedia.org"i benê ke bıgureniyê.
 Tewr senık yew sewiya serêna cayê tesiri lazıma, mesela "*.org".<br />

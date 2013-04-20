@@ -748,7 +748,7 @@ Dir sollt Iech aloggen an een neit Passwuert festleeën. Wann een Aneren déi Uf
 Temporärt Passwuert: $2',
 'passwordreset-emailsent' => "Eng Mail fir d'Passwuert zréckzesetze gouf geschéckt.",
 'passwordreset-emailsent-capture' => "Eng Mail fir d'Passwuert zréckzesetze gouf geschéckt, Dir gesitt se hei drënner.",
-'passwordreset-emailerror-capture' => "Eng Mail fir d'Passwuert zréckzesetze gouf geschéckt, Dir gesitt se hei drënner, awer de Benotzer konnt se net kréien: $1",
+'passwordreset-emailerror-capture' => "Eng Mail fir d'Passwuert zréckzesetze gouf geschéckt, Dir gesitt se hei drënner, awer de {{GENDER:$2|Benotzer}} konnt se net kréien: $1",
 
 # Special:ChangeEmail
 'changeemail' => 'Mailadress änneren',
@@ -2202,6 +2202,7 @@ All weider Ännerungen op dëser Säit an der assoziéierter Diskussiounssäit g
 'enotif_subject_restored' => "D'{{SITENAME}}-Säit $1 gouf vum {{gender:$2|$2}} restauréiert",
 'enotif_subject_changed' => "D'{{SITENAME}}-Säit $1 gouf vum {{gender:$2|$2}} geännert",
 'enotif_body_intro_deleted' => 'D\'{{SITENAME}}-Säit $1 gouf de(n) $PAGEEDITDATE {{gender:$2|vum $2|vun der $2}} geläscht, kuckt $3.',
+'enotif_body_intro_created' => 'D\'{{SITENAME}}-Säit $1 gouf den $PAGEEDITDATE vum $2 {{GENDER:$2|ugeluecht}}, kuckt $3 fir déi aktuell Versioun.',
 'enotif_lastvisited' => 'All Ännerungen op ee Bléck: $1',
 'enotif_lastdiff' => 'Kuckt $1 fir dës Ännerung.',
 'enotif_anon_editor' => 'Anonyme Benotzer $1',

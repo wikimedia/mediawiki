@@ -2004,7 +2004,7 @@ Wann ene Metmaacher ußjesöhk es, kritt mer bloß die Dateie, di dä Metmaacher
 'listfiles_user' => 'Metmaacher',
 'listfiles_size' => 'Byte',
 'listfiles_description' => 'Wat en dä Datei dren schtisch',
-'listfiles_count' => 'Versione',
+'listfiles_count' => 'Väsjohne',
 
 # File description page
 'file-anchor-link' => 'Datei',
@@ -3999,7 +3999,7 @@ De könnts Ding Oppassliss ävver och [[Special:EditWatchlist|övver e Fomulaa m
 Dä Shtanndat-Zoot-Schlößel „$1“ övverschriif dä älldere Zoot-Schlößel „$2“.",
 
 # Special:Version
-'version' => 'Version vun de Wiki Soffwär zeije',
+'version' => 'Väsjohn vun de Wiki Soffwär zeije',
 'version-extensions' => 'Installeete Erjänzunge un Zohsätz',
 'version-specialpages' => '{{int:nstab-special}}e',
 'version-parserhooks' => 'De Parser-Hooke',
@@ -4027,7 +4027,7 @@ MediaWiki weed verdeilt met dä Hoffnung, dat et för jet jood es, ävver <span 
 Do sullts en [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie vun dä <i lang="en">GNU General Public License</i>] zosamme met däm Projramm krääje han, un wann nit, schrief aan de: <i lang="en">Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA </i> udder [//www.gnu.org/licenses/old-licenses/gpl-2.0.html liß se em Internet noh].',
 'version-software' => 'Installeete Soffwäer',
 'version-software-product' => 'Produk',
-'version-software-version' => 'Version',
+'version-software-version' => 'Väsjohn',
 'version-entrypoints' => '<i lang="en>URLs</i> för enzeschteije',
 'version-entrypoints-header-entrypoint' => 'Enschteesch',
 'version-entrypoints-header-url' => '<i lang="en">URL</i>',

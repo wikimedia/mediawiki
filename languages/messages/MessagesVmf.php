@@ -8,6 +8,7 @@
  * @file
  *
  * @author Altaileopard
+ * @author Matma Rex
  * @author Silvicola
  */
 
@@ -80,10 +81,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Dii andsôôl dr beoobachdâr ôôdsajchn',
 'tog-oldsig' => 'foorschau fon dr agduäln signaduur:',
 'tog-fancysig' => 'Signaduur is dhägsd in wighi-sindhags (alsâ ned audomaadisch â lingg)',
-'tog-externaleditor' => 'Schdandardwäässich an ägsdhärnân eedidhâr neemn (nôr for di sich ausghenn, dâdsuu
-mus mr ufm ajchnen rächnâr was ajrichdn gehnn)',
-'tog-externaldiff' => 'Â ägsdhärns Brogram dsum ôôdsjachn fon dâ wärsjoons-undârschiid neemn (nôr fir dii sich
-ausghenn, mr mus dâdsuu ufm ajchnen rächnâr was âjrichdn ghenn)',
 'tog-uselivepreview' => 'Schnäl-foorschau benudsn (brauchd JavaScript) (ärschd ân fârsuuch)',
 'tog-forceeditsummary' => 'Sich erinärn lasn, wemmâr ghâ dsusamnfasung gschriiwn had',
 'tog-watchlisthideown' => 'Ajchne bearbajdungn ned in dr beoobachdungs-lischdn uffiirn',
@@ -483,14 +480,6 @@ Hirmid sagsd, das Du den dhägsd '''selbâr gschriim''' hasd, das däär dhägsd
 'search-external' => 'Ägsdärne suach',
 'searchdisabled' => 'Diâ {{SITENAME}}-suâch ist ausgschald. Duu ghâusch so lang mid Google suâchn. Dengg drâu, des was mr dôô fir {{SITENAME}} find, ghâu iwârhoold saj.',
 
-# Quickbar
-'qbsettings' => 'Sajdn-lajsdn',
-'qbsettings-none' => 'Ghane',
-'qbsettings-fixedleft' => 'Lings, feschd',
-'qbsettings-fixedright' => 'Rächds, feschd',
-'qbsettings-floatingleft' => 'Lings, schwääbnd',
-'qbsettings-floatingright' => 'Rächds, schwääbnd',
-
 # Preferences page
 'preferences' => 'ajschdelunga',
 'mypreferences' => 'Maj ajschdelunga',
@@ -654,7 +643,7 @@ S'gajd awâr aa â [[Special:WhatLinksHere/$2|lisdn mid alâ fârwajs]].",
 # Special:ListGroupRights
 'listgrouprights-members' => '(Lisdn fon dâ midgliidâr)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Dem ôôgmeldn â iimejl schign',
 
 # Watchlist
@@ -876,23 +865,9 @@ Bidde gug's mi´m foorschau-gnobf ôô fôrm schbajchan",
 
 # Stylesheets
 'common.css' => '/* CSS hiir beâjflusd ale schelfn */',
-'standard.css' => "/* CSS hiir beâjflusd nôr dii Klassik-schelfn. Wen'd ale uf ôômôôl beâjflusn wilsch, muâsch an [[MediaWiki:Common.css]] was ändârn. */",
-'nostalgia.css' => "/* CSS hiir beâjflusd nôr dii Nostalgia-schelfn. Wen'd ale uf ôômôôl beâjflusn wilsch, muâsch an MediaWiki:Common.css was ändârn. */",
 'cologneblue.css' => "/* CSS hiir beâjflusd nôr dii Kölnisch-Blau-schelfn. Wen'd ale uf ôômôôl beâjflusn wilsch, muâsch an MediaWiki:Common.css was ändârn. */",
 'monobook.css' => "/* CSS hiir beâjflusd nôr dii Monobook-schelfn. Wen'd ale uf ôômôôl beâjflusn wilsch, muâsch an MediaWiki:Common.css was ändârn. */",
-'myskin.css' => "/* CSS hiir beâjflusd nôr dii MySkin-schelfn. Wen'd ale uf ôômôôl beâjflusn wilsch, muâsch an MediaWiki:Common.css was ändârn. */",
-'chick.css' => "/* CSS hiir beâjflusd nôr dii Küken-schelfn. Wen'd ale uf ôômôôl beâjflusn wilsch, muâsch an MediaWiki:Common.css was ändârn. */",
-'simple.css' => "/* CSS hiir beâjflusd nôr dii Simple-schelfn. Wen'd ale uf ôômôôl beâjflusn wilsch, muâsch an MediaWiki:Common.css was ändârn. */",
-'modern.css' => "/* CSS hiir beâjflusd nôr dii Modern-schelfn. Wen'd ale uf ôômôôl beâjflusn wilsch, muâsch an MediaWiki:Common.css was ändârn. */
-
-/* Dii glôôschrajwung im nawigadsjoonsberajch fârhindârd des: */
-.portlet h5,
-.portlet h6,
-#p-personal ul,
-#p-cactions li a,
-#preftoc a {
-     text-transform: none;
-}",
+'modern.css' => "/* CSS hiir beâjflusd nôr dii Modern-schelfn. Wen'd ale uf ôômôôl beâjflusn wilsch, muâsch an MediaWiki:Common.css was ändârn. */",
 'vector.css' => "/* CSS hiir beâjflusd nôr dii Vector-schelfn. Wen'd ale uf ôômôôl beâjflusn wilsch, muâsch an MediaWiki:Common.css was ändârn. */",
 'print.css' => '/* CSS hiir beâjflusd nôr dii drugausgaawe. */',
 'handheld.css' => '/* CSS hiir beâjflusd nôr dii handgerääde, jee nachdeem, welche schelfn in $wgHandheldStyle âjgeschdeld is. */',

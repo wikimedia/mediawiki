@@ -89,10 +89,10 @@ $messages = array(
 
 'underline-always' => 'Sempe',
 'underline-never' => 'Mai',
-'underline-default' => 'Stàndard dël navigatoro dël tema',
+'underline-default' => 'Stàndard dël navigator o dël tema',
 
 # Font style option in Special:Preferences
-'editfont-style' => "Stil dël font ëd l'àrea ëd modìfica:",
+'editfont-style' => "Stil dij caràter ëd l'àrea ëd modìfica:",
 'editfont-default' => 'Stàndard dël navigator',
 'editfont-monospace' => 'Font mono-spassià',
 'editfont-sansserif' => 'Font sans-serif',

@@ -1343,7 +1343,7 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'mergelogpagetext' => 'Níže je seznam nejnovějších sloučení historie jedné stránky s jinou.',
 
 # Diffs
-'history-title' => '$1: Historie verzí',
+'history-title' => 'Historie verzí stránky „$1“',
 'difference-title' => '$1: Porovnání verzí',
 'difference-title-multipage' => '$1 a $2: Porovnání stránek',
 'difference-multipage' => '(Rozdíly mezi stránkami)',
