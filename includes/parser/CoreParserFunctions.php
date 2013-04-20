@@ -824,7 +824,9 @@ class CoreParserFunctions {
 			$title = SpecialPage::getTitleFor( $page, $subpage );
 			return $title->getPrefixedText();
 		} else {
-			return wfMessage( 'nosuchspecialpage' )->inContentLanguage()->text();
+			// unknown special page, just use the given text as its title, if at all possible
+			$title = Title::makeTitleSafe( NS_SPECIAL, $text );
+			return $title ? $title->getPrefixedText() : self::special( $parser, 'Badtitle' );
 		}
 	}
 

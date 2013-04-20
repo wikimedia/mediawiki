@@ -13970,6 +13970,19 @@ abc
 !! end
 
 !!test
+Special parser function
+!! input
+{{#special:RandomPage}}
+{{#special:BaDtItLe}}
+{{#special:Foobar}}
+!! result
+<p>Special:Random
+Special:Badtitle
+Special:Foobar
+</p>
+!! end
+
+!!test
 Bug 34939 - Case insensitive link parsing ([HttP://])
 !! input
 [HttP://MediaWiki.Org/]
