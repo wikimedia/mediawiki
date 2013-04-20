@@ -268,7 +268,7 @@ class WatchedItem {
 			);
 		}
 
-		if( empty( $values ) ) {
+		if ( empty( $values ) ) {
 			// Nothing to do
 			return true;
 		}

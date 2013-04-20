@@ -38,13 +38,13 @@ class Xml {
 	 */
 	public static function element( $element, $attribs = null, $contents = '', $allowShortTag = true ) {
 		$out = '<' . $element;
-		if( !is_null( $attribs ) ) {
+		if ( !is_null( $attribs ) ) {
 			$out .= self::expandAttributes( $attribs );
 		}
-		if( is_null( $contents ) ) {
+		if ( is_null( $contents ) ) {
 			$out .= '>';
 		} else {
-			if( $allowShortTag && $contents === '' ) {
+			if ( $allowShortTag && $contents === '' ) {
 				$out .= ' />';
 			} else {
 				$out .= '>' . htmlspecialchars( $contents ) . "</$element>";
@@ -64,10 +64,10 @@ class Xml {
 	 */
 	public static function expandAttributes( $attribs ) {
 		$out = '';
-		if( is_null( $attribs ) ) {
+		if ( is_null( $attribs ) ) {
 			return null;
-		} elseif( is_array( $attribs ) ) {
-			foreach( $attribs as $name => $val ) {
+		} elseif ( is_array( $attribs ) ) {
+			foreach ( $attribs as $name => $val ) {
 				$out .= " {$name}=\"" . Sanitizer::encodeAttribute( $val ) . '"';
 			}
 			return $out;
@@ -88,10 +88,10 @@ class Xml {
 	 */
 	public static function elementClean( $element, $attribs = array(), $contents = '' ) {
 		global $wgContLang;
-		if( $attribs ) {
+		if ( $attribs ) {
 			$attribs = array_map( array( 'UtfNormal', 'cleanUp' ), $attribs );
 		}
-		if( $contents ) {
+		if ( $contents ) {
 			wfProfileIn( __METHOD__ . '-norm' );
 			$contents = $wgContLang->normalize( $contents );
 			wfProfileOut( __METHOD__ . '-norm' );
@@ -115,7 +115,9 @@ class Xml {
 	 * @param string $element element name
 	 * @return string
 	 */
-	public static function closeElement( $element ) { return "</$element>"; }
+	public static function closeElement( $element ) {
+		return "</$element>";
+	}
 
 	/**
 	 * Same as Xml::element(), but does not escape contents. Handy when the
@@ -144,11 +146,11 @@ class Xml {
 		wfDeprecated( __METHOD__, '1.19' );
 		return Html::namespaceSelector( array(
 			'selected' => $selected,
-			'all'      => $all,
-			'label'    => $label,
+			'all' => $all,
+			'label' => $label,
 		), array(
-			'name'  => $element_name,
-			'id'    => 'namespace',
+			'name' => $element_name,
+			'id' => 'namespace',
 			'class' => 'namespaceselector',
 		) );
 	}
@@ -164,12 +166,15 @@ class Xml {
 	public static function monthSelector( $selected = '', $allmonths = null, $id = 'month' ) {
 		global $wgLang;
 		$options = array();
-		if( is_null( $selected ) )
+		if ( is_null( $selected ) ) {
 			$selected = '';
-		if( !is_null( $allmonths ) )
+		}
+		if ( !is_null( $allmonths ) ) {
 			$options[] = self::option( wfMessage( 'monthsall' )->text(), $allmonths, $selected === $allmonths );
-		for( $i = 1; $i < 13; $i++ )
+		}
+		for ( $i = 1; $i < 13; $i++ ) {
 			$options[] = self::option( $wgLang->getMonthName( $i ), $i, $selected === $i );
+		}
 		return self::openElement( 'select', array( 'id' => $id, 'name' => 'month', 'class' => 'mw-month-selector' ) )
 			. implode( "\n", $options )
 			. self::closeElement( 'select' );
@@ -182,17 +187,17 @@ class Xml {
 	 */
 	public static function dateMenu( $year, $month ) {
 		# Offset overrides year/month selection
-		if( $month && $month !== -1 ) {
+		if ( $month && $month !== -1 ) {
 			$encMonth = intval( $month );
 		} else {
 			$encMonth = '';
 		}
-		if( $year ) {
+		if ( $year ) {
 			$encYear = intval( $year );
-		} elseif( $encMonth ) {
+		} elseif ( $encMonth ) {
 			$thisMonth = intval( gmdate( 'n' ) );
 			$thisYear = intval( gmdate( 'Y' ) );
-			if( intval( $encMonth ) > $thisMonth ) {
+			if ( intval( $encMonth ) > $thisMonth ) {
 				$thisYear--;
 			}
 			$encYear = $thisYear;
@@ -224,7 +229,7 @@ class Xml {
 
 		// Make sure the site language is in the list;
 		// a custom language code might not have a defined name...
-		if( !array_key_exists( $wgLanguageCode, $languages ) ) {
+		if ( !array_key_exists( $wgLanguageCode, $languages ) ) {
 			$languages[$wgLanguageCode] = $wgLanguageCode;
 		}
 
@@ -237,14 +242,14 @@ class Xml {
 		 */
 		$selected = isset( $languages[$selected] ) ? $selected : $wgLanguageCode;
 		$options = "\n";
-		foreach( $languages as $code => $name ) {
+		foreach ( $languages as $code => $name ) {
 			$options .= Xml::option( "$code - $name", $code, ($code == $selected) ) . "\n";
 		}
 
 		$attrs = array( 'id' => 'wpUserLanguage', 'name' => 'wpUserLanguage' );
 		$attrs = array_merge( $attrs, $overrideAttrs );
 
-		if( $msg === null ) {
+		if ( $msg === null ) {
 			$msg = wfMessage( 'yourlanguage' );
 		}
 		return array(
@@ -288,11 +293,11 @@ class Xml {
 	public static function input( $name, $size = false, $value = false, $attribs = array() ) {
 		$attributes = array( 'name' => $name );
 
-		if( $size ) {
+		if ( $size ) {
 			$attributes['size'] = $size;
 		}
 
-		if( $value !== false ) { // maybe 0
+		if ( $value !== false ) { // maybe 0
 			$attributes['value'] = $value;
 		}
 
@@ -369,10 +374,10 @@ class Xml {
 		$a = array( 'for' => $id );
 
 		# FIXME avoid copy pasting below:
-		if( isset( $attribs['class'] ) ) {
+		if ( isset( $attribs['class'] ) ) {
 				$a['class'] = $attribs['class'];
 		}
-		if( isset( $attribs['title'] ) ) {
+		if ( isset( $attribs['title'] ) ) {
 				$a['title'] = $attribs['title'];
 		}
 
@@ -468,10 +473,10 @@ class Xml {
 	 */
 	public static function option( $text, $value = null, $selected = false,
 			$attribs = array() ) {
-		if( !is_null( $value ) ) {
+		if ( !is_null( $value ) ) {
 			$attribs['value'] = $value;
 		}
-		if( $selected ) {
+		if ( $selected ) {
 			$attribs['selected'] = 'selected';
 		}
 		return Html::element( 'option', $attribs, $text );
@@ -500,7 +505,9 @@ class Xml {
 				} elseif ( substr( $value, 0, 1 ) == '*' && substr( $value, 1, 1 ) != '*' ) {
 					// A new group is starting ...
 					$value = trim( substr( $value, 1 ) );
-					if( $optgroup ) $options .= self::closeElement( 'optgroup' );
+					if ( $optgroup ) {
+						$options .= self::closeElement( 'optgroup' );
+					}
 					$options .= self::openElement( 'optgroup', array( 'label' => $value ) );
 					$optgroup = true;
 				} elseif ( substr( $value, 0, 2 ) == '**' ) {
@@ -509,26 +516,30 @@ class Xml {
 					$options .= self::option( $value, $value, $selected === $value );
 				} else {
 					// groupless reason list
-					if( $optgroup ) $options .= self::closeElement( 'optgroup' );
+					if ( $optgroup ) {
+						$options .= self::closeElement( 'optgroup' );
+					}
 					$options .= self::option( $value, $value, $selected === $value );
 					$optgroup = false;
 				}
 			}
 
-			if( $optgroup ) $options .= self::closeElement( 'optgroup' );
+			if ( $optgroup ) {
+				$options .= self::closeElement( 'optgroup' );
+			}
 
 		$attribs = array();
 
-		if( $name ) {
+		if ( $name ) {
 			$attribs['id'] = $name;
 			$attribs['name'] = $name;
 		}
 
-		if( $class ) {
+		if ( $class ) {
 			$attribs['class'] = $class;
 		}
 
-		if( $tabindex ) {
+		if ( $tabindex ) {
 			$attribs['tabindex'] = $tabindex;
 		}
 
@@ -679,7 +690,7 @@ class Xml {
 		# case folding violates XML standard, turn it off
 		xml_parser_set_option( $parser, XML_OPTION_CASE_FOLDING, false );
 
-		if( !xml_parse( $parser, $text, true ) ) {
+		if ( !xml_parse( $parser, $text, true ) ) {
 			//$err = xml_error_string( xml_get_error_code( $parser ) );
 			//$position = xml_get_current_byte_index( $parser );
 			//$fragment = $this->extractFragment( $html, $position );
@@ -736,7 +747,7 @@ class Xml {
 		$form = '';
 		$form .= "<table><tbody>";
 
-		foreach( $fields as $labelmsg => $input ) {
+		foreach ( $fields as $labelmsg => $input ) {
 			$id = "mw-$labelmsg";
 			$form .= Xml::openElement( 'tr', array( 'id' => $id ) );
 			$form .= Xml::tags( 'td', array( 'class' => 'mw-label' ), wfMessage( $labelmsg )->parse() );
@@ -744,7 +755,7 @@ class Xml {
 			$form .= Xml::closeElement( 'tr' );
 		}
 
-		if( $submitLabel ) {
+		if ( $submitLabel ) {
 			$form .= Xml::openElement( 'tr' );
 			$form .= Xml::tags( 'td', array(), '' );
 			$form .= Xml::openElement( 'td', array( 'class' => 'mw-submit' ) ) . Xml::submitButton( wfMessage( $submitLabel )->text() ) . Xml::closeElement( 'td' );
@@ -769,7 +780,7 @@ class Xml {
 		if ( is_array( $headers ) ) {
 			$s .= Xml::openElement( 'thead', $attribs );
 
-			foreach( $headers as $id => $header ) {
+			foreach ( $headers as $id => $header ) {
 				$attribs = array();
 
 				if ( is_string( $id ) ) {
@@ -781,7 +792,7 @@ class Xml {
 			$s .= Xml::closeElement( 'thead' );
 		}
 
-		foreach( $rows as $id => $row ) {
+		foreach ( $rows as $id => $row ) {
 			$attribs = array();
 
 			if ( is_string( $id ) ) {
@@ -805,8 +816,7 @@ class Xml {
 	public static function buildTableRow( $attribs, $cells ) {
 		$s = Xml::openElement( 'tr', $attribs );
 
-		foreach( $cells as $id => $cell ) {
-
+		foreach ( $cells as $id => $cell ) {
 			$attribs = array();
 
 			if ( is_string( $id ) ) {
@@ -902,7 +912,7 @@ class XmlSelect {
 	static function formatOptions( $options, $default = false ) {
 		$data = '';
 
-		foreach( $options as $label => $value ) {
+		foreach ( $options as $label => $value ) {
 			if ( is_array( $value ) ) {
 				$contents = self::formatOptions( $value, $default );
 				$data .= Html::rawElement( 'optgroup', array( 'label' => $label ), $contents ) . "\n";

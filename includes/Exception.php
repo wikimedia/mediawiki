@@ -333,7 +333,7 @@ class ErrorPageError extends MWException {
 		// customized by the local wiki. So get the default English version for
 		// passing to the parent constructor. Our overridden report() below
 		// makes sure that the page shown to the user is not forced to English.
-		if( $msg instanceof Message ) {
+		if ( $msg instanceof Message ) {
 			$enMsg = clone( $msg );
 		} else {
 			$enMsg = wfMessage( $msg, $params );
@@ -478,7 +478,7 @@ class UserBlockedError extends ErrorPageError {
 		}
 
 		$reason = $block->mReason;
-		if( $reason == '' ) {
+		if ( $reason == '' ) {
 			$reason = wfMessage( 'blockednoreason' )->text();
 		}
 

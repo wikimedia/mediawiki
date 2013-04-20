@@ -282,11 +282,11 @@ class ImageGallery {
 				$img = false;
 			}
 
-			if( !$img ) {
+			if ( !$img ) {
 				# We're dealing with a non-image, spit out the name and be done with it.
 				$thumbhtml = "\n\t\t\t" . '<div style="height: ' . ( self::THUMB_PADDING + $this->mHeights ) . 'px;">'
 					. htmlspecialchars( $nt->getText() ) . '</div>';
-			} elseif( $this->mHideBadImages && wfIsBadImage( $nt->getDBkey(), $this->getContextTitle() ) ) {
+			} elseif ( $this->mHideBadImages && wfIsBadImage( $nt->getDBkey(), $this->getContextTitle() ) ) {
 				# The image is blacklisted, just show it as a text link.
 				$thumbhtml = "\n\t\t\t" . '<div style="height: ' . ( self::THUMB_PADDING + $this->mHeights ) . 'px;">' .
 					Linker::link(
@@ -297,7 +297,7 @@ class ImageGallery {
 						array( 'known', 'noclasses' )
 					) .
 					'</div>';
-			} elseif( !( $thumb = $img->transform( $params ) ) ) {
+			} elseif ( !( $thumb = $img->transform( $params ) ) ) {
 				# Error generating thumbnail.
 				$thumbhtml = "\n\t\t\t" . '<div style="height: ' . ( self::THUMB_PADDING + $this->mHeights ) . 'px;">'
 					. htmlspecialchars( $img->getLastError() ) . '</div>';
@@ -334,8 +334,8 @@ class ImageGallery {
 			// $linkTarget = Title::newFromText( $wgContLang->getNsText( MWNamespace::getUser() ) . ":{$ut}" );
 			// $ul = Linker::link( $linkTarget, $ut );
 
-			if( $this->mShowBytes ) {
-				if( $img ) {
+			if ( $this->mShowBytes ) {
+				if ( $img ) {
 					$fileSize = htmlspecialchars( $lang->formatSize( $img->getSize() ) );
 				} else {
 					$fileSize = wfMessage( 'filemissing' )->escaped();

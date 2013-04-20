@@ -232,7 +232,7 @@ class MWHttpRequest {
 		} else {
 			$this->timeout = $wgHTTPTimeout;
 		}
-		if( isset( $options['userAgent'] ) ) {
+		if ( isset( $options['userAgent'] ) ) {
 			$this->setUserAgent( $options['userAgent'] );
 		}
 
@@ -841,7 +841,7 @@ class PhpHttpRequest extends MWHttpRequest {
 		if ( $this->method == 'POST' ) {
 			// Required for HTTP 1.0 POSTs
 			$this->reqHeaders['Content-Length'] = strlen( $this->postData );
-			if( !isset( $this->reqHeaders['Content-Type'] ) ) {
+			if ( !isset( $this->reqHeaders['Content-Type'] ) ) {
 				$this->reqHeaders['Content-Type'] = "application/x-www-form-urlencoded";
 			}
 		}

@@ -105,7 +105,7 @@ class Licenses extends HTMLFormField {
 	protected function stackItem( &$list, $path, $item ) {
 		$position =& $list;
 		if ( $path ) {
-			foreach( $path as $key ) {
+			foreach ( $path as $key ) {
 				$position =& $position[$key];
 			}
 		}

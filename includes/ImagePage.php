@@ -206,7 +206,7 @@ class ImagePage extends Article {
 		}
 
 		// Add remote Filepage.css
-		if( !$this->repo->isLocal() ) {
+		if ( !$this->repo->isLocal() ) {
 			$css = $this->repo->getDescriptionStylesheetUrl();
 			if ( $css ) {
 				$out->addStyle( $css );
@@ -597,7 +597,7 @@ EOT
 		$descText = $this->mPage->getFile()->getDescriptionText();
 
 		/* Add canonical to head if there is no local page for this shared file */
-		if( $descUrl && $this->mPage->getID() == 0 ) {
+		if ( $descUrl && $this->mPage->getID() == 0 ) {
 			$out->setCanonicalUrl( $descUrl );
 		}
 
@@ -753,7 +753,7 @@ EOT
 
 		// Create links for every element
 		$currentCount = 0;
-		foreach( $rows as $element ) {
+		foreach ( $rows as $element ) {
 			$currentCount++;
 			if ( $currentCount > $limit ) {
 				break;

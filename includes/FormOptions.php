@@ -292,13 +292,17 @@ class FormOptions implements ArrayAccess {
 
 			switch( $type ) {
 				case self::BOOL:
-					$value = $r->getBool( $name, $default ); break;
+					$value = $r->getBool( $name, $default );
+					break;
 				case self::INT:
-					$value = $r->getInt( $name, $default ); break;
+					$value = $r->getInt( $name, $default );
+					break;
 				case self::STRING:
-					$value = $r->getText( $name, $default ); break;
+					$value = $r->getText( $name, $default );
+					break;
 				case self::INTNULL:
-					$value = $r->getIntOrNull( $name ); break;
+					$value = $r->getIntOrNull( $name );
+					break;
 				default:
 					throw new MWException( 'Unsupported datatype' );
 			}

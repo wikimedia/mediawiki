@@ -126,7 +126,7 @@ class MediaWiki {
 	 * @return Title
 	 */
 	public function getTitle() {
-		if( $this->context->getTitle() === null ) {
+		if ( $this->context->getTitle() === null ) {
 			$this->context->setTitle( $this->parseTitle() );
 		}
 		return $this->context->getTitle();
@@ -480,7 +480,7 @@ class MediaWiki {
 				$resp->header( 'Retry-After: ' . max( intval( $maxLag ), 5 ) );
 				$resp->header( 'X-Database-Lag: ' . intval( $lag ) );
 				$resp->header( 'Content-Type: text/plain' );
-				if( $wgShowHostnames ) {
+				if ( $wgShowHostnames ) {
 					echo "Waiting for $host: $lag seconds lagged\n";
 				} else {
 					echo "Waiting for a database server: $lag seconds lagged\n";

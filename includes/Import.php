@@ -66,7 +66,7 @@ class WikiImporter {
 	}
 
 	private function debug( $data ) {
-		if( $this->mDebug ) {
+		if ( $this->mDebug ) {
 			wfDebug( "IMPORT: $data\n" );
 		}
 	}
@@ -188,10 +188,10 @@ class WikiImporter {
 	 * @return bool
 	 */
 	public function setTargetNamespace( $namespace ) {
-		if( is_null( $namespace ) ) {
+		if ( is_null( $namespace ) ) {
 			// Don't override namespaces
 			$this->mTargetNamespace = null;
-		} elseif( $namespace >= 0 ) {
+		} elseif ( $namespace >= 0 ) {
 			// @todo FIXME: Check for validity
 			$this->mTargetNamespace = intval( $namespace );
 		} else {
@@ -206,16 +206,16 @@ class WikiImporter {
 	 */
 	public function setTargetRootPage( $rootpage ) {
 		$status = Status::newGood();
-		if( is_null( $rootpage ) ) {
+		if ( is_null( $rootpage ) ) {
 			// No rootpage
 			$this->mTargetRootPage = null;
-		} elseif( $rootpage !== '' ) {
+		} elseif ( $rootpage !== '' ) {
 			$rootpage = rtrim( $rootpage, '/' ); //avoid double slashes
 			$title = Title::newFromText( $rootpage, !is_null( $this->mTargetNamespace ) ? $this->mTargetNamespace : NS_MAIN );
-			if( !$title || $title->isExternal() ) {
+			if ( !$title || $title->isExternal() ) {
 				$status->fatal( 'import-rootpage-invalid' );
 			} else {
-				if( !MWNamespace::hasSubpages( $title->getNamespace() ) ) {
+				if ( !MWNamespace::hasSubpages( $title->getNamespace() ) ) {
 					global $wgContLang;
 
 					$displayNSText = $title->getNamespace() == NS_MAIN
@@ -304,7 +304,7 @@ class WikiImporter {
 	 */
 	public function debugRevisionHandler( &$revision ) {
 		$this->debug( "Got revision:" );
-		if( is_object( $revision->title ) ) {
+		if ( is_object( $revision->title ) ) {
 			$this->debug( "-- Title: " . $revision->title->getPrefixedText() );
 		} else {
 			$this->debug( "-- Title: <invalid>" );
@@ -320,7 +320,7 @@ class WikiImporter {
 	 * @param $title Title
 	 */
 	function pageCallback( $title ) {
-		if( isset( $this->mPageCallback ) ) {
+		if ( isset( $this->mPageCallback ) ) {
 			call_user_func( $this->mPageCallback, $title );
 		}
 	}
@@ -334,7 +334,7 @@ class WikiImporter {
 	 * @param array $pageInfo associative array of page information
 	 */
 	private function pageOutCallback( $title, $origTitle, $revCount, $sucCount, $pageInfo ) {
-		if( isset( $this->mPageOutCallback ) ) {
+		if ( isset( $this->mPageOutCallback ) ) {
 			$args = func_get_args();
 			call_user_func_array( $this->mPageOutCallback, $args );
 		}
@@ -376,11 +376,11 @@ class WikiImporter {
 	 * @access private
 	 */
 	private function nodeContents() {
-		if( $this->reader->isEmptyElement ) {
+		if ( $this->reader->isEmptyElement ) {
 			return "";
 		}
 		$buffer = "";
-		while( $this->reader->read() ) {
+		while ( $this->reader->read() ) {
 			switch( $this->reader->nodeType ) {
 			case XmlReader::TEXT:
 			case XmlReader::SIGNIFICANT_WHITESPACE:
@@ -420,10 +420,10 @@ class WikiImporter {
 				"END_ELEMENT",
 				"END_ENTITY",
 				"XML_DECLARATION",
-				);
+			);
 			$lookup = array();
 
-			foreach( $xmlReaderConstants as $name ) {
+			foreach ( $xmlReaderConstants as $name ) {
 				$lookup[constant("XmlReader::$name")] = $name;
 			}
 		}
@@ -666,7 +666,7 @@ class WikiImporter {
 	private function processRevision( $pageInfo, $revisionInfo ) {
 		$revision = new WikiRevision;
 
-		if( isset( $revisionInfo['id'] ) ) {
+		if ( isset( $revisionInfo['id'] ) ) {
 			$revision->setID( $revisionInfo['id'] );
 		}
 		if ( isset( $revisionInfo['text'] ) ) {
@@ -840,33 +840,33 @@ class WikiImporter {
 		$workTitle = $text;
 		$origTitle = Title::newFromText( $workTitle );
 
-		if( !is_null( $this->mTargetNamespace ) && !is_null( $origTitle ) ) {
+		if ( !is_null( $this->mTargetNamespace ) && !is_null( $origTitle ) ) {
 			# makeTitleSafe, because $origTitle can have a interwiki (different setting of interwiki map)
 			# and than dbKey can begin with a lowercase char
 			$title = Title::makeTitleSafe( $this->mTargetNamespace,
 				$origTitle->getDBkey() );
 		} else {
-			if( !is_null( $this->mTargetRootPage ) ) {
+			if ( !is_null( $this->mTargetRootPage ) ) {
 				$workTitle = $this->mTargetRootPage . '/' . $workTitle;
 			}
 			$title = Title::newFromText( $workTitle );
 		}
 
-		if( is_null( $title ) ) {
+		if ( is_null( $title ) ) {
 			# Invalid page title? Ignore the page
 			$this->notice( 'import-error-invalid', $workTitle );
 			return false;
-		} elseif( $title->isExternal() ) {
+		} elseif ( $title->isExternal() ) {
 			$this->notice( 'import-error-interwiki', $title->getPrefixedText() );
 			return false;
-		} elseif( !$title->canExist() ) {
+		} elseif ( !$title->canExist() ) {
 			$this->notice( 'import-error-special', $title->getPrefixedText() );
 			return false;
-		} elseif( !$title->userCan( 'edit' ) && !$wgCommandLineMode ) {
+		} elseif ( !$title->userCan( 'edit' ) && !$wgCommandLineMode ) {
 			# Do not import if the importing wiki user cannot edit this page
 			$this->notice( 'import-error-edit', $title->getPrefixedText() );
 			return false;
-		} elseif( !$title->exists() && !$title->userCan( 'create' ) && !$wgCommandLineMode ) {
+		} elseif ( !$title->exists() && !$title->userCan( 'create' ) && !$wgCommandLineMode ) {
 			# Do not import if the importing wiki user cannot create this page
 			$this->notice( 'import-error-create', $title->getPrefixedText() );
 			return false;
@@ -997,11 +997,11 @@ class XMLReader2 extends XMLReader {
 	 * @return bool|string
 	 */
 	function nodeContents() {
-		if( $this->isEmptyElement ) {
+		if ( $this->isEmptyElement ) {
 			return "";
 		}
 		$buffer = "";
-		while( $this->read() ) {
+		while ( $this->read() ) {
 			switch( $this->nodeType ) {
 			case XmlReader::TEXT:
 			case XmlReader::SIGNIFICANT_WHITESPACE:
@@ -1051,9 +1051,9 @@ class WikiRevision {
 	 * @throws MWException
 	 */
 	function setTitle( $title ) {
-		if( is_object( $title ) ) {
+		if ( is_object( $title ) ) {
 			$this->title = $title;
-		} elseif( is_null( $title ) ) {
+		} elseif ( is_null( $title ) ) {
 			throw new MWException( "WikiRevision given a null title in import. You may need to adjust \$wgLegalTitleChars." );
 		} else {
 			throw new MWException( "WikiRevision given non-object title in import." );
@@ -1369,7 +1369,7 @@ class WikiRevision {
 
 		# Sneak a single revision into place
 		$user = User::newFromName( $this->getUser() );
-		if( $user ) {
+		if ( $user ) {
 			$userId = intval( $user->getId() );
 			$userText = $user->getName();
 			$userObj = $user;
@@ -1384,7 +1384,7 @@ class WikiRevision {
 		$linkCache->clear();
 
 		$page = WikiPage::factory( $this->title );
-		if( !$page->exists() ) {
+		if ( !$page->exists() ) {
 			# must create the page...
 			$pageId = $page->insertOn( $dbw );
 			$created = true;
@@ -1400,7 +1400,7 @@ class WikiRevision {
 					'rev_comment' => $this->getComment() ),
 				__METHOD__
 			);
-			if( $prior ) {
+			if ( $prior ) {
 				// @todo FIXME: This could fail slightly for multiple matches :P
 				wfDebug( __METHOD__ . ": skipping existing revision for [[" .
 					$this->title->getPrefixedText() . "]], timestamp " . $this->timestamp . "\n" );
@@ -1440,7 +1440,7 @@ class WikiRevision {
 	function importLogItem() {
 		$dbw = wfGetDB( DB_MASTER );
 		# @todo FIXME: This will not record autoblocks
-		if( !$this->getTitle() ) {
+		if ( !$this->getTitle() ) {
 			wfDebug( __METHOD__ . ": skipping invalid {$this->type}/{$this->action} log time, timestamp " .
 				$this->timestamp . "\n" );
 			return;
@@ -1459,7 +1459,7 @@ class WikiRevision {
 			__METHOD__
 		);
 		// @todo FIXME: This could fail slightly for multiple matches :P
-		if( $prior ) {
+		if ( $prior ) {
 			wfDebug( __METHOD__ . ": skipping existing item for Log:{$this->type}/{$this->action}, timestamp " .
 				$this->timestamp . "\n" );
 			return;
@@ -1500,7 +1500,7 @@ class WikiRevision {
 				wfDebug( __METHOD__ . "File already exists; importing as $archiveName\n" );
 			}
 		}
-		if( !$file ) {
+		if ( !$file ) {
 			wfDebug( __METHOD__ . ': Bad file for ' . $this->getTitle() . "\n" );
 			return false;
 		}
@@ -1512,7 +1512,7 @@ class WikiRevision {
 			$source = $this->downloadSource();
 			$flags |= File::DELETE_SOURCE;
 		}
-		if( !$source ) {
+		if ( !$source ) {
 			wfDebug( __METHOD__ . ": Could not fetch remote file.\n" );
 			return false;
 		}
@@ -1551,13 +1551,13 @@ class WikiRevision {
 	 */
 	function downloadSource() {
 		global $wgEnableUploads;
-		if( !$wgEnableUploads ) {
+		if ( !$wgEnableUploads ) {
 			return false;
 		}
 
 		$tempo = tempnam( wfTempDir(), 'download' );
 		$f = fopen( $tempo, 'wb' );
-		if( !$f ) {
+		if ( !$f ) {
 			wfDebug( "IMPORT: couldn't write to temp file $tempo\n" );
 			return false;
 		}
@@ -1565,7 +1565,7 @@ class WikiRevision {
 		// @todo FIXME!
 		$src = $this->getSrc();
 		$data = Http::get( $src );
-		if( !$data ) {
+		if ( !$data ) {
 			wfDebug( "IMPORT: couldn't fetch source $src\n" );
 			fclose( $f );
 			unlink( $tempo );
@@ -1601,7 +1601,7 @@ class ImportStringSource {
 	 * @return bool|string
 	 */
 	function readChunk() {
-		if( $this->atEnd() ) {
+		if ( $this->atEnd() ) {
 			return false;
 		}
 		$this->mRead = true;
@@ -1640,7 +1640,7 @@ class ImportStreamSource {
 		wfSuppressWarnings();
 		$file = fopen( $filename, 'rt' );
 		wfRestoreWarnings();
-		if( !$file ) {
+		if ( !$file ) {
 			return Status::newFatal( "importcantopen" );
 		}
 		return Status::newGood( new ImportStreamSource( $file ) );
@@ -1653,10 +1653,10 @@ class ImportStreamSource {
 	static function newFromUpload( $fieldname = "xmlimport" ) {
 		$upload =& $_FILES[$fieldname];
 
-		if( $upload === null || !$upload['name'] ) {
+		if ( $upload === null || !$upload['name'] ) {
 			return Status::newFatal( 'importnofile' );
 		}
-		if( !empty( $upload['error'] ) ) {
+		if ( !empty( $upload['error'] ) ) {
 			switch( $upload['error'] ) {
 				case 1: # The uploaded file exceeds the upload_max_filesize directive in php.ini.
 					return Status::newFatal( 'importuploaderrorsize' );
@@ -1671,7 +1671,7 @@ class ImportStreamSource {
 
 		}
 		$fname = $upload['tmp_name'];
-		if( is_uploaded_file( $fname ) ) {
+		if ( is_uploaded_file( $fname ) ) {
 			return ImportStreamSource::newFromFile( $fname );
 		} else {
 			return Status::newFatal( 'importnofile' );
@@ -1690,7 +1690,7 @@ class ImportStreamSource {
 		# otherwise prevent importing from large sites, such
 		# as the Wikimedia cluster, etc.
 		$data = Http::request( $method, $url, array( 'followRedirects' => true ) );
-		if( $data !== false ) {
+		if ( $data !== false ) {
 			$file = tmpfile();
 			fwrite( $file, $data );
 			fflush( $file );
@@ -1710,17 +1710,23 @@ class ImportStreamSource {
 	 * @return Status
 	 */
 	public static function newFromInterwiki( $interwiki, $page, $history = false, $templates = false, $pageLinkDepth = 0 ) {
-		if( $page == '' ) {
+		if ( $page == '' ) {
 			return Status::newFatal( 'import-noarticle' );
 		}
 		$link = Title::newFromText( "$interwiki:Special:Export/$page" );
-		if( is_null( $link ) || $link->getInterwiki() == '' ) {
+		if ( is_null( $link ) || $link->getInterwiki() == '' ) {
 			return Status::newFatal( 'importbadinterwiki' );
 		} else {
 			$params = array();
-			if ( $history ) $params['history'] = 1;
-			if ( $templates ) $params['templates'] = 1;
-			if ( $pageLinkDepth ) $params['pagelink-depth'] = $pageLinkDepth;
+			if ( $history ) {
+				$params['history'] = 1;
+			}
+			if ( $templates ) {
+				$params['templates'] = 1;
+			}
+			if ( $pageLinkDepth ) {
+				$params['pagelink-depth'] = $pageLinkDepth;
+			}
 			$url = $link->getFullURL( $params );
 			# For interwikis, use POST to avoid redirects.
 			return ImportStreamSource::newFromURL( $url, "POST" );

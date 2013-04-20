@@ -305,7 +305,7 @@ class WikiPage implements Page, IDBAccessObject {
 	public function pageDataFromTitle( $dbr, $title, $options = array() ) {
 		return $this->pageData( $dbr, array(
 			'page_namespace' => $title->getNamespace(),
-			'page_title'     => $title->getDBkey() ), $options );
+			'page_title' => $title->getDBkey() ), $options );
 	}
 
 	/**
@@ -462,7 +462,9 @@ class WikiPage implements Page, IDBAccessObject {
 	 */
 	public function isRedirect() {
 		$content = $this->getContent();
-		if ( !$content ) return false;
+		if ( !$content ) {
+			return false;
+		}
 
 		return $content->isRedirect();
 	}
@@ -906,10 +908,10 @@ class WikiPage implements Page, IDBAccessObject {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->replace( 'redirect', array( 'rd_from' ),
 			array(
-				'rd_from'      => $this->getId(),
+				'rd_from' => $this->getId(),
 				'rd_namespace' => $rt->getNamespace(),
-				'rd_title'     => $rt->getDBkey(),
-				'rd_fragment'  => $rt->getFragment(),
+				'rd_title' => $rt->getDBkey(),
+				'rd_fragment' => $rt->getFragment(),
 				'rd_interwiki' => $rt->getInterwiki(),
 			),
 			__METHOD__
@@ -1155,7 +1157,7 @@ class WikiPage implements Page, IDBAccessObject {
 	public function doPurge() {
 		global $wgUseSquid;
 
-		if( !wfRunHooks( 'ArticlePurge', array( &$this ) ) ) {
+		if ( !wfRunHooks( 'ArticlePurge', array( &$this ) ) ) {
 			return false;
 		}
 
@@ -1182,7 +1184,9 @@ class WikiPage implements Page, IDBAccessObject {
 				$content = $this->getContent();
 				$text = $content === null ? null : $content->getWikitextForTransclusion();
 
-				if ( $text === null ) $text = false;
+				if ( $text === null ) {
+					$text = false;
+				}
 			} else {
 				$text = false;
 			}
@@ -1698,7 +1702,9 @@ class WikiPage implements Page, IDBAccessObject {
 
 		// Provide autosummaries if one is not provided and autosummaries are enabled.
 		if ( $wgUseAutomaticEditSummaries && $flags & EDIT_AUTOSUMMARY && $summary == '' ) {
-			if ( !$old_content ) $old_content = null;
+			if ( !$old_content ) {
+				$old_content = null;
+			}
 			$summary = $handler->getAutosummary( $old_content, $content, $flags );
 		}
 
@@ -2142,12 +2148,14 @@ class WikiPage implements Page, IDBAccessObject {
 		if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
 			// XXX: could skip pseudo-messages like js/css here, based on content model.
 			$msgtext = $content ? $content->getWikitextForTransclusion() : null;
-			if ( $msgtext === false || $msgtext === null ) $msgtext = '';
+			if ( $msgtext === false || $msgtext === null ) {
+				$msgtext = '';
+			}
 
 			MessageCache::singleton()->replace( $shortTitle, $msgtext );
 		}
 
-		if( $options['created'] ) {
+		if ( $options['created'] ) {
 			self::onArticleCreate( $this->mTitle );
 		} else {
 			self::onArticleEdit( $this->mTitle );
@@ -2811,7 +2819,7 @@ class WikiPage implements Page, IDBAccessObject {
 			$wgContLang->timeanddate( wfTimestamp( TS_MW, $s->rev_timestamp ) ),
 			$current->getId(), $wgContLang->timeanddate( $current->getTimestamp() )
 		);
-		if( $summary instanceof Message ) {
+		if ( $summary instanceof Message ) {
 			$summary = $summary->params( $args )->inContentLanguage()->text();
 		} else {
 			$summary = wfMsgReplaceArgs( $summary, $args );
@@ -2852,8 +2860,8 @@ class WikiPage implements Page, IDBAccessObject {
 		$resultDetails = array(
 			'summary' => $summary,
 			'current' => $current,
-			'target'  => $target,
-			'newid'   => $revId
+			'target' => $target,
+			'newid' => $revId
 		);
 
 		return array();
@@ -3082,11 +3090,11 @@ class WikiPage implements Page, IDBAccessObject {
 					);
 				}
 
-				foreach( $added as $catName ) {
+				foreach ( $added as $catName ) {
 					$cat = Category::newFromName( $catName );
 					wfRunHooks( 'CategoryAfterPageAdded', array( $cat, $that ) );
 				}
-				foreach( $deleted as $catName ) {
+				foreach ( $deleted as $catName ) {
 					$cat = Category::newFromName( $catName );
 					wfRunHooks( 'CategoryAfterPageRemoved', array( $cat, $that ) );
 				}

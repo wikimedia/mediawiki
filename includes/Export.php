@@ -249,9 +249,13 @@ class WikiExporter {
 			$where = array( 'user_id = log_user' );
 			# Hide private logs
 			$hideLogs = LogEventsList::getExcludeClause( $this->db );
-			if ( $hideLogs ) $where[] = $hideLogs;
+			if ( $hideLogs ) {
+				$where[] = $hideLogs;
+			}
 			# Add on any caller specified conditions
-			if ( $cond ) $where[] = $cond;
+			if ( $cond ) {
+				$where[] = $cond;
+			}
 			# Get logging table name for logging.* clause
 			$logging = $this->db->tableName( 'logging' );
 
@@ -638,7 +642,7 @@ class XmlDumpWriter {
 
 		$out = "    <revision>\n";
 		$out .= "      " . Xml::element( 'id', null, strval( $row->rev_id ) ) . "\n";
-		if( isset( $row->rev_parent_id ) && $row->rev_parent_id ) {
+		if ( isset( $row->rev_parent_id ) && $row->rev_parent_id ) {
 			$out .= "      " . Xml::element( 'parentid', null, strval( $row->rev_parent_id ) ) . "\n";
 		}
 

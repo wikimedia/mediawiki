@@ -51,7 +51,7 @@ class HashRing {
 		// Fit the map to weight-proportionate one with a space of size RING_SIZE
 		$standardMap = array();
 		foreach ( $map as $location => $weight ) {
-			$standardMap[$location] = (int)floor( $weight/$sum * self::RING_SIZE );
+			$standardMap[$location] = (int)floor( $weight / $sum * self::RING_SIZE );
 		}
 		// Build a ring of RING_SIZE spots, with each location at a spot in location hash order
 		$index = 0;

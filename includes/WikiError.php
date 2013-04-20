@@ -143,7 +143,7 @@ class WikiXmlError extends WikiError {
 	}
 
 	function _extractContext( $context, $offset ) {
-		if( is_null( $context ) ) {
+		if ( is_null( $context ) ) {
 			return null;
 		} else {
 			// Hopefully integer overflow will be handled transparently here

@@ -54,7 +54,7 @@ class ChangesFeed {
 			return false;
 		}
 
-		if( !array_key_exists( $this->format, $wgFeedClasses ) ) {
+		if ( !array_key_exists( $this->format, $wgFeedClasses ) ) {
 			// falling back to atom
 			$this->format = 'atom';
 		}
@@ -92,7 +92,7 @@ class ChangesFeed {
 		 * gets it quick too.
 		 */
 		$cachedFeed = $this->loadFromCache( $lastmod, $timekey, $key );
-		if( is_string( $cachedFeed ) ) {
+		if ( is_string( $cachedFeed ) ) {
 			wfDebug( "RC: Outputting cached feed\n" );
 			$feed->httpHeaders();
 			echo $cachedFeed;
@@ -134,7 +134,7 @@ class ChangesFeed {
 
 		$feedLastmod = $messageMemc->get( $timekey );
 
-		if( ( $wgFeedCacheTimeout > 0 ) && $feedLastmod ) {
+		if ( ( $wgFeedCacheTimeout > 0 ) && $feedLastmod ) {
 			/**
 			 * If the cached feed was rendered very recently, we may
 			 * go ahead and use it even if there have been edits made
@@ -146,7 +146,7 @@ class ChangesFeed {
 			$feedLastmodUnix = wfTimestamp( TS_UNIX, $feedLastmod );
 			$lastmodUnix = wfTimestamp( TS_UNIX, $lastmod );
 
-			if( $feedAge < $wgFeedCacheTimeout || $feedLastmodUnix > $lastmodUnix ) {
+			if ( $feedAge < $wgFeedCacheTimeout || $feedLastmodUnix > $lastmodUnix ) {
 				wfDebug( "RC: loading feed from cache ($key; $feedLastmod; $lastmod)...\n" );
 				if ( $feedLastmodUnix < $lastmodUnix ) {
 					$wgOut->setLastModified( $feedLastmod ); // bug 21916
@@ -172,8 +172,8 @@ class ChangesFeed {
 		# Merge adjacent edits by one user
 		$sorted = array();
 		$n = 0;
-		foreach( $rows as $obj ) {
-			if( $n > 0 &&
+		foreach ( $rows as $obj ) {
+			if ( $n > 0 &&
 				$obj->rc_type == RC_EDIT &&
 				$obj->rc_namespace >= 0 &&
 				$obj->rc_cur_id == $sorted[$n - 1]->rc_cur_id &&
@@ -185,11 +185,13 @@ class ChangesFeed {
 			}
 		}
 
-		foreach( $sorted as $obj ) {
+		foreach ( $sorted as $obj ) {
 			$title = Title::makeTitle( $obj->rc_namespace, $obj->rc_title );
 			$talkpage = MWNamespace::canTalk( $obj->rc_namespace ) ? $title->getTalkPage()->getFullURL() : '';
 			// Skip items with deleted content (avoids partially complete/inconsistent output)
-			if( $obj->rc_deleted ) continue;
+			if ( $obj->rc_deleted ) {
+				continue;
+			}
 
 			if ( $obj->rc_this_oldid ) {
 				$url = $title->getFullURL(

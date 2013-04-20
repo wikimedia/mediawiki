@@ -133,7 +133,7 @@ class CdbReader_DBA {
 	}
 
 	function close() {
-		if( isset( $this->handle ) ) {
+		if ( isset( $this->handle ) ) {
 			dba_close( $this->handle );
 		}
 		unset( $this->handle );
@@ -164,7 +164,7 @@ class CdbWriter_DBA {
 	}
 
 	function close() {
-		if( isset( $this->handle ) ) {
+		if ( isset( $this->handle ) ) {
 			dba_close( $this->handle );
 		}
 		if ( wfIsWindows() ) {

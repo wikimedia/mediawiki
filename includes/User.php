@@ -286,7 +286,7 @@ class User {
 				$this->loadFromId();
 				break;
 			case 'session':
-				if( !$this->loadFromSession() ) {
+				if ( !$this->loadFromSession() ) {
 					// Loading from session failed. Load defaults.
 					$this->loadDefaults();
 				}
@@ -426,7 +426,7 @@ class User {
 			'user_email_token' => md5( $code ),
 			'user_email_token_expires > ' . $dbr->addQuotes( $dbr->timestamp() ),
 			) );
-		if( $id !== false ) {
+		if ( $id !== false ) {
 			return User::newFromId( $id );
 		} else {
 			return null;
@@ -495,7 +495,7 @@ class User {
 	 */
 	public static function idFromName( $name ) {
 		$nt = Title::makeTitleSafe( NS_USER, $name );
-		if( is_null( $nt ) ) {
+		if ( is_null( $nt ) ) {
 			# Illegal name
 			return null;
 		}
@@ -576,7 +576,7 @@ class User {
 		// Ensure that the name can't be misresolved as a different title,
 		// such as with extra namespace keys at the start.
 		$parsed = Title::newFromText( $name );
-		if( is_null( $parsed )
+		if ( is_null( $parsed )
 			|| $parsed->getNamespace()
 			|| strcmp( $name, $parsed->getPrefixedText() ) ) {
 			wfDebugLog( 'username', __METHOD__ .
@@ -594,7 +594,7 @@ class User {
 			'\x{3000}' .          # ideographic space
 			'\x{e000}-\x{f8ff}' . # private use
 			']/u';
-		if( preg_match( $unicodeBlacklist, $name ) ) {
+		if ( preg_match( $unicodeBlacklist, $name ) ) {
 			wfDebugLog( 'username', __METHOD__ .
 				": '$name' invalid due to blacklisted characters" );
 			return false;
@@ -657,15 +657,15 @@ class User {
 		// Ensure that the username isn't longer than 235 bytes, so that
 		// (at least for the builtin skins) user javascript and css files
 		// will work. (bug 23080)
-		if( strlen( $name ) > 235 ) {
+		if ( strlen( $name ) > 235 ) {
 			wfDebugLog( 'username', __METHOD__ .
 				": '$name' invalid due to length" );
 			return false;
 		}
 
 		// Preg yells if you try to give it an empty string
-		if( $wgInvalidUsernameCharacters !== '' ) {
-			if( preg_match( '/[' . preg_quote( $wgInvalidUsernameCharacters, '/' ) . ']/', $name ) ) {
+		if ( $wgInvalidUsernameCharacters !== '' ) {
+			if ( preg_match( '/[' . preg_quote( $wgInvalidUsernameCharacters, '/' ) . ']/', $name ) ) {
 				wfDebugLog( 'username', __METHOD__ .
 					": '$name' invalid due to wgInvalidUsernameCharacters" );
 				return false;
@@ -702,11 +702,12 @@ class User {
 
 		$result = false; //init $result to false for the internal checks
 
-		if( !wfRunHooks( 'isValidPassword', array( $password, &$result, $this ) ) )
+		if ( !wfRunHooks( 'isValidPassword', array( $password, &$result, $this ) ) ) {
 			return $result;
+		}
 
 		if ( $result === false ) {
-			if( strlen( $password ) < $wgMinimalPasswordLength ) {
+			if ( strlen( $password ) < $wgMinimalPasswordLength ) {
 				return 'passwordtooshort';
 			} elseif ( $wgContLang->lc( $password ) == $wgContLang->lc( $this->mName ) ) {
 				return 'password-name-match';
@@ -719,7 +720,7 @@ class User {
 				//a valid password.
 				return true;
 			}
-		} elseif( $result === true ) {
+		} elseif ( $result === true ) {
 			return true;
 		} else {
 			return $result; //the isValidPassword hook set a string $result and returned true
@@ -779,14 +780,15 @@ class User {
 		# Reject names containing '#'; these will be cleaned up
 		# with title normalisation, but then it's too late to
 		# check elsewhere
-		if( strpos( $name, '#' ) !== false )
+		if ( strpos( $name, '#' ) !== false ) {
 			return false;
+		}
 
 		# Clean up name according to title rules
 		$t = ( $validate === 'valid' ) ?
 			Title::newFromText( $name ) : Title::makeTitle( NS_USER, $name );
 		# Check for invalid titles
-		if( is_null( $t ) ) {
+		if ( is_null( $t ) ) {
 			return false;
 		}
 
@@ -870,7 +872,7 @@ class User {
 		$this->mOptionsLoaded = false;
 
 		$loggedOut = $this->getRequest()->getCookie( 'LoggedOut' );
-		if( $loggedOut !== null ) {
+		if ( $loggedOut !== null ) {
 			$this->mTouched = wfTimestamp( TS_MW, $loggedOut );
 		} else {
 			$this->mTouched = '1'; # Allow any pages to be cached
@@ -934,7 +936,7 @@ class User {
 
 		if ( $cookieId !== null ) {
 			$sId = intval( $cookieId );
-			if( $sessId !== null && $cookieId != $sessId ) {
+			if ( $sessId !== null && $cookieId != $sessId ) {
 				wfDebugLog( 'loginSessions', "Session user ID ($sessId) and
 					cookie user ID ($sId) don't match!" );
 				return false;
@@ -962,7 +964,7 @@ class User {
 		}
 
 		global $wgBlockDisablesLogin;
-		if( $wgBlockDisablesLogin && $proposedUser->isBlocked() ) {
+		if ( $wgBlockDisablesLogin && $proposedUser->isBlocked() ) {
 			# User blocked and we've disabled blocked user logins
 			return false;
 		}
@@ -1004,7 +1006,7 @@ class User {
 		$this->mId = intval( $this->mId );
 
 		/** Anonymous user */
-		if( !$this->mId ) {
+		if ( !$this->mId ) {
 			$this->loadDefaults();
 			return false;
 		}
@@ -1228,7 +1230,7 @@ class User {
 		# default language setting
 		$defOpt['variant'] = $wgContLang->getCode();
 		$defOpt['language'] = $wgContLang->getCode();
-		foreach( SearchEngine::searchableNamespaces() as $nsnum => $nsname ) {
+		foreach ( SearchEngine::searchableNamespaces() as $nsnum => $nsname ) {
 			$defOpt['searchNs' . $nsnum] = !empty( $wgNamespacesToBeSearchedDefault[$nsnum] );
 		}
 		$defOpt['skin'] = $wgDefaultSkin;
@@ -1246,7 +1248,7 @@ class User {
 	 */
 	public static function getDefaultOption( $opt ) {
 		$defOpts = self::getDefaultOptions();
-		if( isset( $defOpts[$opt] ) ) {
+		if ( isset( $defOpts[$opt] ) ) {
 			return $defOpts[$opt];
 		} else {
 			return null;
@@ -1356,11 +1358,13 @@ class User {
 		global $wgEnableSorbs, $wgEnableDnsBlacklist,
 			$wgSorbsUrl, $wgDnsBlacklistUrls, $wgProxyWhitelist;
 
-		if ( !$wgEnableDnsBlacklist && !$wgEnableSorbs )
+		if ( !$wgEnableDnsBlacklist && !$wgEnableSorbs ) {
 			return false;
+		}
 
-		if ( $checkWhitelist && in_array( $ip, $wgProxyWhitelist ) )
+		if ( $checkWhitelist && in_array( $ip, $wgProxyWhitelist ) ) {
 			return false;
+		}
 
 		$urls = array_merge( $wgDnsBlacklistUrls, (array)$wgSorbsUrl );
 		return $this->inDnsBlacklist( $ip, $urls );
@@ -1378,15 +1382,15 @@ class User {
 
 		$found = false;
 		// @todo FIXME: IPv6 ???  (http://bugs.php.net/bug.php?id=33170)
-		if( IP::isIPv4( $ip ) ) {
+		if ( IP::isIPv4( $ip ) ) {
 			# Reverse IP, bug 21255
 			$ipReversed = implode( '.', array_reverse( explode( '.', $ip ) ) );
 
-			foreach( (array)$bases as $base ) {
+			foreach ( (array)$bases as $base ) {
 				# Make hostname
 				# If we have an access key, use that too (ProjectHoneypot, etc.)
-				if( is_array( $base ) ) {
-					if( count( $base ) >= 2 ) {
+				if ( is_array( $base ) ) {
+					if ( count( $base ) >= 2 ) {
 						# Access key is 1, base URL is 0
 						$host = "{$base[1]}.$ipReversed.{$base[0]}";
 					} else {
@@ -1399,7 +1403,7 @@ class User {
 				# Send query
 				$ipList = gethostbynamel( $host );
 
-				if( $ipList ) {
+				if ( $ipList ) {
 					wfDebugLog( 'dnsblacklist', "Hostname $host is {$ipList[0]}, it's a proxy says $base!\n" );
 					$found = true;
 					break;
@@ -1454,7 +1458,7 @@ class User {
 	 */
 	public function isPingLimitable() {
 		global $wgRateLimitsExcludedIPs;
-		if( in_array( $this->getRequest()->getIP(), $wgRateLimitsExcludedIPs ) ) {
+		if ( in_array( $this->getRequest()->getIP(), $wgRateLimitsExcludedIPs ) ) {
 			// No other good way currently to disable rate limits
 			// for specific IPs. :P
 			// But this is a crappy hack and should die.
@@ -1476,18 +1480,19 @@ class User {
 	public function pingLimiter( $action = 'edit' ) {
 		# Call the 'PingLimiter' hook
 		$result = false;
-		if( !wfRunHooks( 'PingLimiter', array( &$this, $action, &$result ) ) ) {
+		if ( !wfRunHooks( 'PingLimiter', array( &$this, $action, &$result ) ) ) {
 			return $result;
 		}
 
 		global $wgRateLimits;
-		if( !isset( $wgRateLimits[$action] ) ) {
+		if ( !isset( $wgRateLimits[$action] ) ) {
 			return false;
 		}
 
 		# Some groups shouldn't trigger the ping limiter, ever
-		if( !$this->isPingLimitable() )
+		if ( !$this->isPingLimitable() ) {
 			return false;
+		}
 
 		global $wgMemc, $wgRateLimitLog;
 		wfProfileIn( __METHOD__ );
@@ -1498,22 +1503,22 @@ class User {
 		$ip = $this->getRequest()->getIP();
 		$userLimit = false;
 
-		if( isset( $limits['anon'] ) && $id == 0 ) {
+		if ( isset( $limits['anon'] ) && $id == 0 ) {
 			$keys[wfMemcKey( 'limiter', $action, 'anon' )] = $limits['anon'];
 		}
 
-		if( isset( $limits['user'] ) && $id != 0 ) {
+		if ( isset( $limits['user'] ) && $id != 0 ) {
 			$userLimit = $limits['user'];
 		}
-		if( $this->isNewbie() ) {
-			if( isset( $limits['newbie'] ) && $id != 0 ) {
+		if ( $this->isNewbie() ) {
+			if ( isset( $limits['newbie'] ) && $id != 0 ) {
 				$keys[wfMemcKey( 'limiter', $action, 'user', $id )] = $limits['newbie'];
 			}
-			if( isset( $limits['ip'] ) ) {
+			if ( isset( $limits['ip'] ) ) {
 				$keys["mediawiki:limiter:$action:ip:$ip"] = $limits['ip'];
 			}
 			$matches = array();
-			if( isset( $limits['subnet'] ) && preg_match( '/^(\d+\.\d+\.\d+)\.\d+$/', $ip, $matches ) ) {
+			if ( isset( $limits['subnet'] ) && preg_match( '/^(\d+\.\d+\.\d+)\.\d+$/', $ip, $matches ) ) {
 				$subnet = $matches[1];
 				$keys["mediawiki:limiter:$action:subnet:$subnet"] = $limits['subnet'];
 			}
@@ -1534,15 +1539,15 @@ class User {
 		}
 
 		$triggered = false;
-		foreach( $keys as $key => $limit ) {
+		foreach ( $keys as $key => $limit ) {
 			list( $max, $period ) = $limit;
 			$summary = "(limit $max in {$period}s)";
 			$count = $wgMemc->get( $key );
 			// Already pinged?
-			if( $count ) {
-				if( $count >= $max ) {
+			if ( $count ) {
+				if ( $count >= $max ) {
 					wfDebug( __METHOD__ . ": tripped! $key at $count $summary\n" );
-					if( $wgRateLimitLog ) {
+					if ( $wgRateLimitLog ) {
 						wfSuppressWarnings();
 						file_put_contents( $wgRateLimitLog, wfTimestamp( TS_MW ) . ' ' . wfWikiID() . ': ' . $this->getName() . " tripped $key at $count $summary\n", FILE_APPEND );
 						wfRestoreWarnings();
@@ -1645,13 +1650,13 @@ class User {
 	 * @return Bool True if blocked, false otherwise
 	 */
 	public function isBlockedGlobally( $ip = '' ) {
-		if( $this->mBlockedGlobally !== null ) {
+		if ( $this->mBlockedGlobally !== null ) {
 			return $this->mBlockedGlobally;
 		}
 		// User is already an IP?
-		if( IP::isIPAddress( $this->getName() ) ) {
+		if ( IP::isIPAddress( $this->getName() ) ) {
 			$ip = $this->getName();
-		} elseif( !$ip ) {
+		} elseif ( !$ip ) {
 			$ip = $this->getRequest()->getIP();
 		}
 		$blocked = false;
@@ -1666,7 +1671,7 @@ class User {
 	 * @return Bool True if locked, false otherwise
 	 */
 	public function isLocked() {
-		if( $this->mLocked !== null ) {
+		if ( $this->mLocked !== null ) {
 			return $this->mLocked;
 		}
 		global $wgAuth;
@@ -1681,11 +1686,11 @@ class User {
 	 * @return Bool True if hidden, false otherwise
 	 */
 	public function isHidden() {
-		if( $this->mHideName !== null ) {
+		if ( $this->mHideName !== null ) {
 			return $this->mHideName;
 		}
 		$this->getBlockedStatus();
-		if( !$this->mHideName ) {
+		if ( !$this->mHideName ) {
 			global $wgAuth;
 			$authUser = $wgAuth->getUserInstance( $this );
 			$this->mHideName = (bool)$authUser->isHidden();
@@ -1698,11 +1703,10 @@ class User {
 	 * @return Int The user's ID; 0 if the user is anonymous or nonexistent
 	 */
 	public function getId() {
-		if( $this->mId === null && $this->mName !== null
-		&& User::isIP( $this->mName ) ) {
+		if ( $this->mId === null && $this->mName !== null && User::isIP( $this->mName ) ) {
 			// Special case, we know the user is anonymous
 			return 0;
-		} elseif( !$this->isItemLoaded( 'id' ) ) {
+		} elseif ( !$this->isItemLoaded( 'id' ) ) {
 			// Don't load if this was initialized from an ID
 			$this->load();
 		}
@@ -1770,21 +1774,21 @@ class User {
 		$this->load();
 
 		# Load the newtalk status if it is unloaded (mNewtalk=-1)
-		if( $this->mNewtalk === -1 ) {
+		if ( $this->mNewtalk === -1 ) {
 			$this->mNewtalk = false; # reset talk page status
 
 			# Check memcached separately for anons, who have no
 			# entire User object stored in there.
-			if( !$this->mId ) {
+			if ( !$this->mId ) {
 				global $wgDisableAnonTalk;
-				if( $wgDisableAnonTalk ) {
+				if ( $wgDisableAnonTalk ) {
 					// Anon newtalk disabled by configuration.
 					$this->mNewtalk = false;
 				} else {
 					global $wgMemc;
 					$key = wfMemcKey( 'newtalk', 'ip', $this->getName() );
 					$newtalk = $wgMemc->get( $key );
-					if( strval( $newtalk ) !== '' ) {
+					if ( strval( $newtalk ) !== '' ) {
 						$this->mNewtalk = (bool)$newtalk;
 					} else {
 						// Since we are caching this, make sure it is up to date by getting it
@@ -1807,9 +1811,9 @@ class User {
 	 */
 	public function getNewMessageLinks() {
 		$talks = array();
-		if( !wfRunHooks( 'UserRetrieveNewTalks', array( &$this, &$talks ) ) ) {
+		if ( !wfRunHooks( 'UserRetrieveNewTalks', array( &$this, &$talks ) ) ) {
 			return $talks;
-		} elseif( !$this->getNewtalk() ) {
+		} elseif ( !$this->getNewtalk() ) {
 			return array();
 		}
 		$utp = $this->getTalkPage();
@@ -1895,14 +1899,14 @@ class User {
 	 * @param $curRev Revision new, as yet unseen revision of the user talk page. Ignored if null or !$val.
 	 */
 	public function setNewtalk( $val, $curRev = null ) {
-		if( wfReadOnly() ) {
+		if ( wfReadOnly() ) {
 			return;
 		}
 
 		$this->load();
 		$this->mNewtalk = $val;
 
-		if( $this->isAnon() ) {
+		if ( $this->isAnon() ) {
 			$field = 'user_ip';
 			$id = $this->getName();
 		} else {
@@ -1911,13 +1915,13 @@ class User {
 		}
 		global $wgMemc;
 
-		if( $val ) {
+		if ( $val ) {
 			$changed = $this->updateNewtalk( $field, $id, $curRev );
 		} else {
 			$changed = $this->deleteNewtalk( $field, $id );
 		}
 
-		if( $this->isAnon() ) {
+		if ( $this->isAnon() ) {
 			// Anons have a separate memcached space, since
 			// user records aren't kept for them.
 			$key = wfMemcKey( 'newtalk', 'ip', $id );
@@ -1947,7 +1951,7 @@ class User {
 	 */
 	private function clearSharedCache() {
 		$this->load();
-		if( $this->mId ) {
+		if ( $this->mId ) {
 			global $wgMemc;
 			$wgMemc->delete( wfMemcKey( 'user', 'id', $this->mId ) );
 		}
@@ -2025,12 +2029,12 @@ class User {
 	public function setPassword( $str ) {
 		global $wgAuth;
 
-		if( $str !== null ) {
-			if( !$wgAuth->allowPasswordChange() ) {
+		if ( $str !== null ) {
+			if ( !$wgAuth->allowPasswordChange() ) {
 				throw new PasswordError( wfMessage( 'password-change-forbidden' )->text() );
 			}
 
-			if( !$this->isValidPassword( $str ) ) {
+			if ( !$this->isValidPassword( $str ) ) {
 				global $wgMinimalPasswordLength;
 				$valid = $this->getPasswordValidity( $str );
 				if ( is_array( $valid ) ) {
@@ -2044,7 +2048,7 @@ class User {
 			}
 		}
 
-		if( !$wgAuth->setPassword( $this, $str ) ) {
+		if ( !$wgAuth->setPassword( $this, $str ) ) {
 			throw new PasswordError( wfMessage( 'externaldberror' )->text() );
 		}
 
@@ -2064,7 +2068,7 @@ class User {
 		$this->load();
 		$this->setToken();
 
-		if( $str === null ) {
+		if ( $str === null ) {
 			// Save an invalid hash...
 			$this->mPassword = '';
 		} else {
@@ -2157,7 +2161,7 @@ class User {
 	 */
 	public function setEmail( $str ) {
 		$this->load();
-		if( $str == $this->mEmail ) {
+		if ( $str == $this->mEmail ) {
 			return;
 		}
 		$this->mEmail = $str;
@@ -2241,7 +2245,7 @@ class User {
 		# set it, and then it was disabled removing their ability to change it).  But
 		# we don't want to erase the preferences in the database in case the preference
 		# is re-enabled again.  So don't touch $mOptions, just override the returned value
-		if( in_array( $oname, $wgHiddenPrefs ) && !$ignoreHidden ) {
+		if ( in_array( $oname, $wgHiddenPrefs ) && !$ignoreHidden ) {
 			return self::getDefaultOption( $oname );
 		}
 
@@ -2267,9 +2271,9 @@ class User {
 		# set it, and then it was disabled removing their ability to change it).  But
 		# we don't want to erase the preferences in the database in case the preference
 		# is re-enabled again.  So don't touch $mOptions, just override the returned value
-		foreach( $wgHiddenPrefs as $pref ) {
+		foreach ( $wgHiddenPrefs as $pref ) {
 			$default = self::getDefaultOption( $pref );
-			if( $default !== null ) {
+			if ( $default !== null ) {
 				$options[$pref] = $default;
 			}
 		}
@@ -2298,7 +2302,7 @@ class User {
 	 */
 	public function getIntOption( $oname, $defaultOverride = 0 ) {
 		$val = $this->getOption( $oname );
-		if( $val == '' ) {
+		if ( $val == '' ) {
 			$val = $defaultOverride;
 		}
 		return intval( $val );
@@ -2314,7 +2318,7 @@ class User {
 		$this->loadOptions();
 
 		// Explicitly NULL values should refer to defaults
-		if( is_null( $val ) ) {
+		if ( is_null( $val ) ) {
 			$val = self::getDefaultOption( $oname );
 		}
 
@@ -2410,9 +2414,9 @@ class User {
 		foreach ( $options as $key => $value ) {
 			if ( isset( $prefs[$key] ) ) {
 				$mapping[$key] = 'registered';
-			} elseif( isset( $multiselectOptions[$key] ) ) {
+			} elseif ( isset( $multiselectOptions[$key] ) ) {
 				$mapping[$key] = 'registered-multiselect';
-			} elseif( isset( $checkmatrixOptions[$key] ) ) {
+			} elseif ( isset( $checkmatrixOptions[$key] ) ) {
 				$mapping[$key] = 'registered-checkmatrix';
 			} elseif ( substr( $key, 0, 7 ) === 'userjs-' ) {
 				$mapping[$key] = 'userjs';
@@ -2598,14 +2602,14 @@ class User {
 	 * @return array Names of the groups the user has belonged to.
 	 */
 	public function getFormerGroups() {
-		if( is_null( $this->mFormerGroups ) ) {
+		if ( is_null( $this->mFormerGroups ) ) {
 			$dbr = wfGetDB( DB_MASTER );
 			$res = $dbr->select( 'user_former_groups',
 				array( 'ufg_group' ),
 				array( 'ufg_user' => $this->mId ),
 				__METHOD__ );
 			$this->mFormerGroups = array();
-			foreach( $res as $row ) {
+			foreach ( $res as $row ) {
 				$this->mFormerGroups[] = $row->ufg_group;
 			}
 		}
@@ -2632,7 +2636,7 @@ class User {
 				__METHOD__
 			);
 
-			if( $count === null ) {
+			if ( $count === null ) {
 				// it has not been initialized. do so.
 				$count = $this->initEditCount();
 			}
@@ -2648,9 +2652,9 @@ class User {
 	 * @param string $group Name of the group to add
 	 */
 	public function addGroup( $group ) {
-		if( wfRunHooks( 'UserAddGroup', array( $this, &$group ) ) ) {
+		if ( wfRunHooks( 'UserAddGroup', array( $this, &$group ) ) ) {
 			$dbw = wfGetDB( DB_MASTER );
-			if( $this->getId() ) {
+			if ( $this->getId() ) {
 				$dbw->insert( 'user_groups',
 					array(
 						'ug_user' => $this->getID(),
@@ -2674,7 +2678,7 @@ class User {
 	 */
 	public function removeGroup( $group ) {
 		$this->load();
-		if( wfRunHooks( 'UserRemoveGroup', array( $this, &$group ) ) ) {
+		if ( wfRunHooks( 'UserRemoveGroup', array( $this, &$group ) ) ) {
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->delete( 'user_groups',
 				array(
@@ -2723,8 +2727,8 @@ class User {
 	 */
 	public function isAllowedAny( /*...*/ ) {
 		$permissions = func_get_args();
-		foreach( $permissions as $permission ) {
-			if( $this->isAllowed( $permission ) ) {
+		foreach ( $permissions as $permission ) {
+			if ( $this->isAllowed( $permission ) ) {
 				return true;
 			}
 		}
@@ -2738,8 +2742,8 @@ class User {
 	 */
 	public function isAllowedAll( /*...*/ ) {
 		$permissions = func_get_args();
-		foreach( $permissions as $permission ) {
-			if( !$this->isAllowed( $permission ) ) {
+		foreach ( $permissions as $permission ) {
+			if ( !$this->isAllowed( $permission ) ) {
 				return false;
 			}
 		}
@@ -2756,10 +2760,11 @@ class User {
 			return true; // In the spirit of DWIM
 		}
 		# Patrolling may not be enabled
-		if( $action === 'patrol' || $action === 'autopatrol' ) {
+		if ( $action === 'patrol' || $action === 'autopatrol' ) {
 			global $wgUseRCPatrol, $wgUseNPPatrol;
-			if( !$wgUseRCPatrol && !$wgUseNPPatrol )
+			if ( !$wgUseRCPatrol && !$wgUseNPPatrol ) {
 				return false;
+			}
 		}
 		# Use strict parameter to avoid matching numeric 0 accidentally inserted
 		# by misconfiguration: 0 == 'foo'
@@ -2867,22 +2872,23 @@ class User {
 		global $wgUseEnotif, $wgShowUpdatedMarker;
 
 		# Do nothing if the database is locked to writes
-		if( wfReadOnly() ) {
+		if ( wfReadOnly() ) {
 			return;
 		}
 
-		if( $title->getNamespace() == NS_USER_TALK &&
+		if ( $title->getNamespace() == NS_USER_TALK &&
 			$title->getText() == $this->getName() ) {
-			if( !wfRunHooks( 'UserClearNewTalkNotification', array( &$this ) ) )
+			if ( !wfRunHooks( 'UserClearNewTalkNotification', array( &$this ) ) ) {
 				return;
+			}
 			$this->setNewtalk( false );
 		}
 
-		if( !$wgUseEnotif && !$wgShowUpdatedMarker ) {
+		if ( !$wgUseEnotif && !$wgShowUpdatedMarker ) {
 			return;
 		}
 
-		if( $this->isAnon() ) {
+		if ( $this->isAnon() ) {
 			// Nothing else to do...
 			return;
 		}
@@ -2917,7 +2923,7 @@ class User {
 			return;
 		}
 		$id = $this->getId();
-		if( $id != 0 ) {
+		if ( $id != 0 ) {
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->update( 'watchlist',
 				array( /* SET */
@@ -2939,8 +2945,9 @@ class User {
 	 */
 	private function decodeOptions( $str ) {
 		wfDeprecated( __METHOD__, '1.19' );
-		if( !$str )
+		if ( !$str ) {
 			return;
+		}
 
 		$this->mOptionsLoaded = true;
 		$this->mOptionOverrides = array();
@@ -3048,7 +3055,7 @@ class User {
 	 * Log this user out.
 	 */
 	public function logout() {
-		if( wfRunHooks( 'UserLogout', array( &$this ) ) ) {
+		if ( wfRunHooks( 'UserLogout', array( &$this ) ) ) {
 			$this->doLogout();
 		}
 	}
@@ -3078,8 +3085,12 @@ class User {
 		global $wgAuth;
 
 		$this->load();
-		if ( wfReadOnly() ) { return; }
-		if ( 0 == $this->mId ) { return; }
+		if ( wfReadOnly() ) {
+			return;
+		}
+		if ( 0 == $this->mId ) {
+			return;
+		}
 
 		$this->mTouched = self::newTouchedTimestamp();
 		if ( !$wgAuth->allowSetLocalPassword() ) {
@@ -3118,7 +3129,9 @@ class User {
 	 */
 	public function idForName() {
 		$s = trim( $this->getName() );
-		if ( $s === '' ) return 0;
+		if ( $s === '' ) {
+			return 0;
+		}
 
 		$dbr = wfGetDB( DB_SLAVE );
 		$id = $dbr->selectField( 'user', 'user_id', array( 'user_name' => $s ), __METHOD__ );
@@ -3308,7 +3321,7 @@ class User {
 		wfDeprecated( __METHOD__, '1.17' );
 
 		global $wgRenderHashAppend, $wgLang, $wgContLang;
-		if( $this->mHash ) {
+		if ( $this->mHash ) {
 			return $this->mHash;
 		}
 
@@ -3346,7 +3359,7 @@ class User {
 	 */
 	public function isBlockedFromCreateAccount() {
 		$this->getBlockedStatus();
-		if( $this->mBlock && $this->mBlock->prevents( 'createaccount' ) ) {
+		if ( $this->mBlock && $this->mBlock->prevents( 'createaccount' ) ) {
 			return $this->mBlock;
 		}
 
@@ -3420,16 +3433,16 @@ class User {
 		// to. Certain authentication plugins do NOT want to save
 		// domain passwords in a mysql database, so we should
 		// check this (in case $wgAuth->strict() is false).
-		if( !$this->isValidPassword( $password ) ) {
+		if ( !$this->isValidPassword( $password ) ) {
 			return false;
 		}
 
-		if( $wgAuth->authenticate( $this->getName(), $password ) ) {
+		if ( $wgAuth->authenticate( $this->getName(), $password ) ) {
 			return true;
-		} elseif( $wgAuth->strict() ) {
+		} elseif ( $wgAuth->strict() ) {
 			/* Auth plugin doesn't allow local authentication */
 			return false;
-		} elseif( $wgAuth->strictUserAuth( $this->getName() ) ) {
+		} elseif ( $wgAuth->strictUserAuth( $this->getName() ) ) {
 			/* Auth plugin doesn't allow local authentication for this user name */
 			return false;
 		}
@@ -3460,7 +3473,7 @@ class User {
 		global $wgNewPasswordExpiry;
 
 		$this->load();
-		if( self::comparePasswords( $this->mNewpassword, $plaintext, $this->getId() ) ) {
+		if ( self::comparePasswords( $this->mNewpassword, $plaintext, $this->getId() ) ) {
 			if ( is_null( $this->mNewpassTime ) ) {
 				return true;
 			}
@@ -3509,7 +3522,7 @@ class User {
 				$token = MWCryptRand::generateHex( 32 );
 				$request->setSessionData( 'wsEditToken', $token );
 			}
-			if( is_array( $salt ) ) {
+			if ( is_array( $salt ) ) {
 				$salt = implode( '|', $salt );
 			}
 			return md5( $token . $salt ) . EDIT_TOKEN_SUFFIX;
@@ -3604,7 +3617,7 @@ class User {
 	 * @return Status
 	 */
 	public function sendMail( $subject, $body, $from = null, $replyto = null ) {
-		if( is_null( $from ) ) {
+		if ( is_null( $from ) ) {
 			global $wgPasswordSender, $wgPasswordSenderName;
 			$sender = new MailAddress( $wgPasswordSender, $wgPasswordSenderName );
 		} else {
@@ -3726,7 +3739,7 @@ class User {
 	 */
 	public function canSendEmail() {
 		global $wgEnableEmail, $wgEnableUserEmail;
-		if( !$wgEnableEmail || !$wgEnableUserEmail || !$this->isAllowed( 'sendemail' ) ) {
+		if ( !$wgEnableEmail || !$wgEnableUserEmail || !$this->isAllowed( 'sendemail' ) ) {
 			return false;
 		}
 		$canSend = $this->isEmailConfirmed();
@@ -3757,14 +3770,14 @@ class User {
 		global $wgEmailAuthentication;
 		$this->load();
 		$confirmed = true;
-		if( wfRunHooks( 'EmailConfirmed', array( &$this, &$confirmed ) ) ) {
-			if( $this->isAnon() ) {
+		if ( wfRunHooks( 'EmailConfirmed', array( &$this, &$confirmed ) ) ) {
+			if ( $this->isAnon() ) {
 				return false;
 			}
-			if( !Sanitizer::validateEmail( $this->mEmail ) ) {
+			if ( !Sanitizer::validateEmail( $this->mEmail ) ) {
 				return false;
 			}
-			if( $wgEmailAuthentication && !$this->getEmailAuthenticationTimestamp() ) {
+			if ( $wgEmailAuthentication && !$this->getEmailAuthenticationTimestamp() ) {
 				return false;
 			}
 			return true;
@@ -3807,7 +3820,7 @@ class User {
 	 *     non-existent/anonymous user accounts.
 	 */
 	public function getFirstEditTimestamp() {
-		if( $this->getId() == 0 ) {
+		if ( $this->getId() == 0 ) {
 			return false; // anons
 		}
 		$dbr = wfGetDB( DB_SLAVE );
@@ -3816,7 +3829,7 @@ class User {
 			__METHOD__,
 			array( 'ORDER BY' => 'rev_timestamp ASC' )
 		);
-		if( !$time ) {
+		if ( !$time ) {
 			return false; // no edits
 		}
 		return wfTimestamp( TS_MW, $time );
@@ -3832,16 +3845,16 @@ class User {
 		global $wgGroupPermissions, $wgRevokePermissions;
 		$rights = array();
 		// grant every granted permission first
-		foreach( $groups as $group ) {
-			if( isset( $wgGroupPermissions[$group] ) ) {
+		foreach ( $groups as $group ) {
+			if ( isset( $wgGroupPermissions[$group] ) ) {
 				$rights = array_merge( $rights,
 					// array_filter removes empty items
 					array_keys( array_filter( $wgGroupPermissions[$group] ) ) );
 			}
 		}
 		// now revoke the revoked permissions
-		foreach( $groups as $group ) {
-			if( isset( $wgRevokePermissions[$group] ) ) {
+		foreach ( $groups as $group ) {
+			if ( isset( $wgRevokePermissions[$group] ) ) {
 				$rights = array_diff( $rights,
 					array_keys( array_filter( $wgRevokePermissions[$group] ) ) );
 			}
@@ -3953,10 +3966,11 @@ class User {
 	 */
 	public static function getGroupPage( $group ) {
 		$msg = wfMessage( 'grouppage-' . $group )->inContentLanguage();
-		if( $msg->exists() ) {
+		if ( $msg->exists() ) {
 			$title = Title::newFromText( $msg->text() );
-			if( is_object( $title ) )
+			if ( is_object( $title ) ) {
 				return $title;
+			}
 		}
 		return false;
 	}
@@ -3970,11 +3984,11 @@ class User {
 	 * @return String HTML link to the group
 	 */
 	public static function makeGroupLinkHTML( $group, $text = '' ) {
-		if( $text == '' ) {
+		if ( $text == '' ) {
 			$text = self::getGroupName( $group );
 		}
 		$title = self::getGroupPage( $group );
-		if( $title ) {
+		if ( $title ) {
 			return Linker::link( $title, htmlspecialchars( $text ) );
 		} else {
 			return $text;
@@ -3990,11 +4004,11 @@ class User {
 	 * @return String Wikilink to the group
 	 */
 	public static function makeGroupLinkWiki( $group, $text = '' ) {
-		if( $text == '' ) {
+		if ( $text == '' ) {
 			$text = self::getGroupName( $group );
 		}
 		$title = self::getGroupPage( $group );
-		if( $title ) {
+		if ( $title ) {
 			$page = $title->getPrefixedText();
 			return "[[$page|$text]]";
 		} else {
@@ -4015,53 +4029,53 @@ class User {
 		global $wgAddGroups, $wgRemoveGroups, $wgGroupsAddToSelf, $wgGroupsRemoveFromSelf;
 
 		$groups = array( 'add' => array(), 'remove' => array(), 'add-self' => array(), 'remove-self' => array() );
-		if( empty( $wgAddGroups[$group] ) ) {
+		if ( empty( $wgAddGroups[$group] ) ) {
 			// Don't add anything to $groups
-		} elseif( $wgAddGroups[$group] === true ) {
+		} elseif ( $wgAddGroups[$group] === true ) {
 			// You get everything
 			$groups['add'] = self::getAllGroups();
-		} elseif( is_array( $wgAddGroups[$group] ) ) {
+		} elseif ( is_array( $wgAddGroups[$group] ) ) {
 			$groups['add'] = $wgAddGroups[$group];
 		}
 
 		// Same thing for remove
-		if( empty( $wgRemoveGroups[$group] ) ) {
-		} elseif( $wgRemoveGroups[$group] === true ) {
+		if ( empty( $wgRemoveGroups[$group] ) ) {
+		} elseif ( $wgRemoveGroups[$group] === true ) {
 			$groups['remove'] = self::getAllGroups();
-		} elseif( is_array( $wgRemoveGroups[$group] ) ) {
+		} elseif ( is_array( $wgRemoveGroups[$group] ) ) {
 			$groups['remove'] = $wgRemoveGroups[$group];
 		}
 
 		// Re-map numeric keys of AddToSelf/RemoveFromSelf to the 'user' key for backwards compatibility
-		if( empty( $wgGroupsAddToSelf['user'] ) || $wgGroupsAddToSelf['user'] !== true ) {
-			foreach( $wgGroupsAddToSelf as $key => $value ) {
-				if( is_int( $key ) ) {
+		if ( empty( $wgGroupsAddToSelf['user'] ) || $wgGroupsAddToSelf['user'] !== true ) {
+			foreach ( $wgGroupsAddToSelf as $key => $value ) {
+				if ( is_int( $key ) ) {
 					$wgGroupsAddToSelf['user'][] = $value;
 				}
 			}
 		}
 
-		if( empty( $wgGroupsRemoveFromSelf['user'] ) || $wgGroupsRemoveFromSelf['user'] !== true ) {
-			foreach( $wgGroupsRemoveFromSelf as $key => $value ) {
-				if( is_int( $key ) ) {
+		if ( empty( $wgGroupsRemoveFromSelf['user'] ) || $wgGroupsRemoveFromSelf['user'] !== true ) {
+			foreach ( $wgGroupsRemoveFromSelf as $key => $value ) {
+				if ( is_int( $key ) ) {
 					$wgGroupsRemoveFromSelf['user'][] = $value;
 				}
 			}
 		}
 
 		// Now figure out what groups the user can add to him/herself
-		if( empty( $wgGroupsAddToSelf[$group] ) ) {
-		} elseif( $wgGroupsAddToSelf[$group] === true ) {
+		if ( empty( $wgGroupsAddToSelf[$group] ) ) {
+		} elseif ( $wgGroupsAddToSelf[$group] === true ) {
 			// No idea WHY this would be used, but it's there
 			$groups['add-self'] = User::getAllGroups();
-		} elseif( is_array( $wgGroupsAddToSelf[$group] ) ) {
+		} elseif ( is_array( $wgGroupsAddToSelf[$group] ) ) {
 			$groups['add-self'] = $wgGroupsAddToSelf[$group];
 		}
 
-		if( empty( $wgGroupsRemoveFromSelf[$group] ) ) {
-		} elseif( $wgGroupsRemoveFromSelf[$group] === true ) {
+		if ( empty( $wgGroupsRemoveFromSelf[$group] ) ) {
+		} elseif ( $wgGroupsRemoveFromSelf[$group] === true ) {
 			$groups['remove-self'] = User::getAllGroups();
-		} elseif( is_array( $wgGroupsRemoveFromSelf[$group] ) ) {
+		} elseif ( is_array( $wgGroupsRemoveFromSelf[$group] ) ) {
 			$groups['remove-self'] = $wgGroupsRemoveFromSelf[$group];
 		}
 
@@ -4076,7 +4090,7 @@ class User {
 	 *  'remove-self' => array( removable groups from self) )
 	 */
 	public function changeableGroups() {
-		if( $this->isAllowed( 'userrights' ) ) {
+		if ( $this->isAllowed( 'userrights' ) ) {
 			// This group gives the right to modify everything (reverse-
 			// compatibility with old "userrights lets you change
 			// everything")
@@ -4099,7 +4113,7 @@ class User {
 		);
 		$addergroups = $this->getEffectiveGroups();
 
-		foreach( $addergroups as $addergroup ) {
+		foreach ( $addergroups as $addergroup ) {
 			$groups = array_merge_recursive(
 				$groups, $this->changeableByGroup( $addergroup )
 			);
@@ -4116,7 +4130,7 @@ class User {
 	 * Will have no effect for anonymous users.
 	 */
 	public function incEditCount() {
-		if( !$this->isAnon() ) {
+		if ( !$this->isAnon() ) {
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->update(
 				'user',
@@ -4126,10 +4140,10 @@ class User {
 			);
 
 			// Lazy initialization check...
-			if( $dbw->affectedRows() == 0 ) {
+			if ( $dbw->affectedRows() == 0 ) {
 				// Now here's a goddamn hack...
 				$dbr = wfGetDB( DB_SLAVE );
-				if( $dbr !== $dbw ) {
+				if ( $dbr !== $dbw ) {
 					// If we actually have a slave server, the count is
 					// at least one behind because the current transaction
 					// has not been committed and replicated.
@@ -4216,11 +4230,11 @@ class User {
 		global $wgPasswordSalt;
 
 		$hash = '';
-		if( !wfRunHooks( 'UserCryptPassword', array( &$password, &$salt, &$wgPasswordSalt, &$hash ) ) ) {
+		if ( !wfRunHooks( 'UserCryptPassword', array( &$password, &$salt, &$wgPasswordSalt, &$hash ) ) ) {
 			return $hash;
 		}
 
-		if( $wgPasswordSalt ) {
+		if ( $wgPasswordSalt ) {
 			if ( $salt === false ) {
 				$salt = MWCryptRand::generateHex( 8 );
 			}
@@ -4244,7 +4258,7 @@ class User {
 		$type = substr( $hash, 0, 3 );
 
 		$result = false;
-		if( !wfRunHooks( 'UserComparePasswords', array( &$hash, &$password, &$userId, &$result ) ) ) {
+		if ( !wfRunHooks( 'UserComparePasswords', array( &$hash, &$password, &$userId, &$result ) ) ) {
 			return $result;
 		}
 
@@ -4283,7 +4297,7 @@ class User {
 	 */
 	public function addNewUserLogEntry( $action = false, $reason = '' ) {
 		global $wgUser, $wgNewUserLog;
-		if( empty( $wgNewUserLog ) ) {
+		if ( empty( $wgNewUserLog ) ) {
 			return true; // disabled
 		}
 
@@ -4363,11 +4377,11 @@ class User {
 		// Maybe load from the object
 		if ( !is_null( $this->mOptionOverrides ) ) {
 			wfDebug( "User: loading options for user " . $this->getId() . " from override cache.\n" );
-			foreach( $this->mOptionOverrides as $key => $value ) {
+			foreach ( $this->mOptionOverrides as $key => $value ) {
 				$this->mOptions[$key] = $value;
 			}
 		} else {
-			if( !is_array( $data ) ) {
+			if ( !is_array( $data ) ) {
 				wfDebug( "User: loading options for user " . $this->getId() . " from database.\n" );
 				// Load from database
 				$dbr = wfGetDB( DB_SLAVE );
@@ -4407,13 +4421,13 @@ class User {
 
 		// Allow hooks to abort, for instance to save to a global profile.
 		// Reset options to default state before saving.
-		if( !wfRunHooks( 'UserSaveOptions', array( $this, &$saveOptions ) ) ) {
+		if ( !wfRunHooks( 'UserSaveOptions', array( $this, &$saveOptions ) ) ) {
 			return;
 		}
 
 		$userId = $this->getId();
 		$insert_rows = array();
-		foreach( $saveOptions as $key => $value ) {
+		foreach ( $saveOptions as $key => $value ) {
 			# Don't bother storing default values
 			$defaultOption = self::getDefaultOption( $key );
 			if ( ( is_null( $defaultOption ) &&

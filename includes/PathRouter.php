@@ -141,10 +141,10 @@ class PathRouter {
 		}
 
 		$pattern = (object)array(
-			'path'    => $path,
-			'params'  => $params,
+			'path' => $path,
+			'params' => $params,
 			'options' => $options,
-			'key'     => $key,
+			'key' => $key,
 		);
 		$pattern->weight = self::makeWeight( $pattern );
 		$this->patterns[] = $pattern;
@@ -185,7 +185,7 @@ class PathRouter {
 	 */
 	protected function sortByWeight() {
 		$weights = array();
-		foreach( $this->patterns as $key => $pattern ) {
+		foreach ( $this->patterns as $key => $pattern ) {
 			$weights[$key] = $pattern->weight;
 		}
 		array_multisort( $weights, SORT_DESC, SORT_NUMERIC, $this->patterns );
@@ -203,7 +203,7 @@ class PathRouter {
 		$path = explode( '/', $pattern->path );
 
 		# For each level of the path
-		foreach( $path as $piece ) {
+		foreach ( $path as $piece ) {
 			if ( preg_match( '/^\$(\d+|key)$/u', $piece ) ) {
 				# For a piece that is only a $1 variable add 1 points of weight
 				$weight += 1;

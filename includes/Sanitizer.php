@@ -405,7 +405,7 @@ class Sanitizer {
 				'td', 'th', 'tr',
 			);
 			$htmllist = array( # Tags used by list
-				'ul','ol',
+				'ul', 'ol',
 			);
 			$listtags = array( # Tags that can appear in a list
 				'li',
@@ -446,7 +446,7 @@ class Sanitizer {
 				# $params: String between element name and >
 				# $brace: Ending '>' or '/>'
 				# $rest: Everything until the next element of $bits
-				if( preg_match( '!^(/?)(\\w+)([^>]*?)(/{0,1}>)([^<]*)$!', $x, $regs ) ) {
+				if ( preg_match( '!^(/?)(\\w+)([^>]*?)(/{0,1}>)([^<]*)$!', $x, $regs ) ) {
 					list( /* $qbar */, $slash, $t, $params, $brace, $rest ) = $regs;
 				} else {
 					$slash = $t = $params = $brace = $rest = null;
@@ -537,7 +537,7 @@ class Sanitizer {
 
 						# Replace any variables or template parameters with
 						# plaintext results.
-						if( is_callable( $processCallback ) ) {
+						if ( is_callable( $processCallback ) ) {
 							call_user_func_array( $processCallback, array( &$params, $args ) );
 						}
 
@@ -572,7 +572,7 @@ class Sanitizer {
 				@list( /* $qbar */, $slash, $t, $params, $brace, $rest ) = $regs;
 				$badtag = false;
 				if ( isset( $htmlelements[$t = strtolower( $t )] ) ) {
-					if( is_callable( $processCallback ) ) {
+					if ( is_callable( $processCallback ) ) {
 						call_user_func_array( $processCallback, array( &$params, $args ) );
 					}
 
@@ -623,8 +623,9 @@ class Sanitizer {
 				$spaceStart--;
 				$spaceLen++;
 			}
-			while ( substr( $text, $spaceStart + $spaceLen, 1 ) === ' ' )
+			while ( substr( $text, $spaceStart + $spaceLen, 1 ) === ' ' ) {
 				$spaceLen++;
+			}
 			if ( substr( $text, $spaceStart, 1 ) === "\n" and substr( $text, $spaceStart + $spaceLen, 1 ) === "\n" ) {
 				# Remove the comment, leading and trailing
 				# spaces, and leave only one newline.
@@ -714,7 +715,7 @@ class Sanitizer {
 		$hrefExp = '/^(' . wfUrlProtocols() . ')[^\s]+$/';
 
 		$out = array();
-		foreach( $attribs as $attribute => $value ) {
+		foreach ( $attribs as $attribute => $value ) {
 			#allow XML namespace declaration if RDFa is enabled
 			if ( $wgAllowRdfaAttributes && preg_match( self::XMLNS_ATTRIBUTE_PATTERN, $attribute ) ) {
 				if ( !preg_match( self::EVIL_URI_PATTERN, $value ) ) {
@@ -731,7 +732,7 @@ class Sanitizer {
 
 			# Strip javascript "expression" from stylesheets.
 			# http://msdn.microsoft.com/workshop/author/dhtml/overview/recalc.asp
-			if( $attribute == 'style' ) {
+			if ( $attribute == 'style' ) {
 				$value = Sanitizer::checkCss( $value );
 			}
 
@@ -800,9 +801,10 @@ class Sanitizer {
 	 */
 	static function mergeAttributes( $a, $b ) {
 		$out = array_merge( $a, $b );
-		if( isset( $a['class'] ) && isset( $b['class'] )
-		&& is_string( $a['class'] ) && is_string( $b['class'] )
-		&& $a['class'] !== $b['class'] ) {
+		if ( isset( $a['class'] ) && isset( $b['class'] )
+			&& is_string( $a['class'] ) && is_string( $b['class'] )
+			&& $a['class'] !== $b['class']
+		) {
 			$classes = preg_split( '/\s+/', "{$a['class']} {$b['class']}",
 				-1, PREG_SPLIT_NO_EMPTY );
 			$out['class'] = implode( ' ', array_unique( $classes ) );
@@ -925,7 +927,7 @@ class Sanitizer {
 	 * @return String
 	 */
 	static function fixTagAttributes( $text, $element ) {
-		if( trim( $text ) == '' ) {
+		if ( trim( $text ) == '' ) {
 			return '';
 		}
 
@@ -933,7 +935,7 @@ class Sanitizer {
 		$stripped = Sanitizer::validateTagAttributes( $decoded, $element );
 
 		$attribs = array();
-		foreach( $stripped as $attribute => $value ) {
+		foreach ( $stripped as $attribute => $value ) {
 			$encAttribute = htmlspecialchars( $attribute );
 			$encValue = Sanitizer::safeEncodeAttribute( $value );
 
@@ -1111,13 +1113,13 @@ class Sanitizer {
 	 * @return Array
 	 */
 	public static function decodeTagAttributes( $text ) {
-		if( trim( $text ) == '' ) {
+		if ( trim( $text ) == '' ) {
 			return array();
 		}
 
 		$attribs = array();
 		$pairs = array();
-		if( !preg_match_all(
+		if ( !preg_match_all(
 			self::getAttribsRegex(),
 			$text,
 			$pairs,
@@ -1125,7 +1127,7 @@ class Sanitizer {
 			return $attribs;
 		}
 
-		foreach( $pairs as $set ) {
+		foreach ( $pairs as $set ) {
 			$attribute = strtolower( $set[1] );
 			$value = Sanitizer::getTagAttributeCallback( $set );
 
@@ -1148,19 +1150,19 @@ class Sanitizer {
 	 * @return String
 	 */
 	private static function getTagAttributeCallback( $set ) {
-		if( isset( $set[6] ) ) {
+		if ( isset( $set[6] ) ) {
 			# Illegal #XXXXXX color with no quotes.
 			return $set[6];
-		} elseif( isset( $set[5] ) ) {
+		} elseif ( isset( $set[5] ) ) {
 			# No quotes.
 			return $set[5];
-		} elseif( isset( $set[4] ) ) {
+		} elseif ( isset( $set[4] ) ) {
 			# Single-quoted
 			return $set[4];
-		} elseif( isset( $set[3] ) ) {
+		} elseif ( isset( $set[3] ) ) {
 			# Double-quoted
 			return $set[3];
-		} elseif( !isset( $set[2] ) ) {
+		} elseif ( !isset( $set[2] ) ) {
 			# In XHTML, attributes must have a value.
 			# For 'reduced' form, return explicitly the attribute name here.
 			return $set[1];
@@ -1236,14 +1238,14 @@ class Sanitizer {
 	 */
 	static function normalizeCharReferencesCallback( $matches ) {
 		$ret = null;
-		if( $matches[1] != '' ) {
+		if ( $matches[1] != '' ) {
 			$ret = Sanitizer::normalizeEntity( $matches[1] );
-		} elseif( $matches[2] != '' ) {
+		} elseif ( $matches[2] != '' ) {
 			$ret = Sanitizer::decCharReference( $matches[2] );
-		} elseif( $matches[3] != '' ) {
+		} elseif ( $matches[3] != '' ) {
 			$ret = Sanitizer::hexCharReference( $matches[3] );
 		}
-		if( is_null( $ret ) ) {
+		if ( is_null( $ret ) ) {
 			return htmlspecialchars( $matches[0] );
 		} else {
 			return $ret;
@@ -1279,7 +1281,7 @@ class Sanitizer {
 	 */
 	static function decCharReference( $codepoint ) {
 		$point = intval( $codepoint );
-		if( Sanitizer::validateCodepoint( $point ) ) {
+		if ( Sanitizer::validateCodepoint( $point ) ) {
 			return sprintf( '&#%d;', $point );
 		} else {
 			return null;
@@ -1292,7 +1294,7 @@ class Sanitizer {
 	 */
 	static function hexCharReference( $codepoint ) {
 		$point = hexdec( $codepoint );
-		if( Sanitizer::validateCodepoint( $point ) ) {
+		if ( Sanitizer::validateCodepoint( $point ) ) {
 			return sprintf( '&#x%x;', $point );
 		} else {
 			return null;
@@ -1356,11 +1358,11 @@ class Sanitizer {
 	 * @return String
 	 */
 	static function decodeCharReferencesCallback( $matches ) {
-		if( $matches[1] != '' ) {
+		if ( $matches[1] != '' ) {
 			return Sanitizer::decodeEntity( $matches[1] );
-		} elseif( $matches[2] != '' ) {
+		} elseif ( $matches[2] != '' ) {
 			return Sanitizer::decodeChar( intval( $matches[2] ) );
-		} elseif( $matches[3] != '' ) {
+		} elseif ( $matches[3] != '' ) {
 			return Sanitizer::decodeChar( hexdec( $matches[3] ) );
 		}
 		# Last case should be an ampersand by itself
@@ -1375,7 +1377,7 @@ class Sanitizer {
 	 * @private
 	 */
 	static function decodeChar( $codepoint ) {
-		if( Sanitizer::validateCodepoint( $codepoint ) ) {
+		if ( Sanitizer::validateCodepoint( $codepoint ) ) {
 			return codepointToUtf8( $codepoint );
 		} else {
 			return UTF8_REPLACEMENT;
@@ -1394,7 +1396,7 @@ class Sanitizer {
 		if ( isset( self::$htmlEntityAliases[$name] ) ) {
 			$name = self::$htmlEntityAliases[$name];
 		}
-		if( isset( self::$htmlEntities[$name] ) ) {
+		if ( isset( self::$htmlEntities[$name] ) ) {
 			return codepointToUtf8( self::$htmlEntities[$name] );
 		} else {
 			return "&$name;";
@@ -1662,7 +1664,7 @@ class Sanitizer {
 	 */
 	static function hackDocType() {
 		$out = "<!DOCTYPE html [\n";
-		foreach( self::$htmlEntities as $entity => $codepoint ) {
+		foreach ( self::$htmlEntities as $entity => $codepoint ) {
 			$out .= "<!ENTITY $entity \"&#$codepoint;\">";
 		}
 		$out .= "]>\n";
@@ -1684,7 +1686,7 @@ class Sanitizer {
 
 		# Validate hostname portion
 		$matches = array();
-		if( preg_match( '!^([^:]+:)(//[^/]+)?(.*)$!iD', $url, $matches ) ) {
+		if ( preg_match( '!^([^:]+:)(//[^/]+)?(.*)$!iD', $url, $matches ) ) {
 			list( /* $whole */, $protocol, $host, $rest ) = $matches;
 
 			// Characters that will be ignored in IDNs.
@@ -1754,7 +1756,7 @@ class Sanitizer {
 	 */
 	public static function validateEmail( $addr ) {
 		$result = null;
-		if( !wfRunHooks( 'isValidEmailAddr', array( $addr, &$result ) ) ) {
+		if ( !wfRunHooks( 'isValidEmailAddr', array( $addr, &$result ) ) ) {
 			return $result;
 		}
 

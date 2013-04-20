@@ -119,7 +119,7 @@ class UserMailer {
 	 */
 	static function arrayToHeaderString( $headers, $endl = "\n" ) {
 		$strings = array();
-		foreach( $headers as $name => $value ) {
+		foreach ( $headers as $name => $value ) {
 			$strings[] = "$name: $value";
 		}
 		return implode( $endl, $strings );
@@ -338,7 +338,7 @@ class UserMailer {
 			#
 			# PHP mail()
 			#
-			if( count( $to ) > 1 ) {
+			if ( count( $to ) > 1 ) {
 				$headers['To'] = 'undisclosed-recipients:;';
 			}
 			$headers = self::arrayToHeaderString( $headers, $endl );
@@ -409,7 +409,7 @@ class UserMailer {
 	 */
 	public static function quotedPrintable( $string, $charset = '' ) {
 		# Probably incomplete; see RFC 2045
-		if( empty( $charset ) ) {
+		if ( empty( $charset ) ) {
 			$charset = 'UTF-8';
 		}
 		$charset = strtoupper( $charset );
@@ -417,7 +417,7 @@ class UserMailer {
 
 		$illegal = '\x00-\x08\x0b\x0c\x0e-\x1f\x7f-\xff=';
 		$replace = $illegal . '\t ?_';
-		if( !preg_match( "/[$illegal]/", $string ) ) {
+		if ( !preg_match( "/[$illegal]/", $string ) ) {
 			return $string;
 		}
 		$out = "=?$charset?Q?";
@@ -791,8 +791,9 @@ class EmailNotification {
 	function compose( $user ) {
 		global $wgEnotifImpersonal;
 
-		if ( !$this->composed_common )
+		if ( !$this->composed_common ) {
 			$this->composeCommonMailtext();
+		}
 
 		if ( $wgEnotifImpersonal ) {
 			$this->mailTargets[] = new MailAddress( $user );

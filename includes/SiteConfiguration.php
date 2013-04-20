@@ -191,11 +191,11 @@ class SiteConfiguration {
 	 */
 	protected function getSetting( $settingName, $wiki, /*array*/ $params ) {
 		$retval = null;
-		if( array_key_exists( $settingName, $this->settings ) ) {
+		if ( array_key_exists( $settingName, $this->settings ) ) {
 			$thisSetting =& $this->settings[$settingName];
 			do {
 				// Do individual wiki settings
-				if( array_key_exists( $wiki, $thisSetting ) ) {
+				if ( array_key_exists( $wiki, $thisSetting ) ) {
 					$retval = $thisSetting[$wiki];
 					break;
 				} elseif ( array_key_exists( "+$wiki", $thisSetting ) && is_array( $thisSetting["+$wiki"] ) ) {
@@ -203,16 +203,16 @@ class SiteConfiguration {
 				}
 
 				// Do tag settings
-				foreach( $params['tags'] as $tag ) {
-					if( array_key_exists( $tag, $thisSetting ) ) {
+				foreach ( $params['tags'] as $tag ) {
+					if ( array_key_exists( $tag, $thisSetting ) ) {
 						if ( isset( $retval ) && is_array( $retval ) && is_array( $thisSetting[$tag] ) ) {
 							$retval = self::arrayMerge( $retval, $thisSetting[$tag] );
 						} else {
 							$retval = $thisSetting[$tag];
 						}
 						break 2;
-					} elseif( array_key_exists( "+$tag", $thisSetting ) && is_array( $thisSetting["+$tag"] ) ) {
-						if( !isset( $retval ) ) {
+					} elseif ( array_key_exists( "+$tag", $thisSetting ) && is_array( $thisSetting["+$tag"] ) ) {
+						if ( !isset( $retval ) ) {
 							$retval = array();
 						}
 						$retval = self::arrayMerge( $retval, $thisSetting["+$tag"] );
@@ -220,8 +220,8 @@ class SiteConfiguration {
 				}
 				// Do suffix settings
 				$suffix = $params['suffix'];
-				if( !is_null( $suffix ) ) {
-					if( array_key_exists( $suffix, $thisSetting ) ) {
+				if ( !is_null( $suffix ) ) {
+					if ( array_key_exists( $suffix, $thisSetting ) ) {
 						if ( isset( $retval ) && is_array( $retval ) && is_array( $thisSetting[$suffix] ) ) {
 							$retval = self::arrayMerge( $retval, $thisSetting[$suffix] );
 						} else {
@@ -237,8 +237,8 @@ class SiteConfiguration {
 				}
 
 				// Fall back to default.
-				if( array_key_exists( 'default', $thisSetting ) ) {
-					if( is_array( $retval ) && is_array( $thisSetting['default'] ) ) {
+				if ( array_key_exists( 'default', $thisSetting ) ) {
+					if ( is_array( $retval ) && is_array( $thisSetting['default'] ) ) {
 						$retval = self::arrayMerge( $retval, $thisSetting['default'] );
 					} else {
 						$retval = $thisSetting['default'];
@@ -248,7 +248,7 @@ class SiteConfiguration {
 			} while ( false );
 		}
 
-		if( !is_null( $retval ) && count( $params['params'] ) ) {
+		if ( !is_null( $retval ) && count( $params['params'] ) ) {
 			foreach ( $params['params'] as $key => $value ) {
 				$retval = $this->doReplace( '$' . $key, $value, $retval );
 			}
@@ -266,10 +266,10 @@ class SiteConfiguration {
 	 * @return string
 	 */
 	function doReplace( $from, $to, $in ) {
-		if( is_string( $in ) ) {
+		if ( is_string( $in ) ) {
 			return str_replace( $from, $to, $in );
-		} elseif( is_array( $in ) ) {
-			foreach( $in as $key => $val ) {
+		} elseif ( is_array( $in ) ) {
+			foreach ( $in as $key => $val ) {
 				$in[$key] = $this->doReplace( $from, $to, $val );
 			}
 			return $in;
@@ -289,7 +289,7 @@ class SiteConfiguration {
 	public function getAll( $wiki, $suffix = null, $params = array(), $wikiTags = array() ) {
 		$params = $this->mergeParams( $wiki, $suffix, $params, $wikiTags );
 		$localSettings = array();
-		foreach( $this->settings as $varname => $stuff ) {
+		foreach ( $this->settings as $varname => $stuff ) {
 			$append = false;
 			$var = $varname;
 			if ( substr( $varname, 0, 1 ) == '+' ) {
@@ -409,18 +409,18 @@ class SiteConfiguration {
 			'params' => array(),
 		);
 
-		if( !is_callable( $this->siteParamsCallback ) ) {
+		if ( !is_callable( $this->siteParamsCallback ) ) {
 			return $default;
 		}
 
 		$ret = call_user_func_array( $this->siteParamsCallback, array( $this, $wiki ) );
 		# Validate the returned value
-		if( !is_array( $ret ) ) {
+		if ( !is_array( $ret ) ) {
 			return $default;
 		}
 
-		foreach( $default as $name => $def ) {
-			if( !isset( $ret[$name] ) || ( is_array( $default[$name] ) && !is_array( $ret[$name] ) ) ) {
+		foreach ( $default as $name => $def ) {
+			if ( !isset( $ret[$name] ) || ( is_array( $default[$name] ) && !is_array( $ret[$name] ) ) ) {
 				$ret[$name] = $default[$name];
 			}
 		}
@@ -443,7 +443,7 @@ class SiteConfiguration {
 	protected function mergeParams( $wiki, $suffix, /*array*/ $params, /*array*/ $wikiTags ) {
 		$ret = $this->getWikiParams( $wiki );
 
-		if( is_null( $ret['suffix'] ) ) {
+		if ( is_null( $ret['suffix'] ) ) {
 			$ret['suffix'] = $suffix;
 		}
 
@@ -452,10 +452,10 @@ class SiteConfiguration {
 		$ret['params'] += $params;
 
 		// Automatically fill that ones if needed
-		if( !isset( $ret['params']['lang'] ) && !is_null( $ret['lang'] ) ) {
+		if ( !isset( $ret['params']['lang'] ) && !is_null( $ret['lang'] ) ) {
 			$ret['params']['lang'] = $ret['lang'];
 		}
-		if( !isset( $ret['params']['site'] ) && !is_null( $ret['suffix'] ) ) {
+		if ( !isset( $ret['params']['site'] ) && !is_null( $ret['suffix'] ) ) {
 			$ret['params']['site'] = $ret['suffix'];
 		}
 
@@ -471,7 +471,7 @@ class SiteConfiguration {
 	public function siteFromDB( $db ) {
 		// Allow override
 		$def = $this->getWikiParams( $db );
-		if( !is_null( $def['suffix'] ) && !is_null( $def['lang'] ) ) {
+		if ( !is_null( $def['suffix'] ) && !is_null( $def['lang'] ) ) {
 			return array( $def['suffix'], $def['lang'] );
 		}
 
@@ -574,8 +574,8 @@ class SiteConfiguration {
 	 */
 	static function arrayMerge( $array1/* ... */ ) {
 		$out = $array1;
-		for( $i = 1; $i < func_num_args(); $i++ ) {
-			foreach( func_get_arg( $i ) as $key => $value ) {
+		for ( $i = 1; $i < func_num_args(); $i++ ) {
+			foreach ( func_get_arg( $i ) as $key => $value ) {
 				if ( isset( $out[$key] ) && is_array( $out[$key] ) && is_array( $value ) ) {
 					$out[$key] = self::arrayMerge( $out[$key], $value );
 				} elseif ( !isset( $out[$key] ) || !$out[$key] && !is_numeric( $key ) ) {

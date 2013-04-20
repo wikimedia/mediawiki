@@ -207,7 +207,7 @@ class Html {
 			);
 
 			// Allow more input types in HTML5 mode
-			if( $wgHtml5 ) {
+			if ( $wgHtml5 ) {
 				$validTypes = array_merge( $validTypes, array(
 					'datetime',
 					'datetime-local',
@@ -340,7 +340,7 @@ class Html {
 
 		foreach ( $attribs as $attrib => $value ) {
 			$lcattrib = strtolower( $attrib );
-			if( is_array( $value ) ) {
+			if ( is_array( $value ) ) {
 				$value = implode( ' ', $value );
 			} else {
 				$value = strval( $value );
@@ -962,7 +962,7 @@ class Html {
 	 */
 	static function srcSet( $urls ) {
 		$candidates = array();
-		foreach( $urls as $density => $url ) {
+		foreach ( $urls as $density => $url ) {
 			// Image candidate syntax per current whatwg live spec, 2012-09-23:
 			// http://www.whatwg.org/specs/web-apps/current-work/multipage/embedded-content-1.html#attr-img-srcset
 			$candidates[] = "{$url} {$density}x";

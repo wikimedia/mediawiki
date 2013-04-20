@@ -155,13 +155,13 @@ abstract class IndexPager extends ContextSource implements Pager {
 		$index = $this->getIndexField(); // column to sort on
 		$extraSort = $this->getExtraSortFields(); // extra columns to sort on for query planning
 		$order = $this->mRequest->getVal( 'order' );
-		if( is_array( $index ) && isset( $index[$order] ) ) {
+		if ( is_array( $index ) && isset( $index[$order] ) ) {
 			$this->mOrderType = $order;
 			$this->mIndexField = $index[$order];
 			$this->mExtraSortFields = isset( $extraSort[$order] )
 				? (array)$extraSort[$order]
 				: array();
-		} elseif( is_array( $index ) ) {
+		} elseif ( is_array( $index ) ) {
 			# First element is the default
 			reset( $index );
 			list( $this->mOrderType, $this->mIndexField ) = each( $index );
@@ -175,7 +175,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 			$this->mExtraSortFields = (array)$extraSort;
 		}
 
-		if( !isset( $this->mDefaultDirection ) ) {
+		if ( !isset( $this->mDefaultDirection ) ) {
 			$dir = $this->getDefaultDirections();
 			$this->mDefaultDirection = is_array( $dir )
 				? $dir[$this->mOrderType]
@@ -443,12 +443,12 @@ abstract class IndexPager extends ContextSource implements Pager {
 		}
 
 		$attrs = array();
-		if( in_array( $type, array( 'first', 'prev', 'next', 'last' ) ) ) {
+		if ( in_array( $type, array( 'first', 'prev', 'next', 'last' ) ) ) {
 			# HTML5 rel attributes
 			$attrs['rel'] = $type;
 		}
 
-		if( $type ) {
+		if ( $type ) {
 			$attrs['class'] = "mw-{$type}link";
 		}
 
@@ -685,7 +685,9 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 *
 	 * @return Array
 	 */
-	protected function getExtraSortFields() { return array(); }
+	protected function getExtraSortFields() {
+		return array();
+	}
 
 	/**
 	 * Return the default sorting direction: false for ascending, true for
@@ -706,7 +708,9 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 *
 	 * @return Boolean
 	 */
-	protected function getDefaultDirections() { return false; }
+	protected function getDefaultDirections() {
+		return false;
+	}
 }
 
 /**
@@ -726,7 +730,7 @@ abstract class AlphabeticPager extends IndexPager {
 			return '';
 		}
 
-		if( isset( $this->mNavigationBar ) ) {
+		if ( isset( $this->mNavigationBar ) ) {
 			return $this->mNavigationBar;
 		}
 
@@ -749,7 +753,7 @@ abstract class AlphabeticPager extends IndexPager {
 			$this->msg( 'viewprevnext' )->rawParams( $pagingLinks['prev'],
 				$pagingLinks['next'], $limits )->escaped();
 
-		if( !is_array( $this->getIndexField() ) ) {
+		if ( !is_array( $this->getIndexField() ) ) {
 			# Early return to avoid undue nesting
 			return $this->mNavigationBar;
 		}
@@ -757,14 +761,14 @@ abstract class AlphabeticPager extends IndexPager {
 		$extra = '';
 		$first = true;
 		$msgs = $this->getOrderTypeMessages();
-		foreach( array_keys( $msgs ) as $order ) {
-			if( $first ) {
+		foreach ( array_keys( $msgs ) as $order ) {
+			if ( $first ) {
 				$first = false;
 			} else {
 				$extra .= $this->msg( 'pipe-separator' )->escaped();
 			}
 
-			if( $order == $this->mOrderType ) {
+			if ( $order == $this->mOrderType ) {
 				$extra .= $this->msg( $msgs[$order] )->escaped();
 			} else {
 				$extra .= $this->makeLink(
@@ -774,7 +778,7 @@ abstract class AlphabeticPager extends IndexPager {
 			}
 		}
 
-		if( $extra !== '' ) {
+		if ( $extra !== '' ) {
 			$extra = ' ' . $this->msg( 'parentheses' )->rawParams( $extra )->escaped();
 			$this->mNavigationBar .= $extra;
 		}
@@ -857,7 +861,7 @@ abstract class ReverseChronologicalPager extends IndexPager {
 			// If no year given, assume the current one
 			$year = gmdate( 'Y' );
 			// If this month hasn't happened yet this year, go back to last year's month
-			if( $this->mMonth > gmdate( 'n' ) ) {
+			if ( $this->mMonth > gmdate( 'n' ) ) {
 				$year--;
 			}
 		}
@@ -1125,7 +1129,7 @@ abstract class TablePager extends IndexPager {
 			'next' => 'arrow_disabled_right_25.png',
 			'last' => 'arrow_disabled_last_25.png',
 		);
-		if( $this->getLanguage()->isRTL() ) {
+		if ( $this->getLanguage()->isRTL() ) {
 			$keys = array_keys( $labels );
 			$images = array_combine( $keys, array_reverse( $images ) );
 			$disabledImages = array_combine( $keys, array_reverse( $disabledImages ) );
@@ -1169,7 +1173,7 @@ abstract class TablePager extends IndexPager {
 			# The pair is either $index => $limit, in which case the $value
 			# will be numeric, or $limit => $text, in which case the $value
 			# will be a string.
-			if( is_int( $value ) ) {
+			if ( is_int( $value ) ) {
 				$limit = $value;
 				$text = $this->getLanguage()->formatNum( $limit );
 			} else {

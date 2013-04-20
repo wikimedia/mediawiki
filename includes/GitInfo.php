@@ -177,7 +177,7 @@ class GitInfo {
 		if ( isset( $configArray['remote origin'] ) ) {
 			$remote = $configArray['remote origin'];
 		} else {
-			foreach( $configArray as $sectionName => $sectionConf ) {
+			foreach ( $configArray as $sectionName => $sectionConf ) {
 				if ( substr( $sectionName, 0, 6 ) == 'remote' ) {
 					$remote = $sectionConf;
 				}
@@ -192,7 +192,7 @@ class GitInfo {
 		if ( substr( $url, -4 ) !== '.git' ) {
 			$url .= '.git';
 		}
-		foreach( self::getViewers() as $repo => $viewer ) {
+		foreach ( self::getViewers() as $repo => $viewer ) {
 			$pattern = '#^' . $repo . '$#';
 			if ( preg_match( $pattern, $url ) ) {
 				$viewerUrl = preg_replace( $pattern, $viewer, $url );
@@ -238,7 +238,7 @@ class GitInfo {
 	protected static function getViewers() {
 		global $wgGitRepositoryViewers;
 
-		if( self::$viewers === false ) {
+		if ( self::$viewers === false ) {
 			self::$viewers = $wgGitRepositoryViewers;
 			wfRunHooks( 'GitViewers', array( &self::$viewers ) );
 		}

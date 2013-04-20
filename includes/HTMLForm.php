@@ -277,7 +277,9 @@ class HTMLForm extends ContextSource {
 	 * done already.
 	 * @deprecated since 1.18 load modules with ResourceLoader instead
 	 */
-	static function addJS() { wfDeprecated( __METHOD__, '1.18' ); }
+	static function addJS() {
+		wfDeprecated( __METHOD__, '1.18' );
+	}
 
 	/**
 	 * Initialise a new Object for the field
@@ -1978,10 +1980,11 @@ class HTMLSelectField extends HTMLFormField {
 
 		$validOptions = HTMLFormField::flattenOptions( $this->mParams['options'] );
 
-		if ( in_array( $value, $validOptions ) )
+		if ( in_array( $value, $validOptions ) ) {
 			return true;
-		else
+		} else {
 			return $this->msg( 'htmlform-select-badoption' )->parse();
+		}
 	}
 
 	function getInputHTML( $value ) {
@@ -2530,7 +2533,9 @@ class HTMLHiddenField extends HTMLFormField {
 		return $this->getTableRow( $value );
 	}
 
-	public function getInputHTML( $value ) { return ''; }
+	public function getInputHTML( $value ) {
+		return '';
+	}
 }
 
 /**

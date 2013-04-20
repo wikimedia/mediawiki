@@ -133,7 +133,7 @@ class MWTimestamp {
 			throw new TimestampException( __METHOD__ . " : Invalid timestamp - $ts" );
 		}
 
-		if( !$strtime ) {
+		if ( !$strtime ) {
 			$da = array_map( 'intval', $da );
 			$da[0] = "%04d-%02d-%02dT%02d:%02d:%02d.00+00:00";
 			$strtime = call_user_func_array( "sprintf", $da );
@@ -145,7 +145,7 @@ class MWTimestamp {
 			throw new TimestampException( __METHOD__ . ' Invalid timestamp format.' );
 		}
 
-		if( $final === false ) {
+		if ( $final === false ) {
 			throw new TimestampException( __METHOD__ . ' Invalid timestamp format.' );
 		}
 		$this->timestamp = $final;
@@ -164,14 +164,14 @@ class MWTimestamp {
 	 * @return string The formatted timestamp
 	 */
 	public function getTimestamp( $style = TS_UNIX ) {
-		if( !isset( self::$formats[$style] ) ) {
+		if ( !isset( self::$formats[$style] ) ) {
 			throw new TimestampException( __METHOD__ . ' : Illegal timestamp output type.' );
 		}
 
-		if( is_object( $this->timestamp  ) ) {
+		if ( is_object( $this->timestamp  ) ) {
 			// DateTime object was used, call DateTime::format.
 			$output = $this->timestamp->format( self::$formats[$style] );
-		} elseif( TS_UNIX == $style ) {
+		} elseif ( TS_UNIX == $style ) {
 			// Unix timestamp was used and is wanted, just return it.
 			$output = $this->timestamp;
 		} else {
@@ -203,9 +203,9 @@ class MWTimestamp {
 		$timeago = ($now - $then) * 1000;
 		$message = false;
 
-		foreach( self::$units as $unit => $factor ) {
+		foreach ( self::$units as $unit => $factor ) {
 			$next = $timeago / $factor;
-			if( $next < 1 ) {
+			if ( $next < 1 ) {
 				break;
 			} else {
 				$timeago = $next;
@@ -213,7 +213,7 @@ class MWTimestamp {
 			}
 		}
 
-		if( $message ) {
+		if ( $message ) {
 			$initial = call_user_func_array( 'wfMessage', $message );
 			return wfMessage( 'ago', $initial->parse() );
 		} else {

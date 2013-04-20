@@ -152,11 +152,11 @@ class LinkFilter {
 	 * @return array filtered array
 	 */
 	public static function keepOneWildcard( $arr ) {
-		if( !is_array( $arr ) ) {
+		if ( !is_array( $arr ) ) {
 			return $arr;
 		}
 
-		foreach( $arr as $key => $value ) {
+		foreach ( $arr as $key => $value ) {
 			if ( $value instanceof LikeMatch ) {
 				return array_slice( $arr, 0, $key + 1 );
 			}
