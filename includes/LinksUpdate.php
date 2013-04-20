@@ -354,7 +354,7 @@ class LinksUpdate extends SqlDataUpdate {
 	 */
 	private function getLinkInsertions( $existing = array() ) {
 		$arr = array();
-		foreach( $this->mLinks as $ns => $dbkeys ) {
+		foreach ( $this->mLinks as $ns => $dbkeys ) {
 			$diffs = isset( $existing[$ns] )
 				? array_diff_key( $dbkeys, $existing[$ns] )
 				: $dbkeys;
@@ -376,7 +376,7 @@ class LinksUpdate extends SqlDataUpdate {
 	 */
 	private function getTemplateInsertions( $existing = array() ) {
 		$arr = array();
-		foreach( $this->mTemplates as $ns => $dbkeys ) {
+		foreach ( $this->mTemplates as $ns => $dbkeys ) {
 			$diffs = isset( $existing[$ns] ) ? array_diff_key( $dbkeys, $existing[$ns] ) : $dbkeys;
 			foreach ( $diffs as $dbk => $id ) {
 				$arr[] = array(
@@ -398,7 +398,7 @@ class LinksUpdate extends SqlDataUpdate {
 	private function getImageInsertions( $existing = array() ) {
 		$arr = array();
 		$diffs = array_diff_key( $this->mImages, $existing );
-		foreach( $diffs as $iname => $dummy ) {
+		foreach ( $diffs as $iname => $dummy ) {
 			$arr[] = array(
 				'il_from' => $this->mId,
 				'il_to' => $iname
@@ -415,8 +415,8 @@ class LinksUpdate extends SqlDataUpdate {
 	private function getExternalInsertions( $existing = array() ) {
 		$arr = array();
 		$diffs = array_diff_key( $this->mExternals, $existing );
-		foreach( $diffs as $url => $dummy ) {
-			foreach( wfMakeUrlIndexes( $url ) as $index ) {
+		foreach ( $diffs as $url => $dummy ) {
+			foreach ( wfMakeUrlIndexes( $url ) as $index ) {
 				$arr[] = array(
 					'el_from' => $this->mId,
 					'el_to' => $url,
@@ -481,7 +481,7 @@ class LinksUpdate extends SqlDataUpdate {
 	private function getInterlangInsertions( $existing = array() ) {
 		$diffs = array_diff_assoc( $this->mInterlangs, $existing );
 		$arr = array();
-		foreach( $diffs as $lang => $title ) {
+		foreach ( $diffs as $lang => $title ) {
 			$arr[] = array(
 				'll_from' => $this->mId,
 				'll_lang' => $lang,
@@ -517,7 +517,7 @@ class LinksUpdate extends SqlDataUpdate {
 	 */
 	private function getInterwikiInsertions( $existing = array() ) {
 		$arr = array();
-		foreach( $this->mInterwikis as $prefix => $dbkeys ) {
+		foreach ( $this->mInterwikis as $prefix => $dbkeys ) {
 			$diffs = isset( $existing[$prefix] ) ? array_diff_key( $dbkeys, $existing[$prefix] ) : $dbkeys;
 			foreach ( $diffs as $dbk => $id ) {
 				$arr[] = array(

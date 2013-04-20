@@ -64,10 +64,10 @@ function wfOutputHandler( $s ) {
  */
 function wfRequestExtension() {
 	/// @todo FIXME: this sort of dupes some code in WebRequest::getRequestUrl()
-	if( isset( $_SERVER['REQUEST_URI'] ) ) {
+	if ( isset( $_SERVER['REQUEST_URI'] ) ) {
 		// Strip the query string...
 		list( $path ) = explode( '?', $_SERVER['REQUEST_URI'], 2 );
-	} elseif( isset( $_SERVER['SCRIPT_NAME'] ) ) {
+	} elseif ( isset( $_SERVER['SCRIPT_NAME'] ) ) {
 		// Probably IIS. QUERY_STRING appears separately.
 		$path = $_SERVER['SCRIPT_NAME'];
 	} else {
@@ -76,7 +76,7 @@ function wfRequestExtension() {
 	}
 
 	$period = strrpos( $path, '.' );
-	if( $period !== false ) {
+	if ( $period !== false ) {
 		return strtolower( substr( $path, $period ) );
 	}
 	return '';
@@ -91,17 +91,17 @@ function wfRequestExtension() {
  * @return string
  */
 function wfGzipHandler( $s ) {
-	if( !function_exists( 'gzencode' ) ) {
+	if ( !function_exists( 'gzencode' ) ) {
 		wfDebug( __FUNCTION__ . "() skipping compression (gzencode unavailable)\n" );
 		return $s;
 	}
-	if( headers_sent() ) {
+	if ( headers_sent() ) {
 		wfDebug( __FUNCTION__ . "() skipping compression (headers already sent)\n" );
 		return $s;
 	}
 
 	$ext = wfRequestExtension();
-	if( $ext == '.gz' || $ext == '.tgz' ) {
+	if ( $ext == '.gz' || $ext == '.tgz' ) {
 		// Don't do gzip compression if the URL path ends in .gz or .tgz
 		// This confuses Safari and triggers a download of the page,
 		// even though it's pretty clearly labeled as viewable HTML.
@@ -109,7 +109,7 @@ function wfGzipHandler( $s ) {
 		return $s;
 	}
 
-	if( wfClientAcceptsGzip() ) {
+	if ( wfClientAcceptsGzip() ) {
 		wfDebug( __FUNCTION__ . "() is compressing output\n" );
 		header( 'Content-Encoding: gzip' );
 		$s = gzencode( $s, 6 );

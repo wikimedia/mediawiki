@@ -199,7 +199,7 @@ class Linker {
 			return "<!-- ERROR -->$html";
 		}
 
-		if( is_string( $query ) ) {
+		if ( is_string( $query ) ) {
 			// some functions withing core using this still hand over query strings
 			wfDeprecated( __METHOD__ . ' with parameter $query as string (should be array)', '1.20' );
 			$query = wfCgiToArray( $query );
@@ -644,7 +644,7 @@ class Linker {
 			# If a thumbnail width has not been provided, it is set
 			# to the default user option as specified in Language*.php
 			if ( $fp['align'] == '' ) {
-				if( $parser instanceof Parser ) {
+				if ( $parser instanceof Parser ) {
 					$fp['align'] = $parser->getTargetLanguage()->alignEnd();
 				} else {
 					# backwards compatibility, remove with makeImageLink2()
@@ -786,10 +786,18 @@ class Linker {
 		$hp =& $handlerParams;
 
 		$page = isset( $hp['page'] ) ? $hp['page'] : false;
-		if ( !isset( $fp['align'] ) ) $fp['align'] = 'right';
-		if ( !isset( $fp['alt'] ) ) $fp['alt'] = '';
-		if ( !isset( $fp['title'] ) ) $fp['title'] = '';
-		if ( !isset( $fp['caption'] ) ) $fp['caption'] = '';
+		if ( !isset( $fp['align'] ) ) {
+			$fp['align'] = 'right';
+		}
+		if ( !isset( $fp['alt'] ) ) {
+			$fp['alt'] = '';
+		}
+		if ( !isset( $fp['title'] ) ) {
+			$fp['title'] = '';
+		}
+		if ( !isset( $fp['caption'] ) ) {
+			$fp['caption'] = '';
+		}
 
 		if ( empty( $hp['width'] ) ) {
 			// Reduce width for upright images when parameter 'upright' is used
@@ -970,12 +978,13 @@ class Linker {
 	protected static function getUploadUrl( $destFile, $query = '' ) {
 		global $wgUploadMissingFileUrl, $wgUploadNavigationUrl;
 		$q = 'wpDestFile=' . $destFile->getPartialURL();
-		if ( $query != '' )
+		if ( $query != '' ) {
 			$q .= '&' . $query;
+		}
 
 		if ( $wgUploadMissingFileUrl ) {
 			return wfAppendQuery( $wgUploadMissingFileUrl, $q );
-		} elseif( $wgUploadNavigationUrl ) {
+		} elseif ( $wgUploadNavigationUrl ) {
 			return wfAppendQuery( $wgUploadNavigationUrl, $q );
 		} else {
 			$upload = SpecialPage::getTitleFor( 'Upload' );
@@ -1450,8 +1459,9 @@ class Linker {
 				$trail = "";
 			}
 			$linkRegexp = '/\[\[(.*?)\]\]' . preg_quote( $trail, '/' ) . '/';
-			if ( isset( $match[1][0] ) && $match[1][0] == ':' )
+			if ( isset( $match[1][0] ) && $match[1][0] == ':' ) {
 				$match[1] = substr( $match[1], 1 );
+			}
 			list( $inside, $trail ) = self::splitTrail( $trail );
 
 			$linkText = $text;
@@ -1695,13 +1705,14 @@ class Linker {
 		$toc = '';
 		$lastLevel = 0;
 		foreach ( $tree as $section ) {
-			if ( $section['toclevel'] > $lastLevel )
+			if ( $section['toclevel'] > $lastLevel ) {
 				$toc .= self::tocIndent();
-			elseif ( $section['toclevel'] < $lastLevel )
+			} elseif ( $section['toclevel'] < $lastLevel ) {
 				$toc .= self::tocUnindent(
 					$lastLevel - $section['toclevel'] );
-			else
+			} else {
 				$toc .= self::tocLineEnd();
+			}
 
 			$toc .= self::tocLine( $section['anchor'],
 				$section['line'], $section['number'],
@@ -1895,21 +1906,21 @@ class Linker {
 		}
 
 		$disableRollbackEditCount = false;
-		if( $wgMiserMode ) {
-			foreach( $disableRollbackEditCountSpecialPage as $specialPage ) {
-				if( $context->getTitle()->isSpecial( $specialPage ) ) {
+		if ( $wgMiserMode ) {
+			foreach ( $disableRollbackEditCountSpecialPage as $specialPage ) {
+				if ( $context->getTitle()->isSpecial( $specialPage ) ) {
 					$disableRollbackEditCount = true;
 					break;
 				}
 			}
 		}
 
-		if( !$disableRollbackEditCount && is_int( $wgShowRollbackEditCount ) && $wgShowRollbackEditCount > 0 ) {
+		if ( !$disableRollbackEditCount && is_int( $wgShowRollbackEditCount ) && $wgShowRollbackEditCount > 0 ) {
 			if ( !is_numeric( $editCount ) ) {
 				$editCount = self::getRollbackEditCount( $rev, false );
 			}
 
-			if( $editCount > $wgShowRollbackEditCount ) {
+			if ( $editCount > $wgShowRollbackEditCount ) {
 				$editCount_output = $context->msg( 'rollbacklinkcount-morethan' )->numParams( $wgShowRollbackEditCount )->parse();
 			} else {
 				$editCount_output = $context->msg( 'rollbacklinkcount' )->numParams( $editCount )->parse();

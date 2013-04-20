@@ -42,7 +42,7 @@ abstract class RdfMetaData {
 		$httpaccept = isset( $_SERVER['HTTP_ACCEPT'] ) ? $_SERVER['HTTP_ACCEPT'] : null;
 		$rdftype = wfNegotiateType( wfAcceptToPrefs( $httpaccept ), wfAcceptToPrefs( self::RDF_TYPE_PREFS ) );
 
-		if( !$rdftype ) {
+		if ( !$rdftype ) {
 			throw new HttpError( 406, wfMessage( 'notacceptable' ) );
 		}
 
@@ -70,7 +70,7 @@ abstract class RdfMetaData {
 		$lastEditor = User::newFromId( $this->mArticle->getUser() );
 		$this->person( 'creator', $lastEditor );
 
-		foreach( $this->mArticle->getContributors() as $user ) {
+		foreach ( $this->mArticle->getContributors() as $user ) {
 			$this->person( 'contributor', $user );
 		}
 
@@ -89,13 +89,13 @@ abstract class RdfMetaData {
 	}
 
 	protected function pageOrString( $name, $page, $str ) {
-		if( $page instanceof Title ) {
+		if ( $page instanceof Title ) {
 			$nt = $page;
 		} else {
 			$nt = Title::newFromText( $page );
 		}
 
-		if( !$nt || $nt->getArticleID() == 0 ) {
+		if ( !$nt || $nt->getArticleID() == 0 ) {
 			$this->element( $name, $str );
 		} else {
 			$this->page( $name, $nt );
@@ -116,11 +116,11 @@ abstract class RdfMetaData {
 	}
 
 	protected function person( $name, User $user ) {
-		if( $user->isAnon() ) {
+		if ( $user->isAnon() ) {
 			$this->element( $name, wfMessage( 'anonymous' )->numParams( 1 )->text() );
 		} else {
 			$real = $user->getRealName();
-			if( $real ) {
+			if ( $real ) {
 				$this->element( $name, $real );
 			} else {
 				$userName = $user->getName();
@@ -140,12 +140,12 @@ abstract class RdfMetaData {
 	protected function rights() {
 		global $wgRightsPage, $wgRightsUrl, $wgRightsText;
 
-		if( $wgRightsPage && ( $nt = Title::newFromText( $wgRightsPage ) )
+		if ( $wgRightsPage && ( $nt = Title::newFromText( $wgRightsPage ) )
 			&& ( $nt->getArticleID() != 0 ) ) {
 			$this->page( 'rights', $nt );
-		} elseif( $wgRightsUrl ) {
+		} elseif ( $wgRightsUrl ) {
 			$this->url( 'rights', $wgRightsUrl );
-		} elseif( $wgRightsText ) {
+		} elseif ( $wgRightsText ) {
 			$this->element( 'rights', $wgRightsText );
 		}
 	}
@@ -153,11 +153,11 @@ abstract class RdfMetaData {
 	protected function getTerms( $url ) {
 		global $wgLicenseTerms;
 
-		if( $wgLicenseTerms ) {
+		if ( $wgLicenseTerms ) {
 			return $wgLicenseTerms;
 		} else {
 			$known = $this->getKnownLicenses();
-			if( isset( $known[$url] ) ) {
+			if ( isset( $known[$url] ) ) {
 				return $known[$url];
 			} else {
 				return array();
@@ -173,7 +173,7 @@ abstract class RdfMetaData {
 
 		foreach ( $ccVersions as $version ) {
 			foreach ( $ccLicenses as $license ) {
-				if( $version == '2.0' && substr( $license, 0, 2 ) != 'by' ) {
+				if ( $version == '2.0' && substr( $license, 0, 2 ) != 'by' ) {
 					# 2.0 dropped the non-attribs licenses
 					continue;
 				}

@@ -212,7 +212,7 @@ class Status {
 	 */
 	protected function getErrorMessage( $error ) {
 		if ( is_array( $error ) ) {
-			if( isset( $error['message'] ) && $error['message'] instanceof Message ) {
+			if ( isset( $error['message'] ) && $error['message'] instanceof Message ) {
 				$msg = $error['message'];
 			} elseif ( isset( $error['message'] ) && isset( $error['params'] ) ) {
 				$msg = wfMessage( $error['message'],
@@ -294,9 +294,9 @@ class Status {
 		$result = array();
 		foreach ( $this->errors as $error ) {
 			if ( $error['type'] === $type ) {
-				if( $error['message'] instanceof Message ) {
+				if ( $error['message'] instanceof Message ) {
 					$result[] = $error['message'];
-				} elseif( $error['params'] ) {
+				} elseif ( $error['params'] ) {
 					$result[] = array_merge( array( $error['message'] ), $error['params'] );
 				} else {
 					$result[] = array( $error['message'] );

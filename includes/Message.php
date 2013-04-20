@@ -326,7 +326,7 @@ class Message {
 		if ( isset( $params[0] ) && is_array( $params[0] ) ) {
 			$params = $params[0];
 		}
-		foreach( $params as $param ) {
+		foreach ( $params as $param ) {
 			$this->parameters[] = self::rawParam( $param );
 		}
 		return $this;
@@ -344,7 +344,7 @@ class Message {
 		if ( isset( $params[0] ) && is_array( $params[0] ) ) {
 			$params = $params[0];
 		}
-		foreach( $params as $param ) {
+		foreach ( $params as $param ) {
 			$this->parameters[] = self::numParam( $param );
 		}
 		return $this;
@@ -377,7 +377,7 @@ class Message {
 		if ( $lang instanceof Language || $lang instanceof StubUserLang ) {
 			$this->language = $lang;
 		} elseif ( is_string( $lang ) ) {
-			if( $this->language->getCode() != $lang ) {
+			if ( $this->language->getCode() != $lang ) {
 				$this->language = Language::factory( $lang );
 			}
 		} else {
@@ -484,17 +484,17 @@ class Message {
 		$string = $this->replaceParameters( $string, 'before' );
 
 		# Maybe transform using the full parser
-		if( $this->format === 'parse' ) {
+		if ( $this->format === 'parse' ) {
 			$string = $this->parseText( $string );
 			$m = array();
-			if( preg_match( '/^<p>(.*)\n?<\/p>\n?$/sU', $string, $m ) ) {
+			if ( preg_match( '/^<p>(.*)\n?<\/p>\n?$/sU', $string, $m ) ) {
 				$string = $m[1];
 			}
-		} elseif( $this->format === 'block-parse' ) {
+		} elseif ( $this->format === 'block-parse' ) {
 			$string = $this->parseText( $string );
-		} elseif( $this->format === 'text' ) {
+		} elseif ( $this->format === 'text' ) {
 			$string = $this->transformText( $string );
-		} elseif( $this->format === 'escaped' ) {
+		} elseif ( $this->format === 'escaped' ) {
 			$string = $this->transformText( $string );
 			$string = htmlspecialchars( $string, ENT_QUOTES, 'UTF-8', false );
 		}
@@ -641,7 +641,7 @@ class Message {
 	 */
 	protected function replaceParameters( $message, $type = 'before' ) {
 		$replacementKeys = array();
-		foreach( $this->parameters as $n => $param ) {
+		foreach ( $this->parameters as $n => $param ) {
 			list( $paramType, $value ) = $this->extractParam( $param );
 			if ( $type === $paramType ) {
 				$replacementKeys['$' . ($n + 1)] = $value;
@@ -760,7 +760,7 @@ class RawMessage extends Message {
 	 */
 	public function fetchMessage() {
 		// Just in case the message is unset somewhere.
-		if( !isset( $this->message ) ) {
+		if ( !isset( $this->message ) ) {
 			$this->message = $this->key;
 		}
 		return $this->message;

@@ -233,7 +233,7 @@ class StringUtils {
 
 		// Explode, then put the replaced separators back in
 		$items = explode( $separator, $cleaned );
-		foreach( $items as $i => $str ) {
+		foreach ( $items as $i => $str ) {
 			$items[$i] = str_replace( $placeholder, $separator, $str );
 		}
 
@@ -440,7 +440,7 @@ class ReplacementArray {
 	 * @param $data array
 	 */
 	function removeArray( $data ) {
-		foreach( $data as $from => $to ) {
+		foreach ( $data as $from => $to ) {
 			$this->removePair( $from );
 		}
 		$this->fss = false;

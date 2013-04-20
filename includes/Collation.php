@@ -430,7 +430,7 @@ class IcuCollation extends Collation {
 
 		$prev = false;
 		$duplicatePrefixes = array();
-		foreach( $letterMap as $key => $value ) {
+		foreach ( $letterMap as $key => $value ) {
 			// Remove terminator byte. Otherwise the prefix
 			// comparison will get hung up on that.
 			$trimmedKey = rtrim( $key, "\0" );
@@ -456,7 +456,7 @@ class IcuCollation extends Collation {
 			}
 			$prev = $trimmedKey;
 		}
-		foreach( $duplicatePrefixes as $badKey ) {
+		foreach ( $duplicatePrefixes as $badKey ) {
 			wfDebug( "Removing '{$letterMap[$badKey]}' from first letters." );
 			unset( $letterMap[$badKey] );
 			// This code assumes that unsetting does not change sort order.

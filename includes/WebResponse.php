@@ -57,10 +57,10 @@ class WebResponse {
 		if ( $expire == 0 ) {
 			$expire = time() + $wgCookieExpiration;
 		}
-		if( $prefix === null ) {
+		if ( $prefix === null ) {
 			$prefix = $wgCookiePrefix;
 		}
-		if( $domain === null ) {
+		if ( $domain === null ) {
 			$domain = $wgCookieDomain;
 		}
 
@@ -116,7 +116,7 @@ class FauxResponse extends WebResponse {
 		} else {
 			list( $key, $val ) = array_map( 'trim', explode( ":", $string, 2 ) );
 
-			if( $replace || !isset( $this->headers[$key] ) ) {
+			if ( $replace || !isset( $this->headers[$key] ) ) {
 				$this->headers[$key] = $val;
 			}
 		}

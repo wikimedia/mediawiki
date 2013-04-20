@@ -138,7 +138,7 @@ class CdbReader_PHP extends CdbReader {
 	}
 
 	function close() {
-		if( isset( $this->handle ) ) {
+		if ( isset( $this->handle ) ) {
 			fclose( $this->handle );
 		}
 		unset( $this->handle );
@@ -332,7 +332,7 @@ class CdbWriter_PHP extends CdbWriter {
 	 */
 	public function close() {
 		$this->finish();
-		if( isset( $this->handle ) ) {
+		if ( isset( $this->handle ) ) {
 			fclose( $this->handle );
 		}
 		if ( wfIsWindows() && file_exists( $this->realFileName ) ) {
@@ -450,9 +450,11 @@ class CdbWriter_PHP extends CdbWriter {
 				$hp = $packedTables[$starts[$i] + $u];
 				$where = CdbFunctions::unsignedMod(
 					CdbFunctions::unsignedShiftRight( $hp['h'], 8 ), $len );
-				while ( $hashtable[$where]['p'] )
-					if ( ++$where == $len )
+				while ( $hashtable[$where]['p'] ) {
+					if ( ++$where == $len ) {
 						$where = 0;
+					}
+				}
 				$hashtable[$where] = $hp;
 			}
 

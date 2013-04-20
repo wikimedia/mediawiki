@@ -81,7 +81,7 @@ abstract class Skin extends ContextSource {
 	 */
 	static function getSkinNameMessages() {
 		$messages = array();
-		foreach( self::getSkinNames() as $skinKey => $skinName ) {
+		foreach ( self::getSkinNames() as $skinKey => $skinName ) {
 			$messages[] = "skinname-$skinKey";
 		}
 		return $messages;
@@ -291,7 +291,7 @@ abstract class Skin extends ContextSource {
 			return $this->mRelevantUser;
 		}
 		$title = $this->getRelevantTitle();
-		if( $title->hasSubjectNamespace( NS_USER ) ) {
+		if ( $title->hasSubjectNamespace( NS_USER ) ) {
 			$rootUser = $title->getRootText();
 			if ( User::isIP( $rootUser ) ) {
 				$this->mRelevantUser = User::newFromName( $rootUser, false );
@@ -668,7 +668,7 @@ abstract class Skin extends ContextSource {
 
 						if ( $c > 1 ) {
 							$subpages .= $wgLang->getDirMarkEntity() . $this->msg( 'pipe-separator' )->escaped();
-						} else  {
+						} else {
 							$subpages .= '&lt; ';
 						}
 
@@ -1015,7 +1015,7 @@ abstract class Skin extends ContextSource {
 	 */
 	static function makeSpecialUrl( $name, $urlaction = '', $proto = null ) {
 		$title = SpecialPage::getSafeTitleFor( $name );
-		if( is_null( $proto ) ) {
+		if ( is_null( $proto ) ) {
 			return $title->getLocalURL( $urlaction );
 		} else {
 			return $title->getFullURL( $urlaction, false, $proto );
@@ -1392,17 +1392,17 @@ abstract class Skin extends ContextSource {
 
 		$needParse = false;
 
-		if( $name === 'default' ) {
+		if ( $name === 'default' ) {
 			// special case
 			global $wgSiteNotice;
 			$notice = $wgSiteNotice;
-			if( empty( $notice ) ) {
+			if ( empty( $notice ) ) {
 				wfProfileOut( __METHOD__ );
 				return false;
 			}
 		} else {
 			$msg = $this->msg( $name )->inContentLanguage();
-			if( $msg->isDisabled() ) {
+			if ( $msg->isDisabled() ) {
 				wfProfileOut( __METHOD__ );
 				return false;
 			}
@@ -1412,8 +1412,8 @@ abstract class Skin extends ContextSource {
 		// Use the extra hash appender to let eg SSL variants separately cache.
 		$key = wfMemcKey( $name . $wgRenderHashAppend );
 		$cachedNotice = $parserMemc->get( $key );
-		if( is_array( $cachedNotice ) ) {
-			if( md5( $notice ) == $cachedNotice['hash'] ) {
+		if ( is_array( $cachedNotice ) ) {
+			if ( md5( $notice ) == $cachedNotice['hash'] ) {
 				$notice = $cachedNotice['html'];
 			} else {
 				$needParse = true;

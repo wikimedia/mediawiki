@@ -39,7 +39,7 @@
  * appending MM_WELL_KNOWN_MIME_TYPES behind $wgMimeTypeFile, but who knows
  * what will break? In practice this probably isn't a problem anyway -- Bryan)
  */
-define('MM_WELL_KNOWN_MIME_TYPES', <<<END_STRING
+define( 'MM_WELL_KNOWN_MIME_TYPES', <<<END_STRING
 application/ogg ogx ogg ogm ogv oga spx
 application/pdf pdf
 application/vnd.oasis.opendocument.chart odc
@@ -91,7 +91,7 @@ END_STRING
  * An extensive list of well known mime types is provided by
  * the file mime.info in the includes directory.
  */
-define('MM_WELL_KNOWN_MIME_INFO', <<<END_STRING
+define( 'MM_WELL_KNOWN_MIME_INFO', <<<END_STRING
 application/pdf [OFFICE]
 application/vnd.oasis.opendocument.chart [OFFICE]
 application/vnd.oasis.opendocument.chart-template [OFFICE]
@@ -560,7 +560,7 @@ class MimeMagic {
 
 		$mime = $this->doGuessMimeType( $file, $ext );
 
-		if( !$mime ) {
+		if ( !$mime ) {
 			wfDebug( __METHOD__ . ": internal type detection failed for $file (.$ext)...\n" );
 			$mime = $this->detectMimeType( $file, $ext );
 		}
@@ -587,7 +587,7 @@ class MimeMagic {
 		$f = fopen( $file, 'rt' );
 		wfRestoreWarnings();
 
-		if( !$f ) {
+		if ( !$f ) {
 			return 'unknown/unknown';
 		}
 		$head = fread( $f, 1024 );
@@ -705,8 +705,8 @@ class MimeMagic {
 				$pack = array( 'UTF-16BE' => 'n*', 'UTF-16LE' => 'v*' );
 				$chars = unpack( $pack[$script_type], substr( $head, 2 ) );
 				$head = '';
-				foreach( $chars as $codepoint ) {
-					if( $codepoint < 128 ) {
+				foreach ( $chars as $codepoint ) {
+					if ( $codepoint < 128 ) {
 						$head .= chr( $codepoint );
 					} else {
 						$head .= '?';
@@ -733,7 +733,7 @@ class MimeMagic {
 		$gis = getimagesize( $file );
 		wfRestoreWarnings();
 
-		if( $gis && isset( $gis['mime'] ) ) {
+		if ( $gis && isset( $gis['mime'] ) ) {
 			$mime = $gis['mime'];
 			wfDebug( __METHOD__ . ": getimagesize detected $file as $mime\n" );
 			return $mime;
@@ -741,7 +741,7 @@ class MimeMagic {
 
 		// Also test DjVu
 		$deja = new DjVuImage( $file );
-		if( $deja->isValid() ) {
+		if ( $deja->isValid() ) {
 			wfDebug( __METHOD__ . ": detected $file as image/vnd.djvu\n" );
 			return 'image/vnd.djvu';
 		}
@@ -763,7 +763,7 @@ class MimeMagic {
 	 * @return string
 	 */
 	function detectZipType( $header, $tail = null, $ext = false ) {
-		if( $ext ) { # TODO: remove $ext param
+		if ( $ext ) { # TODO: remove $ext param
 			wfDebug( __METHOD__ . ": WARNING: use of the \$ext parameter is deprecated. " .
 				"Use improveTypeFromExtension(\$mime, \$ext) instead.\n" );
 		}
@@ -935,7 +935,7 @@ class MimeMagic {
 			$ext = strtolower( $i ? substr( $file, $i + 1 ) : '' );
 		}
 		if ( $ext ) {
-			if( $this->isRecognizableExtension( $ext ) ) {
+			if ( $this->isRecognizableExtension( $ext ) ) {
 				wfDebug( __METHOD__ . ": refusing to guess mime type for .$ext file, we should have recognized it\n" );
 			} else {
 				$m = $this->guessTypesForExtension( $ext );
@@ -968,12 +968,12 @@ class MimeMagic {
 	 * @return (int?string?) a value to be used with the MEDIATYPE_xxx constants.
 	 */
 	function getMediaType( $path = null, $mime = null ) {
-		if( !$mime && !$path ) {
+		if ( !$mime && !$path ) {
 			return MEDIATYPE_UNKNOWN;
 		}
 
 		// If mime type is unknown, guess it
-		if( !$mime ) {
+		if ( !$mime ) {
 			$mime = $this->guessMimeType( $path, false );
 		}
 
@@ -983,22 +983,30 @@ class MimeMagic {
 
 			// Read a chunk of the file
 			$f = fopen( $path, "rt" );
-			if ( !$f ) return MEDIATYPE_UNKNOWN;
+			if ( !$f ) {
+				return MEDIATYPE_UNKNOWN;
+			}
 			$head = fread( $f, 256 );
 			fclose( $f );
 
 			$head = strtolower( $head );
 
 			// This is an UGLY HACK, file should be parsed correctly
-			if ( strpos( $head, 'theora' ) !== false ) return MEDIATYPE_VIDEO;
-			elseif ( strpos( $head, 'vorbis' ) !== false ) return MEDIATYPE_AUDIO;
-			elseif ( strpos( $head, 'flac' ) !== false ) return MEDIATYPE_AUDIO;
-			elseif ( strpos( $head, 'speex' ) !== false ) return MEDIATYPE_AUDIO;
-			else return MEDIATYPE_MULTIMEDIA;
+			if ( strpos( $head, 'theora' ) !== false ) {
+				return MEDIATYPE_VIDEO;
+			} elseif ( strpos( $head, 'vorbis' ) !== false ) {
+				return MEDIATYPE_AUDIO;
+			} elseif ( strpos( $head, 'flac' ) !== false ) {
+				return MEDIATYPE_AUDIO;
+			} elseif ( strpos( $head, 'speex' ) !== false ) {
+				return MEDIATYPE_AUDIO;
+			} else {
+				return MEDIATYPE_MULTIMEDIA;
+			}
 		}
 
 		// Check for entry for full mime type
-		if( $mime ) {
+		if ( $mime ) {
 			$type = $this->findMediaType( $mime );
 			if ( $type !== MEDIATYPE_UNKNOWN ) {
 				return $type;
@@ -1029,7 +1037,7 @@ class MimeMagic {
 			}
 		}
 
-		if( !$type ) {
+		if ( !$type ) {
 			$type = MEDIATYPE_UNKNOWN;
 		}
 

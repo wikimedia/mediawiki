@@ -74,7 +74,7 @@ class UserRightsProxy {
 	 */
 	public static function whoIs( $database, $id, $ignoreInvalidDB = false ) {
 		$user = self::newFromId( $database, $id, $ignoreInvalidDB );
-		if( $user ) {
+		if ( $user ) {
 			return $user->name;
 		} else {
 			return false;
@@ -114,12 +114,12 @@ class UserRightsProxy {
 	 */
 	private static function newFromLookup( $database, $field, $value, $ignoreInvalidDB = false ) {
 		$db = self::getDB( $database, $ignoreInvalidDB );
-		if( $db ) {
+		if ( $db ) {
 			$row = $db->selectRow( 'user',
 				array( 'user_id', 'user_name' ),
 				array( $field => $value ),
 				__METHOD__ );
-			if( $row !== false ) {
+			if ( $row !== false ) {
 				return new UserRightsProxy( $db, $database,
 					$row->user_name,
 					intval( $row->user_id ) );
@@ -138,8 +138,8 @@ class UserRightsProxy {
 	 */
 	public static function getDB( $database, $ignoreInvalidDB = false ) {
 		global $wgDBname;
-		if( self::validDatabase( $database ) ) {
-			if( $database == $wgDBname ) {
+		if ( self::validDatabase( $database ) ) {
+			if ( $database == $wgDBname ) {
 				// Hmm... this shouldn't happen though. :)
 				return wfGetDB( DB_MASTER );
 			} else {

@@ -91,7 +91,7 @@ class ProtectionForm {
 		$this->mReasonSelection = $wgRequest->getText( 'wpProtectReasonSelection' );
 		$this->mCascade = $wgRequest->getBool( 'mwProtect-cascade', $this->mCascade );
 
-		foreach( $this->mApplicableTypes as $action ) {
+		foreach ( $this->mApplicableTypes as $action ) {
 			// @todo FIXME: This form currently requires individual selections,
 			// but the db allows multiples separated by commas.
 
@@ -132,15 +132,15 @@ class ProtectionForm {
 			}
 
 			$val = $wgRequest->getVal( "mwProtect-level-$action" );
-			if( isset( $val ) && in_array( $val, $wgRestrictionLevels ) ) {
+			if ( isset( $val ) && in_array( $val, $wgRestrictionLevels ) ) {
 				// Prevent users from setting levels that they cannot later unset
-				if( $val == 'sysop' ) {
+				if ( $val == 'sysop' ) {
 					// Special case, rewrite sysop to either protect and editprotected
-					if( !$wgUser->isAllowedAny( 'protect', 'editprotected' ) )
+					if ( !$wgUser->isAllowedAny( 'protect', 'editprotected' ) ) {
 						continue;
-				} else {
-					if( !$wgUser->isAllowed( $val ) )
-						continue;
+					}
+				} elseif ( !$wgUser->isAllowed( $val ) ) {
+					continue;
 				}
 				$this->mRestrictions[$action] = $val;
 			}
@@ -188,8 +188,8 @@ class ProtectionForm {
 			throw new ErrorPageError( 'protect-badnamespace-title', 'protect-badnamespace-text' );
 		}
 
-		if( $wgRequest->wasPosted() ) {
-			if( $this->save() ) {
+		if ( $wgRequest->wasPosted() ) {
+			if ( $this->save() ) {
 				$q = $this->mArticle->isRedirect() ? 'redirect=no' : '';
 				$wgOut->redirect( $this->mTitle->getFullURL( $q ) );
 			}
@@ -282,10 +282,11 @@ class ProtectionForm {
 			$reasonstr = $this->mReason;
 		}
 		$expiry = array();
-		foreach( $this->mApplicableTypes as $action ) {
+		foreach ( $this->mApplicableTypes as $action ) {
 			$expiry[$action] = $this->getExpiry( $action );
-			if( empty( $this->mRestrictions[$action] ) )
+			if ( empty( $this->mRestrictions[$action] ) ) {
 				continue; // unprotected
+			}
 			if ( !$expiry[$action] ) {
 				$this->show( array( 'protect_expiry_invalid' ) );
 				return false;
@@ -300,9 +301,10 @@ class ProtectionForm {
 		#  to a semi-protected page.
 		$edit_restriction = isset( $this->mRestrictions['edit'] ) ? $this->mRestrictions['edit'] : '';
 		$this->mCascade = $wgRequest->getBool( 'mwProtect-cascade' );
-		if ( $this->mCascade && ($edit_restriction != 'protect') &&
-			!User::groupHasPermission( $edit_restriction, 'protect' ) )
+		if ( $this->mCascade && ( $edit_restriction != 'protect' ) &&
+			!User::groupHasPermission( $edit_restriction, 'protect' ) ) {
 			$this->mCascade = false;
+		}
 
 		$status = $this->mArticle->doUpdateRestrictions( $this->mRestrictions, $expiry, $this->mCascade, $reasonstr, $wgUser );
 
@@ -318,12 +320,12 @@ class ProtectionForm {
 		 *             you can also return an array of message name and its parameters
 		 */
 		$errorMsg = '';
-		if( !wfRunHooks( 'ProtectionForm::save', array( $this->mArticle, &$errorMsg ) ) ) {
+		if ( !wfRunHooks( 'ProtectionForm::save', array( $this->mArticle, &$errorMsg ) ) ) {
 			if ( $errorMsg == '' ) {
 				$errorMsg = array( 'hookaborted' );
 			}
 		}
-		if( $errorMsg != '' ) {
+		if ( $errorMsg != '' ) {
 			$this->show( $errorMsg );
 			return false;
 		}
@@ -356,7 +358,7 @@ class ProtectionForm {
 		);
 
 		$out = '';
-		if( !$this->disabled ) {
+		if ( !$this->disabled ) {
 			$wgOut->addModules( 'mediawiki.legacy.protect' );
 			$out .= Xml::openElement( 'form', array( 'method' => 'post',
 				'action' => $this->mTitle->getLocalURL( 'action=protect' ),
@@ -368,7 +370,7 @@ class ProtectionForm {
 			Xml::openElement( 'table', array( 'id' => 'mwProtectSet' ) ) .
 			Xml::openElement( 'tbody' );
 
-		foreach( $this->mRestrictions as $action => $selected ) {
+		foreach ( $this->mRestrictions as $action => $selected ) {
 			/* Not all languages have V_x <-> N_x relation */
 			$msg = wfMessage( 'restriction-' . $action );
 			$out .= "<tr><td>" .
@@ -412,7 +414,7 @@ class ProtectionForm {
 				wfMessage( 'protect-othertime-op' )->text(),
 				"othertime"
 			) . "\n";
-			foreach( explode( ',', $scExpiryOptions ) as $option ) {
+			foreach ( explode( ',', $scExpiryOptions ) as $option ) {
 				if ( strpos( $option, ":" ) === false ) {
 					$show = $value = $option;
 				} else {
@@ -423,7 +425,7 @@ class ProtectionForm {
 				$expiryFormOptions .= Xml::option( $show, $value, $this->mExpirySelection[$action] === $value ) . "\n";
 			}
 			# Add expiry dropdown
-			if( $showProtectOptions && !$this->disabled ) {
+			if ( $showProtectOptions && !$this->disabled ) {
 				$out .= "
 					<table><tr>
 						<td class='mw-label'>
@@ -463,7 +465,7 @@ class ProtectionForm {
 		$out .= Xml::closeElement( 'tbody' ) . Xml::closeElement( 'table' );
 
 		// JavaScript will add another row with a value-chaining checkbox
-		if( $this->mTitle->exists() ) {
+		if ( $this->mTitle->exists() ) {
 			$out .= Xml::openElement( 'table', array( 'id' => 'mw-protect-table2' ) ) .
 				Xml::openElement( 'tbody' );
 			$out .= '<tr>
@@ -481,7 +483,7 @@ class ProtectionForm {
 		}
 
 		# Add manual and custom reason field/selects as well as submit
-		if( !$this->disabled ) {
+		if ( !$this->disabled ) {
 			$out .= Xml::openElement( 'table', array( 'id' => 'mw-protect-table3' ) ) .
 				Xml::openElement( 'tbody' );
 			$out .= "
@@ -506,7 +508,7 @@ class ProtectionForm {
 					"</td>
 				</tr>";
 			# Disallow watching is user is not logged in
-			if( $wgUser->isLoggedIn() ) {
+			if ( $wgUser->isLoggedIn() ) {
 				$out .= "
 				<tr>
 					<td></td>
@@ -562,15 +564,17 @@ class ProtectionForm {
 		global $wgRestrictionLevels, $wgUser;
 
 		$levels = array();
-		foreach( $wgRestrictionLevels as $key ) {
+		foreach ( $wgRestrictionLevels as $key ) {
 			//don't let them choose levels above their own (aka so they can still unprotect and edit the page). but only when the form isn't disabled
-			if( $key == 'sysop' ) {
+			if ( $key == 'sysop' ) {
 				//special case, rewrite sysop to protect and editprotected
-				if( !$wgUser->isAllowedAny( 'protect', 'editprotected' ) && !$this->disabled )
+				if ( !$wgUser->isAllowedAny( 'protect', 'editprotected' ) && !$this->disabled ) {
 					continue;
+				}
 			} else {
-				if( !$wgUser->isAllowed( $key ) && !$this->disabled )
+				if ( !$wgUser->isAllowed( $key ) && !$this->disabled ) {
 					continue;
+				}
 			}
 			$levels[] = $key;
 		}
@@ -584,7 +588,7 @@ class ProtectionForm {
 			) + $this->disabledAttrib;
 
 		$out = Xml::openElement( 'select', $attribs );
-		foreach( $levels as $key ) {
+		foreach ( $levels as $key ) {
 			$out .= Xml::option( $this->getOptionLabel( $key ), $key, $key == $selected );
 		}
 		$out .= Xml::closeElement( 'select' );
@@ -598,11 +602,11 @@ class ProtectionForm {
 	 * @return String
 	 */
 	private function getOptionLabel( $permission ) {
-		if( $permission == '' ) {
+		if ( $permission == '' ) {
 			return wfMessage( 'protect-default' )->text();
 		} else {
 			$msg = wfMessage( "protect-level-{$permission}" );
-			if( $msg->exists() ) {
+			if ( $msg->exists() ) {
 				return $msg->text();
 			}
 			return wfMessage( 'protect-fallback', $permission )->text();
@@ -613,7 +617,7 @@ class ProtectionForm {
 		global $wgRestrictionLevels, $wgOut;
 
 		$cascadeableLevels = array();
-		foreach( $wgRestrictionLevels as $key ) {
+		foreach ( $wgRestrictionLevels as $key ) {
 			if ( User::groupHasPermission( $key, 'protect' )
 				|| $key == 'protect'
 			) {

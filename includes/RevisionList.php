@@ -105,7 +105,7 @@ abstract class RevisionListBase extends ContextSource {
 	 * @return int
 	 */
 	public function length() {
-		if( !$this->res ) {
+		if ( !$this->res ) {
 			return 0;
 		} else {
 			return $this->res->numRows();

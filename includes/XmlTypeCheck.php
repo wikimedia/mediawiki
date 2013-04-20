@@ -78,13 +78,13 @@ class XmlTypeCheck {
 				do {
 					$chunk = fread( $file, 32768 );
 					$ret = xml_parse( $parser, $chunk, feof( $file ) );
-					if( $ret == 0 ) {
+					if ( $ret == 0 ) {
 						// XML isn't well-formed!
 						fclose( $file );
 						xml_parser_free( $parser );
 						return;
 					}
-				} while( !feof( $file ) );
+				} while ( !feof( $file ) );
 
 				fclose( $file );
 			}
@@ -103,7 +103,7 @@ class XmlTypeCheck {
 	private function rootElementOpen( $parser, $name, $attribs ) {
 		$this->rootElement = $name;
 
-		if( is_callable( $this->filterCallback ) ) {
+		if ( is_callable( $this->filterCallback ) ) {
 			xml_set_element_handler( $parser, array( $this, 'elementOpen' ), false );
 			$this->elementOpen( $parser, $name, $attribs );
 		} else {
@@ -118,7 +118,7 @@ class XmlTypeCheck {
 	 * @param $attribs
 	 */
 	private function elementOpen( $parser, $name, $attribs ) {
-		if( call_user_func( $this->filterCallback, $name, $attribs ) ) {
+		if ( call_user_func( $this->filterCallback, $name, $attribs ) ) {
 			// Filter hit!
 			$this->filterMatch = true;
 		}

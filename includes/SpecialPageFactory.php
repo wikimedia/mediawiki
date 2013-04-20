@@ -199,7 +199,7 @@ class SpecialPageFactory {
 				self::$mList['ChangeEmail'] = 'SpecialChangeEmail';
 			}
 
-			if( $wgEnableJavaScriptTest ) {
+			if ( $wgEnableJavaScriptTest ) {
 				self::$mList['JavaScriptTest'] = 'SpecialJavaScriptTest';
 			}
 

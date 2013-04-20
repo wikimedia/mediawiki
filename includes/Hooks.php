@@ -66,7 +66,7 @@ class Hooks {
 	 * @param $callback Mixed: callback function to attach
 	 */
 	public static function register( $name, $callback ) {
-		if( !isset( self::$handlers[$name] ) ) {
+		if ( !isset( self::$handlers[$name] ) ) {
 			self::$handlers[$name] = array();
 		}
 
@@ -265,11 +265,11 @@ class Hooks {
 			/* String return is an error; false return means stop processing. */
 			if ( is_string( $retval ) ) {
 				throw new FatalError( $retval );
-			} elseif( $retval === null ) {
+			} elseif ( $retval === null ) {
 				if ( $closure ) {
 					$prettyFunc = "$event closure";
-				} elseif( is_array( $callback ) ) {
-					if( is_object( $callback[0] ) ) {
+				} elseif ( is_array( $callback ) ) {
+					if ( is_object( $callback[0] ) ) {
 						$prettyClass = get_class( $callback[0] );
 					} else {
 						$prettyClass = strval( $callback[0] );

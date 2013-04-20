@@ -91,11 +91,11 @@ class WebRequest {
 			wfSuppressWarnings();
 			$a = parse_url( $url );
 			wfRestoreWarnings();
-			if( $a ) {
+			if ( $a ) {
 				$path = isset( $a['path'] ) ? $a['path'] : '';
 
 				global $wgScript;
-				if( $path == $wgScript && $want !== 'all' ) {
+				if ( $path == $wgScript && $want !== 'all' ) {
 					// Script inside a rewrite path?
 					// Abort to keep from breaking...
 					return $matches;
@@ -106,7 +106,7 @@ class WebRequest {
 				// Raw PATH_INFO style
 				$router->add( "$wgScript/$1" );
 
-				if( isset( $_SERVER['SCRIPT_NAME'] )
+				if ( isset( $_SERVER['SCRIPT_NAME'] )
 					&& preg_match( '/\.php5?/', $_SERVER['SCRIPT_NAME'] ) )
 				{
 					# Check for SCRIPT_NAME, we handle index.php explicitly
@@ -116,17 +116,17 @@ class WebRequest {
 				}
 
 				global $wgArticlePath;
-				if( $wgArticlePath ) {
+				if ( $wgArticlePath ) {
 					$router->add( $wgArticlePath );
 				}
 
 				global $wgActionPaths;
-				if( $wgActionPaths ) {
+				if ( $wgActionPaths ) {
 					$router->add( $wgActionPaths, array( 'action' => '$key' ) );
 				}
 
 				global $wgVariantArticlePath, $wgContLang;
-				if( $wgVariantArticlePath ) {
+				if ( $wgVariantArticlePath ) {
 					$router->add( $wgVariantArticlePath,
 						array( 'variant' => '$2' ),
 						array( '$2' => $wgContLang->getVariants() )
@@ -224,7 +224,7 @@ class WebRequest {
 		}
 
 		$matches = self::getPathInfo( 'title' );
-		foreach( $matches as $key => $val ) {
+		foreach ( $matches as $key => $val ) {
 			$this->data[$key] = $_GET[$key] = $_REQUEST[$key] = $val;
 		}
 	}
@@ -240,15 +240,15 @@ class WebRequest {
 	 * @return array of URL variables to interpolate; empty if no match
 	 */
 	static function extractTitle( $path, $bases, $key = false ) {
-		foreach( (array)$bases as $keyValue => $base ) {
+		foreach ( (array)$bases as $keyValue => $base ) {
 			// Find the part after $wgArticlePath
 			$base = str_replace( '$1', '', $base );
 			$baseLen = strlen( $base );
-			if( substr( $path, 0, $baseLen ) == $base ) {
+			if ( substr( $path, 0, $baseLen ) == $base ) {
 				$raw = substr( $path, $baseLen );
-				if( $raw !== '' ) {
+				if ( $raw !== '' ) {
 					$matches = array( 'title' => rawurldecode( $raw ) );
-					if( $key ) {
+					if ( $key ) {
 						$matches[$key] = $keyValue;
 					}
 					return $matches;
@@ -271,8 +271,8 @@ class WebRequest {
 	 */
 	private function &fix_magic_quotes( &$arr, $topLevel = true ) {
 		$clean = array();
-		foreach( $arr as $key => $val ) {
-			if( is_array( $val ) ) {
+		foreach ( $arr as $key => $val ) {
+			if ( is_array( $val ) ) {
 				$cleanKey = $topLevel ? stripslashes( $key ) : $key;
 				$clean[$cleanKey] = $this->fix_magic_quotes( $arr[$key], false );
 			} else {
@@ -293,7 +293,7 @@ class WebRequest {
 	private function checkMagicQuotes() {
 		$mustFixQuotes = function_exists( 'get_magic_quotes_gpc' )
 			&& get_magic_quotes_gpc();
-		if( $mustFixQuotes ) {
+		if ( $mustFixQuotes ) {
 			$this->fix_magic_quotes( $_COOKIE );
 			$this->fix_magic_quotes( $_ENV );
 			$this->fix_magic_quotes( $_GET );
@@ -311,8 +311,8 @@ class WebRequest {
 	 * @private
 	 */
 	function normalizeUnicode( $data ) {
-		if( is_array( $data ) ) {
-			foreach( $data as $key => $val ) {
+		if ( is_array( $data ) ) {
+			foreach ( $data as $key => $val ) {
 				$data[$key] = $this->normalizeUnicode( $val );
 			}
 		} else {
@@ -335,12 +335,12 @@ class WebRequest {
 		# http://us2.php.net/variables.external#language.variables.external.dot-in-names
 		# Work around PHP *feature* to avoid *bugs* elsewhere.
 		$name = strtr( $name, '.', '_' );
-		if( isset( $arr[$name] ) ) {
+		if ( isset( $arr[$name] ) ) {
 			global $wgContLang;
 			$data = $arr[$name];
-			if( isset( $_GET[$name] ) && !is_array( $data ) ) {
+			if ( isset( $_GET[$name] ) && !is_array( $data ) ) {
 				# Check for alternate/legacy character encoding.
-				if( isset( $wgContLang ) ) {
+				if ( isset( $wgContLang ) ) {
 					$data = $wgContLang->checkTitleEncoding( $data );
 				}
 			}
@@ -364,10 +364,10 @@ class WebRequest {
 	 */
 	public function getVal( $name, $default = null ) {
 		$val = $this->getGPCVal( $this->data, $name, $default );
-		if( is_array( $val ) ) {
+		if ( is_array( $val ) ) {
 			$val = $default;
 		}
-		if( is_null( $val ) ) {
+		if ( is_null( $val ) ) {
 			return $val;
 		} else {
 			return (string)$val;
@@ -414,7 +414,7 @@ class WebRequest {
 	 */
 	public function getArray( $name, $default = null ) {
 		$val = $this->getGPCVal( $this->data, $name, $default );
-		if( is_null( $val ) ) {
+		if ( is_null( $val ) ) {
 			return null;
 		} else {
 			return (array)$val;
@@ -433,7 +433,7 @@ class WebRequest {
 	 */
 	public function getIntArray( $name, $default = null ) {
 		$val = $this->getArray( $name, $default );
-		if( is_array( $val ) ) {
+		if ( is_array( $val ) ) {
 			$val = array_map( 'intval', $val );
 		}
 		return $val;
@@ -615,7 +615,7 @@ class WebRequest {
 	 * @return Mixed: cookie value or $default if the cookie not set
 	 */
 	public function getCookie( $key, $prefix = null, $default = null ) {
-		if( $prefix === null ) {
+		if ( $prefix === null ) {
 			global $wgCookiePrefix;
 			$prefix = $wgCookiePrefix;
 		}
@@ -630,14 +630,14 @@ class WebRequest {
 	 * @return String
 	 */
 	public function getRequestURL() {
-		if( isset( $_SERVER['REQUEST_URI'] ) && strlen( $_SERVER['REQUEST_URI'] ) ) {
+		if ( isset( $_SERVER['REQUEST_URI'] ) && strlen( $_SERVER['REQUEST_URI'] ) ) {
 			$base = $_SERVER['REQUEST_URI'];
 		} elseif ( isset( $_SERVER['HTTP_X_ORIGINAL_URL'] ) && strlen( $_SERVER['HTTP_X_ORIGINAL_URL'] ) ) {
 			// Probably IIS; doesn't set REQUEST_URI
 			$base = $_SERVER['HTTP_X_ORIGINAL_URL'];
-		} elseif( isset( $_SERVER['SCRIPT_NAME'] ) ) {
+		} elseif ( isset( $_SERVER['SCRIPT_NAME'] ) ) {
 			$base = $_SERVER['SCRIPT_NAME'];
-			if( isset( $_SERVER['QUERY_STRING'] ) && $_SERVER['QUERY_STRING'] != '' ) {
+			if ( isset( $_SERVER['QUERY_STRING'] ) && $_SERVER['QUERY_STRING'] != '' ) {
 				$base .= '?' . $_SERVER['QUERY_STRING'];
 			}
 		} else {
@@ -651,11 +651,11 @@ class WebRequest {
 		// need to strip it or we get false-positive redirect loops
 		// or weird output URLs
 		$hash = strpos( $base, '#' );
-		if( $hash !== false ) {
+		if ( $hash !== false ) {
 			$base = substr( $base, 0, $hash );
 		}
 
-		if( $base[0] == '/' ) {
+		if ( $base[0] == '/' ) {
 			// More than one slash will look like it is protocol relative
 			return preg_replace( '!^/+!', '/', $base );
 		} else {
@@ -739,21 +739,21 @@ class WebRequest {
 		global $wgUser;
 
 		$limit = $this->getInt( 'limit', 0 );
-		if( $limit < 0 ) {
+		if ( $limit < 0 ) {
 			$limit = 0;
 		}
-		if( ( $limit == 0 ) && ( $optionname != '' ) ) {
+		if ( ( $limit == 0 ) && ( $optionname != '' ) ) {
 			$limit = $wgUser->getIntOption( $optionname );
 		}
-		if( $limit <= 0 ) {
+		if ( $limit <= 0 ) {
 			$limit = $deflimit;
 		}
-		if( $limit > 5000 ) {
+		if ( $limit > 5000 ) {
 			$limit = 5000; # We have *some* limits...
 		}
 
 		$offset = $this->getInt( 'offset', 0 );
-		if( $offset < 0 ) {
+		if ( $offset < 0 ) {
 			$offset = 0;
 		}
 
@@ -893,7 +893,7 @@ class WebRequest {
 	 * @return Mixed
 	 */
 	public function getSessionData( $key ) {
-		if( !isset( $_SESSION[$key] ) ) {
+		if ( !isset( $_SESSION[$key] ) ) {
 			return null;
 		}
 		return $_SESSION[$key];
@@ -1268,13 +1268,13 @@ class FauxRequest extends WebRequest {
 	 * @throws MWException
 	 */
 	public function __construct( $data = array(), $wasPosted = false, $session = null ) {
-		if( is_array( $data ) ) {
+		if ( is_array( $data ) ) {
 			$this->data = $data;
 		} else {
 			throw new MWException( "FauxRequest() got bogus data" );
 		}
 		$this->wasPosted = $wasPosted;
-		if( $session ) {
+		if ( $session ) {
 			$this->session = $session;
 		}
 	}
@@ -1359,7 +1359,7 @@ class FauxRequest extends WebRequest {
 	 * @return mixed
 	 */
 	public function getSessionData( $key ) {
-		if( isset( $this->session[$key] ) ) {
+		if ( isset( $this->session[$key] ) ) {
 			return $this->session[$key];
 		}
 		return null;

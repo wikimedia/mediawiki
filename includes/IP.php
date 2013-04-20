@@ -33,7 +33,7 @@ define( 'RE_IP_BLOCK', RE_IP_ADD . '\/' . RE_IP_PREFIX );
 // An IPv6 address is made up of 8 words (each x0000 to xFFFF).
 // However, the "::" abbreviation can be used on consecutive x0000 words.
 define( 'RE_IPV6_WORD', '([0-9A-Fa-f]{1,4})' );
-define( 'RE_IPV6_PREFIX', '(12[0-8]|1[01][0-9]|[1-9]?\d)');
+define( 'RE_IPV6_PREFIX', '(12[0-8]|1[01][0-9]|[1-9]?\d)' );
 define( 'RE_IPV6_ADD',
 	'(?:' . // starts with "::" (including "::")
 		':(?::|(?::' . RE_IPV6_WORD . '){1,7})' .
@@ -392,11 +392,11 @@ class IP {
 		static $privateRanges = false;
 		if ( !$privateRanges ) {
 			$privateRanges = array(
-				array( '10.0.0.0',    '10.255.255.255' ),   # RFC 1918 (private)
-				array( '172.16.0.0',  '172.31.255.255' ),   #     "
-				array( '192.168.0.0', '192.168.255.255' ),  #     "
-				array( '0.0.0.0',     '0.255.255.255' ),    # this network
-				array( '127.0.0.0',   '127.255.255.255' ),  # loopback
+				array( '10.0.0.0', '10.255.255.255' ), # RFC 1918 (private)
+				array( '172.16.0.0', '172.31.255.255' ), # RFC 1918 (private)
+				array( '192.168.0.0', '192.168.255.255' ), # RFC 1918 (private)
+				array( '0.0.0.0', '0.255.255.255' ), # this network
+				array( '127.0.0.0', '127.255.255.255' ), # loopback
 			);
 		}
 

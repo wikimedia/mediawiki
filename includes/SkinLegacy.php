@@ -162,7 +162,7 @@ class LegacyTemplate extends BaseTemplate {
 		$ret = array();
 		$items = array( 'viewcount', 'credits', 'lastmod', 'numberofwatchingusers', 'copyright' );
 
-		foreach( $items as $item ) {
+		foreach ( $items as $item ) {
 			if ( $this->data[$item] !== false ) {
 				$ret[] = $this->data[$item];
 			}
@@ -707,8 +707,9 @@ class LegacyTemplate extends BaseTemplate {
 				case NS_FILE:
 					$text = wfMessage( 'imagepage' );
 					# Make link known if image exists, even if the desc. page doesn't.
-					if ( wfFindFile( $link ) )
+					if ( wfFindFile( $link ) ) {
 						$linkOptions[] = 'known';
+					}
 					break;
 				case NS_MEDIAWIKI:
 					$text = wfMessage( 'mediawikipage' );

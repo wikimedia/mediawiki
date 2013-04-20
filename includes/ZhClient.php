@@ -81,14 +81,14 @@ class ZhClient {
 		$result = fgets( $this->mFP, 1024 );
 
 		list( $status, $len ) = explode( ' ', $result );
-		if( $status == 'ERROR' ) {
+		if ( $status == 'ERROR' ) {
 			// $len is actually the error code...
 			print "zhdaemon error $len<br />\n";
 			return false;
 		}
 		$bytesread = 0;
 		$data = '';
-		while( !feof( $this->mFP ) && $bytesread < $len ) {
+		while ( !feof( $this->mFP ) && $bytesread < $len ) {
 			$str = fread( $this->mFP, $len - $bytesread );
 			$bytesread += strlen( $str );
 			$data .= $str;
@@ -131,7 +131,7 @@ class ZhClient {
 		$info = explode( ';', $infoline );
 		$ret = array();
 		$i = 0;
-		foreach( $info as $variant ) {
+		foreach ( $info as $variant ) {
 			list( $code, $len ) = explode( ' ', $variant );
 			$ret[strtolower( $code )] = substr( $data, $i, $len );
 			$i += $len;

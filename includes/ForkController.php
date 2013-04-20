@@ -121,7 +121,9 @@ class ForkController {
 			if ( function_exists( 'pcntl_signal_dispatch' ) ) {
 				pcntl_signal_dispatch();
 			} else {
-				declare (ticks=1) { $status = $status; }
+				declare( ticks = 1 ) {
+					$status = $status;
+				}
 			}
 			// Respond to TERM signal
 			if ( $this->termReceived ) {

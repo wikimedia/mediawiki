@@ -378,7 +378,7 @@ class Preferences {
 					? 'prefs-help-email-required'
 					: 'prefs-help-email';
 
-			if( $wgEnableUserEmail ) {
+			if ( $wgEnableUserEmail ) {
 				// additional messages when users can send email to each other
 				$helpMessages[] = 'prefs-help-email-others';
 			}
@@ -1012,8 +1012,9 @@ class Preferences {
 		$nsOptions = $wgContLang->getFormattedNamespaces();
 		$nsOptions[0] = $context->msg( 'blanknamespace' )->text();
 		foreach ( $nsOptions as $ns => $name ) {
-			if ( $ns < 0 )
+			if ( $ns < 0 ) {
 				unset( $nsOptions[$ns] );
+			}
 		}
 
 		$defaultPreferences['searchnamespaces'] = array(
@@ -1351,7 +1352,9 @@ class Preferences {
 					$data[0] = intval( $data[0] );
 					$data[1] = intval( $data[1] );
 					$minDiff = abs( $data[0] ) * 60 + $data[1];
-					if ( $data[0] < 0 ) $minDiff = - $minDiff;
+					if ( $data[0] < 0 ) {
+						$minDiff = - $minDiff;
+					}
 				} else {
 					$minDiff = intval( $data[0] ) * 60;
 				}
@@ -1406,7 +1409,7 @@ class Preferences {
 		# via $wgHiddenPrefs, we don't want to destroy that setting in case the preference
 		# is subsequently re-enabled
 		# TODO: maintenance script to actually delete these
-		foreach( $wgHiddenPrefs as $pref ) {
+		foreach ( $wgHiddenPrefs as $pref ) {
 			# If the user has not set a non-default value here, the default will be returned
 			# and subsequently discarded
 			$formData[$pref] = $user->getOption( $pref, null, true );

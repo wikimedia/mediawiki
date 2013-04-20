@@ -37,7 +37,7 @@ class WikiMap {
 		$wgConf->loadFullData();
 
 		list( $major, $minor ) = $wgConf->siteFromDB( $wikiID );
-		if( $major === null ) {
+		if ( $major === null ) {
 			return null;
 		}
 		$canonicalServer = $wgConf->get( 'wgCanonicalServer', $wikiID, $major,

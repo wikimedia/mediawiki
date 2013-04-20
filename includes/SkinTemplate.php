@@ -43,7 +43,7 @@ class MediaWiki_I18N {
 		$value = wfMessage( $value )->text();
 		// interpolate variables
 		$m = array();
-		while( preg_match( '/\$([0-9]*?)/sm', $value, $m ) ) {
+		while ( preg_match( '/\$([0-9]*?)/sm', $value, $m ) ) {
 			list( $src, $var ) = $m;
 			wfSuppressWarnings();
 			$varValue = $this->_context[$var];
@@ -136,7 +136,7 @@ class SkinTemplate extends Skin {
 		$language_urls = array();
 
 		if ( !$wgHideInterlanguageLinks ) {
-			foreach( $out->getLanguageLinks() as $languageLinkText ) {
+			foreach ( $out->getLanguageLinks() as $languageLinkText ) {
 				$languageLinkParts = explode( ':', $languageLinkText, 2 );
 				$class = 'interwiki-' . $languageLinkParts[0];
 				unset( $languageLinkParts );
@@ -272,9 +272,9 @@ class SkinTemplate extends Skin {
 		}
 
 		$tpl->set( 'catlinks', $this->getCategories() );
-		if( $out->isSyndicated() ) {
+		if ( $out->isSyndicated() ) {
 			$feeds = array();
-			foreach( $out->getSyndicationLinks() as $format => $link ) {
+			foreach ( $out->getSyndicationLinks() as $format => $link ) {
 				$feeds[$format] = array(
 					'text' => $this->msg( "feed-$format" )->text(),
 					'href' => $link
@@ -483,7 +483,7 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'reporttime', wfReportTime() );
 
 		// original version by hansm
-		if( !wfRunHooks( 'SkinTemplateOutputPageBeforeExec', array( &$this, &$tpl ) ) ) {
+		if ( !wfRunHooks( 'SkinTemplateOutputPageBeforeExec', array( &$this, &$tpl ) ) ) {
 			wfDebug( __METHOD__ . ": Hook SkinTemplateOutputPageBeforeExec broke outputPage execution!\n" );
 		}
 
@@ -582,7 +582,7 @@ class SkinTemplate extends Skin {
 		if ( strval( $page ) !== '' ) {
 			$a['returnto'] = $page;
 			$query = $request->getVal( 'returntoquery', $this->thisquery );
-			if( $query != '' ) {
+			if ( $query != '' ) {
 				$a['returntoquery'] = $query;
 			}
 		}
@@ -592,7 +592,7 @@ class SkinTemplate extends Skin {
 		}
 
 		$returnto = wfArrayToCgi( $a );
-		if( $this->loggedin ) {
+		if ( $this->loggedin ) {
 			$personal_urls['userpage'] = array(
 				'text' => $this->username,
 				'href' => &$this->userpageUrlDetails['href'],
@@ -628,7 +628,7 @@ class SkinTemplate extends Skin {
 			# thickens, because the Title object is altered for special pages,
 			# so it doesn't contain the original alias-with-subpage.
 			$origTitle = Title::newFromText( $request->getText( 'title' ) );
-			if( $origTitle instanceof Title && $origTitle->isSpecialPage() ) {
+			if ( $origTitle instanceof Title && $origTitle->isSpecialPage() ) {
 				list( $spName, $spPar ) = SpecialPageFactory::resolveAlias( $origTitle->getText() );
 				$active = $spName == 'Contributions'
 					&& ( ( $spPar && $spPar == $this->username )
@@ -676,7 +676,7 @@ class SkinTemplate extends Skin {
 				'class' => $wgSecureLogin ? 'link-https' : ''
 			);
 
-			if( $this->showIPinHeader() ) {
+			if ( $this->showIPinHeader() ) {
 				$href = &$this->userpageUrlDetails['href'];
 				$personal_urls['anonuserpage'] = array(
 					'text' => $this->username,
@@ -719,10 +719,10 @@ class SkinTemplate extends Skin {
 	 */
 	function tabAction( $title, $message, $selected, $query = '', $checkEdit = false ) {
 		$classes = array();
-		if( $selected ) {
+		if ( $selected ) {
 			$classes[] = 'selected';
 		}
-		if( $checkEdit && !$title->isKnown() ) {
+		if ( $checkEdit && !$title->isKnown() ) {
 			$classes[] = 'new';
 			if ( $query !== '' ) {
 				$query = 'action=edit&redlink=1&' . $query;
@@ -747,7 +747,7 @@ class SkinTemplate extends Skin {
 		}
 
 		$result = array();
-		if( !wfRunHooks( 'SkinTemplateTabAction', array( &$this,
+		if ( !wfRunHooks( 'SkinTemplateTabAction', array( &$this,
 				$title, $message, $selected, $checkEdit,
 				&$classes, &$query, &$text, &$result ) ) ) {
 			return $result;
@@ -762,7 +762,7 @@ class SkinTemplate extends Skin {
 
 	function makeTalkUrlDetails( $name, $urlaction = '' ) {
 		$title = Title::newFromText( $name );
-		if( !is_object( $title ) ) {
+		if ( !is_object( $title ) ) {
 			throw new MWException( __METHOD__ . " given invalid pagename $name" );
 		}
 		$title = $title->getTalkPage();
@@ -845,7 +845,7 @@ class SkinTemplate extends Skin {
 		wfRunHooks( 'SkinTemplatePreventOtherActiveTabs', array( &$this, &$preventActiveTabs ) );
 
 		// Checks if page is some kind of content
-		if( $title->canExist() ) {
+		if ( $title->canExist() ) {
 			// Gets page objects for the related namespaces
 			$subjectPage = $title->getSubjectPage();
 			$talkPage = $title->getTalkPage();
@@ -1032,7 +1032,7 @@ class SkinTemplate extends Skin {
 						$params = array();
 					}
 					// Loops over each variant
-					foreach( $variants as $code ) {
+					foreach ( $variants as $code ) {
 						// Gets variant name from language code
 						$varname = $pageLang->getVariantname( $code );
 						// Appends variant link
@@ -1165,9 +1165,9 @@ class SkinTemplate extends Skin {
 
 		$nav_urls = array();
 		$nav_urls['mainpage'] = array( 'href' => self::makeMainPageUrl() );
-		if( $wgUploadNavigationUrl ) {
+		if ( $wgUploadNavigationUrl ) {
 			$nav_urls['upload'] = array( 'href' => $wgUploadNavigationUrl );
-		} elseif( UploadBase::isEnabled() && UploadBase::isAllowed( $this->getUser() ) === true ) {
+		} elseif ( UploadBase::isEnabled() && UploadBase::isAllowed( $this->getUser() ) === true ) {
 			$nav_urls['upload'] = array( 'href' => self::makeSpecialUrl( 'Upload' ) );
 		} else {
 			$nav_urls['upload'] = false;
@@ -1517,8 +1517,9 @@ abstract class BaseTemplate extends QuickTemplate {
 				$ptool['active'] = $plink['active'];
 			}
 			foreach ( array( 'href', 'class', 'text' ) as $k ) {
-				if ( isset( $plink[$k] ) )
+				if ( isset( $plink[$k] ) ) {
 					$ptool['links'][0][$k] = $plink[$k];
+				}
 			}
 			$personal_tools[$key] = $ptool;
 		}
@@ -1557,39 +1558,39 @@ abstract class BaseTemplate extends QuickTemplate {
 			case 'SEARCH':
 				// Search is a special case, skins should custom implement this
 				$boxes[$boxName] = array(
-					'id'        => 'p-search',
-					'header'    => $this->getMsg( 'search' )->text(),
+					'id' => 'p-search',
+					'header' => $this->getMsg( 'search' )->text(),
 					'generated' => false,
-					'content'   => true,
+					'content' => true,
 				);
 				break;
 			case 'TOOLBOX':
 				$msgObj = $this->getMsg( 'toolbox' );
 				$boxes[$boxName] = array(
-					'id'        => 'p-tb',
-					'header'    => $msgObj->exists() ? $msgObj->text() : 'toolbox',
+					'id' => 'p-tb',
+					'header' => $msgObj->exists() ? $msgObj->text() : 'toolbox',
 					'generated' => false,
-					'content'   => $this->getToolbox(),
+					'content' => $this->getToolbox(),
 				);
 				break;
 			case 'LANGUAGES':
 				if ( $this->data['language_urls'] ) {
 					$msgObj = $this->getMsg( 'otherlanguages' );
 					$boxes[$boxName] = array(
-						'id'        => 'p-lang',
-						'header'    => $msgObj->exists() ? $msgObj->text() : 'otherlanguages',
+						'id' => 'p-lang',
+						'header' => $msgObj->exists() ? $msgObj->text() : 'otherlanguages',
 						'generated' => false,
-						'content'   => $this->data['language_urls'],
+						'content' => $this->data['language_urls'],
 					);
 				}
 				break;
 			default:
 				$msgObj = $this->getMsg( $boxName );
 				$boxes[$boxName] = array(
-					'id'        => "p-$boxName",
-					'header'    => $msgObj->exists() ? $msgObj->text() : $boxName,
+					'id' => "p-$boxName",
+					'header' => $msgObj->exists() ? $msgObj->text() : $boxName,
 					'generated' => true,
-					'content'   => $content,
+					'content' => $content,
 				);
 				break;
 			}
@@ -1629,10 +1630,10 @@ abstract class BaseTemplate extends QuickTemplate {
 		} else {
 			if ( $hookContents ) {
 				$boxes['TOOLBOXEND'] = array(
-					'id'        => 'p-toolboxend',
-					'header'    => $boxes['TOOLBOX']['header'],
+					'id' => 'p-toolboxend',
+					'header' => $boxes['TOOLBOX']['header'],
 					'generated' => false,
-					'content'   => "<ul>{$hookContents}</ul>",
+					'content' => "<ul>{$hookContents}</ul>",
 				);
 				// HACK: Make sure that TOOLBOXEND is sorted next to TOOLBOX
 				$boxes2 = array();
@@ -1881,10 +1882,10 @@ abstract class BaseTemplate extends QuickTemplate {
 
 		// Reduce footer links down to only those which are being used
 		$validFooterLinks = array();
-		foreach( $footerlinks as $category => $links ) {
+		foreach ( $footerlinks as $category => $links ) {
 			$validFooterLinks[$category] = array();
-			foreach( $links as $link ) {
-				if( isset( $this->data[$link] ) && $this->data[$link] ) {
+			foreach ( $links as $link ) {
+				if ( isset( $this->data[$link] ) && $this->data[$link] ) {
 					$validFooterLinks[$category][] = $link;
 				}
 			}

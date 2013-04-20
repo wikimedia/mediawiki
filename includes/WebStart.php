@@ -48,7 +48,7 @@ if ( ini_get( 'register_globals' ) ) {
 		'HTTP_SESSION_VARS'
 	);
 	foreach ( $_REQUEST as $name => $value ) {
-		if( in_array( $name, $verboten ) ) {
+		if ( in_array( $name, $verboten ) ) {
 			header( "HTTP/1.1 500 Internal Server Error" );
 			echo "register_globals security paranoia: trying to overwrite superglobals, aborting.";
 			die( -1 );
@@ -84,7 +84,7 @@ define( 'MEDIAWIKI', true );
 # if we don't have permissions on parent directories.
 $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {
-	if( realpath( '.' ) ) {
+	if ( realpath( '.' ) ) {
 		$IP = realpath( '.' );
 	} else {
 		$IP = dirname( __DIR__ );
@@ -129,7 +129,7 @@ if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 	# LocalSettings.php is the per site customization file. If it does not exist
 	# the wiki installer needs to be launched or the generated file uploaded to
 	# the root wiki directory
-	if( !file_exists( MW_CONFIG_FILE ) ) {
+	if ( !file_exists( MW_CONFIG_FILE ) ) {
 		require_once( "$IP/includes/templates/NoLocalSettings.php" );
 		die();
 	}

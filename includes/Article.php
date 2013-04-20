@@ -673,12 +673,12 @@ class Article implements Page {
 						wfDebug( __METHOD__ . ": showing CSS/JS source\n" );
 						$this->showCssOrJsPage();
 						$outputDone = true;
-					} elseif( !wfRunHooks( 'ArticleContentViewCustom',
+					} elseif ( !wfRunHooks( 'ArticleContentViewCustom',
 							array( $this->fetchContentObject(), $this->getTitle(), $outputPage ) ) ) {
 
 						# Allow extensions do their own custom view for certain pages
 						$outputDone = true;
-					} elseif( !ContentHandler::runLegacyHooks( 'ArticleViewCustom',
+					} elseif ( !ContentHandler::runLegacyHooks( 'ArticleViewCustom',
 							array( $this->fetchContentObject(), $this->getTitle(), $outputPage ) ) ) {
 
 						# Allow extensions do their own custom view for certain pages
@@ -875,7 +875,7 @@ class Article implements Page {
 			}
 			if ( Block::newFromTarget( $specificTarget, $vagueTarget ) instanceof Block ) {
 				return array(
-					'index'  => 'noindex',
+					'index' => 'noindex',
 					'follow' => 'nofollow'
 				);
 			}
@@ -884,19 +884,19 @@ class Article implements Page {
 		if ( $this->mPage->getID() === 0 || $this->getOldID() ) {
 			# Non-articles (special pages etc), and old revisions
 			return array(
-				'index'  => 'noindex',
+				'index' => 'noindex',
 				'follow' => 'nofollow'
 			);
 		} elseif ( $this->getContext()->getOutput()->isPrintable() ) {
 			# Discourage indexing of printable versions, but encourage following
 			return array(
-				'index'  => 'noindex',
+				'index' => 'noindex',
 				'follow' => 'follow'
 			);
 		} elseif ( $this->getContext()->getRequest()->getInt( 'curid' ) ) {
 			# For ?curid=x urls, disallow indexing
 			return array(
-				'index'  => 'noindex',
+				'index' => 'noindex',
 				'follow' => 'follow'
 			);
 		}

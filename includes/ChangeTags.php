@@ -37,14 +37,15 @@ class ChangeTags {
 	static function formatSummaryRow( $tags, $page ) {
 		global $wgLang;
 
-		if( !$tags )
+		if ( !$tags ) {
 			return array( '', array() );
+		}
 
 		$classes = array();
 
 		$tags = explode( ',', $tags );
 		$displayTags = array();
-		foreach( $tags as $tag ) {
+		foreach ( $tags as $tag ) {
 			$displayTags[] = Xml::tags(
 				'span',
 				array( 'class' => 'mw-tag-marker ' .
@@ -93,21 +94,21 @@ class ChangeTags {
 
 		$tags = array_filter( $tags ); // Make sure we're submitting all tags...
 
-		if( !$rc_id && !$rev_id && !$log_id ) {
+		if ( !$rc_id && !$rev_id && !$log_id ) {
 			throw new MWException( "At least one of: RCID, revision ID, and log ID MUST be specified when adding a tag to a change!" );
 		}
 
 		$dbr = wfGetDB( DB_SLAVE );
 
 		// Might as well look for rcids and so on.
-		if( !$rc_id ) {
+		if ( !$rc_id ) {
 			$dbr = wfGetDB( DB_MASTER ); // Info might be out of date, somewhat fractionally, on slave.
-			if( $log_id ) {
+			if ( $log_id ) {
 				$rc_id = $dbr->selectField( 'recentchanges', 'rc_id', array( 'rc_logid' => $log_id ), __METHOD__ );
-			} elseif( $rev_id ) {
+			} elseif ( $rev_id ) {
 				$rc_id = $dbr->selectField( 'recentchanges', 'rc_id', array( 'rc_this_oldid' => $rev_id ), __METHOD__ );
 			}
-		} elseif( !$log_id && !$rev_id ) {
+		} elseif ( !$log_id && !$rev_id ) {
 			$dbr = wfGetDB( DB_MASTER ); // Info might be out of date, somewhat fractionally, on slave.
 			$log_id = $dbr->selectField( 'recentchanges', 'rc_logid', array( 'rc_id' => $rc_id ), __METHOD__ );
 			$rev_id = $dbr->selectField( 'recentchanges', 'rc_this_oldid', array( 'rc_id' => $rc_id ), __METHOD__ );
@@ -138,7 +139,7 @@ class ChangeTags {
 
 		// Insert the tags rows.
 		$tagsRows = array();
-		foreach( $tags as $tag ) { // Filter so we don't insert NULLs as zero accidentally.
+		foreach ( $tags as $tag ) { // Filter so we don't insert NULLs as zero accidentally.
 			$tagsRows[] = array_filter(
 				array(
 					'ct_tag' => $tag,
@@ -173,14 +174,14 @@ class ChangeTags {
 										&$join_conds, &$options, $filter_tag = false ) {
 		global $wgRequest, $wgUseTagFilter;
 
-		if( $filter_tag === false ) {
+		if ( $filter_tag === false ) {
 			$filter_tag = $wgRequest->getVal( 'tagfilter' );
 		}
 
 		// Figure out which conditions can be done.
 		if ( in_array( 'recentchanges', $tables ) ) {
 			$join_cond = 'rc_id';
-		} elseif( in_array( 'logging', $tables ) ) {
+		} elseif ( in_array( 'logging', $tables ) ) {
 			$join_cond = 'log_id';
 		} elseif ( in_array( 'revision', $tables ) ) {
 			$join_cond = 'rev_id';
@@ -193,7 +194,7 @@ class ChangeTags {
 		$join_conds['tag_summary'] = array( 'LEFT JOIN', "ts_$join_cond=$join_cond" );
 		$fields[] = 'ts_tags';
 
-		if( $wgUseTagFilter && $filter_tag ) {
+		if ( $wgUseTagFilter && $filter_tag ) {
 			// Somebody wants to filter on a tag.
 			// Add an INNER JOIN on change_tag
 

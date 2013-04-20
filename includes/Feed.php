@@ -245,7 +245,7 @@ abstract class ChannelFeed extends FeedItem {
 		global $wgRequest;
 		$ctype = $wgRequest->getVal( 'ctype', 'application/xml' );
 		$allowedctypes = array( 'application/xml', 'text/xml', 'application/rss+xml', 'application/atom+xml' );
-		return (in_array( $ctype, $allowedctypes ) ? $ctype : 'application/xml');
+		return ( in_array( $ctype, $allowedctypes ) ? $ctype : 'application/xml' );
 	}
 
 	/**
@@ -306,13 +306,13 @@ class RSSFeed extends ChannelFeed {
 	function outItem( $item ) {
 	?>
 		<item>
-			<title><?php print $item->getTitle() ?></title>
-			<link><?php print wfExpandUrl( $item->getUrl(), PROTO_CURRENT ) ?></link>
-			<guid<?php if( !$item->rssIsPermalink ) print ' isPermaLink="false"' ?>><?php print $item->getUniqueId() ?></guid>
+			<title><?php print $item->getTitle(); ?></title>
+			<link><?php print wfExpandUrl( $item->getUrl(), PROTO_CURRENT ); ?></link>
+			<guid<?php if ( !$item->rssIsPermalink ) { print ' isPermaLink="false"'; } ?>><?php print $item->getUniqueId(); ?></guid>
 			<description><?php print $item->getDescription() ?></description>
-			<?php if( $item->getDate() ) { ?><pubDate><?php print $this->formatTime( $item->getDate() ) ?></pubDate><?php } ?>
-			<?php if( $item->getAuthor() ) { ?><dc:creator><?php print $item->getAuthor() ?></dc:creator><?php }?>
-			<?php if( $item->getComments() ) { ?><comments><?php print wfExpandUrl( $item->getComments(), PROTO_CURRENT ) ?></comments><?php }?>
+			<?php if ( $item->getDate() ) { ?><pubDate><?php print $this->formatTime( $item->getDate() ); ?></pubDate><?php } ?>
+			<?php if ( $item->getAuthor() ) { ?><dc:creator><?php print $item->getAuthor(); ?></dc:creator><?php }?>
+			<?php if ( $item->getComments() ) { ?><comments><?php print wfExpandUrl( $item->getComments(), PROTO_CURRENT ); ?></comments><?php }?>
 		</item>
 <?php
 	}
@@ -392,15 +392,15 @@ class AtomFeed extends ChannelFeed {
 		global $wgMimeType;
 	?>
 	<entry>
-		<id><?php print $item->getUniqueId() ?></id>
-		<title><?php print $item->getTitle() ?></title>
-		<link rel="alternate" type="<?php print $wgMimeType ?>" href="<?php print wfExpandUrl( $item->getUrl(), PROTO_CURRENT ) ?>"/>
-		<?php if( $item->getDate() ) { ?>
-		<updated><?php print $this->formatTime( $item->getDate() ) ?>Z</updated>
+		<id><?php print $item->getUniqueId(); ?></id>
+		<title><?php print $item->getTitle(); ?></title>
+		<link rel="alternate" type="<?php print $wgMimeType ?>" href="<?php print wfExpandUrl( $item->getUrl(), PROTO_CURRENT ); ?>"/>
+		<?php if ( $item->getDate() ) { ?>
+		<updated><?php print $this->formatTime( $item->getDate() ); ?>Z</updated>
 		<?php } ?>
 
 		<summary type="html"><?php print $item->getDescription() ?></summary>
-		<?php if( $item->getAuthor() ) { ?><author><name><?php print $item->getAuthor() ?></name></author><?php }?>
+		<?php if ( $item->getAuthor() ) { ?><author><name><?php print $item->getAuthor(); ?></name></author><?php }?>
 	</entry>
 
 <?php /* @todo FIXME: Need to add comments

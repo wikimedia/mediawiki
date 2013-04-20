@@ -59,7 +59,7 @@ class FeedUtils {
 			return false;
 		}
 
-		if( !isset( $wgFeedClasses[$type] ) ) {
+		if ( !isset( $wgFeedClasses[$type] ) ) {
 			$wgOut->addWikiMsg( 'feed-invalid' );
 			return false;
 		}
@@ -77,7 +77,7 @@ class FeedUtils {
 		$titleObj = Title::makeTitle( $row->rc_namespace, $row->rc_title );
 		$timestamp = wfTimestamp( TS_MW, $row->rc_timestamp );
 		$actiontext = '';
-		if( $row->rc_type == RC_LOG ) {
+		if ( $row->rc_type == RC_LOG ) {
 			$rcRow = (array)$row; // newFromRow() only accepts arrays for RC rows
 			$actiontext = LogFormatter::newFromRow( $rcRow )->getActionText();
 		}
@@ -121,12 +121,12 @@ class FeedUtils {
 
 		// Can't diff special pages, unreadable pages or pages with no new revision
 		// to compare against: just return the text.
-		if( $title->getNamespace() < 0 || $accErrors || !$newid ) {
+		if ( $title->getNamespace() < 0 || $accErrors || !$newid ) {
 			wfProfileOut( __METHOD__ );
 			return $completeText;
 		}
 
-		if( $oldid ) {
+		if ( $oldid ) {
 			wfProfileIn( __METHOD__ . "-dodiff" );
 
 			#$diffText = $de->getDiff( wfMessage( 'revisionasof',
@@ -171,7 +171,7 @@ class FeedUtils {
 			wfProfileOut( __METHOD__ . "-dodiff" );
 		} else {
 			$rev = Revision::newFromId( $newid );
-			if( $wgFeedDiffCutoff <= 0 || is_null( $rev ) ) {
+			if ( $wgFeedDiffCutoff <= 0 || is_null( $rev ) ) {
 				$newContent = ContentHandler::getForTitle( $title )->makeEmptyContent();
 			} else {
 				$newContent = $rev->getContent();
@@ -250,7 +250,7 @@ class FeedUtils {
 			'diffchange'       => 'font-weight: bold; text-decoration: none;',
 		);
 
-		foreach( $styles as $class => $style ) {
+		foreach ( $styles as $class => $style ) {
 			$text = preg_replace( "/(<[^>]+)class=(['\"])$class\\2([^>]*>)/",
 				"\\1style=\"$style\"\\3", $text );
 		}

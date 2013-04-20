@@ -61,13 +61,13 @@ class SiteStats {
 		wfDebug( __METHOD__ . ": reading site_stats from slave\n" );
 		$row = self::doLoad( wfGetDB( DB_SLAVE ) );
 
-		if( !self::isSane( $row ) ) {
+		if ( !self::isSane( $row ) ) {
 			// Might have just been initialized during this request? Underflow?
 			wfDebug( __METHOD__ . ": site_stats damaged or missing on slave\n" );
 			$row = self::doLoad( wfGetDB( DB_MASTER ) );
 		}
 
-		if( !self::isSane( $row ) ) {
+		if ( !self::isSane( $row ) ) {
 			// Normally the site_stats table is initialized at install time.
 			// Some manual construction scenarios may leave the table empty or
 			// broken, however, for instance when importing from a dump into a
@@ -79,7 +79,7 @@ class SiteStats {
 			$row = self::doLoad( wfGetDB( DB_MASTER ) );
 		}
 
-		if( !self::isSane( $row ) ) {
+		if ( !self::isSane( $row ) ) {
 			wfDebug( __METHOD__ . ": site_stats persistently nonsensical o_O\n" );
 		}
 		return $row;
@@ -205,7 +205,7 @@ class SiteStats {
 	 */
 	static function pagesInNs( $ns ) {
 		wfProfileIn( __METHOD__ );
-		if( !isset( self::$pageCount[$ns] ) ) {
+		if ( !isset( self::$pageCount[$ns] ) ) {
 			$dbr = wfGetDB( DB_SLAVE );
 			self::$pageCount[$ns] = (int)$dbr->selectField(
 				'page',
@@ -226,7 +226,7 @@ class SiteStats {
 	 * @return bool
 	 */
 	private static function isSane( $row ) {
-		if(
+		if (
 			$row === false
 			|| $row->ss_total_pages < $row->ss_good_articles
 			|| $row->ss_total_edits < $row->ss_total_pages
@@ -234,9 +234,9 @@ class SiteStats {
 			return false;
 		}
 		// Now check for underflow/overflow
-		foreach( array( 'total_views', 'total_edits', 'good_articles',
+		foreach ( array( 'total_views', 'total_edits', 'good_articles',
 		'total_pages', 'users', 'images' ) as $member ) {
-			if(
+			if (
 				$row->{"ss_$member"} > 2000000000
 				|| $row->{"ss_$member"} < 0
 			) {
@@ -592,19 +592,19 @@ class SiteStatsInit {
 		$counter->files();
 
 		// Only do views if we don't want to not count them
-		if( $options['views'] ) {
+		if ( $options['views'] ) {
 			$counter->views();
 		}
 
 		// Update/refresh
-		if( $options['update'] ) {
+		if ( $options['update'] ) {
 			$counter->update();
 		} else {
 			$counter->refresh();
 		}
 
 		// Count active users if need be
-		if( $options['activeUsers'] ) {
+		if ( $options['activeUsers'] ) {
 			SiteStatsUpdate::cacheUpdate( wfGetDB( DB_MASTER ) );
 		}
 	}

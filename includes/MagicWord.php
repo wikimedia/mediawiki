@@ -327,9 +327,10 @@ class MagicWord {
 		usort( $synonyms, array( $this, 'compareStringLength' ) );
 
 		$escSyn = array();
-		foreach ( $synonyms as $synonym )
+		foreach ( $synonyms as $synonym ) {
 			// In case a magic word contains /, like that's going to happen;)
 			$escSyn[] = preg_quote( $synonym, '/' );
+		}
 		$this->mBaseRegex = implode( '|', $escSyn );
 
 		$case = $this->mCaseSensitive ? '' : 'iu';
@@ -382,8 +383,9 @@ class MagicWord {
 	 * @return string
 	 */
 	function getRegexCase() {
-		if ( $this->mRegex === '' )
+		if ( $this->mRegex === '' ) {
 			$this->initRegex();
+		}
 
 		return $this->mCaseSensitive ? '' : 'iu';
 	}
@@ -598,7 +600,7 @@ class MagicWord {
 	function replaceMultiple( $magicarr, $subject, &$result ) {
 		$search = array();
 		$replace = array();
-		foreach( $magicarr as $id => $replacement ) {
+		foreach ( $magicarr as $id => $replacement ) {
 			$mw = MagicWord::get( $id );
 			$search[] = $mw->getRegex();
 			$replace[] = $replacement;
