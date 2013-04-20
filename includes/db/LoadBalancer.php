@@ -78,7 +78,7 @@ class LoadBalancer {
 			}
 		}
 
-		foreach( $params['servers'] as $i => $server ) {
+		foreach ( $params['servers'] as $i => $server ) {
 			$this->mLoads[$i] = $server['load'];
 			if ( isset( $server['groupLoads'] ) ) {
 				foreach ( $server['groupLoads'] as $group => $ratio ) {
@@ -665,7 +665,7 @@ class LoadBalancer {
 	 * @return bool
 	 */
 	function isOpen( $index ) {
-		if( !is_integer( $index ) ) {
+		if ( !is_integer( $index ) ) {
 			return false;
 		}
 		return (bool)$this->getAnyOpenConnection( $index );
@@ -682,7 +682,7 @@ class LoadBalancer {
 	 * @return DatabaseBase
 	 */
 	function reallyOpenConnection( $server, $dbNameOverride = false ) {
-		if( !is_array( $server ) ) {
+		if ( !is_array( $server ) ) {
 			throw new MWException( 'You must update your load-balancing configuration. ' .
 				'See DefaultSettings.php entry for $wgDBservers.' );
 		}
@@ -833,7 +833,7 @@ class LoadBalancer {
 	 */
 	function closeAll() {
 		foreach ( $this->mConns as $conns2 ) {
-			foreach  ( $conns2 as $conns3 ) {
+			foreach ( $conns2 as $conns3 ) {
 				foreach ( $conns3 as $conn ) {
 					$conn->close();
 				}

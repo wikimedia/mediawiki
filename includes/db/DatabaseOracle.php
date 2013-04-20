@@ -324,7 +324,7 @@ class DatabaseOracle extends DatabaseBase {
 
 		// handle some oracle specifics
 		// remove AS column/table/subquery namings
-		if( !$this->getFlag( DBO_DDLMODE ) ) {
+		if ( !$this->getFlag( DBO_DDLMODE ) ) {
 			$sql = preg_replace( '/ as /i', ' ', $sql );
 		}
 
@@ -756,7 +756,7 @@ class DatabaseOracle extends DatabaseBase {
 
 	function unionQueries( $sqls, $all ) {
 		$glue = ' UNION ALL ';
-		return 'SELECT * ' . ( $all ? '':'/* UNION_UNIQUE */ ' ) . 'FROM (' . implode( $glue, $sqls ) . ')';
+		return 'SELECT * ' . ( $all ? '' : '/* UNION_UNIQUE */ ' ) . 'FROM (' . implode( $glue, $sqls ) . ')';
 	}
 
 	function wasDeadlock() {
@@ -792,8 +792,9 @@ class DatabaseOracle extends DatabaseBase {
 		$endArray[] = strtoupper( $prefix . 'IMAGE' );
 		$fixedOrderTabs = $endArray;
 		while ( ( $row = $result->fetchRow() ) !== false ) {
-			if ( !in_array( $row['table_name'], $fixedOrderTabs ) )
+			if ( !in_array( $row['table_name'], $fixedOrderTabs ) ) {
 				$endArray[] = $row['table_name'];
+			}
 		}
 
 		return $endArray;
@@ -801,7 +802,7 @@ class DatabaseOracle extends DatabaseBase {
 
 	public function dropTable( $tableName, $fName = 'DatabaseOracle::dropTable' ) {
 		$tableName = $this->tableName( $tableName );
-		if( !$this->tableExists( $tableName ) ) {
+		if ( !$this->tableExists( $tableName ) ) {
 			return false;
 		}
 
@@ -906,7 +907,7 @@ class DatabaseOracle extends DatabaseBase {
 		if ( is_array( $table ) ) {
 			$table = array_map( array( &$this, 'tableNameInternal' ), $table );
 			$tableWhere = 'IN (';
-			foreach( $table as &$singleTable ) {
+			foreach ( $table as &$singleTable ) {
 				$singleTable = $this->removeIdentifierQuotes( $singleTable );
 				if ( isset( $this->mFieldInfoCache["$singleTable.$field"] ) ) {
 					return $this->mFieldInfoCache["$singleTable.$field"];
@@ -931,7 +932,7 @@ class DatabaseOracle extends DatabaseBase {
 		$res = new ORAResult( $this, $fieldInfoStmt );
 		if ( $res->numRows() == 0 ) {
 			if ( is_array( $table ) ) {
-				foreach( $table as &$singleTable ) {
+				foreach ( $table as &$singleTable ) {
 					$this->mFieldInfoCache["$singleTable.$field"] = false;
 				}
 			} else {

@@ -96,7 +96,7 @@ class DatabaseMssql extends DatabaseBase {
 
 		$connectionInfo = array();
 
-		if( $dbName ) {
+		if ( $dbName ) {
 			$connectionInfo['Database'] = $dbName;
 		}
 
@@ -109,7 +109,7 @@ class DatabaseMssql extends DatabaseBase {
 		$ntAuthPassTest = strtolower( $password );
 
 		// Decide which auth scenerio to use
-		if( $ntAuthPassTest == 'ntauth' && $ntAuthUserTest == 'ntauth' ) {
+		if ( $ntAuthPassTest == 'ntauth' && $ntAuthUserTest == 'ntauth' ) {
 			// Don't add credentials to $connectionInfo
 		} else {
 			$connectionInfo['UID'] = $user;
@@ -344,7 +344,9 @@ class DatabaseMssql extends DatabaseBase {
 		$rows = -1;
 		if ( $res ) {
 			$row = $this->fetchRow( $res );
-			if ( isset( $row['EstimateRows'] ) ) $rows = $row['EstimateRows'];
+			if ( isset( $row['EstimateRows'] ) ) {
+				$rows = $row['EstimateRows'];
+			}
 		}
 		return $rows;
 	}
@@ -421,7 +423,7 @@ class DatabaseMssql extends DatabaseBase {
 		$identity = null;
 		$tableRaw = preg_replace( '#\[([^\]]*)\]#', '$1', $table ); // strip matching square brackets from table name
 		$res = $this->doQuery( "SELECT NAME AS idColumn FROM SYS.IDENTITY_COLUMNS WHERE OBJECT_NAME(OBJECT_ID)='{$tableRaw}'" );
-		if( $res && $res->numrows() ) {
+		if ( $res && $res->numrows() ) {
 			// There is an identity for this table.
 			$identity = array_pop( $res->fetch( SQLSRV_FETCH_ASSOC ) );
 		}
@@ -434,11 +436,11 @@ class DatabaseMssql extends DatabaseBase {
 			$identityClause = '';
 
 			// if we have an identity column
-			if( $identity ) {
+			if ( $identity ) {
 				// iterate through
 				foreach ( $a as $k => $v ) {
 					if ( $k == $identity ) {
-						if( !is_null( $v ) ) {
+						if ( !is_null( $v ) ) {
 							// there is a value being passed to us, we need to turn on and off inserted identity
 							$sqlPre = "SET IDENTITY_INSERT $table ON;";
 							$sqlPost = ";SET IDENTITY_INSERT $table OFF;";
@@ -1009,7 +1011,7 @@ class MssqlResult {
 
 		$rows = sqlsrv_fetch_array( $queryresult, SQLSRV_FETCH_ASSOC );
 
-		foreach( $rows as $row ) {
+		foreach ( $rows as $row ) {
 			if ( $row !== null ) {
 				foreach ( $row as $k => $v ) {
 					if ( is_object( $v ) && method_exists( $v, 'format' ) ) {// DateTime Object

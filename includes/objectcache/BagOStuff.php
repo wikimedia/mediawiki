@@ -187,7 +187,7 @@ abstract class BagOStuff {
 			}
 			usleep( $sleep ); // back off
 			$locked = $this->add( "{$key}:lock", $timeout );
-		} while( !$locked );
+		} while ( !$locked );
 
 		return $locked;
 	}

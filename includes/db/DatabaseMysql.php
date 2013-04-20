@@ -42,7 +42,7 @@ class DatabaseMysql extends DatabaseBase {
 	 * @return resource
 	 */
 	protected function doQuery( $sql ) {
-		if( $this->bufferResults() ) {
+		if ( $this->bufferResults() ) {
 			$ret = mysql_query( $sql, $this->mConn );
 		} else {
 			$ret = mysql_unbuffered_query( $sql, $this->mConn );
@@ -153,7 +153,7 @@ class DatabaseMysql extends DatabaseBase {
 
 		// Tell the server we're communicating with it in UTF-8.
 		// This may engage various charset conversions.
-		if( $wgDBmysql5 ) {
+		if ( $wgDBmysql5 ) {
 			$this->query( 'SET NAMES utf8', __METHOD__ );
 		} else {
 			$this->query( 'SET NAMES binary', __METHOD__ );
@@ -210,7 +210,7 @@ class DatabaseMysql extends DatabaseBase {
 		// Only check for CR_SERVER_LOST and CR_UNKNOWN_ERROR, as
 		// these are the only errors mysql_fetch_object can cause.
 		// See http://dev.mysql.com/doc/refman/5.0/en/mysql-fetch-row.html.
-		if( $errno == 2000 || $errno == 2013 ) {
+		if ( $errno == 2000 || $errno == 2013 ) {
 			throw new DBUnexpectedError( $this, 'Error in fetchObject(): ' . htmlspecialchars( $this->lastError() ) );
 		}
 		return $row;
@@ -234,7 +234,7 @@ class DatabaseMysql extends DatabaseBase {
 		// Only check for CR_SERVER_LOST and CR_UNKNOWN_ERROR, as
 		// these are the only errors mysql_fetch_object can cause.
 		// See http://dev.mysql.com/doc/refman/5.0/en/mysql-fetch-row.html.
-		if( $errno == 2000 || $errno == 2013 ) {
+		if ( $errno == 2000 || $errno == 2013 ) {
 			throw new DBUnexpectedError( $this, 'Error in fetchRow(): ' . htmlspecialchars( $this->lastError() ) );
 		}
 		return $row;
@@ -328,7 +328,7 @@ class DatabaseMysql extends DatabaseBase {
 		} else {
 			$error = mysql_error();
 		}
-		if( $error ) {
+		if ( $error ) {
 			$error .= ' (' . $this->mServer . ')';
 		}
 		return $error;
@@ -393,9 +393,9 @@ class DatabaseMysql extends DatabaseBase {
 			return false;
 		}
 		$n = mysql_num_fields( $res->result );
-		for( $i = 0; $i < $n; $i++ ) {
+		for ( $i = 0; $i < $n; $i++ ) {
 			$meta = mysql_fetch_field( $res->result, $i );
-			if( $field == $meta->name ) {
+			if ( $field == $meta->name ) {
 				return new MySQLField( $meta );
 			}
 		}
@@ -452,7 +452,7 @@ class DatabaseMysql extends DatabaseBase {
 	function strencode( $s ) {
 		$sQuoted = mysql_real_escape_string( $s, $this->mConn );
 
-		if( $sQuoted === false ) {
+		if ( $sQuoted === false ) {
 			$this->ping();
 			$sQuoted = mysql_real_escape_string( $s, $this->mConn );
 		}
@@ -537,11 +537,11 @@ class DatabaseMysql extends DatabaseBase {
 	function getLagFromProcesslist() {
 		wfDeprecated( __METHOD__, '1.19' );
 		$res = $this->query( 'SHOW PROCESSLIST', __METHOD__ );
-		if( !$res ) {
+		if ( !$res ) {
 			return false;
 		}
 		# Find slave SQL thread
-		foreach( $res as $row ) {
+		foreach ( $res as $row ) {
 			/* This should work for most situations - when default db
 			 * for thread is not specified, it had no events executed,
 			 * and therefore it doesn't know yet how lagged it is.
@@ -721,7 +721,7 @@ class DatabaseMysql extends DatabaseBase {
 		$result = $this->query( "SELECT GET_LOCK($lockName, $timeout) AS lockstatus", $method );
 		$row = $this->fetchObject( $result );
 
-		if( $row->lockstatus == 1 ) {
+		if ( $row->lockstatus == 1 ) {
 			return true;
 		} else {
 			wfDebug( __METHOD__ . " failed to acquire lock\n" );
@@ -752,13 +752,13 @@ class DatabaseMysql extends DatabaseBase {
 	public function lockTables( $read, $write, $method, $lowPriority = true ) {
 		$items = array();
 
-		foreach( $write as $table ) {
+		foreach ( $write as $table ) {
 			$tbl = $this->tableName( $table ) .
 					( $lowPriority ? ' LOW_PRIORITY' : '' ) .
 					' WRITE';
 			$items[] = $tbl;
 		}
-		foreach( $read as $table ) {
+		foreach ( $read as $table ) {
 			$items[] = $this->tableName( $table ) . ' READ';
 		}
 		$sql = "LOCK TABLES " . implode( ',', $items );
@@ -905,11 +905,11 @@ class DatabaseMysql extends DatabaseBase {
 
 		$endArray = array();
 
-		foreach( $result as $table ) {
+		foreach ( $result as $table ) {
 			$vars = get_object_vars( $table );
 			$table = array_pop( $vars );
 
-			if( !$prefix || strpos( $table, $prefix ) === 0 ) {
+			if ( !$prefix || strpos( $table, $prefix ) === 0 ) {
 				$endArray[] = $table;
 			}
 		}
@@ -923,7 +923,7 @@ class DatabaseMysql extends DatabaseBase {
 	 * @return bool|ResultWrapper
 	 */
 	public function dropTable( $tableName, $fName = 'DatabaseMysql::dropTable' ) {
-		if( !$this->tableExists( $tableName, $fName ) ) {
+		if ( !$this->tableExists( $tableName, $fName ) ) {
 			return false;
 		}
 		return $this->query( "DROP TABLE IF EXISTS " . $this->tableName( $tableName ), $fName );

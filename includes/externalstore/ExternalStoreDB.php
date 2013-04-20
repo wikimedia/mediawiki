@@ -152,7 +152,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 		static $externalBlobCache = array();
 
 		$cacheID = ( $itemID === false ) ? "$cluster/$id" : "$cluster/$id/";
-		if( isset( $externalBlobCache[$cacheID] ) ) {
+		if ( isset( $externalBlobCache[$cacheID] ) ) {
 			wfDebugLog( 'ExternalStoreDB-cache', "ExternalStoreDB::fetchBlob cache hit on $cacheID\n" );
 			return $externalBlobCache[$cacheID];
 		}
@@ -166,11 +166,11 @@ class ExternalStoreDB extends ExternalStoreMedium {
 			// Try the master
 			$dbw =& $this->getMaster( $cluster );
 			$ret = $dbw->selectField( $this->getTable( $dbw ), 'blob_text', array( 'blob_id' => $id ), __METHOD__ );
-			if( $ret === false) {
+			if ( $ret === false) {
 				wfDebugLog( 'ExternalStoreDB', "ExternalStoreDB::fetchBlob master failed to find $cacheID\n" );
 			}
 		}
-		if( $itemID !== false && $ret !== false ) {
+		if ( $itemID !== false && $ret !== false ) {
 			// Unserialise object; caller extracts item
 			$ret = unserialize( $ret );
 		}

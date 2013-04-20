@@ -271,7 +271,8 @@ class _DiffEngine {
 				$this->xchanged[$skip] = $this->ychanged[$skip] = false;
 			}
 			// Skip trailing common lines.
-			$xi = $n_from; $yi = $n_to;
+			$xi = $n_from;
+			$yi = $n_to;
 			for ( $endskip = 0; --$xi > $skip && --$yi > $skip; $endskip++ ) {
 				if ( $from_lines[$xi] !== $to_lines[$yi] ) {
 					break;
@@ -394,7 +395,7 @@ class _DiffEngine {
 						break;
 					}
 				}
-				while ( list ( , $y ) = each( $matches ) ) {
+				while ( list( , $y ) = each( $matches ) ) {
 					if ( $y > $this->seq[$k -1] ) {
 						assert( '$y < $this->seq[$k]' );
 						// Optimization: this is a common case:
@@ -471,8 +472,7 @@ class _DiffEngine {
 	 */
 	function _compareseq( $xoff, $xlim, $yoff, $ylim ) {
 		// Slide down the bottom initial diagonal.
-		while ( $xoff < $xlim && $yoff < $ylim
-		&& $this->xv[$xoff] == $this->yv[$yoff] ) {
+		while ( $xoff < $xlim && $yoff < $ylim && $this->xv[$xoff] == $this->yv[$yoff] ) {
 			++$xoff;
 			++$yoff;
 		}
@@ -491,7 +491,7 @@ class _DiffEngine {
 			// $nchunks = sqrt(min($xlim - $xoff, $ylim - $yoff) / 2.5);
 			// $nchunks = max(2,min(8,(int)$nchunks));
 			$nchunks = min( 7, $xlim - $xoff, $ylim - $yoff ) + 1;
-			list ( $lcs, $seps ) = $this->_diag( $xoff, $xlim, $yoff, $ylim, $nchunks );
+			list( $lcs, $seps ) = $this->_diag( $xoff, $xlim, $yoff, $ylim, $nchunks );
 		}
 
 		if ( $lcs == 0 ) {
@@ -554,9 +554,11 @@ class _DiffEngine {
 
 			while ( $i < $len && ! $changed[$i] ) {
 				assert( '$j < $other_len && ! $other_changed[$j]' );
-				$i++; $j++;
-				while ( $j < $other_len && $other_changed[$j] )
+				$i++;
 				$j++;
+				while ( $j < $other_len && $other_changed[$j] ) {
+					$j++;
+				}
 			}
 
 			if ( $i == $len ) {

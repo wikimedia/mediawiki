@@ -43,7 +43,7 @@ class MemcachedBagOStuff extends BagOStuff {
 		if ( !isset( $params['persistent'] ) ) {
 			$params['persistent'] = $GLOBALS['wgMemCachedPersistent'];
 		}
-		if  ( !isset( $params['compress_threshold'] ) ) {
+		if ( !isset( $params['compress_threshold'] ) ) {
 			$params['compress_threshold'] = 1500;
 		}
 		if ( !isset( $params['timeout'] ) ) {

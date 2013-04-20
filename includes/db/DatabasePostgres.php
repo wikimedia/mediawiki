@@ -117,7 +117,7 @@ SQL;
 	 * @since 1.19
 	 */
 	function defaultValue() {
-		if( $this->has_default ) {
+		if ( $this->has_default ) {
 			return $this->default;
 		} else {
 			return false;
@@ -139,15 +139,15 @@ class PostgresTransactionState {
 		array(
 			"desc" => "%s: Connection state changed from %s -> %s\n",
 			"states" => array(
-				PGSQL_CONNECTION_OK       => "OK",
-				PGSQL_CONNECTION_BAD      => "BAD"
+				PGSQL_CONNECTION_OK => "OK",
+				PGSQL_CONNECTION_BAD => "BAD"
 			)
 		),
 		array(
 			"desc" => "%s: Transaction state changed from %s -> %s\n",
 			"states" => array(
-				PGSQL_TRANSACTION_IDLE    => "IDLE",
-				PGSQL_TRANSACTION_ACTIVE  => "ACTIVE",
+				PGSQL_TRANSACTION_IDLE => "IDLE",
+				PGSQL_TRANSACTION_ACTIVE => "ACTIVE",
 				PGSQL_TRANSACTION_INTRANS => "TRANS",
 				PGSQL_TRANSACTION_INERROR => "ERROR",
 				PGSQL_TRANSACTION_UNKNOWN => "UNKNOWN"
@@ -189,7 +189,7 @@ class PostgresTransactionState {
 	}
 
 	protected function describe_changed( $status, $desc_table ) {
-		if( isset( $desc_table[$status] ) ) {
+		if ( isset( $desc_table[$status] ) ) {
 			return $desc_table[$status];
 		} else {
 			return "STATUS " . $status;
@@ -438,7 +438,7 @@ class DatabasePostgres extends DatabaseBase {
 			$sql = mb_convert_encoding( $sql, 'UTF-8' );
 		}
 		$this->mTransactionState->check();
-		if( pg_send_query( $this->mConn, $sql ) === false ) {
+		if ( pg_send_query( $this->mConn, $sql ) === false ) {
 			throw new DBUnexpectedError( $this, "Unable to post new query to PostgreSQL\n" );
 		}
 		$this->mLastResult = pg_get_result( $this->mConn );
@@ -464,7 +464,7 @@ class DatabasePostgres extends DatabaseBase {
 				PGSQL_DIAG_SOURCE_LINE,
 				PGSQL_DIAG_SOURCE_FUNCTION );
 		foreach ( $diags as $d ) {
-			wfDebug( sprintf("PgSQL ERROR(%d): %s\n", $d, pg_result_error_field( $this->mLastResult, $d ) ) );
+			wfDebug( sprintf( "PgSQL ERROR(%d): %s\n", $d, pg_result_error_field( $this->mLastResult, $d ) ) );
 		}
 	}
 
@@ -509,7 +509,7 @@ class DatabasePostgres extends DatabaseBase {
 
 		# @todo hashar: not sure if the following test really trigger if the object
 		#          fetching failed.
-		if( pg_last_error( $this->mConn ) ) {
+		if ( pg_last_error( $this->mConn ) ) {
 			throw new DBUnexpectedError( $this, 'SQL error: ' . htmlspecialchars( pg_last_error( $this->mConn ) ) );
 		}
 		return $row;
@@ -522,7 +522,7 @@ class DatabasePostgres extends DatabaseBase {
 		wfSuppressWarnings();
 		$row = pg_fetch_array( $res );
 		wfRestoreWarnings();
-		if( pg_last_error( $this->mConn ) ) {
+		if ( pg_last_error( $this->mConn ) ) {
 			throw new DBUnexpectedError( $this, 'SQL error: ' . htmlspecialchars( pg_last_error( $this->mConn ) ) );
 		}
 		return $row;
@@ -535,7 +535,7 @@ class DatabasePostgres extends DatabaseBase {
 		wfSuppressWarnings();
 		$n = pg_num_rows( $res );
 		wfRestoreWarnings();
-		if( pg_last_error( $this->mConn ) ) {
+		if ( pg_last_error( $this->mConn ) ) {
 			throw new DBUnexpectedError( $this, 'SQL error: ' . htmlspecialchars( pg_last_error( $this->mConn ) ) );
 		}
 		return $n;
@@ -596,7 +596,7 @@ class DatabasePostgres extends DatabaseBase {
 			// Forced result for simulated queries
 			return $this->mAffectedRows;
 		}
-		if( empty( $this->mLastResult ) ) {
+		if ( empty( $this->mLastResult ) ) {
 			return 0;
 		}
 		return pg_affected_rows( $this->mLastResult );
@@ -617,7 +617,7 @@ class DatabasePostgres extends DatabaseBase {
 		if ( $res ) {
 			$row = $this->fetchRow( $res );
 			$count = array();
-			if( preg_match( '/rows=(\d+)/', $row[0], $count ) ) {
+			if ( preg_match( '/rows=(\d+)/', $row[0], $count ) ) {
 				$rows = $count[1];
 			}
 		}
@@ -650,8 +650,9 @@ class DatabasePostgres extends DatabaseBase {
 	 * @return Array
 	 */
 	function indexAttributes( $index, $schema = false ) {
-		if ( $schema === false )
+		if ( $schema === false ) {
 			$schema = $this->getCoreSchema();
+		}
 		/*
 		 * A subquery would be not needed if we didn't care about the order
 		 * of attributes, but we do
@@ -854,7 +855,7 @@ __INDEXATTR__;
 	{
 		$destTable = $this->tableName( $destTable );
 
-		if( !is_array( $insertOptions ) ) {
+		if ( !is_array( $insertOptions ) ) {
 			$insertOptions = array( $insertOptions );
 		}
 
@@ -870,11 +871,11 @@ __INDEXATTR__;
 			$savepoint->savepoint();
 		}
 
-		if( !is_array( $selectOptions ) ) {
+		if ( !is_array( $selectOptions ) ) {
 			$selectOptions = array( $selectOptions );
 		}
 		list( $startOpts, $useIndex, $tailOpts ) = $this->makeSelectOptions( $selectOptions );
-		if( is_array( $srcTable ) ) {
+		if ( is_array( $srcTable ) ) {
 			$srcTable = implode( ',', array_map( array( &$this, 'tableName' ), $srcTable ) );
 		} else {
 			$srcTable = $this->tableName( $srcTable );
@@ -891,9 +892,9 @@ __INDEXATTR__;
 		$sql .= " $tailOpts";
 
 		$res = (bool)$this->query( $sql, $fname, $savepoint );
-		if( $savepoint ) {
+		if ( $savepoint ) {
 			$bar = pg_last_error();
-			if( $bar != false ) {
+			if ( $bar != false ) {
 				$savepoint->rollback();
 			} else {
 				$savepoint->release();
@@ -989,10 +990,10 @@ __INDEXATTR__;
 		$result = $this->query( "SELECT tablename FROM pg_tables WHERE schemaname = $eschema", $fname );
 		$endArray = array();
 
-		foreach( $result as $table ) {
+		foreach ( $result as $table ) {
 			$vars = get_object_vars( $table );
 			$table = array_pop( $vars );
-			if( !$prefix || strpos( $table, $prefix ) === 0 ) {
+			if ( !$prefix || strpos( $table, $prefix ) === 0 ) {
 				$endArray[] = $table;
 			}
 		}
@@ -1023,11 +1024,11 @@ __INDEXATTR__;
 	 * @return string
 	 */
 	function pg_array_parse( $text, &$output, $limit = false, $offset = 1 ) {
-		if( false === $limit ) {
+		if ( false === $limit ) {
 			$limit = strlen( $text ) - 1;
 			$output = array();
 		}
-		if( '{}' == $text ) {
+		if ( '{}' == $text ) {
 			return $output;
 		}
 		do {

@@ -329,7 +329,7 @@ class MWMemcached {
 			$this->stats['delete'] = 1;
 		}
 		$cmd = "delete $key $time\r\n";
-		if( !$this->_fwrite( $sock, $cmd ) ) {
+		if ( !$this->_fwrite( $sock, $cmd ) ) {
 			return false;
 		}
 		$res = $this->_fgets( $sock );
@@ -733,7 +733,7 @@ class MWMemcached {
 		$sock = false;
 		$timeout = $this->_connect_timeout;
 		$errno = $errstr = null;
-		for( $i = 0; !$sock && $i < $this->_connect_attempts; $i++ ) {
+		for ( $i = 0; !$sock && $i < $this->_connect_attempts; $i++ ) {
 			wfSuppressWarnings();
 			if ( $this->_persistent == 1 ) {
 				$sock = pfsockopen( $ip, $port, $errno, $errstr, $timeout );
@@ -810,7 +810,7 @@ class MWMemcached {
 			$bu = array();
 			foreach ( $this->_servers as $v ) {
 				if ( is_array( $v ) ) {
-					for( $i = 0; $i < $v[1]; $i++ ) {
+					for ( $i = 0; $i < $v[1]; $i++ ) {
 						$bu[] = $v[0];
 					}
 				} else {
@@ -822,7 +822,7 @@ class MWMemcached {
 		}
 
 		$realkey = is_array( $key ) ? $key[1] : $key;
-		for( $tries = 0; $tries < 20; $tries++ ) {
+		for ( $tries = 0; $tries < 20; $tries++ ) {
 			$host = $this->_buckets[$hv % $this->_bucketcount];
 			$sock = $this->sock_to_host( $host );
 			if ( is_resource( $sock ) ) {
@@ -912,7 +912,7 @@ class MWMemcached {
 		while ( 1 ) {
 			$decl = $this->_fgets( $sock );
 
-			if( $decl === false ) {
+			if ( $decl === false ) {
 				/*
 				 * If nothing can be read, something is wrong because we know exactly when
 				 * to stop reading (right after "END") and we return right after that.

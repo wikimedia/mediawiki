@@ -732,7 +732,7 @@ abstract class DatabaseBase implements DatabaseType {
 		$dbType = strtolower( $dbType );
 		$class = 'Database' . ucfirst( $dbType );
 
-		if( in_array( $dbType, $canonicalDBTypes ) || ( class_exists( $class ) && is_subclass_of( $class, 'DatabaseBase' ) ) ) {
+		if ( in_array( $dbType, $canonicalDBTypes ) || ( class_exists( $class ) && is_subclass_of( $class, 'DatabaseBase' ) ) ) {
 			return new $class(
 				isset( $p['host'] ) ? $p['host'] : false,
 				isset( $p['user'] ) ? $p['user'] : false,
@@ -1636,7 +1636,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @return bool|null
 	 */
 	public function indexExists( $table, $index, $fname = 'DatabaseBase::indexExists' ) {
-		if( !$this->tableExists( $table ) ) {
+		if ( !$this->tableExists( $table ) ) {
 			return null;
 		}
 
@@ -2285,9 +2285,9 @@ abstract class DatabaseBase implements DatabaseType {
 	protected function indexName( $index ) {
 		// Backwards-compatibility hack
 		$renamed = array(
-			'ar_usertext_timestamp'	=> 'usertext_timestamp',
-			'un_user_id'		=> 'user_id',
-			'un_user_ip'		=> 'user_ip',
+			'ar_usertext_timestamp' => 'usertext_timestamp',
+			'un_user_id' => 'user_id',
+			'un_user_ip' => 'user_ip',
 		);
 
 		if ( isset( $renamed[$index] ) ) {
@@ -2468,7 +2468,7 @@ abstract class DatabaseBase implements DatabaseType {
 			$rows = array( $rows );
 		}
 
-		foreach( $rows as $row ) {
+		foreach ( $rows as $row ) {
 			# Delete rows which collide
 			if ( $uniqueIndexes ) {
 				$sql = "DELETE FROM $quotedTable WHERE ";
@@ -3122,13 +3122,13 @@ abstract class DatabaseBase implements DatabaseType {
 		if ( $flush != 'flush' ) {
 			if ( !$this->mTrxLevel ) {
 				wfWarn( "$fname: No transaction to commit, something got out of sync!" );
-			} elseif( $this->mTrxAutomatic ) {
+			} elseif ( $this->mTrxAutomatic ) {
 				wfWarn( "$fname: Explicit commit of implicit transaction. Something may be out of sync!" );
 			}
 		} else {
 			if ( !$this->mTrxLevel ) {
 				return; // nothing to do
-			} elseif( !$this->mTrxAutomatic ) {
+			} elseif ( !$this->mTrxAutomatic ) {
 				wfWarn( "$fname: Flushing an explicit transaction, getting out of sync!" );
 			}
 		}
@@ -3674,11 +3674,11 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @since 1.18
 	 */
 	public function dropTable( $tableName, $fName = 'DatabaseBase::dropTable' ) {
-		if( !$this->tableExists( $tableName, $fName ) ) {
+		if ( !$this->tableExists( $tableName, $fName ) ) {
 			return false;
 		}
 		$sql = "DROP TABLE " . $this->tableName( $tableName );
-		if( $this->cascadingDeletes() ) {
+		if ( $this->cascadingDeletes() ) {
 			$sql .= " CASCADE";
 		}
 		return $this->query( $sql, $fName );

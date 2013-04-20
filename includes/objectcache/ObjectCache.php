@@ -125,9 +125,9 @@ class ObjectCache {
 	static function newAccelerator( $params ) {
 		if ( function_exists( 'apc_fetch' ) ) {
 			$id = 'apc';
-		} elseif( function_exists( 'xcache_get' ) && wfIniGetBool( 'xcache.var_size' ) ) {
+		} elseif ( function_exists( 'xcache_get' ) && wfIniGetBool( 'xcache.var_size' ) ) {
 			$id = 'xcache';
-		} elseif( function_exists( 'wincache_ucache_get' ) ) {
+		} elseif ( function_exists( 'wincache_ucache_get' ) ) {
 			$id = 'wincache';
 		} else {
 			throw new MWException( "CACHE_ACCEL requested but no suitable object " .

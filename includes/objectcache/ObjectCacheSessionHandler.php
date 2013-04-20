@@ -94,7 +94,7 @@ class ObjectCacheSessionHandler {
 	 */
 	static function read( $id ) {
 		$data = self::getCache()->get( self::getKey( $id ) );
-		if( $data === false ) {
+		if ( $data === false ) {
 			return '';
 		}
 		return $data;
