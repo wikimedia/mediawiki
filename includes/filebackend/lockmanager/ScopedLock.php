@@ -36,24 +36,18 @@ class ScopedLock {
 	protected $manager;
 	/** @var Status */
 	protected $status;
-	/** @var Array List of resource paths*/
-	protected $paths;
-
-	protected $type; // integer lock type
+	/** @var Array Map of lock types to resource paths */
+	protected $pathsByType;
 
 	/**
-	 * @param $manager LockManager
-	 * @param array $paths List of storage paths
-	 * @param $type integer LockManager::LOCK_* constant
-	 * @param $status Status
+	 * @param LockManager $manager
+	 * @param array $pathsByType Map of lock types to path lists
+	 * @param Status $status
 	 */
-	protected function __construct(
-		LockManager $manager, array $paths, $type, Status $status
-	) {
+	protected function __construct( LockManager $manager, array $pathsByType, Status $status ) {
 		$this->manager = $manager;
-		$this->paths = $paths;
+		$this->pathsByType = $pathsByType;
 		$this->status = $status;
-		$this->type = $type;
 	}
 
 	/**
@@ -61,19 +55,24 @@ class ScopedLock {
 	 * Any locks are released once this object goes out of scope.
 	 * The status object is updated with any errors or warnings.
 	 *
-	 * @param $manager LockManager
-	 * @param array $paths List of storage paths
-	 * @param $type integer LockManager::LOCK_* constant
-	 * @param $status Status
+	 * $type can be "mixed" and $paths can be a map of types to paths (since 1.22).
+	 * Otherwise $type should be an integer and $paths should be a list of paths.
+	 *
+	 * @param LockManager $manager
+	 * @param array $paths List of storage paths or map of lock types to path lists
+	 * @param integer|string $type LockManager::LOCK_* constant or "mixed"
+	 * @param Status $status
+	 * @param integer $timeout Timeout in seconds (0 means non-blocking) (since 1.22)
 	 * @return ScopedLock|null Returns null on failure
 	 */
 	public static function factory(
-		LockManager $manager, array $paths, $type, Status $status
+		LockManager $manager, array $paths, $type, Status $status, $timeout = 0
 	) {
-		$lockStatus = $manager->lock( $paths, $type );
+		$pathsByType = is_integer( $type ) ? array( $type => $paths ) : $paths;
+		$lockStatus = $manager->lockByType( $pathsByType, $timeout );
 		$status->merge( $lockStatus );
 		if ( $lockStatus->isOK() ) {
-			return new self( $manager, $paths, $type, $status );
+			return new self( $manager, $pathsByType, $status );
 		}
 		return null;
 	}
@@ -91,9 +90,12 @@ class ScopedLock {
 		$lock = null;
 	}
 
+	/**
+	 * Release the locks when this goes out of scope
+	 */
 	function __destruct() {
 		$wasOk = $this->status->isOK();
-		$this->status->merge( $this->manager->unlock( $this->paths, $this->type ) );
+		$this->status->merge( $this->manager->unlockByType( $this->pathsByType ) );
 		if ( $wasOk ) {
 			// Make sure status is OK, despite any unlockFiles() fatals
 			$this->status->setResult( true, $this->status->value );
