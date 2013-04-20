@@ -56,7 +56,7 @@ abstract class LockManager {
 	protected $domain; // string; domain (usually wiki ID)
 	protected $lockTTL; // integer; maximum time locks can be held
 
-	/* Lock types; stronger locks have higher values */
+	/** Lock types; stronger locks have higher values */
 	const LOCK_SH = 1; // shared lock (for reads)
 	const LOCK_UW = 2; // shared lock (for reads used to write elsewhere)
 	const LOCK_EX = 3; // exclusive lock (for writes)
@@ -92,11 +92,25 @@ abstract class LockManager {
 	 * @return Status
 	 */
 	final public function lock( array $paths, $type = self::LOCK_EX, $timeout = 0 ) {
+		return $this->lockByType( array( $type => $paths ), $timeout );
+	}
+
+	/**
+	 * Lock the resources at the given abstract paths
+	 *
+	 * @param array $paths Map of LockManager::LOCK_* constants to lists of storage paths
+	 * @param integer $timeout Timeout in seconds (0 means non-blocking) (since 1.21)
+	 * @return Status
+	 * @since 1.22
+	 */
+	final public function lockByType( array $pathsByType, $timeout = 0 ) {
 		wfProfileIn( __METHOD__ );
+		$status = Status::newGood();
+		$pathsByType = $this->normalizePathsByType( $pathsByType );
 		$msleep = array( 0, 50, 100, 300, 500 ); // retry backoff times
 		$start = microtime( true );
 		do {
-			$status = $this->doLock( array_unique( $paths ), $this->lockTypeMap[$type] );
+			$status = $this->doLockByType( $pathsByType );
 			$elapsed = microtime( true ) - $start;
 			if ( $status->isOK() || $elapsed >= $timeout || $elapsed < 0 ) {
 				break; // success, timeout, or clock set back
@@ -116,8 +130,20 @@ abstract class LockManager {
 	 * @return Status
 	 */
 	final public function unlock( array $paths, $type = self::LOCK_EX ) {
+		return $this->unlockByType( array( $type => $paths ) );
+	}
+
+	/**
+	 * Unlock the resources at the given abstract paths
+	 *
+	 * @param array $paths Map of LockManager::LOCK_* constants to lists of storage paths
+	 * @return Status
+	 * @since 1.22
+	 */
+	final public function unlockByType( array $pathsByType ) {
 		wfProfileIn( __METHOD__ );
-		$status = $this->doUnlock( array_unique( $paths ), $this->lockTypeMap[$type] );
+		$pathsByType = $this->normalizePathsByType( $pathsByType );
+		$status = $this->doUnlockByType( $pathsByType );
 		wfProfileOut( __METHOD__ );
 		return $status;
 	}
@@ -147,6 +173,46 @@ abstract class LockManager {
 	}
 
 	/**
+	 * Normalize the $paths array by converting LOCK_UW locks into the
+	 * appropriate type and removing any duplicated paths for each lock type.
+	 *
+	 * @param array $paths Map of LockManager::LOCK_* constants to lists of storage paths
+	 * @return Array
+	 * @since 1.22
+	 */
+	final protected function normalizePathsByType( array $pathsByType ) {
+		$res = array();
+		foreach ( $pathsByType as $type => $paths ) {
+			$res[$this->lockTypeMap[$type]] = array_unique( $paths );
+		}
+		return $res;
+	}
+
+	/**
+	 * @see LockManager::lockByType()
+	 * @param array $paths Map of LockManager::LOCK_* constants to lists of storage paths
+	 * @return Status
+	 * @since 1.22
+	 */
+	protected function doLockByType( array $pathsByType ) {
+		$status = Status::newGood();
+		$lockedByType = array(); // map of (type => paths)
+		foreach ( $pathsByType as $type => $paths ) {
+			$status->merge( $this->doLock( $paths, $type ) );
+			if ( $status->isOK() ) {
+				$lockedByType[$type] = $paths;
+			} else {
+				// Release the subset of locks that were acquired
+				foreach ( $lockedByType as $type => $paths ) {
+					$status->merge( $this->doUnlock( $paths, $type ) );
+				}
+				break;
+			}
+		}
+		return $status;
+	}
+
+	/**
 	 * Lock resources with the given keys and lock type
 	 *
 	 * @param array $paths List of storage paths
@@ -154,6 +220,20 @@ abstract class LockManager {
 	 * @return Status
 	 */
 	abstract protected function doLock( array $paths, $type );
+
+	/**
+	 * @see LockManager::unlockByType()
+	 * @param array $paths Map of LockManager::LOCK_* constants to lists of storage paths
+	 * @return Status
+	 * @since 1.22
+	 */
+	protected function doUnlockByType( array $pathsByType ) {
+		$status = Status::newGood();
+		foreach ( $pathsByType as $type => $paths ) {
+			$status->merge( $this->doUnlock( $paths, $type ) );
+		}
+		return $status;
+	}
 
 	/**
 	 * Unlock resources with the given keys and lock type
