@@ -94,14 +94,14 @@ abstract class RevDel_List extends RevisionListBase {
 			}
 			if ( !$item->canView() ) {
 				// Cannot access this revision
-				$msg = ($opType == 'show') ?
+				$msg = ( $opType == 'show' ) ?
 					'revdelete-show-no-access' : 'revdelete-modify-no-access';
 				$status->error( $msg, $item->formatDate(), $item->formatTime() );
 				$status->failCount++;
 				continue;
 			}
 			// Cannot just "hide from Sysops" without hiding any fields
-			if( $newBits == Revision::DELETED_RESTRICTED ) {
+			if ( $newBits == Revision::DELETED_RESTRICTED ) {
 				$status->warning( 'revdelete-only-restricted', $item->formatDate(), $item->formatTime() );
 				$status->failCount++;
 				continue;
@@ -113,9 +113,9 @@ abstract class RevDel_List extends RevisionListBase {
 			if ( $ok ) {
 				$idsForLog[] = $item->getId();
 				$status->successCount++;
-				if( $item->getAuthorId() > 0 ) {
+				if ( $item->getAuthorId() > 0 ) {
 					$authorIds[] = $item->getAuthorId();
-				} elseif( IP::isIPAddress( $item->getAuthorName() ) ) {
+				} elseif ( IP::isIPAddress( $item->getAuthorName() ) ) {
 					$authorIPs[] = $item->getAuthorName();
 				}
 			} else {
@@ -189,7 +189,7 @@ abstract class RevDel_List extends RevisionListBase {
 	protected function updateLog( $params ) {
 		// Get the URL param's corresponding DB field
 		$field = RevisionDeleter::getRelationType( $this->getType() );
-		if( !$field ) {
+		if ( !$field ) {
 			throw new MWException( "Bad log URL param type!" );
 		}
 		// Put things hidden from sysops in the oversight log

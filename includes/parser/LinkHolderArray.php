@@ -322,7 +322,7 @@ class LinkHolderArray {
 		}
 		if ( $queries ) {
 			$where = array();
-			foreach( $queries as $ns => $pages ) {
+			foreach ( $queries as $ns => $pages ) {
 				$where[] = $dbr->makeList(
 					array(
 						'page_namespace' => $ns,
@@ -362,7 +362,7 @@ class LinkHolderArray {
 		wfProfileOut( __METHOD__ . '-check' );
 
 		# Do a second query for different language variants of links and categories
-		if( $wgContLang->hasVariants() ) {
+		if ( $wgContLang->hasVariants() ) {
 			$this->doVariants( $colours );
 		}
 
@@ -425,7 +425,7 @@ class LinkHolderArray {
 		# Make interwiki link HTML
 		$output = $this->parent->getOutput();
 		$replacePairs = array();
-		foreach( $this->interwikis as $key => $link ) {
+		foreach ( $this->interwikis as $key => $link ) {
 			$replacePairs[$key] = Linker::link( $link['title'], $link['text'] );
 			$output->addInterwikiLink( $link['title'] );
 		}
@@ -486,7 +486,7 @@ class LinkHolderArray {
 				$textVariant = $titlesAllVariants[$variantName][$i];
 				if ( $textVariant != $titlesAttrs[$i]['titleText'] ) {
 					$variantTitle = Title::makeTitle( $titlesAttrs[$i]['ns'], $textVariant );
-					if( is_null( $variantTitle ) ) {
+					if ( is_null( $variantTitle ) ) {
 						continue;
 					}
 					$linkBatch->addObj( $variantTitle );
@@ -514,7 +514,7 @@ class LinkHolderArray {
 			}
 		}
 
-		if( !$linkBatch->isEmpty() ) {
+		if ( !$linkBatch->isEmpty() ) {
 			// construct query
 			$dbr = wfGetDB( DB_SLAVE );
 			$varRes = $dbr->select( 'page',
@@ -533,14 +533,14 @@ class LinkHolderArray {
 				$vardbk = $variantTitle->getDBkey();
 
 				$holderKeys = array();
-				if( isset( $variantMap[$varPdbk] ) ) {
+				if ( isset( $variantMap[$varPdbk] ) ) {
 					$holderKeys = $variantMap[$varPdbk];
 					$linkCache->addGoodLinkObjFromRow( $variantTitle, $s );
 					$output->addLink( $variantTitle, $s->page_id );
 				}
 
 				// loop over link holders
-				foreach( $holderKeys as $key ) {
+				foreach ( $holderKeys as $key ) {
 					list( $ns, $index ) = explode( ':', $key, 2 );
 					$entry =& $this->internals[$ns][$index];
 					$pdbk = $entry['pdbk'];
@@ -570,12 +570,12 @@ class LinkHolderArray {
 			wfRunHooks( 'GetLinkColours', array( $linkcolour_ids, &$colours ) );
 
 			// rebuild the categories in original order (if there are replacements)
-			if( count( $varCategories ) > 0 ) {
+			if ( count( $varCategories ) > 0 ) {
 				$newCats = array();
 				$originalCats = $output->getCategories();
-				foreach( $originalCats as $cat => $sortkey ) {
+				foreach ( $originalCats as $cat => $sortkey ) {
 					// make the replacement
-					if( array_key_exists( $cat, $varCategories ) ) {
+					if ( array_key_exists( $cat, $varCategories ) ) {
 						$newCats[$varCategories[$cat]] = $sortkey;
 					} else {
 						$newCats[$cat] = $sortkey;
@@ -615,13 +615,13 @@ class LinkHolderArray {
 	function replaceTextCallback( $matches ) {
 		$type = $matches[1];
 		$key = $matches[2];
-		if( $type == 'LINK' ) {
+		if ( $type == 'LINK' ) {
 			list( $ns, $index ) = explode( ':', $key, 2 );
-			if( isset( $this->internals[$ns][$index]['text'] ) ) {
+			if ( isset( $this->internals[$ns][$index]['text'] ) ) {
 				return $this->internals[$ns][$index]['text'];
 			}
-		} elseif( $type == 'IWLINK' ) {
-			if( isset( $this->interwikis[$key]['text'] ) ) {
+		} elseif ( $type == 'IWLINK' ) {
+			if ( isset( $this->interwikis[$key]['text'] ) ) {
 				return $this->interwikis[$key]['text'];
 			}
 		}

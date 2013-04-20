@@ -158,7 +158,7 @@ class MWTidy {
 		global $wgTidyInternal;
 
 		$retval = 0;
-		if( $wgTidyInternal ) {
+		if ( $wgTidyInternal ) {
 			$errorStr = self::execInternalTidy( $text, true, $retval );
 		} else {
 			$errorStr = self::execExternalTidy( $text, true, $retval );

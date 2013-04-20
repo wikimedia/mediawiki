@@ -769,9 +769,9 @@ class Parser {
 
 		if ( $target !== null ) {
 			return $target;
-		} elseif( $this->mOptions->getInterfaceMessage() ) {
+		} elseif ( $this->mOptions->getInterfaceMessage() ) {
 			return $this->mOptions->getUserLangObj();
-		} elseif( is_null( $this->mTitle ) ) {
+		} elseif ( is_null( $this->mTitle ) ) {
 			throw new MWException( __METHOD__ . ': $this->mTitle is null' );
 		}
 
@@ -1256,7 +1256,7 @@ class Parser {
 				'x' => 'X',
 			));
 			$titleObj = SpecialPage::getTitleFor( 'Booksources', $num );
-			return'<a href="' .
+			return '<a href="' .
 				htmlspecialchars( $titleObj->getLocalURL() ) .
 				"\" class=\"internal mw-magiclink-isbn\">ISBN $isbn</a>";
 		} else {
@@ -1462,41 +1462,57 @@ class Parser {
 				} else {
 					if ( strlen( $r ) == 2 ) {
 						if ( $state === 'i' ) {
-							$output .= '</i>'; $state = '';
+							$output .= '</i>';
+							$state = '';
 						} elseif ( $state === 'bi' ) {
-							$output .= '</i>'; $state = 'b';
+							$output .= '</i>';
+							$state = 'b';
 						} elseif ( $state === 'ib' ) {
-							$output .= '</b></i><b>'; $state = 'b';
+							$output .= '</b></i><b>';
+							$state = 'b';
 						} elseif ( $state === 'both' ) {
-							$output .= '<b><i>' . $buffer . '</i>'; $state = 'b';
+							$output .= '<b><i>' . $buffer . '</i>';
+							$state = 'b';
 						} else { # $state can be 'b' or ''
-							$output .= '<i>'; $state .= 'i';
+							$output .= '<i>';
+							$state .= 'i';
 						}
 					} elseif ( strlen( $r ) == 3 ) {
 						if ( $state === 'b' ) {
-							$output .= '</b>'; $state = '';
+							$output .= '</b>';
+							$state = '';
 						} elseif ( $state === 'bi' ) {
-							$output .= '</i></b><i>'; $state = 'i';
+							$output .= '</i></b><i>';
+							$state = 'i';
 						} elseif ( $state === 'ib' ) {
-							$output .= '</b>'; $state = 'i';
+							$output .= '</b>';
+							$state = 'i';
 						} elseif ( $state === 'both' ) {
-							$output .= '<i><b>' . $buffer . '</b>'; $state = 'i';
+							$output .= '<i><b>' . $buffer . '</b>';
+							$state = 'i';
 						} else { # $state can be 'i' or ''
-							$output .= '<b>'; $state .= 'b';
+							$output .= '<b>';
+							$state .= 'b';
 						}
 					} elseif ( strlen( $r ) == 5 ) {
 						if ( $state === 'b' ) {
-							$output .= '</b><i>'; $state = 'i';
+							$output .= '</b><i>';
+							$state = 'i';
 						} elseif ( $state === 'i' ) {
-							$output .= '</i><b>'; $state = 'b';
+							$output .= '</i><b>';
+							$state = 'b';
 						} elseif ( $state === 'bi' ) {
-							$output .= '</i></b>'; $state = '';
+							$output .= '</i></b>';
+							$state = '';
 						} elseif ( $state === 'ib' ) {
-							$output .= '</b></i>'; $state = '';
+							$output .= '</b></i>';
+							$state = '';
 						} elseif ( $state === 'both' ) {
-							$output .= '<i><b>' . $buffer . '</b></i>'; $state = '';
+							$output .= '<i><b>' . $buffer . '</b></i>';
+							$state = '';
 						} else { # ($state == '')
-							$buffer = ''; $state = 'both';
+							$buffer = '';
+							$state = 'both';
 						}
 					}
 				}
@@ -2491,7 +2507,7 @@ class Parser {
 		$state = self::COLON_STATE_TEXT;
 		$stack = 0;
 		$len = strlen( $str );
-		for( $i = 0; $i < $len; $i++ ) {
+		for ( $i = 0; $i < $len; $i++ ) {
 			$c = $str[$i];
 
 			switch( $state ) {
@@ -2778,7 +2794,7 @@ class Parser {
 				break;
 			case 'pageid': // requested in bug 23427
 				$pageid = $this->getTitle()->getArticleID();
-				if( $pageid == 0 ) {
+				if ( $pageid == 0 ) {
 					# 0 means the page doesn't exist in the database,
 					# which means the user is previewing a new page.
 					# The vary-revision flag must be set, because the magic word
@@ -3662,9 +3678,9 @@ class Parser {
 			if ( $skip ) {
 				$text = false;
 				$deps[] = array(
-					'title' 	=> $title,
-					'page_id' 	=> $title->getArticleID(),
-					'rev_id' 	=> null
+					'title' => $title,
+					'page_id' => $title->getArticleID(),
+					'rev_id' => null
 				);
 				break;
 			}
@@ -3680,15 +3696,15 @@ class Parser {
 			}
 
 			$deps[] = array(
-				'title' 	=> $title,
-				'page_id' 	=> $title->getArticleID(),
-				'rev_id' 	=> $rev_id );
+				'title' => $title,
+				'page_id' => $title->getArticleID(),
+				'rev_id' => $rev_id );
 			if ( $rev && !$title->equals( $rev->getTitle() ) ) {
 				# We fetched a rev from a different title; register it too...
 				$deps[] = array(
-					'title' 	=> $rev->getTitle(),
-					'page_id' 	=> $rev->getPage(),
-					'rev_id' 	=> $rev_id );
+					'title' => $rev->getTitle(),
+					'page_id' => $rev->getPage(),
+					'rev_id' => $rev_id );
 			}
 
 			if ( $rev ) {
@@ -4233,7 +4249,7 @@ class Parser {
 			# count number of headlines for each level
 			$sublevelCount[$toclevel]++;
 			$dot = 0;
-			for( $i = 1; $i <= $toclevel; $i++ ) {
+			for ( $i = 1; $i <= $toclevel; $i++ ) {
 				if ( !empty( $sublevelCount[$i] ) ) {
 					if ( $dot ) {
 						$numbering .= '.';
@@ -4486,7 +4502,7 @@ class Parser {
 			"\r\n" => "\n",
 		);
 		$text = str_replace( array_keys( $pairs ), array_values( $pairs ), $text );
-		if( $options->getPreSaveTransform() ) {
+		if ( $options->getPreSaveTransform() ) {
 			$text = $this->pstPass2( $text, $user );
 		}
 		$text = $this->mStripState->unstripBoth( $text );
@@ -4605,8 +4621,9 @@ class Parser {
 		$username = $user->getName();
 
 		# If not given, retrieve from the user object.
-		if ( $nickname === false )
+		if ( $nickname === false ) {
 			$nickname = $user->getOption( 'nickname' );
+		}
 
 		if ( is_null( $fancySig ) ) {
 			$fancySig = $user->getBoolOption( 'fancysig' );
@@ -4885,8 +4902,9 @@ class Parser {
 
 		# Add to function cache
 		$mw = MagicWord::get( $id );
-		if ( !$mw )
+		if ( !$mw ) {
 			throw new MWException( __METHOD__ . '() expecting a magic word identifier.' );
+		}
 
 		$synonyms = $mw->getSynonyms();
 		$sensitive = intval( $mw->isCaseSensitive() );
@@ -4930,7 +4948,9 @@ class Parser {
 	 */
 	function setFunctionTagHook( $tag, $callback, $flags ) {
 		$tag = strtolower( $tag );
-		if ( preg_match( '/[<>\r\n]/', $tag, $m ) ) throw new MWException( "Invalid character {$m[0]} in setFunctionTagHook('$tag', ...) call" );
+		if ( preg_match( '/[<>\r\n]/', $tag, $m ) ) {
+			throw new MWException( "Invalid character {$m[0]} in setFunctionTagHook('$tag', ...) call" );
+		}
 		$old = isset( $this->mFunctionTagHooks[$tag] ) ?
 			$this->mFunctionTagHooks[$tag] : null;
 		$this->mFunctionTagHooks[$tag] = array( $callback, $flags );
@@ -5049,7 +5069,7 @@ class Parser {
 					if ( $match = $magicWordAlt->matchVariableStartToEnd( $parameterMatch ) ) {
 						$alt = $this->stripAltText( $match, false );
 					}
-					elseif( $match = $magicWordLink->matchVariableStartToEnd( $parameterMatch ) ) {
+					elseif ( $match = $magicWordLink->matchVariableStartToEnd( $parameterMatch ) ) {
 						$linkValue = strip_tags( $this->replaceLinkHoldersText( $match ) );
 						$chars = self::EXT_LINK_URL_CLASS;
 						$prots = $this->mUrlProtocols;
@@ -5189,14 +5209,14 @@ class Parser {
 				# Special case; width and height come in one variable together
 				if ( $type === 'handler' && $paramName === 'width' ) {
 					$parsedWidthParam = $this->parseWidthParam( $value );
-					if( isset( $parsedWidthParam['width'] ) ) {
+					if ( isset( $parsedWidthParam['width'] ) ) {
 						$width = $parsedWidthParam['width'];
 						if ( $handler->validateParam( 'width', $width ) ) {
 							$params[$type]['width'] = $width;
 							$validated = true;
 						}
 					}
-					if( isset( $parsedWidthParam['height'] ) ) {
+					if ( isset( $parsedWidthParam['height'] ) ) {
 						$height = $parsedWidthParam['height'];
 						if ( $handler->validateParam( 'height', $height ) ) {
 							$params[$type]['height'] = $height;
@@ -5648,14 +5668,14 @@ class Parser {
 	 * @return String: user name
 	 */
 	function getRevisionUser() {
-		if( is_null( $this->mRevisionUser ) ) {
+		if ( is_null( $this->mRevisionUser ) ) {
 			$revObject = $this->getRevisionObject();
 
 			# if this template is subst: the revision id will be blank,
 			# so just use the current user's name
-			if( $revObject ) {
+			if ( $revObject ) {
 				$this->mRevisionUser = $revObject->getUserText();
-			} elseif( $this->ot['wiki'] || $this->mOptions->getIsPreview() ) {
+			} elseif ( $this->ot['wiki'] || $this->mOptions->getIsPreview() ) {
 				$this->mRevisionUser = $this->getUser()->getName();
 			}
 		}
@@ -5935,7 +5955,7 @@ class Parser {
 	 */
 	public function parseWidthParam( $value ) {
 		$parsedWidthParam = array();
-		if( $value === '' ) {
+		if ( $value === '' ) {
 			return $parsedWidthParam;
 		}
 		$m = array();

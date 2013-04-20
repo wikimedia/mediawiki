@@ -61,12 +61,12 @@ class SearchSqlite extends SearchEngine {
 		$this->searchTerms = array();
 
 		$m = array();
-		if( preg_match_all( '/([-+<>~]?)(([' . $lc . ']+)(\*?)|"[^"]*")/',
+		if ( preg_match_all( '/([-+<>~]?)(([' . $lc . ']+)(\*?)|"[^"]*")/',
 				$filteredText, $m, PREG_SET_ORDER ) ) {
-			foreach( $m as $bits ) {
+			foreach ( $m as $bits ) {
 				@list( /* all */, $modifier, $term, $nonQuoted, $wildcard ) = $bits;
 
-				if( $nonQuoted != '' ) {
+				if ( $nonQuoted != '' ) {
 					$term = $nonQuoted;
 					$quote = '';
 				} else {
@@ -74,14 +74,14 @@ class SearchSqlite extends SearchEngine {
 					$quote = '"';
 				}
 
-				if( $searchon !== '' ) {
+				if ( $searchon !== '' ) {
 					$searchon .= ' ';
 				}
 
 				// Some languages such as Serbian store the input form in the search index,
 				// so we may need to search for matches in multiple writing system variants.
 				$convertedVariants = $wgContLang->autoConvertToAllVariants( $term );
-				if( is_array( $convertedVariants ) ) {
+				if ( is_array( $convertedVariants ) ) {
 					$variants = array_unique( array_values( $convertedVariants ) );
 				} else {
 					$variants = array( $term );
@@ -101,10 +101,11 @@ class SearchSqlite extends SearchEngine {
 				$strippedVariants = array_unique( $strippedVariants );
 
 				$searchon .= $modifier;
-				if( count( $strippedVariants ) > 1 )
+				if ( count( $strippedVariants ) > 1 ) {
 					$searchon .= '(';
-				foreach( $strippedVariants as $stripped ) {
-					if( $nonQuoted && strpos( $stripped, ' ' ) !== false ) {
+				}
+				foreach ( $strippedVariants as $stripped ) {
+					if ( $nonQuoted && strpos( $stripped, ' ' ) !== false ) {
 						// Hack for Chinese: we need to toss in quotes for
 						// multiple-character phrases since normalizeForSearch()
 						// added spaces between them to make word breaks.
@@ -112,8 +113,9 @@ class SearchSqlite extends SearchEngine {
 					}
 					$searchon .= "$quote$stripped$quote$wildcard ";
 				}
-				if( count( $strippedVariants ) > 1 )
+				if ( count( $strippedVariants ) > 1 ) {
 					$searchon .= ')';
+				}
 
 				// Match individual terms or quoted phrase in result highlighting...
 				// Note that variants will be introduced in a later stage for highlighting!
@@ -134,8 +136,8 @@ class SearchSqlite extends SearchEngine {
 		global $wgContLang;
 
 		$regex = preg_quote( $string, '/' );
-		if( $wgContLang->hasWordBreaks() ) {
-			if( $wildcard ) {
+		if ( $wgContLang->hasWordBreaks() ) {
+			if ( $wildcard ) {
 				// Don't cut off the final bit!
 				$regex = "\b$regex";
 			} else {
@@ -184,10 +186,10 @@ class SearchSqlite extends SearchEngine {
 		$resultSet = $this->db->query( $this->getQuery( $filteredTerm, $fulltext ) );
 
 		$total = null;
-		if( $wgCountTotalSearchHits ) {
+		if ( $wgCountTotalSearchHits ) {
 			$totalResult = $this->db->query( $this->getCountQuery( $filteredTerm, $fulltext ) );
 			$row = $totalResult->fetchObject();
-			if( $row ) {
+			if ( $row ) {
 				$total = intval( $row->c );
 			}
 			$totalResult->free();
@@ -201,7 +203,7 @@ class SearchSqlite extends SearchEngine {
 	 * @return String
 	 */
 	function queryRedirect() {
-		if( $this->showRedirects ) {
+		if ( $this->showRedirects ) {
 			return '';
 		} else {
 			return 'AND page_is_redirect=0';
@@ -213,8 +215,9 @@ class SearchSqlite extends SearchEngine {
 	 * @return String
 	 */
 	function queryNamespaces() {
-		if( is_null( $this->namespaces ) )
+		if ( is_null( $this->namespaces ) ) {
 			return '';  # search all
+		}
 		if ( !count( $this->namespaces ) ) {
 			$namespaces = '0';
 		} else {
@@ -324,7 +327,7 @@ class SearchSqlite extends SearchEngine {
 
 		$dbw->update( 'searchindex',
 			array( 'si_title' => $title ),
-			array( 'rowid'  => $id ),
+			array( 'rowid' => $id ),
 			__METHOD__ );
 	}
 }

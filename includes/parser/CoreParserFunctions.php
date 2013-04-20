@@ -138,8 +138,9 @@ class CoreParserFunctions {
 
 		// Specify a different default date format other than the the normal default
 		// iff the user has 'default' for their setting
-		if ( $pref == 'default' && $defaultPref )
+		if ( $pref == 'default' && $defaultPref ) {
 			$pref = $defaultPref;
+		}
 
 		$date = $df->reformat( $pref, $date, array( 'match-whole' ) );
 		return $date;
@@ -248,14 +249,15 @@ class CoreParserFunctions {
 		# before arriving here; if that's true, then the title can't be created
 		# and the variable will fail. If we can't get a decent title from the first
 		# attempt, url-decode and try for a second.
-		if( is_null( $title ) )
+		if ( is_null( $title ) ) {
 			$title = Title::newFromURL( urldecode( $s ) );
-		if( !is_null( $title ) ) {
+		}
+		if ( !is_null( $title ) ) {
 			# Convert NS_MEDIA -> NS_FILE
-			if( $title->getNamespace() == NS_MEDIA ) {
+			if ( $title->getNamespace() == NS_MEDIA ) {
 				$title = Title::makeTitle( NS_FILE, $title->getDBkey() );
 			}
-			if( !is_null( $arg ) ) {
+			if ( !is_null( $arg ) ) {
 				$text = $title->$func( $arg );
 			} else {
 				$text = $title->$func();
@@ -377,12 +379,10 @@ class CoreParserFunctions {
 		$text = Sanitizer::normalizeCharReferences( Sanitizer::removeHTMLtags( $text, null, array(), array(), $bad ) );
 		$title = Title::newFromText( Sanitizer::stripAllTags( $text ) );
 
-		if( !$wgRestrictDisplayTitle ) {
+		if ( !$wgRestrictDisplayTitle ) {
 			$parser->mOutput->setDisplayTitle( $text );
-		} else {
-			if ( $title instanceof Title && $title->getFragment() == '' && $title->equals( $parser->mTitle ) ) {
-				$parser->mOutput->setDisplayTitle( $text );
-			}
+		} elseif ( $title instanceof Title && $title->getFragment() == '' && $title->equals( $parser->mTitle ) ) {
+			$parser->mOutput->setDisplayTitle( $text );
 		}
 
 		return '';
@@ -404,7 +404,7 @@ class CoreParserFunctions {
 	}
 
 	static function formatRaw( $num, $raw ) {
-		if( self::matchAgainstMagicword( 'rawsuffix', $raw ) ) {
+		if ( self::matchAgainstMagicword( 'rawsuffix', $raw ) ) {
 			return $num;
 		} else {
 			global $wgContLang;
@@ -451,44 +451,51 @@ class CoreParserFunctions {
 	 */
 	static function mwnamespace( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
-		if ( is_null( $t ) )
+		if ( is_null( $t ) ) {
 			return '';
+		}
 		return str_replace( '_', ' ', $t->getNsText() );
 	}
 	static function namespacee( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
-		if ( is_null( $t ) )
+		if ( is_null( $t ) ) {
 			return '';
+		}
 		return wfUrlencode( $t->getNsText() );
 	}
 	static function namespacenumber( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
-		if ( is_null( $t ) )
+		if ( is_null( $t ) ) {
 			return '';
+		}
 		return $t->getNamespace();
 	}
 	static function talkspace( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
-		if ( is_null( $t ) || !$t->canTalk() )
+		if ( is_null( $t ) || !$t->canTalk() ) {
 			return '';
+		}
 		return str_replace( '_', ' ', $t->getTalkNsText() );
 	}
 	static function talkspacee( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
-		if ( is_null( $t ) || !$t->canTalk() )
+		if ( is_null( $t ) || !$t->canTalk() ) {
 			return '';
+		}
 		return wfUrlencode( $t->getTalkNsText() );
 	}
 	static function subjectspace( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
-		if ( is_null( $t ) )
+		if ( is_null( $t ) ) {
 			return '';
+		}
 		return str_replace( '_', ' ', $t->getSubjectNsText() );
 	}
 	static function subjectspacee( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
-		if ( is_null( $t ) )
+		if ( is_null( $t ) ) {
 			return '';
+		}
 		return wfUrlencode( $t->getSubjectNsText() );
 	}
 
@@ -499,74 +506,86 @@ class CoreParserFunctions {
 	 */
 	static function pagename( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
-		if ( is_null( $t ) )
+		if ( is_null( $t ) ) {
 			return '';
+		}
 		return wfEscapeWikiText( $t->getText() );
 	}
 	static function pagenamee( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
-		if ( is_null( $t ) )
+		if ( is_null( $t ) ) {
 			return '';
+		}
 		return wfEscapeWikiText( $t->getPartialURL() );
 	}
 	static function fullpagename( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
-		if ( is_null( $t ) || !$t->canTalk() )
+		if ( is_null( $t ) || !$t->canTalk() ) {
 			return '';
+		}
 		return wfEscapeWikiText( $t->getPrefixedText() );
 	}
 	static function fullpagenamee( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
-		if ( is_null( $t ) || !$t->canTalk() )
+		if ( is_null( $t ) || !$t->canTalk() ) {
 			return '';
+		}
 		return wfEscapeWikiText( $t->getPrefixedURL() );
 	}
 	static function subpagename( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
-		if ( is_null( $t ) )
+		if ( is_null( $t ) ) {
 			return '';
+		}
 		return wfEscapeWikiText( $t->getSubpageText() );
 	}
 	static function subpagenamee( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
-		if ( is_null( $t ) )
+		if ( is_null( $t ) ) {
 			return '';
+		}
 		return wfEscapeWikiText( $t->getSubpageUrlForm() );
 	}
 	static function basepagename( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
-		if ( is_null( $t ) )
+		if ( is_null( $t ) ) {
 			return '';
+		}
 		return wfEscapeWikiText( $t->getBaseText() );
 	}
 	static function basepagenamee( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
-		if ( is_null( $t ) )
+		if ( is_null( $t ) ) {
 			return '';
+		}
 		return wfEscapeWikiText( wfUrlEncode( str_replace( ' ', '_', $t->getBaseText() ) ) );
 	}
 	static function talkpagename( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
-		if ( is_null( $t ) || !$t->canTalk() )
+		if ( is_null( $t ) || !$t->canTalk() ) {
 			return '';
+		}
 		return wfEscapeWikiText( $t->getTalkPage()->getPrefixedText() );
 	}
 	static function talkpagenamee( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
-		if ( is_null( $t ) || !$t->canTalk() )
+		if ( is_null( $t ) || !$t->canTalk() ) {
 			return '';
+		}
 		return wfEscapeWikiText( $t->getTalkPage()->getPrefixedURL() );
 	}
 	static function subjectpagename( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
-		if ( is_null( $t ) )
+		if ( is_null( $t ) ) {
 			return '';
+		}
 		return wfEscapeWikiText( $t->getSubjectPage()->getPrefixedText() );
 	}
 	static function subjectpagenamee( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
-		if ( is_null( $t ) )
+		if ( is_null( $t ) ) {
 			return '';
+		}
 		return wfEscapeWikiText( $t->getSubjectPage()->getPrefixedURL() );
 	}
 
@@ -589,7 +608,7 @@ class CoreParserFunctions {
 		static $cache = array();
 
 		// split the given option to its variable
-		if( self::matchAgainstMagicword( 'rawsuffix', $arg1 ) ) {
+		if ( self::matchAgainstMagicword( 'rawsuffix', $arg1 ) ) {
 			//{{pagesincategory:|raw[|type]}}
 			$raw = $arg1;
 			$type = $magicWords->matchStartToEnd( $arg2 );
@@ -598,23 +617,23 @@ class CoreParserFunctions {
 			$type = $magicWords->matchStartToEnd( $arg1 );
 			$raw = $arg2;
 		}
-		if( !$type ) { //backward compatibility
+		if ( !$type ) { //backward compatibility
 			$type = 'pagesincategory_all';
 		}
 
 		$title = Title::makeTitleSafe( NS_CATEGORY, $name );
-		if( !$title ) { # invalid title
+		if ( !$title ) { # invalid title
 			return self::formatRaw( 0, $raw );
 		}
 
 		// Normalize name for cache
 		$name = $title->getDBkey();
 
-		if( !isset( $cache[$name] ) ) {
+		if ( !isset( $cache[$name] ) ) {
 			$category = Category::newFromTitle( $title );
 
 			$allCount = $subcatCount = $fileCount = $pagesCount = 0;
-			if( $parser->incrementExpensiveFunctionCount() ) {
+			if ( $parser->incrementExpensiveFunctionCount() ) {
 				// $allCount is the total number of cat members,
 				// not the count of how many members are normal pages.
 				$allCount = (int)$category->getPageCount();
@@ -653,7 +672,7 @@ class CoreParserFunctions {
 		static $cache = array();
 		$title = Title::newFromText( $page );
 
-		if( !is_object( $title ) ) {
+		if ( !is_object( $title ) ) {
 			$cache[$page] = 0;
 			return self::formatRaw( 0, $raw );
 		}
@@ -662,9 +681,9 @@ class CoreParserFunctions {
 		$page = $title->getPrefixedText();
 
 		$length = 0;
-		if( isset( $cache[$page] ) ) {
+		if ( isset( $cache[$page] ) ) {
 			$length = $cache[$page];
-		} elseif( $parser->incrementExpensiveFunctionCount() ) {
+		} elseif ( $parser->incrementExpensiveFunctionCount() ) {
 			$rev = Revision::newFromTitle( $title, false, Revision::READ_NORMAL );
 			$pageID = $rev ? $rev->getPage() : 0;
 			$revID = $rev ? $rev->getId() : 0;
@@ -717,7 +736,9 @@ class CoreParserFunctions {
 	static function pad( $parser, $string, $length, $padding = '0', $direction = STR_PAD_RIGHT ) {
 		$padding = $parser->killMarkers( $padding );
 		$lengthOfPadding = mb_strlen( $padding );
-		if ( $lengthOfPadding == 0 ) return $string;
+		if ( $lengthOfPadding == 0 ) {
+			return $string;
+		}
 
 		# The remaining length to add counts down to 0 as padding is added
 		$length = min( $length, 500 ) - mb_strlen( $string );
@@ -786,14 +807,15 @@ class CoreParserFunctions {
 		$arg = $magicWords->matchStartToEnd( $uarg );
 
 		$text = trim( $text );
-		if( strlen( $text ) == 0 )
+		if ( strlen( $text ) == 0 ) {
 			return '';
+		}
 		$old = $parser->getCustomDefaultSort();
 		if ( $old === false || $arg !== 'defaultsort_noreplace' ) {
 			$parser->setDefaultSort( $text );
 		}
 
-		if( $old === false || $old == $text || $arg ) {
+		if ( $old === false || $old == $text || $arg ) {
 			return '';
 		} else {
 			return( '<span class="error">' .
@@ -807,14 +829,14 @@ class CoreParserFunctions {
 	public static function filepath( $parser, $name = '', $argA = '', $argB = '' ) {
 		$file = wfFindFile( $name );
 
-		if( $argA == 'nowiki' ) {
+		if ( $argA == 'nowiki' ) {
 			// {{filepath: | option [| size] }}
 			$isNowiki = true;
 			$parsedWidthParam = $parser->parseWidthParam( $argB );
 		} else {
 			// {{filepath: [| size [|option]] }}
 			$parsedWidthParam = $parser->parseWidthParam( $argA );
-			$isNowiki = ($argB == 'nowiki');
+			$isNowiki = ( $argB == 'nowiki' );
 		}
 
 		if ( $file ) {

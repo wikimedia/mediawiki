@@ -176,10 +176,10 @@ class ParserOutput extends CacheTime {
 		global $wgServer, $wgRegisterInternalExternals;
 
 		$registerExternalLink = true;
-		if( !$wgRegisterInternalExternals ) {
+		if ( !$wgRegisterInternalExternals ) {
 			$registerExternalLink = !self::isLinkInternal( $wgServer, $url );
 		}
-		if( $registerExternalLink ) {
+		if ( $registerExternalLink ) {
 			$this->mExternalLinks[$url] = 1;
 		}
 	}
@@ -201,11 +201,11 @@ class ParserOutput extends CacheTime {
 		if ( $ns == NS_MEDIA ) {
 			// Normalize this pseudo-alias if it makes it down here...
 			$ns = NS_FILE;
-		} elseif( $ns == NS_SPECIAL ) {
+		} elseif ( $ns == NS_SPECIAL ) {
 			// We don't record Special: links currently
 			// It might actually be wise to, but we'd need to do some normalization.
 			return;
-		} elseif( $dbk === '' ) {
+		} elseif ( $dbk === '' ) {
 			// Don't record self links -  [[#Foo]]
 			return;
 		}
@@ -258,7 +258,7 @@ class ParserOutput extends CacheTime {
 	 */
 	function addInterwikiLink( $title ) {
 		$prefix = $title->getInterwiki();
-		if( $prefix == '' ) {
+		if ( $prefix == '' ) {
 			throw new MWException( 'Non-interwiki link passed, internal parser error.' );
 		}
 		if ( !isset( $this->mInterwikiLinks[$prefix] ) ) {
@@ -329,7 +329,7 @@ class ParserOutput extends CacheTime {
 	 */
 	public function getDisplayTitle() {
 		$t = $this->getTitleText();
-		if( $t === '' ) {
+		if ( $t === '' ) {
 			return false;
 		}
 		return $t;

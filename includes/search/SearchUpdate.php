@@ -40,7 +40,7 @@ class SearchUpdate implements DeferrableUpdate {
 			$nt = $title;
 		}
 
-		if( $nt ) {
+		if ( $nt ) {
 			$this->mId = $id;
 			$this->mText = $text;
 
@@ -56,7 +56,7 @@ class SearchUpdate implements DeferrableUpdate {
 	function doUpdate() {
 		global $wgContLang, $wgDisableSearchUpdate;
 
-		if( $wgDisableSearchUpdate || !$this->mId ) {
+		if ( $wgDisableSearchUpdate || !$this->mId ) {
 			return;
 		}
 
@@ -65,7 +65,7 @@ class SearchUpdate implements DeferrableUpdate {
 		$search = SearchEngine::create();
 		$lc = SearchEngine::legalSearchChars() . '&#;';
 
-		if( $this->mText === false ) {
+		if ( $this->mText === false ) {
 			$search->updateTitle( $this->mId,
 				$search->normalizeText( Title::indexTitle( $this->mNamespace, $this->mTitle ) ) );
 			wfProfileOut( __METHOD__ );

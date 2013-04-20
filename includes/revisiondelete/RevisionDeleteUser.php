@@ -54,7 +54,7 @@ class RevisionDeleteUser {
 		# The same goes for the sysop-restricted *_deleted bit.
 		$delUser = Revision::DELETED_USER | Revision::DELETED_RESTRICTED;
 		$delAction = LogPage::DELETED_ACTION | Revision::DELETED_RESTRICTED;
-		if( $op == '&' ) {
+		if ( $op == '&' ) {
 			$delUser = "~{$delUser}";
 			$delAction = "~{$delAction}";
 		}

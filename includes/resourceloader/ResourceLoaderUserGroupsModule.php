@@ -54,7 +54,7 @@ class ResourceLoaderUserGroupsModule extends ResourceLoaderWikiModule {
 		}
 
 		$pages = array();
-		foreach( $user->getEffectiveGroups() as $group ) {
+		foreach ( $user->getEffectiveGroups() as $group ) {
 			if ( in_array( $group, array( '*', 'user' ) ) ) {
 				continue;
 			}

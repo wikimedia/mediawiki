@@ -170,8 +170,9 @@ class SearchMssql extends SearchEngine {
 
 				if ( !empty( $terms[3] ) ) {
 					$regexp = preg_quote( $terms[3], '/' );
-					if ( $terms[4] )
+					if ( $terms[4] ) {
 						$regexp .= "[0-9A-Za-z_]+";
+					}
 				} else {
 					$regexp = preg_quote( str_replace( '"', '', $terms[2] ), '/' );
 				}
@@ -247,8 +248,9 @@ class MssqlSearchResultSet extends SearchResultSet {
 
 	function next() {
 		$row = $this->mResultSet->fetchObject();
-		if ( $row === false )
+		if ( $row === false ) {
 			return false;
+		}
 		return new SearchResult( $row );
 	}
 }

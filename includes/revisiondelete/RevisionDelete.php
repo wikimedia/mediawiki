@@ -52,7 +52,7 @@ class RevDel_RevisionList extends RevDel_List {
 			array_merge( Revision::selectFields(), Revision::selectUserFields() ),
 			array(
 				'rev_page' => $this->title->getArticleID(),
-				'rev_id'   => $ids,
+				'rev_id' => $ids,
 			),
 			__METHOD__,
 			array( 'ORDER BY' => 'rev_id DESC' ),
@@ -292,7 +292,7 @@ class RevDel_ArchiveList extends RevDel_RevisionList {
 		return $db->select( 'archive', '*',
 				array(
 					'ar_namespace' => $this->title->getNamespace(),
-					'ar_title'     => $this->title->getDBkey(),
+					'ar_title' => $this->title->getDBkey(),
 					'ar_timestamp' => $timestamps
 				),
 				__METHOD__,
@@ -349,12 +349,12 @@ class RevDel_ArchiveItem extends RevDel_RevisionItem {
 		$dbw->update( 'archive',
 			array( 'ar_deleted' => $bits ),
 			array(
-				'ar_namespace' 	=> $this->list->title->getNamespace(),
-				'ar_title'     	=> $this->list->title->getDBkey(),
+				'ar_namespace' => $this->list->title->getNamespace(),
+				'ar_title' => $this->list->title->getDBkey(),
 				// use timestamp for index
-				'ar_timestamp' 	=> $this->row->ar_timestamp,
-				'ar_rev_id'    	=> $this->row->ar_rev_id,
-				'ar_deleted' 	=> $this->getBits()
+				'ar_timestamp' => $this->row->ar_timestamp,
+				'ar_rev_id' => $this->row->ar_rev_id,
+				'ar_deleted' => $this->getBits()
 			),
 			__METHOD__ );
 		return (bool)$dbw->affectedRows();
@@ -449,14 +449,14 @@ class RevDel_FileList extends RevDel_List {
 	 */
 	public function doQuery( $db ) {
 		$archiveNames = array();
-		foreach( $this->ids as $timestamp ) {
+		foreach ( $this->ids as $timestamp ) {
 			$archiveNames[] = $timestamp . '!' . $this->title->getDBkey();
 		}
 		return $db->select(
 			'oldimage',
 			OldLocalFile::selectFields(),
 			array(
-				'oi_name'         => $this->title->getDBkey(),
+				'oi_name' => $this->title->getDBkey(),
 				'oi_archive_name' => $archiveNames
 			),
 			__METHOD__,
@@ -623,8 +623,8 @@ class RevDel_FileItem extends RevDel_Item {
 				array(),
 				array(
 					'target' => $this->list->title->getPrefixedText(),
-					'file'   => $this->file->getArchiveName(),
-					'token'  => $this->list->getUser()->getEditToken(
+					'file' => $this->file->getArchiveName(),
+					'token' => $this->list->getUser()->getEditToken(
 						$this->file->getArchiveName() )
 				)
 			);
@@ -636,13 +636,13 @@ class RevDel_FileItem extends RevDel_Item {
 	 * @return string HTML
 	 */
 	protected function getUserTools() {
-		if( $this->file->userCan( Revision::DELETED_USER, $this->list->getUser() ) ) {
+		if ( $this->file->userCan( Revision::DELETED_USER, $this->list->getUser() ) ) {
 			$link = Linker::userLink( $this->file->user, $this->file->user_text ) .
 				Linker::userToolLinks( $this->file->user, $this->file->user_text );
 		} else {
 			$link = $this->list->msg( 'rev-deleted-user' )->escaped();
 		}
-		if( $this->file->isDeleted( Revision::DELETED_USER ) ) {
+		if ( $this->file->isDeleted( Revision::DELETED_USER ) ) {
 			return '<span class="history-deleted">' . $link . '</span>';
 		}
 		return $link;
@@ -655,12 +655,12 @@ class RevDel_FileItem extends RevDel_Item {
 	 * @return string HTML
 	 */
 	protected function getComment() {
-		if( $this->file->userCan( File::DELETED_COMMENT, $this->list->getUser() ) ) {
+		if ( $this->file->userCan( File::DELETED_COMMENT, $this->list->getUser() ) ) {
 			$block = Linker::commentBlock( $this->file->description );
 		} else {
 			$block = ' ' . $this->list->msg( 'rev-deleted-comment' )->escaped();
 		}
-		if( $this->file->isDeleted( File::DELETED_COMMENT ) ) {
+		if ( $this->file->isDeleted( File::DELETED_COMMENT ) ) {
 			return "<span class=\"history-deleted\">$block</span>";
 		}
 		return $block;
@@ -700,7 +700,7 @@ class RevDel_ArchivedFileList extends RevDel_FileList {
 			ArchivedFile::selectFields(),
 			array(
 				'fa_name' => $this->title->getDBkey(),
-				'fa_id'   => $ids
+				'fa_id' => $ids
 			),
 			__METHOD__,
 			array( 'ORDER BY' => 'fa_id DESC' )
@@ -759,7 +759,7 @@ class RevDel_ArchivedFileItem extends RevDel_FileItem {
 			$this->file->getTimestamp(), $this->list->getUser() ) );
 
 		# Hidden files...
-		if( !$this->canViewContent() ) {
+		if ( !$this->canViewContent() ) {
 			$link = $date;
 		} else {
 			$undelete = SpecialPage::getTitleFor( 'Undelete' );
@@ -772,7 +772,7 @@ class RevDel_ArchivedFileItem extends RevDel_FileItem {
 				)
 			);
 		}
-		if( $this->isDeleted() ) {
+		if ( $this->isDeleted() ) {
 			$link = '<span class="history-deleted">' . $link . '</span>';
 		}
 		return $link;
@@ -901,7 +901,7 @@ class RevDel_LogItem extends RevDel_Item {
 		$action = $formatter->getActionText();
 		// Comment
 		$comment = $this->list->getLanguage()->getDirMark() . Linker::commentBlock( $this->row->log_comment );
-		if( LogEventsList::isDeleted( $this->row, LogPage::DELETED_COMMENT ) ) {
+		if ( LogEventsList::isDeleted( $this->row, LogPage::DELETED_COMMENT ) ) {
 			$comment = '<span class="history-deleted">' . $comment . '</span>';
 		}
 

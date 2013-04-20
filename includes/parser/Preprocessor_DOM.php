@@ -577,7 +577,7 @@ class Preprocessor_DOM implements Preprocessor {
 						'open' => $curChar,
 						'close' => $rule['end'],
 						'count' => $count,
-						'lineStart' => ($i > 0 && $text[$i - 1] == "\n"),
+						'lineStart' => ( $i > 0 && $text[$i - 1] == "\n" ),
 					);
 
 					$stack->push( $piece );
@@ -1214,7 +1214,9 @@ class PPFrame_DOM implements PPFrame {
 		$first = true;
 		$s = '';
 		foreach ( $args as $root ) {
-			if ( $root instanceof PPNode_DOM ) $root = $root->node;
+			if ( $root instanceof PPNode_DOM ) {
+				$root = $root->node;
+			}
 			if ( !is_array( $root ) && !( $root instanceof DOMNodeList ) ) {
 				$root = array( $root );
 			}

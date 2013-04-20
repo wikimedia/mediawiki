@@ -93,7 +93,7 @@ class CacheTime {
 			$expire = min( $expire, $wgParserCacheExpireTime );
 		}
 
-		if( $this->containsOldMagic() ) { //compatibility hack
+		if ( $this->containsOldMagic() ) { //compatibility hack
 			$expire = min( $expire, 3600 ); # 1 hour
 		}
 

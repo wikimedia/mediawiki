@@ -331,8 +331,9 @@ class SearchEngine {
 				$parsed = substr( $query, strlen( $prefix ) + 1 );
 			}
 		}
-		if ( trim( $parsed ) == '' )
+		if ( trim( $parsed ) == '' ) {
 			$parsed = $query; // prefix was the whole query
+		}
 
 		wfRunHooks( 'SearchEngineReplacePrefixesComplete', array( $this, $query, &$parsed ) );
 
@@ -420,8 +421,9 @@ class SearchEngine {
 
 		$formatted = array_map( array( $wgContLang, 'getFormattedNsText' ), $namespaces );
 		foreach ( $formatted as $key => $ns ) {
-			if ( empty( $ns ) )
+			if ( empty( $ns ) ) {
 				$formatted[$key] = wfMessage( 'blanknamespace' )->text();
+			}
 		}
 		return $formatted;
 	}
@@ -641,26 +643,30 @@ class SqlSearchResultSet extends SearchResultSet {
 	}
 
 	function numRows() {
-		if ( $this->mResultSet === false )
+		if ( $this->mResultSet === false ) {
 			return false;
+		}
 
 		return $this->mResultSet->numRows();
 	}
 
 	function next() {
-		if ( $this->mResultSet === false )
+		if ( $this->mResultSet === false ) {
 			return false;
+		}
 
 		$row = $this->mResultSet->fetchObject();
-		if ( $row === false )
+		if ( $row === false ) {
 			return false;
+		}
 
 		return SearchResult::newFromRow( $row );
 	}
 
 	function free() {
-		if ( $this->mResultSet === false )
+		if ( $this->mResultSet === false ) {
 			return false;
+		}
 
 		$this->mResultSet->free();
 	}
@@ -750,8 +756,9 @@ class SearchResult {
 			wfRunHooks( 'SearchResultInitFromTitle', array( $title, &$id ) );
 			$this->mRevision = Revision::newFromTitle(
 				$this->mTitle, $id, Revision::READ_NORMAL );
-			if ( $this->mTitle->getNamespace() === NS_FILE )
+			if ( $this->mTitle->getNamespace() === NS_FILE ) {
 				$this->mImage = wfFindFile( $this->mTitle );
+			}
 		}
 	}
 
@@ -761,8 +768,9 @@ class SearchResult {
 	 * @return Boolean
 	 */
 	function isBrokenTitle() {
-		if ( is_null( $this->mTitle ) )
+		if ( is_null( $this->mTitle ) ) {
 			return true;
+		}
 		return false;
 	}
 
@@ -816,10 +824,11 @@ class SearchResult {
 		// TODO: make highliter take a content object. Make ContentHandler a factory for SearchHighliter.
 		list( $contextlines, $contextchars ) = SearchEngine::userHighlightPrefs( $wgUser );
 		$h = new SearchHighlighter();
-		if ( $wgAdvancedSearchHighlighting )
+		if ( $wgAdvancedSearchHighlighting ) {
 			return $h->highlightText( $this->mText, $terms, $contextlines, $contextchars );
-		else
+		} else {
 			return $h->highlightSimple( $this->mText, $terms, $contextlines, $contextchars );
+		}
 	}
 
 	/**
@@ -863,10 +872,11 @@ class SearchResult {
 	 * @return String: timestamp
 	 */
 	function getTimestamp() {
-		if ( $this->mRevision )
+		if ( $this->mRevision ) {
 			return $this->mRevision->getTimestamp();
-		elseif ( $this->mImage )
+		} elseif ( $this->mImage ) {
 			return $this->mImage->getTimestamp();
+		}
 		return '';
 	}
 
@@ -952,8 +962,9 @@ class SearchHighlighter {
 		global $wgSearchHighlightBoundaries;
 		$fname = __METHOD__;
 
-		if ( $text == '' )
+		if ( $text == '' ) {
 			return '';
+		}
 
 		// spli text into text + templates/links/tables
 		$spat = "/(\\{\\{)|(\\[\\[[^\\]:]+:)|(\n\\{\\|)";
@@ -984,8 +995,9 @@ class SearchHighlighter {
 						if ( $key == 2 ) {
 							// see if this is an image link
 							$ns = substr( $val[0], 2, - 1 );
-							if ( $wgContLang->getNsIndex( $ns ) != NS_FILE )
+							if ( $wgContLang->getNsIndex( $ns ) != NS_FILE ) {
 								break;
+							}
 
 						}
 						$epat = $endPatterns[$key];
@@ -1155,17 +1167,19 @@ class SearchHighlighter {
 		$last = - 1;
 		$extract = '';
 		foreach ( $snippets as $index => $line ) {
-			if ( $last == - 1 )
+			if ( $last == - 1 ) {
 				$extract .= $line; // first line
-			elseif ( $last + 1 == $index && $offsets[$last] + strlen( $snippets[$last] ) >= strlen( $all[$last] ) )
+			} elseif ( $last + 1 == $index && $offsets[$last] + strlen( $snippets[$last] ) >= strlen( $all[$last] ) ) {
 				$extract .= " " . $line; // continous lines
-			else
+			} else {
 				$extract .= '<b> ... </b>' . $line;
+			}
 
 			$last = $index;
 		}
-		if ( $extract )
+		if ( $extract ) {
 			$extract .= '<b> ... </b>';
+		}
 
 		$processed = array();
 		foreach ( $terms as $term ) {
@@ -1193,8 +1207,9 @@ class SearchHighlighter {
 		$split = explode( "\n", $this->mCleanWikitext ? $this->removeWiki( $text ) : $text );
 		foreach ( $split as $line ) {
 			$tt = trim( $line );
-			if ( $tt )
+			if ( $tt ) {
 				$extracts[$count++] = $tt;
+			}
 		}
 	}
 
@@ -1268,8 +1283,9 @@ class SearchHighlighter {
 			while ( $char >= 0x80 && $char < 0xc0 ) {
 				// skip trailing bytes
 				$point++;
-				if ( $point >= strlen( $text ) )
+				if ( $point >= strlen( $text ) ) {
 					return strlen( $text );
+				}
 				$char = ord( $text[$point] );
 			}
 			return $point;
@@ -1289,24 +1305,28 @@ class SearchHighlighter {
 	 * @protected
 	 */
 	function process( $pattern, $extracts, &$linesleft, &$contextchars, &$out, &$offsets ) {
-		if ( $linesleft == 0 )
+		if ( $linesleft == 0 ) {
 			return; // nothing to do
+		}
 		foreach ( $extracts as $index => $line ) {
-			if ( array_key_exists( $index, $out ) )
+			if ( array_key_exists( $index, $out ) ) {
 				continue; // this line already highlighted
+			}
 
 			$m = array();
-			if ( !preg_match( $pattern, $line, $m, PREG_OFFSET_CAPTURE ) )
+			if ( !preg_match( $pattern, $line, $m, PREG_OFFSET_CAPTURE ) ) {
 				continue;
+			}
 
 			$offset = $m[0][1];
 			$len = strlen( $m[0][0] );
-			if ( $offset + $len < $contextchars )
+			if ( $offset + $len < $contextchars ) {
 				$begin = 0;
-			elseif ( $len > $contextchars )
+			} elseif ( $len > $contextchars ) {
 				$begin = $offset;
-			else
+			} else {
 				$begin = $offset + intval( ( $len - $contextchars ) / 2 );
+			}
 
 			$end = $begin + $contextchars;
 
@@ -1315,8 +1335,9 @@ class SearchHighlighter {
 			$out[$index] = $this->extract( $line, $begin, $end, $posBegin );
 			$offsets[$index] = $posBegin;
 			$linesleft--;
-			if ( $linesleft == 0 )
+			if ( $linesleft == 0 ) {
 				return;
+			}
 		}
 	}
 
@@ -1357,16 +1378,17 @@ class SearchHighlighter {
 	 */
 	function linkReplace( $matches ) {
 		$colon = strpos( $matches[1], ':' );
-		if ( $colon === false )
+		if ( $colon === false ) {
 			return $matches[2]; // replace with caption
+		}
 		global $wgContLang;
 		$ns = substr( $matches[1], 0, $colon );
 		$index = $wgContLang->getNsIndex( $ns );
-		if ( $index !== false && ( $index == NS_FILE || $index == NS_CATEGORY ) )
+		if ( $index !== false && ( $index == NS_FILE || $index == NS_CATEGORY ) ) {
 			return $matches[0]; // return the whole thing
-		else
+		} else {
 			return $matches[2];
-
+		}
 	}
 
 	/**

@@ -97,8 +97,8 @@ class SearchPostgres extends SearchEngine {
 
 		$searchstring = '';
 		$m = array();
-		if( preg_match_all( '/([-!]?)(\S+)\s*/', $term, $m, PREG_SET_ORDER ) ) {
-			foreach( $m as $terms ) {
+		if ( preg_match_all( '/([-!]?)(\S+)\s*/', $term, $m, PREG_SET_ORDER ) ) {
+			foreach ( $m as $terms ) {
 				if ( strlen( $terms[1] ) ) {
 					$searchstring .= ' & !';
 				}
@@ -169,8 +169,8 @@ class SearchPostgres extends SearchEngine {
 		}
 		else {
 			$m = array();
-			if( preg_match_all( "/'([^']+)'/", $top, $m, PREG_SET_ORDER ) ) {
-				foreach( $m as $terms ) {
+			if ( preg_match_all( "/'([^']+)'/", $top, $m, PREG_SET_ORDER ) ) {
+				foreach ( $m as $terms ) {
 					$this->searchTerms[$terms[1]] = $terms[1];
 				}
 			}
@@ -182,11 +182,12 @@ class SearchPostgres extends SearchEngine {
 		}
 
 		## Redirects
-		if ( !$this->showRedirects )
+		if ( !$this->showRedirects ) {
 			$query .= ' AND page_is_redirect = 0';
+		}
 
 		## Namespaces - defaults to 0
-		if( !is_null( $this->namespaces ) ) { // null -> search all
+		if ( !is_null( $this->namespaces ) ) { // null -> search all
 			if ( count( $this->namespaces ) < 1 ) {
 				$query .= ' AND page_namespace = 0';
 			} else {
@@ -244,7 +245,7 @@ class PostgresSearchResultSet extends SqlSearchResultSet {
 
 	function next() {
 		$row = $this->mResultSet->fetchObject();
-		if( $row === false ) {
+		if ( $row === false ) {
 			return false;
 		} else {
 			return new PostgresSearchResult( $row );

@@ -538,7 +538,7 @@ class ParserOptions {
 
 		// add in language specific options, if any
 		// @todo FIXME: This is just a way of retrieving the url/user preferred variant
-		if( !is_null( $title ) ) {
+		if ( !is_null( $title ) ) {
 			$confstr .= $title->getPageLanguage()->getExtraHashOptions();
 		} else {
 			global $wgContLang;
@@ -557,8 +557,9 @@ class ParserOptions {
 			$confstr .= '!printable=1';
 		}
 
-		if ( $this->mExtraKey != '' )
+		if ( $this->mExtraKey != '' ) {
 			$confstr .= $this->mExtraKey;
+		}
 
 		// Give a chance for extensions to modify the hash, if they have
 		// extra options or other effects on the parser cache.

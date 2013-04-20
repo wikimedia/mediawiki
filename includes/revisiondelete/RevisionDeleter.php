@@ -39,7 +39,7 @@ class RevisionDeleter {
 	 * @param array $arr the array to update.
 	 */
 	protected static function checkItem( $desc, $field, $diff, $new, &$arr ) {
-		if( $diff & $field ) {
+		if ( $diff & $field ) {
 			$arr[( $new & $field ) ? 0 : 1][] = $desc;
 		}
 	}
@@ -73,11 +73,12 @@ class RevisionDeleter {
 		self::checkItem( 'revdelete-uname',
 			Revision::DELETED_USER, $diff, $n, $ret );
 		// Restriction application to sysops
-		if( $diff & Revision::DELETED_RESTRICTED ) {
-			if( $n & Revision::DELETED_RESTRICTED )
+		if ( $diff & Revision::DELETED_RESTRICTED ) {
+			if ( $n & Revision::DELETED_RESTRICTED ) {
 				$ret[2][] = 'revdelete-restricted';
-			else
+			} else {
 				$ret[2][] = 'revdelete-unrestricted';
+			}
 		}
 		return $ret;
 	}

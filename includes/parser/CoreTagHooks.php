@@ -77,7 +77,7 @@ class CoreTagHooks {
 	 */
 	static function html( $content, $attributes, $parser ) {
 		global $wgRawHtml;
-		if( $wgRawHtml ) {
+		if ( $wgRawHtml ) {
 			return array( $content, 'markerType' => 'nowiki' );
 		} else {
 			throw new MWException( '<html> extension tag encountered unexpectedly' );

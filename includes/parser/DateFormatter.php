@@ -198,8 +198,9 @@ class DateFormatter {
 	function replace( $matches ) {
 		# Extract information from $matches
 		$linked = true;
-		if ( isset( $this->mLinked ) )
+		if ( isset( $this->mLinked ) ) {
 			$linked = $this->mLinked;
+		}
 
 		$bits = array();
 		$key = $this->keys[$this->mSource];
@@ -232,10 +233,12 @@ class DateFormatter {
 		$fail = false;
 
 		// Pre-generate y/Y stuff because we need the year for the <span> title.
-		if ( !isset( $bits['y'] ) && isset( $bits['Y'] ) )
+		if ( !isset( $bits['y'] ) && isset( $bits['Y'] ) ) {
 			$bits['y'] = $this->makeIsoYear( $bits['Y'] );
-		if ( !isset( $bits['Y'] ) && isset( $bits['y'] ) )
+		}
+		if ( !isset( $bits['Y'] ) && isset( $bits['y'] ) ) {
 			$bits['Y'] = $this->makeNormalYear( $bits['y'] );
+		}
 
 		if ( !isset( $bits['m'] ) ) {
 			$m = $this->makeIsoMonth( $bits['F'] );
@@ -293,8 +296,9 @@ class DateFormatter {
 		}
 
 		$isoBits = array();
-		if ( isset( $bits['y'] ) )
+		if ( isset( $bits['y'] ) ) {
 			$isoBits[] = $bits['y'];
+		}
 		$isoBits[] = $bits['m'];
 		$isoBits[] = $bits['d'];
 		$isoDate = implode( '-', $isoBits );
@@ -312,7 +316,7 @@ class DateFormatter {
 	 */
 	function getMonthRegex() {
 		$names = array();
-		for( $i = 1; $i <= 12; $i++ ) {
+		for ( $i = 1; $i <= 12; $i++ ) {
 			$names[] = $this->lang->getMonthName( $i );
 			$names[] = $this->lang->getMonthAbbreviation( $i );
 		}

@@ -52,7 +52,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		 */
 		$namespaceIds = $wgContLang->getNamespaceIds();
 		$caseSensitiveNamespaces = array();
-		foreach( MWNamespace::getCanonicalNamespaces() as $index => $name ) {
+		foreach ( MWNamespace::getCanonicalNamespaces() as $index => $name ) {
 			$namespaceIds[$wgContLang->lc( $name )] = $index;
 			if ( !MWNamespace::isCapitalized( $index ) ) {
 				$caseSensitiveNamespaces[] = $index;

@@ -75,10 +75,10 @@ class Profiler {
 	 * @return Profiler
 	 */
 	public static function instance() {
-		if( is_null( self::$__instance ) ) {
+		if ( is_null( self::$__instance ) ) {
 			global $wgProfiler;
-			if( is_array( $wgProfiler ) ) {
-				if( !isset( $wgProfiler['class'] ) ) {
+			if ( is_array( $wgProfiler ) ) {
+				if ( !isset( $wgProfiler['class'] ) ) {
 					wfDebug( __METHOD__ . " called without \$wgProfiler['class']"
 						. " set, falling back to ProfilerStub for safety\n" );
 					$class = 'ProfilerStub';
@@ -86,7 +86,7 @@ class Profiler {
 					$class = $wgProfiler['class'];
 				}
 				self::$__instance = new $class( $wgProfiler );
-			} elseif( $wgProfiler instanceof Profiler ) {
+			} elseif ( $wgProfiler instanceof Profiler ) {
 				self::$__instance = $wgProfiler; // back-compat
 			} else {
 				wfDebug( __METHOD__ . ' called with bogus $wgProfiler setting,'
@@ -157,7 +157,7 @@ class Profiler {
 	 */
 	public function profileIn( $functionname ) {
 		global $wgDebugFunctionEntry;
-		if( $wgDebugFunctionEntry ) {
+		if ( $wgDebugFunctionEntry ) {
 			$this->debug( str_repeat( ' ', count( $this->mWorkStack ) ) . 'Entering ' . $functionname . "\n" );
 		}
 
@@ -174,7 +174,7 @@ class Profiler {
 		$memory = memory_get_usage();
 		$time = $this->getTime();
 
-		if( $wgDebugFunctionEntry ) {
+		if ( $wgDebugFunctionEntry ) {
 			$this->debug( str_repeat( ' ', count( $this->mWorkStack ) - 1 ) . 'Exiting ' . $functionname . "\n" );
 		}
 
@@ -184,12 +184,11 @@ class Profiler {
 			$this->debug( "Profiling error, !\$bit: $functionname\n" );
 		} else {
 			//if( $wgDebugProfiling ) {
-				if( $functionname == 'close' ) {
+				if ( $functionname == 'close' ) {
 					$message = "Profile section ended by close(): {$bit[0]}";
 					$this->debug( "$message\n" );
 					$this->mStack[] = array( $message, 0, 0.0, 0, 0.0, 0 );
-				}
-				elseif( $bit[0] != $functionname ) {
+				} elseif ( $bit[0] != $functionname ) {
 					$message = "Profiling error: in({$bit[0]}), out($functionname)";
 					$this->debug( "$message\n" );
 					$this->mStack[] = array( $message, 0, 0.0, 0, 0.0, 0 );
@@ -205,7 +204,7 @@ class Profiler {
 	 * Close opened profiling sections
 	 */
 	public function close() {
-		while( count( $this->mWorkStack ) ) {
+		while ( count( $this->mWorkStack ) ) {
 			$this->profileOut( 'close' );
 		}
 	}
@@ -228,11 +227,11 @@ class Profiler {
 		global $wgDebugFunctionEntry, $wgProfileCallTree;
 		$wgDebugFunctionEntry = false;
 
-		if( !count( $this->mStack ) && !count( $this->mCollated ) ) {
+		if ( !count( $this->mStack ) && !count( $this->mCollated ) ) {
 			return "No profiling output\n";
 		}
 
-		if( $wgProfileCallTree ) {
+		if ( $wgProfileCallTree ) {
 			return $this->getCallTree();
 		} else {
 			return $this->getFunctionReport();
@@ -254,16 +253,16 @@ class Profiler {
 	 * @return array
 	 */
 	function remapCallTree( $stack ) {
-		if( count( $stack ) < 2 ) {
+		if ( count( $stack ) < 2 ) {
 			return $stack;
 		}
 		$outputs = array();
-		for( $max = count( $stack ) - 1; $max > 0; ) {
+		for ( $max = count( $stack ) - 1; $max > 0; ) {
 			/* Find all items under this entry */
 			$level = $stack[$max][1];
 			$working = array();
-			for( $i = $max -1; $i >= 0; $i-- ) {
-				if( $stack[$i][1] > $level ) {
+			for ( $i = $max -1; $i >= 0; $i-- ) {
+				if ( $stack[$i][1] > $level ) {
 					$working[] = $stack[$i];
 				} else {
 					break;
@@ -271,7 +270,7 @@ class Profiler {
 			}
 			$working = $this->remapCallTree( array_reverse( $working ) );
 			$output = array();
-			foreach( $working as $item ) {
+			foreach ( $working as $item ) {
 				array_push( $output, $item );
 			}
 			array_unshift( $output, $stack[$max] );
@@ -280,8 +279,8 @@ class Profiler {
 			array_unshift( $outputs, $output );
 		}
 		$final = array();
-		foreach( $outputs as $output ) {
-			foreach( $output as $item ) {
+		foreach ( $outputs as $output ) {
+			foreach ( $output as $item ) {
 				$final[] = $item;
 			}
 		}
@@ -391,18 +390,17 @@ class Profiler {
 
 		# First, subtract the overhead!
 		$overheadTotal = $overheadMemory = $overheadInternal = array();
-		foreach( $this->mStack as $entry ) {
+		foreach ( $this->mStack as $entry ) {
 			$fname = $entry[0];
 			$start = $entry[2];
 			$end = $entry[4];
 			$elapsed = $end - $start;
 			$memory = $entry[5] - $entry[3];
 
-			if( $fname == '-overhead-total' ) {
+			if ( $fname == '-overhead-total' ) {
 				$overheadTotal[] = $elapsed;
 				$overheadMemory[] = $memory;
-			}
-			elseif( $fname == '-overhead-internal' ) {
+			} elseif ( $fname == '-overhead-internal' ) {
 				$overheadInternal[] = $elapsed;
 			}
 		}
@@ -411,7 +409,7 @@ class Profiler {
 		$overheadInternal = $overheadInternal ? array_sum( $overheadInternal ) / count( $overheadInternal ) : 0;
 
 		# Collate
-		foreach( $this->mStack as $index => $entry ) {
+		foreach ( $this->mStack as $index => $entry ) {
 			$fname = $entry[0];
 			$start = $entry[2];
 			$end = $entry[4];
@@ -420,16 +418,16 @@ class Profiler {
 			$memory = $entry[5] - $entry[3];
 			$subcalls = $this->calltreeCount( $this->mStack, $index );
 
-			if( !preg_match( '/^-overhead/', $fname ) ) {
+			if ( !preg_match( '/^-overhead/', $fname ) ) {
 				# Adjust for profiling overhead (except special values with elapsed=0
-				if( $elapsed ) {
+				if ( $elapsed ) {
 					$elapsed -= $overheadInternal;
 					$elapsed -= ($subcalls * $overheadTotal);
 					$memory -= ($subcalls * $overheadMemory);
 				}
 			}
 
-			if( !array_key_exists( $fname, $this->mCollated ) ) {
+			if ( !array_key_exists( $fname, $this->mCollated ) ) {
 				$this->mCollated[$fname] = 0;
 				$this->mCalls[$fname] = 0;
 				$this->mMemory[$fname] = 0;
@@ -467,7 +465,7 @@ class Profiler {
 
 		$total = isset( $this->mCollated['-total'] ) ? $this->mCollated['-total'] : 0;
 
-		foreach( $this->mCollated as $fname => $elapsed ) {
+		foreach ( $this->mCollated as $fname => $elapsed ) {
 			$calls = $this->mCalls[$fname];
 			$percent = $total ? 100. * $elapsed / $total : 0;
 			$memory = $this->mMemory[$fname];
@@ -483,7 +481,7 @@ class Profiler {
 	 */
 	protected static function calculateOverhead( $profileCount ) {
 		wfProfileIn( '-overhead-total' );
-		for( $i = 0; $i < $profileCount; $i++ ) {
+		for ( $i = 0; $i < $profileCount; $i++ ) {
 			wfProfileIn( '-overhead-internal' );
 			wfProfileOut( '-overhead-internal' );
 		}
@@ -515,16 +513,16 @@ class Profiler {
 		global $wgProfilePerHost, $wgProfileToDatabase;
 
 		# Do not log anything if database is readonly (bug 5375)
-		if( wfReadOnly() || !$wgProfileToDatabase ) {
+		if ( wfReadOnly() || !$wgProfileToDatabase ) {
 			return;
 		}
 
 		$dbw = wfGetDB( DB_MASTER );
-		if( !is_object( $dbw ) ) {
+		if ( !is_object( $dbw ) ) {
 			return;
 		}
 
-		if( $wgProfilePerHost ) {
+		if ( $wgProfilePerHost ) {
 			$pfhost = wfHostname();
 		} else {
 			$pfhost = '';
@@ -533,7 +531,7 @@ class Profiler {
 		try {
 			$this->collateData();
 
-			foreach( $this->mCollated as $name => $elapsed ) {
+			foreach ( $this->mCollated as $name => $elapsed ) {
 				$eventCount = $this->mCalls[$name];
 				$timeSum = (float) ($elapsed * 1000);
 				$memorySum = (float)$this->mMemory[$name];
@@ -585,7 +583,7 @@ class Profiler {
 	 * @param string $s to output
 	 */
 	function debug( $s ) {
-		if( defined( 'MW_COMPILED' ) || function_exists( 'wfDebug' ) ) {
+		if ( defined( 'MW_COMPILED' ) || function_exists( 'wfDebug' ) ) {
 			wfDebug( $s );
 		}
 	}

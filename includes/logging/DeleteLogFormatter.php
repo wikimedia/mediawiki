@@ -101,7 +101,7 @@ class DeleteLogFormatter extends LogFormatter {
 
 		switch ( $this->entry->getSubtype() ) {
 		case 'delete': // Show undelete link
-			if( $user->isAllowed( 'undelete' ) ) {
+			if ( $user->isAllowed( 'undelete' ) ) {
 				$message = 'undeletelink';
 			} else {
 				$message = 'undeleteviewlink';
@@ -147,8 +147,8 @@ class DeleteLogFormatter extends LogFormatter {
 						$this->msg( 'diff' )->escaped(),
 						array(),
 						array(
-							'target'    => $this->entry->getTarget()->getPrefixedDBkey(),
-							'diff'      => 'prev',
+							'target' => $this->entry->getTarget()->getPrefixedDBkey(),
+							'diff' => 'prev',
 							'timestamp' => $ids[0]
 						)
 					);

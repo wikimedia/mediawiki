@@ -151,7 +151,7 @@ class DatabaseLogEntry extends LogEntryBase {
 		return array(
 			'tables' => $tables,
 			'fields' => $fields,
-			'conds'  => array(),
+			'conds' => array(),
 			'options' => array(),
 			'join_conds' => $joins,
 		);
@@ -233,7 +233,7 @@ class DatabaseLogEntry extends LogEntryBase {
 	}
 
 	public function getPerformer() {
-		if( !$this->performer ) {
+		if ( !$this->performer ) {
 			$userId = (int) $this->row->log_user;
 			if ( $userId !== 0 ) { // logged-in users
 				if ( isset( $this->row->user_name ) ) {
@@ -291,7 +291,7 @@ class RCDatabaseLogEntry extends DatabaseLogEntry {
 	}
 
 	public function getPerformer() {
-		if( !$this->performer ) {
+		if ( !$this->performer ) {
 			$userId = (int) $this->row->rc_user;
 			if ( $userId !== 0 ) {
 				$this->performer = User::newFromId( $userId );

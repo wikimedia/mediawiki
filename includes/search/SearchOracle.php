@@ -74,8 +74,9 @@ class SearchOracle extends SearchEngine {
 	 * @return SqlSearchResultSet
 	 */
 	function searchText( $term ) {
-		if ( $term == '' )
+		if ( $term == '' ) {
 			return new SqlSearchResultSet( false, '' );
+		}
 
 		$resultSet = $this->db->resultObject( $this->db->query( $this->getQuery( $this->filter( $term ), true ) ) );
 		return new SqlSearchResultSet( $resultSet, $this->searchTerms );
@@ -88,8 +89,9 @@ class SearchOracle extends SearchEngine {
 	 * @return SqlSearchResultSet
 	 */
 	function searchTitle( $term ) {
-		if ( $term == '' )
+		if ( $term == '' ) {
 			return new SqlSearchResultSet( false, '' );
+		}
 
 		$resultSet = $this->db->resultObject( $this->db->query( $this->getQuery( $this->filter( $term ), false ) ) );
 		return new MySQLSearchResultSet( $resultSet, $this->searchTerms );
@@ -112,8 +114,9 @@ class SearchOracle extends SearchEngine {
 	 * @return String
 	 */
 	function queryNamespaces() {
-		if( is_null( $this->namespaces ) )
+		if ( is_null( $this->namespaces ) ) {
 			return '';
+		}
 		if ( !count( $this->namespaces ) ) {
 			$namespaces = '0';
 		} else {
@@ -197,23 +200,24 @@ class SearchOracle extends SearchEngine {
 		$searchon = '';
 		if ( preg_match_all( '/([-+<>~]?)(([' . $lc . ']+)(\*?)|"[^"]*")/',
 				$filteredText, $m, PREG_SET_ORDER ) ) {
-			foreach( $m as $terms ) {
+			foreach ( $m as $terms ) {
 				// Search terms in all variant forms, only
 				// apply on wiki with LanguageConverter
 				$temp_terms = $wgContLang->autoConvertToAllVariants( $terms[2] );
-				if( is_array( $temp_terms ) ) {
+				if ( is_array( $temp_terms ) ) {
 					$temp_terms = array_unique( array_values( $temp_terms ) );
-					foreach( $temp_terms as $t ) {
-						$searchon .= ($terms[1] == '-' ? ' ~' : ' & ') . $this->escapeTerm( $t );
+					foreach ( $temp_terms as $t ) {
+						$searchon .= ( $terms[1] == '-' ? ' ~' : ' & ' ) . $this->escapeTerm( $t );
 					}
 				}
 				else {
-					$searchon .= ($terms[1] == '-' ? ' ~' : ' & ') . $this->escapeTerm( $terms[2] );
+					$searchon .= ( $terms[1] == '-' ? ' ~' : ' & ' ) . $this->escapeTerm( $terms[2] );
 				}
 				if ( !empty( $terms[3] ) ) {
 					$regexp = preg_quote( $terms[3], '/' );
-					if ( $terms[4] )
+					if ( $terms[4] ) {
 						$regexp .= "[0-9A-Za-z_]+";
+					}
 				} else {
 					$regexp = preg_quote( str_replace( '"', '', $terms[2] ), '/' );
 				}
@@ -275,7 +279,7 @@ class SearchOracle extends SearchEngine {
 
 		$dbw->update( 'searchindex',
 			array( 'si_title' => $title ),
-			array( 'si_page'  => $id ),
+			array( 'si_page' => $id ),
 			'SearchOracle::updateTitle',
 			array() );
 	}

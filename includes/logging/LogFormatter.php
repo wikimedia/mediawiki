@@ -320,7 +320,7 @@ class LogFormatter {
 			// case 'suppress' --private log -- aaron  (sign your messages so we know who to blame in a few years :-D)
 			// default:
 		}
-		if( is_null( $text ) ) {
+		if ( is_null( $text ) ) {
 			$text = $this->getPlainActionText();
 		}
 
@@ -775,7 +775,7 @@ class LegacyLogFormatter extends LogFormatter {
 			return $this->msg( 'parentheses' )->rawParams(
 				$this->context->getLanguage()->pipeList( $links ) )->escaped();
 		// Show unmerge link
-		} elseif( $type == 'merge' && $subtype == 'merge' ) {
+		} elseif ( $type == 'merge' && $subtype == 'merge' ) {
 			if ( !$this->context->getUser()->isAllowed( 'mergehistory' ) ) {
 				return '';
 			}

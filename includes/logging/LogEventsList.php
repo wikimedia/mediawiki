@@ -76,7 +76,7 @@ class LogEventsList extends ContextSource {
 		// If only one log type is used, then show a special message...
 		$headerType = (count( $type ) == 1) ? $type[0] : '';
 		$out = $this->getOutput();
-		if( LogPage::isLogType( $headerType ) ) {
+		if ( LogPage::isLogType( $headerType ) ) {
 			$page = new LogPage( $headerType );
 			$out->setPageTitle( $page->getName()->text() );
 			$out->addHTML( $page->getDescription()->parseAsBlock() );
@@ -104,7 +104,7 @@ class LogEventsList extends ContextSource {
 		$title = SpecialPage::getTitleFor( 'Log' );
 
 		// For B/C, we take strings, but make sure they are converted...
-		$types = ($types === '') ? array() : (array)$types;
+		$types = ( $types === '' ) ? array() : (array)$types;
 
 		$tagSelector = ChangeTags::buildTagFilterSelector( $tagFilter );
 
@@ -156,7 +156,7 @@ class LogEventsList extends ContextSource {
 		// Option value -> message mapping
 		$links = array();
 		$hiddens = ''; // keep track for "go" button
-		foreach( $filter as $type => $val ) {
+		foreach ( $filter as $type => $val ) {
 			// Should the below assignment be outside the foreach?
 			// Then it would have to be copied. Not certain what is more expensive.
 			$query = $this->getDefaultQuery();
@@ -212,7 +212,7 @@ class LogEventsList extends ContextSource {
 	public function getTypeSelector() {
 		$typesByName = array(); // Temporary array
 		// First pass to load the log names
-		foreach( LogPage::validTypes() as $type ) {
+		foreach ( LogPage::validTypes() as $type ) {
 			$page = new LogPage( $type );
 			$restriction = $page->getRestriction();
 			if ( $this->getUser()->isAllowed( $restriction ) ) {
@@ -229,7 +229,7 @@ class LogEventsList extends ContextSource {
 		$typesByName = array( '' => $public ) + $typesByName;
 
 		$select = new XmlSelect( 'type' );
-		foreach( $typesByName as $type => $name ) {
+		foreach ( $typesByName as $type => $name ) {
 			$select->addOption( $name, $type );
 		}
 
@@ -273,10 +273,10 @@ class LogEventsList extends ContextSource {
 	private function getExtraInputs( $types ) {
 		$offender = $this->getRequest()->getVal( 'offender' );
 		$user = User::newFromName( $offender, false );
-		if( !$user || ( $user->getId() == 0 && !IP::isIPAddress( $offender ) ) ) {
+		if ( !$user || ( $user->getId() == 0 && !IP::isIPAddress( $offender ) ) ) {
 			$offender = ''; // Blank field if invalid
 		}
-		if( count( $types ) == 1 && $types[0] == 'suppress' ) {
+		if ( count( $types ) == 1 && $types[0] == 'suppress' ) {
 			return Xml::inputLabel( $this->msg( 'revdelete-offender' )->text(), 'offender',
 				'mw-log-offender', 20, $offender );
 		}
@@ -342,16 +342,16 @@ class LogEventsList extends ContextSource {
 	 * @return string
 	 */
 	private function getShowHideLinks( $row ) {
-		if( ( $this->flags == self::NO_ACTION_LINK ) // we don't want to see the links
+		if ( ( $this->flags == self::NO_ACTION_LINK ) // we don't want to see the links
 			|| $row->log_type == 'suppress' ) { // no one can hide items from the suppress log
 			return '';
 		}
 		$del = '';
 		$user = $this->getUser();
 		// Don't show useless checkbox to people who cannot hide log entries
-		if( $user->isAllowed( 'deletedhistory' ) ) {
+		if ( $user->isAllowed( 'deletedhistory' ) ) {
 			$canHide = $user->isAllowed( 'deletelogentry' );
-			if( $row->log_deleted || $canHide ) {
+			if ( $row->log_deleted || $canHide ) {
 				if ( $canHide && $this->flags & self::USE_REVDEL_CHECKBOXES ) { // Show checkboxes instead of links.
 					if ( !self::userCan( $row, LogPage::DELETED_RESTRICTED, $user ) ) { // If event was hidden from sysops
 						$del = Xml::check( 'deleterevisions', false, array( 'disabled' => 'disabled' ) );
@@ -364,8 +364,8 @@ class LogEventsList extends ContextSource {
 					} else {
 						$query = array(
 							'target' => SpecialPage::getTitleFor( 'Log', $row->log_type )->getPrefixedDBkey(),
-							'type'   => 'logging',
-							'ids'    => $row->log_id,
+							'type' => 'logging',
+							'ids' => $row->log_id,
 						);
 						$del = Linker::revDeleteLink( $query, self::isDeleted( $row, LogPage::DELETED_RESTRICTED ), $canHide );
 					}
@@ -385,10 +385,10 @@ class LogEventsList extends ContextSource {
 	public static function typeAction( $row, $type, $action, $right = '' ) {
 		$match = is_array( $type ) ?
 			in_array( $row->log_type, $type ) : $row->log_type == $type;
-		if( $match ) {
+		if ( $match ) {
 			$match = is_array( $action ) ?
 				in_array( $row->log_action, $action ) : $row->log_action == $action;
-			if( $match && $right ) {
+			if ( $match && $right ) {
 				global $wgUser;
 				$match = $wgUser->isAllowed( $right );
 			}
@@ -419,7 +419,7 @@ class LogEventsList extends ContextSource {
 	 * @return Boolean
 	 */
 	public static function userCanBitfield( $bitfield, $field, User $user = null ) {
-		if( $bitfield & $field ) {
+		if ( $bitfield & $field ) {
 			if ( $bitfield & LogPage::DELETED_RESTRICTED ) {
 				$permission = 'suppressrevision';
 			} else {
@@ -503,10 +503,12 @@ class LogEventsList extends ContextSource {
 		if ( isset( $param['offset'] ) ) { # Tell pager to ignore WebRequest offset
 			$pager->setOffset( $param['offset'] );
 		}
-		if( $lim > 0 ) $pager->mLimit = $lim;
+		if ( $lim > 0 ) {
+			$pager->mLimit = $lim;
+		}
 		$logBody = $pager->getBody();
 		$s = '';
-		if( $logBody ) {
+		if ( $logBody ) {
 			if ( $msgKey[0] ) {
 				$s = '<div class="mw-warning-with-logexcerpt">';
 
@@ -521,26 +523,27 @@ class LogEventsList extends ContextSource {
 			$s .= $loglist->beginLogEventsList() .
 				$logBody .
 				$loglist->endLogEventsList();
-		} else {
-			if ( $showIfEmpty ) {
-				$s = Html::rawElement( 'div', array( 'class' => 'mw-warning-logempty' ),
-					$context->msg( 'logempty' )->parse() );
-			}
+		} elseif ( $showIfEmpty ) {
+			$s = Html::rawElement( 'div', array( 'class' => 'mw-warning-logempty' ),
+				$context->msg( 'logempty' )->parse() );
 		}
-		if( $pager->getNumRows() > $pager->mLimit ) { # Show "Full log" link
+		if ( $pager->getNumRows() > $pager->mLimit ) { # Show "Full log" link
 			$urlParam = array();
 			if ( $page instanceof Title ) {
 				$urlParam['page'] = $page->getPrefixedDBkey();
 			} elseif ( $page != '' ) {
 				$urlParam['page'] = $page;
 			}
-			if ( $user != '' )
+			if ( $user != '' ) {
 				$urlParam['user'] = $user;
-			if ( !is_array( $types ) ) # Make it an array, if it isn't
+			}
+			if ( !is_array( $types ) ) { # Make it an array, if it isn't
 				$types = array( $types );
+			}
 			# If there is exactly one log type, we can link to Special:Log?type=foo
-			if ( count( $types ) == 1 )
+			if ( count( $types ) == 1 ) {
 				$urlParam['type'] = $types[0];
+			}
 			$s .= Linker::link(
 				SpecialPage::getTitleFor( 'Log' ),
 				$context->msg( 'log-fulllog' )->escaped(),
@@ -589,14 +592,14 @@ class LogEventsList extends ContextSource {
 		$hiddenLogs = array();
 
 		// Don't show private logs to unprivileged users
-		foreach( $wgLogRestrictions as $logType => $right ) {
-			if( $audience == 'public' || !$user->isAllowed( $right ) ) {
+		foreach ( $wgLogRestrictions as $logType => $right ) {
+			if ( $audience == 'public' || !$user->isAllowed( $right ) ) {
 				$hiddenLogs[] = $logType;
 			}
 		}
-		if( count( $hiddenLogs ) == 1 ) {
+		if ( count( $hiddenLogs ) == 1 ) {
 			return 'log_type != ' . $db->addQuotes( $hiddenLogs[0] );
-		} elseif( $hiddenLogs ) {
+		} elseif ( $hiddenLogs ) {
 			return 'log_type NOT IN (' . $db->makeList( $hiddenLogs ) . ')';
 		}
 		return false;
