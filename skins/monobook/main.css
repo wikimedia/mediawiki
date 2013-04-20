@@ -384,18 +384,21 @@ input.searchButton {
 #p-personal li.active a:hover {
 	background-color: transparent;
 }
-/* the icon in front of the user name, single quotes
-in bg url to hide it from iemac */
+/* The icon in front of the username / login link */
 li#pt-userpage,
 li#pt-anonuserpage,
 li#pt-login {
 	/* @embed */
 	background: url(user.gif) top left no-repeat;
 	padding-left: 20px;
-	text-transform: none;
 }
 #p-personal ul {
 	text-transform: lowercase;
+}
+/* Don't lowercase username or IP addresses (IPv6) */
+li#pt-userpage,
+li#pt-anonuserpage {
+	text-transform: none;
 }
 #p-personal li.active {
 	font-weight: bold;

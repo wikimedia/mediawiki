@@ -789,7 +789,6 @@ div#content a.external[href *=".pdf?"], div#content a.external[href *=".PDF?"],
 	/* @embed */
 	background-image: linear-gradient(transparent, transparent), url(images/user-icon.svg);
 	padding-left: 15px !important;
-	text-transform: none;
 }
 
 .redirectText {
