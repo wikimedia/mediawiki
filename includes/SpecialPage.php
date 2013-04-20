@@ -445,7 +445,10 @@ class SpecialPage {
 	 * @return Mixed
 	 * @deprecated since 1.18
 	 */
-	function name( $x = null ) { wfDeprecated( __METHOD__, '1.18' ); return wfSetVar( $this->mName, $x ); }
+	function name( $x = null ) {
+		wfDeprecated( __METHOD__, '1.18' );
+		return wfSetVar( $this->mName, $x );
+	}
 
 	/**
 	 * These mutators are very evil, as the relevant variables should not mutate.  So
@@ -454,7 +457,10 @@ class SpecialPage {
 	 * @return Mixed
 	 * @deprecated since 1.18
 	 */
-	function restriction( $x = null ) { wfDeprecated( __METHOD__, '1.18' ); return wfSetVar( $this->mRestriction, $x ); }
+	function restriction( $x = null ) {
+		wfDeprecated( __METHOD__, '1.18' );
+		return wfSetVar( $this->mRestriction, $x );
+	}
 
 	/**
 	 * These mutators are very evil, as the relevant variables should not mutate.  So
@@ -463,7 +469,10 @@ class SpecialPage {
 	 * @return Mixed
 	 * @deprecated since 1.18
 	 */
-	function func( $x = null ) { wfDeprecated( __METHOD__, '1.18' ); return wfSetVar( $this->mFunction, $x ); }
+	function func( $x = null ) {
+		wfDeprecated( __METHOD__, '1.18' );
+		return wfSetVar( $this->mFunction, $x );
+	}
 
 	/**
 	 * These mutators are very evil, as the relevant variables should not mutate.  So
@@ -472,7 +481,10 @@ class SpecialPage {
 	 * @return Mixed
 	 * @deprecated since 1.18
 	 */
-	function file( $x = null ) { wfDeprecated( __METHOD__, '1.18' ); return wfSetVar( $this->mFile, $x ); }
+	function file( $x = null ) {
+		wfDeprecated( __METHOD__, '1.18' );
+		return wfSetVar( $this->mFile, $x );
+	}
 
 	/**
 	 * These mutators are very evil, as the relevant variables should not mutate.  So
@@ -481,7 +493,10 @@ class SpecialPage {
 	 * @return Mixed
 	 * @deprecated since 1.18
 	 */
-	function includable( $x = null ) { wfDeprecated( __METHOD__, '1.18' ); return wfSetVar( $this->mIncludable, $x ); }
+	function includable( $x = null ) {
+		wfDeprecated( __METHOD__, '1.18' );
+		return wfSetVar( $this->mIncludable, $x );
+	}
 
 	/**
 	 * Whether the special page is being evaluated via transclusion
@@ -917,11 +932,20 @@ abstract class FormSpecialPage extends SpecialPage {
 	abstract protected function getFormFields();
 
 	/**
-	 * Add pre- or post-text to the form
+	 * Add pre-text to the form
 	 * @return String HTML which will be sent to $form->addPreText()
 	 */
-	protected function preText() { return ''; }
-	protected function postText() { return ''; }
+	protected function preText() {
+		return '';
+	}
+
+	/**
+	 * Add post-text to the form
+	 * @return String HTML which will be sent to $form->addPostText()
+	 */
+	protected function postText() {
+		return '';
+	}
 
 	/**
 	 * Play with the HTMLForm if you need to more substantially
