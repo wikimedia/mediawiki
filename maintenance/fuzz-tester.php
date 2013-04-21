@@ -657,6 +657,7 @@ class wikiFuzz {
 			"}}",
 			"{{INT:googlesearch|",
 			"}}",
+                        "{{ROOTPAGENAME}}",
 			"{{BASEPAGENAME}}",
 			"{{CONTENTLANGUAGE}}",
 			"{{PAGESINNAMESPACE:}}",

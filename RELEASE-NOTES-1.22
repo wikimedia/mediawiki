@@ -35,6 +35,8 @@ production.
   Pager-related WebRequest parameters by default, as this is overwhelmingly
   likely to be what was intended by users of the method. If any caller wishes
   to use these parameters, the new param 'useRequestParams' may be set to true.
+* (bug 6747) Introduces a new variable {{ROOTPAGENAME}}, similar to {{BASEPAGENAME}}, which contains
+  the name of the topmost page without namespace.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail. Previously one could still
