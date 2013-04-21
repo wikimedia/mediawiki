@@ -563,6 +563,7 @@ class ResourceLoader {
 		}
 		if ( $context->getOnly() === 'styles' ) {
 			header( 'Content-Type: text/css; charset=utf-8' );
+			header( 'Access-Control-Allow-Origin: *' );
 		} else {
 			header( 'Content-Type: text/javascript; charset=utf-8' );
 		}
