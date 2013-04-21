@@ -88,6 +88,8 @@ class CoreParserFunctions {
 		$parser->setFunctionHook( 'pagenamee',        array( __CLASS__, 'pagenamee'        ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'fullpagename',     array( __CLASS__, 'fullpagename'     ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'fullpagenamee',    array( __CLASS__, 'fullpagenamee'    ), SFH_NO_HASH );
+		$parser->setFunctionHook( 'rootpagename',     array( __CLASS__, 'rootpagename'     ), SFH_NO_HASH );
+		$parser->setFunctionHook( 'rootpagenamee',    array( __CLASS__, 'rootpagenamee'    ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'basepagename',     array( __CLASS__, 'basepagename'     ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'basepagenamee',    array( __CLASS__, 'basepagenamee'    ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'subpagename',      array( __CLASS__, 'subpagename'      ), SFH_NO_HASH );
@@ -545,6 +547,18 @@ class CoreParserFunctions {
 			return '';
 		}
 		return wfEscapeWikiText( $t->getSubpageUrlForm() );
+	}
+	static function rootpagename( $parser, $title = null ) {
+		$t = Title::newFromText( $title );
+		if ( is_null( $t ) )
+			return '';
+		return wfEscapeWikiText( $t->getRootText() );
+	}
+	static function rootpagenamee( $parser, $title = null ) {
+		$t = Title::newFromText( $title );
+		if ( is_null( $t ) )
+			return '';
+		return wfEscapeWikiText( wfUrlEncode( str_replace( ' ', '_', $t->getRootText() ) ) );
 	}
 	static function basepagename( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
