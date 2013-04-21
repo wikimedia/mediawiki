@@ -2746,6 +2746,12 @@ class Parser {
 			case 'subpagenamee':
 				$value = wfEscapeWikiText( $this->mTitle->getSubpageUrlForm() );
 				break;
+			case 'rootpagename':
+				$value = wfEscapeWikiText( $this->mTitle->getRootText() );
+				break;
+			case 'rootpagenamee':
+				$value = wfEscapeWikiText( wfUrlEncode( str_replace( ' ', '_', $this->mTitle->getRootText() ) ) );
+				break;
 			case 'basepagename':
 				$value = wfEscapeWikiText( $this->mTitle->getBaseText() );
 				break;

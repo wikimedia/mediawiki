@@ -29,6 +29,8 @@ production.
 * Added 'SpecialSearchResultsPrepend' and 'SpecialSearchResultsAppend' hooks.
 * (bug 23343) Implemented ability to apply IP blocks to the contents of X-Forwarded-For headers
   by adding a new configuration variable $wgApplyIpBlocksToXff (disabled by default).
+* (bug 6747) Introduces a new variable {{ROOTPAGENAME}}, similar to {{BASEPAGENAME}}, which contains
+  the name of the topmost page without namespace.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail. Previously one could still
