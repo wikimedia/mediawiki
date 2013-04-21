@@ -876,9 +876,8 @@ class MimeMagic {
 
 		$m = null;
 		if ( $wgMimeDetectorCommand ) {
-			// @todo FIXME: Use wfShellExec
-			$fn = wfEscapeShellArg( $file );
-			$m = `$wgMimeDetectorCommand $fn`;
+			$cmd = wfEscapeShellArg( $wgMimeDetectorCommand, $file );
+			$m = wfShellExec( $cmd );
 		} elseif ( function_exists( "finfo_open" ) && function_exists( "finfo_file" ) ) {
 
 			# This required the fileinfo extension by PECL,
