@@ -20,6 +20,7 @@ production.
   disabled.
 
 === New features in 1.21 ===
+* (bug 41769) Add parser method to call parser functions.
 * (bug 38110) Schema changes (adding or dropping tables, indices and
   fields) can be now be done separately from from other changes that
   update.php makes.  This is useful in environments that use database
@@ -123,10 +124,13 @@ production.
   quotmarks, order and whitespace in the attribute list).
 
 === Bug fixes in 1.21 ===
+* (bug 46084) Sanitize $limitReport before outputting.
+* (bug 46859) Disable external entities in XMLReader.
+* (bug 47251) Disable external entities in Import.
 * (bug 42649) PHP Fatal error: Call to a member function isLocal() on a
-  non-object in Title.php
-* (bug 46493) Special:ProtectedPages results in whitepage when a bad title is protected
-* (bug 40617) Installer can now customize the logo in LocalSettings.php
+  non-object in Title.php.
+* (bug 46493) Special:ProtectedPages results in whitepage when a bad title is protected.
+* (bug 40617) Installer can now customize the logo in LocalSettings.php.
 * (bug 40353) SpecialDoubleRedirect should support interwiki redirects.
 * (bug 40352) fixDoubleRedirects.php should support interwiki redirects.
 * (bug 9237) SpecialBrokenRedirect should not list interwiki redirects.
