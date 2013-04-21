@@ -138,6 +138,8 @@ class MagicWord {
 		'numberofactiveusers',
 		'numberofpages',
 		'currentversion',
+		'rootpagename',
+		'rootpagenamee',
 		'basepagename',
 		'basepagenamee',
 		'currenttimestamp',

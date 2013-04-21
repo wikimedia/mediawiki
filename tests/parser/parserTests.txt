@@ -10955,6 +10955,8 @@ Say the magic word
 * {{BASEPAGENAME}}
 * {{SUBPAGENAME}}
 * {{SUBPAGENAMEE}}
+* {{ROOTPAGENAME}}
+* {{ROOTPAGENAMEE}}
 * {{BASEPAGENAME}}
 * {{BASEPAGENAMEE}}
 * {{TALKPAGENAME}}
@@ -10971,6 +10973,8 @@ Say the magic word
 !! result
 <ul><li> Parser test
 </li><li> Parser test
+</li><li> Parser test
+</li><li> Parser_test
 </li><li> Parser test
 </li><li> Parser_test
 </li><li> Parser test
