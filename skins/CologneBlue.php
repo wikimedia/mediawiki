@@ -541,13 +541,12 @@ class CologneBlueTemplate extends BaseTemplate {
 			$s .= wfMessage( 'qbfind' )->text() . ": ";
 		}
 
-		$s .= "<input type='text' class=\"mw-searchInput\" name=\"search\" size=\"14\" value=\""
-			. htmlspecialchars( substr( $search, 0, 256 ) ) . "\" />"
-			. ( $which == 'footer' ? " " : "<br />" )
-			. "<input type='submit' class=\"searchButton\" name=\"go\" value=\"" . wfMessage( 'searcharticle' )->escaped() . "\" />";
+		$s .= $this->makeSearchInput( array( 'class' => 'mw-searchInput', 'type' => 'text', 'size' => '14' ) );
+		$s .= ( $which == 'footer' ? " " : "<br />" );
+		$s .= $this->makeSearchButton( 'go', array( 'class' => 'searchButton' ) );
 
 		if ( $wgUseTwoButtonsSearchForm ) {
-			$s .= " <input type='submit' class=\"searchButton\" name=\"fulltext\" value=\"" . wfMessage( 'searchbutton' )->escaped() . "\" />\n";
+			$s .= $this->makeSearchButton( 'fulltext', array( 'class' => 'searchButton' ) );
 		} else {
 			$s .= '<div><a href="' . $action . '" rel="search">' . wfMessage( 'powersearch-legend' )->escaped() . "</a></div>\n";
 		}
