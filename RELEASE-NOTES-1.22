@@ -39,6 +39,8 @@ production.
   an accesskey in it already). As such it now rountrips. Creating a link with a
   message as tooltip, grabbing the title attribute and using it to create
   another portlet will work as expected.
+* (bug 6747) Introduces a new variable {{ROOTPAGENAME}}, which contains the name 
+  of the topmost page without namespace.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail. Previously one could still
