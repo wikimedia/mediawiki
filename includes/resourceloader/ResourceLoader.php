@@ -557,6 +557,7 @@ class ResourceLoader {
 		}
 		if ( $context->getOnly() === 'styles' ) {
 			header( 'Content-Type: text/css; charset=utf-8' );
+			header( 'Access-Control-Allow-Origin: *' );
 		} else {
 			header( 'Content-Type: text/javascript; charset=utf-8' );
 		}
@@ -786,6 +787,7 @@ class ResourceLoader {
 						// custom media type groups into @media .. {} sections as part of the css string.
 						// Module returns either an empty array or a numerical array with css strings.
 						$out .= isset( $styles['css'] ) ? implode( '', $styles['css'] ) : '';
+						
 						break;
 					case 'messages':
 						$out .= self::makeMessageSetScript( new XmlJsCode( $messagesBlob ) );
