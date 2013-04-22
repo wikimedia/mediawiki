@@ -1974,7 +1974,8 @@ class User {
 			$dbw = wfGetDB( DB_MASTER );
 			$userid = $this->mId;
 			$touched = $this->mTouched;
-			$dbw->onTransactionIdle( function() use ( $dbw, $userid, $touched ) {
+			$method = __METHOD__;
+			$dbw->onTransactionIdle( function() use ( $dbw, $userid, $touched, $method ) {
 				// Prevent contention slams by checking user_touched first
 				$encTouched = $dbw->addQuotes( $dbw->timestamp( $touched ) );
 				$needsPurge = $dbw->selectField( 'user', '1',
@@ -1983,7 +1984,7 @@ class User {
 					$dbw->update( 'user',
 						array( 'user_touched' => $dbw->timestamp( $touched ) ),
 						array( 'user_id' => $userid, 'user_touched < ' . $encTouched ),
-						__METHOD__
+						$method
 					);
 				}
 			} );
