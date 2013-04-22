@@ -1534,7 +1534,8 @@ class User {
 		}
 		// Set the user limit key
 		if ( $userLimit !== false ) {
-			wfDebug( __METHOD__ . ": effective user limit: $userLimit\n" );
+			list( $max, $period ) = $userLimit;
+			wfDebug( __METHOD__ . ": effective user limit: $max in {$period}s\n" );
 			$keys[wfMemcKey( 'limiter', $action, 'user', $id )] = $userLimit;
 		}
 
