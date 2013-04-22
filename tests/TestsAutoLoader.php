@@ -44,6 +44,7 @@ $wgAutoloadClasses += array(
 	'BlockTest' => "$testDir/phpunit/includes/BlockTest.php",
 	'RevisionStorageTest' => "$testDir/phpunit/includes/RevisionStorageTest.php",
 	'WikiPageTest' => "$testDir/phpunit/includes/WikiPageTest.php",
+	'TestPageSet' => "$testDir/phpunit/includes/TestPageSet.php",
 
 	//db
 	'ORMTableTest' => "$testDir/phpunit/includes/db/ORMTableTest.php",
