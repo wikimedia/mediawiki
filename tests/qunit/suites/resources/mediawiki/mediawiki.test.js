@@ -678,6 +678,22 @@
 		);
 	} );
 
+	QUnit.test( 'mw.loader unknown dependency', 1, function ( assert ) {
+		mw.loader.using(
+			'test.module10',
+			function () {
+				assert.ok( false, 'Success fired despite unknown dependency' );
+			},
+			function ( e, dependencies ) {
+				assert.deepEqual(
+					dependencies,
+					['test.module10'],
+					'Error callback called with the module as a dependency'
+				);
+			}
+		);
+	} );
+
 	QUnit.asyncTest( 'mw.loader dependency handling', 5, function ( assert ) {
 		mw.loader.addSource(
 			'testloader',

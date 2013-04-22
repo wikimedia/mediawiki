@@ -1436,7 +1436,15 @@ var mw = ( function ( $, undefined ) {
 						dependencies = [ dependencies ];
 					}
 					// Resolve entire dependency map
-					dependencies = resolve( dependencies );
+					try {
+						dependencies = resolve( dependencies );
+					} catch ( e ) {
+						// Execute error immediately on unknown or circular dependencies
+						if ( $.isFunction( error ) ) {
+							error( e, dependencies );
+						}
+						return;
+					}
 					if ( allReady( dependencies ) ) {
 						// Run ready immediately
 						if ( $.isFunction( ready ) ) {
