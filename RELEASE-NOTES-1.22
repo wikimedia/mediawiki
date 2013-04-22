@@ -35,6 +35,9 @@ production.
   Pager-related WebRequest parameters by default, as this is overwhelmingly
   likely to be what was intended by users of the method. If any caller wishes
   to use these parameters, the new param 'useRequestParams' may be set to true.
+* mediawiki.log: Added log.warn wrapper (uses console.warn and console.trace).
+* mediawiki.log: Implemented log.deprecate. This method defines a property and
+  uses ES5 getter/setter to emit a warning when they are used.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail. Previously one could still
