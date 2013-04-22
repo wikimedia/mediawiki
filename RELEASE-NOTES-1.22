@@ -128,6 +128,11 @@ changes to languages because of Bugzilla reports.
 * BREAKING CHANGE: mw.util.tooltipAccessKeyRegexp: The match group for the
   accesskey character is now $6 instead of $5.
 * Monobook: Removed the old conditional stylesheets for Opera 6, 7 and 9.
+* wikibits: User-agent related globals have been deprecated. The following
+  properties now default to false and emit mw.log.warn: is_gecko, is_chrome_mac,
+  is_chrome, webkit_version, is_safari_win, is_safari, webkit_match, is_ff2,
+  ff2_bugs, is_ff2_win, is_ff2_x11, opera95_bugs, opera7_bugs, opera6_bugs,
+  is_opera_95, is_opera_preseven, is_opera, and ie6_bugs.
 
 == Compatibility ==
 
