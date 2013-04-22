@@ -2510,20 +2510,29 @@ $templates
 			$ret .= "$closeHead\n";
 		}
 
-		$bodyAttrs = array();
+		$bodyClasses = array();
+		$bodyClasses[] = 'mediawiki';
 
 		# Classes for LTR/RTL directionality support
-		$bodyAttrs['class'] = "mediawiki $userdir sitedir-$sitedir";
+		$bodyClasses[] = $userdir;
+		$bodyClasses[] = "sitedir-$sitedir";
 
 		if ( $this->getLanguage()->capitalizeAllNouns() ) {
 			# A <body> class is probably not the best way to do this . . .
-			$bodyAttrs['class'] .= ' capitalize-all-nouns';
+			$bodyClasses[] = 'capitalize-all-nouns';
 		}
-		$bodyAttrs['class'] .= ' ' . $sk->getPageClasses( $this->getTitle() );
-		$bodyAttrs['class'] .= ' skin-' . Sanitizer::escapeClass( $sk->getSkinName() );
-		$bodyAttrs['class'] .= ' action-' . Sanitizer::escapeClass( Action::getActionName( $this->getContext() ) );
 
-		$sk->addToBodyAttributes( $this, $bodyAttrs ); // Allow skins to add body attributes they need
+		$bodyClasses[] = $sk->getPageClasses( $this->getTitle() );
+		$bodyClasses[] = 'skin-' . Sanitizer::escapeClass( $sk->getSkinName() );
+		$bodyClasses[] = 'action-' . Sanitizer::escapeClass( Action::getActionName( $this->getContext() ) );
+
+		$bodyAttrs = array();
+		// While the implode() is not strictly needed, it's used for backwards compatibility
+		// (this used to be built as a string and hooks likely still expect that).
+		$bodyAttrs['class'] = implode( ' ', $bodyClasses );
+
+		// Allow skins and extensions to add body attributes they need
+		$sk->addToBodyAttributes( $this, $bodyAttrs );
 		wfRunHooks( 'OutputPageBodyAttributes', array( $this, $sk, &$bodyAttrs ) );
 
 		$ret .= Html::openElement( 'body', $bodyAttrs ) . "\n";
