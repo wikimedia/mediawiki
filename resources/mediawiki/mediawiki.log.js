@@ -1,4 +1,4 @@
-/**
+/*!
  * Logger for MediaWiki javascript.
  * Implements the stub left by the main 'mediawiki' module.
  *
@@ -9,15 +9,19 @@
 ( function ( mw, $ ) {
 
 	/**
+	 * @class mw.plugin.log
+	 */
+
+	/**
 	 * Logs a message to the console.
 	 *
 	 * In the case the browser does not have a console API, a console is created on-the-fly by appending
-	 * a <div id="mw-log-console"> element to the bottom of the body and then appending this and future
+	 * a `<div id="mw-log-console">` element to the bottom of the body and then appending this and future
 	 * messages to that, instead of the console.
 	 *
-	 * @param {String} First in list of variadic messages to output to console.
+	 * @param {string...} msg Messages to output to console.
 	 */
-	mw.log = function ( /* logmsg, logmsg, */ ) {
+	mw.log = function () {
 		// Turn arguments into an array
 		var	args = Array.prototype.slice.call( arguments ),
 			// Allow log messages to use a configured prefix to identify the source window (ie. frame)
@@ -67,5 +71,10 @@
 			);
 		} );
 	};
+
+	/**
+	 * @class mw
+	 * @mixins mw.plugin.log
+	 */
 
 }( mediaWiki, jQuery ) );
