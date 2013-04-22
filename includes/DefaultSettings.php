@@ -1873,7 +1873,7 @@ $wgSessionHandler = null;
 $wgMemCachedDebug = false;
 
 /** The list of MemCached servers and port numbers */
-$wgMemCachedServers = array( '127.0.0.1:11000' );
+$wgMemCachedServers = array( '127.0.0.1:11211' );
 
 /**
  * Use persistent connections to MemCached, which are shared across multiple
