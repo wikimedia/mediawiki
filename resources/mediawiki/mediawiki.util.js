@@ -460,7 +460,7 @@
 		 *
 		 * @param {Mixed} message The DOM-element, jQuery object or HTML-string to be put inside the message box.
 		 * to allow CSS/JS to hide different boxes. null = no class used.
-		 * @deprecated Use mw#notify
+		 * @deprecated since 1.20 Use mw#notify
 		 */
 		jsMessage: function ( message ) {
 			if ( !arguments.length || message === '' || message === null ) {
