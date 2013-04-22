@@ -151,6 +151,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
   uploads.
 * (bug 40448) mediawiki.legacy.mwsuggest has been replaced with a new module,
   mediawiki.searchSuggest, based on SimpleSeach from Extension:Vector.
+* (bug 47202) wikibits: FF2Fixes.css should not be loaded in Firefox 20.
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.
