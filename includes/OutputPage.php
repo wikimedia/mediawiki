@@ -2522,6 +2522,10 @@ $templates
 		$bodyClasses[] = 'skin-' . Sanitizer::escapeClass( $sk->getSkinName() );
 		$bodyClasses[] = 'action-' . Sanitizer::escapeClass( Action::getActionName( $this->getContext() ) );
 
+		// Allow skins and extensions to add body classes they need
+		$sk->addToBodyClasses( $this, $bodyClasses );
+		wfRunHooks( 'OutputPageBodyClasses', array( $this, $sk, &$bodyClasses ) );
+
 		$bodyAttrs = array();
 		// While the implode() is not strictly needed, it's used for backwards compatibility
 		// (this used to be built as a string and hooks likely still expect that).
