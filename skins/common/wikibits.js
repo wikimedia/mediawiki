@@ -113,18 +113,6 @@ window.appendCSS = function( text ) {
 	return s;
 };
 
-// Special stylesheet links for Monobook only (see bug 14717)
-var skinpath = mw.config.get( 'stylepath' ) + '/' + mw.config.get( 'skin' );
-if ( mw.config.get( 'skin' ) === 'monobook' ) {
-	if ( opera6_bugs ) {
-		importStylesheetURI( skinpath + '/Opera6Fixes.css' );
-	} else if ( opera7_bugs ) {
-		importStylesheetURI( skinpath + '/Opera7Fixes.css' );
-	} else if ( opera95_bugs ) {
-		importStylesheetURI( skinpath + '/Opera9Fixes.css' );
-	}
-}
-
 if ( mw.config.get( 'wgBreakFrames' ) ) {
 	// Un-trap us from framesets
 	if ( window.top != window ) {
