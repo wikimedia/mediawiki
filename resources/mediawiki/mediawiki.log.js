@@ -58,7 +58,7 @@
 				hovzer.update();
 			}
 			$log.append(
-				$( '<div></div>' )
+				$( '<div>' )
 					.css( {
 						borderBottom: 'solid 1px #DDDDDD',
 						fontSize: 'small',
@@ -70,6 +70,48 @@
 					.prepend( '<span style="float: right;">[' + time + ']</span>' )
 			);
 		} );
+	};
+
+	/*
+	 * @param {string} msg
+	 */
+	mw.log.warn = function ( msg ) {
+		var console = window.console;
+		if ( console && console.warn ) {
+			console.warn( msg );
+			if ( console.trace ) {
+				console.trace();
+			}
+		}
+	};
+
+	/**
+	 * @param {Object} obj
+	 * @param {string} key
+	 * @param {Mixed} val
+	 */
+	mw.log.deprecate = !Object.defineProperty ? function ( obj, key, val ) {
+		obj[key] = val;
+	} : function ( obj, key, val, msg ) {
+		msg = 'MWDeprecationError: Use of "' + key + '" property is deprecated.' +
+			( msg ? ( ' ' + msg ) : '' );
+		try {
+			Object.defineProperty( obj, key, {
+				configurable: true,
+				enumerable: true,
+				get: function() {
+					mw.log.warn( msg );
+					return val;
+				},
+				set: function( newVal ) {
+					mw.log.warn( msg );
+					val = newVal;
+				}
+			});
+		} catch ( err ) {
+			// IE8 can throw on Object.defineProperty
+			obj[key] = val;
+		}
 	};
 
 	/**

@@ -266,11 +266,15 @@ var mw = ( function ( $, undefined ) {
 	return {
 		/* Public Members */
 
-		/**
-		 * Dummy function which in debug mode can be replaced with a function that
-		 * emulates console.log in console-less environments.
-		 */
-		log: function () { },
+		// Dummy placeholder for mediawiki.log.
+		log: ( function () {
+			var log = function () {};
+			log.warn = $.noop;
+			log.deprecate = function ( obj, key, val ) {
+				obj[key] = val;
+			};
+			return log;
+		}() ),
 
 		// Make the Map constructor publicly available.
 		Map: Map,
@@ -293,8 +297,6 @@ var mw = ( function ( $, undefined ) {
 		 * @property
 		 */
 		libs: {},
-
-		/* Extension points */
 
 		/**
 		 * @property
