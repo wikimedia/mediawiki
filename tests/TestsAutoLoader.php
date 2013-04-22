@@ -30,6 +30,7 @@ $wgAutoloadClasses += array(
 	'DbTestPreviewer' => "$testDir/testHelpers.inc",
 	'DbTestRecorder' => "$testDir/testHelpers.inc",
 	'DelayedParserTest' => "$testDir/testHelpers.inc",
+	'ParserTestResult' => "$testDir/parser/ParserTestResult.php",
 	'TestFileIterator' => "$testDir/testHelpers.inc",
 	'TestRecorder' => "$testDir/testHelpers.inc",
 

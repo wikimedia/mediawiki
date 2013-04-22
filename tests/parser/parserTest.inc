@@ -518,18 +518,23 @@ class ParserTest {
 		}
 
 		$this->teardownGlobals();
-		return $this->showTestResult( $desc, $result, $out );
+
+		$testResult = new ParserTestResult( $desc );
+		$testResult->expected = $result;
+		$testResult->actual = $out;
+
+		return $this->showTestResult( $testResult );
 	}
 
 	/**
-	 *
+	 * Refactored in 1.22 to use ParserTestResult
 	 */
-	function showTestResult( $desc, $result, $out ) {
-		if ( $result === $out ) {
-			$this->showSuccess( $desc );
+	function showTestResult( ParserTestResult $testResult ) {
+		if ( $testResult->isSuccess() ) {
+			$this->showSuccess( $testResult );
 			return true;
 		} else {
-			$this->showFailure( $desc, $result, $out );
+			$this->showFailure( $testResult );
 			return false;
 		}
 	}
@@ -1095,10 +1100,12 @@ class ParserTest {
 	/**
 	 * Print a happy success message.
 	 *
-	 * @param $desc String: the test name
+	 * Refactored in 1.22 to use ParserTestResult
+	 *
+	 * @param $testResult ParserTestResult
 	 * @return Boolean
 	 */
-	protected function showSuccess( $desc ) {
+	protected function showSuccess( ParserTestResult $testResult ) {
 		if ( $this->showProgress ) {
 			print $this->term->color( '1;32' ) . 'PASSED' . $this->term->reset() . "\n";
 		}
@@ -1110,28 +1117,29 @@ class ParserTest {
 	 * Print a failure message and provide some explanatory output
 	 * about what went wrong if so configured.
 	 *
-	 * @param $desc String: the test name
-	 * @param $result String: expected HTML output
-	 * @param $html String: actual HTML output
+	 * Refactored in 1.22 to use ParserTestResult
+	 *
+	 * @param $testResult ParserTestResult
 	 * @return Boolean
 	 */
-	protected function showFailure( $desc, $result, $html ) {
+	protected function showFailure( ParserTestResult $testResult ) {
 		if ( $this->showFailure ) {
 			if ( !$this->showProgress ) {
 				# In quiet mode we didn't show the 'Testing' message before the
 				# test, in case it succeeded. Show it now:
-				$this->showTesting( $desc );
+				$this->showTesting( $testResult->description );
 			}
 
 			print $this->term->color( '31' ) . 'FAILED!' . $this->term->reset() . "\n";
 
 			if ( $this->showOutput ) {
-				print "--- Expected ---\n$result\n--- Actual ---\n$html\n";
+				print "--- Expected ---\n{$testResult->expected}\n";
+				print "--- Actual ---\n{$testResult->actual}\n";
 			}
 
 			if ( $this->showDiffs ) {
-				print $this->quickDiff( $result, $html );
-				if ( !$this->wellFormed( $html ) ) {
+				print $this->quickDiff( $testResult->expected, $testResult->actual );
+				if ( !$this->wellFormed( $testResult->actual ) ) {
 					print "XML error: $this->mXmlError\n";
 				}
 			}
