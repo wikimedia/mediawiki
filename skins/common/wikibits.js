@@ -396,11 +396,9 @@ window.redirectToFragment = function( fragment ) {
  * something, replacing any preexisting message.
  *
  * @deprecated since 1.17 Use the 'mediawiki.notify' module instead.
- * @param {String|HTMLElement} message To be put inside the message box.
+ * @param {string|HTMLElement} message To be put inside the message box.
  */
-window.jsMsg = function () {
-	return mw.util.jsMessage.apply( mw.util, arguments );
-};
+mw.log.deprecate( window, 'jsMsg', mw.util.jsMessage, 'Use mediawiki.notify instead.' );
 
 /**
  * Inject a cute little progress spinner after the specified element
