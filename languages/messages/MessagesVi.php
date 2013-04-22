@@ -861,7 +861,7 @@ mật khẩu cũ.',
 Mật khẩu tạm: $2',
 'passwordreset-emailsent' => 'Đã gửi thư điện tử để tái tạo mật khẩu.',
 'passwordreset-emailsent-capture' => 'Thư điện tử để tái tạo mật khẩu đã được gửi, nội dung như sau.',
-'passwordreset-emailerror-capture' => 'Chúng tôi đã tạo thư tái tạo mật khẩu dưới đây, nhưng không thể gửi đến người dùng: $1',
+'passwordreset-emailerror-capture' => 'Chúng tôi đã tạo thư tái tạo mật khẩu dưới đây, nhưng không thể gửi đến {{GENDER:$2}}người dùng: $1',
 
 # Special:ChangeEmail
 'changeemail' => 'Đổi địa chỉ thư điện tử',

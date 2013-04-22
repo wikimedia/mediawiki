@@ -647,6 +647,8 @@ Wann De wells, künnts De Ding [[Special:Preferences|Enschtällonge aanpaße]].'
 'userlogin-yourpassword-ph' => 'Donn Ding Paßwood enjävve',
 'yourpasswordagain' => 'Noch ens dat Passwood',
 'remembermypassword' => 'Op Duur aanmelde (hält {{PLURAL:$1|för eine Daach|bes op $1 Dääsch|bloß för hück}})',
+'userlogin-remembermypassword' => 'Op Duur enlogge',
+'userlogin-signwithsecure' => 'Verschlößeld enlogge',
 'securelogin-stick-https' => 'Noh em Enlogge övver HTTPS verbonge blieve.',
 'yourdomainname' => 'Ding Domain',
 'password-change-forbidden' => 'Do kanns en heh däm Wiki kein Paßwööter ändere.',
@@ -660,6 +662,7 @@ Wann De wells, künnts De Ding [[Special:Preferences|Enschtällonge aanpaße]].'
 'userlogout' => 'Ußlogge',
 'notloggedin' => 'Nit enjelogg',
 'userlogin-noaccount' => 'Do häß noch keine Zohjang?',
+'userlogin-joinproject' => 'Aanmälde zom Metmaache!',
 'nologin' => "Wann De Dich noch nit aanjemeldt häs, dann dun Dich '''$1'''.",
 'nologinlink' => 'neu aanmelde',
 'createaccount' => 'Aanmelde als ene neue Metmaacher',
@@ -802,6 +805,7 @@ Do häs Der enzwesche e neu Zweschepaßwood jehollt.',
 'passwordreset-text' => 'Donn dat Fommulaa heh ußfölle, öm e neu Paßwoot faßzelääje.',
 'passwordreset-legend' => 'Et Paßwoot zeröck säze',
 'passwordreset-disabled' => 'Et Paßwoot zeröck ze säze es heh em Wiki afjeschalldt.',
+'passwordreset-emaildisabled' => 'Heh dat Wiki määt nix met <i lang="en">e-mail</i>!',
 'passwordreset-pretext' => '{{PLURAL:$1||Jiff ein vun dä Saache heh dronger enn|}}',
 'passwordreset-username' => 'Metmaacher Name:',
 'passwordreset-domain' => 'Domähn:',
@@ -837,7 +841,7 @@ moß De jäz jaa nix donn, un kanns Ding Paßwoot wigger bruche.',
 Eijmohl-Paßwoot: $2',
 'passwordreset-emailsent' => 'En <i lang="en">e-mail</i> met Aanjaabe zom neue Paßwoot för der Zohjang heh es verscheck.',
 'passwordreset-emailsent-capture' => 'En <i lang="en">e-mail</i> met Aanjaabe zom neue Paßwoot för der Zohjang heh es verscheck woode. Heh dronger kanns De se lässe.',
-'passwordreset-emailerror-capture' => 'En <i lang="en">e-mail</i> met Aanjaabe zom neue Paßwoot för der Zohjang heh sullt verscheck wääde, ävver dat Verschecke hät nit jeflup: $1',
+'passwordreset-emailerror-capture' => 'En <i lang="en">e-mail</i> met Aanjaabe zom neue Paßwoot för der Zohjang heh sullt verscheck wääde, ävver dat Verschecke aan {{GENDER:$2|dä|dat|dä Metmaacher|de|dat}} $2 hät nit jeflup: $1',
 
 # Special:ChangeEmail
 'changeemail' => 'Donn Ding Address för de <i lang="en">e-mail</i> ändere',
@@ -4075,7 +4079,7 @@ Die Datei weed jlich aanjezeig, odder med däm paßende Projramm op jemaat.",
 
 # External image whitelist
 'external_image_whitelist' => '# Donn aan dä Reih heh nix ändere<pre>
-# Onge künne Brochstöck fun regular expressions aanjejovve wäde,
+# Onge künne Brochstöke fun rejolähre Ußdrök aanjejovve wäde,
 # alsu dä Deil zwesche / und /
 # Noh em Verjliische met däm URL vun ene Datei fun ußerhallef:
 # Treffer: De Datei weed jezeich odder enjebonge.

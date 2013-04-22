@@ -757,7 +757,7 @@ $2
 Kata laluan sementara: $2',
 'passwordreset-emailsent' => 'E-mel set semula kata laluan telah dihantar.',
 'passwordreset-emailsent-capture' => 'E-mel set semula kata laluan telah dihantar, seperti yang dipaparkan di bawah.',
-'passwordreset-emailerror-capture' => 'E-mel set semula kata laluan telah dihasilkan, seperti yang dipaparkan di bawah, tetapi tidak berjaya dihantar kepada pengguna: $1',
+'passwordreset-emailerror-capture' => 'E-mel set semula kata laluan telah dihasilkan, seperti yang dipaparkan di bawah, tetapi tidak berjaya dihantar kepada {{GENDER:$2|pengguna}} berkenaan: $1',
 
 # Special:ChangeEmail
 'changeemail' => 'Tukar alamat e-mel',

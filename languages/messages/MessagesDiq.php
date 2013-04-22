@@ -309,12 +309,12 @@ $magicWords = array(
 
 $messages = array(
 # User preference toggles
-'tog-underline' => 'Bınê gırey de xete bıance:',
+'tog-underline' => 'Bınê gırey de xete bance:',
 'tog-justify' => 'Paragrafan eyar ke',
 'tog-hideminor' => 'Vurnayışanê şenıkan pela vurnayışanê peyênan de bınımne',
 'tog-hidepatrolled' => 'Vurnayışanê qontrolkerdeyan pela vurnayışê peyêni de bınımne',
 'tog-newpageshidepatrolled' => 'Pelanê qontrolkerdeyan lista pelanê neweyan de bınımne',
-'tog-extendwatchlist' => 'Lista seyrkerdışi hera bıke ke vurnayışi pêro bıasê, tenya tewr peyêni nê',
+'tog-extendwatchlist' => 'Lista seyrkerdışi hera bıke ke vurnayışi pêro basê, tenya tewr peyêni nê',
 'tog-usenewrc' => 'Pele be vurnayışanê grube de vurnayışê peyêni u lista seyrkerdışi (JavaScript lazımo)',
 'tog-numberheadings' => 'Sernuşteyan be xo numre cı şane',
 'tog-showtoolbar' => 'Goceganê hacetanê vurnayışi bımocne (JavaScript lazımo)',
@@ -331,7 +331,7 @@ $messages = array(
 'tog-previewontop' => 'Verqayti pela nuştışi ser de bımocne',
 'tog-previewonfirst' => 'Vurnayışo verên de verqayti tım bımocne',
 'tog-nocache' => 'Pelanê cıgeyrayoği meya xo viri',
-'tog-enotifwatchlistpages' => 'Jû pele ya zi dosyaya ke lista mına seyrkerdışi de vurnayê mı rê e-poste bırışe',
+'tog-enotifwatchlistpages' => 'Yew pele ya zi dosyaya ke lista mına seyrkerdışi de vurnayê mı rê e-poste bırışe',
 'tog-enotifusertalkpages' => 'Pela mına werênayışi ke vurnayê mı rê e-poste bırışe',
 'tog-enotifminoredits' => 'Vurnayışanê qıckekanê pelan u dosyeyan de zi mı rê e-poste bırışe',
 'tog-enotifrevealaddr' => 'Adresa e-posteyê mı posteyê xeberan de bımocne',
@@ -346,17 +346,17 @@ $messages = array(
 'tog-watchlisthideminor' => 'Vurnayışanê qıckekan lista mına seyrkerdışi de bınımne',
 'tog-watchlisthideliu' => 'Lista seyrkerdışi ra vurnayışanê karberanê cıkewteyan bınımne',
 'tog-watchlisthideanons' => 'Lista seyrkerdışi ra vurnayışanê karberanê anoniman bınımne',
-'tog-watchlisthidepatrolled' => 'Lista seyrkerdışi ra vurnayışanê qontrol kerdeyan bınımne',
+'tog-watchlisthidepatrolled' => 'Lista seyrkerdışi ra vurnayışanê qontrolkerdeyan bınımne',
 'tog-ccmeonemails' => 'E-posteyanê ke ez karberanê binan rê rışenan, mı rê kopya inan bırışe',
 'tog-diffonly' => 'Qıyasê versiyonan de tek ferqan bımocne, pela butıne nê',
-'tog-showhiddencats' => 'Kategoriyanê dızdine bımocne',
+'tog-showhiddencats' => 'Kategoriyanê dızdiye bımocne',
 'tog-noconvertlink' => 'Greyê sernami çerx kerdışi bıqefılne',
 'tog-norollbackdiff' => 'Peyserardışi ra dıme ferqi caverde',
-'tog-useeditwarning' => 'wexta ke ez pelo nêqeydbiyaye ra veciyaya mı hişyar bıker',
+'tog-useeditwarning' => 'Wexto ke mı yew pela nizami be vurnayışanê nêqeydbiyayeyan caverdê, hay be mı ser de',
 
 'underline-always' => 'Tım',
 'underline-never' => 'Qet',
-'underline-default' => 'Cild ya zi cıgeyrayoğo hesıbyaye',
+'underline-default' => 'Cild ya zi cıgeyrayoğo hesebiyaye',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Cayê vurnayışi de terzê nuştışi:',

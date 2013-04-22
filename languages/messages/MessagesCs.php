@@ -2154,7 +2154,7 @@ Každý řádek obsahuje odkaz na první a druhé přesměrování a k tomu cíl
 'ncategories' => '$1 {{PLURAL:$1|kategorie|kategorie|kategorií}}',
 'ninterwikis' => '$1 {{PLURAL:$1|mezijazykový odkaz|mezijazykové odkazy|mezijazykových odkazů}}',
 'nlinks' => '$1 {{PLURAL:$1|odkaz|odkazy|odkazů}}',
-'nmembers' => '$1 {{PLURAL:$1|stránka|stránky|stránek}}',
+'nmembers' => '$1 {{PLURAL:$1|položka|položky|položek}}',
 'nrevisions' => '$1 {{PLURAL:$1|revize|revize|revizí}}',
 'nviews' => '$1 {{PLURAL:$1|návšteva|návštevy|návštev}}',
 'nimagelinks' => 'Použit na $1 {{PLURAL:$1|stránce|stránkách}}',

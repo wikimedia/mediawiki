@@ -886,7 +886,7 @@ passord.',
 Midlertidig passord: $2',
 'passwordreset-emailsent' => 'En passordtilbakestillingslenke har blitt sendt per e-post.',
 'passwordreset-emailsent-capture' => 'Passordtilbakestillingseposten vist under har blitt sendt ut.',
-'passwordreset-emailerror-capture' => 'En passordtilbakestillingsepost ble laget, men det lyktes ikke å sende denne til brukeren: $1',
+'passwordreset-emailerror-capture' => 'En passordtilbakestillingsepost ble laget, men det lyktes ikke å sende denne til {{GENDER:$2|brukeren}}: $1',
 
 # Special:ChangeEmail
 'changeemail' => 'Endre e-postadresse',

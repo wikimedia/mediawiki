@@ -832,7 +832,7 @@ Vergiss nicht, deine [[Special:Preferences|{{SITENAME}}-Einstellungen]] zu ände
 'yourpasswordagain' => 'Passwort wiederholen:',
 'remembermypassword' => 'Mit diesem Browser dauerhaft angemeldet bleiben (maximal $1 {{PLURAL:$1|Tag|Tage}})',
 'userlogin-remembermypassword' => 'Angemeldet bleiben',
-'userlogin-signwithsecure' => 'Mit dem sicheren Server anmelden',
+'userlogin-signwithsecure' => 'Über den sicheren Server anmelden',
 'securelogin-stick-https' => 'Nach dem Anmelden mit HTTPS verbunden bleiben',
 'yourdomainname' => 'Deine Domain:',
 'password-change-forbidden' => 'Du kannst auf diesem Wiki keine Passwörter ändern.',

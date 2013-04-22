@@ -94,12 +94,12 @@ $messages = array(
 # Font style option in Special:Preferences
 'editfont-style' => "Stil dij caràter ëd l'àrea ëd modìfica:",
 'editfont-default' => 'Stàndard dël navigator',
-'editfont-monospace' => 'Font mono-spassià',
-'editfont-sansserif' => 'Font sans-serif',
-'editfont-serif' => 'Font serif',
+'editfont-monospace' => 'Caràter mono-spassià',
+'editfont-sansserif' => 'Caràter sensa piòte',
+'editfont-serif' => 'Caràter con piòte',
 
 # Dates
-'sunday' => 'Dumìnica',
+'sunday' => 'dumìnica',
 'monday' => 'Lùn-es',
 'tuesday' => 'Màrtes',
 'wednesday' => 'Merco',

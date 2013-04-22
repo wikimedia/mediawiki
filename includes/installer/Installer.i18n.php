@@ -11597,7 +11597,7 @@ Dat heiß, mer moß en affschallde, söns jeiht nix.",
 MediaWiki bruch Funxjohne en däm Modul un deiht et esu nit.
 Wann De <i lang="en">Mandrake</i> aam loufehäs, donn dat Pakätt <code lang="en">php-xml</code> enstalleere.',
 	'config-pcre' => 'Dem PHP sing Modul för <i lang="en">PCRE</i> schingk ze fähle.
-MediaWiki deiht et nit ohne de Funxjohne för de <i lang="en">Perl-compatible regular expressions</i>.',
+MediaWiki deiht et nit der ohne de Funxjohne för de rejolähre Ußdrök vun dä Zoot, wi <i lang="en">Perl</i> se kännt.',
 	'config-pcre-no-utf8' => "'''Dä:''' Et PHP-Modul <i lang=\"en\">PCRE</i> schingk ohne de <i lang=\"en\">PCRE_UTF8</i>-Aandeile övversaz ze sin.
 MediaWiki bruch dä UTF-8-Krohm ävver, öm ohne Fähler loufe ze künne.",
 	'config-memory-raised' => 'Der jrühzte zohjelasse Shpeisherbedarf vum PHP, et <code lang="en">memory_limit</code>, shtund op $1 un es op $2 erop jesaz woode.',

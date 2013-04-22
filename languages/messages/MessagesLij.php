@@ -448,7 +448,12 @@ Pe favô ti peu segnalâ quello che l'é sucesso a in [[Special:ListUsers/sysop|
 'viewsource' => 'Veddi a fonte',
 'protectedpagetext' => "'Sta paggina a l'è stæta protezûa pe impedîghe a modiffica.",
 'viewsourcetext' => "O l'è poscibbile vedde e copiâ o còddice sorgente de 'sta paggina:",
+'customjsprotected' => "No ti gh'æ i permessi pe cangiâ sta pagina de JavaScript percose a contegne e impostaçioin personæ de 'n atro utente",
 'ns-specialprotected' => 'No se pœu modificâ e paggine speciali',
+'titleprotected' => "A creaçion de 'na paggina con sto tittolo a l'è stæta bloccâ da [[User:$1|$1]].
+A raxon a l'è: ''$2''.",
+'exception-nologin' => "No t'ê introu",
+'exception-nologin-text' => "Pe sta paggina ò sta açion ti gh'æ da effettuâ l'accesso inte sta wiki.",
 
 # Virus scanner
 'virus-scanfailed' => 'scansion fallia (codice $1)',
@@ -460,6 +465,7 @@ Pe favô ti peu segnalâ quello che l'é sucesso a in [[Special:ListUsers/sysop|
 'yourpasswordagain' => 'Riscrivi a pòula segrétta:',
 'remembermypassword' => 'Aregòrda a mæ login in sto navegatô (pe in mascimo de $1 {{PLURAL:$1|giórno|giórni}})',
 'yourdomainname' => 'Indirisso do scito:',
+'password-change-forbidden' => 'No ti peu cangiâ poula segretta in questa wiki.',
 'login' => 'Intra',
 'nav-login-createaccount' => 'Intra / Registrate',
 'loginprompt' => "Pe fâ l'accesso inte {{SITENAME}} ti g'hæ da  abilitâ i cookie.",
@@ -499,22 +505,31 @@ A paròlla d'ordine pe l'ûtente \"\$2\" a l'è stæta impostâ a \"\$3\".
 Se conseggia de fâ l'accesso quanto primma e cangiâ a paròlla d'ordine immediatamente.
 Se no ti ê stæto ti a fâ 'sta domanda, oppûre se ti t'hæ ritrovòu a têu paròlla d'ordine e no ti vêu cangiâla ciû, ti pêu ignorâ 'sto messaggio e andâ avanti deuviando a vegia paròlla d'ordine.",
 'noemail' => 'No gh\'è nisciûn indirisso e-mail registròu pe l\'ûtente "$1".',
+'noemailcreate' => 'Ti devi dâ un addresso e-mail vallido.',
 'passwordsent' => "Ûnn-a nêuva paròlla d'ordine a l'è stæta inviâa a l'indirisso e-mail registròu pe l'ûtente \"\$1\".
 Pe piaxei, fa 'n accesso appenn-a ti a ghe reçeivi.",
 'blocked-mailpassword' => "O teu indirisso IP o l'è affirmoö, e pe sta razon o non se peu usâ a funscion de remandâ a pòula segretta.",
 'eauthentsent' => "'N messaggio e-mail de confermassion o l'è stæto inviòu a l'indirisso indicòu.
 Pe abilitâ l'invîo de messaggi e-mail pe quest'accesso, o se deive seguî l'istrûssioîn indicæ, coscì ti confermi che ti t'è o legittimo propietâjo de l'indirisso.",
+'mailerror' => "Errô inte l'invio do messaggio: $1",
 'acct_creation_throttle_hit' => "Ne dispiâxe, ma t'hæ zà creòu $1 accesci. No ti pêu creâne ciû!",
 'emailauthenticated' => "O teu indirisso de posta elettronica o l'è stæto autenticou o $1.",
 'emailconfirmlink' => 'Conferma o teu indirisso de posta elettronega',
 'accountcreated' => 'Graçie pe esëte registroö!!!',
 'accountcreatedtext' => "Utente $1, ti te guägno l'açeiso!",
+'createaccount-title' => "Creaçion de 'n conto pe {{SITENAME}}",
+'usernamehasherror' => 'O nomme utente o no poeu contegnî di caratteri hash',
+'login-abort-generic' => "O to accesso o no l'ha avuo successo - Abortio",
 'loginlanguagelabel' => 'Lengoa: $1',
 
 # Change password dialog
-'resetpass' => 'Reverti a pòula segretta',
-'resetpass_header' => 'Reverti a pòula segretta',
+'resetpass' => 'Cangia a pòula segretta',
+'resetpass_announce' => "T'ê introu co in codiçe temporanio de l'e-mail.Pe completâ l'accesso ti devi çerne 'na neuva poula segretta chì:",
+'resetpass_header' => 'Cangia a pòula segretta do conto',
+'oldpassword' => 'Vegia poula segretta',
+'newpassword' => 'Neuva poula segretta',
 'retypenew' => "Ripette a nêuva paròlla d'ordine:",
+'resetpass_submit' => 'Çerni a poula segretta e intra',
 'resetpass_forbidden' => "No l'é poscìbile cangiâ e paròlle segrétte",
 
 # Edit page toolbar

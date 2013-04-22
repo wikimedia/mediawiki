@@ -2259,7 +2259,8 @@ See also:
 
 See also:
 * {{msg-mw|Searchprofile-images|message}}
-* {{msg-mw|Searchprofile-images-tooltip|tooltip}}',
+* {{msg-mw|Searchprofile-images-tooltip|tooltip}}
+{{Identical|Muitimedia}}',
 'searchprofile-everything' => 'Used as an option in [[Special:Search]].
 
 See also:
@@ -7019,9 +7020,6 @@ See also {{msg-mw|Days-abbrev}}
 
 Part of variable $1 in {{msg-mw|Ago}}
 {{Identical|Day}}',
-'weeks' => 'Full word for "weeks". $1 is the number of weeks.
-
-Part of variable $1 in {{msg-mw|Ago}}',
 'months' => 'Full word for "months". $1 is the number of months.
 
 Part of variable $1 in {{msg-mw|Ago}}',
@@ -7036,20 +7034,6 @@ Part of variable $1 in {{msg-mw|Ago}}',
 *{{msg-mw|Months}}
 *{{msg-mw|Years}}',
 'just-now' => 'Phrase for indicating something happened just now.',
-
-'hours-ago'      => 'Phrase for indicating that something occurred a certain number of hours ago',
-'minutes-ago'    => 'Phrase for indicating that something occurred a certain number of minutes ago',
-'seconds-ago'    => 'Phrase for indicating that something occurred a certain number of seconds ago',
-
-'monday-at'   => 'Phrase for indicating that something occurred at a particular time on the most recent Monday. $1 is the time.',
-'tuesday-at'   => 'Phrase for indicating that something occurred at a particular time on the most recent Tuesday. $1 is the time.',
-'wednesday-at'   => 'Phrase for indicating that something occurred at a particular time on the most recent Wednesday. $1 is the time.',
-'thursday-at'   => 'Phrase for indicating that something occurred at a particular time on the most recent Thursday. $1 is the time.',
-'friday-at'   => 'Phrase for indicating that something occurred at a particular time on the most recent Friday. $1 is the time.',
-'saturday-at'   => 'Phrase for indicating that something occurred at a particular time on the most recent Saturday. $1 is the time.',
-'sunday-at'   => 'Phrase for indicating that something occurred at a particular time on the most recent Sunday. $1 is the time.',
-'today-at'       => 'Phrase for indicating that something occurred at a particular time today. $1 is the time.',
-'yesterday-at'   => 'Phrase for indicating that something occurred at a particular time yesterday. $1 is the time.',
 
 # Bad image list
 'bad_image_list' => 'This message only appears to guide administrators to add links with the right format. This will not appear anywhere else in MediaWiki.',
