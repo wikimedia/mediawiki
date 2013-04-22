@@ -9,6 +9,7 @@
 	"--": [
 		"./external.js",
 		"../../resources/mediawiki/mediawiki.js",
+		"../../resources/mediawiki/mediawiki.log.js",
 		"../../resources/mediawiki/mediawiki.util.js",
 		"../../resources/mediawiki/mediawiki.Title.js",
 		"../../resources/mediawiki/mediawiki.notify.js",
