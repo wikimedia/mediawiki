@@ -162,18 +162,22 @@ $dateFormats = array(
 	'mdy time' => 'H:i',
 	'mdy date' => 'F j, Y',
 	'mdy both' => 'H:i, F j, Y',
+	'mdy pretty' => 'F j',
 
 	'dmy time' => 'H:i',
 	'dmy date' => 'j F Y',
 	'dmy both' => 'H:i, j F Y',
+	'dmy pretty' => 'j F',
 
 	'ymd time' => 'H:i',
 	'ymd date' => 'Y F j',
 	'ymd both' => 'H:i, Y F j',
+	'ymd pretty' => 'F j',
 
 	'ISO 8601 time' => 'xnH:xni:xns',
 	'ISO 8601 date' => 'xnY-xnm-xnd',
 	'ISO 8601 both' => 'xnY-xnm-xnd"T"xnH:xni:xns',
+	'ISO 8601 pretty' => 'xnm-xnd'
 );
 
 /**
@@ -3880,10 +3884,26 @@ By executing it, your system may be compromised.",
 'minutes'        => '{{PLURAL:$1|$1 minute|$1 minutes}}',
 'hours'          => '{{PLURAL:$1|$1 hour|$1 hours}}',
 'days'           => '{{PLURAL:$1|$1 day|$1 days}}',
+'weeks'          => '{{PLURAL:$1|$1 week|$1 weeks}}',
 'months'         => '{{PLURAL:$1|$1 month|$1 months}}',
 'years'          => '{{PLURAL:$1|$1 year|$1 years}}',
 'ago'            => '$1 ago',
 'just-now'       => 'just now',
+
+'hours-ago'      => '$1 {{PLURAL:$1|hour|hours}} ago',
+'minutes-ago'    => '$1 {{PLURAL:$1|minute|minutes}} ago',
+'seconds-ago'    => '$1 {{PLURAL:$1|seconds|seconds}} ago',
+
+'monday-at'      => 'Monday at $1',
+'tuesday-at'     => 'Tuesday at $1',
+'wednesday-at'   => 'Wednesday at $1',
+'thursday-at'    => 'Thursday at $1',
+'friday-at'      => 'Friday at $1',
+'saturday-at'    => 'Saturday at $1',
+'sunday-at'      => 'Sunday at $1',
+
+'today-at'       => '$1',
+'yesterday-at'   => 'Yesterday at $1',
 
 # Bad image list
 'bad_image_list' => 'The format is as follows:
