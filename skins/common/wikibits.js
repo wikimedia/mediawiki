@@ -1,53 +1,47 @@
 /**
  * MediaWiki legacy wikibits
  */
-( function ( mw ) {
+/*jshint quotmark:false, onevar:false */
+( function ( mw, $ ) {
+	var isIE6, isGecko,
+		ua = navigator.userAgent.toLowerCase(),
+		uaMsg = 'Use feature detection or module jquery.client instead.';
 
-window.clientPC = navigator.userAgent.toLowerCase(); // Get client info
-window.is_gecko = /gecko/.test( clientPC ) &&
-	!/khtml|spoofer|netscape\/7\.0/.test(clientPC);
-
-window.is_safari = window.is_safari_win = window.webkit_version =
-	window.is_chrome = window.is_chrome_mac = false;
-window.webkit_match = clientPC.match(/applewebkit\/(\d+)/);
-if (webkit_match) {
-	window.is_safari = clientPC.indexOf('applewebkit') != -1 &&
-		clientPC.indexOf('spoofer') == -1;
-	window.is_safari_win = is_safari && clientPC.indexOf('windows') != -1;
-	window.webkit_version = parseInt(webkit_match[1]);
-	// Tests for chrome here, to avoid breaking old scripts safari left alone
-	// This is here for accesskeys
-	window.is_chrome = clientPC.indexOf('chrome') !== -1 &&
-		clientPC.indexOf('spoofer') === -1;
-	window.is_chrome_mac = is_chrome && clientPC.indexOf('mac') !== -1
+/**
+ * User-agent sniffing.
+ * To be removed in MediaWiki 1.23.
+ *
+ * @deprecated since 1.17 Use jquery.client instead.
+ */
+mw.log.deprecate( window, 'clientPC', ua, uaMsg );
+$.each([
+		'is_gecko',
+		'is_chrome_mac',
+		'is_chrome',
+		'webkit_version',
+		'is_safari_win',
+		'is_safari',
+		'webkit_match',
+		'is_ff2',
+		'ff2_bugs',
+		'is_ff2_win',
+		'is_ff2_x11',
+		'opera95_bugs',
+		'opera7_bugs',
+		'opera6_bugs',
+		'is_opera_95',
+		'is_opera_preseven',
+		'is_opera',
+		'ie6_bugs'
+	],
+	function ( i, key ) {
+		mw.log.deprecate( window, key, false, uaMsg );
+	}
+);
+if ( /msie ([0-9]{1,}[\.0-9]{0,})/.exec( ua ) && parseFloat( RegExp.$1 ) <= 6.0 ) {
+	isIE6 = true;
 }
-
-// For accesskeys; note that FF3+ is included here!
-window.is_ff2 = /firefox\/[2-9]|minefield\/3/.test( clientPC );
-window.ff2_bugs = /firefox\/2/.test( clientPC );
-// These aren't used here, but some custom scripts rely on them
-window.is_ff2_win = is_ff2 && clientPC.indexOf('windows') != -1;
-window.is_ff2_x11 = is_ff2 && clientPC.indexOf('x11') != -1;
-
-window.is_opera = window.is_opera_preseven = window.is_opera_95 =
-	window.opera6_bugs = window.opera7_bugs = window.opera95_bugs = false;
-if (clientPC.indexOf('opera') != -1) {
-	window.is_opera = true;
-	window.is_opera_preseven = window.opera && !document.childNodes;
-	window.is_opera_seven = window.opera && document.childNodes;
-	window.is_opera_95 = /opera\/(9\.[5-9]|[1-9][0-9])/.test( clientPC );
-	window.opera6_bugs = is_opera_preseven;
-	window.opera7_bugs = is_opera_seven && !is_opera_95;
-	window.opera95_bugs = /opera\/(9\.5)/.test( clientPC );
-}
-// As recommended by <http://msdn.microsoft.com/en-us/library/ms537509.aspx>,
-// avoiding false positives from moronic extensions that append to the IE UA
-// string (bug 23171)
-window.ie6_bugs = false;
-if ( /msie ([0-9]{1,}[\.0-9]{0,})/.exec( clientPC ) != null
-&& parseFloat( RegExp.$1 ) <= 6.0 ) {
-	ie6_bugs = true;
-}
+isGecko = /gecko/.test( ua ) && !/khtml|spoofer|netscape\/7\.0/.test( ua );
 
 // add any onload functions in this hook (please don't hard-code any events in the xhtml source)
 window.doneOnloadHook = undefined;
@@ -164,63 +158,14 @@ window.escapeQuotesHTML = function( text ) {
 };
 
 /**
- * Set the accesskey prefix based on browser detection.
- */
-window.tooltipAccessKeyPrefix = 'alt-';
-if ( is_opera ) {
-	tooltipAccessKeyPrefix = 'shift-esc-';
-} else if ( is_chrome ) {
-	tooltipAccessKeyPrefix = is_chrome_mac ? 'ctrl-option-' : 'alt-';
-} else if ( !is_safari_win && is_safari && webkit_version > 526 ) {
-	tooltipAccessKeyPrefix = 'ctrl-alt-';
-} else if ( !is_safari_win && ( is_safari
-		|| clientPC.indexOf('mac') != -1
-		|| clientPC.indexOf('konqueror') != -1 ) ) {
-	tooltipAccessKeyPrefix = 'ctrl-';
-} else if ( is_ff2 ) {
-	tooltipAccessKeyPrefix = 'alt-shift-';
-}
-window.tooltipAccessKeyRegexp = /\[(ctrl-)?(alt-)?(shift-)?(esc-)?(.)\]$/;
-
-/**
- * Add the appropriate prefix to the accesskey shown in the tooltip.
- * If the nodeList parameter is given, only those nodes are updated;
- * otherwise, all the nodes that will probably have accesskeys by
- * default are updated.
+ * Accesskey prefix utilities.
+ * To be removed in MediaWiki 1.23.
  *
- * @param nodeList Array list of elements to update
+ * @deprecated since 1.17 Use mediawiki.util instead.
  */
-window.updateTooltipAccessKeys = function( nodeList ) {
-	if ( !nodeList ) {
-		// Rather than scan all links on the whole page, we can just scan these
-		// containers which contain the relevant links. This is really just an
-		// optimization technique.
-		var linkContainers = [
-			'column-one', // Monobook and Modern
-			'mw-head', 'mw-panel', 'p-logo' // Vector
-		];
-		for ( var i in linkContainers ) {
-			var linkContainer = document.getElementById( linkContainers[i] );
-			if ( linkContainer ) {
-				updateTooltipAccessKeys( linkContainer.getElementsByTagName( 'a' ) );
-			}
-		}
-		// these are rare enough that no such optimization is needed
-		updateTooltipAccessKeys( document.getElementsByTagName( 'input' ) );
-		updateTooltipAccessKeys( document.getElementsByTagName( 'label' ) );
-		return;
-	}
-
-	for ( var i = 0; i < nodeList.length; i++ ) {
-		var element = nodeList[i];
-		var tip = element.getAttribute( 'title' );
-		if ( tip && tooltipAccessKeyRegexp.exec( tip ) ) {
-			tip = tip.replace(tooltipAccessKeyRegexp,
-					  '[' + tooltipAccessKeyPrefix + "$5]");
-			element.setAttribute( 'title', tip );
-		}
-	}
-};
+mw.log.deprecate( window, 'tooltipAccessKeyPrefix', 'alt-', 'Use mediawiki.util instead.' );
+mw.log.deprecate( window, 'tooltipAccessKeyRegexp', /\[(alt-)?(.)\]$/, 'Use mediawiki.util instead.' );
+mw.log.deprecate( window, 'updateTooltipAccessKeys', mw.util.updateTooltipAccessKeys, 'Use mediawiki.util instead.' );
 
 /**
  * Add a link to one of the portlet menus on the page, including:
@@ -303,7 +248,7 @@ window.addPortletLink = function( portlet, href, text, id, tooltip, accesskey, n
 		link.setAttribute( 'title', tooltip );
 	}
 	if ( accesskey && tooltip ) {
-		updateTooltipAccessKeys( [link] );
+		mw.util.updateTooltipAccessKeys( [link] );
 	}
 
 	if ( nextnode && nextnode.parentNode == node ) {
@@ -486,7 +431,7 @@ window.redirectToFragment = function( fragment ) {
 		// version-testing.  If Firefox fixes the bug, they'll jump twice, but
 		// better twice than not at all, so make the fix hit future versions as
 		// well.
-		if ( is_gecko ) {
+		if ( isGecko ) {
 			addOnloadHook(function() {
 				if ( window.location.hash == fragment ) {
 					window.location.hash = fragment;
@@ -600,8 +545,8 @@ window.removeHandler = function( element, remove, handler ) {
 //      so the below should be redundant. It's there just in case.
 hookEvent( 'load', runOnloadHook );
 
-if ( ie6_bugs ) {
+if ( isIE6 ) {
 	importScriptURI( mw.config.get( 'stylepath' ) + '/common/IEFixes.js' );
 }
 
-}( mediaWiki ) );
+}( mediaWiki, jQuery ) );
