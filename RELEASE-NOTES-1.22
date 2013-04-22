@@ -35,6 +35,10 @@ production.
   Pager-related WebRequest parameters by default, as this is overwhelmingly
   likely to be what was intended by users of the method. If any caller wishes
   to use these parameters, the new param 'useRequestParams' may be set to true.
+* mw.util.addPortletLink: Tooltip is no longer required to be plain (without
+  an accesskey in it already). As such it now rountrips. Creating a link with a
+  message as tooltip, grabbing the title attribute and using it to create
+  another portlet will work as expected.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail. Previously one could still
@@ -48,6 +52,8 @@ production.
 * (bug 47218) Special:BlockList now handles correctly user names with spaces
   when passed as subpage.
 * Pager's properly validate which fields are allowed to be sorted on.
+* mw.util.tooltipAccessKeyRegexp: The regex now matches "option-" as well.
+  Support for Mac "option" was added in 1.16, but the regex was never updated.
 
 === API changes in 1.22 ===
 * (bug 46626) xmldoublequote parameter was removed. Because of a bug, the
@@ -85,6 +91,8 @@ changes to languages because of Bugzilla reports.
 * Calling Linker methods using a skin will now output deprecation warnings.
 * (bug 46680) "Return to" links are no longer tagged with rel="next".
 * The Special:ActiveUsers special page was removed.
+* BREAKING CHANGE: mw.util.tooltipAccessKeyRegexp: The match group for the
+  accesskey character is now $6 instead of $5.
 
 == Compatibility ==
 

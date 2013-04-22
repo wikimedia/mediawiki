@@ -1,5 +1,13 @@
 ( function ( mw, $ ) {
-	QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment() );
+	QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
+		setup: function () {
+			this.taPrefix = mw.util.tooltipAccessKeyPrefix;
+			mw.util.tooltipAccessKeyPrefix = 'ctrl-alt-';
+		},
+		teardown: function () {
+			mw.util.tooltipAccessKeyPrefix = this.taPrefix;
+		}
+	} ) );
 
 	QUnit.test( 'rawurlencode', 1, function ( assert ) {
 		assert.equal( mw.util.rawurlencode( 'Test:A & B/Here' ), 'Test%3AA%20%26%20B%2FHere' );
@@ -108,10 +116,14 @@
 		assert.strictEqual( mw.util.getParamValue( 'TEST', url ), 'a b+c d', 'Bug 30441: getParamValue must understand "+" encoding of space (multiple spaces)' );
 	} );
 
-	QUnit.test( 'tooltipAccessKey', 3, function ( assert ) {
-		assert.equal( typeof mw.util.tooltipAccessKeyPrefix, 'string', 'mw.util.tooltipAccessKeyPrefix must be a string' );
-		assert.ok( mw.util.tooltipAccessKeyRegexp instanceof RegExp, 'mw.util.tooltipAccessKeyRegexp instance of RegExp' );
-		assert.ok( mw.util.updateTooltipAccessKeys, 'mw.util.updateTooltipAccessKeys' );
+	QUnit.test( 'tooltipAccessKey', 4, function ( assert ) {
+		assert.equal( typeof mw.util.tooltipAccessKeyPrefix, 'string', 'tooltipAccessKeyPrefix must be a string' );
+		assert.equal( $.type( mw.util.tooltipAccessKeyRegexp ), 'regexp', 'tooltipAccessKeyRegexp is a regexp' );
+		assert.ok( mw.util.updateTooltipAccessKeys, 'updateTooltipAccessKeys is non-empty' );
+
+		'Example [a]'.replace( mw.util.tooltipAccessKeyRegexp, function ( sub, m1, m2, m3, m4, m5, m6 ) {
+			assert.equal( m6, 'a', 'tooltipAccessKeyRegexp finds the accesskey hint' );
+		} );
 	} );
 
 	QUnit.test( '$content', 2, function ( assert ) {
@@ -125,7 +137,7 @@
 	 * Previously, test elements where invisible to the selector since only
 	 * one element can have a given id.
 	 */
-	QUnit.test( 'addPortletLink', 8, function ( assert ) {
+	QUnit.test( 'addPortletLink', 10, function ( assert ) {
 		var pTestTb, pCustom, vectorTabs, tbRL, cuQuux, $cuQuux, tbMW, $tbMW, tbRLDM, caFoo;
 
 		pTestTb = '\
@@ -154,7 +166,8 @@
 		$( '#qunit-fixture' ).append( pTestTb, pCustom, vectorTabs );
 
 		tbRL = mw.util.addPortletLink( 'p-test-tb', '//mediawiki.org/wiki/ResourceLoader',
-			'ResourceLoader', 't-rl', 'More info about ResourceLoader on MediaWiki.org ', 'l' );
+			'ResourceLoader', 't-rl', 'More info about ResourceLoader on MediaWiki.org ', 'l'
+		);
 
 		assert.ok( $.isDomElement( tbRL ), 'addPortletLink returns a valid DOM Element according to $.isDomElement' );
 
@@ -162,13 +175,31 @@
 			'MediaWiki.org', 't-mworg', 'Go to MediaWiki.org ', 'm', tbRL );
 		$tbMW = $( tbMW );
 
+		assert.propEqual(
+			$tbMW.getAttrs(),
+			{
+				id: 't-mworg'
+			},
+			'Validate attributes of created element'
+		);
 
-		assert.equal( $tbMW.attr( 'id' ), 't-mworg', 'Link has correct ID set' );
+		assert.propEqual(
+			$tbMW.find( 'a' ).getAttrs(),
+			{
+				href: '//mediawiki.org/',
+				title: 'Go to MediaWiki.org [ctrl-alt-m]',
+				accesskey: 'm'
+			},
+			'Validate attributes of anchor tag in created element'
+		);
+
 		assert.equal( $tbMW.closest( '.portlet' ).attr( 'id' ), 'p-test-tb', 'Link was inserted within correct portlet' );
 		assert.equal( $tbMW.next().attr( 'id' ), 't-rl', 'Link is in the correct position (by passing nextnode)' );
 
-		cuQuux = mw.util.addPortletLink( 'p-test-custom', '#', 'Quux' );
+		cuQuux = mw.util.addPortletLink( 'p-test-custom', '#', 'Quux', null, 'Example [shift-x]', 'q' );
 		$cuQuux = $( cuQuux );
+
+		assert.equal( $cuQuux.find( 'a' ).attr( 'title' ), 'Example [ctrl-alt-q]', 'Existing accesskey is stripped and updated' );
 
 		assert.equal(
 			$( '#p-test-custom #c-barmenu ul li' ).length,
