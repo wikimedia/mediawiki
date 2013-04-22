@@ -296,71 +296,21 @@ window.getInnerText = function( el ) {
 	return str;
 };
 
-window.checkboxes = undefined;
-window.lastCheckbox = undefined;
-
-window.setupCheckboxShiftClick = function() {
-	checkboxes = [];
-	lastCheckbox = null;
-	var inputs = document.getElementsByTagName( 'input' );
-	addCheckboxClickHandlers( inputs );
-};
-
-window.addCheckboxClickHandlers = function( inputs, start ) {
-	if ( !start ) {
-		start = 0;
-	}
-
-	var finish = start + 250;
-	if ( finish > inputs.length ) {
-		finish = inputs.length;
-	}
-
-	for ( var i = start; i < finish; i++ ) {
-		var cb = inputs[i];
-		if ( !cb.type || cb.type.toLowerCase() != 'checkbox' || ( ' ' + cb.className + ' ' ).indexOf( ' noshiftselect ' )  != -1 ) {
-			continue;
-		}
-		var end = checkboxes.length;
-		checkboxes[end] = cb;
-		cb.index = end;
-		addClickHandler( cb, checkboxClickHandler );
-	}
-
-	if ( finish < inputs.length ) {
-		setTimeout( function() {
-			addCheckboxClickHandlers( inputs, finish );
-		}, 200 );
-	}
-};
-
-window.checkboxClickHandler = function( e ) {
-	if ( typeof e == 'undefined' ) {
-		e = window.event;
-	}
-	if ( !e.shiftKey || lastCheckbox === null ) {
-		lastCheckbox = this.index;
-		return true;
-	}
-	var endState = this.checked;
-	var start, finish;
-	if ( this.index < lastCheckbox ) {
-		start = this.index + 1;
-		finish = lastCheckbox;
-	} else {
-		start = lastCheckbox;
-		finish = this.index - 1;
-	}
-	for ( var i = start; i <= finish; ++i ) {
-		checkboxes[i].checked = endState;
-		if( i > start && typeof checkboxes[i].onchange == 'function' ) {
-			checkboxes[i].onchange(); // fire triggers
-		}
-	}
-	lastCheckbox = this.index;
-	return true;
-};
-
+/**
+ * Toggle checkboxes with shift selection.
+ * To be removed in MediaWiki 1.23.
+ *
+ * @deprecated since 1.17 Use jquery.checkboxShiftClick instead.
+ */
+$.each({
+	checkboxes: [],
+	lastCheckbox: null,
+	setupCheckboxShiftClick: $.noop,
+	addCheckboxClickHandlers: $.noop,
+	checkboxClickHandler: $.noop
+}, function ( key, val ) {
+	mw.log.deprecate( window, key, val, 'Use jquery.checkboxShiftClick instead.' );
+} );
 
 /*
 	Written by Jonathan Snook, http://www.snook.ca/jonathan
