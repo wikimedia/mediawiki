@@ -209,6 +209,7 @@ production.
 * (bug 45143) jquery.badge: Treat non-Latin variants of zero as zero as well.
 * (bug 46151) mwdocgen.php should not ignore exit code of doxygen command.
 * (bug 41889) Fix $.tablesorter rowspan exploding for complex cases.
+* (bug 47202) wikibits: FF2Fixes.css should not be loaded in Firefox 20.
 
 === API changes in 1.21 ===
 * prop=revisions can now report the contentmodel and contentformat.

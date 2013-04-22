@@ -122,8 +122,6 @@ if ( mw.config.get( 'skin' ) === 'monobook' ) {
 		importStylesheetURI( skinpath + '/Opera7Fixes.css' );
 	} else if ( opera95_bugs ) {
 		importStylesheetURI( skinpath + '/Opera9Fixes.css' );
-	} else if ( ff2_bugs ) {
-		importStylesheetURI( skinpath + '/FF2Fixes.css' );
 	}
 }
 
