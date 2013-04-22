@@ -310,23 +310,23 @@ class Preferences {
 			'label-message' => 'yourlanguage',
 		);
 
-		/* see if there are multiple language variants to choose from*/
-		$variantArray = array();
+		// see if there are multiple language variants to choose from
 		if ( !$wgDisableLangConversion ) {
 			$variants = $wgContLang->getVariants();
 
-			foreach ( $variants as $v ) {
-				$v = str_replace( '_', '-', strtolower( $v ) );
-				$variantArray[$v] = $wgContLang->getVariantname( $v, false );
-			}
+			if ( count( $variants ) > 1 ) {
+				$variantArray = array();
+				foreach ( $variants as $v ) {
+					$v = str_replace( '_', '-', strtolower( $v ) );
+					$variantArray[$v] = $wgContLang->getVariantname( $v, false );
+				}
 
-			$options = array();
-			foreach ( $variantArray as $code => $name ) {
-				$display = wfBCP47( $code ) . ' - ' . $name;
-				$options[$display] = $code;
-			}
+				$options = array();
+				foreach ( $variantArray as $code => $name ) {
+					$display = wfBCP47( $code ) . ' - ' . $name;
+					$options[$display] = $code;
+				}
 
-			if ( count( $variantArray ) > 1 ) {
 				$defaultPreferences['variant'] = array(
 					'label-message' => 'yourvariant',
 					'type' => 'select',
@@ -334,16 +334,16 @@ class Preferences {
 					'section' => 'personal/i18n',
 					'help-message' => 'prefs-help-variant',
 				);
-			}
-		}
 
-		if ( count( $variantArray ) > 1 && !$wgDisableLangConversion && !$wgDisableTitleConversion ) {
-			$defaultPreferences['noconvertlink'] =
-				array(
-				'type' => 'toggle',
-				'section' => 'personal/i18n',
-				'label-message' => 'tog-noconvertlink',
-			);
+				if ( !$wgDisableTitleConversion ) {
+					$defaultPreferences['noconvertlink'] =
+						array(
+						'type' => 'toggle',
+						'section' => 'personal/i18n',
+						'label-message' => 'tog-noconvertlink',
+					);
+				}
+			}
 		}
 
 		// show a preview of the old signature first
