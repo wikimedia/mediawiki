@@ -33,10 +33,8 @@
  * server becomes impractical or expensive. Different JobQueue classes can be mixed.
  *
  * The basic queue configuration (e.g. "order", "claimTTL") of a federated queue
- * is inherited by the partition queues. Additional configuration defines what
- * section each wiki is in, what partition queues each section uses (and their weight),
- * and the JobQueue configuration for each partition. Some sections might only need a
- * single queue partition, like the sections for groups of small wikis.
+ * is inherited by the partition queues. Additional configuration defines the available
+ * partition queues, their weight, and remaining JobQueue::factory() configuration.
  *
  * If used for performance, then $wgMainCacheType should be set to memcached/redis.
  * Note that "fifo" cannot be used for the ordering, since the data is distributed.
@@ -46,11 +44,9 @@
  * @since 1.22
  */
 class JobQueueFederated extends JobQueue {
-	/** @var Array (wiki ID => section name) */
-	protected $sectionsByWiki = array();
-	/** @var Array (section name => (partition name => weight)) */
-	protected $partitionsBySection = array();
-	/** @var Array (section name => config array) */
+	/** @var Array (partition name => weight)) */
+	protected $partitionWeights = array();
+	/** @var Array (partition name => config array) */
 	protected $configByPartition = array();
 	/** @var Array (partition names => integer) */
 	protected $partitionsNoPush = array();
@@ -60,39 +56,36 @@ class JobQueueFederated extends JobQueue {
 	/** @var BagOStuff */
 	protected $cache;
 
+	protected $loadedWeights = 0; // integer; UNIX timestamp or 0
+
 	const CACHE_TTL_SHORT = 30; // integer; seconds to cache info without re-validating
 	const CACHE_TTL_LONG = 300; // integer; seconds to cache info that is kept up to date
 
 	/**
 	 * @params include:
-	 *  - sectionsByWiki      : A map of wiki IDs to section names.
-	 *                          Wikis will default to using the section "default".
-	 *  - partitionsBySection : Map of section names to maps of (partition name => weight).
-	 *                          A section called 'default' must be defined if not all wikis
-	 *                          have explicitly defined sections.
-	 *  - configByPartition   : Map of queue partition names to configuration arrays.
-	 *                          These configuration arrays are passed to JobQueue::factory().
-	 *                          The options set here are overriden by those passed to this
-	 *                          the federated queue itself (e.g. 'order' and 'claimTTL').
-	 *  - partitionsNoPush    : List of partition names that can handle pop() but not push().
-	 *                          This can be used to migrate away from a certain partition.
+	 *  - partitionWeights  : Map of (partition name => weight).
+	 *  - configByPartition : Map of queue partition names to configuration arrays.
+	 *                        These configuration arrays are passed to JobQueue::factory().
+	 *                        The options set here are overriden by those passed to this
+	 *                        the federated queue itself (e.g. 'order' and 'claimTTL').
+	 *  - partitionsNoPush  : List of partition names that can handle pop() but not push().
+	 *                        This can be used to migrate away from a certain partition.
 	 * @param array $params
 	 */
 	protected function __construct( array $params ) {
 		parent::__construct( $params );
-		$this->sectionsByWiki = $params['sectionsByWiki'];
-		$this->partitionsBySection = $params['partitionsBySection'];
+		$this->partitionWeights = $params['partitionWeights'];
 		$this->configByPartition = $params['configByPartition'];
 		if ( isset( $params['partitionsNoPush'] ) ) {
 			$this->partitionsNoPush = array_flip( $params['partitionsNoPush'] );
 		}
 		$baseConfig = $params;
-		foreach ( array( 'class', 'sectionsByWiki',
-			'partitionsBySection', 'configByPartition', 'partitionsNoPush' ) as $o )
+		foreach ( array( 'class', 'partitionWeights',
+			'configByPartition', 'partitionsNoPush' ) as $o )
 		{
 			unset( $baseConfig[$o] );
 		}
-		foreach ( $this->getPartitionMap() as $partition => $w ) {
+		foreach ( $this->partitionWeights as $partition => $w ) {
 			if ( !isset( $this->configByPartition[$partition] ) ) {
 				throw new MWException( "No configuration for partition '$partition'." );
 			}
@@ -101,7 +94,7 @@ class JobQueueFederated extends JobQueue {
 			);
 		}
 		// Aggregate cache some per-queue values if there are multiple partition queues
-		$this->cache = $this->isFederated() ? wfGetMainCache() : new EmptyBagOStuff();
+		$this->cache = count( $this->partitionWeights ) ? wfGetMainCache() : new EmptyBagOStuff();
 	}
 
 	protected function supportedOrders() {
@@ -127,7 +120,7 @@ class JobQueueFederated extends JobQueue {
 			return false;
 		}
 
-		foreach ( $this->partitionQueues as $queue ) {
+		foreach ( $this->getPartitionQueues() as $queue ) {
 			if ( !$queue->doIsEmpty() ) {
 				$this->cache->add( $key, 'false', self::CACHE_TTL_LONG );
 				return false;
@@ -190,10 +183,10 @@ class JobQueueFederated extends JobQueue {
 		$jobsLeft = $this->tryJobInsertions( $jobs, $partitionsTry, $flags );
 		if ( count( $jobsLeft ) ) { // some jobs failed to insert?
 			// Try to insert the remaning jobs once more, ignoring the bad partitions
-			return !count( $this->tryJobInsertions( $jobsLeft, $partitionsTry, $flags ) );
-		} else {
-			return true;
+			$jobsLeft = $this->tryJobInsertions( $jobsLeft, $partitionsTry, $flags );
 		}
+
+		return !count( $jobsLeft );
 	}
 
 	/**
@@ -305,7 +298,12 @@ class JobQueueFederated extends JobQueue {
 	}
 
 	protected function doGetPeriodicTasks() {
-		$tasks = array();
+		$tasks = array(
+			'checkSizeAndAdjustWeights' => array(
+				'callback' => array( $this, 'checkSizeAndAdjustWeights' ),
+				'period'   => 3600
+			)
+		);
 		foreach ( $this->partitionQueues as $partition => $queue ) {
 			foreach ( $queue->getPeriodicTasks() as $task => $def ) {
 				$tasks["{$partition}:{$task}"] = $def;
@@ -353,23 +351,67 @@ class JobQueueFederated extends JobQueue {
 	}
 
 	/**
-	 * @return Array Map of (partition name => weight)
+	 * Update queue size stats and adjust the partition weights if needed
+	 *
+	 * @return bool
 	 */
-	protected function getPartitionMap() {
-		$section = isset( $this->sectionsByWiki[$this->wiki] )
-			? $this->sectionsByWiki[$this->wiki]
-			: 'default';
-		if ( !isset( $this->partitionsBySection[$section] ) ) {
-			throw new MWException( "No configuration for section '$section'." );
-		}
-		return $this->partitionsBySection[$section];
+	public function checkSizeAndAdjustWeights() {
+		$size = $this->doGetSize();
+		$key = $this->getCacheKey( 'queue-size-stats' );
+		return $this->cache->merge( $key, function( $cache, $key, $info ) use ( $size ) {
+			$now = time();
+			if ( is_array( $info ) ) {
+				$info['aveSize'] = .1 * $size + .9 * $info['aveSize'];
+			} else {
+				$info = array( 'aveSize' => $size, 'sTime' => $now );
+			}
+			$info['eTime'] = $now;
+			if ( ( $info['eTime'] - $info['sTime'] ) >= 12*3600 ) {
+				$info['coalesce'] = ( $info['aveSize'] < 100 );
+			} else {
+				$info['coalesce'] = false;
+			}
+			return $info;
+		} );
 	}
 
 	/**
-	 * @return bool The queue is actually split up across multiple queue partitions
+	 * @return Array Map of (partition name => weight) in descending weight order
 	 */
-	protected function isFederated() {
-		return ( count( $this->getPartitionMap() ) > 1 );
+	protected function getPartitionMap() {
+		$nPartitions = count( $this->partitionWeights );
+		if ( $nPartitions <= 1 || ( time() - $this->loadedWeights ) <= 10 ) {
+			return $this->partitionWeights;
+		}
+		$this->loadedWeights = time(); // cache for some time
+
+		$info = $this->cache->get( $this->getCacheKey( 'queue-size-stats' ) );
+		if ( is_array( $info ) && $info['coalesce'] ) {
+			// Statistically map the queue push/pop load onto a single partition.
+			// This is useful when there are many queues/wiki that don't get much use.
+			// Do so in way that respects the partitions weights on the queue level.
+			$partitionRing = new HashRing( array_diff_key(
+				$this->partitionWeights, $this->partitionsNoPush ) );
+			$qPartition = $partitionRing->getLocation( "{$this->wiki}:{$this->type}" );
+			$sum = array_sum( $this->partitionWeights ) - $this->partitionWeights[$qPartition];
+			$this->partitionWeights[$qPartition] = 99 * $sum; // 99% load
+		}
+
+		// Sort by highest weight first, which is best for pop()/isEmpty()
+		arsort( $this->partitionWeights, SORT_NUMERIC );
+
+		return $this->partitionWeights;
+	}
+
+	/**
+	 * @return array Map of (partition name => JobQueue) in descending weight order
+	 */
+	protected function getPartitionQueues() {
+		$res = array();
+		foreach ( $this->getPartitionMap() as $partition => $w ) {
+			$res[$partition] = $this->partitionQueues[$partition];
+		}
+		return $res;
 	}
 
 	/**
