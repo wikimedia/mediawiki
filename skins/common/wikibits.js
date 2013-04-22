@@ -46,16 +46,16 @@ isGecko = /gecko/.test( ua ) && !/khtml|spoofer|netscape\/7\.0/.test( ua );
 // add any onload functions in this hook (please don't hard-code any events in the xhtml source)
 window.doneOnloadHook = undefined;
 
-if (!window.onloadFuncts) {
+if ( !window.onloadFuncts ) {
 	window.onloadFuncts = [];
 }
 
 window.addOnloadHook = function( hookFunct ) {
 	// Allows add-on scripts to add onload functions
-	if( !doneOnloadHook ) {
-		onloadFuncts[onloadFuncts.length] = hookFunct;
+	if( !window.doneOnloadHook ) {
+		window.onloadFuncts[window.onloadFuncts.length] = hookFunct;
 	} else {
-		hookFunct();  // bug in MSIE script loading
+		hookFunct(); // bug in MSIE script loading
 	}
 };
 
@@ -63,15 +63,15 @@ window.importScript = function( page ) {
 	var uri = mw.config.get( 'wgScript' ) + '?title=' +
 		mw.util.wikiUrlencode( page ) +
 		'&action=raw&ctype=text/javascript';
-	return importScriptURI( uri );
+	return window.importScriptURI( uri );
 };
 
 window.loadedScripts = {}; // included-scripts tracker
 window.importScriptURI = function( url ) {
-	if ( loadedScripts[url] ) {
+	if ( window.loadedScripts[url] ) {
 		return null;
 	}
-	loadedScripts[url] = true;
+	window.loadedScripts[url] = true;
 	var s = document.createElement( 'script' );
 	s.setAttribute( 'src', url );
 	s.setAttribute( 'type', 'text/javascript' );
@@ -80,7 +80,7 @@ window.importScriptURI = function( url ) {
 };
 
 window.importStylesheet = function( page ) {
-	return importStylesheetURI( mw.config.get( 'wgScript' ) + '?action=raw&ctype=text/css&title=' + mw.util.wikiUrlencode( page ) );
+	return window.importStylesheetURI( mw.config.get( 'wgScript' ) + '?action=raw&ctype=text/css&title=' + mw.util.wikiUrlencode( page ) );
 };
 
 window.importStylesheetURI = function( url, media ) {
@@ -109,7 +109,7 @@ window.appendCSS = function( text ) {
 
 if ( mw.config.get( 'wgBreakFrames' ) ) {
 	// Un-trap us from framesets
-	if ( window.top != window ) {
+	if ( window.top !== window ) {
 		window.top.location = window.location;
 	}
 }
@@ -125,7 +125,7 @@ window.changeText = function( el, newText ) {
 
 window.killEvt = function( evt ) {
 	evt = evt || window.event || window.Event; // W3C, IE, Netscape
-	if ( typeof ( evt.preventDefault ) != 'undefined' ) {
+	if ( typeof evt.preventDefault !== 'undefined' ) {
 		evt.preventDefault(); // Don't follow the link
 		evt.stopPropagation();
 	} else {
@@ -142,7 +142,7 @@ window.escapeQuotes = function( text ) {
 	text = text.replace( re, "\\'" );
 	re = new RegExp( "\\n", "g" );
 	text = text.replace( re, "\\n" );
-	return escapeQuotesHTML( text );
+	return window.escapeQuotesHTML( text );
 };
 
 window.escapeQuotesHTML = function( text ) {
@@ -208,7 +208,7 @@ window.addPortletLink = function( portlet, href, text, id, tooltip, accesskey, n
 		node = document.createElement( 'ul' );
 		var lastElementChild = null;
 		for ( var i = 0; i < root.childNodes.length; ++i ) { /* get root.lastElementChild */
-			if ( root.childNodes[i].nodeType == 1 ) {
+			if ( root.childNodes[i].nodeType === 1 ) {
 				lastElementChild = root.childNodes[i];
 			}
 		}
@@ -251,7 +251,7 @@ window.addPortletLink = function( portlet, href, text, id, tooltip, accesskey, n
 		mw.util.updateTooltipAccessKeys( [link] );
 	}
 
-	if ( nextnode && nextnode.parentNode == node ) {
+	if ( nextnode && nextnode.parentNode === node ) {
 		node.insertBefore( item, nextnode );
 	} else {
 		node.appendChild( item );  // IE compatibility (?)
@@ -261,10 +261,10 @@ window.addPortletLink = function( portlet, href, text, id, tooltip, accesskey, n
 };
 
 window.getInnerText = function( el ) {
-	if ( typeof el == 'string' ) {
+	if ( typeof el === 'string' ) {
 		return el;
 	}
-	if ( typeof el == 'undefined' ) {
+	if ( typeof el === 'undefined' ) {
 		return el;
 	}
 	// Custom sort value through 'data-sort-value' attribute
@@ -286,7 +286,7 @@ window.getInnerText = function( el ) {
 	for ( var i = 0; i < l; i++ ) {
 		switch ( cs[i].nodeType ) {
 			case 1: // ELEMENT_NODE
-				str += getInnerText( cs[i] );
+				str += window.getInnerText( cs[i] );
 				break;
 			case 3:	// TEXT_NODE
 				str += cs[i].nodeValue;
@@ -320,22 +320,22 @@ $.each({
 */
 window.getElementsByClassName = function( oElm, strTagName, oClassNames ) {
 	var arrReturnElements = [];
-	if ( typeof( oElm.getElementsByClassName ) == 'function' ) {
+	if ( typeof oElm.getElementsByClassName === 'function' ) {
 		/* Use a native implementation where possible FF3, Saf3.2, Opera 9.5 */
 		var arrNativeReturn = oElm.getElementsByClassName( oClassNames );
-		if ( strTagName == '*' ) {
+		if ( strTagName === '*' ) {
 			return arrNativeReturn;
 		}
 		for ( var h = 0; h < arrNativeReturn.length; h++ ) {
-			if( arrNativeReturn[h].tagName.toLowerCase() == strTagName.toLowerCase() ) {
+			if( arrNativeReturn[h].tagName.toLowerCase() === strTagName.toLowerCase() ) {
 				arrReturnElements[arrReturnElements.length] = arrNativeReturn[h];
 			}
 		}
 		return arrReturnElements;
 	}
-	var arrElements = ( strTagName == '*' && oElm.all ) ? oElm.all : oElm.getElementsByTagName( strTagName );
+	var arrElements = ( strTagName === '*' && oElm.all ) ? oElm.all : oElm.getElementsByTagName( strTagName );
 	var arrRegExpClassNames = [];
-	if( typeof oClassNames == 'object' ) {
+	if( typeof oClassNames === 'object' ) {
 		for( var i = 0; i < oClassNames.length; i++ ) {
 			arrRegExpClassNames[arrRegExpClassNames.length] =
 				new RegExp("(^|\\s)" + oClassNames[i].replace(/\-/g, "\\-") + "(\\s|$)");
@@ -363,16 +363,17 @@ window.getElementsByClassName = function( oElm, strTagName, oClassNames ) {
 };
 
 window.redirectToFragment = function( fragment ) {
-	var match = navigator.userAgent.match(/AppleWebKit\/(\d+)/);
+	var webKitVersion,
+		match = navigator.userAgent.match(/AppleWebKit\/(\d+)/);
 	if ( match ) {
-		var webKitVersion = parseInt( match[1] );
+		webKitVersion = parseInt( match[1], 10 );
 		if ( webKitVersion < 420 ) {
 			// Released Safari w/ WebKit 418.9.1 messes up horribly
 			// Nightlies of 420+ are ok
 			return;
 		}
 	}
-	if ( window.location.hash == '' ) {
+	if ( !window.location.hash ) {
 		window.location.hash = fragment;
 
 		// Mozilla needs to wait until after load, otherwise the window doesn't
@@ -382,11 +383,11 @@ window.redirectToFragment = function( fragment ) {
 		// better twice than not at all, so make the fix hit future versions as
 		// well.
 		if ( isGecko ) {
-			addOnloadHook(function() {
-				if ( window.location.hash == fragment ) {
+			$( function () {
+				if ( window.location.hash === fragment ) {
 					window.location.hash = fragment;
 				}
-			});
+			} );
 		}
 	}
 };
@@ -432,17 +433,17 @@ window.removeSpinner = function( id ) {
 
 window.runOnloadHook = function() {
 	// don't run anything below this for non-dom browsers
-	if ( doneOnloadHook || !( document.getElementById && document.getElementsByTagName ) ) {
+	if ( window.doneOnloadHook || !( document.getElementById && document.getElementsByTagName ) ) {
 		return;
 	}
 
 	// set this before running any hooks, since any errors below
 	// might cause the function to terminate prematurely
-	doneOnloadHook = true;
+	window.doneOnloadHook = true;
 
 	// Run any added-on functions
-	for ( var i = 0; i < onloadFuncts.length; i++ ) {
-		onloadFuncts[i]();
+	for ( var i = 0; i < window.onloadFuncts.length; i++ ) {
+		window.onloadFuncts[i]();
 	}
 };
 
@@ -462,7 +463,7 @@ window.addHandler = function( element, attach, handler ) {
 };
 
 window.hookEvent = function( hookName, hookFunct ) {
-	addHandler( window, hookName, hookFunct );
+	window.addHandler( window, hookName, hookFunct );
 };
 
 /**
@@ -472,7 +473,7 @@ window.hookEvent = function( hookName, hookFunct ) {
  * @param handler callable Event handler callback
  */
 window.addClickHandler = function( element, handler ) {
-	addHandler( element, 'click', handler );
+	window.addHandler( element, 'click', handler );
 };
 
 /**
@@ -491,10 +492,10 @@ window.removeHandler = function( element, remove, handler ) {
 };
 // note: all skins should call runOnloadHook() at the end of html output,
 //      so the below should be redundant. It's there just in case.
-hookEvent( 'load', runOnloadHook );
+window.hookEvent( 'load', window.runOnloadHook );
 
 if ( isIE6 ) {
-	importScriptURI( mw.config.get( 'stylepath' ) + '/common/IEFixes.js' );
+	window.importScriptURI( mw.config.get( 'stylepath' ) + '/common/IEFixes.js' );
 }
 
 }( mediaWiki, jQuery ) );
