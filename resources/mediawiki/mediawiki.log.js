@@ -9,7 +9,8 @@
 ( function ( mw, $ ) {
 
 	/**
-	 * @class mw.plugin.log
+	 * @class mw.log
+	 * @singleton
 	 */
 
 	/**
@@ -58,7 +59,7 @@
 				hovzer.update();
 			}
 			$log.append(
-				$( '<div></div>' )
+				$( '<div>' )
 					.css( {
 						borderBottom: 'solid 1px #DDDDDD',
 						fontSize: 'small',
@@ -73,8 +74,53 @@
 	};
 
 	/**
-	 * @class mw
-	 * @mixins mw.plugin.log
+	 * Write a message the console's warning channel.
+	 * Also logs a stacktrace for easier debugging.
+	 * Each action is silently ignored if the browser doesn't support it.
+	 *
+	 * @param {string...} msg Messages to output to console
 	 */
+	mw.log.warn = function () {
+		var console = window.console;
+		if ( console && console.warn ) {
+			console.warn.apply( console, arguments );
+			if ( console.trace ) {
+				console.trace();
+			}
+		}
+	};
+
+	/**
+	 * Create a property in a host object that, when accessed, will produce
+	 * a deprecation warning in the console with backtrace.
+	 *
+	 * @param {Object} obj Host object of deprecated property
+	 * @param {string} key Name of property to create in `obj`
+	 * @param {Mixed} val The value this property should return when accessed
+	 * @param {string} [msg] Optional text to include in the deprecation message.
+	 */
+	mw.log.deprecate = !Object.defineProperty ? function ( obj, key, val ) {
+		obj[key] = val;
+	} : function ( obj, key, val, msg ) {
+		msg = 'MWDeprecationWarning: Use of "' + key + '" property is deprecated.' +
+			( msg ? ( ' ' + msg ) : '' );
+		try {
+			Object.defineProperty( obj, key, {
+				configurable: true,
+				enumerable: true,
+				get: function () {
+					mw.log.warn( msg );
+					return val;
+				},
+				set: function ( newVal ) {
+					mw.log.warn( msg );
+					val = newVal;
+				}
+			} );
+		} catch ( err ) {
+			// IE8 can throw on Object.defineProperty
+			obj[key] = val;
+		}
+	};
 
 }( mediaWiki, jQuery ) );
