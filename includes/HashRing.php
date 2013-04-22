@@ -30,7 +30,7 @@ class HashRing {
 	/** @var Array (location => (start, end)) */
 	protected $ring = array();
 
-	const RING_SIZE = 16777216; // 2^24
+	const RING_SIZE = 268435456; // 2^28
 
 	/**
 	 * @param array $map (location => weight)
@@ -86,7 +86,7 @@ class HashRing {
 	public function getLocations( $item, $limit ) {
 		$locations = array();
 		$primaryLocation = null;
-		$spot = hexdec( substr( sha1( $item ), 0, 6 ) ); // first 24 bits
+		$spot = hexdec( substr( sha1( $item ), 0, 7 ) ); // first 28 bits
 		foreach ( $this->ring as $location => $range ) {
 			if ( count( $locations ) >= $limit ) {
 				break;
