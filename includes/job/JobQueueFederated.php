@@ -212,7 +212,7 @@ class JobQueueFederated extends JobQueue {
 		$partitionRing = new HashRing( $partitionsTry );
 		// Because jobs are spread across partitions, per-job de-duplication needs
 		// to use a consistent hash to avoid allowing duplicate jobs per partition.
-		// When inserting a batch of de-duplicated jobs, QoS_Atomic is disregarded.
+		// When inserting a batch of de-duplicated jobs, QOS_ATOMIC is disregarded.
 		$uJobsByPartition = array(); // (partition name => job list)
 		foreach ( $jobs as $key => $job ) {
 			if ( $job->ignoreDuplicates() ) {
@@ -222,7 +222,7 @@ class JobQueueFederated extends JobQueue {
 			}
 		}
 		// Get the batches of jobs that are not de-duplicated
-		if ( $flags & self::QoS_Atomic ) {
+		if ( $flags & self::QOS_ATOMIC ) {
 			$nuJobBatches = array( $jobs ); // all or nothing
 		} else {
 			// Split the jobs into batches and spread them out over servers if there
