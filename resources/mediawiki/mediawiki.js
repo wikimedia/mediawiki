@@ -267,10 +267,17 @@ var mw = ( function ( $, undefined ) {
 		/* Public Members */
 
 		/**
-		 * Dummy function which in debug mode can be replaced with a function that
-		 * emulates console.log in console-less environments.
+		 * Dummy placeholder for {@link mw.log}
+		 * @method
 		 */
-		log: function () { },
+		log: ( function () {
+			var log = function () {};
+			log.warn = function () {};
+			log.deprecate = function ( obj, key, val ) {
+				obj[key] = val;
+			};
+			return log;
+		}() ),
 
 		// Make the Map constructor publicly available.
 		Map: Map,
@@ -293,8 +300,6 @@ var mw = ( function ( $, undefined ) {
 		 * @property
 		 */
 		libs: {},
-
-		/* Extension points */
 
 		/**
 		 * @property
