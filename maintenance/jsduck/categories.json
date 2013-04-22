@@ -20,7 +20,7 @@
 					"mw.Title",
 					"mw.notification",
 					"mw.util",
-					"mw.plugin.notify"
+					"mw.plugin.*"
 				]
 			},
 			{
