@@ -279,8 +279,17 @@
 		/**
 		 * @property {RegExp}
 		 * Regex to match accesskey tooltips.
+		 *
+		 * Should match:
+		 *
+		 * - "ctrl-option-"
+		 * - "alt-shift-"
+		 * - "ctrl-alt-"
+		 * - "ctrl-"
+		 *
+		 * The accesskey is matched in group $6.
 		 */
-		tooltipAccessKeyRegexp: /\[(ctrl-)?(alt-)?(shift-)?(esc-)?(.)\]$/,
+		tooltipAccessKeyRegexp: /\[(ctrl-)?(option-)?(alt-)?(shift-)?(esc-)?(.)\]$/,
 
 		/**
 		 * Add the appropriate prefix to the accesskey shown in the tooltip.
@@ -301,9 +310,9 @@
 			}
 
 			$nodes.attr( 'title', function ( i, val ) {
-				if ( val && util.tooltipAccessKeyRegexp.exec( val ) ) {
+				if ( val && util.tooltipAccessKeyRegexp.test( val ) ) {
 					return val.replace( util.tooltipAccessKeyRegexp,
-						'[' + util.tooltipAccessKeyPrefix + '$5]' );
+						'[' + util.tooltipAccessKeyPrefix + '$6]' );
 				}
 				return val;
 			} );
@@ -406,19 +415,27 @@
 			if ( id ) {
 				$item.attr( 'id', id );
 			}
+
+			if ( tooltip ) {
+				// Trim any existing accesskey hint and the trailing space
+				tooltip = $.trim( tooltip.replace( util.tooltipAccessKeyRegexp, '' ) );
+				if ( accesskey ) {
+					tooltip += ' [' + accesskey + ']';
+				}
+				$link.attr( 'title', tooltip );
+				if ( accesskey ) {
+					util.updateTooltipAccessKeys( $link );
+				}
+			}
+
 			if ( accesskey ) {
 				$link.attr( 'accesskey', accesskey );
-				tooltip += ' [' + accesskey + ']';
-				$link.attr( 'title', tooltip );
-			}
-			if ( accesskey && tooltip ) {
-				util.updateTooltipAccessKeys( $link );
 			}
 
 			// Where to put our node ?
 			// - nextnode is a DOM element (was the only option before MW 1.17, in wikibits.js)
 			if ( nextnode && nextnode.parentNode === $ul[0] ) {
-				$(nextnode).before( $item );
+				$( nextnode ).before( $item );
 
 			// - nextnode is a CSS selector for jQuery
 			} else if ( typeof nextnode === 'string' && $ul.find( nextnode ).length !== 0 ) {
