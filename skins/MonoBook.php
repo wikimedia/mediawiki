@@ -43,16 +43,9 @@ class SkinMonoBook extends SkinTemplate {
 	 * @param $out OutputPage
 	 */
 	function setupSkinUserCss( OutputPage $out ) {
-		global $wgHandheldStyle;
 		parent::setupSkinUserCss( $out );
 
 		$out->addModuleStyles( 'skins.monobook' );
-
-		// Ugh. Can't do this properly because $wgHandheldStyle may be a URL
-		if ( $wgHandheldStyle ) {
-			// Currently in testing... try 'chick/main.css'
-			$out->addStyle( $wgHandheldStyle, 'handheld' );
-		}
 
 		// TODO: Migrate all of these
 		$out->addStyle( 'monobook/IE60Fixes.css', 'screen', 'IE 6' );
