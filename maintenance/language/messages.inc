@@ -2674,7 +2674,6 @@ $wgMessageStructure = array(
 		'modern.css',
 		'vector.css',
 		'print.css',
-		'handheld.css',
 		'noscript.css',
 		'group-autoconfirmed.css',
 		'group-bot.css',

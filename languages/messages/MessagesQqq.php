@@ -6747,8 +6747,6 @@ CSS applied to users using Monobook skin.',
 'modern.css' => '{{optional}}',
 'vector.css' => '{{optional}}',
 'print.css' => '{{optional}}',
-'handheld.css' => '{{optional}}
-Style that can be applied on [[w:handheld devices|handheld devices]] (e.g. mobile phones), <code>$wgHandheldStyle</code> is an optional configuration variable which specifies a style sheet file for handheld devices.',
 'noscript.css' => '{{optional}}',
 'group-autoconfirmed.css' => '{{doc-group|autoconfirmed|css}}',
 'group-bot.css' => '{{doc-group|bot|css}}',
