@@ -16,17 +16,27 @@ class MediaWikiParserTest {
 
 		$suite = new PHPUnit_Framework_TestSuite;
 
-		foreach ( $wgParserTestFiles as $filename ) {
-			$testsName = basename( $filename, '.txt' );
+		foreach ( $wgParserTestFiles as $fileName ) {
+			$testsName = basename( $fileName, '.txt' );
+			$escapedFileName = strtr( $fileName, array( "'" => "\\'", '\\' => '\\\\' ) );
 			/* This used to be ucfirst( basename( dirname( $filename ) ) )
 			 * and then was ucfirst( basename( $filename, '.txt' )
 			 * but that didn't work with names like foo.tests.txt
 			 */
-			$className = str_replace( '.', '_', ucfirst( $testsName ) );
+			$parserTestClassName = str_replace( '.', '_', ucfirst( $testsName ) );
+			$parserTestClassDefinition = <<<EOT
+/**
+ * @group Database
+ * @group Parser
+ */
+class $parserTestClassName extends NewParserTest {
+	protected \$file = '$escapedFileName';
+}
+EOT;
 
-			eval( "/** @group Database\n@group Parser\n*/ class $className extends NewParserTest { protected \$file = '" . strtr( $filename, array( "'" => "\\'", '\\' => '\\\\' ) ) . "'; } " );
+			eval( $parserTestClassDefinition );
 
-			$parserTester = new $className( $testsName );
+			$parserTester = new $parserTestClassName( $testsName );
 			$suite->addTestSuite( new ReflectionClass ( $parserTester ) );
 		}
 		return $suite;
