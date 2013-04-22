@@ -26,6 +26,7 @@
  *
  * @file
  * @ingroup StatCounter
+ * @author Aaron Schulz
  */
 
 /**
@@ -85,6 +86,10 @@ class StatCounter {
 		$this->deltas = array();
 	}
 
+	/**
+	 * @param array $deltas
+	 * @return void
+	 */
 	protected function sendDeltasUDP( array $deltas ) {
 		global $wgUDPProfilerHost, $wgUDPProfilerPort, $wgAggregateStatsID;
 
@@ -128,6 +133,10 @@ class StatCounter {
 		}
 	}
 
+	/**
+	 * @param array $deltas
+	 * @return void
+	 */
 	protected function sendDeltasMemc( array $deltas ) {
 		global $wgMemc;
 
