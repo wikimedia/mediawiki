@@ -228,7 +228,16 @@ if ( $count > 0 ) {
 		if ( isset( $options['dry'] ) ) {
 			echo( " publishing {$file} by '" . $wgUser->getName() . "', comment '$commentText'... " );
 		} else {
-			$archive = $image->publish( $file );
+			$props = FSFile::getPropsFromPath( $file );
+			$flags = 0;
+			$options = array();
+			$handler = MediaHandler::getHandler( $props['mime'] );
+			if ( $handler ) {
+				$options['headers'] = $handler->getStreamHeaders( $props['metadata'] );
+			} else {
+				$options['headers'] = array();
+			}
+			$archive = $image->publish( $file, $flags, $options );
 			if ( !$archive->isGood() ) {
 				echo( "failed. (" .
 					$archive->getWikiText() .
@@ -245,7 +254,7 @@ if ( $count > 0 ) {
 
 		if ( isset( $options['dry'] ) ) {
 			echo( "done.\n" );
-		} elseif ( $image->recordUpload2( $archive->value, $summary, $commentText, false, $timestamp ) ) {
+		} elseif ( $image->recordUpload2( $archive->value, $summary, $commentText, $props, $timestamp ) ) {
 			# We're done!
 			echo( "done.\n" );
 
