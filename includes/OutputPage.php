@@ -685,21 +685,49 @@ class OutputPage extends ContextSource {
 	 *
 	 * @param $timestamp string
 	 *
-	 * @return Boolean: true iff cache-ok headers was sent.
+	 * @return Boolean: true if cache-ok headers was sent.
 	 */
 	public function checkLastModified( $timestamp ) {
-		global $wgCachePages, $wgCacheEpoch, $wgUseSquid, $wgSquidMaxage;
+		global $wgCachePages, $wgCacheEpoch, $wgUseSquid, $wgSquidMaxage, $wgUseETag;
 
-		if ( !$timestamp || $timestamp == '19700101000000' ) {
-			wfDebug( __METHOD__ . ": CACHE DISABLED, NO TIMESTAMP\n" );
-			return false;
-		}
 		if ( !$wgCachePages ) {
 			wfDebug( __METHOD__ . ": CACHE DISABLED\n", false );
 			return false;
 		}
 		if ( $this->getUser()->getOption( 'nocache' ) ) {
 			wfDebug( __METHOD__ . ": USER DISABLED CACHE\n", false );
+			return false;
+		}
+
+		// Run ETag validation first, more atomic.
+		$clientETagHeader = $this->getRequest()->getHeader( 'If-None-Match' );
+		$clientHeader = $this->getRequest()->getHeader( 'If-Modified-Since' );
+		if ( $wgUseETag && $this->mETag !== false &&
+			$clientETagHeader !== false &&
+			$this->isETagMatchAllowed( $this->mETag ) 
+		) {
+			$tags = array_map( 'trim', explode( ",", $clientETagHeader ) );
+			$matched = false;
+
+			foreach( $tags as $tag ) {
+				if ( $this->isETagMatch( $tag ) ) {
+					wfDebug( __METHOD__ . ": NOT MODIFIED, ETag: $this->mETag;\n", false );
+					$matched = true;
+					break;
+				}
+			}
+			if ( $matched === false ) {
+				wfDebug( __METHOD__ . ": MODIFIED ETag. Document: {$this->mETag}; Client: {$clientETagHeader};\n", false );
+				return false;
+			} else if ( $clientHeader === false ) {
+				wfDebug( __METHOD__ . ": NOT MODIFIED, ETag and client did not send If-Modified-Since header\n", false );
+				$this->setCacheOK();
+				return true;
+			}
+		}
+
+		if ( !$timestamp || $timestamp == '19700101000000' ) {
+			wfDebug( __METHOD__ . ": CACHE DISABLED, NO TIMESTAMP\n" );
 			return false;
 		}
 
@@ -718,7 +746,6 @@ class OutputPage extends ContextSource {
 		$maxModified = max( $modifiedTimes );
 		$this->mLastModified = wfTimestamp( TS_RFC2822, $maxModified );
 
-		$clientHeader = $this->getRequest()->getHeader( 'If-Modified-Since' );
 		if ( $clientHeader === false ) {
 			wfDebug( __METHOD__ . ": client did not send If-Modified-Since header\n", false );
 			return false;
@@ -756,9 +783,16 @@ class OutputPage extends ContextSource {
 			return false;
 		}
 
-		# Not modified
-		# Give a 304 response code and disable body output
 		wfDebug( __METHOD__ . ": NOT MODIFIED, $info\n", false );
+		$this->setCacheOK();
+		return true;
+	}
+
+	/**
+	 * Sets the response of this request to 304 not modified
+	 * Adds required headers and disables body output
+	 */
+	private function setCacheOK() {
 		ini_set( 'zlib.output_compression', 0 );
 		$this->getRequest()->response()->header( "HTTP/1.1 304 Not Modified" );
 		$this->sendCacheControl();
@@ -768,8 +802,68 @@ class OutputPage extends ContextSource {
 		// it's technically against HTTP spec and seems to confuse
 		// Firefox when the response gets split over two packets.
 		wfClearOutputBuffers();
-
 		return true;
+	}
+
+	/**
+	 * Checks if an entity-tag as provided by a client matches and is allowed to match
+	 * the entity-tag of this OutputPage. The match can be either strong or weak.
+	 *
+	 * @param string $clientETag An entity-tag (RFC2616 14.19) provided by the client
+	 * @return Boolean: true for a match
+	 */
+	private function isETagMatch( $clientETag ) {
+		if ( !$this->isETagMatchAllowed( $clientETag ) ) {
+			return false;
+		} else if ( $clientETag === "*" ) {
+			return true;
+		} else if ( self::getETagKey( $clientETag ) === self::getETagKey( $this->mETag ) ) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Checks if an entity-tag is allowed to be matched with the current type of HTTP request
+	 * RFC2616 13.3.3
+	 *
+	 * @param string $eTag An entity-tag (RFC2616 14.19)
+	 * @return Boolean: True if the entity-tag strong or if weak but with the right conditions
+	 */
+	private function isETagMatchAllowed( $eTag ) {
+		if ( self::isETagWeak( $eTag ) &&
+			( $this->getRequest()->getMethod() !== "GET" || $this->getRequest()->getHeader( 'Range' ) )
+		) {
+			return false;
+                }
+		return true;
+	}
+
+	/**
+	 * Checks if an entity-tag is a weak entity-tag
+	 *
+	 * @param string $eTag An entity-tag (RFC2616 14.19)
+	 * @return Boolean: true if the tag is weak
+	 */
+	private static function isETagWeak( $eTag ) {
+		if ( substr_compare( $eTag, 'W/', 0, 2 ) === 0 ) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	/**
+	 * Strip the weak indicator from an entity-tag if required
+	 *
+	 * @param string $eTag An entity-tag (RFC2616 14.19) that is not '*'
+	 * @return string: The key part including quotes characters, but without W/
+	 */
+	private static function getETagKey( $eTag ) {
+		if ( self::isETagWeak( $eTag ) ) {
+			return substr( $eTag, 2 );
+		}
+		return $eTag;
 	}
 
 	/**
