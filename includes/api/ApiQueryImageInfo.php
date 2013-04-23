@@ -202,21 +202,20 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	public function getScale( $params ) {
 		$p = $this->getModulePrefix();
 
-		// Height and width.
-		if ( $params['urlheight'] != -1 && $params['urlwidth'] == -1 ) {
-			$this->dieUsage( "{$p}urlheight cannot be used without {$p}urlwidth", "{$p}urlwidth" );
-		}
-
 		if ( $params['urlwidth'] != -1 ) {
 			$scale = array();
 			$scale['width'] = $params['urlwidth'];
+			$scale['height'] = $params['urlheight'];
+		} elseif ( $params['urlheight'] != -1 ) {
+			// Height is specified but width isn't
+			// Don't set $scale['width']; this signals mergeThumbParams() to fill it with the image's width
+			$scale = array();
 			$scale['height'] = $params['urlheight'];
 		} else {
 			$scale = null;
 			if ( $params['urlparam'] ) {
 				$this->dieUsage( "{$p}urlparam requires {$p}urlwidth", "urlparam_no_width" );
 			}
-			return $scale;
 		}
 
 		return $scale;
@@ -232,6 +231,12 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	 * @return Array of parameters for transform.
 	 */
 	protected function mergeThumbParams( $image, $thumbParams, $otherParams ) {
+
+		if ( !isset( $thumbParams['width'] ) && isset( $thumbParams['height'] ) ) {
+			// Populate the width with the image's width, so only the height restriction applies
+			$thumbParams['width'] = $image->getWidth();
+		}
+
 		if ( !$otherParams ) {
 			return $thumbParams;
 		}
@@ -571,7 +576,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			'urlwidth' => array( "If {$p}prop=url is set, a URL to an image scaled to this width will be returned.",
 				'For performance reasons if this option is used, ' .
 					'no more than ' . self::TRANSFORM_LIMIT . ' scaled images will be returned.' ),
-			'urlheight' => "Similar to {$p}urlwidth. Cannot be used without {$p}urlwidth",
+			'urlheight' => "Similar to {$p}urlwidth." ),
 			'urlparam' => array( "A handler specific parameter string. For example, pdf's ",
 				"might use 'page15-100px'. {$p}urlwidth must be used and be consistent with {$p}urlparam" ),
 			'limit' => 'How many image revisions to return per image',
