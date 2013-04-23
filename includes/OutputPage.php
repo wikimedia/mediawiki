@@ -685,21 +685,39 @@ class OutputPage extends ContextSource {
 	 *
 	 * @param $timestamp string
 	 *
-	 * @return Boolean: true iff cache-ok headers was sent.
+	 * @return Boolean: true if cache-ok headers was sent.
 	 */
 	public function checkLastModified( $timestamp ) {
-		global $wgCachePages, $wgCacheEpoch, $wgUseSquid, $wgSquidMaxage;
+		global $wgCachePages, $wgCacheEpoch, $wgUseSquid, $wgSquidMaxage, $wgUseETag;
 
-		if ( !$timestamp || $timestamp == '19700101000000' ) {
-			wfDebug( __METHOD__ . ": CACHE DISABLED, NO TIMESTAMP\n" );
-			return false;
-		}
 		if ( !$wgCachePages ) {
 			wfDebug( __METHOD__ . ": CACHE DISABLED\n", false );
 			return false;
 		}
 		if ( $this->getUser()->getOption( 'nocache' ) ) {
 			wfDebug( __METHOD__ . ": USER DISABLED CACHE\n", false );
+			return false;
+		}
+
+		// Run ETag validation first, more atomic.
+		$clientETagHeader = $this->getRequest()->getHeader( 'If-None-Match' );
+		if ( $wgUseETag && $this->mETag !== false && $clientETagHeader !== false && 
+			( $this->isETagWeak( $this->mETag ) && $this->isETagWeakMatchAllowed( $this->mETag ) ) ) {
+			$tags = array_map( 'trim', explode( ",", $clientETagHeader ) );
+
+			foreach( $tags as $tag ) {
+				if( $this->isETagWeakMatch( $tag ) ) {
+					wfDebug( __METHOD__ . ": NOT MODIFIED, ETag: $this->mETag\n", false );
+					$this->setCacheOK();
+					return true;
+				}
+			}
+			wfDebug( __METHOD__ . ": MODIFIED ETag\n", false );
+			return false;
+		}
+
+		if ( !$timestamp || $timestamp == '19700101000000' ) {
+			wfDebug( __METHOD__ . ": CACHE DISABLED, NO TIMESTAMP\n" );
 			return false;
 		}
 
@@ -759,6 +777,11 @@ class OutputPage extends ContextSource {
 		# Not modified
 		# Give a 304 response code and disable body output
 		wfDebug( __METHOD__ . ": NOT MODIFIED, $info\n", false );
+		$this->setCacheOK();
+		return true;
+	}
+
+	private function setCacheOK() {
 		ini_set( 'zlib.output_compression', 0 );
 		$this->getRequest()->response()->header( "HTTP/1.1 304 Not Modified" );
 		$this->sendCacheControl();
@@ -768,8 +791,40 @@ class OutputPage extends ContextSource {
 		// it's technically against HTTP spec and seems to confuse
 		// Firefox when the response gets split over two packets.
 		wfClearOutputBuffers();
+	}
 
+	private function isETagWeakMatch( $eTag ) {
+		if( !$this->isETagWeakMatchAllowed( $eTag ) ) {
+			return false;
+		} else if ( $eTag === "*" ) {
+			// No clue
+		} else if ( $this->getETagKey( $eTag ) === $this->getETagKey( $this->mETag ) ) {
+			return true;
+		}
+		return false;
+	}
+
+	private function isETagWeakMatchAllowed( $eTag ) {
+		if ( $this->isETagWeak( $eTag ) &&
+                        ( $this->getRequest()->getMethod() !== "GET" || $this->getRequest()->getHeader( 'Range' ) ) ) {
+                        return false;
+                }
 		return true;
+	}
+
+	private function isETagWeak( $eTag ) {
+		if ( substr_compare( $eTag, 'W/', 0, 2 ) == 0 ) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	private function getETagKey( $eTag ) {
+		if( $this->isETagWeak( $eTag ) ) {
+			return substr( $eTag, 2 );
+		}
+		return $eTag;
 	}
 
 	/**
