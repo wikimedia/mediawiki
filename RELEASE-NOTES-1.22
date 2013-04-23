@@ -72,6 +72,7 @@ production.
   longer be), and will no longer choke on booleans.
 * action=opensearch no longer silently ignores the format parameter.
 * action=opensearch now supports format=jsonfm.
+* list=usercontribs&ucprop=ids will now include the parent revision id.
 
 === Languages updated in 1.22===
 
