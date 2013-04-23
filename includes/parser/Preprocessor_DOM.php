@@ -148,20 +148,18 @@ class Preprocessor_DOM implements Preprocessor {
 					wfDebugLog( "Preprocessor", "Loaded preprocessor XML from memcached (key $cacheKey)" );
 				}
 			}
-		}
-		if ( $xml === false ) {
-			if ( $cacheable ) {
+			if ( $xml === false ) {
 				wfProfileIn( __METHOD__ . '-cache-miss' );
 				$xml = $this->preprocessToXml( $text, $flags );
 				$cacheValue = sprintf( "%08d", self::CACHE_VERSION ) . $xml;
 				$wgMemc->set( $cacheKey, $cacheValue, 86400 );
 				wfProfileOut( __METHOD__ . '-cache-miss' );
 				wfDebugLog( "Preprocessor", "Saved preprocessor XML to memcached (key $cacheKey)" );
-			} else {
-				$xml = $this->preprocessToXml( $text, $flags );
 			}
-
+		} else {
+			$xml = $this->preprocessToXml( $text, $flags );
 		}
+
 
 		// Fail if the number of elements exceeds acceptable limits
 		// Do not attempt to generate the DOM
