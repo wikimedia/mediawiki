@@ -213,7 +213,7 @@ class MWTimestamp {
 	 * @return DateInterval Offset that was applied to the timestamp
 	 */
 	public function offsetForUser( User $user ) {
-		global $wgLocalTZOffset;
+		global $wgLocalTZoffset;
 
 		$option = $user->getOption( 'timecorrection' );
 		$data = explode( '|', $option, 3 );
@@ -239,8 +239,8 @@ class MWTimestamp {
 		// first value.
 		if ( $data[0] == 'System' ) {
 			// First value is System, so use the system offset.
-			if ( isset( $wgLocalTZOffset ) ) {
-				$diff = $wgLocalTZOffset;
+			if ( isset( $wgLocalTZoffset ) ) {
+				$diff = $wgLocalTZoffset;
 			}
 		} elseif ( $data[0] == 'Offset' ) {
 			// First value is Offset, so use the specified offset
