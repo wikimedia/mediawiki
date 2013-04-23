@@ -99,7 +99,6 @@ class SpecialPageFactory {
 		'Listusers'                 => 'SpecialListUsers',
 		'Listadmins'                => 'SpecialListAdmins',
 		'Listbots'                  => 'SpecialListBots',
-		'Activeusers'               => 'SpecialActiveUsers',
 		'Userrights'                => 'UserrightsPage',
 		'EditWatchlist'             => 'SpecialEditWatchlist',
 
@@ -202,6 +201,10 @@ class SpecialPageFactory {
 
 			if ( $wgEnableJavaScriptTest ) {
 				self::$mList['JavaScriptTest'] = 'SpecialJavaScriptTest';
+			}
+
+			if ( !$wgEnableActiveUsersPage ) {
+				self::$mList['Activeusers'] = 'SpecialActiveUsers';
 			}
 
 			// Add extension special pages
