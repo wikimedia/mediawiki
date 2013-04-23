@@ -127,7 +127,6 @@ changes to languages because of Bugzilla reports.
   feature, and improper configuration can actually prevent a user from editing
 * Calling Linker methods using a skin will now output deprecation warnings.
 * (bug 46680) "Return to" links are no longer tagged with rel="next".
-* The Special:ActiveUsers special page was removed.
 * BREAKING CHANGE: mw.util.tooltipAccessKeyRegexp: The match group for the
   accesskey character is now $6 instead of $5.
 * A new Special:Redirect page was added, providing lookup by revision ID,
