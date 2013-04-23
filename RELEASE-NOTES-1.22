@@ -64,6 +64,7 @@ production.
   longer be), and will no longer choke on booleans.
 * action=opensearch no longer silently ignores the format parameter.
 * action=opensearch now supports format=jsonfm.
+* prop=imageinfo now allows setting iiurlheight without setting iiurlwidth
 
 === Languages updated in 1.22===
 
