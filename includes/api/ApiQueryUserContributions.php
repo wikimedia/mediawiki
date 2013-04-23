@@ -255,7 +255,7 @@ class ApiQueryContributions extends ApiQueryBase {
 		$this->addFieldsIf( 'rev_comment', $this->fld_comment || $this->fld_parsedcomment );
 		$this->addFieldsIf( 'rev_len', $this->fld_size || $this->fld_sizediff );
 		$this->addFieldsIf( 'rev_minor_edit', $this->fld_flags );
-		$this->addFieldsIf( 'rev_parent_id', $this->fld_flags || $this->fld_sizediff );
+		$this->addFieldsIf( 'rev_parent_id', $this->fld_flags || $this->fld_sizediff || $this->fld_ids );
 		$this->addFieldsIf( 'rc_patrolled', $this->fld_patrolled );
 
 		if ( $this->fld_tags ) {
@@ -297,6 +297,10 @@ class ApiQueryContributions extends ApiQueryBase {
 			$vals['pageid'] = intval( $row->rev_page );
 			$vals['revid'] = intval( $row->rev_id );
 			// $vals['textid'] = intval( $row->rev_text_id ); // todo: Should this field be exposed?
+
+			if ( !is_null( $row->rev_parent_id ) ) {
+				$vals['parentid'] = intval( $row->rev_parent_id );
+			}
 		}
 
 		$title = Title::makeTitle( $row->page_namespace, $row->page_title );
@@ -474,7 +478,11 @@ class ApiQueryContributions extends ApiQueryBase {
 			),
 			'ids' => array(
 				'pageid' => 'integer',
-				'revid' => 'integer'
+				'revid' => 'integer',
+				'parentid' => array(
+					ApiBase::PROP_TYPE => 'integer',
+					ApiBase::PROP_NULLABLE => true
+				)
 			),
 			'title' => array(
 				'ns' => 'namespace',
