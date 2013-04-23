@@ -3890,20 +3890,19 @@ By executing it, your system may be compromised.",
 'ago'            => '$1 ago',
 'just-now'       => 'just now',
 
-'hours-ago'      => '$1 {{PLURAL:$1|hour|hours}} ago',
-'minutes-ago'    => '$1 {{PLURAL:$1|minute|minutes}} ago',
-'seconds-ago'    => '$1 {{PLURAL:$1|seconds|seconds}} ago',
-
-'monday-at'      => 'Monday at $1',
-'tuesday-at'     => 'Tuesday at $1',
-'wednesday-at'   => 'Wednesday at $1',
-'thursday-at'    => 'Thursday at $1',
-'friday-at'      => 'Friday at $1',
-'saturday-at'    => 'Saturday at $1',
-'sunday-at'      => 'Sunday at $1',
-
-'today-at'       => '$1',
-'yesterday-at'   => 'Yesterday at $1',
+# Human-readable timestamps
+'hours-ago'    => '$1 {{PLURAL:$1|hour|hours}} ago',
+'minutes-ago'  => '$1 {{PLURAL:$1|minute|minutes}} ago',
+'seconds-ago'  => '$1 {{PLURAL:$1|seconds|seconds}} ago',
+'monday-at'    => 'Monday at $1',
+'tuesday-at'   => 'Tuesday at $1',
+'wednesday-at' => 'Wednesday at $1',
+'thursday-at'  => 'Thursday at $1',
+'friday-at'    => 'Friday at $1',
+'saturday-at'  => 'Saturday at $1',
+'sunday-at'    => 'Sunday at $1',
+'today-at'     => '$1',
+'yesterday-at' => 'Yesterday at $1',
 
 # Bad image list
 'bad_image_list' => 'The format is as follows:
