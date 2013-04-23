@@ -209,6 +209,8 @@ production.
 * (bug 45143) jquery.badge: Treat non-Latin variants of zero as zero as well.
 * (bug 46151) mwdocgen.php should not ignore exit code of doxygen command.
 * (bug 41889) Fix $.tablesorter rowspan exploding for complex cases.
+* (bug 47489) Installer now automatically selects the next-best database type if
+  the PHP mysql extension is not loaded, preventing fatal errors in some cases.
 
 === API changes in 1.21 ===
 * prop=revisions can now report the contentmodel and contentformat.
