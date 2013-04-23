@@ -4019,7 +4019,7 @@ Dä Shtanndat-Zoot-Schlößel „$1“ övverschriif dä älldere Zoot-Schlöße
 'version-parser-function-hooks' => 'Parserfunktione',
 'version-hook-name' => 'De Schnettstelle ier Name',
 'version-hook-subscribedby' => 'Opjeroofe vun',
-'version-version' => '(Version $1)',
+'version-version' => '(Väsjohn $1)',
 'version-license' => 'Lėzänz',
 'version-poweredby-credits' => "Dat Wiki heh löp met '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001–$1 $2.",
 'version-poweredby-others' => 'sönß wää',

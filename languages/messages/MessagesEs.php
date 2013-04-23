@@ -474,6 +474,16 @@ $messages = array(
 'nov' => 'nov',
 'dec' => 'dic',
 
+'monday-at' => 'El lunes a las $1',
+'tuesday-at' => 'El martes a las $1',
+'wednesday-at' => 'El miércoles a las $1',
+'thursday-at' => 'El jueves a las $1',
+'friday-at' => 'El viernes a las $1',
+'saturday-at' => 'El sábado a las $1',
+'sunday-at' => 'El domingo a las $1',
+'today-at' => '$1',
+'yesterday-at' => 'Ayer a las $1',
+
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Categoría|Categorías}}',
 'category_header' => 'Artículos en la categoría «$1»',
@@ -4121,4 +4131,8 @@ En otro caso, puedes usar el siguiente formulario. Tu comentario será añadido 
 # Image rotation
 'rotate-comment' => 'Imagen girada por $1 {{PLURAL:$1|grado|grados}} en el sentido de las agujas del reloj',
 
+# Unknown messages
+'hours-ago' => 'hace $1 {{PLURAL:$1|hora|horas}}',
+'minutes-ago' => 'hace {{PLURAL:$1|un minuto|$1 minutos}}',
+'seconds-ago' => 'hace $1 {{PLURAL:$1|segundo|segundos}}',
 );

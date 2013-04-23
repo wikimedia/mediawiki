@@ -443,6 +443,16 @@ $messages = array(
 'nov' => 'നവം.',
 'dec' => 'ഡിസം.',
 
+'monday-at' => 'തിങ്കളാഴ്ച്ച $1-നു്',
+'tuesday-at' => 'ചൊവ്വാഴ്ച്ച $1-നു്',
+'wednesday-at' => 'ബുധനാഴ്ച്ച $1-നു്',
+'thursday-at' => 'വ്യാഴാഴ്ച്ച $1-നു്',
+'friday-at' => 'വെള്ളിയാഴ്ച്ച $1-നു്',
+'saturday-at' => 'ശനിയാഴ്ച്ച $1-നു്',
+'sunday-at' => 'ഞായറാഴ്ച്ച $1-നു്',
+'today-at' => 'ഇന്ന് $1-നു്',
+'yesterday-at' => 'ഇന്നലെ $1-നു്',
+
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|വർഗ്ഗം|വർഗ്ഗങ്ങൾ}}',
 'category_header' => '"$1" എന്ന വർഗ്ഗത്തിലെ താളുകൾ',
@@ -4065,4 +4075,8 @@ $5
 # Image rotation
 'rotate-comment' => 'ചിത്രം പ്രദക്ഷിണദിശയിൽ {{PLURAL:$1|ഒരു ഡിഗ്രി|$1 ഡിഗ്രി}} തിരിച്ചു',
 
+# Unknown messages
+'hours-ago' => '{{PLURAL:$1|ഒരു മണിക്കൂർ|$1 മണിക്കൂർ}} മുൻപ്',
+'minutes-ago' => '{{PLURAL:$1|ഒരു മിനിറ്റ്|$1 മിനിറ്റ്}} മുൻപ്',
+'seconds-ago' => '{{PLURAL:$1|ഒരു സെക്കന്റ്|$1 സെക്കന്റ്}} മുൻപ്',
 );

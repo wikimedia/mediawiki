@@ -453,6 +453,16 @@ $messages = array(
 'nov' => '11',
 'dec' => '12',
 
+'monday-at' => '월요일 $1',
+'tuesday-at' => '화요일 $1',
+'wednesday-at' => '수요일 $1',
+'thursday-at' => '목요일 $1',
+'friday-at' => '금요일 $1',
+'saturday-at' => '토요일 $1',
+'sunday-at' => '일요일 $1',
+'today-at' => '$1',
+'yesterday-at' => '어제 $1',
+
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|분류}}',
 'category_header' => '"$1" 분류에 속하는 문서',
@@ -4197,4 +4207,8 @@ $5
 # Image rotation
 'rotate-comment' => '그림을 시계 방향으로 $1{{PLURAL:$1|도}}로 회전함',
 
+# Unknown messages
+'hours-ago' => '$1{{PLURAL:$1|시간}} 전',
+'minutes-ago' => '$1{{PLURAL:$1|분}} 전',
+'seconds-ago' => '$1{{PLURAL:$1|초}} 전',
 );

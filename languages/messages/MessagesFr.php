@@ -495,6 +495,16 @@ $messages = array(
 'nov' => 'nov',
 'dec' => 'déc',
 
+'monday-at' => 'Lundi à $1',
+'tuesday-at' => 'Mardi à $1',
+'wednesday-at' => 'Mercredi à $1',
+'thursday-at' => 'Jeudi à $1',
+'friday-at' => 'Vendredi à $1',
+'saturday-at' => 'Samedi à $1',
+'sunday-at' => 'Dimanche à $1',
+'today-at' => '$1',
+'yesterday-at' => 'Hier à $1',
+
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Catégorie|Catégories}}',
 'category_header' => 'Pages dans la catégorie « $1 »',
@@ -3306,6 +3316,7 @@ Si vous l'exécutez, votre système peut être compromis.",
 'minutes' => '{{PLURAL:$1|$1 minute|$1 minutes}}',
 'hours' => '{{PLURAL:$1|$1 heure|$1 heures}}',
 'days' => '{{PLURAL:$1|$1 jour|$1 jours}}',
+'weeks' => '{{PLURAL:$1|$1 semaine|$1 semaines}}',
 'months' => '{{PLURAL:$1|$1 mois}}',
 'years' => '{{PLURAL:$1|$1 an|$1 ans}}',
 'ago' => 'Il y a $1',
@@ -4227,4 +4238,8 @@ Sinon, vous pouvez utiliser le formulaire simplifié ci-dessous. Votre commentai
 # Image rotation
 'rotate-comment' => 'Image pivotée de $1 {{PLURAL:$1|degré|degrés}} dans le sens des aiguilles d’une montre',
 
+# Unknown messages
+'hours-ago' => 'il y a $1 {{PLURAL:$1|heure|heures}}',
+'minutes-ago' => 'il y a $1 {{PLURAL:$1|minute|minutes}}',
+'seconds-ago' => 'il y a $1 {{PLURAL:$1|seconde|secondes}}',
 );

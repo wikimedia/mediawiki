@@ -4019,4 +4019,8 @@ MediaWiki ଉପଯୋଗୀ ହେବା ଲକ୍ଷରେ ବଣ୍ଟାଯ�
 'duration-centuries' => '$1 {{PLURAL:$1|century|centuries}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennia}}',
 
+# Unknown messages
+'hours-ago' => '$1 {{PLURAL:$1|ଘଣ୍ଟା}} ଆଗରୁ',
+'minutes-ago' => '$1 {{PLURAL:$1|ମିନିଟ|ମିନିଟ}} ଆଗରୁ',
+'seconds-ago' => '$1 {{PLURAL:$1|ସେକେଣ୍ଡ|ସେକେଣ୍ଡ}} ଆଗରୁ',
 );

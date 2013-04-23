@@ -290,6 +290,16 @@ $messages = array(
 'nov' => 'নৱেম্বৰ:',
 'dec' => 'ডিচেম্বৰ:',
 
+'monday-at' => 'সোমবাৰে $1ত',
+'tuesday-at' => 'মঙ্গলবাৰে  $1’ত',
+'wednesday-at' => 'বুধবাৰে $1’ত',
+'thursday-at' => 'বৃহস্পতিবাৰে $1’ত',
+'friday-at' => 'শুক্ৰবাৰে $1’ত',
+'saturday-at' => 'শনিবাৰে $1’ত',
+'sunday-at' => 'দেওবাৰে $1’ত',
+'today-at' => '$1',
+'yesterday-at' => 'কালি $1’ত',
+
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|শ্ৰেণী|শ্ৰেণীসমূহ}}',
 'category_header' => '"$1" শ্ৰেণীৰ পৃষ্ঠাসমূহ',
@@ -3925,4 +3935,8 @@ $5
 'duration-centuries' => '$1 {{PLURAL:$1|শতাব্দী|শতাব্দী}}',
 'duration-millennia' => '$1 {{PLURAL:$1|সহস্ৰাব্দ|সহস্ৰাব্দ}}',
 
+# Unknown messages
+'hours-ago' => '$1 {{PLURAL:$1|ঘন্টা}} আগেয়ে',
+'minutes-ago' => '$1 {{PLURAL:$1|মাহ}} আগেয়ে',
+'seconds-ago' => '$1 {{PLURAL:$1|ছেকেন্ড}} আগতে',
 );

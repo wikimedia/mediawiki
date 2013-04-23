@@ -463,6 +463,16 @@ $messages = array(
 'nov' => 'nov',
 'dec' => 'dec',
 
+'monday-at' => 'Maandag om $1',
+'tuesday-at' => 'Dinsdag om $1',
+'wednesday-at' => 'Woensdag om $1',
+'thursday-at' => 'Donderdag om $1',
+'friday-at' => 'Vrijdag om $1',
+'saturday-at' => 'Zaterdag om $1',
+'sunday-at' => 'Zondag om $1',
+'today-at' => '$1',
+'yesterday-at' => 'Gisteren om $1',
+
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Categorie|Categorieën}}',
 'category_header' => 'Pagina’s in categorie "$1"',
@@ -4222,4 +4232,8 @@ Anders kunt u ook het eenvoudige formulier hieronder gebruiken. Uw reactie wordt
 # Image rotation
 'rotate-comment' => 'Afbeelding gedraaid, $1 {{PLURAL:$1|graad|graden}} met de klok mee',
 
+# Unknown messages
+'hours-ago' => '$1 {{PLURAL:$1|uur}} geleden',
+'minutes-ago' => '$1 {{PLURAL:$1|minuut|minuten}} geleden',
+'seconds-ago' => '$1 {{PLURAL:$1|seconde|seconden}} geleden',
 );

@@ -460,6 +460,16 @@ $messages = array(
 'nov' => "נוב'",
 'dec' => "דצמ'",
 
+'monday-at' => 'ביום שני בשעה $1',
+'tuesday-at' => 'ביום שלישי בשעה $1',
+'wednesday-at' => 'ביום רביעי בשעה $1',
+'thursday-at' => 'ביום חמישי בשעה $1',
+'friday-at' => 'ביום שישי בשעה $1',
+'saturday-at' => 'בשבת בשעה $1',
+'sunday-at' => 'ביום ראשון בשעה $1',
+'today-at' => '$1',
+'yesterday-at' => 'אתמול בשעה $1',
+
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|קטגוריה|קטגוריות}}',
 'category_header' => 'דפים בקטגוריה "$1"',
@@ -3302,6 +3312,7 @@ $1',
 'minutes' => '{{PLURAL:$1|דקה|$1 דקות}}',
 'hours' => '{{PLURAL:$1|שעה|שעתיים|$1 שעות}}',
 'days' => '{{PLURAL:$1|יום|יומיים|$1 ימים}}',
+'weeks' => '{{PLURAL:$1|שבוע|שבועיים|$1 שבועות}}',
 'months' => '{{PLURAL:$1|חודש|חודשיים|$1 חודשים}}',
 'years' => '{{PLURAL:$1|שנה|שנתיים|$1 שנים}}',
 'ago' => 'לפני $1',
@@ -4204,4 +4215,8 @@ $5
 # Image rotation
 'rotate-comment' => 'התמונה סובבה {{PLURAL:$1|במעלה אחת|ב֫־$1 מעלות}} בכיוון השעון',
 
+# Unknown messages
+'hours-ago' => 'לפני {{PLURAL:$1|שעה|שעתיים|$1 שעות}}',
+'minutes-ago' => 'לפני {{PLURAL:$1|דקה|$1 דקות}}',
+'seconds-ago' => 'לפני {{PLURAL:$1|שנייה|$1 שניות}}',
 );

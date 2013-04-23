@@ -362,6 +362,16 @@ $messages = array(
 'nov' => '11月',
 'dec' => '12月',
 
+'monday-at' => '於星期一$1',
+'tuesday-at' => '於星期二$1',
+'wednesday-at' => '於星期三$1',
+'thursday-at' => '於星期四$1',
+'friday-at' => '於星期五$1',
+'saturday-at' => '於星期六$1',
+'sunday-at' => '於星期日$1',
+'today-at' => '$1',
+'yesterday-at' => '昨天$1',
+
 # Categories related messages
 'pagecategories' => '$1個分類',
 'category_header' => '「$1」分類中的頁面',
@@ -3122,6 +3132,7 @@ $1',
 'minutes' => '$1分鍾',
 'hours' => '$1小時',
 'days' => '$1天',
+'weeks' => '{{PLURAL:$1|$1周|$1周}}',
 'months' => '{{PLURAL:$1|$1個月|$1個月}}',
 'years' => '{{PLURAL:$1|$1年|$1年}}',
 'ago' => '$1前',
@@ -3981,4 +3992,8 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 # Image rotation
 'rotate-comment' => '順時針旋轉圖像$1{{PLURAL:$1|度|度}}',
 
+# Unknown messages
+'hours-ago' => '$1小時前',
+'minutes-ago' => '$1分鐘前',
+'seconds-ago' => '$1秒前',
 );

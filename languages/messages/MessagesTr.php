@@ -456,6 +456,16 @@ $messages = array(
 'nov' => 'Kas',
 'dec' => 'Ara',
 
+'monday-at' => '$1 Pazartesi günü',
+'tuesday-at' => '$1 Salı günü',
+'wednesday-at' => '$1 Çarşamba günü',
+'thursday-at' => '$1 Perşembe günü',
+'friday-at' => '$1 Cuma günü',
+'saturday-at' => '$1 Cumartesi günü',
+'sunday-at' => '$1 Pazar günü',
+'today-at' => '$1',
+'yesterday-at' => '$1 dün itibariyle',
+
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Kategori|Kategoriler}}',
 'category_header' => '"$1" kategorisindeki sayfalar',
@@ -3963,4 +3973,8 @@ Resimler tam çözünürlükte görüntülenir, diğer dosya tipleri ilgili prog
 'duration-centuries' => '$1 {{PLURAL:$1|yüzyıl|yüzyıl}}',
 'duration-millennia' => '$1 {{PLURAL:$1|bin yıl|bin yıl}}',
 
+# Unknown messages
+'hours-ago' => '$1 {{PLURAL:$1|saat|saat}} önce',
+'minutes-ago' => '$1 {{PLURAL:$1|dakika|dakika}} önce',
+'seconds-ago' => '$1 {{PLURAL:$1|saniye|saniye}} önce',
 );

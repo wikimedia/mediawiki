@@ -395,6 +395,15 @@ $messages = array(
 'nov' => 'nov',
 'dec' => 'dic',
 
+'monday-at' => 'Lunedì alle $1',
+'tuesday-at' => 'Martedì alle $1',
+'wednesday-at' => 'Mercoledì alle $1',
+'thursday-at' => 'Giovedì alle $1',
+'friday-at' => 'Venerdì alle $1',
+'saturday-at' => 'Sabato alle $1',
+'sunday-at' => 'Domenica alle $1',
+'yesterday-at' => 'Ieri alle $1',
+
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Categoria|Categorie}}',
 'category_header' => 'Pagine nella categoria "$1"',
@@ -4002,4 +4011,8 @@ Le immagini vengono mostrate alla massima risoluzione disponibile, per gli altri
 # Image rotation
 'rotate-comment' => 'Immagine ruotata di $1 {{PLURAL:$1|grado|gradi}} in senso orario',
 
+# Unknown messages
+'hours-ago' => '$1 {{PLURAL:$1|ora|ore}} fa',
+'minutes-ago' => '$1 {{PLURAL:$1|minuto|minuti}} fa',
+'seconds-ago' => '$1 {{PLURAL:$1|secondo|secondi}} fa',
 );

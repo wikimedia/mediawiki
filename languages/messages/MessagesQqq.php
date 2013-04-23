@@ -309,6 +309,16 @@ This option means "underline links as in your user skin or your browser", there 
 'nov' => 'Abbreviation of November, the eleventh month of the Gregorian calendar',
 'dec' => 'Abbreviation of December, the twelfth month of the Gregorian calendar',
 
+'monday-at' => 'Phrase for indicating that something occurred at a particular time on the most recent Monday. $1 is the time.',
+'tuesday-at' => 'Phrase for indicating that something occurred at a particular time on the most recent Tuesday. $1 is the time.',
+'wednesday-at' => 'Phrase for indicating that something occurred at a particular time on the most recent Wednesday. $1 is the time.',
+'thursday-at' => 'Phrase for indicating that something occurred at a particular time on the most recent Thursday. $1 is the time.',
+'friday-at' => 'Phrase for indicating that something occurred at a particular time on the most recent Friday. $1 is the time.',
+'saturday-at' => 'Phrase for indicating that something occurred at a particular time on the most recent Saturday. $1 is the time.',
+'sunday-at' => 'Phrase for indicating that something occurred at a particular time on the most recent Sunday. $1 is the time.',
+'today-at' => 'Phrase for indicating that something occurred at a particular time today. $1 is the time.',
+'yesterday-at' => 'Phrase for indicating that something occurred at a particular time yesterday. $1 is the time.',
+
 # Categories related messages
 'pagecategories' => 'Used in the categories section of pages. Is followed by a colon and a list of categories.',
 'category_header' => 'In category description page',
@@ -4922,7 +4932,8 @@ See also:
 'contribsub2' => 'Contributions for "user" (links)
 {{Identical|For $1}}',
 'nocontribs' => 'Optional parameter: $1 is the user name',
-'uctop' => 'This message is used in [[Special:Contributions]]. It is used to show that a particular edit was the last made to a page. Example: 09:57, 11 February 2008 (hist) (diff) Pagename‎ (edit summary) (top)',
+'uctop' => 'This message is used in [[Special:Contributions]]. It is used to show that a particular edit was the last made to a page. Example: 09:57, 11 February 2008 (hist) (diff) Pagename‎ (edit summary) (top)
+{{Identical|Top}}',
 'month' => 'Used in [[Special:Contributions]] and history pages ([{{fullurl:Sandbox|action=history}} example]), as label for a dropdown box to select a specific month to view the edits made in that month, and the earlier months. See also {{msg-mw|year}}.',
 'year' => 'Used in [[Special:Contributions]] and history pages ([{{fullurl:Sandbox|action=history}} example]), as label for an input box to select a specific year to view the edits made in that year, and the earlier years.
 
@@ -7236,7 +7247,8 @@ See also:
 This contains how the information in the picture is stored. This is most commonly Y, Cr, Cb to specify luma, red, blue. RGB is also possible to specify Red, Green, Blue.
 {{Related|Exif-componentsconfiguration}}',
 'exif-compressedbitsperpixel' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
-'exif-pixelydimension' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
+'exif-pixelydimension' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+{{Identical|Image width}}',
 'exif-pixelxdimension' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
 'exif-usercomment' => "Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
@@ -8877,4 +8889,8 @@ $4 is the gender of the target user.',
 # Image rotation
 'rotate-comment' => 'Edit summary for the act of rotating an image.',
 
+# Unknown messages
+'hours-ago' => 'Phrase for indicating that something occurred a certain number of hours ago',
+'minutes-ago' => 'Phrase for indicating that something occurred a certain number of minutes ago',
+'seconds-ago' => 'Phrase for indicating that something occurred a certain number of seconds ago',
 );

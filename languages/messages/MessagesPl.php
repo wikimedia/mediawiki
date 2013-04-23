@@ -409,6 +409,16 @@ $messages = array(
 'nov' => 'lis',
 'dec' => 'gru',
 
+'monday-at' => 'poniedziałek, $1',
+'tuesday-at' => 'wtorek, $1',
+'wednesday-at' => 'środa, $1',
+'thursday-at' => 'czwartek, $1',
+'friday-at' => 'piątek, $1',
+'saturday-at' => 'sobota, $1',
+'sunday-at' => 'niedziela, $1',
+'today-at' => '$1',
+'yesterday-at' => 'wczoraj, $1',
+
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Kategoria|Kategorie}}',
 'category_header' => 'Strony w kategorii „$1”',
@@ -3246,6 +3256,7 @@ Jeśli go otworzysz, możesz zarazić swój system.",
 'minutes' => '{{PLURAL:$1|$1 minuta|$1 minuty|$1 minut}}',
 'hours' => '{{PLURAL:$1|$1 godzina|$1 godziny|$1 godzin}}',
 'days' => '{{PLURAL:$1|$1 dzień|$1 dni}}',
+'weeks' => '{{PLURAL:$1|$1 tydzień|$1 tygodnie|$1 tygodni}}',
 'months' => '{{PLURAL:$1|$1 miesiąc|$1 miesiące|$1 miesięcy}}',
 'years' => '{{PLURAL:$1|$1 rok|$1 lata|$1 lat}}',
 'ago' => '$1 temu',
@@ -4142,4 +4153,8 @@ W przeciwnym wypadku można użyć prostego formularza poniżej. Komentarz zosta
 # Image rotation
 'rotate-comment' => 'Obraz został odwrócony o $1 {{PLURAL:$1|stopień|stopnie|stopni}} (w kierunku zgodnym z ruchem wskazówek zegara)',
 
+# Unknown messages
+'hours-ago' => '{{PLURAL:$1|przed godziną|$1 godziny temu|$1 godzin temu}}',
+'minutes-ago' => '{{PLURAL:$1|przed minutą|$1 minuty temu|$1 minut temu}}',
+'seconds-ago' => '{{PLURAL:$1|przed sekundą|$1 sekundy temu|$1 sekund temu}}',
 );
