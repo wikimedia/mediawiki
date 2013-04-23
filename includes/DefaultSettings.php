@@ -3582,6 +3582,12 @@ $wgUseCommaCount = false;
 $wgHitcounterUpdateFreq = 1;
 
 /**
+ * Whether to enable the Special:Activeusers special page.
+ * Some larger wikis may want to disable this for performance reasons.
+ */
+$wgEnableActiveUsersPage = true;
+
+/**
  * How many days user must be idle before he is considered inactive. Will affect
  * the number shown on Special:Statistics and Special:ActiveUsers special page.
  * You might want to leave this as the default value, to provide comparable

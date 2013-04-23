@@ -164,18 +164,19 @@ class SpecialStatistics extends SpecialPage {
 	}
 
 	private function getUserStats() {
-		global $wgActiveUserDays;
+		global $wgActiveUserDays, $wgEnableActiveUsersPage;
+
+		$activeUsersLink = !$wgEnableActiveUsersPage ? '' : ' ' .
+			Linker::linkKnown( SpecialPage::getTitleFor( 'Activeusers' ),
+				$this->msg( 'listgrouprights-members' )->escaped() );
+
 		return Xml::openElement( 'tr' ) .
 			Xml::tags( 'th', array( 'colspan' => '2' ), $this->msg( 'statistics-header-users' )->parse() ) .
 			Xml::closeElement( 'tr' ) .
 				$this->formatRow( $this->msg( 'statistics-users' )->parse(),
 						$this->getLanguage()->formatNum( $this->users ),
 						array( 'class' => 'mw-statistics-users' ) ) .
-				$this->formatRow( $this->msg( 'statistics-users-active' )->parse() . ' ' .
-							Linker::linkKnown(
-								SpecialPage::getTitleFor( 'Activeusers' ),
-								$this->msg( 'listgrouprights-members' )->escaped()
-							),
+				$this->formatRow( $this->msg( 'statistics-users-active' )->parse() . $activeUsersLink,
 						$this->getLanguage()->formatNum( $this->activeUsers ),
 						array( 'class' => 'mw-statistics-users-active' ),
 						'statistics-users-active-desc',
