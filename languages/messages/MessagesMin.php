@@ -1144,9 +1144,9 @@ Alamaik surel Sanak indakkan tau dek urang nan manghubungi sanak tu.',
 'userrights-groupsmember' => 'Anggota dari:',
 'userrights-groupsmember-auto' => 'Anggota implisit dari:',
 'userrights-groups-help' => 'Sanak dapek mangubah kalompok pangguno ko:
-* Kotak jo tando cek marupoan kalompok pangguno tasabuik
-* Kotak tanpa tando cek bararti pangguno ko bukan anggota kalompok tasabuik
-* Tando * manandoi Sanak indak dapek mambatalan kalompok tasabuik bilo Sanak alah manambahannyo, atau sabaliaknyo.',
+* Kotak jo tando centang marupoan kalompok pangguno tasabuik
+* Kotak indak ado tando centang bararti pangguno ko bukan anggota kalompok tasabuik
+* Tando * manandoan Sanak indak dapek mambatalan kalompok tasabuik bilo Sanak alah manambahannyo, ataupun sabaliaknyo.',
 'userrights-reason' => 'Alasan:',
 'userrights-no-interwiki' => 'Sanak indak bahak untuak mangubah hak pangguno di wiki lain.',
 'userrights-nodatabase' => 'Basis data $1 indak ado atau bukan disiko.',

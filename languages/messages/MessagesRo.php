@@ -407,6 +407,16 @@ pe titlul secțiunii (JavaScript)',
 'nov' => 'nov',
 'dec' => 'dec',
 
+'monday-at' => 'Luni, la $1',
+'tuesday-at' => 'Marți, la $1',
+'wednesday-at' => 'Miercuri, la $1',
+'thursday-at' => 'Joi,la $1',
+'friday-at' => 'Vineri, la $1',
+'saturday-at' => 'Sâmbătă, la $1',
+'sunday-at' => 'Duminică, la $1',
+'today-at' => '$1',
+'yesterday-at' => 'Ieri, la $1',
+
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Categorie|Categorii}}',
 'category_header' => 'Pagini din categoria „$1”',
@@ -4056,4 +4066,8 @@ Imaginile sunt afișate la rezoluția lor maximă, în timp ce alte tipuri de fi
 # Image rotation
 'rotate-comment' => 'Imagine rotită în sensul acelor de ceasornic cu $1 {{PLURAL:$1|grad|grade|de grade}}',
 
+# Unknown messages
+'hours-ago' => 'acum $1 {{PLURAL:$1|oră|ore|de ore}}',
+'minutes-ago' => 'acum $1 {{PLURAL:$1|minut|minute|de minute}}',
+'seconds-ago' => 'acum {{PLURAL:$1|o secundă|$1 secunde|$1 de secunde}}',
 );

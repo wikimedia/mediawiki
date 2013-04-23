@@ -390,6 +390,16 @@ $messages = array(
 'nov' => 'nov',
 'dec' => 'dec',
 
+'monday-at' => 'v pondelok o $1',
+'tuesday-at' => 'v utorok o $1',
+'wednesday-at' => 'v stredu o $1',
+'thursday-at' => 'vo štvrtok o $1',
+'friday-at' => 'v piatok o $1',
+'saturday-at' => 'v sobotu o $1',
+'sunday-at' => 'v nedeľu o $1',
+'today-at' => '$1',
+'yesterday-at' => 'včera o $1',
+
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Kategória|Kategórie|Kategórie}}',
 'category_header' => 'Stránky v kategórii „$1“',
@@ -4048,4 +4058,8 @@ V opačnom prípade môžete použiť zjednodušený formulár nižšie. Váš k
 # Image rotation
 'rotate-comment' => 'Obrázok otočený o $1 {{PLURAL:$1|stupeň|stupne|stupňov}} v smere hodinových ručičiek',
 
+# Unknown messages
+'hours-ago' => 'pred $1 {{PLURAL:$1|hodinou|hodinami}}',
+'minutes-ago' => 'pred $1 {{PLURAL:$1|minútou|minútami}}',
+'seconds-ago' => 'pred $1 {{PLURAL:$1|sekundou|sekundami}}',
 );

@@ -294,6 +294,16 @@ $messages = array(
 'nov' => 'nov.',
 'dec' => 'dec.',
 
+'monday-at' => 'Ponedeljek ob $1',
+'tuesday-at' => 'Torek ob $1',
+'wednesday-at' => 'Sreda ob $1',
+'thursday-at' => 'Četrtek ob $1',
+'friday-at' => 'Petek ob $1',
+'saturday-at' => 'Sobota ob $1',
+'sunday-at' => 'Nedelja ob $1',
+'today-at' => '$1',
+'yesterday-at' => 'Včeraj ob $1',
+
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Kategorija|Kategoriji|Kategorije}}',
 'category_header' => 'Strani v kategoriji »$1«',
@@ -773,7 +783,7 @@ svojega starega gesla.',
 Začasno geslo: $2',
 'passwordreset-emailsent' => 'Poslali smo e-pošto za postavitev gesla.',
 'passwordreset-emailsent-capture' => 'Poslali smo e-pošto za ponastavitev gesla, ki je prikazana spodaj.',
-'passwordreset-emailerror-capture' => 'Ustvarili smo e-pošto za ponastavitev gesla, ki je prikazana spodaj, vendar pa pošiljanje uporabniku ni uspelo: $1',
+'passwordreset-emailerror-capture' => 'Ustvarili smo e-pošto za ponastavitev gesla, ki je prikazana spodaj, vendar pa pošiljanje {{GENDER:$2|uporabniku|uporabnici}} ni uspelo: $1',
 
 # Special:ChangeEmail
 'changeemail' => 'Sprememba e-poštnega naslova',
@@ -3135,6 +3145,7 @@ Z njenim zagonom lahko ogrozite vaš sistem.",
 'minutes' => '$1 {{PLURAL:$1|minuta|minuti|minute|minut}}',
 'hours' => '$1 {{PLURAL:$1|ura|uri|ure|ur}}',
 'days' => '$1 {{PLURAL:$1|dan|dneva|dnevi|dni}}',
+'weeks' => '$1 {{PLURAL:$1|teden|tedna|tedni|tednov}}',
 'months' => '$1 {{PLURAL:$1|mesec|meseca|mesece|mesecev}}',
 'years' => '$1 {{PLURAL:$1|leto|leti|leta|let}}',
 'ago' => 'pred $1',
@@ -3988,4 +3999,8 @@ V nasprotnem primeru lahko uporabite preprost obrazec spodaj. Vašo pripombo bom
 # Image rotation
 'rotate-comment' => 'Slika zavrti s  $1  {{PLURAL:$1| degree|degrees}} v smeri urinega kazalca',
 
+# Unknown messages
+'hours-ago' => 'pred $1 {{PLURAL:$1|uro|urama|urami}}',
+'minutes-ago' => 'pred $1 {{PLURAL:$1|minuto|minutama|minutami}}',
+'seconds-ago' => 'pred $1 {{PLURAL:$1|sekundo|sekundama|sekundami}}',
 );

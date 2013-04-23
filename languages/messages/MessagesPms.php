@@ -100,8 +100,8 @@ $messages = array(
 
 # Dates
 'sunday' => 'dumìnica',
-'monday' => 'Lùn-es',
-'tuesday' => 'Màrtes',
+'monday' => 'lùn-es',
+'tuesday' => 'màrtes',
 'wednesday' => 'Merco',
 'thursday' => 'Giòbia',
 'friday' => 'Vënner',

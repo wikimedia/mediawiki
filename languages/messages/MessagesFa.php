@@ -538,6 +538,16 @@ $messages = array(
 'nov' => 'نوامبر',
 'dec' => 'دسامبر',
 
+'monday-at' => 'دوشنبهٔ $1',
+'tuesday-at' => 'سه‌شنبهٔ $1',
+'wednesday-at' => 'چهارشنبهٔ $1',
+'thursday-at' => 'پنج‌شنبهٔ $1',
+'friday-at' => 'جمعهٔ $1',
+'saturday-at' => 'شنبهٔ $1',
+'sunday-at' => 'یک‌شنبهٔ $1',
+'today-at' => '$1',
+'yesterday-at' => 'دیروز $1',
+
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|رده|رده‌ها}}',
 'category_header' => 'صفحه‌های ردهٔ «$1»',
@@ -4272,4 +4282,8 @@ $5
 # Image rotation
 'rotate-comment' => 'تصویر به دست $1 {{PLURAL:$1|درجهٔ|درجهٔ}} ساعت‌گرد چرخانده شد',
 
+# Unknown messages
+'hours-ago' => '$1 {{PLURAL:$1|ساعت|ساعت}} قبل',
+'minutes-ago' => '$1 {{PLURAL:$1|دقیقه|دقیقه}} قبل',
+'seconds-ago' => '$1 {{PLURAL:$1|ثانیه|ثانیه}} قبل',
 );

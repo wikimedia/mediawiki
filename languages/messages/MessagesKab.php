@@ -150,6 +150,16 @@ $messages = array(
 'nov' => 'Wam',
 'dec' => 'Duj',
 
+'monday-at' => 'Arim af $1',
+'tuesday-at' => 'Aram af $1',
+'wednesday-at' => 'Ahad af $1',
+'thursday-at' => 'Amhad af $1',
+'friday-at' => 'Sem af $1',
+'saturday-at' => 'Sed af $1',
+'sunday-at' => 'Acer af $1',
+'today-at' => '$1',
+'yesterday-at' => 'Iḍelli af $1',
+
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Taggayt|Taggayin}}',
 'category_header' => 'Imagraden deg taggayt "$1"',
@@ -3003,4 +3013,8 @@ G leɛnaya-k sentem belli ṣaḥḥ tebɣiḍ ad tɛiwedeḍ axlaq n usebter-ag
 'duration-centuries' => '$1 {{PLURAL:$1|timiḍi|timiḍa}}',
 'duration-millennia' => '$1 {{PLURAL:$1|agimseggwas|agimseggwasen}}',
 
+# Unknown messages
+'hours-ago' => '$1 {{PLURAL:$1|asrag|isragen}} aya',
+'minutes-ago' => '$1 {{PLURAL:$1|tamrect|timercin}} aya',
+'seconds-ago' => '$1 {{PLURAL:$1|tasint|tisinin}} aya',
 );

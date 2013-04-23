@@ -518,6 +518,16 @@ $messages = array(
 'nov' => 'Nov.',
 'dec' => 'Dez.',
 
+'monday-at' => 'Montag um $1',
+'tuesday-at' => 'Dienstag um $1',
+'wednesday-at' => 'Mittwoch um $1',
+'thursday-at' => 'Donnerstag um $1',
+'friday-at' => 'Freitag um $1',
+'saturday-at' => 'Samstag um $1',
+'sunday-at' => 'Sonntag um $1',
+'today-at' => '$1',
+'yesterday-at' => 'Gestern um $1',
+
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Kategorie|Kategorien}}',
 'category_header' => 'Seiten in der Kategorie „$1“',
@@ -3311,6 +3321,7 @@ Durch das Herunterladen und Öffnen der Datei kann dein Computer beschädigt wer
 'minutes' => '{{PLURAL:$1|$1 Minute|$1 Minuten}}',
 'hours' => '{{PLURAL:$1|1 Stunde|$1 Stunden}}',
 'days' => '{{PLURAL:$1|$1 Tag|$1 Tage}}',
+'weeks' => '{{PLURAL:$1|$1 Woche|$1 Wochen}}',
 'months' => '{{PLURAL:$1|1 Monat|$1 Monate}}',
 'years' => '{{PLURAL:$1|1 Jahr|$1 Jahre}}',
 'ago' => 'vor $1',
@@ -4169,4 +4180,8 @@ Anderenfalls kannst du auch das untenstehende einfache Formular nutzen. Dein Kom
 # Image rotation
 'rotate-comment' => 'Bild um $1 {{PLURAL:$1|Grad}} im Uhrzeigersinn gedreht',
 
+# Unknown messages
+'hours-ago' => 'vor {{PLURAL:$1|einer Stunde|$1 Stunden}}',
+'minutes-ago' => 'vor {{PLURAL:$1|einer Minute|$1 Minuten}}',
+'seconds-ago' => 'vor {{PLURAL:$1|einer Sekunde|$1 Sekunden}}',
 );

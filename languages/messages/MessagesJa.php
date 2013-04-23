@@ -472,6 +472,16 @@ $messages = array(
 'nov' => '11月',
 'dec' => '12月',
 
+'monday-at' => '月曜日 $1',
+'tuesday-at' => '火曜日 $1',
+'wednesday-at' => '水曜日 $1',
+'thursday-at' => '木曜日 $1',
+'friday-at' => '金曜日 $1',
+'saturday-at' => '土曜日 $1',
+'sunday-at' => '日曜日 $1',
+'today-at' => '$1',
+'yesterday-at' => '昨日 $1',
+
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|カテゴリ}}',
 'category_header' => 'カテゴリ「$1」にあるページ',
@@ -4368,4 +4378,8 @@ MediaWikiは、有用であることを期待して配布されていますが�
 # Image rotation
 'rotate-comment' => '画像を時計回りに $1 {{PLURAL:$1|度}}回転',
 
+# Unknown messages
+'hours-ago' => '$1 {{PLURAL:$1|時間}}前',
+'minutes-ago' => '$1 {{PLURAL:$1|分}}前',
+'seconds-ago' => '$1 {{PLURAL:$1|秒}}前',
 );
