@@ -548,7 +548,7 @@ $3
 
 When that has been done, you can '''[$2 enter your wiki]'''.",
 	'config-download-localsettings' => 'Download <code>LocalSettings.php</code>',
-	'extension-link'			    => 'Did you know that your wiki supports  [//www.mediawiki.org/wiki/Manual:Extensions extensions]? Browse through these categories of [http://www.mediawiki.org/wiki/Category:Extensions_by_category extentions] to find one suitable for your wiki.',
+	'extension-link' => 'Did you know that your wiki supports  [//www.mediawiki.org/wiki/Manual:Extensions extensions]? Browse through these categories of [//www.mediawiki.org/wiki/Category:Extensions_by_category extentions] to find one suitable for your wiki.',
 	'config-help' => 'help',
 	'config-nofile'     => 'File "$1" could not be found. Has it been deleted?',
 	'mainpagetext'      => "'''MediaWiki has been successfully installed.'''",
