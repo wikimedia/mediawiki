@@ -376,6 +376,7 @@ $magicWords = array(
  * hook.
  */
 $specialPageAliases = array(
+	'Activeusers'               => array( 'ActiveUsers' ),
 	'Allmessages'               => array( 'AllMessages' ),
 	'Allpages'                  => array( 'AllPages' ),
 	'Ancientpages'              => array( 'AncientPages' ),
@@ -2785,6 +2786,16 @@ Supported {{PLURAL:$2|protocol|protocols}}: <code>$1</code> (defaults to http://
 'listusers-submit'   => 'Show',
 'listusers-noresult' => 'No user found.',
 'listusers-blocked'  => '(blocked)',
+
+# Special:ActiveUsers
+'activeusers'            => 'Active users list',
+'activeusers-summary'    => '', # do not translate or duplicate this message to other languages
+'activeusers-intro'      => 'This is a list of users who had some kind of activity within the last $1 {{PLURAL:$1|day|days}}.',
+'activeusers-count'      => '$1 {{PLURAL:$1|action|actions}} in the last {{PLURAL:$3|day|$3 days}}',
+'activeusers-from'       => 'Display users starting at:',
+'activeusers-hidebots'   => 'Hide bots',
+'activeusers-hidesysops' => 'Hide administrators',
+'activeusers-noresult'   => 'No users found.',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'User group rights',
