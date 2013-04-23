@@ -460,7 +460,14 @@ class WebInstaller_DBConnect extends WebInstallerPage {
 		$this->addHTML( $this->parent->getInfoBox(
 			wfMessage( 'config-support-info', trim( $dbSupport ) )->text() ) );
 
-		foreach ( $this->parent->getVar( '_CompiledDBs' ) as $type ) {
+		// It's possible that the library for the default DB type is not compiled in.
+		// In that case, instead select the first supported DB type in the list.
+		$compiledDBs = $this->parent->getVar( '_CompiledDBs' );
+		if ( !in_array( $defaultType, $compiledDBs ) ) {
+			$defaultType = $compiledDBs[0];
+		}
+
+		foreach ( $compiledDBs as $type ) {
 			$installer = $this->parent->getDBInstaller( $type );
 			$types .=
 				'<li>' .
@@ -494,6 +501,9 @@ class WebInstaller_DBConnect extends WebInstallerPage {
 	public function submit() {
 		$r = $this->parent->request;
 		$type = $r->getVal( 'DBType' );
+		if ( !$type ) {
+			return Status::newFatal( 'config-invalid-db-type' );
+		}
 		$this->setVar( 'wgDBtype', $type );
 		$installer = $this->parent->getDBInstaller( $type );
 		if ( !$installer ) {
