@@ -24,7 +24,6 @@ $defaultFormWidth: $captchaContainerWidth;
 
         // MW currently doesn't use the type attribute everywhere on inputs.
         input,
-        label,
         .mw-ui-button {
             display: block;
             @include box-sizing(border-box);
@@ -37,8 +36,9 @@ $defaultFormWidth: $captchaContainerWidth;
         }
 
         label {
+            display: block;
+            @include box-sizing(border-box);
             @include agora-label-styling;
-
             width: auto;
             margin: 0 0 0.2em 0;
             padding: 0;
