@@ -565,7 +565,7 @@ class LocalFile extends File {
 		$this->dataLoaded = true;
 		$fields = $this->getCacheFields( '' );
 		$fields[] = 'fileExists';
-
+is
 		foreach ( $fields as $field ) {
 			if ( isset( $info[$field] ) ) {
 				$this->$field = $info[$field];
@@ -1663,11 +1663,11 @@ class LocalFile extends File {
 	}
 
 	/**
-	 * @return bool
+	 * @return bool Whether to cache in RepoGroup (this avoids OOMs)
 	 */
 	function isCacheable() {
-		$this->load();
-		return strlen( $this->metadata ) <= self::CACHE_FIELD_MAX_LEN; // avoid OOMs
+		$this->load(); // if loaded from cache, metadata will be null if it didn't fit
+		return $this->metadata !== null && strlen( $this->metadata ) <= self::CACHE_FIELD_MAX_LEN;
 	}
 
 	/**
