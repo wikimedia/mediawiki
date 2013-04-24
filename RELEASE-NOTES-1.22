@@ -15,6 +15,7 @@ production.
   activated; when $wgUseVFormCreateAccount is true, the redesign of
   Special:UserLogin/signup is activated.
 * $wgVectorUseIconWatch is now enabled by default.
+* $wgCascadingRestrictionLevels was added.
 
 === New features in 1.22 ===
 * (bug 44525) mediawiki.jqueryMsg can now parse (whitelisted) HTML elements and attributes.
@@ -45,6 +46,8 @@ production.
   another portlet will work as expected.
 * (bug 6747) {{ROOTPAGENAME}} introduced, contains the name of the topmost
   page without namespace.
+* $wgCascadingRestrictionLevels was added, allowing one to specify restriction levels
+  which can be cascading (previously 'sysop' was hard-coded as the only one).
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail. Previously one could still

@@ -614,16 +614,9 @@ class ProtectionForm {
 	}
 
 	function buildCleanupScript() {
-		global $wgRestrictionLevels, $wgOut;
+		global $wgRestrictionLevels, $wgCascadingRestrictionLevels, $wgOut;
 
-		$cascadeableLevels = array();
-		foreach ( $wgRestrictionLevels as $key ) {
-			if ( User::groupHasPermission( $key, 'protect' )
-				|| $key == 'protect'
-			) {
-				$cascadeableLevels[] = $key;
-			}
-		}
+		$cascadeableLevels = $wgCascadingRestrictionLevels;
 		$options = array(
 			'tableId' => 'mwProtectSet',
 			'labelText' => wfMessage( 'protect-unchain-permissions' )->plain(),
