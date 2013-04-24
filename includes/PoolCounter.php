@@ -190,9 +190,19 @@ abstract class PoolCounterWork {
 	}
 
 	/**
-	 * Get the result of the work (whatever it is), or false.
+	 * Get the result of the work (whatever it is), or the result of the error() function.
+	 * This returns the result of the first applicable method that returns a non-false value,
+	 * where the methods are checked in the following order:
+	 *   - a) doWork()       : Applies if the work is exclusive or no another process
+	 *                         is doing it, and on the condition that either this process
+	 *                         successfully entered the pool or the pool counter is down.
+	 *   - b) doCachedWork() : Applies if the work is cacheable and this blocked on another
+	 *                         process which finished the work.
+	 *   - c) fallback()     : Applies for all remaining cases.
+	 * If these all fall through (by returning false), then the result of error() is returned.
+	 *
 	 * @param $skipcache bool
-	 * @return bool|mixed
+	 * @return mixed
 	 */
 	public function execute( $skipcache = false ) {
 		if ( $this->cacheable && !$skipcache ) {
