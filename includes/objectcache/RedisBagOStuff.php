@@ -140,7 +140,7 @@ class RedisBagOStuff extends BagOStuff {
 				$conn->setex( $key, $expiry, $value );
 			}
 
-			$result = $conn->exec();
+			$result = ( $conn->exec() == array( true ) );
 		} catch ( RedisException $e ) {
 			$result = false;
 			$this->handleException( $server, $conn, $e );
