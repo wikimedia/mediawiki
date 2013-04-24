@@ -7,6 +7,8 @@
 # Editors
 *.kate-swp
 *~
+\#*#
+.#*
 .*.swp
 .project
 cscope.files
