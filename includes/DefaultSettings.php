@@ -4044,6 +4044,21 @@ $wgRestrictionTypes = array( 'create', 'edit', 'move', 'upload' );
 $wgRestrictionLevels = array( '', 'autoconfirmed', 'sysop' );
 
 /**
+ * Restriction levels that can be used with cascading protection
+ *
+ * A page can only be protected with cascading protection if the
+ * requested restriction level is included in this array.
+ * 
+ * This is intended to prevent abuse - if any protection could be
+ * cascading, users could who cannot normally protect pages could
+ * "protect" them by transcluding them on protected pages they are
+ * allowed to edit.
+ *
+ * Includes both 'sysop' and 'protect' for backwards compatibility.
+ */
+$wgCascadingRestrictionLevels = array( 'protect', 'sysop' );
+
+/**
  * Set the minimum permissions required to edit pages in each
  * namespace.  If you list more than one permission, a user must
  * have all of them to edit pages in that namespace.
