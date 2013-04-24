@@ -825,6 +825,29 @@ class RecentChange {
 		return ChangesList::showCharacterDifference( $old, $new );
 	}
 
+	/**
+	 * Purge expired changes from the recentchanges table
+	 * @since 1.22
+	 */
+	public static function purgeExpiredChanges() {
+		if ( wfReadOnly() ) {
+			return;
+		}
+
+		$method = __METHOD__;
+		$dbw = wfGetDB( DB_MASTER );
+		$dbw->onTransactionIdle( function() use ( $dbw, $method ) {
+			global $wgRCMaxAge;
+
+			$cutoff = $dbw->timestamp( time() - $wgRCMaxAge );
+			$dbw->delete(
+				'recentchanges',
+				array( 'rc_timestamp < ' . $dbw->addQuotes( $cutoff ) ),
+				$method
+			);
+		} );
+	}
+
 	private static function checkIPAddress( $ip ) {
 		global $wgRequest;
 		if ( $ip ) {

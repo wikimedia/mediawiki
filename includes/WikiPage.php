@@ -2080,15 +2080,7 @@ class WikiPage implements Page, IDBAccessObject {
 			if ( 0 == mt_rand( 0, 99 ) ) {
 				// Flush old entries from the `recentchanges` table; we do this on
 				// random requests so as to avoid an increase in writes for no good reason
-				global $wgRCMaxAge;
-
-				$dbw = wfGetDB( DB_MASTER );
-				$cutoff = $dbw->timestamp( time() - $wgRCMaxAge );
-				$dbw->delete(
-					'recentchanges',
-					array( 'rc_timestamp < ' . $dbw->addQuotes( $cutoff ) ),
-					__METHOD__
-				);
+				RecentChange::purgeExpiredChanges();
 			}
 		}
 
