@@ -142,9 +142,8 @@
   padding: 0;
   width: 100%;
 }
-/* line 28, sourcefiles/scss/components/default/_forms.scss */
+/* line 27, sourcefiles/scss/components/default/_forms.scss */
 .mw-ui-vform > div input,
-.mw-ui-vform > div label,
 .mw-ui-vform > div .mw-ui-button {
   display: block;
   -webkit-box-sizing: border-box;
@@ -153,7 +152,7 @@
   margin: 0;
   width: 100%;
 }
-/* line 35, sourcefiles/scss/components/default/_forms.scss */
+/* line 34, sourcefiles/scss/components/default/_forms.scss */
 .mw-ui-vform > div input {
   outline: 0;
   border-style: solid;
@@ -167,8 +166,12 @@
   box-shadow: #4091ed 0px 0px 5px;
   border-color: #4091ed;
 }
-/* line 39, sourcefiles/scss/components/default/_forms.scss */
+/* line 38, sourcefiles/scss/components/default/_forms.scss */
 .mw-ui-vform > div label {
+  display: block;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
   font-size: 0.9em;
   color: #7d7d7d;
   width: auto;
