@@ -140,6 +140,12 @@ class RedisBagOStuff extends BagOStuff {
 				$conn->setex( $key, $expiry, $value );
 			}
 
+			/*
+			 * multi()/exec() (transactional mode) allows multiple values to
+			 * be set/get at once and will return an array of results, in
+			 * the order they were set/get. In this case, we only set 1
+			 * value, which should (in case of success) result in true.
+			 */
 			$result = ( $conn->exec() == array( true ) );
 		} catch ( RedisException $e ) {
 			$result = false;
