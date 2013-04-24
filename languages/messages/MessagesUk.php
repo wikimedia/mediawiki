@@ -36,6 +36,7 @@
  * @author RLuts
  * @author Riwnodennyk
  * @author Sodmy
+ * @author Ua2004
  * @author Urhixidur
  * @author VolodymyrF
  * @author Vox
@@ -2408,7 +2409,7 @@ $1',
 'addedwatchtext' => "Сторінку «[[:$1]]» додано до вашого [[Special:Watchlist|списку спостереження]].
 Подальші редагування цієї сторінки (та пов'язаної з нею сторінки обговорення) відображатимуться в цьому списку.",
 'removewatch' => 'Видалити зі списку спостереження',
-'removedwatchtext' => 'Сторінка «[[:$1]]» вилучена з вашого [[Special:Watchlist|списку спостереження]].',
+'removedwatchtext' => 'Сторінку «[[:$1]]» вилучено з вашого [[Special:Watchlist|списку спостереження]].',
 'watch' => 'Спостерігати',
 'watchthispage' => 'Спостерігати за цією сторінкою',
 'unwatch' => 'Скас. спостереження',
