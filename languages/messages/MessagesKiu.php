@@ -1562,7 +1562,7 @@ Eke dosya de peydêna vuriyais biyo ki, beno ke taê melumati gorê vurnaisê ne
 'specialpages-group-media' => 'Raporê medya u bar-kerdey',
 'specialpages-group-users' => 'Karber u heqi',
 'specialpages-group-highuse' => 'Pelê jêdêr gurenaey',
-'specialpages-group-pages' => 'Lista pelun',
+'specialpages-group-pages' => 'Listê pelun',
 'specialpages-group-pagetools' => 'Hacetê pele',
 'specialpages-group-wiki' => "Daê ''Wiki''y u haceti",
 'specialpages-group-redirects' => 'Newe-vırastena pelunê xususiyun',

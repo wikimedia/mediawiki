@@ -133,6 +133,16 @@ $messages = array(
 'nov' => 'Nov',
 'dec' => 'Dec',
 
+'monday-at' => 'Lunedìe a le $1',
+'tuesday-at' => 'Martedìe a le $1',
+'wednesday-at' => 'Mercrudìe a le $1',
+'thursday-at' => 'Sciuvedìe a le $1',
+'friday-at' => 'Venerdìe a le $1',
+'saturday-at' => 'Sabbète a le $1',
+'sunday-at' => 'Dumeneche a le $1',
+'today-at' => '$1',
+'yesterday-at' => 'Aijere a le $1',
+
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Categorije|Categorije}}',
 'category_header' => 'Pàggene jndr\'à categorie "$1"',
@@ -3045,6 +3055,7 @@ Ce l'esegue sus a 'u sisteme tue pò essere ca se combromette.",
 'minutes' => '{{PLURAL:$1|$1 minute|$1 minute}}',
 'hours' => '{{PLURAL: $1|$1ore|$1 ore}}',
 'days' => '{{PLURAL: $1|$1 sciurne|$1 sciurne}}',
+'weeks' => '{{PLURAL:$1|$1 sumàne}}',
 'months' => '{{PLURAL:$1|$1 mese|$1 mise}}',
 'years' => '{{PLURAL:$1|$1 anne}}',
 'ago' => '$1 fà',
@@ -4077,4 +4088,8 @@ Ce nò, tu puè ausà 'u module facile aqquà sotte. 'U commende tune avène agg
 # Image rotation
 'rotate-comment' => 'Immaggine rotate de $1 {{PLURAL:$1|grade}} in sienze orarie',
 
+# Unknown messages
+'hours-ago' => '$1 {{PLURAL:$1|ore}} fà',
+'minutes-ago' => '$1 {{PLURAL:$1|minute}} fà',
+'seconds-ago' => '$1 {{PLURAL:$1|seconde}} fà',
 );

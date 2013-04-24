@@ -2210,7 +2210,7 @@ Fremtidige ændringer af denne side og dens tilknyttede diskussionsside vil bliv
 'watchmethod-list' => 'Tjekker seneste ændringer for sider i din overvågningsliste',
 'watchlistcontains' => 'Din overvågningsliste indeholder $1 {{PLURAL:$1|side|sider}}.',
 'iteminvalidname' => "Problem med '$1', ugyldigt navn...",
-'wlnote' => "Nedenfor ses {{PLURAL:$1|den seneste ændring|de seneste '''$1''' ændringer}} i {{PLURAL:$2|den sidste time|'''de sidste $2 timer}}''' fra den $3, kl. $4.",
+'wlnote' => "Nedenfor ses {{PLURAL:$1|den seneste ændring|de seneste '''$1''' ændringer}} i {{PLURAL:$2|den sidste time|'''de sidste $2 timer}}''' op til den $3 kl. $4.",
 'wlshowlast' => 'Vis de seneste $1 timer $2 dage $3',
 'watchlist-options' => 'Indstillinger for overvågningslisten',
 

@@ -1055,14 +1055,14 @@ In user preferences.
 'userlogin-yourname' => 'In new vertical user login & create account forms, label for username field.
 {{Identical|Username}}',
 'userlogin-yourname-ph' => 'Placeholder text in new userlogin/create account form field.',
+'createacct-helpusername-url' => 'The URL of a page providing username guidance for the wiki.',
+'createacct-helpusername-link' => 'Message in new create account form providing guidance for username.',
 'yourpassword' => 'In user preferences
 
 {{Identical|Password}}',
 'userlogin-yourpassword' => 'In new vertical user login & create account forms, label for password field.
 {{Identical|Password}}',
 'userlogin-yourpassword-ph' => 'Placeholder text in new userlogin form for password field.',
-'createacct-helpusername-url' => 'The URL of a page providing username guidance for the wiki.',
-'createacct-helpusername-link' => 'Message in new create account form providing guidance for username.',
 'createacct-yourpassword-ph' => 'Placeholder text in new create account form for password field.',
 'yourpasswordagain' => 'In user preferences',
 'createacct-yourpasswordagain' => 'In new create account form, label for field to re-enter password',
@@ -1135,9 +1135,9 @@ Wikitext linking to login help.
 See also:
 * {{msg-mw|Helplogin-url}}',
 'createacct-join' => 'Subheading of vertical-layout create account form encouraging user to join the wiki.',
-'createacct-emailrequired'  => 'Label in vertical-layout create account form for email field when it is required.',
+'createacct-emailrequired' => 'Label in vertical-layout create account form for email field when it is required.',
 'createacct-emailoptional' => 'Label in vertical-layout create account form for email field when it is optional.',
-'createacct-email-ph'  => 'Placeholder in vertical-layout create account form for email field.',
+'createacct-email-ph' => 'Placeholder in vertical-layout create account form for email field.',
 'createaccountmail' => 'Button text for creating a new account and sending the new password to the specified e-mail address directly, as used on [[Special:UserLogin/signup]] if creating accounts by e-mail is allowed.',
 'createacct-realname' => 'In vertical-layout create account form, label for field to enter optional real name.',
 'createaccountreason' => '{{Identical|Reason}}',
@@ -2462,7 +2462,8 @@ See also:
 'resetprefs' => 'Button for resetting changes in the preferences page.',
 'restoreprefs' => 'Used in [[Special:Preferences]]',
 'prefs-editing' => 'Title of a tab in [[Special:Preferences]].
-When changing this message, please also update {{msg-mw|vector-editwarning-warning}} which references to this message.',
+When changing this message, please also update {{msg-mw|vector-editwarning-warning}} which references to this message.
+{{Identical|Editing}}',
 'prefs-edit-boxsize' => 'Used on [[Special:Preferences]].',
 'rows' => 'Used on [[Special:Preferences]], "Editing" section in the "Size of editing window" fieldset',
 'columns' => 'Used on [[Special:Preferences]], "Editing" section in the "Size of editing window" fieldset',
@@ -3845,7 +3846,8 @@ $1 is the name of the shared repository. On wikimedia sites, $1 is {{msg-mw|shar
 * $1 - file title
 See also:
 * {{msg-mw|Filedelete-intro}}',
-'filedelete-legend' => '{{Identical|Delete}}',
+'filedelete-legend' => 'Used as fieldset label in the "Delete file" form.
+{{Identical|Delete file}}',
 'filedelete-intro' => 'Used as introduction for FileDelete form.
 See also:
 * {{msg-mw|Filedelete|page title}}',

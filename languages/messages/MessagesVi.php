@@ -410,6 +410,16 @@ $messages = array(
 'nov' => 'tháng 11',
 'dec' => 'tháng 12',
 
+'monday-at' => 'Thứ Hai lúc $1',
+'tuesday-at' => 'Thứ Ba lúc $1',
+'wednesday-at' => 'Thứ Tư lúc $1',
+'thursday-at' => 'Thứ Năm lúc $1',
+'friday-at' => 'Thứ Sáu lúc $1',
+'saturday-at' => 'Thứ Bảy lúc $1',
+'sunday-at' => 'Chủ Nhật lúc $1',
+'today-at' => '$1',
+'yesterday-at' => 'Hôm qua lúc $1',
+
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Thể loại|Thể loại}}',
 'category_header' => 'Các trang trong thể loại “$1”',
@@ -3215,6 +3225,7 @@ Nếu thực thi nó máy tính của bạn có thể bị tiếm quyền.",
 'minutes' => '$1 phút',
 'hours' => '$1 giờ',
 'days' => '$1 ngày',
+'weeks' => '{{PLURAL:$1|$1 tuần}}',
 'months' => '$1 tháng',
 'years' => '$1 năm',
 'ago' => 'cách đây $1',
@@ -4167,4 +4178,8 @@ Nếu không thì bạn có thể điền biểu mẫu đơn giản ở dưới.
 # Image rotation
 'rotate-comment' => 'Đã quay hình $1 độ theo chiều kim đồng hồ',
 
+# Unknown messages
+'hours-ago' => 'Cách đây $1 {{PLURAL:$1|giờ}}',
+'minutes-ago' => 'Cách đây $1 {{PLURAL:$1|phút}}',
+'seconds-ago' => 'Cách đây $1 {{PLURAL:$1|giây}}',
 );
