@@ -2228,7 +2228,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @return Status
 	 */
 	public function doUpdateRestrictions( array $limit, array $expiry, &$cascade, $reason, User $user ) {
-		global $wgContLang;
+		global $wgContLang, $wgCascadingRestrictionLevels;
 
 		if ( wfReadOnly() ) {
 			return Status::newFatal( 'readonlytext', wfReadOnlyReason() );
@@ -2351,12 +2351,17 @@ class WikiPage implements Page, IDBAccessObject {
 				return Status::newGood();
 			}
 
-			// Only restrictions with the 'protect' right can cascade...
-			// Otherwise, people who cannot normally protect can "protect" pages via transclusion
+			// Only certain restrictions can cascade... Otherwise, users who cannot normally protect pages
+			// could "protect" them by transcluding them on protected pages they are allowed to edit.
 			$editrestriction = isset( $limit['edit'] ) ? array( $limit['edit'] ) : $this->mTitle->getRestrictions( 'edit' );
 
+			$cascadingRestrictionLevels = $wgCascadingRestrictionLevels;
+			if ( in_array( 'sysop', $cascadingRestrictionLevels ) ) {
+				$cascadingRestrictionLevels[] = 'protect'; // backwards compatibility
+			}
+
 			// The schema allows multiple restrictions
-			if ( !in_array( 'protect', $editrestriction ) && !in_array( 'sysop', $editrestriction ) ) {
+			if ( array_intersect( $editrestriction, $cascadingRestrictionLevels ) ) {
 				$cascade = false;
 			}
 
