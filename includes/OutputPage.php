@@ -2955,10 +2955,17 @@ $templates
 	function getBottomScripts() {
 		global $wgResourceLoaderExperimentalAsyncLoading;
 		if ( !$wgResourceLoaderExperimentalAsyncLoading ) {
-			return $this->getScriptsForBottomQueue( false );
+			$html = $this->getScriptsForBottomQueue( false );
 		} else {
-			return '';
+			$html = '';
 		}
+
+		// Optimise jQuery ready event cross-browser.
+		// This also enforces $.isReady to be true at </body> which fixes the
+		// mw.loader bug in Firefox with using document.write between </body>
+		// and the DOMContentReady event (bug 47457).
+		$html .= Html::inlineScript( 'jQuery.ready();' );
+		return $html;
 	}
 
 	/**
