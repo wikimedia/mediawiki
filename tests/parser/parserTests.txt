@@ -13563,7 +13563,7 @@ Headings: 0. Unnested
 !! input
 <nowiki>=foo=</nowiki>
 
-<nowiki>=foo</nowiki>''a''=
+=foo''a''<nowiki>=</nowiki>
 !! result
 <p>=foo=
 </p><p>=foo<i>a</i>=
@@ -13612,7 +13612,7 @@ Headings: 3. Nested inside html with wikitext split by html tags
 !! options
 disabled
 !! input
-=<nowiki>=</nowiki>'''bold'''foo==
+=='''bold'''<nowiki>foo=</nowiki>=
 !! result
 <h1>=<b>bold</b>foo=</h1>
 !!end
@@ -13627,7 +13627,7 @@ disabled
 ===foo==
 ==foo===
 =''=''foo==
-===
+=<nowiki>=</nowiki>=
 !! result
 <h1>=foo</h1>
 <h1>foo=</h1>
@@ -13795,9 +13795,11 @@ Lists: 5. No unnecessary escapes
 
 *[[bar <span><nowiki>[[foo]]</nowiki></span>
 
-*<nowiki>]]bar </nowiki><span><nowiki>[[foo]]</nowiki></span>
+*]]bar <span><nowiki>[[foo]]</nowiki></span>
 
 *=bar <span>foo]]</span>=
+
+* <s></s>: a
 !! result
 <ul><li> bar <span>[[foo]]</span>
 </li></ul>
@@ -13808,6 +13810,8 @@ Lists: 5. No unnecessary escapes
 <ul><li>]]bar <span>[[foo]]</span>
 </li></ul>
 <ul><li>=bar <span>foo]]</span>=
+</li></ul>
+<ul><li> <s></s>: a
 </li></ul>
 
 !!end
@@ -13915,7 +13919,7 @@ Tables: 1d. No escaping needed
 !! test
 Tables: 2a. Nested in td
 !! options
-disabled
+parsoid
 !! input
 {|
 |<nowiki>foo|bar</nowiki>
@@ -13930,7 +13934,7 @@ disabled
 !! test
 Tables: 2b. Nested in td
 !! options
-disabled
+parsoid
 !! input
 {|
 |<nowiki>foo||bar</nowiki>
@@ -13946,9 +13950,9 @@ disabled
 
 !! test
 Tables: 2c. Nested in td -- no escaping needed
-!! options
-disabled
 !! input
+!! options
+parsoid
 {|
 |foo!!bar
 |}
@@ -13962,7 +13966,7 @@ disabled
 !! test
 Tables: 3a. Nested in th
 !! options
-disabled
+parsoid
 !! input
 {|
 !foo!bar
@@ -13977,7 +13981,7 @@ disabled
 !! test
 Tables: 3b. Nested in th
 !! options
-disabled
+parsoid
 !! input
 {|
 !<nowiki>foo!!bar</nowiki>
@@ -13990,12 +13994,12 @@ disabled
 !! end
 
 !! test
-Tables: 3c. Nested in th -- no escaping needed
+Tables: 3b. Nested in th -- no escaping needed
 !! options
-disabled
+parsoid
 !! input
 {|
-!foo||bar
+!<nowiki>foo||bar</nowiki>
 |}
 !! result
 <table>
@@ -14007,7 +14011,7 @@ disabled
 !! test
 Tables: 4a. Escape -
 !! options
-disabled
+parsoid
 !! input
 {|
 |-
@@ -14025,7 +14029,7 @@ disabled
 !! test
 Tables: 4b. Escape +
 !! options
-disabled
+parsoid
 !! input
 {|
 |-
@@ -14043,7 +14047,7 @@ disabled
 !! test
 Tables: 4c. No escaping needed
 !! options
-disabled
+parsoid
 !! input
 {|
 |-
@@ -14091,7 +14095,7 @@ disabled
 !! input
 [[Foo|<nowiki>Foo''boo''</nowiki>]]
 !! result
-<a rel="mw:WikiLink" href="Foo">Foo''boo''</a>
+-<a rel="mw:WikiLink" href="Foo">Foo''boo''</a>
 !! end
 
 !! test
@@ -14101,11 +14105,14 @@ disabled
 !! input
 [[Foo|<nowiki>[Foobar]</nowiki>]]
 [[Foo|<nowiki>Foobar]</nowiki>]]
-[[Foo|<nowiki>x [Foobar] x</nowiki>]]
+[[Foo|x [Foobar] x]]
 [[Foo|<nowiki>x [http://google.com g] x</nowiki>]]
 [[Foo|<nowiki>[[Bar]]</nowiki>]]
 [[Foo|<nowiki>x [[Bar]] x</nowiki>]]
 [[Foo|<nowiki>|Bar</nowiki>]]
+[[Foo|<nowiki>]]bar</nowiki>]]
+[[Foo|<nowiki>[[bar</nowiki>]]
+[[Foo|<nowiki>x ]] y [[ z</nowiki>]]
 !! result
 <a href="Foo" rel="mw:WikiLink">[Foobar]</a>
 <a href="Foo" rel="mw:WikiLink">Foobar]</a>
@@ -14114,6 +14121,9 @@ disabled
 <a href="Foo" rel="mw:WikiLink">[[Bar]]</a>
 <a href="Foo" rel="mw:WikiLink">x [[Bar]] x</a>
 <a href="Foo" rel="mw:WikiLink">|Bar</a>
+<a href="Foo" rel="mw:WikiLink">]]bar</a>
+<a href="Foo" rel="mw:WikiLink">[[bar</a>
+<a href="Foo" rel="mw:WikiLink">x ]] y [[ z</a>
 !! end
 
 !! test
@@ -14215,9 +14225,9 @@ bar <span><nowiki>[[foo]]</nowiki></span>
 
 [[bar <span><nowiki>[[foo]]</nowiki></span>
 
-<nowiki>]]bar </nowiki><span><nowiki>[[foo]]</nowiki></span>
+]]bar <span><nowiki>[[foo]]</nowiki></span>
 
-<nowiki>=bar </nowiki><span>foo]]</span>=
+=bar <span>foo]]</span><nowiki>=</nowiki>
 !! result
 <p>bar <span>[[foo]]</span>
 </p><p>=bar <span>[[foo]]</span>
