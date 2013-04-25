@@ -881,16 +881,4 @@ class LinksDeletionUpdate extends SqlDataUpdate {
 				__METHOD__ );
 		}
 	}
-
-	/**
-	 * Update all the appropriate counts in the category table.
-	 * @param array $added associative array of category name => sort key
-	 * @param array $deleted associative array of category name => sort key
-	 */
-	function updateCategoryCounts( $added, $deleted ) {
-		$a = WikiPage::factory( $this->mTitle );
-		$a->updateCategoryCounts(
-			array_keys( $added ), array_keys( $deleted )
-		);
-	}
 }
