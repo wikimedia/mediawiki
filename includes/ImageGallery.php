@@ -160,13 +160,14 @@ class ImageGallery {
 	 * @param $html  String: Additional HTML text to be shown. The name and size of the image are always shown.
 	 * @param $alt   String: Alt text for the image
 	 * @param $link  String: Override image link (optional)
+	 * @param $handlerOpts Array: Array of options for image handler (aka page number)
 	 */
-	function add( $title, $html = '', $alt = '', $link = '' ) {
+	function add( $title, $html = '', $alt = '', $link = '', $handlerOpts = array() ) {
 		if ( $title instanceof File ) {
 			// Old calling convention
 			$title = $title->getTitle();
 		}
-		$this->mImages[] = array( $title, $html, $alt, $link );
+		$this->mImages[] = array( $title, $html, $alt, $link, $handlerOpts );
 		wfDebug( 'ImageGallery::add ' . $title->getText() . "\n" );
 	}
 
@@ -176,13 +177,15 @@ class ImageGallery {
 	 * @param $title Title object of the image that is added to the gallery
 	 * @param $html  String: Additional HTML text to be shown. The name and size of the image are always shown.
 	 * @param $alt   String: Alt text for the image
+	 * @param $link  String: Override image link (optional)
+	 * @param $handlerOpts Array: Array of options for image handler (aka page number)
 	 */
-	function insert( $title, $html = '', $alt = '' ) {
+	function insert( $title, $html = '', $alt = '', $link = '', $handlerOpts = array() ) {
 		if ( $title instanceof File ) {
 			// Old calling convention
 			$title = $title->getTitle();
 		}
-		array_unshift( $this->mImages, array( &$title, $html, $alt ) );
+		array_unshift( $this->mImages, array( &$title, $html, $alt, $link, $handlerOpts ) );
 	}
 
 	/**
@@ -264,6 +267,8 @@ class ImageGallery {
 			$text = $pair[1]; # "text" means "caption" here
 			$alt = $pair[2];
 			$link = $pair[3];
+			// $pair[4] is per image handler options
+			$transformOptions = $params + $pair[4];
 
 			$descQuery = false;
 			if ( $nt->getNamespace() == NS_FILE ) {
@@ -301,7 +306,7 @@ class ImageGallery {
 						array( 'known', 'noclasses' )
 					) .
 					'</div>';
-			} elseif ( !( $thumb = $img->transform( $params ) ) ) {
+			} elseif ( !( $thumb = $img->transform( $transformOptions ) ) ) {
 				# Error generating thumbnail.
 				$thumbhtml = "\n\t\t\t" . '<div style="height: ' . ( self::THUMB_PADDING + $this->mHeights ) . 'px;">'
 					. htmlspecialchars( $img->getLastError() ) . '</div>';
