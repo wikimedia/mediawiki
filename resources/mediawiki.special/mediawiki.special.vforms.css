@@ -36,3 +36,12 @@
 	text-shadow: 0 1px #fae3e3;
 	word-wrap: break-word;
 }
+
+/*
+ * Override the right margin of the form to give space in case a benefits
+ * column appears to the side.
+ *
+ */
+.mw-ui-container #userloginForm {
+	margin-right: 100px;
+}
