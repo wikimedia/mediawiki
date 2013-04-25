@@ -350,7 +350,11 @@ class MysqlInstaller extends DatabaseInstaller {
 		$s .= Xml::openElement( 'div', array(
 			'id' => 'dbMyisamWarning'
 		));
-		$s .= $this->parent->getWarningBox( wfMessage( 'config-mysql-myisam-dep' )->text() );
+		$myisamWarning = 'config-mysql-myisam-dep';
+		if ( count( $engines ) === 1 ) {
+			$myisamWarning = 'config-mysql-only-myisam-dep';
+		}
+		$s .= $this->parent->getWarningBox( wfMessage( $myisamWarning )->text() );
 		$s .= Xml::closeElement( 'div' );
 
 		if ( $this->getVar( '_MysqlEngine' ) != 'MyISAM' ) {
