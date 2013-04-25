@@ -45,6 +45,7 @@ production.
   another portlet will work as expected.
 * (bug 6747) {{ROOTPAGENAME}} introduced, contains the name of the topmost
   page without namespace.
+* (bug 8480) Allow handler specific parameters in galleries (like page number)
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail. Previously one could still
