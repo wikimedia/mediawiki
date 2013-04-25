@@ -2966,6 +2966,7 @@ abstract class DatabaseBase implements DatabaseType {
 	/**
 	 * Run an anonymous function as soon as there is no transaction pending.
 	 * If there is a transaction and it is rolled back, then the callback is cancelled.
+	 * Queries in the function will run in AUTO-COMMIT mode unless there are begin() calls.
 	 * Callbacks must commit any transactions that they begin.
 	 *
 	 * This is useful for updates to different systems or when separate transactions are needed.
