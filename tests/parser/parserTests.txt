@@ -3665,7 +3665,7 @@ Table with empty line following the start tag
 !! test
 Table attributes with empty value
 !! options
-disabled
+parsoid
 !! input
 {|
 | style=| hello
@@ -4756,9 +4756,9 @@ Nested lists 8 (multiple nesting transitions)
 
 !! test
 Unbalanced closing block tags break a list
-(Disabled since php parser generates broken html -- relies on Tidy to fix up)
+(Parsoid-only since php parser generates broken html -- relies on Tidy to fix up)
 !! options
-disabled
+parsoid
 !! input
 <div>
 *a</div><div>
@@ -4773,9 +4773,9 @@ disabled
 
 !! test
 Unbalanced closing non-block tags don't break a list
-(Disabled since php parser generates broken html -- relies on Tidy to fix up)
+(Parsoid-only since php parser generates broken html -- relies on Tidy to fix up)
 !! options
-disabled
+parsoid
 !! input
 <span>
 *a</span><span>
@@ -4790,9 +4790,9 @@ disabled
 
 !! test
 Unclosed formatting tags that straddle lists are closed and reopened
-(Disabled since php parser generates broken html -- relies on Tidy to fix up)
+(Parsoid-only since php parser generates broken html -- relies on Tidy to fix up)
 !! options
-disabled
+parsoid
 !! input
 # <s> a
 # b </s>
@@ -6532,7 +6532,7 @@ Templates: Ugly nesting: 1. Quotes opened/closed across templates (echo)
 Templates: Ugly nesting: 2. Quotes opened/closed across templates (echo_with_span)
 (PHP parser generates misnested html)
 !! options
-disabled
+parsoid
 !!input
 {{echo_with_span|''a}}{{echo_with_span|b''c''d}}{{echo_with_span|''e}}
 !!result
@@ -6543,7 +6543,7 @@ disabled
 Templates: Ugly nesting: 3. Quotes opened/closed across templates (echo_with_div)
 (PHP parser generates misnested html)
 !! options
-disabled
+parsoid
 !!input
 {{echo_with_div|''a}}{{echo_with_div|b''c''d}}{{echo_with_div|''e}}
 !!result
@@ -8595,7 +8595,7 @@ div with illegal double attributes
 !! test
 div with empty attribute value, space before equals
 !! options
-disabled
+parsoid
 !! input
 <div class =>HTML rocks</div>
 !! result
@@ -8608,7 +8608,7 @@ disabled
 !! test
 div with braces in attribute value
 !! options
-disabled
+parsoid
 !! input
 <div title="{}">Foo</div>
 !! result
@@ -8625,7 +8625,7 @@ disabled
 !! test
 div with empty attribute value, no space before equals
 !! options
-disabled
+parsoid
 !! input
 <div class=>HTML rocks</div>
 !! result
@@ -13573,7 +13573,7 @@ HttP://MediaWiki.Org/
 !!test
 1. SOL-sensitive wikitext tokens as template-args
 !!options
-disabled
+parsoid
 !!input
 {{echo|*a}}
 {{echo|#a}}
@@ -13586,12 +13586,15 @@ disabled
 !!end
 
 #### The following section of tests are primarily to test
-#### wikitext escaping capabilities of Parsoid.
-#### A lot of the tests are disabled for the PHP parser either
-#### because of minor newline diffs or other reasons.
-#### As Parsoid serializer can handle newlines and other HTML
-#### more robustly, some of these tests might get reenabled
-#### for the PHP parser.
+#### wikitext escaping capabilities of Parsoid.  Given that
+#### escaping can be done any number of ways, the wikitext (input)
+#### is always adjusted to reflect how Parsoid adds nowiki
+#### escape tags.
+####
+#### We are marking several tests as parsoid-only since the
+#### HTML in the result section is different from what the
+#### PHP parser generates for it.
+
 
 #### --------------- Headings ---------------
 #### 0. Unnested
@@ -13604,12 +13607,20 @@ disabled
 #### ----------------------------------------
 !! test
 Headings: 0. Unnested
+!! options
+parsoid
 !! input
 <nowiki>=foo=</nowiki>
 
-<nowiki>=foo</nowiki>''a''=
+<nowiki> =foo= </nowiki>
+<!--cmt-->
+<nowiki>=foo=</nowiki>
+
+=foo''a''<nowiki>=</nowiki>
 !! result
 <p>=foo=
+</p><p> =foo= 
+</p><p><!--cmt-->=foo=
 </p><p>=foo<i>a</i>=
 </p>
 !!end
@@ -13617,7 +13628,7 @@ Headings: 0. Unnested
 !! test
 Headings: 1. Nested inside html
 !! options
-disabled
+parsoid
 !! input
 =<nowiki>=foo=</nowiki>=
 ==<nowiki>=foo=</nowiki>==
@@ -13637,7 +13648,7 @@ disabled
 !! test
 Headings: 2. Outside heading nest on a single line <h1>foo</h1>*bar
 !! options
-disabled
+parsoid
 !! input
 =foo=
 <nowiki>*bar</nowiki>
@@ -13654,44 +13665,64 @@ disabled
 !! test
 Headings: 3. Nested inside html with wikitext split by html tags
 !! options
-disabled
+parsoid
 !! input
-=<nowiki>=</nowiki>'''bold'''foo==
+=='''bold'''<nowiki>foo=</nowiki>=
 !! result
 <h1>=<b>bold</b>foo=</h1>
 !!end
 
 !! test
-Headings: 4. No escaping needed (testing just h1 and h2)
+Headings: 4a. No escaping needed (testing just h1 and h2)
 !! options
-disabled
+parsoid
 !! input
 ==foo=
 =foo==
+= =foo= =
+==foo= bar=
 ===foo==
 ==foo===
 =''=''foo==
-===
+=<nowiki>=</nowiki>=
 !! result
 <h1>=foo</h1>
 <h1>foo=</h1>
+<h1> =foo= </h1>
+<h1>=foo= bar</h1>
 <h2>=foo</h2>
 <h2>foo=</h2>
 <h1><i>=</i>foo=</h1>
 <h1>=</h1>
+
+!!end
+
+!! test
+Headings: 4b. No escaping needed (inside p-tags)
+!! options
+parsoid
+!! input
+===
+=foo= x
+=foo= <s></s>
+!! result
+<p>===
+=foo= x
+=foo= <s></s>
+</p>
 !!end
 
 !! test
 Headings: 5. Empty headings
 !! options
-disabled
+parsoid
 !! input
-=<nowiki></nowiki>=
-==<nowiki></nowiki>==
-===<nowiki></nowiki>===
-====<nowiki></nowiki>====
-=====<nowiki></nowiki>=====
-======<nowiki></nowiki>======
+=<nowiki/>=
+==<nowiki/>==
+===<nowiki/>===
+====<nowiki/>====
+=====<nowiki/>=====
+======<nowiki/>======
 !! result
 <h1></h1>
 <h2></h2>
@@ -13704,11 +13735,13 @@ disabled
 !! test
 Headings: 6. Heading chars in SOL context
 !! options
-disabled
+parsoid
 !! input
 <!--cmt--><nowiki>=h1=</nowiki>
+<!--cmt--><nowiki> =h1= </nowiki>
 !! result
 <p><!--cmt-->=h1=
+<!--cmt--> =h1= 
 </p>
 !!end
 
@@ -13814,7 +13847,7 @@ Lists: 3. Only bullets at start of text should be escaped
 !! test
 Lists: 4. No escapes needed
 !! options
-disabled
+parsoid
 !! input
 *foo*bar
 
@@ -13839,9 +13872,11 @@ Lists: 5. No unnecessary escapes
 
 *[[bar <span><nowiki>[[foo]]</nowiki></span>
 
-*<nowiki>]]bar </nowiki><span><nowiki>[[foo]]</nowiki></span>
+*]]bar <span><nowiki>[[foo]]</nowiki></span>
 
 *=bar <span>foo]]</span>=
+
+* <s></s>: a
 !! result
 <ul><li> bar <span>[[foo]]</span>
 </li></ul>
@@ -13853,13 +13888,15 @@ Lists: 5. No unnecessary escapes
 </li></ul>
 <ul><li>=bar <span>foo]]</span>=
 </li></ul>
+<ul><li> <s></s>: a
+</li></ul>
 
 !!end
 
 !! test
 Lists: 6. Escape bullets in SOL position
 !! options
-disabled
+parsoid
 !! input
 <!--cmt--><nowiki>*foo</nowiki>
 !! result
@@ -13885,14 +13922,11 @@ Lists: 7. Escape bullets in a multi-line context
 !! test
 HRs: 1. Single line
 !! options
-disabled
+parsoid
 !! input
-----
-<nowiki>----</nowiki>
-----
-<nowiki>=foo=</nowiki>
-----
-<nowiki>*foo</nowiki>
+----<nowiki>----</nowiki>
+----=foo=
+----*foo
 !! result
 <hr/>----
 <hr/>=foo=
@@ -13959,7 +13993,7 @@ Tables: 1d. No escaping needed
 !! test
 Tables: 2a. Nested in td
 !! options
-disabled
+parsoid
 !! input
 {|
 |<nowiki>foo|bar</nowiki>
@@ -13974,7 +14008,7 @@ disabled
 !! test
 Tables: 2b. Nested in td
 !! options
-disabled
+parsoid
 !! input
 {|
 |<nowiki>foo||bar</nowiki>
@@ -13991,7 +14025,7 @@ disabled
 !! test
 Tables: 2c. Nested in td -- no escaping needed
 !! options
-disabled
+parsoid
 !! input
 {|
 |foo!!bar
@@ -14006,7 +14040,7 @@ disabled
 !! test
 Tables: 3a. Nested in th
 !! options
-disabled
+parsoid
 !! input
 {|
 !foo!bar
@@ -14021,7 +14055,7 @@ disabled
 !! test
 Tables: 3b. Nested in th
 !! options
-disabled
+parsoid
 !! input
 {|
 !<nowiki>foo!!bar</nowiki>
@@ -14036,10 +14070,10 @@ disabled
 !! test
 Tables: 3c. Nested in th -- no escaping needed
 !! options
-disabled
+parsoid
 !! input
 {|
-!foo||bar
+!<nowiki>foo||bar</nowiki>
 |}
 !! result
 <table>
@@ -14051,7 +14085,7 @@ disabled
 !! test
 Tables: 4a. Escape -
 !! options
-disabled
+parsoid
 !! input
 {|
 |-
@@ -14069,7 +14103,7 @@ disabled
 !! test
 Tables: 4b. Escape +
 !! options
-disabled
+parsoid
 !! input
 {|
 |-
@@ -14087,7 +14121,7 @@ disabled
 !! test
 Tables: 4c. No escaping needed
 !! options
-disabled
+parsoid
 !! input
 {|
 |-
@@ -14106,6 +14140,8 @@ disabled
 
 !! test
 Tables: 4d. No escaping needed
+!! options
+parsoid
 !! input
 {|
 ||+1
@@ -14131,7 +14167,7 @@ Tables: 4d. No escaping needed
 !! test
 Links 1. Quote marks in link text
 !! options
-disabled
+parsoid
 !! input
 [[Foo|<nowiki>Foo''boo''</nowiki>]]
 !! result
@@ -14141,15 +14177,18 @@ disabled
 !! test
 Links 2. WikiLinks: Escapes needed
 !! options
-disabled
+parsoid
 !! input
 [[Foo|<nowiki>[Foobar]</nowiki>]]
 [[Foo|<nowiki>Foobar]</nowiki>]]
-[[Foo|<nowiki>x [Foobar] x</nowiki>]]
+[[Foo|x [Foobar] x]]
 [[Foo|<nowiki>x [http://google.com g] x</nowiki>]]
 [[Foo|<nowiki>[[Bar]]</nowiki>]]
 [[Foo|<nowiki>x [[Bar]] x</nowiki>]]
 [[Foo|<nowiki>|Bar</nowiki>]]
+[[Foo|<nowiki>]]bar</nowiki>]]
+[[Foo|<nowiki>[[bar</nowiki>]]
+[[Foo|<nowiki>x ]] y [[ z</nowiki>]]
 !! result
 <a href="Foo" rel="mw:WikiLink">[Foobar]</a>
 <a href="Foo" rel="mw:WikiLink">Foobar]</a>
@@ -14158,12 +14197,15 @@ disabled
 <a href="Foo" rel="mw:WikiLink">[[Bar]]</a>
 <a href="Foo" rel="mw:WikiLink">x [[Bar]] x</a>
 <a href="Foo" rel="mw:WikiLink">|Bar</a>
+<a href="Foo" rel="mw:WikiLink">]]bar</a>
+<a href="Foo" rel="mw:WikiLink">[[bar</a>
+<a href="Foo" rel="mw:WikiLink">x ]] y [[ z</a>
 !! end
 
 !! test
 Links 3. WikiLinks: No escapes needed
 !! options
-disabled
+parsoid
 !! input
 [[Foo|[Foobar]]
 [[Foo|foo|bar]]
@@ -14175,7 +14217,7 @@ disabled
 !! test
 Links 4. ExtLinks: Escapes needed
 !! options
-disabled
+parsoid
 !! input
 [http://google.com <nowiki>[google]</nowiki>]
 [http://google.com <nowiki>google]</nowiki>]
@@ -14187,7 +14229,7 @@ disabled
 !! test
 Links 5. ExtLinks: No escapes needed
 !! options
-disabled
+parsoid
 !! input
 [http://google.com [google]
 !! result
@@ -14259,9 +14301,9 @@ bar <span><nowiki>[[foo]]</nowiki></span>
 
 [[bar <span><nowiki>[[foo]]</nowiki></span>
 
-<nowiki>]]bar </nowiki><span><nowiki>[[foo]]</nowiki></span>
+]]bar <span><nowiki>[[foo]]</nowiki></span>
 
-<nowiki>=bar </nowiki><span>foo]]</span>=
+=bar <span>foo]]</span><nowiki>=</nowiki>
 !! result
 <p>bar <span>[[foo]]</span>
 </p><p>=bar <span>[[foo]]</span>
@@ -14277,7 +14319,7 @@ bar <span><nowiki>[[foo]]</nowiki></span>
 !! test
 1. Leading space in SOL context should be escaped
 !! options
-disabled
+parsoid
 !! input
 <nowiki> foo</nowiki>
 <!--cmt--><nowiki> foo</nowiki>
@@ -14295,7 +14337,7 @@ disabled
 !! test
 1. a tags
 !! options
-disabled
+parsoid
 !! input
 <a href="http://google.com">google</a>
 !! result
@@ -14335,8 +14377,8 @@ Escaping nowikis
 <p>&lt;nowiki&gt;foo&lt;/nowiki&gt;
 </p>
 !! end
-
 !! test
+
 Tag-like HTML structures are passed through as text
 !! input
 <x y>
@@ -14369,7 +14411,7 @@ a>b
 !! test
 Tag names followed by punctuation should not be recognized as tags
 !! options
-disabled
+parsoid
 !! input
 <s.ome> text
 !! result
