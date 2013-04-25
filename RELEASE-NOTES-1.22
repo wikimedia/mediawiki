@@ -61,6 +61,7 @@ production.
 * mw.util.tooltipAccessKeyRegexp: The regex now matches "option-" as well.
   Support for Mac "option" was added in 1.16, but the regex was never updated.
 * (bug 46768) Usernames of blocking users now display correctly, even if numeric.
+* (bug 38911) Handle headers with rowspan in jquery.tablesorter
 
 === API changes in 1.22 ===
 * (bug 46626) xmldoublequote parameter was removed. Because of a bug, the
