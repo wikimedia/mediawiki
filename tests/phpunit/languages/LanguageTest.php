@@ -1,7 +1,6 @@
 <?php
 
 class LanguageTest extends LanguageClassesTestCase {
-
 	function testLanguageConvertDoubleWidthToSingleWidth() {
 		$this->assertEquals(
 			"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
@@ -497,6 +496,30 @@ class LanguageTest extends LanguageClassesTestCase {
 		return array(
 			array( 'mw', 'non-existent two-letter code' ),
 		);
+	}
+
+	/**
+	 * Test too short timestamp
+	 * @expectedException MWException
+	 */
+	function testSprintfDateTooShortTimestamp() {
+		$this->getLang()->sprintfDate( 'xiY', '1234567890123' );
+	}
+
+	/**
+	 * Test too long timestamp
+	 * @expectedException MWException
+	 */
+	function testSprintfDateTooLongTimestamp() {
+		$this->getLang()->sprintfDate( 'xiY', '123456789012345' );
+	}
+
+	/**
+	 * Test too short timestamp
+	 * @expectedException MWException
+	 */
+	function testSprintfDateNotAllDigitTimestamp() {
+		$this->getLang()->sprintfDate( 'xiY', '-1234567890123' );
 	}
 
 	/**
