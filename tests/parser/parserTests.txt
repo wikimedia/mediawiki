@@ -4257,6 +4257,23 @@ language=kaa
 </p>
 !! end
 
+!! article
+Söfnuður
+!! text
+Test.
+!! endarticle
+
+!! test
+Internal link with is linkprefix
+!! options
+language=is
+!! input
+Aðrir mótmælenda[[söfnuður|söfnuðir]] og
+!! result
+<p>Aðrir <a href="/wiki/S%C3%B6fnu%C3%B0ur" title="Söfnuður">mótmælendasöfnuðir</a> og
+</p>
+!! end
+
 !! test
 Parsoid-centric test: Whitespace in ext- and wiki-links should be preserved
 !! input
