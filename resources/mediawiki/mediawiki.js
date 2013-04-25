@@ -807,20 +807,20 @@ var mw = ( function ( $, undefined ) {
 
 			/**
 			 * Adds a script tag to the DOM, either using document.write or low-level DOM manipulation,
-			 * depending on whether document-ready has occurred yet and whether we are in async mode.
+			 * depending on whether we are in async mode.
 			 *
 			 * @private
 			 * @param {string} src URL to script, will be used as the src attribute in the script tag
 			 * @param {Function} [callback] Callback which will be run when the script is done
+			 * @param {boolean} [async=true] Set to false to force document.write instead of
+			 *  the default async behaviour.
 			 */
 			function addScript( src, callback, async ) {
 				/*jshint evil:true */
 				var script, head,
 					done = false;
 
-				// Using isReady directly instead of storing it locally from
-				// a $.fn.ready callback (bug 31895).
-				if ( $.isReady || async ) {
+				if ( async === undefined || async === true ) {
 					// Can't use jQuery.getScript because that only uses <script> for cross-domain,
 					// it uses XHR and eval for same-domain scripts, which we don't want because it
 					// messes up line numbers.
@@ -1084,10 +1084,8 @@ var mw = ( function ( $, undefined ) {
 				for ( n = 0; n < dependencies.length; n += 1 ) {
 					if ( $.inArray( dependencies[n], queue ) === -1 ) {
 						queue[queue.length] = dependencies[n];
-						if ( async ) {
-							// Mark this module as async in the registry
-							registry[dependencies[n]].async = true;
-						}
+						// Copy over the async flag
+						registry[dependencies[n]].async = !!async;
 					}
 				}
 
@@ -1462,13 +1460,17 @@ var mw = ( function ( $, undefined ) {
 				 * @param {string} [type='text/javascript'] mime-type to use if calling with a URL of an
 				 *  external script or style; acceptable values are "text/css" and
 				 *  "text/javascript"; if no type is provided, text/javascript is assumed.
-				 * @param {boolean} [async] If true, load modules asynchronously
-				 *  even if document ready has not yet occurred. If false, block before
-				 *  document ready and load async after. If not set, true will be
-				 *  assumed if loading a URL, and false will be assumed otherwise.
+				 * @param {boolean} [async=true] If true, load modules asynchronously.
+				 *  If false, block before document. Defaults to true.
 				 */
 				load: function ( modules, type, async ) {
 					var filtered, m, module, l;
+
+					// Default to async for bug 34542, 47457.
+					// Blocking calls should set async=false explicitly.
+					if ( async === undefined ) {
+						async = true;
+					}
 
 					// Validate input
 					if ( typeof modules !== 'object' && typeof modules !== 'string' ) {
@@ -1478,10 +1480,6 @@ var mw = ( function ( $, undefined ) {
 					if ( typeof modules === 'string' ) {
 						// Support adding arbitrary external scripts
 						if ( /^(https?:)?\/\//.test( modules ) ) {
-							if ( async === undefined ) {
-								// Assume async for bug 34542
-								async = true;
-							}
 							if ( type === 'text/css' ) {
 								// IE7-8 throws security warnings when inserting a <link> tag
 								// with a protocol-relative URL set though attributes (instead of

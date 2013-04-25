@@ -2816,7 +2816,8 @@ $templates
 		if ( $modules ) {
 			$scripts .= Html::inlineScript(
 				ResourceLoader::makeLoaderConditionalScript(
-					Xml::encodeJsCall( 'mw.loader.load', array( $modules ) )
+					// Top queue should be blocking (turn off async loading)
+					Xml::encodeJsCall( 'mw.loader.load', array( $modules, null, /* async = */ false ) )
 				)
 			);
 		}
