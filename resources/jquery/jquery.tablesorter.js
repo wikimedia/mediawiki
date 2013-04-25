@@ -289,17 +289,36 @@
 		var maxSeen = 0,
 			longest,
 			realCellIndex = 0,
-			$tableHeaders = $( 'thead:eq(0) > tr', table );
-		if ( $tableHeaders.length > 1 ) {
-			$tableHeaders.each( function () {
-				if ( this.cells.length > maxSeen ) {
-					maxSeen = this.cells.length;
-					longest = this;
+			$tableHeaders = $(),
+			$tableRows = $( 'thead:eq(0) > tr', table );
+		if ( $tableRows.length > 1 ) {
+			// We need to find the cells of the row containing the most columns
+			var rowspan,
+				i,
+				headersIndex = [];
+			$tableRows.each( function ( index ) {
+				$.each( this.cells, function( index2, cell ) {
+					rowspan = cell.rowSpan;
+					rowspan = rowspan ? parseInt( rowspan, 10 ) : 1;
+					for( i = 0; i < rowspan; i++ ) {
+						if( typeof headersIndex[index+i] === 'undefined' ) {
+							headersIndex[index+i] = $();
+						}
+						headersIndex[index+i].push( this );
+					}
+				});
+			});
+			$.each( headersIndex, function ( index, cellArray ) {
+				if ( cellArray.length >= maxSeen ) {
+					maxSeen = cellArray.length;
+					longest = index;
 				}
 			});
-			$tableHeaders = $( longest );
+			$tableHeaders = headersIndex[longest];
+		} else {
+			$tableHeaders = $tableRows.children('th');
 		}
-		$tableHeaders = $tableHeaders.children( 'th' ).each( function ( index ) {
+		$tableHeaders = $tableHeaders.each( function ( index ) {
 			this.column = realCellIndex;
 
 			var colspan = this.colspan;

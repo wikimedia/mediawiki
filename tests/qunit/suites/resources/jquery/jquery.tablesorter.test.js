@@ -325,19 +325,6 @@
 			$table.find( '.headerSort:eq(0)' ).click();
 		}
 	);
-	tableTest( 'Sorting with colspanned headers: subsequent column',
-		header,
-		initial,
-		[ aaa1, bbc2, abc3, caa4, aab5 ],
-		function ( $table ) {
-			// Make colspanned header for test
-			$table.find( 'tr:eq(0) th:eq(1), tr:eq(0) th:eq(2)' ).remove();
-			$table.find( 'tr:eq(0) th:eq(0)' ).prop( 'colspan', '3' );
-
-			$table.tablesorter();
-			$table.find( '.headerSort:eq(1)' ).click();
-		}
-	);
 
 	// Regression tests!
 	tableTest(
@@ -1007,6 +994,61 @@
 			$table.find( 'td' ).text(),
 			'4517',
 			'Applied correct sorting order'
+		);
+	} );
+
+	QUnit.test( 'bug 38911 - The row with the largest amount of columns should receive the sort indicators', 3, function ( assert ) {
+		var $table = $(
+			'<table class="sortable">' +
+			'<thead>' +
+			'<tr><th rowspan="2" id="A1">A1</th><th colspan="2">B2a</th></tr>' +
+			'<tr><th id="B2b">B2b</th><th id="C2b">C2b</th></tr>' +
+			'</thead>' +
+			'<tr><td>A</td><td>Aa</td><td>Ab</td></tr>' +
+			'<tr><td>B</td><td>Ba</td><td>Bb</td></tr>' +
+			'</table>'
+                );
+		$table.tablesorter();
+
+		assert.equal(
+			$table.find('#A1').attr('class'),
+				'headerSort',
+				'The first column of the first row should be sortable'
+		);
+		assert.equal(
+			$table.find('#B2b').attr('class'),
+				'headerSort',
+				'The th element of the 2nd row of the 2nd column should be sortable'
+		);
+		assert.equal(
+			$table.find('#C2b').attr('class'),
+				'headerSort',
+				'The th element of the 2nd row of the 3rd column should be sortable'
+		);
+	} );
+
+	QUnit.test( 'rowspans in table headers should prefer the last row when rows are equal in length', 2, function ( assert ) {
+		var $table = $(
+			'<table class="sortable">' +
+			'<thead>' +
+			'<tr><th rowspan="2" id="A1">A1</th><th>B2a</th></tr>' +
+			'<tr><th id="B2b">B2b</th></tr>' +
+			'</thead>' +
+			'<tr><td>A</td><td>Aa</td></tr>' +
+			'<tr><td>B</td><td>Ba</td></tr>' +
+			'</table>'
+                );
+		$table.tablesorter();
+
+		assert.equal(
+			$table.find('#A1').attr('class'),
+				'headerSort',
+				'The first column of the first row should be sortable'
+		);
+		assert.equal(
+			$table.find('#B2b').attr('class'),
+				'headerSort',
+				'The th element of the 2nd row of the 2nd column should be sortable'
 		);
 	} );
 
