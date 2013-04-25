@@ -247,6 +247,12 @@ $wgIgnoredMessages = array(
 	'ipb-default-expiry',
 	'pageinfo-header',
 	'pageinfo-footer',
+	'createacct-benefit-head1',
+	'createacct-benefit-icon1',
+	'createacct-benefit-head2',
+	'createacct-benefit-icon2',
+	'createacct-benefit-head3',
+	'createacct-benefit-icon3',
 );
 
 /** Optional messages, which may be translated only if changed in the target language. */
