@@ -3766,13 +3766,8 @@ class Parser {
 	 * @return Array ( File or false, Title of file )
 	 */
 	function fetchFileAndTitle( $title, $options = array() ) {
-		if ( isset( $options['broken'] ) ) {
-			$file = false; // broken thumbnail forced by hook
-		} elseif ( isset( $options['sha1'] ) ) { // get by (sha1,timestamp)
-			$file = RepoGroup::singleton()->findFileFromKey( $options['sha1'], $options );
-		} else { // get by (name,timestamp)
-			$file = wfFindFile( $title, $options );
-		}
+		$file = $this->fetchFileNoRegister( $title, $options );
+
 		$time = $file ? $file->getTimestamp() : false;
 		$sha1 = $file ? $file->getSha1() : false;
 		# Register the file as a dependency...
@@ -3788,6 +3783,26 @@ class Parser {
 			}
 		}
 		return array( $file, $title );
+	}
+	/**
+	 * Helper function for fetchFileAndTitle.
+	 *
+	 * Also useful if you need to fetch a file but not use it yet,
+	 * for example to get the file's handler.
+	 *
+	 * @param Title $title
+	 * @param array $options Array of options to RepoGroup::findFile
+	 * @return File or false
+	 */
+	protected function fetchFileNoRegister( $title, $options = array() ) {
+		if ( isset( $options['broken'] ) ) {
+			$file = false; // broken thumbnail forced by hook
+		} elseif ( isset( $options['sha1'] ) ) { // get by (sha1,timestamp)
+			$file = RepoGroup::singleton()->findFileFromKey( $options['sha1'], $options );
+		} else { // get by (name,timestamp)
+			$file = wfFindFile( $title, $options );
+		}
+		return $file;
 	}
 
 	/**
@@ -5007,6 +5022,7 @@ class Parser {
 	 * @return string HTML
 	 */
 	function renderImageGallery( $text, $params ) {
+		wfProfileIn( __METHOD__ );
 		$ig = new ImageGallery();
 		$ig->setContextTitle( $this->mTitle );
 		$ig->setShowBytes( false );
@@ -5058,38 +5074,83 @@ class Parser {
 				continue;
 			}
 
+			# We need to get what handler the file uses, to figure out parameters.
+			# Note, a hook can overide the file name, and chose an entirely different
+			# file (which potentially could be of a different type and have different handler).
+			$options = array();
+			$descQuery = false;
+			wfRunHooks( 'BeforeParserFetchFileAndTitle',
+				array( $this, $title, &$options, &$descQuery ) );
+			# Don't register it now, as ImageGallery does that later.
+			$file = $this->fetchFileNoRegister( $title, $options );
+			$handler = $file ? $file->getHandler() : false;
+
+			wfProfileIn( __METHOD__ . '-getMagicWord' );
+			$paramMap = array(
+				'img_alt' => 'gallery-internal-alt',
+				'img_link' => 'gallery-internal-link',
+			);
+			if ( $handler ) {
+				$paramMap = $paramMap + $handler->getParamMap();
+				if ( isset( $paramMap['img_width'] ) ) {
+					// We don't want people to specify per-image widths.
+					// Additionally the width parameter would need special casing anyhow.
+					unset( $paramMap['img_width'] );
+				}
+			}
+
+			$mwArray = new MagicWordArray( array_keys( $paramMap ) );
+			wfProfileOut( __METHOD__ . '-getMagicWord' );
+
 			$label = '';
 			$alt = '';
 			$link = '';
+			$handlerOptions = array();
 			if ( isset( $matches[3] ) ) {
 				// look for an |alt= definition while trying not to break existing
 				// captions with multiple pipes (|) in it, until a more sensible grammar
 				// is defined for images in galleries
 
+				// FIXME: Doing recursiveTagParse at this stage, and the trim before
+				// splitting on '|' is a bit odd, and different from makeImage.
 				$matches[3] = $this->recursiveTagParse( trim( $matches[3] ) );
 				$parameterMatches = StringUtils::explode( '|', $matches[3] );
-				$magicWordAlt = MagicWord::get( 'img_alt' );
-				$magicWordLink = MagicWord::get( 'img_link' );
 
 				foreach ( $parameterMatches as $parameterMatch ) {
-					if ( $match = $magicWordAlt->matchVariableStartToEnd( $parameterMatch ) ) {
-						$alt = $this->stripAltText( $match, false );
-					}
-					elseif ( $match = $magicWordLink->matchVariableStartToEnd( $parameterMatch ) ) {
-						$linkValue = strip_tags( $this->replaceLinkHoldersText( $match ) );
-						$chars = self::EXT_LINK_URL_CLASS;
-						$prots = $this->mUrlProtocols;
-						//check to see if link matches an absolute url, if not then it must be a wiki link.
-						if ( preg_match( "/^($prots)$chars+$/u", $linkValue ) ) {
-							$link = $linkValue;
-						} else {
-							$localLinkTitle = Title::newFromText( $linkValue );
-							if ( $localLinkTitle !== null ) {
-								$link = $localLinkTitle->getLocalURL();
+					list( $magicName, $match ) = $mwArray->matchVariableStartToEnd( $parameterMatch );
+					if ( $magicName ) {
+						$paramName = $paramMap[$magicName];
+
+						switch( $paramName ) {
+						case 'gallery-internal-alt':
+							$alt = $this->stripAltText( $match, false );
+							break;
+						case 'gallery-internal-link':
+							$linkValue = strip_tags( $this->replaceLinkHoldersText( $match ) );
+							$chars = self::EXT_LINK_URL_CLASS;
+							$prots = $this->mUrlProtocols;
+							//check to see if link matches an absolute url, if not then it must be a wiki link.
+							if ( preg_match( "/^($prots)$chars+$/u", $linkValue ) ) {
+								$link = $linkValue;
+							} else {
+								$localLinkTitle = Title::newFromText( $linkValue );
+								if ( $localLinkTitle !== null ) {
+									$link = $localLinkTitle->getLocalURL();
+								}
+							}
+							break;
+						default:
+							// Must be a handler specific parameter.
+							if ( $handler->validateParam( $paramName, $match ) ) {
+								$handlerOptions[$paramName] = $match;
+							} else {
+								// Guess not. Append it to the caption.
+								wfDebug( "$parameterMatch failed parameter validation" );
+								$label .= '|' . $parameterMatch;
 							}
 						}
-					}
-					else {
+
+					} else {
 						// concatenate all other pipes
 						$label .= '|' . $parameterMatch;
 					}
@@ -5098,9 +5159,11 @@ class Parser {
 				$label = substr( $label, 1 );
 			}
 
-			$ig->add( $title, $label, $alt, $link );
+			$ig->add( $title, $label, $alt, $link, $handlerOptions );
 		}
-		return $ig->toHTML();
+		$html = $ig->toHTML();
+		wfProfileOut( __METHOD__ );
+		return $html;
 	}
 
 	/**
