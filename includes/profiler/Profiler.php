@@ -49,6 +49,44 @@ function wfProfileOut( $functionname = 'missing' ) {
 }
 
 /**
+ * Class for handling function-scope profiling
+ *
+ * @since 1.22
+ */
+class ProfileSection {
+	protected $name; // string; method name
+	protected $enabled = false; // boolean; whether profiling is enabled
+
+	/**
+	 * Begin profiling of a function and return an object that ends profiling of
+	 * the function when that object leaves scope. As long as the object is not
+	 * specifically linked to other objects, it will fall out of scope at the same
+	 * moment that the function to be profiled terminates.
+	 *
+	 * This is typically called like:
+	 * <code>$section = new ProfileSection( __METHOD__ );</code>
+	 *
+	 * @param string $name Name of the function to profile
+	 */
+	public function __construct( $name ) {
+		$this->name = $name;
+		if ( Profiler::$__instance === null ) { // use this directly to reduce overhead
+			Profiler::instance();
+		}
+		if ( Profiler::$__instance && !( Profiler::$__instance instanceof ProfilerStub ) ) {
+			$this->enabled = true;
+			Profiler::$__instance->profileIn( $this->name );
+		}
+	}
+
+	function __destruct() {
+		if ( $this->enabled ) {
+			Profiler::$__instance->profileOut( $this->name );
+		}
+	}
+}
+
+/**
  * @ingroup Profiler
  * @todo document
  */
@@ -57,7 +95,9 @@ class Profiler {
 		$mCalls = array(), $mTotals = array();
 	protected $mTimeMetric = 'wall';
 	protected $mProfileID = false, $mCollateDone = false, $mTemplated = false;
-	private static $__instance = null;
+
+	/** @var Profiler */
+	public static $__instance = null; // do not call this outside Profiler and ProfileSection
 
 	function __construct( $params ) {
 		if ( isset( $params['timeMetric'] ) ) {
