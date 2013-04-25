@@ -1078,6 +1078,7 @@ class Language {
 	 * @param $zone DateTimeZone: Timezone of $ts
 	 * @todo handling of "o" format character for Iranian, Hebrew, Hijri & Thai?
 	 *
+	 * @throws MWException
 	 * @return string
 	 */
 	function sprintfDate( $format, $ts, DateTimeZone $zone = null ) {
@@ -1093,6 +1094,15 @@ class Language {
 		$thai = false;
 		$minguo = false;
 		$tenno = false;
+
+		if( !strlen( $ts ) === 14 ) {
+			throw new MWException( __METHOD__ . ":XXX The timestamp $ts should have 14 characters" );
+		}
+
+		if( !is_numeric( $ts ) ) {
+			throw new MWException( __METHOD__ . ": The timestamp $ts should be a number" );
+		}
+
 		for ( $p = 0; $p < strlen( $format ); $p++ ) {
 			$num = false;
 			$code = $format[$p];
