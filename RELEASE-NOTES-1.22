@@ -78,6 +78,7 @@ production.
   show the most up to date result always instead of being a revision behind.
 * A bias in wfRandomString() toward digits 1-7 has been corrected. Generated
   strings will now start with digits 0 and 8-f as often as they should.
+* (bug 38911) Handle headers with rowspan in jquery.tablesorter
 
 === API changes in 1.22 ===
 * (bug 46626) xmldoublequote parameter was removed. Because of a bug, the
