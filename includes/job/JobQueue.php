@@ -128,6 +128,14 @@ abstract class JobQueue {
 	}
 
 	/**
+	 * @return bool Whether delayed jobs are enabled
+	 * @since 1.22
+	 */
+	final public function delayedJobsEnabled() {
+		return $this->checkDelay;
+	}
+
+	/**
 	 * @return Array Subset of (random, timestamp, fifo, undefined)
 	 */
 	abstract protected function supportedOrders();
