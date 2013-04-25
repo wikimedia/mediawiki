@@ -27,6 +27,24 @@
  */
 
 /**
+ * Begin profiling of a function and returns an object that stops profiling
+ * of a function when that object leaves scope (normally the calling function).
+ *
+ * This is typically called like:
+ * <code>$sp = wfScopedProfileIn( __METHOD__ );</code>
+ *
+ * @param string $functionname name of the function we will profile
+ * @return ScopedCallback
+ * @since 1.22
+ */
+function wfScopedProfileIn( $functionname ) {
+	wfProfileIn( $functionname );
+	return new ScopedCallback( function() use ( $functionname ) {
+		wfProfileOut( $functionname );
+	} );
+}
+
+/**
  * Begin profiling of a function
  * @param string $functionname name of the function we will profile
  */
