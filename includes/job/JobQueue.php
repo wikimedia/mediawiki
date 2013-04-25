@@ -128,16 +128,30 @@ abstract class JobQueue {
 	}
 
 	/**
+	 * @return bool Whether delayed jobs are enabled
+	 * @since 1.22
+	 */
+	final public function delayedJobsEnabled() {
+		return $this->checkDelay;
+	}
+
+	/**
+	 * Get the allowed queue orders for configuration validation
+	 *
 	 * @return Array Subset of (random, timestamp, fifo, undefined)
 	 */
 	abstract protected function supportedOrders();
 
 	/**
+	 * Get the default queue order to use if configuration does not specify one
+	 *
 	 * @return string One of (random, timestamp, fifo, undefined)
 	 */
 	abstract protected function optimalOrder();
 
 	/**
+	 * Find out if delayed jobs are supported for configuration validation
+	 *
 	 * @return boolean Whether delayed jobs are supported
 	 */
 	protected function supportsDelayedJobs() {
