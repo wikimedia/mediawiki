@@ -3970,6 +3970,33 @@ Link containing "<#" and ">#" as a hex sequences
 !! end
 
 !! test
+Link containing an equals sign
+!! input
+[[Special:BookSources/isbn=4-00-026157-6]]
+!! result
+<p><a href="/wiki/Special:BookSources/isbn%3D4-00-026157-6" title="Special:BookSources/isbn=4-00-026157-6">Special:BookSources/isbn=4-00-026157-6</a>
+</p>
+!! end
+
+!! article
+Foo~bar
+!! text
+Just a test of an article title containing a tilde.
+!! endarticle
+
+# note that links containing signatures, like [[Foo~~~~]], are
+# massaged by the pre-save transform (PST) and so the tildes are never
+# seen by the parser.
+!! test
+Link containing a tilde
+!! input
+[[Foo~bar]]
+!! result
+<p><a href="/wiki/Foo%7Ebar" title="Foo~bar">Foo~bar</a>
+</p>
+!! end
+
+!! test
 Link containing double-single-quotes '' (bug 4598)
 !! input
 [[Lista d''e paise d''o munno]]
