@@ -2046,7 +2046,7 @@ class Title {
 			return $errors;
 		}
 
-		global $wgContLang, $wgLang, $wgEmailConfirmToEdit;
+		global $wgEmailConfirmToEdit;
 
 		if ( $wgEmailConfirmToEdit && !$user->isEmailConfirmed() ) {
 			$errors[] = array( 'confirmedittext' );
