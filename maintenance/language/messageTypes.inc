@@ -253,6 +253,7 @@ $wgIgnoredMessages = array(
 	'createacct-benefit-icon2',
 	'createacct-benefit-head3',
 	'createacct-benefit-icon3',
+	'today-at',
 );
 
 /** Optional messages, which may be translated only if changed in the target language. */
