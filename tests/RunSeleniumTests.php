@@ -108,7 +108,7 @@ class SeleniumTester extends Maintenance {
 	}
 
 	protected function stopServer() {
-		if ( !isset ( $this->serverManager ) ) {
+		if ( !isset( $this->serverManager ) ) {
 			echo ( "Warning: Request to stop Selenium Server, but it was " .
 				"not stared by RunSeleniumTests\n" .
 				"RunSeleniumTests cannot stop a Selenium Server it " .

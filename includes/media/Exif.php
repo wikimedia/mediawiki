@@ -394,7 +394,7 @@ class Exif {
 		//ComponentsConfiguration should really be an array instead of a string...
 		//This turns a string of binary numbers into an array of numbers.
 
-		if ( isset ( $this->mFilteredExifData['ComponentsConfiguration'] ) ) {
+		if ( isset( $this->mFilteredExifData['ComponentsConfiguration'] ) ) {
 			$val = $this->mFilteredExifData['ComponentsConfiguration'];
 			$ccVals = array();
 			for ( $i = 0; $i < strlen( $val ); $i++ ) {
@@ -411,7 +411,7 @@ class Exif {
 		//Also change exif tag name from GPSVersion (what php exif thinks it is)
 		//to GPSVersionID (what the exif standard thinks it is).
 
-		if ( isset ( $this->mFilteredExifData['GPSVersion'] ) ) {
+		if ( isset( $this->mFilteredExifData['GPSVersion'] ) ) {
 			$val = $this->mFilteredExifData['GPSVersion'];
 			$newVal = '';
 			for ( $i = 0; $i < strlen( $val ); $i++ ) {
@@ -758,7 +758,7 @@ class Exif {
 			return true;
 		}
 		// Does not work if not typecast
-		switch( (string)$etype ) {
+		switch ( (string)$etype ) {
 			case (string)Exif::BYTE:
 				$this->debug( $val, __FUNCTION__, $debug );
 				return $this->isByte( $val );

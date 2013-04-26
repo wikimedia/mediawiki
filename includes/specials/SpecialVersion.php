@@ -515,9 +515,9 @@ class SpecialVersion extends SpecialPage {
 		}
 
 		# Make description text.
-		$description = isset ( $extension['description'] ) ? $extension['description'] : '';
+		$description = isset( $extension['description'] ) ? $extension['description'] : '';
 
-		if ( isset ( $extension['descriptionmsg'] ) ) {
+		if ( isset( $extension['descriptionmsg'] ) ) {
 			# Look for a localized description.
 			$descriptionMsg = $extension['descriptionmsg'];
 
@@ -540,7 +540,7 @@ class SpecialVersion extends SpecialPage {
 				<td colspan=\"2\"><em>$mainLink $versionText</em></td>";
 		}
 
-		$author = isset ( $extension['author'] ) ? $extension['author'] : array();
+		$author = isset( $extension['author'] ) ? $extension['author'] : array();
 		$extDescAuthor = "<td>$description</td>
 			<td>" . $this->listAuthors( $author, false ) . "</td>
 			</tr>\n";

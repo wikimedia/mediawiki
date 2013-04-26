@@ -121,10 +121,10 @@ class ApiQueryBlocks extends ApiQueryBase {
 			$show = array_flip( $params['show'] );
 
 			/* Check for conflicting parameters. */
-			if ( ( isset ( $show['account'] ) && isset ( $show['!account'] ) )
-					|| ( isset ( $show['ip'] ) && isset ( $show['!ip'] ) )
-					|| ( isset ( $show['range'] ) && isset ( $show['!range'] ) )
-					|| ( isset ( $show['temp'] ) && isset ( $show['!temp'] ) )
+			if ( ( isset( $show['account'] ) && isset( $show['!account'] ) )
+					|| ( isset( $show['ip'] ) && isset( $show['!ip'] ) )
+					|| ( isset( $show['range'] ) && isset( $show['!range'] ) )
+					|| ( isset( $show['temp'] ) && isset( $show['!temp'] ) )
 			) {
 				$this->dieUsageMsg( 'show' );
 			}

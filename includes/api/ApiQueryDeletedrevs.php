@@ -50,7 +50,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		$fld_user = isset( $prop['user'] );
 		$fld_userid = isset( $prop['userid'] );
 		$fld_comment = isset( $prop['comment'] );
-		$fld_parsedcomment = isset ( $prop['parsedcomment'] );
+		$fld_parsedcomment = isset( $prop['parsedcomment'] );
 		$fld_minor = isset( $prop['minor'] );
 		$fld_len = isset( $prop['len'] );
 		$fld_sha1 = isset( $prop['sha1'] );

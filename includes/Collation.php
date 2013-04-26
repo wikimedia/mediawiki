@@ -40,7 +40,7 @@ abstract class Collation {
 	 * @return Collation
 	 */
 	static function factory( $collationName ) {
-		switch( $collationName ) {
+		switch ( $collationName ) {
 			case 'uppercase':
 				return new UppercaseCollation;
 			case 'identity':
@@ -349,15 +349,15 @@ class IcuCollation extends Collation {
 		$cacheEntry = $cache->get( $cacheKey );
 
 		if ( $cacheEntry && isset( $cacheEntry['version'] )
-			&& $cacheEntry['version'] == self::FIRST_LETTER_VERSION ) 
-		{
+			&& $cacheEntry['version'] == self::FIRST_LETTER_VERSION
+		) {
 			$this->firstLetterData = $cacheEntry;
 			return $this->firstLetterData;
 		}
 
 		// Generate data from serialized data file
 
-		if ( isset ( self::$tailoringFirstLetters[$this->locale] ) ) {
+		if ( isset( self::$tailoringFirstLetters[$this->locale] ) ) {
 			$letters = wfGetPrecompiledData( "first-letters-root.ser" );
 			// Append additional characters
 			$letters = array_merge( $letters, self::$tailoringFirstLetters[$this->locale] );

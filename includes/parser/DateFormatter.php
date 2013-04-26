@@ -156,10 +156,10 @@ class DateFormatter {
 		}
 		for ( $i = 1; $i <= self::LAST; $i++ ) {
 			$this->mSource = $i;
-			if ( isset ( $this->rules[$preference][$i] ) ) {
+			if ( isset( $this->rules[$preference][$i] ) ) {
 				# Specific rules
 				$this->mTarget = $this->rules[$preference][$i];
-			} elseif ( isset ( $this->rules[self::ALL][$i] ) ) {
+			} elseif ( isset( $this->rules[self::ALL][$i] ) ) {
 				# General rules
 				$this->mTarget = $this->rules[self::ALL][$i];
 			} elseif ( $preference ) {
@@ -357,7 +357,7 @@ class DateFormatter {
 	 */
 	function makeNormalYear( $iso ) {
 		if ( $iso[0] == '-' ) {
-			$text = (intval( substr( $iso, 1 ) ) + 1) . ' BC';
+			$text = ( intval( substr( $iso, 1 ) ) + 1 ) . ' BC';
 		} else {
 			$text = intval( $iso );
 		}

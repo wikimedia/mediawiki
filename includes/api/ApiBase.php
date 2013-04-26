@@ -966,9 +966,9 @@ abstract class ApiBase extends ContextSource {
 						}
 						break;
 					case 'integer': // Force everything using intval() and optionally validate limits
-						$min = isset ( $paramSettings[self::PARAM_MIN] ) ? $paramSettings[self::PARAM_MIN] : null;
-						$max = isset ( $paramSettings[self::PARAM_MAX] ) ? $paramSettings[self::PARAM_MAX] : null;
-						$enforceLimits = isset ( $paramSettings[self::PARAM_RANGE_ENFORCE] )
+						$min = isset( $paramSettings[self::PARAM_MIN] ) ? $paramSettings[self::PARAM_MIN] : null;
+						$max = isset( $paramSettings[self::PARAM_MAX] ) ? $paramSettings[self::PARAM_MAX] : null;
+						$enforceLimits = isset( $paramSettings[self::PARAM_RANGE_ENFORCE] )
 								? $paramSettings[self::PARAM_RANGE_ENFORCE] : false;
 
 						if ( is_array( $value ) ) {

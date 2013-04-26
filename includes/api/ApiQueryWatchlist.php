@@ -68,7 +68,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$this->fld_user = isset( $prop['user'] );
 			$this->fld_userid = isset( $prop['userid'] );
 			$this->fld_comment = isset( $prop['comment'] );
-			$this->fld_parsedcomment = isset ( $prop['parsedcomment'] );
+			$this->fld_parsedcomment = isset( $prop['parsedcomment'] );
 			$this->fld_timestamp = isset( $prop['timestamp'] );
 			$this->fld_sizes = isset( $prop['sizes'] );
 			$this->fld_patrol = isset( $prop['patrol'] );
@@ -143,12 +143,11 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$show = array_flip( $params['show'] );
 
 			/* Check for conflicting parameters. */
-			if ( ( isset ( $show['minor'] ) && isset ( $show['!minor'] ) )
-					|| ( isset ( $show['bot'] ) && isset ( $show['!bot'] ) )
-					|| ( isset ( $show['anon'] ) && isset ( $show['!anon'] ) )
-					|| ( isset ( $show['patrolled'] ) && isset ( $show['!patrolled'] ) )
-			)
-			{
+			if ( ( isset( $show['minor'] ) && isset( $show['!minor'] ) )
+					|| ( isset( $show['bot'] ) && isset( $show['!bot'] ) )
+					|| ( isset( $show['anon'] ) && isset( $show['!anon'] ) )
+					|| ( isset( $show['patrolled'] ) && isset( $show['!patrolled'] ) )
+			) {
 				$this->dieUsageMsg( 'show' );
 			}
 

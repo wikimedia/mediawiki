@@ -146,17 +146,17 @@ class ApiQueryRevisions extends ApiQueryBase {
 		$prop = array_flip( $params['prop'] );
 
 		// Optional fields
-		$this->fld_ids = isset ( $prop['ids'] );
+		$this->fld_ids = isset( $prop['ids'] );
 		// $this->addFieldsIf('rev_text_id', $this->fld_ids); // should this be exposed?
-		$this->fld_flags = isset ( $prop['flags'] );
-		$this->fld_timestamp = isset ( $prop['timestamp'] );
-		$this->fld_comment = isset ( $prop['comment'] );
-		$this->fld_parsedcomment = isset ( $prop['parsedcomment'] );
-		$this->fld_size = isset ( $prop['size'] );
-		$this->fld_sha1 = isset ( $prop['sha1'] );
-		$this->fld_contentmodel = isset ( $prop['contentmodel'] );
+		$this->fld_flags = isset( $prop['flags'] );
+		$this->fld_timestamp = isset( $prop['timestamp'] );
+		$this->fld_comment = isset( $prop['comment'] );
+		$this->fld_parsedcomment = isset( $prop['parsedcomment'] );
+		$this->fld_size = isset( $prop['size'] );
+		$this->fld_sha1 = isset( $prop['sha1'] );
+		$this->fld_contentmodel = isset( $prop['contentmodel'] );
 		$this->fld_userid = isset( $prop['userid'] );
-		$this->fld_user = isset ( $prop['user'] );
+		$this->fld_user = isset( $prop['user'] );
 		$this->token = $params['token'];
 
 		if ( !empty( $params['contentformat'] ) ) {

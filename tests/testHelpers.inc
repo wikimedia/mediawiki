@@ -510,7 +510,7 @@ class TestFileIterator implements Iterator {
 					return true;
 				}
 
-				if ( isset ( $this->sectionData[$this->section] ) ) {
+				if ( isset( $this->sectionData[$this->section] ) ) {
 					throw new MWException( "duplicate section '$this->section' at line {$this->lineNum} of $this->file\n" );
 				}
 

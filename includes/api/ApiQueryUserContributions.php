@@ -48,7 +48,7 @@ class ApiQueryContributions extends ApiQueryBase {
 		$this->fld_ids = isset( $prop['ids'] );
 		$this->fld_title = isset( $prop['title'] );
 		$this->fld_comment = isset( $prop['comment'] );
-		$this->fld_parsedcomment = isset ( $prop['parsedcomment'] );
+		$this->fld_parsedcomment = isset( $prop['parsedcomment'] );
 		$this->fld_size = isset( $prop['size'] );
 		$this->fld_sizediff = isset( $prop['sizediff'] );
 		$this->fld_flags = isset( $prop['flags'] );
