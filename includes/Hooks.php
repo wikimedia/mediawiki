@@ -129,8 +129,9 @@ class Hooks {
 	 * @throws MWException
 	 * @throws FatalError
 	 */
-	public static function run( $event, array $args = array() ) {
+	public static function run( $event, $args = array() ) {
 		wfProfileIn( 'hook: ' . $event );
+		$args = (array)$args;
 		foreach ( self::getHandlers( $event ) as $hook ) {
 			// Turn non-array values into an array. (Can't use casting because of objects.)
 			if ( !is_array( $hook ) ) {
