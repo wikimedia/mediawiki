@@ -2821,6 +2821,12 @@ $templates
 			$scripts .= $this->getScriptsForBottomQueue( true );
 		}
 
+		$scripts .= Html::inlineScript(
+			ResourceLoader::makeLoaderConditionalScript(
+				'mw.loader.forceAsync = true;'
+			)
+		);
+
 		return $scripts;
 	}
 

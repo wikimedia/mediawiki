@@ -820,7 +820,7 @@ var mw = ( function ( $, undefined ) {
 
 				// Using isReady directly instead of storing it locally from
 				// a $.fn.ready callback (bug 31895).
-				if ( $.isReady || async ) {
+				if ( mw.loader.forceAsync || $.isReady || async ) {
 					// Can't use jQuery.getScript because that only uses <script> for cross-domain,
 					// it uses XHR and eval for same-domain scripts, which we don't want because it
 					// messes up line numbers.
@@ -1145,6 +1145,7 @@ var mw = ( function ( $, undefined ) {
 
 			/* Public Methods */
 			return {
+				forceAsync: false,
 				addStyleTag: addStyleTag,
 
 				/**
