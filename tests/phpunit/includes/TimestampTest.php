@@ -3,16 +3,12 @@
 /**
  * Tests timestamp parsing and output.
  */
-class TimestampTest extends MediaWikiTestCase {
+class TimestampTest extends MediaWikiLangTestCase {
 
 	protected function setUp() {
 		parent::setUp();
 
-		$this->setMwGlobals( array(
-			'wgLanguageCode' => 'en',
-			'wgContLang' => Language::factory( 'en' ),
-			'wgLang' => Language::factory( 'en' ),
-		) );
+		RequestContext::getMain()->setLanguage( Language::factory( 'en' ) );
 	}
 
 	/**
