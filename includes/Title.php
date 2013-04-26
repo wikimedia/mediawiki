@@ -4493,14 +4493,15 @@ class Title {
 			return false;
 		}
 
+		$method = __METHOD__;
 		$dbw = wfGetDB( DB_MASTER );
 		$conds = $this->pageCond();
-		$dbw->onTransactionIdle( function() use ( $dbw, $conds ) {
+		$dbw->onTransactionIdle( function() use ( $dbw, $conds, $method ) {
 			$dbw->update(
 				'page',
 				array( 'page_touched' => $dbw->timestamp() ),
 				$conds,
-				__METHOD__
+				$method
 			);
 		} );
 		HTMLFileCache::clearFileCache( $this );
