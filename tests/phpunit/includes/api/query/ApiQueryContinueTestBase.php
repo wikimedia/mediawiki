@@ -68,6 +68,7 @@ abstract class ApiQueryContinueTestBase extends ApiQueryTestBase {
 				// put 'continue' params at the end - lazy method
 				$a = strpos( $a, 'continue' ) !== false ? 'zzz ' . $a : $a;
 				$b = strpos( $b, 'continue' ) !== false ? 'zzz ' . $b : $b;
+
 				return strcmp( $a, $b );
 			} );
 			$reqStr = http_build_query( $request );
@@ -103,6 +104,7 @@ abstract class ApiQueryContinueTestBase extends ApiQueryTestBase {
 				if ( $expectedCount > $count ) {
 					print "***** $id Finished early in $count turns. $expectedCount was expected\n";
 				}
+
 				return $result;
 			} elseif ( !$useContinue ) {
 				$this->assertFalse( 'Non-smart query must be requested all at once' );

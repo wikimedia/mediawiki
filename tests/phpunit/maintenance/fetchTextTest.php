@@ -63,7 +63,6 @@ class SemiMockedFetchText extends FetchText {
 
 		return fopen( 'data://text/plain,' . $this->mockStdinText, 'r' );
 	}
-
 }
 
 /**
@@ -236,5 +235,4 @@ class FetchTextTest extends MediaWikiTestCase {
 				$this->textId3 . "\n23\nFetchTextTestPage2Text2"
 			) ) );
 	}
-
 }

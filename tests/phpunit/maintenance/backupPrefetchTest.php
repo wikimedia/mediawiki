@@ -36,7 +36,6 @@ class BaseDumpTest extends MediaWikiTestCase {
 	private function assertPrefetchEquals( $expected, $page, $revision ) {
 		$this->assertEquals( $expected, $this->dump->prefetch( $page, $revision ),
 			"Prefetch of page $page revision $revision" );
-
 	}
 
 	function testSequential() {
@@ -181,7 +180,6 @@ class BaseDumpTest extends MediaWikiTestCase {
   </siteinfo>
 ';
 
-
 		// An array holding the pages that are available for prefetch
 		$available_pages = array();
 
@@ -274,5 +272,4 @@ class BaseDumpTest extends MediaWikiTestCase {
 
 		return $fname;
 	}
-
 }

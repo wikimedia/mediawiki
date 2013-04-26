@@ -33,5 +33,4 @@ class TemplateCategoriesTest extends MediaWikiLangTestCase {
 			, $title->getParentCategories()
 		);
 	}
-
 }

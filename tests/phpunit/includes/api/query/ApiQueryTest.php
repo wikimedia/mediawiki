@@ -20,7 +20,6 @@ class ApiQueryTest extends ApiTestCase {
 			'action' => 'query',
 			'titles' => 'Project:articleA|article_B' ) );
 
-
 		$this->assertArrayHasKey( 'query', $data[0] );
 		$this->assertArrayHasKey( 'normalized', $data[0]['query'] );
 
@@ -42,7 +41,6 @@ class ApiQueryTest extends ApiTestCase {
 			),
 			$data[0]['query']['normalized'][1]
 		);
-
 	}
 
 	function testTitlesAreRejectedIfInvalid() {
@@ -65,5 +63,4 @@ class ApiQueryTest extends ApiTestCase {
 		$this->assertArrayHasKey( 'missing', $data[0]['query']['pages'][-2] );
 		$this->assertArrayHasKey( 'invalid', $data[0]['query']['pages'][-1] );
 	}
-
 }

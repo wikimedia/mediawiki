@@ -116,7 +116,6 @@ class ResourcesTest extends MediaWikiTestCase {
 					$file,
 				);
 			}
-
 		}
 
 		// Restore settings
@@ -124,5 +123,4 @@ class ResourcesTest extends MediaWikiTestCase {
 
 		return $cases;
 	}
-
 }

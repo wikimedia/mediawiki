@@ -41,7 +41,5 @@ class XMPValidateTest extends MediaWikiTestCase {
 			array( '2001-05-12T15', null ),
 			array( '2001-12T15:13', null ),
 		);
-
 	}
-
 }

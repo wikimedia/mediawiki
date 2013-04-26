@@ -100,7 +100,6 @@ class SideBarTest extends MediaWikiLangTestCase {
 ** http://valid.no.desc.org/
 '
 		);
-
 	}
 
 	/**

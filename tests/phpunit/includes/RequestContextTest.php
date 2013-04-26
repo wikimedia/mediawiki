@@ -25,7 +25,6 @@ class RequestContextTest extends MediaWikiTestCase {
 		$context->setTitle( $curTitle );
 		$this->assertTrue( $curTitle->equals( $context->getWikiPage()->getTitle() ),
 			"When a title is updated the WikiPage should be purged and recreated on-demand with the new title." );
-
 	}
 
 	public function testImportScopedSession() {

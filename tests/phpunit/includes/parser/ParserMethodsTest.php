@@ -44,6 +44,5 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 			'text' => '<pre style="margin-left: 1.6em">foo</pre>',
 		), $ret, 'callParserFunction works for {{#tag:pre|foo|style=margin-left: 1.6em}}' );
 	}
-
 	// TODO: Add tests for cleanSig() / cleanSigInSig(), getSection(), replaceSection(), getPreloadText()
 }

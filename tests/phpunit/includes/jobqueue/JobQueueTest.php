@@ -46,7 +46,8 @@ class JobQueueTest extends MediaWikiTestCase {
 				if ( !( $this->$q instanceof JobQueueDB ) ) {
 					$this->$q->setTestingPrefix( 'unittests-' . wfRandomString( 32 ) );
 				}
-			} catch ( MWException $e ) {}; // unsupported? (@TODO: what if it was another error?)
+			} catch ( MWException $e ) {
+			}; // unsupported? (@TODO: what if it was another error?)
 		}
 	}
 
@@ -108,7 +109,6 @@ class JobQueueTest extends MediaWikiTestCase {
 		$this->assertEquals( 0, $queue->getAcquiredCount(), "No jobs active ($desc)" );
 		$jobs = iterator_to_array( $queue->getAllQueuedJobs() );
 		$this->assertEquals( 2, count( $jobs ), "Queue iterator size is correct ($desc)" );
-
 
 		$job1 = $queue->pop();
 		$this->assertFalse( $queue->isEmpty(), "Queue is not empty ($desc)" );

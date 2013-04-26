@@ -73,6 +73,7 @@ abstract class GenericArrayObjectTest extends MediaWikiTestCase {
 	 */
 	protected function getNew( array $elements = array() ) {
 		$class = $this->getInstanceClass();
+
 		return new $class( $elements );
 	}
 
@@ -197,6 +198,7 @@ abstract class GenericArrayObjectTest extends MediaWikiTestCase {
 	public function testOffsetSet( array $elements ) {
 		if ( $elements === array() ) {
 			$this->assertTrue( true );
+
 			return;
 		}
 
@@ -258,5 +260,4 @@ abstract class GenericArrayObjectTest extends MediaWikiTestCase {
 
 		$this->assertArrayEquals( $list, $copy, true, true );
 	}
-
 }

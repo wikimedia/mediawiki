@@ -45,6 +45,7 @@ class ORMTableTest extends MediaWikiTestCase {
 	 */
 	public function getTable() {
 		$class = $this->getTableClass();
+
 		return $class::singleton();
 	}
 
@@ -84,7 +85,6 @@ class ORMTableTest extends MediaWikiTestCase {
 
 		$db->ignoreErrors( false );
 	}
-
 }
 
 /**

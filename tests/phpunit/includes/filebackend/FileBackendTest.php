@@ -315,6 +315,7 @@ class FileBackendTest extends MediaWikiTestCase {
 				"Source file $source does not exist ($backendName)." );
 			$this->assertEquals( false, $this->backend->fileExists( array( 'src' => $dest ) ),
 				"Destination file $dest does not exist ($backendName)." );
+
 			return; // done
 		}
 
@@ -434,6 +435,7 @@ class FileBackendTest extends MediaWikiTestCase {
 				"Source file $source does not exist ($backendName)." );
 			$this->assertEquals( false, $this->backend->fileExists( array( 'src' => $dest ) ),
 				"Destination file $dest does not exist ($backendName)." );
+
 			return; // done
 		}
 
@@ -1369,6 +1371,7 @@ class FileBackendTest extends MediaWikiTestCase {
 
 	public static function provider_testPrepareAndClean() {
 		$base = self::baseStorePath();
+
 		return array(
 			array( "$base/unittest-cont1/e/a/z/some_file1.txt", true ),
 			array( "$base/unittest-cont2/a/z/some_file2.txt", true ),
@@ -2192,6 +2195,7 @@ class FileBackendTest extends MediaWikiTestCase {
 	// test helper wrapper for backend prepare() function
 	private function create( array $params ) {
 		$params['op'] = 'create';
+
 		return $this->backend->doQuickOperations( array( $params ) );
 	}
 

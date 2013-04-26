@@ -39,6 +39,7 @@ class BackupDumperLoggerTest extends DumpTestCase {
 		if ( $parameters !== null ) {
 			$logEntry->setParameters( $parameters );
 		}
+
 		return $logEntry->insert();
 	}
 
@@ -75,14 +76,12 @@ class BackupDumperLoggerTest extends DumpTestCase {
 				$user2, NS_MAIN, "PageA", "SomeOtherComment",
 				array( 'key1' => 1, 3 => 'value3' ) );
 			$this->assertGreaterThan( 0, $this->logId3 );
-
 		} catch ( Exception $e ) {
 			// We'd love to pass $e directly. However, ... see
 			// documentation of exceptionFromAddDBData in
 			// DumpTestCase
 			$this->exceptionFromAddDBData = $e;
 		}
-
 	}
 
 
@@ -226,5 +225,4 @@ class BackupDumperLoggerTest extends DumpTestCase {
 		// the following statement to catch good output
 		$this->expectOutputString( '' );
 	}
-
 }

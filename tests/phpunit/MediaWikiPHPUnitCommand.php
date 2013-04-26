@@ -18,7 +18,6 @@ class MediaWikiPHPUnitCommand extends PHPUnit_TextUI_Command {
 		foreach ( self::$additionalOptions as $option => $default ) {
 			$this->longOptions[$option] = $option . 'Handler';
 		}
-
 	}
 
 	public static function main( $exit = true ) {
@@ -97,5 +96,4 @@ Database options:
 
 EOT;
 	}
-
 }

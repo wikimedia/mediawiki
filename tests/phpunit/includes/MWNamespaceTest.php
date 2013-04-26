@@ -125,7 +125,6 @@ class MWNamespaceTest extends MediaWikiTestCase {
 	public function testGetAssociated() {
 		$this->assertEquals( NS_TALK, MWNamespace::getAssociated( NS_MAIN ) );
 		$this->assertEquals( NS_MAIN, MWNamespace::getAssociated( NS_TALK ) );
-
 	}
 
 	### Exceptions with getAssociated()
@@ -201,7 +200,6 @@ class MWNamespaceTest extends MediaWikiTestCase {
 			NS_SPECIAL, NS_MEDIA,
 			"NS_SPECIAL and NS_MEDIA are different subject namespaces"
 		);
-
 	}
 
 	/**
@@ -349,7 +347,6 @@ class MWNamespaceTest extends MediaWikiTestCase {
 			MWNamespace::getContentNamespaces(),
 			'$wgContentNamespaces is an array with only NS_MAIN by default'
 		);
-
 
 		# test !is_array( $wgcontentNamespaces )
 		$wgContentNamespaces = '';

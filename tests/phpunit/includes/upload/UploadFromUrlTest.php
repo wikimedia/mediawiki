@@ -30,6 +30,7 @@ class UploadFromUrlTest extends ApiTestCase {
 		$module->execute();
 
 		wfSetupSession( $sessionId );
+
 		return array( $module->getResultData(), $req );
 	}
 
@@ -174,7 +175,6 @@ class UploadFromUrlTest extends ApiTestCase {
 
 		$this->user->addGroup( 'users' );
 
-
 		$data = $this->doAsyncUpload( $token );
 
 		$this->assertEquals( $data[0]['upload']['result'], 'Warning' );
@@ -277,7 +277,6 @@ class UploadFromUrlTest extends ApiTestCase {
 		$this->assertFalse( $job );
 
 		return;
-
 		/*
 		// Broken until using leavemessage with ignorewarnings is supported
 		$job->run();

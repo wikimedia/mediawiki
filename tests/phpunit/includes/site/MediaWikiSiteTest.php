@@ -85,5 +85,4 @@ class MediaWikiSiteTest extends SiteTest {
 		$this->assertContains( $path, $site->getPageUrl() );
 		$this->assertContains( $expected, $site->getPageUrl( $page ) );
 	}
-
 }

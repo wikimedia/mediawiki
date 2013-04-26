@@ -286,5 +286,4 @@ class TitleMethodsTest extends MediaWikiTestCase {
 		$title = Title::newFromText( $title );
 		$this->assertEquals( $expectedBool, $title->isWikitextPage() );
 	}
-
 }

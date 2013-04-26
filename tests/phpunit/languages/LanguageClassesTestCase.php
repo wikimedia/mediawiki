@@ -96,5 +96,4 @@ abstract class LanguageClassesTestCase extends MediaWikiTestCase {
 		unset( $this->languageObject );
 		parent::tearDown();
 	}
-
 }

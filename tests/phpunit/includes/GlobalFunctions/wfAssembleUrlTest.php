@@ -87,7 +87,6 @@ class WfAssembleUrlTest extends MediaWikiTestCase {
 								$url .= '#' . $fragment;
 							}
 
-
 							$cases[] = array(
 								$parts,
 								$url,

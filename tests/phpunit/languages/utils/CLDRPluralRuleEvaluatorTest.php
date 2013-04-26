@@ -89,7 +89,7 @@ class CLDRPluralRuleEvaluatorTest extends MediaWikiTestCase {
 			array( 'n', 'just n' ),
 			array( 'n is in 5', 'is in' ),
 		);
+
 		return $tests;
 	}
-
 }

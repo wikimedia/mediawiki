@@ -64,6 +64,4 @@ class GetSlaveServerTest extends MediaWikiTestCase {
 		$this->expectOutputRegex( "/^[[:space:]]*\[wgDBprefix\][[:space:]]*=> "
 			. $wgDBprefix . "$/m" );
 	}
-
-
 }

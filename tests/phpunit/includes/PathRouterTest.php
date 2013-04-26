@@ -253,5 +253,4 @@ class PathRouterTest extends MediaWikiTestCase {
 		$matches = $router->parse( "/wiki/Foo" );
 		$this->assertEquals( $matches, array( 'title' => 'bar%20$1' ) );
 	}
-
 }

@@ -26,5 +26,4 @@ class ApiParseTest extends ApiTestCase {
 				"Parse request for nonexistent page must give 'missingtitle' error: " . var_export( $ex->getMessageArray(), true ) );
 		}
 	}
-
 }

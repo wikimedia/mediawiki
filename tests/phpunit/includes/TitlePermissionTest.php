@@ -66,7 +66,6 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 
 			$this->user = $this->userUser;
 		}
-
 	}
 
 	function setUserPerm( $perm ) {
@@ -317,7 +316,6 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 				$this->title->userCan( $action, $this->user, true ) );
 			$this->assertEquals( $check[$action][3],
 				$this->title->quickUserCan( $action, $this->user ) );
-
 			# count( User::getGroupsWithPermissions( $action ) ) < 1
 		}
 	}
@@ -538,7 +536,6 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 			$this->title->userCan( 'edit', $this->user ) );
 		$this->assertEquals( array(),
 			$this->title->getUserPermissionsErrors( 'edit', $this->user ) );
-
 	}
 
 	function testActionPermissions() {
@@ -561,7 +558,6 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 			$this->title->getUserPermissionsErrors( 'create', $this->user ) );
 		$this->assertEquals( true,
 			$this->title->userCan( 'create', $this->user ) );
-
 
 		$this->setUserPerm( array( 'createpage' ) );
 		$this->assertEquals( array( array( 'titleprotected', 'Useruser', 'test' ) ),
@@ -605,7 +601,6 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 			$this->title->getUserPermissionsErrors( 'move-target', $this->user ) );
 		$this->assertEquals( false,
 			$this->title->userCan( 'move-target', $this->user ) );
-
 	}
 
 	function testUserBlock() {
@@ -655,7 +650,6 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 				'Useruser', null, '23:00, 31 December 1969', '127.0.8.1',
 				$wgLang->timeanddate( wfTimestamp( TS_MW, $now ), true ) ) ),
 			$this->title->getUserPermissionsErrors( 'move-target', $this->user ) );
-
 		# $action != 'read' && $action != 'createaccount' && $user->isBlockedFrom( $this )
 		#   $user->blockedFor() == ''
 		#   $user->mBlock->mExpiry == 'infinity'

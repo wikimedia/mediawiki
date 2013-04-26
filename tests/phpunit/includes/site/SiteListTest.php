@@ -186,5 +186,4 @@ class SiteListTest extends MediaWikiTestCase {
 			$this->assertTrue( $copy->hasInternalId( $site->getInternalId() ) );
 		}
 	}
-
 }

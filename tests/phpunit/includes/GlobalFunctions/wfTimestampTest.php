@@ -12,6 +12,7 @@ class WfTimestampTest extends MediaWikiTestCase {
 
 	public static function provideNormalTimestamps() {
 		$t = gmmktime( 12, 34, 56, 1, 15, 2001 );
+
 		return array(
 			// TS_UNIX
 			array( $t, TS_MW, '20010115123456', 'TS_UNIX to TS_MW' ),

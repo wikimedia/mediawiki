@@ -423,5 +423,4 @@ class TextContentTest extends MediaWikiLangTestCase {
 			$this->assertEquals( $expectedNative, $converted->getNativeData() );
 		}
 	}
-
 }

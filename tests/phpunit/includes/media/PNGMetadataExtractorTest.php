@@ -52,7 +52,6 @@ class PNGMetadataExtractorTest extends MediaWikiTestCase {
 		// encoded as just \xA9.
 		$expected = "© 2010 Bawolff";
 
-
 		$this->assertArrayHasKey( 'text', $meta );
 		$meta = $meta['text'];
 		$this->assertArrayHasKey( 'Copyright', $meta );
@@ -149,5 +148,4 @@ class PNGMetadataExtractorTest extends MediaWikiTestCase {
 			'greyscale-na-png.png' );
 		$this->assertEquals( 'greyscale', $meta['colorType'] );
 	}
-
 }

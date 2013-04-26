@@ -24,7 +24,6 @@
  * @file
  */
 
-
 /** This class has some common functionality for testing query module
  */
 abstract class ApiQueryTestBase extends ApiTestCase {
@@ -48,6 +47,7 @@ STR;
 			$request = array_merge_recursive( $request, $req );
 			$this->mergeExpected( $expected, $exp );
 		}
+
 		return array( $request, $expected );
 	}
 
@@ -62,6 +62,7 @@ STR;
 		$this->assertArrayHasKey( 1, $v, self::PARAM_ASSERT );
 		$this->assertType( 'array', $v[0], self::PARAM_ASSERT );
 		$this->assertType( 'array', $v[1], self::PARAM_ASSERT );
+
 		return $v;
 	}
 

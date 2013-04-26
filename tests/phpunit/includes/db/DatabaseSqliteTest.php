@@ -9,6 +9,7 @@ class MockDatabaseSqlite extends DatabaseSqliteStandalone {
 
 	function query( $sql, $fname = '', $tempIgnore = false ) {
 		$this->lastQuery = $sql;
+
 		return true;
 	}
 
@@ -327,6 +328,7 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 		$db->sourceFile( "$IP/tests/phpunit/data/db/sqlite/tables-$version.sql" );
 		$updater = DatabaseUpdater::newForDB( $db, false, $maint );
 		$updater->doUpdates( array( 'core' ) );
+
 		return $db;
 	}
 
@@ -348,6 +350,7 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 		}
 		$list = array_flip( $list );
 		sort( $list );
+
 		return $list;
 	}
 
@@ -359,6 +362,7 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 			$cols[$col->name] = $col;
 		}
 		ksort( $cols );
+
 		return $cols;
 	}
 
@@ -376,6 +380,7 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 			$indexes[$index->name] = $index;
 		}
 		ksort( $indexes );
+
 		return $indexes;
 	}
 

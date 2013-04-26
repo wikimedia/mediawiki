@@ -47,6 +47,7 @@ class CollationTest extends MediaWikiLangTestCase {
 			array( 'en', 'A', 'Aꦲ' ),
 		);
 	}
+
 	/**
 	 * Opposite of testIsPrefix
 	 *
@@ -84,6 +85,7 @@ class CollationTest extends MediaWikiLangTestCase {
 		$col = Collation::factory( $collation );
 		$this->assertEquals( $firstLetter, $col->getFirstLetter( $string ) );
 	}
+
 	function firstLetterProvider() {
 		return array(
 			array( 'uppercase', 'Abc', 'A' ),

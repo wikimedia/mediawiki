@@ -202,7 +202,6 @@ class LanguageTest extends LanguageClassesTestCase {
 				'formatTimePeriod() rounding, recursion, (>48h)'
 			),
 		);
-
 	}
 
 	function testTruncate() {

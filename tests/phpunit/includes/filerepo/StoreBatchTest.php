@@ -69,6 +69,7 @@ class StoreBatchTest extends MediaWikiTestCase {
 		$result = $this->repo->store( $srcPath, 'temp', $dstRel, $flags );
 		$result->value = $this->repo->getVirtualUrl( 'temp' ) . '/' . $dstUrlRel;
 		$this->createdFiles[] = $result->value;
+
 		return $result;
 	}
 

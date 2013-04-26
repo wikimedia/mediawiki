@@ -39,6 +39,4 @@ class ExifTest extends MediaWikiTestCase {
 		);
 		$this->assertEquals( $expected, $data );
 	}
-
-
 }

@@ -59,7 +59,6 @@ class MWFunctionTest extends MediaWikiTestCase {
 	public static function someMethod() {
 		return func_get_args();
 	}
-
 }
 
 class MWBlankClass {

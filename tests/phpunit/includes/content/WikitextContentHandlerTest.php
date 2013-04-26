@@ -181,5 +181,4 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 	/*
 	public function testGetUndoContent( Revision $current, Revision $undo, Revision $undoafter = null ) {}
 	*/
-
 }

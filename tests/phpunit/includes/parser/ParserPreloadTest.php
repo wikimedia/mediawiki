@@ -68,5 +68,4 @@ class ParserPreloadTest extends MediaWikiTestCase {
 			$msg
 		);
 	}
-
 }

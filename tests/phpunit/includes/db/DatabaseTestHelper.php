@@ -36,6 +36,7 @@ class DatabaseTestHelper extends DatabaseBase {
 	public function getLastSqls() {
 		$lastSqls = implode( '; ', $this->lastSqls );
 		$this->lastSqls = array();
+
 		return $lastSqls;
 	}
 
@@ -78,6 +79,7 @@ class DatabaseTestHelper extends DatabaseBase {
 
 	public function tableExists( $table, $fname = __METHOD__ ) {
 		$this->checkFunctionName( $fname );
+
 		return in_array( $table, (array)$this->tablesExists );
 	}
 
