@@ -460,16 +460,6 @@ $messages = array(
 'nov' => "נוב'",
 'dec' => "דצמ'",
 
-'monday-at' => 'ביום שני בשעה $1',
-'tuesday-at' => 'ביום שלישי בשעה $1',
-'wednesday-at' => 'ביום רביעי בשעה $1',
-'thursday-at' => 'ביום חמישי בשעה $1',
-'friday-at' => 'ביום שישי בשעה $1',
-'saturday-at' => 'בשבת בשעה $1',
-'sunday-at' => 'ביום ראשון בשעה $1',
-'today-at' => '$1',
-'yesterday-at' => 'אתמול בשעה $1',
-
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|קטגוריה|קטגוריות}}',
 'category_header' => 'דפים בקטגוריה "$1"',
@@ -492,7 +482,7 @@ $messages = array(
 'about' => 'אודות',
 'article' => 'דף תוכן',
 'newwindow' => '(נפתח בחלון חדש)',
-'cancel' => 'ביטול / יציאה',
+'cancel' => 'ביטול',
 'moredotdotdot' => 'עוד…',
 'morenotlisted' => 'עוד פריטים שאינם ברשימה…',
 'mypage' => 'דף משתמש',
@@ -780,10 +770,15 @@ $2',
 'yourname' => 'שם משתמש:',
 'userlogin-yourname' => 'שם משתמש',
 'userlogin-yourname-ph' => 'יש להקליד את שם המשתמש',
+'createacct-helpusername-url' => '{{ns:Project}}:מדיניות_שמות_משתמש',
+'createacct-helpusername-link' => '[[{{MediaWiki:createacct-helpusername-url}}|(עזרה בבחירה)]]',
 'yourpassword' => 'סיסמה:',
 'userlogin-yourpassword' => 'סיסמה',
 'userlogin-yourpassword-ph' => 'יש להקליד את הסיסמה',
+'createacct-yourpassword-ph' => 'יש להקליד סיסמה',
 'yourpasswordagain' => 'חזרה על הסיסמה:',
+'createacct-yourpasswordagain' => 'אימות הסיסמה',
+'createacct-yourpasswordagain-ph' => 'יש להקליד את הסיסמה שנית',
 'remembermypassword' => 'שמירת הכניסה שלי בדפדפן הזה (ל{{PLURAL:$1|יום אחד|יומיים|־$1 ימים}} לכל היותר)',
 'userlogin-remembermypassword' => 'זכור אותי',
 'userlogin-signwithsecure' => 'כניסה לחשבון עם שרת מאובטח',
@@ -809,12 +804,27 @@ $2',
 'userlogin-resetlink' => 'שכחת את פרטי הכניסה?',
 'helplogin-url' => 'Help:כניסה לחשבון',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|עזרה בכניסה לחשבון]]',
+'createacct-join' => 'נא להקליד להלן את הפרטים שלך.',
+'createacct-emailrequired' => 'כתובת דוא"ל',
+'createacct-emailoptional' => 'כתובת דוא"ל (לא חובה)',
+'createacct-email-ph' => 'יש להקליד את כתובת הדוא"ל שלך',
 'createaccountmail' => 'שימוש בסיסמה זמנית אקראית ושליחתה לכתובת הדוא"ל המצוינת להלן',
+'createacct-realname' => 'שם אמיתי (לא חובה)',
 'createaccountreason' => 'סיבה:',
+'createacct-reason' => 'סיבה',
+'createacct-captcha' => 'בדיקת אבטחה',
+'createacct-captcha-help-url' => '{{ns:Project}}:בקשה לחשבון',
+'createacct-imgcaptcha-help' => 'לא רואים את התמונה? [[{{MediaWiki:createacct-captcha-help-url}}|בקשו חשבון]]',
+'createacct-imgcaptcha-ph' => 'יש להקליד את הטקסט המופיע למעלה',
+'createacct-benefit-heading' => 'את האתר {{SITENAME}} יוצרים אנשים כמוך.',
+'createacct-benefit-body1' => 'עריכות',
+'createacct-benefit-body2' => 'דפים',
+'createacct-benefit-body3' => 'תורמים בחודש זה',
 'badretype' => 'הסיסמאות שהזנתם אינן מתאימות.',
 'userexists' => 'שם המשתמש שבחרתם כבר נמצא בשימוש.
 אנא בחרו שם אחר.',
 'loginerror' => 'שגיאה בכניסה לאתר',
+'createacct-error' => 'שגיאה ביצירת חשבון',
 'createaccounterror' => 'לא ניתן היה ליצור את החשבון: $1',
 'nocookiesnew' => 'חשבון המשתמש שלכם נוצר, אך לא נכנסתם כמשתמשים רשומים.
 {{SITENAME}} משתמש בעוגיות כדי להכניס משתמשים למערכת.
@@ -3318,6 +3328,19 @@ $1',
 'ago' => 'לפני $1',
 'just-now' => 'לפני זמן קצר',
 
+# Human-readable timestamps
+'hours-ago' => 'לפני {{PLURAL:$1|שעה|שעתיים|$1 שעות}}',
+'minutes-ago' => 'לפני {{PLURAL:$1|דקה|$1 דקות}}',
+'seconds-ago' => 'לפני {{PLURAL:$1|שנייה|$1 שניות}}',
+'monday-at' => 'ביום שני בשעה $1',
+'tuesday-at' => 'ביום שלישי בשעה $1',
+'wednesday-at' => 'ביום רביעי בשעה $1',
+'thursday-at' => 'ביום חמישי בשעה $1',
+'friday-at' => 'ביום שישי בשעה $1',
+'saturday-at' => 'בשבת בשעה $1',
+'sunday-at' => 'ביום ראשון בשעה $1',
+'yesterday-at' => 'אתמול בשעה $1',
+
 # Bad image list
 'bad_image_list' => 'דרך הכתיבה בהודעה היא כמתואר להלן:
 
@@ -4140,8 +4163,8 @@ $5
 'rightsnone' => '(כלום)',
 
 # Feedback
-'feedback-bugornote' => 'אם אתם מוכנים לתאר בעיה טכנית בפרטים, אנא [$1 דווחו על באג].
-אחרת, תוכלו להשתמש בטופס הפשוט שלהלן. הערתכם תתווסף לדף "[$3 $2]", יחד עם שם המשתמש שלכם והדפדפן בו אתם משתמשים.',
+'feedback-bugornote' => 'אם אתם מוכנים לתאר בעיה טכנית בפרטים, אנא [$1 דווחו באג].
+אחרת, תוכלו להשתמש בטופס הפשוט שלהלן. הערתכם תתווסף לדף "[$3 $2]", יחד עם שם המשתמש שלכם.',
 'feedback-subject' => 'נושא:',
 'feedback-message' => 'הודעה:',
 'feedback-cancel' => 'ביטול',
@@ -4215,8 +4238,4 @@ $5
 # Image rotation
 'rotate-comment' => 'התמונה סובבה {{PLURAL:$1|במעלה אחת|ב֫־$1 מעלות}} בכיוון השעון',
 
-# Unknown messages
-'hours-ago' => 'לפני {{PLURAL:$1|שעה|שעתיים|$1 שעות}}',
-'minutes-ago' => 'לפני {{PLURAL:$1|דקה|$1 דקות}}',
-'seconds-ago' => 'לפני {{PLURAL:$1|שנייה|$1 שניות}}',
 );

@@ -28,6 +28,7 @@
  * @author Lauhenry
  * @author Liangent
  * @author Liflon
+ * @author Littletung
  * @author Mark85296341
  * @author Oapbtommy
  * @author Pbdragonwang
@@ -362,16 +363,6 @@ $messages = array(
 'nov' => '11月',
 'dec' => '12月',
 
-'monday-at' => '於星期一$1',
-'tuesday-at' => '於星期二$1',
-'wednesday-at' => '於星期三$1',
-'thursday-at' => '於星期四$1',
-'friday-at' => '於星期五$1',
-'saturday-at' => '於星期六$1',
-'sunday-at' => '於星期日$1',
-'today-at' => '$1',
-'yesterday-at' => '昨天$1',
-
 # Categories related messages
 'pagecategories' => '$1個分類',
 'category_header' => '「$1」分類中的頁面',
@@ -681,10 +672,15 @@ $2',
 'yourname' => '用戶名：',
 'userlogin-yourname' => '用戶名',
 'userlogin-yourname-ph' => '輸入你的用戶名',
+'createacct-helpusername-url' => '{{ns:Project}}:用戶名方針',
+'createacct-helpusername-link' => '[[{{MediaWiki:createacct-helpusername-url}}|（幫我選擇）]]',
 'yourpassword' => '您的密碼：',
 'userlogin-yourpassword' => '密碼',
 'userlogin-yourpassword-ph' => '輸入密碼',
+'createacct-yourpassword-ph' => '輸入密碼',
 'yourpasswordagain' => '再次輸入密碼：',
+'createacct-yourpasswordagain' => '確認密碼',
+'createacct-yourpasswordagain-ph' => '再次輸入密碼',
 'remembermypassword' => '在這個瀏覽器上記住我的登入資訊（可維持 $1 {{PLURAL:$1|天|天}}）',
 'userlogin-remembermypassword' => '記住我',
 'userlogin-signwithsecure' => '使用安全伺服器登入',
@@ -703,18 +699,33 @@ $2',
 'userlogin-noaccount' => '沒有帳戶嗎？',
 'userlogin-joinproject' => '參與 {{SITENAME}}',
 'nologin' => '您還沒有帳號嗎？$1。',
-'nologinlink' => '建立新帳號',
-'createaccount' => '建立新帳號',
+'nologinlink' => '建立用戶',
+'createaccount' => '建立用戶',
 'gotaccount' => '已經擁有帳號？$1。',
 'gotaccountlink' => '登入',
 'userlogin-resetlink' => '忘記了你的登錄信息？',
 'helplogin-url' => 'Help:登入',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|登入説明]]',
+'createacct-join' => '輸入您的基本資料：',
+'createacct-emailrequired' => '電子郵件',
+'createacct-emailoptional' => '電子郵件（可選）',
+'createacct-email-ph' => '設置電郵地址',
 'createaccountmail' => '使用一個臨時的隨機密碼，並將它發送到以下指定的電子郵件地址',
+'createacct-realname' => '真實姓名（可選）',
 'createaccountreason' => '理由：',
+'createacct-reason' => '原因',
+'createacct-captcha' => '安全驗證',
+'createacct-captcha-help-url' => '{{ns:Project}}:請求建立用戶',
+'createacct-imgcaptcha-help' => '無法看到圖像嗎？[[{{MediaWiki:createacct-captcha-help-url}}|請求建立用戶]]',
+'createacct-imgcaptcha-ph' => '輸入您在上面看到的字符',
+'createacct-benefit-heading' => '{{SITENAME}}是由像您一樣的人建立。',
+'createacct-benefit-body1' => '次編輯',
+'createacct-benefit-body2' => '頁頁面',
+'createacct-benefit-body3' => '位本月貢獻者',
 'badretype' => '您所輸入的密碼並不相同。',
 'userexists' => '!您所輸入的用戶名稱已經存在，請另選一個名稱。',
 'loginerror' => '登入錯誤',
+'createacct-error' => '帳戶創建錯誤',
 'createaccounterror' => '無法建立帳號：$1',
 'nocookiesnew' => '已成功建立新帳號！偵測到您已關閉 Cookies，請開啟它並登入。',
 'nocookieslogin' => '本站利用 Cookies 進行用戶登入，偵測到您已關閉 Cookies，請開啟它並重新登入。',
@@ -3138,6 +3149,19 @@ $1',
 'ago' => '$1前',
 'just-now' => '剛才',
 
+# Human-readable timestamps
+'hours-ago' => '$1小時前',
+'minutes-ago' => '$1分鐘前',
+'seconds-ago' => '$1秒前',
+'monday-at' => '於星期一$1',
+'tuesday-at' => '於星期二$1',
+'wednesday-at' => '於星期三$1',
+'thursday-at' => '於星期四$1',
+'friday-at' => '於星期五$1',
+'saturday-at' => '於星期六$1',
+'sunday-at' => '於星期日$1',
+'yesterday-at' => '昨天$1',
+
 # Bad image list
 'bad_image_list' => '請按照下列格式編寫：
 
@@ -3992,8 +4016,4 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 # Image rotation
 'rotate-comment' => '順時針旋轉圖像$1{{PLURAL:$1|度|度}}',
 
-# Unknown messages
-'hours-ago' => '$1小時前',
-'minutes-ago' => '$1分鐘前',
-'seconds-ago' => '$1秒前',
 );

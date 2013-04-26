@@ -339,7 +339,7 @@ $messages = array(
 # Vector skin
 'vector-action-addsection' => 'ਵਿਸ਼ਾ ਜੋੜੋ',
 'vector-action-delete' => 'ਹਟਾਓ',
-'vector-action-move' => 'ਸਥਾਨਾਂਤਰਨ',
+'vector-action-move' => 'ਭੇਜੋ',
 'vector-action-protect' => 'ਸੁਰੱਖਿਆ',
 'vector-action-undelete' => 'ਹਟਾਉਣਾ-ਵਾਪਸ',
 'vector-action-unprotect' => 'ਸੁਰੱਖਿਆ ਬਦਲੋ',
@@ -1929,7 +1929,7 @@ delete|ਹਟਾਉਣ ਦਾ ਚਿੱਠਾ]] ਵੇਖੋ।',
 'lockdb' => 'ਡਾਟਾਬੇਸ ਲਾਕ',
 
 # Move page
-'move-page-legend' => 'ਪੰਨਾ ਸਥਾਨਾਂਤਰਨ',
+'move-page-legend' => 'ਸਫ਼ਾ ਭੇਜੋ',
 'movearticle' => 'ਸਫ਼ਾ ਭੇਜੋ:',
 'movenologin' => 'ਲਾਗਇਨ ਨਹੀਂ ਹੋ',
 'movenologintext' => 'ਇਕ ਸਫ਼ੇ ਦਾ ਸਿਰਲੇਖ ਬਦਲਣ ਲਈ ਤੁਸੀਂ ਰਜਿਸਟਰਡ ਮੈਂਬਰ ਹੋਣੇ ਚਾਹੀਦੇ ਹੋ ਅਤੇ [[Special:UserLogin|ਲਾਗਇਨ]] ਕੀਤਾ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ।',
@@ -1941,7 +1941,7 @@ delete|ਹਟਾਉਣ ਦਾ ਚਿੱਠਾ]] ਵੇਖੋ।',
 'movepage-moved-redirect' => 'ਇੱਕ ਰੀਡਿਰੈਕਟ ਬਣਾ ਦਿੱਤਾ ਗਿਆ।',
 'articleexists' => 'ਇਸ ਨਾਮ ਦਾ ਸਫ਼ਾ ਪਹਿਲਾਂ ਹੀ ਮੌਜੂਦ ਹੈ ਜਾਂ ਤੁਹਾਡਾ ਚੁਣਿਆ ਹੋਇਆ ਨਾਮ ਸਹੀ ਨਹੀਂ ਹੈ।
 ਮਿਹਰਬਾਨੀ ਕਰਕੇ ਕੋਈ ਹੋਰ ਨਾਮ ਚੁਣੋ।',
-'movedto' => 'ਮੂਵ ਕੀਤਾ',
+'movedto' => 'ਭੇਜਿਆ',
 'movepage-page-moved' => 'ਸਫ਼ਾ $1 ਨੂੰ $2 ’ਤੇ ਭੇਜਿਆ ਜਾ ਚੁੱਕਾ ਹੈ।',
 'movelogpage' => 'ਸਥਾਨਾਂਤਰਣ ਦਾ ਚਿੱਠਾ',
 'movereason' => 'ਕਾਰਨ:',

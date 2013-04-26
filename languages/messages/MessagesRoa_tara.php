@@ -133,16 +133,6 @@ $messages = array(
 'nov' => 'Nov',
 'dec' => 'Dec',
 
-'monday-at' => 'Lunedìe a le $1',
-'tuesday-at' => 'Martedìe a le $1',
-'wednesday-at' => 'Mercrudìe a le $1',
-'thursday-at' => 'Sciuvedìe a le $1',
-'friday-at' => 'Venerdìe a le $1',
-'saturday-at' => 'Sabbète a le $1',
-'sunday-at' => 'Dumeneche a le $1',
-'today-at' => '$1',
-'yesterday-at' => 'Aijere a le $1',
-
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Categorije|Categorije}}',
 'category_header' => 'Pàggene jndr\'à categorie "$1"',
@@ -463,10 +453,15 @@ No te sce scurdanne de cangià le [[Special:Preferences|{{SITENAME}} preferenze 
 'yourname' => 'Nome utende:',
 'userlogin-yourname' => 'Nome utende',
 'userlogin-yourname-ph' => "Mitte 'u nome utende tune",
+'createacct-helpusername-url' => '{{ns:Project}}:Regole_pu_nome_utende',
+'createacct-helpusername-link' => '[[{{MediaWiki:createacct-helpusername-url}}|(aiujtame a scacchià)]]',
 'yourpassword' => 'Passuord:',
 'userlogin-yourpassword' => 'Passuord',
 'userlogin-yourpassword-ph' => "Mitte 'a passuord toje",
+'createacct-yourpassword-ph' => "Mitte 'na passuord",
 'yourpasswordagain' => "Scrive 'a passuord notra vote:",
+'createacct-yourpasswordagain' => "Conferme 'a passuord",
+'createacct-yourpasswordagain-ph' => "Mitte arrete 'a passuord",
 'remembermypassword' => "Arrencuerdete 'u nome mije sus a stu combiuter (pe 'nu massime de $1 {{PLURAL:$1|sciurne|sciurne}})",
 'userlogin-remembermypassword' => 'Arrecuèrdeme',
 'userlogin-signwithsecure' => "Reggistrate cu 'nu server secure",
@@ -492,12 +487,27 @@ No te sce scurdanne de cangià le [[Special:Preferences|{{SITENAME}} preferenze 
 'userlogin-resetlink' => "T'è scurdate le dettaglie pe trasè?",
 'helplogin-url' => 'Help:Trasenne',
 'userlogin-helplink' => "[[{{MediaWiki:helplogin-url}}|Aijute cu 'a trasute]]",
+'createacct-join' => "Mitte le 'mbormaziune tune aqquà sotte.",
+'createacct-emailrequired' => 'Indirizze email',
+'createacct-emailoptional' => 'Indirizze email (opzionale)',
+'createacct-email-ph' => "Mitte l'indirizze email tune",
 'createaccountmail' => 'Pe e-mail',
+'createacct-realname' => 'Nome vere (opzionale)',
 'createaccountreason' => 'Mutive:',
+'createacct-reason' => 'Mutive',
+'createacct-captcha' => 'Verifiche de securezze',
+'createacct-captcha-help-url' => "{{ns:Project}}:Cirche 'nu cunde",
+'createacct-imgcaptcha-help' => "Non ge puè 'ndrucà l'immaggine? [[{{MediaWiki:createacct-captcha-help-url}}|Cirche 'nu cunde]]",
+'createacct-imgcaptcha-ph' => "Mitte 'u teste tune aqquà sus",
+'createacct-benefit-heading' => '{{SITENAME}} jè fatte da crestiane cumme a te.',
+'createacct-benefit-body1' => 'cangiaminde',
+'createacct-benefit-body2' => 'pàggene',
+'createacct-benefit-body3' => 'condrebbutore de stu mese',
 'badretype' => 'Le passuord ca è scritte non ge sonde uguale.',
 'userexists' => "'U nome de l'utende ca è scritte jè già ausate.
 Pe piacere scacchiane n'otre.",
 'loginerror' => 'Errore de collegamende',
+'createacct-error' => "Errore sus 'a ccrejazione d'u cunde",
 'createaccounterror' => "Non ge puè ccrejà 'u cunde utende: $1",
 'nocookiesnew' => "'U cunde utende ha state ccrejete ma angore non g'è trasute jndr'à {{SITENAME}}.
 
@@ -3061,6 +3071,19 @@ Ce l'esegue sus a 'u sisteme tue pò essere ca se combromette.",
 'ago' => '$1 fà',
 'just-now' => 'mò mò',
 
+# Human-readable timestamps
+'hours-ago' => '$1 {{PLURAL:$1|ore}} fà',
+'minutes-ago' => '$1 {{PLURAL:$1|minute}} fà',
+'seconds-ago' => '$1 {{PLURAL:$1|seconde}} fà',
+'monday-at' => 'Lunedìe a le $1',
+'tuesday-at' => 'Martedìe a le $1',
+'wednesday-at' => 'Mercrudìe a le $1',
+'thursday-at' => 'Sciuvedìe a le $1',
+'friday-at' => 'Venerdìe a le $1',
+'saturday-at' => 'Sabbète a le $1',
+'sunday-at' => 'Dumeneche a le $1',
+'yesterday-at' => 'Aijere a le $1',
+
 # Bad image list
 'bad_image_list' => "'U formete jè 'u seguende:
 
@@ -4088,8 +4111,4 @@ Ce nò, tu puè ausà 'u module facile aqquà sotte. 'U commende tune avène agg
 # Image rotation
 'rotate-comment' => 'Immaggine rotate de $1 {{PLURAL:$1|grade}} in sienze orarie',
 
-# Unknown messages
-'hours-ago' => '$1 {{PLURAL:$1|ore}} fà',
-'minutes-ago' => '$1 {{PLURAL:$1|minute}} fà',
-'seconds-ago' => '$1 {{PLURAL:$1|seconde}} fà',
 );

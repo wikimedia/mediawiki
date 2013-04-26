@@ -10,6 +10,7 @@
  * @author Annabel
  * @author AvatarTeam
  * @author B4bol4t
+ * @author Basvb
  * @author DasRakel
  * @author Effeietsanders
  * @author Erwin
@@ -463,16 +464,6 @@ $messages = array(
 'nov' => 'nov',
 'dec' => 'dec',
 
-'monday-at' => 'Maandag om $1',
-'tuesday-at' => 'Dinsdag om $1',
-'wednesday-at' => 'Woensdag om $1',
-'thursday-at' => 'Donderdag om $1',
-'friday-at' => 'Vrijdag om $1',
-'saturday-at' => 'Zaterdag om $1',
-'sunday-at' => 'Zondag om $1',
-'today-at' => '$1',
-'yesterday-at' => 'Gisteren om $1',
-
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Categorie|Categorieën}}',
 'category_header' => 'Pagina’s in categorie "$1"',
@@ -785,10 +776,15 @@ Vergeet niet uw [[Special:Preferences|voorkeuren voor {{SITENAME}}]] aan te pass
 'yourname' => 'Gebruikersnaam:',
 'userlogin-yourname' => 'Gebruikersnaam',
 'userlogin-yourname-ph' => 'Geef uw gebruikersnaam op',
+'createacct-helpusername-url' => '{{ns:Project}}:Beleid_gebruikersnamen',
+'createacct-helpusername-link' => '[[{{MediaWiki:createacct-helpusername-url}}|(help me kiezen)]]',
 'yourpassword' => 'Wachtwoord:',
 'userlogin-yourpassword' => 'Wachtwoord',
 'userlogin-yourpassword-ph' => 'Geef uw wachtwoord op',
+'createacct-yourpassword-ph' => 'Geef een wachtwoord op',
 'yourpasswordagain' => 'Geef uw wachtwoord opnieuw in:',
+'createacct-yourpasswordagain' => 'Bevestig wachtwoord',
+'createacct-yourpasswordagain-ph' => 'Geef het wachtwoord opnieuw op',
 'remembermypassword' => 'Aanmeldgegevens onthouden (maximaal $1 {{PLURAL:$1|dag|dagen}})',
 'userlogin-remembermypassword' => 'Aanmeldgegevens onthouden',
 'userlogin-signwithsecure' => 'Aanmelden via beveiligde server',
@@ -804,7 +800,7 @@ Vergeet niet uw [[Special:Preferences|voorkeuren voor {{SITENAME}}]] aan te pass
 'logout' => 'Afmelden',
 'userlogout' => 'Afmelden',
 'notloggedin' => 'Niet aangemeld',
-'userlogin-noaccount' => 'Hebt u geen geregistreerde gebruiker?',
+'userlogin-noaccount' => 'Hebt u geen geregistreerd account?',
 'userlogin-joinproject' => 'Word lid van {{SITENAME}}',
 'nologin' => 'Nog geen gebruikersnaam? $1.',
 'nologinlink' => 'Registreren',
@@ -814,8 +810,22 @@ Vergeet niet uw [[Special:Preferences|voorkeuren voor {{SITENAME}}]] aan te pass
 'userlogin-resetlink' => 'Bent u uw aanmeldgegevens vergeten?',
 'helplogin-url' => 'Help:Aanmelden',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Hulp bij aanmelden]]',
+'createacct-join' => 'Geef uw gegevens hieronder op.',
+'createacct-emailrequired' => 'E-mailadres',
+'createacct-emailoptional' => 'E-mailadres (optioneel)',
+'createacct-email-ph' => 'Geef uw e-mailadres op',
 'createaccountmail' => 'Gebruik een tijdelijk willekeurig wachtwoord en stuur het naar het e-mailadres dat hieronder is vermeld',
+'createacct-realname' => 'Echte naam (optioneel)',
 'createaccountreason' => 'Reden:',
+'createacct-reason' => 'Reden',
+'createacct-captcha' => 'Veiligheidscontrole',
+'createacct-captcha-help-url' => '{{ns:Project}}:Gebruiker_aanvragen',
+'createacct-imgcaptcha-help' => 'Kunt u de afbeelding niet zien? [[{{MediaWiki:createacct-captcha-help-url}}|Vraag dan een gebruiker aan]]',
+'createacct-imgcaptcha-ph' => 'Geef de tekst in die u hierboven ziet',
+'createacct-benefit-heading' => '{{SITENAME}} wordt gemaakt door mensen zoals u.',
+'createacct-benefit-body1' => 'bewerkingen',
+'createacct-benefit-body2' => "pagina{{PLURAL:$1||'s}}",
+'createacct-benefit-body3' => 'bijdrager{{PLURAL:$1||s}} deze maand',
 'badretype' => 'De ingevoerde wachtwoorden verschillen van elkaar.',
 'userexists' => 'De gekozen gebruikersnaam is al in gebruik.
 Kies een andere naam.',
@@ -950,7 +960,7 @@ Meld u aan en wijzig het wachtwoord nu. Als u dit verzoek niet zelf heeft gedaan
 Tijdelijk wachtwoord: $2',
 'passwordreset-emailsent' => 'Er is een e-mail voor het opnieuw instellen van een wachtwoord verzonden.',
 'passwordreset-emailsent-capture' => 'Er is een e-mail voor het opnieuw instellen van een wachtwoord verzonden. Deze wordt hieronder weergegeven.',
-'passwordreset-emailerror-capture' => 'Er is een e-mail voor het opnieuw instellen van een wachtwoord aangemaakt. Deze wordt hieronder weergegeven. Het verzonden naar de gebruiker is mislukt om de volgende reden: $1',
+'passwordreset-emailerror-capture' => 'Er is een e-mail voor het opnieuw instellen van een wachtwoord aangemaakt. Deze wordt hieronder weergegeven. Het verzonden naar de {{GENDER:$2|gebruiker}} is mislukt om de volgende reden: $1',
 
 # Special:ChangeEmail
 'changeemail' => 'E-mailadres wijzigen',
@@ -3370,10 +3380,24 @@ $1',
 'minutes' => '{{PLURAL:$1|$1 minuut|$1 minuten}}',
 'hours' => '{{PLURAL:$1|$1 uur|$1 uur}}',
 'days' => '{{PLURAL:$1|$1 dag|$1 dagen}}',
+'weeks' => '{{PLURAL: $1|één week|$1 weken}}',
 'months' => '{{PLURAL:$1|één maand|$1 maanden}}',
 'years' => '{{PLURAL:$1|één jaar|$1 jaar}}',
 'ago' => '$1 geleden',
 'just-now' => 'Daarnet',
+
+# Human-readable timestamps
+'hours-ago' => '$1 {{PLURAL:$1|uur}} geleden',
+'minutes-ago' => '$1 {{PLURAL:$1|minuut|minuten}} geleden',
+'seconds-ago' => '$1 {{PLURAL:$1|seconde|seconden}} geleden',
+'monday-at' => 'Maandag om $1',
+'tuesday-at' => 'Dinsdag om $1',
+'wednesday-at' => 'Woensdag om $1',
+'thursday-at' => 'Donderdag om $1',
+'friday-at' => 'Vrijdag om $1',
+'saturday-at' => 'Zaterdag om $1',
+'sunday-at' => 'Zondag om $1',
+'yesterday-at' => 'Gisteren om $1',
 
 # Bad image list
 'bad_image_list' => "De opmaak is als volgt:
@@ -4232,8 +4256,4 @@ Anders kunt u ook het eenvoudige formulier hieronder gebruiken. Uw reactie wordt
 # Image rotation
 'rotate-comment' => 'Afbeelding gedraaid, $1 {{PLURAL:$1|graad|graden}} met de klok mee',
 
-# Unknown messages
-'hours-ago' => '$1 {{PLURAL:$1|uur}} geleden',
-'minutes-ago' => '$1 {{PLURAL:$1|minuut|minuten}} geleden',
-'seconds-ago' => '$1 {{PLURAL:$1|seconde|seconden}} geleden',
 );

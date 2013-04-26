@@ -294,16 +294,6 @@ $messages = array(
 'nov' => 'nov.',
 'dec' => 'dec.',
 
-'monday-at' => 'Ponedeljek ob $1',
-'tuesday-at' => 'Torek ob $1',
-'wednesday-at' => 'Sreda ob $1',
-'thursday-at' => 'Četrtek ob $1',
-'friday-at' => 'Petek ob $1',
-'saturday-at' => 'Sobota ob $1',
-'sunday-at' => 'Nedelja ob $1',
-'today-at' => '$1',
-'yesterday-at' => 'Včeraj ob $1',
-
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Kategorija|Kategoriji|Kategorije}}',
 'category_header' => 'Strani v kategoriji »$1«',
@@ -615,10 +605,15 @@ Ne pozabite si prilagoditi vaših [[Special:Preferences|nastavitev {{GRAMMAR:rod
 'yourname' => 'Uporabniško ime:',
 'userlogin-yourname' => 'Uporabniško ime',
 'userlogin-yourname-ph' => 'Vnesite svoje uporabniško ime',
+'createacct-helpusername-url' => '{{ns:Project}}:Pravilnik o uporabniških imenih',
+'createacct-helpusername-link' => '[[{{MediaWiki:createacct-helpusername-url}}|(pomagaj mi izbrati)]]',
 'yourpassword' => 'Geslo:',
 'userlogin-yourpassword' => 'Geslo',
 'userlogin-yourpassword-ph' => 'Vnesite svoje geslo',
+'createacct-yourpassword-ph' => 'Vnesite geslo',
 'yourpasswordagain' => 'Ponovno vpišite geslo',
+'createacct-yourpasswordagain' => 'Potrdite geslo',
+'createacct-yourpasswordagain-ph' => 'Ponovno vnesite geslo',
 'remembermypassword' => 'Zapomni si me na tem računalniku (za največ $1 {{PLURAL:$1|dan|dneva|dni}})',
 'userlogin-remembermypassword' => 'Zapomni si me',
 'userlogin-signwithsecure' => 'Vpiši se z varnim strežnikom',
@@ -644,8 +639,22 @@ Ne pozabite si prilagoditi vaših [[Special:Preferences|nastavitev {{GRAMMAR:rod
 'userlogin-resetlink' => 'Ste pozabili svoje prijavne podatke?',
 'helplogin-url' => 'Help:Prijava',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Pomoč pri prijavi]]',
+'createacct-join' => 'Spodaj vnesite svoje informacije.',
+'createacct-emailrequired' => 'E-poštni naslov',
+'createacct-emailoptional' => 'E-poštni naslov (izbirno)',
+'createacct-email-ph' => 'Vnesite svoj e-poštni naslov',
 'createaccountmail' => 'Ustvari začasno naključno geslo in ga pošlji na spodaj navedeni e-poštni naslov',
+'createacct-realname' => 'Pravo ime (izbirno)',
 'createaccountreason' => 'Razlog:',
+'createacct-reason' => 'Razlog',
+'createacct-captcha' => 'Varnostno preverjanje',
+'createacct-captcha-help-url' => '{{ns:Project}}:Prošnja za račun',
+'createacct-imgcaptcha-help' => 'Ne morete videti slike? [[{{MediaWiki:createacct-captcha-help-url}}|Zaprosite za račun]]',
+'createacct-imgcaptcha-ph' => 'Vnesite zgornje besedilo',
+'createacct-benefit-heading' => '{{GRAMMAR:tožilnik|{{SITENAME}}}} ustvarjajo ljudje, kot ste vi.',
+'createacct-benefit-body1' => 'urejanj',
+'createacct-benefit-body2' => 'strani',
+'createacct-benefit-body3' => 'sodelavcev ta mesecev',
 'badretype' => 'Gesli, ki ste ju vnesli, se ne ujemata.',
 'userexists' => 'Uporabniško ime, ki ste ga vnesli, je že zasedeno.
 Prosimo, izberite drugo.',
@@ -3151,6 +3160,19 @@ Z njenim zagonom lahko ogrozite vaš sistem.",
 'ago' => 'pred $1',
 'just-now' => 'pravkar',
 
+# Human-readable timestamps
+'hours-ago' => 'pred $1 {{PLURAL:$1|uro|urama|urami}}',
+'minutes-ago' => 'pred $1 {{PLURAL:$1|minuto|minutama|minutami}}',
+'seconds-ago' => 'pred $1 {{PLURAL:$1|sekundo|sekundama|sekundami}}',
+'monday-at' => 'Ponedeljek ob $1',
+'tuesday-at' => 'Torek ob $1',
+'wednesday-at' => 'Sreda ob $1',
+'thursday-at' => 'Četrtek ob $1',
+'friday-at' => 'Petek ob $1',
+'saturday-at' => 'Sobota ob $1',
+'sunday-at' => 'Nedelja ob $1',
+'yesterday-at' => 'Včeraj ob $1',
+
 # Bad image list
 'bad_image_list' => 'Oblika je naslednja:
 
@@ -3999,8 +4021,4 @@ V nasprotnem primeru lahko uporabite preprost obrazec spodaj. Vašo pripombo bom
 # Image rotation
 'rotate-comment' => 'Slika zavrti s  $1  {{PLURAL:$1| degree|degrees}} v smeri urinega kazalca',
 
-# Unknown messages
-'hours-ago' => 'pred $1 {{PLURAL:$1|uro|urama|urami}}',
-'minutes-ago' => 'pred $1 {{PLURAL:$1|minuto|minutama|minutami}}',
-'seconds-ago' => 'pred $1 {{PLURAL:$1|sekundo|sekundama|sekundami}}',
 );

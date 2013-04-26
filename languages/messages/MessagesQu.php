@@ -818,7 +818,7 @@ kay willayta mana qhawaspa mana imatapas ruraspa ñawpaq yaykuna rimaykiwanmi ll
 Mit'alla yaykuna rima: $2",
 'passwordreset-emailsent' => 'Yaykuna rimata kutichina e-chaskiqa kachasqañam.',
 'passwordreset-emailsent-capture' => 'Yaykuna rimata kutichina e-chaskiqa kachasqañam, kay qatiqpi rikunki.',
-'passwordreset-emailerror-capture' => 'Yaykuna rimata kutichina e-chaskiqa rurasqa karqan, imatachus kay qatiqpi rikunki, ichataq kachasqa kaptin pantasqam tukurqan: $1',
+'passwordreset-emailerror-capture' => '{{GENDER:$2|}}Yaykuna rimata kutichina e-chaskiqa rurasqa karqan, imatachus kay qatiqpi rikunki, ichataq kachasqa kaptin pantasqam tukurqan: $1',
 
 # Special:ChangeEmail
 'changeemail' => 'E-chaski imamaytata wakinchay',

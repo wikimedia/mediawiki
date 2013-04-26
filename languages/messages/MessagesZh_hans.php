@@ -18,6 +18,7 @@
  * @author Chenzw
  * @author Chinalace
  * @author Cicku
+ * @author Cwek
  * @author Dimension
  * @author Dingyuang
  * @author Fantasticfears
@@ -50,6 +51,7 @@
  * @author Shirayuki
  * @author Shizhao
  * @author Simon Shek
+ * @author Slboat
  * @author Supaiku
  * @author Tommyang
  * @author Waihorace
@@ -758,10 +760,15 @@ $2',
 'yourname' => '用户名：',
 'userlogin-yourname' => '用户名',
 'userlogin-yourname-ph' => '输入您的用户名',
+'createacct-helpusername-url' => '{{ns:Project}}:用户名',
+'createacct-helpusername-link' => '[[{{MediaWiki:createacct-helpusername-url}}|(帮我选择)]]',
 'yourpassword' => '密码：',
 'userlogin-yourpassword' => '密码',
 'userlogin-yourpassword-ph' => '输入您的密码',
+'createacct-yourpassword-ph' => '请输入密码',
 'yourpasswordagain' => '再次输入密码：',
+'createacct-yourpasswordagain' => '确认新密码',
+'createacct-yourpasswordagain-ph' => '请再次输入密码',
 'remembermypassword' => '在该浏览器保存我的登录状态（最长$1日）',
 'userlogin-remembermypassword' => '记住我',
 'userlogin-signwithsecure' => '通过安全服务器登入',
@@ -785,13 +792,28 @@ $2',
 'gotaccount' => '已经拥有账户？请$1。',
 'gotaccountlink' => '登录',
 'userlogin-resetlink' => '忘记了你的登录信息？',
-'helplogin-url' => 'Help:登入',
+'helplogin-url' => 'Help:登录',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|登录说明]]',
+'createacct-join' => '请在下面输入你的信息。',
+'createacct-emailrequired' => '电子邮件地址：',
+'createacct-emailoptional' => '电子邮件地址 (可选)',
+'createacct-email-ph' => '请输入您的电子邮件地址',
 'createaccountmail' => '使用一个临时的随机密码，并将它发送到以下指定的电子邮件地址',
+'createacct-realname' => '真实姓名 (可选)',
 'createaccountreason' => '原因：',
+'createacct-reason' => '原因',
+'createacct-captcha' => '安全检查',
+'createacct-captcha-help-url' => '{{ns:Project}}:账号请求',
+'createacct-imgcaptcha-help' => '无法看到图像吗？[[{{MediaWiki:createacct-captcha-help-url}}|请求一个账户]]',
+'createacct-imgcaptcha-ph' => '输入您在上面看到的文本',
+'createacct-benefit-heading' => '{{SITENAME}} 是由像你这样的人建立的。',
+'createacct-benefit-body1' => '编辑数',
+'createacct-benefit-body2' => '条目数',
+'createacct-benefit-body3' => '位本月贡献者',
 'badretype' => '您所输入的密码并不相同。',
 'userexists' => '用户名已存在。请使用其他名称。',
 'loginerror' => '登录错误',
+'createacct-error' => '帐户创建错误',
 'createaccounterror' => '无法建立账户：$1',
 'nocookiesnew' => '本用户账户已被创建，但登录失败。{{SITENAME}}使用cookie登录。你已停用cookie。请启用cookie，然后使用你的新用户名和密码登录。',
 'nocookieslogin' => '{{SITENAME}}使用cookie登录。你已停用cookie。请启用cookie后重试。',
@@ -894,7 +916,7 @@ $2
 临时密码：$2',
 'passwordreset-emailsent' => '密码重置邮件已发送。',
 'passwordreset-emailsent-capture' => '密码重设电子邮件已发送，并在下面显示。',
-'passwordreset-emailerror-capture' => '重置密码邮件已生成，但是无法向下列用户发送：$1',
+'passwordreset-emailerror-capture' => '重置密码邮件已生成，但是无法向{{GENDER:$2|下列用户}} 发送：$1',
 
 # Special:ChangeEmail
 'changeemail' => '更改电子邮件地址',
@@ -2065,7 +2087,7 @@ $1',
 'uncategorizedimages' => '未归类文件',
 'uncategorizedtemplates' => '未归类模板',
 'unusedcategories' => '未使用分类',
-'unusedimages' => '未使用图像',
+'unusedimages' => '未使用文件',
 'popularpages' => '热点页面',
 'wantedcategories' => '需要的分类',
 'wantedpages' => '待撰页面',
@@ -3141,10 +3163,24 @@ $1',
 'minutes' => '$1分',
 'hours' => '$1小时',
 'days' => '$1天',
+'weeks' => '$1周',
 'months' => '{{PLURAL:$1|$1个月}}',
 'years' => '{{PLURAL:$1|$1年}}',
 'ago' => '$1前',
 'just-now' => '刚刚',
+
+# Human-readable timestamps
+'hours-ago' => '$1小时前',
+'minutes-ago' => '$1分钟前',
+'seconds-ago' => '$1秒前',
+'monday-at' => '周一$1',
+'tuesday-at' => '周二$1',
+'wednesday-at' => '周三$1',
+'thursday-at' => '周四$1',
+'friday-at' => '周五$1',
+'saturday-at' => '周六$1',
+'sunday-at' => '周日$1',
+'yesterday-at' => '昨天$1',
 
 # Bad image list
 'bad_image_list' => '请按照下列格式编写：
@@ -3929,7 +3965,7 @@ MediaWiki发表时预期有用，但对此'''无任何保证'''，亦无隐含�
 'rightsnone' => '（无）',
 
 # Feedback
-'feedback-bugornote' => '如果你准备好详细描述一个技术问题，请[$1 报告bug]。或者你可以使用下面的简单表格。你的评论将被添加至页面“[$3 $2]”，附有你的用户名和使用的浏览器。',
+'feedback-bugornote' => '如果你准备好详细描述一个技术问题，请[$1 报告bug]。或者你可以使用下面的简单表格。你的评论及用户名将被添加至页面“[$3 $2]”。',
 'feedback-subject' => '主题：',
 'feedback-message' => '信息：',
 'feedback-cancel' => '取消',

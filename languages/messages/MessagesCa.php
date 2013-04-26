@@ -612,10 +612,14 @@ No oblideu de canviar les vostres [[Special:Preferences|preferències de {{SITEN
 'yourname' => "Nom d'usuari",
 'userlogin-yourname' => "Nom d'usuari",
 'userlogin-yourname-ph' => "Introduïu el vostre nom d'usuari",
+'createacct-helpusername-link' => '[[{{MediaWiki:createacct-helpusername-url}}|(ajuda per escollir-ne un)]]',
 'yourpassword' => 'Contrasenya',
 'userlogin-yourpassword' => 'Contrasenya',
 'userlogin-yourpassword-ph' => 'Introduïu la vostra contrasenya',
+'createacct-yourpassword-ph' => 'Introduïu una contrasenya',
 'yourpasswordagain' => 'Escriviu una altra vegada la contrasenya',
+'createacct-yourpasswordagain' => 'Confirmeu la contrasenya',
+'createacct-yourpasswordagain-ph' => 'Introduïu de nou la contrasenya',
 'remembermypassword' => 'Recorda la contrasenya entre sessions (per un màxim de $1 {{PLURAL:$1|dia|dies}})',
 'userlogin-remembermypassword' => "Recorda'm",
 'userlogin-signwithsecure' => 'Inicia la sessió amb un servidor segur',
@@ -639,12 +643,29 @@ No oblideu de canviar les vostres [[Special:Preferences|preferències de {{SITEN
 'gotaccount' => 'Ja teniu un compte? $1.',
 'gotaccountlink' => 'Inicia una sessió',
 'userlogin-resetlink' => "Heu oblidat les vostres dades d'accés?",
+'helplogin-url' => 'Help:Registrar-se',
+'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Ajuda per registrar-se]]',
+'createacct-join' => 'Introduïu les dades a continuació.',
+'createacct-emailrequired' => 'Adreça de correu electrònic',
+'createacct-emailoptional' => 'Adreça de correu electrònic (opcional)',
+'createacct-email-ph' => 'Introduïu la vostra adreça de correu electrònic',
 'createaccountmail' => "Utilitza una contrasenya aleatòria temporal i envia-la a l'adreça de correu electrònic especificat a continuació",
+'createacct-realname' => 'Nom real (opcional)',
 'createaccountreason' => 'Motiu:',
+'createacct-reason' => 'Motiu',
+'createacct-captcha' => 'Control de seguretat',
+'createacct-captcha-help-url' => '{{ns:Project}}:Sol·licitar un compte',
+'createacct-imgcaptcha-help' => 'No podeu veure la imatge? [[{{MediaWiki:createacct-captcha-help-url}}|Sol·liciteu un compte]]',
+'createacct-imgcaptcha-ph' => 'Introduïu el text que apareix a dalt',
+'createacct-benefit-heading' => '{{SITENAME}} és feta per gent com tu.',
+'createacct-benefit-body1' => 'edicions',
+'createacct-benefit-body2' => 'pàgines',
+'createacct-benefit-body3' => 'col·laboradors aquest mes',
 'badretype' => 'Les contrasenyes que heu introduït no coincideixen.',
 'userexists' => 'El nom que heu entrat ja és en ús.
 Escolliu-ne un de diferent.',
 'loginerror' => "Error d'inici de sessió",
+'createacct-error' => 'Error de creació de compte',
 'createaccounterror' => "No s'ha pogut crear el compte: $1",
 'nocookiesnew' => "S'ha creat el compte d'usuari, però no esteu enregistrat. El projecte {{SITENAME}} usa galetes per enregistrar els usuaris. Si us plau activeu-les, per a poder enregistrar-vos amb el vostre nom d'usuari i la clau.",
 'nocookieslogin' => 'El programari {{SITENAME}} utilitza galetes per enregistrar usuaris. Teniu les galetes desactivades. Activeu-les i torneu a provar.',
@@ -732,6 +753,7 @@ Deveu haver canviat la vostra contrasenya o demanat una nova contrasenya tempora
 'passwordreset-text' => 'Completeu el següent formulari per reinicialitzar la vostra contrasenya',
 'passwordreset-legend' => 'Restablir contrasenya',
 'passwordreset-disabled' => "S'ha desactivat el restabliment de contranyes en aquest wiki.",
+'passwordreset-emaildisabled' => 'Les opcions de correu electrònic no estan habilitades en aquest wiki.',
 'passwordreset-pretext' => '{{PLURAL:$1||Introduïu un dels elements de dades següents}}',
 'passwordreset-username' => "Nom d'usuari:",
 'passwordreset-domain' => 'Domini',
@@ -755,7 +777,7 @@ Hauríeu d'entrar ara per fixar una nova contrasenya. Si algú que no sou vós �
 Contrasenya temporal: $2",
 'passwordreset-emailsent' => "S'ha enviat un correu de reinicialització de contrasenya.",
 'passwordreset-emailsent-capture' => "S'ha enviat un correu electrònic de reinicialització de contrasenya, tal com es mostra a continuació.",
-'passwordreset-emailerror-capture' => "S'ha generat un correu electrònic de reinicialització de contrasenya, que es mostra a continuació, però ha fallat l'enviament a l'usuari: $1",
+'passwordreset-emailerror-capture' => "S'ha generat un correu electrònic de renovació de contrasenya, que es mostra a continuació, però ha fallat l'enviament a {{GENDER:$2:l'usuari|la usuària}}: $1",
 
 # Special:ChangeEmail
 'changeemail' => 'Canvi de correu electrònic',
@@ -843,7 +865,7 @@ El número d'identificació de la vostra adreça IP és $3, i l'ID del bloqueig 
 Potser ha estat moguda o eliminada mentre estàveu veient la pàgina.',
 'loginreqtitle' => 'Cal que inicieu una sessió',
 'loginreqlink' => 'inicia una sessió',
-'loginreqpagetext' => 'Heu de ser $1 per a visualitzar altres pàgines.',
+'loginreqpagetext' => "Cal que seguiu l'enllaç «$1» per a visualitzar altres pàgines.",
 'accmailtitle' => "S'ha enviat una contrasenya.",
 'accmailtext' => "S'ha enviat una contrasenya aleatòria a $2 per a l'{{GENDER:$1|usuari|usuària}} [[User talk:$1|$1]].
 
@@ -1525,7 +1547,7 @@ Ha de tenir com a molt {{PLURAL:$1|un caràcter|$1 caràcters}}.',
 'action-userrights' => "modificar tots els permisos d'usuari",
 'action-userrights-interwiki' => "modificar permisos d'usuari en altres wikis",
 'action-siteadmin' => 'bloquejar o desbloquejar la base de dades',
-'action-sendemail' => 'envia missatges de correu',
+'action-sendemail' => 'enviar missatges de correu',
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|canvi|canvis}}',
@@ -1798,7 +1820,7 @@ Per seguretat, img_auth.php està desactivat.",
 'license' => 'Llicència:',
 'license-header' => 'Llicència',
 'nolicense' => "No se n'ha seleccionat cap",
-'license-nopreview' => '(La previsualització no està disponible)',
+'license-nopreview' => '(Previsualització no disponible)',
 'upload_source_url' => ' (un URL vàlid i accessible públicament)',
 'upload_source_file' => ' (un fitxer en el vostre ordinador)',
 
@@ -2128,10 +2150,8 @@ Pot ser que hi hagi més informació sobre drets individuals [[{{MediaWiki:Listg
 'listgrouprights-removegroup-self-all' => 'Abandona tots els grups',
 
 # Email user
-'mailnologin' => "No enviïs l'adreça",
-'mailnologintext' => "Heu d'haver [[Special:UserLogin|entrat]]
-i tenir una direcció electrònica vàlida en les vostres [[Special:Preferences|preferències]]
-per enviar un correu electrònic a altres usuaris.",
+'mailnologin' => 'Cap adreça de remitent',
+'mailnologintext' => "Heu d'[[Special:UserLogin|iniciar una sessió]] i tenir una adreça electrònica vàlida en les vostres [[Special:Preferences|preferències]] per poder enviar correus a altres usuaris.",
 'emailuser' => 'Envia un missatge de correu electrònic a aquest usuari',
 'emailuser-title-target' => 'Enviar un correu electrònic a {{GENDER:$1|aquest usuari|aquesta usuària}}',
 'emailuser-title-notarget' => 'Enviar un correu electrònic a un usuari',
@@ -2602,6 +2622,7 @@ Per més detalls, a sota es mostra el registre de supressions:',
 'proxyblocksuccess' => 'Fet.',
 'sorbsreason' => "La vostra adreça IP està llistada com a servidor intermediari (''proxy'') obert dins la llista negra de DNS que fa servir el projecte {{SITENAME}}.",
 'sorbs_create_account_reason' => "La vostra adreça IP està llistada com a servidor intermediari (''proxy'') obert a la llista negra de DNS que utilitza el projecte {{SITENAME}}. No podeu crear-vos-hi un compte",
+'xffblockreason' => "Una adreça IP present en la capçalera X-Forwarded-For, ja sigui vostra o la d'un servidor proxy que esteu utilitzant, ha estat blocada. El motiu inicial del bloqueig és: $1",
 'cant-block-while-blocked' => 'No podeu blocar altres usuaris quan esteu bloquejat.',
 'cant-see-hidden-user' => "L'usuari que esteu intentant blocar ja ha estat blocat i ocultat. Com que no teniu el permís hideuser no podeu veure ni modificar el seu blocatge.",
 'ipbblocked' => 'No podeu blocar o desblocar altres usuaris, perquè vós {{GENDER:|mateix|mateixa|mateix}} esteu {{GENDER:|blocat|blocada|blocat}}.',
@@ -2631,7 +2652,7 @@ Recordeu-vos de [[Special:UnlockDB|treure el bloqueig]] quan hàgiu acabat el ma
 'lockedbyandtime' => '(per $1 el $2 a les $3)',
 
 # Move page
-'move-page' => 'Mou $1',
+'move-page' => 'Reanomena $1',
 'move-page-legend' => 'Reanomena la pàgina',
 'movepagetext' => "Amb el formulari següent reanomenareu una pàgina, movent tot el seu historial al nou nom.
 El títol anterior es convertirà en una pàgina de redirecció al nou títol.
@@ -3070,10 +3091,17 @@ Si l'executeu, podeu comprometre la seguretat del vostre sistema.",
 'minutes' => '{{PLURAL:$1|$1 minut|$1 minuts}}',
 'hours' => '{{PLURAL:$1|$1 hora|$1 hores}}',
 'days' => '{{PLURAL:$1|$1 dia|$1 dies}}',
+'weeks' => '{{PLURAL:$1|$1 setmana|$1 setmanes}}',
 'months' => '{{PLURAL:$1|$1 mes|$1 mesos}}',
 'years' => '{{PLURAL:$1|$1 any|$1 anys}}',
 'ago' => 'fa $1',
 'just-now' => 'ara mateix',
+
+# Human-readable timestamps
+'hours-ago' => 'fa $1 {{PLURAL:$1|hora|hores}}',
+'minutes-ago' => 'fa $1 {{PLURAL:$1|minut|minuts}}',
+'seconds-ago' => 'fa $1 {{PLURAL:$1|segon|segons}}',
+'monday-at' => 'Dilluns a les $1',
 
 # Bad image list
 'bad_image_list' => "El format ha de ser el següent:

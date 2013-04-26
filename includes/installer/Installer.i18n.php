@@ -4210,6 +4210,12 @@ Das hier angegebene Datenbankkonto muss daher bereits vorhanden sein.',
 
 Sofern die vorhandene MySQL-Installation die Speicher-Engine InnoDB unterstützt, wird deren Verwendung eindringlich empfohlen.
 Sofern sie sie nicht unterstützt, sollte eine entsprechende Aktualisierung nunmehr Erwägung gezogen werden.",
+	'config-mysql-only-myisam-dep' => "'''Warnung:''' MyISAM ist die einzige verfügbare Speicher-Engine für MySQL, die nicht für die Verwendung mit MediaWiki empfohlen wird, da sie
+* aufgrund von Tabellensperrungen kaum die nebenläufige Ausführung von Aktionen unterstützt,
+* anfälliger für Datenprobleme ist und
+* von MediaWiki nicht immer adäquat unterstützt wird.
+
+Deine MySQL-Installation unterstützt nicht InnoDB. Eventuell muss eine Aktualisierung durchgeführt werden.",
 	'config-mysql-engine-help' => "'''InnoDB''' ist fast immer die bessere Wahl, da es gleichzeitige Zugriffe gut unterstützt.
 
 '''MyISAM''' ist in Einzelnutzerumgebungen sowie bei schreibgeschützten Wikis schneller.
@@ -6006,6 +6012,12 @@ Le compte que vous spécifiez ici doit déjà exister.",
  * il est plus sujet à la corruption que les autres moteurs
  * le codebase MediaWiki ne gère pas toujours MyISAM comme il se doit
 Si votre installation MySQL supporte InnoDB, il est fortement recommandé que vous le choisissez plutôt. Si votre installation MySQL ne supporte pas les tables InnoDB, il est peut-être temps de faire une mise à niveau.",
+	'config-mysql-only-myisam-dep' => "'''Attention :''' MyISAM est le seul moteur de stockage disponible pour MySQL qui ne soit pas recommandé pour une utilsiation avec MédiaWiki, car :
+* il supporte très peu les accès concurrents à cause du verrouillage des tables
+* il est plus sujet à corruption que les autres moteurs
+* le code de base de MédiaWiki ne gère pas toujours MyISAM comme il faudrait
+
+Votre installation MySQL ne supporte pas InnoDB ; il est peut-être temps de la mettre à jour.",
 	'config-mysql-engine-help' => "'''InnoDB''' est presque toujours la meilleure option, car il supporte bien l'[http://fr.wikipedia.org/wiki/Ordonnancement_dans_les_syst%C3%A8mes_d%27exploitation ordonnancement].
 
 '''MyISAM''' peut être plus rapide dans les installations monoposte ou en lecture seule. Les bases de données MyISAM ont tendance à se corrompre plus souvent que celles d'InnoDB.",
@@ -12541,17 +12553,18 @@ $messages['mhr'] = array(
 );
 
 /** Minangkabau (Baso Minangkabau)
+ * @author Iwan Novirion
  * @author Luthfi94
  */
 $messages['min'] = array(
 	'mainpagetext' => "'''MediaWiki alah tapasang jo sukses'''.",
-	'mainpagedocfooter' => 'Silakan baco [//www.mediawiki.org/wiki/Help:Contents/id Panduan Pangguno] untuak caro panggunoan parangkaik lunak wiki iko.
+	'mainpagedocfooter' => 'Konsultasian [//meta.wikimedia.org/wiki/Help:Contents/min Panduan Panggunoan] untuak informasi caro panggunoan parangkaik lunak wiki.
 
 == Mamulai panggunoan ==
-
-* [//www.mediawiki.org/wiki/Manual:Configuration_settings/id Dafta pangaturan konfigurasi]
-* [//www.mediawiki.org/wiki/Manual:FAQ/id Dafta patanyoan nan acok diajukan manganai MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Milis rilis MediaWiki]',
+* [//www.mediawiki.org/wiki/Manual:Configuration_settings/id Daftar pangaturan konfigurasi]
+* [//www.mediawiki.org/wiki/Manual:FAQ/id Daftar patanyoan nan acok diajukan manganai MediaWiki]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Milis rilis MediaWiki]
+* [//www.mediawiki.org/wiki/Localisation#Translation_resources Palokalan MediaWiki untuak bahaso Sanak]',
 );
 
 /** Macedonian (македонски)

@@ -453,16 +453,6 @@ $messages = array(
 'nov' => '11',
 'dec' => '12',
 
-'monday-at' => '월요일 $1',
-'tuesday-at' => '화요일 $1',
-'wednesday-at' => '수요일 $1',
-'thursday-at' => '목요일 $1',
-'friday-at' => '금요일 $1',
-'saturday-at' => '토요일 $1',
-'sunday-at' => '일요일 $1',
-'today-at' => '$1',
-'yesterday-at' => '어제 $1',
-
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|분류}}',
 'category_header' => '"$1" 분류에 속하는 문서',
@@ -773,10 +763,14 @@ $2',
 'yourname' => '사용자 이름:',
 'userlogin-yourname' => '사용자 이름',
 'userlogin-yourname-ph' => '사용자 이름을 입력하세요',
+'createacct-helpusername-url' => '{{ns:Project}}:사용자_이름_정책',
 'yourpassword' => '비밀번호:',
 'userlogin-yourpassword' => '비밀번호',
 'userlogin-yourpassword-ph' => '비밀번호를 입력하세요',
+'createacct-yourpassword-ph' => '비밀번호 입력',
 'yourpasswordagain' => '비밀번호 다시 입력:',
+'createacct-yourpasswordagain' => '비밀번호 확인',
+'createacct-yourpasswordagain-ph' => '비밀번호 다시 입력',
 'remembermypassword' => '이 브라우저에서 로그인 상태를 저장하기 (최대 $1{{PLURAL:$1|일}})',
 'userlogin-remembermypassword' => '로그인 상태를 기억하기',
 'userlogin-signwithsecure' => '보안 서버로 로그인',
@@ -802,7 +796,12 @@ $2',
 'userlogin-resetlink' => '사용자 이름이나 비밀번호를 잊으셨나요?',
 'helplogin-url' => 'Help:로그인',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|로그인에 관한 도움말]]',
+'createacct-join' => '아래에 정보를 입력하세요.',
+'createacct-emailrequired' => '이메일 주소',
+'createacct-emailoptional' => '이메일 주소 (선택 사항)',
+'createacct-email-ph' => '이메일 주소를 입력하세요',
 'createaccountmail' => '임시 임의 비밀번호를 아래에 지정한 이메일로 보내기',
+'createacct-realname' => '실명 (선택 사항)',
 'createaccountreason' => '이유:',
 'badretype' => '입력한 비밀번호가 일치하지 않습니다.',
 'userexists' => '입력하신 사용자 이름이 이미 등록되어 있습니다.
@@ -3353,6 +3352,19 @@ $1',
 'ago' => '$1 전',
 'just-now' => '방금',
 
+# Human-readable timestamps
+'hours-ago' => '$1{{PLURAL:$1|시간}} 전',
+'minutes-ago' => '$1{{PLURAL:$1|분}} 전',
+'seconds-ago' => '$1{{PLURAL:$1|초}} 전',
+'monday-at' => '월요일 $1',
+'tuesday-at' => '화요일 $1',
+'wednesday-at' => '수요일 $1',
+'thursday-at' => '목요일 $1',
+'friday-at' => '금요일 $1',
+'saturday-at' => '토요일 $1',
+'sunday-at' => '일요일 $1',
+'yesterday-at' => '어제 $1',
+
 # Bad image list
 'bad_image_list' => '형식은 아래와 같습니다.
 
@@ -4207,8 +4219,4 @@ $5
 # Image rotation
 'rotate-comment' => '그림을 시계 방향으로 $1{{PLURAL:$1|도}}로 회전함',
 
-# Unknown messages
-'hours-ago' => '$1{{PLURAL:$1|시간}} 전',
-'minutes-ago' => '$1{{PLURAL:$1|분}} 전',
-'seconds-ago' => '$1{{PLURAL:$1|초}} 전',
 );

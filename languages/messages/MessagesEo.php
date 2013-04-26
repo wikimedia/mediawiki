@@ -422,8 +422,6 @@ $messages = array(
 'nov' => 'Nov',
 'dec' => 'Dec',
 
-'today-at' => '$1',
-
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Kategorio|Kategorioj}}',
 'category_header' => 'Artikoloj en kategorio "$1"',
@@ -932,7 +930,8 @@ Provizora pasvorto: $2',
 'showpreview' => 'Antaŭrigardo',
 'showlivepreview' => 'Aktiva antaŭvido',
 'showdiff' => 'Montri ŝanĝojn',
-'anoneditwarning' => 'Vi ne estas ensalutinta. Via IP-adreso enregistriĝos en la ŝango-historio de tiu ĉi paĝo.',
+'anoneditwarning' => "'''Averto:''' Vi ne estas ensalutinta.
+Via IP-adreso enregistriĝos en la redakta historio de tiu ĉi paĝo.",
 'anonpreviewwarning' => "''Vi ne estas ensalutita. La konservo de la paĝo registros vian IP-adreson en kronologio de ĉi tiu paĝo.''",
 'missingsummary' => "'''Rememorigilo:''' Vi ne provizis redaktan resumon. Se vi alklakos denove la konservan butonon, via redaktaĵo estos konservita sen resumo.",
 'missingcommenttext' => 'Bonvolu entajpi komenton malsupre.',
@@ -3233,6 +3232,11 @@ $1',
 'ago' => 'antaŭ $1',
 'just-now' => 'ĵus nune',
 
+# Human-readable timestamps
+'hours-ago' => 'antaŭ $1 {{PLURAL:$1|horo|horoj}}',
+'minutes-ago' => 'antaŭ $1 {{PLURAL:$1|minuto|minutoj}}',
+'seconds-ago' => 'antaŭ $1 {{PLURAL:$1|sekundo|sekundoj}}',
+
 # Bad image list
 'bad_image_list' => 'La formato estas jen:
 
@@ -4120,8 +4124,4 @@ Aŭ vi povas uzi la facilan formularon sube. Via komento estos aldonita al la pa
 'duration-centuries' => '$1 {{PLURAL:$1|jarcento|jarcentoj}}',
 'duration-millennia' => '$1 {{PLURAL:$1|jarmilo|jarmiloj}}',
 
-# Unknown messages
-'hours-ago' => 'antaŭ $1 {{PLURAL:$1|horo|horoj}}',
-'minutes-ago' => 'antaŭ $1 {{PLURAL:$1|minuto|minutoj}}',
-'seconds-ago' => 'antaŭ $1 {{PLURAL:$1|sekundo|sekundoj}}',
 );

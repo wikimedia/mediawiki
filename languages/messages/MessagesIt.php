@@ -395,15 +395,6 @@ $messages = array(
 'nov' => 'nov',
 'dec' => 'dic',
 
-'monday-at' => 'Lunedì alle $1',
-'tuesday-at' => 'Martedì alle $1',
-'wednesday-at' => 'Mercoledì alle $1',
-'thursday-at' => 'Giovedì alle $1',
-'friday-at' => 'Venerdì alle $1',
-'saturday-at' => 'Sabato alle $1',
-'sunday-at' => 'Domenica alle $1',
-'yesterday-at' => 'Ieri alle $1',
-
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Categoria|Categorie}}',
 'category_header' => 'Pagine nella categoria "$1"',
@@ -711,10 +702,15 @@ Non dimenticare di personalizzare le [[Special:Preferences|preferenze di {{SITEN
 'yourname' => 'Nome utente:',
 'userlogin-yourname' => 'Nome utente',
 'userlogin-yourname-ph' => 'Inserisci il tuo nome utente',
+'createacct-helpusername-url' => '{{ns:Project}}:Nome utente',
+'createacct-helpusername-link' => '[[{{MediaWiki:createacct-helpusername-url}}|(aiutami a scegliere)]]',
 'yourpassword' => 'Password:',
 'userlogin-yourpassword' => 'Password',
 'userlogin-yourpassword-ph' => 'Inserisci la tua password',
+'createacct-yourpassword-ph' => 'Inserisci una password',
 'yourpasswordagain' => 'Ripeti la password:',
+'createacct-yourpasswordagain' => 'Conferma password',
+'createacct-yourpasswordagain-ph' => 'Inserisci nuovamente la password',
 'remembermypassword' => 'Ricorda la password su questo browser (per un massimo di $1 {{PLURAL:$1|giorno|giorni}})',
 'userlogin-remembermypassword' => 'Ricordami',
 'userlogin-signwithsecure' => 'Accedi con il server sicuro',
@@ -731,7 +727,7 @@ Non dimenticare di personalizzare le [[Special:Preferences|preferenze di {{SITEN
 'userlogout' => 'esci',
 'notloggedin' => 'Accesso non effettuato',
 'userlogin-noaccount' => 'Non hai un account?',
-'userlogin-joinproject' => 'Unisciti a {{SITENAME}}',
+'userlogin-joinproject' => 'Registrati su {{SITENAME}}',
 'nologin' => 'Non hai ancora un accesso? $1.',
 'nologinlink' => 'Registrati',
 'createaccount' => "Crea un'utenza",
@@ -740,12 +736,27 @@ Non dimenticare di personalizzare le [[Special:Preferences|preferenze di {{SITEN
 'userlogin-resetlink' => 'Hai dimenticato i tuoi dati di accesso?',
 'helplogin-url' => 'Help:Login',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Aiuto con il login]]',
+'createacct-join' => 'Inserisci i tuoi dati qui sotto.',
+'createacct-emailrequired' => 'Indirizzo email',
+'createacct-emailoptional' => 'Indirizzo di posta elettronica (opzionale)',
+'createacct-email-ph' => 'Inserisci il tuo indirizzo email',
 'createaccountmail' => "Usa una password casuale temporanea e inviala all'indirizzo e-mail specificato sotto",
+'createacct-realname' => 'Nome reale (opzionale)',
 'createaccountreason' => 'Motivo:',
+'createacct-reason' => 'Motivo',
+'createacct-captcha' => 'Controllo di sicurezza',
+'createacct-captcha-help-url' => '{{ns:Project}}:Richieste di utenze',
+'createacct-imgcaptcha-help' => "Non riesci a vedere l'immagine? [[{{MediaWiki:createacct-captcha-help-url}}|Richiedi un'utenza]]",
+'createacct-imgcaptcha-ph' => 'Inserisci il testo che vedi sopra',
+'createacct-benefit-heading' => '{{SITENAME}} è fatta da persone come te.',
+'createacct-benefit-body1' => 'modifiche',
+'createacct-benefit-body2' => 'pagine',
+'createacct-benefit-body3' => 'contributori questo mese',
 'badretype' => 'Le password inserite non coincidono tra loro.',
 'userexists' => 'Il nome utente inserito è già utilizzato.
 Scegliere un nome utente diverso.',
 'loginerror' => "Errore durante l'accesso",
+'createacct-error' => "Errore durante la creazione dell'utenza",
 'createaccounterror' => "Impossibile creare l'account: $1",
 'nocookiesnew' => "La registrazione è stata completata, ma non è stato possibile accedere a {{SITENAME}} perché i cookie sono disattivati. Riprovare l'accesso con il nome utente e la password appena creati dopo aver attivato i cookie nel proprio browser.",
 'nocookieslogin' => "L'accesso a {{SITENAME}} richiede l'uso dei cookie, che risultano disattivati. Riprovare l'accesso dopo aver attivato i cookie nel proprio browser.",
@@ -3162,6 +3173,19 @@ $1',
 'ago' => '$1 fa',
 'just-now' => 'proprio ora',
 
+# Human-readable timestamps
+'hours-ago' => '$1 {{PLURAL:$1|ora|ore}} fa',
+'minutes-ago' => '$1 {{PLURAL:$1|minuto|minuti}} fa',
+'seconds-ago' => '$1 {{PLURAL:$1|secondo|secondi}} fa',
+'monday-at' => 'Lunedì alle $1',
+'tuesday-at' => 'Martedì alle $1',
+'wednesday-at' => 'Mercoledì alle $1',
+'thursday-at' => 'Giovedì alle $1',
+'friday-at' => 'Venerdì alle $1',
+'saturday-at' => 'Sabato alle $1',
+'sunday-at' => 'Domenica alle $1',
+'yesterday-at' => 'Ieri alle $1',
+
 # Bad image list
 'bad_image_list' => "Il formato è il seguente:
 
@@ -4012,8 +4036,4 @@ Le immagini vengono mostrate alla massima risoluzione disponibile, per gli altri
 # Image rotation
 'rotate-comment' => 'Immagine ruotata di $1 {{PLURAL:$1|grado|gradi}} in senso orario',
 
-# Unknown messages
-'hours-ago' => '$1 {{PLURAL:$1|ora|ore}} fa',
-'minutes-ago' => '$1 {{PLURAL:$1|minuto|minuti}} fa',
-'seconds-ago' => '$1 {{PLURAL:$1|secondo|secondi}} fa',
 );

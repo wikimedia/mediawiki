@@ -309,16 +309,6 @@ This option means "underline links as in your user skin or your browser", there 
 'nov' => 'Abbreviation of November, the eleventh month of the Gregorian calendar',
 'dec' => 'Abbreviation of December, the twelfth month of the Gregorian calendar',
 
-'monday-at' => 'Phrase for indicating that something occurred at a particular time on the most recent Monday. $1 is the time.',
-'tuesday-at' => 'Phrase for indicating that something occurred at a particular time on the most recent Tuesday. $1 is the time.',
-'wednesday-at' => 'Phrase for indicating that something occurred at a particular time on the most recent Wednesday. $1 is the time.',
-'thursday-at' => 'Phrase for indicating that something occurred at a particular time on the most recent Thursday. $1 is the time.',
-'friday-at' => 'Phrase for indicating that something occurred at a particular time on the most recent Friday. $1 is the time.',
-'saturday-at' => 'Phrase for indicating that something occurred at a particular time on the most recent Saturday. $1 is the time.',
-'sunday-at' => 'Phrase for indicating that something occurred at a particular time on the most recent Sunday. $1 is the time.',
-'today-at' => 'Phrase for indicating that something occurred at a particular time today. $1 is the time.',
-'yesterday-at' => 'Phrase for indicating that something occurred at a particular time yesterday. $1 is the time.',
-
 # Categories related messages
 'pagecategories' => 'Used in the categories section of pages. Is followed by a colon and a list of categories.',
 'category_header' => 'In category description page',
@@ -1055,18 +1045,33 @@ In user preferences.
 'userlogin-yourname' => 'In new vertical user login & create account forms, label for username field.
 {{Identical|Username}}',
 'userlogin-yourname-ph' => 'Placeholder text in new userlogin/create account form field.',
-'createacct-helpusername-url' => 'The URL of a page providing username guidance for the wiki.',
-'createacct-helpusername-link' => 'Message in new create account form providing guidance for username.',
+'createacct-helpusername-url' => 'The URL of a page providing username guidance for the wiki.
+
+Used as a link in {{msg-mw|Createacct-helpusername-link}}.
+
+See example: [{{canonicalurl:Special:UserLogin|type=signup&useNew=1}} Special:UserLogin?type=signup&useNew=1]',
+'createacct-helpusername-link' => 'Message in new create account form providing guidance for username.
+
+See example: [{{canonicalurl:Special:UserLogin|type=signup&useNew=1}} Special:UserLogin?type=signup&useNew=1]',
 'yourpassword' => 'In user preferences
 
 {{Identical|Password}}',
 'userlogin-yourpassword' => 'In new vertical user login & create account forms, label for password field.
 {{Identical|Password}}',
-'userlogin-yourpassword-ph' => 'Placeholder text in new userlogin form for password field.',
-'createacct-yourpassword-ph' => 'Placeholder text in new create account form for password field.',
+'userlogin-yourpassword-ph' => 'Placeholder text in new userlogin form for password field.
+{{Identical|Enter password}}',
+'createacct-yourpassword-ph' => 'Placeholder text in new create account form for password field.
+
+See example: [{{canonicalurl:Special:UserLogin|type=signup&useNew=1}} Special:UserLogin?type=signup&useNew=1]
+{{Identical|Enter password}}',
 'yourpasswordagain' => 'In user preferences',
-'createacct-yourpasswordagain' => 'In new create account form, label for field to re-enter password',
-'createacct-yourpasswordagain-ph' => 'Placeholder text in new create account form for re-enter password field.',
+'createacct-yourpasswordagain' => 'In new create account form, label for field to re-enter password
+
+See example: [{{canonicalurl:Special:UserLogin|type=signup&useNew=1}} Special:UserLogin?type=signup&useNew=1]
+{{Identical|Confirm password}}',
+'createacct-yourpasswordagain-ph' => 'Placeholder text in new create account form for re-enter password field.
+
+See example: [{{canonicalurl:Special:UserLogin|type=signup&useNew=1}} Special:UserLogin?type=signup&useNew=1]',
 'remembermypassword' => 'A check box in [[Special:UserLogin]]
 
 {{Identical|Remember my login on this computer}}',
@@ -1134,33 +1139,63 @@ Wikitext linking to login help.
 
 See also:
 * {{msg-mw|Helplogin-url}}',
-'createacct-join' => 'Subheading of vertical-layout create account form encouraging user to join the wiki.',
-'createacct-emailrequired' => 'Label in vertical-layout create account form for email field when it is required.',
-'createacct-emailoptional' => 'Label in vertical-layout create account form for email field when it is optional.',
-'createacct-email-ph' => 'Placeholder in vertical-layout create account form for email field.',
-'createaccountmail' => 'Button text for creating a new account and sending the new password to the specified e-mail address directly, as used on [[Special:UserLogin/signup]] if creating accounts by e-mail is allowed.',
+'createacct-join' => 'Subheading of vertical-layout create account form encouraging user to join the wiki.
+
+See example: [{{canonicalurl:Special:UserLogin|type=signup&useNew=1}} Special:UserLogin?type=signup&useNew=1]',
+'createacct-emailrequired' => 'Label in vertical-layout create account form for email field when it is required.
+
+See also:
+* {{msg-mw|Createacct-emailoptional}}
+{{Identical|E-mail address}}',
+'createacct-emailoptional' => 'Label in vertical-layout create account form for email field when it is optional.
+
+See example: [{{canonicalurl:Special:UserLogin|type=signup&useNew=1}} Special:UserLogin?type=signup&useNew=1]
+
+See also:
+* {{msg-mw|Createacct-emailrequired}}',
+'createacct-email-ph' => 'Placeholder in vertical-layout create account form for email field.
+
+See example: [{{canonicalurl:Special:UserLogin|type=signup&useNew=1}} Special:UserLogin?type=signup&useNew=1]',
+'createaccountmail' => 'Used as label for the checkbox for creating a new account and sending the new password to the specified e-mail address directly, as used on [[Special:UserLogin/signup]] if creating accounts by e-mail is allowed.
+
+See example: [{{canonicalurl:Special:UserLogin|type=signup&useNew=1}} Special:UserLogin?type=signup&useNew=1]',
 'createacct-realname' => 'In vertical-layout create account form, label for field to enter optional real name.',
 'createaccountreason' => '{{Identical|Reason}}',
-'createacct-reason' => 'In vertical-layout create account form, label for field to enter reason to create an account when already logged-in.',
+'createacct-reason' => 'In vertical-layout create account form, label for field to enter reason to create an account when already logged-in.
+
+See example: [{{canonicalurl:Special:UserLogin|type=signup&useNew=1}} Special:UserLogin?type=signup&useNew=1]
+{{Identical|Reason}}',
 'createacct-captcha' => 'Label in vertical-layout create account form for CAPTCHA input field when repositioned by JavaScript.',
-'createacct-captcha-help-url' => 'The URL of a page providing CAPTCHA assistance for the wiki.',
+'createacct-captcha-help-url' => 'The URL of a page providing CAPTCHA assistance for the wiki.
+
+Used as a link in {{msg-mw|Createacct-imgcaptcha-help}}.',
 'createacct-imgcaptcha-help' => 'Help text in vertical-layout create account form for image CAPTCHA input field when repositioned by JavaScript.',
 'createacct-imgcaptcha-ph' => 'Placehodler text in vertical-layout create account form for image CAPTCHA input field when repositioned by JavaScript.',
-'createacct-benefit-heading' => 'In vertical-layout create account form, the heading for the section describing the benefits of creating an account.',
-'createacct-benefit-icon1' => 'In vertical-layout create account form, the CSS style for the div next to the first benefit. If you replace this you will need probably need to adjust CSS.',
-'createacct-benefit-head1' => 'In vertical-layout create account form, the text in the heading for the first benefit. Do not edit the magic word; if you replace it you will probably need to adjust CSS.',
-'createacct-benefit-body1' => 'In vertical-layout create account form, the text for the first benefit.',
-'createacct-benefit-icon2' => 'In vertical-layout create account form, the CSS style for the div next to the second benefit. If you replace this you will need probably need to adjust CSS.',
-'createacct-benefit-head2' => 'In vertical-layout create account form, the text in the heading for the second benefit. Do not edit the magic word; if you replace it you will probably need to adjust CSS.',
-'createacct-benefit-body2' => 'In vertical-layout create account form, the text for the second benefit.',
-'createacct-benefit-icon3' => 'In vertical-layout create account form, the CSS style for the div next to the third benefit. If you replace this you will need probably need to adjust CSS.',
-'createacct-benefit-head3' => 'In vertical-layout create account form, the text in the heading for the third benefit. Do not edit the magic word; if you replace it you will probably need to adjust CSS.',
-'createacct-benefit-body3' => 'In vertical-layout create account form, the text for the third benefit.',
+'createacct-benefit-heading' => 'In vertical-layout create account form, the heading for the section describing the benefits of creating an account.
+
+See example: [{{canonicalurl:Special:UserLogin|type=signup&useNew=1}} Special:UserLogin?type=signup&useNew=1]',
+'createacct-benefit-body1' => 'In vertical-layout create account form, the text for the first benefit.
+
+Preceded by the message {{msg-mw|Createacct-benefit-head1}} (number of edits).
+
+See example: [{{canonicalurl:Special:UserLogin|type=signup&useNew=1}} Special:UserLogin?type=signup&useNew=1]
+{{Identical|Edit}}',
+'createacct-benefit-body2' => 'In vertical-layout create account form, the text for the second benefit.
+
+Preceded by the message {{msg-mw|Createacct-benefit-head2}} (number of pages).
+
+See example: [{{canonicalurl:Special:UserLogin|type=signup&useNew=1}} Special:UserLogin?type=signup&useNew=1]
+{{Identical|Page}}',
+'createacct-benefit-body3' => 'In vertical-layout create account form, the text for the third benefit.
+
+Preceded by the message {{msg-mw|Createacct-benefit-head3}} (number of contributors).
+
+See example: [{{canonicalurl:Special:UserLogin|type=signup&useNew=1}} Special:UserLogin?type=signup&useNew=1]',
 'badretype' => 'Used as error message when the new password and its retype do not match.',
 'userexists' => 'Used as error message in creating a user account.',
 'loginerror' => 'Used as title of error message.
 {{Identical|Login error}}',
-'createacct-error' => 'Title of error message in new vertical create account form.',
+'createacct-error' => 'Used as heading for the error message.',
 'createaccounterror' => 'Parameters:
 * $1 is an error message',
 'nocookiesnew' => "This message is displayed when a new account was successfully created, but the browser doesn't accept cookies.",
@@ -3941,7 +3976,7 @@ Possible alternatives to the word 'content' are 'subject matter' or 'wiki subjec
 
 {{Identical|Content page}}",
 'statistics-pages' => 'Used in [[Special:Statistics]]
-{{Identical|Pages}}',
+{{Identical|Page}}',
 'statistics-pages-desc' => "Tooltip shown over ''Pages'' (or as a note below it) in [[Special:Statistics]]",
 'statistics-files' => 'Used in [[Special:Statistics]]',
 'statistics-edits' => 'Used in [[Special:Statistics]]',
@@ -7074,6 +7109,19 @@ Part of variable $1 in {{msg-mw|Ago}}',
 *{{msg-mw|Years}}',
 'just-now' => 'Phrase for indicating something happened just now.',
 
+# Human-readable timestamps
+'hours-ago' => 'Phrase for indicating that something occurred a certain number of hours ago',
+'minutes-ago' => 'Phrase for indicating that something occurred a certain number of minutes ago',
+'seconds-ago' => 'Phrase for indicating that something occurred a certain number of seconds ago',
+'monday-at' => 'Phrase for indicating that something occurred at a particular time on the most recent Monday. $1 is the time.',
+'tuesday-at' => 'Phrase for indicating that something occurred at a particular time on the most recent Tuesday. $1 is the time.',
+'wednesday-at' => 'Phrase for indicating that something occurred at a particular time on the most recent Wednesday. $1 is the time.',
+'thursday-at' => 'Phrase for indicating that something occurred at a particular time on the most recent Thursday. $1 is the time.',
+'friday-at' => 'Phrase for indicating that something occurred at a particular time on the most recent Friday. $1 is the time.',
+'saturday-at' => 'Phrase for indicating that something occurred at a particular time on the most recent Saturday. $1 is the time.',
+'sunday-at' => 'Phrase for indicating that something occurred at a particular time on the most recent Sunday. $1 is the time.',
+'yesterday-at' => 'Phrase for indicating that something occurred at a particular time yesterday. $1 is the time.',
+
 # Bad image list
 'bad_image_list' => 'This message only appears to guide administrators to add links with the right format. This will not appear anywhere else in MediaWiki.',
 
@@ -8917,8 +8965,4 @@ $4 is the gender of the target user.',
 # Image rotation
 'rotate-comment' => 'Edit summary for the act of rotating an image.',
 
-# Unknown messages
-'hours-ago' => 'Phrase for indicating that something occurred a certain number of hours ago',
-'minutes-ago' => 'Phrase for indicating that something occurred a certain number of minutes ago',
-'seconds-ago' => 'Phrase for indicating that something occurred a certain number of seconds ago',
 );

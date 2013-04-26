@@ -13,6 +13,7 @@
  * @author Kaganer
  * @author Lifeway
  * @author Сай
+ * @author Санюн Вадик
  */
 
 $fallback = 'ru';
@@ -105,7 +106,7 @@ $messages = array(
 'tog-nocache' => 'Лаштыкым кешироватлымым чараш',
 'tog-enotifwatchlistpages' => 'Мыйын эскерыме лӱмер гыч лаштыкыште тӧрлатымыш нерген электрон почто гоч шижтараш',
 'tog-enotifusertalkpages' => 'Мыйын каҥашымаш лаштыкыште тӧрлатымыш нерген электрон почто гоч шижтараш',
-'tog-oldsig' => 'Кидпалын ончылгоч ончымаш:',
+'tog-oldsig' => 'Кызытсе кидпале',
 'tog-showjumplinks' => '"Куснаш …" ешартыш кылверым чӱкташ',
 'tog-watchlisthideown' => 'Эскерыме лӱмер гыч мыйын тӧрлатымаш-влакым ончыкташ огыл',
 'tog-watchlisthidebots' => 'Эскерыме лӱмер гыч бот-влакын тӧрлатымым ончыкташ огыл',
@@ -760,16 +761,10 @@ $messages = array(
 'listusers-submit' => 'ончыкташ',
 'listusers-blocked' => '(йӧн петырыме)',
 
-# Special:ActiveUsers
-'activeusers' => 'Чӱчкыдын пайдаланыше-влак лӱмер',
-'activeusers-count' => 'Пытартыш $3 {{PLURAL:$3|кечыште|кечылаште}} $1 {{PLURAL:$1|тӧрлатымаш|тӧрлатымаш-влак}}',
-'activeusers-hidebots' => 'Бот-влакым шылташ',
-'activeusers-hidesysops' => 'Сайтвиктарыше-влакым шылташ',
-
 # Special:ListGroupRights
 'listgrouprights-members' => '(тӱшкаште улшо-влак)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Пайдаланыше дек серыш',
 
 # Watchlist

@@ -518,16 +518,6 @@ $messages = array(
 'nov' => 'Nov.',
 'dec' => 'Dez.',
 
-'monday-at' => 'Montag um $1',
-'tuesday-at' => 'Dienstag um $1',
-'wednesday-at' => 'Mittwoch um $1',
-'thursday-at' => 'Donnerstag um $1',
-'friday-at' => 'Freitag um $1',
-'saturday-at' => 'Samstag um $1',
-'sunday-at' => 'Sonntag um $1',
-'today-at' => '$1',
-'yesterday-at' => 'Gestern um $1',
-
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Kategorie|Kategorien}}',
 'category_header' => 'Seiten in der Kategorie „$1“',
@@ -836,10 +826,15 @@ Vergiss nicht, deine [[Special:Preferences|{{SITENAME}}-Einstellungen]] zu ände
 'yourname' => 'Benutzername:',
 'userlogin-yourname' => 'Benutzername',
 'userlogin-yourname-ph' => 'Gib deinen Benutzernamen ein',
+'createacct-helpusername-url' => '{{ns:Project}}:Benutzernamensrichtlinie',
+'createacct-helpusername-link' => '[[{{MediaWiki:createacct-helpusername-url}}|(hilf mir bei der Auswahl)]]',
 'yourpassword' => 'Passwort:',
 'userlogin-yourpassword' => 'Passwort',
 'userlogin-yourpassword-ph' => 'Gib dein Passwort ein',
+'createacct-yourpassword-ph' => 'Gib ein Passwort ein',
 'yourpasswordagain' => 'Passwort wiederholen:',
+'createacct-yourpasswordagain' => 'Passwort bestätigen',
+'createacct-yourpasswordagain-ph' => 'Gib das Passwort erneut ein',
 'remembermypassword' => 'Mit diesem Browser dauerhaft angemeldet bleiben (maximal $1 {{PLURAL:$1|Tag|Tage}})',
 'userlogin-remembermypassword' => 'Angemeldet bleiben',
 'userlogin-signwithsecure' => 'Über den sicheren Server anmelden',
@@ -865,12 +860,27 @@ Vergiss nicht, deine [[Special:Preferences|{{SITENAME}}-Einstellungen]] zu ände
 'userlogin-resetlink' => 'Die Anmeldedaten vergessen?',
 'helplogin-url' => 'Help:Anmelden',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Hilfe beim Anmelden]]',
+'createacct-join' => 'Gib unten deine Informationen ein.',
+'createacct-emailrequired' => 'E-Mail-Adresse',
+'createacct-emailoptional' => 'E-Mail-Adresse (optional)',
+'createacct-email-ph' => 'Gib deine E-Mail-Adresse ein',
 'createaccountmail' => 'Ein temporäres Zufallspasswort verwenden und an die unten angegebene E-Mail-Adresse versenden',
+'createacct-realname' => 'Bürgerlicher Name (optional)',
 'createaccountreason' => 'Grund:',
+'createacct-reason' => 'Begründung',
+'createacct-captcha' => 'Sicherheitsprüfung',
+'createacct-captcha-help-url' => '{{ns:Project}}:Benutzerkontenanträge',
+'createacct-imgcaptcha-help' => 'Das Bild ist nicht sichtbar? [[{{MediaWiki:createacct-captcha-help-url}}|Beantrage ein Benutzerkonto]].',
+'createacct-imgcaptcha-ph' => 'Gib den Text ein, den du oben siehst.',
+'createacct-benefit-heading' => '{{SITENAME}} wird von Leuten wie dir erstellt.',
+'createacct-benefit-body1' => 'Bearbeitungen',
+'createacct-benefit-body2' => 'Seiten',
+'createacct-benefit-body3' => 'Autoren in diesem Monat',
 'badretype' => 'Die beiden Passwörter stimmen nicht überein.',
 'userexists' => 'Dieser Benutzername ist schon vergeben.
 Bitte wähle einen anderen.',
 'loginerror' => 'Fehler bei der Anmeldung',
+'createacct-error' => 'Fehler beim Erstellen des Benutzerkontos',
 'createaccounterror' => 'Benutzerkonto konnte nicht erstellt werden: $1',
 'nocookiesnew' => 'Der Benutzerzugang wurde erstellt, aber du bist nicht angemeldet. {{SITENAME}} benötigt für diese Funktion Cookies, bitte aktiviere diese und melde dich dann mit deinem neuen Benutzernamen und dem zugehörigen Passwort an.',
 'nocookieslogin' => '{{SITENAME}} benutzt Cookies zur Anmeldung der Benutzer. Du hast Cookies deaktiviert, bitte aktiviere diese und versuche es erneut.',
@@ -3327,6 +3337,19 @@ Durch das Herunterladen und Öffnen der Datei kann dein Computer beschädigt wer
 'ago' => 'vor $1',
 'just-now' => 'Gerade eben',
 
+# Human-readable timestamps
+'hours-ago' => 'vor {{PLURAL:$1|einer Stunde|$1 Stunden}}',
+'minutes-ago' => 'vor {{PLURAL:$1|einer Minute|$1 Minuten}}',
+'seconds-ago' => 'vor {{PLURAL:$1|einer Sekunde|$1 Sekunden}}',
+'monday-at' => 'Montag um $1',
+'tuesday-at' => 'Dienstag um $1',
+'wednesday-at' => 'Mittwoch um $1',
+'thursday-at' => 'Donnerstag um $1',
+'friday-at' => 'Freitag um $1',
+'saturday-at' => 'Samstag um $1',
+'sunday-at' => 'Sonntag um $1',
+'yesterday-at' => 'Gestern um $1',
+
 # Bad image list
 'bad_image_list' => 'Format:
 
@@ -4180,8 +4203,4 @@ Anderenfalls kannst du auch das untenstehende einfache Formular nutzen. Dein Kom
 # Image rotation
 'rotate-comment' => 'Bild um $1 {{PLURAL:$1|Grad}} im Uhrzeigersinn gedreht',
 
-# Unknown messages
-'hours-ago' => 'vor {{PLURAL:$1|einer Stunde|$1 Stunden}}',
-'minutes-ago' => 'vor {{PLURAL:$1|einer Minute|$1 Minuten}}',
-'seconds-ago' => 'vor {{PLURAL:$1|einer Sekunde|$1 Sekunden}}',
 );

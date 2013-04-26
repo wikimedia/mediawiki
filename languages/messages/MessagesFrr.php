@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Inkowik
  * @author Maartenvdbent
  * @author Merlissimo
  * @author Murma174
@@ -261,7 +262,7 @@ $1',
 'edithelp' => 'Beårbingsheelp',
 'edithelppage' => 'Help:Beårbe',
 'helppage' => 'Help:Inhåltsfertiiknis',
-'mainpage' => 'Wikipedia:Hoodsid',
+'mainpage' => 'Hoodsid',
 'mainpage-description' => 'Hoodsid',
 'policy-url' => 'Project:Ruchtliinje',
 'portal' => 'Gemiinschaps-portåål',

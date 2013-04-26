@@ -415,8 +415,6 @@ $messages = array(
 'nov' => 'nov',
 'dec' => 'des',
 
-'today-at' => '$1',
-
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Kategorie|Kategorieën}}',
 'category_header' => 'Artikels in kategorie $1',

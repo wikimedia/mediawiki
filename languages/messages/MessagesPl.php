@@ -409,16 +409,6 @@ $messages = array(
 'nov' => 'lis',
 'dec' => 'gru',
 
-'monday-at' => 'poniedziałek, $1',
-'tuesday-at' => 'wtorek, $1',
-'wednesday-at' => 'środa, $1',
-'thursday-at' => 'czwartek, $1',
-'friday-at' => 'piątek, $1',
-'saturday-at' => 'sobota, $1',
-'sunday-at' => 'niedziela, $1',
-'today-at' => '$1',
-'yesterday-at' => 'wczoraj, $1',
-
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Kategoria|Kategorie}}',
 'category_header' => 'Strony w kategorii „$1”',
@@ -3262,6 +3252,19 @@ Jeśli go otworzysz, możesz zarazić swój system.",
 'ago' => '$1 temu',
 'just-now' => 'przed chwilą',
 
+# Human-readable timestamps
+'hours-ago' => '{{PLURAL:$1|przed godziną|$1 godziny temu|$1 godzin temu}}',
+'minutes-ago' => '{{PLURAL:$1|przed minutą|$1 minuty temu|$1 minut temu}}',
+'seconds-ago' => '{{PLURAL:$1|przed sekundą|$1 sekundy temu|$1 sekund temu}}',
+'monday-at' => 'poniedziałek, $1',
+'tuesday-at' => 'wtorek, $1',
+'wednesday-at' => 'środa, $1',
+'thursday-at' => 'czwartek, $1',
+'friday-at' => 'piątek, $1',
+'saturday-at' => 'sobota, $1',
+'sunday-at' => 'niedziela, $1',
+'yesterday-at' => 'wczoraj, $1',
+
 # Bad image list
 'bad_image_list' => 'Dane należy wprowadzić w formacie:
 
@@ -4078,8 +4081,8 @@ Grafiki są pokazywane w pełnej rozdzielczości. Inne typy plików są otwieran
 'rightsnone' => 'brak',
 
 # Feedback
-'feedback-bugornote' => 'Jeśli jesteś {{GENDER:|gotów|gotowa}} szczegółowo opisać problem techniczny proszę [$1 zgłoś błąd].
-W przeciwnym wypadku można użyć prostego formularza poniżej. Komentarz zostanie dodany do strony "[$3  $2]", wraz z nazwą użytkownika i nazwą przeglądarki.',
+'feedback-bugornote' => 'Jeśli jesteś {{GENDER:|gotów|gotowa}} szczegółowo opisać problem techniczny, proszę [$1 zgłoś błąd].
+W przeciwnym wypadku można użyć prostego formularza poniżej. Komentarz zostanie dodany do strony "[$3  $2]", wraz z nazwą użytkownika.',
 'feedback-subject' => 'Temat',
 'feedback-message' => 'Wiadomość:',
 'feedback-cancel' => 'Anuluj',
@@ -4153,8 +4156,4 @@ W przeciwnym wypadku można użyć prostego formularza poniżej. Komentarz zosta
 # Image rotation
 'rotate-comment' => 'Obraz został odwrócony o $1 {{PLURAL:$1|stopień|stopnie|stopni}} (w kierunku zgodnym z ruchem wskazówek zegara)',
 
-# Unknown messages
-'hours-ago' => '{{PLURAL:$1|przed godziną|$1 godziny temu|$1 godzin temu}}',
-'minutes-ago' => '{{PLURAL:$1|przed minutą|$1 minuty temu|$1 minut temu}}',
-'seconds-ago' => '{{PLURAL:$1|przed sekundą|$1 sekundy temu|$1 sekund temu}}',
 );

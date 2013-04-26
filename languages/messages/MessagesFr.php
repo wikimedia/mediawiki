@@ -495,16 +495,6 @@ $messages = array(
 'nov' => 'nov',
 'dec' => 'déc',
 
-'monday-at' => 'Lundi à $1',
-'tuesday-at' => 'Mardi à $1',
-'wednesday-at' => 'Mercredi à $1',
-'thursday-at' => 'Jeudi à $1',
-'friday-at' => 'Vendredi à $1',
-'saturday-at' => 'Samedi à $1',
-'sunday-at' => 'Dimanche à $1',
-'today-at' => '$1',
-'yesterday-at' => 'Hier à $1',
-
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Catégorie|Catégories}}',
 'category_header' => 'Pages dans la catégorie « $1 »',
@@ -812,11 +802,16 @@ N'oubliez pas de modifier [[Special:Preferences|vos préférences pour {{SITENAM
 'yourname' => "Nom d'utilisateur :",
 'userlogin-yourname' => "Nom d'utilisateur",
 'userlogin-yourname-ph' => "Entrez votre nom d'utilisateur",
+'createacct-helpusername-url' => "{{ns:Project}}:Nom d'utilisateur",
+'createacct-helpusername-link' => '[[{{MediaWiki:createacct-helpusername-url}}|(aidez moi à choisir)]]',
 'yourpassword' => 'Mot de passe&nbsp;:',
 'userlogin-yourpassword' => 'Mot de passe',
 'userlogin-yourpassword-ph' => 'Entrez votre mot de passe',
+'createacct-yourpassword-ph' => 'Entrez un mot de passe',
 'yourpasswordagain' => 'Confirmez le mot de passe :',
-'remembermypassword' => 'Me reconnecter automatiquement aux prochaines visites avec ce navigateur (au maximum $1&nbsp;{{PLURAL:$1|jour|jours}})',
+'createacct-yourpasswordagain' => 'Confirmez le mot de passe',
+'createacct-yourpasswordagain-ph' => 'Entrez à nouveau le mot de passe',
+'remembermypassword' => 'Me reconnecter automatiquement lors des prochaines visites avec ce navigateur (au maximum $1{{PLURAL:$1|jour|jours}})',
 'userlogin-remembermypassword' => 'Se souvenir de moi',
 'userlogin-signwithsecure' => "S'inscrire avec un serveur sécurisé",
 'securelogin-stick-https' => 'Rester connecté en HTTPS après la connexion',
@@ -841,12 +836,27 @@ N'oubliez pas de modifier [[Special:Preferences|vos préférences pour {{SITENAM
 'userlogin-resetlink' => 'Vous avez oublié vos détails de connexion ?',
 'helplogin-url' => 'Help:Connexion',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Aide à la connexion]]',
+'createacct-join' => 'Entrez vos informations ci-dessous.',
+'createacct-emailrequired' => 'Adresse de courriel',
+'createacct-emailoptional' => 'Adresse de courriel (facultative)',
+'createacct-email-ph' => 'Entrez votre adresse de courriel',
 'createaccountmail' => 'Utiliser un mot de passe aléatoire temporaire et l’envoyer à l’adresse de courriel spécifiée ci-dessous',
+'createacct-realname' => 'Nom réel (facultatif)',
 'createaccountreason' => 'Motif :',
+'createacct-reason' => 'Motif',
+'createacct-captcha' => 'Contrôle de sécurité',
+'createacct-captcha-help-url' => '{{ns:Project}}:Demander un compte',
+'createacct-imgcaptcha-help' => "Vous ne pouvez pas voir l'image ? [[{{MediaWiki:createacct-captcha-help-url}}|Demandez la création d'un compte]]",
+'createacct-imgcaptcha-ph' => 'Entrez le texte que vous voyez ci-dessus',
+'createacct-benefit-heading' => '{{SITENAME}} est écrit par des gens comme vous.',
+'createacct-benefit-body1' => 'modifications',
+'createacct-benefit-body2' => 'pages',
+'createacct-benefit-body3' => 'contributeurs ce mois ci',
 'badretype' => 'Les mots de passe que vous avez saisis ne correspondent pas.',
 'userexists' => "Nom d'utilisateur entré déjà utilisé.
 Veuillez choisir un nom différent.",
 'loginerror' => 'Erreur de connexion',
+'createacct-error' => 'Erreur lors de la création du compte',
 'createaccounterror' => 'Impossible de créer le compte : $1',
 'nocookiesnew' => "Le compte utilisateur a été créé, mais vous n'êtes pas connecté{{GENDER:||e|(e)}}. {{SITENAME}} utilise des cookies pour la connexion mais vous les avez désactivés. Veuillez les activer et vous reconnecter avec le même nom et le même mot de passe.",
 'nocookieslogin' => '{{SITENAME}} utilise des cookies pour la connexion mais vous les avez désactivés. Veuillez les activer et vous reconnecter.',
@@ -3322,6 +3332,19 @@ Si vous l'exécutez, votre système peut être compromis.",
 'ago' => 'Il y a $1',
 'just-now' => "à l'instant",
 
+# Human-readable timestamps
+'hours-ago' => 'il y a $1 {{PLURAL:$1|heure|heures}}',
+'minutes-ago' => 'il y a $1 {{PLURAL:$1|minute|minutes}}',
+'seconds-ago' => 'il y a $1 {{PLURAL:$1|seconde|secondes}}',
+'monday-at' => 'Lundi à $1',
+'tuesday-at' => 'Mardi à $1',
+'wednesday-at' => 'Mercredi à $1',
+'thursday-at' => 'Jeudi à $1',
+'friday-at' => 'Vendredi à $1',
+'saturday-at' => 'Samedi à $1',
+'sunday-at' => 'Dimanche à $1',
+'yesterday-at' => 'Hier à $1',
+
 # Bad image list
 'bad_image_list' => "Le format est le suivant :
 
@@ -4238,8 +4261,4 @@ Sinon, vous pouvez utiliser le formulaire simplifié ci-dessous. Votre commentai
 # Image rotation
 'rotate-comment' => 'Image pivotée de $1 {{PLURAL:$1|degré|degrés}} dans le sens des aiguilles d’une montre',
 
-# Unknown messages
-'hours-ago' => 'il y a $1 {{PLURAL:$1|heure|heures}}',
-'minutes-ago' => 'il y a $1 {{PLURAL:$1|minute|minutes}}',
-'seconds-ago' => 'il y a $1 {{PLURAL:$1|seconde|secondes}}',
 );

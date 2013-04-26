@@ -513,7 +513,7 @@ Pe piaxei, fa 'n accesso appenn-a ti a ghe reçeivi.",
 Pe abilitâ l'invîo de messaggi e-mail pe quest'accesso, o se deive seguî l'istrûssioîn indicæ, coscì ti confermi che ti t'è o legittimo propietâjo de l'indirisso.",
 'mailerror' => "Errô inte l'invio do messaggio: $1",
 'acct_creation_throttle_hit' => "Ne dispiâxe, ma t'hæ zà creòu $1 accesci. No ti pêu creâne ciû!",
-'emailauthenticated' => "O teu indirisso de posta elettronica o l'è stæto autenticou o $1.",
+'emailauthenticated' => "O teu indirisso de posta elettronica o l'è stæto autenticou o $2 a $3.",
 'emailconfirmlink' => 'Conferma o teu indirisso de posta elettronega',
 'accountcreated' => 'Graçie pe esëte registroö!!!',
 'accountcreatedtext' => "Utente $1, ti te guägno l'açeiso!",
@@ -531,6 +531,16 @@ Pe abilitâ l'invîo de messaggi e-mail pe quest'accesso, o se deive seguî l'is
 'retypenew' => "Ripette a nêuva paròlla d'ordine:",
 'resetpass_submit' => 'Çerni a poula segretta e intra',
 'resetpass_forbidden' => "No l'é poscìbile cangiâ e paròlle segrétte",
+
+# Special:PasswordReset
+'passwordreset-email' => 'Addresso e-mail:',
+'passwordreset-emailtitle' => 'Dettaggi account sciu {{SITENAME}}',
+'passwordreset-emailelement' => 'Nomme utente: $1
+Poula segretta temporannia: $2',
+
+# Special:ChangeEmail
+'changeemail-none' => '(nisciun)',
+'changeemail-cancel' => 'Annulla',
 
 # Edit page toolbar
 'bold_sample' => 'Grascetto',
