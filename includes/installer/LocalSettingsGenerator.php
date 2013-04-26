@@ -222,7 +222,7 @@ class LocalSettingsGenerator {
 			}
 		}
 
-		switch( $this->values['wgMainCacheType'] ) {
+		switch ( $this->values['wgMainCacheType'] ) {
 			case 'anything':
 			case 'db':
 			case 'memcached':

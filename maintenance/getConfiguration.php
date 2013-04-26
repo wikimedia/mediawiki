@@ -53,7 +53,7 @@ class GetConfiguration extends Maintenance {
 		}
 
 		$out = null;
-		switch( $this->getOption( 'format' ) ) {
+		switch ( $this->getOption( 'format' ) ) {
 			case 'PHP':
 				$out = serialize( $res );
 				break;

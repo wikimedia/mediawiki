@@ -694,7 +694,7 @@ class LegacyTemplate extends BaseTemplate {
 
 		if ( $title->isTalkPage() ) {
 			$link = $title->getSubjectPage();
-			switch( $link->getNamespace() ) {
+			switch ( $link->getNamespace() ) {
 				case NS_MAIN:
 					$text = wfMessage( 'articlepage' );
 					break;

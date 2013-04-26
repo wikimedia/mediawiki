@@ -642,7 +642,7 @@ class MimeMagic {
 		}
 
 		/* Look for WebP */
-		if ( strncmp( $head, "RIFF", 4 ) == 0 && strncmp( substr( $head, 8, 8), "WEBPVP8 ", 8 ) == 0 ) {
+		if ( strncmp( $head, "RIFF", 4 ) == 0 && strncmp( substr( $head, 8, 8 ), "WEBPVP8 ", 8 ) == 0 ) {
 			wfDebug( __METHOD__ . ": recognized file as image/webp\n" );
 			return "image/webp";
 		}
@@ -815,12 +815,12 @@ class MimeMagic {
 			}
 			wfDebug( __METHOD__ . ": detected an Open Packaging Conventions archive: $mime\n" );
 		} elseif ( substr( $header, 0, 8 ) == "\xd0\xcf\x11\xe0\xa1\xb1\x1a\xe1" &&
-				($headerpos = strpos( $tail, "PK\x03\x04" ) ) !== false &&
+				( $headerpos = strpos( $tail, "PK\x03\x04" ) ) !== false &&
 				preg_match( $openxmlRegex, substr( $tail, $headerpos + 30 ) ) ) {
 			if ( substr( $header, 512, 4 ) == "\xEC\xA5\xC1\x00" ) {
 				$mime = "application/msword";
 			}
-			switch( substr( $header, 512, 6 ) ) {
+			switch ( substr( $header, 512, 6 ) ) {
 				case "\xEC\xA5\xC1\x00\x0E\x00":
 				case "\xEC\xA5\xC1\x00\x1C\x00":
 				case "\xEC\xA5\xC1\x00\x43\x00":

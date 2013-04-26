@@ -1827,7 +1827,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	}
 
 	function makeSearchButton( $mode, $attrs = array() ) {
-		switch( $mode ) {
+		switch ( $mode ) {
 			case 'go':
 			case 'fulltext':
 				$realAttrs = array(

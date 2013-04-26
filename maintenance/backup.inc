@@ -133,7 +133,7 @@ class BackupDumper {
 			$matches = array();
 			if ( preg_match( '/^--(.+?)(?:=(.+?)(?::(.+?))?)?$/', $arg, $matches ) ) {
 				@list( /* $full */ , $opt, $val, $param ) = $matches;
-				switch( $opt ) {
+				switch ( $opt ) {
 				case "plugin":
 					$this->loadPlugin( $val, $param );
 					break;
@@ -368,7 +368,7 @@ class BackupDumper {
 
 	function fatalError( $msg ) {
 		$this->progress( "$msg\n" );
-		die(1);
+		die( 1 );
 	}
 }
 

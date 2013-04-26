@@ -58,7 +58,7 @@ class RequestContextTest extends MediaWikiTestCase {
 		$this->assertEquals( $sinfo['userId'], $context->getUser()->getId(), "Correct context user ID." );
 		$this->assertEquals( 'UnitTestContextUser', $context->getUser()->getName(), "Correct context user name." );
 
-		unset ( $sc ); // restore previous context
+		unset( $sc ); // restore previous context
 
 		$info = $context->exportSession();
 		$this->assertEquals( $oInfo['ip'], $info['ip'], "Correct initial IP address." );

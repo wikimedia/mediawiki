@@ -292,7 +292,7 @@ class BitmapMetadataHandler {
 		$head = fread( $fh, 2 );
 		fclose( $fh );
 
-		switch( $head ) {
+		switch ( $head ) {
 			case 'II':
 				return 'LE'; // II for intel.
 			case 'MM':

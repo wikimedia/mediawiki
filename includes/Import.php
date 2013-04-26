@@ -381,7 +381,7 @@ class WikiImporter {
 		}
 		$buffer = "";
 		while ( $this->reader->read() ) {
-			switch( $this->reader->nodeType ) {
+			switch ( $this->reader->nodeType ) {
 			case XmlReader::TEXT:
 			case XmlReader::SIGNIFICANT_WHITESPACE:
 				$buffer .= $this->reader->value;
@@ -424,7 +424,7 @@ class WikiImporter {
 			$lookup = array();
 
 			foreach ( $xmlReaderConstants as $name ) {
-				$lookup[constant("XmlReader::$name")] = $name;
+				$lookup[constant( "XmlReader::$name" )] = $name;
 			}
 		}
 
@@ -1002,7 +1002,7 @@ class XMLReader2 extends XMLReader {
 		}
 		$buffer = "";
 		while ( $this->read() ) {
-			switch( $this->nodeType ) {
+			switch ( $this->nodeType ) {
 			case XmlReader::TEXT:
 			case XmlReader::SIGNIFICANT_WHITESPACE:
 				$buffer .= $this->value;
@@ -1657,7 +1657,7 @@ class ImportStreamSource {
 			return Status::newFatal( 'importnofile' );
 		}
 		if ( !empty( $upload['error'] ) ) {
-			switch( $upload['error'] ) {
+			switch ( $upload['error'] ) {
 				case 1: # The uploaded file exceeds the upload_max_filesize directive in php.ini.
 					return Status::newFatal( 'importuploaderrorsize' );
 				case 2: # The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form.

@@ -155,7 +155,7 @@ class ApiFormatXml extends ApiFormatBase {
 					unset( $elemValue[$subElemId] );
 				} elseif ( is_array( $subElemValue ) ) {
 					$subElements[$subElemId] = $subElemValue;
-					unset ( $elemValue[$subElemId] );
+					unset( $elemValue[$subElemId] );
 				}
 			}
 

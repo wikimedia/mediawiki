@@ -145,8 +145,8 @@ function generateConfigFile( $doxygenTemplate, $outputDirectory, $stripFromPath,
 unset( $file );
 
 if ( is_array( $argv ) ) {
-	for ($i = 0; $i < count($argv); $i++ ) {
-		switch( $argv[$i] ) {
+	for ( $i = 0; $i < count( $argv ); $i++ ) {
+		switch ( $argv[$i] ) {
 		case '--all':
 			$input = 0;
 			break;
@@ -210,7 +210,7 @@ Other options:
 
 
 END;
-			exit(0);
+			exit( 0 );
 			break;
 		}
 	}

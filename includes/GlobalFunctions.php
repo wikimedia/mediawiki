@@ -3760,7 +3760,7 @@ function wfShorthandToInteger( $string = '' ) {
 	}
 	$last = $string[strlen( $string ) - 1];
 	$val = intval( $string );
-	switch( $last ) {
+	switch ( $last ) {
 		case 'g':
 		case 'G':
 			$val *= 1024;

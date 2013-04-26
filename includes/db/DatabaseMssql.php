@@ -1049,7 +1049,7 @@ class MssqlResult {
 				$arrNum[] = $value;
 			}
 		}
-		switch( $mode ) {
+		switch ( $mode ) {
 			case SQLSRV_FETCH_ASSOC:
 				$ret = $this->mRows[$this->mCursor];
 				break;

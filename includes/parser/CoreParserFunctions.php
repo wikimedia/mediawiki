@@ -187,7 +187,7 @@ class CoreParserFunctions {
 		if ( is_null( $magicWords ) ) {
 			$magicWords = new MagicWordArray( array( 'url_path', 'url_query', 'url_wiki' ) );
 		}
-		switch( $magicWords->matchStartToEnd( $arg ) ) {
+		switch ( $magicWords->matchStartToEnd( $arg ) ) {
 
 			// Encode as though it's a wiki page, '_' for ' '.
 			case 'url_wiki':
@@ -440,7 +440,7 @@ class CoreParserFunctions {
 	static function pagesinnamespace( $parser, $namespace = 0, $raw = null ) {
 		return self::formatRaw( SiteStats::pagesInNs( intval( $namespace ) ), $raw );
 	}
-	static function numberingroup( $parser, $name = '', $raw = null) {
+	static function numberingroup( $parser, $name = '', $raw = null ) {
 		return self::formatRaw( SiteStats::numberingroup( strtolower( $name ) ), $raw );
 	}
 
@@ -834,9 +834,9 @@ class CoreParserFunctions {
 		if ( $old === false || $old == $text || $arg ) {
 			return '';
 		} else {
-			return( '<span class="error">' .
+			return '<span class="error">' .
 				wfMessage( 'duplicate-defaultsort', $old, $text )->inContentLanguage()->escaped() .
-				'</span>' );
+				'</span>';
 		}
 	}
 

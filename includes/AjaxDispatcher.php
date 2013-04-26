@@ -63,7 +63,7 @@ class AjaxDispatcher {
 			$this->mode = "post";
 		}
 
-		switch( $this->mode ) {
+		switch ( $this->mode ) {
 			case 'get':
 				$this->func_name = isset( $_GET["rs"] ) ? $_GET["rs"] : '';
 				if ( ! empty( $_GET["rsargs"] ) ) {

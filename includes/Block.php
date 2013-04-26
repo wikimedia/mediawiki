@@ -249,7 +249,7 @@ class Block {
 		# passed by some callers (bug 29116)
 		if ( $vagueTarget != '' ) {
 			list( $target, $type ) = self::parseTarget( $vagueTarget );
-			switch( $type ) {
+			switch ( $type ) {
 				case self::TYPE_USER:
 					# Slightly weird, but who are we to argue?
 					$conds['ipb_address'][] = (string)$target;
@@ -511,7 +511,7 @@ class Block {
 	 * @return Array
 	 */
 	protected function getDatabaseArray( $db = null ) {
-		if( !$db ) {
+		if ( !$db ) {
 			$db = wfGetDB( DB_SLAVE );
 		}
 		$expiry = $db->encodeExpiry( $this->mExpiry );
@@ -795,7 +795,7 @@ class Block {
 	 * @return String IP in Hex form
 	 */
 	public function getRangeStart() {
-		switch( $this->type ) {
+		switch ( $this->type ) {
 			case self::TYPE_USER:
 				return '';
 			case self::TYPE_IP:
@@ -814,7 +814,7 @@ class Block {
 	 * @return String IP in Hex form
 	 */
 	public function getRangeEnd() {
-		switch( $this->type ) {
+		switch ( $this->type ) {
 			case self::TYPE_USER:
 				return '';
 			case self::TYPE_IP:
@@ -911,7 +911,7 @@ class Block {
 	 * @return Bool
 	 */
 	public function prevents( $action, $x = null ) {
-		switch( $action ) {
+		switch ( $action ) {
 			case 'edit':
 				# For now... <evil laugh>
 				return true;
@@ -1173,7 +1173,7 @@ class Block {
 	 * @param Array $block Array of blocks
 	 * @return Block|null the "best" block from the list
 	 */
-	public static function chooseBlock( array $blocks, array $ipChain  ) {
+	public static function chooseBlock( array $blocks, array $ipChain ) {
 		if ( !count( $blocks ) ) {
 			return null;
 		} elseif ( count( $blocks ) == 1 ) {

@@ -1111,7 +1111,7 @@ class ArrayDiffFormatter extends DiffFormatter {
 		$newline = 1;
 		$retval = array();
 		foreach ( $diff->edits as $edit ) {
-			switch( $edit->type ) {
+			switch ( $edit->type ) {
 				case 'add':
 					foreach ( $edit->closing as $l ) {
 						$retval[] = array(

@@ -194,9 +194,9 @@ class LogFormatter {
 		// Text of title the action is aimed at.
 		$target = $entry->getTarget()->getPrefixedText();
 		$text = null;
-		switch( $entry->getType() ) {
+		switch ( $entry->getType() ) {
 			case 'move':
-				switch( $entry->getSubtype() ) {
+				switch ( $entry->getSubtype() ) {
 					case 'move':
 						$movesource = $parameters['4::target'];
 						$text = wfMessage( '1movedto2' )
@@ -215,7 +215,7 @@ class LogFormatter {
 				break;
 
 			case 'delete':
-				switch( $entry->getSubtype() ) {
+				switch ( $entry->getSubtype() ) {
 					case 'delete':
 						$text = wfMessage( 'deletedarticle' )
 							->rawParams( $target )->inContentLanguage()->escaped();
@@ -246,7 +246,7 @@ class LogFormatter {
 				break;
 
 			case 'protect':
-				switch( $entry->getSubtype() ) {
+				switch ( $entry->getSubtype() ) {
 				case 'protect':
 					$text = wfMessage( 'protectedarticle' )
 						->rawParams( $target . ' ' . $parameters[0] )->inContentLanguage()->escaped();
@@ -263,7 +263,7 @@ class LogFormatter {
 				break;
 
 			case 'newusers':
-				switch( $entry->getSubtype() ) {
+				switch ( $entry->getSubtype() ) {
 					case 'newusers':
 					case 'create':
 						$text = wfMessage( 'newuserlog-create-entry' )
@@ -282,7 +282,7 @@ class LogFormatter {
 				break;
 
 			case 'upload':
-				switch( $entry->getSubtype() ) {
+				switch ( $entry->getSubtype() ) {
 					case 'upload':
 						$text = wfMessage( 'uploadedimage' )
 							->rawParams( $target )->inContentLanguage()->escaped();
@@ -305,7 +305,7 @@ class LogFormatter {
 				} else {
 					$newgroups = wfMessage( 'rightsnone' )->inContentLanguage()->escaped();
 				}
-				switch( $entry->getSubtype() ) {
+				switch ( $entry->getSubtype() ) {
 					case 'rights':
 						$text = wfMessage( 'rightslogentry' )
 							->rawParams( $target, $oldgroups, $newgroups )->inContentLanguage()->escaped();
@@ -479,7 +479,7 @@ class LogFormatter {
 	protected function formatParameterValue( $type, $value ) {
 		$saveLinkFlood = $this->linkFlood;
 
-		switch( strtolower( trim( $type ) ) ) {
+		switch ( strtolower( trim( $type ) ) ) {
 			case 'raw':
 				$value = Message::rawParam( $value );
 				break;

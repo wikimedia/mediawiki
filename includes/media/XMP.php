@@ -641,7 +641,7 @@ class XMPReader {
 			throw new MWException( "Hit end element </$elm> but no curItem" );
 		}
 
-		switch( $this->mode[0] ) {
+		switch ( $this->mode[0] ) {
 			case self::MODE_IGNORE:
 				$this->endElementModeIgnore( $elm );
 				break;
@@ -1060,7 +1060,7 @@ class XMPReader {
 				. "encountered <$elm> with no mode" );
 		}
 
-		switch( $this->mode[0] ) {
+		switch ( $this->mode[0] ) {
 			case self::MODE_IGNORE:
 				$this->startElementModeIgnore( $elm );
 				break;

@@ -280,7 +280,7 @@ class MWHttpRequest {
 				' Http::$httpEngine is set to "curl"' );
 		}
 
-		switch( Http::$httpEngine ) {
+		switch ( Http::$httpEngine ) {
 			case 'curl':
 				return new CurlHttpRequest( $url, $options );
 			case 'php':

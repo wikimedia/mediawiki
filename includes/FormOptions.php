@@ -290,7 +290,7 @@ class FormOptions implements ArrayAccess {
 			$default = $this->options[$name]['default'];
 			$type = $this->options[$name]['type'];
 
-			switch( $type ) {
+			switch ( $type ) {
 				case self::BOOL:
 					$value = $r->getBool( $name, $default );
 					break;

@@ -677,7 +677,7 @@ class DatabaseOracle extends DatabaseBase {
 		Using uppercase because that's the only way Oracle can handle
 		quoted tablenames
 		*/
-		switch( $name ) {
+		switch ( $name ) {
 			case 'user':
 				$name = 'MWUSER';
 				break;
