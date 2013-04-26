@@ -982,6 +982,7 @@ return array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.createAccount.js',
 		'messages' => array(
 			'createacct-captcha',
+			'createacct-emailrequired',
 			'createacct-imgcaptcha-ph'
 		),
 		'dependencies' => 'mediawiki.jqueryMsg',

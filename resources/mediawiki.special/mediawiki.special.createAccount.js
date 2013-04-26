@@ -6,11 +6,25 @@
 	// When sending password by email, hide the password input fields.
 	// This function doesn't need to be loaded early by ResourceLoader, but is tiny.
 	function hidePasswordOnEmail( $ ) {
-		$( '#wpCreateaccountMail' )
-			.on( 'change', function() {
-				$( '.mw-row-password' ).toggle( !$( this ).attr( 'checked' ) );
-			} )
-			.trigger( 'change' );
+		// Always required if checked, otherwise it depends, so we use the original
+		var $emailLabel = $( 'label[for="wpEmail"]' ),
+			originalText = $emailLabel.text(),
+			requiredText = mw.message( 'createacct-emailrequired' ).text(),
+			$createByMailCheckbox = $( '#wpCreateaccountMail' );
+
+		function updateForCheckbox() {
+			var checked = $createByMailCheckbox.prop( 'checked' );
+			if ( checked ) {
+				$( '.mw-row-password' ).hide();
+				$emailLabel.text( requiredText );
+			} else {
+				$( '.mw-row-password' ).show();
+				$emailLabel.text( originalText );
+			}
+		}
+
+		$createByMailCheckbox.on( 'change', updateForCheckbox );
+		updateForCheckbox();
 	}
 
 	// Move the FancyCaptcha image into a more attractive container.
