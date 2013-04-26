@@ -107,7 +107,7 @@ class ApiCreateAccountTest extends ApiTestCase {
 	 * @expectedException UsageException
 	 */
 	function testNoName() {
-		$ret = $this->doApiRequest( array(
+		$this->doApiRequest( array(
 			'action' => 'createaccount',
 			'token' => LoginForm::getCreateaccountToken(),
 			'password' => 'password',
@@ -119,7 +119,7 @@ class ApiCreateAccountTest extends ApiTestCase {
 	 * @expectedException UsageException
 	 */
 	function testNoPassword() {
-		$ret = $this->doApiRequest( array(
+		$this->doApiRequest( array(
 			'action' => 'createaccount',
 			'name' => 'testName',
 			'token' => LoginForm::getCreateaccountToken(),

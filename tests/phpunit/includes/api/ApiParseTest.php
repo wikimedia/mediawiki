@@ -16,7 +16,7 @@ class ApiParseTest extends ApiTestCase {
 		$somePage = mt_rand();
 
 		try {
-			$data = $this->doApiRequest( array(
+			$this->doApiRequest( array(
 				'action' => 'parse',
 				'page' => $somePage ) );
 
