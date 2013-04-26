@@ -502,6 +502,7 @@ $wgMessageStructure = array(
 		'badretype',
 		'userexists',
 		'loginerror',
+		'createacct-error',
 		'createaccounterror',
 		'nocookiesnew',
 		'nocookieslogin',

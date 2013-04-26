@@ -71,7 +71,7 @@ class UsercreateTemplateVForm extends BaseTemplate {
 ?>
 		<div class="<?php $this->text( 'messagetype' ); ?>box">
 		<?php if ( $this->data['messagetype'] == 'error' ) { ?>
-			<strong><?php $this->msg( 'loginerror' )?></strong><br />
+			<strong><?php $this->msg( 'createacct-error' ); ?></strong><br />
 		<?php } ?>
 		<?php $this->html( 'message' ); ?>
 		</div>

@@ -1160,6 +1160,7 @@ See also:
 'userexists' => 'Used as error message in creating a user account.',
 'loginerror' => 'Used as title of error message.
 {{Identical|Login error}}',
+'createacct-error' => 'Title of error message in new vertical create account form.',
 'createaccounterror' => 'Parameters:
 * $1 is an error message',
 'nocookiesnew' => "This message is displayed when a new account was successfully created, but the browser doesn't accept cookies.",

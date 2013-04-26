@@ -1142,6 +1142,7 @@ Do not forget to change your [[Special:Preferences|{{SITENAME}} preferences]].',
 'userexists'                   => 'Username entered already in use.
 Please choose a different name.',
 'loginerror'                   => 'Login error',
+'createacct-error'             => 'Account creation error',
 'createaccounterror'           => 'Could not create account: $1',
 'nocookiesnew'                 => 'The user account was created, but you are not logged in.
 {{SITENAME}} uses cookies to log in users.
