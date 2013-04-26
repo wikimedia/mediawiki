@@ -463,7 +463,7 @@ class WikiImporter {
 			$tag = $this->reader->name;
 			$type = $this->reader->nodeType;
 
-			if ( !wfRunHooks( 'ImportHandleToplevelXMLTag', $this ) ) {
+			if ( !wfRunHooks( 'ImportHandleToplevelXMLTag', array( $this ) ) ) {
 				// Do nothing
 			} elseif ( $tag == 'mediawiki' && $type == XmlReader::END_ELEMENT ) {
 				break;
@@ -522,8 +522,9 @@ class WikiImporter {
 
 			$tag = $this->reader->name;
 
-			if ( !wfRunHooks( 'ImportHandleLogItemXMLTag',
-						$this, $logInfo ) ) {
+			if ( !wfRunHooks( 'ImportHandleLogItemXMLTag', array(
+				$this, $logInfo
+			) ) ) {
 				// Do nothing
 			} elseif ( in_array( $tag, $normalFields ) ) {
 				$logInfo[$tag] = $this->nodeContents();
@@ -639,8 +640,9 @@ class WikiImporter {
 
 			$tag = $this->reader->name;
 
-			if ( !wfRunHooks( 'ImportHandleRevisionXMLTag', $this,
-						$pageInfo, $revisionInfo ) ) {
+			if ( !wfRunHooks( 'ImportHandleRevisionXMLTag', array(
+				$this, $pageInfo, $revisionInfo
+			) ) ) {
 				// Do nothing
 			} elseif ( in_array( $tag, $normalFields ) ) {
 				$revisionInfo[$tag] = $this->nodeContents();
@@ -725,8 +727,9 @@ class WikiImporter {
 
 			$tag = $this->reader->name;
 
-			if ( !wfRunHooks( 'ImportHandleUploadXMLTag', $this,
-						$pageInfo ) ) {
+			if ( !wfRunHooks( 'ImportHandleUploadXMLTag', array(
+				$this, $pageInfo
+			) ) ) {
 				// Do nothing
 			} elseif ( in_array( $tag, $normalFields ) ) {
 				$uploadInfo[$tag] = $this->nodeContents();
