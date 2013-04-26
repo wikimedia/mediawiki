@@ -936,6 +936,9 @@ return array(
 	),
 	'mediawiki.special.userlogin.signup' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.userLogin.signup.js',
+		'messages' => array(
+			'createacct-emailrequired',
+		),
 	),
 	'mediawiki.special.userlogin.vform' => array(
 		'styles' => array(
