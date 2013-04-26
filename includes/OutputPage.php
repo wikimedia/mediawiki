@@ -2821,6 +2821,13 @@ $templates
 			$scripts .= $this->getScriptsForBottomQueue( true );
 		}
 
+		// Set a flag to disable synchronous script loading (for bug 47457).
+		$scripts .= Html::inlineScript(
+			ResourceLoader::makeLoaderConditionalScript(
+				'mw.loader.forceAsync = true;'
+			)
+		);
+
 		return $scripts;
 	}
 
