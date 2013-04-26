@@ -4788,13 +4788,6 @@ You should have received [{{SERVER}}{{SCRIPTPATH}}/COPYING a copy of the GNU Gen
 'version-entrypoints-api-php'           => '[https://www.mediawiki.org/wiki/Manual:api.php api.php]', # do not translate or duplicate this message to other languages
 'version-entrypoints-load-php'          => '[https://www.mediawiki.org/wiki/Manual:load.php load.php]', # do not translate or duplicate this message to other languages
 
-# Special:FilePath
-'filepath'         => 'File path',
-'filepath-page'    => 'File:',
-'filepath-submit'  => 'Go',
-'filepath-summary' => 'This special page returns the complete path for a file.
-Images are shown in full resolution, other file types are started with their associated program directly.',
-
 # Special:Redirect
 'redirect'         => 'Redirect by file, user, or revision ID',
 'redirect-legend'  => 'Redirect to a file or page',
