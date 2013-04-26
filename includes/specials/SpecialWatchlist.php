@@ -76,7 +76,7 @@ class SpecialWatchlist extends SpecialPage {
 		$mode = SpecialEditWatchlist::getMode( $request, $par );
 		if ( $mode !== false ) {
 			# TODO: localise?
-			switch( $mode ) {
+			switch ( $mode ) {
 				case SpecialEditWatchlist::EDIT_CLEAR:
 					$mode = 'clear';
 					break;
@@ -163,7 +163,7 @@ class SpecialWatchlist extends SpecialPage {
 			$big = 1000; /* The magical big */
 			if ( $nitems > $big ) {
 				# Set default cutoff shorter
-				$values['days'] = $defaults['days'] = (12.0 / 24.0); # 12 hours...
+				$values['days'] = $defaults['days'] = ( 12.0 / 24.0 ); # 12 hours...
 			} else {
 				$values['days'] = $defaults['days']; # default cutoff for shortlisters
 			}

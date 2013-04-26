@@ -183,7 +183,7 @@ class TextPassDumper extends BackupDumper {
 		global $IP;
 		$url = $this->processFileOpt( $val, $param );
 
-		switch( $opt ) {
+		switch ( $opt ) {
 		case 'prefetch':
 			require_once "$IP/maintenance/backupPrefetch.inc";
 			$this->prefetch = new BaseDump( $url );
@@ -215,7 +215,7 @@ class TextPassDumper extends BackupDumper {
 	function processFileOpt( $val, $param ) {
 		$fileURIs = explode( ';', $param );
 		foreach ( $fileURIs as $URI ) {
-			switch( $val ) {
+			switch ( $val ) {
 				case "file":
 					$newURI = $URI;
 					break;

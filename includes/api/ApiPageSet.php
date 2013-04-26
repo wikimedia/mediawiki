@@ -188,7 +188,7 @@ class ApiPageSet extends ApiBase {
 
 			if ( !$isDryRun ) {
 				// Populate page information with the original user input
-				switch( $dataSource ) {
+				switch ( $dataSource ) {
 					case 'titles':
 						$this->initFromTitles( $this->mParams['titles'] );
 						break;
@@ -407,7 +407,7 @@ class ApiPageSet extends ApiBase {
 	 * @return array of raw_prefixed_title (string) => prefixed_title (string)
 	 * @since 1.21
 	 */
-	public function getNormalizedTitlesAsResult( $result = null  ) {
+	public function getNormalizedTitlesAsResult( $result = null ) {
 		$values = array();
 		foreach ( $this->getNormalizedTitles() as $rawTitleStr => $titleStr ) {
 			$values[] = array(

@@ -456,7 +456,7 @@ class ApiUpload extends ApiBase {
 		global $wgFileExtensions;
 
 		// @todo Move them to ApiBase's message map
-		switch( $verification['status'] ) {
+		switch ( $verification['status'] ) {
 			// Recoverable errors
 			case UploadBase::MIN_LENGTH_PARTNAME:
 				$this->dieRecoverableError( 'filename-tooshort', 'filename' );

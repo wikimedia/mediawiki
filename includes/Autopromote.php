@@ -165,7 +165,7 @@ class Autopromote {
 			return false;
 		}
 
-		switch( $cond[0] ) {
+		switch ( $cond[0] ) {
 			case APCOND_EMAILCONFIRMED:
 				if ( Sanitizer::validateEmail( $user->getEmail() ) ) {
 					if ( $wgEmailAuthentication ) {

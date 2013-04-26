@@ -93,7 +93,7 @@ class SearchEngine {
 	 * @return Boolean
 	 */
 	public function supports( $feature ) {
-		switch( $feature ) {
+		switch ( $feature ) {
 		case 'list-redirects':
 			return true;
 		case 'title-suffix-filter':

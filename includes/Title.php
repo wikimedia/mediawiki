@@ -757,7 +757,7 @@ class Title {
 	 */
 	public function getTalkNsText() {
 		global $wgContLang;
-		return( $wgContLang->getNsText( MWNamespace::getTalk( $this->mNamespace ) ) );
+		return $wgContLang->getNsText( MWNamespace::getTalk( $this->mNamespace ) );
 	}
 
 	/**
@@ -766,7 +766,7 @@ class Title {
 	 * @return Bool TRUE or FALSE
 	 */
 	public function canTalk() {
-		return( MWNamespace::canTalk( $this->mNamespace ) );
+		return MWNamespace::canTalk( $this->mNamespace );
 	}
 
 	/**
@@ -1275,10 +1275,10 @@ class Title {
 	 */
 	public function getSubpageText() {
 		if ( !MWNamespace::hasSubpages( $this->mNamespace ) ) {
-			return( $this->mTextform );
+			return $this->mTextform;
 		}
 		$parts = explode( '/', $this->mTextform );
-		return( $parts[count( $parts ) - 1] );
+		return $parts[count( $parts ) - 1];
 	}
 
 	/**
@@ -1318,7 +1318,7 @@ class Title {
 	public function getSubpageUrlForm() {
 		$text = $this->getSubpageText();
 		$text = wfUrlencode( str_replace( ' ', '_', $text ) );
-		return( $text );
+		return $text;
 	}
 
 	/**
@@ -4401,7 +4401,7 @@ class Title {
 			return true;  // any interwiki link might be viewable, for all we know
 		}
 
-		switch( $this->mNamespace ) {
+		switch ( $this->mNamespace ) {
 			case NS_MEDIA:
 			case NS_FILE:
 				// file exists, possibly in a foreign repo

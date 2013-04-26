@@ -187,7 +187,7 @@ class VectorTemplate extends BaseTemplate {
 				<?php } ?>
 				<?php if ( $this->data['newtalk'] ) { ?>
 				<!-- newtalk -->
-				<div class="usermessage"><?php $this->html( 'newtalk' )  ?></div>
+				<div class="usermessage"><?php $this->html( 'newtalk' ) ?></div>
 				<!-- /newtalk -->
 				<?php } ?>
 				<?php if ( $this->data['showjumplinks'] ) { ?>
@@ -304,7 +304,7 @@ class VectorTemplate extends BaseTemplate {
 			}
 
 			echo "\n<!-- {$name} -->\n";
-			switch( $name ) {
+			switch ( $name ) {
 				case 'SEARCH':
 					break;
 				case 'TOOLBOX':
@@ -381,7 +381,7 @@ class VectorTemplate extends BaseTemplate {
 		// Render elements
 		foreach ( $elements as $name => $element ) {
 			echo "\n<!-- {$name} -->\n";
-			switch( $element ) {
+			switch ( $element ) {
 				case 'NAMESPACES':
 ?>
 <div id="p-namespaces" role="navigation" class="vectorTabs<?php if ( count( $this->data['namespace_urls'] ) == 0 ) { echo ' emptyPortlet'; } ?>">

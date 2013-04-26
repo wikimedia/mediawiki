@@ -57,7 +57,7 @@ class SpecialUnblock extends SpecialPage {
 		$form->addPreText( $this->msg( 'unblockiptext' )->parseAsBlock() );
 
 		if ( $form->show() ) {
-			switch( $this->type ) {
+			switch ( $this->type ) {
 				case Block::TYPE_USER:
 				case Block::TYPE_IP:
 					$out->addWikiMsg( 'unblocked', wfEscapeWikiText( $this->target ) );
@@ -106,7 +106,7 @@ class SpecialUnblock extends SpecialPage {
 			} else {
 				$fields['Target']['default'] = $target;
 				$fields['Target']['type'] = 'hidden';
-				switch( $type ) {
+				switch ( $type ) {
 					case Block::TYPE_USER:
 					case Block::TYPE_IP:
 						$fields['Name']['default'] = Linker::link(

@@ -915,7 +915,7 @@ __INDEXATTR__;
 
 	function tableName( $name, $format = 'quoted' ) {
 		# Replace reserved words with better ones
-		switch( $name ) {
+		switch ( $name ) {
 			case 'user':
 				return $this->realTableName( 'mwuser', $format );
 			case 'text':

@@ -46,7 +46,7 @@ class CheckLanguageCLI {
 	public function __construct( array $options ) {
 		if ( isset( $options['help'] ) ) {
 			echo $this->help();
-			exit(1);
+			exit( 1 );
 		}
 
 		if ( isset( $options['lang'] ) ) {
@@ -488,7 +488,7 @@ class CheckExtensionsCLI extends CheckLanguageCLI {
 	public function __construct( array $options, $extension ) {
 		if ( isset( $options['help'] ) ) {
 			echo $this->help();
-			exit(1);
+			exit( 1 );
 		}
 
 		if ( isset( $options['lang'] ) ) {
@@ -654,7 +654,7 @@ ENDS;
 				echo $extension->name() . ":\n";
 
 				if ( $this->level > 0 ) {
-					switch( $this->output ) {
+					switch ( $this->output ) {
 						case 'plain':
 							$this->outputText();
 							break;

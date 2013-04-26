@@ -63,7 +63,7 @@ class IPTC {
 				wfDebugLog( 'iptc', "IPTC tag $tag had only whitespace as its value." );
 				continue;
 			}
-			switch( $tag ) {
+			switch ( $tag ) {
 				case '2#120': /*IPTC caption. mapped with exif ImageDescription*/
 					$data['ImageDescription'] = self::convIPTC( $val, $c );
 					break;

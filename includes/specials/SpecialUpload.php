@@ -530,7 +530,7 @@ class SpecialUpload extends SpecialPage {
 	protected function processVerificationError( $details ) {
 		global $wgFileExtensions;
 
-		switch( $details['status'] ) {
+		switch ( $details['status'] ) {
 
 			/** Statuses that only require name changing **/
 			case UploadBase::MIN_LENGTH_PARTNAME:

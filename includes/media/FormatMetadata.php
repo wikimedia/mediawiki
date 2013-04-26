@@ -127,9 +127,9 @@ class FormatMetadata {
 
 			foreach ( $vals as &$val ) {
 
-				switch( $tag ) {
+				switch ( $tag ) {
 				case 'Compression':
-					switch( $val ) {
+					switch ( $val ) {
 					case 1: case 2: case 3: case 4:
 					case 5: case 6: case 7: case 8:
 					case 32773: case 32946: case 34712:
@@ -142,7 +142,7 @@ class FormatMetadata {
 					break;
 
 				case 'PhotometricInterpretation':
-					switch( $val ) {
+					switch ( $val ) {
 					case 2: case 6:
 						$val = self::msg( $tag, $val );
 						break;
@@ -153,7 +153,7 @@ class FormatMetadata {
 					break;
 
 				case 'Orientation':
-					switch( $val ) {
+					switch ( $val ) {
 					case 1: case 2: case 3: case 4: case 5: case 6: case 7: case 8:
 						$val = self::msg( $tag, $val );
 						break;
@@ -164,7 +164,7 @@ class FormatMetadata {
 					break;
 
 				case 'PlanarConfiguration':
-					switch( $val ) {
+					switch ( $val ) {
 					case 1: case 2:
 						$val = self::msg( $tag, $val );
 						break;
@@ -189,7 +189,7 @@ class FormatMetadata {
 
 				case 'XResolution':
 				case 'YResolution':
-					switch( $resolutionunit ) {
+					switch ( $resolutionunit ) {
 						case 2:
 							$val = self::msg( 'XYResolution', 'i', self::formatNum( $val ) );
 							break;
@@ -208,7 +208,7 @@ class FormatMetadata {
 					break;
 
 				case 'ColorSpace':
-					switch( $val ) {
+					switch ( $val ) {
 					case 1: case 65535:
 						$val = self::msg( $tag, $val );
 						break;
@@ -219,7 +219,7 @@ class FormatMetadata {
 					break;
 
 				case 'ComponentsConfiguration':
-					switch( $val ) {
+					switch ( $val ) {
 					case 0: case 1: case 2: case 3: case 4: case 5: case 6:
 						$val = self::msg( $tag, $val );
 						break;
@@ -267,7 +267,7 @@ class FormatMetadata {
 					break;
 
 				case 'ExposureProgram':
-					switch( $val ) {
+					switch ( $val ) {
 					case 0: case 1: case 2: case 3: case 4: case 5: case 6: case 7: case 8:
 						$val = self::msg( $tag, $val );
 						break;
@@ -282,7 +282,7 @@ class FormatMetadata {
 					break;
 
 				case 'MeteringMode':
-					switch( $val ) {
+					switch ( $val ) {
 					case 0: case 1: case 2: case 3: case 4: case 5: case 6: case 7: case 255:
 						$val = self::msg( $tag, $val );
 						break;
@@ -293,7 +293,7 @@ class FormatMetadata {
 					break;
 
 				case 'LightSource':
-					switch( $val ) {
+					switch ( $val ) {
 					case 0: case 1: case 2: case 3: case 4: case 9: case 10: case 11:
 					case 12: case 13: case 14: case 15: case 17: case 18: case 19: case 20:
 					case 21: case 22: case 23: case 24: case 255:
@@ -328,7 +328,7 @@ class FormatMetadata {
 					break;
 
 				case 'FocalPlaneResolutionUnit':
-					switch( $val ) {
+					switch ( $val ) {
 					case 2:
 						$val = self::msg( $tag, $val );
 						break;
@@ -339,7 +339,7 @@ class FormatMetadata {
 					break;
 
 				case 'SensingMethod':
-					switch( $val ) {
+					switch ( $val ) {
 					case 1: case 2: case 3: case 4: case 5: case 7: case 8:
 						$val = self::msg( $tag, $val );
 						break;
@@ -350,7 +350,7 @@ class FormatMetadata {
 					break;
 
 				case 'FileSource':
-					switch( $val ) {
+					switch ( $val ) {
 					case 3:
 						$val = self::msg( $tag, $val );
 						break;
@@ -361,7 +361,7 @@ class FormatMetadata {
 					break;
 
 				case 'SceneType':
-					switch( $val ) {
+					switch ( $val ) {
 					case 1:
 						$val = self::msg( $tag, $val );
 						break;
@@ -372,7 +372,7 @@ class FormatMetadata {
 					break;
 
 				case 'CustomRendered':
-					switch( $val ) {
+					switch ( $val ) {
 					case 0: case 1:
 						$val = self::msg( $tag, $val );
 						break;
@@ -383,7 +383,7 @@ class FormatMetadata {
 					break;
 
 				case 'ExposureMode':
-					switch( $val ) {
+					switch ( $val ) {
 					case 0: case 1: case 2:
 						$val = self::msg( $tag, $val );
 						break;
@@ -394,7 +394,7 @@ class FormatMetadata {
 					break;
 
 				case 'WhiteBalance':
-					switch( $val ) {
+					switch ( $val ) {
 					case 0: case 1:
 						$val = self::msg( $tag, $val );
 						break;
@@ -405,7 +405,7 @@ class FormatMetadata {
 					break;
 
 				case 'SceneCaptureType':
-					switch( $val ) {
+					switch ( $val ) {
 					case 0: case 1: case 2: case 3:
 						$val = self::msg( $tag, $val );
 						break;
@@ -416,7 +416,7 @@ class FormatMetadata {
 					break;
 
 				case 'GainControl':
-					switch( $val ) {
+					switch ( $val ) {
 					case 0: case 1: case 2: case 3: case 4:
 						$val = self::msg( $tag, $val );
 						break;
@@ -427,7 +427,7 @@ class FormatMetadata {
 					break;
 
 				case 'Contrast':
-					switch( $val ) {
+					switch ( $val ) {
 					case 0: case 1: case 2:
 						$val = self::msg( $tag, $val );
 						break;
@@ -438,7 +438,7 @@ class FormatMetadata {
 					break;
 
 				case 'Saturation':
-					switch( $val ) {
+					switch ( $val ) {
 					case 0: case 1: case 2:
 						$val = self::msg( $tag, $val );
 						break;
@@ -449,7 +449,7 @@ class FormatMetadata {
 					break;
 
 				case 'Sharpness':
-					switch( $val ) {
+					switch ( $val ) {
 					case 0: case 1: case 2:
 						$val = self::msg( $tag, $val );
 						break;
@@ -460,7 +460,7 @@ class FormatMetadata {
 					break;
 
 				case 'SubjectDistanceRange':
-					switch( $val ) {
+					switch ( $val ) {
 					case 0: case 1: case 2: case 3:
 						$val = self::msg( $tag, $val );
 						break;
@@ -473,7 +473,7 @@ class FormatMetadata {
 				//The GPS...Ref values are kept for compatibility, probably won't be reached.
 				case 'GPSLatitudeRef':
 				case 'GPSDestLatitudeRef':
-					switch( $val ) {
+					switch ( $val ) {
 					case 'N': case 'S':
 						$val = self::msg( 'GPSLatitude', $val );
 						break;
@@ -485,7 +485,7 @@ class FormatMetadata {
 
 				case 'GPSLongitudeRef':
 				case 'GPSDestLongitudeRef':
-					switch( $val ) {
+					switch ( $val ) {
 					case 'E': case 'W':
 						$val = self::msg( 'GPSLongitude', $val );
 						break;
@@ -504,7 +504,7 @@ class FormatMetadata {
 					break;
 
 				case 'GPSStatus':
-					switch( $val ) {
+					switch ( $val ) {
 					case 'A': case 'V':
 						$val = self::msg( $tag, $val );
 						break;
@@ -515,7 +515,7 @@ class FormatMetadata {
 					break;
 
 				case 'GPSMeasureMode':
-					switch( $val ) {
+					switch ( $val ) {
 					case 2: case 3:
 						$val = self::msg( $tag, $val );
 						break;
@@ -528,7 +528,7 @@ class FormatMetadata {
 				case 'GPSTrackRef':
 				case 'GPSImgDirectionRef':
 				case 'GPSDestBearingRef':
-					switch( $val ) {
+					switch ( $val ) {
 					case 'T': case 'M':
 						$val = self::msg( 'GPSDirection', $val );
 						break;
@@ -548,7 +548,7 @@ class FormatMetadata {
 					break;
 
 				case 'GPSSpeedRef':
-					switch( $val ) {
+					switch ( $val ) {
 					case 'K': case 'M': case 'N':
 						$val = self::msg( 'GPSSpeed', $val );
 						break;
@@ -559,7 +559,7 @@ class FormatMetadata {
 					break;
 
 				case 'GPSDestDistanceRef':
-					switch( $val ) {
+					switch ( $val ) {
 					case 'K': case 'M': case 'N':
 						$val = self::msg( 'GPSDestDistance', $val );
 						break;
@@ -646,7 +646,7 @@ class FormatMetadata {
 					break;
 
 				case 'iimCategory':
-					switch( strtolower( $val ) ) {
+					switch ( strtolower( $val ) ) {
 						// See pg 29 of IPTC photo
 						// metadata standard.
 						case 'ace': case 'clj':
@@ -791,7 +791,7 @@ class FormatMetadata {
 					}
 					break;
 				case 'Copyrighted':
-					switch( $val ) {
+					switch ( $val ) {
 					case 'True': case 'False':
 						$val = self::msg( $tag, $val );
 						break;
@@ -863,7 +863,7 @@ class FormatMetadata {
 		 */
 		else {
 			global $wgContLang;
-			switch( $type ) {
+			switch ( $type ) {
 			case 'lang':
 				// Display default, followed by ContLang,
 				// followed by the rest in no particular
@@ -948,7 +948,7 @@ class FormatMetadata {
 	 * this is treated as wikitext not html).
 	 */
 	private static function langItem( $value, $lang, $default = false, $noHtml = false ) {
-		if ( $lang === false && $default === false) {
+		if ( $lang === false && $default === false ) {
 			throw new MWException( '$lang and $default cannot both '
 				. 'be false.' );
 		}
@@ -1125,7 +1125,7 @@ class FormatMetadata {
 			return $val;
 		}
 		$cat = '';
-		switch( substr( $val, 0, 2 ) ) {
+		switch ( substr( $val, 0, 2 ) ) {
 			case '01':
 				$cat = 'ace';
 				break;

@@ -2510,10 +2510,10 @@ class Parser {
 		for ( $i = 0; $i < $len; $i++ ) {
 			$c = $str[$i];
 
-			switch( $state ) {
+			switch ( $state ) {
 			# (Using the number is a performance hack for common cases)
 			case 0: # self::COLON_STATE_TEXT:
-				switch( $c ) {
+				switch ( $c ) {
 				case "<":
 					# Could be either a <start> tag or an </end> tag
 					$state = self::COLON_STATE_TAGSTART;
@@ -2558,7 +2558,7 @@ class Parser {
 				break;
 			case 1: # self::COLON_STATE_TAG:
 				# In a <tag>
-				switch( $c ) {
+				switch ( $c ) {
 				case ">":
 					$stack++;
 					$state = self::COLON_STATE_TEXT;
@@ -2572,7 +2572,7 @@ class Parser {
 				}
 				break;
 			case 2: # self::COLON_STATE_TAGSTART:
-				switch( $c ) {
+				switch ( $c ) {
 				case "/":
 					$state = self::COLON_STATE_CLOSETAG;
 					break;
@@ -4670,7 +4670,7 @@ class Parser {
 	 * @return mixed An expanded string, or false if invalid.
 	 */
 	function validateSig( $text ) {
-		return( Xml::isWellFormedXmlFragment( $text ) ? $text : false );
+		return Xml::isWellFormedXmlFragment( $text ) ? $text : false;
 	}
 
 	/**
@@ -5236,7 +5236,7 @@ class Parser {
 						$validated = $handler->validateParam( $paramName, $value );
 					} else {
 						# Validate internal parameters
-						switch( $paramName ) {
+						switch ( $paramName ) {
 						case 'manualthumb':
 						case 'alt':
 						case 'class':

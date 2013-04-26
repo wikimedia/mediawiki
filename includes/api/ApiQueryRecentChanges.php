@@ -499,7 +499,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			}
 			return $retval;
 		}
-		switch( $type ) {
+		switch ( $type ) {
 			case 'edit':
 				return RC_EDIT;
 			case 'new':

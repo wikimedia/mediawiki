@@ -1822,7 +1822,7 @@ class Language {
 		}
 		$start = substr( $str, 0, strlen( $str ) - 2 );
 		$end = substr( $str, strlen( $str ) - 2 );
-		switch( $end ) {
+		switch ( $end ) {
 			case 'כ':
 				$str = $start . 'ך';
 				break;

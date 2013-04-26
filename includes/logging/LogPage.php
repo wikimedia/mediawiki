@@ -331,7 +331,7 @@ class LogPage {
 			return $title->getPrefixedText();
 		}
 
-		switch( $type ) {
+		switch ( $type ) {
 			case 'move':
 				$titleLink = Linker::link(
 					$title,

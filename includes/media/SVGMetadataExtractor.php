@@ -144,7 +144,7 @@ class SVGReader {
 		while ( $keepReading ) {
 			$tag = $this->reader->localName;
 			$type = $this->reader->nodeType;
-			$isSVG = ($this->reader->namespaceURI == self::NS_SVG);
+			$isSVG = ( $this->reader->namespaceURI == self::NS_SVG );
 
 			$this->debug( "$tag" );
 
@@ -241,7 +241,7 @@ class SVGReader {
 				&& $this->reader->nodeType == XmlReader::END_ELEMENT ) {
 				break;
 			} elseif ( $this->reader->namespaceURI == self::NS_SVG && $this->reader->nodeType == XmlReader::ELEMENT ) {
-				switch( $this->reader->localName ) {
+				switch ( $this->reader->localName ) {
 					case 'script':
 						// Normally we disallow files with
 						// <script>, but its possible

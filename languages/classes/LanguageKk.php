@@ -303,7 +303,7 @@ class KkConverter extends LanguageConverter {
 		global $wgLanguageCode;
 		$text = parent::translate( $text, $toVariant );
 
-		switch( $toVariant ) {
+		switch ( $toVariant ) {
 			case 'kk-cyrl':
 			case 'kk-kz':
 				$letters = KK_L_UC . KK_L_LC . 'ʺʹ#0123456789';
@@ -347,7 +347,7 @@ class KkConverter extends LanguageConverter {
 			return $text;
 		}
 
-		switch( $toVariant ) {
+		switch ( $toVariant ) {
 			case 'kk-arab':
 			case 'kk-cn':
 				$letters = KK_C_LC . KK_C_UC/*.KK_L_LC.KK_L_UC*/;

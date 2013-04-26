@@ -262,7 +262,7 @@ class ApiEditPage extends ApiBase {
 			$requestArray['wpStarttime'] = wfTimestampNow(); // Fake wpStartime
 		}
 
-		if ( $params['minor'] || ( !$params['notminor'] && $user->getOption( 'minordefault' ) ) )	{
+		if ( $params['minor'] || ( !$params['notminor'] && $user->getOption( 'minordefault' ) ) ) {
 			$requestArray['wpMinoredit'] = '';
 		}
 
@@ -342,7 +342,7 @@ class ApiEditPage extends ApiBase {
 		$wgRequest = $oldRequest;
 		global $wgMaxArticleSize;
 
-		switch( $status->value ) {
+		switch ( $status->value ) {
 			case EditPage::AS_HOOK_ERROR:
 			case EditPage::AS_HOOK_ERROR_EXPECTED:
 				$this->dieUsageMsg( 'hookaborted' );
