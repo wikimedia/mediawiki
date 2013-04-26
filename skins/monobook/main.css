@@ -392,14 +392,6 @@ li#pt-login {
 	background: url(user.gif) top left no-repeat;
 	padding-left: 20px;
 }
-#p-personal ul {
-	text-transform: lowercase;
-}
-/* Don't lowercase username or IP addresses (IPv6) */
-li#pt-userpage,
-li#pt-anonuserpage {
-	text-transform: none;
-}
 #p-personal li.active {
 	font-weight: bold;
 }
@@ -502,7 +494,6 @@ li#ca-print {
 
 /* Override text-transform on languages where capitalization is significant */
 .capitalize-all-nouns .portlet h3,
-.capitalize-all-nouns #p-personal ul,
 .capitalize-all-nouns #p-cactions ul li a {
 	text-transform: none;
 }
