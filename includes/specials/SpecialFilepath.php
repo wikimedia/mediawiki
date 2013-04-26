@@ -26,74 +26,14 @@
  *
  * @ingroup SpecialPage
  */
-class SpecialFilepath extends SpecialPage {
+class SpecialFilepath extends RedirectSpecialPage {
 	function __construct() {
 		parent::__construct( 'Filepath' );
+		$this->mAllowedRedirectParams = array( 'width', 'height' );
 	}
-
-	function execute( $par ) {
-		$this->setHeaders();
-		$this->outputHeader();
-
-		$request = $this->getRequest();
-		$file = $par ?: $request->getText( 'file' );
-
-		$title = Title::newFromText( $file, NS_FILE );
-
-		if ( !( $title instanceof Title ) || $title->getNamespace() != NS_FILE ) {
-			$this->showForm( $title );
-		} else {
-			$file = wfFindFile( $title );
-
-			if ( $file && $file->exists() ) {
-				// Default behavior: Use the direct link to the file.
-				$url = $file->getURL();
-				$width = $request->getInt( 'width', -1 );
-				$height = $request->getInt( 'height', -1 );
-
-				// If a width is requested...
-				if ( $width != -1 ) {
-					$mto = $file->transform( array( 'width' => $width, 'height' => $height ) );
-
-					// ... and we can
-					if ( $mto && !$mto->isError() ) {
-						// ... change the URL to point to a thumbnail.
-						$url = $mto->getURL();
-					}
-				}
-				$this->getOutput()->redirect( $url );
-			} else {
-				$this->getOutput()->setStatusCode( 404 );
-				$this->showForm( $title );
-			}
-		}
-	}
-
-	/**
-	 * @param Title $title Title requested, or null.
-	 */
-	function showForm( $title ) {
-		global $wgScript;
-
-		$this->getOutput()->addHTML(
-			Html::openElement(
-				'form',
-				array( 'method' => 'get', 'action' => $wgScript, 'id' => 'specialfilepath' )
-			) .
-				Html::openElement( 'fieldset' ) .
-				Html::element( 'legend', null, $this->msg( 'filepath' )->text() ) .
-				Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) .
-				Xml::inputLabel(
-					$this->msg( 'filepath-page' )->text(),
-					'file',
-					'file',
-					25,
-					is_object( $title ) ? $title->getText() : ''
-				) . ' ' .
-				Xml::submitButton( $this->msg( 'filepath-submit' )->text() ) . "\n" .
-				Html::closeElement( 'fieldset' ) .
-				Html::closeElement( 'form' )
-		);
+	// implement by redirecting through Special:Redirect/file
+	function getRedirect( $par ) {
+		return SpecialPage::getSafeTitleFor( 'Redirect', 'file/' . $par );
 	}
 
 	protected function getGroupName() {
