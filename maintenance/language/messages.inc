@@ -3637,12 +3637,6 @@ $wgMessageStructure = array(
 		'version-entrypoints-api-php',
 		'version-entrypoints-load-php',
 	),
-	'filepath' => array(
-		'filepath',
-		'filepath-page',
-		'filepath-submit',
-		'filepath-summary',
-	),
 	'redirect' => array(
 		'redirect',
 		'redirect-legend',

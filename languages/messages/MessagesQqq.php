@@ -8505,15 +8505,6 @@ A short description of the article path entry point. Links to the mediawiki.org 
 'version-entrypoints-scriptpath' => '{{Optional}}
 A short description of the script path entry point. Links to the mediawiki.org documentation page for $wgScriptPath.',
 
-# Special:FilePath
-'filepath' => 'Legend of fieldset around input box in [[Special:FilePath]].',
-'filepath-page' => 'Shown next to input box in [[Special:FilePath]]
-
-{{Identical|File}}',
-'filepath-submit' => 'Button label in [[Special:FilePath]].
-{{Identical|Go}}',
-'filepath-summary' => 'Shown in [[Special:FilePath]]',
-
 # Special:Redirect
 'redirect'         => 'Main heading of [[Special:Redirect]] page',
 'redirect-legend'  => 'Legend of fieldset around input box in [[Special:Redirect]]',
