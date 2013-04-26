@@ -1174,9 +1174,10 @@ class ParserTest {
 
 		global $wgDiff3;
 		// we assume that people with diff3 also have usual diff
-		$diff = ( wfIsWindows() && !$wgDiff3 )
-			? `fc $shellInfile $shellOutfile`
-			: `diff -au $shellInfile $shellOutfile`;
+		$shellCommand = ( wfIsWindows() && !$wgDiff3 ) ? 'fc' : 'diff -au';
+
+		$diff = wfShellExec( "$shellCommand $shellInfile $shellOutfile" );
+
 		unlink( $infile );
 		unlink( $outfile );
 
