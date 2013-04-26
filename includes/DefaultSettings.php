@@ -3584,8 +3584,12 @@ $wgHitcounterUpdateFreq = 1;
 /**
  * How many days user must be idle before he is considered inactive. Will affect
  * the number shown on Special:Statistics and Special:ActiveUsers special page.
+ *
  * You might want to leave this as the default value, to provide comparable
  * numbers between different wikis.
+ *
+ * If you do override it, also change MediaWiki:createacct-benefit-body3.
+ * MediaWiki:createacct-benefit-head3 is {{NUMBEROFACTIVEUSERS}}.
  */
 $wgActiveUserDays = 30;
 
