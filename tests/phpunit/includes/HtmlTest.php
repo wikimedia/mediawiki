@@ -432,6 +432,7 @@ class HtmlTest extends MediaWikiTestCase {
 		foreach ( $types as $type ) {
 			$cases[] = array( $type );
 		}
+
 		return $cases;
 	}
 
@@ -596,6 +597,7 @@ class HtmlTest extends MediaWikiTestCase {
 				isset( $case[3] ) ? $case[3] : ''
 			);
 		}
+
 		return $ret;
 	}
 
@@ -610,5 +612,4 @@ class HtmlTest extends MediaWikiTestCase {
 			'Allow special case "step=any".'
 		);
 	}
-
 }

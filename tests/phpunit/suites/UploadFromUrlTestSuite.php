@@ -57,7 +57,6 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
 		$wgNamespaceAliases['Image'] = NS_FILE;
 		$wgNamespaceAliases['Image_talk'] = NS_FILE_TALK;
 
-
 		$wgEnableParserCache = false;
 		DeferredUpdates::clearPendingUpdates();
 		$wgMemc = wfGetMainCache();
@@ -185,6 +184,7 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
 
 		if ( file_exists( $dir ) ) {
 			wfDebug( "Already exists!\n" );
+
 			return $dir;
 		}
 
@@ -202,6 +202,7 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
 		// the UploadFromUrlTest class
 		class_exists( 'UploadFromUrlTest' );
 		$suite = new UploadFromUrlTestSuite( 'UploadFromUrlTest' );
+
 		return $suite;
 	}
 }

@@ -56,5 +56,4 @@ class LanguageTrTest extends LanguageClassesTestCase {
 
 		);
 	}
-
 }

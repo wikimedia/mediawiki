@@ -194,6 +194,7 @@ class MWHttpRequestTester extends MWHttpRequest {
 					throw new MWException( __METHOD__ . ': allow_url_fopen needs to be enabled for pure PHP' .
 						' http requests to work. If possible, curl should be used instead. See http://php.net/curl.' );
 				}
+
 				return new PhpHttpRequestTester( $url, $options );
 			default:
 		}

@@ -122,7 +122,6 @@ class LinksUpdateTest extends MediaWikiTestCase {
 
 		$po->addImage( "Foo.png" );
 
-
 		$this->assertLinksUpdate( $t, $po, 'imagelinks', 'il_to', 'il_from = 111', array(
 			array( 'Foo.png' ),
 		) );
@@ -132,7 +131,6 @@ class LinksUpdateTest extends MediaWikiTestCase {
 		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", 111 );
 
 		$po->addLanguageLink( Title::newFromText( "en:Foo" )->getFullText() );
-
 
 		$this->assertLinksUpdate( $t, $po, 'langlinks', 'll_lang, ll_title', 'll_from = 111', array(
 			array( 'En', 'Foo' ),

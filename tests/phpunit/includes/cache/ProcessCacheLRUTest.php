@@ -52,6 +52,7 @@ class ProcessCacheLRUTest extends MediaWikiTestCase {
 		for ( $i = $firstKey; $i <= $lastKey; $i++ ) {
 			$expected["cache-key-$i"] = array( "prop-$i" => "value-$i" );
 		}
+
 		return $expected;
 	}
 
@@ -125,7 +126,6 @@ class ProcessCacheLRUTest extends MediaWikiTestCase {
 			$cache->getCache(),
 			"Filling a $cacheMaxEntries entries cache with $entryToFill entries"
 		);
-
 	}
 
 	/**
@@ -218,9 +218,7 @@ class ProcessCacheLRUTest extends MediaWikiTestCase {
 			),
 			$cache->getCache()
 		);
-
 	}
-
 }
 
 /**

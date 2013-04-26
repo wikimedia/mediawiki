@@ -152,6 +152,7 @@ class WfBaseConvertTest extends MediaWikiTestCase {
 
 			$x[] = array( $base, $str );
 		}
+
 		return $x;
 	}
 

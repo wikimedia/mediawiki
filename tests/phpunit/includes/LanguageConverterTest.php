@@ -123,7 +123,6 @@ class TestConverter extends LanguageConverter {
 			'tg' => new ReplacementArray()
 		);
 	}
-
 }
 
 class LanguageToTest extends Language {

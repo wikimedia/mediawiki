@@ -108,6 +108,7 @@ class RandomImageGenerator {
 		foreach ( $filenames as $filename ) {
 			$this->{$imageWriteMethod}( $this->getImageSpec(), $format, $filename );
 		}
+
 		return $filenames;
 	}
 
@@ -156,7 +157,6 @@ class RandomImageGenerator {
 		}
 
 		return $filenames;
-
 	}
 
 
@@ -196,7 +196,6 @@ class RandomImageGenerator {
 				array( 'x' => $originX, 'y' => $originY - $radius )
 			);
 			$draws[] = $draw;
-
 		}
 
 		$spec['draws'] = $draws;
@@ -216,6 +215,7 @@ class RandomImageGenerator {
 		foreach ( $shape as $point ) {
 			$points[] = $point['x'] . ',' . $point['y'];
 		}
+
 		return join( " ", $points );
 	}
 
@@ -337,6 +337,7 @@ class RandomImageGenerator {
 			}
 			$tSpec['draws'][] = $tDraw;
 		}
+
 		return $tSpec;
 	}
 
@@ -384,6 +385,7 @@ class RandomImageGenerator {
 		$command = wfEscapeShellArg( $wgImageMagickConvertCommand ) . " " . implode( " ", $args );
 		$retval = null;
 		wfShellExec( $command, $retval );
+
 		return ( $retval === 0 );
 	}
 
@@ -397,6 +399,7 @@ class RandomImageGenerator {
 		for ( $i = 0; $i <= 2; $i++ ) {
 			$components[] = mt_rand( 0, 255 );
 		}
+
 		return 'rgb(' . join( ', ', $components ) . ')';
 	}
 
@@ -414,6 +417,7 @@ class RandomImageGenerator {
 		for ( $i = 0; $i < $count; $i += 2 ) {
 			$pairs[] = array( $lines[$i], $lines[$i + 1] );
 		}
+
 		return $pairs;
 	}
 
@@ -461,5 +465,4 @@ class RandomImageGenerator {
 
 		return $lines;
 	}
-
 }

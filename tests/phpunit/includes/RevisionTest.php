@@ -403,7 +403,6 @@ class RevisionTest extends MediaWikiTestCase {
 		// for immutable content like wikitext, this should be the same object
 		$this->assertSame( $content, $content2 );
 	}
-
 }
 
 class RevisionTestModifyableContent extends TextContent {
@@ -422,7 +421,6 @@ class RevisionTestModifyableContent extends TextContent {
 	public function setText( $text ) {
 		$this->mText = $text;
 	}
-
 }
 
 class RevisionTestModifyableContentHandler extends TextContentHandler {

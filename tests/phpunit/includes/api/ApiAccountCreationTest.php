@@ -47,13 +47,16 @@ class ApiCreateAccountTest extends ApiTestCase {
 		$token = $a['token'];
 
 		// Finally create the account
-		$ret = $this->doApiRequest( array(
-			'action' => 'createaccount',
-			'name' => 'Apitestnew',
-			'password' => $password,
-			'token' => $token,
-			'email' => 'test@domain.test',
-			'realname' => 'Test Name' ), $ret[2]
+		$ret = $this->doApiRequest(
+			array(
+				'action' => 'createaccount',
+				'name' => 'Apitestnew',
+				'password' => $password,
+				'token' => $token,
+				'email' => 'test@domain.test',
+				'realname' => 'Test Name'
+			),
+			$ret[2]
 		);
 
 		$result = $ret[0];

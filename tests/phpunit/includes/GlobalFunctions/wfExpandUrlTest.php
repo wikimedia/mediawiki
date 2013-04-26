@@ -103,6 +103,7 @@ class WfExpandUrlTest extends MediaWikiTestCase {
 				}
 			}
 		}
+
 		return $retval;
 	}
 }

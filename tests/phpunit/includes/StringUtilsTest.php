@@ -49,6 +49,7 @@ class StringUtilsTest extends MediaWikiTestCase {
 				$escaped .= $char;
 			}
 		}
+
 		return $escaped;
 	}
 

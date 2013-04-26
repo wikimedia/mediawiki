@@ -10,6 +10,7 @@ function getSiteParams( $conf, $wiki ) {
 			break;
 		}
 	}
+
 	return array(
 		'suffix' => $site,
 		'lang' => $lang,

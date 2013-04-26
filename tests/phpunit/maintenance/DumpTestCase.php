@@ -124,6 +124,7 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 				return true;
 			}
 		}
+
 		return false;
 	}
 
@@ -145,6 +146,7 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 				return true;
 			}
 		}
+
 		return false;
 	}
 
@@ -271,7 +273,6 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 		$this->assertTextNode( "title", $name );
 		$this->assertTextNode( "ns", $ns );
 		$this->assertTextNode( "id", $id );
-
 	}
 
 	/**
@@ -299,8 +300,8 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 	 * @param $parentid int|false: (optional) id of the parent revision
 	 */
 	protected function assertRevision( $id, $summary, $text_id, $text_bytes, $text_sha1, $text = false, $parentid = false,
-									   $model = CONTENT_MODEL_WIKITEXT, $format = CONTENT_FORMAT_WIKITEXT ) {
-
+		$model = CONTENT_MODEL_WIKITEXT, $format = CONTENT_FORMAT_WIKITEXT
+	) {
 		$this->assertNodeStart( "revision" );
 		$this->skipWhitespace();
 

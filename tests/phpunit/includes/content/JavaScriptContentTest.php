@@ -269,5 +269,4 @@ class JavaScriptContentTest extends TextContentTest {
 			array( new JavaScriptContent( "hallo" ), new JavaScriptContent( "HALLO" ), false ),
 		);
 	}
-
 }

@@ -81,5 +81,4 @@ class FormOptionsInitializationTest extends MediaWikiTestCase {
 			$this->object->getOptions()
 		);
 	}
-
 }

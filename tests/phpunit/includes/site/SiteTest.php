@@ -263,5 +263,4 @@ class SiteTest extends MediaWikiTestCase {
 
 		$this->assertEquals( $serialization, serialize( $newInstance ) );
 	}
-
 }

@@ -28,6 +28,7 @@ class SearchUpdateTest extends MediaWikiTestCase {
 	function update( $text, $title = 'Test', $id = 1 ) {
 		$u = new SearchUpdate( $id, $title, $text );
 		$u->doUpdate();
+
 		return array( MockSearch::$title, MockSearch::$text );
 	}
 

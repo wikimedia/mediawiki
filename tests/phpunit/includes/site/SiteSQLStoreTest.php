@@ -119,5 +119,4 @@ class SiteSQLStoreTest extends MediaWikiTestCase {
 		$sites = $store->getSites();
 		$this->assertEquals( 0, $sites->count() );
 	}
-
 }

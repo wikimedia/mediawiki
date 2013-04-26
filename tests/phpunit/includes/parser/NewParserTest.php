@@ -86,7 +86,6 @@ class NewParserTest extends MediaWikiTestCase {
 			$tmpGlobals['wgStyleDirectory'] = "$IP/skins";
 		}
 
-
 		foreach ( $tmpGlobals as $var => $val ) {
 			if ( array_key_exists( $var, $GLOBALS ) ) {
 				$this->savedInitialGlobals[$var] = $GLOBALS[$var];
@@ -432,6 +431,7 @@ class NewParserTest extends MediaWikiTestCase {
 		// wfDebug( "Creating upload directory $dir\n" );
 		if ( file_exists( $dir ) ) {
 			wfDebug( "Already exists!\n" );
+
 			return $dir;
 		}
 
@@ -543,6 +543,7 @@ class NewParserTest extends MediaWikiTestCase {
 			global $wgParserTestFiles;
 			$this->file = $wgParserTestFiles[0];
 		}
+
 		return new TestFileIterator( $this->file, $this );
 	}
 
@@ -717,7 +718,6 @@ class NewParserTest extends MediaWikiTestCase {
 			}
 
 			$id++;
-
 		}
 	}
 
@@ -911,6 +911,7 @@ class NewParserTest extends MediaWikiTestCase {
 				}
 			}
 		}
+
 		return $opts;
 	}
 
@@ -922,6 +923,7 @@ class NewParserTest extends MediaWikiTestCase {
 		if ( substr( $opt, 0, 2 ) == '[[' ) {
 			return substr( $opt, 2, -2 );
 		}
+
 		return $opt;
 	}
 

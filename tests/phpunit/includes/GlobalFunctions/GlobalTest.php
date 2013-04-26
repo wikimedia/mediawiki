@@ -257,7 +257,6 @@ class GlobalTest extends MediaWikiTestCase {
 
 		$sampleUTF = "Östergötland_coat_of_arms.png";
 
-
 		//mb_substr
 		$substr_params = array(
 			array( 0, 0 ),
@@ -280,14 +279,12 @@ class GlobalTest extends MediaWikiTestCase {
 			);
 		}
 
-
 		//mb_strlen
 		$this->assertEquals(
 			mb_strlen( $sampleUTF ),
 			Fallback::mb_strlen( $sampleUTF ),
 			'Fallback mb_strlen'
 		);
-
 
 		//mb_str(r?)pos
 		$strpos_params = array(
@@ -315,7 +312,6 @@ class GlobalTest extends MediaWikiTestCase {
 				'Fallback mb_strrpos with params ' . implode( ', ', $old_param_set )
 			);
 		}
-
 	}
 
 
@@ -329,7 +325,6 @@ class GlobalTest extends MediaWikiTestCase {
 		$old_wgDebugTimestamps = $wgDebugTimestamps;
 		$wgDebugTimestamps = false;
 
-
 		wfDebug( "This is a normal string" );
 		$this->assertEquals( "This is a normal string", file_get_contents( $wgDebugLogFile ) );
 		unlink( $wgDebugLogFile );
@@ -337,7 +332,6 @@ class GlobalTest extends MediaWikiTestCase {
 		wfDebug( "This is nöt an ASCII string" );
 		$this->assertEquals( "This is nöt an ASCII string", file_get_contents( $wgDebugLogFile ) );
 		unlink( $wgDebugLogFile );
-
 
 		wfDebug( "\00305This has böth UTF and control chars\003" );
 		$this->assertEquals( " 05This has böth UTF and control chars ", file_get_contents( $wgDebugLogFile ) );
@@ -350,7 +344,6 @@ class GlobalTest extends MediaWikiTestCase {
 		wfDebugMem( true );
 		$this->assertGreaterThan( 5000000, preg_replace( '/\D/', '', file_get_contents( $wgDebugLogFile ) ) );
 		unlink( $wgDebugLogFile );
-
 
 		$wgDebugLogFile = $old_log_file;
 		$wgDebugTimestamps = $old_wgDebugTimestamps;
@@ -398,7 +391,6 @@ class GlobalTest extends MediaWikiTestCase {
 
 		$this->assertEquals( $var1, 2, 'var1 is swapped' );
 		$this->assertEquals( $var2, 1, 'var2 is swapped' );
-
 	}
 
 	function testWfPercentTest() {
@@ -643,6 +635,7 @@ class GlobalTest extends MediaWikiTestCase {
 				array( "$p//nds-nl.wikipedia.org", array( 'nl.wikipedia.org' ), true, "Substrings of domains match while they shouldn't, $pDesc URL" ),
 			) );
 		}
+
 		return $a;
 	}
 
@@ -660,6 +653,7 @@ class GlobalTest extends MediaWikiTestCase {
 
 	public static function provideWfShellMaintenanceCmdList() {
 		global $wgPhpCli;
+
 		return array(
 			array( 'eval.php', array( '--help', '--test' ), array(),
 				"'$wgPhpCli' 'eval.php' '--help' '--test'",

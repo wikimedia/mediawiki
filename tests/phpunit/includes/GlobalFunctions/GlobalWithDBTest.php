@@ -13,6 +13,7 @@ class GlobalWithDBTest extends MediaWikiTestCase {
 
 	public static function provideWfIsBadImageList() {
 		$blacklist = '* [[File:Bad.jpg]] except [[Nasty page]]';
+
 		return array(
 			array( 'Bad.jpg', false, $blacklist, true,
 				'Called on a bad image' ),

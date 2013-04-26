@@ -148,7 +148,6 @@ class SanitizerTest extends MediaWikiTestCase {
 			array( array( 'foo.' => 'baz' ), 'foo.=baz', 'A . is allowed as last character' ),
 			array( array( 'foo6' => 'baz' ), 'foo6=baz', 'Numbers are allowed' ),
 
-
 			# This bit is more relaxed than XML rules, but some extensions use
 			# it, like ProofreadPage (see bug 27539)
 			array( array( '1foo' => 'baz' ), '1foo=baz', 'Leading numbers are allowed' ),
@@ -246,5 +245,4 @@ class SanitizerTest extends MediaWikiTestCase {
 			$message
 		);
 	}
-
 }

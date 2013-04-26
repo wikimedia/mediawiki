@@ -37,5 +37,4 @@ class ApiPurgeTest extends ApiTestCase {
 			$this->assertArrayHasKey( $pages[$v['title']], $v );
 		}
 	}
-
 }

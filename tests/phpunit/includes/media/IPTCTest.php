@@ -56,5 +56,4 @@ class IPTCTest extends MediaWikiTestCase {
 		$res = IPTC::Parse( $iptcData );
 		$this->assertEquals( array( '¼' ), $res['Keywords'] );
 	}
-
 }

@@ -116,6 +116,7 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 				$mapping[$key] = 'unused';
 			}
 		}
+
 		return $mapping;
 	}
 
@@ -126,12 +127,14 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 			'optionname' => null,
 			'optionvalue' => null,
 		);
+
 		return array_merge( $request, $custom );
 	}
 
 	private function executeQuery( $request ) {
 		$this->mContext->setRequest( new FauxRequest( $request, true, $this->mSession ) );
 		$this->mTested->execute();
+
 		return $this->mTested->getResult()->getData();
 	}
 
@@ -156,6 +159,7 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 		} catch ( UsageException $e ) {
 			$this->assertEquals( 'notloggedin', $e->getCodeString() );
 			$this->assertEquals( 'Anonymous users cannot change preferences', $e->getMessage() );
+
 			return;
 		}
 		$this->fail( "UsageException was not thrown" );
@@ -169,6 +173,7 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 		} catch ( UsageException $e ) {
 			$this->assertEquals( 'nooptionname', $e->getCodeString() );
 			$this->assertEquals( 'The optionname parameter must be set', $e->getMessage() );
+
 			return;
 		}
 		$this->fail( "UsageException was not thrown" );
@@ -191,6 +196,7 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 		} catch ( UsageException $e ) {
 			$this->assertEquals( 'nochanges', $e->getCodeString() );
 			$this->assertEquals( 'No changes were requested', $e->getMessage() );
+
 			return;
 		}
 		$this->fail( "UsageException was not thrown" );

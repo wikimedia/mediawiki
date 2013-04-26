@@ -77,6 +77,7 @@ class PreferencesTest extends MediaWikiTestCase {
 			, $this->context
 			, $preferences
 		);
+
 		return $preferences;
 	}
 }

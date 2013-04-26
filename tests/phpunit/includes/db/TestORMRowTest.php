@@ -122,10 +122,10 @@ class TestORMRowTest extends ORMRowTest {
 			'blob' => new stdClass()
 		);
 	}
-
 }
 
-class TestORMRow extends ORMRow {}
+class TestORMRow extends ORMRow {
+}
 
 class TestORMTable extends ORMTable {
 
@@ -194,6 +194,4 @@ class TestORMTable extends ORMTable {
 	protected function getFieldPrefix() {
 		return 'test_';
 	}
-
-
 }

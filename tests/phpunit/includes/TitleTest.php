@@ -197,6 +197,7 @@ class TitleTest extends MediaWikiTestCase {
 		foreach ( $errors as $error ) {
 			$result[] = $error[0];
 		}
+
 		return $result;
 	}
 

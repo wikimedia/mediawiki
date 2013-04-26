@@ -16,6 +16,7 @@ class MediaWikiProvide {
 		for ( $i = 1; $i <= $num; $i++ ) {
 			$ret[] = array( $i );
 		}
+
 		return $ret;
 	}
 
@@ -39,6 +40,7 @@ class MediaWikiProvide {
 				$ret[] = array( $day[0], $month[0] );
 			}
 		}
+
 		return $ret;
 	}
 }

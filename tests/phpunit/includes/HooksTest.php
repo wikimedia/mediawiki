@@ -11,6 +11,7 @@ class HooksTest extends MediaWikiTestCase {
 
 	public static function provideHooks() {
 		$i = new NothingClass();
+
 		return array(
 			array( 'Object and method', array( $i, 'someNonStatic' ), 'changed-nonstatic', 'changed-nonstatic' ),
 			array( 'Object and no method', array( $i ), 'changed-onevent', 'original' ),
@@ -19,14 +20,16 @@ class HooksTest extends MediaWikiTestCase {
 			array( 'Class::method static call', array( 'NothingClass::someStatic' ), 'changed-static', 'original' ),
 			array( 'Global function', array( 'NothingFunction' ), 'changed-func', 'original' ),
 			array( 'Global function with data', array( 'NothingFunctionData', 'data' ), 'data', 'original' ),
-			array( 'Closure', array( function( &$foo, $bar ) {
-					$foo = 'changed-closure';
-					return true;
-				} ), 'changed-closure', 'original' ),
-			array( 'Closure with data', array( function( $data, &$foo, $bar ) {
-					$foo = $data;
-					return true;
-				}, 'data' ), 'data', 'original' )
+			array( 'Closure', array( function ( &$foo, $bar ) {
+				$foo = 'changed-closure';
+
+				return true;
+			} ), 'changed-closure', 'original' ),
+			array( 'Closure with data', array( function ( $data, &$foo, $bar ) {
+				$foo = $data;
+
+				return true;
+			}, 'data' ), 'data', 'original' )
 		);
 	}
 
@@ -86,8 +89,14 @@ class HooksTest extends MediaWikiTestCase {
 	}
 
 	public function testFalseReturn() {
-		Hooks::register( 'MediaWikiHooksTest001', function( &$foo ) { return false; } );
-		Hooks::register( 'MediaWikiHooksTest001', function( &$foo ) { $foo = 'test'; return true; } );
+		Hooks::register( 'MediaWikiHooksTest001', function ( &$foo ) {
+			return false;
+		} );
+		Hooks::register( 'MediaWikiHooksTest001', function ( &$foo ) {
+			$foo = 'test';
+
+			return true;
+		} );
 		$foo = 'original';
 		Hooks::run( 'MediaWikiHooksTest001', array( &$foo ) );
 		$this->assertSame( 'original', $foo, 'Hooks continued processing after a false return.' );
@@ -97,18 +106,22 @@ class HooksTest extends MediaWikiTestCase {
 	 * @expectedException FatalError
 	 */
 	public function testFatalError() {
-		Hooks::register( 'MediaWikiHooksTest001', function() { return 'test'; } );
+		Hooks::register( 'MediaWikiHooksTest001', function () {
+			return 'test';
+		} );
 		Hooks::run( 'MediaWikiHooksTest001', array() );
 	}
 }
 
 function NothingFunction( &$foo, &$bar ) {
 	$foo = 'changed-func';
+
 	return true;
 }
 
 function NothingFunctionData( $data, &$foo, &$bar ) {
 	$foo = $data;
+
 	return true;
 }
 
@@ -117,6 +130,7 @@ class NothingClass {
 
 	public static function someStatic( &$foo, &$bar ) {
 		$foo = 'changed-static';
+
 		return true;
 	}
 
@@ -124,18 +138,21 @@ class NothingClass {
 		$this->calls++;
 		$foo = 'changed-nonstatic';
 		$bar = 'changed-nonstatic';
+
 		return true;
 	}
 
 	public function onMediaWikiHooksTest001( &$foo, &$bar ) {
 		$this->calls++;
 		$foo = 'changed-onevent';
+
 		return true;
 	}
 
 	public function someNonStaticWithData( $data, &$foo, &$bar ) {
 		$this->calls++;
 		$foo = $data;
+
 		return true;
 	}
 }

@@ -76,6 +76,7 @@ abstract class ORMRowTest extends \MediaWikiTestCase {
 	 */
 	protected function getRowInstance( array $data, $loadDefaults ) {
 		$class = $this->getRowClass();
+
 		return new $class( $this->getTableInstance(), $data, $loadDefaults );
 	}
 

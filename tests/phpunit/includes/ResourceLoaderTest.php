@@ -11,6 +11,7 @@ class ResourceLoaderTest extends MediaWikiTestCase {
 	 */
 	public static function resourceLoaderRegisterModules( &$resourceLoader ) {
 		self::$resourceLoaderRegisterModulesHook = true;
+
 		return true;
 	}
 
@@ -31,6 +32,7 @@ class ResourceLoaderTest extends MediaWikiTestCase {
 		self::$resourceLoaderRegisterModulesHook = false;
 		$resourceLoader = new ResourceLoader();
 		$this->assertTrue( self::$resourceLoaderRegisterModulesHook );
+
 		return $resourceLoader;
 	}
 
@@ -84,7 +86,8 @@ class ResourceLoaderTest extends MediaWikiTestCase {
 
 /* Stubs */
 
-class ResourceLoaderTestModule extends ResourceLoaderModule {}
+class ResourceLoaderTestModule extends ResourceLoaderModule {
+}
 
 /* Hooks */
 global $wgHooks;

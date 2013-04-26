@@ -137,6 +137,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	protected function getNewTempFile() {
 		$fname = tempnam( wfTempDir(), 'MW_PHPUnit_' . get_class( $this ) . '_' );
 		$this->tmpfiles[] = $fname;
+
 		return $fname;
 	}
 
@@ -158,6 +159,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		// where temporary directory creation is bundled and can be improved
 		unlink( $fname );
 		$this->assertTrue( wfMkdirParents( $fname ) );
+
 		return $fname;
 	}
 
@@ -348,7 +350,8 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * Stub. If a test needs to add additional data to the database, it should
 	 * implement this method and do so
 	 */
-	function addDBData() {}
+	function addDBData() {
+	}
 
 	private function addCoreDBData() {
 		# disabled for performance
@@ -377,7 +380,6 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 				'page_touched' => $this->db->timestamp(),
 				'page_latest' => 0,
 				'page_len' => 0 ), __METHOD__, array( 'IGNORE' ) );
-
 		}
 
 		User::resetIdByNameCache();
@@ -393,7 +395,6 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			$user->addGroup( 'bureaucrat' );
 			$user->saveSettings();
 		}
-
 
 		//Make 1 page with 1 revision
 		$page = WikiPage::factory( Title::newFromText( 'UTPage' ) );
@@ -461,6 +462,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 		if ( ( $db->getType() == 'oracle' || !self::$useTemporaryTables ) && self::$reuseDB ) {
 			CloneDatabase::changePrefix( $prefix );
+
 			return;
 		} else {
 			$dbClone->cloneTableStructure();
@@ -523,6 +525,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 	private static function unprefixTable( $tableName ) {
 		global $wgDBprefix;
+
 		return substr( $tableName, strlen( $wgDBprefix ) );
 	}
 
@@ -547,6 +550,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			unset( $tables['searchindex_segments'] );
 			$tables = array_flip( $tables );
 		}
+
 		return $tables;
 	}
 
@@ -561,13 +565,11 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		if ( isset( MediaWikiPHPUnitCommand::$additionalOptions[$offset] ) ) {
 			return MediaWikiPHPUnitCommand::$additionalOptions[$offset];
 		}
-
 	}
 
 	public function setCliArg( $offset, $value ) {
 
 		MediaWikiPHPUnitCommand::$additionalOptions[$offset] = $value;
-
 	}
 
 	/**
@@ -839,6 +841,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			) {
 
 				$wikitextNS = $ns;
+
 				return $wikitextNS;
 			}
 		}
@@ -906,6 +909,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		if ( !$loaded ) {
 			$this->markTestSkipped( "PHP extension '$extName' is not loaded, skipping." );
 		}
+
 		return $loaded;
 	}
 
@@ -934,5 +938,4 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 		$this->assertInstanceOf( $expected, $pokemons, $message );
 	}
-
 }

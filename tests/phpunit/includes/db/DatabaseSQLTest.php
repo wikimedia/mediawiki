@@ -231,7 +231,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 				),
 				"DELETE FROM table " .
 					"WHERE field IN (" .
-						"SELECT field_join FROM table_join WHERE alias = 'text'" .
+					"SELECT field_join FROM table_join WHERE alias = 'text'" .
 					")"
 			),
 			array(
@@ -244,7 +244,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 				),
 				"DELETE FROM table " .
 					"WHERE field IN (" .
-						"SELECT field_join FROM table_join " .
+					"SELECT field_join FROM table_join " .
 					")"
 			),
 		);
@@ -296,8 +296,8 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 				"INSERT IGNORE INTO table " .
 					"(field,field2) " .
 					"VALUES " .
-						"('text','2')," .
-						"('multi','3')"
+					"('text','2')," .
+					"('multi','3')"
 			),
 		);
 	}
@@ -330,7 +330,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 				"INSERT INTO insert_table " .
 					"(field_insert,field) " .
 					"SELECT field_select,field2 " .
-						"FROM select_table"
+					"FROM select_table"
 			),
 			array(
 				array(
@@ -342,8 +342,8 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 				"INSERT INTO insert_table " .
 					"(field_insert,field) " .
 					"SELECT field_select,field2 " .
-						"FROM select_table " .
-						"WHERE field = '2'"
+					"FROM select_table " .
+					"WHERE field = '2'"
 			),
 			array(
 				array(
@@ -357,9 +357,9 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 				"INSERT IGNORE INTO insert_table " .
 					"(field_insert,field) " .
 					"SELECT field_select,field2 " .
-						"FROM select_table " .
-						"WHERE field = '2' " .
-						"ORDER BY field"
+					"FROM select_table " .
+					"WHERE field = '2' " .
+					"ORDER BY field"
 			),
 		);
 	}
@@ -388,8 +388,8 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 				"DELETE FROM replace_table " .
 					"WHERE ( field='text' ); " .
 					"INSERT INTO replace_table " .
-						"(field,field2) " .
-						"VALUES ('text','text2')"
+					"(field,field2) " .
+					"VALUES ('text','text2')"
 			),
 			array(
 				array(
@@ -404,8 +404,8 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 				"DELETE FROM module_deps " .
 					"WHERE ( md_module='module' AND md_skin='skin' ); " .
 					"INSERT INTO module_deps " .
-						"(md_module,md_skin,md_deps) " .
-						"VALUES ('module','skin','deps')"
+					"(md_module,md_skin,md_deps) " .
+					"VALUES ('module','skin','deps')"
 			),
 			array(
 				array(
@@ -426,13 +426,13 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 				"DELETE FROM module_deps " .
 					"WHERE ( md_module='module' AND md_skin='skin' ); " .
 					"INSERT INTO module_deps " .
-						"(md_module,md_skin,md_deps) " .
-						"VALUES ('module','skin','deps'); " .
-				"DELETE FROM module_deps " .
+					"(md_module,md_skin,md_deps) " .
+					"VALUES ('module','skin','deps'); " .
+					"DELETE FROM module_deps " .
 					"WHERE ( md_module='module2' AND md_skin='skin2' ); " .
 					"INSERT INTO module_deps " .
-						"(md_module,md_skin,md_deps) " .
-						"VALUES ('module2','skin2','deps2')"
+					"(md_module,md_skin,md_deps) " .
+					"VALUES ('module2','skin2','deps2')"
 			),
 			array(
 				array(
@@ -453,13 +453,13 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 				"DELETE FROM module_deps " .
 					"WHERE ( md_module='module' ) OR ( md_skin='skin' ); " .
 					"INSERT INTO module_deps " .
-						"(md_module,md_skin,md_deps) " .
-						"VALUES ('module','skin','deps'); " .
-				"DELETE FROM module_deps " .
+					"(md_module,md_skin,md_deps) " .
+					"VALUES ('module','skin','deps'); " .
+					"DELETE FROM module_deps " .
 					"WHERE ( md_module='module2' ) OR ( md_skin='skin2' ); " .
 					"INSERT INTO module_deps " .
-						"(md_module,md_skin,md_deps) " .
-						"VALUES ('module2','skin2','deps2')"
+					"(md_module,md_skin,md_deps) " .
+					"VALUES ('module2','skin2','deps2')"
 			),
 			array(
 				array(

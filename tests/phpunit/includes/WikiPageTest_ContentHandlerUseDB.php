@@ -44,5 +44,4 @@ class WikiPageTest_ContentHandlerUseDB extends WikiPageTest {
 		$page = new WikiPage( $page->getTitle() );
 		$this->assertEquals( 'WikitextContentHandler', get_class( $page->getContentHandler() ) );
 	}
-
 }

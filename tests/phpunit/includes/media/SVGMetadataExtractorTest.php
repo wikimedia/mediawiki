@@ -21,6 +21,7 @@ class SVGMetadataExtractorTest extends MediaWikiTestCase {
 		$r = new XMLReader();
 		if ( !method_exists( $r, 'readInnerXML' ) ) {
 			$this->markTestSkipped( 'XMLReader::readInnerXML() does not exist (libxml >2.6.20 needed).' );
+
 			return;
 		}
 		$this->assertMetadata( $infile, $expected );
@@ -41,6 +42,7 @@ class SVGMetadataExtractorTest extends MediaWikiTestCase {
 
 	public static function provideSvgFiles() {
 		$base = __DIR__ . '/../../data/media';
+
 		return array(
 			array(
 				"$base/Wikimedia-logo.svg",

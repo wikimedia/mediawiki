@@ -79,7 +79,6 @@ class BackupDumperPageTest extends DumpTestCase {
 			// DumpTestCase
 			$this->exceptionFromAddDBData = $e;
 		}
-
 	}
 
 	protected function setUp() {
@@ -93,7 +92,6 @@ class BackupDumperPageTest extends DumpTestCase {
 			array( $this->pageId2, $this->pageId3, $this->pageId4 ),
 			array( $this->pageId1 + 1, $this->pageId2 + 1, $this->pageId3 + 1 ),
 			"Page ids increasing without holes" );
-
 	}
 
 	function testFullTextPlain() {
@@ -403,6 +401,4 @@ class BackupDumperPageTest extends DumpTestCase {
 
 		$this->expectETAOutput();
 	}
-
-
 }

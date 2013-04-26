@@ -29,5 +29,4 @@ class ArticleTablesTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $templates1, $templates2 );
 		$this->assertEquals( $templates1[0]->getFullText(), 'Historial' );
 	}
-
 }

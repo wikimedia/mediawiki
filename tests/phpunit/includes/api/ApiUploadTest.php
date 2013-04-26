@@ -58,8 +58,8 @@ class ApiUploadTest extends ApiTestCaseUpload {
 		$this->assertArrayHasKey( 'lgtoken', $result['login'] );
 
 		$this->assertNotEmpty( $session, 'API Login must return a session' );
-		return $session;
 
+		return $session;
 	}
 
 	/**
@@ -116,7 +116,6 @@ class ApiUploadTest extends ApiTestCaseUpload {
 
 		$this->deleteFileByFileName( $fileName );
 		$this->deleteFileByContent( $filePath );
-
 
 		if ( !$this->fakeUploadFile( 'file', $fileName, $mimeType, $filePath ) ) {
 			$this->markTestIncomplete( "Couldn't upload file!\n" );
@@ -305,7 +304,6 @@ class ApiUploadTest extends ApiTestCaseUpload {
 		$this->assertTrue( isset( $result['upload'] ) );
 		$this->assertEquals( 'Success', $result['upload']['result'] );
 		$this->assertFalse( $exception );
-
 
 		// second upload with the same content (but different name)
 

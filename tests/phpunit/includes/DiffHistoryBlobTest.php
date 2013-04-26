@@ -4,14 +4,17 @@ class DiffHistoryBlobTest extends MediaWikiTestCase {
 	protected function setUp() {
 		if ( !extension_loaded( 'xdiff' ) ) {
 			$this->markTestSkipped( 'The xdiff extension is not available' );
+
 			return;
 		}
 		if ( !function_exists( 'xdiff_string_rabdiff' ) ) {
 			$this->markTestSkipped( 'The version of xdiff extension is lower than 1.5.0' );
+
 			return;
 		}
 		if ( !extension_loaded( 'hash' ) && !extension_loaded( 'mhash' ) ) {
 			$this->markTestSkipped( 'Neither the hash nor mhash extension is available' );
+
 			return;
 		}
 		parent::setUp();

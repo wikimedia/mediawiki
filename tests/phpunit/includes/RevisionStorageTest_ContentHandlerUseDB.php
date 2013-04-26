@@ -78,5 +78,4 @@ class RevisionTest_ContentHandlerUseDB extends RevisionStorageTest {
 			$this->assertTrue( true ); // ok
 		}
 	}
-
 }

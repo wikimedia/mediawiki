@@ -13,7 +13,5 @@ class ApiFormatPhpTest extends ApiFormatTestBase {
 
 		$this->assertInternalType( 'array', unserialize( $data ) );
 		$this->assertGreaterThan( 0, count( (array)$data ) );
-
 	}
-
 }

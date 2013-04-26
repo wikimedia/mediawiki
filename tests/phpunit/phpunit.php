@@ -89,7 +89,6 @@ class PHPUnitMaintClass extends Maintenance {
 			unset( $_SERVER['argv'][$key] ); // the option
 			unset( $_SERVER['argv'][$key + 1] ); // its value
 			$_SERVER['argv'] = array_values( $_SERVER['argv'] );
-
 		}
 	}
 

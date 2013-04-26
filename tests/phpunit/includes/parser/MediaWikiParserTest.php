@@ -41,6 +41,7 @@ EOT;
 			$parserTester = new $parserTestClassName( $testsName );
 			$suite->addTestSuite( new ReflectionClass ( $parserTester ) );
 		}
+
 		return $suite;
 	}
 }

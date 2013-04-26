@@ -80,7 +80,6 @@ class TextPassDumperTest extends DumpTestCase {
 			// DumpTestCase
 			$this->exceptionFromAddDBData = $e;
 		}
-
 	}
 
 	protected function setUp() {
@@ -94,7 +93,6 @@ class TextPassDumperTest extends DumpTestCase {
 			array( $this->pageId2, $this->pageId3, $this->pageId4 ),
 			array( $this->pageId1 + 1, $this->pageId2 + 1, $this->pageId3 + 1 ),
 			"Page ids increasing without holes" );
-
 	}
 
 	function testPlain() {
@@ -214,7 +212,6 @@ class TextPassDumperTest extends DumpTestCase {
 		$this->assertPageEnd();
 
 		$this->assertDumpEnd();
-
 	}
 
 	/**
@@ -238,7 +235,6 @@ class TextPassDumperTest extends DumpTestCase {
 		$lastDuration = 0;
 		$minDuration = 2; // We want the dump to take at least this many seconds
 		$checkpointAfter = 0.5; // Generate checkpoint after this many seconds
-
 
 		// Until a dump takes at least $minDuration seconds, perform a dump and check
 		// duration. If the dump did not take long enough increase the iteration
@@ -579,6 +575,7 @@ class TextPassDumperTest extends DumpTestCase {
 		$content .= $tail;
 		$this->assertEquals( strlen( $content ), file_put_contents(
 			$fname, $content ), "Length of prepared stub" );
+
 		return $fname;
 	}
 }

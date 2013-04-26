@@ -59,7 +59,7 @@ class BlockTest extends MediaWikiLangTestCase {
 	 * debug function : dump the ipblocks table
 	 */
 	function dumpBlocks() {
-                $v = $this->db->select( 'ipblocks', '*' );
+		$v = $this->db->select( 'ipblocks', '*' );
 		print "Got " . $v->numRows() . " rows. Full dump follow:\n";
 		foreach ( $v as $row ) {
 			print_r( $row );
@@ -72,7 +72,6 @@ class BlockTest extends MediaWikiLangTestCase {
 		$this->assertTrue( $this->block->equals( Block::newFromTarget( 'UTBlockee' ) ), "newFromTarget() returns the same block as the one that was made" );
 
 		$this->assertTrue( $this->block->equals( Block::newFromID( $this->blockId ) ), "newFromID() returns the same block as the one that was made" );
-
 	}
 
 	/**
@@ -82,7 +81,6 @@ class BlockTest extends MediaWikiLangTestCase {
 		// delta to stop one-off errors when things happen to go over a second mark.
 		$delta = abs( $this->madeAt - $this->block->mTimestamp );
 		$this->assertLessThan( 2, $delta, "If no timestamp is specified, the block is recorded as time()" );
-
 	}
 
 	/**
@@ -132,7 +130,6 @@ class BlockTest extends MediaWikiLangTestCase {
 		$u->setPassword( 'NotRandomPass' );
 		$u->addToDatabase();
 		unset( $u );
-
 
 		// Sanity check
 		$this->assertNull(

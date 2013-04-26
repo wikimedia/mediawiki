@@ -276,5 +276,4 @@ class RecentChangeTest extends MediaWikiTestCase {
 			$msg
 		);
 	}
-
 }

@@ -87,6 +87,7 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 		# sort them numerically so we will compare simply that we received
 		# the expected matches.
 		sort( $matches );
+
 		return $matches;
 	}
 
@@ -172,5 +173,4 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 			$this->fetchIds( $this->search->searchTitle( 'smithee' ) ),
 			"Title power search failed" );
 	}
-
 }

@@ -88,7 +88,6 @@ class FormatJsonTest extends MediaWikiTestCase {
 			strtolower( FormatJson::encode( "\xf0\xa0\x80\x80" ) ),
 			'Test encoding an broken json_encode character (U+20000)'
 		);
-
 	}
 
 	public function testDecodeReturnType() {
@@ -156,6 +155,7 @@ class FormatJsonTest extends MediaWikiTestCase {
 				$cases[] = array( $from, '"' . ( $leaveUnescaped ? $from : $to ) . '"' );
 			}
 		}
+
 		return $cases;
 	}
 }

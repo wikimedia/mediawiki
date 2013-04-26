@@ -146,5 +146,4 @@ class BitmapMetadataHandlerTest extends MediaWikiTestCase {
 		$res = $handler->getTiffByteOrder( $this->filePath . 'test.tiff' );
 		$this->assertEquals( 'LE', $res );
 	}
-
 }

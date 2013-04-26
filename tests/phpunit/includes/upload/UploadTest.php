@@ -130,15 +130,15 @@ class UploadTest extends MediaWikiTestCase {
 }
 
 class UploadTestHandler extends UploadBase {
-	public function initializeFromRequest( &$request ) {}
+	public function initializeFromRequest( &$request ) {
+	}
 
 	public function testTitleValidation( $name ) {
 		$this->mTitle = false;
 		$this->mDesiredDestName = $name;
 		$this->mTitleError = UploadBase::OK;
 		$this->getTitle();
+
 		return $this->mTitleError;
 	}
-
-
 }

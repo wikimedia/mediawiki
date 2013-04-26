@@ -18,6 +18,7 @@ class WfGetCallerTest extends MediaWikiTestCase {
 		if ( $n > 0 ) {
 			return self::intermediateFunction( $level, $n - 1 );
 		}
+
 		return wfGetCaller( $level );
 	}
 
