@@ -1558,40 +1558,19 @@ class PreferencesForm extends HTMLForm {
 	}
 
 	/**
+	 * Separate multi-option preferences into multiple preferences, since we
+	 * have to store them separately
 	 * @param $data array
 	 * @return array
 	 */
 	function filterDataForSubmit( $data ) {
-		// Support for separating multi-option preferences into multiple preferences
-		// Due to lack of array support.
 		foreach ( $this->mFlatFields as $fieldname => $field ) {
-			$info = $field->mParams;
-
-			if ( $field instanceof HTMLMultiSelectField ) {
-				$options = HTMLFormField::flattenOptions( $info['options'] );
+			if ( $field instanceof HTMLNestedFilterable ) {
+				$info = $field->mParams;
 				$prefix = isset( $info['prefix'] ) ? $info['prefix'] : $fieldname;
-
-				foreach ( $options as $opt ) {
-					$data["$prefix$opt"] = in_array( $opt, $data[$fieldname] );
+				foreach ( $field->filterDataForSubmit( $data[$fieldname] ) as $key => $value ) {
+					$data["$prefix-$key"] = $value;
 				}
-
-				unset( $data[$fieldname] );
-
-			} elseif ( $field instanceof HTMLCheckMatrix ) {
-				$columns = HTMLFormField::flattenOptions( $info['columns'] );
-				$rows = HTMLFormField::flattenOptions( $info['rows'] );
-				$prefix = isset( $info['prefix'] ) ? $info['prefix'] : $fieldname;
-				foreach ( $columns as $column ) {
-					foreach ( $rows as $row ) {
-						// Make sure option hasn't been removed
-						if ( !isset( $info['remove-options'] )
-							|| !in_array( "$column-$row", $info['remove-options'] ) )
-						{
-							$data["$prefix-$column-$row"] = in_array( "$column-$row", $data[$fieldname] );
-						}
-					}
-				}
-
 				unset( $data[$fieldname] );
 			}
 		}
