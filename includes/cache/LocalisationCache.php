@@ -525,7 +525,7 @@ class LocalisationCache {
 		}
 		try {
 			$compiledRules = CLDRPluralRuleEvaluator::compile( $rules );
-		} catch( CLDRPluralRuleError $e ) {
+		} catch ( CLDRPluralRuleError $e ) {
 			wfDebugLog( 'l10n', $e->getMessage() . "\n" );
 			return array();
 		}

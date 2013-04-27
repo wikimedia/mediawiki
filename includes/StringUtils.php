@@ -65,7 +65,7 @@ class StringUtils {
 				| [\xf8-\xfb][\x80-\xbf]{4}
 				| \xfc[\x84-\xbf][\x80-\xbf]{4}
 			)+$/x', $value );
-			return ($hasUtf8 > 0 );
+			return ( $hasUtf8 > 0 );
 		}
 	}
 

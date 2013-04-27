@@ -47,7 +47,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		$opts->add( 'from', '' );
 
 		$opts->add( 'hideminor', $this->getUser()->getBoolOption( 'hideminor' ) );
-		$opts->add( 'hidebots', true  );
+		$opts->add( 'hidebots', true );
 		$opts->add( 'hideanons', false );
 		$opts->add( 'hideliu', false );
 		$opts->add( 'hidepatrolled', $this->getUser()->getBoolOption( 'hidepatrolled' ) );

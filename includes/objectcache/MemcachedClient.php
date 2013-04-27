@@ -1123,7 +1123,7 @@ class MWMemcached {
 	function _fwrite( $sock, $buf ) {
 		$bytesWritten = 0;
 		$bufSize = strlen( $buf );
-		while ( $bytesWritten < $bufSize  ) {
+		while ( $bytesWritten < $bufSize ) {
 			$result = fwrite( $sock, $buf );
 			$data = stream_get_meta_data( $sock );
 			if ( $data['timed_out'] ) {

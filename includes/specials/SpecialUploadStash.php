@@ -88,19 +88,19 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 			} else {
 				return $this->outputLocalFile( $params['file'] );
 			}
-		} catch( UploadStashFileNotFoundException $e ) {
+		} catch ( UploadStashFileNotFoundException $e ) {
 			$code = 404;
 			$message = $e->getMessage();
-		} catch( UploadStashZeroLengthFileException $e ) {
+		} catch ( UploadStashZeroLengthFileException $e ) {
 			$code = 500;
 			$message = $e->getMessage();
-		} catch( UploadStashBadPathException $e ) {
+		} catch ( UploadStashBadPathException $e ) {
 			$code = 500;
 			$message = $e->getMessage();
-		} catch( SpecialUploadStashTooLargeException $e ) {
+		} catch ( SpecialUploadStashTooLargeException $e ) {
 			$code = 500;
 			$message = 'Cannot serve a file larger than ' . self::MAX_SERVE_BYTES . ' bytes. ' . $e->getMessage();
-		} catch( Exception $e ) {
+		} catch ( Exception $e ) {
 			$code = 500;
 			$message = $e->getMessage();
 		}

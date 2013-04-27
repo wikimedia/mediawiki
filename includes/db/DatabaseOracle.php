@@ -691,7 +691,7 @@ class DatabaseOracle extends DatabaseBase {
 
 	function tableNameInternal( $name ) {
 		$name = $this->tableName( $name );
-		return preg_replace( '/.*\.(.*)/', '$1', $name);
+		return preg_replace( '/.*\.(.*)/', '$1', $name );
 	}
 	/**
 	 * Return the next in a sequence, save the value for retrieval via insertId()

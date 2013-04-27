@@ -125,7 +125,7 @@ class MWTimestamp {
 
 		try {
 			$final = new DateTime( $strtime, new DateTimeZone( 'GMT' ) );
-		} catch( Exception $e ) {
+		} catch ( Exception $e ) {
 			throw new TimestampException( __METHOD__ . ' Invalid timestamp format.' );
 		}
 
@@ -261,7 +261,7 @@ class MWTimestamp {
 			}
 		}
 
-		$interval = new DateInterval('PT' . abs( $diff ) . 'M');
+		$interval = new DateInterval( 'PT' . abs( $diff ) . 'M' );
 		if ( $diff < 1 ) {
 			$interval->invert = 1;
 		}

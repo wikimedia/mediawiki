@@ -53,7 +53,7 @@ class Hooks {
 	 * @since 1.18
 	 */
 	public static function register( $name, $callback ) {
-		if( !isset( self::$handlers[$name] ) ) {
+		if ( !isset( self::$handlers[$name] ) ) {
 			self::$handlers[$name] = array();
 		}
 
@@ -174,7 +174,7 @@ class Hooks {
 
 			// Run autoloader (workaround for call_user_func_array bug)
 			// and throw error if not callable.
-			if( !is_callable( $callback ) ) {
+			if ( !is_callable( $callback ) ) {
 				throw new MWException( 'Invalid callback in hooks for ' . $event . "\n" );
 			}
 

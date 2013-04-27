@@ -901,7 +901,7 @@ class DatabaseMysql extends DatabaseBase {
 	 * @return array
 	 */
 	function listTables( $prefix = null, $fname = 'DatabaseMysql::listTables' ) {
-		$result = $this->query( "SHOW TABLES", $fname);
+		$result = $this->query( "SHOW TABLES", $fname );
 
 		$endArray = array();
 

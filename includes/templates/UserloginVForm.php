@@ -52,7 +52,7 @@ class UserloginTemplateVForm extends BaseTemplate {
 		<?php
 		if ( $this->data['messagetype'] == 'error' ) {
 		?>
-			<strong><?php $this->msg( 'loginerror' )?></strong><br />
+			<strong><?php $this->msg( 'loginerror' ) ?></strong><br />
 		<?php
 		}
 		$this->html( 'message' );

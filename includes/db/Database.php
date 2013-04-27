@@ -585,7 +585,7 @@ abstract class DatabaseBase implements DatabaseType {
 	public function setFlag( $flag ) {
 		global $wgDebugDBTransactions;
 		$this->mFlags |= $flag;
-		if ( ( $flag & DBO_TRX) & $wgDebugDBTransactions ) {
+		if ( ( $flag & DBO_TRX ) & $wgDebugDBTransactions ) {
 			wfDebug( "Implicit transactions are now  disabled.\n" );
 		}
 	}

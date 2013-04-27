@@ -110,7 +110,7 @@ class XCFHandler extends BitmapHandler {
 				. "/Nbase_type" # /
 			, $binaryHeader
 			);
-		} catch( MWException $mwe ) {
+		} catch ( MWException $mwe ) {
 			return false;
 		}
 

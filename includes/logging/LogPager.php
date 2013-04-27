@@ -212,9 +212,9 @@ class LogPager extends ReverseChronologicalPager {
 		// Paranoia: avoid brute force searches (bug 17342)
 		$user = $this->getUser();
 		if ( !$user->isAllowed( 'deletedhistory' ) ) {
-			$this->mConds[] = $db->bitAnd( 'log_deleted', LogPage::DELETED_ACTION) . ' = 0';
+			$this->mConds[] = $db->bitAnd( 'log_deleted', LogPage::DELETED_ACTION ) . ' = 0';
 		} elseif ( !$user->isAllowed( 'suppressrevision' ) ) {
-			$this->mConds[] = $db->bitAnd( 'log_deleted', LogPage::SUPPRESSED_ACTION) .
+			$this->mConds[] = $db->bitAnd( 'log_deleted', LogPage::SUPPRESSED_ACTION ) .
 				' != ' . LogPage::SUPPRESSED_ACTION;
 		}
 	}

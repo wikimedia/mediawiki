@@ -117,7 +117,7 @@ class SpecialLog extends SpecialPage {
 		global $wgLogTypes;
 
 		# Get parameters
-		$parms = explode( '/', ($par = ( $par !== null ) ? $par : '' ) );
+		$parms = explode( '/', ( $par = ( $par !== null ) ? $par : '' ) );
 		$symsForAll = array( '*', 'all' );
 		if ( $parms[0] != '' && ( in_array( $par, $wgLogTypes ) || in_array( $par, $symsForAll ) ) ) {
 			$opts->setValue( 'type', $par );

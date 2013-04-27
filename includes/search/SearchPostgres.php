@@ -64,7 +64,7 @@ class SearchPostgres extends SearchEngine {
 
 	function searchText( $term ) {
 		$q = $this->searchQuery( $term, 'textvector', 'old_text' );
-		$olderror = error_reporting(E_ERROR);
+		$olderror = error_reporting( E_ERROR );
 		$resultSet = $this->db->resultObject( $this->db->query( $q, 'SearchPostgres', true ) );
 		error_reporting( $olderror );
 		if ( !$resultSet ) {

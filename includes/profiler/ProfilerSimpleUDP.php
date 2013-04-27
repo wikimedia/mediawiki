@@ -46,7 +46,7 @@ class ProfilerSimpleUDP extends ProfilerSimple {
 			return;
 		}
 
-		$sock = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP);
+		$sock = socket_create( AF_INET, SOCK_DGRAM, SOL_UDP );
 		$plength = 0;
 		$packet = "";
 		foreach ( $this->mCollated as $entry => $pfdata ) {

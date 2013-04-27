@@ -1067,7 +1067,7 @@ class WebInstaller extends Installer {
 	 * @param $parser
 	 * @return String Html for download link
 	 */
-	public function downloadLinkHook( $text, $attribs, $parser  ) {
+	public function downloadLinkHook( $text, $attribs, $parser ) {
 		$img = Html::element( 'img', array(
 			'src' => '../skins/common/images/download-32.png',
 			'width' => '32',

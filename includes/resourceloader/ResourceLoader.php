@@ -318,7 +318,7 @@ class ResourceLoader {
 	 * @param array $properties source properties
 	 * @throws MWException
 	 */
-	public function addSource( $id, $properties = null) {
+	public function addSource( $id, $properties = null ) {
 		// Allow multiple sources to be registered in one call
 		if ( is_array( $id ) ) {
 			foreach ( $id as $key => $value ) {
@@ -466,7 +466,7 @@ class ResourceLoader {
 		// Preload information needed to the mtime calculation below
 		try {
 			$this->preloadModuleInfo( array_keys( $modules ), $context );
-		} catch( Exception $e ) {
+		} catch ( Exception $e ) {
 			// Add exception to the output as a comment
 			$errors .= $this->makeComment( $e->__toString() );
 			$this->hasErrors = true;
@@ -637,7 +637,7 @@ class ResourceLoader {
 		if ( !$good ) {
 			try { // RL always hits the DB on file cache miss...
 				wfGetDB( DB_SLAVE );
-			} catch( DBConnectionError $e ) { // ...check if we need to fallback to cache
+			} catch ( DBConnectionError $e ) { // ...check if we need to fallback to cache
 				$good = $fileCache->isCacheGood(); // cache existence check
 			}
 		}

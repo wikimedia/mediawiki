@@ -540,12 +540,12 @@ class MysqlInstaller extends DatabaseInstaller {
 			foreach ( $createHostList as $host ) {
 				$fullName = $this->buildFullUserName( $dbUser, $host );
 				if ( !$this->userDefinitelyExists( $dbUser, $host ) ) {
-					try{
+					try {
 						$this->db->begin( __METHOD__ );
 						$this->db->query( "CREATE USER $fullName IDENTIFIED BY $escPass", __METHOD__ );
 						$this->db->commit( __METHOD__ );
 						$grantableNames[] = $fullName;
-					} catch( DBQueryError $dqe ) {
+					} catch ( DBQueryError $dqe ) {
 						if ( $this->db->lastErrno() == 1396 /* ER_CANNOT_USER */ ) {
 							// User (probably) already exists
 							$this->db->rollback( __METHOD__ );
@@ -574,7 +574,7 @@ class MysqlInstaller extends DatabaseInstaller {
 				$this->db->begin( __METHOD__ );
 				$this->db->query( "GRANT ALL PRIVILEGES ON $dbAllTables TO $name", __METHOD__ );
 				$this->db->commit( __METHOD__ );
-			} catch( DBQueryError $dqe ) {
+			} catch ( DBQueryError $dqe ) {
 				$this->db->rollback( __METHOD__ );
 				$status->fatal( 'config-install-user-grant-failed', $dbUser, $dqe->getText() );
 			}
@@ -605,7 +605,7 @@ class MysqlInstaller extends DatabaseInstaller {
 			$res = $this->db->selectRow( 'mysql.user', array( 'Host', 'User' ),
 				array( 'Host' => $host, 'User' => $user ), __METHOD__ );
 			return (bool)$res;
-		} catch( DBQueryError $dqe ) {
+		} catch ( DBQueryError $dqe ) {
 			return false;
 		}
 
