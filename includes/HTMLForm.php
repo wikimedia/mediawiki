@@ -1807,9 +1807,33 @@ class HTMLCheckField extends HTMLFormField {
  * A checkbox matrix
  * Operates similarly to HTMLMultiSelectField, but instead of using an array of
  * options, uses an array of rows and an array of columns to dynamically
- * construct a matrix of options.
+ * construct a matrix of options. The tags used to identify a particular cell
+ * are of the form "columnName-rowName"
+ *
+ * Options:
+ *   columns:           Required list of columns in the matrix.
+ *   rows:              Required list of rows in the matrix.
+ *   force-options-on:  Accepts array of column-row tags to be displayed as enabled
+ *                      but unavailable to change
+ *   force-options-off: Accepts array of column-row tags to be displayed as disabled
+ *                      but unavailable to change. 
  */
-class HTMLCheckMatrix extends HTMLFormField {
+class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
+
+	static private $requiredParams = array(
+		// Required by underlying HTMLFormField
+		'fieldname', 
+		// Required by HTMLCheckMatrix
+		'rows', 'columns'
+	);
+
+	public function __construct( $params ) {
+		$missing = array_diff( self::$requiredParams, array_keys( $params ) );
+		if ( $missing ) {
+			throw HTMLFormFieldRequiredOptionsException::create($this, $missing);
+		}
+		parent::__construct( $params );
+	}
 
 	function validate( $value, $alldata ) {
 		$rows = $this->mParams['rows'];
@@ -1873,23 +1897,24 @@ class HTMLCheckMatrix extends HTMLFormField {
 		foreach ( $rows as $rowLabel => $rowTag ) {
 			$rowContents = Html::rawElement( 'td', array(), $rowLabel );
 			foreach ( $columns as $columnTag ) {
-				// Knock out any options that are not wanted
-				if ( isset( $this->mParams['remove-options'] )
-					&& in_array( "$columnTag-$rowTag", $this->mParams['remove-options'] ) )
-				{
-					$rowContents .= Html::rawElement( 'td', array(), '&#160;' );
-				} else {
-					// Construct the checkbox
-					$thisAttribs = array(
-						'id' => "{$this->mID}-$columnTag-$rowTag",
-						'value' => $columnTag . '-' . $rowTag
-					);
-					$checkbox = Xml::check(
-						$this->mName . '[]',
-						in_array( $columnTag . '-' . $rowTag, (array)$value, true ),
-						$attribs + $thisAttribs );
-					$rowContents .= Html::rawElement( 'td', array(), $checkbox );
+				$thisTag = "$columnTag-$rowTag";
+				// Construct the checkbox
+				$thisAttribs = array(
+					'id' => "{$this->mID}-$thisTag",
+					'value' => $thisTag,
+				);
+				$checked = in_array( $thisTag, (array)$value, true);
+				if ( $this->isTagForcedOff( $thisTag ) ) {
+					$checked = false;
+					$thisAttribs['disabled'] = 1;
+				} elseif ( $this->isTagForcedOn( $thisTag ) ) {
+					$checked = true;
+					$thisAttribs['disabled'] = 1;
 				}
+				$rowContents .= Html::rawElement(
+					'td',
+					array(),
+					Xml::check( "{$this->mName}[]", $checked, $attribs + $thisAttribs ) );
 			}
 			$tableContents .= Html::rawElement( 'tr', array(), "\n$rowContents\n" );
 		}
@@ -1899,6 +1924,16 @@ class HTMLCheckMatrix extends HTMLFormField {
 			Html::rawElement( 'tbody', array(), "\n$tableContents\n" ) ) . "\n";
 
 		return $html;
+	}
+
+	protected function isTagForcedOff( $tag ) {
+		return isset( $this->mParams['force-options-off'] )
+			&& in_array( $tag, $this->mParams['force-options-off'] );
+	}
+
+	protected function isTagForcedOn( $tag ) {
+		return isset( $this->mParams['force-options-on'] )
+			&& in_array( $tag, $this->mParams['force-options-on'] );
 	}
 
 	/**
@@ -1964,6 +1999,27 @@ class HTMLCheckMatrix extends HTMLFormField {
 		} else {
 			return array();
 		}
+	}
+
+	function filterDataForSubmit( $data ) {
+		$columns = HTMLFormField::flattenOptions( $this->mParams['columns'] );
+		$rows = HTMLFormField::flattenOptions( $this->mParams['rows'] );
+		$res = array();
+		foreach ( $columns as $column ) {
+			foreach ( $rows as $row ) {
+				// Make sure option hasn't been forced
+				$thisTag = "$column-$row";
+				if ( $this->isTagForcedOff( $thisTag ) ) {
+					$res[$thisTag] = false;
+				} elseif ($this->isTagForcedOn( $thisTag ) ) {
+					$res[$thisTag] = true;
+				} else {
+					$res[$thisTag] = in_array( $thisTag, $data );
+				}
+			}
+		}
+
+		return $res;
 	}
 }
 
@@ -2106,7 +2162,7 @@ class HTMLSelectOrOtherField extends HTMLTextField {
 /**
  * Multi-select field
  */
-class HTMLMultiSelectField extends HTMLFormField {
+class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable {
 
 	function validate( $value, $alldata ) {
 		$p = parent::validate( $value, $alldata );
@@ -2197,6 +2253,17 @@ class HTMLMultiSelectField extends HTMLFormField {
 		} else {
 			return array();
 		}
+	}
+
+	function filterDataForSubmit( $data ) {
+		$options = HTMLFormField::flattenOptions( $this->mParams['options'] );
+
+		$res = array();
+		foreach ( $options as $opt ) {
+			$res["$opt"] = in_array( $opt, $data );
+		}
+
+		return $res;
 	}
 
 	protected function needsLabel() {
@@ -2636,5 +2703,25 @@ class HTMLApiField extends HTMLFormField {
 
 	public function getInputHTML( $value ) {
 		return '';
+	}
+}
+
+interface HTMLNestedFilterable {
+	/**
+	 * Support for seperating multi-option preferences into multiple preferences
+	 * Due to lack of array support.
+	 * @param $data array
+	 */
+	function filterDataForSubmit( $data );
+}
+
+class HTMLFormFieldRequiredOptionsException extends MWException
+{
+	static public function create( HTMLFormField $field, array $missing ) {
+		return new self(sprintf(
+			"Form type `%s` expected the following parameters to be set: %s",
+			get_class($field),
+			implode(', ', $missing)
+		));
 	}
 }
