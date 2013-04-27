@@ -185,9 +185,13 @@ class UsercreateTemplateVForm extends BaseTemplate {
 		if ( $this->data['usereason'] ) { ?>
 			<div>
 				<label for='wpReason'><?php $this->msg( 'createacct-reason' ); ?></label>
-				<input type='text' class='mw-input loginText' name="wpReason" id="wpReason"
-						tabindex="8"
-						value="<?php $this->text( 'reason' ); ?>" size='20' />
+				<?php echo Html::input( 'wpReason', $this->data['reason'], 'text', array(
+					'class' => 'mw-input loginText',
+					'id' => 'wpReason',
+					'tabindex' => '8',
+					'size' => '20',
+					'placeholder' => $this->getMsg( 'createacct-reason-ph' )->text()
+				) ); ?>
 			</div>
 		<?php }
 		$tabIndex = 9;
@@ -251,7 +255,7 @@ class UsercreateTemplateVForm extends BaseTemplate {
 		<div class="mw-submit">
 			<input type='submit' class="mw-ui-button mw-ui-big mw-ui-block mw-ui-primary" name="wpCreateaccount" id="wpCreateaccount"
 				tabindex="<?php echo $tabIndex++; ?>"
-				value="<?php $this->msg( 'createaccount' ); ?>" />
+				value="<?php $this->msg( 'createacct-submit' ); ?>" />
 		</div>
 	<input type="hidden" id="useNew" name="useNew" value="1" />
 <?php if ( $this->haveData( 'uselang' ) ) { ?><input type="hidden" name="uselang" value="<?php $this->text( 'uselang' ); ?>" /><?php } ?>
