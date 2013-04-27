@@ -333,9 +333,10 @@ class VectorTemplate extends BaseTemplate {
 		if ( $msg === null ) {
 			$msg = $name;
 		}
+		$msgObj = wfMessage( $msg );
 		?>
 <div class="portal" role="navigation" id='<?php echo Sanitizer::escapeId( "p-$name" ) ?>'<?php echo Linker::tooltip( 'p-' . $name ) ?>>
-	<h3<?php $this->html( 'userlangattributes' ) ?>><?php $msgObj = wfMessage( $msg ); echo htmlspecialchars( $msgObj->exists() ? $msgObj->text() : $msg ); ?></h3>
+	<h3<?php $this->html( 'userlangattributes' ) ?>><?php echo htmlspecialchars( $msgObj->exists() ? $msgObj->text() : $msg ); ?></h3>
 	<div class="body">
 <?php
 		if ( is_array( $content ) ) { ?>

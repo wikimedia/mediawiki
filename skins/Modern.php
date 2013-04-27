@@ -83,7 +83,7 @@ class ModernTemplate extends MonoBookTemplate {
 	     for the margins -->
 	<div id="mw_contentholder" class="mw-body">
 		<div class='mw-topboxes'>
-			<div id="mw-js-message" style="display:none;"<?php $this->html( 'userlangattributes' )?>></div>
+			<div id="mw-js-message" style="display:none;"<?php $this->html( 'userlangattributes' ) ?>></div>
 			<div class="mw-topbox" id="siteSub"><?php $this->msg( 'tagline' ) ?></div>
 			<?php if ( $this->data['newtalk'] ) {
 				?><div class="usermessage mw-topbox"><?php $this->html( 'newtalk' ) ?></div>
@@ -139,7 +139,7 @@ class ModernTemplate extends MonoBookTemplate {
 <?php
 		foreach ( $this->getFooterLinks( "flat" ) as $aLink ) {
 			if ( isset( $this->data[$aLink] ) && $this->data[$aLink] ) {
-?>				<li id="<?php echo$aLink?>"><?php $this->html($aLink) ?></li>
+?>				<li id="<?php echo $aLink ?>"><?php $this->html( $aLink ) ?></li>
 <?php 		}
 		}
 ?>
