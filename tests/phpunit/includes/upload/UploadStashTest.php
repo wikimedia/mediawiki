@@ -1,4 +1,14 @@
-<?php
+<?php namespace mediawiki\core\tests\phpunit\upload;
+
+use \FauxRequest;
+use \RepoGroup;
+use \UploadFromStash;
+use \UploadStash;
+
+use \MediaWikiTestCase;
+
+use mediawiki\core\tests\phpunit\TestUser;
+
 /**
  * @group Database
  */

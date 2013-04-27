@@ -21,6 +21,8 @@
  * @ingroup Testing
  */
 
+AutoLoader::registerNamespace( 'mediawiki\core\tests\phpunit', __DIR__ . "/phpunit/includes" );
+
 global $wgAutoloadClasses;
 $testDir = __DIR__;
 
@@ -40,7 +42,6 @@ $wgAutoloadClasses += array(
 	'MediaWikiPHPUnitCommand' => "$testDir/phpunit/MediaWikiPHPUnitCommand.php",
 	'MediaWikiLangTestCase' => "$testDir/phpunit/MediaWikiLangTestCase.php",
 	'MediaWikiProvide' => "$testDir/phpunit/includes/Providers.php",
-	'TestUser' => "$testDir/phpunit/includes/TestUser.php",
 
 	# tests/phpunit/includes
 	'BlockTest' => "$testDir/phpunit/includes/BlockTest.php",

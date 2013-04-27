@@ -1,4 +1,6 @@
-<?php
+<?php namespace mediawiki\core\tests\phpunit;
+
+use \User;
 
 /* Wraps the user object, so we can also retain full access to properties like password if we log in via the API */
 class TestUser {

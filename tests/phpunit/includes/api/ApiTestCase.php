@@ -1,5 +1,7 @@
 <?php
 
+use mediawiki\core\tests\phpunit\TestUser;
+
 abstract class ApiTestCase extends MediaWikiLangTestCase {
 	protected static $apiUrl;
 
