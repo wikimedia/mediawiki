@@ -45,13 +45,13 @@ $messages = array(
 'tog-watchdeletion' => 'Tambahkan laman jo gambar nan den hapuih ka daftar pantau',
 'tog-minordefault' => 'Tandoi sadoalah suntiangan sabagai suntiangan ketek sacaro baku',
 'tog-previewontop' => 'Tampilkan pratonton sabalun kotak suntiang',
-'tog-previewonfirst' => 'Tunjuakkan pratonton pado suntiangan patamo',
+'tog-previewonfirst' => 'Tunjuakan pratonton pado suntiangan patamo',
 'tog-nocache' => 'Matikan panyinggahan laman paramban',
 'tog-enotifwatchlistpages' => 'Kiriman surel, kok laman atau gambar pado daftar pantau Ambo barubah',
 'tog-enotifusertalkpages' => 'Kirimkan surel, koq laman diskusi Ambo lah barubah',
 'tog-enotifminoredits' => 'Kirimkan surel juo untuk saketek suntingan pado laman jo gambar',
-'tog-enotifrevealaddr' => 'Tunjuakkan alamaik surel ambo pado pambaritauan surel',
-'tog-shownumberswatching' => 'Tunjuakkan jumlah pamantau',
+'tog-enotifrevealaddr' => 'Tunjuakan alamaik surel ambo pado pambaritauan surel',
+'tog-shownumberswatching' => 'Tunjuakan jumlah pamantau',
 'tog-oldsig' => 'Tando tangan kini:',
 'tog-fancysig' => 'Jadikan tando tangan manjadi teks wiki (indak jo tautan otomatis)',
 'tog-showjumplinks' => 'Aktifkan pautan bantuan "langsuang ka"',
@@ -1243,13 +1243,13 @@ Alamaik surel Sanak indakkan tau dek urang nan manghubungi sanak tu.',
 'rcnote' => "Berikuik ko {{PLURAL:$1|'''$1'''}} parubahan dalam {{PLURAL:$2|'''$2''' hari}} tarakhia, sampai $4, pukul $5.",
 'rcnotefrom' => "Di bawah ko ado parubahan mulai dari '''$2''' (sampai '''$1''' parubahan).",
 'rclistfrom' => 'Tampilkan parubahan baru mulai dari $1',
-'rcshowhideminor' => '$1 suntingan ketek',
+'rcshowhideminor' => '$1 suntiangan ketek',
 'rcshowhidebots' => '$1 bot',
 'rcshowhideliu' => '$1 pangguno masuak log',
 'rcshowhideanons' => '$1 pangguno anon',
 'rcshowhidepatr' => '$1 suntiangan nan tajago',
-'rcshowhidemine' => '$1 suntingan denai',
-'rclinks' => 'Tunjuakkan $1 parubahan tabaru dalam $2 hari tarakhia<br />$3',
+'rcshowhidemine' => '$1 suntiangan denai',
+'rclinks' => 'Tunjuakan $1 parubahan tabaru dalam $2 hari tarakhia<br />$3',
 'diff' => 'bedo',
 'hist' => 'sijarah',
 'hide' => 'Suruakan',
@@ -1473,6 +1473,7 @@ Judul laman nan <del>dicoret</del> bararti alah dipelokan.',
 'nviews' => 'dilihek $1 {{PLURAL:$1|kali}}',
 'nimagelinks' => 'Digunoan pado $1 {{PLURAL:$1|laman}}',
 'ntransclusions' => 'digunoan pado $1 {{PLURAL:$1|laman}}',
+'specialpage-empty' => 'Indak ado nan paralu dilaporan.',
 'lonelypages' => 'Laman yatim',
 'lonelypagestext' => 'Laman-laman barikuik indak ado pautan dari atau ditransklusikan ka laman manopun di {{SITENAME}}.',
 'uncategorizedpages' => 'Laman nan indak takategori',
@@ -1528,8 +1529,8 @@ Harok paratian jikok laman web lain mungkin ado pautan ka suatu berkas jo URL la
 'speciallogtitlelabel' => 'Target (judul atau pangguno):',
 'log' => 'Log',
 'all-logs-page' => 'Sado log publik',
-'alllogstext' => 'Gabungan kasado log nan ado di {{SITENAME}}.
-Sanak dapek mamiliah jenis log nan ado, namo pangguno (bedoan huruf ketek/gadang), atau judul laman (bedoan huruf ketek/gadang).',
+'alllogstext' => 'Gabuangan kasado log nan ado di {{SITENAME}}.
+Sanak dapek mamiliah jinih log nan ado, namo pangguno (bedoan hurup ketek/gadang), atau judul laman (bedoan hurup ketek/gadang).',
 'logempty' => 'Indak basobok entri log nan sasuai.',
 'log-title-wildcard' => 'Cari judul nan diawali jo teks ko',
 'showhideselectedlogentries' => 'Tunjuakan/Suruakan entri log tapiliah',
@@ -1779,11 +1780,14 @@ Entri log pamblokiran tabaru ado di bawah ko untuak referensi:',
 'blockip' => 'Sakek pangguno',
 'blockip-title' => 'Sakek pangguno',
 'blockip-legend' => 'Sakek pangguno',
+'blockiptext' => 'Gunoan formulir di bawah ko untuak manyakek akses dari sabuah alamaik IP atau pangguno.
+Iko hanyo buliah dilakuan untuak mancagah vandal, dan sajalan jo [[{{MediaWiki:Policy-url}}|kabijakan]].
+Masuakan alasan sakek di bawah (contoh, mambuek karusakan atau vandal).',
 'ipadressorusername' => 'Alamaik IP atau namo pangguno:',
 'ipbexpiry' => 'Sampai:',
 'ipbreason' => 'Alasan:',
 'ipbreasonotherlist' => 'Alasan lain',
-'ipbreason-dropdown' => '*Alasan umum
+'ipbreason-dropdown' => '*Alasan umum sakek
 ** Marusak (vandal)
 ** Mangagiah informasi palsu
 ** Mangilangkan isi laman
@@ -1791,7 +1795,8 @@ Entri log pamblokiran tabaru ado di bawah ko untuak referensi:',
 ** Mambuek ota gadang di laman
 ** Babuek intimidasi/palecehan
 ** Manyalahgunoan babarapo akun
-** Namo pangguno talarang',
+** Namo pangguno talarang
+** Bot alun ado bot flag',
 'ipb-hardblock' => 'Halang pangguno tadafta untuak manyuntiang dari alamaik IP ko',
 'ipbcreateaccount' => 'Halang mambuek akun',
 'ipbemailban' => 'Halang pangguno mangirim surel',
@@ -1856,6 +1861,9 @@ Caliak [[Special:BlockList|daftar sakek]] buek maninjaunyo.',
 Alasan disakek untuak $1 adolah "\'\'$2\'\'"',
 'blocklogpage' => 'Log sakek',
 'blocklogentry' => 'Manyakek [[$1]] dalam maso $2 $3',
+'blocklogtext' => 'Di bawah ko adolah log sakek jo palapehan sakek pado pangguno.
+Alamaik IP nan disakek sacaro otomatis indak tadapaik dalam daftar ko.
+Caliak [[Special:BlockList|daftar sakek]] untuak kasado pangguno nan kini kanai sakek.',
 'unblocklogentry' => 'lapeh sakek $1',
 'block-log-flags-anononly' => 'hanyo pangguno anonim',
 'block-log-flags-nocreate' => 'mambuek akun dimatian',
@@ -1937,6 +1945,7 @@ Silakan piliah namo lain.',
 'importstart' => 'Mangimpor laman...',
 
 # Import log
+'importlogpagetext' => 'Administrasi laman impor jo riwayaik panyuntiangannyo dari wiki lain.',
 'import-logentry-upload' => 'mangimpor [[$1]] malalui pamuekan berkas',
 
 # Tooltip help for the actions
@@ -2246,7 +2255,7 @@ Nan lainnyo akan tasuruak sacaro baku.
 * <span class="mw-specialpagecached">Laman istimewa tasinggah (mungkin usang).</span>',
 'specialpages-group-maintenance' => 'Laporan pamaliharoan',
 'specialpages-group-other' => 'Lain-lain',
-'specialpages-group-login' => 'Masuak log / mandafta',
+'specialpages-group-login' => 'Masuak log / mandaftar',
 'specialpages-group-changes' => 'Parubahan tabaru jo log',
 'specialpages-group-media' => 'Laporan jo pamuatan berkas',
 'specialpages-group-users' => 'Pangguno jo hak pangguno',

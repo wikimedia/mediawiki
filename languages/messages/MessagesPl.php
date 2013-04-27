@@ -3121,7 +3121,7 @@ Najprawdopodobniej zostało to spowodowane przez link do zewnętrznej strony int
 'pageinfo-not-current' => 'Niestety, te informacje nie są dostępne dla starych wersji stron.',
 'pageinfo-header-basic' => 'Podstawowe informacje',
 'pageinfo-header-edits' => 'Historia edycji',
-'pageinfo-header-restrictions' => 'Zmień zabezpieczenie',
+'pageinfo-header-restrictions' => 'Zabezpieczenie strony',
 'pageinfo-header-properties' => 'Właściwości strony',
 'pageinfo-display-title' => 'Wyświetlany tytuł',
 'pageinfo-default-sort' => 'Domyślny klucz sortowania',
@@ -3819,7 +3819,7 @@ Czy na pewno chcesz ją ponownie utworzyć?",
 'autosumm-blank' => 'UWAGA! Usunięcie treści (strona pozostała pusta)!',
 'autosumm-replace' => 'UWAGA! Zastąpienie treści hasła bardzo krótkim tekstem: „$1”',
 'autoredircomment' => 'Przekierowanie do [[$1]]',
-'autosumm-new' => 'Utworzył nową stronę „$1”',
+'autosumm-new' => 'Utworzono nową stronę "$1"',
 
 # Size units
 'size-bytes' => '$1&nbsp;B',

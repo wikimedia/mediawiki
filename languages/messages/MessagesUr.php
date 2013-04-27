@@ -11,6 +11,7 @@
  * @author Istabani
  * @author Meno25
  * @author Muhammad Shuaib
+ * @author Noor2020
  * @author O.bangash
  * @author Rachitrali
  * @author Reedy
@@ -186,9 +187,6 @@ $messages = array(
 'tog-shownumberswatching' => 'دیکھنے والے صارفین کی تعداد دکھاؤ',
 'tog-oldsig' => 'موجودہ دستخط:',
 'tog-fancysig' => '(سادہ دستخط بلا خودکار ربط)',
-'tog-externaleditor' => 'ہمیشہ بیرونی تدوین کار استعمال کرو (صرف ماہرین کیلئے، اِس کیلئے شمارندہ پر خاص ترتیبات درکار ہوتی ہیں۔
-[//www.mediawiki.org/wiki/Manual:External_editors مزید معلومات.])',
-'tog-externaldiff' => '',
 'tog-showjumplinks' => 'Enable "jump to" accessibility links',
 'tog-uselivepreview' => 'براہِ راست نمائش استعمال کرو (JavaScript چاہئے نیز تجرباتی)',
 'tog-forceeditsummary' => 'جب میں ترمیمی خلاصہ خالی چھوڑوں تو مجھے آگاہ کرو',
@@ -201,6 +199,7 @@ $messages = array(
 'tog-ccmeonemails' => 'دیگر صارفین کو ارسال کردہ برقی خطوط کی نقول مجھے ارسال کریں۔',
 'tog-diffonly' => 'مختلفات کے نیچے صفحے کی مشمولات مت دکھاؤ',
 'tog-showhiddencats' => 'پوشیدہ زمرہ جات دکھاؤ',
+'tog-useeditwarning' => 'خبردار مجھے جب میں غیر محفوظ کردہ تبدیلیوں کے ساتھ ایک ترمیم کے صفحے کو چھوڑ دو',
 
 'underline-always' => 'ہمیشہ',
 'underline-never' => 'کبھی نہیں',
@@ -538,8 +537,13 @@ Warning: Page may not contain recent updates.',
 
 آپ گمنام طور پر {{SITENAME}}  کا استعمال جاری رکھ سکتے ہیں، یا دوبارہ اسی نام یا مختلف نام سے <span class='plainlinks'>[$1 دوبارہ داخلِ نوشتہ]</span> بھی ہو سکتے ہیں۔  یہ یاد آوری کرلیجیۓ کہ کچھ صفحات ایسے نظر آتے رہیں گے کہ جیسے ابھی آپ خارج نہیں ہوئے ، جب تک آپ اپنے متصفح کا ابطن صاف نہ کردیں۔",
 'yourname' => 'اسمِ رکنیت',
+'createacct-helpusername-url' => '{{ns:Project}}: Username_policy',
+'createacct-helpusername-link' => '[[{{MediaWiki:createacct-helpusername-url}}|(بنانے میں مدد کریں)]]',
 'yourpassword' => 'کلمۂ شناخت',
+'createacct-yourpassword-ph' => 'ایک پاس ورڈ داخل کریں',
 'yourpasswordagain' => 'کلمۂ شناخت دوبارہ لکھیں',
+'createacct-yourpasswordagain' => 'کلمۂ اجازت تصدیق کریں',
+'createacct-yourpasswordagain-ph' => 'پاس ورڈ پھر داخل کریں',
 'remembermypassword' => 'اِس متصفح پر میرے داخلِ نوشتگی معلومات یاد رکھو (زیادہ سے زیادہ $1 {{PLURAL:$1|دِن|ایام}} کیلئے)',
 'yourdomainname' => 'آپکا ڈومین',
 'password-change-forbidden' => 'آپ اس ویکی پر پارلفظ (پاس روڈ) تبدیل نہیں کر سکتے',
@@ -558,12 +562,28 @@ Warning: Page may not contain recent updates.',
 'gotaccount' => "پہلے سے کھاتہ بنا ہوا ہے? '''$1'''.",
 'gotaccountlink' => 'داخل ہوجائیے',
 'userlogin-resetlink' => 'داخلِ نوشتہ ہونے کی تفاصیل بھول گئے ہیں؟',
+'createacct-join' => 'اپنی معلومات نیچے لکھیں۔',
+'createacct-emailrequired' => 'ای میل پتہ',
+'createacct-emailoptional' => 'ای میل ایڈریس (اختیاری)',
+'createacct-email-ph' => 'اپنا برقی پتہ لکھیں',
 'createaccountmail' => 'بذریعۂ برقی ڈاک',
+'createacct-realname' => 'اصلی نام (اختیاری)',
 'createaccountreason' => 'وجہ:',
+'createacct-reason' => 'وجہ',
+'createacct-captcha' => 'حفاظتی تدبیر',
+'createacct-captcha-help-url' => '{{ns:Project}}: ایک اکاؤنٹ کی درخواست کریں',
+'createacct-imgcaptcha-help' => 'یہ تصویر نہیں دیکھ سکتے؟
+[[{{MediaWiki:createacct-captcha-help-url}}|اکاؤنٹ بنانے کے لیے درخواست کریں]]',
+'createacct-imgcaptcha-ph' => 'آپ اوپر دیکھ متن داخل کریں',
+'createacct-benefit-heading' => '{{SITENAME}} آپ جیسے لوگوں کی طرف سے بنایا گیا ہے ۔',
+'createacct-benefit-body1' => 'ترمیم',
+'createacct-benefit-body2' => 'صفحات',
+'createacct-benefit-body3' => 'شرکت کرنے والے اس ماہ کے',
 'badretype' => 'درج شدہ کلمۂ شناخت اصل سے مطابقت نہیں رکھتا۔',
 'userexists' => 'داخل کردہ اسم صارف پہلے سے مستعمل ہے۔
 براہِ کرم! کوئی دوسرا اسم منتخب کیجئے۔',
 'loginerror' => 'داخلے میں غلطی',
+'createacct-error' => 'تخلیق کھاتہ میں نقص',
 'createaccounterror' => 'کھاتہ $1 بنایا نہیں جاسکا',
 'nocookiesnew' => 'کھاتۂ صارف بنادیا گیا ہے، لیکن آپ کا داخلہ نہیں ہوا.
 صارفین کے داخلہ کیلئے {{SITENAME}} کوکیز استعمال کرتا ہے.
@@ -943,10 +963,6 @@ $1",
 'searchdisabled' => '{{SITENAME}} تلاش غیرفعال.
 آپ فی الحال گوگل کے ذریعے تلاش کرسکتے ہیں.
 یاد رکھئے کہ اُن کے {{SITENAME}} اشاریے ممکناً پرانے ہوسکتے ہیں.',
-
-# Quickbar
-'qbsettings' => 'فوری‌بار',
-'qbsettings-none' => 'ہیچ',
 
 # Preferences page
 'preferences' => 'ترجیحات',
@@ -1566,6 +1582,9 @@ $1 × $2 عکصر (پکسلز)، حجم ملف: $3، MIME قسم: $4',
 'showhidebots' => '($1 بوٹ)',
 'ilsubmit' => 'تلاش',
 'bydate' => 'بالحاظ تاریخ',
+
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'weeks' => '{{PLURAL:$1|$1ہفتہ| $1  ہفتے}}',
 
 # Bad image list
 'bad_image_list' => 'شکلبند درج ذیل ہے:

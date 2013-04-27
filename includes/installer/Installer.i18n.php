@@ -12891,6 +12891,11 @@ chmod a+w $3</pre>',
 
 Ако вашата инсталација на MySQL поддржува InnoDB, тогаш сериозно препорачуваме да го користите него наместо MyISAM.
 Ако вашата инсталација на MySQL не поддржува InnoDB, веројатно дошло време за надградба.",
+	'config-mysql-only-myisam-dep' => "'''Предупредување:''' MyISAM е единствениот достапен складишен погон за MySQL, што не се препорачува за употреба со МедијаВики, бидејќи:
+* речиси не поддржува истовремено извршување на задачите поради заклучувањето на табелите
+* поподложен е на расипувања од другите погони
+* кодната база на МедијаВИки не секогаш работи исправно со MyISAM
+Вашата инсталација на MySQL не поддржува InnoDB. Можеби е време да ја надградите.",
 	'config-mysql-engine-help' => "'''InnoDB''' речиси секогаш е најдобар избор, бидејќи има добра поддршка за едновременост.
 
 '''MyISAM''' може да е побрз кај инсталациите наменети за само еден корисник или незаписни инсталации (само читање).
@@ -19823,6 +19828,12 @@ $messages['ur'] = array(
 	'config-information' => 'معلومات',
 	'config-git' => 'Git ورژن کنٹرول مصنع لطیف ملا: <code>$1</code> ۔',
 	'config-git-bad' => 'GIT ورژن کنٹرول مصنع لطیف نہيں ملا ۔',
+	'config-mysql-only-myisam-dep' => "' ' تنبیہ: ' '[[MyISAM|مائ اسام]] واحد دستیاب 'ذخیرہ جاتی انجن' ہے جو مائی ایس کیو ایل کے لیے ہے ، جو کہ ناموزوں ہے میڈیا وکی کے لیے ،کیوں کہ :
+* یہ ہموار قطاروں کی سہولت بمشکل فراہم کرتا ہے 
+* یہ دوسرے انجنوں کے مقابلے  زیادہ بگڑ جاتا ہے
+* میڈیا وکی کوڈ بیس ہمیشہ سنبھال نہيں پاتا مائی اسام کو ۔ 
+
+آپ کا مائی ایس کیو ایل کا نصب ہمیشہ اننو ڈی بی کی سہولت نہيں دے سکتا ، ہو سکتا ہے یہ مزید ترقیاتی کام چاہے", # Fuzzy
 	'config-profile-fishbowl' => 'صرف مجاز ایڈیٹرز',
 	'config-license-pd' => 'پبلک ڈومین',
 	'config-email-settings' => 'ای میل کی ترتیبات',
@@ -20071,6 +20082,7 @@ $messages['zea'] = array(
 
 /** Simplified Chinese (中文（简体）‎)
  * @author Anthony Fok
+ * @author Cwek
  * @author Hydra
  * @author Hzy980512
  * @author Liangent
@@ -20193,7 +20205,7 @@ Object caching is not enabled.",
 	'config-no-cli-uploads-check' => "'''警告'''：在CLI安装过程中，没有对您的默认上传目录（<code>$1</code>）进行执行任意脚本的漏洞检查。",
 	'config-brokenlibxml' => '您的系统安装的PHP和libxml2版本组合存在故障，并可能在MediaWiki和其他web应用程序中造成隐藏的数据损坏。请将PHP升级到5.2.9或以上，libxml2升级到2.7.3或以上（[//bugs.php.net/bug.php?id=45996 PHP的故障报告]）。安装已中断。',
 	'config-using531' => '由于函数<code>__call()</code>的引用参数存在故障，PHP $1和MediaWiki无法兼容。请升级到PHP 5.3.2或更高版本，或降级到PHP 5.3.0以修复该问题。安装已中断。',
-	'config-suhosin-max-value-length' => 'Suhosin已经安装并将GET请求的参数长度限制在$1字节。MediaWiki的ResourceLoader部件可以在此限制下正常工作，但其性能会被降低。如果可能，请在<code>php.ini</code>中将<code>suhosin.get.max_value_length</code>设为1024或更高值，并在LocalSettings.php中将<code>$wgResourceLoaderMaxQueryLength</code>设为同一值。', # Fuzzy
+	'config-suhosin-max-value-length' => 'Suhosin已经安装并将GET请求的参数长度限制在$1字节。MediaWiki的ResourceLoader部件可以在此限制下正常工作，但其性能会被降低。如果可能，请在<code>php.ini</code>中将<code>suhosin.get.max_value_length</code>设为1024或更高值，并在LocalSettings.php中将<code>$wgResourceLoaderMaxQueryLength</code>设为同一值。',
 	'config-db-type' => '数据库类型：',
 	'config-db-host' => '数据库主机：',
 	'config-db-host-help' => '如果您的数据库在别的服务器上，请在这里输入它的域名或IP地址。
@@ -20334,6 +20346,12 @@ chmod a+w $3</pre>',
 
 如果您的MySQL程序支持InnoDB，我们高度推荐您使用该引擎替代MyISAM。
 如果您的MySQL程序不支持InnoDB，请考虑升级。",
+	'config-mysql-only-myisam-dep' => "''''警告：'''MyISAM是MySQL唯一可用的存储引擎，但不适合用于MediaWiki，是由于：
+*由于只支持表级锁定，几乎不支持并发。
+*它比其他引擎更容易损坏。
+*MediaWiki代码不能总是按照预设地操作MyISAM。
+
+你的MySQL不支持InnoDB，是时候升级了。",
 	'config-mysql-engine-help' => "'''InnoDB'''通常是最佳选项，因为它对并发操作有着良好的支持。
 
 '''MyISAM'''在单用户或只读环境下可能会有更快的性能表现。但MyISAM数据库出错的概率一般要大于InnoDB数据库。",

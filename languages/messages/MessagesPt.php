@@ -12,6 +12,7 @@
  * @author Capmo
  * @author Crazymadlover
  * @author Daemorris
+ * @author DanielTom
  * @author Dicionarista
  * @author Francisco Leandro
  * @author Giro720
@@ -726,9 +727,19 @@ Tenha em atenção que algumas páginas poderão continuar a ser apresentadas co
 'welcomecreation-msg' => 'A sua conta foi criada.
 Não se esqueça de personalizar as suas [[Special:Preferences|preferências]].',
 'yourname' => 'Nome de utilizador:',
+'userlogin-yourname' => 'Nome de utilizador(a):',
+'userlogin-yourname-ph' => 'Digite seu nome de utilizador(a)',
+'createacct-helpusername-url' => '{{ns:Project}}:Política_de_nome_de_utilizador(a)',
+'createacct-helpusername-link' => '[[{{MediaWiki:createacct-helpusername-url}}|(ajude-me a escolher)]]',
 'yourpassword' => 'Palavra-chave:',
+'userlogin-yourpassword' => 'Palavra-chave',
+'userlogin-yourpassword-ph' => 'Digite sua palavra-chave',
+'createacct-yourpassword-ph' => 'Digite uma palavra-chave',
 'yourpasswordagain' => 'Repita a palavra-chave:',
+'createacct-yourpasswordagain' => 'Confirme a palavra-chave',
+'createacct-yourpasswordagain-ph' => 'Digite a palavra-chave novamente',
 'remembermypassword' => 'Recordar os meus dados neste computador (no máximo, por $1 {{PLURAL:$1|dia|dias}})',
+'userlogin-remembermypassword' => 'Memorizar neste computador',
 'securelogin-stick-https' => 'Manter a ligação HTTPS após a autenticação',
 'yourdomainname' => 'O seu domínio:',
 'password-change-forbidden' => 'Não podes alterar senhas nesta wiki.',

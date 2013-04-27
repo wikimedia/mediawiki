@@ -870,7 +870,7 @@ Peaksid nüüd sisse logima ja uue parooli valima. Kui selle palve esitas keegi 
 Ajutine parool: $2',
 'passwordreset-emailsent' => 'Parooli lähtestamise e-kiri on saadetud.',
 'passwordreset-emailsent-capture' => 'E-kirjatsi on saadetud allpool näidatav parooli lähtestuskiri.',
-'passwordreset-emailerror-capture' => 'Koostati allpool näidatav parooli lähtestuskiri, aga selle e-kirjatsi kasutajale saatmine ebaõnnestus: $1',
+'passwordreset-emailerror-capture' => 'Koostati allpool näidatav parooli lähtestuskiri, aga selle e-kirjatsi {{GENDER:$2|kasutajale}} saatmine ebaõnnestus: $1',
 
 # Special:ChangeEmail
 'changeemail' => 'E-posti aadressi muutmine',
@@ -2423,6 +2423,7 @@ Mine tagasi eelmisele leheküljele ja taaslaadi see, seejärel proovi uuesti.',
 'prot_1movedto2' => 'Lehekülg "[[$1]]" teisaldatud pealkirja "[[$2]]" alla',
 'protect-badnamespace-title' => 'Kaitstamatu nimeruum',
 'protect-badnamespace-text' => 'Selles nimeruumis olevaid lehekülgi ei saa kaitsta.',
+'protect-norestrictiontypes-text' => 'Seda lehekülge ei saa kaitsta, sest ühtki piirangutüüpi pole saadaval.',
 'protect-norestrictiontypes-title' => 'Kaitstamatu lehekülg',
 'protect-legend' => 'Kaitse kinnitamine',
 'protectcomment' => 'Põhjus:',
@@ -3179,10 +3180,16 @@ Järgnevas loendis, mis on sorteeritud $2, on '''$1''' {{PLURAL:$1|fail|faili}}.
 'minutes' => '{{PLURAL:$1|üks minut|$1 minutit}}',
 'hours' => '{{PLURAL:$1|üks tund|$1 tundi}}',
 'days' => '{{PLURAL:$1|üks päev|$1 päeva}}',
+'weeks' => '{{PLURAL:$1|$1 nädal|$1 nädalat}}',
 'months' => '{{PLURAL:$1|Üks kuu|$1 kuud}}',
 'years' => '{{PLURAL:$1|Üks aasta|$1 aastat}}',
 'ago' => '$1 tagasi',
 'just-now' => 'just nüüd',
+
+# Human-readable timestamps
+'hours-ago' => '$1 {{PLURAL:$1|tund|tundi}} tagasi',
+'minutes-ago' => '$1 {{PLURAL:$1|minut|minutit}} tagasi',
+'seconds-ago' => '$1 {{PLURAL:$1|sekund|sekundit}} tagasi',
 
 # Bad image list
 'bad_image_list' => 'Arvesse võetakse ainult nimekirja ühikud (read, mis algavad sümboliga *).

@@ -564,8 +564,16 @@ Wobkedźbuj, zo so někotre strony dale jewja, kaž by hišće přizjewjeny był
 'welcomecreation-msg' => 'Twoje konto bu wutworjene.
 Njezabudź swoje [[Special:Preferences|nastajenja za {{GRAMMAR:akuzatiw|{{SITENAME}}}}]] změnić.',
 'yourname' => 'Wužiwarske mjeno:',
+'userlogin-yourname' => 'Wužiwarske mjeno',
+'userlogin-yourname-ph' => 'Zapodaj swoje wužiwarske mjeno',
+'createacct-helpusername-url' => '{{ns:Project}}:Prawidła_za_wužiwarske_mjena',
+'createacct-helpusername-link' => '[[{{MediaWiki:createacct-helpusername-url}}|(pomóž wubrać)]]',
 'yourpassword' => 'Hesło:',
+'userlogin-yourpassword' => 'Hesło',
+'userlogin-yourpassword-ph' => 'Zapodaj swoje hesło',
+'createacct-yourpassword-ph' => 'Zapodaj hesło',
 'yourpasswordagain' => 'Hesło znowa zapodać:',
+'createacct-yourpasswordagain' => 'Hesło wobkrućić',
 'remembermypassword' => 'Na tutym ličaku přizjewjeny wostać (za maksimalnje $1 {{PLURAL:$1|dźeń|dnjej|dny|dnjow}})',
 'securelogin-stick-https' => 'Po přizjewjenju z HTTPS zwjazany wostać',
 'yourdomainname' => 'Twoja domejna:',
@@ -585,8 +593,13 @@ Njezabudź swoje [[Special:Preferences|nastajenja za {{GRAMMAR:akuzatiw|{{SITENA
 'gotaccount' => 'Maš hižo wužiwarske konto? $1.',
 'gotaccountlink' => 'Přizjewić',
 'userlogin-resetlink' => 'Přizjewjenske daty zabył?',
+'createacct-emailrequired' => 'E-mejlowa adresa',
 'createaccountmail' => 'Nachwilne přidatne hesło wužiwać a jo na slědowacu e-mejlowu adresu pósłać',
 'createaccountreason' => 'Přičina:',
+'createacct-reason' => 'Přičina',
+'createacct-imgcaptcha-ph' => 'Zapodaj tekst, kotryž deleka widźiš',
+'createacct-benefit-body1' => 'změny',
+'createacct-benefit-body2' => 'strony',
 'badretype' => 'Hesle, kotrejž sy zapodał, so njekryjetej.',
 'userexists' => 'Wužiwarske mjeno, kotrež sy zapodał, so hižo wužiwa.
 Prošu wubjer druhe mjeno.',
@@ -697,7 +710,7 @@ Ty měł so nětko přizjewić a nowe hesło wubrać. Jeli něchtó druhi je tut
 Nachwilne hesło: $2',
 'passwordreset-emailsent' => 'E-mejl za anulowanje hesło je so pósłała.',
 'passwordreset-emailsent-capture' => 'E-mejl za anulowanje hesła je so pósłała, kotraž so deleka pokazuje.',
-'passwordreset-emailerror-capture' => 'E-mejl za anulowanje hesła je so wutworiła, kotraž so deleka pokazuje, ale słanje wužiwarjej je so njeporadźiło: $1',
+'passwordreset-emailerror-capture' => 'E-mejl za anulowanje hesła je so wutworiła, kotraž so deleka pokazuje, ale słanje {{GENDER:$2|wužiwarjej|wužiwarce}} je so njeporadźiło: $1',
 
 # Special:ChangeEmail
 'changeemail' => 'E-mejlowu adresu změnić',
@@ -2978,10 +2991,24 @@ $1',
 'minutes' => '{{PLURAL:$1|$1 mjeńšinu|$1 mjeńšinomaj|$1 mjeńšinami|$1 mjeńšinami}}',
 'hours' => '{{PLURAL:$1|$1 hodźinu|$1 hodźinomaj|$1 hodźinami|$1 hodźinami}}',
 'days' => '{{PLURAL:$1|$1 dnjom|$1 dnjomaj|$1 dnjemi|$1 dnjemi}}',
+'weeks' => '{{PLURAL:$1|$1 tydźeń|$1 njedźeli|$1 njedźele|$1 njedźel}}',
 'months' => '{{PLURAL:$1|$1 měsacom|$1 měsacomaj|$1 měsacami}}',
 'years' => '{{PLURAL:$1|$1 lětom|$1 lětomaj|$1 lětami}}',
 'ago' => 'před $1',
 'just-now' => 'runje',
+
+# Human-readable timestamps
+'hours-ago' => 'před $1 {{PLURAL:$1|hodźinu|hodźinomaj|hodźinami|hodźinami}}',
+'minutes-ago' => 'před $1 {{PLURAL:$1|mjeńšinu|mjeńšinomaj|mjeńšinami|mjeńšinami}}',
+'seconds-ago' => 'před $1 {{PLURAL:$1|sekundu|sekundomaj|sekundami|sekundami}}',
+'monday-at' => 'Póndźela $1',
+'tuesday-at' => 'Wutora $1',
+'wednesday-at' => 'Srjeda $1',
+'thursday-at' => 'Štwórtk $1',
+'friday-at' => 'Pjatk $1',
+'saturday-at' => 'Sobota $1',
+'sunday-at' => 'Njedźela $1',
+'yesterday-at' => 'Wčera $1',
 
 # Bad image list
 'bad_image_list' => 'Format:
@@ -3691,6 +3718,8 @@ Wobrazy so połnym rozeznaću pokazuja, druhe datajowe typy so ze zwjazanym prog
 'htmlform-submit' => 'Wotpósłać',
 'htmlform-reset' => 'Změny cofnyć',
 'htmlform-selectorother-other' => 'Druhe',
+'htmlform-no' => 'Ně',
+'htmlform-yes' => 'Haj',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 połnotekstowe pytanje podpěruje.',
