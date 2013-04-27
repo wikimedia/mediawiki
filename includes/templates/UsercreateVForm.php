@@ -251,7 +251,7 @@ class UsercreateTemplateVForm extends BaseTemplate {
 		<div class="mw-submit">
 			<input type='submit' class="mw-ui-button mw-ui-big mw-ui-block mw-ui-primary" name="wpCreateaccount" id="wpCreateaccount"
 				tabindex="<?php echo $tabIndex++; ?>"
-				value="<?php $this->msg( 'createaccount' ); ?>" />
+				value="<?php $this->msg( 'createacct-submit' ); ?>" />
 		</div>
 	<input type="hidden" id="useNew" name="useNew" value="1" />
 <?php if ( $this->haveData( 'uselang' ) ) { ?><input type="hidden" name="uselang" value="<?php $this->text( 'uselang' ); ?>" /><?php } ?>
