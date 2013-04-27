@@ -95,7 +95,7 @@ class MonoBookTemplate extends BaseTemplate {
 <?php if ( $this->data['undelete'] ) { ?>
 		<div id="contentSub2"><?php $this->html( 'undelete' ) ?></div>
 <?php } ?><?php if ( $this->data['newtalk'] ) { ?>
-		<div class="usermessage"><?php $this->html( 'newtalk' )  ?></div>
+		<div class="usermessage"><?php $this->html( 'newtalk' ) ?></div>
 <?php } ?><?php if ( $this->data['showjumplinks'] ) { ?>
 		<div id="jump-to-nav" class="mw-jump"><?php $this->msg( 'jumpto' ) ?> <a href="#column-one"><?php $this->msg( 'jumptonavigation' ) ?></a><?php $this->msg( 'comma-separator' ) ?><a href="#searchInput"><?php $this->msg( 'jumptosearch' ) ?></a></div>
 <?php } ?>
@@ -107,7 +107,7 @@ class MonoBookTemplate extends BaseTemplate {
 		<div class="visualClear"></div>
 	</div>
 </div></div>
-<div id="column-one"<?php $this->html( 'userlangattributes' )  ?>>
+<div id="column-one"<?php $this->html( 'userlangattributes' ) ?>>
 	<h2><?php $this->msg( 'navigation-heading' ) ?></h2>
 <?php $this->cactions(); ?>
 	<div class="portlet" id="p-personal" role="navigation">
@@ -146,7 +146,7 @@ class MonoBookTemplate extends BaseTemplate {
 		$footerEnd = '';
 	}
 	foreach ( $validFooterIcons as $blockName => $footerIcons ) { ?>
-	<div id="f-<?php echo htmlspecialchars($blockName); ?>ico">
+	<div id="f-<?php echo htmlspecialchars( $blockName ); ?>ico">
 <?php foreach ( $footerIcons as $icon ) { ?>
 		<?php echo $this->getSkin()->makeFooterIcon( $icon ); ?>
 
@@ -159,7 +159,7 @@ class MonoBookTemplate extends BaseTemplate {
 ?>	<ul id="f-list">
 <?php
 			foreach ( $validFooterLinks as $aLink ) { ?>
-		<li id="<?php echo $aLink ?>"><?php $this->html($aLink) ?></li>
+		<li id="<?php echo $aLink ?>"><?php $this->html( $aLink ) ?></li>
 <?php
 			}
 ?>
@@ -306,9 +306,10 @@ echo $footerEnd;
 			$portletAttribs['title'] = $tooltip;
 		}
 		echo '	' . Html::openElement( 'div', $portletAttribs );
+		$msgObj = wfMessage( $bar );
 ?>
 
-		<h3><?php $msg = wfMessage( $bar ); echo htmlspecialchars( $msg->exists() ? $msg->text() : $bar ); ?></h3>
+		<h3><?php echo htmlspecialchars( $msgObj->exists() ? $msgObj->text() : $bar ); ?></h3>
 		<div class='pBody'>
 <?php   if ( is_array( $cont ) ) { ?>
 			<ul>
