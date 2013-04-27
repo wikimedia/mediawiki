@@ -99,7 +99,7 @@ class RebuildRecentchanges extends Maintenance {
 	 */
 	private function rebuildRecentChangesTablePass2() {
 		$dbw = wfGetDB( DB_MASTER );
-		list ( $recentchanges, $revision ) = $dbw->tableNamesN( 'recentchanges', 'revision' );
+		list( $recentchanges, $revision ) = $dbw->tableNamesN( 'recentchanges', 'revision' );
 
 		$this->output( "Updating links and size differences...\n" );
 

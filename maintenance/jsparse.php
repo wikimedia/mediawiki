@@ -50,7 +50,7 @@ class JSParseHelper extends Maintenance {
 			wfSuppressWarnings();
 			$js = file_get_contents( $filename );
 			wfRestoreWarnings();
-			if ($js === false) {
+			if ( $js === false ) {
 				$this->output( "$filename ERROR: could not read file\n" );
 				$this->errs++;
 				continue;
@@ -58,7 +58,7 @@ class JSParseHelper extends Maintenance {
 
 			try {
 				$parser->parse( $js, $filename, 1 );
-			} catch (Exception $e) {
+			} catch ( Exception $e ) {
 				$this->errs++;
 				$this->output( "$filename ERROR: " . $e->getMessage() . "\n" );
 				continue;
@@ -67,8 +67,8 @@ class JSParseHelper extends Maintenance {
 			$this->output( "$filename OK\n" );
 		}
 
-		if ($this->errs > 0) {
-			exit(1);
+		if ( $this->errs > 0 ) {
+			exit( 1 );
 		}
 	}
 }

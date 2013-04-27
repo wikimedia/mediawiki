@@ -258,7 +258,7 @@ class LanguageConverter {
 		// Get language variant preference from logged in users
 		// Don't call this on stub objects because that causes infinite
 		// recursion during initialisation
-		if ( $wgUser->isLoggedIn() )  {
+		if ( $wgUser->isLoggedIn() ) {
 			$ret = $wgUser->getOption( 'variant' );
 		} else {
 			// figure out user lang without constructing wgLang to avoid
@@ -833,7 +833,7 @@ class LanguageConverter {
 	 * @author Nikola Smolenski <smolensk@eunet.rs>
 	 * @since 1.19
 	 */
-	public function guessVariant($text, $variant) {
+	public function guessVariant( $text, $variant ) {
 		return false;
 	}
 

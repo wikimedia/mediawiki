@@ -320,7 +320,7 @@ class GenerateSitemap extends Maintenance {
 			$this->output( "$namespace ($fns)\n" );
 			$skippedRedirects = 0;  // Number of redirects skipped for that namespace
 			foreach ( $res as $row ) {
-				if ($this->skipRedirects && $row->page_is_redirect ) {
+				if ( $this->skipRedirects && $row->page_is_redirect ) {
 					$skippedRedirects++;
 					continue;
 				}
@@ -357,7 +357,7 @@ class GenerateSitemap extends Maintenance {
 				}
 			}
 
-			if ($this->skipRedirects && $skippedRedirects > 0) {
+			if ( $this->skipRedirects && $skippedRedirects > 0 ) {
 				$this->output( "  skipped $skippedRedirects redirect(s)\n" );
 			}
 

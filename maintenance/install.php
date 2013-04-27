@@ -41,7 +41,7 @@ class CommandLineInstaller extends Maintenance {
 		parent::__construct();
 		global $IP;
 
-		$this->addArg( 'name', 'The name of the wiki', true);
+		$this->addArg( 'name', 'The name of the wiki', true );
 
 		$this->addArg( 'admin', 'The username of the wiki administrator (WikiSysop)', true );
 		$this->addOption( 'pass', 'The password for the wiki administrator.', false, true );

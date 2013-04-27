@@ -79,7 +79,7 @@ class TestFileOpPerformance extends Maintenance {
 				$this->output( "Using '$dirname/$file' in operations.\n" );
 				$dst = $baseDir . '/' . wfBaseName( $file );
 				$ops1[] = array( 'op' => 'store',
-					'src' => "$dirname/$file", 'dst' => $dst, 'overwrite' => 1);
+					'src' => "$dirname/$file", 'dst' => $dst, 'overwrite' => 1 );
 				$ops2[] = array( 'op' => 'copy',
 					'src' => "$dst", 'dst' => "$dst-1", 'overwrite' => 1 );
 				$ops3[] = array( 'op' => 'move',
@@ -106,7 +106,7 @@ class TestFileOpPerformance extends Maintenance {
 		$e = ( microtime( true ) - $start ) * 1000;
 		if ( $status->getErrorsArray() ) {
 			print_r( $status->getErrorsArray() );
-			exit(0);
+			exit( 0 );
 		}
 		$this->output( $backend->getName() . ": Stored " . count( $ops1 ) . " files in $e ms.\n" );
 
@@ -115,7 +115,7 @@ class TestFileOpPerformance extends Maintenance {
 		$e = ( microtime( true ) - $start ) * 1000;
 		if ( $status->getErrorsArray() ) {
 			print_r( $status->getErrorsArray() );
-			exit(0);
+			exit( 0 );
 		}
 		$this->output( $backend->getName() . ": Copied " . count( $ops2 ) . " files in $e ms.\n" );
 
@@ -124,7 +124,7 @@ class TestFileOpPerformance extends Maintenance {
 		$e = ( microtime( true ) - $start ) * 1000;
 		if ( $status->getErrorsArray() ) {
 			print_r( $status->getErrorsArray() );
-			exit(0);
+			exit( 0 );
 		}
 		$this->output( $backend->getName() . ": Moved " . count( $ops3 ) . " files in $e ms.\n" );
 
@@ -133,7 +133,7 @@ class TestFileOpPerformance extends Maintenance {
 		$e = ( microtime( true ) - $start ) * 1000;
 		if ( $status->getErrorsArray() ) {
 			print_r( $status->getErrorsArray() );
-			exit(0);
+			exit( 0 );
 		}
 		$this->output( $backend->getName() . ": Deleted " . count( $ops4 ) . " files in $e ms.\n" );
 
@@ -142,7 +142,7 @@ class TestFileOpPerformance extends Maintenance {
 		$e = ( microtime( true ) - $start ) * 1000;
 		if ( $status->getErrorsArray() ) {
 			print_r( $status->getErrorsArray() );
-			exit(0);
+			exit( 0 );
 		}
 		$this->output( $backend->getName() . ": Deleted " . count( $ops5 ) . " files in $e ms.\n" );
 	}

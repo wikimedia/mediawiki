@@ -124,7 +124,7 @@ class UpdateSpecialPages extends Maintenance {
 						$this->output( sprintf( "%.2fs\n", $seconds ) );
 					}
 					# Reopen any connections that have closed
-					if ( !wfGetLB()->pingAll() )  {
+					if ( !wfGetLB()->pingAll() ) {
 						$this->output( "\n" );
 						do {
 							$this->error( "Connection failed, reconnecting in 10 seconds..." );

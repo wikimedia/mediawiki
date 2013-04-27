@@ -80,7 +80,7 @@ This gives a huge speed improvement for very large links tables which are MyISAM
 
 		# --------------------------------------------------------------------
 
-		list ( $cur, $links, $links_temp, $links_backup ) = $dbw->tableNamesN( 'cur', 'links', 'links_temp', 'links_backup' );
+		list( $cur, $links, $links_temp, $links_backup ) = $dbw->tableNamesN( 'cur', 'links', 'links_temp', 'links_backup' );
 
 		if ( $dbw->tableExists( 'pagelinks' ) ) {
 			$this->output( "...have pagelinks; skipping old links table updates\n" );
@@ -177,7 +177,7 @@ This gives a huge speed improvement for very large links tables which are MyISAM
 				}
 				$dbw->freeResult( $res );
 				# $this->output( "rowOffset: $rowOffset\ttuplesAdded: $tuplesAdded\tnumBadLinks: $numBadLinks\n" );
-				if ( $tuplesAdded != 0  ) {
+				if ( $tuplesAdded != 0 ) {
 					if ( $reportLinksConvProgress ) {
 						$this->output( "Inserting $tuplesAdded tuples into $links_temp..." );
 					}

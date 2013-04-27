@@ -99,7 +99,7 @@ class RefreshImageMetadata extends Maintenance {
 
 			if ( $res->numRows() > 0 ) {
 				$row1 = $res->current();
-				$this->output( "Processing next {$this->mBatchSize} rows starting with {$row1->img_name}.\n");
+				$this->output( "Processing next {$this->mBatchSize} rows starting with {$row1->img_name}.\n" );
 				$res->rewind();
 			} else {
 				$this->error( "No images to process.", 4 );
@@ -123,7 +123,7 @@ class RefreshImageMetadata extends Maintenance {
 						$this->output( "Warning: File:{$row->img_name} used to have " .
 						"$oldLength bytes of metadata but now has $newLength bytes.\n" );
 					} elseif ( $verbose ) {
-						$this->output("Refreshed File:{$row->img_name}.\n" );
+						$this->output( "Refreshed File:{$row->img_name}.\n" );
 					}
 				} else {
 					$leftAlone++;
@@ -138,7 +138,7 @@ class RefreshImageMetadata extends Maintenance {
 
 						}
 						if ( $verbose ) {
-							$this->output("Forcibly refreshed File:{$row->img_name}.\n" );
+							$this->output( "Forcibly refreshed File:{$row->img_name}.\n" );
 						}
 					}
 					else {

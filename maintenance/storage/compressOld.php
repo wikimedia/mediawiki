@@ -223,7 +223,7 @@ class CompressOld extends Maintenance {
 			}
 			$conds[] = "rev_timestamp>'" . $beginDate . "'";
 		}
-		if ( $endDate )  {
+		if ( $endDate ) {
 			if ( !preg_match( '/^\d{14}$/', $endDate ) ) {
 				$this->error( "Invalid end date \"$endDate\"\n" );
 				return false;
@@ -282,7 +282,7 @@ class CompressOld extends Maintenance {
 				$revs[] = $revRow;
 			}
 
-			if ( count( $revs ) < 2) {
+			if ( count( $revs ) < 2 ) {
 				# No revisions matching, no further processing
 				$this->output( "\n" );
 				continue;
@@ -351,12 +351,12 @@ class CompressOld extends Maintenance {
 					if ( $extdb != "" ) {
 						# Move blob objects to External Storage
 						$stored = $storeObj->store( $extdb, serialize( $chunk ));
-						if ($stored === false) {
+						if ( $stored === false ) {
 							$this->error( "Unable to store object" );
 							return false;
 						}
 						# Store External Storage URLs instead of Stub placeholders
-						foreach ($stubs as $stub) {
+						foreach ( $stubs as $stub ) {
 							if ( $stub === false ) {
 								continue;
 							}
@@ -388,7 +388,7 @@ class CompressOld extends Maintenance {
 							if ( $stubs[$j] !== false && $revs[$i + $j]->rev_text_id != $primaryOldid ) {
 								$dbw->update( 'text',
 									array( /* SET */
-										'old_text' => serialize($stubs[$j]),
+										'old_text' => serialize( $stubs[$j] ),
 										'old_flags' => 'object,utf-8',
 									), array( /* WHERE */
 										'old_id' => $revs[$i + $j]->rev_text_id
