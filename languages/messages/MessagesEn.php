@@ -1137,7 +1137,7 @@ Do not forget to change your [[Special:Preferences|{{SITENAME}} preferences]].',
 'createacct-benefit-body2'        => 'pages',
 'createacct-benefit-icon3'        => 'icon-contributors',
 'createacct-benefit-head3'        => '{{NUMBEROFACTIVEUSERS}}',
-'createacct-benefit-body3'        => 'contributors this month',
+'createacct-benefit-body3'        => 'contributors in the last $1 {{PLURAL:$1|day|days}}',
 'badretype'                    => 'The passwords you entered do not match.',
 'userexists'                   => 'Username entered already in use.
 Please choose a different name.',

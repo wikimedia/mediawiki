@@ -47,7 +47,7 @@ class UsercreateTemplateVForm extends BaseTemplate {
 	}
 
 	function execute() {
-		global $wgCookieExpiration;
+		global $wgCookieExpiration, $wgActiveUserDays;
 		$expirationDays = ceil( $wgCookieExpiration / ( 3600 * 24 ) );
 ?>
 <div class="mw-ui-container">
@@ -279,7 +279,7 @@ class UsercreateTemplateVForm extends BaseTemplate {
 			<div class="mw-benefits-icon <?php $this->msg( 'createacct-benefit-icon3' ); ?>"></div>
 			<div class="mw-number-text">
 				<h3><?php $this->msg( 'createacct-benefit-head3' ); ?></h3>
-				<p><?php $this->msg( 'createacct-benefit-body3' ); ?></p>
+				<p><?php echo $this->getMsg( 'createacct-benefit-body3')->params( $wgActiveUserDays ); ?></p>
 			</div>
 		</div>
 	</div>

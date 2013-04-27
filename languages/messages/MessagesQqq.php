@@ -1188,6 +1188,9 @@ See example: [{{canonicalurl:Special:UserLogin|type=signup&useNew=1}} Special:Us
 {{Identical|Page}}',
 'createacct-benefit-body3' => 'In vertical-layout create account form, the text for the third benefit.
 
+Parameters
+* $1 - the $wgActiveUserDays configuration variable
+
 Preceded by the message {{msg-mw|Createacct-benefit-head3}} (number of contributors).
 
 See example: [{{canonicalurl:Special:UserLogin|type=signup&useNew=1}} Special:UserLogin?type=signup&useNew=1]',
