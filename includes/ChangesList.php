@@ -1083,7 +1083,7 @@ class EnhancedChangesList extends ChangesList {
 			} elseif ( !ChangesList::userCan( $rcObj, Revision::DELETED_TEXT, $this->getUser() ) ) {
 				$link = '<span class="history-deleted">' . $rcObj->timestamp . '</span> ';
 			} else {
-				if ( $rcObj->unpatrolled && $type == RC_NEW) {
+				if ( $rcObj->unpatrolled && $type == RC_NEW ) {
 					$params['rcid'] = $rcObj->mAttribs['rc_id'];
 				}
 

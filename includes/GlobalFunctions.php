@@ -2418,7 +2418,7 @@ function wfTimestamp( $outputtype = TS_UNIX, $ts = 0 ) {
 	try {
 		$timestamp = new MWTimestamp( $ts );
 		return $timestamp->getTimestamp( $outputtype );
-	} catch( TimestampException $e ) {
+	} catch ( TimestampException $e ) {
 		wfDebug( "wfTimestamp() fed bogus time value: TYPE=$outputtype; VALUE=$ts\n" );
 		return false;
 	}

@@ -181,7 +181,7 @@ class SpecialProtectedtitles extends SpecialPage {
 		}
 		// Third pass generates sorted XHTML content
 		foreach ( $m as $text => $type ) {
-			$selected = ($type == $pr_level );
+			$selected = ( $type == $pr_level );
 			$options[] = Xml::option( $text, $type, $selected );
 		}
 

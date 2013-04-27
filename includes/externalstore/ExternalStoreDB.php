@@ -166,7 +166,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 			// Try the master
 			$dbw =& $this->getMaster( $cluster );
 			$ret = $dbw->selectField( $this->getTable( $dbw ), 'blob_text', array( 'blob_id' => $id ), __METHOD__ );
-			if ( $ret === false) {
+			if ( $ret === false ) {
 				wfDebugLog( 'ExternalStoreDB', "ExternalStoreDB::fetchBlob master failed to find $cacheID\n" );
 			}
 		}

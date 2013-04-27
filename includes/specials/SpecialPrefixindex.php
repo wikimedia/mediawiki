@@ -193,13 +193,13 @@ class SpecialPrefixindex extends SpecialAllpages {
 				while ( ( $n < $this->maxPerPage ) && ( $s = $res->fetchObject() ) ) {
 					$t = Title::makeTitle( $s->page_namespace, $s->page_title );
 					if ( $t ) {
-						$link = ($s->page_is_redirect ? '<div class="allpagesredirect">' : '' ) .
+						$link = ( $s->page_is_redirect ? '<div class="allpagesredirect">' : '' ) .
 							Linker::linkKnown(
 								$t,
 								htmlspecialchars( $t->getText() ),
 								$s->page_is_redirect ? array( 'class' => 'mw-redirect' ) : array()
 							) .
-							($s->page_is_redirect ? '</div>' : '' );
+							( $s->page_is_redirect ? '</div>' : '' );
 					} else {
 						$link = '[[' . htmlspecialchars( $s->page_title ) . ']]';
 					}

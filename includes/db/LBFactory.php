@@ -300,7 +300,7 @@ class LBFactory_Fake extends LBFactory {
 	function __construct( $conf ) {
 	}
 
-	function newMainLB( $wiki = false) {
+	function newMainLB( $wiki = false ) {
 		throw new DBAccessError;
 	}
 

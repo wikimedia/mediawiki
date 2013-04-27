@@ -136,7 +136,7 @@ class RefreshLinksJob2 extends Job {
 		// Hopefully, when leaf jobs are popped, the slaves will have reached that position.
 		if ( isset( $this->params['masterPos'] ) ) {
 			$masterPos = $this->params['masterPos'];
-		} elseif ( wfGetLB()->getServerCount() > 1  ) {
+		} elseif ( wfGetLB()->getServerCount() > 1 ) {
 			$masterPos = wfGetLB()->getMasterPos();
 		} else {
 			$masterPos = false;

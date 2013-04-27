@@ -166,7 +166,7 @@ class MWInit {
 	static function classExists( $class ) {
 		try {
 			$r = new ReflectionClass( $class );
-		} catch( ReflectionException $r ) {
+		} catch ( ReflectionException $r ) {
 			$r = false;
 		}
 		return $r !== false;
@@ -187,7 +187,7 @@ class MWInit {
 	static function methodExists( $class, $method ) {
 		try {
 			$r = new ReflectionMethod( $class, $method );
-		} catch( ReflectionException $r ) {
+		} catch ( ReflectionException $r ) {
 			$r = false;
 		}
 		return $r !== false;
@@ -204,7 +204,7 @@ class MWInit {
 	static function functionExists( $function ) {
 		try {
 			$r = new ReflectionFunction( $function );
-		} catch( ReflectionException $r ) {
+		} catch ( ReflectionException $r ) {
 			$r = false;
 		}
 		return $r !== false;

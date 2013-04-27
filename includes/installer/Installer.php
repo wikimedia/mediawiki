@@ -1284,7 +1284,7 @@ abstract class Installer {
 				try {
 					$text = Http::get( $url . $file, array( 'timeout' => 3 ) );
 				}
-				catch( MWException $e ) {
+				catch ( MWException $e ) {
 					// Http::get throws with allow_url_fopen = false and no curl extension.
 					$text = null;
 				}
@@ -1561,7 +1561,7 @@ abstract class Installer {
 
 			try {
 				$user->setPassword( $this->getVar( '_AdminPassword' ) );
-			} catch( PasswordError $pwe ) {
+			} catch ( PasswordError $pwe ) {
 				return Status::newFatal( 'config-admin-error-password', $name, $pwe->getMessage() );
 			}
 

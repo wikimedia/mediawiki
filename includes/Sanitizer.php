@@ -606,7 +606,7 @@ class Sanitizer {
 	 */
 	static function removeHTMLcomments( $text ) {
 		wfProfileIn( __METHOD__ );
-		while ( ($start = strpos( $text, '<!--' ) ) !== false ) {
+		while ( ( $start = strpos( $text, '<!--' ) ) !== false ) {
 			$end = strpos( $text, '-->', $start + 4 );
 			if ( $end === false ) {
 				# Unterminated comment; bail out

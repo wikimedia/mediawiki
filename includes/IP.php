@@ -526,7 +526,7 @@ class IP {
 			if ( $bits == 0 ) {
 				$network = 0;
 			} else {
-				$network &= ~( ( 1 << ( 32 - $bits ) ) - 1);
+				$network &= ~( ( 1 << ( 32 - $bits ) ) - 1 );
 			}
 			# Convert to unsigned
 			if ( $network < 0 ) {

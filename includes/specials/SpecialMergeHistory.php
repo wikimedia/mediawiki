@@ -354,7 +354,7 @@ class SpecialMergeHistory extends SpecialPage {
 		$haveRevisions = $dbw->selectField(
 			'revision',
 			'rev_timestamp',
-			array( 'rev_page' => $this->mTargetID  ),
+			array( 'rev_page' => $this->mTargetID ),
 			__METHOD__,
 			array( 'FOR UPDATE' )
 		);

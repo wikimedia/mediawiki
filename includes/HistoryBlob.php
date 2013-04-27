@@ -143,7 +143,7 @@ class ConcatenatedGzipHistoryBlob implements HistoryBlob
 	 * Compress the bulk data in the object
 	 */
 	public function compress() {
-		if ( !$this->mCompressed  ) {
+		if ( !$this->mCompressed ) {
 			$this->mItems = gzdeflate( serialize( $this->mItems ) );
 			$this->mCompressed = true;
 		}

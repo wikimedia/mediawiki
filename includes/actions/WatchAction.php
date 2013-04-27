@@ -87,7 +87,7 @@ class WatchAction extends FormAction {
 		return parent::checkCanExecute( $user );
 	}
 
-	public static function doWatch( Title $title, User $user  ) {
+	public static function doWatch( Title $title, User $user ) {
 		$page = WikiPage::factory( $title );
 
 		if ( wfRunHooks( 'WatchArticle', array( &$user, &$page ) ) ) {
@@ -97,7 +97,7 @@ class WatchAction extends FormAction {
 		return true;
 	}
 
-	public static function doUnwatch( Title $title, User $user  ) {
+	public static function doUnwatch( Title $title, User $user ) {
 		$page = WikiPage::factory( $title );
 
 		if ( wfRunHooks( 'UnwatchArticle', array( &$user, &$page ) ) ) {

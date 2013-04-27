@@ -93,7 +93,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		}
 		if ( is_null( $matches ) ) {
 			$this->dieUsage( "{$what} search is disabled", "search-{$what}-disabled" );
-		} elseif( $matches instanceof Status && !$matches->isGood() ) {
+		} elseif ( $matches instanceof Status && !$matches->isGood() ) {
 			$this->dieUsage( $matches->getWikiText(), 'search-error' );
 		}
 

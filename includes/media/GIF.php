@@ -33,7 +33,7 @@ class GIFHandler extends BitmapHandler {
 	function getMetadata( $image, $filename ) {
 		try {
 			$parsedGIFMetadata = BitmapMetadataHandler::GIF( $filename );
-		} catch( Exception $e ) {
+		} catch ( Exception $e ) {
 			// Broken file?
 			wfDebug( __METHOD__ . ': ' . $e->getMessage() . "\n" );
 			return self::BROKEN_FILE;

@@ -478,7 +478,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @param $protocol String
 	 * @return null|string
 	 */
-	public function prepareUrlQuerySearchString( $query = null, $protocol = null) {
+	public function prepareUrlQuerySearchString( $query = null, $protocol = null ) {
 		$db = $this->getDb();
 		if ( !is_null( $query ) || $query != '' ) {
 			if ( is_null( $protocol ) ) {

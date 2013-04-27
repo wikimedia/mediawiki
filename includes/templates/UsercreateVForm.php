@@ -204,7 +204,7 @@ class UsercreateTemplateVForm extends BaseTemplate {
 							id="<?php echo htmlspecialchars( $inputItem['name'] ); ?>"
 							type="checkbox" value="1"
 							tabindex="<?php echo $tabIndex++; ?>"
-							<?php if ( !empty( $inputItem['value'] ) )  {
+							<?php if ( !empty( $inputItem['value'] ) ) {
 								echo 'checked="checked"';
 							} ?>
 						>
