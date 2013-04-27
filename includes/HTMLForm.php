@@ -1068,6 +1068,7 @@ class HTMLForm extends ContextSource {
 	 * @return
 	 */
 	function filterDataForSubmit( $data ) {
+
 		return $data;
 	}
 
@@ -1809,7 +1810,7 @@ class HTMLCheckField extends HTMLFormField {
  * options, uses an array of rows and an array of columns to dynamically
  * construct a matrix of options.
  */
-class HTMLCheckMatrix extends HTMLFormField {
+class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 
 	function validate( $value, $alldata ) {
 		$rows = $this->mParams['rows'];
@@ -1874,22 +1875,24 @@ class HTMLCheckMatrix extends HTMLFormField {
 			$rowContents = Html::rawElement( 'td', array(), $rowLabel );
 			foreach ( $columns as $columnTag ) {
 				// Knock out any options that are not wanted
-				if ( isset( $this->mParams['remove-options'] )
-					&& in_array( "$columnTag-$rowTag", $this->mParams['remove-options'] ) )
-				{
-					$rowContents .= Html::rawElement( 'td', array(), '&#160;' );
-				} else {
-					// Construct the checkbox
-					$thisAttribs = array(
-						'id' => "{$this->mID}-$columnTag-$rowTag",
-						'value' => $columnTag . '-' . $rowTag
-					);
-					$checkbox = Xml::check(
-						$this->mName . '[]',
-						in_array( $columnTag . '-' . $rowTag, (array)$value, true ),
-						$attribs + $thisAttribs );
-					$rowContents .= Html::rawElement( 'td', array(), $checkbox );
+				$thisTag = "$columnTag-$rowTag";
+				// Construct the checkbox
+				$thisAttribs = array(
+					'id' => "{$this->mID}-$thisTag",
+					'value' => $thisTag,
+				);
+				$checked = in_array( $thisTag, (array)$value, true);
+				if ( $this->isTagForcedOff( $thisTag ) ) {
+					$checked = false;
+					$thisAttribs['disabled'] = 1;
+				} elseif ( $this->isTagForcedOn( $thisTag ) ) {
+					$checked = true;
+					$thisAttribs['disabled'] = 1;
 				}
+				$rowContents .= Html::rawElement( 
+					'td', 
+					array(), 
+					Xml::check( "{$this->mName}[]", $checked, $attribs + $thisAttribs ) );
 			}
 			$tableContents .= Html::rawElement( 'tr', array(), "\n$rowContents\n" );
 		}
@@ -1899,6 +1902,16 @@ class HTMLCheckMatrix extends HTMLFormField {
 			Html::rawElement( 'tbody', array(), "\n$tableContents\n" ) ) . "\n";
 
 		return $html;
+	}
+
+	protected function isTagForcedOff( $tag ) {
+		return isset( $this->mParams['force-options-off'] )
+			&& in_array( $tag, $this->mParams['force-options-off'] );
+	}
+
+	protected function isTagForcedOn( $tag ) {
+		return isset( $this->mParams['force-options-on'] )
+			&& in_array( $tag, $this->mParams['force-options-on'] );
 	}
 
 	/**
@@ -1964,6 +1977,23 @@ class HTMLCheckMatrix extends HTMLFormField {
 		} else {
 			return array();
 		}
+	}
+
+	function filterDataForSubmit( $data ) {
+		$columns = HTMLFormField::flattenOptions( $this->mParams['columns'] );
+		$rows = HTMLFormField::flattenOptions( $this->mParams['rows'] );
+		$res = array();
+		foreach ( $columns as $column ) {
+			foreach ( $rows as $row ) {
+				// Make sure option hasn't been forced
+				$thisTag = "$column-$row";
+				if ( !$this->isTagForcedOff( $thisTag ) && !$this->isTagForcedOn( $thisTag ) ) {
+					$res[$thisTag] = in_array( $thisTag, $data );
+				}
+			}
+		}
+
+		return $res;
 	}
 }
 
@@ -2106,7 +2136,7 @@ class HTMLSelectOrOtherField extends HTMLTextField {
 /**
  * Multi-select field
  */
-class HTMLMultiSelectField extends HTMLFormField {
+class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable {
 
 	function validate( $value, $alldata ) {
 		$p = parent::validate( $value, $alldata );
@@ -2197,6 +2227,17 @@ class HTMLMultiSelectField extends HTMLFormField {
 		} else {
 			return array();
 		}
+	}
+
+	function filterDataForSubmit( $data ) {
+        $options = HTMLFormField::flattenOptions( $this->mParams['options'] );
+
+		$res = array();
+        foreach ( $options as $opt ) {
+            $res["$opt"] = in_array( $opt, $data );
+        }
+
+		return $res;
 	}
 
 	protected function needsLabel() {
@@ -2637,4 +2678,13 @@ class HTMLApiField extends HTMLFormField {
 	public function getInputHTML( $value ) {
 		return '';
 	}
+}
+
+interface HTMLNestedFilterable {
+	/**
+	 * Support for seperating multi-option preferences into multiple preferences
+	 * Due to lack of array support.
+     * @param $data array
+	 */
+	function filterDataForSubmit( $data );
 }
