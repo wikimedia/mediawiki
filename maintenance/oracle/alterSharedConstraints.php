@@ -49,7 +49,7 @@ class AlterSharedConstraints extends Maintenance {
 
 		$dbw = wfGetDB( DB_MASTER );
 		foreach ( $wgSharedTables as $table ) {
-			$stable = $dbw->tableNameInternal($table);
+			$stable = $dbw->tableNameInternal( $table );
 			if ( $wgSharedPrefix != null ) {
 				$ltable = preg_replace( "/^$wgSharedPrefix(.*)/i", "$wgDBprefix\\1", $stable );
 			} else {
@@ -62,14 +62,14 @@ class AlterSharedConstraints extends Maintenance {
 					   AND ucc.constraint_name = uc.constraint_name
 					   AND uccpk.constraint_name = uc.r_constraint_name
 					   AND uccpk.table_name = '$ltable'" );
-			while (($row = $result->fetchRow()) !== false) {
+			while ( ( $row = $result->fetchRow() ) !== false ) {
 
-					$this->output( "Altering {$row['constraint_name']} ...");
+					$this->output( "Altering {$row['constraint_name']} ..." );
 
 					try {
 						$dbw->query( "ALTER TABLE {$row['table_name']} DROP CONSTRAINT {$wgDBprefix}{$row['constraint_name']}" );
-					} catch (DBQueryError $exdb) {
-						if ($exdb->errno != 2443) {
+					} catch ( DBQueryError $exdb ) {
+						if ( $exdb->errno != 2443 ) {
 							throw $exdb;
 						}
 					}

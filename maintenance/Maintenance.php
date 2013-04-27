@@ -766,7 +766,7 @@ abstract class Maintenance {
 		$this->output( "\n" );
 
 		$scriptDependantParams = $this->mDependantParameters;
-		if ( count($scriptDependantParams) > 0 ) {
+		if ( count( $scriptDependantParams ) > 0 ) {
 			$this->output( "Script dependant parameters:\n" );
 			// Parameters description
 			foreach ( $scriptDependantParams as $par => $info ) {
@@ -791,7 +791,7 @@ abstract class Maintenance {
 			$this->mGenericParameters,
 			$this->mDependantParameters
 		);
-		if ( count($scriptSpecificParams) > 0 ) {
+		if ( count( $scriptSpecificParams ) > 0 ) {
 			$this->output( "Script specific parameters:\n" );
 			// Parameters description
 			foreach ( $scriptSpecificParams as $par => $info ) {
@@ -1077,7 +1077,7 @@ abstract class Maintenance {
 	 * @param &$db DatabaseBase object
 	 */
 	private function unlockSearchindex( &$db ) {
-		$db->unlockTables(  __CLASS__ . '::' . __METHOD__ );
+		$db->unlockTables( __CLASS__ . '::' . __METHOD__ );
 	}
 
 	/**

@@ -46,8 +46,8 @@ if ( ( isset( $_REQUEST ) && array_key_exists( 'argv', $_REQUEST ) ) || count( $
 	$output = "Connecting to $ip:$port, target $url, this hostname $host\n";
 
 	# Open socket
-	$sock = @fsockopen($ip, $port, $errno, $errstr, 5);
-	if ($errno == 0 ) {
+	$sock = @fsockopen( $ip, $port, $errno, $errstr, 5 );
+	if ( $errno == 0 ) {
 		$output .= "Connected\n";
 		# Send payload
 		$request = "GET $url HTTP/1.0\r\n";
@@ -56,10 +56,10 @@ if ( ( isset( $_REQUEST ) && array_key_exists( 'argv', $_REQUEST ) ) || count( $
 #		$request .= "Host: ".$url."\r\n";
 #		$request .= "User-Agent: MediaWiki open proxy check\r\n";
 		$request .= "\r\n";
-		@fputs($sock, $request);
-		$response = fgets($sock, 65536);
+		@fputs( $sock, $request );
+		$response = fgets( $sock, 65536 );
 		$output .= $response;
-		@fclose($sock);
+		@fclose( $sock );
 	} else {
 		$output .= "No connection\n";
 	}

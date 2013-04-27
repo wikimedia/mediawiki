@@ -56,12 +56,12 @@ class FetchText extends Maintenance {
 			}
 			$textId = intval( $line );
 			$text = $this->doGetText( $db, $textId );
-			if ($text === false) {
+			if ( $text === false ) {
 				# actual error, not zero-length text
 				$textLen = "-1";
 			}
 			else {
-				$textLen = strlen($text);
+				$textLen = strlen( $text );
 			}
 			$this->output( $textId . "\n" . $textLen . "\n" . $text );
 		}

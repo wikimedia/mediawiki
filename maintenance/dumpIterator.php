@@ -81,9 +81,9 @@ abstract class DumpIterator extends Maintenance {
 		$this->conclusions();
 
 		$delta = microtime( true ) - $this->startTime;
-		$this->error( "Done {$this->count} revisions in " . round($delta, 2) . " seconds " );
+		$this->error( "Done {$this->count} revisions in " . round( $delta, 2 ) . " seconds " );
 		if ( $delta > 0 ) {
-			$this->error( round($this->count / $delta, 2) . " pages/sec" );
+			$this->error( round( $this->count / $delta, 2 ) . " pages/sec" );
 		}
 
 		# Perform the memory_get_peak_usage() when all the other data has been output so there's no damage if it dies.
@@ -126,7 +126,7 @@ abstract class DumpIterator extends Maintenance {
 			if ( $this->from != $title ) {
 				return;
 			}
-			$this->output( "Skipped " . ($this->count - 1) . " pages\n" );
+			$this->output( "Skipped " . ( $this->count - 1 ) . " pages\n" );
 
 			$this->count = 1;
 			$this->from = null;

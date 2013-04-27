@@ -85,7 +85,7 @@ class SeleniumTester extends Maintenance {
 
 	protected function startServer() {
 		if ( $this->seleniumServerExecPath == '' ) {
-			die ( "The selenium server exec path is not set in " .
+			die( "The selenium server exec path is not set in " .
 				"selenium_settings.ini. Cannot start server \n" .
 				"as requested - terminating RunSeleniumTests\n" );
 		}
@@ -96,7 +96,7 @@ class SeleniumTester extends Maintenance {
 			case 'started':
 				break;
 			case 'failed':
-				die ( "Unable to start the Selenium Server - " .
+				die( "Unable to start the Selenium Server - " .
 					"terminating RunSeleniumTests\n" );
 			case 'running':
 				echo ( "Warning: The Selenium Server is " .

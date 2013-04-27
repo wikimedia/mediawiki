@@ -37,6 +37,6 @@ class ParserTestResult {
 
 	/** Whether the test passed */
 	public function isSuccess() {
-		return ($this->expected === $this->actual);
+		return $this->expected === $this->actual;
 	}
 }

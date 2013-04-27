@@ -67,7 +67,7 @@ class CLDRPluralRuleEvaluator {
 	public static function evaluateCompiled( $number, array $rules ) {
 		// The compiled form is RPN, with tokens strictly delimited by
 		// spaces, so this is a simple RPN evaluator.
-		foreach ( $rules as $i => $rule  ) {
+		foreach ( $rules as $i => $rule ) {
 			$stack = array();
 			$zero = ord( '0' );
 			$nine = ord( '9' );
@@ -104,7 +104,7 @@ class CLDRPluralRuleEvaluator {
 	 */
 	private static function doOperation( $token, $left, $right ) {
 		if ( in_array( $token, array( 'in', 'not-in', 'within', 'not-within' ) ) ) {
-			if ( !($right instanceof CLDRPluralRuleEvaluator_Range ) ) {
+			if ( !( $right instanceof CLDRPluralRuleEvaluator_Range ) ) {
 				$right = new CLDRPluralRuleEvaluator_Range( $right );
 			}
 		}

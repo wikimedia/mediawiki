@@ -462,7 +462,7 @@ class CheckStorage {
 			return;
 		}
 
-		if ( !$id )  {
+		if ( !$id ) {
 			// No ID, can't import
 			echo "No id tag in revision, can't import\n";
 			return;

@@ -90,7 +90,7 @@ class CLIParser extends Maintenance {
 
 		if ( $input_file === $php_stdin ) {
 			$ctrl = wfIsWindows() ? 'CTRL+Z' : 'CTRL+D';
-			$this->error( basename(__FILE__) . ": warning: reading wikitext from STDIN. Press $ctrl to parse.\n" );
+			$this->error( basename( __FILE__ ) . ": warning: reading wikitext from STDIN. Press $ctrl to parse.\n" );
 		}
 
 		return file_get_contents( $input_file );

@@ -91,7 +91,7 @@ class MwSql extends Maintenance {
 				readline_add_history( $wholeLine . $dbw->getDelimiter() );
 				readline_write_history( $historyFile );
 			}
-			try{
+			try {
 				$res = $dbw->query( $wholeLine );
 				$this->sqlPrintResult( $res, $dbw );
 				$prompt = $newPrompt;
