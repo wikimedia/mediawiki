@@ -86,6 +86,14 @@ class NewParserTest extends MediaWikiTestCase {
 			$tmpGlobals['wgStyleDirectory'] = "$IP/skins";
 		}
 
+		# Replace all media handlers with a mock. We do not need to generate
+		# actual thumbnails to do parser testing, we only care about receiving
+		# a ThumbnailImage properly initialized.
+		global $wgMediaHandlers;
+		foreach( $wgMediaHandlers as $type => $handler ) {
+			$tmpGlobals['wgMediaHandlers'][$type] = 'MockBitmapHandler';
+		}
+
 		foreach ( $tmpGlobals as $var => $val ) {
 			if ( array_key_exists( $var, $GLOBALS ) ) {
 				$this->savedInitialGlobals[$var] = $GLOBALS[$var];
@@ -288,7 +296,10 @@ class NewParserTest extends MediaWikiTestCase {
 				$backend = self::$backendToUse;
 			}
 		} else {
-			$backend = new FSFileBackend( array(
+			# Replace with a mock. We do not care about generating real
+			# files on the filesystem, just need to expose the file
+			# informations.
+			$backend = new MockFileBackend( array(
 				'name' => 'local-backend',
 				'lockManager' => 'nullLockManager',
 				'containerPaths' => array(
@@ -483,6 +494,12 @@ class NewParserTest extends MediaWikiTestCase {
 	 */
 	private function teardownUploads() {
 		if ( $this->keepUploads ) {
+			return;
+		}
+
+		$backend = RepoGroup::singleton()->getLocalRepo()->getBackend();
+		if( $backend instanceof MockFileBackend ) {
+			# In memory backend, so dont bother cleaning them up.
 			return;
 		}
 
