@@ -289,7 +289,7 @@ class NewParserTest extends MediaWikiTestCase {
 				$backend = self::$backendToUse;
 			}
 		} else {
-			$backend = new FSFileBackend( array(
+			$backend = new MockFileBackend( array(
 				'name' => 'local-backend',
 				'lockManager' => 'nullLockManager',
 				'containerPaths' => array(
@@ -450,6 +450,7 @@ class NewParserTest extends MediaWikiTestCase {
 		$base = $this->getBaseDir();
 		$backend = RepoGroup::singleton()->getLocalRepo()->getBackend();
 		$backend->prepare( array( 'dir' => "$base/local-public/3/3a" ) );
+		wfDebug( __METHOD__ . " Storing headbg.jpg as Foobar.jpg...\n" );
 		$backend->store( array(
 			'src' => "$IP/skins/monobook/headbg.jpg", 'dst' => "$base/local-public/3/3a/Foobar.jpg"
 		) );
