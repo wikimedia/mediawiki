@@ -44,6 +44,14 @@ $buttonBorderRadius: 3px;
     }
 }
 
+// This overrides an underline declaration on a:hover and a:focus in commonElements.css, which the
+// class alone isn't specific enough to do
+a.mw-ui-button {
+    text: {
+        decoration: none;
+    }
+}
+
 // Button groups
 .mw-ui-button-group > * {
   @include border-radius(0);
