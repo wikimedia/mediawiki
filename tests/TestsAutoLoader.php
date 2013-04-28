@@ -79,6 +79,11 @@ $wgAutoloadClasses += array(
 	'SiteTest' => "$testDir/phpunit/includes/site/SiteTest.php",
 	'TestSites' => "$testDir/phpunit/includes/site/TestSites.php",
 
+	# tests/phpunit/mocks
+	'MockFSFile' => "$testDir/phpunit/mocks/filebackend/MockFSFile.php",
+	'MockFileBackend' => "$testDir/phpunit/mocks/filebackend/MockFileBackend.php",
+	'MockBitmapHandler' => "$testDir/phpunit/mocks/media/MockBitmapHandler.php",
+
 	# tests/phpunit/languages
 	'LanguageClassesTestCase' => "$testDir/phpunit/languages/LanguageClassesTestCase.php",
 
