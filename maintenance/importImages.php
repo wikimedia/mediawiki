@@ -104,7 +104,7 @@ if ( $limit ) {
 $timestamp = isset( $options['timestamp'] ) ? $options['timestamp'] : false;
 
 # Get the upload comment. Provide a default one in case there's no comment given.
-$comment = 'Importing image file';
+$comment = 'Importing file';
 
 if ( isset( $options['comment-file'] ) ) {
 	$comment = file_get_contents( $options['comment-file'] );
@@ -347,7 +347,7 @@ Options:
 --sleep=<sec>           Sleep between files. Useful mostly for debugging.
 --user=<username>       Set username of uploader, default 'Maintenance script'
 --check-userblock       Check if the user got blocked during import.
---comment=<text>        Set file description, default 'Importing image file'.
+--comment=<text>        Set file description, default 'Importing file'.
 --comment-file=<file>   Set description to the content of <file>.
 --comment-ext=<ext>     Causes the description for each file to be loaded from a file with the same name
                         but the extension <ext>. If a global description is also given, it is appended.
