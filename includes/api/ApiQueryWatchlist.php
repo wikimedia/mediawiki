@@ -168,6 +168,8 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$this->addWhereIf( 'rc_user != 0', isset( $show['!anon'] ) );
 			$this->addWhereIf( 'rc_patrolled = 0', isset( $show['!patrolled'] ) );
 			$this->addWhereIf( 'rc_patrolled != 0', isset( $show['patrolled'] ) );
+			// Exclude items wihout change, e.g. Wikidata edits on Wikipedia feed
+			$this->addWhereIf( 'rc_last_oldid != rc_this_oldid', isset( $show['changed'] ) );
 		}
 
 		if ( !is_null( $params['user'] ) && !is_null( $params['excludeuser'] ) ) {
@@ -286,11 +288,19 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		}
 
 		if ( $this->fld_comment && isset( $row->rc_comment ) ) {
-			$vals['comment'] = $row->rc_comment;
+			if ( $row->rc_this_oldid != $row->rc_last_oldid ) {
+				$vals['comment'] = $row->rc_comment;
+			} else {
+				$vals['comment'] = "(Edit on Wikidata.)";
+			}
 		}
 
 		if ( $this->fld_parsedcomment && isset( $row->rc_comment ) ) {
-			$vals['parsedcomment'] = Linker::formatComment( $row->rc_comment, $title );
+			if ( $row->rc_this_oldid != $row->rc_last_oldid ) {
+				$vals['parsedcomment'] = Linker::formatComment( $row->rc_comment, $title );
+			} else {
+				$vals['parsedcomment'] = Linker::formatComment( "(Edit on Wikidata.)", $title );
+			}
 		}
 
 		if ( $this->fld_loginfo && $row->rc_type == RC_LOG ) {
@@ -373,6 +383,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 					'!anon',
 					'patrolled',
 					'!patrolled',
+					'changed',
 				)
 			),
 			'owner' => array(
