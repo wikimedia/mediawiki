@@ -86,6 +86,11 @@ class NewParserTest extends MediaWikiTestCase {
 			$tmpGlobals['wgStyleDirectory'] = "$IP/skins";
 		}
 
+		# Replace all media handlers with a mock
+		global $wgMediaHandlers;
+		foreach( $wgMediaHandlers as $type => $handler ) {
+			$tmpGlobals['wgMediaHandlers'][$type] = 'MockMediaHandler';
+		}
 
 		foreach ( $tmpGlobals as $var => $val ) {
 			if ( array_key_exists( $var, $GLOBALS ) ) {
@@ -289,7 +294,7 @@ class NewParserTest extends MediaWikiTestCase {
 				$backend = self::$backendToUse;
 			}
 		} else {
-			$backend = new FSFileBackend( array(
+			$backend = new MockFileBackend( array(
 				'name' => 'local-backend',
 				'lockManager' => 'nullLockManager',
 				'containerPaths' => array(
