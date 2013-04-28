@@ -100,7 +100,12 @@
   width: 100%;
 }
 
-/* line 48, sourcefiles/scss/components/default/_buttons.scss */
+/* line 49, sourcefiles/scss/components/default/_buttons.scss */
+a.mw-ui-button {
+  text-decoration: none;
+}
+
+/* line 56, sourcefiles/scss/components/default/_buttons.scss */
 .mw-ui-button-group > * {
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
@@ -109,7 +114,7 @@
   border-radius: 0;
   float: left;
 }
-/* line 52, sourcefiles/scss/components/default/_buttons.scss */
+/* line 60, sourcefiles/scss/components/default/_buttons.scss */
 .mw-ui-button-group > *:first-child {
   -moz-border-radius-topleft: 3px;
   -webkit-border-top-left-radius: 3px;
@@ -118,7 +123,7 @@
   -webkit-border-bottom-left-radius: 3px;
   border-bottom-left-radius: 3px;
 }
-/* line 57, sourcefiles/scss/components/default/_buttons.scss */
+/* line 65, sourcefiles/scss/components/default/_buttons.scss */
 .mw-ui-button-group > *:last-child {
   -moz-border-radius-topright: 3px;
   -webkit-border-top-right-radius: 3px;
