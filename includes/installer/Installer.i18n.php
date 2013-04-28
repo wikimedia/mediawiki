@@ -14377,6 +14377,12 @@ De gebruiker die u hier opgeeft moet al bestaan.',
 
 Als uw installatie van MySQL InnoDB ondersteunt, gebruik dat dan vooral.
 Als uw installatie van MySQL geen ondersteuning heeft voor InnoDB, denk dan na over upgraden.",
+	'config-mysql-only-myisam-dep' => "'''Waarschuwing:''' MyISAM is enige beschikbare opslagmethode voor MySQL, en deze wordt niet aangeraden voor gebruik met MediaWiki, omdat:
+* er nauwelijks ondersteuning is voor meerdere gelijktijdige transacties omdat tabellen op slot gezet worden;
+* tabellen makkelijker stuk kunnen gaan;
+* de code van MediaWiki niet altijd op de juiste wijze omgaat met MyISAM.
+
+Uw installatie van MySQL heeft geen ondersteuning voor InnoDB. We raden u aan om een meer recente versie te gebruiken.",
 	'config-mysql-engine-help' => "'''InnoDB''' is vrijwel altijd de beste instelling, omdat deze goed omgaat met meerdere verzoeken tegelijkertijd.
 
 '''MyISAM''' is bij een zeer beperkt aantal gebruikers mogelijk sneller, of als de wiki alleen-lezen is.

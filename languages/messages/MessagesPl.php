@@ -746,12 +746,16 @@ Nie zapomnij dostosować [[Special:Preferences|preferencji]].',
 'userlogin-resetlink' => 'Zapomniałeś danych do zalogowania się?',
 'helplogin-url' => 'Help:Logowanie',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Pomoc z logowaniem]]',
+'createacct-emailrequired' => 'Adres e‐mail',
+'createacct-emailoptional' => 'Adres e-mail (opcjonalnie)',
 'createaccountmail' => 'Użyj tymczasowego hasła wygenerowanego losowo i wyślij je na podany poniżej adres e-mail',
 'createaccountreason' => 'Powód',
+'createacct-reason' => 'Powód',
 'badretype' => 'Wprowadzone hasła różnią się między sobą.',
 'userexists' => 'Wybrana przez Ciebie nazwa użytkownika jest już zajęta.
 Wybierz inną nazwę użytkownika.',
 'loginerror' => 'Błąd logowania',
+'createacct-error' => 'Błąd tworzenia konta',
 'createaccounterror' => 'Nie można utworzyć konta $1',
 'nocookiesnew' => 'Konto użytkownika zostało utworzone, ale nie jesteś zalogowany.
 {{SITENAME}} używa ciasteczek do przechowywania informacji o zalogowaniu się.

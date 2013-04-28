@@ -599,10 +599,15 @@ Vergiesst net fir Är [[Special:Preferences|{{SITENAME}} Astellungen]] z'ännere
 'yourname' => 'Benotzernumm:',
 'userlogin-yourname' => 'Benotzernumm',
 'userlogin-yourname-ph' => 'Gitt Äre Benotzernumm an',
+'createacct-helpusername-url' => '{{ns:Project}}:Benotzernumm Richtlinnen',
+'createacct-helpusername-link' => '[[{{MediaWiki:createacct-helpusername-url}}|(hëlleft mir beim Eraussichen)]]',
 'yourpassword' => 'Passwuert:',
 'userlogin-yourpassword' => 'Passwuert',
 'userlogin-yourpassword-ph' => 'Gitt Ärt Passwuert an',
+'createacct-yourpassword-ph' => 'Gitt e Passwuert an',
 'yourpasswordagain' => 'Passwuert nach eemol antippen:',
+'createacct-yourpasswordagain' => 'Passwuert confirméieren',
+'createacct-yourpasswordagain-ph' => 'Passwuert nach eng Kéier aginn',
 'remembermypassword' => 'Meng Umeldung op dësem Computer (fir maximal $1 {{PLURAL:$1|Dag|Deeg}}) verhalen',
 'userlogin-remembermypassword' => 'Sech u mech erënneren',
 'userlogin-signwithsecure' => 'Mat engem séchere Server umellen',
@@ -628,12 +633,27 @@ Vergiesst net fir Är [[Special:Preferences|{{SITENAME}} Astellungen]] z'ännere
 'userlogin-resetlink' => "Hutt Dir d'Detailer vun Ärem Login vergiess?",
 'helplogin-url' => 'Help:Aloggen',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Hëllef beim aloggen]]',
+'createacct-join' => 'Gitt Är Informatioune hei drënner an.',
+'createacct-emailrequired' => 'E-Mailadress',
+'createacct-emailoptional' => 'E-Mailadress (fakultativ)',
+'createacct-email-ph' => 'Gitt Är E-Mailadress an',
 'createaccountmail' => 'En temporäert Passwuert benotzen an et per E-Mail un déi E-Mailadress schécken déi hei drënner steet',
+'createacct-realname' => 'Richtegen Numm (fakultativ)',
 'createaccountreason' => 'Grond:',
+'createacct-reason' => 'Grond',
+'createacct-captcha' => 'Sécherheets-Check',
+'createacct-captcha-help-url' => '{{ns:Project}}:E Benotzerkont ufroen',
+'createacct-imgcaptcha-help' => "Dir kënnt D'bild net gesinn? [[{{MediaWiki:createacct-captcha-help-url}}|Frot e Benotzerkont]]",
+'createacct-imgcaptcha-ph' => 'Gitt den Text an deen Dir hei driwwer gesitt',
+'createacct-benefit-heading' => '{{SITENAME}} gëtt vu Leit wéi Iech gemaach.',
+'createacct-benefit-body1' => 'Ännerungen',
+'createacct-benefit-body2' => 'Säiten',
+'createacct-benefit-body3' => 'Mataarbechter dëse Mount',
 'badretype' => 'Är Passwierder stëmmen net iwwerdeneen.',
 'userexists' => 'De Benotzernumm deen agi gouf gëtt scho benotzt.
 Sicht Iech een anere Benotzernumm.',
 'loginerror' => 'Feeler beim Aloggen',
+'createacct-error' => 'Feeler beim Uleeë vum Benotzerkont',
 'createaccounterror' => 'Benotzerkont konnt net opgemaach ginn: $1',
 'nocookiesnew' => "De Benotzerkont gouf ugeluecht, awer Dir sidd net ageloggt.
 {{SITENAME}} brauch fir dës Funktioun Cookien.
@@ -741,6 +761,14 @@ Vläicht hutt Dir Äert Passwuert scho geännert oder en neit temporäert Passwu
 'passwordreset-emailtext-ip' => "Iergendee mat der IP-Adress $1, wahrscheinlech Dir selwer, huet d'Zrécksetze vun Ärem Passwuert op {{SITENAME}} gefrot ($4). {{PLURAL:$3|De Benotzerkont ass|D'Benutzerkonte si}} mat dëser E-Mail-Adress verbonn:
 
 $2
+
+{{PLURAL:$3|Dëst temporärt Passwuert leeft|Dës temporär Passwierder lafe}} bannent {{PLURAL:$5|engem Dag|$5 Deeg}} of.
+Dir sollt Iech aloggen an een neit Passwuert festleeën. Wann een Aneren déi Ufro gemaach huet oder Dir Iech erëm un Äert Passwuert erënnere kënnt an et net ännere wëllt, kënnt Dir dës Noriicht ignoréieren an Äert aalt Passwuert weider benotzen.",
+'passwordreset-emailtext-user' => "De Benotzer $1 vu(n) {{SITENAME}} huet d'Zrécksetze vun Ärem Passwuert op {{SITENAME}} gefrot ($4). {{PLURAL:$3|De Benotzerkont|D'Benutzerkonte}} 
+
+$2
+
+{{PLURAL:$3|ass|si}} mat dëser E-Mail-Adress verbonn.
 
 {{PLURAL:$3|Dëst temporärt Passwuert leeft|Dës temporär Passwierder lafe}} bannent {{PLURAL:$5|engem Dag|$5 Deeg}} of.
 Dir sollt Iech aloggen an een neit Passwuert festleeën. Wann een Aneren déi Ufro gemaach huet oder Dir Iech erëm un Äert Passwuert erënnere kënnt an et net ännere wëllt, kënnt Dir dës Noriicht ignoréieren an Äert aalt Passwuert weider benotzen.",
@@ -1174,7 +1202,7 @@ Denkt w.e.g drunn datt d'Navigatiounslinken d'Wiel vun de Versiounen nees zréck
 'difference-multipage' => '(Ënnerscheed tëschent Säiten)',
 'lineno' => 'Linn $1:',
 'compareselectedversions' => 'Ausgewielte Versioune vergläichen',
-'showhideselectedversions' => 'Erausgesichte Versioune weisen/verstoppen',
+'showhideselectedversions' => 'Erausgesicht Versioune weisen/verstoppen',
 'editundo' => 'zréck',
 'diff-multi' => '({{PLURAL:$1|Eng Tëscheversioun|$1 Tëscheversioune}} vun {{PLURAL:$2|engem|$2}} Benotzer {{PLURAL:$1|gëtt|ginn}} net gewisen)',
 'diff-multi-manyusers' => '({{PLURAL:$1|Eng Tëscheversioun|$1 Tëscheversioune}} vu méi wéi $2 {{PLURAL:$2|Benotzer|Benotzer}} ginn net gewisen)',
@@ -1437,6 +1465,7 @@ Si muss manner wéi $1 {{PLURAL:$1|Zeechen|Zeechen}} hunn.',
 'right-writeapi' => "API benotze fir d'Wiki z'änneren",
 'right-delete' => 'Säite läschen',
 'right-bigdelete' => 'Säite mat engem groussen Historique läschen',
+'right-deletelogentry' => 'Eenzel Androungen an de Logbicher läschen a restauréieren',
 'right-deleterevision' => 'Spezifesch Versioune vu Säite läschen a restauréieren',
 'right-deletedhistory' => 'Weis geläschte Versiounen am Historique, ouni den assoziéierten Text',
 'right-deletedtext' => "Geläschten Text an d'Ännerungen tëschent de geläschte Versioune weisen",
@@ -1982,7 +2011,7 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi d\'Zil vun d
 'wantedcategories' => 'Gewënscht Kategorien',
 'wantedpages' => 'Gewënschte Säiten',
 'wantedpages-badtitle' => 'Net valabelen Titel am Resultat: $1',
-'wantedfiles' => 'Gewënschte Fichieren',
+'wantedfiles' => 'Gewënscht Fichieren',
 'wantedfiletext-cat' => 'Dës Fichiere gi benotzt awer et gëtt se net. Fichiere aus frieme Repositorie kënnen hei gewise ginn och wann et se gëtt. All esou falsch Positiver ginn <del>duerchgestrach</del>. Zousätzlech gi Säiten an deene Fichieren dra sinn déi et net gëtt op [[:$1]] gewisen.',
 'wantedfiletext-nocat' => 'Dës Fichiere gi benotzt existéieren awer net. Fichieren aus frieme Repertoiren kënnen trotzdeem opgelëscht ginn. All dës positiv Fichiere ginn <del>duergestrach</del>.',
 'wantedtemplates' => 'Gewënschte Schablounen',
@@ -2014,7 +2043,7 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi d\'Zil vun d
 'usercreated' => "{{GENDER:$3|De(n)|D'}} $1 ëm $2 Auer ugeluecht",
 'newpages' => 'Nei Säiten',
 'newpages-username' => 'Benotzernumm:',
-'ancientpages' => 'Eelste Säiten',
+'ancientpages' => 'Eelst Säiten',
 'move' => 'Réckelen',
 'movethispage' => 'Dës Säit réckelen',
 'unusedimagestext' => 'Dës Fichieren gëtt et, si sinn awer a kenger Säit agebonn.
@@ -2080,8 +2109,8 @@ Kuckt och [[Special:WantedCategories|Gewënscht Kategorien]].',
 'special-categories-sort-abc' => 'alphabetesch zortéieren',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Geläschte Kontributiounen',
-'deletedcontributions-title' => 'Geläschte Kontributiounen',
+'deletedcontributions' => 'Geläscht Kontributiounen',
+'deletedcontributions-title' => 'Geläscht Kontributiounen',
 'sp-deletedcontributions-contribs' => 'Kontributiounen',
 
 # Special:LinkSearch
@@ -2366,7 +2395,7 @@ Hei sinn déi aktuell Astellunge fir d'Säit '''$1''':",
 
 # Undelete
 'undelete' => 'Geläschte Säite restauréieren',
-'undeletepage' => 'Geläschte Säite kucken a restauréieren',
+'undeletepage' => 'Geläscht Säite kucken a restauréieren',
 'undeletepagetitle' => "'''Op dëser Lëscht sti geläschte Versioune vun [[:$1]]'''.",
 'viewdeletedpage' => 'Geläschte Säite weisen',
 'undeletepagetext' => "Dës {{PLURAL:$1|Säit gouf |Säite goufe}} geläscht mä sinn nach ëmmer am Archiv a kënne vun Administrateure restauréiert ginn. D'Archiv gëtt periodesch eidel gemaach.",
@@ -2436,7 +2465,7 @@ $1',
 'sp-contributions-newbies-sub' => 'Fir déi Nei',
 'sp-contributions-newbies-title' => 'Kontributioune vun neie Benotzer',
 'sp-contributions-blocklog' => 'Spärlescht',
-'sp-contributions-deleted' => 'geläschte Benotzer-Kontributiounen',
+'sp-contributions-deleted' => 'geläscht Kontributiounen',
 'sp-contributions-uploads' => 'Eropgeluede Fichieren',
 'sp-contributions-logs' => 'Logbicher',
 'sp-contributions-talk' => 'diskutéieren',
@@ -3054,10 +3083,24 @@ Duerch d'Opmaache vum Fichier kann Äre System beschiedegt ginn.",
 'minutes' => '{{PLURAL:$1|enger Minutt|$1 Minutten}}',
 'hours' => '{{PLURAL:$1|enger Stonn|$1 Stonnen}}',
 'days' => '{{PLURAL:$1|engem Dag|$1 Deeg}}',
+'weeks' => '{{PLURAL: $1|eng Woch|$1 Wochen}}',
 'months' => '{{PLURAL:$1|ee Mount|$1 Méint}}',
 'years' => '{{PLURAL:$1|ee Joer|$1 Joer}}',
 'ago' => 'viru(n) $1',
 'just-now' => 'grad elo',
+
+# Human-readable timestamps
+'hours-ago' => '{{PLURAL:$1|virun 1 Stonn| viru(n) $1 Stonnen}}',
+'minutes-ago' => '{{PLURAL:$1|virun 1 Minutt| viru(n) $1 Minutten}}',
+'seconds-ago' => '{{PLURAL:$1|virun 1 Sekonn|viru(n) $1 Sekonnen}}',
+'monday-at' => 'Méindes ëm $1',
+'tuesday-at' => 'Dënschdes ëm $1',
+'wednesday-at' => 'Mëttwochs ëm $1',
+'thursday-at' => 'Donneschdes ëm $1',
+'friday-at' => 'Freides ëm $1',
+'saturday-at' => 'Samschdes ëm $1',
+'sunday-at' => 'Sonndes ëm $1',
+'yesterday-at' => 'Gëschter ëm $1',
 
 # Bad image list
 'bad_image_list' => 'Format:

@@ -800,7 +800,7 @@ Vergeet niet uw [[Special:Preferences|voorkeuren voor {{SITENAME}}]] aan te pass
 'logout' => 'Afmelden',
 'userlogout' => 'Afmelden',
 'notloggedin' => 'Niet aangemeld',
-'userlogin-noaccount' => 'Hebt u geen geregistreerd account?',
+'userlogin-noaccount' => 'Hebt u geen geregistreerde gebruiker?',
 'userlogin-joinproject' => 'Word lid van {{SITENAME}}',
 'nologin' => 'Nog geen gebruikersnaam? $1.',
 'nologinlink' => 'Registreren',
@@ -830,6 +830,7 @@ Vergeet niet uw [[Special:Preferences|voorkeuren voor {{SITENAME}}]] aan te pass
 'userexists' => 'De gekozen gebruikersnaam is al in gebruik.
 Kies een andere naam.',
 'loginerror' => 'Aanmeldfout',
+'createacct-error' => 'Fout tijdens aanmaken gebruiker',
 'createaccounterror' => 'Het was niet mogelijk de gebruiker aan te maken: $1',
 'nocookiesnew' => 'De gebruiker is geregistreerd, maar niet aangemeld.
 {{SITENAME}} gebruikt cookies voor het aanmelden van gebruikers.

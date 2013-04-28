@@ -531,6 +531,7 @@ Nun t'escaezas d'escoyer les tos [[Special:Preferences|preferencies de {{SITENAM
 'userexists' => "El nome d'usuariu conseñáu yá ta usándose.
 Por favor escueyi un nome diferente.",
 'loginerror' => "Fallu d'identificación",
+'createacct-error' => 'Error de creación de cuenta',
 'createaccounterror' => 'Nun se pudo crear la cuenta: $1',
 'nocookiesnew' => "La cuenta d'usuariu ta creada, pero nun tas identificáu.
 {{SITENAME}} usa «cookies» pa identificar a los usuarios.
