@@ -150,16 +150,20 @@
 	 * @param {jQuery.Event|null} e either the event or null if unavailable
 	 * @param {Object|undefined} options
 	 */
-	function togglingHandler( $toggle, $collapsible, event, options ) {
+	function togglingHandler( $toggle, $collapsible, e, options ) {
 		var wasCollapsed, $textContainer, collapseText, expandText;
 
-		if ( event ) {
+		if ( options === undefined ) {
+			options = {};
+		}
+
+		if ( e ) {
 			// Don't fire if a link was clicked, if requested  (for premade togglers by default)
-			if ( options.linksPassthru && $.nodeName( event.target, 'a' ) ) {
-				return true;
+			if ( options.linksPassthru && $.nodeName( e.target, 'a' ) ) {
+				return;
 			} else {
-				event.preventDefault();
-				event.stopPropagation();
+				e.preventDefault();
+				e.stopPropagation();
 			}
 		}
 
