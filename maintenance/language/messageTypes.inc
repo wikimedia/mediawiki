@@ -223,6 +223,8 @@ $wgIgnoredMessages = array(
 	'deletedarticle',
 	// 'uploadedimage',
 	// 'overwroteimage',
+	'createacct-helpusername',
+	'createacct-imgcaptcha-help',
 	'userlogout-summary',
 	'changeemail-summary',
 	'changepassword-summary',
