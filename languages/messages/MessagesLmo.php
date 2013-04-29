@@ -945,7 +945,7 @@ La descrizión sura la sua [$2 pagina de descrizión del file] l'è mustrada ch�
 'listgrouprights' => 'Dirit del grüp di druvat',
 'listgrouprights-members' => '(Lista di member)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Manda un email a quel druvadur chì',
 'emailsent' => 'Messagg spedii',
 'emailsenttext' => "El messagg e-mail l'è staa spedii.",
@@ -1338,7 +1338,7 @@ I ligam che i vegnen dopu, in sü l'istessa riga, i vegnen cónsideraa di ecezi�
 'namespacesall' => 'tücc',
 'monthsall' => 'tücc',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => "Cunferma l<nowiki>'</nowiki>''e-mail''",
 'confirmemail_text' => "Prima da pudé riçeef mesacc sül tò adrèss da pòsta letrònica l è neçessari verificál.
 Schiscjá ul butún che gh'è chi da sót par curfermá al tò adrèss.

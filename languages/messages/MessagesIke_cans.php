@@ -143,8 +143,6 @@ $messages = array(
 'editinginterface' => "'''ᐃᓂᖅᑎᕈᑎ—''' ᐋᕼᐊ ᓱᖁᓯᖅᐹ ᐃᑭᐊᖅ ᒪᑉᐱᑕᖅ ᐊᑐᐃᓐᓇᓯᕗᖅ ᐄᔭᑦᓴᖅ ᖃᕋᓴᐅᔭᖅ ᑕᖅᓴᓕᖅᐹ ᐃᑭᐊᖅ ᐊᕿᑦᑐᖅ ᖃᕆᑕᐅᔭᐅᑉ ᑎᑎᕋᕐᕕᖓ. ᐊᓯᐊᙳᑐᖅ ᐃᑭᐊᖅ ᒪᑉᐱᑕᖅ ᐃᓄᒃᑎᑐᑦ ᐅᐃᑭᐱᑎᐊ ᐊᓪᓚᖑᖅᑐᐊᖅ ᓇᑭᒪᖅᐳᖅ ᖃᑕᙳᑎ.",
 
 # Login and logout pages
-'welcomecreation' => "== ᐊᕆᐅᙵᐃᐹ, $1! ==
-ᐱᒋᕗᖅ ᖃᑕᙳᑎ ᐅᐃᑭᐱᑎᐊ ᑮᓇᐅᔭᖁᑎᖃᕐᕕᒃ ᐃᓱᐃᓪᓕᖓᐃᑦᔭᐹ. ᐃᖅᑑ ᓱᖁᓯᖅᐹ {{SITENAME}} ᐃᓐᓂᐊᑐᖅ «''ᓂᐱ ᐊᒥ''»",
 'yourname' => 'ᐅᐃᑭᐱᑎᐊ ᐊᑎᖅ',
 'yourpassword' => 'ᐅᐃᑭᐱᑎᐊ ᐸᓚᙵᓴᐅᑎ',
 'yourpasswordagain' => 'ᑕᒪᑐᒪᓃᖅᐹ ᐃᒃᓯᒐᖅᑐᖅ ᐅᐃᑭᐱᑎᐊ ᐸᓚᙵᓴᐅᑎ',
@@ -277,7 +275,7 @@ $messages = array(
 # Special:Categories
 'categories' => 'ᓄᐊᑉᐳᑦ',
 
-# E-mail user
+# Email user
 'emailuser' => 'ᑭᒍᑎᐅᑉ ᓯᑎᓂᖅᐹᖓ ᐃᓄᒃ',
 'emailfrom' => 'ᓇᑭᑦ',
 'emailmessage' => 'ᑭᒡᒐᐹ',

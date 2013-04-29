@@ -11,6 +11,7 @@
  * @author O
  * @author Reedy
  * @author Wu-chinese.com
+ * @author Yfdyh000
  */
 
 $fallback = 'zh-hans';
@@ -1483,8 +1484,6 @@ $1",
 
 /*
 Short names for language variants used for language conversion links.
-To disable showing a particular link, set it to 'disable', e.g.
-'variantname-zh-sg' => 'disable',
 Variants for Chinese language
 */
 'variantname-zh-tw' => '台湾',
@@ -1574,12 +1573,12 @@ Variants for Chinese language
 'autosumm-new' => '新页面：$1',
 
 # Watchlist editor
-'watchlistedit-normal-title' => '编辑监控列表',
+'watchlistedit-normal-title' => '编辑监视列表',
 
 # Watchlist editing tools
 'watchlisttools-view' => '查看搭界个修改',
 'watchlisttools-edit' => '查看并编辑监控列表',
-'watchlisttools-raw' => '编辑源监控列表',
+'watchlisttools-raw' => '编辑原始监视列表',
 
 # Special:Version
 'version' => '版本',

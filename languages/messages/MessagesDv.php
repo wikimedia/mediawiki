@@ -444,7 +444,9 @@ $1',
 'revisionasof' => '$1ގެ ނުސްހާ',
 'previousrevision' => '→ ކުރީގެ ނުސްހާ',
 'nextrevision' => 'ފަހުގެ ނުސްހާ ←',
+'cur' => 'އެންމެ ފަހުގެ',
 'next' => 'ކުރިޔަށް',
+'last' => 'ފަރަޤު',
 'histfirst' => 'އެންމެ ކުރީގެ',
 'histlast' => 'އެންމެ ފަހުގެ',
 
@@ -453,8 +455,10 @@ $1',
 'revdel-restore-visible' => 'ފާޅު ނުސްހާތައް',
 
 # Diffs
+'history-title' => '"$1"ގެ ތާރީޚް',
 'lineno' => 'ފޮޅުވަތް $1:',
 'compareselectedversions' => 'އިހުތިޔާރު ކުރެވިފައިވާ ނުސްހާތައް އަޅައިކިޔުއްވާ',
+'editundo' => 'ކުރީގެ ނުސްހާއަށް ބަދަލުކުރައްވާ',
 
 # Search results
 'searchresults' => 'ހޯދުމުގެ ނަތީޖާ',
@@ -638,7 +642,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 # Special:ListGroupRights
 'listgrouprights-members' => '(މެމްބަރުންގެ ލިސްޓު)',
 
-# E-mail user
+# Email user
 'emailuser' => 'މި މެންބަރަށް އީމޭލު ފޮނުއްވާ',
 
 # Watchlist
@@ -780,6 +784,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'tooltip-preview' => 'ބަދަލުތައް ދައްކަވާ، ރައްކާކުރެއްވުމުގެ ކުރިން މި ބޭނުންކުރައްވާ!',
 'tooltip-watch' => 'މިޞަފްޙާއަށް ނަޒަރުބަހައްޓަވާ',
 'tooltip-rollback' => '"ކުރީގެ ނުސްހާ އަކަށް ބަދަލުކުރައްވާ" އިން މި ޞަފްޙާއަށް އެންމެ ފަހުން އުނިއިތުރު ގެންނެވި މެމްބަރުގެ އުނިއިތުރު(އުނިއިތުރުތައް) ފޮހެލެވޭނެއެވެ.',
+'tooltip-undo' => '"ކުރީގެ ނުސްހާއަށް ބަދަލުކުރައްވާ" އިން މި ނުސްހާގެ ކުރީގައި އިން ނުސްހާއަށް ބަދަލުކޮށްދޭނެއެވެ. އަދި އުނިއިތުރުގެ ޚުލާސާ ލިޔުމުގެ ފުރުސަތު ދޭނެއެވެ.',
 'tooltip-summary' => 'ކުރު ޚުލާސާއެއް ލިޔުއްވާ',
 
 # Info page
@@ -824,7 +829,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'watchlistall2' => 'ހުރިހާ',
 'namespacesall' => 'ހުރިހާ',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'އީމޭލު އެޑްރެސް ޔަގީންކުރައްވާ',
 
 # action=purge

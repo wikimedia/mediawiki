@@ -342,7 +342,7 @@ $messages = array(
 'talkpage' => 'ఈ పేజీని చర్చించండి',
 'talkpagelinktext' => 'చర్చ',
 'specialpage' => 'ప్రత్యేక పేజీ',
-'personaltools' => 'తన పనిముట్లు',
+'personaltools' => 'వ్యక్తిగత పనిముట్లు',
 'postcomment' => 'కొత్త విభాగం',
 'articlepage' => 'విషయపు పేజీని చూడండి',
 'talk' => 'చర్చ',
@@ -405,7 +405,7 @@ $1',
 'retrievedfrom' => '"$1" నుండి వెలికితీశారు',
 'youhavenewmessages' => 'మీకు $1 ఉన్నాయి ($2).',
 'newmessageslink' => 'కొత్త సందేశాలు',
-'newmessagesdifflink' => 'క్రితం సంచికతో గల తేడాలు',
+'newmessagesdifflink' => 'చివరి మార్పు',
 'youhavenewmessagesfromusers' => 'మీకు {{PLURAL:$3|మరో వాడుకరి|$3 వాడుకరుల}} నుండి $1 ($2).',
 'youhavenewmessagesmanyusers' => 'మీకు చాలా వాడుకరుల నుండి $1 ($2).',
 'newmessageslinkplural' => '{{PLURAL:$1|ఒక కొత్త సందేశం వచ్చింది|కొత్త సందేశాలు ఉన్నాయి}}',
@@ -567,10 +567,10 @@ $2',
 'logout' => 'నిష్క్రమించు',
 'userlogout' => 'నిష్క్రమించు',
 'notloggedin' => 'లోనికి ప్రవేశించి లేరు',
-'nologin' => "ఖాతా లేదా? '''$1'''.",
+'nologin' => 'ఖాతా లేదా? $1.',
 'nologinlink' => 'ఖాతాని సృష్టించుకోండి',
 'createaccount' => 'ఖాతాని సృష్టించు',
-'gotaccount' => "ఇప్పటికే మీకు ఖాతా ఉందా? '''$1'''.",
+'gotaccount' => 'ఇప్పటికే మీకు ఖాతా ఉందా? $1.',
 'gotaccountlink' => 'ప్రవేశించండి',
 'userlogin-resetlink' => 'మీ ప్రవేశ వివరాలను మరచిపోయారా?',
 'createaccountmail' => 'ఈ-మెయిలు ద్వారా',
@@ -701,6 +701,7 @@ $2
 'changeemail-oldemail' => 'ప్రస్తుత ఈ-మెయిలు చిరునామా:',
 'changeemail-newemail' => 'కొత్త ఈ-మెయిలు చిరునామా:',
 'changeemail-none' => '(ఏమీలేదు)',
+'changeemail-password' => 'మీ {{SITENAME}} సంకేతపదం:',
 'changeemail-submit' => 'ఈ-మెయిల్ మార్చు',
 'changeemail-cancel' => 'రద్దుచేయి',
 
@@ -719,7 +720,7 @@ $2
 'nowiki_tip' => 'వికీ ఫార్మాటును పట్టించుకోవద్దు',
 'image_tip' => 'పొదిగిన ఫైలు',
 'media_tip' => 'దస్త్రపు లంకె',
-'sig_tip' => 'టైంస్టాంపుతో సహా మీ సంతకం',
+'sig_tip' => 'సమయంతో సహా మీ సంతకం',
 'hr_tip' => 'అడ్డగీత (అరుదుగా వాడండి)',
 
 # Edit pages
@@ -1246,7 +1247,7 @@ $1",
 'uid' => 'వాడుకరి ID:',
 'prefs-memberingroups' => 'సభ్యులుగా ఉన్న {{PLURAL:$1|గుంపు|గుంపులు}}:',
 'prefs-registration' => 'నమోదైన సమయం:',
-'yourrealname' => 'అసలు పేరు*',
+'yourrealname' => 'అసలు పేరు:',
 'yourlanguage' => 'భాష:',
 'yourvariant' => 'విషయపు భాషా వైవిధ్యం:',
 'prefs-help-variant' => 'ఈ వికీ లోని విషయపు పేజీలను చూపించడానికి మీ అభిమత వైవిధ్యం లేదా ఆర్ధోగ్రఫీ.',
@@ -1776,7 +1777,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization చూడండి.',
 'unusedtemplateswlh' => 'ఇతర లింకులు',
 
 # Random page
-'randompage' => 'యాధృచ్ఛిక పేజీ',
+'randompage' => 'యాదృచ్ఛిక పేజీ',
 'randompage-nopages' => 'ఈ క్రింది {{PLURAL:$2|పెరుబరిలో|పెరుబరులలో}} పేజీలు ఏమి లేవు:$1',
 
 # Random redirect
@@ -1807,6 +1808,8 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization చూడండి.',
 'disambiguations' => 'అయోమయ నివృత్తి పుటలకు లింకున్న పుటలు',
 'disambiguationspage' => 'Template:అయోమయ నివృత్తి',
 'disambiguations-text' => "కింది పేజీలు '''అయోమయ నివృత్తి''' పేజీకి లింకవుతున్నాయి. కానీ అవి సంబంధిత పేజీకి నేరుగా లింకు అవాలి. <br /> [[MediaWiki:Disambiguationspage]] నుంది లింకు ఉన్న మూసను వాడే పేజీని అయోమయ నివృత్తి పేజీగా భావిస్తారు.",
+
+'pageswithprop-submit' => 'వెళ్ళు',
 
 'doubleredirects' => 'జంట దారిమార్పులు',
 'doubleredirectstext' => 'ఇతర దారిమార్పు పుటలకి తీసుకెళ్ళే దారిమార్పులని ఈ పుట చూపిస్తుంది.
@@ -2026,7 +2029,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization చూడండి.',
 'usermessage-editor' => 'వ్యవస్థ సందేశకులు',
 
 # Watchlist
-'watchlist' => 'నా వీక్షణ జాబితా',
+'watchlist' => 'వీక్షణ జాబితా',
 'mywatchlist' => 'వీక్షణ జాబితా',
 'watchlistfor2' => '$1 కొరకు $2',
 'nowatchlist' => 'మీ వీక్షణ జాబితా ఖాళీగా ఉంది.',
@@ -2304,7 +2307,7 @@ $UNWATCHURL కి వెళ్ళండి.
 'isimage' => 'దస్త్రపు లంకె',
 'whatlinkshere-prev' => '{{PLURAL:$1|మునుపటిది|మునుపటి $1}}',
 'whatlinkshere-next' => '{{PLURAL:$1|తరువాతది|తరువాతి $1}}',
-'whatlinkshere-links' => '← లింకులు',
+'whatlinkshere-links' => '← లంకెలు',
 'whatlinkshere-hideredirs' => 'దారిమార్పులను $1',
 'whatlinkshere-hidetrans' => '$1 ట్రాన్స్‌క్లూజన్లు',
 'whatlinkshere-hidelinks' => 'లింకులను $1',
@@ -2750,6 +2753,8 @@ $UNWATCHURL కి వెళ్ళండి.
 'pageinfo-toolboxlink' => 'పేజీ సమాచారం',
 'pageinfo-contentpage-yes' => 'అవును',
 'pageinfo-protect-cascading-yes' => 'అవును',
+'pageinfo-category-info' => 'వర్గపు సమాచారం',
+'pageinfo-category-pages' => 'పేజీల సంఖ్య',
 
 # Skin names
 'skinname-standard' => 'సంప్రదాయ',
@@ -3366,8 +3371,8 @@ $5
 'watchlistedit-raw-removed' => '{{PLURAL:$1|1 శీర్షికను|$1 శీర్షికలను}} తీసివేశాం:',
 
 # Watchlist editing tools
-'watchlisttools-view' => 'సంబంధిత మార్పులను చూపించు',
-'watchlisttools-edit' => 'వీక్షణ జాబితాను చూపించు, మార్చు',
+'watchlisttools-view' => 'సంబంధిత మార్పులను చూడండి',
+'watchlisttools-edit' => 'వీక్షణ జాబితాను చూడండి లేదా మార్చండి',
 'watchlisttools-raw' => 'ముడి వీక్షణ జాబితాలో మార్పులు చెయ్యి',
 
 # Signatures

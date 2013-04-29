@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Admresdeserv.
  * @author Dark Eagle
  * @author FnTmLV
  * @author Geimeris
@@ -122,8 +123,8 @@ $messages = array(
 'thu' => 'Ce',
 'fri' => 'Pk',
 'sat' => 'Se',
-'january' => 'janvārī',
-'february' => 'februārī',
+'january' => 'Janvārs',
+'february' => 'Februārs',
 'march' => 'martā',
 'april' => 'aprīlī',
 'may_long' => 'maijā',
@@ -247,7 +248,7 @@ $messages = array(
 'unprotectthispage' => 'Mainīt šīs lapas aizsardzību',
 'newpage' => 'Jauna lapa',
 'talkpage' => 'Diskusija par šo lapu',
-'talkpagelinktext' => 'diskusija',
+'talkpagelinktext' => 'Diskusija',
 'specialpage' => 'Īpašā Lapa',
 'personaltools' => 'Lietotāja rīki',
 'postcomment' => 'Pievienot komentāru',
@@ -439,6 +440,7 @@ Vari turpināt to izmantot anonīmi, vari <span class='plainlinks'>[$1 atgriezti
 'remembermypassword' => 'Atcerēties pēc pārlūka aizvēršanas (spēkā ne vairāk kā $1 {{PLURAL:$1|diena|dienas}}).',
 'securelogin-stick-https' => 'Saglabāt HTTPS savienojumu pēc pieslēgšanās',
 'yourdomainname' => 'Tavs domēns',
+'password-change-forbidden' => 'Šajā wiki paroles nevar mainīt.',
 'externaldberror' => 'Notikusi vai nu ārējās autentifikācijas datubāzes kļūda, vai arī tev nav atļauts izmainīt savu ārējo kontu.',
 'login' => 'Pieslēgties',
 'nav-login-createaccount' => 'Izveidot jaunu lietotāju vai doties iekšā',
@@ -500,6 +502,7 @@ Tādēļ šobrīd no šīs IP adreses vairs nevar izveidot jaunus kontus.',
 'emailconfirmlink' => 'Apstiprināt tavu e-pasta adresi',
 'invalidemailaddress' => 'E-pasta adrese nevar tikt apstiprināta, jo izskatās nederīga. Lūdzu ievadi korekti noformētu e-pasta adresi, vai arī atstāj to lauku tukšu.',
 'cannotchangeemail' => 'Konta e-pasta adresi nevar nomainīt šajā wiki.',
+'emaildisabled' => 'Šī vietne nevar nosūtīt e-pastus.',
 'accountcreated' => 'Konts izveidots',
 'accountcreatedtext' => 'Lietotāja konts priekš $1 tika izveidots.',
 'createaccount-title' => 'Lietotāja konta izveidošana {{grammar:lokatīvs|{{SITENAME}}}}',
@@ -645,7 +648,7 @@ Ja tu esi anonīms lietotājs un uzskati, ka tev ir adresēti neatbilstoši kome
 'noarticletext' => 'Šajā lapā šobrīd nav nekāda teksta, tu vari [[Special:Search/{{PAGENAME}}|meklēt citās lapās pēc šīs lapas nosaukuma]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} meklēt saistītos reģistru ierakstos] vai arī [{{fullurl:{{FULLPAGENAME}}|action=edit}} sākt rediģēt šo lapu]</span>.',
 'noarticletext-nopermission' => 'Šajā lapā pašlaik nav nekāda teksta.
 Tu vari [[Special:Search/{{PAGENAME}}|meklēt šīs lapas nosaukumu]] citās lapās,
-vai <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} meklēt saistītus reģistru ierakstus]</span>.',
+vai <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} meklēt saistītus reģistru ierakstus]</span>, bet jums nav atļauja izveidot si lapu.',
 'userpage-userdoesnotexist' => 'Lietotājs "<nowiki>$1</nowiki>" nav reģistrēts.
 Lūdzu, pārliecinies vai vēlies izveidot/izmainīt šo lapu.',
 'userpage-userdoesnotexist-view' => 'Lietotājs "$1" nav reģistrēts.',
@@ -757,6 +760,8 @@ Tā jau eksistē.',
 'post-expand-template-inclusion-warning' => "'''Brīdinājums:''' iekļauto veidņu izmērs ir par lielu.
 Dažas veidnes netiks iekļautas.",
 'post-expand-template-inclusion-category' => 'Lapas, kurām pārsniegts iekļauto veidņu apjoms',
+'post-expand-template-argument-warning' => "'''Brīdinājums:''' Šī lapa satur vairāk neka vienu veidni argumentu, kas ir pārāk liels pec paplašināšanas.
+Šie argumenti ir izlaists.",
 'post-expand-template-argument-category' => 'Lapas, kurās ir izlaisti veidņu argumenti',
 'parser-template-loop-warning' => 'Veidne ir ievietota tādā pašā veidnē: [[$1]]',
 
@@ -1063,6 +1068,7 @@ Norādītā parametra vērtība būs publiski pieejama.',
 'prefs-help-realname' => 'Īstais vārds nav obligāti jānorāda.
 Ja tu izvēlies to norādīt, tas tiks izmantots, lai identificētu tavu darbu (ieguldījumu {{grammar:lokatīvs|{{SITENAME}}}}).',
 'prefs-help-email' => 'E-pasta adrese nav obligāta, bet ir nepieciešama nozaudētas paroles atjaunošanai.',
+'prefs-help-email-others' => 'Jus ari variet izvelties ka citi jus var kontaktēt uz jusu lietotajā sarunas lapu, neatklājot jus identitāti.',
 'prefs-help-email-required' => 'E-pasta adrese ir obligāta.',
 'prefs-info' => 'Pamatinformācija',
 'prefs-i18n' => 'Internacionalizācija',
@@ -1600,7 +1606,7 @@ Katrā rindiņā ir saites uz pirmo un otro pāradresācijas lapu, kā arī pirm
 'brokenredirects-edit' => 'labot',
 'brokenredirects-delete' => 'dzēst',
 
-'withoutinterwiki' => 'Lapas bez interwiki',
+'withoutinterwiki' => 'Lapas bez starpviki saitēm',
 'withoutinterwiki-summary' => "Šajās lapās nav saišu uz citu valodu projektiem (''interwiki''):",
 'withoutinterwiki-legend' => 'Prefikss',
 'withoutinterwiki-submit' => 'Rādīt',
@@ -1787,6 +1793,7 @@ Tā e-pasta adrese, kuru tu esi norādījis [[Special:Preferences|savā izvēļu
 # Watchlist
 'watchlist' => 'Mani uzraugāmie raksti',
 'mywatchlist' => 'Uzraugāmie raksti',
+'watchlistfor2' => 'Priekš $1 ($2)',
 'nowatchlist' => 'Tavā uzraugāmo rakstu sarakstā nav neviena raksta.',
 'watchlistanontext' => 'Lūdzu $1, lai apskatītu vai labotu savu uzraugāmo rakstu saraksta saturu.',
 'watchnologin' => 'Neesi iegājis',
@@ -2986,6 +2993,7 @@ Var arī lietot [[Special:EditWatchlist|standarta izmainīšanas lapu]].',
 
 # Core parser functions
 'unknown_extension_tag' => 'Nezināma paplašinājuma iezīme "$1"',
+'duplicate-defaultsort' => '\'\'\'Brīdinājums:\'\'\' Noklusējuma kārtošanas atslēga "$2" ignorē kārtošanas atslēga "$1".',
 
 # Special:Version
 'version' => 'Versija',

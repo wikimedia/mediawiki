@@ -164,9 +164,6 @@ Bo por haña un lista di tur [[Special:SpecialPages|{{int:specialpages}}]].',
 'viewsource' => 'Wak fuente',
 
 # Login and logout pages
-'welcomecreation' => '== Bon bini, $1! ==
-Bo kuenta ta trahá.
-No lubidá di kambia bo [[Special:Preferences|{{SITENAME}} preferensianan]].',
 'yourname' => 'Nòmber di uzadó',
 'yourpassword' => 'Kontraseña',
 'yourpasswordagain' => 'Hinka kontraseña atrobe',
@@ -278,7 +275,7 @@ Bo por skohe un tipo di registro tambe, òf filtrá e bista ku un nòmber di uza
 [[Special:UnusedCategories|Unused categories]] are not shown here.
 Also see [[Special:WantedCategories|wanted categories]].',
 
-# E-mail user
+# Email user
 'emailuser' => 'Manda e-mail pa e uzadó aki',
 'emailpage' => 'Manda e-mail',
 'emailpagetext' => 'E formulario aki lo manda un e-mail pa e uzadò aki.
@@ -309,8 +306,8 @@ Si despues bo ke kita e página for di bo lista di observashon, primi \"Stop di 
 'watchlistcontains' => 'Bo lista di observashon tin $1 {{PLURAL:$1|página|páginanan}}.',
 'wlshowlast' => 'Mustra último $1 oranan $2 dianan $3',
 
-'changed' => 'kambiá',
 'created' => 'trahá',
+'changed' => 'kambiá',
 
 # Delete
 'confirm' => 'Konfirmá',
@@ -370,7 +367,7 @@ Por fabor skohe un otro título.',
 'watchlistall2' => 'tur',
 'namespacesall' => 'tur',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Konfirmá e-mail adrès',
 'confirmemail_text' => 'Bo mester validá bo e-mail adrès pa uza funkshonnan di e-mail.
 Primi e boton abou pa manda un e-mail di konfirmashon pa bo e-mail adrès.

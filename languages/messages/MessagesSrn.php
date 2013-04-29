@@ -942,7 +942,7 @@ Papira ini [[Special:Watchlist|yu Tan Luku réy]] '''fatu'''.",
 'listusers-submit' => 'Libi si',
 'listusers-noresult' => 'No masyin dyaso.',
 
-# E-mail user
+# Email user
 'mailnologin' => 'No stiradresi',
 'emailuser' => 'E-mail a kebroikiman disi',
 'emailpage' => 'Mayin e-mail',

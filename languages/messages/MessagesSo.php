@@ -626,8 +626,8 @@ Fadlan markale isku day. Hadii aysan weli shaqaynin, ka bax ee markale soo gudag
 '''Hadii wax ka bedlkaan uu yahay mid xaq ah, fadlan markale isku day. Hadii aysan weli shaqaynin, is kuday inaad  ka baxdo ee markale soo gudagal.'''",
 'editing' => 'Waxaad badalaysaa $1',
 'creating' => 'Sameyta $1',
-'editingsection' => 'Waxaa wax ka badaleysaa $1 (qeyb yar)',
-'editingcomment' => 'Waxaa wax ka badaleysaa $1 (qeyb yar)',
+'editingsection' => 'Waxaad wax ka bedelaysaa $1 (qeyb yar)',
+'editingcomment' => 'Waxaad wax ka bedelaysaa $1 (qeyb yar)',
 'editconflict' => 'Isku dhac badalaadka: $1',
 'yourtext' => 'Qoraalkaaga',
 'editingold' => "'''DIGNIIN: Waxaad wax ka bedeli rabtaa boggan caddadkiisa duqoobay.
@@ -844,7 +844,7 @@ E-mailkaada mala sheegaayo markii ee dadka kale kula soo xiriirayaan.',
 'group-sysop-member' => '{{GENDER:$1|maamulaha}}',
 
 'grouppage-user' => '{{ns:project}}:Isticmaalada',
-'grouppage-autoconfirmed' => '{{ns:project}}:Gude gale la hubiyey si iskeeda ah',
+'grouppage-autoconfirmed' => '{{ns:project}}:Adeegsade la hubiyey',
 'grouppage-sysop' => '{{ns:project}}:Maamulada',
 
 # Rights
@@ -1126,12 +1126,12 @@ $PAGEINTRO $NEWPAGE
 
 Qaybta wax laga bedelay: $PAGESUMMARY $PAGEMINOREDIT
 
-La xariirka Tafaftiraha:
+La xariirka Tifaftiraha:
 mail: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
 Lama soo diri doono ogeysiin dambe hadii isbedel kale lagu sii sameeyo ilaa aad ka soo booqato bogga.
-Waxaad awoodaa inaad ka saarto liiska waardiyeha booga.
+Waxaad awoodaa inaad ka saarto liiska waardiyeha bogga.
 
 			 Nidaamka war gelinta {{SITENAME}} ee E-mailka
 

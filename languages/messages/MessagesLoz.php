@@ -695,7 +695,7 @@ di uplodezi media.',
 'listusers-submit' => 'Kamukile',
 'listusers-noresult' => 'Ni-di sebelu.',
 
-# E-mail user
+# Email user
 'emailuser' => 'Imeli bye sebelu',
 'emailpage' => 'Imeli sebelu',
 'defemailsubject' => '{{SITENAME}} meli',

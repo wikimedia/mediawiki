@@ -115,8 +115,8 @@ Por favor mira tambien el maga [[Special:WantedCategories|categoria requeridas]]
 # Watchlist
 'watch' => 'Vicia',
 
-'changed' => 'cambiao',
 'created' => 'creao',
+'changed' => 'cambiao',
 
 # Delete
 'actioncomplete' => 'Completo el accion',

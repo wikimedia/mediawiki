@@ -46,7 +46,7 @@ $messages = array(
 'tog-underline' => 'लिङ्कतेत अन्दरलाइन यानादिसँ:',
 'tog-justify' => 'अनुच्छेद धंकादिसँ',
 'tog-hideminor' => 'न्हुगु हिलेज्याय् चिधंगु सम्पादन सुचुकादिसँ',
-'tog-extendwatchlist' => 'वाचलिस्टयात परिमार्जित याना सकल स्वेज्युगु हिलेज्या क्यनादिसँ',
+'tog-extendwatchlist' => 'वाचलिस्टयात परिमार्जित याना सकल स्वेज्युगु हिलेज्या क्यनादिसँ, दकले लिपाया जक्क मखु',
 'tog-usenewrc' => 'एन्ह्यान्स्ड् न्हुगु हिलेज्या (जाभास्क्रिप्ट)',
 'tog-numberheadings' => 'अटो-ल्याखँ हेडिङ',
 'tog-showtoolbar' => 'सम्पादन टुलबार क्यनादिसँ (जाभास्क्रिप्ट)',
@@ -166,8 +166,18 @@ $messages = array(
 # Cologne Blue skin
 'qbfind' => 'मालादिसँ',
 'qbedit' => 'सम्पादन',
+'qbpageoptions' => 'थ्व पौ',
+'qbmyoptions' => 'जिगु पौ',
+'qbspecialpages' => 'विशेष पौ',
 'faq' => 'आपालं न्यनिगु न्ह्यसः (FAQ)',
 'faqpage' => 'Project:आपालं न्यनिगु न्ह्यसःत (FAQ)',
+
+# Vector skin
+'vector-action-move' => 'संकादिसँ',
+'vector-view-create' => 'दयेकादिसँ',
+'vector-view-edit' => 'सम्पादन',
+'vector-view-history' => 'इतिहास स्वयादिसँ',
+'vector-view-view' => 'ब्वनादिसँ',
 
 'returnto' => '$1य् लिहाँझासँ।',
 'tagline' => '{{SITENAME}}नं',
@@ -182,8 +192,13 @@ $messages = array(
 'printableversion' => 'ध्वायेज्युगु संस्करण',
 'permalink' => 'स्थायी लिङ्क',
 'print' => 'ध्वानादिसँ',
+'view' => 'क्यनादिसँ',
 'edit' => 'सम्पादन',
+'create' => 'दयेकादिसँ',
 'editthispage' => 'थ्व पौ सम्पादन यानादिसं',
+'create-this-page' => 'थ्व पौ दयेकादिसँ',
+'delete' => 'हुयादिसँ (दिलित)',
+'deletethispage' => 'थ्व पौ हुयादिसँ (दिलित)',
 'newpage' => 'न्हुगु पौ',
 'talkpagelinktext' => 'खँल्हाबँल्हा',
 'specialpage' => 'विषेश पौ',
@@ -192,7 +207,9 @@ $messages = array(
 'toolbox' => 'ज्याब्व सन्दुक',
 'projectpage' => 'ज्याखँ पौ क्येनादिसँ',
 'otherlanguages' => 'मेमेगु भाषाय्',
+'jumpto' => 'थन झासँ:',
 'jumptosearch' => 'मालादिसँ',
+'pool-errorunknown' => 'मस्युगु इरर',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite' => '{{SITENAME}}या बारेय्',
@@ -228,8 +245,12 @@ $messages = array(
 'youhavenewmessagesmulti' => '$1य् छित न्हुगु सन्देश वगु दु',
 'editsection' => 'सम्पादन',
 'editold' => 'सम्पादन',
+'editlink' => 'सम्पादन',
 'editsectionhint' => 'खण्ड सम्पादन: $1',
 'showtoc' => 'क्यनादिसँ',
+'hidetoc' => 'सुचुकादिसँ',
+'collapsible-expand' => 'चायेकादिसँ',
+'red-link-title' => '$1 (पौ मदु)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main' => 'पौ',
@@ -269,9 +290,7 @@ MySQL नं इरर "<tt>$3: $4</tt>" क्यंगु दु।',
 'viewsource' => 'स्रोत स्वयादिसँ',
 
 # Login and logout pages
-'welcomecreation' => '== लसकुस, $1! ==
-छिगु खाता चायेके धुंकल।
-छिगु [[Special:Preferences|{{SITENAME}} प्राथमिकता]] हिलिगु लुमंकादिसँ।',
+'welcomeuser' => 'लसकुस, $1जु!',
 'yourname' => 'छ्य्‌लामि नां:',
 'yourpassword' => 'दुथखँग्वः (पासवर्द):',
 'yourpasswordagain' => 'दुथखँग्वः हानं तियादिसँ:',
@@ -284,14 +303,42 @@ MySQL नं इरर "<tt>$3: $4</tt>" क्यंगु दु।',
 'nologinlink' => 'खाता न्ह्यथनादिसँ',
 'createaccount' => 'खाता चायेकादिसँ',
 'gotaccountlink' => 'दुहां झासँ',
+'badretype' => 'छिं तियादिगु पासवर्द पाय्‌छि मजु।',
 'loginsuccesstitle' => 'लग इन सफल जुल',
+'emaildisabled' => 'थ्व फाइलं इमेल छ्वयेमफु।',
 'accountcreated' => 'खाता न्ह्येथन',
+'accountcreatedtext' => '$1या निंतिं छ्य्‌लामि खाता चायेकूगु दु।',
 'loginlanguagelabel' => 'भाषा: $1',
+
+# Change password dialog
+'resetpass' => 'पासवर्द हिलादिसँ',
+
+# Special:ChangeEmail
+'changeemail-submit' => 'इ-मेल हिलादिसँ',
+'changeemail-cancel' => 'खारेज',
+
+# Edit page toolbar
+'bold_sample' => 'गाढा आखः',
+'bold_tip' => 'गाढा आखः',
+'italic_sample' => 'बेक्वःगु आखः',
+'italic_tip' => 'बेक्वःगु आखः',
+'link_tip' => 'आन्तरिक लिंक',
 
 # Edit pages
 'summary' => 'सारांश:',
-'savearticle' => 'पौ मुंकादिसं',
-'preview' => 'स्वयादिसं',
+'minoredit' => 'थ्व चिधंगु सम्पादन ख',
+'watchthis' => 'थ्व पौ स्वयादिसँ',
+'savearticle' => 'पौ स्वथनादिसँ',
+'preview' => 'न्हेकिपा',
+'showpreview' => 'न्हेकिपा क्यनादिसँ',
+'showlivepreview' => 'जुथें (लाइभ) न्हेकिपा',
+'showdiff' => 'हिसुझ्वः क्यनादिसँ',
+'anoneditwarning' => "'''न्ह्यःखँ:''' छि लग्द इन मदु। 
+छिगु IP address पौया सम्पादन इतिहासय् स्वथनिगु जुइ।",
+'anonpreviewwarning' => "''छि लग्द इन मदु। थ्व पौ स्वथनादिल धाःसा छिगु IP address थ्व पौया इतिहासय् स्वथनिगु जुइ।''",
+'loginreqtitle' => 'लग इन माःगु',
+'loginreqpagetext' => 'मेमेगु पौ स्वयेत छिं $1 यायेमा/जुइमा।',
+'accmailtitle' => 'पासवर्द छ्वल।',
 'newarticle' => '(न्हु)',
 'note' => "'''होस यानादिसँ:'''",
 'previewnote' => "'''थ्व पूर्वालोकन जक्क ख। छिं यानादिगु सम्पादन स्वथंगु मदुनि!'''",
@@ -300,12 +347,17 @@ MySQL नं इरर "<tt>$3: $4</tt>" क्यंगु दु।',
 'yourtext' => 'छिगु आखः',
 'storedversion' => 'स्वथनातगु संस्करण',
 
+# Content models
+'content-model-text' => 'सादा आखः',
+
 # History pages
 'revisionasof' => '$1 तक्कया संस्करण',
 'previousrevision' => '←पुलांगु संस्करण',
 
 # Search results
 'searchhelp-url' => 'Help:धलःपौ',
+'searchprofile-everything' => 'दक्वं',
+'search-result-size' => '$1 ({{PLURAL:$2|1 खँग्वः |$2 खँग्वःत}})',
 'searchrelated' => 'स्वापू दुःगु',
 'searchall' => 'सकल',
 'powersearch' => 'मालादिसँ',
@@ -313,6 +365,7 @@ MySQL नं इरर "<tt>$3: $4</tt>" क्यंगु दु।',
 # Preferences page
 'mypreferences' => 'जिगु प्राथमिकता',
 'changepassword' => 'पासवर्द हिलादिसँ',
+'prefs-skin' => 'भुँसा',
 'prefs-datetime' => 'दिं व ई',
 'prefs-personal' => 'छ्य्‌लामि प्रोफाइल',
 'prefs-rc' => 'न्हुगु हिलेज्या',
@@ -321,21 +374,24 @@ MySQL नं इरर "<tt>$3: $4</tt>" क्यंगु दु।',
 'username' => 'छ्य्‌लामि नां:',
 'yourrealname' => 'वास्तविक नां:',
 'yourlanguage' => 'भाषा:',
+'gender-male' => 'मिजं',
+'gender-female' => 'मिसा',
 'email' => 'इ-मेल',
 
 # User rights
 'userrights-user-editname' => 'छपू छ्य्‌लामि नां तयादिसँ:',
 
 # Groups
+'group' => 'पुचः',
 'group-user' => 'छ्य्‌लामित',
 'group-bot' => 'बोत',
 
 # Recent changes
-'recentchanges' => 'न्हुगु हिलेज्या',
+'recentchanges' => 'नकतिनिया हिसुझ्वः',
 'show' => 'क्यनादिसँ',
 
 # Upload
-'upload' => 'संचिका चढ़ाएँ',
+'upload' => 'फाइल अपलोद यानादिसँ',
 
 # File description page
 'file-anchor-link' => 'फाइल',
@@ -361,6 +417,9 @@ MySQL नं इरर "<tt>$3: $4</tt>" क्यंगु दु।',
 # Special:Categories
 'categories' => 'पुचःत',
 
+# Email user
+'emailusername' => 'छ्य्‌लामि नां (युजर नेम) :',
+
 # Restrictions (nouns)
 'restriction-edit' => 'सम्पादन',
 
@@ -376,10 +435,16 @@ MySQL नं इरर "<tt>$3: $4</tt>" क्यंगु दु।',
 # What links here
 'whatlinkshere' => 'थन छु स्वाई',
 
+# Block/unblock
+'contribslink' => 'योगदान',
+
 # Move page
 'movereason' => 'कारण:',
 
 # Tooltip help for the actions
+'tooltip-search' => '{{SITENAME}} मालादिसं',
+'tooltip-search-fulltext' => 'थ्व खँग्वःया निंतिं पौस मालादिसं',
+'tooltip-p-logo' => 'मू पौय् झासँ',
 'tooltip-n-mainpage' => 'मू पौ भ्रमण यानादिसँ',
 'tooltip-n-portal' => 'ज्याझ्वःया बारेय्, छिं छु यायेछिं, गन खँ सीकिगु',
 'tooltip-n-currentevents' => 'जुयाच्वँगु घटनाया लिधँसा तथ्य मालादिसँ',
@@ -392,7 +457,7 @@ MySQL नं इरर "<tt>$3: $4</tt>" क्यंगु दु।',
 'tooltip-feed-atom' => 'थ्व पौया Atom फीड',
 'tooltip-t-contributions' => 'थ्व छ्य्‌लामिया योगदानया धलः क्यनादिसँ',
 'tooltip-t-emailuser' => 'थ्व छ्य्‌लामियात इ-मेल छ्वयादिसँ',
-'tooltip-t-upload' => 'संचिकाएँ चढ़ाएँ',
+'tooltip-t-upload' => 'फाइल अपलोद यानादिसँ',
 'tooltip-t-specialpages' => 'सकल विशेष पौस धलः',
 'tooltip-t-print' => 'थ्व पौस ध्वायेज्युगु संस्करण',
 'tooltip-t-permalink' => 'थ्व पौस थ्व संस्करणया पर्मानेन्ट लिङ्क',
@@ -433,6 +498,20 @@ MySQL नं इरर "<tt>$3: $4</tt>" क्यंगु दु।',
 
 # Attribution
 'others' => 'मेमेगु',
+
+# EXIF tags
+'exif-imagewidth' => 'ब्याः',
+'exif-imagelength' => 'जाः',
+'exif-imagedescription' => 'किपाया नां',
+'exif-make' => 'किपासाः दयेकामि',
+'exif-model' => 'किपासाः मोदेल',
+'exif-software' => 'छ्यलातःगु सफ्तवेयर',
+'exif-artist' => 'च्वमि',
+'exif-copyright' => 'लेखाधिकार थुवा',
+'exif-pixelydimension' => 'किपा ब्याः',
+'exif-pixelxdimension' => 'किपा जाः',
+
+'exif-dc-date' => 'तिथि',
 
 # 'all' in various places, this might be different for inflected languages
 'namespacesall' => 'सकल',

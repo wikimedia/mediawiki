@@ -780,7 +780,7 @@ $messages = array(
 # Special:ListGroupRights
 'listgrouprights-members' => '(иштирокәкон сијоһи)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Номә бә иштирокәкә',
 
 # Watchlist

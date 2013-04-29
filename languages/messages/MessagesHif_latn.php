@@ -468,7 +468,7 @@ Aapan [[Special:Preferences|{{SITENAME}} pasand]]  ke badle nai bhulna.',
 'gotaccount' => "Aap ke pas pahile se account hai ki nai? '''$1'''.",
 'gotaccountlink' => 'Log in',
 'userlogin-resetlink' => 'Ka aap aapan login kare waala jaankari ke bhulae gaya hae?',
-'createaccountmail' => 'e-mail se',
+'createaccountmail' => 'Ek temporary password ke kaam me laao aur iske niche dekhawa gais Email pe bhej do',
 'createaccountreason' => 'Kaaran:',
 'badretype' => 'Jon duuno password aap likha hai uu ek rakam nai hae.',
 'userexists' => 'Ii sadasya ke naam aur koi ke hae.
@@ -513,8 +513,8 @@ Agar jo aur koi ii request karis hai, nai to aap aapan password yaad kar liya ha
 'passwordsent' => 'Ek nawaa password ke "$1" ke registered e-mail pe bheja gais hai. Meharbaani kar ke aap password mile ke baad login karna.',
 'blocked-mailpassword' => 'Aap ke IP address ke block kar dewa gais hai, aur iske kaaran aap ke password recovery function kaam me lae ke ijajat nai hai,',
 'eauthentsent' => 'Ek confirmation e-mail aap ke dewa gae e-mail address be bhej dewa gais hai. Aur mail ii account pe bheje se pahile e-mail me likha instructions ke follow karo, ii confirm kare ke khatir ki account aap ke hai.',
-'throttled-mailpassword' => 'Ek password reminder ke pichhle {{PLURAL:$1|hour|$1 hours}} me bhej dewa gais hai.
-Abuse ke roke ke khatir, khali ek password reminer har {{PLURAL:$1|hour|$1 hours}} me bheja jaai.',
+'throttled-mailpassword' => 'Ek password reset Email ke pahile bheja gais hae, pichhle  {{PLURAL:$1|ghanta|$1 ghanta}} me bhej me.
+Abuse ke roke ke khatir, khali ek password reminer har {{PLURAL:$1|ghanta|$1 ghanta}} me bheja jaai.',
 'mailerror' => 'Mail bheje me galti hoe gais hai: $1',
 'acct_creation_throttle_hit' => 'Ii wiki me visitors log aap ke IP address ke use kar ke {{PLURAL:$1|1 account|$1 accounts}}, pichhle kuch din me, banae liin hai, jis se jaada ii time nai banawa jaae sake hai.
 Ii kaaran se visitors log jon ki ii IP address use kare hai, ke aur account banae ke ijajat nai hai.',
@@ -543,6 +543,7 @@ Thora deri baad fir se kosis karna.',
 # Email sending
 'php-mail-error-unknown' => 'PHP ke mail() function me koi anjaan kharaabi hae',
 'user-mail-no-addy' => 'Bina e-mail address rahe pe bhi e-mail bheje ke kosis karaa gais hae.',
+'user-mail-no-body' => 'Ek khaali, nai to kaafi chhota email bheje ke kosis kara rahaa.',
 
 # Change password dialog
 'resetpass' => 'Password ke badlo',
@@ -565,7 +566,7 @@ Sait aap password ke safalta se badal sia hoga nai to nawaa temporary password k
 
 # Special:PasswordReset
 'passwordreset' => 'Password ke badlo',
-'passwordreset-text' => 'Aapan account ke baare me jaankari ke receive kare ke khatir ii fom ke bharo.',
+'passwordreset-text' => 'Password ke reset kare ke khatir ii form ke bharo.',
 'passwordreset-legend' => 'Password ke badlo',
 'passwordreset-disabled' => 'II wiki me password ke badle ke ijaajat nai hae.',
 'passwordreset-pretext' => '{{PLURAL:$1||Niche ke ek data ke likho}}',
@@ -2850,6 +2851,7 @@ Ii saait ii kaaran se hoi ki panna ke ek jorr koi blacklisted external site se h
 'pageinfo-robot-noindex' => 'Indexable nai hae',
 'pageinfo-views' => 'Ketna dafe dekha gais hae',
 'pageinfo-watchers' => 'Ketnaa jane panna ke dekhe hae',
+'pageinfo-few-watchers' => '$1 {{PLURAL:$1|watcher|watchers}} se kamtii log hae',
 'pageinfo-redirects-name' => 'Ii panna pe redirect karo',
 'pageinfo-subpages-name' => 'Ii panna ke subpage',
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|redirect|redirects}}; $3 {{PLURAL:$3|non-redirect|non-redirects}})',

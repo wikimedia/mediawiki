@@ -606,7 +606,7 @@ $messages = array(
 # Special:ListGroupRights
 'listgrouprights-members' => '(მაკათურეფიშ ერკებული)',
 
-# E-mail user
+# Email user
 'emailuser' => 'მიდუჯღონით ელ.ფოშტა ათე მახვარებუს',
 
 # Watchlist

@@ -662,7 +662,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'listgrouprights-group' => 'Grupo',
 'listgrouprights-members' => '(lista de membros)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Envia un eposta a esta usor',
 'emailfrom' => 'De',
 'emailto' => 'Per',

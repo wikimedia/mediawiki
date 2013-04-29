@@ -460,6 +460,8 @@ $messages = array(
 'page-rss-feed' => '«$1» RSS максовкс',
 'page-atom-feed' => '«$1» Atom максовкс',
 'red-link-title' => '$1 (истямо лопа арась)',
+'sort-descending' => 'Аравтомс лувс Я-А',
+'sort-ascending' => 'Аравтомс лувс А-Я',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main' => 'Лопа',
@@ -546,7 +548,7 @@ $messages = array(
 'gotaccount' => "Совамотаркат ули? '''$1'''.",
 'gotaccountlink' => 'Совамс',
 'userlogin-resetlink' => 'Совамо эрявикстнэнь стувтыть?',
-'createaccountmail' => 'е-сёрмасо',
+'createaccountmail' => 'Тейть кодамо понгсь салавань вал, кучик сонзэ ало максозь е-сёрмапаргонтень',
 'createaccountreason' => 'Тувталось:',
 'badretype' => 'Сёрмадыть салава валот кавксть: сынь аволь вейкеть.',
 'userexists' => 'Те лемесь уш саезь.
@@ -593,7 +595,7 @@ $messages = array(
 'accountcreatedtext' => '$1-нь совицянь таркась теевсь-шкавсь.',
 'loginlanguagelabel' => 'Кель: $1',
 
-# E-mail sending
+# Email sending
 'user-mail-no-addy' => 'Терявтыть кучомс е-сёрма е-сёрмапарговтомо.',
 
 # Change password dialog
@@ -698,6 +700,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 Мусак [[Special:Search/{{PAGENAME}}|вешнемс  файлань те коняксонть]] лия сёрмадовкстнэстэ эли
 <span class="plainlinks">
 [{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} вешнемс малавикс журналтнэстэ]</span>. Ялатеке тонеть а мерить шкамс те лопанть.',
+'userpage-userdoesnotexist-view' => 'Совамотарка  "$1" апак сёрмадсто.',
 'updated' => '(Одолгавтозь)',
 'note' => "'''Явт мель:'''",
 'previewnote' => "'''Кирдтяя мельсэ, те ансяк васнянь невтевкс.'''
@@ -774,6 +777,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'history-feed-title' => 'Лиякстомтомань тевде',
 'history-feed-description' => 'Викинь тевате лопанть лиякстомтомань тевдензэ',
 'history-feed-item-nocomment' => '$1 $2-зэ',
+'history-feed-empty' => 'Лопа, кона вешнить, арась. Кизды нардавсь wikiстэ эли одов лемдявсь. Варчак [[Special:Search|wiki-ва вешнема]] эрявикс од лопанть муемга.',
 
 # Revision deletion
 'rev-deleted-comment' => '(витнемадо-петнемадо арсемась-мелесь нардазь)',
@@ -881,8 +885,8 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'search-nonefound' => 'Те вешнема лангс мезеяк эзь муеве.',
 'powersearch' => 'Седеяк вешнемс',
 'powersearch-legend' => 'Седе келейстэ вешнема',
-'powersearch-ns' => 'Вешнемс не лем потмотнестэ:',
-'powersearch-redir' => 'Лия таркав йутавтоматнень сёрмалема',
+'powersearch-ns' => 'Вешнемс не лемпотмотнестэ:',
+'powersearch-redir' => 'Лия таркав ютавтоматнень сёрмалема',
 'powersearch-field' => 'Вешнемс',
 'powersearch-toggleall' => 'Весе',
 'powersearch-togglenone' => 'Арась мезе невтемс',
@@ -897,24 +901,26 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'qbsettings-floatingright' => 'Вить ёнга уи',
 
 # Preferences page
-'preferences' => 'Лия ютксто явома',
+'preferences' => 'Аравтомат',
 'mypreferences' => 'Аравтомат',
 'prefs-edits' => 'Зяроксть витнезь-петнезь:',
 'prefsnologin' => 'Эзить сова',
+'prefsnologintext' => 'Эряви <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} совамс]</span> аравтоматнень ладсемга.',
 'changepassword' => 'Салавань валонь полавтома',
 'prefs-skin' => 'Неемань ладсема',
 'skin-preview' => 'Васнянь неевтезэ',
 'datedefault' => 'Икелькс вешема арась',
 'prefs-beta' => 'Бета ёнкст-мезть',
-'prefs-datetime' => 'Чи ды шка',
+'prefs-datetime' => 'Чить-шкат',
+'prefs-labs' => 'Варчамонь ёнкст-тевть',
 'prefs-user-pages' => 'Теицянть лопанзо',
 'prefs-personal' => 'Теицядо',
-'prefs-rc' => 'Чиень полавтнемат',
+'prefs-rc' => 'Чиень полавтнемат-лиякстомтомат',
 'prefs-watchlist' => 'Ванома лемрисьме',
 'prefs-watchlist-days-max' => 'Весемеде куватьс $1 {{PLURAL:$1|чис|чис}}',
 'prefs-watchlist-edits-max' => 'Весемеде покш цётось: 1000',
 'prefs-misc' => 'Минеть-сюнот',
-'prefs-resetpass' => 'Салава валонь полавтома',
+'prefs-resetpass' => 'Салавань валонь полавтома',
 'prefs-changeemail' => 'Полавтомс е-сёрмапаргот',
 'prefs-setemail' => 'Путомс е-сёрмапарго',
 'prefs-email' => 'Е-сёрмат-мезть',
@@ -924,13 +930,18 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'restoreprefs' => 'Велявтомс мекев весе ушодкс ладсематнень',
 'prefs-editing' => 'Витнема-петнема',
 'prefs-edit-boxsize' => 'Витнема-петнема вальманть сэрензэ-келензэ.',
-'rows' => 'Вал чилькстнэ (строкатне):',
+'rows' => 'Валчилькстнэ (строкатне):',
 'columns' => 'Палманть:',
-'searchresultshead' => 'Вешнэма',
+'searchresultshead' => 'Вешнема',
 'resultsperpage' => 'Зяроксть вастневи ве лопасо:',
-'recentchangesdays-max' => '(максимумось $1 {{PLURAL:$1|чи|чить}})',
+'recentchangesdays' => 'Зяро чить невтемс чиень полавтнематнесэ-лиякстомтоматнесэ:',
+'recentchangesdays-max' => 'Весемеде куватьс $1 {{PLURAL:$1|чис|чис}}',
+'recentchangescount' => 'Васень аравтоматнень коряс зяро витнемат-петнемат невтемс:',
+'prefs-help-recentchangescount' => 'Тезэнь совавтозь чиень полавтнемат-лиякстомтомат, лопань лувт-путовкст, журналт.',
 'timezonelegend' => 'Шкань зонась:',
 'localtime' => 'Теицянь шкась:',
+'timezoneuseserverdefault' => 'Нолдамс тевс викинь ($1) аравтнематнень',
+'timezoneoffset' => 'Офсет¹:',
 'servertime' => 'Серверэнь шкась:',
 'guesstimezone' => 'Пештемс интернет икельксстэть',
 'timezoneregion-africa' => 'Африка',
@@ -969,7 +980,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'prefs-dateformat' => 'Ков чинь форматозо',
 'prefs-diffs' => 'Мейсэ явовить верзиятне',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'Е-сёрмапаргот маряви маштови',
 
 # User rights
@@ -1416,7 +1427,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'listgrouprights-addgroup-all' => 'Поладомс весе куротнень',
 'listgrouprights-removegroup-all' => 'Весе куротнень нардамс',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Кучомс сёрма парго арась',
 'emailuser' => 'Кучомс е-сёрма те теицянтень',
 'emailpage' => 'Кучт э-сёрма теицянтень',
@@ -2105,7 +2116,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'monthsall' => 'весе',
 'limitall' => 'весе',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Кемекстамс е-почтань сёрмапаргот',
 'confirmemail_send' => 'Кучомс е-сёрмасо кемекстамонь код',
 'confirmemail_loggedin' => 'Е-сёрма паргот апак кемекста.',

@@ -767,7 +767,7 @@ Nếu bạn không yêu cầu gửi mật khẩu mới, hoặc bạn đã nhớ 
 'passwordsent' => 'Mật khẩu mới đã được gửi tới thư điện tử của thành viên “$1”. Xin đăng nhập lại sau khi nhận thư.',
 'blocked-mailpassword' => 'Địa chỉ IP của bạn bị cấm không được sửa đổi, do đó cũng không được phép dùng chức năng phục hồi mật khẩu để tránh lạm dụng.',
 'eauthentsent' => 'Thư xác nhận đã được gửi. Trước khi dùng chức năng nhận thư, bạn cần thực hiện hướng dẫn trong thư xác nhận, để đảm bảo tài khoản thuộc về bạn.',
-'throttled-mailpassword' => 'Mật khẩu đã được gửi đến cho bạn trong vòng {{PLURAL:$1|$1 giờ|$1 giờ}} đồng hồ trở lại. Để tránh lạm dụng, chỉ có thể gửi mật khẩu {{PLURAL:$1|$1 giờ|$1 giờ}} đồng hồ một lần.',
+'throttled-mailpassword' => 'Mật khẩu đã được gửi đến cho bạn trong vòng {{PLURAL:$1|$1 giờ|$1 giờ}} đồng hồ trở lại. Để tránh lạm dụng, chỉ có thể gửi mật khẩu $1 giờ đồng hồ một lần.',
 'mailerror' => 'Lỗi gửi thư : $1',
 'acct_creation_throttle_hit' => 'Ai đó cùng [[địa chỉ IP]] với bạn đã mở {{PLURAL:$1|một tài khoản|$1 tài khoản}} ở đây trong vòng 24 giờ. Vì quy định hạn chế số tài khoản mở trên một địa chỉ IP nên bạn hiện không thể mở thêm được nữa dùng địa chỉ IP này.',
 'emailauthenticated' => 'Địa chỉ thư điện tử của bạn được xác nhận vào lúc $3 $2.',
@@ -984,9 +984,9 @@ Nó chưa được lưu!'''",
 Các thay đổi của bạn vẫn chưa được lưu!",
 'continue-editing' => 'Đi đến hộp sửa đổi',
 'previewconflict' => 'Phần xem thử này là kết quả của văn bản trong vùng soạn thảo phía trên và nó sẽ xuất hiện như vậy nếu bạn chọn lưu trang.',
-'session_fail_preview' => "'''Những sửa đổi của bạn chưa được lưu giữ do mất dữ liệu về phiên làm việc.
+'session_fail_preview' => "'''Rất tiếc, những sửa đổi của bạn chưa được lưu giữ do mất dữ liệu về phiên làm việc.'''
 Xin hãy thử lần nữa.
-Nếu vẫn không thành công, hãy thử [[Special:UserLogout|đăng xuất]] rồi đăng nhập lại.'''",
+Nếu vẫn không thành công, hãy thử [[Special:UserLogout|đăng xuất]] rồi đăng nhập lại.",
 'session_fail_preview_html' => "'''Những sửa đổi của bạn chưa được lưu giữ do mất dữ liệu về phiên làm việc.'''
 
 ''Do {{SITENAME}} cho phép dùng mã HTML, trang xem thử được ẩn đi để đề phòng bị tấn công bằng JavaScript.''
@@ -3246,8 +3246,6 @@ Các liên kết sau đó trên cùng một dòng được xem là các ngoại 
 
 /*
 Short names for language variants used for language conversion links.
-To disable showing a particular link, set it to 'disable', e.g.
-'variantname-zh-sg' => 'disable',
 Variants for Chinese language
 */
 'variantname-zh-hans' => 'Giản thể',
@@ -3795,7 +3793,7 @@ Xin hãy xác nhận bạn thực sự muốn tạo lại trang này.",
 'recreate' => 'Tạo ra lại',
 
 # action=purge
-'confirm_purge_button' => 'Làm mới',
+'confirm_purge_button' => 'Làm tươi',
 'confirm-purge-top' => 'Làm sạch vùng nhớ đệm của trang này?',
 'confirm-purge-bottom' => 'Làm mới một trang sẽ giúp xóa bộ đệm và buộc hiển thị phiên bản gần nhất.',
 
@@ -4074,17 +4072,17 @@ Các hình ảnh được hiển thị ở kích thước tối đa, còn các l
 'sqlite-no-fts' => '$1 không có hỗ trợ tìm kiếm toàn văn',
 
 # New logging system
-'logentry-delete-delete' => '$1 đã xóa trang “$3”',
-'logentry-delete-restore' => '$1 đã phục hồi trang “$3”',
-'logentry-delete-event' => '$1 đã thay đổi mức hiển thị của {{PLURAL:$5|một mục nhật trình|$5 mục nhật trình}} về $3: $4',
-'logentry-delete-revision' => '$1 đã thay đổi mức hiển thị của {{PLURAL:$5|một phiên bản|$5 phiên bản}} trang $3: $4',
-'logentry-delete-event-legacy' => '$1 đã thay đổi mức hiển thị của các mục nhật trình về $3',
-'logentry-delete-revision-legacy' => '$1 đã thay đổi mức hiển thị của các phiên bản trang $3',
-'logentry-suppress-delete' => '$1 đã ẩn trang $3',
-'logentry-suppress-event' => '$1 đã thay đổi mức hiển thị của {{PLURAL:$5|một mục nhật trình|$5 mục nhật trình}} về $3 một cách kín đáo: $4',
-'logentry-suppress-revision' => '$1 đã thay đổi mức hiển thị của {{PLURAL:$5|một phiên bản|$5 phiên bản}} trang $3 một cách kín đáo: $4',
-'logentry-suppress-event-legacy' => '$1 đã thay đổi mức hiển thị các mục nhật trình về $3 một cách kín đáo',
-'logentry-suppress-revision-legacy' => '$1 đã thay đổi mức hiển thị của các phiên bản trang $3 một cách kín đáo',
+'logentry-delete-delete' => '$1 {{GENDER:$2}}đã xóa trang “$3”',
+'logentry-delete-restore' => '$1 {{GENDER:$2}}đã phục hồi trang “$3”',
+'logentry-delete-event' => '$1 {{GENDER:$2}}đã thay đổi mức hiển thị của {{PLURAL:$5|một mục nhật trình|$5 mục nhật trình}} về $3: $4',
+'logentry-delete-revision' => '$1 {{GENDER:$2}}đã thay đổi mức hiển thị của {{PLURAL:$5|một phiên bản|$5 phiên bản}} trang $3: $4',
+'logentry-delete-event-legacy' => '$1 {{GENDER:$2}}đã thay đổi mức hiển thị của các mục nhật trình về $3',
+'logentry-delete-revision-legacy' => '$1 {{GENDER:$2}}đã thay đổi mức hiển thị của các phiên bản trang $3',
+'logentry-suppress-delete' => '$1 {{GENDER:$2}}đã ẩn trang $3',
+'logentry-suppress-event' => '$1 {{GENDER:$2}}đã thay đổi mức hiển thị của {{PLURAL:$5|một mục nhật trình|$5 mục nhật trình}} về $3 một cách kín đáo: $4',
+'logentry-suppress-revision' => '$1 {{GENDER:$2}}đã thay đổi mức hiển thị của {{PLURAL:$5|một phiên bản|$5 phiên bản}} trang $3 một cách kín đáo: $4',
+'logentry-suppress-event-legacy' => '$1 {{GENDER:$2}}đã thay đổi mức hiển thị các mục nhật trình về $3 một cách kín đáo',
+'logentry-suppress-revision-legacy' => '$1 {{GENDER:$2}}đã thay đổi mức hiển thị của các phiên bản trang $3 một cách kín đáo',
 'revdelete-content-hid' => 'đã ẩn nội dung',
 'revdelete-summary-hid' => 'đã ẩn tóm lược sửa đổi',
 'revdelete-uname-hid' => 'đã ẩn tên người dùng',
@@ -4093,20 +4091,20 @@ Các hình ảnh được hiển thị ở kích thước tối đa, còn các l
 'revdelete-uname-unhid' => 'đã hiện tên người dùng',
 'revdelete-restricted' => 'đã áp dụng hạn chế cho bảo quản viên',
 'revdelete-unrestricted' => 'đã gỡ bỏ hạn chế cho bảo quản viên',
-'logentry-move-move' => '$1 đã đổi $3 thành $4',
-'logentry-move-move-noredirect' => '$1 đã đổi $3 thành $4 (đã tắt đổi hướng)',
-'logentry-move-move_redir' => '$1 đã đổi $3 thành $4 qua đổi hướng',
-'logentry-move-move_redir-noredirect' => '$1 đã đổi $3 thành $4 qua đổi hướng (đã tắt đổi hướng)',
-'logentry-patrol-patrol' => '$1 đã đánh dấu tuần tra phiên bản $4 của trang $3',
-'logentry-patrol-patrol-auto' => '$1 đã tự động đánh dấu tuần tra phiên bản $4 của trang $3',
-'logentry-newusers-newusers' => 'Đã mở tài khoản người dùng $1',
-'logentry-newusers-create' => 'Đã mở tài khoản người dùng $1',
-'logentry-newusers-create2' => '$1 đã mở tài khoản người dùng $3',
-'logentry-newusers-byemail' => '$1 đã mở tài khoản người dùng $3 và nhận mật khẩu qua thư điện tử',
-'logentry-newusers-autocreate' => 'Tài khoản $1 đã được mở tự động',
-'logentry-rights-rights' => '$1 đã đổi các nhóm liên kết của $3 từ $4 đến $5',
-'logentry-rights-rights-legacy' => '$1 đã đổi các nhóm liên kết của $3',
-'logentry-rights-autopromote' => '$1 đã được tự động phong cấp từ $4 đến $5',
+'logentry-move-move' => '$1 {{GENDER:$2}}đã đổi $3 thành $4',
+'logentry-move-move-noredirect' => '$1 {{GENDER:$2}}đã đổi $3 thành $4 (đã tắt đổi hướng)',
+'logentry-move-move_redir' => '$1 {{GENDER:$2}}đã đổi $3 thành $4 qua đổi hướng',
+'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2}}đã đổi $3 thành $4 qua đổi hướng (đã tắt đổi hướng)',
+'logentry-patrol-patrol' => '$1 {{GENDER:$2}}đã đánh dấu tuần tra phiên bản $4 của trang $3',
+'logentry-patrol-patrol-auto' => '$1 {{GENDER:$2}}đã tự động đánh dấu tuần tra phiên bản $4 của trang $3',
+'logentry-newusers-newusers' => '{{GENDER:$2}}Đã mở tài khoản người dùng $1',
+'logentry-newusers-create' => '{{GENDER:$2}}Đã mở tài khoản người dùng $1',
+'logentry-newusers-create2' => '$1 {{GENDER:$2}}đã mở tài khoản người dùng $3',
+'logentry-newusers-byemail' => '$1 {{GENDER:$2}}đã mở tài khoản người dùng $3 và nhận mật khẩu qua thư điện tử',
+'logentry-newusers-autocreate' => 'Tài khoản $1 {{GENDER:$2}}đã được mở tự động',
+'logentry-rights-rights' => '$1 {{GENDER:$2}}đã đổi các nhóm bao gồm $3 từ $4 đến $5',
+'logentry-rights-rights-legacy' => '{{GENDER:$2}}$1 đã đổi các nhóm bao gồm $3',
+'logentry-rights-autopromote' => '$1 {{GENDER:$2}}đã được tự động phong cấp từ $4 đến $5',
 'rightsnone' => '(không có)',
 
 # Feedback

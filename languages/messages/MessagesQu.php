@@ -535,7 +535,7 @@ $1",
 'newmessageslinkplural' => '{{PLURAL:$1|Musuq willaymi|Musuq willaykunam}}',
 'newmessagesdifflinkplural' => 'qayna {{PLURAL:$1|hukchasqapi|hukchasqakunapi}} wakin kaynin',
 'youhavenewmessagesmulti' => 'Musuq willaykunam qhawanayki kachkan $1-pi',
-'editsection' => 'allichay',
+'editsection' => "llamk'apuy",
 'editold' => "llamk'apuy",
 'viewsourceold' => 'pukyu qillqata qhaway',
 'editlink' => "llamk'apuy",
@@ -738,7 +738,7 @@ Huk runa kay willayta mañakurqaptinqa icha yaykuna rimaykita hukchayta manaña 
 Ama hina kaspa, chaskispaykiqa ruraqpa sutiykita nispa musuqmanta yaykuy.',
 'blocked-mailpassword' => "IP tiyayniykiqa hark'asqam, chayrayku manam saqillanchu yaykuna rimata musuqmanta chaskiyta, millay rurayta hark'anapaq.",
 'eauthentsent' => 'Takyachina e-chaskiqa qusqayki e-chaski imamaytaman kachamusqam. Manaraq huk e-chaskikuna kachamusqa kaptinqa, ñawpaqta e-chaskipi kamachisqakunata qatinaykim tiyan, chiqap e-chaski imamaytaykita takyachinaykipaq.',
-'throttled-mailpassword' => "Huk yaykuna rima yuyachinañam qayna {{PLURAL:$1|huk ura|$1 ura}} mit'api kachamusqam. {{PLURAL:$1|Huk ura|$1 ura}} mit'apiqa hukllam yaykuna rima yuyachina kachasqa kachun millay rurayta hark'anapaq.",
+'throttled-mailpassword' => "Huk yaykuna rima kutichinapaq yuyachina qayna {{PLURAL:$1|huk ura|$1 ura}} mit'api kachamusqañam. {{PLURAL:$1|Huk ura|$1 ura}} mit'apiqa hukllam yaykuna rima yuyachina kachasqa kachun millay rurayta hark'anapaq.",
 'mailerror' => 'E-chaskita kachaspa pantasqa: $1',
 'acct_creation_throttle_hit' => "Qampa IP huchhaykiyuq kachkaq ruraqkunaqa kay wikita watukuspa ñaqha 24 urapi {{PLURAL:$1|rakiqunaykim|$1 rakiqunaykim}} kamarirqanña. Manam atinkichikchu astawan kichayta huklla p'unchawpi chay IP huchhallayuq kaspa.",
 'emailauthenticated' => "E-chaski imamaytaykiqa $2 p'unchawpi, $3 pachapi chiqapchasqañam.",
@@ -785,7 +785,7 @@ Yaykuna rimaykitaqa aypalla hukcharqunkiñachá icha huk mit'alla yaykuna rimata
 
 # Special:PasswordReset
 'passwordreset' => 'Yaykuna rimata kutichiy',
-'passwordreset-text' => "Kay hunt'ana p'anqata hunt'ay, rakiqunaykipaq willakunayuq e-chaskita chaskinaykipaq.",
+'passwordreset-text' => "Kay hunt'ana p'anqata hunt'ay, yaykuna rimaykita kutichinaykipaq.",
 'passwordreset-legend' => 'Yaykuna rimata kutichiy',
 'passwordreset-disabled' => 'Kay wikipiqa yaykuna rimata manam kutichiyta atinkichu.',
 'passwordreset-pretext' => '{{PLURAL:$1||Qatiqpi kaq willa rakikunamanta huktam yaykuchiy}}',
@@ -796,7 +796,7 @@ Yaykuna rimaykitaqa aypalla hukcharqunkiñachá icha huk mit'alla yaykuna rimata
 'passwordreset-email' => 'E-chaski imamayta:',
 'passwordreset-emailtitle' => '{{SITENAME}}-paq rakiqunamanta willakuna',
 'passwordreset-emailtext-ip' => "Pipas (qamchiki, $1 IP huchhayuq tiyaymanta) {{SITENAME}}-paq ($4)
-rakiqunaykipaq willakunayuq yuyachinatam mañakurqan. Kay qatiq ruraqpa {{PLURAL:$3|rakiqunanmi|rakiqunankunam}}
+rakiqunaykipaq yaykuna rimata kutichinatam mañakurqan. Kay qatiq ruraqpa {{PLURAL:$3|rakiqunanmi|rakiqunankunam}}
 kay e-chaski imamaytayuq kachkan:
 
 $2
@@ -806,7 +806,7 @@ Yaykuspayki musuq yaykuna rimaykitam akllankiman. Pi wakiykipas kayta mañakurqa
 icha qam ñawpaq yaykuna rimaykita yuyaspayki manaña wakinchayta munaspaykiqa,
 kay willayta mana qhawaspa mana imatapas ruraspa ñawpaq yaykuna rimaykiwanmi llamk'ayta atinki.",
 'passwordreset-emailtext-user' => "{{SITENAME}}-pi kaq $1 sutiyuq ruraqqa {{SITENAME}}-paq ($4)
-rakiqunaykipaq willakunayuq yuyachinatam mañakurqan. Kay qatiq ruraqpa {{PLURAL:$3|rakiqunanmi|rakiqunankunam}}
+rakiqunaykipaq yaykuna rimata kutichinatam mañakurqan. Kay qatiq ruraqpa {{PLURAL:$3|rakiqunanmi|rakiqunankunam}}
 kay e-chaski imamaytayuq kachkan:
 
 $2
@@ -817,8 +817,8 @@ icha qam ñawpaq yaykuna rimaykita yuyaspayki manaña wakinchayta munaspaykiqa,
 kay willayta mana qhawaspa mana imatapas ruraspa ñawpaq yaykuna rimaykiwanmi llamk'ayta atinki.",
 'passwordreset-emailelement' => "Ruraqpa sutin: $1
 Mit'alla yaykuna rima: $2",
-'passwordreset-emailsent' => 'Yuyachina e-chaskiqa kachasqañam.',
-'passwordreset-emailsent-capture' => 'Yuyachina e-chaskiqa kachasqañam, kay qatiqpi rikunki.',
+'passwordreset-emailsent' => 'Yaykuna rimata kutichina e-chaskiqa kachasqañam.',
+'passwordreset-emailsent-capture' => 'Yaykuna rimata kutichina e-chaskiqa kachasqañam, kay qatiqpi rikunki.',
 'passwordreset-emailerror-capture' => 'Yuyachina e-chaskiqa rurasqa karqan, imatachus kay qatiqpi rikunki, ichataq kachasqa kaptin pantasqam tukurqan: $1',
 
 # Special:ChangeEmail
@@ -3081,7 +3081,7 @@ Payta rurachiyqa antañiqiqniykita llikaykitapas waqllinqachá.",
 'file-info-gif-looped' => 'muyupayachisqa',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|inchu|inchukuna}}',
 'file-info-png-looped' => 'muyupayachisqa',
-'file-info-png-repeat' => '$1 {{PLURAL:$1|kuti|kuti}} pukllasqa',
+'file-info-png-repeat' => '$1 {{PLURAL:$1|kuti}} pukllasqa',
 'file-info-png-frames' => '$1 {{PLURAL:$1|inchu|inchukuna}}',
 'file-no-thumb-animation' => "'''Paqtataq: Saywachasqa allwiyaraykuqa, kay willañiqimanta rikch'achakuna manam kuyuchisqa kanqachu.'''",
 'file-no-thumb-animation-gif' => "'''Paqtataq: Saywachasqa allwiyaraykuqa, kay rikch'a hina k'awchi huyakuyuq GIF rikch'akunamanta rikch'achakuna manam kuyuchisqa kanqachu.'''",
@@ -3813,17 +3813,17 @@ Rikchakunatataq hunt'a ch'irkukupim rikunki. Huk willañiqi llayakunaqa tantapus
 'sqlite-no-fts' => "$1 mana hunt'a qillqa maskana yanapawan",
 
 # New logging system
-'logentry-delete-delete' => "$1 sutiyuq ruraqqa $3 nisqa p'anqatam qullun",
-'logentry-delete-restore' => "$1 sutiyuq ruraqqa $3 nisqa p'anqatam qullusqamanta paqarichin",
-'logentry-delete-event' => "$1 sutiyuq ruraqqa {{PLURAL:$5|huk hallch'ay|$5 hallch'ay}} ruraypa rikunalla kayninta wakinchan $3 p'anqapi: $4",
-'logentry-delete-revision' => "$1 sutiyuq ruraqqa {{PLURAL:$5|huk musuqchasqap|$5 musuqchasqap}} rikunalla kayninta wakinchan $3 p'anqapi: $4",
-'logentry-delete-event-legacy' => "$1 sutiyuq ruraqqa hallch'ay ruraykunap rikunalla kayninta wakinchan $3 p'anqapi",
-'logentry-delete-revision-legacy' => "$1 sutiyuq ruraqqa musuqchasqakunap rikunalla kayninta wakinchan $3 p'anqapi",
-'logentry-suppress-delete' => "$1 sutiyuq ruraqqa $3 nisqa p'anqatam ñit'ipan",
-'logentry-suppress-event' => "$1 sutiyuq ruraqqa {{PLURAL:$5|huk hallch'ay|$5 hallch'ay}} ruraypa rikunalla kayninta pakalla wakinchan $3 p'anqapi: $4",
-'logentry-suppress-revision' => "$1 sutiyuq ruraqqa {{PLURAL:$5|huk musuqchasqap|$5 musuqchasqap}} rikunalla kayninta pakalla wakinchan $3 p'anqapi: $4",
-'logentry-suppress-event-legacy' => "$1 sutiyuq ruraqqa hallch'ay ruraykunap rikunalla kayninta pakalla wakinchan $3 p'anqapi",
-'logentry-suppress-revision-legacy' => "$1 sutiyuq ruraqqa musuqchasqakunap rikunalla kayninta pakalla wakinchan $3 p'anqapi",
+'logentry-delete-delete' => "{{GENDER:$2|}}$1 sutiyuq ruraqqa $3 nisqa p'anqatam qullun",
+'logentry-delete-restore' => "{{GENDER:$2|}}$1 sutiyuq ruraqqa $3 nisqa p'anqatam qullusqamanta paqarichin",
+'logentry-delete-event' => "{{GENDER:$2|}}$1 sutiyuq ruraqqa {{PLURAL:$5|huk hallch'ay|$5 hallch'ay}} ruraypa rikunalla kayninta wakinchan $3 p'anqapi: $4",
+'logentry-delete-revision' => "{{GENDER:$2|}}$1 sutiyuq ruraqqa {{PLURAL:$5|huk musuqchasqap|$5 musuqchasqap}} rikunalla kayninta wakinchan $3 p'anqapi: $4",
+'logentry-delete-event-legacy' => "{{GENDER:$2|}}$1 sutiyuq ruraqqa hallch'ay ruraykunap rikunalla kayninta wakinchan $3 p'anqapi",
+'logentry-delete-revision-legacy' => "{{GENDER:$2|}}$1 sutiyuq ruraqqa musuqchasqakunap rikunalla kayninta wakinchan $3 p'anqapi",
+'logentry-suppress-delete' => "{{GENDER:$2|}}$1 sutiyuq ruraqqa $3 nisqa p'anqatam ñit'ipan",
+'logentry-suppress-event' => "{{GENDER:$2|}}$1 sutiyuq ruraqqa {{PLURAL:$5|huk hallch'ay|$5 hallch'ay}} ruraypa rikunalla kayninta pakalla wakinchan $3 p'anqapi: $4",
+'logentry-suppress-revision' => "{{GENDER:$2|}}$1 sutiyuq ruraqqa {{PLURAL:$5|huk musuqchasqap|$5 musuqchasqap}} rikunalla kayninta pakalla wakinchan $3 p'anqapi: $4",
+'logentry-suppress-event-legacy' => "{{GENDER:$2|}}$1 sutiyuq ruraqqa hallch'ay ruraykunap rikunalla kayninta pakalla wakinchan $3 p'anqapi",
+'logentry-suppress-revision-legacy' => "{{GENDER:$2|}}$1 sutiyuq ruraqqa musuqchasqakunap rikunalla kayninta pakalla wakinchan $3 p'anqapi",
 'revdelete-content-hid' => 'samiq pakasqa',
 'revdelete-summary-hid' => "llamk'apuypa pisichaynin pakasqa",
 'revdelete-uname-hid' => 'ruraqpa sutin pakasqa',
@@ -3832,17 +3832,20 @@ Rikchakunatataq hunt'a ch'irkukupim rikunki. Huk willañiqi llayakunaqa tantapus
 'revdelete-uname-unhid' => 'ruraqpa sutin rikuchisqa',
 'revdelete-restricted' => "kamachiqkunaman llamk'achisqa saywachanakuna",
 'revdelete-unrestricted' => 'kamachiqkunamanta qichusqa saywachanakuna',
-'logentry-move-move' => "$1 sutiyuq ruraqqa p'anqatam astan $3-manta $4-man",
-'logentry-move-move-noredirect' => "$1 sutiyuq ruraqqa p'anqatam astan $3-manta $4-man mana pusapunata saqispa",
-'logentry-move-move_redir' => "$1 sutiyuq ruraqqa p'anqatam astan $3-manta $4-man pusapunata huknachaspa",
-'logentry-move-move_redir-noredirect' => "$1 sutiyuq ruraqqa p'anqatam astan $3-manta $4-man pusapunata huknachaspa mana pusapunata saqispa",
-'logentry-patrol-patrol' => "$1 sutiyuq ruraqqa $3 nisqa p'anqamanta $4 musuqchasqatam patrullasqa nispa sananchan",
-'logentry-patrol-patrol-auto' => "$1 sutiyuq ruraqqa $3 nisqa p'anqamanta $4 musuqchasqatam kikinmanta patrullasqa nispa sananchan",
-'logentry-newusers-newusers' => '$1 sutiyuq rakiquna kamarisqañam',
-'logentry-newusers-create' => '$1 sutiyuq rakiquna kamarisqañam',
-'logentry-newusers-create2' => '$1 sutiyuq ruraqqa $3 sutiyuq rakiqunatam kamarirqanñam',
-'logentry-newusers-byemail' => '$3 sutiyuq rakiqunataqa $1 kamarirqañam, yaykuna rimataq kachasqañam.',
-'logentry-newusers-autocreate' => '$1 sutiyuq rakiqunaqa kikinmanta kamarisqam',
+'logentry-move-move' => "{{GENDER:$2|}}$1 sutiyuq ruraqqa p'anqatam astan $3-manta $4-man",
+'logentry-move-move-noredirect' => "{{GENDER:$2|}}$1 sutiyuq ruraqqa p'anqatam astan $3-manta $4-man mana pusapunata saqispa",
+'logentry-move-move_redir' => "{{GENDER:$2|}}$1 sutiyuq ruraqqa p'anqatam astan $3-manta $4-man pusapunata huknachaspa",
+'logentry-move-move_redir-noredirect' => "{{GENDER:$2|}}$1 sutiyuq ruraqqa p'anqatam astan $3-manta $4-man pusapunata huknachaspa mana pusapunata saqispa",
+'logentry-patrol-patrol' => "{{GENDER:$2|}}$1 sutiyuq ruraqqa $3 nisqa p'anqamanta $4 musuqchasqatam patrullasqa nispa sananchan",
+'logentry-patrol-patrol-auto' => "{{GENDER:$2|}}$1 sutiyuq ruraqqa $3 nisqa p'anqamanta $4 musuqchasqatam kikinmanta patrullasqa nispa sananchan",
+'logentry-newusers-newusers' => '{{GENDER:$2|}}$1 sutiyuq rakiquna kamarisqañam',
+'logentry-newusers-create' => '{{GENDER:$2|}}$1 sutiyuq rakiquna kamarisqañam',
+'logentry-newusers-create2' => '{{GENDER:$2|}}$1 sutiyuq ruraqqa $3 sutiyuq rakiqunatam kamarirqanñam',
+'logentry-newusers-byemail' => '$3 sutiyuq rakiqunataqa $1 {{GENDER:$2|kamarirqañam}}, yaykuna rimataq kachasqañam.',
+'logentry-newusers-autocreate' => '{{GENDER:$2|}}$1 sutiyuq rakiqunaqa kikinmanta kamarisqam',
+'logentry-rights-rights' => '{{GENDER:$2|}}$1 sutiyuq ruraqqa $3-pa huñuman kapuyninta hukchan $4-manta $5-man',
+'logentry-rights-rights-legacy' => '{{GENDER:$2|}}$1 sutiyuq ruraqqa $3-pa huñuman kapuyninta hukchan',
+'logentry-rights-autopromote' => '{{GENDER:$2|}}$1 sutiyuq ruraqqa kikinmantam ñawparikun $4-manta $5-man',
 'rightsnone' => '(-)',
 
 # Feedback

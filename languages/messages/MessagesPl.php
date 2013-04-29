@@ -12,6 +12,7 @@
  * @author BdgwksxD
  * @author Beau
  * @author BeginaFelicysym
+ * @author Chrumps
  * @author Cysioland
  * @author Derbeth
  * @author Equadus
@@ -52,6 +53,7 @@
  * @author Timpul
  * @author ToSter
  * @author Tsca
+ * @author Ty221
  * @author WTM
  * @author Woytecr
  * @author Wpedzich
@@ -322,7 +324,7 @@ $messages = array(
 'tog-previewonfirst' => 'Pokazuj podgląd strony podczas pierwszej edycji',
 'tog-nocache' => 'Wyłącz pamięć podręczną przeglądarki',
 'tog-enotifwatchlistpages' => 'Wyślij do mnie e‐mail, gdy strona lub plik z mojej listy obserwowanych zostaną zmodyfikowane',
-'tog-enotifusertalkpages' => 'Wyślij do mnie e‐mail kiedy moja strona dyskusji zostanie zmodyfikowana',
+'tog-enotifusertalkpages' => 'Wyślij do mnie e‐mail, gdy moja strona dyskusji zostanie zmodyfikowana',
 'tog-enotifminoredits' => 'Wyślij e‐mail także w przypadku drobnych zmian na stronach lub w plikach',
 'tog-enotifrevealaddr' => 'Nie ukrywaj mojego adresu e‐mail w powiadomieniach',
 'tog-shownumberswatching' => 'Pokaż liczbę użytkowników obserwujących stronę',
@@ -364,13 +366,13 @@ $messages = array(
 'thursday' => 'czwartek',
 'friday' => 'piątek',
 'saturday' => 'sobota',
-'sun' => 'Nie',
-'mon' => 'Pon',
-'tue' => 'Wto',
-'wed' => 'Śro',
-'thu' => 'Czw',
-'fri' => 'Pią',
-'sat' => 'Sob',
+'sun' => 'N',
+'mon' => 'Pn',
+'tue' => 'Wt',
+'wed' => 'Śr',
+'thu' => 'Cz',
+'fri' => 'Pt',
+'sat' => 'So',
 'january' => 'styczeń',
 'february' => 'luty',
 'march' => 'marzec',
@@ -476,7 +478,7 @@ $messages = array(
 'go' => 'Przejdź',
 'searcharticle' => 'Przejdź',
 'history' => 'Historia strony',
-'history_short' => 'Historia i autorzy',
+'history_short' => 'Historia',
 'updatedmarker' => 'zmienione od ostatniej wizyty',
 'printableversion' => 'Wersja do druku',
 'permalink' => 'Link do tej wersji',
@@ -516,7 +518,7 @@ $messages = array(
 'otherlanguages' => 'W innych językach',
 'redirectedfrom' => '(Przekierowano z $1)',
 'redirectpagesub' => 'Strona przekierowująca',
-'lastmodifiedat' => 'Tę stronę ostatnio zmodyfikowano $2, $1.',
+'lastmodifiedat' => 'Tę stronę ostatnio zmodyfikowano o $2, $1.',
 'viewcount' => 'Tę stronę obejrzano {{PLURAL:$1|tylko raz|$1 razy}}.',
 'protectedpage' => 'Strona zabezpieczona',
 'jumpto' => 'Skocz do:',
@@ -590,6 +592,7 @@ $1',
 'site-atom-feed' => 'Kanał Atom {{GRAMMAR:D.lp|$1}}',
 'page-rss-feed' => 'Kanał RSS „$1”',
 'page-atom-feed' => 'Kanał Atom „$1”',
+'feed-rss' => 'RSS',
 'red-link-title' => '$1 (strona nie istnieje)',
 'sort-descending' => 'Sortuj malejąco',
 'sort-ascending' => 'Sortuj rosnąco',
@@ -782,7 +785,7 @@ Po otrzymaniu go zaloguj się ponownie.',
 'eauthentsent' => 'Potwierdzenie zostało wysłane na adres e‐mail.
 Zanim jakiekolwiek inne wiadomości zostaną wysłane na ten adres, należy wykonać zawarte w mailu instrukcje. Potwierdzisz w ten sposób, że ten adres e‐mail należy do Ciebie.',
 'throttled-mailpassword' => 'Przypomnienie hasła zostało już wysłane w ciągu {{PLURAL:$1|ostatniej godziny|ostatnich $1 godzin}}.
-W celu powstrzymania nadużyć możliwość wysyłania przypomnień została ograniczona do jednego na {{PLURAL:$1|godzinę|$1 godziny|$1 godzin}}.',
+Aby zapobiec nadużyciom nadużyć możliwość wysyłania przypomnień została ograniczona do jednego na {{PLURAL:$1|godzinę|$1 godziny|$1 godzin}}.',
 'mailerror' => 'W trakcie wysyłania wiadomości e‐mail wystąpił błąd: $1',
 'acct_creation_throttle_hit' => 'Z adresu IP, z którego korzystasz {{PLURAL:$1|ktoś już utworzył dziś konto|utworzono dziś $1 konta|utworzono dziś $1 kont}}, co jest maksymalną dopuszczalną liczbą w tym czasie.
 W związku z tym, osoby korzystające z tego adresu IP w chwili obecnej nie mogą założyć kolejnego.',
@@ -835,7 +838,7 @@ Być może właśnie zmienił{{GENDER:|eś|aś|eś(‐aś)}} swoje hasło lub po
 
 # Special:PasswordReset
 'passwordreset' => 'Wyczyść hasło',
-'passwordreset-text' => 'Wypełnij formularz, aby otrzymać e‐mail z przypomnieniem danych Twojego konta.',
+'passwordreset-text' => 'Wypełnij formularz, aby zresetować swoje hasło.',
 'passwordreset-legend' => 'Zresetuj hasło',
 'passwordreset-disabled' => 'Na tej wiki wyłączono możliwość resetowania haseł.',
 'passwordreset-pretext' => '{{PLURAL:$1||Wprowadź jedną z danych poniżej}}',
@@ -845,13 +848,13 @@ Być może właśnie zmienił{{GENDER:|eś|aś|eś(‐aś)}} swoje hasło lub po
 'passwordreset-capture-help' => 'Jeśli zaznaczysz to pole, zobaczysz treść wiadomości e‐mail z tymczasowym hasłem, w tej samej formie w jakiej jest wysyłana do użytkownika.',
 'passwordreset-email' => 'Adres e‐mail',
 'passwordreset-emailtitle' => 'Dane konta w {{GRAMMAR:MS.lp|{{SITENAME}}}}',
-'passwordreset-emailtext-ip' => 'Ktoś (prawdopodobnie Ty, spod adresu IP $1) poprosił o przypomnienie szczegółów dotyczących Twojego konta w {{GRAMMAR:MS.lp{{SITENAME}}}} ($4). Z tym adresem e‐mailowym powiązane {{PLURAL:$3|jest konto użytkownika|są następujące konta użytkowników:}}
+'passwordreset-emailtext-ip' => 'Ktoś (prawdopodobnie Ty, spod adresu IP $1) poprosił o zresetowanie twojego hasła w {{GRAMMAR:MS.lp{{SITENAME}}}} ($4). Z tym adresem e‐mailowym powiązane {{PLURAL:$3|jest konto użytkownika|są następujące konta użytkowników:}}
 
 $2
 
 {{PLURAL:$3|Tymczasowego hasła|Tymczasowych haseł}} można użyć w ciągu {{PLURAL:$5|jednego dnia|$5 dni}}.
 Powinieneś zalogować się i zmienić hasło na nowe. Jeśli to ktoś inni poprosił o wysłanie przypomnienia lub jeśli pamiętasz aktualne hasło i nie chce go zmieniać wystarczy, że zignorujesz tę wiadomość i będziesz nadal korzystał ze swojego starego hasła.',
-'passwordreset-emailtext-user' => 'Użytkownik $1 poprosił o przypomnienie szczegółów dotyczących Twojego konta w {{GRAMMAR:MS.lp{{SITENAME}}}} ($4). Z tym adresem e‐mailowym powiązane {{PLURAL:$3|jest konto użytkownika|są następujące konta użytkowników:}}
+'passwordreset-emailtext-user' => 'Użytkownik $1 poprosił o zresetowanie twojego hasła w {{GRAMMAR:MS.lp{{SITENAME}}}} ($4). Z tym adresem e‐mailowym powiązane {{PLURAL:$3|jest konto użytkownika|są następujące konta użytkowników:}}
 
 $2
 
@@ -859,8 +862,8 @@ $2
 Powinieneś zalogować się i zmienić hasło na nowe. Jeśli to ktoś inni poprosił o wysłanie przypomnienia lub jeśli pamiętasz aktualne hasło i nie chce go zmieniać wystarczy, że zignorujesz tę wiadomość i będziesz nadal korzystał ze swojego starego hasła.',
 'passwordreset-emailelement' => 'Nazwa użytkownika – $1
 Tymczasowe hasło – $2',
-'passwordreset-emailsent' => 'Przypominający e‐mail został wysłany.',
-'passwordreset-emailsent-capture' => 'Poniżej znajdujący się e‐mail z przypomnieniem został wysłany',
+'passwordreset-emailsent' => 'E‐mail pozwalający na zresetowanie hasła został wysłany.',
+'passwordreset-emailsent-capture' => 'Wyświetlony poniżej e‐mail pozwalający na zresetowanie hasła został wysłany.',
 'passwordreset-emailerror-capture' => 'Poniżej wyświetlony e‐mail z przypomnieniem został wygenerowany, ale nie udało się wysłać go do użytkownika: $1',
 
 # Special:ChangeEmail
@@ -968,7 +971,7 @@ Jednak adres IP może być współdzielony przez wielu użytkowników.
 Jeśli jesteś anonimowym użytkownikiem i uważasz, że zamieszczone tu komentarze nie są skierowane do Ciebie, [[Special:UserLogin/signup|utwórz konto]] lub [[Special:UserLogin|zaloguj się]] – dzięki temu unikniesz w przyszłości podobnych nieporozumień.''",
 'noarticletext' => 'Brak strony o tym tytule.
 Możesz [[Special:Search/{{PAGENAME}}|poszukać „{{PAGENAME}}” na innych stronach]],
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} przeszukać log] lub [{{fullurl:{{FULLPAGENAME}}|action=edit}} utworzyć tę stronę]</span>.',
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} przeszukać rejestr] lub [{{fullurl:{{FULLPAGENAME}}|action=edit}} utworzyć tę stronę]</span>.',
 'noarticletext-nopermission' => 'Ta strona nie posiada jeszcze zawartości.
 Możesz [[Special:Search/{{PAGENAME}}|wyszukać ten tytuł]] w treści innych stron
 lub <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} przeszukać powiązane dzienniki]</span>, ale nie masz uprawnień do utworzenia tej strony',
@@ -1344,7 +1347,7 @@ Zazwyczaj jest to spowodowane przestarzałym linkiem do usuniętej strony. Powó
 'search-interwiki-default' => 'Wyniki dla $1:',
 'search-interwiki-more' => '(więcej)',
 'search-relatedarticle' => 'Pokrewne',
-'mwsuggest-disable' => 'Wyłącz dynamiczne podpowiedzi',
+'mwsuggest-disable' => 'Wyłącz podpowiedzi wyszukiwania',
 'searcheverything-enable' => 'Szukaj we wszystkich przestrzeniach nazw',
 'searchrelated' => 'pokrewne',
 'searchall' => 'wszystkie',
@@ -1563,7 +1566,7 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'right-autoconfirmed' => 'Edycja stron częściowo zabezpieczonych',
 'right-bot' => 'Oznaczanie edycji jako wykonanych automatycznie',
 'right-nominornewtalk' => 'Drobne zmiany na stronach dyskusji użytkowników nie włączają powiadomienia o nowej wiadomości',
-'right-apihighlimits' => 'Zwiększony limit w zapytaniach, wykonywanych poprzez interfejs API',
+'right-apihighlimits' => 'Zwiększony limit w zapytaniach wykonywanych poprzez interfejs API',
 'right-writeapi' => 'Zapis poprzez interfejs API',
 'right-delete' => 'Usuwanie stron',
 'right-bigdelete' => 'Usuwanie stron z długą historią edycji',
@@ -2093,6 +2096,12 @@ Sprawdź inne linki do szablonów, zanim usuniesz tę stronę.',
 a powinny odwoływać się bezpośrednio do stron treści.<br />
 Strona uznawana jest za ujednoznaczniającą, jeśli zawiera szablon linkowany przez stronę [[MediaWiki:Disambiguationspage]]",
 
+'pageswithprop' => 'Strony z właściwościami',
+'pageswithprop-legend' => 'Strony z właściwościami',
+'pageswithprop-text' => 'Ta strona zawiera listę stron korzystających z właściwości.',
+'pageswithprop-prop' => 'Nazwa właściwości:',
+'pageswithprop-submit' => 'Pokaż',
+
 'doubleredirects' => 'Podwójne przekierowania',
 'doubleredirectstext' => 'Lista zawiera strony z przekierowaniami do stron, które przekierowują do innej strony.
 Każdy wiersz zawiera linki do pierwszego i drugiego przekierowania oraz link, do którego prowadzi drugie przekierowanie. Ostatni link prowadzi zazwyczaj do strony, do której powinna w rzeczywistości przekierowywać pierwsza strona.
@@ -2446,8 +2455,8 @@ Autorem ostatniej zmiany jest teraz [[User:$3|$3]] ([[User talk:$3|dyskusja]]{{i
 'editcomment' => "Edycję opisał „''$1''”.",
 'revertpage' => 'Wycofano edycje użytkownika [[Special:Contributions/$2|$2]] ([[User talk:$2|dyskusja]]). Autor przywróconej wersji to [[User:$1|$1]].',
 'revertpage-nouser' => 'Wycofano edycje (nazwa użytkownika usunięta). Autor przywróconej wersji to [[User:$1|$1]].',
-'rollback-success' => 'Wycofano edycje użytkownika $1.
-Przywrócono ostatnią wersję autorstwa $2.',
+'rollback-success' => 'Wycofano edycje użytkownika $1;
+przywrócono ostatnią wersję autorstwa $2.',
 
 # Edit tokens
 'sessionfailure-title' => 'Błąd sesji',
@@ -2459,8 +2468,8 @@ Naciśnij „wstecz” w przeglądarce, przeładuj stronę, po czym ponownie wyd
 'protectlogpage' => 'Zabezpieczone',
 'protectlogtext' => 'Poniżej znajduje się lista zmian w zabezpieczeniu pojedynczych stron.
 Wszystkie aktywne zabezpieczenia odnajdziesz na liście [[Special:ProtectedPages|zabezpieczonych stron]].',
-'protectedarticle' => '{{GENDER:$2|zabezpieczył|zabezpieczyła}} [[$1]]',
-'modifiedarticleprotection' => '{{GENDER:$2|zmienił|zmieniła}} poziom zabezpieczenia [[$1]]',
+'protectedarticle' => 'zabezpieczono "[[$1]]"',
+'modifiedarticleprotection' => 'zmieniono stopień zabezpieczenia "[[$1]]"',
 'unprotectedarticle' => 'odbezpieczył [[$1]]',
 'movedarticleprotection' => 'przeniósł ustawienia zabezpieczeń z [[$2]] do [[$1]]',
 'protect-title' => 'Zmiana poziomu zabezpieczenia „$1”',
@@ -2476,15 +2485,15 @@ Wszystkie aktywne zabezpieczenia odnajdziesz na liście [[Special:ProtectedPages
 'protect_expiry_invalid' => 'Podany czas automatycznego odbezpieczenia jest nieprawidłowy.',
 'protect_expiry_old' => 'Podany czas automatycznego odblokowania znajduje się w przeszłości.',
 'protect-unchain-permissions' => 'Odblokuj dodatkowe opcje zabezpieczania',
-'protect-text' => "Możesz tu sprawdzić i zmienić poziom zabezpieczenia strony '''$1'''.",
+'protect-text' => "Możesz tu sprawdzić i zmienić stopień zabezpieczenia strony '''$1'''.",
 'protect-locked-blocked' => "Nie możesz zmienić poziomów zabezpieczenia, ponieważ jesteś zablokowany.
 Obecne ustawienia dla strony '''$1''' to:",
 'protect-locked-dblock' => "Nie można zmienić poziomu zabezpieczenia z powodu działającej blokady bazy danych. Obecne ustawienia dla strony '''$1''' to:",
 'protect-locked-access' => "Nie masz uprawnień do zmiany poziomu zabezpieczenia strony. Obecne ustawienia dla strony '''$1''' to:",
-'protect-cascadeon' => 'Ta strona jest zabezpieczona przed edycją, ponieważ jest używana przez {{PLURAL:$1|następującą stronę, która została zabezpieczona|następujące strony, które zostały zabezpieczone}} z włączoną opcją dziedziczenia. Możesz zmienić poziom zabezpieczenia strony, ale nie wpłynie to na dziedziczenie zabezpieczenia.',
+'protect-cascadeon' => 'Ta strona jest zabezpieczona przed edycją, ponieważ jest używana przez {{PLURAL:$1|następującą stronę, która została zabezpieczona|następujące strony, które zostały zabezpieczone}} z włączoną opcją dziedziczenia. Możesz zmienić stopień zabezpieczenia strony, ale nie wpłynie to na dziedziczenie zabezpieczenia.',
 'protect-default' => 'Dostęp mają wszyscy użytkownicy',
 'protect-fallback' => 'Wymaga uprawnień „$1”',
-'protect-level-autoconfirmed' => 'Blokuj nowych i niezarejestrowanych użytkowników',
+'protect-level-autoconfirmed' => 'Dozwolone dla wszystkich poza nowymi i niezalogowanymi użytkownikami',
 'protect-level-sysop' => 'Dozwolone tylko dla administratorów',
 'protect-summary-cascade' => 'dziedziczenie',
 'protect-expiring' => 'wygasa $1 (UTC)',
@@ -2505,7 +2514,7 @@ Obecne ustawienia dla strony '''$1''' to:",
 'protect-edit-reasonlist' => 'Edytuj listę przyczyn zabezpieczenia',
 'protect-expiry-options' => '1 godzina:1 hour,1 dzień:1 day,1 tydzień:1 week,2 tygodnie:2 weeks,1 miesiąc:1 month,3 miesiące:3 months,6 miesięcy:6 months,1 rok:1 year,na zawsze:infinite',
 'restriction-type' => 'Ograniczenia',
-'restriction-level' => 'Poziom',
+'restriction-level' => 'Stopień',
 'minimum-size' => 'Minimalny rozmiar',
 'maximum-size' => 'Maksymalny rozmiar',
 'pagesize' => '(bajtów)',
@@ -2519,7 +2528,7 @@ Obecne ustawienia dla strony '''$1''' to:",
 # Restriction levels
 'restriction-level-sysop' => 'całkowite zabezpieczenie',
 'restriction-level-autoconfirmed' => 'częściowe zabezpieczenie',
-'restriction-level-all' => 'dowolny poziom',
+'restriction-level-all' => 'dowolny stopień',
 
 # Undelete
 'undelete' => 'Odtwórz usuniętą stronę',
@@ -2725,7 +2734,7 @@ Przyczyna blokady $1 to: „$2”',
 'blocklogtext' => 'Poniżej znajduje się lista blokad założonych i zdjętych z poszczególnych adresów IP.
 Na liście nie znajdą się adresy IP, które zablokowano w sposób automatyczny.
 By przejrzeć listę obecnie aktywnych blokad, przejdź na stronę [[Special:BlockList|zablokowanych adresów i użytkowników]].',
-'unblocklogentry' => '{{GENDER:$2|zdjął|zdjęła}} blokadę $1',
+'unblocklogentry' => 'zdjęto blokadę z $1',
 'block-log-flags-anononly' => 'tylko anonimowi',
 'block-log-flags-nocreate' => 'blokada tworzenia konta',
 'block-log-flags-noautoblock' => 'automatyczne blokowanie wyłączone',
@@ -2981,7 +2990,7 @@ Brak katalogu dla plików tymczasowych.',
 # Import log
 'importlogpage' => 'Rejestr importu',
 'importlogpagetext' => 'Rejestr przeprowadzonych importów stron z innych serwisów wiki.',
-'import-logentry-upload' => '{{GENDER:$2|zaimportował|zaimportowała}} [[$1]] przez przesłanie pliku',
+'import-logentry-upload' => 'Zaimportowano [[$1]] przez pobieranie plików',
 'import-logentry-upload-detail' => '$1 {{PLURAL:$1|wersja|wersje|wersji}}',
 'import-logentry-interwiki' => '{{GENDER:$2|zaimportował|zaimportowała}} $1 używając transwiki',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|wersja|wersje|wersji}} z $2',
@@ -3007,7 +3016,7 @@ Brak katalogu dla plików tymczasowych.',
 'tooltip-pt-login' => 'Zachęcamy do zalogowania się, choć nie jest to obowiązkowe.',
 'tooltip-pt-anonlogin' => 'Zachęcamy do zalogowania się, choć nie jest to obowiązkowe',
 'tooltip-pt-logout' => 'Wyloguj',
-'tooltip-ca-talk' => 'Dyskusja o zawartości tej strony.',
+'tooltip-ca-talk' => 'Dyskusja o zawartości tej strony',
 'tooltip-ca-edit' => 'Możesz edytować tę stronę. Przed zapisaniem zmian użyj przycisku podgląd.',
 'tooltip-ca-addsection' => 'Dodaj nowy wątek.',
 'tooltip-ca-viewsource' => 'Ta strona jest zabezpieczona. Możesz zobaczyć tekst źródłowy.',
@@ -3082,6 +3091,8 @@ Pozwala na wpisanie powodu w opisie zmian.',
 'noscript.css' => '/* Umieszczony tu arkusz stylów CSS będzie wykorzystywany dla użytkowników z wyłączoną obsługą JavaScript */',
 'group-autoconfirmed.css' => '/* CSS tutaj umieszczony będzie dotyczyć tylko automatycznie zatwierdzonych użytkowników */',
 'group-bot.css' => '/* CSS tutaj umieszczony będzie obowiązywał tylko dla botów */',
+'group-sysop.css' => '/* Umieszczony tutaj kod CSS dotyczyć będzie tylko administratorów */',
+'group-bureaucrat.css' => '/* Umieszczony tutaj kod CSS dotyczyć będzie tylko biurokratów */',
 
 # Scripts
 'common.js' => '/* Umieszczony tutaj kod JavaScript zostanie załadowany przez każdego użytkownika, podczas każdego ładowania strony. */',
@@ -3125,7 +3136,7 @@ Najprawdopodobniej zostało to spowodowane przez link do zewnętrznej strony int
 'pageinfo-not-current' => 'Niestety, te informacje nie są dostępne dla starych wersji stron.',
 'pageinfo-header-basic' => 'Podstawowe informacje',
 'pageinfo-header-edits' => 'Historia edycji',
-'pageinfo-header-restrictions' => 'Zmień zabezpieczenie',
+'pageinfo-header-restrictions' => 'Zabezpieczenie strony',
 'pageinfo-header-properties' => 'Właściwości strony',
 'pageinfo-display-title' => 'Wyświetlany tytuł',
 'pageinfo-default-sort' => 'Domyślny klucz sortowania',
@@ -3814,7 +3825,7 @@ Czy na pewno chcesz ją ponownie utworzyć?",
 'autosumm-blank' => 'UWAGA! Usunięcie treści (strona pozostała pusta)!',
 'autosumm-replace' => 'UWAGA! Zastąpienie treści hasła bardzo krótkim tekstem: „$1”',
 'autoredircomment' => 'Przekierowanie do [[$1]]',
-'autosumm-new' => 'Utworzył nową stronę „$1”',
+'autosumm-new' => 'Utworzono nową stronę "$1"',
 
 # Size units
 'size-bytes' => '$1&nbsp;B',
@@ -4044,11 +4055,11 @@ Grafiki są pokazywane w pełnej rozdzielczości. Inne typy plików są otwieran
 'logentry-delete-revision' => '$1 {{GENDER:$2|zmienił|zmieniła}} widoczność {{PLURAL:$5|wersji|$5 wersji}} strony $3, wykonano następujące operacje: $4',
 'logentry-delete-event-legacy' => '$1 {{GENDER:$2|zmienił|zmieniła}} widoczność zdarzeń w rejestrze strony $3',
 'logentry-delete-revision-legacy' => '$1 {{GENDER:$2|zmienił|zmieniła}} widoczność wersji strony $3',
-'logentry-suppress-delete' => '$1 ukrywa stronę $3',
-'logentry-suppress-event' => '$1 potajemnie zmienia widoczność {{PLURAL:$5|zdarzenia|$5 zdarzeń}} w $3, wykonano następujące operacje: $4',
-'logentry-suppress-revision' => '$1 potajemnie zmienia widoczność {{PLURAL:$5|wersji|$5 wersji}} strony $3, wykonano następujące operacje: $4',
-'logentry-suppress-event-legacy' => '$1 potajemnie zmienia widoczność zdarzenia w rejestrze $3',
-'logentry-suppress-revision-legacy' => '$1 potajemnie zmienia widoczność wersji strony $3',
+'logentry-suppress-delete' => '$1 {{GENDER:$2|ukrył|ukryła}} stronę $3',
+'logentry-suppress-event' => '$1 potajemnie {{GENDER:$2|zmienił|zmieniła}} widoczność {{PLURAL:$5|zdarzenia|$5 zdarzeń}} w $3, wykonano następujące operacje: $4',
+'logentry-suppress-revision' => '$1 potajemnie {{GENDER:$2|zmienił|zmieniła}} widoczność {{PLURAL:$5|wersji|$5 wersji}} strony $3, wykonano następujące operacje: $4',
+'logentry-suppress-event-legacy' => '$1 potajemnie {{GENDER:$2|zmienił|zmieniła}} widoczność zdarzenia w rejestrze dla strony $3',
+'logentry-suppress-revision-legacy' => '$1 potajemnie {{GENDER:$2|zmienił|zmieniła}} widoczność wersji strony $3',
 'revdelete-content-hid' => 'treść została ukryta',
 'revdelete-summary-hid' => 'opis zmian został ukryty',
 'revdelete-uname-hid' => 'nazwa użytkownika została ukryta',
@@ -4063,19 +4074,19 @@ Grafiki są pokazywane w pełnej rozdzielczości. Inne typy plików są otwieran
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|przeniósł|przeniosła}} stronę $3 na $4 w miejsce przekierowania i bez pozostawienia przekierowania pod starym tytułem',
 'logentry-patrol-patrol' => '$1 {{GENDER:$2|oznaczył|oznaczyła}} wersję $4 strony $3 jako sprawdzoną',
 'logentry-patrol-patrol-auto' => '$1 automatycznie {{GENDER:$2|oznaczył|oznaczyła}} wersję $4 strony $3 jako sprawdzoną',
-'logentry-newusers-newusers' => 'Konto użytkownika $1 zostało utworzone',
-'logentry-newusers-create' => 'Konto użytkownika $1 zostało utworzone',
-'logentry-newusers-create2' => 'Konto użytkownika $3 zostało utworzone przez użytkownika $1',
+'logentry-newusers-newusers' => 'Konto {{GENDER:$2|użytkownika|użytkowniczki}} $1 zostało utworzone',
+'logentry-newusers-create' => 'Konto {{GENDER:$2|użytkownika|użytkowniczki}} $1 zostało utworzone',
+'logentry-newusers-create2' => '$1 {{GENDER:$2|utworzył|utworzyła}} konto użytkownika $3',
 'logentry-newusers-byemail' => 'Konto $3 zostało utworzone przez użytkownika $1, hasło wysłano e-mailem',
-'logentry-newusers-autocreate' => '$1 automatycznie tworzy konto użytkownika',
+'logentry-newusers-autocreate' => '$1 automatycznie {{GENDER:$2|utworzył|utworzyła|utworzył}} konto użytkownika',
 'logentry-rights-rights' => '$1 {{GENDER:$2|zmienił|zmieniła}} przynależność $3 do grup ($4 → $5)',
 'logentry-rights-rights-legacy' => '$1 {{GENDER:$2|zmienił|zmieniła}} przynależność $3 do grup',
 'logentry-rights-autopromote' => '$1 automatycznie {{GENDER:$2|zmienił|zmieniła}} przynależność ($4 → $5)',
 'rightsnone' => 'brak',
 
 # Feedback
-'feedback-bugornote' => 'Jeśli jesteś {{GENDER:|gotów|gotowa}} szczegółowo opisać problem techniczny proszę [$1 zgłoś błąd].
-W przeciwnym wypadku można użyć prostego formularza poniżej. Komentarz zostanie dodany do strony "[$3  $2]", wraz z nazwą użytkownika i nazwą przeglądarki.',
+'feedback-bugornote' => 'Jeśli jesteś {{GENDER:|gotów|gotowa}} szczegółowo opisać problem techniczny, proszę [$1 zgłoś błąd].
+W przeciwnym wypadku można użyć prostego formularza poniżej. Komentarz zostanie dodany do strony "[$3  $2]", wraz z nazwą użytkownika.',
 'feedback-subject' => 'Temat',
 'feedback-message' => 'Wiadomość:',
 'feedback-cancel' => 'Anuluj',

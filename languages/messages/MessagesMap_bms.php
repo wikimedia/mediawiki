@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Bawoor
  * @author Slamet Serayu (on map-bms.wikipedia.org)
  * @author StefanusRA
  * @author לערי ריינהארט
@@ -45,8 +46,8 @@ $messages = array(
 'tog-shownumberswatching' => 'Tidhokna jumlah pangawas',
 'tog-oldsig' => 'Tapak asma sekiye:',
 'tog-fancysig' => 'Tapak asma dianggep dadi teks wiki (ora nganggo pranala otomatis)',
-'tog-externaleditor' => 'Gunakna editor eksternal secara gawan (kanggo sing ahli thok, perlu pengaturan mligi nang komputere rika. [//www.mediawiki.org/wiki/Manual:External_editors Informasi selengkape.])',
-'tog-externaldiff' => 'Gunakna diff eksternal secara gawan (kanggo sing ahli thok, perlu pengaturan mligi nang komputere rika. [//www.mediawiki.org/wiki/Manual:External_editors Informasi selengkape.])',
+'tog-externaleditor' => 'Gunakna editor eksternal sekang gawan (kanggo sing ahli thok, merlokna setelan kusus neng komputeré rika. [//www.mediawiki.org/wiki/Manual:External_editors Informasi selengkapé.])',
+'tog-externaldiff' => 'Gunakna diff eksternal sekang gawan (kanggo sing ahli thok, merlokna setèlan kusus nang komputeré rika. [//www.mediawiki.org/wiki/Manual:External_editors Informasi selengkapé.])',
 'tog-showjumplinks' => 'Aktifna pranala pitulung "mlumpat maring"',
 'tog-uselivepreview' => 'Gunakna pratayang langsung (mbutuhna JavaScript) (egin jajalan)',
 'tog-forceeditsummary' => 'Emutna inyong anggere durung ngisi kotak ringkesan suntingan',
@@ -185,7 +186,7 @@ $messages = array(
 'errorpagetitle' => 'Kasalahan',
 'returnto' => 'Bali maring $1.',
 'tagline' => 'Sekang {{SITENAME}}',
-'help' => 'Rewang',
+'help' => 'Réwang',
 'search' => 'golet tulisan',
 'searchbutton' => 'Goleti',
 'go' => 'golet',
@@ -291,7 +292,7 @@ Deleng [[Special:Version|kaca versi]].',
 'viewsourcelink' => 'deleng sumbere',
 'editsectionhint' => 'Sunting bagian: $1',
 'toc' => 'Isi',
-'showtoc' => 'tidokna',
+'showtoc' => 'tidhokna',
 'hidetoc' => 'umpetna',
 'collapsible-collapse' => 'Umpetna',
 'collapsible-expand' => 'Tidokna',
@@ -588,12 +589,12 @@ Tembung sandhi sauntara: $2',
 'summary' => 'Ringkesan:',
 'subject' => 'Subyek/judhul:',
 'minoredit' => 'Kiye suntingan cilik',
-'watchthis' => 'Awasana kaca kiye',
+'watchthis' => 'Awasi kaca kiyé',
 'savearticle' => 'Simpen',
 'preview' => 'Pra tayang',
 'showpreview' => 'Pra tayang',
 'showlivepreview' => 'Pratayang langsung',
-'showdiff' => 'Deleng beda',
+'showdiff' => 'Ndeleng bedané',
 'anoneditwarning' => 'Rika ora kadaftar mlebu.
 Alamat IP-ne Rika bakal dicatet nang sajarah panyuntingane kaca kiye.',
 'anonpreviewwarning' => "''Rika durung mlebu log. Nyimpen kaca bakal nyatetna alamat IP-ne Rika nang riwayat suntingan kaca kiye.''",
@@ -1200,7 +1201,7 @@ Aja kuatir, alamat imele Rika ora ditidokna dong pangganggo sejen ngontak Rika.'
 'diff' => 'bédane',
 'hist' => 'versi',
 'hide' => 'Umpetna',
-'show' => 'Tidokna',
+'show' => 'Tidhokna',
 'minoreditletter' => 'c',
 'newpageletter' => 'A',
 'boteditletter' => 'b',
@@ -1471,12 +1472,12 @@ Rika teyeng mbatesi tampilan kanthi milih jinis log, jeneng panganggo (sensitif 
 'emailuserfooter' => 'Layang kiye dikirimna sekang $1 ming $2 nggunakna fungsi "Layangpanganggo" nang {{SITENAME}}.',
 
 # Watchlist
-'watchlist' => 'Daftar pangawasane inyong',
-'mywatchlist' => 'Daptar pangawasane inyong',
+'watchlist' => 'Daftar sawangané inyong',
+'mywatchlist' => 'Daftar sawangané inyong',
 'watchlistfor2' => 'Kanggo $1 $2',
 'watch' => 'Pantau',
 'unwatch' => 'Batalna pantauan',
-'watchlist-details' => 'Ana {{PLURAL:$1|$1 kaca|$1 kaca}} nang daftar pangawasane Rika, ningen ora ngitung kaca dhiskusi.',
+'watchlist-details' => 'Ana {{PLURAL:$1|$1 kaca|$1 kaca}} nang daftar pangawasané Rika, ningèn kaca dhiskusiné ora mélu diétung.',
 'wlshowlast' => 'Tidokna $1 jam $2 dina $3 pungkasan',
 'watchlist-options' => 'Opsi daftar pangawasan',
 
@@ -1792,6 +1793,9 @@ Sing liyane bakal diumpetna sacara ''default''.
 
 # Core parser functions
 'duplicate-defaultsort' => "'''Pènget:''' Kunci baku sing nggo ngurutna (''Default sort key'') yakuwe \"\$2\" wis nggantèkna kunci baku sing nggo ngurutna sedurungé \"\$1\".",
+
+# Special:FilePath
+'filepath-submit' => 'Golèti',
 
 # Special:SpecialPages
 'specialpages' => 'Kaca-kaca khusus',

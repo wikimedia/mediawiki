@@ -7,7 +7,9 @@
  * @ingroup Language
  * @file
  *
+ * @author Rachitrali
  * @author Rk_kaul (on ks.wikipedia.org)
+ * @author VibhasKS
  */
 
 $rtl = true;
@@ -53,14 +55,19 @@ $separatorTransformTable = array(
 $messages = array(
 # Dates
 'monday' => 'ژِنٛدٕروار',
+'january' => 'جنوری',
 'february' => 'فرؤری',
+'march' => 'مارچ',
 'april' => 'اپریٖل',
 'may_long' => 'مٔی',
 'june' => 'جوٗن',
+'july' => 'جولائی',
 'august' => 'اَگست',
 'september' => 'سیٚپٹَمبَر',
+'october' => 'اکتوبر',
 'november' => 'نَوَمبَر',
 'december' => 'ڈیٚسَمبَر',
+'jan' => 'جنوری',
 
 'about' => 'مُتعلِق',
 
@@ -81,6 +88,7 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite' => 'مُتعلِق {{SITENAME}}',
 'mainpage' => 'گَرٕ',
+'mainpage-description' => 'اہم صَفہٕ',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main' => 'صَفہٕ',

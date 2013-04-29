@@ -991,7 +991,7 @@ Wakabidhi wengine wa {{SITENAME}} bado wataweza kuliona lile lililofichwa pamoja
 'revdelete-hide-restricted' => 'Wakabidhi (vilevile wengine) wasiweze kuona data',
 'revdelete-radio-same' => '(isibadilishwe)',
 'revdelete-radio-set' => 'Ndiyo',
-'revdelete-radio-unset' => 'Siyo',
+'revdelete-radio-unset' => 'Hapana',
 'revdelete-suppress' => 'Wakabidhi (vilevile wengine) wasiweze kuona data',
 'revdelete-unsuppress' => 'Uzuio wa kuona mapitio uondolewe, mapitio yanaporudishwa',
 'revdelete-log' => 'Sababu:',
@@ -2243,7 +2243,7 @@ Rejea kumbukumbu ya uzuio ya mwisho inayoandikwa chini:',
 'whatlinkshere-hideredirs' => '$1 maelekezo',
 'whatlinkshere-hidetrans' => '$1 majumuisho',
 'whatlinkshere-hidelinks' => '$1 viungo',
-'whatlinkshere-hideimages' => 'viungo $1 vya faili',
+'whatlinkshere-hideimages' => 'Viungo vya faili $1',
 'whatlinkshere-filters' => 'Machujio',
 
 # Block/unblock

@@ -888,7 +888,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'listgrouprights-group' => 'Ушкăн',
 'listgrouprights-helppage' => 'Help:Ушкăн прависем',
 
-# E-mail user
+# Email user
 'emailuser' => 'Хутшăнакана çыру яр... (Письмо участнику)',
 'usermailererror' => 'Электронлă почта урлă пĕлтерӳ янă чухне йăнăш тухрĕ:',
 'noemailtitle' => 'Электронлă почта адресĕ çук',
@@ -1147,7 +1147,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'watchlistall2' => 'пурте',
 'namespacesall' => 'пурте',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail_sent' => 'Çирĕплетмелли ыйтуллă çырăва ятăмăр.',
 'confirmemail_success' => 'Сирĕн электронлă почтăн адресне çирĕплентĕ.',
 'confirmemail_loggedin' => 'Сирĕн электронлă почтăн адресне çирĕплетрĕмĕр.',

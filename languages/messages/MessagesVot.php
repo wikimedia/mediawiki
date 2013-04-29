@@ -603,7 +603,7 @@ Seness [$2 kuvauhsõ lehocülless] informaattsija on alapallõ annõttu.',
 # Special:ListGroupRights
 'listgrouprights-members' => '(selttsilainspiiska)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Lähettega elektropoštia selle cäüttijälle',
 'emailusername' => 'Cäüttijänimi:',
 'emailmessage' => 'Ilmottamin:',

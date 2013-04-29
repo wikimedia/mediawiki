@@ -46,7 +46,6 @@ $messages = array(
 'navigation' => 'ᎠᏂᎩᏍᏗ ᏥᏳ',
 
 # Cologne Blue skin
-'qbpageinfo' => 'ᎦᎷᎯᏍᏗ',
 'qbspecialpages' => 'ᎤᏤᎵᏛ',
 
 'help' => 'ᎠᎵᏍᏕᎸᏗ',

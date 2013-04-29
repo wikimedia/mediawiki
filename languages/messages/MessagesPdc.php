@@ -677,7 +677,7 @@ Paesswatt fer nau: $2',
 'listgrouprights-addgroup' => 'Yuuser zu {{PLURAL:$2|daer Druppe|denne Druppe}} dezu duh: $1',
 'listgrouprights-addgroup-all' => 'Yuuser zu alle Druppe dezu duh',
 
-# E-mail user
+# Email user
 'emailuser' => 'E-Poschd fer den Yuuser',
 'defemailsubject' => '{{SITENAME}} - E-Poschde vun Yuuser „$1“',
 'emailusername' => 'Yuuser-Naame:',

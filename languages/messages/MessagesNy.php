@@ -11,16 +11,16 @@
  */
 
 $messages = array(
-'help'          => 'Chithandizo',
-'search'        => 'Fufuzani',
-'searchbutton'  => 'Fufuzani',
+'help' => 'Chithandizo',
+'search' => 'Fufuzani',
+'searchbutton' => 'Fufuzani',
 'searcharticle' => 'Pitani',
-'toolbox'       => 'zida',
+'toolbox' => 'zida',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'mainpage'             => 'Tsamba Lalikulu',
+'mainpage' => 'Tsamba Lalikulu',
 'mainpage-description' => 'Tsamba Lalikulu',
-'portal'               => 'Tsamba la anthu wonse',
+'portal' => 'Tsamba la anthu wonse',
 
 'youhavenewmessagesmulti' => 'Muli ndi mauthenga atsopano ku $1',
 

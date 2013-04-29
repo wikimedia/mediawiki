@@ -241,7 +241,7 @@ San ipropromisam met ya insulat mo yan dili o kinopyam ya manlapo ed sakey ya pu
 'linksearch-pat' => 'Anapen so pattern:',
 'linksearch-ok' => 'Anapen',
 
-# E-mail user
+# Email user
 'emailuser' => 'E-mail so ayan user',
 'emailfrom' => 'Manlapud',
 'emailto' => 'Para ed',
@@ -262,9 +262,8 @@ No labay mon ekalen may bolong diad listaan na babantayan, tapik mo labat so \"e
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching' => 'Babantayan...',
 
-'enotif_newpagetext' => 'Balo yan bolong.',
-'changed' => 'asalatan',
 'created' => 'agawa',
+'changed' => 'asalatan',
 
 # Delete
 'deletepage' => 'Buralen so bolong',
@@ -363,7 +362,7 @@ Pinengneng so $2 para ed listaan na saray abural ran balo.',
 'namespacesall' => 'amin',
 'monthsall' => 'amin',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Kumpirmaen so E-mail address',
 'confirmemail_sent' => 'Empawet so confirmation e-mail.',
 'confirmemail_needlogin' => 'Nakaukulan mo ya $1 umpian nakompirma so email address mo.',

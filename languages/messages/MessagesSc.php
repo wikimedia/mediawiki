@@ -1016,7 +1016,7 @@ Dia podent essere immàgines impreadas dae àteros giassos cun unu ligàmine dir
 'listgrouprights-group' => 'Grupu',
 'listgrouprights-members' => '(lista de is cumponentes)',
 
-# E-mail user
+# Email user
 'mailnologintext' => "Depes èsser [[Special:UserLogin|identificadu (login)]] e àer registradu un'indiritzu e-mail vàlidu in is [[Special:Preferences|preferèntzias tuas]] pro imbiare e-mail a àteros usuàrios.",
 'emailuser' => 'E-mail a custu usuàriu',
 'emailpage' => "Ispedi una missada a s'usuàriu",
@@ -1473,7 +1473,7 @@ Is acàpius chi sighint in sa matessi lìnia sunt cunsideraus comente eccetzione
 'monthsall' => 'totu',
 'limitall' => 'totu',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => "Cunfirma s'indiritzu e-mail",
 
 # action=purge

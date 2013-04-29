@@ -2453,8 +2453,6 @@ Jäl'ghižed kosketused siš-žo rives oma arvostadud kut erindad (lehtpoled, ku
 
 /*
 Short names for language variants used for language conversion links.
-To disable showing a particular link, set it to 'disable', e.g.
-'variantname-zh-sg' => 'disable',
 Variants for Chinese language
 */
 'variantname-zh-hans' => 'hans',

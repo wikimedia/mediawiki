@@ -579,7 +579,7 @@ $messages = array(
 'jumptosearch' => 'zoeken',
 'view-pool-error' => 'De servers zijn op het moment helaas overbelast.
 Te veel gebruikers proberen deze pagina te bekijken.
-Wacht alstublieft even voordat u opnieuw toegang probeert te krijgen tot deze pagina.
+Wacht even voordat u opnieuw toegang probeert te krijgen tot deze pagina.
 
 $1',
 'pool-timeout' => 'De maximaal te wachten tijd voor het wachten op een lock is verstreken',
@@ -719,7 +719,7 @@ Mogelijk is deze al door iemand anders verwijderd.',
 'delete-hook-aborted' => 'Het verwijderen is afgebroken door een hook.
 Er is geen toelichting beschikbaar.',
 'badtitle' => 'Ongeldige paginanaam',
-'badtitletext' => 'De naam van de opgevraagde pagina was ongeldig, leeg of bevatte een verkeerde intertaal- of interwikikoppeling.
+'badtitletext' => 'De naam van de opgegeven pagina was ongeldig, leeg of bevatte een verkeerde intertaal- of interwikikoppeling.
 Wellicht bevat de paginanaam niet toegestane tekens.',
 'perfcached' => 'Deze gegevens komen uit een cache en zijn mogelijk niet actueel. Er {{PLURAL:$1|is maximaal één resultaat|zijn maximaal $1 resultaten}} beschikbaar in de cache.',
 'perfcachedts' => 'Deze gegevens komen uit een cache die voor het laatst is bijgewerkt op $2 om $3. Er {{PLURAL:$4|is maximaal één resultaat|zijn maximaal $4 resultaten}} beschikbaar in de cache.',
@@ -820,7 +820,7 @@ Controleer de schrijfwijze.',
 'nouserspecified' => 'Geef een gebruikersnaam op.',
 'login-userblocked' => 'Deze gebruiker is geblokkeerd.
 Aanmelden is niet mogelijk.',
-'wrongpassword' => 'Het ingegeven wachtwoord is onjuist.
+'wrongpassword' => 'Het opgegeven wachtwoord is onjuist.
 Probeer het opnieuw.',
 'wrongpasswordempty' => 'Het opgegeven wachtwoord was leeg.
 Probeer het opnieuw.',
@@ -929,7 +929,7 @@ Meld u aan en wijzig het wachtwoord nu. Als u dit verzoek niet zelf heeft gedaan
 Tijdelijk wachtwoord: $2',
 'passwordreset-emailsent' => 'Er is een e-mail voor het opnieuw instellen van een wachtwoord verzonden.',
 'passwordreset-emailsent-capture' => 'Er is een e-mail voor het opnieuw instellen van een wachtwoord verzonden. Deze wordt hieronder weergegeven.',
-'passwordreset-emailerror-capture' => 'Er is een e-mail voor het opnieuw instellen van een wachtwoord aangemaakt. Deze wordt hieronder weergegeven. Het verzonden naar de gebruiker is mislukt om de volgende reden: $1',
+'passwordreset-emailerror-capture' => 'Er is een e-mail voor het opnieuw instellen van een wachtwoord aangemaakt. Deze wordt hieronder weergegeven. Het verzenden naar de gebruiker is mislukt om de volgende reden: $1',
 
 # Special:ChangeEmail
 'changeemail' => 'E-mailadres wijzigen',
@@ -1267,12 +1267,12 @@ U kunt deze verschillen bekijken. Er kunnen details te vinden zijn in het [{{ful
 'rev-showdeleted' => 'weergeven',
 'revisiondelete' => 'Versies verwijderen of terugplaatsen',
 'revdelete-nooldid-title' => 'Ongeldige doelversie',
-'revdelete-nooldid-text' => 'U hebt geen doelversie(s) voor deze handeling opgegeven. De aangegeven versie bestaat niet of u probeert de laatste versie te verbergen.',
+'revdelete-nooldid-text' => 'U hebt geen doelversie(s) voor deze handeling opgegeven. De opgegeven versie bestaat niet of u probeert de laatste versie te verbergen.',
 'revdelete-nologtype-title' => 'Er is geen logboektype opgegeven',
 'revdelete-nologtype-text' => 'U hebt geen logboektype opgegeven om deze handeling op uit te voeren.',
 'revdelete-nologid-title' => 'Ongeldige logboekregel',
-'revdelete-nologid-text' => 'U hebt ofwel geen doellogboekregel opgegeven of de aangegeven logboekregel bestaat niet.',
-'revdelete-no-file' => 'Het aangegeven bestand bestaat niet.',
+'revdelete-nologid-text' => 'U hebt ofwel geen doellogboekregel opgegeven of de opgegeven logboekregel bestaat niet.',
+'revdelete-no-file' => 'Het opgegeven bestand bestaat niet.',
 'revdelete-show-file-confirm' => 'Weet u zeker dat u de verwijderde versie van het bestand "<nowiki>$1</nowiki>" van $2 om $3 wilt bekijken?',
 'revdelete-show-file-submit' => 'Ja',
 'revdelete-selected' => "'''Geselecteerde {{PLURAL:$2|bewerking|bewerkingen}} van [[:$1]]:'''",
@@ -1315,7 +1315,7 @@ U hebt geen toegang tot dit object.',
 'revdelete-modify-no-access' => 'Er is een fout opgetreden tijdens het wijzigen van het object van $1 om $2: dit object is gemarkeerd als "beschermd".
 U hebt geen toegang tot dit object.',
 'revdelete-modify-missing' => 'Er is een fout opgetreden bij het wijzigen van versienummer $1: het komt niet voor in de database!',
-'revdelete-no-change' => "'''Waarschuwing:''' het object van $1 om $2 uur had al de aangegeven zichtbaarheidsinstellingen.",
+'revdelete-no-change' => "'''Waarschuwing:''' het object van $1 om $2 uur had al de opgegeven zichtbaarheidsinstellingen.",
 'revdelete-concurrent-change' => 'Er is een fout opgetreden bij het wijzigen van het object van $1 om $2: de status is inmiddels gewijzigd door iemand anders.
 Controleer de logboeken.',
 'revdelete-only-restricted' => 'Er is een fout opgetreden tijdens het verbergen van het item van $1, $2: u kunt geen items onderdrukken uit het zicht van beheerders zonder ook een van de andere zichtbaarheidsopties te selecteren.',
@@ -1342,8 +1342,8 @@ Zorg dat deze wijziging de geschiedenisdoorlopendheid van de pagina behoudt.',
 'mergehistory-from' => 'Bronpagina:',
 'mergehistory-into' => 'Bestemmingspagina:',
 'mergehistory-list' => 'Samenvoegbare bewerkingsgeschiedenis',
-'mergehistory-merge' => 'De volgende versies van [[:$1]] kunnen samengevoegd worden naar [[:$2]].
-Gebruik de kolom met keuzerondjes om alleen de versies gemaakt op en voor de aangegeven tijd samen te voegen.
+'mergehistory-merge' => 'De volgende versies van [[:$1]] kunnen worden samengevoegd naar [[:$2]].
+Gebruik de kolom met keuzerondjes om alleen de versies gemaakt op en voor de opgegeven tijd samen te voegen.
 Let op dat het gebruiken van de navigatiekoppelingen deze kolom opnieuw instelt.',
 'mergehistory-go' => 'Samenvoegbare bewerkingen bekijken',
 'mergehistory-submit' => 'Versies samenvoegen',
@@ -1413,7 +1413,7 @@ Probeer een andere zoekopdracht.',
 'searchprofile-project-tooltip' => 'Zoeken in $1',
 'searchprofile-images-tooltip' => 'Zoeken naar bestanden',
 'searchprofile-everything-tooltip' => "Alle inhoud doorzoeken (inclusief overlegpagina's)",
-'searchprofile-advanced-tooltip' => 'Zoeken in aangegeven naamruimten',
+'searchprofile-advanced-tooltip' => 'Zoeken in opgegeven naamruimten',
 'search-result-size' => '$1 ({{PLURAL:$2|1 woord|$2 woorden}})',
 'search-result-category-size' => '{{PLURAL:$1|1 categorielid|$1 categorieleden}} ({{PLURAL:$2|1 ondercategorie|$2 ondercategorieën}}, {{PLURAL:$3|1 bestand|$3 bestanden}})',
 'search-result-score' => 'Relevantie: $1%',
@@ -1507,7 +1507,7 @@ Hier volgt een willekeurig gegenereerde waarde die u kunt gebruiken: $1',
 'timezonelegend' => 'Tijdzone:',
 'localtime' => 'Plaatselijke tijd:',
 'timezoneuseserverdefault' => 'Wikistandaard gebruiken ($1)',
-'timezoneuseoffset' => 'Anders (tijdverschil aangeven)',
+'timezoneuseoffset' => 'Anders (tijdverschil opgeven)',
 'timezoneoffset' => 'Tijdsverschil¹:',
 'servertime' => 'Servertijd:',
 'guesstimezone' => 'Vanuit de browser toevoegen',
@@ -1550,7 +1550,7 @@ De tildes worden omgezet in uw ondertekening en een datum en tijd van de bewerki
 'badsiglength' => 'Uw ondertekening is te lang.
 Deze moet minder dan $1 {{PLURAL:$1|teken|tekens}} bevatten.',
 'yourgender' => 'Geslacht:',
-'gender-unknown' => 'Niet aangegeven',
+'gender-unknown' => 'Niet opgegeven',
 'gender-male' => 'Man',
 'gender-female' => 'Vrouw',
 'prefs-help-gender' => 'Optioneel: dit wordt gebruikt om gebruikers correct aan te spreken in de software.
@@ -1775,7 +1775,7 @@ Als u deze opgeeft, kan deze naam gebruikt worden om u erkenning te geven voor u
 'recentchangeslinked-toolbox' => 'Verwante wijzigingen',
 'recentchangeslinked-title' => 'Wijzigingen verwant aan "$1"',
 'recentchangeslinked-noresult' => "Er zijn in de opgegeven periode geen bewerkingen geweest op de pagina's waarheen vanaf hier verwezen wordt.",
-'recentchangeslinked-summary' => "Deze speciale pagina geeft de laatste bewerkingen weer op pagina's waarheen verwezen wordt vanaf een aangegeven pagina of op pagina's in een aangegeven categorie.
+'recentchangeslinked-summary' => "Deze speciale pagina geeft de laatste bewerkingen weer op pagina's waarheen verwezen wordt vanaf een opgegeven pagina of op pagina's in een opgegeven categorie.
 Pagina's die op [[Special:Watchlist|uw volglijst]] staan worden '''vet''' weergegeven.",
 'recentchangeslinked-page' => 'Paginanaam:',
 'recentchangeslinked-to' => "Wijzigingen aan pagina's met koppelingen naar deze pagina bekijken",
@@ -2007,7 +2007,7 @@ De veiligheid kan niet worden gecontroleerd.',
 Uw server is niet ingesteld om deze gegevens door te geven.
 Misschien gebruikt deze CGI, en dan wordt img_auth niet ondersteund.
 Zie https://www.mediawiki.org/wiki/Manual:Image_Authorization voor meer informatie.',
-'img-auth-notindir' => 'Het opgevraagde pad is niet de ingestelde uploadmap.',
+'img-auth-notindir' => 'Het opgegeven pad is niet de ingestelde uploadmap.',
 'img-auth-badtitle' => 'Het was niet mogelijk een geldige paginanaam te maken van "$1".',
 'img-auth-nologinnWL' => 'U bent niet aangemeld en "$1" staat niet op de witte lijst.',
 'img-auth-nofile' => 'Bestand "$1" bestaat niet.',
@@ -2124,7 +2124,7 @@ U kunt de beschrijving bewerken op de [$2 pagina met de bestandsbeschrijving].',
 'filedelete-success' => "'''$1''' is verwijderd.",
 'filedelete-success-old' => "De versie van '''[[Media:$1|$1]]''' van $3, $2 is verwijderd.",
 'filedelete-nofile' => "'''$1''' bestaat niet.",
-'filedelete-nofile-old' => "Er is geen versie van '''$1''' in het archief met de aangegeven eigenschappen.",
+'filedelete-nofile-old' => "Er is geen versie van '''$1''' in het archief met de opgegeven eigenschappen.",
 'filedelete-otherreason' => 'Andere reden:',
 'filedelete-reason-otherlist' => 'Andere reden',
 'filedelete-reason-dropdown' => '*Veel voorkomende redenen voor verwijderen
@@ -2292,7 +2292,7 @@ Een bestand kan hier dus ten onrechte opgenomen zijn.',
 'booksources-search-legend' => 'Bronnen en gegevens over een boek zoeken',
 'booksources-go' => 'OK',
 'booksources-text' => 'Hieronder staat een lijst met koppelingen naar andere websites die nieuwe of gebruikte boeken verkopen, en die wellicht meer informatie over het boek dat u zoekt hebben:',
-'booksources-invalid-isbn' => 'Het ingegeven ISBN lijkt niet geldig te zijn.
+'booksources-invalid-isbn' => 'Het opgegeven ISBN lijkt niet geldig te zijn.
 Controleer of u wellicht een fout hebt gemaakt bij de invoer.',
 
 # Special:Log
@@ -2584,7 +2584,7 @@ Zie de [[Special:ProtectedPages|lijst met beveiligde pagina's]] voor alle beveil
 'protect-legend' => 'Beveiliging bevestigen',
 'protectcomment' => 'Reden:',
 'protectexpiry' => 'Duur:',
-'protect_expiry_invalid' => 'De aangegeven duur is ongeldig.',
+'protect_expiry_invalid' => 'De opgegeven duur is ongeldig.',
 'protect_expiry_old' => 'Vervaldatum is in het verleden.',
 'protect-unchain-permissions' => 'Overige beveiligingsinstellingen beschikbaar maken',
 'protect-text' => "Hier kunt u het beveiligingsniveau voor de pagina '''$1''' bekijken en wijzigen.",
@@ -3087,7 +3087,7 @@ Een tijdelijke map is niet aanwezig.',
 'xml-error-string' => '$1 op regel $2, kolom $3 (byte $4): $5',
 'import-upload' => 'XML-gegevens uploaden',
 'import-token-mismatch' => 'De sessiegegevens zijn verloren gegaan. Probeer het opnieuw.',
-'import-invalid-interwiki' => 'Het is niet mogelijk van de aangegeven wiki te importeren.',
+'import-invalid-interwiki' => 'Het is niet mogelijk van de opgegeven wiki te importeren.',
 'import-error-edit' => 'De pagina "$1" is niet geïmporteerd omdat u niet de rechten hebt om die te bewerken.',
 'import-error-create' => 'De pagina "$1" is niet geïmporteerd omdat u niet de rechten hebt om die aan te maken.',
 'import-error-interwiki' => 'De pagina "$1" is niet geïmporteerd omdat deze naam is gereserveerd voor externe koppelingen (interwiki).',
@@ -3328,8 +3328,8 @@ Meestal wordt dit door een externe koppeling op een zwarte lijst veroorzaakt.',
 
 $1',
 'filedelete-missing' => 'Het bestand "$1" kan niet verwijderd worden, omdat het niet bestaat.',
-'filedelete-old-unregistered' => 'De aangegeven bestandsversie "$1" staat niet in de database`.',
-'filedelete-current-unregistered' => 'Het aangegeven bestand "$1" staat niet in de database.',
+'filedelete-old-unregistered' => 'De opgegeven bestandsversie "$1" staat niet in de database`.',
+'filedelete-current-unregistered' => 'Het opgegeven bestand "$1" staat niet in de database.',
 'filedelete-archive-read-only' => 'De webserver kan niet in de archiefmap "$1" schrijven.',
 
 # Browsing diffs
@@ -3814,7 +3814,7 @@ Andere velden worden verborgen.
 
 # Email address confirmation
 'confirmemail' => 'E-mailadres bevestigen',
-'confirmemail_noemail' => 'U hebt geen geldig e-mailadres ingegeven in uw [[Special:Preferences|gebruikersvoorkeuren]].',
+'confirmemail_noemail' => 'U hebt geen geldig e-mailadres opgegeven in uw [[Special:Preferences|gebruikersvoorkeuren]].',
 'confirmemail_text' => '{{SITENAME}} eist bevestiging van uw e-mailadres voordat u de e-mailmogelijkheden kunt gebruiken.
 Klik op de onderstaande knop om een bevestigingsbericht te ontvangen.
 Dit bericht bevat een koppeling met een code.
@@ -4112,12 +4112,12 @@ Andere bestandstypen worden direct in het met het MIME-type verbonden programma 
 'dberr-cachederror' => 'Deze pagina is een kopie uit de cache en is wellicht niet de meest recente versie.',
 
 # HTML forms
-'htmlform-invalid-input' => 'Er zijn problemen met enkele ingegeven waarden',
-'htmlform-select-badoption' => 'De ingegeven waarde is ongeldig.',
-'htmlform-int-invalid' => 'De ingegeven waarde is geen geheel getal.',
+'htmlform-invalid-input' => 'Er zijn problemen met enkele opgegeven waarden',
+'htmlform-select-badoption' => 'De opgegeven waarde is ongeldig.',
+'htmlform-int-invalid' => 'De opgegeven waarde is geen geheel getal.',
 'htmlform-float-invalid' => 'De waarde die u hebt opgegeven is geen getal.',
-'htmlform-int-toolow' => 'De ingegeven waarde ligt onder de minimumwaarde van $1',
-'htmlform-int-toohigh' => 'De ingegeven waarde ligt boven de maximumwaarde van $1',
+'htmlform-int-toolow' => 'De opgegeven waarde ligt onder de minimumwaarde van $1',
+'htmlform-int-toohigh' => 'De opgegeven waarde ligt boven de maximumwaarde van $1',
 'htmlform-required' => 'Deze waarde is verplicht',
 'htmlform-submit' => 'Opslaan',
 'htmlform-reset' => 'Wijzigingen ongedaan maken',

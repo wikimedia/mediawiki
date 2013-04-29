@@ -2016,7 +2016,7 @@ $1',
 'sp-contributions-userrights' => 'gistioni dî dritti utenti',
 'sp-contributions-search' => 'Ricerca cuntribbuti',
 'sp-contributions-username' => 'Nnirizzu IP o nomu utenti:',
-'sp-contributions-toponly' => "Ammuscia sulu li cuntribbuti ca sunnu l'ùrtimi rivisioni pâ pàggina",
+'sp-contributions-toponly' => "Ammuccia sulu li cuntribbuta ca sunnu l'ùrtimi rivisioni pâ pàggina",
 'sp-contributions-submit' => 'Risciduta',
 
 # What links here

@@ -614,7 +614,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'listgrouprights-group' => 'Grup',
 'listgrouprights-members' => '(lista bilong ol memba)',
 
-# E-mail user
+# Email user
 'emailuser' => 'E-mel dispela yusa',
 'emailpage' => 'E-mel yusa',
 'defemailsubject' => '{{SITENAME}} e-mel',

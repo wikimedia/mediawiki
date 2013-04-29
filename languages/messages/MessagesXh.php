@@ -86,9 +86,6 @@ $messages = array(
 'viewsource' => 'Jonga i Source',
 
 # Login and logout pages
-'welcomecreation' => '== Wamkelekile, $1! ==
-
-I Account yakhgo ivuliwe, ungalibali ukutshitsha izinto ozithandayo ngo {{SITENAME}}.',
 'yourname' => 'Igama lelungu:',
 'yourpassword' => 'Igama elifihlakeleyo lelungu:',
 'yourpasswordagain' => 'Faka kwakhona igama elifihlakeleyo:',

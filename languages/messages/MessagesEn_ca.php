@@ -8,10 +8,23 @@
  * @file
  *
  * @author Dantman
+ * @author FrigidNinja
+ * @author Shirayuki
  * @author Techman224
  */
 
 $messages = array(
+'talkpagelinktext' => 'Talk',
+'talk' => 'Discussion',
+
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+'aboutsite' => 'About {{SITENAME}}',
+'mainpage' => 'Main Page',
+
+'editsection' => 'edit',
+'editsectionhint' => 'Edit section: $1',
+'red-link-title' => '$1 (page does not exist)',
+
 # Special:UploadStash
 'uploadstash-summary' => 'This page provides access to files which are uploaded (or in process of uploading) but are not yet published to the wiki. These files are not visible to anyone but the user who uploaded them.',
 
@@ -20,10 +33,20 @@ $messages = array(
 this action has been cancelled as a precaution against session hijacking.
 Go back to the previous page, reload that page and then try again.',
 
+# Block/unblock
+'ipbreason-dropdown' => '*Common block reasons
+** Inserting false information
+** Removing content from pages
+** Spamming links to external sites
+** Inserting nonsense/gibberish into pages
+** Intimidating behaviour/harassment
+** Abusing multiple accounts
+** Unacceptable username',
+
 # EXIF tags
 'exif-ycbcrcoefficients' => 'Colour space transformation matrix coefficients',
-'exif-colorspace'        => 'Colour space',
-'exif-licenseurl'        => 'URL for copyright licence',
+'exif-colorspace' => 'Colour space',
+'exif-licenseurl' => 'URL for copyright licence',
 
 'exif-subjectdistance-value' => '$1 metres',
 
@@ -47,11 +70,11 @@ Go back to the previous page, reload that page and then try again.',
 
 'exif-ycbcrpositioning-1' => 'Centred',
 
-# E-mail address confirmation
-'confirmemail_invalidated' => 'E-mail address confirmation cancelled',
+# Email address confirmation
+'confirmemail_invalidated' => 'Email address confirmation cancelled',
 
 # Special:Version
-'version-license'      => 'Licence',
+'version-license' => 'Licence',
 'version-license-info' => 'MediaWiki is free software; you can redistribute it and/or modify it under the terms of the GNU General Public Licence as published by the Free Software Foundation; either version 2 of the Licence, or (at your option) any later version.
 
 MediaWiki is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public Licence for more details.

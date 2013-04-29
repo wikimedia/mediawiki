@@ -472,9 +472,9 @@ Soratma: $2',
 'viewsource-title' => '$1 saifesiniñ menba kodu',
 'actionthrottled' => 'Areket toqtaldı',
 'actionthrottledtext' => 'Spamğa qarşı küreş sebebinden bu areketni az vaqıt içinde çoq kere tekrarlap olamaysıñız. Mümkün olğan qarardan ziyade areket yaptıñız. Bir qaç daqqadan soñ tekrarlap baqıñız.',
-'protectedpagetext' => 'Bu saifeni kimse deñiştirmesin dep o blok etildi.',
+'protectedpagetext' => 'Bu saifede deñiştirme ya da başqa bir areket yapılmasın dep o blok etildi.',
 'viewsourcetext' => 'Saifeniñ kodunı közden keçirip kopiyalay bilesiñiz:',
-'protectedinterface' => 'Bu saifede sistema interfeysiniñ metni bar. Onıñ içün mında bir hata çıqmasın dep onı deñiştirmek yasaq.',
+'protectedinterface' => 'Bu saifede viki interfeysiniñ metni bar. Onıñ içün mında bir hata çıqmasın dep onı deñiştirmek yasaq.',
 'editinginterface' => "'''Tenbi''': MediaWiki sistemasınıñ interfeys saifesini deñiştireyatasız. Bu saifedeki deñiştirmeler interfeysniñ körünişini bu vikiniñ başqa qullanıcıları içün de deñiştirecek. Lütfen, viki interfeysini tercime etmek içün [//translatewiki.net/wiki/Main_Page?setlang=crh translatewiki.net] saytını (MediaWiki resmiy lokalizatsiya leyhası) qullanıñız.",
 'sqlhidden' => '(SQL istintağı saqlı)',
 'cascadeprotected' => 'Bu saifeni deñiştirip olamazsıñız, çünki kaskad qorçalav altında bulunğan {{PLURAL:$1|saifege|saifelerge}} mensüptir:
@@ -1040,7 +1040,7 @@ Eger bildirseñiz, saifelerdeki deñiştirmelerni kimniñ yapqanını köstermek
 'nchanges' => '$1 {{PLURAL:$1|deñiştirme}}',
 'recentchanges' => 'Soñki deñiştirmeler',
 'recentchanges-legend' => 'Soñki deñiştirmeler sazlamaları',
-'recentchanges-summary' => 'Yapılğan eñ soñki deñişikliklerni bu saifede körip olasıñız.',
+'recentchanges-summary' => 'Yapılğan eñ soñki deñişitirmelerni bu saifede körip olasıñız.',
 'recentchanges-feed-description' => 'Bu lenta vastasınen vikide soñki deñiştirmelerni közet.',
 'recentchanges-label-newpage' => 'Bu deñiştirme yañı bir saife yarattı',
 'recentchanges-label-minor' => 'Bu, kiçik bir deñiştirme',
@@ -1511,7 +1511,7 @@ yaqın zamanda yoq etilgenlerni körmek içün: $2.',
 Qorçalanğan saifeler [[Special:ProtectedPages|tam cedvelini]] de köre bilesiñiz.',
 'protectedarticle' => '"[[$1]]" qorçalav altına alındı',
 'modifiedarticleprotection' => '"[[$1]]" içün qorçalav seviyesi deñiştirildi',
-'unprotectedarticle' => 'qorçalav çıqarlıdı: "[[$1]]"',
+'unprotectedarticle' => '"[[$1]]" saifesinden qorçalav çıqarlıdı',
 'prot_1movedto2' => '"[[$1]]" saifesiniñ adı "[[$2]]" olaraq deñiştirildi',
 'protect-legend' => 'Qorçalavnı tasdıqla',
 'protectcomment' => 'Sebep:',
@@ -1523,9 +1523,9 @@ Qorçalanğan saifeler [[Special:ProtectedPages|tam cedvelini]] de köre bilesi�
 'protect-cascadeon' => 'Bu saife şimdi qorçalav altındadır, çünki aşağıda cedvellengen ve kaskadlı qorçalav altındaki {{PLURAL:$1|1|$1}} saifede qullanıla.
 Bu saifeniñ qorçalav seviyesini deñiştirip olasıñız, amma kaskadlı qorçalav tesir etilmeycek.',
 'protect-default' => 'Bütün qullanıcılarğa ruhset ber',
-'protect-fallback' => '"$1" izni kerektir',
-'protect-level-autoconfirmed' => 'Qaydsız ve yañı qullanıcılarnı blоk et',
-'protect-level-sysop' => 'tek idareciler',
+'protect-fallback' => 'Tek "$1" ruhseti olğan qullanıcılar içün',
+'protect-level-autoconfirmed' => 'Tek avtomatik tasdıqlanğan qullanıcılarğa ruhset berile',
+'protect-level-sysop' => 'Tek idarecilerge ruhset berile',
 'protect-summary-cascade' => 'kaskadlı',
 'protect-expiring' => 'bite: $1 (UTC)',
 'protect-cascade' => 'Bu saifede qullanılğan bütün saifelerni qorçalavğa al (kaskadlı qorçalav)',
@@ -1562,9 +1562,9 @@ Bu saifeniñ qorçalav seviyesini deñiştirip olasıñız, amma kaskadlı qorç
 'blanknamespace' => '(Esas)',
 
 # Contributions
-'contributions' => 'Qullanıcınıñ isseleri',
+'contributions' => '{{GENDER:$1|Qullanıcınıñ}} isseleri',
 'contributions-title' => '$1 qullanıcısınıñ isseleri',
-'mycontris' => 'İsselerim',
+'mycontris' => 'İsseler',
 'contribsub2' => '$1 ($2)',
 'nocontribs' => 'Bu kriteriylerge uyğan deñiştirme tapılamadı',
 'uctop' => '(soñki)',
@@ -2099,6 +2099,11 @@ Bitirgen soñ "{{int:Watchlistedit-raw-submit}}" yazısına basıñız.
 # Special:BlankPage
 'blankpage' => 'Bоş saife',
 'intentionallyblankpage' => 'Bu saife aselet boş qaldırılğan',
+
+# Special:ComparePages
+'comparepages' => 'Saifelerni teñeştirüv',
+'compare-selector' => 'Saifelerniñ versiyalarını teñeştirüv',
+'compare-submit' => 'Teñeştir',
 
 # HTML forms
 'htmlform-reset' => 'Deñişikliklerni keri al',

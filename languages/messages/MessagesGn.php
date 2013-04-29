@@ -420,7 +420,7 @@ Reomĩsérõ ta'ãnga peteĩ kuatiaroguépe, eipuru peteĩ joaju:
 # Special:ListUsers
 'listusers-submit' => 'Hechauka',
 
-# E-mail user
+# Email user
 'emailuser' => "Tojeguerahauka ñe'ẽveve ko puruhárape",
 'emailpage' => 'Pareha eleytrónico',
 'emailmessage' => 'Marandu',

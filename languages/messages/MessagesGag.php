@@ -797,7 +797,7 @@ Sizin bakmaa [[Special:Watchlist|listasındaki]] sayfalar verildi '''kalın''' b
 # Special:ListGroupRights
 'listgrouprights-members' => '(azaların listası)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Gönder bu kullanıcıya bir e-mail',
 
 # Watchlist

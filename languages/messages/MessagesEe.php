@@ -305,6 +305,9 @@ Zã [[Special:Search|nuwo didi le wiki sia dzi]] kpɔ na axa yeyeawo.',
 'group-sysop' => 'Dɔdzikpɔlawo',
 'group-all' => '(wokatã)',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Ŋkɔŋlɔla yeyewo ƒe xexlẽme',
+
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'xlẽ axa sia',
 'action-edit' => 'trɔ asi le axa sia ŋu',
@@ -405,9 +408,6 @@ Zã [[Special:Search|nuwo didi le wiki sia dzi]] kpɔ na axa yeyeawo.',
 
 # Special:LinkSearch
 'linksearch-ok' => 'Dii',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Ŋkɔŋlɔla yeyewo ƒe xexlẽme',
 
 # Special:ListGroupRights
 'listgrouprights-group' => 'Hame',

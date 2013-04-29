@@ -1,5 +1,5 @@
 <?php
-/** Assamese (অসমীয়া)
+/** Assamese (অসমীয়া)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1976,6 +1976,8 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization চাওক।",
 তাৰ সলনি সেইবোৰত উপযুক্ত পৃষ্ঠাৰ লগত সংযোগ থাকিব পাৰে।
 [[MediaWiki:Disambiguationspage]]ৰ পৰা সংযোগ থকা কোনো সাঁচ ব্যৱহাৰ কৰিলে এখন পৃষ্ঠাক দ্ব্যৰ্থতা দূৰীকৰণ পৃষ্ঠা হিছাপে গণ্য কৰা হয়।",
 
+'pageswithprop' => 'পৃষ্ঠা উপাদান সম্বলিত পৃষ্ঠাসমূহ',
+'pageswithprop-legend' => 'পৃষ্ঠা উপাদান সম্বলিত পৃষ্ঠাসমূহ',
 'pageswithprop-submit' => 'যাওক',
 
 'doubleredirects' => 'দ্বি-পুনঃনিৰ্দেশিত',

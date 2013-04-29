@@ -773,7 +773,7 @@ Uvědomte si, že některé stránky se mohou i nadále zobrazovat, jako byste b
 'welcomecreation-msg' => 'Váš účet byl vytvořen.
 Nezapomeňte si upravit své [[Special:Preferences|nastavení {{grammar:2sg|{{SITENAME}}}}]].',
 'yourname' => 'Uživatelské jméno:',
-'yourpassword' => 'Vaše heslo',
+'yourpassword' => 'Heslo:',
 'yourpasswordagain' => 'Zopakujte heslo:',
 'remembermypassword' => 'Zapamatovat si mé přihlášení na tomto počítači (maximálně $1 {{PLURAL:$1|den|dny|dní}})',
 'securelogin-stick-https' => 'Zůstat po přihlášení připojen přes HTTPS',
@@ -886,7 +886,7 @@ Možná jste si již úspěšně heslo změnili, nebo jste si vyžádali nové d
 
 # Special:PasswordReset
 'passwordreset' => 'Reset hesla',
-'passwordreset-text' => 'Pro obdržení e-mailu s připomenutím detailů vašeho účtu vyplňte tento formulář.',
+'passwordreset-text' => 'Pro získání nového hesla vyplňte tento formulář.',
 'passwordreset-legend' => 'Znovu nastavit heslo',
 'passwordreset-disabled' => 'Znovunastavení hesla je na této wiki zakázáno.',
 'passwordreset-pretext' => '{{PLURAL:$1||Zadejte jeden z údajů níže}}',
@@ -896,8 +896,7 @@ Možná jste si již úspěšně heslo změnili, nebo jste si vyžádali nové d
 'passwordreset-capture-help' => 'Pokud zaškrtnete toto políčko, bude e-mail (s dočasným heslem) kromě zaslání uživateli zobrazen i vám.',
 'passwordreset-email' => 'E-mailová adresa:',
 'passwordreset-emailtitle' => 'Informace k účtu na {{grammar:6sg|{{SITENAME}}}}',
-'passwordreset-emailtext-ip' => 'Někdo (patrně vy, z IP adresy $1) zažádal o připomenutí informací k vašemu
-účtu na {{grammar:6sg|{{SITENAME}}}} ($4). K této adrese {{PLURAL:$3|je přiřazen následující účet|jsou přiřazeny následující účty}}:
+'passwordreset-emailtext-ip' => 'Někdo (patrně vy, z IP adresy $1) zažádal o nastavení nového hesla k vašemu účtu na {{grammar:6sg|{{SITENAME}}}} ($4). K této adrese {{PLURAL:$3|je přiřazen následující účet|jsou přiřazeny následující účty}}:
 
 $2
 
@@ -905,7 +904,7 @@ $2
 Nyní byste se měl(a) přihlásit a zvolit si nové heslo. Pokud tento požadavek
 poslal někdo jiný nebo jste si na své staré heslo vzpomněl(a), a nechcete ho
 tedy změnit, můžete tuto zprávu ignorovat a nadále používat původní heslo.',
-'passwordreset-emailtext-user' => '{{gender:$1|Uživatel|Uživatelka|Uživatel}} $1 {{grammar:2sg|{{SITENAME}}}} {{gender:$1|zažádal|zažádala|zažádal}} o připomenutí informací k vašemu
+'passwordreset-emailtext-user' => '{{gender:$1|Uživatel|Uživatelka}} $1 na {{grammar:6sg|{{SITENAME}}}} {{gender:$1|zažádal|zažádala}} o nastavení nového hesla k vašemu
 účtu na {{grammar:6sg|{{SITENAME}}}} ($4). K této adrese {{PLURAL:$3|je přiřazen následující účet|jsou přiřazeny následující účty}}:
 
 $2
@@ -916,8 +915,8 @@ poslal někdo jiný nebo jste si na své staré heslo vzpomněl(a), a nechcete h
 tedy změnit, můžete tuto zprávu ignorovat a nadále používat původní heslo.',
 'passwordreset-emailelement' => 'Uživatelské jméno: $1
 Dočasné heslo: $2',
-'passwordreset-emailsent' => 'E-mail s heslem byl odeslán.',
-'passwordreset-emailsent-capture' => 'Byl vygenerován připomínací e-mail, který je zobrazen níže.',
+'passwordreset-emailsent' => 'E-mail pro získání nového hesla byl odeslán.',
+'passwordreset-emailsent-capture' => 'Byl odeslán e-mail pro získání nového hesla, který je zobrazen níže.',
 'passwordreset-emailerror-capture' => 'Byl vygenerován připomínací e-mail, který je zobrazen níže, ale nepodařilo se ho odeslat uživateli: $1',
 
 # Special:ChangeEmail
@@ -1332,7 +1331,7 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'mergelogpagetext' => 'Níže je seznam nejnovějších sloučení historie jedné stránky s jinou.',
 
 # Diffs
-'history-title' => '$1: Historie verzí',
+'history-title' => 'Historie verzí stránky „$1“',
 'difference-title' => '$1: Porovnání verzí',
 'difference-title-multipage' => '$1 a $2: Porovnání stránek',
 'difference-multipage' => '(Rozdíly mezi stránkami)',
@@ -1496,7 +1495,7 @@ Můžete použít tuto náhodně vygenerovanou hodnotu: $1',
 Tuto operaci nelze vrátit zpět.',
 'prefs-emailconfirm-label' => 'Ověření e-mailu:',
 'prefs-textboxsize' => 'Velikost editačního okna',
-'youremail' => 'Vaše e-mailová adresa:',
+'youremail' => 'E-mail:',
 'username' => '{{GENDER:$1|Uživatelské jméno}}:',
 'uid' => '{{GENDER:$1|Uživatelské}} ID:',
 'prefs-memberingroups' => '{{GENDER:$2|Člen|Členka}} {{PLURAL:$1|skupiny|skupin}}:',
@@ -1505,7 +1504,7 @@ Tuto operaci nelze vrátit zpět.',
 'yourlanguage' => 'Jazyk rozhraní:',
 'yourvariant' => 'Varianta jazyka obsahu:',
 'prefs-help-variant' => 'Vámi preferovaná varianta nebo pravopis, jak se mají na této wiki zobrazovat obsahové stránky.',
-'yournick' => 'Podpis:',
+'yournick' => 'Nový podpis:',
 'prefs-help-signature' => 'Komentáře v diskusích by se měly podepisovat pomocí „<nowiki>~~~~</nowiki>“, což se změní na váš podpis a aktuální čas.',
 'badsig' => 'Chybný podpis, zkontrolujte syntaxi HTML.',
 'badsiglength' => 'Váš podpis je příliš dlouhý. Musí být kratší než $1 {{PLURAL:$1|znak|znaky|znaků}}.',
@@ -1517,7 +1516,8 @@ Tuto operaci nelze vrátit zpět.',
 'email' => 'E-mail',
 'prefs-help-realname' => 'Skutečné jméno (volitelné): pokud ho zadáte, bude použito pro označení autorství vaší práce.',
 'prefs-help-email' => 'Uvedení e-mailu není povinné, ale umožní zaslání nového hesla v případě, že své heslo zapomenete.',
-'prefs-help-email-others' => 'Také můžete dovolit ostatním uživatelům vás prostřednictvím uživatelské stránky kontaktovat, aniž by byla vaše adresa prozrazena.',
+'prefs-help-email-others' => 'Také můžete dovolit ostatním uživatelům vás prostřednictvím uživatelské stránky kontaktovat.
+Vaše adresa v takovém případě není prozrazena.',
 'prefs-help-email-required' => 'Je vyžadována e-mailová adresa.',
 'prefs-info' => 'Základní údaje',
 'prefs-i18n' => 'Lokalizace',
@@ -1741,7 +1741,7 @@ $3',
 # Upload
 'upload' => 'Načíst soubor',
 'uploadbtn' => 'Načíst soubor',
-'reuploaddesc' => 'Vrátit se k načtení.',
+'reuploaddesc' => 'Zrušit načítání a vrátit se do formuláře.',
 'upload-tryagain' => 'Uložit upravený popis souboru',
 'uploadnologin' => 'Nejste přihlášen(a)',
 'uploadnologintext' => 'Pro načtení souboru se musíte [[Special:UserLogin|přihlásit]].',
@@ -2152,7 +2152,7 @@ Každý řádek obsahuje odkaz na první a druhé přesměrování a k tomu cíl
 'ncategories' => '$1 {{PLURAL:$1|kategorie|kategorie|kategorií}}',
 'ninterwikis' => '$1 {{PLURAL:$1|mezijazykový odkaz|mezijazykové odkazy|mezijazykových odkazů}}',
 'nlinks' => '$1 {{PLURAL:$1|odkaz|odkazy|odkazů}}',
-'nmembers' => '$1 {{PLURAL:$1|stránka|stránky|stránek}}',
+'nmembers' => '$1 {{PLURAL:$1|položka|položky|položek}}',
 'nrevisions' => '$1 {{PLURAL:$1|revize|revize|revizí}}',
 'nviews' => '$1 {{PLURAL:$1|návšteva|návštevy|návštev}}',
 'nimagelinks' => 'Použit na $1 {{PLURAL:$1|stránce|stránkách}}',
@@ -2347,7 +2347,7 @@ E-mailová adresa, kterou máte uvedenu v [[Special:Preferences|nastavení]], se
 'emailsend' => 'Odeslat',
 'emailccme' => 'Poslat kopii zprávy na můj e-mail',
 'emailccsubject' => 'Kopie Vaší zprávy pro uživatele $1: $2',
-'emailsent' => 'Zpráva odeslána',
+'emailsent' => 'E-mail odeslán',
 'emailsenttext' => 'Váš e-mail byl odeslán.',
 'emailuserfooter' => 'Tento e-mail byl odeslán z {{grammar:2sg|{{SITENAME}}}} pomocí funkce „Poslat e-mail“; odeslal ho uživatel $1 uživateli $2',
 
@@ -4052,17 +4052,17 @@ Obrázky se zobrazí v plném rozlišení, jiné typy souborů se otevřenou v p
 'sqlite-no-fts' => '$1 bez podpory plnotextového vyhledávání',
 
 # New logging system
-'logentry-delete-delete' => '$1 smazal stránku $3',
-'logentry-delete-restore' => '$1 obnovil stránku $3',
-'logentry-delete-event' => '$1 změnil viditelnost {{PLURAL:$5|protokolovacího záznamu|$5 protokolovacích záznamů}} ke stránce $3: $4',
-'logentry-delete-revision' => '$1 změnil viditelnost {{PLURAL:$5|revize|$5 revizí}} na stránce $3: $4',
-'logentry-delete-event-legacy' => '$1 změnil viditelnost protokolovacích záznamů ke stránce $3',
-'logentry-delete-revision-legacy' => '$1 změnil viditelnost revizí na stránce $3',
-'logentry-suppress-delete' => '$1 utajil stránku $3',
-'logentry-suppress-event' => '$1 utajeně změnil viditelnost {{PLURAL:$5|protokolovacího záznamu|$5 protokolovacích záznamů}} ke stránce $3: $4',
-'logentry-suppress-revision' => '$1 utajeně změnil viditelnost {{PLURAL:$5|revize|$5 revizí}} na stránce $3: $4',
-'logentry-suppress-event-legacy' => '$1 utajeně změnil viditelnost protokolovacích záznamů ke stránce $3',
-'logentry-suppress-revision-legacy' => '$1 utajeně změnil viditelnost revizí na stránce $3',
+'logentry-delete-delete' => '$1 {{GENDER:$2|smazal|smazala}} stránku $3',
+'logentry-delete-restore' => '$1 {{GENDER:$2|obnovil|obnovila}} stránku $3',
+'logentry-delete-event' => '$1 {{GENDER:$2|změnil|změnila}} viditelnost {{PLURAL:$5|protokolovacího záznamu|$5 protokolovacích záznamů}} ke stránce $3: $4',
+'logentry-delete-revision' => '$1 {{GENDER:$2|změnil|změnila}} viditelnost {{PLURAL:$5|revize|$5 revizí}} na stránce $3: $4',
+'logentry-delete-event-legacy' => '$1 {{GENDER:$2|změnil|změnila}} viditelnost protokolovacích záznamů ke stránce $3',
+'logentry-delete-revision-legacy' => '$1 {{GENDER:$2|změnil|změnila}} viditelnost revizí na stránce $3',
+'logentry-suppress-delete' => '$1 {{GENDER:$2|utajil|utajila}} stránku $3',
+'logentry-suppress-event' => '$1 utajeně {{GENDER:$2|změnil|změnila}} viditelnost {{PLURAL:$5|protokolovacího záznamu|$5 protokolovacích záznamů}} ke stránce $3: $4',
+'logentry-suppress-revision' => '$1 utajeně {{GENDER:$2|změnil|změnila}} viditelnost {{PLURAL:$5|revize|$5 revizí}} na stránce $3: $4',
+'logentry-suppress-event-legacy' => '$1 utajeně {{GENDER:$2|změnil|změnila}} viditelnost protokolovacích záznamů ke stránce $3',
+'logentry-suppress-revision-legacy' => '$1 utajeně {{GENDER:$2|změnil|změnila}} viditelnost revizí na stránce $3',
 'revdelete-content-hid' => 'skryt obsah',
 'revdelete-summary-hid' => 'skryto shrnutí editace',
 'revdelete-uname-hid' => 'skryto uživatelské jméno',
@@ -4071,20 +4071,20 @@ Obrázky se zobrazí v plném rozlišení, jiné typy souborů se otevřenou v p
 'revdelete-uname-unhid' => 'odkryto uživatelské jméno',
 'revdelete-restricted' => 'omezení správců použito',
 'revdelete-unrestricted' => 'omezení správců odstraněno',
-'logentry-move-move' => '$1 přesunul stránku $3 na $4',
-'logentry-move-move-noredirect' => '$1 přesunul stránku $3 na $4 bez založení přesměrování',
-'logentry-move-move_redir' => '$1 přesunul stránku $3 na $4 s výměnou přesměrování',
-'logentry-move-move_redir-noredirect' => '$1 přesunul stránku $3 na $4 místo přesměrování bez založení přesměrování',
-'logentry-patrol-patrol' => '$1 označil revizi $4 stránky $3 jako prověřenou',
-'logentry-patrol-patrol-auto' => '$1 automaticky označil revizi $4 stránky $3 jako prověřenou',
-'logentry-newusers-newusers' => 'Byl založen uživatelský účet $1',
-'logentry-newusers-create' => 'Byl založen uživatelský účet $1',
-'logentry-newusers-create2' => '$1 založil uživatelský účet $3',
+'logentry-move-move' => '$1 {{GENDER:$2|přesunul|přesunula}} stránku $3 na $4',
+'logentry-move-move-noredirect' => '$1 {{GENDER:$2|přesunul|přesunula}} stránku $3 na $4 bez založení přesměrování',
+'logentry-move-move_redir' => '$1 {{GENDER:$2|přesunul|přesunula}} stránku $3 na $4 s výměnou přesměrování',
+'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|přesunul|přesunula}} stránku $3 na $4 místo přesměrování bez založení přesměrování',
+'logentry-patrol-patrol' => '$1 {{GENDER:$2|označil|označila}} revizi $4 stránky $3 jako prověřenou',
+'logentry-patrol-patrol-auto' => '$1 automaticky {{GENDER:$2|označil|označila}} revizi $4 stránky $3 jako prověřenou',
+'logentry-newusers-newusers' => 'Byl {{GENDER:$2|založen}} uživatelský účet $1',
+'logentry-newusers-create' => 'Byl {{GENDER:$2|založen}} uživatelský účet $1',
+'logentry-newusers-create2' => '$1 {{GENDER:$2|založil|založila}} uživatelský účet $3',
 'logentry-newusers-byemail' => '$1 {{GENDER:$2|založil|založila}} uživatelský účet $3, heslo bylo posláno e-mailem',
-'logentry-newusers-autocreate' => 'Automaticky byl založen účet $1',
+'logentry-newusers-autocreate' => 'Automaticky byl {{GENDER:$2|založen}} účet $1',
 'logentry-rights-rights' => '$1 {{GENDER:$2|změnil|změnila}} členství $3 ve skupinách z $4 na $5',
-'logentry-rights-rights-legacy' => '$1 změnil členství $3 ve skupinách',
-'logentry-rights-autopromote' => '$1 byl automaticky povýšen z $4 na $5',
+'logentry-rights-rights-legacy' => '$1 {{GENDER:$2|změnil|změnila}} členství $3 ve skupinách',
+'logentry-rights-autopromote' => '$1 {{GENDER:$2|byl automaticky povýšen|byla automaticky povýšena}} z $4 na $5',
 'rightsnone' => '(žádné)',
 
 # Feedback

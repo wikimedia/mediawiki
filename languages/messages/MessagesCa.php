@@ -26,6 +26,7 @@
  * @author Pasqual (ca)
  * @author Paucabot
  * @author PerroVerd
+ * @author Pintor Smeargle
  * @author Pitort
  * @author Pérez
  * @author Qllach
@@ -329,7 +330,7 @@ $messages = array(
 'about' => 'Quant a',
 'article' => 'Pàgina de contingut',
 'newwindow' => '(obre en una nova finestra)',
-'cancel' => 'Anuŀla',
+'cancel' => 'Cancel·la',
 'moredotdotdot' => 'Més...',
 'morenotlisted' => 'Més no en la llista...',
 'mypage' => 'Pàgina',
@@ -630,7 +631,7 @@ No oblideu de canviar les vostres [[Special:Preferences|preferències de {{SITEN
 'gotaccount' => 'Ja teniu un compte? $1.',
 'gotaccountlink' => 'Inicia una sessió',
 'userlogin-resetlink' => "Heu oblidat les vostres dades d'accés?",
-'createaccountmail' => 'per correu electrònic',
+'createaccountmail' => "Utilitza una contrasenya aleatòria temporal i envia-la a l'adreça de correu electrònic especificat a continuació",
 'createaccountreason' => 'Motiu:',
 'badretype' => 'Les contrasenyes que heu introduït no coincideixen.',
 'userexists' => 'El nom que heu entrat ja és en ús.
@@ -668,13 +669,14 @@ la vostra antiga contrasenya.",
 Inicieu una sessió després que la rebeu.",
 'blocked-mailpassword' => 'La vostra adreça IP ha estat blocada. Se us ha desactivat la funció de recuperació de contrasenya per a prevenir abusos.',
 'eauthentsent' => "S'ha enviat un correu electrònic a la direcció especificada. Abans no s'envïi cap altre correu electrònic a aquesta adreça, cal verificar que és realment vostra. Per tant, cal que seguiu les instruccions presents en el correu electrònic que se us ha enviat.",
-'throttled-mailpassword' => "Ja se us ha enviat un recordatori de contrasenya en {{PLURAL:$1|l'última hora|les últimes $1 hores}}. Per a prevenir abusos, només s'envia un recordatori de contrasenya cada {{PLURAL:$1|hora|$1 hores}}.",
+'throttled-mailpassword' => "Ja se us ha enviat un correu electrònic de reinicialització de contrasenya en {{PLURAL:$1|l'última hora|les últimes $1 hores}}.
+Per a prevenir abusos, només s'envia un correu electrònic de reinicialització de contrasenya cada {{PLURAL:$1|hora|$1 hores}}.",
 'mailerror' => "S'ha produït un error en enviar el missatge: $1",
 'acct_creation_throttle_hit' => "Des de la vostra adreça IP ja {{PLURAL:$1|s'ha creat un compte|s'han creat $1 comptes}} en l'últim dia i aquest és el màxim permès en aquest wiki per aquest període de temps.
 Així, des d'aquesta adreça IP no es poden crear més comptes actualment.",
 'emailauthenticated' => "S'ha autenticat la vostra adreça electrònica el $2 a les $3.",
 'emailnotauthenticated' => 'La vostra adreça de correu electrònic <strong>encara no està autenticada</strong>. No rebrà cap missatge de correu electrònic per a cap de les següents funcionalitats.',
-'noemailprefs' => 'Especifiqueu una adreça electrònica per a activar aquestes característiques.',
+'noemailprefs' => 'Especifiqueu una adreça electrònica per activar aquestes característiques.',
 'emailconfirmlink' => 'Confirmeu la vostra adreça electrònica',
 'invalidemailaddress' => "No es pot acceptar l'adreça electrònica perquè sembla que té un format no vàlid.
 Introduïu una adreça amb un format adequat o bé buideu el camp.",
@@ -719,7 +721,7 @@ Deveu haver canviat la vostra contrasenya o demanat una nova contrasenya tempora
 
 # Special:PasswordReset
 'passwordreset' => 'Restablir contrasenya',
-'passwordreset-text' => 'Completeu el següent formulari per rebre un recordatori per correu electrònic amb els detalls del vostre compte.',
+'passwordreset-text' => 'Completeu el següent formulari per reinicialitzar la vostra contrasenya',
 'passwordreset-legend' => 'Restablir contrasenya',
 'passwordreset-disabled' => "S'ha desactivat el restabliment de contranyes en aquest wiki.",
 'passwordreset-pretext' => '{{PLURAL:$1||Introduïu un dels elements de dades següents}}',
@@ -729,22 +731,22 @@ Deveu haver canviat la vostra contrasenya o demanat una nova contrasenya tempora
 'passwordreset-capture-help' => "Si marqueu aquesta casella, el missatge de correu electrònic (amb la contrasenya temporal) es mostrarà al mateix moment que sigui enviat a l'usuari.",
 'passwordreset-email' => 'Adreça de correu electrònic:',
 'passwordreset-emailtitle' => 'Detalls del compte a {{SITENAME}}',
-'passwordreset-emailtext-ip' => "Algú (vós mateix segurament, des de l'adreça IP $1) ha demanat un recordatori dels detalls dels vostres comptes al projecte {{SITENAME}} ($4). {{PLURAL:$3|El següent compte d'usuari està associat|Els següents comptes d'usuari estan associats}} amb aquesta adreça de correu electrònic:
+'passwordreset-emailtext-ip' => "Algú (vós mateix segurament, des de l'adreça IP $1) ha demanat una reinicialització de la vostra contrasenya al projecte {{SITENAME}} ($4). {{PLURAL:$3|El següent compte d'usuari està associat|Els següents comptes d'usuari estan associats}} amb aquesta adreça de correu electrònic:
 
 $2
 
 {{PLURAL:$3|Aquesta contrasenya temporal caducarà|Aquestes contrasenyes temporals caducaran}} en {{PLURAL:$5|un dia|$5 dies}}.
 Hauríeu d'entrar al compte per a fixar-hi una nova contrasenya al més aviat possible. Si algú que no sou vós és qui ha fet aquesta petició o si heu recordat la contrasenya original i ja no la voleu canviar, podeu ignorar aquest missatge i seguir utilitzant la vostra antiga contrasenya.",
-'passwordreset-emailtext-user' => "L'usuari $1 de {{SITENAME}} ha demanat un recordatori dels detalls dels vostres comptes al projecte {{SITENAME}} <$4>. {{PLURAL:$3|El següent compte d'usuari està associat|Els següents comptes d'usuari estan associats}} amb aquesta adreça de correu electrònic:
+'passwordreset-emailtext-user' => "L'usuari $1 de {{SITENAME}} ha demanat una reinicialització de la vostra contrasenya per al projecte {{SITENAME}} ($4). {{PLURAL:$3|El següent compte d'usuari està associat|Els següents comptes d'usuari estan associats}} amb aquesta adreça de correu electrònic:
 
 $2
 
 {{PLURAL:$3|Aquesta contrasenya temporal caducarà|Aquestes contrasenyes temporals caducaran}} en {{PLURAL:$5|un dia|$5 dies}}.
-Hauríeu d'entrar {{PLURAL:$3|al compte per a fixar-hi una nova contrasenya|als comptes per a fixar-hi noves contrasenyes}} al més aviat possible. Si algú que no sou vós és qui ha fet aquesta petició o si heu recordat la contrasenya original i ja no la voleu canviar, podeu ignorar aquest missatge i seguir utilitzant la vostra antiga contrasenya.",
+Hauríeu d'entrar ara per fixar una nova contrasenya. Si algú que no sou vós és qui ha fet aquesta petició o si heu recordat la contrasenya original i ja no la voleu canviar, podeu ignorar aquest missatge i seguir utilitzant la vostra antiga contrasenya.",
 'passwordreset-emailelement' => "Nom d'usuari: $1
 Contrasenya temporal: $2",
-'passwordreset-emailsent' => "S'ha enviat un correu de recordatori.",
-'passwordreset-emailsent-capture' => "S'ha enviat un recordatori per correu electrònic, tal com es mostra a continuació.",
+'passwordreset-emailsent' => "S'ha enviat un correu de reinicialització de contrasenya.",
+'passwordreset-emailsent-capture' => "S'ha enviat un correu electrònic de reinicialització de contrasenya, tal com es mostra a continuació.",
 'passwordreset-emailerror-capture' => "S'ha generat un missatge recordatori de correu electrònic, que es mostra a continuació, però ha fallat l'enviament a l'usuari: $1",
 
 # Special:ChangeEmail
@@ -833,7 +835,7 @@ El número d'identificació de la vostra adreça IP és $3, i l'ID del bloqueig 
 Potser ha estat moguda o eliminada mentre estàveu veient la pàgina.',
 'loginreqtitle' => 'Cal que inicieu una sessió',
 'loginreqlink' => 'inicia una sessió',
-'loginreqpagetext' => 'Heu de ser $1 per a visualitzar altres pàgines.',
+'loginreqpagetext' => "Cal que seguiu l'enllaç «$1» per a visualitzar altres pàgines.",
 'accmailtitle' => "S'ha enviat una contrasenya.",
 'accmailtext' => "S'ha enviat una contrasenya aleatòria a $2 per a l'{{GENDER:$1|usuari|usuària}} [[User talk:$1|$1]].
 
@@ -914,11 +916,10 @@ A més a més, en enviar el vostre text, doneu fe que és vostra l'autoria, o b�
 '''No feu servir textos amb drets d'autor sense permís!'''",
 'longpageerror' => "'''Error: El text que heu introduït és {{PLURAL:$1|d'un kilobyte|de $1 kilobytes}} i sobrepassa el màxim permès de {{PLURAL:$2|one kilobyte|$2 kilobytes}}.'''
 No es pot desar.",
-'readonlywarning' => "'''ADVERTÈNCIA: La base de dades està tancada per manteniment
-i no podeu desar les vostres contribucions en aquests moments. Podeu retallar i enganxar el codi
-en un fitxer de text i desar-lo més tard.'''
+'readonlywarning' => "'''Avís: La base de dades està tancada per manteniment, de manera que no podreu desar els canvis ara mateix.'''
+És possible que vulgueu copiar i enganxar el text en un arxiu de text i desar-ho més tard.
 
-L'administrador que l'ha tancada n'ha donat aquesta justificació: $1",
+L'administrador que l'ha bloquejada ha donat la següent explicació: $1",
 'protectedpagewarning' => "'''ATENCIÓ: Aquesta pàgina està bloquejada i només els usuaris amb drets d'administrador la poden modificar.
 A continuació es mostra la darrera entrada del registre com a referència:",
 'semiprotectedpagewarning' => "'''Avís:''' Aquesta pàgina està bloquejada i només pot ser modificada per usuaris registrats.
@@ -1222,7 +1223,7 @@ Es pot trobar més informació en el [{{fullurl:{{#Special:Log}}/delete|page={{F
 'search-interwiki-default' => '$1 resultats:',
 'search-interwiki-more' => '(més)',
 'search-relatedarticle' => 'Relacionat',
-'mwsuggest-disable' => 'Inhabilita els suggeriments en AJAX',
+'mwsuggest-disable' => 'Desactivar suggeriments de cerca',
 'searcheverything-enable' => 'Cerca a tots els espais de noms',
 'searchrelated' => 'relacionat',
 'searchall' => 'tots',
@@ -1522,7 +1523,7 @@ Ha de tenir com a molt {{PLURAL:$1|un caràcter|$1 caràcters}}.',
 'action-userrights' => "modificar tots els permisos d'usuari",
 'action-userrights-interwiki' => "modificar permisos d'usuari en altres wikis",
 'action-siteadmin' => 'bloquejar o desbloquejar la base de dades',
-'action-sendemail' => 'envia missatges de correu',
+'action-sendemail' => 'enviar missatges de correu',
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|canvi|canvis}}',
@@ -1796,7 +1797,7 @@ Per seguretat, img_auth.php està desactivat.",
 'license' => 'Llicència:',
 'license-header' => 'Llicència',
 'nolicense' => "No se n'ha seleccionat cap",
-'license-nopreview' => '(La previsualització no està disponible)',
+'license-nopreview' => '(Previsualització no disponible)',
 'upload_source_url' => ' (un URL vàlid i accessible públicament)',
 'upload_source_file' => ' (un fitxer en el vostre ordinador)',
 
@@ -1937,6 +1938,12 @@ Potser voleu modificar-ne la descripció en la seva [$2 pàgina de descripció].
 'disambiguations-text' => "Les següents pàgines tenen algun enllaç a una '''pàgina de desambiguació'''.
 És possible que hagin d'enllaçar a una altra pàgina més apropiada.<br />
 Una pàgina es tracta com de desambiguació si utilitza una plantilla que està enllaçada a [[MediaWiki:Disambiguationspage]].",
+
+'pageswithprop' => 'Pàgines amb una propietat de pàgina',
+'pageswithprop-legend' => 'Pàgines amb una propietat de pàgina',
+'pageswithprop-text' => 'Aquesta pàgina llista les pàgines que utilitzen una propietat de pàgina en particular.',
+'pageswithprop-prop' => 'Nom de la propietat:',
+'pageswithprop-submit' => 'Vés',
 
 'doubleredirects' => 'Redireccions dobles',
 'doubleredirectstext' => 'Aquesta pàgina llista les pàgines que redirigeixen a altres pàgines de redirecció.
@@ -2129,10 +2136,8 @@ Pot ser que hi hagi més informació sobre drets individuals [[{{MediaWiki:Listg
 'listgrouprights-removegroup-self-all' => 'Abandona tots els grups',
 
 # Email user
-'mailnologin' => "No enviïs l'adreça",
-'mailnologintext' => "Heu d'haver [[Special:UserLogin|entrat]]
-i tenir una direcció electrònica vàlida en les vostres [[Special:Preferences|preferències]]
-per enviar un correu electrònic a altres usuaris.",
+'mailnologin' => 'Cap adreça de remitent',
+'mailnologintext' => "Heu d'[[Special:UserLogin|iniciar una sessió]] i tenir una adreça electrònica vàlida en les vostres [[Special:Preferences|preferències]] per poder enviar correus a altres usuaris.",
 'emailuser' => 'Envia un missatge de correu electrònic a aquest usuari',
 'emailuser-title-target' => 'Enviar un correu electrònic a {{GENDER:$1|aquest usuari|aquesta usuària}}',
 'emailuser-title-notarget' => 'Enviar un correu electrònic a un usuari',
@@ -2333,9 +2338,9 @@ Ací hi ha els paràmetres actuals de la pàgina '''$1''':",
 Ací es troben els paràmetres actuals de la pàgina '''$1''':",
 'protect-cascadeon' => "Aquesta pàgina es troba protegida perquè està inclosa en {{PLURAL:$1|la següent pàgina que té|les següents pàgines que tenen}} activada una protecció en cascada. Podeu canviar el nivell de protecció d'aquesta pàgina però això no afectarà la protecció en cascada.",
 'protect-default' => 'Permet tots els usuaris',
-'protect-fallback' => 'Cal el permís de «$1»',
-'protect-level-autoconfirmed' => 'Bloca els usuaris novells i no registrats',
-'protect-level-sysop' => 'Bloqueja tots els usuaris excepte administradors',
+'protect-fallback' => 'Permetre només a usuaris amb permisos de "$1"',
+'protect-level-autoconfirmed' => 'Permetre només usuaris autoconfirmats',
+'protect-level-sysop' => 'Permetre només administradors',
 'protect-summary-cascade' => 'en cascada',
 'protect-expiring' => 'expira el dia $1 (UTC)',
 'protect-expiring-local' => 'caduca el $1',
@@ -2462,7 +2467,7 @@ Per més detalls, la última entrada del registre es mostra a continuació:',
 
 # What links here
 'whatlinkshere' => 'Què hi enllaça',
-'whatlinkshere-title' => 'Pàgines que enllacen amb $1',
+'whatlinkshere-title' => 'Pàgines que enllacen amb «$1»',
 'whatlinkshere-page' => 'Pàgina:',
 'linkshere' => "Les següents pàgines enllacen amb '''[[:$1]]''':",
 'nolinkshere' => "Cap pàgina no enllaça amb '''[[:$1]]'''.",
@@ -2632,33 +2637,34 @@ Recordeu-vos de [[Special:UnlockDB|treure el bloqueig]] quan hàgiu acabat el ma
 'lockedbyandtime' => '(per $1 el $2 a les $3)',
 
 # Move page
-'move-page' => 'Mou $1',
+'move-page' => 'Reanomena $1',
 'move-page-legend' => 'Reanomena la pàgina',
 'movepagetext' => "Amb el formulari següent reanomenareu una pàgina, movent tot el seu historial al nou nom.
-El títol anterior es convertirà en una redirecció al títol que hàgiu creat.
-Podeu actualitzar automàticament els enllaços a l'antic títol de la pàgina.
-Si no ho feu, assegureu-vos de verificar que no deixeu redireccions [[Special:DoubleRedirects|dobles]] o [[Special:BrokenRedirects|trencades]].
-Serà de la vostra responsabilitat verificar que els enllaços seguirien apuntant cap a on se suposa que ho han de fer.
+El títol anterior es convertirà en una pàgina de redirecció al nou títol.
+Podeu actualitzar automàticament les redireccions que apuntin al títol original.
+Si no ho feu, assegureu-vos de verificar les redireccions [[Special:DoubleRedirects|dobles]] o [[Special:BrokenRedirects|trencades]].
+Serà de la vostra responsabilitat verificar que els enllaços segueixin apuntant cap a on se suposa que ho han de fer.
 
-Tingueu en compte que la pàgina '''no''' serà traslladada si ja existeix una pàgina amb el títol nou, a no ser que sigui una pàgina buida o una ''redirecció'' sense historial.
+Tingueu en compte que la pàgina '''no''' serà traslladada si ja existeix una pàgina amb el títol nou, tret que sigui una redirecció sense més historial.
 Això significa que podeu reanomenar de nou una pàgina al seu títol original si cometeu un error, i que no podeu sobreescriure una pàgina existent.
 
-'''ADVERTÈNCIA!'''
-Açò pot ser un canvi dràstic i inesperat en una pàgina que sigui popular; assegureu-vos d'entendre les conseqüències que comporta abans de seguir endavant.",
-'movepagetext-noredirectfixer' => "El títol anterior es convertirà en un redireccionament al nou títol. 
+'''Atenció!'''
+Açò pot ser un canvi dràstic i inesperat en una pàgina que sigui popular; 
+assegureu-vos d'entendre les conseqüències que comporta abans de seguir endavant.",
+'movepagetext-noredirectfixer' => "Amb el formulari següent podeu reanomenar una pàgina movent tot el seu historial al nom nou.
+El títol anterior es convertirà en una pàgina de redirecció al nou títol. 
+Assegureu-vos de verificar les redireccions [[Special:DoubleRedirects|dobles]] o [[Special:BrokenRedirects|trencades]].
+És responsabilitat vostra assegurar que els enllaços continuen apuntant cap a on se suposa que han d'anar. 
 
-Assegureu-vos de verificar els redireccionaments [[Special:DoubleRedirects|doble]]s i els [[Special:BrokenRedirects|trencat]]s.
-
-Sigueu responsable de fer que els enllaços continuen apuntant cap a on se suposa que han d'anar. 
-
-Tingueu en compte que la pàgina '''no''' serà traslladada si ja existeix una pàgina amb el títol nou proposat, tret del cas que la pàgina és buida o no n'hi ha un historial de redireccionaments. 
-
-Això significa que si reanomeneu per equivocació una pàgina amb el seu nom anterior no ho podreu fer, ja que no es pot sobreescriure una pàgina existent.
+Tingueu en compte que la pàgina '''no''' serà traslladada si ja existeix una pàgina amb el títol nou, tret que sigui una redirecció i no tingui més historial. 
+Això significa que podeu reanomenar de nou una pàgina al seu títol original si cometeu un error, i que no podeu sobreescriure una pàgina existent.
  
-'''Avís:''' Això pot ser un canvi dràstic i inesperat per una pàgina popular; si us plau, assegureu-vos que sabeu el que feu abans de continuar.",
-'movepagetalktext' => "La pàgina de discussió associada, si existeix, serà traslladada automàticament '''tret dels següents casos''':
-* Ja hi existeix una pàgina de discussió no buida amb el nou nom, o si
-* la opció de davall es troba desactivada
+'''Atenció!''' 
+Això pot ser un canvi dràstic i inesperat per una pàgina popular; 
+assegureu-vos que sabeu el que feu abans de continuar.",
+'movepagetalktext' => "La pàgina de discussió associada també serà traslladada automàticament '''tret que''':
+* Ja existeix una pàgina de discussió no buida amb el nou nom, o
+* Desactiveu la opció de més avall.
 
 En aquests casos, haureu de traslladar o fusionar la pàgina manualment si ho desitgeu.",
 'movearticle' => 'Reanomena la pàgina',
@@ -2962,6 +2968,7 @@ Això deu ser degut per un enllaç a un lloc extern inclòs a la llista negra.',
 'pageinfo-robot-noindex' => 'No indexable',
 'pageinfo-views' => 'Número de visites',
 'pageinfo-watchers' => "Número d'usuaris que vigilen la pàgina",
+'pageinfo-few-watchers' => 'Menys de $1 {{PLURAL:$1|observador|observadors}}',
 'pageinfo-redirects-name' => 'Redireccions a aquesta pàgina',
 'pageinfo-subpages-name' => "Subpàgines d'aquesta pàgina",
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|redirecció|redireccions}}; $3 {{PLURAL:$3|no redireció|no redireccions}})',
@@ -2976,6 +2983,7 @@ Això deu ser degut per un enllaç a un lloc extern inclòs a la llista negra.',
 'pageinfo-magic-words' => '{{PLURAL:$1|Paraula clau|Paraules clau}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Categoria oculta|Categories ocultes}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|plantilla inclosa|plantilles incloses}} ($1)',
+'pageinfo-transclusions' => '{{PLURAL:$1|Pàgina|Pàgines}} incloses en ($1)',
 'pageinfo-toolboxlink' => 'Informació de la pàgina',
 'pageinfo-redirectsto' => 'Redirigeix a',
 'pageinfo-redirectsto-info' => 'info',
@@ -2984,6 +2992,10 @@ Això deu ser degut per un enllaç a un lloc extern inclòs a la llista negra.',
 'pageinfo-protect-cascading' => "Proteccions en cascada des d'aquí",
 'pageinfo-protect-cascading-yes' => 'Sí',
 'pageinfo-protect-cascading-from' => 'Proteccions en cascada des de',
+'pageinfo-category-info' => 'Informació de categoria',
+'pageinfo-category-pages' => 'Nombre de pàgines',
+'pageinfo-category-subcats' => 'ombre de subcategories',
+'pageinfo-category-files' => "Nombre d'arxius",
 
 # Skin names
 'skinname-standard' => 'Clàssic',
@@ -3066,6 +3078,8 @@ Si l'executeu, podeu comprometre la seguretat del vostre sistema.",
 'minutes' => '{{PLURAL:$1|$1 minut|$1 minuts}}',
 'hours' => '{{PLURAL:$1|$1 hora|$1 hores}}',
 'days' => '{{PLURAL:$1|$1 dia|$1 dies}}',
+'months' => '{{PLURAL:$1|$1 mes|$1 mesos}}',
+'years' => '{{PLURAL:$1|$1 any|$1 anys}}',
 'ago' => 'fa $1',
 'just-now' => 'ara mateix',
 
@@ -3726,7 +3740,7 @@ Les imatges es mostren en plena resolució; altres tipus de fitxer s'inicien dir
 'specialpages-group-highuse' => "Pàgines d'alt ús",
 'specialpages-group-pages' => 'Llistes de pàgines',
 'specialpages-group-pagetools' => "Pàgines d'eines",
-'specialpages-group-wiki' => 'Eines i dades del wiki',
+'specialpages-group-wiki' => 'Dades i eines',
 'specialpages-group-redirects' => 'Pàgines especials de redirecció',
 'specialpages-group-spam' => 'Eines de spam',
 
@@ -3795,13 +3809,13 @@ Les imatges es mostren en plena resolució; altres tipus de fitxer s'inicien dir
 'sqlite-no-fts' => '$1, sense supor de búsqueda de text íntegre',
 
 # New logging system
-'logentry-delete-delete' => '$1 ha esborrat la pàgina $3',
-'logentry-delete-restore' => '$1 ha restaurat la pàgina $3',
+'logentry-delete-delete' => '$1 ha esborrat $3',
+'logentry-delete-restore' => '$1 ha restaurat $3',
 'logentry-delete-event' => "$1 ha canviat la visibilitat {{PLURAL:$5|d'un esdeveniment al registre|de $5 esdeveniments al registre}} de $3: $4",
 'logentry-delete-revision' => "$1 ha canviat la visibilitat {{PLURAL:$5|d'una revisió|de $5 revisions}} a la pàgina $3: $4",
 'logentry-delete-event-legacy' => "$1 ha canviat la visibilitat d'esdeveniments al registre de $3",
 'logentry-delete-revision-legacy' => '$1 ha canviat la visibilitat de revisions a la pàgina $3',
-'logentry-suppress-delete' => '$1 ha suprimit la pàgina $3',
+'logentry-suppress-delete' => '$1 {{GENDER:$2|ha suprimit}} la pàgina $3',
 'logentry-suppress-event' => "$1 secretament ha canviat la visibilitat {{PLURAL:$5|d'un esdeveniment al registre|de $5 esdeveniments al registre}} de $3: $4",
 'logentry-suppress-revision' => "$1 secretament ha canviat la visibilitat {{PLURAL:$5|d'una revisió|de $5 revisions}} a la pàgina $3: $4",
 'logentry-suppress-event-legacy' => "$1 secretament ha canviat la visibilitat d'esdeveniments al registre de $3",
@@ -3814,19 +3828,20 @@ Les imatges es mostren en plena resolució; altres tipus de fitxer s'inicien dir
 'revdelete-uname-unhid' => "ha revelat un nom d'usuari que era ocult",
 'revdelete-restricted' => 'ha aplicat restriccions als administradors',
 'revdelete-unrestricted' => 'ha tret les restriccions als administradors',
-'logentry-move-move' => '$1 ha desplaçat la pàgina $3 a $4',
-'logentry-move-move-noredirect' => '$1 ha desplaçat la pàgina $3 a $4 sense deixar cap redirecció',
-'logentry-move-move_redir' => '$1 ha desplaçat la pàgina $3 a $4, on hi havia una redirecció',
+'logentry-move-move' => '$1 ha mogut $3 a $4',
+'logentry-move-move-noredirect' => '$1 ha mogut $3 a $4 sense deixar una redirecció',
+'logentry-move-move_redir' => '$1 ha mogut $3 a $4 sobre una redirecció',
 'logentry-move-move_redir-noredirect' => '$1 ha desplaçat la pàgina $3 a $4 on hi havia una redirecció i sense crear una nova redirecció',
-'logentry-patrol-patrol' => '$1 ha marcat la versió $4 de la pàgina $3 com a patrullada',
+'logentry-patrol-patrol' => '1 $ va marcar la revisió $ 4 de "$ 3" com a supervisada',
 'logentry-patrol-patrol-auto' => '$1 ha marcat automàticament la versió $4 de la pàgina $3 com a patrullada',
-'logentry-newusers-newusers' => "S'ha creat el compte d'usuari $1",
-'logentry-newusers-create' => "S'ha creat el compte d'usuari $1",
-'logentry-newusers-create2' => "$1 ha creat el compte d'usuari $3",
-'logentry-newusers-autocreate' => "El compte d'usuari $1 ha estat creat de manera automàtica",
-'logentry-rights-rights' => '$1 ha canviat la pertinença de grups per $3 de $4 a $5',
-'logentry-rights-rights-legacy' => '$1 ha canviat la pertinença de grups per $3',
-'logentry-rights-autopromote' => '$1 ha estat promogut automàticament de $4 a $5',
+'logentry-newusers-newusers' => "El compte d'usuari $1 {{GENDER:$2|ha estat creat}}",
+'logentry-newusers-create' => "El compte d'usuari $1 {{GENDER:$2|ha estat creat}}",
+'logentry-newusers-create2' => "El compte d'usuari $3 {{GENDER:$2|ha estat creat}} per $1",
+'logentry-newusers-byemail' => "El compte d'usuari $3 {{GENDER:$2|ha estat creat}} per $1 i la contrasenya ha estat enviada per correu electrònic",
+'logentry-newusers-autocreate' => "El compte d'usuari $1 {{GENDER:$2|ha estat creat}} automàticament",
+'logentry-rights-rights' => '$1 {{GENDER:$2|ha canviat}} la pertinença de grup per $3 de $4 a $5',
+'logentry-rights-rights-legacy' => '$1 {{GENDER:$2|ha canviat}} la pertinença de grup per $3',
+'logentry-rights-autopromote' => '$1 ha estat {{GENDER:$2|promogut}} automàticament de $4 a $5',
 'rightsnone' => '(cap)',
 
 # Feedback
@@ -3881,6 +3896,7 @@ Altrament, podeu fer servir un senzill formulari a continuació. El vostre comen
 'api-error-ok-but-empty' => 'Error intern: no hi ha resposta del servidor.',
 'api-error-overwrite' => 'No està permès sobreescriure un fitxer existent.',
 'api-error-stashfailed' => 'Error intern: el servidor no ha pogut emmagatzemar fitxers temporals.',
+'api-error-publishfailed' => 'Error intern: el servidor no ha pogut publicar el fitxer temporal.',
 'api-error-timeout' => 'El servidor no ha respost en el temps esperat.',
 'api-error-unclassified' => "S'ha produït un error desconegut",
 'api-error-unknown-code' => 'Error desconegut: «$1»',

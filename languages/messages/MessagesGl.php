@@ -603,7 +603,7 @@ Por favor, comuníquello a un [[Special:ListUsers/sysop|administrador]] tomando 
 'filedeleteerror' => 'Non se deu borrado o ficheiro "$1".',
 'directorycreateerror' => 'Non se puido crear o directorio "$1".',
 'filenotfound' => 'Non se deu atopado o ficheiro "$1".',
-'fileexistserror' => 'Resultou imposíbel escribir no ficheiro "$1": O ficheiro xa existe.',
+'fileexistserror' => 'Non se pode escribir no ficheiro "$1": O ficheiro xa existe.',
 'unexpected' => 'Valor inesperado: "$1"="$2".',
 'formerror' => 'Erro: Non se pode enviar o formulario.',
 'badarticleerror' => 'Non pode efectuarse esa acción nesta páxina.',
@@ -680,10 +680,10 @@ Non esqueza personalizar as súas [[Special:Preferences|preferencias de {{SITENA
 'logout' => 'Saír ao anonimato',
 'userlogout' => 'Saír ao anonimato',
 'notloggedin' => 'Non accedeu ao sistema',
-'nologin' => "Non está rexistrado? '''$1'''.",
+'nologin' => 'Non está rexistrado? $1.',
 'nologinlink' => 'Cree unha conta',
 'createaccount' => 'Crear unha conta nova',
-'gotaccount' => "Xa ten unha conta? '''$1'''.",
+'gotaccount' => 'Xa ten unha conta? $1.',
 'gotaccountlink' => 'Acceda ao sistema',
 'userlogin-resetlink' => 'Esqueceu os seus datos de rexistro?',
 'createaccountmail' => 'Utilizar un contrasinal aleatorio temporal e envialo ao enderezo de correo electrónico especificado embaixo',
@@ -732,13 +732,13 @@ e non o quere modificar, pode ignorar esta mensaxe e
 continuar a utilizar o seu contrasinal vello.',
 'noemail' => 'O usuario "$1" non posúe ningún enderezo de correo electrónico rexistrado.',
 'noemailcreate' => 'Ten que proporcionar un enderezo de correo electrónico válido',
-'passwordsent' => 'Envióuselle un contrasinal novo ao enderezo de correo electrónico rexistrado de "$1".
+'passwordsent' => 'Enviouse un contrasinal novo ao enderezo de correo electrónico rexistrado de "$1".
 Por favor, acceda ao sistema de novo tras recibilo.',
 'blocked-mailpassword' => 'O seu enderezo IP está bloqueado e ten restrinxida a edición de artigos. Tampouco se lle permite usar a función de recuperación do contrasinal para evitar abusos do sistema.',
 'eauthentsent' => 'Envióuselle un correo electrónico de confirmación ao enderezo mencionado.
 Antes de que se lle envíe calquera outro correo a esta conta terá que seguir as instrucións que aparecen nesa mensaxe para confirmar que a conta é realmente súa.',
-'throttled-mailpassword' => 'Enviouse un aviso co contrasinal {{PLURAL:$1|na última hora|nas últimas $1 horas}}.
-Para evitar o abuso do sistema só se envía unha mensaxe cada {{PLURAL:$1|hora|$1 horas}}.',
+'throttled-mailpassword' => 'Enviouse un correo electrónico de restablecemento do contrasinal {{PLURAL:$1|na última hora|nas últimas $1 horas}}.
+Para evitar o abuso do sistema só se enviará unha mensaxe de restablecemento cada {{PLURAL:$1|hora|$1 horas}}.',
 'mailerror' => 'Produciuse un erro ao enviar o correo electrónico: $1',
 'acct_creation_throttle_hit' => 'Alguén que visitou este wiki co seu enderezo IP creou, no último día, {{PLURAL:$1|unha conta|$1 contas}}, que é o máximo permitido neste período de tempo.
 Como resultado, os visitantes que usen este enderezo IP non poden crear máis contas nestes intres.',
@@ -789,7 +789,7 @@ Pode ser que xa cambiase o seu contrasinal ou que solicitase un novo contrasinal
 
 # Special:PasswordReset
 'passwordreset' => 'Restablecer o contrasinal',
-'passwordreset-text' => 'Encha este formulario para recibir un recordatorio por correo electrónico cos detalles da súa conta.',
+'passwordreset-text' => 'Encha este formulario para restablecer o seu contrasinal.',
 'passwordreset-legend' => 'Restablecer o contrasinal',
 'passwordreset-disabled' => 'O restablecemento de contrasinais está desactivado neste wiki.',
 'passwordreset-pretext' => '{{PLURAL:$1||Introduza un dos datos a continuación}}',
@@ -799,30 +799,30 @@ Pode ser que xa cambiase o seu contrasinal ou que solicitase un novo contrasinal
 'passwordreset-capture-help' => 'Se marca esta caixa, poderá ver o correo electrónico (co contrasinal temporal) que se envía ao usuario.',
 'passwordreset-email' => 'Enderezo de correo electrónico:',
 'passwordreset-emailtitle' => 'Detalles da conta de {{SITENAME}}',
-'passwordreset-emailtext-ip' => 'Alguén (probablemente vostede, desde o enderezo IP $1) solicitou un recordatorio coa
-información da súa conta en {{SITENAME}} ($4). {{PLURAL:$3|A seguinte conta de usuario está asociada|As seguintes contas de usuarios están asociadas}}
+'passwordreset-emailtext-ip' => 'Alguén (probablemente vostede, desde o enderezo IP $1) solicitou o restablecemento do seu
+contrasinal de {{SITENAME}} ($4). {{PLURAL:$3|A seguinte conta de usuario está asociada|As seguintes contas de usuarios están asociadas}}
 a este enderezo de correo electrónico:
 
 $2
 
 {{PLURAL:$3|Este contrasinal temporal caducará|Estes contrasinais temporais caducarán}} {{PLURAL:$5|nun día|en $5 días}}.
-Debería acceder ao sistema e elixir un novo contrasinal agora. Se outro fixo esta
+Debería acceder ao sistema e elixir un novo contrasinal agora. Se outra persoa fixo esta
 solicitude ou se lembrou o seu contrasinal orixinal e xa non o quere cambiar,
 ignore esta mensaxe e continúe empregando o seu contrasinal vello.',
-'passwordreset-emailtext-user' => 'O usuario $1 solicitou un recordatorio coa información da súa conta en {{SITENAME}}
+'passwordreset-emailtext-user' => 'O usuario $1 solicitou o restablecemento do contrasinal de {{SITENAME}}
 ($4). {{PLURAL:$3|A seguinte conta de usuario está asociada|As seguintes contas de usuarios están asociadas}}
 a este enderezo de correo electrónico:
 
 $2
 
 {{PLURAL:$3|Este contrasinal temporal caducará|Estes contrasinais temporais caducarán}} {{PLURAL:$5|nun día|en $5 días}}.
-Debería acceder ao sistema e elixir un novo contrasinal agora. Se outro fixo esta
+Debería acceder ao sistema e elixir un novo contrasinal agora. Se outra persoa fixo esta
 solicitude ou se lembrou o seu contrasinal orixinal e xa non o quere cambiar,
 ignore esta mensaxe e continúe empregando o seu contrasinal vello.',
 'passwordreset-emailelement' => 'Nome de usuario: $1
 Contrasinal temporal: $2',
-'passwordreset-emailsent' => 'Enviouse o correo electrónico co recordatorio.',
-'passwordreset-emailsent-capture' => 'Enviouse un correo electrónico recordatorio, mostrado a continuación.',
+'passwordreset-emailsent' => 'Enviouse o correo electrónico de restablecemento do contrasinal.',
+'passwordreset-emailsent-capture' => 'Enviouse un correo electrónico de restablecemento do contrasinal, mostrado a continuación.',
 'passwordreset-emailerror-capture' => 'Xerouse un correo electrónico recordatorio, mostrado a continuación, pero o envío ao usuario fallou: $1.',
 
 # Special:ChangeEmail
@@ -915,7 +915,7 @@ Poida que a movesen ou borrasen mentres ollaba a páxina.',
 'loginreqtitle' => 'Cómpre acceder ao sistema',
 'loginreqlink' => 'acceder ao sistema',
 'loginreqpagetext' => 'Debe $1 para ver outras páxinas.',
-'accmailtitle' => 'O contrasinal foi enviado.',
+'accmailtitle' => 'Enviouse o contrasinal',
 'accmailtext' => 'Un contrasinal xerado ao chou para "[[User talk:$1|$1]]" foi enviado a "$2".
 
 O contrasinal para esta conta nova pode ser modificado na páxina especial \'\'[[Special:ChangePassword|Cambiar o contrasinal]]\'\' tras acceder ao sistema.',
@@ -971,7 +971,7 @@ Se segue sen funcionar, probe a [[Special:UserLogout|saír do sistema]] e volver
 Se segue sen funcionar, probe a [[Special:UserLogout|saír do sistema]] e volver entrar.'''",
 'token_suffix_mismatch' => "'''Rexeitouse a súa edición porque o seu cliente confundiu os signos de puntuación na edición.'''
 Rexeitouse a edición para evitar que se corrompa o texto do artigo.
-Isto pode acontecer porque estea a empregar un servizo de ''proxy'' anónimo defectuoso baseado na web.",
+Isto pode acontecer porque estea a empregar un servizo de proxy anónimo defectuoso baseado na web.",
 'edit_form_incomplete' => "'''Algunhas partes do formulario de edición non chegaron ao servidor; comprobe que a súa modificación está intacta e inténteo de novo.'''",
 'editing' => 'Editando "$1"',
 'creating' => 'Creando "$1"',
@@ -1226,7 +1226,7 @@ Asegúrese de que esta modificación da páxina mantén a continuidade históric
 'mergehistory-box' => 'Fusionar as revisións de dúas páxinas:',
 'mergehistory-from' => 'Páxina de orixe:',
 'mergehistory-into' => 'Páxina de destino:',
-'mergehistory-list' => 'Historial de edicións fusionábeis',
+'mergehistory-list' => 'Historial de edicións fusionables',
 'mergehistory-merge' => 'As revisións seguintes de [[:$1]] pódense fusionar con [[:$2]]. Use a columna de botóns de selección para fusionar só as revisións creadasen e antes da hora indicada. Teña en conta que se usa as ligazóns de navegación a columna limparase.',
 'mergehistory-go' => 'Mostrar as edicións que se poden fusionar',
 'mergehistory-submit' => 'Fusionar as revisións',
@@ -1520,7 +1520,7 @@ Ha de ter menos {{PLURAL:$1|dun carácter|de $1 caracteres}}.',
 'right-reupload' => 'Sobrescribir ficheiros existentes',
 'right-reupload-own' => 'Sobrescribir un ficheiro existente cargado polo mesmo usuario',
 'right-reupload-shared' => 'Sobrescribir localmente ficheiros do repositorio multimedia',
-'right-upload_by_url' => 'Cargar un ficheiro dende un enderezo URL',
+'right-upload_by_url' => 'Cargar ficheiros desde un enderezo URL',
 'right-purge' => 'Purgar a caché dunha páxina do wiki sen a páxina de confirmación',
 'right-autoconfirmed' => 'Editar páxinas semiprotexidas',
 'right-bot' => 'Ser tratado coma un proceso automatizado',
@@ -1679,8 +1679,8 @@ Para incluír un ficheiro nunha páxina, use unha ligazón do seguinte xeito:
 * '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|texto alternativo]]</nowiki></code>''' para usar unha resolución de 200 píxeles de ancho nunha caixa na marxe esquerda cunha descrición (\"texto alternativo\")
 * '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code>''' para ligar directamente co ficheiro sen que este saia na páxina",
 'upload-permitted' => 'Tipos de ficheiro permitidos: $1.',
-'upload-preferred' => 'Tipos de arquivos preferidos: $1.',
-'upload-prohibited' => 'Tipos de arquivos prohibidos: $1.',
+'upload-preferred' => 'Tipos de ficheiro preferidos: $1.',
+'upload-prohibited' => 'Tipos de ficheiro prohibidos: $1.',
 'uploadlog' => 'rexistro de cargas',
 'uploadlogpage' => 'Rexistro de cargas',
 'uploadlogpagetext' => 'A continuación está a lista cos últimos ficheiros cargados no servidor.
@@ -1691,9 +1691,9 @@ Vexa a [[Special:NewFiles|galería de imaxes novas]] para ollar unha visión má
 'filereuploadsummary' => 'Cambios no ficheiro:',
 'filestatus' => 'Estado dos dereitos de autor:',
 'filesource' => 'Fonte:',
-'uploadedfiles' => 'Ficheiros cargados en {{SITENAME}}',
+'uploadedfiles' => 'Ficheiros cargados',
 'ignorewarning' => 'Ignorar a advertencia e gardar o ficheiro de calquera xeito',
-'ignorewarnings' => 'Ignorar os avisos',
+'ignorewarnings' => 'Ignorar as advertencias',
 'minlength1' => 'Os nomes dos ficheiros deben ter cando menos unha letra.',
 'illegalfilename' => 'O nome de ficheiro "$1" contén caracteres que non están permitidos nos títulos das páxinas.
 Por favor, cambie o nome do ficheiro e intente cargalo de novo.',
@@ -1758,7 +1758,7 @@ Se aínda quere cargar o seu ficheiro, volva atrás e use outro nome.
 'uploadfromurl-queued' => 'A súa carga púxese á cola.',
 'uploaddisabledtext' => 'A carga de ficheiros está desactivada.',
 'php-uploaddisabledtext' => 'As cargas de ficheiros PHP están desactivadas. Por favor, comprobe a característica file_uploads.',
-'uploadscripted' => 'Este ficheiro contén HTML ou código (script code) que pode producir erros ao ser interpretado polo navegador.',
+'uploadscripted' => 'Este ficheiro contén código HTML ou script que pode producir erros ao ser interpretado polo navegador.',
 'uploadvirus' => 'O ficheiro contén un virus! Detalles: $1',
 'uploadjava' => 'O ficheiro é un ZIP que contén un ficheiro .class de Java.
 Non están permitidas as cargas de ficheiros Java, dado que poden causar restricións de seguridade.',
@@ -1797,8 +1797,8 @@ $1',
 'upload-warning-subj' => 'Advertencia ao cargar',
 'upload-warning-msg' => 'Houbo un problema durante a carga desde [$2]. Pode volver ao [[Special:Upload/stash/$1|formulario de subidas]] para corrixilo.',
 
-'upload-proto-error' => 'Protocolo erróneo',
-'upload-proto-error-text' => 'A carga remota require URLs que comecen por <code>http://</code> ou <code>ftp://</code>.',
+'upload-proto-error' => 'Protocolo incorrecto',
+'upload-proto-error-text' => 'A carga remota require enderezos URL que comecen por <code>http://</code> ou <code>ftp://</code>.',
 'upload-file-error' => 'Erro interno',
 'upload-file-error-text' => 'Produciuse un erro interno ao intentar crear un ficheiro temporal no servidor.
 Por favor, contacte cun [[Special:ListUsers/sysop|administrador]] do sistema.',
@@ -1902,8 +1902,9 @@ Para unha seguridade óptima, img_auth.php está desactivado.',
 'http-bad-status' => 'Houbo un problema durante a solicitude HTTP: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
-'upload-curl-error6' => 'Non se logrou acceder a ese URL',
-'upload-curl-error6-text' => 'Non se logrou acceder ao URL que indicou. Comprobe que ese URL é correcto e que o sitio está activo.',
+'upload-curl-error6' => 'Non se puido acceder ao enderezo URL',
+'upload-curl-error6-text' => 'Non se puido acceder ao enderezo URL especificado.
+Comprobe que ese enderezo URL é correcto e que o sitio está activo.',
 'upload-curl-error28' => 'Rematou o tempo de espera',
 'upload-curl-error28-text' => 'O sitio tardou demasiado en responder.
 Por favor, comprobe que está activo, agarde un anaco e inténteo de novo.
@@ -1921,7 +1922,7 @@ Tamén pode reintentalo cando haxa menos actividade.',
 Ao filtrar a lista por usuario, soamente se mostran as últimas versións dos ficheiros cargados polo usuario.',
 'listfiles_search_for' => 'Buscar polo nome do ficheiro multimedia:',
 'imgfile' => 'ficheiro',
-'listfiles' => 'Lista de imaxes',
+'listfiles' => 'Lista de ficheiros',
 'listfiles_thumb' => 'Miniatura',
 'listfiles_date' => 'Data',
 'listfiles_name' => 'Nome',
@@ -1974,7 +1975,7 @@ Poida que queira editar a descrición da [$2 páxina de descrición do ficheiro]
 'upload-disallowed-here' => 'Non pode sobrescribir este ficheiro.',
 
 # File reversion
-'filerevert' => 'Reverter $1',
+'filerevert' => 'Reverter "$1"',
 'filerevert-legend' => 'Reverter o ficheiro',
 'filerevert-intro' => 'Está a piques de reverter o ficheiro "\'\'\'[[Media:$1|$1]]\'\'\'" ata a [$4 versión do $2 ás $3].',
 'filerevert-comment' => 'Motivo:',
@@ -2076,7 +2077,7 @@ As entradas <del>riscadas</del> xa foron resoltas.',
 'brokenredirects-edit' => 'editar',
 'brokenredirects-delete' => 'borrar',
 
-'withoutinterwiki' => 'Páxinas sen ligazóns interwiki',
+'withoutinterwiki' => 'Páxinas sen ligazóns interlingüísticas',
 'withoutinterwiki-summary' => 'As seguintes páxinas non ligan con ningunha versión noutra lingua.',
 'withoutinterwiki-legend' => 'Prefixo',
 'withoutinterwiki-submit' => 'Mostrar',
@@ -2098,8 +2099,8 @@ As entradas <del>riscadas</del> xa foron resoltas.',
 'lonelypagestext' => 'As seguintes páxinas non teñen ningunha ligazón que apunte cara a elas desde outra páxina de {{SITENAME}}.',
 'uncategorizedpages' => 'Páxinas sen categorías',
 'uncategorizedcategories' => 'Categorías sen categorías',
-'uncategorizedimages' => 'Ficheiros sen categorizar',
-'uncategorizedtemplates' => 'Modelos sen categorizar',
+'uncategorizedimages' => 'Ficheiros sen categorías',
+'uncategorizedtemplates' => 'Modelos sen categorías',
 'unusedcategories' => 'Categorías sen uso',
 'unusedimages' => 'Imaxes sen uso',
 'popularpages' => 'Páxinas populares',
@@ -2112,7 +2113,7 @@ As entradas <del>riscadas</del> xa foron resoltas.',
 'wantedtemplates' => 'Modelos requiridos',
 'mostlinked' => 'Páxinas máis ligadas',
 'mostlinkedcategories' => 'Categorías máis ligadas',
-'mostlinkedtemplates' => 'Modelos máis enlazados',
+'mostlinkedtemplates' => 'Modelos máis ligados',
 'mostcategories' => 'Páxinas con máis categorías',
 'mostimages' => 'Ficheiros máis usados',
 'mostinterwikis' => 'Páxinas con máis interwikis',
@@ -2127,10 +2128,10 @@ As entradas <del>riscadas</del> xa foron resoltas.',
 'protectedpages-indef' => 'Só as proteccións indefinidas',
 'protectedpages-cascade' => 'Só as proteccións en serie',
 'protectedpagestext' => 'As seguintes páxinas están protexidas fronte á edición ou traslado',
-'protectedpagesempty' => 'Non hai páxinas protexidas neste momento',
+'protectedpagesempty' => 'Actualmente non hai ningunha páxina protexida con eses parámetros.',
 'protectedtitles' => 'Títulos protexidos',
 'protectedtitlestext' => 'Os seguintes títulos están protexidos da creación',
-'protectedtitlesempty' => 'Actualmente non están protexidos títulos con eses parámetros.',
+'protectedtitlesempty' => 'Actualmente non hai ningún título protexido con eses parámetros.',
 'listusers' => 'Lista de usuarios',
 'listusers-editsonly' => 'Mostrar só os usuarios con edicións',
 'listusers-creationsort' => 'Ordenar por data de creación',
@@ -2329,7 +2330,7 @@ Os cambios futuros nesta páxina e na súa páxina de conversa asociada serán l
 
 'enotif_mailer' => 'Sistema de notificacións por correo de {{SITENAME}}',
 'enotif_reset' => 'Marcar todas as páxinas como visitadas',
-'enotif_impersonal_salutation' => 'usuario de {{SITENAME}}',
+'enotif_impersonal_salutation' => 'Usuario de {{SITENAME}}',
 'enotif_subject_deleted' => '{{GENDER:$2|$2}} borrou a páxina chamada "$1" en {{SITENAME}}',
 'enotif_subject_created' => '{{GENDER:$2|$2}} creou a páxina chamada "$1" en {{SITENAME}}',
 'enotif_subject_moved' => '{{GENDER:$2|$2}} trasladou a páxina chamada "$1" en {{SITENAME}}',
@@ -2495,7 +2496,7 @@ Pode mudar o nivel de protección da páxina pero iso non afectará á protecci�
 
 # Restriction levels
 'restriction-level-sysop' => 'protección completa',
-'restriction-level-autoconfirmed' => 'semiprotexida',
+'restriction-level-autoconfirmed' => 'semiprotección',
 'restriction-level-all' => 'todos',
 
 # Undelete
@@ -2533,14 +2534,14 @@ $1',
 'undeletedpage' => "'''A páxina \"\$1\" foi restaurada'''
 
 Comprobe o [[Special:Log/delete|rexistro de borrados]] para ver as entradas recentes no rexistro de páxinas eliminadas e restauradas.",
-'undelete-header' => 'Vexa [[Special:Log/delete|no rexistro de borrados]] as páxinas eliminadas recentemente.',
+'undelete-header' => 'Consulte [[Special:Log/delete|no rexistro de borrados]] as páxinas borradas recentemente.',
 'undelete-search-title' => 'Procurar páxinas borradas',
 'undelete-search-box' => 'Procurar páxinas borradas',
 'undelete-search-prefix' => 'Mostrar as páxinas que comecen por:',
 'undelete-search-submit' => 'Procurar',
 'undelete-no-results' => 'Non se atoparon páxinas coincidentes no arquivo de eliminacións.',
-'undelete-filename-mismatch' => 'Non se pode desfacer a eliminación da revisión do ficheiro datada en $1: non corresponde o nome do ficheiro',
-'undelete-bad-store-key' => 'Non se pode desfacer o borrado da revisión do ficheiro datada en $1: o ficheiro faltaba antes de proceder a borralo.',
+'undelete-filename-mismatch' => 'Non se pode restaurar a revisión do ficheiro datada en $1: Non corresponde o nome do ficheiro.',
+'undelete-bad-store-key' => 'Non se pode restaurar a revisión do ficheiro datada en $1: O ficheiro faltaba antes de proceder a borralo.',
 'undelete-cleanup-error' => 'Erro ao eliminar o ficheiro do arquivo sen usar "$1".',
 'undelete-missing-filearchive' => 'Non foi posible restaurar o arquivo do ficheiro co ID $1 porque non figura na base de datos.
 Poida que xa se restaurase con anterioridade.',
@@ -2624,10 +2625,10 @@ Explique a razón específica do bloqueo (por exemplo, citando as páxinas concr
 ** Inserir información falsa
 ** Eliminar o contido de páxinas
 ** Ligazóns lixo a sitios externos
-** Inserir textos sen sentido ou inintelixíbeis
+** Inserir textos sen sentido ou inintelixibles
 ** Comportamento intimidatorio/acoso
 ** Abuso de múltiples contas de usuario
-** Nome de usuario inaceptábel',
+** Nome de usuario inaceptable',
 'ipb-hardblock' => 'Impedir que usuarios rexistrados editen desde este enderezo IP',
 'ipbcreateaccount' => 'Previr a creación de contas',
 'ipbemailban' => 'Impedir que o usuario envíe correos electrónicos',
@@ -2725,9 +2726,9 @@ Olle a [[Special:BlockList|lista de bloqueos]] para comprobar os bloqueos vixent
 'proxyblockreason' => 'O seu enderezo IP foi bloqueado porque é un proxy aberto.
 Por favor, contacte co seu fornecedor de acceso á Internet ou co seu soporte técnico e informe deste grave problema de seguridade.',
 'proxyblocksuccess' => 'Feito.',
-'sorbsreason' => "O seu enderezo IP está rexistrado como un ''proxy'' aberto na lista DNSBL usada por {{SITENAME}}.",
-'sorbs_create_account_reason' => "O seu enderezo IP está rexistrado como un ''proxy'' aberto na lista DNSBL usada por {{SITENAME}}.
-Polo tanto, non pode crear unha conta",
+'sorbsreason' => 'O seu enderezo IP está rexistrado como un proxy aberto na lista DNSBL usada por {{SITENAME}}.',
+'sorbs_create_account_reason' => 'O seu enderezo IP está rexistrado como un proxy aberto na lista DNSBL usada por {{SITENAME}}.
+Polo tanto, non pode crear unha conta',
 'cant-block-while-blocked' => 'Non pode bloquear outros usuarios mentres vostede estea bloqueado.',
 'cant-see-hidden-user' => 'O usuario que intenta bloquear xa foi bloqueado e agochado. Dado que non ten o dereito necesario para agochar usuarios, non pode ver ou editar o bloqueo do usuario.',
 'ipbblocked' => 'Non pode bloquear ou desbloquear outros usuarios porque vostede está bloqueado',
@@ -2761,7 +2762,7 @@ Lembre [[Special:UnlockDB|eliminar o bloqueo]] unha vez completado o seu manteme
 O título vello vaise converter nunha páxina de redirección ao novo título.
 Pode actualizar automaticamente as redireccións que van dar ao título orixinal.
 Se escolle non facelo, asegúrese de verificar que non hai redireccións [[Special:DoubleRedirects|dobres]] ou [[Special:BrokenRedirects|crebadas]].
-Vostede é responsábel de asegurarse de que as ligazóns continúan a apuntar cara a onde se supón que deberían.
+Vostede é responsable de asegurarse de que as ligazóns continúan a apuntar cara a onde se supón que deberían.
 
 Teña en conta que a páxina '''non''' será trasladada se xa existe unha páxina co novo título, a menos que esta última sexa unha redirección e non teña historial de edicións.
 Isto significa que pode volver renomear unha páxina ao seu nome antigo se comete un erro, e que non pode sobrescribir unha páxina que xa existe.
@@ -2772,7 +2773,7 @@ por favor, asegúrese de que entende as consecuencias disto antes de proseguir."
 'movepagetext-noredirectfixer' => "Ao usar o formulario inferior vai cambiar o nome da páxina, movendo todo o seu historial ao novo nome.
 O título vello vaise converter nunha páxina de redirección ao novo título.
 Asegúrese de verificar que non hai redireccións [[Special:DoubleRedirects|dobres]] ou [[Special:BrokenRedirects|crebadas]].
-Vostede é responsábel de asegurarse de que as ligazóns continúan a apuntar cara a onde se supón que deberían.
+Vostede é responsable de asegurarse de que as ligazóns continúan a apuntar cara a onde se supón que deberían.
 
 Teña en conta que a páxina '''non''' será trasladada se xa existe unha páxina co novo título, a menos que esta última sexa unha redirección e non teña historial de edicións.
 Isto significa que pode volver renomear unha páxina ao seu nome antigo se comete un erro, e que non pode sobrescribir unha páxina que xa existe.
@@ -3684,7 +3685,7 @@ Pode ser que caducase.',
 'confirmemail_success' => 'Confirmouse o seu enderezo de correo electrónico. Agora xa pode [[Special:UserLogin|acceder ao sistema]] e facer uso do wiki.',
 'confirmemail_loggedin' => 'Xa se confirmou o seu enderezo de correo electrónico.',
 'confirmemail_error' => 'Houbo un problema ao gardar a súa confirmación.',
-'confirmemail_subject' => '{{SITENAME}} - Verificación do enderezo de correo electrónico',
+'confirmemail_subject' => 'Confirmación do enderezo de correo electrónico de {{SITENAME}}',
 'confirmemail_body' => 'Alguén, probablemente vostede, desde o enderezo IP $1,
 rexistrou a conta "$2" con este enderezo de correo electrónico en {{SITENAME}}.
 
@@ -3965,17 +3966,17 @@ As imaxes móstranse na súa resolución completa; outros tipos de ficheiros in�
 'sqlite-no-fts' => '$1 sen soporte para procuras de texto completo',
 
 # New logging system
-'logentry-delete-delete' => '$1 borrou a páxina "$3"',
-'logentry-delete-restore' => '$1 restaurou a páxina "$3"',
-'logentry-delete-event' => '$1 mudou a visibilidade {{PLURAL:$5|dunha entrada|de $5 entradas}} do rexistro de "$3": $4',
-'logentry-delete-revision' => '$1 mudou a visibilidade {{PLURAL:$5|dunha revisión|de $5 revisións}} da páxina "$3": $4',
-'logentry-delete-event-legacy' => '$1 mudou a visibilidade de entradas do rexistro de "$3"',
-'logentry-delete-revision-legacy' => '$1 mudou a visibilidade de revisións da páxina "$3"',
-'logentry-suppress-delete' => '$1 suprimiu a páxina "$3"',
-'logentry-suppress-event' => '$1 mudou de xeito secreto a visibilidade {{PLURAL:$5|dunha entrada|de $5 entradas}} do rexistro de "$3": $4',
-'logentry-suppress-revision' => '$1 mudou de xeito secreto a visibilidade {{PLURAL:$5|dunha revisión|de $5 revisións}} da páxina "$3": $4',
-'logentry-suppress-event-legacy' => '$1 mudou de xeito secreto a visibilidade de entradas do rexistro de "$3"',
-'logentry-suppress-revision-legacy' => '$1 mudou de xeito secreto a visibilidade de revisións da páxina "$3"',
+'logentry-delete-delete' => '$1 {{GENDER:$2|borrou}} a páxina "$3"',
+'logentry-delete-restore' => '$1 {{GENDER:$2|restaurou}} a páxina "$3"',
+'logentry-delete-event' => '$1 {{GENDER:$2|mudou}} a visibilidade {{PLURAL:$5|dunha entrada|de $5 entradas}} do rexistro de $3: $4',
+'logentry-delete-revision' => '$1 {{GENDER:$2|mudou}} a visibilidade {{PLURAL:$5|dunha revisión|de $5 revisións}} da páxina "$3": $4',
+'logentry-delete-event-legacy' => '$1 {{GENDER:$2|mudou}} a visibilidade de entradas do rexistro de $3',
+'logentry-delete-revision-legacy' => '$1 {{GENDER:$2|mudou}} a visibilidade de revisións da páxina "$3"',
+'logentry-suppress-delete' => '$1 {{GENDER:$2|suprimiu}} a páxina "$3"',
+'logentry-suppress-event' => '$1 {{GENDER:$2|mudou}} de xeito secreto a visibilidade {{PLURAL:$5|dunha entrada|de $5 entradas}} do rexistro de $3: $4',
+'logentry-suppress-revision' => '$1 {{GENDER:$2|mudou}} de xeito secreto a visibilidade {{PLURAL:$5|dunha revisión|de $5 revisións}} da páxina "$3": $4',
+'logentry-suppress-event-legacy' => '$1 {{GENDER:$2|mudou}} de xeito secreto a visibilidade de entradas do rexistro de $3',
+'logentry-suppress-revision-legacy' => '$1 {{GENDER:$2|mudou}} de xeito secreto a visibilidade de revisións da páxina "$3"',
 'revdelete-content-hid' => 'agochou contidos',
 'revdelete-summary-hid' => 'agochou o resumo de edición',
 'revdelete-uname-hid' => 'agochou o nome de usuario',
@@ -3984,20 +3985,20 @@ As imaxes móstranse na súa resolución completa; outros tipos de ficheiros in�
 'revdelete-uname-unhid' => 'descubriu o nome de usuario',
 'revdelete-restricted' => 'aplicou restricións aos administradores',
 'revdelete-unrestricted' => 'eliminou restricións aos administradores',
-'logentry-move-move' => '$1 moveu a páxina "$3" a "$4"',
-'logentry-move-move-noredirect' => '$1 moveu a páxina "$3" a "$4" sen deixar unha redirección',
-'logentry-move-move_redir' => '$1 moveu a páxina "$3" a "$4" sobre unha redirección',
-'logentry-move-move_redir-noredirect' => '$1 moveu a páxina "$3" a "$4" sobre unha redirección sen deixar unha redirección',
-'logentry-patrol-patrol' => '$1 marcou a revisión $4 da páxina "$3" como patrullada',
-'logentry-patrol-patrol-auto' => '$1 marcou automaticamente a revisión $4 da páxina "$3" como patrullada',
-'logentry-newusers-newusers' => 'Creouse a conta de usuario $1',
-'logentry-newusers-create' => 'Creouse a conta de usuario $1',
-'logentry-newusers-create2' => '$1 creou a conta de usuario $3',
-'logentry-newusers-byemail' => '$1 creou a conta de usuario $3; o contrasinal enviouse por correo electrónico',
-'logentry-newusers-autocreate' => 'A conta de usuario $1 creouse automaticamente',
-'logentry-rights-rights' => '$1 cambiou o grupo ao que pertence $3 de $4 a $5',
-'logentry-rights-rights-legacy' => '$1 cambiou o grupo ao que pertence $3',
-'logentry-rights-autopromote' => '$1 foi promovido automaticamente de $4 a $5',
+'logentry-move-move' => '$1 {{GENDER:$2|moveu}} a páxina "$3" a "$4"',
+'logentry-move-move-noredirect' => '$1 {{GENDER:$2|moveu}} a páxina "$3" a "$4" sen deixar unha redirección',
+'logentry-move-move_redir' => '$1 {{GENDER:$2|moveu}} a páxina "$3" a "$4" sobre unha redirección',
+'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|moveu}} a páxina "$3" a "$4" sobre unha redirección sen deixar unha redirección',
+'logentry-patrol-patrol' => '$1 {{GENDER:$2|marcou}} a revisión $4 da páxina "$3" como patrullada',
+'logentry-patrol-patrol-auto' => '$1 {{GENDER:$2|marcou}} automaticamente a revisión $4 da páxina "$3" como patrullada',
+'logentry-newusers-newusers' => 'Creouse a conta de {{GENDER:$2|usuario|usuaria}} $1',
+'logentry-newusers-create' => 'Creouse a conta de {{GENDER:$2|usuario|usuaria}} $1',
+'logentry-newusers-create2' => '$1 {{GENDER:$2|creou}} a conta de usuario $3',
+'logentry-newusers-byemail' => '$1 {{GENDER:$2|creou}} a conta de usuario $3; o contrasinal enviouse por correo electrónico',
+'logentry-newusers-autocreate' => 'A conta de {{GENDER:$2|usuario|usuaria}} $1 creouse automaticamente',
+'logentry-rights-rights' => '$1 {{GENDER:$2|cambiou}} o grupo ao que pertence $3 de $4 a $5',
+'logentry-rights-rights-legacy' => '$1 {{GENDER:$2|cambiou}} o grupo ao que pertence $3',
+'logentry-rights-autopromote' => '$1 foi {{GENDER:$2|promovido|promovida}} automaticamente de $4 a $5',
 'rightsnone' => '(ningún)',
 
 # Feedback

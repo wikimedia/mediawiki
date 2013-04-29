@@ -257,7 +257,7 @@ $messages = array(
 'category_header' => 'Articulos in le categoria "$1"',
 'subcategories' => 'Subcategorias',
 'category-media-header' => 'Multimedia in categoria "$1"',
-'category-empty' => "''Iste categoria non contine alcun pagina o file multimedia al momento.''",
+'category-empty' => "''Iste categoria non contine actualmente alcun pagina o file multimedial.''",
 'hidden-categories' => '{{PLURAL:$1|Categoria celate|Categorias celate}}',
 'hidden-category-category' => 'Categorias celate',
 'category-subcat-count' => '{{PLURAL:$2|Iste categoria ha solmente le sequente subcategoria.|Iste categoria ha le sequente {{PLURAL:$1|subcategoria|$1 subcategorias}}, ex $2 in total.}}',
@@ -630,8 +630,8 @@ Per favor aperi session de novo post reciper lo.',
 'blocked-mailpassword' => 'Tu adresse IP es blocate de facer modificationes, e pro impedir le abuso, le uso del function pro recuperar contrasignos es equalmente blocate.',
 'eauthentsent' => 'Un e-mail de confirmation ha essite inviate al adresse de e-mail specificate.
 Pro poter reciper altere e-mail a iste conto, tu debe sequer le instructiones in iste e-mail pro confirmar que le conto es realmente tue.',
-'throttled-mailpassword' => 'Un rememoration del contrasigno ha jam essite inviate intra le ultime {{PLURAL:$1|hora|$1 horas}}.
-Pro prevenir le abuso, solmente un rememoration de contrasigno essera inviate per {{PLURAL:$1|hora|$1 horas}}.',
+'throttled-mailpassword' => 'Un message pro le reinitialisation del contrasigno ha jam essite inviate intra le ultime {{PLURAL:$1|hora|$1 horas}}.
+Pro prevenir le abuso, solmente un message pro le reinitialisation del contrasigno essera inviate per {{PLURAL:$1|hora|$1 horas}}.',
 'mailerror' => 'Error de inviar e-mail: $1',
 'acct_creation_throttle_hit' => 'Le visitatores de iste wiki usante tu adresse IP ha create {{PLURAL:$1|1 conto|$1 contos}} durante le ultime die, e isto es le maximo permittite in iste periodo de tempore.
 A causa de isto, le visitatores usante iste adresse IP non pote crear nove contos al momento.',
@@ -684,7 +684,7 @@ Es possibile que tu ha ja cambiate tu contrasigno o requestate un nove contrasig
 
 # Special:PasswordReset
 'passwordreset' => 'Reinitialisar contrasigno',
-'passwordreset-text' => 'Complete iste formulario pro reciper un rememoration in e-mail del datos de tu conto.',
+'passwordreset-text' => 'Completa iste formulario pro reinitialisar tu contrasigno.',
 'passwordreset-legend' => 'Reinitialisar contrasigno',
 'passwordreset-disabled' => 'Le reinitialisation de contrasignos ha essite disactivate in iste wiki.',
 'passwordreset-pretext' => '{{PLURAL:$1||Entra un del elementos de datos hic infra}}',
@@ -694,8 +694,8 @@ Es possibile que tu ha ja cambiate tu contrasigno o requestate un nove contrasig
 'passwordreset-capture-help' => 'Si tu marca iste quadrato, le e-mail (con le contrasigno temporari) non solmente essera inviate al usator, ma anque monstrate a te.',
 'passwordreset-email' => 'Adresse de e-mail:',
 'passwordreset-emailtitle' => 'Detalios del conto in {{SITENAME}}',
-'passwordreset-emailtext-ip' => 'Un persona (probabilemente tu, ab le adresse IP $1) requestava un rememoration del
-detalios de tu conto in {{SITENAME}} ($4). Le {{PLURAL:$3|conto|contos}} de usator sequente es
+'passwordreset-emailtext-ip' => 'Un persona (probabilemente tu, ab le adresse IP $1) requestava le reinitialisation de tu
+contrasigno de {{SITENAME}} ($4). Le {{PLURAL:$3|conto|contos}} de usator sequente es
 associate con iste adresse de e-mail:
 
 $2

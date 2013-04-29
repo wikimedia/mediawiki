@@ -1892,6 +1892,12 @@ Probabilmente te vui modifegar ła descrision prexente inte ła [$2 pàjina de d
 Łe podaria dover puntar a na pàjina pì apropià.<br />
 Vien considerae pàjine de dixanbiguasion tute cuełe che łe ga drento i modełi elencai in [[MediaWiki:Disambiguationspage]].",
 
+'pageswithprop' => 'Pagine co na proprietà de pagina',
+'pageswithprop-legend' => 'Pagine co na proprietà de pagina',
+'pageswithprop-text' => 'Sta pagina la elenca le pagine che dòpara na particolare proprietà de pagina.',
+'pageswithprop-prop' => 'Nome proprietà:',
+'pageswithprop-submit' => 'Và',
+
 'doubleredirects' => 'Redirect dopi',
 'doubleredirectstext' => 'Sta pagina le elenca pagine che rimanda a altre pagine de rimando.
 Ogni riga la contien dei colegamenti al primo e al secondo rimando, oltre a la destinassion del secondo rimando, che de solito la xe la "vera" pagina de destinassion, a cui dovarìa pontar el primo rimando.
@@ -2886,6 +2892,7 @@ Questo xe probabilmente dovùo a la presenza de un colegamento a un sito foresto
 'pageinfo-robot-noindex' => 'Mia indicizabile',
 'pageinfo-views' => 'Nùmaro de visite',
 'pageinfo-watchers' => "Nùmaro de utenti che tien d'ocio sta pagina",
+'pageinfo-few-watchers' => 'Manco de $1 {{PLURAL:$1|oservador|oservadori}}',
 'pageinfo-redirects-name' => 'Rimandi verso sta pagina',
 'pageinfo-subpages-name' => 'Sotopagine de sta pagina',
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|rimandi}}; $3 {{PLURAL:$3|no rimandi}})',
@@ -3712,17 +3719,17 @@ Le imagini le vien mostrà a la risoluzion pi granda che se pol, par i altri tip
 'sqlite-no-fts' => '$1 sensa la possibilità de riserca completa nel testo',
 
 # New logging system
-'logentry-delete-delete' => '$1 ga scansełà ła pajina $3',
-'logentry-delete-restore' => '$1 ga ripristinà "$3"',
-'logentry-delete-event' => '$1 ga canbià ła vixibiłità de {{PLURAL:$5|n\'asion del registro|$5 asion del registro}} de "$3": $4',
-'logentry-delete-revision' => '$1 ga canbià ła vixibiłità de {{PLURAL:$5|na revixion|$5 revixion}} de ła pajina"$3": $4',
-'logentry-delete-event-legacy' => '$1 ga canbià ła vixibiłità de calche asion del registro de "$3"',
-'logentry-delete-revision-legacy' => '$1 ga canbià ła vixibiłità par łe revixion de ła pajina $3',
-'logentry-suppress-delete' => '$1 ga sconto la pajina "$3"',
-'logentry-suppress-event' => '$1 ga canbià de scondón la vixibilità de {{PLURAL:$5|n\'asion del registro|$5 asion del registro}} de "$3": $4',
-'logentry-suppress-revision' => '$1 ga canbià de scondón la vixibilità de {{PLURAL:$5|na revixion|$5 revixion}} de "$3": $4',
-'logentry-suppress-event-legacy' => '$1 ga canbià de scondón la vixibilità de calche asion del registro de "$3"',
-'logentry-suppress-revision-legacy' => '$1 ga canbià de scondón la vixibilità de calche revixion de $3',
+'logentry-delete-delete' => '$1 {{GENDER:$2|el|la}} ga scansełà ła pajina $3',
+'logentry-delete-restore' => '$1 {{GENDER:$2|el|la}} ga ripristinà "$3"',
+'logentry-delete-event' => '$1 {{GENDER:$2|el|la}} ga canbià ła vixibiłità de {{PLURAL:$5|n\'asion del registro|$5 asion del registro}} de "$3": $4',
+'logentry-delete-revision' => '$1 {{GENDER:$2|el|la}} ga canbià ła vixibiłità de {{PLURAL:$5|na revixion|$5 revixion}} de ła pajina"$3": $4',
+'logentry-delete-event-legacy' => '$1 {{GENDER:$2|el|la}} ga canbià ła vixibiłità de calche asion del registro de "$3"',
+'logentry-delete-revision-legacy' => '$1 {{GENDER:$2|el|la}} ga canbià ła vixibiłità par łe revixion de ła pajina $3',
+'logentry-suppress-delete' => '$1 {{GENDER:$2|el|la}} ga sconto la pajina "$3"',
+'logentry-suppress-event' => '$1 {{GENDER:$2|el|la}} ga canbià de scondón la vixibilità de {{PLURAL:$5|n\'asion del registro|$5 asion del registro}} de "$3": $4',
+'logentry-suppress-revision' => '$1 {{GENDER:$2|el|la}} ga canbià de scondón la vixibilità de {{PLURAL:$5|na revixion|$5 revixion}} de "$3": $4',
+'logentry-suppress-event-legacy' => '$1 {{GENDER:$2|el|la}} ga canbià de scondón la vixibilità de calche asion del registro de "$3"',
+'logentry-suppress-revision-legacy' => '$1 {{GENDER:$2|el|la}} ga canbià de scondón la vixibilità de calche revixion de $3',
 'revdelete-content-hid' => 'contegnùo sconto',
 'revdelete-summary-hid' => 'ogeto de ła modifega sconto',
 'revdelete-uname-hid' => 'nome utente sconto',
@@ -3731,20 +3738,20 @@ Le imagini le vien mostrà a la risoluzion pi granda che se pol, par i altri tip
 'revdelete-uname-unhid' => 'nome utente ripristinà',
 'revdelete-restricted' => 'aplicà restrizioni ai aministradori',
 'revdelete-unrestricted' => 'gà cavà le limitazion par i aministradori',
-'logentry-move-move' => '$1 ga spostà ła pajina $3 a $4',
-'logentry-move-move-noredirect' => '$1 ga spostà ła pajina $3 a $4 sensa metare un rimando',
-'logentry-move-move_redir' => '$1 ga spostà ła pajina $3 a $4 lasiando un rimando',
-'logentry-move-move_redir-noredirect' => '$1 ga spostà la pajina $3 a $4 al posto de un rimando sensa metare un rimando',
-'logentry-patrol-patrol' => '$1 ga segnà la revixion $4 de la pajina $3 come verifegà',
-'logentry-patrol-patrol-auto' => '$1 ga segnà automategamente la revixion $4 de la pajina $3 come verifegà',
-'logentry-newusers-newusers' => "L'utensa $1 xe sta creà",
-'logentry-newusers-create' => "L'utensa $1 xe sta creà",
-'logentry-newusers-create2' => "L'utensa $3 xe sta creà da $1",
-'logentry-newusers-byemail' => "L'utensa $3 xe sta creà da $1 e ła password ła xe sta invià via e-mail",
-'logentry-newusers-autocreate' => "L'utensa $1 xè stà creà automategamente",
-'logentry-rights-rights' => "$1 ga canbià l'apartenensa de $3 dal grupo $4 al grupo $5",
-'logentry-rights-rights-legacy' => "$1 ga canbià l'apartenensa a grupi de $3",
-'logentry-rights-autopromote' => '$1 xe stà automategamente promoso/a da $4 a $5',
+'logentry-move-move' => '$1 {{GENDER:$2|el|la}} ga spostà ła pajina $3 a $4',
+'logentry-move-move-noredirect' => '$1 {{GENDER:$2|el|la}} ga spostà ła pajina $3 a $4 sensa metare un rimando',
+'logentry-move-move_redir' => '$1 {{GENDER:$2|el|la}} ga spostà ła pajina $3 a $4 lasandoghe un rimando',
+'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|el|la}} ga spostà la pajina $3 a $4 al posto de un rimando sensa lasarghe un rimando',
+'logentry-patrol-patrol' => '$1 {{GENDER:$2|el|la}} ga segnà la revixion $4 de la pajina $3 come verifegà',
+'logentry-patrol-patrol-auto' => '$1 {{GENDER:$2|el|la}} ga segnà automategamente la revixion $4 de la pajina $3 come verifegà',
+'logentry-newusers-newusers' => "L'utensa $1 xe sta {{GENDER:$2|creà}}",
+'logentry-newusers-create' => "L'utensa $1 xe sta {{GENDER:$2|creà}}",
+'logentry-newusers-create2' => "L'utensa $3 xe sta {{GENDER:$2|creà}} da $1",
+'logentry-newusers-byemail' => "L'utensa $3 xe sta {{GENDER:$2|creà}} da $1 e ła password ła xe sta invià par e-mail",
+'logentry-newusers-autocreate' => "L'utensa $1 xè stà {{GENDER:$2|creà}} automategamente",
+'logentry-rights-rights' => "$1 {{GENDER:$2|el|la}} ga canbià l'apartenensa de $3 dal grupo $4 al grupo $5",
+'logentry-rights-rights-legacy' => "$1 {{GENDER:$2|el|la}} ga canbià l'apartenensa a grupi de $3",
+'logentry-rights-autopromote' => '$1 {{GENDER:$2|el|la}} xe stà automategamente promoso/a da $4 a $5',
 'rightsnone' => '(nissun)',
 
 # Feedback
@@ -3818,5 +3825,8 @@ Le imagini le vien mostrà a la risoluzion pi granda che se pol, par i altri tip
 'duration-decades' => '$1 {{PLURAL:$1|decenio|deceni}}',
 'duration-centuries' => '$1 {{PLURAL:$1|secolo|secoli}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenio|mileni}}',
+
+# Image rotation
+'rotate-comment' => 'Imagine girà de $1 {{PLURAL:$1|grado|gradi}} in senso orario',
 
 );

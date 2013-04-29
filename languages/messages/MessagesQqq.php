@@ -384,7 +384,8 @@ Used as link title in your personal toolbox.
 See also:
 * {{msg-mw|Mytalk}}
 * {{msg-mw|Accesskey-pt-mytalk}}
-* {{msg-mw|Tooltip-pt-mytalk}}',
+* {{msg-mw|Tooltip-pt-mytalk}}
+{{Identical|Talk}}',
 'anontalk' => 'Link to the talk page appearing in [[mw:Help:Navigation#User_Links|user links]] for each anonymous users when [[mw:Manual:$wgShowIPinHeader|$wgShowIPinHeader]] is true.
 
 See also:
@@ -458,9 +459,8 @@ See also:
 * {{msg-mw|Accesskey-n-help}}
 * {{msg-mw|Tooltip-n-help}}
 {{Identical|Help}}',
-'search' => 'Noun. Text of menu section shown on every page of the wiki above the search form.
-
-Also used as title of [[Special:Search]] page in [[Special:SpecialPages]].
+'search' => '{{doc-special|Search}}
+Noun. Text of menu section shown on every page of the wiki above the search form.
 
 See also:
 * {{msg-mw|Search}}
@@ -550,6 +550,9 @@ See also:
 {{Identical|Talk}}',
 'specialpage' => '{{Identical|Special page}}',
 'personaltools' => 'Heading for a group of links to your user page, talk page, preferences, watchlist, and contributions. This heading is visible in the sidebar in some skins. For an example, see [{{canonicalurl:Main_Page|useskin=simple}} Main Page using simple skin].',
+'postcomment' => 'Used as link text.
+
+The link points to the talk page and has the parameters "action=edit&section=new".',
 'articlepage' => "'Content page' is used for NS_MAIN and any other non-standard namespace and this message is only used in skins Nostalgia, Cologneblue and Standard in the bottomLinks part.
 
 {{Identical|Content page}}",
@@ -607,7 +610,8 @@ For explanation of 'lock' see [[w:Lock_(computer_science)|wikipedia]].",
 'pool-queuefull' => 'Part of {{msg-mw|view-pool-error}}
 
 "Pool" refers to a pool of processes.',
-'pool-errorunknown' => 'Part of {{msg-mw|view-pool-error}}.',
+'pool-errorunknown' => 'Part of {{msg-mw|view-pool-error}}.
+{{Identical|Unknown error}}',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite' => 'Used as the label of the link that appears at the footer of every page on the wiki (in most of  the skins) and leads to the page that contains the site description. The link target is {{msg-mw|aboutpage}}.
@@ -1049,7 +1053,7 @@ In user preferences.
 'yourdomainname' => 'Used as label for listbox.',
 'password-change-forbidden' => 'Error message shown when an external authentication source does not allow the password to be changed.',
 'externaldberror' => 'This message is thrown when a valid attempt to change the wiki password for a user fails because of a database error or an error from an external system.',
-'login' => "Shown as the caption of the button at [[Special:UserLogin]], and also to anonymous users in the upper right corner of the page when they can't create an account (otherwise the message {{msg-mw|nav-login-createaccount}} is shown there).
+'login' => "Shown as the caption of the button at [[Special:UserLogin]], and also to anonymous users in the upper right corner of the page when they can't create an account (otherwise the message {{msg-mw|nav-login-createaccount}} is shown there). Also the title of the new login special page, which does not combine Log in & Create account.
 
 See also:
 * {{msg-mw|Login}}
@@ -1072,15 +1076,20 @@ See also:
 * {{msg-mw|Tooltip-pt-logout}}
 {{Identical|Log out}}',
 'userlogout' => '{{Doc-actionlink}}
+{{doc-special|UserLogout|unlisted=1}}
 {{Identical|Log out}}',
 'notloggedin' => 'This message is displayed in the standard skin when not logged in. The message is placed above the login link in the top right corner of pages.
 
 {{Identical|Not logged in}}',
 'nologin' => 'A message shown in the log in form. Parameters:
-* $1 - a link to the account creation form, and the text of it is {{msg-mw|Nologinlink}}',
+* $1 - a link to the account creation form, and the text of it is {{msg-mw|Nologinlink}}
+{{Identical|Do not have an account}}',
 'nologinlink' => 'Text of the link to the account creation form. Before that link, the message {{msg-mw|Nologin}} appears.
 {{Identical|Create an account}}',
-'createaccount' => 'The title of [[Special:CreateAccount]], where users can register a new account. Used on [[Special:SpecialPages]] and on the submit button in the form where you register a new account.
+'createaccount' => '{{doc-special|CreateAccount}}
+The special page enables users to register a new account.
+
+Used on the submit button in the form where you register a new account.
 
 It is also used on the top of the page for logged out users, where it appears next to {{msg-mw|login}}, so consider making them similar.
 {{Identical|Create account}}',
@@ -1089,7 +1098,9 @@ It is also used on the top of the page for logged out users, where it appears ne
 'gotaccountlink' => 'Text of the link to the log in form. Before that link, the message {{msg-mw|Gotaccount}} appears.
 {{Identical|Log in}}',
 'userlogin-resetlink' => 'Used on the login page.',
-'createaccountmail' => 'Button text for creating a new account and sending the new password to the specified e-mail address directly, as used on [[Special:UserLogin/signup]] if creating accounts by e-mail is allowed.',
+'createaccountmail' => 'Used as label for the checkbox for creating a new account and sending the new password to the specified e-mail address directly, as used on [[Special:UserLogin/signup]] if creating accounts by e-mail is allowed.
+
+See example: [{{canonicalurl:Special:UserLogin|type=signup&useNew=1}} Special:UserLogin?type=signup&useNew=1]',
 'createaccountreason' => '{{Identical|Reason}}',
 'badretype' => 'Used as error message when the new password and its retype do not match.',
 'userexists' => 'Used as error message in creating a user account.',
@@ -1116,8 +1127,10 @@ Parameters:
 'nosuchusershort' => "Displayed when trying to log in with a non-existant username. This message is only shown when you can't create an account, otherwise the message {{msg-mw|nosuchusershort}} is displayed.",
 'nouserspecified' => 'Used as error message when username to fetch is not specified.',
 'login-userblocked' => 'This message supports GENDER, username is available in $1.',
-'wrongpassword' => 'Used as error message when the provided password is wrong.',
-'wrongpasswordempty' => 'Error message displayed when entering a blank password',
+'wrongpassword' => 'Used as error message when the provided password is wrong.
+{{Identical|Please try again}}',
+'wrongpasswordempty' => 'Error message displayed when entering a blank password.
+{{Identical|Please try again}}',
 'passwordtooshort' => 'This message is shown at
 
 * [[Special:Preferences]]
@@ -1138,7 +1151,7 @@ $1 is the minimum number of characters in the password.',
 
 Parameters:
 * $1 is a user name. This parameter can be used with GENDER.',
-'noemailcreate' => 'Error message.',
+'noemailcreate' => 'Used as error message when one user creates an account for another and there is no email.',
 'passwordsent' => '* $1 - username',
 'blocked-mailpassword' => 'Used as error message in password recovery.',
 'eauthentsent' => "This message appears after entering an e-mail address in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}, then clicking on '{{int:saveprefs}}'.",
@@ -1342,7 +1355,8 @@ See also:
 See also:
 * {{msg-mw|Savearticle}}
 * {{msg-mw|Accesskey-save}}
-* {{msg-mw|Tooltip-save}}',
+* {{msg-mw|Tooltip-save}}
+{{Identical|Save page}}',
 'preview' => 'The title of the Preview page shown after clicking the "Show preview" button in the edit page. Since this is a heading, it should probably be translated as a noun and not as a verb.
 
 {{Identical|Preview}}',
@@ -1755,7 +1769,8 @@ Used in History and [[Special:Contributions]].',
 It is followed by the message {{msg-mw|Viewprevnext}}.',
 'histlast' => 'This is part of the navigation message on the top and bottom of Page History pages which are lists of things in date order, e.g. [{{canonicalurl:Support|action=history}} Page History of Support].
 
-It is followed by the message {{msg-mw|Viewprevnext}}.',
+It is followed by the message {{msg-mw|Viewprevnext}}.
+{{Identical|Latest}}',
 'historysize' => '* $1 - byte count',
 'historyempty' => 'Text in page history for empty page revisions
 
@@ -1805,7 +1820,8 @@ See [{{canonicalurl:x|feed=atom&action=history}} example].',
 'rev-showdeleted' => 'Link in page history for oversight (see also {{msg-mw|rev-delundel}})
 {{Identical|Show}}',
 'revisiondelete' => '{{RevisionDelete}}
-It is the page title of [[Special:RevisionDelete]].',
+
+{{doc-special|RevisionDelete|unlisted=1}}',
 'revdelete-nooldid-title' => '{{RevisionDelete}}',
 'revdelete-nooldid-text' => '{{RevisionDelete}}',
 'revdelete-nologtype-title' => 'See also:
@@ -1999,6 +2015,7 @@ Title of the suppression log. Shown in the drop down menu at [[Special:log]] and
 'suppressionlogtext' => 'Description text of the suppression log. Shown at top of [[Special:log/suppress]].',
 
 # History merging
+'mergehistory' => '{{doc-special|MergeHistory}}',
 'mergehistory-header' => 'Used as header for Merge form in [[Special:MergeHistory]].
 
 See also:
@@ -2101,6 +2118,7 @@ A revision row in the merge history page. Parameters:
 
 # Merge log
 'mergelog' => '{{doc-logpage}}
+
 This is the name of a log of merge actions done on [[Special:MergeHistory]]. This special page and this log is not enabled by default.',
 'pagemerge-logentry' => "This log message is used in a merge log entry.
 
@@ -2217,7 +2235,8 @@ See also:
 
 See also:
 * {{msg-mw|Searchprofile-images|message}}
-* {{msg-mw|Searchprofile-images-tooltip|tooltip}}',
+* {{msg-mw|Searchprofile-images-tooltip|tooltip}}
+{{Identical|Muitimedia}}',
 'searchprofile-everything' => 'Used as an option in [[Special:Search]].
 
 See also:
@@ -2391,7 +2410,8 @@ See also:
 'resetprefs' => 'Button for resetting changes in the preferences page.',
 'restoreprefs' => 'Used in [[Special:Preferences]]',
 'prefs-editing' => 'Title of a tab in [[Special:Preferences]].
-When changing this message, please also update {{msg-mw|vector-editwarning-warning}} which references to this message.',
+When changing this message, please also update {{msg-mw|vector-editwarning-warning}} which references to this message.
+{{Identical|Editing}}',
 'prefs-edit-boxsize' => 'Used on [[Special:Preferences]].',
 'rows' => 'Used on [[Special:Preferences]], "Editing" section in the "Size of editing window" fieldset',
 'columns' => 'Used on [[Special:Preferences]], "Editing" section in the "Size of editing window" fieldset',
@@ -2400,7 +2420,8 @@ When changing this message, please also update {{msg-mw|vector-editwarning-warni
 {{Identical|Search}}',
 'resultsperpage' => "Option on the 'Search options' tab of [[Special:Preferences]]",
 'stub-threshold' => 'Used in [[Special:Preferences]], tab "Misc".',
-'stub-threshold-disabled' => 'Used in [[Special:Preferences]].',
+'stub-threshold-disabled' => 'Used in [[Special:Preferences]].
+{{Identical|Disabled}}',
 'recentchangesdays' => 'Used in [[Special:Preferences]], tab "Recent changes".',
 'recentchangesdays-max' => 'Shown as hint in [[Special:Preferences]], tab "Recent changes"',
 'recentchangescount' => 'Used in [[Special:Preferences]], tab "Recent changes".',
@@ -2429,7 +2450,8 @@ This option lets your time zone setting use the one that is used on the wiki (of
 'timezoneregion-atlantic' => 'Used in "Time zone" listbox in [[Special:Preferences#mw-prefsection-datetime|preferences]], "date and time" tab.
 {{Related|Timezoneregion}}',
 'timezoneregion-australia' => 'Used in "Time zone" listbox in [[Special:Preferences#mw-prefsection-datetime|preferences]], "date and time" tab.
-{{Related|Timezoneregion}}',
+{{Related|Timezoneregion}}
+{{Identical|Australia}}',
 'timezoneregion-europe' => 'Used in "Time zone" listbox in [[Special:Preferences#mw-prefsection-datetime|preferences]], "date and time" tab.
 {{Related|Timezoneregion}}',
 'timezoneregion-indian' => 'Used in "Time zone" listbox in [[Special:Preferences#mw-prefsection-datetime|preferences]], "date and time" tab.
@@ -2451,6 +2473,8 @@ This option lets your time zone setting use the one that is used on the wiki (of
 'prefs-emailconfirm-label' => 'Sub-heading in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.',
 'prefs-textboxsize' => "Header for the box specifying the size of the editing window, displayed on the 'editing' tab of the [[Special:Preferences|user preferences]] special page.",
 'youremail' => 'Label of the e-mail text box of the "E-mail options" section of [[Special:Preferences]].
+Also used on create account form.
+
 {{Identical|E-mail}}',
 'username' => 'Username field in [[Special:Preferences]]. $1 is the current user name for GENDER distinction (depends on sex setting).
 
@@ -2687,7 +2711,8 @@ If you are in that group, you have (by default) the '''right \"autoconfirmed\"''
 If someone with this right (bots by default) edits a user talk page and marks it as minor (requires {{msg-mw|right-minoredit}}), the user will not get a notification "You have new messages".',
 'right-apihighlimits' => '{{doc-right|apihighlimits}}',
 'right-writeapi' => '{{doc-right|writeapi}}',
-'right-delete' => '{{doc-right|delete}}',
+'right-delete' => '{{doc-right|delete}}
+{{Identical|Delete page}}',
 'right-bigdelete' => '{{doc-right|bigdelete}}',
 'right-deletelogentry' => '{{doc-right|deletelogentry}}
 This user right is part of the [[mw:RevisionDelete|RevisionDelete]] feature.
@@ -2779,6 +2804,7 @@ Part of the "Newuserlog" extension. It is both the title of [[Special:Log/newuse
 
 # User rights log
 'rightslog' => '{{doc-logpage}}
+
 In [[Special:Log]]',
 'rightslogtext' => 'Text in [[Special:Log/rights]].',
 
@@ -2913,15 +2939,25 @@ Does not work under $wgMiserMode ([[mwr:48986|r48986]]).',
 'rc-old-title' => 'Text that shows the original title of a page, $1 is the original title text',
 
 # Recent changes linked
-'recentchangeslinked' => 'Title of [[Special:RecentChangesLinked]] and display name of page on [[Special:SpecialPages]].
-
+'recentchangeslinked' => '{{doc-special|RecentChangesLinked}}
 See also:
 * {{msg-mw|Recentchangeslinked}}
 * {{msg-mw|Accesskey-t-recentchangeslinked}}
 * {{msg-mw|Tooltip-t-recentchangeslinked}}',
-'recentchangeslinked-feed' => 'Title of [[Special:RecentChangesLinked]] and display name of page on [[Special:SpecialPages]].',
-'recentchangeslinked-toolbox' => 'Title of [[Special:RecentChangesLinked]] and display name of page on [[Special:SpecialPages]].',
-'recentchangeslinked-title' => 'Message used as title and page header on [[Special:RecentChangesLinked]] (needs an argument like "/Main Page"). Related changes are all recent change to pages that are linked from \'\'this page\'\'. "$1" is the name of the page for which related changes are shown.',
+'recentchangeslinked-feed' => 'Used in the feed object.
+
+This message follows the message {{msg-mw|Recentchangeslinked-title}}.',
+'recentchangeslinked-toolbox' => 'Used as link text, and also used as link text in the common toolbox.
+
+These links point to [[Special:RecentChangesLinked]].',
+'recentchangeslinked-title' => "Message used as title and page header on [[Special:RecentChangesLinked]] (needs an argument like \"/Main Page\").
+
+Related changes are all recent change to pages that are linked from ''this page''.
+
+This message is followed by {{msg-mw|Recentchangeslinked-feed}}.
+
+Parameters:
+* \$1 - the name of the page for which related changes are shown",
 'recentchangeslinked-noresult' => 'Used in [[Special:RecentChangesLinked]], when there are no changes.',
 'recentchangeslinked-summary' => 'Summary of [[Special:RecentChangesLinked]].',
 'recentchangeslinked-page' => '{{Identical|Page name}}',
@@ -2974,6 +3010,7 @@ Text displayed when uploading a file using [[Special:Upload]].",
 'upload-preferred' => 'Used in [[Special:Upload]].',
 'upload-prohibited' => 'Used in [[Special:Upload]].',
 'uploadlogpage' => '{{doc-logpage}}
+
 Page title of [[Special:Log/upload]].',
 'uploadlogpagetext' => 'Appears on top of [[Special:Log/upload]].',
 'filename' => '{{Identical|Filename}}',
@@ -3005,6 +3042,7 @@ See also:
 * {{msg-mw|upload-tryagain|Submit button text}}
 * {{msg-mw|reuploaddesc|button text}}',
 'ignorewarnings' => 'In [[Special:Upload]]',
+'minlength1' => 'Used as error message in [[Special:Upload]].',
 'illegalfilename' => '* $1 - filename',
 'filename-toolong' => 'Error message when uploading a file with a filename longer than the hard-coded limit of 240 bytes. This limit will never change and is hard-coded in the message.
 
@@ -3756,13 +3794,15 @@ $1 is the name of the shared repository. On wikimedia sites, $1 is {{msg-mw|shar
 * $3 is a hour
 * $4 is an URL and must follow square bracket: [$4
 {{Identical|Revert}}',
+'filerevert-badversion' => 'Used as error message.',
 
 # File deletion
 'filedelete' => 'Used as page title. Parameters:
 * $1 - file title
 See also:
 * {{msg-mw|Filedelete-intro}}',
-'filedelete-legend' => '{{Identical|Delete}}',
+'filedelete-legend' => 'Used as fieldset label in the "Delete file" form.
+{{Identical|Delete file}}',
 'filedelete-intro' => 'Used as introduction for FileDelete form.
 See also:
 * {{msg-mw|Filedelete|page title}}',
@@ -3806,23 +3846,26 @@ See also:
 
 See also:
 * {{msg-mw|Mimesearch|page title}}
-* {{msg-mw|Ilsubmit|Submit button text}}',
+* {{msg-mw|Ilsubmit|Submit button text}}
+{{Identical|MIME type}}',
 'download' => 'Direct download link in each line returned by [[Special:MIMESearch]]. Points to the actual file, rather than the image description page.
 {{Identical|Download}}',
 
 # Unwatched pages
-'unwatchedpages' => 'Name of special page displayed in [[Special:SpecialPages]] for admins',
+'unwatchedpages' => '{{doc-special|UnwatchedPages}}',
 
 # List redirects
-'listredirects' => 'Name of special page displayed in [[Special:SpecialPages]].',
+'listredirects' => '{{doc-special|ListRedirects}}',
 
 # Unused templates
-'unusedtemplates' => 'Name of special page displayed in [[Special:SpecialPages]].',
+'unusedtemplates' => '{{doc-special|UnusedTemplates}}',
 'unusedtemplatestext' => 'Shown on top of [[Special:Unusedtemplates]]',
+'unusedtemplateswlh' => 'Used as link text in [[Special:UnusedTemplates]].
+
+The link points to the "What links here" page.',
 
 # Random page
-'randompage' => 'Name of special page displayed in [[Special:SpecialPages]].
-
+'randompage' => '{{doc-special|RandomPage}}
 See also:
 * {{msg-mw|Randompage}}
 * {{msg-mw|Accesskey-n-randompage}}
@@ -3832,12 +3875,11 @@ See also:
 * $2 - number of namespaces',
 
 # Random redirect
-'randomredirect' => 'Name of special page displayed in [[Special:SpecialPages]].',
+'randomredirect' => '{{doc-special|RandomRedirect}}',
 'randomredirect-nopages' => '* $1 - namespace name',
 
 # Statistics
-'statistics' => 'Name of special page displayed in [[Special:SpecialPages]].
-
+'statistics' => '{{doc-special|Statistics}}
 {{Identical|Statistics}}',
 'statistics-header-pages' => 'Used in [[Special:Statistics]]',
 'statistics-header-edits' => 'Used in [[Special:Statistics]]',
@@ -3853,12 +3895,13 @@ Possible alternatives to the word 'content' are 'subject matter' or 'wiki subjec
 
 {{Identical|Content page}}",
 'statistics-pages' => 'Used in [[Special:Statistics]]
-{{Identical|Pages}}',
+{{Identical|Page}}',
 'statistics-pages-desc' => "Tooltip shown over ''Pages'' (or as a note below it) in [[Special:Statistics]]",
 'statistics-files' => 'Used in [[Special:Statistics]]',
 'statistics-edits' => 'Used in [[Special:Statistics]]',
 'statistics-edits-average' => 'Used in [[Special:Statistics]]',
 'statistics-views-total' => 'Used in [[Special:Statistics]]',
+'statistics-views-total-desc' => 'This message follows the message {{msg-mw|statistics-views-total}}, in [[Special:Statistics]].',
 'statistics-views-peredit' => 'Used in [[Special:Statistics]]',
 'statistics-users' => '{{doc-important|Do not translate "Special:ListUsers"}}
 Used in [[Special:Statistics]].',
@@ -3867,7 +3910,7 @@ Used in [[Special:Statistics]].',
 * \$1 - Value of <code>\$wgRCMaxAge</code> in days",
 'statistics-mostpopular' => 'Used in [[Special:Statistics]]',
 
-'disambiguations' => 'Name of a special page displayed in [[Special:SpecialPages]].',
+'disambiguations' => '{{doc-special|Disambiguations}}',
 'disambiguationspage' => 'This message is the name of the template used for marking disambiguation pages. It is used by [[Special:Disambiguations]] to find all pages which link to disambiguation pages.
 
 {{doc-important|Don\'t translate the "Template:" part!}}',
@@ -3876,7 +3919,7 @@ This block of text is shown on [[:Special:Disambiguations]].
 
 \'\'\'Background information:\'\'\' Beyond telling about links going to disambiguation pages, that they are generally bad, it should explain which pages in the article namespace are seen as disambiguations: [[MediaWiki:Disambiguationspage]] usually holds a list of disambiguation templates of the local wiki. Pages linking to one of them (by transclusion) will count as disambiguation pages. Pages linking to these disambiguation pages, instead to the disambiguated article itself, are listed on [[:Special:Disambiguations]].',
 
-'pageswithprop' => 'Title for [[Special:PagesWithProp]].
+'pageswithprop' => '{{doc-special|PagesWithProp}}
 {{Identical|Page with page property}}',
 'pageswithprop-legend' => 'Legend for the input form on [[Special:PagesWithProp]].
 {{Identical|Page with page property}}',
@@ -3886,13 +3929,13 @@ This block of text is shown on [[:Special:Disambiguations]].
 'pageswithprop-submit' => 'Label for the submit button on [[Special:PagesWithProp]].
 {{Identical|Go}}',
 
-'doubleredirects' => 'Name of [[Special:DoubleRedirects]] displayed in [[Special:SpecialPages]]',
+'doubleredirects' => '{{doc-special|DoubleRedirects}}',
 'doubleredirectstext' => 'Shown on top of [[Special:Doubleredirects]]',
 'double-redirect-fixed-move' => 'This is the message in the log when the software (under the username {{msg|double-redirect-fixer}}) updates the redirects after a page move. See also {{msg|fix-double-redirects}}.',
 'double-redirect-fixed-maintenance' => 'This is the message in the log when the software (under the username {{msg-mw|double-redirect-fixer}}) updates the redirects after running maintenance/fixDoubleRedirects.php. Compare with {{msg-mw|double-redirect-fixed-move}}.',
 'double-redirect-fixer' => "This is the '''username''' of the user who updates the double redirects after a page move. A user is created with this username, so it is perhaps better to not change this message too often. See also {{msg|double-redirect-fixed-move}} and {{msg|fix-double-redirects}}.",
 
-'brokenredirects' => 'Name of [[Special:BrokenRedirects]] displayed in [[Special:SpecialPages]]',
+'brokenredirects' => '{{doc-special|BrokenRedirects}}',
 'brokenredirectstext' => 'Shown on top of [[Special:BrokenRedirects]].',
 'brokenredirects-edit' => 'Link in [[Special:BrokenRedirects]]
 
@@ -3901,12 +3944,12 @@ This block of text is shown on [[:Special:Disambiguations]].
 
 {{Identical|Delete}}',
 
-'withoutinterwiki' => 'The title of the special page [[Special:WithoutInterwiki]].',
+'withoutinterwiki' => '{{doc-special|WithoutInterwiki}}',
 'withoutinterwiki-summary' => 'Summary of [[Special:WithoutInterwiki]].',
 'withoutinterwiki-legend' => 'Used on [[Special:WithoutInterwiki]] as title of fieldset.',
 'withoutinterwiki-submit' => '{{Identical|Show}}',
 
-'fewestrevisions' => 'Name of a special page displayed in [[Special:SpecialPages]].',
+'fewestrevisions' => '{{doc-special|FewestRevisions}}',
 
 # Miscellaneous special pages
 'nbytes' => 'Message used on the history page of a wiki page. Each version of a page consist of a number of bytes. $1 is the number of bytes that the page uses. Uses plural as configured for a language based on $1.',
@@ -3920,45 +3963,47 @@ This block of text is shown on [[:Special:Disambiguations]].
 'nimagelinks' => 'Used on [[Special:MostLinkedFiles]] to indicate how often a specific file is used.',
 'ntransclusions' => 'Used on [[Special:MostLinkedTemplates]] to indicate how often a template is in use.',
 'specialpage-empty' => 'Used on a special page when there is no data. For example on [[Special:Unusedimages]] when all images are used.',
-'lonelypages' => 'Name of [[Special:LonelyPages]] displayed in [[Special:SpecialPages]]',
+'lonelypages' => '{{doc-special|LonelyPages}}',
 'lonelypagestext' => 'Text displayed in [[Special:LonelyPages]]',
-'uncategorizedpages' => 'Name of a special page displayed in [[Special:SpecialPages]].',
-'uncategorizedcategories' => 'Name of special page displayed in [[Special:SpecialPages]]',
-'uncategorizedimages' => 'The title of the special page [[Special:UncategorizedImages]].',
-'uncategorizedtemplates' => 'The title of the special page [[Special:UncategorizedTemplates]].',
-'unusedcategories' => 'Name of special page displayed in [[Special:SpecialPages]]',
-'unusedimages' => 'Name of special page displayed in [[Special:SpecialPages]]',
-'popularpages' => 'Name of special page displayed in [[Special:SpecialPages]]',
-'wantedcategories' => 'Name of special page displayed in [[Special:SpecialPages]]',
-'wantedpages' => 'Name of special page displayed in [[Special:SpecialPages]]',
+'uncategorizedpages' => '{{doc-special|UncategorizedPages}}',
+'uncategorizedcategories' => '{{doc-special|UncategorizedCategories}}',
+'uncategorizedimages' => '{{doc-special|UncategorizedImages}}',
+'uncategorizedtemplates' => '{{doc-special|UncategorizedTemplates}}',
+'unusedcategories' => '{{doc-special|UnusedCategories}}',
+'unusedimages' => '{{doc-special|UnusedImages}}',
+'popularpages' => '{{doc-special|PopularPages}}',
+'wantedcategories' => '{{doc-special|WantedCategories}}',
+'wantedpages' => '{{doc-special|WantedPages}}',
 'wantedpages-badtitle' => "Error message shown when [[Special:WantedPages]] is listing a page with a title that shouldn't exist.
 
 $1 is a page title",
-'wantedfiles' => 'Name of special page displayed in [[Special:SpecialPages]] and title of [[Special:WantedFiles]].',
+'wantedfiles' => '{{doc-special|WantedFiles}}',
 'wantedfiletext-cat' => 'Message displayed at top of [[special:WantedFiles]]. $1 contains the name of the tracking category for broken files (Including Category prefix). {{msg-mw|wantedfiletext-nocat}} is used if the tracking category is disabled.',
 'wantedfiletext-nocat' => 'Message displayed at top of [[special:WantedFiles]] when broken file tracking category is disabled. See {{msg-mw|wantedfiletext-cat}}.',
-'wantedtemplates' => 'The page name of [[Special:WantedTemplates]].',
-'mostlinked' => 'Name of special page displayed in [[Special:SpecialPages]]',
-'mostlinkedcategories' => 'Name of special page displayed in [[Special:SpecialPages]]',
-'mostlinkedtemplates' => 'Name of special page displayed in [[Special:SpecialPages]]',
-'mostcategories' => 'Name of special page displayed in [[Special:SpecialPages]]',
-'mostimages' => 'Name of special page displayed in [[Special:SpecialPages]]',
-'mostinterwikis' => 'Name of special page displayed in [[Special:SpecialPages]]',
-'mostrevisions' => 'Name of special page displayed in [[Special:SpecialPages]]',
-'prefixindex' => 'The page title of [[Special:PrefixIndex]]. When the user limits the list to a certain namespace, {{msg-mw|allinnamespace}} is used instead.',
+'wantedtemplates' => '{{doc-special|WantedTemplates}}',
+'mostlinked' => '{{doc-special|MostLinked}}',
+'mostlinkedcategories' => '{{doc-special|MostLinkedCategories}}',
+'mostlinkedtemplates' => '{{doc-special|MostLinkedTemplates}}',
+'mostcategories' => '{{doc-special|MostCategories}}',
+'mostimages' => '{{doc-special|MostImages}}',
+'mostinterwikis' => '{{doc-special|MostInterwikis}}',
+'mostrevisions' => '{{doc-special|MostRevisions}}',
+'prefixindex' => '{{doc-special|PrefixIndex}}
+When the user limits the list to a certain namespace, {{msg-mw|allinnamespace}} is used instead.',
 'prefixindex-namespace' => 'The page title of [[Special:PrefixIndex]] limited to a specific namespace. Similar to {{msg-mw|allinnamespace}}. $1 is the name of the namespace',
-'shortpages' => 'Name of special page displayed in [[Special:SpecialPages]]',
-'longpages' => 'Name of special page displayed in [[Special:SpecialPages]]',
-'deadendpages' => 'Name of special page displayed in [[Special:SpecialPages]]',
+'shortpages' => '{{doc-special|ShortPages}}',
+'longpages' => '{{doc-special|LongPages}}',
+'deadendpages' => '{{doc-special|DeadendPages}}',
 'deadendpagestext' => 'Introductory text for [[Special:DeadendPages]]',
-'protectedpages' => 'Name of special page displayed in [[Special:SpecialPages]]',
+'protectedpages' => '{{doc-special|ProtectedPages}}',
 'protectedpages-indef' => 'Option in [[Special:ProtectedPages]]',
 'protectedpages-cascade' => 'Option in [[Special:ProtectedPages]]',
 'protectedpagestext' => 'Shown on top of [[Special:ProtectedPages]]',
-'protectedtitles' => 'Name of special page displayed in [[Special:SpecialPages]]',
+'protectedpagesempty' => 'Used in [[Special:ProtectedPages]], when there are no protected pages with the specified parameters.',
+'protectedtitles' => '{{doc-special|ProtectedTitles}}',
 'protectedtitlestext' => 'Shown on top of list of titles on [[Special:ProtectedTitles]]. If the list is empty the message [[MediaWiki:Protectedtitlesempty]] appears instead of this. See the [[mw:Project:Protected_titles|help page on MediaWiki]] for more information.',
 'protectedtitlesempty' => 'Used on [[Special:ProtectedTitles]]. This text appears if the list of protected titles is empty. See the [[mw:Project:Protected_titles|help page on MediaWiki]] for more information.',
-'listusers' => 'Name of special page displayed in [[Special:SpecialPages]]',
+'listusers' => '{{doc-special|ListUsers}}',
 'listusers-editsonly' => 'Option in [[Special:ListUsers]].',
 'listusers-creationsort' => 'Option in [[Special:ListUsers]].',
 'usereditcount' => 'Shown behind every username on [[Special:ListUsers]].',
@@ -3966,10 +4011,11 @@ $1 is a page title",
 * $1 - a date
 * $2 - a time
 * $3 - the name of the user, for use in GENDER',
-'newpages' => 'Name of special page displayed in [[Special:SpecialPages]]
+'newpages' => '{{doc-special|NewPages}}
 {{Identical|New page}}',
 'newpages-username' => '{{Identical|Username}}',
-'ancientpages' => 'The page title of [[Special:Ancientpages]]. [[mw:Manual:Interface/Special pages title|mw manual]]',
+'ancientpages' => '{{doc-special|AncientPages}}
+See [[mw:Manual:Interface/Special pages title|manual]].',
 'move' => 'Name of Move tab. Should be in the imperative mood.
 
 See also:
@@ -3979,6 +4025,7 @@ See also:
 {{Identical|Move}}',
 'movethispage' => '{{Identical|Move this page}}',
 'unusedimagestext' => 'Header message of [[Special:UnusedFiles]]',
+'unusedcategoriestext' => 'Used as page header in [[Special:UnusedCategories]].',
 'notargettitle' => 'Used as title of error message.
 
 See also:
@@ -4010,8 +4057,7 @@ See also:
 'querypage-disabled' => "On special pages that use expensive database queries but are not cacheable, this message is displayed when 'miser mode' is on (i.e. no expensive queries allowed).",
 
 # Book sources
-'booksources' => 'Name of special page displayed in [[Special:SpecialPages]]
-
+'booksources' => '{{doc-special|BookSources}}
 See also:
 * {{msg-mw|Booksources|title}}
 * {{msg-mw|Booksources-text|text}}',
@@ -4032,17 +4078,19 @@ See also:
 # Special:Log
 'specialloguserlabel' => 'Used in [[Special:Log]] as a label for an input field with which the log can be filtered for entries describing actions \'\'performed\'\' by the specified user.  "Carried out" and "done" are possible alternatives for "performed".',
 'speciallogtitlelabel' => 'Used in [[Special:Log]] as a label for an input field with which the log can be filtered.  This filter selects for pages or users on which a log action was performed.',
-'log' => 'Name of special page displayed in [[Special:SpecialPages]]',
+'log' => '{{doc-special|Log}}',
 'all-logs-page' => '{{doc-logpage}}
 Title of [[Special:Log]].',
 'alllogstext' => 'Header of [[Special:Log]]',
+'logempty' => 'Used as warning when there are no items to show.',
 'log-title-wildcard' => '* Appears in: [[Special:Log]]
 * Description: A check box to enable prefix search option',
 'showhideselectedlogentries' => 'Text of the button which brings up the [[mw:RevisionDelete|RevisionDelete]] menu on [[Special:Log]].',
 
 # Special:AllPages
-'allpages' => 'First part of the navigation bar for the special page [[Special:AllPages]] and [[Special:PrefixIndex]]. The other parts are {{msg-mw|Prevpage}} and {{msg-mw|Nextpage}}.
-
+'allpages' => '{{doc-special|AllPages}}
+First part of the navigation bar for the special page [[Special:AllPages]] and [[Special:PrefixIndex]].
+The other parts are {{msg-mw|Prevpage}} and {{msg-mw|Nextpage}}.
 {{Identical|All pages}}',
 'alphaindexline' => 'Used on [[Special:AllPages]] if the main namespace contains more than 960 pages. Indicates the page range displayed behind the link. "from page $1 to page $2". $1 is the source page name. $1 is the target page name.',
 'nextpage' => 'Third part of the navigation bar for the special page [[Special:AllPages]] and [[Special:PrefixIndex]]. $1 is a page title. The other parts are {{msg-mw|Allpages}} and {{msg-mw|Prevpage}}.
@@ -4072,6 +4120,7 @@ Title of [[Special:Log]].',
 
 {{Identical|Go}}',
 'allpagesprefix' => "Used for the label of the input box of [[Special:PrefixIndex]]. On this page you can either write 'Name of namespace:string from which to begin display in alphabetical order' in the top box, or you can choose a namespace in the bottom box and put 'string from which to begin display in alphabetical order' in the top box. The result will be the same.",
+'allpagesbadtitle' => 'Used in [[Special:AllPages]], [[Special:PrefixIndex]] and [[Special:RecentChangesLinked]].',
 'allpages-bad-ns' => '* $1 - namespace name',
 'allpages-hide-redirects' => 'Label for a checkbox. If the checkbox is checked redirects will not be shown in the list. Used in [[Special:PrefixIndex]] and [[Special:Allpages]].',
 
@@ -4088,7 +4137,21 @@ Title of [[Special:Log]].',
 Text displayed in [[Special:Categories]].
 
 In order to translate ''Unused categories'' and ''wanted categories'' see {{msg|unusedcategories}} and {{msg|wantedcategories}}.",
-'special-categories-sort-count' => 'This message is used on [[Special:Categories]] to sort the list by the number of members in the categories.',
+'categoriesfrom' => 'Used as label for the input box in [[Special:Categories]].
+
+This message follows the fieldset label {{msg-mw|categories}}, and is followed by the input box.',
+'special-categories-sort-count' => 'Commented out at this time.
+
+This message is used on [[Special:Categories]] to sort the list by the number of members in the categories.
+
+See also:
+* {{msg-mw|Special-categories-sort-abc}}',
+'special-categories-sort-abc' => 'Commented out at this time.
+
+This message is used on [[Special:Categories]] to sort the list by the category name.
+
+See also:
+* {{msg-mw|Special-categories-sort-count}}',
 
 # Special:DeletedContributions
 'deletedcontributions' => 'The message is shown as a link on user contributions page (like [[Special:Contributions/User]]) to the corresponding [[Special:DeletedContributions]] page.
@@ -4216,9 +4279,11 @@ See also:
 * {{msg-mw|Emailuser}}
 * {{msg-mw|Accesskey-t-emailuser}}
 * {{msg-mw|Tooltip-t-emailuser}}',
-'emailuser-title-target' => 'Title of [[Special:EmailUser|special page]] when a user was given to e-mail. Parameters:
-* $1 is a plain text username, used for GENDER.',
-'emailuser-title-notarget' => 'Title of [[Special:EmailUser|special page]] when no user given to e-mail yet',
+'emailuser-title-target' => '{{doc-special|EmailUser|unlisted=1}}
+Used when a user was given to e-mail. Parameters:
+* $1 - a plain text username, used for GENDER.',
+'emailuser-title-notarget' => '{{doc-special|EmailUser|unlisted=1}}
+Used when no user given to e-mail yet.',
 'emailpage' => "Title of special page [[Special:EmailUser]], when it is the destination of the sidebar link {{msg-mw|Emailuser}} on a user's page.",
 'emailpagetext' => 'This is the text that is displayed above the e-mail form on [[Special:EmailUser]].
 
@@ -4282,11 +4347,25 @@ Parameters:
 {{Identical|For $1}}',
 'nowatchlist' => 'Displayed when there is no pages in the watchlist.',
 'watchlistanontext' => '* $1 is a link to [[Special:UserLogin]] with {{msg-mw|loginreqlink}} as link description',
-'watchnologin' => '{{Identical|Not logged in}}',
-'addwatch' => 'Link to a dialog box, displayed at the end of the list of categories at the foot of each page.',
+'watchnologin' => 'Used as error page title.
+
+The error message for this title is:
+* {{msg-mw|Watchnologintext}}
+{{Identical|Not logged in}}',
+'watchnologintext' => 'Used as error message.
+
+The title for this error is {{msg-mw|Watchnologin}}.',
+'addwatch' => 'Link to a dialog box, displayed at the end of the list of categories at the foot of each page.
+
+See also:
+* {{msg-mw|Removewatch}}',
 'addedwatchtext' => 'Explanation shown when clicking on the {{msg-mw|watch}} tab.
 
 See also {{msg-mw|addedwatch}}.',
+'removewatch' => 'Link to a dialog box, displayed at the end of the list of categories at the foot of each page.
+
+See also:
+* {{msg-mw|Addwatch}}',
 'removedwatchtext' => "After a page has been removed from a user's watchlist by clicking the {{msg|unwatch}} tab at the top of an article, this message appears just below the title of the article. $1 is the title of the article. See also {{msg|removedwatch}} and {{msg|addedwatchtext}}.",
 'watch' => '{{doc-actionlink}}
 Name of the Watch tab. Should be in the imperative mood.
@@ -4455,6 +4534,8 @@ Possible value for $CHANGEDORCREATED in the following messages:
 * {{msg|enotif_body}}',
 
 # Delete
+'deletepage' => 'Used as Submit button text.
+{{Identical|Delete page}}',
 'confirm' => 'Submit button text for protection confirmation
 
 {{Identical|Confirm}}',
@@ -4480,8 +4561,8 @@ See also:
 * $1 is a page that was deleted
 * $2 is {{msg-mw|deletionlog}}',
 'dellogpage' => '{{doc-logpage}}
-The name of the deletion log. Used as heading on [[Special:Log/delete]] and in the drop down menu for selecting logs on [[Special:Log]].
 
+The name of the deletion log. Used as heading on [[Special:Log/delete]] and in the drop down menu for selecting logs on [[Special:Log]].
 {{Identical|Deletion log}}',
 'dellogpagetext' => 'Text in [[Special:Log/delete]].',
 'deletionlog' => 'This message is used to link to the deletion log:
@@ -4567,6 +4648,7 @@ The title for this error message is {{msg-mw|Sessionfailure-title}}.',
 
 # Protect
 'protectlogpage' => '{{doc-logpage}}
+
 Title of [[Special:Log/protect]].',
 'protectlogtext' => 'Text in [[Special:Log/protect]].',
 'protectedarticle' => 'Text describing an action on [[Special:Log]]. $1 is a page title.',
@@ -4621,14 +4703,18 @@ Also used in [[Special:ProtectedPages]] when a page is cascade protected. See ex
 See also:
 *{{msg-mw|Restriction-level-sysop}}
 *{{msg-mw|Restriction-level-autoconfirmed}}',
-'protect-expiring' => 'Used in page history, and in [[Special:Protectedtitles]], [[Special:Protectedpages]], and extension FlaggedRevs.
-* $1 is a date and time
-* $2 is a date (optional)
-* $3 is a time (optional)
-
+'protect-expiring' => 'Used as expiry text in page history, and in [[Special:Protectedtitles]], [[Special:Protectedpages]], and extension FlaggedRevs.
+* $1 - a date and time
+* $2 - a date (optional)
+* $3 - a time (optional)
+If the expiry is indefinite, {{msg-mw|protect-expiry-indefinite}} is used.
 {{Identical|Expires $1 (UTC)}}',
 'protect-expiring-local' => '$1 is a timestamp like "22:51, 23 July 2011 (UTC)" depending on the wiki content language.',
+'protect-expiry-indefinite' => 'Used as expiry text in page history, and in [[Special:Protectedtitles]], [[Special:Protectedpages]], and extension FlaggedRevs.
+
+If the expiry is definite, {{msg-mw|protect-expiring}} is used.',
 'protect-cascade' => 'See [[meta:Protect]] for more information.',
+'protect-cantedit' => 'Used as error message when changing the protection levels of the page.',
 'protect-othertime' => 'Used on the page protection form as label for the following input field (text)
 {{Identical|Other time}}',
 'protect-othertime-op' => 'Used on the page protection form in the drop down menu
@@ -4691,8 +4777,7 @@ See also:
 *{{msg-mw|Restriction-level-autoconfirmed}}",
 
 # Undelete
-'undelete' => 'Name of special page for admins as displayed in [[Special:SpecialPages]].
-
+'undelete' => '{{doc-special|Undelete}}
 See also:
 * {{msg-mw|Undelete}}
 * {{msg-mw|Accesskey-ca-undelete}}
@@ -4734,6 +4819,7 @@ Parameters:
 * $5 - time of the revision
 Example:
 * Deleted revision of [[Main Page]] (as of {{CURRENTDAY}} {{CURRENTMONTHNAME}} {{CURRENTYEAR}}, at {{CURRENTTIME}}) by [[User:Username|Username]]:',
+'undeleterevision-missing' => 'Used as warning when undeleting the revision.',
 'undelete-nodiff' => 'Used in [[Special:Undelete]].',
 'undeletebtn' => 'Shown on [[Special:Undelete]] as button caption and on [[Special:Log/delete|deletion log]] after each entry (for sysops).
 
@@ -4858,9 +4944,13 @@ See also:
 'contribsub2' => 'Contributions for "user" (links)
 {{Identical|For $1}}',
 'nocontribs' => 'Optional parameter: $1 is the user name',
-'uctop' => 'This message is used in [[Special:Contributions]]. It is used to show that a particular edit was the last made to a page. Example: 09:57, 11 February 2008 (hist) (diff) Pagename‎ (edit summary) (top)',
+'uctop' => 'This message is used in [[Special:Contributions]]. It is used to show that a particular edit was the last made to a page. Example: 09:57, 11 February 2008 (hist) (diff) Pagename‎ (edit summary) (top)
+{{Identical|Top}}',
 'month' => 'Used in [[Special:Contributions]] and history pages ([{{fullurl:Sandbox|action=history}} example]), as label for a dropdown box to select a specific month to view the edits made in that month, and the earlier months. See also {{msg-mw|year}}.',
-'year' => 'Used in [[Special:Contributions]] and history pages ([{{fullurl:Sandbox|action=history}} example]), as label for a inputbox to select a specific year to view the edits made in that year, and the earlier years. See also {{msg-mw|month}}.',
+'year' => 'Used in [[Special:Contributions]] and history pages ([{{fullurl:Sandbox|action=history}} example]), as label for an input box to select a specific year to view the edits made in that year, and the earlier years.
+
+See also:
+* {{msg-mw|month}}',
 
 'sp-contributions-newbies' => 'Text of radio button on special page [[Special:Contributions]].',
 'sp-contributions-newbies-sub' => "Note at the top of the page of results for a search on [[Special:Contributions]] where 'Show contributions for new accounts only' has been selected.",
@@ -5010,8 +5100,8 @@ See also:
 # Block/unblock
 'autoblockid' => 'Used as name of autoblock, instead of autoblocked IPs. Parameters:
 * $1 - autoblock ID',
-'block' => 'Name of the special page on [[Special:SpecialPages]]',
-'unblock' => 'Name of the special page on [[Special:SpecialPages]]',
+'block' => '{{doc-special|Block}}',
+'unblock' => '{{doc-special|Unblock}}',
 'blockip' => 'The title of the special page [[Special:BlockIP]].
 
 {{Identical|Block user}}',
@@ -5019,6 +5109,12 @@ See also:
 'blockip-legend' => 'Legend/Header for the fieldset around the input form of [[Special:Block]].
 
 {{Identical|Block user}}',
+'blockiptext' => 'Used in the {{msg-mw|Blockip}} form in [[Special:Block]].
+
+This message may follow the message {{msg-mw|Ipb-otherblocks-header}} and other block messages.
+
+See also:
+* {{msg-mw|Unblockiptext}}',
 'ipadressorusername' => '{{Identical|IP address or username}}',
 'ipbexpiry' => '{{Identical|Expiry}}',
 'ipbreason' => 'Label of the block reason dropdown in [[Special:BlockIP]] and the unblock reason textfield in [{{fullurl:Special:IPBlockList|action=unblock}} Special:IPBlockList?action=unblock].
@@ -5100,13 +5196,33 @@ The title (subject) for this message is {{msg-mw|Blockipsuccesssub}}.
 
 Parameters:
 * $1 - username, can be used for GENDER',
+'ipb-blockingself' => 'Used as confirmation message in [[Special:Block]].
+
+See also:
+* {{msg-mw|Ipb-confirmhideuser}}',
+'ipb-confirmhideuser' => 'Used as confirmation message in [[Special:Block]].
+
+See also:
+* {{msg-mw|Ipb-blockingself}}',
 'ipb-edit-dropdown' => 'Shown beneath the user block form on the right side. It is a link to {{msg-mw|Ipbreason-dropdown|notext=1}}.
 
 See also:
 * {{msg-mw|Delete-edit-reasonlist}}
 * {{msg-mw|Protect-edit-reasonlist}}',
-'ipb-unblock-addr' => 'Used in [[Special:Block]].
-* $1 - target username',
+'ipb-unblock-addr' => 'Used as page title in [[Special:Block]], if the target user is specified.
+
+Parameters:
+* $1 - target username
+
+See also:
+* {{msg-mw|Ipb-unblock}}',
+'ipb-unblock' => 'Used as page title in [[Special:Block]], if the target user is not specified.
+
+See also:
+* {{msg-mw|Ipb-unblock-addr}}',
+'ipb-blocklist' => 'Used as link text in [[Special:Block]].
+
+The link points to Specil:BlockList.',
 'ipb-blocklist-contribs' => 'Used in [[Special:Block]].
 * $1 - target username',
 'unblockip' => 'Used as legend for the form in [[Special:Unblock]].',
@@ -5131,6 +5247,7 @@ See also:
 See also:
 * {{msg-mw|Unblocked}}
 * {{msg-mw|Unblocked-range}}',
+'blocklist' => '{{doc-special|BlockList}}',
 'ipblocklist' => 'Title of [[Special:Ipblocklist]].',
 'ipblocklist-legend' => 'Used as legend of the form in [[Special:BlockList]].
 
@@ -5216,7 +5333,14 @@ See also {{msg-mw|Block-log-flags-nousertalk}}.
 Part of the log entry of user block in [[Special:BlockList]].
 
 {{Related|Blocklist}}',
-'ipblocklist-empty' => 'Shown on page [[Special:Blocklist]], if no blocks are to be shown.',
+'ipblocklist-empty' => 'Used in [[Special:BlockList]], if the target is not specified.
+
+See also:
+* {{msg-mw|Ipblocklist-no-results}}',
+'ipblocklist-no-results' => 'Used in [[Special:BlockList]], if the target is specified.
+
+See also:
+* {{msg-mw|Ipblocklist-empty}}',
 'blocklink' => "Display name for a link that, when selected, leads to a form where a user can be blocked. Used in page history and recent changes pages. Example: \"''UserName (Talk | contribs | '''block''')''\".
 
 Used as link title in [[Special:Contributions]] and in [[Special:DeletedContributions]].
@@ -5241,7 +5365,8 @@ See also:
 * {{msg-mw|sp-contributions-uploads}}
 * {{msg-mw|sp-contributions-logs}}
 * {{msg-mw|sp-contributions-deleted}}
-* {{msg-mw|sp-contributions-userrights}}',
+* {{msg-mw|sp-contributions-userrights}}
+{{Identical|Unblock}}',
 'change-blocklink' => 'Used to name the link on [[Special:Log]].
 
 Also used as link title in [[Special:Contributions]] and in [[Special:DeletedContributions]].
@@ -5315,7 +5440,9 @@ See also:
 * {{msg-mw|Range block disabled}}
 * {{msg-mw|Ip range invalid}}
 * {{msg-mw|Ip range toolarge}}',
+'ipb_expiry_invalid' => 'Used as error message in [[Special:Block]].',
 'ipb_expiry_temp' => 'Warning message displayed on [[Special:BlockIP]] if the option "hide username" is selected but the expiry time is not infinite.',
+'ipb_hide_invalid' => 'Used as error message in [[Special:Block]].',
 'ipb_already_blocked' => '{{Identical|$1 is already blocked}}',
 'ipb-needreblock' => 'Used in [[Special:Block]].
 * $1 - target username',
@@ -5338,7 +5465,8 @@ See also:
 * {{msg-mw|Range block disabled}}
 * {{msg-mw|Ip range invalid}}
 * {{msg-mw|Ip range toolarge}}',
-'blockme' => 'The page title of [[Special:Blockme]], a feature which is disabled by default.',
+'blockme' => '{{doc-special|BlockMe|unlisted=1}}
+This feature is disabled by default.',
 'proxyblocker' => 'Used in [[Special:BlockMe]].
 
 See also:
@@ -5644,6 +5772,7 @@ See also:
 * $2 - new page title',
 'movepage-max-pages' => 'PROBABLY (A GUESS): when moving a page, you can select an option of moving its subpages, but there is a maximum that can be moved automatically.',
 'movelogpage' => '{{doc-logpage}}
+
 Title of [[Special:Log/move]]. Used as heading on that page, and in the dropdown menu on log pages.',
 'movelogpagetext' => "Text on the special page 'Move log'.",
 'movesubpage' => "This is a section header on [[Special:MovePage]], below is a list of subpages.
@@ -5842,6 +5971,7 @@ The reason $1 is one of the following messages:
 * {{msg-mw|Thumbnail-dest-create}}
 * {{msg-mw|Thumbnail dest directory}}
 * {{msg-mw|Thumbnail invalid params}}
+* {{msg-mw|Thumbnail image-missing}}
 * {{msg-mw|Djvu no xml}}
 * {{msg-mw|Djvu page error}}
 * {{msg-mw|Svg-long-error}}
@@ -6173,6 +6303,13 @@ See also:
 * {{msg-mw|Viewsource}}
 * {{msg-mw|Accesskey-ca-viewsource}}
 * {{msg-mw|Tooltip-ca-viewsource}}',
+'tooltip-ca-history' => 'Used as tooltip for {{msg-mw|Vector-view-history}}.
+
+See for example {{canonicalurl:Main_Page|useskin=vector}}Main page?useskin=vector]
+
+See also:
+* {{msg-mw|Vector-view-history}}
+* {{msg-mw|Accesskey-ca-history}}',
 'tooltip-ca-protect' => 'Used as tooltip for {{msg-mw|Protect}}.
 
 See also:
@@ -6493,7 +6630,7 @@ See also:
 'common.css' => '{{optional}}
 CSS applied to all users.',
 'standard.css' => '{{optional}}',
-'nostalgia.css' => '{{optional}}',
+'nostalgia.css' => 'CSS file for the nostalgia skin',
 'cologneblue.css' => '{{optional}}',
 'monobook.css' => '{{optional}}
 CSS applied to users using Monobook skin.',
@@ -6515,7 +6652,7 @@ Style that can be applied on [[w:handheld devices|handheld devices]] (e.g. mobil
 'common.js' => '{{optional}}
 JS for all users.',
 'standard.js' => '{{optional}}',
-'nostalgia.js' => '{{optional}}',
+'nostalgia.js' => 'JS file for the nostalgia skin',
 'cologneblue.js' => '{{optional}}',
 'monobook.js' => '{{optional}}
 JS for users using Monobook skin.',
@@ -6664,7 +6801,9 @@ Used as link text, linked to '{{int:Prefixindex}}' page ([[Special:PrefixIndex]]
 'pageinfo-firsttime' => 'The date and time the page was created.',
 'pageinfo-lastuser' => 'The last user who edited the page.',
 'pageinfo-lasttime' => 'The date and time the page was last edited.',
-'pageinfo-edits' => 'The total number of times the page has been edited.',
+'pageinfo-edits' => 'Used as label in info page. See [{{canonicalurl:Support|action=info}} example].
+
+This message is followed by the total number of times the page has been edited.',
 'pageinfo-authors' => 'The total number of users who have edited the page.',
 'pageinfo-recent-edits' => 'The number of times the page has been edited recently. $1 is a localised duration (e.g. 9 days).',
 'pageinfo-recent-authors' => 'The number of users who have edited the page recently.',
@@ -6707,7 +6846,7 @@ See also:
 # Skin names
 'skinname-standard' => '{{optional}}
 {{Identical|Classic}}',
-'skinname-nostalgia' => '{{optional}}',
+'skinname-nostalgia' => 'Name of Nostalgia skin',
 'skinname-cologneblue' => '{{optional}}',
 'skinname-monobook' => '{{optional}}',
 'skinname-myskin' => '{{optional}}',
@@ -6938,8 +7077,6 @@ Part of variable $1 in {{msg-mw|Ago}}',
 
 /*
 Short names for language variants used for language conversion links.
-To disable showing a particular link, set it to 'disable', e.g.
-'variantname-zh-sg' => 'disable',
 Variants for Chinese language
 */
 'variantname-zh-hans' => '{{Optional}}
@@ -7031,6 +7168,7 @@ Varient Option for wikis with variants conversion enabled.',
 # Metadata
 'metadata' => 'The title of a section on an image description page, with information and data about the image. For example of message in use see [[commons:File:Titan-crystal_bar.JPG|Commons]].
 {{Identical|Metadata}}',
+'metadata-help' => 'This message is followed by a table with metadata.',
 'metadata-expand' => 'On an image description page, there is mostly a table containing data (metadata) about the image. The most important data are shown, but if you click on this link, you can see more data and information. For the link to hide back the less important data, see {{msg-mw|Metadata-collapse}}.',
 'metadata-collapse' => 'On an image description page, there is mostly a table containing data (metadata) about the image. The most important data are shown, but if you click on the link {{msg-mw|Metadata-expand}}, you can see more data and information. This message is for the link to hide back the less important data.',
 'metadata-fields' => '{{doc-important|Do not translate list items, only translate the text! So leave "<code>* make</code>" and the other items exactly as they are.}}
@@ -7135,7 +7273,8 @@ See also:
 This contains how the information in the picture is stored. This is most commonly Y, Cr, Cb to specify luma, red, blue. RGB is also possible to specify Red, Green, Blue.
 {{Related|Exif-componentsconfiguration}}',
 'exif-compressedbitsperpixel' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
-'exif-pixelydimension' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
+'exif-pixelydimension' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+{{Identical|Image width}}',
 'exif-pixelxdimension' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
 'exif-usercomment' => "Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
@@ -7215,11 +7354,7 @@ See [[w:Metering_mode|Wikipedia article]] on metering mode.
 'exif-flash' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 See this [[w:en:Flash_(photography)|Wikipedia article]] for an explanation of the term.
-
-See also:
-* {{msg-mw|Exif-flash}}
-* {{msg-mw|Exif-flash-fired-0}}
-* {{msg-mw|Exif-flash-fired-1}}
+{{Related|Exif-flash}}
 {{Identical|Flash}}',
 'exif-focallength' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
@@ -7402,7 +7537,7 @@ This is who originally owned the image (a person, stock photo agency, etc). This
 'exif-editstatus' => 'Editorial status of image. This is more intended for use with people making news papers. This denotes whether the image is on the main page, is part of a correction, etc. See 2:07 of http://www.iptc.org/std/IIM/4.1/specification/IIMV4.1.pdf',
 'exif-urgency' => 'Urgency. How urgent this image is. 1 is very urgent, 5 is normal, 8 is  very low priority.
 {{Related|Exif-urgency}}',
-'exif-fixtureidentifier' => 'Fixture name. Identifies frequently occuring object data, for example a regular column in a news paper.',
+'exif-fixtureidentifier' => 'Fixture name. Identifies frequently occurring object data, for example a regular column in a news paper.',
 'exif-locationdest' => 'Full printable name of location.',
 'exif-locationdestcode' => 'Code of location depicted. Typically this is an ISO country code, but the IPTC-iim standard also defines other codes like XSP for outer space. See appendix D (and tag 2:100) of http://www.iptc.org/std/IIM/4.1/specification/IIMV4.1.pdf',
 'exif-objectcycle' => 'Time of day that media is intended for. Either morning only, evening only, or all day. Typically only used for news related things that might only be broadcast at a specific time of day.
@@ -7422,7 +7557,9 @@ This is taken from IPTC-iim 2:135 and XMP's dc:language.
 {{Identical|Category}}',
 'exif-iimsupplementalcategory' => 'Supplemental categories. Like {{msg-mw|exif-iimcategory}} but for categories beyond the main one.',
 'exif-datetimeexpires' => 'Date after which not to use the image (media). This is often used in news situations were certain things (like forecasts) should not be used after a specified date.',
-'exif-datetimereleased' => 'Earliest date the image (media) can be used. See 2:30 of http://www.iptc.org/std/IIM/4.1/specification/IIMV4.1.pdf',
+'exif-datetimereleased' => 'Earliest date the image (media) can be used.
+
+See 2:30 of http://www.iptc.org/std/IIM/4.1/specification/IIMV4.1.pdf',
 'exif-originaltransmissionref' => 'This is basically a job id. This could help an individual keep track of for what reason the image was created. See Job Id on page 19 of http://www.iptc.org/std/photometadata/specification/IPTC-PhotoMetadata-201007_1.pdf',
 'exif-identifier' => 'A formal identifier for the image. Often this is a URL.',
 'exif-lens' => 'Description of lens used. This is taken from aux:Lens XMP property. See http://www.adobe.com/content/dam/Adobe/en/devnet/xmp/pdfs/XMPSpecificationPart2.pdf',
@@ -7499,6 +7636,18 @@ Lempel-Ziv & Welch algorithm',
 
 'exif-photometricinterpretation-2' => '{{optional}}',
 'exif-photometricinterpretation-6' => '{{optional}}',
+
+'exif-unknowndate' => 'Used if the Exif date and time is "<code>0000:00:00 00:00:00</code>".
+
+Related Exif attributes:
+* {{msg-mw|Exif-datetime}}
+* {{msg-mw|Exif-datetimeoriginal}}
+* {{msg-mw|Exif-datetimedigitized}}
+* {{msg-mw|Exif-datetimereleased}}
+* {{msg-mw|Exif-datetimeexpires}}
+* {{msg-mw|Exif-gpsdatestamp}}
+* {{msg-mw|Exif-dc-date}}
+* {{msg-mw|Exif-datetimemetadata}}',
 
 'exif-orientation-1' => '0th row: top; 0th column: left
 {{Related|Exif-orientation}}
@@ -7626,55 +7775,28 @@ See also:
 'exif-lightsource-255' => '{{Related|Exif-lightsource}}',
 
 # Flash modes
-'exif-flash-fired-0' => 'See also:
-* {{msg-mw|Exif-flash}}
-* {{msg-mw|Exif-flash-fired-0}}
-* {{msg-mw|Exif-flash-fired-1}}',
-'exif-flash-fired-1' => 'See also:
-* {{msg-mw|Exif-flash}}
-* {{msg-mw|Exif-flash-fired-0}}
-* {{msg-mw|Exif-flash-fired-1}}',
+'exif-flash-fired-0' => '{{Related|Exif-flash}}',
+'exif-flash-fired-1' => '{{Related|Exif-flash}}',
 'exif-flash-return-0' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 "Strobe" and "flash" mean the same here.
-
-See also:
-* {{msg-mw|Exif-flash-return-0}}
-* {{msg-mw|Exif-flash-return-2}}
-* {{msg-mw|Exif-flash-return-3}}',
+{{Related|Exif-flash}}',
 'exif-flash-return-2' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 "Strobe" and "flash" mean the same here.
-
-See also:
-* {{msg-mw|Exif-flash-return-0}}
-* {{msg-mw|Exif-flash-return-2}}
-* {{msg-mw|Exif-flash-return-3}}',
+{{Related|Exif-flash}}',
 'exif-flash-return-3' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 "Strobe" and "flash" mean the same here.
-
-See also:
-* {{msg-mw|Exif-flash-return-0}}
-* {{msg-mw|Exif-flash-return-2}}
-* {{msg-mw|Exif-flash-return-3}}',
+{{Related|Exif-flash}}',
 'exif-flash-mode-1' => 'This is when you have chosen that your camera must use a flash for this picture.
-
-See also:
-* {{msg-mw|Exif-flash-mode-1}}
-* {{msg-mw|Exif-flash-mode-2}}
-* {{msg-mw|Exif-flash-mode-3}}',
+{{Related|Exif-flash}}',
 'exif-flash-mode-2' => "This is when you have chosen that your camera must ''not'' use a flash for this picture.
-
-See also:
-* {{msg-mw|Exif-flash-mode-1}}
-* {{msg-mw|Exif-flash-mode-2}}
-* {{msg-mw|Exif-flash-mode-3}}",
-'exif-flash-mode-3' => 'See also:
-* {{msg-mw|Exif-flash-mode-1}}
-* {{msg-mw|Exif-flash-mode-2}}
-* {{msg-mw|Exif-flash-mode-3}}',
-'exif-flash-function-1' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
+{{Related|Exif-flash}}",
+'exif-flash-mode-3' => '{{Related|Exif-flash}}',
+'exif-flash-function-1' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+{{Related|Exif-flash}}',
+'exif-flash-redeye-1' => '{{Related|Exif-flash}}',
 
 'exif-focalplaneresolutionunit-2' => 'See also:
 * {{msg-mw|Exif-focalplaneresolutionunit}}',
@@ -7823,7 +7945,8 @@ See also:
 {{Related|Exif-gpsdop}}',
 'exif-gpsdop-moderate' => 'Parameters:
 * $1 - the actual HDOP/PDOP value (5-10 for moderate). See http://en.wikipedia.org/wiki/Dilution_of_precision_(GPS)
-{{Related|Exif-gpsdop}}',
+{{Related|Exif-gpsdop}}
+{{Identical|Moderate}}',
 'exif-gpsdop-fair' => 'Parameters:
 * $1 - the actual HDOP/PDOP value (10-20 for fair). See http://en.wikipedia.org/wiki/Dilution_of_precision_(GPS)
 {{Related|Exif-gpsdop}}',
@@ -8333,8 +8456,7 @@ Parameters:
 'duplicate-defaultsort' => 'See definition of [[w:Sorting|sort key]] on Wikipedia.',
 
 # Special:Version
-'version' => 'Name of special page displayed in [[Special:SpecialPages]]
-
+'version' => '{{doc-special|Version}}
 {{Identical|Version}}',
 'version-extensions' => 'Header on [[Special:Version]].',
 'version-specialpages' => 'Part of [[Special:Version]].
@@ -8418,7 +8540,8 @@ $1 is the name of the requested file.',
 * $1 - file name',
 
 # Special:SpecialPages
-'specialpages' => 'Display name of link to [[Special:SpecialPages]] shown on all pages in the toolbox, as well as the page title and header of [[Special:SpecialPages]].
+'specialpages' => '{{doc-special|SpecialPages|unlisted=1}}
+Display name of link to [[Special:SpecialPages]] shown on all pages in the toolbox.
 
 See also:
 * {{msg-mw|Specialpages}}
@@ -8426,22 +8549,22 @@ See also:
 * {{msg-mw|Tooltip-t-specialpages}}
 {{Identical|Special page}}',
 'specialpages-note' => 'Footer note for the [[Special:SpecialPages]] page',
-'specialpages-group-maintenance' => 'Section heading in the list of [[Special:SpecialPages|Special pages]].',
-'specialpages-group-other' => 'Section heading in the list of [[Special:SpecialPages|Special pages]].',
-'specialpages-group-login' => 'Section heading in the list of [[Special:SpecialPages|Special pages]].',
-'specialpages-group-changes' => 'Section heading in the list of [[Special:SpecialPages|Special pages]].',
-'specialpages-group-media' => 'Section heading in the list of [[Special:SpecialPages|Special pages]].',
-'specialpages-group-users' => 'Section heading in the list of [[Special:SpecialPages|Special pages]].',
-'specialpages-group-highuse' => 'Section heading in the list of [[Special:SpecialPages|Special pages]].',
-'specialpages-group-pages' => 'Used on [[Special:SpecialPages]]. Title of the special pages group, containing pages like [[Special:AllPages]], [[Special:PrefixIndex]], [[Special:Categories]], [[Special:Disambiguations]], etc.',
-'specialpages-group-pagetools' => 'Title of the special pages group containing special pages like [[Special:MovePage]], [[Special:Undelete]], [[Special:WhatLinksHere]], [[Special:Export]] etc.',
-'specialpages-group-wiki' => 'Title of the special pages group, containing special pages like [[Special:Version]], [[Special:Statistics]], [[Special:LockDB]], etc.',
-'specialpages-group-redirects' => 'Title of the special pages group, containing special pages that redirect to another location, like [[Special:Randompage]], [[Special:Mypage]], [[Special:Mytalk]], etc.',
-'specialpages-group-spam' => 'Title of the special pages group, containing special pages like (...), etc.',
+'specialpages-group-maintenance' => '{{doc-special-group|like=[[Special:DoubleRedirects]], [[Special:LonelyPages]] and [[Special:WantedPages]]}}',
+'specialpages-group-other' => '{{doc-special-group|like=[[Special:AdminLinks]] and [[Special:BookSources]]}}',
+'specialpages-group-login' => '{{doc-special-group|like=[[Special:UserLogin]]}}',
+'specialpages-group-changes' => '{{doc-special-group|like=[[Special:Log]], [[Special:NewPages]] and [[Special:RecentChanges]]}}',
+'specialpages-group-media' => '{{doc-special-group|like=[[Special:FilePath]], [[Special:MIMESearch]] and [[Special:Upload]]}}',
+'specialpages-group-users' => '{{doc-special-group|like=[[Special:ActiveUsers]], [[Special:Contributions]] and [[Special:ListGroupRights]]}}',
+'specialpages-group-highuse' => '{{doc-special-group|like=[[Special:MostCategories]], [[Special:MostLinked]] and [[Special:MostRevisions]]}}',
+'specialpages-group-pages' => '{{doc-special-group|like=[[Special:AllPages]], [[Special:PrefixIndex]], [[Special:Categories]], 
+[[Special:Disambiguations]], etc}}',
+'specialpages-group-pagetools' => '{{doc-special-group|like=[[Special:MovePage]], [[Special:Undelete]], [[Special:WhatLinksHere]], [[Special:Export]] etc}}',
+'specialpages-group-wiki' => '{{doc-special-group|like=[[Special:Version]], [[Special:Statistics]], [[Special:LockDB]], etc}}',
+'specialpages-group-redirects' => '{{doc-special-group|that=redirect to another location|like=[[Special:Randompage]], [[Special:Mypage]], [[Special:Mytalk]], etc}}',
+'specialpages-group-spam' => '{{doc-special-group}}',
 
 # Special:BlankPage
-'blankpage' => 'Used as page title in [[Special:BlankPage]].
-
+'blankpage' => '{{doc-special|BlankPage|unlisted=1}}
 See also:
 * {{msg-mw|Intentionallyblankpage|text}}',
 'intentionallyblankpage' => 'Text displayed in [[Special:BlankPage]].
@@ -8580,17 +8703,17 @@ Parameters:
 * $1 - version',
 
 # New logging system
-'logentry-delete-delete' => '{{Logentry}}',
-'logentry-delete-restore' => '{{Logentry}}',
-'logentry-delete-event' => '{{Logentry}}
+'logentry-delete-delete' => '{{Logentry|[[Special:Log/delete]]}}',
+'logentry-delete-restore' => '{{Logentry|[[Special:Log/delete]]}}',
+'logentry-delete-event' => '{{Logentry|[[Special:Log/delete]]}}
 {{Logentryparam}}
-* $3 is the name of the log page inside parenthesis',
-'logentry-delete-revision' => '{{Logentry}}
+* $3 - the name of the log page inside parenthesis',
+'logentry-delete-revision' => '{{Logentry|[[Special:Log/delete]]}}
 {{Logentryparam}}
-* $5 is the number of affected revisions of the page $3.',
-'logentry-delete-event-legacy' => '{{Logentry}}
-$3 is the name of the log page inside parenthesis',
-'logentry-delete-revision-legacy' => '{{Logentry}}',
+* $5 - the number of affected revisions of the page $3.',
+'logentry-delete-event-legacy' => '{{Logentry|[[Special:Log/delete]]}}
+* $3 - the name of the log page inside parenthesis',
+'logentry-delete-revision-legacy' => '{{Logentry|[[Special:Log/delete]]}}',
 'logentry-suppress-delete' => "{{Logentry}}
 
 'Hid' is a possible alternative to 'suppressed' in this message.",
@@ -8599,7 +8722,7 @@ $3 is the name of the log page inside parenthesis',
 $3 is the name of the log page inside parenthesis',
 'logentry-suppress-revision' => '{{Logentry}}
 {{Logentryparam}}
-* $5 is the number of affected revisions of the page $3.',
+* $5 - the number of affected revisions of the page $3.',
 'logentry-suppress-event-legacy' => '{{Logentry}}
 $3 is the name of the log page inside parenthesis',
 'logentry-suppress-revision-legacy' => '{{Logentry}}',
@@ -8643,52 +8766,51 @@ $3 is the name of the log page inside parenthesis',
 * {{msg-mw|logentry-delete-revision}}
 * {{msg-mw|logentry-suppress-event}}
 * {{msg-mw|logentry-suppress-event}}',
-'logentry-move-move' => '{{Logentry}}
+'logentry-move-move' => '{{Logentry|[[Special:Log/move]]}}
 Parameter $4, the target page, is also not visible to parser functions.',
-'logentry-move-move-noredirect' => '{{Logentry}}
+'logentry-move-move-noredirect' => '{{Logentry|[[Special:Log/move]]}}
 Parameter $4, the target page, is also not visible to parser functions.',
-'logentry-move-move_redir' => '{{Logentry}}
+'logentry-move-move_redir' => '{{Logentry|[[Special:Log/move]]}}
 Parameter $4, the target page, is also not visible to parser functions.',
-'logentry-move-move_redir-noredirect' => '{{Logentry}}
+'logentry-move-move_redir-noredirect' => '{{Logentry|[[Special:Log/move]]}}
 Parameter $4, the target page, is also not visible to parser functions.',
-'logentry-patrol-patrol' => '{{Logentry}}
-* $4 is a formatted revision number, maybe linked to the diff.',
-'logentry-patrol-patrol-auto' => '{{Logentry}}
-* $4 is a formatted revision number, maybe linked to the diff.
+'logentry-patrol-patrol' => '{{Logentry|[[Special:Log/patrol]]}}
+* $4 - a formatted revision number, maybe linked to the diff.',
+'logentry-patrol-patrol-auto' => '{{Logentry|[[Special:Log/patrol]]}}
+* $4 - a formatted revision number, maybe linked to the diff.
 "Automatically" refers to users with autopatrol right who mark revisions automatically patrolled when editing.',
-'logentry-newusers-newusers' => 'Parameters:
-* $1 - user name',
-'logentry-newusers-create' => '{{Logentry}}
+'logentry-newusers-newusers' => '{{Logentry|[[Special:Log/newusers]]}}',
+'logentry-newusers-create' => '{{Logentry|[[Special:Log/newusers]]}}
 
 $4 is the gender of the target user.',
-'logentry-newusers-create2' => '{{Logentry}}
+'logentry-newusers-create2' => '{{Logentry|[[Special:Log/newusers]]}}
 
 $4 is the name of the user that was created.',
-'logentry-newusers-byemail' => '{{Logentry}}
+'logentry-newusers-byemail' => '{{Logentry|[[Special:Log/newusers]]}}
 
 $4 is the name of the user that was created.',
-'logentry-newusers-autocreate' => '{{Logentry}}
+'logentry-newusers-autocreate' => '{{Logentry|[[Special:Log/newusers]]}}
 
 $4 is the gender of the target user.',
-'logentry-rights-rights' => '*$1 - username
-*$2 - (see below)
-*$3 - username
-*$4 - list of user groups or {{msg-mw|Rightsnone}}
-*$5 - list of user groups or {{msg-mw|Rightsnone}}
+'logentry-rights-rights' => '* $1 - username
+* $2 - (see below)
+* $3 - username
+* $4 - list of user groups or {{msg-mw|Rightsnone}}
+* $5 - list of user groups or {{msg-mw|Rightsnone}}
 ----
-{{Logentry}}',
-'logentry-rights-rights-legacy' => '*$1 - username
-*$2 - (see below)
-*$3 - username
+{{Logentry|[[Special:Log/rights]]}}',
+'logentry-rights-rights-legacy' => '* $1 - username
+* $2 - (see below)
+* $3 - username
 ----
-{{Logentry}}',
-'logentry-rights-autopromote' => '*$1 - username
-*$2 - (see below)
-*$3 - (see below)
-*$4 - comma separated list of old user groups or {{msg-mw|Rightsnone}}
-*$5 - comma separated list of new user groups
+{{Logentry|[[Special:Log/rights]]}}',
+'logentry-rights-autopromote' => '* $1 - username
+* $2 - (see below)
+* $3 - (see below)
+* $4 - comma separated list of old user groups or {{msg-mw|Rightsnone}}
+* $5 - comma separated list of new user groups
 ----
-{{Logentry}}',
+{{Logentry|[[Special:Log/rights]]}}',
 'rightsnone' => 'Default rights for registered users.
 
 {{Identical|None}}',

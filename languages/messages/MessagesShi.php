@@ -405,7 +405,7 @@ Ussaɣ n isqdacn ḥiln hlli.
 'emailconfirmlink' => 'Als i tasna nk n tbratin izd nit nttat ayan.',
 'loginlanguagelabel' => 'Tutlayt: $1',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Kra ur igadda tasɣnt btbratin() n PHP.',
 
 # Change password dialog
@@ -911,7 +911,7 @@ Mel imbddeln z tisniwin li ittuyzdayni bla tasna li trit.',
 # Special:ListGroupRights
 'listgrouprights-members' => 'Umuɣ n  midn',
 
-# E-mail user
+# Email user
 'emailuser' => 'Azn tabrat umsqdac ad',
 
 # Watchlist

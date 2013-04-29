@@ -792,8 +792,8 @@ og fortsette å bruke det gamle passordet.',
 Logg inn når du har mottatt det nye passordet.',
 'blocked-mailpassword' => 'IP-adressen din er blokkert fra å redigere, og for å forhindre misbruk kan du heller ikke bruke funksjonen som gir deg nytt passord.',
 'eauthentsent' => 'En bekreftelsesmelding ble sendt til gitte e-postadresse. Før andre e-poster kan sendes til kontoen må du følge instruksjonene i e-posten for å bekrefte at kontoen faktisk er din.',
-'throttled-mailpassword' => 'En passordpåminnelse ble sendt for mindre enn {{PLURAL:$1|en time|$1 timer}} siden.
-For å forhindre misbruk kan kun én passordpåminnelse sendes per {{PLURAL:$1|time|$1 timer}}.',
+'throttled-mailpassword' => 'En passordtilbakestillingsepost har allerede blitt sendt for mindre enn {{PLURAL:$1|en time|$1 timer}} siden.
+For å forhindre misbruk kan kun én passordtilbakestillingsepost sendes per {{PLURAL:$1|time|$1 timer}}.',
 'mailerror' => 'Feil under sending av e-post: $1',
 'acct_creation_throttle_hit' => 'Gjester med samme IP-adresse som deg har opprettet {{PLURAL:$1|én konto|$1 kontoer}} det siste døgnet, og det er ikke tillatt å opprette flere.
 Som et resultat kan det ikke opprettes flere kontoer fra denne IP-adressen.',
@@ -842,7 +842,7 @@ Du kan ha allerede byttet passordet, eller bedt om et nytt midlertidig passord.'
 
 # Special:PasswordReset
 'passwordreset' => 'Passordresetting',
-'passwordreset-text' => 'Fyll ut dette skjemaet for å motta en påminnelse om kontoopplysningene dine i en e-post.',
+'passwordreset-text' => 'Fyll ut dette skjemaet for å tilbakestille passordet ditt.',
 'passwordreset-legend' => 'Nullstill passord',
 'passwordreset-disabled' => 'Nullstilling av passord er deaktivert på denne wikien.',
 'passwordreset-pretext' => '{{PLURAL:$1||Skriv inn en av datadelene nedenfor}}',
@@ -852,8 +852,7 @@ Du kan ha allerede byttet passordet, eller bedt om et nytt midlertidig passord.'
 'passwordreset-capture-help' => 'Hvis du krysser av her, vil du se e-posten (med foreløpig passord) i tillegg til at den blir sendt til brukeren.',
 'passwordreset-email' => 'E-postadresse:',
 'passwordreset-emailtitle' => 'Kontodetaljer på {{SITENAME}}',
-'passwordreset-emailtext-ip' => 'Noen (sannsynligvis deg fra IP-adressen $1) ba om en påminnelse om dine
-kontodetaljer for {{SITENAME}} ($4). {{PLURAL:$3|Den følgende brukerkontoen|De følgende brukerkontoene}} er
+'passwordreset-emailtext-ip' => 'Noen (sannsynligvis deg fra IP-adressen $1) ba om en tilbakestilling av ditt passord for {{SITENAME}} ($4). {{PLURAL:$3|Den følgende brukerkontoen|De følgende brukerkontoene}} er
 tilknyttet denne e-postadressen:
 
 $2
@@ -863,7 +862,7 @@ Du bør logge på og velge et nytt passord nå. Dersom noen andre kom med denne
 forespørselen, eller du har kommet på ditt opprinnelige passord, og ikke lenger
 ønsker å endre det, kan du ignorere denne meldingen og fortsette å bruke ditt gamle
 passord.',
-'passwordreset-emailtext-user' => 'Brukeren $1 på {{SITENAME}} ba om en påminnelse om kontodetaljene dine for {{SITENAME}}
+'passwordreset-emailtext-user' => 'Brukeren $1 på {{SITENAME}} ba om en tilbakestilling av passordet ditt for {{SITENAME}}
 ($4). {{PLURAL:$3|Den følgende brukerkontoen|De følgende brukerkontoene}} er tilknyttet denne e-postadressen:
 
 $2
@@ -875,8 +874,8 @@ forespørselen, eller du har kommet på ditt opprinnelige passord, og ikke lenge
 passord.',
 'passwordreset-emailelement' => 'Brukernavn: $1
 Midlertidig passord: $2',
-'passwordreset-emailsent' => 'En påminnelse har blitt sendt på e-post.',
-'passwordreset-emailsent-capture' => 'E-posten under er sendt ut som en påminnelse.',
+'passwordreset-emailsent' => 'En passordtilbakestillingslenke har blitt sendt per e-post.',
+'passwordreset-emailsent-capture' => 'Passordtilbakestillingseposten vist under har blitt sendt ut.',
 'passwordreset-emailerror-capture' => 'E-posten, som du ser under, ble forsøkt sendt til brukeren, men dette mislyktes: $1',
 
 # Special:ChangeEmail
@@ -2094,6 +2093,9 @@ En side anses om en pekerside om den inneholder en mal som det lenkes til fra [[
 
 'pageswithprop' => 'Sider med sideverdi',
 'pageswithprop-legend' => 'Sider med en sideverdi',
+'pageswithprop-text' => 'Denne siden lister opp sider som bruker en viss sideverdi.',
+'pageswithprop-prop' => 'Verdinavn:',
+'pageswithprop-submit' => 'Gå',
 
 'doubleredirects' => 'Doble omdirigeringer',
 'doubleredirectstext' => 'Denne siden lister opp de sidene som er omdirigeringer til andre omdirigeringssider.
@@ -3118,6 +3120,7 @@ Dette er sannsynligvis forårsaket av en lenke til et svartelistet eksternt nett
 'pageinfo-robot-noindex' => 'Ikke indekserbar',
 'pageinfo-views' => 'Antall visninger',
 'pageinfo-watchers' => 'Antall overvåkere av siden',
+'pageinfo-few-watchers' => 'Færre enn $1 {{PLURAL:$1|overvåker|overvåkere}}',
 'pageinfo-redirects-name' => 'Omdirigeringer til siden',
 'pageinfo-subpages-name' => 'Undersider av siden',
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|omdirigering|omdirigeringer}}; $3 {{PLURAL:$3|ikke-omdirigering|ikke-omdirigeringer}})',
@@ -3979,17 +3982,17 @@ Bilder vises med full oppløsning, mens andre filtyper startes direkte gjennom s
 'sqlite-no-fts' => '$1 uten støtte for fulltekstsøk',
 
 # New logging system
-'logentry-delete-delete' => '$1 slettet siden $3',
-'logentry-delete-restore' => '$1 gjenopprettet siden $3',
-'logentry-delete-event' => '$1 endret skjult synligheten av {{PLURAL:$5|en logget hendelse|$5 loggede hendelser}} på $3: $4',
-'logentry-delete-revision' => '$1 endret synlighet av {{PLURAL:$5|en revisjon|$5 revisjoner}} på side $3: $4',
-'logentry-delete-event-legacy' => '$1 endret synlighet av loggede hendelser på $3',
-'logentry-delete-revision-legacy' => '$1 endret synlighet av revisjoner på side $3',
-'logentry-suppress-delete' => '$1 skjult side $3',
-'logentry-suppress-event' => '$1 endret skjult synligheten av {{PLURAL:$5|en logget hendelse|$5 loggede hendelser}} på $3: $4',
-'logentry-suppress-revision' => '$1 endret skjult synligheten av {{PLURAL:$5|en logget hendelse|$5 loggede hendelser}} på $3: $4',
-'logentry-suppress-event-legacy' => '$1 endret skjult synligheten av loggede hendelser på $3',
-'logentry-suppress-revision-legacy' => '$1 endret skjult synligheten av revisjoner på side $3',
+'logentry-delete-delete' => '$1 {{GENDER:$2|slettet}} siden $3',
+'logentry-delete-restore' => '$1 {{GENDER:$2|gjenopprettet}} siden $3',
+'logentry-delete-event' => '$1 {{GENDER:$2|endret}} synligheten av {{PLURAL:$5|en logghendelse|$5 logghendelser}} på $3: $4',
+'logentry-delete-revision' => '$1 {{GENDER:$2|endret}} synligheten av {{PLURAL:$5|en revisjon|$5 revisjoner}} på side $3: $4',
+'logentry-delete-event-legacy' => '$1 {{GENDER:$2|endret}} synligheten av logghendelser på $3',
+'logentry-delete-revision-legacy' => '$1 {{GENDER:$2|endret}} synligheten av revisjoner på siden $3',
+'logentry-suppress-delete' => '$1 {{GENDER:$2|skjulte}} siden $3',
+'logentry-suppress-event' => '$1 {{GENDER:$2|endret}} diskré synligheten av {{PLURAL:$5|en logghendelse|$5 logghendelser}} på $3: $4',
+'logentry-suppress-revision' => '$1 {{GENDER:$2|endret}} diskré synligheten av {{PLURAL:$5|en logghendelse|$5 logghendelser}} på $3: $4',
+'logentry-suppress-event-legacy' => '$1 {{GENDER:$2|endret}} diskré synligheten av logghendelser på $3',
+'logentry-suppress-revision-legacy' => '$1 {{GENDER:$2|endret}} diskré synligheten av revisjoner på siden $3',
 'revdelete-content-hid' => 'innhold skjult',
 'revdelete-summary-hid' => 'redigeringsbeskrivelse skjult',
 'revdelete-uname-hid' => 'brukernavn skjult',
@@ -3998,20 +4001,20 @@ Bilder vises med full oppløsning, mens andre filtyper startes direkte gjennom s
 'revdelete-uname-unhid' => 'brukernavn synlig',
 'revdelete-restricted' => 'begrensninger gjelder også administratorer',
 'revdelete-unrestricted' => 'fjernet begrensninger for administratorer',
-'logentry-move-move' => '$1 flyttet siden $3 til $4',
-'logentry-move-move-noredirect' => '$1 flyttet siden $3 til $4 uten å etterlate en omdirigering',
-'logentry-move-move_redir' => '$1 flyttet siden $3 til $4 over en omdirigering',
-'logentry-move-move_redir-noredirect' => '$1 flyttet siden $3 til $4 over en omdirigering uten å etterlate en omdirigering',
-'logentry-patrol-patrol' => '$1 markerte revisjon $4 av siden $3 som patruljert',
-'logentry-patrol-patrol-auto' => '$1 markerte automatisk revisjon $4 av siden $3 som patruljert',
-'logentry-newusers-newusers' => 'Kontoen $1 ble opprettet',
-'logentry-newusers-create' => 'Kontoen $1 ble opprettet',
-'logentry-newusers-create2' => 'Kontoen $3 ble opprettet av $1',
-'logentry-newusers-byemail' => 'Kontoen $3 ble opprettet av $1 og passordet sendt med e-post',
-'logentry-newusers-autocreate' => 'Konto $1 ble opprettet automatisk',
-'logentry-rights-rights' => '$1 endret gruppemedlemskap for $3 fra $4 til $5',
-'logentry-rights-rights-legacy' => '$1 endret gruppemedlemskap for $3',
-'logentry-rights-autopromote' => '$1 ble automatisk forfremmet fra $4 til $5',
+'logentry-move-move' => '$1 {{GENDER:$2|flyttet}} siden $3 til $4',
+'logentry-move-move-noredirect' => '$1 {{GENDER:$2|flyttet}} siden $3 til $4 uten å etterlate en omdirigering',
+'logentry-move-move_redir' => '$1 {{GENDER:$2|flyttet}} siden $3 til $4 over en omdirigering',
+'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|flyttet}} siden $3 til $4 over en omdirigering uten å etterlate en omdirigering',
+'logentry-patrol-patrol' => '$1 {{GENDER:$2|markerte}} revisjon $4 av siden $3 som patruljert',
+'logentry-patrol-patrol-auto' => '$1 {{GENDER:$2|markerte}} automatisk revisjon $4 av siden $3 som patruljert',
+'logentry-newusers-newusers' => 'Brukerkontoen $1 ble {{GENDER:$2|opprettet}}',
+'logentry-newusers-create' => 'Brukerkontoen $1 ble {{GENDER:$2|opprettet}}',
+'logentry-newusers-create2' => 'Brukerkontoen $3 ble {{GENDER:$2|opprettet}} av $1',
+'logentry-newusers-byemail' => 'Brukerkontoen $3 ble {{GENDER:$2|opprettet}} av $1 og passordet ble sendt per e-post',
+'logentry-newusers-autocreate' => 'Brukerkontoen $1 ble automatisk {{GENDER:$2|opprettet}}',
+'logentry-rights-rights' => '$1 {{GENDER:$2|endret}} gruppemedlemskap for $3 fra $4 til $5',
+'logentry-rights-rights-legacy' => '$1 {{GENDER:$2|endret}} gruppemedlemskap for $3',
+'logentry-rights-autopromote' => '$1 ble automatisk {{GENDER:$2|forfremmet}} fra $4 til $5',
 'rightsnone' => '(ingen)',
 
 # Feedback
@@ -4086,5 +4089,8 @@ Om det ikke er tilfellet, kan du bruke det enkle skjemaet som du finner under. K
 'duration-decades' => '$1 {{PLURAL:$1|tiår|tiår}}',
 'duration-centuries' => '$1 {{PLURAL:$1|århundre|århundrer}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennier}}',
+
+# Image rotation
+'rotate-comment' => 'Bildet snudd $1{{PLURAL:°}} med klokka',
 
 );

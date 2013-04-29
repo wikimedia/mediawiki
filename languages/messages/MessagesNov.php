@@ -358,8 +358,8 @@ Si vu voli plu tardim ekarta li pagine fro vun observa-liste, klikta \"Desobserv
 'unwatch' => 'Desobserva',
 'unwatchthispage' => 'Des-observa disi pagine',
 
-'changed' => 'chanjati',
 'enotif_lastvisited' => 'Regarda $1 por vida omni chanjes depos vun lasti visite.',
+'changed' => 'chanjati',
 
 # Delete
 'confirm' => 'Konfirma',

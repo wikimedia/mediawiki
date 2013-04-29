@@ -939,7 +939,7 @@ Teuneurang bak [$2 on teuneurangjih] geupeuleumah di yup nyoe.",
 # Special:ListGroupRights
 'listgrouprights-members' => '(dapeuta anggèëta)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Surat-e ureuëng nguy',
 
 # Watchlist

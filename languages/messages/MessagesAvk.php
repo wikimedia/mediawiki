@@ -943,7 +943,7 @@ Gotir le $1 {{PLURAL:$1|staa|staa}}.',
 Rinafe e-mail mane me zo razdar viele ar webesik uzerar.',
 'prefs-help-email-required' => 'E-mail mane zo kucilar.',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-invalid' => 'Va enafe e-mail mane bazel',
 
 # User rights
@@ -1427,7 +1427,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'listgrouprights-addgroup-all' => 'Va kota lospa roloplekur',
 'listgrouprights-removegroup-all' => 'Va kota lospa rosular',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Meke mane',
 'mailnologintext' => 'Rin gotil [[Special:UserLogin|dogluyarakiraf]]
 is bazeyes va wadafe internetmane ko rinaf [[Special:Preferences|lodamaceem]]
@@ -2230,7 +2230,7 @@ Kotari milconyafi gluyasiki roklon zo krafiar.',
 'namespacesall' => 'koto',
 'monthsall' => 'kot',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Va e-mail gruyel',
 'confirmemail_noemail' => 'Bazene "email" mane koe rinaf [[Special:Preferences|favesikaf lodamaceem]] me tir enafe.',
 'confirmemail_text' => "Ce wiki nécessite la vérification de votre adresse email avant de pouvoir utiliser toute fonction de messagerie. Utilisez le bouton ci dessous pour envoyer un email de confirmation à votre adresse. L'email contiendra un lien contenant un code, chargez ce lien dans votre navigateur pour valider votre adresse.",

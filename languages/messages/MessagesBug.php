@@ -73,7 +73,6 @@ $messages = array(
 'qbbrowse' => 'Berowoso',
 'qbedit' => 'Padécéŋ',
 'qbpageoptions' => 'Édé leppa',
-'qbpageinfo' => 'Konteks',
 'qbmyoptions' => "Leppana iya'",
 'qbspecialpages' => 'Leppa spésiala',
 'faq' => 'FAQ',

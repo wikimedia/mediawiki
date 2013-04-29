@@ -1219,7 +1219,7 @@ $1",
 'search-interwiki-default' => '$1 වෙතින් ප්‍රතිඵල:',
 'search-interwiki-more' => '(තවත්)',
 'search-relatedarticle' => 'සහසම්බන්ධිත',
-'mwsuggest-disable' => 'AJAX ඇඟවිලි අක්‍රීය කරන්න',
+'mwsuggest-disable' => 'සෙවුම් යෝජනා අක්‍රීය කරන්න',
 'searcheverything-enable' => 'සියළු නාමඅවකාශයන්හි ගවේෂණය කරන්න',
 'searchrelated' => 'ආශ්‍රිත',
 'searchall' => 'සියල්ල',
@@ -2174,7 +2174,7 @@ When filtered by user, only files where that user uploaded the most recent versi
 'usermessage-editor' => 'පද්ධති පණිවුඩ කරු',
 
 # Watchlist
-'watchlist' => 'මගේ මුර-ලැයිස්තුව',
+'watchlist' => 'මුරලැයිස්තුව',
 'mywatchlist' => 'මුර-ලැයිස්තුව',
 'watchlistfor2' => '$1 සඳහා ($2)',
 'nowatchlist' => 'ඔබගේ මුර-ලැයිස්තුවේ කිසිදු අයිතමයක් නොමැත.',
@@ -3082,8 +3082,6 @@ $1',
 
 /*
 Short names for language variants used for language conversion links.
-To disable showing a particular link, set it to 'disable', e.g.
-'variantname-zh-sg' => 'disable',
 Variants for Chinese language
 */
 'variantname-zh-hans' => 'hans',

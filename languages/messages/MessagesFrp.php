@@ -797,7 +797,7 @@ Se vos plét, tornâd-vos branchiér aprés l’avêr reçu.',
 'blocked-mailpassword' => 'Voutron adrèce IP est blocâye en ècritura, la fonccion de sovegnence du contresegno est vêr dèsactivâye por èvitar los abus.',
 'eauthentsent' => 'Un mèssâjo de confirmacion est étâ mandâ a l’adrèce èlèctronica endicâye.
 Devant qu’un ôtro mèssâjo seye mandâ a ceti compto, vos devréd siuvre les enstruccions du mèssâjo et pués confirmar que lo compto est franc lo voutro.',
-'throttled-mailpassword' => 'Un mèssâjo de sovegnence de voutron contresegno est ja étâ mandâ pendent {{PLURAL:$1|l’hora passâye|les $1 hores passâyes}}.
+'throttled-mailpassword' => 'Un mèssâjo de remês’a zérô de voutron contresegno est ja étâ mandâ pendent {{PLURAL:$1|l’hora passâye|les $1 hores passâyes}}.
 Por èvitar los abus, ren que yon serat mandâ per {{PLURAL:$1|hora|entèrvalo de $1 hores}}.',
 'mailerror' => 'Fôta pendent l’èxpèdicion du mèssâjo : $1',
 'acct_creation_throttle_hit' => 'Des visitors de cél vouiqui-que qu’emplèyont voutron adrèce IP ant fêt $1 compto{{PLURAL:$1||s}} pendent lo jorn passâ, cen qu’est lo més ôtorisâ dens ceti temps.
@@ -852,7 +852,7 @@ Pôt-étre vos éd ja changiê voutron contresegno avouéc reusséta ou ben dema
 
 # Special:PasswordReset
 'passwordreset' => 'Remês’a zérô du contresegno',
-'passwordreset-text' => 'Rempléd ceti formulèro por recêvre un mèssâjo de sovegnence des dètalys de voutron compto.',
+'passwordreset-text' => 'Rempléd ceti formulèro por rebetar a zérô voutron contresegno.',
 'passwordreset-legend' => 'Rebetar a zérô lo contresegno',
 'passwordreset-disabled' => 'La remês’a zérô des contresegnos est étâye dèsactivâye sur ceti vouiqui.',
 'passwordreset-pretext' => '{{PLURAL:$1||Buchiéd yona de les piéces de balyês ce-desot}}',
@@ -862,8 +862,8 @@ Pôt-étre vos éd ja changiê voutron contresegno avouéc reusséta ou ben dema
 'passwordreset-capture-help' => 'Se vos pouentâd cela câsa, lo mèssâjo (avouéc lo contresegno temporèro) vos serat montrâ quand serat mandâ a l’utilisator.',
 'passwordreset-email' => 'Adrèce èlèctronica :',
 'passwordreset-emailtitle' => 'Dètalys du compto dessus {{SITENAME}}',
-'passwordreset-emailtext-ip' => 'Yon (probâblament vos, dês l’adrèce IP $1) at demandâ na sovegnence des dètalys
-de voutron compto por {{SITENAME}} ($4). {{PLURAL:$3|Ceti compto utilisator est associyê|Cetos comptos utilisators sont associyês}}
+'passwordreset-emailtext-ip' => 'Yon (probâblament vos, dês l’adrèce IP $1) at demandâ na remês’a zérô de voutron
+contresegno por {{SITENAME}} ($4). {{PLURAL:$3|Ceti compto utilisator est associyê|Cetos comptos utilisators sont associyês}}
 a cel’adrèce èlèctronica :
 
 $2
@@ -872,8 +872,8 @@ $2
 Ora vos vos dête branchiér et pués chouèsir un contresegno novél. Se cela demanda vint pas de vos
 ou ben que vos vos éte rapelâ de voutron contresegno originâl et que vos souhètâd pas més lo changiér,
 vos pouede ignorar ceti mèssâjo et continuar a empleyér voutron viely contresegno.',
-'passwordreset-emailtext-user' => 'L’utilisator $1 dessus {{SITENAME}} at demandâ na sovegnence des dètalys
-de voutron compto por {{SITENAME}} ($4). {{PLURAL:$3|Ceti compto utilisator est associyê|Cetos comptos utilisators sont associyês}}
+'passwordreset-emailtext-user' => 'L’utilisator $1 dessus {{SITENAME}} at demandâ na remês’a zérô de voutron contresegno por {{SITENAME}}
+($4). {{PLURAL:$3|Ceti compto utilisator est associyê|Cetos comptos utilisators sont associyês}}
 a cel’adrèce èlèctronica :
 
 $2
@@ -884,8 +884,8 @@ ou ben que vos vos éte rapelâ de voutron contresegno originâl et que vos souh
 vos pouede ignorar ceti mèssâjo et continuar a empleyér voutron viely contresegno.',
 'passwordreset-emailelement' => 'Nom d’utilisator : $1
 Contresegno temporèro : $2',
-'passwordreset-emailsent' => 'Un mèssâjo de sovegnence est étâ mandâ.',
-'passwordreset-emailsent-capture' => 'Un mèssâjo de sovegnence est étâ mandâ, qu’est montrâ ce-desot.',
+'passwordreset-emailsent' => 'Un mèssâjo de remês’a zérô de contresegno est étâ mandâ.',
+'passwordreset-emailsent-capture' => 'Un mèssâjo de remês’a zérô de contresegno est étâ mandâ, qu’est montrâ ce-desot.',
 'passwordreset-emailerror-capture' => 'Un mèssâjo de sovegnence est étâ fêt, qu’est montrâ ce-desot, mas l’èxpèdicion a l’utilisator at pas reussi : $1',
 
 # Special:ChangeEmail
@@ -1886,7 +1886,7 @@ $1',
 Se vos plét, veriéd-vos vers un [[Special:ListUsers/sysop|administrator]].',
 'upload-misc-error' => 'Fôta encognua pendent lo tèlèchargement',
 'upload-misc-error-text' => 'Na fôta encognua est arrevâye pendent lo tèlèchargement.
-Se vos plét, controlâd que l’URL est justa et accèssibla, et pués tornâd èprovar.
+Se vos plét, controlâd que l’URL est justa et accèssibla et pués tornâd èprovar.
 Se lo problèmo continue, veriéd-vos vers un [[Special:ListUsers/sysop|administrator]].',
 'upload-too-many-redirects' => 'L’URL contint trop de redirèccions',
 'upload-unknown-size' => 'Talye encognua',
@@ -2591,27 +2591,27 @@ Vos pouede changiér lo nivél de protèccion de cela pâge sen que cen afècte 
 'undeletepage' => 'Vêre et refâre des pâges suprimâyes',
 'undeletepagetitle' => "'''Ceta lista contint des vèrsions suprimâyes de [[:$1|$1]].'''",
 'viewdeletedpage' => 'Vêre les pâges suprimâyes',
-'undeletepagetext' => '{{PLURAL:$1|Ceta pâge at étâ suprimâ et sè trove|Cetes pâges ont étâ suprimâs et sè trovont}} dens les arch·ives, de yô que pô{{PLURAL:$1||von}}t adés étre refêt{{PLURAL:$1|a|es}}.
-Les arch·ives pôvont étre èfaciês règuliérement.',
+'undeletepagetext' => '{{PLURAL:$1|Ceta pâge est étâye suprimâye et pués sè trôve|Cetes pâges sont étâyes suprimâyes et pués sè trôvont}} adés dedens les arch·ives, de yô que pô{{PLURAL:$1||von}}t étre refêt{{PLURAL:$1|a|es}}.
+Les arch·ives pôvont étre èfaciêes règuliérement.',
 'undelete-fieldset-title' => 'Refâre les vèrsions',
-'undeleteextrahelp' => "Por refâre l’historico complèt de la pâge, lèssiéd totes les câses pas pouentâs et pués clicâd dessus '''''{{int:undeletebtn}}'''''.
-Por fâre una rèstoracion encomplèta, pouentâd les câses que corrèspondont a les vèrsions a refâre, et pués clicâd dessus '''''{{int:undeletebtn}}'''''.",
-'undeleterevisions' => '$1 {{PLURAL:$1|vèrsion arch·ivâ|vèrsions arch·ivâs}}',
-'undeletehistory' => 'Se vos reféte la pâge, totes les vèrsions seront replaciês dens l’historico.
-S’una pâge novèla avouéc lo mémo nom at étâ fêta dês la suprèssion, les vèrsions refêtes aparètront dens l’historico devant et la vèrsion d’ora serat pas remplaciê ôtomaticament.',
-'undeleterevdel' => 'La rèstoracion serat pas fêta se, a la fin, la vèrsion la ples novèla de la pâge ou ben du fichiér réste suprimâ a mêtiêt.
-Dens celos câs, vos dête pas pouentar ou ben pas cachiér les vèrsions suprimâs les ples novèles (d’amont la lista).',
-'undeletehistorynoadmin' => 'Ceta pâge at étâ suprimâ.
-La rêson de la suprèssion est montrâ dens lo rèsumâ ce-desot, avouéc los dètalys ux usanciérs que l’ont changiê devant sa suprèssion.
-Lo contegnu èfèctif de celes vèrsions suprimâs est accèssiblo ren qu’ux administrators.',
-'undelete-revision' => 'Vèrsion suprimâ de $1 (vèrsion du $4 a $5) per $3 :',
-'undeleterevision-missing' => 'Vèrsion fôssa ou ben manquenta.
-Vos avéd pôt-étre un crouyo lim, ou ben la vèrsion at possu étre refêta ou ben suprimâ de les arch·ives.',
-'undelete-nodiff' => 'Gins de vèrsion devant trovâ.',
+'undeleteextrahelp' => "Por refâre l’historico complèt de la pâge, lèssiéd totes les câses pas pouentâyes et pués clicâd dessus '''''{{int:undeletebtn}}'''''.
+Por fâre na rèstoracion a mêtiêt, pouentâd les câses que corrèspondont a les vèrsions a refâre et pués clicâd dessus '''''{{int:undeletebtn}}'''''.",
+'undeleterevisions' => '$1 {{PLURAL:$1|vèrsion arch·ivâye|vèrsions arch·ivâyes}}',
+'undeletehistory' => 'Se vos reféte la pâge, totes les vèrsions seront rebetâyes dedens l’historico.
+S’una pâge novèla avouéc lo mémo nom est étâye fêta dês la suprèssion, les vèrsions refêtes aparêtront dedens l’historico devant.',
+'undeleterevdel' => 'La rèstoracion serat pas fêta s’a la fin la vèrsion la ples novèla de la pâge du fichiér réste a mêtiêt suprimâye.
+Dens celos câs, vos dête pas pouentar ou ben cachiér la vèrsion suprimâye la ples novèla.',
+'undeletehistorynoadmin' => 'Ceta pâge est étâye suprimâye.
+La rêson de la suprèssion est montrâye dens lo rèsumâ ce-desot, avouéc los dètalys des utilisators que l’ant changiê devant la sina suprèssion.
+Lo contegnu èfèctif de celes vèrsions suprimâyes est accèssiblo ren qu’ux administrators.',
+'undelete-revision' => 'Vèrsion suprimâye de $1 (du $4 a $5) per $3 :',
+'undeleterevision-missing' => 'Vèrsion pas justa ou ben manquenta.
+Pôt-étre vos éd un crouyo lim ou ben la vèrsion at possu étre refêta ou enlevâye de les arch·ives.',
+'undelete-nodiff' => 'Niona vèrsion devant trovâye.',
 'undeletebtn' => 'Refâre',
 'undeletelink' => 'vêre / refâre',
 'undeleteviewlink' => 'vêre',
-'undeletereset' => 'Tornar inicialisar',
+'undeletereset' => 'Rebetar a zérô',
 'undeleteinvert' => 'Envèrsar lo chouèx',
 'undeletecomment' => 'Rêson :',
 'undeletedrevisions' => '$1 {{PLURAL:$1|vèrsion refêta|vèrsions refêtes}}',
@@ -2619,10 +2619,10 @@ Vos avéd pôt-étre un crouyo lim, ou ben la vèrsion at possu étre refêta ou
 'undeletedfiles' => '$1 {{PLURAL:$1|fichiér refêt|fichiérs refêts}}',
 'cannotundelete' => 'Falyita de la rèstoracion :
 $1',
-'undeletedpage' => "'''La pâge $1 est étâye refêta.'''
+'undeletedpage' => "'''$1 est étâye refêta'''
 
-Vêde lo [[Special:Log/delete|jornal de les suprèssions]] por avêr la lista de les novèles suprèssions et rèstoracions.",
-'undelete-header' => 'Vêde lo [[Special:Log/delete|jornal de les suprèssions]] por avêr la lista de les pâges suprimâyes dèrriérement.',
+Vêde lo [[Special:Log/delete|jornal de les suprèssions]] por avêr na lista de les novèles suprèssions et rèstoracions.",
+'undelete-header' => 'Vêde lo [[Special:Log/delete|jornal de les suprèssions]] por avêr les pâges suprimâyes dês pou.',
 'undelete-search-title' => 'Rechèrchiér des pâges suprimâs',
 'undelete-search-box' => 'Rechèrchiér des pâges suprimâs',
 'undelete-search-prefix' => 'Montrar les pâges que començont per :',

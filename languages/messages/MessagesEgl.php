@@ -390,9 +390,6 @@ Cancellä',
 'right-read' => "Legg' pàgin",
 'right-edit' => 'Mudifich pàgin',
 
-# User rights log
-'rightsnone' => '(ansöin)',
-
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => "legg' custa pàgina ché",
 'action-edit' => 'mudifch custa pàgina ché',
@@ -465,7 +462,7 @@ Cancellä',
 # Special:ListGroupRights
 'listgrouprights-group' => 'Grüpp',
 
-# E-mail user
+# Email user
 'emailfrom' => 'Da:',
 'emailto' => 'A:',
 'emailsubject' => 'Uggett:',
@@ -479,8 +476,8 @@ Cancellä',
 'watchthispage' => 'Vadä custa pàgina ché',
 'unwatch' => "N'la vadär piö",
 
-'changed' => 'mudifegat',
 'created' => 'creät',
+'changed' => 'mudifegat',
 
 # Delete
 'delete-confirm' => 'Cancellä "$1"',
@@ -683,6 +680,9 @@ Vadä la pàgina dal file',
 # HTML forms
 'htmlform-reset' => 'Turna indré cul la mudifich',
 'htmlform-selectorother-other' => 'Ätar',
+
+# New logging system
+'rightsnone' => '(ansöin)',
 
 # Feedback
 'feedback-subject' => 'Uggett:',

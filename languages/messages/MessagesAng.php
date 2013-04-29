@@ -845,7 +845,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'listgrouprights-addgroup-all' => 'Eall clīeƿenas ēacian',
 'listgrouprights-removegroup-all' => 'Ealle clīeƿenas forniman',
 
-# E-mail user
+# Email user
 'emailuser' => 'To þissum brūcende ƿrītan',
 'emailfrom' => 'Fram',
 'emailto' => 'Tō:',
@@ -1203,7 +1203,7 @@ Bidde cēos ōðerne naman.',
 'monthsall' => 'eall',
 'limitall' => 'eall',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail_body' => 'Hwilchwega, gewēne þu of IP stōwe $1, hæfþ in namanbēc gestt ǣnne hordcleofan
 "$2" mid þissum e-ǣrendes naman on {{SITENAME}}n.
 

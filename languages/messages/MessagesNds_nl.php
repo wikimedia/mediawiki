@@ -355,7 +355,7 @@ $messages = array(
 
 'underline-always' => 'Altied',
 'underline-never' => 'Nooit',
-'underline-default' => 'Standardinstelling',
+'underline-default' => 'Standard in joew vormgeving of webkieker',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Lettertype veur de tekste t bewarkingsveld:',
@@ -440,7 +440,8 @@ $messages = array(
 'newwindow' => '(niej vienster)',
 'cancel' => 'Aofbreken',
 'moredotdotdot' => 'Meer...',
-'mypage' => 'Mien gebrukerszied',
+'morenotlisted' => 'Meer niet in de lieste...',
+'mypage' => 'Gebrukerszied',
 'mytalk' => 'Mien overleg',
 'anontalk' => 'Overlegzied veur dit IP-adres',
 'navigation' => 'Navigasie',
@@ -463,7 +464,7 @@ $messages = array(
 'vector-action-protect' => 'Beveiligen',
 'vector-action-undelete' => 'Weerummeplaotsen',
 'vector-action-unprotect' => 'Beveiliging wiezigen',
-'vector-simplesearch-preference' => 'Verbeterde zeuksuggesties anzetten (allinnig mit Vector-vormgeving)',
+'vector-simplesearch-preference' => 'Vereenvoudigd zeuken anzetten (allinnig mit Vector-vormgeving)',
 'vector-view-create' => 'Anmaken',
 'vector-view-edit' => 'Bewarken',
 'vector-view-history' => 'Geschiedenisse bekieken',
@@ -473,6 +474,7 @@ $messages = array(
 'namespaces' => 'Naamruumtes',
 'variants' => 'Variaanten',
 
+'navigation-heading' => 'Navigasiemenu',
 'errorpagetitle' => 'Foutmelding',
 'returnto' => 'Weerumme naor $1.',
 'tagline' => 'Van {{SITENAME}}',
@@ -680,7 +682,7 @@ Zeukopdrachte: $2',
 'viewsource-title' => 'Bron bekieken van $1',
 'actionthrottled' => 'Haandeling tegenehöllen',
 'actionthrottledtext' => "As maotregel tegen t plaotsen van ongewunste verwiezingen, is t antal keren da'j disse haandeling in n korte tied uutvoeren kunnen beteund. Je hebben de limiet overschrejen. Probeer t over n antal minuten weer.",
-'protectedpagetext' => 'Disse zied is beveiligd um bewarkingen te veurkoemen.',
+'protectedpagetext' => 'Disse zied is beveiligd. Bewarken of aandere haandelingen bin niet meugelik.',
 'viewsourcetext' => 'Je kunnen de brontekste van disse zied bewarken en bekieken:',
 'viewyourtext' => "Je kunnen '''joew bewarkingen''' an de brontekste van disse zied bekieken en kopiëren:",
 'protectedinterface' => "Op disse zied steet tekste die gebruukt wörden veur systeemteksten van disse wiki. Allinnig beheerders kunnen disse zied bewarken.
@@ -713,6 +715,7 @@ De beheerder gaf hierveur de volgende reden: "$3".',
 
 Je kunnen {{SITENAME}} noen anoniem gebruken of je eigen <span class='plainlinks'>[$1 opniej anmelden]</span> onder disse of n aandere gebrukersnaam.
 t Kan ween dat der wat ziejen bin die weeregeven wörden asof je an-emeld bin totda'j t tussengeheugen van joew webkieker leegmaken.",
+'welcomeuser' => 'Welkom, $1!',
 'yourname' => 'Gebrukersnaam',
 'yourpassword' => 'Wachtwoord',
 'yourpasswordagain' => 'Opniej invoeren',
@@ -735,7 +738,7 @@ t Kan ween dat der wat ziejen bin die weeregeven wörden asof je an-emeld bin to
 'gotaccount' => "Stao'j al in-eschreven? '''$1'''.",
 'gotaccountlink' => 'Anmelden',
 'userlogin-resetlink' => "Bi'j de anmeldgegevens kwiet?",
-'createaccountmail' => 'per netpost',
+'createaccountmail' => 'Gebruuk n tiejelik wachtwoord dat joe netzelde is en stuur t naor t netpostadres dat hieronder steet',
 'createaccountreason' => 'Reden:',
 'badretype' => "De wachtwoorden die'j in-etikt hebben bin niet liek alleens.",
 'userexists' => 'Disse gebrukersnaam is al gebruuk.
@@ -1071,6 +1074,12 @@ t Schient dat t vortedaon is.',
 t Besteet al.',
 'defaultmessagetext' => 'Standardtekste',
 
+# Content models
+'content-model-wikitext' => 'wikitekste',
+'content-model-text' => 'tekste zonder opmaak',
+'content-model-javascript' => 'JavaScript',
+'content-model-css' => 'CSS',
+
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Waorschuwing: disse zied gebruukt te veule kostbaore parserfunksies.
 
@@ -1320,7 +1329,7 @@ Waorschienlik ku'j der meer gegevens over vienen in t [{{fullurl:{{#Special:Log}
 'search-interwiki-default' => '$1 resultaoten:',
 'search-interwiki-more' => '(meer)',
 'search-relatedarticle' => 'Verwaant',
-'mwsuggest-disable' => 'Anbevelingen via AJAX uutschakelen',
+'mwsuggest-disable' => 'Zeuksuggesties uutzetten',
 'searcheverything-enable' => 'In alle naamruumten zeuken',
 'searchrelated' => 'verwaant',
 'searchall' => 'alles',
@@ -1427,8 +1436,8 @@ Disse haandeling kan niet ongedaonemaakt wörden.',
 'prefs-emailconfirm-label' => 'Netpostbevestiging:',
 'prefs-textboxsize' => 'Aofmetingen bewarkingsscharm',
 'youremail' => 'Netpostadres (niet verplicht) *',
-'username' => 'Gebrukersnaam:',
-'uid' => 'Gebrukersnummer:',
+'username' => '{{GENDER:$1|Gebrukersnaam}}:',
+'uid' => '{{GENDER:$1|Gebrukersnummer}}:',
 'prefs-memberingroups' => 'Lid van {{PLURAL:$1|groep|groepen}}:',
 'prefs-registration' => 'Registrasiedaotum:',
 'yourrealname' => 'Echte naam (niet verplicht)',
@@ -2044,6 +2053,8 @@ Vergeet niet de verwiezingen nao te kieken veurda\'j de mal vortdoon.',
 Feitelik mutten ze rechtstreeks verwiezen naor t juuste onderwarp.<br />
 Ziejen wörden ezien as n deurverwieszied, as de mal gebruukt wörden die vermeld steet op [[MediaWiki:Disambiguationspage]].",
 
+'pageswithprop-submit' => 'Zeuk',
+
 'doubleredirects' => 'Dubbele deurverwiezingen',
 'doubleredirectstext' => 'Op disse lieste staon alle ziejen die deurverwiezen naor aandere deurverwiezingen.
 Op elke regel steet de eerste en de tweede deurverwiezing, daorachter steet de doelzied van de tweede deurverwiezing.
@@ -2527,7 +2538,7 @@ $1',
 'blanknamespace' => '(Heufdnaamruumte)',
 
 # Contributions
-'contributions' => 'Biedragen van disse gebruker',
+'contributions' => '{{GENDER:$1|Biedragen van disse gebruker}}',
 'contributions-title' => 'Biedragen van $1',
 'mycontris' => 'Mien biedragen',
 'contribsub2' => 'Veur $1 ($2)',
@@ -3053,6 +3064,11 @@ Meestentieds kömp dit deur n uutgaonde verwiezing die op de zwarte lieste steet
 'pageinfo-magic-words' => '{{PLURAL:$1|Magies woord|Magiese woorden}} ($1)',
 'pageinfo-hidden-categories' => 'Verbörgen {{PLURAL:$1|kategorie|kategorieën}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Gebruukten mal|Gebruukten mallen}} ($1)',
+'pageinfo-toolboxlink' => 'Informasie over disse zied',
+'pageinfo-redirectsto' => 'Verwis deur naor',
+'pageinfo-redirectsto-info' => 'informasie',
+'pageinfo-contentpage' => 'Eteld as zied mit inhoud',
+'pageinfo-contentpage-yes' => 'Ja',
 
 # Skin names
 'skinname-standard' => 'Klassiek',
@@ -3137,6 +3153,7 @@ $1',
 'hours' => '{{PLURAL:$1|$1 ure|$1 uren}}',
 'days' => '{{PLURAL:$1|$1 dag|$1 dagen}}',
 'ago' => '$1 eleen',
+'just-now' => 'onderlest',
 
 # Bad image list
 'bad_image_list' => 'De opmaak is as volgt:

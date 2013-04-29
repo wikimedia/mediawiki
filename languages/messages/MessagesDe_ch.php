@@ -24,7 +24,7 @@ $messages = array(
 'tog-hideminor' => 'Kleine Änderungen in den «Letzten Änderungen» ausblenden',
 'tog-hidepatrolled' => 'Kontrollierte Änderungen in den «Letzten Änderungen» ausblenden',
 'tog-newpageshidepatrolled' => 'Kontrollierte Seiten bei den «Neuen Seiten» ausblenden',
-'tog-usenewrc' => 'Erweiterte Darstellung der «Letzten Änderungen» (benötigt JavaScript)',
+'tog-usenewrc' => 'Seitenbezogene Gruppierung in den «Letzten Änderungen» und auf der Beobachtungsliste (benötigt JavaScript)',
 'tog-minordefault' => 'Eigene Änderungen standardmässig als minim markieren',
 'tog-externaleditor' => 'Externen Editor standardmässig nutzen (nur für Experten, erfordert spezielle Einstellungen auf dem eigenen Computer. [//www.mediawiki.org/wiki/Manual:External_editors Weitere Informationen hierzu.])',
 'tog-externaldiff' => 'Externes Programm standardmässig für Versionsunterschiede nutzen (nur für Experten, erfordert spezielle Einstellungen auf dem eigenen Computer. [//www.mediawiki.org/wiki/Manual:External_editors Weitere Informationen hierzu.])',
@@ -45,9 +45,9 @@ $messages = array(
 'dberrortext' => 'Es ist ein Datenbankfehler aufgetreten.
 Der Grund kann ein Programmierfehler sein.
 Die letzte Datenbankabfrage lautete:
-<blockquote><tt>$1</tt></blockquote>
-aus der Funktion «<tt>$2</tt>».
-Die Datenbank meldete den Fehler «<tt>$3: $4</tt>».',
+<blockquote><code>$1</code></blockquote>
+aus der Funktion «<code>$2</code>».
+Die Datenbank meldete den Fehler «<samp>$3: $4</samp>».',
 'dberrortextcl' => 'Es gab einen Syntaxfehler in der Datenbankabfrage.
 Die letzte Datenbankabfrage lautete: «$1» aus der Funktion «<tt>$2</tt>».
 Die Datenbank meldete den Fehler: «<tt>$3: $4</tt>».',
@@ -71,8 +71,8 @@ Möglicherweise wurde sie bereits von jemand anderem gelöscht.',
 'actionthrottledtext' => 'Im Rahmen einer Anti-Spam-Massnahme oder aufgrund eines Missbrauchsfilters kann diese Aktion in einem kurzen Zeitabstand nur begrenzt oft ausgeführt werden. Diese Grenze hast du überschritten.
 Bitte versuche es in ein paar Minuten erneut.',
 'editinginterface' => "'''Warnung:''' Diese Seite enthält von der MediaWiki-Software genutzten Text.
-Änderungen auf dieser Seite wirken sich auf die Benutzeroberfläche aus.
-Ziehe bitte im Fall von Übersetzungen in Betracht, diese bei [//translatewiki.net/wiki/Main_Page?setlang=de-ch translatewiki.net], der Lokalisierungsplattform für MediaWiki, durchzuführen.",
+Änderungen auf dieser Seite wirken sich auf die Benutzeroberfläche dieses Wikis aus.
+Nutze bitte [//translatewiki.net/ translatewiki.net], das Lokalisierungsprojekt von MediaWiki, um Übersetzungen für alle Wikis hinzuzufügen oder zu ändern.",
 'titleprotected' => "Eine Seite mit diesem Namen kann nicht angelegt werden.
 Die Sperre wurde durch [[User:$1|$1]] mit der Begründung ''«$2»'' eingerichtet.",
 'filereadonlyerror' => 'Die Datei «$1» kann nicht verändert werden, da auf das Dateirepositorium «$2» nur Lesezugriff möglich ist.
@@ -86,28 +86,34 @@ Der Administrator, der den Schreibzugriff sperrte, gab folgenden Grund an: «$3�
 'nosuchusershort' => 'Der Benutzername «$1» ist nicht vorhanden. Bitte überprüfe die Schreibweise.',
 'passwordremindertext' => 'Jemand mit der IP-Adresse $1, wahrscheinlich du selbst, hat ein neues Passwort für die Anmeldung bei {{SITENAME}} ($4) angefordert.
 
-Das automatisch generierte Passwort für Benutzer „$2“ lautet nun: $3
+Das automatisch generierte Passwort für Benutzer «$2» lautet nun: $3
 
 Falls du dies wirklich gewünscht hast, solltest du dich jetzt anmelden und das Passwort ändern.
 Das neue Passwort ist {{PLURAL:$5|1 Tag|$5 Tage}} gültig.
 
-Bitte ignoriere dieses E-Mail, falls du sie nicht selbst angefordert hast. Das alte Passwort bleibt weiterhin gültig.',
+Bitte ignoriere dieses E-Mail, falls du es nicht selbst angefordert hast. Das alte Passwort bleibt weiterhin gültig.',
 'noemail' => '{{GENDER:$1|Benutzer|Benutzerin|Benutzer}} «$1» hat keine E-Mail-Adresse angegeben.',
 'passwordsent' => 'Ein neues, temporäres Passwort wurde an die E-Mail-Adresse von Benutzer «$1» gesandt.
 Bitte melde dich damit an, sobald du es erhalten hast. Das alte Passwort bleibt weiterhin gültig.',
 'eauthentsent' => 'Ein Bestätigungs-E-Mail wurde an die angegebene Adresse verschickt.
 
 Bevor ein E-Mail von anderen Benutzern über die E-Mail-Funktion empfangen werden kann, muss die Adresse und ihre tatsächliche Zugehörigkeit zu diesem Benutzerkonto erst bestätigt werden. Bitte befolge die Hinweise im Bestätigungs-E-Mail.',
+'throttled-mailpassword' => 'Es wurde innerhalb der letzten {{PLURAL:$1|Stunde|$1 Stunden}} bereits ein Passwortzurücksetzungs-E-Mail angefordert. Um einen Missbrauch der Funktion zu verhindern, kann nur {{PLURAL:$1|einmal pro Stunde|alle $1 Stunden}} ein Passwortzurücksetzungs-E-Mail angefordert werden.',
 'mailerror' => 'Fehler beim Senden des E-Mails: $1',
 'createaccount-text' => 'Es wurde für dich ein Benutzerkonto «$2» auf {{SITENAME}} ($4) erstellt. Das automatisch generierte Passwort für «$2» ist «$3». Du solltest dich nun anmelden und das Passwort ändern.
 
 Falls das Benutzerkonto irrtümlich angelegt wurde, kannst du diese Nachricht ignorieren.',
 
-# E-mail sending
+# Email sending
 'user-mail-no-addy' => 'Versuchte ein E-Mail ohne Angabe einer E-Mail-Adresse zu versenden',
+'user-mail-no-body' => 'Es wurde versucht, ein E-Mail mit einem leeren oder zu kurzen Textkörper zu versenden.',
 
 # Change password dialog
 'resetpass_announce' => 'Anmeldung mit dem per E-Mail zugesandten Code. Um die Anmeldung abzuschliessen, musst du jetzt ein neues Passwort wählen.',
+
+# Special:PasswordReset
+'passwordreset-emailsent' => 'Ein Passwortzurücksetzungs-E-Mail wurde versandt.',
+'passwordreset-emailsent-capture' => 'Ein Passwortzurücksetzungs-E-Mail wurde versandt, das unten angezeigt wird.',
 
 # Edit pages
 'missingsummary' => "'''Hinweis:''' Du hast keine Zusammenfassung angegeben. Wenn du erneut auf «{{int:savearticle}}» klickst, wird deine Änderung ohne Zusammenfassung übernommen.",
@@ -155,6 +161,7 @@ Das Passwort für dieses neue Benutzerkonto kann auf der Spezialseite «[[Specia
 'userjsyoucanpreview' => "'''Tipp:''' Benutze den «{{int:showpreview}}»-Button, um dein neues JavaScript vor dem Speichern zu testen.",
 'userinvalidcssjstitle' => "'''Achtung:''' Die Benutzeroberfläche «$1» existiert nicht. Bedenke, dass benutzerspezifische .css- und .js-Seiten mit einem Kleinbuchstaben anfangen müssen, also beispielsweise ''{{ns:user}}:Mustermann/vector.css'' an Stelle von ''{{ns:user}}:Mustermann/Vector.css''.",
 'editing' => 'Bearbeiten von «$1»',
+'creating' => 'Erstellen von «$1»',
 'editingsection' => 'Bearbeiten von «$1» (Abschnitt)',
 'editingcomment' => 'Bearbeiten von «$1» (Neuer Abschnitt)',
 'explainconflict' => "Jemand anders hat diese Seite geändert, nachdem du angefangen hast sie zu bearbeiten.
@@ -194,7 +201,7 @@ Du hast darauf keinen Zugriff.',
 'mergehistory-comment' => '«[[:$1]]» vereinigt nach «[[:$2]]»: $3',
 
 # Diffs
-'history-title' => 'Versionsgeschichte von «$1»',
+'history-title' => '$1: Versionsgeschichte',
 
 # Search results
 'searchresults-title' => 'Suchergebnisse für «$1»',
@@ -222,10 +229,6 @@ Du hast darauf keinen Zugriff.',
 'right-bigdelete' => 'Seiten mit grosser Versionsgeschichte löschen',
 'right-override-export-depth' => 'Exportiere Seiten einschliesslich verlinkter Seiten bis zu einer Tiefe von 5',
 'right-passwordreset' => 'Passwort eines Benutzers zurücksetzen und das dazu verschickte E-Mail einsehen',
-
-# User rights log
-'rightslogentry' => 'änderte die Benutzerrechte für «$1» von «$2» auf «$3»',
-'rightslogentry-autopromote' => 'wurde automatisch von «$2» nach «$3» zugeordnet',
 
 # Recent changes
 'rc_categories' => 'Nur Seiten aus den Kategorien (getrennt mit «|»):',
@@ -274,7 +277,7 @@ Bitte gib der Datei einen Namen, der den Inhalt besser beschreibt.",
 'upload-unknown-size' => 'Unbekannte Grösse',
 
 # File backend
-'backend-fail-maxsize' => 'Die Datei $1 konnte nicht erstellt werden, da sie grösser als {{PLURAL:$2|ein Byte|$2 Byte}} ist.',
+'backend-fail-maxsize' => 'Die Datei $1 konnte nicht gespeichert werden, da sie grösser als {{PLURAL:$2|ein Byte|$2 Bytes}} ist.',
 'backend-fail-readonly' => 'Das Speicher-Backend «$1» befindet sich derzeit im Lesemodus. Der angegebene Grund lautet: «$2»',
 'backend-fail-synced' => 'Die Datei «$1» befindet sich, innerhalb des internen Speicher-Backends, in einem inkonsistenten Zustand.',
 'backend-fail-connect' => 'Es konnte keine Verbindung zum Speicher-Backend «$1» hergestellt werden.',
@@ -346,11 +349,11 @@ Die Ausgabe kann durch die Auswahl des Logbuchtyps, des Benutzers oder des Seite
 'allpages-bad-ns' => 'Der Namensraum «$1» ist in {{SITENAME}} nicht vorhanden.',
 
 # Special:LinkSearch
-'linksearch-text' => 'Diese Spezialseite ermöglicht die Suche nach Seiten, in denen bestimmte Weblinks enthalten sind. Dabei können Platzhalter wie beispielsweise <code>*.beispiel.ch</code> benutzt werden. Es muss mindestens eine Top-Level-Domain, z. B. «*.org». angegeben werden. <br />Unterstützte Protokolle: <code>$1</code> (Diese bitte nicht bei der Suchanfrage angeben.)',
+'linksearch-text' => 'Diese Spezialseite ermöglicht die Suche nach Seiten, in denen bestimmte Weblinks enthalten sind. Dabei können Platzhalter wie beispielsweise <code>*.beispiel.ch</code> benutzt werden. Es muss mindestens eine Top-Level-Domain, z. B. «*.org». angegeben werden. <br />{{PLURAL:$2|Unterstütztes Protokoll|Unterstützte Protokolle}}: <code>$1</code> (Standard ist http, falls kein Protokoll angegeben ist.)',
 
-# E-mail user
-'emailpagetext' => 'Du kannst dem Benutzer mit dem unten stehenden Formular ein E-Mail senden.
-Als Absender wird die E-Mail-Adresse aus deinen [[Special:Preferences|Einstellungen]] eingetragen, damit der Benutzer dir antworten kann.',
+# Email user
+'emailpagetext' => 'Du kannst {{GENDER:$1|dem Benutzer|der Benutzerin}} mit dem unten stehenden Formular ein E-Mail senden.
+Als Absender wird die E-Mail-Adresse aus deinen [[Special:Preferences|Einstellungen]] eingetragen, damit {{GENDER:$1|der Benutzer|die Benutzerin}} dir direkt antworten kann.',
 'defemailsubject' => '{{SITENAME}} - E-Mail von Benutzer «$1»',
 'emailnotarget' => 'Nicht vorhandener oder ungültiger Benutzername für den Empfang eines E-Mails.',
 'emailccme' => 'Sende eine Kopie des E-Mails an mich',
@@ -359,7 +362,7 @@ Als Absender wird die E-Mail-Adresse aus deinen [[Special:Preferences|Einstellun
 
 # Watchlist
 'addedwatchtext' => 'Die Seite «[[:$1]]» wurde zu deiner [[Special:Watchlist|Beobachtungsliste]] hinzugefügt.
-Spätere Änderungen an dieser Seite und der zugehörigen Diskussionsseite werden dort gelistet und die Seite wird in der [[Special:RecentChanges|Liste der letzten Änderungen]] in Fettschrift angezeigt.',
+Spätere Änderungen an dieser Seite und der zugehörigen Diskussionsseite werden dort gelistet.',
 'removedwatchtext' => 'Die Seite «[[:$1]]» wurde von deiner [[Special:Watchlist|Beobachtungsliste]] entfernt.',
 'iteminvalidname' => 'Problem mit dem Eintrag «$1», ungültiger Name.',
 
@@ -387,7 +390,7 @@ Spätere Änderungen an dieser Seite und der zugehörigen Diskussionsseite werde
 'protect-locked-blocked' => "Du kannst den Seitenschutz nicht ändern, da dein Benutzerkonto gesperrt ist. Hier sind die aktuellen Seitenschutz-Einstellungen der Seite '''«$1»:'''",
 'protect-locked-dblock' => "Die Datenbank ist gesperrt, der Seitenschutz kann daher nicht geändert werden. Hier sind die aktuellen Seitenschutz-Einstellungen der Seite '''«$1»:'''",
 'protect-locked-access' => "Dein Benutzerkonto verfügt nicht über die notwendigen Rechte zur Änderung des Seitenschutzes. Hier sind die aktuellen Seitenschutzeinstellungen der Seite '''«$1»:'''",
-'protect-fallback' => 'Es wird die «$1»-Berechtigung benötigt.',
+'protect-fallback' => 'Nur Benutzern mit der «$1»-Berechtigung erlauben.',
 'minimum-size' => 'Mindestgrösse',
 'maximum-size' => 'Maximalgrösse:',
 
@@ -508,36 +511,39 @@ Weitere werden standardmässig nicht angezeigt.
 
 'exif-isospeedratings-overflow' => 'Grösser als 65535',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail_text' => '{{SITENAME}} erfordert, dass du deine E-Mail-Adresse bestätigst (authentifizierst), bevor du die erweiterten E-Mail-Funktionen benutzen kannst. Klicke bitte auf die unten stehende, mit «Bestätigungscode zuschicken» beschriftete Schaltfläche, damit ein automatisch erstelltes E-Mail an die angegebene Adresse geschickt wird. Dieses E-Mail enthält eine Web-Adresse mit einem Bestätigungscode. Indem du diese Webseite in deinem Webbrowser öffnest, bestätigst du, dass die angegebene E-Mail-Adresse korrekt und gültig ist.',
 'confirmemail_pending' => 'Es wurde dir bereits ein Bestätigungscode per E-Mail zugeschickt.
 Wenn du dein Benutzerkonto erst vor kurzem erstellt hast, warte bitte noch ein paar Minuten auf das E-Mail, bevor du einen neuen Code anforderst.',
+'confirmemail_sent' => 'Das Bestätigungs-E-Mail wurde verschickt.',
+'confirmemail_sendfailed' => '{{SITENAME}} konnte das Bestätigungs-E-Mail nicht an dich versenden.
+Bitte prüfe die E-Mail-Adresse auf ungültige Zeichen.
+
+Rückmeldung des Mailservers: $1',
 'confirmemail_body' => 'Hallo,
 
-jemand mit der IP-Adresse $1, wahrscheinlich du selbst, hat das Benutzerkonto «$2» in {{SITENAME}} registriert.
+jemand mit der IP-Adresse $1, wahrscheinlich du selbst, hat das Benutzerkonto «$2» bei {{SITENAME}} registriert.
 
-Um die E-Mail-Funktion von {{SITENAME}} (wieder) zu aktivieren und um zu bestätigen,
-dass dieses Benutzerkonto wirklich zu deiner E-Mail-Adresse und damit zu dir gehört, öffne bitte die folgende Web-Adresse:
+Um die E-Mail-Funktionen von {{SITENAME}} (wieder) zu aktivieren und um zu bestätigen,
+dass dieses Benutzerkonto wirklich zu deiner E-Mail-Adresse und damit zu dir gehört, öffne bitte folgenden Link in deinem Browser:
 
 $3
-
-Sollte die vorstehende Adresse in deinem E-Mail-Programm über mehrere Zeilen gehen, musst du sie allenfalls per Hand in die Adresszeile deines Web-Browsers einfügen.
 
 Wenn du das genannte Benutzerkonto *nicht* registriert hast, folge diesem Link, um den Bestätigungsprozess abzubrechen:
 
 $5
 
-Dieser Bestätigungscode ist gültig bis $6, $7 Uhr.',
+Dieser Bestätigungscode ist gültig bis zum $6, $7 Uhr.',
 'confirmemail_body_changed' => 'Jemand mit der IP-Adresse $1, wahrscheinlich du selbst,
-hat die E-Mail-Adresse des Benutzerkontos «$2» zu dieser Adresse auf {{SITENAME}} geändert.
+hat die E-Mail-Adresse des Benutzerkontos «$2» zu dieser Adresse bei {{SITENAME}} geändert.
 
-Um zu bestätigen, dass dieses Benutzerkonto wirklich dir gehört
-und um die E-Mail-Features auf {{SITENAME}} zu reaktivieren, öffne diesen Link in deinem Browser:
+Um zu bestätigen, dass dieses Benutzerkonto wirklich dir gehört,
+und um die E-Mail-Features bei {{SITENAME}} zu reaktivieren, öffne diesen Link in deinem Browser:
 
 $3
 
 Falls das Konto *nicht* dir gehört, folge diesem Link,
-um die E-Mail-Adress-Bestätigung abzubrechen:
+um die E-Mail-Bestätigung abzubrechen:
 
 $5
 
@@ -562,7 +568,7 @@ Dieser Bestätigungscode ist gültig bis $4.',
 'autosumm-new' => 'Die Seite wurde neu angelegt: «$1»',
 
 # Live preview
-'livepreview-error' => 'Verbindung nicht möglich: $1 «$1». Bitte die normale Vorschau benutzen.',
+'livepreview-error' => 'Verbindung nicht möglich: $1 «$2». Bitte die normale Vorschau benutzen.',
 
 # Watchlist editor
 'watchlistedit-normal-explain' => 'Dies sind die Einträge deiner Beobachtungsliste. Um Einträge zu entfernen, markiere die Kästchen neben den Einträgen und klicke am Ende der Seite auf «{{int:Watchlistedit-normal-submit}}». Du kannst deine Beobachtungsliste auch im [[Special:EditWatchlist/raw|Listenformat bearbeiten]].',

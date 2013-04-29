@@ -755,7 +755,7 @@ Vir l'pache [$2 édseur Commons].",
 'listgrouprights-summary' => "L'pache-lo ch'est ène lisse d'chés groupes d'uzeus définis édseur ech wiki aveuc chés drouots d'intrèe achuchonnés.<br />I put y avoèr ichi d'eutes [[MediaWiki:Listgrouprights-helppage|informacions]] édseur chés drouots individuèls. ([[{{MediaWiki:Listgrouprights-helppage}}|vir]])",
 'listgrouprights-members' => '(lisse éd chés mimbes)',
 
-# E-mail user
+# Email user
 'emailuser' => "Imèle echl'uzeu-lo",
 'emailpage' => 'Imèle dech uzeu',
 

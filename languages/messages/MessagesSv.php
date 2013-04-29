@@ -30,6 +30,7 @@
  * @author M.M.S.
  * @author MagnusA
  * @author Micke
+ * @author Mikez
  * @author NH
  * @author Najami
  * @author Nghtwlkr
@@ -2892,7 +2893,7 @@ I det senare fallet kan du även använda en länk, exempel [[{{#Special:Export}
 'exportcuronly' => 'Inkludera endast den nuvarande versionen, inte hela historiken',
 'exportnohistory' => "----
 '''OBS:''' export av fullständig sidhistorik med hjälp av detta formulär har stängts av på grund av prestandaskäl.",
-'exportlistauthors' => 'Innehålla en fullständig lista över bidragsgivare för varje sida',
+'exportlistauthors' => 'Inkludera en fullständig lista över bidragsgivare för varje sida',
 'export-submit' => 'Exportera',
 'export-addcattext' => 'Lägg till sidor från kategori:',
 'export-addcat' => 'Lägg till',
@@ -3994,17 +3995,17 @@ Bilder visas i full upplösning, andra filtyper öppnas direkt i de program som 
 'sqlite-no-fts' => '$1 utan stöd för fulltextsökning',
 
 # New logging system
-'logentry-delete-delete' => '$1 raderade sidan $3',
-'logentry-delete-restore' => '$1 återställde sidan $3',
-'logentry-delete-event' => '$1 ändrade synligheten för {{PLURAL:$5|en logghändelse|$5 logghändelser}} på $3: $4',
-'logentry-delete-revision' => '$1 ändrade synligheten för {{PLURAL:$5|en version|$5 versioner}} på sidan $3: $4',
-'logentry-delete-event-legacy' => '$1 ändrade synligheten för logghändelser på $3',
-'logentry-delete-revision-legacy' => '$1 ändrade synligheten för versioner på sidan $3',
-'logentry-suppress-delete' => '$1 gömde sidan $3',
-'logentry-suppress-event' => '$1 ändrade i hemlighet synligheten för {{PLURAL:$5|en logghändelse|$5 logghändelser}} på $3: $4',
-'logentry-suppress-revision' => '$1 ändrade synligheten i hemlighet för {{PLURAL:$5|en version|$5 versioner}} på sidan $3: $4',
-'logentry-suppress-event-legacy' => '$1 ändrade synligheten i hemlighet för logghändelser på $3',
-'logentry-suppress-revision-legacy' => '$1 ändrade synligheten i hemlighet för versioner på sidan $3',
+'logentry-delete-delete' => '$1 {{GENDER:$2|raderade}} sidan $3',
+'logentry-delete-restore' => '$1 {{GENDER:$2|återställde}} sidan $3',
+'logentry-delete-event' => '$1 {{GENDER:$2|ändrade}} synligheten för {{PLURAL:$5|en logghändelse|$5 logghändelser}} på $3: $4',
+'logentry-delete-revision' => '$1 {{GENDER:$2|ändrade}} synligheten för {{PLURAL:$5|en version|$5 versioner}} på sidan $3: $4',
+'logentry-delete-event-legacy' => '$1 {{GENDER:$2|ändrade}} synligheten för logghändelser på $3',
+'logentry-delete-revision-legacy' => '$1 {{GENDER:$2|ändrade}} synligheten för versioner på sidan $3',
+'logentry-suppress-delete' => '$1 {{GENDER:$2|gömde}} sidan $3',
+'logentry-suppress-event' => '$1 {{GENDER:$2|ändrade}} i hemlighet synligheten för {{PLURAL:$5|en logghändelse|$5 logghändelser}} på $3: $4',
+'logentry-suppress-revision' => '$1 {{GENDER:$2|ändrade}} synligheten i hemlighet för {{PLURAL:$5|en version|$5 versioner}} på sidan $3: $4',
+'logentry-suppress-event-legacy' => '$1 {{GENDER:$2|ändrade}} synligheten i hemlighet för logghändelser på $3',
+'logentry-suppress-revision-legacy' => '$1 {{GENDER:$2|ändrade}} synligheten i hemlighet för versioner på sidan $3',
 'revdelete-content-hid' => 'innehåll dolt',
 'revdelete-summary-hid' => 'redigeringssammanfattning dold',
 'revdelete-uname-hid' => 'användarnamn dolt',
@@ -4013,10 +4014,10 @@ Bilder visas i full upplösning, andra filtyper öppnas direkt i de program som 
 'revdelete-uname-unhid' => 'användarnamn synligt',
 'revdelete-restricted' => 'satte begränsningar för administratörer',
 'revdelete-unrestricted' => 'tog bort begränsningar för administratörer',
-'logentry-move-move' => '$1 flyttade sidan $3 till $4',
-'logentry-move-move-noredirect' => '$1 flyttade sidan $3 till $4 utan att lämna en omdirigering',
-'logentry-move-move_redir' => '$1 flyttade sidan $3 till $4 över en omdirigering',
-'logentry-move-move_redir-noredirect' => '$1 flyttade sidan $3 till $4 över en omdirigering utan att lämna en omdirigering',
+'logentry-move-move' => '$1 {{GENDER:$2|flyttade}} sidan $3 till $4',
+'logentry-move-move-noredirect' => '$1 {{GENDER:$2|flyttade}} sidan $3 till $4 utan att lämna en omdirigering',
+'logentry-move-move_redir' => '$1 {{GENDER:$2|flyttade}} sidan $3 till $4 över en omdirigering',
+'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|flyttade}} sidan $3 till $4 över en omdirigering utan att lämna en omdirigering',
 'logentry-patrol-patrol' => '$1 {{GENDER:$2|markerade}} versionen $4 av sidan $3 som patrullerad',
 'logentry-patrol-patrol-auto' => '$1 {{GENDER:$2|markerade}} automatiskt versionen $4 av sidan $3 som patrullerad',
 'logentry-newusers-newusers' => 'Användarkonto $1 har {{GENDER:$2|skapats}}',

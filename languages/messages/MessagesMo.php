@@ -274,6 +274,9 @@ $messages = array(
 
 'grouppage-sysop' => '{{ns:project}}:Администраторь',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Журнал утилизаторь ной',
+
 # User rights log
 'rightslog' => 'Журнал дрептурь де утилизатор',
 
@@ -363,13 +366,10 @@ $messages = array(
 # Special:LinkSearch
 'linksearch' => 'Легэтурь екстерне',
 
-# Special:Log/newusers
-'newuserlogpage' => 'Журнал утилизаторь ной',
-
 # Special:ListGroupRights
 'listgrouprights-members' => '(листэ де мембрь)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Тримите прин поштэ електроникэ ун месаж ачестуй утилизатор',
 
 # Watchlist

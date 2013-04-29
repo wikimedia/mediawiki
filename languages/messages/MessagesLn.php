@@ -526,7 +526,7 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 # Special:Categories
 'categories' => 'Ndéngé',
 
-# E-mail user
+# Email user
 'emailuser' => 'Kotíndela yě mɛ́lɛ',
 'defemailsubject' => '{{SITENAME}} mokánda',
 'emailfrom' => 'útá',

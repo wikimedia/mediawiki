@@ -556,7 +556,7 @@ $messages = array(
 'vector-view-edit' => 'Уреди',
 'vector-view-history' => 'Историја',
 'vector-view-view' => 'Читај',
-'vector-view-viewsource' => 'Изворник',
+'vector-view-viewsource' => 'Изворни код',
 'actions' => 'Радње',
 'namespaces' => 'Именски простори',
 'variants' => 'Варијанте',
@@ -670,7 +670,7 @@ $1',
 'editsection' => 'уреди',
 'editsection-brackets' => '[$1]',
 'editold' => 'уреди',
-'viewsourceold' => 'изворник',
+'viewsourceold' => 'изворни код',
 'editlink' => 'уреди',
 'viewsourcelink' => 'Извор',
 'editsectionhint' => 'Уредите одељак „$1“',
@@ -774,7 +774,7 @@ $1',
 'wrong_wfQuery_params' => 'Неисправни параметри за wfQuery()<br />
 Функција: $1<br />
 Упит: $2',
-'viewsource' => 'Изворник',
+'viewsource' => 'Изворни код',
 'viewsource-title' => 'Приказ извора странице $1',
 'actionthrottled' => 'Радња је успорена',
 'actionthrottledtext' => 'У циљу борбе против непожељних порука, ограничене су вам измене у одређеном времену, а управо сте прешли то ограничење. Покушајте поново за неколико минута.',
@@ -3417,8 +3417,6 @@ $1',
 
 /*
 Short names for language variants used for language conversion links.
-To disable showing a particular link, set it to 'disable', e.g.
-'variantname-zh-sg' => 'disable',
 Variants for Chinese language
 */
 'variantname-zh-hans' => 'hans',

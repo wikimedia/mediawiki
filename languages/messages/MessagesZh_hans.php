@@ -42,6 +42,7 @@
  * @author Mark85296341
  * @author MarkAHershberger
  * @author Mys 721tx
+ * @author Nemo bis
  * @author O
  * @author Onecountry
  * @author PhiLiP
@@ -49,6 +50,7 @@
  * @author Shirayuki
  * @author Shizhao
  * @author Simon Shek
+ * @author Slboat
  * @author Supaiku
  * @author Tommyang
  * @author Waihorace
@@ -376,9 +378,9 @@ $messages = array(
 'tog-enotifrevealaddr' => '在通知电子邮件中显示我的电子邮件地址',
 'tog-shownumberswatching' => '显示监视用户数',
 'tog-oldsig' => '当前签名：',
-'tog-fancysig' => '将签名以wiki文本对待（不产生自动链接）',
-'tog-externaleditor' => '默认使用外部编辑器（供高级用户使用，需要在您的计算机上作出一些特别设置。[//www.mediawiki.org/wiki/Manual:External_editors 更多信息。]）',
-'tog-externaldiff' => '默认使用外部差异分析（供高级用户使用，需要在您的计算机上作出一些特别设置。[//www.mediawiki.org/wiki/Manual:External_editors 更多信息。]）',
+'tog-fancysig' => '将签名视为wiki代码（不自动生成链接）',
+'tog-externaleditor' => '默认使用外部编辑器（供高级用户使用，需要在您的计算机上做特别设置。[//www.mediawiki.org/wiki/Manual:External_editors 更多信息。]）',
+'tog-externaldiff' => '默认使用外部版本差异工具（供高级用户使用，需要在您的计算机上做特别设置。[//www.mediawiki.org/wiki/Manual:External_editors 更多信息。]）',
 'tog-showjumplinks' => '启用“跳转到”访问链接',
 'tog-uselivepreview' => '使用实时预览（需要JavaScript）（实验功能）',
 'tog-forceeditsummary' => '未输入编辑摘要时提醒我',
@@ -389,14 +391,14 @@ $messages = array(
 'tog-watchlisthideanons' => '在监视列表中隐藏匿名用户',
 'tog-watchlisthidepatrolled' => '在监视列表中隐藏已巡查的编辑',
 'tog-ccmeonemails' => '把我给其他用户发送的电子邮件的副本发送给我',
-'tog-diffonly' => '比较差异时不显示页面内容',
+'tog-diffonly' => '不在版本差异下面显示页面内容',
 'tog-showhiddencats' => '显示隐藏分类',
 'tog-noconvertlink' => '停用链接文字转换',
 'tog-norollbackdiff' => '执行回退后不显示差异',
 
 'underline-always' => '总是使用',
 'underline-never' => '从不使用',
-'underline-default' => '浏览器默认设置',
+'underline-default' => '皮肤或浏览器默认设置',
 
 # Font style option in Special:Preferences
 'editfont-style' => '编辑区字体样式：',
@@ -517,7 +519,7 @@ $messages = array(
 
 'navigation-heading' => '导航菜单',
 'errorpagetitle' => '错误',
-'returnto' => '返回到$1。',
+'returnto' => '返回$1。',
 'tagline' => '来自{{SITENAME}}',
 'help' => '帮助',
 'search' => '搜索',
@@ -543,7 +545,7 @@ $messages = array(
 'protect_change' => '更改',
 'protectthispage' => '保护本页',
 'unprotect' => '更改保护',
-'unprotectthispage' => '更改本页面的保护',
+'unprotectthispage' => '更改本页面保护设置',
 'newpage' => '新页面',
 'talkpage' => '讨论本页',
 'talkpagelinktext' => '讨论',
@@ -561,7 +563,7 @@ $messages = array(
 'templatepage' => '查看模板页面',
 'viewhelppage' => '查看帮助页面',
 'categorypage' => '查看分类页面',
-'viewtalkpage' => '查看讨论页面',
+'viewtalkpage' => '查看讨论',
 'otherlanguages' => '其他语言',
 'redirectedfrom' => '（重定向自$1）',
 'redirectpagesub' => '重定向页',
@@ -571,9 +573,9 @@ $messages = array(
 'jumpto' => '跳转至：',
 'jumptonavigation' => '导航',
 'jumptosearch' => '搜索',
-'view-pool-error' => '抱歉，服务器超负荷运转。
+'view-pool-error' => '抱歉，服务器目前正超负荷运转。
 过多用户正尝试查看本页面。
-请在再次尝试访问本页面之前稍等片刻。
+请稍等片刻后再次尝试访问本页面。
 
 $1',
 'pool-timeout' => '等待锁超时',
@@ -595,8 +597,8 @@ $1',
 'mainpage' => '首页',
 'mainpage-description' => '首页',
 'policy-url' => 'Project:方针',
-'portal' => '社区专页',
-'portal-url' => 'Project:社区专页',
+'portal' => '社区主页',
+'portal-url' => 'Project:社区主页',
 'privacy' => '隐私政策',
 'privacypage' => 'Project:隐私权政策',
 
@@ -645,7 +647,7 @@ $1',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main' => '页面',
-'nstab-user' => '用户页面',
+'nstab-user' => '用户页',
 'nstab-media' => '媒体页面',
 'nstab-special' => '特殊页面',
 'nstab-project' => '项目页面',
@@ -761,8 +763,8 @@ $2',
 'remembermypassword' => '在该浏览器保存我的登录状态（最长$1日）',
 'securelogin-stick-https' => '登录后继续使用HTTPS连接',
 'yourdomainname' => '您的域名：',
-'password-change-forbidden' => '你不能在本wiki更改密码。',
-'externaldberror' => '这可能是由于验证数据库错误或您被禁止更新您的外部账号。',
+'password-change-forbidden' => '您不能在本wiki上更改密码。',
+'externaldberror' => '验证数据库出错或您被禁止更新您的外部账号。',
 'login' => '登录',
 'nav-login-createaccount' => '登录/创建账户',
 'loginprompt' => '你必须启用Cookies才能登录{{SITENAME}}。',
@@ -859,7 +861,7 @@ $2',
 
 # Special:PasswordReset
 'passwordreset' => '重置密码',
-'passwordreset-text' => '完成该表格以接收你账户信息的邮件提醒。',
+'passwordreset-text' => '完成该表格以重设你的密码。',
 'passwordreset-legend' => '重置密码',
 'passwordreset-disabled' => '此wiki已经禁用密码重置。',
 'passwordreset-pretext' => '{{PLURAL:$1||输入下面的数据项之一}}',
@@ -869,20 +871,20 @@ $2',
 'passwordreset-capture-help' => '如果您选中此框，电子邮件（包括临时密码）将显示，并发送给用户。',
 'passwordreset-email' => '电子邮件地址：',
 'passwordreset-emailtitle' => '在 {{SITENAME}} 的帐户详细信息',
-'passwordreset-emailtext-ip' => '有人通过IP地址 $1 （可能是您）请求获取 {{SITENAME}} ($4)上相关账户的密码提示。{{PLURAL:$3|以下账户|此账户}}与该电子邮件地址关联：
+'passwordreset-emailtext-ip' => '有人通过IP地址$1（可能是您请求重设{{SITENAME}}（$4）上相关账户的密码。{{PLURAL:$3|以下账户|此账户}}与该电子邮件地址关联：
 
 $2
 
-{{PLURAL:$3|这个|这个}}临时密码将会在{{PLURAL:$5|一天|$5 天}}后过期。请立即登录并设置新的密码。如果请求是其他人发出的，或者您已回忆起您的旧密码并不再需要更改，您可以忽略本条消息并继续使用原密码。',
-'passwordreset-emailtext-user' => '用户 $1 请求获取 {{SITENAME}} ($4)上您的账户的密码提示。{{PLURAL:$3|以下账户|此账户}}与该电子邮件地址关联：
+这个临时密码将会在{{PLURAL:$5|一天|$5天}}后过期。请立即登录并设置新的密码。如果请求是其他人发出的，或者您已回忆起您的旧密码并不再需要更改，您可以忽略本条消息并继续使用原密码。',
+'passwordreset-emailtext-user' => '用户$1请求重设{{SITENAME}}（$4）上您的账户的密码。{{PLURAL:$3|以下账户|此账户}}与该电子邮件地址关联：
 
 $2
 
-{{PLURAL:$3|这个|这个}}临时密码将会在{{PLURAL:$5|一天|$5 天}}后过期。请立即登录并设置新的密码。如果请求是其他人发出的，或者您已回忆起您的旧密码并不再需要更改，您可以忽略本条消息并继续使用原密码。',
+这个临时密码将会在{{PLURAL:$5|一天|$5天}}后过期。请立即登录并设置新的密码。如果请求是其他人发出的，或者您已回忆起您的旧密码并不再需要更改，您可以忽略本条消息并继续使用原密码。',
 'passwordreset-emailelement' => '用户名：$1
 临时密码：$2',
 'passwordreset-emailsent' => '密码重置邮件已发送。',
-'passwordreset-emailsent-capture' => '提醒电子邮件已发送，并在下面显示。',
+'passwordreset-emailsent-capture' => '密码重设电子邮件已发送，并在下面显示。',
 'passwordreset-emailerror-capture' => '生成的提醒电子邮件如下所示，但发送失败：$1',
 
 # Special:ChangeEmail
@@ -1345,9 +1347,9 @@ $1",
 'qbsettings-directionality' => '根据您的语言文本方向固定位置',
 
 # Preferences page
-'preferences' => '参数设置',
+'preferences' => '设置',
 'mypreferences' => '系统设置',
-'prefs-edits' => '编辑数量：',
+'prefs-edits' => '编辑数：',
 'prefsnologin' => '未登录',
 'prefsnologintext' => '您必须先<span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} 登录]</span>才能设置个人参数。',
 'changepassword' => '更改密码',
@@ -1406,7 +1408,7 @@ $1",
 'timezoneregion-europe' => '欧洲',
 'timezoneregion-indian' => '印度洋',
 'timezoneregion-pacific' => '太平洋',
-'allowemail' => '接受来自其他用户的邮件',
+'allowemail' => '接受来自其他用户的电子邮件',
 'prefs-searchoptions' => '搜索',
 'prefs-namespaces' => '名字空间',
 'defaultns' => '否则在这些名字空间中搜索：',
@@ -1644,7 +1646,7 @@ $1",
 'rc_categories' => '分类限制（用“|”分隔）',
 'rc_categories_any' => '任意',
 'rc-change-size-new' => '更改后$1字节',
-'newsectionsummary' => '/*$1*/新段落',
+'newsectionsummary' => '/* $1 */ 新段落',
 'rc-enhanced-expand' => '显示细节（需要JavaScript）',
 'rc-enhanced-hide' => '隐藏细节',
 'rc-old-title' => '最初被创建为" $1 "',
@@ -2020,6 +2022,8 @@ $1',
 'disambiguationspage' => 'Template:消歧义',
 'disambiguations-text' => "以下的页面都有到'''消歧义页'''的链接，但它们可能可以链接到更适当的页面。<br />一个页面如果使用了[[MediaWiki:Disambiguationspage]]内的模板，则会被视为消歧义页。",
 
+'pageswithprop' => '有某页面属性的页面',
+'pageswithprop-legend' => '有某页面属性的页面',
 'pageswithprop-text' => '此页面列出了使用特定页面属性的页面名单。',
 'pageswithprop-prop' => '属性名称：',
 'pageswithprop-submit' => '提交',
@@ -2060,7 +2064,7 @@ $1',
 'uncategorizedimages' => '未归类文件',
 'uncategorizedtemplates' => '未归类模板',
 'unusedcategories' => '未使用分类',
-'unusedimages' => '未使用图像',
+'unusedimages' => '未使用文件',
 'popularpages' => '热点页面',
 'wantedcategories' => '需要的分类',
 'wantedpages' => '待撰页面',
@@ -2220,7 +2224,7 @@ $1',
 'emailpage' => '电邮联系',
 'emailpagetext' => '你可以使用下面的表格发送电子邮件信息至该{{GENDER:$1|用户}}。你在[[Special:Preferences|系统设置]]中输入的电子邮件地址将显示为邮件的“发件人”地址，所以该用户将可以直接回复你。',
 'usermailererror' => 'Mail 对象返回错误：',
-'defemailsubject' => '{{SITENAME}}来自用户“$1”的电子邮件',
+'defemailsubject' => '来自{{SITENAME}}用户“$1”的电子邮件',
 'usermaildisabled' => '用户电子邮件停用',
 'usermaildisabledtext' => '你不能发送电子邮件至本wiki的其他用户',
 'noemailtitle' => '无电子邮件地址',
@@ -2291,12 +2295,12 @@ $1',
 'enotif_subject_restored' => '{{SITENAME}}页面$1已被$2恢复',
 'enotif_subject_changed' => '{{SITENAME}}页面$1已被$2更改',
 'enotif_body_intro_deleted' => '{{SITENAME}}页面$1已于$PAGEEDITDATE被$2{{GENDER:$2|删除}}，请见$3。',
-'enotif_body_intro_created' => '{{SITENAME}}页面$1已于$PAGEEDITDATE被$2{{GENDER:$2|创建}}，请浏览$3查看当前版本。',
-'enotif_body_intro_moved' => '{{SITENAME}}页面$1已于$PAGEEDITDATE被$2{{GENDER:$2|移动}}，请浏览$3查看当前版本。',
-'enotif_body_intro_restored' => '{{SITENAME}}页面$1已于$PAGEEDITDATE被$2{{GENDER:$2|恢复}}，请浏览$3查看当前版本。',
-'enotif_body_intro_changed' => '{{SITENAME}}页面$1已于$PAGEEDITDATE被$2{{GENDER:$2|更改}}，请浏览$3查看当前版本。',
-'enotif_lastvisited' => '请浏览$1查看你上次访问后的所有更改。',
-'enotif_lastdiff' => '请浏览$1查看该更改。',
+'enotif_body_intro_created' => '{{SITENAME}}页面$1已于$PAGEEDITDATE被$2{{GENDER:$2|创建}}，请浏览<$3>查看当前版本。',
+'enotif_body_intro_moved' => '{{SITENAME}}页面$1已于$PAGEEDITDATE被$2{{GENDER:$2|移动}}，请浏览<$3>查看当前版本。',
+'enotif_body_intro_restored' => '{{SITENAME}}页面$1已于$PAGEEDITDATE被$2{{GENDER:$2|恢复}}，请浏览<$3>查看当前版本。',
+'enotif_body_intro_changed' => '{{SITENAME}}页面$1已于$PAGEEDITDATE被$2{{GENDER:$2|更改}}，请浏览 $3 查看当前版本。',
+'enotif_lastvisited' => '请浏览 $1 查看你上次访问后的所有更改。',
+'enotif_lastdiff' => '请浏览 $1 查看该更改。',
 'enotif_anon_editor' => '匿名用户$1',
 'enotif_body' => '亲爱的$WATCHINGUSERNAME：
 
@@ -2449,7 +2453,7 @@ $UNWATCHURL
 'viewdeletedpage' => '查看被删页面',
 'undeletepagetext' => '以下{{PLURAL:$1|页面|$1个页面}}已被删除，但依然在归档中并可以被恢复。归档可能会被定时清理。',
 'undelete-fieldset-title' => '恢复版本',
-'undeleteextrahelp' => "恢复整个编辑历史时，请清除所有复选框后点击'''''{{int:undeletebtn}}'''''。恢复特定版本时，请选择相应版本前的复选框后点击'''''{{int:undeletebtn}}'''''。",
+'undeleteextrahelp' => "要恢复该页面的整个历史记录时，不选中任何复选框直接点击'''''{{int:undeletebtn}}'''''。要选择性地恢复部分版本时，请选中相应版本前的复选框再点击'''''{{int:undeletebtn}}'''''。",
 'undeleterevisions' => '$1版本存档',
 'undeletehistory' => '如果您恢复了该页面，所有版本都会被恢复到修订历史中。
 如果本页删除后有一个同名的新页面建立，被恢复的版本将会出现在先前的历史中。',
@@ -3170,8 +3174,6 @@ $1',
 
 /*
 Short names for language variants used for language conversion links.
-To disable showing a particular link, set it to 'disable', e.g.
-'variantname-zh-sg' => 'disable',
 Variants for Chinese language
 */
 'variantname-zh-hans' => '简体',
@@ -3762,8 +3764,8 @@ $5
 'watchlistedit-raw-removed' => '$1个标题被删除：',
 
 # Watchlist editing tools
-'watchlisttools-view' => '查看监视更改',
-'watchlisttools-edit' => '查看并编辑监视列表',
+'watchlisttools-view' => '查看监视的更改',
+'watchlisttools-edit' => '查看和编辑监视列表',
 'watchlisttools-raw' => '编辑原始监视列表',
 
 # Signatures
@@ -3912,14 +3914,14 @@ MediaWiki发表时预期有用，但对此'''无任何保证'''，亦无隐含�
 'logentry-delete-delete' => '$1删除页面$3',
 'logentry-delete-restore' => '$1恢复页面$3',
 'logentry-delete-event' => '$1已更改$3中$5项日志的可见性：$4',
-'logentry-delete-revision' => '$1已更改$3中{{PLURAL:$5|$5个历史版本|$5个历史版本}}的可见性：$4',
-'logentry-delete-event-legacy' => '$1已更改$3中日志的可见性',
-'logentry-delete-revision-legacy' => '$1已更改$3中历史版本的可见性',
-'logentry-suppress-delete' => '$1已隐藏页面$3',
-'logentry-suppress-event' => '$1已不可见地更改$3中{{PLURAL:$5|$5项日志|$5项日志}}的可见性：$4',
-'logentry-suppress-revision' => '$1已不可见地更改$3中{{PLURAL:$5|$5个历史版本|$5个历史版本}}的可见性：$4',
-'logentry-suppress-event-legacy' => '$1已不可见地更改$3中日志的可见性',
-'logentry-suppress-revision-legacy' => '$1已不可见地更改$3中历史版本的可见性',
+'logentry-delete-revision' => '$1{{GENDER:$2|已更改}}$3中{{PLURAL:$5|$5个历史版本|$5个历史版本}}的可见性：$4',
+'logentry-delete-event-legacy' => '$1{{GENDER:$2|已更改}}$3中日志的可见性',
+'logentry-delete-revision-legacy' => '$1{{GENDER:$2|已更改}}$3中历史版本的可见性',
+'logentry-suppress-delete' => '$1{{GENDER:$2|已隐藏}}页面$3',
+'logentry-suppress-event' => '$1已不可见地{{GENDER:$2|更改}}$3中{{PLURAL:$5|$5项日志|$5项日志}}的可见性：$4',
+'logentry-suppress-revision' => '$1已不可见地{{GENDER:$2|更改}}$3中{{PLURAL:$5|$5个历史版本|$5个历史版本}}的可见性：$4',
+'logentry-suppress-event-legacy' => '$1已不可见地{{GENDER:$2|更改}}$3中日志的可见性',
+'logentry-suppress-revision-legacy' => '!$1已不可见地{{GENDER:$2|更改}}$3中历史版本的可见性',
 'revdelete-content-hid' => '隐藏内容',
 'revdelete-summary-hid' => '隐藏编辑摘要',
 'revdelete-uname-hid' => '隐藏用户名',
@@ -3932,20 +3934,20 @@ MediaWiki发表时预期有用，但对此'''无任何保证'''，亦无隐含�
 'logentry-move-move-noredirect' => '$1移动$3页面至$4，不留重定向',
 'logentry-move-move_redir' => '$1移动页面$3至$4覆盖重定向',
 'logentry-move-move_redir-noredirect' => '$1通过重定向移动$3页面至$4，不留重定向',
-'logentry-patrol-patrol' => '$1标记页面$3的版本$4为已巡查',
-'logentry-patrol-patrol-auto' => '$1自动标记页面$3的版本$4为已巡查',
-'logentry-newusers-newusers' => '已创建用户帐户 $1',
-'logentry-newusers-create' => '创建用户帐户$1',
+'logentry-patrol-patrol' => '$1{{GENDER:$2|标记}}页面$3的版本$4为已巡查',
+'logentry-patrol-patrol-auto' => '$1自动{{GENDER:$2|标记}}页面$3的版本$4为已巡查',
+'logentry-newusers-newusers' => '已{{GENDER:$2|创建}}用户帐户$1',
+'logentry-newusers-create' => '{{GENDER:$2|创建}}用户帐户$1',
 'logentry-newusers-create2' => '创建用户帐户 $3 由 $1',
-'logentry-newusers-byemail' => '$1创建用户$3并将密码用电子邮件发送',
-'logentry-newusers-autocreate' => '账户$1被自动创建',
+'logentry-newusers-byemail' => '$1创建用户$3，并且密码已通过电子邮件发送',
+'logentry-newusers-autocreate' => '用户帐户$1已被自动{{GENDER:$2|创建}}',
 'logentry-rights-rights' => '$1将$3的用户组从$4改为$5',
 'logentry-rights-rights-legacy' => '$1更改$3的用户组',
 'logentry-rights-autopromote' => '$1的用户组已自动从$4改为$5',
 'rightsnone' => '（无）',
 
 # Feedback
-'feedback-bugornote' => '如果你准备好详细描述一个技术问题，请[$1 报告bug]。或者你可以使用下面的简单表格。你的评论将被添加至页面“[$3 $2]”，附有你的用户名和使用的浏览器。',
+'feedback-bugornote' => '如果你准备好详细描述一个技术问题，请[$1 报告bug]。或者你可以使用下面的简单表格。你的评论及用户名将被添加至页面“[$3 $2]”。',
 'feedback-subject' => '主题：',
 'feedback-message' => '信息：',
 'feedback-cancel' => '取消',

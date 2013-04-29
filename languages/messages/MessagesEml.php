@@ -99,6 +99,9 @@ Nutêv ca alcuni pàgini i putrèbber cuntinuèr a cràdder ca vueter a-sîv dis
 'yourrealname' => 'Al tô vér nàmm:',
 'yourlanguage' => 'Léngua:',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Regestér di nōv utèint',
+
 # Recent changes
 'recentchanges' => 'Ûltem cambiamèint',
 'diff' => 'diferèinzi',
@@ -128,9 +131,6 @@ Nutêv ca alcuni pàgini i putrèbber cuntinuèr a cràdder ca vueter a-sîv dis
 
 # Special:AllPages
 'allpages' => 'Tôt al pàgin',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Regestér di nōv utèint',
 
 # Watchlist
 'watchlist' => 'Al còsi ca guèrd',

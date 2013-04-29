@@ -8,6 +8,7 @@
  * @file
  *
  * @author Geitost
+ * @author Joachim Mos
  * @author Kaganer
  * @author Purodha
  * @author Slomox
@@ -710,9 +711,14 @@ Villicht hest du dien Passwoord al ännert oder noch wedder en nee temporär Pas
 # Special:PasswordReset
 'passwordreset' => 'Passwoord torüchsetten',
 'passwordreset-legend' => 'Passwoord torüchsetten',
+'passwordreset-username' => 'Brukernaam:',
+'passwordreset-domain' => 'Domään',
+'passwordreset-email' => 'E-Mail-Adress:',
 
 # Special:ChangeEmail
 'changeemail' => 'E-Mail-Adress ännern',
+'changeemail-newemail' => 'Nee E-Mail-Adress:',
+'changeemail-cancel' => 'Afbreken',
 
 # Edit page toolbar
 'bold_sample' => 'Fetten Text',
@@ -891,6 +897,11 @@ Schient so, as wenn se wegdaan worrn is.',
 'edit-conflict' => 'Konflikt bi’t Sied ännern.',
 'edit-no-change' => 'Dien Ännern is nich afspiekert worrn, denn dor hett sik nix an’n Text ännert.',
 'edit-already-exists' => 'Kunn keen ne’e Sied opstellen, dat gifft ehr al.',
+
+# Content models
+'content-model-wikitext' => 'Wikitext',
+'content-model-javascript' => 'JavaScript',
+'content-model-css' => 'CSS',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Wohrschau: Disse Sied bruukt to veel opwännige Parserfunkschonen.
@@ -1270,12 +1281,12 @@ Dat kann nich wedder ungeschehn maakt warrn.',
 'group-suppress' => 'Oversights',
 'group-all' => '(all)',
 
-'group-user-member' => 'Bruker',
-'group-autoconfirmed-member' => 'Bestätigt Bruker',
-'group-bot-member' => 'Bot',
-'group-sysop-member' => 'Admin',
-'group-bureaucrat-member' => 'Bürokraat',
-'group-suppress-member' => 'Oversight',
+'group-user-member' => '{{GENDER:$1|Bruker}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|Bestätigt Bruker}}',
+'group-bot-member' => '{{GENDER:$1|Bot}}',
+'group-sysop-member' => '{{GENDER:$1|Admin}}',
+'group-bureaucrat-member' => '{{GENDER:$1|Bürokraat}}',
+'group-suppress-member' => '{{GENDER:$1|Översicht}}',
 
 'grouppage-user' => '{{ns:project}}:Brukers',
 'grouppage-autoconfirmed' => '{{ns:project}}:Bestätigte Brukers',
@@ -1414,6 +1425,7 @@ Dat kann nich wedder ungeschehn maakt warrn.',
 'number_of_watching_users_pageview' => '[{{PLURAL:$1|Een Bruker|$1 Brukers}}, de oppasst]',
 'rc_categories' => 'Blot Sieden ut de Kategorien (trennt mit „|“):',
 'rc_categories_any' => 'All',
+'rc-change-size-new' => '$1 {{PLURAL:$1|byte|bytes}} achter Ännern',
 'newsectionsummary' => '/* $1 */ nee Afsnitt',
 'rc-enhanced-expand' => 'Details wiesen (bruukt JavaScript)',
 'rc-enhanced-hide' => 'Details versteken',
@@ -1502,6 +1514,7 @@ Wenn du ehr liekers hoochladen wullt, gah trüch un laad de Datei ünner en anne
 'sourceurl' => 'Born-URL:',
 'destfilename' => 'Dateinaam, so as dat hier spiekert warrn schall:',
 'upload-maxfilesize' => 'Maximale Dateigrött: $1',
+'upload-description' => 'Dateibeschrieven',
 'watchthisupload' => 'Op disse Datei oppassen',
 'filewasdeleted' => 'En Datei mit dissen Naam hett dat al mal geven un is denn wegsmeten worrn. Kiek doch toeerst in dat $1 na, ehrdat du de Datei afspiekerst.',
 'filename-bad-prefix' => "De Naam vun de Datei fangt mit '''„$1“''' an. Dat is normalerwies en Naam, den de Datei automaatsch vun de Digitalkamera kriggt. De Naam beschrievt de Datei nich un seggt dor ok nix över ut. Söök di doch en Naam för de Datei ut, de ok wat över den Inholt seggt.",
@@ -1637,6 +1650,7 @@ Denk dor an, natokieken, wat nich noch annere Sieden na de Vörlagen wiest, ehrd
 'statistics-header-edits' => 'Änner-Statistik',
 'statistics-header-views' => 'Siedenweddergaav-Statistik',
 'statistics-header-users' => 'Brukerstatistik',
+'statistics-header-hooks' => 'Annere Statistiken',
 'statistics-articles' => 'Inholtssieden',
 'statistics-pages' => 'Sieden',
 'statistics-pages-desc' => 'All Sieden in dit Wiki, tohoop mit all Diskuschoonssieden, Redirects usw.',
@@ -1653,6 +1667,8 @@ Denk dor an, natokieken, wat nich noch annere Sieden na de Vörlagen wiest, ehrd
 'disambiguations' => 'Mehrdüdige Begrepen',
 'disambiguationspage' => 'Template:Mehrdüdig_Begreep',
 'disambiguations-text' => 'Disse Sieden wist na Sieden för mehrdüdige Begrepen. Se schöölt lever op de Sieden wiesen, de egentlich meent sünd.<br />Ene Siet warrt as Siet för en mehrdüdigen Begreep ansehn, wenn [[MediaWiki:Disambiguationspage]] na ehr wiest.<br />Lenken ut annere Naamrüüm sünd nich mit in de List.',
+
+'pageswithprop-submit' => 'Los',
 
 'doubleredirects' => 'Dubbelte Wiederleiden',
 'doubleredirectstext' => '<b>Wohrscho:</b> Disse List kann „falsche Positive“ bargen.
@@ -1831,6 +1847,8 @@ Mehr Informatschonen över enkelte Rechten staht ünner [[{{MediaWiki:Listgroupr
 'mailnologin' => 'Du büst nich anmellt.',
 'mailnologintext' => 'Du musst [[Special:UserLogin|anmellt wesen]] un in diene [[Special:Preferences|Instellungen]] en güllige E-Mail-Adress hebben, dat du annere Brukers E-Mails tostüren kannst.',
 'emailuser' => 'E-Mail an dissen Bruker',
+'emailuser-title-target' => 'Email düss {{GENDER:$1|user}}',
+'emailuser-title-notarget' => 'E-Mail an Bruker',
 'emailpage' => 'E-Mail an Bruker',
 'emailpagetext' => 'Du kannst dissen Bruker mit dit Formular en E-Mail tostüren. As Afsenner warrt de E-Mail-Adress ut dien [[Special:Preferences|Instellen]] indragen, dat de Bruker di antern kann.',
 'usermailererror' => 'Dat Mail-Objekt hett en Fehler trüchgeven:',
@@ -1841,6 +1859,8 @@ Mehr Informatschonen över enkelte Rechten staht ünner [[{{MediaWiki:Listgroupr
 'noemailtext' => 'Disse Bruker hett kene güllige E-Mail-Adress angeven.',
 'nowikiemailtitle' => 'E-Mails sünd nich verlöövt',
 'nowikiemailtext' => 'Disse Bruker will vun annere Brukers keen E-Mails tostüürt kriegen.',
+'emailusername' => 'Brukernaam:',
+'emailusernamesubmit' => 'Wedder',
 'email-legend' => 'en annern Bruker op {{SITENAME}} en E-Mail tostüren',
 'emailfrom' => 'Vun:',
 'emailto' => 'An:',
@@ -2126,6 +2146,9 @@ De jüngste Indrag in dat Sperr-Logbook wart ünnen wiest:',
 'whatlinkshere-filters' => 'Filters',
 
 # Block/unblock
+'autoblockid' => 'Autoblock #$1',
+'block' => 'Bruker blocken',
+'unblock' => 'Bruker freegeven',
 'blockip' => 'IP-Adress blocken',
 'blockip-title' => 'Bruker sperren',
 'blockip-legend' => 'Bruker blocken',
@@ -2167,6 +2190,7 @@ Op de [[Special:BlockList|IP-Blocklist]] is en List vun alle Blocks to finnen.',
 'ipusubmit' => 'Disse Sperr opheven',
 'unblocked' => '[[User:$1|$1]] freegeven',
 'unblocked-id' => 'Sperr $1 freegeven',
+'blocklist' => 'Sparrte Brukers',
 'ipblocklist' => 'Sparrte Brukers',
 'ipblocklist-legend' => 'Blockten Bruker finnen',
 'ipblocklist-submit' => 'Söken',
@@ -2337,6 +2361,8 @@ Wenn du blot de aktuelle hebben wist, kannst du ok en Lenk bruken, to’n Bispee
 'allmessagescurrent' => 'Text nu',
 'allmessagestext' => 'Dit is de List vun de Systemnarichten, de dat in den MediaWiki-Naamruum gifft.',
 'allmessagesnotsupportedDB' => '{{ns:special}}:Allmessages is nich ünnerstütt, vun wegen dat wgUseDatabaseMessages utstellt is.',
+'allmessages-filter-all' => 'All',
+'allmessages-language' => 'Spraak:',
 'allmessages-filter-submit' => 'Los',
 
 # Thumbnails
@@ -2474,10 +2500,12 @@ All Transwiki-Import-Akschonen staht later ok in dat [[Special:Log/import|Import
 # Attribution
 'anonymous' => '{{PLURAL:$1|Anonym Bruker|Anonyme Brukers}} vun {{SITENAME}}',
 'siteuser' => '{{SITENAME}}-Bruker $1',
+'anonuser' => '{{SITENAME}} anonym  Bruker user $1',
 'lastmodifiedatby' => 'Disse Siet weer dat letzte Maal $2, $1 vun $3 ännert.',
 'othercontribs' => 'Grünnt op Arbeid vun $1.',
 'others' => 'annere',
 'siteusers' => '{{SITENAME}}-{{PLURAL:$2|Bruker|Brukers}} $1',
+'anonusers' => '{{SITENAME}} anonym {{PLURAL:$2|user|users}} $1',
 'creditspage' => 'Sieten-Autoren',
 'nocredits' => 'Dor is keen Autorenlist för disse Siet verfögbor.',
 
@@ -2488,6 +2516,16 @@ All Transwiki-Import-Akschonen staht later ok in dat [[Special:Log/import|Import
 'spambot_username' => 'MediaWiki Spam-Oprümen',
 'spam_reverting' => 'Trüchdreiht na de letzte Version ahn Lenken na $1.',
 'spam_blanking' => 'All Versionen harrn Lenken na $1, rein maakt.',
+
+# Info page
+'pageinfo-title' => 'Informatschoon för "$1"',
+'pageinfo-article-id' => 'Sied-ID',
+'pageinfo-redirectsto-info' => 'Info',
+'pageinfo-contentpage-yes' => 'Jo',
+'pageinfo-protect-cascading-yes' => 'Jo',
+'pageinfo-category-info' => 'Kategorieinformatschoon',
+'pageinfo-category-pages' => 'Tall vun Sied',
+'pageinfo-category-subcats' => 'TAll vun Ünnerkategorien',
 
 # Skin names
 'skinname-standard' => 'Klassik',
@@ -2536,6 +2574,7 @@ $1',
 'file-nohires' => 'Gifft dat Bild nich grötter.',
 'svg-long-desc' => 'SVG-Datei, Utgangsgrött: $1 × $2 Pixel, Dateigrött: $3',
 'show-big-image' => 'Dat Bild wat grötter',
+'show-big-image-size' => '$1 × $2 Pixels',
 'file-info-gif-looped' => 'löppt as Slööp',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|Bild|Biller}}',
 'file-info-png-looped' => 'löppt as Slööp',
@@ -2694,6 +2733,10 @@ Wiedere warrt standardmatig nich anwiest:
 'exif-gpsareainformation' => 'Naam vun dat GPS-Rebeet',
 'exif-gpsdatestamp' => 'GPS-Datum',
 'exif-gpsdifferential' => 'GPS-Differentialkorrektur',
+'exif-source' => 'Born',
+'exif-writer' => 'Schriever',
+'exif-languagecode' => 'Spraak',
+'exif-iimcategory' => 'Kategorie',
 
 # EXIF attributes
 'exif-compression-1' => 'Unkomprimeert',
@@ -2843,6 +2886,18 @@ Wiedere warrt standardmatig nich anwiest:
 'exif-gpsdirection-t' => 'Wohre Richtung',
 'exif-gpsdirection-m' => 'Magneetsch Richtung',
 
+'exif-dc-publisher' => 'Verleger',
+
+'exif-iimcategory-clj' => 'Kriminalität un Recht',
+'exif-iimcategory-edu' => 'Uptucht',
+'exif-iimcategory-hth' => 'Gesundheit',
+'exif-iimcategory-lab' => 'Arbeit',
+'exif-iimcategory-pol' => 'Politik',
+'exif-iimcategory-rel' => 'Religion un Gloov',
+'exif-iimcategory-sci' => 'Wetenschap un Technologie',
+'exif-iimcategory-spo' => 'Sport',
+'exif-iimcategory-wea' => 'Wedder',
+
 # External editor support
 'edit-externally' => 'Änner disse Datei mit en extern Programm',
 'edit-externally-help' => '(Lees de [//www.mediawiki.org/wiki/Manual:External_editors Installatschoonshelp] wenn du dor mehr to weten wullt)',
@@ -2900,6 +2955,12 @@ Wist du de Siet würklich nee anleggen?",
 'confirm_purge_button' => 'Jo',
 'confirm-purge-top' => 'Den Cache vun disse Siet leddig maken?',
 'confirm-purge-bottom' => 'Maakt den Cache vun en Sied leddig un sorgt dor för dat de aktuelle Version wiest warrt.',
+
+# action=watch/unwatch
+'confirm-watch-button' => 'Jo',
+'confirm-watch-top' => 'Disse Siet to de Oppasslist hentofögen',
+'confirm-unwatch-button' => 'Jo',
+'confirm-unwatch-top' => 'Disse Siet vun de Oppasslist löschen',
 
 # Multipage image navigation
 'imgmultipageprev' => '← vörige Siet',
@@ -2961,6 +3022,9 @@ Du kannst ok de [[Special:EditWatchlist|normale Sied to’n Ännern]] bruken.',
 'watchlisttools-edit' => 'Oppasslist ankieken un ännern',
 'watchlisttools-raw' => 'Oppasslist as Textlist ännern',
 
+# Signatures
+'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|Diskusschoon]])',
+
 # Core parser functions
 'unknown_extension_tag' => 'Unbekannt Extension-Tag „$1“',
 'duplicate-defaultsort' => 'Wohrschau: De DEFAULTSORTKEY „$2“ överschrifft den vörher bruukten Slötel „$1“.',
@@ -2986,6 +3050,7 @@ Du kannst ok de [[Special:EditWatchlist|normale Sied to’n Ännern]] bruken.',
 'version-software' => 'Installeerte Software',
 'version-software-product' => 'Produkt',
 'version-software-version' => 'Version',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => 'Dateipadd',

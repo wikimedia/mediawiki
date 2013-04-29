@@ -387,6 +387,9 @@ $messages = array(
 
 'grouppage-sysop' => '{{ns:project}}:Администраторвлӓ',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Сирӹшӹвлӓм регистрируйышы журнал',
+
 # User rights log
 'rightslog' => 'Сирӹшӹн прававлӓжӹм анжыктышы журнал',
 
@@ -480,13 +483,10 @@ $messages = array(
 # Special:LinkSearch
 'linksearch' => 'Тӱнӹш ажедмӓшвлӓ',
 
-# Special:Log/newusers
-'newuserlogpage' => 'Сирӹшӹвлӓм регистрируйышы журнал',
-
 # Special:ListGroupRights
 'listgrouprights-members' => '(группын списокшы)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Сирӹшӹлӓн сирмӓш',
 
 # Watchlist

@@ -696,7 +696,7 @@ Nhlamuselo ya yona leyi nge ndzeni ka [$2 tluka ro hlamusela] hi yona leyi kombi
 # Special:ListGroupRights
 'listgrouprights-members' => '(nxaxamelo wa valandzeri)',
 
-# E-mail user
+# Email user
 'emailuser' => 'rhumela mutirhisi loyi E-mail',
 
 # Watchlist

@@ -687,7 +687,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 # Special:ListUsers
 'listusers-submit' => 'ສະແດງ',
 
-# E-mail user
+# Email user
 'emailuser' => 'ສົ່ງອີເມລ ຫາ ຜູ້ໃຊ້ນີ້',
 'emailpage' => 'ສົ່ງອີເມລ ຫາ ຜູ້ໃຊ້',
 'emailpagetext' => 'ຖ້າຜູ້ໃຊ້ນີ້ ຂຽນທີ່ຢູ່ອີເມລຢ່າງຖືກຕ້ອງຢູ່ການຕັ້ງຄ່າຂອງລາວ, ຟອມທາງລຸ່ມນີ້​ ຈະສົ່ງຂໍ້ຄວາມໜຶ່ງຫາທີ່ຢູ່ອີເມລນັ້ນ.
@@ -917,7 +917,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'namespacesall' => 'ທັງໝົດ',
 'monthsall' => 'ທັງໝົດ',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'ຢືນຢັນ ທີ່ຢູ່ ອີເມລ',
 'confirmemail_pending' => 'ລະຫັດຢືນຢັນ ໄດ້ຖືກສົ່ງໄປ ທີ່ຢູ່ ອີເມລ ຂອງ ທ່ານ; ຖ້າ ທ່ານ ຫາກໍ່ສ້າງບັນຊີ
 , ທ່ານ ຄວນຈະລໍຖ້າໜ້ອຍໜຶ່ງ ກ່ອນຈະ ພະຍາຍາມ

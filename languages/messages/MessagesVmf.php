@@ -8,6 +8,7 @@
  * @file
  *
  * @author Altaileopard
+ * @author Matma Rex
  * @author Silvicola
  */
 
@@ -654,7 +655,7 @@ S'gajd awâr aa â [[Special:WhatLinksHere/$2|lisdn mid alâ fârwajs]].",
 # Special:ListGroupRights
 'listgrouprights-members' => '(Lisdn fon dâ midgliidâr)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Dem ôôgmeldn â iimejl schign',
 
 # Watchlist
@@ -883,16 +884,7 @@ Bidde gug's mi´m foorschau-gnobf ôô fôrm schbajchan",
 'myskin.css' => "/* CSS hiir beâjflusd nôr dii MySkin-schelfn. Wen'd ale uf ôômôôl beâjflusn wilsch, muâsch an MediaWiki:Common.css was ändârn. */",
 'chick.css' => "/* CSS hiir beâjflusd nôr dii Küken-schelfn. Wen'd ale uf ôômôôl beâjflusn wilsch, muâsch an MediaWiki:Common.css was ändârn. */",
 'simple.css' => "/* CSS hiir beâjflusd nôr dii Simple-schelfn. Wen'd ale uf ôômôôl beâjflusn wilsch, muâsch an MediaWiki:Common.css was ändârn. */",
-'modern.css' => "/* CSS hiir beâjflusd nôr dii Modern-schelfn. Wen'd ale uf ôômôôl beâjflusn wilsch, muâsch an MediaWiki:Common.css was ändârn. */
-
-/* Dii glôôschrajwung im nawigadsjoonsberajch fârhindârd des: */
-.portlet h5,
-.portlet h6,
-#p-personal ul,
-#p-cactions li a,
-#preftoc a {
-     text-transform: none;
-}",
+'modern.css' => "/* CSS hiir beâjflusd nôr dii Modern-schelfn. Wen'd ale uf ôômôôl beâjflusn wilsch, muâsch an MediaWiki:Common.css was ändârn. */",
 'vector.css' => "/* CSS hiir beâjflusd nôr dii Vector-schelfn. Wen'd ale uf ôômôôl beâjflusn wilsch, muâsch an MediaWiki:Common.css was ändârn. */",
 'print.css' => '/* CSS hiir beâjflusd nôr dii drugausgaawe. */',
 'handheld.css' => '/* CSS hiir beâjflusd nôr dii handgerääde, jee nachdeem, welche schelfn in $wgHandheldStyle âjgeschdeld is. */',

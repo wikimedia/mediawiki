@@ -13,6 +13,7 @@
  * @author Haqmar
  * @author Himiq Dzyu
  * @author KhayR
+ * @author MF-Warburg
  * @author Marat Vildanov
  * @author Reedy
  * @author Rinatus
@@ -1911,7 +1912,7 @@ $1',
 'blanknamespace' => '(Төп)',
 
 # Contributions
-'contributions' => '{{GENDER:$1|Кулланучының} кертеме',
+'contributions' => '{{GENDER:$1|Кулланучының}} кертеме',
 'contributions-title' => '$1 исемле кулланучының кертеме',
 'mycontris' => 'Кертем',
 'contribsub2' => '$1 ($2) өчен',
@@ -2160,6 +2161,9 @@ $1',
 
 # Spam protection
 'spamprotectiontitle' => 'Спам фильтры',
+
+# Info page
+'pageinfo-toolboxlink' => 'Бит турында мәгълүмат',
 
 # Skin names
 'skinname-standard' => 'Классик',

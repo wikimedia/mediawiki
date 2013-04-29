@@ -609,7 +609,7 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 'linksearch-line' => '$2 linker til $1',
 'linksearch-error' => "Wildkårter må ken benyttes i'n stårt åf håstnavnet.",
 
-# E-mail user
+# Email user
 'emailuser' => 'E-mail til denne bruger',
 
 # Watchlist

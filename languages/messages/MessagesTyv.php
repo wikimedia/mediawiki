@@ -404,7 +404,7 @@ $messages = array(
 'login-abort-generic' => 'Системаже таптыг эвес кирип тур силер',
 'loginlanguagelabel' => 'Дыл: $1',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'PHP-ниң mail() ажыл-чорудулгазында билбес алдаг бар.',
 
 # Change password dialog
@@ -950,7 +950,7 @@ It must not be more than $1 {{PLURAL:$1|character|characters}} long.',
 'listgrouprights-group' => 'Бөлүк кижилер',
 'listgrouprights-members' => '(кежигүннүң даңзызы)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Бо ажыглакчыга э-чагааны чорудаары',
 'defemailsubject' => '{{grammar:ablative|{{SITENAME}}}} э-чагаа',
 'emailusernamesubmit' => 'Күүcедири',

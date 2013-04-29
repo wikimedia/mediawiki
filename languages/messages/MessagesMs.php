@@ -239,11 +239,11 @@ $messages = array(
 
 'underline-always' => 'Sentiasa',
 'underline-never' => 'Jangan',
-'underline-default' => 'Tetapan azali kulit/pelayar',
+'underline-default' => 'Tetapan lalai kulit/pelayar',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Gaya fon ruang sunting:',
-'editfont-default' => 'Pelayar web utama',
+'editfont-default' => 'Lalaian pelayar web',
 'editfont-monospace' => 'Fon monospace',
 'editfont-sansserif' => 'Fon sans-serif',
 'editfont-serif' => 'Fon serif',
@@ -324,7 +324,7 @@ $messages = array(
 'about' => 'Perihal',
 'article' => 'Laman kandungan',
 'newwindow' => '(dibuka di tetingkap baru)',
-'cancel' => 'Batalkan',
+'cancel' => 'Batal',
 'moredotdotdot' => 'Lagi...',
 'morenotlisted' => 'Lain-lain yang tidak tersenarai...',
 'mypage' => 'Halaman',
@@ -668,9 +668,8 @@ mengelak penyalahgunaan, anda tidak dibenarkan menggunakan ciri pemulihan kata l
 'eauthentsent' => 'Sebuah e-mel pengesahan telah dikirim kepada alamat e-mel tersebut.
 Sebelum e-emel lain boleh dikirim kepada alamat tersebut, anda perlu mengikuti segala arahan dalam e-mel tersebut
 untuk membuktikan bahawa alamat tersebut memang milik anda.',
-'throttled-mailpassword' => 'Sebuah pengingat kata laluan telah pun
-dikirim dalam $1 jam yang lalu. Untuk mengelak penyalahgunaan, hanya satu
-pengingat kata laluan akan dikirim pada setiap $1 jam.',
+'throttled-mailpassword' => 'E-mel set semula kata laluan telah dihantar dalam tempoh $1 jam yang lalu.
+Untuk mencegah salah guna, hanya sepucuk e-mel set semula kata laluan dihantar setiap {{PLURAL:$1|jam|$1 jam}}.',
 'mailerror' => 'Ralat ketika mengirim e-mel: $1',
 'acct_creation_throttle_hit' => 'Pengunjung wiki ini yang menggunakan alamat IP anda telah membuka sebanyak $1 akaun semenjak sehari lepas, iaitu merupakan had maksimum yang dibenarkan dalam tempoh tersebut.
 Akibatknya, pengunjung dari alamat IP ini tidak boleh membuka akaun lagi pada masa sekarang.',
@@ -722,7 +721,7 @@ Anda mungkin telah pun berjaya menukar kata laluan anda atau meminta kata laluan
 
 # Special:PasswordReset
 'passwordreset' => 'Set semula kata laluan',
-'passwordreset-text' => 'Isikan borang ini untuk menerima peringatan butiran akaun anda melalui e-mel.',
+'passwordreset-text' => 'Lengkapkan borang ini untuk mengeset semula kata laluan.',
 'passwordreset-legend' => 'Set semula kata laluan',
 'passwordreset-disabled' => 'Ciri set semula kata laluan telah dimatikan di wiki ini.',
 'passwordreset-pretext' => '{{PLURAL:$1||Isikan data di bawah}}',
@@ -732,20 +731,22 @@ Anda mungkin telah pun berjaya menukar kata laluan anda atau meminta kata laluan
 'passwordreset-capture-help' => 'Jika anda menandai ruang ini, e-mel (yang membawa kata laluan sementara) akan ditunjukkan kepada anda dan juga dihantar kepada pengguna itu.',
 'passwordreset-email' => 'Alamat e-mel:',
 'passwordreset-emailtitle' => 'Butiran akaun di {{SITENAME}}',
-'passwordreset-emailtext-ip' => 'Ada orang (mungkin anda, dari alamat IP $1) yang memohon peringatan butiran akaun anda untuk {{SITENAME}} ($4).  {{PLURAL:$3|Akaun|Akaun-akaun}} pengguna yang berikut dikaitkan dengan alamat e-mel ini:
+'passwordreset-emailtext-ip' => 'Seseorang (mungkin anda, dari alamat IP $1) telah memohon supaya kata laluan diset semula untuk {{SITENAME}} anda ($4). {{PLURAL:$3|Akaun|Akaun-akaun}} pengguna yang berikut
+dikaitkan dengan alamat e-mel ini:
 
 $2
 
-{{PLURAL:$3|Kata|Kata-kata}} laluan sementara ini akan luput dalam masa {{PLURAL:$5|sehari|$5 hari}}. Anda mesti log masuk dan buat kata laluan baru sekarang juga. Jika permohonan ini dibuat oleh orang lain, ataupun jika anda teringat balik kata laluan lama anda, dan tidak ingin lagi untuk menukarnya, anda boleh mengabaikan pesanan ini dan terus menggunakan kata laluan lama anda.',
-'passwordreset-emailtext-user' => 'Pengguna $1 di {{SITENAME}} memohon peringatan butiran akaun anda untuk {{SITENAME}} ($4). {{PLURAL:$3|Akaun|Akaun-akaun}} pengguna yang berikut dikaitkan dengan alamat e-mel ini:
+{{PLURAL:$3|Kata|Kata-kata}} laluan sementara ini akan luput dalam masa $5 hari. Anda harus log masuk dan membuat kata laluan yang baru sekarang. Jika permohonan ini dibuat oleh orang lain, atau jika anda teringat kembali kata laluan asal anda dan anda tidak lagi berhasrat untuk mengubahnya, anda boleh mengabaikan pesanan ini dan terus menggunakan kata laluan lama anda.',
+'passwordreset-emailtext-user' => 'Pengguna $1 telah memohon supaya kata laluan diset semula untuk {{SITENAME}} anda ($4). {{PLURAL:$3|Akaun|Akaun-akaun}} pengguna yang berikut
+dikaitkan dengan alamat e-mel ini:
 
 $2
 
-{{PLURAL:$3|Kata|Kata-kata}} laluan sementara ini akan luput dalam masa {{PLURAL:$5|sehari|$5 hari}}. Anda mesti log masuk dan buat kata laluan baru sekarang juga. Jika permohonan ini dibuat oleh orang lain, ataupun jika anda teringat balik kata laluan lama anda, dan tidak ingin lagi untuk menukarnya, anda boleh mengabaikan pesanan ini dan terus menggunakan kata laluan lama anda.',
+{{PLURAL:$3|Kata|Kata-kata}} laluan sementara ini akan luput dalam masa $5 hari. Anda harus log masuk dan membuat kata laluan yang baru sekarang. Jika permohonan ini dibuat oleh orang lain, atau jika anda teringat kembali kata laluan asal anda dan anda tidak lagi berhasrat untuk mengubahnya, anda boleh mengabaikan pesanan ini dan terus menggunakan kata laluan lama anda.',
 'passwordreset-emailelement' => 'Nama pengguna: $1
 Kata laluan sementara: $2',
-'passwordreset-emailsent' => 'E-mel peringatan telah dihantar.',
-'passwordreset-emailsent-capture' => 'E-mel peringatan (seperti di bawah) telah dihantar.',
+'passwordreset-emailsent' => 'E-mel set semula kata laluan telah dihantar.',
+'passwordreset-emailsent-capture' => 'E-mel set semula kata laluan telah dihantar, seperti yang dipaparkan di bawah.',
 'passwordreset-emailerror-capture' => 'E-mel peringatan (seperti di bawah) telah dihasilkan tetapi tidak dapat dihantar kepada pengguna: $1',
 
 # Special:ChangeEmail
@@ -3843,17 +3844,17 @@ Imej ditunjuk dalam leraian penuh, jenis fail yang lain dibuka dengan atur cara 
 'sqlite-no-fts' => '$1 tanpa sokongan carian teks penuh',
 
 # New logging system
-'logentry-delete-delete' => '$1 menghapuskan laman $3',
-'logentry-delete-restore' => '$1 memulihkan laman $3',
-'logentry-delete-event' => '$1 mengubah keterlihatan {{PLURAL:$5|satu peristiwa log|$5 peristiwa log}} di $3: $4',
-'logentry-delete-revision' => '$1 mengubah keterlihatan {{PLURAL:$5|satu semakan|$5 semakan}} di $3: $4',
-'logentry-delete-event-legacy' => '$1 mengubah keterlihatan peristiwa-peristiwa log di $3',
-'logentry-delete-revision-legacy' => '$1 mengubah keterlihatan semakan-semakan di $3',
-'logentry-suppress-delete' => '$1 menyekat laman $3',
-'logentry-suppress-event' => '$1 mengubah keterlihatan {{PLURAL:$5|satu peristiwa log|$5 peristiwa log}} di $3 secara rahsia: $4',
-'logentry-suppress-revision' => '$1 mengubah keterlihatan {{PLURAL:$5|satu semakan|$5 semakan}} di $3 secara rahsia: $4',
-'logentry-suppress-event-legacy' => '$1 mengubah keterlihatan peristiwa-peristiwa log di $3 secara rahsia',
-'logentry-suppress-revision-legacy' => '$1 mengubah keterlihatan semakan-semakan di $3 secara rahsia',
+'logentry-delete-delete' => '$1 telah {{GENDER:$2|menghapuskan}} halaman $3',
+'logentry-delete-restore' => '$1 telah {{GENDER:$2|memulihkan}} halaman $3',
+'logentry-delete-event' => '$1 telah {{GENDER:$2|mengubah}} keterlihatan $5 peristiwa log di $3: $4',
+'logentry-delete-revision' => '$1 telah {{GENDER:$2|mengubah}} keterlihatan $5 semakan di halaman $3: $4',
+'logentry-delete-event-legacy' => '$1 telah {{GENDER:$2|mengubah}} keterlihatan peristiwa log di $3',
+'logentry-delete-revision-legacy' => '$1 telah {{GENDER:$2|mengubah}} keterlihatan semakan di halaman $3',
+'logentry-suppress-delete' => '$1 telah {{GENDER:$2|menyekat}} halaman $3',
+'logentry-suppress-event' => '$1 telah {{GENDER:$2|mengubah}} keterlihatan $5 peristiwa log di $3 secara senyap: $4',
+'logentry-suppress-revision' => '$1 telah {{GENDER:$2|mengubah}} keterlihatan $5 semakan di halaman $3 secara senyap: $4',
+'logentry-suppress-event-legacy' => '$1 telah {{GENDER:$2|mengubah}} keterlihatan peristiwa log di $3 secara senyap',
+'logentry-suppress-revision-legacy' => '$1 telah {{GENDER:$2|mengubah}} keterlihatan semakan di halaman $3 secara senyap',
 'revdelete-content-hid' => 'kandungan tersorok',
 'revdelete-summary-hid' => 'ringkasan suntingan tersorok',
 'revdelete-uname-hid' => 'nama pengguna tersorok',
@@ -3862,20 +3863,20 @@ Imej ditunjuk dalam leraian penuh, jenis fail yang lain dibuka dengan atur cara 
 'revdelete-uname-unhid' => 'nama pengguna terdedah',
 'revdelete-restricted' => 'mengenakan sekatan pada penyelia',
 'revdelete-unrestricted' => 'menarik sekatan daripada penyelia',
-'logentry-move-move' => '$1 memindahkan laman $3 ke $4',
-'logentry-move-move-noredirect' => '$1 mengalihkan laman $3 ke $4 tanpa meninggalkan lencongan',
-'logentry-move-move_redir' => '$1 mengalihkan laman $3 ke $4 pada lencongan',
-'logentry-move-move_redir-noredirect' => '$1 mengalihkan laman $3 ke $4 pada satu lencongan tanpa meninggalkan lencongan',
-'logentry-patrol-patrol' => '$1 menandakan semakan $4 daripada laman $3 sebagai dironda',
-'logentry-patrol-patrol-auto' => '$1 menandakan semakan $4 daripada laman $3 sebagai dironda secara automatik',
-'logentry-newusers-newusers' => 'Akaun pengguna $1 dibuka',
-'logentry-newusers-create' => 'Akaun pengguna $1 dibuka',
-'logentry-newusers-create2' => 'Akaun pengguna $3 dibuka oleh $1',
-'logentry-newusers-byemail' => 'Akaun pengguna $3 dibuka oleh $1 dan kata laluannya dihantar melalui e-mel',
-'logentry-newusers-autocreate' => 'Akaun $1 dibuka secara automatik',
-'logentry-rights-rights' => '$1 menukar keahlian kumpulan untuk $3 dari $4 ke $5',
-'logentry-rights-rights-legacy' => '$1 menukar keahlian kumpulan untuk $3',
-'logentry-rights-autopromote' => '$1 dinaik pangkat secara automatik dari $4 ke $5',
+'logentry-move-move' => '$1 telah {{GENDER:$2|memindahkan}} halaman $3 ke $4',
+'logentry-move-move-noredirect' => '$1 telah {{GENDER:$2|memindahkan}} halaman $3 ke $4 tanpa meninggalkan lencongan',
+'logentry-move-move_redir' => '$1 telah {{GENDER:$2|memindahkan}} halaman $3 ke $4 melalui lencongan',
+'logentry-move-move_redir-noredirect' => '$1 telah {{GENDER:$2|memindahkan}} halaman $3 ke $4 melalui lencongan tanpa meninggalkan lencongan',
+'logentry-patrol-patrol' => '$1 telah {{GENDER:$2|menanda}} semakan $4 di halaman $3 sebagai dironda',
+'logentry-patrol-patrol-auto' => '$1 telah {{GENDER:$2|menanda}} semakan $4 di halaman $3 sebagai dironda secara automatik',
+'logentry-newusers-newusers' => 'Akaun pengguna $1 telah {{GENDER:$2|dibuka}}',
+'logentry-newusers-create' => 'Akaun pengguna $1 telah {{GENDER:$2|dibuka}}',
+'logentry-newusers-create2' => 'Akaun pengguna $3 telah {{GENDER:$2|dibuka}} oleh $1',
+'logentry-newusers-byemail' => 'Akaun pengguna $3 telah {{GENDER:$2|dibuka}} oleh $1 dan kata laluannya dihantar melalui e-mel',
+'logentry-newusers-autocreate' => 'Akaun pengguna $1 telah {{GENDER:$2|dibuka}} secara automatik',
+'logentry-rights-rights' => '$1 telah {{GENDER:$2|menukar}} keahlian kumpulan untuk $3 dari $4 ke $5',
+'logentry-rights-rights-legacy' => '$1 telah {{GENDER:$2|menukar}} keahlian kumpulan untuk $3',
+'logentry-rights-autopromote' => '$1 telah {{GENDER:$2|dinaik pangkat}} secara automatik dari $4 ke $5',
 'rightsnone' => '(tiada)',
 
 # Feedback

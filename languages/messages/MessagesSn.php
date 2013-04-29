@@ -88,9 +88,6 @@ $messages = array(
 'viewsource' => 'Wona mabviro',
 
 # Login and logout pages
-'welcomecreation' => '== Tigashire, $1! ==
-Akaunzi yako yagadzirwa.
-Usakanganwe kuchinga [[Special:Preferences|mapreferences ako {{SITENAME}}]].',
 'yourname' => 'Zita:',
 'yourpassword' => 'Password:',
 'yourpasswordagain' => 'Nyorazve password:',
