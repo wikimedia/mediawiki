@@ -485,8 +485,8 @@ Agar jo aur koi ii request karis hai, nai to aap aapan password yaad kar liya ha
 'passwordsent'               => 'Ek nawaa password ke "$1" ke registered e-mail pe bheja gais hai. Meharbaani kar ke aap password mile ke baad login karna.',
 'blocked-mailpassword'       => 'Aap ke IP address ke block kar dewa gais hai, aur iske kaaran aap ke password recovery function kaam me lae ke ijajat nai hai,',
 'eauthentsent'               => 'Ek confirmation e-mail aap ke dewa gae e-mail address be bhej dewa gais hai. Aur mail ii account pe bheje se pahile e-mail me likha instructions ke follow karo, ii confirm kare ke khatir ki account aap ke hai.',
-'throttled-mailpassword'     => 'Ek password reminder ke pichhle {{PLURAL:$1|hour|$1 hours}} me bhej dewa gais hai.
-Abuse ke roke ke khatir, khali ek password reminer har {{PLURAL:$1|hour|$1 hours}} me bheja jaai.',
+'throttled-mailpassword'     => 'Ek password reset Email ke pahile bheja gais hae, pichhle  {{PLURAL:$1|ghanta|$1 ghanta}} me bhej me.
+Abuse ke roke ke khatir, khali ek password reminer har {{PLURAL:$1|ghanta|$1 ghanta}} me bheja jaai.',
 'mailerror'                  => 'Mail bheje me galti hoe gais hai: $1',
 'acct_creation_throttle_hit' => 'Ii wiki me visitors log aap ke IP address ke use kar ke {{PLURAL:$1|1 account|$1 accounts}}, pichhle kuch din me, banae liin hai, jis se jaada ii time nai banawa jaae sake hai.
 Ii kaaran se visitors log jon ki ii IP address use kare hai, ke aur account banae ke ijajat nai hai.',
@@ -511,7 +511,7 @@ Thora deri baad fir se kosis karna.',
 'loginlanguagelabel'         => 'Bhasa: $1',
 'suspicious-userlogout'      => 'Aap ke log out kare ke maang ke na kar dewa gais hae kaahe ki ii janaawe hae ki ii maang ke ek tuuta browser nai to caching proxy bhejis hae.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'PHP ke mail() function me koi anjaan kharaabi hae',
 'user-mail-no-addy'      => 'Bina e-mail address rahe pe bhi e-mail bheje ke kosis karaa gais hae.',
 
@@ -536,7 +536,7 @@ Sait aap password ke safalta se badal sia hoga nai to nawaa temporary password k
 
 # Special:PasswordReset
 'passwordreset'                    => 'Password ke badlo',
-'passwordreset-text'               => 'Aapan account ke baare me jaankari ke receive kare ke khatir ii fom ke bharo.',
+'passwordreset-text'               => 'Password ke reset kare ke khatir ii form ke bharo.',
 'passwordreset-legend'             => 'Password ke badlo',
 'passwordreset-disabled'           => 'II wiki me password ke badle ke ijaajat nai hae.',
 'passwordreset-pretext'            => '{{PLURAL:$1||Niche ke ek data ke likho}}',
@@ -1172,7 +1172,7 @@ Iske $1 {{PLURAL:$1|character|characters}} se kamti rahe ke chaahi.',
 'prefs-displaywatchlist'        => 'Choice dekhao',
 'prefs-diffs'                   => 'Farka',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid'   => 'E-mail address kanuni hae',
 'email-address-validity-invalid' => 'Ek kanuni e-mail ke likho',
 
@@ -1929,7 +1929,7 @@ Support karaa gais protocol: <code>$1</code>',
 'listgrouprights-addgroup-self-all'    => 'Sab group ke aapan account me jorre saktaa hai',
 'listgrouprights-removegroup-self-all' => 'Sab group ke aapan account se hatae saktaa hai',
 
-# E-mail user
+# Email user
 'mailnologin'          => 'Koi bheje waala address nai hai',
 'mailnologintext'      => 'Duusra logan ke lage e-mail bheje ke khatir aap ke [[Special:UserLogin|logged in]] aur [[Special:Preferences|preferences]]  me thik e-mail hoew ke chaahi.',
 'emailuser'            => 'Ii user ke E-mail karo',
@@ -3009,7 +3009,7 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 'monthsall'     => 'sab',
 'limitall'      => 'sab',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'E-mail address ke pakka karo',
 
 # Delete conflict

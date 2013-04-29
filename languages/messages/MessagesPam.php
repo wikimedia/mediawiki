@@ -1342,7 +1342,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'listgrouprights-helppage' => 'Help:Katulirang pang-grupu',
 'listgrouprights-members'  => '(tala da reng kayanib)',
 
-# E-mail user
+# Email user
 'mailnologin'     => 'Alang piparalan (no send address)',
 'mailnologintext' => 'Kailangan [[Special:UserLogin|maka-login]] ka at maki gaganang e-mail address kareng kekang  [[Special:Preferences|pinili]] ba kang makaparalang e-mail kareng aliwang talagamit.',
 'emailuser'       => 'E-mail me ing talagamit a ini',
@@ -2230,7 +2230,7 @@ Detang aliwa tambing (by default) lang makasalikut.
 'namespacesall' => 'ila ngan',
 'monthsall'     => 'eganagana',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail'             => 'Patutwan mung keka ya itang e-mail address',
 'confirmemail_noemail'     => 'Ala kang ustung e-mail address a makabili ketang kekang [[Special:Preferences|pinili ning talagamit (user preferences)]].',
 'confirmemail_text'        => 'Kaylangan king wiking iti ing patutwan me pamu ing kekang e-mail address bayu

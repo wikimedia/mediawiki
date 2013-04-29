@@ -648,7 +648,7 @@ Shuk rurakkunaka kikinpa e-chaski ''dirección''ta mana yachankachu.",
 # Special:ListGroupRights
 'listgrouprights-members' => '(Kay tantanakuypa rurakkunapa shutikuna)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Kay rurakman e-chaskita kachana',
 
 # Watchlist

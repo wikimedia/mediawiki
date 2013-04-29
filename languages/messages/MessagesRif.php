@@ -517,7 +517,7 @@ Tasniwin di [[Special:Watchlist|your watchlist]] d '''tizurarin'''.",
 # Special:ListUsers
 'listusers-submit' => 'Smmrad',
 
-# E-mail user
+# Email user
 'emailuser' => 'Ssek E-mail i bnadm a',
 
 # Watchlist

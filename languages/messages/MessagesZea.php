@@ -1128,7 +1128,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 # Special:ListGroupRights
 'listgrouprights-members' => '(ledenlieste)',
 
-# E-mail user
+# Email user
 'emailuser' => 'E-mail deêze gebruker',
 'emailpage' => 'E-mail gebruker',
 

@@ -574,7 +574,7 @@ Siók-mìng: (dāng) = gâe̤ng dék sĭng bēng-buōng bī-piâng, (sèng) = g�
 # Special:Log/newusers
 'newuserlogpage' => 'Kŭi dióng-hô̤ nĭk-cé',
 
-# E-mail user
+# Email user
 'emailuser'       => 'Gié diêng-piĕ ké̤ṳk ĭ',
 'emailpage'       => 'Gié diêng-piĕ ké̤ṳk ĭ',
 'defemailsubject' => '{{SITENAME}} diêng-piĕ',
@@ -836,7 +836,7 @@ Nâ cūng-kuāng, nṳ̄ â̤-sāi cê-gă iè-dông hĕ̤k-ciā sê hăk-biáng
 'namespacesall' => 'sū-iū',
 'monthsall'     => 'gó̤-lòng nièng',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail'           => 'Káuk-nêng diêng-piĕ dê-cī',
 'confirmemail_invalid'   => 'Káuk-nêng mā mò̤-hâu, kō̤-nèng ī-gĭng guó-gĭ lāu.',
 'confirmemail_needlogin' => 'Chiāng nṳ̄ sĕng $1 nṳ̄ gì diêng-piĕ dê-cī.',

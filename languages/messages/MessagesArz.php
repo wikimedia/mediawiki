@@ -1374,7 +1374,7 @@ $1",
 'prefs-displaywatchlist'        => 'اختيارات العرض',
 'prefs-diffs'                   => 'التغيير',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid'   => 'عنوان الإيميل صح',
 'email-address-validity-invalid' => 'عنوان الإيميل غلط',
 
@@ -2054,7 +2054,7 @@ PICT # misc.
 'listgrouprights-addgroup-self-all'    => 'اضافة كل المجموعات للحساب بتاعى',
 'listgrouprights-removegroup-self-all' => 'مسح كل المجموعات من الحساب بتاعى',
 
-# E-mail user
+# Email user
 'mailnologin'      => 'مافيش عنوان نبعت عليه',
 'mailnologintext'  => 'لازم تعمل [[Special:UserLogin|تسجيل الدخول]] و تدخل ايميل صحيح فى صفحة [[Special:Preferences|التفضيلات]] علشان تقدر تبعت ايميلات لليوزرز التانيين.',
 'emailuser'        => 'ابعت ايميل لليوزر دا',
@@ -3179,7 +3179,7 @@ $1',
 'monthsall'     => 'الكل',
 'limitall'      => 'الكل',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail'             => 'اعمل تأكيد للأيميل بتاعك',
 'confirmemail_noemail'     => 'إنت ما عندكش ايميل صحيح متسجل فى [[Special:Preferences|تفضيلاتك]].',
 'confirmemail_text'        => '{{SITENAME}} بيطلب انك تعمل تأكيد للأيميل قبل ما تستعمل الخصايص المرتبطة بالايميل.

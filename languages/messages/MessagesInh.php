@@ -12,6 +12,7 @@
  * @author Reedy
  * @author Sapral Mikail
  * @author Tagir
+ * @author Умар
  */
 
 $fallback = 'ru';
@@ -802,7 +803,7 @@ $messages = array(
 # Special:ListGroupRights
 'listgrouprights-members' => '(тоабий дагарче)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Дакъалаьцархочоа д-хоамни:',
 
 # Watchlist

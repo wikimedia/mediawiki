@@ -206,7 +206,7 @@ $messages = array(
 
 'underline-always'  => 'Sabe',
 'underline-never'   => "H'an tom",
-'underline-default' => 'Penjelajah web bawaan',
+'underline-default' => 'Kulet atawa ngon peuhah web teupasang',
 
 # Font style option in Special:Preferences
 'editfont-style'     => 'Gaya seunurat komputer bak plok andam',
@@ -291,7 +291,7 @@ $messages = array(
 'newwindow'     => '(peuhah bak tingkap barô)',
 'cancel'        => 'Peubateuë',
 'moredotdotdot' => 'Lom...',
-'mypage'        => 'Ôn lôn',
+'mypage'        => 'Ôn',
 'mytalk'        => 'Marit',
 'anontalk'      => 'Peugah haba IP nyoë.',
 'navigation'    => 'Navigasi',
@@ -315,7 +315,7 @@ $messages = array(
 'vector-action-protect'          => 'Peulindông',
 'vector-action-undelete'         => 'Bateuë sampôh',
 'vector-action-unprotect'        => 'Gantoe neulindông',
-'vector-simplesearch-preference' => 'Peuudep mita saran nyang geupeusamporeuna (keu kulet Vector khong)',
+'vector-simplesearch-preference' => 'Peuudep beunteueng mita biasa (kulet Vector khong)',
 'vector-view-create'             => 'Peugöt',
 'vector-view-edit'               => 'Andam',
 'vector-view-history'            => 'Atra u likôt',
@@ -463,35 +463,68 @@ $1",
 'nosuchaction'      => 'Hana buet nyan',
 'nosuchactiontext'  => 'Buet nyang geulakee le URL nyan hana sah. Droeneuh kadang salah neukeutik URL, atawa neuseutot saboh neuhubong nyang hana beutoy. Hay nyoe kadang jeuet keu lageuem saboh bug bak alat leumiek nyang geunguy le {{SITENAME}}.',
 'nosuchspecialpage' => 'Hana on kusuih lagee nyan',
-'nospecialpagetext' => '<strong>Droeneuh neulakee on kusuih nyang hana sah.</strong>',
+'nospecialpagetext' => "<strong>Droeneuh ka neulakee on kusuih nyang hana sah.</strong>
+Dapeuta on kusuih nyang sah jeuet neu'eu bak [[Special:SpecialPages|{{int:specialpages}}]].",
 
 # General errors
-'error'              => 'Seunalah',
-'databaseerror'      => 'Kesalahan basis data',
-'dberrortext'        => 'Na salah bak syntax neulakee basis data.
+'error'                => 'Seunalah',
+'databaseerror'        => 'Kesalahan basis data',
+'dberrortext'          => 'Na salah bak syntax neulakee basis data.
 Nyoe kadang tanda na saboh bug lam alat leumiek.
 Neulakee basis data keuneulheueh nakeuh:
 <blockquote><code>$1</code></blockquote>
 nibak function "<code>$2</code>".
 Basis data na salah "<samp>$3: $4</samp>".',
-'dberrortextcl'      => 'Na salah sintaks bak neulakee basis data.
+'dberrortextcl'        => 'Na salah sintaks bak neulakee basis data.
 Neulakee basis data nyang keuneulheueh nakeuh:
 "$1"
 nibak fungsi "$2"
 Basis data geupeuhase salah "$3: $4".',
-'laggedslavemode'    => 'Peuneugah: On nyoe kadang hana neuubah baro',
-'missing-article'    => 'Basis data h’an jeuët jiteumèë naseukah nibak ôn nyang sipatôtjih na, nakeuh "$1" $2.
+'laggedslavemode'      => 'Peuneugah: On nyoe kadang hana neuubah baro',
+'readonly'             => 'Basis data geurok',
+'enterlockreason'      => 'Pasoe daleh neurok ngon pajan jeuet geupeuhah',
+'readonlytext'         => "Basis data hat nyoe geurok keu teunamong baro ngon geunantoe la'en, kadang keu peulara basis data rutin, lheueh nyan baro lagee biasa teuma.
+
+Ureueng uroh nyang rok nyoe geupeutaba jeuneulaih nyoe: $1",
+'missing-article'      => 'Basis data h’an jeuët jiteumèë naseukah nibak ôn nyang sipatôtjih na, nakeuh "$1" $2.
 
 Nyoë biasajih sabab hubông useuëng u geunantoë away nyang ka teusampôh.
 
 Meunyo kön nyoë sababjih, Droëneuh kadang ka neuteumèë saboh bug lam software. Neutulông peugah bhah nyoë bak salah sidroë [[Special:ListUsers/sysop|Nyang urôh]], ngön neupeugah alamat URL nyang neusaweuë.',
-'missingarticle-rev' => '(revisi#: $1)',
-'internalerror'      => 'Salah bak dalam',
-'internalerror_info' => 'Salah bak dalam: $1',
-'badtitle'           => 'Nan hana sah',
-'badtitletext'       => 'Nan ôn nyang neulakèë hana sah, soh, atawa nan antarabahsa atawa antarawiki nyang salah sambông.',
-'viewsource'         => 'Eu nè',
-'viewsourcetext'     => 'Droëneuh  jeuët neu’eu',
+'missingarticle-rev'   => '(revisi#: $1)',
+'missingarticle-diff'  => '(Bida: $1, $2)',
+'readonly_lag'         => 'Basis data ka geurok otomatis silawet basis data sekunder teungoh geupeusinkron ngon basis data utama',
+'internalerror'        => 'Salah bak dalam',
+'internalerror_info'   => 'Salah bak dalam: $1',
+'fileappenderrorread'  => 'H\'an jitem beuet "$1" \'oh geutamah',
+'fileappenderror'      => 'H\'an jeuet jipasoe "$1" u "$2"',
+'filecopyerror'        => 'H\'an jeuet salen beureukaih "$1" u "$2".',
+'filerenameerror'      => 'H\'an jeuet boh nan beureukaih "$1" u "$2".',
+'filedeleteerror'      => 'H\'an jeuet sampoh beureukaih "$1".',
+'directorycreateerror' => 'H\'an jeuet peugot direktori "$1".',
+'filenotfound'         => 'Beureukaih "$1" hana meurumpok.',
+'fileexistserror'      => 'H\'an jeuet geusalen u beureukaih "$1": Beureukaih ka na.',
+'unexpected'           => 'Yum hana geuharap: "$1"="$2".',
+'formerror'            => "Reuloh: H'an jeuet peu'et formulir.",
+'badarticleerror'      => "Buet nyoe h'an jeuet geupeulaku bak on nyoe.",
+'cannotdelete'         => 'On atawa beureukaih "$1" h\'an jeuet geusampoh.
+Kadang ka na soe sampoh.',
+'cannotdelete-title'   => 'H\'an jeuet sampoh on "$1"',
+'badtitle'             => 'Nan hana sah',
+'badtitletext'         => 'Nan ôn nyang neulakèë hana sah, soh, atawa nan antarabahsa atawa antarawiki nyang salah sambông.',
+'perfcached'           => 'Data di yup nyoe geucok nibak peuniyoh ngon kadang kon data baro. {{PLURAL:$1||}}$1 hase maksimum na bak beuen.',
+'perfcachedts'         => 'Data di yup nyoe geupeusom, ngon geupeubaro keuneulheueh bak $1. {{PLURAL:$1||}}$1 hase maksimal na lam beuen.',
+'querypage-no-updates' => "Beunaro keu on nyoe hat nyoe teungoh h'an jeuet.
+Data sinoe h'an geupasoe ulang.",
+'wrong_wfQuery_params' => 'Parameter salah u wfQuery()<br />
+Meunafaat: $1<br />
+Neulakee: $2',
+'viewsource'           => 'Eu nè',
+'viewsource-title'     => 'Eu ne keu $1',
+'actionthrottled'      => 'Buet geupeubataih',
+'actionthrottledtext'  => 'Sibagoe saboh seunipat lawan-spam, droeneuh geupeubataih nibak neupeulaku buet nyoe le that go lam watee paneuk, ngon droeneuh ka leubeh nibak bataih.
+Neuci lom lam padum minet.',
+'viewsourcetext'       => 'Droëneuh  jeuët neu’eu',
 
 # Login and logout pages
 'welcomecreation'         => '== Seulamat trok teuka, $1! ==
@@ -528,9 +561,9 @@ Préksa keulayi neu’ija Droëneuh.',
 'passwordtooshort'        => "Lageuëm paléng h'an haroh na {{PLURAL:$1|1 karakter|$1 karakter}}.",
 'mailmypassword'          => "Peu'ét lageuëm barô",
 'passwordremindertitle'   => 'Lageuëm seumeuntara barô keu {{SITENAME}}',
-'passwordremindertext'    => 'Salah sidroë (kadang Droëneuh, ngön alamat IP $1) geulakèë kamoë keu meukirém lageuëm rahsia nyang barô keu {{SITENAME}} ($4).
-Lageuëm rahsia keu ureuëng nguy "$2" jinoë nakeuh "$3".
-Droëneuh geupeusaran keu neutamong sigra, lheuëh nyan neugantoë lageuëm rahsia.',
+'passwordremindertext'    => 'Salah sidroë (kadang Droëneuh, ngön alamat IP $1) geulakèë lageuëm barô keu {{SITENAME}} ($4). Lageuëm si\'at keu ureuëng nguy "$2" ka geupeuna ngon ka geuato jeuet keu "$3". Meunyo nyoe nakeuh meukeusud droeneuh, droeneuh peureulee neutamong ngon neupileh lageuem baro jinoe. Lageuem siat droeneuh meung abeh lam {{PLURAL:$5|siuroe|$5 uroe}}.
+
+Meunyo ureueng la\'en nyang peugot neulakee nyoe, atawa meunyo droeneuh ka neuingat lageuem droeneuh, ngon droeneuh h\'an ek neugantoe le, droeneuh jeuet hana neupeureumeuen peusan nyoe ngon neulanjut neunguy lageuem awayneuh.',
 'noemail'                 => 'Hana alamat surat-e nyang teucatat keu ureuëng nguy "$1".',
 'passwordsent'            => 'Lageuëm barô ka geupeu\'ét u surat-e nyang geupeudapeuta keu "$1". Neutamong teuma lheuëh neuteurimong surat-e nyan.',
 'eauthentsent'            => 'Saboh surat èlèktronik keu peunyoë ka geukirém u alamat surat èlèktronik Droëneuh. Droëneuh beuneuseutöt préntah lam surat nyan keu neupeunyoë meunyo alamat nyan nakeuh beutôy atra Droëneuh. {{SITENAME}} h‘an geupeuudép surat Droëneuh meunyo langkah nyoë hana neupeulaku lom.',
@@ -901,11 +934,11 @@ Teuneurang bak [$2 on teuneurangjih] geupeuleumah di yup nyoe.",
 # Special:ListGroupRights
 'listgrouprights-members' => '(dapeuta anggèëta)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Surat-e ureuëng nguy',
 
 # Watchlist
-'watchlist'         => 'Dapeuta keunalön lôn',
+'watchlist'         => 'Dapeuta keunalön',
 'mywatchlist'       => 'Keunalön',
 'watchlistfor2'     => 'Keu $1 $2',
 'addedwatchtext'    => "Ôn \"[[:\$1]]\" ka geupeutamah u [[Special:Watchlist|dapeuta keunalön]] Droëneuh. Neu’ubah-neu’ubah bak masa u keuë bak ôn nyan ngön bak ôn peugah habajih, euntreuk leumah nyoë pat. Ôn nyan euntreuk geupeuleumah ''teubay'' bak [[Special:RecentChanges|dapeuta neu’ubah paléng barô]] mangat leubèh mudah leumah.",

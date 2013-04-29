@@ -138,7 +138,7 @@ $messages = array(
 [[Special:UnusedCategories|Unused categories]] are not shown here.
 Also see [[Special:WantedCategories|wanted categories]].',
 
-# E-mail user
+# Email user
 'emailuser'     => 'Romela motho enwa email',
 'emailfrom'     => 'E tswa ho:',
 'emailto'       => 'Ho:',

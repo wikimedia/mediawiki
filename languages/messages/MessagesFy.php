@@ -1669,7 +1669,7 @@ Der kin [[{{MediaWiki:Listgrouprights-helppage}}|ekstra ynformaasje]] oer yndivi
 'listgrouprights-addgroup-all'    => 'Kin brûkers oan alle groepen tafoegje',
 'listgrouprights-removegroup-all' => 'Kin brûkers út alle groepen fuorthelje',
 
-# E-mail user
+# Email user
 'mailnologin'      => 'Gjin adres beskikber',
 'mailnologintext'  => 'Jo moatte [[Special:UserLogin|oanmelden]] wêze, en in jildich e-postadres [[Special:Preferences|ynsteld]] hawwe, om oan oare meidoggers e-post stjoere te kinnen.',
 'emailuser'        => 'Skriuw meidogger',
@@ -2249,7 +2249,7 @@ Alle folgjende links dy't op deselde rigel steane, wurde behannele as útsûnder
 'namespacesall' => 'alles',
 'monthsall'     => 'alle',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail'            => 'Befêstigjen netpostadres',
 'confirmemail_text'       => '{{SITENAME}} freget dat jo jo netpostadres befêstigje eart jo hjir netpost brûke. Brûk de knop hjirûnder om josels in befêstigingskoade ta te stjoeren op it adres dat jo opjûn hawwe. Iepenje de koade dan yn jo blêder om te befêstigjen dat jo netpostadres jildich is.',
 'confirmemail_send'       => 'Stjoer in befêstigingskoade',

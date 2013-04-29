@@ -1257,7 +1257,7 @@ Also see [[Special:WantedCategories|wanted categories]].",
 # Special:ListGroupRights
 'listgrouprights-members' => '(erencu di li membri)',
 
-# E-mail user
+# Email user
 'mailnologin'     => "Nisciun indirizzu a lu quari invià l'imbasciadda.",
 'mailnologintext' => "Pa invià imbasciaddi di postha erettrònica è nezzessàriu [[Special:UserLogin|intrà]] e abé registhraddu un'indirizzu variddu i' li propri [[Special:Preferences|prifirenzi]].",
 'emailuser'       => "Ischribì a l'utenti",
@@ -1926,7 +1926,7 @@ So cunsidaraddi soru l'erenchi puntaddi (righi ch'ischumenzani cu' lu caràtteri
 'namespacesall' => 'Tutti',
 'monthsall'     => 'tutti',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail'            => 'Cunfèimma indirizzu di postha erettrònica',
 'confirmemail_noemail'    => "Nò è isthaddu indicaddu un'indirizzu postha erettrònica vàriddu i' li pròpri [[Special:Preferences|prifirenzi]].",
 'confirmemail_text'       => "{{SITENAME}} dumanda la verifigga di l'indirizzu di postha erettrònica primma di pudé l'usà. Incalchà lu buttoni in giossu pa invià una prigonta di cunfèimma a lu propriu indirizzu; i' l'imbasciadda è prisenti un cullegamentu chi cunteni un còdizi. Visità lu cullegamentu cu' lu proprio nabiggadori pa cunfèimmà chi l'indirizzu è vàriddu.",

@@ -1069,7 +1069,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 # Special:ListGroupRights
 'listgrouprights-members' => '(leet o members)',
 
-# E-mail user
+# Email user
 'mailnologin'     => 'Nae send address',
 'mailnologintext' => 'Ye maun be [[Special:UserLogin|loggit in]] an hae a valid e-mail address in yer [[Special:Preferences|preferences]] tae send e-mail til ither uisers.',
 'emailuser'       => 'E-mail this uiser',
@@ -1485,7 +1485,7 @@ If th' file haes bin modified frae tis original state, some details kin nae full
 'monthsall'     => 'aw',
 'limitall'      => 'aw',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail_noemail'    => 'Ye dinna hae a valid email address set in yer [[Special:Preferences|uiser preferences]].',
 'confirmemail_text'       => 'This wiki requires ye tae validate yer e-mail address
 afore uisin e-mail featurs. Activate the button ablo tae send a confirmation

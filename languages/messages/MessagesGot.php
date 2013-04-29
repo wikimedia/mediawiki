@@ -368,7 +368,7 @@ $messages = array(
 # Special:LinkSearch
 'linksearch-ns' => '𐍃𐌴𐌹𐌳𐍉𐍆𐌴𐍂𐌰:',
 
-# E-mail user
+# Email user
 'emailuser' => '𐍃𐌰𐌽𐌳𐌾𐌰𐌽 𐌸𐍉 𐌽𐌹𐌿𐍄𐌰𐌽𐌳 𐌱𐍉𐌺𐍉𐌼',
 
 # Watchlist

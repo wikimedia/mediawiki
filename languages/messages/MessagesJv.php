@@ -8,6 +8,8 @@
  * @file
  *
  * @author Anggoro
+ * @author Bawoor
+ * @author Bennylin
  * @author Helix84
  * @author Kaganer
  * @author Meursault2004
@@ -51,11 +53,11 @@ $messages = array(
 # User preference toggles
 'tog-underline'               => 'Garisen ngisoré pranala:',
 'tog-highlightbroken'         => 'Format pranala tugel <a href="" class="new">kaya iki</a> (pilihan: kaya iki<a href="" class="internal">?</a>).',
-'tog-justify'                 => 'Ratakna paragraf',
-'tog-hideminor'               => 'Delikna suntingan cilik ing owah-owahan pungkasan',
-'tog-hidepatrolled'           => 'Delikna suntingan sing wis dipatroli ing kaca owah-owahan',
-'tog-newpageshidepatrolled'   => 'Delikna kaca sing wis dipatroli saka daftar kaca anyar',
-'tog-extendwatchlist'         => 'Kembangna daftar pangawasan kanggo nuduhaké kabèh pangowahan, ora mung sing paling anyar',
+'tog-justify'                 => 'Ratakaké paragrap',
+'tog-hideminor'               => 'Dhelikaké suntingan cilik ing owah-owahan pungkasan',
+'tog-hidepatrolled'           => 'Dhelikaké suntingan kapanto ing owah-owahan pungkasan',
+'tog-newpageshidepatrolled'   => 'Dhelikaké kaca kapanto saka daptar kaca anyar',
+'tog-extendwatchlist'         => 'Jembaraké daptar pangawasan kanggo nuduhaké kabèh owahan, ora mung sing paling anyar',
 'tog-usenewrc'                => 'Owah-owahané paguyuban miturut kaca nèng owah-owahan anyar lan daptar panto (mbutuhaké JavaScript)',
 'tog-numberheadings'          => 'Wènèhana nomer judul secara otomatis',
 'tog-showtoolbar'             => 'Tuduhna <em>toolbar</em> (batang piranti) panyuntingan',
@@ -100,7 +102,7 @@ $messages = array(
 
 'underline-always'  => 'Tansah',
 'underline-never'   => 'Ora',
-'underline-default' => 'Miturut konfigurasi panjlajah wèb',
+'underline-default' => 'Kulit atau penjelajah bawaan',
 
 # Font style option in Special:Preferences
 'editfont-style'     => 'Modhèl aksara (font) ing kotak suntingan:',
@@ -366,9 +368,9 @@ Iki manawa uga nuduhaké anané kesalahan ing piranti alus sing dipigunakaké d�
 'databaseerror'        => 'Kasalahan database',
 'dberrortext'          => 'Ana kasalahan sintaks ing panyuwunan basis data.
 Kasalahan iki mbokmenawa nuduhaké anané \'\'bug\'\' ing software.
-Panyuwunan basis data sing pungkasan yakuwi: <blockquote><tt>$1</tt></blockquote>
-saka jroning fungsi "<tt>$2</tt>".
-Basis data ngasilaké kasalahan "<tt>$3: $4</tt>".',
+Panyuwunan basis data sing pungkasan yakuwi: <blockquote><code>$1</code></blockquote>
+saka jroning fungsi "<code>$2</code>".
+Basis data ngasilaké kasalahan "<samp>$3: $4</samp>".',
 'dberrortextcl'        => 'Ana kasalahan sintaks ing panyuwunan basis data.
 Panyuwunan basis data sing pungkasan iku:
 "$1"
@@ -498,8 +500,8 @@ Yèn wong liya sing nglakoni panyuwunan iki, utawa panjenengan éling tembung sa
 'passwordsent'               => 'Tembung sandhi anyar wis dikirim menyang alamat layang e-mail panjenengan sing wis didaftar kanggo "$1". Mangga mlebu log manèh sawisé nampa e-mail iku.',
 'blocked-mailpassword'       => "Alamat IP panjenengan diblokir saka panyuntingan, mulané panjenengan ora olèh nganggo fungsi pèngetan tembung sandhi kanggo ''mencegah penyalahgunaan''.",
 'eauthentsent'               => 'Sawijining layang élèktronik (e-mail) kanggo ndhedhes (konfirmasi) wis dikirim menyang alamat layang élèktronik panjenengan. Panjenengan kudu nuruti instruksi sajroning layang iku kanggo ndhedhes yèn alamat iku bener kagungané panjenengan. {{SITENAME}} ora bakal ngaktifaké fitur layang élèktronik yèn langkah iki durung dilakoni.',
-'throttled-mailpassword'     => 'Sawijining pènget tembung sandi wis dikirim, jroning {{PLURAL:$1|jam|$1 jam}} pungkasan iki.
-Kanggo nyegah salah-guna, mung siji pènget tembung sandi waé sing bisa dikirim saben {{PLURAL:$1|jam|$1 jam}}.',
+'throttled-mailpassword'     => 'Layang kanggo mbalèkaké tembung sandhi wis dikirim sasuwené ing {{PLURAL:$1|jam|$1 jam}}.
+Kanggo nyegah ananing tumindhak culika, namung sak layang kanggo mbalèkaké tembung sandhi sing bakal dikirim sasuwéné ing {{PLURAL:$1|jam|$1 jam}}.',
 'mailerror'                  => 'Kasalahan ing ngirimaké layang e-mail: $1',
 'acct_creation_throttle_hit' => 'Tamu ing wiki iki kanthi alamat IP sing padha karo panjenengan wis gawé {{PLURAL:$1|1 akun|$1 akun}} ing sadina pungkasan, nganti cacah maksimum sing diidinaké.
 Amarga saka kuwi., tamu kanthi alamat IP iki ora bisa gawé akun manèh kanggo sauntara iki.',
@@ -522,7 +524,7 @@ Tulung nunggu dhisik sadurungé njajal manèh.',
 'loginlanguagelabel'         => 'Basa: $1',
 'suspicious-userlogout'      => 'Panjaluk panjenengan supaya metu ditolak amarga katoné panjlajah internt utawa proksi panyinggah.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Kasalahan ora dingertèni nèng piguna mail() PHP.',
 'user-mail-no-addy'      => 'Njajal ngirim layang èlèktronik tanpa alamat layang èlèktronik.',
 
@@ -546,7 +548,7 @@ Panjengen manawa wis kasil ganti tembung sandi utawa nyuwun tembung sandi saunta
 
 # Special:PasswordReset
 'passwordreset'                    => 'Balèni setèl tembung sandhi',
-'passwordreset-text'               => 'Ganepi pormulir iki kanggo nampa pangéling layang èlèktronik kanggo rincian akun Sampéyan.',
+'passwordreset-text'               => 'Jangkepi pormulir iki kanggo mbalèkaké tembung sandhiné Sampéyan.',
 'passwordreset-legend'             => 'Balèni setèl tembung sandhi',
 'passwordreset-disabled'           => 'Piranti kanggo mbalèni nyetèl tembung sandhi dipatèni nèng wiki iki.',
 'passwordreset-pretext'            => '{{PLURAL:$1||Lebokaké siji bagéyan data ngisor iki}}',
@@ -556,10 +558,22 @@ Panjengen manawa wis kasil ganti tembung sandi utawa nyuwun tembung sandi saunta
 'passwordreset-capture-help'       => 'Yèn Sampéyan nyentang kothak iki, layang èlèktronik (mawa tembung sandhi sawetara) bakal ditampilaké nèng Sampéyan lan uga dikirim nèng panganggo.',
 'passwordreset-email'              => 'Alamat layang èlèktronik:',
 'passwordreset-emailtitle'         => 'Rincian akun nèng {{SITENAME}}',
+'passwordreset-emailtext-ip'       => 'Ana uwong (mbok menawa Sampéyan, mawa angka IP $1) njaluk ganti tembung sandhiné Sampéyan ana ing {{SITENAME}} ($4). {{PLURAL:$3|Rèkèning|Rèkèning-rèkèning}} ngisor iki magepokan karo padunungané layang èlèktronik iki:
+
+$2
+
+{{PLURAL:$3|Tembung sandhi sawetara iki}} bakal kedaluwarsa ing {{PLURAL:$5|sak dina|$5 dina}}.
+Sampéyan kudu mlebu log lan milih siji tembung sandhi anyar saiki. Yèn wong liya sing njaluk iki, utawa yèn Sampéyan jebul wis kèlingan tembung sandhiné sing lawas saéngga ora ana niyat kanggo ngganti, Sampéyan bisa ngejaraké wara-wara iki lan bacutaké nganggo tembung sandhiné lawas Sampéyan.',
+'passwordreset-emailtext-user'     => 'Panganggo $1 seka {{SITENAME}} njaluk ganti tembung sandhiné Sampéyan ana ing {{SITENAME}} ($4). {{PLURAL:$3|Rèkèning|Rèkèning-rèkèning}} ngisor iki magepokan karo padunungané layang èlèktronik iki:
+
+$2
+
+{{PLURAL:$3|Tembung sandhi sawetara iki}} bakal kedaluwarsa ing {{PLURAL:$5|sak dina|$5 dina}}.
+Sampéyan kudu mlebu log lan milih siji tembung sandhi anyar saiki. Yèn wong liya sing njaluk iki, utawa yèn Sampéyan jebul wis kèlingan tembung sandhiné sing lawas saéngga ora ana niyat kanggo ngganti, Sampéyan bisa ngejaraké wara-wara iki lan bacutaké nganggo tembung sandhiné lawas Sampéyan.',
 'passwordreset-emailelement'       => 'Jeneng panganggo: $1
 Tembung sandhi sawetara: $2',
-'passwordreset-emailsent'          => 'Layang èlèktronik pangèling wis dikirim.',
-'passwordreset-emailsent-capture'  => 'Layang èlèktronik pangèling wis dikirim kaya ngisor iki.',
+'passwordreset-emailsent'          => 'Layang èlèktronik kanggo mbalèkaké tembung sandhi wis dikirim.',
+'passwordreset-emailsent-capture'  => 'Layang èlèktronik kanggo mbalèkaké tembung sandhi wis dikirim, bisa didelok ngisor iki.',
 'passwordreset-emailerror-capture' => 'Layang èlèktronik pangèling ditampilaké nèng ngisor iki, nanging ora kasil dikirim: $1',
 
 # Special:ChangeEmail
@@ -896,10 +910,11 @@ Panjenengan ora nduwèni aksès menyang révisi iki.',
 'revdelete-concurrent-change' => 'Gagal ngowahi révisi tanggal $1, jam $2: statusé mbokmanawa wis diowahi déning panganggo liya bebarengan karo panjenengan.
 Mangga priksa cathetan log.',
 'revdelete-only-restricted'   => 'Ora bisa ndhelikaké siji barang mawa tanggal $1 wanci $2: Sampéyan ora bisa ndhelikaké barang kuwi saka pangurus tanpa milih salah sawiji pilihan kanggo ndhelikaké sing liyané.',
-'revdelete-reason-dropdown'   => '*Alesan mbusak sing umum
-** Planggaran hak cipta
-** Inpormasi pribadi sing ora patut
-** Inpormasi sing potènsial ngrusak martabat',
+'revdelete-reason-dropdown'   => '*Alasan penghapusan yang umum
+** Pelanggaran hak cipta
+** Komentar atau informasi pribadi yang tidak pantas
+** Nama pengguna yang tidak pantas
+** Berpotensi mencemarkan nama baik',
 'revdelete-otherreason'       => 'Alesan liya/tambahan:',
 'revdelete-reasonotherlist'   => 'Alesan liya',
 'revdelete-edit-reasonlist'   => 'Sunting alesan pambusakan',
@@ -995,7 +1010,7 @@ Gunakna tombol radio kanggo nggabungaké révisi-révisi sing digawé sadurungé
 'search-mwsuggest-enabled'         => 'mawa sugèsti',
 'search-mwsuggest-disabled'        => 'ora ana sugèsti',
 'search-relatedarticle'            => 'Kagandhèng',
-'mwsuggest-disable'                => 'Patènana sugèsti AJAX',
+'mwsuggest-disable'                => 'Tutup saka panemu-panemu ing golèk',
 'searcheverything-enable'          => 'Golèki ing kabèh bilik-jeneng',
 'searchrelated'                    => 'kagandhèng',
 'searchall'                        => 'kabèh',
@@ -1088,7 +1103,7 @@ Iki aji acak sing bisa panjenengan gunakaké: $1',
 'timezoneregion-indian'         => 'Samodra Hindhia',
 'timezoneregion-pacific'        => 'Samodra Pasifik',
 'allowemail'                    => 'Marengaké panganggo liyané ngirim layang èlèktronik (email).',
-'prefs-searchoptions'           => 'Opsi-opsi panggolèkan',
+'prefs-searchoptions'           => 'Golèk',
 'prefs-namespaces'              => 'Ruang jeneng / Bilik jeneng',
 'defaultns'                     => 'Utawa golèki ing bilik jeneng iki:',
 'default'                       => 'baku',
@@ -1141,7 +1156,7 @@ Alamat layang èlèktronik Sampéyan ora dituduhaké nalika wong liya ngubungi S
 'prefs-displaywatchlist'        => 'Opsi tampilan',
 'prefs-diffs'                   => 'Prabédan',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid'   => 'Alamat layang èlèktronik kayané sah',
 'email-address-validity-invalid' => 'Lebokaké alamat layang èlèktronik sing sah',
 
@@ -1441,7 +1456,7 @@ Mangga priksa panyetèlan pangunggahan berkas.',
 'uploadjava'                  => 'Berkas kuwi berkas ZIP sing kaisi berkas .class Java.
 Ngungga berkas Java ora dililakaké amarga bisa nyebabaké ngluwèhaké wates kamanan.',
 'upload-source'               => 'Berkas sumber',
-'sourcefilename'              => 'Jeneng berkas sumber',
+'sourcefilename'              => 'Jeneng berkas sumber:',
 'sourceurl'                   => 'URL sumber:',
 'destfilename'                => 'Jeneng berkas sing dituju',
 'upload-maxfilesize'          => 'Ukuran maksimal berkas: $1',
@@ -1487,7 +1502,12 @@ Mangga kontak [[Special:ListUsers/sysop|pangurus]].',
 'backend-fail-closetemp'     => 'Ora bisa nutup berkas sawetara.',
 'backend-fail-read'          => 'Ora bisa maca berkas "$1".',
 'backend-fail-create'        => 'Ora bisa nulis berkas "$1".',
+'backend-fail-readonly'      => 'Backend penyimpanan "$1" ini saat ini hanya bisa dibaca. Alasan yang diberikan adalah: "\'\'$2\'\'"',
+'backend-fail-synced'        => 'Berkas "$1" dalam keadaan yang tidak konsisten dalam backends penyimpanan internal',
+'backend-fail-connect'       => 'Tidak dapat menyambung ke penyimpanan backend "$1".',
+'backend-fail-internal'      => 'Kesalahan yang tidak dikenal terjadi di backend penyimpanan "$1".',
 'backend-fail-contenttype'   => 'Ora bisa nemtokaké jinisé kontèn saka berkas sing arep disimpen nèng "$1".',
+'backend-fail-batchsize'     => 'Penyimpanan backend diberikan batch $1 berkas {{PLURAL:$1||}}operasi; batasnya adalah $2 {{PLURAL:$2||}}operasi.',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Ora bisa mbukak gembok "$1"; kuwi ora kagembok.',
@@ -1880,12 +1900,12 @@ Informasi tambahan perkara hak-hak individual bisa ditemokaké ing [[{{MediaWiki
 'listgrouprights-addgroup-self-all'    => 'Nambahaké kabèh grup menyang akuné dhéwé',
 'listgrouprights-removegroup-self-all' => 'Mbusak kabèh klompok saka akuné dhéwé',
 
-# E-mail user
+# Email user
 'mailnologin'          => 'Ora ana alamat layang e-mail',
 'mailnologintext'      => 'Panjenengan kudu [[Special:UserLogin|mlebu log]] lan kagungan alamat e-mail sing sah ing [[Special:Preferences|preféèrensi]] yèn kersa ngirim layang e-mail kanggo panganggo liya.',
 'emailuser'            => 'Kirim e-mail panganggo iki',
 'emailpage'            => 'Kirimi panganggo iki layang e-mail',
-'emailpagetext'        => 'Panjenengan bisa migunakaké formulir ing ngisor kanggo ngirim layang-e marang panganggo iki.
+'emailpagetext'        => 'Panjenengan bisa migunakaké formulir ing ngisor kanggo ngirim layang-e marang {{GENDER:$1|panganggo}} iki.
 Alamat layang-e sing panjenengan lebokaké ing [[Special:Preferences|préferèsi panjenengan]] bakal dadi alamat "Saka" jroning layang-e kasebut, mula panampa layang-e bakal bisa mbalesi langsung menyang panjenengan.',
 'usermailererror'      => 'Kaluputan obyèk layang:',
 'defemailsubject'      => '{{SITENAME}} layang èlèktronik saka panganggo "$1"',
@@ -1916,7 +1936,7 @@ Alamat layang-e sing panjenengan lebokaké ing [[Special:Preferences|préferèsi
 'usermessage-editor'  => 'Pawartaning layang sistem',
 
 # Watchlist
-'watchlist'            => 'Daftar artikel pilihan',
+'watchlist'            => 'Daptar pangawasan',
 'mywatchlist'          => 'Daftar pangawasan',
 'watchlistfor2'        => 'Kanggo $1 $2',
 'nowatchlist'          => 'Daftar pangawasan panjenengan kosong.',
@@ -1924,8 +1944,8 @@ Alamat layang-e sing panjenengan lebokaké ing [[Special:Preferences|préferèsi
 'watchnologin'         => 'Durung mlebu log',
 'watchnologintext'     => 'Panjenengan kudu [[Special:UserLogin|mlebu log]] kanggo ngowahi daftar artikel pilihan.',
 'addwatch'             => 'Tambah nèng daptar pangawasan',
-'addedwatchtext'       => "Kaca \"[[:\$1]]\" wis ditambahaké menyang [[Special:Watchlist|daftar pangawasan]].
-Owah-owahan sing dumadi ing tembé ing kaca iku lan kaca dhiskusi sing kagandhèng, bakal dipacak ing kéné, lan kaca iku bakal dituduhaké '''kandel''' ing [[Special:RecentChanges|daftar owah-owahan iku]] supados luwih gampang katon.",
+'addedwatchtext'       => 'Kaca "[[:$1]]" wis ditambahaké menyang [[Special:Watchlist|daftar pangawasan]].
+Owah-owahan sing dumadi ing tembé ing kaca iku lan kaca dhiskusi sing kagandhèng, bakal dipacak ing kéné.',
 'removewatch'          => 'Singkiraké saka daptar pangawasan',
 'removedwatchtext'     => 'Kaca "[[:$1]]" wis dibusak saka [[Special:Watchlist|daftar pangawasan]].',
 'watch'                => 'tutana',
@@ -2108,8 +2128,8 @@ Ing ngisor iki kapacak konfigurasi kanggo kaca '''$1''':",
 'undeletepagetext'             => '{{PLURAL:$1|kaca iki wis dibusak nanging isih|$1 kaca iki wis dibusak nanging isih}} ana ing arsip lan bisa dibalèkaké.
 Arsip bisa diresiki sakala-kala.',
 'undelete-fieldset-title'      => 'Mulihaké rèvisi',
-'undeleteextrahelp'            => "Kanggo mbalèkaké kabèh sajarah kaca, kothongaké kabèh kothak-cèk lan klik '''''Balèkna'''''.
-Kanggo nglakoni pambalèkan pinilih, conthèngen kothak-cèk  sing magepokan karo révisi sing dipéngini lan klik '''''Balèkna'''''.
+'undeleteextrahelp'            => "Kanggo mbalèkaké kabèh sajarah kaca, kothongaké kabèh kothak-cèk lan klik '''''{{int:undeletebtn}}'''''.
+Kanggo nglakoni pambalèkan pinilih, conthèngen kothak-cèk  sing magepokan karo révisi sing dipéngini lan klik '''''{{int:undeletebtn}}'''''.
 Mencèt tombol '''''Reset''''' bakal ngosongaké isi komentar lan kabèh kothak-cèk.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|révisi|révisi}} diarsipaké',
 'undeletehistory'              => 'Yèn panjenengan mbalèkaké kaca, kabèh révisi bakal dibalèkaké jroning sajarah.
@@ -2304,7 +2324,7 @@ Log brèdèlan sumadhiya nèng ngisor kanggo rujukan:',
 'reblock-logentry'                => 'Ngowahi sèting pamblokiran [[$1]] kanthi wektu daluwarsa $2 $3',
 'blocklogtext'                    => 'Ing ngisor iki kapacak log pamblokiran lan panjabelan blokir panganggo.
 Alamat IP sing diblokir sacara otomatis ora ana ing daftar iki.
-Mangga mirsani [[Special:BlockList|daftar alamat IP sing diblokir]] kanggo daftar blokir pungkasan.',
+Mangga mirsani [[Special:BlockList|daftar panganggo sing diblokir]] kanggo daftar blokir pungkasan.',
 'unblocklogentry'                 => 'njabel blokir "$1"',
 'block-log-flags-anononly'        => 'namung panganggo anonim waé',
 'block-log-flags-nocreate'        => 'opsi nggawé akun utawa rékening dipatèni',
@@ -2369,6 +2389,17 @@ Gatèkna yèn kaca iki '''ora''' bakal dipindhah yèn wis ana kaca liyané sing 
 '''PÈNGET!'''
 Perkara iki bisa ngakibataké owah-owahan sing drastis lan ora kaduga kanggo kaca-kaca sing populèr;
 pastekaké dhisik panjenengan ngerti konsekwènsi saka panggayuh panjenengan sadurungé dibanjuraké.",
+'movepagetext-noredirectfixer' => "Formulir di bawah ini digunakan untuk mengubah nama suatu halaman dan memindahkan semua data sejarah ke nama baru.
+Judul yang lama akan menjadi halaman peralihan menuju judul yang baru.
+Pastikan untuk memeriksa pengalihan [[Special:DoubleRedirects|ganda]] atau [[Special:BrokenRedirects|rusak]].
+Anda bertanggung jawab untuk memastikan bahwa pranala terus menyambung ke halaman yang seharusnya.
+
+Perhatikan bahwa halaman '''tidak''' akan dipindah apabila telah ada halaman yang menggunakan judul yang baru, kecuali bila halaman tersebut kosong atau merupakan halaman peralihan dan tidak mempunyai sejarah penyuntingan.
+Ini berarti Anda dapat mengubah nama halaman kembali seperti semula apabila Anda membuat kesalahan, dan Anda tidak dapat menimpa halaman yang telah ada.
+
+'''Peringatan:'''
+Hal ini dapat mengakibatkan perubahan yang tak terduga dan drastis bagi halaman yang populer;
+Pastikan Anda mengerti konsekuensi dari perbuatan ini sebelum melanjutkan.",
 'movepagetalktext'             => "Kaca dhiskusi sing kagandhèng uga bakal dipindhahaké sacara otomatis '''kejaba yèn:'''
 
 *Sawijining kaca dhiskusi sing ora kosong wis ana sangisoring irah-irahan (judhul) anyar, utawa
@@ -2934,6 +2965,9 @@ Pranala-pranala sabanjuré ing baris sing padha dianggep minangka ''pengecualian
 
 # EXIF attributes
 'exif-compression-1' => 'Ora dikomprèsi',
+'exif-compression-2' => 'CCITT Group 3 1-Dimensional Modified Huffman RLE',
+'exif-compression-3' => 'CCITT Group 3 fax encoding',
+'exif-compression-4' => 'CCITT Group 4 fax encoding',
 
 'exif-copyrighted-true'  => 'Mawa hak cipta',
 'exif-copyrighted-false' => 'Domain umum',
@@ -3102,6 +3136,7 @@ Pranala-pranala sabanjuré ing baris sing padha dianggep minangka ''pengecualian
 'exif-gpsdirection-m' => 'Arah magnètis',
 
 'exif-ycbcrpositioning-1' => 'Kapusat',
+'exif-ycbcrpositioning-2' => 'Atas (co-sited)',
 
 'exif-dc-contributor' => 'Kontributor',
 'exif-dc-coverage'    => 'Cakepan latar utawa wektu média',
@@ -3149,30 +3184,30 @@ Pranala-pranala sabanjuré ing baris sing padha dianggep minangka ''pengecualian
 'monthsall'     => 'kabèh',
 'limitall'      => 'kabèh',
 
-# E-mail address confirmation
-'confirmemail'             => 'Konfirmasi alamat e-mail',
-'confirmemail_noemail'     => 'Panjenengan ora maringi alamat e-mail sing absah ing [[Special:Preferences|préferènsi]] panjenengan.',
-'confirmemail_text'        => '{{SITENAME}} ngwajibaké panjenengan ndhedhes utawa konfirmasi alamat e-mail panjenengan sadurungé bisa nganggo fitur-fitur e-mail.
+# Email address confirmation
+'confirmemail'              => 'Konfirmasi alamat e-mail',
+'confirmemail_noemail'      => 'Panjenengan ora maringi alamat e-mail sing absah ing [[Special:Preferences|préferènsi]] panjenengan.',
+'confirmemail_text'         => '{{SITENAME}} ngwajibaké panjenengan ndhedhes utawa konfirmasi alamat e-mail panjenengan sadurungé bisa nganggo fitur-fitur e-mail.
 Pencèten tombol ing ngisor iki kanggo ngirim sawijining kode konfirmasi arupa sawijining pranala;
 Tuladen pranala iki ing panjlajah wèb panjenengan kanggo ndhedhes yèn alamat e-mail panjenengan pancèn bener.',
-'confirmemail_pending'     => 'Sawijining kode konfirmasi wis dikirim menyang alamat e-mail panjenengan;
+'confirmemail_pending'      => 'Sawijining kode konfirmasi wis dikirim menyang alamat e-mail panjenengan;
 yèn panjenengan lagi waé nggawé akun utawa rékening panjenengan, mangga nunggu sawetara menit nganti layang iku tekan sadurungé nyuwun kode anyar manèh.',
-'confirmemail_send'        => 'Kirim kode konfirmasi',
-'confirmemail_sent'        => 'E-mail mawa kode konfirmasi wis dikirim.',
-'confirmemail_oncreate'    => 'Sawijining kode pandhedhesan (konfirmasi) wis dikirim menyang alamat e-mail panjenengan.
+'confirmemail_send'         => 'Kirim kode konfirmasi',
+'confirmemail_sent'         => 'E-mail mawa kode konfirmasi wis dikirim.',
+'confirmemail_oncreate'     => 'Sawijining kode pandhedhesan (konfirmasi) wis dikirim menyang alamat e-mail panjenengan.
 Kode iki ora dibutuhaké kanggo log mlebu, nanging dibutuhaké sadurungé nganggo kabèh fitur sing nganggo e-mail ing wiki iki.',
-'confirmemail_sendfailed'  => '{{SITENAME}} ora bisa ngirim layang e-mail konfirmaside.
+'confirmemail_sendfailed'   => '{{SITENAME}} ora bisa ngirim layang e-mail konfirmaside.
 Mangga dipriksa mbok-menawa ana aksara ilegal ing alamat e-mail panjenengan.
 
 Pangirim mènèhi informasi: $1',
-'confirmemail_invalid'     => 'Kode konfirmasi salah. Kode iku mbok-menawa wis kadaluwarsa.',
-'confirmemail_needlogin'   => 'Panjenengan kudu ndhedhes (konfirmasi) $1 alamat layang e-mail panjenengan.',
-'confirmemail_success'     => 'Alamat e-mail panjenengan wis dikonfirmasi.
+'confirmemail_invalid'      => 'Kode konfirmasi salah. Kode iku mbok-menawa wis kadaluwarsa.',
+'confirmemail_needlogin'    => 'Panjenengan kudu ndhedhes (konfirmasi) $1 alamat layang e-mail panjenengan.',
+'confirmemail_success'      => 'Alamat e-mail panjenengan wis dikonfirmasi.
 Saiki panjenengan bisa log mlebu lan wiwit nganggo wiki.',
-'confirmemail_loggedin'    => 'Alamat e-mail panjenengan wis dikonfirmasi.',
-'confirmemail_error'       => 'Ana kaluputan nalika nyimpen konfirmasi panjenengan.',
-'confirmemail_subject'     => 'Konfirmasi alamat e-mail {{SITENAME}}',
-'confirmemail_body'        => 'Sawijining wong, mbokmenawa panjenengan dhéwé, saka alamat IP $1, wis ndaftaraké akun "$2" mawa alamat e-mail iki ing {{SITENAME}}. Bukaka pranala iki ing panjlajah wèb panjenengan.
+'confirmemail_loggedin'     => 'Alamat e-mail panjenengan wis dikonfirmasi.',
+'confirmemail_error'        => 'Ana kaluputan nalika nyimpen konfirmasi panjenengan.',
+'confirmemail_subject'      => 'Konfirmasi alamat e-mail {{SITENAME}}',
+'confirmemail_body'         => 'Sawijining wong, mbokmenawa panjenengan dhéwé, saka alamat IP $1, wis ndaftaraké akun "$2" mawa alamat e-mail iki ing {{SITENAME}}. Bukaka pranala iki ing panjlajah wèb panjenengan.
 
 $3
 
@@ -3181,8 +3216,26 @@ Yèn panjenengan *ora tau* ndaftar akun iki, tutna pranala ing ngisor iki kanggo
 $5
 
 Konfirmasi iki bakal kadaluwarsa ing $4.',
-'confirmemail_invalidated' => 'Pandhedhesan (konfirmasi) alamat e-mail batal',
-'invalidateemail'          => 'Batalna pandhedhesan (konfirmasi) e-mail',
+'confirmemail_body_changed' => 'Sawijining wong, mbokmenawa panjenengan dhéwé, saka alamat IP $1, wis ndaftaraké akun "$2" mawa alamat e-mail iki ing {{SITENAME}}. Bukaka pranala iki ing panjlajah wèb panjenengan.
+
+$3
+
+Yèn panjenengan *ora tau* ndaftar akun iki, tutna pranala ing ngisor iki kanggo mbatalaké konfirmasi alamat e-mail:
+
+$5
+
+Konfirmasi iki bakal kadaluwarsa ing $4.',
+'confirmemail_body_set'     => 'Sawijining wong, mbokmenawa panjenengan dhéwé, saka alamat IP $1, wis ndaftaraké akun "$2" mawa alamat e-mail iki ing {{SITENAME}}. Bukaka pranala iki ing panjlajah wèb panjenengan.
+
+$3
+
+Yèn panjenengan *ora tau* ndaftar akun iki, tutna pranala ing ngisor iki kanggo mbatalaké konfirmasi alamat e-mail:
+
+$5
+
+Konfirmasi iki bakal kadaluwarsa ing $4.',
+'confirmemail_invalidated'  => 'Pandhedhesan (konfirmasi) alamat e-mail batal',
+'invalidateemail'           => 'Batalna pandhedhesan (konfirmasi) e-mail',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Transklusi cithakan interwiki dipatèni]',
@@ -3296,6 +3349,11 @@ Panjenengan uga bisa [[Special:EditWatchlist|nganggo éditor standar panjenengan
 'version-license'               => 'Lisènsi',
 'version-poweredby-credits'     => "Wiki iki disengkuyung déning '''[//www.mediawiki.org/ MediaWiki]''', hak cipta © 2001-$1 $2.",
 'version-poweredby-others'      => '[{{SERVER}}{{SCRIPTPATH}}/KRÈDIT liyané]',
+'version-license-info'          => 'MediaWiki adalah perangkat lunak bebas; Anda diperbolehkan untuk mendistribusikan dan/atau memodfikasinya dengan persyaratan Lisensi Publik Umum GNU yang diterbitkan oleh Free Software Foundation; versi 2 atau terbaru.
+
+MediaWiki didistribusikan dengan harapan dapat digunakan, tetapi TANPA JAMINAN APA PUN; tanpa jaminan PERDAGANGAN atau KECOCOKAN UNTUK TUJUAN TERTENTU. Lihat Lisensi Publik Umum GNU untuk informasi lebih lanjut.
+
+Anda seharusnya telah menerima [{{SERVER}}{{SCRIPTPATH}}/COPYING salinan Lisensi Publik Umum GNU] bersama dengan program ini; jika tidak, kirim surat ke Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA atau [//www.gnu.org/licenses/old-licenses/gpl-2.0.html baca daring].',
 'version-software'              => "''Software'' wis diinstalasi",
 'version-software-product'      => 'Prodhuk',
 'version-software-version'      => 'Vèrsi',

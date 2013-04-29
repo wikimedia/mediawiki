@@ -858,7 +858,7 @@ Informacion: (curt) = quiíxde vercion currentua,
 'listusers-submit'   => 'Cohuatlöx',
 'listusers-noresult' => 'Necoccebj caitóm.',
 
-# E-mail user
+# Email user
 'mailnologin'     => 'Nenadressade iitom',
 'mailnologintext' => 'Zo coccebj Neces [[Special:UserLogin|caápo]]
 ö coccebjöx adressade e-iitom validom [[Special:Preferences|mequáatlaác]]

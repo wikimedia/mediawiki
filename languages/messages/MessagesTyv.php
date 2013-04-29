@@ -376,7 +376,7 @@ Do not forget to change your [[Special:Preferences|{{SITENAME}} preferences]].',
 'login-abort-generic'      => 'Системаже таптыг эвес кирип тур силер',
 'loginlanguagelabel'       => 'Дыл: $1',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'PHP-ниң mail() ажыл-чорудулгазында билбес алдаг бар.',
 
 # Change password dialog
@@ -452,6 +452,12 @@ Do not forget to change your [[Special:Preferences|{{SITENAME}} preferences]].',
 
 The password for this new account can be changed on the ''[[Special:ChangePassword|change password]]'' page upon logging in.",
 'newarticle'                       => '(Чаа)',
+'newarticletext'                   => 'Амдыызында чаяатынмаан арынче шөлүглеп шилчий бердиңер.
+Ону чаяарда адакы көзенекке сөзүглелден таналап киириңер ([[{{MediaWiki:Helppage}}|тайылбыр арынын]] тода көрүңер).. 
+Маңаа алдаг аайы-биле шилчий берген болзуңарза, браузериңерниң "дедир"  деп таназын базыптыңар.',
+'noarticletext'                    => "Амдыызында ук арында сөзүглел чок.
+Ол дилеп турар [[Special:Search/{{PAGENAME}}|арыныңар дугайында өске чүүлдерге бижээнин тып аап]] болур силер,
+<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} журналдар аразынга айытканын көрүп болур силер] азы '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} шак ындыг аттыг арын чаяап болур силер]'''</span>.,",
 'userpage-userdoesnotexist'        => '«<nowiki>$1</nowiki>» деп ажыглакчы is not registered.
 Please check if you want to create/edit this page.',
 'userpage-userdoesnotexist-view'   => '«$1» деп ажыглакчы not registered.',
@@ -468,6 +474,10 @@ Please check if you want to create/edit this page.',
 'template-semiprotected'           => '(четпес камгалаан)',
 'hiddencategories'                 => 'Бо арын {{PLURAL:$1|$1 чажыт бөлүкке}} хамааржыр:',
 'permissionserrorstext-withaction' => "Мында «'''$2'''» силерниң эргеңер чок, {{PLURAL:$1|чылдагааны|чылдагааннары}}:",
+'recreate-moveddeleted-warn'       => "'''Кичээңейлиг. Ооң мурнунда казыттынган арынны катап тургузар деп тур Силер.'''
+
+Ол арынны катап тургузары шынап-ла чугула бе, боданыңар.
+Бо адаанда ол арынның казыышкыннар болгаш өскээр адалгалар журналдарын көргүскен.",
 'moveddeleted-notice'              => 'Бо арын ап каавыткан.
 Адаанда ап каавыткан биле өскээр адаан бижиктер шынзылгазын көргүскен.',
 
@@ -494,6 +504,8 @@ Please check if you want to create/edit this page.',
 'last'                   => 'эрткен',
 'page_first'             => 'бирги',
 'page_last'              => 'сөөлгү',
+'histlegend'             => "Версиялар шилиири: деңнээр дээн арыныңар версияларын имнеңеш, бээр базыптыңар '''{{int:compare-submit}}'''.<br />
+Тайылбыр: '''({{int:cur}})''' — амгы версиядан ылгавыр; '''({{int:last}})''' — эрткен версиядан ылгавыр;  '''{{int:minoreditletter}}''' — биче өскерилгелер.",
 'history-fieldset-title' => 'Каралаары төөгүзү',
 'history-show-deleted'   => 'Чүгле казыттынган',
 'histfirst'              => 'Эң эрте',
@@ -912,7 +924,7 @@ It must not be more than $1 {{PLURAL:$1|character|characters}} long.',
 'listgrouprights-group'   => 'Бөлүк кижилер',
 'listgrouprights-members' => '(кежигүннүң даңзызы)',
 
-# E-mail user
+# Email user
 'emailuser'           => 'Бо ажыглакчыга э-чагааны чорудаары',
 'defemailsubject'     => '{{grammar:ablative|{{SITENAME}}}} э-чагаа',
 'emailusernamesubmit' => 'Күүcедири',
@@ -923,7 +935,7 @@ It must not be more than $1 {{PLURAL:$1|character|characters}} long.',
 'emailsend'           => 'Чорудары',
 
 # Watchlist
-'watchlist'         => 'Мээң хайгаарал даңзым',
+'watchlist'         => 'Хайгаарал даңзызы',
 'mywatchlist'       => 'Хайгаарал даңзы',
 'watchlistfor2'     => '$1, силерге $2',
 'nowatchlist'       => 'Силерниң хайгаарал даңзыңар куруг.',
@@ -1319,6 +1331,16 @@ It must not be more than $1 {{PLURAL:$1|character|characters}} long.',
 
 # Special:BlankPage
 'blankpage' => 'Куруг арын',
+
+# External image whitelist
+'external_image_whitelist' => ' #Бо одуругну ол-ла хевээр арттырыңар<pre>
+#Турум илередиглер (регулярные выражения) фрагментилерин маңаа салыңар (// аразынга турар кезээн)
+#Даштыкы чурумалдар URL-биле олар холбаашкан болур.
+#Дужа бергеннери чурумалдар кылдыр көстүп келир, артканнары чурумалдарже шөлүг кылдыр көстүр.
+# "#" деп демдектен эгелээн одуругларны саналдар кылдыр билдинер.
+#Одуруглар регистрге кунук эвес (билинмес)
+
+#Турум илередиглер фрагментилерин бо одуругнуң кырынга салыңар. А бо одуругну олчаан хевээр арттырыңар</pre>',
 
 # Special:Tags
 'tag-filter'        => '[[Special:Tags|демдек]] шүүрү:',

@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Audriusa
  * @author Auwris
  * @author Break Through Pain
  * @author Dark Eagle
@@ -336,7 +337,7 @@ $messages = array(
 'vector-action-protect'          => 'Užrakinti',
 'vector-action-undelete'         => 'Atkurti',
 'vector-action-unprotect'        => 'Keisti apsaugą',
-'vector-simplesearch-preference' => 'Įjungti išplėstinius paieškos pasiūlymus (tik „Vector“ išvaizda)',
+'vector-simplesearch-preference' => 'Supaprastinta paieška (tik „Vector“ išvaizda)',
 'vector-view-create'             => 'Kurti',
 'vector-view-edit'               => 'Redaguoti',
 'vector-view-history'            => 'Istorija',
@@ -493,9 +494,9 @@ Egzistuojančių specialiųjų puslapių sąrašą galite rasti [[Special:Specia
 # General errors
 'error'                => 'Klaida',
 'databaseerror'        => 'Duomenų bazės klaida',
-'dberrortext'          => 'Įvyko duomenų bazės užklausos sintaksės klaida.
-Tai gali reikšti klaidą programinėje įrangoje.
-Paskutinė mėginta duomenų bazės užklausa buvo:
+'dberrortext'          => 'Neteisinga duomenų bazės užklausos sintaksė.
+Galima klaida programinėje įrangoje.
+Paskutinė mėginta užklausa:
 <blockquote><tt>$1</tt></blockquote>
 iš funkcijos: „<tt>$2</tt>“.
 Duomenų bazė grąžino klaidą „<tt>$3: $4</tt>“.',
@@ -643,6 +644,7 @@ Prašome prisijungti vėl, kai jūs jį gausite.',
 'eauthentsent'               => 'Patvirtinimo laiškas buvo nusiųstas į paskirtąjį el. pašto adresą.
 Prieš išsiunčiant kitą laišką į jūsų dėžutę, jūs turite vykdyti nurodymus laiške, kad patvirtintumėte, kad dėžutė tikrai yra jūsų.',
 'throttled-mailpassword'     => 'Slaptažodžio priminimas jau buvo išsiųstas, per {{PLURAL:$1|$1 paskutinę valandą|$1 paskutines valandas|$1 paskutinių valandų}}.
+
 Norint apsisaugoti nuo piktnaudžiavimo, slaptažodžio priminimas gali būti išsiųstas tik kas {{PLURAL:$1|$1 valandą|$1 valandas|$1 valandų}}.',
 'mailerror'                  => 'Klaida siunčiant paštą: $1',
 'acct_creation_throttle_hit' => 'Šio projekto lankytojai, naudojantys jūsų IP adresą, sukūrė {{PLURAL:$1|$1 paskyrą|$1 paskyras|$1 paskyrų}} per paskutiniąją dieną, o tai yra didžiausias leidžiamas kiekis per šį laiko tarpą.
@@ -669,7 +671,7 @@ Palaukite prieš bandant vėl.',
 'loginlanguagelabel'         => 'Kalba: $1',
 'suspicious-userlogout'      => 'Jūsų prašymas atsijungti buvo atmestas, nes, atrodo, jį klaidingai išsiuntė naršyklė arba spartinantysis tarpinis serveris.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Nežinoma klaida PHP mail() funkcijoje',
 'user-mail-no-addy'      => 'Bandyta išsiųsti elektroninį laišką be el. pašto adreso.',
 
@@ -693,7 +695,7 @@ Jūs galbūt jau sėkmingai pakeitėte savo slaptažodį ar gavote naują laikin
 
 # Special:PasswordReset
 'passwordreset'                    => 'Atstatyti slaptažodį',
-'passwordreset-text'               => 'Užpildykite šią formą, norėdami gauti el priminimas jūsų sąskaitos informaciją.',
+'passwordreset-text'               => 'Užpildykite šią formą, norėdami atkurti savo slaptažodį.',
 'passwordreset-legend'             => 'Atstatyti slaptažodį',
 'passwordreset-disabled'           => 'Slaptažodžių atstatymai šiame wikyje išjungti.',
 'passwordreset-pretext'            => '{{PLURAL:$1| | Langelyje parašykite vieną duomenų vienetų žemiau}}',
@@ -703,8 +705,15 @@ Jūs galbūt jau sėkmingai pakeitėte savo slaptažodį ar gavote naują laikin
 'passwordreset-capture-help'       => 'Jei jūs čia pažymėsite, tai e-mail laiškas (su laikinuoju slaptažodžiu) bus parodytas jums prieš išsiunčiant jį naudotojui.',
 'passwordreset-email'              => 'E-pašto adresas:',
 'passwordreset-emailtitle'         => 'Paskyros informacija apie {{sitename}}',
-'passwordreset-emailtext-ip'       => 'Kažkas (tikriausiai jūs, IP adresu $1 ) paprašė informacijos priminimas jūsų! N! sąskaitą {{sitename}} ( $4 ). Šis vartotojas {{PLURAL:$3| sąskaita | sąskaitas}} N!! N!, susijusių su šiuo e-pašto adresą!: N!! $2 ! N! N! {{PLURAL:$3| Šis laikinas slaptažodis | Šie laikini slaptažodžiai}} baigsis {{PLURAL:$5| vieną dieną | $5 dienų}} slaptažodis.! N! Jūs turėtumėte prisijungti ir pasirinkti naują. Jei kažkas padarė tai! N! prašymu, arba jūs prisiminėte savo pirminį slaptažodį, ir jums nebereikia! N! nori ją pakeisti, galite ignoruoti šį pranešimą ir toliau naudotis savo senuoju! N! slaptažodį.',
-'passwordreset-emailtext-user'     => 'Vartotojo $1 d. {{sitename}} prašoma informacija priminimas jūsų sąskaitos {{sitename}}! N! ( $4 ). Šis vartotojas {{PLURAL:$3| sąskaita | sąskaitas}}, susijusių su šiuo e-pašto adresą:! N! N! $2 ! N! N! {{PLURAL:$3| Šis laikinas slaptažodis | Šie laikini slaptažodžiai }} baigsis {{PLURAL:$5| vieną dieną | $5 dienų}} slaptažodis.! N! Jūs turėtumėte prisijungti ir pasirinkti naują. Jei kažkas padarė tai! N! prašymu, arba jūs prisiminėte savo pirminį slaptažodį, ir jums nebereikia! N! nori ją pakeisti, galite ignoruoti šį pranešimą ir toliau naudotis savo senuoju! N! slaptažodį.',
+'passwordreset-emailtext-ip'       => 'Kažkas (tikriausiai jūs, IP adresu $1) paprašė priminti jūsų slaptažodį svetainėje {{SITENAME}} ($4). Šio naudotojo {PLURAL:$3|paskyra|paskyros}} yra susietos su šiuo elektroninio pašto adresu $2
+
+{{PLURAL:$3|Šis laikinas slaptažodis |Šie laikini slaptažodžiai}} baigsis po {{PLURAL:$5|vienos dienos| $5 dienų}}. 
+
+Jūs turėtumėte prisijungti ir pasirinkti naują slaptažodį. Jei kažkas kitas padarė šį prašymą arba jūs prisiminėte savo pirminį slaptažodį, ir jums nebereikia jo pakeisti, galite ignoruoti šį pranešimą ir toliau naudotis savo senuoju slaptažodžiu.',
+'passwordreset-emailtext-user'     => 'Naudotojas $1 svetainėje {{SITENAME}} sukūrė užklausą slaptažodžio priminimui svetainėje {{SITENAME}}
+($4). Šio naudotojo {{PLURAL:$3|paskyra|paskyros}} susieto su šiuo elektroniniu paštu $2. 
+
+{{PLURAL:$3|Šis laikinas slaptažodis|Šie laikini slaptažodžiai}} baigs galioti po {{PLURAL:$5|vienos dienos|$5 dienų}}. Jūs turėtumėte prisijungti ir pasirinkti naują slaptažodį. Jei kažkas padarė tai be jūsų žinios arba jūs prisiminėte savo pirminį slaptažodį, ir jūs nebenorite jo pakeisti, galite ignoruoti šį pranešimą ir toliau naudotis savo senuoju slaptažodžiu.',
 'passwordreset-emailelement'       => 'Naudotojo vardas: $1
 Laikinas slaptažodis: $2',
 'passwordreset-emailsent'          => 'Priminimo laiškas buvo išsiųstas.',
@@ -1062,7 +1071,8 @@ Prašome patikrinti sąrašus.',
 'revdelete-only-restricted'   => 'Klaida slepiant $1 $2 elementą: jūs negalite paslėpti elementų nuo administratorių peržiūros nepasirenkant vieno iš kitų matomumo nustatymų.',
 'revdelete-reason-dropdown'   => '*Dažnos trynimo priežastys
 ** Autorinių teisių pažeidimas
-** Netinkama asmeninė informacija
+** Netinkamas komentaras ar asmeninė informacija
+** Netinkamas naudotojo vardas
 ** Informacija, kuri gali būti šmeižikiška',
 'revdelete-otherreason'       => 'Kita/papildoma priežastis:',
 'revdelete-reasonotherlist'   => 'Kita priežastis',
@@ -1305,7 +1315,7 @@ Jei jūs jį įvesite, jis bus naudojamas pažymėti jūsų darbą.',
 'prefs-displaywatchlist'        => 'Rodymo nuostatos',
 'prefs-diffs'                   => 'Skirtumai',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid'   => 'Panašu, kad E-pašto adresas yra teisingas',
 'email-address-validity-invalid' => 'Įveskite korektišką e-pašto adresą',
 
@@ -2044,7 +2054,7 @@ Palaikomi protokolai: <code>$1</code> (nei vieno iš jų nenurodykite paieškoje
 'listgrouprights-addgroup-self-all'    => 'Priskirti visas grupes prie paskyros',
 'listgrouprights-removegroup-self-all' => 'Pašalinti visas grupes iš savo paskyros',
 
-# E-mail user
+# Email user
 'mailnologin'          => 'Nėra adreso',
 'mailnologintext'      => 'Jums reikia būti [[Special:UserLogin|prisijungusiam]] ir turi būti įvestas teisingas el. pašto adresas jūsų [[Special:Preferences|nustatymuose]], kad siųstumėte el. laiškus kitiems nautotojams.',
 'emailuser'            => 'Rašyti laišką šiam naudotojui',
@@ -3377,7 +3387,7 @@ Visos kitos nuorodos toje pačioje eilutėje yra laikomos išimtimis, t. y. pusl
 'monthsall'     => 'visi',
 'limitall'      => 'visi',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail'              => 'Patvirtinkite el. pašto adresą',
 'confirmemail_noemail'      => 'Jūs neturite nurodę teisingo el. pašto adreso [[Special:Preferences|savo nustatymuose]].',
 'confirmemail_text'         => 'Šiame projekte būtina patvirtinti el. pašto adresą prieš naudojant el. pašto funkcijas. Spustelkite žemiau esantį mygtuką,

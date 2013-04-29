@@ -498,7 +498,7 @@ $messages = array(
 # Special:ListGroupRights
 'listgrouprights-members' => '(уджкериссезлöн нимлёдз)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Этiя ужкерисьлö гижöт',
 'emailfrom' => 'Кинсянь:',
 'emailto'   => 'Кинлö:',

@@ -654,7 +654,7 @@ Des autres administrateurs sus ce wiki ont la permission de voir et de rétablir
 # Special:Categories
 'categories' => 'Classes',
 
-# E-mail user
+# Email user
 'emailuser' => 'E-mail cet useur',
 
 # Watchlist

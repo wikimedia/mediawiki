@@ -495,7 +495,7 @@ Coby powstřimać nadužyća, možliwość wysyuańa připůmńeń naštalowano 
 'loginlanguagelabel'         => 'Godka: $1',
 'suspicious-userlogout'      => 'Żądanie wylogowania zostało odrzucone ponieważ wygląda na to, że zostało wysłane przez uszkodzoną przeglądarkę lub buforujący serwer proxy.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Ńyznany feler we funkcyji mail()',
 'user-mail-no-addy'      => 'Próba wysłania e‐maila bez adresu odbiorcy',
 
@@ -1608,7 +1608,7 @@ Sprowdź zajta [[{{MediaWiki:Listgrouprights-helppage}}|s dodatkowymi informacja
 'listgrouprights-removegroup-all' => 'Idźe wyćepać s wszyjstkich grup',
 'listgrouprights-addgroup-self'   => 'Je mogebny dać swe konto do {{PLURAL:$2|grupy|grup:}} $1',
 
-# E-mail user
+# Email user
 'mailnologin'         => 'Brak adresu',
 'mailnologintext'     => 'Muśyš śe [[Special:UserLogin|zalůgować]] i mjeć wpisany aktualny adres e-brif w swojich [[Special:Preferences|preferyncyjach]], coby můc wysuać e-brif do inkšygo užytkowńika.',
 'emailuser'           => 'Poślij tymu używoczowi e-brif',
@@ -2611,7 +2611,7 @@ Eli plik był modyfikowany, dane mogům w tajli ńy być we zgodźe ze parametr�
 'namespacesall' => 'wszyjske',
 'monthsall'     => 'wšyskie',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail'             => 'Potwjerdź adres e-brif',
 'confirmemail_noemail'     => 'Ńy podoužeś prawiduowygo adresa e-brifa we [[Special:Preferences|preferencyjach]].',
 'confirmemail_text'        => 'Projekt {{SITENAME}} wymago weryfikacyji adresa e-brif před užyćym fůnkcyji kořistajůncych s počty.

@@ -623,7 +623,7 @@ $2',
 'loginlanguagelabel'         => 'Кяль: $1',
 'suspicious-userlogout'      => 'Вешфксце лисемс кардафоль сяс мес няеви тянь кучезь колаф интернетс вятиень эли ётка ёкамань сервер вельде.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Аф содаф эльбятькс PHP сёрмавятемань функциеса.',
 'user-mail-no-addy'      => 'Тяряфтыхть кучемс е-сёрма е-паргафтома',
 
@@ -1677,7 +1677,7 @@ $3 макссь туфталсь - ''$2''",
 'listgrouprights-addgroup-all'    => 'Ули кода поладомс сембе полгатне',
 'listgrouprights-removegroup-all' => 'Ули кода сембе полгатне валхтомс',
 
-# E-mail user
+# Email user
 'mailnologin'      => 'Аш кучема адрес',
 'mailnologintext'  => 'Тондейть эряви [[Special:UserLogin|сувамс]]
 ди эряви кондясти электрононь адресце тонь [[Special:Preferences|арафнемасот]] иля тиихненди электрононь сёрмат кучемаснонды.',
@@ -2684,7 +2684,7 @@ $1',
 'namespacesall' => 'сембе',
 'monthsall'     => 'сембе',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail'             => 'Кемостамс электрононь адресть',
 'confirmemail_noemail'     => 'Тонь аш кондясти электрононь адрес тяштьф тонь [[Special:Preferences|тиить арафнематнень]] эса.',
 'confirmemail_text'        => '{{SITENAME}} веши тонь электрононь адресцень кемокстамац электрононь адресть арафнематнень тевс нолдамада инголе.

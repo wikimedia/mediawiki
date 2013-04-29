@@ -20,6 +20,7 @@
  * @author Nayvik
  * @author Nk rahul14
  * @author Omshivaprakash
+ * @author Prashwiki
  * @author Shankar
  * @author Shushruth
  * @author Teju2friends
@@ -429,11 +430,15 @@ MySQL ಹಿಂದಿರುಗಿಸಿದ ದೋಷ "$3: $4"',
 'cascadeprotected'     => 'ಈ ಪುಟವು ಸಂಪಾದನೆ ಮಾಡಲಾಗದಂತೆ ಸಂರಕ್ಷಿಸಲಾಗಿದೆ. ಇದಕ್ಕೆ ಕಾರಣ ಈ ಪುಟವನ್ನು ಈ ಕೆಳಗಿನ ತಡಸಲು-ಸಂರಕ್ಷಣೆ ಅಳವಡಿಸಲಾದ {{PLURAL:$1|ಪುಟದಲ್ಲಿ|ಪುಟಗಳಲ್ಲಿ}} ಉಪಯೋಗಿಸಲಾಗಿದೆ:
 $2',
 'namespaceprotected'   => "ನಿಮಗೆ '''$1''' ಪುಟಪ್ರಬೇಧಕ್ಕೆ ಸೇರಿರುವ ಪುಟಗಳನ್ನು ಸಂಪಾದಿಸುವ ಅನುಮತಿ ಇಲ್ಲ.",
+'customcssprotected'   => 'ಈ ಸಿಎಸ್ಎಸ್ ಪುಟವನ್ನು ಸಂಪಾದಿಸಲು ಈ ಪುಟವು ಇನ್ನೊಬ್ಬ ಬಳಕೆದಾರನ ವಯುಕ್ತಿಕ ವ್ಯವಸ್ಥೆಯನ್ನು ಹೊಂದಿರುವುದರಿಂದ ಅನುಮತಿ ಇಲ್ಲ',
+'customjsprotected'    => 'ಈ ಜಾವಾ ಸ್ಕ್ರಿಪ್ಟ್ ಪುಟವನ್ನು ಸಂಪಾದಿಸಲು ಈ ಪುಟವು ಇನ್ನೊಬ್ಬ ಬಳಕೆದಾರನ ವಯುಕ್ತಿಕ ವ್ಯವಸ್ಥೆಯನ್ನು ಹೊಂದಿರುವುದರಿಂದ ಅನುಮತಿ ಇಲ್ಲ',
 'ns-specialprotected'  => 'ವಿಶೇಷ ಪುಟಗಳನ್ನು ಸಂಪಾದಿಸಲು ಆಗುವುದಿಲ್ಲ.',
 'titleprotected'       => "ಈ ಹೆಸರಿನ ಪುಟವನ್ನು ಸೃಷ್ಟಿಸಲಾಗದಂತೆ [[User:$1|$1]] ಅವರು ಸಂರಕ್ಷಿಸಿದ್ದಾರೆ.
 ಸಂರಕ್ಷಣೆಗೆ ನೀಡಿರುವ ಕಾರಣ: ''$2''.",
 
 # Virus scanner
+'virus-badscanner'     => "ಅಸಮಂಜಸ ವಿನ್ಯಾಸ:ಅಪರಿಚಿತ ವೈರಸ್ ಸ್ಕಾನರ್:''$1''",
+'virus-scanfailed'     => 'ಸ್ಕಾನ್ ವಿಫಲ (code $1)',
 'virus-unknownscanner' => 'ಅಪರಿಚಿತ ವೈರಾಣುನಾಶಕ:',
 
 # Login and logout pages
@@ -448,6 +453,8 @@ $2',
 'yourpassword'               => 'ನಿಮ್ಮ ಪ್ರವೇಶಪದ',
 'yourpasswordagain'          => 'ಪ್ರವೇಶ ಪದ ಮತ್ತೊಮ್ಮೆ ಟೈಪ್ ಮಾಡಿ',
 'remembermypassword'         => 'ಈ ಗಣಕಯಂತ್ರದಲ್ಲಿ ನನ್ನ ಲಾಗಿನ್ ನೆನಪಿನಲ್ಲಿಟ್ಟುಕೊ (ಗರಿಷ್ಠ $1 {{PLURAL:$1|ದಿನದ|ದಿನಗಳ}}ವರೆಗೆ)',
+'securelogin-stick-https'    => 'ಲಾಗಿನ್ ಆದ ಬಳಿಕ HTTPS ನ ಸಂಪರ್ಕದಲ್ಲಿರಿ.',
+'yourdomainname'             => 'ನಿಮ್ಮ ಕ್ಷೇತ್ರ:',
 'login'                      => 'ಲಾಗ್ ಇನ್',
 'nav-login-createaccount'    => 'ಲಾಗ್ ಇನ್ - log in',
 'loginprompt'                => '{{SITENAME}} ತಾಣಕ್ಕೆ ಲಾಗ್ ಇನ್ ಆಗಲು ನಿಮ್ಮ ಗಣಕಯಂತ್ರದಲ್ಲಿ ಕುಕೀ (cookie) ಸೌಲಭ್ಯವಿರಬೇಕು.',
@@ -1446,7 +1453,7 @@ $2',
 'listgrouprights-members'      => '(ಸದಸ್ಯರ ಪಟ್ಟಿ)',
 'listgrouprights-addgroup-all' => 'ಎಲ್ಲಾ ಗುಂಪುಗಳನ್ನು ಸೇರಿಸಿ',
 
-# E-mail user
+# Email user
 'mailnologin'     => 'ಕಳುಹಿಸುವ ವಿಳಾಸ ಇಲ್ಲ',
 'mailnologintext' => 'ಇತರ ಬಳಕೆದಾರರಿಗೆ ಇ-ಅಂಚೆ ಕಳುಹಿಸಲು ನೀವು [[Special:UserLogin|ಲಾಗ್ ಇನ್]] ಆಗಿರಬೇಕು ಮತ್ತು ನಿಮ್ಮ [[Special:Preferences|ಪ್ರಾಶಸ್ತ್ಯಗಳ ಪುಟದಲ್ಲಿ]] ಒಂದು ಧೃಡೀಕೃತ ಇ-ಅಂಚೆ ವಿಳಾಸ ನೀಡಿರಬೇಕು.',
 'emailuser'       => 'ಈ ಸದಸ್ಯರಿಗೆ ಇ-ಅಂಚೆ ಕಳಿಸಿ',
@@ -1639,7 +1646,7 @@ $2',
 'whatlinkshere-hideredirs' => '$1 ಪುನರ್ನಿರ್ದೇಶನಗಳು',
 'whatlinkshere-hidetrans'  => '$1 ಸೇರಿಸುವಿಕೆಗಳು',
 'whatlinkshere-hidelinks'  => '$1 ಕೊಂಡಿಗಳು',
-'whatlinkshere-hideimages' => '$1 ಚಿತ್ರ ಕೊಂಡಿಗಳು',
+'whatlinkshere-hideimages' => '$1 ಚಿತ್ರದ ಕೊಂಡಿಗಳು',
 'whatlinkshere-filters'    => 'ಶೋಧಕಗಳು',
 
 # Block/unblock
@@ -2032,7 +2039,7 @@ $1',
 'monthsall'     => 'ಎಲ್ಲಾ',
 'limitall'      => 'ಎಲ್ಲಾ',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail'             => 'ಇ-ಅಂಚೆ ವಿಳಾಸವನ್ನು ಖಾತ್ರಿ ಮಾಡಿ',
 'confirmemail_noemail'     => 'ನಿಮ್ಮ [[Special:Preferences|ಬಳಕೆದಾರ ಪ್ರಾಶಸ್ತ್ಯಗಳಲ್ಲಿ]] ಸರಿಯಾದ ಇ-ಅಂಚೆ ವಿಳಾಸವಿಲ್ಲ.',
 'confirmemail_pending'     => 'ನಿಮಗೆ ಧೃಡೀಕರಣ ಕೋಡ್ ಒಂದನ್ನು ಆಗಲೆ ಇ-ಅಂಚೆಯ ಮೂಲಕ ಕಳುಹಿಸಲಾಗಿದೆ;

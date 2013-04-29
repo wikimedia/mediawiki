@@ -612,7 +612,7 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 'newuserlogpage'     => 'Brugeråprettelseslog',
 'newuserlogpagetext' => "Dett'er en log åver de senest åprettede brugere.",
 
-# E-mail user
+# Email user
 'emailuser' => 'E-mail til denne bruger',
 
 # Watchlist

@@ -606,7 +606,7 @@ Pa pòte atansyon pou mesaj sa si kont sa kreye pa erè.',
 'loginlanguagelabel'         => 'Lang : $1',
 'suspicious-userlogout'      => 'Demand ou te fè pou dekonekte w te refize paske sanble li te voye pa yon navigatè ki fè erè oubyen li soti nan yon proksi pou kach.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Erè nou pa konnen nan fonksyon mail() PHP a.',
 
 # Change password dialog
@@ -1110,7 +1110,7 @@ Gade tou [[Special:WantedCategories|kategori moun mande]].',
 # Special:ListGroupRights
 'listgrouprights-members' => '(lis manm yo)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Voye yon mesaj (imèl) pou itilizatè sa a',
 
 # Watchlist

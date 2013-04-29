@@ -11,12 +11,14 @@
  * @author Airon90
  * @author Amikeco
  * @author Amire80
+ * @author Anakmalaysia
  * @author ArnoLagrange
  * @author Blahma
  * @author Castelobranco
  * @author Iketsi
  * @author Jens Liebenau
  * @author Kaganer
+ * @author KuboF
  * @author Lucas
  * @author LyzTyphone
  * @author Malafaya
@@ -469,7 +471,7 @@ $messages = array(
 'vector-action-move'             => 'Alinomigi',
 'vector-action-protect'          => 'Protekti',
 'vector-action-undelete'         => 'Malforigi',
-'vector-action-unprotect'        => 'Ŝanĝi protekadon',
+'vector-action-unprotect'        => 'Ŝanĝi protektadon',
 'vector-simplesearch-preference' => 'Ebligi simpligitan serĉan strion (nur Vektora etoso)',
 'vector-view-create'             => 'Krei',
 'vector-view-edit'               => 'Redakti',
@@ -804,7 +806,7 @@ Bonvolu ĝisatendi antaŭ retrovi.',
 'loginlanguagelabel'         => 'Lingvo: $1',
 'suspicious-userlogout'      => 'Via peto por elsaluti estis malpermesita ĉar verŝajne ĝi estis sendita de trompita retumilo aŭ kaŝiganta proksima servilo.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Nekonata eraro en la funkcio mail() de PHP',
 'user-mail-no-addy'      => 'Provis sendi retpoŝton sen retpoŝtadreso.',
 
@@ -828,7 +830,7 @@ Vi eble jam ŝanĝis vian pasvorton aŭ petis novan provizoran pasvorton.',
 
 # Special:PasswordReset
 'passwordreset'                    => 'Restarigo de pasvorto',
-'passwordreset-text'               => 'Plenumigu ĉi tiun formularon por ricevi retpoŝtan memoraĵon de viaj kontaj detaloj.',
+'passwordreset-text'               => 'Plenigu ĉi tiun formularon por renovigi vian pasvorton.',
 'passwordreset-legend'             => 'Refari pasvorton',
 'passwordreset-disabled'           => 'Pasvortaj restarigoj estis malŝaltitaj en ĉi tiu vikio.',
 'passwordreset-pretext'            => '{{PLURAL:$1||Enigi unu el la jenaj datenoj}}',
@@ -860,8 +862,8 @@ aŭ se vi memoris vian originalan pasvorton, kaj vi ne plu volas ŝanĝi
 ĝin, vi povas ignori ĉi tiun mesaĝon kaj uzi vian malnovan pasvorton.',
 'passwordreset-emailelement'       => 'Salutnomo: $1
 Provizora pasvorto: $2',
-'passwordreset-emailsent'          => 'Rememoriga retpoŝto estis sendita.',
-'passwordreset-emailsent-capture'  => 'Memoriga retpoŝto estis sendita, kiu estas montrata sube.',
+'passwordreset-emailsent'          => 'Renovigita pasvorto estis retpoŝte sendita.',
+'passwordreset-emailsent-capture'  => 'Retpoŝto kun renovigita pasvorto estis sendita, kiu estas montrata sube.',
 'passwordreset-emailerror-capture' => 'Memoriga retpoŝto estis generita, montrata sube, sed sendado al uzanto malsukcesis: $1',
 
 # Special:ChangeEmail
@@ -905,7 +907,8 @@ Provizora pasvorto: $2',
 'showpreview'                      => 'Antaŭrigardo',
 'showlivepreview'                  => 'Aktiva antaŭvido',
 'showdiff'                         => 'Montri ŝanĝojn',
-'anoneditwarning'                  => 'Vi ne estas ensalutinta. Via IP-adreso enregistriĝos en la ŝango-historio de tiu ĉi paĝo.',
+'anoneditwarning'                  => "'''Averto:''' Vi ne estas ensalutinta.
+Via IP-adreso enregistriĝos en la redakta historio de tiu ĉi paĝo.",
 'anonpreviewwarning'               => "''Vi ne estas ensalutita. La konservo de la paĝo registros vian IP-adreson en kronologio de ĉi tiu paĝo.''",
 'missingsummary'                   => "'''Rememorigilo:''' Vi ne provizis redaktan resumon. Se vi alklakos denove la konservan butonon, via redaktaĵo estos konservita sen resumo.",
 'missingcommenttext'               => 'Bonvolu entajpi komenton malsupre.',
@@ -1316,7 +1319,7 @@ Certigu ke ĉi tiu ŝanĝo tenos kontinuecon de la historia paĝo.',
 'search-mwsuggest-enabled'         => 'kun sugestoj',
 'search-mwsuggest-disabled'        => 'sen sugestoj',
 'search-relatedarticle'            => 'Relataj',
-'mwsuggest-disable'                => 'Malŝalti AJAX-sugestojn',
+'mwsuggest-disable'                => 'Malŝalti serĉajn sugestojn',
 'searcheverything-enable'          => 'Traserĉi ĉiujn nomspacojn',
 'searchrelated'                    => 'rilataj',
 'searchall'                        => 'ĉiuj',
@@ -1462,7 +1465,7 @@ Jen hazarde generita valoro por via uzo: $1',
 'prefs-displaywatchlist'        => 'Montraj opcioj',
 'prefs-diffs'                   => 'Diferencoj',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid'   => 'Ŝajnas ke la retpoŝtadreso estas valida',
 'email-address-validity-invalid' => 'Tajpu validan retpoŝtadreson',
 
@@ -1641,7 +1644,7 @@ Jen hazarde generita valoro por via uzo: $1',
 'hist'                              => 'historio',
 'hide'                              => 'Kaŝi',
 'show'                              => 'Montri',
-'minoreditletter'                   => 'E',
+'minoreditletter'                   => 'e',
 'newpageletter'                     => 'N',
 'boteditletter'                     => 'R',
 'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|priatentanta uzanto|priatentantaj uzantoj}}]',
@@ -2212,7 +2215,7 @@ Estas [[{{MediaWiki:Listgrouprights-helppage}}|aldona informo]] pri individuaj r
 'listgrouprights-addgroup-self-all'    => 'Povas aldoni ĉiujn grupojn al propra konto',
 'listgrouprights-removegroup-self-all' => 'Povas forigi ĉiujn grupojn de propra konto',
 
-# E-mail user
+# Email user
 'mailnologin'          => 'Neniu alsendota adreso',
 'mailnologintext'      => 'Vi nepre estu [[Special:UserLogin|salutanta]] kaj havanta validan retpoŝtadreson en viaj [[Special:Preferences|preferoj]] por retpoŝti al aliaj uzantoj.',
 'emailuser'            => 'Retpoŝti ĉi tiun uzanton',
@@ -2248,7 +2251,7 @@ La retadreso kiun vi enigis en [[Special:Preferences|viaj preferoj]] aperos kiel
 'usermessage-editor'  => 'Mesaĝanto de sistemo',
 
 # Watchlist
-'watchlist'            => 'Atentaro',
+'watchlist'            => 'Mia atentaro',
 'mywatchlist'          => 'Atentaro',
 'watchlistfor2'        => 'Por $1 $2',
 'nowatchlist'          => 'Vi ne jam elektis priatenti iun ajn paĝon.',
@@ -2400,9 +2403,9 @@ Jen la aktualaj valoroj por la paĝo '''$1''':",
 'protect-cascadeon'           => 'Ĉi paĝo estas nun protektita kontraŭ redaktado ĉar ĝi estas inkluzivita en {{PLURAL:$1|jena paĝo, kiu mem estas protektita|jenaj paĝoj, kiuj mem estas protektitaj}} per kaskada protekto.
 Vi povas ŝanĝi ties protektnivelon, sed tio ne ŝanĝos la kaskadan protekton.',
 'protect-default'             => 'Permesigi ĉiujn uzantojn',
-'protect-fallback'            => 'Rajto "$1" nepras.',
+'protect-fallback'            => 'Permesi nur uzantojn kun la rajto  "$1"',
 'protect-level-autoconfirmed' => 'Bloki novajn kaj neregistritajn uzantojn',
-'protect-level-sysop'         => 'Nur administrantoj',
+'protect-level-sysop'         => 'Permesi nur administrantojn',
 'protect-summary-cascade'     => 'kaskada',
 'protect-expiring'            => 'finiĝas je $1 (UTC)',
 'protect-expiring-local'      => 'eksdatiĝas $1',
@@ -3552,7 +3555,7 @@ Aliaj estos kaŝitaj defaŭlte.
 'monthsall'     => 'ĉiuj',
 'limitall'      => 'ĉiuj',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail'              => 'Konfirmi retadreson',
 'confirmemail_noemail'      => 'Vi ne havas validan retpoŝtan adreson notitan en viaj [[Special:Preferences|Preferoj]].',
 'confirmemail_text'         => 'Ĉi tiu vikio postulas ke vi validigu vian retadreson antaŭ ol uzadi la retmesaĝpreferojn. Bonvolu alklaki la suban butonon por sendi konfirmesaĝon al via adreso. La mesaĝo entenos ligilon kun kodo; bonvolu alŝuti la ligilon en vian foliumilon por konfirmi ke via retadreso validas.',
@@ -3827,7 +3830,7 @@ Bildoj montriĝas en plena distingivo, aliaj dosiertipoj estas malfermataj rekte
 'specialpages-group-highuse'     => 'Plej uzitaj paĝoj',
 'specialpages-group-pages'       => 'Listoj de paĝoj',
 'specialpages-group-pagetools'   => 'Paĝaj iloj',
-'specialpages-group-wiki'        => 'Vikidatenoj kaj iloj',
+'specialpages-group-wiki'        => 'Datenoj kaj iloj',
 'specialpages-group-redirects'   => 'Alidirektantaj specialaj paĝoj',
 'specialpages-group-spam'        => 'Kontraŭspamiloj',
 
@@ -3971,7 +3974,7 @@ Aŭ vi povas uzi la facilan formularon sube. Via komento estos aldonita al la pa
 'api-error-nomodule'                      => 'Interna eraro: ne troveblas alŝuta helpilaro.',
 'api-error-ok-but-empty'                  => 'Interna eraro: nenia respondo de la servilo.',
 'api-error-overwrite'                     => 'Anstataŭigo de ekzistanta dosiero ne permesatas.',
-'api-error-stashfailed'                   => 'Interna eraro: la servilo malsukcesis stoki dumtempan dosieron.',
+'api-error-stashfailed'                   => 'Interna eraro: la servilo malsukcesis stoki provizoran dosieron.',
 'api-error-timeout'                       => 'La servilo ne respondis ene de la antaŭvidita tempo.',
 'api-error-unclassified'                  => 'Okazis nekonata eraro',
 'api-error-unknown-code'                  => 'Nekonata eraro: "$1"',

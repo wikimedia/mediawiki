@@ -251,7 +251,7 @@ pigivuq qatannguti uikipitia kiinaujaqutiqarvik isuillingaitjapaa. iqtuu suqusiq
 # Special:Categories
 'categories' => 'nuapput',
 
-# E-mail user
+# Email user
 'emailfrom'    => 'nakit',
 'emailmessage' => 'kiggapaa',
 'emailsend'    => 'qiutsavigivaa',

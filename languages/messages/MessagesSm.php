@@ -167,7 +167,7 @@ $messages = array(
 # Special:AllPages
 'allpagessubmit' => 'Alu',
 
-# E-mail user
+# Email user
 'emailuser'    => "'Imeli mai le tagata lenei",
 'emailmessage' => "Fe'au",
 

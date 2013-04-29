@@ -11,6 +11,7 @@
  * @author Amqui
  * @author Arkanosis
  * @author Boniface
+ * @author Brunoperel
  * @author Cedric31
  * @author ChrisPtDe
  * @author Coyau
@@ -55,7 +56,9 @@
  * @author Lucyin
  * @author McDutchie
  * @author Meithal
+ * @author Metroitendo
  * @author Moyg
+ * @author Nicolas NALLET
  * @author Nicolas Raoul
  * @author Nnemo
  * @author Od1n
@@ -73,6 +76,7 @@
  * @author Tititou36
  * @author TouzaxA
  * @author Tpt
+ * @author Trizek
  * @author Urhixidur
  * @author VIGNERON
  * @author Verdy p
@@ -376,9 +380,9 @@ $messages = array(
 'tog-underline'               => 'Souligner les liens :',
 'tog-highlightbroken'         => 'Afficher les liens vers les pages inexistantes <a href="" class="new">comme ceci</a> (alternative : comme cela <a href="" class="internal">?</a>)',
 'tog-justify'                 => 'Justifier les paragraphes',
-'tog-hideminor'               => 'Masquer les modifications mineures dans les modifications récentes',
+'tog-hideminor'               => 'Masquer les modifications mineures dans les changements récents',
 'tog-hidepatrolled'           => 'Masquer les modifications surveillées dans les modifications récentes',
-'tog-newpageshidepatrolled'   => 'Masquer les pages surveillées parmi les nouvelles pages',
+'tog-newpageshidepatrolled'   => 'Masquer les pages surveillées parmi la liste des nouvelles pages',
 'tog-extendwatchlist'         => 'Étendre la liste de suivi pour afficher toutes les modifications et pas uniquement les plus récentes',
 'tog-usenewrc'                => 'Grouper les changements dans les modifications récentes et la liste de suivi (nécessite JavaScript)',
 'tog-numberheadings'          => 'Numéroter automatiquement les titres de section',
@@ -485,7 +489,7 @@ $messages = array(
 'dec'           => 'déc',
 
 # Categories related messages
-'pagecategories'                 => 'Catégorie{{PLURAL:$1||s}}',
+'pagecategories'                 => '{{PLURAL:$1|Catégorie|Catégories}}',
 'category_header'                => 'Pages dans la catégorie « $1 »',
 'subcategories'                  => 'Sous-catégories',
 'category-media-header'          => 'Fichiers multimédias dans la catégorie « $1 »',
@@ -535,7 +539,7 @@ $messages = array(
 'vector-simplesearch-preference' => "Activer la barre de recherche simplifiée (seulement pour l'habillage Vector)",
 'vector-view-create'             => 'Créer',
 'vector-view-edit'               => 'Modifier',
-'vector-view-history'            => "Afficher l'historique",
+'vector-view-history'            => 'Afficher l’historique',
 'vector-view-view'               => 'Lire',
 'vector-view-viewsource'         => 'Voir la source',
 'actions'                        => 'Actions',
@@ -778,7 +782,7 @@ N'oubliez pas de personnaliser vos [[Special:Preferences|préférences sur {{SIT
 'yourname'                   => "Nom d'utilisateur :",
 'yourpassword'               => 'Mot de passe&nbsp;:',
 'yourpasswordagain'          => 'Confirmez le mot de passe :',
-'remembermypassword'         => 'Me reconnecter automatiquement aux prochaines visites avec ce navigateur (au maximum $1&nbsp;{{PLURAL:$1|jour|jours}})',
+'remembermypassword'         => 'Me reconnecter automatiquement lors des prochaines visites avec ce navigateur (au maximum $1{{PLURAL:$1|jour|jours}})',
 'securelogin-stick-https'    => 'Rester connecté en HTTPS après la connexion',
 'yourdomainname'             => 'Votre domaine :',
 'externaldberror'            => "Une erreur s'est produite avec la base de données d'authentification externe, ou bien vous n'êtes pas autorisé{{GENDER:||e|(e)}} à mettre à jour votre compte externe.",
@@ -838,7 +842,7 @@ pouvez ignorer ce message et continuer à utiliser votre ancien mot de passe.",
 'blocked-mailpassword'       => 'Votre adresse IP est bloquée en écriture, la fonction de rappel du mot de passe est donc désactivée pour éviter les abus.',
 'eauthentsent'               => "Un courriel de confirmation a été envoyé à l'adresse indiquée.
 Avant qu'un autre courriel ne soit envoyé à ce compte, vous devrez suivre les instructions du courriel et confirmer que le compte est bien le vôtre.",
-'throttled-mailpassword'     => "Un courriel de rappel de votre mot de passe a déjà été envoyé durant {{PLURAL:$1|la dernière heure|les $1 dernières heures}}. Afin d'éviter les abus, un seul courriel de rappel sera envoyé par {{PLURAL:$1|heure|intervalle de $1 heures}}.",
+'throttled-mailpassword'     => "Un courriel de réinitialisation de votre mot de passe a déjà été envoyé durant {{PLURAL:$1|la dernière heure|les $1 dernières heures}}. Afin d'éviter les abus, un seul courriel de réinitialisation de votre mot de passe sera envoyé par {{PLURAL:$1|heure|intervalle de $1 heures}}.",
 'mailerror'                  => "Erreur lors de l'envoi du courriel : $1",
 'acct_creation_throttle_hit' => "Quelqu'un utilisant votre adresse IP a créé {{PLURAL:$1|un compte|$1 comptes}} au cours des dernières 24 heures, ce qui constitue la limite autorisée dans cet intervalle de temps.
 Par conséquent, la création de compte a été temporairement désactivée pour cette adresse IP.",
@@ -863,7 +867,7 @@ Veuillez attendre avant d'essayer à nouveau.",
 'loginlanguagelabel'         => 'Langue : $1',
 'suspicious-userlogout'      => "Votre demande de déconnexion a été refusée car il semble qu'elle a été envoyée par un navigateur cassé ou la mise en cache d'un proxy.",
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Erreur inconnue dans la fonction mail() de PHP.',
 'user-mail-no-addy'      => "Tenté d'envoyer un courriel sans adresse de courriel",
 
@@ -887,7 +891,7 @@ Vous avez peut-être déjà changé votre mot de passe ou demandé un nouveau mo
 
 # Special:PasswordReset
 'passwordreset'                    => 'Remise à zéro du mot de passe',
-'passwordreset-text'               => 'Remplissez ce formulaire pour recevoir un courriel de rappel des détails de votre compte.',
+'passwordreset-text'               => 'Remplissez ce formulaire pour réinitialiser votre mot de passe.',
 'passwordreset-legend'             => 'Remise à zéro du mot de passe',
 'passwordreset-disabled'           => 'La réinitialisation des mots de passe a été désactivée sur ce wiki.',
 'passwordreset-pretext'            => '{{PLURAL:$1||Entrez un élément de données ci-dessous}}',
@@ -897,20 +901,20 @@ Vous avez peut-être déjà changé votre mot de passe ou demandé un nouveau mo
 'passwordreset-capture-help'       => "Si vous cochez cette case, le courriel (avec le mot de passe temporaire) vous sera affiché en même temps qu'il sera envoyé à l'utilisateur.",
 'passwordreset-email'              => 'Adresse de courriel :',
 'passwordreset-emailtitle'         => 'Détails du compte sur {{SITENAME}}',
-'passwordreset-emailtext-ip'       => "Quelqu'un (probablement vous, depuis l'adresse IP $1) a demandé un rappel des informations de votre compte pour {{SITENAME}} ($4). {{PLURAL:$3|Le compte utilisateur suivant est associé|Les comptes utilisateurs suivants sont associés}} à cette adresse de courriel :
+'passwordreset-emailtext-ip'       => "Quelqu'un (probablement vous, depuis l'adresse IP $1) a demandé un réinitialisation de votre mot de passe pour {{SITENAME}} ($4). {{PLURAL:$3|Le compte utilisateur suivant est associé|Les comptes utilisateurs suivants sont associés}} à cette adresse de courriel :
 
 $2
 
 {{PLURAL:$3|Ce mot de passe temporaire expirera|Ces mots de passe temporaires expireront}} dans {{PLURAL:$5|un jour|$5 jours}}. Vous devez maintenant vous connecter et choisir un nouveau mot de passe. Si cette demande ne provient pas de vous, ou que vous vous êtes souvenu de votre mot de passe initial, et ne souhaitez plus le modifier, vous pouvez ignorer ce message et continuer à utiliser votre ancien mot de passe.",
-'passwordreset-emailtext-user'     => "L'utilisateur $1 sur {{SITENAME}} a demandé un rappel des informations de votre compte pour {{SITENAME}} ($4). {{PLURAL:$3|Le compte utilisateur suivant est associé|Les comptes utilisateurs suivants sont associés}} à cette adresse de courriel :
+'passwordreset-emailtext-user'     => "L'utilisateur $1 sur {{SITENAME}} a demandé un réinitialisation de votre mot de passe pour {{SITENAME}} ($4). {{PLURAL:$3|Le compte utilisateur suivant est associé|Les comptes utilisateurs suivants sont associés}} à cette adresse de courriel :
 
 $2
 
 {{PLURAL:$3|Ce mot de passe temporaire expirera|Ces mots de passe temporaires expireront}} dans {{PLURAL:$5|un jour|$5 jours}}. Vous devez maintenant vous connecter et choisir un nouveau mot de passe. Si cette demande ne provient pas de vous, ou que vous vous êtes souvenu de votre mot de passe initial, et ne souhaitez plus le modifier, vous pouvez ignorer ce message et continuer à utiliser votre ancien mot de passe.",
 'passwordreset-emailelement'       => "Nom d'utilisateur : $1
 Mot de passe temporaire : $2",
-'passwordreset-emailsent'          => 'Un courriel de rappel a été envoyé.',
-'passwordreset-emailsent-capture'  => 'Un courriel de rappel a été envoyé, qui est affiché ci-dessous.',
+'passwordreset-emailsent'          => 'Un courriel de réinitialisation de mot de passe a été envoyé.',
+'passwordreset-emailsent-capture'  => 'Un courriel de réinitialisation de mot de passe a été envoyé, qui est affiché ci-dessous.',
 'passwordreset-emailerror-capture' => "Un courriel de rappel a été généré, qui est affiché ci-dessous, mais l'envoi à l'utilisateur a échoué : $1",
 
 # Special:ChangeEmail
@@ -1078,9 +1082,9 @@ Vous nous promettez aussi que vous avez écrit ceci vous-même, ou que vous l'av
 'longpageerror'                    => "'''Erreur: Le texte que vous avez soumis fait {{PLURAL:$1|un Kio|$1 Kio}}, ce qui dépasse la limite fixée à {{PLURAL:$2|un Kio|$2 Kio}}.'''
 Il ne peut pas être sauvegardé.",
 'readonlywarning'                  => "'''AVERTISSEMENT : la base de données a été verrouillée pour des opérations de maintenance. Vous ne pouvez donc pas publier vos modifications pour l'instant.'''
-Vous pouvez copier le texte dans un fichier texte et le conserver pour plus tard.
+Vous pouvez copier et coller votre texte dans un fichier texte et l’enregistrer pour plus tard.
 
-L'administrateur ayant verrouillé la base de données a donné l'explication suivante : $1",
+L'administrateur ayant verrouillé la base de données a donné l'explication suivante: $1",
 'protectedpagewarning'             => "'''AVERTISSEMENT : cette page est protégée. Seuls les utilisateurs ayant le statut d'administrateur peuvent la modifier.'''<br />
 La dernière entrée du journal est affichée ci-dessous pour référence :",
 'semiprotectedpagewarning'         => "'''Note :''' Cette page a été protégée de telle façon que seuls les contributeurs enregistrés puissent la modifier. La dernière entrée du journal est affichée ci-dessous pour référence :",
@@ -1318,7 +1322,7 @@ Assurez-vous que cette opération conservera la continuité de l'historique de l
 'searchresulttext'                 => "Pour plus d'informations sur la recherche dans {{SITENAME}}, voir [[{{MediaWiki:Helppage}}|{{int:help}}]].",
 'searchsubtitle'                   => "Vous avez recherché « '''[[:$1]]''' » ([[Special:Prefixindex/$1|toutes les pages commençant par « $1 »]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|toutes les pages qui ont un lien vers « $1 »]])",
 'searchsubtitleinvalid'            => "Vous avez recherché « '''$1''' »",
-'toomanymatches'                   => "Un trop grand nombre d'occurrences a été renvoyé, veuillez soumettre une requête différente.",
+'toomanymatches'                   => 'Un trop grand nombre d’occurrences a été renvoyé, veuillez soumettre une requête différente.',
 'titlematches'                     => 'Correspondances dans les titres des pages',
 'notitlematches'                   => 'Aucun titre de page ne correspond à la recherche.',
 'textmatches'                      => 'Correspondances dans le texte des pages',
@@ -1356,7 +1360,7 @@ Assurez-vous que cette opération conservera la continuité de l'historique de l
 'search-mwsuggest-enabled'         => 'avec suggestions',
 'search-mwsuggest-disabled'        => 'sans suggestions',
 'search-relatedarticle'            => 'Relaté',
-'mwsuggest-disable'                => 'Désactiver les suggestions AJAX',
+'mwsuggest-disable'                => 'Désactiver les suggestions de recherche',
 'searcheverything-enable'          => 'Rechercher dans tous les espaces de noms',
 'searchrelated'                    => 'relaté',
 'searchall'                        => 'tout',
@@ -1420,7 +1424,7 @@ Essayez en utilisant le préfixe ''all:'' pour rechercher dans tout le contenu (
 'prefs-edit-boxsize'            => 'Taille de la fenêtre de modification.',
 'rows'                          => 'Rangées :',
 'columns'                       => 'Colonnes :',
-'searchresultshead'             => 'Recherches',
+'searchresultshead'             => 'Filtrer avec cette valeur',
 'resultsperpage'                => 'Nombre de réponses par page :',
 'stub-threshold'                => 'Limite supérieure pour les <a href="#" class="stub">liens vers les ébauches</a> (octets) :',
 'stub-threshold-disabled'       => 'Désactivé',
@@ -1501,7 +1505,7 @@ Elle ne doit pas dépasser $1 caractère{{PLURAL:$1||s}}.',
 'prefs-displaywatchlist'        => "Options d'affichage",
 'prefs-diffs'                   => 'Différences',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid'   => 'Semble valide',
 'email-address-validity-invalid' => 'Une adresse valide est nécessaire !',
 
@@ -1924,7 +1928,7 @@ Pour une sécurité optimale, img_auth.php est désactivé.",
 
 # HTTP errors
 'http-invalid-url'      => 'URL incorrecte : $1',
-'http-invalid-scheme'   => 'Les URL avec le schéma « $1 » ne sont pas supportées.',
+'http-invalid-scheme'   => 'Les URL avec le schéma « $1 » ne sont pas prises en charge.',
 'http-request-error'    => "Erreur inconnue lors de l'envoi de la requête.",
 'http-read-error'       => 'Erreur de lecture HTTP.',
 'http-timed-out'        => 'La requête HTTP a expiré.',
@@ -2239,7 +2243,7 @@ Protocoles reconnus : <code>$1</code> (http:// par défaut si aucun protocole n'
 # Special:ActiveUsers
 'activeusers'            => 'Liste des utilisateurs actifs',
 'activeusers-intro'      => 'Ceci est une liste des utilisateurs qui ont exercé une quelconque activité au cours {{PLURAL:$1|de la dernière journée|des $1 derniers jours}}.',
-'activeusers-count'      => '$1 {{PLURAL:$1|modification|modifications}} dans {{PLURAL:$3|le dernier jour|les $3 derniers jours}}',
+'activeusers-count'      => '$1 {{PLURAL:$1|action|actions}} lors {{PLURAL:$3|du dernier jour|des $3 derniers jours}}',
 'activeusers-from'       => 'Afficher les utilisateurs depuis :',
 'activeusers-hidebots'   => 'Masquer les robots',
 'activeusers-hidesysops' => 'Masquer les administrateurs',
@@ -2268,7 +2272,7 @@ Des [[{{MediaWiki:Listgrouprights-helppage}}|informations additionnelles]] peuve
 'listgrouprights-addgroup-self-all'    => "Peut s'ajouter tous les groupes à son propre compte",
 'listgrouprights-removegroup-self-all' => 'Peut se retirer tous les groupes de son propre compte',
 
-# E-mail user
+# Email user
 'mailnologin'          => "Pas d'adresse d'expéditeur",
 'mailnologintext'      => "Vous devez être [[Special:UserLogin|identifié]] et avoir indiqué une adresse électronique valide dans vos [[Special:Preferences|préférences]] pour pouvoir envoyer des courriels à d'autres utilisateurs.",
 'emailuser'            => 'Lui envoyer un courriel',
@@ -2766,7 +2770,7 @@ Pour bloquer ou débloquer la base de données, il doit être accessible par le 
 'move-page-legend'             => 'Renommer une page',
 'movepagetext'                 => "Utilisez le formulaire ci-dessous pour renommer une page, en déplaçant tout son historique vers le nouveau nom. L'ancien titre deviendra une page de redirection vers le nouveau titre. Vous pouvez mettre à jour automatiquement les redirections actuelles qui pointent vers le titre original. Si vous choisissez de ne pas le faire, assurez-vous de vérifier toute [[Special:DoubleRedirects|double redirection]] ou [[Special:BrokenRedirects|redirection cassée]]. Vous avez la responsabilité de vous assurer que les liens continuent de pointer vers leur destination supposée.
 
-Notez que la page ne sera '''pas''' renommée s'il existe déjà une page avec le nouveau titre, sauf si cette dernière a un historique de modifications vierge et est une simple redirection. Ceci permet de renommer une page vers sa position d'origine si le déplacement s'avère erroné.
+Notez que la page ne sera '''pas''' renommée s'il existe déjà une page avec le nouveau titre, sauf si cette dernière est une simple redirection avec un historique de modifications vierge. Ceci permet de renommer une page vers sa position d'origine si le déplacement s'avère erroné.
 
 '''Attention !'''
 Ceci peut provoquer un changement radical et imprévu pour une page souvent consultée ; assurez-vous d'en avoir compris les conséquences avant de continuer.",
@@ -2942,7 +2946,7 @@ Un dossier temporaire est manquant.",
 'import-error-edit'          => "La page « $1 » n'a pas été importée parce que vous n'êtes pas autorisés à la modifier.",
 'import-error-create'        => "La page « $1 » n'a pas été importée parce que vous n'êtes pas autorisés à la créer.",
 'import-error-interwiki'     => "La page « $1 » n'est pas importée parce que son nom est réservé pour un lien externe (interwiki).",
-'import-error-special'       => 'La page " $1 " n\'est pas importée parce qu\'elle appartient à un espace de noms special qui n\'en autorise aucune.',
+'import-error-special'       => 'La page « $1 » n’est pas importée parce qu’elle appartient à un espace de noms spécial qui n’en autorise aucune.',
 'import-error-invalid'       => "Page « $1 » n'est pas importée parce que son nom n'est pas valide.",
 
 # Import log
@@ -2958,7 +2962,7 @@ Un dossier temporaire est manquant.",
 'javascripttest-disabled'                  => "Cette fonction n'a pas été activée sur ce wiki.",
 'javascripttest-title'                     => 'Exécution des tests $1',
 'javascripttest-pagetext-noframework'      => "Cette page est réservée pour l'exécution des tests JavaScript.",
-'javascripttest-pagetext-unknownframework' => 'Structure "$1" inconnue.',
+'javascripttest-pagetext-unknownframework' => 'Structure « $1 » inconnue.',
 'javascripttest-pagetext-frameworks'       => "Veuillez choisir l'une des structures de test suivantes : $1",
 'javascripttest-pagetext-skins'            => 'Choisissez un habillage avec lequel lancer les tests :',
 'javascripttest-qunit-intro'               => 'Voir [$1 la documentation de test] sur mediawiki.org.',
@@ -3029,10 +3033,10 @@ Vous pouvez toutefois en visualiser la source.',
 'tooltip-watchlistedit-normal-submit' => 'Enlever les titres',
 'tooltip-watchlistedit-raw-submit'    => 'Mise à jour de la liste de suivi',
 'tooltip-recreate'                    => 'Recréer la page même si celle-ci a été effacée',
-'tooltip-upload'                      => "Démarrer l'import",
+'tooltip-upload'                      => 'Démarrer l’import',
 'tooltip-rollback'                    => '« Révoquer » annule en un clic la ou les modification(s) de cette page par son dernier contributeur.',
-'tooltip-undo'                        => "« Défaire » révoque cette modification et ouvre la fenêtre de modification en mode prévisualisation.
-Permet de rétablir la version précédente et d'ajouter un motif dans la boîte de résumé.",
+'tooltip-undo'                        => '« Défaire » révoque cette modification et ouvre la fenêtre de modification en mode prévisualisation.
+Permet de rétablir la version précédente et d’ajouter un motif dans la boîte de résumé.',
 'tooltip-preferences-save'            => 'Sauvegarder les préférences',
 'tooltip-summary'                     => 'Entrez un bref résumé',
 
@@ -3157,7 +3161,7 @@ Si vous l'exécutez, votre système peut être compromis.",
 'widthheightpage'        => '$1 × $2, $3 page{{PLURAL:$3||s}}',
 'file-info'              => 'Taille du fichier : $1, type MIME : $2',
 'file-info-size'         => '$1 × $2 pixels, taille du fichier : $3, type MIME : $4',
-'file-info-size-pages'   => '$1 × $2 pixels, taille de fichier: $3, type MIME: $4, $5 {{PLURAL:$5|page|pages}}',
+'file-info-size-pages'   => '$1 × $2 pixels, taille de fichier : $3, type MIME : $4, $5 page{{PLURAL:$5||s}}',
 'file-nohires'           => 'Pas de plus haute résolution disponible.',
 'svg-long-desc'          => 'Fichier SVG, résolution de $1 × $2 pixels, taille : $3',
 'show-big-image'         => 'Image en plus haute résolution',
@@ -3167,7 +3171,7 @@ Si vous l'exécutez, votre système peut être compromis.",
 'file-info-gif-looped'   => 'en boucle',
 'file-info-gif-frames'   => '$1 {{PLURAL:$1|image|images}}',
 'file-info-png-looped'   => 'en boucle',
-'file-info-png-repeat'   => 'joué $1 {{PLURAL:$1|fois|fois}}',
+'file-info-png-repeat'   => 'joué $1 {{PLURAL:$1|fois}}',
 'file-info-png-frames'   => '$1 {{PLURAL:$1|image|images}}',
 
 # Special:NewFiles
@@ -3618,7 +3622,7 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'monthsall'     => 'tous',
 'limitall'      => 'tous',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail'              => "Confirmer l'adresse de courriel",
 'confirmemail_noemail'      => "Vous n'avez pas défini une adresse de courriel valide dans vos [[Special:Preferences|préférences]].",
 'confirmemail_text'         => 'Ce wiki nécessite la vérification de votre adresse de courriel avant de pouvoir utiliser toute fonction de messagerie.
@@ -3917,13 +3921,13 @@ Les images sont montrées dans leur pleine résolution, les autres fichiers sont
 'specialpages-group-highuse'     => "Pages d'utilisation intensive",
 'specialpages-group-pages'       => 'Listes de pages',
 'specialpages-group-pagetools'   => 'Outils pour les pages',
-'specialpages-group-wiki'        => 'Données du wiki et outils',
+'specialpages-group-wiki'        => 'Données et outils',
 'specialpages-group-redirects'   => 'Pages spéciales redirigées',
 'specialpages-group-spam'        => 'Outils anti-pourriel',
 
 # Special:BlankPage
 'blankpage'              => 'Page vide',
-'intentionallyblankpage' => 'Cette page est laissée intentionellement vide.',
+'intentionallyblankpage' => 'Cette page est laissée intentionnellement (presque) vide.',
 
 # External image whitelist
 'external_image_whitelist' => " #Laisser cette ligne exactement telle quelle.<pre>
@@ -4025,7 +4029,7 @@ Sinon, vous pouvez utiliser le formulaire simplifié ci-dessous. Votre commentai
 'feedback-cancel'    => 'Annuler',
 'feedback-submit'    => 'Envoyer vos commentaires',
 'feedback-adding'    => 'Ajout de vos commentaires à la page...',
-'feedback-error1'    => "Erreur : Résultat de l'API non reconnu",
+'feedback-error1'    => 'Erreur : Résultat de l’IPA non reconnu',
 'feedback-error2'    => 'Erreur : la modification a échoué',
 'feedback-error3'    => "Erreur : aucune réponse de l'API",
 'feedback-thanks'    => 'Merci ! Votre commentaire a été publié sur la page "[$2 $1]".',

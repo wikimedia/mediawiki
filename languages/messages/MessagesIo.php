@@ -1044,7 +1044,7 @@ Volutez kontrolar <strong>[[:$1]]</strong> se vu ne esas certa pri chanjar olu.
 'listgrouprights-group'   => 'Grupo',
 'listgrouprights-members' => '(listo di membri)',
 
-# E-mail user
+# Email user
 'mailnologin'     => 'Ne sendar adreso',
 'mailnologintext' => 'Vu mustas [[Special:UserLogin|enirir]] e havar valida e-adreso en vua [[Special:Preferences|preferaji]] por sendar e-posto ad altra uzanti.',
 'emailuser'       => 'Sendar e-posto a ca uzanto',
@@ -1468,7 +1468,7 @@ Vu darfos adjuntar kauso en la rezumo.',
 'namespacesall' => 'omna',
 'monthsall'     => 'omna',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail_needlogin' => 'Vu mustas $1 pro konfirmar vua adreso di e-posto.',
 
 # Scary transclusion

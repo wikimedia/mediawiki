@@ -927,7 +927,7 @@ Yma'n descrifans war y [$2 folen dhescrifans] disqwedhys a-woles.",
 # Special:ListGroupRights
 'listgrouprights-members' => '(rol esely)',
 
-# E-mail user
+# Email user
 'emailuser'       => 'E-bostya an devnydhyer-ma',
 'emailpage'       => 'E-bostya devnydhyer',
 'defemailsubject' => 'Ebost danvenys dre {{SITENAME}} gans an devnydhyer "$1"',
@@ -1202,7 +1202,7 @@ Why a yll gweles hy fennfenten.',
 'monthsall'     => 'oll',
 'limitall'      => 'oll',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail'         => 'Afydhya an drigva ebost',
 'confirmemail_noemail' => "Nyns eus trigva ebost da settyes y'gas [[Special:Preferences|dowisyansow devnydhyer]].",
 

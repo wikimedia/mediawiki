@@ -584,7 +584,7 @@ $2',
 'loginlanguagelabel'         => 'भाषा: $1',
 'suspicious-userlogout'      => 'अपका लॉग आउट करने का अनुरोध अस्वीकृत कर दिया गया है क्योंकि ऐसा प्रतीत होता है कि यह किसी खराब ब्राउज़र या कैश करने वाली प्रॉक्सी द्वारा भेजा गया था।',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'PHP के mail() फ़ंक्शन में अज्ञात त्रुटि हुई।',
 'user-mail-no-addy'      => 'ई-मेल पते के बिना ई-मेल भेजने की कोशिश की।',
 
@@ -1250,7 +1250,7 @@ HTML टैग की जाँच करें।',
 'prefs-displaywatchlist'        => 'प्रदर्शन विकल्प',
 'prefs-diffs'                   => 'अंतर',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid'   => 'ई-मेल पता वैध प्रतीत होता है',
 'email-address-validity-invalid' => 'एक वैध ई-मेल पता प्रविष्ट करें',
 
@@ -2026,7 +2026,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization देखें।',
 'listgrouprights-addgroup-self-all'    => 'अपने खाते में सभी समूह शामिल करें',
 'listgrouprights-removegroup-self-all' => 'अपने खाते से सभी समूह हटाएँ',
 
-# E-mail user
+# Email user
 'mailnologin'          => 'पाने वाले का एड्रेस दिया नहीं',
 'mailnologintext'      => 'अन्य सदस्यों को इ-मेल भेजने के लिये [[Special:UserLogin|लॉग इन]] करना आवश्यक है और आपकी [[Special:Preferences|वरीयताओं]] में वैध ई-मेल पता होना आवश्यक है।',
 'emailuser'            => 'इस सदस्य को ई-मेल भेजें',
@@ -3336,7 +3336,7 @@ $1',
 'monthsall'     => 'सभी',
 'limitall'      => 'सभी',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail'              => 'ई-मेल प्रमाणित करे',
 'confirmemail_noemail'      => 'आपके [[Special:Preferences|सदस्य वरीयतायें]]में वैध इ-मेल एड्रेस नहीं दिया हुआ हैं।',
 'confirmemail_text'         => '{{SITENAME}} पर उपलब्ध इ-मेल सुविधाओंका लाभ उठाने के लिये प्रमाणित एड्रेस होना जरूरी हैं।

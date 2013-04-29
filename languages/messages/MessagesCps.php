@@ -728,7 +728,7 @@ Ang paglarawan nga yara sa ibabaw sang [$2 pahina sang paglarawan sang akta] sin
 # Special:ListGroupRights
 'listgrouprights-members' => '(lista sang mga myembro)',
 
-# E-mail user
+# Email user
 'emailuser' => 'I-email mini nga naga-usar',
 
 # Watchlist

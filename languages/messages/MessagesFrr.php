@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Inkowik
  * @author Maartenvdbent
  * @author Merlissimo
  * @author Murma174
@@ -263,7 +264,7 @@ $1',
 'edithelp'             => 'Beårbingsheelp',
 'edithelppage'         => 'Help:Beårbe',
 'helppage'             => 'Help:Inhåltsfertiiknis',
-'mainpage'             => 'Wikipedia:Hoodsid',
+'mainpage'             => 'Hoodsid',
 'mainpage-description' => 'Hoodsid',
 'policy-url'           => 'Project:Ruchtliinje',
 'portal'               => 'Gemiinschaps-portåål',
@@ -445,7 +446,7 @@ Ferjees ai, din [[Special:Preferences|{{SITENAME}}-önjstalinge]] önjtupååsen
 'gotaccount'                 => "Dü hääst ål en brükerkonto? '''$1'''.",
 'gotaccountlink'             => 'Önjmälde',
 'userlogin-resetlink'        => 'Heest dü din login dooten ferjiden?',
-'createaccountmail'          => 'ouer E-mail',
+'createaccountmail'          => 'Auer e-mail',
 'createaccountreason'        => 'Grün:',
 'badretype'                  => 'Da biise pååsuurde stime ai oueriinj.',
 'userexists'                 => 'Dideer brükernoome as ål ferjääwen.
@@ -489,7 +490,7 @@ Mälde wi önj eefter dü jü füngen heest.',
 'eauthentsent'               => 'En bestääsiings-E-mail wörd önj jü önjjääwen adräs sånd.
 
 Iir en E-mail foon oudere brükere ouer jü E-mail-funksjoon emfångd wårde koon, mötj jü adräs än har wörklike tuhiirihäid tu dåtheer brükerkonto jarst bestääsied wårde. Wees sü gödj än befülie da haanewisinge önj di bestääsiings-E-mail.',
-'throttled-mailpassword'     => 'Deer wörd önj da leeste {{PLURAL:$1|stün|$1 stüne}} ål en nai pååsuurd önjfrååged. Am en misbrük foon jüdeer funksjoon tu ferhanren, koon bloot {{PLURAL:$1|iinjsen pro stün|åle $1 stüne}} en nai pååsuurd önjfrååged wårde.',
+'throttled-mailpassword'     => 'Deer wörd önj da leeste {{PLURAL:$1|stün|$1 stüne}} ål en nai pååsuurd önjfrååged. Am en masbrük foon jüdeer funksjoon tu ferhanren, koon bloot {{PLURAL:$1|iinjsen pro stün|åle $1 stüne}} en nai pååsuurd önjfrååged wårde.',
 'mailerror'                  => 'Fäägel bai dåt siinjen foon e E-mail: $1',
 'acct_creation_throttle_hit' => 'Besäkere foon jüheer Wiki, da din IP-adräse brüke, heewe önj e leeste däi {{PLURAL:$1|1 brükerkonto|$1 brükerkontos}} mååged, wat jü maksimool tuleet tål önj jüdeer tidperioode as.
 
@@ -515,7 +516,7 @@ Wees sü gödj än täif, bit dü wider ferseechst.',
 'loginlanguagelabel'         => 'Spräke: $1',
 'suspicious-userlogout'      => 'Dan Oufmäldönjfrååge wörd ferwaigred, deer ja fermouslik foon en defäkte browser unti en cache-proxy sånd wörd.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Ünbekäänd feeler mä det funktsjuun mail() faan PHP.',
 'user-mail-no-addy'      => 'Köö niinj e-mail schake suner e-mail-adres.',
 
@@ -539,7 +540,7 @@ Möölikerwise heest dü din pååsuurd ål ma erfolch änred heest unti en nai 
 
 # Special:PasswordReset
 'passwordreset'                    => 'Paasuurd tubääg seete',
-'passwordreset-text'               => 'Fal detheer formulaar ütj, an do woort di en e-mail tusjüürd mä henwiiser tu din brükerkonto-uunmeldang.',
+'passwordreset-text'               => 'Fal detheer formulaar ütj, am din paaswurd turag tu saaten.',
 'passwordreset-legend'             => 'Paasuurd tubääg seete',
 'passwordreset-disabled'           => 'Dü koost din paasuurd aw jüdeer wiki ai tubääg seete',
 'passwordreset-pretext'            => '{{PLURAL:$1||Du ian faan jo dooten oner iin}}',
@@ -553,13 +554,13 @@ Möölikerwise heest dü din pååsuurd ål ma erfolch änred heest unti en nai 
 
 $2
 
-{{PLURAL:$3|Detheer tidjwis paaswurd lääpt|Joheer tidjwis paaswurden luup}} efter {{PLURAL:$5|ään dai|$5 daar}} uf. 
+{{PLURAL:$3|Detheer tidjwiis paaswurd lääpt|Joheer tidjwiis paaswurden luup}} efter {{PLURAL:$5|ään dai|$5 daar}} uf. 
 Dü skulst di uunmelde an en nei paaswurd iinracht. Wan hoker ööders detheer uunfraag steld hää an dü din ual paaswurd käänst, do säärst dü niks widjer onernem. Melde di ianfach widjerhen mä din ual paaswurd uun.',
 'passwordreset-emailtext-user'     => 'Di brüker $1 üüb {{SITENAME}} hää am brükerinformatsjuunen för {{SITENAME}} uunfraaget ($4). {{PLURAL:$3|Detdiar brükerkonto as|Jodiar brükerkontos san}} mä detdiar E-Mail-Adres ferbünjen:
 
 $2
 
-{{PLURAL:$3|Detheer tidjwis paaswurd lääpt|Joheer tidjwis paaswurden luup}} efter {{PLURAL:$5|ään dai|$5 daar}} uf. Dü skulst di uunmelde an en nei paaswurd iinracht. Wan hoker ööders detheer uunfraag steld hää of dü din ual paaswurd käänst, säärst dü niks widjer onernem. Melde di ianfach mä din ual paaswurd uun.',
+{{PLURAL:$3|Detheer tidjwiis paaswurd lääpt|Joheer tidjwiis paaswurden luup}} efter {{PLURAL:$5|ään dai|$5 daar}} uf. Dü skulst di uunmelde an en nei paaswurd iinracht. Wan hoker ööders detheer uunfraag steld hää of dü din ual paaswurd käänst, säärst dü niks widjer onernem. Melde di ianfach mä din ual paaswurd uun.',
 'passwordreset-emailelement'       => 'Brükernoome: $1
 Tidwis paasuurd: $2',
 'passwordreset-emailsent'          => 'Diar as en E-Mail tu di onerwais.',
@@ -733,7 +734,7 @@ Wan dü heer wat iinskrafst, do beest dü diarmä iinferstenen an seekerst tu, d
 '''Auerdreeg nään frääm teksten an bilen saner ferloof!'''",
 'longpageerror'                    => "'''Error: Dan tekst as {{PLURAL:$1|ian kilobyte|$1 kilobytes}} lung, hi mut oober ei linger wees üs {{PLURAL:$2|ian kilobyte|$2 kilobytes}}.'''Hi koon ei ufspiikerd wurd.",
 'readonlywarning'                  => "'''PÅÅS AW: Jü dootenbånk wörd for unerhult spärd, sü dåt din änringe tutids ai spiikerd wårde koone.
-Wees sü gödj än sääkre di täkst lokool aw din kompjuuter än fersäk tu n lääsern tidpunkt, da änringe tu ouerdreegen.'''.
+Wees sü gödj än sääkre di täkst lokool aw din kompjuuter än fersäk tun lääsern tidpunkt, da änringe tu ouerdreegen.'''.
 
 Grün for jü späre: $1",
 'protectedpagewarning'             => "'''Paase üüb: Detdiar sidj as speret wurden. Bluas administratooren kön det bewerke.'''
@@ -1015,7 +1016,7 @@ A nawigatsjuun links saat ales weder turag üüb di ual stant.',
 'search-mwsuggest-enabled'         => 'ma forsliike',
 'search-mwsuggest-disabled'        => 'niinj forsliike',
 'search-relatedarticle'            => 'früne',
-'mwsuggest-disable'                => 'forsliike per Ajax deaktiviire',
+'mwsuggest-disable'                => "Föörslacher för't sjüken deaktiwiare",
 'searcheverything-enable'          => 'Onj ål noomerüme säke',
 'searchrelated'                    => 'früne',
 'searchall'                        => 'åle',
@@ -1119,7 +1120,7 @@ Do san jo ual iinstelangen wech.',
 'prefs-emailconfirm-label'      => 'E-Mail gudkäänd:',
 'prefs-textboxsize'             => "Grate faan't wönang tu bewerkin",
 'youremail'                     => 'E-mail:',
-'username'                      => 'Brükernoome:',
+'username'                      => 'Brükernööm:',
 'uid'                           => 'Brüker ID:',
 'prefs-memberingroups'          => 'Lasmoot faan {{PLURAL:$1|brükerskööl|brükersköölen}}:',
 'prefs-registration'            => 'Uunmelde-tidj',
@@ -1156,7 +1157,7 @@ Do san jo ual iinstelangen wech.',
 'prefs-displaywatchlist'        => "Mögelkhaiden för't uunwisin",
 'prefs-diffs'                   => 'Ferskeel',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid'   => 'Detdiar E-Mail-adres schocht gud ütj.',
 'email-address-validity-invalid' => 'Du en echt E-Mail-adres uun.',
 
@@ -1190,14 +1191,14 @@ Do san jo ual iinstelangen wech.',
 'group-sysop'         => 'Administratooren',
 'group-bureaucrat'    => 'Bürokraaten',
 'group-suppress'      => 'Oversighter',
-'group-all'           => '(aaltumaal)',
+'group-all'           => '(Aaltumaal)',
 
-'group-user-member'          => '{{GENDER:$1|brüker}}',
-'group-autoconfirmed-member' => '{{GENDER:$1|registriaret brüker}}',
-'group-bot-member'           => '{{GENDER:$1|bot}}',
-'group-sysop-member'         => '{{GENDER:$1|administraator}}',
-'group-bureaucrat-member'    => '{{GENDER:$1|bürokraat}}',
-'group-suppress-member'      => '{{GENDER:$1|oversighter}}',
+'group-user-member'          => '{{GENDER:$1|Brüker}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|Registriaret brüker}}',
+'group-bot-member'           => '{{GENDER:$1|Bot}}',
+'group-sysop-member'         => '{{GENDER:$1|Administraator}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|Bürokraat}}',
+'group-suppress-member'      => '{{GENDER:$1|Oversighter}}',
 
 'grouppage-user'          => '{{ns:project}}:Brükern',
 'grouppage-autoconfirmed' => '{{ns:project}}:Registriaret brükern',
@@ -1410,11 +1411,11 @@ Det beskriiwang faan't [$2 beskriiwangssidj] woort oner uunwiset.",
 # Special:ListGroupRights
 'listgrouprights-members' => '(lasmoote-list)',
 
-# E-mail user
+# Email user
 'emailuser' => 'E-mail tu dideere brüker',
 
 # Watchlist
-'watchlist'         => 'Eefterkiikliste',
+'watchlist'         => "Uun't uug behual",
 'mywatchlist'       => "Uun't uug behual",
 'watchlistfor2'     => 'Foon $1 $2',
 'addedwatchtext'    => "Det sidj „[[:$1]]“ wel dü [[Special:Watchlist|uun't uug behual]].
@@ -1472,9 +1473,9 @@ Feranerangen faan detdiar sidj wurd üüb detdiar list fäästhäälen.",
 'protect-locked-access'       => "Din brükerkonto ferfäiget ai ouer da nüsie ruchte tu jü änring foon e sideschüts. Heer san da aktuäle sideschütsönjstalinge fon jü sid '''„$1“:'''",
 'protect-cascadeon'           => 'Jüdeer sid as nütutids diilj foon e kaskaadenspäre. Jü as önj {{PLURAL:$1|jü füliende sid|da füliende side}} önjbünen, huk döör jü kaskaadenspäropsjoon schütsed {{PLURAL:$1|as|san}}. Di sideschütsstatus koon for jüdeer sid änred wårde, dåtdeer heet ouers nån influs aw jü kaskaadenspäre:',
 'protect-default'             => 'Åle brükere',
-'protect-fallback'            => 'Jü "$1"-beruchtiging as nüsi.',
-'protect-level-autoconfirmed' => 'Späring for naie än ai registriirde brükere',
-'protect-level-sysop'         => 'Bloot administratoore',
+'protect-fallback'            => 'Ferloof bluas för brükern mä "$1"-rochten.',
+'protect-level-autoconfirmed' => 'Ferloof bluas för registriaret brükern.',
+'protect-level-sysop'         => 'Ferloof bluas för administratooren.',
 'protect-summary-cascade'     => 'kaskadiirend',
 'protect-expiring'            => 'bit $2, am e klook $3 (UTC)',
 'protect-cascade'             => 'Kaskadiirende späre - åle önj jüdeer sid önjbünene forlååge wårde uk spärd.',
@@ -1550,7 +1551,7 @@ $1",
 'blanknamespace' => '(Side)',
 
 # Contributions
-'contributions'       => 'Brükertujeefte',
+'contributions'       => 'Brüker bidracher',
 'contributions-title' => 'Brükertujeefte foon "$1"',
 'mycontris'           => 'Bidracher',
 'contribsub2'         => 'For $1 ($2)',
@@ -1593,6 +1594,7 @@ $1",
 'blocklist'                       => 'Spärd brükere',
 'ipblocklist'                     => 'Spärd brükere',
 'ipblocklist-legend'              => 'Spärd brükere fine',
+'ipblocklist-submit'              => 'Sjük',
 'expiringblock'                   => 'iinjet aw e $1 am e klook $2',
 'blocklink'                       => 'späre',
 'unblocklink'                     => 'frijeewe',
@@ -1629,7 +1631,7 @@ For di fål dåt dü dåt ai dääst, präiw aw [[Special:DoubleRedirects|dööw
 Dü bast deerfor feroontuurdlik, dåt links fortönj ap dåt koräkt muul wise.
 
 Jü sid wårt '''ai''' ferschääwen, wan dåt ål en sid ma di seelew noome jeeft,
-süwid jüdeer ai lääsi unti en widerliidjing suner färsjoonshistoori as. Dåtdeer bedjüset,
+süwid jüdeer ai bloots en widerliidjing suner färsjoonshistoori as. Dåtdeer bedjüset,
 dåt dü jü sid tubääg ferschüwe koost, wan dü en fäägel mååged heest. Dü koost
 deeriinj niinj sid ouerschriwe.
 
@@ -1745,6 +1747,9 @@ Hål di '''naie''' tiitel uner '''muul''' önjdreege, deeruner jü ambenååming
 'svg-long-desc'  => 'SVG-dåtäi, basisgrutelse: $1 × $2 pixel, dåtäigrutelse: $3',
 'show-big-image' => 'Färsjon önj huuger apliising',
 
+# Special:NewFiles
+'ilsubmit' => 'Sjük',
+
 # Bad image list
 'bad_image_list' => 'Formååt:
 
@@ -1804,8 +1809,12 @@ Deeraw föliende sidelinke önj dåtseelwi ra definiire ütnååme, önj di kont
 'version-software-product' => 'Produkt',
 'version-software-version' => 'Färsjoon',
 
+# Special:FileDuplicateSearch
+'fileduplicatesearch-submit' => 'Sjük',
+
 # Special:SpecialPages
-'specialpages' => 'Spetsjåålside',
+'specialpages'             => 'Spetsjåålside',
+'specialpages-group-login' => 'Melde di uun of skriiw di iin',
 
 # External image whitelist
 'external_image_whitelist' => " #Feranere detheer rä ei<pre>

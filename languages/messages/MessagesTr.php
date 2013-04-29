@@ -726,7 +726,7 @@ Hesabınız açıldı.
 [[Special:Preferences|{{SITENAME}} tercihlerinizi]] değiştirmeyi unutmayın.',
 'yourname'                   => 'Kullanıcı adı:',
 'yourpassword'               => 'Parola:',
-'yourpasswordagain'          => 'Parolayı yeniden yaz:',
+'yourpasswordagain'          => 'Parolayı yeniden girin:',
 'remembermypassword'         => 'Girişimi bu tarayıcıda hatırla (en fazla $1 {{PLURAL:$1|gün|gün}} için)',
 'securelogin-stick-https'    => "Giriş yaptıktan sonra HTTPS'e bağlı kal",
 'yourdomainname'             => 'Alan adınız:',
@@ -739,10 +739,10 @@ Hesabınız açıldı.
 'logout'                     => 'Oturumu kapat',
 'userlogout'                 => 'Oturumu kapat',
 'notloggedin'                => 'Oturum açık değil',
-'nologin'                    => "Kayıtlı değil misiniz? '''$1'''",
+'nologin'                    => 'Bir hesabınız yok mu? $1.',
 'nologinlink'                => 'Hesap oluşturun',
 'createaccount'              => 'Hesap oluştur',
-'gotaccount'                 => "Çoktan kayıt oldunuz mu? '''$1'''.",
+'gotaccount'                 => 'Zaten bir hesabınız var mı? $1.',
 'gotaccountlink'             => 'Oturum açın',
 'userlogin-resetlink'        => 'Giriş bilgilerinizi mi unuttunuz?',
 'createaccountmail'          => 'e-posta ile',
@@ -812,7 +812,7 @@ Lütfen tekrar denemeden önce bekleyin.',
 'loginlanguagelabel'         => 'Dil: $1',
 'suspicious-userlogout'      => 'Çıkış isteğiniz reddedildi çünkü bozuk bir tarayıcı ya da önbellekli vekil tarafından gönerilmiş gibi görünüyor.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => "PHP's mail() fonksiyonunda bilinmeyen hata",
 'user-mail-no-addy'      => 'Bir e-posta adresi olmadan e-posta göndermeye çalıştı.',
 
@@ -885,7 +885,7 @@ Geçici şifre: $2',
 'italic_tip'      => 'Eğik yazı',
 'link_sample'     => 'Bağlantı başlığı',
 'link_tip'        => 'İç bağlantı',
-'extlink_sample'  => 'http://www.example.com adres açıklaması',
+'extlink_sample'  => 'http://www.example.com bağlantı başlığı',
 'extlink_tip'     => 'Dış bağlantı (Adresin önüne http:// koymayı unutmayın)',
 'headline_sample' => 'Başlık metni',
 'headline_tip'    => '2. seviye başlık',
@@ -1025,9 +1025,10 @@ Ayrıca buraya katkıda bulunarak, bu katkının kendiniz tarafından yazıldı�
 Ayrıca bu ekleyeceğiniz yazıyı sizin yazdığınızı ya da serbest kopyalama izni veren bir kaynaktan kopyaladığınızı bize taahhüt etmektesiniz (ayrıntılar için referans: $1).',
 'longpageerror'                    => "'''Hata: Girdiğiniz metnin uzunluğu kabul edilebilir en fazla uzunluk olan {{PLURAL:$2|bir kilobayt|$2 kilobayt}}tan fazladır ve {{PLURAL:$1|bir kilobayt|$1 kilobayt}} büyüklüğündedir.'''
 Değişikliğiniz kaydedilemez.",
-'readonlywarning'                  => "'''DİKKAT: Bakım nedeni ile veritabanı şu anda kilitlidir. Bu sebeple değişiklikleriniz şu anda kaydedilememektedir. Yazdıklarınızı başka bir editöre alıp saklayabilir ve daha sonra tekrar buraya getirip kaydedebilirsiniz'''
+'readonlywarning'                  => "'''Uyarı: Bakım nedeniyle veritabanı şu anda kilitlenmiştir. Bu yüzden şu anda düzenlemelerinizi kaydetmek mümkün değildir.''' 
+Yaptığınız düzenlemeleri daha sonra kaydetmek isterseniz, yaptığınız düzenlemeleri bir metin dosyasına ya da herhangi bir şeye kopyala yapıştır yaparak saklayınız.
 
-Kilitleyen hizmetli şu açıklamayı eklemiştir: $1",
+Kilitlemeyi yapan yetkili şu açıklamayı eklemiştir: $1",
 'protectedpagewarning'             => "'''Uyarı: Bu sayfa koruma altına alınmıştır ve yalnızca hizmetli olanlar tarafından değiştirilebilir.'''
 Son günlük girdisi referans amaçlı aşağıda verilmiştir:",
 'semiprotectedpagewarning'         => "'''Not:''' Bu sayfa sadece kayıtlı kullanıcı olanlar tarafından değiştirilebilir.
@@ -1102,7 +1103,7 @@ $3 tarafından verilen sebep ''$2''",
 'revisionasof'           => '$1 tarihindeki hâli',
 'revision-info'          => '$2 tarafından oluşturulmuş $1 tarihli sürüm',
 'previousrevision'       => '← Önceki hâli',
-'nextrevision'           => 'Sonraki hali →',
+'nextrevision'           => 'Sonraki hâli →',
 'currentrevisionlink'    => 'en güncel halini göster',
 'cur'                    => 'fark',
 'next'                   => 'sonraki',
@@ -1313,7 +1314,7 @@ Gezinti bağlantılarının bu sütunu sıfırlayacağını unutmayın.',
 'search-mwsuggest-enabled'         => 'önerilerle',
 'search-mwsuggest-disabled'        => 'öneri yok',
 'search-relatedarticle'            => 'ilgili',
-'mwsuggest-disable'                => 'AJAX önerilerini devre dışı bırak',
+'mwsuggest-disable'                => 'Arama önerilerini devre dışı bırak',
 'searcheverything-enable'          => 'Tüm ad alanlarında ara',
 'searchrelated'                    => 'ilgili',
 'searchall'                        => 'hepsi',
@@ -1420,7 +1421,7 @@ Kullanabileceğiniz rastgele-üretilmiş bir değer: $1',
 'prefs-textboxsize'             => 'Değiştirme penceresinin boyutu',
 'youremail'                     => 'E-posta:',
 'username'                      => 'Kullanıcı adı:',
-'uid'                           => 'Kayıt numarası:',
+'uid'                           => 'Kullanıcı kimliği:',
 'prefs-memberingroups'          => '{{PLURAL:$1|Grup|Grup}} üyesi:',
 'prefs-registration'            => 'Kayıt zamanı:',
 'yourrealname'                  => 'Gerçek adınız:',
@@ -1439,7 +1440,7 @@ $1 {{PLURAL:$1|karakterin|karakterin}} altında olmalı.',
 'prefs-help-gender'             => 'İsteğe bağlı: Yazılım tarafından doğru cinsiyet adreslemesi için kullanılır. Bu bilgi umumi olacaktır.',
 'email'                         => 'E-posta',
 'prefs-help-realname'           => '* Gerçek isim (isteğe bağlı): eğer gerçek isminizi vermeyi seçerseniz, çalışmanızı size atfederken kullanılacaktır.',
-'prefs-help-email'              => 'E-posta adresi isteğe bağlıdır; ancak eğer parolanızı unutursanız e-posta adresinize yeni parola gönderilmesine olanak sağlar.',
+'prefs-help-email'              => 'E-posta adresi isteğe bağlıdır; ancak parolanızı unutmanız durumunda parola sıfırlamak için gerekecektir.',
 'prefs-help-email-others'       => 'Ayrıca kullanıcı sayfanızdaki bir bağlantı yoluyla diğer kullanıcıların size e-posta atmasına izin vermeyi seçebilirsiniz.
 Diğer kullanıcılar sizinle bu yolla iletişime geçtiğinde e-posta adresiniz açıklanmaz.',
 'prefs-help-email-required'     => 'E-posta adresi gerekmektedir.',
@@ -1458,7 +1459,7 @@ Diğer kullanıcılar sizinle bu yolla iletişime geçtiğinde e-posta adresiniz
 'prefs-displaywatchlist'        => 'Görüntüleme seçenekleri',
 'prefs-diffs'                   => 'Farklar',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid'   => 'E-posta adresi geçerli görünüyor',
 'email-address-validity-invalid' => 'Geçerli bir e-posta adresi girin',
 
@@ -2165,7 +2166,7 @@ Desteklenen iletişim kuralları: <code>$1</code> (bunların hiçbirini aramanı
 # Special:ActiveUsers
 'activeusers'            => 'Aktif kullanıcı listesi',
 'activeusers-intro'      => 'Bu, son $1 {{PLURAL:$1|günde|günde}} bir çeşit etkinlik göstermiş kullanıcıların listesidir.',
-'activeusers-count'      => 'Son {{PLURAL:$3|günde|$3 günde}} $1 {{PLURAL:$1|değişiklik|değişiklik}}',
+'activeusers-count'      => 'Son {{PLURAL:$3|günde|$3 günde}} $1 {{PLURAL:$1|eylem|eylem}}',
 'activeusers-from'       => 'Şununla başlayan kullanıcıları görüntüle:',
 'activeusers-hidebots'   => 'Botları gizle',
 'activeusers-hidesysops' => 'Yöneticileri gizle',
@@ -2194,13 +2195,13 @@ Bireysel haklarla ilgili [[{{MediaWiki:Listgrouprights-helppage}}|daha fazla bil
 'listgrouprights-addgroup-self-all'    => 'Kendi hesabına tüm grupları ekleyebilir',
 'listgrouprights-removegroup-self-all' => 'Kendi hesabından tüm grupları çıkarabilir',
 
-# E-mail user
+# Email user
 'mailnologin'          => 'Gönderi adresi yok.',
 'mailnologintext'      => 'Diğer kullanıcılara e-posta gönderebilmeniz için [[Special:UserLogin|oturum aç]]malısınız ve [[Special:Preferences|tercihler]] sayfasında geçerli bir e-posta adresiniz olmalı.',
 'emailuser'            => 'Bu kullanıcıya e-posta gönder',
 'emailpage'            => 'Kullanıcıya e-posta gönder',
-'emailpagetext'        => 'Bu kullanıcıya e-posta mesajı göndermek için aşağıdaki formu kullanabilirsiniz.
-[[Special:Preferences|Kullanıcı tercihlerinizde]] girdiğiniz e-posta adresiniz, e-postanın "From (Kimden)" adresinde görünecektir, bu yüzden alıcı size direk cevap verebilecektir.',
+'emailpagetext'        => 'Bu {{GENDER:$1|kullanıcıya}} e-posta iletisi göndermek için aşağıdaki formu kullanabilirsiniz.
+[[Special:Preferences|Kullanıcı tercihlerinizde]] girdiğiniz e-posta adresiniz, e-postanın "From (Kimden)" adresinde görünecektir, bu yüzden alıcı size doğrudan yanıt verebilecektir.',
 'usermailererror'      => 'E-posta hizmeti hata verdi:',
 'defemailsubject'      => '"$1" kullanıcısından {{SITENAME}} e-postası',
 'usermaildisabled'     => 'Kullanıcı e-postası devre dışı',
@@ -2230,7 +2231,7 @@ Bireysel haklarla ilgili [[{{MediaWiki:Listgrouprights-helppage}}|daha fazla bil
 'usermessage-editor'  => 'Sistem habercisi',
 
 # Watchlist
-'watchlist'            => 'İzleme listem',
+'watchlist'            => 'İzleme listesi',
 'mywatchlist'          => 'İzleme listesi',
 'watchlistfor2'        => '$1 için $2',
 'nowatchlist'          => 'İzleme listesinde hiçbir madde bulunmuyor.',
@@ -2238,13 +2239,8 @@ Bireysel haklarla ilgili [[{{MediaWiki:Listgrouprights-helppage}}|daha fazla bil
 'watchnologin'         => 'Oturum açık değil.',
 'watchnologintext'     => 'İzleme listenizi değiştirebilmek için [[Special:UserLogin|oturum açmalısınız]].',
 'addwatch'             => 'İzleme listesine ekle',
-'addedwatchtext'       => '"<nowiki>$1</nowiki>" adlı sayfa [[Special:Watchlist|izleme listenize]] kaydedildi.
-
-Gelecekte, bu sayfaya ve ilgili tartışma sayfasına yapılacak değişiklikler burada listelenecektir.
-
-Kolayca seçilebilmeleri için de [[Special:RecentChanges|son değişiklikler listesi]] başlığı altında koyu harflerle listeleneceklerdir.
-
-Sayfayı izleme listenizden çıkarmak istediğinizde "sayfayı izlemeyi durdur" bağlantısına tıklayabilirsiniz.',
+'addedwatchtext'       => '"[[:$1]]" sayfası [[Special:Watchlist|izleme listenize]] eklenmiştir.
+Bundan sonra, bu sayfaya ve ilgili tartışma sayfasına yapılacak değişiklikler burada listelenecek.',
 'removewatch'          => 'İzleme listesinden kaldır',
 'removedwatchtext'     => '"[[:$1]]" sayfası [[Special:Watchlist|izleme listenizden]] silinmiştir.',
 'watch'                => 'İzle',
@@ -2391,8 +2387,8 @@ Lütfen "geri" gidin ve geldiğiniz sayfayı yeniden yükleyin, sonra tekrar den
 Bu sayfanın koruma seviyesini değiştirebilirsiniz; ancak bu kademeli korumaya etki etmeyecektir.',
 'protect-default'             => 'Tüm kullanıcılara izin ver',
 'protect-fallback'            => '"$1" izni gerektir',
-'protect-level-autoconfirmed' => 'Yeni ve kayıtlı olmayan kullanıcıları engelle',
-'protect-level-sysop'         => 'sadece hizmetliler',
+'protect-level-autoconfirmed' => 'Yalnızca otomatik onaylanmış kullanıcılara izin verilir',
+'protect-level-sysop'         => 'Yalnızca hizmetlilere izin verilir',
 'protect-summary-cascade'     => 'kademeli',
 'protect-expiring'            => 'bitiş tarihi $1 (UTC)',
 'protect-expiring-local'      => '$1 tarihinde bitiyor',
@@ -2493,7 +2489,7 @@ $1',
 'nocontribs'          => 'Bu kriterlere uyan değişiklik bulunamadı',
 'uctop'               => '(son)',
 'month'               => 'Ay:',
-'year'                => 'Yıl:',
+'year'                => 'Bu yıla kadar (ve önceki yıllar):',
 
 'sp-contributions-newbies'             => 'Sadece yeni kullanıcıların katkılarını göster',
 'sp-contributions-newbies-sub'         => 'Yeni kullanıcılar için',
@@ -2867,9 +2863,11 @@ Geçici dosya kayıp.',
 'import-logentry-interwiki-detail' => '$2 sayfasından $1 {{PLURAL:$1|revizyon|revizyon}}',
 
 # JavaScriptTest
-'javascripttest'          => 'JavaScript denemesi',
-'javascripttest-disabled' => 'Bu işlev, bu viki üzerinde etkinleştirilmedi.',
-'javascripttest-title'    => '$1 testleri çalışıyor',
+'javascripttest'               => 'JavaScript denemesi',
+'javascripttest-disabled'      => 'Bu işlev, bu viki üzerinde etkinleştirilmedi.',
+'javascripttest-title'         => '$1 testleri çalışıyor',
+'javascripttest-qunit-intro'   => 'mediawiki.org üzerinden [$1 deneme belgelerine] bakınız.',
+'javascripttest-qunit-heading' => 'MediaWiki JavaScript QUnit deneme paketi',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'                 => 'Kullanıcı sayfanız',
@@ -3218,6 +3216,7 @@ Diğerleri varsayılan olarak gizlenecektir.
 'exif-worldregiondest'             => 'Gösterilen bölge',
 'exif-countrydest'                 => 'Gösterilen ülke',
 'exif-countrycodedest'             => 'Gösterilen ülke kodu',
+'exif-provinceorstatedest'         => 'Gösterilen il ya da devlet/eyalet',
 'exif-citydest'                    => 'Gösterilen Şehir',
 'exif-objectname'                  => 'Kısa başlık',
 'exif-specialinstructions'         => 'Özel talimatlar',
@@ -3253,6 +3252,7 @@ Diğerleri varsayılan olarak gizlenecektir.
 'exif-giffilecomment'              => 'GIF dosyası yorumu',
 'exif-intellectualgenre'           => 'Öğe türü',
 'exif-subjectnewscode'             => 'Konu kodu',
+'exif-scenecode'                   => 'IPTC sahne kodu',
 'exif-event'                       => 'Adı geçen olay',
 'exif-organisationinimage'         => 'Organizasyon gösterilmiştir',
 'exif-personinimage'               => 'Adı geçen kişi',
@@ -3494,7 +3494,7 @@ Diğerleri varsayılan olarak gizlenecektir.
 'monthsall'     => 'hepsi',
 'limitall'      => 'tümü',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail'              => 'E-posta adresini onayla',
 'confirmemail_noemail'      => '[[Special:Preferences|Kullanıcı tercihlerinizde]] tanımlanmış uygun bir e-posta adresiniz yok.',
 'confirmemail_text'         => "Viki'nin e-posta işlevlerini kullanmabilmek için, önce e-posta adresinizin doğrulanması gerekiyor.
@@ -3609,7 +3609,7 @@ Sayfayı baştan açmak isityorsanız, lütfen onaylayın.",
 'autosumm-blank'   => 'Sayfayı boşalttı',
 'autosumm-replace' => "Sayfa içeriği '$1' ile değiştiriliyor",
 'autoredircomment' => '[[$1]] sayfasına yönlendirildi',
-'autosumm-new'     => "Sayfa oluşturdu, içeriği: '$1'",
+'autosumm-new'     => 'Yeni sayfa: "$1"',
 
 # Live preview
 'livepreview-loading' => 'Yükleniyor...',
@@ -3723,7 +3723,7 @@ Resimler tam çözünürlükte görüntülenir, diğer dosya tipleri ilgili prog
 'specialpages-group-highuse'     => 'Çok kullanılan sayfalar',
 'specialpages-group-pages'       => 'Sayfaların listeleri',
 'specialpages-group-pagetools'   => 'Sayfa araçları',
-'specialpages-group-wiki'        => 'Viki bilgiler ve araçlar',
+'specialpages-group-wiki'        => 'Veri ve araçlar',
 'specialpages-group-redirects'   => 'Yönlendirmeli özel sayfalar',
 'specialpages-group-spam'        => 'Spam araçları',
 

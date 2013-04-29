@@ -1245,7 +1245,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 # Special:ListGroupRights
 'listgrouprights-members' => '（成员名单）',
 
-# E-mail user
+# Email user
 'mailnologin'     => '冇email地址',
 'mailnologintext' => '倷要[[Special:UserLogin|登入]] 起同到倷𠮶[[Special:Preferences|参数设置]] 有只有效𠮶email才发得正email到别𠮶用户。',
 'emailuser'       => '发email到个只用户',
@@ -2126,7 +2126,7 @@ $1',
 'namespacesall' => '全部',
 'monthsall'     => '全部',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail'            => '确认email地址',
 'confirmemail_noemail'    => '倷冇到倷𠮶[[Special:Preferences|用户设置]]设正一只有效𠮶电子邮件地址。',
 'confirmemail_text'       => '个只网站要求倷用email功能之前确认下倷𠮶email地址。按吖下底𠮶键来发封确认邮件到倷𠮶邮箱。佢会附带一只代码链接；请到倷𠮶浏览器打开个只链接来确认倷𠮶email地址系有效𠮶。',

@@ -1,5 +1,5 @@
 <?php
-/** Norwegian Nynorsk (norsk (nynorsk)‎)
+/** Norwegian Nynorsk (norsk nynorsk)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -412,9 +412,9 @@ $messages = array(
 'category-subcat-count'          => 'Kategorien har {{PLURAL:$2|berre denne underkategorien|{{PLURAL:$1|denne underkategorien|desse $1 underkategoriane}}, av totalt $2}}.',
 'category-subcat-count-limited'  => 'Kategorien har {{PLURAL:$1|denne underkategorien|desse $1 underkategoriane}}.',
 'category-article-count'         => 'Kategorien inneheld {{PLURAL:$2|berre denne sida|{{PLURAL:$1|denne sida|desse $1 sidene}}, av totalt $2}}.',
-'category-article-count-limited' => 'Følgjande {{PLURAL:$1|side|$1 sider}} er i denne kategorien.',
+'category-article-count-limited' => '{{PLURAL:$1|Denne sida|Desse $1 sidene}} er i kategorien.',
 'category-file-count'            => 'Kategorien inneheld {{PLURAL:$2|berre den følgjande fila|dei følgjande {{PLURAL:$1|fil|$1 filene}}, av totalt $2}}.',
-'category-file-count-limited'    => 'Følgjande {{PLURAL:$1|fil|$1 filer}} er i denne kategorien.',
+'category-file-count-limited'    => '{{PLURAL:$1|Denne fila|Desse $1 filene}} er i kategorien.',
 'listingcontinuesabbrev'         => 'vidare',
 'index-category'                 => 'Indekserte sider',
 'noindex-category'               => 'Ikkje-indekserte sider',
@@ -534,7 +534,7 @@ $1',
 'currentevents-url'    => 'Project:Aktuelt',
 'disclaimers'          => 'Atterhald',
 'disclaimerpage'       => 'Project:Atterhald',
-'edithelp'             => 'Hjelp til endring',
+'edithelp'             => 'Endringshjelp',
 'edithelppage'         => 'Help:Endring',
 'helppage'             => 'Help:Innhald',
 'mainpage'             => 'Hovudside',
@@ -762,7 +762,7 @@ Du kan sjå bort frå denne meldinga dersom kontoen vart oppretta med eit uhell.
 'loginlanguagelabel'         => 'Språk: $1',
 'suspicious-userlogout'      => 'Førespurnaden din om å logge ut vart nekta fordi han såg ut til å vere sendt av ein øydelagt nettlesar eller mellomtenar.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Ukjend feil i PHPs mail()-funksjon',
 'user-mail-no-addy'      => '↓Prøvde å senda e-post utan e-postadresse',
 
@@ -855,7 +855,8 @@ Mellombels passord: $2',
 'showpreview'                      => 'Førehandsvis',
 'showlivepreview'                  => 'Levande førehandsvising',
 'showdiff'                         => 'Vis skilnader',
-'anoneditwarning'                  => "'''Åtvaring:''' Du er ikkje innlogga. IP-adressa di vert lagra i historikken for sida.",
+'anoneditwarning'                  => "'''Åtvaring:''' Du er ikkje innlogga.
+IP-adressa di vert lagra i endringshistorikken til sida.",
 'anonpreviewwarning'               => "''Du er ikkje innlogga. Lagrar du vil IP-adressa di verta førd opp i endringshistorikken til denne sida.''",
 'missingsummary'                   => "'''Påminning:''' Du har ikkje skrive noko endringssamandrag. Dersom du trykkjer «Lagre» ein gong til, vert endringa di lagra utan.",
 'missingcommenttext'               => 'Ver venleg og skriv ein kommentar nedanfor.',
@@ -1248,7 +1249,7 @@ Pass på at den nye sida også har innhald frå den innfletta sida.',
 'search-mwsuggest-enabled'         => 'med forslag',
 'search-mwsuggest-disabled'        => 'ingen forslag',
 'search-relatedarticle'            => 'Relatert',
-'mwsuggest-disable'                => 'Slå av AJAX-forslag',
+'mwsuggest-disable'                => 'Slå av søkjeframlegg',
 'searcheverything-enable'          => 'Søk i alle namneroma',
 'searchrelated'                    => 'relatert',
 'searchall'                        => 'alle',
@@ -1383,7 +1384,7 @@ Dette kan ikkje tilbakestillast.',
 'prefs-i18n'                    => 'Internasjonalisering',
 'prefs-signature'               => 'Signatur',
 'prefs-dateformat'              => 'Datoformat',
-'prefs-timeoffset'              => 'Tidsforskuving',
+'prefs-timeoffset'              => 'Tidforskuving',
 'prefs-advancedediting'         => 'Avanserte val',
 'prefs-advancedrc'              => 'Avanserte val',
 'prefs-advancedrendering'       => 'Avanserte val',
@@ -1394,7 +1395,7 @@ Dette kan ikkje tilbakestillast.',
 'prefs-displaywatchlist'        => 'Val for vising',
 'prefs-diffs'                   => 'Skilnader',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid'   => 'E-postadressa ser ut til å vera gyldig',
 'email-address-validity-invalid' => 'Skriv inn ei gyldig e-postaddresse.',
 
@@ -1969,7 +1970,7 @@ Ei side vert handsama som ei fleirtydingsside om ho nyttar ein mal som er lenkja
 'double-redirect-fixer'             => 'Omdirigeringsfiksar',
 
 'brokenredirects'        => 'Blindvegsomdirigeringar',
-'brokenredirectstext'    => 'Dei følgjande omdirigeringane viser til ei side som ikkje finst:',
+'brokenredirectstext'    => 'Desse omdirigeringane viser til sider som ikkje finst:',
 'brokenredirects-edit'   => 'endre',
 'brokenredirects-delete' => 'slett',
 
@@ -2127,7 +2128,7 @@ Støtta protokollar: <code>$1</code> (nyttar http:// som standard om ingen proto
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'Rettar for brukargrupper',
-'listgrouprights-summary'              => 'Følgjande liste viser brukargruppene som er definert på denne wikien, og kvar rettar dei har. Meir informasjon om dei ulike rettane ein kan ha finn ein [[{{MediaWiki:Listgrouprights-helppage}}|her]].',
+'listgrouprights-summary'              => 'Detter ei liste som viser brukargruppene som er definerte på wikien, og kva rettar dei har. Det kan finnast [[{{MediaWiki:Listgrouprights-helppage}}|meir informasjon]]  om dei ulike rettane.',
 'listgrouprights-key'                  => '* <span class="listgrouprights-granted">Innvilga rettar</span>
 * <span class="listgrouprights-granted">Tilbaketrukne rettar</span>',
 'listgrouprights-group'                => 'Gruppe',
@@ -2143,7 +2144,7 @@ Støtta protokollar: <code>$1</code> (nyttar http:// som standard om ingen proto
 'listgrouprights-addgroup-self-all'    => 'Kan leggja til alle gruppene til sin eigen konto',
 'listgrouprights-removegroup-self-all' => 'Kan ta vekk alle gruppene frå sin eigen konto',
 
-# E-mail user
+# Email user
 'mailnologin'          => 'Inga avsendaradresse',
 'mailnologintext'      => 'Du lyt vera [[Special:UserLogin|innlogga]] og ha ei gyldig e-postadresse sett i [[Special:Preferences|brukarinnstillingane]] for å sende e-post åt andre brukarar.',
 'emailuser'            => 'Send e-post åt denne brukaren',
@@ -2368,7 +2369,7 @@ Her er dei noverande innstillingane for sida '''$1''':",
 # Undelete
 'undelete'                     => 'Sletta sider',
 'undeletepage'                 => 'Sletta sider',
-'undeletepagetitle'            => "'''Følgjande innhald er sletta versjonar av [[:$1]]'''.",
+'undeletepagetitle'            => "'''Dette innhaldet er sletta versjonar av [[:$1]]'''.",
 'viewdeletedpage'              => 'Sjå sletta sider',
 'undeletepagetext'             => '{{PLURAL:$1|Den følgjande sida er sletta, men ho|Dei følgjande $1 sidene er sletta, men dei}} finst enno i arkivet og kan attopprettast. Arkivet blir periodevis sletta.',
 'undelete-fieldset-title'      => 'Attenderull endringar',
@@ -2420,7 +2421,7 @@ $1',
 'tooltip-invert'                => 'Hak av boksen for å gøyma endringar på sider i det valde namnerommet (og det tilknytte namnerommet om det er haka av)',
 'namespace_association'         => 'Tilknytt namnerom',
 'tooltip-namespace_association' => 'Hak av boksen for at diskusjonssida eller emnenamnerommet knytt til det valde namnerommet skal vera med òg',
-'blanknamespace'                => '(Hovud)',
+'blanknamespace'                => '(hovud)',
 
 # Contributions
 'contributions'       => 'Brukarbidrag',
@@ -2501,7 +2502,7 @@ $1',
 'ipb-change-block'                => 'Blokker brukaren på nytt med desse innstillingane',
 'ipb-confirm'                     => 'Stadfest blokkering',
 'badipaddress'                    => 'IP-adressa er ugyldig eller blokkering av brukarar er slått av på tenaren.',
-'blockipsuccesssub'               => 'Blokkeringa er utførd',
+'blockipsuccesssub'               => 'Blokkeringa er utført',
 'blockipsuccesstext'              => '«[[Special:Contributions/$1|$1]]» er blokkert.<br />
 Sjå [[Special:BlockList|blokkeringslista]] for alle blokkeringane.',
 'ipb-blockingself'                => 'Du er i ferd med å blokkera deg sjølv. Er du viss på at du ynskjer gjera dette?',
@@ -2615,7 +2616,7 @@ Den gamle tittelen vil verta ei omdirigeringsside til den nye.
 Du kan oppdatera omdirigeringar som peikar til den opphavlege tittelen automatisk.
 Vel du å ikkje gjera dette, pass på å sjå etter [[Special:DoubleRedirects|doble]] eller [[Special:BrokenRedirects|øydelagde omdirigeringar]].
 
-Merk at sida '''ikkje''' vert flytt dersom det alt finst ei side med den nye tittelen, minder ho er ei omdirigering og ikkje har nokon endringshistorikk. Detter tyder at du kan omdøypa ei side attende til der ho vart omdøypt frå om du gjorde eit mistak, og du kan ikkje skriva over sider som finst.
+Merk at sida '''ikkje''' vert flytt dersom det alt finst ei side med den nye tittelen, minder målsida er ei omdirigering og ikkje har nokon endringshistorikk. Detter tyder at du kan omdøypa ei side attende til der ho vart omdøypt frå om du gjorde eit mistak, og du kan ikkje skriva over sider som finst.
 
 '''ÅTVARING!'''
 Dette kan vera ei drastisk og uventa endring for ei populær side; ver viss på at du skjøner konsekvensane av dette før du held fram.",
@@ -3445,7 +3446,7 @@ Andre er gøymde som standard.
 'monthsall'     => 'alle',
 'limitall'      => 'alle',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail'              => 'Stadfest e-postadresse',
 'confirmemail_noemail'      => 'Du har ikkje gjeve ei gyldig e-postadresse i [[Special:Preferences|innstillingane dine]].',
 'confirmemail_text'         => '{{SITENAME}} krev at du stadfester e-postadressa di
@@ -3597,7 +3598,7 @@ Du kan òg [[Special:EditWatchlist|nytte standardverktøyet]].',
 
 # Core parser functions
 'unknown_extension_tag' => 'Ukjend tilleggsmerking «$1»',
-'duplicate-defaultsort' => 'Åtvaring: Standarsorteringa «$2» tar over for den tidlegare sorteringa «$1».',
+'duplicate-defaultsort' => 'Åtvaring: Standardsorteringa «$2» tar over for den tidlegare sorteringa «$1».',
 
 # Special:Version
 'version'                       => 'Versjon',

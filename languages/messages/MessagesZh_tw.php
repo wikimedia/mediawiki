@@ -592,7 +592,7 @@ $messages = array(
 # Special:ActiveUsers
 'activeusers-hidebots' => '隱藏機器人',
 
-# E-mail user
+# Email user
 'mailnologin'     => '無E-mail地址',
 'mailnologintext' => '您必須先[[Special:UserLogin|登入]]
 並在[[Special:Preferences|偏好設定]]
@@ -919,7 +919,7 @@ Variants for Chinese language
 # External editor support
 'edit-externally-help' => '請參見[//www.mediawiki.org/wiki/Manual:External_editors 設定步驟]了解詳細資訊。',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail'            => '確認電子郵件地址',
 'confirmemail_noemail'    => '您沒有在您的[[Special:Preferences|使用者設定]]裡面輸入一個有效的 email 位址。',
 'confirmemail_text'       => '此網站要求您在使用郵件功能之前驗證您的電子郵件地址。

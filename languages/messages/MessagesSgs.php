@@ -1238,7 +1238,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'listgrouprights-group'   => 'Gropė',
 'listgrouprights-members' => '(nariū sārošos)',
 
-# E-mail user
+# Email user
 'mailnologin'     => 'Nier adresa',
 'mailnologintext' => 'Tamstā reik būtė [[Special:UserLogin|prisėjongosiam]]
 ė tor būtė ivests teisings el. pašta adresos Tamstas [[Special:Preferences|nustatīmuos]],
@@ -1824,7 +1824,7 @@ Vėsas kėtas nūoruodas tuo patiuo eilotie īr laikomas ėšėmtim, tas rēšk 
 'namespacesall' => 'vėsas',
 'monthsall'     => 'vėsė',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail'           => 'Patvirtėnkėt el. pašta adresa',
 'confirmemail_noemail'   => 'Tamsta netorėt nuruodės teisėnga el. pašta adresa [[Special:Preferences|sava nustatīmūs]].',
 'confirmemail_text'      => 'Šėtom pruojektė īr rēkalėnga patvirtėntė el. pašta adresa prīš nauduojont el. pašta funkcėjės. Spauskėt žemiau esonti mīgtoka,

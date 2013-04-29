@@ -1676,7 +1676,7 @@ Jeke quqıqtar twralı köbirek aqparattı [[{{MediaWiki:Listgrouprights-helppag
 'listgrouprights-helppage' => '{{ns:help}}:Top quqıqtarı',
 'listgrouprights-members'  => '(müşe tizimi)',
 
-# E-mail user
+# Email user
 'mailnologin'     => 'Eş mekenjaý jöneltilgen joq',
 'mailnologintext' => 'Basqa qatıswşığa xat jöneltw üşin [[Special:UserLogin|kirwiñiz]] kerek, jäne [[Special:Preferences|baptawıñızda]] jaramdı e-poşta jaýı bolwı jön.',
 'emailuser'       => 'Qatıswşığa xat jazw',
@@ -2649,7 +2649,7 @@ Basqaları ädepkiden jasırıladı.
 'namespacesall' => 'barlığı',
 'monthsall'     => 'barlığı',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail'             => 'E-poşta mekenjaýın quptaw',
 'confirmemail_noemail'     => '[[{{#special:Preferences}}|Paýdalanwşılıq baptalımdarıñızda]] jaramdı e-poşta mekenjaýın qoýmapsız.',
 'confirmemail_text'        => '{{SITENAME}} e-poşta mümkindikterin paýdalanw üşin aldınan e-poşta mekenjaýıñızdıñ jaramdılığın tekserip şığwıñız kerek.

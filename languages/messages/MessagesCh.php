@@ -883,7 +883,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 # Special:LinkSearch
 'linksearch-ok' => 'Aligao',
 
-# E-mail user
+# Email user
 'emailuser' => "Na'e-mail i muna'sesetbi este",
 
 # Watchlist

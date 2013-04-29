@@ -648,7 +648,7 @@ E ʻoluʻolu, e hōʻoia i ka hoʻokūkū ʻana i lalo, a laila, e mālama i nā
 # Special:ListGroupRights
 'listgrouprights-members' => '(papa o nā lālā)',
 
-# E-mail user
+# Email user
 'emailuser'    => 'E leka uila i kēia mea ho‘ohana',
 'emailmessage' => 'Memo:',
 

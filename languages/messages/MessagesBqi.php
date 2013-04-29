@@ -548,7 +548,7 @@ $2',
 # Special:Categories
 'categories' => 'دسته ها',
 
-# E-mail user
+# Email user
 'emailuser' => 'امیل ای کاربر',
 
 # Watchlist

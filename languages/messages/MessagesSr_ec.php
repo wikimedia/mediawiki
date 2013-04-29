@@ -569,7 +569,7 @@ $messages = array(
 'vector-view-edit'               => 'Уреди',
 'vector-view-history'            => 'Историја',
 'vector-view-view'               => 'Читај',
-'vector-view-viewsource'         => 'Изворник',
+'vector-view-viewsource'         => 'Изворни код',
 'actions'                        => 'Радње',
 'namespaces'                     => 'Именски простори',
 'variants'                       => 'Варијанте',
@@ -678,7 +678,7 @@ $1',
 'editsection'             => 'уреди',
 'editsection-brackets'    => '[$1]',
 'editold'                 => 'уреди',
-'viewsourceold'           => 'изворник',
+'viewsourceold'           => 'изворни код',
 'editlink'                => 'уреди',
 'viewsourcelink'          => 'Извор',
 'editsectionhint'         => 'Уредите одељак „$1“',
@@ -780,7 +780,7 @@ $1',
 'wrong_wfQuery_params' => 'Неисправни параметри за wfQuery()<br />
 Функција: $1<br />
 Упит: $2',
-'viewsource'           => 'Изворник',
+'viewsource'           => 'Изворни код',
 'viewsource-title'     => 'Приказ извора странице $1',
 'actionthrottled'      => 'Радња је успорена',
 'actionthrottledtext'  => 'У циљу борбе против непожељних порука, ограничене су вам измене у одређеном времену, а управо сте прешли то ограничење. Покушајте поново за неколико минута.',
@@ -908,7 +908,7 @@ $2',
 'loginlanguagelabel'         => 'Језик: $1',
 'suspicious-userlogout'      => 'Ваш захтев за одјаву је одбијен јер је послат од стране неисправног прегледача или посредника.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Непозната грешка у функцији PHP mail().',
 'user-mail-no-addy'      => 'Покушали сте да пошаљете поруку без е-адресе.',
 
@@ -1579,7 +1579,7 @@ $1",
 'prefs-displaywatchlist'        => 'Поставке приказа',
 'prefs-diffs'                   => 'Разлике',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid'   => 'Е-адреса је исправна',
 'email-address-validity-invalid' => 'Унесите исправну е-адресу',
 
@@ -2365,7 +2365,7 @@ $1',
 'listgrouprights-addgroup-self-all'    => 'Додај све групе на сопствени налог',
 'listgrouprights-removegroup-self-all' => 'Уклони све групе са сопственог налога',
 
-# E-mail user
+# Email user
 'mailnologin'          => 'Нема адресе за слање',
 'mailnologintext'      => 'Морате бити [[Special:UserLogin|пријављени]] и имати исправну е-адресу у [[Special:Preferences|подешавањима]] да бисте слали е-поруке другим корисницима.',
 'emailuser'            => 'Пошаљи е-поруку',
@@ -3833,7 +3833,7 @@ $8',
 'monthsall'     => 'све',
 'limitall'      => 'све',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail'              => 'Потврда е-адресе',
 'confirmemail_noemail'      => 'Нисте унели исправну е-адресу у [[Special:Preferences|подешавањима]].',
 'confirmemail_text'         => '{{SITENAME}} захтева да потврдите е-адресу пре него што почнете да користите могућности е-поште.

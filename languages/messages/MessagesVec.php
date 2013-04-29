@@ -633,7 +633,7 @@ Spèta un tocheto prima de proàr da novo.',
 'loginlanguagelabel'         => 'Lengua: $1',
 'suspicious-userlogout'      => 'Ła to richiesta de disconesion xè sta negà parché e a senbra invià da on browser non funsionante o on proxy de caching.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => "Erore sconosudo nte'l funsionamento deła posta ełetronega PHP",
 'user-mail-no-addy'      => 'Te ghe provà spedire un mesajo de posta ełetronega sensa un indiriso.',
 
@@ -1234,7 +1234,7 @@ Sta operassion no la pol èssar anulà.',
 'prefs-emailconfirm-label'      => "Conferma de l'e-mail:",
 'prefs-textboxsize'             => 'Dimension de la casèla de modifica',
 'youremail'                     => 'La to e-mail',
-'username'                      => 'Nome utente',
+'username'                      => 'Nome utente:',
 'uid'                           => 'ID utente:',
 'prefs-memberingroups'          => 'Menbro {{PLURAL:$1|del grupo|dei grupi}}:',
 'prefs-registration'            => 'Data de registrassion:',
@@ -1273,7 +1273,7 @@ Co qualcheduni te scrivarà, nol vedarà mia el to indirizo.',
 'prefs-displaywatchlist'        => 'Opzioni de visualixassion',
 'prefs-diffs'                   => 'Difarense',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid'   => "L'indiriso de posta eletronega pararìa vałido",
 'email-address-validity-invalid' => 'Inserisi un indiriso de posta eletronega vałido',
 
@@ -2017,7 +2017,7 @@ Se pol consultar anca dele altre [[{{MediaWiki:Listgrouprights-helppage}}|inform
 'listgrouprights-addgroup-self-all'    => 'Pol xontarse a tuti i grupi',
 'listgrouprights-removegroup-self-all' => 'Pol cavarse da tuti i grupi',
 
-# E-mail user
+# Email user
 'mailnologin'          => 'Nissun indirizo a cui mandarghe el messagio',
 'mailnologintext'      => 'Par inviare messagi e-mail ad altri utenti bisogna [[Special:UserLogin|acedere al sito]] e aver registrà un indirisso vałido ne łe proprie [[Special:Preferences|preferense]].',
 'emailuser'            => 'Scrìveghe a sto utente',
@@ -2053,7 +2053,7 @@ Se pol consultar anca dele altre [[{{MediaWiki:Listgrouprights-helppage}}|inform
 'usermessage-editor'  => 'Messagero de sistema',
 
 # Watchlist
-'watchlist'            => "Pagine tegnùe d'ocio",
+'watchlist'            => "Pàjine tegnùe d'ocio",
 'mywatchlist'          => "Pàjine tegnùe d'ocio",
 'watchlistfor2'        => 'De $1 $2',
 'nowatchlist'          => "No te ghè indicà pagine da tegner d'ocio.",
@@ -3300,7 +3300,7 @@ I colegamenti dopo, su la stessa riga, i xe considerai come ecession (cioè, pag
 'monthsall'     => 'tuti',
 'limitall'      => 'tuti quanti',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail'              => 'Conferma indirisso e-mail',
 'confirmemail_noemail'      => 'No te ghè indicà un indirizo e-mail valido ne le to [[Special:Preferences|preferense]].',
 'confirmemail_text'         => "{{SITENAME}} el richiede la verifica de l'indirizo e-mail prima che te possi doparar le funzion ligà a l'e-mail.

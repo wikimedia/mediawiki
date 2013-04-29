@@ -503,7 +503,7 @@ Sooka olindeko akaseera okuddamu n'ate.",
 'suspicious-userlogout'      => "Sisitemu ezize ekiragiro kyo eky'okugivaamu kubanga kirabise nga ekivudde mu kalambulanetti enfu<br />
 oba mu puloguramu etereka n'eddamu okuyisa ebiragiro ebivudde awalala.",
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => "Wazzewo kiremya atategeerese mu mukolo mail() ogw'omu PHP",
 
 # Change password dialog
@@ -1030,7 +1030,7 @@ W'owandikira by'onoonya bw'osoosawo akagambo ''all:'', okunoonya kubuna Wikipedi
 # Special:ListGroupRights
 'listgrouprights-members' => '(lukalala lwa bamemba)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Memba ono musindikire e-mail',
 
 # Watchlist

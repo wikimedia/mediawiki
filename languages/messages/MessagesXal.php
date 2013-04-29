@@ -867,7 +867,7 @@ $1',
 # Special:ListGroupRights
 'listgrouprights-members' => '(мөчүдин сеткүл)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Энд E-mail йовулх',
 
 # Watchlist

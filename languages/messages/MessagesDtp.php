@@ -63,7 +63,7 @@ $messages = array(
 
 'underline-always'  => 'Toririmo',
 'underline-never'   => 'Kada',
-'underline-default' => 'Pogigihum pongoiso',
+'underline-default' => 'Kourasai pogigihum sandad',
 
 # Font style option in Special:Preferences
 'editfont-style'     => 'Poyanan mongidit gaya pimato:',
@@ -148,8 +148,8 @@ $messages = array(
 'newwindow'     => '(ukabai id liligaon wagu)',
 'cancel'        => 'Kinsilo',
 'moredotdotdot' => 'Gumu...',
-'mypage'        => 'Bolikonku',
-'mytalk'        => 'Pibabarasanku',
+'mypage'        => 'Bolikon',
+'mytalk'        => 'Pogibabarasan',
 'anontalk'      => 'Piboros montok diti nantadon IP',
 'navigation'    => 'Popotunud',
 'and'           => '&#32;om',
@@ -172,7 +172,7 @@ $messages = array(
 'vector-action-protect'          => 'Tingoligai',
 'vector-action-undelete'         => 'Kada pugaso',
 'vector-action-unprotect'        => 'Alanai tingolig',
-'vector-simplesearch-preference' => 'Pasagao pogigihum ponontonudon pinoingkawas (Pongulit tuntuduk nopo)',
+'vector-simplesearch-preference' => 'Pasagao pogigihum bar noinsanangan (Pongulit tuntuduk nopo)',
 'vector-view-create'             => 'Pomonsoi',
 'vector-view-edit'               => 'Idito',
 'vector-view-history'            => 'Intaai susuyan',
@@ -387,7 +387,7 @@ Pongimuhatan: $2',
 'actionthrottled'      => 'Momilos',
 'actionthrottledtext'  => 'Pinapanau lumawan-singkarap, Nantaban ko do mingguli momonsoi miagal dilo id timpu do osikap, om nagampot nu noh gisom diti.
 Umbalan kawagu do katalib poh pipiro minit.',
-'protectedpagetext'    => 'Bolikon diti notingoligan tu mangantob do pingiditan.',
+'protectedpagetext'    => 'Bolikon diti notingoligan tu mangantob do pinsimbanan toi pingkukuroyon nopo.',
 'viewsourcetext'       => 'Pasagaon ko do mongintong om mangadalin wowonod diti bolikon:',
 'viewyourtext'         => "Milo nu do intangan om solinon ot wowonod '''niditannu''' id bolikon diti:",
 'protectedinterface'   => 'Bolikon diti kiharo sinuratan pongurasan montok posusuang-suangon, om notingoligan do momiara mantad pomirumbakan.
@@ -513,7 +513,7 @@ Andado poh do toruhai pogulu do minsingumbal kawagu.',
 'loginlanguagelabel'         => 'Woyoboros: $1',
 'suspicious-userlogout'      => 'Awu naramit lumabus lognu tu pinaatod mantad pogigihum norumbak toi caching olon.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Awu nointutunan kinosilapan id don surat PHP () function',
 'user-mail-no-addy'      => 'Mogumbal do papaatod surat-i tingaa o paatadan.',
 
@@ -541,7 +541,12 @@ Naalanannu noh kaatalib toi nokopokianu koh no do kaatalib daamot.',
 'passwordreset-text'               => 'Gonopo poom diti do mangaramit tongosurat-i ponorou do nokomoi id akaun.',
 'passwordreset-legend'             => 'Pudoliai kawagu kaatalib',
 'passwordreset-disabled'           => 'Pomudolian kawagu do kaatalib kitaantob id wiki diti.',
+'passwordreset-pretext'            => '{{PLURAL:$1||Posuango iso data id siriba}}',
 'passwordreset-username'           => 'Ngarandait:',
+'passwordreset-domain'             => 'Sumanganu:',
+'passwordreset-capture'            => 'Intaai surat-i dii nowonsoi?',
+'passwordreset-capture-help'       => 'Nung goritannu id kutak diti, surat-i (ii ki-kaa-talib daamot) mangan pokitanai montok dia om nogi porikoton montok momomoguno diti.',
+'passwordreset-email'              => 'Porikatan surat-i:',
 'passwordreset-emailtitle'         => 'Kointalangan takaun id {{SITENAME}}',
 'passwordreset-emailelement'       => 'Ngaranmoguno: $1
 Kaatalib daamot: $2',
@@ -927,6 +932,7 @@ Intaai [[Special:BlockList|lis nantaban]] montok lis kawawagu karaja mogoduh om 
 'nextn-title'                      => 'Sumusuhut $1 {{PLURAL:$1|kootuson|tongokootuson}}',
 'shown-title'                      => 'Pokitono $1 {{PLURAL:$1|kootuson|tongokootuson}} monikid bolikon',
 'viewprevnext'                     => 'Intaai ($1 {{int:pipe-separator}} $2) ($3)',
+'searchmenu-legend'                => 'Pilion ihum-ihumon',
 'searchmenu-exists'                => "'''Haro no bolikon pinungaranan do \"[[:\$1]]\" hiti id wiki.'''",
 'searchmenu-new'                   => "'''Pomonsoi do bolikon \"[[:\$1]]\"hiti id wiki!'''",
 'searchhelp-url'                   => 'Help:Susuang',
@@ -981,7 +987,7 @@ Imurai no do indik suang diti {{SITENAME}} nopo nga nokolipas.',
 
 # Preferences page
 'preferences'                 => 'Pipilion',
-'mypreferences'               => 'Komoisoonku',
+'mypreferences'               => 'Pipilion',
 'prefs-edits'                 => 'Ginumu niditan:',
 'prefsnologin'                => 'Amu nokolog sumuang',
 'changepassword'              => 'Alanai kaatalib',
@@ -996,6 +1002,15 @@ Imurai no do indik suang diti {{SITENAME}} nopo nga nokolipas.',
 'saveprefs'                   => 'Pogompio',
 'resetprefs'                  => 'Pugaso nalanan awu nogompi',
 'searchresultshead'           => 'Ihumo',
+'servertime'                  => 'Timpu mamamalayan:',
+'guesstimezone'               => 'Gunoo pinatantu do lalayagku',
+'timezoneregion-africa'       => 'Aprika',
+'timezoneregion-america'      => 'Amirika',
+'timezoneregion-antarctica'   => 'Antartika',
+'timezoneregion-arctic'       => 'Artik',
+'timezoneregion-asia'         => 'Asia',
+'timezoneregion-atlantic'     => 'Karahatan Atlantik',
+'timezoneregion-australia'    => 'Astaralia',
 'prefs-searchoptions'         => 'Ihumo',
 'prefs-namespaces'            => 'Ponuratan ngaran',
 'youremail'                   => 'Surat-i:',
@@ -1012,7 +1027,7 @@ Imurai no do indik suang diti {{SITENAME}} nopo nga nokolipas.',
 'prefs-displaywatchlist'      => 'Pomilian pongitanan',
 'prefs-diffs'                 => 'Pisuaian',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid'   => 'Porikatan surat-i asaah',
 'email-address-validity-invalid' => 'Posuango porikatan surat-i di asaah',
 
@@ -1197,7 +1212,7 @@ Kointalangan dilo [$2 kointalangan pail] okito id siriba.',
 # Special:ListGroupRights
 'listgrouprights-members' => '(lis do kinoruhangan)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Surat-i momomoguno diti',
 
 # Watchlist

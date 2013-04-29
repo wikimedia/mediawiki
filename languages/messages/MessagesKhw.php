@@ -859,7 +859,7 @@ HTML tags لوڑے.',",
 # Special:ListGroupRights
 'listgrouprights-members' => 'ممبارانن فھرست',
 
-# E-mail user
+# Email user
 'emailuser' => 'ممباروت بشلی کغاز انڅاوے',
 
 # Watchlist

@@ -29,6 +29,7 @@
  * @author M.M.S.
  * @author MagnusA
  * @author Micke
+ * @author Mikez
  * @author NH
  * @author Najami
  * @author Nghtwlkr
@@ -780,8 +781,8 @@ fortsätta använda ditt gamla lösenord.',
 'blocked-mailpassword'       => 'Din IP-adress är blockerad, därför kan den inte användas för att få ett nytt lösenord.',
 'eauthentsent'               => 'Ett e-brev för bekräftelse har skickats till den e-postadress som angivits.
 Innan någon annan e-post kan skickas härifrån till kontot, måste du följa instruktionerna i e-brevet för att bekräfta att kontot verkligen är ditt.',
-'throttled-mailpassword'     => 'Ett nytt lösenord har redan skickats för mindre än {{PLURAL:$1|en timme|$1 timmar}} sedan.
-För att förhindra missbruk skickas bara ett nytt lösenord per {{PLURAL:$1|timme|$1-timmarsperiod}}.',
+'throttled-mailpassword'     => 'En lösenordsåterställning har redan skickats för mindre än {{PLURAL:$1|en timme|$1 timmar}} sedan.
+För att förhindra missbruk skickas bara en lösenordsåterställning per {{PLURAL:$1|timme|$1-timmarsperiod}}.',
 'mailerror'                  => 'Fel vid skickande av e-post: $1',
 'acct_creation_throttle_hit' => 'Besökare till den här wikin som har använt din IP-adress har skapat {{PLURAL:$1|1 användarkonto|$1 användarkonton}} under det senaste dygnet, vilket är det maximalt tillåtna inom den tidsperioden.
 Som ett resultat kan besökare som använder den här IP-adressen inte skapa några fler användarkonton just nu.',
@@ -805,7 +806,7 @@ Vänta innan du försöker igen.',
 'loginlanguagelabel'         => 'Språk: $1',
 'suspicious-userlogout'      => 'Din begäran om att logga ut nekades eftersom det ser ut som det skickades av en trasig webbläsare eller cachande proxy.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => "Okänt fel i PHP's mail()-funktion",
 'user-mail-no-addy'      => 'Försökte skicka e-post utan en e-postadress',
 
@@ -829,7 +830,7 @@ Du kanske redan har lyckats ändra ditt lösenord eller begärt ett nytt tillfä
 
 # Special:PasswordReset
 'passwordreset'                    => 'Lösenordsåterställning',
-'passwordreset-text'               => 'Fyll i detta formulär för att få en påminnelse om dina kontouppgifter via e-post.',
+'passwordreset-text'               => 'Fyll i detta formulär för att återställa ditt lösenord.',
 'passwordreset-legend'             => 'Återställ lösenord',
 'passwordreset-disabled'           => 'Lösenordsåterställning har inaktiverats på denna wiki.',
 'passwordreset-pretext'            => '{{PLURAL:$1||Ange en av datadelarna nedan}}',
@@ -839,13 +840,13 @@ Du kanske redan har lyckats ändra ditt lösenord eller begärt ett nytt tillfä
 'passwordreset-capture-help'       => 'Om du markerar den här rutan kommer e-postmeddelandet (med det tillfälliga lösenordet) visas för dig och skickas till användaren.',
 'passwordreset-email'              => 'E-postadress:',
 'passwordreset-emailtitle'         => 'Kontouppgifter på {{SITENAME}}',
-'passwordreset-emailtext-ip'       => 'Någon (förmodligen du, från IP-adressen $1) begärde en påminnelse av dina kontodetaljer för {{SITENAME}} ($4). Följande användar{{PLURAL:$3|konto är förknippad|konton är förknippade}} med denna e-postadress:
+'passwordreset-emailtext-ip'       => 'Någon (förmodligen du, från IP-adressen $1) begärde en återställning av ditt lösenord för {{SITENAME}} ($4). Följande användar{{PLURAL:$3|konto är förknippad|konton är förknippade}} med denna e-postadress:
 
 $2
 
 {{PLURAL:$3|Detta|Dessa}} tillfälliga lösenord kommer att gå ut om {{PLURAL:$5|en dag|$5 dagar}}.
 Du bör logga in och välja ett nytt lösenord nu. Om någon annan gjorde denna begäran, eller om du kommer ihåg ditt ursprungliga lösenord, och du önskar inte att ändra det, kan du ignorera detta meddelande och fortsätta använda ditt gamla lösenord.',
-'passwordreset-emailtext-user'     => 'Användaren $1 på {{SITENAME}} begärde en påminnelse om dina kontodetaljer för {{SITENAME}} ($4). Följande användar{{PLURAL:$3|konto är förknippad|konton är förknippade}} med denna e-postadress:
+'passwordreset-emailtext-user'     => 'Användaren $1 på {{SITENAME}} begärde en återställning av ditt lösenord för {{SITENAME}} ($4). Följande användar{{PLURAL:$3|konto är förknippad|konton är förknippade}} med denna e-postadress:
 
 $2
 
@@ -853,8 +854,8 @@ $2
 Du bör logga in och välja ett nytt lösenord nu. Om någon annan gjorde denna begäran, eller om du kommer ihåg ditt ursprungliga lösenord, och du önskar inte att ändra det, kan du ignorera detta meddelande och fortsätta använda ditt gamla lösenord.',
 'passwordreset-emailelement'       => 'Användarnamn: $1
 Tillfälligt lösenord: $2',
-'passwordreset-emailsent'          => 'En påminnelse via e-post har skickats.',
-'passwordreset-emailsent-capture'  => 'En påminnelse via e-post har skickats, som visas nedan.',
+'passwordreset-emailsent'          => 'En lösenordsåterställning via e-post har skickats.',
+'passwordreset-emailsent-capture'  => 'En lösenordsåterställning via e-post har skickats, som visas nedan.',
 'passwordreset-emailerror-capture' => 'En påminnelse via e-post har skapats, som visas nedan, men det gick inte att skicka den till användaren: $1',
 
 # Special:ChangeEmail
@@ -1311,7 +1312,7 @@ Se till att sidhistorikens kontinuitet behålls när du sammanfogar historik.',
 'search-mwsuggest-enabled'         => 'med förslag',
 'search-mwsuggest-disabled'        => 'inga förslag',
 'search-relatedarticle'            => 'Relaterad',
-'mwsuggest-disable'                => 'Avaktivera AJAX-förslag',
+'mwsuggest-disable'                => 'Inaktivera sökförslag',
 'searcheverything-enable'          => 'Sök i alla namnrymder',
 'searchrelated'                    => 'relaterad',
 'searchall'                        => 'alla',
@@ -1458,7 +1459,7 @@ Om du väljer att ange ditt riktiga namn, kommer det att användas för att till
 'prefs-displaywatchlist'        => 'Visningalternativ',
 'prefs-diffs'                   => 'Skillnader',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid'   => 'Ser giltig ut',
 'email-address-validity-invalid' => 'Giltig adress krävs!',
 
@@ -1530,7 +1531,7 @@ Om du väljer att ange ditt riktiga namn, kommer det att användas för att till
 'right-bot'                   => 'Behandlas som en automatisk process',
 'right-nominornewtalk'        => 'Mindre ändringar på diskussionssidor ger inte besked om nya meddelanden',
 'right-apihighlimits'         => 'Använda högre gränser i API-frågor',
-'right-writeapi'              => 'Använda skriv-API:t',
+'right-writeapi'              => 'Använda skriv-API:et',
 'right-delete'                => 'Radera sidor',
 'right-bigdelete'             => 'Radera sidor med stor historik',
 'right-deleterevision'        => 'Radera och återställa enskilda sidversioner',
@@ -2220,7 +2221,7 @@ Det kan finnas [[{{MediaWiki:Listgrouprights-helppage}}|ytterligare information]
 'listgrouprights-addgroup-self-all'    => 'Kan lägga till alla grupperna till sitt eget konto',
 'listgrouprights-removegroup-self-all' => 'Kan ta bort alla grupperna från sitt eget konto',
 
-# E-mail user
+# Email user
 'mailnologin'          => 'Ingen adress att skicka till',
 'mailnologintext'      => 'För att kunna skicka e-post till andra användare, måste du vara [[Special:UserLogin|inloggad]] och ha angivit en korrekt e-postadress i dina [[Special:Preferences|användarinställningar]].',
 'emailuser'            => 'Skicka e-post till den här användaren',
@@ -2806,7 +2807,7 @@ I det senare fallet kan du även använda en länk, exempel [[{{#Special:Export}
 'exportcuronly'     => 'Inkludera endast den nuvarande versionen, inte hela historiken',
 'exportnohistory'   => "----
 '''OBS:''' export av fullständig sidhistorik med hjälp av detta formulär har stängts av på grund av prestandaskäl.",
-'exportlistauthors' => 'Innehålla en fullständig lista över bidragsgivare för varje sida',
+'exportlistauthors' => 'Inkludera en fullständig lista över bidragsgivare för varje sida',
 'export-submit'     => 'Exportera',
 'export-addcattext' => 'Lägg till sidor från kategori:',
 'export-addcat'     => 'Lägg till',
@@ -3564,7 +3565,7 @@ Andra kommer att gömmas som standard
 'monthsall'     => 'alla',
 'limitall'      => 'alla',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail'              => 'Bekräfta e-postadress',
 'confirmemail_noemail'      => 'Du har inte angivit någon giltig e-postadress i dina [[Special:Preferences|inställningar]].',
 'confirmemail_text'         => 'Innan du kan använda {{SITENAME}}s funktioner för e-post måste du bekräfta din e-postadress. Aktivera knappen nedan för att skicka en bekräftelsekod till din e-postadress. Mailet kommer att innehålla en länk, som innehåller en kod. Genom att klicka på den länken eller kopiera den till din webbläsares fönster för webbadresser, bekräftar du att din e-postadress fungerar.',
@@ -3787,7 +3788,7 @@ Bilder visas i full upplösning, andra filtyper öppnas direkt i de program som 
 'specialpages-group-highuse'     => 'Sidor som används mycket',
 'specialpages-group-pages'       => 'Listor över sidor',
 'specialpages-group-pagetools'   => 'Sidverktyg',
-'specialpages-group-wiki'        => 'Information och verktyg för wikin',
+'specialpages-group-wiki'        => 'Data och verktyg',
 'specialpages-group-redirects'   => 'Omdirigerande specialsidor',
 'specialpages-group-spam'        => 'Spamverktyg',
 

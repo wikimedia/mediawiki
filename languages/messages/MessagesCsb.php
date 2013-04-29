@@ -899,7 +899,7 @@ Mòżesz zawãżëc wëszłosc przez wëbranié ôrtu registru, miona brëkòwni
 # Special:ListGroupRights
 'listgrouprights-members' => '(lësta nôlëżników karna)',
 
-# E-mail user
+# Email user
 'emailuser'       => 'Wëslë e-maila do negò brëkòwnika',
 'emailpage'       => 'Sélajë e-mail do brëkòwnika',
 'defemailsubject' => 'E-mail òd {{SITENAME}}',
@@ -1252,7 +1252,7 @@ Jinszé pòla bãdą domëslno zataconé.
 'monthsall'     => 'wszëtczé',
 'limitall'      => 'wszëtczé',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail_loggedin' => 'Twòjô adresa e-mail òsta pòcwierdzona.',
 
 # action=purge

@@ -548,7 +548,7 @@ $2',
 'loginlanguagelabel'         => 'भाषा: $1',
 'suspicious-userlogout'      => 'तपाईंको निर्गमन अनुरोध अस्विकार गरिन्छ किन कि यो खराब ब्राउजर वा क्यासिङ प्रोक्सिले पठाएको जस्तो देखिन्छ।',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'PHP मेल() क्रियामा अज्ञात त्रुटि',
 'user-mail-no-addy'      => 'इमेल ठेगाना बिना नै इमेल पठाउन खोजिएको थियो।',
 
@@ -1194,7 +1194,7 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 'prefs-displaywatchlist'        => 'प्रदर्शन विकल्पहरू',
 'prefs-diffs'                   => 'diffs(भिन्नता)',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid'   => 'ई मेल ठेगाना मान्य भएको प्रतीत हुन्छ',
 'email-address-validity-invalid' => 'मान्य ईमेल ठेगाना दिनुहोस्',
 
@@ -1832,7 +1832,7 @@ $1',
 'listgrouprights-removegroup-self'  => '{{PLURAL:$2|समूह|समूहहरु}} यस  $1 खाताबाट हटाउने',
 'listgrouprights-addgroup-self-all' => 'सबै समूहहरु निजी खातामा थप्ने',
 
-# E-mail user
+# Email user
 'mailnologin'          => 'ईमेल पठाउने ठेगाना नै भएन ।',
 'mailnologintext'      => 'तपाईले अरु प्रयोगकर्ताहरुलाई ईमेल पठाउनको लागि आफु पहिले [[Special:UserLogin|प्रवेश(लगइन)गरेको]] हुनुपर्छ र [[Special:Preferences|आफ्नो रोजाइहरुमा]] एउटा वैध ईमेल ठेगाना भएको हुनुपर्छ।',
 'emailuser'            => 'यो प्रयोगकर्तालाई ई-मेल पठाउनुहोस्',
@@ -3080,7 +3080,7 @@ $8',
 'monthsall'     => 'सबै',
 'limitall'      => 'सबै',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail'              => 'इमेल ठेगाना पक्का गर्नुहोस्',
 'confirmemail_noemail'      => 'तपाईको प्रयोगकर्ता [[Special:Preferences|अभिरुचीमा]] मान्य इमेल ठेगाना राखीएको छैन ।',
 'confirmemail_pending'      => 'तपाईको इमेलमा प्रपाणिकरण कोड पहिले नै पठाइ सकिएको छ;

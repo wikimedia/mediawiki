@@ -13,6 +13,7 @@
  * @author Asoxor
  * @author Baqeri
  * @author Behdarvandyani
+ * @author Dalba
  * @author Ebraminio
  * @author Huji
  * @author Ibrahim
@@ -36,6 +37,7 @@
  * @author Zack90
  * @author ZxxZxxZ
  * @author לערי ריינהארט
+ * @author جواد
  * @author محک
  */
 
@@ -590,7 +592,7 @@ $messages = array(
 'vector-action-protect'          => 'محافظت',
 'vector-action-undelete'         => 'احیا',
 'vector-action-unprotect'        => 'تغییر سطح حفاظت',
-'vector-simplesearch-preference' => 'فعال کردن جستجوی ساده (فقط در پوستهٔ برداری)',
+'vector-simplesearch-preference' => 'فعال کردن نوار جستجوی ساده‌شده (فقط در پوستهٔ برداری)',
 'vector-view-create'             => 'ایجاد',
 'vector-view-edit'               => 'ویرایش',
 'vector-view-history'            => 'نمایش تاریخچه',
@@ -937,7 +939,7 @@ $2',
 'loginlanguagelabel'         => 'زبان: $1',
 'suspicious-userlogout'      => 'درخواست شما برای خروج از سامانه رد شد زیرا به نظر می‌رسد که این درخواست توسط یک مرورگر معیوب یا پروکسی میانگیر ارسال شده باشد.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'خطای ناشناخته در تابع  mail()‎ پی‌اچ‌پی',
 'user-mail-no-addy'      => 'تلاش برای ارسال نامه بدون یک آدرس رایانامه.',
 
@@ -1452,7 +1454,7 @@ $1",
 'search-mwsuggest-enabled'         => 'با پیشنهاد',
 'search-mwsuggest-disabled'        => 'هیچ پیشنهادی وجود ندارد',
 'search-relatedarticle'            => 'مرتبط',
-'mwsuggest-disable'                => 'پیشنهادهای مبتنی بر AJAX را غیرفعال کن',
+'mwsuggest-disable'                => 'پیشنهادهای مبتنی بر جستجو را غیرفعال کن',
 'searcheverything-enable'          => 'جستجو در تمام فضاهای نام',
 'searchrelated'                    => 'مرتبط',
 'searchall'                        => 'همه',
@@ -1603,7 +1605,7 @@ $1",
 'prefs-displaywatchlist'        => 'گزینه‌های نمایش',
 'prefs-diffs'                   => 'تفاوت‌ها',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid'   => 'نشانی رایانامه معتبر به نظر می رسد',
 'email-address-validity-invalid' => 'نشانی رایانامهٔ معتبر وارد کنید',
 
@@ -2339,7 +2341,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 # Special:ActiveUsers
 'activeusers'            => 'فهرست کاربران فعال',
 'activeusers-intro'      => 'در زیر فهرستی از کاربرانی را می‌بینید که در $1 {{PLURAL:$1|روز|روز}} گذشته فعالیتی داشته‌اند.',
-'activeusers-count'      => '$1 {{PLURAL:$1|ویرایش|ویرایش}} در {{PLURAL:$3|روز|$3 روز}} اخیر',
+'activeusers-count'      => '$1 {{PLURAL:$1|فعالیت|فعالیت}} در {{PLURAL:$3|روز|$3 روز}} اخیر',
 'activeusers-from'       => 'نمایش کاربران با آغاز از:',
 'activeusers-hidebots'   => 'نهفتن ربات‌ها',
 'activeusers-hidesysops' => 'نهفتن مدیران',
@@ -2368,7 +2370,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'listgrouprights-addgroup-self-all'    => 'می‌تواند حساب خود را به تمام گروه‌ها اضافه کند',
 'listgrouprights-removegroup-self-all' => 'می‌تواند حساب خود را از تمام گروه‌ها حذف کند',
 
-# E-mail user
+# Email user
 'mailnologin'          => 'نشانی‌ای از فرستنده موجود نیست',
 'mailnologintext'      => 'برای فرستادن رایانامه به کاربران دیگر باید [[Special:UserLogin|به سامانه وارد شوید]] و نشانی رایانامهٔ معتبری در [[Special:Preferences|ترجیحات]] خود داشته باشید.',
 'emailuser'            => 'فرستادن نامه به این کاربر',
@@ -2404,7 +2406,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'usermessage-editor'  => 'پیغام رسان سامانه',
 
 # Watchlist
-'watchlist'            => 'فهرست پی‌گیری‌های من',
+'watchlist'            => 'فهرست پی‌گیری',
 'mywatchlist'          => 'فهرست پی‌گیری‌ها',
 'watchlistfor2'        => 'برای $1 $2',
 'nowatchlist'          => 'در فهرست پی‌گیری‌های شما هیچ موردی نیست.',
@@ -2564,7 +2566,7 @@ $NEWPAGE
 شما می‌توانید سطح محافظت این صفحه را تغییر بدهید اما این کار تاثیری بر محافظت آبشاری صفحه نخواهد گذاشت.',
 'protect-default'             => 'همهٔ کاربرها',
 'protect-fallback'            => 'فقط به کاربرهایی که دسترسی «$1» دارند، اجازه داده می‌شود',
-'protect-level-autoconfirmed' => 'فقط به کاربرهای تائیدشده اجازه بده',
+'protect-level-autoconfirmed' => 'تنها کاربران تائیدشده',
 'protect-level-sysop'         => 'فقط مدیران',
 'protect-summary-cascade'     => 'آبشاری',
 'protect-expiring'            => 'زمان سرآمدن $1 (UTC)',
@@ -2670,7 +2672,7 @@ $1',
 'mycontris'           => 'مشارکت‌ها',
 'contribsub2'         => 'برای $1 ($2)',
 'nocontribs'          => 'هیچ تغییری با این مشخصات یافت نشد.',
-'uctop'               => ' (بالا)',
+'uctop'               => '(بالا)',
 'month'               => 'در این ماه (و پیش از آن):',
 'year'                => 'در این سال (و پیش از آن):',
 
@@ -2872,7 +2874,7 @@ $1',
 '''شما''' مسئول اطمینان از این هستید که پیوندها هنوز به همان‌جایی که قرار است بروند.
 
 توجه کنید که اگر از قبل صفحه‌ای در عنوان جدید وجود داشته باشد صفحه منتقل '''نخواهد شد'''،
-مگر این که صفحه خالی یا تغییرمسیر باشد و تاریخچهٔ ویرایشی نداشته باشد.
+مگر این آخرین ویرایش تغییرمسیر باشد و در  تاریخچهٔ ویرایشی نداشته باشد.
 این یعنی اگر اشتباه کردید می‌توانید صفحه را به همان جایی که از آن منتقل شده بود برگردانید، و این که نمی‌توانید روی صفحه‌ها موجود بنویسید.
 
 '''هشدار!'''
@@ -3700,7 +3702,7 @@ $1',
 'monthsall'     => 'همهٔ ماه‌ها',
 'limitall'      => 'همه',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail'              => 'تأیید نشانی رایانامه',
 'confirmemail_noemail'      => 'شما در صفحهٔ [[Special:Preferences|ترجیحات کاربری]] خود نشانی رایانامه معتبری وارد نکرده‌اید.',
 'confirmemail_text'         => 'این ویکی شما را ملزم به تأیید اعتبار رایانامه خود، پیش از استفاده از خدمات رایانامه در اینجا می‌کند. دکمهٔ زیرین را فعال کنید تا نامهٔ تأییدی به نشانی رایانامهٔ شما فرستاده شود. این نامه دربردارندهٔ پیوندی خواهد بود که حاوی یک کد است. پیوند را در مرورگر خود بار کنید (اجرا) کنید تا اعتبار نشانی رایانامهٔ شما تایید شود.',
@@ -3979,7 +3981,7 @@ $5
 'specialpages-group-highuse'     => 'صفحه‌های پربازدید',
 'specialpages-group-pages'       => 'فهرست‌های صفحه‌ها',
 'specialpages-group-pagetools'   => 'ابزارهای صفحه‌ها',
-'specialpages-group-wiki'        => 'اطلاعات و ابزارهای ویکی',
+'specialpages-group-wiki'        => 'داده و ابزارها',
 'specialpages-group-redirects'   => 'صفحه‌های ویژهٔ تغییرمسیر دهنده',
 'specialpages-group-spam'        => 'ابزارهای هرزنگاری',
 

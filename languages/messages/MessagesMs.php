@@ -242,11 +242,11 @@ $messages = array(
 
 'underline-always'  => 'Sentiasa',
 'underline-never'   => 'Jangan',
-'underline-default' => 'Tetapan azali kulit/pelayar',
+'underline-default' => 'Tetapan lalai kulit/pelayar',
 
 # Font style option in Special:Preferences
 'editfont-style'     => 'Gaya fon ruang sunting:',
-'editfont-default'   => 'Pelayar web utama',
+'editfont-default'   => 'Lalaian pelayar web',
 'editfont-monospace' => 'Fon monospace',
 'editfont-sansserif' => 'Fon sans-serif',
 'editfont-serif'     => 'Fon serif',
@@ -327,7 +327,7 @@ $messages = array(
 'about'         => 'Perihal',
 'article'       => 'Laman kandungan',
 'newwindow'     => '(dibuka di tetingkap baru)',
-'cancel'        => 'Batalkan',
+'cancel'        => 'Batal',
 'moredotdotdot' => 'Lagi...',
 'mypage'        => 'Halaman',
 'mytalk'        => 'Perbualan',
@@ -656,9 +656,8 @@ mengelak penyalahgunaan, anda tidak dibenarkan menggunakan ciri pemulihan kata l
 'eauthentsent'               => 'Sebuah e-mel pengesahan telah dikirim kepada alamat e-mel tersebut.
 Sebelum e-emel lain boleh dikirim kepada alamat tersebut, anda perlu mengikuti segala arahan dalam e-mel tersebut
 untuk membuktikan bahawa alamat tersebut memang milik anda.',
-'throttled-mailpassword'     => 'Sebuah pengingat kata laluan telah pun
-dikirim dalam $1 jam yang lalu. Untuk mengelak penyalahgunaan, hanya satu
-pengingat kata laluan akan dikirim pada setiap $1 jam.',
+'throttled-mailpassword'     => 'E-mel set semula kata laluan telah dihantar dalam tempoh $1 jam yang lalu.
+Untuk mencegah salah guna, hanya sepucuk e-mel set semula kata laluan dihantar setiap {{PLURAL:$1|jam|$1 jam}}.',
 'mailerror'                  => 'Ralat ketika mengirim e-mel: $1',
 'acct_creation_throttle_hit' => 'Pengunjung wiki ini yang menggunakan alamat IP anda telah membuka sebanyak $1 akaun semenjak sehari lepas, iaitu merupakan had maksimum yang dibenarkan dalam tempoh tersebut.
 Akibatknya, pengunjung dari alamat IP ini tidak boleh membuka akaun lagi pada masa sekarang.',
@@ -684,7 +683,7 @@ Sila tunggu sebentar dan cuba lagi.',
 'loginlanguagelabel'         => 'Bahasa: $1',
 'suspicious-userlogout'      => 'Permintaan anda untuk log keluar ditolak kerana ia kelihatan seperti dihantar oleh pelayar rosak atau proksi pengagregatan.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Ralat tak diketahui dalam fungsi mail() PHP',
 'user-mail-no-addy'      => 'E-eml cuba dihantar tanpa alamat e-mel',
 
@@ -708,7 +707,7 @@ Anda mungkin telah pun berjaya menukar kata laluan anda atau meminta kata laluan
 
 # Special:PasswordReset
 'passwordreset'                    => 'Set semula kata laluan',
-'passwordreset-text'               => 'Isikan borang ini untuk menerima peringatan butiran akaun anda melalui e-mel.',
+'passwordreset-text'               => 'Lengkapkan borang ini untuk mengeset semula kata laluan.',
 'passwordreset-legend'             => 'Set semula kata laluan',
 'passwordreset-disabled'           => 'Ciri set semula kata laluan telah dimatikan di wiki ini.',
 'passwordreset-pretext'            => '{{PLURAL:$1||Isikan data di bawah}}',
@@ -718,20 +717,22 @@ Anda mungkin telah pun berjaya menukar kata laluan anda atau meminta kata laluan
 'passwordreset-capture-help'       => 'Jika anda menandai ruang ini, e-mel (yang membawa kata laluan sementara) akan ditunjukkan kepada anda dan juga dihantar kepada pengguna itu.',
 'passwordreset-email'              => 'Alamat e-mel:',
 'passwordreset-emailtitle'         => 'Butiran akaun di {{SITENAME}}',
-'passwordreset-emailtext-ip'       => 'Ada orang (mungkin anda, dari alamat IP $1) yang memohon peringatan butiran akaun anda untuk {{SITENAME}} ($4).  {{PLURAL:$3|Akaun|Akaun-akaun}} pengguna yang berikut dikaitkan dengan alamat e-mel ini:
+'passwordreset-emailtext-ip'       => 'Seseorang (mungkin anda, dari alamat IP $1) telah memohon supaya kata laluan diset semula untuk {{SITENAME}} anda ($4). {{PLURAL:$3|Akaun|Akaun-akaun}} pengguna yang berikut
+dikaitkan dengan alamat e-mel ini:
 
 $2
 
-{{PLURAL:$3|Kata|Kata-kata}} laluan sementara ini akan luput dalam masa {{PLURAL:$5|sehari|$5 hari}}. Anda mesti log masuk dan buat kata laluan baru sekarang juga. Jika permohonan ini dibuat oleh orang lain, ataupun jika anda teringat balik kata laluan lama anda, dan tidak ingin lagi untuk menukarnya, anda boleh mengabaikan pesanan ini dan terus menggunakan kata laluan lama anda.',
-'passwordreset-emailtext-user'     => 'Pengguna $1 di {{SITENAME}} memohon peringatan butiran akaun anda untuk {{SITENAME}} ($4). {{PLURAL:$3|Akaun|Akaun-akaun}} pengguna yang berikut dikaitkan dengan alamat e-mel ini:
+{{PLURAL:$3|Kata|Kata-kata}} laluan sementara ini akan luput dalam masa $5 hari. Anda harus log masuk dan membuat kata laluan yang baru sekarang. Jika permohonan ini dibuat oleh orang lain, atau jika anda teringat kembali kata laluan asal anda dan anda tidak lagi berhasrat untuk mengubahnya, anda boleh mengabaikan pesanan ini dan terus menggunakan kata laluan lama anda.',
+'passwordreset-emailtext-user'     => 'Pengguna $1 telah memohon supaya kata laluan diset semula untuk {{SITENAME}} anda ($4). {{PLURAL:$3|Akaun|Akaun-akaun}} pengguna yang berikut
+dikaitkan dengan alamat e-mel ini:
 
 $2
 
-{{PLURAL:$3|Kata|Kata-kata}} laluan sementara ini akan luput dalam masa {{PLURAL:$5|sehari|$5 hari}}. Anda mesti log masuk dan buat kata laluan baru sekarang juga. Jika permohonan ini dibuat oleh orang lain, ataupun jika anda teringat balik kata laluan lama anda, dan tidak ingin lagi untuk menukarnya, anda boleh mengabaikan pesanan ini dan terus menggunakan kata laluan lama anda.',
+{{PLURAL:$3|Kata|Kata-kata}} laluan sementara ini akan luput dalam masa $5 hari. Anda harus log masuk dan membuat kata laluan yang baru sekarang. Jika permohonan ini dibuat oleh orang lain, atau jika anda teringat kembali kata laluan asal anda dan anda tidak lagi berhasrat untuk mengubahnya, anda boleh mengabaikan pesanan ini dan terus menggunakan kata laluan lama anda.',
 'passwordreset-emailelement'       => 'Nama pengguna: $1
 Kata laluan sementara: $2',
-'passwordreset-emailsent'          => 'E-mel peringatan telah dihantar.',
-'passwordreset-emailsent-capture'  => 'E-mel peringatan (seperti di bawah) telah dihantar.',
+'passwordreset-emailsent'          => 'E-mel set semula kata laluan telah dihantar.',
+'passwordreset-emailsent-capture'  => 'E-mel set semula kata laluan telah dihantar, seperti yang dipaparkan di bawah.',
 'passwordreset-emailerror-capture' => 'E-mel peringatan (seperti di bawah) telah dihasilkan tetapi tidak dapat dihantar kepada pengguna: $1',
 
 # Special:ChangeEmail
@@ -893,10 +894,10 @@ disalin daripada domain awam atau mana-mana sumber bebas lain (lihat $1 untuk bu
 '''JANGAN KIRIM KARYA HAK CIPTA ORANG LAIN TANPA KEBENARAN!'''",
 'longpageerror'                    => "'''Ralat: Teks yang anda serahkan itu panjangnya {{PLURAL:$1|1|$1}} kilobait, iaitu lebih panjang daripada had maksimum {{PLURAL:$2|1|$2}} kilobait.'''
 Oleh itu, ia tidak boleh disimpan.",
-'readonlywarning'                  => "'''AMARAN: Pangkalan data telah dikunci untuk penyenggaraan. Justeru, anda tidak boleh menyimpan suntingan anda pada masa sekarang.
-Anda boleh menyalin teks anda ke dalam komputer anda terlebih dahulu dan simpan teks tersebut di sini pada masa akan datang.'''
+'readonlywarning'                  => "'''Amaran: Pangkalan data ini dikunci untuk tujuan penyelenggaraan , maka anda tidak akan dapat menyimpan suntingan anda buat sekarang.'''
+Anda boleh menyalin tampal teks anda pada fail teks dan menyimpannya untuk lain kali.
 
-Yang berikut ialah penjelasan yang diberikan: $1",
+Penyelia yang menguncinya memberikan penjelasan ini: $1",
 'protectedpagewarning'             => "'''Amaran: Laman ini telah dikunci supaya hanya mereka yang mempunyai keistimewaan penyelia boleh menyuntingnya.'''
 Masukan log terakhir ditunjukkan di bawah untuk rujukan:",
 'semiprotectedpagewarning'         => "'''Nota:''' Laman ini telah dikunci agar hanya pengguna berdaftar sahaja boleh menyuntingnya.
@@ -1181,7 +1182,7 @@ Sila pastikan bahawa perubahan ini akan mengekalkan kesinambungan sejarah laman.
 'search-mwsuggest-enabled'         => 'berserta cadangan',
 'search-mwsuggest-disabled'        => 'tiada cadangan',
 'search-relatedarticle'            => 'Berkaitan',
-'mwsuggest-disable'                => 'Matikan ciri cadangan AJAX',
+'mwsuggest-disable'                => 'Matikan ciri cadangan carian',
 'searcheverything-enable'          => 'Cari dalam semua ruang nama',
 'searchrelated'                    => 'berkaitan',
 'searchall'                        => 'semua',
@@ -1327,7 +1328,7 @@ Tindakan ini tidak boleh dibatalkan.',
 'prefs-displaywatchlist'        => 'Pilihan paparan',
 'prefs-diffs'                   => 'Beza',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid'   => 'Alamat e-mel adalah sah',
 'email-address-validity-invalid' => 'Sila masukkan alamat e-mel yang sah',
 
@@ -2055,7 +2056,7 @@ Protokol yang disokong: <code>$1</code> (menjadi http:// jika tiada protokol din
 # Special:ActiveUsers
 'activeusers'            => 'Senarai pengguna aktif',
 'activeusers-intro'      => 'Yang berikut ialah senarai pengguna yang bergiat sejak {{PLURAL:$1|semalam|$1 hari lalu}}.',
-'activeusers-count'      => '$1 {{PLURAL:$1|suntingan|suntingan}} sejak {{PLURAL:$3|semalam|$3 hari lalu}}',
+'activeusers-count'      => '$1 tindakan sejak {{PLURAL:$3|semalam|$3 hari lalu}}',
 'activeusers-from'       => 'Tunjukkan pengguna bermula pada:',
 'activeusers-hidebots'   => 'Sorokkan bot',
 'activeusers-hidesysops' => 'Sorokkan pentadbir',
@@ -2084,7 +2085,7 @@ Anda boleh mengetahui [[{{MediaWiki:Listgrouprights-helppage}}|maklumat tambahan
 'listgrouprights-addgroup-self-all'    => 'Menyertai semua kumpulan',
 'listgrouprights-removegroup-self-all' => 'Keluar daripada semua kumpulan',
 
-# E-mail user
+# Email user
 'mailnologin'          => 'Tiada alamat e-mel',
 'mailnologintext'      => 'Anda perlu [[Special:UserLogin|log masuk]]
 terlebih dahulu dan mempunyai alamat e-mel yang sah dalam
@@ -2279,9 +2280,9 @@ Ini adalah tetapan semasa bagi laman '''$1''':",
 Ini adalah tetapan semasa bagi laman '''$1''':",
 'protect-cascadeon'           => 'Laman ini dilindungi kerana ia terkandung dalam {{PLURAL:$1|laman|laman-laman}} berikut, yang dilindungi secara melata. Anda boleh menukar peringkat perlindunan laman ini, akan tetapi ia tidak akan menjejaskan perlindungan melata tersebut.',
 'protect-default'             => 'Benarkan semua pengguna',
-'protect-fallback'            => 'Perlukan keizinan "$1"',
-'protect-level-autoconfirmed' => 'Sekat pengguna baru dan pengguna tidak berdaftar',
-'protect-level-sysop'         => 'Pentadbir sahaja',
+'protect-fallback'            => 'Benarkan pengguna yang berizin "$1" sahaja',
+'protect-level-autoconfirmed' => 'Benarkan pengguna yang diautosahkan sahaja',
+'protect-level-sysop'         => 'Benarkan pentadbir sahaja',
 'protect-summary-cascade'     => 'melata',
 'protect-expiring'            => 'sehingga $1 (UTC)',
 'protect-expiring-local'      => 'luput $1',
@@ -2580,13 +2581,18 @@ sahkan bahawa anda betul-betul mahu melakukan tindakan ini.',
 # Move page
 'move-page'                    => 'Pindahkan $1',
 'move-page-legend'             => 'Pindahkan laman',
-'movepagetext'                 => "Gunakan borang di bawah untuk menukar nama laman dan memindahkan semua maklumat sejarahnya ke nama baru. Tajuk yang lama akan dijadikan lencongan ke tajuk yang baru. Anda juga boleh mengemaskinikan semua lencongan yang menuju ke tajuk asal supaya menuju ke tajuk baru. Sebaliknya, anda boleh menyemak sekiranya terdapat [[Special:DoubleRedirects|lencongan berganda]] atau [[Special:BrokenRedirects|lencongan rosak]]. Anda bertanggungjawab memastikan semua pautan bersambung ke laman yang sepatutnya.
+'movepagetext'                 => "Menggunakan borang di bawah akan menukar nama halaman dan memindahkan segala sejarahnya kepada nama baru itu.
 
-Sila ambil perhatian bahawa laman tersebut '''tidak''' akan dipindahkan sekiranya laman dengan tajuk yang baru tadi telah wujud, melainkan apabila
-laman tersebut kosong atau merupakan laman lencongan dan tidak mempunyai sejarah penyuntingan. Ini bermakna anda boleh menukar semula nama sesebuah
-laman kepada nama yang asal jika anda telah melakukan kesilapan, dan anda tidak boleh menulis ganti laman yang telah wujud.
+Tajuk yang lama akan menjadi halaman lencongan kepada tajuk baru.
+Anda boleh mengemaskinikan lencongan yang menghala ke tajuk asal secara automatik.
+Jika anda memilih untuk tidak berbuat demikian, tolong semak untuk mencari lencongan [[Special:DoubleRedirects|berganda]] atau [[Special:BrokenRedirects|terputus]].
+Anda dipertanggungjawabkan untuk memastikan agar semua pautan tetap menghala ke tempat yang sepatutnya.
 
-'''AMARAN!''' Tindakan ini boleh menjadi perubahan yang tidak dijangka dan drastik bagi laman popular. Oleh itu, sila pastikan anda faham akibat yang mungkin timbul sebelum meneruskannya.",
+Sila ingat bahasa halaman '''tidak''' akan dipindahkan jika tajuk barunya sudah diambil oleh halaman yang sedia ada, melainkan halaman yang sedia ada tersebut merupakan lencongan tanpa sebarang sejarah suntingan.
+Ertinya, anda boleh menukar kembali nama halaman ke nama yang sebelumnya jika anda terbuat silap, tetapi anda tidak boleh menulis ganti halaman yang sedia ada.
+
+'''Amaran!'''
+Tindakan ini boleh mendatangkan perubahan yang drastik dan tidak dijangka untuk halaman yang popular; sila pasti bahawa anda memahami akibatnya sebelum meneruskan.",
 'movepagetext-noredirectfixer' => "Borang di bawah akan menamakan semula sesebuah laman, memindahkan kesemua sejarahnya ke nama baru.
 Nama lamanya akan menjadi sebuah laman lencongan ke laman baru tadi.
 Pastikan [[Special:DoubleRedirects|lencongan berganda]] atau [[Special:BrokenRedirects|rosak]] sudah diperiksa.
@@ -3409,7 +3415,7 @@ Ruangan-ruangan yang lain pula akan disembunyikan pada asali.
 'monthsall'     => 'semua',
 'limitall'      => 'semua',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail'              => 'Sahkan alamat e-mel',
 'confirmemail_noemail'      => 'Anda belum menetapkan alamat e-mel yang sah dalam [[Special:Preferences|laman keutamaan]] anda.',
 'confirmemail_text'         => '{{SITENAME}} menghendaki supaya anda mengesahkan alamat e-mel anda sebelum menggunakan ciri-ciri e-mel.
@@ -3636,7 +3642,7 @@ Imej ditunjuk dalam leraian penuh, jenis fail yang lain dibuka dengan atur cara 
 'specialpages-group-highuse'     => 'Laman popular',
 'specialpages-group-pages'       => 'Senarai laman',
 'specialpages-group-pagetools'   => 'Alatan laman',
-'specialpages-group-wiki'        => 'Data dan alatan wiki',
+'specialpages-group-wiki'        => 'Data dan peralatan',
 'specialpages-group-redirects'   => 'Laman khas yang melencong',
 'specialpages-group-spam'        => 'Alatan spam',
 

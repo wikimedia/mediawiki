@@ -1576,7 +1576,7 @@ Man ngaa fee gis itam [[{{MediaWiki:Listgrouprights-helppage}}|yeneen xibaar]] �
 'listgrouprights-addgroup-self-all'    => 'Man ngaa yokk mbooloo yépp ci sa sàq',
 'listgrouprights-removegroup-self-all' => 'Man ngaa far mbooloo yépp ci sa sàq',
 
-# E-mail user
+# Email user
 'mailnologin'      => 'Amul benn mákkaan boo man a yónne bataaxal bi',
 'mailnologintext'  => 'Ngir man a yónney bataaxal laaj na nga [[Special:UserLogin|dugg]] te it am ab màkkaanub m-bataaxal bu baax ci say [[Special:Preferences|tànneef]].',
 'emailuser'        => 'Bind bii jëfandikukat',
@@ -2165,7 +2165,7 @@ Lëkkalekaay yiy toftal, ci wenn rëdd wi, dees leen di jàppee nikiy sette, maa
 'namespacesall' => 'Yépp',
 'monthsall'     => 'Yépp',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail'         => 'Dëggalal sa m-bataaxal',
 'confirmemail_noemail' => 'Jooxewoo ab m-bataaxal bu baax ci say [[Special:Preferences|tànneef]].',
 

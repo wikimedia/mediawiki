@@ -1812,7 +1812,7 @@ Goldanylýan protokollar: <code>$1</code>',
 'listgrouprights-addgroup-self-all'    => 'Ähli toparlary öz hasabyňa goş',
 'listgrouprights-removegroup-self-all' => 'Ähli toparlary öz hasabyňdan aýyr',
 
-# E-mail user
+# Email user
 'mailnologin'          => 'Iberer ýaly adres ýok',
 'mailnologintext'      => 'Başga ulanyjylara e-poçta ibermek üçin [[Special:UserLogin|sessiýaňyz açyk bolmaly]] hem-de [[Special:Preferences|ileri tutmalarda]] dogry bir e-poçta adresiňiz bolmalydyr.',
 'emailuser'            => 'Bu ulanyja e-poçta iber',
@@ -1844,7 +1844,7 @@ Goldanylýan protokollar: <code>$1</code>',
 'usermessage-editor'  => 'Ulgam habarçysy',
 
 # Watchlist
-'watchlist'            => 'Gözegçilik sanawym',
+'watchlist'            => 'Gözegçilik sanawy',
 'mywatchlist'          => 'Gözegçilik sanawy',
 'watchlistfor2'        => '$1 üçin  $2',
 'nowatchlist'          => 'Gözegçilik sanawyňyzda hiçhili sahypa ýok.',
@@ -2891,7 +2891,7 @@ Ondan soňraky çykgyt(lar) kadadan çykma hökmünde kabul edilýär, meselem: 
 'monthsall'     => 'ählisi',
 'limitall'      => 'ählisi',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail'              => 'E-poçta adresini tassykla',
 'confirmemail_noemail'      => '[[Special:Preferences|Ulanyjy sazlamalaryňyzda]] bellenilen dogry bir e-poçta adresiňiz ýok.',
 'confirmemail_text'         => '{{SITENAME}} saýtynyň e-poçta amallaryny ulanmak üçin, ilki bilen e-poçta adresiňiziň tassyklanmagy zerurdyr.

@@ -517,7 +517,7 @@ Saide uff [[Special:Watchlist|Dainer Beowachdungslischt]] sin '''fett'''.",
 # Special:ListGroupRights
 'listgrouprights-members' => '(Midgliederlischd)',
 
-# E-mail user
+# Email user
 'emailuser' => 'E-Mail on de Benutzer',
 'emailsend' => 'Abschigge',
 
@@ -764,7 +764,7 @@ Du kannschd e Grund in dr Zammfassung aagewwe",
 'file-info-size' => '$1 × $2 Pixels, Dateigreß: $3, MIME-Type: $4',
 'file-nohires'   => 'Ke hechere Ufflesung verfiechbar.',
 'svg-long-desc'  => 'SVG-Datei, Basisgreß $1 × $2 Pixels, Dateigreß: $3',
-'show-big-image' => 'Gsamte Ergebnis',
+'show-big-image' => 'Volli Uflesung',
 
 # Special:NewFiles
 'showhidebots' => '(Bots $1)',

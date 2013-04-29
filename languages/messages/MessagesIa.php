@@ -168,7 +168,7 @@ $messages = array(
 'tog-previewonfirst'          => 'Monstrar previsualisation al prime modification',
 'tog-nocache'                 => "Disactivar le ''cache'' de paginas in le navigator",
 'tog-enotifwatchlistpages'    => 'Notificar me per e-mail quando un pagina o file in mi observatorio es modificate',
-'tog-enotifusertalkpages'     => 'Notificar me via e-mail quando mi pagina de discussion es modificate',
+'tog-enotifusertalkpages'     => 'Notificar me per e-mail quando mi pagina de discussion es modificate',
 'tog-enotifminoredits'        => 'Notificar me etiam de modificationes minor de paginas e files',
 'tog-enotifrevealaddr'        => 'Revelar mi adresse de e-mail in messages de notification',
 'tog-shownumberswatching'     => 'Monstrar le numero de usatores que observa le pagina',
@@ -260,7 +260,7 @@ $messages = array(
 'category_header'                => 'Articulos in le categoria "$1"',
 'subcategories'                  => 'Subcategorias',
 'category-media-header'          => 'Multimedia in categoria "$1"',
-'category-empty'                 => "''Iste categoria non contine alcun pagina o file multimedia al momento.''",
+'category-empty'                 => "''Iste categoria non contine actualmente alcun pagina o file multimedial.''",
 'hidden-categories'              => '{{PLURAL:$1|Categoria celate|Categorias celate}}',
 'hidden-category-category'       => 'Categorias celate',
 'category-subcat-count'          => '{{PLURAL:$2|Iste categoria ha solmente le sequente subcategoria.|Iste categoria ha le sequente {{PLURAL:$1|subcategoria|$1 subcategorias}}, ex $2 in total.}}',
@@ -517,7 +517,7 @@ Consulta: $2',
 'actionthrottled'      => 'Action limitate',
 'actionthrottledtext'  => 'Como mesura anti-spam, tu es limitate de executar iste action troppo de vices durante un curte periodo de tempore, e tu ha excedite iste limite.
 Per favor reprova post alcun minutas.',
-'protectedpagetext'    => 'Iste pagina ha essite protegite contra modificationes.',
+'protectedpagetext'    => 'Iste pagina ha essite protegite pro impedir le modification o altere actiones.',
 'viewsourcetext'       => 'Tu pote vider e copiar le codice-fonte de iste pagina:',
 'viewyourtext'         => "Tu pote vider e copiar le fonte de '''tu modificationes''' de iste pagina:",
 'protectedinterface'   => 'Iste pagina contine texto pro le interfacie del software de iste wiki, e es protegite pro impedir le abuso. Pro adder o modificar traductiones pro tote le wikis, per favor usa [//translatewiki.net/ translatewiki.net], le projecto de traduction de MediaWiki.',
@@ -616,16 +616,16 @@ e continuar a usar le contrasigno original.',
 'passwordsent'               => 'Un nove contrasigno ha essite inviate al adresse de e-mail registrate pro "$1".
 Per favor aperi session de novo post reciper lo.',
 'blocked-mailpassword'       => 'Tu adresse IP es blocate de facer modificationes, e pro impedir le abuso, le uso del function pro recuperar contrasignos es equalmente blocate.',
-'eauthentsent'               => 'Un e-mail de confirmation ha essite inviate al adresse de e-mail nominate.
-Ante que alcun altere e-mail se invia al conto, tu debera sequer le instructiones in le e-mail, pro confirmar que le conto es de facto tue.',
-'throttled-mailpassword'     => 'Un rememoration del contrasigno ha jam essite inviate intra le ultime {{PLURAL:$1|hora|$1 horas}}.
-Pro prevenir le abuso, solmente un rememoration de contrasigno essera inviate per {{PLURAL:$1|hora|$1 horas}}.',
+'eauthentsent'               => 'Un e-mail de confirmation ha essite inviate al adresse de e-mail specificate.
+Pro poter reciper altere e-mail a iste conto, tu debe sequer le instructiones in iste e-mail pro confirmar que le conto es realmente tue.',
+'throttled-mailpassword'     => 'Un message pro le reinitialisation del contrasigno ha jam essite inviate intra le ultime {{PLURAL:$1|hora|$1 horas}}.
+Pro prevenir le abuso, solmente un message pro le reinitialisation del contrasigno essera inviate per {{PLURAL:$1|hora|$1 horas}}.',
 'mailerror'                  => 'Error de inviar e-mail: $1',
 'acct_creation_throttle_hit' => 'Le visitatores de iste wiki usante tu adresse IP ha create {{PLURAL:$1|1 conto|$1 contos}} durante le ultime die, e isto es le maximo permittite in iste periodo de tempore.
 A causa de isto, le visitatores usante iste adresse IP non pote crear nove contos al momento.',
-'emailauthenticated'         => 'Tu adresse de e-mail esseva authentificate le $2 a $3.',
-'emailnotauthenticated'      => 'Tu adresse de e-mail non ha essite authentificate ancora.
-Nos non inviara e-mail pro alcun del sequente functiones.',
+'emailauthenticated'         => 'Tu adresse de e-mail ha essite confirmate le $2 a $3.',
+'emailnotauthenticated'      => 'Tu non ha ancora confirmate tu adresse de e-mail.
+Nulle e-mail essera inviate pro le sequente functiones.',
 'noemailprefs'               => 'Es necessari specificar un adresse de e-mail in tu preferentias pro poter executar iste functiones.',
 'emailconfirmlink'           => 'Confirmar tu adresse de e-mail',
 'invalidemailaddress'        => 'Le adresse de e-mail ha un formato invalide e non pote esser acceptate.
@@ -645,7 +645,7 @@ Per favor attende ante de probar lo novemente.',
 'loginlanguagelabel'         => 'Lingua: $1',
 'suspicious-userlogout'      => 'Le requesta de clauder le session ha essite refusate proque illo pare haber essite inviate per un navigator o proxy de cache defectuose.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Error incognite in le function mail() de PHP',
 'user-mail-no-addy'      => 'Tentava inviar e-mail sin adresse de e-mail.',
 
@@ -670,7 +670,7 @@ Es possibile que tu ha ja cambiate tu contrasigno o requestate un nove contrasig
 
 # Special:PasswordReset
 'passwordreset'                    => 'Reinitialisar contrasigno',
-'passwordreset-text'               => 'Complete iste formulario pro reciper un rememoration in e-mail del datos de tu conto.',
+'passwordreset-text'               => 'Completa iste formulario pro reinitialisar tu contrasigno.',
 'passwordreset-legend'             => 'Reinitialisar contrasigno',
 'passwordreset-disabled'           => 'Le reinitialisation de contrasignos ha essite disactivate in iste wiki.',
 'passwordreset-pretext'            => '{{PLURAL:$1||Entra un del elementos de datos hic infra}}',
@@ -680,8 +680,8 @@ Es possibile que tu ha ja cambiate tu contrasigno o requestate un nove contrasig
 'passwordreset-capture-help'       => 'Si tu marca iste quadrato, le e-mail (con le contrasigno temporari) non solmente essera inviate al usator, ma anque monstrate a te.',
 'passwordreset-email'              => 'Adresse de e-mail:',
 'passwordreset-emailtitle'         => 'Detalios del conto in {{SITENAME}}',
-'passwordreset-emailtext-ip'       => 'Un persona (probabilemente tu, ab le adresse IP $1) requestava un rememoration del
-detalios de tu conto in {{SITENAME}} ($4). Le {{PLURAL:$3|conto|contos}} de usator sequente es
+'passwordreset-emailtext-ip'       => 'Un persona (probabilemente tu, ab le adresse IP $1) requestava le reinitialisation de tu
+contrasigno de {{SITENAME}} ($4). Le {{PLURAL:$3|conto|contos}} de usator sequente es
 associate con iste adresse de e-mail:
 
 $2
@@ -883,10 +883,10 @@ In addition, tu nos garanti que tu es le autor de isto, o que tu lo ha copiate d
 '''Non submitte material subjecte a copyright sin autorisation expresse!'''",
 'longpageerror'                    => "'''Error: Le texto que tu submitteva occupa {{PLURAL:$1|un kilobyte|$1 kilobytes}}, excedente le maximo de {{PLURAL:$2|un kilobyte|$2 kilobytes}}.'''
 Illo non pote esser salveguardate.",
-'readonlywarning'                  => "'''Attention: Le base de datos ha essite blocate pro mantenentia, ergo tu non pote salveguardar tu modificationes in iste momento.'''
-Nos recommenda copiar-e-collar le texto in un file de texto e salveguardar lo pro plus tarde.
+'readonlywarning'                  => "'''Attention: Le base de datos ha essite blocate pro mantenentia. Tu non pote salveguardar tu modificationes in iste momento.'''
+Nos recommenda copiar-e-collar le texto in un file e salveguardar lo pro plus tarde.
 
-Le administrator qui lo blocava dava iste explication: $1",
+Le administrator qui ha blocate le base de datos ha fornite iste explication: $1",
 'protectedpagewarning'             => "'''Attention:  Iste pagina ha essite protegite de sorta que solmente usatores con privilegios de administrator pote modificar lo.''' Le ultime entrata del registro es fornite hic infra pro referentia:",
 'semiprotectedpagewarning'         => "'''Nota:''' Iste pagina ha essite protegite de maniera que solmente usatores registrate pote modificar lo. Le ultime entrata del registro es fornite hic infra pro referentia:",
 'cascadeprotectedwarning'          => "'''Attention:''' Iste pagina ha essite protegite de maniera que solmente administratores pote modificar lo, proque illo es includite in le protection in cascada del sequente {{PLURAL:$1|pagina|paginas}}:",
@@ -1173,7 +1173,7 @@ Nota que le uso del ligamines de navigation causara le perdita de tote cambios i
 'search-mwsuggest-enabled'         => 'con suggestiones',
 'search-mwsuggest-disabled'        => 'sin suggestiones',
 'search-relatedarticle'            => 'Connexe',
-'mwsuggest-disable'                => 'Disactivar suggestiones via AJAX',
+'mwsuggest-disable'                => 'Disactivar suggestiones de recerca',
 'searcheverything-enable'          => 'Cercar in tote le spatios de nomines',
 'searchrelated'                    => 'connexe',
 'searchall'                        => 'totes',
@@ -1229,7 +1229,7 @@ Nota que lor indices del contento de {{SITENAME}} pote esser obsolete.',
 'prefs-misc'                    => 'Misc',
 'prefs-resetpass'               => 'Cambiar contrasigno',
 'prefs-changeemail'             => 'Cambiar e-mail',
-'prefs-setemail'                => 'Definir un adresse de e-mail',
+'prefs-setemail'                => 'Specificar un adresse de e-mail',
 'prefs-email'                   => 'Optiones de e-mail',
 'prefs-rendering'               => 'Apparentia',
 'saveprefs'                     => 'Confirmar',
@@ -1305,7 +1305,7 @@ Illo debe haber minus de $1 {{PLURAL:$1|character|characteres}}.',
 Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contributiones.',
 'prefs-help-email'              => 'Le adresse de e-mail es optional, ma es necessari pro le reinitialisation de tu contrasigno, in caso que tu lo oblida.',
 'prefs-help-email-others'       => 'Tu pote etiam optar pro permitter que altere personas te contacta via tu pagina de usator o de discussion, sin necessitate de revelar tu identitate.',
-'prefs-help-email-required'     => 'Le adresse de e-mail es requirite.',
+'prefs-help-email-required'     => 'Un adresse de e-mail es obligatori.',
 'prefs-info'                    => 'Informationes de base',
 'prefs-i18n'                    => 'Internationalisation',
 'prefs-signature'               => 'Signatura',
@@ -1321,7 +1321,7 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 'prefs-displaywatchlist'        => 'Optiones de presentation',
 'prefs-diffs'                   => 'Differentias',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid'   => 'Sembla valide',
 'email-address-validity-invalid' => 'Un adresse valide es obligatori!',
 
@@ -2067,7 +2067,7 @@ Protocollos supportate: <code>$1</code> (http:// es assumite si nulle protocollo
 # Special:ActiveUsers
 'activeusers'            => 'Lista de usatores active',
 'activeusers-intro'      => 'Isto es un lista de usatores que habeva alcun typo de activitate intra le ultime $1 {{PLURAL:$1|die|dies}}.',
-'activeusers-count'      => '$1 {{PLURAL:$1|modification|modificationes}} in le ultime {{PLURAL:$3|die|$3 dies}}',
+'activeusers-count'      => '$1 {{PLURAL:$1|action|actiones}} in le ultime {{PLURAL:$3|die|$3 dies}}',
 'activeusers-from'       => 'Presentar usatores a partir de:',
 'activeusers-hidebots'   => 'Celar bots',
 'activeusers-hidesysops' => 'Celar administratores',
@@ -2096,7 +2096,7 @@ Il pote haber [[{{MediaWiki:Listgrouprights-helppage}}|informationes additional]
 'listgrouprights-addgroup-self-all'    => 'Pote adder tote le gruppos al proprie conto',
 'listgrouprights-removegroup-self-all' => 'Pote remover tote le gruppos del proprie conto',
 
-# E-mail user
+# Email user
 'mailnologin'          => 'Necun adresse de invio',
 'mailnologintext'      => 'Tu debe [[Special:UserLogin|aperir un session]]
 e haber un adresse de e-mail valide in tu [[Special:Preferences|preferentias]]
@@ -2135,7 +2135,7 @@ como le adresse del expeditor, de sorta que le destinatario potera responder te 
 'usermessage-editor'  => 'Messagero del systema',
 
 # Watchlist
-'watchlist'            => 'Mi observatorio',
+'watchlist'            => 'Observatorio',
 'mywatchlist'          => 'Observatorio',
 'watchlistfor2'        => 'De $1 $2',
 'nowatchlist'          => 'Tu non ha paginas sub observation.',
@@ -2143,10 +2143,8 @@ como le adresse del expeditor, de sorta que le destinatario potera responder te 
 'watchnologin'         => 'Tu non ha aperite un session',
 'watchnologintext'     => 'Tu debe [[Special:UserLogin|aperir un session]] pro modificar tu observatorio.',
 'addwatch'             => 'Adder al observatorio',
-'addedwatchtext'       => "Le pagina \"[[:\$1]]\" ha essite addite a tu [[Special:Watchlist|observatorio]].
-Le modificationes futur in iste pagina e in su pagina de discussion essera listate ibi,
-e le pagina apparera '''in litteras grasse''' in le [[Special:RecentChanges|lista de modificationes recente]] pro
-render lo plus facile de deteger.",
+'addedwatchtext'       => 'Le pagina "[[:$1]]" ha essite addite a tu [[Special:Watchlist|observatorio]].
+Le modificationes futur in iste pagina e in le pagina de discussion associate essera listate in illo.',
 'removewatch'          => 'Remover del observatorio',
 'removedwatchtext'     => 'Le pagina "[[:$1]]" ha essite removite de [[Special:Watchlist|tu observatorio]].',
 'watch'                => 'Observar',
@@ -2300,9 +2298,9 @@ Ecce le configurationes actual del pagina '''$1''':",
 'protect-cascadeon'           => 'Iste pagina es actualmente protegite proque illo es includite in le sequente {{PLURAL:$1|pagina, le qual|paginas, le quales}} ha activate le protection in cascada.
 Tu pote cambiar le nivello de protection de iste pagina, ma isto non cambiara le effecto del protection in cascada.',
 'protect-default'             => 'Permitter tote le usatores',
-'protect-fallback'            => 'Requirer permission de "$1"',
-'protect-level-autoconfirmed' => 'Blocar usatores nove e non registrate',
-'protect-level-sysop'         => 'Administratores solmente',
+'protect-fallback'            => 'Permitter solmente usatores con le permission de "$1"',
+'protect-level-autoconfirmed' => 'Permitter solmente usatores autoconfirmate',
+'protect-level-sysop'         => 'Permitter solmente administratores',
 'protect-summary-cascade'     => 'in cascada',
 'protect-expiring'            => 'expira le $1 (UTC)',
 'protect-expiring-local'      => 'expira le $1',
@@ -2610,25 +2608,25 @@ Pro blocar o disblocar le base de datos, le servitor web debe poter scriber a is
 # Move page
 'move-page'                    => 'Renominar $1',
 'move-page-legend'             => 'Renominar pagina',
-'movepagetext'                 => "Per medio del formulario infra tu pote renominar un pagina, transferente tote su historia al nove nomine.
-Le titulo anterior devenira un pagina de redirection verso le nove titulo.
+'movepagetext'                 => "Per medio del formulario hic infra tu pote renominar un pagina, transferente tote su historia al nove nomine.
+Le ancian titulo devenira un pagina de redirection verso le nove titulo.
 Tu pote actualisar automaticamente le redirectiones que puncta verso le titulo original.
-Si tu prefere non facer isto, assecura te de reparar omne redirectiones [[Special:DoubleRedirects|duple]] o [[Special:BrokenRedirects|rupte]].
+Si tu prefere non facer isto, non oblida de reparar omne redirectiones [[Special:DoubleRedirects|duple]] o [[Special:BrokenRedirects|rupte]].
 Tu ha le responsabilitate de assecurar que le ligamines continua a punctar verso le paginas correcte.
 
-Nota que le pagina '''non''' essera renominate si existe ja un pagina sub le nove titulo, salvo si illo es vacue o un redirection e non ha un historia de modificationes passate.
-Isto vole dicer que tu pote renominar un pagina retro a su titulo original si tu ha committite un error, ben que tu non pote superscriber un pagina existente.
+Nota que le pagina '''non''' essera renominate si existe jam un pagina sub le nove titulo, excepte si iste es un redirection sin historia de modificationes passate.
+Isto te lassa le possibilitate de restaurar le titulo original de un pagina si tu ha committite un error, sin permitter te de supplantar un pagina existente.
 
-'''ATTENTION!'''
+'''Attention!'''
 Isto pote esser un cambio drastic e inexpectate pro un pagina popular;
 per favor assecura te de haber comprendite le consequentias de isto ante de continuar.",
 'movepagetext-noredirectfixer' => "Per medio del formulario infra tu pote renominar un pagina, transferente tote su historia al nove nomine.
-Le titulo anterior devenira un pagina de redirection verso le nove titulo.
-Assecura te de reparar omne redirectiones [[Special:DoubleRedirects|duple]] o [[Special:BrokenRedirects|rupte]].
+Le ancian titulo devenira un pagina de redirection verso le nove titulo.
+Non oblida de reparar omne redirectiones [[Special:DoubleRedirects|duple]] o [[Special:BrokenRedirects|rupte]].
 Tu ha le responsabilitate de assecurar que le ligamines continua a punctar verso le paginas correcte.
 
-Nota que le pagina '''non''' essera renominate si existe ja un pagina sub le nove titulo, salvo si illo es vacue o un redirection e non ha un historia de modificationes passate.
-Isto vole dicer que tu pote renominar un pagina retro a su titulo original si tu ha committite un error, ben que tu non pote superscriber un pagina existente.
+Nota que le pagina '''non''' essera renominate si existe jam un pagina sub le nove titulo, excepte si iste es un redirection sin historia de modificationes passate.
+Isto te lassa le possibilitate de restaurar le titulo original de un pagina si tu ha committite un error, sin permitter te de supplantar un pagina existente.
 
 '''Attention!'''
 Isto pote esser un cambio drastic e inexpectate pro un pagina popular;
@@ -3458,15 +3456,15 @@ Le alteres essera initialmente celate.
 'monthsall'     => 'totes',
 'limitall'      => 'totes',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail'              => 'Confirmar adresse de e-mail',
 'confirmemail_noemail'      => 'Tu non ha configurate un adresse de e-mail valide in tu [[Special:Preferences|preferentias de usator]].',
 'confirmemail_text'         => '{{SITENAME}} require que tu valida tu adresse de e-mail ante que tu usa functiones involvente e-mail.
 Activa le button infra pro inviar un message de confirmation a tu adresse.
 Le message includera un ligamine continente un codice;
 visita le ligamine in tu navigator pro confirmar que tu adresse de e-mail es valide.',
-'confirmemail_pending'      => 'Un codice de confirmation ha ja essite inviate a te;
-si tu ha recentemente create tu conto, es recommendate attender le arrivata de illo durante alcun minutas ante de provar requestar un nove codice.',
+'confirmemail_pending'      => 'Un codice de confirmation ha jam essite inviate a te per e-mail;
+si tu ha create tu conto recentemente, per favor attende alcun minutas que le message de confirmation arriva ante de requestar un nove codice.',
 'confirmemail_send'         => 'Inviar un codice de confirmation',
 'confirmemail_sent'         => 'Message de confirmation inviate.',
 'confirmemail_oncreate'     => 'Un codice de confirmation ha essite inviate a tu adresse de e-mail.
@@ -3484,14 +3482,14 @@ Tu pote ora aperir un session e fruer te del wiki.',
 'confirmemail_error'        => 'Un problema occurreva durante le salveguarda de tu confirmation.',
 'confirmemail_subject'      => 'Confirmation del adresse de e-mail pro {{SITENAME}}',
 'confirmemail_body'         => 'Un persona, probabilemente tu, usante le adresse IP $1,
-ha registrate un conto "$2" con iste adresse de e-mail in {{SITENAME}}.
+ha create un conto "$2" con iste adresse de e-mail in {{SITENAME}}.
 
-Pro confirmar que iste conto es de facto tue, e pro activar le functiones
+Pro confirmar que iste conto es realmente tue, e pro activar le functiones
 de e-mail in {{SITENAME}}, visita iste ligamine in tu navigator:
 
 $3
 
-Si tu *non* ha registrate le conto, seque iste ligamine
+Si tu *non* ha create iste conto, seque le sequente ligamine
 pro cancellar le confirmation del adresse de e-mail:
 
 $5
@@ -3500,7 +3498,7 @@ Iste codice de confirmation expirara a $4.',
 'confirmemail_body_changed' => 'Un persona, probabilemente tu, usante le adresse IP $1,
 ha cambiate le adresse de e-mail del conto "$2" a iste adresse in {{SITENAME}}.
 
-Pro confirmar que iste conto es de facto tue, e pro reactivar le functiones
+Pro confirmar que iste conto es realmente tue, e pro reactivar le functiones
 de e-mail in {{SITENAME}}, visita iste ligamine in tu navigator:
 
 $3
@@ -3514,7 +3512,7 @@ Iste codice de confirmation expirara a $4.',
 'confirmemail_body_set'     => 'Un persona, probabilemente tu, usante le adresse IP $1,
 ha specificate que iste adresse de e-mail pertine al conto "$2" in {{SITENAME}}.
 
-Pro confirmar que iste conto es de facto tue, e pro reactivar le functiones
+Pro confirmar que iste conto es realmente tue, e pro activar le functiones
 de e-mail in {{SITENAME}}, visita iste ligamine in tu navigator:
 
 $3
@@ -3682,7 +3680,7 @@ Le imagines se monstra in plen resolution, le altere typos de file se executa di
 'specialpages-group-highuse'     => 'Paginas multo usate',
 'specialpages-group-pages'       => 'Listas de paginas',
 'specialpages-group-pagetools'   => 'Instrumentos pro paginas',
-'specialpages-group-wiki'        => 'Datos e instrumentos pro Wiki',
+'specialpages-group-wiki'        => 'Datos e instrumentos',
 'specialpages-group-redirects'   => 'Redirection de paginas special',
 'specialpages-group-spam'        => 'Instrumentos antispam',
 

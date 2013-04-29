@@ -488,7 +488,7 @@ Du kan ignorere denne beskjeden dersom kontoen ble opprettet ved en feil.',
 'loginlanguagelabel'         => 'Språk: $1',
 'suspicious-userlogout'      => 'Din forespørsel om å logge ut ble nektet fordi den så ut til å ha bli sendt av en ødelagt nettleser eller en mellomtjener.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Ukjent feil i PHPs mail()-funksjon',
 
 # Change password dialog
@@ -1117,7 +1117,7 @@ Den kan maks inneholde $1 {{PLURAL:$1|tegn|tegn}}.',
 'prefs-displaywatchlist'        => 'Visningsalternativer',
 'prefs-diffs'                   => 'Forskjeller',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid'   => 'E-postadressen ser gyldig ut',
 'email-address-validity-invalid' => 'Skriv inn en gyldig e-postadresse',
 
@@ -1825,7 +1825,7 @@ Mer informasjon om de enkelte rettighetstypene kan finnes [[{{MediaWiki:Listgrou
 'listgrouprights-addgroup-self-all'    => 'Kan legge til alle grupper til egen konto',
 'listgrouprights-removegroup-self-all' => 'Kan ta bort alle grupper fra egen konto',
 
-# E-mail user
+# Email user
 'mailnologin'          => 'Ingen avsenderadresse',
 'mailnologintext'      => 'Du må være [[Special:UserLogin|logget inn]] og ha en gyldig e-postadresse satt i [[Special:Preferences|brukerinnstillingene]] for å sende e-post til andre brukere.',
 'emailuser'            => 'E-post til denne brukeren',
@@ -3103,7 +3103,7 @@ Rotert 90° mot klokka og vridd vertikalt',
 'monthsall'     => 'alle',
 'limitall'      => 'alle',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail'              => 'Bekreft e-postadresse',
 'confirmemail_noemail'      => 'Du har ikke oppgitt en gyldig e-postadresse i [[Special:Preferences|innstillingene dine]].',
 'confirmemail_text'         => 'Du må bekrefte e-postadressen din før du kan benytte deg av e-posttjenester på {{SITENAME}}. Trykk på knappen under for å sende en bekreftelsesmelding til e-postadressen din. Meldingen vil inneholde en lenke med en kode; følg lenken for å bekrefte at e-postadressen er gyldig.',

@@ -559,7 +559,7 @@ Yeni cəhd etməzdən əvvəl bir qədər gözləyin.',
 'loginlanguagelabel'         => 'Dil: $1',
 'suspicious-userlogout'      => 'Sizin çıxış üçün cəhdiniz uğursuz alındı. Bu, brouzerin yaxud proksi-keşləmənin düzgün işləməməsindən qaynaqlanır.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'PHP-nin mail() funksiyasında naməlum xəta',
 
 # Change password dialog
@@ -1072,7 +1072,7 @@ Həmçinin kimliyinizi gostərmədən belə, başqalarının sizinlə istifadə�
 'prefs-displaywatchlist'        => 'Görüntü variantları',
 'prefs-diffs'                   => 'Fərqlər',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid'   => 'E-poçt ünvanı düzgündür',
 'email-address-validity-invalid' => 'Düzgün e-poçt ünvanı daxil edin',
 
@@ -1678,7 +1678,7 @@ Fərdi hüquqlar haqqında əlavə məlumatı [[{{MediaWiki:Listgrouprights-help
 'listgrouprights-addgroup-self-all'    => 'Bütün qrupları öz hesabına əlavə edə bilər',
 'listgrouprights-removegroup-self-all' => 'Bütün qrupları öz hesabından çıxara bilər',
 
-# E-mail user
+# Email user
 'mailnologin'         => 'Ünvan yoxdur',
 'emailuser'           => 'İstifadəçiyə e-məktub yolla',
 'emailpage'           => 'İstifadəçiyə e-məktub yolla',
@@ -2805,7 +2805,7 @@ Variants for Chinese language
 'monthsall'     => 'hamısı',
 'limitall'      => 'bütün',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail'             => 'E-məktubunu təsdiq et',
 'confirmemail_send'        => 'Təsdiq kodu göndər',
 'confirmemail_sent'        => 'Təsdiq e-məktubu göndərildi.',

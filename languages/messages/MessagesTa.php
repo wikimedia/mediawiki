@@ -9,6 +9,7 @@
  *
  * @author Aswn
  * @author Balajijagadesh
+ * @author ElangoRamanujam
  * @author Kaganer
  * @author Kanags
  * @author Karthi.dr
@@ -238,7 +239,7 @@ $messages = array(
 'vector-action-protect'          => 'காக்கவும்',
 'vector-action-undelete'         => 'நீக்கத்தை நிறுத்து',
 'vector-action-unprotect'        => 'காப்பை மாற்று',
-'vector-simplesearch-preference' => 'மேம்பட்ட தேடுதல் முடிவுகளைச் செயல்படுத்தவும் (Vector தோல் மட்டும்)',
+'vector-simplesearch-preference' => 'சாதாரண தேடுதல் பட்டையத்தை செயல்படுத்தவும் (Vector தோல் மட்டும்)',
 'vector-view-create'             => 'உருவாக்கவும்',
 'vector-view-edit'               => 'தொகு',
 'vector-view-history'            => 'வரலாற்றைக் காட்டவும்',
@@ -558,7 +559,7 @@ MySQL returned error "$3: $4".',
 'loginlanguagelabel'         => 'மொழி: $1',
 'suspicious-userlogout'      => 'உங்கள் விடுபதிகை கோரிக்கை மறுக்கப்பட்டது ஏனென்றால் அது அறுபட்ட உலாவி அல்லது மாற்று இடைக்கிடங்கியால் அனுப்பப்பட்டுள்ளது.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => "PHP 's mail() செயல்பாட்டில் அறியப்படாத பிழை.",
 'user-mail-no-addy'      => 'மின்னஞ்சல் முகவரி இல்லாமல் மின்னஞ்சல் அனுப்ப முயற்சித்தது.',
 
@@ -581,7 +582,7 @@ MySQL returned error "$3: $4".',
 
 # Special:PasswordReset
 'passwordreset'                    => 'கடவுச்சொல்லை மீட்டமை',
-'passwordreset-text'               => ' உங்கள் கணக்கு விவரங்களை மின்னஞ்சல் நினைவுபடுத்தி மூலமாக பெற இந்த படிவத்தை பூர்த்தி செய்யவும்.',
+'passwordreset-text'               => ' உங்கள் கடவுச்சொல்லை மீட்டமைக்க இப்படிவத்தை பூர்த்தி செய்யவும்.',
 'passwordreset-legend'             => 'கடவுச்சொல்லை மீட்டமை',
 'passwordreset-disabled'           => 'கடவுச்சொல் மீட்டமைப்பு இந்த விக்கியில் செயலிழக்க செய்யப்பட்டுள்ளது.',
 'passwordreset-pretext'            => '{{PLURAL:$1|| தரவு பகுதி ஒன்றை கீழே உள்ளிடு}}',
@@ -607,8 +608,8 @@ $2
 அல்லது உங்கள் மூல கடவுச்சொல் நினைவில் இருந்தாலோ இதை மாற்ற வேண்டிய அவசியம் இல்லை,நீங்கள் இந்த தகவலை புறக்கணித்துவிட்டுஉங்கள் பழைய கடவுச்சொல்லையே பயன்படுத்திக்கொள்ளலாம்.',
 'passwordreset-emailelement'       => 'பயனர் பெயர்:  $1
 தற்காலிகக் கடவுச்சொல்: $2',
-'passwordreset-emailsent'          => 'நினைவூட்டும் மின்னஞ்சல் அனுப்பப்பட்டது.',
-'passwordreset-emailsent-capture'  => 'கீழே காண்பிக்கப்பட்டுள்ளது போல் நினைவுபடுத்தி மின்னஞ்சல் அனுப்பப்பட்டது.',
+'passwordreset-emailsent'          => 'கடவுச்சொல் மீட்டமைக்கும் மின்னஞ்சல் அனுப்பப்பட்டது.',
+'passwordreset-emailsent-capture'  => 'கீழே காண்பிக்கப்பட்டுள்ளது போல் கடவுச்சொல் மீட்டமைக்கும் மின்னஞ்சல் அனுப்பப்பட்டது.',
 'passwordreset-emailerror-capture' => 'நினைவுபடுத்தி மின்னஞ்சல்  உருவாக்கப்பட்டுவிட்டது,அது கீழே காட்டப்பட்டுள்ளது, ஆனால் பயனீட்டாளருக்கு அனுப்புவது தோல்வியடைந்தது:$1',
 
 # Special:ChangeEmail
@@ -1143,7 +1144,7 @@ $1",
 'timezoneregion-indian'         => 'இந்தியப் பெருங்கடல்',
 'timezoneregion-pacific'        => 'பசிபிக் பெருங்கடல்',
 'allowemail'                    => 'ஏனைய பயனர்களிடம் இருந்தான மின்னஞ்சல்களை அனுமதி',
-'prefs-searchoptions'           => 'தேடல் விருப்பத் தேர்வுகள்',
+'prefs-searchoptions'           => 'தேடுக',
 'prefs-namespaces'              => 'பெயர்வெளிகள்',
 'defaultns'                     => 'அப்படியில்லையென்றால் இந்த பொயர்வெளிகளில் தேடவும்:',
 'default'                       => 'பொதுவானது',
@@ -1195,7 +1196,7 @@ $1",
 'prefs-displaywatchlist'        => 'விருப்பத்தேர்வுகளைக் காட்டு',
 'prefs-diffs'                   => 'வித்தியாசங்கள்',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid'   => 'மின்னஞ்சல் முகவரி முறையானதாகத் தோன்றுகிறது',
 'email-address-validity-invalid' => 'முறையான மின்னஞ்சல் முகவரியை உள்ளிடுக',
 
@@ -1540,7 +1541,7 @@ $1',
 'backend-fail-writetemp'     => 'தற்காலிக கோப்பில் எழுத இயலவில்லை.',
 'backend-fail-closetemp'     => 'தற்காலிக கோப்பை மூட முடியவில்லை.',
 'backend-fail-read'          => '$1 கோப்பை படிக்க இயலவில்லை .',
-'backend-fail-create'        => '$1 கோப்பை உருவாக்க இயலவில்லை .',
+'backend-fail-create'        => '"$1" கோப்பை எழுத இயலவில்லை .',
 'backend-fail-connect'       => '"$1" பின்புல சேமிப்புக்கு தொடர்பு கொள்ள இயலவில்லை.',
 'backend-fail-internal'      => '"$1" பின்புல சேமிப்பில் அறியாப் பிழை ஒன்று நேர்ந்துள்ளது',
 'backend-fail-contenttype'   => '"$1" இல் சேமிக்க கோப்பின் உள்ளடக்க வகையை உறுதிசெய்ய முடியவில்லை',
@@ -1921,7 +1922,7 @@ $1',
 'listgrouprights-addgroup-self-all'    => 'எல்லா குழுவையும் சொந்த கணக்கில் சேர்',
 'listgrouprights-removegroup-self-all' => 'எல்லா குழுவையும் சொந்த கணக்கில் இருந்து  நீக்கு',
 
-# E-mail user
+# Email user
 'mailnologin'          => 'அனுப்பும் முகவரி இல்லை',
 'mailnologintext'      => 'நீங்கள்[[Special:UserLogin|புகுபதிகை செய்திருப்பதுடன்]]
 ஏனைய பயனர்களுக்கு மின்னஞ்சல் அனுப்பக்கூடியத்தாக செல்லுபடியாகக்கூடிய மின்னஞ்சல் முகவரியொன்றும் உங்களுடைய  [[Special:Preferences|விருப்பத் தெரிவுகளில்]] கொடுபட்டிருக்கவேண்டும்.',
@@ -1959,7 +1960,7 @@ $1',
 'usermessage-editor'  => 'அமைப்பு தூதன்(messenger).',
 
 # Watchlist
-'watchlist'            => 'என் கவனிப்புப் பட்டியல்',
+'watchlist'            => 'கவனிப்புப் பட்டியல்',
 'mywatchlist'          => 'கவனிப்புப் பட்டியல்',
 'watchlistfor2'        => '$1 பயனரின் ($2)',
 'nowatchlist'          => 'உங்களுடைய கவனிப்புப் பட்டியலில் ஒரு விடயமும் இல்லை.',
@@ -2107,7 +2108,7 @@ $NEWPAGE
 'protect-default'             => 'அனைத்துப் பயனரையும் உள்ளிடு',
 'protect-fallback'            => '"$1" அனுமதி தேவை',
 'protect-level-autoconfirmed' => 'புதிய, பதிவு செய்யாத பயனர்களைத் தடை செய்',
-'protect-level-sysop'         => 'நிருவாகிகள் மட்டும்',
+'protect-level-sysop'         => 'நிருவாகிகளை மட்டும் அனுமதிக்கவும்',
 'protect-summary-cascade'     => 'படிநிலை',
 'protect-expiring'            => '$1 (UTC) மணிக்கு காலாவதியாகிறது',
 'protect-expiring-local'      => 'காலாவதியாகும்$1',
@@ -2571,6 +2572,7 @@ $1',
 'import-invalid-interwiki'   => 'குறிப்பிட்ட விக்கியில் இருந்து இறக்குமதி செய்யமுடியாது .',
 'import-error-edit'          => 'பக்கம் "$1" ஆனது இறக்குமதி செய்யப்படவில்லை ,ஏனெனில் அதை நீங்கள் திருத்த அனுமதிக்கப்படவில்லை.',
 'import-error-create'        => 'பக்கம் "$1" ஆனது இறக்குமதி செய்யப்படவில்லை ,ஏனெனில் அதை நீங்கள் உருவாக்க  அனுமதிக்கப்படவில்லை.',
+'import-error-invalid'       => 'பக்கம் "$1" பதிவிறக்கம் செய்யப்படவில்லை, ஏனெனில் அதன் பெயர் செல்லாது.',
 
 # Import log
 'importlogpage'                    => 'இறக்குமதி பதிகை',
@@ -2686,7 +2688,7 @@ $1',
 'pageinfo-header-views'     => 'பார்வைகள்',
 'pageinfo-subjectpage'      => 'பக்கம்',
 'pageinfo-talkpage'         => 'பேச்சுப் பக்கம்',
-'pageinfo-watchers'         => 'பார்வையாளர்கள் எண்ணிக்கை',
+'pageinfo-watchers'         => 'பக்கப் பார்வையாளர்கள் எண்ணிக்கை',
 'pageinfo-edits'            => 'தொகுப்புகளின் எண்ணிக்கை:',
 'pageinfo-authors'          => 'சாதகமான அம்சங்களை பெற்றிருக்கும் மொத்த தொகுப்பாளர்களின் எண்ணிக்கை',
 'pageinfo-views'            => 'காட்சிகள் எண்ணிக்கை',
@@ -3189,7 +3191,7 @@ $1',
 'monthsall'     => 'அனைத்து மாதங்களும்',
 'limitall'      => 'அனைத்து',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail'              => 'மின்னஞ்சல் முகவரியை உறுதிப்படுத்துக',
 'confirmemail_noemail'      => 'உங்கள் [[Special:Preferences|பயனர் விருப்பத்தேர்வுகளில்]] செல்லுபடியான மின்னஞ்சல் முகவரியைக் குறிப்பிடவில்லை.',
 'confirmemail_text'         => 'மின்னஞ்சல் சிறப்பியல்புகளைப் பயன்படுத்துவதற்கு {{SITENAME}} தளம் உங்களது மின்னஞ்சல் உறுதிப்படுத்தப்பட வேண்டும் மென எதிர்பார்க்கின்றது. உறுதிப்படுத்தல் மின்னஞ்சல் ஒன்றை அனுப்ப கீழுள்ள விசையை முடுக்கவும். மின்னஞ்சல் ஒரு இணைப்பைக் கொண்டிருக்கும்; உங்கள் மின்னஞ்சலை உறுதிப்படுத்த இவ்விணைப்பை உங்கள் உலாவியில் திறக்கவும்.',

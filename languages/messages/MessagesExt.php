@@ -1364,7 +1364,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'listgrouprights-addgroup-all'    => 'Añiil tolos grupus',
 'listgrouprights-removegroup-all' => 'Esborral tolos grupus',
 
-# E-mail user
+# Email user
 'mailnologin'      => 'Nu envial direción',
 'mailnologintext'  => 'Ebis estal [[Special:UserLogin|rutrau]]
 i tenel una direción d´email correta enas tus [[Special:Preferences|preferéncias]]
@@ -2237,7 +2237,7 @@ Cualisquiel otru atihu ena mesma línia se consierará ececión, p.s. páhinas o
 'namespacesall' => 'tó',
 'monthsall'     => 'tó',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail'             => 'Confirmal email',
 'confirmemail_noemail'     => 'Nu as escrebiu una direción d´email correta enas tus [[Special:Preferences|preferéncias]].',
 'confirmemail_text'        => "{{SITENAME}} requieri que confirmis la tu direción d'email enantis de gastal las huncionis de correu. Ativa el botón d'embahu pa envial un correu e confirmación a la tu direción. El correu incluirá un atihu con un cóigu; sigui el atihu pa confirmal la tu direción d'email.",

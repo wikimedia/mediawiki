@@ -94,15 +94,22 @@ $messages = array(
 'listingcontinuesabbrev' => 'jokku',
 'noindex-category'       => 'Kello njoopaaka',
 
-'mytalk'     => 'kaldigal am',
+'newwindow'  => '(udditata e henorde hesere)',
+'cancel'     => 'Haaytu',
+'mytalk'     => 'Yeewtere',
 'navigation' => 'Peeragol',
+
+# Cologne Blue skin
+'faq' => 'FAQ',
 
 # Vector skin
 'vector-action-addsection' => 'Ɓeydi toɓɓere',
 'vector-action-move'       => 'Dirtin',
+'vector-view-create'       => 'Sos',
 'vector-view-edit'         => 'Taƴto',
 'vector-view-history'      => 'Yiyto aslol',
 'vector-view-view'         => 'Tar',
+'vector-view-viewsource'   => 'Yiyto ɗaɗol',
 'actions'                  => 'Baɗe',
 'namespaces'               => 'Boowal inɗe',
 'variants'                 => 'Lomtooɗe',
@@ -254,6 +261,7 @@ So wonaa ɗuum, maataw ko a kawruɗo e buggere e topirde ndee.
 Tiiɗno jaŋto ɗum to [[Special:ListUsers/sysop|jiiloowo]] mbaasaa yejjitde URL jokkol ngol.',
 'badtitle'        => 'Tiitoonde moƴƴaani',
 'badtitletext'    => 'Tiitoonde ello ɗaɓɓitaango ngoo moƴƴaani, ko mehre, walla ko hakkude-ɗemɗe jokkoraade no feewaani walla tiitoonde hakkude-wiki',
+'viewsource'      => 'Yiyto ɗaɗol',
 
 # Login and logout pages
 'yourname'                => 'Innde Kuutoro',
@@ -263,13 +271,32 @@ Tiiɗno jaŋto ɗum to [[Special:ListUsers/sysop|jiiloowo]] mbaasaa yejjitde URL
 'nav-login-createaccount' => 'Seŋo / uddit konte',
 'loginprompt'             => 'Alaa e sago kurminaa kukiije ngam seŋaade e {{SITENAME}}.',
 'userlogin'               => 'Seŋo / uddit konte',
+'userlogout'              => 'Seŋto',
 'nologin'                 => 'A alaa konte tawo? $1.',
 'nologinlink'             => 'Uddit konte',
 'mailmypassword'          => 'Neldu finnde hesere e iimeel',
 'loginlanguagelabel'      => 'Ɗemngal: $1',
 
+# Edit page toolbar
+'bold_sample'     => 'Binndol ɓuutol',
+'italic_sample'   => 'Binndol italic',
+'italic_tip'      => 'Binndol italic',
+'extlink_sample'  => 'http://www.yeru.com tiitoonde jokkol',
+'extlink_tip'     => 'Jokkol boowbowal (siiftor puɗɗol http://)',
+'headline_sample' => 'Binndol tiitoonde',
+'nowiki_sample'   => 'Naatnu binndol ngol mbaydinaaka',
+'nowiki_tip'      => 'Faalkiso mbaydingol wiki',
+'image_tip'       => 'Fiilde soomtoraande',
+'sig_tip'         => 'Ciifol maa kañum e ñalngu',
+'hr_tip'          => 'Diidol lelingol (huutoro seeɗa)',
+
 # Edit pages
+'minoredit'              => 'Ɗuum ko taƴtol pamarol',
+'watchthis'              => 'Rewindo ngoo hello',
+'savearticle'            => 'Danndu hello',
 'preview'                => 'Yiytindo',
+'showpreview'            => 'Hollu jiytol',
+'showdiff'               => 'Hollu bayle',
 'newarticle'             => '(Kesi)',
 'newarticletext'         => 'A rewii e jokkol feewde e hello ngo woodaani tawo.
 Ngam sosde hello ngoo, fuɗɗo tappude e gallol les ngol (Yah to [[{{MediaWiki:Helppage}}|help page]] ngam ɓeydude humpito).',
@@ -284,13 +311,19 @@ walla [{{fullurl:{{FULLPAGENAME}}|action=edit}} taƴto hello ngoo]</span>.',
 'hiddencategories'       => 'Ngoo hello jeyaa ko e {{PLURAL:$1|1 fedde suuɗiinde|$1 pelle cuuɗiiɗe}}:',
 
 # Parser/template warnings
-'post-expand-template-argument-warning'  => "'''Warning:''' Ngoo hello ena jogii daliilu tiimtorde jogiiɗo ɓetol layo mawngol haa ɓurti.
+'post-expand-template-inclusion-warning'  => '""Reentino"."" Ɓetol tuugnorde ɓurtii.',
+'post-expand-template-inclusion-category' => 'Kelle baɗɗe tuugnorɗe ɓurtuɗe',
+'post-expand-template-argument-warning'   => "'''Warning:''' Ngoo hello ena jogii daliilu tiimtorde jogiiɗo ɓetol layo mawngol haa ɓurti.
 Ɗiin dalillaaji nduulaama.",
-'post-expand-template-argument-category' => 'Kelle jogiiɗe dalillaaji tiimtorde jejjitaaɗe',
+'post-expand-template-argument-category'  => 'Kelle jogiiɗe dalillaaji tiimtorde jejjitaaɗe',
 
 # History pages
 'viewpagelogs'           => 'Yiyto loge ngoo hello',
+'currentrev-asof'        => 'Yamre sakkitiinde nde $1',
 'revisionasof'           => 'Waylitannde $1',
+'previousrevision'       => '← Baylital ɓennungal',
+'cur'                    => 'gon',
+'last'                   => 'ɓenn',
 'histlegend'             => 'Cifol : ({{int:cur}}) = ko seerti e yamre wonaande ndee, ({{int:last}}) = ko seerti e yamre ɓennunde ndee, <b>{{int:minoreditletter}}</b> = baylital pamaral',
 'history-fieldset-title' => 'Feero e aslol',
 'history-show-deleted'   => 'Momtaaɗi tan',
@@ -298,6 +331,7 @@ walla [{{fullurl:{{FULLPAGENAME}}|action=edit}} taƴto hello ngoo]</span>.',
 
 # Revision deletion
 'revdel-restore'         => 'waylu jiyagol',
+'revdel-restore-deleted' => 'baylitte momtaaɗe',
 'revdel-restore-visible' => 'baylitte jiyotooɗe',
 
 # Merge log
@@ -319,6 +353,7 @@ walla [{{fullurl:{{FULLPAGENAME}}|action=edit}} taƴto hello ngoo]</span>.',
 'shown-title'                      => 'Hollu $1 {{PLURAL:$1|njaltudi|jaltuɗe}} e hello fof',
 'viewprevnext'                     => 'Yiyto ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-exists'                => "'''Ena woodi hello ena wiyee \"[[:\$1]]\" e oo wiki.'''",
+'searchmenu-new'                   => "'''Sos hello \"[[:\$1]]\" e oo wiki!'''",
 'searchprofile-articles'           => 'Kello loowdi',
 'searchprofile-project'            => 'Hello ballal e Eɓɓoore',
 'searchprofile-images'             => 'Sawmejaajo',
@@ -332,8 +367,13 @@ walla [{{fullurl:{{FULLPAGENAME}}|action=edit}} taƴto hello ngoo]</span>.',
 'search-result-size'               => '$1 ({{PLURAL:$2|helmere 1|kelme$ 2}})',
 'search-redirect'                  => '(yiiltu $1)',
 'search-section'                   => '(taƴre $1)',
+'search-suggest'                   => 'Maa taw njiɗ-ɗaa wiyde ko: $1',
 'searchall'                        => 'fof',
 'showingresultsheader'             => "{{PLURAL:$5|Njaltudi'''$1''' of '''$3'''|Jaltuɗe'''$1 - $2''' of '''$3'''}} for '''$4'''",
+'search-nonefound'                 => 'Alaa njaltudi arti e ndee ɗaɓɓitannde.',
+
+# Preferences page
+'mypreferences' => 'Cuɓoraade',
 
 # Recent changes
 'recentchanges'                   => 'Wailitooji kesi',
@@ -345,6 +385,8 @@ walla [{{fullurl:{{FULLPAGENAME}}|action=edit}} taƴto hello ngoo]</span>.',
 'rclinks'                         => 'Hollu bayle $1 cakkitiiɗe baɗaaɗe e balɗe $2 ɓannuɗe ɗee<br />$3',
 'diff'                            => 'ceer',
 'hist'                            => 'aslol',
+'hide'                            => 'Suuɗ',
+'show'                            => 'Hollu',
 'rc-enhanced-expand'              => 'Hollu cariiɗe (ena naamnii JavaScript)',
 'rc-enhanced-hide'                => 'Suuɗ cariiɗe',
 
@@ -353,6 +395,8 @@ walla [{{fullurl:{{FULLPAGENAME}}|action=edit}} taƴto hello ngoo]</span>.',
 'recentchangeslinked-toolbox'  => 'Bayle toɗɗiiɗe ɗee',
 'recentchangeslinked-title'    => 'Bayle toɗɗiiɗe "$1"',
 'recentchangeslinked-noresult' => 'Alaa bayle ngoni e hello jokkiingo ngoo e dumunna joopaaɗo oo.',
+'recentchangeslinked-summary'  => 'Ɗuum ko doggol bayle baɗaaɗe sakket e kelle jokkiiɗe e hello heeriingo (walla e terɗe fedde heeriinde).
+Kelle e [[Special:Watchlist|your watchlist]] ko ngoni ko e ""ɓuutol"".',
 'recentchangeslinked-page'     => 'Innde hello:',
 'recentchangeslinked-to'       => 'Hollu bayle kelle jokkaaɗe e hello toɗɗaango ngoo kisa',
 
@@ -362,9 +406,21 @@ walla [{{fullurl:{{FULLPAGENAME}}|action=edit}} taƴto hello ngoo]</span>.',
 'filedesc'    => 'Tonngol',
 
 # File description page
-'filehist'       => 'Aslol fiilde',
-'imagelinks'     => 'Kuutorgol fiilde',
-'nolinkstoimage' => 'Alaa kelle jokkiiɗe e ndee fiilde.',
+'file-anchor-link'       => 'Fiilde',
+'filehist'               => 'Aslol fiilde',
+'filehist-help'          => 'Dobo e ñalngu/waktu ngam yiyde fiilde ndee no nde yaltirta e oon waktu nih.',
+'filehist-current'       => 'gonaaɗo',
+'filehist-datetime'      => 'Ñalngu/Waktu',
+'filehist-thumb'         => 'Dooɓre',
+'filehist-thumbtext'     => 'Dooɓre yamre $1',
+'filehist-user'          => 'Kuutoro',
+'filehist-dimensions'    => 'Ɓete',
+'filehist-comment'       => 'Yowre',
+'imagelinks'             => 'Kuutorgol fiilde',
+'linkstoimage'           => '{{PLURAL:$1|page links|$1 pages link}} dewɗe e ngoo hello:',
+'nolinkstoimage'         => 'Alaa kelle jokkiiɗe e ndee fiilde.',
+'sharedupload-desc-here' => 'Ndee fiilde ummii ko e $1 tee ena waawi huutoreede e eɓɓooje koɗe.
+Cifol gonngol e [$2 file description page] makko ena holliraa les ɗoo.',
 
 # Random page
 'randompage' => 'Ɗerewol kawral',
@@ -383,15 +439,18 @@ walla [{{fullurl:{{FULLPAGENAME}}|action=edit}} taƴto hello ngoo]</span>.',
 'log' => 'Loge',
 
 # Special:AllPages
-'allarticles' => 'Winndannde hesere',
+'alphaindexline' => '$1 haa $2',
+'allarticles'    => 'Winndannde hesere',
+'allpagessubmit' => 'Yah',
 
 # Special:LinkSearch
 'linksearch-line' => '$1 ko-ko jokkaa e $2',
 
 # Watchlist
-'watchlist' => 'Doggol ndeenka am',
-'watch'     => 'Rewindaande',
-'unwatch'   => 'Darin rewindo',
+'watchlist'   => 'Doggol ndeenka am',
+'mywatchlist' => 'Doggol rewindo',
+'watch'       => 'Rewindaande',
+'unwatch'     => 'Darin rewindo',
 
 # Delete
 'actioncomplete' => 'Gollal timmii',
@@ -402,13 +461,16 @@ walla [{{fullurl:{{FULLPAGENAME}}|action=edit}} taƴto hello ngoo]</span>.',
 'rollbacklink' => 'riiwtu',
 
 # Undelete
-'undeletelink' => 'yiyto/artir',
+'undeletelink'     => 'yiyto/artir',
+'undeleteviewlink' => 'yiyto',
 
 # Namespace form on various pages
+'namespace'      => 'Boowal inɗe',
 'blanknamespace' => '(Dowrowo)',
 
 # Contributions
 'contributions' => 'Ballitte kuutoro',
+'mycontris'     => 'Ballitte',
 'month'         => 'Tuggi nduu lewru (e ɓennuɗi):',
 'year'          => 'Tuggi ndee hitaande (e ɓennuɗe):',
 
@@ -431,6 +493,7 @@ walla [{{fullurl:{{FULLPAGENAME}}|action=edit}} taƴto hello ngoo]</span>.',
 'whatlinkshere-filters'    => 'Ceɗe',
 
 # Block/unblock
+'ipboptions'       => 'waktuuji 2:waktuuji 2,ñalawma 1:ñalawma 1,balɗe 3:balɗe 3,yontere 1:yontere 1,jonte 2:jonte 2,lewru 1:lewru 1,lebbi 3:lebbi 3,lebbi 6:lebbi 6,hitaande 1:hitaande 1,gasataa:haa badaa',
 'blocklink'        => 'daaƴ',
 'unblocklink'      => 'daaƴtu',
 'change-blocklink' => 'wayli daaƴo',
@@ -439,6 +502,9 @@ walla [{{fullurl:{{FULLPAGENAME}}|action=edit}} taƴto hello ngoo]</span>.',
 # Move page
 'movelogpage' => 'Dirtin loge',
 'revertmove'  => 'firlit',
+
+# Export
+'export' => 'Jiggito kello',
 
 # Namespace 8 related
 'allmessagesname'    => 'Innde',
@@ -458,11 +524,14 @@ walla [{{fullurl:{{FULLPAGENAME}}|action=edit}} taƴto hello ngoo]</span>.',
 'tooltip-pt-logout'               => 'Seŋto',
 'tooltip-ca-talk'                 => 'Yeewtere baɗte hello loowdi ngoo',
 'tooltip-ca-edit'                 => 'Aɗa waawi taƴtaade ngoo hello. Tiiɗno huutoro butoŋ yiytindo oo hade maa danndude',
+'tooltip-ca-addsection'           => 'Fuɗɗo taƴre hesere',
 'tooltip-ca-viewsource'           => 'Ngoo hello ko hisnaango.
 Aɗa waawi yiytaade ɗaɗol maggo.',
 'tooltip-ca-history'              => 'Baylitte ɓennuɗe e  ngoo hello',
 'tooltip-ca-protect'              => 'Hisnu ngoo hello',
 'tooltip-ca-delete'               => 'Momtu ngoo hello',
+'tooltip-ca-move'                 => 'Dirtin ngoo hello',
+'tooltip-ca-watch'                => 'Ɓeydu ngoo hello e dewindaaɗe maa',
 'tooltip-ca-unwatch'              => 'Momtu ngoo hello e doggol ndeenka maa',
 'tooltip-search'                  => 'Yiylo e {{SITENAME}}',
 'tooltip-search-fulltext'         => 'Yiylo ndii loowdi e kelle ɗee',
@@ -476,6 +545,7 @@ Aɗa waawi yiytaade ɗaɗol maggo.',
 'tooltip-n-help'                  => 'Ko ɗoo yiytetee',
 'tooltip-t-whatlinkshere'         => 'Doggol kelle Wiki jokkaaɗe ɗoo ɗee fof',
 'tooltip-t-recentchangeslinked'   => 'Bayle cakkitiiɗe e kelle jokkaaɗe e ngoo hello',
+'tooltip-feed-atom'               => 'Balal Atom ngoo hello',
 'tooltip-t-contributions'         => 'Doggol ballitte oo kuutoro',
 'tooltip-t-upload'                => 'Yollu piille',
 'tooltip-t-specialpages'          => 'Doggol kelle keeriiɗe fof',
@@ -485,18 +555,24 @@ Aɗa waawi yiytaade ɗaɗol maggo.',
 'tooltip-ca-nstab-user'           => 'Yiyto hello kuutoro',
 'tooltip-ca-nstab-project'        => 'Yiyto hello eɓɓoore ngoo',
 'tooltip-ca-nstab-image'          => 'Yiyto hello fiilde ngoo',
+'tooltip-ca-nstab-template'       => 'Yiyto tuugnorde ndee',
+'tooltip-ca-nstab-category'       => 'Yiyto hello fedde ndee',
 'tooltip-minoredit'               => 'Maanto ɗum ko taƴto famaro',
+'tooltip-save'                    => 'Danndu bayle maa',
+'tooltip-preview'                 => 'Yiytindo bayle maa, tiiɗno huutoro ɗuum hade maa danndude!',
 'tooltip-compareselectedversions' => 'Ƴeew ko seerndi hakkunde baylitte ɗiɗi ngoo hello labaaɗe ɗee',
 'tooltip-watch'                   => 'Ɓeydu ngoo hello e doggol ndeenka maa',
 'tooltip-rollback'                => '"Riiwtude" firlittu taƴte  ngoo hello ruttoo to battindiiɗo waylude ngo e dobannde wootere',
 'tooltip-undo'                    => '"Firtu" artirtu ngol taƴtol tee uddita gallol taƴto ngol e mbaydi yiytindo. Nafata ko ɓeydude daliilu e tonngol ngol.',
+'tooltip-summary'                 => 'Naatnu tonngol daɓɓol',
 
 # Browsing diffs
 'previousdiff' => 'Taƴte ɓennungol',
 
 # Media information
-'file-nohires'  => 'Werngo ɓurngo ɗoo toowde alaa.',
-'svg-long-desc' => 'Fiilde SVG, werngo mum ko $1 × $2 pikelle, ɓetol fiildee: $3',
+'file-info-size' => '$1 × $2 piksele, ɓetol fiilde: $3, mbaydi MIME: $4',
+'file-nohires'   => 'Werngo ɓurngo ɗoo toowde alaa.',
+'svg-long-desc'  => 'Fiilde SVG, werngo mum ko $1 × $2 pikelle, ɓetol fiildee: $3',
 
 # Special:NewFiles
 'ilsubmit' => 'Yiilaade',
@@ -509,6 +585,7 @@ Jokkol gadanol e gorol foti wonde ko jokkol fiilde nde moƴƴaani.
 Kala jokkol dewngol e ngool gorol nanngiraa ko paltooje, wano kelle ɗo fiilde ndee waawi yaltude.',
 
 # Metadata
+'metadata'        => 'Metaakeɓe',
 'metadata-help'   => 'Ngoo hello ena waɗi humpito woɗngo, tawata ko ummii ko e kameraa numerik walla niiwtorde huutoraande ngam sosde walla ngaanndinde nde.',
 'metadata-fields' => 'Galli metaakeɓe natal gongal nde nduu ɓaakuru maa naatine e jaytinol hello natal tuma nde haatumeere metaakeɓe ndee taggitaa.
 Goɗɗe maa cuuɗe e sahaa kala.
@@ -531,7 +608,8 @@ Goɗɗe maa cuuɗe e sahaa kala.
 'edit-externally-help' => '(Yah to [//www.mediawiki.org/wiki/Manual:External_editors/ff tinndinoore teelto] ngam ɓeydude humpito)',
 
 # 'all' in various places, this might be different for inflected languages
-'monthsall' => 'fof',
+'namespacesall' => 'fof',
+'monthsall'     => 'fof',
 
 # Special:SpecialPages
 'specialpages' => 'Kelle keeriiɗe',

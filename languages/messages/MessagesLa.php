@@ -188,8 +188,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Numerum usorum custodientium monstrare',
 'tog-oldsig'                  => 'Subscriptio ad tempus adhibita:',
 'tog-fancysig'                => 'Subscriptio vicitext (sine nexu automatico)',
-'tog-externaleditor'          => 'Utere editore externo semper (pro peritus solo, requirat speciales optiones in calculone. [//www.mediawiki.org/wiki/Manual:External_editors More information.])',
-'tog-externaldiff'            => 'Utere editore dissimilitudine externa semper (pro peritus solo, requirat speciales optiones in calculone. [//www.mediawiki.org/wiki/Manial:External_editors More information.])',
+'tog-externaleditor'          => 'Editore externo semper uti (periti tantum: necesse est organa propria in computatro habere. [//www.mediawiki.org/wiki/Manual:External_editors adiutatum (Anglice)])',
+'tog-externaldiff'            => 'Editore dissimilitudinum externo semper uti (periti tantum: necesse est organa propria in computatro habere. [//www.mediawiki.org/wiki/Manual:External_editors adiutatum (Anglice)])',
 'tog-showjumplinks'           => 'Sinere nexus ostendi forma "salire ad" monstrata',
 'tog-uselivepreview'          => 'Praevisum viventem adhibere (JavaScript)',
 'tog-forceeditsummary'        => 'Si recensionem non summatim descripsero, me roga si continuare velim',
@@ -274,6 +274,9 @@ $messages = array(
 'category-file-count'            => '{{PLURAL:$2|Huic categoriae est solum unus fasciculus.|Huic categoriae {{PLURAL:$1|est hic fasciculus|sunt hi $1 fasciculi}} ex omnino $2 fasciculis.}}',
 'category-file-count-limited'    => 'Huic categoriae {{PLURAL:$1|est hic fasciculus|sunt hi $1 fasciculi}}.',
 'listingcontinuesabbrev'         => 'cont.',
+'index-category'                 => 'Paginae quae in indice sunt',
+'noindex-category'               => 'Paginae quae non in indice sunt',
+'broken-file-category'           => 'Paginae cum nexibus ad fasciculos ruptis',
 
 'about'         => 'De hoc',
 'article'       => 'Pagina contenta continens',
@@ -943,6 +946,7 @@ Conare praefixare tua inquisitionem cum ''all:'' ut quaeras contenta omnia (pagi
 'yourlanguage'              => 'Lingua:',
 'yourvariant'               => 'Differentia linguae contentorum:',
 'yournick'                  => 'Subscriptio nova:',
+'prefs-help-signature'      => 'Cum in paginis disputationum scribas, "<nowiki>~~~~</nowiki>" conscribe, quod in subscriptionem tuam et indicationem temporis convertetur.',
 'badsig'                    => 'Subscriptio cruda non est valida; scrutina affixa HTML.',
 'badsiglength'              => 'Subscriptio tua nimis longa est.
 {{PLURAL:$1|Una littera est|$1 litterae sunt}} longitudo maxima.',
@@ -1433,7 +1437,7 @@ Vide etiam [[Special:WantedCategories|categorias desideratas]].',
 'listgrouprights-addgroup-self-all'    => 'Addere omnes greges ad rationem propriam',
 'listgrouprights-removegroup-self-all' => 'Removere omnes greges ex ratione propria',
 
-# E-mail user
+# Email user
 'emailuser'        => 'Litteras electronicas usori mittere',
 'emailpage'        => 'Mittere litteras electronicas huic usori',
 'emailpagetext'    => 'Forma subter nuntium ad usorem mittet.
@@ -1965,6 +1969,9 @@ Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic m
 'siteusers'        => '{{PLURAL:$2|usor|usores}} {{grammar:genitive|{{SITENAME}}}} $1',
 'creditspage'      => 'Auctores paginae',
 
+# Info page
+'pageinfo-title' => 'Res quae ad "$1" pertinent',
+
 # Skin names
 'skinname-standard'    => 'Norma',
 'skinname-cologneblue' => 'Caerulus Colonia',
@@ -2209,7 +2216,7 @@ Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic m
 'namespacesall' => 'omnia',
 'monthsall'     => 'omnes',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail'             => 'Inscriptionem electronicam adfirmare',
 'confirmemail_noemail'     => 'Non est tibi inscriptio electronica valida in [[Special:Preferences|tuis praeferentiis]] posita.',
 'confirmemail_text'        => '{{SITENAME}} te postulat inscriptionem tuam electronicam adfirmare priusquam proprietatibus litterarum electronicarum fruaris. Imprime botonem subter ut nuntium adfirmationis tibi mittatur. Nuntio nexus inerit quod est scribendus in tuo navigatro interretiali ut validum adfirmes tuam inscriptionem electronicam.',

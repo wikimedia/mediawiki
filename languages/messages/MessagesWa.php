@@ -963,7 +963,7 @@ Ciste infôrmacion serè publike po tertos.",
 'prefs-displaywatchlist'      => 'Tchuzes di håynaedje',
 'prefs-diffs'                 => 'Diferinces',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid'   => "L' adresse emile a l' air d' esse valide",
 'email-address-validity-invalid' => 'Dinez ene adresse emile valide',
 
@@ -1422,7 +1422,7 @@ Protocoles ricnoxhous: <code>$1</code> (nelzès metoz nén dins vosse tchinne di
 # Special:ListGroupRights
 'listgrouprights-members' => '(djivêye des mimbes)',
 
-# E-mail user
+# Email user
 'mailnologin'     => "Nole adresse d' evoyeu",
 'mailnologintext' => "Po-z evoyî èn emile a èn ôte uzeu i vs fåt esse [[Special:UserLogin|elodjî]] eyet aveur ene adresse emile d' evoyeu ki soeye valide dins vos [[Special:Preferences|preferinces]].",
 'emailuser'       => "Emiler a l' uzeu",
@@ -2169,7 +2169,7 @@ est raptiti. Les ôtes seront catchîs.
 'namespacesall' => 'tos',
 'monthsall'     => 'tos',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail'            => "Acertinaedje di l' adresse emile",
 'confirmemail_text'       => "Ci wiki chal a mezåjhe ki vos acertinîz voste adresse emile
 divant d' poleur eployî les fonccions d' emilaedje. Clitchîz sol boton

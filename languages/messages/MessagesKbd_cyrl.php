@@ -507,7 +507,7 @@ $2',
 'loginlanguagelabel'         => 'Бзэ: $1',
 'suspicious-userlogout'      => 'Сеанс щыгъэтын узкӀэлъэӀуар гъэзэнщӀакъым, мыкорректнэ браузэрым иэ кэш зыщӀ проксим иригъэхьа хуэду ещхьщ.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'ХэщӀыкӀыгъуэ зымыӀэ хэукъуэгъуэ PHP-функциэ mail()',
 
 # Change password dialog
@@ -1075,7 +1075,7 @@ $1",
 # Special:ListGroupRights
 'listgrouprights-members' => '(гупым и тхылъ)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Тхыгъэ хуэтхын',
 
 # Watchlist

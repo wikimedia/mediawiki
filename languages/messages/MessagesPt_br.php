@@ -18,6 +18,7 @@
  * @author Crazymadlover
  * @author Daemorris
  * @author Danielsouzat
+ * @author Dicionarista
  * @author Diego Queiroz
  * @author Eduardo.mps
  * @author Emufarmers
@@ -26,6 +27,7 @@
  * @author GKnedo
  * @author Giro720
  * @author GoEThe
+ * @author Gusta
  * @author Hamilton Abreu
  * @author Helder.wiki
  * @author Jaideraf
@@ -50,6 +52,7 @@
  * @author Teles
  * @author TheGabrielZaum
  * @author Urhixidur
+ * @author Vivaelcelta
  * @author Vuln
  * @author Waldir
  * @author Yves Marques Junqueira
@@ -529,7 +532,7 @@ $messages = array(
 'otherlanguages'    => 'Em outros idiomas',
 'redirectedfrom'    => '(Redirecionado de $1)',
 'redirectpagesub'   => 'Página de redirecionamento',
-'lastmodifiedat'    => 'Esta página foi modificada pela última vez às $2 de $1.',
+'lastmodifiedat'    => 'Esta página foi modificada pela última vez à(s) $2 de $1.',
 'viewcount'         => 'Esta página foi acessada {{PLURAL:$1|uma vez|$1 vezes}}.',
 'protectedpage'     => 'Página protegida',
 'jumpto'            => 'Ir para:',
@@ -584,7 +587,7 @@ Veja a [[Special:Version|página sobre a versão do sistema]].',
 'editlink'                => 'editar',
 'viewsourcelink'          => 'ver código-fonte',
 'editsectionhint'         => 'Editar seção: $1',
-'toc'                     => 'Conteúdo',
+'toc'                     => 'Índice',
 'showtoc'                 => 'exibir',
 'hidetoc'                 => 'ocultar',
 'collapsible-collapse'    => 'Ocultar',
@@ -804,7 +807,7 @@ Por favor aguarde antes de tentar novamente.',
 'loginlanguagelabel'         => 'Idioma: $1',
 'suspicious-userlogout'      => 'Sua solicitação para sair foi negada porque aparentemente foi enviada por um navegador danificado ou por um servidor proxy com cache.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Erro desconhecido na função mail() do PHP',
 'user-mail-no-addy'      => 'Tentou enviar uma mensagem sem um endereço de e-mail.',
 
@@ -982,7 +985,7 @@ O registro de bloqueio mais recente é fornecido abaixo, para referência:',
 'userjspreview'                    => "'''Lembre-se que está apenas testando/prevendo o seu JavaScript particular e que ele ainda não foi salvo!'''",
 'sitecsspreview'                   => "'''Lembre-se de que você está apenas previsualizando este CSS.'''
 '''Ele ainda não foi salvo!'''",
-'sitejspreview'                    => "''Lembre-se de que você está apenas previsualizando este código JavaScript.'''
+'sitejspreview'                    => "'''Lembre-se de que você está apenas previsualizando este código JavaScript.'''
 '''Ele ainda não foi salvo!'''",
 'userinvalidcssjstitle'            => "'''Aviso:''' Não existe um tema \"\$1\". Lembre-se que as páginas .css e  .js utilizam um título em minúsculas, exemplo: {{ns:user}}:Alguém/vector.css aposto a {{ns:user}}:Alguém/Vector.css.",
 'updated'                          => '(Atualizado)',
@@ -1263,7 +1266,7 @@ Certifique-se de que tal alteração manterá a continuidade das ações.',
 'difference'               => '(Diferença entre revisões)',
 'difference-multipage'     => '(Diferenças entre páginas)',
 'lineno'                   => 'Linha $1:',
-'compareselectedversions'  => 'Compare as versões selecionadas',
+'compareselectedversions'  => 'Comparar as versões selecionadas',
 'showhideselectedversions' => 'Exibir/ocultar edições selecionadas',
 'editundo'                 => 'desfazer',
 'diff-multi'               => '({{PLURAL:$1|Uma edição intermediária|$1 edições intermediárias}} de {{PLURAL:$2|um usuário|$2 usuários}} {{PLURAL:$1|não apresentada|não apresentadas}})',
@@ -1313,7 +1316,7 @@ Certifique-se de que tal alteração manterá a continuidade das ações.',
 'search-mwsuggest-enabled'         => 'com sugestões',
 'search-mwsuggest-disabled'        => 'sem sugestões',
 'search-relatedarticle'            => 'Relacionado',
-'mwsuggest-disable'                => 'Desativar sugestões AJAX',
+'mwsuggest-disable'                => 'Desativar sugestões de pesquisa',
 'searcheverything-enable'          => 'Procurar em todos os espaços nominais',
 'searchrelated'                    => 'relacionados',
 'searchall'                        => 'todos',
@@ -1358,7 +1361,7 @@ Note que os índices do sistema de busca externo poderão conter referências de
 'prefs-beta'                    => 'Características beta',
 'prefs-datetime'                => 'Data e hora',
 'prefs-labs'                    => 'Características de laboratório',
-'prefs-personal'                => 'Perfil de usuário',
+'prefs-personal'                => 'Dados do usuário',
 'prefs-rc'                      => 'Mudanças recentes',
 'prefs-watchlist'               => 'Lista de páginas vigiadas',
 'prefs-watchlist-days'          => 'Dias a mostrar na lista de páginas vigiadas:',
@@ -1383,7 +1386,7 @@ Note que os índices do sistema de busca externo poderão conter referências de
 'resultsperpage'                => 'Resultados por página:',
 'stub-threshold'                => 'Links para páginas de conteúdo aparecerão <a href="#" class="stub">desta forma</a> se elas possuírem menos de (bytes):',
 'stub-threshold-disabled'       => 'Desabilitado',
-'recentchangesdays'             => 'Dias a serem exibidos nas Mudanças recentes:',
+'recentchangesdays'             => 'Dias a apresentar nas mudanças recentes:',
 'recentchangesdays-max'         => '(máximo: $1 {{PLURAL:$1|dia|dias}})',
 'recentchangescount'            => 'Número de edições a serem exibidas por padrão:',
 'prefs-help-recentchangescount' => 'Isto inclui mudanças recentes, histórico de páginas e registros.',
@@ -1461,7 +1464,7 @@ Caso decida fornecê-lo, este será utilizado para dar-lhe crédito pelo seu tra
 'prefs-displaywatchlist'        => 'Opções de exibição',
 'prefs-diffs'                   => 'Diferenças',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid'   => 'Parece válido',
 'email-address-validity-invalid' => 'Forneça um endereço de e-mail válido',
 
@@ -1624,20 +1627,20 @@ Caso decida fornecê-lo, este será utilizado para dar-lhe crédito pelo seu tra
 'recentchanges-feed-description'    => 'Acompanhe neste feed as mudanças mais recentes do wiki.',
 'recentchanges-label-newpage'       => 'Esta edição criou uma nova página',
 'recentchanges-label-minor'         => 'Esta é uma edição menor',
-'recentchanges-label-bot'           => 'Esta edição foi feita por um bot',
+'recentchanges-label-bot'           => 'Esta edição foi feita por um robô',
 'recentchanges-label-unpatrolled'   => 'Esta edição ainda não foi patrulhada',
 'rcnote'                            => "A seguir {{PLURAL:$1|está listada '''uma''' alteração ocorrida|estão listadas '''$1''' alterações ocorridas}} {{PLURAL:$2|no último dia|nos últimos '''$2''' dias}}, a partir das $5 de $4.",
 'rcnotefrom'                        => "Seguem as alterações desde as '''$4''' de '''$3''' (limitadas a '''$1''').",
 'rclistfrom'                        => 'Mostrar as novas alterações a partir das $1',
 'rcshowhideminor'                   => '$1 edições menores',
-'rcshowhidebots'                    => '$1 bots',
+'rcshowhidebots'                    => '$1 robôs',
 'rcshowhideliu'                     => '$1 usuários registrados',
 'rcshowhideanons'                   => '$1 usuários anônimos',
 'rcshowhidepatr'                    => '$1 edições patrulhadas',
 'rcshowhidemine'                    => '$1 minhas edições',
 'rclinks'                           => 'Exibir as $1 alterações recentes feitas nos últimos $2 dias<br />$3',
 'diff'                              => 'dif',
-'hist'                              => 'hist',
+'hist'                              => 'his',
 'hide'                              => 'Ocultar',
 'show'                              => 'Exibir',
 'minoreditletter'                   => 'm',
@@ -1657,7 +1660,7 @@ Caso decida fornecê-lo, este será utilizado para dar-lhe crédito pelo seu tra
 'recentchangeslinked-feed'     => 'Alterações relacionadas',
 'recentchangeslinked-toolbox'  => 'Alterações relacionadas',
 'recentchangeslinked-title'    => 'Alterações relacionadas com "$1"',
-'recentchangeslinked-noresult' => 'Não ocorreram alterações em páginas relacionadas no intervalo de tempo especificado.',
+'recentchangeslinked-noresult' => 'Nenhuma mudança nas páginas relacionadas durante o período.',
 'recentchangeslinked-summary'  => "Esta página lista alterações feitas recentemente em páginas com links a uma em específico (ou de membros de uma categoria especificada).
 Páginas de sua [[Special:Watchlist|lista de páginas vigiadas]] são exibidas em '''negrito'''.",
 'recentchangeslinked-page'     => 'Nome da página:',
@@ -2074,7 +2077,7 @@ Entradas <del>riscadas</del> foram resolvidas.',
 # Miscellaneous special pages
 'nbytes'                  => '$1 {{PLURAL:$1|byte|bytes}}',
 'ncategories'             => '$1 {{PLURAL:$1|categoria|categorias}}',
-'nlinks'                  => '$1 {{PLURAL:$1|link|links}}',
+'nlinks'                  => '$1 {{PLURAL:$1|linque|linques}}',
 'nmembers'                => '$1 {{PLURAL:$1|membro|membros}}',
 'nrevisions'              => '$1 {{PLURAL:$1|revisão|revisões}}',
 'nviews'                  => '$1 {{PLURAL:$1|visita|visitas}}',
@@ -2141,7 +2144,7 @@ Por favor note que outros websites podem apontar para um arquivo através de um 
 
 # Book sources
 'booksources'               => 'Fontes bibliográficas',
-'booksources-search-legend' => 'Procurar fontes bibliográficas',
+'booksources-search-legend' => 'Pesquisar referências bibliográficas',
 'booksources-go'            => 'Ir',
 'booksources-text'          => 'É exibida a seguir uma listagem de links para outros sites que vendem livros novos e usados e que possam possuir informações adicionais sobre os livros que você está pesquisando:',
 'booksources-invalid-isbn'  => 'O número ISBN fornecido não parece ser válido; verifique se houve erros ao copiar da fonte original.',
@@ -2168,7 +2171,7 @@ Você pode diminuir a lista escolhendo um tipo de registro, um nome de usuário 
 'allnotinnamespace' => 'Todas as páginas (excepto as do espaço nominal $1)',
 'allpagesprev'      => 'Anterior',
 'allpagesnext'      => 'Próximo',
-'allpagessubmit'    => 'Ir',
+'allpagessubmit'    => 'Ver',
 'allpagesprefix'    => 'Exibir páginas com o prefixo:',
 'allpagesbadtitle'  => 'O título de página fornecido encontrava-se inválido ou tinha um prefixo interlíngua ou inter-wiki. Ele poderá conter um ou mais caracteres que não podem ser utilizados em títulos.',
 'allpages-bad-ns'   => '{{SITENAME}} não possui o espaço nominal "$1".',
@@ -2183,7 +2186,7 @@ Veja também [[Special:WantedCategories|categorias pedidas]].',
 'special-categories-sort-abc'   => 'ordenar alfabeticamente',
 
 # Special:DeletedContributions
-'deletedcontributions'             => 'Contribuições de usuário eliminadas',
+'deletedcontributions'             => 'Edições eliminadas',
 'deletedcontributions-title'       => 'Contribuições de usuário eliminadas',
 'sp-deletedcontributions-contribs' => 'contribuições',
 
@@ -2236,7 +2239,7 @@ Pode haver [[{{MediaWiki:Listgrouprights-helppage}}|informações adicionais]] s
 'listgrouprights-addgroup-self-all'    => 'Pode adicionar todos os grupos à própria conta',
 'listgrouprights-removegroup-self-all' => 'Pode remover todos os grupos da própria conta',
 
-# E-mail user
+# Email user
 'mailnologin'          => 'Nenhum endereço de envio',
 'mailnologintext'      => 'Necessita de estar [[Special:UserLogin|autenticado]] e de possuir um endereço de e-mail válido nas suas [[Special:Preferences|preferências]] para poder enviar um e-mail a outros usuários.',
 'emailuser'            => 'Enviar-lhe um e-mail',
@@ -2366,7 +2369,7 @@ Por favor, confirme que possui a intenção de fazer isto, que compreende as con
 Consulte $2 para um registro de eliminações recentes.',
 'dellogpage'             => 'Registro de eliminação',
 'dellogpagetext'         => 'Abaixo uma lista das eliminações mais recentes.',
-'deletionlog'            => 'registro de eliminação',
+'deletionlog'            => 'registro de eliminações',
 'reverted'               => 'Revertido para versão anterior',
 'deletecomment'          => 'Motivo:',
 'deleteotherreason'      => 'Justificativa adicional:',
@@ -2433,7 +2436,7 @@ Esta é a configuração atual para a página '''$1''':",
 'protect-fallback'            => 'Permitir apenas os usuários com privilégio de "$1"',
 'protect-level-autoconfirmed' => 'Permitir apenas usuários auto-confirmados',
 'protect-level-sysop'         => 'Permitir apenas administradores',
-'protect-summary-cascade'     => 'p. progressiva',
+'protect-summary-cascade'     => 'em cascata',
 'protect-expiring'            => 'expira em $1 (UTC)',
 'protect-expiring-local'      => 'expira $1',
 'protect-expiry-indefinite'   => 'indefinidamente',
@@ -2539,7 +2542,7 @@ $1',
 'sp-contributions-newbies'             => 'Mostrar apenas as contribuições das novas contas',
 'sp-contributions-newbies-sub'         => 'Para contas novas',
 'sp-contributions-newbies-title'       => 'Contribuições de contas novas',
-'sp-contributions-blocklog'            => 'Registro de bloqueios',
+'sp-contributions-blocklog'            => 'registro de bloqueios',
 'sp-contributions-deleted'             => 'contribuições eliminadas',
 'sp-contributions-uploads'             => 'envios',
 'sp-contributions-logs'                => 'registros',
@@ -2558,7 +2561,7 @@ Segue, para referência, a entrada mais recente no registro de bloqueios:',
 'whatlinkshere-title'      => 'Páginas que têm links para "$1"',
 'whatlinkshere-page'       => 'Página:',
 'linkshere'                => "As seguintes páginas possuem links para '''[[:$1]]''':",
-'nolinkshere'              => "Não há links para '''[[:$1]]'''.",
+'nolinkshere'              => "Não há afluentes para '''[[:$1]]''' com as condições especificadas.",
 'nolinkshere-ns'           => "Não há links para '''[[:$1]]''' no espaço nominal selecionado.",
 'isredirect'               => 'página de redirecionamento',
 'istemplate'               => 'transclusão',
@@ -2644,7 +2647,7 @@ Consulte a [[Special:BlockList|lista de bloqueios]].',
 'expiringblock'                   => 'expira em $1 às $2',
 'anononlyblock'                   => 'anôn. apenas',
 'noautoblockblock'                => 'bloqueio automático desabilitado',
-'createaccountblock'              => 'criação de conta de usuário bloqueada',
+'createaccountblock'              => 'criação de conta bloqueada',
 'emailblock'                      => 'impedido de enviar e-mail',
 'blocklist-nousertalk'            => 'impossibilitado de editar a própria página de discussão',
 'ipblocklist-empty'               => 'A lista de bloqueios encontra-se vazia.',
@@ -2669,7 +2672,7 @@ Consulte a [[Special:BlockList|lista de bloqueios]] para obter a lista de bloque
 'block-log-flags-anononly'        => 'apenas usuários anônimos',
 'block-log-flags-nocreate'        => 'criação de contas desabilitada',
 'block-log-flags-noautoblock'     => 'bloqueio automático desabilitado',
-'block-log-flags-noemail'         => 'impedido de enviar e-mail',
+'block-log-flags-noemail'         => 'e-mail bloqueado',
 'block-log-flags-nousertalk'      => 'impossibilitado de editar a própria página de discussão',
 'block-log-flags-angry-autoblock' => 'autobloqueio melhorado ativado',
 'block-log-flags-hiddenname'      => 'nome de usuário oculto',
@@ -3019,7 +3022,7 @@ Permite colocar uma justificativa no sumário da edição.',
 'anonymous'        => '{{PLURAL:$1|Usuário anônimo|Usuários anônimos}} da {{SITENAME}}',
 'siteuser'         => '{{GENDER:$2|um utilizador|uma utilizadora|um utilizador}} da {{SITENAME}} ($1)',
 'anonuser'         => 'usuário anônimo $1 da {{SITENAME}}',
-'lastmodifiedatby' => 'Esta página foi modificada pela última vez às $2 de $1 por $3.',
+'lastmodifiedatby' => 'Esta página foi modificada pela última vez à(s) $2 de $1 por $3.',
 'othercontribs'    => 'Baseado no trabalho de $1.',
 'others'           => 'outros',
 'siteusers'        => '{{PLURAL:$2|um usuário|$2 usuários}} da {{SITENAME}} ($1)',
@@ -3558,7 +3561,7 @@ Por padrão, outros campos estarão ocultos.
 'monthsall'     => 'todos',
 'limitall'      => 'todas',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail'              => 'Confirmar endereço de E-mail',
 'confirmemail_noemail'      => 'Não possui um endereço de e-mail válido indicado nas suas [[Special:Preferences|preferências de usuário]].',
 'confirmemail_text'         => '{{SITENAME}} requer o seu endereço de e-mail esteja validado antes de utilizar as funcionalidades que requerem um endereço de e-mail.
@@ -3696,7 +3699,7 @@ Tente a previsão comum.',
 'watchlistedit-normal-explain' => 'Os títulos das páginas de sua lista de vigiadas são exibidos abaixo.
 Para remover um título, marque a caixa ao lado do mesmo e clique "{{int:Watchlistedit-normal-submit}}".
 Você pode também [[Special:EditWatchlist/raw|editar a lista de páginas vigiadas em forma de texto]].',
-'watchlistedit-normal-submit'  => 'Remover Títulos',
+'watchlistedit-normal-submit'  => 'Remover páginas',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|um título foi removido|$1 títulos foram removidos}} de sua lista de páginas vigiadas:',
 'watchlistedit-raw-title'      => 'Edição crua da lista de páginas vigiadas',
 'watchlistedit-raw-legend'     => 'Edição crua da lista de páginas vigiadas',
@@ -3865,9 +3868,9 @@ As imagens serão exibidas em sua resolução máxima, outros tipos de arquivos 
 'revdelete-content-hid'               => 'conteúdo oculto',
 'revdelete-summary-hid'               => 'sumário de edição oculto',
 'revdelete-uname-hid'                 => 'nome de usuário oculto',
-'revdelete-content-unhid'             => 'conteúdo não oculto',
-'revdelete-summary-unhid'             => 'sumário de edição não oculto',
-'revdelete-uname-unhid'               => 'nome de usuário não oculto',
+'revdelete-content-unhid'             => 'conteúdo desocultado',
+'revdelete-summary-unhid'             => 'sumário de edição desocultado',
+'revdelete-uname-unhid'               => 'nome de usuário desocultado',
 'revdelete-restricted'                => 'restrições a administradores aplicadas',
 'revdelete-unrestricted'              => 'restrições a administradores removidas',
 'logentry-move-move'                  => '$1 moveu a página $3 para $4',

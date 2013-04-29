@@ -481,7 +481,7 @@ $1 {{PLURAL:$1|elemént|elemént}}',
 # Special:ListGroupRights
 'listgrouprights-members' => "(Lèsta d'j mèmbar)",
 
-# E-mail user
+# Email user
 'emailuser' => 'Manda un scrètt a ste patàca',
 
 # Watchlist

@@ -671,7 +671,7 @@ Zkuste se podívat na [[Special:SpecialPages|seznam všech existujících speci�
 
 # General errors
 'error'                => 'Chyba',
-'databaseerror'        => 'Databázová chyba',
+'databaseerror'        => 'Chyba databáze',
 'dberrortext'          => 'Při dotazu do databáze došlo k syntaktické chybě.
 Příčinou může být chyba v programu.
 Poslední dotaz byl:
@@ -756,7 +756,7 @@ Uvědomte si, že některé stránky se mohou i nadále zobrazovat, jako byste b
 Váš účet byl úspěšně vytvořen.
 Nezapomeňte si upravit své [[Special:Preferences|nastavení {{grammar:2sg|{{SITENAME}}}}]].',
 'yourname'                   => 'Uživatelské jméno:',
-'yourpassword'               => 'Vaše heslo',
+'yourpassword'               => 'Heslo:',
 'yourpasswordagain'          => 'Zopakujte heslo:',
 'remembermypassword'         => 'Zapamatovat si mé přihlášení na tomto počítači (maximálně $1 {{PLURAL:$1|den|dny|dní}})',
 'securelogin-stick-https'    => 'Zůstat po přihlášení připojen přes HTTPS',
@@ -772,7 +772,7 @@ Nezapomeňte si upravit své [[Special:Preferences|nastavení {{grammar:2sg|{{SI
 'notloggedin'                => 'Nejste přihlášen(a)',
 'nologin'                    => "Dosud nemáte účet? '''$1'''.",
 'nologinlink'                => 'Zaregistrujte se',
-'createaccount'              => 'Vytvořit nový účet',
+'createaccount'              => 'Vytvořit účet',
 'gotaccount'                 => "Už jste registrováni? '''$1'''.",
 'gotaccountlink'             => 'Přihlaste se',
 'userlogin-resetlink'        => 'Zapomněli jste přihlašovací údaje?',
@@ -816,8 +816,8 @@ a používat staré heslo.',
 'blocked-mailpassword'       => 'Vaší IP adrese byla zablokována možnost editace, a současně s tím je zablokována funkce pro zaslání nového hesla.',
 'eauthentsent'               => 'Potvrzovací e-mail byl zaslán na zadanou adresu.
 Před tím, než vám na tuto adresu budou moci být zasílány další zprávy, následujte instrukce v e-mailu, abyste potvrdili, že tato adresa skutečně patří vám.',
-'throttled-mailpassword'     => 'Heslo již bylo jednou zasláno během uplynulých $1 hodin.
-Heslo může být zasláno jen jednou za $1 {{PLURAL:$1|hodinu|hodiny|hodin}}.',
+'throttled-mailpassword'     => 'Během {{PLURAL:$1|poslední hodiny|posledních $1 hodin}} již bylo heslo jednou zasláno.
+Kvůli prevenci zneužívání lze heslo zaslat jen jednou za $1 {{PLURAL:$1|hodinu|hodiny|hodin}}.',
 'mailerror'                  => 'Chyba při zasílání e-mailu: $1',
 'acct_creation_throttle_hit' => 'Uživatelé přicházející z vaší IP adresy už dnes vytvořili $1 {{PLURAL:$1|účet|účty|účtů}}, což je dovolené maximum. Proto v tuto chvíli není dovoleno z této IP adresy další účty zakládat.',
 'emailauthenticated'         => 'Vaše e-mailová adresa byla ověřena dne $2 v $3.',
@@ -842,7 +842,7 @@ Počkejte chvíli, než to zkusíte znovu.',
 'loginlanguagelabel'         => 'Jazyk: $1',
 'suspicious-userlogout'      => 'Váš požadavek na odhlášení byl odmítnut, neboť to vypadá, že ho poslal rozbitý prohlížeč nebo cachující proxy.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Neznámá chyba v PHP funkci mail()',
 'user-mail-no-addy'      => 'Pokus o odeslání e-mailu bez e-mailové adresy',
 
@@ -866,7 +866,7 @@ Možná jste si již úspěšně heslo změnili, nebo jste si vyžádali nové d
 
 # Special:PasswordReset
 'passwordreset'                    => 'Reset hesla',
-'passwordreset-text'               => 'Pro obdržení e-mailu s připomenutím detailů vašeho účtu vyplňte tento formulář.',
+'passwordreset-text'               => 'Pro získání nového hesla vyplňte tento formulář.',
 'passwordreset-legend'             => 'Znovu nastavit heslo',
 'passwordreset-disabled'           => 'Znovunastavení hesla je na této wiki zakázáno.',
 'passwordreset-pretext'            => '{{PLURAL:$1||Zadejte jeden z údajů níže}}',
@@ -876,8 +876,7 @@ Možná jste si již úspěšně heslo změnili, nebo jste si vyžádali nové d
 'passwordreset-capture-help'       => 'Pokud zaškrtnete toto políčko, bude e-mail (s dočasným heslem) kromě zaslání uživateli zobrazen i vám.',
 'passwordreset-email'              => 'E-mailová adresa:',
 'passwordreset-emailtitle'         => 'Informace k účtu na {{grammar:6sg|{{SITENAME}}}}',
-'passwordreset-emailtext-ip'       => 'Někdo (patrně vy, z IP adresy $1) zažádal o připomenutí informací k vašemu
-účtu na {{grammar:6sg|{{SITENAME}}}} ($4). K této adrese {{PLURAL:$3|je přiřazen následující účet|jsou přiřazeny následující účty}}:
+'passwordreset-emailtext-ip'       => 'Někdo (patrně vy, z IP adresy $1) zažádal o nastavení nového hesla k vašemu účtu na {{grammar:6sg|{{SITENAME}}}} ($4). K této adrese {{PLURAL:$3|je přiřazen následující účet|jsou přiřazeny následující účty}}:
 
 $2
 
@@ -885,7 +884,7 @@ $2
 Nyní byste se měl(a) přihlásit a zvolit si nové heslo. Pokud tento požadavek
 poslal někdo jiný nebo jste si na své staré heslo vzpomněl(a), a nechcete ho
 tedy změnit, můžete tuto zprávu ignorovat a nadále používat původní heslo.',
-'passwordreset-emailtext-user'     => '{{gender:$1|Uživatel|Uživatelka|Uživatel}} $1 {{grammar:2sg|{{SITENAME}}}} {{gender:$1|zažádal|zažádala|zažádal}} o připomenutí informací k vašemu
+'passwordreset-emailtext-user'     => '{{gender:$1|Uživatel|Uživatelka}} $1 na {{grammar:6sg|{{SITENAME}}}} {{gender:$1|zažádal|zažádala}} o nastavení nového hesla k vašemu
 účtu na {{grammar:6sg|{{SITENAME}}}} ($4). K této adrese {{PLURAL:$3|je přiřazen následující účet|jsou přiřazeny následující účty}}:
 
 $2
@@ -896,8 +895,8 @@ poslal někdo jiný nebo jste si na své staré heslo vzpomněl(a), a nechcete h
 tedy změnit, můžete tuto zprávu ignorovat a nadále používat původní heslo.',
 'passwordreset-emailelement'       => 'Uživatelské jméno: $1
 Dočasné heslo: $2',
-'passwordreset-emailsent'          => 'E-mail s heslem byl odeslán.',
-'passwordreset-emailsent-capture'  => 'Byl vygenerován připomínací e-mail, který je zobrazen níže.',
+'passwordreset-emailsent'          => 'E-mail pro získání nového hesla byl odeslán.',
+'passwordreset-emailsent-capture'  => 'Byl odeslán e-mail pro získání nového hesla, který je zobrazen níže.',
 'passwordreset-emailerror-capture' => 'Byl vygenerován připomínací e-mail, který je zobrazen níže, ale nepodařilo se ho odeslat uživateli: $1',
 
 # Special:ChangeEmail
@@ -1289,7 +1288,7 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'mergelogpagetext'   => 'Níže je seznam nejnovějších sloučení historie jedné stránky s jinou.',
 
 # Diffs
-'history-title'            => '$1: Historie verzí',
+'history-title'            => 'Historie verzí stránky „$1“',
 'difference'               => '(Rozdíly mezi verzemi)',
 'difference-multipage'     => '(Rozdíly mezi stránkami)',
 'lineno'                   => 'Řádka $1:',
@@ -1343,7 +1342,7 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'search-mwsuggest-enabled'         => 's návrhy',
 'search-mwsuggest-disabled'        => 'bez návrhů',
 'search-relatedarticle'            => 'Související',
-'mwsuggest-disable'                => 'Vypnout ajaxové napovídání',
+'mwsuggest-disable'                => 'Vypnout našeptávač při hledání',
 'searcheverything-enable'          => 'Hledat ve všech jmenných prostorech',
 'searchrelated'                    => 'související',
 'searchall'                        => 'vše',
@@ -1449,7 +1448,7 @@ Můžete použít tuto náhodně vygenerovanou hodnotu: $1',
 Tuto operaci nelze vrátit zpět.',
 'prefs-emailconfirm-label'      => 'Ověření e-mailu:',
 'prefs-textboxsize'             => 'Velikost editačního okna',
-'youremail'                     => 'Vaše e-mailová adresa:',
+'youremail'                     => 'E-mail:',
 'username'                      => 'Uživatelské jméno:',
 'uid'                           => 'Uživatelské ID:',
 'prefs-memberingroups'          => 'Člen {{PLURAL:$1|skupiny|skupin}}:',
@@ -1458,7 +1457,7 @@ Tuto operaci nelze vrátit zpět.',
 'yourlanguage'                  => 'Jazyk rozhraní:',
 'yourvariant'                   => 'Varianta jazyka obsahu:',
 'prefs-help-variant'            => 'Vámi preferovaná varianta nebo pravopis, jak se mají na této wiki zobrazovat obsahové stránky.',
-'yournick'                      => 'Podpis:',
+'yournick'                      => 'Nový podpis:',
 'prefs-help-signature'          => 'Komentáře v diskusích by se měly podepisovat pomocí „<nowiki>~~~~</nowiki>“, což se změní na váš podpis a aktuální čas.',
 'badsig'                        => 'Chybný podpis, zkontrolujte syntaxi HTML.',
 'badsiglength'                  => 'Váš podpis je příliš dlouhý. Musí být kratší než $1 {{PLURAL:$1|znak|znaky|znaků}}.',
@@ -1470,7 +1469,8 @@ Tuto operaci nelze vrátit zpět.',
 'email'                         => 'E-mail',
 'prefs-help-realname'           => 'Skutečné jméno (volitelné): pokud ho zadáte, bude použito pro označení autorství vaší práce.',
 'prefs-help-email'              => 'Uvedení e-mailu není povinné, ale umožní zaslání nového hesla v případě, že své heslo zapomenete.',
-'prefs-help-email-others'       => 'Také můžete dovolit ostatním uživatelům vás prostřednictvím uživatelské stránky kontaktovat, aniž by byla vaše adresa prozrazena.',
+'prefs-help-email-others'       => 'Také můžete dovolit ostatním uživatelům vás prostřednictvím uživatelské stránky kontaktovat.
+Vaše adresa v takovém případě není prozrazena.',
 'prefs-help-email-required'     => 'Je vyžadována e-mailová adresa.',
 'prefs-info'                    => 'Základní údaje',
 'prefs-i18n'                    => 'Lokalizace',
@@ -1487,7 +1487,7 @@ Tuto operaci nelze vrátit zpět.',
 'prefs-displaywatchlist'        => 'Možnosti zobrazení',
 'prefs-diffs'                   => 'Porovnání verzí',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid'   => 'E-mailová adresa vypadá platně',
 'email-address-validity-invalid' => 'Zadejte platnou e-mailovou adresu',
 
@@ -1692,7 +1692,7 @@ $3',
 # Upload
 'upload'                      => 'Načíst soubor',
 'uploadbtn'                   => 'Načíst soubor',
-'reuploaddesc'                => 'Vrátit se k načtení.',
+'reuploaddesc'                => 'Zrušit načítání a vrátit se do formuláře.',
 'upload-tryagain'             => 'Uložit upravený popis souboru',
 'uploadnologin'               => 'Nejste přihlášen(a)',
 'uploadnologintext'           => 'Pro načtení souboru se musíte [[Special:UserLogin|přihlásit]].',
@@ -2082,7 +2082,7 @@ Každý řádek obsahuje odkaz na první a druhé přesměrování a k tomu cíl
 'nbytes'                  => '$1 {{PLURAL:$1|bajt|bajty|bajtů}}',
 'ncategories'             => '$1 {{PLURAL:$1|kategorie|kategorie|kategorií}}',
 'nlinks'                  => '$1 {{PLURAL:$1|odkaz|odkazy|odkazů}}',
-'nmembers'                => '$1 {{PLURAL:$1|stránka|stránky|stránek}}',
+'nmembers'                => '$1 {{PLURAL:$1|položka|položky|položek}}',
 'nrevisions'              => '$1 {{PLURAL:$1|revize|revize|revizí}}',
 'nviews'                  => '$1 {{PLURAL:$1|návšteva|návštevy|návštev}}',
 'nimagelinks'             => 'Použit na $1 {{PLURAL:$1|stránce|stránkách}}',
@@ -2244,7 +2244,7 @@ Podporované protokoly: <code>$1</code> (pokud není protokol uveden, použije s
 'listgrouprights-addgroup-self-all'    => 'Přidání svého účtu do libovolné skupiny',
 'listgrouprights-removegroup-self-all' => 'Vyřazení svého účtu z libovolné skupiny',
 
-# E-mail user
+# Email user
 'mailnologin'          => 'Bez odesílací adresy',
 'mailnologintext'      => 'Pokud chcete posílat e-maily jiným uživatelům, musíte se [[Special:UserLogin|přihlásit]] a mít platnou e-mailovou adresu ve svém [[Special:Preferences|nastavení]].',
 'emailuser'            => 'Poslat e-mail',
@@ -2271,7 +2271,7 @@ E-mailová adresa, kterou máte uvedenu v [[Special:Preferences|nastavení]], se
 'emailsend'            => 'Odeslat',
 'emailccme'            => 'Poslat kopii zprávy na můj e-mail',
 'emailccsubject'       => 'Kopie Vaší zprávy pro uživatele $1: $2',
-'emailsent'            => 'Zpráva odeslána',
+'emailsent'            => 'E-mail odeslán',
 'emailsenttext'        => 'Váš e-mail byl odeslán.',
 'emailuserfooter'      => 'Tento e-mail byl odeslán z {{grammar:2sg|{{SITENAME}}}} pomocí funkce „Poslat e-mail“; odeslal ho uživatel $1 uživateli $2',
 
@@ -3564,7 +3564,7 @@ Obsahuje pouze seznam s odrážkami (řádka začíná s *). První odkaz na ř�
 'monthsall'     => 'všechny',
 'limitall'      => 'vše',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail'              => 'Potvrzení e-mailové adresy',
 'confirmemail_noemail'      => 'Ve svém [[Special:Preferences|uživatelském nastavení]] jste nezadali platnou e-mailovou adresu.',
 'confirmemail_text'         => 'Tato wiki vyžaduje, abyste před využíváním některých funkcí potvrdili svoji e-mailovou adresu. Kliknutím na tlačítko níže odešlete potvrzovací e-mail na vámi uvedenou adresu. Tento e-mail obsahuje odkaz a potvrzovací kód; zobrazením odkazované stránky ve svém internetovém prohlížeči potvrdíte, že zadaná adresa je platná.',

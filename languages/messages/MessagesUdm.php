@@ -58,7 +58,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Cекциосты шырлэн бур кнопкаез заголовок вылын зӥбиськыкуз тупатыны (JavaScript кулэ)',
 'tog-showtoc'                 => 'Пуштросэз возьматоно (2-лэсь трос заголовокъем бамъёс понна)',
 'tog-rememberpassword'        => 'Мынам пыроннимме та браузерлэн тодаз возьыны ($1 яке $1-лэсь ӧжытгес нунал ӵоже гинэ)',
-'tog-watchcreations'          => 'Бамъёсты, кудъёстэс мон кылдытӥсько, мынам чаклкан списокам пыртыны',
+'tog-watchcreations'          => 'Мынэсьтым кылдытэм бамъёсме но ӝуткам файлъёсме чаклан списокам пыртыны',
 'tog-watchdefault'            => 'Бамъёсты, кудъёстэс мон тупатӥсько, мынам чаклкан списокам пыртыны',
 'tog-watchmoves'              => 'Бамъёсты, кудъёстэс мон мукет интые выжтӥсько, мынам чаклкан списокам пыртыны',
 'tog-watchdeletion'           => 'Бамъёсты, кудъёстэс мон ӵушисько, мынам чаклкан списоке пыртыны',
@@ -130,7 +130,7 @@ $messages = array(
 'dec'           => 'тст',
 
 # Categories related messages
-'pagecategories'                 => '$1 категория',
+'pagecategories'                 => '{{PLURAL:$1|Категория|Категориос}}',
 'category_header'                => '«$1» категориысь бамъёс',
 'subcategories'                  => 'Подкатегориос',
 'category-media-header'          => '«$1» категориысь файлъёс',
@@ -217,9 +217,10 @@ $messages = array(
 'viewsource' => 'Кодзэ учкыны',
 
 # Login and logout pages
-'login'                   => 'Википедие пырон',
+'login'                   => 'Пырон',
 'nav-login-createaccount' => 'Нимдэс вераны / Регистрациез ортчытыны',
 'userlogin'               => 'Регистрациез ортчытыны яке Википедие пырыны',
+'userloginnocreate'       => 'Пырон',
 'logout'                  => 'Кошкыны',
 'userlogout'              => 'Кошкыны',
 'createaccount'           => 'выль вики-авторлэн регистрациез',
@@ -269,7 +270,7 @@ $messages = array(
 'nbytes' => '$1 байт',
 'move'   => 'Мукет интые выжтыны',
 
-# E-mail user
+# Email user
 'emailmessage' => 'Ивортон:',
 
 # Watchlist

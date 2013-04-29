@@ -1248,7 +1248,7 @@ Jak klik kardani rūi unvoni sutunho boisi taƣjiri tartibi namoişi parvandaho 
 'listgrouprights-helppage' => 'Help:Dastrasihoi gurūhī',
 'listgrouprights-members'  => "(fehristi a'zojon)",
 
-# E-mail user
+# Email user
 'mailnologin'     => 'Nişonae az firistanda vuçud nadorad',
 'mailnologintext' => "Baroi firistodani poctai elektronī baroi korbaroni digar bojad [[Special:UserLogin|ba sistem vorid şaved]] va nişonai poctai elektroniji mū'tabar dar [[Special:Preferences|tarçihoti]] xud doşta boşed.",
 'emailuser'       => 'Firistodani email ba in korbar',
@@ -2140,7 +2140,7 @@ Faqat satrhoe, ki bo * şurū' şavand ba nazar girifta meşavand. Avvalin pajva
 'monthsall'     => 'hama',
 'limitall'      => 'hama',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail'             => 'Tasdiqi nişonai poctai elektronī',
 'confirmemail_noemail'     => "Şumo dar sahifai [[Special:Preferences|tarçihoti korbarii]] xud nişonai poctai elektroniji mū'tabarero vorid nakardaed.",
 'confirmemail_text'        => "{{SITENAME}} ta'jidi e'tiboi poctai elektroniji şumoro peş az istifoda xidmati elektronī talab mekunad. Tugmai zerinro fa'ol kuned to nomai ta'jidī ba poctai elektroniji şumo firistoda şavad. In noma pajvandero dar bar megirad, ki kode dorad; pajvandro dar mururgar boz kuned, to ki poctai elektroniaton  dar haqiqat ta'jid şavad.",

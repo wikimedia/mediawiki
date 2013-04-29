@@ -302,7 +302,7 @@ $messages = array(
 'tog-extendwatchlist'         => 'Espandir la lista de seguiment per afichar totas las modificacions e non pas solament las mai recentas',
 'tog-usenewrc'                => 'Agropar los cambiaments dins los darrièrs cambiaments e la lista de seguiment (necessita JavaScript)',
 'tog-numberheadings'          => 'Numerotar automaticament los títols',
-'tog-showtoolbar'             => 'Far veire la barra de menut de modificacion (JavaScript)',
+'tog-showtoolbar'             => 'Far veire la barra de menú de modificacion (JavaScript)',
 'tog-editondblclick'          => 'Modificar una pagina amb un clic doble (JavaScript)',
 'tog-editsection'             => 'Modificar una seccion via los ligams [modificar]',
 'tog-editsectiononrightclick' => 'Modificar una seccion en fasent un clic drech sus son títol (JavaScript)',
@@ -666,7 +666,8 @@ Requèsta : $2',
 'protectedpagetext'    => "Aquesta pagina es estada protegida per empachar sa modificacion o d'autras accions.",
 'viewsourcetext'       => 'Podètz veire e copiar lo contengut de l’article per poder trabalhar dessús :',
 'viewyourtext'         => "Podètz veire e copiar lo contengut de '''vòstras modificacions''' a aquesta pagina :",
-'protectedinterface'   => 'Aquesta pagina provesís de tèxte d’interfàcia pel logicial e es protegida per evitar los abuses.',
+'protectedinterface'   => 'Aquesta pagina provesís de tèxte d’interfàcia pel logicial susaqueste wiki, e es protegida per evitar los abuses.
+Per apondre o modificar de traduccions sus totes los wikis, utilizatz [//translatewiki.net/ translatewiki.net], lo projècte de localizacion de MediaWiki.',
 'editinginterface'     => "'''Atencion :''' sètz a editar una pagina utilizada per crear lo tèxte de l’interfàcia del logicial. Los cambiaments se repercutaràn, segon lo contèxte, sus totas o d'unas paginas visiblas pels autres utilizaires. Per las traduccions, vos convidam a utilizar lo projècte MediaWiki d'internacionalizacion dels messatges [//translatewiki.net/wiki/Main_Page?setlang=oc translatewiki.net].",
 'sqlhidden'            => '(Requèsta SQL amagada)',
 'cascadeprotected'     => "Aquesta pagina es actualament protegida perque es inclusa dins {{PLURAL:$1|la pagina seguenta|las paginas seguentas}}, {{PLURAL:$1|qu'es estada protegida|que son estadas protegidas}} amb l’opcion « proteccion en cascada » activada :
@@ -776,7 +777,7 @@ Esperatz abans d’ensajar tornamai.',
 'loginlanguagelabel'         => 'Lenga: $1',
 'suspicious-userlogout'      => 'Vòstra demanda de desconnexion es estada refusada perque sembla qu’es estada mandada per un navigador copat o la mesa en escondedor d’un proxy.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Error desconeguda dins la foncion mail() de PHP.',
 
 # Change password dialog
@@ -802,6 +803,7 @@ Benlèu ja avètz modificat vòstre senhal o demandat un senhal temporari novèl
 'passwordreset-legend'       => 'Reïnicializar lo senhal',
 'passwordreset-username'     => "Nom d'utilizaire :",
 'passwordreset-domain'       => 'Domeni:',
+'passwordreset-capture'      => 'Veire lo corrièl resultant ?',
 'passwordreset-email'        => 'Adreça de corrièr electronic :',
 'passwordreset-emailtitle'   => "Detailhs d'un compte per {{SITENAME}}",
 'passwordreset-emailelement' => 'Utilizaire: $1
@@ -1381,7 +1383,7 @@ Tanben podètz causir de permetre a d’autres de vos contactar per vòstra pagi
 'prefs-displaywatchlist'        => "Opcions d'afichatge",
 'prefs-diffs'                   => 'Diferéncias',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid'   => "L'adreça electronica sembla bona",
 'email-address-validity-invalid' => 'entrar una adreça electronica valida',
 
@@ -1737,6 +1739,9 @@ Se lo problèma persistís, contactatz un [[Special:ListUsers/sysop|administrato
 'lockmanager-fail-openlock'    => 'Impossible de dobrir lo fichièr de varrolh per « $1 ».',
 'lockmanager-fail-releaselock' => 'Impossible de daissar anar lo fichièr de varrolh per « $1 ».',
 
+# Special:UploadStash
+'uploadstash' => "Escondedor d'impòrt",
+
 # img_auth script messages
 'img-auth-accessdenied' => 'Accès refusat',
 'img-auth-nopathinfo'   => 'PATH_INFO mancant.
@@ -1903,7 +1908,7 @@ Doblidetz pas de verificar se i a pas d’autre ligam cap als modèls abans de l
 'statistics-users-active-desc' => "Utilizaires qu'an fach al mens una accion durant {{PLURAL:$1|lo darrièr jorn|los $1 darrièrs jorns}}",
 'statistics-mostpopular'       => 'Paginas mai consultadas',
 
-'disambiguations'      => "Paginas d'omonimia",
+'disambiguations'      => "Paginas qu'an de ligams cap a de paginas d'omonimia",
 'disambiguationspage'  => 'Template:Omonimia',
 'disambiguations-text' => "Las paginas seguentas puntan cap a una '''pagina d’omonimia'''.
 Deurián puslèu puntar cap a una pagina apropriada.<br />
@@ -2089,7 +2094,7 @@ I pòt aver [[{{MediaWiki:Listgrouprights-helppage}}|d'entresenhas complementàr
 'listgrouprights-addgroup-self-all'    => 'Se pòt apondre totes los gropes a son compte pròpri',
 'listgrouprights-removegroup-self-all' => 'Se pòt levar totes los gropes de son compte pròpri',
 
-# E-mail user
+# Email user
 'mailnologin'          => "Pas d'adreça",
 'mailnologintext'      => 'Vos cal èsser [[Special:UserLogin|connectat(ada)]]
 e aver indicat una adreça electronica valida dins vòstras [[Special:Preferences|preferéncias]]
@@ -2125,7 +2130,7 @@ L'adreça electronica qu'avètz indicada dins [[Special:Preferences|vòstras pre
 'usermessage-editor'  => 'Messatgièr del sistèma',
 
 # Watchlist
-'watchlist'            => 'Ma lista de seguiment',
+'watchlist'            => 'Lista de seguiment',
 'mywatchlist'          => 'Lista de seguiment',
 'watchlistfor2'        => 'Per $1 ($2)',
 'nowatchlist'          => "Vòstra lista de seguiment conten pas cap d'article.",
@@ -2606,7 +2611,7 @@ jol nom novèl. Se vos plai, fusionatz-las manualament.",
 L’article de destinacion « [[:$1]] » existís ja.
 Lo volètz suprimir per permetre lo cambiament de nom ?',
 'delete_and_move_confirm'      => 'Òc, accèpti de suprimir la pagina de destinacion per permetre lo cambiament de nom.',
-'delete_and_move_reason'       => 'Pagina suprimida per permetre un cambiament de nom',
+'delete_and_move_reason'       => 'Pagina suprimida per permetre lo cambiament de nom dempuèi « [[$1]] »',
 'selfmove'                     => 'Los títols d’origina e de destinacion son los meteisses : impossible de tornar nomenar una pagina sus ela-meteissa.',
 'immobile-source-namespace'    => "Podètz pas tornar nomenar de paginas dins l'espaci de noms « $1 »",
 'immobile-target-namespace'    => "Podètz pas desplaçar de paginas cap a l'espaci de noms « $1 »",
@@ -2632,6 +2637,7 @@ Causissètz un autre nom.',
 Per exportar de paginas, entratz lors títols dins la bóstia de tèxte çaijós, un títol per linha, e seleccionatz s'o desiratz o pas la version actuala amb totas las versions ancianas, amb la pagina d’istoric, o simplament la pagina actuala amb d'informacions sus la darrièra modificacion.
 
 Dins aqueste darrièr cas, podètz tanben utilizar un ligam, coma [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] per la pagina [[{{MediaWiki:Mainpage}}]].",
+'exportall'         => 'Exportar totas las paginas',
 'exportcuronly'     => 'Exportar unicament la version correnta sens l’istoric complet',
 'exportnohistory'   => "----
 '''Nòta :''' l’exportacion completa de l’istoric de las paginas amb l’ajuda d'aqueste formulari es estada desactivada per de rasons de performàncias.",
@@ -2720,72 +2726,78 @@ Salvatz-lo sus vòstre disc dur puèi importatz-lo aicí.",
 'import-logentry-interwiki'        => 'a importat (transwiki) $1',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|version|versions}} dempuèi $2',
 
+# JavaScriptTest
+'javascripttest'       => 'Tèst de JavaScript',
+'javascripttest-title' => 'Execucion dels tèsts $1',
+
 # Tooltip help for the actions
-'tooltip-pt-userpage'             => "Vòstra pagina d'utilizaire",
-'tooltip-pt-anonuserpage'         => "La pagina d'utilizare de l’IP amb la quala contribuissètz",
-'tooltip-pt-mytalk'               => 'Vòstra pagina de discussion',
-'tooltip-pt-anontalk'             => 'La pagina de discussion per aquesta adreça IP',
-'tooltip-pt-preferences'          => 'Mas preferéncias',
-'tooltip-pt-watchlist'            => 'La lista de las paginas que seguissètz',
-'tooltip-pt-mycontris'            => 'Lista de vòstras contribucions',
-'tooltip-pt-login'                => 'Sètz convidat(ada) a vos identificar, mas es pas obligatòri.',
-'tooltip-pt-anonlogin'            => 'Sètz convidat(ada) a vos identificar, mas es pas obligatòri.',
-'tooltip-pt-logout'               => 'Se desconnectar',
-'tooltip-ca-talk'                 => "Discussion a prepaus d'aquesta pagina",
-'tooltip-ca-edit'                 => 'Podètz modificar aquesta pagina. Mercé de previsualizar abans d’enregistrar.',
-'tooltip-ca-addsection'           => 'Començar una seccion novèla',
-'tooltip-ca-viewsource'           => 'Aquesta pagina es protegida. Çaquelà, ne podètz veire lo contengut.',
-'tooltip-ca-history'              => "Los autors e versions precedentas d'aquesta pagina.",
-'tooltip-ca-protect'              => 'Protegir aquesta pagina',
-'tooltip-ca-unprotect'            => 'Desprotegir aquesta pagina',
-'tooltip-ca-delete'               => 'Suprimir aquesta pagina',
-'tooltip-ca-undelete'             => 'Restablir aquesta pagina',
-'tooltip-ca-move'                 => 'Tornar nomenar aquesta pagina',
-'tooltip-ca-watch'                => 'Apondètz aquesta pagina a vòstra lista de seguiment',
-'tooltip-ca-unwatch'              => 'Levatz aquesta pagina de vòstra lista de seguiment',
-'tooltip-search'                  => 'Cercar dins {{SITENAME}}',
-'tooltip-search-go'               => 'Anar cap a una pagina que pòrta exactament aqueste nom se existís.',
-'tooltip-search-fulltext'         => 'Recercar las paginas que compòrtan aqueste tèxte.',
-'tooltip-p-logo'                  => 'Pagina principala',
-'tooltip-n-mainpage'              => 'Visitatz la pagina principala',
-'tooltip-n-mainpage-description'  => 'Anar a l’acuèlh',
-'tooltip-n-portal'                => 'A prepaus del projècte',
-'tooltip-n-currentevents'         => "Trobar d'entresenhas suls eveniments actuals",
-'tooltip-n-recentchanges'         => 'Lista dels darrièrs cambiaments sul wiki.',
-'tooltip-n-randompage'            => "Afichar una pagina a l'azard",
-'tooltip-n-help'                  => "L'endrech per s'assabentar.",
-'tooltip-t-whatlinkshere'         => 'Lista de las paginas ligadas a aquesta',
-'tooltip-t-recentchangeslinked'   => 'Lista dels darrièrs cambiaments de las paginas ligadas a aquesta',
-'tooltip-feed-rss'                => 'Flux RSS per aquesta pagina',
-'tooltip-feed-atom'               => 'Flux Atom per aquesta pagina',
-'tooltip-t-contributions'         => "Veire la lista de las contribucions d'aqueste utilizaire",
-'tooltip-t-emailuser'             => 'Mandar un corrièr electronic a aqueste utilizaire',
-'tooltip-t-upload'                => 'Mandar un imatge o fichièr mèdia sul servidor',
-'tooltip-t-specialpages'          => 'Lista de totas las paginas especialas',
-'tooltip-t-print'                 => "Version imprimibla d'aquesta pagina",
-'tooltip-t-permalink'             => 'Ligam permanent cap a aquesta version de la pagina',
-'tooltip-ca-nstab-main'           => 'Veire l’article',
-'tooltip-ca-nstab-user'           => "Veire la pagina d'utilizaire",
-'tooltip-ca-nstab-media'          => 'Veire la pagina del mèdia',
-'tooltip-ca-nstab-special'        => 'Aquò es una pagina especiala, la podètz pas modificar.',
-'tooltip-ca-nstab-project'        => 'Veire la pagina del projècte',
-'tooltip-ca-nstab-image'          => 'Veire la pagina del fichièr',
-'tooltip-ca-nstab-mediawiki'      => 'Vejatz lo messatge del sistèma',
-'tooltip-ca-nstab-template'       => 'Vejatz lo modèl',
-'tooltip-ca-nstab-help'           => 'Vejatz la pagina d’ajuda',
-'tooltip-ca-nstab-category'       => 'Vejatz la pagina de la categoria',
-'tooltip-minoredit'               => 'Marcar mas modificacions coma un cambiament menor',
-'tooltip-save'                    => 'Salvar vòstras modificacions',
-'tooltip-preview'                 => 'Mercé de previsualizar vòstras modificacions abans de salvar!',
-'tooltip-diff'                    => "Permet de visualizar los cambiaments qu'avètz efectuats",
-'tooltip-compareselectedversions' => "Afichar las diferéncias entre doas versions d'aquesta pagina",
-'tooltip-watch'                   => 'Apondre aquesta pagina a vòstra lista de seguiment',
-'tooltip-recreate'                => 'Tornar crear la pagina, quitament se es estada escafada',
-'tooltip-upload'                  => 'Amodar lo mandadís',
-'tooltip-rollback'                => '"Revocar" anulla en un clic la o las edicion(s) sus aquesta pagina del darrièr contributor.',
-'tooltip-undo'                    => '"Desfar" revòca aquesta edicion e dobrís la fenèstra d’edicion en mòde previsualizacion. Permet d’apondre una rason dins la bóstia de resumit.',
-'tooltip-preferences-save'        => 'Salvar las preferéncias',
-'tooltip-summary'                 => 'Apondètz un brèu resumit',
+'tooltip-pt-userpage'                 => "Vòstra pagina d'utilizaire",
+'tooltip-pt-anonuserpage'             => "La pagina d'utilizare de l’IP amb la quala contribuissètz",
+'tooltip-pt-mytalk'                   => 'Vòstra pagina de discussion',
+'tooltip-pt-anontalk'                 => 'La pagina de discussion per aquesta adreça IP',
+'tooltip-pt-preferences'              => 'Mas preferéncias',
+'tooltip-pt-watchlist'                => 'La lista de las paginas que seguissètz',
+'tooltip-pt-mycontris'                => 'Lista de vòstras contribucions',
+'tooltip-pt-login'                    => 'Sètz convidat(ada) a vos identificar, mas es pas obligatòri.',
+'tooltip-pt-anonlogin'                => 'Sètz convidat(ada) a vos identificar, mas es pas obligatòri.',
+'tooltip-pt-logout'                   => 'Se desconnectar',
+'tooltip-ca-talk'                     => "Discussion a prepaus d'aquesta pagina",
+'tooltip-ca-edit'                     => 'Podètz modificar aquesta pagina. Mercé de previsualizar abans d’enregistrar.',
+'tooltip-ca-addsection'               => 'Començar una seccion novèla',
+'tooltip-ca-viewsource'               => 'Aquesta pagina es protegida. Çaquelà, ne podètz veire lo contengut.',
+'tooltip-ca-history'                  => "Los autors e versions precedentas d'aquesta pagina.",
+'tooltip-ca-protect'                  => 'Protegir aquesta pagina',
+'tooltip-ca-unprotect'                => "Cambiar la proteccion d'aquesta pagina",
+'tooltip-ca-delete'                   => 'Suprimir aquesta pagina',
+'tooltip-ca-undelete'                 => 'Restablir aquesta pagina',
+'tooltip-ca-move'                     => 'Tornar nomenar aquesta pagina',
+'tooltip-ca-watch'                    => 'Apondètz aquesta pagina a vòstra lista de seguiment',
+'tooltip-ca-unwatch'                  => 'Levatz aquesta pagina de vòstra lista de seguiment',
+'tooltip-search'                      => 'Cercar dins {{SITENAME}}',
+'tooltip-search-go'                   => 'Anar cap a una pagina que pòrta exactament aqueste nom se existís.',
+'tooltip-search-fulltext'             => 'Recercar las paginas que compòrtan aqueste tèxte.',
+'tooltip-p-logo'                      => 'Pagina principala',
+'tooltip-n-mainpage'                  => 'Visitatz la pagina principala',
+'tooltip-n-mainpage-description'      => 'Anar a l’acuèlh',
+'tooltip-n-portal'                    => 'A prepaus del projècte',
+'tooltip-n-currentevents'             => "Trobar d'entresenhas suls eveniments actuals",
+'tooltip-n-recentchanges'             => 'Lista dels darrièrs cambiaments sul wiki.',
+'tooltip-n-randompage'                => "Afichar una pagina a l'azard",
+'tooltip-n-help'                      => "L'endrech per s'assabentar.",
+'tooltip-t-whatlinkshere'             => 'Lista de las paginas ligadas a aquesta',
+'tooltip-t-recentchangeslinked'       => 'Lista dels darrièrs cambiaments de las paginas ligadas a aquesta',
+'tooltip-feed-rss'                    => 'Flux RSS per aquesta pagina',
+'tooltip-feed-atom'                   => 'Flux Atom per aquesta pagina',
+'tooltip-t-contributions'             => "Veire la lista de las contribucions d'aqueste utilizaire",
+'tooltip-t-emailuser'                 => 'Mandar un corrièr electronic a aqueste utilizaire',
+'tooltip-t-upload'                    => 'Mandar un imatge o fichièr mèdia sul servidor',
+'tooltip-t-specialpages'              => 'Lista de totas las paginas especialas',
+'tooltip-t-print'                     => "Version imprimibla d'aquesta pagina",
+'tooltip-t-permalink'                 => 'Ligam permanent cap a aquesta version de la pagina',
+'tooltip-ca-nstab-main'               => 'Veire l’article',
+'tooltip-ca-nstab-user'               => "Veire la pagina d'utilizaire",
+'tooltip-ca-nstab-media'              => 'Veire la pagina del mèdia',
+'tooltip-ca-nstab-special'            => 'Aquò es una pagina especiala, la podètz pas modificar.',
+'tooltip-ca-nstab-project'            => 'Veire la pagina del projècte',
+'tooltip-ca-nstab-image'              => 'Veire la pagina del fichièr',
+'tooltip-ca-nstab-mediawiki'          => 'Vejatz lo messatge del sistèma',
+'tooltip-ca-nstab-template'           => 'Vejatz lo modèl',
+'tooltip-ca-nstab-help'               => 'Vejatz la pagina d’ajuda',
+'tooltip-ca-nstab-category'           => 'Vejatz la pagina de la categoria',
+'tooltip-minoredit'                   => 'Marcar mas modificacions coma un cambiament menor',
+'tooltip-save'                        => 'Salvar vòstras modificacions',
+'tooltip-preview'                     => 'Mercé de previsualizar vòstras modificacions abans de salvar!',
+'tooltip-diff'                        => "Permet de visualizar los cambiaments qu'avètz efectuats",
+'tooltip-compareselectedversions'     => "Afichar las diferéncias entre doas versions d'aquesta pagina",
+'tooltip-watch'                       => 'Apondre aquesta pagina a vòstra lista de seguiment',
+'tooltip-watchlistedit-normal-submit' => 'Levar los títols',
+'tooltip-watchlistedit-raw-submit'    => 'Mesa a jorn de la lista de seguiment',
+'tooltip-recreate'                    => 'Tornar crear la pagina, quitament se es estada escafada',
+'tooltip-upload'                      => 'Amodar lo mandadís',
+'tooltip-rollback'                    => '"Revocar" anulla en un clic la o las edicion(s) sus aquesta pagina del darrièr contributor.',
+'tooltip-undo'                        => '"Desfar" revòca aquesta edicion e dobrís la fenèstra d’edicion en mòde previsualizacion. Permet d’apondre una rason dins la bóstia de resumit.',
+'tooltip-preferences-save'            => 'Salvar las preferéncias',
+'tooltip-summary'                     => 'Apondètz un brèu resumit',
 
 # Stylesheets
 'common.css'      => '/** Lo CSS plaçat aicí serà aplicat a totas las aparéncias. */',
@@ -3346,7 +3358,7 @@ Los autres ligams sus la meteissa linha son considerats coma d'excepcions, per e
 'monthsall'     => 'totes',
 'limitall'      => 'totes',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail'              => "Confirmar l'adreça de corrièr electronic",
 'confirmemail_noemail'      => 'L’adreça de corrièr electronic configurada dins vòstras [[Special:Preferences|preferéncias]] es pas valida.',
 'confirmemail_text'         => '{{SITENAME}} necessita la verificacion de vòstra adreça de corrièr electronic abans de poder utilizar tota foncion de messatjariá. Utilizatz lo boton çaijós per mandar un corrièr electronic de confirmacion a vòstra adreça. Lo corrièr contendrà un ligam contenent un còde, cargatz aqueste ligam dins vòstre navigador per validar vòstra adreça.',
@@ -3518,25 +3530,26 @@ Ensajatz la previsualizacion normala.',
 'filepath'         => "Camin d'accès d'un fichièr",
 'filepath-page'    => 'Fichièr :',
 'filepath-submit'  => 'Validar',
-'filepath-summary' => "Aquesta pagina especiala balha lo camin d'accès complet d’un fichièr ; los imatges son mostrats en nauta resolucion, los fichièrs audiò e vidèo s’executan amb lor programa associat.
-
-Picatz lo nom del fichièr sens lo prefix « {{ns:file}}: »",
+'filepath-summary' => "Aquesta pagina especiala retorna lo camin d'accès complet d’un fichièr.
+Los imatges son afichats en nauta resolucion, los fichièrs àudio e vidèo son cargats e aviats dirèctament amb lor programa associat.",
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => 'Recèrca dels fichièrs en doble',
-'fileduplicatesearch-summary'  => 'Recèrca per de fichièrs en doble sus la banca de valors fragmentàrias.',
-'fileduplicatesearch-legend'   => 'Recèrca d’un doble',
-'fileduplicatesearch-filename' => 'Nom del fichièr :',
-'fileduplicatesearch-submit'   => 'Recercar',
-'fileduplicatesearch-info'     => '$1 × $2 pixèls<br />Talha del fichièr : $3<br />MIME type : $4',
-'fileduplicatesearch-result-1' => 'Lo fichièr « $1 » a pas de doble identic.',
-'fileduplicatesearch-result-n' => 'Lo fichièr « $1 » a {{PLURAL:$2|1 doble identic|$2 dobles identics}}.',
+'fileduplicatesearch'           => 'Recèrca dels fichièrs en doble',
+'fileduplicatesearch-summary'   => 'Recèrca per de fichièrs en doble sus la banca de valors fragmentàrias.',
+'fileduplicatesearch-legend'    => 'Recèrca d’un doble',
+'fileduplicatesearch-filename'  => 'Nom del fichièr :',
+'fileduplicatesearch-submit'    => 'Recercar',
+'fileduplicatesearch-info'      => '$1 × $2 pixèls<br />Talha del fichièr : $3<br />MIME type : $4',
+'fileduplicatesearch-result-1'  => 'Lo fichièr « $1 » a pas de doble identic.',
+'fileduplicatesearch-result-n'  => 'Lo fichièr « $1 » a {{PLURAL:$2|1 doble identic|$2 dobles identics}}.',
+'fileduplicatesearch-noresults' => 'Cap de fichièr nomenat « $1 » es pas estat trobat.',
 
 # Special:SpecialPages
 'specialpages'                   => 'Paginas especialas',
 'specialpages-note'              => '----
-* Las paginas especialas
-* <strong class="mw-specialpagerestricted">en gras</strong> son restrenhudas.',
+* Paginas especialas normalas.
+* <span class="mw-specialpagerestricted">Paginas especialas restrenchas.</span>
+* <span class="mw-specialpagecached">Paginas especialas solament en escondedor (poirián èsser obsolètas).</span>',
 'specialpages-group-maintenance' => 'Rapòrts de mantenença',
 'specialpages-group-other'       => 'Autras paginas especialas',
 'specialpages-group-login'       => "S'identificar / s'inscriure",
@@ -3546,7 +3559,7 @@ Picatz lo nom del fichièr sens lo prefix « {{ns:file}}: »",
 'specialpages-group-highuse'     => 'Utilizacion intensa de las paginas',
 'specialpages-group-pages'       => 'Listas de paginas',
 'specialpages-group-pagetools'   => 'Aisinas per las paginas',
-'specialpages-group-wiki'        => 'Donadas del wiki e aisinas',
+'specialpages-group-wiki'        => 'Donadas e aisinas',
 'specialpages-group-redirects'   => 'Redireccions',
 'specialpages-group-spam'        => 'Aisinas antispam',
 

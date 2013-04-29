@@ -279,7 +279,7 @@ $3',
 # Special:LinkSearch
 'linksearch' => 'linksígíí tłʼóoʼdi siʼánígíí',
 
-# E-mail user
+# Email user
 'emailuser' => 'E-mail bichʼįʼ áshłééh nisin',
 
 # Watchlist

@@ -360,7 +360,7 @@ $messages = array(
 
 'underline-always'  => 'Altied',
 'underline-never'   => 'Nooit',
-'underline-default' => 'Standardinstelling',
+'underline-default' => 'Standard in joew vormgeving of webkieker',
 
 # Font style option in Special:Preferences
 'editfont-style'     => 'Lettertype veur de tekste t bewarkingsveld:',
@@ -445,7 +445,7 @@ $messages = array(
 'newwindow'     => '(niej vienster)',
 'cancel'        => 'Aofbreken',
 'moredotdotdot' => 'Meer...',
-'mypage'        => 'Mien gebrukerszied',
+'mypage'        => 'Gebrukerszied',
 'mytalk'        => 'Mien overleg',
 'anontalk'      => 'Overlegzied veur dit IP-adres',
 'navigation'    => 'Navigasie',
@@ -469,7 +469,7 @@ $messages = array(
 'vector-action-protect'          => 'Beveiligen',
 'vector-action-undelete'         => 'Weerummeplaotsen',
 'vector-action-unprotect'        => 'Beveiliging wiezigen',
-'vector-simplesearch-preference' => 'Verbeterde zeuksuggesties anzetten (allinnig mit Vector-vormgeving)',
+'vector-simplesearch-preference' => 'Vereenvoudigd zeuken anzetten (allinnig mit Vector-vormgeving)',
 'vector-view-create'             => 'Anmaken',
 'vector-view-edit'               => 'Bewarken',
 'vector-view-history'            => 'Geschiedenisse bekieken',
@@ -680,7 +680,7 @@ Zeukopdrachte: $2',
 'viewsource-title'     => 'Bron bekieken van $1',
 'actionthrottled'      => 'Haandeling tegenehöllen',
 'actionthrottledtext'  => "As maotregel tegen t plaotsen van ongewunste verwiezingen, is t antal keren da'j disse haandeling in n korte tied uutvoeren kunnen beteund. Je hebben de limiet overschrejen. Probeer t over n antal minuten weer.",
-'protectedpagetext'    => 'Disse zied is beveiligd um bewarkingen te veurkoemen.',
+'protectedpagetext'    => 'Disse zied is beveiligd. Bewarken of aandere haandelingen bin niet meugelik.',
 'viewsourcetext'       => 'Je kunnen de brontekste van disse zied bewarken en bekieken:',
 'viewyourtext'         => "Je kunnen '''joew bewarkingen''' an de brontekste van disse zied bekieken en kopiëren:",
 'protectedinterface'   => "Op disse zied steet tekste die gebruukt wörden veur systeemteksten van disse wiki. Allinnig beheerders kunnen disse zied bewarken.
@@ -800,7 +800,7 @@ Je mutten effen wachten veurda'j t opniej proberen kunnen.",
 'loginlanguagelabel'         => 'Taal: $1',
 'suspicious-userlogout'      => 'Joew verzeuk um of te melden is aofewezen umdat t dernaor uutziet dat t verstuurd is deur n kepotte webkieker of tussenopslagbuffer',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Der was n onbekende fout mit de mail()-funksie van PHP',
 'user-mail-no-addy'      => 'Eprobeerd n berichjen te versturen zonder n netpostadres',
 
@@ -1298,7 +1298,7 @@ In de [[Special:BlockList|blokkeerlieste]] bin de blokkeringen, die noen van toe
 'search-mwsuggest-enabled'         => 'mit anbevelingen',
 'search-mwsuggest-disabled'        => 'gien anbevelingen',
 'search-relatedarticle'            => 'Verwaant',
-'mwsuggest-disable'                => 'Anbevelingen via AJAX uutschakelen',
+'mwsuggest-disable'                => 'Zeuksuggesties uutzetten',
 'searcheverything-enable'          => 'In alle naamruumten zeuken',
 'searchrelated'                    => 'verwaant',
 'searchall'                        => 'alles',
@@ -1443,7 +1443,7 @@ Disse informasie is zichtbaor veur aandere gebrukers.',
 'prefs-displaywatchlist'        => 'Weergave-instellingen',
 'prefs-diffs'                   => 'Verschillen',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid'   => 'Geldig netpostadres',
 'email-address-validity-invalid' => 'Geef n geldig netpostadres op',
 
@@ -2194,7 +2194,7 @@ Meer informasie over de rechten ku'j [[{{MediaWiki:Listgrouprights-helppage}}|hi
 'listgrouprights-addgroup-self-all'    => 'Kan alle groepen bie de eigen gebruker doon',
 'listgrouprights-removegroup-self-all' => 'Kan alle groepen vortdoon van eigen gebruker',
 
-# E-mail user
+# Email user
 'mailnologin'          => 'Niet an-emeld.',
 'mailnologintext'      => 'Je mutten [[Special:UserLogin|an-emeld]] ween en n geldig e-mailadres in "[[Special:Preferences|mien veurkeuren]]" invoeren um disse funksie te kunnen gebruken.',
 'emailuser'            => 'n Bericht sturen',
@@ -3496,7 +3496,7 @@ Aandere velden wörden verbörgen.
 'monthsall'     => 'alles',
 'limitall'      => 'alles',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail'              => 'Bevestig netpostadres',
 'confirmemail_noemail'      => 'Je hebben gien geldig netpostadres in-evoerd in joew [[Special:Preferences|veurkeuren]].',
 'confirmemail_text'         => "Bie disse wiki mu'j je netpostadres bevestigen veurda'j de berichtopsies gebruken kunnen. Klik op de onderstaonde knoppe um n bevestigingsbericht te ontvangen. In dit bericht zit n kode mit n verwiezing; um je netpostadres te bevestigen mu'j disse verwiezing openen.",

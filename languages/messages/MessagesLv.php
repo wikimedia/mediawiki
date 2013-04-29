@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Admresdeserv.
  * @author Dark Eagle
  * @author FnTmLV
  * @author Geimeris
@@ -123,8 +124,8 @@ $messages = array(
 'thu'           => 'Ce',
 'fri'           => 'Pk',
 'sat'           => 'Se',
-'january'       => 'janvārī',
-'february'      => 'februārī',
+'january'       => 'Janvārs',
+'february'      => 'Februārs',
 'march'         => 'martā',
 'april'         => 'aprīlī',
 'may_long'      => 'maijā',
@@ -248,7 +249,7 @@ $messages = array(
 'unprotectthispage' => 'Mainīt šīs lapas aizsardzību',
 'newpage'           => 'Jauna lapa',
 'talkpage'          => 'Diskusija par šo lapu',
-'talkpagelinktext'  => 'diskusija',
+'talkpagelinktext'  => 'Diskusija',
 'specialpage'       => 'Īpašā Lapa',
 'personaltools'     => 'Lietotāja rīki',
 'postcomment'       => 'Pievienot komentāru',
@@ -455,7 +456,7 @@ Tavs lietotāja konts ir izveidots. Neaizmirsti, ka ir iespējams mainīt [[Spec
 'gotaccount'                 => "Tev jau ir lietotājvārds? '''$1'''!",
 'gotaccountlink'             => 'Dodies iekšā',
 'userlogin-resetlink'        => 'Esat aizmirsis savu pieslēgšanās informāciju?',
-'createaccountmail'          => 'pa e-pastu',
+'createaccountmail'          => 'Pa e-pastu',
 'createaccountreason'        => 'Iemesls:',
 'badretype'                  => 'Tevis ievadītās paroles nesakrīt.',
 'userexists'                 => 'Ievadītais lietotājvārds jau ir aizņemts.
@@ -510,7 +511,7 @@ Lūdzu uzgaidi pirms mēģini vēlreiz.',
 'login-abort-generic'        => 'Jūsu pieteikšanās bija neveiksmīga — Darbība pārtraukta',
 'loginlanguagelabel'         => 'Valoda: $1',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Nezināma kļūda PHP mail() funkcijā',
 
 # Change password dialog
@@ -752,6 +753,8 @@ Tā jau eksistē.',
 'post-expand-template-inclusion-warning'  => "'''Brīdinājums:''' iekļauto veidņu izmērs ir par lielu.
 Dažas veidnes netiks iekļautas.",
 'post-expand-template-inclusion-category' => 'Lapas, kurām pārsniegts iekļauto veidņu apjoms',
+'post-expand-template-argument-warning'   => "'''Brīdinājums:''' Šī lapa satur vairāk neka vienu veidni argumentu, kas ir pārāk liels pec paplašināšanas.
+Šie argumenti ir izlaists.",
 'post-expand-template-argument-category'  => 'Lapas, kurās ir izlaisti veidņu argumenti',
 'parser-template-loop-warning'            => 'Veidne ir ievietota tādā pašā veidnē: [[$1]]',
 
@@ -1059,6 +1062,7 @@ Norādītā parametra vērtība būs publiski pieejama.',
 'prefs-help-realname'           => 'Īstais vārds nav obligāti jānorāda.
 Ja tu izvēlies to norādīt, tas tiks izmantots, lai identificētu tavu darbu (ieguldījumu {{grammar:lokatīvs|{{SITENAME}}}}).',
 'prefs-help-email'              => 'E-pasta adrese nav obligāta, bet ir nepieciešama nozaudētas paroles atjaunošanai.',
+'prefs-help-email-others'       => 'Jus ari variet izvelties ka citi jus var kontaktēt uz jusu lietotajā sarunas lapu, neatklājot jus identitāti.',
 'prefs-help-email-required'     => 'E-pasta adrese ir obligāta.',
 'prefs-info'                    => 'Pamatinformācija',
 'prefs-i18n'                    => 'Internacionalizācija',
@@ -1075,7 +1079,7 @@ Ja tu izvēlies to norādīt, tas tiks izmantots, lai identificētu tavu darbu (
 'prefs-displaywatchlist'        => 'Pamatuzstādījumi',
 'prefs-diffs'                   => 'Izmaiņas',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid'   => 'E-pasta adrese šķiet derīga',
 'email-address-validity-invalid' => 'Ievadiet derīgu e-pasta adresi',
 
@@ -1593,7 +1597,7 @@ Katrā rindiņā ir saites uz pirmo un otro pāradresācijas lapu, kā arī pirm
 'brokenredirects-edit'   => 'labot',
 'brokenredirects-delete' => 'dzēst',
 
-'withoutinterwiki'         => 'Lapas bez interwiki',
+'withoutinterwiki'         => 'Lapas bez starpviki saitēm',
 'withoutinterwiki-summary' => "Šajās lapās nav saišu uz citu valodu projektiem (''interwiki''):",
 'withoutinterwiki-legend'  => 'Prefikss',
 'withoutinterwiki-submit'  => 'Rādīt',
@@ -1743,7 +1747,7 @@ Papildu informāciju par katru individuālu piekļuves tiesību veidu, iespējam
 'listgrouprights-addgroup-self-all'    => 'Pievienot visas grupas savam kontam',
 'listgrouprights-removegroup-self-all' => 'Noņemt visas grupas no sava konta',
 
-# E-mail user
+# Email user
 'mailnologin'          => 'Nav adreses, uz kuru sūtīt',
 'mailnologintext'      => 'Tev jābūt [[Special:UserLogin|iegājušam]], kā arī tev jābūt [[Special:Preferences|norādītai]] derīgai e-pasta adresei, lai sūtītu e-pastu citiem lietotājiem.',
 'emailuser'            => 'Sūtīt e-pastu šim lietotājam',
@@ -1780,6 +1784,7 @@ Tā e-pasta adrese, kuru tu esi norādījis [[Special:Preferences|savā izvēļu
 # Watchlist
 'watchlist'            => 'Mani uzraugāmie raksti',
 'mywatchlist'          => 'Uzraugāmie raksti',
+'watchlistfor2'        => 'Priekš $1 ($2)',
 'nowatchlist'          => 'Tavā uzraugāmo rakstu sarakstā nav neviena raksta.',
 'watchlistanontext'    => 'Lūdzu $1, lai apskatītu vai labotu savu uzraugāmo rakstu saraksta saturu.',
 'watchnologin'         => 'Neesi iegājis',
@@ -2851,7 +2856,7 @@ Pārējie lauki, pēc noklusējuma, būs paslēpti.
 'monthsall'     => 'visi',
 'limitall'      => 'visas',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail'             => 'Apstiprini e-pasta adresi',
 'confirmemail_noemail'     => '[[Special:Preferences|Tavās izvēlēs]] nav norādīta derīga e-pasta adrese.',
 'confirmemail_text'        => 'Šajā wiki ir nepieciešams apstiprināt savu e-pasta adresi, lai izmantotu e-pasta funkcijas.
@@ -2972,6 +2977,7 @@ Var arī lietot [[Special:EditWatchlist|standarta izmainīšanas lapu]].',
 
 # Core parser functions
 'unknown_extension_tag' => 'Nezināma paplašinājuma iezīme "$1"',
+'duplicate-defaultsort' => '\'\'\'Brīdinājums:\'\'\' Noklusējuma kārtošanas atslēga "$2" ignorē kārtošanas atslēga "$1".',
 
 # Special:Version
 'version'                   => 'Versija',

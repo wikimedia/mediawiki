@@ -7,11 +7,14 @@
  * @ingroup Language
  * @file
  *
+ * @author Amire80
  * @author Dantman
  * @author Fitoschido
  * @author Hazard-SJ
  * @author Jon Harald Søby
+ * @author Lloffiwr
  * @author Reedy
+ * @author Shirayuki
  * @author The Evil IP address
  */
 
@@ -24,10 +27,10 @@ $specialPageAliases = array(
 
 $messages = array(
 # User preference toggles
-'tog-watchcreations' => 'Add pages I create to my watchlist',
-'tog-watchdefault'   => 'Add pages I edit to my watchlist',
-'tog-watchmoves'     => 'Add pages I move to my watchlist',
-'tog-watchdeletion'  => 'Add pages I delete to my watchlist',
+'tog-watchcreations' => 'Add pages I create and files I upload to my watchlist',
+'tog-watchdefault'   => 'Add pages and files I edit to my watchlist',
+'tog-watchmoves'     => 'Add pages and files I move to my watchlist',
+'tog-watchdeletion'  => 'Add pages and files I delete to my watchlist',
 'tog-showjumplinks'  => 'Enable ‘jump to’ accessibility links',
 
 # Categories related messages
@@ -42,9 +45,9 @@ $messages = array(
 'dberrortext'          => 'A database query syntax error has occurred.
 This may indicate a bug in the software.
 The last attempted database query was:
-<blockquote><tt>$1</tt></blockquote>
-from within function ‘<tt>$2</tt>.’
-Database returned error ‘<tt>$3: $4</tt>.’',
+<blockquote><code>$1</code></blockquote>
+from within function ‘<code>$2</code>.’
+Database returned error ‘<samp>$3: $4</samp>.’',
 'dberrortextcl'        => 'A database query syntax error has occurred.
 The last attempted database query was:
 ‘$1’
@@ -67,8 +70,16 @@ Please report this to an [[Special:ListUsers/sysop|administrator]], making note 
 'unexpected'           => 'Unexpected value: ‘$1’=‘$2’.',
 'cannotdelete'         => 'The page or file ‘$1’ could not be deleted.
 It may have already been deleted by someone else.',
+'protectedinterface'   => 'This page provides interface text for the software on this wiki, and is protected to prevent abuse.
+To add or change translations for all wikis, please use [//translatewiki.net/ translatewiki.net], the MediaWiki localisation project.',
+'editinginterface'     => "'''Warning:''' You are editing a page which is used to provide interface text for the software.
+Changes to this page will affect the appearance of the user interface for other users on this wiki.
+To add or change translations for all wikis, please use [//translatewiki.net/ translatewiki.net], the MediaWiki localisation project.",
 'cascadeprotected'     => 'This page has been protected from editing, because it is included in the following {{PLURAL:$1|page, which is|pages, which are}} protected with the ‘cascading’ option turned on:
 $2',
+
+# Preferences page
+'prefs-i18n' => 'Internationalisation',
 
 # Miscellaneous special pages
 'uncategorizedpages'      => 'Uncategorised pages',
@@ -82,9 +93,24 @@ this action has been cancelled as a precaution against session hijacking.
 Go back to the previous page, reload that page and then try again.',
 
 # Block/unblock
-'blockiptext' => 'Use the form below to block write access from a specific IP address or username.
+'blockiptext'        => 'Use the form below to block write access from a specific IP address or username.
 This should be done only to prevent vandalism, and in accordance with [[{{MediaWiki:Policy-url}}|policy]].
 Fill in a specific reason below (for example, citing particular pages that were vandalised).',
+'ipbreason-dropdown' => '*Common block reasons
+** Inserting false information
+** Removing content from pages
+** Spamming links to external sites
+** Inserting nonsense/gibberish into pages
+** Intimidating behaviour/harassment
+** Abusing multiple accounts
+** Unacceptable username',
+'proxyblockreason'   => 'Your IP address has been blocked because it is an open proxy.
+Please contact your Internet service provider or technical support of your organisation and inform them of this serious security problem.',
+
+# Namespace 8 related
+'allmessagestext'    => 'This is a list of system messages available in the MediaWiki namespace.
+Please visit [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [//translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
+'allmessages-filter' => 'Filter by customisation state:',
 
 # Metadata
 'metadata-help' => 'This file contains additional information, probably added from the digital camera or scanner used to create or digitise it.
@@ -96,12 +122,15 @@ If the file has been modified from its original state, some details may not full
 'exif-datetimedigitized'   => 'Date and time of digitising',
 'exif-subsectimedigitized' => 'DateTimeDigitised subseconds',
 'exif-exposureprogram'     => 'Exposure programme',
+'exif-organisationinimage' => 'Organisation depicted',
 
 'exif-exposureprogram-2' => 'Normal programme',
 'exif-exposureprogram-5' => 'Creative programme (biased toward depth of field)',
 'exif-exposureprogram-6' => 'Action programme (biased toward fast shutter speed)',
 
 'exif-subjectdistance-value' => '$1 metres',
+
+'exif-meteringmode-2' => 'Centre weighted average',
 
 'exif-sensingmethod-2' => 'One-chip colour area sensor',
 'exif-sensingmethod-3' => 'Two-chip colour area sensor',
@@ -119,7 +148,11 @@ If the file has been modified from its original state, some details may not full
 # Pseudotags used for GPSDestDistanceRef
 'exif-gpsdestdistance-k' => 'Kilometres',
 
-# E-mail address confirmation
+'exif-ycbcrpositioning-1' => 'Centred',
+
+'exif-iimcategory-lab' => 'Labour',
+
+# Email address confirmation
 'confirmemail_invalidated' => 'E-mail address confirmation cancelled',
 
 # Special:Version
@@ -128,5 +161,8 @@ If the file has been modified from its original state, some details may not full
 MediaWiki is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public Licence for more details.
 
 You should have received [{{SERVER}}{{SCRIPTPATH}}/COPYING a copy of the GNU General Public Licence] along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA or [//www.gnu.org/licenses/old-licenses/gpl-2.0.html read it online].',
+
+# Feedback
+'feedback-error1' => 'Error: Unrecognised result from API',
 
 );

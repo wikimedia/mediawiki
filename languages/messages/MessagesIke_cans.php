@@ -278,7 +278,7 @@ $messages = array(
 # Special:Categories
 'categories' => 'ᓄᐊᑉᐳᑦ',
 
-# E-mail user
+# Email user
 'emailuser'    => 'ᑭᒍᑎᐅᑉ ᓯᑎᓂᖅᐹᖓ ᐃᓄᒃ',
 'emailfrom'    => 'ᓇᑭᑦ',
 'emailmessage' => 'ᑭᒡᒐᐹ',

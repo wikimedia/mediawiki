@@ -858,7 +858,7 @@ Páiginas que steian ne ls [[Special:Watchlist|tous begiados]] son amostradas an
 'listgrouprights-rights'  => 'Dreitos',
 'listgrouprights-members' => '(lista de nembros)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Ambiar carta eiletrónica a este outelizador',
 'emailfrom' => 'De:',
 'emailto'   => 'Para:',

@@ -515,7 +515,7 @@ Fuirich ort mus feuch thu ris a-rithist.",
 'loginlanguagelabel'         => 'Cànan: $1',
 'suspicious-userlogout'      => "Chaidh d' iarrtas airson clàradh a-mach a dhiùltadh a chionn 's gu bheil coltas gun deach a chur le brabhsair briste no le progsaidh tasglannaidh.",
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Mearachd neo-aithichte san fheart mail() aig PHP.',
 'user-mail-no-addy'      => 'Cha do ghabh am post-d a chur leis nach robh seòladh puist-d ann.',
 
@@ -1154,7 +1154,7 @@ Thoir sùil air na [[Special:WantedCategories|roinntean-seòrsa a thathar 'gan i
 # Special:ListGroupRights
 'listgrouprights-members' => '(liosta de bhuill)',
 
-# E-mail user
+# Email user
 'emailuser'    => 'Cuir post-dealain dhan chleachdaiche seo',
 'emailfrom'    => 'O:',
 'emailto'      => 'Gu:',

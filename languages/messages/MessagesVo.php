@@ -1630,7 +1630,7 @@ Ba dabinons [[{{MediaWiki:Listgrouprights-helppage}}|nüns pluik]] tefü gebanag
 'listgrouprights-addgroup-all'    => 'Kanon läükön grupis valik',
 'listgrouprights-removegroup-all' => 'Kanon moükön grupis valik',
 
-# E-mail user
+# Email user
 'mailnologin'         => 'Ladet nonik ad sedön',
 'mailnologintext'     => 'Mutol [[Special:UserLogin|nunädön oli]] e labön ladeti leäktronik lonöföl pö [[Special:Preferences|buükams olik]] ad dalön sedön poti leäktronik gebanes votik.',
 'emailuser'           => 'Penön gebane at',
@@ -2632,7 +2632,7 @@ Nünabinets votik poklänedons.
 'monthsall'     => 'valik',
 'limitall'      => 'valikis',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail'             => 'Fümedolös ladeti leäktronik',
 'confirmemail_noemail'     => 'No labol ladeti leäktronik lonöföl in [[Special:Preferences|gebanabuükams olik]].',
 'confirmemail_text'        => 'Vük at flagon, das ofümedol ladeti leäktronik ola büä odälon ole ad gebön poti leäktronik.
