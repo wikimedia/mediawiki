@@ -80,7 +80,7 @@ class UsercreateTemplateVForm extends BaseTemplate {
 			<label for='wpName2'>
 				<?php $this->msg( 'userlogin-yourname' ); ?>
 
-				<span class="mw-ui-flush-right"><?php echo $this->getMsg( 'createacct-helpusername-link' )->parse(); ?></span>
+				<span class="mw-ui-flush-right"><?php echo $this->getMsg( 'createacct-helpusername' )->parse(); ?></span>
 			</label>
 			<?php echo Html::input( 'wpName', $this->data['name'], 'text', array(
 				'class' => 'mw-input loginText',

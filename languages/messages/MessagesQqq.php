@@ -1050,9 +1050,7 @@ See examples: [{{canonicalurl:Special:UserLogin|useNew=1}} Special:UserLogin?use
 'userlogin-yourname-ph' => 'Placeholder text in new userlogin/create account form field.
 
 See example: [{{canonicalurl:Special:UserLogin|useNew=1}} Special:UserLogin?useNew=1] and [{{canonicalurl:Special:UserLogin|type=signup&useNew=1}} Special:UserLogin?type=signup&useNew=1]',
-'createacct-helpusername-url' => 'The URL of a page providing username guidance for the wiki.
-Used as a link in the {{msg-mw|Createacct-helpusername}} on WMF wikis.',
-'createacct-helpusername-link' => 'Message in new create account form providing guidance for username.
+'createacct-helpusername' => 'Message in new create account form providing guidance for username.
 
 See example: [{{canonicalurl:Special:UserLogin|type=signup&useNew=1}} Special:UserLogin?type=signup&useNew=1]',
 'yourpassword' => 'In user preferences
@@ -1182,9 +1180,6 @@ See example: [{{canonicalurl:Special:UserLogin|type=signup&useNew=1}} Special:Us
 
 See example: [{{canonicalurl:Special:UserLogin|type=signup&useNew=1}} Special:UserLogin?type=signup&useNew=1]',
 'createacct-captcha' => 'Label in vertical-layout create account form for CAPTCHA input field when repositioned by JavaScript.',
-'createacct-captcha-help-url' => 'The URL of a page providing CAPTCHA assistance for the wiki.
-
-Used as a link in {{msg-mw|Createacct-imgcaptcha-help}}.',
 'createacct-imgcaptcha-help' => 'Help text in vertical-layout create account form for image CAPTCHA input field when repositioned by JavaScript.',
 'createacct-imgcaptcha-ph' => 'Placehodler text in vertical-layout create account form for image CAPTCHA input field when repositioned by JavaScript.',
 'createacct-submit' => 'Submit button on vertical-layout create account form.
