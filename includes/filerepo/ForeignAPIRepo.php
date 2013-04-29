@@ -236,7 +236,9 @@ class ForeignAPIRepo extends FileRepo {
 		if ( $data && $info && isset( $info['thumburl'] ) ) {
 			wfDebug( __METHOD__ . " got remote thumb " . $info['thumburl'] . "\n" );
 			$result = $info;
-			return $info['thumburl'];
+			// replacing protocol type by protocol-relative '//'
+			$thumbUrl = preg_replace( "/^(http\:|https\:)/i", "", $info['thumburl'] );
+			return $thumbUrl;
 		} else {
 			return false;
 		}
