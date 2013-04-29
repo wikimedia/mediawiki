@@ -1,0 +1,30 @@
+Extensions (such as the hieroglyphic module WikiHiero) are distributed
+separately. Drop them into this extensions directory and enable as
+per the extension's directions.
+
+If you are a developer, you want to fetch the extension tree in another
+directory and make a symbolic link:
+
+ mediawiki/extensions$ ln -s ../../extensions-trunk/FooBarExt
+
+The extensions are available through Git:
+    https://gerrit.wikimedia.org/r/#/admin/projects/
+
+or Subversion:
+    https://svn.wikimedia.org/svnroot/mediawiki/trunk/extensions/
+
+You can find documentation and additional extensions on MediaWiki website:
+    https://www.mediawiki.org/wiki/Category:Extensions
+
+
+Please note that under POSIX systems (Linux...), parent of a symbolic path
+refers to the link source, NOT to the target! You should check the env
+variable MW_INSTALL_PATH in case the extension is not in the default location.
+
+The following code snippet lets you override the default path:
+
+ $IP = getenv( 'MW_INSTALL_PATH' );
+ if( $IP === false ) {
+	$IP = __DIR__ . '/../..';
+ }
+ require_once( "$IP/maintenance/Maintenance.php" ); // a MediaWiki core file
