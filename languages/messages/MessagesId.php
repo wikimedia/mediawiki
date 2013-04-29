@@ -3144,7 +3144,7 @@ Ini mungkin disebabkan oleh pranala ke situs luar yang termasuk dalam daftar hit
 'spamprotectionmatch' => 'Teks berikut ini memancing filter spam kami: $1',
 'spambot_username' => 'Pembersihan span MediaWiki',
 'spam_reverting' => 'Membatalkan ke versi terakhir yang tak memiliki pranala ke $1',
-'spam_blanking' => 'Semua revisi yang memiliki pranala ke $1, pengosongan',
+'spam_blanking' => 'Semua revisi yang memiliki pranala ke $1, kosong',
 'spam_deleting' => 'Semua revisi yang memiliki pranala ke $1, penghapusan',
 
 # Info page
@@ -3180,10 +3180,10 @@ Ini mungkin disebabkan oleh pranala ke situs luar yang termasuk dalam daftar hit
 'pageinfo-magic-words' => '{{PLURAL:$1|Kata|Kata}} ajaib ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Kategori|Kategori}} tersembunyi ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Templat|Templat}} yang ditransklusi ($1)',
-'pageinfo-transclusions' => '{{PLURAL:$1|Halaman|Halaman}} ditransklusikan pada ( $1 )',
+'pageinfo-transclusions' => '{{PLURAL:$1|Halaman}} ditransklusikan pada ($1)',
 'pageinfo-toolboxlink' => 'Informasi halaman',
 'pageinfo-redirectsto' => 'Beralih ke',
-'pageinfo-redirectsto-info' => 'Info',
+'pageinfo-redirectsto-info' => 'info',
 'pageinfo-contentpage' => 'Dihitung sebagai halaman konten',
 'pageinfo-contentpage-yes' => 'Ya',
 'pageinfo-protect-cascading' => 'Perlindungan berurutan dari sini',
@@ -3715,8 +3715,8 @@ $8',
 'exif-gpslongitude-w' => 'Bujur barat',
 
 # Pseudotags used for GPSAltitudeRef
-'exif-gpsaltitude-above-sealevel' => '$1 {{PLURAL:$1|meter|meter}} di atas permukaan laut',
-'exif-gpsaltitude-below-sealevel' => '$1 {{PLURAL:$1|meter|meter}} di bawah permukaan laut',
+'exif-gpsaltitude-above-sealevel' => '$1 {{PLURAL:$1|meter}} di atas permukaan laut',
+'exif-gpsaltitude-below-sealevel' => '$1 {{PLURAL:$1|meter}} di bawah permukaan laut',
 
 'exif-gpsstatus-a' => 'Pengukuran sedang berlangsung',
 'exif-gpsstatus-v' => 'Interoperabilitas pengukuran',
@@ -3954,8 +3954,8 @@ Anda juga dapat [[Special:EditWatchlist|menggunakan penyunting standar Anda]].',
 'watchlistedit-raw-titles' => 'Judul:',
 'watchlistedit-raw-submit' => 'Perbarui daftar pantauan',
 'watchlistedit-raw-done' => 'Daftar pantauan Anda telah diperbarui.',
-'watchlistedit-raw-added' => '{{PLURAL:$1|1 judul telah|$1 judul telah}} ditambahkan:',
-'watchlistedit-raw-removed' => '{{PLURAL:$1|1 judul telah|$1 judul telah}} dikeluarkan:',
+'watchlistedit-raw-added' => '{{PLURAL:$1|$1 judul telah}} ditambahkan:',
+'watchlistedit-raw-removed' => '{{PLURAL:$1|$1 judul telah}} dikeluarkan:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Tampilkan perubahan terkait',
@@ -4062,7 +4062,7 @@ Gambar ditampilkan dalam resolusi penuh dan tipe lain berkas akan dibuka langsun
 'fileduplicatesearch-submit' => 'Cari',
 'fileduplicatesearch-info' => '$1 × $2 piksel<br />Besar berkas: $3<br />Tipe MIME: $4',
 'fileduplicatesearch-result-1' => 'Berkas "$1" tidak memiliki duplikat identik.',
-'fileduplicatesearch-result-n' => 'Berkas "$1" memiliki {{PLURAL:$2|1 duplikat identik|$2 duplikat identik}}.',
+'fileduplicatesearch-result-n' => 'Berkas "$1" memiliki {{PLURAL:$2|$2 duplikat identik}}.',
 'fileduplicatesearch-noresults' => 'Tidak ditemukan berkas dengan nama "$1".',
 
 # Special:SpecialPages

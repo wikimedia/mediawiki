@@ -290,16 +290,6 @@ $messages = array(
 'nov' => 'নৱেম্বৰ:',
 'dec' => 'ডিচেম্বৰ:',
 
-'monday-at' => 'সোমবাৰে $1ত',
-'tuesday-at' => 'মঙ্গলবাৰে  $1’ত',
-'wednesday-at' => 'বুধবাৰে $1’ত',
-'thursday-at' => 'বৃহস্পতিবাৰে $1’ত',
-'friday-at' => 'শুক্ৰবাৰে $1’ত',
-'saturday-at' => 'শনিবাৰে $1’ত',
-'sunday-at' => 'দেওবাৰে $1’ত',
-'today-at' => '$1',
-'yesterday-at' => 'কালি $1’ত',
-
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|শ্ৰেণী|শ্ৰেণীসমূহ}}',
 'category_header' => '"$1" শ্ৰেণীৰ পৃষ্ঠাসমূহ',
@@ -605,9 +595,18 @@ $2',
 আপোনাৰ সদস্যভুক্তি হৈ গ’ল ।
 [[Special:Preferences|{{SITENAME}}ৰ পছন্দসমূহ]]ত আপোনাৰ পছন্দমতে ব্যক্তিগতকৰণ কৰি ল’বলৈ নাপাহৰে যেন ।',
 'yourname' => 'সদস্যনাম:',
+'userlogin-yourname' => 'সদস্যনাম',
+'userlogin-yourname-ph' => 'আপোনাৰ সদস্যনাম লিখক',
 'yourpassword' => 'আপোনাৰ গুপ্তশব্দ',
+'userlogin-yourpassword' => 'গুপ্তশব্দ',
+'userlogin-yourpassword-ph' => 'আপোনাৰ গুপ্তশব্দ লিখক',
+'createacct-yourpassword-ph' => 'এটা গুপ্তশব্দ লিখক',
 'yourpasswordagain' => 'গুপ্তশব্দ আকৌ এবাৰ লিখক',
+'createacct-yourpasswordagain' => 'গুপ্তশব্দ নিশ্চিত কৰক',
+'createacct-yourpasswordagain-ph' => 'গুপ্তশব্দ আকৌ লিখক',
 'remembermypassword' => 'মোৰ প্ৰৱেশ এই কম্পিউটাৰত মনত ৰাখিব (সৰ্বাধিক $1 {{PLURAL:$1|দিনলৈ|দিনলৈ}})',
+'userlogin-remembermypassword' => 'মোৰ প্ৰৱেশ মনত ৰাখক',
+'userlogin-signwithsecure' => 'নিৰাপদ চাৰ্ভাৰৰ মাধ্যমেৰে প্ৰৱেশ কৰক',
 'securelogin-stick-https' => 'প্ৰৱেশ কৰা পাছত HTTPS-ৰ দ্বাৰা সংযোগ ৰাখক',
 'yourdomainname' => 'আপোনাৰ ডমেইন:',
 'password-change-forbidden' => 'আপুনি এই ৱিকিত গুপ্তশব্দ সলাব নোৱাৰে।',
@@ -620,18 +619,37 @@ $2',
 'logout' => 'প্ৰস্থান',
 'userlogout' => 'প্ৰস্থান',
 'notloggedin' => 'প্ৰৱেশ কৰা নাই',
+'userlogin-noaccount' => 'কোনো একাউণ্ট নাই?',
+'userlogin-joinproject' => '{{SITENAME}}ত যোগদান কৰক',
 'nologin' => "ৱিকিপিডিয়াত আপোনাৰ একাউণ্ট নাই নেকি? তেনে '''$1'''।",
 'nologinlink' => 'নতুন একাউণ্ট খোলক',
 'createaccount' => 'সভ্যভুক্ত হবলৈ',
 'gotaccount' => "আপুনি সদস্য হয়নে? '''$1'''",
 'gotaccountlink' => 'প্ৰৱেশ',
 'userlogin-resetlink' => 'আপোনাৰ প্ৰৱেশ তথ্য পাহৰিছে?',
+'helplogin-url' => 'সহায়:প্ৰৱেশ',
+'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|প্ৰৱেশ সম্পৰ্কীয় সাহায্য]]',
+'createacct-join' => 'আপোনাৰ তথ্যসমূহ তলত লিখক।',
+'createacct-emailrequired' => 'ই-মেইল ঠিকনা',
+'createacct-emailoptional' => 'ই-মেইল ঠিকনা (বৈকল্পিক)',
+'createacct-email-ph' => 'আপোনাৰ ই-মেইল ঠিকনা লিখক',
 'createaccountmail' => 'যিকোনো এটা অস্থায়ী গুপ্তশব্দ ব্যৱহাৰ কৰক আৰু ইয়াক তলত দিয়া ইমেইল ঠিকনাটোলৈ পঠিয়াই দিয়ক',
+'createacct-realname' => 'প্ৰকৃত নাম (বৈকল্পিক)',
 'createaccountreason' => 'কাৰণ:',
+'createacct-reason' => 'কাৰণ',
+'createacct-captcha' => 'সুৰক্ষা পৰীক্ষা',
+'createacct-captcha-help-url' => '{{ns:Project}}:এটা একাউণ্টৰ বাবে অনুৰোধ কৰক',
+'createacct-imgcaptcha-help' => 'ছবিখন দেখা পোৱা নাই? [[{{MediaWiki:createacct-captcha-help-url}}|এটা একাউণ্টৰ বাবে অনুৰোধ কৰক]]',
+'createacct-imgcaptcha-ph' => 'ওপৰত দেখা পোৱা পাঠ্য লিখক',
+'createacct-benefit-heading' => 'আপোনাৰ দৰে মানুহেই {{SITENAME}} তৈয়াৰ কৰিছে',
+'createacct-benefit-body1' => 'সম্পাদনাসমূহ',
+'createacct-benefit-body2' => 'পৃষ্ঠাসমূহ',
+'createacct-benefit-body3' => 'এই মাহৰ অৱদানকাৰীসকল',
 'badretype' => 'আপুনি দিয়া গুপ্ত শব্দ দুটা মিলা নাই।',
 'userexists' => 'আপুনি দিয়া সদস্যনাম আগৰে পৰাই ব্যৱহাৰ হৈ আছে।
 অনুগ্ৰহ কৰি বেলেগ সদস্যনাম এটা নিৰ্বাচন কৰক।',
 'loginerror' => 'প্ৰৱেশ সমস্যা',
+'createacct-error' => 'একাউণ্ট সৃষ্টিত ত্ৰুটি',
 'createaccounterror' => "একাউন্ট সৃষ্টি কৰা নহ'ল: $1",
 'nocookiesnew' => 'আপোনাৰ সদস্যভুক্তি হৈ গৈছে, কিন্তু আপুনি প্ৰৱেশ কৰা নাই।
 {{SITENAME}}ত প্ৰৱেশ কৰিবলৈ কুকি সক্ৰিয় থাকিব লাগিব।
@@ -727,6 +745,7 @@ $2',
 'passwordreset-text' => ' আপোনাৰ গুপ্তশব্দ ন-কৈ বহুৱাবলৈ তলৰ প্ৰপত্ৰ সম্পূৰ্ণ কৰক।',
 'passwordreset-legend' => 'গুপ্তশব্দ ন-কৈ বহাওক',
 'passwordreset-disabled' => 'এই ৱিকিত গুপ্তশব্দ নবীকৰণ নিষ্ক্ৰিয় কৰা হৈছে ।',
+'passwordreset-emaildisabled' => 'এই ৱিকিত ই-মেইল বৈশিষ্টসমূহ নিষ্ক্ৰিয় কৰা হৈছে।',
 'passwordreset-pretext' => '{{PLURAL:$1||তলত উল্লেখ কৰা তথ্যৰ কোনো অংশ ভৰাওক}}',
 'passwordreset-username' => 'সদস্যনাম',
 'passwordreset-domain' => 'ডমেইন :',
@@ -748,7 +767,7 @@ $2
 অস্থায়ী গুপ্তশব্দ: $2',
 'passwordreset-emailsent' => 'এখন গুপ্তশব্দ উদ্ধাৰ ই-মেইল পঠিওৱা হৈছে।',
 'passwordreset-emailsent-capture' => 'এখন গুপ্তশব্দ উদ্ধাৰ ইমেইল পঠিওৱা হৈছে, এইখন তলত দেখা পাব।',
-'passwordreset-emailerror-capture' => "এখন গুপ্তশব্দ উদ্ধাৰ ইমেইল সৃষ্টি কৰা হ'ল কিন্তু সদস্যজনলৈ পঠিয়াব পৰা নগ'ল, এইখন তলত দেখুওৱা হৈছে: $1",
+'passwordreset-emailerror-capture' => "এখন গুপ্তশব্দ উদ্ধাৰ ইমেইল সৃষ্টি কৰা হ'ল, কিন্তু {{GENDER:$2|সদস্যজনলৈ}} পঠিয়াব পৰা নগ'ল। সেইখন তলত দেখুওৱা হৈছে: $1",
 
 # Special:ChangeEmail
 'changeemail' => 'ই-মেইল ঠিকনা সলনি কৰক',
@@ -1265,6 +1284,7 @@ $1",
 'searchdisabled' => '{{SITENAME}} ত অনুসন্ধান কৰা সাময়িক ভাবে নিষ্ক্ৰিয় কৰা হৈছে।
 তেতিয়ালৈকে গুগলত অনুসন্ধান কৰক।
 মনত ৰাখিব যে তেঁওলোকৰ {{SITENAME}}ৰ ইণ্ডেক্স পুৰণি হব পাৰে।',
+'search-error' => 'অনুসন্ধানৰ সময়ত এটা ত্ৰুটি হৈছে: $1',
 
 # Preferences page
 'preferences' => 'পছন্দসমূহ',
@@ -1976,6 +1996,8 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization চাওক।",
 তাৰ সলনি সেইবোৰত উপযুক্ত পৃষ্ঠাৰ লগত সংযোগ থাকিব পাৰে।
 [[MediaWiki:Disambiguationspage]]ৰ পৰা সংযোগ থকা কোনো সাঁচ ব্যৱহাৰ কৰিলে এখন পৃষ্ঠাক দ্ব্যৰ্থতা দূৰীকৰণ পৃষ্ঠা হিছাপে গণ্য কৰা হয়।",
 
+'pageswithprop' => 'পৃষ্ঠা উপাদান সম্বলিত পৃষ্ঠাসমূহ',
+'pageswithprop-legend' => 'পৃষ্ঠা উপাদান সম্বলিত পৃষ্ঠাসমূহ',
 'pageswithprop-submit' => 'যাওক',
 
 'doubleredirects' => 'দ্বি-পুনঃনিৰ্দেশিত',
@@ -3099,6 +3121,19 @@ $1',
 'ago' => '$1 আগেয়ে',
 'just-now' => 'এইমাত্ৰ',
 
+# Human-readable timestamps
+'hours-ago' => '$1 {{PLURAL:$1|ঘন্টা}} আগেয়ে',
+'minutes-ago' => '$1 {{PLURAL:$1|মাহ}} আগেয়ে',
+'seconds-ago' => '$1 {{PLURAL:$1|ছেকেন্ড}} আগতে',
+'monday-at' => 'সোমবাৰে $1ত',
+'tuesday-at' => 'মঙ্গলবাৰে  $1’ত',
+'wednesday-at' => 'বুধবাৰে $1’ত',
+'thursday-at' => 'বৃহস্পতিবাৰে $1’ত',
+'friday-at' => 'শুক্ৰবাৰে $1’ত',
+'saturday-at' => 'শনিবাৰে $1’ত',
+'sunday-at' => 'দেওবাৰে $1’ত',
+'yesterday-at' => 'কালি $1’ত',
+
 # Bad image list
 'bad_image_list' => 'The format is as follows:
 
@@ -3823,6 +3858,8 @@ $5
 'htmlform-submit' => 'দাখিল কৰক',
 'htmlform-reset' => 'সাল-সলনি বাতিল কৰক',
 'htmlform-selectorother-other' => 'অন্য',
+'htmlform-no' => 'নহয়',
+'htmlform-yes' => 'হয়',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 সম্পূৰ্ণ-পাঠ অনুসন্ধান সমৰ্থন সহ',
@@ -3935,8 +3972,4 @@ $5
 'duration-centuries' => '$1 {{PLURAL:$1|শতাব্দী|শতাব্দী}}',
 'duration-millennia' => '$1 {{PLURAL:$1|সহস্ৰাব্দ|সহস্ৰাব্দ}}',
 
-# Unknown messages
-'hours-ago' => '$1 {{PLURAL:$1|ঘন্টা}} আগেয়ে',
-'minutes-ago' => '$1 {{PLURAL:$1|মাহ}} আগেয়ে',
-'seconds-ago' => '$1 {{PLURAL:$1|ছেকেন্ড}} আগতে',
 );

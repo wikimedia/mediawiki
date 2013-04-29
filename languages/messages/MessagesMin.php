@@ -453,7 +453,7 @@ Parhatian bahawa bara laman mungkin masih taruih manunjukkan bahawa Sanak masih 
 'externaldberror' => 'Alah tajadi kasalahan otentikasi basis data eksternal atau Sanak indak diizinan malakuan pabaruan tahadok akun eksternal Sanak.',
 'login' => 'Masuak log',
 'nav-login-createaccount' => 'Masuak log / buek akun',
-'loginprompt' => "Sanak harus mangaktifan ''cookies'' untuak dapek masuak log ka {{SITENAME}}.",
+'loginprompt' => "Sanak musti mangaktipan ''cookies'' pado paramban Sanak untuak dapek masuak log ka {{SITENAME}} ko.",
 'userlogin' => 'Masuak log / buek akun',
 'userloginnocreate' => 'Masuak log',
 'logout' => 'Kalua log',
@@ -461,10 +461,10 @@ Parhatian bahawa bara laman mungkin masih taruih manunjukkan bahawa Sanak masih 
 'notloggedin' => 'Alun masuak log',
 'userlogin-noaccount' => 'Alun ado akun?',
 'userlogin-joinproject' => 'Join {{SITENAME}}',
-'nologin' => "Alun mampunyoi akun? '''$1'''.",
+'nologin' => "Alun ado akun? '''$1'''.",
 'nologinlink' => 'Buek akun baru',
 'createaccount' => 'Buek akun',
-'gotaccount' => "Alah tadafta sabagai pangguno? '''$1'''.",
+'gotaccount' => "Alah tadaftar sabagai pangguno? '''$1'''.",
 'gotaccountlink' => 'Masuak log',
 'userlogin-resetlink' => 'Lupo rincian info masuak Sanak?',
 'helplogin-url' => 'Help:Masuak log',
@@ -702,9 +702,9 @@ Subbagian ko mungkin lah dipindahan atau dihapuih sangkek Sanak mambukaknyo.',
 
 Kato sandi untuak akun baharu iko dapek diubah di laman ''[[Special:ChangePassword|pangubahan kato sandi]]'' satalah masuak log.",
 'newarticle' => '(Baru)',
-'newarticletext' => "Laman nan awak cari alun ado.
-Untuak mambuek laman tu, mulailah dangan manulih dalam kotak di bawah (caliak [[{{MediaWiki:Helppage}}|laman bantuan]] untuak informasi lanjuiknyo).
-Jikok awak indak sangajo sampai ka laman ko, klik tombol '''back''' pado panjalajah web awak.",
+'newarticletext' => "Laman nan Sanak cari alun ado.
+Untuak mambuek laman tu, mulailah jo manulih dalam kotak di bawah (caliak [[{{MediaWiki:Helppage}}|laman bantuan]] untuak informasi labiah lanjuik).
+Jikok Sanak indak sangajo sampai ka laman ko, klik tombol '''back''' pado paramban web Sanak.",
 'anontalkpagetext' => "----''Iko adolah laman rundiang saurang pangguno anonim nan alun mambuek akun atau indak manggunoannyo.
 Jadi, kami tapaso mamakai alamat IP nan takaik untuak mangenalinyo.
 Jikok Sanak adolah pangguno anonim dan maraso mandapek komentar nan indak lamak nan ditujuan langsung kapado Sanak, cubolah [[Special:UserLogin/signup|mambuek akun]] atau [[Special:UserLogin|masuak log]] guno manghindari karancuan jo pangguno anonim lainnyo.''",
@@ -739,7 +739,7 @@ Pratayang iko alun disimpan!'''",
 'note' => "'''Catatan:'''",
 'previewnote' => "'''Ingek iko hanyo pratonton'''
 Parubahan Sanak alun disimpan!",
-'continue-editing' => 'Pai ka area mangedit.',
+'continue-editing' => 'Pai ka kotak panyuntiangan',
 'previewconflict' => 'Pratayang iko mancaminan teks pado bagian ateh kotak suntiangan teks sabagaimano akan taliek bilo Sanak manyimpannyo.',
 'session_fail_preview' => "'''Maaf, kami ndak dapek mangolah suntiangan Sanak akibat tahapuihnyo data sesi.
 Sila cubo sakali lai.
@@ -766,8 +766,8 @@ Sanak hanyo paralu manggabungan parubahan Sanak jo teks nan lah ado.
 '''Hanyo''' teks pado bagian ateh lamanlah nan akan disimpan jikok Sanak manakan \"{{int:savearticle}}\".",
 'yourtext' => 'Teks Sanak',
 'storedversion' => 'Versi tasimpan',
-'nonunicodebrowser' => "'''Paringatan: Panjalajah web Sanak indak mandukuang Unicode.'''
-Alah ado solusi bia Sanak dapek manyuntiang laman sacaro aman: karakter non-ASCII akan muncua dalam kotak suntiang sabagai kode heksadesimal.",
+'nonunicodebrowser' => "'''Paringatan: Paramban web Sanak indak mandukuang Unicode.'''
+Alah ado jalan kalua bia Sanak dapek manyuntiang laman sacaro aman: karakter non-ASCII akan muncua dalam kotak suntiang sabagai kode heksadesimal.",
 'editingold' => "'''Paringatan:
 Sanak manyuntiang revisi lamo suatu laman.
 Jikok Sanak manyimpannyo, parubahan-parubahan nan dibuek sajak revisi ko akan hilang.'''",
@@ -2044,17 +2044,55 @@ Sanak hanyo buliah mancaliak sumbernyo sajo',
 'anonusers' => '{{PLURAL:$2|pangguno}} anonim {{SITENAME}} $1',
 'creditspage' => 'Panghargaan laman',
 
+# Spam protection
+'spam_blanking' => 'Sado revisi nan ado pautan ka $1, kosong',
+'spam_deleting' => 'Sado revisi nan ado pautan ka $1, dihapuih',
+
 # Info page
 'pageinfo-title' => 'Informasi untuak "$1"',
+'pageinfo-not-current' => 'Maaf, indak dapek mangagiahan informasi ko ka revisi lamo.',
 'pageinfo-header-basic' => 'Informasi dasar',
 'pageinfo-header-edits' => 'Riwayaik suntiangan',
 'pageinfo-header-restrictions' => 'Palinduangan laman',
 'pageinfo-header-properties' => 'Properti laman',
-'pageinfo-display-title' => 'Judua tampilan',
+'pageinfo-display-title' => 'Tampilan judul',
+'pageinfo-default-sort' => 'Kunci uruik baku',
 'pageinfo-length' => 'Panjang laman (dalam bita)',
 'pageinfo-article-id' => 'ID Laman',
+'pageinfo-language' => 'Bahaso isi laman',
+'pageinfo-robot-policy' => 'Statuih masin pancari',
+'pageinfo-robot-index' => 'Dapek di indeks',
+'pageinfo-robot-noindex' => 'Indak dapek di indeks',
+'pageinfo-views' => 'Bara kali dibaco',
+'pageinfo-watchers' => 'Bara urang nan mambaco',
+'pageinfo-few-watchers' => 'Kurang dari $1 {{PLURAL:$1|pambaco}}',
+'pageinfo-redirects-name' => 'Pangaliahan ka laman ko',
+'pageinfo-subpages-name' => 'Sublaman dari laman ko',
+'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|pangaliahan}}; $3 {{PLURAL:$3|bukan pangaliahan}})',
 'pageinfo-firstuser' => 'Pambuek laman',
+'pageinfo-firsttime' => 'Tanggal pambuatan laman',
+'pageinfo-lastuser' => 'Panyuntiang tarakhia',
+'pageinfo-lasttime' => 'Tanggal suntiangan tarakhia',
+'pageinfo-edits' => 'Jumlah total suntiangan',
+'pageinfo-authors' => 'Jumlah total panyuntiang',
+'pageinfo-recent-edits' => 'Jumlah suntiangan tabaru (dalam $1 tarakhia)',
+'pageinfo-recent-authors' => 'Jumlah panyuntiang tabaru',
+'pageinfo-magic-words' => '{{PLURAL:$1|Kato}} ajaib ($1)',
+'pageinfo-hidden-categories' => '{{PLURAL:$1|Kategori}} tasuruak ($1)',
+'pageinfo-templates' => '{{PLURAL:$1|Templat}} nan ditransklusi ($1)',
+'pageinfo-transclusions' => '{{PLURAL:$1|Laman}} ditransklusi pado ($1)',
 'pageinfo-toolboxlink' => 'Informasi laman',
+'pageinfo-redirectsto' => 'Dialiahkan ka',
+'pageinfo-redirectsto-info' => 'info',
+'pageinfo-contentpage' => 'Dihituang sabagai laman konten',
+'pageinfo-contentpage-yes' => 'Yo',
+'pageinfo-protect-cascading' => 'Palinduangan baruruik dari siko',
+'pageinfo-protect-cascading-yes' => 'Yo',
+'pageinfo-protect-cascading-from' => 'Palinduangan baruruik dari',
+'pageinfo-category-info' => 'Kategori informasi',
+'pageinfo-category-pages' => 'Jumlah laman',
+'pageinfo-category-subcats' => 'Jumlah subkategori',
+'pageinfo-category-files' => 'Jumlah berkas',
 
 # Skin names
 'skinname-cologneblue' => 'Biru Köln',
@@ -2066,6 +2104,8 @@ Sanak hanyo buliah mancaliak sumbernyo sajo',
 'markaspatrolleddiff' => 'Tandoi lah dipatroli',
 'markaspatrolledtext' => 'Tandoi laman ko lah dipatroli',
 'markedaspatrolled' => 'Tandoi lah dipatroli',
+'markedaspatrolledtext' => 'Revisi nan tapiliah dari [[:$1]] lah ditando tapatroli.',
+'rcpatroldisabled' => 'Patroli parubahan baru dimatian',
 
 # Patrol log
 'patrol-log-page' => 'Log patroli',
@@ -2117,6 +2157,7 @@ Sanak hanyo buliah mancaliak sumbernyo sajo',
 'minutes' => '{{PLURAL:$1|$1 minik}}',
 'hours' => '{{PLURAL:$1|$1 jam}}',
 'days' => '{{PLURAL:$1|$1 hari}}',
+'weeks' => '{{PLURAL:$1|$1 minggu}}',
 'months' => '{{PLURAL:$1|$1 bulan}}',
 'years' => '{{PLURAL:$1|$1 taun}}',
 'ago' => '$1 nan lalu',

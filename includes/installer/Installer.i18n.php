@@ -6835,6 +6835,12 @@ A conta que se especifique aquí xa debe existir.',
 
 Se a súa instalación MySQL soporta InnoDB, recoméndase elixilo no canto de MyISAM.
 Se a súa instalación MySQL non soporta InnoDB, quizais sexa boa idea realizar unha actualización.",
+	'config-mysql-only-myisam-dep' => "'''Atención:''' MyISAM é o único motor de almacenamento para MySQL, unha combinación non recomendada para MediaWiki, porque:
+* practicamente non soporta os accesos simultáneos debido ao bloqueo de táboas
+* é máis propenso a corromperse ca outros motores
+* o código base de MediaWiki non sempre manexa o MyISAM como debera
+
+A súa instalación MySQL non soporta InnoDB, quizais sexa boa idea realizar unha actualización.",
 	'config-mysql-engine-help' => "'''InnoDB''' é case sempre a mellor opción, dado que soporta ben os accesos simultáneos.
 
 '''MyISAM''' é máis rápido en instalacións de usuario único e de só lectura.
@@ -12259,7 +12265,7 @@ Dir kënnt elo déi Astellungen déi nach iwwreg sinn iwwersprangen an d'Wiki el
 	'config-email-sender' => 'E-Mailadress fir Äntwerten:',
 	'config-upload-settings' => 'Eropgeluede Biller a Fichieren',
 	'config-upload-enable' => 'Eropluede vu Fichieren aschalten',
-	'config-upload-deleted' => 'Repertoire fir geläschte Fichieren:',
+	'config-upload-deleted' => 'Repertoire fir geläscht Fichieren:',
 	'config-logo' => 'URL vum Logo:',
 	'config-instantcommons' => '"Instant Commons" aktivéieren',
 	'config-cc-again' => 'Nach eng kéier eraussichen...',

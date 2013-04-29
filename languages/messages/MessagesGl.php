@@ -720,6 +720,7 @@ Non esqueza personalizar as súas [[Special:Preferences|preferencias de {{SITENA
 'userexists' => 'O nome de usuario que inseriu xa está en uso.
 Escolla un nome diferente.',
 'loginerror' => 'Erro ao acceder ao sistema',
+'createacct-error' => 'Erro ao crear a conta',
 'createaccounterror' => 'Non se puido crear a conta: $1',
 'nocookiesnew' => 'A conta de usuario foi creada, pero non accedeu ao sistema.
 {{SITENAME}} para rexistrar os usuarios.

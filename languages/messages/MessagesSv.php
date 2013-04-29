@@ -789,6 +789,7 @@ Glöm inte att justera dina [[Special:Preferences|{{SITENAME}}-inställningar]].
 'userexists' => 'Det valda användarnamnet används redan.
 Var god välj ett annat namn.',
 'loginerror' => 'Inloggningsproblem',
+'createacct-error' => 'Fel när konto skulle skapas',
 'createaccounterror' => 'Kunde inte skapa konto: $1',
 'nocookiesnew' => 'Användarkontot skapades, men du är inte inloggad.
 {{SITENAME}} använder cookies för att logga in användare.

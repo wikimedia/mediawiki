@@ -2538,7 +2538,8 @@ This option lets your time zone setting use the one that is used on the wiki (of
 'timezoneregion-atlantic' => 'Used in "Time zone" listbox in [[Special:Preferences#mw-prefsection-datetime|preferences]], "date and time" tab.
 {{Related|Timezoneregion}}',
 'timezoneregion-australia' => 'Used in "Time zone" listbox in [[Special:Preferences#mw-prefsection-datetime|preferences]], "date and time" tab.
-{{Related|Timezoneregion}}',
+{{Related|Timezoneregion}}
+{{Identical|Australia}}',
 'timezoneregion-europe' => 'Used in "Time zone" listbox in [[Special:Preferences#mw-prefsection-datetime|preferences]], "date and time" tab.
 {{Related|Timezoneregion}}',
 'timezoneregion-indian' => 'Used in "Time zone" listbox in [[Special:Preferences#mw-prefsection-datetime|preferences]], "date and time" tab.
@@ -7094,6 +7095,11 @@ See also {{msg-mw|Days-abbrev}}
 
 Part of variable $1 in {{msg-mw|Ago}}
 {{Identical|Day}}',
+'weeks' => 'Full word for "weeks". $1 is the number of weeks.
+
+See also {{msg-mw|Weeks-abbrev}}
+
+Part of variable $1 in {{msg-mw|Ago}}',
 'months' => 'Full word for "months". $1 is the number of months.
 
 Part of variable $1 in {{msg-mw|Ago}}',
