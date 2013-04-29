@@ -322,8 +322,8 @@ function wfRandom() {
  */
 function wfRandomString( $length = 32 ) {
 	$str = '';
-	while ( strlen( $str ) < $length ) {
-		$str .= dechex( mt_rand() );
+	for ( $n = 0; $n < $length; $n += 7 ) {
+		$str .= sprintf( '%07x', mt_rand() & 0xfffffff );
 	}
 	return substr( $str, 0, $length );
 }
