@@ -9,7 +9,8 @@
 			tabIndex,
 			$captchaStuff,
 			helpMsg = mw.config.get( 'wgCreateacctImgcaptchaHelp' ),
-			captchaImage;
+			captchaImage,
+			helpHtml = '';
 
 		/*
 		 * CAPTCHA
@@ -35,7 +36,13 @@
 
 			$captchaStuff.remove();
 
-			// Insert another div before the submit button.
+			if ( helpMsg) {
+				helpHtml = '<small class="mw-createacct-captcha-assisted">' + helpMsg + '</small>';
+			}
+
+			// Insert another div before the submit button that will include
+			// the repositioned FancyCaptcha image, the repositioned reload
+			// link, an input field, and possible help.
 			$submit.closest( 'div' )
 				.before( [
 			'<div>',
@@ -49,7 +56,7 @@
 					'<input id="wpCaptchaWord" name="wpCaptchaWord" type="text" placeholder="' +
 						mw.message( 'createacct-imgcaptcha-ph' ).escaped() +
 						'" tabindex="' + tabIndex + '" autocapitalize="off" autocorrect="off">',
-					'<small class="mw-createacct-captcha-assisted">' + helpMsg + '</small>',
+						helpHtml,
 				'</div>',
 			'</div>'
 					].join( '' )
@@ -70,6 +77,6 @@
 				.after( $captchaStuff.find( '#wpCaptchaId' ) );
 		}
 
-	});
+	} );
 
 }( mediaWiki, jQuery ) );
