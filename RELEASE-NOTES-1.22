@@ -63,6 +63,8 @@ production.
 * (bug 46768) Usernames of blocking users now display correctly, even if numeric.
 * (bug 39590) {{PAGESIZE}} for the current page and self-transclusions now
   show the most up to date result always instead of being a revision behind.
+* A bias in wfRandomString() toward digits 1-7 has been corrected. Generated
+  strings now can start with digits 0 and 8-f.
 
 === API changes in 1.22 ===
 * (bug 46626) xmldoublequote parameter was removed. Because of a bug, the
