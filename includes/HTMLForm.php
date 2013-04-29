@@ -140,6 +140,7 @@ class HTMLForm extends ContextSource {
 	protected $mSectionFooters = array();
 	protected $mPost = '';
 	protected $mId;
+	protected $mTableId = '';
 
 	protected $mSubmitID;
 	protected $mSubmitName;
@@ -742,7 +743,7 @@ class HTMLForm extends ContextSource {
 	 * @return String
 	 */
 	function getBody() {
-		return $this->displaySection( $this->mFieldTree );
+		return $this->displaySection( $this->mFieldTree, $this->mTableId );
 	}
 
 	/**
@@ -872,6 +873,18 @@ class HTMLForm extends ContextSource {
 	}
 
 	/**
+	 * Set the id of the \<table\> or outermost \<div\> element.
+	 *
+	 * @since 1.22
+	 * @param string $id new value of the id attribute, or "" to remove
+	 * @return HTMLForm $this for chaining calls
+	 */
+	public function setTableId( $id ) {
+		$this->mTableId = $id;
+		return $this;
+	}
+
+	/**
 	 * @param string $id DOM id for the form
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
@@ -879,6 +892,7 @@ class HTMLForm extends ContextSource {
 		$this->mId = $id;
 		return $this;
 	}
+
 	/**
 	 * Prompt the whole form to be wrapped in a "<fieldset>", with
 	 * this text as its "<legend>" element.
@@ -977,7 +991,7 @@ class HTMLForm extends ContextSource {
 					$hasLabel = true;
 				}
 			} elseif ( is_array( $value ) ) {
-				$section = $this->displaySection( $value, $key, "$fieldsetIDPrefix$key-" );
+				$section = $this->displaySection( $value, "mw-htmlform-$key", "$fieldsetIDPrefix$key-" );
 				$legend = $this->getLegend( $key );
 				if ( isset( $this->mSectionHeaders[$key] ) ) {
 					$section = $this->mSectionHeaders[$key] . $section;
@@ -1005,7 +1019,7 @@ class HTMLForm extends ContextSource {
 			);
 
 			if ( $sectionName ) {
-				$attribs['id'] = Sanitizer::escapeId( "mw-htmlform-$sectionName" );
+				$attribs['id'] = Sanitizer::escapeId( $sectionName );
 			}
 
 			if ( $displayFormat === 'table' ) {
