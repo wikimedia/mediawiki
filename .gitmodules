@@ -451,3 +451,6 @@
 [submodule "extensions/Validator"]
 	path = extensions/Validator
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Validator.git
+[submodule "extensions/TemplateData"]
+	path = extensions/TemplateData
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/TemplateData.git
