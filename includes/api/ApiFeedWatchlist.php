@@ -91,6 +91,9 @@ class ApiFeedWatchlist extends ApiBase {
 			if ( $params['wlshow'] !== null ) {
 				$fauxReqArr['wlshow'] = $params['wlshow'];
 			}
+			if ( $params['wltype'] !== null ) {
+				$fauxReqArr['wltype'] = $params['wltype'];
+			}
 
 			// Support linking to diffs instead of article
 			if ( $params['linktodiffs'] ) {
@@ -222,12 +225,14 @@ class ApiFeedWatchlist extends ApiBase {
 			$ret['wlowner'] = $wlparams['owner'];
 			$ret['wltoken'] = $wlparams['token'];
 			$ret['wlshow'] = $wlparams['show'];
+			$ret['wltype'] = $wlparams['type'];
 			$ret['wlexcludeuser'] = $wlparams['excludeuser'];
 		} else {
 			$ret['allrev'] = null;
 			$ret['wlowner'] = null;
 			$ret['wltoken'] = null;
 			$ret['wlshow'] = null;
+			$ret['wltype'] = null;
 			$ret['wlexcludeuser'] = null;
 		}
 		return $ret;
@@ -244,6 +249,7 @@ class ApiFeedWatchlist extends ApiBase {
 			'wlowner' => $wldescr['owner'],
 			'wltoken' => $wldescr['token'],
 			'wlshow' => $wldescr['show'],
+			'wltype' => $wldescr['type'],
 			'wlexcludeuser' => $wldescr['excludeuser'],
 		);
 	}

@@ -170,6 +170,10 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$this->addWhereIf( 'rc_patrolled != 0', isset( $show['patrolled'] ) );
 		}
 
+		if ( !is_null( $params['type'] ) ) {
+			$this->addWhereFld( 'rc_type', $this->parseRCType( $params['type'] ) );
+		}
+
 		if ( !is_null( $params['user'] ) && !is_null( $params['excludeuser'] ) ) {
 			$this->dieUsage( 'user and excludeuser cannot be used together', 'user-excludeuser' );
 		}
@@ -311,6 +315,27 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		return $vals;
 	}
 
+	/* Copied from ApiQueryRecentChanges. */
+	private function parseRCType( $type ) {
+		if ( is_array( $type ) ) {
+			$retval = array();
+			foreach ( $type as $t ) {
+				$retval[] = $this->parseRCType( $t );
+			}
+			return $retval;
+		}
+		switch ( $type ) {
+			case 'edit':
+				return RC_EDIT;
+			case 'new':
+				return RC_NEW;
+			case 'log':
+				return RC_LOG;
+			case 'external':
+				return RC_EXTERNAL;
+		}
+	}
+
 	public function getAllowedParams() {
 		return array(
 			'allrev' => false,
@@ -375,6 +400,15 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 					'!patrolled',
 				)
 			),
+			'type' => array(
+				ApiBase::PARAM_ISMULTI => true,
+				ApiBase::PARAM_TYPE => array(
+					'edit',
+					'external',
+					'new',
+					'log',
+				)
+			),
 			'owner' => array(
 				ApiBase::PARAM_TYPE => 'user'
 			),
@@ -413,6 +447,13 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			'show' => array(
 				'Show only items that meet this criteria.',
 				"For example, to see only minor edits done by logged-in users, set {$p}show=minor|!anon"
+			),
+			'type' => array(
+				'Which types of changes to show',
+				' edit           - Regular page edits',
+				' external       - External changes',
+				' new            - Page creations',
+				' log            - Log entries',
 			),
 			'owner' => 'The name of the user whose watchlist you\'d like to access',
 			'token' => 'Give a security token (settable in preferences) to allow access to another user\'s watchlist'
