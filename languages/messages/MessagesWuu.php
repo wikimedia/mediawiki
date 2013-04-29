@@ -11,6 +11,7 @@
  * @author O
  * @author Reedy
  * @author Wu-chinese.com
+ * @author Yfdyh000
  */
 
 $fallback = 'zh-hans';
@@ -1198,7 +1199,7 @@ $1",
 # Special:ListGroupRights
 'listgrouprights-members' => '（成员列表）',
 
-# E-mail user
+# Email user
 'emailuser' => '发E-mail拨该个用户',
 'emailfrom' => '从',
 'emailto' => '发拨',
@@ -1490,8 +1491,6 @@ $1",
 
 /*
 Short names for language variants used for language conversion links.
-To disable showing a particular link, set it to 'disable', e.g.
-'variantname-zh-sg' => 'disable',
 Variants for Chinese language
 */
 'variantname-zh-tw' => '台湾',
@@ -1541,7 +1540,7 @@ Variants for Chinese language
 'namespacesall' => '全部',
 'monthsall' => '全',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => '确认电子邮件地址',
 'confirmemail_text' => '该只wiki要求倷来拉用电子邮件服务之前验证电子邮件地址个有效性。揿底下只揿钮来发封确认信到倷电子邮箱。个封信里会有加密个链接。登倷个浏览器里向打开该只链接，确认倷个电子邮箱地址是有效个。',
 'confirmemail_send' => '发送确认码',
@@ -1581,12 +1580,12 @@ Variants for Chinese language
 'autosumm-new' => '新页面：$1',
 
 # Watchlist editor
-'watchlistedit-normal-title' => '编辑监控列表',
+'watchlistedit-normal-title' => '编辑监视列表',
 
 # Watchlist editing tools
 'watchlisttools-view' => '查看搭界个修改',
 'watchlisttools-edit' => '查看并编辑监控列表',
-'watchlisttools-raw' => '编辑源监控列表',
+'watchlisttools-raw' => '编辑原始监视列表',
 
 # Special:Version
 'version' => '版本',

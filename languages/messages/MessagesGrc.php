@@ -1507,7 +1507,7 @@ $1",
 'listgrouprights-addgroup-self-all' => 'Προστιθέναι ἁπάσας τὰς ὁμάδας τῷ λογισμῷ ἐμοῦ τοῦ ἰδίου',
 'listgrouprights-removegroup-self-all' => 'Ἀφαιρεῖν ἁπάσας τὰς ὁμάδας ἀπὸ τὸν λογισμὸν ἐμοῦ τοῦ ἰδίου',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Οὐδεμία διεύθυνσις παραλήπτου',
 'emailuser' => 'Ἠλεκτρονικὴν ἐπιστολὴν τῷδε τῷ χρωμένῳ πέμπειν',
 'emailpage' => 'Χρώμενος ἠλ.-ταχυδρομείου',
@@ -2495,7 +2495,7 @@ $1',
 'monthsall' => 'ἅπαντες',
 'limitall' => 'ἅπασαι',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Ἐπιβεβαίωσον διεύθυνσιν ἠλ-ταχυδρομείου',
 'confirmemail_send' => 'Ταχυδρομήσειν κώδικα ἐπιβεβαιώσεως',
 'confirmemail_sent' => 'Ἐπιβεβαίωσις διευθύνσεως ἠλ.-ταχυδρομείου ἐστάλη.',

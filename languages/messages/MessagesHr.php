@@ -431,7 +431,7 @@ $messages = array(
 'category-empty' => "''U ovoj kategoriji trenutačno nema članaka ni medija.''",
 'hidden-categories' => '{{PLURAL:$1|Skrivena kategorija|Skrivene kategorije|Skrivenih kategorija}}',
 'hidden-category-category' => 'Skrivene kategorije',
-'category-subcat-count' => '{{PLURAL:$2|Ova kategorija ima samo sljedeću podkategoriju.|Ova kategorija ima {{PLURAL:$1|podkategoriju|$1 podkategorije|$1 podkategorija}}, od njih $2 ukupno.}}',
+'category-subcat-count' => 'Ova kategorija sadrži $2 {{PLURAL:$2|podkategoriju|podkategorije|podkategorija}}, ovaj popis prikazuje $1.',
 'category-subcat-count-limited' => 'Ova kategorija ima {{PLURAL:$1|podkategoriju|$1 podkategorije|$1 podkategorija}}.',
 'category-article-count' => '{{PLURAL:$2|Ova kategorija sadrži $2 članak.|{{PLURAL:$1|Prikazano je $1 članak|Prikazana su $1 članka|Prikazano je $1 članaka}} od njih $2 ukupno.}}',
 'category-article-count-limited' => '{{PLURAL:$1|stranica je|$1 stranice su|$1 stranica je}} u ovoj kategoriji.',
@@ -492,7 +492,7 @@ $messages = array(
 'history' => 'Stare izmjene',
 'history_short' => 'Stare izmjene',
 'updatedmarker' => 'obnovljeno od zadnjeg posjeta',
-'printableversion' => 'Verzija za ispis',
+'printableversion' => 'Inačica za ispis',
 'permalink' => 'Trajna poveznica',
 'print' => 'Ispiši',
 'view' => 'Vidi',
@@ -813,7 +813,7 @@ Molimo Vas da pričekate prije nego što pokušate ponovo.',
 'loginlanguagelabel' => 'Jezik: $1',
 'suspicious-userlogout' => 'Vaš zahtjev za odjavu je odbijen jer to izgleda kao da je poslan preko pokvarenog preglednika ili keširanog posrednika (proxyja).',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Nepoznata pogreška u PHP-mail() funkciji',
 'user-mail-no-addy' => 'Pokušaj slanja e-maila bez e-mail adrese.',
 
@@ -1471,9 +1471,9 @@ Ne smije biti duži od $1 {{PLURAL:$1|znaka|znaka|znakova}}.',
 'prefs-displaywatchlist' => 'Opcije prikaza',
 'prefs-diffs' => 'razl',
 
-# User preference: e-mail validation using jQuery
-'email-address-validity-valid' => 'E-mail adresa se pokazuje ispravnom',
-'email-address-validity-invalid' => 'Unesite valjanu e-mail adresu',
+# User preference: email validation using jQuery
+'email-address-validity-valid' => 'Adresa e-pošte pokazuje se ispravnom',
+'email-address-validity-invalid' => 'Unesite valjanu adresu e-pošte',
 
 # User rights
 'userrights' => 'Upravljanje suradničkim pravima',
@@ -1978,7 +1978,7 @@ Možda želite urediti njen opis na [$2 stranici opisa datoteke].',
 'filedelete-success' => "Datoteka '''$1''' je izbrisana.",
 'filedelete-success-old' => "Inačica datoteke '''[[Media:$1|$1]]''' od $3, $2 je obrisana.",
 'filedelete-nofile' => "'''$1''' ne postoji.",
-'filedelete-nofile-old' => "Nema arhivirane verzije datoteke '''$1''' s zadanim parametrima.",
+'filedelete-nofile-old' => "Nema arhivirane inačice datoteke '''$1''' sa zadanim parametrima.",
 'filedelete-otherreason' => 'Drugi/dodatni razlog:',
 'filedelete-reason-otherlist' => 'Drugi razlog',
 'filedelete-reason-dropdown' => '*Česti razlozi brisanja
@@ -2236,7 +2236,7 @@ Dodatne informacije o pojedinim pravim se mogu pronaći [[{{MediaWiki:Listgroupr
 'listgrouprights-addgroup-self-all' => 'Dodaj sve skupine vlastitom računu',
 'listgrouprights-removegroup-self-all' => 'Uklonite sve skupine iz vlastitog računa',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Nema adrese pošiljaoca',
 'mailnologintext' => 'Morate biti [[Special:UserLogin|prijavljeni]]
 i imati valjanu adresu e-pošte u svojim [[Special:Preferences|postavkama]]
@@ -2649,7 +2649,7 @@ Pogledajte [[Special:BlockList|popis blokiranja]] za pregled blokiranih suradnik
 'anononlyblock' => 'samo IP adrese',
 'noautoblockblock' => 'blokiranje samoga sebe je onemogućeno',
 'createaccountblock' => 'blokirano stvaranje suradničkog računa',
-'emailblock' => 'e-mail je blokiran',
+'emailblock' => 'e-pošta je blokirana',
 'blocklist-nousertalk' => 'bez uređivanja vlastite stranice za razgovor',
 'ipblocklist-empty' => 'Popis blokiranja je prazan.',
 'ipblocklist-no-results' => 'Tražena IP adresa ili suradničko ime nije blokirano.',
@@ -2657,7 +2657,7 @@ Pogledajte [[Special:BlockList|popis blokiranja]] za pregled blokiranih suradnik
 'unblocklink' => 'deblokiraj',
 'change-blocklink' => 'promijeni blokiranje',
 'contribslink' => 'doprinosi',
-'emaillink' => 'pošalji e-mail',
+'emaillink' => 'pošalji e-poruku',
 'autoblocker' => 'Automatski ste blokirani jer je Vašu IP adresu nedavno koristio "[[User:$1|$1]]" koji je blokiran zbog: "$2".',
 'blocklogpage' => 'Evidencija blokiranja',
 'blocklog-showlog' => 'Ovaj suradnik je ranije blokiran.
@@ -2817,7 +2817,7 @@ Molimo odaberite drugo ime.',
 
 # Export
 'export' => 'Izvezi stranice',
-'exporttext' => 'Možete izvesti tekst i prijašnje promjene jedne ili više stranica uklopljene u XML kod. U budućim verzijama MediaWiki softvera bit će moguće uvesti ovakvu stranicu u neki drugi wiki. Trenutačna verzija to još ne podržava.
+'exporttext' => 'Možete izvesti tekst i prijašnje promjene jedne ili više stranica uklopljene u kȏd XML. U budućim inačicama MediaWiki softvera bit će moguće uvesti ovakvu stranicu u neki drugi wiki. Trenutačna inačica to još ne podržava.
 
 Za izvoz stranica unesite njihove naslove u polje ispod, jedan naslov po retku, i označite želite li trenutačnu inačicu zajedno sa svim prijašnjima, ili samo trenutačnu inačicu s informacijom o zadnjoj promjeni.
 
@@ -3577,7 +3577,7 @@ Svaka sljedeća poveznica u istom retku je izuzetak, npr. kod stranica gdje se s
 'monthsall' => 'sve',
 'limitall' => 'sve',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Potvrda e-mail adrese',
 'confirmemail_noemail' => 'Niste unijeli važeću e-mail adresu u Vaše [[Special:Preferences|suradničke postavke]].',
 'confirmemail_text' => 'U ovom wikiju morate prije korištenja e-mail naredbi potvrditi svoju e-mail adresu. Kliknite na gumb ispod kako biste poslali poruku s potvrdom na Vašu adresu. U poruci će biti poveznica koju morate otvoriti u svom web pregledniku i time potvrditi svoju e-mail adresu.',

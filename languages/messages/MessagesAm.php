@@ -486,7 +486,7 @@ $2",
 'login-abort-generic' => 'መግባትዎ አልተከናወነም፤ ተሠርዟል።',
 'loginlanguagelabel' => 'ቋምቋ፦ $1',
 
-# E-mail sending
+# Email sending
 'user-mail-no-addy' => 'እሚደርስበት ኢ-ሜል አድራሻ ሳይታወቅ መላክ አይቻልም።',
 
 # Change password dialog
@@ -945,7 +945,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'prefs-displayrc' => 'የማሳያ አማራጮች',
 'prefs-diffs' => 'ልዩነቶች',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'ኢ-ሜል አድራሻ ትክክለኛ ይመስላል።',
 'email-address-validity-invalid' => 'ትክክለኛ ኢ-ሜል ማቅረብ ያስፈልጋል።',
 
@@ -1490,7 +1490,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'listgrouprights-rights' => 'መብቶች',
 'listgrouprights-members' => '(የአባላት ዝርዝር)',
 
-# E-mail user
+# Email user
 'mailnologin' => 'ምንም መነሻ አድራሻ የለም',
 'mailnologintext' => 'ኢ-ሜል ወደ ሌላ አባል ለመላክ [[Special:UserLogin|መግባት]]ና በ[[Special:Preferences|ምርጫዎችዎ]] ትክክለኛ የኢሜል አድራሻዎ መኖር ያስፈልጋል።',
 'emailuser' => 'ለዚህ/ች ሰው ኢሜል መላክ',
@@ -2406,7 +2406,7 @@ $1',
 'monthsall' => 'ሁሉ',
 'limitall' => 'ሁሉ',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'ኢ-ሜልዎን ለማረጋገጥ',
 'confirmemail_noemail' => 'በ[[Special:Preferences|ምርጫዎችዎ]] ትክክለኛ ኢሜል አድራሻ አልሰጡም።',
 'confirmemail_text' => 'አሁን በ{{SITENAME}} በኩል «ኢ-ሜል» ለመላክም ሆነ ለመቀበል አድራሻዎን ማረጋገጥ ግዴታ ሆኗል። እታች ያለውን በተጫኑ ጊዜ አንድ የማረጋገጫ መልእክት ቀድሞ ወደ ሰጡት ኢሜል አድራሻ በቀጥታ ይላካል። በዚህ መልእክት ልዩ ኮድ ያለበት መያያዣ ይገኝበታል፣ ይህንን መያያዣ ከዚያ ቢጎብኙ ኢ-ሜል አድራሻዎ የዛኔ ይረጋግጣል።',

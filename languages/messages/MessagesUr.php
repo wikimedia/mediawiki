@@ -522,7 +522,7 @@ Warning: Page may not contain recent updates.',
 دوبارہ کوشش کرنے سے پہلے انتظار فرمائیے.',
 'loginlanguagelabel' => 'زبان: $1',
 
-# E-mail sending
+# Email sending
 'user-mail-no-addy' => 'برقی ڈاک بھیجنے کی کوشش بغیر برقی ڈاک پتہ',
 
 # Change password dialog
@@ -1189,7 +1189,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 # Special:ListGroupRights
 'listgrouprights-members' => '(اراکین کی فہرست)',
 
-# E-mail user
+# Email user
 'mailnologintext' => 'دیگر ارکان کو برقی خط ارسال کرنے کیلیۓ لازم ہے کہ آپ [[Special:UserLogin|داخل شدہ]] حالت میں ہوں اور آپ کی [[Special:Preferences|ترجیحات]] ایک درست برقی خط کا پتا درج ہو۔',
 'emailuser' => 'صارف کو برقی خط لکھیں',
 'defemailsubject' => '{{SITENAME}} سے برقی خط',

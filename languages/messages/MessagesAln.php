@@ -1284,7 +1284,7 @@ Faqet në [[Special:Watchlist|listën tuej të mbikëqyrjes]] janë '''të theks
 # Special:ListGroupRights
 'listgrouprights-members' => '(lista e antarëve)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Çoji postel këtij përdoruesi',
 
 # Watchlist
@@ -1566,8 +1566,6 @@ Krejt vegzat tjera në të njejtin rresht do të bajnë përjashtim, d.m.th. faq
 
 /*
 Short names for language variants used for language conversion links.
-To disable showing a particular link, set it to 'disable', e.g.
-'variantname-zh-sg' => 'disable',
 Variants for Chinese language
 */
 'variantname-zh-hans' => 'hans',

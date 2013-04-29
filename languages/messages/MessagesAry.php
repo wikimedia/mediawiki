@@ -521,7 +521,7 @@ ma ṫḍreb ḫsab l-had l-mesaj ila ṫṣĝyb had l-ḫisab ĝen tariq l-ĥat
 'loginlanguagelabel' => 'Loġa: $1',
 'suspicious-userlogout' => 't-talab dialk baċ ṫdĥol mrfoḍ ḫqqaċ tayḍhṛ billa rah ṫsift mn moṫaṣffiḫ mĝtob wlla caching proxy.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => "ĥata' ma mĝrof-ċ fl-mail() function taĝ l-PHP.",
 'user-mail-no-addy' => 'ḫawlṫi ṫsift email bla ĝonwan l-email.',
 
@@ -1091,7 +1091,7 @@ Laḫed ana imken ikono l-indexaṫ dial {{SITENAME}} qdam o ma bqaoċ ṣalḫi
 'prefs-displaywatchlist' => 'khiyarat laard',
 'prefs-diffs' => 'foroqat',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'tayban billa l-email rah ṣalḫ',
 'email-address-validity-invalid' => 'kṫb ĝonwan email ṣḫiḫ',
 
@@ -1632,7 +1632,7 @@ daba ka ṫḫwwal l-[[$2]].',
 'listgrouprights-addgroup-self' => 'zid ll-ḫisab ṫaĝi {{PLURAL:$2|mjmoĝṫ|mjmoĝaṫ}}: $1',
 'listgrouprights-removegroup-self' => 'hyyed mn l-ḫisab ṫaĝi {{PLURAL:$2|mjmoĝṫ|mjmoĝaṫ}}: $1',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Ma kayenċ l-ĝonwan dyal l-morasil',
 'emailuser' => 'Ṣifet imayl le had l-mosṫeĥdim',
 'emailpage' => 'sift email lhad lmostkhdim',
@@ -2176,8 +2176,6 @@ L-lyanaṫ l-ĥrin l-li fe nefs ṣ-ṣter ka-nĝṫabrohom bḫal sṫiṫna'a�
 
 /*
 Short names for language variants used for language conversion links.
-To disable showing a particular link, set it to 'disable', e.g.
-'variantname-zh-sg' => 'disable',
 Variants for Chinese language
 */
 'variantname-zh-hans' => 'Kṫaba',
@@ -2522,7 +2520,7 @@ Ila ṫbeddel l-fiċyé men ḫalṫo l-'aṣliya, kaynin ċi ṫafaṣil ma mna
 'monthsall' => 'kolhom',
 'limitall' => 'kolċi',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => "konfirmasyon dyal l'email",
 'confirmemail_send' => 'sift code lkonfirmation',
 'confirmemail_sent' => 'tam irssal rissala dyal lkonfirmation.',

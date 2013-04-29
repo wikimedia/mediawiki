@@ -599,7 +599,7 @@ $messages = array(
 # Special:Log/newusers
 'newuserlogpage' => 'новъ мѣстъ сътворѥниꙗ їсторїꙗ',
 
-# E-mail user
+# Email user
 'emailuser' => 'посъли єпїстолѫ',
 
 # Watchlist

@@ -549,7 +549,7 @@ Spetga per plaschair avant ch'empruvar anc ina giada.",
 'loginlanguagelabel' => 'Lingua: $1',
 'suspicious-userlogout' => "Tia dumonda per partir è vegnida refusada perquai ch'i para ch'ella è vegnida tramessa d'in navigatur che funcziuna betg correctamain u d'in proxy da cache.",
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Errur nunenconuschenta en la funcziun mail() da PHP',
 'user-mail-no-addy' => 'Empruvà da trametter in e-mail senza ina adressa dad e-mail.',
 
@@ -1232,7 +1232,7 @@ Tia adressa dad e-mail na vegn betg mussada sche auters utilisaders ta contactes
 'prefs-displaywatchlist' => 'Opziuns da visualisar',
 'prefs-diffs' => 'Cumparegliaziun da versiuns',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => "L'adressa da e-mail para dad esser valida",
 'email-address-validity-invalid' => 'Endatescha ina adressa dad e-mail valida',
 
@@ -2016,7 +2016,7 @@ Infurmaziuns supplementaras davart ils singuls dretgs chattas [[{{MediaWiki:List
 'listgrouprights-addgroup-self-all' => "Agiuntar tut las gruppas a l'agen conto",
 'listgrouprights-removegroup-self-all' => "Allontanar tut las gruppas da l'agen conto",
 
-# E-mail user
+# Email user
 'mailnologin' => 'Nagina adressa per trametter',
 'mailnologintext' => "Ti stos [[Special:UserLogin|t'annunziar]] ed avair ina adressa dad e-mail valida en tias [[Special:Preferences|preferenzas]] per trametter e-mails ad auters utilisaders.",
 'emailuser' => 'Trametter in e-mail a quest utilisader',
@@ -3371,7 +3371,7 @@ Sche la datoteca è vegnida midada dal status original èn tscherts detagls even
 'monthsall' => 'tuts',
 'limitall' => 'tuts',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => "Confermar l'adressa dad e-mail",
 'confirmemail_noemail' => "Ti n'has betg inditgà ina adressa dad e-mail valida en tias [[Special:Preferences|preferenzas]].",
 'confirmemail_text' => "{{SITENAME}} pretenda che ti confermas tia adressa dad e-mail avant che ti pos utilisar funcziuns dad e-mail. 

@@ -371,7 +371,7 @@ Kana avilyan kathe doshatar, ja palpale.',
 'allarticles' => 'Sa le artikolurya',
 'allpagessubmit' => 'Ja',
 
-# E-mail user
+# Email user
 'emailuser' => 'Bichhal les/la e-mail',
 'emailfrom' => 'Katar',
 'emailto' => 'Karing',

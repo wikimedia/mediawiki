@@ -1011,7 +1011,7 @@ Nò mà mỏta in tlèn [[Special:WantedCategories|ìpan kineki tlaìxmatkàtlà
 'listgrouprights-group' => 'Olōlli',
 'listgrouprights-rights' => 'Huelītiliztli',
 
-# E-mail user
+# Email user
 'emailuser' => 'Tiquēhualtlīz maltzinteyōtl netitlaniztli inīn tlatequitiltilīlli',
 'defemailsubject' => '{{SITENAME}} correo tlatequitiltilīlhuīc $1',
 'emailfrom' => 'Īhuīcpa:',
@@ -1097,9 +1097,9 @@ Xiquitta $2 ic yancuīc tlapololiztli.',
 'protectexpiry' => 'Tlamiliztli:',
 'protect_expiry_invalid' => 'Ahcualli tlamiliztli cāhuitl.',
 'protect-default' => 'Ticmācāhuaz mochintin in tlatequitiltilīltin',
-'protect-fallback' => 'Tiquihuīquilia tlahuelītiliztli "$1"',
-'protect-level-autoconfirmed' => 'Tiquinquīxtīz yancuīc tlatequitiltilīltin īhuan in ahmo ōmocalacqueh',
-'protect-level-sysop' => 'Zan tētlamahmacanih',
+'protect-fallback' => 'Zan momācāhuazqueh tlatequitiltilīltin in tēmācāhualiztica «$1»',
+'protect-level-autoconfirmed' => 'Zan momācāhuaz moneltilīlli tlatequitiltilīltin',
+'protect-level-sysop' => 'Zan momācāhuaz tētlamahmacanimeh',
 'protect-expiring' => 'motlamīz $1 (UTC)',
 'protect-expiry-options' => '1 hora:1 hour,1 tōnalli:1 day,1 chicuēyilhuitl:1 week,2 chicuēyilhuitl:2 weeks,1 mētztli:1 month,3 mētztli:3 months,6 mētztli:6 months,1 xihuitl:1 year,mochipa:infinite',
 'restriction-type' => 'Mācāhualiztli:',
@@ -1418,7 +1418,7 @@ Hueliz cah inīn huēyi tlapatlaliztli. Timitztlātlauhtia ticmatīz cuallōtl a
 'monthsall' => '(mochīntīn)',
 'limitall' => 'mochi',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Ticchicāhuāz e-mail',
 'confirmemail_needlogin' => 'Tihuīquilia $1 ic ticchicāhua mo e-mail.',
 'confirmemail_success' => 'Mocorreo ōmotlahtōlneltilih

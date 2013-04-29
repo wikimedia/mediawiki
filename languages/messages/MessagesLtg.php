@@ -596,7 +596,7 @@ Lopys, kas ir tovā [[Special:Watchlist|puorraugamūs rokstu sarokstā]] ir '''r
 'listgrouprights-members' => '(dalinīku saroksts)',
 'listgrouprights-addgroup' => 'Dalikt {{PLURAL:$2|grupu|grupys}}: $1',
 
-# E-mail user
+# Email user
 'emailuser' => 'Syuteit e-postu itam lītuotuojam',
 'emailmessage' => 'Viestejums:',
 

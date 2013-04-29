@@ -964,7 +964,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 # Special:ListGroupRights
 'listgrouprights-members' => '(listu miellahtuin)',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Sáddejeaddji čujuhus váilo',
 'mailnologintext' => 'Don fertet leat [[Special:UserLogin|čálligoahtán sisa]] ja du [[Special:Preferences|ásahusain]] ferte leat gelbbolaš ja <strong>sihkarastojuvvon</strong> e-poastačujuhus, ovdalgo sáhtat sáddet e-poasta eará geavaheddjiide.',
 'emailuser' => 'Čále e-poastta geavaheaddjái',
@@ -1378,7 +1378,7 @@ Siiddus $2 lea listu maŋimus sihkomiin.',
 'namespacesall' => 'buot',
 'monthsall' => 'buot',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Sihkaraste e-poastačujuhusa',
 'confirmemail_noemail' => 'Dus ii leat lasihuvvon gelbbolaš e-poastačujuhus [[Special:Preferences|ásahusain]].',
 'confirmemail_success' => 'Du e-poastačujuhus lea dál konfirmerejuvvon. Sáhtát dál logget sisa.',

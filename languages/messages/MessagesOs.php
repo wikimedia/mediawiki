@@ -602,7 +602,7 @@ $2',
 'loginlanguagelabel' => 'Æвзаг: $1',
 'suspicious-userlogout' => 'Дæ рахизыны домæн нæ сæххæст ис, уымæн æмæ хæлд браузерæй кæнæ кешгæнæг проксийæ æрвысты хуызæн у.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Нæбæрæг рæдыд PHP-йы mail() функцийы.',
 'user-mail-no-addy' => 'Е-mail æрвыста æнæ e-mail адрисæй.',
 
@@ -986,7 +986,7 @@ $2
 'prefs-displaywatchlist' => 'Æвдисыны фадæттæ',
 'prefs-diffs' => 'Иртасæнтæ',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'E-mail раст зыны',
 'email-address-validity-invalid' => 'Раст e-mail бацамон',
 
@@ -1265,7 +1265,7 @@ $3',
 'listgrouprights-rights' => 'Бартæ',
 'listgrouprights-members' => '(уæнгты номхыгъд)',
 
-# E-mail user
+# Email user
 'mailnologintext' => 'Фыстæгтæ æрвитынмæ хъуамæ [[Special:UserLogin|системæйæн дæхи бавдисай]] æмæ дæ бæлвырд электронон посты адрис [[Special:Preferences|ныффыссай]].',
 'emailuser' => 'Ацы архайæгæн электронон фыстæг рарвитт',
 'emailpage' => 'Электронон фыстæг йæм барвит',

@@ -330,7 +330,7 @@ $1',
 'edithelp' => 'Даведка рэдактарскага акна',
 'edithelppage' => 'Help:Праўка',
 'helppage' => 'Help:Змест',
-'mainpage' => 'Першая старонка',
+'mainpage' => 'Галоўная старонка',
 'mainpage-description' => 'Першая старонка',
 'policy-url' => 'Project:Арганізацыйная палітыка',
 'portal' => 'Супольнасць',
@@ -562,7 +562,7 @@ $2',
 'loginlanguagelabel' => 'Мова: $1',
 'suspicious-userlogout' => 'Ваш запыт на выхад быў адмоўлены, паколькі ён выглядае як накіраваны са зламанага браўзера або кэшаванне проксі-сервераў.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Невядомая памылка ў функцыі PHP-пошты',
 'user-mail-no-addy' => 'Паспрабаваў адправіць электронны ліст без адрасу электроннай пошты',
 
@@ -1196,7 +1196,7 @@ $1",
 'prefs-displaywatchlist' => 'Паказ',
 'prefs-diffs' => 'Розніцы',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => "Адрас электроннай пошты з'яўляецца сапраўдным",
 'email-address-validity-invalid' => 'Увядзіце слушны адрас электроннай пошты',
 
@@ -1352,7 +1352,7 @@ $1",
 'action-sendemail' => 'адпраўка электронных пісем',
 
 # Recent changes
-'nchanges' => '$1 {{PLURAL:$1|мена|менаў}}',
+'nchanges' => '$1 {{PLURAL:$1|змена|змены|зменаў}}',
 'recentchanges' => 'Нядаўнія змяненні',
 'recentchanges-legend' => 'Магчымасці паказу',
 'recentchanges-summary' => 'Гэта апошнія мены на пляцоўцы {{SITENAME}}.',
@@ -1930,7 +1930,7 @@ $1',
 'listgrouprights-addgroup-self-all' => 'Дадаць усе групы да свайго акаунта',
 'listgrouprights-removegroup-self-all' => 'Выдаліць усе групы са свайго акаунта',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Няма эл.адрасу',
 'mailnologintext' => 'Трэба [[Special:UserLogin|ўвайсці ў сістэму]] і мець пацверджаны адрас эл.пошты ў сваіх [[Special:Preferences|настáўленнях]], каб слаць эл.пошту іншым удзельнікам.',
 'emailuser' => 'Эл.пошта ўдзельніка',
@@ -2219,7 +2219,7 @@ $1',
 'contributions-title' => 'Уклад удзельніка $1',
 'mycontris' => 'Уклад',
 'contribsub2' => 'Для $1 ($2)',
-'nocontribs' => 'Не знойдзена менаў, адпаведных зададзеным параметрам.',
+'nocontribs' => 'Не знойдзена зменаў, адпаведных зададзеным параметрам.',
 'uctop' => '(апошн.)',
 'month' => 'Ад месяцу (і раней):',
 'year' => 'Ад году (і раней):',
@@ -3227,7 +3227,7 @@ $1',
 'monthsall' => 'усе',
 'limitall' => 'усе',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Пацвердзіць адрас эл.пошты',
 'confirmemail_noemail' => 'У [[Special:Preferences|вашых настаўленнях]] няма дапушчальнага адрасу эл.пошты.',
 'confirmemail_text' => 'На пляцоўцы {{SITENAME}} патрабуецца праверка адрасу эл.пошты перад тым, як карыстацца магчымасцямі эл.пошты. Націсніце кнопку, што ніжэй, каб адаслаць сабе пацвярджальны ліст. У лісце будзе спасылка на спецыяльную пацвярджальную старонку, якую трэба будзе адкрыць у браўзеры, каб пацвердзіць правільнасць свайго адрасу эл.пошты.',
@@ -3462,7 +3462,7 @@ MediaWiki распаўсюджваецца, спадзеючыся на прыд
 'tags-description-header' => 'Поўнае апісанне значэння',
 'tags-hitcount-header' => 'Пазначаных правак',
 'tags-edit' => 'правіць',
-'tags-hitcount' => '$1 {{PLURAL:$1|мена|менаў}}',
+'tags-hitcount' => '$1 {{PLURAL:$1|змена|змены|зменаў}}',
 
 # Special:ComparePages
 'comparepages' => 'Параўнанне старонак',

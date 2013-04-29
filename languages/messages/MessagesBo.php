@@ -682,7 +682,7 @@ $messages = array(
 # Special:ListGroupRights
 'listgrouprights-members' => 'ཁོངས་མིའི་ཐོ་ཡིག',
 
-# E-mail user
+# Email user
 'emailuser' => 'སྤྱོད་མི་འདིར་གློག་འཕྲིན་སྐུར་བ།',
 'emailmessage' => 'སྐད་ཆ།',
 

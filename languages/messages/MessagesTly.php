@@ -782,11 +782,11 @@ $messages = array(
 # Special:ListGroupRights
 'listgrouprights-members' => '(иштирокәкон сијоһи)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Номә бә иштирокәкә',
 
 # Watchlist
-'watchlist' => 'Чымы ноғо доә сијоһи',
+'watchlist' => 'Ноғо доә сијоһи',
 'mywatchlist' => 'Чәшәвәно кардә сијоһи',
 'watchlistfor2' => 'Бо $1 $2',
 'watch' => 'Думотоно егыниеј',

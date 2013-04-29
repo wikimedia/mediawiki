@@ -507,7 +507,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 'loginlanguagelabel' => 'بولی: $1',
 'suspicious-userlogout' => 'تھواڈی لاگ آؤٹ ہوں دی کوشش رک گئی اینج لگدا اے  جیویں اے ٹٹے براؤزر یا کیشنگ پراکسی توں پیجیا گیا سی۔',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'PHP میل دے کم چ کوئی انجانی غلطی۔',
 'user-mail-no-addy' => 'ای-میل پتے بنا ای-میل کلن دی کوشش۔',
 
@@ -1155,7 +1155,7 @@ $1",
 'prefs-displaywatchlist' => 'چنوتیاں دسو',
 'prefs-diffs' => 'ڈفز',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'ای_میل پتہ ٹھیک لگدا اے۔',
 'email-address-validity-invalid' => 'چلن والا ای-میل پتہ دسو',
 
@@ -1918,7 +1918,7 @@ $1",
 'listgrouprights-addgroup-self-all' => 'ساریاں ٹولیاں کٹھیاں کرو کھاتہ لئی',
 'listgrouprights-removegroup-self-all' => 'ایس کھاتے توں ساریاں ٹولیاں ہٹاؤ',
 
-# E-mail user
+# Email user
 'mailnologin' => 'ناں پیح پتہ',
 'mailnologintext' => 'تسیں لازمی [[Special:UserLogin|لاگان]] ہوو تے اک پکا ای-میل پتہ تواڈی [[Special:Preferences|تانگ]] چ ہووے تاں جے دوجے ورتن والے توانوں ای-میل کرسکن۔',
 'emailuser' => 'اس ورتن والے نو ای میل کرو',
@@ -3222,7 +3222,7 @@ $1',
 'monthsall' => 'سارے',
 'limitall' => 'سارے',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'ای میل پتہ پکا کرو',
 'confirmemail_noemail' => 'تواڈے کول اک پکا ای-میل پتہ نئیں اے جیہڑا [[Special:Preferences|ورتن تانگاں]]',
 'confirmemail_text' => '{{سائیٹناں}}  دی ایہ لوڑ اے جے تسیں اپنا ای-میل پتہ پکا کرواؤ ای-میل فیچر ورتن توں پہلے۔ تھلے دتے گۓ بٹن تے پکی کرن چٹھی پیجو اپنے پتے تے منگوان لئی کلک کرو۔

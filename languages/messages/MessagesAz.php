@@ -16,6 +16,7 @@
  * @author Erdemaslancan
  * @author Gulmammad
  * @author Kaganer
+ * @author Khan27
  * @author PPerviz
  * @author PrinceValiant
  * @author Sortilegus
@@ -487,6 +488,7 @@ Hesabınız yaradıldı.
 'remembermypassword' => 'Məni bu kompyuterdə xatırla (maksimum $1 {{PLURAL:$1|gün|gün}})',
 'securelogin-stick-https' => 'Daxil olduqdan sonra HTTPS-lə əlaqədə qal',
 'yourdomainname' => 'Sizin domain',
+'password-change-forbidden' => 'Bu vikidə parolunuzu dəyişdirə bilməzsiniz.',
 'externaldberror' => 'Verilənlər bazasının doğruluğunu yoxlamada xəta baş verib və yaxud sizin xarici istifadəçi qeydiyyatını yeniləmək hüququnuz yoxdur.',
 'login' => 'Daxil ol',
 'nav-login-createaccount' => 'Daxil ol / hesab yarat',
@@ -548,6 +550,7 @@ Aşağıdakı xidmətlərin heç biri üçün Sizə e-məktub göndərilməyəc�
 'emailconfirmlink' => 'E-poçt ünvanını təsdiq et',
 'invalidemailaddress' => 'E-poçt ünvanınızı qeyri-düzgün formatda olduğu üçün qəbul edə bilmirik.
 Xahiş edirik düzgün formatlı ünvan daxil edin və ya bu sahəni boş qoyun.',
+'emaildisabled' => 'Bu saytdan e-poçt göndərə bilməzsiniz.',
 'accountcreated' => 'Hesab yaradıldı',
 'accountcreatedtext' => '$1 üçün istifadəçi hesabı yaradıldı.',
 'createaccount-title' => '{{SITENAME}} hesabın yaradılması',
@@ -558,7 +561,7 @@ Yeni cəhd etməzdən əvvəl bir qədər gözləyin.',
 'loginlanguagelabel' => 'Dil: $1',
 'suspicious-userlogout' => 'Sizin çıxış üçün cəhdiniz uğursuz alındı. Bu, brouzerin yaxud proksi-keşləmənin düzgün işləməməsindən qaynaqlanır.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'PHP-nin mail() funksiyasında naməlum xəta',
 
 # Change password dialog
@@ -1069,7 +1072,7 @@ Həmçinin kimliyinizi gostərmədən belə, başqalarının sizinlə istifadə�
 'prefs-displaywatchlist' => 'Görüntü variantları',
 'prefs-diffs' => 'Fərqlər',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'E-poçt ünvanı düzgündür',
 'email-address-validity-invalid' => 'Düzgün e-poçt ünvanı daxil edin',
 
@@ -1676,7 +1679,7 @@ Fərdi hüquqlar haqqında əlavə məlumatı [[{{MediaWiki:Listgrouprights-help
 'listgrouprights-addgroup-self-all' => 'Bütün qrupları öz hesabına əlavə edə bilər',
 'listgrouprights-removegroup-self-all' => 'Bütün qrupları öz hesabından çıxara bilər',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Ünvan yoxdur',
 'emailuser' => 'İstifadəçiyə e-məktub yolla',
 'emailpage' => 'İstifadəçiyə e-məktub yolla',
@@ -2429,8 +2432,6 @@ Həmin sətirdəki növbəti keçidlər istisna hesab olunur. Məsələn, fayl m
 
 /*
 Short names for language variants used for language conversion links.
-To disable showing a particular link, set it to 'disable', e.g.
-'variantname-zh-sg' => 'disable',
 Variants for Chinese language
 */
 'variantname-zh-hans' => 'hans',
@@ -2805,7 +2806,7 @@ Variants for Chinese language
 'monthsall' => 'hamısı',
 'limitall' => 'bütün',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'E-məktubunu təsdiq et',
 'confirmemail_send' => 'Təsdiq kodu göndər',
 'confirmemail_sent' => 'Təsdiq e-məktubu göndərildi.',

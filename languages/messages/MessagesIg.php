@@ -1118,7 +1118,7 @@ Ubwa, o na ga [[$2]].',
 'listgrouprights-addgroup' => 'Gbàkọ {{PLURAL:$2|ọtú|ọtú}}: $1',
 'listgrouprights-addgroup-all' => 'Tìnyé ọtú nílé',
 
-# E-mail user
+# Email user
 'emailuser' => 'Zi onye á ózí-nsónùsòrò',
 'emailpage' => "Mé ọ'bànifé e-mailù",
 'defemailsubject' => 'e-mail {{SITENAME}}',

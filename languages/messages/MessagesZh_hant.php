@@ -476,7 +476,7 @@ $1',
 'youhavenewmessages' => '您有$1（$2）。',
 'newmessageslink' => '新訊息',
 'newmessagesdifflink' => '最後更改',
-'youhavenewmessagesfromusers' => '你有來自{{PLURAL:$3| 另一位用戶| $3位用戶}}的$1 ( $2 )。',
+'youhavenewmessagesfromusers' => '你有來自{{PLURAL:$3|另一位用戶|$3位用戶}}的$1（$2）。',
 'youhavenewmessagesmanyusers' => '你有來自多位用戶的$1（ $2 ）。',
 'newmessageslinkplural' => '{{PLURAL:$1|一項新訊息|新訊息}}',
 'newmessagesdifflinkplural' => '最新{{PLURAL:$1|更改|更改}}',
@@ -628,7 +628,7 @@ $2',
 不要忘記設置[[Special:Preferences|{{SITENAME}}的個人參數]]。',
 'yourname' => '用戶名：',
 'yourpassword' => '您的密碼：',
-'yourpasswordagain' => '再次輸入密：',
+'yourpasswordagain' => '再次輸入密碼：',
 'remembermypassword' => '在這個瀏覽器上記住我的登入資訊（可維持 $1 {{PLURAL:$1|天|天}}）',
 'securelogin-stick-https' => '登入後繼續以HTTPS連接',
 'yourdomainname' => '您的網域：',
@@ -643,8 +643,8 @@ $2',
 'userlogout' => '登出',
 'notloggedin' => '未登入',
 'nologin' => '您還沒有帳號嗎？$1。',
-'nologinlink' => '建立新帳號',
-'createaccount' => '建立新帳號',
+'nologinlink' => '建立用戶',
+'createaccount' => '建立用戶',
 'gotaccount' => '已經擁有帳號？$1。',
 'gotaccountlink' => '登入',
 'userlogin-resetlink' => '忘記了你的登錄信息？',
@@ -687,7 +687,8 @@ $2',
 請在收到後再登入。',
 'blocked-mailpassword' => '您的IP地址處於查封狀態而不允許編輯，為了安全起見，密碼恢復功能已被禁用。',
 'eauthentsent' => '一封確認信已經發送到所示的地址。在發送其它郵件到此賬戶前，您必須首先依照這封信中的指導確認這個電子郵件信箱真實有效。',
-'throttled-mailpassword' => '密碼提醒已經在前$1小時內發送。為防止濫用，限定在$1小時內僅發送一次密碼提醒。',
+'throttled-mailpassword' => '密碼提醒已經在前$1小時內發送。
+為防止濫用，限定在$1小時內僅發送一次密碼提醒。',
 'mailerror' => '發送郵件錯誤: $1',
 'acct_creation_throttle_hit' => '在這個wiki上的訪客利用您的IP地址在昨天創建了$1個賬戶，是在這段時間中的上限。
 結果利用這個IP地址的訪客在這段時間中不能創建更多的賬戶。',
@@ -711,7 +712,7 @@ $2',
 'loginlanguagelabel' => '語言：$1',
 'suspicious-userlogout' => '您登出的要求已經被拒絕，因為它可能是由已損壞的瀏覽器或者快取代理傳送。',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => '在 PHP 的 mail() 參數中的未知錯誤',
 'user-mail-no-addy' => '嘗試不帶電郵地址發送電郵。',
 
@@ -736,7 +737,7 @@ $2',
 
 # Special:PasswordReset
 'passwordreset' => '重新設定密碼',
-'passwordreset-text' => '完成此表格以接收一個電郵以提示你的帳戶詳情。',
+'passwordreset-text' => '完成此表格以重置您的密碼。',
 'passwordreset-legend' => '重設密碼',
 'passwordreset-disabled' => '此維基上已禁止了重設密碼。',
 'passwordreset-pretext' => '{{PLURAL:$1||輸入下列其中一個}}',
@@ -746,15 +747,14 @@ $2',
 'passwordreset-capture-help' => '如果您選中此框，電子郵件（包括臨時密碼）將顯示，並發送給用戶。',
 'passwordreset-email' => '電郵地址：',
 'passwordreset-emailtitle' => '在{{SITENAME}}上的詳細信息',
-'passwordreset-emailtext-ip' => '有人（可能是你，來自$1這個IP）要求發出一個在{{SITENAME}}（$4）的帳戶信
-息提示。該用戶{{PLURAL:$3|是|是}}與以下電郵地址有關：
+'passwordreset-emailtext-ip' => '有人（可能是你，來自$1這個IP）要求重置{{SITENAME}}（$4）的密碼。該用戶{{PLURAL:$3|是|是}}與以下電郵地址有關：
 
 $2
 
 {{PLURAL:$3|這個臨時密碼|這些臨時密碼}}會在{{PLURAL:$5|一天|$5天}}到期。
 你應該現在登入並選擇一個新的密碼。如果不是你作出這個請求，又或你已經記
 起你原來的密碼，你可以忽略本信息並使用你原來的密碼。',
-'passwordreset-emailtext-user' => '用戶$1要求發出一個在{{SITENAME}}（$4）的帳戶信息提示。該用戶{{PLURAL:$3|是|是}}與以下
+'passwordreset-emailtext-user' => '用戶$1要求重置在{{SITENAME}}（$4）的密碼。該用戶{{PLURAL:$3|是|是}}與以下
 電郵地址有關：
 
 $2
@@ -764,8 +764,8 @@ $2
 起你原來的密碼，你可以忽略本信息並使用你原來的密碼。',
 'passwordreset-emailelement' => '用戶名：$1
 臨時密碼：$2',
-'passwordreset-emailsent' => '已發送提示電郵。',
-'passwordreset-emailsent-capture' => '提醒電子郵件已發送，並在下面顯示。',
+'passwordreset-emailsent' => '已發送重置密碼電郵。',
+'passwordreset-emailsent-capture' => '重置密碼電子郵件已發送，並在下面顯示。',
 'passwordreset-emailerror-capture' => '生成的提醒電子郵件如下所示，但發送失敗：$1',
 
 # Special:ChangeEmail
@@ -1212,14 +1212,14 @@ $1",
 'search-interwiki-default' => '$1項結果:',
 'search-interwiki-more' => '（更多）',
 'search-relatedarticle' => '相關',
-'mwsuggest-disable' => '停用AJAX建議',
+'mwsuggest-disable' => '停用搜尋建議',
 'searcheverything-enable' => '在所有名字空間中搜尋',
 'searchrelated' => '相關',
 'searchall' => '所有',
 'showingresults' => '下面顯示從第 <b>$2</b> 條開始的 <b>$1</b> 條結果：',
 'showingresultsnum' => "下面顯示從第 '''$2''' 條開始的 '''{{PLURAL:$3|1|$3}}''' 條結果。",
 'showingresultsheader' => "對'''$4'''的{{PLURAL:$5|第'''$1'''至第'''$3'''項結果|第'''$1 - $2'''項，共'''$3'''項結果}}",
-'nonefound' => "'''注意''': 只有一些名字空間是會作為預設搜尋。嘗試''all:''去搜尋全部的頁面（包埋討論頁面、模板等），或可用需要的名字空間作為前綴。",
+'nonefound' => "'''注意：'''只有一些名字空間是會作為預設搜尋。嘗試''all:''去搜尋全部的頁面（包埋討論頁面、模板等），或可用需要的名字空間作為前綴。",
 'search-nonefound' => '在查詢中無結果相符。',
 'powersearch' => '進階搜尋',
 'powersearch-legend' => '進階搜尋',
@@ -1357,7 +1357,7 @@ $1",
 'prefs-displaywatchlist' => '顯示選項',
 'prefs-diffs' => '差異',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => '電子郵件地址有效',
 'email-address-validity-invalid' => '請提供一個有效的電子郵件地址',
 
@@ -1819,7 +1819,7 @@ $1',
 'filehist-filesize' => '檔案大小',
 'filehist-comment' => '註解',
 'filehist-missing' => '檔案遺失',
-'imagelinks' => '文件使用情況',
+'imagelinks' => '檔案使用情況',
 'linkstoimage' => '以下的$1個頁面連接到本檔案:',
 'linkstoimage-more' => '多於$1個頁面連接到這個檔案。
 下面的清單只列示了連去這個檔案的最首$1個頁面。
@@ -2124,7 +2124,7 @@ Template:消除歧義',
 'listgrouprights-addgroup-self-all' => '在自己的賬戶中加入所有群組',
 'listgrouprights-removegroup-self-all' => '在自己的賬戶中移除所有群組',
 
-# E-mail user
+# Email user
 'mailnologin' => '無電郵地址',
 'mailnologintext' => '您必須先[[Special:UserLogin|登入]]
 並在[[Special:Preferences|偏好設定]]
@@ -2183,7 +2183,7 @@ Template:消除歧義',
 'notanarticle' => '不是頁面',
 'notvisiblerev' => '上次由不同用戶所作的修訂版本已經刪除',
 'watchnochange' => '在顯示的時間段內您所監視的頁面沒有更改。',
-'watchlist-details' => '不包含討論頁，有 $1 頁在您的監視列表上。',
+'watchlist-details' => '不包含討論頁，您的監視列表上有 $1 個頁面。',
 'wlheader-enotif' => '* 已經啟動電子郵件通知功能。',
 'wlheader-showupdated' => "* 在{{GENDER:|你|妳|你}}上次檢視後有被修改過的頁面會顯示為'''粗體'''",
 'watchmethod-recent' => '檢查被監視頁面的最近編輯',
@@ -2327,7 +2327,7 @@ $UNWATCHURL
 'protect-summary-cascade' => '連鎖',
 'protect-expiring' => '終止於 $1 （UTC）',
 'protect-expiring-local' => '$1到期',
-'protect-expiry-indefinite' => '永久',
+'protect-expiry-indefinite' => '無限期',
 'protect-cascade' => '保護本頁中包含的頁面 （連鎖保護）',
 'protect-cantedit' => '您無法更改這個頁面的保護等級，因為您沒有權限去編輯它。',
 'protect-othertime' => '其它時間:',
@@ -2490,7 +2490,7 @@ $1',
 'ipbenableautoblock' => '自動查封此用戶最後所用的IP位址，以及後來試圖編輯所用的所有位址',
 'ipbsubmit' => '查封該地址',
 'ipbother' => '其它時間:',
-'ipboptions' => '2小時:2 hours,1天:1 day,3天:3 days,1周:1 week,2周:2 weeks,1個月:1 month,3個月:3 months,6個月:6 months,1年:1 year,永久:infinite',
+'ipboptions' => '2小時:2 hours,1天:1 day,3天:3 days,1周:1 week,2周:2 weeks,1個月:1 month,3個月:3 months,6個月:6 months,1年:1 year,無限期:infinite',
 'ipbotheroption' => '其他',
 'ipbotherreason' => '其它／附帶原因:',
 'ipbhidename' => '在編輯及列表中隱藏用戶名',
@@ -2531,7 +2531,7 @@ $1',
 'ipblocklist-submit' => '搜尋',
 'ipblocklist-localblock' => '本地封鎖',
 'ipblocklist-otherblocks' => '其他{{PLURAL:$1|封鎖|封鎖}}',
-'infiniteblock' => '永久',
+'infiniteblock' => '無限期',
 'expiringblock' => '$1 $2 到期',
 'anononlyblock' => '僅限匿名用戶',
 'noautoblockblock' => '禁用自動查封',
@@ -2616,10 +2616,8 @@ $1被封禁的理由是“$2”',
 如果您選擇不去做的話，請檢查[[Special:DoubleRedirects|雙重]]或[[Special:BrokenRedirects|損壞重定向]]連結。
 您應當負責確定所有連結依然會連到指定的頁面。
 
-注意如果新頁面已經有內容的話，頁面將'''不會'''被移動，
-除非新頁面是重定向頁，而且沒有修訂歷史。
-這意味著您再必要時可以在移動到新頁面後再移回老的頁面，
-同時您也無法覆蓋現有頁面。
+注意如果新頁面已經有內容的話，頁面將'''不會'''被移動，除非新頁面是重定向頁，而且沒有修訂歷史。
+這意味著您再必要時可以在移動到新頁面後再移回老的頁面，同時您也無法覆蓋現有頁面。
 
 '''警告！'''
 對一個經常被訪問的頁面而言這可能是一個重大與唐突的更改；
@@ -3070,8 +3068,6 @@ $1',
 
 /*
 Short names for language variants used for language conversion links.
-To disable showing a particular link, set it to 'disable', e.g.
-'variantname-zh-sg' => 'disable',
 Variants for Chinese language
 */
 'variantname-zh-hans' => '‪中文(简体)',
@@ -3511,7 +3507,7 @@ Variants for Chinese language
 'monthsall' => '全部',
 'limitall' => '全部',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => '確認郵箱位址',
 'confirmemail_noemail' => '您沒有在您的[[Special:Preferences|用戶設定]]裡面輸入一個有效的 email 位址。',
 'confirmemail_text' => '{{SITENAME}}要求您在使用郵件功能之前驗證您的郵箱位址。
@@ -3577,7 +3573,7 @@ $5
 'scarytranscludetoolong' => '[URL 地址太長]',
 
 # Delete conflict
-'deletedwhileediting' => '警告: 此頁在您開始編輯之後已經被刪除﹗',
+'deletedwhileediting' => "'''警告：'''此頁在您開始編輯之後已經被刪除﹗",
 'confirmrecreate' => "在您開始編輯這個頁面後，用戶[[User:$1|$1]] （[[User talk:$1|對話]]）以下列原因刪除了這個頁面：
 : ''$2''
 請確認在您重新創建頁面前三思。",

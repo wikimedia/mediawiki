@@ -534,7 +534,7 @@ $2',
 'loginlanguagelabel' => 'Тил: $1',
 'suspicious-userlogout' => 'Терс браузер неда кэш этиучу прокси берген соруугъа ушагъаны ючюн, Сизни чыгъаргъа сорууугъуз алынмагъанды.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => "PHP's mail() функцияда белгили болмагъан халат",
 'user-mail-no-addy' => 'Бир e-mail адрес болмагъанлай e-mail иерге кюрешди',
 
@@ -569,8 +569,8 @@ $2',
 'passwordreset-emailtitle' => '{{SITENAME}} сайтдагъы тергеу джазыуну юсюнден билгиле',
 'passwordreset-emailelement' => 'Къошулуучуну аты: $1
 Болджаллы пароль: $2',
-'passwordreset-emailsent' => 'Эсгертиу e-mail ийилди.',
-'passwordreset-emailsent-capture' => 'Ийилген эсгертиу e-mail тюбюрекде берилибди.',
+'passwordreset-emailsent' => 'Пароль бла e-mail ийилди.',
+'passwordreset-emailsent-capture' => 'Ийилген пароль эсгертиу e-mail тюбюрекде берилибди.',
 'passwordreset-emailerror-capture' => 'Ийилген эсгертиу e-mail тюбюрекде берилибди, аны ашырыуу джетишимсиз болду, чурум: $1',
 
 # Special:ChangeEmail
@@ -1020,7 +1020,7 @@ $1",
 'searchprofile-articles-tooltip' => '$1 ичинде изле',
 'searchprofile-project-tooltip' => '$1 ичинде изле',
 'searchprofile-images-tooltip' => 'Файлланы изле',
-'searchprofile-everything-tooltip' => 'Бютёу бетледе изле (сюзюу бетледе да)',
+'searchprofile-everything-tooltip' => 'Бютеу бетледе изле (сюзюу бетледе да)',
 'searchprofile-advanced-tooltip' => 'Энчи ат аланладада изле',
 'search-result-size' => '$1 ({{PLURAL:$2|$2 сёз}})',
 'search-result-category-size' => '{{PLURAL:$1|1 элемент|$1 элемент}} ({{PLURAL:$2|1 тюбкатегория|$2 тюбкатегория}}, {{PLURAL:$3|1 файл|$3 файл}})',
@@ -1033,13 +1033,13 @@ $1",
 'search-interwiki-more' => '(дагъыда)',
 'search-relatedarticle' => 'Байламлы',
 'mwsuggest-disable' => 'AJAX юретиулени джукълатыгъыз',
-'searcheverything-enable' => 'Атланы бютёу аламларында изле',
+'searcheverything-enable' => 'Атланы бютеу аламларында изле',
 'searchrelated' => 'бейламлы',
-'searchall' => 'бютёу',
+'searchall' => 'бютеу',
 'showingresults' => 'Тюбюрек №&nbsp;<strong>$2</strong> башлаб <strong>$1</strong> {{PLURAL:$1|эсеб|эсебле}} {{PLURAL:$1|кёргюзюлгенди|кёргюзюлгендиле}}.',
 'showingresultsnum' => 'Тюбюрек №&nbsp;<strong>$2</strong> башлаб <strong>$3</strong> {{PLURAL:$3|эсеб|эсебле}} {{PLURAL:$3|кёргюзюлгенди|кёргюзюлгендиле}}.',
 'showingresultsheader' => "'''$4''' ючюн {{PLURAL:$5|'''$3''' эсебден '''$1'''|'''$1 — $2''' арасы '''$3''' эсеб}}",
-'nonefound' => "'''Эсгериу.''' Тынгылау бла излеу бютёу атланы аламында бардырылмайды. Бютёу атланы аламында (къошулуучуланы сюзюулери, шаблонла эмда башхала) излер ючюн аллындан ''all:'' префиксни хайырландырыгъыз неда керекли атланы аламын белгилегиз.",
+'nonefound' => "'''Эсгериу:''' тынгылау бла излеу бютеу атланы аламында бардырылмайды. Бютеу атланы аламында (къошулуучуланы сюзюулери, шаблонла эмда башхала) излер ючюн аллындан ''all:'' префиксни хайырландырыгъыз неда керекли атланы аламын белгилегиз.",
 'search-nonefound' => 'Соруу бла келишген эсеб джокъду',
 'powersearch' => 'Кенг излеу',
 'powersearch-legend' => 'Кенг излеу',
@@ -1182,7 +1182,7 @@ $1 {{PLURAL:$1|символдан|символладан}} кеб болургъ
 'prefs-displaywatchlist' => 'Кёрюнюуню джарашдырыулары',
 'prefs-diffs' => 'Версияланы башхалыкълары',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'E-mail адрес тюзге ушайды',
 'email-address-validity-invalid' => 'Тюз e-mail адрес джазыгъыз!',
 
@@ -1842,6 +1842,9 @@ URL-ни тюз , сайтны ачыкъ болгъанына ишексиз б
 'allpages-bad-ns' => '{{SITENAME}} сайтда «$1» ат алам джокъду.',
 'allpages-hide-redirects' => 'Башха бетлеге джиберген бетлени (редиректлени) джашыр',
 
+# SpecialCachedPage
+'cachedspecial-refresh-now' => 'Ахыр версиягъа къарау.',
+
 # Special:Categories
 'categories' => 'Категорияла',
 'categoriespagetext' => 'Ызындан келген {{PLURAL:$1|категория|категорияла}} бет неда медия-файл тутадыла.
@@ -1907,10 +1910,12 @@ URL-ни тюз , сайтны ачыкъ болгъанына ишексиз б
 'listgrouprights-addgroup-self-all' => 'Бютеу къауумланы кесини тергеу джазыууна къошаллыкъды',
 'listgrouprights-removegroup-self-all' => 'Кесини тергеу джазыуундан бютеу къауумланы къораталлыкъды',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Джиберирге адрес джокъду',
 'mailnologintext' => 'Башха къошулуучулагъа эл. почта джиберелир ючюн [[Special:UserLogin|системагъа кирирге]] керексиз эм [[Special:Preferences|джарашдырыуланы]] бетинде джараулу эл. почта адрес болургъа керекди.',
 'emailuser' => 'Къошулуучугъа письмо',
+'emailuser-title-target' => '{{GENDER:$1|Къошулуучугъа}} электрон джазма джазыу',
+'emailuser-title-notarget' => 'Электрон джазма джазыу',
 'emailpage' => 'Къошулуучугъа письмо джибер',
 'emailpagetext' => 'Бу къошулуучуну почтасына письмо джиберир ючюн бу форманы толтурургъа боллукъсуз.
 Ызына адрес болуб, сиз [[Special:Preferences|джарашдырыуларыгъызда]] джазгъан адрес белгиленникди, ол себебден сизни письмогъузну аллыкъ сизге тюз джууаб берирге мадарлы боллукъду.',
@@ -2078,6 +2083,7 @@ $2 тюрлендирген алгъаракъ версиясына къайты
 'unprotectedarticle' => '«[[$1]]» бетден джакълыкъ алыннганды',
 'movedarticleprotection' => 'Къоруулауну джарашдырыулары "[[$2]]" бетден "[[$1]]" бетге кёчюрюлгенди',
 'protect-title' => '"$1" ючюн къоруулау дараджаны сайлагъыз',
+'protect-title-notallowed' => '«$1» джакълау дараджагъа къара',
 'prot_1movedto2' => '[[$1]] бетни джангы аты: [[$2]]',
 'protect-legend' => 'Къоруулауну къабыл эт',
 'protectcomment' => 'Чурум:',
@@ -2098,6 +2104,7 @@ $2 тюрлендирген алгъаракъ версиясына къайты
 'protect-level-sysop' => 'Къуру администраторла',
 'protect-summary-cascade' => 'каскадлы',
 'protect-expiring' => 'бошалады $1 (UTC)',
+'protect-expiring-local' => '$1 бошалады',
 'protect-expiry-indefinite' => 'болджалсыз',
 'protect-cascade' => 'Бу бетге кирген бетлени джакъла (каскадлы джакълау)',
 'protect-cantedit' => 'Сиз бу бетни джакълау дараджасын тюрлендиреллик тюйюлсюз, бу бетни тюрлендирирге хакъыгъыз болмагъаны ючюн.',
@@ -2232,6 +2239,7 @@ $1',
 
 # Block/unblock
 'block' => 'Къошулуучуну блокла',
+'unblock' => 'Къошулуучуну блок этилиуюн алыу',
 'blockip' => 'Бу къошулуучуну блок эт',
 'blockip-title' => 'Къошулуучуну блокга салыу',
 'blockip-legend' => 'Къошулуучуну блокга салыу',
@@ -2588,14 +2596,14 @@ MediaWiki локализациясына юлюш къошаргъа излей 
 'tooltip-n-recentchanges' => 'Ахыр тюрлениулени тизмеси',
 'tooltip-n-randompage' => 'Эсде болмагъан бир бетге къара',
 'tooltip-n-help' => '«{{SITENAME}}» проектге джардам этиу',
-'tooltip-t-whatlinkshere' => 'Бу бетге джибериу берген бютёу бетлени тизмеси',
+'tooltip-t-whatlinkshere' => 'Бу бетге джибериу берген бютеу бетлени тизмеси',
 'tooltip-t-recentchangeslinked' => 'Бу бет джибериуле берген бетледе ахыр тюрлениуле',
 'tooltip-feed-rss' => 'Бу битге RSS-трансляция',
 'tooltip-feed-atom' => 'Бу бетге Atom-трансляция',
 'tooltip-t-contributions' => 'Къошулуучуну тюрлендирген бетлерине къара',
 'tooltip-t-emailuser' => 'Бу къошулуучугъа письмо джибер',
 'tooltip-t-upload' => 'Файлланы джюклеу',
-'tooltip-t-specialpages' => 'Бютёу къуллукъчу бетлени тизмеси',
+'tooltip-t-specialpages' => 'Бютеу къуллукъчу бетлени тизмеси',
 'tooltip-t-print' => 'Бу бетни басмагъа версиясы',
 'tooltip-t-permalink' => 'Бетни бу версиясына дайым джибериу',
 'tooltip-ca-nstab-main' => 'Статьяны ичиндеги',
@@ -2662,6 +2670,8 @@ MediaWiki локализациясына юлюш къошаргъа излей 
 'pageinfo-views' => 'Къарауланы саны',
 'pageinfo-watchers' => 'Бетни кёзде тутханланы саны',
 'pageinfo-redirects-name' => 'Бу бетге редиректле',
+'pageinfo-firstuser' => 'Бетле къураучу',
+'pageinfo-lastuser' => 'Ахыр редактор',
 'pageinfo-edits' => 'Бютеу тюрлендириулени саны',
 'pageinfo-authors' => 'Тюрлю-тюрлю авторланы саны',
 
@@ -3159,7 +3169,7 @@ $1',
 'monthsall' => 'бютеу',
 'limitall' => 'бютеую',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Электорн адресни мюкюл эт',
 'confirmemail_noemail' => '[[Special:Preferences|джарашдырыулада]] тамамланнган, джараулу электрон адресигиз джокоъду.',
 'confirmemail_text' => 'Викини электрон почтасыны адреси бла хайырланыб башлауну аллы бла, аны мюкюл этериге керекди.

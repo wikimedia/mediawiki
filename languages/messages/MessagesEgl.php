@@ -465,7 +465,7 @@ Cancellä',
 # Special:ListGroupRights
 'listgrouprights-group' => 'Grüpp',
 
-# E-mail user
+# Email user
 'emailfrom' => 'Da:',
 'emailto' => 'A:',
 'emailsubject' => 'Uggett:',

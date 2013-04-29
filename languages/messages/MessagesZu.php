@@ -9,6 +9,8 @@
  *
  * @author Jose77 (on zu.wikipedia.org)
  * @author Joziboy (on zu.wikipedia.org)
+ * @author Rosinah3
+ * @author Vogone
  * @author לערי ריינהארט
  */
 
@@ -23,18 +25,18 @@ $messages = array(
 'thursday' => 'uLwesine',
 'friday' => 'uLwesihlanu',
 'saturday' => 'uMgqibelo',
-'january' => 'uJanuwali',
-'february' => 'uFebruwari',
-'march' => 'uMashi',
-'april' => 'u-Apreli',
-'may_long' => 'uMeyi',
-'june' => 'uJuni',
-'july' => 'uJulayi',
-'august' => 'u-Agasti',
-'september' => 'uSepthemba',
-'october' => 'u-Okthoba',
-'november' => 'uNovemba',
-'december' => 'uDisemba',
+'january' => 'Umasingana',
+'february' => 'uNhlolanja',
+'march' => 'uMbasa',
+'april' => 'uNdasa',
+'may_long' => 'uNhlaba',
+'june' => 'uNhlangulana',
+'july' => 'uNtulikazi',
+'august' => 'uNcwaba',
+'september' => 'uMandulo',
+'october' => 'uMfumfu',
+'november' => 'uLwezi',
+'december' => 'uZibandlela',
 'january-gen' => 'uJanuwali',
 'february-gen' => 'uFebruwari',
 'march-gen' => 'uMashi',
@@ -99,6 +101,7 @@ $messages = array(
 'portal' => 'Umnyango wamgwamanda',
 'portal-url' => 'Project:Umnyango wamgwamanda',
 
+'ok' => 'Kulungile',
 'newmessageslink' => 'Imilayezo emisha',
 'youhavenewmessagesmulti' => 'Uyanemilayezo emisha e $1',
 'editsection' => 'hlela',
@@ -189,7 +192,7 @@ ikhawundi lakho liyadalwa. musa ukukhohlwa ukuguqula amakhethelo a-{{SITENAME}} 
 'mypreferences' => 'Amakhethelo ami',
 'prefsnologin' => 'Awungenile',
 'changepassword' => 'Guqula izwi elingenangozi',
-'saveprefs' => 'Saveprefs',
+'saveprefs' => 'Ukonga',
 'searchresultshead' => 'Sesha',
 'timezonelegend' => 'Isifunda sasikhathi',
 'localtime' => 'Isikhathi siyalapha',
@@ -242,7 +245,7 @@ ikhawundi lakho liyadalwa. musa ukukhohlwa ukuguqula amakhethelo a-{{SITENAME}} 
 'allinnamespace' => 'Onke amakhasi ($1 namespace)',
 'allpagessubmit' => 'Hamba',
 
-# E-mail user
+# Email user
 'emailuser' => 'Thumela umlayezo lo msebenzisi',
 'noemailtitle' => 'Akukho ikheli likaposi',
 'emailsubject' => 'Indaba',
@@ -278,6 +281,7 @@ ikhawundi lakho liyadalwa. musa ukukhohlwa ukuguqula amakhethelo a-{{SITENAME}} 
 'mycontris' => 'Amanikelo ami',
 
 # What links here
+'nolinkshere' => "Akukho amakhasi ukuthi balayela lapha '''[[:$1]]'''.",
 'isredirect' => 'Ikhasi silayela',
 
 # Block/unblock
@@ -314,6 +318,12 @@ ikhawundi lakho liyadalwa. musa ukukhohlwa ukuguqula amakhethelo a-{{SITENAME}} 
 
 # Special:Import
 'import-interwiki-submit' => 'Ngenisa',
+
+# Tooltip help for the actions
+'tooltip-search' => 'Phenya',
+'tooltip-search-fulltext' => '
+Phenya amakhasi ukuze uthole lombhalo',
+'tooltip-p-logo' => 'vakashela ikhasi elikhulu',
 
 # Attribution
 'others' => 'Abanye',
@@ -361,7 +371,7 @@ ikhawundi lakho liyadalwa. musa ukukhohlwa ukuguqula amakhethelo a-{{SITENAME}} 
 'exif-sharpness-1' => 'Kuntofontofo',
 'exif-sharpness-2' => 'Kulukhuni',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Qinisekisa ikheli likagesi',
 'confirmemail_loggedin' => 'Ikheli likagesi lakho liqinisekiswa.',
 

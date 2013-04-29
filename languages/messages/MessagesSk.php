@@ -760,8 +760,8 @@ Prosím, prihláste sa znovu, keď ho dostanete.',
 'blocked-mailpassword' => 'Boli zablokované úpravy z vašej IP adresy, a tak nie je dovolené použiť funkciu znovuvyžiadania hesla, aby sa zabránilo zneužitiu.',
 'eauthentsent' => 'Email s potvrdením bol zaslaný na uvedenú emailovú adresu.
 Predtým ako sa na účet pošle akákoľvek ďalšia pošta, musíte splniť inštrukcie v emaili, aby sa potvrdilo, že účet je skutočne váš.',
-'throttled-mailpassword' => 'V priebehu {{PLURAL:$1|poslednej $1 hodiny|posledných $1 hodín}} už došlo k vyžiadaniu hesla.
-Aby sa zabránilo zneužitiu, vyžiadanie hesla je možné vykonať iba raz za {{PLURAL:$1|$1 hodinu|$1 hodiny|$1 hodín}}.',
+'throttled-mailpassword' => 'E-mail na obnovenie hesla už bol odoslaný v priebehu {{PLURAL:$1|poslednej $1 hodiny|posledných $1 hodín}}.
+Aby sa zabránilo zneužitiu, obnovenie hesla emailom je možné vykonať iba raz za {{PLURAL:$1|$1 hodinu|$1 hodiny|$1 hodín}}.',
 'mailerror' => 'Chyba pri posielaní e-mailu: $1',
 'acct_creation_throttle_hit' => 'Návštevníci tejto wiki z vašej IP adresy už za posledný deň vytvorili {{PLURAL:$1|$1 účet|$1 účty|$1 účtov}}, čo je maximálny počet povolený za toto časové obdobie.
 Z tohto dôvodu nemôžu návštevníci z tejto IP adresy momentálne vytvoriť ďalšie účty.',
@@ -786,7 +786,7 @@ Prosím, počkajte predtým, než to skúsite znova.',
 'loginlanguagelabel' => 'Jazyk: $1',
 'suspicious-userlogout' => 'Vaša požiadavka odhlásiť sa bola zamietnutá, pretože to vyzerá, že ju poslal pokazený prehliadač alebo proxy server.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Neznáma chyba vo funkcii PHP mail()',
 'user-mail-no-addy' => 'Pokus o odoslanie e-mailu bez e-mailovej adresy.',
 
@@ -810,7 +810,7 @@ Je možné, že sa vám už podarilo úspešne zmeniť svoje heslo alebo ste si 
 
 # Special:PasswordReset
 'passwordreset' => 'Reset hesla',
-'passwordreset-text' => 'Po vyplnení tohto formulára dostanete emailom podrobnosti o vašom účte.',
+'passwordreset-text' => 'Vyplnením tohto formulára si vytvoríte nové heslo.',
 'passwordreset-legend' => 'Obnoviť heslo',
 'passwordreset-disabled' => 'Obnovenie hesla bolo na tejto wiki zakázané.',
 'passwordreset-pretext' => '{{PLURAL:$1|Zadajte nižšie uvedený údaj|Zadajte jeden z nižšie uvedených údajov}}',
@@ -820,8 +820,7 @@ Je možné, že sa vám už podarilo úspešne zmeniť svoje heslo alebo ste si 
 'passwordreset-capture-help' => 'Ak označíte toto políčko, bude e-mail (s dočasným heslom) okrem zaslania používateľovi zobrazený aj vám.',
 'passwordreset-email' => 'Emailová adresa:',
 'passwordreset-emailtitle' => 'Podrobnosti o účte na {{GRAMMAR:lokál|{{SITENAME}}}}',
-'passwordreset-emailtext-ip' => 'Niekto (pravdepodobne vy z IP adresy $1) požiadal pripomenutie podrobností o vašom
-účtu na {{GRAMMAR:genitív|{{SITENAME}}}} ($4). {{PLURAL:$3|Nasledujúci používateľský účet je spojený|Nasledujúce používateľské účty sú spojené}}
+'passwordreset-emailtext-ip' => 'Niekto (pravdepodobne vy z IP adresy $1) požiadal o obnovenie vášho hesla na {{GRAMMAR:genitív|{{SITENAME}}}} ($4). {{PLURAL:$3|Nasledujúci používateľský účet je spojený|Nasledujúce používateľské účty sú spojené}}
 s touto emailovou adresou:
 
 $2
@@ -830,8 +829,7 @@ $2
 Mali by ste sa prihlásiť teraz a zvoliť nové heslo. Ak túto žiadosť podal niekto iný alebo
 ak ste si spomenuli svoje pôvodné heslo a už ho chcete zmeniť, môžete túto správu
 ignorovať a ďalej používať vaše staré heslo.',
-'passwordreset-emailtext-user' => 'Používateľ $1 na {{GRAMMAR:genitív|{{SITENAME}}}} požiadal pripomenutie podrobností o vašom
-účtu na {{GRAMMAR:genitív|{{SITENAME}}}} ($4). {{PLURAL:$3|Nasledujúci používateľský účet je spojený|Nasledujúce používateľské účty sú spojené}}
+'passwordreset-emailtext-user' => 'Používateľ $1 na {{GRAMMAR:genitív|{{SITENAME}}}} požiadal o obnovenie vášho hesla na na {{GRAMMAR:genitív|{{SITENAME}}}} ($4). {{PLURAL:$3|Nasledujúci používateľský účet je spojený|Nasledujúce používateľské účty sú spojené}}
 s touto emailovou adresou:
 
 $2
@@ -842,8 +840,8 @@ ak ste si spomenuli svoje pôvodné heslo a už ho chcete zmeniť, môžete tút
 ignorovať a ďalej používať vaše staré heslo.',
 'passwordreset-emailelement' => 'Používateľské meno: $1
 Dočasné heslo:$2',
-'passwordreset-emailsent' => 'Email s heslom bol odoslaný.',
-'passwordreset-emailsent-capture' => 'Bol vytvorený pripomienkový e-mail, ktorý je zobrazený nižšie.',
+'passwordreset-emailsent' => 'Email s novým heslom bol odoslaný.',
+'passwordreset-emailsent-capture' => 'Bol odoslaný email s novým heslom, ktorý je zobrazený nižšie.',
 'passwordreset-emailerror-capture' => 'Bol vytvorený pripomienkový e-mail, ktorý je zobrazený nižšie, ale nepodarilo sa ho odoslať používateľovi: $1',
 
 # Special:ChangeEmail
@@ -1020,8 +1018,8 @@ z voľného diela (public domain) alebo podobného zdroja neobmedzeného autorsk
 '''NEUMIESTŇUJTE SEM BEZ POVOLENIA DIELA CHRÁNENÉ AUTORSKÝM PRÁVOM!'''",
 'longpageerror' => "'''Chyba: Text, ktorý ste poslali má {{PLURAL:$1|jeden kilobajt|$1 kilobajty|$1 kilobajtov}}, čo je viac ako maximum {{PLURAL:$2|jeden kilobajt|$2 kilobajty|$2 kilobajtov}}.'''",
 'readonlywarning' => "'''UPOZORNENIE: Databáza bola počas upravovania stránky zamknutá z dôvodu údržby,
-takže stránku momentálne nemôžete uložiť. Môžete skopírovať a vložiť
-text do textového súboru a uložiť si ho na neskôr.'''
+takže svoje úpravy momentálne nemôžete uložiť.'''
+Môžete skopírovať a vložiť text do textového súboru a uložiť si ho na neskôr.
 
 Správca, ktorý ju zamkol, uviedol nasledovné vysvetlenie: $1",
 'protectedpagewarning' => "'''Upozornenie: Táto stránka bola zamknutá, takže ju môžu upravovať iba používatelia s oprávnením správcu.''' Dolu je pre informáciu posledná položka zo záznamu:",
@@ -1316,7 +1314,7 @@ Podrobnosti nájdete v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}
 'search-interwiki-default' => '$1 výsledkov:',
 'search-interwiki-more' => '(viac)',
 'search-relatedarticle' => 'Súvisiace',
-'mwsuggest-disable' => 'Vypnúť AJAX návrhy',
+'mwsuggest-disable' => 'Vypnúť návrhy vyhľadávania',
 'searcheverything-enable' => 'Vyhľadať vo všetkých menných priestoroch',
 'searchrelated' => 'súvisiace',
 'searchall' => 'všetko',
@@ -1460,7 +1458,7 @@ Musí obsahovať menej ako $1 {{PLURAL:$1|znak|znaky|znakov}}.',
 'prefs-displaywatchlist' => 'Možnosti zobrazenia',
 'prefs-diffs' => 'Rozdiely',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'Formát e-mailovej adresa vyzerá byť správny',
 'email-address-validity-invalid' => 'Zadajte platnú e-mailovú adresu',
 
@@ -2169,7 +2167,7 @@ Môžete zúžiť rozsah, ak zvolíte typ záznamu, používateľské meno alebo
 'allpagesprev' => 'Predchádzajúci',
 'allpagesnext' => 'Ďalší',
 'allpagessubmit' => 'Vykonať',
-'allpagesprefix' => 'Zobraziť stránky s predponou:',
+'allpagesprefix' => 'Zobraziť stránky začínajúce na:',
 'allpagesbadtitle' => 'Zadaný názov stránky je neplatný alebo mal medzijazykový alebo interwiki prefix. Môže obsahovať jeden alebo viac znakov, ktoré nie je možné použiť v názve stránky.',
 'allpages-bad-ns' => '{{SITENAME}} nemá menný priestor „$1“.',
 'allpages-hide-redirects' => 'Skryť presmerovania',
@@ -2242,7 +2240,7 @@ Môžete si prečítať [[{{MediaWiki:Listgrouprights-helppage}}|ďalšie inform
 'listgrouprights-addgroup-self-all' => 'Do vlastného účtu je možné pridať všetky skupiny',
 'listgrouprights-removegroup-self-all' => 'Z vlastného účtu je možné odstrániť všetky skupiny',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Žiadna adresa na zaslanie',
 'mailnologintext' => 'Musíte byť [[Special:UserLogin|prihlásený]] a mať platnú e-mailovú adresu vo vašich [[Special:Preferences|nastaveniach]], aby ste mohli iným používateľom posielať e-maily.',
 'emailuser' => 'E-mail tomuto používateľovi',
@@ -2288,7 +2286,8 @@ Mailová adresa, ktorú ste zadali vo svojich [[Special:Preferences|nastaveniach
 'watchnologin' => 'Nie ste prihlásený/á',
 'watchnologintext' => 'Musíte byť [[Special:UserLogin|prihlásený/á]], aby ste mohli modifikovať vaše sledované stránky.',
 'addwatch' => 'Pridať do zoznamu sledovaných stránok',
-'addedwatchtext' => "Stránka [[:$1]] bola pridaná do zoznamu [[Special:Watchlist|sledovaných stránok]]. Budú tam uvedené ďalšie úpravy tejto stránky a jej diskusie a stránka bude zobrazená '''tučne''' v [[Special:RecentChanges|zozname posledných úprav]], aby ste ju ľahšie našli.",
+'addedwatchtext' => 'Stránka „[[:$1]]“ bola pridaná do vášho zoznamu [[Special:Watchlist|sledovaných stránok]].
+Budú tam uvedené aj budúce úpravy tejto stránky a jej diskusie.',
 'removewatch' => 'Odstrániť zo zoznamu sledovaných',
 'removedwatchtext' => 'Stránka „[[:$1]]“ bola odstránená z vášho [[Special:Watchlist|zoznamu sledovaných stránok]].',
 'watch' => 'Sledovať',
@@ -2430,9 +2429,9 @@ Tu sú aktuálne nastavenia stránky '''$1''':",
 Tu sú aktuálne nastavenia stránky '''$1''':",
 'protect-cascadeon' => 'Táto stránka je momentálne zamknutá, lebo je použitá na {{PLURAL:$1|nasledovnej stránke, ktorá má|nasledovných stránkach, ktoré majú}} zapnutú kaskádovú ochranu. Môžete zmeniť úroveň ochrany tejto stránky, ale neovplyvní to kaskádovú ochranu.',
 'protect-default' => 'Povoliť všetkých používateľov',
-'protect-fallback' => 'Vyžadovať povolenie „$1“',
-'protect-level-autoconfirmed' => 'Zablokovať nových a nezaregistrovaných používateľov',
-'protect-level-sysop' => 'Len pre správcov',
+'protect-fallback' => 'Povoliť iba používateľov s oprávnením „$1“',
+'protect-level-autoconfirmed' => 'Povoliť iba používateľov s potvrdeným emailom',
+'protect-level-sysop' => 'Povoliť iba správcov',
 'protect-summary-cascade' => 'kaskáda',
 'protect-expiring' => 'vyprší o $1 (UTC)',
 'protect-expiring-local' => 'vyprší $1',
@@ -3616,7 +3615,7 @@ Ostatné budú predvolene skryté.
 'monthsall' => 'všetky',
 'limitall' => 'všetky',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Potvrdiť e-mailovú adresu',
 'confirmemail_noemail' => 'Nenastavili ste platnú emailovú adresu vo svojich [[Special:Preferences|Nastaveniach]].',
 'confirmemail_text' => '{{SITENAME}} vyžaduje, aby ste potvrdili platnosť vašej e-mailovej adresy
@@ -3848,7 +3847,7 @@ Obrázky sa zobrazia v plnom rozlíšení, ostatné typy súborov sa spustia v p
 'specialpages-group-highuse' => 'Často používané stránky',
 'specialpages-group-pages' => 'Zoznamy stránok',
 'specialpages-group-pagetools' => 'Nástroje stránky',
-'specialpages-group-wiki' => 'Wiki údaje a nástroje',
+'specialpages-group-wiki' => 'Údaje a nástroje',
 'specialpages-group-redirects' => 'Špeciálne stránky, ktoré sú presmerovania',
 'specialpages-group-spam' => 'Nástroje proti spamu',
 

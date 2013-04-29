@@ -474,7 +474,7 @@ Fadlan waxyar sug intii aadan soo gelin.',
 'login-abort-generic' => 'Ma u soo gali karin gudaha - waa la noqay',
 'loginlanguagelabel' => 'Luqada: $1',
 
-# E-mail sending
+# Email sending
 'user-mail-no-addy' => "Isku dayday in aa dirto e-mail ayada oo ciwaan e-mail la'aan ah.",
 
 # Change password dialog
@@ -628,8 +628,8 @@ Fadlan markale isku day. Hadii aysan weli shaqaynin, ka bax ee markale soo gudag
 '''Hadii wax ka bedlkaan uu yahay mid xaq ah, fadlan markale isku day. Hadii aysan weli shaqaynin, is kuday inaad  ka baxdo ee markale soo gudagal.'''",
 'editing' => 'Waxaad badalaysaa $1',
 'creating' => 'Sameyta $1',
-'editingsection' => 'Waxaa wax ka badaleysaa $1 (qeyb yar)',
-'editingcomment' => 'Waxaa wax ka badaleysaa $1 (qeyb yar)',
+'editingsection' => 'Waxaad wax ka bedelaysaa $1 (qeyb yar)',
+'editingcomment' => 'Waxaad wax ka bedelaysaa $1 (qeyb yar)',
 'editconflict' => 'Isku dhac badalaadka: $1',
 'yourtext' => 'Qoraalkaaga',
 'editingold' => "'''DIGNIIN: Waxaad wax ka bedeli rabtaa boggan caddadkiisa duqoobay.
@@ -831,6 +831,7 @@ E-mailkaada mala sheegaayo markii ee dadka kale kula soo xiriirayaan.',
 # User rights
 'saveusergroups' => 'Kaydi kooxaha isticmaalayaasha',
 'userrights-groupsmember' => 'Ka mid ah:',
+'userrights-reason' => 'Sababta:',
 
 # Groups
 'group' => 'Koox:',
@@ -845,7 +846,7 @@ E-mailkaada mala sheegaayo markii ee dadka kale kula soo xiriirayaan.',
 'group-sysop-member' => '{{GENDER:$1|maamulaha}}',
 
 'grouppage-user' => '{{ns:project}}:Isticmaalada',
-'grouppage-autoconfirmed' => '{{ns:project}}:Gude gale la hubiyey si iskeeda ah',
+'grouppage-autoconfirmed' => '{{ns:project}}:Adeegsade la hubiyey',
 'grouppage-sysop' => '{{ns:project}}:Maamulada',
 
 # Rights
@@ -976,6 +977,7 @@ ku saabsan: $1',
 'filehist-thumb' => 'Sawir yar',
 'filehist-thumbtext' => 'Sawirka yar nuuciisa ahaa $1',
 'filehist-user' => 'Isticmaale',
+'filehist-dimensions' => 'Cabirka',
 'filehist-comment' => 'Ka hadalka',
 'imagelinks' => 'Faylka lagu isticmaalay',
 'linkstoimage' => 'Boggagaan soo socota ee  {{PLURAL:$1|ah waxey la xiriiraan|$1 ah waxey la xiriiraan}} faylkan:',
@@ -1071,7 +1073,7 @@ Tafaasiishiisa waxee ku qorantahay [$2 bogga tafaasiisha faylka] oo ka arki kart
 # Special:ListGroupRights
 'listgrouprights-members' => '(Inta ka mid ah liiskooda)',
 
-# E-mail user
+# Email user
 'mailnologin' => "Ma'jiro cinwaan wax lagu diro",
 'mailnologintext' => 'Waa in aad [[Special:UserLogin|gudaha ku jirtaa]]
 kuna haysatid E-boosto sax ah [[Special:Preferences|dooqyadaada]],
@@ -1134,6 +1136,7 @@ Hadii aad rabootid in aad boggan ka saartid wardiyeynta, dhagsii \"Ha' wardiyeyn
 # Rollback
 'rollback_short' => 'Soo celi',
 'rollbacklink' => 'dib u soo celi',
+'rollbacklinkcount-morethan' => 'soo celinta in kabadan $1 {{PLURAL:$1|badal|badallo}}',
 'revertpage' => 'Wuxuu dib u noqay badalkii oo sameeyay  [[Special:Contributions/$2|$2]] ([[User talk:$2|talk]]) kuna celiyay badalkii ka  danbeeyay oo sameeyay  [[User:$1|$1]]',
 'revertpage-nouser' => 'Wuxuu dib u noqay bedelyada (magaca isticmaalaha waa laga saaray) kuna celiyay  [[User:$1|$1]]',
 'rollback-success' => 'Wuxuu dib u noqay bedelka oo sameeyay  $1;
@@ -1391,7 +1394,7 @@ Hadii faylka wax laga badalay sida oo markiisa hore ahaa, waxaa laga yaabaa in e
 'namespacesall' => 'dhamaan',
 'monthsall' => 'Dhamaan',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail_noemail' => 'Kuma haysatid cinwaan E-boosto sax [[Special:Preferences|isticmaala dooqiisa]].',
 
 # action=watch/unwatch

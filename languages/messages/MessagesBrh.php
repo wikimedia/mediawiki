@@ -440,7 +440,7 @@ Ná radbadal ák deskáne atíko matano.",
 # Special:ListGroupRights
 'listgrouprights-members' => '(básk átá ridoband)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Dá kárband e girokŧapál as mon et',
 
 # Watchlist

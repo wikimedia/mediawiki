@@ -852,7 +852,7 @@ $2',
 'loginlanguagelabel' => 'Тіл: $1',
 'suspicious-userlogout' => 'Сіздің жүйеден шығу сұранымыңыз қабылданбады, өйткені, бұл жарамсыз браузер немесе кэштеуші проксидің сұранымына ұқсайды.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Mail() PHP-функциясындағы белгісіз қате.',
 'user-mail-no-addy' => 'Е-пошта есімінсіз хабарлама жіберуге талпынды.',
 
@@ -1934,7 +1934,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'listgrouprights-helppage' => '{{ns:help}}:Топ құқықтары',
 'listgrouprights-members' => '(мүше тізімі)',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Еш мекенжай жөнелтілген жоқ',
 'mailnologintext' => 'Басқа қатысушыға хат жөнелту үшін [[{{#special:Userlogin}}|кіруіңіз]] жөн, және [[{{#special:Preferences}}|бапталымдарыңызда]] жарамды е-пошта мекенжайы болуы жөн.',
 'emailuser' => 'Қатысушыға хат жазу',
@@ -2944,7 +2944,7 @@ $1',
 'namespacesall' => 'барлығы',
 'monthsall' => 'барлығы',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Е-пошта мекенжайын құптау',
 'confirmemail_noemail' => '[[{{#special:Preferences}}|Пайдаланушылық бапталымдарыңызда]] жарамды е-пошта мекенжайын қоймапсыз.',
 'confirmemail_text' => '{{SITENAME}} е-пошта мүмкіндіктерін пайдалану үшін алдынан е-пошта мекенжайыңыздың жарамдылығын тексеріп шығуыңыз керек.

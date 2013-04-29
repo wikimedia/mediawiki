@@ -457,7 +457,7 @@ Legend: '''({{int:cur}})''' = difference with latest revision, '''({{int:last}})
 'prefs-help-email-others' => 'Kibux mijğolat 3am Hadome ğer biFaṭo duMamlo u luglozam dumat Işmux.',
 'prefs-signature' => 'Imḍa',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'uEmail-Adresayḍux m³adlo yo.',
 
 # Groups
@@ -594,7 +594,7 @@ The description on its [$2 file description page] there is shown below.',
 'listgrouprights-helppage' => 'Help: Ḥaqat diGudo',
 'listgrouprights-members' => '(Lista daHadome)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Kṭaw Email luHadomano.',
 'emailusername' => 'Işme duHadomo:',
 'emailfrom' => 'Men:',

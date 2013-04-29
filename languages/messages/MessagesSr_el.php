@@ -822,7 +822,7 @@ Sačekajte nekoliko minuta i pokušajte ponovo.',
 'loginlanguagelabel' => 'Jezik: $1',
 'suspicious-userlogout' => 'Vaš zahtev za odjavu je odbijen jer je poslat od strane neispravnog pregledača ili posrednika.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Nepoznata greška u funkciji PHP mail().',
 'user-mail-no-addy' => 'Pokušali ste da pošaljete poruku bez e-adrese.',
 
@@ -1511,7 +1511,7 @@ Ako izaberete da ga unesete, ono će biti korišćeno za pripisivanje vašeg rad
 'prefs-displaywatchlist' => 'Postavke prikaza',
 'prefs-diffs' => 'Razlike',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'E-adresa je ispravna',
 'email-address-validity-invalid' => 'Unesite ispravnu e-adresu',
 
@@ -2320,7 +2320,7 @@ Pogledajte [[{{MediaWiki:Listgrouprights-helppage}}|više detalja]] o pojedinač
 'listgrouprights-addgroup-self-all' => 'Dodaj sve grupe na sopstveni nalog',
 'listgrouprights-removegroup-self-all' => 'Ukloni sve grupe sa sopstvenog naloga',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Nema adrese za slanje',
 'mailnologintext' => 'Morate biti [[Special:UserLogin|prijavljeni]] i imati ispravnu e-adresu u [[Special:Preferences|podešavanjima]] da biste slali e-poruke drugim korisnicima.',
 'emailuser' => 'Pošalji e-poruku',
@@ -3302,8 +3302,6 @@ Sve daljnje veze u istom redu smatraju se izuzecima.',
 
 /*
 Short names for language variants used for language conversion links.
-To disable showing a particular link, set it to 'disable', e.g.
-'variantname-zh-sg' => 'disable',
 Variants for Chinese language
 */
 'variantname-zh-hans' => 'hans',
@@ -3818,7 +3816,7 @@ $8',
 'monthsall' => 'sve',
 'limitall' => 'sve',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Potvrda e-adrese',
 'confirmemail_noemail' => 'Niste uneli ispravnu e-adresu u [[Special:Preferences|podešavanjima]].',
 'confirmemail_text' => '{{SITENAME}} zahteva da potvrdite e-adresu pre nego što počnete da koristite mogućnosti e-pošte.

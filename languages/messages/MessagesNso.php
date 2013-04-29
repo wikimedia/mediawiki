@@ -872,7 +872,7 @@ Matlakala ago ba [[Special:Watchlist|lenanong la gago la matlakala ditlhapetšo]
 # Special:ListGroupRights
 'listgrouprights-members' => '(Lenano la ditho)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Romela mošomiši yo molaetša',
 'emailpage' => 'Romela email go mošomiši',
 'noemailtitle' => 'Gago email atrese',

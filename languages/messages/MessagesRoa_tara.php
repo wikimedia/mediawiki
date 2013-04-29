@@ -24,30 +24,30 @@ $specialPageAliases = array(
 
 $messages = array(
 # User preference toggles
-'tog-underline' => 'Cullegaminde sottolinèete:',
+'tog-underline' => 'Collegaminde sottolinèate:',
 'tog-justify' => 'Giustifeche le paragrafe',
 'tog-hideminor' => "Scunne le cangiaminde stuédeche jndr'à le cangiaminde recende",
-'tog-hidepatrolled' => "Scunne le cangiaminde condrollete jndr'à le cangiaminde recende",
-'tog-newpageshidepatrolled' => "Scunne le pàggene tenute sotte condrolle da 'a liste de le pàggene nuève",
-'tog-extendwatchlist' => "Spanne 'a liste de le pàggene condrollete pe fa vedè tutte le cangiaminde fatte, none sulamende l'urteme",
+'tog-hidepatrolled' => "Scunne le cangiaminde condrollate jndr'à le cangiaminde recende",
+'tog-newpageshidepatrolled' => "Scunne le pàggene tenute sotte condrolle da l'elenghe de le pàggene nuève",
+'tog-extendwatchlist' => "Spanne l'elenghe de le pàggene condrollate pe fa vedè tutte le cangiaminde fatte, none sulamende l'urteme",
 'tog-usenewrc' => "Ause le cangiaminde recende migliorate (vole 'u JavaScript)",
-'tog-numberheadings' => 'Testete auto-numerete',
+'tog-numberheadings' => 'Testate auto-numerate',
 'tog-showtoolbar' => "Fà vedè 'a barra de le cangiaminde (JavaScript)",
 'tog-editondblclick' => "Cange le pàggene cu 'nu doppie clic (JavaScript)",
-'tog-editsection' => 'Abilite le cangiaminde a sezione ausanne [cange]',
-'tog-editsectiononrightclick' => "Abilite le cngiaminde d'a sezione ausanne 'u pulsande destre d'u mouse cazzanne sus a 'u titele (Javascript)",
-'tog-showtoc' => "Fa vedè 'a taggelle de le condenute (pe le pàggene cu cchiù de 3 testete)",
-'tog-rememberpassword' => "Arrencuerdete 'u nome mije sus a stu browser (pe 'nu massime de $1 {{PLURAL:$1|sciurne|sciurne}})",
+'tog-editsection' => "Abbilite le cangiaminde d'a sezione ausanne le collagaminde [cange]",
+'tog-editsectiononrightclick' => "Abbilite le cangiaminde d'a sezione ausanne 'u pulsande destre d'u mouse cazzanne sus a 'u titole (Javascript)",
+'tog-showtoc' => "Fa vedè 'a tabbelle de le condenute (pe le pàggene cu cchiù de 3 testate)",
+'tog-rememberpassword' => "Arrecuèrdete 'u nome mije sus a stu browser (pe 'nu massime de $1 {{PLURAL:$1|sciurne}})",
 'tog-watchcreations' => "Mitte le pàggene ca je agghie ccrejate jndr'à le pàggene condrollate",
 'tog-watchdefault' => "Mitte le pàggene ca je agghie cangiate jndr'à le pàggene condrollate",
-'tog-watchmoves' => "!Mitte le pàggene ca je agghie spustate jndr'à le pàggene condrollate",
+'tog-watchmoves' => "Mitte le pàggene ca je agghie spustate jndr'à le pàggene condrollate",
 'tog-watchdeletion' => "Mitte le pàggene ca je agghie scangellate jndr'à le pàggene condrollate",
-'tog-minordefault' => 'Pe convenzione signe tutte le cangiaminde cumme a stuédeche',
-'tog-previewontop' => "Fa vedè l'andeprime apprime de 'a scatole de le cangiaminde",
-'tog-previewonfirst' => "Fà vedè l'andeprime sus a 'u prime cangiaminde",
-'tog-nocache' => "Disabbilete 'u caching d'a pàgene sfogliate",
+'tog-minordefault' => 'Pe convenzione signe tutte le cangiaminde cumme stuédeche',
+'tog-previewontop' => "Fa vedè l'andeprime apprime d'a caselle de le cangiaminde",
+'tog-previewonfirst' => "Fà vedè l'andeprime sus a 'u prime cangiamende",
+'tog-nocache' => "Disabbilite 'u caching d'a pàgene sfogliate",
 'tog-enotifwatchlistpages' => "Manneme 'na mail quanne 'a pàgene ca stoche a condrolle ha cangiate",
-'tog-enotifusertalkpages' => "Manneme 'na mail quanne 'a pàgene de le 'ngazzaminde ha cangete",
+'tog-enotifusertalkpages' => "Manneme 'na mail quanne 'a pàgene de le 'ngazzaminde ha cangiate",
 'tog-enotifminoredits' => "Manneme 'na mail quanne onne state fatte cangiaminde stuèdeche sus a le pàggene",
 'tog-enotifrevealaddr' => "Fa vedè l'indirizze e-mail jndr'à le e-mail de notifiche",
 'tog-shownumberswatching' => "Fa vedè 'u numere de le utinde ca uardene",
@@ -57,15 +57,15 @@ $messages = array(
 [//www.mediawiki.org/wiki/Manual:External_editors Pe cchiù 'mbormaziune.])",
 'tog-externaldiff' => "Ause 'na differenze esterne pe default (sulamende pe l'esperte, abbesogne de 'na configuraziona speciele sus a 'u computer tune. <br />
 [//www.mediawiki.org/wiki/Manual:External_editors More information.])",
-'tog-showjumplinks' => 'Abbilite "zumbe a" pe accedere a le collegaminde',
-'tog-uselivepreview' => "Ause l'andeprime da 'u vive (JavaScript) (Sperimendele)",
-'tog-forceeditsummary' => "Ciercheme conferme quanne stoche a 'nzerische 'nu riepighe vianghe",
-'tog-watchlisthideown' => "Scunne le cangiaminde mie da 'a liste de le pàgene condrollete",
-'tog-watchlisthidebots' => "Scunne le cangiaminde de le not da 'a liste de le pàgene condrollete",
-'tog-watchlisthideminor' => "Scunne le cangiaminde stuèdeche da 'a liste de le pàgene condrollete",
-'tog-watchlisthideliu' => "Scunne le cangiaminde de l'utinde canusciute da 'a liste de le pàgene condrollete",
-'tog-watchlisthideanons' => "Scunne le cangiaminde de l'utinde scanusciute da 'a liste de le pàgene condrollete",
-'tog-watchlisthidepatrolled' => "Scunne le cangiaminde condrollete jndr'à liste de le pàggene condrollete",
+'tog-showjumplinks' => 'Abbilite "zumbe a" pe scè sus a le collegaminde',
+'tog-uselivepreview' => "Ause l'andeprime da 'u vive (JavaScript) (Sperimendale)",
+'tog-forceeditsummary' => "Ciércame conferme quanne stoche a 'nzerische 'nu riepighe vianghe",
+'tog-watchlisthideown' => "Scunne le cangiaminde mije da l'elenghe de le pàggene condrollate",
+'tog-watchlisthidebots' => "Scunne le cangiaminde de le bot da l'elenghe de le pàggene condrollate",
+'tog-watchlisthideminor' => "Scunne le cangiaminde stuèdeche da l'elenghe de le pàggene condrollate",
+'tog-watchlisthideliu' => "Scunne le cangiaminde de l'utinde canusciute da l'elenghe de le pàggene condrollate",
+'tog-watchlisthideanons' => "Scunne le cangiaminde de l'utinde scanusciute da l'elenghe de le pàggene condrollate",
+'tog-watchlisthidepatrolled' => "Scunne le cangiaminde condrollate jndr'à l'elenghe de le pàggene condrollate",
 'tog-ccmeonemails' => "Manneme 'na copie de le mail ca je manne a l'ôtre utinde",
 'tog-diffonly' => 'No fà vedè le pàggene cu le condenute sotte a le differenze',
 'tog-showhiddencats' => 'Fa vedè le categorije scunnute',
@@ -143,11 +143,11 @@ $messages = array(
 'category-empty' => "''Sta categorije pe mò non ge tène manghe 'na pàgene e manghe 'nu media.''",
 'hidden-categories' => '{{PLURAL:$1|categorije scunnute|categorije scunnute}}',
 'hidden-category-category' => 'Categorije scunnute',
-'category-subcat-count' => "{{PLURAL:$2|Sta categorije tène sulamende 'na sottecategorije.|Sta categorije tène {{PLURAL:$1|'na sottecategorije|$1 sottecategorije}}, sus a 'nu totele de $2.}}",
+'category-subcat-count' => "{{PLURAL:$2|Sta categorije tène sulamende 'na sottecategorije}}. Sta categorije tène {{PLURAL:$1|'na sottecategorije|$1 sottecategorije}}, sus a 'nu totale de $2.",
 'category-subcat-count-limited' => 'Sta categorije tène {{PLURAL:$1|sottecategorije|le seguende $1 sottecategorije}}.',
-'category-article-count' => "{{PLURAL:$2|Sta categorije condiene sulamende 'a seguenda pàgene.|{{PLURAL:$1|'A seguende pàgene jè|le seguende $1 pàggene sonde }} condenute jndr'à sta categorije, sus a $2 totele.}}",
+'category-article-count' => "{{PLURAL:$2|Sta categorije tène sulamende 'a seguenda pàgene.}} {{PLURAL:$1|'A seguende pàgene jè|le seguende $1 pàggene sonde}} condenute jndr'à sta categorije, sus a $2 totale.",
 'category-article-count-limited' => "{{PLURAL:$1|'A pàgene seguente ste|Le $1 pàggene seguende stonne}} jndr'à categorija corrende",
-'category-file-count' => "{{PLURAL:$2|Sta categorije condene sulamende 'u seguende file.|{{PLURAL:$1|'U seguende file stè |le seguende $1 files stonne}} jndr'à sta categorije, sus a $2 totele.}}",
+'category-file-count' => "{{PLURAL:$2|Sta categorije tène sulamende 'u seguende file}}. {{PLURAL:$1|'U seguende file stè |le seguende $1 files stonne}} jndr'à sta categorije, sus a $2 totale.",
 'category-file-count-limited' => "{{PLURAL:$1|'U seguende file jè|$1 Le seguende file sonde}} jndr'à categorije corrende.",
 'listingcontinuesabbrev' => 'cond.',
 'index-category' => 'Pàggene indicizzate',
@@ -206,7 +206,7 @@ $messages = array(
 'searcharticle' => 'Véje',
 'history' => "Storie d'a pàgene",
 'history_short' => 'Cunde',
-'updatedmarker' => "aggiornete da l'urtema visite meje",
+'updatedmarker' => "aggiornate da l'urtema visita meje",
 'printableversion' => 'Versione ca se stambe',
 'permalink' => 'Collegamende ca remane pe sembre',
 'print' => 'Stambe',
@@ -444,10 +444,10 @@ L\'amministratore ca l\'ha bloccate dèje sta spiegazione: "$3".',
 'virus-unknownscanner' => 'antivirus scanusciute:',
 
 # Login and logout pages
-'logouttext' => "'''Tu tè scolleghete.'''
+'logouttext' => "'''Tu tè scollegate.'''
 
 Tu puè condinuà a ausà {{SITENAME}} in mode anonime, o tu puè [[Special:UserLogin|collegarte 'n'otra vote]] cumme 'u stesse utende o cumme 'n'otre utende.
-Note Bbuene ca certe pàggene ponne condinuà a essere viste cumme ce tu ste angore colleghete, fine a quanne a cache d'u browser no se sdeveche.",
+Note Bbuène ca certe pàggene ponne condinuà a essere viste cumme ce tu ste angore collegate, fine a quanne 'a cache d'u browser no se sdeveche.",
 'welcomecreation' => "== Bovegne, $1! ==
 'U cunde tue ha state ccrejete.
 No te sce scurdanne de cangià le [[Special:Preferences|{{SITENAME}} preferenze tue]].",
@@ -524,8 +524,8 @@ Pe piacere, colleghete n'otra vota quanne l'è ricevute.",
 'blocked-mailpassword' => "L'indirizze IP tue jè blocchete pe le cangiaminde e accussì tu non ge puè ausà 'a funzione de recupere d'a password pe prevenìe l'abbuse.",
 'eauthentsent' => "'N'e-mail de conferme ha state mannete a l'indirizze ca tu è ditte.
 Apprime ca otre e-mail avènene mannete a 'u cunde tue, tu ha seguì le 'struzione ca stonne jndr'à l'e-mail, pe confermà l'iscrizione.",
-'throttled-mailpassword' => "'Nu arrecordatore de password ha stete già mannete jndr'à {{PLURAL:$1|l'urtema ore|l'urteme $1 ore}}.
-Pe prevenì l'abbuse, sulamende 'nu arrecordatore de password avene mannete ogne {{PLURAL:$1|ore|$1 ore}}.",
+'throttled-mailpassword' => "'Nu arrecordatore de passuord ha stete già mannate jndr'à {{PLURAL:$1|l'urtema ore|l'urteme $1 ore}}.
+Pe prevenì l'abbuse, sulamende 'nu arrecordatore de passuord avene mannate ogne {{PLURAL:$1|ore|$1 ore}}.",
 'mailerror' => "Errore mannanne 'a mail: $1",
 'acct_creation_throttle_hit' => "Le visitature de sta Uicchi ca stonne ausene stu indirizze IP onne ccrejete {{PLURAL:$1|'nu cunde utende|$1 cunde utinde}} jndr'à l'urteme giurne, e onne raggiunde 'u numere massime ca se pò fà jndr'à stu periode.
 'U resultete jè ca le visitature ca stonne ausene stu indirizze IP non ge ponne ccrejà otre cunde utinde nuève jndr'à stu mumende.",
@@ -552,7 +552,7 @@ Pe piacere vide c'aspitte 'nu picche de timbe apprime de pruvà 'n'otra vote.",
 'loginlanguagelabel' => 'Lénga: $1',
 'suspicious-userlogout' => "'A richiesta toje de assè ha state bloccate purcè pare ca ha state mannate da 'nu browser scuasciate o da 'a cache de 'nu proxy.",
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => "Errore scanusciute jndr'à funzione PHP mail()",
 'user-mail-no-addy' => "E' pruvate a mannà 'na mail senze 'u 'ndirizze mail",
 
@@ -577,7 +577,7 @@ Pò essere ca tu è già cangete 'a password toje o è richieste una temboranea 
 
 # Special:PasswordReset
 'passwordreset' => "Azzere 'a passuord",
-'passwordreset-text' => "Comblete stu module pe avè 'na mail pe arrecurdarte le dettaglie d'u cunde tune.",
+'passwordreset-text' => "Comblete stu module pe ricevere 'na mail de promemorie de le dettaglie d'u cunde tune.",
 'passwordreset-legend' => "Azzere 'a passuord",
 'passwordreset-disabled' => "'U reset de le passuord ha state desabbilitate sus a sta uicchi.",
 'passwordreset-pretext' => '{{PLURAL:$1||Mitte une de le stuèzze de le date aqquà sotte}}',
@@ -591,7 +591,7 @@ Pò essere ca tu è già cangete 'a password toje o è richieste una temboranea 
 
 $2
 
-{{PLURAL:$3|Sta passuord temboranèe scade|Ste passuord temboranèe scadene}}  'mbrà {{PLURAL:$5|'nu sciurne|$5 sciurne}}.
+{{PLURAL:$3|Sta passuord temboranèe scade|Ste passuord temboranèe scadene}} 'mbrà {{PLURAL:$5|'nu sciurne|$5 sciurne}}.
 Tu avissa trasè e scacchià 'na passuord nova. Ce quacchedun'otre ha fatte sta richieste, o ce tu t'è arrecurdate 'a passuord origgenale toje, e non g'a vuè ccu cange cchiù, tu puè ignorà stu messagge e condinuà ausanne 'a passuord vecchie.",
 'passwordreset-emailtext-user' => "L'utende $1 sus a {{SITENAME}} ave richieste 'na mail pe arrecurdarse le dettaglie d'u cunde sue pe {{SITENAME}}
 ($4). {{PLURAL:$3|'U cunde utende seguende jè|le cunde utinde seguende sonde}} associate cu st'indirizze e-mail:
@@ -603,7 +603,7 @@ Tu avissa trasè e scacchià 'na passuord nova. Ce quacchedun'otre ha fatte sta 
 'passwordreset-emailelement' => 'Nome utende: $1<br />
 Passuord temboranèe: $2',
 'passwordreset-emailsent' => "'N'e-mail pe arrecurdarte ha state mannate.",
-'passwordreset-emailsent-capture' => "'Na e-mail de promemorie ha state mannate, ca jè fatte vedè aqquà sotte.",
+'passwordreset-emailsent-capture' => "'Na e-mail pe azzeramende d'a passuord ha state mannate, ca jè fatte vedè aqquà sotte.",
 'passwordreset-emailerror-capture' => "'Na e-mail de promemorie ha state generate, ca jè fatte vedè aqquà sotte, ma 'u 'nvie a l'utende ha fallite: $1",
 
 # Special:ChangeEmail
@@ -1242,7 +1242,7 @@ Ce tu 'u mitte, a fatje ca è fatte t'avène ricanusciute.",
 'prefs-displaywatchlist' => "Fà vedè l'opzione",
 'prefs-diffs' => 'Diff',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => "L'indirizze e-mail pare valide",
 'email-address-validity-invalid' => "Mitte 'n'indirizze e-mail valide",
 
@@ -2048,7 +2048,7 @@ Ponne stà [[{{MediaWiki:Listgrouprights-helppage}}|'mbormaziune de cchiù]] sus
 'listgrouprights-addgroup-self-all' => "Mitte tutte le gruppe sus a 'u cunde utende mije",
 'listgrouprights-removegroup-self-all' => "Live tutte le gruppe da 'u cunde utende mije",
 
-# E-mail user
+# Email user
 'mailnologin' => 'Nisciune indirizze de invie',
 'mailnologintext' => "Tu a essere [[Special:UserLogin|collegate]] e a avè 'n'indirizze email valide jndr'à le [[Special:Preferences|preferenze]] tue pe mannà 'na mail a otre utinde.",
 'emailuser' => "Manne n'email a stu utende",
@@ -2087,7 +2087,7 @@ L'indirizze e-mail ca tu è 'nzerite jndr'à le [[Special:Preferences|preferenze
 'usermessage-template' => 'MediaWiki:UserMessage',
 
 # Watchlist
-'watchlist' => 'Pàggene condrollete',
+'watchlist' => 'Pàggene condrollate',
 'mywatchlist' => 'Pàggene condrollate',
 'watchlistfor2' => 'Pe $1 $2',
 'nowatchlist' => "Non ge tine pàggene jndr'à liste de le pàggene condrollete.",
@@ -2563,7 +2563,7 @@ Tu puè aggiornà 'u ridirezionamende ca apponde a 'u titole origgenale automati
 Ce tu no ste scacchie, sta secure de condrollà [[Special:DoubleRedirects|doppie ridirezionaminde]] o [[Special:BrokenRedirects|ridirezionaminde scuasciate]].
 Tu si 'u responsabbile de quidde ca cumbine, assicurate ca 'u collegamende condinue a appondà addò avessa scè.
 
-Vide Bbuene ca 'a pàgene '''non''' g'avene spustate ce esiste n'otra pàgene cu 'u titole nuéve, a mene ca jè vacande o jè 'na pàgene de ridirezionamende senza storie.
+Vide Bbuene ca 'a pàgene '''non''' g'avène spustate ce esiste n'otra pàgene cu 'u titole nuéve, a mene ca jè vacande o jè 'na pàgene de ridirezionamende senza storie.
 Quieste significhe ca tu puè fà turnà 'u vecchie nome 'a pàgene ce jedde ha state renomenate e t'è rese conde ca è fatte 'na studecarije sovrascrevènne 'na pàgene esistende.
 
 '''ATTENZIONE!'''
@@ -3035,8 +3035,6 @@ Tutte le sottosequenze ca appondene a stessa linea sonde considerete eccezziune,
 
 /*
 Short names for language variants used for language conversion links.
-To disable showing a particular link, set it to 'disable', e.g.
-'variantname-zh-sg' => 'disable',
 Variants for Chinese language
 */
 'variantname-zh-hans' => 'hans',
@@ -3552,7 +3550,7 @@ $8',
 'monthsall' => 'tutte',
 'limitall' => 'tutte',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => "Conferme l'indirizze e-mail",
 'confirmemail_noemail' => "Tu non ge tine 'n'indirizze e-mail valide configurate sus a le [[Special:Preferences|preferenze tue]].",
 'confirmemail_text' => "{{SITENAME}} richiede ca tu ha validà l'indirizze email tue apprime de ausà 'a funzione de l'email.
@@ -3871,7 +3869,7 @@ Le immaggine sonde fatte vedè jndr'à resoluziona megghie, otre tipe de file re
 'specialpages-group-highuse' => 'Pàggene ausete assaje proprie',
 'specialpages-group-pages' => 'Liste de le pàggene',
 'specialpages-group-pagetools' => 'Pàgene de le struminde',
-'specialpages-group-wiki' => 'Date e struminde de Uicchi',
+'specialpages-group-wiki' => 'Date e struminde',
 'specialpages-group-redirects' => 'Redirezionaminde de le pàggene speciele',
 'specialpages-group-spam' => "Struminde p'u spam",
 

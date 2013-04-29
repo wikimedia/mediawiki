@@ -983,7 +983,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 # Special:ListGroupRights
 'listgrouprights-members' => '(talaan sa mga miyembro)',
 
-# E-mail user
+# Email user
 'emailuser' => 'I-email kaning gumagamit',
 
 # Watchlist

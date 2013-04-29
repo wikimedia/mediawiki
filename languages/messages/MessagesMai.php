@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Amire80
  * @author Ashishanchinhar
  * @author Dhirendra.maithili
  * @author Ggajendra
@@ -160,7 +161,7 @@ $messages = array(
 'cancel' => 'समाप्त',
 'moredotdotdot' => 'आर...',
 'mypage' => 'हमर पन्ना',
-'mytalk' => 'हमर वार्त्ता',
+'mytalk' => 'वार्त्ता',
 'anontalk' => 'ऐ अनिकेत पता लेल विमर्श',
 'navigation' => 'संचार',
 'and' => '&#32;आर',
@@ -517,7 +518,7 @@ $2',
 'loginlanguagelabel' => 'भाषा : $1',
 'suspicious-userlogout' => 'अहाँक निष्क्रमणक अनुरोध नै मानल गेल कारण ई लागल जे ई पुरान गवेषकक लागि वा दोसराइत उपस्मृति द्वारा पठाओल गेल छल।',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'पी.एच.पी.क संदेश कार्य() मे अज्ञात दोष',
 'user-mail-no-addy' => 'बिन ई-पत्र संकेतक ई-पत्र पठेबाक प्रयास',
 
@@ -1053,7 +1054,7 @@ $3 द्वारा देल कारण अछि ''$2''",
 
 # Preferences page
 'preferences' => 'विकल्प',
-'mypreferences' => 'हमर खासमखास',
+'mypreferences' => 'खासमखास',
 'prefs-edits' => 'सम्पादनक संख्या',
 'prefsnologin' => 'सम्प्रवेशित नै',
 'prefsnologintext' => 'अहाँ <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} logged in]</span> प्रयोक्ता विकल्प निर्धारण लेल प्रयोग करू।',
@@ -1172,7 +1173,7 @@ $3 द्वारा देल कारण अछि ''$2''",
 'prefs-displaywatchlist' => 'दृश्य विकल्प सभ',
 'prefs-diffs' => 'अन्तर निर्धारक सभ',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'ई-पत्र संकेत मान्य बुझाइत अछि',
 'email-address-validity-invalid' => 'एकटा मान्य ई-पत्र संकेत लिखू',
 
@@ -1895,7 +1896,7 @@ $1',
 'listgrouprights-addgroup-self-all' => 'सभटा वर्गकेँ अपन खातामे जोड़ू',
 'listgrouprights-removegroup-self-all' => 'सभटा वर्गकेँ अपन खातासँ निकालू',
 
-# E-mail user
+# Email user
 'mailnologin' => 'कोनो पठेबाक पता नै',
 'mailnologintext' => 'अहाँ [[Special:UserLogin|सम्प्रवेशित]] हेबाक चाही आ अहाँक विकल्प [[Special:Preferences|preferences]]  मे एकटा मान्य ई-पत्र संकेत दोसर प्रयोक्ताकेँ पठेबा लेल हेबाक चाही।',
 'emailuser' => 'ऐ प्रयोक्ताकेँ ई-पत्र पठाउ',
@@ -1932,8 +1933,8 @@ $1',
 'usermessage-template' => 'मीडियाविकी:प्रयोक्ता संदेश',
 
 # Watchlist
-'watchlist' => 'हमर साकांक्षसूची',
-'mywatchlist' => 'हमर साकांक्ष-सूची',
+'watchlist' => 'साकांक्षसूची',
+'mywatchlist' => 'साकांक्ष-सूची',
 'watchlistfor2' => '$1 $2 लेल',
 'nowatchlist' => 'अहाँक साकांक्ष-सूचीमे कोनो बौस्तु नै अछि।',
 'watchlistanontext' => 'कृपा कऽ $1 अहाँक साकांक्ष-सूचीकेँ देखबा वा सम्पादित करबा लेल।',
@@ -2192,7 +2193,7 @@ $1',
 # Contributions
 'contributions' => 'प्रयोक्ताक योगदान सभ',
 'contributions-title' => '$1 लेल प्रयोक्ताक अवदान',
-'mycontris' => 'हमर योगदान',
+'mycontris' => 'योगदान',
 'contribsub2' => '$1 ($2) लेल',
 'nocontribs' => 'कोनो परिवर्तन ऐ सँ मेल नै खाइए।',
 'uctop' => '(शिखर)',
@@ -2233,7 +2234,7 @@ $1',
 'whatlinkshere-hideredirs' => '$1 घुरबैए',
 'whatlinkshere-hidetrans' => '$1 परागत',
 'whatlinkshere-hidelinks' => '$1 सम्बन्ध सभ',
-'whatlinkshere-hideimages' => '$1 चित्रक लागि सभ',
+'whatlinkshere-hideimages' => '$1 फाइल लागि सभ',
 'whatlinkshere-filters' => 'चलनी सभ',
 
 # Block/unblock
@@ -2779,8 +2780,6 @@ $1',
 
 /*
 Short names for language variants used for language conversion links.
-To disable showing a particular link, set it to 'disable', e.g.
-'variantname-zh-sg' => 'disable',
 Variants for Chinese language
 */
 'variantname-zh-cn' => 'cn',
@@ -3215,7 +3214,7 @@ Variants for Chinese language
 'monthsall' => 'सभ',
 'limitall' => 'सभटा',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => ' ई-पत्र सत्यापित करू',
 'confirmemail_noemail' => 'अहाँ लग कोनो मान्य ई-पत्र संकेत नै अछि एतए [[Special:Preferences|प्रयोक्ताक पसिन्न सभ]] देबा लेल।',
 'confirmemail_text' => '{{जालस्थल}}  चाहैए जे अहाँ अपन ई-पत्र सुविधा प्रयोग करबासँ पहिने अपन ई-पत्र संकेतक सत्यापन करू।

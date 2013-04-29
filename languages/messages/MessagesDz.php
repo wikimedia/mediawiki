@@ -456,7 +456,7 @@ $messages = array(
 # Special:Categories
 'categories' => 'དབྱེ་རིམ།',
 
-# E-mail user
+# Email user
 'emailuser' => 'ལག་ལེན་པ་ལུ་ གློག་འཕྲིན་གཏང་',
 
 # Watchlist

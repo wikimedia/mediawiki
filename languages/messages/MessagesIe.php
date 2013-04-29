@@ -978,7 +978,7 @@ Li descrition es in li [$2 págine de descrition del file] ta e es monstrat in i
 # Special:ListGroupRights
 'listgrouprights-members' => '(liste de membres)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Parlar che ti usator',
 'usermailererror' => 'Objecte de postage retornat errore:',
 'usermaildisabled' => 'E-mail de usator desvalidat',

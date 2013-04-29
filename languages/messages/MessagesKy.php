@@ -444,7 +444,7 @@ $1',
 'login-abort-generic' => 'Сиздин кирүүңүз ийгиликтүү эмес болду - Үзүлдү',
 'loginlanguagelabel' => 'Тил: $1',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => "PHP'нин mail() функциясындагы белгисиз ката.",
 
 # Change password dialog
@@ -812,7 +812,7 @@ HTML-тегдеринин тууралыгын текшериңиз.',
 'prefs-displaysearchoptions' => 'Көрсөтүүнүн ырастоолору',
 'prefs-displaywatchlist' => 'Көрсөтүүнүн ырастоолору',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'Эл. почтанын дареги анык көрүнөт',
 'email-address-validity-invalid' => 'Эл. почтанын анык дарегин киргизиңиз!',
 
@@ -1107,7 +1107,7 @@ HTML-тегдеринин тууралыгын текшериңиз.',
 'listgrouprights-helppage' => 'Help:Топтордун укуктары',
 'listgrouprights-members' => '(мүчөлөрдүн тизмеси)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Бул катышуучуга кат жиберүү',
 'emailusername' => 'Катышуучунун аты:',
 'emailusernamesubmit' => 'Жөнөтүү',
@@ -1615,7 +1615,7 @@ HTML-тегдеринин тууралыгын текшериңиз.',
 'monthsall' => 'баары',
 'limitall' => 'баары',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Электрондук даректи аныктоо',
 'confirmemail_loggedin' => 'Электрондук дарегиңиз аныкталды.',
 

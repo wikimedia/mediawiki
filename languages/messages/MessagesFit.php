@@ -493,7 +493,7 @@ Tiot [$2 fiilin kuvvaussivulta] näkyvät tässä alla.',
 # Special:ListGroupRights
 'listgrouprights-members' => '(jäsenlista)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Lähätä e-posti tälle käyttäjälle',
 
 # Watchlist

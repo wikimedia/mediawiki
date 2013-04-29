@@ -495,7 +495,7 @@ Legend: '''({{int:cur}})''' = vaiţīd līdzinţõmizõks lǟndz redaktsijõks,,
 # Special:ListGroupRights
 'listgrouprights-members' => '(nõtkõmd nimkēra)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Sōtõgid sīen kȭlbatijizõn e-kēra',
 
 # Watchlist

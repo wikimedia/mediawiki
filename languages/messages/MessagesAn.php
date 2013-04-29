@@ -606,7 +606,7 @@ Si a cuenta s\'ha creyato por error, simplament ignore iste mensache.',
 'loginlanguagelabel' => 'Idioma: $1',
 'suspicious-userlogout' => "S'ha denegau a suya demanda de zarrar a sesión ya que pareix que la ninvió un navegador defectuoso u bell proxy amagau.",
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Error desconoixito en a función mail() de PHP',
 'user-mail-no-addy' => 'Ha mirau de ninviar un mensache de correu sin una adreza de correu electronico.',
 
@@ -1232,7 +1232,7 @@ Habría de tener menos de $1 {{PLURAL:$1|carácter|carácters}}.',
 'prefs-displaywatchlist' => 'Opcions de visualización',
 'prefs-diffs' => 'Diferencias',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => "L'adreza de correu electronico pareix valida",
 'email-address-validity-invalid' => 'Escriba una adreza valida de correu electronico',
 
@@ -1983,7 +1983,7 @@ Protocolos suportados: <code>$1</code> (no los adhiba en a suya busca).',
 'listgrouprights-addgroup-self-all' => 'Adhibir-se a todas as collas',
 'listgrouprights-removegroup-self-all' => 'Salir de todas as collas',
 
-# E-mail user
+# Email user
 'mailnologin' => "No ninviar l'adreza",
 'mailnologintext' => "Ha d'haber [[Special:UserLogin|encetato una sesión]] y tener una adreza conforme de correu-e en as suyas [[Special:Preferences|preferencias]] ta ninviar un correu electronico ta atros usuarios.",
 'emailuser' => 'Ninviar un correu electronico ta iste usuario',
@@ -3301,7 +3301,7 @@ Os campos de metadatos d'a imachen que amaneixen en iste mensache s'amostrarán 
 'monthsall' => 'totz',
 'limitall' => 'Totz',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Confirmar adreza de correu-e',
 'confirmemail_noemail' => "No tiene una adreza de correu-e conforme en as suyas [[Special:Preferences|preferencias d'usuario]].",
 'confirmemail_text' => "{{SITENAME}} requiere que confirme a suya adreza de correu-e antis de poder usar as funcions de correu-e. Punche o botón de baxo ta ninviar un mensache de confirmación t'a suya adreza. O mensache incluirá un vinclo con un codigo. Escriba-lo ta confirmar que a suya adreza ye conforme.",

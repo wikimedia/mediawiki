@@ -694,7 +694,7 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 # Special:Categories
 'categories' => 'زمرا',
 
-# E-mail user
+# Email user
 'emailuser' => 'هن يوزر کي برق ٽپال اماڻيو',
 
 # Watchlist
@@ -967,7 +967,7 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 'namespacesall' => 'سڀ',
 'monthsall' => 'سڀ',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail_success' => 'توھان جي برق ٽپال جي پڪ ڪئي وئي آھي. ھاڻِ توھان لاگ ان ٿي وڪيءَ جو مزو وٺي سگھو ٿا',
 
 # Delete conflict

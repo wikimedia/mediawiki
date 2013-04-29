@@ -650,10 +650,15 @@ Ale doét mie éte pu longue éq $1 {{PLURAL:$1|caracter|caractéres}}.',
 'imagelinks' => 'Usage dech fichié',
 'linkstoimage' => "{{PLURAL:$1|L'pache d'apreu est liée|Chés $1 paches d'apreu sont liées}} à ch'fichié-lo :",
 'nolinkstoimage' => "Autchune pache n'est loïée aveuc ch'fichié-lo",
-'sharedupload' => "Cht'fichié vient éd $1 pi i put ète imploïé par d'eutes proujés.",
-'sharedupload-desc-here' => "Ch'fichié i vient éd $1. I put ète uzer pèr d’eutes prodjés.
-Vir apré ([$2 pache]).",
+'sharedupload' => "Ch'fichié i vient éd $1. I put ète imploïé par d'eutes proujés.",
+'sharedupload-desc-there' => "Ch'fichié i vient éd $1. I put ète uzé pèr d’eutes prodjés. Vir l'pache [$2 édseur Commons].",
+'sharedupload-desc-here' => "Ch'fichié i vient éd $1. I put ète uzé pèr d’eutes prodjés.
+Vir l'pache [$2 édseur Commons].",
+'sharedupload-desc-edit' => "Ch'fichié i vient éd $1. I put ète imploïé par d'eutes proujés. Os pouvez canjer l' déscripcion dsu s' [$2 pache Commons].",
+'sharedupload-desc-create' => "Ch'fichié i vient éd $1. I put ète imploïé par d'eutes proujés. Os pouvez canjer l' déscripcion dsu s' [$2 pache Commons].",
 'uploadnewversion-linktext' => 'Quértcher eune novèle vérchion del pache-lo',
+'shared-repo-from' => 'à : $1',
+'shared-repo' => 'un dépôt partagé',
 
 # MIME search
 'mimesearch' => 'Tracher pèr type éd contenu MIME',
@@ -755,7 +760,7 @@ Vir apré ([$2 pache]).",
 'listgrouprights-summary' => "L'pache-lo ch'est ène lisse d'chés groupes d'uzeus définis édseur ech wiki aveuc chés drouots d'intrèe achuchonnés.<br />I put y avoèr ichi d'eutes [[MediaWiki:Listgrouprights-helppage|informacions]] édseur chés drouots individuèls. ([[{{MediaWiki:Listgrouprights-helppage}}|vir]])",
 'listgrouprights-members' => '(lisse éd chés mimbes)',
 
-# E-mail user
+# Email user
 'emailuser' => "Imèle echl'uzeu-lo",
 'emailpage' => 'Imèle dech uzeu',
 
@@ -779,7 +784,7 @@ Vir apré ([$2 pache]).",
 # Delete
 'deletepage' => "Défacer l'pache",
 'confirmdeletetext' => "Vos alez défacer eune pache ou un fichié aveuc toutes chés antieusses vérchons.<br /> Confreumer éq ch'est cho éq vos voulez foaire, éq vos conprindez chés consécanches et pi éq ch'est bin s'lon el [[{{MediaWiki:Policy-url}}|politique éd MédiaWiki]].",
-'actioncomplete' => 'Plònne acchon',
+'actioncomplete' => 'Accion toute piéte',
 'actionfailed' => "L’action n'a poin réussi",
 'deletedtext' => "« $1 » o té défacé.
 Vir $2 pou eune lisse d'chés darinnes défachons.",

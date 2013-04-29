@@ -1700,7 +1700,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'listgrouprights-helppage' => '{{ns:help}}:توپ قۇقىقتارى',
 'listgrouprights-members' => '(مۇشە ٴتىزىمى)',
 
-# E-mail user
+# Email user
 'mailnologin' => 'ەش مەكەنجاي جونەلتىلگەن جوق',
 'mailnologintext' => 'باسقا قاتىسۋشىعا حات جونەلتۋ ٴۇشىن [[Special:UserLogin|كىرۋىڭىز]] كەرەك, جانە [[Special:Preferences|باپتاۋىڭىزدا]] جارامدى ە-پوشتا جايى بولۋى ٴجون.',
 'emailuser' => 'قاتىسۋشىعا حات جازۋ',
@@ -2673,7 +2673,7 @@ $1',
 'namespacesall' => 'بارلىعى',
 'monthsall' => 'بارلىعى',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'ە-پوشتا مەكەنجايىن قۇپتاۋ',
 'confirmemail_noemail' => '[[{{#special:Preferences}}|پايدالانۋشىلىق باپتالىمدارىڭىزدا]] جارامدى ە-پوشتا مەكەنجايىن قويماپسىز.',
 'confirmemail_text' => '{{SITENAME}} ە-پوشتا مۇمكىندىكتەرىن پايدالانۋ ٴۇشىن الدىنان ە-پوشتا مەكەنجايىڭىزدىڭ جارامدىلىعىن تەكسەرىپ شىعۋىڭىز كەرەك.

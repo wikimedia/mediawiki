@@ -1072,7 +1072,7 @@ Zuasätzlige Informaziónen ywer dé oahzelnen Rechtt kennan [[{{MediaWiki:Listg
 'listgrouprights-removegroup-self' => "'s oagerne Benutzerkóntó aus {{PLURAL:$2|derer Gruppm|dé Gruppm}} entferner: $1",
 'listgrouprights-addgroup-self-all' => 'Kauh olle Gruppm zum oagern Kóntó dazuadoah',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Du bist néd auhgmödt',
 'emailuser' => 'Mail an den Nutza',
 'emailpage' => 'E-Mail aun Benutzer',
@@ -1567,7 +1567,7 @@ Weidane wean standardmassi ned ozoagt.
 'namespacesall' => 'olle',
 'monthsall' => 'olle',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'E-Post-Adressn bestäting (Authentifiziarung)',
 'confirmemail_noemail' => 'Du håst ka güitige E-Post-Adressn in deine [[Special:Preferences|persönlichn Eistellungen]] eitrång.',
 'confirmemail_send' => 'Bstätigungscode zuaschicker',

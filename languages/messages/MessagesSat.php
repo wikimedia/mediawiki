@@ -475,7 +475,7 @@ Arhõ kurumuṭue lahare dayakate thoṛagan tạṅgiemẽ.',
 'login-abort-generic' => 'Amaḱ bhitri boloḱ do baṅ hoylena - batena.',
 'loginlanguagelabel' => 'katha: $1',
 
-# E-mail sending
+# Email sending
 'user-mail-no-addy' => 'Jahan e-mail ṭhikana bạgi kate e-mail kul kurumuṭu hoena.',
 
 # Change password dialog
@@ -776,7 +776,7 @@ Unuduḱ: '''({{int:cur}})''' = nahaḱ nãwã aroeko saõte tulạo, '''({{int:
 'prefs-help-email-others' => 'Am são e-mail hotete jogajog dohoy lạgitte mitṭen joṛao se amaḱ katha roṛaḱ sakam bachao jońme.
 Amaḱ e-mail ṭhikạna do bań cabaḱa tinre onko do ko beohara',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'E-mail ṭhikạna do jewetge ńamena',
 'email-address-validity-invalid' => 'Amaḱ jewet e-mail ṭhkạna emmẽ',
 
@@ -950,7 +950,7 @@ Noa reaḱ pasnao katha [$2 rẽt pasnao sakam] latare emena',
 'listgrouprights-addgroup-all' => 'Joto gaõtare ko soṅgekom',
 'listgrouprights-removegroup-all' => 'Joto gaõtaren ko ocoḱgiḍikom',
 
-# E-mail user
+# Email user
 'emailuser' => 'Nui beoharić e-mail emayme',
 'emailpage' => 'E-mail beoharić',
 'noemailtitle' => 'E-mail ṭhikạna do banuḱa',

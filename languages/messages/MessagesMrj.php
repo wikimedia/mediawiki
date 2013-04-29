@@ -486,7 +486,7 @@ $messages = array(
 # Special:ListGroupRights
 'listgrouprights-members' => '(группын списокшы)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Сирӹшӹлӓн сирмӓш',
 
 # Watchlist

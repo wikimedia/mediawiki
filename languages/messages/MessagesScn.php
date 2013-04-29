@@ -619,6 +619,9 @@ Aspetta tanticchia prima di pruvari  n'àutra vota.",
 Pò èssiri ca ggià canciasti cu successu la tò password o c'addumannasti na nova password timpurrània.",
 'resetpass-temp-password' => 'Password timpurrània:',
 
+# Special:ChangeEmail
+'changeemail-submit' => 'Cancia e-mail',
+
 # Edit page toolbar
 'bold_sample' => 'Grassettu',
 'bold_tip' => 'Grassettu',
@@ -981,7 +984,7 @@ S'havi accirtari ca la cuntinuità storica di la pàggina nun veni altirata.",
 'searchhelp-url' => 'Help:Cuntinuti',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Visualizza li pàggini cu stu prifissu]]',
 'searchprofile-articles' => 'Pàggini di cuntinutu',
-'searchprofile-project' => "Pàggini d'aiutu e dô pruggettu",
+'searchprofile-project' => "Pàggini d'ajutu e dô pruggettu",
 'searchprofile-images' => 'Multimedia',
 'searchprofile-everything' => 'Tuttu',
 'searchprofile-advanced' => 'Avanzata',
@@ -1699,7 +1702,7 @@ Talìa macari li [[Special:WantedCategories|catigurìi addumannati]].',
 'linksearch' => 'Lijami di fora',
 'linksearch-pat' => 'Mudellu di circata:',
 'linksearch-ns' => 'Namespace:',
-'linksearch-ok' => 'Cerca',
+'linksearch-ok' => 'Arriscedi',
 'linksearch-text' => 'C\'è la pussibbilitati di fari usu di metacaràttiri, p\'asèmpiu "*.wikipedia.org".<br />
 Protucolli suppurtati: <code>$1</code>',
 'linksearch-line' => '$1 prisenti ntâ pàggina $2',
@@ -1741,7 +1744,7 @@ Protucolli suppurtati: <code>$1</code>',
 'listgrouprights-addgroup-self-all' => 'Junci tutti li gruppa ô propriu account',
 'listgrouprights-removegroup-self-all' => 'Può livari tutti li gruppi dô propriu account',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Nuddu ndirizzu cui mannari lu missaggiu',
 'mailnologintext' => 'Hai a fari lu [[Special:UserLogin|login]] e aver riggistratu na casella e-mail vàlida ntê tò [[Special:Preferences|prifirenzi]] pi mannari posta alittrònica a àutri Utenti.',
 'emailuser' => "Manna n'imail a stu utenti",
@@ -1768,6 +1771,7 @@ Protucolli suppurtati: <code>$1</code>',
 # Watchlist
 'watchlist' => 'Lista taliata mia',
 'mywatchlist' => 'Lista taliata mia',
+'watchlistfor2' => 'Pi $1, $2',
 'nowatchlist' => "Nun hai innicatu pàggini a tèniri d'occhiu.",
 'watchlistanontext' => "Pi visualizzari e canciari l'alencu di l'ossirvati spiciali è nicissariu $1.",
 'watchnologin' => 'Nun hai effittuatu lu login',
@@ -2005,8 +2009,8 @@ $1',
 'sp-contributions-userrights' => 'gistioni dî dritti utenti',
 'sp-contributions-search' => 'Ricerca cuntribbuti',
 'sp-contributions-username' => 'Nnirizzu IP o nomu utenti:',
-'sp-contributions-toponly' => "Ammuscia sulu li cuntribbuti ca sunnu l'ùrtimi rivisioni pâ pàggina",
-'sp-contributions-submit' => 'Ricerca',
+'sp-contributions-toponly' => "Ammuccia sulu li cuntribbuta ca sunnu l'ùrtimi rivisioni pâ pàggina",
+'sp-contributions-submit' => 'Risciduta',
 
 # What links here
 'whatlinkshere' => 'Chi punta ccà',
@@ -2071,7 +2075,7 @@ Pi maggiuri nfurmazzioni, talìa la [[Special:BlockList|lista di l'IP bluccati]]
 'unblocked-id' => 'Lu bloccu $1 hà statu cacciatu',
 'ipblocklist' => 'Utiloizzatura bluccati',
 'ipblocklist-legend' => "Atrova n'utenti bluccatu",
-'ipblocklist-submit' => 'Ricerca',
+'ipblocklist-submit' => 'Risciduta',
 'infiniteblock' => 'nfinitu',
 'expiringblock' => 'scadi lu $1 ê $2',
 'anononlyblock' => 'sulu anònimi',
@@ -2763,7 +2767,7 @@ Li lijami succissivi, supra la stissa riga, sunnu cunzidirati comu eccizzioni (p
 'namespacesall' => 'Tutti',
 'monthsall' => 'tutti',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Cunferma ndirizzu e-mail',
 'confirmemail_noemail' => 'Nun hà statu ndicatu un ndirizzu e-mail vàlidu ntê propi [[Special:Preferences|prifirenzi]].',
 'confirmemail_text' => "Stu situ richiedi la virìfica di l ndirizzu e-mail prima di putiri usari li funzioni cunnessi a l'email. Prèmiri lu pulsanti ccà sutta pi mannari na richiesta di cunferma a lu propiu ndirizzu; ntô missaggiu è prisenti un culligamenti ca cunteni un còdici. Visitari lu culligamentu cu lu propiu browser pi cunfirmari ca lu ndirizzu e-mail è vàlidu.",
@@ -2987,7 +2991,7 @@ Mèttiri lu nomu dû file senza lu prifissu "{{ns:file}}:"',
 'newuserlog-byemail' => 'password mannata via mail',
 
 # Search suggestions
-'searchsuggest-search' => 'Ricerca',
+'searchsuggest-search' => 'Risciduta',
 
 # API errors
 'api-error-nomodule' => 'Erruri nternu: nun fu mpustatu lu mòdulu di carricamentu',

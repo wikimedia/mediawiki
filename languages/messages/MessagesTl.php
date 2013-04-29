@@ -674,7 +674,7 @@ Maghintay po muna bago subukan uli.',
 'loginlanguagelabel' => 'Wika: $1',
 'suspicious-userlogout' => "Tinanggihan ang inyong kahilingang umalis sa pagkalagda dahil tila ito ay ipinadala ng sirang pambasa-basa o apoderadong pambaon (''caching proxy'')",
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Hindi malamang kamalian sa tungkulin ng liham ng PHP ()',
 'user-mail-no-addy' => 'Sinubukang magpadala ng e-liham na walang tirahan na para sa e-liham.',
 
@@ -1357,7 +1357,7 @@ Kung pipiliin mong ibigay ito, gagamitin ito para mabigyan ka ng pagkilala para 
 'prefs-displaywatchlist' => 'Ipakita ang mga pagpipilian',
 'prefs-diffs' => 'Mga pagkakaiba',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'Mukhang katanggap-tanggap ang direkisyong e-liham',
 'email-address-validity-invalid' => 'Magpasok ng isang tanggap na direksiyong e-liham',
 
@@ -2149,7 +2149,7 @@ Maaaring may mga [[{{MediaWiki:Listgrouprights-helppage}}|karagdagang kabatiran]
 'listgrouprights-addgroup-self-all' => 'Idagdag ang lahat ng mga pangkat sa sariling akawnt',
 'listgrouprights-removegroup-self-all' => 'Alisin ang lahat ng mga pangkat mula sa sariling akawnt',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Walang adres na mapagpapadalahan',
 'mailnologintext' => 'Kailangan mong [[Special:UserLogin|lumagda]] at magkaroon ng tanggap na e-liham sa iyong [[Special:Preferences|mga kagustuhan]] para makapagpadala ng e-liham sa ibang mga tagagamit.',
 'emailuser' => 'Padalhan ng e-liham ang tagagamit',
@@ -3118,8 +3118,6 @@ Anumang susunod na mga kawing sa pinanggalingang linya ay tinuturing na mga ekse
 
 /*
 Short names for language variants used for language conversion links.
-To disable showing a particular link, set it to 'disable', e.g.
-'variantname-zh-sg' => 'disable',
 Variants for Chinese language
 */
 'variantname-zh-hans' => 'hans',
@@ -3635,7 +3633,7 @@ $8',
 'monthsall' => 'lahat',
 'limitall' => 'lahat',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Patotohanan ang adres ng e-liham',
 'confirmemail_noemail' => 'Wala kang nakatakdang tanggap na adres ng e-liham sa iyong [[Special:Preferences|mga kagustuhan ng tagagamit]].',
 'confirmemail_text' => "Pinagagawa ng {{SITENAME}} na patotohanan mo ang iyong adres ng e-liham bago gamitin ang mga kasangkapang-katangian ng e-liham.  Pindutin at buhayin ang pindutan sa ibaba para makapagpadala ng isang makapagpapatotoong e-liham (kompirmasyon) patungo sa iyong adres.

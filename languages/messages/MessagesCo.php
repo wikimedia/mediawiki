@@ -361,7 +361,7 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 # Special:ListUsers
 'listusers-submit' => 'Mustrà',
 
-# E-mail user
+# Email user
 'emailto' => 'À:',
 'emailsubject' => 'Sughjettu:',
 'emailmessage' => 'Messaghju:',

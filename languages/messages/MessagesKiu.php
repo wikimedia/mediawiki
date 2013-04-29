@@ -429,7 +429,7 @@ Kerem kerê, deqêna oncia bıcerrebnê.",
 'protectedpagetext' => 'Na pele vurnaisu rê qapan biya.',
 'viewsourcetext' => 'Sıma şikinê çımê na pele bıvênê u kopya kerê:',
 'protectedinterface' => "Na pele ''software'' rê meqalunê caunê bırnau dana, u qapana ke suıstımalu rê engel bo.",
-'editinginterface' => "'''Teme:''' Sıma hao jü pela ke serba nustê meqalunê caunê bırnau dana, vurnenê.
+'editinginterface' => "Teme:''' Sıma hawo jü pela ke serba nustê meqalunê caunê bırnau dana, vurnenê.
 Vurnaisê na pele karberunê binu rê serpela karberi kena ke bıasno.
 Serba çarnaişi, yardımê [//translatewiki.net/wiki/Main_Page?setlang=kiu translatewiki.net]i ra procêdoskerdene rê diqet kerê.",
 'sqlhidden' => '(Persê SQLi nımıteo)',
@@ -678,7 +678,7 @@ Beno ke [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log
 Sıma be idarekerênia ho ra şikinê hona [$1 nê ferqi bıvênê], eke wazenê dewam kerê.",
 'rev-delundel' => 'bıasne/wedare',
 'rev-showdeleted' => 'bıasne',
-'revisiondelete' => 'Çımraviarnaisu bıestere/peyser bia',
+'revisiondelete' => 'Çımraviarnaisu bestere/peyser bia',
 'revdelete-nooldid-title' => 'Çımraviarnaena waştiye nêvêrena',
 'revdelete-nooldid-text' => 'Sıma vırastena nê fonksiyoni rê ya jü çımraviarnaena waştiye diyar nêkerdo, çımraviarnaena diyarkerdiye çına, ya ki sıma wazenê ke çımraviarnaena nıkaêne bınımnê.',
 'revdelete-nologtype-title' => 'Qet qeydê cı nêdiya',
@@ -807,7 +807,7 @@ Diqet kerê, beno ke tedeestê {{SITENAME}} uza endi rozane niyê.",
 'prefs-datetime' => 'Tarix u zeman',
 'prefs-personal' => 'Dosya karberi',
 'prefs-rc' => 'Vurnaisê peyêni',
-'prefs-watchlist' => 'Lista şêr-kerdişi',
+'prefs-watchlist' => 'Lista şêrkerdene',
 'prefs-watchlist-days' => 'Rozê ke lista şêr-kerdişi de asenê:',
 'prefs-watchlist-edits' => 'Miqdarê tewr jêdêr vurnaisuno ke lista şêr-kerdişia hirakerdiye derê:',
 'prefs-misc' => 'Ğelet',
@@ -906,7 +906,7 @@ Kaberê bini ke şıma de kewti irtıbat, adresa e-postey şıma eşkera nêbena
 'right-move' => 'Pelu bere',
 'right-movefile' => 'Dosyu bere',
 'right-upload' => 'Dosyu bar ke',
-'right-delete' => 'Pelu bıestere',
+'right-delete' => 'Pelu bestere',
 'right-undelete' => 'Esterıtena na pele peyser bıcê',
 
 # User rights log
@@ -924,7 +924,7 @@ Kaberê bini ke şıma de kewti irtıbat, adresa e-postey şıma eşkera nêbena
 'action-move' => 'na pele bere',
 'action-movefile' => 'na dosya bere',
 'action-upload' => 'na dosya bar ke',
-'action-delete' => 'na pele bıestere',
+'action-delete' => 'na pele bestere',
 'action-undelete' => 'na pele meestere',
 
 # Recent changes
@@ -958,8 +958,8 @@ Kaberê bini ke şıma de kewti irtıbat, adresa e-postey şıma eşkera nêbena
 'rc-enhanced-hide' => 'Tefsilatu bınımne',
 
 # Recent changes linked
-'recentchangeslinked' => 'Ney sero vurnaene',
-'recentchangeslinked-toolbox' => 'Ney sero vurnaene',
+'recentchangeslinked' => 'Ney sero vurnayene',
+'recentchangeslinked-toolbox' => 'Ney sero vurnayene',
 'recentchangeslinked-title' => 'Heqa "$1"i de vurnais',
 'recentchangeslinked-noresult' => 'Pelanê ke link biye ey vurnayîşî çino.',
 'recentchangeslinked-summary' => "Lista cêrêne, pela bêlikerdiye rê (ya ki karberunê kategoriya bêlikerdiye rê) pelunê girêdaoğu de lista de vurnaisê peyênuna.
@@ -1010,7 +1010,7 @@ Kaberê bini ke şıma de kewti irtıbat, adresa e-postey şıma eşkera nêbena
 'file-anchor-link' => 'Dosya',
 'filehist' => 'Tarixê dosya',
 'filehist-help' => "Serba diyaena viartê dosya tarixê ke qısımê tarix/zeman'i derê inu bıteqne.",
-'filehist-deleteall' => 'Pêrune bıestere',
+'filehist-deleteall' => 'Pêrune bestere',
 'filehist-deleteone' => 'bestere',
 'filehist-revert' => 'raçarne',
 'filehist-current' => 'nıkaên',
@@ -1039,8 +1039,8 @@ Cêr [$2 pela arezekerdena dosya de] arezekerdene asnina.',
 'filerevert-submit' => 'Raçarne',
 
 # File deletion
-'filedelete' => 'Bıestere $1',
-'filedelete-legend' => 'Dosya bıestere',
+'filedelete' => 'Bestere $1',
+'filedelete-legend' => 'Dosya bestere',
 'filedelete-comment' => 'Sebeb:',
 'filedelete-submit' => 'Bestere',
 'filedelete-otherreason' => 'Sebebo bin/ilaweki:',
@@ -1144,7 +1144,7 @@ Cêr [$2 pela arezekerdena dosya de] arezekerdene asnina.',
 'listgrouprights-addgroup-all' => 'Heme grubu ilawe ke',
 'listgrouprights-removegroup-all' => 'Heme grubu wedare',
 
-# E-mail user
+# Email user
 'emailuser' => 'Nê karberi rê e-poste bırusne',
 'emailpage' => 'Karberi rê e-poste bırusne',
 'emailfrom' => 'Kami ra:',
@@ -1154,7 +1154,7 @@ Cêr [$2 pela arezekerdena dosya de] arezekerdene asnina.',
 'emailsend' => 'Bırusne',
 
 # Watchlist
-'watchlist' => 'Pela mına şêrkerdene',
+'watchlist' => 'Lista şêrkerdene',
 'mywatchlist' => 'Lista şêrkerdışi',
 'watchlistfor2' => 'Serba $1 ($2)',
 'addedwatchtext' => "Pela \"[[:\$1]]\"i ilawe biye be [[Special:Watchlist|pela şêrkerdişi]].
@@ -1174,7 +1174,7 @@ Nara dıme, vurnaisê na pele u pela hurênaisê dawa alaqedare ita bena lista, 
 'changed' => 'vuriya',
 
 # Delete
-'deletepage' => 'Pele bıestere',
+'deletepage' => 'Pele bestere',
 'delete-legend' => 'Bestere',
 'confirmdeletetext' => 'Tı hawo kena ke jü pele be tarixê dae pêro bıne ra bıesterê.
 Eke ferqê neticê na kerdene de bena u no kar be gorê [[{{MediaWiki:Policy-url}}|qeydunê esterıtene]] beno, wa gurêy tesdiq ke.',
@@ -1206,7 +1206,7 @@ Tı şikina sewiya sevekiyaena na pele bıvurnê, hema yê nae sevekiyaena qedem
 'protect-default' => 'Destur bıde be karberu pêrune',
 'protect-fallback' => 'Desturê "$1"i lazımo',
 'protect-level-autoconfirmed' => 'Karberunê newun u qeydnêbiyaoğu kilıt ke',
-'protect-level-sysop' => 'Teyna idarekeri',
+'protect-level-sysop' => 'Teyna idarekeru rê izıne bıde',
 'protect-summary-cascade' => 'qedemein',
 'protect-expiring' => 'tarixê qediyaene $1 (UTC)',
 'protect-expiring-local' => '$1 de qedino',
@@ -1404,7 +1404,7 @@ Kerem ke, qeydkerdene ra ver gozaga verqayti bıgurene.',
 Tı şikina çımunê dae bıvênê',
 'tooltip-ca-history' => 'Versiyonê verênê na pele',
 'tooltip-ca-protect' => 'Na pele bısevekne',
-'tooltip-ca-delete' => 'Na pele bıestere',
+'tooltip-ca-delete' => 'Na pele bestere',
 'tooltip-ca-move' => 'Namê na pele bıvurne',
 'tooltip-ca-watch' => 'Na pele bıcê lista huya şêrkerdene',
 'tooltip-ca-unwatch' => 'Na pele lista huya şêrkerdene ra wedare',
@@ -1442,7 +1442,7 @@ Tı şikina çımunê dae bıvênê',
 'tooltip-minoredit' => 'Ney jê vurnaiso qıc isaret ke',
 'tooltip-save' => 'Vurnaisunê ho qeyd ke',
 'tooltip-preview' => 'Kerem ke, vurnaisunê ho qeyd-kerdene ra ravêr be verqayt bıasne!',
-'tooltip-diff' => 'Kamci vurnaişi ke to meqale de kerdê, naine bıasne.',
+'tooltip-diff' => 'Kamci vurnayışi ke to meqale de kerdê, ninan basne.',
 'tooltip-compareselectedversions' => 'Ferqunê wertê ni dı nımınunê weçinıtu bıvêne.',
 'tooltip-watch' => 'Na pele lista huya şêrkerdişi ser ke',
 'tooltip-recreate' => 'Na pele esterıte bo ki, nae oncia bıaferne',
@@ -1474,8 +1474,6 @@ Na rêze de her girêo bin jê istisna vênino, yanê pelê ke dosya beno ke ser
 
 /*
 Short names for language variants used for language conversion links.
-To disable showing a particular link, set it to 'disable', e.g.
-'variantname-zh-sg' => 'disable',
 Variants for Chinese language
 */
 'variantname-zh-hans' => 'hans',
@@ -1583,7 +1581,7 @@ Eke dosya de peydêna vuriyais biyo ki, beno ke taê melumati gorê vurnaisê ne
 'specialpages-group-media' => 'Raporê medya u bar-kerdey',
 'specialpages-group-users' => 'Karber u heqi',
 'specialpages-group-highuse' => 'Pelê jêdêr gurenaey',
-'specialpages-group-pages' => 'Lista pelun',
+'specialpages-group-pages' => 'Listê pelun',
 'specialpages-group-pagetools' => 'Hacetê pele',
 'specialpages-group-wiki' => "Daê ''Wiki''y u haceti",
 'specialpages-group-redirects' => 'Newe-vırastena pelunê xususiyun',

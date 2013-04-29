@@ -1551,7 +1551,7 @@ Izbandais pāausan sen [[{{MediaWiki:Listgrouprights-helppage}}|papilniminans in
 'listgrouprights-addgroup-self-all' => 'Preidāis wissans gruppins prei swajjan rekkenan',
 'listgrouprights-removegroup-self-all' => 'Āupausinais wissans gruppins iz swajjan rekkenan',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Ni ast adressi',
 'mailnologintext' => 'Tu turri [[Special:UserLogin|enēitwei]] be turītun aktuālin e-mail adressin en twajamans [[Special:Preferences|pirminiskwans]] kāi tengīnlai e-mailins kitēimans tērpautajans.',
 'emailuser' => 'Tenginnais e-mailin šismu tērpautajan',
@@ -2507,7 +2507,7 @@ Kitāi wīrst būwusis kliptan auprestaminai.
 'monthsall' => 'wisāi',
 'limitall' => 'wisāi',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Padrūktinais e-mail adressin',
 'confirmemail_noemail' => 'Tū ni turri tukrōmiskan e-mail adressin ensadīntan en [[Special:Preferences|pirminiskwamans]].',
 'confirmemail_text' => '{{SITENAME}} izkīnina e-mailas adressis izbandāsnan pirzdau e-mailas funkciōnis tērpausnan.

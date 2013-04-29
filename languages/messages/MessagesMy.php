@@ -822,7 +822,7 @@ Your e-mail address is not revealed when other users contact you.
 'prefs-displaywatchlist' => 'ပြသရန် ရွေးချယ်မှု',
 'prefs-diffs' => 'ကွဲပြားချက်',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'အီးမေးလိပ်စာ တရားဝင်ပုံပေါ်သည်',
 'email-address-validity-invalid' => 'တရားဝင်အီးမေးလိပ်စာတစ်ခု ထည့်ပါ',
 
@@ -1279,7 +1279,7 @@ Your e-mail address is not revealed when other users contact you.
 'listgrouprights-addgroup-self-all' => 'အုပ်စုအားလုံးကို မိမိ၏အကောင့်သို့ ပေါင်းထည့်ရန်',
 'listgrouprights-removegroup-self-all' => 'မိမိ၏အကောင့်မှ အုပ်စုအားလုံးကို ဖယ်ရှားရန်',
 
-# E-mail user
+# Email user
 'mailnologin' => 'ပို့ရန်လိပ်စာ မရှိပါ',
 'emailuser' => 'ဤ​အ​သုံး​ပြု​သူ​အား​အီး​မေး​ပို့​ပါ​',
 'emailpage' => 'အီးမေးအသုံးပြုသူ',
@@ -1792,7 +1792,7 @@ Your e-mail address is not revealed when other users contact you.
 'monthsall' => 'အားလုံး',
 'limitall' => 'အားလုံး',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'အီးမေးကိုအတည်ပြုပါ',
 'confirmemail_send' => 'အတည်ပြုချက်ကုတ်ကို အီးမေးပို့ပေးရန်',
 

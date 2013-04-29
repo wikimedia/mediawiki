@@ -550,7 +550,7 @@ $2',
 'loginlanguagelabel' => 'Хэл: $1',
 'suspicious-userlogout' => 'Таны гарах хүсэлт нь эвдэрхий хөтөч буюу кэшлэгч проксигоор явуулсан мэт харагдаж байгаа тул зөвшөөрсөнгүй.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => "PHP's mail() функцэд үл танигдах алдаа гарлаа.",
 'user-mail-no-addy' => 'Цахин шуудангийн хаягийг оруулалгүйгээр шуудан явуулахыг оролдлоо.',
 
@@ -1217,7 +1217,7 @@ $1 тэмдэгтээс богино байх ёстой.',
 'prefs-displaywatchlist' => 'Харагдацийн тохиргоо',
 'prefs-diffs' => 'Ялгаанууд',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'Цахим шуудан хүчинтэй байна',
 'email-address-validity-invalid' => 'и-майл хаягаа зөв оруулна уу.',
 
@@ -1984,7 +1984,7 @@ URL нь зөв болон сайт ажиллагаатай байгаа эсэ
 'listgrouprights-addgroup-self-all' => 'Бүх бүлгийг өөрийн бүртгэлд нэмэх',
 'listgrouprights-removegroup-self-all' => 'Өөрийн бүртгэлээс бүх бүлгийг хасах',
 
-# E-mail user
+# Email user
 'mailnologin' => 'илгээх хаяг байхгүй',
 'mailnologintext' => 'Та бусад хэрэглэгчдэд мэйл явуулахын тулд өөрийн [[Special:Preferences|хувийн тохируулгадаа]] мэйлээ оруулсан, мөн [[Special:UserLogin|нэвтэрсэн]] байх шаардлагатай.',
 'emailuser' => 'Энэ хэрэглэгчид мэйл илгээх',
@@ -2022,7 +2022,7 @@ URL нь зөв болон сайт ажиллагаатай байгаа эсэ
 'usermessage-template' => 'МедиаВики:ХэрэглэгчийнМэдээ',
 
 # Watchlist
-'watchlist' => 'Миний хянаж буй хуудсууд',
+'watchlist' => 'Хянах жагсаалт',
 'mywatchlist' => 'Хяналтын хуудсын жагсаалт',
 'watchlistfor2' => 'Хэрэглэгч: $1 $2',
 'nowatchlist' => 'Танд хянаж буй зүйл байхгүй.',
@@ -3201,7 +3201,7 @@ $1',
 'monthsall' => 'бүгдийг',
 'limitall' => 'бүгдийг',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Мэйл хаягийг баталгаажуулах',
 'confirmemail_noemail' => 'Та өөрийн [[Special:Preferences|хэрэглэгчийн тохиргоондоо]] хүчинтэй мэйл хаяг оруулаагүй байна.',
 'confirmemail_text' => '{{SITENAME}} нь мэйлийн функцуудыг ашиглахын тулд мэйл хаягаа баталгаажуулахыг хэрэглэгчдээс шаарддаг болно.

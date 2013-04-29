@@ -412,7 +412,7 @@ Hindi (hi)फ़िलहाल इस पन्ने पर कोई सा�
 # Special:ListGroupRights
 'listgrouprights-members' => '(सदस्य सूची)',
 
-# E-mail user
+# Email user
 'emailuser' => 'इ सदस्य कॆ ई-मेल भेजॊ',
 
 # Watchlist

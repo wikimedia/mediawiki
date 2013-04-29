@@ -509,7 +509,7 @@ Ogoruşi dudis '''all:''' pʼrefiksi okʼatute doloçʼareli na ren iri şeyi (o
 # Special:ListGroupRights
 'listgrouprights-members' => '(makʼaturepeşi listʼe)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Maxmares e-maili oncğoni',
 
 # Watchlist

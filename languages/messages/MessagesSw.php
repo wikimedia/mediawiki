@@ -627,7 +627,7 @@ Tafadhali subiri kwanza kabla ya kujaribu tena.',
 'loginlanguagelabel' => 'Lugha: $1',
 'suspicious-userlogout' => 'Ombi lako la kutoka kwenye akaunti yako limehiniwa, kwa sababu inaonekana kwamba ombi lilitumwa na kivinjari kilichoharibika au seva ya kuwakilisha yenye kache.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Hitilafu isiyojulikana katika ufanyajikazi wa barua za PHP ().',
 'user-mail-no-addy' => 'Umejaribu kutuma barua pepe bila anwani ya barua pepe.',
 
@@ -991,7 +991,7 @@ Wakabidhi wengine wa {{SITENAME}} bado wataweza kuliona lile lililofichwa pamoja
 'revdelete-hide-restricted' => 'Wakabidhi (vilevile wengine) wasiweze kuona data',
 'revdelete-radio-same' => '(isibadilishwe)',
 'revdelete-radio-set' => 'Ndiyo',
-'revdelete-radio-unset' => 'Siyo',
+'revdelete-radio-unset' => 'Hapana',
 'revdelete-suppress' => 'Wakabidhi (vilevile wengine) wasiweze kuona data',
 'revdelete-unsuppress' => 'Uzuio wa kuona mapitio uondolewe, mapitio yanaporudishwa',
 'revdelete-log' => 'Sababu:',
@@ -1099,7 +1099,7 @@ Tazama [[Special:BlockList|IP block orodha ya uzuio wa IP]] kuona orodha ya zuio
 'search-interwiki-default' => 'Matokeo toka $1:',
 'search-interwiki-more' => '(zaidi)',
 'search-relatedarticle' => 'Zingine zinazofanana',
-'mwsuggest-disable' => 'Kutoonyesha mapendekezo ya AJAX',
+'mwsuggest-disable' => 'Kutoonyesha mapendekezo ya kutafuta',
 'searcheverything-enable' => 'Tafuta katika maeneo yote ya wiki',
 'searchrelated' => 'zingine zinazofanana',
 'searchall' => 'zote',
@@ -1247,7 +1247,7 @@ Taarifa hii itakuwa wazi.',
 'prefs-displaywatchlist' => 'Mapendekezo ya kuzinza',
 'prefs-diffs' => 'Tofauti',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'Anwani ya barua pepe inaonekana kuwa sawa',
 'email-address-validity-invalid' => 'Ingiza anwani halisi ya barua pepe',
 
@@ -1945,7 +1945,7 @@ Labda patakuwa na [[{{MediaWiki:Listgrouprights-helppage}}|maelezo mengine]] kuh
 'listgrouprights-addgroup-self-all' => 'Kuongeza makundi yote katika akaunti ya binafsi',
 'listgrouprights-removegroup-self-all' => 'Kuondoa makundi yote kutoka akaunti ya binafsi',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Hakuna anwani wa kutuma',
 'mailnologintext' => 'Ukitaka kutuma barua pepe kwa watumiaji wengine inabidi uwe [[Special:UserLogin|umeshaingia kwenye akaunti yako]] na pia uwe na anwani ya barua pepe sahihi pale [[Special:Preferences|mapendekezo yako]].',
 'emailuser' => 'Mtumie mtumiaji huyu barua pepe',
@@ -1983,7 +1983,7 @@ Anwani yako ya barua pepe ulioitaja katika [[Special:Preferences|mapendekezo yak
 'usermessage-editor' => 'Jumbe za mfumo',
 
 # Watchlist
-'watchlist' => 'Maangalizi yangu',
+'watchlist' => 'Maangalizi',
 'mywatchlist' => 'Maangalizi',
 'watchlistfor2' => 'Kwa ajili ya $1 $2',
 'nowatchlist' => 'Hamna vitu katika maangalizi yako.',
@@ -2247,7 +2247,7 @@ Rejea kumbukumbu ya uzuio ya mwisho inayoandikwa chini:',
 'whatlinkshere-hideredirs' => '$1 maelekezo',
 'whatlinkshere-hidetrans' => '$1 majumuisho',
 'whatlinkshere-hidelinks' => '$1 viungo',
-'whatlinkshere-hideimages' => '$1 viungo vya picha',
+'whatlinkshere-hideimages' => 'Viungo vya faili $1',
 'whatlinkshere-filters' => 'Machujio',
 
 # Block/unblock
@@ -2867,7 +2867,7 @@ likifupishwa. Nyuga zingine zitafichwa kama chaguo-msingi.
 'monthsall' => 'yote',
 'limitall' => 'zote',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Kuyakinisha anwani ya barua pepe',
 'confirmemail_noemail' => 'Hakuna anwani ya barua pepe halali kwenye [[Special:Preferences|mapendekezo yako]].',
 'confirmemail_text' => '{{SITENAME}} inakutakia uyakinishe anwani yako ya barua pepe kabla kutumia zana zinazohusika barua pepe.

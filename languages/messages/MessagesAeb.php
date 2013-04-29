@@ -519,7 +519,7 @@ $2',
 'loginlanguagelabel' => 'اللغة: $1',
 'suspicious-userlogout' => 'رفض طلب خروجك لأنه يبدو كأنه أرسل عن طريق متصفح معطوب أو وسيط تخزين.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => "خطأ غير معروف في وظيفة البريد PHP's mail()",
 'user-mail-no-addy' => 'لقد حاولت إرسال بريد إلكتروني دون عنوان بريد إلكتروني.',
 
@@ -1154,7 +1154,7 @@ $1",
 # Special:ListGroupRights
 'listgrouprights-members' => '(قائمة الأعضاء)',
 
-# E-mail user
+# Email user
 'emailuser' => 'إرسال رسالة لهذا المستخدم',
 
 # Watchlist

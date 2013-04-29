@@ -369,7 +369,7 @@ $messages = array(
 # Special:ListGroupRights
 'listgrouprights-members' => '(листэ де мембрь)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Тримите прин поштэ електроникэ ун месаж ачестуй утилизатор',
 
 # Watchlist

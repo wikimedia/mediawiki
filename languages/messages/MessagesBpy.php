@@ -1245,7 +1245,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'listgrouprights-rights' => 'অধিকারহানি',
 'listgrouprights-members' => '(সদস্যর পারেঙহানি)',
 
-# E-mail user
+# Email user
 'emailuser' => 'আতাকুরাগরে ইমেইল কর',
 'emailpage' => 'আতাকরেকুরাগরে ই-মেইল কর',
 'defemailsubject' => '{{SITENAME}} ই-মেইল',
@@ -1626,7 +1626,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'monthsall' => 'হাব্বি',
 'limitall' => 'হাব্বি',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'ই-মেইল ঠিকানাহান লেপকর',
 'confirmemail_send' => 'লেপকরেকুরা কোডগ দিয়াপেঠাদে',
 'confirmemail_sent' => 'লেপকরেকুরা ই-মেইলহান দিয়াপেঠা দিলাং।',

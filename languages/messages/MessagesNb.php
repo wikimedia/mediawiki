@@ -1,5 +1,5 @@
 <?php
-/** Norwegian Bokmål (norsk (bokmål)‎)
+/** Norwegian Bokmål (norsk bokmål)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -792,8 +792,8 @@ og fortsette å bruke det gamle passordet.',
 Logg inn når du har mottatt det nye passordet.',
 'blocked-mailpassword' => 'IP-adressen din er blokkert fra å redigere, og for å forhindre misbruk kan du heller ikke bruke funksjonen som gir deg nytt passord.',
 'eauthentsent' => 'En bekreftelsesmelding ble sendt til gitte e-postadresse. Før andre e-poster kan sendes til kontoen må du følge instruksjonene i e-posten for å bekrefte at kontoen faktisk er din.',
-'throttled-mailpassword' => 'En passordpåminnelse ble sendt for mindre enn {{PLURAL:$1|en time|$1 timer}} siden.
-For å forhindre misbruk kan kun én passordpåminnelse sendes per {{PLURAL:$1|time|$1 timer}}.',
+'throttled-mailpassword' => 'En passordtilbakestillingsepost har allerede blitt sendt for mindre enn {{PLURAL:$1|en time|$1 timer}} siden.
+For å forhindre misbruk kan kun én passordtilbakestillingsepost sendes per {{PLURAL:$1|time|$1 timer}}.',
 'mailerror' => 'Feil under sending av e-post: $1',
 'acct_creation_throttle_hit' => 'Gjester med samme IP-adresse som deg har opprettet {{PLURAL:$1|én konto|$1 kontoer}} det siste døgnet, og det er ikke tillatt å opprette flere.
 Som et resultat kan det ikke opprettes flere kontoer fra denne IP-adressen.',
@@ -817,7 +817,7 @@ Du kan ignorere denne beskjeden dersom kontoen ble opprettet ved en feil.',
 'loginlanguagelabel' => 'Språk: $1',
 'suspicious-userlogout' => 'Din forespørsel om å logge ut ble nektet fordi den så ut til å ha bli sendt av en ødelagt nettleser eller en mellomtjener.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Ukjent feil i PHPs mail()-funksjon',
 'user-mail-no-addy' => 'Forsøkte å sende e-post uten e-postadresse',
 
@@ -841,7 +841,7 @@ Du kan ha allerede byttet passordet, eller bedt om et nytt midlertidig passord.'
 
 # Special:PasswordReset
 'passwordreset' => 'Passordresetting',
-'passwordreset-text' => 'Fyll ut dette skjemaet for å motta en påminnelse om kontoopplysningene dine i en e-post.',
+'passwordreset-text' => 'Fyll ut dette skjemaet for å tilbakestille passordet ditt.',
 'passwordreset-legend' => 'Nullstill passord',
 'passwordreset-disabled' => 'Nullstilling av passord er deaktivert på denne wikien.',
 'passwordreset-pretext' => '{{PLURAL:$1||Skriv inn en av datadelene nedenfor}}',
@@ -851,8 +851,7 @@ Du kan ha allerede byttet passordet, eller bedt om et nytt midlertidig passord.'
 'passwordreset-capture-help' => 'Hvis du krysser av her, vil du se e-posten (med foreløpig passord) i tillegg til at den blir sendt til brukeren.',
 'passwordreset-email' => 'E-postadresse:',
 'passwordreset-emailtitle' => 'Kontodetaljer på {{SITENAME}}',
-'passwordreset-emailtext-ip' => 'Noen (sannsynligvis deg fra IP-adressen $1) ba om en påminnelse om dine
-kontodetaljer for {{SITENAME}} ($4). {{PLURAL:$3|Den følgende brukerkontoen|De følgende brukerkontoene}} er
+'passwordreset-emailtext-ip' => 'Noen (sannsynligvis deg fra IP-adressen $1) ba om en tilbakestilling av ditt passord for {{SITENAME}} ($4). {{PLURAL:$3|Den følgende brukerkontoen|De følgende brukerkontoene}} er
 tilknyttet denne e-postadressen:
 
 $2
@@ -862,7 +861,7 @@ Du bør logge på og velge et nytt passord nå. Dersom noen andre kom med denne
 forespørselen, eller du har kommet på ditt opprinnelige passord, og ikke lenger
 ønsker å endre det, kan du ignorere denne meldingen og fortsette å bruke ditt gamle
 passord.',
-'passwordreset-emailtext-user' => 'Brukeren $1 på {{SITENAME}} ba om en påminnelse om kontodetaljene dine for {{SITENAME}}
+'passwordreset-emailtext-user' => 'Brukeren $1 på {{SITENAME}} ba om en tilbakestilling av passordet ditt for {{SITENAME}}
 ($4). {{PLURAL:$3|Den følgende brukerkontoen|De følgende brukerkontoene}} er tilknyttet denne e-postadressen:
 
 $2
@@ -874,8 +873,8 @@ forespørselen, eller du har kommet på ditt opprinnelige passord, og ikke lenge
 passord.',
 'passwordreset-emailelement' => 'Brukernavn: $1
 Midlertidig passord: $2',
-'passwordreset-emailsent' => 'En påminnelse har blitt sendt på e-post.',
-'passwordreset-emailsent-capture' => 'E-posten under er sendt ut som en påminnelse.',
+'passwordreset-emailsent' => 'En passordtilbakestillingslenke har blitt sendt per e-post.',
+'passwordreset-emailsent-capture' => 'Passordtilbakestillingseposten vist under har blitt sendt ut.',
 'passwordreset-emailerror-capture' => 'E-posten, som du ser under, ble forsøkt sendt til brukeren, men dette mislyktes: $1',
 
 # Special:ChangeEmail
@@ -1084,7 +1083,7 @@ Du bør vurdere om det er passende å fortsette å redigere denne siden.
 Slette- og flytteloggen for denne siden gjengis her:",
 'moveddeleted-notice' => 'Denne siden har blitt slettet.
 Slette- og flytteloggen vises nedenfor.',
-'log-fulllog' => 'Vil hele loggen',
+'log-fulllog' => 'Vis hele loggen',
 'edit-hook-aborted' => 'Redigering avbrutt av en funksjon, uten forklaring.',
 'edit-gone-missing' => 'Kunne ikke oppdatere siden fordi den har blitt slettet.',
 'edit-conflict' => 'Redigeringskonflikt.',
@@ -1492,7 +1491,7 @@ Den kan maks inneholde $1 {{PLURAL:$1|tegn|tegn}}.',
 'prefs-displaywatchlist' => 'Visningsalternativer',
 'prefs-diffs' => 'Forskjeller',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'E-postadressen ser gyldig ut',
 'email-address-validity-invalid' => 'Skriv inn en gyldig e-postadresse',
 
@@ -2274,7 +2273,7 @@ Mer informasjon om de enkelte rettighetstypene kan finnes [[{{MediaWiki:Listgrou
 'listgrouprights-addgroup-self-all' => 'Kan legge til alle grupper til egen konto',
 'listgrouprights-removegroup-self-all' => 'Kan ta bort alle grupper fra egen konto',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Ingen avsenderadresse',
 'mailnologintext' => 'Du må være [[Special:UserLogin|logget inn]] og ha en gyldig e-postadresse satt i [[Special:Preferences|brukerinnstillingene]] for å sende e-post til andre brukere.',
 'emailuser' => 'E-post til denne brukeren',
@@ -2763,7 +2762,7 @@ Du kan oppdatere omdirigeringer som peker til den opprinnelige tittelen automati
 Om du velger å ikke gjøre det, sjekk at flyttingen ikke fører til [[Special:DoubleRedirects|doble]] eller [[Special:BrokenRedirects|ødelagte omdirigeringer]].
 Du er ansvarlig for at lenker fortsetter å peke til de sidene de er ment å peke til.
 
-Legg merke til at siden '''ikke''' kan flyttes hvis det allerede finnes en side med den nye tittelen, med mindre den er tom eller er en omdirigeringsside uten historikk.
+Legg merke til at siden '''ikke''' kan flyttes hvis det allerede finnes en side med den nye tittelen, med mindre sistnevnte er tom eller er en omdirigeringsside uten historikk.
 Det betyr at du kan flytte en side tilbake dit den kom fra hvis du gjør en feil, og du kan ikke overskrive eksisterende sider ved et uhell.
 
 '''Advarsel!'''
@@ -3626,7 +3625,7 @@ Rotert 90° mot klokka og vridd vertikalt',
 'monthsall' => 'alle',
 'limitall' => 'alle',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Bekreft e-postadresse',
 'confirmemail_noemail' => 'Du har ikke oppgitt en gyldig e-postadresse i [[Special:Preferences|innstillingene dine]].',
 'confirmemail_text' => 'Du må bekrefte e-postadressen din før du kan benytte deg av e-posttjenester på {{SITENAME}}. Trykk på knappen under for å sende en bekreftelsesmelding til e-postadressen din. Meldingen vil inneholde en lenke med en kode; følg lenken for å bekrefte at e-postadressen er gyldig.',
@@ -3868,7 +3867,7 @@ Bilder vises med full oppløsning, mens andre filtyper startes direkte gjennom s
 'specialpages-group-highuse' => 'Ofte brukte sider',
 'specialpages-group-pages' => 'Sidelister',
 'specialpages-group-pagetools' => 'Sideverktøy',
-'specialpages-group-wiki' => 'Informasjon og verktøy for wikien',
+'specialpages-group-wiki' => 'Data og verktøy',
 'specialpages-group-redirects' => 'Omdirigerende spesialsider',
 'specialpages-group-spam' => 'Spamverktøy',
 

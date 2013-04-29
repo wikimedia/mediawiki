@@ -489,7 +489,7 @@ Ku gwada tare da amfani da \"all:\" don bincikar duka shafunan (har da shafunan 
 # Special:ListGroupRights
 'listgrouprights-members' => '(jerin mambobi)',
 
-# E-mail user
+# Email user
 'emailuser' => "Aika wa wannan ma'aikaci imel",
 
 # Watchlist

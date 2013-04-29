@@ -533,7 +533,7 @@ Dov dorje värrhtoedimmie gååvnese bielieh, jallh [[Special:UserLogin|logge s�
 # Special:ListUsers
 'listusers-submit' => 'Vuesehte',
 
-# E-mail user
+# Email user
 'emailuser' => 'E-påaste dïhte nuhtjien',
 'emailpage' => 'E-påaste nuhtjien',
 'defemailsubject' => '{{SITENAME}} e-påaste',

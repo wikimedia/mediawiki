@@ -350,7 +350,7 @@ $messages = array(
 'cancel' => 'Anulo',
 'moredotdotdot' => 'Më shumë...',
 'mypage' => 'Faqja ime',
-'mytalk' => 'diskutimet',
+'mytalk' => 'Diskutimet',
 'anontalk' => 'Diskutimet për këtë IP',
 'navigation' => 'Shfleto',
 'and' => '&#32;dhe',
@@ -489,8 +489,7 @@ $1",
 'viewsourceold' => 'shiko tekstin',
 'editlink' => 'redakto',
 'viewsourcelink' => 'Shiko tekstin',
-'editsectionhint' => 'Redaktoni seksionin:
-Edit section: $1',
+'editsectionhint' => 'Redaktoni seksionin: $1',
 'toc' => 'Përmbajtje',
 'showtoc' => 'trego',
 'hidetoc' => 'fshih',
@@ -715,7 +714,7 @@ Duhet të hyni brenda dhe të ndërroni fjalëkalimin tani nëse ky person jeni 
 'loginlanguagelabel' => 'Gjuha: $1',
 'suspicious-userlogout' => 'Kërkesa juaj për të shkëputet u mohua sepse duket sikur është dërguar nga një shfletues të thyer ose caching proxy.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Gabim i panjohur në funksionin e postës PHP ()',
 'user-mail-no-addy' => 'Provuat të dërgoni një korrespondencë pa adresë elektronike',
 
@@ -1374,7 +1373,7 @@ Kjo informatë është publike.',
 'prefs-displaywatchlist' => 'Shfaq opsionet',
 'prefs-diffs' => 'Ndryshimet',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'E-mail adresa është e vlefshme.',
 'email-address-validity-invalid' => 'Futni një e-mali adresë të vlefshme.',
 
@@ -2140,7 +2139,7 @@ Protokolle të mbështetura: <code>$1<code> (mos shtoni ndonjërin nga këta në
 'listgrouprights-addgroup-self-all' => 'Shtoni të gjitha grupet tek llogaria',
 'listgrouprights-removegroup-self-all' => 'Hiq të gjitha grupet nga llogaria',
 
-# E-mail user
+# Email user
 'mailnologin' => "S'ka adresë dërgimi",
 'mailnologintext' => 'Duhet të keni [[Special:UserLogin|hyrë brenda]] dhe të keni një adresë të saktë në [[Special:Preferences|parapëlqimet]] tuaja për tu dërguar email përdoruesve të tjerë.',
 'emailuser' => 'Email përdoruesit',
@@ -3465,7 +3464,7 @@ Në qoftë se skeda është ndryshuar nga gjendja origjinale, disa hollësira mu
 'monthsall' => 'të gjitha',
 'limitall' => 'Të gjitha',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Vërtetoni adresën tuaj',
 'confirmemail_noemail' => 'Ju nuk keni dhënë email të sakt te [[Special:Preferences|parapëlqimet e juaja]].',
 'confirmemail_text' => 'Për të marrë email duhet të vërtetoni adresen tuaj. Shtypni butonin e mëposhtëm për të dërguar një email vërtetimi tek adresa juaj. Email-i do të përmbajë një lidhje me kod të shifruar. Duke ndjekur lidhjen nëpërmjet shfletuesit tuaj do të vërtetoni adresën.',

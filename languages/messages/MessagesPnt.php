@@ -953,7 +953,7 @@ $messages = array(
 'listgrouprights-rights' => 'Δικαιώματα',
 'listgrouprights-members' => '(κατάλογον μελών)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Στείλον μένεμαν σον χρήστεν ατόν',
 'emailfrom' => 'Ασά:',
 'emailto' => 'Σο:',

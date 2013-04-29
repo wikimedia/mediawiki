@@ -1730,7 +1730,7 @@ PICT # misc.
 'listgrouprights-addgroup-self-all' => 'نونیت کل گروهان په وتی حساب هور کنت',
 'listgrouprights-removegroup-self-all' => 'تونیت کل گروه ان چه وتی حساب بزوریت',
 
-# E-mail user
+# Email user
 'mailnologin' => 'هچ آدرس دیم دهگ',
 'mailnologintext' => 'شما بایدن [[Special:UserLogin|وارد بیت]] و یک معتبرین آدرس ایمیلی داشته بیت ته وتی [[Special:Preferences|ترجیحات]] په دیم داتن ایمیل په دگه کاربران',
 'emailuser' => 'په ای کابر ایمیل دیم دی',
@@ -2494,8 +2494,6 @@ $1',
 
 /*
 Short names for language variants used for language conversion links.
-To disable showing a particular link, set it to 'disable', e.g.
-'variantname-zh-sg' => 'disable',
 Variants for Chinese language
 */
 'variantname-zh-hans' => 'هانس',
@@ -2846,7 +2844,7 @@ Variants for Chinese language
 'namespacesall' => 'کل',
 'monthsall' => 'کل',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'آدرس ایمیل تایید کن',
 'confirmemail_noemail' => 'شما یک معتبرین آدرس ایمیل تنظیم نه کتت نه وتی [[Special:Preferences|ترجیحات کاربر]].',
 'confirmemail_text' => '{{SITENAME}} لوٹیت که شما وتی آدرس ایمیلء تایید کنید پیش چه شی که سرویسان ایمیلی استفاده کنیت.

@@ -735,7 +735,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'newuserlogpage' => 'Tohinoa ʻo e fakatupu kau ʻetita',
 'newuserlogpagetext' => 'Ko e tohinoa ʻeni ʻo e fakatupu kau ʻetita.',
 
-# E-mail user
+# Email user
 'mailnologin' => 'ʻOku ʻikai ha tuʻasila ke tohila ki ai',
 'emailuser' => 'Tohila ki he ʻetitá ni',
 'emailpage' => 'Ko e ʻetita ʻene tohila',
@@ -1163,7 +1163,7 @@ Pea hoko ai pē hoʻo lava tānaki ha ʻuhinga ʻi he fakanounou',
 'watchlistall2' => 'kātoa',
 'namespacesall' => 'vā kotoa',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Fakamoʻoniʻi ho tuʻasila tohila',
 'confirmemail_noemail' => 'Naʻe ʻikai te ke fakamoʻoniʻi ʻa e tohila totonu ʻi he [[Special:Preferences|faʻiteliha ʻaʻau]].',
 'confirmemail_text' => 'Kuo pau te ke fakamoʻoniʻi ho tuʻasila tohila ki muʻa ʻi hoʻo ngāueʻaki ʻa e ngaahi fōtunga tohila. Lomiʻi ʻa e meʻalolomi ʻi lalo pea ʻe ʻavea ha tohila fakamoʻoniʻi ki ho tuʻasila. ʻE ʻi ai ha fehokotaki mo ha lea fakapulipuli ʻi ai. Fafaʻo ʻa e fehokotakí ni ʻi hoʻo palausa ke fakamoʻoniʻi ʻoku sai ho tuʻasila tohila.',

@@ -649,7 +649,7 @@ Doe mós effe wachte ierdets te 't obbenuuts kens perbere.",
 'loginlanguagelabel' => 'Taol: $1',
 'suspicious-userlogout' => "Dien verzeuk óm aaf te melde is genegeerd, ómdet 't liek esof 't verzeuk is versjik door 'ne browser of cacheproxy dae kepot is.",
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => "Dao haet ziech 'n ónbekénde fout veurgedaon in de mail()-functie van PHP",
 'user-mail-no-addy' => "Perbeerdjes 'ne mail te sjikke zónger 'n adres",
 
@@ -1299,7 +1299,7 @@ Deze informatie is zichbaar veur angere gebroekers.',
 'prefs-displaywatchlist' => 'Toeaningsinstèllinger',
 'prefs-diffs' => 'Vers',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => "'t E-mailadres liek geldig",
 'email-address-validity-invalid' => "Gif 'n geldig e-mailadres op",
 
@@ -2064,7 +2064,7 @@ Infermasie daoreuver èn de individueel rechter vinjs te [[{{MediaWiki:Listgroup
 'listgrouprights-addgroup-self-all' => 'Voeg alle gruup toe aan eige gebroeker',
 'listgrouprights-removegroup-self-all' => 'Wösj alle gruup van eige gebroeker',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Gein e-mailadres bekènd veur deze gebroeker',
 'mailnologintext' => "De mos zien [[Special:UserLogin|aangemèld]] en 'n gèldig e-mailadres in bie dien [[Special:Preferences|veurkäöre]] höbbe ingevuld om mail nao anger gebroekers te sjture.",
 'emailuser' => "Sjik deze gebroeker 'nen e-mail",
@@ -3340,7 +3340,7 @@ Alle volgende links die op dezelfde regel sjtaon, waere behanjeld es oetzunjerin
 'monthsall' => 'al',
 'limitall' => 'al',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Bevèstig e-mailadres',
 'confirmemail_noemail' => 'Doe höbs gein geldig e-mailadres ingegaeve in dien [[Special:Preferences|veurkäöre]].',
 'confirmemail_text' => "Deze wiki vereis dats te dien e-mailadres instèls iedats te e-mailfuncties

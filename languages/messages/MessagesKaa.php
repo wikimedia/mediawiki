@@ -1386,7 +1386,7 @@ Ja'nede [[Special:WantedCategories|kerekli kategoriyalardı]] qarap ko'rin'.",
 'listgrouprights-addgroup-all' => "Barlıq toparlardı qosıwı mu'mkin",
 'listgrouprights-removegroup-all' => "Barlıq toparlardı o'shiriwi mu'mkin",
 
-# E-mail user
+# Email user
 'mailnologin' => 'Jiberiwge adres tabılmadı',
 'emailuser' => 'Xat jiberiw',
 'emailpage' => "Paydalanıwshıg'a e-mail jiberiw",
@@ -1854,7 +1854,7 @@ Eger fayl jaratılg'anınan keyin o'zgertilgen bolsa, geybir parametrleri o'zger
 'namespacesall' => "ha'mmesi",
 'monthsall' => "ha'mme",
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'E-mail adresin tastıyıqlaw',
 'confirmemail_send' => 'Tastıyıqlaw kodın jiberiw',
 'confirmemail_sent' => 'Tastıyıqlaw xatı jiberildi.',

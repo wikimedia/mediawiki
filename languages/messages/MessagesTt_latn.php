@@ -1479,7 +1479,7 @@ Asta [[Special:UnusedCategories|qullanılmağan törkemnär]] kärsätelgän.
 'listgrouprights-helppage' => 'Help:Törkemnärneñ xoquqları',
 'listgrouprights-members' => '(törkem isemlege)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Bu qullanuçığa xat',
 'emailpage' => 'Qullanuçığa xat cibärü',
 'defemailsubject' => '{{SITENAME}}: xat',

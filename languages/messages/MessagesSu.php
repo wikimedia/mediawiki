@@ -605,7 +605,7 @@ Tungguan heula sakeudeung, laju cobaan deui.',
 'loginlanguagelabel' => 'Basa: $1',
 'suspicious-userlogout' => "Pamundut anjeun pikeun kaluar log ditolak ku sabab sigana dikirim ku pangaprak buntu atawa ''cache'' proxi.",
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Kasalahan nu teu kanyahoan dina fungsi PHP surélék().',
 'user-mail-no-addy' => 'Nyobaan ngirim surélék tanpa alamat.',
 
@@ -1210,7 +1210,7 @@ Mun geus anggeus teu bisa dibolaykeun.',
 'prefs-displaywatchlist' => 'Pilihan pidangan',
 'prefs-diffs' => 'Béda',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'Alamat surélék sigana bener',
 'email-address-validity-invalid' => 'Asupkeun alamat ratron nu bener',
 
@@ -1843,7 +1843,7 @@ Baca ogé [[Special:WantedCategories|kategori nu dipikabutuh]].',
 'listgrouprights-addgroup-self-all' => 'Tambahkeun sakabéh grup ka akun sorangan',
 'listgrouprights-removegroup-self-all' => 'Piceun sakabéh grup ti akun sorangan',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Euweuh alamat ngirim',
 'mailnologintext' => "Anjeun kudu '''[[Special:UserLogin|asup log]]''' sarta boga alamat surélék nu sah na [[Special:Preferences|préferénsi]] anjeun sangkan bisa nyurélékan pamaké séjén.",
 'emailuser' => 'Surélékan pamaké ieu',
@@ -2851,7 +2851,7 @@ Nu séjénna bakal disumputkeun sakumaha asalna.
 'monthsall' => 'kabéh',
 'limitall' => 'kabéh',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Konfirmasi alamat surélék',
 'confirmemail_noemail' => 'Alamat surélék anu didaptarkeun dina [[Special:Preferences|préferénsi pamaké]] anjeun teu sah.',
 'confirmemail_text' => 'Wiki ieu merlukeun anjeun sangkan méré konfirmasi alamat surélék saméméh migunakeun fitur surélék. Aktifkeun tombol di handap pikeun ngirimkeun surat konfirmasi ka alamat anjeun. Suratna ngandung tumbu nu ngandung sandina; muatkeun tumbuna kana panyungsi anjeun pikeun ngonfirmasi yén alamat surélék anjeun sah.',

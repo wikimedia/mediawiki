@@ -533,7 +533,7 @@ Täif, eer du fon näien fersäkst.',
 'loginlanguagelabel' => 'Sproake: $1',
 'suspicious-userlogout' => 'Dien Oumälde-Anfroage wuud ferwäigerd, deer ju fermoudelk fon n defekten Browser of n Cache-Proxy soand wuud.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Uunbekoanden Failer mäd ju Funktion mail() fon PHP',
 'user-mail-no-addy' => 'Fersoachte ne E-Mail sunner Angoawe fon ne E-Mail-Adresse tou ferseenden',
 
@@ -1150,7 +1150,7 @@ Ju duur maximoal $1 {{PLURAL:$1|Teeken|Teekene}} loang weese.',
 'prefs-displaywatchlist' => 'Anwies-Optione',
 'prefs-diffs' => 'Versionsfergliek',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'Gultige E-Mail-Adrässe',
 'email-address-validity-invalid' => 'Ne gultige E-Mail-Adrässe is nöödich.',
 
@@ -1857,7 +1857,7 @@ Informatione uurhäär uur eenpelde Gjuchte konnen [[{{MediaWiki:Listgrouprights
 'listgrouprights-addgroup-self-all' => 'Kon aal Gruppen tou dät oaine Konto bietouföigje',
 'listgrouprights-removegroup-self-all' => 'Kon aal Gruppen fon dät oaine Konto wächhoalje',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Du bäst nit anmälded.',
 'mailnologintext' => 'Du moast [[Special:UserLogin|anmälded weese]] un sälwen ne [[Special:Preferences|gultige E-Mail-Adrässe]] anroat hääbe, uum uur Benutsere ne E-Mail tou seenden.',
 'emailuser' => 'Seende E-Mail an dissen Benutser',
@@ -3020,7 +3020,7 @@ Wiedere wäide standoardmäitich nit anwiesd.
 'monthsall' => 'aal',
 'limitall' => 'aal',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Email-Adrässe bestäätigje',
 'confirmemail_noemail' => 'Du hääst neen gultige E-Mail-Adresse in dien [[Special:Preferences|persöönelke Ienstaalengen]] iendrain.',
 'confirmemail_text' => '{{SITENAME}} ärfoardert, dät du dien E-Mail-Adresse bestäätigest (authentifizierje), eer du do fergratterde E-Mail-Funktione benutsje koast. Truch n Klik ap ju Skaltfläche unner wäd ne E-Mail an die fersoand. Disse E-Mail änthaalt ne Ferbiendenge mäd n Bestäätigengs-Code. Truch Klikken ap disse Ferbiendenge wäd bestäätiged, dät dien E-Mail-Adresse gultich is.',

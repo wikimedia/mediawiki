@@ -12,12 +12,12 @@
  */
 
 $messages = array(
-'search'       => 'Ṱolani',
+'search' => 'Ṱolani',
 'searchbutton' => 'Ṱolani',
-'talk'         => 'Ambani',
+'talk' => 'Ambani',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'mainpage'             => 'Hayani',
+'mainpage' => 'Hayani',
 'mainpage-description' => 'Hayani',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -27,12 +27,12 @@ $messages = array(
 'error' => 'Vhukhakhi',
 
 # Login and logout pages
-'yourname'     => 'Dzina ḽa mushumisi:',
+'yourname' => 'Dzina ḽa mushumisi:',
 'yourpassword' => 'Phasiwede:',
 
 # Preferences page
 'changepassword' => 'Shandukisani phasiwede',
-'username'       => 'Dzina ḽa mushumisi:',
+'username' => 'Dzina ḽa mushumisi:',
 
 # Miscellaneous special pages
 'newpages-username' => 'Dzina ḽa mushumisi:',
