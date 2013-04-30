@@ -45,6 +45,14 @@ class ProcessCacheLRU {
 	}
 
 	/**
+	 * @return integer The maximum number of entries allowed
+	 * @since 1.22
+	 */
+	public function getEntryLimit() {
+		return $this->maxCacheKeys;
+	}
+
+	/**
 	 * Set a property field for a cache entry.
 	 * This will prune the cache if it gets too large based on LRU.
 	 * If the item is already set, it will be pushed to the top of the cache.
