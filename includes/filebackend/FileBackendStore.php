@@ -49,6 +49,8 @@ abstract class FileBackendStore extends FileBackend {
 	protected $maxFileSize = 4294967296; // integer bytes (4GiB)
 
 	const CACHE_TTL = 10; // integer; TTL in seconds for process cache entries
+	const CACHE_CHEAP_SIZE = 300; // integer; max entries in "cheap cache"
+	const CACHE_EXPENSIVE_SIZE = 5; // integer; max entries in "expensive cache"
 
 	/**
 	 * @see FileBackend::__construct()
@@ -58,8 +60,8 @@ abstract class FileBackendStore extends FileBackend {
 	public function __construct( array $config ) {
 		parent::__construct( $config );
 		$this->memCache = new EmptyBagOStuff(); // disabled by default
-		$this->cheapCache = new ProcessCacheLRU( 300 );
-		$this->expensiveCache = new ProcessCacheLRU( 5 );
+		$this->cheapCache = new ProcessCacheLRU( self::CACHE_CHEAP_SIZE );
+		$this->expensiveCache = new ProcessCacheLRU( self::CACHE_EXPENSIVE_SIZE );
 	}
 
 	/**
