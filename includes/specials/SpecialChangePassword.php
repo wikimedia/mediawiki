@@ -221,6 +221,12 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 			throw new PasswordError( $this->msg( 'login-throttled' )->text() );
 		}
 
+		$abortMsg = 'resetpass-abort-generic';
+		if ( !wfRunHooks( 'AbortChangePassword', array( $user, $this->mOldpass, $newpass, &$abortMsg ) ) ) {
+			wfRunHooks( 'PrefsPasswordAudit', array( $user, $newpass, 'abortreset' ) );
+			throw new PasswordError( $this->msg( $abortMsg )->text() );
+		}
+
 		if( !$user->checkTemporaryPassword($this->mOldpass) && !$user->checkPassword($this->mOldpass) ) {
 			wfRunHooks( 'PrefsPasswordAudit', array( $user, $newpass, 'wrongpassword' ) );
 			throw new PasswordError( $this->msg( 'resetpass-wrong-oldpass' )->text() );
