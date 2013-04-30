@@ -353,7 +353,7 @@ a.sortheader {
 .wikitable, .thumb, img {
 	page-break-inside: avoid;
 }
-h2, h3, h4, h5, h6, h7 {
+h2, h3, h4, h5, h6 {
 	page-break-after: avoid;
 }
 p {
