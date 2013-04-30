@@ -95,6 +95,7 @@ production.
 * BREAKING CHANGE: list=allpages, list=langbacklinks, and prop=langlinks do not
   apply the new LanguageLinks hook, and thus only consider language links
   stored in the database.
+* (bug 47219) Allow specifying change type of Wikipedia feed items
 
 === Languages updated in 1.22===
 
