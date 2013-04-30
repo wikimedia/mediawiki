@@ -261,27 +261,21 @@ class UsercreateTemplateVForm extends BaseTemplate {
 <div class="mw-createacct-benefits-container">
 	<h2><?php $this->msg( 'createacct-benefit-heading' ); ?></h2>
 	<div class="mw-createacct-benefits-list">
+	<?php
+	for ( $benefitIdx = 1; $benefitIdx <= $this->data['benefitCount']; $benefitIdx++ ) {
+		// Pass each benefit's head text (by default a number) as a parameter to the body's message for PLURAL handling.
+		$headUnescaped = $this->getMsg( "createacct-benefit-head$benefitIdx" )->text();
+	?>
 		<div>
-			<div class="mw-benefits-icon <?php $this->msg( 'createacct-benefit-icon1' ); ?>"></div>
+			<div class="mw-benefits-icon <?php $this->msg( "createacct-benefit-icon$benefitIdx" ); ?>"></div>
 			<div class="mw-number-text">
-				<h3><?php $this->msg( 'createacct-benefit-head1' ); ?></h3>
-				<p><?php $this->msg( 'createacct-benefit-body1' ); ?></p>
+				<h3><?php $this->msg( "createacct-benefit-head$benefitIdx" ); ?></h3>
+				<p><?php echo $this->getMsg( "createacct-benefit-body$benefitIdx" )->params( $headUnescaped )->escaped(); ?></p>
 			</div>
 		</div>
-		<div>
-			<div class="mw-benefits-icon <?php $this->msg( 'createacct-benefit-icon2' ); ?>"></div>
-			<div class="mw-number-text">
-				<h3><?php $this->msg( 'createacct-benefit-head2' ); ?></h3>
-				<p><?php $this->msg( 'createacct-benefit-body2' ); ?></p>
-			</div>
-		</div>
-		<div>
-			<div class="mw-benefits-icon <?php $this->msg( 'createacct-benefit-icon3' ); ?>"></div>
-			<div class="mw-number-text">
-				<h3><?php $this->msg( 'createacct-benefit-head3' ); ?></h3>
-				<p><?php $this->msg( 'createacct-benefit-body3' ); ?></p>
-			</div>
-		</div>
+	<?php
+	}
+	?>
 	</div>
 </div>
 </div>
