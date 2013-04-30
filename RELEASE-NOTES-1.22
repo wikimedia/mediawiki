@@ -75,6 +75,7 @@ production.
 * action=opensearch no longer silently ignores the format parameter.
 * action=opensearch now supports format=jsonfm.
 * list=usercontribs&ucprop=ids will now include the parent revision id.
+* (bug 47219) Allow specifying change type of Wikipedia feed items.
 
 === Languages updated in 1.22===
 
