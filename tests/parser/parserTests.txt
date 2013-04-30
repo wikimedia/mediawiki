@@ -12683,7 +12683,7 @@ comment title=[[Main Page]]
 !! input
 /* External links */ removed bogus entries
 !! result
-<a href="/wiki/Main_Page#External_links" title="Main Page">→</a>‎<span dir="auto"><span class="autocomment">External links: </span> removed bogus entries</span>
+<a href="/wiki/Main_Page#External_links" title="Main Page">→<span class="autocomment">External links: </span></a>‎<span dir="auto"> removed bogus entries</span>
 !!end
 
 !! test
@@ -12693,7 +12693,7 @@ comment title=[[Main Page]]
 !! input
 pre-comment text /* External links */ removed bogus entries
 !! result
-pre-comment text - <a href="/wiki/Main_Page#External_links" title="Main Page">→</a>‎<span dir="auto"><span class="autocomment">External links: </span> removed bogus entries</span>
+pre-comment text - <a href="/wiki/Main_Page#External_links" title="Main Page">→<span class="autocomment">External links: </span></a>‎<span dir="auto"> removed bogus entries</span>
 !!end
 
 !! test
@@ -12703,7 +12703,7 @@ comment local title=[[Main Page]]
 !! input
 /* External links */ removed bogus entries
 !! result
-<a href="#External_links">→</a>‎<span dir="auto"><span class="autocomment">External links: </span> removed bogus entries</span>
+<a href="#External_links">→<span class="autocomment">External links: </span></a>‎<span dir="auto"> removed bogus entries</span>
 !!end
 
 !! test
@@ -12790,7 +12790,7 @@ title=[[Main Page]]
 !!input
 /* __hello__world__ */
 !! result
-<a href="/wiki/Main_Page#hello_world" title="Main Page">→</a>‎<span dir="auto"><span class="autocomment">__hello__world__</span></span>
+<a href="/wiki/Main_Page#hello_world" title="Main Page">→<span class="autocomment">__hello__world__</span></a>‎<span dir="auto"></span>
 !! end
 
 !! test
