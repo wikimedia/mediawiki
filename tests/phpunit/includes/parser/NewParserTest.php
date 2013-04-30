@@ -190,9 +190,6 @@ class NewParserTest extends MediaWikiTestCase {
 			__METHOD__
 		);
 
-		# Reinitialise the LocalisationCache to match the database state
-		Language::getLocalisationCache()->unloadAll();
-
 		# Clear the message cache
 		MessageCache::singleton()->clear();
 
