@@ -447,6 +447,7 @@ $specialPageAliases = array(
 	'Randomredirect'            => array( 'RandomRedirect' ),
 	'Recentchanges'             => array( 'RecentChanges' ),
 	'Recentchangeslinked'       => array( 'RecentChangesLinked', 'RelatedChanges' ),
+	'Redirect'                  => array( 'Redirect' ),
 	'Revisiondelete'            => array( 'RevisionDelete' ),
 	'Search'                    => array( 'Search' ),
 	'Shortpages'                => array( 'ShortPages' ),
@@ -4793,6 +4794,19 @@ You should have received [{{SERVER}}{{SCRIPTPATH}}/COPYING a copy of the GNU Gen
 'filepath-submit'  => 'Go',
 'filepath-summary' => 'This special page returns the complete path for a file.
 Images are shown in full resolution, other file types are started with their associated program directly.',
+
+# Special:Redirect
+'redirect'         => 'Redirect by file, user, or revision ID',
+'redirect-legend'  => 'Redirect to a file or page',
+'redirect-text'    => '',
+'redirect-summary' => 'This special page redirects to a file (given the file name), a page (given a revision ID), or a user page (given a numeric user ID).',
+'redirect-submit'  => 'Go',
+'redirect-lookup'  => 'Lookup:',
+'redirect-value'   => 'Value:',
+'redirect-user'     => 'User ID',
+'redirect-revision' => 'Page revision',
+'redirect-file'     => 'File name',
+'redirect-not-exists' => 'Value not found',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'Search for duplicate files',
