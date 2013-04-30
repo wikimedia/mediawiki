@@ -1461,11 +1461,6 @@ PICT # тайп тайпан
 # Special:Version
 'version' => 'Варси MediaWiki',
 
-# Special:FilePath
-'filepath' => 'ХIуман тIе болу некъ',
-'filepath-page' => 'Файл:',
-'filepath-submit' => 'Дехьавала',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Лаха цхьатера йолу хIумнаш',
 'fileduplicatesearch-submit' => 'Лаха',

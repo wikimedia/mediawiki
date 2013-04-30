@@ -3684,13 +3684,6 @@ MediaWikitaqa mast'ariyku runakunata yanapanapaqmi, ichataq MANAM FIYAKUYTA ATIY
 'version-entrypoints-header-entrypoint' => "Yaykuna t'uksi",
 'version-entrypoints-header-url' => 'URL tiyay',
 
-# Special:FilePath
-'filepath' => 'Willañiqi ñan',
-'filepath-page' => 'Willañiqi:',
-'filepath-submit' => 'Riy',
-'filepath-summary' => "Kay sapaq p'anqaqa willañiqipaq tukuy ñannintam kutichin.
-Rikchakunatataq hunt'a ch'irkukupim rikunki. Huk willañiqi llayakunaqa tantapusqa wakichiwanmi chiqalla kicharikun.",
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Iskaychasqa willañiqikunata maskay',
 'fileduplicatesearch-summary' => "Iskaychasqa willañiqikunata maskay ''hash'' chaninpi tiksispa.",

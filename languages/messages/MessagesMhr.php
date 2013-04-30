@@ -1105,9 +1105,6 @@ $messages = array(
 # Special:Version
 'version-specialpages' => 'Лӱмын ыштыме лаштык-влак',
 
-# Special:FilePath
-'filepath-page' => 'Файл:',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch-submit' => 'Кычалаш',
 

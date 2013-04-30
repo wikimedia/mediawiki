@@ -2314,7 +2314,7 @@ $1',
 'enotif_body_intro_restored' => '{{SITENAME}}页面$1已于$PAGEEDITDATE被$2{{GENDER:$2|恢复}}，请浏览<$3>查看当前版本。',
 'enotif_body_intro_changed' => '{{SITENAME}}页面$1已于$PAGEEDITDATE被$2{{GENDER:$2|更改}}，请浏览 $3 查看当前版本。',
 'enotif_lastvisited' => '请浏览 $1 查看你上次访问后的所有更改。',
-'enotif_lastdiff' => '请浏览 $1 查看该更改。',
+'enotif_lastdiff' => '请浏览$1查看该更改。',
 'enotif_anon_editor' => '匿名用户$1',
 'enotif_body' => '亲爱的$WATCHINGUSERNAME：
 
@@ -3826,12 +3826,6 @@ MediaWiki发表时预期有用，但对此'''无任何保证'''，亦无隐含�
 'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath 条目路径]',
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath 脚本路径]',
 
-# Special:FilePath
-'filepath' => '文件路径',
-'filepath-page' => '文件名：',
-'filepath-submit' => '提交',
-'filepath-summary' => '本特殊页面返回文件的完整路径。图像以完整分辨率显示，其它文件类型以关联程序直接打开。',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => '搜索重复文件',
 'fileduplicatesearch-summary' => '根据哈希（hash）值搜索重复文件。',
@@ -3923,6 +3917,7 @@ MediaWiki发表时预期有用，但对此'''无任何保证'''，亦无隐含�
 'htmlform-selectorother-other' => '其他',
 'htmlform-no' => '否',
 'htmlform-yes' => '是',
+'htmlform-chosen-placeholder' => '选择选项',
 
 # SQLite database support
 'sqlite-has-fts' => '带全文搜索的版本$1',
@@ -3965,7 +3960,7 @@ MediaWiki发表时预期有用，但对此'''无任何保证'''，亦无隐含�
 'rightsnone' => '（无）',
 
 # Feedback
-'feedback-bugornote' => '如果你准备好详细描述一个技术问题，请[$1 报告bug]。或者你可以使用下面的简单表格。你的评论及用户名将被添加至页面“[$3 $2]”。',
+'feedback-bugornote' => '如果你准备好详细描述一个技术问题，请[$1 报告bug]。或者你可以使用下面的简单表格。你的评论将被添加至页面“[$3 $2]”，附有你的用户名。',
 'feedback-subject' => '主题：',
 'feedback-message' => '信息：',
 'feedback-cancel' => '取消',

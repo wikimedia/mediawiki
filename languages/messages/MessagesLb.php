@@ -3700,13 +3700,6 @@ Dir misst eng [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie vun der GNU General Public
 'version-entrypoints-header-entrypoint' => 'Agangspunkt',
 'version-entrypoints-header-url' => 'URL',
 
-# Special:FilePath
-'filepath' => 'Pad bei de Fichier',
-'filepath-page' => 'Fichier:',
-'filepath-submit' => 'Lass',
-'filepath-summary' => 'Op dëser Spezialsäit kënnt Dir de komplette Pad vun der aktueller Versioun vun engem Fichier direkt offroen.
-Den ugefrote Fichier gëtt direkt gewise respektiv mat enger verbonner Applikatioun gestart.',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'No duebele Fichiere sichen',
 'fileduplicatesearch-summary' => "Sichen no Doublone vu Fichieren op der Basis vun hirem ''Hash-Wäert''.",

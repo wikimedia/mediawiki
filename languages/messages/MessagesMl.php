@@ -3885,13 +3885,6 @@ $5
 'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath ലേഖന പഥം]',
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath സ്ക്രിപ്റ്റ് പഥം]',
 
-# Special:FilePath
-'filepath' => 'പ്രമാണത്തിലേക്കുള്ള വിലാസം',
-'filepath-page' => 'പ്രമാണം:',
-'filepath-submit' => 'പോകൂ',
-'filepath-summary' => 'ഈ പ്രത്യേക താൾ ഒരു പ്രമാണത്തിന്റെ പൂർണ്ണ വിലാസം പ്രദർശിപ്പിക്കുന്നു.
-ചിത്രങ്ങൾ പൂർണ്ണ റെസലൂഷനോടു കൂടി പ്രദർശിപ്പിച്ചിരിക്കുന്നു. മറ്റുള്ള പ്രമാണ തരങ്ങൾ അതതു പ്രോഗ്രാമിൽ നേരിട്ടു തുറക്കാവുന്നതാണ്‌.',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'ഒരേ പ്രമാണത്തിന്റെ പലപകർപ്പുകളുണ്ടോയെന്നു തിരയുക',
 'fileduplicatesearch-summary' => 'ഒരേ പ്രമാണം തന്നെ വിവിധ പേരിലുണ്ടോയെന്നു ഹാഷ് വാല്യൂവധിഷ്ഠിതമായി തിരയുക.',

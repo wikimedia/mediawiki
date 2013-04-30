@@ -114,8 +114,8 @@ $messages = array(
 'fri' => 'vën',
 'sat' => 'sab',
 'january' => 'gené',
-'february' => 'Fërvé',
-'march' => 'Mars',
+'february' => 'fërvé',
+'march' => 'mars',
 'april' => 'Avril',
 'may_long' => 'Magg',
 'june' => 'Giugn',
@@ -3588,13 +3588,6 @@ A dovrìa avèj arseivù [{{SERVER}}{{SCRIPTPATH}}/COPYING na còpia dla Licensa
 'version-entrypoints-header-entrypoint' => "Pont d'intrada",
 'version-entrypoints-header-url' => "Adrëssa an sl'aragnà",
 'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Senté d\'artìcol]',
-
-# Special:FilePath
-'filepath' => "Përcors d'archivi",
-'filepath-page' => 'Archivi:',
-'filepath-submit' => 'Përcors',
-'filepath-summary' => "Sta pàgina special-sì a la smon ël përcors complet për n'archivi.
-Le figure a së smon-o a amzura pijn-a, j'àotre sòrt d'archivi a ven-o fàite parte diretament da sò programa a pòsta.",
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => "Arsërca dj'archivi dobi",

@@ -509,8 +509,8 @@ See also:
 'create' => 'The text on the tab of the edit form on unexisting pages starts editing them.
 
 {{Identical|Create}}',
-'editthispage' => 'This is the "edit" link as used in the skins Classic/Standard, Cologne Blue and Nostalgia. See {{msg|create-this-page}} for when the page does not exist.',
-'create-this-page' => 'In the skins Classic/Standard, Cologne Blue and Nostalgia this is the text for the link leading to the edit form on pages that have not yet been created. See {{msg-mw|editthispage}} for when the page already exists.
+'editthispage' => 'This is the "edit" link as used in the Cologne Blue skin, at the bottom of the page. See {{msg|create-this-page}} for when the page does not exist.',
+'create-this-page' => 'In the Cologne Blue skin this is the text for the link leading to the edit form on pages that have not yet been created, at the bottom of the page. See {{msg-mw|editthispage}} for when the page already exists.
 {{Identical|Createpage}}',
 'delete' => 'Name of the Delete tab shown for admins. Should be in the infinitive mood.
 
@@ -519,7 +519,7 @@ See also:
 * {{msg-mw|Accesskey-ca-delete}}
 * {{msg-mw|Tooltip-ca-delete}}
 {{Identical|Delete}}',
-'deletethispage' => 'In the skins Classic/Standard, Cologne Blue and Nostalgia this is the text for link to delete the page in admin view.
+'deletethispage' => 'In the Cologne Blue skin this is the text for link to delete the page in admin view, at the bottom of the page.
 {{Identical|Delete this page}}',
 'undelete_short' => "It is tab label. It's really can be named ''nstab-undelete''.",
 'viewdeleted_short' => 'Tab label for the undelete button when the user has permission to view the deleted history but not undelete.',
@@ -532,7 +532,7 @@ See also:
 {{Identical|Protect}}',
 'protect_change' => 'Text on links for each entry in [[Special:ProtectedPages]] to change the protection of pages (only displayed to admins).
 {{Identical|Change}}',
-'protectthispage' => 'In the skins Classic/Standard, Cologne Blue and Nostalgia this is the text for link to protect the page in admin view.
+'protectthispage' => 'In this Cologne Blue skin this is the text for link to protect the page in admin view, at the bottom of the page.
 {{Identical|Protect this page}}',
 'unprotect' => 'Name of unprotect tab displayed for admins
 
@@ -541,10 +541,10 @@ See also:
 * {{msg-mw|Accesskey-ca-unprotect}}
 * {{msg-mw|Tooltip-ca-unprotect}}
 {{Identical|Unprotect}}',
-'unprotectthispage' => 'In the skins Classic/Standard, Cologne Blue and Nostalgia this is the anchor text for the link to unprotect the page in admin view.
+'unprotectthispage' => 'In this Cologne Blue skin this is the anchor text for the link to unprotect the page in admin view, at the bottom of the page.
 {{Identical|Unprotect this page}}',
 'newpage' => '{{Identical|New page}}',
-'talkpage' => 'In the skins Classic/Standard, Cologne Blue and Nostalgia this is the text for link to discuss the page.',
+'talkpage' => 'In the Cologne Blue skin this is the text for link to discuss the page, at the bottom of the page.',
 'talkpagelinktext' => 'Used as name of links going to talk page in some places, like in [[Special:RecentChanges]], [[Special:Allmessages]], [[Special:Logs]], and [[Special:Watchlist/edit]].
 
 {{Identical|Talk}}',
@@ -553,7 +553,7 @@ See also:
 'postcomment' => 'Used as link text.
 
 The link points to the talk page and has the parameters "action=edit&section=new".',
-'articlepage' => "'Content page' is used for NS_MAIN and any other non-standard namespace and this message is only used in skins Nostalgia, Cologneblue and Standard in the bottomLinks part.
+'articlepage' => "'Content page' is used for NS_MAIN and any other non-standard namespaces. Only used in the Cologne Blue skin in the bottomLinks part.
 
 {{Identical|Content page}}",
 'talk' => 'Used as display name for the tab to all {{msg-mw|Talk}} pages. These pages accompany all content pages and can be used for discussing the content page. Example: [[Talk:Example]].
@@ -8559,27 +8559,17 @@ A short description of the article path entry point. Links to the mediawiki.org 
 'version-entrypoints-scriptpath' => '{{Optional}}
 A short description of the script path entry point. Links to the mediawiki.org documentation page for $wgScriptPath.',
 
-# Special:FilePath
-'filepath' => 'Legend of fieldset around input box in [[Special:FilePath]].',
-'filepath-page' => 'Shown next to input box in [[Special:FilePath]]
-
-{{Identical|File}}',
-'filepath-submit' => 'Button label in [[Special:FilePath]].
-{{Identical|Go}}',
-'filepath-summary' => 'Shown in [[Special:FilePath]]',
-
-# Special:Redirect
-'redirect'         => 'Main heading of [[Special:Redirect]] page',
-'redirect-legend'  => 'Legend of fieldset around input box in [[Special:Redirect]]',
-'redirect-text'    => 'Inside fieldset for [[Special:Redirect]]',
+'redirect' => 'Main heading of [[Special:Redirect]] page',
+'redirect-legend' => 'Legend of fieldset around input box in [[Special:Redirect]]',
+'redirect-text' => 'Inside fieldset for [[Special:Redirect]]',
 'redirect-summary' => 'Shown at top of [[Special:Redirect]]',
-'redirect-submit'  => 'Button label in [[Special:Redirect]].
+'redirect-submit' => 'Button label in [[Special:Redirect]].
 {{Identical|Go}}',
-'redirect-lookup'  => 'First field label in [[Special:Redirect]]',
-'redirect-value'   => 'Second field label in [[Special:Redirect]]',
-'redirect-user'     => 'Description of lookup type for [[Special:Redirect]]',
+'redirect-lookup' => 'First field label in [[Special:Redirect]]',
+'redirect-value' => 'Second field label in [[Special:Redirect]]',
+'redirect-user' => 'Description of lookup type for [[Special:Redirect]]',
 'redirect-revision' => 'Description of lookup type for [[Special:Redirect]]',
-'redirect-file'     => 'Description of lookup type for [[Special:Redirect]]',
+'redirect-file' => 'Description of lookup type for [[Special:Redirect]]',
 'redirect-not-exists' => 'Used as error message in [[Special:Redirect]]',
 
 # Special:FileDuplicateSearch

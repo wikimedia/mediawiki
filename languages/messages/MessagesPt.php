@@ -25,6 +25,7 @@
  * @author Kaganer
  * @author Leonardo.stabile
  * @author Lijealso
+ * @author Luckas
  * @author Luckas Blade
  * @author Lugusto
  * @author MCruz
@@ -3870,13 +3871,6 @@ Em conjunto com este programa deve ter recebido [{{SERVER}}{{SCRIPTPATH}}/COPYIN
 'version-entrypoints' => 'URLs de ponto de entrada',
 'version-entrypoints-header-entrypoint' => 'Ponto de entrada',
 'version-entrypoints-header-url' => 'URL',
-
-# Special:FilePath
-'filepath' => 'Endereço de ficheiro',
-'filepath-page' => 'Ficheiro:',
-'filepath-submit' => 'Ir',
-'filepath-summary' => 'Esta página especial retorna o endereço completo de um ficheiro.
-Imagens serão apresentadas pelo browser na resolução máxima; ficheiros de outro tipo serão abertos pelo browser directamente no programa que lhes está associado no seu computador.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Ficheiros duplicados',

@@ -961,7 +961,7 @@ Meld u aan en wijzig het wachtwoord nu. Als u dit verzoek niet zelf heeft gedaan
 Tijdelijk wachtwoord: $2',
 'passwordreset-emailsent' => 'Er is een e-mail voor het opnieuw instellen van een wachtwoord verzonden.',
 'passwordreset-emailsent-capture' => 'Er is een e-mail voor het opnieuw instellen van een wachtwoord verzonden. Deze wordt hieronder weergegeven.',
-'passwordreset-emailerror-capture' => 'Er is een e-mail voor het opnieuw instellen van een wachtwoord aangemaakt. Deze wordt hieronder weergegeven. Het verzonden naar de {{GENDER:$2|gebruiker}} is mislukt om de volgende reden: $1',
+'passwordreset-emailerror-capture' => 'Er is een e-mail voor het opnieuw instellen van een wachtwoord aangemaakt. Deze wordt hieronder weergegeven. Het verzenden naar de {{GENDER:$2|gebruiker}} is mislukt om de volgende reden: $1',
 
 # Special:ChangeEmail
 'changeemail' => 'E-mailadres wijzigen',
@@ -4040,14 +4040,6 @@ Samen met dit programma hoort u een [{{SERVER}}{{SCRIPTPATH}}/COPYING kopie van 
 'version-entrypoints-header-url' => 'URL',
 'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Article path]',
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Script path]',
-
-# Special:FilePath
-'filepath' => 'Bestandslocatie',
-'filepath-page' => 'Bestand:',
-'filepath-submit' => 'OK',
-'filepath-summary' => 'Deze speciale pagina geeft het volledige pad voor een bestand.
-Afbeeldingen worden in hun volledige resolutie weergegeven.
-Andere bestandstypen worden direct in het met het MIME-type verbonden programma geopend.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Duplicaatbestanden zoeken',

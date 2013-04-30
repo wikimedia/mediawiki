@@ -3906,13 +3906,6 @@ Du bör ha fått [{{SERVER}}{{SCRIPTPATH}}/COPYING en kopia av GNU General Publi
 'version-entrypoints-header-entrypoint' => 'Ingångspunkt',
 'version-entrypoints-header-url' => 'URL',
 
-# Special:FilePath
-'filepath' => 'Sökväg till fil',
-'filepath-page' => 'Fil:',
-'filepath-submit' => 'Sökväg',
-'filepath-summary' => 'Den här specialsidan ger den fullständiga sökvägen till en fil.
-Bilder visas i full upplösning, andra filtyper öppnas direkt i de program som är associerade till dem.',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Sök efter dubblettfiler',
 'fileduplicatesearch-summary' => 'Sök efter dubblettfiler baserat på filernas hash-värden.',
@@ -4004,6 +3997,7 @@ Bilder visas i full upplösning, andra filtyper öppnas direkt i de program som 
 'htmlform-selectorother-other' => 'Andra',
 'htmlform-no' => 'Nej',
 'htmlform-yes' => 'Ja',
+'htmlform-chosen-placeholder' => 'Välj ett alternativ',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 med stöd för fulltextsökning',

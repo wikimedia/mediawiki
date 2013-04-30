@@ -3683,13 +3683,6 @@ Tendría d'haber recibío [{{SERVER}}{{SCRIPTPATH}}/COPYING una copia de la Llic
 'version-entrypoints-header-entrypoint' => "Puntu d'entrada",
 'version-entrypoints-header-url' => 'URL',
 
-# Special:FilePath
-'filepath' => "Ruta d'archivu",
-'filepath-page' => 'Ficheru:',
-'filepath-submit' => 'Dir',
-'filepath-summary' => "Esta páxina especial devuelve la ruta completa d'un archivu.
-Les imáxenes amuésense a resolución completa; les demás tribes d'archivu execútense direutamente col so programa asociáu.",
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Buscar archivos duplicaos',
 'fileduplicatesearch-summary' => 'Busca archivos duplicaos basándose nos sos valores fragmentarios.',

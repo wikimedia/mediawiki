@@ -534,6 +534,7 @@ Noli oblivisci [[Special:Preferences|praeferentias]] tuas apud {{grammar:accusat
 'createaccountmail' => 'Use a temporary random password and send it to the email address specified below',
 'createaccountreason' => 'Causa:',
 'createacct-reason' => 'Causa',
+'createacct-imgcaptcha-ph' => 'Textum quem supra vidis inscribe',
 'createacct-benefit-body1' => 'recensiones',
 'createacct-benefit-body2' => 'paginae',
 'badretype' => 'Tesserae quas scripsisti inter se non congruunt.',
@@ -2335,11 +2336,6 @@ Quaesumus, adfirma ut iterum hanc paginam crees.",
 'version-license' => 'Permissio',
 'version-software-product' => 'Productum',
 'version-software-version' => 'Versio',
-
-# Special:FilePath
-'filepath' => 'Fasciculorum inscriptio',
-'filepath-page' => 'Fasciculus:',
-'filepath-submit' => 'Ire',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-legend' => 'Duplicatum quaerere',

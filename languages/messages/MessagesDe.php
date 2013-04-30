@@ -831,7 +831,7 @@ Vergiss nicht, deine [[Special:Preferences|{{SITENAME}}-Einstellungen]] zu ände
 'yourpassword' => 'Passwort:',
 'userlogin-yourpassword' => 'Passwort',
 'userlogin-yourpassword-ph' => 'Gib dein Passwort ein',
-'createacct-yourpassword-ph' => 'Gib ein Passwort ein',
+'createacct-yourpassword-ph' => 'Gib dein Passwort ein',
 'yourpasswordagain' => 'Passwort wiederholen:',
 'createacct-yourpasswordagain' => 'Passwort bestätigen',
 'createacct-yourpasswordagain-ph' => 'Gib das Passwort erneut ein',
@@ -875,7 +875,7 @@ Vergiss nicht, deine [[Special:Preferences|{{SITENAME}}-Einstellungen]] zu ände
 'createacct-benefit-heading' => '{{SITENAME}} wird von Leuten wie dir erstellt.',
 'createacct-benefit-body1' => 'Bearbeitungen',
 'createacct-benefit-body2' => 'Seiten',
-'createacct-benefit-body3' => 'Autoren in diesem Monat',
+'createacct-benefit-body3' => 'aktive Autoren',
 'badretype' => 'Die beiden Passwörter stimmen nicht überein.',
 'userexists' => 'Dieser Benutzername ist schon vergeben.
 Bitte wähle einen anderen.',
@@ -3989,11 +3989,16 @@ Eine [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie der ''GNU General Public License'']
 'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Artikelpfad]',
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Skriptpfad]',
 
-# Special:FilePath
-'filepath' => 'Dateipfad',
-'filepath-page' => 'Datei:',
-'filepath-submit' => 'Los',
-'filepath-summary' => 'Mit dieser Spezialseite lässt sich der komplette Pfad der aktuellen Version einer Datei ohne Umweg abfragen. Die angefragte Datei wird direkt dargestellt bzw. mit der verknüpften Anwendung gestartet.',
+'redirect' => 'Weiterleitung von Datei, Benutzer oder Versionskennung',
+'redirect-legend' => 'Weiterleitung auf eine Datei oder Seite',
+'redirect-summary' => 'Diese Spezialseite leitet auf eine Datei (Dateiname angegeben), Seite (Versionskennung angegeben) oder Benutzerseite (numerische Benutzerkennung angegeben) weiter.',
+'redirect-submit' => 'Los',
+'redirect-lookup' => 'Suchen:',
+'redirect-value' => 'Wert:',
+'redirect-user' => 'Benutzerkennung',
+'redirect-revision' => 'Seitenversion',
+'redirect-file' => 'Dateiname',
+'redirect-not-exists' => 'Der Wert wurde nicht gefunden',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Dateiduplikatsuche',
@@ -4086,6 +4091,7 @@ Eine [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie der ''GNU General Public License'']
 'htmlform-selectorother-other' => 'Andere',
 'htmlform-no' => 'Nein',
 'htmlform-yes' => 'Ja',
+'htmlform-chosen-placeholder' => 'Wähle eine Option',
 
 # SQLite database support
 'sqlite-has-fts' => 'Version $1 mit Unterstützung für die Volltextsuche',

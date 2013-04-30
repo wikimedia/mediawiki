@@ -468,7 +468,7 @@ $messages = array(
 'vector-action-move' => 'Alinomigi',
 'vector-action-protect' => 'Protekti',
 'vector-action-undelete' => 'Malforigi',
-'vector-action-unprotect' => 'Ŝanĝi protekadon',
+'vector-action-unprotect' => 'Ŝanĝi protektadon',
 'vector-simplesearch-preference' => 'Ebligi simpligitan serĉan strion (nur Vektora etoso)',
 'vector-view-create' => 'Krei',
 'vector-view-edit' => 'Redakti',
@@ -3911,13 +3911,6 @@ Oni devis doni al vi [{{SERVER}}{{SCRIPTPATH}}/COPYING ekzempleron de la GNU Gen
 'version-entrypoints' => 'Eniropunktaj URL-oj',
 'version-entrypoints-header-entrypoint' => 'Eniropunkto',
 'version-entrypoints-header-url' => 'Retadreso',
-
-# Special:FilePath
-'filepath' => 'Vojo al dosiero',
-'filepath-page' => 'Dosiero:',
-'filepath-submit' => 'Vojo',
-'filepath-summary' => 'Ĉi tiu speciala paĝo liveras kompletan vojon al dosiero.
-Bildoj montriĝas en plena distingivo, aliaj dosiertipoj estas malfermataj rekte per ties asociita programo.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Serĉu duplikatajn dosierojn',

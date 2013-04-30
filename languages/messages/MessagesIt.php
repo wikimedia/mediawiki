@@ -2157,7 +2157,7 @@ Potrebbero essere presenti immagini che sono usate da altri siti con un collegam
 # Special:Log
 'specialloguserlabel' => 'Azione effettuata da:',
 'speciallogtitlelabel' => 'Azione effettuata su:',
-'log' => 'Registro',
+'log' => 'Registri',
 'all-logs-page' => 'Tutti i registri pubblici',
 'alllogstext' => "Presentazione unificata di tutti i registri di {{SITENAME}}.
 È possibile restringere i criteri di ricerca selezionando il tipo di registro, l'utente che ha eseguito l'azione, e/o la pagina interessata (entrambi i campi sono sensibili al maiuscolo/minuscolo).",
@@ -3822,13 +3822,6 @@ Questo programma deve essere distribuito assieme ad [{{SERVER}}{{SCRIPTPATH}}/CO
 'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Percorso voci]',
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Percorso script]',
 
-# Special:FilePath
-'filepath' => 'Percorso di un file',
-'filepath-page' => 'Nome del file:',
-'filepath-submit' => 'Vai',
-'filepath-summary' => 'Questa pagina speciale restituisce il percorso completo di un file.
-Le immagini vengono mostrate alla massima risoluzione disponibile, per gli altri tipi di file viene avviato direttamente il programma associato.',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Ricerca dei file duplicati',
 'fileduplicatesearch-summary' => "Ricerca di eventuali duplicati del file in base al valore di ''hash''.",
@@ -3920,6 +3913,7 @@ Le immagini vengono mostrate alla massima risoluzione disponibile, per gli altri
 'htmlform-selectorother-other' => 'Altro',
 'htmlform-no' => 'No',
 'htmlform-yes' => 'Sì',
+'htmlform-chosen-placeholder' => "Seleziona un'opzione",
 
 # SQLite database support
 'sqlite-has-fts' => '$1 con la possibilità di ricerca completa nel testo',

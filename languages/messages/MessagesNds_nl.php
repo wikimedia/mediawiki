@@ -3752,14 +3752,6 @@ Samen mit dit programma heur je n [{{SERVER}}{{SCRIPTPATH}}/COPYING kopie van de
 'version-entrypoints-header-entrypoint' => 'Ingang',
 'version-entrypoints-header-url' => 'Webadres',
 
-# Special:FilePath
-'filepath' => 'Bestaandslokasie',
-'filepath-page' => 'Bestaand:',
-'filepath-submit' => 'Zeuken',
-'filepath-summary' => 'Disse spesiale zied gif t hele pad veur n bestaand. 
-Aofbeeldingen wörden in resolusie helemaole weeregeven. 
-Aandere bestaandstypen wörden gelieke in t mit t MIME-type verbunnen programma opend.',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Dubbele bestaanden zeuken',
 'fileduplicatesearch-summary' => 'Dubbele bestaanden zeuken op baosis van de hashweerde.',

@@ -3986,13 +3986,6 @@ hoặc [//www.gnu.org/licenses/old-licenses/gpl-2.0.html đọc nó trực tuy�
 'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath?uselang=vi Đường dẫn bài]',
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath?uselang=vi Đường dẫn kịch bản]',
 
-# Special:FilePath
-'filepath' => 'Đường dẫn tập tin',
-'filepath-page' => 'Tập tin:',
-'filepath-submit' => 'Hiển thị tập tin',
-'filepath-summary' => 'Trang này cho ra địa chỉ đầy đủ của một tập tin.
-Các hình ảnh được hiển thị ở kích thước tối đa, còn các loại tập tin khác được mở lên ngay trong chương trình mặc định.',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Tìm kiếm các tập tin trùng lắp',
 'fileduplicatesearch-summary' => 'Tìm kiếm các bản sao y hệt với tập tin khác, theo giá trị băm của nó.',

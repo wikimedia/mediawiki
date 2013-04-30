@@ -4024,13 +4024,6 @@ $5
 'version-entrypoints-header-entrypoint' => 'נקודת כניסה',
 'version-entrypoints-header-url' => 'כתובת',
 
-# Special:FilePath
-'filepath' => 'נתיב לקובץ',
-'filepath-page' => 'הקובץ:',
-'filepath-submit' => 'הצגה',
-'filepath-summary' => 'דף זה מציג את הנתיב המלא לקבצים שהועלו.
-תמונות מוצגות ברזולוציה מלאה, וסוגי קבצים אחרים מוצגים ישירות באמצעות התוכנה שהוגדרה להצגתם.',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'חיפוש קבצים כפולים',
 'fileduplicatesearch-summary' => 'חיפוש קבצים כפולים על בסיס ערכי הגיבוב שלהם.',

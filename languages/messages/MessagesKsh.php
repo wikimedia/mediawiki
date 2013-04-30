@@ -1521,7 +1521,7 @@ Ene zohfällesch ußjewörfelte Schlößel, dää De nämme künnß, wöhr: <cod
 'email-address-validity-invalid' => 'Jivv en jöltijje Addräß fö de <i lang="en">e-mail</i> en',
 
 # User rights
-'userrights' => 'Metmaacher ehr Räächde verwalde',
+'userrights' => 'De Metmaacher ehr Rääschde verwallde',
 'userrights-lookup-user' => 'Metmaacherjruppe verwalde',
 'userrights-user-editname' => 'Däm Metmaacher singe Name:',
 'editusergroup' => 'Metmaacher ier Jruppe un Räächde ändere',
@@ -2225,7 +2225,7 @@ Di sin dann <del>dorschjeschtresche</del>.',
 'protectedtitles' => 'Verbodde Titele för Sigge',
 'protectedtitlestext' => 'Sigge met hee dä Tittele lohße mer nit zo, un di künne dröm nit aanjelääsch wäde:',
 'protectedtitlesempty' => 'Op di Aat sin jrad kein Sigge jäje et neu Aanlääje jeschötz.',
-'listusers' => 'Metmaacherliss',
+'listusers' => 'De Metmaacherleß',
 'listusers-editsonly' => 'Donn nor Metmaacher zeije, di och ens jät jeschrevve han.',
 'listusers-creationsort' => 'Noh em Dattum vum Aanmellde zoteere',
 'usereditcount' => '{{PLURAL:$1|Ein Änderung|$1 Änderunge|Nix jedonn}}',
@@ -4035,13 +4035,6 @@ Do sullts en [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie vun dä <i lang="en">GNU Ge
 'version-entrypoints' => '<i lang="en>URLs</i> för enzeschteije',
 'version-entrypoints-header-entrypoint' => 'Enschteesch',
 'version-entrypoints-header-url' => '<i lang="en">URL</i>',
-
-# Special:FilePath
-'filepath' => 'Medije-Dateie med ier URL zëije',
-'filepath-page' => 'Dattëij_Name:',
-'filepath-submit' => 'Lohß Jonn!',
-'filepath-summary' => "Med dä {{int:nstab-special}} hee künnd'Er dä kompläte Paad vun de neuste Version vun ene Datei direk erusfenge.
-Die Datei weed jlich aanjezeig, odder med däm paßende Projramm op jemaat.",
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Sök noh dubbelte Dateie',

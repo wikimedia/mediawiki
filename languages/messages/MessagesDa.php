@@ -3693,13 +3693,6 @@ Du skulle have modtaget [{{SERVER}}{{SCRIPTPATH}}/COPYING en kopi af GNU General
 'version-entrypoints-header-entrypoint' => 'Indgangspunkt',
 'version-entrypoints-header-url' => 'URL',
 
-# Special:FilePath
-'filepath' => 'Filsti',
-'filepath-page' => 'Fil:',
-'filepath-submit' => 'Vis sti',
-'filepath-summary' => 'Denne specialside giver et direkte link til en fil.
-Billeder vises i fuld opløsning, og andre mediatyper vil blive aktiveret med deres tilhørende program.',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Find dubletfiler',
 'fileduplicatesearch-summary' => 'Find dublerede filer baseret på deres hash-værdi.',

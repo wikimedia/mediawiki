@@ -3875,13 +3875,6 @@ MediaWiki este distribuit în speranța că va fi folositor, dar FĂRĂ VREO GAR
 'version-entrypoints-header-entrypoint' => 'Punct de intrare',
 'version-entrypoints-header-url' => 'URL',
 
-# Special:FilePath
-'filepath' => 'Cale fișier',
-'filepath-page' => 'Fișier:',
-'filepath-submit' => 'Du-te',
-'filepath-summary' => 'Această pagină specială recreează calea completă a fișierului.
-Imaginile sunt afișate la rezoluția lor maximă, în timp ce alte tipuri de fișiere vor porni direct în programele asociate.',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Căutare fișiere duplicate',
 'fileduplicatesearch-summary' => 'Căutarea fișierelor duplicate bazată pe valorile hash.',
@@ -3973,6 +3966,7 @@ Imaginile sunt afișate la rezoluția lor maximă, în timp ce alte tipuri de fi
 'htmlform-selectorother-other' => 'Altul',
 'htmlform-no' => 'Nu',
 'htmlform-yes' => 'Da',
+'htmlform-chosen-placeholder' => 'Alegeți o opțiune',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 cu suport de căutare în tot textul',

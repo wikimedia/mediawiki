@@ -3440,13 +3440,6 @@ $5
 'version-entrypoints-header-entrypoint' => 'Ojú ìwọlé',
 'version-entrypoints-header-url' => 'URL',
 
-# Special:FilePath
-'filepath' => 'Ipaṣẹ̀ fáìlì',
-'filepath-page' => 'Faili:',
-'filepath-submit' => 'Lọ',
-'filepath-summary' => 'Ojúewé pàtàkì yìí úndá gbogbo ipasẹ̀ fáìlì kan padà.
-Àwọn àwòrán únhàn ní kedere, àwọn irú fáìlì míràn jẹ́ bíbẹ̀rẹ̀ pẹ̀lú ètò ìbáṣe wọn tàràtà.',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Ìṣàwárí fún àwọn fáìlì àdáwòkọ',
 'fileduplicatesearch-summary' => 'Ìṣàwárí fún àwọn fáìlì àdáwòkọ gẹ́gẹ́bí nọ́mbà hash',

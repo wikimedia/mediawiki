@@ -671,7 +671,7 @@ Moenie vergeet om u [[Special:Preferences|voorkeure vir {{SITENAME}}]] te stel n
 'createacct-benefit-heading' => '{{SITENAME}} word deur mense soos u geskep.',
 'createacct-benefit-body1' => 'wysigings',
 'createacct-benefit-body2' => 'bladsye',
-'createacct-benefit-body3' => 'bydraers die maand',
+'createacct-benefit-body3' => 'onlangse bydraers',
 'badretype' => 'Die ingetikte wagwoorde is nie dieselfde nie.',
 'userexists' => "Die gebruikersnaam wat u gekies het is beset.
 Kies asseblief 'n ander naam.",
@@ -3786,12 +3786,13 @@ Saam met die program moes u \'n [{{SERVER}}{{SCRIPTPATH}}/COPYING kopie van van 
 'version-entrypoints-header-entrypoint' => 'Ingang',
 'version-entrypoints-header-url' => 'URL',
 
-# Special:FilePath
-'filepath' => 'Lêerpad',
-'filepath-page' => 'Lêer:',
-'filepath-submit' => 'OK',
-'filepath-summary' => "Die spesiale bladsy wys die volledige pad vir 'n lêer.
-Beelde word in hulle volle resolusie gewys. Ander lêertipes word direk met hulle MIME-geskakelde programme geopen.",
+'redirect-legend' => "Aanstuur na 'n lêer of bladsy",
+'redirect-submit' => 'OK',
+'redirect-lookup' => 'Opsoek:',
+'redirect-value' => 'Waarde:',
+'redirect-user' => 'Gebruiker-ID',
+'redirect-file' => 'Lêernaam',
+'redirect-not-exists' => 'Waarde nie gevind nie',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Soek duplikaat lêers',
@@ -3884,6 +3885,7 @@ Beelde word in hulle volle resolusie gewys. Ander lêertipes word direk met hull
 'htmlform-selectorother-other' => 'Ander',
 'htmlform-no' => 'Nee',
 'htmlform-yes' => 'Ja',
+'htmlform-chosen-placeholder' => "Kies 'n opsie",
 
 # SQLite database support
 'sqlite-has-fts' => 'Weergawe $1 met ondersteuning vir vol-teks soektogte ("full-text search")',

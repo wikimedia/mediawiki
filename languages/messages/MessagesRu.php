@@ -4073,13 +4073,6 @@ MediaWiki распространяется в надежде, что она бу
 'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Путь к статье]',
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Путь к скрипту]',
 
-# Special:FilePath
-'filepath' => 'Путь к файлу',
-'filepath-page' => 'Файл:',
-'filepath-submit' => 'Перейти',
-'filepath-summary' => 'Данная служебная страница возвращает полный путь к файлу.
-Изображения показываются в полном разрешении, другие типы файлов открываются напрямую в связанных с ними программах.',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Поиск одинаковых файлов',
 'fileduplicatesearch-summary' => 'Поиск одинаковых файлов по хэш-коду.',
