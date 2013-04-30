@@ -1770,7 +1770,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		$this->assertEquals( true, $status->isOK(),
 			"Creation of files succeeded with OK status ($backendName)." );
 
-		// Expected listing
+		// Expected listing at root
 		$expected = array(
 			"e/test1.txt",
 			"e/test2.txt",
@@ -1789,27 +1789,28 @@ class FileBackendTest extends MediaWikiTestCase {
 		);
 		sort( $expected );
 
-		// Actual listing (no trailing slash)
-		$list = array();
+		// Actual listing (no trailing slash) at root
 		$iter = $this->backend->getFileList( array( 'dir' => "$base/unittest-cont1" ) );
-		foreach ( $iter as $file ) {
-			$list[] = $file;
-		}
+		$list = $this->listToArray( $iter );
 		sort( $list );
-
 		$this->assertEquals( $expected, $list, "Correct file listing ($backendName)." );
 
-		// Actual listing (with trailing slash)
+		// Actual listing (no trailing slash) at root with advise
+		$iter = $this->backend->getFileList( array( 'dir' => "$base/unittest-cont1", 'adviseStat' => 1 ) );
+		$list = $this->listToArray( $iter );
+		sort( $list );
+		$this->assertEquals( $expected, $list, "Correct file listing ($backendName)." );
+
+		// Actual listing (with trailing slash) at root
 		$list = array();
 		$iter = $this->backend->getFileList( array( 'dir' => "$base/unittest-cont1/" ) );
 		foreach ( $iter as $file ) {
 			$list[] = $file;
 		}
 		sort( $list );
-
 		$this->assertEquals( $expected, $list, "Correct file listing ($backendName)." );
 
-		// Expected listing
+		// Expected listing at subdir
 		$expected = array(
 			"test1.txt",
 			"test2.txt",
@@ -1821,36 +1822,39 @@ class FileBackendTest extends MediaWikiTestCase {
 		);
 		sort( $expected );
 
-		// Actual listing (no trailing slash)
-		$list = array();
+		// Actual listing (no trailing slash) at subdir
 		$iter = $this->backend->getFileList( array( 'dir' => "$base/unittest-cont1/e/subdir2/subdir" ) );
-		foreach ( $iter as $file ) {
-			$list[] = $file;
-		}
+		$list = $this->listToArray( $iter );
 		sort( $list );
-
 		$this->assertEquals( $expected, $list, "Correct file listing ($backendName)." );
 
-		// Actual listing (with trailing slash)
+		// Actual listing (no trailing slash) at subdir with advise
+		$iter = $this->backend->getFileList( array( 'dir' => "$base/unittest-cont1/e/subdir2/subdir", 'adviseStat' => 1 ) );
+		$list = $this->listToArray( $iter );
+		sort( $list );
+		$this->assertEquals( $expected, $list, "Correct file listing ($backendName)." );
+
+		// Actual listing (with trailing slash) at subdir
 		$list = array();
 		$iter = $this->backend->getFileList( array( 'dir' => "$base/unittest-cont1/e/subdir2/subdir/" ) );
 		foreach ( $iter as $file ) {
 			$list[] = $file;
 		}
 		sort( $list );
-
 		$this->assertEquals( $expected, $list, "Correct file listing ($backendName)." );
 
 		// Actual listing (using iterator second time)
-		$list = array();
-		foreach ( $iter as $file ) {
-			$list[] = $file;
-		}
+		$list = $this->listToArray( $iter );
 		sort( $list );
-
 		$this->assertEquals( $expected, $list, "Correct file listing ($backendName), second iteration." );
 
-		// Expected listing (top files only)
+		// Actual listing (top files only) at root
+		$iter = $this->backend->getTopFileList( array( 'dir' => "$base/unittest-cont1" ) );
+		$list = $this->listToArray( $iter );
+		sort( $list );
+		$this->assertEquals( array(), $list, "Correct top file listing ($backendName)." );
+
+		// Expected listing (top files only) at subdir
 		$expected = array(
 			"test1.txt",
 			"test2.txt",
@@ -1860,14 +1864,16 @@ class FileBackendTest extends MediaWikiTestCase {
 		);
 		sort( $expected );
 
-		// Actual listing (top files only)
-		$list = array();
+		// Actual listing (top files only) at subdir
 		$iter = $this->backend->getTopFileList( array( 'dir' => "$base/unittest-cont1/e/subdir2/subdir" ) );
-		foreach ( $iter as $file ) {
-			$list[] = $file;
-		}
+		$list = $this->listToArray( $iter );
 		sort( $list );
+		$this->assertEquals( $expected, $list, "Correct top file listing ($backendName)." );
 
+		// Actual listing (top files only) at subdir with advise
+		$iter = $this->backend->getTopFileList( array( 'dir' => "$base/unittest-cont1/e/subdir2/subdir", 'adviseStat' => 1 ) );
+		$list = $this->listToArray( $iter );
+		sort( $list );
 		$this->assertEquals( $expected, $list, "Correct top file listing ($backendName)." );
 
 		foreach ( $files as $file ) { // clean up
@@ -2066,7 +2072,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		$this->assertEquals( $expected, $list, "Correct dir listing ($backendName)." );
 
 		$iter = $this->backend->getDirectoryList( array( 'dir' => "$base/unittest-cont1/e/subdir1" ) );
-		$items = is_array( $iter ) ? $iter : iterator_to_array( $iter );
+		$items = $this->listToArray( $iter );
 		$this->assertEquals( array(), $items, "Directory listing is empty." );
 
 		foreach ( $files as $file ) { // clean up
@@ -2078,11 +2084,11 @@ class FileBackendTest extends MediaWikiTestCase {
 			// no errors
 		}
 
-		$items = is_array( $iter ) ? $iter : iterator_to_array( $iter );
+		$items = $this->listToArray( $iter );
 		$this->assertEquals( array(), $items, "Directory listing is empty." );
 
 		$iter = $this->backend->getDirectoryList( array( 'dir' => "$base/unittest-cont1/e/not/exists" ) );
-		$items = is_array( $iter ) ? $iter : iterator_to_array( $iter );
+		$items = $this->listToArray( $iter );
 		$this->assertEquals( array(), $items, "Directory listing is empty." );
 	}
 
@@ -2185,6 +2191,11 @@ class FileBackendTest extends MediaWikiTestCase {
 			"Scoped unlocking of files succeeded ($backendName)." );
 		$this->assertEquals( true, $status->isOK(),
 			"Scoped unlocking of files succeeded with OK status ($backendName)." );
+	}
+
+	// helper function
+	private function listToArray( $iter ) {
+		return is_array( $iter ) ? $iter : iterator_to_array( $iter );
 	}
 
 	// test helper wrapper for backend prepare() function
