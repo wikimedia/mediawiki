@@ -968,23 +968,23 @@ class SwiftFileBackend extends FileBackendStore {
 	 * @param string $dir Resolved storage directory with no trailing slash
 	 * @param string|null $after Storage path of file to list items after
 	 * @param $limit integer Max number of items to list
-	 * @param array $params Includes flag for 'topOnly'
-	 * @return Array List of relative paths of dirs directly under $dir
+	 * @param array $params Parameters for getDirectoryList()
+	 * @return Array List of resolved paths of directories directly under $dir
 	 */
 	public function getDirListPageInternal( $fullCont, $dir, &$after, $limit, array $params ) {
 		$dirs = array();
 		if ( $after === INF ) {
 			return $dirs; // nothing more
 		}
-		wfProfileIn( __METHOD__ . '-' . $this->name );
 
+		wfProfileIn( __METHOD__ . '-' . $this->name );
 		try {
 			$container = $this->getContainer( $fullCont );
 			$prefix = ( $dir == '' ) ? null : "{$dir}/";
 			// Non-recursive: only list dirs right under $dir
 			if ( !empty( $params['topOnly'] ) ) {
 				$objects = $container->list_objects( $limit, $after, $prefix, null, '/' );
-				foreach ( $objects as $object ) { // files and dirs
+				foreach ( $objects as $object ) { // files and directories
 					if ( substr( $object, -1 ) === '/' ) {
 						$dirs[] = $object; // directories end in '/'
 					}
@@ -1015,6 +1015,7 @@ class SwiftFileBackend extends FileBackendStore {
 					}
 				}
 			}
+			// Page on the unfiltered directory listing (what is returned may be filtered)
 			if ( count( $objects ) < $limit ) {
 				$after = INF; // avoid a second RTT
 			} else {
@@ -1025,8 +1026,8 @@ class SwiftFileBackend extends FileBackendStore {
 			$this->handleException( $e, null, __METHOD__,
 				array( 'cont' => $fullCont, 'dir' => $dir ) );
 		}
-
 		wfProfileOut( __METHOD__ . '-' . $this->name );
+
 		return $dirs;
 	}
 
@@ -1041,32 +1042,47 @@ class SwiftFileBackend extends FileBackendStore {
 	 * @param string $dir Resolved storage directory with no trailing slash
 	 * @param string|null $after Storage path of file to list items after
 	 * @param $limit integer Max number of items to list
-	 * @param array $params Includes flag for 'topOnly'
-	 * @return Array List of relative paths of files under $dir
+	 * @param array $params Parameters for getDirectoryList()
+	 * @return Array List of resolved paths of files under $dir
 	 */
 	public function getFileListPageInternal( $fullCont, $dir, &$after, $limit, array $params ) {
 		$files = array();
 		if ( $after === INF ) {
 			return $files; // nothing more
 		}
-		wfProfileIn( __METHOD__ . '-' . $this->name );
 
+		wfProfileIn( __METHOD__ . '-' . $this->name );
 		try {
 			$container = $this->getContainer( $fullCont );
 			$prefix = ( $dir == '' ) ? null : "{$dir}/";
 			// Non-recursive: only list files right under $dir
 			if ( !empty( $params['topOnly'] ) ) { // files and dirs
-				$objects = $container->list_objects( $limit, $after, $prefix, null, '/' );
-				foreach ( $objects as $object ) {
-					if ( substr( $object, -1 ) !== '/' ) {
-						$files[] = $object; // directories end in '/'
+				if ( !empty( $params['adviseStat'] ) ) {
+					$limit = min( $limit, $this->cheapCache->getEntryLimit() );
+					// Note: get_objects() does not include directories
+					$objects = $this->loadObjectListing( $params, $dir,
+						$container->get_objects( $limit, $after, $prefix, null, '/' ) );
+					$files = $objects;
+				} else {
+					$objects = $container->list_objects( $limit, $after, $prefix, null, '/' );
+					foreach ( $objects as $object ) { // files and directories
+						if ( substr( $object, -1 ) !== '/' ) {
+							$files[] = $object; // directories end in '/'
+						}
 					}
 				}
 			// Recursive: list all files under $dir and its subdirs
 			} else { // files
-				$objects = $container->list_objects( $limit, $after, $prefix );
+				if ( !empty( $params['adviseStat'] ) ) {
+					$limit = min( $limit, $this->cheapCache->getEntryLimit() );
+					$objects = $this->loadObjectListing( $params, $dir,
+						$container->get_objects( $limit, $after, $prefix ) );
+				} else {
+					$objects = $container->list_objects( $limit, $after, $prefix );
+				}
 				$files = $objects;
 			}
+			// Page on the unfiltered object listing (what is returned may be filtered)
 			if ( count( $objects ) < $limit ) {
 				$after = INF; // avoid a second RTT
 			} else {
@@ -1077,9 +1093,36 @@ class SwiftFileBackend extends FileBackendStore {
 			$this->handleException( $e, null, __METHOD__,
 				array( 'cont' => $fullCont, 'dir' => $dir ) );
 		}
-
 		wfProfileOut( __METHOD__ . '-' . $this->name );
+
 		return $files;
+	}
+
+	/**
+	 * Load a list of objects that belong under $dir into stat cache
+	 * and return a list of the names of the objects in the same order.
+	 *
+	 * @param array $params Parameters for getDirectoryList()
+	 * @param string $dir Resolved container directory path
+	 * @param array $cfObjects List of CF_Object items
+	 * @return array List of object names
+	 */
+	private function loadObjectListing( array $params, $dir, array $cfObjects ) {
+		$names = array();
+		$storageDir = rtrim( $params['dir'], '/' );
+		$suffixStart = ( $dir === '' ) ? 0 : strlen( $dir ) + 1; // size of "path/to/dir/"
+		foreach ( $cfObjects as $object ) {
+			$path = "{$storageDir}/" . substr( $object->name, $suffixStart );
+			$val = array(
+				// Convert dates like "Tue, 03 Jan 2012 22:01:04 GMT" to TS_MW
+				'mtime'  => wfTimestamp( TS_MW, $object->last_modified ),
+				'size'   => (int)$object->content_length,
+				'latest' => false // eventually consistent
+			);
+			$this->cheapCache->set( $path, 'stat', $val );
+			$names[] = $object->name;
+		}
+		return $names;
 	}
 
 	/**
@@ -1089,6 +1132,11 @@ class SwiftFileBackend extends FileBackendStore {
 	protected function doGetFileSha1base36( array $params ) {
 		$stat = $this->getFileStat( $params );
 		if ( $stat ) {
+			if ( !isset( $stat['sha1'] ) ) {
+				// Stat entries filled by file listings don't include SHA1
+				$this->clearCache( array( $params['src'] ) );
+				$stat = $this->getFileStat( $params );
+			}
 			return $stat['sha1'];
 		} else {
 			return false;
