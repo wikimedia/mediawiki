@@ -4264,13 +4264,32 @@ Test.
 !! endarticle
 
 !! test
-Internal link with is linkprefix
+Internal link with is link prefix
 !! options
 language=is
 !! input
 Aðrir mótmælenda[[söfnuður|söfnuðir]] og
 !! result
 <p>Aðrir <a href="/wiki/S%C3%B6fnu%C3%B0ur" title="Söfnuður">mótmælendasöfnuðir</a> og
+</p>
+!! end
+
+!! article
+Mótmælendatrú
+!! text
+Test.
+!! endarticle
+
+!! test
+Internal link with is link trail and link prefix
+!! options
+language=is
+!! input
+[[mótmælendatrú]]ar
+Aðrir mótmælenda[[söfnuður|söfnuðir]] og
+!! result
+<p><a href="/wiki/M%C3%B3tm%C3%A6lendatr%C3%BA" title="Mótmælendatrú">mótmælendatrúar</a>
+Aðrir <a href="/wiki/S%C3%B6fnu%C3%B0ur" title="Söfnuður">mótmælendasöfnuðir</a> og
 </p>
 !! end
 
