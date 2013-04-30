@@ -23,6 +23,7 @@ resources/jquery.effects/
 resources/jquery.tipsy/
 resources/jquery.ui/
 resources/mediawiki.libs/
+resources/jquery.chosen/chosen.jquery.js
 
 # legacy scripts
 skins/common/
