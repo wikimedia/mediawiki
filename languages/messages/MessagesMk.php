@@ -465,9 +465,9 @@ $messages = array(
 'hidden-category-category' => 'Скриени категории',
 'category-subcat-count' => '{{PLURAL:$2|Оваа категорија ја содржи само следнава поткатегорија.|Оваа категорија {{PLURAL:$1|ја содржи следнава поткатегорија|ги содржи следниве $1 поткатегории}} од вкупно $2.}}',
 'category-subcat-count-limited' => 'Оваа категорија {{PLURAL:$1|ја содржи следнава поткатегорија|ги содржи следниве $1 поткатегории}}.',
-'category-article-count' => '{{PLURAL:$2|Оваа категорија ја содржи само следнава страница:|Во категоријата се {{PLURAL:$1|содржи следнава страница|содржат следниве $1 страници}} од вкупно $2.}}',
+'category-article-count' => '{{#ifeq:$2|Оваа категорија содржи само една страница.|{{PLURAL:$1|Прикажана е една|Прикажани се $1}} од вкупно $2 страници во категоријата.}}',
 'category-article-count-limited' => '{{PLURAL:$1|Следната страница е|Следните $1 страници се}} во оваа категорија.',
-'category-file-count' => '{{PLURAL:$2|Оваа категорија ја содржи само следната податотека.|{{PLURAL:$1|Следната податотека е|Следните $1 податотеки се}} во оваа категорија, од вкупно $2.}}',
+'category-file-count' => '{{#ifeq:$2|Оваа категорија содржи само една податотека.|{{PLURAL:$1|Прикажана е една|Прикажани се $1}} од вкупно $2 податотеки во категоријата.}}',
 'category-file-count-limited' => '{{PLURAL:$1|Следнава податотека е|Следниве $1 податотеки се}} во оваа категорија.',
 'listingcontinuesabbrev' => 'продолжува',
 'index-category' => 'Индексирани страници',
@@ -4153,13 +4153,6 @@ $5
 'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath?uselang=mk Статија]',
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath?uselang=mk Скрипта]',
 
-# Special:FilePath
-'filepath' => 'Патека до податотека',
-'filepath-page' => 'Податотека:',
-'filepath-submit' => 'Патека',
-'filepath-summary' => 'Оваа специјална страница го враќа целосниот пат на податотеката.
-Сликите се прикажани во изворна големина, другите типови на податотеки се отвораат со соодветните програми, директно.',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Барање на дуплирани податотеки',
 'fileduplicatesearch-summary' => 'Пребарување на дуплирани податотеки по тарабни вредности.',
@@ -4257,11 +4250,11 @@ $5
 
 # New logging system
 'logentry-delete-delete' => '$1 {{GENDER:$2|ја избриша}} страницата $3',
-'logentry-delete-restore' => '$1 {{GENDER:$2|ја поврати}} страницата $3',
+'logentry-delete-restore' => '$1 {{GENDER:$2|ја возобнови}} страницата $3',
 'logentry-delete-event' => '$1 {{GENDER:$2|ја измени}} видливоста на {{PLURAL:$5|настан во дневникот|$5 настани во дневникот}} на $3: $4',
 'logentry-delete-revision' => '$1 {{GENDER:$2|ја измени}} видливоста на {{PLURAL:$5|ревизија|$5 ревизии}} на страницата $3: $4',
 'logentry-delete-event-legacy' => '$1 {{GENDER:$2|ја измени}} видливоста на настаните во дневникот на $3',
-'logentry-delete-revision-legacy' => '$1 {{GENDER:$2|ја измени}} видливоста на ревизиите на страницата $3',
+'logentry-delete-revision-legacy' => '$1 {{GENDER:$2|ја измени}} видливоста на ревизии на страницата $3',
 'logentry-suppress-delete' => '$1 {{GENDER:$2|ја притаи}} страницата $3',
 'logentry-suppress-event' => '$1 потајно {{GENDER:$2|ја измени}} видливоста на {{PLURAL:$5|настан во дневникот|$5 настани во дневникот}} на $3: $4',
 'logentry-suppress-revision' => '$1 потајно {{GENDER:$2|ја измени}} видливоста на {{PLURAL:$5|ревизија|$5 ревизии}} на страницата $3: $4',

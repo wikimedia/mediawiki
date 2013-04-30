@@ -4172,13 +4172,6 @@ $5
 'version-entrypoints-header-entrypoint' => 'Улазна тачка',
 'version-entrypoints-header-url' => 'Адреса',
 
-# Special:FilePath
-'filepath' => 'Путања датотеке',
-'filepath-page' => 'Датотека:',
-'filepath-submit' => 'Иди',
-'filepath-summary' => 'Ова посебна страница приказује потпуну путању датотеке.
-Слике су приказане у пуној величини, а друге врсте датотека се покрећу помоћу њима придруженим програмима.',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Претрага дупликата',
 'fileduplicatesearch-summary' => 'Претрага дуплираних датотека према вредностима дисперзије.',

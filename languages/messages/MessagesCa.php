@@ -612,6 +612,7 @@ No oblideu de canviar les vostres [[Special:Preferences|preferències de {{SITEN
 'yourname' => "Nom d'usuari",
 'userlogin-yourname' => "Nom d'usuari",
 'userlogin-yourname-ph' => "Introduïu el vostre nom d'usuari",
+'createacct-helpusername-url' => "{{ns:Project}}:Nom d'usuari",
 'createacct-helpusername-link' => '[[{{MediaWiki:createacct-helpusername-url}}|(ajuda per escollir-ne un)]]',
 'yourpassword' => 'Contrasenya',
 'userlogin-yourpassword' => 'Contrasenya',
@@ -3726,13 +3727,6 @@ Amb aquest programa heu d'haver rebut [{{SERVER}}{{SCRIPTPATH}}/COPYING una còp
 'version-entrypoints' => "URL de punts d'entrada",
 'version-entrypoints-header-entrypoint' => "Punt d'entrada",
 'version-entrypoints-header-url' => 'URL',
-
-# Special:FilePath
-'filepath' => 'Camí del fitxer',
-'filepath-page' => 'Fitxer:',
-'filepath-submit' => 'Vés-hi',
-'filepath-summary' => "Aquesta pàgina especial retorna un camí complet d'un fitxer.
-Les imatges es mostren en plena resolució; altres tipus de fitxer s'inicien directament amb el seu programa associat.",
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Cerca fitxers duplicats',

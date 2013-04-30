@@ -1581,8 +1581,8 @@ Jika Anda memberikannya, nama asli Anda akan digunakan untuk memberi pengenalan 
 'group-all' => '(semua)',
 
 'group-user-member' => '{{GENDER:$1| pengguna}}',
-'group-autoconfirmed-member' => '{{GENDER:$1| pengguna}} terkonfimasi otomatis',
-'group-bot-member' => 'Bot',
+'group-autoconfirmed-member' => '{{GENDER:$1|pengguna terkonfimasi otomatis}}',
+'group-bot-member' => '{{GENDER:$1|bot}}',
 'group-sysop-member' => '{{GENDER:$1|pengurus}}',
 'group-bureaucrat-member' => '{{GENDER:$1|birokrat}}',
 'group-suppress-member' => '{{GENDER:$1|pengawas}}',
@@ -3281,7 +3281,7 @@ Jika dijalankan, sistem Anda akan berisiko terserang.",
 'minutes' => '{{PLURAL:$1|$1 menit|$1 menit}}',
 'hours' => '{{PLURAL:$1|$1 jam|$1 jam}}',
 'days' => '{{PLURAL:$1|$1 hari|$1 hari}}',
-'weeks' => '{{PLURAL:$1|$1 minggu}}',
+'weeks' => '{{PLURAL:$1|$1 minggu|$1 minggu}}',
 'months' => '{{PLURAL:$1|$1 bulan|$1 bulan}}',
 'years' => '{{PLURAL:$1|$1 tahun|$1 tahun}}',
 'ago' => '$1 yang lalu',
@@ -4047,13 +4047,6 @@ Anda seharusnya telah menerima [{{SERVER}}{{SCRIPTPATH}}/COPYING salinan Lisensi
 'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Artikel path]',
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Skrip path]',
 
-# Special:FilePath
-'filepath' => 'Lokasi berkas',
-'filepath-page' => 'Berkas:',
-'filepath-submit' => 'Cari',
-'filepath-summary' => 'Halaman istimewa ini menampilkan jalur lengkap untuk suatu berkas.
-Gambar ditampilkan dalam resolusi penuh dan tipe lain berkas akan dibuka langsung dengan program terkaitnya.',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Pencarian berkas duplikat',
 'fileduplicatesearch-summary' => 'Pencarian duplikat berkas berdasarkan nilai hash-nya.',
@@ -4144,6 +4137,7 @@ Gambar ditampilkan dalam resolusi penuh dan tipe lain berkas akan dibuka langsun
 'htmlform-selectorother-other' => 'Lain-lain',
 'htmlform-no' => 'Tidak',
 'htmlform-yes' => 'Ya',
+'htmlform-chosen-placeholder' => 'Pilih opsi',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 dengan dukungan pencarian teks lengkap',

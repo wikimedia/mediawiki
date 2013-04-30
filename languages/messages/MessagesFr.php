@@ -803,7 +803,7 @@ N'oubliez pas de modifier [[Special:Preferences|vos préférences pour {{SITENAM
 'userlogin-yourname' => "Nom d'utilisateur",
 'userlogin-yourname-ph' => "Entrez votre nom d'utilisateur",
 'createacct-helpusername-url' => "{{ns:Project}}:Nom d'utilisateur",
-'createacct-helpusername-link' => '[[{{MediaWiki:createacct-helpusername-url}}|(aidez moi à choisir)]]',
+'createacct-helpusername-link' => '([[{{MediaWiki:createacct-helpusername-url}}|aidez moi à choisir]])',
 'yourpassword' => 'Mot de passe&nbsp;:',
 'userlogin-yourpassword' => 'Mot de passe',
 'userlogin-yourpassword-ph' => 'Entrez votre mot de passe',
@@ -850,8 +850,8 @@ N'oubliez pas de modifier [[Special:Preferences|vos préférences pour {{SITENAM
 'createacct-imgcaptcha-ph' => 'Entrez le texte que vous voyez ci-dessus',
 'createacct-benefit-heading' => '{{SITENAME}} est écrit par des gens comme vous.',
 'createacct-benefit-body1' => 'modifications',
-'createacct-benefit-body2' => 'pages',
-'createacct-benefit-body3' => 'contributeurs ce mois ci',
+'createacct-benefit-body2' => 'articles',
+'createacct-benefit-body3' => 'contributeurs ce mois-ci',
 'badretype' => 'Les mots de passe que vous avez saisis ne correspondent pas.',
 'userexists' => "Nom d'utilisateur entré déjà utilisé.
 Veuillez choisir un nom différent.",
@@ -4046,13 +4046,6 @@ Vous devriez avoir reçu [{{SERVER}}{{SCRIPTPATH}}/COPYING une copie de la Licen
 'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Chemin d’article]',
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Chemin de script]',
 
-# Special:FilePath
-'filepath' => "Chemin d'accès du fichier",
-'filepath-page' => 'Fichier :',
-'filepath-submit' => 'Aller',
-'filepath-summary' => "Cette page spéciale retourne le chemin d'accès complet d'un fichier.
-Les images sont montrées dans leur pleine résolution, les autres fichiers sont chargés et démarrés directement avec leur programme associé.",
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Recherche de doublons',
 'fileduplicatesearch-summary' => "Recherche des copies de fichiers identiques d'après leur empreinte de hachage.",
@@ -4144,6 +4137,7 @@ Les images sont montrées dans leur pleine résolution, les autres fichiers sont
 'htmlform-selectorother-other' => 'Autre',
 'htmlform-no' => 'Non',
 'htmlform-yes' => 'Oui',
+'htmlform-chosen-placeholder' => 'Choisir une option',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 avec recherche en texte intégral supportée',

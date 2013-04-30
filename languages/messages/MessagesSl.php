@@ -3803,15 +3803,6 @@ Skupaj s programom bi morali bi prejeti [{{SERVER}}{{SCRIPTPATH}}/COPYING kopijo
 'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Pot članka]',
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Pot skripta]',
 
-# Special:FilePath
-'filepath' => 'Pot do datoteke',
-'filepath-page' => 'Datoteka:',
-'filepath-submit' => 'Pojdi',
-'filepath-summary' => 'Ta posebna stran vrne polno pot do datoteke.
-Slike so prikazane v polni ločljivosti, druge vrste datotek pa se zaženejo v zanje določenih programih.
-
-Vnesite ime datoteke brez predpone »{{ns:file}}:«.',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Iskanje podvojenih datotek',
 'fileduplicatesearch-summary' => 'Iskanje podvojenih datotek, ki temelji na podlagi njenih hashvrednosti.',
@@ -3930,9 +3921,9 @@ Ta stran se sooča s tehničnimi težavami.',
 'revdelete-restricted' => 'uveljavljene omejitve administratorjev',
 'revdelete-unrestricted' => 'odstranjene omejitve administratorjev',
 'logentry-move-move' => '$1 je {{GENDER:$2|premaknil|premaknila|premaknil(-a)}} stran $3 na $4',
-'logentry-move-move-noredirect' => '$1 je {{GENDER:$2|premaknil|premaknila|premaknil(-a)}} stran $3 na $4 brez preusmeritve',
-'logentry-move-move_redir' => '$1 je {{GENDER:$2|premaknil|premaknila|premaknil(-a)}} stran $3 na $4 prek preusmeritve',
-'logentry-move-move_redir-noredirect' => '$1 je {{GENDER:$2|premaknil|premaknila|premaknil(-a)}} stran $3 na $4 prek preusmeritve in brez preusmeritve',
+'logentry-move-move-noredirect' => '$1 je {{GENDER:$2|prestavil|prestavila|prestavil(-a)}} stran $3 na $4 brez preusmeritve',
+'logentry-move-move_redir' => '$1 je {{GENDER:$2|prestavil|prestavila|prestavil(-a)}} stran $3 na $4 prek preusmeritve',
+'logentry-move-move_redir-noredirect' => '$1 je {{GENDER:$2|prestavil|prestavila|prestavil(-a)}} stran $3 na $4 prek preusmeritve in brez preusmeritve',
 'logentry-patrol-patrol' => '$1 je {{GENDER:$2|označil|označila|označil(-a)}} redakcijo $4 strani $3 kot nadzorovano',
 'logentry-patrol-patrol-auto' => '$1 je samodejno {{GENDER:$2|označil|označila|označil(-a)}} redakcijo $4 strani $3 kot nadzorovano',
 'logentry-newusers-newusers' => '$1 je {{GENDER:$2|ustvaril|ustvarila|ustvaril(-a)}} uporabniški račun',

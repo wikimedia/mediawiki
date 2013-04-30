@@ -1655,7 +1655,7 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'action-autopatrol' => 'oznaczenia własnej edycji jako „sprawdzonej”',
 'action-unwatchedpages' => 'podglądu listy nieobserwowanych stron',
 'action-mergehistory' => 'łączenia historii edycji tej strony',
-'action-userrights' => 'edytowania uprawnień wszystkich użytkowników',
+'action-userrights' => 'edycja uprawnień użytkowników',
 'action-userrights-interwiki' => 'edytowania uprawnień użytkowników na innych witrynach wiki',
 'action-siteadmin' => 'blokowania i odblokowywania bazy danych',
 'action-sendemail' => 'wysyłania e-maili',
@@ -2453,8 +2453,8 @@ Autorem ostatniej zmiany jest teraz [[User:$3|$3]] ([[User talk:$3|dyskusja]]{{i
 'editcomment' => "Edycję opisał „''$1''”.",
 'revertpage' => 'Wycofano edycje użytkownika [[Special:Contributions/$2|$2]] ([[User talk:$2|dyskusja]]). Autor przywróconej wersji to [[User:$1|$1]].',
 'revertpage-nouser' => 'Wycofano edycje (nazwa użytkownika usunięta). Autor przywróconej wersji to [[User:$1|$1]].',
-'rollback-success' => 'Wycofano edycje użytkownika $1.
-Przywrócono ostatnią wersję autorstwa $2.',
+'rollback-success' => 'Wycofano edycje użytkownika $1;
+przywrócono ostatnią wersję autorstwa $2.',
 
 # Edit tokens
 'sessionfailure-title' => 'Błąd sesji',
@@ -3945,13 +3945,6 @@ Powinieneś otrzymać [{{SERVER}}{{SCRIPTPATH}}/COPYING kopię licencji GNU Gene
 'version-entrypoints' => 'Adres URL punktu wejścia',
 'version-entrypoints-header-entrypoint' => 'Punkt wejścia',
 'version-entrypoints-header-url' => 'URL',
-
-# Special:FilePath
-'filepath' => 'Ścieżka do pliku',
-'filepath-page' => 'Plik',
-'filepath-submit' => 'Przejdź',
-'filepath-summary' => 'Ta strona specjalna zwraca pełną ścieżkę do pliku.
-Grafiki są pokazywane w pełnej rozdzielczości. Inne typy plików są otwierane w skojarzonym z nimi programie.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Szukaj duplikatów pliku',

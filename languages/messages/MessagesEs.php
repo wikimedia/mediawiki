@@ -41,6 +41,7 @@
  * @author Fibonacci
  * @author Fitoschido
  * @author Fluence
+ * @author Fortega
  * @author Gustronico
  * @author Gwickwire
  * @author Hazard-SJ
@@ -778,9 +779,19 @@ Ten en cuenta que las páginas que tengas abiertas en otras ventanas o pestañas
 'welcomecreation-msg' => 'Tu cuenta ha sido creada.
 No olvides cambiar tus [[Special:Preferences|preferencias de {{SITENAME}} ]].',
 'yourname' => 'Nombre de usuario:',
+'userlogin-yourname' => 'Nombre de usuario',
+'userlogin-yourname-ph' => 'Escribe tu nombre de usuario',
+'createacct-helpusername-link' => '[[{{MediaWiki:createacct-helpusername-url}}|(ayúdame a elegir)]]',
 'yourpassword' => 'Contraseña:',
+'userlogin-yourpassword' => 'Contraseña',
+'userlogin-yourpassword-ph' => 'Escribe tu contraseña',
+'createacct-yourpassword-ph' => 'Escribe una contraseña',
 'yourpasswordagain' => 'Confirma la contraseña:',
+'createacct-yourpasswordagain' => 'Confirma la contraseña',
+'createacct-yourpasswordagain-ph' => 'Repite la contraseña',
 'remembermypassword' => 'Mantenerme conectado en este navegador (hasta $1 {{PLURAL:$1|día|días}})',
+'userlogin-remembermypassword' => 'Recordarme',
+'userlogin-signwithsecure' => 'Idetificarse mediante servidor seguro',
 'securelogin-stick-https' => 'Permanecer conectado a HTTPS después de iniciar sesión',
 'yourdomainname' => 'Dominio',
 'password-change-forbidden' => 'No puedes cambiar las contraseñas de este wiki.',
@@ -793,18 +804,36 @@ No olvides cambiar tus [[Special:Preferences|preferencias de {{SITENAME}} ]].',
 'logout' => 'Cerrar sesión',
 'userlogout' => 'Cerrar sesión',
 'notloggedin' => 'No has iniciado sesión',
+'userlogin-noaccount' => '¿No tienes una cuenta?',
+'userlogin-joinproject' => 'Unirse a {{SITENAME}}',
 'nologin' => '¿No tienes una cuenta? $1.',
 'nologinlink' => 'Crear una cuenta',
 'createaccount' => 'Crear una cuenta',
 'gotaccount' => '¿Ya tienes una cuenta? $1.',
 'gotaccountlink' => 'Entrar',
 'userlogin-resetlink' => '¿Olvidaste tus datos de acceso?',
+'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Ayuda para identificarse]]',
+'createacct-join' => 'Introduce tus datos debajo.',
+'createacct-emailrequired' => 'Dirección de correo electrónico',
+'createacct-emailoptional' => 'Dirección de correo electrónico (opcional)',
+'createacct-email-ph' => 'Escribe tu dirección de correo electrónico',
 'createaccountmail' => 'Usar una contraseña aleatoria temporal y enviarla a la siguiente dirección de correo electrónico',
+'createacct-realname' => 'Nombre real (opcional)',
 'createaccountreason' => 'Motivo:',
+'createacct-reason' => 'Motivo',
+'createacct-captcha' => 'Comprobación de seguridad',
+'createacct-captcha-help-url' => '{{ns:Project}}:Solicitar una cuenta',
+'createacct-imgcaptcha-help' => '¿No ves la imagen? [[{{MediaWiki:createacct-captcha-help-url}}|Solicitar una cuenta]]',
+'createacct-imgcaptcha-ph' => 'Escribe el texto de arriba',
+'createacct-benefit-heading' => '{{SITENAME}} lo construye gente como tú.',
+'createacct-benefit-body1' => 'ediciones',
+'createacct-benefit-body2' => 'páginas',
+'createacct-benefit-body3' => 'contribuyentes este mes',
 'badretype' => 'Las contraseñas no coinciden.',
 'userexists' => 'El nombre de usuario indicado ya está en uso.
 Por favor escoge un nombre diferente.',
 'loginerror' => 'Error de inicio de sesión',
+'createacct-error' => 'Error al crear la cuenta',
 'createaccounterror' => 'No se pudo crear la cuenta: $1',
 'nocookiesnew' => 'La cuenta de usuario ha sido creada, pero no has iniciado sesión.
 {{SITENAME}} usa <em>cookies</em> para identificar a los usuarios registrados.
@@ -900,6 +929,7 @@ Puede que ya hayas cambiado la contraseña o que hayas pedido una temporal.',
 'passwordreset-text' => 'Completa este formulario para restablecer la contraseña.',
 'passwordreset-legend' => 'Restablecer contraseña',
 'passwordreset-disabled' => 'Se ha desactivado el restablecimiento de contraseñas en este wiki.',
+'passwordreset-emaildisabled' => 'Las funciones de correo electrónico han sido desactivadas en esta wiki.',
 'passwordreset-pretext' => '{{PLURAL:$1||Introduce uno de los elementos de datos siguientes}}',
 'passwordreset-username' => 'Nombre de usuario:',
 'passwordreset-domain' => 'Dominio:',
@@ -907,15 +937,14 @@ Puede que ya hayas cambiado la contraseña o que hayas pedido una temporal.',
 'passwordreset-capture-help' => 'Si marcas esta casilla, se te mostrará el correo electrónico (con la contraseña temporal) además de enviarse al usuario.',
 'passwordreset-email' => 'Dirección de correo electrónico:',
 'passwordreset-emailtitle' => 'Detalles de la cuenta en {{SITENAME}}',
-'passwordreset-emailtext-ip' => 'Alguien (probablemente tú, desde la dirección IP $1) pidió un recordatorio de tus
-datos de cuenta para {{SITENAME}} ($4). {{PLURAL:$3|La siguiente cuenta está asociada|Las siguientes cuentas están asociadas}}
+'passwordreset-emailtext-ip' => 'Alguien (probablemente tú, desde la dirección IP $1) ha solicitado la renovación de tu clave para {{SITENAME}} ($4). {{PLURAL:$3|La siguiente cuenta está asociada|Las siguientes cuentas están asociadas}}
 con esta dirección de correo electrónico:
 
 $2
 
-{{PLURAL:$3|Esta contraseña temporal|Estas contraseñas temporales}} expirarán en {{PLURAL:$5|un día|$5 días}}.
-Deberías iniciar sesión y establecer una contraseña nueva ahora. Si alguien más hizo este pedido,
-o recuerdas tu contraseña original, y no deseas cambiarla, puedes
+{{PLURAL:$3|Esta contraseña temporal|Estas contraseñas temporales}} caducarán en {{PLURAL:$5|un día|$5 días}}.
+Deberías iniciar sesión y establecer una contraseña nueva ahora. Si otra persona ha realizado este solicitud
+o si recuerdas tu contraseña original y no deseas cambiarla, puedes
 ignorar este mensaje y continuar usando tu contraseña anterior.',
 'passwordreset-emailtext-user' => 'El usuario $1 en {{SITENAME}} pidió un recordatorio de tus datos de cuenta para {{SITENAME}}
 ($4). {{PLURAL:$3|La siguiente cuenta está asociada|Las siguientes cuentas están asociadas}} con esta dirección de correo electrónico:
@@ -1432,6 +1461,7 @@ Prueba a usar el prefijo ''all:'' para buscar en todo el contenido (incluyendo p
 'search-external' => 'Búsqueda externa',
 'searchdisabled' => 'Las búsquedas en {{SITENAME}} están temporalmente desactivadas.
 Mientras tanto puedes buscar mediante Google, pero ten en cuenta que sus índices relativos a {{SITENAME}} pueden estar desactualizados.',
+'search-error' => 'Ha ocurrido un error al buscar: $1',
 
 # Preferences page
 'preferences' => 'Preferencias',
@@ -2789,6 +2819,7 @@ Sin embargo, está bloqueada como parte del rango $2, que puede ser desbloqueado
 'proxyblocksuccess' => 'Hecho.',
 'sorbsreason' => 'Su dirección IP está listada como proxy abierto en DNSBL.',
 'sorbs_create_account_reason' => 'Su dirección IP está listada como proxy abierto en DNSBL. No puede crear una cuenta',
+'xffblockreason' => 'Una dirección IP presente en la cabecera X-Forwarded-For, tuya o del servidor proxy que estás usando, ha sido bloqueada. El motivo original del bloqueo fue: $1',
 'cant-block-while-blocked' => 'No puedes bloquear a otros usuarios mientras estás bloquead{{GENDER:|o|a}}.',
 'cant-see-hidden-user' => 'El usuario que está intentando bloquear ya ha sido bloqueado y oculto. Puesto que usted no tiene el derecho hideuser, usted no puede ver o editar los bloqueos del usuario.',
 'ipbblocked' => 'No puedes bloquear o desbloquear a otros usuarios porque estás bloqueado',
@@ -3283,6 +3314,7 @@ Ejecutarlo podría comprometer la seguridad de su equipo.",
 'minutes' => '{{PLURAL:$1|un minuto|$1 minutos}}',
 'hours' => '{{PLURAL:$1|una hora|$1 horas}}',
 'days' => '{{PLURAL:$1|un día|$1 días}}',
+'weeks' => '{{PLURAL:$1|$1 semana|$1 semanas}}',
 'months' => '{{PLURAL:$1|$1 mes|$1 meses}}',
 'years' => '{{PLURAL:$1|$1 año|$1 años}}',
 'ago' => 'hace $1',
@@ -3919,13 +3951,6 @@ Has recibido [{{SERVER}}{{SCRIPTPATH}}/COPYING una copia de la Licencia Pública
 'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Ruta del artículo]',
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Ruta de la secuencia de comandos (script)]',
 
-# Special:FilePath
-'filepath' => 'Ruta de archivo',
-'filepath-page' => 'Archivo:',
-'filepath-submit' => 'Ir',
-'filepath-summary' => 'Esta página devuelve la ruta completa de un archivo.
-Las imágenes se muestran en resolución máxima, otros tipos de archivo se inician directamente con su programa asociado.',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Búsqueda de archivos duplicados',
 'fileduplicatesearch-summary' => 'Búsqueda de archivos duplicados en base a su valor hash.',
@@ -4016,6 +4041,9 @@ Este sitio está experimentando dificultades técnicas.',
 'htmlform-submit' => 'Enviar',
 'htmlform-reset' => 'Deshacer cambios',
 'htmlform-selectorother-other' => 'Otro',
+'htmlform-no' => 'No',
+'htmlform-yes' => 'Sí',
+'htmlform-chosen-placeholder' => 'Selecciona una opción',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 con soporte para búsqueda de texto completo',
@@ -4054,7 +4082,7 @@ Este sitio está experimentando dificultades técnicas.',
 'logentry-newusers-autocreate' => 'La cuenta $1 fue creada automáticamente',
 'logentry-rights-rights' => '$1 modificó los grupos a los que pertenece $3: de $4 a $5',
 'logentry-rights-rights-legacy' => '$1 ha cambiado la pertenencia a grupos de $3',
-'logentry-rights-autopromote' => '$1 fue promocionado automáticamente de $4 a $5',
+'logentry-rights-autopromote' => '$1 ha sido {{GENDER:$2|promocionado|promocionada}} automáticamente de $4 a $5',
 'rightsnone' => '(ninguno)',
 
 # Feedback

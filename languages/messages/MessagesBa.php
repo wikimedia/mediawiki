@@ -3649,13 +3649,6 @@ MediaWiki файҙалы булыр, тигән өмөттә, ләкин БЕР 
 'version-entrypoints-header-entrypoint' => 'Инеш урыны',
 'version-entrypoints-header-url' => 'URL',
 
-# Special:FilePath
-'filepath' => 'Файлға юл',
-'filepath-page' => 'Файл:',
-'filepath-submit' => 'Күсеү',
-'filepath-summary' => 'Был махсус бит файлдың тулы юлын ҡайтара.
-Рәсемдәр тулы асыҡлыҡта күрһәтелә, башҡа файлдар билдәләнгән программалары аша турана-тура асыла.',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Бер иш файлдарҙы эҙләү',
 'fileduplicatesearch-summary' => 'Бер иш файлдарҙы хэш-кодтары буйынса эҙләү.',

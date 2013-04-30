@@ -3398,14 +3398,6 @@ $5
 'version-entrypoints-header-entrypoint' => 'ప్రవేశ బిందువు',
 'version-entrypoints-header-url' => 'చిరునామా',
 
-# Special:FilePath
-'filepath' => 'పూర్తి చిరునామా',
-'filepath-page' => '{{ns:file}}:',
-'filepath-submit' => 'వెళ్ళు',
-'filepath-summary' => 'ఈ ప్రత్యేక పేజీలో ఫైళ్ల పేర్లు ఇస్తే వాటి పూర్తి చిరునామలు వస్తాయి. బొమ్మలైతే వాటి పూర్తి సైజుతో తెరుచుకుంటాయి, బొమ్మలు కాని ఇతర ఫైళ్లు వాటి అనుబంధ ప్రోగ్రాములతో తెరుచుకుంటాయి.
-
-పేరుకు ముందు "{{ns:file}}:" అని చేర్చవద్దు.',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'ఫైళ్ల మారుప్రతుల కోసం వెతుకు',
 'fileduplicatesearch-summary' => 'మారుప్రతుల కోసం ఫైళ్ల హాష్ విలువ ఆధారంగా వెతుకు.',

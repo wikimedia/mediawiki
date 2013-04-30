@@ -3641,13 +3641,6 @@ Insieme co sto programa te dovaressi 'ver ricevùo na copia de la Licensa Public
 'version-entrypoints-header-entrypoint' => 'Punti de aceso',
 'version-entrypoints-header-url' => 'URL',
 
-# Special:FilePath
-'filepath' => 'Percorso de un file',
-'filepath-page' => 'Nome del file:',
-'filepath-submit' => 'Va',
-'filepath-summary' => 'Sta pagina speciale la restituìsse el percorso conpleto de un file.
-Le imagini le vien mostrà a la risoluzion pi granda che se pol, par i altri tipi de file vien avià diretamente el programa associà.',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Riçerca dei file duplicà',
 'fileduplicatesearch-summary' => "Riçerca de eventuali duplicati del file in base al valor de ''hash''.",

@@ -1543,10 +1543,6 @@ Eke dosya de peydêna vuriyais biyo ki, beno ke taê melumati gorê vurnaisê ne
 # Core parser functions
 'duplicate-defaultsort' => '\'\'\'Teme:\'\'\' Tuşê default sort "$2" sero tuşê default sort "$1"î ra şino.',
 
-# Special:FilePath
-'filepath-page' => 'Dosya:',
-'filepath-submit' => 'So',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch-filename' => 'Namê dosya:',
 

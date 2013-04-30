@@ -3774,13 +3774,6 @@ GNU Üldise Avaliku Litsentsi [{{SERVER}}{{SCRIPTPATH}}/COPYING eksemplar] peaks
 'version-entrypoints-header-entrypoint' => 'Sisendpunkt',
 'version-entrypoints-header-url' => 'URL',
 
-# Special:FilePath
-'filepath' => 'Failitee',
-'filepath-page' => 'Fail:',
-'filepath-submit' => 'Mine',
-'filepath-summary' => 'See erileht määrab otsitava failini viiva tee.
-Pilt kuvatakse algupärases suuruses, muu fail avatakse koheselt seostuva programmiga.',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Faili duplikaatide otsimine',
 'fileduplicatesearch-summary' => 'Otsi duplikaatfaile nende räsiväärtuse järgi.',

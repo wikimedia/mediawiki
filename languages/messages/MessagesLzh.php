@@ -2747,12 +2747,6 @@ MediaWiki乃為用之發，無擔之責也；亦無售目之默擔也。參GNU�
 'version-software-product' => '品',
 'version-software-version' => '版',
 
-# Special:FilePath
-'filepath' => '檔路',
-'filepath-page' => '檔名：',
-'filepath-submit' => '往',
-'filepath-summary' => '此奇頁取一檔之整路。圖以全解像示之，他檔會以有關之程式啟動也。',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => '擇重檔',
 'fileduplicatesearch-summary' => '以重檔之切去查重也。',

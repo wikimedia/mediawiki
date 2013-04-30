@@ -4187,13 +4187,6 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath/ja 記事のパス]',
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath/ja スクリプトパス]',
 
-# Special:FilePath
-'filepath' => 'ファイルパス',
-'filepath-page' => 'ファイル:',
-'filepath-submit' => '取得',
-'filepath-summary' => 'この特別ページは、ファイルへの完全なパスを返します。
-画像は最大解像度で表示され、他のファイルタイプは関連付けされたプログラムが直接起動します。',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => '重複ファイルの検索',
 'fileduplicatesearch-summary' => '重複ファイルをハッシュ値に基づいて検索します。',
@@ -4285,6 +4278,7 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'htmlform-selectorother-other' => 'その他',
 'htmlform-no' => 'いいえ',
 'htmlform-yes' => 'はい',
+'htmlform-chosen-placeholder' => '選択してください',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 (全文検索あり)',

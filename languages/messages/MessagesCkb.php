@@ -3335,13 +3335,6 @@ $5
 'version-software-version' => 'وەشان',
 'version-entrypoints-header-url' => 'ناونیشانی ئینتەرنێتی',
 
-# Special:FilePath
-'filepath' => 'ڕێڕەوی پەڕگە',
-'filepath-page' => 'پەڕگە:',
-'filepath-submit' => 'بڕۆ',
-'filepath-summary' => 'ئەم لاپەڕە تایبەتە ڕێڕەوی تەواو بۆ پەڕگەیەک دەگەڕێنێتەوە.
-وێنەکان لە قەبارەی تەواو‌دا نیشان‌ دەدرێن و جۆرە پەڕگەکانی دیکە بە پڕۆگرامی هاوپەیوەندی خۆی ڕاستەوخۆ دەست‌پێ‌دەکات.',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'گەڕان بۆ پەڕگە دووپات کراوەکان',
 'fileduplicatesearch-summary' => 'گەڕان بۆ پەڕگە دووبارەکراوەکان لەسەر بنەمای نرخی hash.',

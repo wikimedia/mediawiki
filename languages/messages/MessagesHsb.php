@@ -3622,13 +3622,6 @@ Ty měł [{{SERVER}}{{SCRIPTPATH}}/COPYING kopiju licency GNU General Public Lic
 'version-entrypoints-header-entrypoint' => 'Zastupny dypk',
 'version-entrypoints-header-url' => 'URL',
 
-# Special:FilePath
-'filepath' => 'Datajowy puć',
-'filepath-page' => 'Dataja:',
-'filepath-submit' => 'Pytać',
-'filepath-summary' => 'Tuta specialna strona wróća dospołny puć aktualneje datajoweje wersije.
-Wobrazy so połnym rozeznaću pokazuja, druhe datajowe typy so ze zwjazanym programom startuja.',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Dwójne dataje pytać',
 'fileduplicatesearch-summary' => 'Pytanje za duplikatnymi datajemi na zakładźe jich hašoweje hódnoty.',

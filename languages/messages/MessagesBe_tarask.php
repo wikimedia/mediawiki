@@ -729,6 +729,7 @@ $2',
 'userexists' => 'Уведзенае Вамі імя ўдзельніка ўжо выкарыстоўваецца кімсьці іншым. 
 Калі ласка, выберыце іншае імя.',
 'loginerror' => 'Памылка ўваходу',
+'createacct-error' => 'Памылка стварэньня рахунку',
 'createaccounterror' => 'Немагчыма стварыць рахунак: $1',
 'nocookiesnew' => 'Рахунак быў створаны, але ў сыстэму Вы не ўвайшлі.
 {{SITENAME}} выкарыстоўвае cookie для ўваходу ў сыстэму.
@@ -3828,13 +3829,6 @@ MediaWiki распаўсюджваецца з надзеяй, што будзе 
 'version-entrypoints-header-url' => 'URL',
 'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Шлях да артыкула]',
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Пуць да скрыпту]',
-
-# Special:FilePath
-'filepath' => 'Шлях да файла',
-'filepath-page' => 'Файл:',
-'filepath-submit' => 'Перайсьці',
-'filepath-summary' => 'Гэтая спэцыяльная старонка вяртае поўны шлях да файла.
-Выявы паказаныя ў поўным выглядзе, астатнія тыпы файлаў адкрываюцца прыпісанымі да іх праграмамі.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Пошук дублікатаў файлаў',

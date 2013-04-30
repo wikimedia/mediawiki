@@ -3798,12 +3798,6 @@ MediaWiki ვრცელდება იმ იმედით, რომ ი�
 'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath გზა სტატიისაკენ]',
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath გზა სკრიპტისაკენ]',
 
-# Special:FilePath
-'filepath' => 'გზა ფაილისდამი',
-'filepath-page' => 'ფაილი:',
-'filepath-submit' => 'წავიდა',
-'filepath-summary' => 'მოცემული სპეცგვერდი აბრუნებს ზუსტ გზას ფაილისდამი იმ სახით, რომლითაც იგი დისკზეა შენახული',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'ერთნაირი ფაილების ძიება',
 'fileduplicatesearch-summary' => 'ერთნაირი ფაილების ძიება ჰეშ-კოდის მიხედვით.',

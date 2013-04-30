@@ -597,6 +597,8 @@ $2',
 'yourname' => 'সদস্যনাম:',
 'userlogin-yourname' => 'সদস্যনাম',
 'userlogin-yourname-ph' => 'আপোনাৰ সদস্যনাম লিখক',
+'createacct-helpusername-url' => '{{ns:Project}}:সদস্যনাম_নীতি',
+'createacct-helpusername-link' => '[[{{MediaWiki:createacct-helpusername-url}}|(মোক বাছনি কৰাত সহায় কৰক)]]',
 'yourpassword' => 'আপোনাৰ গুপ্তশব্দ',
 'userlogin-yourpassword' => 'গুপ্তশব্দ',
 'userlogin-yourpassword-ph' => 'আপোনাৰ গুপ্তশব্দ লিখক',
@@ -1998,6 +2000,8 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization চাওক।",
 
 'pageswithprop' => 'পৃষ্ঠা উপাদান সম্বলিত পৃষ্ঠাসমূহ',
 'pageswithprop-legend' => 'পৃষ্ঠা উপাদান সম্বলিত পৃষ্ঠাসমূহ',
+'pageswithprop-text' => 'বিশেষ পৃষ্ঠা উপাদান ব্যৱহাৰ কৰা পৃষ্ঠাসমূহ ইয়াত তালিকাভুক্ত কৰা হৈছে।',
+'pageswithprop-prop' => 'উপাদান নাম:',
 'pageswithprop-submit' => 'যাওক',
 
 'doubleredirects' => 'দ্বি-পুনঃনিৰ্দেশিত',
@@ -3042,6 +3046,10 @@ $1ৰ অৱৰোধৰ কাৰণ: "$2"',
 'pageinfo-protect-cascading' => 'সুৰক্ষাসমূহ ইয়াৰ পৰা প্ৰপাতাকাৰ হৈছে',
 'pageinfo-protect-cascading-yes' => 'হয়',
 'pageinfo-protect-cascading-from' => 'সুৰক্ষাসমূহ প্ৰপাতাকাৰ হৈছে',
+'pageinfo-category-info' => 'শ্ৰেণী তথ্য',
+'pageinfo-category-pages' => 'পৃষ্ঠাৰ সংখ্যা',
+'pageinfo-category-subcats' => 'উপশ্ৰেণীৰ সংখ্যা',
+'pageinfo-category-files' => 'ফাইলৰ সংখ্যা',
 
 # Patrolling
 'markaspatrolleddiff' => 'নিৰীক্ষিত বুলি চিহ্নিত কৰক',
@@ -3118,6 +3126,9 @@ $1',
 'minutes' => '{{PLURAL:$1|$1 মিনিট|$1 মিনিট}}',
 'hours' => '{{PLURAL:$1|$1 ঘন্টা|$1 ঘন্টা}}',
 'days' => '{{PLURAL:$1|$1 দিন|$1 দিন}}',
+'weeks' => '{{PLURAL:$1|$1 সপ্তাহ|$1 সপ্তাহ}}',
+'months' => '{{PLURAL:$1|$1 মাহ|$1 মাহ}}',
+'years' => '{{PLURAL:$1|$1বছৰ|$1 বছৰ}}',
 'ago' => '$1 আগেয়ে',
 'just-now' => 'এইমাত্ৰ',
 
@@ -3761,13 +3772,6 @@ $5
 'version-entrypoints-header-entrypoint' => 'প্ৰৱেশ পইণ্ট',
 'version-entrypoints-header-url' => 'ইউআৰএল',
 
-# Special:FilePath
-'filepath' => 'নথিৰ পথ',
-'filepath-page' => 'নথি:',
-'filepath-submit' => 'যাওক',
-'filepath-summary' => 'এই বিশেষ পৃষ্ঠায় এটা নথিপত্ৰৰ বাবে সম্পূৰ্ণ পথ ঘুৰাই পঠায়।
-ছবিসমূহক সম্পূৰ্ণ বিভেদনত দেখুৱা হয়, অন্য নথিপত্ৰ ধৰণসমূহ সিহতৰ সংলঘ্ন প্ৰগ্ৰামৰ সৈতে প্ৰত্যক্ষভাৱে আৰম্ভ হয়।',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'প্ৰতিলিপি পৃষ্ঠাসমূহ অনুসন্ধান কৰক',
 'fileduplicatesearch-summary' => 'হেছ্‌ মানসমূহৰ উপৰত নিৰ্ভৰ কৰি প্ৰতিলিপিত নথিপত্ৰসমূহৰ বাবে সন্ধান কৰক।',
@@ -3860,14 +3864,15 @@ $5
 'htmlform-selectorother-other' => 'অন্য',
 'htmlform-no' => 'নহয়',
 'htmlform-yes' => 'হয়',
+'htmlform-chosen-placeholder' => 'এটা বিকল্প বাছনি কৰক',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 সম্পূৰ্ণ-পাঠ অনুসন্ধান সমৰ্থন সহ',
 'sqlite-no-fts' => '$1 সম্পূৰ্ণ-পাঠ অনুসন্ধান সমৰ্থন অবিহনে',
 
 # New logging system
-'logentry-delete-delete' => '$1’ৰ দ্বাৰা $3 পৃষ্ঠাখন বিলোপ কৰা হ’ল',
-'logentry-delete-restore' => '$1 পুনৰ সংৰক্ষণ কৰা হ’ল পৃষ্ঠা $3',
+'logentry-delete-delete' => " $3 পৃষ্ঠাখন $1ৰদ্বাৰা {{GENDER:$2|বিলোপ কৰা হ'ল}}",
+'logentry-delete-restore' => "$3 পৃষ্ঠাখন $1 ৰদ্বাৰা {{GENDER:$2|পুনৰ্সংৰক্ষণ কৰা হ'ল}}",
 'logentry-delete-event' => '$3: $4 -ত {{PLURAL:$5|এটা লগ ঘটনা|$5 লগ ঘটনাসমূহ}} -ৰ $1 পৰিৱৰ্তন কৰা দৃশ্যমানতা',
 'logentry-delete-revision' => 'পৃষ্ঠা $3: $4ত {{PLURAL:$5|এটা পুনৰীক্ষন|$5 পুনৰীক্ষনসমূহ}}ৰ $1 দৃশ্যমানতা পৰিৱৰ্তন কৰা হ’ল',
 'logentry-delete-event-legacy' => '$3ত অভিলেখ ঘটনামসমূহৰ $1 দৃশ্যমানতা পৰিৱৰ্তন কৰা হ’ল',
@@ -3892,9 +3897,10 @@ $5
 'logentry-patrol-patrol' => "পৃষ্ঠা $3 -ৰ $1 চিহ্নিত সংশোধন $4 নিৰীক্ষণ কৰা হ'ল",
 'logentry-patrol-patrol-auto' => "পৃষ্ঠা $3 -ৰ $1 চিহ্নিত সংশোধন $4 স্বচালিতভাৱে নিৰীক্ষণ কৰা হ'ল",
 'logentry-newusers-newusers' => "ব্যৱহাৰকাৰী একাউণ্ট $1 সৃষ্টি কৰা হ'ল",
-'logentry-newusers-create' => "ব্যৱহাৰকাৰী একাউণ্ট $1 সৃষ্টি কৰা হ'ল",
-'logentry-newusers-create2' => "$1ৰ দ্বাৰা এটা ব্যৱহাৰকাৰী একাউণ্ট $3 সৃষ্টি কৰা হ'ল",
-'logentry-newusers-autocreate' => '$1’ৰ একাউণ্ট স্বয়ংক্ৰিয়ভাৱে সৃষ্টি কৰা হৈছিল',
+'logentry-newusers-create' => "ব্যৱহাৰকাৰী একাউণ্ট $1 {{GENDER:$2|সৃষ্টি কৰা হ'ল}}",
+'logentry-newusers-create2' => "$1ৰ দ্বাৰা এটা ব্যৱহাৰকাৰী একাউণ্ট $3 {{GENDER:$2|সৃষ্টি কৰা হ'ল}}",
+'logentry-newusers-byemail' => "$1 ৰদ্বাৰা ব্যৱহাৰকাৰী একাউণ্ট $3 {{GENDER:$2|সৃষ্টি কৰা হ'ল}} আৰু ইমেইলৰ যোগেদি গুপ্তশব্দ পঠিওৱা হ'ল",
+'logentry-newusers-autocreate' => "সদস্য একাউণ্ট $1 স্বয়ংক্ৰিয়ভাৱে {{GENDER:$2|সৃষ্টি কৰা হ'ল}}",
 'logentry-rights-rights' => "$1ৰ গোট সদস্যপদ $3ৰ পৰা $4লৈ $5 লৈ সলনি কৰা হ'ল",
 'logentry-rights-rights-legacy' => "$1-ৰ গোট সদস্যপদ $3-লৈ সলনি কৰা হ'ল",
 'logentry-rights-autopromote' => '$1ক  $4ৰ পৰা $5লৈ স্বয়ংক্ৰিয়ভাৱে পদোন্নীত কৰা হ’ল',
@@ -3952,6 +3958,7 @@ $5
 'api-error-ok-but-empty' => 'আভ্যন্তৰীণ ত্ৰুটি: চাৰ্ভাৰে কোনো সঁহাৰি জনোৱা নাই।',
 'api-error-overwrite' => 'এতিয়া থকা ফাইলৰ ওপৰত লিখা নিষেধ।',
 'api-error-stashfailed' => 'আভ্যন্তৰীণ ত্ৰুটি: অস্থায়ী ফাইল সাঁচি ৰখাত চাৰ্ভাৰ অসমৰ্থ হৈছে।',
+'api-error-publishfailed' => "আভ্যন্তৰীণ ত্ৰুটি: অস্থায়ী ফাইল প্ৰকাশ কৰাত চাৰ্ভাৰ অসমৰ্থ হ'ল।",
 'api-error-timeout' => 'আশা কৰা সময়ৰ ভিতৰত চাৰ্ভাৰটোৱে সঁহাৰি নজনালে।',
 'api-error-unclassified' => 'এক অজ্ঞাত সমস্যাই দেখা দিছে।',
 'api-error-unknown-code' => 'অজ্ঞাত সমস্যা: "$1"।',
@@ -3971,5 +3978,8 @@ $5
 'duration-decades' => '$1 {{PLURAL:$1|দশক|দশক}}',
 'duration-centuries' => '$1 {{PLURAL:$1|শতাব্দী|শতাব্দী}}',
 'duration-millennia' => '$1 {{PLURAL:$1|সহস্ৰাব্দ|সহস্ৰাব্দ}}',
+
+# Image rotation
+'rotate-comment' => 'ছবিখন ঘড়ীৰ কাটাৰ দিশত $1 {{PLURAL:$1|ডিগ্ৰী}} ঘূৰোৱা হৈছে।',
 
 );

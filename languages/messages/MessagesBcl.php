@@ -3663,13 +3663,6 @@ Ika dapat na nakapagresibe na kan [{{SERVER}}{{SCRIPTPATH}}/COPYING sarong kopya
 'version-entrypoints-header-entrypoint' => 'Puntong pan-entrada',
 'version-entrypoints-header-url' => 'Kilyawan',
 
-# Special:FilePath
-'filepath' => 'Pansagunsong agihan',
-'filepath-page' => 'Sagunson:',
-'filepath-submit' => 'Magduman',
-'filepath-summary' => 'Ining espesyal na pahina minapabalik kan kumpletong agihan para sa sarong sagunson.
-Mga imahe ipinapahiling sa bilog na resolusyon, an iba pang tipo nin mga sagunson pinagpapoon nin direkta kan saindang asosyadong programa.',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Maghanap kan duplikadong mga sagunson',
 'fileduplicatesearch-summary' => 'Maghanap kan duplikadong mga sagunson na pinagbasihan an mga kahalagahan nin hash.',

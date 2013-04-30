@@ -3896,13 +3896,6 @@ Avisse avè ricevute [{{SERVER}}{{SCRIPTPATH}}/COPYING 'na copie d'a GNU (Licenz
 'version-entrypoints-header-entrypoint' => "Punde d'ingresse",
 'version-entrypoints-header-url' => 'URL',
 
-# Special:FilePath
-'filepath' => "Percorse d'u fail",
-'filepath-page' => 'File:',
-'filepath-submit' => 'Véje',
-'filepath-summary' => "Sta pàgena speciale retorne 'u percorse comblete pe 'nu file.<br />
-Le immaggine sonde fatte vedè jndr'à resoluziona megghie, otre tipe de file rechiamane 'u lore programme associate direttamende.",
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Cirche pe le file duplichete',
 'fileduplicatesearch-summary' => "Cirche pe file duplichete sus a base d'u valore hash.",
@@ -3994,6 +3987,7 @@ Le immaggine sonde fatte vedè jndr'à resoluziona megghie, otre tipe de file re
 'htmlform-selectorother-other' => 'Otre',
 'htmlform-no' => 'None',
 'htmlform-yes' => 'Sìne',
+'htmlform-chosen-placeholder' => "Scacchie 'n'opzione",
 
 # SQLite database support
 'sqlite-has-fts' => "$1 cu 'u supporte d'a ricerche full-text",
