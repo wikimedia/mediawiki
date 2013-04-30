@@ -1344,6 +1344,11 @@ class Linker {
 			$link = '';
 			if ( $title ) {
 				$section = $auto;
+				if ( $post ) {
+					# autocomment $postsep written summary (/* section */ summary)
+					$auto .= wfMessage( 'colon-separator' )->inContentLanguage()->escaped();
+				}
+				$auto = '<span class="autocomment">' . $auto . '</span>';
 
 				# Remove links that a user may have manually put in the autosummary
 				# This could be improved by copying as much of Parser::stripSectionName as desired.
@@ -1360,7 +1365,7 @@ class Linker {
 				}
 				if ( $sectionTitle ) {
 					$link = self::link( $sectionTitle,
-						$wgLang->getArrow(), array(), array(),
+						$wgLang->getArrow() . $auto, array(), array(),
 						'noclasses' );
 				} else {
 					$link = '';
@@ -1370,12 +1375,7 @@ class Linker {
 				# written summary $presep autocomment (summary /* section */)
 				$pre .= wfMessage( 'autocomment-prefix' )->inContentLanguage()->escaped();
 			}
-			if ( $post ) {
-				# autocomment $postsep written summary (/* section */ summary)
-				$auto .= wfMessage( 'colon-separator' )->inContentLanguage()->escaped();
-			}
-			$auto = '<span class="autocomment">' . $auto . '</span>';
-			$comment = $pre . $link . $wgLang->getDirMark() . '<span dir="auto">' . $auto . $post . '</span>';
+			$comment = $pre . $link . $wgLang->getDirMark() . '<span dir="auto">' . $post . '</span>';
 		}
 		return $comment;
 	}
