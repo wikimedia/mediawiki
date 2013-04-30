@@ -254,6 +254,7 @@ $wgIgnoredMessages = array(
 	'createacct-benefit-head3',
 	'createacct-benefit-icon3',
 	'today-at',
+	'redirect-text',
 );
 
 /** Optional messages, which may be translated only if changed in the target language. */
