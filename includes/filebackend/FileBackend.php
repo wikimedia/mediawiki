@@ -1092,8 +1092,9 @@ abstract class FileBackend {
 	 *
 	 * @param $params array
 	 * $params include:
-	 *   - dir     : storage directory
-	 *   - topOnly : only return direct child files of the directory (since 1.20)
+	 *   - dir        : storage directory
+	 *   - topOnly    : only return direct child files of the directory (since 1.20)
+	 *   - adviseStat : set to true if stat requests will be made on the files (since 1.22)
 	 * @return Traversable|Array|null Returns null on failure
 	 */
 	abstract public function getFileList( array $params );
@@ -1106,7 +1107,8 @@ abstract class FileBackend {
 	 *
 	 * @param $params array
 	 * $params include:
-	 *   - dir : storage directory
+	 *   - dir        : storage directory
+	 *   - adviseStat : set to true if stat requests will be made on the files (since 1.22)
 	 * @return Traversable|Array|null Returns null on failure
 	 * @since 1.20
 	 */
