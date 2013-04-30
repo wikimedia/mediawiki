@@ -5,11 +5,17 @@ setting since version 1.2.0. If you have it on, turn it '''off''' if you can.
 
 == MediaWiki 1.20.5 ==
 
-This is not a release yet!
+This is a security and maintenance release of the MediaWiki 1.20 branch.
 
-=== Changes since 1.20.5 ===
+=== Changes since 1.20.4 ===
+* (bug 46590) Add hook AbortChangePassword to Special:ChangePassword
+* (bug 47304) SECURITY: Check SVG xml encoding against whitelist
+* Localisation updates from http://translatewiki.net.
+* mwdocgen.php: Implement --version option.
+* Remove svnstat stuff used in Doxygen generation
 * (bug 43594) Correctly supress warnings that were missed after the upstream
   PHP change to E_STRICT being included in E_ALL.
+* jshint: Allow global mw to be set in mediawiki.js
 
 == MediaWiki 1.20.4 ==
 
