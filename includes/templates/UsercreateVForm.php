@@ -261,27 +261,20 @@ class UsercreateTemplateVForm extends BaseTemplate {
 <div class="mw-createacct-benefits-container">
 	<h2><?php $this->msg( 'createacct-benefit-heading' ); ?></h2>
 	<div class="mw-createacct-benefits-list">
+<?php
+for ( $benefitInd = 1; $benefitInd <= $this->data['benefitCount']; $benefitInd++ ) {
+	$headUnescaped = $this->getMsg( "createacct-benefit-head$benefitInd" )->text();
+?>
 		<div>
-			<div class="mw-benefits-icon <?php $this->msg( 'createacct-benefit-icon1' ); ?>"></div>
+			<div class="mw-benefits-icon <?php $this->msg( "createacct-benefit-icon$benefitInd" ); ?>"></div>
 			<div class="mw-number-text">
-				<h3><?php $this->msg( 'createacct-benefit-head1' ); ?></h3>
-				<p><?php $this->msg( 'createacct-benefit-body1' ); ?></p>
+				<h3><?php $this->msg( "createacct-benefit-head$benefitInd" ); ?></h3>
+				<p><?php echo $this->getMsg( "createacct-benefit-body$benefitInd" )->params( $headUnescaped )->escaped(); ?></p>
 			</div>
 		</div>
-		<div>
-			<div class="mw-benefits-icon <?php $this->msg( 'createacct-benefit-icon2' ); ?>"></div>
-			<div class="mw-number-text">
-				<h3><?php $this->msg( 'createacct-benefit-head2' ); ?></h3>
-				<p><?php $this->msg( 'createacct-benefit-body2' ); ?></p>
-			</div>
-		</div>
-		<div>
-			<div class="mw-benefits-icon <?php $this->msg( 'createacct-benefit-icon3' ); ?>"></div>
-			<div class="mw-number-text">
-				<h3><?php $this->msg( 'createacct-benefit-head3' ); ?></h3>
-				<p><?php $this->msg( 'createacct-benefit-body3' ); ?></p>
-			</div>
-		</div>
+<?php
+}
+?>
 	</div>
 </div>
 </div>
