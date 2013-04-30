@@ -1,0 +1,6 @@
+div.hover-gallery img {
+	border-radius: 5px;
+	display: none;
+	position: fixed;
+	z-index: 99;
+}
