@@ -264,6 +264,12 @@ $reason: the reason for the move (added in 1.13)
 $user: the User object about to be created (read-only, incomplete)
 &$msg: out parameter: name of error message to display on abort
 
+'AbortChangePassword': Return false to cancel password change.
+$user: the User object to which the password change is occuring
+$this->mOldpass: the old password provided by the user
+$newpass: the new password provided by the user
+&$abortMsg: the message identifier for abort reason
+
 'ActionBeforeFormDisplay': before executing the HTMLForm object
 $name: name of the action
 &$form: HTMLForm object
