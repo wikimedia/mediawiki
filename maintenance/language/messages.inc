@@ -3727,6 +3727,7 @@ $wgMessageStructure = array(
 		'htmlform-selectorother-other',
 		'htmlform-no',
 		'htmlform-yes',
+		'htmlform-chosen-placeholder',
 	),
 	'sqlite' => array(
 		'sqlite-has-fts',
