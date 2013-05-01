@@ -55,7 +55,8 @@ function wfProfileOut( $functionname = 'missing' ) {
  */
 class ProfileSection {
 	protected $name; // string; method name
-	protected $enabled = false; // boolean; whether profiling is enabled
+	/** @var Array List of suffixes to record under this section */
+	protected $suffixes = array();
 
 	/**
 	 * Begin profiling of a function and return an object that ends profiling of
@@ -67,20 +68,27 @@ class ProfileSection {
 	 * <code>$section = new ProfileSection( __METHOD__ );</code>
 	 *
 	 * @param string $name Name of the function to profile
+	 * @param array $suffixes Suffixes to record identical sections under "<name><suffix>"
 	 */
-	public function __construct( $name ) {
-		$this->name = $name;
+	public function __construct( $name, $suffixes = array() ) {
 		if ( Profiler::$__instance === null ) { // use this directly to reduce overhead
 			Profiler::instance();
 		}
 		if ( Profiler::$__instance && !( Profiler::$__instance instanceof ProfilerStub ) ) {
-			$this->enabled = true;
+			$this->name = $name;
+			$this->suffixes = $suffixes;
 			Profiler::$__instance->profileIn( $this->name );
+			foreach ( $this->suffixes as $suffix ) {
+				Profiler::$__instance->profileIn( $this->name . $suffix );
+			}
 		}
 	}
 
 	function __destruct() {
-		if ( $this->enabled ) {
+		if ( $this->name !== null ) {
+			foreach ( array_reverse( $this->suffixes ) as $suffix ) {
+				Profiler::$__instance->profileOut( $this->name . $suffix );
+			}
 			Profiler::$__instance->profileOut( $this->name );
 		}
 	}
