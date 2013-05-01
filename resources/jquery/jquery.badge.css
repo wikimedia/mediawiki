@@ -8,6 +8,7 @@
 	font-size: 12px;
 	line-height: 12px;
 	background-color: #d2d2d2;
+	cursor: pointer;
 }
 
 .mw-badge-content {
@@ -18,8 +19,12 @@
 }
 
 .mw-badge-inline {
-	display: inline-block;
 	margin-left: 3px;
+	display: inline-block;
+	/* Hack for IE6 and IE7 (bug 47926) */
+	zoom: 1;
+	*display: inline;
+
 }
 .mw-badge-overlay {
 	position: absolute;
