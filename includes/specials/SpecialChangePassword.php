@@ -59,7 +59,12 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 		}
 
 		if ( $request->wasPosted() && $request->getBool( 'wpCancel' ) ) {
-			$this->doReturnTo();
+			$titleObj = Title::newFromText( $request->getVal( 'returnto' ) );
+			if ( !$titleObj instanceof Title ) {
+				$titleObj = Title::newMainPage();
+			}
+			$query = $request->getVal( 'returntoquery' );
+			$this->getOutput()->redirect( $titleObj->getFullURL( $query ) );
 
 			return;
 		}
@@ -79,7 +84,11 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 				$this->attemptReset( $this->mNewpass, $this->mRetype );
 
 				if ( $user->isLoggedIn() ) {
-					$this->doReturnTo();
+					$this->getOutput()->wrapWikiMsg(
+							"<div class=\"successbox\"><strong>\n$1\n</strong></div>",
+							'changepassword-success'
+					);
+					$this->getOutput()->returnToMain();
 				} else {
 					LoginForm::setLoginToken();
 					$token = LoginForm::getLoginToken();
@@ -101,16 +110,6 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 			}
 		}
 		$this->showForm();
-	}
-
-	function doReturnTo() {
-		$request = $this->getRequest();
-		$titleObj = Title::newFromText( $request->getVal( 'returnto' ) );
-		if ( !$titleObj instanceof Title ) {
-			$titleObj = Title::newMainPage();
-		}
-		$query = $request->getVal( 'returntoquery' );
-		$this->getOutput()->redirect( $titleObj->getFullURL( $query ) );
 	}
 
 	/**

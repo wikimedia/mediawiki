@@ -189,6 +189,7 @@ production.
 * New hook ResetSessionID, called when the session id is reset.
 * Add a mode parameter to <gallery> tag with potential options of "traditional",
   "nolines", "packed", "packed-overlay", or "packed-hover".
+* (bug 47399) A success message is now displayed after changing the password.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one

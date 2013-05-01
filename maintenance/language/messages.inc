@@ -582,7 +582,7 @@ $wgMessageStructure = array(
 		'newpassword',
 		'retypenew',
 		'resetpass_submit',
-		'resetpass_success',
+		'changepassword-success',
 		'resetpass_forbidden',
 		'resetpass-no-info',
 		'resetpass-submit-loggedin',
