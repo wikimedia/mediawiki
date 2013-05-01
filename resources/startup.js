@@ -38,8 +38,8 @@ function isCompatible( ua ) {
 		ua.match( /SymbianOS|Series60/ ) ||
 		// Any NetFront based browser
 		ua.match( /NetFront/ ) ||
-		// Opera Mini < 7
-		ua.match( /Opera Mini\/[0-6]\./ )
+		// Opera Mini, all versions
+		ua.match( /Opera Mini/ )
 	);
 }
 
