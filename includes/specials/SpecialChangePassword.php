@@ -78,7 +78,7 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 				$this->attemptReset( $this->mNewpass, $this->mRetype );
 
 				if ( $user->isLoggedIn() ) {
-					$this->doReturnTo();
+					$this->showReturnForm();
 				} else {
 					LoginForm::setLoginToken();
 					$token = LoginForm::getLoginToken();
@@ -104,6 +104,7 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 
 	function doReturnTo() {
 		$request = $this->getRequest();
+		$request->setVal( 'returnto', 'Special:Preferences' );
 		$titleObj = Title::newFromText( $request->getVal( 'returnto' ) );
 		if ( !$titleObj instanceof Title ) {
 			$titleObj = Title::newMainPage();
@@ -117,6 +118,29 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 	 */
 	function error( $msg ) {
 		$this->getOutput()->addHTML( Xml::element( 'p', array( 'class' => 'error' ), $msg ) );
+	}
+
+	function showReturnForm() {
+		
+		
+		$this->getOutput()->addHTML(
+			Xml::fieldset( $this->msg( 'passwordresetcomplete_header' )->text() ) .
+				Xml::openElement( 'form',
+					array(
+						'method' => 'post',
+						'action' => $this->getTitle()->getLocalURL(),
+						'id' => 'mw-resetpasscomplete-form' ) ) . "\n" .
+				Xml::openElement( 'table', array( 'id' => 'mw-passresetcomplete-table' ) ) . "\n" .
+				"<tr>\n" .
+				"<td></td>\n" .
+				'<td class="mw-input">' .
+				Xml::submitButton( $this->msg( 'passwordreset-submit-return' )->text(), array( 'name' => 'wpCancel' ) ) .
+				"</td>\n" .
+				"</tr>\n" .
+				Xml::closeElement( 'table' ) .
+				Xml::closeElement( 'form' ) .
+				Xml::closeElement( 'fieldset' ) . "\n"
+		);
 	}
 
 	function showForm() {
