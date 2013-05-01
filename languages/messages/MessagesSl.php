@@ -654,11 +654,12 @@ Ne pozabite si prilagoditi vaših [[Special:Preferences|nastavitev {{GRAMMAR:rod
 'createacct-benefit-heading' => '{{GRAMMAR:tožilnik|{{SITENAME}}}} ustvarjajo ljudje, kot ste vi.',
 'createacct-benefit-body1' => 'urejanj',
 'createacct-benefit-body2' => 'strani',
-'createacct-benefit-body3' => 'sodelavcev ta mesecev',
+'createacct-benefit-body3' => 'nedavni sodelavci',
 'badretype' => 'Gesli, ki ste ju vnesli, se ne ujemata.',
 'userexists' => 'Uporabniško ime, ki ste ga vnesli, je že zasedeno.
 Prosimo, izberite drugo.',
 'loginerror' => 'Napaka ob prijavi',
+'createacct-error' => 'Napaka pri ustvarjanju računa',
 'createaccounterror' => 'Ne morem ustvariti računa: $1',
 'nocookiesnew' => 'Uporabniški račun je ustvarjen, vendar niste prijavljeni.
 {{SITENAME}} za prijavo uporabnikov uporablja piškotke, ki pa so pri vas onemogočeni.
@@ -753,6 +754,7 @@ Za zaključitev prijave, morate tukaj nastaviti novo geslo:',
 'resetpass-wrong-oldpass' => 'Neveljavno začano ali trenutno geslo.
 Morda ste že uspešno spremenili geslo ali pa ste zahtevali novo začasno geslo.',
 'resetpass-temp-password' => 'Začasno geslo:',
+'resetpass-abort-generic' => 'Razširitev je prekinila spremembo gesla.',
 
 # Special:PasswordReset
 'passwordreset' => 'Ponastavitev gesla',
@@ -3803,6 +3805,15 @@ Skupaj s programom bi morali bi prejeti [{{SERVER}}{{SCRIPTPATH}}/COPYING kopijo
 'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Pot članka]',
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Pot skripta]',
 
+'redirect-legend' => 'Preusmeritev na datoteko ali stran',
+'redirect-submit' => 'Pojdi',
+'redirect-lookup' => 'Iskanje:',
+'redirect-value' => 'Vrednost:',
+'redirect-user' => 'ID uporabnika',
+'redirect-revision' => 'Redakcija strani',
+'redirect-file' => 'Ime datoteke',
+'redirect-not-exists' => 'Vrednosti ni mogoče najti',
+
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Iskanje podvojenih datotek',
 'fileduplicatesearch-summary' => 'Iskanje podvojenih datotek, ki temelji na podlagi njenih hashvrednosti.',
@@ -3895,6 +3906,7 @@ Ta stran se sooča s tehničnimi težavami.',
 'htmlform-selectorother-other' => 'Drugo',
 'htmlform-no' => 'Ne',
 'htmlform-yes' => 'Da',
+'htmlform-chosen-placeholder' => 'Izberite možnost',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 s podporo iskanju polnih besedil',

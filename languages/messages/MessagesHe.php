@@ -819,7 +819,7 @@ $2',
 'createacct-benefit-heading' => 'את האתר {{SITENAME}} יוצרים אנשים כמוך.',
 'createacct-benefit-body1' => 'עריכות',
 'createacct-benefit-body2' => 'דפים',
-'createacct-benefit-body3' => 'תורמים בחודש זה',
+'createacct-benefit-body3' => 'תורמים לאחרונה',
 'badretype' => 'הסיסמאות שהזנתם אינן מתאימות.',
 'userexists' => 'שם המשתמש שבחרתם כבר נמצא בשימוש.
 אנא בחרו שם אחר.',
@@ -917,6 +917,7 @@ $2',
 'resetpass-wrong-oldpass' => 'הסיסמה הזמנית או הנוכחית אינה תקינה.
 ייתכן שכבר שיניתם את סיסמתכם או שכבר ביקשתם סיסמה זמנית חדשה.',
 'resetpass-temp-password' => 'סיסמה זמנית:',
+'resetpass-abort-generic' => 'שינוי הסיסמה בוטל על ידי הרחבה.',
 
 # Special:PasswordReset
 'passwordreset' => 'איפוס סיסמה',
@@ -4024,6 +4025,17 @@ $5
 'version-entrypoints-header-entrypoint' => 'נקודת כניסה',
 'version-entrypoints-header-url' => 'כתובת',
 
+'redirect' => 'הפניה לפי שם קובץ, מספר משתמש או מספר גרסה',
+'redirect-legend' => 'הפניה לקובץ או לדף',
+'redirect-summary' => 'דף מיוחד זה מפנה לקובץ (בהינתן שם הקובץ), לדף (בהינתן מספר גרסה), או לדף משתמש (בהינתן מספר משתמש).',
+'redirect-submit' => 'מעבר',
+'redirect-lookup' => 'סוג:',
+'redirect-value' => 'ערך:',
+'redirect-user' => 'מספר משתמש',
+'redirect-revision' => 'גרסת דף',
+'redirect-file' => 'שם קובץ',
+'redirect-not-exists' => 'הערך לא נמצא',
+
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'חיפוש קבצים כפולים',
 'fileduplicatesearch-summary' => 'חיפוש קבצים כפולים על בסיס ערכי הגיבוב שלהם.',
@@ -4114,6 +4126,7 @@ $5
 'htmlform-selectorother-other' => 'אחר',
 'htmlform-no' => 'לא',
 'htmlform-yes' => 'כן',
+'htmlform-chosen-placeholder' => 'נא לבחור אפשרות',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 עם תמיכה בחיפוש בטקסט מלא',

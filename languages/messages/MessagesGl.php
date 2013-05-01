@@ -715,7 +715,7 @@ Non esqueza personalizar as súas [[Special:Preferences|preferencias de {{SITENA
 'createacct-benefit-heading' => 'Xente coma vostede elabora {{SITENAME}}.',
 'createacct-benefit-body1' => 'edicións',
 'createacct-benefit-body2' => 'páxinas',
-'createacct-benefit-body3' => 'colaboradores este mes',
+'createacct-benefit-body3' => 'colaboradores recentes',
 'badretype' => 'Os contrasinais que inseriu non coinciden.',
 'userexists' => 'O nome de usuario que inseriu xa está en uso.
 Escolla un nome diferente.',
@@ -806,8 +806,9 @@ Por favor, agarde antes de probar outra vez.',
 'oldpassword' => 'Contrasinal antigo:',
 'newpassword' => 'Contrasinal novo:',
 'retypenew' => 'Insira outra vez o novo contrasinal:',
-'resetpass_submit' => 'Poñer o contrasinal e entrar',
-'resetpass_success' => 'O cambio do contrasinal realizouse con éxito! Agora pode entrar...',
+'resetpass_submit' => 'Establecer o contrasinal e acceder ao sistema',
+'resetpass_success' => 'A modificación do contrasinal realizouse correctamente!
+Accedendo ao sistema...',
 'resetpass_forbidden' => 'Non se poden mudar os contrasinais',
 'resetpass-no-info' => 'Debe rexistrarse para acceder directamente a esta páxina.',
 'resetpass-submit-loggedin' => 'Cambiar o contrasinal',
@@ -815,6 +816,7 @@ Por favor, agarde antes de probar outra vez.',
 'resetpass-wrong-oldpass' => 'O contrasinal temporal ou actual é incorrecto.
 Pode ser que xa cambiase o seu contrasinal ou que solicitase un novo contrasinal temporal.',
 'resetpass-temp-password' => 'Contrasinal temporal:',
+'resetpass-abort-generic' => 'Unha extensión cancelou a modificación do contrasinal.',
 
 # Special:PasswordReset
 'passwordreset' => 'Restablecer o contrasinal',
@@ -3879,6 +3881,13 @@ Debería recibir [{{SERVER}}{{SCRIPTPATH}}/COPYING unha copia da licenza públic
 'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Ruta dos artigos]',
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Ruta das escrituras]',
 
+'redirect-submit' => 'Continuar',
+'redirect-value' => 'Valor:',
+'redirect-user' => 'ID de usuario',
+'redirect-revision' => 'Revisión de páxina',
+'redirect-file' => 'Nome de ficheiro',
+'redirect-not-exists' => 'Non se atopou o valor',
+
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Procurar ficheiros duplicados',
 'fileduplicatesearch-summary' => 'Procurar ficheiros duplicados a partir do valor de <i>hash</i> (un mecanismo de comprobación).',
@@ -3969,6 +3978,7 @@ Debería recibir [{{SERVER}}{{SCRIPTPATH}}/COPYING unha copia da licenza públic
 'htmlform-selectorother-other' => 'Outro',
 'htmlform-no' => 'Non',
 'htmlform-yes' => 'Si',
+'htmlform-chosen-placeholder' => 'Seleccione unha opción',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 con soporte para procuras de texto completo',

@@ -3951,6 +3951,9 @@ Has recibido [{{SERVER}}{{SCRIPTPATH}}/COPYING una copia de la Licencia Pública
 'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Ruta del artículo]',
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Ruta de la secuencia de comandos (script)]',
 
+'redirect-summary' => 'Esta página especial redirige a un fichero (dado un nombre de fichero), a una página (dado un identificador de revisión) o a una página de usuario (dado en identificador numérico de usuario).',
+'redirect-file' => 'Nombre de fichero',
+
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Búsqueda de archivos duplicados',
 'fileduplicatesearch-summary' => 'Búsqueda de archivos duplicados en base a su valor hash.',

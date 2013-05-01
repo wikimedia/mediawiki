@@ -2405,7 +2405,7 @@ Kontakta användaren:
 e-post: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Såvida du inte besöker sidan, kommer du inte att få flera meddelanden om ändringar av sidan.
+Såvida du inte besöker sidan, kommer du inte att få flera meddelanden om aktivitet på sidan.
 Du kan också ta bort flaggan för meddelanden om ändringar på alla sidor i din bevakningslista.
 
 Hälsningar från {{SITENAME}}s meddelandesystem

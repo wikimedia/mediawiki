@@ -16152,6 +16152,7 @@ $messages['ps'] = array(
 /** Portuguese (português)
  * @author Crazymadlover
  * @author Hamilton Abreu
+ * @author Luckas
  * @author Mormegil
  * @author Platonides
  * @author SandroHc
@@ -16491,7 +16492,7 @@ mas não lhe permitirá armazenar caracteres acima do [//en.wikipedia.org/wiki/M
 	'config-site-name-help' => 'Este nome aparecerá no título da janela do seu browser e em vários outros sítios.',
 	'config-site-name-blank' => 'Introduza o nome do site.',
 	'config-project-namespace' => 'Espaço nominal do projecto:',
-	'config-ns-generic' => 'Projecto',
+	'config-ns-generic' => 'Projeto',
 	'config-ns-site-name' => 'O mesmo que o nome da wiki: $1',
 	'config-ns-other' => 'Outro (especifique)',
 	'config-ns-other-default' => 'AMinhaWiki',
@@ -16596,7 +16597,7 @@ O ideal é que este directório não possa ser directamente acedido a partir da 
 	'config-logo-help' => 'O tema padrão do MediaWiki inclui espaço para um logótipo de 135x160 pixels acima do menu da barra lateral.
 Coloque na wiki uma imagem com estas dimensões e introduza aqui a URL dessa imagem.
 
-Se não pretende usar um logótipo, deixe este campo em branco.',
+Se não pretende usar um logótipo, deixe este campo em branco.', # Fuzzy
 	'config-instantcommons' => 'Activar a funcionalidade Instant Commons',
 	'config-instantcommons-help' => 'O [//www.mediawiki.org/wiki/InstantCommons Instant Commons] é uma funcionalidade que permite que as wikis usem imagens, áudio e outros ficheiros multimédia disponíveis no site [//commons.wikimedia.org/ Wikimedia Commons].
 Para poder usá-los, o MediaWiki necessita de acesso à internet.

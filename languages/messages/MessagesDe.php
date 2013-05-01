@@ -964,6 +964,7 @@ Bitte warte, bevor du es erneut probierst.',
 'resetpass-wrong-oldpass' => 'Ungültiges temporäres oder aktuelles Passwort.
 Möglicherweise hast du dein Passwort bereits erfolgreich geändert oder ein neues temporäres Passwort beantragt.',
 'resetpass-temp-password' => 'Temporäres Passwort:',
+'resetpass-abort-generic' => 'Die Passwortänderung wurde durch eine Erweiterung abgebrochen.',
 
 # Special:PasswordReset
 'passwordreset' => 'Passwort zurücksetzen',

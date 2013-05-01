@@ -932,6 +932,7 @@ Bezig met aanmelden…',
 'resetpass-wrong-oldpass' => 'Het huidige of tijdelijke wachtwoord is ongeldig.
 Mogelijk hebt u uw wachtwoord al gewijzigd of een nieuw tijdelijk wachtwoord aangevraagd.',
 'resetpass-temp-password' => 'Tijdelijk wachtwoord:',
+'resetpass-abort-generic' => 'De wachtwoordwijziging is afgebroken door een uitbreiding.',
 
 # Special:PasswordReset
 'passwordreset' => 'Wachtwoord opnieuw instellen',
@@ -4041,6 +4042,17 @@ Samen met dit programma hoort u een [{{SERVER}}{{SCRIPTPATH}}/COPYING kopie van 
 'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Article path]',
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Script path]',
 
+'redirect' => 'Doorverwijzen op bestandsnaam, gebruikersnummer of versienummer',
+'redirect-legend' => 'Doorverwijzen naar een bestand of pagina',
+'redirect-summary' => 'Deze speciale pagina verwijst door naar een bestand (als een bestandsnaam wordt opgegeven), een pagina (als een versienummer wordt opgegeven) of een gebruikerspagina (als een gebruikersnummer wordt opgegeven).',
+'redirect-submit' => 'OK',
+'redirect-lookup' => 'Opzoeken:',
+'redirect-value' => 'Waarde:',
+'redirect-user' => 'Gebruikersnummer',
+'redirect-revision' => 'Paginaversie',
+'redirect-file' => 'Bestandsnaam',
+'redirect-not-exists' => 'Waarde niet gevonden',
+
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Duplicaatbestanden zoeken',
 'fileduplicatesearch-summary' => 'Duplicaatbestanden zoeken op basis van de hashwaarde.',
@@ -4132,6 +4144,7 @@ Samen met dit programma hoort u een [{{SERVER}}{{SCRIPTPATH}}/COPYING kopie van 
 'htmlform-selectorother-other' => 'Anders',
 'htmlform-no' => 'Nee',
 'htmlform-yes' => 'Ja',
+'htmlform-chosen-placeholder' => 'Selecteer een optie',
 
 # SQLite database support
 'sqlite-has-fts' => 'Versie $1 met ondersteuning voor "full-text" zoeken',

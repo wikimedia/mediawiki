@@ -767,7 +767,7 @@ Nu uitați să vă modificați [[Special:Preferences|preferințele]] pentru {{SI
 'createacct-benefit-heading' => '{{SITENAME}} este un proiect clădit de oameni ca dumneavoastră.',
 'createacct-benefit-body1' => 'modificări',
 'createacct-benefit-body2' => 'pagini',
-'createacct-benefit-body3' => 'contribuitori în această lună',
+'createacct-benefit-body3' => 'contribuitori recenți',
 'badretype' => 'Parolele pe care le-ați introdus diferă.',
 'userexists' => 'Numele de utilizator pe care l-ați introdus este deja folosit.
 Vă rugăm să alegeți un alt nume.',
@@ -839,10 +839,10 @@ Vă rugăm să așteptați până să mai încercați.',
 'user-mail-no-body' => 'S-a încercat trimiterea unui e-mail fără conținut sau nejustificat de scurt.',
 
 # Change password dialog
-'resetpass' => 'Modifică parola',
+'resetpass' => 'Modificare parolă',
 'resetpass_announce' => 'Sunteți autentificat cu un cod temporar trimis pe e-mail. Pentru a termina acțiunea de autentificare, trebuie să setați o parolă nouă aici:',
 'resetpass_text' => '<!-- Adăugați text aici -->',
-'resetpass_header' => 'Modifică parola',
+'resetpass_header' => 'Modificare parolă',
 'oldpassword' => 'Parola veche:',
 'newpassword' => 'Parola nouă:',
 'retypenew' => 'Reintroduceți noua parolă:',
@@ -855,6 +855,7 @@ Vă rugăm să așteptați până să mai încercați.',
 'resetpass-wrong-oldpass' => 'Parolă curentă sau temporară incorectă.
 Este posibil să fi reușit deja schimbarea parolei sau să fi cerut o parolă temporară nouă.',
 'resetpass-temp-password' => 'Parolă temporară:',
+'resetpass-abort-generic' => 'Schimbarea parolei a fost anulată de către o extensie.',
 
 # Special:PasswordReset
 'passwordreset' => 'Resetare parolă',
@@ -1401,7 +1402,7 @@ Detalii se pot găsi în [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE
 'prefs-edits' => 'Număr de modificări:',
 'prefsnologin' => 'Neautentificat',
 'prefsnologintext' => 'Trebuie să fiți <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} autentificat]</span> pentru a vă putea salva preferințele.',
-'changepassword' => 'Schimbă parola',
+'changepassword' => 'Schimbare parolă',
 'prefs-skin' => 'Aspect',
 'skin-preview' => 'Previzualizare',
 'datedefault' => 'Nici o preferință',
@@ -2092,7 +2093,7 @@ Lista tipurilor MIME recunoscute de MediaWiki poate fi găsită la [http://svn.w
 'statistics-pages' => 'Pagini',
 'statistics-pages-desc' => 'Toate paginile din wiki, inclusiv pagini de discuție, redirectări etc.',
 'statistics-files' => 'Fișiere încărcate',
-'statistics-edits' => 'Editări de la instalarea {{SITENAME}}',
+'statistics-edits' => 'Modificări de la instalarea proiectului {{SITENAME}}',
 'statistics-edits-average' => 'Media editărilor pe pagină',
 'statistics-views-total' => 'Număr de vizualizări',
 'statistics-views-total-desc' => 'Vizualizările paginilor inexistente și a paginilor speciale nu sunt incluse',
@@ -3874,6 +3875,17 @@ MediaWiki este distribuit în speranța că va fi folositor, dar FĂRĂ VREO GAR
 'version-entrypoints' => 'URL-uri pentru puncte de intrare',
 'version-entrypoints-header-entrypoint' => 'Punct de intrare',
 'version-entrypoints-header-url' => 'URL',
+
+'redirect' => 'Redirecționare după fișier, utilizator sau ID-ul versiunii',
+'redirect-legend' => 'Redirecționare către un fișier sau o pagină',
+'redirect-summary' => 'Această pagină specială vă redirecționează către un fișier (dat fiind un nume de fișier), o pagină (dat fiind ID-ul unei versiuni) sau o pagină de utilizator (dat fiind un ID numeric al utilizatorului).',
+'redirect-submit' => 'Du-te',
+'redirect-lookup' => 'Căutare:',
+'redirect-value' => 'Valoare:',
+'redirect-user' => 'ID utilizator',
+'redirect-revision' => 'Versiune de pagină',
+'redirect-file' => 'Nume de fișier',
+'redirect-not-exists' => 'Valoarea nu a fot găsită',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Căutare fișiere duplicate',

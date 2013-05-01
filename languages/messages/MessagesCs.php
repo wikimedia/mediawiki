@@ -823,7 +823,7 @@ Nezapomeňte si upravit své [[Special:Preferences|nastavení {{grammar:2sg|{{SI
 'createacct-benefit-heading' => '{{grammar:4sg|{{SITENAME}}}} tvoří lidé jako vy.',
 'createacct-benefit-body1' => '{{PLURAL:{{NUMBEROFEDITS:R}}|editace|editace|editací}}',
 'createacct-benefit-body2' => '{{PLURAL:{{NUMBEROFARTICLES:R}}|stránka|stránky|stránek}}',
-'createacct-benefit-body3' => '{{PLURAL:{{NUMBEROFACTIVEUSERS:R}}|přispěvatel|přispěvatelé|přispěvatelů}} tento měsíc',
+'createacct-benefit-body3' => '{{PLURAL:{{NUMBEROFACTIVEUSERS:R}}|nedávný přispěvatel|nedávní přispěvatelé|nedávných přispěvatelů}}',
 'badretype' => 'Vámi napsaná hesla nesouhlasí.',
 'userexists' => 'Zadané uživatelské jméno se již používá.
 Zvolte si prosím jiné jméno.',
@@ -912,6 +912,7 @@ Počkejte chvíli, než to zkusíte znovu.',
 'resetpass-wrong-oldpass' => 'Nesprávné dočasné nebo aktuální heslo.
 Možná jste si již úspěšně heslo změnili, nebo jste si vyžádali nové dočasné heslo.',
 'resetpass-temp-password' => 'Dočasné heslo:',
+'resetpass-abort-generic' => 'Změna hesla byla zablokována rozšířením.',
 
 # Special:PasswordReset
 'passwordreset' => 'Reset hesla',
@@ -3965,6 +3966,17 @@ MediaWiki je distribuována v naději, že bude užitečná, avšak BEZ JAKÉKOL
 'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Cesta k článkům]',
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Cesta ke skriptům]',
 
+'redirect' => 'Přesměrování podle souboru, uživatele nebo ID revize',
+'redirect-legend' => 'Přesměrování na soubor či stránku',
+'redirect-summary' => 'Tato speciální stránka přesměrovává na soubor (podle názvu), stránku (podle ID revize) nebo uživatele (podle číselného uživatelského ID).',
+'redirect-submit' => 'Přejít',
+'redirect-lookup' => 'Najít:',
+'redirect-value' => 'Hodnota:',
+'redirect-user' => 'Uživatelské ID',
+'redirect-revision' => 'Revizi stránky',
+'redirect-file' => 'Jméno souboru',
+'redirect-not-exists' => 'Hodnota nenalezena',
+
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Hledání duplicitních souborů',
 'fileduplicatesearch-summary' => 'Hledání duplicitních souborů podle jejich hašů.',
@@ -4055,6 +4067,7 @@ MediaWiki je distribuována v naději, že bude užitečná, avšak BEZ JAKÉKOL
 'htmlform-selectorother-other' => 'Jiná hodnota',
 'htmlform-no' => 'Ne',
 'htmlform-yes' => 'Ano',
+'htmlform-chosen-placeholder' => 'Zvolte možnost',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 s podporou plnotextového vyhledávání',

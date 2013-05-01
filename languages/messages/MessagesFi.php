@@ -769,7 +769,7 @@ Huomaa, että jotkut sivut saattavat näkyä edelleen kuin olisit kirjautunut si
 'createacct-benefit-heading' => 'Sivun {{SITENAME}} ovat tehneet ihmiset kuten sinä.',
 'createacct-benefit-body1' => 'muokkausta',
 'createacct-benefit-body2' => 'sivua',
-'createacct-benefit-body3' => 'muokkaajia tässä kuussa',
+'createacct-benefit-body3' => 'viimeaikaiset muokkaajat',
 'badretype' => 'Syöttämäsi salasanat ovat erilaiset.',
 'userexists' => 'Pyytämäsi käyttäjänimi on jo käytössä. Valitse toinen käyttäjänimi.',
 'loginerror' => 'Sisäänkirjautumisvirhe',

@@ -648,7 +648,7 @@ Vergiesst net fir Är [[Special:Preferences|{{SITENAME}} Astellungen]] z'ännere
 'createacct-benefit-heading' => '{{SITENAME}} gëtt vu Leit wéi Iech gemaach.',
 'createacct-benefit-body1' => 'Ännerungen',
 'createacct-benefit-body2' => 'Säiten',
-'createacct-benefit-body3' => 'Mataarbechter dëse Mount',
+'createacct-benefit-body3' => 'rezent Mataarbechter',
 'badretype' => 'Är Passwierder stëmmen net iwwerdeneen.',
 'userexists' => 'De Benotzernumm deen agi gouf gëtt scho benotzt.
 Sicht Iech een anere Benotzernumm.',

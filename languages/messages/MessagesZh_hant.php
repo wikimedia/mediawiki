@@ -721,7 +721,7 @@ $2',
 'createacct-benefit-heading' => '{{SITENAME}}是由像您一樣的人建立。',
 'createacct-benefit-body1' => '次編輯',
 'createacct-benefit-body2' => '頁頁面',
-'createacct-benefit-body3' => '位本月貢獻者',
+'createacct-benefit-body3' => '位最近貢獻者',
 'badretype' => '您所輸入的密碼並不相同。',
 'userexists' => '!您所輸入的用戶名稱已經存在，請另選一個名稱。',
 'loginerror' => '登入錯誤',
@@ -3802,6 +3802,17 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 'version-entrypoints-header-entrypoint' => '入口點',
 'version-entrypoints-header-url' => 'URL',
 
+'redirect' => '重定向檔案、用戶ID或頁面修訂ID',
+'redirect-legend' => '重定向到檔案或頁面',
+'redirect-summary' => '此特殊頁面重定向到檔案（指定的檔案名稱）、頁面 （指定的頁面修訂ID） 或用戶頁面（指定的用戶ID數值）。',
+'redirect-submit' => '提交',
+'redirect-lookup' => '尋找：',
+'redirect-value' => '值：',
+'redirect-user' => '用戶ID：',
+'redirect-revision' => '頁面修訂ID',
+'redirect-file' => '檔案名稱',
+'redirect-not-exists' => '找不到',
+
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => '選擇重覆檔案',
 'fileduplicatesearch-summary' => '用重覆檔案的切細值去找出檔案是否重覆。',
@@ -3894,6 +3905,7 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 'htmlform-selectorother-other' => '其他',
 'htmlform-no' => '否',
 'htmlform-yes' => '是',
+'htmlform-chosen-placeholder' => '選項',
 
 # SQLite database support
 'sqlite-has-fts' => '帶全文搜尋的版本$1',

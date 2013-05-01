@@ -867,7 +867,7 @@ $2',
 'createacct-benefit-heading' => '{{SITENAME}} сделана такими же людьми, как вы.',
 'createacct-benefit-body1' => 'правок',
 'createacct-benefit-body2' => 'страниц',
-'createacct-benefit-body3' => 'изменений в этом месяце',
+'createacct-benefit-body3' => 'участников в последнее время',
 'badretype' => 'Введённые вами пароли не совпадают.',
 'userexists' => 'Введённое имя участника уже используется.
 Пожалуйста, выберите другое имя.',

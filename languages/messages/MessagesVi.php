@@ -762,7 +762,7 @@ Hãy nhớ thay đổi [[Special:Preferences|tùy chọn cá nhân {{SITENAME}}]
 'createacct-benefit-heading' => '{{SITENAME}} được xây dựng bởi những người như bạn.',
 'createacct-benefit-body1' => 'lần sửa đổi',
 'createacct-benefit-body2' => 'trang nội dung',
-'createacct-benefit-body3' => 'người đóng góp trong tháng',
+'createacct-benefit-body3' => 'người đóng góp gần đây',
 'badretype' => 'Hai mật khẩu không khớp.',
 'userexists' => 'Tên người dùng được nhập đã có người lấy.
 Hãy chọn một tên khác.',
@@ -795,7 +795,7 @@ Nếu bạn không yêu cầu gửi mật khẩu mới, hoặc bạn đã nhớ 
 'noemail' => 'Thành viên “$1” không ghi thư điện tử.',
 'noemailcreate' => 'Bạn cần cung cấp một địa chỉ thư điện tử hợp lệ',
 'passwordsent' => 'Mật khẩu mới đã được gửi tới thư điện tử của thành viên “$1”. Xin đăng nhập lại sau khi nhận thư.',
-'blocked-mailpassword' => 'Địa chỉ IP của bạn bị cấm không được sửa đổi, do đó cũng không được phép dùng chức năng phục hồi mật khẩu để tránh lạm dụng.',
+'blocked-mailpassword' => 'Địa chỉ IP của bạn bị cấm không được sửa đổi, do đó cũng không được phép dùng chức năng phục hồi mật khẩu để tránh sai phạm.',
 'eauthentsent' => 'Thư xác nhận đã được gửi. Trước khi dùng chức năng nhận thư, bạn cần thực hiện hướng dẫn trong thư xác nhận, để đảm bảo tài khoản thuộc về bạn.',
 'throttled-mailpassword' => 'Mật khẩu đã được gửi đến cho bạn trong vòng {{PLURAL:$1|$1 giờ|$1 giờ}} đồng hồ trở lại. Để tránh lạm dụng, chỉ có thể gửi mật khẩu $1 giờ đồng hồ một lần.',
 'mailerror' => 'Lỗi gửi thư : $1',
@@ -843,6 +843,7 @@ Xin hãy đợi chốc lát rồi thử lại.',
 'resetpass-wrong-oldpass' => 'Mật khẩu tạm hoặc mật khẩu hiện thời không hợp lệ.
 Có thể bạn đã thay đổi thành công mật khẩu của mình hoặc đã yêu cầu cung cấp một mật khẩu tạm mới.',
 'resetpass-temp-password' => 'Mật khẩu tạm:',
+'resetpass-abort-generic' => 'Một phần mở rộng đã hủy bỏ tác vụ thay đổi mật khẩu.',
 
 # Special:PasswordReset
 'passwordreset' => 'Tái tạo mật khẩu',
@@ -1844,7 +1845,7 @@ Xin hãy liên hệ với một [[Special:ListUsers/sysop|bảo quản viên]].'
 'upload-misc-error-text' => 'Có lỗi lạ khi tải lên.
 Xin hãy xác nhận lại địa chỉ URL là hợp lệ và có thể truy cập được không rồi thử lại lần nữa.
 Nếu vẫn còn bị lỗi, xin hãy liên hệ với một [[Special:ListUsers/sysop|bảo quản viên]].',
-'upload-too-many-redirects' => 'URL có quá nhiều chuyển hướng',
+'upload-too-many-redirects' => 'URL có quá nhiều đổi hướng',
 'upload-unknown-size' => 'Không rõ kích thước',
 'upload-http-error' => 'Xảy ra lỗi HTTP: $1',
 'upload-copy-upload-invalid-domain' => 'Không có sẵn các bản sao tải lên tại tên miền này.',
@@ -2815,7 +2816,7 @@ Trong những trường hợp đó, bạn phải di chuyển hoặc hợp nhất
 'pagemovedsub' => 'Di chuyển thành công',
 'movepage-moved' => "'''“$1” đã được di chuyển đến “$2”'''",
 'movepage-moved-redirect' => 'Đã tạo trang đổi hướng.',
-'movepage-moved-noredirect' => 'Chức năng tạo trang chuyển hướng đã bị tắt.',
+'movepage-moved-noredirect' => 'Chức năng tạo trang đổi hướng đã bị tắt.',
 'articleexists' => 'Đã có một trang với tên đó, hoặc tên bạn chọn không hợp lệ.
 Xin hãy chọn tên khác.',
 'cantmove-titleprotected' => 'Bạn không thể đổi tên trang, vì tên trang mới đã bị khóa không cho tạo mới',
@@ -3985,6 +3986,17 @@ hoặc [//www.gnu.org/licenses/old-licenses/gpl-2.0.html đọc nó trực tuy�
 'version-entrypoints-header-url' => 'URL',
 'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath?uselang=vi Đường dẫn bài]',
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath?uselang=vi Đường dẫn kịch bản]',
+
+'redirect' => 'Đổi hướng đến tập tin, người dùng, hoặc số phiên bản',
+'redirect-legend' => 'Đổi hướng đến tập tin hoặc trang',
+'redirect-summary' => 'Trang đặc biệt này đổi hướng đến một tập tin (theo tên tập tin được cho vào), trang (theo số phiên bản được cho vào), hoặc trang cá nhân (theo số thành viên).',
+'redirect-submit' => 'Đi',
+'redirect-lookup' => 'Tra cứu:',
+'redirect-value' => 'Giá trị:',
+'redirect-user' => 'Số thành viên',
+'redirect-revision' => 'Phiên bản trang',
+'redirect-file' => 'Tên tập tin',
+'redirect-not-exists' => 'Không tìm thấy giá trị',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Tìm kiếm các tập tin trùng lắp',

@@ -521,7 +521,7 @@ $messages = array(
 'views' => 'Vistas',
 'toolbox' => 'Ferramentas',
 'userpage' => 'Ver página de utilizador',
-'projectpage' => 'Ver página de projecto',
+'projectpage' => 'Ver página de projeto',
 'imagepage' => 'Ver página de ficheiro',
 'mediawikipage' => 'Ver página de mensagens',
 'templatepage' => 'Ver página de predefinições',
@@ -1110,7 +1110,7 @@ Para referência, é apresentado de seguida o registo de eliminações e de movi
 'log-fulllog' => 'Ver registo detalhado',
 'edit-hook-aborted' => 'A edição foi abortada por um hook.
 Não foi dada nenhuma explicação.',
-'edit-gone-missing' => 'Não foi possível actualizar a página.
+'edit-gone-missing' => 'Não foi possível atualizar a página.
 Ela parece ter sido eliminada.',
 'edit-conflict' => 'Conflito de edição.',
 'edit-no-change' => 'A sua edição foi ignorada, uma vez que o texto não sofreu alterações.',
@@ -3059,7 +3059,7 @@ Utilize o botão "Antever resultado" antes de gravar, por favor.',
 'tooltip-ca-nstab-user' => 'Ver a página de utilizador',
 'tooltip-ca-nstab-media' => 'Ver a página de media',
 'tooltip-ca-nstab-special' => 'Esta é uma página especial, não pode ser editada.',
-'tooltip-ca-nstab-project' => 'Ver a página de projecto',
+'tooltip-ca-nstab-project' => 'Ver a página de projeto',
 'tooltip-ca-nstab-image' => 'Ver a página de ficheiro',
 'tooltip-ca-nstab-mediawiki' => 'Ver a mensagem de sistema',
 'tooltip-ca-nstab-template' => 'Ver a predefinição',
@@ -3823,7 +3823,7 @@ Liste uma só página por linha.
 Quando terminar, clique "{{int:Watchlistedit-raw-submit}}".
 Também pode [[Special:EditWatchlist|editar a lista da maneira convencional]].',
 'watchlistedit-raw-titles' => 'Páginas:',
-'watchlistedit-raw-submit' => 'Actualizar a lista de páginas vigiadas',
+'watchlistedit-raw-submit' => 'Atualizar a lista de páginas vigiadas',
 'watchlistedit-raw-done' => 'A sua lista de páginas vigiadas foi actualizada.',
 'watchlistedit-raw-added' => '{{PLURAL:$1|Foi adicionada uma página|Foram adicionadas $1 páginas}}:',
 'watchlistedit-raw-removed' => '{{PLURAL:$1|Foi removida uma página|Foram removidas $1 páginas}}:',
@@ -3943,7 +3943,7 @@ Em conjunto com este programa deve ter recebido [{{SERVER}}{{SCRIPTPATH}}/COPYIN
 # Database error messages
 'dberr-header' => 'Esta wiki tem um problema',
 'dberr-problems' => 'Desculpe! Este site está com dificuldades técnicas.',
-'dberr-again' => 'Experimente esperar uns minutos e actualizar.',
+'dberr-again' => 'Experimente esperar alguns minutos e atualizar.',
 'dberr-info' => '(Não foi possível contactar o servidor da base de dados: $1)',
 'dberr-usegoogle' => 'Pode tentar pesquisar no Google entretanto.',
 'dberr-outofdate' => 'Note que os seus índices relativos ao nosso conteúdo podem estar desactualizados.',

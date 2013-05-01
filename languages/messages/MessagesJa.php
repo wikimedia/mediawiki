@@ -834,7 +834,7 @@ $2',
 'createacct-benefit-heading' => '{{SITENAME}}は、あなたのような人々が創っています。',
 'createacct-benefit-body1' => '編集',
 'createacct-benefit-body2' => 'ページ',
-'createacct-benefit-body3' => '最近1か月の貢献者',
+'createacct-benefit-body3' => '最近の貢献者',
 'badretype' => '入力したパスワードが一致しません。',
 'userexists' => '入力された利用者名は既に使用されています。
 他の名前を選んでください。',
@@ -937,6 +937,7 @@ Cookieを有効にしていることを確認して、このページを再読�
 'resetpass-wrong-oldpass' => '仮パスワードまたは現在のパスワードが正しくありません。
 パスワードを既に変更した、または新しい仮パスワードを依頼した可能性があります。',
 'resetpass-temp-password' => '仮パスワード:',
+'resetpass-abort-generic' => '拡張機能により、パスワードの変更は取り消されました。',
 
 # Special:PasswordReset
 'passwordreset' => 'パスワードの再設定',
@@ -4186,6 +4187,17 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'version-entrypoints-header-url' => 'URL',
 'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath/ja 記事のパス]',
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath/ja スクリプトパス]',
+
+'redirect' => 'ファイル名、利用者ID、版IDでの転送',
+'redirect-legend' => 'ファイルまたはページヘの転送',
+'redirect-summary' => 'この特別ページは、ファイル (ファイル名を指定)、ページ (版 ID を指定)、利用者ページ (利用者 ID を整数で指定) に転送されます。',
+'redirect-submit' => '実行',
+'redirect-lookup' => '検索の種類:',
+'redirect-value' => '値:',
+'redirect-user' => '利用者 ID',
+'redirect-revision' => 'ページの版 ID',
+'redirect-file' => 'ファイル名',
+'redirect-not-exists' => '値が見つかりません',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => '重複ファイルの検索',

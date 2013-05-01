@@ -570,6 +570,7 @@ Nó desmentegarte de personałixare łe [[Special:Preferences|prefarense de {{SI
 'yourname' => 'Nome utente:',
 'userlogin-yourname' => 'Nome utente',
 'userlogin-yourname-ph' => 'Inserissi el to nome utente',
+'createacct-helpusername-link' => '[[{{MediaWiki:createacct-helpusername-url}}|(jùtame a sièliere)]]',
 'yourpassword' => 'Password:',
 'userlogin-yourpassword' => 'Password',
 'userlogin-yourpassword-ph' => 'Inserisi ła to password',
@@ -611,14 +612,18 @@ Nó desmentegarte de personałixare łe [[Special:Preferences|prefarense de {{SI
 'createaccountreason' => 'Motivassion:',
 'createacct-reason' => 'Motivo',
 'createacct-captcha' => 'Controlo de sicuresa',
+'createacct-captcha-help-url' => '{{ns:Project}}:Richieste de utense',
+'createacct-imgcaptcha-help' => "No sito mia bon de védar l'imagine? [[{{MediaWiki:createacct-captcha-help-url}}|Dimanda na utensa]]",
+'createacct-imgcaptcha-ph' => 'Inserissi el testo che te vedi de sora',
 'createacct-benefit-heading' => '{{SITENAME}} xe fato da gente come ti.',
 'createacct-benefit-body1' => 'contributi',
 'createacct-benefit-body2' => 'pagine',
-'createacct-benefit-body3' => 'contributori sto mese',
+'createacct-benefit-body3' => 'contributori recenti',
 'badretype' => 'Le do password le xe difarenti.',
 'userexists' => 'El nome utente inserido vien xa doparà da cualchedun altro.
 Prova co un nome utente difarente.',
 'loginerror' => "Erore ne l'aceso",
+'createacct-error' => "Eror durante la creasion de l'utensa",
 'createaccounterror' => "No se pole crear l'utente: $1",
 'nocookiesnew' => "Ła rejistrasion xè sta conpletà, ma no xè sta posibiłe asedare a {{SITENAME}} parché i cookie i xè disativai. Riprovare l'aceso con el nome utente e ła password pena creai dopo aver ativà i cookie nel proprio browser.",
 'nocookieslogin' => "L'aceso a {{SITENAME}} richiede l'uso de i cookie, che i risulta disativai. Riprovare l'aceso dopo aver ativà i cookie nel proprio browser.",
@@ -650,7 +655,9 @@ Se no te sì mìa stà ti a far la domanda, opure t\'è vegnù in mente la passw
 Par piaser, fà subito un login \'pena che la te riva.',
 'blocked-mailpassword' => 'Per prevegner abusi, no se pol mìa doparar la funzion "Invia nova password" da un indirizo IP blocà.',
 'eauthentsent' => "Na email de conferma la xè stà invià a l'indirizzo che te ghè indicà. Prima che qualunque altra mail te vegna invià, te ghè da seguir le istrussioni contegnùe ne la mail ricevuta, par confermar che quel'indirizzo el xè dal bon el tuo.",
-'throttled-mailpassword' => 'Na password nova la xe zà stà mandà da manco de {{PLURAL:$1|$1 ora|$1 ore}}. Par prevegner abusi, la funzion "Invia nova password" la pol èssar doparà solo na volta ogni {{PLURAL:$1|$1 ora|$1 ore}}.',
+'throttled-mailpassword' => 'Na password nova la xe zà stà mandà da manco de {{PLURAL:$1|$1 ora|$1 ore}}. 
+
+Par prevegner abusi, se pol farse mandar na password nova solo na volta ogni {{PLURAL:$1|$1 ora|$1 ore}}.',
 'mailerror' => "Ghe xè stà un eror nel mandare l'email: $1",
 'acct_creation_throttle_hit' => "Dei utenti de sta wiki col to stesso indirisso IP i gà creà {{PLURAL:$1|1 utensa|$1 utense}} ne l'ultimo zorno, che xe el massimo consentìo in sto periodo de tenpo. Perciò, i utenti che dòpara sto indirisso IP no i pode crear altre utense par el momento.",
 'emailauthenticated' => "El to indirisso de e-mail l'è stado autenticado su $2 el $3.",
@@ -700,7 +707,7 @@ Forse te ghè zà canbià la to password o te ghè domandà na password tenporan
 
 # Special:PasswordReset
 'passwordreset' => 'Rinposta ła password',
-'passwordreset-text' => 'Conpleta sto moduło par riçevare i detaji del to account via posta ełetronega.',
+'passwordreset-text' => 'Conpleta sto moduło par resetar la to password.',
 'passwordreset-legend' => 'Rinposta ła password',
 'passwordreset-disabled' => 'Ła rinpostasion deła password xe stà dixabiłità so sto projeto wiki.',
 'passwordreset-emaildisabled' => 'Le funsionalità de posta eletrònega le xe stà disabilità su sta wiki.',
@@ -716,22 +723,20 @@ Forse te ghè zà canbià la to password o te ghè domandà na password tenporan
 $2
 
 {{PLURAL:$3|Sta password tenporanea ła scadarà|Ste password tenporanee łe scadarà}} dopo {{PLURAL:$5|un dì|$5 dì}}.
-Sarìa mejo acedare e deçidare na nova password sùito. 
 
-Se no te si stà ti a fare ła richiesta, o se te te ghe ricordà ła password originałe e no te vołi pi canbiarla, te połi ignorare sto mesajo e continuar doparare ła to password vecia.",
-'passwordreset-emailtext-user' => "El utente $1 da {{SITENAME}} (probabilmente ti steso) ga richiesto l'invio dei to detaji del profiło par {{SITENAME}} ($4). {{PLURAL:$3|El profiło utente asocià|I profiłi utenti asociadi}} a sto indiriso de posta ełetronega łi xe:
+Sarìa mejo acedare e deçidare na nova password sùito. Se no te si stà ti a fare ła richiesta, o se te te ghe ricordà ła password originałe e no te vołi pi canbiarla, te połi ignorare sto mesajo e continuar doparare ła to password vecia.",
+'passwordreset-emailtext-user' => "El utente $1 da {{SITENAME}} (probabilmente ti steso) ga richiesto l'invio de na password nova par {{SITENAME}} ($4). {{PLURAL:$3|El profiło utente asocià|I profiłi utenti asociadi}} a sto indiriso de posta ełetronega łi xe:
 
 $2
 
 {{PLURAL:$3|Sta password tenporanea ła scadarà|Ste password tenporanee łe scadarà}} dopo {{PLURAL:$5|un dì|$5 dì}}.
-Sarìa mejo acedare e deçidare na nova password sùito. 
 
-Se no te si stà ti a fare ła richiesta, o se te te ghe ricordà ła password originałe e no te vołi pi canbiarla, te połi ignorare sto mesajo e continuar doparare ła to password vecia.",
+Sarìa mejo acedare e deçidare na nova password sùito. Se no te si stà ti a fare ła richiesta, o se te te ghe ricordà ła password originałe e no te vołi pi canbiarla, te połi ignorare sto mesajo e continuar doparare ła to password vecia.",
 'passwordreset-emailelement' => 'Nome utente: $1
 Password tenporanea: $2',
-'passwordreset-emailsent' => 'Xe stà invià on promemoria via posta eletronega.',
-'passwordreset-emailsent-capture' => 'Xe stà invià un promemoria via posta eletronega: el contegù xe riportà cuà de seguito.',
-'passwordreset-emailerror-capture' => "Xe stà generà el promemoria riportà cuà de seguito. L'invio al utente no xe riusido: $1",
+'passwordreset-emailsent' => 'Xe stà invià na mail de reset password.',
+'passwordreset-emailsent-capture' => 'Xe stà invià na mail de reset password: el contegù xe riportà cuà de seguito.',
+'passwordreset-emailerror-capture' => "Xe stà generà na mail de reset password, riportà cuà de seguito. L'invio al utente no xe riusido: $1",
 
 # Special:ChangeEmail
 'changeemail' => 'Canbia indiriso de posta ełetronega',
@@ -1198,7 +1203,7 @@ I detaji i pol esar catai inte'l [{{fullurl:{{#Special:Log}}/delete|page={{FULLP
 'search-interwiki-default' => 'Risultati da $1:',
 'search-interwiki-more' => '(altro)',
 'search-relatedarticle' => 'Ligà',
-'mwsuggest-disable' => 'Disabilita sugerimenti AJAX',
+'mwsuggest-disable' => 'Disabilita sugerimenti de riserca',
 'searcheverything-enable' => 'Serca in tuti quanti i namespace',
 'searchrelated' => 'ligà',
 'searchall' => 'tuti',
@@ -3641,6 +3646,14 @@ Insieme co sto programa te dovaressi 'ver ricevùo na copia de la Licensa Public
 'version-entrypoints-header-entrypoint' => 'Punti de aceso',
 'version-entrypoints-header-url' => 'URL',
 
+'redirect-legend' => 'Rimandar a un file o na pagina',
+'redirect-submit' => 'Và',
+'redirect-value' => 'Valor:',
+'redirect-user' => 'ID utente',
+'redirect-revision' => 'Revision de la pagina',
+'redirect-file' => 'Nome del file',
+'redirect-not-exists' => 'Valor mia catà',
+
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Riçerca dei file duplicà',
 'fileduplicatesearch-summary' => "Riçerca de eventuali duplicati del file in base al valor de ''hash''.",
@@ -3731,6 +3744,7 @@ Insieme co sto programa te dovaressi 'ver ricevùo na copia de la Licensa Public
 'htmlform-selectorother-other' => 'Altro',
 'htmlform-no' => 'No',
 'htmlform-yes' => 'Sì',
+'htmlform-chosen-placeholder' => 'Selessiona na opzione',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 con la possibilità de riserca completa nel testo',

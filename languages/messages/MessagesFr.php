@@ -851,7 +851,7 @@ N'oubliez pas de modifier [[Special:Preferences|vos préférences pour {{SITENAM
 'createacct-benefit-heading' => '{{SITENAME}} est écrit par des gens comme vous.',
 'createacct-benefit-body1' => 'modifications',
 'createacct-benefit-body2' => 'articles',
-'createacct-benefit-body3' => 'contributeurs ce mois-ci',
+'createacct-benefit-body3' => 'contributeurs récents',
 'badretype' => 'Les mots de passe que vous avez saisis ne correspondent pas.',
 'userexists' => "Nom d'utilisateur entré déjà utilisé.
 Veuillez choisir un nom différent.",
@@ -941,6 +941,7 @@ Veuillez attendre avant d'essayer à nouveau.",
 'resetpass-wrong-oldpass' => 'Mot de passe actuel ou temporaire invalide.
 Vous avez peut-être déjà changé votre mot de passe ou demandé un nouveau mot de passe temporaire.',
 'resetpass-temp-password' => 'Mot de passe temporaire :',
+'resetpass-abort-generic' => 'La modification du mot de passe a été annulée par une extension.',
 
 # Special:PasswordReset
 'passwordreset' => 'Remise à zéro du mot de passe',
@@ -4045,6 +4046,15 @@ Vous devriez avoir reçu [{{SERVER}}{{SCRIPTPATH}}/COPYING une copie de la Licen
 'version-entrypoints-header-url' => 'URL',
 'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Chemin d’article]',
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Chemin de script]',
+
+'redirect-legend' => 'Rediriger vers une page ou un fichier',
+'redirect-summary' => "Cette page spéciale redirige vers un fichier (nom donné au fichier), une page (ID attribuée à la révision) ou une page d'utilisateur (identifiant numérique attribué à l'utilisateur).",
+'redirect-submit' => 'Valider',
+'redirect-value' => 'Valeur :',
+'redirect-user' => 'ID de l’utilisateur',
+'redirect-revision' => 'Révision de la page',
+'redirect-file' => 'Nom du fichier',
+'redirect-not-exists' => 'Valeur non trouvée',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Recherche de doublons',

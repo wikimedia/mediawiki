@@ -9,6 +9,7 @@
  *
  * @author Amahoney
  * @author Andrew Dalby
+ * @author Autokrator
  * @author Dferg
  * @author Esteban97
  * @author Kaganer
@@ -196,6 +197,7 @@ $messages = array(
 'tog-watchlisthideminor' => 'Celare recensiones minores in paginarum custoditarum indice',
 'tog-watchlisthideliu' => 'Celare recensiones usorum notorum in paginarum custoditarum indice',
 'tog-watchlisthideanons' => 'Celare recensiones usorum ignotorum in paginarum custoditarum indice',
+'tog-watchlisthidepatrolled' => 'Recensiones vigilatae paginas custoditas celare',
 'tog-ccmeonemails' => 'Mitte mihi transcriptiones litterarum quas ad alios usores mitto',
 'tog-diffonly' => 'Noli monstrare contenta paginae infra dissimilitudinem',
 'tog-showhiddencats' => 'Categorias celatas monstrare',
@@ -769,6 +771,7 @@ Ille hanc causam dedit: ''$2''",
 Titulus: '''({{int:cur}})''' = dissimilis ab emendatione novissima,
 '''({{int:last}})''' = dissimilis ab emendatione proxima, '''{{int:minoreditletter}}''' = recensio minor.",
 'history-fieldset-title' => 'Quaerere in paginae historia',
+'history-show-deleted' => 'Solum recensiones deletas monstrare',
 'histfirst' => 'Veterrimus',
 'histlast' => 'Novissimus',
 'historysize' => '({{PLURAL:$1|1 octetus|$1 octeti}})',
@@ -798,6 +801,8 @@ Titulus: '''({{int:cur}})''' = dissimilis ab emendatione novissima,
 'revdelete-radio-unset' => 'Minime',
 'revdelete-log' => 'Causa:',
 'revdel-restore' => 'visibilitatem mutare',
+'revdel-restore-deleted' => 'Recensiones deletae',
+'revdel-restore-visible' => 'Recensiones visibiles',
 'pagehist' => 'Historia paginae',
 'deletedhist' => 'Historia deleta',
 'revdelete-edit-reasonlist' => 'Causas deletionum recensere',
@@ -857,6 +862,7 @@ Titulus: '''({{int:cur}})''' = dissimilis ab emendatione novissima,
 'searchprofile-articles-tooltip' => 'Quaerere in $1',
 'searchprofile-project-tooltip' => 'Quaerere in $1',
 'searchprofile-images-tooltip' => 'Fasciculos quaerere',
+'searchprofile-advanced-tooltip' => 'In spatio nominali accommoto quaerere',
 'search-result-size' => '$1 ({{PLURAL:$2|1 verbum|$2 verba}})',
 'search-result-score' => 'Gravitas: $1%',
 'search-redirect' => '(redirectio $1)',
@@ -874,6 +880,7 @@ Titulus: '''({{int:cur}})''' = dissimilis ab emendatione novissima,
 'showingresultsnum' => "Subter monstrans {{PLURAL:$3|'''1''' eventum|'''$3''' eventus}} incipiens ab #'''$2'''.",
 'nonefound' => "'''Adnotatio''': Solum aliquae spatia nominalia quaesita sunt semper.
 Conare praefixare tua inquisitionem cum ''all:'' ut quaeras contenta omnia (paginas, formulas et cetera) vel utere spatio nominali desiderato quasi praefixo.",
+'search-nonefound' => 'Nullae paginae quaesitionem tuam adaequant.',
 'powersearch' => 'Quaerere callidissime',
 'powersearch-legend' => 'Quaerere callidissime',
 'powersearch-ns' => 'Quaerere in spatiis nominalibus:',
@@ -1668,6 +1675,7 @@ Si pagina nova cum ipso nomine post deletionem creata est, emendationes restitut
 'sp-contributions-newbies-title' => 'Conlationes rationum novarum',
 'sp-contributions-blocklog' => 'acta obstructionum',
 'sp-contributions-deleted' => 'conlationes usoris deletae',
+'sp-contributions-uploads' => 'Fasciculi impositi',
 'sp-contributions-logs' => 'acta',
 'sp-contributions-talk' => 'disputatio',
 'sp-contributions-userrights' => 'usorum potestates',
@@ -1963,6 +1971,7 @@ Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic m
 'tooltip-upload' => 'Incipere imponere',
 'tooltip-rollback' => '"Revertere" omnes ultimi editoris in hac pagina recensiones statim revertit',
 'tooltip-undo' => '"Abrogare" fenestram recensionis aperit (hac recensione reversa). Summarium addere licet.',
+'tooltip-summary' => 'Summarium breve addere',
 
 # Attribution
 'anonymous' => '{{PLURAL:$1|Usor ignotus|Usores ignoti}} {{grammar:genitive|{{SITENAME}}}}',

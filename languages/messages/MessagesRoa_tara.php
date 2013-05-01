@@ -502,7 +502,7 @@ No te sce scurdanne de cangià le [[Special:Preferences|{{SITENAME}} preferenze 
 'createacct-benefit-heading' => '{{SITENAME}} jè fatte da crestiane cumme a te.',
 'createacct-benefit-body1' => 'cangiaminde',
 'createacct-benefit-body2' => 'pàggene',
-'createacct-benefit-body3' => 'condrebbutore de stu mese',
+'createacct-benefit-body3' => 'condrebbutore recende',
 'badretype' => 'Le passuord ca è scritte non ge sonde uguale.',
 'userexists' => "'U nome de l'utende ca è scritte jè già ausate.
 Pe piacere scacchiane n'otre.",
@@ -604,6 +604,7 @@ Pe spiccià 'a procedure de collegamende, tu a 'mbostà 'na password nove aqquà
 'resetpass-wrong-oldpass' => "'A password temboranea o quedda corrende jè invalide.
 Pò essere ca tu è già cangete 'a password toje o è richieste una temboranea nove.",
 'resetpass-temp-password' => 'Password temboranea:',
+'resetpass-abort-generic' => "'U cange de passuord ha state annullate da 'n'estenzione.",
 
 # Special:PasswordReset
 'passwordreset' => "Azzere 'a passuord",
@@ -3895,6 +3896,10 @@ Avisse avè ricevute [{{SERVER}}{{SCRIPTPATH}}/COPYING 'na copie d'a GNU (Licenz
 'version-entrypoints' => 'Punde de ingresse de le URL',
 'version-entrypoints-header-entrypoint' => "Punde d'ingresse",
 'version-entrypoints-header-url' => 'URL',
+
+'redirect' => "Redirette da 'u file, utende o ID d'a revisione",
+'redirect-legend' => "Redirette a 'nu file o 'na pàgene",
+'redirect-submit' => 'Véje',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Cirche pe le file duplichete',

@@ -1303,7 +1303,6 @@ See also:
 'oldpassword' => "Used on the 'User profile' tab of 'my preferences'. This is the text next to an entry box for the old password in the 'change password' section.",
 'newpassword' => '{{Identical|New password}}',
 'retypenew' => "Appears on the 'User profile' tab of the 'Preferences' special page in the 'Change password' section. It appears next to the text box for entering the new password a second time.",
-'resetpass-abort-generic' => 'Generic error message shown on [[Special:ChangePassword]] when an extension aborts a password change from a hook.',
 'resetpass_submit' => 'Submit button on [[Special:ChangePassword]]',
 'resetpass_success' => 'Used in [[Special:ChangePassword]].',
 'resetpass_forbidden' => "Used as error message in changing password. Maybe the external auth plugin won't allow local password changes.",
@@ -1315,6 +1314,7 @@ See also:
 {{Identical|Cancel}}',
 'resetpass-wrong-oldpass' => 'Error message shown on [[Special:ChangePassword]] when the old password is not valid.',
 'resetpass-temp-password' => 'The label of the input box for the temporary password (received by e-mail) on the form displayed after logging in with a temporary password.',
+'resetpass-abort-generic' => 'Generic error message shown on [[Special:ChangePassword]] when an extension aborts a password change from a hook.',
 
 # Special:PasswordReset
 'passwordreset' => 'Title of [[Special:PasswordReset]].
@@ -8560,17 +8560,27 @@ A short description of the article path entry point. Links to the mediawiki.org 
 'version-entrypoints-scriptpath' => '{{Optional}}
 A short description of the script path entry point. Links to the mediawiki.org documentation page for $wgScriptPath.',
 
-'redirect' => 'Main heading of [[Special:Redirect]] page',
+'redirect' => "{{doc-special|Redirect}}
+This means \"Redirect by file'''name''', user '''ID''', or revision ID\".",
 'redirect-legend' => 'Legend of fieldset around input box in [[Special:Redirect]]',
-'redirect-text' => 'Inside fieldset for [[Special:Redirect]]',
 'redirect-summary' => 'Shown at top of [[Special:Redirect]]',
 'redirect-submit' => 'Button label in [[Special:Redirect]].
 {{Identical|Go}}',
-'redirect-lookup' => 'First field label in [[Special:Redirect]]',
-'redirect-value' => 'Second field label in [[Special:Redirect]]',
-'redirect-user' => 'Description of lookup type for [[Special:Redirect]]',
-'redirect-revision' => 'Description of lookup type for [[Special:Redirect]]',
-'redirect-file' => 'Description of lookup type for [[Special:Redirect]]',
+'redirect-lookup' => 'First field label in [[Special:Redirect]].
+
+Followed by the select box which has the following options:
+* {{msg-mw|Redirect-user}}
+* {{msg-mw|Redirect-revision}}
+* {{msg-mw|Redirect-file}}',
+'redirect-value' => 'Second field label in [[Special:Redirect]]
+{{Identical|Value}}',
+'redirect-user' => 'Description of lookup type for [[Special:Redirect]].
+{{Identical|User ID}}',
+'redirect-revision' => "Description of lookup type for [[Special:Redirect]].
+
+This means \"Page revision '''ID'''\".",
+'redirect-file' => 'Description of lookup type for [[Special:Redirect]].
+{{Identical|Filename}}',
 'redirect-not-exists' => 'Used as error message in [[Special:Redirect]]',
 
 # Special:FileDuplicateSearch
