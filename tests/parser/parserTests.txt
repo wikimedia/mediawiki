@@ -729,7 +729,7 @@ php
 !! test
 Italics and bold: other quote tests: (3,2,3,3) (parsoid)
 !! options
-parsoid
+parsoid=wt2html,wt2wt
 !! input
 '''this is about ''foo'''s family'''
 !! result
@@ -2371,13 +2371,30 @@ php
 !! test
 Definition Lists: Mixed Lists: Test 11 (parsoid)
 !! options
-parsoid
+parsoid=wt2html,wt2wt
 !! input
 *#*#;*;;foo :bar
 *#*#;boo :baz
 !! result
-<ul><li><ol><li><ul><li><ol><li><dl><dt><ul><li><dl><dt><dl><dt>foo&nbsp;</dt><dd>bar
-</dd></dl></dt></dl></li></ul></dt><dt>boo&nbsp;</dt><dd>baz</dd></dl></li></ol></li></ul></li></ol></li></ul>
+<ul>
+<li>
+<ol>
+<li>
+<ul>
+<li>
+<ol>
+<li>
+<dl>
+<dt>
+<ul>
+<li>
+<dl>
+<dt>
+<dl>
+<dt>foo<span typeof="mw:Placeholder">&nbsp;</span></dt>
+<dd>bar</dd></dl></dt></dl></li></ul></dt>
+<dt>boo<span typeof="mw:Placeholder">&nbsp;</span></dt>
+<dd>baz</dd></dl></li></ol></li></ul></li></ol></li></ul>
 !! end
 
 
@@ -2402,11 +2419,27 @@ php
 !! test
 Definition Lists: Weird Ones: Test 1 (parsoid)
 !! options
-parsoid
+parsoid=wt2html,wt2wt
 !! input
 *#;*::;; foo : bar (who uses this?)
 !! result
-<ul><li><ol><li><dl><dt><ul><li><dl><dd><dl><dd><dl><dt><dl><dt> foo&nbsp;</dt><dd> bar (who uses this?)</dd></dl></dt></dl></dd></dl></dd></dl></li></ul></dt></dl></li></ol></li></ul>
+<ul>
+<li>
+<ol>
+<li>
+<dl>
+<dt>
+<ul>
+<li>
+<dl>
+<dd>
+<dl>
+<dd>
+<dl>
+<dt>
+<dl>
+<dt> foo<span typeof="mw:Placeholder">&nbsp;</span></dt>
+<dd> bar (who uses this?)</dd></dl></dt></dl></dd></dl></dd></dl></li></ul></dt></dl></li></ol></li></ul>
 !! end
 
 ###
@@ -6572,9 +6605,9 @@ parsoid
 |bar
 |}
 !!result
-<table  about="#mwt1" typeof="mw:Object/Template ">
-<tbody><tr><td>foo</td></tr></tbody></table><span about="#mwt1">
-bar</span><span about="#mwt1">
+<table typeof="mw:Object/Template ">
+<tbody><tr><td>foo</td></tr></tbody></table><span>
+bar</span><span>
 </span>
 !!end
 
@@ -14741,7 +14774,25 @@ parsoid
 <p><span> <s>x</s></span><s> </s>
 <b> <i>x</i></b><i> </i></span>
 </p>
-!!end
+!! end
+
+!! test
+Parsoid-specific image handling - simple image with a formatted caption
+!! options
+parsoid
+!! input
+[[Image:Foobar.jpg|<table><tr><td>a</td><td>b</td></tr><tr><td>c</td></tr></table>]]
+!! result
+<p>
+<span typeof="mw:Image">
+<a class="mw-default-size" href="Image:Foobar.jpg">
+<img alt="Foobar.jpg" style="vertical-align: middle;" class="mw-default-size" src="http://upload.wikimedia.org/wikipedia/commons/3/3a/Foobar.jpg" height="220" width="1941">
+</a>
+<span>abc</span>
+</span>
+</p>
+!! end
+>>>>>>> 7aea068... Use specific modes in the parsoid options
 
 TODO:
 more images
