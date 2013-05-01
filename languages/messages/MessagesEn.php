@@ -1258,6 +1258,7 @@ Now logging you in...',
 'resetpass-wrong-oldpass'   => 'Invalid temporary or current password.
 You may have already successfully changed your password or requested a new temporary password.',
 'resetpass-temp-password'   => 'Temporary password:',
+'changepass-successful'     => 'Your password has been changed successfully.',
 
 # Special:PasswordReset
 'passwordreset'                    => 'Reset password',
