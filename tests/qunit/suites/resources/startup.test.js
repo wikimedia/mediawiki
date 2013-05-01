@@ -38,8 +38,6 @@
 			'Mozilla/5.0 (iPhone; U; CPU like Mac OS X; en) AppleWebKit/420.1 (KHTML, like Gecko) Version/3.0 Mobile/3B48b Safari/419.3',
 			// Android
 			'Mozilla/5.0 (Linux; U; Android 2.1; en-us; Nexus One Build/ERD62) AppleWebKit/530.17 (KHTML, like Gecko) Version/4.0 Mobile Safari/530.17',
-			// Recent Opera Mini - JS mostly doesn't work, but serving jQuery doesn't hurt users
-			'Opera/9.80 (Android; Opera Mini/7.29530/27.1407; U; en) Presto/2.8.119 Version/11.10'
 		],
 		// Supported: Uncompatible, serve basic content
 		gradeB: [
@@ -66,10 +64,11 @@
 			'Mozilla/4.0 (compatible; Linux 2.6.10) NetFront/3.3 Kindle/1.0 (screen 600x800)',
 			'Mozilla/4.0 (compatible; Linux 2.6.22) NetFront/3.4 Kindle/2.0 (screen 824x1200; rotate)',
 			'Mozilla/4.08 (Windows; Mobile Content Viewer/1.0) NetFront/3.2',
-			// Opera Mini < 7
+			// Opera Mini
 			'Opera/9.80 (J2ME/MIDP; Opera Mini/3.1.10423/22.387; U; en) Presto/2.5.25 Version/10.54',
 			'Opera/9.50 (J2ME/MIDP; Opera Mini/4.0.10031/298; U; en)',
 			'Opera/9.80 (J2ME/MIDP; Opera Mini/6.24093/26.1305; U; en) Presto/2.8.119 Version/10.54'
+			'Opera/9.80 (Android; Opera Mini/7.29530/27.1407; U; en) Presto/2.8.119 Version/11.10'
 		],
 		// No explicit support for or against these browsers, they're
 		// given a shot at Grade A at their own risk.
