@@ -79,24 +79,28 @@ class CopyFileBackend extends Maintenance {
 
 			// Do a listing comparison if specified
 			if ( $this->hasOption( 'missingonly' ) ) {
-				$relFilesSrc = array();
-				$relFilesDst = array();
-				foreach ( $srcPathsRel as $srcPathRel ) {
-					$relFilesSrc[] = $srcPathRel;
-				}
 				$dstPathsRel = $dst->getFileList( array(
 					'dir' => $dst->getRootStoragePath() . "/$backendRel" ) );
 				if ( $dstPathsRel === null ) {
 					$this->error( "Could not list files in $container.", 1 ); // die
 				}
+				// Get the list of destination files
+				$relFilesDstSha1 = array();
 				foreach ( $dstPathsRel as $dstPathRel ) {
-					$relFilesDst[] = $dstPathRel;
+					$relFilesDstSha1[sha1( $dstPathRel )] = 1;
 				}
+				unset( $dstPathsRel ); // free
+				// Get the list of missing files
+				$missingPathsRel = array();
+				foreach ( $srcPathsRel as $srcPathRel ) {
+					if ( !isset( $relFilesDstSha1[sha1( $srcPathRel )] ) ) {
+						$missingPathsRel[] = $srcPathRel;
+					}
+				}
+				unset( $srcPathsRel ); // free
 				// Only copy the missing files over in the next loop
-				$srcPathsRel = array_diff( $relFilesSrc, $relFilesDst );
+				$srcPathsRel = $missingPathsRel;
 				$this->output( count( $srcPathsRel ) . " file(s) need to be copied.\n" );
-				unset( $relFilesSrc );
-				unset( $relFilesDst );
 			}
 
 			$batchPaths = array();
