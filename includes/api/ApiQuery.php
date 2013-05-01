@@ -64,6 +64,7 @@ class ApiQuery extends ApiBase {
 	 */
 	private static $QueryListModules = array(
 		'allcategories' => 'ApiQueryAllCategories',
+		'allfileusages' => 'ApiQueryAllFileUsages',
 		'allimages' => 'ApiQueryAllImages',
 		'alllinks' => 'ApiQueryAllLinks',
 		'allpages' => 'ApiQueryAllPages',

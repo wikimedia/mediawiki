@@ -374,6 +374,7 @@ $wgAutoloadLocalClasses = array(
 	'ApiPurge' => 'includes/api/ApiPurge.php',
 	'ApiQuery' => 'includes/api/ApiQuery.php',
 	'ApiQueryAllCategories' => 'includes/api/ApiQueryAllCategories.php',
+	'ApiQueryAllFileUsages' => 'includes/api/ApiQueryAllFileUsages.php',
 	'ApiQueryAllImages' => 'includes/api/ApiQueryAllImages.php',
 	'ApiQueryAllLinks' => 'includes/api/ApiQueryAllLinks.php',
 	'ApiQueryAllMessages' => 'includes/api/ApiQueryAllMessages.php',
