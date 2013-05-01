@@ -2191,8 +2191,8 @@ class User {
 		if ( $str == $this->mEmail ) {
 			return;
 		}
-		$this->mEmail = $str;
 		$this->invalidateEmail();
+		$this->mEmail = $str;
 		wfRunHooks( 'UserSetEmail', array( $this, &$this->mEmail ) );
 	}
 
@@ -3748,6 +3748,7 @@ class User {
 		$this->mEmailToken = null;
 		$this->mEmailTokenExpires = null;
 		$this->setEmailAuthenticationTimestamp( null );
+		$this->mEmail = '';
 		wfRunHooks( 'InvalidateEmailComplete', array( $this ) );
 		return true;
 	}
