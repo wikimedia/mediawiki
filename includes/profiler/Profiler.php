@@ -61,18 +61,36 @@ class ProfileSection {
 	protected $name; // string; method name
 	protected $enabled = false; // boolean; whether profiling is enabled
 
+	/** @var ProfileSection|null */
+	protected $prev;
+
 	/**
 	 * Begin profiling of a function and return an object that ends profiling of
 	 * the function when that object leaves scope. As long as the object is not
 	 * specifically linked to other objects, it will fall out of scope at the same
 	 * moment that the function to be profiled terminates.
 	 *
-	 * This is typically called like:
-	 * <code>$section = new ProfileSection( __METHOD__ );</code>
+	 * This is typically used like:
+	 * <code>
+	 *	function hello_world() {
+	 *		$section = new ProfileSection( __METHOD__ );
+	 *		// some code
+	 *	}
+	 * </code>
+	 *
+	 * Trivial nested profiling can be done like:
+	 * <code>
+	 *	function hello_world( $type ) {
+	 *		$section = new ProfileSection( __METHOD__ );
+	 *		$section = new ProfileSection( __METHOD__ . "-$type", $section );
+	 *		// some code
+	 *	}
+	 * </code>
 	 *
 	 * @param string $name Name of the function to profile
+	 * @param ProfileSection $prev Previous section to chain to this (useful for nesting)
 	 */
-	public function __construct( $name ) {
+	public function __construct( $name, ProfileSection $prev = null ) {
 		$this->name = $name;
 		if ( Profiler::$__instance === null ) { // use this directly to reduce overhead
 			Profiler::instance();
@@ -81,6 +99,33 @@ class ProfileSection {
 			$this->enabled = true;
 			Profiler::$__instance->profileIn( $this->name );
 		}
+		$this->prev = $prev;
+	}
+
+	/**
+	 * Function to support nested profiling
+	 *
+	 * This can handle complex nested profiling, like as follows:
+	 * <code>
+	 *	function hello_world() {
+	 *		$section = new ProfileSection( __METHOD__ );
+	 *		$sectionL1 = null;
+	 *		$section->subprofile( __METHOD__ . '-section-a', $sectionL1 );
+	 *		// some code for section A
+	 *		$section->subprofile( __METHOD__ . '-section-b', $sectionL1 );
+	 *		// some code for section B
+	 *		$section->subprofile( __METHOD__ . '-section-c', $sectionL1 );
+	 *		// some code for section C
+	 *	}
+	 * </code>
+	 *
+	 * @param string $name Name of the function to profile
+	 * @param ProfileSection|null $current Current profile section for this level of nesting
+	 * @return void
+	 */
+	public function subprofile( $name, &$current ) {
+		$current = null; // this must be a separate step
+		$current = new self( $name, $this );
 	}
 
 	function __destruct() {
