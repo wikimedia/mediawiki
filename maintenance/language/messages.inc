@@ -567,6 +567,7 @@ $wgMessageStructure = array(
 		'resetpass-submit-cancel',
 		'resetpass-wrong-oldpass',
 		'resetpass-temp-password',
+		'resetpass-abort-generic',
 	),
 	'passwordreset' => array(
 		'passwordreset',
