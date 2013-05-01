@@ -18,6 +18,9 @@
 }
 
 .mw-badge-inline {
+	/* For IE 7 and earlier */
+	display: inline;
+	/* For everyone else */
 	display: inline-block;
 	margin-left: 3px;
 }
