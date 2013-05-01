@@ -44,6 +44,8 @@ class RebuildLocalisationCache extends Maintenance {
 		$this->addOption( 'threads', 'Fork more than one thread', false, true );
 		$this->addOption( 'outdir', 'Override the output directory (normally $wgCacheDirectory)',
 			false, true );
+		$this->addOption( 'lang', 'Only rebuild these languages, comma separated.',
+			false, true );
 	}
 
 	public function memoryLimit() {
@@ -90,7 +92,19 @@ class RebuildLocalisationCache extends Maintenance {
 		}
 		$lc = new LocalisationCache_BulkLoad( $conf );
 
-		$codes = array_keys( Language::fetchLanguageNames( null, 'mwfile' ) );
+		$allCodes = array_keys( Language::fetchLanguageNames( null, 'mwfile' ) );
+		if( $this->hasOption( 'lang' ) ) {
+			# Validate requested languages
+			$codes = array_intersect( $allCodes,
+				explode( ',', $this->getOption( 'lang' ) ) );
+			# Bailed out if nothing is left
+			if( count( $codes ) == 0 ) {
+				$this->error( 'None of the languages specified exists.', 1 );
+			}
+		} else {
+			# By default get all languages
+			$codes = $allCodes;
+		}
 		sort( $codes );
 
 		// Initialise and split into chunks

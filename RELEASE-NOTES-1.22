@@ -56,6 +56,8 @@ production.
   language links associated with a page before display.
 * Chosen (http://harvesthq.github.io/chosen/) was added as module 'jquery.chosen'
 * HTMLForm will turn multiselect checkboxes into a Chosen interface when setting cssclass 'mw-chosen'
+* rebuildLocalisationCache learned --lang option. Let you rebuild l10n caches
+  of the specified languages instead of all of them.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail. Previously one could still
