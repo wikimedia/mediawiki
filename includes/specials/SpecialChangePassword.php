@@ -59,7 +59,13 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 		}
 
 		if ( $request->wasPosted() && $request->getBool( 'wpCancel' ) ) {
-			$this->doReturnTo();
+			$request = $this->getRequest();
+			$titleObj = Title::newFromText( $request->getVal( 'returnto' ) );
+			if ( !$titleObj instanceof Title ) {
+				$titleObj = Title::newMainPage();
+			}
+			$query = $request->getVal( 'returntoquery' );
+			$this->getOutput()->redirect( $titleObj->getFullURL( $query ) );
 
 			return;
 		}
@@ -78,7 +84,7 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 				$this->attemptReset( $this->mNewpass, $this->mRetype );
 
 				if ( $user->isLoggedIn() ) {
-					$this->doReturnTo();
+					$this->getOutput()->returnToMain();
 				} else {
 					LoginForm::setLoginToken();
 					$token = LoginForm::getLoginToken();
@@ -102,16 +108,6 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 		$this->showForm();
 	}
 
-	function doReturnTo() {
-		$request = $this->getRequest();
-		$titleObj = Title::newFromText( $request->getVal( 'returnto' ) );
-		if ( !$titleObj instanceof Title ) {
-			$titleObj = Title::newMainPage();
-		}
-		$query = $request->getVal( 'returntoquery' );
-		$this->getOutput()->redirect( $titleObj->getFullURL( $query ) );
-	}
-
 	/**
 	 * @param $msg string
 	 */
@@ -132,7 +128,7 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 				'<td></td>' .
 				'<td class="mw-input">' .
 				Xml::checkLabel(
-					$this->msg( 'remembermypassword' )->numParams( ceil( $wgCookieExpiration / ( 3600 * 24 ) ) )->text(),
+					$this->msg('remembermypassword')->numParams(ceil($wgCookieExpiration / (3600 * 24)))->text(),
 					'wpRemember', 'wpRemember',
 					$this->getRequest()->getCheck( 'wpRemember' ) ) .
 				'</td>' .
@@ -177,7 +173,7 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 				"<td></td>\n" .
 				'<td class="mw-input">' .
 				Xml::submitButton( $this->msg( $submitMsg )->text() ) .
-				Xml::submitButton( $this->msg( 'resetpass-submit-cancel' )->text(), array( 'name' => 'wpCancel' ) ) .
+				Xml::submitButton( $this->msg('resetpass-submit-cancel')->text(), array('name' => 'wpCancel')) .
 				"</td>\n" .
 				"</tr>\n" .
 				Xml::closeElement( 'table' ) .
@@ -252,12 +248,12 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 		}
 
 		$abortMsg = 'resetpass-abort-generic';
-		if ( !wfRunHooks( 'AbortChangePassword', array( $user, $this->mOldpass, $newpass, &$abortMsg ) ) ) {
+		if ( !wfRunHooks( 'AbortChangePassword', array( $user, $this->mOldpass, $newpass, &$abortMsg))) {
 			wfRunHooks( 'PrefsPasswordAudit', array( $user, $newpass, 'abortreset' ) );
 			throw new PasswordError( $this->msg( $abortMsg )->text() );
 		}
 
-		if ( !$user->checkTemporaryPassword( $this->mOldpass ) && !$user->checkPassword( $this->mOldpass ) ) {
+		if ( !$user->checkTemporaryPassword($this->mOldpass) && !$user->checkPassword($this->mOldpass)) {
 			wfRunHooks( 'PrefsPasswordAudit', array( $user, $newpass, 'wrongpassword' ) );
 			throw new PasswordError( $this->msg( 'resetpass-wrong-oldpass' )->text() );
 		}
