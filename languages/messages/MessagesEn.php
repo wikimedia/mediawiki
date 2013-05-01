@@ -1279,6 +1279,7 @@ To finish logging in, you must set a new password here:',
 'resetpass_submit'          => 'Set password and log in',
 'resetpass_success'         => 'Your password has been changed successfully!
 Now logging you in...',
+'changepass_success'         => 'Your password has been changed successfully!',
 'resetpass_forbidden'       => 'Passwords cannot be changed',
 'resetpass-no-info'         => 'You must be logged in to access this page directly.',
 'resetpass-submit-loggedin' => 'Change password',
