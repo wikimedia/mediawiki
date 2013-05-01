@@ -16,6 +16,7 @@ $defaultFormWidth: $captchaContainerWidth;
 
     width: $defaultFormWidth;
 
+    // Immediate divs in a vform are block and spaced-out.
     & > div {
         display: block;
         margin: 0 0 15px 0;
@@ -58,6 +59,17 @@ $defaultFormWidth: $captchaContainerWidth;
 // --------------------------------------------------------------------------
 // Elements
 // --------------------------------------------------------------------------
+
+// Apply this to individual elements to style them.
+// You generally don't need to use this class on divs within an Agora
+// form container such as mw-ui-vform
+// XXX DRY: This repeats earlier styling, use an @include agora-div-styling ?
+.mw-ui-vform-div {
+	display: block;
+	margin: 0 0 15px 0;
+	padding: 0;
+	width: 100%;
+}
 
 // Apply mw-ui-input to individual input fields to style them.
 // You generally don't need to use this class if <input> is within an Agora

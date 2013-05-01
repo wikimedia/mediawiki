@@ -140,14 +140,14 @@ a.mw-ui-button {
   box-sizing: border-box;
   width: 290px;
 }
-/* line 19, sourcefiles/scss/components/default/_forms.scss */
+/* line 20, sourcefiles/scss/components/default/_forms.scss */
 .mw-ui-vform > div {
   display: block;
   margin: 0 0 15px 0;
   padding: 0;
   width: 100%;
 }
-/* line 27, sourcefiles/scss/components/default/_forms.scss */
+/* line 28, sourcefiles/scss/components/default/_forms.scss */
 .mw-ui-vform > div input,
 .mw-ui-vform > div .mw-ui-button {
   display: block;
@@ -157,7 +157,7 @@ a.mw-ui-button {
   margin: 0;
   width: 100%;
 }
-/* line 34, sourcefiles/scss/components/default/_forms.scss */
+/* line 35, sourcefiles/scss/components/default/_forms.scss */
 .mw-ui-vform > div input {
   outline: 0;
   border-style: solid;
@@ -171,7 +171,7 @@ a.mw-ui-button {
   box-shadow: #4091ed 0px 0px 5px;
   border-color: #4091ed;
 }
-/* line 38, sourcefiles/scss/components/default/_forms.scss */
+/* line 39, sourcefiles/scss/components/default/_forms.scss */
 .mw-ui-vform > div label {
   display: block;
   -webkit-box-sizing: border-box;
@@ -187,7 +187,7 @@ a.mw-ui-button {
 .mw-ui-vform > div label * {
   font-weight: normal;
 }
-/* line 49, sourcefiles/scss/components/default/_forms.scss */
+/* line 50, sourcefiles/scss/components/default/_forms.scss */
 .mw-ui-vform > div input[type="checkbox"],
 .mw-ui-vform > div input[type="radio"] {
   display: inline;
@@ -197,7 +197,15 @@ a.mw-ui-button {
   width: auto;
 }
 
-/* line 65, sourcefiles/scss/components/default/_forms.scss */
+/* line 67, sourcefiles/scss/components/default/_forms.scss */
+.mw-ui-vform-div {
+  display: block;
+  margin: 0 0 15px 0;
+  padding: 0;
+  width: 100%;
+}
+
+/* line 77, sourcefiles/scss/components/default/_forms.scss */
 .mw-ui-input {
   outline: 0;
   border-style: solid;
@@ -212,7 +220,7 @@ a.mw-ui-button {
   border-color: #4091ed;
 }
 
-/* line 72, sourcefiles/scss/components/default/_forms.scss */
+/* line 84, sourcefiles/scss/components/default/_forms.scss */
 .mw-ui-label {
   font-size: 0.9em;
   color: #7d7d7d;
@@ -222,7 +230,7 @@ a.mw-ui-button {
   font-weight: normal;
 }
 
-/* line 81, sourcefiles/scss/components/default/_forms.scss */
+/* line 93, sourcefiles/scss/components/default/_forms.scss */
 .mw-ui-checkbox-label, .mw-ui-radio-label {
   margin-bottom: 0.5em;
   cursor: pointer;

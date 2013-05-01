@@ -982,7 +982,13 @@ abstract class FormSpecialPage extends SpecialPage {
 
 		$form = new HTMLForm( $this->fields, $this->getContext(), $this->getMessagePrefix() );
 		$form->setSubmitCallback( array( $this, 'onSubmit' ) );
-		$form->setWrapperLegendMsg( $this->getMessagePrefix() . '-legend' );
+		// If the form is a compact vertical form, then don't output this ugly
+		// fieldset surrounding it.
+		// TODO if special pages specify they want vform' in alterForm(), it
+		// happens too late.
+		if ( !$form->isVForm() ) {
+			$form->setWrapperLegendMsg( $this->getMessagePrefix() . '-legend' );
+		}
 
 		$headerMsg = $this->msg( $this->getMessagePrefix() . '-text' );
 		if ( !$headerMsg->isDisabled() ) {
