@@ -6341,6 +6341,12 @@ $wgSiteTypes = array(
 $wgCompiledFiles = array();
 
 /**
+ * Default format for HTMLForm forms.
+ * @since 1.22
+ */
+$wgDefaultHTMLFormFormat = 'table';
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}

@@ -16,6 +16,7 @@ $defaultFormWidth: $captchaContainerWidth;
 
     width: $defaultFormWidth;
 
+    // Immediate divs in a vform are block and spaced-out.
     & > div {
         display: block;
         margin: 0 0 15px 0;
@@ -53,11 +54,39 @@ $defaultFormWidth: $captchaContainerWidth;
         }
 
     }
+
+    // HTMLForm uses error, SpecialUserlogin (login and create account) uses
+    // errorbox.
+    // TODO move errorbox from mediawiki.special.vforms.css into here.
+    .error {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        font-size: 0.9em;
+        margin: 0 0 1em 0;
+        padding: 0.5em;
+        color: #cc0000;
+        border: 1px solid #fac5c5;
+        background-color: #fae3e3;
+        text-shadow: 0 1px #fae3e3;
+        word-wrap: break-word;
+    }
 }
 
 // --------------------------------------------------------------------------
 // Elements
 // --------------------------------------------------------------------------
+
+// Apply this to individual elements to style them.
+// You generally don't need to use this class on divs within an Agora
+// form container such as mw-ui-vform
+// XXX DRY: This repeats earlier styling, use an @include agora-div-styling ?
+.mw-ui-vform-div {
+	display: block;
+	margin: 0 0 15px 0;
+	padding: 0;
+	width: 100%;
+}
 
 // Apply mw-ui-input to individual input fields to style them.
 // You generally don't need to use this class if <input> is within an Agora
