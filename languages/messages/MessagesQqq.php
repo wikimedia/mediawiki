@@ -2711,6 +2711,7 @@ Parameters:
 Parameters:
 * $1 - optional, for PLURAL use, the number of items in the column following the message. Avoid PLURAL, if your language allows that.',
 'userrights-irreversible-marker' => '{{optional}}',
+'userrights-conflict'            => 'Shown on Special:UserRights if the target\'s rights have been changed since the form was loaded.',
 
 # Groups
 'group' => '{{Identical|Group}}',
