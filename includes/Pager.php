@@ -206,13 +206,25 @@ abstract class IndexPager extends ContextSource implements Pager {
 		# Plus an extra row so that we can tell the "next" link should be shown
 		$queryLimit = $this->mLimit + 1;
 
+		if ( $this->mOffset == '' ) {
+			$isFirst = true;
+		} else {
+			// If there's an offset, we may or may not be at the first entry.
+			// The only way to tell is to run the query in the opposite
+			// direction see if we get a row.
+			$oldIncludeOffset = $this->mIncludeOffset;
+			$this->mIncludeOffset = !$this->mIncludeOffset;
+			$isFirst = !$this->reallyDoQuery( $this->mOffset, 1, !$descending )->numRows();
+			$this->mIncludeOffset = $oldIncludeOffset;
+		}
+
 		$this->mResult = $this->reallyDoQuery(
 			$this->mOffset,
 			$queryLimit,
 			$descending
 		);
 
-		$this->extractResultInfo( $this->mOffset, $queryLimit, $this->mResult );
+		$this->extractResultInfo( $isFirst, $queryLimit, $this->mResult );
 		$this->mQueryDone = true;
 
 		$this->preprocessResults( $this->mResult );
@@ -269,11 +281,12 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 * Extract some useful data from the result object for use by
 	 * the navigation bar, put it into $this
 	 *
-	 * @param string $offset index offset, inclusive
+	 * @param $isFirst bool: False if there are rows before those fetched (i.e.
+	 *     if a "previous" link would make sense)
 	 * @param $limit Integer: exact query limit
 	 * @param $res ResultWrapper
 	 */
-	function extractResultInfo( $offset, $limit, ResultWrapper $res ) {
+	function extractResultInfo( $isFirst, $limit, ResultWrapper $res ) {
 		$numRows = $res->numRows();
 		if ( $numRows ) {
 			# Remove any table prefix from index field
@@ -311,11 +324,11 @@ abstract class IndexPager extends ContextSource implements Pager {
 
 		if ( $this->mIsBackwards ) {
 			$this->mIsFirst = ( $numRows < $limit );
-			$this->mIsLast = ( $offset == '' );
+			$this->mIsLast = $isFirst;
 			$this->mLastShown = $firstIndex;
 			$this->mFirstShown = $lastIndex;
 		} else {
-			$this->mIsFirst = ( $offset == '' );
+			$this->mIsFirst = $isFirst;
 			$this->mIsLast = ( $numRows < $limit );
 			$this->mLastShown = $lastIndex;
 			$this->mFirstShown = $firstIndex;
