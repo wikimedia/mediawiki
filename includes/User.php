@@ -3748,6 +3748,7 @@ class User {
 		$this->mEmailToken = null;
 		$this->mEmailTokenExpires = null;
 		$this->setEmailAuthenticationTimestamp( null );
+		$this->mEmail = '';
 		wfRunHooks( 'InvalidateEmailComplete', array( $this ) );
 		return true;
 	}
