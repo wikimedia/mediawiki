@@ -238,7 +238,7 @@ class JobQueueRedis extends JobQueue {
 			$args[] = (string)$item['uuid'];
 			$args[] = (string)$item['sha1'];
 			$args[] = (string)$item['rtimestamp'];
-			$args[] = (string)serialize( $item );
+			$args[] = (string)$this->serialize( $item );
 		}
 		static $script =
 <<<LUA
@@ -310,7 +310,7 @@ LUA;
 				}
 
 				JobQueue::incrStats( 'job-pop', $this->type );
-				$item = unserialize( $blob );
+				$item = $this->unserialize( $blob );
 				if ( $item === false ) {
 					wfDebugLog( 'JobQueueRedis', "Could not unserialize {$this->type} job." );
 					continue;
@@ -532,7 +532,7 @@ LUA;
 	 */
 	public function getJobFromUidInternal( $uid, RedisConnRef $conn ) {
 		try {
-			$item = unserialize( $conn->hGet( $this->getQueueKey( 'h-data' ), $uid ) );
+			$item = $this->unserialize( $conn->hGet( $this->getQueueKey( 'h-data' ), $uid ) );
 			if ( !is_array( $item ) ) { // this shouldn't happen
 				throw new MWException( "Could not find job with ID '$uid'." );
 			}
@@ -713,6 +713,37 @@ LUA;
 			return $job;
 		}
 		return false;
+	}
+
+	/**
+	 * @param array $fields
+	 * @return string Serialized and possibly compressed version of $fields
+	 */
+	protected function serialize( array $fields ) {
+		$blob = serialize( $fields );
+		if ( strlen( $blob ) >= 1024 && function_exists( 'gzdeflate' ) ) {
+			$object = (object)array( 'blob' => gzdeflate( $blob ), 'enc' => 'gzip' );
+			$blobz = serialize( $object );
+			return ( strlen( $blobz ) < strlen( $blob ) ) ? $blobz : $blob;
+		} else {
+			return $blob;
+		}
+	}
+
+	/**
+	 * @param string $blob
+	 * @return array|bool Unserialized version of $blob or false
+	 */
+	protected function unserialize( $blob ) {
+		$fields = unserialize( $blob );
+		if ( is_object( $fields ) ) {
+			if ( $fields->enc === 'gzip' && function_exists( 'gzinflate' ) ) {
+				$fields = unserialize( gzinflate( $fields->blob ) );
+			} else {
+				$fields = false;
+			}
+		}
+		return is_array( $fields ) ? $fields : false;
 	}
 
 	/**
