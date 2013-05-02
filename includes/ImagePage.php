@@ -395,6 +395,7 @@ class ImagePage extends Article {
 
 				$isMulti = $this->displayImg->isMultipage() && $this->displayImg->pageCount() > 1;
 				if ( $isMulti ) {
+					$out->addModules( 'mediawiki.page.image.pagination' );
 					$out->addHTML( '<table class="multipageimage"><tr><td>' );
 				}
 
