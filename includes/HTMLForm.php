@@ -745,7 +745,7 @@ class HTMLForm extends ContextSource {
 			$attribs['class'] = array( 'mw-htmlform-submit' );
 
 			if ( $this->isVForm() ) {
-				// mw-ui-block is necessary because the buttons aren't necessarily in an 
+				// mw-ui-block is necessary because the buttons aren't necessarily in an
 				// immediate child div of the vform.
 				array_push( $attribs['class'], 'mw-ui-button', 'mw-ui-big', 'mw-ui-primary', 'mw-ui-block' );
 			}
@@ -1683,6 +1683,30 @@ abstract class HTMLFormField {
 	}
 
 	/**
+	 * Returns the given attributes from the parameters
+	 *
+	 * @param array $list List of attributes to get
+	 * @return array Attributes
+	 */
+	public function getAttributes( array $list ) {
+		static $boolAttribs = array( 'disabled', 'required', 'autofocus', 'multiple', 'readonly' );
+
+		$ret = array();
+
+		foreach( $list as $key ) {
+			if ( in_array( $key, $boolAttribs ) ) {
+				if ( !empty( $this->mParams[$key] ) ) {
+					$ret[$key] = '';
+				}
+			} elseif ( isset( $this->mParams[$key] ) ) {
+				$ret[$key] = $this->mParams[$key];
+			}
+		}
+
+		return $ret;
+	}
+
+	/**
 	 * flatten an array of options to a single array, for instance,
 	 * a set of "<options>" inside "<optgroups>".
 	 * @param array $options Associative Array with values either Strings
@@ -1752,25 +1776,13 @@ class HTMLTextField extends HTMLFormField {
 			$attribs['class'] = $this->mClass;
 		}
 
-		if ( !empty( $this->mParams['disabled'] ) ) {
-			$attribs['disabled'] = 'disabled';
-		}
-
 		# TODO: Enforce pattern, step, required, readonly on the server side as
 		# well
 		$allowedParams = array( 'min', 'max', 'pattern', 'title', 'step',
-			'placeholder', 'list', 'maxlength' );
-		foreach ( $allowedParams as $param ) {
-			if ( isset( $this->mParams[$param] ) ) {
-				$attribs[$param] = $this->mParams[$param];
-			}
-		}
+			'placeholder', 'list', 'maxlength', 'tabindex', 'disabled',
+			'required', 'autofocus', 'multiple', 'readonly' );
 
-		foreach ( array( 'required', 'autofocus', 'multiple', 'readonly' ) as $param ) {
-			if ( isset( $this->mParams[$param] ) ) {
-				$attribs[$param] = '';
-			}
-		}
+		$attribs += $this->getAttributes( $allowedParams );
 
 		# Implement tiny differences between some field variants
 		# here, rather than creating a new class for each one which
@@ -1826,23 +1838,10 @@ class HTMLTextAreaField extends HTMLFormField {
 			$attribs['class'] = $this->mClass;
 		}
 
-		if ( !empty( $this->mParams['disabled'] ) ) {
-			$attribs['disabled'] = 'disabled';
-		}
+		$allowedParams = array( 'placeholder', 'tabindex', 'disabled', 'readonly',
+			'required', 'autofocus' );
 
-		if ( !empty( $this->mParams['readonly'] ) ) {
-			$attribs['readonly'] = 'readonly';
-		}
-
-		if ( isset( $this->mParams['placeholder'] ) ) {
-			$attribs['placeholder'] = $this->mParams['placeholder'];
-		}
-
-		foreach ( array( 'required', 'autofocus' ) as $param ) {
-			if ( isset( $this->mParams[$param] ) ) {
-				$attribs[$param] = '';
-			}
-		}
+		$attribs += $this->getAttributes( $allowedParams );
 
 		return Html::element( 'textarea', $attribs, $value );
 	}
@@ -1933,9 +1932,7 @@ class HTMLCheckField extends HTMLFormField {
 		$attr = $this->getTooltipAndAccessKey();
 		$attr['id'] = $this->mID;
 
-		if ( !empty( $this->mParams['disabled'] ) ) {
-			$attr['disabled'] = 'disabled';
-		}
+		$attr += $this->getAttributes( array( 'disabled', 'tabindex' ) );
 
 		if ( $this->mClass !== '' ) {
 			$attr['class'] = $this->mClass;
@@ -2086,14 +2083,10 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 	function getInputHTML( $value ) {
 		$html = '';
 		$tableContents = '';
-		$attribs = array();
 		$rows = $this->mParams['rows'];
 		$columns = $this->mParams['columns'];
 
-		// If the disabled param is set, disable all the options
-		if ( !empty( $this->mParams['disabled'] ) ) {
-			$attribs['disabled'] = 'disabled';
-		}
+		$attribs = $this->getAttributes( array( 'disabled', 'tabindex' ) );
 
 		// Build the column headers
 		$headerContents = Html::rawElement( 'td', array(), '&#160;' );
@@ -2283,6 +2276,10 @@ class HTMLSelectField extends HTMLFormField {
 			$select->setAttribute( 'disabled', 'disabled' );
 		}
 
+		if ( isset( $this->mParams['tabindex'] ) ) {
+			$select->setAttribute( 'tabindex', $this->mParams['tabindex'] );
+		}
+
 		if ( $this->mClass !== '' ) {
 			$select->setAttribute( 'class', $this->mClass );
 		}
@@ -2341,6 +2338,11 @@ class HTMLSelectOrOtherField extends HTMLTextField {
 		if ( !empty( $this->mParams['disabled'] ) ) {
 			$select->setAttribute( 'disabled', 'disabled' );
 			$tbAttribs['disabled'] = 'disabled';
+		}
+
+		if ( isset( $this->mParams['tabindex'] ) ) {
+			$select->setAttribute( 'tabindex', $this->mParams['tabindex'] );
+			$tbAttribs['tabindex'] = $this->mParams['tabindex'];
 		}
 
 		$select = $select->getHTML();
@@ -2419,11 +2421,7 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 	function formatOptions( $options, $value ) {
 		$html = '';
 
-		$attribs = array();
-
-		if ( !empty( $this->mParams['disabled'] ) ) {
-			$attribs['disabled'] = 'disabled';
-		}
+		$attribs = $this->getAttributes( array( 'disabled', 'tabindex' ) );
 
 		foreach ( $options as $label => $info ) {
 			if ( is_array( $info ) ) {
@@ -2584,11 +2582,9 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 			$textAttribs['class'] = $this->mClass;
 		}
 
-		foreach ( array( 'required', 'autofocus', 'multiple', 'disabled' ) as $param ) {
-			if ( isset( $this->mParams[$param] ) ) {
-				$textAttribs[$param] = '';
-			}
-		}
+		$allowedParams = array( 'required', 'autofocus', 'multiple', 'disabled', 'tabindex' );
+
+		$textAttribs += $this->getAttributes( $allowedParams );
 
 		$textbox = Html::input(
 			$this->mName . '-other',
@@ -2703,10 +2699,7 @@ class HTMLRadioField extends HTMLFormField {
 	function formatOptions( $options, $value ) {
 		$html = '';
 
-		$attribs = array();
-		if ( !empty( $this->mParams['disabled'] ) ) {
-			$attribs['disabled'] = 'disabled';
-		}
+		$attribs = $this->getAttributes( array( 'disabled', 'tabindex' ) );
 
 		# TODO: should this produce an unordered list perhaps?
 		foreach ( $options as $label => $info ) {
@@ -2855,11 +2848,7 @@ class HTMLButtonField extends HTMLFormField {
 		$attr = array(
 			'class' => 'mw-htmlform-submit ' . $this->mClass,
 			'id' => $this->mID,
-		);
-
-		if ( !empty( $this->mParams['disabled'] ) ) {
-			$attr['disabled'] = 'disabled';
-		}
+		) + $this->getAttributes( array( 'disabled', 'tabindex' ) );
 
 		return Html::input(
 			$this->mName,
