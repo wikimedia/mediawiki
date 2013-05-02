@@ -324,7 +324,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 				);
 			}
 		} catch ( Exception $e ) {
-			wfDebug( __METHOD__ . " failed to update DB: $e\n" );
+			wfDebugLog( 'resourceloader', __METHOD__ . ": failed to update DB: $e" );
 		}
 		return $styles;
 	}
