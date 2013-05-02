@@ -37,6 +37,10 @@ class HTMLSelectField extends HTMLFormField {
 			$select->setAttribute( 'disabled', 'disabled' );
 		}
 
+		if ( isset( $this->mParams['tabindex'] ) ) {
+			$select->setAttribute( 'tabindex', $this->mParams['tabindex'] );
+		}
+
 		if ( $this->mClass !== '' ) {
 			$select->setAttribute( 'class', $this->mClass );
 		}

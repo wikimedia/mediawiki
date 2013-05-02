@@ -41,10 +41,7 @@ class HTMLRadioField extends HTMLFormField {
 	function formatOptions( $options, $value ) {
 		$html = '';
 
-		$attribs = array();
-		if ( !empty( $this->mParams['disabled'] ) ) {
-			$attribs['disabled'] = 'disabled';
-		}
+		$attribs = $this->getAttributes( array( 'disabled', 'tabindex' ) );
 
 		# @todo Should this produce an unordered list perhaps?
 		foreach ( $options as $label => $info ) {

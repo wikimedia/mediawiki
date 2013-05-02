@@ -47,6 +47,11 @@ class HTMLSelectOrOtherField extends HTMLTextField {
 			$tbAttribs['disabled'] = 'disabled';
 		}
 
+		if ( isset( $this->mParams['tabindex'] ) ) {
+			$select->setAttribute( 'tabindex', $this->mParams['tabindex'] );
+			$tbAttribs['tabindex'] = $this->mParams['tabindex'];
+		}
+
 		$select = $select->getHTML();
 
 		if ( isset( $this->mParams['maxlength'] ) ) {

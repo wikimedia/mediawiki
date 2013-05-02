@@ -485,6 +485,30 @@ abstract class HTMLFormField {
 	}
 
 	/**
+	 * Returns the given attributes from the parameters
+	 *
+	 * @param array $list List of attributes to get
+	 * @return array Attributes
+	 */
+	public function getAttributes( array $list ) {
+		static $boolAttribs = array( 'disabled', 'required', 'autofocus', 'multiple', 'readonly' );
+
+		$ret = array();
+
+		foreach( $list as $key ) {
+			if ( in_array( $key, $boolAttribs ) ) {
+				if ( !empty( $this->mParams[$key] ) ) {
+					$ret[$key] = '';
+				}
+			} elseif ( isset( $this->mParams[$key] ) ) {
+				$ret[$key] = $this->mParams[$key];
+			}
+		}
+
+		return $ret;
+	}
+
+	/**
 	 * flatten an array of options to a single array, for instance,
 	 * a set of "<options>" inside "<optgroups>".
 	 *

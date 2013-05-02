@@ -24,23 +24,16 @@ class HTMLTextAreaField extends HTMLFormField {
 			$attribs['class'] = $this->mClass;
 		}
 
-		if ( !empty( $this->mParams['disabled'] ) ) {
-			$attribs['disabled'] = 'disabled';
-		}
+		$allowedParams = array(
+			'placeholder',
+			'tabindex',
+			'disabled',
+			'readonly',
+			'required',
+			'autofocus'
+		);
 
-		if ( !empty( $this->mParams['readonly'] ) ) {
-			$attribs['readonly'] = 'readonly';
-		}
-
-		if ( isset( $this->mParams['placeholder'] ) ) {
-			$attribs['placeholder'] = $this->mParams['placeholder'];
-		}
-
-		foreach ( array( 'required', 'autofocus' ) as $param ) {
-			if ( isset( $this->mParams[$param] ) ) {
-				$attribs[$param] = '';
-			}
-		}
+		$attribs += $this->getAttributes( $allowedParams );
 
 		return Html::element( 'textarea', $attribs, $value );
 	}

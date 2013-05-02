@@ -17,10 +17,6 @@ class HTMLTextField extends HTMLFormField {
 			$attribs['class'] = $this->mClass;
 		}
 
-		if ( !empty( $this->mParams['disabled'] ) ) {
-			$attribs['disabled'] = 'disabled';
-		}
-
 		# @todo Enforce pattern, step, required, readonly on the server side as
 		# well
 		$allowedParams = array(
@@ -31,19 +27,16 @@ class HTMLTextField extends HTMLFormField {
 			'step',
 			'placeholder',
 			'list',
-			'maxlength'
+			'maxlength',
+			'tabindex',
+			'disabled',
+			'required',
+			'autofocus',
+			'multiple',
+			'readonly'
 		);
-		foreach ( $allowedParams as $param ) {
-			if ( isset( $this->mParams[$param] ) ) {
-				$attribs[$param] = $this->mParams[$param];
-			}
-		}
 
-		foreach ( array( 'required', 'autofocus', 'multiple', 'readonly' ) as $param ) {
-			if ( isset( $this->mParams[$param] ) ) {
-				$attribs[$param] = '';
-			}
-		}
+		$attribs += $this->getAttributes( $allowedParams );
 
 		# Implement tiny differences between some field variants
 		# here, rather than creating a new class for each one which

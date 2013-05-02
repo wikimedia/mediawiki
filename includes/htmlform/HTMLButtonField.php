@@ -19,11 +19,7 @@ class HTMLButtonField extends HTMLFormField {
 		$attr = array(
 			'class' => 'mw-htmlform-submit ' . $this->mClass,
 			'id' => $this->mID,
-		);
-
-		if ( !empty( $this->mParams['disabled'] ) ) {
-			$attr['disabled'] = 'disabled';
-		}
+		) + $this->getAttributes( array( 'disabled', 'tabindex' ) );
 
 		return Html::input( $this->mName, $value, $this->buttonType, $attr );
 	}
