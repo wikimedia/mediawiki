@@ -2015,7 +2015,7 @@ class HTMLSelectField extends HTMLFormField {
 			return $p;
 		}
 
-		$validOptions = HTMLFormField::flattenOptions( $this->mParams['options'] );
+		$validOptions = $this->flattenOptions( $this->mParams['options'] );
 
 		if ( in_array( $value, $validOptions ) ) {
 			return true;
@@ -2081,7 +2081,7 @@ class HTMLSelectOrOtherField extends HTMLTextField {
 		if ( $value !== false ) {
 			$valInSelect = in_array(
 				$value,
-				HTMLFormField::flattenOptions( $this->mParams['options'] )
+				$this->flattenOptions( $this->mParams['options'] )
 			);
 		}
 
@@ -2158,7 +2158,7 @@ class HTMLMultiSelectField extends HTMLFormField {
 
 		# If all options are valid, array_intersect of the valid options
 		# and the provided options will return the provided options.
-		$validOptions = HTMLFormField::flattenOptions( $this->mParams['options'] );
+		$validOptions = $this->flattenOptions( $this->mParams['options'] );
 
 		$validValues = array_intersect( $value, $validOptions );
 		if ( count( $validValues ) == count( $value ) ) {
@@ -2426,7 +2426,7 @@ class HTMLRadioField extends HTMLFormField {
 			return false;
 		}
 
-		$validOptions = HTMLFormField::flattenOptions( $this->mParams['options'] );
+		$validOptions = $this->flattenOptions( $this->mParams['options'] );
 
 		if ( in_array( $value, $validOptions ) ) {
 			return true;
