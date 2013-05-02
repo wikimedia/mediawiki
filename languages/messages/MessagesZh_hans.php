@@ -809,7 +809,7 @@ $2',
 'createacct-benefit-heading' => '{{SITENAME}} 是由像你这样的人建立的。',
 'createacct-benefit-body1' => '编辑数',
 'createacct-benefit-body2' => '条目数',
-'createacct-benefit-body3' => '位本月贡献者',
+'createacct-benefit-body3' => '位最近贡献者',
 'badretype' => '您所输入的密码并不相同。',
 'userexists' => '用户名已存在。请使用其他名称。',
 'loginerror' => '登录错误',
@@ -888,6 +888,7 @@ $2',
 'resetpass-submit-cancel' => '取消',
 'resetpass-wrong-oldpass' => '临时密码或当前密码无效。您可能已经更改了您的密码，或者请求了新的临时密码。',
 'resetpass-temp-password' => '临时密码：',
+'resetpass-abort-generic' => '密码更改已被一个扩展插件中止。',
 
 # Special:PasswordReset
 'passwordreset' => '重置密码',
@@ -1507,6 +1508,7 @@ $1",
 'userrights-notallowed' => '你的账户没有权限添加或删除用户权限。',
 'userrights-changeable-col' => '你可以更改的用户组',
 'userrights-unchangeable-col' => '你不能更改的用户组',
+'userrights-conflict' => '用户权限冲突 ！请重新应用您的更改。',
 
 # Groups
 'group' => '用户组：',
@@ -3825,6 +3827,17 @@ MediaWiki发表时预期有用，但对此'''无任何保证'''，亦无隐含�
 'version-entrypoints-header-url' => 'URL',
 'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath 条目路径]',
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath 脚本路径]',
+
+'redirect' => '重定向',
+'redirect-legend' => '重定向至一个文件或页面',
+'redirect-summary' => '本特殊页面会重定向到一个文件（给予文件名），一个页面（给予修订版本ID），或一个用户页面（给予用户数字ID）。',
+'redirect-submit' => '提交',
+'redirect-lookup' => '基于：',
+'redirect-value' => '值：',
+'redirect-user' => '用户ID',
+'redirect-revision' => '页面修订',
+'redirect-file' => '文件名',
+'redirect-not-exists' => '没找到相应值',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => '搜索重复文件',

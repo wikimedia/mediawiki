@@ -570,6 +570,7 @@ Nó desmentegarte de personałixare łe [[Special:Preferences|prefarense de {{SI
 'yourname' => 'Nome utente:',
 'userlogin-yourname' => 'Nome utente',
 'userlogin-yourname-ph' => 'Inserissi el to nome utente',
+'createacct-helpusername-url' => '{{ns:Project}}:Nome utente',
 'createacct-helpusername-link' => '[[{{MediaWiki:createacct-helpusername-url}}|(jùtame a sièliere)]]',
 'yourpassword' => 'Password:',
 'userlogin-yourpassword' => 'Password',
@@ -704,6 +705,7 @@ Spèta un tocheto prima de proàr da novo.',
 'resetpass-wrong-oldpass' => 'Password corente o tenporanea mia valida.
 Forse te ghè zà canbià la to password o te ghè domandà na password tenporanea nova.',
 'resetpass-temp-password' => 'Password tenporanea:',
+'resetpass-abort-generic' => "La modifica de la password la xe sta anulà da un'estension.",
 
 # Special:PasswordReset
 'passwordreset' => 'Rinposta ła password',
@@ -736,7 +738,7 @@ Sarìa mejo acedare e deçidare na nova password sùito. Se no te si stà ti a f
 Password tenporanea: $2',
 'passwordreset-emailsent' => 'Xe stà invià na mail de reset password.',
 'passwordreset-emailsent-capture' => 'Xe stà invià na mail de reset password: el contegù xe riportà cuà de seguito.',
-'passwordreset-emailerror-capture' => "Xe stà generà na mail de reset password, riportà cuà de seguito. L'invio al utente no xe riusido: $1",
+'passwordreset-emailerror-capture' => "Xe stà generà na mail de reset password, riportà cuà de seguito. L'invio a {{GENDER:$2|l'utente}} no xe riusido: $1",
 
 # Special:ChangeEmail
 'changeemail' => 'Canbia indiriso de posta ełetronega',
@@ -1365,6 +1367,7 @@ Co qualcheduni te scrivarà, nol vedarà mia el to indirizo.',
 'userrights-notallowed' => 'No te ghe i parmesi necesari par xontarghe o cavarghe diriti ai utenti.',
 'userrights-changeable-col' => 'Grupi che te pol canbiar',
 'userrights-unchangeable-col' => 'Grupi che no te pol canbiar',
+'userrights-conflict' => 'Conflito de diriti utente! Aplica de novo le to modifiche.',
 
 # Groups
 'group' => 'Grupo:',
@@ -3646,8 +3649,11 @@ Insieme co sto programa te dovaressi 'ver ricevùo na copia de la Licensa Public
 'version-entrypoints-header-entrypoint' => 'Punti de aceso',
 'version-entrypoints-header-url' => 'URL',
 
+'redirect' => 'Rimando par file, utente, o ID de revision.',
 'redirect-legend' => 'Rimandar a un file o na pagina',
+'redirect-summary' => "Sta pagina speciale la rimanda a un file (dato el nome del file), a na pagina (dato l'ID de la revision), o a na pagina utente (dato l'ID de l'utente).",
 'redirect-submit' => 'Và',
+'redirect-lookup' => 'Ciave de riserca:',
 'redirect-value' => 'Valor:',
 'redirect-user' => 'ID utente',
 'redirect-revision' => 'Revision de la pagina',

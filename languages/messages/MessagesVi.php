@@ -1524,6 +1524,7 @@ Nếu bạn đồng ý cung cấp, nó sẽ dùng để ghi nhận công lao c�
 'userrights-notallowed' => 'Tài khoản của bạn không có quyền gán hoặc bãi miễn quyền cho thành viên.',
 'userrights-changeable-col' => 'Những nhóm bạn có thể thay đổi',
 'userrights-unchangeable-col' => 'Những nhóm bạn không thể thay đổi',
+'userrights-conflict' => 'Mâu thuẫn thay đổi sửa nhóm thành viên! Xin vui lòng áp dụng các thay đổi của bạn một lần nữa.',
 
 # Groups
 'group' => 'Nhóm:',
@@ -4089,6 +4090,7 @@ hoặc [//www.gnu.org/licenses/old-licenses/gpl-2.0.html đọc nó trực tuy�
 'htmlform-selectorother-other' => 'Khác',
 'htmlform-no' => 'Không',
 'htmlform-yes' => 'Có',
+'htmlform-chosen-placeholder' => 'Chọn một tùy chọn',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 với sự hỗ trợ tìm kiếm toàn văn',

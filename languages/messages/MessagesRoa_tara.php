@@ -1303,6 +1303,7 @@ Ce tu 'u mitte, a fatje ca è fatte t'avène ricanusciute.",
 'userrights-changeable-col' => 'Gruppe ca tu puè cangià',
 'userrights-unchangeable-col' => 'Gruppe ca tu non ge puè cangià',
 'userrights-irreversible-marker' => '$1*',
+'userrights-conflict' => 'Conflitte sus a le deritte utende! Pe piacere appliche le cangiaminde tune arrete.',
 
 # Groups
 'group' => 'Gruppe:',
@@ -3899,7 +3900,14 @@ Avisse avè ricevute [{{SERVER}}{{SCRIPTPATH}}/COPYING 'na copie d'a GNU (Licenz
 
 'redirect' => "Redirette da 'u file, utende o ID d'a revisione",
 'redirect-legend' => "Redirette a 'nu file o 'na pàgene",
+'redirect-summary' => "Sta pàgena speciale redirezione a 'nu file (date 'u nome d'u file), 'na pàgene (fate 'n'ID de revisione), o 'na pàgene utende (date 'n'ID numeriche de l'utende).",
 'redirect-submit' => 'Véje',
+'redirect-lookup' => 'Mappature:',
+'redirect-value' => 'Valore:',
+'redirect-user' => "ID de l'utende",
+'redirect-revision' => "Revisione d'a pàgene",
+'redirect-file' => "Nome d'u file",
+'redirect-not-exists' => 'Valore non acchiate',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Cirche pe le file duplichete',

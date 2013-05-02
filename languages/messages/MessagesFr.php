@@ -430,7 +430,7 @@ $messages = array(
 'tog-showhiddencats' => 'Afficher les catégories cachées',
 'tog-noconvertlink' => 'Désactiver la conversion des titres',
 'tog-norollbackdiff' => "Ne pas afficher le diff lors d'une révocation",
-'tog-useeditwarning' => 'M’avertir quand je quitte une page de modification sans publier les changements',
+'tog-useeditwarning' => "M'avertir quand je quitte une page de modification sans publier les changements",
 
 'underline-always' => 'Toujours',
 'underline-never' => 'Jamais',
@@ -546,7 +546,7 @@ $messages = array(
 'vector-simplesearch-preference' => "Activer la barre de recherche simplifiée (seulement pour l'habillage Vector)",
 'vector-view-create' => 'Créer',
 'vector-view-edit' => 'Modifier',
-'vector-view-history' => 'Afficher l’historique',
+'vector-view-history' => "Afficher l'historique",
 'vector-view-view' => 'Lire',
 'vector-view-viewsource' => 'Voir la source',
 'actions' => 'Actions',
@@ -778,9 +778,9 @@ $2",
 'ns-specialprotected' => "Les pages dans l'espace de noms « {{ns:special}} » ne peuvent pas être modifiées.",
 'titleprotected' => "Ce titre a été protégé à la création par [[User:$1|$1]].
 Le motif avancé est « ''$2'' ».",
-'filereadonlyerror' => 'Impossible de modifier le fichier « $1 » parce que le répertoire de fichiers « $2 » est en lecture seule.
+'filereadonlyerror' => "Impossible de modifier le fichier « $1 » parce que le répertoire de fichiers « $2 » est en lecture seule.
 
-L’administrateur qui l’a verrouillé a fourni ce motif : « $3 ».',
+L'administrateur qui l'a verrouillé a fourni ce motif : « $3 ».",
 'invalidtitle-knownnamespace' => "Titre invalide avec l'espace de noms « $2 » et l'intitulé « $3 »",
 'invalidtitle-unknownnamespace' => "Titre invalide avec le numéro d'espace de noms $1 et l'intitulé « $2 » inconnus",
 'exception-nologin' => 'Non connecté',
@@ -840,7 +840,7 @@ N'oubliez pas de modifier [[Special:Preferences|vos préférences pour {{SITENAM
 'createacct-emailrequired' => 'Adresse de courriel',
 'createacct-emailoptional' => 'Adresse de courriel (facultative)',
 'createacct-email-ph' => 'Entrez votre adresse de courriel',
-'createaccountmail' => 'Utiliser un mot de passe aléatoire temporaire et l’envoyer à l’adresse de courriel spécifiée ci-dessous',
+'createaccountmail' => "Utiliser un mot de passe aléatoire temporaire et l'envoyer à l'adresse de courriel spécifiée ci-dessous",
 'createacct-realname' => 'Nom réel (facultatif)',
 'createaccountreason' => 'Motif :',
 'createacct-reason' => 'Motif',
@@ -1144,7 +1144,7 @@ Vous nous promettez aussi que vous avez écrit ceci vous-même, ou que vous l'av
 'longpageerror' => "'''Erreur: Le texte que vous avez soumis fait {{PLURAL:$1|un Kio|$1 Kio}}, ce qui dépasse la limite fixée à {{PLURAL:$2|un Kio|$2 Kio}}.'''
 Il ne peut pas être sauvegardé.",
 'readonlywarning' => "'''AVERTISSEMENT : la base de données a été verrouillée pour des opérations de maintenance. Vous ne pouvez donc pas publier vos modifications pour l'instant.'''
-Vous pouvez copier et coller votre texte dans un fichier texte et l’enregistrer pour plus tard.
+Vous pouvez copier et coller votre texte dans un fichier texte et l'enregistrer pour plus tard.
 
 L'administrateur ayant verrouillé la base de données a donné l'explication suivante: $1",
 'protectedpagewarning' => "'''AVERTISSEMENT : cette page est protégée. Seuls les utilisateurs ayant le statut d'administrateur peuvent la modifier.'''<br />
@@ -1258,9 +1258,9 @@ Essayez de [[Special:Search|rechercher sur le wiki]] pour trouver des pages en r
 
 # Revision deletion
 'rev-deleted-comment' => '(résumé de modification retiré)',
-'rev-deleted-user' => '(nom d’utilisateur retiré)',
+'rev-deleted-user' => "(nom d'utilisateur retiré)",
 'rev-deleted-event' => '(entrée retirée)',
-'rev-deleted-user-contribs' => '[nom d’utilisateur ou adresse IP retiré - modification masquée sur les contributions]',
+'rev-deleted-user-contribs' => "[nom d'utilisateur ou adresse IP retiré - modification masquée sur les contributions]",
 'rev-deleted-text-permission' => "Cette version de la page a été '''effacée'''.
 Des détails sont disponibles dans le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} journal des effacements].",
 'rev-deleted-text-unhide' => "Cette version de la page a été '''effacée'''.
@@ -1407,7 +1407,7 @@ Vous pouvez trouver des détails dans le [{{fullurl:{{#Special:Log}}/delete|page
 'searchresulttext' => "Pour plus d'informations sur la recherche dans {{SITENAME}}, voir [[{{MediaWiki:Helppage}}|{{int:help}}]].",
 'searchsubtitle' => "Vous avez recherché « '''[[:$1]]''' » ([[Special:Prefixindex/$1|toutes les pages commençant par « $1 »]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|toutes les pages qui ont un lien vers « $1 »]])",
 'searchsubtitleinvalid' => "Vous avez recherché « '''$1''' »",
-'toomanymatches' => 'Un trop grand nombre d’occurrences a été renvoyé, veuillez soumettre une requête différente.',
+'toomanymatches' => "Un trop grand nombre d'occurrences a été renvoyé, veuillez soumettre une requête différente.",
 'titlematches' => 'Correspondances dans les titres des pages',
 'notitlematches' => 'Aucun titre de page ne correspond à la recherche.',
 'textmatches' => 'Correspondances dans le texte des pages',
@@ -1463,7 +1463,7 @@ Essayez en utilisant le préfixe ''all:'' pour rechercher dans tout le contenu (
 'powersearch-togglenone' => 'Aucune',
 'search-external' => 'Recherche externe',
 'searchdisabled' => 'La recherche sur {{SITENAME}} est désactivée. En attendant la réactivation, vous pouvez effectuer une recherche via Google. Attention, leur indexation du contenu de {{SITENAME}} peut ne pas être à jour.',
-'search-error' => 'Une erreur s’est produite en recherchant : $1',
+'search-error' => "Une erreur s'est produite en recherchant : $1",
 
 # Preferences page
 'preferences' => 'Préférences',
@@ -1606,6 +1606,7 @@ Elle ne doit pas dépasser $1 caractère{{PLURAL:$1||s}}.',
 'userrights-notallowed' => "Votre compte n'a pas la permission de modifier des droits d'utilisateur.",
 'userrights-changeable-col' => 'Les groupes que vous pouvez modifier',
 'userrights-unchangeable-col' => 'Les groupes que vous ne pouvez pas modifier',
+'userrights-conflict' => 'Conflit de droits utilisateur ! Veuillez appliquer de nouveau vos modifications.',
 
 # Groups
 'group' => 'Groupe :',
@@ -2751,7 +2752,7 @@ Donnez ci-dessous un motif précis (par exemple en citant les pages qui ont ét�
 'ipbotherreason' => 'Motif différent ou supplémentaire :',
 'ipbhidename' => "Masquer le nom d'utilisateur des modifications et des listes",
 'ipbwatchuser' => 'Suivre les pages utilisateur et de discussion de cet utilisateur',
-'ipb-disableusertalk' => 'Empêcher l’utilisateur de modifier sa page de discussion pendant le blocage',
+'ipb-disableusertalk' => "Empêcher l'utilisateur de modifier sa page de discussion pendant le blocage",
 'ipb-change-block' => 'Bloquer à nouveau cet utilisateur avec ces paramètres',
 'ipb-confirm' => 'Confirmer le blocage',
 'badipaddress' => 'Adresse IP incorrecte',
@@ -3053,12 +3054,12 @@ Un dossier temporaire est manquant.",
 'import-error-edit' => "La page « $1 » n'a pas été importée parce que vous n'êtes pas autorisés à la modifier.",
 'import-error-create' => "La page « $1 » n'a pas été importée parce que vous n'êtes pas autorisés à la créer.",
 'import-error-interwiki' => "La page « $1 » n'est pas importée parce que son nom est réservé pour un lien externe (interwiki).",
-'import-error-special' => 'La page « $1 » n’est pas importée parce qu’elle appartient à un espace de noms spécial qui n’en autorise aucune.',
+'import-error-special' => "La page « $1 » n'est pas importée parce qu'elle appartient à un espace de noms spécial qui n'en autorise aucune.",
 'import-error-invalid' => "Page « $1 » n'est pas importée parce que son nom n'est pas valide.",
 'import-error-unserialize' => 'La révision $2 de la page « $1 » ne peut pas être désérialisée. La révision est indiquée comme utilisant le modèle de contenu $3 sérialisé en $4.',
 'import-options-wrong' => '{{PLURAL:$2|Mauvaise option|Mauvaises options}} : <nowiki>$1</nowiki>',
 'import-rootpage-invalid' => 'La page racine fournie est un titre non valide.',
-'import-rootpage-nosubpage' => 'L’espace de noms « $1 » de la page racine n’autorise pas les sous-pages.',
+'import-rootpage-nosubpage' => "L'espace de noms « $1 » de la page racine n'autorise pas les sous-pages.",
 
 # Import log
 'importlogpage' => 'Journal des importations',
@@ -3143,10 +3144,10 @@ Vous pouvez toutefois en visualiser la source.',
 'tooltip-watchlistedit-normal-submit' => 'Enlever les titres',
 'tooltip-watchlistedit-raw-submit' => 'Mise à jour de la liste de suivi',
 'tooltip-recreate' => 'Recréer la page même si celle-ci a été effacée',
-'tooltip-upload' => 'Démarrer l’import',
+'tooltip-upload' => "Démarrer l'import",
 'tooltip-rollback' => '« Révoquer » annule en un clic la ou les modification(s) de cette page par son dernier contributeur.',
-'tooltip-undo' => '« Défaire » révoque cette modification et ouvre la fenêtre de modification en mode prévisualisation.
-Permet de rétablir la version précédente et d’ajouter un motif dans la boîte de résumé.',
+'tooltip-undo' => "« Défaire » révoque cette modification et ouvre la fenêtre de modification en mode prévisualisation.
+Permet de rétablir la version précédente et d'ajouter un motif dans la boîte de résumé.",
 'tooltip-preferences-save' => 'Sauvegarder les préférences',
 'tooltip-summary' => 'Entrez un bref résumé',
 
@@ -3307,7 +3308,7 @@ Si vous l'exécutez, votre système peut être compromis.",
 'file-info-png-repeat' => 'joué $1 {{PLURAL:$1|fois}}',
 'file-info-png-frames' => '$1 {{PLURAL:$1|image|images}}',
 'file-no-thumb-animation' => "'''Remarque : En raison de limitations techniques, les vignettes de ce fichier ne seront pas animées.'''",
-'file-no-thumb-animation-gif' => "'''Remarque : En raison de limitations techniques, les vignettes d’images GIF en haute résolution telles que celle-ci ne seront pas animées.'''",
+'file-no-thumb-animation-gif' => "'''Remarque : En raison de limitations techniques, les vignettes d'images GIF en haute résolution telles que celle-ci ne seront pas animées.'''",
 
 # Special:NewFiles
 'newimages' => 'Galerie des nouveaux fichiers',
@@ -4047,11 +4048,13 @@ Vous devriez avoir reçu [{{SERVER}}{{SCRIPTPATH}}/COPYING une copie de la Licen
 'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Chemin d’article]',
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Chemin de script]',
 
+'redirect' => 'Redirigé par fichier, utilisateur, ou ID de révision',
 'redirect-legend' => 'Rediriger vers une page ou un fichier',
 'redirect-summary' => "Cette page spéciale redirige vers un fichier (nom donné au fichier), une page (ID attribuée à la révision) ou une page d'utilisateur (identifiant numérique attribué à l'utilisateur).",
 'redirect-submit' => 'Valider',
+'redirect-lookup' => 'Recherche :',
 'redirect-value' => 'Valeur :',
-'redirect-user' => 'ID de l’utilisateur',
+'redirect-user' => "ID de l'utilisateur",
 'redirect-revision' => 'Révision de la page',
 'redirect-file' => 'Nom du fichier',
 'redirect-not-exists' => 'Valeur non trouvée',
@@ -4157,7 +4160,7 @@ Vous devriez avoir reçu [{{SERVER}}{{SCRIPTPATH}}/COPYING une copie de la Licen
 'logentry-delete-delete' => '$1 {{GENDER:$2|a supprimé}} la page $3',
 'logentry-delete-restore' => '$1 {{GENDER:$2|a restauré}} la page $3',
 'logentry-delete-event' => "$1 {{GENDER:$2|a modifié}} la visibilité {{PLURAL:$5|d'un événement du journal|de $5 événements du journal}} sur $3: $4",
-'logentry-delete-revision' => '$1 {{GENDER:$2|a modifié}} la visibilité {{PLURAL:$5|d’une révision|de $5 révisions}} sur la page $3: $4',
+'logentry-delete-revision' => "$1 {{GENDER:$2|a modifié}} la visibilité {{PLURAL:$5|d'une révision|de $5 révisions}} sur la page $3: $4",
 'logentry-delete-event-legacy' => '$1 {{GENDER:$2|a modifié}} la visibilité des événements du journal sur $3',
 'logentry-delete-revision-legacy' => '$1 {{GENDER:$2|a modifié}} la visibilité des révisions sur la page $3',
 'logentry-suppress-delete' => '$1 {{GENDER:$2|a supprimé}} la page $3',
@@ -4167,10 +4170,10 @@ Vous devriez avoir reçu [{{SERVER}}{{SCRIPTPATH}}/COPYING une copie de la Licen
 'logentry-suppress-revision-legacy' => '$1 {{GENDER:$2|a secrètement modifié}} la visibilité des révisions sur la page $3',
 'revdelete-content-hid' => 'contenu masqué',
 'revdelete-summary-hid' => 'résumé de modification masqué',
-'revdelete-uname-hid' => 'nom d’utilisateur masqué',
+'revdelete-uname-hid' => "nom d'utilisateur masqué",
 'revdelete-content-unhid' => 'contenu affiché',
 'revdelete-summary-unhid' => 'résumé de modification affiché',
-'revdelete-uname-unhid' => 'nom d’utilisateur affiché',
+'revdelete-uname-unhid' => "nom d'utilisateur affiché",
 'revdelete-restricted' => 'restrictions appliquées aux administrateurs',
 'revdelete-unrestricted' => 'restrictions retirées pour les administrateurs',
 'logentry-move-move' => '$1 {{GENDER:$2|a déplacé}} la page $3 vers $4',
@@ -4197,7 +4200,7 @@ Sinon, vous pouvez utiliser le formulaire simplifié ci-dessous. Votre commentai
 'feedback-cancel' => 'Annuler',
 'feedback-submit' => 'Envoyer vos commentaires',
 'feedback-adding' => 'Ajout de vos commentaires à la page...',
-'feedback-error1' => 'Erreur : Résultat de l’IPA non reconnu',
+'feedback-error1' => "Erreur : Résultat de l'IPA non reconnu",
 'feedback-error2' => 'Erreur : la modification a échoué',
 'feedback-error3' => "Erreur : aucune réponse de l'API",
 'feedback-thanks' => 'Merci ! Votre commentaire a été publié sur la page "[$2 $1]".',
@@ -4241,7 +4244,7 @@ Sinon, vous pouvez utiliser le formulaire simplifié ci-dessous. Votre commentai
 'api-error-ok-but-empty' => "Erreur interne : Le serveur n'a pas répondu.",
 'api-error-overwrite' => "Écraser un fichier existant n'est pas autorisé.",
 'api-error-stashfailed' => "Erreur interne : le serveur n'a pas pu enregistrer le fichier temporaire.",
-'api-error-publishfailed' => 'Erreur interne: Le serveur n’a pas pu publier le fichier temporaire.',
+'api-error-publishfailed' => "Erreur interne: Le serveur n'a pas pu publier le fichier temporaire.",
 'api-error-timeout' => "Le serveur n'a pas répondu dans le délai imparti.",
 'api-error-unclassified' => "Une erreur inconnue s'est produite",
 'api-error-unknown-code' => 'Erreur inconnue : « $1 »',
@@ -4263,6 +4266,6 @@ Sinon, vous pouvez utiliser le formulaire simplifié ci-dessous. Votre commentai
 'duration-millennia' => '$1 millénaire{{PLURAL:$1||s}}',
 
 # Image rotation
-'rotate-comment' => 'Image pivotée de $1 {{PLURAL:$1|degré|degrés}} dans le sens des aiguilles d’une montre',
+'rotate-comment' => "Image pivotée de $1 {{PLURAL:$1|degré|degrés}} dans le sens des aiguilles d'une montre",
 
 );

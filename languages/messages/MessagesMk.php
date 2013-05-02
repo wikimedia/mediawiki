@@ -820,7 +820,7 @@ $2',
 'createacct-benefit-heading' => '{{SITENAME}} е дело на луѓе како вас.',
 'createacct-benefit-body1' => 'уредувања',
 'createacct-benefit-body2' => 'страници',
-'createacct-benefit-body3' => 'учесници за овој месец',
+'createacct-benefit-body3' => 'скорешни учесници',
 'badretype' => 'Внесените лозинки не се совпаѓаат.',
 'userexists' => 'Корисничкото име што го внесовте е зафатено.
 Изберете друго име.',
@@ -918,6 +918,7 @@ $2',
 'resetpass-wrong-oldpass' => 'Погрешна привремена или тековна лозинка.
 Можеби веќе ја имате успешно променето вашата лизинка или сте побарале нова привремена лозинка.',
 'resetpass-temp-password' => 'Привремена лозинка:',
+'resetpass-abort-generic' => 'Смената на лозинката е откажана од додаток.',
 
 # Special:PasswordReset
 'passwordreset' => 'Менување на лозинка',
@@ -4153,6 +4154,17 @@ $5
 'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath?uselang=mk Статија]',
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath?uselang=mk Скрипта]',
 
+'redirect' => 'Пренасочување по податотека, корисник или назнака на ревизија',
+'redirect-legend' => 'Пренасочување кон податотека или страница',
+'redirect-summary' => 'Оваа специјална страница пренасочува кон податотека (се задава името), страница (се задава назнаката на ревизијата) или корисничка странца (се задава бројчената назнака на корисникот).',
+'redirect-submit' => 'Оди',
+'redirect-lookup' => 'Пребарај:',
+'redirect-value' => 'Вредност:',
+'redirect-user' => 'Корисничка назнака',
+'redirect-revision' => 'Ревизија на страницата',
+'redirect-file' => 'Име на податотека',
+'redirect-not-exists' => 'Вредноста не е најдена',
+
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Барање на дуплирани податотеки',
 'fileduplicatesearch-summary' => 'Пребарување на дуплирани податотеки по тарабни вредности.',
@@ -4243,6 +4255,7 @@ $5
 'htmlform-selectorother-other' => 'Друго',
 'htmlform-no' => 'Не',
 'htmlform-yes' => 'Да',
+'htmlform-chosen-placeholder' => 'Одберете можност',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 со поддршка за пребарување по цели текстови',

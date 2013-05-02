@@ -1600,6 +1600,7 @@ $1",
 'userrights-notallowed' => 'לחשבון המשתמש שלכם אין הרשאה להוסיף או להסיר הרשאות של משתמשים.',
 'userrights-changeable-col' => 'קבוצות שבאפשרותכם לשנות',
 'userrights-unchangeable-col' => 'קבוצות שאין באפשרותכם לשנות',
+'userrights-conflict' => 'התנגשות הרשאות משתמש! אנא בצעו את השינויים שלכם שוב.',
 
 # Groups
 'group' => 'קבוצה:',

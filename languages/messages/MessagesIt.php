@@ -751,7 +751,7 @@ Non dimenticare di personalizzare le [[Special:Preferences|preferenze di {{SITEN
 'createacct-benefit-heading' => '{{SITENAME}} è fatta da persone come te.',
 'createacct-benefit-body1' => 'modifiche',
 'createacct-benefit-body2' => 'pagine',
-'createacct-benefit-body3' => 'contributori questo mese',
+'createacct-benefit-body3' => 'contributori recenti',
 'badretype' => 'Le password inserite non coincidono tra loro.',
 'userexists' => 'Il nome utente inserito è già utilizzato.
 Scegliere un nome utente diverso.',
@@ -837,6 +837,7 @@ Riprovare più tardi.',
 'resetpass-wrong-oldpass' => 'Password temporanea o attuale non valida.
 La password potrebbe essere stata già cambiata, oppure potrebbe essere stata richiesta una nuova password temporanea.',
 'resetpass-temp-password' => 'Password temporanea:',
+'resetpass-abort-generic' => "La modifica della password è stata interrotta da un'estensione.",
 
 # Special:PasswordReset
 'passwordreset' => 'Reimposta password',
@@ -1495,6 +1496,7 @@ Il tuo indirizzo non viene rivelato quando gli altri utenti ti contattano.',
 'userrights-notallowed' => "Il tuo account non dispone dell'autorizzazione per aggiungere o rimuovere i permessi utente.",
 'userrights-changeable-col' => 'Gruppi modificabili',
 'userrights-unchangeable-col' => 'Gruppi non modificabili',
+'userrights-conflict' => 'Conflitto di diritti utente! Applica nuovamente le tue modifiche.',
 
 # Groups
 'group' => 'Gruppo:',
@@ -3821,6 +3823,17 @@ Questo programma deve essere distribuito assieme ad [{{SERVER}}{{SCRIPTPATH}}/CO
 'version-entrypoints-header-url' => 'URL',
 'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Percorso voci]',
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Percorso script]',
+
+'redirect' => 'Reindirizzamento da file, utente o ID versione',
+'redirect-legend' => 'Reindirizza a un file o una pagina',
+'redirect-summary' => 'Questa pagina speciale reindirizza a un file (specificando il nome del file), a una pagina (specificando un ID di versione) o a un utente (specificando un ID utente numerico).',
+'redirect-submit' => 'Vai',
+'redirect-lookup' => 'Ricerca:',
+'redirect-value' => 'Valore:',
+'redirect-user' => 'ID utente',
+'redirect-revision' => 'Versione pagina',
+'redirect-file' => 'Nome del file',
+'redirect-not-exists' => 'Valore non trovato',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Ricerca dei file duplicati',

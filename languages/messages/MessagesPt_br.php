@@ -38,6 +38,7 @@
  * @author Leonardo.stabile
  * @author LeonardoG
  * @author Lijealso
+ * @author Luckas
  * @author Luckas Blade
  * @author Malafaya
  * @author ManoDbo
@@ -736,9 +737,16 @@ Note que algumas páginas podem continuar sendo exibidas como se você ainda est
 'welcomecreation-msg' => 'A sua conta foi criada.
 Não se esqueça de personalizar as suas [[Special:Preferences|preferências no wiki {{SITENAME}}]].',
 'yourname' => 'Nome de usuário:',
+'userlogin-yourname' => 'Nome de usuário',
 'yourpassword' => 'Senha:',
+'userlogin-yourpassword' => 'Senha',
+'userlogin-yourpassword-ph' => 'Digite sua senha',
+'createacct-yourpassword-ph' => 'Digite uma senha',
 'yourpasswordagain' => 'Redigite sua senha',
+'createacct-yourpasswordagain' => 'Confirmar senha',
+'createacct-yourpasswordagain-ph' => 'Digite a senha novamente',
 'remembermypassword' => 'Lembrar meu login neste navegador (por no máximo $1 {{PLURAL:$1|dia|dias}})',
+'userlogin-remembermypassword' => 'Lembrar-me',
 'securelogin-stick-https' => 'Permanecer conectado ao HTTPS após a autenticação',
 'yourdomainname' => 'Seu domínio:',
 'password-change-forbidden' => 'Você não pode alterar senhas nessa wiki.',
@@ -759,6 +767,9 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências no 
 'userlogin-resetlink' => 'Esqueceu-se do seu nome de usuário ou da senha?',
 'createaccountmail' => 'Usar uma senha aleatória e temporária que será enviada ao endereço de e-mail especificado a seguir',
 'createaccountreason' => 'Razão:',
+'createacct-benefit-body1' => 'edições',
+'createacct-benefit-body2' => 'páginas',
+'createacct-benefit-body3' => 'contribuidores recentes',
 'badretype' => 'As senhas que você digitou não são iguais.',
 'userexists' => 'O nome de usuário fornecido já está em uso.
 Escolha um nome diferente.',
@@ -1152,7 +1163,7 @@ A justificativa apresentada por $3 foi ''$2''",
 'revision-info' => 'Edição feita às $1 por $2',
 'previousrevision' => '← Edição anterior',
 'nextrevision' => 'Versão posterior →',
-'currentrevisionlink' => 'ver versão atual',
+'currentrevisionlink' => 'Revisão atual',
 'cur' => 'atu',
 'next' => 'prox',
 'last' => 'ult',
@@ -3234,10 +3245,16 @@ Executá-lo poderá comprometer a segurança do seu sistema.",
 'minutes' => '{{PLURAL:$1|um minuto|$1 minutos}}',
 'hours' => '{{PLURAL:$1|uma hora|$1 horas}}',
 'days' => '{{PLURAL:$1|um dia|$1 dias}}',
+'weeks' => '{{PLURAL:$1|$1 semana|$1 semanas}}',
 'months' => '{{PLURAL:$1|$1 mês|$1 meses}}',
 'years' => '{{PLURAL:$1|$1 ano|$1 anos}}',
 'ago' => '$1 atrás',
 'just-now' => 'agora mesmo',
+
+# Human-readable timestamps
+'hours-ago' => '$1 {{PLURAL:$1|hora|horas}} atrás',
+'minutes-ago' => '$1 {{PLURAL:$1|minuto|minutos}} atrás',
+'seconds-ago' => '$1 {{PLURAL:$1|segundo|segundos}} atrás',
 
 # Bad image list
 'bad_image_list' => 'O formato é o seguinte:
@@ -3864,12 +3881,7 @@ Em conjunto com este programa deve ter recebido [{{SERVER}}{{SCRIPTPATH}}/COPYIN
 'version-entrypoints-header-entrypoint' => 'Ponto de entrada',
 'version-entrypoints-header-url' => 'URL',
 
-# Special:FilePath
-'filepath' => 'Diretório do arquivo',
-'filepath-page' => 'arquivo:',
-'filepath-submit' => 'Ir',
-'filepath-summary' => 'Esta página especial retorna o endereço completo de um arquivo.
-As imagens serão exibidas em sua resolução máxima, outros tipos de arquivos serão abertos diretamente pelos programas associados.',
+'redirect-file' => 'Nome do arquivo',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Procurar por arquivos duplicados',
@@ -3959,6 +3971,9 @@ As imagens serão exibidas em sua resolução máxima, outros tipos de arquivos 
 'htmlform-submit' => 'Enviar',
 'htmlform-reset' => 'Desfazer alterações',
 'htmlform-selectorother-other' => 'Outros',
+'htmlform-no' => 'Não',
+'htmlform-yes' => 'Sim',
+'htmlform-chosen-placeholder' => 'Selecione uma opção',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 com suporte de pesquisa de texto completo',

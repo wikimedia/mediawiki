@@ -1637,6 +1637,7 @@ Dies kann nicht mehr rückgängig gemacht werden.',
 'userrights-notallowed' => 'Du verfügst nicht über die erforderlichen Berechtigungen, um Benutzerrechte vergeben oder entziehen zu können.',
 'userrights-changeable-col' => 'Gruppenzugehörigkeit, die du ändern kannst',
 'userrights-unchangeable-col' => 'Gruppenzugehörigkeit, die du nicht ändern kannst',
+'userrights-conflict' => 'Benutzerrechtekonflikt! Bitte führe deine Änderungen erneut durch.',
 
 # Groups
 'group' => 'Gruppe:',

@@ -1021,6 +1021,7 @@ $2
 'node-count-exceeded-warning' => 'קנופנצאל אויפן בלאט צו הויך',
 'expansion-depth-exceeded-category' => "בלעטער וואו מ'האט אריבערגעשטיגן די פארברייטערונג טיף",
 'expansion-depth-exceeded-warning' => 'בלאט גייט אריבער דער פארברייטערונג טיף',
+'parser-unstrip-loop-warning' => 'פעטליע געטראפֿן',
 'converter-manual-rule-error' => 'געטראפן א גרײַז אין האנטלעכן שפראך־קאנווערטירן כלל',
 
 # "Undo" feature
@@ -1478,6 +1479,7 @@ $1",
 'right-block' => 'בלאקירן אַנדערע באַניצער פֿון רעדאַקטירן',
 'right-blockemail' => 'בלאקירן א באַניצער פֿון שיקן ע־פאסט',
 'right-hideuser' => 'בלאקירן באַניצער־נאָמען און פֿאַרבארגן אים',
+'right-ipblock-exempt' => 'ארומגיין IP בלאקן, אויטאבלאקן און גרייך־בלאקן',
 'right-unblockself' => 'זיך אליין אויפֿשפאַרן',
 'right-protect' => 'ענדערן שוץ ניוואען און רעדאַגירן געשיצטע בלעטער',
 'right-editprotected' => 'רעדאַגירן געשיצטע בלעטער (אָן קאַסקאַדן שוץ)',
@@ -1729,6 +1731,7 @@ $1",
 # File backend
 'backend-fail-stream' => 'קען נישט מאכן שטראמען טעקע $1.',
 'backend-fail-notexists' => 'נישט פֿאראן די טעקע $1.',
+'backend-fail-notsame' => 'א נישט־אידענטישע טעקע עקזיסטירט שוין ביי "$1".',
 'backend-fail-invalidpath' => '$1 איז נישט קיין גילטיקער שפייכלערן שטעג.',
 'backend-fail-delete' => 'קען נישט אויסמעקן טעקע $1.',
 'backend-fail-describe' => 'קען נישט ענדערן מעטאדאטן פאר דער טעקע "$1".',
@@ -1745,7 +1748,10 @@ $1",
 
 # Lock manager
 'lockmanager-notlocked' => 'מ\'קען נישט אויפֿשליסן "$1"; ער איז נישט פֿארשלאסן.',
+'lockmanager-fail-closelock' => 'נישט מעגלעך פארשפארן שלאס טעקע פאר "$1".',
 'lockmanager-fail-deletelock' => 'נישט מעגלעך אויסמעקן שלאס טעקע פאר "$1".',
+'lockmanager-fail-openlock' => 'נישט מעגלעך עפֿענען שלאס טעקע פאר "$1".',
+'lockmanager-fail-releaselock' => 'נישט מעגלעך באפֿרייען שלאס טעקע פאר "$1".',
 
 # ZipDirectoryReader
 'zip-file-open-error' => 'געטראפן א גרײַז ביים עפענען די טעקע פאר ZIP־קאנטראלירונג.',
@@ -3608,11 +3614,6 @@ $5
 'version-software-version' => 'ווערסיע',
 'version-entrypoints-header-entrypoint' => 'אריינגאנג פונקט',
 'version-entrypoints-header-url' => 'URL',
-
-# Special:FilePath
-'filepath' => 'טעקע שטעג',
-'filepath-page' => 'טעקע:',
-'filepath-submit' => 'גיין',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'זוכן דופליקאַטע טעקעס',

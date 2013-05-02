@@ -724,7 +724,7 @@ $2',
 'createacct-benefit-heading' => '{{SITENAME}} створаная людзьмі, такімі як вы.',
 'createacct-benefit-body1' => 'правак',
 'createacct-benefit-body2' => 'старонак',
-'createacct-benefit-body3' => 'удзельнікаў у гэтым месяцы',
+'createacct-benefit-body3' => 'удзельнікаў за апошні час',
 'badretype' => 'Уведзеныя Вамі паролі не супадаюць.',
 'userexists' => 'Уведзенае Вамі імя ўдзельніка ўжо выкарыстоўваецца кімсьці іншым. 
 Калі ласка, выберыце іншае імя.',
@@ -815,6 +815,7 @@ $2',
 'resetpass-wrong-oldpass' => 'Няслушны часовы альбо цяперашні пароль.
 Магчыма Вы ўжо пасьпяхова зьмянілі Ваш пароль альбо запыталі новы часовы пароль.',
 'resetpass-temp-password' => 'Часовы пароль:',
+'resetpass-abort-generic' => 'Зьмяненьне паролю было скасаванае пашырэньнем.',
 
 # Special:PasswordReset
 'passwordreset' => 'Ачыстка паролю',
@@ -3830,6 +3831,17 @@ MediaWiki распаўсюджваецца з надзеяй, што будзе 
 'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Шлях да артыкула]',
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Пуць да скрыпту]',
 
+'redirect' => 'Перанакіраваньне да файла, удзельніка або вэрсіі старонкі',
+'redirect-legend' => 'Перанакіраваньне да файла або старонкі',
+'redirect-summary' => 'Гэтая спэцыяльная старонка перанакіруе да файла (паводле імя файла), старонкі (паводле нумара вэрсіі) або старонкі ўдзельніка (паводле нумара ўдзельніка).',
+'redirect-submit' => 'Перайсьці',
+'redirect-lookup' => 'Шукаць паводле:',
+'redirect-value' => 'Значэньне:',
+'redirect-user' => 'Ідэнтыфікатара ўдзельніка',
+'redirect-revision' => 'Вэрсіі старонкі',
+'redirect-file' => 'Імя файла',
+'redirect-not-exists' => 'Значэньне ня знойдзена',
+
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Пошук дублікатаў файлаў',
 'fileduplicatesearch-summary' => 'Пошук аднолькавых файлаў на падставе іх хэшаў.',
@@ -3921,6 +3933,7 @@ MediaWiki распаўсюджваецца з надзеяй, што будзе 
 'htmlform-selectorother-other' => 'Іншае',
 'htmlform-no' => 'Не',
 'htmlform-yes' => 'Так',
+'htmlform-chosen-placeholder' => 'Выберыце варыянт',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 з падтрымкай поўнатэкстнага пошуку',

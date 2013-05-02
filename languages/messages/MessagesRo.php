@@ -1539,6 +1539,7 @@ Dacă decideți furnizarea sa, acesta va fi folosit pentru a vă atribui munca.'
 'userrights-notallowed' => 'Contul dumneavoastră nu are permisiunea de a acorda sau elimina drepturi utilizatorilor.',
 'userrights-changeable-col' => 'Grupuri pe care le puteți schimba',
 'userrights-unchangeable-col' => 'Grupuri pe care nu le puteți schimba',
+'userrights-conflict' => 'Conflict al drepturilor de utilizator! Aplicați din nou modificările dumneavoastră.',
 
 # Groups
 'group' => 'Grup:',

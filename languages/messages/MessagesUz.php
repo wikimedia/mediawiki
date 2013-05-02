@@ -361,8 +361,8 @@ $1',
 'badaccess-groups' => "So'ralgan amallarni kamida $1 {{PLURAL:$2|guruhi|guruhlari}} foydalanuvchilarigina amalga oshirishi mumkin.",
 
 'versionrequired' => '$1 versiyasidagi MediaWiki talab etiladi',
-'versionrequiredtext' => "Ushbu sahifani bilan ishlash uchun $1 versiyasidagi MediaWiki talab etiladi.
-[[Special:Version|Dasturiy ta'minot haqida axborot]]ni ko'ring.",
+'versionrequiredtext' => 'Bu sahifada ishlash uchun MediaWikining $1-versiyasi talab etiladi.
+[[Special:Version|Dasturiy taʼminot haqida axborot]]ni koʻring.',
 
 'ok' => 'OK',
 'retrievedfrom' => ' "$1" dan olindi',
@@ -710,7 +710,7 @@ Bu yerda: (joriy) = hozirgi koʻrinish bilan farq,
 # Search results
 'searchresults' => 'Qidiruv natijalari',
 'searchresults-title' => '"$1" uchun qidiruv natijalari',
-'searchresulttext' => "{{SITENAME}}da qidirish haqida qo'shimcha ma'lumotga ega bo'lishini xoxlasangiz, [[{{MediaWiki:Helppage}}|{{SITENAME}}da qidiruv]] sahifasini o'qing.",
+'searchresulttext' => '{{SITENAME}}da qidirish haqida qoʻshimcha maʼlumot olish uchun [[{{MediaWiki:Helppage}}|yordam]] sahifasiga qarang.',
 'searchsubtitle' => '\'\'\'[[:$1]]\'\'\'ni qidirdingiz ([[Special:Prefixindex/$1|"$1" bilan boshlanadigan sahifalar]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|"$1"ga bogʻlangan sahifalar]])',
 'searchsubtitleinvalid' => "'''$1'''ni qidirdingiz",
 'toomanymatches' => "Juda ko'p o'xshashliklar topildi, iltimos, boshqa so'rov bilan urinib ko'ring",
@@ -731,9 +731,9 @@ Bu yerda: (joriy) = hozirgi koʻrinish bilan farq,
 'searchmenu-prefix' => "[[Special:PrefixIndex/$1|Ushbu prefiks mavjud bo'lgan sahifalarni ko'rsatish]]",
 'searchprofile-articles' => 'Asosiy sahifalar',
 'searchprofile-project' => 'Yordam va loyiha sahifalari',
-'searchprofile-images' => 'Multimediya',
+'searchprofile-images' => 'Multimedia',
 'searchprofile-everything' => 'Har yerda',
-'searchprofile-advanced' => "Qo'shimcha",
+'searchprofile-advanced' => 'Kengaytirilgan',
 'searchprofile-articles-tooltip' => '$1da qidirish',
 'searchprofile-project-tooltip' => '$1da qidirish',
 'searchprofile-images-tooltip' => 'Fayllarni qidir',
@@ -923,9 +923,9 @@ Agar siz uni ko'rsatsangiz, undan sahifa tahriri kim tomonidan kiritilganligini 
 # Recent changes
 'nchanges' => "$1 {{PLURAL:$1|o'zgarish|o'zgarishlar}}",
 'recentchanges' => 'Yangi oʻzgarishlar',
-'recentchanges-legend' => 'Yangi tahrirlar moslamalari',
-'recentchanges-summary' => 'Bu sahifada siz oxirgi oʻzgarishlarni koʻrishingiz mumkin.',
-'recentchanges-feed-description' => "Vikida mazkur oqimdagi oxirgi o'zgarishlarni kuzatish",
+'recentchanges-legend' => 'Yangi oʻzgarishlar moslamalari',
+'recentchanges-summary' => 'Bu sahifada siz oxirgi oʻzgarishlarni koʻrishingiz mumkin',
+'recentchanges-feed-description' => 'Vikida mazkur oqimdagi oxirgi oʻzgarishlarni kuzatish',
 'recentchanges-label-newpage' => 'Bu tahrir orqali yangi sahifa yaratildi',
 'recentchanges-label-minor' => 'Bu kichik tahrir',
 'recentchanges-label-bot' => 'Bu tahrirni bot bajardi',
@@ -1034,7 +1034,18 @@ Uning [$2 fayl tavsifi sahifasidan] olingan tavsifi quyida keltirilgan.',
 
 # Statistics
 'statistics' => 'Statistika',
+'statistics-header-pages' => 'Sahifalar statistikasi',
+'statistics-header-edits' => 'Tahrirlar statistikasi',
 'statistics-header-users' => 'Foydalanuvchilar statistikasi',
+'statistics-articles' => 'Maqolalar',
+'statistics-pages' => 'Sahifalar',
+'statistics-pages-desc' => 'Ushbu vikidagi barcha sahifalar, jumladan munozara, yoʻnaltirish va hk.',
+'statistics-files' => 'Yuklangan fayllar',
+'statistics-edits' => '{{SITENAME}} qurilganidan beri qilingan tahrirlar',
+'statistics-edits-average' => 'Sahifa boshiga tahrirlar',
+'statistics-users' => 'Qayd etilgan [[Special:ListUsers|foydalanuvchilar]]',
+'statistics-users-active' => 'Faol foydalanuvchilar',
+'statistics-users-active-desc' => 'Oxirgi $1 kun ichida kamida bitta amal qilgan foydalanuvchilar',
 
 'disambiguationspage' => '{{ns:template}}:Disambig',
 
@@ -1158,7 +1169,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 # Watchlist
 'watchlist' => 'Kuzatuv roʻyxatim',
 'mywatchlist' => 'Kuzatuv roʻyxatim',
-'watchlistfor2' => '$1 $2 uchun',
+'watchlistfor2' => '$1 uchun $2',
 'nowatchlist' => "Kuzatuv ro'yxatingizda hech narsa yo'q.",
 'watchnologin' => "Siz tizimda o'zingizni tanishtirmadingiz",
 'addwatch' => "Kuzatuv ro'yxatiga qo'shish",
@@ -1314,7 +1325,7 @@ Yaqinda sodir etilgan yoʻqotishlar uchun $2ni koʻring.',
 # Namespace form on various pages
 'namespace' => 'Nomfazo:',
 'invert' => 'Tanlash tartibini almashtirish',
-'namespace_association' => "Bog'liq nomfazo",
+'namespace_association' => 'Bogʻliq nomfazo',
 'blanknamespace' => '(asosiy)',
 
 # Contributions
@@ -1338,7 +1349,7 @@ Yaqinda sodir etilgan yoʻqotishlar uchun $2ni koʻring.',
 'sp-contributions-userrights' => 'foydalanuvchining huquqlarini boshqarish',
 'sp-contributions-search' => 'Hissalarni qidirish',
 'sp-contributions-username' => 'IP-manzil yoki foydalanuvchi nomi:',
-'sp-contributions-toponly' => "Faqat oxirgi versiya hisoblangan tahrirlarni ko'rsatish",
+'sp-contributions-toponly' => 'Faqat oxirgi deb hisoblangan tahrirlarni koʻrsat',
 'sp-contributions-submit' => 'Qidirish',
 
 # What links here
@@ -1658,7 +1669,7 @@ Umumiy omborda [[:$1]] mavjud. Faylning bu nomga qayta nomlanishi faylning umumi
 'specialpages' => 'Maxsus sahifalar',
 
 # Special:Tags
-'tag-filter' => '[[Special:Tags|nishonlar]] filtri:',
+'tag-filter' => '[[Special:Tags|Nishonlar]] filtri:',
 
 # HTML forms
 'htmlform-reset' => 'Oʻzgarishlarni bekor qilish',

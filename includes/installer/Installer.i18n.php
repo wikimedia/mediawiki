@@ -693,7 +693,6 @@ Message shown when PHP parameter <code>suhosin.get.max_value_length</code> is be
 * $2 - error message',
 	'config-sqlite-dir-help' => '{{doc-important|Do not translate <code>.htaccess</code> and <code>/var/lib/mediawiki/yourwiki</code>.}}
 Used in help box.',
-	'config-mysql-only-myisam-dep' => 'Used as warning message when mysql does not support the minimum suggested feature set.',
 	'config-type-mysql' => '{{optional}}',
 	'config-type-postgres' => '{{optional}}',
 	'config-type-sqlite' => '{{optional}}',
@@ -768,6 +767,7 @@ See also:
 	'config-show-table-status' => '{{doc-important|"<code>SHOW TABLE STATUS</code>" is a MySQL command. Do not translate this.}}',
 	'config-db-web-account-same' => 'checkbox label',
 	'config-db-web-create' => 'checkbox label',
+	'config-mysql-only-myisam-dep' => 'Used as warning message when mysql does not support the minimum suggested feature set.',
 	'config-ns-generic' => 'Used as label for "namespace type" radio button.
 
 See also:
@@ -4433,6 +4433,9 @@ Sobald alles erledigt wurde, kann auf das '''[$2 Wiki zugegriffen werden]'''. Wi
 	'config-download-localsettings' => '<code>LocalSettings.php</code> herunterladen',
 	'config-help' => 'Hilfe',
 	'config-nofile' => 'Die Datei „$1“ konnte nicht gefunden werden. Wurde sie gelöscht?',
+	'config-extension-link' => 'Wusstest du, dass dein Wiki [//www.mediawiki.org/wiki/Manual:Extensions Erweiterungen] unterstützt?
+
+Du kannst [//www.mediawiki.org/wiki/Category:Extensions_by_category Erweiterungen nach Kategorie] durchsuchen oder die [//www.mediawiki.org/wiki/Extension_Matrix Erweiterungstabelle] ansehen, um eine volle Erweiterungsliste zu erhalten.',
 	'mainpagetext' => "'''MediaWiki wurde erfolgreich installiert.'''",
 	'mainpagedocfooter' => 'Hilfe zur Benutzung und Konfiguration der Wiki-Software findest du im [//meta.wikimedia.org/wiki/Help:Contents Benutzerhandbuch].
 
@@ -6232,6 +6235,9 @@ Lorsque c'est fait, vous pouvez '''[$2 accéder à votre wiki]'''.",
 	'config-download-localsettings' => 'Télécharger <code>LocalSettings.php</code>',
 	'config-help' => 'aide',
 	'config-nofile' => 'Le fichier « $1 » est introuvable. A-t-il été supprimé ?',
+	'config-extension-link' => 'Saviez-vous que votre wiki supporte [//www.mediawiki.org/wiki/Manual:Extensions des extensions] ?
+
+Vous pouvez consulter les [//www.mediawiki.org/wiki/Category:Extensions_by_category extensions par catégorie] ou la [//www.mediawiki.org/wiki/Extension_Matrix Matrice des extensions] pourvoir la liste complète des extensions.',
 	'mainpagetext' => "'''MediaWiki a été installé avec succès.'''",
 	'mainpagedocfooter' => 'Consultez le [//meta.wikimedia.org/wiki/Aide:Contenu Guide de l’utilisateur] pour plus d’informations sur l’utilisation de ce logiciel de wiki.
 
@@ -13121,6 +13127,9 @@ $3
 	'config-download-localsettings' => 'Преземи го <code>LocalSettings.php</code>',
 	'config-help' => 'помош',
 	'config-nofile' => 'Податотеката „$1“ не е пронајдена. Да не е избришана?',
+	'config-extension-link' => 'Дали сте знаеле дека вашето вики поддржува [//www.mediawiki.org/wiki/Manual:Extensions додатоци]?
+
+Можете да ги прелистате [//www.mediawiki.org/wiki/Category:Extensions_by_category по категории] или да ја посетите [//www.mediawiki.org/wiki/Extension_Matrix матрицата], каде ќе најдете полн список на додатоци.',
 	'mainpagetext' => "'''МедијаВики е успешно инсталиран.'''",
 	'mainpagedocfooter' => 'Погледнете го [//meta.wikimedia.org/wiki/Help:Contents Упатството за корисници] за подетални иформации како се користи вики-програмот.
 
@@ -18022,7 +18031,7 @@ Določite drugo uporabniško ime.',
 	'config-admin-error-bademail' => 'Vnesli ste neveljaven e-poštni naslov.',
 	'config-subscribe' => 'Naročite se na [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce poštni seznam obvestil o izdajah].',
 	'config-almost-done' => 'Skoraj ste že končali!
-Sedaj lahko preskočite preostalo konfiguriranje in zdaj namestite wiki.',
+Preostalo konfiguriranje lahko zdaj preskočite in wiki takoj namestite.',
 	'config-optional-continue' => 'Zastavi mi več vprašanj.',
 	'config-optional-skip' => 'Se že dolgočasim; samo namesti wiki.',
 	'config-profile' => 'Profil uporabniških pravic:',
