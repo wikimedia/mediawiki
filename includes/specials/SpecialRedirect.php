@@ -20,6 +20,7 @@
  *
  * @file
  * @ingroup SpecialPage
+ * @since 1.22
  */
 
 /**
