@@ -36,11 +36,7 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 	function formatOptions( $options, $value ) {
 		$html = '';
 
-		$attribs = array();
-
-		if ( !empty( $this->mParams['disabled'] ) ) {
-			$attribs['disabled'] = 'disabled';
-		}
+		$attribs = $this->getAttributes( array( 'disabled', 'tabindex' ) );
 
 		foreach ( $options as $label => $info ) {
 			if ( is_array( $info ) ) {

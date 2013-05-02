@@ -82,14 +82,10 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 	function getInputHTML( $value ) {
 		$html = '';
 		$tableContents = '';
-		$attribs = array();
 		$rows = $this->mParams['rows'];
 		$columns = $this->mParams['columns'];
 
-		// If the disabled param is set, disable all the options
-		if ( !empty( $this->mParams['disabled'] ) ) {
-			$attribs['disabled'] = 'disabled';
-		}
+		$attribs = $this->getAttributes( array( 'disabled', 'tabindex' ) );
 
 		// Build the column headers
 		$headerContents = Html::rawElement( 'td', array(), '&#160;' );

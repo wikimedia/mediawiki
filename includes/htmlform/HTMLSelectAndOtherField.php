@@ -90,11 +90,15 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 			$textAttribs['class'] = $this->mClass;
 		}
 
-		foreach ( array( 'required', 'autofocus', 'multiple', 'disabled' ) as $param ) {
-			if ( isset( $this->mParams[$param] ) ) {
-				$textAttribs[$param] = '';
-			}
-		}
+		$allowedParams = array(
+			'required',
+			'autofocus',
+			'multiple',
+			'disabled',
+			'tabindex'
+		);
+
+		$textAttribs += $this->getAttributes( $allowedParams );
 
 		$textbox = Html::input( $this->mName . '-other', $value[2], 'text', $textAttribs );
 
