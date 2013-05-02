@@ -381,6 +381,7 @@ production.
   does not exist in the page.
 * Added meta=filerepoinfo API module for getting information about foreign
   file repositories, and related ForeignAPIRepo methods getInfo and getApiUrl.
+* The new query module list=allfileusages to enumerate file usages was added.
 
 === Languages updated in 1.22===
 
