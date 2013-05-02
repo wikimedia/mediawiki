@@ -3868,7 +3868,7 @@ function wfGetLangConverterCacheStorage() {
  * @param array $args parameters passed to hook functions
  * @return Boolean True if no handler aborted the hook
  */
-function wfRunHooks( $event, $args = array() ) {
+function wfRunHooks( $event, array $args = array() ) {
 	return Hooks::run( $event, $args );
 }
 
