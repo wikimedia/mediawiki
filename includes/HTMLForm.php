@@ -1862,12 +1862,18 @@ class HTMLCheckField extends HTMLFormField {
  * are of the form "columnName-rowName"
  *
  * Options:
- *   columns:           Required list of columns in the matrix.
- *   rows:              Required list of rows in the matrix.
- *   force-options-on:  Accepts array of column-row tags to be displayed as enabled
- *                      but unavailable to change
- *   force-options-off: Accepts array of column-row tags to be displayed as disabled
- *                      but unavailable to change.
+ *   - columns
+ *     - Required list of columns in the matrix.
+ *   - rows
+ *     - Required list of rows in the matrix.
+ *   - force-options-on
+ *     - Accepts array of column-row tags to be displayed as enabled but unavailable to change
+ *   - force-options-off
+ *     - Accepts array of column-row tags to be displayed as disabled but unavailable to change.
+ *   - tooltips
+ *     - Optional array mapping row label to tooltip content
+ *   - tooltip-class
+ *     - Optional CSS class used on tooltip container span. Defaults to mw-icon-question.
  */
 class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 
@@ -1944,8 +1950,21 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 		}
 		$tableContents .= Html::rawElement( 'tr', array(), "\n$headerContents\n" );
 
+		$tooltipClass = 'mw-icon-question';
+		if ( isset( $this->mParams['tooltip-class'] ) ) {
+			$tooltipClass = $this->mParams['tooltip-class'];
+		}
+
 		// Build the options matrix
 		foreach ( $rows as $rowLabel => $rowTag ) {
+			// Append tooltip if configured
+			if ( isset( $this->mParams['tooltips'][$rowLabel] ) ) {
+				$tooltipAttribs = array(
+					'class' => "mw-htmlform-tooltip $tooltipClass",
+					'title' =>  $this->mParams['tooltips'][$rowLabel],
+				);
+				$rowLabel .= ' ' . Html::element( 'span', $tooltipAttribs, '' );
+			}
 			$rowContents = Html::rawElement( 'td', array(), $rowLabel );
 			foreach ( $columns as $columnTag ) {
 				$thisTag = "$columnTag-$rowTag";
