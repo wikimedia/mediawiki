@@ -116,11 +116,15 @@
 			if ( $toConvert.length ) {
 				$converted = convertCheckboxesToMulti( $toConvert, 'table' );
 				$converted.find( '.htmlform-chzn-select' ).chosen( { width: 'auto' } );
+				// Set a custom class for the generated container
+				$converted.find( '.chzn-container' ).addClass( 'mw-htmlform-chzn' );
 			}
 			$toConvert = $( 'div .mw-chosen' );
 			if ( $toConvert.length ) {
 				$converted = convertCheckboxesToMulti( $toConvert, 'div' );
 				$converted.find( '.htmlform-chzn-select' ).chosen( { width: 'auto' } );
+				// Set a custom class for the generated container
+				$converted.find( '.chzn-container' ).addClass( 'mw-htmlform-chzn' );
 			}
 		} );
 	}

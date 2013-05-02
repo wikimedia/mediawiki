@@ -1,0 +1,7 @@
+.mw-htmlform-chzn {
+	min-width: 120px;
+}
+/* Default text for chosen fields */
+.mw-htmlform-chzn .default {
+	min-width: 120px;
+}
