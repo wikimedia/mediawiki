@@ -235,6 +235,18 @@ td.mw-label {
 .prefsection table.mw-htmlform-matrix {
 	width: auto;
 }
+.mw-icon-question {
+	/* @embed */
+	background: url('images/question.png') no-repeat;
+	display: inline-block;
+	height: 11px;
+	width: 11px;
+	margin-left: 4px;
+}
+.mw-icon-question:hover {
+	/* @embed */
+	background: url('images/question-hover.png') no-repeat;
+}
 td.mw-submit {
 	white-space: nowrap;
 }
