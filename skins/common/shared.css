@@ -235,6 +235,30 @@ td.mw-label {
 .prefsection table.mw-htmlform-matrix {
 	width: auto;
 }
+
+.mw-icon-question {
+	/* @embed */
+	background: url('images/question-small.png') no-repeat;
+	/* SVG support using a transparent gradient to guarantee cross-browser
+	 * compatibility (browsers able to understand gradient syntax support also SVG)
+	 * lifted from #pt-login css rule in skins/vector/screen.css */
+	/* @embed */
+	background: -webkit-linear-gradient(transparent, transparent), url('images/question.svg') no-repeat;
+	/* @embed */
+	background: linear-gradient(transparent, transparent), url('images/question.svg') no-repeat;
+	background-size: 13px 13px;
+	display: inline-block;
+	height: 13px;
+	width: 13px;
+	margin-left: 4px;
+}
+
+.mw-icon-question:lang(ckb) {
+	-webkit-transform: scaleX(-1);
+	-ms-transform: scaleX(-1);
+	transform: scaleX(-1);
+}
+
 td.mw-submit {
 	white-space: nowrap;
 }
