@@ -1284,8 +1284,12 @@ class WordLevelDiff extends MappedDiff {
 				if ( preg_match_all( '/ ( [^\S\n]+ | [0-9_A-Za-z\x80-\xff]+ | . ) (?: (?!< \n) [^\S\n])? /xs',
 					$line, $m ) )
 				{
-					$words = array_merge( $words, $m[0] );
-					$stripped = array_merge( $stripped, $m[1] );
+					foreach ( $m[0] as $word ) {
+						$words[] = $word;
+					}
+					foreach ( $m[1] as $stripped_word ) {
+						$stripped[] = $stripped_word;
+					}
 				}
 			}
 		}
