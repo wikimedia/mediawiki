@@ -115,12 +115,12 @@
 			$toConvert = $( 'table .mw-chosen' );
 			if ( $toConvert.length ) {
 				$converted = convertCheckboxesToMulti( $toConvert, 'table' );
-				$converted.find( '.htmlform-chzn-select' ).chosen();
+				$converted.find( '.htmlform-chzn-select' ).chosen( { width: 'auto' } );
 			}
 			$toConvert = $( 'div .mw-chosen' );
 			if ( $toConvert.length ) {
 				$converted = convertCheckboxesToMulti( $toConvert, 'div' );
-				$converted.find( '.htmlform-chzn-select' ).chosen();
+				$converted.find( '.htmlform-chzn-select' ).chosen( { width: 'auto' } );
 			}
 		} );
 	}
