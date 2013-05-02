@@ -2886,7 +2886,7 @@ class Parser {
 				$value = $this->mTitle->canTalk() ? wfUrlencode( $this->mTitle->getTalkNsText() ) : '';
 				break;
 			case 'subjectspace':
-				$value = $this->mTitle->getSubjectNsText();
+				$value = str_replace( '_', ' ', $this->mTitle->getSubjectNsText() );
 				break;
 			case 'subjectspacee':
 				$value = ( wfUrlencode( $this->mTitle->getSubjectNsText() ) );
