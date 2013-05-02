@@ -92,14 +92,14 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 		$content = $revision->getContent( Revision::RAW );
 
 		if ( !$content ) {
-			wfDebug( __METHOD__ . "failed to load content of JS/CSS page!\n" );
+			wfDebugLog( 'resourceloader', __METHOD__ . ': failed to load content of JS/CSS page!' );
 			return null;
 		}
 
 		$model = $content->getModel();
 
 		if ( $model !== CONTENT_MODEL_CSS && $model !== CONTENT_MODEL_JAVASCRIPT ) {
-			wfDebug( __METHOD__ . "bad content model $model for JS/CSS page!\n" );
+			wfDebugLog( 'resourceloader', __METHOD__ . ': bad content model $model for JS/CSS page!' );
 			return null;
 		}
 
