@@ -98,6 +98,7 @@ production.
   apply the new LanguageLinks hook, and thus only consider language links
   stored in the database.
 * (bug 47219) Allow specifying change type of Wikipedia feed items
+* The new query module list=allfileusages to enumerate file usages was added.
 
 === Languages updated in 1.22===
 
