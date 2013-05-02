@@ -235,6 +235,27 @@ td.mw-label {
 .prefsection table.mw-htmlform-matrix {
 	width: auto;
 }
+
+.mw-icon-question {
+	/* @embed */
+	background: url('images/question.png') no-repeat;
+	/* @embed */
+	background: url('images/question.svg') no-repeat;
+	background-size: 13px 13px;
+	display: inline-block;
+	height: 14px;
+	width: 14px;
+	margin-left: 4px;
+}
+
+.mw-icon-question:lang(ckb) {
+	-webkit-transform: scaleX(-1);
+	-moz-transform: scaleX(-1);
+	-ms-transform: scaleX(-1);
+	-o-transform: scaleX(-1);
+	transform: scaleX(-1);
+}
+
 td.mw-submit {
 	white-space: nowrap;
 }
