@@ -27,6 +27,7 @@
  * the file for a given filename, or the page for a given revision id.
  *
  * @ingroup SpecialPage
+ * @since 1.22
  */
 class SpecialRedirect extends FormSpecialPage {
 
