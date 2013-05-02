@@ -174,9 +174,10 @@ class ResourceLoader {
 			// Save filtered text to Memcached
 			$cache->set( $key, $result );
 		} catch ( Exception $exception ) {
+			wfDebugLog( 'resourceloader', __METHOD__ . ": minification failed: $e" );
+			$this->hasErrors = true;
 			// Return exception as a comment
 			$result = $this->makeComment( $exception->__toString() );
-			$this->hasErrors = true;
 		}
 
 		wfProfileOut( __METHOD__ );
@@ -453,8 +454,11 @@ class ResourceLoader {
 				// Do not allow private modules to be loaded from the web.
 				// This is a security issue, see bug 34907.
 				if ( $module->getGroup() === 'private' ) {
-					$errors .= $this->makeComment( "Cannot show private module \"$name\"" );
+					wfDebugLog( 'resourceloader', __METHOD__ . ": request for private module denied: $e" );
 					$this->hasErrors = true;
+					// Add exception to the output as a comment
+					$errors .= $this->makeComment( "Cannot show private module \"$name\"" );
+
 					continue;
 				}
 				$modules[$name] = $module;
@@ -467,9 +471,10 @@ class ResourceLoader {
 		try {
 			$this->preloadModuleInfo( array_keys( $modules ), $context );
 		} catch ( Exception $e ) {
+			wfDebugLog( 'resourceloader', __METHOD__ . ": preloading module info failed: $e" );
+			$this->hasErrors = true;
 			// Add exception to the output as a comment
 			$errors .= $this->makeComment( $e->__toString() );
-			$this->hasErrors = true;
 		}
 
 		wfProfileIn( __METHOD__ . '-getModifiedTime' );
@@ -485,9 +490,10 @@ class ResourceLoader {
 				// Calculate maximum modified time
 				$mtime = max( $mtime, $module->getModifiedTime( $context ) );
 			} catch ( Exception $e ) {
+				wfDebugLog( 'resourceloader', __METHOD__ . ": calculating maximum modified time failed: $e" );
+				$this->hasErrors = true;
 				// Add exception to the output as a comment
 				$errors .= $this->makeComment( $e->__toString() );
-				$this->hasErrors = true;
 			}
 		}
 
@@ -694,9 +700,10 @@ class ResourceLoader {
 			try {
 				$blobs = MessageBlobStore::get( $this, $modules, $context->getLanguage() );
 			} catch ( Exception $e ) {
+				wfDebugLog( 'resourceloader', __METHOD__ . ": pre-fetching blobs from MessageBlobStore failed: $e" );
+				$this->hasErrors = true;
 				// Add exception to the output as a comment
 				$exceptions .= $this->makeComment( $e->__toString() );
-				$this->hasErrors = true;
 			}
 		} else {
 			$blobs = array();
@@ -800,9 +807,10 @@ class ResourceLoader {
 						break;
 				}
 			} catch ( Exception $e ) {
+				wfDebugLog( 'resourceloader', __METHOD__ . ": generating module package failed: $e" );
+				$this->hasErrors = true;
 				// Add exception to the output as a comment
 				$exceptions .= $this->makeComment( $e->__toString() );
-				$this->hasErrors = true;
 
 				// Register module as missing
 				$missing[] = $name;
