@@ -1807,6 +1807,11 @@ class HTMLCheckField extends HTMLFormField {
  * Operates similarly to HTMLMultiSelectField, but instead of using an array of
  * options, uses an array of rows and an array of columns to dynamically
  * construct a matrix of options.
+ *
+ * Options:
+ *   tooltips:      Optional array mapping row label to tooltip content
+ *   tooltip-class: Optional CSS class used on tooltip container span. Defaults
+ *                  to mw-icon-question.
  */
 class HTMLCheckMatrix extends HTMLFormField {
 
@@ -1868,8 +1873,20 @@ class HTMLCheckMatrix extends HTMLFormField {
 		}
 		$tableContents .= Html::rawElement( 'tr', array(), "\n$headerContents\n" );
 
+		$tooltipClass = 'mw-icon-question';
+		if ( isset( $this->mParams['tooltip-class'] ) ) {
+			$tooltipClass = $this->mParams['tooltip-class'];
+		}
+
 		// Build the options matrix
 		foreach ( $rows as $rowLabel => $rowTag ) {
+			if ( isset( $this->mParams['tooltips'][$rowLabel] ) ) {
+				$tooltipAttribs = array(
+					'class' => "mw-htmlform-tooltip $tooltipClass",
+					'title' =>  $this->mParams['tooltips'][$rowLabel],
+				);
+				$rowLabel .= ' ' . Html::rawElement( 'span', $tooltipAttribs, '' );
+			}
 			$rowContents = Html::rawElement( 'td', array(), $rowLabel );
 			foreach ( $columns as $columnTag ) {
 				// Knock out any options that are not wanted
