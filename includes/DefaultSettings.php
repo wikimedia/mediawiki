@@ -3583,7 +3583,8 @@ $wgHitcounterUpdateFreq = 1;
 
 /**
  * How many days user must be idle before he is considered inactive. Will affect
- * the number shown on Special:Statistics and Special:ActiveUsers special page.
+ * the number shown on Special:Statistics, Special:ActiveUsers, and the
+ * {{NUMBEROFACTIVEUSERS}} magic word in wikitext.
  * You might want to leave this as the default value, to provide comparable
  * numbers between different wikis.
  */
