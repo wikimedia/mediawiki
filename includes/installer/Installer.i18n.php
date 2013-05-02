@@ -693,6 +693,7 @@ Message shown when PHP parameter <code>suhosin.get.max_value_length</code> is be
 * $2 - error message',
 	'config-sqlite-dir-help' => '{{doc-important|Do not translate <code>.htaccess</code> and <code>/var/lib/mediawiki/yourwiki</code>.}}
 Used in help box.',
+	'config-mysql-only-myisam-dep' => 'Used as warning message when mysql does not support the minimum suggested feature set.',
 	'config-type-mysql' => '{{optional}}',
 	'config-type-postgres' => '{{optional}}',
 	'config-type-sqlite' => '{{optional}}',
@@ -4824,7 +4825,7 @@ Instalación anulada.',
 	'config-using531' => 'MediaWiki no puede utilizarse con PHP $1 debido a un error con los parámetros de referencia para <code>__call()</code> .
 Actualice el sistema a PHP 5.3.2 o superior, o vuelva a la versión PHP 5.3.0 para resolver este problema.
 Instalación anulada.',
-	'config-suhosin-max-value-length' => 'Suhosin está instalado y limita el parámetro <code>length</code> GET a $1 bytes. 
+	'config-suhosin-max-value-length' => 'Suhosin está instalado y limita el parámetro <code>length</code> GET a $1 bytes.
 El componente ResourceLoader (gestor de recursos) de MediaWiki trabajará en este límite, pero eso perjudicará el rendimiento.
 Si es posible, deberías establecer <code>suhosin.get.max_value_length</code> en el valor 1024 o superior en <code>php.ini</code> y establecer <code>$wgResourceLoaderMaxQueryLength</code> en el mismo valor en <code>php.ini</code>.',
 	'config-db-type' => 'Tipo de base de datos',
@@ -4862,7 +4863,7 @@ Esta no es la contraseña para la cuenta de MediaWiki; esta es la contraseña pa
 	'config-db-wiki-help' => 'Introduce el nombre de usuario y la contraseña que serán usados para acceder a la base de datos durante la operación normal del wiki.
 Si esta cuenta no existe y la cuenta de instalación tiene suficientes privilegios, se creará esta cuenta de usuario con los privilegios mínimos necesarios para la operación normal del wiki.',
 	'config-db-prefix' => 'Prefijo para las tablas de la base de datos:',
-	'config-db-prefix-help' => 'Si necesita compartir una base de datos entre múltiples wikis, o entre MediaWiki y otra aplicación web, puede optar por agregar un prefijo a todos los nombres de tabla para evitar conflictos. 
+	'config-db-prefix-help' => 'Si necesita compartir una base de datos entre múltiples wikis, o entre MediaWiki y otra aplicación web, puede optar por agregar un prefijo a todos los nombres de tabla para evitar conflictos.
 No utilice espacios.
 
 Normalmente se deja este campo vacío.',
@@ -15180,7 +15181,7 @@ Jeśli korzystasz ze współdzielonego hostingu, dostawca usługi hostingowej mo
 
 Możesz utworzyć konto użytkownika bazy danych podczas instalacji MediaWiki. Wówczas należy podać nazwę i hasło użytkownika z rolą SYSDBA w celu użycia go przez instalator do utworzenia nowe konta użytkownika, z którego korzystać będzie MediaWiki.
 
-Możesz również skorzystać z konta użytkownika bazy danych utworzonego bezpośrednio w Oracle i wówczas wystarczy podać tylko nazwę i hasło tego użytkownika. Konto z rolą SYSDBA nie będzie potrzebne, jednak konto użytkownika powinno mieć uprawnienia do utworzenia obiektów w schemacie bazy danych. Możesz też podać dwa konta - konto dla instalatora, z pomocą którego zostaną obiekty w schemacie bazy danych i drugie konto, z którego będzie MediaWiki korzystać będzie do pracy. 
+Możesz również skorzystać z konta użytkownika bazy danych utworzonego bezpośrednio w Oracle i wówczas wystarczy podać tylko nazwę i hasło tego użytkownika. Konto z rolą SYSDBA nie będzie potrzebne, jednak konto użytkownika powinno mieć uprawnienia do utworzenia obiektów w schemacie bazy danych. Możesz też podać dwa konta - konto dla instalatora, z pomocą którego zostaną obiekty w schemacie bazy danych i drugie konto, z którego będzie MediaWiki korzystać będzie do pracy.
 
 W podkatalogu "maintenance/oracle" znajduje się skrypt do tworzenia konta użytkownika. Korzystanie z konta użytkownika z ograniczonymi uprawnieniami spowoduje wyłączenie funkcji związanych z aktualizacją oprogramowania MediaWiki.',
 	'config-db-install-account' => 'Konto użytkownika dla instalatora',
@@ -15559,7 +15560,7 @@ A la trovrà an LocalSetting.php.",
 Për agiorné sta instalassion, për piasì fà anvece giré <code>update.php</code>",
 	'config-localsettings-key' => "Ciav d'agiornament:",
 	'config-localsettings-badkey' => "La ciav ch'it l'has dàit a l'é pa giusta.",
-	'config-upgrade-key-missing' => "A l'é stàita trovà n'istalassion esistenta ëd MediaWiki. 
+	'config-upgrade-key-missing' => "A l'é stàita trovà n'istalassion esistenta ëd MediaWiki.
 Për agiorné soa istalassion, për piasì ch'a buta la linia sì-sota al fond ëd sò <code>LocalSettings.php</code>:
 
 $1",
@@ -19088,7 +19089,7 @@ Ang mas masasalimuot na mga kaayusan ng mga karapatan ng tagagamit ay makukuha p
 	'config-license-gfdl' => 'Lisensiyang 1.3 ng Malayang Dokumentasyon ng GNU o mas lalong huli',
 	'config-license-pd' => 'Nasasakupan ng Madla',
 	'config-license-cc-choose' => 'Pumili ng isang pasadyang Lisensiya ng Malikhaing mga Pangkaraniwan',
-	'config-license-help' => "Maraming mga pangmadlang wiki ang naglalagay ng lahat ng mga ambag sa ilalim ng [http://freedomdefined.org/Definition lisensiyang malaya]. 
+	'config-license-help' => "Maraming mga pangmadlang wiki ang naglalagay ng lahat ng mga ambag sa ilalim ng [http://freedomdefined.org/Definition lisensiyang malaya].
 Nakakatulong ito sa paglikha ng isang diwa ng pagmamay-ari ng pamayanan at nakapanghihikayat ng ambag na pangmahabang panahon.
 Sa pangkalahatan, hindi kailangan ang isang wiking pribado o pangsamahan.
 
@@ -19511,7 +19512,7 @@ MediaWiki вимагає підтримку UTF-8 для коректної ро
 	'config-mysql-old' => 'Необхідна MySQL $1 або пізніша, а у Вас $2.',
 	'config-db-port' => 'Порт бази даних:',
 	'config-db-schema' => 'Схема для MediaWiki',
-	'config-db-schema-help' => 'Ця схема зазвичай працює добре. 
+	'config-db-schema-help' => 'Ця схема зазвичай працює добре.
 Змінюйте її тільки якщо знаєте, що Вам це потрібно.',
 	'config-pg-test-error' => "Не вдається підключитися до бази даних '''$1''': $2",
 	'config-sqlite-dir' => 'Папка даних SQLite:',
@@ -19732,7 +19733,7 @@ GFDL — допустима ліцензія, але у ній важко роз
 	'config-upload-deleted-help' => 'Оберіть папку для архівації видалених файлів.
 В ідеалі, вона не має бути доступною через інтернет.',
 	'config-logo' => 'URL логотипу:',
-	'config-logo-help' => 'Стандартна схема оформлення MediaWiki містить вільне для логотипу місце над бічною панеллю розміром 135x160 пікселів. 
+	'config-logo-help' => 'Стандартна схема оформлення MediaWiki містить вільне для логотипу місце над бічною панеллю розміром 135x160 пікселів.
 Завантажте зображення відповідного розміру і введіть тут його URL.
 
 Якщо Вам не потрібен логотип, залиште це поле пустим.',
@@ -19846,9 +19847,9 @@ $messages['ur'] = array(
 	'config-git' => 'Git ورژن کنٹرول مصنع لطیف ملا: <code>$1</code> ۔',
 	'config-git-bad' => 'GIT ورژن کنٹرول مصنع لطیف نہيں ملا ۔',
 	'config-mysql-only-myisam-dep' => "' ' تنبیہ: ' '[[MyISAM|مائ اسام]] واحد دستیاب 'ذخیرہ جاتی انجن' ہے جو مائی ایس کیو ایل کے لیے ہے ، جو کہ ناموزوں ہے میڈیا وکی کے لیے ،کیوں کہ :
-* یہ ہموار قطاروں کی سہولت بمشکل فراہم کرتا ہے 
+* یہ ہموار قطاروں کی سہولت بمشکل فراہم کرتا ہے
 * یہ دوسرے انجنوں کے مقابلے  زیادہ بگڑ جاتا ہے
-* میڈیا وکی کوڈ بیس ہمیشہ سنبھال نہيں پاتا مائی اسام کو ۔ 
+* میڈیا وکی کوڈ بیس ہمیشہ سنبھال نہيں پاتا مائی اسام کو ۔
 
 آپ کا مائی ایس کیو ایل کا نصب ہمیشہ اننو ڈی بی کی سہولت نہيں دے سکتا ، ہو سکتا ہے یہ مزید ترقیاتی کام چاہے", # Fuzzy
 	'config-profile-fishbowl' => 'صرف مجاز ایڈیٹرز',
