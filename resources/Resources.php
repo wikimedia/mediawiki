@@ -873,6 +873,10 @@ return array(
 			'watcherrortext',
 		),
 	),
+	'mediawiki.page.image.pagination' => array(
+		'scripts' => 'resources/mediawiki.page/mediawiki.page.image.pagination.js',
+		'dependencies' => array( 'jquery.spinner' )
+	),
 
 	/* MediaWiki Special pages */
 
