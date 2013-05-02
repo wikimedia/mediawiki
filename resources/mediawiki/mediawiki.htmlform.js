@@ -61,13 +61,15 @@
 
 	function addMulti( $oldContainer, $container ) {
 		var name = $oldContainer.find( 'input:first-child' ).attr( 'name' ),
-		$select = $( '<select>' ),
-		dataPlaceholder = mw.message( 'htmlform-chosen-placeholder' );
+			oldClass = ( ' ' + $oldContainer.attr( 'class' ) + ' ' ).replace( /(mw-htmlform-field-HTMLMultiSelectField|mw-chosen)/g, '' ),
+			$select = $( '<select>' ),
+			dataPlaceholder = mw.message( 'htmlform-chosen-placeholder' );
+		oldClass = $.trim( oldClass );
 		$select.attr( {
 			name: name,
 			multiple: 'multiple',
 			'data-placeholder': dataPlaceholder.plain(),
-			'class': 'htmlform-chzn-select mw-input'
+			'class': 'htmlform-chzn-select mw-input ' + oldClass
 		} );
 		$oldContainer.find( 'input' ).each( function () {
 			var $oldInput = $(this),
