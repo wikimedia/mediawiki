@@ -123,4 +123,9 @@
 		} );
 	}
 
+	if ( $( '.mw-htmlform-matrix .mw-htmlform-tooltip' ).length ) {
+		mw.loader.using( 'jquery.tipsy', function () {
+			$( '.mw-htmlform-matrix .mw-htmlform-tooltip' ).tipsy();
+		} );
+	}
 }( mediaWiki, jQuery ) );
