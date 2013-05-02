@@ -639,6 +639,7 @@ return array(
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'mediawiki.htmlform' => array(
+		'styles' => 'resources/mediawiki/mediawiki.htmlform.css',
 		'scripts' => 'resources/mediawiki/mediawiki.htmlform.js',
 		'messages' => array( 'htmlform-chosen-placeholder' ),
 	),
