@@ -353,6 +353,37 @@ class DatabaseMysql extends DatabaseBase {
 	}
 
 	/**
+	 * @param string $table
+	 * @param array $rows
+	 * @param array $uniqueIndexes
+	 * @param array $set
+	 * @param string $fname
+	 * @param array $options
+	 * @return bool
+	 */
+	public function upsert(
+		$table, array $rows, array $uniqueIndexes, array $set, $fname = 'DatabaseMysql::upsert'
+	) {
+		if ( !count( $rows ) ) {
+			return true; // nothing to do
+		}
+		$rows = is_array( reset( $rows ) ) ? $rows : array( $rows );
+
+		$table = $this->tableName( $table );
+		$columns = array_keys( $rows[0] );
+
+		$sql = "INSERT INTO $table (" . implode( ',', $columns ) . ') VALUES ';
+		$rowTuples = array();
+		foreach ( $rows as $row ) {
+			$rowTuples[] = '(' . $this->makeList( $row ) . ')';
+		}
+		$sql .= implode( ',', $rowTuples );
+		$sql .= " ON DUPLICATE KEY UPDATE " . $this->makeList( $set, LIST_SET );
+
+		return (bool)$this->query( $sql, $fname );
+	}
+
+	/**
 	 * Estimate rows in dataset
 	 * Returns estimated count, based on EXPLAIN output
 	 * Takes same arguments as Database::select()
