@@ -231,7 +231,7 @@ Only change it if you know you need to.',
 
 The directory you provide must be writable by the webserver during installation.
 
-It should '''not''' be accessible via the web, this is why we're not putting it where your PHP files are.
+It should '''not''' be accessible via the web; this is why we're not putting it where your PHP files are.
 
 The installer will write a <code>.htaccess</code> file along with it, but if that fails someone can gain access to your raw database.
 That includes raw user data (email addresses, hashed passwords) as well as deleted revisions and other restricted data on the wiki.
@@ -557,6 +557,7 @@ $3
 When that has been done, you can '''[$2 enter your wiki]'''.",
 	'config-download-localsettings' => 'Download <code>LocalSettings.php</code>',
 	'config-help' => 'help',
+	'config-help-tooltip' => 'click to expand',
 	'config-nofile'     => 'File "$1" could not be found. Has it been deleted?',
 	'config-extension-link' => 'Did you know that your wiki supports [//www.mediawiki.org/wiki/Manual:Extensions extensions]?
 
