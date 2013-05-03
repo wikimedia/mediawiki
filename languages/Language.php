@@ -3609,6 +3609,36 @@ class Language {
 	 */
 	function convertPlural( $count, $forms ) {
 		// Handle explicit n=pluralform cases
+		$forms = $this->handleExplicitPluralForms( $count, $forms );
+		if ( is_string( $forms ) ) {
+			return $forms;
+		}
+
+		if ( !count( $forms ) ) {
+			return '';
+		}
+
+		$pluralForm = $this->getPluralRuleIndexNumber( $count );
+		$pluralForm = min( $pluralForm, count( $forms ) - 1 );
+		return $forms[$pluralForm];
+	}
+
+	/**
+	 * Handles explicit plural forms for Language::convertPlural()
+	 *
+	 * In {{PLURAL:$1|0=nothing|one|many}}, 0=nothing will be returned if $1 equals zero.
+	 * If an explicitly defined plural form matches the $count, then
+	 * string value returned, otherwise array returned for further consideration
+	 * by CLDR rules or overridden convertPlural()
+	 *
+	 * @since 1.22
+	 *
+	 * @param int $count non-localized number
+	 * @param array $forms different plural forms
+	 *
+	 * @return array|string
+	 */
+	protected function handleExplicitPluralForms( $count, array $forms ) {
 		foreach ( $forms as $index => $form ) {
 			if ( preg_match( '/\d+=/i', $form ) ) {
 				$pos = strpos( $form, '=' );
@@ -3619,14 +3649,7 @@ class Language {
 			}
 		}
 
-		$forms = array_values( $forms );
-		if ( !count( $forms ) ) {
-			return '';
-		}
-
-		$pluralForm = $this->getPluralRuleIndexNumber( $count );
-		$pluralForm = min( $pluralForm, count( $forms ) - 1 );
-		return $forms[$pluralForm];
+		return array_values( $forms );
 	}
 
 	/**

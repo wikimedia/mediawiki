@@ -37,6 +37,12 @@ class LanguagePl extends Language {
 		if ( !count( $forms ) ) {
 			return '';
 		}
+
+		$forms = $this->handleExplicitPluralForms( $count, $forms );
+		if ( is_string( $forms ) ) {
+			return $forms;
+		}
+
 		$forms = $this->preConvertPlural( $forms, 3 );
 		$count = abs( $count );
 		if ( $count == 1 ) {

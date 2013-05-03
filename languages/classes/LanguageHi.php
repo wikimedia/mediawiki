@@ -39,6 +39,12 @@ class LanguageHi extends Language {
 		if ( !count( $forms ) ) {
 			return '';
 		}
+
+		$forms = $this->handleExplicitPluralForms( $count, $forms );
+		if ( is_string( $forms ) ) {
+			return $forms;
+		}
+
 		$forms = $this->preConvertPlural( $forms, 2 );
 
 		return ( $count <= 1 ) ? $forms[0] : $forms[1];
