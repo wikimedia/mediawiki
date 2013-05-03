@@ -170,6 +170,11 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 		return $field->name;
 	}
 
+	public function fieldIsBinary( $res, $n ) {
+		$field = mysqli_fetch_field_direct( $res, $n );
+		return $field->flags & MYSQLI_BINARY_FLAG;
+	}
+
 	protected function mysqlDataSeek( $res, $row ) {
 		return $res->data_seek( $row );
 	}
