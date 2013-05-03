@@ -326,13 +326,19 @@ class Language {
 	 * @return bool
 	 */
 	public static function isValidCode( $code ) {
-		return
+		static $cache = array();
+		if(isset($cache[ $code ] ) ) {
+			return $cache[ $code ];
+		}
+		$return =
 			// People think language codes are html safe, so enforce it.
 			// Ideally we should only allow a-zA-Z0-9-
 			// but, .+ and other chars are often used for {{int:}} hacks
 			// see bugs 37564, 37587, 36938
 			strcspn( $code, ":/\\\000&<>'\"" ) === strlen( $code )
 			&& !preg_match( Title::getTitleInvalidRegex(), $code );
+		$cache[ $code ] = $return;
+		return $return;
 	}
 
 	/**
