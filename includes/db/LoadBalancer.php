@@ -185,7 +185,7 @@ class LoadBalancer {
 		global $wgReadOnly, $wgDBClusterTimeout, $wgDBAvgStatusPoll, $wgDBtype;
 
 		# @todo FIXME: For now, only go through all this for mysql databases
-		if ( $wgDBtype != 'mysql' ) {
+		if ( strncmp( $wgDBtype, 'mysql', 5 ) != 0 ) {
 			return $this->getWriterIndex();
 		}
 

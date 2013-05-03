@@ -59,6 +59,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 	protected $supportedDBs = array(
 		'mysql',
+		'mysqli',
 		'sqlite',
 		'postgres',
 		'oracle'
