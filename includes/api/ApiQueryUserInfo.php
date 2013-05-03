@@ -304,4 +304,29 @@ class ApiQueryUserInfo extends ApiQueryBase {
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/API:Meta#userinfo_.2F_ui';
 	}
+
+	protected function checkGrantedPermissionsInternal( array $grants, &$message = null ) {
+		$params = $this->extractRequestParams();
+		if ( !is_null( $params['prop'] ) ) {
+			if ( !array_diff( $params['prop'], array(
+					'blockinfo',
+					'groups',
+					'implicitgroups',
+					'rights',
+					'changeablegroups',
+					'editcount',
+					'acceptlang',
+					'registrationdate'
+				) ) && !in_array( 'privateinfo', $grants )
+			) {
+				$message = "This query requires the following permissions: privateinfo";
+				return false;
+			}
+		}
+		return true;
+	}
+
+	protected function getAllCheckedPermissionsInternal() {
+		return array( 'privateinfo' );
+	}
 }

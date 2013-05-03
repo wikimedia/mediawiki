@@ -302,6 +302,23 @@ class AuthPlugin {
 	public function domainList() {
 		return array();
 	}
+
+	/**
+	 * Check user-granted permissions against the permissions needed by the API
+	 * module.
+	 *
+	 * If an auth module has user-granted permissions, this should fetch the
+	 * list of granted permissions and then call $module->checkGrantedPermissions().
+	 *
+	 * @since 1.22
+	 * @param $module ApiBase
+	 * @param $user User
+	 * @param &$message string Message to return to the user on failure
+	 * @return bool
+	 */
+	public function checkGrantsForApi( ApiBase $module, User $user, &$message ) {
+		return true;
+	}
 }
 
 class AuthPluginUser {

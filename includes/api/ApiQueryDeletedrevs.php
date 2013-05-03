@@ -420,4 +420,8 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/API:Deletedrevs';
 	}
+
+	protected function getAllCheckedPermissionsInternal() {
+		return array( 'viewdeleted' );
+	}
 }

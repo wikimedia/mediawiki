@@ -147,4 +147,9 @@ class ApiQueryCategoryInfo extends ApiQueryBase {
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/API:Properties#categoryinfo_.2F_ci';
 	}
+
+	protected function getAllCheckedPermissionsInternal() {
+		// Nothing sensitive here
+		return array();
+	}
 }

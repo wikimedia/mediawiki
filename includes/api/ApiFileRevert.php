@@ -34,10 +34,15 @@ class ApiFileRevert extends ApiBase {
 	 */
 	protected $file;
 	protected $archiveName;
+	private $allowDeleted = true;
 
 	protected $params;
 
 	public function execute() {
+		$filterRights = $this->allowDeleted ? null : $this->getUser()->filterRights( array(
+			'suppressrevision', 'deletedtext', 'deletedhistory', 'browsearchive',
+		) );
+
 		$this->params = $this->extractRequestParams();
 		// Extract the file and archiveName from the request parameters
 		$this->validateParameters();
@@ -189,6 +194,34 @@ class ApiFileRevert extends ApiBase {
 		return array(
 			'api.php?action=filerevert&filename=Wiki.png&comment=Revert&archivename=20110305152740!Wiki.png&token=123ABC'
 				=> 'Revert Wiki.png to the version of 20110305152740',
+		);
+	}
+
+	protected function checkGrantedPermissionsInternal( array $grants, &$message = null ) {
+		$params = $this->extractRequestParams();
+		$title = Title::makeTitleSafe( NS_FILE, $this->params['filename'] );
+		if ( is_null( $title ) ) {
+			// Let ->execute() catch the error
+			$perms = array( 'edit', 'upload' );
+		} else {
+			$perms = ApiBase::getPermissionsForTitle( $title, array( 'upload', 'edit' ) );
+		}
+
+		$needed = array_diff( $perms, $grants );
+		if ( $needed ) {
+			$message = "To revert this file, the following additional permissions are required: " .
+				join( ', ', $needed );
+			return false;
+		}
+
+		$this->allowDeleted = in_array( 'viewdeleted', $grants );
+		return true;
+	}
+
+	protected function getAllCheckedPermissionsInternal() {
+		return array_merge(
+			ApiBase::getPermissionsForAction( array( 'upload', 'edit' ), array( NS_FILE ) ),
+			array( 'viewdeleted' )
 		);
 	}
 }

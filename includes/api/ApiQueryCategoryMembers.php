@@ -413,4 +413,9 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/API:Categorymembers';
 	}
+
+	protected function getAllCheckedPermissionsInternal() {
+		// Nothing sensitive here
+		return array();
+	}
 }

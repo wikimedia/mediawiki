@@ -28,6 +28,7 @@
  * @ingroup API
  */
 class ApiProtect extends ApiBase {
+	private $canOverrideWatchlistPref;
 
 	public function execute() {
 		global $wgRestrictionLevels;
@@ -97,7 +98,11 @@ class ApiProtect extends ApiBase {
 
 		$cascade = $params['cascade'];
 
-		$watch = $params['watch'] ? 'watch' : $params['watchlist'];
+		if ( $this->canOverrideWatchlistPref ) {
+			$watch = $params['watch'] ? 'watch' : $params['watchlist'];
+		} else {
+			$watch = 'preferences';
+		}
 		$this->setWatch( $watch, $titleObj );
 
 		$status = $pageObj->doUpdateRestrictions( $protections, $expiryarray, $cascade, $params['reason'], $this->getUser() );
@@ -229,5 +234,23 @@ class ApiProtect extends ApiBase {
 
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/API:Protect';
+	}
+
+	protected function checkGrantedPermissionsInternal( array $grants, &$message = null ) {
+		$needed = array_diff( array( 'protect' ), $grants );
+		if ( $needed ) {
+			$message = "This module requires the following additional permissions: " .
+				join( ', ', $needed );
+			return false;
+		}
+
+		// Check if watchlist parameters should be honored
+		$this->canOverrideWatchlistPref = in_array( 'override-watchlist-pref', $grants );
+
+		return true;
+	}
+
+	protected function getAllCheckedPermissionsInternal() {
+		return array( 'protect', 'override-watchlist-pref' );
 	}
 }

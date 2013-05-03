@@ -786,6 +786,11 @@ class ApiMain extends ApiBase {
 			}
 		}
 
+		$message = false;
+		if ( !$this->checkGrantsForSubmodule( $module, $message ) ) {
+			$this->dieUsage( $message, 'auth-grant-check-failed' );
+		}
+
 		// Allow extensions to stop execution for arbitrary reasons.
 		$message = false;
 		if ( !wfRunHooks( 'ApiCheckCanExecute', array( $module, $user, &$message ) ) ) {
@@ -1299,6 +1304,56 @@ class ApiMain extends ApiBase {
 	 */
 	public function getFormats() {
 		return $this->getModuleManager()->getNamesWithClasses( 'format' );
+	}
+
+	protected function getAllCheckedPermissionsInternal() {
+		// ApiMain doesn't need permissions itself. Permissions for submodules
+		// are checked in checkExecutePermissions().
+		return array();
+	}
+
+	/**
+	 * Returns all the permissions that any API module might check.
+	 *
+	 * Note this is a fairly expensive operation.
+	 *
+	 * @since 1.22
+	 * @return array
+	 */
+	public static function allApiPermissions() {
+		global $wgAPICacheHelpTimeout, $wgEnableWriteAPI, $wgMemc;
+		// Get help text from cache if present
+		$key = wfMemcKey( 'apiallpermissions', get_class(),
+			SpecialVersion::getVersion( 'nodb' ) );
+		if ( $wgAPICacheHelpTimeout > 0 ) {
+			$cached = $wgMemc->get( $key );
+			if ( $cached ) {
+				return $cached;
+			}
+		}
+
+		$main = new ApiMain( RequestContext::getMain(), $wgEnableWriteAPI );
+		$perms = $main->getAllCheckedPermissions();
+
+		$moduleManagers = array( $main->getModuleManager() );
+		while ( $moduleManagers ) {
+			$manager = array_shift( $moduleManagers );
+			foreach ( $manager->getNames() as $name ) {
+				$module = $manager->getModule( $name );
+				$perms = array_merge( $perms, $module->getAllCheckedPermissions() );
+				$subManager = $module->getModuleManager();
+				if ( $subManager ) {
+					$moduleManagers[] = $subManager;
+				}
+			}
+		}
+
+		sort( $perms );
+		$perms = array_values( array_unique( $perms ) );
+		if ( $wgAPICacheHelpTimeout > 0 ) {
+			$wgMemc->set( $key, $perms, $wgAPICacheHelpTimeout );
+		}
+		return $perms;
 	}
 }
 

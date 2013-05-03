@@ -398,4 +398,9 @@ class ApiQueryUsers extends ApiQueryBase {
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/API:Users';
 	}
+
+	protected function getAllCheckedPermissionsInternal() {
+		// Nothing sensitive here
+		return array();
+	}
 }

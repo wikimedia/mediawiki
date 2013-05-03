@@ -44,6 +44,7 @@ class ApiQueryInfo extends ApiQueryBase {
 
 	private $protections, $watched, $watchers, $notificationtimestamps, $talkids, $subjectids, $displaytitles;
 	private $showZeroWatchers = false;
+	private $allowPrivateInfo = true;
 
 	private $tokenFunctions;
 
@@ -711,7 +712,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		}
 
 		$user = $this->getUser();
-		$canUnwatchedpages = $user->isAllowed( 'unwatchedpages' );
+		$canUnwatchedpages = $this->allowPrivateInfo && $user->isAllowed( 'unwatchedpages' );
 		if ( !$canUnwatchedpages && !is_int( $wgUnwatchedPageThreshold ) ) {
 			return;
 		}
@@ -889,5 +890,32 @@ class ApiQueryInfo extends ApiQueryBase {
 
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/API:Properties#info_.2F_in';
+	}
+
+	protected function checkGrantedPermissionsInternal( array $grants, &$message = null ) {
+		$perms = array();
+		$this->params = $this->extractRequestParams();
+		if ( !is_null( $this->params['prop'] ) ) {
+			$prop = array_flip( $this->params['prop'] );
+			if ( isset( $prop['watched'] ) || isset( $prop['notificationtimestamp'] ) ) {
+				$perms[] = 'watchlist';
+			}
+		}
+
+		$needed = array_diff( $perms, $grants );
+		if ( $needed ) {
+			$message = "This query requires the following additional permissions: " .
+				join( ', ', $needed );
+			return false;
+		}
+
+
+		$this->allowPrivateInfo = in_array( 'privateinfo', $grants );
+
+		return true;
+	}
+
+	protected function getAllCheckedPermissionsInternal() {
+		return array( 'watchlist', 'privateinfo' );
 	}
 }

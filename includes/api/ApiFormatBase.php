@@ -310,6 +310,11 @@ See the <a href='https://www.mediawiki.org/wiki/API'>complete documentation</a>,
 	public function getDescription() {
 		return $this->getIsHtml() ? ' (pretty-print in HTML)' : '';
 	}
+
+	protected function getAllCheckedPermissionsInternal() {
+		// Format modules typically don't need any permission
+		return array();
+	}
 }
 
 /**

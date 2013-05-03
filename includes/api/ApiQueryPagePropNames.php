@@ -113,4 +113,9 @@ class ApiQueryPagePropNames extends ApiQueryBase {
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/API:Pagepropnames';
 	}
+
+	protected function getAllCheckedPermissionsInternal() {
+		// Nothing sensitive here
+		return array();
+	}
 }

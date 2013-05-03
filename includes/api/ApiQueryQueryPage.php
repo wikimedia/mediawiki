@@ -226,4 +226,27 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/API:Querypage';
 	}
+
+	protected function checkGrantedPermissionsInternal( array $grants, &$message = null ) {
+		$params = $this->extractRequestParams();
+		$name = $params['page'];
+		$qp = new $this->qpMap[$name]();
+		if ( $qp->getRestriction() != '' && !in_array( "query-querypage-$name", $grants ) ) {
+			$message = "Querying $name requires the following permissions: query-querypage-$name";
+			return false;
+		}
+		return true;
+	}
+
+	protected function getAllCheckedPermissionsInternal() {
+		// Add a restriction for each restricted QueryPage
+		$perms = array();
+		foreach ( $this->qpMap as $name => $class ) {
+			$qp = new $class();
+			if ( $qp->getRestriction() != '' ) {
+				$perms[] = "query-querypage-$name";
+			}
+		}
+		return $perms;
+	}
 }

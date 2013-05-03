@@ -30,6 +30,8 @@
  * @ingroup API
  */
 class ApiQueryContributions extends ApiQueryBase {
+	private $allowDeleted = true;
+	private $allowPrivateInfo = true;
 
 	public function __construct( $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'uc' );
@@ -41,6 +43,10 @@ class ApiQueryContributions extends ApiQueryBase {
 			$fld_patrolled = false, $fld_tags = false, $fld_size = false, $fld_sizediff = false;
 
 	public function execute() {
+		$filterRights = $this->allowDeleted ? null : $this->getUser()->filterRights( array(
+			'suppressrevision', 'deletedtext', 'deletedhistory', 'browsearchive'
+		) );
+
 		// Parse some parameters
 		$this->params = $this->extractRequestParams();
 
@@ -221,6 +227,9 @@ class ApiQueryContributions extends ApiQueryBase {
 
 		if ( isset( $show['patrolled'] ) || isset( $show['!patrolled'] ) ||
 				$this->fld_patrolled ) {
+			if ( !$this->allowPrivateInfo ) {
+				$this->dieUsage( 'You need the privateinfo permission to request the patrolled flag', 'permissiondenied' );
+			}
 			if ( !$user->useRCPatrol() && !$user->useNPPatrol() ) {
 				$this->dieUsage( 'You need the patrol right to request the patrolled flag', 'permissiondenied' );
 			}
@@ -550,5 +559,15 @@ class ApiQueryContributions extends ApiQueryBase {
 
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/API:Usercontribs';
+	}
+
+	protected function checkGrantedPermissionsInternal( array $grants, &$message = null ) {
+		$this->allowDeleted = in_array( 'viewdeleted', $grants );
+		$this->allowPrivateInfo = in_array( 'privateinfo', $grants );
+		return true;
+	}
+
+	protected function getAllCheckedPermissionsInternal() {
+		return array( 'viewdeleted', 'privateinfo' );
 	}
 }

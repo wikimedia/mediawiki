@@ -197,4 +197,9 @@ class ApiQueryIWLinks extends ApiQueryBase {
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/API:Iwlinks';
 	}
+
+	protected function getAllCheckedPermissionsInternal() {
+		// Nothing sensitive here
+		return array();
+	}
 }

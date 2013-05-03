@@ -275,4 +275,12 @@ class ApiFeedWatchlist extends ApiBase {
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/API:Watchlist_feed';
 	}
+
+	protected function checkGrantedPermissionsInternal( array $grants, &$message = null ) {
+		return $this->getWatchlistModule()->checkGrantedPermissionsInternal( $grants, $message );
+	}
+
+	protected function getAllCheckedPermissionsInternal() {
+		return $this->getWatchlistModule()->getAllCheckedPermissionsInternal();
+	}
 }

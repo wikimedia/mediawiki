@@ -59,4 +59,9 @@ class ApiDisabled extends ApiBase {
 	public function getExamples() {
 		return array();
 	}
+
+	protected function getAllCheckedPermissionsInternal() {
+		// Does not need any permissions to report that the module has been disabled
+		return array();
+	}
 }

@@ -186,4 +186,9 @@ class ApiQueryPagesWithProp extends ApiQueryGeneratorBase {
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/API:Pageswithprop';
 	}
+
+	protected function getAllCheckedPermissionsInternal() {
+		// Nothing sensitive here
+		return array();
+	}
 }

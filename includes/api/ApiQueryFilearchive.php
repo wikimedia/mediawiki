@@ -377,4 +377,8 @@ class ApiQueryFilearchive extends ApiQueryBase {
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/API:Filearchive';
 	}
+
+	protected function getAllCheckedPermissionsInternal() {
+		return array( 'viewdeleted' );
+	}
 }

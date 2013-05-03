@@ -25,6 +25,12 @@
  * their associated module code by deferring initialisation until the first
  * method call.
  *
+ * Note on reference parameters:
+ *
+ * If the called method takes any parameters by reference, the __call magic
+ * here won't work correctly. The solution is to unstub the object before
+ * calling the method.
+ *
  * Note on unstub loops:
  *
  * Unstub loops (infinite recursion) sometimes occur when a constructor calls
@@ -54,7 +60,8 @@ class StubObject {
 
 	/**
 	 * Returns a bool value whenever $obj is a stub object. Can be used to break
-	 * a infinite loop when unstubbing an object.
+	 * a infinite loop when unstubbing an object or avoid reference parameter
+	 * breakage.
 	 *
 	 * @param $obj Object to check.
 	 * @return Boolean: true if $obj is not an instance of StubObject class.

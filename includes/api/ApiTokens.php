@@ -101,4 +101,10 @@ class ApiTokens extends ApiBase {
 			'api.php?action=tokens&type=email|move' => 'Retrieve an email token and a move token'
 		);
 	}
+
+	protected function getAllCheckedPermissionsInternal() {
+		// Nothing sensitive here that we can do anything about
+		// (all the token-getting functions are static and elsewhere)
+		return array();
+	}
 }

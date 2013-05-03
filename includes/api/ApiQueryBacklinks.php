@@ -557,4 +557,9 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 	public function getHelpUrls() {
 		return $this->helpUrl;
 	}
+
+	protected function getAllCheckedPermissionsInternal() {
+		// Nothing sensitive here
+		return array();
+	}
 }

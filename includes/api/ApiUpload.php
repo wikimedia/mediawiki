@@ -36,6 +36,8 @@ class ApiUpload extends ApiBase {
 
 	protected $mParams;
 
+	private $canOverrideWatchlistPref = true;
+
 	public function execute() {
 		global $wgEnableAsyncUploads;
 
@@ -574,11 +576,16 @@ class ApiUpload extends ApiBase {
 
 		/** @var $file File */
 		$file = $this->mUpload->getLocalFile();
-		$watch = $this->getWatchlistValue( $this->mParams['watchlist'], $file->getTitle() );
 
-		// Deprecated parameters
-		if ( $this->mParams['watch'] ) {
-			$watch = true;
+		if ( $this->canOverrideWatchlistPref ) {
+			$watch = $this->getWatchlistValue( $this->mParams['watchlist'], $file->getTitle() );
+
+			// Deprecated parameters
+			if ( $this->mParams['watch'] ) {
+				$watch = true;
+			}
+		} else {
+			$watch = $this->getWatchlistValue( 'preferences', $file->getTitle() );
 		}
 
 		// No errors, no warnings: do the upload
@@ -832,5 +839,34 @@ class ApiUpload extends ApiBase {
 
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/API:Upload';
+	}
+
+	protected function checkGrantedPermissionsInternal( array $grants, &$message = null ) {
+		$params = $this->extractRequestParams();
+		if ( !( $params['filekey'] && $this->mParams['checkstatus'] )
+			&& !$params['statuskey']
+		) {
+			$title = Title::makeTitle( NS_FILE, $params['filename'] );
+			$actions = $title->exists() ? array( 'upload', 'edit' ) : array( 'upload', 'create', 'edit' );
+			$needed = array_diff( ApiBase::getPermissionsForTitle( $title, $actions ), $grants );
+			if ( $needed ) {
+				$message = "To upload to this title, the following additional permissions are required: " .
+					join( ', ', $needed );
+				return false;
+			}
+		}
+
+		// Check if watchlist parameters should be honored
+		$this->canOverrideWatchlistPref = in_array( 'override-watchlist-pref', $grants );
+
+		return true;
+	}
+
+	protected function getAllCheckedPermissionsInternal() {
+		return array_merge(
+			ApiBase::getPermissionsForAction( array( 'upload', 'edit' ), array( NS_FILE ) ),
+			ApiBase::getPermissionsForAction( array( 'upload', 'create', 'edit' ), array( NS_FILE ) ),
+			array( 'override-watchlist-pref' )
+		);
 	}
 }

@@ -292,8 +292,15 @@ abstract class ApiBase extends ContextSource {
 			if ( $this->mustBePosted() ) {
 				$msg .= "\nThis module only accepts POST requests";
 			}
+			$checkedPermissions = $this->getAllCheckedPermissions();
+			if ( $checkedPermissions ) {
+				sort( $checkedPermissions );
+				$checkedPermissions = array_unique( $checkedPermissions );
+				$msg .= wordwrap( "\nThis module may check the following permissions: " .
+					join( ' ', $checkedPermissions ), 100, "\n    " );
+			}
 			if ( $this->isReadMode() || $this->isWriteMode() ||
-					$this->mustBePosted() ) {
+					$this->mustBePosted() || $checkedPermissions ) {
 				$msg .= "\n";
 			}
 
@@ -1766,5 +1773,196 @@ abstract class ApiBase extends ContextSource {
 			print "\n" . wfBacktrace();
 		}
 		print "\n</pre>\n";
+	}
+
+	/**
+	 * Check whether the specified permissions are sufficient to allow
+	 * executing this module.
+	 *
+	 * The default implementation looks for all permissions returned by
+	 * $this->getAllCheckedPermissions().
+	 *
+	 * @since 1.22
+	 * @param array $grants Granted permissions
+	 * @param string &$message Failure message to user
+	 * @return bool
+	 */
+	public function checkGrantedPermissions( array $grants, &$message = null ) {
+		$success = $this->checkGrantedPermissionsInternal( $grants, $message );
+		wfRunHooks( 'APICheckGrantedPermissions', array( $this, $grants, &$message, &$success ) );
+		return $success;
+	}
+
+	/**
+	 * Return the list of permissions this module may check.
+	 *
+	 * The default implementation returns a single permission with the same
+	 * name as the module.
+	 *
+	 * @since 1.22
+	 * @return array
+	 */
+	public function getAllCheckedPermissions() {
+		$perms = $this->getAllCheckedPermissionsInternal();
+		wfRunHooks( 'APIGetAllCheckedPermissions', array( $this, &$perms ) );
+		$perms = array_values( array_unique( $perms ) );
+		return $perms;
+	}
+
+	/**
+	 * Modules should override this to change checkGrantedPermissions().
+	 *
+	 * @since 1.22
+	 * @param array $grants Granted permissions
+	 * @param string &$message Failure message to user
+	 * @return bool
+	 */
+	protected function checkGrantedPermissionsInternal( array $grants, &$message = null ) {
+		$needed = array_diff( $this->getAllCheckedPermissions(), $grants );
+		if ( $needed ) {
+			$message = "This module requires the following additional permissions: " .
+				join( ', ', $needed );
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Modules should override this to change getAllCheckedPermissions().
+	 *
+	 * @since 1.22
+	 * @return array
+	 */
+	protected function getAllCheckedPermissionsInternal() {
+		return array( $this->getModuleName() );
+	}
+
+	/**
+	 * Check whether there are sufficient permissions granted for the specified
+	 * module to be able to be executed.
+	 *
+	 * @since 1.22
+	 * @param ApiBase $module
+	 * @param string &$message Failure message to user
+	 * @return bool
+	 */
+	protected function checkGrantsForSubmodule( ApiBase $module, &$message = null ) {
+		global $wgAuth;
+		if ( !StubObject::isRealObject( $wgAuth ) ) {
+			// StubObject cannot handle calls with reference parameters, e.g.
+			// $message in $wgAuth->checkGrantsForApi(), so manually unstub
+			$wgAuth->_unstub();
+		}
+		return $wgAuth->checkGrantsForApi( $module, $this->getUser(), $message );
+	}
+
+	/**
+	 * Get the permissions required to perform the specified action on the
+	 * specified title.
+	 *
+	 * @since 1.22
+	 * @param Title $title
+	 * @param array $actions [0] will be used as the "main" action; the rest
+	 *     are implied (e.g. 'move' also checks for 'edit' protection)
+	 * @return array
+	 */
+	protected static function getPermissionsForTitle( Title $title, $actions ) {
+		global $wgRestrictionLevels, $wgNamespaceProtection;
+
+		// First, the base permission.
+		$perm = $actions[0];
+		$perms = array( $perm );
+
+		// If the namespace is protected, require permission to edit that
+		// namespace.
+		if ( in_array( 'edit', $actions ) ) {
+			$ns = $title->getNamespace();
+			if ( isset( $wgNamespaceProtection[$ns] ) ) {
+				$perms[] = "edit-ns$ns";
+			}
+		}
+
+		// If the page is protected, require permission for each protection
+		// level. Cascading and non-cascading are separated. The permission
+		// checked is based on the "main" action, not any implied action.
+		foreach ( $actions as $action ) {
+			$protections = $title->getRestrictions( $action );
+			if ( $protections ) {
+				if ( $title->isCascadeProtected() || $title->areRestrictionsCascading() ) {
+					$infix = 'cascadeprotected';
+				} else {
+					$infix = 'protected';
+				}
+				foreach ( $protections as $level ) {
+					if ( in_array( $level, $wgRestrictionLevels ) && $level != '' ) { // not !==, to match Title check
+						$perms[] = "$perm-$infix-$level";
+					}
+				}
+			}
+		}
+
+		// If the page is a userspace .js or .css, require permission for that
+		// too. Editing your own js/css is separate from editing someone
+		// else's.
+		if ( in_array( 'edit', $actions ) && $ns == NS_USER && $title->isSubpage() ) {
+			$user = $this->getUser();
+			$who = ( $user->getName() === $title->getRootText() ) ? 'my' : 'user';
+			if ( $title->isJsSubpage() ) {
+				$perms[] = "edit-{$who}js";
+			}
+			if ( $title->isCssSubpage() ) {
+				$perms[] = "edit-{$who}css";
+			}
+		}
+
+		$perms = array_values( array_unique( $perms ) );
+
+		return $perms;
+	}
+
+	/**
+	 * Get the permissions required to perform the specified action on an
+	 * arbitrary title.
+	 *
+	 * @since 1.22
+	 * @param array $actions
+	 * @param array|null $namespaces Namespaces that might be used, null for all
+	 * @return array
+	 */
+	protected static function getPermissionsForAction( array $actions, array $namespaces = null ) {
+		global $wgRestrictionLevels, $wgNamespaceProtection;
+
+		// First, the base permission
+		$perm = $actions[0];
+		$perms = array( $perm );
+
+		// Permission to edit protected namespaces
+		if ( in_array( 'edit', $actions ) ) {
+			foreach ( $wgNamespaceProtection as $ns => $dummy ) {
+				if ( !$namespaces || in_array( $ns, $namespaces ) ) {
+					$perms[] = "edit-ns$ns";
+				}
+			}
+		}
+
+		// All possible protection levels
+		foreach ( $actions as $action ) {
+			foreach ( $wgRestrictionLevels as $level ) {
+				if ( $level != '' ) { // not !==, to match Title check
+					$perms[] = "$perm-protected-$level";
+					$perms[] = "$perm-cascadeprotected-$level";
+				}
+			}
+		}
+
+		if ( in_array( 'edit', $actions ) && ( !$namespaces || in_array( NS_USER, $namespaces ) ) ) {
+			foreach ( array( 'mycss', 'myjs', 'usercss', 'userjs' ) as $suffix ) {
+				$perms[] = "$perm-$suffix";
+			}
+		}
+
+		$perms = array_values( array_unique( $perms ) );
+
+		return $perms;
 	}
 }

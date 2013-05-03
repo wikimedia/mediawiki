@@ -28,6 +28,7 @@
  * @ingroup API
  */
 class ApiFeedContributions extends ApiBase {
+	private $allowDeleted = true;
 
 	/**
 	 * This module uses a custom feed wrapper printer.
@@ -39,6 +40,10 @@ class ApiFeedContributions extends ApiBase {
 	}
 
 	public function execute() {
+		$filterRights = $this->allowDeleted ? null : $this->getUser()->filterRights( array(
+			'suppressrevision', 'deletedtext', 'deletedhistory', 'browsearchive',
+		) );
+
 		$params = $this->extractRequestParams();
 
 		global $wgFeed, $wgFeedClasses, $wgSitename, $wgLanguageCode;
@@ -207,5 +212,14 @@ class ApiFeedContributions extends ApiBase {
 		return array(
 			'api.php?action=feedcontributions&user=Reedy',
 		);
+	}
+
+	protected function checkGrantedPermissionsInternal( array $grants, &$message = null ) {
+		$this->allowDeleted = in_array( 'viewdeleted', $grants );
+		return true;
+	}
+
+	protected function getAllCheckedPermissionsInternal() {
+		return array( 'viewdeleted' );
 	}
 }

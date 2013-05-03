@@ -26,6 +26,7 @@
  * @ingroup API
  */
 class ApiParse extends ApiBase {
+	private $allowDeleted = true;
 
 	/** @var String $section */
 	private $section = null;
@@ -37,6 +38,10 @@ class ApiParse extends ApiBase {
 	private $pstContent = null;
 
 	public function execute() {
+		$filterRights = $this->allowDeleted ? null : $this->getUser()->filterRights( array(
+			'suppressrevision', 'deletedtext', 'deletedhistory', 'browsearchive'
+		) );
+
 		// The data is hot but user-dependent, like page views, so we set vary cookies
 		$this->getMain()->setCacheMode( 'anon-public-user-private' );
 
@@ -685,5 +690,14 @@ class ApiParse extends ApiBase {
 
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/API:Parsing_wikitext#parse';
+	}
+
+	protected function checkGrantedPermissionsInternal( array $grants, &$message = null ) {
+		$this->allowDeleted = in_array( 'viewdeleted', $grants );
+		return true;
+	}
+
+	protected function getAllCheckedPermissionsInternal() {
+		return array( 'viewdeleted' );
 	}
 }

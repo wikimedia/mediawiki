@@ -351,12 +351,24 @@ $user: Current user
 &$message: API usage message to die with, as a message key or array
 as accepted by ApiBase::dieUsageMsg.
 
+'APICheckGrantedPermissions': Use this hook to modify the result of
+checkGrantedPermissions().
+$module: Module object
+$grants: Array of granted permissions
+&$message: Failure message to user, string
+&$success: Boolean, whether the permission check passes
+
 'APIEditBeforeSave': Before saving a page with api.php?action=edit, after
 processing request parameters. Return false to let the request fail, returning
 an error message or an <edit result="Failure"> tag if $resultArr was filled.
 $editPage : the EditPage object
 $text : the new text of the article (has yet to be saved)
 &$resultArr : data in this array will be added to the API result
+
+'APIGetAllCheckedPermissions': Use this hook to modify the permissions checked
+by the module.
+$module: Module object
+&$perms: Array of permissions
 
 'APIGetAllowedParams': Use this hook to modify a module's parameters.
 &$module: ApiBase Module object
