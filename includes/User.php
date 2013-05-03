@@ -1802,6 +1802,7 @@ class User {
 				$this->mNewtalk = $this->checkNewtalk( 'user_id', $this->mId );
 			}
 		}
+		wfRunHooks( 'UserHasNewMessages', array( $this, &$this->mNewtalk ) );
 
 		return (bool)$this->mNewtalk;
 	}
