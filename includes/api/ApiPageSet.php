@@ -138,6 +138,13 @@ class ApiPageSet extends ApiBase {
 			// add any additional fields generator may need, and execute pageset to populate titles/pageids
 			$tmpPageSet = new ApiPageSet( $dbSource, ApiPageSet::DISABLE_GENERATORS );
 			$generator->setGeneratorMode( $tmpPageSet );
+
+			$message = false;
+			if ( !$this->checkGrantsForSubmodule( $generator, $message ) ) {
+				$generatorName = $generator->getModuleName();
+				$this->dieUsage( "Generator module '$generatorName' cannot be used: $message", 'auth-grant-check-failed' );
+			}
+
 			$this->mCacheMode = $generator->getCacheMode( $generator->extractRequestParams() );
 
 			if ( !$isDryRun ) {
@@ -1086,5 +1093,11 @@ class ApiPageSet extends ApiBase {
 			array( 'code' => 'multisource', 'info' => "Cannot use 'revids' at the same time as 'dataSource'" ),
 			array( 'code' => 'badgenerator', 'info' => 'Module $generatorName cannot be used as a generator' ),
 		) );
+	}
+
+	protected function getAllCheckedPermissionsInternal() {
+		// PageSet doesn't need special permissions. The generator might, but
+		// that's checked in execute() above.
+		return array();
 	}
 }

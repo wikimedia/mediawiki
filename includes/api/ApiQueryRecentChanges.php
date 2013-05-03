@@ -31,6 +31,7 @@
  * @ingroup API
  */
 class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
+	private $allowPrivateInfo = true;
 
 	public function __construct( $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'rc' );
@@ -196,6 +197,9 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 			// Check permissions
 			if ( isset( $show['patrolled'] ) || isset( $show['!patrolled'] ) ) {
+				if ( !$this->allowPrivateInfo ) {
+					$this->dieUsage( 'You need the privateinfo permission to request the patrolled flag', 'permissiondenied' );
+				}
 				if ( !$user->useRCPatrol() && !$user->useNPPatrol() ) {
 					$this->dieUsage( 'You need the patrol right to request the patrolled flag', 'permissiondenied' );
 				}
@@ -250,8 +254,13 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			/* Set up internal members based upon params. */
 			$this->initProperties( $prop );
 
-			if ( $this->fld_patrolled && !$user->useRCPatrol() && !$user->useNPPatrol() ) {
-				$this->dieUsage( 'You need the patrol right to request the patrolled flag', 'permissiondenied' );
+			if ( $this->fld_patrolled ) {
+				if ( !$this->allowPrivateInfo ) {
+					$this->dieUsage( 'You need the privateinfo permission to request the patrolled flag', 'permissiondenied' );
+				}
+				if ( !$user->useRCPatrol() && !$user->useNPPatrol() ) {
+					$this->dieUsage( 'You need the patrol right to request the patrolled flag', 'permissiondenied' );
+				}
 			}
 
 			$this->addFields( 'rc_id' );
@@ -763,5 +772,14 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/API:Recentchanges';
+	}
+
+	protected function checkGrantedPermissionsInternal( array $grants, &$message = null ) {
+		$this->allowPrivateInfo = in_array( 'privateinfo', $grants );
+		return true;
+	}
+
+	protected function getAllCheckedPermissionsInternal() {
+		return array( 'privateinfo' );
 	}
 }

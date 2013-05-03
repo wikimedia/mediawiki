@@ -400,4 +400,9 @@ class ApiResult extends ApiBase {
 	public function execute() {
 		ApiBase::dieDebug( __METHOD__, 'execute() is not supported on Result object' );
 	}
+
+	protected function getAllCheckedPermissionsInternal() {
+		// Doesn't make sense for this utility module
+		return array();
+	}
 }

@@ -151,6 +151,11 @@ class ApiRsd extends ApiBase {
 		}
 		return $outputData;
 	}
+
+	protected function getAllCheckedPermissionsInternal() {
+		// Nothing sensitive here
+		return array();
+	}
 }
 
 class ApiFormatXmlRsd extends ApiFormatXml {

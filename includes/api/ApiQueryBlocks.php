@@ -30,6 +30,7 @@
  * @ingroup API
  */
 class ApiQueryBlocks extends ApiQueryBase {
+	private $allowHidden = true;
 
 	/**
 	 * @var Array
@@ -139,7 +140,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 			$this->addWhereIf( 'ipb_range_end > ipb_range_start', isset( $show['range'] ) );
 		}
 
-		if ( !$this->getUser()->isAllowed( 'hideuser' ) ) {
+		if ( !$this->allowHidden || !$this->getUser()->isAllowed( 'hideuser' ) ) {
 			$this->addWhereFld( 'ipb_deleted', 0 );
 		}
 
@@ -404,5 +405,14 @@ class ApiQueryBlocks extends ApiQueryBase {
 
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/API:Blocks';
+	}
+
+	protected function checkGrantedPermissionsInternal( array $grants, &$message = null ) {
+		$this->allowHidden = in_array( 'view-hidden-blocks', $grants );
+		return true;
+	}
+
+	protected function getAllCheckedPermissionsInternal() {
+		return array( 'view-hidden-blocks' );
 	}
 }

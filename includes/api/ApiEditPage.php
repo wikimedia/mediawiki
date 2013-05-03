@@ -32,21 +32,13 @@
  * @ingroup API
  */
 class ApiEditPage extends ApiBase {
+	private $canOverrideWatchlistPref = true;
 
-	public function execute() {
+	protected function getPageToBeEdited( $apiResult = null ) {
 		$user = $this->getUser();
 		$params = $this->extractRequestParams();
-
-		if ( is_null( $params['text'] ) && is_null( $params['appendtext'] ) &&
-				is_null( $params['prependtext'] ) &&
-				$params['undo'] == 0 )
-		{
-			$this->dieUsageMsg( 'missingtext' );
-		}
-
 		$pageObj = $this->getTitleOrPageId( $params );
 		$titleObj = $pageObj->getTitle();
-		$apiResult = $this->getResult();
 
 		if ( $params['redirect'] ) {
 			if ( $titleObj->isRedirect() ) {
@@ -74,13 +66,33 @@ class ApiEditPage extends ApiBase {
 					$titleObj = $newTitle;
 				}
 
-				$apiResult->setIndexedTagName( $redirValues, 'r' );
-				$apiResult->addValue( null, 'redirects', $redirValues );
+				if ( $apiResult ) {
+					$apiResult->setIndexedTagName( $redirValues, 'r' );
+					$apiResult->addValue( null, 'redirects', $redirValues );
+				}
 
 				// Since the page changed, update $pageObj
 				$pageObj = WikiPage::factory( $titleObj );
 			}
 		}
+
+		return $pageObj;
+	}
+
+	public function execute() {
+		$user = $this->getUser();
+		$params = $this->extractRequestParams();
+
+		if ( is_null( $params['text'] ) && is_null( $params['appendtext'] ) &&
+				is_null( $params['prependtext'] ) &&
+				$params['undo'] == 0 )
+		{
+			$this->dieUsageMsg( 'missingtext' );
+		}
+
+		$apiResult = $this->getResult();
+		$pageObj = $this->getPageToBeEdited( $apiResult );
+		$titleObj = $pageObj->getTitle();
 
 		if ( !isset( $params['contentmodel'] ) || $params['contentmodel'] == '' ) {
 			$contentHandler = $pageObj->getContentHandler();
@@ -280,13 +292,17 @@ class ApiEditPage extends ApiBase {
 			$requestArray['wpSection'] = '';
 		}
 
-		$watch = $this->getWatchlistValue( $params['watchlist'], $titleObj );
+		if ( $this->canOverrideWatchlistPref ) {
+			$watch = $this->getWatchlistValue( $params['watchlist'], $titleObj );
 
-		// Deprecated parameters
-		if ( $params['watch'] ) {
-			$watch = true;
-		} elseif ( $params['unwatch'] ) {
-			$watch = false;
+			// Deprecated parameters
+			if ( $params['watch'] ) {
+				$watch = true;
+			} elseif ( $params['unwatch'] ) {
+				$watch = false;
+			}
+		} else {
+			$watch = $this->getWatchlistValue( 'preferences', $titleObj );
 		}
 
 		if ( $watch ) {
@@ -646,5 +662,30 @@ class ApiEditPage extends ApiBase {
 
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/API:Edit';
+	}
+
+	protected function checkGrantedPermissionsInternal( array $grants, &$message = null ) {
+		$title = $this->getPageToBeEdited()->getTitle();
+		$actions = $title->exists() ? array( 'edit' ) : array( 'create', 'edit' );
+
+		$needed = array_diff( ApiBase::getPermissionsForTitle( $title, $actions ), $grants );
+		if ( $needed ) {
+			$message = "To $actions[0] this page, the following additional permissions are required: " .
+				join( ', ', $needed );
+			return false;
+		}
+
+		// Check if watchlist parameters should be honored
+		$this->canOverrideWatchlistPref = in_array( 'override-watchlist-pref', $grants );
+
+		return true;
+	}
+
+	protected function getAllCheckedPermissionsInternal() {
+		return array_merge(
+			ApiBase::getPermissionsForAction( array( 'edit' ) ),
+			ApiBase::getPermissionsForAction( array( 'create', 'edit' ) ),
+			array( 'override-watchlist-pref' )
+		);
 	}
 }

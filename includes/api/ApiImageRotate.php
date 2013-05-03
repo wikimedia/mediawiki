@@ -23,6 +23,7 @@
 
 class ApiImageRotate extends ApiBase {
 	private $mPageSet = null;
+	private $grantedPermissions = null;
 
 	public function __construct( $main, $action ) {
 		parent::__construct( $main, $action );
@@ -155,6 +156,16 @@ class ApiImageRotate extends ApiBase {
 	 * @return string|null Permission error message, or null if there is no error
 	 */
 	protected function checkPermissions( $user, $title ) {
+		if ( $this->grantedPermissions !== null ) {
+			$perms = ApiBase::getPermissionsForTitle( $title, array( 'upload', 'edit' ) );
+
+			$needed = array_diff( $perms, $this->grantedPermissions );
+			if ( $needed ) {
+				return "To rotate this image, the following additional permissions are required: " .
+					join( ', ', $needed );
+			}
+		}
+
 		$permissionErrors = array_merge(
 			$title->getUserPermissionsErrors( 'edit', $user ),
 			$title->getUserPermissionsErrors( 'upload', $user )
@@ -226,5 +237,25 @@ class ApiImageRotate extends ApiBase {
 		return array(
 			'api.php?action=imagerotate&titles=Example.jpg&rotation=90&token=123ABC',
 		);
+	}
+
+	protected function checkGrantedPermissionsInternal( array $grants, &$message = null ) {
+		// We can only check basic permissions here. Store the rest for use during execute.
+		$needed = array_diff( array( 'upload' ), $grants );
+		if ( $needed ) {
+			$message = "To rotate images, the following additional permissions are required: " .
+				join( ', ', $needed );
+			return false;
+		}
+
+		$this->grantedPermissions = array_intersect(
+			$grants, $this->getAllCheckedPermissions()
+		);
+
+		return true;
+	}
+
+	protected function getAllCheckedPermissionsInternal() {
+		return ApiBase::getPermissionsForAction( array( 'upload', 'edit' ), array( NS_FILE ) );
 	}
 }

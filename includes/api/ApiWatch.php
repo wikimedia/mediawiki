@@ -147,4 +147,8 @@ class ApiWatch extends ApiBase {
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/API:Watch';
 	}
+
+	protected function getAllCheckedPermissionsInternal() {
+		return array( 'editwatchlist' );
+	}
 }

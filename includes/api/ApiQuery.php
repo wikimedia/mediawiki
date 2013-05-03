@@ -269,6 +269,11 @@ class ApiQuery extends ApiBase {
 			$params = $module->extractRequestParams();
 			$cacheMode = $this->mergeCacheMode(
 				$cacheMode, $module->getCacheMode( $params ) );
+			$message = false;
+			if ( !$this->checkGrantsForSubmodule( $module, $message ) ) {
+				$moduleName = $module->getModuleName();
+				$this->dieUsage( "Query module '$moduleName' cannot be used: $message", 'auth-grant-check-failed' );
+			}
 			$module->profileIn();
 			$module->execute();
 			wfRunHooks( 'APIQueryAfterExecute', array( &$module ) );
@@ -740,5 +745,11 @@ class ApiQuery extends ApiBase {
 			'https://www.mediawiki.org/wiki/API:Properties',
 			'https://www.mediawiki.org/wiki/API:Lists',
 		);
+	}
+
+	protected function getAllCheckedPermissionsInternal() {
+		// Query doesn't need any permissions itself; permissions for
+		// submodules are checked above in execute().
+		return array();
 	}
 }

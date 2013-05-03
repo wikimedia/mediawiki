@@ -24,8 +24,13 @@
  */
 
 class ApiComparePages extends ApiBase {
+	private $allowDeleted = true;
 
 	public function execute() {
+		$filterRights = $this->allowDeleted ? null : $this->getUser()->filterRights( array(
+			'suppressrevision', 'deletedtext', 'deletedhistory', 'browsearchive'
+		) );
+
 		$params = $this->extractRequestParams();
 
 		$rev1 = $this->revisionOrTitleOrId( $params['fromrev'], $params['fromtitle'], $params['fromid'] );
@@ -167,5 +172,14 @@ class ApiComparePages extends ApiBase {
 		return array(
 			'api.php?action=compare&fromrev=1&torev=2' => 'Create a diff between revision 1 and 2',
 		);
+	}
+
+	protected function checkGrantedPermissionsInternal( array $grants, &$message = null ) {
+		$this->allowDeleted = in_array( 'viewdeleted', $grants );
+		return true;
+	}
+
+	protected function getAllCheckedPermissionsInternal() {
+		return array( 'viewdeleted' );
 	}
 }

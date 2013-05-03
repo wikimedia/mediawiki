@@ -236,6 +236,8 @@ class User {
 
 	static $idCacheByName = array();
 
+	private $filteredRights = array();
+
 	/**
 	 * Lightweight constructor for an anonymous user.
 	 * Use the User::newFrom* factory functions for other kinds of users.
@@ -2562,7 +2564,45 @@ class User {
 			// Force reindexation of rights when a hook has unset one of them
 			$this->mRights = array_values( array_unique( $this->mRights ) );
 		}
-		return $this->mRights;
+		return array_values( array_diff( $this->mRights, $this->filteredRights ) );
+	}
+
+	/**
+	 * Reset the filtered rights.
+	 * This exists because PHP 5.3 cannot reference private members of $this
+	 * @private
+	 */
+	public function unfilterRightsInternal( array $filter, array $oldFilter ) {
+		if ( $this->filteredRights === $filter ) {
+			$this->filteredRights = $oldFilter;
+		}
+	}
+
+	/**
+	 * Set the list of rights to filter from getRights().
+	 *
+	 * A later call overrides an earlier one. The lifetimes of the
+	 * ScopedCallbacks should ideally be nested.
+	 *
+	 * @param array $rights permission names
+	 * @return ScopedCallback for unhiding the rights
+	 */
+	public function filterRights( array $rights ) {
+		$that = $this;
+		$oldFilteredRights = $this->filteredRights;
+		$this->filteredRights = $rights;
+		return new ScopedCallback( function () use ( $that, $rights, $oldFilteredRights ) {
+			$that->unfilterRightsInternal( $rights, $oldFilteredRights );
+		} );
+	}
+
+	/**
+	 * Get the list of rights being filtered from getRights().
+	 *
+	 * @return Array of rights strings
+	 */
+	public function getFilteredRights() {
+		return $this->filteredRights;
 	}
 
 	/**

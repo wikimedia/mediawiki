@@ -172,4 +172,8 @@ class ApiUndelete extends ApiBase {
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/API:Undelete';
 	}
+
+	protected function getAllCheckedPermissionsInternal() {
+		return array( 'delete' );
+	}
 }

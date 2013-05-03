@@ -125,6 +125,9 @@ class ApiParamInfo extends ApiBase {
 			$retval['generator'] = '';
 		}
 
+		$retval['checkedpermissions'] = $obj->getAllCheckedPermissions();
+		$result->setIndexedTagName( $retval['checkedpermissions'], 'permission' );
+
 		$allowedParams = $obj->getFinalParams( ApiBase::GET_VALUES_FOR_HELP );
 		if ( !is_array( $allowedParams ) ) {
 			return $retval;
@@ -357,5 +360,10 @@ class ApiParamInfo extends ApiBase {
 
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/API:Parameter_information';
+	}
+
+	protected function getAllCheckedPermissionsInternal() {
+		// ParamInfo needs no special permissions
+		return array();
 	}
 }

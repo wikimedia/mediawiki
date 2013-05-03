@@ -57,4 +57,9 @@ class ApiQueryDisabled extends ApiQueryBase {
 	public function getExamples() {
 		return array();
 	}
+
+	protected function getAllCheckedPermissionsInternal() {
+		// No need to check permissions just to find that it's disabled
+		return array();
+	}
 }

@@ -29,6 +29,7 @@
  * @ingroup API
  */
 class ApiMove extends ApiBase {
+	private $canOverrideWatchlistPref = true;
 
 	public function execute() {
 		$user = $this->getUser();
@@ -126,12 +127,14 @@ class ApiMove extends ApiBase {
 		}
 
 		$watch = 'preferences';
-		if ( isset( $params['watchlist'] ) ) {
-			$watch = $params['watchlist'];
-		} elseif ( $params['watch'] ) {
-			$watch = 'watch';
-		} elseif ( $params['unwatch'] ) {
-			$watch = 'unwatch';
+		if ( $this->canOverrideWatchlistPref ) {
+			if ( isset( $params['watchlist'] ) ) {
+				$watch = $params['watchlist'];
+			} elseif ( $params['watch'] ) {
+				$watch = 'watch';
+			} elseif ( $params['unwatch'] ) {
+				$watch = 'unwatch';
+			}
 		}
 
 		// Watch pages
@@ -297,5 +300,46 @@ class ApiMove extends ApiBase {
 
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/API:Move';
+	}
+
+	protected function checkGrantedPermissionsInternal( array $grants, &$message = null ) {
+		$params = $this->extractRequestParams();
+		if ( isset( $params['from'] ) ) {
+			$fromTitle = Title::newFromText( $params['from'] );
+		} elseif ( isset( $params['fromid'] ) ) {
+			$fromTitle = Title::newFromID( $params['fromid'] );
+		}
+		$toTitle = Title::newFromText( $params['to'] );
+
+		$perms = array_merge(
+			$fromTitle ? ApiBase::getPermissionsForTitle( $fromTitle, array( 'move', 'edit' ) ) : array( 'move' ),
+			$toTitle ? ApiBase::getPermissionsForTitle( $toTitle, array( 'move', 'edit' ) ) : array( 'move' )
+		);
+		if ( $toTitle && !$toTitle->exists() ) {
+			$perms = array_merge( $perms, ApiBase::getPermissionsForTitle( $toTitle, 'create', 'edit' ) );
+		}
+
+		sort( $perms );
+		$perms = array_unique( $perms );
+
+		$needed = array_diff( $perms, $grants );
+		if ( $needed ) {
+			$message = "To perform this move, the following additional permissions are required: " .
+				join( ', ', $needed );
+			return false;
+		}
+
+		// Check if watchlist parameters should be honored
+		$this->canOverrideWatchlistPref = in_array( 'override-watchlist-pref', $grants );
+
+		return true;
+	}
+
+	protected function getAllCheckedPermissionsInternal() {
+		return array_merge(
+			ApiBase::getPermissionsForAction( array( 'move', 'edit' ) ),
+			ApiBase::getPermissionsForAction( array( 'create', 'edit' ) ),
+			array( 'override-watchlist-pref' )
+		);
 	}
 }

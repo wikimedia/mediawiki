@@ -134,4 +134,9 @@ class ApiOpenSearch extends ApiBase {
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/API:Opensearch';
 	}
+
+	protected function getAllCheckedPermissionsInternal() {
+		// No special permission needed for search
+		return array();
+	}
 }

@@ -166,4 +166,9 @@ class ApiHelp extends ApiBase {
 			'https://www.mediawiki.org/wiki/API:Quick_start_guide',
 		);
 	}
+
+	protected function getAllCheckedPermissionsInternal() {
+		// No permission needed to see help
+		return array();
+	}
 }

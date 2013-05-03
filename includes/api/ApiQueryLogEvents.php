@@ -30,6 +30,7 @@
  * @ingroup API
  */
 class ApiQueryLogEvents extends ApiQueryBase {
+	private $filterTypes = array();
 
 	public function __construct( $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'le' );
@@ -61,6 +62,12 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		$hideLogs = LogEventsList::getExcludeClause( $db, 'user', $this->getUser() );
 		if ( $hideLogs !== false ) {
 			$this->addWhere( $hideLogs );
+		}
+
+		if ( count( $this->filterTypes ) == 1 ) {
+			$this->addWhere( 'log_type != ' . $db->addQuotes( $this->filterTypes[0] ) );
+		} elseif ( $this->filterTypes ) {
+			$this->addWhere( 'log_type NOT IN (' . $db->makeList( $this->filterTypes ) . ')' );
 		}
 
 		// Order is significant here
@@ -549,5 +556,25 @@ class ApiQueryLogEvents extends ApiQueryBase {
 
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/API:Logevents';
+	}
+
+	protected function checkGrantedPermissionsInternal( array $grants, &$message = null ) {
+		global $wgLogRestrictions;
+		foreach ( $wgLogRestrictions as $name => $right ) {
+			if ( !in_array( "view-log-$name", $grants ) ) {
+				$this->filterTypes[] = $name;
+			}
+		}
+		return true;
+	}
+
+	protected function getAllCheckedPermissionsInternal() {
+		global $wgLogRestrictions;
+		// Add an option for each restricted log type
+		$perms = array();
+		foreach ( $wgLogRestrictions as $name => $right ) {
+			$perms[] = "view-log-$name";
+		}
+		return $perms;
 	}
 }

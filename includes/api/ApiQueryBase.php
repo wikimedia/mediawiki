@@ -555,6 +555,14 @@ abstract class ApiQueryBase extends ApiBase {
 		) );
 		return $errors;
 	}
+
+	/**
+	 * Change default to avoid name collision with action modules.
+	 * @see ApiBase::getAllCheckedPermissionsInternal()
+	 */
+	protected function getAllCheckedPermissionsInternal() {
+		return array( 'query-' . $this->getModuleName() );
+	}
 }
 
 /**

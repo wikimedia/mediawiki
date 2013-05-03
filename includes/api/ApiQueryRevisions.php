@@ -854,4 +854,9 @@ class ApiQueryRevisions extends ApiQueryBase {
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/API:Properties#revisions_.2F_rv';
 	}
+
+	protected function getAllCheckedPermissionsInternal() {
+		// Nothing sensitive here, can't view deleted info (yet)
+		return array();
+	}
 }

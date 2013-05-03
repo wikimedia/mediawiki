@@ -597,4 +597,8 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/API:Watchlist';
 	}
+
+	protected function getAllCheckedPermissionsInternal() {
+		return array( 'watchlist' );
+	}
 }

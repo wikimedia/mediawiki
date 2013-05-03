@@ -71,4 +71,13 @@ class ApiLogout extends ApiBase {
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/API:Logout';
 	}
+
+	public function checkGrantedPermissions( array $grants, &$message = null ) {
+		$message = 'This module may not be used with the current authentication method';
+		return false;
+	}
+
+	public function getAllCheckedPermissions() {
+		return array();
+	}
 }

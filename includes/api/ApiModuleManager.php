@@ -168,4 +168,9 @@ class ApiModuleManager extends ContextSource {
 	public function getGroups() {
 		return array_keys( $this->mGroups );
 	}
+
+	protected function getAllCheckedPermissionsInternal() {
+		// ApiModuleManager is a utility class and does not check permissions
+		return array();
+	}
 }

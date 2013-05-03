@@ -126,4 +126,9 @@ class ApiExpandTemplates extends ApiBase {
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/API:Parsing_wikitext#expandtemplates';
 	}
+
+	protected function getAllCheckedPermissionsInternal() {
+		// This module needs no special permissions
+		return array();
+	}
 }

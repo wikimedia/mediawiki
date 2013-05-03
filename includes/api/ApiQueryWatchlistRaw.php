@@ -226,4 +226,8 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/API:Watchlistraw';
 	}
+
+	protected function getAllCheckedPermissionsInternal() {
+		return array( 'watchlist' );
+	}
 }
