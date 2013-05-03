@@ -250,6 +250,11 @@ class LanguageSr extends LanguageSr_ec {
 			return '';
 		}
 
+		$forms = $this->handleExplicitPluralForms( $count, $forms );
+		if ( is_string( $forms ) ) {
+			return $forms;
+		}
+
 		// If the actual number is not mentioned in the expression, then just two forms are enough:
 		// singular for $count == 1
 		// plural   for $count != 1
