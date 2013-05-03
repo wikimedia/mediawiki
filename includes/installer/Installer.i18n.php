@@ -231,7 +231,7 @@ Only change it if you know you need to.',
 
 The directory you provide must be writable by the webserver during installation.
 
-It should '''not''' be accessible via the web, this is why we're not putting it where your PHP files are.
+It should '''not''' be accessible via the web; this is why we're not putting it where your PHP files are.
 
 The installer will write a <code>.htaccess</code> file along with it, but if that fails someone can gain access to your raw database.
 That includes raw user data (email addresses, hashed passwords) as well as deleted revisions and other restricted data on the wiki.
