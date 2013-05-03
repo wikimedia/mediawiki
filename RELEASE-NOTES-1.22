@@ -146,6 +146,7 @@ production.
 * (bug 14176) System messages that are empty were previously incorrectly treated
   as non-existent, causing a fallback to the default. This stopped users from
   overriding system messages to make them blank.
+* (bug 45288) Support mysqli PHP extension
 
 === API changes in 1.22 ===
 * (bug 46626) xmldoublequote parameter was removed. Because of a bug, the

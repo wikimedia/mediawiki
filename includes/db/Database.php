@@ -706,7 +706,7 @@ abstract class DatabaseBase implements DatabaseType {
 	/**
 	 * Given a DB type, construct the name of the appropriate child class of
 	 * DatabaseBase. This is designed to replace all of the manual stuff like:
-	 *	$class = 'Database' . ucfirst( strtolower( $type ) );
+	 *	$class = 'Database' . ucfirst( strtolower( $dbType ) );
 	 * as well as validate against the canonical list of DB types we have
 	 *
 	 * This factory function is mostly useful for when you need to connect to a
@@ -722,16 +722,35 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @param string $dbType A possible DB type
 	 * @param array $p An array of options to pass to the constructor.
 	 *    Valid options are: host, user, password, dbname, flags, tablePrefix
+	 * @param string $driver The explicit PHP database driver to use. Null means
+	 *    autodetect based on support.
 	 * @return DatabaseBase subclass or null
 	 */
-	final public static function factory( $dbType, $p = array() ) {
+	final public static function factory( $dbType, $p = array(), $driver = null ) {
 		$canonicalDBTypes = array(
-			'mysql', 'postgres', 'sqlite', 'oracle', 'mssql'
+			'mysql'    => array( 'mysqli', 'mysql' ),
+			'postgres' => array(),
+			'sqlite'   => array(),
+			'oracle'   => array(),
+			'mssql'    => array(),
 		);
 		$dbType = strtolower( $dbType );
+		if( isset( $canonicalDBTypes[$dbType] ) && $canonicalDBTypes[$dbType] ) {
+			$possibleDrivers = $canonicalDBTypes[$dbType];
+			if ( $driver && in_array( $driver, $possibleDrivers ) && extension_loaded( $driver ) ) 
+			{
+				$dbType = $driver;
+			} else {
+				foreach( $possibleDrivers as $posDriver ) {
+					if( extension_loaded( $posDriver ) ) {
+						$dbType = $posDriver;
+						break;
+					}
+				}
+			}
+		}
 		$class = 'Database' . ucfirst( $dbType );
-
-		if ( in_array( $dbType, $canonicalDBTypes ) || ( class_exists( $class ) && is_subclass_of( $class, 'DatabaseBase' ) ) ) {
+		if ( class_exists( $class ) && is_subclass_of( $class, 'DatabaseBase' ) ) {
 			return new $class(
 				isset( $p['host'] ) ? $p['host'] : false,
 				isset( $p['user'] ) ? $p['user'] : false,
