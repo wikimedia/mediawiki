@@ -51,10 +51,6 @@ class StringUtils {
 	 */
 	static function isUtf8( $value, $disableMbstring = false ) {
 		$value = (string)$value;
-		if ( preg_match( "/[\x80-\xff]/S", $value ) === 0 ) {
-			// String contains only ASCII characters, has to be valid
-			return true;
-		}
 
 		// If the mbstring extension is loaded, use it. However, before PHP 5.4, values above
 		// U+10FFFF are incorrectly allowed, so we have to check for them separately.
@@ -66,6 +62,11 @@ class StringUtils {
 
 			return mb_check_encoding( $value, 'UTF-8' ) &&
 				( $newPHP || preg_match( "/\xf4[\x90-\xbf]|[\xf5-\xff]/S", $value ) === 0 );
+		}
+
+		if ( preg_match( "/[\x80-\xff]/S", $value ) === 0 ) {
+			// String contains only ASCII characters, has to be valid
+			return true;
 		}
 
 		// PCRE implements repetition using recursion; to avoid a stack overflow (and segfault)
