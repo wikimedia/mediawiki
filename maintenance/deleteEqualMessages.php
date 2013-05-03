@@ -31,8 +31,8 @@ class DeleteEqualMessages extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Deletes all pages in the MediaWiki namespace that are equal to the default message";
-		$this->addOption( 'delete', 'Actually delete the pages' );
-		$this->addOption( 'delete-talk', 'Don\'t leave orphaned talk pages behind' );
+		$this->addOption( 'delete', 'Actually delete the pages (default: dry run)' );
+		$this->addOption( 'delete-talk', 'Don\'t leave orphaned talk pages behind during deletion' );
 		$this->addOption( 'lang-code', 'Check for subpages of this lang-code (default: root page against content language)', false, true );
 	}
 
@@ -96,10 +96,19 @@ class DeleteEqualMessages extends Maintenance {
 		}
 
 		$this->output( "\n{$relevantPages} pages in the MediaWiki namespace override messages." );
-		$this->output( "\n{$equalPages} pages are equal to the default message ({$equalPagesTalks} talk pages).\n" );
+		$this->output( "\n{$equalPages} pages are equal to the default message (+ {$equalPagesTalks} talk pages).\n" );
 
 		if ( !$doDelete ) {
-			$this->output( "\nRun the script again with --delete to delete these pages" );
+			$list = '';
+			foreach ( $results as $result ) {
+				$title = Title::makeTitle( NS_MEDIAWIKI, $result['title'] );
+				$list .= "* [[$title]]\n";
+				if ( $result['hasTalk'] ) {
+					$title = Title::makeTitle( NS_MEDIAWIKI_TALK, $result['title'] );
+					$list .= "* [[$title]]\n";
+				}
+			}
+			$this->output( "\nList:\n$list\nRun the script again with --delete to delete these pages" );
 			if ( $equalPagesTalks !== 0 ) {
 				$this->output( " (include --delete-talk to also delete the talk pages)" );
 			}
@@ -117,25 +126,27 @@ class DeleteEqualMessages extends Maintenance {
 		$user->addGroup( 'bot' );
 
 		// Handle deletion
-		$this->output( "\n...deleting equal messages (this may take a long time!)...", 'msg' );
+		$this->output( "\n...deleting equal messages (this may take a long time!)..." );
 		$dbw = wfGetDB( DB_MASTER );
 		foreach ( $results as $result ) {
 			wfWaitForSlaves();
 			$dbw->ping();
 			$dbw->begin( __METHOD__ );
 			$title = Title::makeTitle( NS_MEDIAWIKI, $result['title'] );
+			$this->output( "\n* [[$title]]" );
 			$page = WikiPage::factory( $title );
 			$error = ''; // Passed by ref
 			$page->doDeleteArticle( 'No longer required', false, 0, false, $error, $user );
 			if ( $result['hasTalk'] && $doDeleteTalk ) {
 				$title = Title::makeTitle( NS_MEDIAWIKI_TALK, $result['title'] );
+				$this->output( "\n* [[$title]]" );
 				$page = WikiPage::factory( $title );
 				$error = ''; // Passed by ref
 				$page->doDeleteArticle( 'Orphaned talk page of no longer required message', false, 0, false, $error, $user );
 			}
 			$dbw->commit( __METHOD__ );
 		}
-		$this->output( "done!\n", 'msg' );
+		$this->output( "\n\ndone!\n" );
 	}
 }
 
