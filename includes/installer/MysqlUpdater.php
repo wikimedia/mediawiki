@@ -249,9 +249,8 @@ class MysqlUpdater extends DatabaseUpdater {
 
 		$tableName = $this->db->tableName( $table );
 		$res = $this->db->query( "SELECT $field FROM $tableName LIMIT 0", __METHOD__ );
-		$flags = explode( ' ', mysql_field_flags( $res->result, 0 ) );
 
-		if ( in_array( 'binary', $flags ) ) {
+		if ( $this->db->fieldIsBinary( $res->result, 0 ) ) {
 			$this->output( "...$table table has correct $field encoding.\n" );
 		} else {
 			$this->applyPatch( $patchFile, false, "Fixing $field encoding on $table table" );

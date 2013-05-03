@@ -665,6 +665,7 @@ abstract class DatabaseBase implements DatabaseType {
 	function __construct( $server = false, $user = false, $password = false, $dbName = false,
 		$flags = 0, $tablePrefix = 'get from global'
 	) {
+
 		global $wgDBprefix, $wgCommandLineMode, $wgDebugDBTransactions;
 
 		$this->mFlags = $flags;

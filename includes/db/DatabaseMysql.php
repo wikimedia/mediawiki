@@ -276,6 +276,8 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	 */
 	abstract protected function mysqlFieldName( $res, $n );
 
+	abstract public function fieldIsBinary( $res, $n );
+
 	/**
 	 * @param $res ResultWrapper
 	 * @param $row
@@ -1074,6 +1076,11 @@ class DatabaseMysql extends DatabaseMysqlBase {
 		return mysql_field_name( $res, $n );
 	}
 
+	public function fieldIsBinary( $res, $n ) {
+		$flags = explode( ' ', mysql_field_flags( $res, $n ) );
+		return in_array( 'binary', $flags );
+	}
+
 	protected function mysqlDataSeek( $res, $row ) {
 		return mysql_data_seek( $res, $row );
 	}
@@ -1241,6 +1248,11 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 	protected function mysqlFieldName( $res, $n ) {
 		$field = mysqli_fetch_field_direct( $res, $n );
 		return $field->name;
+	}
+
+	public function fieldIsBinary( $res, $n ) {
+		$field = mysqli_fetch_field_direct( $res, $n );
+		return $field->flags & 128; // 128 = MYSQLI_BINARY_FLAG but that was not available before PHP 5.3.0.
 	}
 
 	protected function mysqlDataSeek( $res, $row ) {

@@ -240,6 +240,7 @@ Consider putting the database somewhere else altogether, for example in <code>/v
 	'config-oracle-def-ts'            => 'Default tablespace:',
 	'config-oracle-temp-ts'           => 'Temporary tablespace:',
 	'config-type-mysql'               => 'MySQL',
+	'config-type-mysqli'               => 'MySQLi',
 	'config-type-postgres'            => 'PostgreSQL',
 	'config-type-sqlite'              => 'SQLite',
 	'config-type-oracle'              => 'Oracle',
@@ -253,6 +254,7 @@ If you do not see the database system you are trying to use listed below, then f
 	'config-support-sqlite'           => '* $1 is a lightweight database system which is very well supported. ([http://www.php.net/manual/en/pdo.installation.php How to compile PHP with SQLite support], uses PDO)',
 	'config-support-oracle'           => '* $1 is a commercial enterprise database. ([http://www.php.net/manual/en/oci8.installation.php How to compile PHP with OCI8 support])',
 	'config-header-mysql'             => 'MySQL settings',
+	'config-header-mysqli'             => 'MySQLi settings',
 	'config-header-postgres'          => 'PostgreSQL settings',
 	'config-header-sqlite'            => 'SQLite settings',
 	'config-header-oracle'            => 'Oracle settings',
@@ -694,6 +696,7 @@ Message shown when PHP parameter <code>suhosin.get.max_value_length</code> is be
 	'config-sqlite-dir-help' => '{{doc-important|Do not translate <code>.htaccess</code> and <code>/var/lib/mediawiki/yourwiki</code>.}}
 Used in help box.',
 	'config-type-mysql' => '{{optional}}',
+	'config-type-mysqli' => '{{optional}}',
 	'config-type-postgres' => '{{optional}}',
 	'config-type-sqlite' => '{{optional}}',
 	'config-type-oracle' => '{{optional}}',
@@ -1715,6 +1718,7 @@ ResourceLoader, складнік MediaWiki, будзе абходзіць гэт
 	'config-oracle-def-ts' => 'Прастора табліцаў па змоўчваньні:',
 	'config-oracle-temp-ts' => 'Часовая прастора табліцаў:',
 	'config-type-mysql' => 'MySQL',
+	'config-type-mysqli' => 'MySQLi',
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
@@ -2887,6 +2891,7 @@ Arabat cheñch anezho ma n'hoc'h eus ket ezhomm d'en ober.",
 	'config-oracle-def-ts' => 'Esaouenn stokañ ("tablespace") dre ziouer :',
 	'config-oracle-temp-ts' => "Esaouenn stokañ (''tablespace'') da c'hortoz :",
 	'config-type-mysql' => 'MySQL',
+	'config-type-mysqli' => 'MySQLi',
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
@@ -3514,6 +3519,7 @@ Zvažte umístění databáze někam zcela jinam, například do <code>/var/lib/
 	'config-oracle-def-ts' => 'Implicitní tabulkový prostor:',
 	'config-oracle-temp-ts' => 'Dočasný tabulkový prostor:',
 	'config-type-mysql' => 'MySQL',
+	'config-type-mysqli' => 'MySQLi',
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Věštba',
@@ -4118,6 +4124,7 @@ Es ist daher zu erwägen, die Datendatei an gänzlich anderer Stelle abzulegen, 
 	'config-oracle-def-ts' => 'Standardtabellenraum:',
 	'config-oracle-temp-ts' => 'Temporärer Tabellenraum:',
 	'config-type-mysql' => 'MySQL',
+	'config-type-mysqli' => 'MySQLi',
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
@@ -4828,7 +4835,7 @@ Instalación anulada.',
 	'config-using531' => 'MediaWiki no puede utilizarse con PHP $1 debido a un error con los parámetros de referencia para <code>__call()</code> .
 Actualice el sistema a PHP 5.3.2 o superior, o vuelva a la versión PHP 5.3.0 para resolver este problema.
 Instalación anulada.',
-	'config-suhosin-max-value-length' => 'Suhosin está instalado y limita el parámetro <code>length</code> GET a $1 bytes. 
+	'config-suhosin-max-value-length' => 'Suhosin está instalado y limita el parámetro <code>length</code> GET a $1 bytes.
 El componente ResourceLoader (gestor de recursos) de MediaWiki trabajará en este límite, pero eso perjudicará el rendimiento.
 Si es posible, deberías establecer <code>suhosin.get.max_value_length</code> en el valor 1024 o superior en <code>php.ini</code> y establecer <code>$wgResourceLoaderMaxQueryLength</code> en el mismo valor en <code>php.ini</code>.',
 	'config-db-type' => 'Tipo de base de datos',
@@ -4866,7 +4873,7 @@ Esta no es la contraseña para la cuenta de MediaWiki; esta es la contraseña pa
 	'config-db-wiki-help' => 'Introduce el nombre de usuario y la contraseña que serán usados para acceder a la base de datos durante la operación normal del wiki.
 Si esta cuenta no existe y la cuenta de instalación tiene suficientes privilegios, se creará esta cuenta de usuario con los privilegios mínimos necesarios para la operación normal del wiki.',
 	'config-db-prefix' => 'Prefijo para las tablas de la base de datos:',
-	'config-db-prefix-help' => 'Si necesita compartir una base de datos entre múltiples wikis, o entre MediaWiki y otra aplicación web, puede optar por agregar un prefijo a todos los nombres de tabla para evitar conflictos. 
+	'config-db-prefix-help' => 'Si necesita compartir una base de datos entre múltiples wikis, o entre MediaWiki y otra aplicación web, puede optar por agregar un prefijo a todos los nombres de tabla para evitar conflictos.
 No utilice espacios.
 
 Normalmente se deja este campo vacío.',
@@ -4900,6 +4907,7 @@ Considere la posibilidad de poner la base de datos en algún otro sitio, por eje
 	'config-oracle-def-ts' => 'Espacio de tablas por defecto:',
 	'config-oracle-temp-ts' => 'Espacio de tablas temporal:',
 	'config-type-mysql' => 'MySQL',
+	'config-type-mysqli' => 'MySQLi',
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
@@ -5349,6 +5357,7 @@ $messages['eu'] = array(
 	'config-charset-mysql5-binary' => 'MySQL 4.1/5.0 bitarra',
 	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',
 	'config-type-mysql' => 'MySQL',
+	'config-type-mysqli' => 'MySQLi',
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
@@ -5592,6 +5601,7 @@ Asennus saattaa epäonnistua!",
 	'config-charset-mysql4' => 'MySQL 4.0, taaksepäin yhteensopiva UTF-8',
 	'config-mysql-old' => 'MediaWiki tarvitsee MySQL:n version $1 tai uudemman. Nykyinen versio on $2.',
 	'config-type-mysql' => 'MySQL',
+	'config-type-mysqli' => 'MySQLi',
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
@@ -5926,6 +5936,7 @@ Envisagez de placer la base de données ailleurs, par exemple dans <code>/var/li
 	'config-oracle-def-ts' => "Espace de stockage (''tablespace'') par défaut :",
 	'config-oracle-temp-ts' => "Espace de stockage (''tablespace'') temporaire :",
 	'config-type-mysql' => 'MySQL',
+	'config-type-mysqli' => 'MySQLi',
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
@@ -6750,6 +6761,7 @@ Considere poñer a base de datos nun só lugar, por exemplo en <code>/var/lib/me
 	'config-oracle-def-ts' => 'Espazo de táboas por defecto:',
 	'config-oracle-temp-ts' => 'Espazo de táboas temporal:',
 	'config-type-mysql' => 'MySQL',
+	'config-type-mysqli' => 'MySQLi',
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
@@ -7981,6 +7993,7 @@ Změń ju jenož, jeli su přeswědčiwe přičiny za to.',
 	'config-oracle-def-ts' => 'Standardny tabelowy rum:',
 	'config-oracle-temp-ts' => 'Nachwilny tabelowy rum:',
 	'config-type-mysql' => 'MySQL',
+	'config-type-mysqli' => 'MySQLi',
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
@@ -9038,6 +9051,7 @@ Considera poner le base de datos in un loco completemente differente, per exempl
 	'config-oracle-def-ts' => 'Spatio de tabellas predefinite:',
 	'config-oracle-temp-ts' => 'Spatio de tabellas temporari:',
 	'config-type-mysql' => 'MySQL',
+	'config-type-mysqli' => 'MySQLi',
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
@@ -9575,6 +9589,7 @@ Pertimbangkan untuk menempatkan basis data di tempat lain, misalnya di <code>/va
 	'config-oracle-def-ts' => 'Tablespace bawaan:',
 	'config-oracle-temp-ts' => 'Tablespace sementara:',
 	'config-type-mysql' => 'MySQL',
+	'config-type-mysqli' => 'MySQLi',
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
@@ -10393,6 +10408,7 @@ PostgreSQLを使用している場合、UNIXソケットで接続するにはこ
 	'config-oracle-def-ts' => '既定のテーブル領域:',
 	'config-oracle-temp-ts' => '一時的なテーブル領域:',
 	'config-type-mysql' => 'MySQL',
+	'config-type-mysqli' => 'MySQLi',
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
@@ -11745,6 +11761,7 @@ Donn Ding Daatebangk et beß janz woh anders hen, noh <code lang="en">/var/lib/m
 	'config-oracle-def-ts' => 'Tabälleroum för der Shtandattjebruch:',
 	'config-oracle-temp-ts' => 'Tabälleroum för der Jebruch zweschedorsh:',
 	'config-type-mysql' => '<i lang="en">MySQL</i>',
+	'config-type-mysqli' => '<i lang="en">MySQLi</i>',
 	'config-type-postgres' => '<i lang="en">PostgreSQL</i>',
 	'config-type-sqlite' => '<i lang="en">SQLite</i>',
 	'config-type-oracle' => '<i lang="en">Oracle</i>',
@@ -12201,6 +12218,7 @@ Wann et de Kont net gëtt, a wann den Installatiouns-Kont genuch Rechter huet, g
 	'config-oracle-def-ts' => "Standard 'tablespace':",
 	'config-oracle-temp-ts' => "Temporären 'tablespace':",
 	'config-type-mysql' => 'MySQL',
+	'config-type-mysqli' => 'MySQLi',
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
@@ -12812,6 +12830,7 @@ $1
 	'config-oracle-def-ts' => 'Стандарден таблеарен простор:',
 	'config-oracle-temp-ts' => 'Привремен табеларен простор:',
 	'config-type-mysql' => 'MySQL',
+	'config-type-mysqli' => 'MySQLi',
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
@@ -13790,6 +13809,7 @@ Vurder å plassere databasen et helt annet sted, for eksempel i <code>/var/lib/m
 	'config-oracle-def-ts' => 'Standard tabellrom:',
 	'config-oracle-temp-ts' => 'Midlertidig tabellrom:',
 	'config-type-mysql' => 'MySQL',
+	'config-type-mysqli' => 'MySQLi',
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
@@ -14299,6 +14319,7 @@ Overweeg om de database op een totaal andere plaats neer te zetten, bijvoorbeeld
 	'config-oracle-def-ts' => 'Standaard tablespace:',
 	'config-oracle-temp-ts' => 'Tijdelijke tablespace:',
 	'config-type-mysql' => 'MySQL',
+	'config-type-mysqli' => 'MySQLi',
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
@@ -15190,7 +15211,7 @@ Jeśli korzystasz ze współdzielonego hostingu, dostawca usługi hostingowej mo
 
 Możesz utworzyć konto użytkownika bazy danych podczas instalacji MediaWiki. Wówczas należy podać nazwę i hasło użytkownika z rolą SYSDBA w celu użycia go przez instalator do utworzenia nowe konta użytkownika, z którego korzystać będzie MediaWiki.
 
-Możesz również skorzystać z konta użytkownika bazy danych utworzonego bezpośrednio w Oracle i wówczas wystarczy podać tylko nazwę i hasło tego użytkownika. Konto z rolą SYSDBA nie będzie potrzebne, jednak konto użytkownika powinno mieć uprawnienia do utworzenia obiektów w schemacie bazy danych. Możesz też podać dwa konta - konto dla instalatora, z pomocą którego zostaną obiekty w schemacie bazy danych i drugie konto, z którego będzie MediaWiki korzystać będzie do pracy. 
+Możesz również skorzystać z konta użytkownika bazy danych utworzonego bezpośrednio w Oracle i wówczas wystarczy podać tylko nazwę i hasło tego użytkownika. Konto z rolą SYSDBA nie będzie potrzebne, jednak konto użytkownika powinno mieć uprawnienia do utworzenia obiektów w schemacie bazy danych. Możesz też podać dwa konta - konto dla instalatora, z pomocą którego zostaną obiekty w schemacie bazy danych i drugie konto, z którego będzie MediaWiki korzystać będzie do pracy.
 
 W podkatalogu "maintenance/oracle" znajduje się skrypt do tworzenia konta użytkownika. Korzystanie z konta użytkownika z ograniczonymi uprawnieniami spowoduje wyłączenie funkcji związanych z aktualizacją oprogramowania MediaWiki.',
 	'config-db-install-account' => 'Konto użytkownika dla instalatora',
@@ -15569,7 +15590,7 @@ A la trovrà an LocalSetting.php.",
 Për agiorné sta instalassion, për piasì fà anvece giré <code>update.php</code>",
 	'config-localsettings-key' => "Ciav d'agiornament:",
 	'config-localsettings-badkey' => "La ciav ch'it l'has dàit a l'é pa giusta.",
-	'config-upgrade-key-missing' => "A l'é stàita trovà n'istalassion esistenta ëd MediaWiki. 
+	'config-upgrade-key-missing' => "A l'é stàita trovà n'istalassion esistenta ëd MediaWiki.
 Për agiorné soa istalassion, për piasì ch'a buta la linia sì-sota al fond ëd sò <code>LocalSettings.php</code>:
 
 $1",
@@ -16394,6 +16415,7 @@ Considere colocar a base de dados num local completamente diferente, como, por e
 	'config-oracle-def-ts' => 'Tablespace padrão:',
 	'config-oracle-temp-ts' => 'Tablespace temporário:',
 	'config-type-mysql' => 'MySQL',
+	'config-type-mysqli' => 'MySQLi',
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
@@ -17015,6 +17037,7 @@ $messages['roa-tara'] = array(
 	'config-db-port' => "Porte d'u database:",
 	'config-db-schema' => 'Scheme pe MediaUicchi:',
 	'config-type-mysql' => 'MySQL',
+	'config-type-mysqli' => 'MySQLi',
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
@@ -17274,6 +17297,7 @@ MediaWiki требует поддержки UTF-8 для корректной р
 	'config-oracle-def-ts' => 'Пространство таблиц по умолчанию:',
 	'config-oracle-temp-ts' => 'Временное пространство таблиц:',
 	'config-type-mysql' => 'MySQL',
+	'config-type-mysqli' => 'MySQLi',
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
@@ -18153,6 +18177,7 @@ $messages['sr-ec'] = array(
 	'config-help-restart' => 'Желите ли да обришете све сачуване податке које сте унели и поново покренете инсталацију?',
 	'config-restart' => 'Да, покрени поново',
 	'config-type-mysql' => 'MySQL',
+	'config-type-mysqli' => 'MySQLi',
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
@@ -18197,6 +18222,7 @@ Proverite Vaš php.ini i obezbedite da je <code>session.save_path</code> postavl
 	'config-help-restart' => 'Želite li da obrišete sve sačuvane podatke koje ste uneli i ponovo pokrenete instalaciju?',
 	'config-restart' => 'Da, pokreni ponovo',
 	'config-type-mysql' => 'MySQL',
+	'config-type-mysqli' => 'MySQLi',
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
@@ -18925,6 +18951,7 @@ Isaalang-alang ang paglalagay na magkakasama ang kalipunan ng dato sa ibang luga
 	'config-oracle-def-ts' => 'Likas na nakatakdang puwang ng talahanayan:',
 	'config-oracle-temp-ts' => 'Pansamantalang puwang ng talahanayan:',
 	'config-type-mysql' => 'MySQL',
+	'config-type-mysqli' => 'MySQLi',
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
@@ -19098,7 +19125,7 @@ Ang mas masasalimuot na mga kaayusan ng mga karapatan ng tagagamit ay makukuha p
 	'config-license-gfdl' => 'Lisensiyang 1.3 ng Malayang Dokumentasyon ng GNU o mas lalong huli',
 	'config-license-pd' => 'Nasasakupan ng Madla',
 	'config-license-cc-choose' => 'Pumili ng isang pasadyang Lisensiya ng Malikhaing mga Pangkaraniwan',
-	'config-license-help' => "Maraming mga pangmadlang wiki ang naglalagay ng lahat ng mga ambag sa ilalim ng [http://freedomdefined.org/Definition lisensiyang malaya]. 
+	'config-license-help' => "Maraming mga pangmadlang wiki ang naglalagay ng lahat ng mga ambag sa ilalim ng [http://freedomdefined.org/Definition lisensiyang malaya].
 Nakakatulong ito sa paglikha ng isang diwa ng pagmamay-ari ng pamayanan at nakapanghihikayat ng ambag na pangmahabang panahon.
 Sa pangkalahatan, hindi kailangan ang isang wiking pribado o pangsamahan.
 
@@ -19521,7 +19548,7 @@ MediaWiki вимагає підтримку UTF-8 для коректної ро
 	'config-mysql-old' => 'Необхідна MySQL $1 або пізніша, а у Вас $2.',
 	'config-db-port' => 'Порт бази даних:',
 	'config-db-schema' => 'Схема для MediaWiki',
-	'config-db-schema-help' => 'Ця схема зазвичай працює добре. 
+	'config-db-schema-help' => 'Ця схема зазвичай працює добре.
 Змінюйте її тільки якщо знаєте, що Вам це потрібно.',
 	'config-pg-test-error' => "Не вдається підключитися до бази даних '''$1''': $2",
 	'config-sqlite-dir' => 'Папка даних SQLite:',
@@ -19742,7 +19769,7 @@ GFDL — допустима ліцензія, але у ній важко роз
 	'config-upload-deleted-help' => 'Оберіть папку для архівації видалених файлів.
 В ідеалі, вона не має бути доступною через інтернет.',
 	'config-logo' => 'URL логотипу:',
-	'config-logo-help' => 'Стандартна схема оформлення MediaWiki містить вільне для логотипу місце над бічною панеллю розміром 135x160 пікселів. 
+	'config-logo-help' => 'Стандартна схема оформлення MediaWiki містить вільне для логотипу місце над бічною панеллю розміром 135x160 пікселів.
 Завантажте зображення відповідного розміру і введіть тут його URL.
 
 Якщо Вам не потрібен логотип, залиште це поле пустим.',
@@ -19856,9 +19883,9 @@ $messages['ur'] = array(
 	'config-git' => 'Git ورژن کنٹرول مصنع لطیف ملا: <code>$1</code> ۔',
 	'config-git-bad' => 'GIT ورژن کنٹرول مصنع لطیف نہيں ملا ۔',
 	'config-mysql-only-myisam-dep' => "' ' تنبیہ: ' '[[MyISAM|مائ اسام]] واحد دستیاب 'ذخیرہ جاتی انجن' ہے جو مائی ایس کیو ایل کے لیے ہے ، جو کہ ناموزوں ہے میڈیا وکی کے لیے ،کیوں کہ :
-* یہ ہموار قطاروں کی سہولت بمشکل فراہم کرتا ہے 
+* یہ ہموار قطاروں کی سہولت بمشکل فراہم کرتا ہے
 * یہ دوسرے انجنوں کے مقابلے  زیادہ بگڑ جاتا ہے
-* میڈیا وکی کوڈ بیس ہمیشہ سنبھال نہيں پاتا مائی اسام کو ۔ 
+* میڈیا وکی کوڈ بیس ہمیشہ سنبھال نہيں پاتا مائی اسام کو ۔
 
 آپ کا مائی ایس کیو ایل کا نصب ہمیشہ اننو ڈی بی کی سہولت نہيں دے سکتا ، ہو سکتا ہے یہ مزید ترقیاتی کام چاہے", # Fuzzy
 	'config-profile-fishbowl' => 'صرف مجاز ایڈیٹرز',
