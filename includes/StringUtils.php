@@ -48,25 +48,22 @@ class StringUtils {
 	 */
 	static function isUtf8( $value, $disableMbstring = false ) {
 
-		if ( preg_match( '/[\x80-\xff]/', $value ) === 0 ) {
+		if ( !$disableMbstring && function_exists( 'mb_check_encoding' ) ) {
+			return mb_check_encoding( $value, 'UTF-8' );
+		} elseif ( preg_match( '/[\x80-\xff]/', $value ) === 0 ) {
 			# no high bit set, this is pure ASCII which is de facto
 			# valid UTF-8
 			return true;
 		}
-
-		if ( !$disableMbstring && function_exists( 'mb_check_encoding' ) ) {
-			return mb_check_encoding( $value, 'UTF-8' );
-		} else {
-			$hasUtf8 = preg_match( '/^(?>
-				  [\x00-\x7f]
-				| [\xc0-\xdf][\x80-\xbf]
-				| [\xe0-\xef][\x80-\xbf]{2}
-				| [\xf0-\xf7][\x80-\xbf]{3}
-				| [\xf8-\xfb][\x80-\xbf]{4}
-				| \xfc[\x84-\xbf][\x80-\xbf]{4}
+		$hasUtf8 = preg_match( '/^(?>
+			  [\x00-\x7f]
+			| [\xc0-\xdf][\x80-\xbf]
+			| [\xe0-\xef][\x80-\xbf]{2}
+			| [\xf0-\xf7][\x80-\xbf]{3}
+			| [\xf8-\xfb][\x80-\xbf]{4}
+			| \xfc[\x84-\xbf][\x80-\xbf]{4}
 			)+$/x', $value );
-			return ( $hasUtf8 > 0 );
-		}
+		return ( $hasUtf8 > 0 );
 	}
 
 	/**
