@@ -2376,8 +2376,25 @@ parsoid
 *#*#;*;;foo :bar
 *#*#;boo :baz
 !! result
-<ul><li><ol><li><ul><li><ol><li><dl><dt><ul><li><dl><dt><dl><dt>foo&nbsp;</dt><dd>bar
-</dd></dl></dt></dl></li></ul></dt><dt>boo&nbsp;</dt><dd>baz</dd></dl></li></ol></li></ul></li></ol></li></ul>
+<ul>
+<li>
+<ol>
+<li>
+<ul>
+<li>
+<ol>
+<li>
+<dl>
+<dt>
+<ul>
+<li>
+<dl>
+<dt>
+<dl>
+<dt>foo<span typeof="mw:Placeholder" data-parsoid='{"src":" "}'>&nbsp;</span></dt>
+<dd data-parsoid='{"stx":"row"}'>bar</dd></dl></dt></dl></li></ul></dt>
+<dt>boo<span typeof="mw:Placeholder" data-parsoid='{"src":" "}'>&nbsp;</span></dt>
+<dd data-parsoid='{"stx":"row"}'>baz</dd></dl></li></ol></li></ul></li></ol></li></ul>
 !! end
 
 
@@ -2406,7 +2423,23 @@ parsoid
 !! input
 *#;*::;; foo : bar (who uses this?)
 !! result
-<ul><li><ol><li><dl><dt><ul><li><dl><dd><dl><dd><dl><dt><dl><dt> foo&nbsp;</dt><dd> bar (who uses this?)</dd></dl></dt></dl></dd></dl></dd></dl></li></ul></dt></dl></li></ol></li></ul>
+<ul>
+<li>
+<ol>
+<li>
+<dl>
+<dt>
+<ul>
+<li>
+<dl>
+<dd>
+<dl>
+<dd>
+<dl>
+<dt>
+<dl>
+<dt> foo<span typeof="mw:Placeholder" data-parsoid='{"src":" "}'>&nbsp;</span></dt>
+<dd data-parsoid='{"stx":"row"}'> bar (who uses this?)</dd></dl></dt></dl></dd></dl></dd></dl></li></ul></dt></dl></li></ol></li></ul>
 !! end
 
 ###
@@ -6571,24 +6604,24 @@ Templates: Ugly nesting: 1. Quotes opened/closed across templates (echo)
 Templates: Ugly nesting: 2. Quotes opened/closed across templates (echo_with_span)
 (PHP parser generates misnested html)
 !! options
-parsoid
+parsoid=wt2html,wt2wt
 !!input
 {{echo_with_span|''a}}{{echo_with_span|b''c''d}}{{echo_with_span|''e}}
 !!result
-<p><span><i>a</i></span><i><span>b</span></i><span>c</span><i>d</i><span>e</span></p>
+<p><span typeof="mw:Object/Template"><i>a</i></span><i typeof="mw:Object/Template"><span>b</span></i><span>c</span><i>d</i><span>e</span></p>
 !!end
 
 !!test
 Templates: Ugly nesting: 3. Quotes opened/closed across templates (echo_with_div)
 (PHP parser generates misnested html)
 !! options
-parsoid
+parsoid=wt2html,wt2wt
 !!input
 {{echo_with_div|''a}}{{echo_with_div|b''c''d}}{{echo_with_div|''e}}
 !!result
-<div><i>a</i></div>
-<div><i>b</i>c<i>d</i></div>
-<div>e</div>
+<div typeof="mw:Object/Template"><i>a</i></div>
+<div typeof="mw:Object/Template"><i>b</i>c<i>d</i></div>
+<div typeof="mw:Object/Template">e</div>
 !!end
 
 !!test
@@ -6611,10 +6644,10 @@ parsoid
 |bar
 |}
 !!result
-<table  about="#mwt1" typeof="mw:Object/Template ">
-<tbody><tr><td>foo</td></tr></tbody></table><span about="#mwt1">
-bar</span><span about="#mwt1">
-</span>
+<table typeof="mw:Object/Template">
+<tbody>
+<tr>
+<td>foo</td></tr></tbody></table><span>bar</span>
 !!end
 
 !!test
@@ -6822,10 +6855,13 @@ wiki<nowiki>nowiki<!--nowiki</nowiki>wiki
 wiki<nowiki>nowiki<!--nowiki</nowiki>wiki
 !!end
 
+# Leading @ in this template definition works around a limitation
+# in parsoid's parserTests which otherwise strips the <span> from the
+# result (confusing it for a template wrapper)
 !! article
 Template:dangerous
 !!text
-<span onmouseover="alert('crap')">Oh no</span>
+@<span onmouseover="alert('crap')">Oh no</span>
 !!endarticle
 
 !!test
@@ -6833,7 +6869,7 @@ Template:dangerous
 !! input
 {{Template:dangerous}}
 !! result
-<p><span>Oh no</span>
+<p>@<span>Oh no</span>
 </p>
 !! end
 
@@ -13642,10 +13678,7 @@ parsoid
 {{echo|#a}}
 {{echo|:a}}
 !!result
-<p>*a
-#a
-:a
-</p>
+<p><span typeof="mw:Nowiki">*a #a :a</span></p>
 !!end
 
 #### The following section of tests are primarily to test
@@ -13681,11 +13714,9 @@ parsoid
 
 =foo''a''<nowiki>=</nowiki>
 !! result
-<p>=foo=
-</p><p> =foo= 
-</p><p><!--cmt-->=foo=
-</p><p>=foo<i>a</i>=
-</p>
+<p><span typeof="mw:Nowiki">=foo=</span></p>
+<p><span typeof="mw:Nowiki"> =foo= </span> <span typeof="mw:Nowiki">=foo=</span></p>
+<p>=foo<i>a</i><span typeof="mw:Nowiki">=</span></p>
 !!end
 
 !! test
@@ -13700,12 +13731,12 @@ parsoid
 =====<nowiki>=foo=</nowiki>=====
 ======<nowiki>=foo=</nowiki>======
 !! result
-<h1>=foo=</h1>
-<h2>=foo=</h2>
-<h3>=foo=</h3>
-<h4>=foo=</h4>
-<h5>=foo=</h5>
-<h6>=foo=</h6>
+<h1><span typeof="mw:Nowiki">=foo=</span></h1>
+<h2><span typeof="mw:Nowiki">=foo=</span></h2>
+<h3><span typeof="mw:Nowiki">=foo=</span></h3>
+<h4><span typeof="mw:Nowiki">=foo=</span></h4>
+<h5><span typeof="mw:Nowiki">=foo=</span></h5>
+<h6><span typeof="mw:Nowiki">=foo=</span></h6>
 !!end
 
 !! test
@@ -13732,7 +13763,7 @@ parsoid
 !! input
 =='''bold'''<nowiki>foo=</nowiki>=
 !! result
-<h1>=<b>bold</b>foo=</h1>
+<h1>=<b>bold</b><span typeof="mw:Nowiki">foo=</span></h1>
 !!end
 
 !! test
@@ -13756,8 +13787,7 @@ parsoid
 <h2>=foo</h2>
 <h2>foo=</h2>
 <h1><i>=</i>foo=</h1>
-<h1>=</h1>
-
+<h1><span typeof="mw:Nowiki">=</span></h1>
 !!end
 
 !! test
@@ -13803,9 +13833,7 @@ parsoid
 <!--cmt--><nowiki>=h1=</nowiki>
 <!--cmt--><nowiki> =h1= </nowiki>
 !! result
-<p><!--cmt-->=h1=
-<!--cmt--> =h1= 
-</p>
+<p><span typeof="mw:Nowiki">=h1=</span> <span typeof="mw:Nowiki"> =h1= </span></p>
 !!end
 
 #### --------------- Lists ---------------
@@ -13918,12 +13946,12 @@ parsoid
 
 *[[Foo]]: bar
 !! result
-<ul><li>foo*bar
-</li></ul>
-<ul><li><i>foo</i>*bar
-</li></ul>
-<ul><li><a href="Foo" rel="mw:WikiLink">Foo</a>: bar
-</li></ul>
+<ul>
+<li>foo*bar</li></ul>
+<ul>
+<li><i>foo</i>*bar</li></ul>
+<ul>
+<li><a rel="mw:WikiLink" href="Foo">Foo</a>: bar</li></ul>
 !!end
 
 !! test
@@ -13963,8 +13991,7 @@ parsoid
 !! input
 <!--cmt--><nowiki>*foo</nowiki>
 !! result
-<p><!--cmt-->*foo
-</p>
+<p><span typeof="mw:Nowiki">*foo</span></p>
 !!end
 
 !! test
@@ -14062,10 +14089,10 @@ parsoid
 |<nowiki>foo|bar</nowiki>
 |}
 !! result
-<table><tbody>
-<tr><td>foo|bar
-</td></tr></tbody></table>
-
+<table>
+<tbody>
+<tr>
+<td><span typeof="mw:Nowiki">foo|bar</span></td></tr></tbody></table>
 !! end
 
 !! test
@@ -14078,11 +14105,11 @@ parsoid
 |''it''<nowiki>foo||bar</nowiki>
 |}
 !! result
-<table><tbody>
-<tr><td>foo||bar
-</td><td><i>it</i>foo||bar
-</td></tr></tbody></table>
-
+<table>
+<tbody>
+<tr>
+<td><span typeof="mw:Nowiki">foo||bar</span></td>
+<td><i>it</i><span typeof="mw:Nowiki">foo||bar</span></td></tr></tbody></table>
 !! end
 
 !! test
@@ -14124,10 +14151,9 @@ parsoid
 !<nowiki>foo!!bar</nowiki>
 |}
 !! result
-<table><tbody>
-<tr><th>foo!!bar
-</th></tr></tbody></table>
-
+<table>
+<tbody>
+<tr><th><span typeof="mw:Nowiki">foo!!bar</span></th></tr></tbody></table>
 !! end
 
 !! test
@@ -14139,10 +14165,9 @@ parsoid
 !<nowiki>foo||bar</nowiki>
 |}
 !! result
-<table><tbody>
-<tr><th>foo||bar
-</th></tr></tbody></table>
-
+<table>
+<tbody>
+<tr><th><span typeof="mw:Nowiki">foo||bar</span></th></tr></tbody></table>
 !! end
 
 !! test
@@ -14157,10 +14182,11 @@ parsoid
 |<nowiki>-bar</nowiki>
 |}
 !! result
-<table><tbody>
+<table>
+<tbody>
 <tr><th>-bar</th></tr>
-<tr><td>-bar</td></tr>
-</tbody></table>
+<tr>
+<td><span typeof="mw:Nowiki">-bar</span></td></tr></tbody></table>
 !! end
 
 !! test
@@ -14175,10 +14201,11 @@ parsoid
 |<nowiki>+bar</nowiki>
 |}
 !! result
-<table><tbody>
+<table>
+<tbody>
 <tr><th>+bar</th></tr>
-<tr><td>+bar</td></tr>
-</tbody></table>
+<tr>
+<td><span typeof="mw:Nowiki">+bar</span></td></tr></tbody></table>
 !! end
 
 !! test
