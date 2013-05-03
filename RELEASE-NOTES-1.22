@@ -130,6 +130,7 @@ changes to languages because of Bugzilla reports.
 * A new Special:Redirect page was added, providing lookup by revision ID,
   user ID, or file name.  The old Special:Filepath page was reimplemented
   to redirect through Special:Redirect.
+* Monobook: Removed the old conditional stylesheets for Opera 6, 7 and 9.
 
 == Compatibility ==
 
