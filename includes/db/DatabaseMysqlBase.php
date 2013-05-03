@@ -292,6 +292,13 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	abstract protected function mysqlFieldName( $res, $n );
 
 	/**
+	 * @param $res Raw result
+	 * @param $n int
+	 * @return bool
+	 */
+	abstract public function fieldIsBinary( $res, $n );
+
+	/**
 	 * @param $res ResultWrapper
 	 * @param $row
 	 * @return bool

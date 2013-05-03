@@ -85,6 +85,7 @@ abstract class Installer {
 	 */
 	protected static $dbTypes = array(
 		'mysql',
+		'mysqli',
 		'postgres',
 		'oracle',
 		'sqlite',
@@ -646,7 +647,7 @@ abstract class Installer {
 		$allNames = array();
 
 		// Give grep a chance to find the usages:
-		// config-type-mysql, config-type-postgres, config-type-oracle, config-type-sqlite
+		// config-type-mysql, config-type-mysqli, config-type-postgres, config-type-oracle, config-type-sqlite
 		foreach ( self::getDBTypes() as $name ) {
 			$allNames[] = wfMessage( "config-type-$name" )->text();
 		}
