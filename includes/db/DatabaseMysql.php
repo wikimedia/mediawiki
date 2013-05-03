@@ -1094,6 +1094,179 @@ class DatabaseMysql extends DatabaseMysqlBase {
 
 
 /**
+ * Database abstraction object for PHP extension mysqli.
+ *
+ * @ingroup Database
+ * @see Database
+ */
+class DatabaseMysqli extends DatabaseMysqlBase {
+
+	/**
+	 * @param $sql string
+	 * @return resource
+	 */
+	protected function doQuery( $sql ) {
+		if ( $this->bufferResults() ) {
+			$ret = mysqli_query( $this->mConn, $sql );
+		} else {
+			$ret = mysqli_query( $this->mConn, $sql, MYSQLI_USE_RESULT );
+		}
+		return $ret;
+	}
+
+	protected function mysqlOpen( $realServer ) {
+		# Load mysqli.so if we don't have it
+		wfDl( 'mysqli' );
+
+		# Fail now
+		# Otherwise we get a suppressed fatal error, which is very hard to track down
+		if ( !function_exists( 'mysqli_connect' ) ) {
+			throw new DBConnectionError( $this, "MySQLi functions missing, have you compiled PHP with the --with-mysqli option?\n" );
+		}
+
+		$connFlags = 0;
+		if ( $this->mFlags & DBO_SSL ) {
+			$connFlags |= MYSQLI_CLIENT_SSL;
+		}
+		if ( $this->mFlags & DBO_COMPRESS ) {
+			$connFlags |= MYSQLI_CLIENT_COMPRESS;
+		}
+		if ( $this->mFlags & DBO_PERSISTENT ) {
+			if ( version_compare( PHP_VERSION, '5.3.0' ) >= 0 ) {
+				$realServer = 'p:' . $realServer;
+			}
+		}
+
+		$mysqli = mysqli_init();
+		$numAttempts = 2;
+
+		for ( $i = 0; $i < $numAttempts; $i++ ) {
+			if ( $i > 1 ) {
+				usleep( 1000 );
+			}
+			if ( mysqli_real_connect( $mysqli, $realServer, $this->mUser, $this->mPassword, $this->mDBname, null, null, $connFlags ) ) {
+				return $mysqli;
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * @return bool
+	 */
+	protected function closeConnection() {
+		return mysqli_close( $this->mConn );
+	}
+
+	/**
+	 * @return int
+	 */
+	function insertId() {
+		return mysqli_insert_id( $this->mConn );
+	}
+
+	/**
+	 * @return int
+	 */
+	function lastErrno() {
+		if ( $this->mConn ) {
+			return mysqli_errno( $this->mConn );
+		} else {
+			return mysqli_connect_errno();
+		}
+	}
+
+	/**
+	 * @return int
+	 */
+	function affectedRows() {
+		return mysqli_affected_rows( $this->mConn );
+	}
+
+	/**
+	 * @param $db
+	 * @return bool
+	 */
+	function selectDB( $db ) {
+		$this->mDBname = $db;
+		return mysqli_select_db( $this->mConn, $db );
+	}
+
+	/**
+	 * @return string
+	 */
+	function getServerVersion() {
+		return mysqli_get_server_info( $this->mConn );
+	}
+
+	protected function mysqlFreeResult( $res ) {
+		mysqli_stmt_free_result( $res );
+		return true;
+	}
+
+	protected function mysqlFetchObject( $res ) {
+		$object = mysqli_fetch_object( $res );
+		if ( $object === null ) {
+			return false;
+		}
+		return $object;
+	}
+
+	protected function mysqlFetchArray( $res ) {
+		$array = mysqli_fetch_array( $res );
+		if ( $array === null ) {
+			return false;
+		}
+		return $array;
+	}
+
+	protected function mysqlNumRows( $res ) {
+		return mysqli_num_rows( $res );
+	}
+
+	protected function mysqlNumFields( $res ) {
+		return mysqli_num_fields( $res );
+	}
+
+	protected function mysqlFetchField( $res, $n ) {
+		$field = mysqli_fetch_field_direct( $res, $n );
+		$field->not_null = $field->flags & MYSQLI_NOT_NULL_FLAG;
+		$field->primary_key = $field->flags & MYSQLI_PRI_KEY_FLAG;
+		$field->unique_key = $field->flags & MYSQLI_UNIQUE_KEY_FLAG;
+		$field->multiple_key = $field->flags & MYSQLI_MULTIPLE_KEY_FLAG;
+		return $field;
+	}
+
+	protected function mysqlFieldName( $res, $n ) {
+		$field = mysqli_fetch_field_direct( $res, $n );
+		return $field->name;
+	}
+
+	protected function mysqlDataSeek( $res, $row ) {
+		return mysqli_data_seek( $res, $row );
+	}
+
+	protected function mysqlError( $conn = null ) {
+		if ($conn === null) {
+			return mysqli_connect_error();
+		} else {
+			return mysqli_error( $conn );
+		}
+	}
+
+	protected function mysqlRealEscapeString( $s ) {
+		return mysqli_real_escape_string( $this->mConn, $s );
+	}
+
+	protected function mysqlPing() {
+		return mysqli_ping( $this->mConn );
+	}
+
+}
+
+
+/**
  * Utility class.
  * @ingroup Database
  */
