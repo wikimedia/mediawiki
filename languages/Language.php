@@ -3604,6 +3604,29 @@ class Language {
 		}
 
 		// Handle explicit n=pluralform cases
+		$forms = $this->convertExplicitPlural( $count, $forms );
+		if ( is_string( $forms ) ) {
+			return $forms;
+		}
+
+
+		$pluralForm = $this->getPluralRuleIndexNumber( $count );
+		$pluralForm = min( $pluralForm, count( $forms ) - 1 );
+		return $forms[$pluralForm];
+	}
+
+	/**
+	 * Handles explicit n=pluralform cases for Language::convertPlural()
+	 * If an explicitly defined plural form matches the $count, then
+	 * String value returned, otherwise Array returned for further consideration
+	 * by CLDR rules or overridden convertPlural()
+	 *
+	 * @param integer $count non-localized number
+	 * @param array $forms different plural forms
+	 *
+	 * @return array|string
+	 */
+	protected function convertExplicitPlural( $count, $forms ) {
 		foreach ( $forms as $index => $form ) {
 			if ( preg_match( '/\d+=/i', $form ) ) {
 				$pos = strpos( $form, '=' );
@@ -3613,11 +3636,7 @@ class Language {
 				unset( $forms[$index] );
 			}
 		}
-		$forms = array_values( $forms );
-
-		$pluralForm = $this->getPluralRuleIndexNumber( $count );
-		$pluralForm = min( $pluralForm, count( $forms ) - 1 );
-		return $forms[$pluralForm];
+		return array_values( $forms );
 	}
 
 	/**

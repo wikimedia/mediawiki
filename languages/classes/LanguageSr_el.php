@@ -37,6 +37,12 @@ class LanguageSr_el extends Language {
 		if ( !count( $forms ) ) {
 			return '';
 		}
+
+		$forms = $this->convertExplicitPlural( $count, $forms );
+		if ( is_string( $forms ) ) {
+			return $forms;
+		}
+
 		$forms = $this->preConvertPlural( $forms, 3 );
 
 		if ( $count > 10 && floor( ( $count % 100 ) / 10 ) == 1 ) {

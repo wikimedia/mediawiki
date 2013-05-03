@@ -38,6 +38,11 @@ class LanguageSh extends Language {
 			return '';
 		}
 
+		$forms = $this->convertExplicitPlural( $count, $forms );
+		if ( is_string( $forms ) ) {
+			return $forms;
+		}
+
 		// if no number with word, then use $form[0] for singular and $form[1] for plural or zero
 		if ( count( $forms ) === 2 ) {
 			return $count == 1 ? $forms[0] : $forms[1];

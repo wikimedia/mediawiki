@@ -39,6 +39,11 @@ class LanguageGv extends Language {
 			return '';
 		}
 
+		$forms = $this->convertExplicitPlural( $count, $forms );
+		if ( is_string( $forms ) ) {
+			return $forms;
+		}
+
 		$forms = $this->preConvertPlural( $forms, 4 );
 
 		if ( $count > 0 && ( $count % 20 ) === 0 ) {
