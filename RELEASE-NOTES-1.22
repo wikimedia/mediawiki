@@ -17,6 +17,7 @@ production.
 * $wgVectorUseIconWatch is now enabled by default.
 
 === New features in 1.22 ===
+* (bug 45288) Support mysqli PHP extension
 * (bug 44525) mediawiki.jqueryMsg can now parse (whitelisted) HTML elements and attributes.
 * (bug 33454) Language::sprintfDate now has a timezone parameter, and supports
   the "eIOPTZ" formatting characters.

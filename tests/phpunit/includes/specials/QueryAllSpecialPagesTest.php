@@ -59,7 +59,7 @@ class QueryAllSpecialPagesTest extends MediaWikiTestCase {
 			// With MySQL, skips special pages reopening a temporary table
 			// See http://bugs.mysql.com/bug.php?id=10327
 			if (
-				$wgDBtype === 'mysql'
+				strncmp( $wgDBtype, 'mysql', 5 ) == 0
 				&& in_array( $page->getName(), $this->reopensTempTable )
 			) {
 				$this->markTestSkipped( "SQL query for page {$page->getName()} can not be tested on MySQL backend (it reopens a temporary table)" );
