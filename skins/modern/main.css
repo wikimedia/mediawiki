@@ -412,11 +412,6 @@ h1, h2, h3, h4, h5, h6 {
 	text-decoration: none;
 	color: white;
 }
-
-#mw-pref-clear {
-	clear: both;
-}
-
 #mw_content a.external,
 #mw_content a.external[href ^="gopher://"] {
 	/* @embed */
