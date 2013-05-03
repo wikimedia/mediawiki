@@ -159,6 +159,11 @@ class DatabaseMysql extends DatabaseMysqlBase {
 		return mysql_field_name( $res, $n );
 	}
 
+	public function fieldIsBinary( $res, $n ) {
+		$flags = explode( ' ', mysql_field_flags( $res, $n ) );
+		return in_array( 'binary', $flags );
+	}
+
 	protected function mysqlDataSeek( $res, $row ) {
 		return mysql_data_seek( $res, $row );
 	}
