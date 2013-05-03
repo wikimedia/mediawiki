@@ -660,8 +660,8 @@ class WebInstaller extends Installer {
 		$html = $this->parse( $text, true );
 
 		return "<div class=\"mw-help-field-container\">\n" .
-			"<span class=\"mw-help-field-hint\">" . wfMessage( 'config-help' )->escaped() .
-			"</span>\n" .
+			"<span class=\"mw-help-field-hint\" title=\"" .  wfMessage( 'config-help-tooltip' )->escaped() . "\">" .
+			wfMessage( 'config-help' )->escaped() . "</span>\n" .
 			"<span class=\"mw-help-field-data\">" . $html . "</span>\n" .
 			"</div>\n";
 	}
@@ -1068,14 +1068,9 @@ class WebInstaller extends Installer {
 	 * @return String Html for download link
 	 */
 	public function downloadLinkHook( $text, $attribs, $parser ) {
-		$img = Html::element( 'img', array(
-			'src' => '../skins/common/images/download-32.png',
-			'width' => '32',
-			'height' => '32',
-		) );
 		$anchor = Html::rawElement( 'a',
 			array( 'href' => $this->getURL( array( 'localsettings' => 1 ) ) ),
-			$img . ' ' . wfMessage( 'config-download-localsettings' )->parse() );
+			wfMessage( 'config-download-localsettings' )->parse() );
 		return Html::rawElement( 'div', array( 'class' => 'config-download-link' ), $anchor );
 	}
 
