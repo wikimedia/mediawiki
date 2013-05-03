@@ -3263,7 +3263,7 @@ class User {
 			}
 			if ( !$loaded ) {
 				throw new MWException( __METHOD__ . ": hit a key conflict attempting " .
-					"to insert a user row, but then it doesn't exist when we select it!" );
+					"to insert user '{$this->mName}' row, but it was not present in select!" );
 			}
 			return Status::newFatal( 'userexists' );
 		}
