@@ -71,8 +71,12 @@ class ApiQueryUserInfo extends ApiQueryBase {
 			}
 		}
 
-		if ( isset( $this->prop['hasmsg'] ) && $user->getNewtalk() ) {
-			$vals['messages'] = '';
+		if ( isset( $this->prop['hasmsg'] ) ) {
+			$hasMessages = $user->getNewtalk();
+			wfRunHooks( 'UserHasNewMessages', array( $user, &$hasMessages ) );
+			if ( $hasMessages ) {
+				$vals['messages'] = '';
+			}
 		}
 
 		if ( isset( $this->prop['groups'] ) ) {

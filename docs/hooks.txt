@@ -2550,6 +2550,11 @@ $context: RequestContext object
 $user: User to get rights for
 &$rights: Current rights
 
+'UserHasNewMessages': Called in ApiQueryUserInfo::getCurrentUserInfo if the
+'hasmsg' parameter has been set.
+$user: User object.
+&$hasMessages: Whether the user has new messages or not.
+
 'UserIsBlockedFrom': Check if a user is blocked from a specific page (for
 specific block exemptions).
 $user: User in question
