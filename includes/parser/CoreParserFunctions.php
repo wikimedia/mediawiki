@@ -322,10 +322,10 @@ class CoreParserFunctions {
 		$gender = User::getDefaultOption( 'gender' );
 
 		// allow prefix.
-		$title = Title::newFromText( $username );
+		$title = Title::newFromText( $username, NS_USER );
 
 		if ( $title && $title->getNamespace() == NS_USER ) {
-			$username = $title->getText();
+			$username = $title->getRootText();
 		}
 
 		// check parameter, or use the ParserOptions if in interface message
