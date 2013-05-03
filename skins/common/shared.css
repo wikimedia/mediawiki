@@ -775,44 +775,45 @@ table.mw_metadata ul.metadata-langlist {
 /* Galleries */
 /* These display attributes look nonsensical, but are needed to support IE and FF2 */
 /* Don't forget to update commonPrint.css */
-li.gallerybox {
+figure.gallerybox {
 	vertical-align: top;
 	display: -moz-inline-box;
 	display: inline-block;
+	margin: 0;
 }
 
-ul.gallery,
-li.gallerybox {
+figure.gallery,
+figure.gallerybox {
 	zoom: 1;
 	*display: inline;
 }
 
-ul.gallery {
+figure.gallery {
 	margin: 2px;
 	padding: 2px;
 	display: block;
 }
 
-li.gallerycaption {
+figcaption.gallerycaption {
 	font-weight: bold;
 	text-align: center;
 	display: block;
 	word-wrap: break-word;
 }
 
-li.gallerybox div.thumb {
+figure.gallerybox div.thumb {
 	text-align: center;
 	border: 1px solid #ccc;
 	background-color: #f9f9f9;
 	margin: 2px;
 }
 
-li.gallerybox div.thumb img {
+figure.gallerybox div.thumb img {
 	display: block;
 	margin: 0 auto;
 }
 
-div.gallerytext {
+figure.gallerytext {
 	overflow: hidden;
 	font-size: 94%;
 	padding: 2px 4px;

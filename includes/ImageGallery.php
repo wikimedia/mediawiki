@@ -248,9 +248,10 @@ class ImageGallery {
 		$attribs = Sanitizer::mergeAttributes(
 			array( 'class' => 'gallery' ), $this->mAttribs );
 
-		$output = Xml::openElement( 'ul', $attribs );
+		$output = Xml::openElement( 'figure', $attribs );
+		
 		if ( $this->mCaption ) {
-			$output .= "\n\t<li class='gallerycaption'>{$this->mCaption}</li>";
+			$output .= "\n\t<figcaption class='gallerycaption'>{$this->mCaption}</figcaption>";
 		}
 
 		$lang = $this->getLang();
@@ -355,22 +356,15 @@ class ImageGallery {
 				) . "<br />\n" :
 				'';
 
-			# ATTENTION: The newline after <div class="gallerytext"> is needed to accommodate htmltidy which
-			# in version 4.8.6 generated crackpot html in its absence, see:
-			# http://bugzilla.wikimedia.org/show_bug.cgi?id=1765 -Ævar
-
-			# Weird double wrapping (the extra div inside the li) needed due to FF2 bug
-			# Can be safely removed if FF2 falls completely out of existence
 			$output .=
-				"\n\t\t" . '<li class="gallerybox" style="width: ' . ( $this->mWidths + self::THUMB_PADDING + self::GB_PADDING ) . 'px">'
-					. '<div style="width: ' . ( $this->mWidths + self::THUMB_PADDING + self::GB_PADDING ) . 'px">'
+				"\n\t\t" . '<figure class="gallerybox" style="width: ' . ( $this->mWidths + self::THUMB_PADDING + self::GB_PADDING ) . 'px">'
 					. $thumbhtml
-					. "\n\t\t\t" . '<div class="gallerytext">' . "\n"
+					. "\n\t\t\t" . '<figcaption class="gallerytext">'
 					. $textlink . $text . $fileSize
-					. "\n\t\t\t</div>"
-					. "\n\t\t</div></li>";
+					. "\n\t\t\t</figcaption>"
+					. "\n\t\t</figure>";
 		}
-		$output .= "\n</ul>";
+		$output .= Xml::closeElement( 'figure' );
 
 		return $output;
 	}
