@@ -326,6 +326,7 @@
 	"config-install-done": "Parameters:\n* $1 is the URL to LocalSettings download\n* $2 is a link to the wiki.\n* $3 is a download link with attached download icon. The config-download-localsettings message will be used as the link text.",
 	"config-download-localsettings": "The link text used in the download link in config-install-done.",
 	"config-help": "This is used in help boxes.\n{{Identical|Help}}",
+	"config-help-tooltip": "Tooltip for the 'help' links ({{msg-mw|config-help}}), to make it clear they'll expand in place rather than open a new page",
 	"config-nofile": "Used as failure message. Parameters:\n* $1 - filename",
 	"config-extension-link": "Shown on last page of installation to inform about possible extensions.",
 	"mainpagetext": "Along with {{msg-mw|mainpagedocfooter}}, the text you will see on the Main Page when your wiki is installed.",
