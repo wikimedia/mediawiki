@@ -152,7 +152,6 @@ class MysqlInstaller extends DatabaseInstaller {
 				$this->getVar( '_InstallUser' ),
 				$this->getVar( '_InstallPassword' ),
 				false,
-				false,
 				0,
 				$this->getVar( 'wgDBprefix' )
 			);
@@ -435,7 +434,6 @@ class MysqlInstaller extends DatabaseInstaller {
 					$this->getVar( 'wgDBuser' ),
 					$this->getVar( 'wgDBpassword' ),
 					false,
-					false,
 					0,
 					$this->getVar( 'wgDBprefix' )
 				);
@@ -511,7 +509,6 @@ class MysqlInstaller extends DatabaseInstaller {
 					$server,
 					$dbUser,
 					$password,
-					false,
 					false,
 					0,
 					$this->getVar( 'wgDBprefix' )
