@@ -98,6 +98,7 @@ production.
   apply the new LanguageLinks hook, and thus only consider language links
   stored in the database.
 * (bug 47219) Allow specifying change type of Wikipedia feed items
+* prop=imageinfo now allows setting iiurlheight without setting iiurlwidth
 
 === Languages updated in 1.22===
 
