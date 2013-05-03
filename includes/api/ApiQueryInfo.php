@@ -56,7 +56,7 @@ class ApiQueryInfo extends ApiQueryBase {
 	 * @return void
 	 */
 	public function requestExtraData( $pageSet ) {
-		global $wgDisableCounters;
+		global $wgDisableCounters, $wgContentHandlerUseDB;
 
 		$pageSet->requestField( 'page_restrictions' );
 		// when resolving redirects, no page will have this field
@@ -70,6 +70,9 @@ class ApiQueryInfo extends ApiQueryBase {
 		$pageSet->requestField( 'page_touched' );
 		$pageSet->requestField( 'page_latest' );
 		$pageSet->requestField( 'page_len' );
+		if ( $wgContentHandlerUseDB ) {
+			$pageSet->requestField( 'page_content_model' );
+		}
 	}
 
 	/**
@@ -364,6 +367,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			if ( $this->pageIsNew[$pageid] ) {
 				$pageInfo['new'] = '';
 			}
+			$pageInfo['contentmodel'] = $title->getContentModel();
 		}
 
 		if ( !is_null( $this->params['token'] ) ) {
@@ -819,7 +823,8 @@ class ApiQueryInfo extends ApiQueryBase {
 				'starttimestamp' => array(
 					ApiBase::PROP_TYPE => 'timestamp',
 					ApiBase::PROP_NULLABLE => true
-				)
+				),
+				'contentmodel' => 'string',
 			),
 			'watched' => array(
 				'watched' => 'boolean'
