@@ -48,15 +48,15 @@ class StringUtils {
 	 */
 	static function isUtf8( $value, $disableMbstring = false ) {
 
-		if ( preg_match( '/[\x80-\xff]/', $value ) === 0 ) {
-			# no high bit set, this is pure ASCII which is de facto
-			# valid UTF-8
-			return true;
-		}
-
 		if ( !$disableMbstring && function_exists( 'mb_check_encoding' ) ) {
 			return mb_check_encoding( $value, 'UTF-8' );
 		} else {
+			if ( preg_match( '/[\x80-\xff]/', $value ) === 0 ) {
+				# no high bit set, this is pure ASCII which is de facto
+				# valid UTF-8
+				return true;
+			}
+
 			$hasUtf8 = preg_match( '/^(?>
 				  [\x00-\x7f]
 				| [\xc0-\xdf][\x80-\xbf]
