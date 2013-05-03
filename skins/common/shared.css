@@ -775,44 +775,53 @@ table.mw_metadata ul.metadata-langlist {
 /* Galleries */
 /* These display attributes look nonsensical, but are needed to support IE and FF2 */
 /* Don't forget to update commonPrint.css */
-li.gallerybox {
+li.gallerybox, /* Selector only for cache compatibility, will be removed soon */
+figure.gallerybox {
 	vertical-align: top;
 	display: -moz-inline-box;
 	display: inline-block;
+	margin: 0;
 }
 
-ul.gallery,
-li.gallerybox {
+ul.gallery, /* Selector only for cache compatibility, will be removed soon */
+li.gallerybox, /* Selector only for cache compatibility, will be removed soon */
+figure.gallery,
+figure.gallerybox {
 	zoom: 1;
 	*display: inline;
 }
 
-ul.gallery {
+ul.gallery, /* Selector only for cache compatibility, will be removed soon */
+figure.gallery {
 	margin: 2px;
 	padding: 2px;
 	display: block;
 }
 
-li.gallerycaption {
+li.gallerycaption, /* Selector only for cache compatibility, will be removed soon */
+figcaption.gallerycaption {
 	font-weight: bold;
 	text-align: center;
 	display: block;
 	word-wrap: break-word;
 }
 
-li.gallerybox div.thumb {
+li.gallerybox div.thumb, /* Selector only for cache compatibility, will be removed soon */
+figure.gallerybox div.thumb {
 	text-align: center;
 	border: 1px solid #ccc;
 	background-color: #f9f9f9;
 	margin: 2px;
 }
 
-li.gallerybox div.thumb img {
+li.gallerybox div.thumb img, /* Selector only for cache compatibility, will be removed soon */
+figure.gallerybox div.thumb img {
 	display: block;
 	margin: 0 auto;
 }
 
-div.gallerytext {
+div.gallerytext, /* Selector only for cache compatibility, will be removed soon */
+figcaption.gallerytext {
 	overflow: hidden;
 	font-size: 94%;
 	padding: 2px 4px;

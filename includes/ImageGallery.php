@@ -167,7 +167,7 @@ class ImageGallery {
 			$title = $title->getTitle();
 		}
 		$this->mImages[] = array( $title, $html, $alt, $link );
-		wfDebug( 'ImageGallery::add ' . $title->getText() . "\n" );
+		wfDebug( 'ImageGallery::add ' . $title->getText() );
 	}
 
 	/**
@@ -248,9 +248,10 @@ class ImageGallery {
 		$attribs = Sanitizer::mergeAttributes(
 			array( 'class' => 'gallery' ), $this->mAttribs );
 
-		$output = Xml::openElement( 'ul', $attribs );
+		$output = Xml::openElement( 'figure', $attribs );
+
 		if ( $this->mCaption ) {
-			$output .= "\n\t<li class='gallerycaption'>{$this->mCaption}</li>";
+			$output .= "<figcaption class='gallerycaption'>{$this->mCaption}</figcaption>";
 		}
 
 		$lang = $this->getLang();
@@ -284,11 +285,11 @@ class ImageGallery {
 
 			if ( !$img ) {
 				# We're dealing with a non-image, spit out the name and be done with it.
-				$thumbhtml = "\n\t\t\t" . '<div style="height: ' . ( self::THUMB_PADDING + $this->mHeights ) . 'px;">'
+				$thumbhtml = '<div style="height: ' . ( self::THUMB_PADDING + $this->mHeights ) . 'px;">'
 					. htmlspecialchars( $nt->getText() ) . '</div>';
 			} elseif ( $this->mHideBadImages && wfIsBadImage( $nt->getDBkey(), $this->getContextTitle() ) ) {
 				# The image is blacklisted, just show it as a text link.
-				$thumbhtml = "\n\t\t\t" . '<div style="height: ' . ( self::THUMB_PADDING + $this->mHeights ) . 'px;">' .
+				$thumbhtml = '<div style="height: ' . ( self::THUMB_PADDING + $this->mHeights ) . 'px;">' .
 					Linker::link(
 						$nt,
 						htmlspecialchars( $nt->getText() ),
@@ -299,7 +300,7 @@ class ImageGallery {
 					'</div>';
 			} elseif ( !( $thumb = $img->transform( $params ) ) ) {
 				# Error generating thumbnail.
-				$thumbhtml = "\n\t\t\t" . '<div style="height: ' . ( self::THUMB_PADDING + $this->mHeights ) . 'px;">'
+				$thumbhtml = '<div style="height: ' . ( self::THUMB_PADDING + $this->mHeights ) . 'px;">'
 					. htmlspecialchars( $img->getLastError() ) . '</div>';
 			} else {
 				$vpad = ( self::THUMB_PADDING + $this->mHeights - $thumb->height ) / 2;
@@ -316,8 +317,7 @@ class ImageGallery {
 				}
 
 				# Set both fixed width and min-height.
-				$thumbhtml = "\n\t\t\t" .
-					'<div class="thumb" style="width: ' . ( $this->mWidths + self::THUMB_PADDING ) . 'px;">'
+				$thumbhtml = '<div class="thumb" style="width: ' . ( $this->mWidths + self::THUMB_PADDING ) . 'px;">'
 					# Auto-margin centering for block-level elements. Needed now that we have video
 					# handlers since they may emit block-level elements as opposed to simple <img> tags.
 					# ref http://css-discuss.incutio.com/?page=CenteringBlockElement
@@ -340,7 +340,7 @@ class ImageGallery {
 				} else {
 					$fileSize = wfMessage( 'filemissing' )->escaped();
 				}
-				$fileSize = "$fileSize<br />\n";
+				$fileSize = "$fileSize<br />";
 			} else {
 				$fileSize = '';
 			}
@@ -352,25 +352,17 @@ class ImageGallery {
 					array(),
 					array(),
 					array( 'known', 'noclasses' )
-				) . "<br />\n" :
+				) . "<br />" :
 				'';
 
-			# ATTENTION: The newline after <div class="gallerytext"> is needed to accommodate htmltidy which
-			# in version 4.8.6 generated crackpot html in its absence, see:
-			# http://bugzilla.wikimedia.org/show_bug.cgi?id=1765 -Ævar
-
-			# Weird double wrapping (the extra div inside the li) needed due to FF2 bug
-			# Can be safely removed if FF2 falls completely out of existence
-			$output .=
-				"\n\t\t" . '<li class="gallerybox" style="width: ' . ( $this->mWidths + self::THUMB_PADDING + self::GB_PADDING ) . 'px">'
-					. '<div style="width: ' . ( $this->mWidths + self::THUMB_PADDING + self::GB_PADDING ) . 'px">'
+			$output .= '<figure class="gallerybox" style="width: ' . ( $this->mWidths + self::THUMB_PADDING + self::GB_PADDING ) . 'px">'
 					. $thumbhtml
-					. "\n\t\t\t" . '<div class="gallerytext">' . "\n"
+					. '<figcaption class="gallerytext">'
 					. $textlink . $text . $fileSize
-					. "\n\t\t\t</div>"
-					. "\n\t\t</div></li>";
+					. '</figcaption>'
+					. '</figure>';
 		}
-		$output .= "\n</ul>";
+		$output .= Xml::closeElement( 'figure' );
 
 		return $output;
 	}
