@@ -127,6 +127,8 @@ class SpecialBlock extends FormSpecialPage {
 
 		$user = $this->getUser();
 
+		$suggestedDurations = self::getSuggestedDurations();
+
 		$a = array(
 			'Target' => array(
 				'type' => 'text',
@@ -139,11 +141,11 @@ class SpecialBlock extends FormSpecialPage {
 				'validation-callback' => array( __CLASS__, 'validateTargetField' ),
 			),
 			'Expiry' => array(
-				'type' => !count( self::getSuggestedDurations() ) ? 'text' : 'selectorother',
+				'type' => !count( $suggestedDurations ) ? 'text' : 'selectorother',
 				'label-message' => 'ipbexpiry',
 				'required' => true,
 				'tabindex' => '2',
-				'options' => self::getSuggestedDurations(),
+				'options' => $suggestedDurations,
 				'other' => $this->msg( 'ipbother' )->text(),
 				'default' => $this->msg( 'ipb-default-expiry' )->inContentLanguage()->text(),
 			),
