@@ -1,6 +1,6 @@
 <?php
 /**
- * MySQL-specific installer.
+ * MySQLi-specific installer.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,23 +22,23 @@
  */
 
 /**
- * Class for setting up the MediaWiki database using MySQL.
+ * Class for setting up the MediaWiki database using MySQLi.
  *
  * @ingroup Deployment
- * @since 1.17
+ * @since 1.22
  */
-class MysqlInstaller extends MysqlInstallerBase {
+class MysqliInstaller extends MysqlInstallerBase {
 
 	public function isCompiled() {
-		return self::checkExtension( 'mysql' );
+		return self::checkExtension( 'mysqli' );
 	}
 
 	public function getName() {
-		return 'mysql';
+		return 'mysqli';
 	}
 
 	protected function newDatabase( $server, $user, $password, $dbName, $flags, $tablePrefix ) {
-		return new DatabaseMysql( $server, $user, $password, $dbName, $flags, $tablePrefix );
+		return new DatabaseMysqli( $server, $user, $password, $dbName, $flags, $tablePrefix );
 	}
 
 }
