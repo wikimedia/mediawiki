@@ -745,7 +745,7 @@ Glöm inte att justera dina [[Special:Preferences|{{SITENAME}}-inställningar]].
 'createacct-yourpasswordagain' => 'Bekräfta lösenordet',
 'createacct-yourpasswordagain-ph' => 'Ange lösenordet igen',
 'remembermypassword' => 'Spara min inloggning på den här datorn (i max $1 {{PLURAL:$1|dygn|dygn}})',
-'userlogin-remembermypassword' => 'Kom ihåg mig',
+'userlogin-remembermypassword' => 'Håll mig inloggad',
 'userlogin-signwithsecure' => 'Logga in med säker server',
 'securelogin-stick-https' => 'Fortsätt vara ansluten till HTTPS efter inloggning',
 'yourdomainname' => 'Din domän',
@@ -777,14 +777,16 @@ Glöm inte att justera dina [[Special:Preferences|{{SITENAME}}-inställningar]].
 'createacct-realname' => 'Riktigt namn (valfritt)',
 'createaccountreason' => 'Orsak:',
 'createacct-reason' => 'Anledning',
+'createacct-reason-ph' => 'Varför du skapar ett annat konto',
 'createacct-captcha' => 'Säkerhetskontroll',
 'createacct-captcha-help-url' => '{{ns:Project}}:Begär ett konto',
 'createacct-imgcaptcha-help' => 'Kan du inte se bilden? [[{{MediaWiki:createacct-captcha-help-url}}|Begär ett konto]]',
 'createacct-imgcaptcha-ph' => 'Fyll i texten du ser ovan',
+'createacct-submit' => 'Skapa ditt konto',
 'createacct-benefit-heading' => '{{SITENAME}} är skapad av människor som dig.',
 'createacct-benefit-body1' => 'redigeringar',
 'createacct-benefit-body2' => 'sidor',
-'createacct-benefit-body3' => 'bidragsgivare denna månad',
+'createacct-benefit-body3' => 'nyliga bidragsgivare',
 'badretype' => 'De lösenord du uppgett överensstämmer inte med varandra.',
 'userexists' => 'Det valda användarnamnet används redan.
 Var god välj ett annat namn.',
@@ -873,6 +875,7 @@ Vänta innan du försöker igen.',
 'resetpass-wrong-oldpass' => 'Ogiltigt tillfälligt eller nuvarande lösenord.
 Du kanske redan har lyckats ändra ditt lösenord eller begärt ett nytt tillfälligt lösenord.',
 'resetpass-temp-password' => 'Tillfälligt lösenord:',
+'resetpass-abort-generic' => 'Lösenordsändring av har avbrutits av ett tillägg.',
 
 # Special:PasswordReset
 'passwordreset' => 'Lösenordsåterställning',
@@ -1552,6 +1555,7 @@ Om du väljer att ange ditt riktiga namn, kommer det att användas för att till
 'userrights-notallowed' => 'Ditt konto har inte behörighet till att lägga till eller ta bort användarrättigheter.',
 'userrights-changeable-col' => 'Grupper du kan ändra',
 'userrights-unchangeable-col' => 'Grupper du inte kan ändra',
+'userrights-conflict' => 'Användarrättighetskonflikt! Var god tillämpa dina ändringar igen.',
 
 # Groups
 'group' => 'Grupp:',
@@ -3905,6 +3909,16 @@ Du bör ha fått [{{SERVER}}{{SCRIPTPATH}}/COPYING en kopia av GNU General Publi
 'version-entrypoints' => 'StartpunktsURLer',
 'version-entrypoints-header-entrypoint' => 'Ingångspunkt',
 'version-entrypoints-header-url' => 'URL',
+
+'redirect' => 'Omdirigering av fil, användare eller versions-ID',
+'redirect-legend' => 'Omdirigera till en fil eller sida',
+'redirect-submit' => 'Gå',
+'redirect-lookup' => 'Kolla upp:',
+'redirect-value' => 'Värde:',
+'redirect-user' => 'Användar-ID',
+'redirect-revision' => 'Sidversion',
+'redirect-file' => 'Filnamn',
+'redirect-not-exists' => 'Värdet hittades inte',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Sök efter dubblettfiler',

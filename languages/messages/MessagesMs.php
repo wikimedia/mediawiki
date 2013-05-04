@@ -3727,13 +3727,6 @@ Anda patut telah menerima [{{SERVER}}{{SCRIPTPATH}}/COPYING sebuah salinan bagi 
 'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Laluan rencana]',
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Laluan skrip]',
 
-# Special:FilePath
-'filepath' => 'Laluan fail',
-'filepath-page' => 'Fail:',
-'filepath-submit' => 'Pergi',
-'filepath-summary' => 'Laman khas ini mengembalikan laluan penuh bagi sesebuah fail.
-Imej ditunjuk dalam leraian penuh, jenis fail yang lain dibuka dengan atur cara yang berkenaan secara terus.',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Cari fail serupa',
 'fileduplicatesearch-summary' => 'Anda boleh mencari fail serupa berdasarkan nilai cincangannya.',

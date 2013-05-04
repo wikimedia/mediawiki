@@ -609,7 +609,7 @@ Vergiesst net fir Är [[Special:Preferences|{{SITENAME}} Astellungen]] z'ännere
 'createacct-yourpasswordagain' => 'Passwuert confirméieren',
 'createacct-yourpasswordagain-ph' => 'Passwuert nach eng Kéier aginn',
 'remembermypassword' => 'Meng Umeldung op dësem Computer (fir maximal $1 {{PLURAL:$1|Dag|Deeg}}) verhalen',
-'userlogin-remembermypassword' => 'Sech u mech erënneren',
+'userlogin-remembermypassword' => 'Mech ageloggt halen',
 'userlogin-signwithsecure' => 'Mat engem séchere Server umellen',
 'securelogin-stick-https' => 'Nom Umelle mat HTTPS verbonn bleiwen',
 'yourdomainname' => 'Ären Domain',
@@ -641,10 +641,12 @@ Vergiesst net fir Är [[Special:Preferences|{{SITENAME}} Astellungen]] z'ännere
 'createacct-realname' => 'Richtegen Numm (fakultativ)',
 'createaccountreason' => 'Grond:',
 'createacct-reason' => 'Grond',
+'createacct-reason-ph' => 'Fir wat Dir een anere Benotzerkonnt uleet',
 'createacct-captcha' => 'Sécherheets-Check',
 'createacct-captcha-help-url' => '{{ns:Project}}:E Benotzerkont ufroen',
 'createacct-imgcaptcha-help' => "Dir kënnt D'bild net gesinn? [[{{MediaWiki:createacct-captcha-help-url}}|Frot e Benotzerkont]]",
 'createacct-imgcaptcha-ph' => 'Gitt den Text an deen Dir hei driwwer gesitt',
+'createacct-submit' => 'Äre Benotzerkont uleeën',
 'createacct-benefit-heading' => '{{SITENAME}} gëtt vu Leit wéi Iech gemaach.',
 'createacct-benefit-body1' => 'Ännerungen',
 'createacct-benefit-body2' => 'Säiten',
@@ -744,6 +746,7 @@ Loggt Iech elo an ...',
 'resetpass-wrong-oldpass' => 'Net valabelt temporäert oder aktuellt Passwuert.
 Vläicht hutt Dir Äert Passwuert scho geännert oder en neit temporäert Passwuert ugefrot.',
 'resetpass-temp-password' => 'Temporäert Passwuert:',
+'resetpass-abort-generic' => "D'Ännere vum Passwuert gouf duerch eng Erweiderung ofgebrach.",
 
 # Special:PasswordReset
 'passwordreset' => 'Passwuert zrécksetzen',
@@ -3700,6 +3703,14 @@ Dir misst eng [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie vun der GNU General Public
 'version-entrypoints-header-entrypoint' => 'Agangspunkt',
 'version-entrypoints-header-url' => 'URL',
 
+'redirect-submit' => 'Lass',
+'redirect-lookup' => 'Nosichen:',
+'redirect-value' => 'Wäert:',
+'redirect-user' => 'Benotzernummer',
+'redirect-revision' => 'Versioun vun der Säit',
+'redirect-file' => 'Numm vum Fichier',
+'redirect-not-exists' => 'Wäert net fonnt',
+
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'No duebele Fichiere sichen',
 'fileduplicatesearch-summary' => "Sichen no Doublone vu Fichieren op der Basis vun hirem ''Hash-Wäert''.",
@@ -3791,6 +3802,7 @@ Dir misst eng [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie vun der GNU General Public
 'htmlform-selectorother-other' => 'Anerer',
 'htmlform-no' => 'Neen',
 'htmlform-yes' => 'Jo',
+'htmlform-chosen-placeholder' => 'Sicht eng Optioun eraus',
 
 # SQLite database support
 'sqlite-has-fts' => "$1 ënnerstëtzt d'Volltextsich",

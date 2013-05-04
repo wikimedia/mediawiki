@@ -3553,15 +3553,6 @@ $5
 'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath เส้นทางบทความ]',
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath เส้นทางสคริปต์]',
 
-# Special:FilePath
-'filepath' => 'พาธของไฟล์',
-'filepath-page' => '{{ns:file}}:',
-'filepath-submit' => 'ไป',
-'filepath-summary' => 'หน้าพิเศษนี้คืนค่าเป็นเส้นทางเต็มของไฟล์
-ไฟล์ภาพจะถูกแสดงในขนาดเต็ม และไฟล์ประเภทอื่นจะถูกเปิดด้วยโปรแกรมที่เกี่ยวข้องโดยตรง
-
-กรุณาป้อนชื่อไฟล์โดยไม่มี "{{ns:file}}:" นำหน้า',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'ค้นหาไฟล์ที่ซ้ำซ้อน',
 'fileduplicatesearch-summary' => 'ค้นหาไฟล์ที่ซ้ำกันตามค่าแฮช',

@@ -714,7 +714,7 @@ Pane tähele, et seni kuni sa pole oma võrgulehitseja puhvrit tühjendanud, võ
 'createacct-yourpasswordagain' => 'Parooli kinnitus',
 'createacct-yourpasswordagain-ph' => 'Sisesta uuesti parool',
 'remembermypassword' => 'Jäta parool meelde (kuni $1 {{PLURAL:$1|päevaks|päevaks}})',
-'userlogin-remembermypassword' => 'Pea mind meeles',
+'userlogin-remembermypassword' => 'Jää sisseloginuks',
 'userlogin-signwithsecure' => 'Logi sisse turvaserveri kaudu',
 'securelogin-stick-https' => 'Jätka pärast sisselogimist HTTPS-ühenduse kasutamist',
 'yourdomainname' => 'Sinu domeen:',
@@ -746,14 +746,16 @@ Pane tähele, et seni kuni sa pole oma võrgulehitseja puhvrit tühjendanud, võ
 'createacct-realname' => 'Pärisnimi (valikuline)',
 'createaccountreason' => 'Põhjus:',
 'createacct-reason' => 'Põhjus',
+'createacct-reason-ph' => 'Miks lood teist kontot?',
 'createacct-captcha' => 'Turvakontroll',
 'createacct-captcha-help-url' => '{{ns:Project}}:Kontotaotlus',
 'createacct-imgcaptcha-help' => 'Kas sa ei näe pilti? [[{{MediaWiki:createacct-captcha-help-url}}|Taotle kontot]]',
 'createacct-imgcaptcha-ph' => 'Sisesta ülalnähtav tekst',
+'createacct-submit' => 'Loo oma konto',
 'createacct-benefit-heading' => '{{SITENAME}} on sinusuguste inimeste tehtud.',
 'createacct-benefit-body1' => 'muudatust',
 'createacct-benefit-body2' => 'lehekülge',
-'createacct-benefit-body3' => 'kaastöölist sel kuul',
+'createacct-benefit-body3' => 'hiljutist kaastöölist',
 'badretype' => 'Sisestatud paroolid ei lange kokku.',
 'userexists' => 'Sisestatud kasutajanimi on juba kasutusel.
 Palun valige uus nimi.',
@@ -840,6 +842,7 @@ Sisselogimine...',
 'resetpass-wrong-oldpass' => 'Vigane ajutine või praegune salasõna.
 Võib-olla oled juba edukalt muudnud oma salasõna või taotlenud uut ajutist salasõna.',
 'resetpass-temp-password' => 'Ajutine parool:',
+'resetpass-abort-generic' => 'Tarkvaralisa on paroolimuudatuse abortinud.',
 
 # Special:PasswordReset
 'passwordreset' => 'Parooli lähtestamine',
@@ -1488,7 +1491,7 @@ See ei tohi olla pikem kui {{PLURAL:$1|üks märk|$1 märki}}.',
 'email-address-validity-invalid' => 'Sisesta sobiv e-posti aadress.',
 
 # User rights
-'userrights' => 'Kasutaja õiguste muutmine',
+'userrights' => 'Kasutajaõiguste haldus',
 'userrights-lookup-user' => 'Kasutajarühma muutmine',
 'userrights-user-editname' => 'Sisesta kasutajanimi:',
 'editusergroup' => 'Muuda kasutajarühma',
@@ -1504,10 +1507,11 @@ See ei tohi olla pikem kui {{PLURAL:$1|üks märk|$1 märki}}.',
 'userrights-reason' => 'Põhjus:',
 'userrights-no-interwiki' => 'Sul ei ole luba muuta kasutajaõigusi teistes vikides.',
 'userrights-nodatabase' => 'Andmebaasi $1 ei ole olemas või pole see kohalik.',
-'userrights-nologin' => 'Kasutaja õiguste muutmiseks, pead sa administraatori õigustega kontoga [[Special:UserLogin|sisse logima]].',
+'userrights-nologin' => 'Et kasutajaõigusi jagada, pead administraatori kontoga [[Special:UserLogin|sisse logima]].',
 'userrights-notallowed' => 'Sinu kontole pole antud luba lisada või eemaldada kasutajaõigusi.',
 'userrights-changeable-col' => 'Rühmad, mida sa saad muuta',
 'userrights-unchangeable-col' => 'Rühmad, mida sa ei saa muuta',
+'userrights-conflict' => 'Kasutajaõiguste konflikt! Palun tee muudatused uuesti.',
 
 # Groups
 'group' => 'Rühm:',
@@ -1600,7 +1604,7 @@ See ei tohi olla pikem kui {{PLURAL:$1|üks märk|$1 märki}}.',
 'newuserlogpagetext' => 'See logi sisaldab infot äsja loodud uute kasutajate kohta.',
 
 # User rights log
-'rightslog' => 'Kasutaja õiguste logi',
+'rightslog' => 'Kasutajaõiguste logi',
 'rightslogtext' => 'See on logi kasutajate õiguste muutuste kohta.',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -2559,7 +2563,7 @@ $1',
 'sp-contributions-uploads' => 'üleslaadimised',
 'sp-contributions-logs' => 'logid',
 'sp-contributions-talk' => 'arutelu',
-'sp-contributions-userrights' => 'kasutaja õiguste muutmine',
+'sp-contributions-userrights' => 'kasutajaõiguste muutmine',
 'sp-contributions-blocked-notice' => 'See kasutaja on parajasti blokeeritud. Allpool on toodud kõige hilisem blokeerimislogi sissekanne:',
 'sp-contributions-blocked-notice-anon' => 'See IP-aadress on parajasti blokeeritud.
 Allpool on toodud viimane blokeerimislogi sissekanne:',
@@ -3774,6 +3778,17 @@ GNU Üldise Avaliku Litsentsi [{{SERVER}}{{SCRIPTPATH}}/COPYING eksemplar] peaks
 'version-entrypoints-header-entrypoint' => 'Sisendpunkt',
 'version-entrypoints-header-url' => 'URL',
 
+'redirect' => 'Ümbersuunamine faili, kasutaja või redaktsiooni identifikaatori järgi',
+'redirect-legend' => 'Ümbersuunamine faili juurde või leheküljele',
+'redirect-summary' => 'See erilehekülg suunab ümber faili (toodud failinimi), lehekülje (toodud redaktsiooni identifikaator) või kasutajalehekülje (toodud numbriline kasutaja identfikaator) juurde.',
+'redirect-submit' => 'Mine',
+'redirect-lookup' => 'Leia:',
+'redirect-value' => 'Väärtus:',
+'redirect-user' => 'Kasutaja identifikaator',
+'redirect-revision' => 'Lehekülje redaktsioon',
+'redirect-file' => 'Failinimi',
+'redirect-not-exists' => 'Väärtust ei leitud',
+
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Faili duplikaatide otsimine',
 'fileduplicatesearch-summary' => 'Otsi duplikaatfaile nende räsiväärtuse järgi.',
@@ -3865,6 +3880,7 @@ GNU Üldise Avaliku Litsentsi [{{SERVER}}{{SCRIPTPATH}}/COPYING eksemplar] peaks
 'htmlform-selectorother-other' => 'Muu',
 'htmlform-no' => 'Ei',
 'htmlform-yes' => 'Jah',
+'htmlform-chosen-placeholder' => 'Vali säte',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 koos täistekstiotsingu toega',
@@ -3900,6 +3916,8 @@ GNU Üldise Avaliku Litsentsi [{{SERVER}}{{SCRIPTPATH}}/COPYING eksemplar] peaks
 'logentry-newusers-create' => '{{GENDER:$2|Loodud}} kasutajakonto $1',
 'logentry-newusers-create2' => '$1 {{GENDER:$2|lõi}} kasutajakonto $3',
 'logentry-newusers-autocreate' => 'Konto $1 {{GENDER:$2|loodi}} automaatselt',
+'logentry-rights-rights' => '$1 {{GENDER:$2|muutis}} kasutaja $3 rühmaliikmesust; enne oli $4, nüüd on $5',
+'logentry-rights-rights-legacy' => '$1 {{GENDER:$2|muutis}} kasutaja $3 rühmaliikmesust',
 'rightsnone' => '(puudub)',
 
 # Feedback

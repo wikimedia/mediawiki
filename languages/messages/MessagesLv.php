@@ -3006,11 +3006,6 @@ Var arī lietot [[Special:EditWatchlist|standarta izmainīšanas lapu]].',
 'version-software-version' => 'Versija',
 'version-entrypoints-header-url' => 'URL',
 
-# Special:FilePath
-'filepath' => 'Failu adreses',
-'filepath-page' => 'Fails:',
-'filepath-submit' => 'Atrast',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Meklēt failu kopijas',
 'fileduplicatesearch-summary' => 'Meklē dublējošos failus, izmantojot uz jaucējfunkcijas vērtības.',

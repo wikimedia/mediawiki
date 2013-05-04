@@ -3538,13 +3538,6 @@ MediaWiki туһалаах буоллун диэн тарҕатыллар, ол 
 'version-entrypoints-header-entrypoint' => 'Киирии сирэ',
 'version-entrypoints-header-url' => 'URL',
 
-# Special:FilePath
-'filepath' => 'Билэ суола',
-'filepath-page' => 'Билэ:',
-'filepath-submit' => 'Көс',
-'filepath-summary' => 'Бу аналлаах сирэй билэ ханна сытарын толору көрдөрөр.
-Ойуулар толору көрдөрүллэллэр, атын билэлэр ситимнээх бырагырааммаларыгар тута арыллаллар.',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Хос билэлэри көрдөөһүн',
 'fileduplicatesearch-summary' => 'Тэҥ билэлэри хэш-куодтарынан көрдөөһүн.',

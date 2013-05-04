@@ -1172,7 +1172,10 @@ Legg til merkis, at teirra innihaldsyvirlit av {{SITENAME}} kann vera gamalt og 
 'changepassword' => 'Broyt loyniorð',
 'prefs-skin' => 'Hamur',
 'skin-preview' => 'Forskoðan',
+'datedefault' => 'Ongi serlig ynskir',
+'prefs-beta' => 'Betafunktiónir',
 'prefs-datetime' => 'Dato og tíð',
+'prefs-labs' => 'Testfunktiónir',
 'prefs-user-pages' => 'Brúkarasíður',
 'prefs-personal' => 'Brúkaradáta',
 'prefs-rc' => 'Nýkomnar broytingar og stubbaskoðan',
@@ -1197,14 +1200,17 @@ Legg til merkis, at teirra innihaldsyvirlit av {{SITENAME}} kann vera gamalt og 
 'columns' => 'Teigar:',
 'searchresultshead' => 'Leita',
 'resultsperpage' => 'Úrslit fyri hvørja síðu:',
+'stub-threshold' => 'Avmarkað til <a href="#" class="stub">stubba leinki</a> formatering (bytes):',
 'stub-threshold-disabled' => 'Er gjørt óvirki',
 'recentchangesdays' => 'Dagar av vísa í seinastu broytingum:',
 'recentchangesdays-max' => 'Í mesta lagi $1 {{PLURAL:$1|dagur|dagar}}',
 'recentchangescount' => 'Tal av rættingum at vísa í standard:',
+'prefs-help-recentchangescount' => 'Íroknað seinastu broytingar, søgur hjá síðum og loggar.',
 'savedprefs' => 'Tínar innstillingar eru goymdar.',
 'timezonelegend' => 'Tíðar sona:',
 'localtime' => 'Lokal tíð:',
 'timezoneuseserverdefault' => 'Nýt wiki standard: ($1)',
+'timezoneuseoffset' => 'Annað (skrivað munin)',
 'timezoneoffset' => 'Offset¹:',
 'servertime' => 'Servara tíð:',
 'guesstimezone' => 'Fyll út við kagara',
@@ -1240,6 +1246,8 @@ Tú kanst ikki angra, tá tað fyrst er gjørt.',
 'yourlanguage' => 'Mál til brúkaraflatu:',
 'yournick' => 'Nýggj undirskrift:',
 'prefs-help-signature' => 'Viðmerkingar á kjaksíðum eiga at vera undirskrivaðar við "<nowiki>~~~~</nowiki>", sum verður gjørt um til tína undirskrift og eitt dagfestingarmerki.',
+'badsig' => 'Ógyldug ráð undirskrift.
+Eftirkannað HTML.',
 'badsiglength' => 'Tín undirskrift er ov long. 
 Hon má ikki hava meira enn $1 {{PLURAL:$1|tekn|tekn}}',
 'yourgender' => 'Kyn:',
@@ -1290,9 +1298,11 @@ Tín t-post adressa verður ikki avdúkað, tá aðrir brúkarir seta seg í sam
 'userrights-reason' => 'Orsøk:',
 'userrights-no-interwiki' => 'Tú hevur ikki loyvi til at rætta brúkara rættindi á øðrum wikium.',
 'userrights-nodatabase' => 'Dátugrunnurin $1 er ikki til ella er hann ikki lokalur.',
+'userrights-nologin' => 'Tú mást [[Special:UserLogin|rita inn]] sum administrator fyri at kunna áseta brúkararættindi.',
 'userrights-notallowed' => 'Tín konto hevur ikki loyvi til at seta ella taka burtur brúkara rættindi.',
 'userrights-changeable-col' => 'Bólkar sum tú kanst broyta',
 'userrights-unchangeable-col' => 'Bólkar, ið tú ikki kanst broyta',
+'userrights-conflict' => 'Ósamsvar viðvíkjandi brúkararættindum! Vinarliga royn aftur at goyma tínar broytingar.',
 
 # Groups
 'group' => 'Bólkur:',
@@ -1329,6 +1339,7 @@ Tín t-post adressa verður ikki avdúkað, tá aðrir brúkarir seta seg í sam
 'right-move-subpages' => 'Flyt síður saman við undirsíðum teirra',
 'right-move-rootuserpages' => 'Flyta høvuðs brúkarasíður',
 'right-movefile' => 'Flyt fílur',
+'right-suppressredirect' => 'Flyta síður uttan at upprætta víðaristilling frá tí gomlu síðuni.',
 'right-upload' => 'Legg upp fílur',
 'right-reupload' => 'Yvirskriva verandi fílur',
 'right-reupload-own' => 'Yvirskriva verandi fílur, sum tú hevur lagt upp',
@@ -1338,6 +1349,7 @@ Tín t-post adressa verður ikki avdúkað, tá aðrir brúkarir seta seg í sam
 'right-bigdelete' => 'Strika síður við nógvum versjónum',
 'right-browsearchive' => 'Leita í strikaðum síðum',
 'right-undelete' => 'Endurstovnað eina síðu',
+'right-suppressionlog' => 'Vís privatar loggar',
 'right-block' => 'Nokta øðrum brúkarum at rætta (blokka)',
 'right-blockemail' => 'Nokta einum brúkara at senda teldupost',
 'right-hideuser' => 'Sperra eitt brúkaranavn og goyma tað burtur fyri almenninginum',
@@ -1383,6 +1395,8 @@ Tín t-post adressa verður ikki avdúkað, tá aðrir brúkarir seta seg í sam
 'action-undelete' => 'endurstovnað hesa síðu',
 'action-block' => 'noktað hesum brúkara at rætta',
 'action-protect' => 'broyt verjustøðuna hjá hesi síðu',
+'action-patrol' => 'markað rætting hjá øðrum sum eftirhugda',
+'action-autopatrol' => 'fá tina rætting merkta sum eftirhugda',
 'action-unwatchedpages' => 'Síggj listan yvir síður sum ikki eru eftiransaðar',
 'action-mergehistory' => 'samanflætta søguna hjá hesi síðu',
 'action-userrights' => 'broyt øll brúkaraloyvi',
@@ -1419,6 +1433,7 @@ Tín t-post adressa verður ikki avdúkað, tá aðrir brúkarir seta seg í sam
 'boteditletter' => 'b',
 'number_of_watching_users_pageview' => '[$1 ansar eftir {{PLURAL:$1|brúkara|brúkarum}}]',
 'rc_categories_any' => 'Nakar',
+'rc-change-size-new' => '$1 {{PLURAL:$1|byte|bytes}} eftir broyting',
 'newsectionsummary' => '/* $1 */ nýtt innlegg',
 'rc-enhanced-expand' => 'Vís smálutir (krevur JavaScript)',
 'rc-enhanced-hide' => 'Goym smálutir',
@@ -1527,10 +1542,20 @@ $1',
 'upload-warning-subj' => 'Ávaring um upplótan',
 
 'upload-file-error' => 'Innvortis brek',
+'upload-misc-error' => 'Ókend villa tá tú legði út',
+'upload-misc-error-text' => "Ein ókend villa fór fram meðan tú legði út.
+Vinariga vátta, at URL'urin er gyldugur og atkomuligur og royn aftur.
+Um trupulleikin heldur fram, set teg so vinarliga í samband við ein [[Special:ListUsers/sysop|administrator]].",
+'upload-too-many-redirects' => "URL'urin innihelt ov nógvar umdirigeringar",
 'upload-unknown-size' => 'Ókend stødd',
+'upload-http-error' => 'Ein HTTP villa hendi: $1',
+'upload-copy-upload-invalid-domain' => 'Upplótan av avritum ber ikki til frá hesum domeninum.',
 
 # File backend
+'backend-fail-stream' => 'Tað bar ikki til at stroyma fílu "$1".',
+'backend-fail-backup' => 'Tað bar ikki til at taka backup av fílu "$1".',
 'backend-fail-notexists' => 'Fílan $1 er ikki til.',
+'backend-fail-notsame' => 'Ein ikki-eins fíla finst longu á "$1".',
 'backend-fail-alreadyexists' => 'Fílan "$1" finst longu.',
 'backend-fail-store' => 'Kundi ikki goyma fílu $1 á $2.',
 'backend-fail-copy' => 'Kundi ikki avrita fílu $1 til $2.',
@@ -1748,6 +1773,7 @@ Vinarliga legg merki til, at vevsíður kunnu slóða til eina fílu við beinle
 'notargettitle' => 'Onki mál',
 'pager-newer-n' => '{{PLURAL:$1|nýggjari 1|nýggjari $1}}',
 'pager-older-n' => '{{PLURAL:$1|eldri 1|eldri $1}}',
+'suppress' => 'Yvirlit',
 
 # Book sources
 'booksources' => 'Bókakeldur',
@@ -1819,7 +1845,7 @@ og hava virkandi teldupostadressu í [[Special:Preferences|innstillingum]] tínu
 fyri at senda teldupost til aðrar brúkarar.',
 'emailuser' => 'Send t-post til brúkara',
 'emailpage' => 'Send t-post til brúkara',
-'emailpagetext' => 'Tú kanst brúka skjalið niðanfyri til at senda ein teldupost til henda brúkaran.
+'emailpagetext' => 'Tú kanst brúka skjalið niðanfyri til at senda ein teldupost til henda {{GENDER:$1|brúkara}}.
 Teldupost adressan sum tú skrivaði í [[Special:Preferences|tíni brúkara ynskir]] kemur síðan fram sum "Frá" adressan í teldupostinum, soleiðis at móttakarin kann svara beinleiðis til tín.',
 'defemailsubject' => '{{SITENAME}} t-postur frá brúkara $1',
 'usermaildisabled' => 'Brúkara t-postur er óvirkin',
@@ -1844,7 +1870,7 @@ Teldupost adressan sum tú skrivaði í [[Special:Preferences|tíni brúkara yns
 'watchlistfor2' => 'Fyri $1 $2',
 'nowatchlist' => 'Tú hevur ongar lutir í eftirlitinum.',
 'watchnologin' => 'Tú hevur ikki ritað inn',
-'addedwatchtext' => 'Síðan "<nowiki>$1</nowiki>" er løgd undir [[Special:Watchlist|eftirlit]] hjá tær.
+'addedwatchtext' => 'Síðan  "[[:$1]]" er løgd undir [[Special:Watchlist|eftirlitslistan]] hjá tær.
 Framtíðar broytingar á hesi síðu og tilknýttu kjaksíðuni verða at síggja har.',
 'removedwatchtext' => 'Síðan "[[:$1]]" er strikað úr [[Special:Watchlist|tínum eftirliti]].',
 'watch' => 'Eygleið',
@@ -2041,10 +2067,10 @@ at læsa dátugrunnin upp aftur tá ið viðgerðin er liðug.',
 Gamla navnið verður ein tilvísingarsíða til ta nýggju.
 Tú kanst dagføra tilvísingarsíður sum vísa til uppruna tittulin sjálvvirkandi.
 Um tú velur ikki at gera tað, ver so vís/ur í at eftirkanna [[Special:DoubleRedirects|dupultar]]  ella [[Special:BrokenRedirects|brotnar tilvísingarsíður]].
-Tú hevur ábyrgdina fyri at ansa eftir at slóðir framvegis fara hagar, tær skulu.
+Tú hevur ábyrgdina fyri at ansa eftir at slóðir framvegis peika hagar, tær skulu.
 
 Legg merki til at síðan '''ikki''' verður flutt, um ein síða longu er við nýggja navninum, uttan so at hon er tóm, er ein tilvísingarsíða og onga rættingarsøgu hevur.
-Hetta merkir at tú kanst umnevna eina síðu aftur hagani hon kom, um tú gjørdi eitt mistak og tú kanst ikki yvirskriva eina verandi síðu.
+Hetta merkir at tú kanst umnevna eina síðu aftur hagani hon kom, um tú gjørdi eitt mistak, og tú kanst ikki yvirskriva eina verandi síðu.
 
 '''ÁVARING!'''
 Hetta kann vera ein ógvuslig og óvæntað broyting av einari vældámdari síðu.

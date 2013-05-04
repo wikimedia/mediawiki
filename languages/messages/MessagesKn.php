@@ -94,8 +94,6 @@ $messages = array(
 'tog-shownumberswatching' => 'ಪುಟವನ್ನು ವೀಕ್ಷಿಸುತ್ತಿರುವ ಸದಸ್ಯರ ಸಂಖ್ಯೆಯನ್ನು ತೋರಿಸು',
 'tog-oldsig' => 'ಪ್ರಸ್ತುತ ಸಹಿ',
 'tog-fancysig' => 'ಸರಳ ಸಹಿಗಳು (ಕೊಂಡಿ ಇಲ್ಲದಿರುವಂತೆ)',
-'tog-externaleditor' => 'ಬಾಹ್ಯ ಸಂಪಾದನೆ ಸಲಕರಣೆಯನ್ನು ಯಾವಾಗಲೂ ಉಪಯೋಗಿಸು (ಅನುಭವ ಹೊಂದಿರುವ ಬಳಕೆದಾರರಿಗೆ ಮಾತ್ರ, ನಿಮ್ಮ ಗಣಕಯಂತ್ರದಲ್ಲಿ ವಿಶೇಷ ಬದಲಾವಣೆಗಳು ಬೇಕಾಗುತ್ತದೆ)',
-'tog-externaldiff' => 'ಬಾಹ್ಯ ಅಂತರದರ್ಶಕವನ್ನು ಯಾವಗಲೂ ಉಪಯೋಗಿಸು (ಅನುಭವ ಹೊಂದಿರುವ ಬಳಕೆದಾರರಿಗೆ ಮಾತ್ರ, ನಿಮ್ಮ ಗಣಕಯಂತ್ರದಲ್ಲಿ ವಿಶೇಷ ಬದಲಾವಣೆಗಳು ಬೇಕಾಗುತ್ತದೆ)',
 'tog-showjumplinks' => 'ಶಕ್ತಗೊಳಿಸಲು "ನೆಗೆ ಇಲ್ಲಿಗೆ" ಲಭ್ಯಕೆ ಕೊಡ',
 'tog-uselivepreview' => 'ನೇರ ಮುನ್ನೋಟವನ್ನು ಉಪಯೋಗಿಸು (JavaScript) (ಪ್ರಾಯೋಗಿಕ)',
 'tog-forceeditsummary' => 'ಸಂಪಾದನೆ ಸಾರಾಂಶವನ್ನು ಖಾಲಿ ಬಿಟ್ಟಲ್ಲಿ ನೆನಪಿಸು',
@@ -109,6 +107,7 @@ $messages = array(
 'tog-diffonly' => 'ವ್ಯತ್ಯಾಸಗಳ ಕೆಳಗಿರುವ ಪುಟದ ವಿವರಗಳನ್ನು ತೋರಿಸಬೇಡ',
 'tog-showhiddencats' => 'ಅಡಗಿಸಲ್ಪಟ್ಟ ವರ್ಗಗಳನ್ನು ತೋರಿಸು',
 'tog-norollbackdiff' => 'ತೊಡೆದುಹಾಕಿದ ನಂತರ ವ್ಯತ್ಯಸವನ್ನು ಬಿದು',
+'tog-useeditwarning' => 'ಸಂಪಾದನೆಯನ್ನು ಉಳಿಸದೆ ಹೊರಟಲ್ಲಿ ನನಗೆ ಎಚ್ಚರಿಸು',
 
 'underline-always' => 'ಯಾವಾಗಲೂ',
 'underline-never' => 'ಎಂದಿಗೂ ಇಲ್ಲ',
@@ -197,6 +196,7 @@ $messages = array(
 'newwindow' => '(ಹೊಸ ಕಿಟಕಿಯನ್ನು ತೆರೆಯುತ್ತದೆ)',
 'cancel' => 'ವಜಾ ಮಾಡಿ',
 'moredotdotdot' => 'ಇನ್ನಷ್ಟು...',
+'morenotlisted' => 'ಹೆಚ್ಚಿನದನ್ನು ಪಟ್ಟಿಮಾಡಲಾಗಿಲ್ಲ...',
 'mypage' => 'ಪುಟ',
 'mytalk' => 'ಚರ್ಚೆ',
 'anontalk' => 'ಈ ಐ.ಪಿ ಗೆ ಮಾತನಾಡಿ',
@@ -322,6 +322,7 @@ $messages = array(
 'youhavenewmessages' => 'ನಿಮಗೆ $1 ಇವೆ ($2).',
 'newmessageslink' => 'ಹೊಸ ಸಂದೇಶಗಳು',
 'newmessagesdifflink' => 'ಕೊನೆಯ ಬದಲಾವಣೆ',
+'newmessagesdifflinkplural' => 'ಕಡೆಯ {{PLURAL:$1|ಬದಲಾವಣೆ|ಬದಲಾವಣೆಗಳು}}',
 'youhavenewmessagesmulti' => '$1 ಅಲ್ಲಿ ನಿಮಗೆ ಹೊಸ ಸಂದೇಶಗಳಿವೆ',
 'editsection' => 'ಬದಲಾಯಿಸಿ',
 'editold' => 'ಬದಲಾಯಿಸಿ',
@@ -371,12 +372,12 @@ $messages = array(
 # General errors
 'error' => 'ದೋಷ',
 'databaseerror' => 'ಡೇಟಬೇಸ್ ದೋಷ',
-'dberrortext' => '!!FUZZY!ಒಂದು ಡೇಟಾಬೇಸ್ ನಿಮ್ಮಪ್ರಶ್ನೆಗೆ ಸಿಂಟಾಕ್ಸ್ ತಪ್ಪು ಸಂಭವಿಸಿದೆ
+'dberrortext' => 'ಒಂದು ಡೇಟಾಬೇಸ್ ನಿಮ್ಮಪ್ರಶ್ನೆಗೆ ಸಿಂಟಾಕ್ಸ್ ತಪ್ಪು ಸಂಭವಿಸಿದೆ
 ಈ ಸಾಫ್ಟ್ವೇರ್ ಒಂದು ದೋಷವನ್ನು ನಿವಾರಿಸಲಾಗಿದೆ ಸೂಚಿಸಬಹುದು.
 ಕೊನೆಯ ಪ್ರಯತ್ನ ಡೇಟಾಬೇಸ್ ನಿಮ್ಮಪ್ರಶ್ನೆಗೆ ಮಾಡಲಾಯಿತು:
-<blockquote><tt>$1</tt></blockquote>
-ಕ್ರಿಯೆ ಒಳಗಿನಿಂದಲೇ "<tt>$2</tt>" 
-ಡೇಟಾಬೇಸ್ ದೋಷವನ್ನು ತಿಳಿಸಿದೆ"<tt>$3: $4</tt>".',
+<blockquote><code>$1</code></blockquote>
+ಕ್ರಿಯೆ ಒಳಗಿನಿಂದಲೇ "<code>$2</code>" 
+ಡೇಟಾಬೇಸ್ ದೋಷವನ್ನು ತಿಳಿಸಿದೆ"<code>$3: $4</code>".',
 'dberrortextcl' => 'ಡೇಟಾಬೇಸ್ ಪ್ರಶ್ನೆಯ ವಿನ್ಯಾಸದಲ್ಲಿ ದೋಷ ಉಂಟಾಗಿದೆ.
 ಕೊನೆಯದಾಗಿ ಪ್ರಯತ್ನಿಸಲಾದ ಡೇಟಾಬೇಸ್ ಪ್ರಶ್ನೆಯು:
 "$1"
@@ -410,7 +411,7 @@ MySQL ಹಿಂದಿರುಗಿಸಿದ ದೋಷ "$3: $4"',
 'unexpected' => 'ಅನಿರೀಕ್ಷಿತ ಮೌಲ್ಯ: "$1"="$2".',
 'formerror' => 'ದೋಷ: ಅರ್ಜಿ ಕಳುಹಿಸಲಾಗಲಿಲ್ಲ',
 'badarticleerror' => 'ಈ ಪುಟದ ಮೇಲೆ ನೀವು ಪ್ರಯತ್ನಿಸಿದ ಕಾರ್ಯವನ್ನು ನಡೆಸಲಾಗದು.',
-'cannotdelete' => 'ಈ ಪುಟ ಅಥವಾ ಚಿತ್ರವನ್ನು ಅಳಿಸಲಾಗಲಿಲ್ಲ. (ಬೇರೊಬ್ಬ ಸದಸ್ಯರಿಂದ ಆಗಲೇ ಅಳಿಸಲ್ಪಟ್ಟಿರಬಹುದು.)',
+'cannotdelete' => '"$1" ಈ ಪುಟ ಅಥವಾ ಚಿತ್ರವನ್ನು ಅಳಿಸಲಾಗಲಿಲ್ಲ. (ಬೇರೊಬ್ಬ ಸದಸ್ಯರಿಂದ ಆಗಲೇ ಅಳಿಸಲ್ಪಟ್ಟಿರಬಹುದು.)',
 'cannotdelete-title' => '"$1" ಪುಟವನ್ನು ಅಳಿಸಲಾಗುವುದಿಲ್ಲ',
 'badtitle' => 'ಸರಿಯಿಲ್ಲದ ಹೆಸರು',
 'badtitletext' => 'ನೀವು ಕೋರಿದ ಪುಟದ ಶೀರ್ಷಿಕೆ ಸಿಂಧುವಲ್ಲದ್ದು ಅಥವ ಖಾಲಿ ಅಥವ ಸರಿಯಾದ ಕೊಂಡಿಯಲ್ಲದ ಅಂತರ-ಭಾಷೆ/ಅಂತರ-ವಿಕಿ ಸಂಪರ್ಕವಾಗಿದೆ.
@@ -454,7 +455,12 @@ $2',
 'welcomecreation-msg' => 'ನಿಮ್ಮ ಖಾತೆ ತೆರೆಯಲಾಗಿದೆ.ನಿಮ್ಮ [[Special:Preferences|{{SITENAME}} preferences]]ಬದಲಾಯಿಸಲು ಮರೆಯಬೇಡಿ.',
 'yourname' => 'ನಿಮ್ಮ ಬಳಕೆಯ ಹೆಸರು',
 'yourpassword' => 'ನಿಮ್ಮ ಪ್ರವೇಶಪದ',
+'userlogin-yourpassword' => 'ಪ್ರವೇಶಪದ',
+'userlogin-yourpassword-ph' => 'ನಿಮ್ಮ ಪ್ರವೇಶಪದ ನಮೂದಿಸಿ',
+'createacct-yourpassword-ph' => 'ಪ್ರವೇಶಪದ ಒಂದನ್ನು ನಮೂದಿಸಿ',
 'yourpasswordagain' => 'ಪ್ರವೇಶ ಪದ ಮತ್ತೊಮ್ಮೆ ಟೈಪ್ ಮಾಡಿ',
+'createacct-yourpasswordagain' => 'ಪ್ರವೇಶಪದವನ್ನು ಧೃಡೀಕರಿಸಿ',
+'createacct-yourpasswordagain-ph' => 'ಪ್ರವೇಶಪದವನ್ನು ಮತ್ತೊಮ್ಮೆ ನಮೂದಿಸಿ',
 'remembermypassword' => 'ಈ ಗಣಕಯಂತ್ರದಲ್ಲಿ ನನ್ನ ಲಾಗಿನ್ ನೆನಪಿನಲ್ಲಿಟ್ಟುಕೊ (ಗರಿಷ್ಠ $1 {{PLURAL:$1|ದಿನದ|ದಿನಗಳ}}ವರೆಗೆ)',
 'securelogin-stick-https' => 'ಲಾಗಿನ್ ಆದ ಬಳಿಕ HTTPS ನ ಸಂಪರ್ಕದಲ್ಲಿರಿ.',
 'yourdomainname' => 'ನಿಮ್ಮ ಕ್ಷೇತ್ರ:',
@@ -642,7 +648,7 @@ $2',
 ಅಥವ [{{fullurl:{{FULLPAGENAME}}|action=edit}} ಈ ಪುಟವನ್ನು ಸಂಪಾದಿಸಬಹುದು]</span>.',
 'noarticletext-nopermission' => 'ಈ ಪುಟದಲ್ಲಿ ಸದ್ಯಕ್ಕೆ ಯಾವ ಪಠ್ಯವೂ ಇಲ್ಲ.
 ನೀವು ಇತರ ಪುಟಗಳಲ್ಲಿ [[ವಿಶೇಷ:Search/{{PAGENAME}}|ಈ ಶೀರ್ಷಿಕೆಗಾಗಿ ಹುಡುಕಬಹುದು]],
-ಅಥವಾ <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ಸಂಬಂಧಿಸಿದ ದಾಖಲಾತಿ ಹುಡುಕಿ]</span>.',
+ಅಥವಾ <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ಸಂಬಂಧಿಸಿದ ದಾಖಲಾತಿ ಹುಡುಕಿ]</span>, ಆದರೆ ನಿಮಗೆ ಈ ಪುಟವನ್ನು ಸಂಪಾದಿಸಲು ಅನುಮತಿಯಿಲ್ಲ.',
 'userpage-userdoesnotexist' => 'ಬಳಕೆದಾರ ಖಾತೆ "<nowiki>$1</nowiki>" ದಾಖಲಾಗಿಲ್ಲ. ನೀವು ಇದೇ ಪುಟವನ್ನು ಸೃಷ್ಟಿ/ಸಂಪಾದನೆ ಮಾಡಬೇಕೆಂದಿರುವಿರಿ ಎಂದು ಖಾತ್ರಿ ಮಾಡಿಕೊಳ್ಳಿ.',
 'blocked-notice-logextract' => 'ಈ ಬಳಕೆದಾರರನ್ನು  ಪ್ರಸ್ತುತವಾಗಿ  ನಿರ್ಬಂಧಿಸಲಾಗಿದೆ. 
 ಇತ್ತೀಚಿನ  ನಿರ್ಬಂಧನೆಯ ದಾಖಲೆಯನ್ನು ಉಲ್ಲೇಖಕ್ಕಾಗಿ ಕೆಳಗೆ ಕೊಟ್ಟಿದೆ:',
@@ -892,11 +898,6 @@ $2',
 'searchdisabled' => '{{SITENAME}} ಹುಡುಕಾಟ ಸದ್ಯಕ್ಕೆ ಸ್ಥಗಿತವಾಗಿದೆ.
 ಈ ವೇಳೆಯಲ್ಲಿ ನೀವು ಗೂಗಲ್ ಉಪಯೋಗಿಸಿ ಹುಡುಕಾಟ ನಡೆಸಬಹುದು.
 ಗಮನಿಸಿ: ಅವರ {{SITENAME}} ಮಾಹಿತಿಯು ಪ್ರಸಕ್ತವಾಗಿಲ್ಲದಿರಬಹುದು.',
-
-# Quickbar
-'qbsettings-none' => 'ಯಾವುದೂ ಇಲ್ಲ',
-'qbsettings-floatingleft' => 'ಎಡಕ್ಕ ತೇಲುತ್ತಿದೆ',
-'qbsettings-floatingright' => 'ಬಲಕ್ಕೆ ತೇಲುತ್ತಿದೆ',
 
 # Preferences page
 'preferences' => 'ಪ್ರಾಶಸ್ತ್ಯಗಳು',
@@ -1602,7 +1603,7 @@ $2',
 'blanknamespace' => '(ಮುಖ್ಯ)',
 
 # Contributions
-'contributions' => 'ಸದಸ್ಯರ ಕಾಣಿಕೆಗಳು',
+'contributions' => '{{GENDER:$1|User}} ಕಾಣಿಕೆಗಳು',
 'contributions-title' => '$1 ಸದಸ್ಯರ ಕಾಣಿಕೆಗಳು',
 'mycontris' => 'ಕಾಣಿಕೆಗಳು',
 'contribsub2' => '$1 ($2) ಗೆ',
@@ -2141,11 +2142,6 @@ $5
 'version-software' => 'ಸಂಸ್ಥಾಪಿಸಲಾಗಿರುವ ತಂತ್ರಾಂಶ',
 'version-software-product' => 'ಉತ್ಪನ್ನ',
 'version-software-version' => 'ಆವೃತ್ತಿ',
-
-# Special:FilePath
-'filepath' => 'ಫೈಲಿನ ಮಾರ್ಗ',
-'filepath-page' => 'ಫೈಲು:',
-'filepath-submit' => 'ಹೋಗು',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'ದ್ವಿಪ್ರತಿ ಫೈಲುಗಳಿಗೆ ಹುಡುಕು',

@@ -2642,7 +2642,7 @@ Puede que ya haya sido restaurado.',
 'undelete-error-long' => 'Se encontraron errores mientras se restauraba el archivo:
 
 $1',
-'undelete-show-file-confirm' => '¿Estás seguro que quieres ver una revisión borrada del archivo «<nowiki>$1</nowiki>» del $2 a las $3?',
+'undelete-show-file-confirm' => '¿Estás seguro de que quieres ver una revisión borrada del archivo «<nowiki>$1</nowiki>» del $2 a las $3?',
 'undelete-show-file-submit' => 'Sí',
 
 # Namespace form on various pages

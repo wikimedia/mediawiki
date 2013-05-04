@@ -2567,10 +2567,10 @@ Pode ter usado um link incorrecto ou talvez a revisão tenha sido restaurada ou 
 'undeletelink' => 'ver/restaurar',
 'undeleteviewlink' => 'ver',
 'undeletereset' => 'Limpar',
-'undeleteinvert' => 'Inverter selecção',
+'undeleteinvert' => 'Inverter seleção',
 'undeletecomment' => 'Motivo:',
 'undeletedrevisions' => '$1 {{PLURAL:$1|edição restaurada|edições restauradas}}',
-'undeletedrevisions-files' => '$1 {{PLURAL:$2|edição restaurada|edições restauradas}} e $2 {{PLURAL:$2|ficheiro restaurado|ficheiros restaurados}}',
+'undeletedrevisions-files' => '$1 {{PLURAL:$1|edição restaurada|edições restauradas}} e $2 {{PLURAL:$2|ficheiro restaurado|ficheiros restaurados}}',
 'undeletedfiles' => '{{PLURAL:$1|ficheiro restaurado|$1 ficheiros restaurados}}',
 'cannotundelete' => 'Restauração falhada:
 $1',
@@ -2597,7 +2597,7 @@ $1',
 
 # Namespace form on various pages
 'namespace' => 'Espaço nominal:',
-'invert' => 'Inverter selecção',
+'invert' => 'Inverter seleção',
 'tooltip-invert' => 'Marque esta caixa para esconder as alterações a páginas no espaço nominal seleccionado (e no espaço nominal associado, se escolheu fazê-lo)',
 'namespace_association' => 'Espaço nominal associado',
 'tooltip-namespace_association' => 'Marque esta caixa para incluir também o espaço nominal de conteúdo ou de discussão associado à sua selecção',

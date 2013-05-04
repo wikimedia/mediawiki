@@ -3703,13 +3703,6 @@ Sañset oc'h bezañ resevet [{{SERVER}}{{SCRIPTPATH}}/COPYING un eilskrid eus ar
 'version-entrypoints-header-entrypoint' => 'Poent mont e-barzh',
 'version-entrypoints-header-url' => 'URL',
 
-# Special:FilePath
-'filepath' => 'Hent moned ur restr',
-'filepath-page' => 'Restr :',
-'filepath-submit' => 'Mont',
-'filepath-summary' => 'Diskouez a ra ar bajenn-mañ hent moned klok ur restr.
-Diskouezet eo ar skeudennoù gant ur pizhder uhel, erounit a ra ar restroù all war-eeun gant o frogramm stag.',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Klask ar restroù e doubl',
 'fileduplicatesearch-summary' => 'Klask restroù e doubl war diazez talvoudennoù krennet.',

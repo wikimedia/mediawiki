@@ -3607,13 +3607,6 @@ Dylech fod wedi derbyn [{{SERVER}}{{SCRIPTPATH}}/COPYING gopi o GNU General Publ
 'version-entrypoints-header-entrypoint' => 'Man cyflwyno',
 'version-entrypoints-header-url' => 'URL',
 
-# Special:FilePath
-'filepath' => 'Llwybr y ffeil',
-'filepath-page' => 'Ffeil:',
-'filepath-submit' => 'Eler',
-'filepath-summary' => "Mae'r dudalen arbennig hon yn adrodd llwybr ffeil yn gyfan.
-Dangosir delweddau ar eu maint llawn, dechreuir ffeiliau o fathau eraill yn uniongyrchol gan y rhaglen gysylltiedig.",
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Chwilio am ffeiliau dyblyg',
 'fileduplicatesearch-summary' => 'Chwilier am ffeiliau dyblyg ar sail ei werth stwnsh.',

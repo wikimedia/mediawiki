@@ -32,6 +32,7 @@
  * @author Hydra
  * @author Hzy980512
  * @author Jding2010
+ * @author Jetlag
  * @author Jidanni
  * @author Jimmy xu wrk
  * @author Kaganer
@@ -770,7 +771,7 @@ $2',
 'createacct-yourpasswordagain' => '确认新密码',
 'createacct-yourpasswordagain-ph' => '请再次输入密码',
 'remembermypassword' => '在该浏览器保存我的登录状态（最长$1日）',
-'userlogin-remembermypassword' => '记住我',
+'userlogin-remembermypassword' => '保持我的登录状态',
 'userlogin-signwithsecure' => '通过安全服务器登入',
 'securelogin-stick-https' => '登录后继续使用HTTPS连接',
 'yourdomainname' => '您的域名：',
@@ -802,10 +803,12 @@ $2',
 'createacct-realname' => '真实姓名 (可选)',
 'createaccountreason' => '原因：',
 'createacct-reason' => '原因',
+'createacct-reason-ph' => '为什么您要创建另一个帐户',
 'createacct-captcha' => '安全检查',
 'createacct-captcha-help-url' => '{{ns:Project}}:账号请求',
 'createacct-imgcaptcha-help' => '无法看到图像吗？[[{{MediaWiki:createacct-captcha-help-url}}|请求一个账户]]',
 'createacct-imgcaptcha-ph' => '输入您在上面看到的文本',
+'createacct-submit' => '创建您的账户',
 'createacct-benefit-heading' => '{{SITENAME}} 是由像你这样的人建立的。',
 'createacct-benefit-body1' => '编辑数',
 'createacct-benefit-body2' => '条目数',

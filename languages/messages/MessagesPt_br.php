@@ -2575,7 +2575,7 @@ Em tais casos, deverá desselecionar ou reverter a ocultação da versão apagad
 'undeleteinvert' => 'Inverter seleção',
 'undeletecomment' => 'Motivo:',
 'undeletedrevisions' => '$1 {{PLURAL:$1|edição restaurada|edições restauradas}}',
-'undeletedrevisions-files' => '$1 {{PLURAL:$2|edição restaurada|edições restauradas}} e $2 {{PLURAL:$2|arquivo restaurado|arquivos restaurados}}',
+'undeletedrevisions-files' => '$1 {{PLURAL:$1|edição restaurada|edições restauradas}} e $2 {{PLURAL:$2|arquivo restaurado|arquivos restaurados}}',
 'undeletedfiles' => '{{PLURAL:$1|arquivo restaurado|$1 arquivos restaurados}}',
 'cannotundelete' => 'Falha ao restaurar:
 $1',

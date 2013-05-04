@@ -10,6 +10,7 @@
  * @author Hazard-SJ
  * @author Ukabia
  * @author Yocahuna
+ * @author គីមស៊្រុន
  */
 
 $messages = array(
@@ -42,8 +43,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Shuo di nomba a wachin yuuza',
 'tog-oldsig' => 'Priivyuu a egzisin signicha:',
 'tog-fancysig' => 'Chriit signicha az wikitex (widoutn aatamatik lingk)',
-'tog-externaleditor' => 'Yuuz extoernal edita bai difaalt (fi expoert onli, niid speshal setn pahn yu kompiuta)',
-'tog-externaldiff' => 'Yuuz extoernal dif bai difaalt (fi expoert onli, niid speshal setn pahn yu kompiuta)',
 'tog-showjumplinks' => 'Eniebl "jomp tu" aksesibiliti lingk',
 'tog-uselivepreview' => 'Yuuz laiv priivyuu (rikwaya JavaScript) (experimental)',
 'tog-forceeditsummary' => 'Pramp mi wen entarin blangk edit somari',
@@ -244,7 +243,7 @@ $1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite' => 'Habowt {{SITENAME}}',
-'aboutpage' => 'Project: About',
+'aboutpage' => 'Project: អំពី',
 'copyright' => 'Kantent avielobl anda $1.',
 'copyrightpage' => '{{ns:project}}:Kapirait',
 'currentevents' => 'Korant ivent',

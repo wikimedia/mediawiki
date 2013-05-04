@@ -9,6 +9,7 @@
  *
  * @author ;Hiba;1
  * @author Abanima
+ * @author Achraf94
  * @author AhmadSherif
  * @author Aiman titi
  * @author Alexknight12
@@ -891,12 +892,16 @@ $2',
 'yourname' => 'اسم المستخدم:',
 'userlogin-yourname' => 'اسم المستخدم',
 'userlogin-yourname-ph' => 'أدخل اسم المستخدم الخاص بك',
+'createacct-helpusername-link' => '[[{{MediaWiki:createacct-helpusername-url}}|(ساعدني في الاختيار)]]',
 'yourpassword' => 'كلمة السر:',
 'userlogin-yourpassword' => 'كلمة السر',
 'userlogin-yourpassword-ph' => 'أدخل كلمة السر الخاصة بك',
+'createacct-yourpassword-ph' => 'أدخل كلمة السر',
 'yourpasswordagain' => 'أعد كتابة كلمة السر:',
+'createacct-yourpasswordagain' => 'أكد كلمة السر',
+'createacct-yourpasswordagain-ph' => 'أدخل كلمة المرور مرة أخرى',
 'remembermypassword' => 'تذكر دخولي بهذا المتصفح (لمدة أقصاها {{PLURAL:$1||يوم واحد|يومان|$1 أيام|$1 يوما|$1 يوم}})',
-'userlogin-remembermypassword' => 'تذكرني',
+'userlogin-remembermypassword' => 'أبقني مسجلا للدخول',
 'userlogin-signwithsecure' => 'تسجيل الدخول باستخدام خادم أمن',
 'securelogin-stick-https' => 'ابقَ في اتصال HTTPS بعد الدخول.',
 'yourdomainname' => 'نطاقك:',
@@ -920,12 +925,25 @@ $2',
 'userlogin-resetlink' => 'نسيت تفاصيل الدخول؟',
 'helplogin-url' => 'Help:تسجيل الدخول',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|المساعدة في تسجيل الدخول]]',
+'createacct-join' => 'قم بإدخال المعلومات الخاصة بك أدناه.',
+'createacct-emailrequired' => 'عنوان البريد الإلكتروني',
+'createacct-emailoptional' => 'البريد الإلكتروني (اختياري)',
+'createacct-email-ph' => 'أدخل عنوان بريدك الإلكتروني',
 'createaccountmail' => 'استخدم كلمة سر عشوائية مؤقتة وارسلها إلى عنوان البريد الإلكتروني المحدد أدناه',
+'createacct-realname' => 'الاسم الحقيقي (اختياري)',
 'createaccountreason' => 'السبب:',
+'createacct-reason' => 'السبب',
+'createacct-reason-ph' => 'لماذا تقوم بإنشاء حساب آخر',
+'createacct-captcha' => 'تحقق أمني',
+'createacct-captcha-help-url' => '{{ns:Project}}: طلب حساب',
+'createacct-benefit-body1' => 'التعديلات',
+'createacct-benefit-body2' => 'الصفحات',
+'createacct-benefit-body3' => 'المساهمين في الآونة الأخيرة',
 'badretype' => 'كلمات السر التي أدخلتها لا تتطابق.',
 'userexists' => 'اسم المستخدم الذي تم إدخاله مستعمل بالفعل.
 الرجاء اختيار اسم مختلف.',
 'loginerror' => 'خطأ في الدخول',
+'createacct-error' => 'خطأ في إنشاء حساب',
 'createaccounterror' => 'تعذر إنشاء حساب المستخدم: $1',
 'nocookiesnew' => 'تم إنشاء حساب المستخدم، ولكنك لست مسجل الدخول بعد.
 يستخدم {{SITENAME}} كوكيز لتسجيل الدخول.
@@ -4207,13 +4225,6 @@ $5
 'version-entrypoints-header-url' => 'المسار',
 'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath مسار المقالات]',
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath مسار السكريبت]',
-
-# Special:FilePath
-'filepath' => 'مسار ملف',
-'filepath-page' => 'الملف:',
-'filepath-submit' => 'اذهب',
-'filepath-summary' => 'هذه الصفحة الخاصة تعرض المسار الكامل لملف.
-ستعرض الصور بأقصى دقة، ستعمل أنواع الملفات الأخرى بالبرنامج المخصص لهم مباشرة.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'بحث عن ملفات مكررة',

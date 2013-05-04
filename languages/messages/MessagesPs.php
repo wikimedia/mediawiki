@@ -2589,10 +2589,6 @@ $5
 'version-software-product' => 'اېبره',
 'version-software-version' => 'بڼه',
 
-# Special:FilePath
-'filepath-page' => 'دوتنه:',
-'filepath-submit' => 'ورځه',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'د دوه ګونو دوتنو پلټنه',
 'fileduplicatesearch-legend' => 'د دوه ګونو دوتنو پلټنه',

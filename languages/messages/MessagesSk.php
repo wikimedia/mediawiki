@@ -390,16 +390,6 @@ $messages = array(
 'nov' => 'nov',
 'dec' => 'dec',
 
-'monday-at' => 'v pondelok o $1',
-'tuesday-at' => 'v utorok o $1',
-'wednesday-at' => 'v stredu o $1',
-'thursday-at' => 'vo štvrtok o $1',
-'friday-at' => 'v piatok o $1',
-'saturday-at' => 'v sobotu o $1',
-'sunday-at' => 'v nedeľu o $1',
-'today-at' => '$1',
-'yesterday-at' => 'včera o $1',
-
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Kategória|Kategórie|Kategórie}}',
 'category_header' => 'Stránky v kategórii „$1“',
@@ -3216,6 +3206,19 @@ Jeho spustením môžete kompromitovať svoj systém.",
 'ago' => 'pred: $1',
 'just-now' => 'Pred chvíľkou',
 
+# Human-readable timestamps
+'hours-ago' => 'pred $1 {{PLURAL:$1|hodinou|hodinami}}',
+'minutes-ago' => 'pred $1 {{PLURAL:$1|minútou|minútami}}',
+'seconds-ago' => 'pred $1 {{PLURAL:$1|sekundou|sekundami}}',
+'monday-at' => 'v pondelok o $1',
+'tuesday-at' => 'v utorok o $1',
+'wednesday-at' => 'v stredu o $1',
+'thursday-at' => 'vo štvrtok o $1',
+'friday-at' => 'v piatok o $1',
+'saturday-at' => 'v sobotu o $1',
+'sunday-at' => 'v nedeľu o $1',
+'yesterday-at' => 'včera o $1',
+
 # Bad image list
 'bad_image_list' => 'Formát je nasledovný:
 
@@ -3843,13 +3846,6 @@ Spolu s týmto programom by ste obdržať [{{SERVER}}{{SCRIPTPATH}}/COPYING kóp
 'version-entrypoints-header-entrypoint' => 'Vstupný bod',
 'version-entrypoints-header-url' => 'URL',
 
-# Special:FilePath
-'filepath' => 'Cesta k súboru',
-'filepath-page' => 'Súbor:',
-'filepath-submit' => 'Vykonať',
-'filepath-summary' => 'Táto špeciálna stránka vráti úplnú cestu k súboru.
-Obrázky sa zobrazia v plnom rozlíšení, ostatné typy súborov sa spustia v príslušnom priradenom programe.',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Hľadať duplicitné súbory',
 'fileduplicatesearch-summary' => 'Hľadanie duplicitných súborov na základe ich haš hodnôt.',
@@ -4058,8 +4054,4 @@ V opačnom prípade môžete použiť zjednodušený formulár nižšie. Váš k
 # Image rotation
 'rotate-comment' => 'Obrázok otočený o $1 {{PLURAL:$1|stupeň|stupne|stupňov}} v smere hodinových ručičiek',
 
-# Unknown messages
-'hours-ago' => 'pred $1 {{PLURAL:$1|hodinou|hodinami}}',
-'minutes-ago' => 'pred $1 {{PLURAL:$1|minútou|minútami}}',
-'seconds-ago' => 'pred $1 {{PLURAL:$1|sekundou|sekundami}}',
 );

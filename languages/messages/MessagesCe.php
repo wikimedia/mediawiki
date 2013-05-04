@@ -386,7 +386,7 @@ $messages = array(
 'history' => 'Истори',
 'history_short' => 'Истори',
 'updatedmarker' => 'Керла яккхина со чуваьллачултlаьхьа',
-'printableversion' => 'Зорба туху варси',
+'printableversion' => 'Зорба туху верси',
 'permalink' => 'Даиман йолу хьажориг',
 'print' => 'Зорба тоха',
 'view' => 'Хьажа',
@@ -839,6 +839,7 @@ $1',
 'nchanges' => '$1 {{PLURAL:$1|хийцам|хийцамаш|хийцамаш}}',
 'recentchanges' => 'Керла нисдарш',
 'recentchanges-legend' => 'Гlирс нисбарна керла нисдарш',
+'recentchanges-summary' => 'Лахахьа гайтина хронологин къепехь тӀаьхьара бина хийцам Википедин агӀонашках',
 'recentchanges-feed-description' => 'Тергам бе тlаьхьара вики хийцаман хlокху ларца.',
 'recentchanges-label-newpage' => 'Оцу нисдарца кхоллина керла агlо.',
 'recentchanges-label-minor' => 'Хlара нисдинарг къастийна жимо долушсан',
@@ -981,7 +982,7 @@ PICT # тайп тайпан
 'fewestrevisions' => 'ЧIогIа кIезиг башхонаш йолу агIонаш',
 
 # Miscellaneous special pages
-'nbytes' => '$1 {{PLURAL:$1|цlинцl|цlинцlа|цlинацl}}',
+'nbytes' => '$1 {{PLURAL:$1|байт|байташ|байт}}',
 'ncategories' => '$1 {{PLURAL:$1|категори|категореш|категореш}}',
 'nmembers' => '$1 {{PLURAL:$1|файл|файлана|файлаш}}',
 'specialpage-empty' => 'Дехаро хlумма ца елла.',
@@ -1008,6 +1009,8 @@ PICT # тайп тайпан
 'protectedpages' => 'ГIаролла дина агIонаш',
 'protectedtitles' => 'Ца магийна йолу цIераш',
 'listusers' => 'Декъашхой могlам',
+'listusers-editsonly' => 'Цхаъ мукъане а хийцам бина декъашхой гайта',
+'listusers-creationsort' => 'Кхолларан хене хьаьжна нисъяр',
 'newpages' => 'Керла агlонаш',
 'newpages-username' => 'Декъашхо:',
 'ancientpages' => 'Яззамаш оцу терахьца тяххьара тадар дина долу',
@@ -1154,6 +1157,7 @@ PICT # тайп тайпан
 # Namespace form on various pages
 'namespace' => 'Цlерийн ана:',
 'invert' => 'Хаьржинарг хилийта',
+'namespace_association' => 'Йихкина меттиг',
 'blanknamespace' => '(Коьрта)',
 
 # Contributions

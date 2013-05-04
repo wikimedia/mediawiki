@@ -3819,13 +3819,6 @@ A MediaWikit abban a reményben terjesztjük, hogy hasznos lesz, de GARANCIA NÉ
 'version-entrypoints-header-entrypoint' => 'Belépési pont',
 'version-entrypoints-header-url' => 'URL',
 
-# Special:FilePath
-'filepath' => 'Fájlelérés',
-'filepath-page' => 'Fájl:',
-'filepath-submit' => 'Elérési út',
-'filepath-summary' => 'Ezen lap segítségével lekérheted egy adott fájl pontos útvonalát.
-A képek teljes méretben jelennek meg, más fájltípusok közvetlenül a hozzájuk rendelt programmal indulnak el.',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Duplikátumok keresése',
 'fileduplicatesearch-summary' => 'Fájlok duplikátumainak keresése hash értékük alapján.',

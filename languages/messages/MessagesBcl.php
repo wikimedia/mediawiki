@@ -562,7 +562,7 @@ Dae malingaw na liwaton an saimong [[Special:Preferences|{{SITENAME}} mga kamuya
 'createacct-benefit-heading' => '{{SITENAME}} pinaghimo kan mga tawong siring mo.',
 'createacct-benefit-body1' => 'mga pagliliwat',
 'createacct-benefit-body2' => 'mga pahina',
-'createacct-benefit-body3' => 'mga paraambag kaining bulan',
+'createacct-benefit-body3' => 'pinakahurihang mga paraambag',
 'badretype' => 'An mga sekretong panlaog mong pinagtatak bakong pareho.',
 'userexists' => 'Paragamit na ngarang piglaog may naggagamit na.
 Pakipili nin ibang ngaran tabi.',
@@ -655,6 +655,7 @@ Tanganing tapuson an paglalaog, ika kaipong magkaag nin sarong baguhon na sekret
 'resetpass-wrong-oldpass' => 'Saláng temporaryo o presenteng sekretong panlaog.
 Matriumpo mo nang nailaog an sekretong panlaog o nakua an bàgong temporaryong sekretong panlaog.',
 'resetpass-temp-password' => 'Temporaryong sekretong panlaog:',
+'resetpass-abort-generic' => 'Pagliwat kan sikretong panlaog ipinagpauntok kan sarong ekstensyon.',
 
 # Special:PasswordReset
 'passwordreset' => 'Pakibago kan sekretong panlaog',
@@ -1338,6 +1339,7 @@ An saimong e-surat na adres dae ipagbuyagyag kunsoarin na an ibang paragamit mak
 'userrights-notallowed' => 'An saimong panindog mayo tabi nin permiso na magdagdag o maghale nin karapatan kan mga paragamit.',
 'userrights-changeable-col' => 'Mga grupo na mapuwede mong baguhon',
 'userrights-unchangeable-col' => 'Mga grupo na dae mo mapuwedeng baguhon',
+'userrights-conflict' => 'Kumplikto sa katanosan nin paragamit! Pakigibo giraray kan saimong mga kaliwatan.',
 
 # Groups
 'group' => 'Grupo:',
@@ -3663,6 +3665,17 @@ Ika dapat na nakapagresibe na kan [{{SERVER}}{{SCRIPTPATH}}/COPYING sarong kopya
 'version-entrypoints-header-entrypoint' => 'Puntong pan-entrada',
 'version-entrypoints-header-url' => 'Kilyawan',
 
+'redirect' => 'Palikwatong sa paagi nin sagunson, paragamit, or rebisyon kan ID',
+'redirect-legend' => 'Palikwatong pasiring sa sarong sagunson o pahina',
+'redirect-summary' => 'Ining espesyal na pahina minalikwat pasiring sa sarong sagunson (ipinagtao an ngaran kan sagunson), sarong pahina (ipinagtao an sarong rebisyon kan ID), o sarong pahina nin paragamit (ipinagtao an numerikong ID nin paragamit).',
+'redirect-submit' => 'Dumani',
+'redirect-lookup' => 'Hanapon mo',
+'redirect-value' => 'Halaga:',
+'redirect-user' => 'ID nin Paragamit',
+'redirect-revision' => 'Rebisyon kan Pahina',
+'redirect-file' => 'Ngaran nin Sagunson',
+'redirect-not-exists' => 'Halaga dae nanagboan',
+
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Maghanap kan duplikadong mga sagunson',
 'fileduplicatesearch-summary' => 'Maghanap kan duplikadong mga sagunson na pinagbasihan an mga kahalagahan nin hash.',
@@ -3754,6 +3767,7 @@ Ining sityo igwang naeksperiyensiyahan na mga kakundian sa teknikal.',
 'htmlform-selectorother-other' => 'An iba',
 'htmlform-no' => 'Habó',
 'htmlform-yes' => 'Iyo',
+'htmlform-chosen-placeholder' => 'Magpili nin sarong opsyon',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 na igwang suporta sa kabilogang-teksto nin paghahanap',

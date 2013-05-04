@@ -143,6 +143,7 @@
  * @author Yyy
  * @author Žekřil71pl
  * @author פוילישער
+ * @author គីមស៊្រុន
  * @author 아라
  */
 
@@ -356,7 +357,7 @@ The pagination links in category viewer. Parameters:
 
 'linkprefix' => '{{optional}}',
 
-'about' => '{{Identical|About}}',
+'about' => 'អំពី',
 'article' => "A 'content page' is a page that forms part of the purpose of the wiki. It includes the main page and pages in the main namespace and any other namespaces that are included when the wiki is customised. For example on Wikimedia Commons 'content pages' include pages in the file and category namespaces. On Wikinews 'content pages' include pages in the Portal namespace. For technical definition of 'content namespaces' see [[mw:Manual:Using_custom_namespaces#Content_namespaces|MediaWiki]].
 
 Possible alternatives to the word 'content' are 'subject matter' or 'wiki subject' or 'wiki purpose'.
@@ -1043,8 +1044,12 @@ Parameters:
 In user preferences.
 {{Identical|Username}}",
 'userlogin-yourname' => 'In new vertical user login & create account forms, label for username field.
+
+See examples: [{{canonicalurl:Special:UserLogin|useNew=1}} Special:UserLogin?useNew=1] and [{{canonicalurl:Special:UserLogin|type=signup&useNew=1}} Special:UserLogin?type=signup&useNew=1]
 {{Identical|Username}}',
-'userlogin-yourname-ph' => 'Placeholder text in new userlogin/create account form field.',
+'userlogin-yourname-ph' => 'Placeholder text in new userlogin/create account form field.
+
+See example: [{{canonicalurl:Special:UserLogin|useNew=1}} Special:UserLogin?useNew=1] and [{{canonicalurl:Special:UserLogin|type=signup&useNew=1}} Special:UserLogin?type=signup&useNew=1]',
 'createacct-helpusername-url' => 'The URL of a page providing username guidance for the wiki.
 
 Used as a link in {{msg-mw|Createacct-helpusername-link}}.
@@ -1057,8 +1062,12 @@ See example: [{{canonicalurl:Special:UserLogin|type=signup&useNew=1}} Special:Us
 
 {{Identical|Password}}',
 'userlogin-yourpassword' => 'In new vertical user login & create account forms, label for password field.
+
+See examples: [{{canonicalurl:Special:UserLogin|useNew=1}} Special:UserLogin?useNew=1] and [{{canonicalurl:Special:UserLogin|type=signup&useNew=1}} Special:UserLogin?type=signup&useNew=1]
 {{Identical|Password}}',
 'userlogin-yourpassword-ph' => 'Placeholder text in new userlogin form for password field.
+
+See examples: [{{canonicalurl:Special:UserLogin|useNew=1}} Special:UserLogin?useNew=1] and [{{canonicalurl:Special:UserLogin|type=signup&useNew=1}} Special:UserLogin?type=signup&useNew=1]
 {{Identical|Enter password}}',
 'createacct-yourpassword-ph' => 'Placeholder text in new create account form for password field.
 
@@ -1076,7 +1085,8 @@ See example: [{{canonicalurl:Special:UserLogin|type=signup&useNew=1}} Special:Us
 
 {{Identical|Remember my login on this computer}}',
 'userlogin-remembermypassword' => 'The text for a check box in the new-style [[Special:UserLogin]].
-{{Identical|Remember me}}',
+
+See example: [{{canonicalurl:Special:UserLogin|useNew=1}} Special:UserLogin?useNew=1]',
 'userlogin-signwithsecure' => 'Text of link to HTTPS login form',
 'securelogin-stick-https' => 'Used as label for checkbox.',
 'yourdomainname' => 'Used as label for listbox.',
@@ -1111,8 +1121,12 @@ See also:
 
 {{Identical|Not logged in}}',
 'userlogin-noaccount' => 'In the new-style [[Special:Userlogin]] form, this is the text prior to button inviting user to join project.
+
+See example: [{{canonicalurl:Special:UserLogin|useNew=1}} Special:UserLogin?useNew=1]
 {{Identical|Do not have an account}}',
-'userlogin-joinproject' => 'Text of button inviting user to create an account',
+'userlogin-joinproject' => 'Text of button inviting user to create an account.
+
+See example: [{{canonicalurl:Special:UserLogin|useNew=1}} Special:UserLogin?useNew=1]',
 'nologin' => 'A message shown in the log in form. Parameters:
 * $1 - a link to the account creation form, and the text of it is {{msg-mw|Nologinlink}}
 {{Identical|Do not have an account}}',
@@ -1136,6 +1150,8 @@ Used as name of the page that provides information about logging into the wiki.
 Used as a link target in the message {{msg-mw|Userlogin-helplink}}.',
 'userlogin-helplink' => '{{doc-important|Do not change <code><nowiki>{{MediaWiki:helplogin-url}}</nowiki></code>.}}
 Wikitext linking to login help.
+
+See example: [{{canonicalurl:Special:UserLogin|useNew=1}} Special:UserLogin?useNew=1]
 
 See also:
 * {{msg-mw|Helplogin-url}}',
@@ -1165,14 +1181,18 @@ See example: [{{canonicalurl:Special:UserLogin|type=signup&useNew=1}} Special:Us
 
 See example: [{{canonicalurl:Special:UserLogin|type=signup&useNew=1}} Special:UserLogin?type=signup&useNew=1]
 {{Identical|Reason}}',
-'createacct-reason-ph' => 'Placeholder in vertical-layout create account form for reason field.',
+'createacct-reason-ph' => 'Placeholder in vertical-layout create account form for reason field.
+
+See example: [{{canonicalurl:Special:UserLogin|type=signup&useNew=1}} Special:UserLogin?type=signup&useNew=1]',
 'createacct-captcha' => 'Label in vertical-layout create account form for CAPTCHA input field when repositioned by JavaScript.',
 'createacct-captcha-help-url' => 'The URL of a page providing CAPTCHA assistance for the wiki.
 
 Used as a link in {{msg-mw|Createacct-imgcaptcha-help}}.',
 'createacct-imgcaptcha-help' => 'Help text in vertical-layout create account form for image CAPTCHA input field when repositioned by JavaScript.',
 'createacct-imgcaptcha-ph' => 'Placehodler text in vertical-layout create account form for image CAPTCHA input field when repositioned by JavaScript.',
-'createacct-submit' => 'Submit button on vertical-layout create account form.',
+'createacct-submit' => 'Submit button on vertical-layout create account form.
+
+See example: [{{canonicalurl:Special:UserLogin|type=signup&useNew=1}} Special:UserLogin?type=signup&useNew=1]',
 'createacct-benefit-heading' => 'In vertical-layout create account form, the heading for the section describing the benefits of creating an account.
 
 See example: [{{canonicalurl:Special:UserLogin|type=signup&useNew=1}} Special:UserLogin?type=signup&useNew=1]',

@@ -3648,13 +3648,6 @@ $5
 'version-entrypoints-header-entrypoint' => 'પ્રવેશ સ્થળ',
 'version-entrypoints-header-url' => 'URL',
 
-# Special:FilePath
-'filepath' => 'ફાઈલ પથ',
-'filepath-page' => 'ફાઇલ:',
-'filepath-submit' => 'કરો',
-'filepath-summary' => 'આ ખાસ પાનું કોઇ ફાઇલનો સંપૂર્ણ પથ બતાવે છે.
-ચિત્રોને તેમના પૂર્ણ ઘનત્વ સાથે બતાવાય છે, અન્ય ફાઈલો તેમને તેમના સંલગ્ન પ્રોગ્રામ દ્વારા સીધી ખોલવામાં આવશે.',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'નકલ ફાઇલ શોધો',
 'fileduplicatesearch-summary' => 'હેશ કિંમત પર આધારિત આબેહૂબ ફાઇલો શોધો.',

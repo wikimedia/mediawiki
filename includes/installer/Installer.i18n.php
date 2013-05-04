@@ -7066,7 +7066,10 @@ $3
 Cando faga todo isto, xa poderá '''[$2 entrar no seu wiki]'''.",
 	'config-download-localsettings' => 'Descargar o <code>LocalSettings.php</code>',
 	'config-help' => 'axuda',
-	'config-nofile' => 'Non se puido atopar o ficheiro "$1". Se cadra, foi borrado?',
+	'config-nofile' => 'Non se puido atopar o ficheiro "$1". Se cadra, foi borrado.',
+	'config-extension-link' => 'Sabía que o seu wiki soporta [//www.mediawiki.org/wiki/Manual:Extensions extensións]?
+
+Pode explorar as [//www.mediawiki.org/wiki/Category:Extensions_by_category extensións por categoría] ou a [//www.mediawiki.org/wiki/Extension_Matrix matriz de extensións] para ollar a lista completa de extensións.',
 	'mainpagetext' => "'''MediaWiki instalouse correctamente.'''",
 	'mainpagedocfooter' => 'Consulte a [//meta.wikimedia.org/wiki/Help:Contents guía de usuario] para obter máis información sobre como usar o software wiki.
 

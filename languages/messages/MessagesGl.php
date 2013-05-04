@@ -1076,7 +1076,7 @@ Esta xa existe.',
 'invalid-content-data' => 'Datos de contido inválidos',
 'content-not-allowed-here' => 'O contido "$1" non está permitido na páxina "[[$2]]"',
 'editwarning-warning' => 'Deixar esta páxina pode causar a perda de calquera cambio feito.
-Se accedeu ao sistema, pode desactivar esta mensaxe de advertencia na sección "{{int:prefs-editing}}" das súas preferencias.',
+Se accedeu ao sistema, pode desactivar esta mensaxe de advertencia na sección "Edición" das súas preferencias.',
 
 # Content models
 'content-model-wikitext' => 'texto wiki',

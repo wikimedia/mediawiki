@@ -3860,13 +3860,6 @@ Du skal ha mottatt [{{SERVER}}{{SCRIPTPATH}}/COPYING en kopi av GNU General Publ
 'version-entrypoints-header-entrypoint' => 'Inngangspunkt',
 'version-entrypoints-header-url' => 'URL',
 
-# Special:FilePath
-'filepath' => 'Filsti',
-'filepath-page' => 'Fil:',
-'filepath-submit' => 'Gå',
-'filepath-summary' => 'Denne spesialsiden returnerer den fullstendige stien for en fil.
-Bilder vises med full oppløsning, mens andre filtyper startes direkte gjennom sine tilknyttede programmer.',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Søk etter duplikatfiler',
 'fileduplicatesearch-summary' => 'Søk etter duplikatfiler basert på dets hash-verdi.',

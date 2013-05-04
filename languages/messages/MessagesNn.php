@@ -3765,13 +3765,6 @@ Du skal ha motteke [{{SERVER}}{{SCRIPTPATH}}/COPYING ein kopi av GNU General Pub
 'version-entrypoints-header-entrypoint' => 'Inngangspunkt',
 'version-entrypoints-header-url' => 'URL',
 
-# Special:FilePath
-'filepath' => 'Filsti',
-'filepath-page' => 'Fil:',
-'filepath-submit' => 'Gå',
-'filepath-summary' => 'Denne spesialsida svarar med den fullstendige stigen til ei fil.
-Bilete vert viste i full oppløysing, andre filtypar vert starta direkte i dei tilknytte programma sine.',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Søk etter duplikatfiler',
 'fileduplicatesearch-summary' => 'Søk etter duplikatfiler basert på hash-verdiane deira.',
