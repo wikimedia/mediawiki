@@ -26,6 +26,8 @@ production.
   acting as if the latest revision was being viewed.
 
 === API changes in 1.23 ===
+* (bug 48071) action=setnotificationtimestamp no longer throws PHP or database
+  errors when no pages are given.
 
 === Languages updated in 1.23===
 
