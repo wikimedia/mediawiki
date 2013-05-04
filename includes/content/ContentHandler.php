@@ -617,6 +617,8 @@ abstract class ContentHandler {
 			// Parse mediawiki messages with correct target language
 			list( /* $unused */, $lang ) = MessageCache::singleton()->figureMessage( $title->getText() );
 			$pageLang = wfGetLangObj( $lang );
+		} else {
+			$pageLang = wfGetLangObj( $title->mLanguage );
 		}
 
 		wfRunHooks( 'PageContentLanguage', array( $title, &$pageLang, $wgLang ) );

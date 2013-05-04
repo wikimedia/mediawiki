@@ -2507,6 +2507,14 @@ $wgLocaltimezone = null;
  */
 $wgLocalTZoffset = null;
 
+/**
+ * Allow changing content language on a per-page basis.
+ *
+ * Every page defaults to $wgLanguageCode but may be overriden through the UI.
+ */
+$wgAllowVarPageLanguage = false;
+
+
 /** @} */ # End of language/charset settings
 
 /*************************************************************************//**

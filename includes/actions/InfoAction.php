@@ -246,9 +246,10 @@ class InfoAction extends FormlessAction {
 
 		// Language in which the page content is (supposed to be) written
 		$pageLang = $title->getPageLanguage()->getCode();
+		list( , $langSelector ) = Xml::languageSelector( $pageLang );
 		$pageInfo['header-basic'][] = array( $this->msg( 'pageinfo-language' ),
-			Language::fetchLanguageName( $pageLang, $lang->getCode() )
-			. ' ' . $this->msg( 'parentheses', $pageLang ) );
+			/*Language::fetchLanguageName( $pageLang, $lang->getCode() )
+			. ' ' . $this->msg( 'parentheses', $pageLang )*/ $langSelector );
 
 		// Search engine status
 		$pOutput = new ParserOutput();

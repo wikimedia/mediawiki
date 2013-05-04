@@ -66,6 +66,7 @@ class Title {
 	var $mArticleID = -1;             // /< Article ID, fetched from the link cache on demand
 	var $mLatestID = false;           // /< ID of most recent revision
 	var $mContentModel = false;       // /< ID of the page's content model, i.e. one of the CONTENT_MODEL_XXX constants
+	var $mLanguage;                   // /< Page content language
 	private $mEstimateRevisions;      // /< Estimated number of revisions; null of not loaded
 	var $mRestrictions = array();     // /< Array of groups allowed to edit this article
 	var $mOldRestrictions = false;
@@ -206,7 +207,7 @@ class Title {
 	 * @return array
 	 */
 	protected static function getSelectFields() {
-		global $wgContentHandlerUseDB;
+		global $wgContentHandlerUseDB, $wgAllowVarPageLanguage;
 
 		$fields = array(
 			'page_namespace', 'page_title', 'page_id',
@@ -215,6 +216,10 @@ class Title {
 
 		if ( $wgContentHandlerUseDB ) {
 			$fields[] = 'page_content_model';
+		}
+
+		if ( $wgAllowVarPageLanguage ) {
+			$fields[] = 'page_language';
 		}
 
 		return $fields;
@@ -306,12 +311,18 @@ class Title {
 			} else {
 				$this->mContentModel = false; # initialized lazily in getContentModel()
 			}
+			if ( isset( $row->page_language ) ) {
+				$this->mLanguage = $row->page_language;
+			} else {
+				$this->mLanguage = wfGetLangObj( true )->getCode();
+			}
 		} else { // page not found
 			$this->mArticleID = 0;
 			$this->mLength = 0;
 			$this->mRedirect = false;
 			$this->mLatestID = 0;
 			$this->mContentModel = false; # initialized lazily in getContentModel()
+			$this->mLanguage = wfGetLangObj( true )->getCode();
 		}
 	}
 
@@ -338,6 +349,7 @@ class Title {
 		$t->mUrlform = wfUrlencode( $t->mDbkeyform );
 		$t->mTextform = str_replace( '_', ' ', $title );
 		$t->mContentModel = false; # initialized lazily in getContentModel()
+		$t->mLanguage = wfGetLangObj( true )->getCode();
 		return $t;
 	}
 
