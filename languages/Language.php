@@ -847,7 +847,7 @@ class Language {
 	 * @since 1.20
 	 */
 	public static function fetchLanguageNames( $inLanguage = null, $include = 'mw' ) {
-		global $wgExtraLanguageNames;
+		global $wgExtraLanguageNames, $wgDummyLanguageCodes;
 		static $coreLanguageNames;
 
 		if ( $coreLanguageNames === null ) {
@@ -861,7 +861,7 @@ class Language {
 			wfRunHooks( 'LanguageGetTranslatedLanguageNames', array( &$names, $inLanguage ) );
 		}
 
-		$mwNames = $wgExtraLanguageNames + $coreLanguageNames;
+		$mwNames = array_diff_key( $wgExtraLanguageNames + $coreLanguageNames, $wgDummyLanguageCodes );
 		foreach ( $mwNames as $mwCode => $mwName ) {
 			# - Prefer own MediaWiki native name when not using the hook
 			# - For other names just add if not added through the hook
