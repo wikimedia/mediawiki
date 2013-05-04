@@ -4,7 +4,7 @@
 	font-weight: bold;
 }
 
-/* shuffled CAPTCHA */
+/**** shuffled CAPTCHA ****/
 #wpCaptchaWord {
 	margin-top: 6px;
 }
@@ -16,29 +16,31 @@
 	text-align: center;
 }
 
-.mw-createacct-captcha-image-container {
-	background-color: #fff;
-	min-height: 95px;
-}
-
 .mw-createacct-captcha-assisted {
 	display: block;
 	margin-top: 0.5em;
 }
 
+/* Put a border around the fancycaptcha-image-container. */
 .mw-createacct-captcha-and-reload {
 	border: 1px solid #c9c9c9;
-	display: table-cell;
+	display: table-cell; /* Other display formats end up too wide */
 	width: 270px;
 	background-color: #FFF;
 }
 
-.mw-createacct-captcha-and-reload .confirmedit-captcha-reload {
-	display: block;
-	float: right;
+/* Make the fancycaptcha-image-container full-width within its parent.  */
+.fancycaptcha-image-container
+{
+	width: 100%;
 }
 
-/* Benefits column CSS to the right (if it fits) of the form. */
+/* Nudge the Refresh link away from the border. */
+.mw-createacct-captcha-and-reload .confirmedit-captcha-reload {
+	right: 4px
+}
+
+/**** Benefits column CSS to the right (if it fits) of the form. ****/
 .mw-ui-container #userloginForm {
 	float: left;
 }
