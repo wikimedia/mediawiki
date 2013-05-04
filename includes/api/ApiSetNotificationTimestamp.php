@@ -60,7 +60,7 @@ class ApiSetNotificationTimestamp extends ApiBase {
 		}
 
 		if ( isset( $params['torevid'] ) ) {
-			if ( $params['entirewatchlist'] || $pageSet->getGoodTitleCount() > 1 ) {
+			if ( $params['entirewatchlist'] || $pageSet->getGoodTitleCount() !== 1 ) {
 				$this->dieUsage( 'torevid may only be used with a single page', 'multpages' );
 			}
 			$title = reset( $pageSet->getGoodTitles() );
@@ -71,7 +71,7 @@ class ApiSetNotificationTimestamp extends ApiBase {
 				$timestamp = null;
 			}
 		} elseif ( isset( $params['newerthanrevid'] ) ) {
-			if ( $params['entirewatchlist'] || $pageSet->getGoodTitleCount() > 1 ) {
+			if ( $params['entirewatchlist'] || $pageSet->getGoodTitleCount() !== 1 ) {
 				$this->dieUsage( 'newerthanrevid may only be used with a single page', 'multpages' );
 			}
 			$title = reset( $pageSet->getGoodTitles() );
