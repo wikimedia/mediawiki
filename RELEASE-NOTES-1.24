@@ -148,6 +148,8 @@ production.
 * meta=userinfo can now return the count of unread pages on the watchlist.
 * list=watchlist can now filter by unread status.
 * The deprecated action=parse&prop=languageshtml has been removed.
+* (bug 48071) action=setnotificationtimestamp no longer throws PHP or database
+  errors when no pages are given.
 
 === Languages updated in 1.24 ===
 
