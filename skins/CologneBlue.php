@@ -202,7 +202,7 @@ class CologneBlueTemplate extends BaseTemplate {
 		$companionTitle = $title->isTalkPage() ? $title->getSubjectPage() : $title->getTalkPage();
 		$companionNamespace = $companionTitle->getNamespace();
 
-		// TODO these messages appear to only be used by CologneBlue and legacy skins,
+		// TODO these messages are only be used by CologneBlue,
 		// kill and replace with something more sensibly named?
 		$nsToMessage = array(
 			NS_MAIN => 'articlepage',
