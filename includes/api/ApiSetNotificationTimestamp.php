@@ -64,22 +64,26 @@ class ApiSetNotificationTimestamp extends ApiBase {
 				$this->dieUsage( 'torevid may only be used with a single page', 'multpages' );
 			}
 			$title = reset( $pageSet->getGoodTitles() );
-			$timestamp = Revision::getTimestampFromId( $title, $params['torevid'] );
-			if ( $timestamp ) {
-				$timestamp = $dbw->timestamp( $timestamp );
-			} else {
-				$timestamp = null;
+			if ( $title ) {
+				$timestamp = Revision::getTimestampFromId( $title, $params['torevid'] );
+				if ( $timestamp ) {
+					$timestamp = $dbw->timestamp( $timestamp );
+				} else {
+					$timestamp = null;
+				}
 			}
 		} elseif ( isset( $params['newerthanrevid'] ) ) {
 			if ( $params['entirewatchlist'] || $pageSet->getGoodTitleCount() > 1 ) {
 				$this->dieUsage( 'newerthanrevid may only be used with a single page', 'multpages' );
 			}
 			$title = reset( $pageSet->getGoodTitles() );
-			$revid = $title->getNextRevisionID( $params['newerthanrevid'] );
-			if ( $revid ) {
-				$timestamp = $dbw->timestamp( Revision::getTimestampFromId( $title, $revid ) );
-			} else {
-				$timestamp = null;
+			if ( $title ) {
+				$revid = $title->getNextRevisionID( $params['newerthanrevid'] );
+				if ( $revid ) {
+					$timestamp = $dbw->timestamp( Revision::getTimestampFromId( $title, $revid ) );
+				} else {
+					$timestamp = null;
+				}
 			}
 		}
 
@@ -117,43 +121,45 @@ class ApiSetNotificationTimestamp extends ApiBase {
 			}
 
 			// Now process the valid titles
-			$lb = new LinkBatch( $pageSet->getTitles() );
-			$dbw->update( 'watchlist', array( 'wl_notificationtimestamp' => $timestamp ),
-				array( 'wl_user' => $user->getID(), $lb->constructSet( 'wl', $dbw ) ),
-				__METHOD__
-			);
-
-			// Query the results of our update
-			$timestamps = array();
-			$res = $dbw->select( 'watchlist', array( 'wl_namespace', 'wl_title', 'wl_notificationtimestamp' ),
-				array( 'wl_user' => $user->getID(), $lb->constructSet( 'wl', $dbw ) ),
-				__METHOD__
-			);
-			foreach ( $res as $row ) {
-				$timestamps[$row->wl_namespace][$row->wl_title] = $row->wl_notificationtimestamp;
-			}
-
-			// Now, put the valid titles into the result
-			/** @var $title Title */
-			foreach ( $pageSet->getTitles() as $title ) {
-				$ns = $title->getNamespace();
-				$dbkey = $title->getDBkey();
-				$r = array(
-					'ns' => intval( $ns ),
-					'title' => $title->getPrefixedText(),
+			if ( $pageSet->getTitles() ) {
+				$lb = new LinkBatch( $pageSet->getTitles() );
+				$dbw->update( 'watchlist', array( 'wl_notificationtimestamp' => $timestamp ),
+					array( 'wl_user' => $user->getID(), $lb->constructSet( 'wl', $dbw ) ),
+					__METHOD__
 				);
-				if ( !$title->exists() ) {
-					$r['missing'] = '';
+
+				// Query the results of our update
+				$timestamps = array();
+				$res = $dbw->select( 'watchlist', array( 'wl_namespace', 'wl_title', 'wl_notificationtimestamp' ),
+					array( 'wl_user' => $user->getID(), $lb->constructSet( 'wl', $dbw ) ),
+					__METHOD__
+				);
+				foreach ( $res as $row ) {
+					$timestamps[$row->wl_namespace][$row->wl_title] = $row->wl_notificationtimestamp;
 				}
-				if ( isset( $timestamps[$ns] ) && array_key_exists( $dbkey, $timestamps[$ns] ) ) {
-					$r['notificationtimestamp'] = '';
-					if ( $timestamps[$ns][$dbkey] !== null ) {
-						$r['notificationtimestamp'] = wfTimestamp( TS_ISO_8601, $timestamps[$ns][$dbkey] );
+
+				// Now, put the valid titles into the result
+				/** @var $title Title */
+				foreach ( $pageSet->getTitles() as $title ) {
+					$ns = $title->getNamespace();
+					$dbkey = $title->getDBkey();
+					$r = array(
+						'ns' => intval( $ns ),
+						'title' => $title->getPrefixedText(),
+					);
+					if ( !$title->exists() ) {
+						$r['missing'] = '';
 					}
-				} else {
-					$r['notwatched'] = '';
+					if ( isset( $timestamps[$ns] ) && array_key_exists( $dbkey, $timestamps[$ns] ) ) {
+						$r['notificationtimestamp'] = '';
+						if ( $timestamps[$ns][$dbkey] !== null ) {
+							$r['notificationtimestamp'] = wfTimestamp( TS_ISO_8601, $timestamps[$ns][$dbkey] );
+						}
+					} else {
+						$r['notwatched'] = '';
+					}
+					$result[] = $r;
 				}
-				$result[] = $r;
 			}
 
 			$apiResult->setIndexedTagName( $result, 'page' );

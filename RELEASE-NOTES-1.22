@@ -102,6 +102,8 @@ production.
   stored in the database.
 * (bug 47219) Allow specifying change type of Wikipedia feed items
 * prop=imageinfo now allows setting iiurlheight without setting iiurlwidth
+* (bug 48071) action=setnotificationtimestamp no longer throws PHP or database
+  errors when no pages are given.
 
 === Languages updated in 1.22===
 
