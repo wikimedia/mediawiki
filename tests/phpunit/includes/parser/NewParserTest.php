@@ -100,9 +100,6 @@ class NewParserTest extends MediaWikiTestCase {
 				'createtalk' => true,
 		) );
 		$tmpGlobals['wgNamespaceProtection'] = array( NS_MEDIAWIKI => 'editinterface' );
-		$tmpGlobals['wgMemc'] = new EmptyBagOStuff;
-		$tmpGlobals['messageMemc'] = wfGetMessageCacheStorage();
-		$tmpGlobals['parserMemc'] = wfGetParserCacheStorage();
 
 		$tmpGlobals['wgParser'] = new StubObject( 'wgParser', $GLOBALS['wgParserConf']['class'], array( $GLOBALS['wgParserConf'] ) );
 
@@ -141,6 +138,12 @@ class NewParserTest extends MediaWikiTestCase {
 		// Restore backends
 		RepoGroup::destroySingleton();
 		FileBackendGroup::destroySingleton();
+
+		// Remove temporary pages from the link cache
+		LinkCache::singleton()->clear();
+
+		// Restore message cache (temporary pages and $wgUseDatabaseMessages)
+		MessageCache::destroyInstance();
 
 		parent::tearDown();
 	}
@@ -196,9 +199,6 @@ class NewParserTest extends MediaWikiTestCase {
 			array( 'ss_row_id' => 1, 'ss_images' => 2, 'ss_good_articles' => 1 ),
 			__METHOD__
 		);
-
-		# Clear the message cache
-		MessageCache::singleton()->clear();
 
 		$user = User::newFromId( 0 );
 		LinkCache::singleton()->clear(); # Avoids the odd failure at creating the nullRevision
@@ -376,6 +376,8 @@ class NewParserTest extends MediaWikiTestCase {
 		}
 
 		MagicWord::clearCache();
+
+		# The entries saved into RepoGroup cache with previous globals will be wrong.
 		RepoGroup::destroySingleton();
 		FileBackendGroup::destroySingleton();
 
@@ -385,9 +387,6 @@ class NewParserTest extends MediaWikiTestCase {
 		# Publish the articles after we have the final language set
 		$this->publishTestArticles();
 
-		# The entries saved into RepoGroup cache with previous globals will be wrong.
-		RepoGroup::destroySingleton();
-		FileBackendGroup::destroySingleton();
 		MessageCache::destroyInstance();
 
 		return $context;
@@ -454,9 +453,6 @@ class NewParserTest extends MediaWikiTestCase {
 		foreach ( $this->savedGlobals as $var => $val ) {
 			$GLOBALS[$var] = $val;
 		}
-
-		RepoGroup::destroySingleton();
-		LinkCache::singleton()->clear();
 	}
 
 	/**
