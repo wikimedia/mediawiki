@@ -772,8 +772,9 @@ abstract class DatabaseBase implements DatabaseType {
 	/**
 	 * @param $errno
 	 * @param $errstr
+	 * @access private
 	 */
-	protected function connectionErrorHandler( $errno, $errstr ) {
+	public function connectionErrorHandler( $errno, $errstr ) {
 		$this->mPHPError = $errstr;
 	}
 

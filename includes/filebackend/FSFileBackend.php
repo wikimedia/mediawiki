@@ -810,8 +810,9 @@ class FSFileBackend extends FileBackendStore {
 	 * @param $errno integer
 	 * @param $errstr string
 	 * @return bool
+	 * @access private
 	 */
-	private function handleWarning( $errno, $errstr ) {
+	public function handleWarning( $errno, $errstr ) {
 		wfDebugLog( 'FSFileBackend', $errstr ); // more detailed error logging
 		$this->hadWarningErrors[count( $this->hadWarningErrors ) - 1] = true;
 		return true; // suppress from PHP handler
