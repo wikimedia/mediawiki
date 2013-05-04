@@ -58,6 +58,9 @@ production.
 * HTMLForm will turn multiselect checkboxes into a Chosen interface when setting cssclass 'mw-chosen'
 * rebuildLocalisationCache learned --lang option. Let you rebuild l10n caches
   of the specified languages instead of all of them.
+* mediawiki.log: Added log.warn wrapper (uses console.warn and console.trace).
+* mediawiki.log: Implemented log.deprecate. This method defines a property and
+  uses ES5 getter/setter to emit a warning when they are used.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail. Previously one could still
