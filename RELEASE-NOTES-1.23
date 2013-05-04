@@ -143,8 +143,10 @@ production.
   list=usercontribs.
 * list=watchlist now uses the querying user's rights rather than the wlowner's
   rights when checking whether wlprop=patrol is allowed.
+* (bug 48071) action=setnotificationtimestamp no longer throws PHP or database
+  errors when no pages are given.
 
-=== Languages updated in 1.23 ===
+=== Languages updated in 1.23===
 
 MediaWiki supports over 350 languages. Many localisations are updated
 regularly. Below only new and removed languages are listed, as well as
