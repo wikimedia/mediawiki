@@ -1807,8 +1807,11 @@ class User {
 	}
 
 	/**
-	 * Return the talk page(s) this user has new messages on.
-	 * @return Array of String page URLs
+	 * Return the revision and link for the oldest new talk page message for
+	 * this user.
+	 * Note: This function was designed to accomodate multiple talk pages, but
+	 * currently only returns a single link and revision.
+	 * @return Array
 	 */
 	public function getNewMessageLinks() {
 		$talks = array();
