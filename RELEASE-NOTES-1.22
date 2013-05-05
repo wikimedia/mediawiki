@@ -54,6 +54,12 @@ production.
   well.
 * (bug 45535) introduced the new 'LanguageLinks' hook for manipulating the
   language links associated with a page before display.
+* New GetNewMessagesAlert hook allowing extensions to disable or modify the new
+  messages alert
+* New wgUserNewMsgRevisionId JS global for logged in users. This will be null
+  if the user has no new talk page messages. Otherwise it will be set to the
+  revision ID of the oldest new talk page message. This will allow gadgets and
+  extensions to create their own new message alerts on the client side.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail. Previously one could still
