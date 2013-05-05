@@ -475,6 +475,7 @@ $wgOptionalMessages = array(
 	'categoryviewer-pagedlinks',
 	'undelete-revisionrow',
 	'pageinfo-redirects-value',
+	'edithelppage',
 	'created', // @deprecated. Remove in MediaWiki 1.23.
 	'changed', // @deprecated. Remove in MediaWiki 1.23.
 );
