@@ -674,7 +674,7 @@ Anote a URL e reporte o ocorrido a um [[Special:ListUsers/sysop|administrador]].
 'filedeleteerror' => 'Não foi possível eliminar o arquivo "$1".',
 'directorycreateerror' => 'Não foi possível criar o diretório "$1".',
 'filenotfound' => 'Não foi possível encontrar o arquivo "$1".',
-'fileexistserror' => 'Não foi possível gravar no arquivo "$1": ele já existe',
+'fileexistserror' => 'Não foi possível escrever no arquivo "$1": ele já existe',
 'unexpected' => 'Valor não esperado: "$1"="$2".',
 'formerror' => 'Erro: Não foi possível enviar o formulário',
 'badarticleerror' => 'Esta ação não pode ser realizada nesta página.',

@@ -839,7 +839,7 @@ $1',
 'nchanges' => '$1 {{PLURAL:$1|хийцам|хийцамаш|хийцамаш}}',
 'recentchanges' => 'Керла нисдарш',
 'recentchanges-legend' => 'Гlирс нисбарна керла нисдарш',
-'recentchanges-summary' => 'Лахахьа гайтина хронологин къепехь тӀаьхьара бина хийцам Википедин агӀонашках',
+'recentchanges-summary' => 'Лахахьа гайтина хронологин къепехь тӀаьхьара бина хийцамаш Википедин агӀонашкахь',
 'recentchanges-feed-description' => 'Тергам бе тlаьхьара вики хийцаман хlокху ларца.',
 'recentchanges-label-newpage' => 'Оцу нисдарца кхоллина керла агlо.',
 'recentchanges-label-minor' => 'Хlара нисдинарг къастийна жимо долушсан',
@@ -1119,6 +1119,7 @@ PICT # тайп тайпан
 'protectlogpage' => 'Гlаролли тептар',
 'protectedarticle' => 'гlаролла дина агlо «[[$1]]»',
 'modifiedarticleprotection' => 'агlонан гlаролли локхалла хийцина «[[$1]]»',
+'movedarticleprotection' => 'гӀаролла дехьадаккха тӀера «[[$2]]» цуна тӀе «[[$1]]»',
 'prot_1movedto2' => '«[[$1]]» цlе хийцина оцу «[[$2]]»',
 'protectcomment' => 'Бахьан:',
 'protectexpiry' => 'Чекхйолу:',
@@ -1506,5 +1507,8 @@ PICT # тайп тайпан
 'dberr-info' => '(аьтто ца хили зlе хlотта гlулкхдечуьнца бухара хаамашца: $1)',
 'dberr-usegoogle' => 'Цlачун хьо хьажа лаха гlонца Google.',
 'dberr-outofdate' => 'Хьуна хаалахь, цуьна йолу меттиг хила мега тишйелла черахь.',
+
+# New logging system
+'logentry-move-move' => '$1 {{GENDER:$2|цӀе хийцина|цӀе хийцина}} $3 оцу $4',
 
 );

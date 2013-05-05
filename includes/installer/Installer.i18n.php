@@ -4669,6 +4669,7 @@ $messages['eo'] = array(
  * @author Ciencia Al Poder
  * @author Crazymadlover
  * @author Danke7
+ * @author Fitoschido
  * @author Locos epraix
  * @author Od1n
  * @author Platonides
@@ -4807,6 +4808,7 @@ El caché de objetos no está habilitado.",
 	'config-mod-security' => "''' Advertencia ''': Su servidor web tiene [http://modsecurity.org/ mod_security] habilitado. Si la configuración es incorrecta, puede causar problemas a MediaWiki u otro software que permita a los usuarios publicar contenido arbitrarios.
 Consulte la [http://modsecurity.org/documentation/ documentación de mod_security] o contacte con el soporte de su servidor (''host'') si encuentra errores aleatorios.",
 	'config-diff3-bad' => 'GNU diff3 no se encuentra.',
+	'config-git-bad' => 'No se encontró el software de control de versiones Git.',
 	'config-imagemagick' => 'ImageMagick encontrado: <code>$1</code>.
 La miniaturización de imágenes se habilitará si habilitas las cargas.',
 	'config-gd' => 'Se ha encontrado una biblioteca de gráficos GD integrada.

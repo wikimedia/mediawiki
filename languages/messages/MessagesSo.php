@@ -247,7 +247,7 @@ $1',
 'copyright' => 'Qoraalka wuxuu ku salaysanyahay $1.',
 'copyrightpage' => '{{ns:project}}: Ogolaashada koobiga',
 'currentevents' => 'Dhacdooyinka cusub',
-'currentevents-url' => 'Project:Maxaa cusub',
+'currentevents-url' => 'Project:Dhacdooyinka Hadda',
 'disclaimers' => "Masuul la'aan",
 'disclaimerpage' => "Project:Masuul la'aan guud",
 'edithelp' => 'Caawinaada wax ka bedelka',
@@ -1450,10 +1450,6 @@ waxaad awoodaa [[Special:EditWatchlist/raw|Liiska wax ka bedel]].',
 
 # Special:Version
 'version-poweredby-others' => 'kuwa kale',
-
-# Special:FilePath
-'filepath-page' => 'Fayl:',
-'filepath-submit' => 'Soco',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-legend' => 'Raadi mid tusaale ah',

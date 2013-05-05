@@ -2066,7 +2066,7 @@ $UNWATCHURL
 'deletepage' => 'Бетни кетер',
 'confirm' => 'Къабыл эт',
 'excontent' => 'ичиндеги: $1',
-'excontentauthor' => "ичиндеги: '$1' ('[[Special:Contributions/$2|$2]] юлюш къошхан джангыз къошулуучу болгъанды)",
+'excontentauthor' => 'ичиндеги: «$1» (юлюш къошхан джангыз къошулуучу [[Special:Contributions/$2|$2]] эди)',
 'exbeforeblank' => "Кетериуню алындагъы ичи: '$1'",
 'exblank' => 'бет бош эди',
 'delete-confirm' => '«$1» — кетериу',

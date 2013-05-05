@@ -532,7 +532,10 @@ Sylwer y bydd rhai tudalennau yn parhau i ymddangos fel ag yr oeddent pan oeddec
 'yourpassword' => 'Eich cyfrinair:',
 'userlogin-yourpassword' => 'Cyfrinair',
 'userlogin-yourpassword-ph' => 'Teipiwch eich cyfrinair',
+'createacct-yourpassword-ph' => 'Rhowch gyfrinair',
 'yourpasswordagain' => 'Ail-deipiwch y cyfrinair:',
+'createacct-yourpasswordagain' => 'Gwirwch eich cyfrinair',
+'createacct-yourpasswordagain-ph' => 'Rhowch eich cyfrinair eto',
 'remembermypassword' => "Y porwr hwn i gofio'r manylion mewngofnodi (am hyd at $1 {{PLURAL:$1||diwrnod|ddiwrnod|diwrnod|diwrnod|diwrnod}})",
 'userlogin-remembermypassword' => 'Cofio fi',
 'userlogin-signwithsecure' => 'Mewngofnodi drwy weinydd diogel',
@@ -558,12 +561,29 @@ Sylwer y bydd rhai tudalennau yn parhau i ymddangos fel ag yr oeddent pan oeddec
 'userlogin-resetlink' => 'Ydych chi wedi anghofio eich manylion mewngofnodi?',
 'helplogin-url' => 'Help:Mewngofnodi',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Cymorth i fewngofnodi]]',
+'createacct-join' => 'Rhowch eich gwybodaeth isod',
+'createacct-emailrequired' => 'Cyfeiriad ebost',
+'createacct-emailoptional' => 'Cyfeiriad ebost (dewisol)',
+'createacct-email-ph' => 'Rhowch eich cyfeiriad ebost',
 'createaccountmail' => "Defnyddier cyfrinair ar hap dros dro a'i anfon i'r cyfeiriad e-bost isod",
+'createacct-realname' => 'Enw cywir (dewisiol)',
 'createaccountreason' => 'Rheswm:',
+'createacct-reason' => 'Rheswm',
+'createacct-reason-ph' => 'Pam ydych yn creu cyfrif arall?',
+'createacct-captcha' => 'Gwiriad diogelwch',
+'createacct-captcha-help-url' => '{{ns:Project}}:Ymholi am gyfri',
+'createacct-imgcaptcha-help' => 'Methu gweld y ddelwedd? [[{{MediaWiki:createacct-captcha-help-url}}|Holwch am gyfrif]]',
+'createacct-imgcaptcha-ph' => 'Nodwch y testun a welwch uchod',
+'createacct-submit' => 'Crëwch gyfrif',
+'createacct-benefit-heading' => 'Mae {{SITENAME}} yn cael ei greu gan bobl fel chi.',
+'createacct-benefit-body1' => 'golygiadau',
+'createacct-benefit-body2' => 'tudalennau',
+'createacct-benefit-body3' => 'cyfrannwyr diweddar',
 'badretype' => "Nid yw'r cyfrineiriau'n union yr un fath.",
 'userexists' => 'Mae rhywun arall wedi dewis yr enw defnyddiwr hwn. 
 Dewiswch un arall os gwelwch yn dda.',
 'loginerror' => 'Problem mewngofnodi',
+'createacct-error' => 'Nam wrth greu cyfrif',
 'createaccounterror' => "Ni lwyddwyd i greu'r cyfrif: $1",
 'nocookiesnew' => "Mae'r cyfrif defnyddiwr wedi cael ei greu, ond nid ydych wedi mewngofnodi. Mae {{SITENAME}} yn defnyddio cwcis wrth i ddefnyddwyr fewngofnodi. Rydych chi wedi analluogi cwcis. Mewngofnodwch eto gyda'ch enw defnyddiwr a'ch cyfrinair newydd os gwelwch yn dda, ar ôl galluogi cwcis.",
 'nocookieslogin' => 'Mae {{SITENAME}} yn defnyddio cwcis wrth i ddefnyddwyr fewngofnodi. Rydych chi wedi analluogi cwcis. Trïwch eto os gwelwch yn dda, ar ôl galluogi cwcis.',
@@ -642,6 +662,7 @@ Er mwyn cwblhau'r mewngofnodi, rhaid i chi osod cyfrinair newydd fel hyn:",
 'resetpass-wrong-oldpass' => "Mae'r cyfrinair dros dro neu gyfredol yn annilys.
 Gall fod eich bod wedi llwyddo newid eich cyfrinair eisoes neu eich bod wedi gofyn am gyfrinair dros dro newydd.",
 'resetpass-temp-password' => 'Cyfrinair dros dro:',
+'resetpass-abort-generic' => 'Mae estyniad wedi atal newid y cyfrinair.',
 
 # Special:PasswordReset
 'passwordreset' => 'Ailosod cyfrinair',
@@ -1313,6 +1334,7 @@ Mae'r wybodaeth hon ar gael i'r cyhoedd.",
 'userrights-notallowed' => 'Nid oes gan eich cyfrif y caniatâd priodol i ychwanegu neu dynnu hawliau defnyddwyr.',
 'userrights-changeable-col' => 'Grwpiau y gallwch eu newid',
 'userrights-unchangeable-col' => 'Grwpiau na allwch eu newid',
+'userrights-conflict' => 'Gwrthdaro gyda hawliau defnyddiwr! Gwnewch eich newidiadau eto.',
 
 # Groups
 'group' => 'Grŵp:',
@@ -2995,10 +3017,24 @@ Mae'n bosib y bydd eich cyfrifiadur yn cael ei danseilio wrth ddefnyddio'r ffeil
 'minutes' => '{{PLURAL:$1||$1 munud|$1 funud|$1 munud|$1 munud|$1 munud}}',
 'hours' => '{{PLURAL:$1|$1 awr}}',
 'days' => '{{PLURAL:$1||$1 diwrnod|$1 ddiwrnod|$1 diwrnod|$1 diwrnod|$1 diwrnod}}',
+'weeks' => '{{PLURAL:$1|$1 wythnos|$1 wythnosau}}',
 'months' => '{{PLURAL:$1|$1 mis|mis|deufis|$1 mis}}',
 'years' => '{{PLURAL:$1|$1 blwyddyn|blwyddyn|$1 flynedd|$1 blynedd|$1 blynedd|$1 mlynedd}}',
 'ago' => '$1 yn ôl',
 'just-now' => 'nawr',
+
+# Human-readable timestamps
+'hours-ago' => '$1 {{PLURAL:$1|awr|awr}} yn ôl',
+'minutes-ago' => '$1 {{PLURAL:$1|munud|munud}} yn ôl',
+'seconds-ago' => '$1 {{PLURAL:$1|eiliad|eiliad}} yn ôl',
+'monday-at' => 'Dydd Llun am $1',
+'tuesday-at' => 'Dydd Mawrth am $1',
+'wednesday-at' => 'Dydd Mercher am $1',
+'thursday-at' => 'Dydd Iau am $1',
+'friday-at' => 'Dydd Gwener am $1',
+'saturday-at' => 'Dydd Sadwrn am $1',
+'sunday-at' => 'Dydd Sul am $1',
+'yesterday-at' => 'Ddoe am $1',
 
 # Bad image list
 'bad_image_list' => "Dyma'r fformat:
@@ -3606,6 +3642,9 @@ Dylech fod wedi derbyn [{{SERVER}}{{SCRIPTPATH}}/COPYING gopi o GNU General Publ
 'version-entrypoints' => 'URLs y mannau cyflwyno',
 'version-entrypoints-header-entrypoint' => 'Man cyflwyno',
 'version-entrypoints-header-url' => 'URL',
+
+'redirect' => 'Ailgyfeiriwyd gan ffeil, defnyddiwr neu adolygiad ID',
+'redirect-legend' => 'Ailgyfeiriad i ffeil newu dudalen',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Chwilio am ffeiliau dyblyg',

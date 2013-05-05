@@ -3967,7 +3967,7 @@ MediaWiki发表时预期有用，但对此'''无任何保证'''，亦无隐含�
 'logentry-patrol-patrol-auto' => '$1自动{{GENDER:$2|标记}}页面$3的版本$4为已巡查',
 'logentry-newusers-newusers' => '已{{GENDER:$2|创建}}用户帐户$1',
 'logentry-newusers-create' => '{{GENDER:$2|创建}}用户帐户$1',
-'logentry-newusers-create2' => '创建用户帐户 $3 由 $1',
+'logentry-newusers-create2' => '用户帐户 $3 由 $1 创建',
 'logentry-newusers-byemail' => '$1创建用户$3，并且密码已通过电子邮件发送',
 'logentry-newusers-autocreate' => '用户帐户$1已被自动{{GENDER:$2|创建}}',
 'logentry-rights-rights' => '$1将$3的用户组从$4改为$5',

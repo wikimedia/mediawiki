@@ -731,7 +731,7 @@ Huomaa, että jotkut sivut saattavat näkyä edelleen kuin olisit kirjautunut si
 'createacct-yourpasswordagain' => 'Vahvista salasana',
 'createacct-yourpasswordagain-ph' => 'Kirjoita salasana uudelleen',
 'remembermypassword' => 'Muista minut (enintään $1 {{PLURAL:$1|päivä|päivää}})',
-'userlogin-remembermypassword' => 'Muista minut',
+'userlogin-remembermypassword' => 'Pidä minut kirjautuneena',
 'userlogin-signwithsecure' => 'Kirjaudu sisään salatun yhteyden yli',
 'securelogin-stick-https' => 'Jatka salatun yhteyden käyttämistä sisäänkirjautumisen jälkeen',
 'yourdomainname' => 'Verkkonimi',
@@ -762,11 +762,13 @@ Huomaa, että jotkut sivut saattavat näkyä edelleen kuin olisit kirjautunut si
 'createacct-realname' => 'Oikea nimi (valinnainen)',
 'createaccountreason' => 'Syy',
 'createacct-reason' => 'Syy',
+'createacct-reason-ph' => 'Tunnuksen luomisen syy',
 'createacct-captcha' => 'Turvatarkastus',
 'createacct-captcha-help-url' => '{{ns:Project}}:Pyydä tunnusta',
 'createacct-imgcaptcha-help' => 'Et näe kuvaa? [[{{MediaWiki:createacct-captcha-help-url}}|Pyydä tunnusta]]',
 'createacct-imgcaptcha-ph' => 'Kirjoita teksti, jonka näet edellä',
-'createacct-benefit-heading' => 'Sivun {{SITENAME}} ovat tehneet ihmiset kuten sinä.',
+'createacct-submit' => 'Luo tunnus',
+'createacct-benefit-heading' => '{{SITENAME}} on sinun kaltaisesi ihmisten tekemä.',
 'createacct-benefit-body1' => 'muokkausta',
 'createacct-benefit-body2' => 'sivua',
 'createacct-benefit-body3' => 'viimeaikaiset muokkaajat',
@@ -3784,6 +3786,9 @@ Sinun olisi pitänyt saada [{{SERVER}}{{SCRIPTPATH}}/COPYING kopio GNU General P
 'version-entrypoints' => 'Aloituskohtien URL-osoitteet',
 'version-entrypoints-header-entrypoint' => 'Aloituskohta',
 'version-entrypoints-header-url' => 'URL',
+
+'redirect-submit' => 'Siirry',
+'redirect-file' => 'Tiedostonimi',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Kaksoiskappaleiden haku',

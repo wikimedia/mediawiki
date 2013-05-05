@@ -17,6 +17,7 @@
  * @author Kaganer
  * @author Kuvaly
  * @author Li-sung
+ * @author Littledogboy
  * @author Martin Kozák
  * @author Matěj Grabovský
  * @author Mercy
@@ -505,7 +506,7 @@ $messages = array(
 'qbbrowse' => 'Listování',
 'qbedit' => 'Editování',
 'qbpageoptions' => 'Tato stránka',
-'qbmyoptions' => 'Moje volby',
+'qbmyoptions' => 'Moje stránky',
 'qbspecialpages' => 'Speciální stránky',
 'faq' => 'Často kladené otázky',
 'faqpage' => 'Project:Často kladené otázky',

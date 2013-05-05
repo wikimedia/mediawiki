@@ -254,7 +254,7 @@ $messages = array(
 
 'underline-always' => 'Altyd',
 'underline-never' => 'Nooit',
-'underline-default' => 'Standaard in u omslag of webblaaier',
+'underline-default' => 'Omslag of webblaaier se verstekwaarde',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Lettertipe vir wysigingsvenster:',
@@ -604,7 +604,7 @@ Die rede hiervoor is "\'\'$3\'\'".',
 'invalidtitle-knownnamespace' => 'Ongeldige titel met naamruimte "$2" en teks "$3"',
 'invalidtitle-unknownnamespace' => 'Ongeldige titel met onbekende naamruimtenummer $1 en teks "$2"',
 'exception-nologin' => 'Nie aangeteken nie',
-'exception-nologin-text' => 'U moet eers op hierdie wiki aanteken alvorens u hierdie bladsy kan sien of handeling kan uitvoer.',
+'exception-nologin-text' => 'U moet eers op hierdie wiki aanmeld alvorens u hierdie bladsy kan sien of die handeling kan uitvoer.',
 
 # Virus scanner
 'virus-badscanner' => "Slegte konfigurasie: onbekende virusskandeerder: ''$1''",
@@ -2131,7 +2131,7 @@ Dit is dus moontlik dat 'n lêer hier gelys word terwyl dit tog in gebruik is.",
 
 # Special:Log
 'specialloguserlabel' => 'Uitvoerende gebruiker:',
-'speciallogtitlelabel' => 'Doel (bladsynaam of gebruiker):',
+'speciallogtitlelabel' => 'Teiken (bladsy of gebruiker):',
 'log' => 'Logboeke',
 'all-logs-page' => 'Alle openbare logboeke',
 'alllogstext' => "Vertoon 'n samestelling van alle boekstawings van {{SITENAME}}.
