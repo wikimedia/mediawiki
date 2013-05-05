@@ -1193,6 +1193,14 @@ to do this unless they broke backwards compatibility with a previous version of
 the media handler metadata output.
 &$version: Array of version strings
 
+'GetNewMessagesAlert': Disable or modify the new messages alert
+&$newMessagesAlert: An empty string by default. If the user has new talk page
+messages, this should be populated with an alert message to that effect
+$newtalks: An empty array if the user has no new messages or an array containing
+links and revisions if there are new messages (See User::getNewMessageLinks)
+$user: The user object of the user who is loading the page
+$out: OutputPage object (to check what type of page the user is on)
+
 'GetPreferences': Modify user preferences.
 $user: User whose preferences are being modified.
 &$preferences: Preferences description array, to be fed to an HTMLForm object
