@@ -935,8 +935,8 @@ class WebInstaller_Options extends WebInstallerPage {
 		);
 		// If we're using the default, let the user set it relative to $wgScriptPath
 		$curLogo = $this->getVar( 'wgLogo' );
-		$logoString = ( $curLogo == "/wiki/skins/common/images/wiki.png" ) ?
-			'$wgStylePath/common/images/wiki.png' : $curLogo;
+		$logoString = ( $curLogo == "/wiki/skins/common/images/mediawiki.png" ) ?
+			'$wgStylePath/common/images/mediawiki.png' : $curLogo;
 
 		$uploadwrapperStyle = $this->getVar( 'wgEnableUploads' ) ? '' : 'display: none';
 		$this->addHTML(
@@ -964,6 +964,10 @@ class WebInstaller_Options extends WebInstallerPage {
 				'help' => $this->parent->getHelpBox( 'config-logo-help' )
 			) )
 		);
+
+		$this->addHTML($this->parent->getInfoBox(
+			wfMessage('config-change-logo')->text()));
+
 		$this->addHTML(
 			$this->parent->getCheckBox( array(
 				'var' => 'wgUseInstantCommons',
@@ -972,7 +976,7 @@ class WebInstaller_Options extends WebInstallerPage {
 			) ) .
 			$this->getFieldSetEnd()
 		);
-
+		
 		$caches = array( 'none' );
 		if( count( $this->getVar( '_Caches' ) ) ) {
 			$caches[] = 'accel';
