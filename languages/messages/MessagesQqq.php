@@ -642,7 +642,7 @@ See also:
 {{doc-important|Do not change the "<tt>Project:</tt>" part.}}',
 'edithelp' => 'This is the text that appears on the editing help link that is near the bottom of the editing page',
 'edithelppage' => 'The help page displayed when a user clicks on editing help link which is present on the right of Show changes button.
-{{doc-important|Do not change the "<tt>Help:</tt>" part.}}',
+Can be customized to point to a local page.',
 'helppage' => 'The link destination used by default in the sidebar, and in {{msg-mw|noarticletext}}.
 {{doc-important|Do not change the "<tt>Help:</tt>" part.}}
 {{Identical|HelpContent}}',
