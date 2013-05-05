@@ -1294,17 +1294,27 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * Gets new talk page messages for the current user.
-	 * @return MediaWiki message or if no new talk page messages, nothing
+	 * Gets new talk page messages for the current user and returns an
+	 * appropriate alert message (or an empty string if there are no messages)
+	 * @return String
 	 */
 	function getNewtalks() {
+
+		$newMessagesAlert = '';
+		$user = $this->getUser();
+		$newtalks = $user->getNewMessageLinks();
 		$out = $this->getOutput();
 
-		$newtalks = $this->getUser()->getNewMessageLinks();
-		$ntl = '';
+		// Allow extensions to disable or modify the new messages alert
+		if ( !wfRunHooks( 'GetNewMessagesAlert', array( &$newMessagesAlert, $newtalks, $user, $out ) ) ) {
+			return '';
+		}
+		if ( $newMessagesAlert ) {
+			return $newMessagesAlert;
+		}
 
 		if ( count( $newtalks ) == 1 && $newtalks[0]['wiki'] === wfWikiID() ) {
-			$uTalkTitle = $this->getUser()->getTalkPage();
+			$uTalkTitle = $user->getTalkPage();
 
 			if ( !$uTalkTitle->equals( $out->getTitle() ) ) {
 				$lastSeenRev = isset( $newtalks[0]['rev'] ) ? $newtalks[0]['rev'] : null;
@@ -1343,26 +1353,25 @@ abstract class Skin extends ContextSource {
 				);
 
 				if ( $nofAuthors >= 1 && $nofAuthors <= 10 ) {
-					$ntl = $this->msg(
+					$newMessagesAlert = $this->msg(
 						'youhavenewmessagesfromusers',
 						$newMessagesLink,
 						$newMessagesDiffLink
 					)->numParams( $nofAuthors );
 				} else {
 					// $nofAuthors === 11 signifies "11 or more" ("more than 10")
-					$ntl = $this->msg(
+					$newMessagesAlert = $this->msg(
 						$nofAuthors > 10 ? 'youhavenewmessagesmanyusers' : 'youhavenewmessages',
 						$newMessagesLink,
 						$newMessagesDiffLink
 					);
 				}
-				$ntl = $ntl->text();
+				$newMessagesAlert = $newMessagesAlert->text();
 				# Disable Squid cache
 				$out->setSquidMaxage( 0 );
 			}
 		} elseif ( count( $newtalks ) ) {
-			// _>" " for BC <= 1.16
-			$sep = str_replace( '_', ' ', $this->msg( 'newtalkseparator' )->escaped() );
+			$sep = $this->msg( 'newtalkseparator' )->escaped();
 			$msgs = array();
 
 			foreach ( $newtalks as $newtalk ) {
@@ -1372,11 +1381,11 @@ abstract class Skin extends ContextSource {
 				);
 			}
 			$parts = implode( $sep, $msgs );
-			$ntl = $this->msg( 'youhavenewmessagesmulti' )->rawParams( $parts )->escaped();
+			$newMessagesAlert = $this->msg( 'youhavenewmessagesmulti' )->rawParams( $parts )->escaped();
 			$out->setSquidMaxage( 0 );
 		}
 
-		return $ntl;
+		return $newMessagesAlert;
 	}
 
 	/**
