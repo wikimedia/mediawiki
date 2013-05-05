@@ -558,6 +558,9 @@ When that has been done, you can '''[$2 enter your wiki]'''.",
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]
 * [//www.mediawiki.org/wiki/Localisation#Translation_resources Localise MediaWiki for your language]",
+'config-change-logo' => "You can change the logo by refering to the [//www.mediawiki.org/wiki/Manual:FAQ#How_do_I_change_the_logo.3F manual]. 
+
+Note that the default Mediawiki logo will be used if the logo is not changed.",
 );
 
 /** Message documentation (Message documentation)
@@ -969,6 +972,7 @@ See also:
 	'mainpagetext' => 'Along with {{msg-mw|mainpagedocfooter}}, the text you will see on the Main Page when your wiki is installed.',
 	'mainpagedocfooter' => 'Along with {{msg-mw|mainpagetext}}, the text you will see on the Main Page when your wiki is installed.
 This might be a good place to put information about <nowiki>{{GRAMMAR:}}</nowiki>. See [[{{NAMESPACE}}:{{BASEPAGENAME}}/fi]] for an example. For languages having grammatical distinctions and not having an appropriate <nowiki>{{GRAMMAR:}}</nowiki> software available, a suggestion to check and possibly amend the messages having <nowiki>{{SITENAME}}</nowiki> may be valuable. See [[{{NAMESPACE}}:{{BASEPAGENAME}}/ksh]] for an example.',
+'config-change-logo' => 'Shown on the last page of installation to notify that the default mediawiki logo will be used unless a new logo is uploaded. Also a link is provided which informs the user on how to change the logo.',
 );
 
 /** Afrikaans (Afrikaans)
