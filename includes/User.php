@@ -1807,8 +1807,11 @@ class User {
 	}
 
 	/**
-	 * Return the talk page(s) this user has new messages on.
-	 * @return Array of String page URLs
+	 * Return the revision and link for the oldest new talk page message for
+	 * this user.
+	 * Note: This function was designed to accomodate multiple talk pages, but
+	 * currently only returns a single link and revision.
+	 * @return Array
 	 */
 	public function getNewMessageLinks() {
 		$talks = array();
@@ -1826,6 +1829,27 @@ class User {
 			__METHOD__ );
 		$rev = $timestamp ? Revision::loadFromTimestamp( $dbr, $utp, $timestamp ) : null;
 		return array( array( 'wiki' => wfWikiID(), 'link' => $utp->getLocalURL(), 'rev' => $rev ) );
+	}
+
+	/**
+	 * Get the revision ID for the oldest new talk page message for this user
+	 * @return Integer or null if there are no new messages
+	 */
+	public function getNewMessageRevisionId() {
+		$newMessageRevisionId = null;
+		$newMessageLinks = $this->getNewMessageLinks();
+		if ( $newMessageLinks ) {
+			// Note: getNewMessageLinks() never returns more than a single link
+			// and it is always for the same wiki, but we double-check here in
+			// case that changes some time in the future.
+			if ( count( $newMessageLinks ) === 1 && $newMessageLinks[0]['wiki'] === wfWikiID() ) {
+				$newMessageRevision = $newMessageLinks[0]['rev'];
+				$newMessageRevisionId = $newMessageRevision->getId();
+			} else {
+				throw new MWException( "Unexpected values from User::getNewMessageLinks()" );
+			}
+		}
+		return $newMessageRevisionId;
 	}
 
 	/**

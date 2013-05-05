@@ -3074,6 +3074,10 @@ $templates
 			$vars['wgUserEditCount'] = $user->getEditCount();
 			$userReg = wfTimestampOrNull( TS_UNIX, $user->getRegistration() );
 			$vars['wgUserRegistration'] = $userReg !== null ? ( $userReg * 1000 ) : null;
+			// Get the revision ID of the oldest new message on the user's talk
+			// page. This can be used for constructing new message alerts on
+			// the client side.
+			$vars['wgUserNewMsgRevisionId'] = $user->getNewMessageRevisionId();
 		}
 		if ( $wgContLang->hasVariants() ) {
 			$vars['wgUserVariant'] = $wgContLang->getPreferredVariant();
