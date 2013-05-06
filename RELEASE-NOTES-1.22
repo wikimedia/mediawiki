@@ -143,6 +143,9 @@ changes to languages because of Bugzilla reports.
   user ID, or file name.  The old Special:Filepath page was reimplemented
   to redirect through Special:Redirect.
 * Monobook: Removed the old conditional stylesheets for Opera 6, 7 and 9.
+* The QuickTemplate::translator variable has been removed (along with the
+  MediaWiki_I18N private class). If your code was using it, use appropriate
+  methods of QuickTemplate or the global wfMessage() function.
 
 == Compatibility ==
 

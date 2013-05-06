@@ -293,8 +293,8 @@ class CologneBlueTemplate extends BaseTemplate {
 			$this->data['pageLanguage'] = $this->getSkin()->getTitle()->getPageViewLanguage()->getCode();
 			$this->html( 'pageLanguage' );
 		?>"><span dir="auto"><?php echo $this->data['title'] ?></span></h1>
-		<?php if ( $this->translator->translate( 'tagline' ) ) { ?>
-		<p class="tagline"><?php echo htmlspecialchars( $this->translator->translate( 'tagline' ) ) ?></p>
+		<?php if ( !wfMessage( 'tagline' )->isDisabled() ) { ?>
+		<p class="tagline"><?php echo wfMessage( 'tagline' )->escaped() ?></p>
 		<?php } ?>
 		<?php if ( $this->getSkin()->getOutput()->getSubtitle() ) { ?>
 		<p class="subtitle"><?php echo $this->getSkin()->getOutput()->getSubtitle() ?></p>
