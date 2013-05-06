@@ -127,7 +127,7 @@ class CloneDatabase {
 	/**
 	 * Change the table prefix on all open DB connections/
 	 *
-	 * @param  $prefix
+	 * @param $prefix
 	 * @return void
 	 */
 	public static function changePrefix( $prefix ) {
@@ -137,8 +137,8 @@ class CloneDatabase {
 	}
 
 	/**
-	 * @param  $lb LoadBalancer
-	 * @param  $prefix
+	 * @param $lb LoadBalancer
+	 * @param $prefix
 	 * @return void
 	 */
 	public static function changeLBPrefix( $lb, $prefix ) {
@@ -146,8 +146,8 @@ class CloneDatabase {
 	}
 
 	/**
-	 * @param  $db DatabaseBase
-	 * @param  $prefix
+	 * @param $db DatabaseBase
+	 * @param $prefix
 	 * @return void
 	 */
 	public static function changeDBPrefix( $db, $prefix ) {
