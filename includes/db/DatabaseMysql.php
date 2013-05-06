@@ -348,7 +348,7 @@ class DatabaseMysql extends DatabaseBase {
 	 * @param $fname string
 	 * @return ResultWrapper
 	 */
-	function replace( $table, $uniqueIndexes, $rows, $fname = 'DatabaseMysql::replace' ) {
+	function replace( $table, $uniqueIndexes, $rows, $fname = __METHOD__ ) {
 		return $this->nativeReplace( $table, $rows, $fname );
 	}
 
@@ -364,7 +364,7 @@ class DatabaseMysql extends DatabaseBase {
 	 * @param $options string|array
 	 * @return int
 	 */
-	public function estimateRowCount( $table, $vars = '*', $conds = '', $fname = 'DatabaseMysql::estimateRowCount', $options = array() ) {
+	public function estimateRowCount( $table, $vars = '*', $conds = '', $fname = __METHOD__, $options = array() ) {
 		$options['EXPLAIN'] = true;
 		$res = $this->select( $table, $vars, $conds, $fname, $options );
 		if ( $res === false ) {
@@ -411,7 +411,7 @@ class DatabaseMysql extends DatabaseBase {
 	 * @param $fname string
 	 * @return bool|array|null False or null on failure
 	 */
-	function indexInfo( $table, $index, $fname = 'DatabaseMysql::indexInfo' ) {
+	function indexInfo( $table, $index, $fname = __METHOD__ ) {
 		# SHOW INDEX works in MySQL 3.23.58, but SHOW INDEXES does not.
 		# SHOW INDEX should work for 3.x and up:
 		# http://dev.mysql.com/doc/mysql/en/SHOW_INDEX.html
@@ -577,12 +577,12 @@ class DatabaseMysql extends DatabaseBase {
 	 * @return bool|string
 	 */
 	function masterPosWait( DBMasterPos $pos, $timeout ) {
-		$fname = 'DatabaseBase::masterPosWait';
+		$fname = __METHOD__;
 		wfProfileIn( $fname );
 
 		# Commit any open transactions
 		if ( $this->mTrxLevel ) {
-			$this->commit( __METHOD__ );
+			$this->commit( $fname );
 		}
 
 		if ( !is_null( $this->mFakeSlaveLag ) ) {
@@ -815,7 +815,7 @@ class DatabaseMysql extends DatabaseBase {
 	 * @throws DBUnexpectedError
 	 * @return bool|ResultWrapper
 	 */
-	function deleteJoin( $delTable, $joinTable, $delVar, $joinVar, $conds, $fname = 'DatabaseBase::deleteJoin' ) {
+	function deleteJoin( $delTable, $joinTable, $delVar, $joinVar, $conds, $fname = __METHOD__ ) {
 		if ( !$conds ) {
 			throw new DBUnexpectedError( $this, 'DatabaseBase::deleteJoin() called with empty $conds' );
 		}
@@ -885,7 +885,7 @@ class DatabaseMysql extends DatabaseBase {
 	 * @param $temporary bool
 	 * @param $fname string
 	 */
-	function duplicateTableStructure( $oldName, $newName, $temporary = false, $fname = 'DatabaseMysql::duplicateTableStructure' ) {
+	function duplicateTableStructure( $oldName, $newName, $temporary = false, $fname = __METHOD__ ) {
 		$tmp = $temporary ? 'TEMPORARY ' : '';
 		$newName = $this->addIdentifierQuotes( $newName );
 		$oldName = $this->addIdentifierQuotes( $oldName );
@@ -900,7 +900,7 @@ class DatabaseMysql extends DatabaseBase {
 	 * @param string $fname calling function name
 	 * @return array
 	 */
-	function listTables( $prefix = null, $fname = 'DatabaseMysql::listTables' ) {
+	function listTables( $prefix = null, $fname = __METHOD__ ) {
 		$result = $this->query( "SHOW TABLES", $fname );
 
 		$endArray = array();
@@ -922,7 +922,7 @@ class DatabaseMysql extends DatabaseBase {
 	 * @param $fName string
 	 * @return bool|ResultWrapper
 	 */
-	public function dropTable( $tableName, $fName = 'DatabaseMysql::dropTable' ) {
+	public function dropTable( $tableName, $fName = __METHOD__ ) {
 		if ( !$this->tableExists( $tableName, $fName ) ) {
 			return false;
 		}

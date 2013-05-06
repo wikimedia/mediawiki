@@ -200,7 +200,7 @@ class DatabaseSqlite extends DatabaseBase {
 	 *
 	 * @return ResultWrapper
 	 */
-	function attachDatabase( $name, $file = false, $fname = 'DatabaseSqlite::attachDatabase' ) {
+	function attachDatabase( $name, $file = false, $fname = __METHOD__ ) {
 		global $wgSQLiteDataDir;
 		if ( !$file ) {
 			$file = self::generateFileName( $wgSQLiteDataDir, $name );
@@ -420,7 +420,7 @@ class DatabaseSqlite extends DatabaseBase {
 	 *
 	 * @return array
 	 */
-	function indexInfo( $table, $index, $fname = 'DatabaseSqlite::indexExists' ) {
+	function indexInfo( $table, $index, $fname = __METHOD__ ) {
 		$sql = 'PRAGMA index_info(' . $this->addQuotes( $this->indexName( $index ) ) . ')';
 		$res = $this->query( $sql, $fname );
 		if ( !$res ) {
@@ -442,7 +442,7 @@ class DatabaseSqlite extends DatabaseBase {
 	 * @param $fname string
 	 * @return bool|null
 	 */
-	function indexUnique( $table, $index, $fname = 'DatabaseSqlite::indexUnique' ) {
+	function indexUnique( $table, $index, $fname = __METHOD__ ) {
 		$row = $this->selectRow( 'sqlite_master', '*',
 			array(
 				'type' => 'index',
@@ -514,7 +514,7 @@ class DatabaseSqlite extends DatabaseBase {
 	 * Based on generic method (parent) with some prior SQLite-sepcific adjustments
 	 * @return bool
 	 */
-	function insert( $table, $a, $fname = 'DatabaseSqlite::insert', $options = array() ) {
+	function insert( $table, $a, $fname = __METHOD__, $options = array() ) {
 		if ( !count( $a ) ) {
 			return true;
 		}
@@ -541,7 +541,7 @@ class DatabaseSqlite extends DatabaseBase {
 	 * @param $fname string
 	 * @return bool|ResultWrapper
 	 */
-	function replace( $table, $uniqueIndexes, $rows, $fname = 'DatabaseSqlite::replace' ) {
+	function replace( $table, $uniqueIndexes, $rows, $fname = __METHOD__ ) {
 		if ( !count( $rows ) ) {
 			return true;
 		}
@@ -815,7 +815,7 @@ class DatabaseSqlite extends DatabaseBase {
 	 * @param $fname string
 	 * @return bool|ResultWrapper
 	 */
-	function duplicateTableStructure( $oldName, $newName, $temporary = false, $fname = 'DatabaseSqlite::duplicateTableStructure' ) {
+	function duplicateTableStructure( $oldName, $newName, $temporary = false, $fname = __METHOD__ ) {
 		$res = $this->query( "SELECT sql FROM sqlite_master WHERE tbl_name=" . $this->addQuotes( $oldName ) . " AND type='table'", $fname );
 		$obj = $this->fetchObject( $res );
 		if ( !$obj ) {
@@ -841,7 +841,7 @@ class DatabaseSqlite extends DatabaseBase {
 	 *
 	 * @return array
 	 */
-	function listTables( $prefix = null, $fname = 'DatabaseSqlite::listTables' ) {
+	function listTables( $prefix = null, $fname = __METHOD__ ) {
 		$result = $this->select(
 			'sqlite_master',
 			'name',
