@@ -543,9 +543,12 @@ table.collapsed tr.collapsable {
 	font-size: larger;
 	border: 2px solid;
 	padding: .5em 1em;
-	float: left;
 	margin-bottom: 2em;
 	color: #000;
+	display: -moz-inline-block;
+	display: inline-block;
+	zoom: 1;
+	*display: inline;
 }
 .errorbox {
 	border-color: red;
