@@ -59,7 +59,7 @@ class SearchEngine {
 	 * STUB
 	 *
 	 * @param string $term raw search term
-	 * @return SearchResultSet
+	 * @return SearchResultSet|Status|null
 	 */
 	function searchText( $term ) {
 		return null;
@@ -71,7 +71,7 @@ class SearchEngine {
 	 * STUB
 	 *
 	 * @param string $term raw search term
-	 * @return SearchResultSet
+	 * @return SearchResultSet|null
 	 */
 	function searchTitle( $term ) {
 		return null;
