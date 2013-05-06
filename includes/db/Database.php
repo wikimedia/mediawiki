@@ -946,14 +946,6 @@ abstract class DatabaseBase implements DatabaseType {
 			wfDebug( "Query {$this->mDBname} ($cnt) ($master): $sqlx\n" );
 		}
 
-		if ( istainted( $sql ) & TC_MYSQL ) {
-			if ( !Profiler::instance()->isStub() ) {
-				wfProfileOut( $queryProf );
-				wfProfileOut( $totalProf );
-			}
-			throw new MWException( 'Tainted query found' );
-		}
-
 		$queryId = MWDebug::query( $sql, $fname, $isMaster );
 
 		# Do the query and handle errors

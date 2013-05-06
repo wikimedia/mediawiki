@@ -1003,7 +1003,7 @@ abstract class Installer {
 			return true;
 		}
 
-		$lines = wfArrayMap( 'trim', explode( "\n", $lines ) );
+		$lines = array_map( 'trim', explode( "\n", $lines ) );
 		$candidatesByLocale = array();
 		$candidatesByLang = array();
 
