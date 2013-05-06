@@ -56,6 +56,21 @@ class InfoAction extends FormlessAction {
 	}
 
 	/**
+	 * Clear the info cache for a given Title.
+	 *
+	 * @since 1.22
+	 * @param Title $title Title to clear cache for
+	 */
+	public static function invalidateCache( Title $title ) {
+		// Clear page info.
+		$revision = WikiPage::factory( $title )->getRevision();
+		if ( $revision !== null ) {
+			$memcKey = wfMemcKey( 'infoaction', $title->getPrefixedText(), $revision->getId() );
+			$wgMemc->delete( $memcKey );
+		}
+	}
+
+	/**
 	 * Shows page information on GET request.
 	 *
 	 * @return string Page information that will be added to the output
