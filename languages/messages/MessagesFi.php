@@ -2226,6 +2226,15 @@ Vaaditaan vähintään ylätason verkkotunnus, esimerkiksi "*.org".<br />
 'listusers-noresult' => 'Käyttäjiä ei löytynyt.',
 'listusers-blocked' => '(estetty)',
 
+# Special:ActiveUsers
+'activeusers' => 'Aktiivisten käyttäjien lista',
+'activeusers-intro' => 'Tämä on luettelo käyttäjistä, jotka ovat tehneet jotain viimeisen $1 {{PLURAL:$1|päivän}} sisällä.',
+'activeusers-count' => '$1 {{PLURAL:$1|toiminto|toimintoa}} viimeisen {{PLURAL:$3|päivän|$3 päivän}} aikana',
+'activeusers-from' => 'Näytä käyttäjät alkaen',
+'activeusers-hidebots' => 'Piilota botit',
+'activeusers-hidesysops' => 'Piilota ylläpitäjät',
+'activeusers-noresult' => 'Käyttäjiä ei löytynyt.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Käyttäjäryhmien oikeudet',
 'listgrouprights-summary' => 'Tämä lista sisältää tämän wikin käyttäjäryhmät sekä ryhmiin liitetyt käyttöoikeudet.

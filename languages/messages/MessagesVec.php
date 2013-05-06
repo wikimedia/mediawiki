@@ -2087,6 +2087,15 @@ Xe nesesario almanco un dominio de primo liveło, tipo "*.org".<br />
 'listusers-noresult' => 'Nissun utente el risponde ai criteri inpostà.',
 'listusers-blocked' => '(blocà)',
 
+# Special:ActiveUsers
+'activeusers' => 'Lista dei utenti ativi',
+'activeusers-intro' => 'Sta qua xe la lista dei utenti che ga fato calcossa {{PLURAL:$1|sto ultimo zorno|sti ultimi $1 zorni}}.',
+'activeusers-count' => "$1 {{PLURAL:$1|asion}} {{PLURAL:$3|inte'l ultimo xorno|inte i ultimi $3 xorni}}",
+'activeusers-from' => 'Fà védar i utenti a partir da:',
+'activeusers-hidebots' => 'Scondi i bot',
+'activeusers-hidesysops' => 'Scondi i aministradori',
+'activeusers-noresult' => 'Nissun utente catà.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Diriti dei grupi utenti',
 'listgrouprights-summary' => 'Sta qua la xe na lista dei grupi de utenti definìi su sta wiki, coi diriti asocià a ognuno.

@@ -2195,6 +2195,15 @@ Benodig ten minste een topvlakdomein, soos byvoorbeeld "*.org".<br />
 'listusers-noresult' => 'Geen gebruikers gevind nie.',
 'listusers-blocked' => '(geblokkeer)',
 
+# Special:ActiveUsers
+'activeusers' => 'Aktiewe gebruikers',
+'activeusers-intro' => "Hierdie is 'n lys van gebruikers wat die laaste {{PLURAL:$1|dag|$1 dae}} enige aktiwiteit getoon het.",
+'activeusers-count' => '$1 onlangse {{PLURAL:$1|wysiging|wysigings}} in die {{PLURAL:$3|afgelope dag|laatste $3 dae}}',
+'activeusers-from' => 'Wys gebruikers, beginnende by:',
+'activeusers-hidebots' => 'Versteek bots',
+'activeusers-hidesysops' => 'Versteek administrateurs',
+'activeusers-noresult' => 'Geen gebruikers gevind nie.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Gebruikersgroepregte',
 'listgrouprights-summary' => "Hier volg 'n lys van gebruikersgroepe met hulle ooreenstemmende regte wat op die wiki gedefinieer is.

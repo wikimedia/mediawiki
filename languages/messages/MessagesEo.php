@@ -2253,6 +2253,15 @@ Subtenataj {{PLURAL:$2|protokolo|protokoloj}}:: <code>$1</code> (ne aldonu ĉi t
 'listusers-noresult' => 'Neniu uzanto trovita.',
 'listusers-blocked' => '(forbarita)',
 
+# Special:ActiveUsers
+'activeusers' => 'Listo de aktivaj uzantoj',
+'activeusers-intro' => 'Jen listo de uzantoj kiu faris iom da agoj dum la lastaj $1 {{PLURAL:$1|tago|tagoj}}.',
+'activeusers-count' => '$1 {{PLURAL:$1|redakto|redaktoj}} dum la {{PLURAL:$3|lasta tago|lastaj $3 tagoj}}',
+'activeusers-from' => 'Montri uzantojn ekde:',
+'activeusers-hidebots' => 'kaŝi robotojn',
+'activeusers-hidesysops' => 'Kaŝi administrantojn',
+'activeusers-noresult' => 'Neniuj uzantoj trovitaj.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Gruprajtoj de uzantoj',
 'listgrouprights-summary' => 'Jen listo de uzanto-grupoj difinitaj en ĉi tiu vikio, kun ties asociaj atingrajtoj.

@@ -1439,6 +1439,10 @@ $2',
 'listusers-submit' => 'ತೋರು',
 'listusers-noresult' => 'ಯಾವ ಬಳಕೆದಾರರೂ ಸಿಗಲಿಲ್ಲ.',
 
+# Special:ActiveUsers
+'activeusers' => 'ಸಕ್ರಿಯ ಸದಸ್ಯರ ಪಟ್ಟಿ',
+'activeusers-noresult' => 'ಯಾವ ಬಳಕೆದಾರರೂ ಸಿಗಲಿಲ್ಲ.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'ಬಳಕೆದಾರ ಗುಂಪು ಹಕ್ಕುಗಳು',
 'listgrouprights-summary' => 'ಈ ವಿಕಿಯಲ್ಲಿ ಪ್ರಚಲಿತವಾಗಿರುವ ಬಳಕೆದಾರ ಗುಂಪುಗಳು ಮತ್ತು ಆ ಗುಂಪುಗಳಿಗೆ ಅನ್ವಯಿಸುವ ಹಕ್ಕುಗಳು ಈ ಕೆಳಗಿನಂತಿದೆ.',

@@ -2372,6 +2372,15 @@ Siehe auch die Liste der [[Special:WantedCategories|gewünschten Kategorien]].',
 'listusers-noresult' => 'Keinen Benutzer gefunden.',
 'listusers-blocked' => '(gesperrt)',
 
+# Special:ActiveUsers
+'activeusers' => 'Aktive Benutzer',
+'activeusers-intro' => 'Dies ist eine Liste von Benutzern, die innerhalb {{PLURAL:$1|des letzten Tages|der letzten $1 Tage}} Aktivitäten aufwiesen.',
+'activeusers-count' => '$1 {{PLURAL:$1|Aktion|Aktionen}} in den {{PLURAL:$3|letzten 24 Stunden|vergangenen $3 Tagen}}',
+'activeusers-from' => 'Zeige Benutzer ab:',
+'activeusers-hidebots' => 'Bots ausblenden',
+'activeusers-hidesysops' => 'Administratoren ausblenden',
+'activeusers-noresult' => 'Keine Benutzer gefunden.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Benutzergruppenrechte',
 'listgrouprights-summary' => 'Dies ist eine Liste der in diesem Wiki definierten Benutzergruppen und der damit verbundenen Rechte.

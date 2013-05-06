@@ -25,6 +25,7 @@
  * @author Emufarmers
  * @author Everton137
  * @author Francisco Leandro
+ * @author Fúlvio
  * @author GKnedo
  * @author Giro720
  * @author GoEThe
@@ -325,8 +326,8 @@ $messages = array(
 'tog-hideminor' => 'Ocultar edições menores nas mudanças recentes',
 'tog-hidepatrolled' => 'Ocultar edições patrulhadas nas mudanças recentes',
 'tog-newpageshidepatrolled' => 'Ocultar páginas patrulhadas da lista de páginas novas',
-'tog-extendwatchlist' => 'Expandir a lista de páginas vigiadas para mostrar todas as alterações aplicáveis, não apenas as mais recentes',
-'tog-usenewrc' => 'Agrupar alterações por páginas nas mudanças recentes e páginas vigiadas (requer JavaScript)',
+'tog-extendwatchlist' => 'Expandir a lista de páginas vigiadas para mostrar todas as mudanças, não apenas as mais recentes',
+'tog-usenewrc' => 'Agrupar alterações por páginas nas mudanças recentes e na lista de páginas vigiadas (requer JavaScript)',
 'tog-numberheadings' => 'Auto-numerar cabeçalhos',
 'tog-showtoolbar' => 'Mostrar barra de edição (JavaScript)',
 'tog-editondblclick' => 'Editar páginas quando houver clique duplo (JavaScript)',
@@ -334,35 +335,35 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Habilitar edição de seção por clique com o botão direito no título da seção (JavaScript)',
 'tog-showtoc' => 'Mostrar Tabela de Conteúdos (para páginas com mais de três cabeçalhos)',
 'tog-rememberpassword' => 'Recordar os meus dados neste navegador (por no máximo $1 {{PLURAL:$1|dia|dias}})',
-'tog-watchcreations' => 'Adicionar as páginas e arquivos que eu criar às minhas páginas vigiadas',
-'tog-watchdefault' => 'Adicionar as páginas e arquivos que eu editar às minhas páginas vigiadas',
-'tog-watchmoves' => 'Adicionar as páginas e arquivos que eu mover às minhas páginas vigiadas',
-'tog-watchdeletion' => 'Adicionar as páginas e arquivos que eu eliminar às minhas páginas vigiadas',
-'tog-minordefault' => 'Marcar todas as edições como secundárias, por padrão',
+'tog-watchcreations' => 'Adicionar as páginas e arquivos que eu criar à minha lista de páginas vigiadas',
+'tog-watchdefault' => 'Adicionar as páginas e arquivos que eu editar à minha lista de páginas vigiadas',
+'tog-watchmoves' => 'Adicionar as páginas e arquivos que eu mover à minha lista de páginas vigiadas',
+'tog-watchdeletion' => 'Adicionar as páginas e arquivos que eu eliminar à minha lista de páginas vigiadas',
+'tog-minordefault' => 'Marcar todas as edições como menores por padrão',
 'tog-previewontop' => 'Mostrar previsão antes da caixa de edição',
 'tog-previewonfirst' => 'Mostrar previsão na primeira edição',
 'tog-nocache' => 'Desativar o cache de páginas do navegador',
 'tog-enotifwatchlistpages' => 'Notificar-me por e-mail quando uma página ou arquivo vigiado for alterado',
 'tog-enotifusertalkpages' => 'Receber e-mail quando a minha página de discussão for editada',
 'tog-enotifminoredits' => 'Notificar-me por e-mail também sobre edições menores de páginas ou arquivos',
-'tog-enotifrevealaddr' => 'Revelar o meu endereço de email nas notificações',
+'tog-enotifrevealaddr' => 'Revelar meu endereço de e-mail nas mensagens de notificação',
 'tog-shownumberswatching' => 'Mostrar o número de usuários que estão vigiando',
 'tog-oldsig' => 'Assinatura existente:',
 'tog-fancysig' => 'Tratar assinatura como wikitexto (sem link automático)',
 'tog-showjumplinks' => 'Ativar links de acessibilidade "ir para"',
 'tog-uselivepreview' => 'Utilizar pré-visualização em tempo real (JavaScript) (Experimental)',
-'tog-forceeditsummary' => 'Avisar-me ao introduzir um sumário vazio',
+'tog-forceeditsummary' => 'Avisar-me ao introduzir um sumário de edição vazio',
 'tog-watchlisthideown' => 'Ocultar as minhas edições da lista de páginas vigiadas',
-'tog-watchlisthidebots' => 'Ocultar edições automatizadas por bots da lista de páginas vigiadas',
+'tog-watchlisthidebots' => 'Ocultar edições de bots da lista de páginas vigiadas',
 'tog-watchlisthideminor' => 'Ocultar edições menores da lista de páginas vigiadas',
 'tog-watchlisthideliu' => 'Ocultar edições de usuários autenticados da lista de páginas vigiadas',
 'tog-watchlisthideanons' => 'Ocultar edições de usuários anônimos da lista de páginas vigiadas',
-'tog-watchlisthidepatrolled' => 'Ocultar edições patrulhadas na lista de páginas vigiadas',
+'tog-watchlisthidepatrolled' => 'Ocultar edições patrulhadas da lista de páginas vigiadas',
 'tog-ccmeonemails' => 'Receber cópias de e-mails que eu enviar a outros usuários',
 'tog-diffonly' => 'Não mostrar o conteúdo da página ao comparar duas edições',
 'tog-showhiddencats' => 'Exibir categorias ocultas',
 'tog-noconvertlink' => 'Desabilitar conversão de títulos de links',
-'tog-norollbackdiff' => 'Omitir diferenças depois de desfazer edições em bloco',
+'tog-norollbackdiff' => 'Omitir diferenças após desfazer edições em bloco',
 'tog-useeditwarning' => 'Avisar-me quando eu deixar uma janela de edição sem ter salvo as alterações',
 
 'underline-always' => 'Sempre',
@@ -370,7 +371,7 @@ $messages = array(
 'underline-default' => 'Padrão do navegador/skin',
 
 # Font style option in Special:Preferences
-'editfont-style' => 'Estilo da fonte para a região de edição:',
+'editfont-style' => 'Estilo da fonte da área de edição:',
 'editfont-default' => 'Padrão do navegador',
 'editfont-monospace' => 'Fonte mono-espaçada',
 'editfont-sansserif' => 'Fonte sem serifa',
@@ -436,12 +437,12 @@ $messages = array(
 'category-empty' => "''No momento esta categoria não possui nenhuma página ou arquivo multimídia.''",
 'hidden-categories' => '{{PLURAL:$1|Categoria oculta|Categorias ocultas}}',
 'hidden-category-category' => 'Categorias ocultas',
-'category-subcat-count' => '{{PLURAL:$2|Esta categoria possui apenas a subcategoria a seguir.|Há, nesta categoria {{PLURAL:$1|uma subcategoria|$1 subcategorias}} (dentre um total de $2).}}',
+'category-subcat-count' => '{{PLURAL:$2|Esta categoria possui apenas a seguinte subcategoria.|Esta categoria possui {{PLURAL:$1|uma subcategoria|$1 subcategorias}}, de um total de $2.}}',
 'category-subcat-count-limited' => 'Esta categoria possui {{PLURAL:$1|a seguinte sub-categoria|as $1 sub-categorias a seguir}}.',
-'category-article-count' => '{{PLURAL:$2|Esta categoria possui apenas a página a seguir.|Há, nesta categoria, {{PLURAL:$1|a página a seguir|as $1 páginas a seguir}} (dentre um total de $2).}}',
-'category-article-count-limited' => 'Há, nesta categoria, {{PLURAL:$1|a página a seguir|as $1 páginas a seguir}}.',
-'category-file-count' => '{{PLURAL:$2|Esta categoria possui apenas o arquivo a seguir.|Há, nesta categoria, {{PLURAL:$1|o arquivo a seguir|os $1 seguintes arquivos}} (dentre um total de $2.)}}',
-'category-file-count-limited' => 'Nesta categoria há {{PLURAL:$1|um arquivo|$1 arquivos}}.',
+'category-article-count' => '{{PLURAL:$2|Esta categoria possui apenas a seguinte página.|Esta categoria possui {{PLURAL:$1|a seguinte página|as $1 páginas a seguir}}, de um total de $2.}}',
+'category-article-count-limited' => 'Esta categoria possui {{PLURAL:$1|a seguinte página|as $1 páginas a seguir}}.',
+'category-file-count' => '{{PLURAL:$2|Esta categoria possui apenas o seguinte arquivo.|Esta categoria possui {{PLURAL:$1|o seguinte arquivo|os $1 arquivos a seguir}}, de um total de $2.}}',
+'category-file-count-limited' => 'Esta categoria possui {{PLURAL:$1|um arquivo|$1 arquivos}}.',
 'listingcontinuesabbrev' => 'cont.',
 'index-category' => 'Páginas indexadas',
 'noindex-category' => 'Páginas não indexadas',
@@ -738,6 +739,9 @@ Note que algumas páginas podem continuar sendo exibidas como se você ainda est
 Não se esqueça de personalizar as suas [[Special:Preferences|preferências no wiki {{SITENAME}}]].',
 'yourname' => 'Nome de usuário:',
 'userlogin-yourname' => 'Nome de usuário',
+'userlogin-yourname-ph' => 'Escreva seu nome de usuário',
+'createacct-helpusername-url' => '{{ns:Project}}:Política_de_nomes_de_usuário',
+'createacct-helpusername-link' => '[[{{MediaWiki:createacct-helpusername-url}}|(ajude-me a escolher)]]',
 'yourpassword' => 'Senha:',
 'userlogin-yourpassword' => 'Senha',
 'userlogin-yourpassword-ph' => 'Digite sua senha',
@@ -746,7 +750,8 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências no 
 'createacct-yourpasswordagain' => 'Confirmar senha',
 'createacct-yourpasswordagain-ph' => 'Digite a senha novamente',
 'remembermypassword' => 'Lembrar meu login neste navegador (por no máximo $1 {{PLURAL:$1|dia|dias}})',
-'userlogin-remembermypassword' => 'Lembrar-me',
+'userlogin-remembermypassword' => 'Mantenha-me conectado',
+'userlogin-signwithsecure' => 'Entrar com um servidor seguro',
 'securelogin-stick-https' => 'Permanecer conectado ao HTTPS após a autenticação',
 'yourdomainname' => 'Seu domínio:',
 'password-change-forbidden' => 'Você não pode alterar senhas nessa wiki.',
@@ -759,14 +764,31 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências no 
 'logout' => 'Sair',
 'userlogout' => 'Sair',
 'notloggedin' => 'Não autenticado',
+'userlogin-noaccount' => 'Não possui uma conta?',
+'userlogin-joinproject' => 'Sobre {{SITENAME}}',
 'nologin' => 'Não possui uma conta? $1.',
 'nologinlink' => 'Criar uma conta',
 'createaccount' => 'Criar conta',
 'gotaccount' => "Já possui uma conta? '''$1'''.",
 'gotaccountlink' => 'Autenticar-se',
 'userlogin-resetlink' => 'Esqueceu-se do seu nome de usuário ou da senha?',
+'helplogin-url' => 'Help:Iniciar sessão',
+'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Ajuda para iniciar sessão]]',
+'createacct-join' => 'Insira suas informações abaixo.',
+'createacct-emailrequired' => 'Endereço de e-mail',
+'createacct-emailoptional' => 'Endereço de e-mail (opcional)',
+'createacct-email-ph' => 'Confirme seu endereço de e-mail',
 'createaccountmail' => 'Usar uma senha aleatória e temporária que será enviada ao endereço de e-mail especificado a seguir',
+'createacct-realname' => 'Nome real (opcional)',
 'createaccountreason' => 'Razão:',
+'createacct-reason' => 'Motivo',
+'createacct-reason-ph' => 'Por que você está criando outra conta',
+'createacct-captcha' => 'Verificação de segurança',
+'createacct-captcha-help-url' => '{{ns:Project}}:Solicitar uma conta',
+'createacct-imgcaptcha-help' => 'Não consegue ver a imagem? [[{{MediaWiki:createacct-captcha-help-url}}|Solicitar uma conta]]',
+'createacct-imgcaptcha-ph' => 'Digite o texto acima',
+'createacct-submit' => 'Crie sua conta',
+'createacct-benefit-heading' => '{{SITENAME}} é feita por pessoas como você.',
 'createacct-benefit-body1' => 'edições',
 'createacct-benefit-body2' => 'páginas',
 'createacct-benefit-body3' => 'contribuidores recentes',
@@ -774,6 +796,7 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências no 
 'userexists' => 'O nome de usuário fornecido já está em uso.
 Escolha um nome diferente.',
 'loginerror' => 'Erro de autenticação',
+'createacct-error' => 'Erro ao criar a conta',
 'createaccounterror' => 'Não foi possível criar a conta: $1',
 'nocookiesnew' => "A conta do usuário foi criada, mas você não foi autenticado.
 {{SITENAME}} utiliza ''cookies'' para autenticar os usuários.
@@ -858,12 +881,14 @@ Por favor aguarde antes de tentar novamente.',
 'resetpass-wrong-oldpass' => 'Senha temporária ou atual inválida.
 Você pode já ter alterado com sucesso a sua senha, ou solicitado uma nova senha temporária.',
 'resetpass-temp-password' => 'Senha temporária:',
+'resetpass-abort-generic' => 'Uma extensão cancelou a alteração da senha.',
 
 # Special:PasswordReset
 'passwordreset' => 'Redefinir senha',
 'passwordreset-text' => 'Preencha este formulário para recuperar os dados da sua conta pelo e-mail.',
 'passwordreset-legend' => 'Reiniciar a senha',
 'passwordreset-disabled' => 'Redefinições de senha foram desabilitadas nesta wiki.',
+'passwordreset-emaildisabled' => 'Os recursos de e-mail foram desativados nesta wiki.',
 'passwordreset-pretext' => '{{PLURAL:$1||Introduza um dos dados abaixo}}',
 'passwordreset-username' => 'Nome de usuário:',
 'passwordreset-domain' => 'Domínio:',
@@ -891,7 +916,7 @@ $2
 Senha temporária: $2',
 'passwordreset-emailsent' => 'Foi enviado um e-mail de lembrete.',
 'passwordreset-emailsent-capture' => 'Foi enviado um e-mail de lembrete, que é mostrado abaixo.',
-'passwordreset-emailerror-capture' => 'Foi gerado o lembrete de e-mail mostrado abaixo, contudo falhou o envio para o usuário: $1',
+'passwordreset-emailerror-capture' => 'Foi gerado um e-mail de recuperação da senha, conforme mostrado abaixo, mas o envio {{GENDER:$2|ao usuário|à usuária}} falhou. $1',
 
 # Special:ChangeEmail
 'changeemail' => 'Alterar o endereço de e-mail',
@@ -1396,6 +1421,7 @@ Tente utilizar o prefixo ''all:'' em sua busca, para pesquisar por todos os cont
 'searchdisabled' => 'A busca em {{SITENAME}} se encontra desativada.
 Você poderá pesquisar através do Google enquanto isso.
 Note que os índices do sistema de busca externo poderão conter referências desatualizadas a {{SITENAME}}.',
+'search-error' => 'Ocorreu um erro ao buscar por: $1',
 
 # Preferences page
 'preferences' => 'Preferências',
@@ -1539,6 +1565,7 @@ Caso decida fornecê-lo, este será utilizado para dar-lhe crédito pelo seu tra
 'userrights-notallowed' => 'A sua conta não tem permissão para adicionar ou remover privilégios a usuários.',
 'userrights-changeable-col' => 'Grupos que pode alterar',
 'userrights-unchangeable-col' => 'Grupos que não pode alterar',
+'userrights-conflict' => 'Há um comflito de permissões de usuário! Por favor, aplique as alterações novamente.',
 
 # Groups
 'group' => 'Grupo:',
@@ -2287,6 +2314,15 @@ Necessário no mínimo um domínio de nível superior, por exemplo "*.org".<br /
 'listusers-noresult' => 'Não foram encontrados usuários para a forma pesquisada.',
 'listusers-blocked' => '({{GENDER:$1|bloqueado|bloqueada}})',
 
+# Special:ActiveUsers
+'activeusers' => 'Lista de usuários ativos',
+'activeusers-intro' => 'Esta é uma lista de usuários com algum tipo de atividade nos últimos $1 {{PLURAL:$1|dia|dias}}.',
+'activeusers-count' => '$1 {{PLURAL:$1|ação|ações}} {{PLURAL:$3|no último dia|nos últimos $3 dias}}',
+'activeusers-from' => 'Mostrar usuários começando em:',
+'activeusers-hidebots' => 'Esconder robôs',
+'activeusers-hidesysops' => 'Esconder administradores',
+'activeusers-noresult' => 'Nenhum usuário encontrado.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Privilégios de grupo de usuários',
 'listgrouprights-summary' => 'O que segue é uma lista dos grupos de usuários definidos neste wiki, com os seus privilégios de acessos associados.
@@ -2774,6 +2810,7 @@ Consulte a [[Special:BlockList|lista de bloqueios]] para obter a lista de bloque
 'proxyblocksuccess' => 'Concluído.',
 'sorbsreason' => 'O seu endereço IP encontra-se listado como proxy aberto pela DNSBL utilizada por {{SITENAME}}.',
 'sorbs_create_account_reason' => 'O seu endereço de IP encontra-se listado como proxy aberto na DNSBL utilizada por {{SITENAME}}. Você não pode criar uma conta',
+'xffblockreason' => 'Um endereço IP presente no cabeçalho X-Forwarded-For, seu ou do servidor proxy que está usando, foi bloqueado. O motivo original do bloqueio foi: $1',
 'cant-block-while-blocked' => 'Você não pode bloquear outros usuários enquanto estiver bloqueado.',
 'cant-see-hidden-user' => 'O usuário que você está tentando bloquear já está bloqueado ou oculto. Como você não possui privilégio de ocultar usuários, você não pode ver ou editar o bloqueio desse usuário.',
 'ipbblocked' => 'Não é possível que você bloqueie ou desbloqueie outros usuários, já que você se encontra bloqueado',
@@ -3255,6 +3292,14 @@ Executá-lo poderá comprometer a segurança do seu sistema.",
 'hours-ago' => '$1 {{PLURAL:$1|hora|horas}} atrás',
 'minutes-ago' => '$1 {{PLURAL:$1|minuto|minutos}} atrás',
 'seconds-ago' => '$1 {{PLURAL:$1|segundo|segundos}} atrás',
+'monday-at' => 'Segunda-feira às $1',
+'tuesday-at' => 'Terça-feira às $1',
+'wednesday-at' => 'Quarta-feira às $1',
+'thursday-at' => 'Quinta-feira às $1',
+'friday-at' => 'Sexta-feira às $1',
+'saturday-at' => 'Sábado às $1',
+'sunday-at' => 'Domingo às $1',
+'yesterday-at' => 'Ontem às $1',
 
 # Bad image list
 'bad_image_list' => 'O formato é o seguinte:
@@ -3881,7 +3926,16 @@ Em conjunto com este programa deve ter recebido [{{SERVER}}{{SCRIPTPATH}}/COPYIN
 'version-entrypoints-header-entrypoint' => 'Ponto de entrada',
 'version-entrypoints-header-url' => 'URL',
 
+'redirect' => 'Redirecionar por arquivo, usuário ou ID de revisão',
+'redirect-legend' => 'Redirecionar para um arquivo ou página',
+'redirect-summary' => 'Esta página especial redireciona a um arquivo (dado o nome do arquivo), a uma página (dado um ID de revisão) ou a uma página de usuário (dado o ID do usuário).',
+'redirect-submit' => 'Ir',
+'redirect-lookup' => 'Buscar',
+'redirect-value' => 'Valor:',
+'redirect-user' => 'ID do usuário',
+'redirect-revision' => 'Revisão da página',
 'redirect-file' => 'Nome do arquivo',
+'redirect-not-exists' => 'Valor não encontrado',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Procurar por arquivos duplicados',
@@ -4012,7 +4066,7 @@ Em conjunto com este programa deve ter recebido [{{SERVER}}{{SCRIPTPATH}}/COPYIN
 'logentry-newusers-autocreate' => 'A conta de usuário $1 foi criada automaticamente',
 'logentry-rights-rights' => '$1 alterou os grupos de usuário de $3 de $4 para $5',
 'logentry-rights-rights-legacy' => '$1 alterou os grupos de $3',
-'logentry-rights-autopromote' => '$1 foi promovido automaticamente de $4 a $5',
+'logentry-rights-autopromote' => '$1 foi promovido automaticamente de $4 para $5',
 'rightsnone' => '(nenhum)',
 
 # Feedback
@@ -4087,5 +4141,8 @@ Caso contrário, você poderá usar o formulário simplificado a seguir. Seu com
 'duration-decades' => '$1 {{PLURAL:$1|década|décadas}}',
 'duration-centuries' => '$1 {{PLURAL:$1|século|séculos}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milênio|milênios}}',
+
+# Image rotation
+'rotate-comment' => 'Imagem girada por $1 {{PLURAL:$1|grau|graus}} no sentido horário',
 
 );

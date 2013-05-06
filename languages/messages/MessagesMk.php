@@ -2364,6 +2364,15 @@ $1',
 'listusers-noresult' => 'Не е пронајден корисник.',
 'listusers-blocked' => '(блокиран)',
 
+# Special:ActiveUsers
+'activeusers' => 'Список на активни корисници',
+'activeusers-intro' => 'Ова е список на корисници кои биле на некој начин активни во последните $1 {{PLURAL:$1|ден|дена}}.',
+'activeusers-count' => '$1 {{PLURAL:$1|дејство|дејства}} {{PLURAL:$3|денес|во последните $3 дена}}',
+'activeusers-from' => 'Прикажи корисници почнувајќи од:',
+'activeusers-hidebots' => 'Скриј ботови',
+'activeusers-hidesysops' => 'Скриј администратори',
+'activeusers-noresult' => 'Нема пронајдено корисници.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Права на кориснички групи',
 'listgrouprights-summary' => 'Следи список на кориснички групи утврдени на ова вики, заедно со нивните придружни права на пристап.

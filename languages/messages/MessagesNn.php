@@ -2212,6 +2212,15 @@ Det er påkravt med eit toppnivådomene, til dømes «*.org».<br />
 'listusers-noresult' => 'Ingen brukarnamn vart funne.',
 'listusers-blocked' => '(konto blokkert)',
 
+# Special:ActiveUsers
+'activeusers' => 'Liste over aktive brukarar',
+'activeusers-intro' => 'Dette er ei liste over brukarar som har hatt ei eller anna form for aktivitet innanfor {{PLURAL:$1|den siste dagen|dei siste dagane}}.',
+'activeusers-count' => '{{PLURAL:$1|Éi handling|$1 handlingar}} {{PLURAL:$3|det siste døgeret|dei siste $3 døgra}}',
+'activeusers-from' => 'Vis brukarar frå og med:',
+'activeusers-hidebots' => 'Skjul botar',
+'activeusers-hidesysops' => 'Skjul administratorar',
+'activeusers-noresult' => 'Ingen brukarar funne.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Rettar for brukargrupper',
 'listgrouprights-summary' => 'Detter ei liste som viser brukargruppene som er definerte på wikien, og kva rettar dei har. Det kan finnast [[{{MediaWiki:Listgrouprights-helppage}}|meir informasjon]]  om dei ulike rettane.',

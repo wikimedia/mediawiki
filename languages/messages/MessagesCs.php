@@ -2314,6 +2314,15 @@ Povinná je přinejmenším doména nejvyššího řádu, např. „*.org“.<br
 'listusers-noresult' => 'Nenalezen žádný uživatel.',
 'listusers-blocked' => '({{GENDER:$1|zablokován|zablokována|zablokován}})',
 
+# Special:ActiveUsers
+'activeusers' => 'Seznam aktivních uživatelů',
+'activeusers-intro' => 'Toto je seznam uživatelů, kteří byli nějak aktivní v {{plural:$1|posledním dni|posledních $1 dnech}}.',
+'activeusers-count' => '$1 {{PLURAL:$1|akce|akce|akcí}} během {{PLURAL:$3|posledního dne|posledních $3 dnů}}',
+'activeusers-from' => 'Zobrazit uživatele počínaje od:',
+'activeusers-hidebots' => 'Skrýt roboty',
+'activeusers-hidesysops' => 'Skrýt správce',
+'activeusers-noresult' => 'Nenalezen žádný uživatel.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Práva skupin uživatelů',
 'listgrouprights-summary' => 'Toto je seznam uživatelských skupin definovaných na této wiki a&nbsp;jejich přístupových práv.

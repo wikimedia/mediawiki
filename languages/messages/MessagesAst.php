@@ -2061,6 +2061,15 @@ Necesita polo menos un dominiu de primer nivel, como "*.org".<br />
 'listusers-noresult' => "Nun s'atoparon usuarios.",
 'listusers-blocked' => '(bloquiau)',
 
+# Special:ActiveUsers
+'activeusers' => "Llista d'usuarios activos",
+'activeusers-intro' => "Esta ye una llista d'usuarios que tuvieron alguna mena d'actividá hai menos de $1 {{PLURAL:$1|día|díes}}.",
+'activeusers-count' => '$1 {{PLURAL:$1|edición|ediciones}} {{PLURAL:$3|nel caberu día|nos caberos $3 díes}}',
+'activeusers-from' => 'Amosar usuarios principiando dende:',
+'activeusers-hidebots' => 'Anubrir bots',
+'activeusers-hidesysops' => 'Anubrir alministradores',
+'activeusers-noresult' => "Nun s'alcontraron usuarios.",
+
 # Special:ListGroupRights
 'listgrouprights' => "Drechos de los grupos d'usuariu",
 'listgrouprights-summary' => "La siguiente ye una llista de grupos d'usuariu definíos nesta wiki, colos sos drechos d'accesu asociaos.

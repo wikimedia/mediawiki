@@ -2260,6 +2260,15 @@ Xem thêm [[Special:WantedCategories|thể loại cần thiết]].',
 'listusers-noresult' => 'Không thấy thành viên.',
 'listusers-blocked' => '(bị cấm)',
 
+# Special:ActiveUsers
+'activeusers' => 'Danh sách thành viên tích cực',
+'activeusers-intro' => 'Dánh sách này liệt kê các thành viên đã hoạt động cách nào đó trong $1 ngày qua.',
+'activeusers-count' => '$1 tác vụ trong {{PLURAL:$3|ngày|$3 ngày}} qua',
+'activeusers-from' => 'Hiển thị thành viên bắt đầu từ:',
+'activeusers-hidebots' => 'Ẩn robot',
+'activeusers-hidesysops' => 'Ẩn bảo quản viên',
+'activeusers-noresult' => 'Không thấy thành viên.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Nhóm thành viên',
 'listgrouprights-summary' => 'Dưới đây là danh sách nhóm thành viên được định nghĩa tại wiki này, với mức độ truy cập của từng nhóm.

@@ -2292,6 +2292,15 @@ Veja também as [[Special:WantedCategories|categorias desejadas]].',
 'listusers-noresult' => 'Não foram encontrados utilizadores.',
 'listusers-blocked' => '(bloqueado)',
 
+# Special:ActiveUsers
+'activeusers' => 'Utilizadores activos',
+'activeusers-intro' => 'Esta é uma lista dos utilizadores com qualquer tipo de actividade {{PLURAL:$1|no último dia|nos últimos $1 dias}}.',
+'activeusers-count' => '$1 {{PLURAL:$1|ação|ações}} {{PLURAL:$3|no último dia|nos últimos $3 dias}}',
+'activeusers-from' => 'Mostrar utilizadores começando por:',
+'activeusers-hidebots' => 'Esconder robôs',
+'activeusers-hidesysops' => 'Esconder administradores',
+'activeusers-noresult' => 'Nenhum utilizador encontrado.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Privilégios dos grupos de utilizadores',
 'listgrouprights-summary' => 'A seguinte lista contém os grupos de utilizadores definidos nesta wiki, com os respectivos privilégios de acesso.

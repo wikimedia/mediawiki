@@ -2071,6 +2071,15 @@ $1',
 'listusers-noresult' => 'Ҡатнашыусылар табылманы',
 'listusers-blocked' => '(бикләнгән)',
 
+# Special:ActiveUsers
+'activeusers' => 'Әүҙем ҡатнашыусылар исемлеге',
+'activeusers-intro' => 'Был — һуңғы $1 {{PLURAL:$1|көн}} эсендә ниҙер башҡарған ҡатнашыусылар исемлеге.',
+'activeusers-count' => 'һуңғы $3 {{PLURAL:$3|көн}} эсендә $1 {{PLURAL:$1|үҙгәртеү}}',
+'activeusers-from' => 'Ошондай хәрефтәрҙән башланған ҡатнашыусыларҙы күрһәтергә:',
+'activeusers-hidebots' => 'Боттарҙы йәшерергә',
+'activeusers-hidesysops' => 'Хәкимдәрҙе йәшерергә',
+'activeusers-noresult' => 'Ҡатнашыусылар табылманы',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Ҡатнашыусылар төркөмө хоҡуҡтары',
 'listgrouprights-summary' => 'Түбәндә был вики-проектта билдәләнгән ҡатнашыусы төркөмдәре килтерелгән һәм уларҙың хоҡуҡтары күрһәтелгән.

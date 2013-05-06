@@ -2067,6 +2067,15 @@ $1',
 'listusers-noresult' => 'ไม่พบผู้ใช้',
 'listusers-blocked' => '(ถูกบล็อก)',
 
+# Special:ActiveUsers
+'activeusers' => 'รายการผู้ใช้ที่มีความเคลื่อนไหว',
+'activeusers-intro' => 'นี่คือรายการผู้ใช้ที่มีกิจกรรมใด ๆ ในช่วง $1 วันที่ผ่านมา',
+'activeusers-count' => '{{PLURAL:$1|ปฏิบัติการล่าสุด|ปฏิบัติการล่าสุด $1 รายการ}} ในช่วง $3 วันที่ผ่านมา',
+'activeusers-from' => 'แสดงผู้ใช้เริ่มจาก:',
+'activeusers-hidebots' => 'ซ่อนบอต',
+'activeusers-hidesysops' => 'ซ่อนผู้ดูแลระบบ',
+'activeusers-noresult' => 'ไม่พบผู้ใช้',
+
 # Special:ListGroupRights
 'listgrouprights' => 'สิทธิกลุ่มผู้ใช้',
 'listgrouprights-summary' => 'ด้านล่างเป็นรายการกลุ่มผู้ใช้ที่นิยามบนวิกินี้ และสิทธิการเข้าถึงที่เกี่ยวข้อง

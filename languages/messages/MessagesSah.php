@@ -1987,6 +1987,15 @@ $1',
 'listusers-noresult' => 'Кыттааччылар булуллубатылар.',
 'listusers-blocked' => '(хааччахтаммыт)',
 
+# Special:ActiveUsers
+'activeusers' => 'Көхтөөх кыттааччылар тиһиктэрэ',
+'activeusers-intro' => 'Бу кэлиҥҥи $1 {{PLURAL:$1|күҥҥэ|күннэргэ}} тугу эмэ гыммыт кыттааччылар тиһиктэрэ.',
+'activeusers-count' => 'Кэнники $3 күҥҥэ саҥа $1 көннөрүү киирбит',
+'activeusers-from' => 'Мантан саҕалаан кыттааччылары көрүү:',
+'activeusers-hidebots' => 'Руобаттары көрдөрүмэ',
+'activeusers-hidesysops' => 'Дьаһабыллары көрдөрүмэ',
+'activeusers-noresult' => 'Кыттааччылар көстүбэтилэр.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Кыттааччылар бөлөхтөрүн бырааптара',
 'listgrouprights-summary' => 'Манна бу биикигэ баар бөлөхтөр уонна кинилэр киирэр бырааптара көстөллөр.

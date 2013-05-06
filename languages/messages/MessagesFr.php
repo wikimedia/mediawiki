@@ -2349,6 +2349,15 @@ Ils nécessitent au moins un domaine de niveau supérieur, par exemple « *.org 
 'listusers-noresult' => 'Aucun utilisateur trouvé. Vérifiez aussi les variantes de casse.',
 'listusers-blocked' => '(bloqué{{GENDER:$1||e|(e)}})',
 
+# Special:ActiveUsers
+'activeusers' => 'Liste des utilisateurs actifs',
+'activeusers-intro' => 'Ceci est une liste des utilisateurs qui ont exercé une quelconque activité au cours {{PLURAL:$1|de la dernière journée|des $1 derniers jours}}.',
+'activeusers-count' => '$1 {{PLURAL:$1|action|actions}} lors {{PLURAL:$3|du dernier jour|des $3 derniers jours}}',
+'activeusers-from' => 'Afficher les utilisateurs depuis :',
+'activeusers-hidebots' => 'Masquer les robots',
+'activeusers-hidesysops' => 'Masquer les administrateurs',
+'activeusers-noresult' => 'Aucun utilisateur trouvé.',
+
 # Special:ListGroupRights
 'listgrouprights' => "Droits des groupes d'utilisateurs",
 'listgrouprights-summary' => "Cette page contient une liste des groupes définis sur ce wiki ainsi que les droits d'accès qui leur sont associés.

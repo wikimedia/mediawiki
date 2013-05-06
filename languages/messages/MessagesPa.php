@@ -1649,6 +1649,15 @@ to upload files.',
 'listusers-noresult' => 'ਕੋਈ ਯੂਜ਼ਰ ਨਹੀਂ ਲੱਭਿਆ।',
 'listusers-blocked' => '(ਪਾਬੰਦੀਸ਼ੁਦਾ)',
 
+# Special:ActiveUsers
+'activeusers' => 'ਚੁਸਤ ਮੈਂਬਰਾਂ ਦੀ ਲਿਸਟ',
+'activeusers-intro' => 'ਇਹ ਓਹਨਾਂ ਮੈਂਬਰਾਂ ਦੀ ਲਿਸਟ ਹੈ ਜਿੰਨ੍ਹਾਂ ਨੇ ਆਖ਼ਰੀ $1 {{PLURAL:$1|ਦਿਨ|ਦਿਨਾਂ}} ਵਿਚ ਕਿਸੇ ਤਰ੍ਹਾਂ ਦਾ ਕੋਈ ਕੰਮ ਕੀਤਾ ਹੈ।',
+'activeusers-count' => 'ਆਖ਼ਰੀ {{PLURAL:$3|ਦਿਨ|$3 ਦਿਨਾਂ}} ਵਿਚ $1 {{PLURAL:$1|ਸੋਧ|ਸੋਧਾਂ}}',
+'activeusers-from' => 'ਇਸਤੋਂ ਸ਼ੁਰੂ ਹੋਣ ਵਾਲ਼ੇ ਮੈਂਬਰ ਵਖਾਓ:',
+'activeusers-hidebots' => 'ਬੋਟਾਂ ਨੂੰ ਲੁਕਾਓ',
+'activeusers-hidesysops' => 'ਐਡਮਨਿਸਟ੍ਰੇਟਰ ਲੁਕਾਓ',
+'activeusers-noresult' => 'ਕੋਈ ਮੈਂਬਰ ਨਹੀਂ ਲੱਭਿਆ।',
+
 # Special:ListGroupRights
 'listgrouprights-group' => 'ਗਰੁੱਪ',
 'listgrouprights-rights' => 'ਹੱਕ',

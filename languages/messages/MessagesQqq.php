@@ -4300,6 +4300,36 @@ You can apparently use 'URL' instead of 'hostname'.",
 'listusers-blocked' => 'Used on [[Special:ActiveUsers]] when a user has been blocked.
 * $1 is a user name for use with GENDER (optional)',
 
+# Special:ActiveUsers
+'activeusers' => 'Title of [[Special:ActiveUsers]]',
+'activeusers-intro' => 'Used as introduction in [[Special:ActiveUsers]]. Parameters:
+* $1 - number of days (<code>$wgActiveUserDays</code>)',
+'activeusers-count' => "Used in [[Special:ActiveUsers]] to show the active user's recent action count in brackets ([]).
+* $1 is the number of recent actions
+* $2 is the user's name for use with GENDER (optional)
+* $3 is the maximum number of days of the RecentChangesList",
+'activeusers-from' => 'Used as label for checkbox in the form on [[Special:ActiveUsers]].
+
+identical with {{msg-mw|listusersfrom}}
+
+See also:
+* {{msg-mw|activeusers|legend for the form}}
+* {{msg-mw|activeusers-hidebots|label for checkbox}}
+* {{msg-mw|activeusers-hidesysops|label for checkbox}}',
+'activeusers-hidebots' => 'Used as label for checkbox in the form on [[Special:ActiveUsers]].
+
+See also:
+* {{msg-mw|activeusers|legend for the form}}
+* {{msg-mw|activeusers-from|label for input box}}
+* {{msg-mw|activeusers-hidesysops|label for checkbox}}',
+'activeusers-hidesysops' => 'Used as label for checkbox in the form on [[Special:ActiveUsers]].
+
+See also:
+* {{msg-mw|activeusers|legend for the form}}
+* {{msg-mw|activeusers-from|label for input box}}
+* {{msg-mw|activeusers-hidebots|label for checkbox}}',
+'activeusers-noresult' => 'identical with {{msg-mw|listusers-noresult}}',
+
 # Special:ListGroupRights
 'listgrouprights' => 'The name of the special page [[Special:ListGroupRights]].',
 'listgrouprights-summary' => 'The description used on [[Special:ListGroupRights]].',

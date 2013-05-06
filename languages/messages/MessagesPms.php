@@ -126,8 +126,8 @@ $messages = array(
 'november' => 'novèmber',
 'december' => 'dzèmber',
 'january-gen' => 'gené',
-'february-gen' => 'Fërvé',
-'march-gen' => 'Mars',
+'february-gen' => 'fërvé',
+'march-gen' => 'mars',
 'april-gen' => 'Avril',
 'may-gen' => 'Magg',
 'june-gen' => 'Giugn',
@@ -1973,6 +1973,15 @@ A-i é dabzògn almanch d\'un domini a livel pi àut, për esempi "*.org".<br />
 'listusers-submit' => 'Smon-e',
 'listusers-noresult' => 'Gnun utent përparèj.',
 'listusers-blocked' => '(blocà)',
+
+# Special:ActiveUsers
+'activeusers' => "Lista dj'utent ativ",
+'activeusers-intro' => "Costa a l'é na lista d'utent ch'a l'han avù n'atività qualsëssìa ant j'ùltim $1 {{PLURAL:$1|di|di}}.",
+'activeusers-count' => "$1 {{PLURAL:$1|modìfica neuva|modìfiche neuve}} ant {{PLURAL:$3|l'ùltim di|j'ùltim $3 di}}",
+'activeusers-from' => "Smon-me j'utent a parte da:",
+'activeusers-hidebots' => 'Stërmé ij trigomiro',
+'activeusers-hidesysops' => "Stërmé j'aministrator",
+'activeusers-noresult' => 'Pa gnun utent trovà.',
 
 # Special:ListGroupRights
 'listgrouprights' => "Drit dël grup d'utent",

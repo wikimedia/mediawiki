@@ -2126,6 +2126,15 @@ Der skal som minimum angives et topniveau-domæne som f. eks. "*.org".<br />
 'listusers-noresult' => 'Ingen bruger fundet.',
 'listusers-blocked' => '(blokeret)',
 
+# Special:ActiveUsers
+'activeusers' => 'Liste over aktive brugere',
+'activeusers-intro' => 'Dette er en liste over brugere, som har haft en eller anden form for aktivitet inden for {{PLURAL:$1|den|de}} seneste {{PLURAL:$1|dag|$1 dage}}.',
+'activeusers-count' => '$1 {{PLURAL:$1|handling|handlinger}} i {{PLURAL:$3|det seneste døgn|de seneste $3 dage}}',
+'activeusers-from' => 'Vis brugere som starter med:',
+'activeusers-hidebots' => 'Skjul robotter',
+'activeusers-hidesysops' => 'Skjul administratorer',
+'activeusers-noresult' => 'Ingen brugere fundet.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Brugergrupperettigheder',
 'listgrouprights-summary' => 'Denne side viser de brugergrupper der er defineret på denne wiki og de enkelte gruppers rettigheder.

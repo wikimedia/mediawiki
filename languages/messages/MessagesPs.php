@@ -1594,6 +1594,15 @@ $1',
 'listusers-noresult' => 'هېڅ کوم کارن و نه موندل شو.',
 'listusers-blocked' => '(بنديز لګېدلی)',
 
+# Special:ActiveUsers
+'activeusers' => 'د فعالو کارنانو لړليک',
+'activeusers-intro' => 'دا د هغو کارنانو لړليک دی چې په {{PLURAL:$1|تېرې|تېرو}} $1 {{PLURAL:$1|ورځ|ورځو}} کې يې ونډې ترسره کړي.',
+'activeusers-count' => 'په {{PLURAL:$3|تېرې ورځ|تېرو $3 ورځو}} کې $1 {{PLURAL:$1|سمون|سمونونه}}',
+'activeusers-from' => 'هغه کارنان کتل چې نومونه يې پېلېږي په:',
+'activeusers-hidebots' => 'روباټونه پټول',
+'activeusers-hidesysops' => 'پازوالان پټول',
+'activeusers-noresult' => 'کارن و نه موندل شو.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'د کارن ډلو رښتې',
 'listgrouprights-group' => 'ډله',

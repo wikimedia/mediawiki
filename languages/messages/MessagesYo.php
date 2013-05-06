@@ -2039,6 +2039,15 @@ Orúkọ ibiàyè pọndandan, fún àpẹrẹ "*.org".<br />
 'listusers-noresult' => 'Kò rí oníṣe kankan.',
 'listusers-blocked' => '(dídínà)',
 
+# Special:ActiveUsers
+'activeusers' => 'Àtòjọ àwọn oníṣe aláàgbéṣe',
+'activeusers-intro' => 'Èyí ni àtòjọ àwọn oníṣe tí wọ́n ní irú àgbéṣe kan láàrin {{PLURAL:$1|ọjọ́|ọjọ́}} $1 sẹ́yìn.',
+'activeusers-count' => '{{PLURAL:$1|Àtúnṣe|Àwọn àtúnṣe}} $1 ní {{PLURAL:$3|ọjọ́|ọjọ́}} $3 sẹ́yìn',
+'activeusers-from' => 'Ìfihàn àwọn oníṣe nípa bíbẹ̀rẹ̀ láti:',
+'activeusers-hidebots' => 'Ìbòmọ́lẹ̀ àwọn bọt',
+'activeusers-hidesysops' => 'Ìbòmọ́lẹ̀ àwọn olùmójútó',
+'activeusers-noresult' => 'Kò rí oníṣe kankan.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Àwọn ẹ̀tọ́ ẹgbẹ́ oníṣe',
 'listgrouprights-summary' => 'Nísàlẹ̀ ni àtòjọ àwọn ẹgbẹ́ oníṣe tó nítumọ̀ lórí wiki yìí, pẹ̀lú àwọn ẹ̀tọ́ lílò wọn.

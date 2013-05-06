@@ -2335,6 +2335,15 @@ eins vun all däm op eimol.',
 'listusers-noresult' => 'Keine Metmaacher jefonge.',
 'listusers-blocked' => '(jespert)',
 
+# Special:ActiveUsers
+'activeusers' => 'Leß met de aktiive Metmaacher',
+'activeusers-intro' => 'Dat heh es en Leß met dä Metmaacher, di {{PLURAL:$1|zick jäßtere|en de läzde $1 Dääsch|hück}} ööhnsjät jemaat han.',
+'activeusers-count' => '{{PLURAL:$1|ein Änderong|$1 Änderonge|kein Änderonge}} {{PLURAL:$3|aam lezde Daach|en de lezte $3 Dääsch|hück}}',
+'activeusers-from' => 'Donn de Metmaacher zeije aff:',
+'activeusers-hidebots' => 'De Bots fott lohße',
+'activeusers-hidesysops' => 'De Wiki_Köbesse fott lohße',
+'activeusers-noresult' => 'Kein Metmaacher jefonge.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Metmaacher-Jruppe-Rääschte',
 'listgrouprights-summary' => 'Hee kütt de Liss met dä Medmaacher-Jruppe, di dat Wiki hee kennt, un denne ier Rääschte.

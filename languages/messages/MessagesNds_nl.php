@@ -2218,6 +2218,15 @@ Ondersteunde protokollen: <code>$1</code> (zet t niet in joew zeukopdrachte).',
 'listusers-noresult' => 'Gien gebrukers evunnen. Zeuk oek naor variaanten mit kleine letters of heufdletters.',
 'listusers-blocked' => '(eblokkeerd)',
 
+# Special:ActiveUsers
+'activeusers' => 'Aktieve gebrukers',
+'activeusers-intro' => 'Dit is n lieste van gebrukers die de aofgeleupen $1 {{PLURAL:$1|dag|dagen}} enigszins aktief ewest hebben.',
+'activeusers-count' => '$1 leste {{PLURAL:$1|bewarking|bewarkingen}} in de aofgeleupen {{PLURAL:$3|dag|$3 dagen}}',
+'activeusers-from' => 'Laot gebrukers zien vanaof:',
+'activeusers-hidebots' => 'Bots verbargen',
+'activeusers-hidesysops' => 'Beheerders verbargen',
+'activeusers-noresult' => 'Gien aktieve gebrukers evunnen.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Rechten van gebrukersgroepen',
 'listgrouprights-summary' => "Op disse zied staon de gebrukersgroepen van disse wiki beschreven, mit de biebeheurende rechten.

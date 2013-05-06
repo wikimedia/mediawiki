@@ -2268,6 +2268,15 @@ Qeydeyê destegbiyayey: <code>$1</code> (qet yew qeydeyo hesabiyaye http:// ke n
 'listusers-noresult' => 'karber nêdiyayo/a.',
 'listusers-blocked' => '(blok biy)',
 
+# Special:ActiveUsers
+'activeusers' => 'Listey karberan de aktivan',
+'activeusers-intro' => 'Ena yew listeya karberê ke $1 {{PLURAL:$1|roc|rocan}} ra tepya iştiraq kerdo ênan mocneno.',
+'activeusers-count' => 'Karberi {{PLURAL:$3|roce peyni de|$3 roca peyni de}} $1 {{PLURAL:$1|vurnayış|vurnayışi}} kerdê',
+'activeusers-from' => 'Enê karberi ra tepya bımocne:',
+'activeusers-hidebots' => 'Botan bınımne',
+'activeusers-hidesysops' => 'İdarekerdoğan bınımne',
+'activeusers-noresult' => 'Karberi nêdiyayê.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'heqê grubê karberi',
 'listgrouprights-summary' => 'wikiya cêrın a ke tede grubê karberi nişane biyê, listeya heqê cıresayişê inan o.

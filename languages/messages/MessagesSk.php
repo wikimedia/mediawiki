@@ -2229,6 +2229,15 @@ Povinná je minimálne doména najvyššej úrovne, napr. „*.org“.<br />
 'listusers-noresult' => 'Neboli nájdení používatelia. Prosím, skontrolujte aj varianty s veľkými/malými písmenami.',
 'listusers-blocked' => '(zablokovaný)',
 
+# Special:ActiveUsers
+'activeusers' => 'Zoznam aktívnych používateľov',
+'activeusers-intro' => 'Toto je zoznam používateľov, ktorí $1 {{PLURAL:$1|za posledný 1 deň|za posledné $1 dni|za posledných $1 dní}} vykonali nejakú aktivitu.',
+'activeusers-count' => '$1 {{PLURAL:$1|úprava|úpravy|úprav}} za {{PLURAL:$3|posledný deň|posledné $3 dni|posledných $3 dní}}',
+'activeusers-from' => 'Zobraziť používateľov počínajúc:',
+'activeusers-hidebots' => 'Skryť robotov',
+'activeusers-hidesysops' => 'Skryť správcov',
+'activeusers-noresult' => 'Neboli nájdení žiadni používatelia.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Práva skupiny používateľov',
 'listgrouprights-summary' => 'Toto je zoznam skupín používateľov definovaných na tejto wiki a ich prístupových práv.

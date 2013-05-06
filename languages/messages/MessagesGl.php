@@ -2252,6 +2252,15 @@ Cómpre, polo menos, un dominio de nivel superior; por exemplo, "*.org".<br />
 'listusers-noresult' => 'Non se atopou ningún usuario.',
 'listusers-blocked' => '(bloqueado)',
 
+# Special:ActiveUsers
+'activeusers' => 'Lista de usuarios activos',
+'activeusers-intro' => 'Esta é unha lista cos usuarios que tiveron algún tipo de actividade {{PLURAL:$1|no último día|nos últimos $1 días}}.',
+'activeusers-count' => '$1 {{PLURAL:$1|acción|accións}} {{PLURAL:$3|no último día|nos últimos $3 días}}',
+'activeusers-from' => 'Mostrar os usuarios que comecen por:',
+'activeusers-hidebots' => 'Agochar os bots',
+'activeusers-hidesysops' => 'Agochar os administradores',
+'activeusers-noresult' => 'Non se atopou ningún usuario.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Dereitos dun usuario segundo o seu grupo',
 'listgrouprights-summary' => 'A seguinte lista mostra os grupos de usuario definidos neste wiki, cos seus dereitos de acceso asociados.

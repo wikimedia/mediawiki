@@ -2280,6 +2280,15 @@ Necesită cel puțin un domeniu de nivel superior, cum ar fi „*.org”.<br />
 'listusers-noresult' => 'Nici un utilizator găsit.',
 'listusers-blocked' => '(blocat{{GENDER:$1||ă|}})',
 
+# Special:ActiveUsers
+'activeusers' => 'Listă utilizatori activi',
+'activeusers-intro' => 'Aceasta este o listă cu utilizatorii care au avut orice fel de activitate în {{PLURAL:$1|ultima zi|ultimele $1 zile}}.',
+'activeusers-count' => '{{PLURAL:$1|o acțiune|$1 acțiuni|$1 de acțiuni}} în {{PLURAL:$3|ultima zi|ultimele $3 zile|ultimele $3 de zile}}',
+'activeusers-from' => 'Afișează utilizatori începând cu:',
+'activeusers-hidebots' => 'Ascunde roboții',
+'activeusers-hidesysops' => 'Ascunde administratorii',
+'activeusers-noresult' => 'Niciun utilizator găsit.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Permisiuni grupuri de utilizatori',
 'listgrouprights-summary' => 'Mai jos se află o listă a grupurilor de utilizatori definite în acest wiki, împreună cu permisiunile de acces asociate.

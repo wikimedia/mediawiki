@@ -2224,6 +2224,15 @@ Toetatud {{PLURAL:$2|protokoll|protokollid}}: <code>$1</code> (määramata proto
 'listusers-noresult' => 'Kasutajat ei leitud.',
 'listusers-blocked' => '(blokeeritud)',
 
+# Special:ActiveUsers
+'activeusers' => 'Aktiivsete kasutajate nimekiri',
+'activeusers-intro' => 'See on loetelu kasutajatest, kes on viimase $1 {{PLURAL:$1|päev|päeva}} jooksul midagi teinud.',
+'activeusers-count' => '$1 {{PLURAL:$1|toiming|toimingut}} viimase {{PLURAL:$3|päeva|$3 päeva}} jooksul',
+'activeusers-from' => 'Näita kasutajaid alates:',
+'activeusers-hidebots' => 'Peida robotid',
+'activeusers-hidesysops' => 'Peida administraatorid',
+'activeusers-noresult' => 'Kasutajaid ei leidunud.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Kasutajarühma õigused',
 'listgrouprights-summary' => 'Siin on loetletud selle viki kasutajarühmad ja rühmaga seotud õigused.

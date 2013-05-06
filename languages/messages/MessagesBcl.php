@@ -2065,6 +2065,15 @@ Suportadong {{PLURAL:$2|protokol|mga protokol}}: <code>$1</code> (defaults to ht
 'listusers-noresult' => 'Mayong nakuang parágamit.',
 'listusers-blocked' => '(pinagbarado)',
 
+# Special:ActiveUsers
+'activeusers' => 'Listahan kan aktibong paragamit',
+'activeusers-intro' => 'Iyo in an listahan kan mga paragamit na nagkaigwa nin mga ginibo sa laog kan nakaaging $1 {{PLURAL:$1|aldaw|mga aldaw}}.',
+'activeusers-count' => '$1 {{PLURAL:$1|aksyon|mga aksyon}} sa nakaaging {{PLURAL:$3|aldaw|$3 mga aldaw}}',
+'activeusers-from' => 'Ipahiling an mga paragamit magpoon sa:',
+'activeusers-hidebots' => 'Itago an mga panalnga',
+'activeusers-hidesysops' => 'Itago an mga administrador',
+'activeusers-noresult' => 'Mayong mga paragamit na nanagboan.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Mga karapatan kan grupo nin paragamit',
 'listgrouprights-summary' => 'An minasunod iyo an listahan kan mga grupo nin paragamit na pinaghunsay kaining wiki, kaiba an saindang asosyadong mga karapatan nin paggamit.

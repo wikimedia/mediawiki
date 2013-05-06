@@ -1963,6 +1963,15 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization చూడండి.',
 'listusers-noresult' => 'వాడుకరి దొరకలేదు.',
 'listusers-blocked' => '(నిరోధించారు)',
 
+# Special:ActiveUsers
+'activeusers' => 'క్రియాశీల వాడుకరుల జాబితా',
+'activeusers-intro' => 'ఇది గత $1 {{PLURAL:$1|రోజులో|రోజులలో}} ఏదైనా కార్యకలాపం చేసిన వాడుకరుల జాబితా.',
+'activeusers-count' => 'గడచిన {{PLURAL:$3|ఒక రోజు|$3 రోజుల}}లో $1 {{PLURAL:$1|మార్పు|మార్పులు}}',
+'activeusers-from' => 'వాడుకరులను ఇక్కడ నుండి చూపించు:',
+'activeusers-hidebots' => 'బాట్లను దాచు',
+'activeusers-hidesysops' => 'నిర్వాహకులను దాచు',
+'activeusers-noresult' => 'వాడుకరులెవరూ లేరు.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'వాడుకరి గుంపుల హక్కులు',
 'listgrouprights-summary' => 'కింది జాబితాలో ఈ వికీలో నిర్వచించిన వాడుకరి గుంపులు, వాటికి సంబంధించిన హక్కులు ఉన్నాయి.

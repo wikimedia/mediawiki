@@ -1733,6 +1733,14 @@ Skatīt arī [[Special:WantedCategories|''sarkanās'' kategorijas]].",
 'listusers-noresult' => 'Neviens lietotājs nav atrasts.',
 'listusers-blocked' => '(bloķēts)',
 
+# Special:ActiveUsers
+'activeusers' => 'Aktīvo lietotāju saraksts',
+'activeusers-intro' => 'Šis ir lietotāju saraksts, kas veikuši kādu darbību {{PLURAL:daudzskaitlī:$1|pēdējā|pēdējās}} $1 {{PLURAL:daudzskaitlī:$1|dienā|dienās}}.',
+'activeusers-from' => 'Parādīt lietotājus sākot ar:',
+'activeusers-hidebots' => 'Paslēpt botus',
+'activeusers-hidesysops' => 'Paslēpt administratorus',
+'activeusers-noresult' => 'Neviens lietotājs nav atrasts.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Lietotāju grupu tiesības',
 'listgrouprights-summary' => 'Šis ir šajā wiki definēto lietotāju grupu uskaitījums, kopā ar tām atbilstošajām piekļuves tiesībām.

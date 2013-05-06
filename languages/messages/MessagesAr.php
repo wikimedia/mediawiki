@@ -2477,6 +2477,15 @@ $1',
 'listusers-noresult' => 'لم يتم إيجاد مستخدم.',
 'listusers-blocked' => '(ممنوع)',
 
+# Special:ActiveUsers
+'activeusers' => 'قائمة المستخدمين النشطين',
+'activeusers-intro' => 'هذه قائمة بالمستخدمين الذين مارسوا نوعاً من النشاط خلال {{PLURAL:$1||اليوم الماضي|اليومين الماضيين|ال$1 أيام الماضية|ال$1 يوماً ماضياً|ال$1 يوم ماضي}}.',
+'activeusers-count' => '{{PLURAL:$1|لا أفعال|فعل واحد|فعلان اثنان|$1 أفعال|$1 فعلاً|$1 فعل}} منذ {{PLURAL:$3||يوم|يومين|$3 أيام|$3 يوماً|$1 يوم}}',
+'activeusers-from' => 'اعرض المستخدمين بدءاً من:',
+'activeusers-hidebots' => 'أخف البوتات',
+'activeusers-hidesysops' => 'أخف الإداريين',
+'activeusers-noresult' => 'لم يعثر على أي مستخدمين',
+
 # Special:ListGroupRights
 'listgrouprights' => 'صلاحيات مجموعات المستخدمين',
 'listgrouprights-summary' => 'التالي قائمة بمجموعات المستخدمين المعرفة في هذا الويكي، بصلاحياتهم المصاحبة.

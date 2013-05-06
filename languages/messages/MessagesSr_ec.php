@@ -2382,6 +2382,15 @@ $1',
 'listusers-noresult' => 'Корисник није пронађен.',
 'listusers-blocked' => '({{GENDER:$1|блокиран|блокирана|блокиран}})',
 
+# Special:ActiveUsers
+'activeusers' => 'Списак активних корисника',
+'activeusers-intro' => 'Ово је списак корисника који су били активни {{PLURAL:$1|претходни дан|у последња $1 дана|у последњих $1 дана}}.',
+'activeusers-count' => '$1 {{PLURAL:$1|измена|измене|измена}} {{PLURAL:$3|претходни дан|у последња $3 дана|у последњих $3 дана}}',
+'activeusers-from' => 'Прикажи кориснике почев од:',
+'activeusers-hidebots' => 'Сакриј ботове',
+'activeusers-hidesysops' => 'Сакриј администраторе',
+'activeusers-noresult' => 'Корисник није пронађен.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Права корисничких група',
 'listgrouprights-summary' => 'Следи списак корисничких група на овом викију, заједно с правима приступа.

@@ -2274,6 +2274,15 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization കാണുക.',
 'listusers-noresult' => 'ഈ സംഘത്തിൽ ഉൾപ്പെടുന്ന ഉപയോക്താക്കൾ ആരും ഇല്ല.',
 'listusers-blocked' => '(തടയപ്പെട്ടു)',
 
+# Special:ActiveUsers
+'activeusers' => 'സജീവ ഉപയോക്താക്കളുടെ പട്ടിക',
+'activeusers-intro' => 'ഇത് കഴിഞ്ഞ {{PLURAL:$1|ദിവസം|$1 ദിവസങ്ങളിൽ}} ഏതെങ്കിലും വിധത്തിലുള്ള പ്രവർത്തനങ്ങൾ ചെയ്ത ഉപയോക്താക്കളുടെ പട്ടികയാണ്.',
+'activeusers-count' => 'കഴിഞ്ഞ {{PLURAL:$3|ഒരു ദിവസം|$3 ദിവസങ്ങളിൽ}} {{PLURAL:$1|ഒരു പ്രവൃത്തി|$1 പ്രവൃത്തികൾ}}',
+'activeusers-from' => 'ഇങ്ങനെ തുടങ്ങുന്ന ഉപയോക്താക്കളെ കാട്ടുക:',
+'activeusers-hidebots' => 'യന്ത്രങ്ങളെ മറയ്ക്കുക',
+'activeusers-hidesysops' => 'കാര്യനിർവാഹകരെ മറയ്ക്കുക',
+'activeusers-noresult' => 'ഉപയോക്താക്കളില്ല',
+
 # Special:ListGroupRights
 'listgrouprights' => 'ഉപയോക്തൃവിഭാഗത്തിന്റെ അവകാശങ്ങൾ',
 'listgrouprights-summary' => 'ഈ വിക്കിയിൽ നിർവ്വചിക്കപ്പെട്ടിരിക്കുന്ന ഉപയോക്തൃസംഘങ്ങളെയും, ആ സംഘങ്ങൾക്ക് പ്രാപ്തമായിട്ടുള്ള അവകാശങ്ങളേയും താഴെ കുറിച്ചിരിക്കുന്നു.

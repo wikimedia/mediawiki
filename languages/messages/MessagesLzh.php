@@ -1762,6 +1762,15 @@ $1',
 'listusers-noresult' => '尋無簿。',
 'listusers-blocked' => '（已禁）',
 
+# Special:ActiveUsers
+'activeusers' => '躍簿',
+'activeusers-intro' => '此乃為近$1天內之躍簿也。',
+'activeusers-count' => '$3天內之$1易',
+'activeusers-from' => '示簿始於：',
+'activeusers-hidebots' => '藏僕',
+'activeusers-hidesysops' => '藏有秩',
+'activeusers-noresult' => '無簿矣。',
+
 # Special:ListGroupRights
 'listgrouprights' => '權任一覽',
 'listgrouprights-summary' => '此所列述，諸職所司也，各有異同。欲知其詳，請閱[[{{MediaWiki:Listgrouprights-helppage}}|此文]]。',
