@@ -4504,8 +4504,18 @@ class Title {
 				$method
 			);
 		} );
+		HTMLFileCache::clearFileCache( $this );
 
-		return true;
+		// Clear page info.
+		$revision = WikiPage::factory( $this )->getRevision();
+		if ( $revision !== null ) {
+			$memcKey = wfMemcKey( 'infoaction', $this->getPrefixedText(), $revision->getId() );
+			$success = $wgMemc->delete( $memcKey );
+		} else {
+			$success = true;
+		}
+
+		return $success;
 	}
 
 	/**

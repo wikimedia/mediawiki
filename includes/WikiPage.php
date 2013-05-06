@@ -2437,7 +2437,6 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		$this->mTitle->flushRestrictions();
-		InfoAction::invalidateCache( $this->mTitle );
 
 		if ( $logAction == 'unprotect' ) {
 			$logParams = array();
@@ -2908,7 +2907,6 @@ class WikiPage implements Page, IDBAccessObject {
 
 		// File cache
 		HTMLFileCache::clearFileCache( $title );
-		InfoAction::invalidateCache( $title );
 
 		// Messages
 		if ( $title->getNamespace() == NS_MEDIAWIKI ) {
@@ -2951,7 +2949,6 @@ class WikiPage implements Page, IDBAccessObject {
 
 		// Clear file cache for this page only
 		HTMLFileCache::clearFileCache( $title );
-		InfoAction::invalidateCache( $title );
 	}
 
 	/**#@-*/
