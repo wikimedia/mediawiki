@@ -817,4 +817,90 @@
 
 	} );
 
+	QUnit.test( 'mw.hook', 10, function ( assert ) {
+		var hook, add, fire, chars, callback;
+
+		mw.hook( 'test.hook.unfired' ).add( function () {
+			assert.ok( false, 'Unfired hook' );
+		} );
+
+		mw.hook( 'test.hook.basic' ).add( function () {
+			assert.ok( true, 'Basic callback' );
+		} );
+		mw.hook( 'test.hook.basic' ).fire();
+
+		mw.hook( 'test.hook.data' ).add( function ( data1, data2 ) {
+			assert.equal( data1, 'example', 'Fire with data (string param)' );
+			assert.deepEqual( data2, ['two'], 'Fire with data (array param)' );
+		} );
+		mw.hook( 'test.hook.data' ).fire( 'example', ['two'] );
+
+		mw.hook( 'test.hook.chainable' ).add( function () {
+			assert.ok( true, 'Chainable' );
+		} ).fire();
+
+		hook = mw.hook( 'test.hook.detach' );
+		add = hook.add;
+		fire = hook.fire;
+		add( function ( x, y ) {
+			assert.deepEqual( [x, y], ['x', 'y'], 'Detached (contextless) with data' );
+		} );
+		fire( 'x', 'y' );
+
+		mw.hook( 'test.hook.fireBefore' ).fire().add( function () {
+			assert.ok( true, 'Invoke handler right away if it was fired before' );
+		} );
+
+		mw.hook( 'test.hook.fireTwiceBefore' ).fire().fire().add( function () {
+			assert.ok( true, 'Invoke handler right away if it was fired before (only last one)' );
+		} );
+
+		chars = [];
+
+		mw.hook( 'test.hook.many' )
+			.add( function ( chr ) {
+				chars.push( chr );
+			} )
+			.fire( 'x' ).fire( 'y' ).fire( 'z' )
+			.add( function ( chr ) {
+				assert.equal( chr, 'z', 'Adding callback later invokes right away with last data' );
+			} );
+
+		assert.deepEqual( chars, ['x', 'y', 'z'], 'Multiple callbacks with multiple fires' );
+
+		chars = [];
+		callback = function ( chr ) {
+			chars.push( chr );
+		};
+
+		mw.hook( 'test.hook.variadic' )
+			.add(
+				callback,
+				callback,
+				function ( chr ) {
+					chars.push( chr );
+				},
+				callback
+			)
+			.fire( 'x' )
+			.remove(
+				function () {
+					'not-added';
+				},
+				callback
+			)
+			.fire( 'y' )
+			.remove( callback )
+			.fire( 'z' );
+
+		assert.deepEqual(
+			chars,
+			['x', 'x', 'x', 'x', 'y', 'z'],
+			'"add" and "remove" support variadic arguments. ' +
+				'"add" does not filter unique. ' +
+				'"remove" removes all equal by reference. ' +
+				'"remove" is silent if the function is not found'
+		);
+	} );
+
 }( mediaWiki, jQuery ) );
