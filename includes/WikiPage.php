@@ -2053,7 +2053,8 @@ class WikiPage implements Page, IDBAccessObject {
 		$content = $revision->getContent();
 
 		// Parse the text
-		// Be careful not to double-PST: $text is usually already PST-ed once
+		// Be careful not to do pre-save transform twice: $text is usually
+		// already pre-save transformed once.
 		if ( !$this->mPreparedEdit || $this->mPreparedEdit->output->getFlag( 'vary-revision' ) ) {
 			wfDebug( __METHOD__ . ": No prepared edit or vary-revision is set...\n" );
 			$editInfo = $this->prepareContentForEdit( $content, $revision->getId(), $user );
