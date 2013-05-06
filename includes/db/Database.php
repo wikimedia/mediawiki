@@ -24,13 +24,6 @@
  * @ingroup Database
  */
 
-/** Number of times to re-try an operation in case of deadlock */
-define( 'DEADLOCK_TRIES', 4 );
-/** Minimum time to wait before retry, in microseconds */
-define( 'DEADLOCK_DELAY_MIN', 500000 );
-/** Maximum time to wait before retry */
-define( 'DEADLOCK_DELAY_MAX', 1500000 );
-
 /**
  * Base interface for all DBMS-specific code. At a bare minimum, all of the
  * following must be implemented to support MediaWiki
@@ -216,6 +209,12 @@ interface DatabaseType {
  * @ingroup Database
  */
 abstract class DatabaseBase implements DatabaseType {
+	/** Number of times to re-try an operation in case of deadlock */
+	const DEADLOCK_TRIES = 4;
+	/** Minimum time to wait before retry, in microseconds */
+	const DEADLOCK_DELAY_MIN = 500000;
+	/** Maximum time to wait before retry */
+	const DEADLOCK_DELAY_MAX = 1500000;
 
 # ------------------------------------------------------------------------------
 # Variables
@@ -2860,7 +2859,7 @@ abstract class DatabaseBase implements DatabaseType {
 		$args = func_get_args();
 		$function = array_shift( $args );
 		$oldIgnore = $this->ignoreErrors( true );
-		$tries = DEADLOCK_TRIES;
+		$tries = self::DEADLOCK_TRIES;
 
 		if ( is_array( $function ) ) {
 			$fname = $function[0];
@@ -2877,7 +2876,7 @@ abstract class DatabaseBase implements DatabaseType {
 			if ( $errno ) {
 				if ( $this->wasDeadlock() ) {
 					# Retry
-					usleep( mt_rand( DEADLOCK_DELAY_MIN, DEADLOCK_DELAY_MAX ) );
+					usleep( mt_rand( self::DEADLOCK_DELAY_MIN, self::DEADLOCK_DELAY_MAX ) );
 				} else {
 					$this->reportQueryError( $error, $errno, $sql, $fname );
 				}
