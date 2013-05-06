@@ -113,8 +113,10 @@ changes to languages because of Bugzilla reports.
 * redirect.php was removed. It was unused.
 * ClickTracking integration was dropped from the mediaWiki.user.bucket
   JavaScript function. The 'tracked' option is now ignored.
-* BREAKING CHANGE: Legacy skins Simple, MySkin and Standard were all removed.
-  Nostalgia was moved to an extension.
+* BREAKING CHANGE: Legacy skins Simple, MySkin, Chick, Standard and Nostalgia
+  were all removed. (Nostalgia was moved to an extension.) The SkinLegacy and
+  LegacyTemplate classes that supported them were removed as well and are now a
+  part of the Nostalgia extension.
 * Event namespace used by jquery.makeCollapsible has been changed from
   'mw-collapse' to 'mw-collapsible' for consistency with the module name.
 * BREAKING CHANGE: The "ExternalAuth" authentication subsystem was removed, along
