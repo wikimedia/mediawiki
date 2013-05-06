@@ -21,41 +21,6 @@
  */
 
 /**
- * Wrapper object for MediaWiki's localization functions,
- * to be passed to the template engine.
- *
- * @private
- * @ingroup Skins
- */
-class MediaWiki_I18N {
-	var $_context = array();
-
-	function set( $varName, $value ) {
-		$this->_context[$varName] = $value;
-	}
-
-	function translate( $value ) {
-		wfProfileIn( __METHOD__ );
-
-		// Hack for i18n:attributes in PHPTAL 1.0.0 dev version as of 2004-10-23
-		$value = preg_replace( '/^string:/', '', $value );
-
-		$value = wfMessage( $value )->text();
-		// interpolate variables
-		$m = array();
-		while ( preg_match( '/\$([0-9]*?)/sm', $value, $m ) ) {
-			list( $src, $var ) = $m;
-			wfSuppressWarnings();
-			$varValue = $this->_context[$var];
-			wfRestoreWarnings();
-			$value = str_replace( $src, $varValue, $value );
-		}
-		wfProfileOut( __METHOD__ );
-		return $value;
-	}
-}
-
-/**
  * Template-filler skin base class
  * Formerly generic PHPTal (http://phptal.sourceforge.net/) skin
  * Based on Brion's smarty skin
@@ -1289,7 +1254,6 @@ abstract class QuickTemplate {
 	 */
 	function __construct() {
 		$this->data = array();
-		$this->translator = new MediaWiki_I18N();
 	}
 
 	/**
@@ -1307,13 +1271,6 @@ abstract class QuickTemplate {
 	 */
 	public function setRef( $name, &$value ) {
 		$this->data[$name] =& $value;
-	}
-
-	/**
-	 * @param $t
-	 */
-	public function setTranslator( &$t ) {
-		$this->translator = &$t;
 	}
 
 	/**
@@ -1349,25 +1306,21 @@ abstract class QuickTemplate {
 	 * @private
 	 */
 	function msg( $str ) {
-		echo htmlspecialchars( $this->translator->translate( $str ) );
+		echo wfMessage( $str )->escaped();
 	}
 
 	/**
 	 * @private
 	 */
 	function msgHtml( $str ) {
-		echo $this->translator->translate( $str );
+		echo wfMessage( $str )->text();
 	}
 
 	/**
-	 * An ugly, ugly hack.
 	 * @private
 	 */
 	function msgWiki( $str ) {
-		global $wgOut;
-
-		$text = $this->translator->translate( $str );
-		echo $wgOut->parse( $text );
+		echo wfMessage( $str )->parseAsBlock();
 	}
 
 	/**
@@ -1380,12 +1333,10 @@ abstract class QuickTemplate {
 
 	/**
 	 * @private
-	 *
 	 * @return bool
 	 */
 	function haveMsg( $str ) {
-		$msg = $this->translator->translate( $str );
-		return ( $msg != '-' ) && ( $msg != '' ); # ????
+		return !wfMessage( $str )->isDisabled();
 	}
 
 	/**
@@ -1697,7 +1648,7 @@ abstract class BaseTemplate extends QuickTemplate {
 		if ( isset( $item['text'] ) ) {
 			$text = $item['text'];
 		} else {
-			$text = $this->translator->translate( isset( $item['msg'] ) ? $item['msg'] : $key );
+			$text = wfMessage( isset( $item['msg'] ) ? $item['msg'] : $key )->text();
 		}
 
 		$html = htmlspecialchars( $text );
@@ -1833,8 +1784,7 @@ abstract class BaseTemplate extends QuickTemplate {
 				$realAttrs = array(
 					'type' => 'submit',
 					'name' => $mode,
-					'value' => $this->translator->translate(
-						$mode == 'go' ? 'searcharticle' : 'searchbutton' ),
+					'value' => wfMessage( $mode == 'go' ? 'searcharticle' : 'searchbutton' )->text(),
 				);
 				$realAttrs = array_merge(
 					$realAttrs,
@@ -1860,7 +1810,7 @@ abstract class BaseTemplate extends QuickTemplate {
 					'src' => $attrs['src'],
 					'alt' => isset( $attrs['alt'] )
 						? $attrs['alt']
-						: $this->translator->translate( 'searchbutton' ),
+						: wfMessage( 'searchbutton' )->text(),
 					'width' => isset( $attrs['width'] ) ? $attrs['width'] : null,
 					'height' => isset( $attrs['height'] ) ? $attrs['height'] : null,
 				);
