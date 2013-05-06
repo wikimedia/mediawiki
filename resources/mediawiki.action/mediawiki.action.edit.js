@@ -148,9 +148,9 @@
 			}
 		}() );
 
-		$( 'textarea, input:text' ).focus( function () {
-			currentFocused = $(this);
-		});
+		$( document ).on( 'focus', 'textarea, input:text', function () { // Apply to dynamically created textboxes as well - for LQT
+			currentFocused = $( this );
+		} );
 
 		// HACK: make currentFocused work with the usability iframe
 		// With proper focus detection support (HTML 5!) this'll be much cleaner
