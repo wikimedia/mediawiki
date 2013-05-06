@@ -297,7 +297,7 @@ class DatabaseMssql extends DatabaseBase {
 	 *						   (e.g. array( 'page' => array('LEFT JOIN','page_latest=rev_id') )
 	 * @return Mixed: database result resource (feed to Database::fetchObject or whatever), or false on failure
 	 */
-	function select( $table, $vars, $conds = '', $fname = 'DatabaseMssql::select', $options = array(), $join_conds = array() )
+	function select( $table, $vars, $conds = '', $fname = __METHOD__, $options = array(), $join_conds = array() )
 	{
 		$sql = $this->selectSQLText( $table, $vars, $conds, $fname, $options, $join_conds );
 		if ( isset( $options['EXPLAIN'] ) ) {
@@ -322,7 +322,7 @@ class DatabaseMssql extends DatabaseBase {
 	 *                    (e.g. array( 'page' => array('LEFT JOIN','page_latest=rev_id') )
 	 * @return string, the SQL text
 	 */
-	function selectSQLText( $table, $vars, $conds = '', $fname = 'DatabaseMssql::select', $options = array(), $join_conds = array() ) {
+	function selectSQLText( $table, $vars, $conds = '', $fname = __METHOD__, $options = array(), $join_conds = array() ) {
 		if ( isset( $options['EXPLAIN'] ) ) {
 			unset( $options['EXPLAIN'] );
 		}
@@ -337,7 +337,7 @@ class DatabaseMssql extends DatabaseBase {
 	 * Takes same arguments as Database::select()
 	 * @return int
 	 */
-	function estimateRowCount( $table, $vars = '*', $conds = '', $fname = 'DatabaseMssql::estimateRowCount', $options = array() ) {
+	function estimateRowCount( $table, $vars = '*', $conds = '', $fname = __METHOD__, $options = array() ) {
 		$options['EXPLAIN'] = true;// http://msdn2.microsoft.com/en-us/library/aa259203.aspx
 		$res = $this->select( $table, $vars, $conds, $fname, $options );
 
@@ -356,7 +356,7 @@ class DatabaseMssql extends DatabaseBase {
 	 * If errors are explicitly ignored, returns NULL on failure
 	 * @return array|bool|null
 	 */
-	function indexInfo( $table, $index, $fname = 'DatabaseMssql::indexExists' ) {
+	function indexInfo( $table, $index, $fname = __METHOD__ ) {
 		# This does not return the same info as MYSQL would, but that's OK because MediaWiki never uses the
 		# returned value except to check for the existance of indexes.
 		$sql = "sp_helpindex '" . $table . "'";
@@ -401,7 +401,7 @@ class DatabaseMssql extends DatabaseBase {
 	 * @throws DBQueryError
 	 * @return bool
 	 */
-	function insert( $table, $arrToInsert, $fname = 'DatabaseMssql::insert', $options = array() ) {
+	function insert( $table, $arrToInsert, $fname = __METHOD__, $options = array() ) {
 		# No rows to insert, easy just return now
 		if ( !count( $arrToInsert ) ) {
 			return true;
@@ -539,7 +539,7 @@ class DatabaseMssql extends DatabaseBase {
 	 * @throws DBQueryError
 	 * @return null|ResultWrapper
 	 */
-	function insertSelect( $destTable, $srcTable, $varMap, $conds, $fname = 'DatabaseMssql::insertSelect',
+	function insertSelect( $destTable, $srcTable, $varMap, $conds, $fname = __METHOD__,
 		$insertOptions = array(), $selectOptions = array() ) {
 		$ret = parent::insertSelect( $destTable, $srcTable, $varMap, $conds, $fname, $insertOptions, $selectOptions );
 
@@ -688,7 +688,7 @@ class DatabaseMssql extends DatabaseBase {
 	 * Query whether a given column exists in the mediawiki schema
 	 * @return bool
 	 */
-	function fieldExists( $table, $field, $fname = 'DatabaseMssql::fieldExists' ) {
+	function fieldExists( $table, $field, $fname = __METHOD__ ) {
 		$table = $this->tableName( $table );
 		$res = sqlsrv_query( $this->mConn, "SELECT DATA_TYPE FROM INFORMATION_SCHEMA.Columns
 			WHERE TABLE_NAME = '$table' AND COLUMN_NAME = '$field'" );
@@ -721,7 +721,7 @@ class DatabaseMssql extends DatabaseBase {
 	/**
 	 * Begin a transaction, committing any previously open transaction
 	 */
-	protected function doBegin( $fname = 'DatabaseMssql::begin' ) {
+	protected function doBegin( $fname = __METHOD__ ) {
 		sqlsrv_begin_transaction( $this->mConn );
 		$this->mTrxLevel = 1;
 	}
@@ -729,7 +729,7 @@ class DatabaseMssql extends DatabaseBase {
 	/**
 	 * End a transaction
 	 */
-	protected function doCommit( $fname = 'DatabaseMssql::commit' ) {
+	protected function doCommit( $fname = __METHOD__ ) {
 		sqlsrv_commit( $this->mConn );
 		$this->mTrxLevel = 0;
 	}
@@ -738,7 +738,7 @@ class DatabaseMssql extends DatabaseBase {
 	 * Rollback a transaction.
 	 * No-op on non-transactional databases.
 	 */
-	protected function doRollback( $fname = 'DatabaseMssql::rollback' ) {
+	protected function doRollback( $fname = __METHOD__ ) {
 		sqlsrv_rollback( $this->mConn );
 		$this->mTrxLevel = 0;
 	}

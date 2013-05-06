@@ -456,15 +456,15 @@ class DatabaseOracle extends DatabaseBase {
 	 * If errors are explicitly ignored, returns NULL on failure
 	 * @return bool
 	 */
-	function indexInfo( $table, $index, $fname = 'DatabaseOracle::indexExists' ) {
+	function indexInfo( $table, $index, $fname = __METHOD__ ) {
 		return false;
 	}
 
-	function indexUnique( $table, $index, $fname = 'DatabaseOracle::indexUnique' ) {
+	function indexUnique( $table, $index, $fname = __METHOD__ ) {
 		return false;
 	}
 
-	function insert( $table, $a, $fname = 'DatabaseOracle::insert', $options = array() ) {
+	function insert( $table, $a, $fname = __METHOD__, $options = array() ) {
 		if ( !count( $a ) ) {
 			return true;
 		}
@@ -624,7 +624,7 @@ class DatabaseOracle extends DatabaseBase {
 		oci_free_statement( $stmt );
 	}
 
-	function insertSelect( $destTable, $srcTable, $varMap, $conds, $fname = 'DatabaseOracle::insertSelect',
+	function insertSelect( $destTable, $srcTable, $varMap, $conds, $fname = __METHOD__,
 		$insertOptions = array(), $selectOptions = array() )
 	{
 		$destTable = $this->tableName( $destTable );
@@ -763,7 +763,7 @@ class DatabaseOracle extends DatabaseBase {
 		return $this->lastErrno() == 'OCI-00060';
 	}
 
-	function duplicateTableStructure( $oldName, $newName, $temporary = false, $fname = 'DatabaseOracle::duplicateTableStructure' ) {
+	function duplicateTableStructure( $oldName, $newName, $temporary = false, $fname = __METHOD__ ) {
 		$temporary = $temporary ? 'TRUE' : 'FALSE';
 
 		$newName = strtoupper( $newName );
@@ -776,7 +776,7 @@ class DatabaseOracle extends DatabaseBase {
 		return $this->doQuery( "BEGIN DUPLICATE_TABLE( '$tabName', '$oldPrefix', '$newPrefix', $temporary ); END;" );
 	}
 
-	function listTables( $prefix = null, $fname = 'DatabaseOracle::listTables' ) {
+	function listTables( $prefix = null, $fname = __METHOD__ ) {
 		$listWhere = '';
 		if ( !empty( $prefix ) ) {
 			$listWhere = ' AND table_name LIKE \'' . strtoupper( $prefix ) . '%\'';
@@ -800,7 +800,7 @@ class DatabaseOracle extends DatabaseBase {
 		return $endArray;
 	}
 
-	public function dropTable( $tableName, $fName = 'DatabaseOracle::dropTable' ) {
+	public function dropTable( $tableName, $fName = __METHOD__ ) {
 		$tableName = $this->tableName( $tableName );
 		if ( !$this->tableExists( $tableName ) ) {
 			return false;
@@ -857,7 +857,7 @@ class DatabaseOracle extends DatabaseBase {
 	 * Query whether a given index exists
 	 * @return bool
 	 */
-	function indexExists( $table, $index, $fname = 'DatabaseOracle::indexExists' ) {
+	function indexExists( $table, $index, $fname = __METHOD__ ) {
 		$table = $this->tableName( $table );
 		$table = strtoupper( $this->removeIdentifierQuotes( $table ) );
 		$index = strtoupper( $index );
@@ -961,12 +961,12 @@ class DatabaseOracle extends DatabaseBase {
 		return $this->fieldInfoMulti( $table, $field );
 	}
 
-	protected function doBegin( $fname = 'DatabaseOracle::begin' ) {
+	protected function doBegin( $fname = __METHOD__ ) {
 		$this->mTrxLevel = 1;
 		$this->doQuery( 'SET CONSTRAINTS ALL DEFERRED' );
 	}
 
-	protected function doCommit( $fname = 'DatabaseOracle::commit' ) {
+	protected function doCommit( $fname = __METHOD__ ) {
 		if ( $this->mTrxLevel ) {
 			$ret = oci_commit( $this->mConn );
 			if ( !$ret ) {
@@ -977,7 +977,7 @@ class DatabaseOracle extends DatabaseBase {
 		}
 	}
 
-	protected function doRollback( $fname = 'DatabaseOracle::rollback' ) {
+	protected function doRollback( $fname = __METHOD__ ) {
 		if ( $this->mTrxLevel ) {
 			oci_rollback( $this->mConn );
 			$this->mTrxLevel = 0;
@@ -987,7 +987,7 @@ class DatabaseOracle extends DatabaseBase {
 
 	/* defines must comply with ^define\s*([^\s=]*)\s*=\s?'\{\$([^\}]*)\}'; */
 	function sourceStream( $fp, $lineCallback = false, $resultCallback = false,
-		$fname = 'DatabaseOracle::sourceStream', $inputCallback = false ) {
+		$fname = __METHOD__, $inputCallback = false ) {
 		$cmd = '';
 		$done = false;
 		$dollarquote = false;
@@ -1139,7 +1139,7 @@ class DatabaseOracle extends DatabaseBase {
 		return $conds2;
 	}
 
-	function selectRow( $table, $vars, $conds, $fname = 'DatabaseOracle::selectRow', $options = array(), $join_conds = array() ) {
+	function selectRow( $table, $vars, $conds, $fname = __METHOD__, $options = array(), $join_conds = array() ) {
 		if ( is_array( $conds ) ) {
 			$conds = $this->wrapConditionsForWhere( $table, $conds );
 		}
@@ -1188,7 +1188,7 @@ class DatabaseOracle extends DatabaseBase {
 		return array( $startOpts, $useIndex, $preLimitTail, $postLimitTail );
 	}
 
-	public function delete( $table, $conds, $fname = 'DatabaseOracle::delete' ) {
+	public function delete( $table, $conds, $fname = __METHOD__ ) {
 		if ( is_array( $conds ) ) {
 			$conds = $this->wrapConditionsForWhere( $table, $conds );
 		}
@@ -1211,7 +1211,7 @@ class DatabaseOracle extends DatabaseBase {
 		return parent::delete( $table, $conds, $fname );
 	}
 
-	function update( $table, $values, $conds, $fname = 'DatabaseOracle::update', $options = array() ) {
+	function update( $table, $values, $conds, $fname = __METHOD__, $options = array() ) {
 		global $wgContLang;
 
 		$table = $this->tableName( $table );

@@ -158,7 +158,7 @@ interface DatabaseType {
 	 * @param string $fname Calling function name
 	 * @return Mixed: Database-specific index description class or false if the index does not exist
 	 */
-	function indexInfo( $table, $index, $fname = 'Database::indexInfo' );
+	function indexInfo( $table, $index, $fname = __METHOD__ );
 
 	/**
 	 * Get the number of rows affected by the last write query
@@ -870,7 +870,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @return boolean|ResultWrapper. true for a successful write query, ResultWrapper object
 	 *     for a successful read query, or false on failure if $tempIgnore set
 	 */
-	public function query( $sql, $fname = '', $tempIgnore = false ) {
+	public function query( $sql, $fname = __METHOD__, $tempIgnore = false ) {
 		$isMaster = !is_null( $this->getLBInfo( 'master' ) );
 		if ( !Profiler::instance()->isStub() ) {
 			# generalizeSQL will probably cut down the query to reasonable
@@ -1147,7 +1147,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 *
 	 * @return bool|mixed The value from the field, or false on failure.
 	 */
-	public function selectField( $table, $var, $cond = '', $fname = 'DatabaseBase::selectField',
+	public function selectField( $table, $var, $cond = '', $fname = __METHOD__,
 		$options = array()
 	) {
 		if ( !is_array( $options ) ) {
@@ -1438,7 +1438,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 *   DBQueryError exception will be thrown, except if the "ignore errors"
 	 *   option was set, in which case false will be returned.
 	 */
-	public function select( $table, $vars, $conds = '', $fname = 'DatabaseBase::select',
+	public function select( $table, $vars, $conds = '', $fname = __METHOD__,
 		$options = array(), $join_conds = array() ) {
 		$sql = $this->selectSQLText( $table, $vars, $conds, $fname, $options, $join_conds );
 
@@ -1461,7 +1461,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @return string SQL query string.
 	 * @see DatabaseBase::select()
 	 */
-	public function selectSQLText( $table, $vars, $conds = '', $fname = 'DatabaseBase::select',
+	public function selectSQLText( $table, $vars, $conds = '', $fname = __METHOD__,
 		$options = array(), $join_conds = array() )
 	{
 		if ( is_array( $vars ) ) {
@@ -1528,7 +1528,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 *
 	 * @return object|bool
 	 */
-	public function selectRow( $table, $vars, $conds, $fname = 'DatabaseBase::selectRow',
+	public function selectRow( $table, $vars, $conds, $fname = __METHOD__,
 		$options = array(), $join_conds = array() )
 	{
 		$options = (array)$options;
@@ -1569,7 +1569,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @return Integer: row count
 	 */
 	public function estimateRowCount( $table, $vars = '*', $conds = '',
-		$fname = 'DatabaseBase::estimateRowCount', $options = array() )
+		$fname = __METHOD__, $options = array() )
 	{
 		$rows = 0;
 		$res = $this->select( $table, array( 'rowcount' => 'COUNT(*)' ), $conds, $fname, $options );
@@ -1618,7 +1618,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @param string $fname calling function name (optional)
 	 * @return Boolean: whether $table has filed $field
 	 */
-	public function fieldExists( $table, $field, $fname = 'DatabaseBase::fieldExists' ) {
+	public function fieldExists( $table, $field, $fname = __METHOD__ ) {
 		$info = $this->fieldInfo( $table, $field );
 
 		return (bool)$info;
@@ -1635,7 +1635,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 *
 	 * @return bool|null
 	 */
-	public function indexExists( $table, $index, $fname = 'DatabaseBase::indexExists' ) {
+	public function indexExists( $table, $index, $fname = __METHOD__ ) {
 		if ( !$this->tableExists( $table ) ) {
 			return null;
 		}
@@ -1740,7 +1740,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 *
 	 * @return bool
 	 */
-	public function insert( $table, $a, $fname = 'DatabaseBase::insert', $options = array() ) {
+	public function insert( $table, $a, $fname = __METHOD__, $options = array() ) {
 		# No rows to insert, easy just return now
 		if ( !count( $a ) ) {
 			return true;
@@ -1839,7 +1839,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 *                   - LOW_PRIORITY: MySQL-specific, see MySQL manual.
 	 * @return Boolean
 	 */
-	function update( $table, $values, $conds, $fname = 'DatabaseBase::update', $options = array() ) {
+	function update( $table, $values, $conds, $fname = __METHOD__, $options = array() ) {
 		$table = $this->tableName( $table );
 		$opts = $this->makeUpdateOptions( $options );
 		$sql = "UPDATE $opts $table SET " . $this->makeList( $values, LIST_SET );
@@ -2456,7 +2456,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 *    a field name or an array of field names
 	 * @param string $fname Calling function name (use __METHOD__) for logs/profiling
 	 */
-	public function replace( $table, $uniqueIndexes, $rows, $fname = 'DatabaseBase::replace' ) {
+	public function replace( $table, $uniqueIndexes, $rows, $fname = __METHOD__ ) {
 		$quotedTable = $this->tableName( $table );
 
 		if ( count( $rows ) == 0 ) {
@@ -2559,7 +2559,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @throws DBUnexpectedError
 	 */
 	public function deleteJoin( $delTable, $joinTable, $delVar, $joinVar, $conds,
-		$fname = 'DatabaseBase::deleteJoin' )
+		$fname = __METHOD__ )
 	{
 		if ( !$conds ) {
 			throw new DBUnexpectedError( $this,
@@ -2625,7 +2625,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @throws DBUnexpectedError
 	 * @return bool|ResultWrapper
 	 */
-	public function delete( $table, $conds, $fname = 'DatabaseBase::delete' ) {
+	public function delete( $table, $conds, $fname = __METHOD__ ) {
 		if ( !$conds ) {
 			throw new DBUnexpectedError( $this, 'DatabaseBase::delete() called with no conditions' );
 		}
@@ -2667,7 +2667,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @return ResultWrapper
 	 */
 	public function insertSelect( $destTable, $srcTable, $varMap, $conds,
-		$fname = 'DatabaseBase::insertSelect',
+		$fname = __METHOD__,
 		$insertOptions = array(), $selectOptions = array() )
 	{
 		$destTable = $this->tableName( $destTable );
@@ -3064,7 +3064,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 *
 	 * @param $fname string
 	 */
-	final public function begin( $fname = 'DatabaseBase::begin' ) {
+	final public function begin( $fname = __METHOD__ ) {
 		global $wgDebugDBTransactions;
 
 		if ( $this->mTrxLevel ) { // implicit commit
@@ -3119,7 +3119,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 *        This will silently break any ongoing explicit transaction. Only set the flush flag if you are sure
 	 *        that it is safe to ignore these warnings in your context.
 	 */
-	final public function commit( $fname = 'DatabaseBase::commit', $flush = '' ) {
+	final public function commit( $fname = __METHOD__, $flush = '' ) {
 		if ( $flush != 'flush' ) {
 			if ( !$this->mTrxLevel ) {
 				wfWarn( "$fname: No transaction to commit, something got out of sync!" );
@@ -3160,7 +3160,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 *
 	 * @param $fname string
 	 */
-	final public function rollback( $fname = 'DatabaseBase::rollback' ) {
+	final public function rollback( $fname = __METHOD__ ) {
 		if ( !$this->mTrxLevel ) {
 			wfWarn( "$fname: No transaction to rollback, something got out of sync!" );
 		}
@@ -3198,7 +3198,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @return Boolean: true if operation was successful
 	 */
 	public function duplicateTableStructure( $oldName, $newName, $temporary = false,
-		$fname = 'DatabaseBase::duplicateTableStructure'
+		$fname = __METHOD__
 	) {
 		throw new MWException(
 			'DatabaseBase::duplicateTableStructure is not implemented in descendant class' );
@@ -3211,7 +3211,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @param string $fname calling function name
 	 * @throws MWException
 	 */
-	function listTables( $prefix = null, $fname = 'DatabaseBase::listTables' ) {
+	function listTables( $prefix = null, $fname = __METHOD__ ) {
 		throw new MWException( 'DatabaseBase::listTables is not implemented in descendant class' );
 	}
 
@@ -3435,7 +3435,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @return bool|string
 	 */
 	public function sourceStream( $fp, $lineCallback = false, $resultCallback = false,
-		$fname = 'DatabaseBase::sourceStream', $inputCallback = false )
+		$fname = __METHOD__, $inputCallback = false )
 	{
 		$cmd = '';
 
@@ -3674,7 +3674,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @return bool|ResultWrapper
 	 * @since 1.18
 	 */
-	public function dropTable( $tableName, $fName = 'DatabaseBase::dropTable' ) {
+	public function dropTable( $tableName, $fName = __METHOD__ ) {
 		if ( !$this->tableExists( $tableName, $fName ) ) {
 			return false;
 		}

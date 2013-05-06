@@ -482,7 +482,7 @@ class DatabasePostgres extends DatabaseBase {
 		parent::reportQueryError( $error, $errno, $sql, $fname, false );
 	}
 
-	function queryIgnore( $sql, $fname = 'DatabasePostgres::queryIgnore' ) {
+	function queryIgnore( $sql, $fname = __METHOD__ ) {
 		return $this->query( $sql, $fname, true );
 	}
 
@@ -610,7 +610,7 @@ class DatabasePostgres extends DatabaseBase {
 	 * Takes same arguments as Database::select()
 	 * @return int
 	 */
-	function estimateRowCount( $table, $vars = '*', $conds = '', $fname = 'DatabasePostgres::estimateRowCount', $options = array() ) {
+	function estimateRowCount( $table, $vars = '*', $conds = '', $fname = __METHOD__, $options = array() ) {
 		$options['EXPLAIN'] = true;
 		$res = $this->select( $table, $vars, $conds, $fname, $options );
 		$rows = -1;
@@ -629,7 +629,7 @@ class DatabasePostgres extends DatabaseBase {
 	 * If errors are explicitly ignored, returns NULL on failure
 	 * @return bool|null
 	 */
-	function indexInfo( $table, $index, $fname = 'DatabasePostgres::indexInfo' ) {
+	function indexInfo( $table, $index, $fname = __METHOD__ ) {
 		$sql = "SELECT indexname FROM pg_indexes WHERE tablename='$table'";
 		$res = $this->query( $sql, $fname );
 		if ( !$res ) {
@@ -705,7 +705,7 @@ __INDEXATTR__;
 		return $a;
 	}
 
-	function indexUnique( $table, $index, $fname = 'DatabasePostgres::indexUnique' ) {
+	function indexUnique( $table, $index, $fname = __METHOD__ ) {
 		$sql = "SELECT indexname FROM pg_indexes WHERE tablename='{$table}'" .
 			" AND indexdef LIKE 'CREATE UNIQUE%(" .
 			$this->strencode( $this->indexName( $index ) ) .
@@ -733,7 +733,7 @@ __INDEXATTR__;
 	 *
 	 * @return bool Success of insert operation. IGNORE always returns true.
 	 */
-	function insert( $table, $args, $fname = 'DatabasePostgres::insert', $options = array() ) {
+	function insert( $table, $args, $fname = __METHOD__, $options = array() ) {
 		if ( !count( $args ) ) {
 			return true;
 		}
@@ -850,7 +850,7 @@ __INDEXATTR__;
 	 * @todo FIXME: Implement this a little better (seperate select/insert)?
 	 * @return bool
 	 */
-	function insertSelect( $destTable, $srcTable, $varMap, $conds, $fname = 'DatabasePostgres::insertSelect',
+	function insertSelect( $destTable, $srcTable, $varMap, $conds, $fname = __METHOD__,
 		$insertOptions = array(), $selectOptions = array() )
 	{
 		$destTable = $this->tableName( $destTable );
@@ -979,13 +979,13 @@ __INDEXATTR__;
 		return $this->lastErrno() == '40P01';
 	}
 
-	function duplicateTableStructure( $oldName, $newName, $temporary = false, $fname = 'DatabasePostgres::duplicateTableStructure' ) {
+	function duplicateTableStructure( $oldName, $newName, $temporary = false, $fname = __METHOD__ ) {
 		$newName = $this->addIdentifierQuotes( $newName );
 		$oldName = $this->addIdentifierQuotes( $oldName );
 		return $this->query( 'CREATE ' . ( $temporary ? 'TEMPORARY ' : '' ) . " TABLE $newName (LIKE $oldName INCLUDING DEFAULTS)", $fname );
 	}
 
-	function listTables( $prefix = null, $fname = 'DatabasePostgres::listTables' ) {
+	function listTables( $prefix = null, $fname = __METHOD__ ) {
 		$eschema = $this->addQuotes( $this->getCoreSchema() );
 		$result = $this->query( "SELECT tablename FROM pg_tables WHERE schemaname = $eschema", $fname );
 		$endArray = array();
