@@ -50,7 +50,7 @@
 	// of MediaWiki has actually been configured with the required url to that inject.js
 	// script. By default it is false.
 	if ( QUnit.urlParams.swarmURL && mw.config.get( 'QUnitTestSwarmInjectJSPath' ) ) {
-		document.write( '<scr' + 'ipt src="' + QUnit.fixurl( mw.config.get( 'QUnitTestSwarmInjectJSPath' ) ) + '"></scr' + 'ipt>' );
+		jQuery.getScript( QUnit.fixurl( mw.config.get( 'QUnitTestSwarmInjectJSPath' ) ) );
 	}
 
 	/**
