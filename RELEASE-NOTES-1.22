@@ -102,6 +102,10 @@ production.
   stored in the database.
 * (bug 47219) Allow specifying change type of Wikipedia feed items
 * prop=imageinfo now allows setting iiurlheight without setting iiurlwidth
+* (bug 48129) list=blocks&bkip= now correctly handles IPv6 CIDR ranges and
+  honors $wgBlockCIDRLimit. Note any clients passing invalid values to bkip
+  will now receive an error, rather than the previous behavior listing all
+  user blocks.
 
 === Languages updated in 1.22===
 
