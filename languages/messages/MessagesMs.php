@@ -2128,6 +2128,15 @@ Memerlukan sekurang-kurangnya satu domain peringkat tinggi, cth. "*.org".<br />
 'listusers-noresult' => 'Tiada pengguna dijumpai.',
 'listusers-blocked' => '(disekat)',
 
+# Special:ActiveUsers
+'activeusers' => 'Senarai pengguna aktif',
+'activeusers-intro' => 'Yang berikut ialah senarai pengguna yang bergiat sejak {{PLURAL:$1|semalam|$1 hari lalu}}.',
+'activeusers-count' => '$1 tindakan sejak {{PLURAL:$3|semalam|$3 hari lalu}}',
+'activeusers-from' => 'Tunjukkan pengguna bermula pada:',
+'activeusers-hidebots' => 'Sorokkan bot',
+'activeusers-hidesysops' => 'Sorokkan pentadbir',
+'activeusers-noresult' => 'Tiada pengguna dijumpai.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Hak kumpulan pengguna',
 'listgrouprights-summary' => 'Yang berikut ialah senarai kumpulan pengguna yang ditubuhkan di wiki ini dengan hak-hak masing-masing.

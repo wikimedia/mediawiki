@@ -1992,6 +1992,15 @@ Maybe you want to edit the description on its [$2 file description page] there.'
 'listusers-noresult' => 'কোন ব্যবহারকারী খুঁজে পাওয়া যায়নি।',
 'listusers-blocked' => '(ব্লককৃত)',
 
+# Special:ActiveUsers
+'activeusers' => 'সক্রিয় ব্যবহারকারী তালিকা',
+'activeusers-intro' => 'এটি ব্যবহারকারী তালিকা যাদের $1 {{PLURAL:$1|দিনে|দিনে}} যেকোন কর্মকান্ড রয়েছে।',
+'activeusers-count' => 'গত {{PLURAL:$3|দিনে|$3 দিনে}} সর্বমোট {{PLURAL:$1|কর্মকাণ্ডের}} সংখ্যা $1',
+'activeusers-from' => 'ব্যবহারকারী দেখাও যাদের নাম এই অক্ষর দিয়ে শুরু:',
+'activeusers-hidebots' => 'বট লুকাও',
+'activeusers-hidesysops' => 'প্রশাসক লুকাও',
+'activeusers-noresult' => 'কোনো ব্যবহারকারী পাওয়া যায়নি।',
+
 # Special:ListGroupRights
 'listgrouprights' => 'দলগত ব্যবহারকারী অধিকার',
 'listgrouprights-summary' => 'এই উইকির ব্যবহারকারীদের একটি গ্রুপগুলোর তালিকা দেখানো হচ্ছে, সাথে গ্রুপের কার্যপরিধিও উল্লেখ করা হয়েছে।

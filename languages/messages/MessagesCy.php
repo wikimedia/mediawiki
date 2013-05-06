@@ -2060,6 +2060,15 @@ Mae angen parth lefel-uchaf o leiaf, er enghraifft "*.org".<br />
 'listusers-noresult' => "Dim defnyddiwr i'w gael.",
 'listusers-blocked' => '(wedi ei flocio)',
 
+# Special:ActiveUsers
+'activeusers' => 'Rhestr defnyddwyr gweithgar',
+'activeusers-intro' => 'Dyma restr y defnyddwyr a fuont yn weithgar o fewn y {{PLURAL:$1|diwrnod|diwrnod|deuddydd|tridiau|$1 diwrnod|$1 diwrnod}} diwethaf.',
+'activeusers-count' => '$1 {{PLURAL:$1|golygiad|golygiad|olygiad|golygiad}} yn ystod y {{PLURAL:$3|diwrnod|diwrnod|deuddydd|tridiau|$3 diwrnod}} diwethaf',
+'activeusers-from' => "Rhestru'r defnyddwyr gan ddechrau gyda:",
+'activeusers-hidebots' => 'Cuddio botiau',
+'activeusers-hidesysops' => 'Cuddio gweinyddwyr',
+'activeusers-noresult' => "Dim defnyddwyr i'w cael.",
+
 # Special:ListGroupRights
 'listgrouprights' => 'Galluoedd grwpiau defnyddwyr',
 'listgrouprights-summary' => "Dyma restr o'r grwpiau defnyddwyr sydd i'w cael ar y wici hon, ynghyd â galluoedd aelodau'r gwahanol grwpiau. Cewch wybodaeth pellach am y gwahanol alluoedd ar y [[{{MediaWiki:Listgrouprights-helppage}}|dudalen gymorth]].",

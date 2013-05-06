@@ -503,6 +503,7 @@ $1',
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main' => 'Яззам',
 'nstab-user' => 'Декъашхо',
+'nstab-media' => 'Медиа агӀо',
 'nstab-special' => 'Белха агlо',
 'nstab-project' => 'Кхолламех',
 'nstab-image' => 'Файл',
@@ -532,15 +533,25 @@ $1',
 'badtitle' => 'Цамегаш йолу цlе',
 'badtitletext' => 'Дехарца йолу агlонан цlе нийса яц, йаьсса ю, хила мега нийса ца хlоттийна меттаюкъар йа юкъарвики цlе. Хила мега, цlарца цамагош йолу саберг.',
 'viewsource' => 'Хьажар',
-'protectedpagetext' => 'Хlара агlо дlакъойлина йу рé цадаккхийта.',
+'protectedpagetext' => 'ХӀара агӀо дӀакъойлина йу рé цадаккхийта.',
 'viewsourcetext' => 'Хьоьга далундерг хьажар а дезахь хlокху агlон чура йоза хьаэцар:',
-'protectedinterface' => 'Хlара схьгайтарна гlирса хаамаш латтош йолу агlо йу. Гlуо лелачаьрга гал ца яккхийта, оцун хийцам ба магийна дац.',
+'protectedinterface' => 'ХӀара схьгайтарна гӀирса хаамаш латтош йолу агӀо йу. ГӀуо лелачаьрга гал ца яккхийта, оцун хийцам ба магийна дац.',
+'exception-nologin' => 'Ахьа хӀой вовзийтина вац',
 
 # Login and logout pages
+'welcomeuser' => 'Марша ДогӀийла, $1!',
 'yourname' => 'Декъашхон цlе:',
+'userlogin-yourname' => 'Декъашхон цӀе',
+'userlogin-yourname-ph' => 'Язъе декъашхон цӀе',
 'yourpassword' => 'Ишар:',
+'userlogin-yourpassword' => 'Ишар',
+'userlogin-yourpassword-ph' => 'Язъе ишар',
+'createacct-yourpassword-ph' => 'Язъе ишар',
 'yourpasswordagain' => 'Юха язъйе ишар:',
+'createacct-yourpasswordagain' => 'Бакъе ишар',
+'createacct-yourpasswordagain-ph' => 'Кхин цкъа язъе ишар',
 'remembermypassword' => 'Даглаца сан дlавазвалар хlокху гlулкхдечу гlирса тlяхь (цхьан $1 {{PLURAL:$1|ден|динахь|динахь}})',
+'userlogin-remembermypassword' => 'Дагахь латт ве со',
 'yourdomainname' => 'Хьан машан меттиг:',
 'login' => 'Вовзийта хьой гlирсан',
 'nav-login-createaccount' => 'Вовзийта хьой / дlавазло',
@@ -1061,6 +1072,10 @@ PICT # тайп тайпан
 
 # Special:ListUsers
 'listusers-submit' => 'Гайта',
+
+# Special:ActiveUsers
+'activeusers' => 'Жигар декъашхой могlам',
+'activeusers-from' => 'ТӀера волавелла декъашхой гайта',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Декъашхойн тобанаши бакъонаш',

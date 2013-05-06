@@ -2271,6 +2271,15 @@ Wymaga podania co najmniej domeny najwyższego poziomu np. „*.org”.<br />
 'listusers-noresult' => 'Nie znaleziono żadnego użytkownika.',
 'listusers-blocked' => '({{GENDER:$1|zablokowany|zablokowana|zablokowany}})',
 
+# Special:ActiveUsers
+'activeusers' => 'Lista aktywnych użytkowników',
+'activeusers-intro' => 'Poniżej znajduje się lista użytkowników, którzy byli aktywni w ciągu {{PLURAL:$1|ostatniego dnia|ostatnich $1 dni}}.',
+'activeusers-count' => 'w ciągu {{PLURAL:$3|ostatniego dnia|ostatnich $3 dni}} {{GENDER:$2|wykonał|wykonała|wykonał}} $1 {{PLURAL:$1|edycję|edycje|edycji}}',
+'activeusers-from' => 'Pokaż użytkowników zaczynając od',
+'activeusers-hidebots' => 'Ukryj boty',
+'activeusers-hidesysops' => 'Ukryj administratorów',
+'activeusers-noresult' => 'Nie odnaleziono żadnego użytkownika.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Uprawnienia grup użytkowników',
 'listgrouprights-summary' => 'Poniżej znajduje się spis zdefiniowanych na tej wiki grup użytkowników, z wyszczególnieniem przydzielonych im uprawnień.

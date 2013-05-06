@@ -1432,6 +1432,13 @@ Vide etiam [[Special:WantedCategories|categorias desideratas]].',
 'listusers-noresult' => 'Nullus usor inventus.',
 'listusers-blocked' => '(obstructus)',
 
+# Special:ActiveUsers
+'activeusers' => 'Index usorum activorum',
+'activeusers-count' => '{{PLURAL:$1|una recensio recens|$1 recensiones recentes}} {{PLURAL:$3|die proximo|in diebus $3 proximis}}',
+'activeusers-hidebots' => 'Celare automata',
+'activeusers-hidesysops' => 'Celare magistratus',
+'activeusers-noresult' => 'Nullus usor inventus.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Gregum usorum potestates',
 'listgrouprights-group' => 'Grex',

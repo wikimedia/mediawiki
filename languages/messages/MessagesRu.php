@@ -2381,6 +2381,15 @@ $1',
 'listusers-noresult' => 'Не найдено участников.',
 'listusers-blocked' => '(заблокирован{{GENDER:$1||а}})',
 
+# Special:ActiveUsers
+'activeusers' => 'Список активных участников',
+'activeusers-intro' => 'Это список участников, совершавших какие-либо действия за {{PLURAL:$1|последний $1 день|последние $1 дня|последние $1 дней}}.',
+'activeusers-count' => '$1 {{PLURAL:$1|правка|правки|правок}} за {{PLURAL:$3|$3 последний день|последние $3 дня|последние $3 дней}}',
+'activeusers-from' => 'Показать участников, начиная с:',
+'activeusers-hidebots' => 'Скрыть ботов',
+'activeusers-hidesysops' => 'Скрыть администраторов',
+'activeusers-noresult' => 'Не найдено участников.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Права групп участников',
 'listgrouprights-summary' => 'Ниже представлен список определённых в этой вики групп участников, указаны соответствующие им права доступа.

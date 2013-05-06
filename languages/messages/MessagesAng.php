@@ -832,6 +832,9 @@ Gif se brūcend asifte hine. synderlīce sind ymelan geīwda þǣre þe se brūc
 # Special:ListUsers
 'listusers-noresult' => 'Nān brūcend wæs gefunden.',
 
+# Special:ActiveUsers
+'activeusers' => 'Hƿata brūcenda ȝetalu',
+
 # Special:ListGroupRights
 'listgrouprights-group' => 'Hēap',
 'listgrouprights-rights' => 'Riht',

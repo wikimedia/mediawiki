@@ -793,6 +793,12 @@ $messages = array(
 'listusers-submit' => 'ончыкташ',
 'listusers-blocked' => '(йӧн петырыме)',
 
+# Special:ActiveUsers
+'activeusers' => 'Чӱчкыдын пайдаланыше-влак',
+'activeusers-count' => 'Пытартыш $3 {{PLURAL:$3|кечыште|кечылаште}} $1 {{PLURAL:$1|тӧрлатымаш|тӧрлатымаш-влак}}',
+'activeusers-hidebots' => 'Бот-влакым шылташ',
+'activeusers-hidesysops' => 'Сайтвиктарыше-влакым шылташ',
+
 # Special:ListGroupRights
 'listgrouprights-members' => '(тӱшкаште улшо-влак)',
 

@@ -712,7 +712,7 @@ Non dimenticare di personalizzare le [[Special:Preferences|preferenze di {{SITEN
 'createacct-yourpasswordagain' => 'Conferma password',
 'createacct-yourpasswordagain-ph' => 'Inserisci nuovamente la password',
 'remembermypassword' => 'Ricorda la password su questo browser (per un massimo di $1 {{PLURAL:$1|giorno|giorni}})',
-'userlogin-remembermypassword' => 'Ricordami',
+'userlogin-remembermypassword' => 'Mantienimi collegato',
 'userlogin-signwithsecure' => 'Accedi con il server sicuro',
 'securelogin-stick-https' => 'Resta connesso attraverso HTTPS dopo il login',
 'yourdomainname' => 'Specificare il dominio',
@@ -2222,6 +2222,15 @@ Vedi anche le [[Special:WantedCategories|categorie richieste]].',
 'listusers-submit' => 'Mostra',
 'listusers-noresult' => 'Nessun utente risponde ai criteri impostati.',
 'listusers-blocked' => '(bloccato)',
+
+# Special:ActiveUsers
+'activeusers' => 'Elenco degli utenti attivi',
+'activeusers-intro' => 'Questo è un elenco di utenti che hanno avuto qualche tipo di attività da $1 {{PLURAL:$1|giorno|giorni}} a questa parte.',
+'activeusers-count' => "$1 {{PLURAL:$1|azione|azioni}} {{PLURAL:$3|nell'ultimo giorno|negli ultimi $3 giorni}}",
+'activeusers-from' => 'Mostra gli utenti a partire da:',
+'activeusers-hidebots' => 'Nascondi i bot',
+'activeusers-hidesysops' => 'Nascondi gli amministratori',
+'activeusers-noresult' => 'Nessun utente risponde ai criteri impostati.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Diritti del gruppo utente',

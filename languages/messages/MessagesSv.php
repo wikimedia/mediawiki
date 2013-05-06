@@ -2291,6 +2291,15 @@ Det krävs åtminstone en toppdomän, t.ex. "*.org".<br />
 'listusers-noresult' => 'Ingen användare hittades.',
 'listusers-blocked' => '(blockerad)',
 
+# Special:ActiveUsers
+'activeusers' => 'Lista över aktiva användare',
+'activeusers-intro' => 'Detta är en lista på användare som har haft någon form av aktivitet inom de senaste $1 {{PLURAL:$1|dygnet|dygnen}}.',
+'activeusers-count' => '$1 {{PLURAL:$1|handling|handlingar}} {{PLURAL:$3|det senaste dygnet|de senaste $3 dygnen}}',
+'activeusers-from' => 'Visa användare från och med:',
+'activeusers-hidebots' => 'Göm botar',
+'activeusers-hidesysops' => 'Dölj administratörer',
+'activeusers-noresult' => 'Inga användare funna.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Behörigheter för användargrupper',
 'listgrouprights-summary' => 'Följande lista visar vilka användargrupper som är definierade på den här wikin och vilka behörigheter grupperna har.

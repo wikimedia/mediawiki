@@ -1820,6 +1820,11 @@ Sí eisini [[Special:WantedCategories|ynsktir bólkar]].',
 'listusers-submit' => 'Sýna',
 'listusers-noresult' => 'Ongin brúkari var funnin.',
 
+# Special:ActiveUsers
+'activeusers-hidebots' => 'Fjal bottar',
+'activeusers-hidesysops' => 'Fjal umboðsstjórar (administratorar)',
+'activeusers-noresult' => 'Ongir brúkarar funnir.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Brúkara bólka rættindi',
 'listgrouprights-summary' => 'Henda síða vísir ein lista av brúkarabólkum, sum eru útgreinaðir á hesi wiki og rættindini hjá teimum einstøku bólkunum.

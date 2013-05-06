@@ -2131,6 +2131,15 @@ Es necessita com a mínim un domini de primer nivell, per exemple "*.org".<br />
 'listusers-noresult' => "No s'han trobat coincidències de noms d'usuaris. Si us plau, busqueu també amb variacions per majúscules i minúscules.",
 'listusers-blocked' => '({{GENDER:$1|blocat|blocada}})',
 
+# Special:ActiveUsers
+'activeusers' => "Llista d'usuaris actius",
+'activeusers-intro' => "Aquí hi ha una llista d'usuaris que han tingut algun tipus d'activitat en {{PLURAL:$1|el darrer dia|els darrers $1 dies}}.",
+'activeusers-count' => '$1 {{PLURAL:$1|modificació|modificacions}} en {{PLURAL:$3|el darrer dia|els $3 darrers dies}}',
+'activeusers-from' => 'Mostra els usuaris començant per:',
+'activeusers-hidebots' => 'Amaga bots',
+'activeusers-hidesysops' => 'Amaga administradors',
+'activeusers-noresult' => "No s'han trobat usuaris.",
+
 # Special:ListGroupRights
 'listgrouprights' => "Drets dels grups d'usuaris",
 'listgrouprights-summary' => "A continuació hi ha una llista dels grups d'usuaris definits en aquest wiki, així com dels seus drets d'accés associats.

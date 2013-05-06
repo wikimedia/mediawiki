@@ -2059,6 +2059,15 @@ Onne abbesogne almene de \'nu dominie de levèlle ierte, pe esembie "*.org". <br
 'listusers-noresult' => 'Nisciune utende acchiete.',
 'listusers-blocked' => '(bloccate)',
 
+# Special:ActiveUsers
+'activeusers' => "Liste de l'utinde attive",
+'activeusers-intro' => "Queste jè 'n'elenghe de utinde ca avene fatte certe tipe de attività fine a l'urteme $1 {{PLURAL:$1|sciurne|sciurne}}.",
+'activeusers-count' => "$1 {{PLURAL:$1|cangiamende|cangiaminde}} jndr'à l'urteme {{PLURAL:$3|sciurne}}",
+'activeusers-from' => "Fà vedè l'utinde partenne da:",
+'activeusers-hidebots' => 'Scunne le bot',
+'activeusers-hidesysops' => 'Scunne le amministrature',
+'activeusers-noresult' => 'Nisciune utende acchiate.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Deritte de le gruppe utinde',
 'listgrouprights-summary' => "'A liste ca ste vide ète 'na liste de le gruppe utinde ccreiate sus a sta Uicchi, cu le lore deritte d'accesse associate.

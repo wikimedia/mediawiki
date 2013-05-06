@@ -2274,6 +2274,15 @@ $1',
 'listusers-noresult' => 'Δεν βρέθηκε χρήστης.',
 'listusers-blocked' => '(υπό φραγή)',
 
+# Special:ActiveUsers
+'activeusers' => 'Κατάλογος ενεργών χρηστών',
+'activeusers-intro' => 'Αυτή είναι μια λίστα από χρήστες που είχαν κάποιου είδους δραστηριότητα {{PLURAL:$1|την τελευταία $1 μέρα|τις τελευταίες $1 μέρες}}.',
+'activeusers-count' => '$1 {{PLURAL:$1|ενέργεια|ενέργειες}} {{PLURAL:$3|την τελευταία μέρα|τις τελευταίες $3 μέρες}}',
+'activeusers-from' => 'Προβολή χρηστών ξεκινώντας από:',
+'activeusers-hidebots' => 'Απόκρυψη bots',
+'activeusers-hidesysops' => 'Απόκρυψη διαχειριστών',
+'activeusers-noresult' => 'Δεν βρέθηκε χρήστης.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Δικαιώματα ομάδων χρηστών',
 'listgrouprights-summary' => 'Ακόλουθεί μία λίστα με τις ομάδες χρηστών σε αυτό το wiki καθώς και με τα δικαιώματα πρόσβασης αυτών.

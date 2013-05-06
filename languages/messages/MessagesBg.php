@@ -2082,6 +2082,15 @@ $1',
 'listusers-noresult' => 'Няма намерени потребители.',
 'listusers-blocked' => '(блокиран)',
 
+# Special:ActiveUsers
+'activeusers' => 'Списък на активните потребители',
+'activeusers-intro' => 'Това е списък на потребителите, които са демонстрирали някаква активност през {{PLURAL:$1|последния|последните}} $1 {{PLURAL:$1|ден|дни}}.',
+'activeusers-count' => '$1 {{PLURAL:$1|действие|действия}} за {{PLURAL:$3|последния ден|последните $3 дни}}',
+'activeusers-from' => 'Показване на потребителите, започвайки от:',
+'activeusers-hidebots' => 'Скриване на ботовете',
+'activeusers-hidesysops' => 'Скриване на администраторите',
+'activeusers-noresult' => 'Няма намерени потребители.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Права по потребителски групи',
 'listgrouprights-summary' => 'По-долу на тази страница е показан списък на групите потребители в това уики с асоциираните им права за достъп. Допълнителна информация за отделните права може да бъде намерена [[{{MediaWiki:Listgrouprights-helppage}}|тук]].',

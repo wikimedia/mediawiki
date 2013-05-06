@@ -2367,6 +2367,15 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'listusers-noresult' => '해당 사용자가 없습니다.',
 'listusers-blocked' => '(차단됨)',
 
+# Special:ActiveUsers
+'activeusers' => '활동적인 사용자 목록',
+'activeusers-intro' => '다음은 최근 $1{{PLURAL:$1|일}} 동안 활동한 사용자의 목록입니다.',
+'activeusers-count' => '최근 {{PLURAL:$3|$3일}} 사이의 {{PLURAL:$1|활동}} $1회',
+'activeusers-from' => '다음으로 시작하는 사용자를 보기:',
+'activeusers-hidebots' => '봇을 숨기기',
+'activeusers-hidesysops' => '관리자를 숨기기',
+'activeusers-noresult' => '사용자가 없습니다.',
+
 # Special:ListGroupRights
 'listgrouprights' => '사용자 권한 목록',
 'listgrouprights-summary' => '다음은 이 위키에 있는 사용자 권한 그룹의 목록입니다.

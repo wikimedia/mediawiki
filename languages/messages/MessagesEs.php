@@ -44,6 +44,7 @@
  * @author Fortega
  * @author Gustronico
  * @author Gwickwire
+ * @author Hahc21
  * @author Hazard-SJ
  * @author Hercule
  * @author Icvav
@@ -2344,6 +2345,15 @@ Es necesario, por lo menos, un dominio de alto nivel, por ejemplo "*.org".<br />
 'listusers-noresult' => 'No se encontró al usuario.',
 'listusers-blocked' => '({{GENDER:$1|bloqueado|bloqueada}})',
 
+# Special:ActiveUsers
+'activeusers' => 'Lista de usuarios activos',
+'activeusers-intro' => 'Esta es una lista de usuarios que han tenido alguna actividad en los últimos $1 {{PLURAL:$1|día|días}}.',
+'activeusers-count' => '$1 {{PLURAL:$1|acción|acciones}} en los últimos {{PLURAL:$3|día|$3 días}}',
+'activeusers-from' => 'Mostrando a los usuarios empezando por:',
+'activeusers-hidebots' => 'Ocultar robots',
+'activeusers-hidesysops' => 'Ocultar administradores',
+'activeusers-noresult' => 'No se encontraron usuarios.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Permisos del grupo de usuarios',
 'listgrouprights-summary' => 'La siguiente es una lista de los grupos de usuario definidos en esta wiki y de sus privilegios de acceso asociados.
@@ -4072,12 +4082,12 @@ Este sitio está experimentando dificultades técnicas.',
 'logentry-delete-event' => '$1 {{GENDER:$2|modificó}} la visibilidad de {{PLURAL:$5|un evento|$5 eventos}} del registro en $3: $4',
 'logentry-delete-revision' => '$1 modificó la visibilidad de {{PLURAL:$5|una edición|$5 ediciones}} en la página $3: $4',
 'logentry-delete-event-legacy' => '$1 modificó la visibilidad de los eventos del registro en $3',
-'logentry-delete-revision-legacy' => '$1 modificó la visibilidad de las ediciones en la página $3',
+'logentry-delete-revision-legacy' => '$1 modificó la visibilidad de varias ediciones en la página $3',
 'logentry-suppress-delete' => '$1 {{GENDER:$2|borró}}, con restricciones para administradores aplicadas, la página $3',
 'logentry-suppress-event' => '$1 modificó secretamente la visibilidad de {{PLURAL:$5|un evento del registro|$5 eventos del registro}} en $3: $4',
 'logentry-suppress-revision' => '$1 modificó secretamente la visibilidad de {{PLURAL:$5|una edición|$5 ediciones}} en la página $3: $4',
 'logentry-suppress-event-legacy' => '$1 modificó secretamente la visibilidad de los eventos del registro en $3',
-'logentry-suppress-revision-legacy' => '$1 modificó secretamente la visibilidad de las ediciones en la página $3',
+'logentry-suppress-revision-legacy' => '$1 modificó secretamente la visibilidad de varias ediciones en la página $3',
 'revdelete-content-hid' => 'contenido ocultado',
 'revdelete-summary-hid' => 'resumen de edición oculto',
 'revdelete-uname-hid' => 'nombre de usuario ocultado',
@@ -4089,16 +4099,16 @@ Este sitio está experimentando dificultades técnicas.',
 'logentry-move-move' => '$1 movió la página $3 a $4',
 'logentry-move-move-noredirect' => '$1 movió la página $3 a $4 sin dejar una redirección',
 'logentry-move-move_redir' => '$1 movió la página $3 a $4 sobre una redirección',
-'logentry-move-move_redir-noredirect' => '$1 movió la página $3 a $4 sobre una redirección, sin dejar redirección',
-'logentry-patrol-patrol' => '$1 marcó la edición $4 de la página $3 como patrullada',
+'logentry-move-move_redir-noredirect' => '$1 movió la página $3 a $4 sobre una redirección y sin dejar una redirección',
+'logentry-patrol-patrol' => '$1 marcó como patrullada la edición $4 de la página $3',
 'logentry-patrol-patrol-auto' => '$1 marcó automáticamente la edición $4 de la página $3 como patrullada',
-'logentry-newusers-newusers' => 'Se ha creado la cuenta de usuario $1',
-'logentry-newusers-create' => 'Se ha creado la cuenta de usuario $1',
-'logentry-newusers-create2' => '$1 ha creado la cuenta de usuario $3',
-'logentry-newusers-byemail' => '$1 creó la cuenta de usuario $3 y la contraseña se envió por correo electrónico',
+'logentry-newusers-newusers' => 'La cuenta de usuario $1 ha sido creada',
+'logentry-newusers-create' => 'La cuenta de usuario $1 ha sido creada',
+'logentry-newusers-create2' => 'La cuenta de usuario $3 ha sido creada por $1',
+'logentry-newusers-byemail' => 'la cuenta de usuario $3 ha sido creada por $1 y la contraseña ha sido enviada por correo',
 'logentry-newusers-autocreate' => 'La cuenta $1 fue creada automáticamente',
 'logentry-rights-rights' => '$1 modificó los grupos a los que pertenece $3: de $4 a $5',
-'logentry-rights-rights-legacy' => '$1 ha cambiado la pertenencia a grupos de $3',
+'logentry-rights-rights-legacy' => '$1 modificó los grupos a los que pertenece $3',
 'logentry-rights-autopromote' => '$1 ha sido {{GENDER:$2|promocionado|promocionada}} automáticamente de $4 a $5',
 'rightsnone' => '(ninguno)',
 

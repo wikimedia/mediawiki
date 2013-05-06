@@ -1983,6 +1983,15 @@ Dovra almain ina top-level domain, per exempel "*.org".<br />
 'listusers-noresult' => 'Betg chattà in utilisader.',
 'listusers-blocked' => '(bloccà)',
 
+# Special:ActiveUsers
+'activeusers' => 'Glista dals utilisaders activs',
+'activeusers-intro' => "Quai è ina glista dals utilisaders che han gì activitads {{PLURAL:$1|l'ultim di|en ils ultims $1 dis}}.",
+'activeusers-count' => "$1 {{PLURAL:$1|modificaziun|modificaziuns}} {{PLURAL:$3|l'ultim di|ils ultims $3 dis}}",
+'activeusers-from' => 'Mussar utilisaders davent da:',
+'activeusers-hidebots' => 'Zuppentar bots',
+'activeusers-hidesysops' => 'Zuppentar administraturs',
+'activeusers-noresult' => 'Chattà nagins utilisaders.',
+
 # Special:ListGroupRights
 'listgrouprights' => "Dretgs da las gruppas d'utilisaders",
 'listgrouprights-summary' => "Sutvart vegn mussada ina glista da las gruppas d'utilisaders sin questa wiki cun ils dretgs d'access associads.
@@ -2311,7 +2320,7 @@ $1',
 'blanknamespace' => '(principal)',
 
 # Contributions
-'contributions' => "Contribuziuns {{GENDER:$1|dal utilisader|da l'utilisadra}}",
+'contributions' => "Contribuziuns {{GENDER:$1|da l'utilisader|da l'utilisadra}}",
 'contributions-title' => "Contribuziuns d'utilisader da $1",
 'mycontris' => 'Contribuziuns',
 'contribsub2' => 'Per $1 ($2)',
@@ -3570,15 +3579,6 @@ Ti duessas avair retschavì [{{SERVER}}{{SCRIPTPATH}}/COPYING ina copia da la GN
 'version-entrypoints' => "URLs dals puncts d'entrada",
 'version-entrypoints-header-entrypoint' => "Punct d'entrada",
 'version-entrypoints-header-url' => 'URL',
-
-# Special:FilePath
-'filepath' => 'Percurs da la datoteca',
-'filepath-page' => 'Datoteca:',
-'filepath-submit' => 'Dai',
-'filepath-summary' => 'Questa pagina speciala inditgescha l\'adressa cumpletta per ina datoteca. 
-Maletgs vegnan mussads en resoluziun cumpletta, auters tips da datoteca vegnan averts directamain cun lur program assozià. 
-
-Endatescha il num da datoteca senza il prefix "{{ns:file}}:".',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Tschertgar datotecas dublas',

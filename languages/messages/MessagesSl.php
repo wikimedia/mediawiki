@@ -2191,6 +2191,15 @@ Zahtevana je vsaj najvišja domena, na primer »*.org«.<br />
 'listusers-noresult' => 'Ni najdenih uporabnikov.',
 'listusers-blocked' => '(blokiran)',
 
+# Special:ActiveUsers
+'activeusers' => 'Seznam aktivnih uporabnikov',
+'activeusers-intro' => 'Seznam uporabnikov, ki so bili kakor koli aktivni v {{PLURAL:$1|zadnjem $1 dnevu|zadnjih $1 dneh}}.',
+'activeusers-count' => '$1 {{PLURAL:$1|dejanje|dejanji|dejanja|dejanj}} v {{PLURAL:$3|preteklem dnevu|preteklih $3 dneh}}',
+'activeusers-from' => 'Prikaži uporabnike začenši z:',
+'activeusers-hidebots' => 'Skrij bote',
+'activeusers-hidesysops' => 'Skrij administratorje',
+'activeusers-noresult' => 'Noben uporabnik ni bil najden.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Pravice uporabniških skupin',
 'listgrouprights-summary' => 'Tu je na razpolago seznam uporabniških skupin na tem wikiju z navedbo dodeljenih pravic dostopa.

@@ -2089,6 +2089,15 @@ $1",
 'listusers-noresult' => 'קיין באניצער נישט געטראפֿן.',
 'listusers-blocked' => '(בלאקירט)',
 
+# Special:ActiveUsers
+'activeusers' => 'ליסטע פֿון אַקטיווע באַניצער',
+'activeusers-intro' => 'דאָס איז א ליסטע פֿון באַניצער וואָס זענען געווען אַקטיוו אינערהאָלב  $1 {{PLURAL:$1|דעם לעצטן טאָג|די לעצטע $1 טעג}}.',
+'activeusers-count' => '$1 {{PLURAL:$1|פעולה|פעולות}} אין  {{PLURAL:$3|דעם לעצטן טאָג|די לעצטע $3 טעג}}',
+'activeusers-from' => 'ווײַזן באַניצער אָנהייבנדיג פון:',
+'activeusers-hidebots' => 'באַהאַלטן באטן',
+'activeusers-hidesysops' => 'באַהאַלטן סיסאפן',
+'activeusers-noresult' => 'קיין באניצער נישט געטראפֿן.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'באַניצער גרופע רעכטן',
 'listgrouprights-summary' => "פֿאלגנד איז א רשימה פֿון באַניצער גרופעס דעפֿינירט אויף דער דאָזיקער וויקי, מיט זײַערע אַסאציאירטע צוטריט רעכטן.

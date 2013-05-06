@@ -2219,6 +2219,15 @@ $1',
 'listusers-noresult' => 'Удзельнікі ня знойдзеныя.',
 'listusers-blocked' => '({{GENDER:$1|заблякаваны|заблякаваная}})',
 
+# Special:ActiveUsers
+'activeusers' => 'Сьпіс актыўных удзельнікаў',
+'activeusers-intro' => 'Гэта сьпіс удзельнікаў, якія былі актыўнымі на працягу $1 {{PLURAL:$1|апошняга дня|апошніх дзён|апошніх дзён}}.',
+'activeusers-count' => '$1 {{PLURAL:$1|дзеяньне|дзеяньні|дзеяньняў}} за $3 {{PLURAL:$3|апошні дзень|апошнія дні|апошніх дзён}}',
+'activeusers-from' => 'Паказваць ўдзельнікаў, пачынаючы з:',
+'activeusers-hidebots' => 'Схаваць робатаў',
+'activeusers-hidesysops' => 'Схаваць адміністратараў',
+'activeusers-noresult' => 'Удзельнікі ня знойдзеныя.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Правы групаў удзельнікаў',
 'listgrouprights-summary' => 'Ніжэй пададзены сьпіс групаў удзельнікаў {{GRAMMAR:родны|{{SITENAME}}}}, разам зь іх правамі.

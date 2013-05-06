@@ -2180,6 +2180,15 @@ Template:消除歧義',
 'listusers-noresult' => '找不到用戶。',
 'listusers-blocked' => '（已封禁）',
 
+# Special:ActiveUsers
+'activeusers' => '活躍用戶列表',
+'activeusers-intro' => '這個是在最近$1天之內有一些動作的用戶列表。',
+'activeusers-count' => '最近$3天內有$1次編輯',
+'activeusers-from' => '顯示用戶開始於：',
+'activeusers-hidebots' => '隱藏機器人',
+'activeusers-hidesysops' => '隱藏管理員',
+'activeusers-noresult' => '找不到用戶。',
+
 # Special:ListGroupRights
 'listgrouprights' => '用戶群組權限',
 'listgrouprights-summary' => '以下面是一個在這個wiki中定義出來的用戶權限清單，以及它們的存取權。

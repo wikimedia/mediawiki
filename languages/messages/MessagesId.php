@@ -761,7 +761,7 @@ Perhatikan bahwa beberapa halaman mungkin masih terus menunjukkan bahwa Anda mas
 'createacct-yourpasswordagain' => 'Konfirmasi kata sandi',
 'createacct-yourpasswordagain-ph' => 'Masukkan lagi kata sandi',
 'remembermypassword' => 'Ingat kata sandi saya di komputer ini (selama $1 {{PLURAL:$1|hari|hari}})',
-'userlogin-remembermypassword' => 'Ingat saya',
+'userlogin-remembermypassword' => 'Biarkan saya tetap masuk',
 'userlogin-signwithsecure' => 'Masuk log dengan server aman',
 'securelogin-stick-https' => 'Tetap terhubung ke HTTPS setelah masuk',
 'yourdomainname' => 'Domain Anda:',
@@ -800,7 +800,7 @@ Perhatikan bahwa beberapa halaman mungkin masih terus menunjukkan bahwa Anda mas
 'createacct-benefit-heading' => '{{SITENAME}} dibuat oleh orang-orang seperti Anda.',
 'createacct-benefit-body1' => 'suntingan',
 'createacct-benefit-body2' => 'halaman',
-'createacct-benefit-body3' => 'kontributor bulan ini',
+'createacct-benefit-body3' => 'kontributor terakhir',
 'badretype' => 'Kata sandi yang Anda masukkan salah.',
 'userexists' => 'Nama pengguna yang dimasukkan telah digunakan.
 Silakan tentukan nama yang lain.',
@@ -2139,7 +2139,7 @@ Suatu halaman dianggap sebagai halaman disambiguasi apabila halaman tersebut men
 'pageswithprop-legend' => 'Halaman dengan halaman properti',
 'pageswithprop-text' => 'Halaman ini berisi daftar halaman yang menggunakan properti halaman tertentu.',
 'pageswithprop-prop' => 'Nama properti:',
-'pageswithprop-submit' => 'Pergi',
+'pageswithprop-submit' => 'Lanjut',
 
 'doubleredirects' => 'Pengalihan ganda',
 'doubleredirectstext' => 'Halaman ini memuat daftar halaman yang dialihkan ke halaman pengalihan yang lain.
@@ -2303,6 +2303,15 @@ Perlu sedikitnya satu domain tingkat atas, misalnya "*.org".<br />
 'listusers-submit' => 'Tampilkan',
 'listusers-noresult' => 'Pengguna tidak ditemukan.',
 'listusers-blocked' => '(diblokir)',
+
+# Special:ActiveUsers
+'activeusers' => 'Daftar pengguna aktif',
+'activeusers-intro' => 'Berikut adalah daftar pengguna yang memiliki suatu bentuk aktivitas selama paling tidak $1 {{PLURAL:$1|hari|hari}} terakhir.',
+'activeusers-count' => '$1 {{PLURAL:$1|aktivitas|aktivitas}} dalam {{PLURAL:$3|1 hari|$3 hari}} terakhir',
+'activeusers-from' => 'Tampilkan pengguna mulai dari:',
+'activeusers-hidebots' => 'Sembunyikan bot',
+'activeusers-hidesysops' => 'Sembunyikan pengurus',
+'activeusers-noresult' => 'Pengguna tidak ditemukan.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Daftar kelompok pengguna',
@@ -4046,6 +4055,8 @@ Anda seharusnya telah menerima [{{SERVER}}{{SCRIPTPATH}}/COPYING salinan Lisensi
 'version-entrypoints-header-url' => 'URL',
 'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Artikel path]',
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Skrip path]',
+
+'redirect-submit' => 'Lanjut',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Pencarian berkas duplikat',

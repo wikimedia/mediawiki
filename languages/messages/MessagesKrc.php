@@ -1935,6 +1935,15 @@ URL-ни тюз , сайтны ачыкъ болгъанына ишексиз б
 'listusers-noresult' => 'Къошулуучула табылмадыла.',
 'listusers-blocked' => '(блокга салыныбды)',
 
+# Special:ActiveUsers
+'activeusers' => 'Актив къошулуучуланы тизмеси',
+'activeusers-intro' => 'Бу, ахыр $1 {{PLURAL:$1|кюнде|кюнде}} къаллайда болсун ишлетме кёргюзген къошлуучуланы тизмесиди.',
+'activeusers-count' => 'Ахыр {{PLURAL:$3|кюнде|$3 кюнде}} $1 {{PLURAL:$1|тюрлендириу|тюрлендириу}}',
+'activeusers-from' => 'Бу бла башланнган къошлуучуланы кёргюз:',
+'activeusers-hidebots' => 'Ботланы джашыр',
+'activeusers-hidesysops' => 'Администраторланы джашыр',
+'activeusers-noresult' => 'Къошлуучу табылмады.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Къошулуучуланы къауумуну хакълары',
 'listgrouprights-summary' => 'Тюбюндеги бу викиде танылгъан къошулуучу къауумланы эмда аланы хакъларыны тизмеси.

@@ -2088,6 +2088,15 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization. જુઓ',
 'listusers-noresult' => 'કોઇ સભ્ય ન મળ્યો',
 'listusers-blocked' => '(પ્રતિબંધિત)',
 
+# Special:ActiveUsers
+'activeusers' => 'સક્રિય સભ્યોની યાદી',
+'activeusers-intro' => 'છેલ્લા  $1 {{PLURAL:$1|દિવસ|દિવસો}}માં જે સભ્યોએ કંઈક યોગદાન કર્યું હોય તેમની યાદી.',
+'activeusers-count' => '$1 {{PLURAL:$1|ફેરફાર|ફેરફારો}} છેલ્લા {{PLURAL:$3|દિવસ |$3 દિવસો }}માં',
+'activeusers-from' => 'આનાથી શરૂ થતા સભ્યો દર્શાવો:',
+'activeusers-hidebots' => 'બોટને છુપાવો',
+'activeusers-hidesysops' => 'પ્રબંધકો છુપાવો',
+'activeusers-noresult' => 'કોઇ સક્રીય સભ્ય ન મળ્યો',
+
 # Special:ListGroupRights
 'listgrouprights' => 'સભ્ય જૂથ ના હક્કો',
 'listgrouprights-summary' => 'નીચે આ વિકિ પર વ્યાખ્યાયિત સભ્ય જૂથોની યાદી, તેમની સાથે સંકળાયેલા હક્કો સાથે આપી છે.

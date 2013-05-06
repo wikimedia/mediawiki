@@ -2358,6 +2358,15 @@ $1',
 'listusers-noresult' => 'Не знайдено користувачів.',
 'listusers-blocked' => '({{GENDER:$1|заблокований|заблокована|заблокований}})',
 
+# Special:ActiveUsers
+'activeusers' => 'Список активних користувачів',
+'activeusers-intro' => 'Це список користувачів, які здійснювали які-небудь дії за {{PLURAL:$1|останній $1 день|останні $1 дні|останні $1 днів}}.',
+'activeusers-count' => '$1 {{PLURAL:$1|дія|дії|дій}} за {{PLURAL:$3|останній $3 день|останні $3 дні|останні $3 днів}}',
+'activeusers-from' => 'Показувати користувачів, починаючи з:',
+'activeusers-hidebots' => 'Приховати ботів',
+'activeusers-hidesysops' => 'Приховати адміністраторів',
+'activeusers-noresult' => 'Не знайдено користувачів.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Права груп користувачів',
 'listgrouprights-summary' => 'Нижче наведений список груп користувачів у цій вікі і права для кожної групи.

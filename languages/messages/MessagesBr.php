@@ -2109,6 +2109,15 @@ Rekis eo dezho un domani a-us da nebeutañ evel, da skouer, "*.org".<br />
 'listusers-noresult' => "N'eus bet kavet implijer ebet.",
 'listusers-blocked' => '(stanket)',
 
+# Special:ActiveUsers
+'activeusers' => 'Roll an implijerien oberiant',
+'activeusers-intro' => 'Setu aze ur roll eus an implijerien zo bet oberiant mui pe vui e-pad an $1 {{PLURAL:$1|deiz|deiz}} diwezhañ.',
+'activeusers-count' => '$1 {{PLURAL:$1|oberiadenn}} abaoe an {{PLURAL:$3|deiz|$3 deiz}} diwezhañ',
+'activeusers-from' => 'Diskouez an implijerien adal :',
+'activeusers-hidebots' => 'Kuzhat ar robotoù',
+'activeusers-hidesysops' => 'Kuzhat ar verourien',
+'activeusers-noresult' => "N'eus bet kavet implijer ebet.",
+
 # Special:ListGroupRights
 'listgrouprights' => 'Gwirioù ar strolladoù implijer',
 'listgrouprights-summary' => 'Da-heul ez eus ur roll eus ar strolladoù implijerien termenet war ar wiki-mañ, gant ar gwirioù moned stag outo.
