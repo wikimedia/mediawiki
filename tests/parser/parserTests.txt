@@ -6174,6 +6174,19 @@ bar <div>baz</div>
 !!end
 
 !!test
+Templates: P-wrapping: 1d. Template preceded by comment-only line
+!!options
+parsoid
+!!input
+<!-- foo -->
+{{echo|Bar}}
+!!result
+<!-- foo -->
+<p>Bar
+</p>
+!!end
+
+!!test
 Templates: Inline Text: 1. Multiple tmeplate uses
 !!input
 {{echo|Foo}}bar{{echo|baz}}
