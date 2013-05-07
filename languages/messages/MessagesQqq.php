@@ -357,7 +357,7 @@ The pagination links in category viewer. Parameters:
 
 'linkprefix' => '{{optional}}',
 
-'about' => 'អំពី',
+'about' => '{{Identical|About}}',
 'article' => "A 'content page' is a page that forms part of the purpose of the wiki. It includes the main page and pages in the main namespace and any other namespaces that are included when the wiki is customised. For example on Wikimedia Commons 'content pages' include pages in the file and category namespaces. On Wikinews 'content pages' include pages in the Portal namespace. For technical definition of 'content namespaces' see [[mw:Manual:Using_custom_namespaces#Content_namespaces|MediaWiki]].
 
 Possible alternatives to the word 'content' are 'subject matter' or 'wiki subject' or 'wiki purpose'.
@@ -1051,10 +1051,7 @@ See examples: [{{canonicalurl:Special:UserLogin|useNew=1}} Special:UserLogin?use
 
 See example: [{{canonicalurl:Special:UserLogin|useNew=1}} Special:UserLogin?useNew=1] and [{{canonicalurl:Special:UserLogin|type=signup&useNew=1}} Special:UserLogin?type=signup&useNew=1]',
 'createacct-helpusername-url' => 'The URL of a page providing username guidance for the wiki.
-
-Used as a link in {{msg-mw|Createacct-helpusername-link}}.
-
-See example: [{{canonicalurl:Special:UserLogin|type=signup&useNew=1}} Special:UserLogin?type=signup&useNew=1]',
+Used as a link in the {{msg-mw|Createacct-helpusername}} on WMF wikis.',
 'createacct-helpusername-link' => 'Message in new create account form providing guidance for username.
 
 See example: [{{canonicalurl:Special:UserLogin|type=signup&useNew=1}} Special:UserLogin?type=signup&useNew=1]',
@@ -7149,17 +7146,17 @@ See also {{msg-mw|Days-abbrev}}
 
 Part of variable $1 in {{msg-mw|Ago}}
 {{Identical|Day}}',
-'weeks' => 'Full word for "weeks". $1 is the number of weeks.
+'weeks' => 'Full word for "weeks".
 
-See also {{msg-mw|Weeks-abbrev}}
-
-Part of variable $1 in {{msg-mw|Ago}}',
+Used as <code>$1</code> in {{msg-mw|Ago}}. Parameters:
+* $1 - the number of weeks',
 'months' => 'Full word for "months". $1 is the number of months.
 
 Part of variable $1 in {{msg-mw|Ago}}',
-'years' => 'Full word for "years". $1 is the number of years.
+'years' => 'Full word for "years".
 
-Part of variable $1 in {{msg-mw|Ago}}',
+Used as <code>$1</code> in {{msg-mw|Ago}}. Parameters:
+* $1 - the number of years',
 'ago' => 'Phrase for indicating how long ago something happened. $1 is something like "3 days 10 hours", taken from these messages:
 *{{msg-mw|Seconds}}
 *{{msg-mw|Minutes}}

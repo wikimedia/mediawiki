@@ -236,7 +236,7 @@ $messages = array(
 'newwindow' => '(maifikon in fenät nulik)',
 'cancel' => 'Stöpädön',
 'moredotdotdot' => 'Plu...',
-'mypage' => 'Pad obik',
+'mypage' => 'Pad',
 'mytalk' => 'Bespiks',
 'anontalk' => 'Bespiks ela IP at',
 'navigation' => 'Nafam',
@@ -407,9 +407,9 @@ Mögos i, das atos sinifon, das dabinon säkädil pö program fa {{SITENAME}} pa
 'dberrortext' => 'Süntagapök pö geb vüka at ejenon.
 Atos ba sinifön, das dabinon säkäd pö program.
 Steifül lätik ad gebön vüki äbinon:
-<blockquote><tt>$1</tt></blockquote>
-se dunod: „<tt>$2</tt>“.
-Nünodem ägesedon pökanuni: „<tt>$3: $4</tt>“.',
+<blockquote><code>$1</code></blockquote>
+se dunod: „<code>$2</code>“.
+Nünodem ägesedon pökanuni: „<samp>$3: $4</samp>“.',
 'dberrortextcl' => 'Süntagapök pö geb vüka at ejenon.
 Steifül lätik ad gebön vüki at äbinon:
 „$1“
@@ -911,7 +911,7 @@ Kontrololös, va votükam at okipon fovöfi padajenotema.',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Logön padis labü foyümot at]]',
 'searchprofile-articles' => 'Ninädapads',
 'searchprofile-project' => 'Yufa e Proyegapads',
-'searchprofile-images' => 'Ragivs',
+'searchprofile-images' => 'Mödamedäd',
 'searchprofile-everything' => 'Valikos',
 'searchprofile-advanced' => 'Paramets pluik',
 'searchprofile-articles-tooltip' => 'Sukön in $1',
@@ -929,7 +929,7 @@ Kontrololös, va votükam at okipon fovöfi padajenotema.',
 'search-interwiki-default' => 'Seks se $1:',
 'search-interwiki-more' => '(pluikos)',
 'search-relatedarticle' => 'Tefik',
-'mwsuggest-disable' => 'Nemögükön mobis ela AJAX',
+'mwsuggest-disable' => 'Nemögükön sukamobis',
 'searcheverything-enable' => 'Sukolöd in nemaspads valik',
 'searchrelated' => 'tefik',
 'searchall' => 'valik',
@@ -1008,9 +1008,9 @@ Kontrololös, va votükam at okipon fovöfi padajenotema.',
 'prefs-custom-css' => 'CSS nekösömik',
 'prefs-custom-js' => 'JavaScript nekösömik',
 'youremail' => 'Ladet leäktronik *:',
-'username' => 'Gebananem:',
+'username' => '{{GENDER:$1|Gebananem}}:',
 'uid' => 'Gebanadientif:',
-'prefs-memberingroups' => 'Liman {{PLURAL:$1|grupa|grupas}}:',
+'prefs-memberingroups' => '{{GENDER:$2|Liman}} {{PLURAL:$1|grupa|grupas}}:',
 'yourrealname' => 'Nem jenöfik *:',
 'yourlanguage' => 'Pük:',
 'yournick' => 'Dispenäd nulik:',
@@ -1581,7 +1581,7 @@ Logolös i [[Special:WantedCategories|klads pevilöl]].',
 'sp-deletedcontributions-contribs' => 'keblünots',
 
 # Special:LinkSearch
-'linksearch' => 'Yüms plödik',
+'linksearch' => 'Suk yümas plödik',
 'linksearch-pat' => 'Sukapated:',
 'linksearch-ns' => 'Nemaspad:',
 'linksearch-ok' => 'Suk',
@@ -1875,7 +1875,7 @@ $1',
 'blanknamespace' => '(Cifik)',
 
 # Contributions
-'contributions' => 'Gebanakeblünots',
+'contributions' => '{{GENDER:$1|Gebanakeblünots}}',
 'contributions-title' => 'Gebanakeblünots pro $1',
 'mycontris' => 'Keblünots',
 'contribsub2' => 'Tefü $1 ($2)',
@@ -1913,7 +1913,7 @@ $1',
 'whatlinkshere-hideredirs' => '$1 lüodükömis',
 'whatlinkshere-hidetrans' => '$1 ninükodis',
 'whatlinkshere-hidelinks' => '$1 yümis',
-'whatlinkshere-hideimages' => '$1 yümis magodas',
+'whatlinkshere-hideimages' => '$1 yümis ragivas',
 'whatlinkshere-filters' => 'Suls',
 
 # Block/unblock
@@ -2281,7 +2281,7 @@ Pad luveratiko ninädon yümi lü bevüresodatopäd plödik in blägalised.',
 'spam_blanking' => 'Moükam revidas valik (bi ninädons yüms lü $1)',
 
 # Info page
-'pageinfo-header-edits' => 'Redakams',
+'pageinfo-header-edits' => 'Jenotem redakamas',
 
 # Patrolling
 'markaspatrolleddiff' => 'Zepön',
