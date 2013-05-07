@@ -93,4 +93,4 @@ class PreprocessDump extends DumpIterator {
 }
 
 $maintClass = "PreprocessDump";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

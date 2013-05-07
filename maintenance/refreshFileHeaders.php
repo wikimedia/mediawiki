@@ -90,4 +90,4 @@ class RefreshFileHeaders extends Maintenance {
 }
 
 $maintClass = 'RefreshFileHeaders';
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

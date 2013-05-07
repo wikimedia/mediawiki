@@ -296,4 +296,4 @@ class SyncFileBackend extends Maintenance {
 }
 
 $maintClass = "SyncFileBackend";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

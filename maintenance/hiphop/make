@@ -308,4 +308,4 @@ class MakeHipHop extends Maintenance {
 }
 
 $maintClass = 'MakeHipHop';
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

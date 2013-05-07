@@ -239,4 +239,4 @@ class Orphans extends Maintenance {
 }
 
 $maintClass = "Orphans";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

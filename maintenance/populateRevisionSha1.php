@@ -201,4 +201,4 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 }
 
 $maintClass = "PopulateRevisionSha1";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

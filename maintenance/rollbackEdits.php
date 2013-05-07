@@ -104,4 +104,4 @@ class RollbackEdits extends Maintenance {
 }
 
 $maintClass = 'RollbackEdits';
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

@@ -62,4 +62,4 @@ class ChangePassword extends Maintenance {
 }
 
 $maintClass = "ChangePassword";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

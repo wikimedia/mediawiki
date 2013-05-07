@@ -93,4 +93,4 @@ class PurgeDeletedFiles extends Maintenance {
 }
 
 $maintClass = "PurgeDeletedFiles";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

@@ -131,4 +131,4 @@ class CLIParser extends Maintenance {
 }
 
 $maintClass = "CLIParser";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

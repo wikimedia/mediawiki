@@ -74,4 +74,4 @@ class bench_wfBaseConvert extends Benchmarker {
 }
 
 $maintClass = 'bench_wfBaseConvert';
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

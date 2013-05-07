@@ -58,4 +58,4 @@ class FixUserRegistration extends Maintenance {
 }
 
 $maintClass = "FixUserRegistration";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

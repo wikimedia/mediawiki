@@ -57,4 +57,4 @@ class ClearCacheStats extends Maintenance {
 }
 
 $maintClass = "ClearCacheStats";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

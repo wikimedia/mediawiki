@@ -123,4 +123,4 @@ class bench_utf8_title_check extends Benchmarker {
 }
 
 $maintClass = 'bench_utf8_title_check';
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;
