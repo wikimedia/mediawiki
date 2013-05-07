@@ -1,0 +1,8 @@
+Verified-1: jenkins-bot
+Code-Review+2: Mwalker <mwalker@wikimedia.org>
+Verified+2: Mwalker <mwalker@wikimedia.org>
+Submitted-by: Mwalker <mwalker@wikimedia.org>
+Submitted-at: Tue, 07 May 2013 23:31:58 +0000
+Reviewed-on: https://gerrit.wikimedia.org/r/62759
+Project: mediawiki/core
+Branch: refs/heads/wmf/1.22wmf3
