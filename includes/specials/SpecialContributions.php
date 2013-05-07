@@ -388,7 +388,7 @@ class SpecialContributions extends SpecialPage {
 		}
 
 		if ( !isset( $this->opts['year'] ) ) {
-			$this->opts['year'] = gmdate( 'Y' );
+			$this->opts['year'] = '';
 		}
 
 		if ( !isset( $this->opts['month'] ) ) {
@@ -566,7 +566,7 @@ class SpecialContributions extends SpecialPage {
 
 		$dateSelectionAndSubmit = Xml::tags( 'td', array( 'colspan' => 2 ),
 			Xml::dateMenu(
-				$this->opts['year'],
+				$this->opts['year'] === '' ? gmdate( 'Y' ) : $this->opts['year'],
 				$this->opts['month']
 			) . ' ' .
 				Xml::submitButton(
