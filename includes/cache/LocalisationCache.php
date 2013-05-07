@@ -499,7 +499,7 @@ class LocalisationCache {
 		wfProfileIn( __METHOD__ );
 		// Disable APC caching
 		$_apcEnabled = ini_set( 'apc.cache_by_default', '0' );
-		include( $_fileName );
+		include $_fileName;
 		ini_set( 'apc.cache_by_default', $_apcEnabled );
 
 		if ( $_fileType == 'core' || $_fileType == 'extension' ) {

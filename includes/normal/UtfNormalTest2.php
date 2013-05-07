@@ -65,7 +65,7 @@ $f = fopen($file, "r");
      later and slow down the runtime.
  */
 
-require_once("./UtfNormal.php");
+require_once './UtfNormal.php';
 function normalize_form_c($c)      { return UtfNormal::toNFC($c);  }
 function normalize_form_d($c)      { return UtfNormal::toNFD($c);  }
 function normalize_form_kc($c)     { return UtfNormal::toNFKC($c); }

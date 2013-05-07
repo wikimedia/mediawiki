@@ -31,10 +31,10 @@ if( PHP_SAPI != 'cli' ) {
 }
 
 /** */
-require_once( 'UtfNormal.php' );
-require_once( '../diff/DifferenceEngine.php' );
+require_once 'UtfNormal.php';
+require_once '../diff/DifferenceEngine.php';
 
-dl('php_utfnormal.so' );
+dl( 'php_utfnormal.so' );
 
 # mt_srand( 99999 );
 

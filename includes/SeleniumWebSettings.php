@@ -27,7 +27,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	die( 1 );
 }
 
-require_once( "$IP/includes/GlobalFunctions.php" );
+require_once "$IP/includes/GlobalFunctions.php";
 
 $fname = 'SeleniumWebSettings.php';
 wfProfileIn( $fname );
@@ -120,7 +120,7 @@ if ( isset( $_COOKIE[$cookieName] ) ) {
 	}
 	foreach ( $testIncludes as $includeFile ) {
 		$file = $IP . '/' . $includeFile;
-		require_once( $file );
+		require_once $file;
 	}
 	foreach ( $testGlobalConfigs as $key => $value ) {
 		if ( is_array( $value ) ) {

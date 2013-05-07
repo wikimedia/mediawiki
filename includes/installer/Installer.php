@@ -491,10 +491,10 @@ abstract class Installer {
 		}
 		unset( $_lsExists );
 
-		require( "$IP/includes/DefaultSettings.php" );
-		require( "$IP/LocalSettings.php" );
+		require "$IP/includes/DefaultSettings.php";
+		require "$IP/LocalSettings.php";
 		if ( file_exists( "$IP/AdminSettings.php" ) ) {
-			require( "$IP/AdminSettings.php" );
+			require "$IP/AdminSettings.php";
 		}
 		return get_defined_vars();
 	}
@@ -1391,10 +1391,10 @@ abstract class Installer {
 		global $wgAutoloadClasses;
 		$wgAutoloadClasses = array();
 
-		require( "$IP/includes/DefaultSettings.php" );
+		require "$IP/includes/DefaultSettings.php";
 
 		foreach ( $exts as $e ) {
-			require_once( "$IP/extensions/$e/$e.php" );
+			require_once "$IP/extensions/$e/$e.php";
 		}
 
 		$hooksWeWant = isset( $wgHooks['LoadExtensionSchemaUpdates'] ) ?

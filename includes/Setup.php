@@ -393,7 +393,7 @@ if ( $wgDebugToolbar && !$wgCommandLineMode ) {
 
 if ( !defined( 'MW_COMPILED' ) ) {
 	if ( !MWInit::classExists( 'AutoLoader' ) ) {
-		require_once( "$IP/includes/AutoLoader.php" );
+		require_once "$IP/includes/AutoLoader.php";
 	}
 
 	wfProfileIn( $fname . '-exception' );
@@ -401,10 +401,10 @@ if ( !defined( 'MW_COMPILED' ) ) {
 	wfProfileOut( $fname . '-exception' );
 
 	wfProfileIn( $fname . '-includes' );
-	require_once( "$IP/includes/normal/UtfNormalUtil.php" );
-	require_once( "$IP/includes/GlobalFunctions.php" );
-	require_once( "$IP/includes/ProxyTools.php" );
-	require_once( "$IP/includes/normal/UtfNormalDefines.php" );
+	require_once "$IP/includes/normal/UtfNormalUtil.php";
+	require_once "$IP/includes/GlobalFunctions.php";
+	require_once "$IP/includes/ProxyTools.php";
+	require_once "$IP/includes/normal/UtfNormalDefines.php";
 	wfProfileOut( $fname . '-includes' );
 }
 

@@ -46,7 +46,7 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 		// We need to do this to make sure $wgQueryPages is set up
 		// This SUCKS
 		global $IP;
-		require_once( "$IP/includes/QueryPage.php" );
+		require_once "$IP/includes/QueryPage.php";
 
 		// Build mapping from special page names to QueryPage classes
 		global $wgQueryPages;
