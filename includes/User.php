@@ -1845,8 +1845,6 @@ class User {
 			if ( count( $newMessageLinks ) === 1 && $newMessageLinks[0]['wiki'] === wfWikiID() ) {
 				$newMessageRevision = $newMessageLinks[0]['rev'];
 				$newMessageRevisionId = $newMessageRevision->getId();
-			} else {
-				throw new MWException( "Unexpected values from User::getNewMessageLinks()" );
 			}
 		}
 		return $newMessageRevisionId;
