@@ -1151,7 +1151,7 @@ class AutoLoader {
 			$filename = "$IP/$filename";
 		}
 
-		require( $filename );
+		require $filename;
 
 		return true;
 	}

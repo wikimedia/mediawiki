@@ -18,7 +18,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-require_once( 'ApiQueryContinueTestBase.php' );
+require_once 'ApiQueryContinueTestBase.php';
 
 /**
  * These tests validate the new continue functionality of the api query module by

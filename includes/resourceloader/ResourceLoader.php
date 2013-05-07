@@ -283,7 +283,7 @@ class ResourceLoader {
 
 		// Get core test suites
 		$testModules = array();
-		$testModules['qunit'] = include( "$IP/tests/qunit/QUnitTestResources.php" );
+		$testModules['qunit'] = include "$IP/tests/qunit/QUnitTestResources.php";
 		// Get other test suites (e.g. from extensions)
 		wfRunHooks( 'ResourceLoaderTestModules', array( &$testModules, &$this ) );
 

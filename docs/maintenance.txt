@@ -34,7 +34,7 @@ In it, write the following:
 
 <?php
 
-require_once( "Maintenance.php" );
+require_once 'Maintenance.php';
 
 class DemoMaint extends Maintenance {
 

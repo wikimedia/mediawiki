@@ -4,7 +4,7 @@
  * This is implemented as a singleton.
  */
 
-require( 'Testing/Selenium.php' );
+require 'Testing/Selenium.php';
 
 class Selenium {
 	protected static $_instance = null;

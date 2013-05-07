@@ -23,7 +23,7 @@
 
 define( 'MW_NO_OUTPUT_COMPRESSION', 1 );
 if ( isset( $_SERVER['MW_COMPILED'] ) ) {
-	require( 'core/includes/WebStart.php' );
+	require 'core/includes/WebStart.php';
 } else {
 	require( __DIR__ . '/includes/WebStart.php' );
 }

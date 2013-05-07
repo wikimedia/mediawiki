@@ -32,17 +32,17 @@ define( 'SELENIUMTEST', true );
 
 require( __DIR__ . '/../maintenance/Maintenance.php' );
 
-require_once( 'PHPUnit/Runner/Version.php' );
+require_once 'PHPUnit/Runner/Version.php';
 if ( version_compare( PHPUnit_Runner_Version::id(), '3.5.0', '>=' ) ) {
 	# PHPUnit 3.5.0 introduced a nice autoloader based on class name
-	require_once( 'PHPUnit/Autoload.php' );
+	require_once 'PHPUnit/Autoload.php';
 } else {
 	# Keep the old pre PHPUnit 3.5.0 behavior for compatibility
-	require_once( 'PHPUnit/TextUI/Command.php' );
+	require_once 'PHPUnit/TextUI/Command.php';
 }
 
-require_once( 'PHPUnit/Extensions/SeleniumTestCase.php' );
-include_once( 'PHPUnit/Util/Log/JUnit.php' );
+require_once 'PHPUnit/Extensions/SeleniumTestCase.php';
+include_once 'PHPUnit/Util/Log/JUnit.php';
 
 require_once( __DIR__ . "/selenium/SeleniumServerManager.php" );
 
