@@ -746,11 +746,16 @@ class LanguageConverter {
 	 * non-existing link in one variant actually exists in another variant.
 	 * This function tries to find it. See e.g. LanguageZh.php
 	 *
-	 * @param $link String: the name of the link
-	 * @param $nt Mixed: the title object of the link
-	 * @param $ignoreOtherCond Boolean: to disable other conditions when
-	 *		we need to transclude a template or update a category's link
-	 * @return Null, the input parameters may be modified upon return
+	 * $link may have its namespace prefix stripped when it's converted,
+	 * or get the whole thing messed up when some page is double prefixed.
+	 * To avoid this (and other troubles), use self::findVariantTitle().
+	 *
+	 * @param $link String: Link text written by user.
+	 *                Use '' to extract it from $nt. This is a semi-private usage.
+	 * @param $nt Mixed: Title object.
+	 * @param $ignoreOtherCond Boolean: Disable user or request specific checks.
+	 *		  Mainly used in parser (eg. transclusion and link updates).
+	 * @return Null: Parameters may be modified upon return
 	 */
 	public function findVariantLink( &$link, &$nt, $ignoreOtherCond = false ) {
 		# If the article has already existed, there is no need to
@@ -784,7 +789,17 @@ class LanguageConverter {
 			$ns = $nt->getNamespace();
 		}
 
-		$variants = $this->autoConvertToAllVariants( $link );
+		if ( $link === '' ) {
+			if ( is_object( $nt ) ) {
+				$linkText = $nt->getText();
+			} else {
+				return;
+			}
+		} else {
+			$linkText = $link;
+		}
+
+		$variants = $this->autoConvertToAllVariants( $linkText );
 		if ( !$variants ) { // give up
 			return;
 		}
@@ -793,7 +808,13 @@ class LanguageConverter {
 
 		foreach ( $variants as $v ) {
 			if ( $v != $link ) {
-				$varnt = Title::newFromText( $v, $ns );
+				if ( $link === '' ) {
+					$varnt = Title::makeTitle( $ns, $v );
+				} else {
+					// Generally Title::newFromText() may mess up namespace names
+					// in some cases. It's used here only for backward compatibility.
+					$varnt = Title::newFromText( $v, $ns );
+				}
 				if ( !is_null( $varnt ) ) {
 					$linkBatch->addObj( $varnt );
 					$titles[] = $varnt;
@@ -811,6 +832,22 @@ class LanguageConverter {
 				break;
 			}
 		}
+	}
+
+	/**
+	 * Similar to self::findVariantLink(), but $link is not needed and extracted from $nt.
+	 *
+	 * This function was created to avoid namespace issues. See comments in that function.
+	 *
+	 * @since 1.21
+	 * @param $nt Mixed: Title object.
+	 * @param $ignoreOtherCond Boolean: Disable user or request specific checks.
+	 *		Mainly used in parser (eg. transclusion and link updates).
+	 * @return Null: Parameters may be modified upon return
+	 */
+	public function findVariantTitle( &$nt, $ignoreOtherConds = false ) {
+		$_ = '';
+		$this->findVariantLink( $_, $nt, $ignoreOtherConds );
 	}
 
 	/**

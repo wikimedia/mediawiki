@@ -60,6 +60,7 @@ class FakeConverter {
 	function getURLVariant() { return ''; }
 	function getConvRuleTitle() { return false; }
 	function findVariantLink( &$l, &$n, $ignoreOtherCond = false ) { }
+	function findVariantTitle( &$nt, $ignoreOtherCond = false ) { }
 	function getExtraHashOptions() { return ''; }
 	function getParsedTitle() { return ''; }
 	function markNoConversion( $text, $noParse = false ) { return $text; }
@@ -3848,6 +3849,15 @@ class Language {
 	 */
 	public function findVariantLink( &$link, &$nt, $ignoreOtherCond = false ) {
 		$this->mConverter->findVariantLink( $link, $nt, $ignoreOtherCond );
+	}
+
+	/**
+	 * See LanguageConverter::findVariantTitle().
+	 *
+	 * @since 1.21
+	 */
+	public function findVariantTitle( &$nt, $ignoreOtherCond = false ) {
+		$this->mConverter->findVariantTitle( $nt, $ignoreOtherCond );
 	}
 
 	/**
