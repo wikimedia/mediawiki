@@ -143,13 +143,12 @@ class ParserTest {
 			$wgUser, $wgLang, $wgOut, $wgRequest, $wgStyleDirectory, $wgEnableParserCache,
 			$wgNamespaceAliases, $wgNamespaceProtection, $wgLocalFileRepo,
 			$parserMemc, $wgThumbnailScriptPath, $wgScriptPath,
-			$wgArticlePath, $wgStyleSheetPath, $wgScript, $wgStylePath, $wgExtensionAssetsPath,
+			$wgArticlePath, $wgScript, $wgStylePath, $wgExtensionAssetsPath,
 			$wgMainCacheType, $wgMessageCacheType, $wgParserCacheType, $wgLockManagers;
 
 		$wgScript = '/index.php';
 		$wgScriptPath = '/';
 		$wgArticlePath = '/wiki/$1';
-		$wgStyleSheetPath = '/skins';
 		$wgStylePath = '/skins';
 		$wgExtensionAssetsPath = '/extensions';
 		$wgThumbnailScriptPath = false;
@@ -669,7 +668,6 @@ class ParserTest {
 			),
 			'wgEnableUploads' => self::getOptionValue( 'wgEnableUploads', $opts, true ),
 			'wgStylePath' => '/skins',
-			'wgStyleSheetPath' => '/skins',
 			'wgSitename' => 'MediaWiki',
 			'wgLanguageCode' => $lang,
 			'wgDBprefix' => $this->db->getType() != 'oracle' ? 'parsertest_' : 'pt_',
