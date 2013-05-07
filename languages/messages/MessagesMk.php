@@ -476,7 +476,7 @@ $messages = array(
 
 'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
 
-'about' => 'Информации за',
+'about' => 'За {{SITENAME}}',
 'article' => 'Статија',
 'newwindow' => '(се отвора во нов прозорец)',
 'cancel' => 'Откажи',

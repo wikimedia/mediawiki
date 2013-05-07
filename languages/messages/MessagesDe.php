@@ -827,7 +827,7 @@ Vergiss nicht, deine [[Special:Preferences|{{SITENAME}}-Einstellungen]] zu ände
 'userlogin-yourname' => 'Benutzername',
 'userlogin-yourname-ph' => 'Gib deinen Benutzernamen ein',
 'createacct-helpusername-url' => '{{ns:Project}}:Benutzernamensrichtlinie',
-'createacct-helpusername-link' => '[[{{MediaWiki:createacct-helpusername-url}}|(hilf mir bei der Auswahl)]]',
+'createacct-helpusername-link' => '[[{{MediaWiki:createacct-helpusername-url}}|(Auswahlhilfe)]]',
 'yourpassword' => 'Passwort:',
 'userlogin-yourpassword' => 'Passwort',
 'userlogin-yourpassword-ph' => 'Gib dein Passwort ein',

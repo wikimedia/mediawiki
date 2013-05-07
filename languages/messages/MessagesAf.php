@@ -667,7 +667,7 @@ Moenie vergeet om u [[Special:Preferences|voorkeure vir {{SITENAME}}]] te stel n
 'createacct-reason-ph' => "Hoekom u nog 'n rekening skep",
 'createacct-captcha' => 'Veiligheidskontrole',
 'createacct-captcha-help-url' => '{{ns:Project}}:Gebruiker_aanvra',
-'createacct-imgcaptcha-help' => "Kan u nie die beeld sien nie? [[{{MediaWiki:createacct-captcha-help-url}}|Vra dan 'n gebruiker aan]]",
+'createacct-imgcaptcha-help' => "Kan nie die beeld sien nie? [[{{MediaWiki:createacct-captcha-help-url}}|Vra dan 'n gebruiker aan]]",
 'createacct-imgcaptcha-ph' => 'Sleutel die teks hierbo in',
 'createacct-submit' => 'Skep u rekening',
 'createacct-benefit-heading' => '{{SITENAME}} word deur mense soos u geskep.',

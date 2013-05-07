@@ -1418,6 +1418,7 @@ Si muss manner wéi $1 {{PLURAL:$1|Zeechen|Zeechen}} hunn.',
 'userrights-notallowed' => "Äre Benotzerkont hutt net déi néideg Rechter fir d'Rechter vun anere Benotzer z'änneren.",
 'userrights-changeable-col' => 'Gruppen déi Dir ännere kënnt',
 'userrights-unchangeable-col' => 'Gruppen déi Dir net ännere kënnt',
+'userrights-conflict' => 'Konflikt bäi de Benotzerrechter! Maacht Är Ännerunge w.e.g. nach eng Kéier.',
 
 # Groups
 'group' => 'Grupp:',
@@ -3300,6 +3301,7 @@ Déi aner sinn am Standard verstoppt.
 'exif-copyrightowner' => "Titulaire vun den Droits d'auteur",
 'exif-usageterms' => 'Benotzungsbedingungen',
 'exif-webstatement' => 'Omline Copyright Deklaratioun',
+'exif-originaldocumentid' => 'Identifikatiounsnummer vum Original-Dokument',
 'exif-licenseurl' => 'URL vum Copyright (Lizenz)',
 'exif-morepermissionsurl' => 'Alternativ Lizenzinformatiounen',
 'exif-attributionurl' => 'Wann dëst Wierk weiderbenotzt gëtt, da linkt w.e.g. op',
@@ -3712,6 +3714,7 @@ Dir misst eng [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie vun der GNU General Public
 'version-entrypoints-header-entrypoint' => 'Agangspunkt',
 'version-entrypoints-header-url' => 'URL',
 
+'redirect-legend' => 'Viruleedung op ee Fichier oder eng Säit',
 'redirect-submit' => 'Lass',
 'redirect-lookup' => 'Nosichen:',
 'redirect-value' => 'Wäert:',

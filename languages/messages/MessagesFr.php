@@ -803,7 +803,7 @@ N'oubliez pas de modifier [[Special:Preferences|vos préférences pour {{SITENAM
 'userlogin-yourname' => "Nom d'utilisateur",
 'userlogin-yourname-ph' => "Entrez votre nom d'utilisateur",
 'createacct-helpusername-url' => "{{ns:Project}}:Nom d'utilisateur",
-'createacct-helpusername-link' => '([[{{MediaWiki:createacct-helpusername-url}}|aidez moi à choisir]])',
+'createacct-helpusername-link' => '([[{{MediaWiki:createacct-helpusername-url}}|(aidez moi à choisir)]])',
 'yourpassword' => 'Mot de passe&nbsp;:',
 'userlogin-yourpassword' => 'Mot de passe',
 'userlogin-yourpassword-ph' => 'Entrez votre mot de passe',
