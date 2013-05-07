@@ -52,7 +52,7 @@ class SpecialPreferences extends SpecialPage {
 
 		if ( $this->getRequest()->getCheck( 'success' ) ) {
 			$out->wrapWikiMsg(
-				"<div class=\"successbox\">\n$1\n</div>",
+				"<div class=\"successbox\"><div class =\"mw-sp-pref-message\">\n$1\n</div></div>",
 				'savedprefs'
 			);
 		}
