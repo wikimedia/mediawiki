@@ -26,7 +26,6 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
 		$tmpGlobals['wgScript'] = '/index.php';
 		$tmpGlobals['wgScriptPath'] = '/';
 		$tmpGlobals['wgArticlePath'] = '/wiki/$1';
-		$tmpGlobals['wgStyleSheetPath'] = '/skins';
 		$tmpGlobals['wgStylePath'] = '/skins';
 		$tmpGlobals['wgThumbnailScriptPath'] = false;
 		$tmpGlobals['wgLocalFileRepo'] = array(
