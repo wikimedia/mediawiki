@@ -546,7 +546,6 @@ table.collapsed tr.collapsable {
 	float: left;
 	margin-bottom: 2em;
 	color: #000;
-	font-weight: bold;
 }
 .errorbox {
 	border-color: red;
