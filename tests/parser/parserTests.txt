@@ -3672,9 +3672,10 @@ parsoid
 |}
 !! result
 <table>
+<tbody>
 <tr>
 <td style=""> hello
-</td></tr></table>
+</td></tr></tbody></table>
 
 !! end
 
@@ -13990,9 +13991,9 @@ parsoid
 ----=foo=
 ----*foo
 !! result
-<hr/>----
-<hr/>=foo=
-<hr/>*foo
+<hr>----
+<hr>=foo=
+<hr>*foo
 !! end
 
 #### --------------- Tables ---------------
@@ -14061,9 +14062,9 @@ parsoid
 |<nowiki>foo|bar</nowiki>
 |}
 !! result
-<table>
+<table><tbody>
 <tr><td>foo|bar
-</td></tr></table>
+</td></tr></tbody></table>
 
 !! end
 
@@ -14077,10 +14078,10 @@ parsoid
 |''it''<nowiki>foo||bar</nowiki>
 |}
 !! result
-<table>
+<table><tbody>
 <tr><td>foo||bar
 </td><td><i>it</i>foo||bar
-</td></tr></table>
+</td></tr></tbody></table>
 
 !! end
 
@@ -14093,9 +14094,9 @@ parsoid
 |foo!!bar
 |}
 !! result
-<table>
+<table><tbody>
 <tr><td>foo!!bar
-</td></tr></table>
+</td></tr></tbody></table>
 
 !! end
 
@@ -14108,9 +14109,9 @@ parsoid
 !foo!bar
 |}
 !! result
-<table>
+<table><tbody>
 <tr><th>foo!bar
-</th></tr></table>
+</th></tr></tbody></table>
 
 !! end
 
@@ -14123,9 +14124,9 @@ parsoid
 !<nowiki>foo!!bar</nowiki>
 |}
 !! result
-<table>
+<table><tbody>
 <tr><th>foo!!bar
-</th></tr></table>
+</th></tr></tbody></table>
 
 !! end
 
@@ -14138,9 +14139,9 @@ parsoid
 !<nowiki>foo||bar</nowiki>
 |}
 !! result
-<table>
+<table><tbody>
 <tr><th>foo||bar
-</th></tr></table>
+</th></tr></tbody></table>
 
 !! end
 
@@ -14483,7 +14484,7 @@ parsoid
 !! input
 <s.ome> text
 !! result
-<p>&lt;s.ome&gt text
+<p>&lt;s.ome&gt; text
 </p>
 !! end
 
@@ -14566,11 +14567,11 @@ parsoid
 | style="color:red|Bar
 |}
 !! result
-<table>
+<table><tbody>
 <tr>
 <td title="Hello world">Foo
 </td><td style="color: red">Bar
-</td></tr></table>
+</td></tr></tbody></table>
 
 !! end
 
@@ -14773,7 +14774,7 @@ parsoid
 <td> <!--c--></td></tr>
 <tr>
 <td><!--c--> <!--d--></td></tr>
-</table>
+</tbody></table>
 
 !!end
 
@@ -14801,7 +14802,7 @@ parsoid
 ''' ''x''' ''
 !!result
 <p><span> <s>x</s></span><s> </s>
-<b> <i>x</i></b><i> </i></span>
+<b> <i>x</i></b><i> </i>
 </p>
 !!end
 
