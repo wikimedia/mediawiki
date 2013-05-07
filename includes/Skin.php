@@ -164,7 +164,7 @@ abstract class Skin extends ContextSource {
 		# Grab the skin class and initialise it.
 		if ( !class_exists( $className ) ) {
 
-			require_once( "{$wgStyleDirectory}/{$skinName}.php" );
+			require_once "{$wgStyleDirectory}/{$skinName}.php";
 
 			# Check if we got if not fallback to default skin
 			if ( !class_exists( $className ) ) {
@@ -174,7 +174,7 @@ abstract class Skin extends ContextSource {
 				# is no longer valid.
 				wfDebug( "Skin class does not exist: $className\n" );
 				$className = 'SkinVector';
-				require_once( "{$wgStyleDirectory}/Vector.php" );
+				require_once "{$wgStyleDirectory}/Vector.php";
 			}
 		}
 		$skin = new $className( $key );

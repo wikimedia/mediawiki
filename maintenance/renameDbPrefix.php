@@ -91,4 +91,4 @@ class RenameDbPrefix extends Maintenance {
 }
 
 $maintClass = "RenameDbPrefix";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

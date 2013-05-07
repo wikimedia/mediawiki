@@ -88,4 +88,4 @@ class FetchText extends Maintenance {
 }
 
 $maintClass = "FetchText";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

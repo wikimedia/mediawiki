@@ -189,4 +189,4 @@ class UpdateMediaWiki extends Maintenance {
 }
 
 $maintClass = 'UpdateMediaWiki';
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

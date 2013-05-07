@@ -1,5 +1,5 @@
 <?php
-include( "SeleniumTestConstants.php" );
+include 'SeleniumTestConstants.php';
 
 class SeleniumTestCase extends PHPUnit_Framework_TestCase { // PHPUnit_Extensions_SeleniumTestCase
 	protected $selenium;

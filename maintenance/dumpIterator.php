@@ -177,4 +177,4 @@ class SearchDump extends DumpIterator {
 }
 
 $maintClass = "SearchDump";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

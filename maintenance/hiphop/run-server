@@ -25,4 +25,4 @@ class RunHipHopServer extends Maintenance {
 	}
 }
 $maintClass = 'RunHipHopServer';
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

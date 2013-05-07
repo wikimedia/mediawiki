@@ -86,4 +86,4 @@ class GetConfiguration extends Maintenance {
 }
 
 $maintClass = "GetConfiguration";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

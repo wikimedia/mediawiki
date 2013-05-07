@@ -92,27 +92,27 @@ if ( $IP === false ) {
 }
 
 # Get MWInit class
-require_once( "$IP/includes/Init.php" );
+require_once "$IP/includes/Init.php";
 
 # Start the autoloader, so that extensions can derive classes from core files
-require_once( "$IP/includes/AutoLoader.php" );
+require_once "$IP/includes/AutoLoader.php";
 
 # Load the profiler
-require_once( "$IP/includes/profiler/Profiler.php" );
+require_once "$IP/includes/profiler/Profiler.php";
 
 # Load up some global defines.
-require_once( "$IP/includes/Defines.php" );
+require_once "$IP/includes/Defines.php";
 
 # Start the profiler
 $wgProfiler = array();
 if ( file_exists( "$IP/StartProfiler.php" ) ) {
-	require( "$IP/StartProfiler.php" );
+	require "$IP/StartProfiler.php";
 }
 
 wfProfileIn( 'WebStart.php-conf' );
 
 # Load default settings
-require_once( "$IP/includes/DefaultSettings.php" );
+require_once "$IP/includes/DefaultSettings.php";
 
 if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 	# Use a callback function to configure MediaWiki
@@ -126,16 +126,16 @@ if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 	# the wiki installer needs to be launched or the generated file uploaded to
 	# the root wiki directory
 	if ( !file_exists( MW_CONFIG_FILE ) ) {
-		require_once( "$IP/includes/templates/NoLocalSettings.php" );
+		require_once "$IP/includes/templates/NoLocalSettings.php";
 		die();
 	}
 
 	# Include site settings. $IP may be changed (hopefully before the AutoLoader is invoked)
-	require_once( MW_CONFIG_FILE );
+	require_once MW_CONFIG_FILE;
 }
 
 if ( $wgEnableSelenium ) {
-	require_once( "$IP/includes/SeleniumWebSettings.php" );
+	require_once "$IP/includes/SeleniumWebSettings.php";
 }
 
 wfProfileOut( 'WebStart.php-conf' );
@@ -146,11 +146,11 @@ wfProfileIn( 'WebStart.php-ob_start' );
 # that would cause us to potentially mix gzip and non-gzip output, creating a
 # big mess.
 if ( !defined( 'MW_NO_OUTPUT_BUFFER' ) && ob_get_level() == 0 ) {
-	require_once( "$IP/includes/OutputHandler.php" );
+	require_once "$IP/includes/OutputHandler.php" ;
 	ob_start( 'wfOutputHandler' );
 }
 wfProfileOut( 'WebStart.php-ob_start' );
 
 if ( !defined( 'MW_NO_SETUP' ) ) {
-	require_once( "$IP/includes/Setup.php" );
+	require_once "$IP/includes/Setup.php";
 }

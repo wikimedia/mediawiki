@@ -58,4 +58,4 @@ class UpdateArticleCount extends Maintenance {
 }
 
 $maintClass = "UpdateArticleCount";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

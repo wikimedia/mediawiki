@@ -67,4 +67,4 @@ class ShowJobs extends Maintenance {
 }
 
 $maintClass = "ShowJobs";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

@@ -40,4 +40,4 @@ class WaitForSlave extends Maintenance {
 }
 
 $maintClass = "WaitForSlave";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;
