@@ -1842,7 +1842,10 @@ class User {
 			// Note: getNewMessageLinks() never returns more than a single link
 			// and it is always for the same wiki, but we double-check here in
 			// case that changes some time in the future.
-			if ( count( $newMessageLinks ) === 1 && $newMessageLinks[0]['wiki'] === wfWikiID() ) {
+			if ( count( $newMessageLinks ) === 1
+				&& $newMessageLinks[0]['wiki'] === wfWikiID()
+				&& $newMessageLinks[0]['rev']
+			) {
 				$newMessageRevision = $newMessageLinks[0]['rev'];
 				$newMessageRevisionId = $newMessageRevision->getId();
 			} else {
