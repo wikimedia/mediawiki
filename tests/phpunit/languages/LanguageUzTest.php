@@ -12,8 +12,6 @@
  * @file
  */
 
-require_once dirname( __DIR__ ) . '/bootstrap.php';
-
 /** Tests for MediaWiki languages/LanguageUz.php */
 class LanguageUzTest extends LanguageClassesTestCase {
 
