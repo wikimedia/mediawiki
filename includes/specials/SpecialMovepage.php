@@ -293,8 +293,11 @@ class MovePageForm extends UnlistedSpecialPage {
 					Xml::label( $this->msg( 'movereason' )->text(), 'wpReason' ) .
 				"</td>
 				<td class='mw-input'>" .
-					Html::element( 'textarea', array( 'name' => 'wpReason', 'id' => 'wpReason', 'cols' => 60, 'rows' => 2,
-					'maxlength' => 200 ), $this->reason ) .
+					Xml::input( 'wpReason', 60, $this->reason, array(
+						'type' => 'text',
+						'id' => 'wpReason',
+						'maxlength' => 200,
+					) ) .
 				"</td>
 			</tr>"
 		);
