@@ -96,7 +96,7 @@ abstract class JobQueue {
 	 */
 	final public static function factory( array $params ) {
 		$class = $params['class'];
-		if ( !MWInit::classExists( $class ) ) {
+		if ( !class_exists( $class ) ) {
 			throw new MWException( "Invalid job queue class '$class'." );
 		}
 		$obj = new $class( $params );

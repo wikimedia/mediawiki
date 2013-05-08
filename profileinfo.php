@@ -28,11 +28,7 @@
 ini_set( 'zlib.output_compression', 'off' );
 
 $wgEnableProfileInfo = $wgProfileToDatabase = false;
-if ( isset( $_SERVER['MW_COMPILED'] ) ) {
-	require ( 'core/includes/WebStart.php' );
-} else {
-	require ( __DIR__ . '/includes/WebStart.php' );
-}
+require ( __DIR__ . '/includes/WebStart.php' );
 
 header( 'Content-Type: text/html; charset=utf-8' );
 

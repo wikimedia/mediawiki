@@ -6182,56 +6182,6 @@ $wgMaxBacklinksInvalidate = false;
 /** @} */ # End job queue }
 
 /************************************************************************//**
- * @name   HipHop compilation
- * @{
- */
-
-/**
- * The build directory for HipHop compilation.
- * Defaults to '$IP/maintenance/hiphop/build'.
- */
-$wgHipHopBuildDirectory = false;
-
-/**
- * The HipHop build type. Can be either "Debug" or "Release".
- */
-$wgHipHopBuildType = 'Debug';
-
-/**
- * Number of parallel processes to use during HipHop compilation, or "detect"
- * to guess from system properties.
- */
-$wgHipHopCompilerProcs = 'detect';
-
-/**
- * Filesystem extensions directory. Defaults to $IP/../extensions.
- *
- * To compile extensions with HipHop, set $wgExtensionsDirectory correctly,
- * and use code like:
- * @code
- *    require( MWInit::extensionSetupPath( 'Extension/Extension.php' ) );
- * @endcode
- *
- * to include the extension setup file from LocalSettings.php. It is not
- * necessary to set this variable unless you use MWInit::extensionSetupPath().
- */
-$wgExtensionsDirectory = false;
-
-/**
- * A list of files that should be compiled into a HipHop build, in addition to
- * those listed in $wgAutoloadClasses. Add to this array in an extension setup
- * file in order to add files to the build.
- *
- * The files listed here must either be either absolute paths under $IP or
- * under $wgExtensionsDirectory, or paths relative to the virtual source root
- * "$IP/..", i.e. starting with "phase3" for core files, and "extensions" for
- * extension files.
- */
-$wgCompiledFiles = array();
-
-/** @} */ # End of HipHop compilation }
-
-/************************************************************************//**
  * @name   Miscellaneous
  * @{
  */
@@ -6380,6 +6330,12 @@ $wgRequirePasswordforEmailChange = true;
 $wgSiteTypes = array(
 	'mediawiki' => 'MediaWikiSite',
 );
+
+/**
+ * Formerly a list of files for HipHop compilation
+ * @deprecated since 1.22
+ */
+$wgCompiledFiles = array();
 
 /**
  * For really cool vim folding this needs to be at the end:

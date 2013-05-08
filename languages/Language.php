@@ -414,10 +414,8 @@ class Language {
 			return;
 		}
 
-		if ( !defined( 'MW_COMPILED' ) ) {
-			if ( file_exists( "$IP/languages/classes/$class.php" ) ) {
-				include_once( "$IP/languages/classes/$class.php" );
-			}
+		if ( file_exists( "$IP/languages/classes/$class.php" ) ) {
+			include_once( "$IP/languages/classes/$class.php" );
 		}
 	}
 
