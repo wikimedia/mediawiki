@@ -30,6 +30,7 @@
  * @author Erkethan
  * @author Esbardu
  * @author Fabrice Ferrer
+ * @author François Melchior
  * @author Fryed-peach
  * @author Geoleplubo
  * @author Giro720
@@ -811,7 +812,7 @@ N'oubliez pas de modifier [[Special:Preferences|vos préférences pour {{SITENAM
 'yourpasswordagain' => 'Confirmez le mot de passe :',
 'createacct-yourpasswordagain' => 'Confirmez le mot de passe',
 'createacct-yourpasswordagain-ph' => 'Entrez à nouveau le mot de passe',
-'remembermypassword' => 'Me reconnecter automatiquement lors des prochaines visites avec ce navigateur (au maximum $1{{PLURAL:$1|jour|jours}})',
+'remembermypassword' => 'Me reconnecter automatiquement lors des prochaines visites avec ce navigateur (au maximum $1&nbsp;{{PLURAL:$1|jour|jours}})',
 'userlogin-remembermypassword' => 'Garder ma session active',
 'userlogin-signwithsecure' => "S'inscrire avec un serveur sécurisé",
 'securelogin-stick-https' => 'Rester connecté en HTTPS après la connexion',
@@ -1087,7 +1088,7 @@ Vous pouvez trouver plus de détails dans le [{{fullurl:{{#Special:Log}}/delete|
 'userpage-userdoesnotexist-view' => "Le compte utilisateur « $1 » n'est pas enregistré.",
 'blocked-notice-logextract' => "Cet utilisateur est actuellement bloqué.
 La dernière entrée du journal des blocages est indiquée ci-dessous à titre d'information :",
-'clearyourcache' => "'''Note :''' après avoir enregistré vos préférences, vous devrez forcer le rechargement complet du cache de votre navigateur pour voir les changements.
+'clearyourcache' => "'''Note :''' après avoir enregistré vos modifications, il se peut que vous deviez forcer le rechargement complet du cache de votre navigateur pour voir les changements.
 * '''Firefox / Safari :''' Maintenez la touche ''Maj'' (''Shift'') en cliquant sur le bouton ''Actualiser'' ou pressez ''Ctrl-F5'' ou ''Ctrl-R'' (''⌘-R'' sur un Mac) ;
 * '''Google Chrome :''' Appuyez sur ''Ctrl-Maj-R'' (''⌘-Shift-R'' sur un Mac) ;
 * '''Internet Explorer :''' Maintenez la touche ''Ctrl'' en cliquant sur le bouton ''Actualiser'' ou pressez ''Ctrl-F5'' ;
@@ -1597,10 +1598,10 @@ Elle ne doit pas dépasser $1 caractère{{PLURAL:$1||s}}.',
 'saveusergroups' => "Enregistrer les groupes de l'utilisateur",
 'userrights-groupsmember' => 'Membre de :',
 'userrights-groupsmember-auto' => 'Membre implicite de :',
-'userrights-groups-help' => "Vous pouvez modifier les groupes auxquels appartient cet utilisateur:
-* Une case cochée signifie que l'utilisateur se trouve dans ce groupe.
-* Une case non cochée signifie qu'{{GENDER:$1|il|elle}} ne s'y trouve pas.
-* Un astérisque (*) indique que vous ne pouvez pas retirer ce groupe une fois que vous l'avez ajouté, ou vice-versa.",
+'userrights-groups-help' => 'Vous pouvez modifier les groupes auxquels appartient {{GENDER:$1|cet utilisateur|cette utilisatrice}} :
+* Une case cochée signifie que l’utilisat{{GENDER:$1|eur|rice}} se trouve dans ce groupe.
+* Une case non cochée signifie qu’{{GENDER:$1|il|elle}} ne s’y trouve pas.
+* Un astérisque (*) indique que vous ne pouvez pas retirer ce groupe une fois que vous l’avez ajouté, ou vice-versa.',
 'userrights-reason' => 'Motif :',
 'userrights-no-interwiki' => "Vous n'avez pas la permission de modifier des droits d'utilisateurs sur d'autres wikis.",
 'userrights-nodatabase' => "La base de donnée « $1 » n'existe pas ou n'est pas locale.",

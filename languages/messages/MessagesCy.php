@@ -571,8 +571,8 @@ Sylwer y bydd rhai tudalennau yn parhau i ymddangos fel ag yr oeddent pan oeddec
 'createacct-reason' => 'Rheswm',
 'createacct-reason-ph' => 'Pam ydych yn creu cyfrif arall?',
 'createacct-captcha' => 'Gwiriad diogelwch',
-'createacct-captcha-help-url' => '{{ns:Project}}:Ymholi am gyfri',
-'createacct-imgcaptcha-help' => 'Methu gweld y ddelwedd? [[{{MediaWiki:createacct-captcha-help-url}}|Holwch am gyfrif]]',
+'createacct-captcha-help-url' => '{{ns:Project}}:Gwneud cais am gyfri',
+'createacct-imgcaptcha-help' => 'Methu gweld y ddelwedd? [[{{MediaWiki:createacct-captcha-help-url}}|Gwnewch gais am gyfrif]]',
 'createacct-imgcaptcha-ph' => 'Nodwch y testun a welwch uchod',
 'createacct-submit' => 'Crëwch gyfrif',
 'createacct-benefit-heading' => 'Mae {{SITENAME}} yn cael ei greu gan bobl fel chi.',
@@ -3033,9 +3033,9 @@ Mae'n bosib y bydd eich cyfrifiadur yn cael ei danseilio wrth ddefnyddio'r ffeil
 'just-now' => 'nawr',
 
 # Human-readable timestamps
-'hours-ago' => '$1 {{PLURAL:$1|awr|awr}} yn ôl',
-'minutes-ago' => '$1 {{PLURAL:$1|munud|munud}} yn ôl',
-'seconds-ago' => '$1 {{PLURAL:$1|eiliad|eiliad}} yn ôl',
+'hours-ago' => '$1 {{PLURAL:$1|awr}} yn ôl',
+'minutes-ago' => '$1 {{PLURAL:$1|munud|munud|funud|munud}} yn ôl',
+'seconds-ago' => '$1 {{PLURAL:$1|eiliad}} yn ôl',
 'monday-at' => 'Dydd Llun am $1',
 'tuesday-at' => 'Dydd Mawrth am $1',
 'wednesday-at' => 'Dydd Mercher am $1',

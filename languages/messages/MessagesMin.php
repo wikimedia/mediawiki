@@ -1239,6 +1239,7 @@ Alamaik surel Sanak indakkan tau dek urang nan manghubuangi sanak tu.',
 
 # User rights log
 'rightslog' => 'Log parubahan hak akses',
+'rightslogtext' => 'Di bawah ko daftar log parubahan pado hak-hak pangguno.',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'baco laman ko',
@@ -1247,6 +1248,12 @@ Alamaik surel Sanak indakkan tau dek urang nan manghubuangi sanak tu.',
 'action-createtalk' => 'buek laman diskusi',
 'action-createaccount' => 'buek akun pangguno ko',
 'action-minoredit' => 'tandoi sabagai suntiangan ketek',
+'action-move' => 'pindahkan laman ko',
+'action-move-subpages' => 'pindahkan laman ko, jo sublamannyo',
+'action-move-rootuserpages' => 'pindahkan laman pangguno',
+'action-movefile' => 'pindahkan berkas ko',
+'action-upload' => 'muek berkas ko',
+'action-reupload' => 'timpo berkas lamo',
 'action-writeapi' => 'manggunoan panulisan API',
 'action-import' => 'impor laman ko dari wiki lain',
 
@@ -1339,7 +1346,7 @@ Koq berkas tu samemang marupoan gambar dalam ukuran aslinyo, Sanak indak paralu 
 'file-thumbnail-no' => "Namo berkas dimulai jo <strong>$1</strong>.
 Nampaknyo berkas ko marupoan gambar jo ukuran dipaketek ''(miniatua)''.
 Koq Sanak ado versi resolusi panuah dari gambar ko, cubolah muekan berkas tasabuik. Koq indak, harap ubah namo berkas ko.",
-'uploadedimage' => 'muek "[[$1]]"',
+'uploadedimage' => 'mamuek "[[$1]]"',
 'upload-source' => 'Berkas sumber',
 'sourcefilename' => 'Namo berkas sumber:',
 'sourceurl' => 'URL sumber:',
@@ -1545,7 +1552,7 @@ Judul laman nan <del>dicoret</del> bararti alah dipelokan.',
 'newpages-username' => 'Namo pangguno:',
 'ancientpages' => 'Laman paliang lamo',
 'move' => 'Pindah',
-'movethispage' => 'Pindahan laman ko',
+'movethispage' => 'Pindahkan laman ko',
 'unusedimagestext' => 'Berkas barikuik ko ado tapi indak takaik ka laman manopun.
 Harok paratian jikok laman web lain mungkin ado pautan ka suatu berkas jo URL langsuang, dan  masih tadaftar di siko walaupun indak aktif digunoan.',
 'unusedcategoriestext' => 'Kategori barikuik ado, tapi indak ado laman atau kategori lain nan manggunoannyo.',
@@ -1680,6 +1687,7 @@ Parubahan laman ko tamasuak laman rundiangnyo akan ditampilan disinan.',
 'unwatching' => 'indak dipantau le...',
 
 'enotif_reset' => 'Tandoi sado laman alah dibaco',
+'enotif_body_intro_restored' => 'Laman $1 pado {{SITENAME}} alah dikambalian tanggal $PAGEEDITDATE dek {{gender:$2|$2}}, caliak $3 untuak revisi tabaru.',
 
 # Delete
 'deletepage' => 'Hapuih laman',
@@ -1781,6 +1789,7 @@ Awak dapek maubah tingkek perlindungannyo, walaupun indak pangaruah pado perlind
 'undeletebtn' => 'Baliakan',
 'undeletelink' => 'caliak/baliakan',
 'undeleteviewlink' => 'caliak',
+'undeletedrevisions' => '{{PLURAL:$1|$1 revisi}} dikambalian',
 'undelete-cleanup-error' => 'Kasalahan sawaktu mangapuih arsip berkas "$1" nan indak digunoan.',
 
 # Namespace form on various pages
@@ -1946,7 +1955,7 @@ Caliak [[Special:BlockList|daftar sakek]] untuak kasado pangguno nan kini kanai 
 
 # Move page
 'move-page' => 'Pindahan $1',
-'move-page-legend' => 'Pindahan laman',
+'move-page-legend' => 'Pindahkan laman',
 'movepagetext' => "Formulir di bawah ko digunoan untuak maubah namo suatu laman dan mamindahan sadonyo data riwayaik ka namo baru. 
 Judua lamo tu ka manjadi laman paraliahan manuju judua nan baru. 
 Awak dapek mampabarui paraliahan-paraliahan nan manuju ka judua lamo sacaro otomatis.
@@ -1956,6 +1965,15 @@ Ingeklah bahaso laman ko '''indak''' ka bapindah apobilo lah ado laman nan mangg
 
 '''Paringatan!''' 
 Iko dapek maakibaikan parubahan nan indak dipakiroan pado laman nan populer; jadi pastikan awak paham akibaik tindakan ko sabalun malanjuikannyo.",
+'movepagetext-noredirectfixer' => "Formulir di bawah ko digunoan untuak maubah namo suatu laman dan mamindahan sado data riwayaiknyo ka namo baru. 
+Judul lamo tu ka manjadi laman paraliahan manuju judul nan baru. 
+Sanak dapek mampabarui paraliahan-paraliahan nan manuju ka judul lamo sacaro otomatih.
+Kok indak dipabarui sacaro otomatih, pastikan lah dipareso laman ko dari [[Special:DoubleRedirects|paraliahan ganda]] atau [[Special:BrokenRedirects|paralihan rusak]]. Sanak batangguang-jawek untuak mamastian pautan tu taruih manyambuang ka laman nan saaruihnyo.
+
+Ingeklah bahaso laman ko '''indak''' ka bapindah apobilo lah ado laman nan manggunoan judul nan baru tu, kacuali bilo laman tu kosong atau marupoan laman paraliahan dan indak punyo riwayaik suntiangan. Aratinyo Sanak dapek maubah baliak namo laman ka namo samulo apobilo ado kasalahan, dan Sanak indak dapek manimpo laman nan lah ado.
+
+'''Paringatan!''' 
+Iko dapek maakibaikan parubahan nan indak dipakiroan pado laman nan populer; jadi pastikan Sanak paham akibaik tindakan ko sabalun malanjuikannyo.",
 'movepagetalktext' => "Laman diskusi nan bakaitan akan dipindahkan sacaro otomatis '''kacuali apobilo:'''
 
 *Sabuah laman diskusi nan indak kosong lah ado pado judul baru, atau
@@ -1971,7 +1989,7 @@ Dalam kasus tu, kok amuah Angku dapek mamindahkan ataupun manggabuangkan laman s
 'cant-move-to-user-page' => 'Sanak indak ado izin untuak mamindahan laman ka laman pangguno (salain ka sub laman pangguno).',
 'newtitle' => 'Ka judul baru:',
 'move-watch' => 'Pantau laman ko',
-'movepagebtn' => 'Pindahan laman',
+'movepagebtn' => 'Pindahkan laman',
 'pagemovedsub' => 'Pamindahan berhasil',
 'movepage-moved' => '\'\'\'"$1" lah dipindahan ka "$2"\'\'\'',
 'movepage-moved-redirect' => 'Pangaliahan lah dibuek.',
@@ -1981,12 +1999,13 @@ Silakan piliah namo lain.',
 'cantmove-titleprotected' => 'Sanak indak dapek mamindahan laman kasiko dek judul barunyo kanai linduang dari dibuek',
 'talkexists' => "'''Laman tasabuik barasil dipindahan, tapi laman rundiangnyo indak dapek dipindahan dek lah ado laman rundiang disinan. Silakan digabuang laman rundiang tu sacaro manual.'''",
 'movedto' => 'pindahan ka',
-'movetalk' => 'Pindahan laman rundiang nan takaik',
-'move-subpages' => 'Pindahan sub laman (sampai $1)',
-'move-talk-subpages' => 'Pindahan sub laman dari laman rundiang (sampai $1)',
+'movetalk' => 'Pindahkan laman rundiang nan takaik',
+'move-subpages' => 'Pindahkan sublaman (sampai $1)',
+'move-talk-subpages' => 'Pindahkan sublaman dari laman rundiang (sampai $1)',
 'movelogpage' => 'Log pamindahan',
 'movereason' => 'Alasan:',
 'revertmove' => 'baliakkan',
+'move-leave-redirect' => 'Buek pangaliahan ka judul baru',
 
 # Export
 'export' => 'Ekspor laman',
@@ -2029,7 +2048,7 @@ Sanak hanyo buliah mancaliak sumbernyo sajo',
 'tooltip-ca-protect' => 'Linduangi laman ko',
 'tooltip-ca-unprotect' => 'Tuka palinduangan laman ko',
 'tooltip-ca-delete' => 'Hapuih laman ko',
-'tooltip-ca-move' => 'Pindahan laman ko',
+'tooltip-ca-move' => 'Pindahkan laman ko',
 'tooltip-ca-watch' => 'Tambahkan laman ko ka daftar pantau Sanak',
 'tooltip-ca-unwatch' => 'Kaluaan laman ko dari daftar pantau',
 'tooltip-search' => 'Cari {{SITENAME}}',
@@ -2155,6 +2174,7 @@ Sanak hanyo buliah mancaliak sumbernyo sajo',
 
 # Patrol log
 'patrol-log-page' => 'Log patroli',
+'patrol-log-header' => 'Iko daftar log revisi nan alah dipatroli.',
 'log-show-hide-patrol' => '$1 log patroli',
 
 # Browsing diffs
@@ -2305,6 +2325,9 @@ Nan lainnyo akan tasuruak sacaro baku.
 'table_pager_limit_label' => 'Item per laman:',
 'table_pager_limit_submit' => 'Tuju',
 
+# Auto-summaries
+'autosumm-new' => '←Mambuek laman baisi "$1"',
+
 # Watchlist editor
 'watchlistedit-raw-titles' => 'Judul:',
 'watchlistedit-raw-submit' => 'Pabarui pantauan',
@@ -2417,10 +2440,16 @@ Situs ko mangalami masalah teknis.',
 'htmlform-required' => 'Nilai ko diparaluan',
 
 # New logging system
+'logentry-delete-restore' => '$1 {{GENDER:$2|mangambalian}} laman $3',
+'logentry-patrol-patrol' => '$1 {{GENDER:$2|manandoi}} revisi $4 dari laman $3 tapatroli',
+'logentry-patrol-patrol-auto' => '$1 otomatih {{GENDER:$2|manandoi}} revisi $4 dari laman $3 tapatroli',
 'logentry-newusers-newusers' => 'Akun pangguno $1 lah dibuek',
 'logentry-newusers-create' => '$1 mambuek akun pangguno',
 'logentry-newusers-create2' => 'Akun pangguno $3 dibuek jo $1',
 'logentry-newusers-autocreate' => 'Akun $1 dibuek sacaro otomatis',
+'logentry-rights-rights' => '$1 {{GENDER:$2|maubah}} kaanggotaan kalompok $3 dari $4 manjadi $5',
+'logentry-rights-rights-legacy' => '$1 {{GENDER:$2|maubah}} kaanggotaan kalompok $3',
+'rightsnone' => '(indak ado)',
 
 # Search suggestions
 'searchsuggest-search' => 'Cari',
