@@ -41,7 +41,7 @@ class ProfilerSimpleUDP extends ProfilerSimple {
 			return;
 		}
 
-		if ( !MWInit::functionExists( 'socket_create' ) ) {
+		if ( !function_exists( 'socket_create' ) ) {
 			# Sockets are not enabled
 			return;
 		}

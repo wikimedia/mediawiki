@@ -49,11 +49,7 @@ if ( !function_exists( 'version_compare' ) || version_compare( phpversion(), '5.
 # Initialise common code.  This gives us access to GlobalFunctions, the
 # AutoLoader, and the globals $wgRequest, $wgOut, $wgUser, $wgLang and
 # $wgContLang, amongst others; it does *not* load $wgTitle
-if ( isset( $_SERVER['MW_COMPILED'] ) ) {
-	require ( 'phase3/includes/WebStart.php' );
-} else {
-	require ( __DIR__ . '/includes/WebStart.php' );
-}
+require ( __DIR__ . '/includes/WebStart.php' );
 
 $mediaWiki = new MediaWiki();
 $mediaWiki->run();

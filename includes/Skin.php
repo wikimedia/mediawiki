@@ -162,23 +162,19 @@ abstract class Skin extends ContextSource {
 		$className = "Skin{$skinName}";
 
 		# Grab the skin class and initialise it.
-		if ( !MWInit::classExists( $className ) ) {
+		if ( !class_exists( $className ) ) {
 
-			if ( !defined( 'MW_COMPILED' ) ) {
-				require_once( "{$wgStyleDirectory}/{$skinName}.php" );
-			}
+			require_once( "{$wgStyleDirectory}/{$skinName}.php" );
 
 			# Check if we got if not fallback to default skin
-			if ( !MWInit::classExists( $className ) ) {
+			if ( !class_exists( $className ) ) {
 				# DO NOT die if the class isn't found. This breaks maintenance
 				# scripts and can cause a user account to be unrecoverable
 				# except by SQL manipulation if a previously valid skin name
 				# is no longer valid.
 				wfDebug( "Skin class does not exist: $className\n" );
 				$className = 'SkinVector';
-				if ( !defined( 'MW_COMPILED' ) ) {
-					require_once( "{$wgStyleDirectory}/Vector.php" );
-				}
+				require_once( "{$wgStyleDirectory}/Vector.php" );
 			}
 		}
 		$skin = new $className( $key );
