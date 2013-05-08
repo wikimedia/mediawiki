@@ -517,6 +517,17 @@ $wgShowEXIF = function_exists( 'exif_read_data' );
 $wgUpdateCompatibleMetadata = false;
 
 /**
+ * Show duplicate files list on foreign images.
+ *
+ * Some people may want to disable this, since foreign
+ * files may be out of the wikis control. Some people
+ * include a foreign repo more than once (when cascading
+ * is taken into account) which results in many false positives
+ * on foreign files
+ */
+$wgShowDuplicatesOnForeignFiles = true;
+
+/**
  * If you operate multiple wikis, you can define a shared upload path here.
  * Uploads to this wiki will NOT be put there - they will be put into
  * $wgUploadDirectory.

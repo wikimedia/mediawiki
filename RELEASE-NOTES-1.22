@@ -15,6 +15,8 @@ production.
   activated; when $wgUseVFormCreateAccount is true, the redesign of
   Special:UserLogin/signup is activated.
 * $wgVectorUseIconWatch is now enabled by default.
+* (bug 38429) $wgShowDuplicatesOnForeignFiles added to allow disabling showing
+  the duplicate files list on foreign files.
 
 === New features in 1.22 ===
 * (bug 44525) mediawiki.jqueryMsg can now parse (whitelisted) HTML elements and attributes.

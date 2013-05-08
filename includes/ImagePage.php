@@ -810,8 +810,14 @@ EOT
 	}
 
 	protected function imageDupes() {
+		global $wgShowDuplicatesOnForeignFiles;
 		$this->loadFile();
 		$out = $this->getContext()->getOutput();
+
+		if ( !$wgShowDuplicatesOnForeignFiles && !$this->mPage->getFile()->isLocal() ) {
+			// Don't show duplicates on foreign files
+			return;
+		}
 
 		$dupes = $this->mPage->getDuplicates();
 		if ( count( $dupes ) == 0 ) {
