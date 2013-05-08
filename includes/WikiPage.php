@@ -1644,7 +1644,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 */
 	public function doEditContent( Content $content, $summary, $flags = 0, $baseRevId = false,
 								   User $user = null, $serialisation_format = null ) {
-		global $wgUser, $wgUseAutomaticEditSummaries, $wgUseRCPatrol, $wgUseNPPatrol;
+		global $wgUser, $wgUseAutomaticEditSummaries, $wgUseRCPatrol, $wgUseNPPatrol, $wgLogAutopatrol;
 
 		// Low-level sanity check
 		if ( $this->mTitle->getText() === '' ) {
@@ -1803,7 +1803,7 @@ class WikiPage implements Page, IDBAccessObject {
 					);
 
 					// Log auto-patrolled edits
-					if ( $patrolled ) {
+					if ( $wgLogAutopatrol && $patrolled ) {
 						PatrolLog::record( $rc, true, $user );
 					}
 				}
@@ -1900,7 +1900,7 @@ class WikiPage implements Page, IDBAccessObject {
 					'', $newsize, $revisionId, $patrolled );
 
 				// Log auto-patrolled edits
-				if ( $patrolled ) {
+				if ( $wgLogAutopatrol && $patrolled ) {
 					PatrolLog::record( $rc, true, $user );
 				}
 			}
