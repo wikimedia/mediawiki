@@ -79,6 +79,11 @@ $namespaceAliases = array(
 	'Kategoria_diskuto'    => NS_CATEGORY_TALK,
 );
 
+$namespaceGenderAliases = array(
+        NS_USER => array( 'male' => 'Uzanto', 'female' => 'Uzantino' ),
+        NS_USER_TALK => array( 'male' => 'Uzanto-Diskuto', 'female' => 'Uzantino-Diskuto' ),
+);
+
 $specialPageAliases = array(
 	'Activeusers'               => array( 'Aktivaj_uzantoj' ),
 	'Allmessages'               => array( 'Ĉiuj_mesaĝoj' ),
