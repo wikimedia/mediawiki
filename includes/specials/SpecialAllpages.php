@@ -308,8 +308,10 @@ class SpecialAllpages extends IncludableSpecialPage {
 	function showline( $inpoint, $outpoint, $namespace = NS_MAIN, $hideRedirects = false ) {
 		// Use content language since page titles are considered to use content language
 		global $wgContLang;
-		$inpointf = htmlspecialchars( str_replace( '_', ' ', $inpoint ) );
-		$outpointf = htmlspecialchars( str_replace( '_', ' ', $outpoint ) );
+
+		$inpointf = str_replace( '_', ' ', $inpoint );
+		$outpointf = str_replace( '_', ' ', $outpoint );
+
 		// Don't let the length runaway
 		$inpointf = $wgContLang->truncate( $inpointf, $this->maxPageLength );
 		$outpointf = $wgContLang->truncate( $outpointf, $this->maxPageLength );
@@ -326,12 +328,13 @@ class SpecialAllpages extends IncludableSpecialPage {
 			$queryParams['hideredirects'] = 1;
 		}
 
-		$link = htmlspecialchars(
-			$this->getTitle()->getLocalURL( $queryParams ) );
+		$url = $this->getTitle()->getLocalURL( $queryParams );
+		$inlink = Html::element( 'a', array( 'href' => $url ), $inpointf );
+		$outlink = Html::element( 'a', array( 'href' => $url ), $outpointf );
 
 		$out = $this->msg( 'alphaindexline' )->rawParams(
-			"<a href=\"$link\">$inpointf</a></td><td>",
-			"</td><td><a href=\"$link\">$outpointf</a>"
+			"$inlink</td><td>",
+			"</td><td>$outlink"
 		)->escaped();
 
 		return '<tr><td class="mw-allpages-alphaindexline">' . $out . '</td></tr>';
