@@ -1105,6 +1105,8 @@ class LoginForm extends SpecialPage {
 				$out->addJsConfigVars( 'wgCreateacctImgcaptchaHelp',
 					$this->msg( 'createacct-imgcaptcha-help' )->parse() );
 				$out->addModules( 'mediawiki.special.createaccount.vform.js' );
+				// Must match number of benefits defined in messages
+				$template->set( 'benefitCount', 3 );
 			} else {
 				$template = new UsercreateTemplate();
 			}
