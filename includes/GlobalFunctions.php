@@ -93,26 +93,6 @@ if ( !function_exists( 'mb_strrpos' ) ) {
 		return Fallback::mb_strrpos( $haystack, $needle, $offset, $encoding );
 	}
 }
-
-// Support for Wietse Venema's taint feature
-if ( !function_exists( 'istainted' ) ) {
-	/**
-	 * @codeCoverageIgnore
-	 * @return int
-	 */
-	function istainted( $var ) {
-		return 0;
-	}
-	/** @codeCoverageIgnore */
-	function taint( $var, $level = 0 ) {}
-	/** @codeCoverageIgnore */
-	function untaint( $var, $level = 0 ) {}
-	define( 'TC_HTML', 1 );
-	define( 'TC_SHELL', 1 );
-	define( 'TC_MYSQL', 1 );
-	define( 'TC_PCRE', 1 );
-	define( 'TC_SELF', 1 );
-}
 /// @endcond
 
 /**
@@ -274,24 +254,6 @@ function wfObjectToArray( $objOrArray, $recursive = true ) {
 	}
 
 	return $array;
-}
-
-/**
- * Wrapper around array_map() which also taints variables
- *
- * @param  $function Callback
- * @param  $input Array
- * @return Array
- */
-function wfArrayMap( $function, $input ) {
-	$ret = array_map( $function, $input );
-	foreach ( $ret as $key => $value ) {
-		$taint = istainted( $input[$key] );
-		if ( $taint ) {
-			taint( $ret[$key], $taint );
-		}
-	}
-	return $ret;
 }
 
 /**
