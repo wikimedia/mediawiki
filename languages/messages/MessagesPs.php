@@ -512,6 +512,7 @@ $1',
 'actionthrottled' => 'د دې کړنې مخنيوی وشو',
 'protectedpagetext' => 'دا مخ د سمون او نورو کړنو د ترسره کولو په تکل ژغورل شوی.',
 'viewsourcetext' => 'تاسې د دې مخ سرچينه کتلی او لمېسلی شی:',
+'viewyourtext' => "تاسې په دې مخ کې د '''خپلو سمونونو''' سرچينه کتلی او لمېسلی شی:",
 'protectedinterface' => 'دا مخ د دې ويکي د ساوترې د ليدنمخ متن لري، او د ورانکارۍ په خاطر ژغورل شوی.
 په ټولو ويکي ګانو کې د ژباړې د ورګډولو او يا هم د ژباړې د سمون او بدلون لپاره د مېډياويکي د ځايتابه پروژه [//translatewiki.net/ translatewiki.net] وکاروۍ.',
 'editinginterface' => "'''ګواښنه:''' تاسو په يوه داسې مخ کې بدلون راولی کوم چې د يوې پوستکالی د ليدنمخ متن په توګه کارېږي.
@@ -537,17 +538,24 @@ $1',
 تاسې کولای شی چې د کارن-نوم نه پرته په ورکنومي توګه {{SITENAME}} وکاروی، او يا هم په همدې او يا کوم بل کارن-نوم، يو ځل <span class='plainlinks'>[$1 بيا غونډال ته ورننوځۍ]</span>.
 دا په پام کې وساتۍ چې تر څو تاسې د خپل کتنمل حافظه نه وي سپينه کړې، نو ځينې مخونو کې به لا تر اوسه پورې په غونډال کې ننوتي ښکارۍ.",
 'welcomeuser' => '$1، ښه راغلې!',
+'welcomecreation-msg' => 'ګڼون مو جوړ شو.
+د [[Special:Preferences|{{SITENAME}} غوره توبونه]] بدلول مو مه هېروۍ.',
 'yourname' => 'کارن-نوم:',
 'userlogin-yourname' => 'کارن-نوم',
 'userlogin-yourname-ph' => 'کارن-نوم مو وليکۍ',
 'yourpassword' => 'پټنوم:',
 'userlogin-yourpassword' => 'پټنوم',
 'userlogin-yourpassword-ph' => 'پټنوم مو وليکۍ',
+'createacct-yourpassword-ph' => 'پټنوم مو وټاپۍ',
 'yourpasswordagain' => 'پټنوم بيا وليکه',
+'createacct-yourpasswordagain' => 'پټنوم مو تاييد کړۍ',
+'createacct-yourpasswordagain-ph' => 'پټنوم مو بيا وټاپۍ',
 'remembermypassword' => 'زما پټنوم په دې کمپيوټر (تر $1 {{PLURAL:$1|ورځې|ورځو}}) په ياد وساته!',
-'userlogin-remembermypassword' => 'ما په ياد لره',
+'userlogin-remembermypassword' => 'غونډال کې مې ننوتلی وساته',
+'userlogin-signwithsecure' => 'د خوندي پالنګر په مرسته ننوتل',
 'securelogin-stick-https' => 'وروسته د ننوتلو HTTPS سره تړلی پاتې کېدل',
 'yourdomainname' => 'ستاسې شپول:',
+'password-change-forbidden' => 'تاسې په دې ويکي باندې خپل پټنوم نه شی بدلولی.',
 'login' => 'ننوتل',
 'nav-login-createaccount' => 'ننوتل / ګڼون جوړول',
 'loginprompt' => 'ددې لپاره چې {{SITENAME}} کې ننوځۍ نو بايد ستاسې د کمپيوټر کوکيز چارن وي.',
@@ -564,12 +572,26 @@ $1',
 'gotaccount' => 'آيا وار دمخې يو ګڼون لری؟ $1.',
 'gotaccountlink' => 'ننوتل',
 'userlogin-resetlink' => 'د ننوتلو مالومات مو هېر شوي؟',
+'createacct-emailrequired' => 'برېښليک پته',
+'createacct-emailoptional' => 'برېښليک پته (اختياري)',
+'createacct-email-ph' => 'برېښليک پته مو وټاپۍ',
 'createaccountmail' => 'يو لنډمهاله ناټاکلی پټنوم کارول او په لاندې ورکړل شوې برېښليک پته کې ورلېږل',
+'createacct-realname' => 'آر نوم (اختياري)',
 'createaccountreason' => 'سبب:',
+'createacct-reason' => 'سبب',
+'createacct-reason-ph' => 'ولې تاسې بل ګڼون جوړول غوااړۍ',
+'createacct-captcha-help-url' => '{{ns:Project}}:د يو ګڼون غوښتنه',
+'createacct-imgcaptcha-ph' => 'پورته تاسې ته ښکاره شوی متن وټاپۍ',
+'createacct-submit' => 'ګڼون مو جوړ کړۍ',
+'createacct-benefit-heading' => '{{SITENAME}} ستاسې په شان خلکو لخوا جوړ شوی.',
+'createacct-benefit-body1' => 'سمونونه',
+'createacct-benefit-body2' => 'مخونه',
+'createacct-benefit-body3' => 'وروستني ونډه وال',
 'badretype' => 'دا پټنوم چې تاسې ليکلی د مخکني پټنوم سره ورته نه دی.',
 'userexists' => 'کوم کارن نوم چې تاسې ورکړی هغه بل چا کارولی.
 لطفاً يو بل نوم وټاکۍ.',
 'loginerror' => 'د ننوتنې ستونزه',
+'createacct-error' => 'د ګڼون جوړېدنې ستونزه',
 'createaccounterror' => 'ګڼون مو جوړ نه شو: $1',
 'nocookiesnew' => 'ستاسې ګڼون جوړ شو، خو تاسې لا غونډال ته نه ياست ورننوتلي.
 {{SITENAME}} کې د ننوتلو لپاره کوکيز کارېږي.
@@ -2028,6 +2050,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 
 # Export
 'export' => 'مخونه صادرول',
+'exportall' => 'ټول مخونه صادرول',
 'export-submit' => 'صادرول',
 'export-addcattext' => 'مخونو د ورګډولو وېشنيزه:',
 'export-addcat' => 'ورګډول',
@@ -2187,7 +2210,9 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'skinname-vector' => 'وېکټور',
 
 # Patrolling
+'markaspatrolleddiff' => 'دا مخ څارل شوی په نخښه کول',
 'markaspatrolledtext' => 'دا مخ څارل شوی په نخښه کول',
+'markedaspatrolled' => 'دا مخ څارل شوی په نخښه کول',
 
 # Image deletion
 'filedeleteerror-short' => 'د دوتنې د ړنګولو ستونزه: $1',
@@ -2229,6 +2254,7 @@ $1',
 'hours' => '{{PLURAL:$1|$1 ساعت|$1 ساعتونه}}',
 'days' => '{{PLURAL:$1|$1 ورځ|$1 ورځې}}',
 'ago' => '$1 دمخه',
+'just-now' => 'همدا اوس',
 
 # Bad image list
 'bad_image_list' => 'بڼه يې په لاندې توګه ده:
@@ -2703,6 +2729,7 @@ $5
 'api-error-filename-tooshort' => 'د دوتنې نوم ډېر لنډ دی.',
 'api-error-filetype-banned' => 'په دې ډول دوتنې بنديز دی.',
 'api-error-illegal-filename' => 'د دوتنې نوم نه دی پرېښل شوی.',
+'api-error-mustbeloggedin' => 'د دوتنو د پورته کولو لپاره بايد تاسې غونډال کې ننوتلی اوسۍ.',
 'api-error-unclassified' => 'يوه ناڅرګنده تېروتنه رامېنځته شوه.',
 'api-error-unknown-code' => 'ناڅرګنده تېروتنه: "$1"',
 'api-error-unknown-warning' => 'ناڅرګنده ګواښنه: "$1".',

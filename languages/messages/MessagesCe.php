@@ -815,6 +815,7 @@ $1',
 # User rights
 'userrights' => 'Декъашхочуьн бакъона урхалладар',
 'editinguser' => "Хийца декъашхочуьна бакъо '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-reason' => 'Бахьан:',
 
 # Groups
 'group' => 'Тоба:',
@@ -850,7 +851,7 @@ $1',
 'nchanges' => '$1 {{PLURAL:$1|хийцам|хийцамаш|хийцамаш}}',
 'recentchanges' => 'Керла нисдарш',
 'recentchanges-legend' => 'Гlирс нисбарна керла нисдарш',
-'recentchanges-summary' => 'Лахахьа гайтина хронологин къепехь тӀаьхьара бина хийцамаш Википедин агӀонашкахь',
+'recentchanges-summary' => 'Лахахь гайтина хене хьаьжна Википедин агӀонашкахь тӀаьхьара бина хийцамаш',
 'recentchanges-feed-description' => 'Тергам бе тlаьхьара вики хийцаман хlокху ларца.',
 'recentchanges-label-newpage' => 'Оцу нисдарца кхоллина керла агlо.',
 'recentchanges-label-minor' => 'Хlара нисдинарг къастийна жимо долушсан',
@@ -860,6 +861,7 @@ $1',
 'rcshowhidebots' => '$1 шабелхалой',
 'rcshowhideliu' => '$1 вовзитар долу декъашхой',
 'rcshowhideanons' => '$1 хьулбелларш',
+'rcshowhidepatr' => '$1 хьажжина нисдарш',
 'rcshowhidemine' => '$1 айхьа нисдинарш',
 'rclinks' => 'Гайта тlаьхьара $1 хийцамаш оцу $2 ден<br />$3',
 'diff' => 'тейп тайпнара',
@@ -1164,10 +1166,18 @@ PICT # тайп тайпан
 
 # Undelete
 'undelete' => 'ДIайайина йолу агIонашка хьажар',
+'undeletepage' => 'ДӀаяхина агӀонашка хьажар а меттахӀоттар а',
+'undeletepagetitle' => "'''Лахахь гайтина хӀокху [[:$1]] агӀона дӀаяхина версеш'''.",
 'viewdeletedpage' => 'ДIайайина йолу агIонашка хьажар',
+'undelete-fieldset-title' => 'МеттахӀоттае версеш',
 'undeleterevdel' => 'Метта хlоттор хира дац, нагахь иза дакъошкахь дlадайина далахь а тlаьххьара кисак башхо йа хlума.
 Иштнарг хилча ахьа дlабаккха беза хlоттийна болу къастам йа хьагайта тlаьххьара дlайайина башхо.',
+'undeletebtn' => 'МеттахӀоттае',
 'undeletelink' => 'хьажа/метта хlоттаде',
+'undeleteinvert' => 'Къастае массо',
+'undeletecomment' => 'Бахьан:',
+'undeletedrevisions' => '$1 {{PLURAL:$1|хийцамаш|хийцамаш|хийцамаш}} меттахӀоттайина',
+'undeletedfiles' => '$1 {{PLURAL:$1|файл меттахӀоттайина|файлаш меттахӀоттайина|файлаш меттахӀоттайина}}',
 'undelete-search-submit' => 'Лаха',
 
 # Namespace form on various pages
@@ -1381,6 +1391,9 @@ PICT # тайп тайпан
 # Spam protection
 'spamprotectiontitle' => 'Совбиларна литтар',
 
+# Info page
+'pageinfo-toolboxlink' => 'Агlонах болу бовзам',
+
 # Browsing diffs
 'previousdiff' => '← Хьалхдоьда нисдинарг',
 'nextdiff' => 'Тlяхьа догlа нисдинарг →',
@@ -1524,6 +1537,8 @@ PICT # тайп тайпан
 'dberr-outofdate' => 'Хьуна хаалахь, цуьна йолу меттиг хила мега тишйелла черахь.',
 
 # New logging system
+'logentry-delete-delete' => '$1 {{GENDER:$2|дӀаякхина|дӀаякхина}} агӀо $3',
+'logentry-delete-restore' => '$1 {{GENDER:$2|меттахӀоттайина|меттахӀоттайина}} агӀо $3',
 'logentry-move-move' => '$1 {{GENDER:$2|цӀе хийцина|цӀе хийцина}} $3 оцу $4',
 
 );

@@ -10065,12 +10065,10 @@ Anche se può essere possibile creare utenti senza password, questo non è sicur
 Da cambiare solamente se si è sicuri di averne bisogno.',
 	'config-pg-test-error' => "Impossibile connettersi al database '''$1''': $2",
 	'config-sqlite-dir' => 'Directory data di SQLite:',
-	'config-type-ibm_db2' => 'IBM DB2',
 	'config-header-mysql' => 'Impostazioni MySQL',
 	'config-header-postgres' => 'Impostazioni PostgreSQL',
 	'config-header-sqlite' => 'Impostazioni SQLite',
 	'config-header-oracle' => 'Impostazioni Oracle',
-	'config-header-ibm_db2' => 'Impostazioni IBM DB2',
 	'config-invalid-db-type' => 'Tipo di database non valido',
 	'config-missing-db-name' => 'È necessario immettere un valore per "Nome del database"',
 	'config-db-web-account' => "Account del database per l'accesso web",
@@ -10081,7 +10079,6 @@ Da cambiare solamente se si è sicuri di averne bisogno.',
 	'config-mysql-charset' => 'Set di caratteri del database:',
 	'config-mysql-binary' => 'Binario',
 	'config-mysql-utf8' => 'UTF-8',
-	'config-ibm_db2-low-db-pagesize' => "Il database DB2 in uso ha una tablespace predefinita con un insufficiente pagesize, che dovrebbe essere '''32K''' o maggiore.",
 	'config-ns-generic' => 'Progetto',
 	'config-ns-site-name' => 'Stesso nome wiki: $1',
 	'config-ns-other-default' => 'MyWiki',
@@ -10106,7 +10103,7 @@ Inserire un indirizzo email se si desidera effettuare l'iscrizione alla mailing 
 	'config-almost-done' => 'Hai quasi finito!
 Adesso puoi saltare la rimanente parte della configurazione e semplicemente installare la wiki.',
 	'config-optional-continue' => 'Fammi altre domande.',
-	'config-profile-wiki' => 'Wiki tradizionale', # Fuzzy
+	'config-profile-wiki' => 'Wiki aperto',
 	'config-profile-no-anon' => 'Creazione utenza obbligatoria',
 	'config-profile-fishbowl' => 'Solo editori autorizzati',
 	'config-profile-private' => 'Wiki privata',
@@ -15928,18 +15925,18 @@ A peul adess sauté la configurassion rimanenta e instalé dlongh la wiki.",
 	'config-optional-continue' => "Ciameme d'àutre chestion.",
 	'config-optional-skip' => 'I son già anojà, instala mach la wiki.',
 	'config-profile' => "Profil dij drit d'utent:",
-	'config-profile-wiki' => 'Deurb wiki',
+	'config-profile-wiki' => 'Wiki duverta',
 	'config-profile-no-anon' => 'A venta creé un cont',
 	'config-profile-fishbowl' => 'Mach editor autorisà',
 	'config-profile-private' => 'Wiki privà',
 	'config-profile-help' => "Le wiki a marcio mej quand ch'a lassa che pì përsone possìbij a-j modìfico.
-An MediaWiki, a l'é bel fé revisioné ij cambi recent, e buté andré minca dann che a sia fàit da utent noviss o malissios.
+An MediaWiki, a l'é bel fé revisioné j'ùltime modìfiche, e buté andré qualsëssìa dann che a sia fàit da dj'utent noviss o malissios.
 
 An tùit ij cas, an tanti a l'han trovà che MediaWiki a sia ùtil ant na gran varietà ëd manere, e dle vire a l'é pa bel fé convince cheidun dij vantagi dla wiki.
 Parèj a l'ha doe possibilità.
 
 Ël model '''{{int:config-profile-wiki}}''' a përmët a chicassìa ëd modifiché, bele sensa intré ant ël sistema.
-Na wiki con  '''{{int:config-profile-no-anon}}''' a dà pì 'd contròl, ma a peul slontané dij contribudor casuaj.
+Na wiki con  '''{{int:config-profile-no-anon}}''' a dà pì 'd contròl, ma a peul slontané dij contributor ocasionaj.
 
 Ël senari '''{{int:config-profile-fishbowl}}''' a përmët a j'utent aprovà ëd modifiché, ma ël pùblich a peul vëdde le pàgine, comprèisa la stòria.
 Un '''{{int:config-profile-private}}''' a përmët mach a j'utent aprovà ëd vëdde le pàgine, con la midema partìa ch'a peul modifiché.
@@ -15994,7 +15991,7 @@ Idealment, sòn a dovrìa pa esse acessìbil an sl'aragnà.",
 	'config-logo-help' => "La pel dë stàndard ëd MediaWiki a comprend lë spassi për na marca ëd 135x160 pontin dzora la lista dla bara lateral.
 Ch'a dëscaria na figura ëd la dimension aproprià, e ch'a anserissa l'anliura ambelessì.
 
-S'a veul gnun-e marche, ch'a lassa ës camp bianch.",
+S'a veul gnun-e marche, ch'a lassa ës camp bianch.", # Fuzzy
 	'config-instantcommons' => 'Abìlita Instant Commons',
 	'config-instantcommons-help' => "[//www.mediawiki.org/wiki/InstantCommons Instant Commons] a l'é na funsion ch'a përmët a le wiki ëd dovré dle figure, dij son e d'àutri mojen trovà an sël sit [//commons.wikimedia.org/ Wikimedia Commons].
 Për dovré sossì, MediaWiki a l'ha da manca dl'acess a la ragnà.
@@ -16027,8 +16024,8 @@ S'a conòsse nen la pòrta, cola predefinìa a l'é 11211.",
 A peulo avèj da manca ëd configurassion adissionaj, ma a peul abiliteje adess",
 	'config-install-alreadydone' => "'''Avis''' A smija ch'a l'abie già instalà MediaWiki e ch'a preuva a instalelo torna.
 Për piasì, ch'a vada a la pàgina ch'a-i ven.",
-	'config-install-begin' => 'An sgnacand "{{int:config-continue}}", a anandiërà l\'istalassion ëd MediaWiki.
-S\'a veul anco\' fé dle modìfiche, ch\'a sgnaca su "{{int:config-back}}".',
+	'config-install-begin' => "An sgnacand su «{{int:config-continue}}», a anandiërà l'istalassion ëd MediaWiki.
+S'a veul anco' fé dle modìfiche, ch'a sgnaca su «{{int:config-back}}».",
 	'config-install-step-done' => 'fàit',
 	'config-install-step-failed' => 'falì',
 	'config-install-extensions' => "Comprende j'estension",

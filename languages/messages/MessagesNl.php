@@ -45,6 +45,7 @@
  * @author Troefkaart
  * @author Tvdm
  * @author User555
+ * @author WTM
  * @author Wiki13
  * @author לערי ריינהארט
  */
@@ -776,7 +777,7 @@ Vergeet niet uw [[Special:Preferences|voorkeuren voor {{SITENAME}}]] aan te pass
 'yourname' => 'Gebruikersnaam:',
 'userlogin-yourname' => 'Gebruikersnaam',
 'userlogin-yourname-ph' => 'Geef uw gebruikersnaam op',
-'createacct-helpusername-url' => '{{ns:Project}}:Beleid_gebruikersnamen',
+'createacct-helpusername-url' => '{{ns:Project}}:Gebruikersnamenbeleid',
 'createacct-helpusername-link' => '[[{{MediaWiki:createacct-helpusername-url}}|(help me kiezen)]]',
 'yourpassword' => 'Wachtwoord:',
 'userlogin-yourpassword' => 'Wachtwoord',
@@ -786,7 +787,7 @@ Vergeet niet uw [[Special:Preferences|voorkeuren voor {{SITENAME}}]] aan te pass
 'createacct-yourpasswordagain' => 'Bevestig wachtwoord',
 'createacct-yourpasswordagain-ph' => 'Geef het wachtwoord opnieuw op',
 'remembermypassword' => 'Aanmeldgegevens onthouden (maximaal $1 {{PLURAL:$1|dag|dagen}})',
-'userlogin-remembermypassword' => 'Aanmeldgegevens onthouden',
+'userlogin-remembermypassword' => 'Aangemeld blijven',
 'userlogin-signwithsecure' => 'Aanmelden via beveiligde server',
 'securelogin-stick-https' => 'Verbonden blijven via HTTPS na aanmelden',
 'yourdomainname' => 'Uw domein:',
@@ -818,14 +819,16 @@ Vergeet niet uw [[Special:Preferences|voorkeuren voor {{SITENAME}}]] aan te pass
 'createacct-realname' => 'Echte naam (optioneel)',
 'createaccountreason' => 'Reden:',
 'createacct-reason' => 'Reden',
+'createacct-reason-ph' => 'Waarom u een andere gebruiker aanmaakt',
 'createacct-captcha' => 'Veiligheidscontrole',
 'createacct-captcha-help-url' => '{{ns:Project}}:Gebruiker_aanvragen',
 'createacct-imgcaptcha-help' => 'Kunt u de afbeelding niet zien? [[{{MediaWiki:createacct-captcha-help-url}}|Vraag dan een gebruiker aan]]',
 'createacct-imgcaptcha-ph' => 'Geef de tekst in die u hierboven ziet',
+'createacct-submit' => 'Gebruiker aanmaken',
 'createacct-benefit-heading' => '{{SITENAME}} wordt gemaakt door mensen zoals u.',
 'createacct-benefit-body1' => 'bewerkingen',
-'createacct-benefit-body2' => "pagina{{PLURAL:$1||'s}}",
-'createacct-benefit-body3' => 'bijdrager{{PLURAL:$1||s}} deze maand',
+'createacct-benefit-body2' => "pagina{{PLURAL:{{NUMBEROFARTICLES:R}}||'s}}",
+'createacct-benefit-body3' => 'bijdrager{{PLURAL:$1||s}}',
 'badretype' => 'De ingevoerde wachtwoorden verschillen van elkaar.',
 'userexists' => 'De gekozen gebruikersnaam is al in gebruik.
 Kies een andere naam.',
@@ -1628,6 +1631,7 @@ Als u deze opgeeft, kan deze naam gebruikt worden om u erkenning te geven voor u
 'userrights-notallowed' => 'U hebt geen rechten om gebruikersrechten toe te voegen of te verwijderen.',
 'userrights-changeable-col' => 'Groepen die u kunt beheren',
 'userrights-unchangeable-col' => 'Groepen die u niet kunt beheren',
+'userrights-conflict' => 'Er is een probleem opgetreden tijdens het instellen van de gebruikersrechten. Pas uw wijzigingen opnieuw toe.',
 
 # Groups
 'group' => 'Groep:',
@@ -2597,7 +2601,7 @@ Ga een pagina terug, laad die pagina opnieuw en probeer het nog eens.',
 'protectlogtext' => "Hieronder staan pagina's waarvan de beveiliging recentelijk gewijzigd is.
 Zie de [[Special:ProtectedPages|lijst met beveiligde pagina's]] voor alle beveiligde pagina's.",
 'protectedarticle' => 'heeft "[[$1]]" beveiligd',
-'modifiedarticleprotection' => 'heeft het beveiligingsniveau voor "[[$1]]" gewijzigd',
+'modifiedarticleprotection' => 'heeft het beveiligingsniveau gewijzigd voor "[[$1]]"',
 'unprotectedarticle' => 'heeft de beveiliging van "[[$1]]" opgeheven',
 'movedarticleprotection' => 'heeft beveiligingsinstellingen verplaatst van "[[$2]]" naar "[[$1]]"',
 'protect-title' => 'Beveiligingsniveau instellen voor "$1"',
