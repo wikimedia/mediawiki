@@ -699,6 +699,8 @@ abstract class FileBackendStore extends FileBackend {
 			}
 		} elseif ( $stat === false ) { // file does not exist
 			$this->cheapCache->set( $path, 'stat', $latest ? 'NOT_EXIST_LATEST' : 'NOT_EXIST' );
+			$this->cheapCache->set( $path, 'sha1', // the SHA-1 must be false too
+				array( 'hash' => false, 'latest' => $latest ) );
 			wfDebug( __METHOD__ . ": File $path does not exist.\n" );
 		} else { // an error occurred
 			wfDebug( __METHOD__ . ": Could not stat file $path.\n" );
