@@ -623,7 +623,7 @@ class Profiler {
 	 * @param string $s to output
 	 */
 	function debug( $s ) {
-		if ( defined( 'MW_COMPILED' ) || function_exists( 'wfDebug' ) ) {
+		if ( function_exists( 'wfDebug' ) ) {
 			wfDebug( $s );
 		}
 	}

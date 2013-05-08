@@ -137,6 +137,8 @@ changes to languages because of Bugzilla reports.
 * (bug 46680) "Return to" links are no longer tagged with rel="next".
 * BREAKING CHANGE: mw.util.tooltipAccessKeyRegexp: The match group for the
   accesskey character is now $6 instead of $5.
+* HipHop compiler (hphpc) support was removed. HipHop VM support (hhvm) was
+  added.
 * A new Special:Redirect page was added, providing lookup by revision ID,
   user ID, or file name.  The old Special:Filepath page was reimplemented
   to redirect through Special:Redirect.

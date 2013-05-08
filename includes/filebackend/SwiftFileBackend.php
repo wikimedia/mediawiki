@@ -104,7 +104,7 @@ class SwiftFileBackend extends FileBackendStore {
 	 */
 	public function __construct( array $config ) {
 		parent::__construct( $config );
-		if ( !MWInit::classExists( 'CF_Constants' ) ) {
+		if ( !class_exists( 'CF_Constants' ) ) {
 			throw new MWException( 'SwiftCloudFiles extension not installed.' );
 		}
 		// Required settings

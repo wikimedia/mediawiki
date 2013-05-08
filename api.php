@@ -41,11 +41,7 @@ if ( !function_exists( 'version_compare' ) || version_compare( phpversion(), '5.
 }
 
 // Initialise common code.
-if ( isset( $_SERVER['MW_COMPILED'] ) ) {
-	require ( 'core/includes/WebStart.php' );
-} else {
-	require ( __DIR__ . '/includes/WebStart.php' );
-}
+require ( __DIR__ . '/includes/WebStart.php' );
 
 wfProfileIn( 'api.php' );
 $starttime = microtime( true );

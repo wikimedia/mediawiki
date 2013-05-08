@@ -244,7 +244,7 @@ class MWTidy {
 		global $wgTidyConf, $wgDebugTidy;
 		wfProfileIn( __METHOD__ );
 
-		if ( !MWInit::classExists( 'tidy' ) ) {
+		if ( !class_exists( 'tidy' ) ) {
 			wfWarn( "Unable to load internal tidy class." );
 			$retval = -1;
 

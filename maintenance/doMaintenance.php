@@ -54,15 +54,11 @@ $maintenance->setup();
 $self = $maintenance->getName();
 
 // Detect compiled mode
-if ( isset( $_SERVER['MW_COMPILED'] ) ) {
-	define( 'MW_COMPILED', 1 );
-} else {
-	# Get the MWInit class
-	require_once( "$IP/includes/Init.php" );
-	require_once( "$IP/includes/AutoLoader.php" );
-	# Stub the profiler
-	require_once( "$IP/includes/profiler/Profiler.php" );
-}
+# Get the MWInit class
+require_once( "$IP/includes/Init.php" );
+require_once( "$IP/includes/AutoLoader.php" );
+# Stub the profiler
+require_once( "$IP/includes/profiler/Profiler.php" );
 
 # Start the profiler
 $wgProfiler = array();
@@ -71,9 +67,7 @@ if ( file_exists( "$IP/StartProfiler.php" ) ) {
 }
 
 // Some other requires
-if ( !defined( 'MW_COMPILED' ) ) {
-	require_once( "$IP/includes/Defines.php" );
-}
+require_once( "$IP/includes/Defines.php" );
 require_once( MWInit::compiledPath( 'includes/DefaultSettings.php' ) );
 
 if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
