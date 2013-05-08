@@ -1,0 +1,9 @@
+Verified+2: jenkins-bot
+Code-Review+1: Siebrand <siebrand@wikimedia.org>
+Code-Review+1: Nikerabbit <niklas.laxstrom@gmail.com>
+Code-Review+2: Spage <spage@wikimedia.org>
+Submitted-by: jenkins-bot
+Submitted-at: Wed, 08 May 2013 20:51:51 +0000
+Reviewed-on: https://gerrit.wikimedia.org/r/61630
+Project: mediawiki/core
+Branch: refs/heads/master
