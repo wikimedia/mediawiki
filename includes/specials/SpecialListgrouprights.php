@@ -29,7 +29,6 @@
  * @author Petr Kadlec <mormegil@centrum.cz>
  */
 class SpecialListGroupRights extends SpecialPage {
-
 	/**
 	 * Constructor
 	 */
@@ -54,8 +53,8 @@ class SpecialListGroupRights extends SpecialPage {
 		$out->addHTML(
 			Xml::openElement( 'table', array( 'class' => 'wikitable mw-listgrouprights-table' ) ) .
 				'<tr>' .
-					Xml::element( 'th', null, $this->msg( 'listgrouprights-group' )->text() ) .
-					Xml::element( 'th', null, $this->msg( 'listgrouprights-rights' )->text() ) .
+				Xml::element( 'th', null, $this->msg( 'listgrouprights-group' )->text() ) .
+				Xml::element( 'th', null, $this->msg( 'listgrouprights-rights' )->text() ) .
 				'</tr>'
 		);
 
@@ -124,8 +123,8 @@ class SpecialListGroupRights extends SpecialPage {
 				"
 				<td>$grouppage$grouplink</td>
 					<td>" .
-						$this->formatPermissions( $permissions, $revoke, $addgroups, $removegroups,
-							$addgroupsSelf, $removegroupsSelf ) .
+					$this->formatPermissions( $permissions, $revoke, $addgroups, $removegroups,
+						$addgroupsSelf, $removegroupsSelf ) .
 					'</td>
 				'
 			) );
@@ -168,8 +167,11 @@ class SpecialListGroupRights extends SpecialPage {
 				$r[] = $description;
 			}
 		}
+
 		sort( $r );
+
 		$lang = $this->getLanguage();
+
 		if ( $add === true ) {
 			$r[] = $this->msg( 'listgrouprights-addgroup-all' )->escaped();
 		} elseif ( is_array( $add ) && count( $add ) ) {
@@ -179,6 +181,7 @@ class SpecialListGroupRights extends SpecialPage {
 				count( $add )
 			)->parse();
 		}
+
 		if ( $remove === true ) {
 			$r[] = $this->msg( 'listgrouprights-removegroup-all' )->escaped();
 		} elseif ( is_array( $remove ) && count( $remove ) ) {
@@ -188,6 +191,7 @@ class SpecialListGroupRights extends SpecialPage {
 				count( $remove )
 			)->parse();
 		}
+
 		if ( $addSelf === true ) {
 			$r[] = $this->msg( 'listgrouprights-addgroup-self-all' )->escaped();
 		} elseif ( is_array( $addSelf ) && count( $addSelf ) ) {
@@ -197,6 +201,7 @@ class SpecialListGroupRights extends SpecialPage {
 				count( $addSelf )
 			)->parse();
 		}
+
 		if ( $removeSelf === true ) {
 			$r[] = $this->msg( 'listgrouprights-removegroup-self-all' )->parse();
 		} elseif ( is_array( $removeSelf ) && count( $removeSelf ) ) {
@@ -206,6 +211,7 @@ class SpecialListGroupRights extends SpecialPage {
 				count( $removeSelf )
 			)->parse();
 		}
+
 		if ( empty( $r ) ) {
 			return '';
 		} else {

@@ -66,6 +66,7 @@ class RandomPage extends SpecialPage {
 			$this->setHeaders();
 			$this->getOutput()->addWikiMsg( strtolower( $this->getName() ) . '-nopages',
 				$this->getNsList(), count( $this->namespaces ) );
+
 			return;
 		}
 
@@ -90,6 +91,7 @@ class RandomPage extends SpecialPage {
 				$nsNames[] = $wgContLang->getNsText( $n );
 			}
 		}
+
 		return $wgContLang->commaList( $nsNames );
 	}
 
@@ -100,10 +102,14 @@ class RandomPage extends SpecialPage {
 	public function getRandomTitle() {
 		$randstr = wfRandom();
 		$title = null;
-		if ( !wfRunHooks( 'SpecialRandomGetRandomTitle', array( &$randstr, &$this->isRedir, &$this->namespaces,
-			&$this->extra, &$title ) ) ) {
+
+		if ( !wfRunHooks(
+			'SpecialRandomGetRandomTitle',
+			array( &$randstr, &$this->isRedir, &$this->namespaces, &$this->extra, &$title )
+		) ) {
 			return $title;
 		}
+
 		$row = $this->selectRandomPageFromDB( $randstr );
 
 		/* If we picked a value that was higher than any in
@@ -119,9 +125,9 @@ class RandomPage extends SpecialPage {
 
 		if ( $row ) {
 			return Title::makeTitleSafe( $row->page_namespace, $row->page_title );
-		} else {
-			return null;
 		}
+
+		return null;
 	}
 
 	protected function getQueryInfo( $randstr ) {
