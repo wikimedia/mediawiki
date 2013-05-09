@@ -32,5 +32,4 @@ class SpecialRandomredirect extends RandomPage {
 		parent::__construct( 'Randomredirect' );
 		$this->isRedir = true;
 	}
-
 }

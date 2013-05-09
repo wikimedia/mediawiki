@@ -31,7 +31,6 @@
  * @ingroup SpecialPage
  */
 class MostlinkedPage extends QueryPage {
-
 	function __construct( $name = 'Mostlinked' ) {
 		parent::__construct( $name );
 	}
@@ -47,16 +46,28 @@ class MostlinkedPage extends QueryPage {
 	function getQueryInfo() {
 		return array(
 			'tables' => array( 'pagelinks', 'page' ),
-			'fields' => array( 'namespace' => 'pl_namespace',
-					'title' => 'pl_title',
-					'value' => 'COUNT(*)',
-					'page_namespace' ),
-			'options' => array( 'HAVING' => 'COUNT(*) > 1',
-				'GROUP BY' => array( 'pl_namespace', 'pl_title',
-						'page_namespace' ) ),
-			'join_conds' => array( 'page' => array( 'LEFT JOIN',
-					array( 'page_namespace = pl_namespace',
-						'page_title = pl_title' ) ) )
+			'fields' => array(
+				'namespace' => 'pl_namespace',
+				'title' => 'pl_title',
+				'value' => 'COUNT(*)',
+				'page_namespace'
+			),
+			'options' => array(
+				'HAVING' => 'COUNT(*) > 1',
+				'GROUP BY' => array(
+					'pl_namespace', 'pl_title',
+					'page_namespace'
+				)
+			),
+			'join_conds' => array(
+				'page' => array(
+					'LEFT JOIN',
+					array(
+						'page_namespace = pl_namespace',
+						'page_title = pl_title'
+					)
+				)
+			)
 		);
 	}
 
@@ -69,9 +80,11 @@ class MostlinkedPage extends QueryPage {
 	function preprocessResults( $db, $res ) {
 		if ( $res->numRows() > 0 ) {
 			$linkBatch = new LinkBatch();
+
 			foreach ( $res as $row ) {
 				$linkBatch->add( $row->namespace, $row->title );
 			}
+
 			$res->seek( 0 );
 			$linkBatch->execute();
 		}
@@ -86,11 +99,13 @@ class MostlinkedPage extends QueryPage {
 	 */
 	function makeWlhLink( $title, $caption ) {
 		$wlh = SpecialPage::getTitleFor( 'Whatlinkshere', $title->getPrefixedDBkey() );
+
 		return Linker::linkKnown( $wlh, $caption );
 	}
 
 	/**
-	 * Make links to the page corresponding to the item, and the "what links here" page for it
+	 * Make links to the page corresponding to the item,
+	 * and the "what links here" page for it
 	 *
 	 * @param Skin $skin Skin to be used
 	 * @param object $result Result row
@@ -99,12 +114,22 @@ class MostlinkedPage extends QueryPage {
 	function formatResult( $skin, $result ) {
 		$title = Title::makeTitleSafe( $result->namespace, $result->title );
 		if ( !$title ) {
-			return Html::element( 'span', array( 'class' => 'mw-invalidtitle' ),
-				Linker::getInvalidTitleDescription( $this->getContext(), $result->namespace, $result->title ) );
+			return Html::element(
+				'span',
+				array( 'class' => 'mw-invalidtitle' ),
+				Linker::getInvalidTitleDescription(
+					$this->getContext(),
+					$result->namespace,
+					$result->title )
+			);
 		}
+
 		$link = Linker::link( $title );
-		$wlh = $this->makeWlhLink( $title,
-			$this->msg( 'nlinks' )->numParams( $result->value )->escaped() );
+		$wlh = $this->makeWlhLink(
+			$title,
+			$this->msg( 'nlinks' )->numParams( $result->value )->escaped()
+		);
+
 		return $this->getLanguage()->specialList( $link, $wlh );
 	}
 
