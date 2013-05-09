@@ -91,40 +91,64 @@ class ActiveUsersPager extends UsersPager {
 	}
 
 	function getQueryInfo() {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = $this->getDatabase();
+
 		$conds = array( 'rc_user > 0' ); // Users - no anons
-		if( !$this->getUser()->isAllowed( 'hideuser' ) ) {
-			$conds[] = 'ipb_deleted IS NULL OR ipb_deleted = 0'; // don't show hidden names
-		}
 		$conds[] = 'rc_log_type IS NULL OR rc_log_type != ' . $dbr->addQuotes( 'newusers' );
 		$conds[] = 'rc_timestamp >= ' . $dbr->addQuotes(
 			$dbr->timestamp( wfTimestamp( TS_UNIX ) - $this->RCMaxAge*24*3600 ) );
 
-		if( $this->requestedUser != '' ) {
+		if ( $this->requestedUser != '' ) {
 			$conds[] = 'rc_user_text >= ' . $dbr->addQuotes( $this->requestedUser );
 		}
 
+		if ( !$this->getUser()->isAllowed( 'hideuser' ) ) {
+			$conds[] = 'NOT EXISTS (' . $dbr->selectSQLText(
+				'ipblocks', '1', array( 'rc_user=ipb_user', 'ipb_deleted' => 1 )
+			) . ')';
+		}
+
 		return array(
-			'tables' => array( 'recentchanges', 'ipblocks' ),
+			'tables' => 'recentchanges',
 			'fields' => array(
 				'user_name' => 'rc_user_text', // for Pager inheritance
 				'rc_user_text', // for Pager
-				'user_id' => 'rc_user',
-				'recentedits' => 'COUNT(*)',
-				'ipb_deleted' => 'MAX(ipb_deleted)'
+				'user_id' => 'MAX(rc_user)', // Postgres
+				'recentedits' => 'COUNT(*)'
 			),
 			'options' => array(
-				'GROUP BY' => array( 'rc_user_text', 'user_id' ),
+				'GROUP BY' => array( 'rc_user_text' ),
 				'USE INDEX' => array( 'recentchanges' => 'rc_user_text' )
 			),
 			'join_conds' => array( // check for suppression blocks
-				'ipblocks' => array( 'LEFT JOIN', array(
-					'rc_user=ipb_user',
-					'ipb_auto' => 0 # avoid duplicate blocks
-				)),
+				'ipblocks' => array( 'LEFT JOIN',
+					array( 'rc_user=ipb_user', 'ipb_deleted' => 1 ) ),
 			),
 			'conds' => $conds
 		);
+	}
+
+	function doBatchLookups() {
+		$uids = array();
+		foreach ( $this->mResult as $row ) {
+			$uids[] = $row->user_id;
+		}
+		// Fetch the block status of the user for showing "(blocked)" text and for
+		// striking out names of suppressed users when privileged user views the list.
+		// Although the first query already hits the block table for un-privileged, this
+		// is done in two queries to avoid huge quicksorts and to make COUNT(*) correct.
+		$dbr = $this->getDatabase();
+		$res = $dbr->select( 'ipblocks',
+			array( 'ipb_user', 'MAX(ipb_deleted) AS block_status' ),
+			array( 'ipb_user' => $uids ),
+			__METHOD__,
+			array( 'GROUP BY' => array( 'ipb_user' ) )
+		);
+		$this->blockStatusByUid = array();
+		foreach ( $res as $row ) {
+			$this->blockStatusByUid[$row->ipb_user] = $row->block_status; // 0 or 1
+		}
+		$this->mResult->seek( 0 );
 	}
 
 	function formatRow( $row ) {
@@ -163,12 +187,14 @@ class ActiveUsersPager extends UsersPager {
 		$groups = $lang->commaList( $list );
 
 		$item = $lang->specialList( $ulinks, $groups );
-		if( $row->ipb_deleted ) {
+
+		$isBlocked = isset( $this->blockStatusByUid[$row->user_id] );
+		if ( $isBlocked && $this->blockStatusByUid[$row->user_id] == 1 ) {
 			$item = "<span class=\"deleted\">$item</span>";
 		}
 		$count = $this->msg( 'activeusers-count' )->numParams( $row->recentedits )
 			->params( $userName )->numParams( $this->RCMaxAge )->escaped();
-		$blocked = !is_null( $row->ipb_deleted ) ? ' ' . $this->msg( 'listusers-blocked', $userName )->escaped() : '';
+		$blocked = $isBlocked ? ' ' . $this->msg( 'listusers-blocked', $userName )->escaped() : '';
 
 		return Html::rawElement( 'li', array(), "{$item} [{$count}]{$blocked}" );
 	}
