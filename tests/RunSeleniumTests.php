@@ -99,8 +99,8 @@ class SeleniumTester extends Maintenance {
 				die( "Unable to start the Selenium Server - " .
 					"terminating RunSeleniumTests\n" );
 			case 'running':
-				echo ( "Warning: The Selenium Server is " .
-					"already running\n" );
+				echo "Warning: The Selenium Server is " .
+					"already running\n";
 				break;
 		}
 
@@ -109,16 +109,16 @@ class SeleniumTester extends Maintenance {
 
 	protected function stopServer() {
 		if ( !isset( $this->serverManager ) ) {
-			echo ( "Warning: Request to stop Selenium Server, but it was " .
+			echo "Warning: Request to stop Selenium Server, but it was " .
 				"not stared by RunSeleniumTests\n" .
 				"RunSeleniumTests cannot stop a Selenium Server it " .
-				"did not start\n" );
+				"did not start\n";
 		} else {
 			switch ( $this->serverManager->stop() ) {
 				case 'stopped':
 					break;
 				case 'failed':
-					echo ( "unable to stop the Selenium Server\n" );
+					echo "unable to stop the Selenium Server\n";
 			}
 		}
 		return;

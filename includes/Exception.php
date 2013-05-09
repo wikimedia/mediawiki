@@ -668,7 +668,7 @@ class MWExceptionHandler {
 		if ( defined( 'STDERR' ) ) {
 			fwrite( STDERR, $message );
 		} else {
-			echo( $message );
+			echo $message;
 		}
 	}
 

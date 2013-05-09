@@ -214,7 +214,7 @@ class SeleniumServerManager {
 					}
 				}
 				wfRestoreWarnings();
-				echo ( "Starting Selenium server timed out.\n" );
+				echo "Starting Selenium server timed out.\n";
 				return 'failed';
 			} else {
 				// server already running.
