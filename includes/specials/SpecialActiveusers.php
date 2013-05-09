@@ -62,7 +62,7 @@ class ActiveUsersPager extends UsersPager {
 		$this->requestedUser = '';
 		if ( $un != '' ) {
 			$username = Title::makeTitleSafe( NS_USER, $un );
-			if( !is_null( $username ) ) {
+			if ( !is_null( $username ) ) {
 				$this->requestedUser = $username->getText();
 			}
 		}
@@ -96,7 +96,7 @@ class ActiveUsersPager extends UsersPager {
 		$conds = array( 'rc_user > 0' ); // Users - no anons
 		$conds[] = 'rc_log_type IS NULL OR rc_log_type != ' . $dbr->addQuotes( 'newusers' );
 		$conds[] = 'rc_timestamp >= ' . $dbr->addQuotes(
-			$dbr->timestamp( wfTimestamp( TS_UNIX ) - $this->RCMaxAge*24*3600 ) );
+			$dbr->timestamp( wfTimestamp( TS_UNIX ) - $this->RCMaxAge * 24 * 3600 ) );
 
 		if ( $this->requestedUser != '' ) {
 			$conds[] = 'rc_user_text >= ' . $dbr->addQuotes( $this->requestedUser );
@@ -163,7 +163,7 @@ class ActiveUsersPager extends UsersPager {
 		$user = User::newFromId( $row->user_id );
 
 		// User right filter
-		foreach( $this->hideRights as $right ) {
+		foreach ( $this->hideRights as $right ) {
 			// Calling User::getRights() within the loop so that
 			// if the hideRights() filter is empty, we don't have to
 			// trigger the lazy-init of the big userrights array in the
@@ -177,7 +177,7 @@ class ActiveUsersPager extends UsersPager {
 		// Note: This is a different loop than for user rights,
 		// because we're reusing it to build the group links
 		// at the same time
-		foreach( $user->getGroups() as $group ) {
+		foreach ( $user->getGroups() as $group ) {
 			if ( in_array( $group, $this->hideGroups ) ) {
 				return '';
 			}

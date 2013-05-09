@@ -93,12 +93,12 @@ class RebuildLocalisationCache extends Maintenance {
 		$lc = new LocalisationCache_BulkLoad( $conf );
 
 		$allCodes = array_keys( Language::fetchLanguageNames( null, 'mwfile' ) );
-		if( $this->hasOption( 'lang' ) ) {
+		if ( $this->hasOption( 'lang' ) ) {
 			# Validate requested languages
 			$codes = array_intersect( $allCodes,
 				explode( ',', $this->getOption( 'lang' ) ) );
 			# Bailed out if nothing is left
-			if( count( $codes ) == 0 ) {
+			if ( count( $codes ) == 0 ) {
 				$this->error( 'None of the languages specified exists.', 1 );
 			}
 		} else {

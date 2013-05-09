@@ -118,7 +118,7 @@ class CopyFileBackend extends Maintenance {
 				$this->statCache = array(); // clear
 				foreach ( $dstPathsRel as $dstPathRel ) {
 					$path = $dst->getRootStoragePath() . "/$backendRel/$dstPathRel";
-					$this->statCache[sha1($path)] = $dst->getFileStat( array( 'src' => $path ) );
+					$this->statCache[sha1( $path )] = $dst->getFileStat( array( 'src' => $path ) );
 				}
 				$this->output( "done [" . count( $this->statCache ) . " file(s)]\n" );
 			}

@@ -386,8 +386,9 @@ if ( isset( $_REQUEST['filter'] ) ) {
 	}
 
 	$s = new profile_point( 'SQL Queries', 0, $sqltotal, 0, 0 );
-	foreach ( $queries as $q )
+	foreach ( $queries as $q ) {
 		$s->add_child( $q );
+	}
 	$points[] = $s;
 
 	usort( $points, 'compare_point' );

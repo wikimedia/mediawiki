@@ -145,7 +145,7 @@ class SpecialRedirect extends FormSpecialPage {
 	 */
 	function dispatch() {
 		// the various namespaces supported by Special:Redirect
-		switch( $this->mType ) {
+		switch ( $this->mType ) {
 		case 'user':
 			$url = $this->dispatchUser();
 			break;
@@ -187,7 +187,7 @@ class SpecialRedirect extends FormSpecialPage {
 			'options' => array(),
 			'default' => current( array_keys( $ns ) ),
 		);
-		foreach( $ns as $n => $m ) {
+		foreach ( $ns as $n => $m ) {
 			$m = $this->msg( $m )->text();
 			$a['type']['options'][$m] = $n;
 		}
