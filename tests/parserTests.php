@@ -84,7 +84,7 @@ if ( isset( $options['file'] ) ) {
 
 # Print out software version to assist with locating regressions
 $version = SpecialVersion::getVersion();
-echo( "This is MediaWiki version {$version}.\n\n" );
+echo "This is MediaWiki version {$version}.\n\n";
 
 if ( isset( $options['fuzz'] ) ) {
 	$tester->fuzzTest( $files );

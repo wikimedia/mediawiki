@@ -39,7 +39,7 @@ require_once( __DIR__ . '/commandLine.inc' );
 require_once( __DIR__ . '/importImages.inc' );
 $processed = $added = $ignored = $skipped = $overwritten = $failed = 0;
 
-echo( "Import Images\n\n" );
+echo "Import Images\n\n";
 
 # Need a path
 if ( count( $args ) == 0 ) {
@@ -132,7 +132,7 @@ if ( $count > 0 ) {
 		# Validate a title
 		$title = Title::makeTitleSafe( NS_FILE, $base );
 		if ( !is_object( $title ) ) {
-			echo( "{$base} could not be imported; a valid title cannot be produced\n" );
+			echo "{$base} could not be imported; a valid title cannot be produced\n";
 			continue;
 		}
 
@@ -148,7 +148,7 @@ if ( $count > 0 ) {
 		if ( $checkUserBlock && ( ( $processed % $checkUserBlock ) == 0 ) ) {
 			$user->clearInstanceCache( 'name' ); // reload from DB!
 			if ( $user->isBlocked() ) {
-				echo( $user->getName() . " was blocked! Aborting.\n" );
+				echo $user->getName() . " was blocked! Aborting.\n";
 				break;
 			}
 		}
@@ -157,10 +157,10 @@ if ( $count > 0 ) {
 		$image = wfLocalFile( $title );
 		if ( $image->exists() ) {
 			if ( isset( $options['overwrite'] ) ) {
-				echo( "{$base} exists, overwriting..." );
+				echo "{$base} exists, overwriting...";
 				$svar = 'overwritten';
 			} else {
-				echo( "{$base} exists, skipping\n" );
+				echo "{$base} exists, skipping\n";
 				$skipped++;
 				continue;
 			}
@@ -172,13 +172,13 @@ if ( $count > 0 ) {
 				$dupes = $repo->findBySha1( $sha1 );
 
 				if ( $dupes ) {
-					echo( "{$base} already exists as " . $dupes[0]->getName() . ", skipping\n" );
+					echo "{$base} already exists as " . $dupes[0]->getName() . ", skipping\n";
 					$skipped++;
 					continue;
 				}
 			}
 
-			echo( "Importing {$base}..." );
+			echo "Importing {$base}...";
 			$svar = 'added';
 		}
 
@@ -199,7 +199,7 @@ if ( $count > 0 ) {
 				$wgUser = User::newFromName( $real_user );
 				if ( $wgUser === false ) {
 					# user does not exist in target wiki
-					echo ( "failed: user '$real_user' does not exist in target wiki." );
+					echo "failed: user '$real_user' does not exist in target wiki.";
 					continue;
 				}
 			}
@@ -210,11 +210,11 @@ if ( $count > 0 ) {
 			if ( $commentExt ) {
 				$f = findAuxFile( $file, $commentExt );
 				if ( !$f ) {
-					echo( " No comment file with extension {$commentExt} found for {$file}, using default comment. " );
+					echo " No comment file with extension {$commentExt} found for {$file}, using default comment. ";
 				} else {
 					$commentText = file_get_contents( $f );
 					if ( !$commentText ) {
-						echo( " Failed to load comment file {$f}, using default comment. " );
+						echo " Failed to load comment file {$f}, using default comment. ";
 					}
 				}
 			}
@@ -226,7 +226,7 @@ if ( $count > 0 ) {
 
 		# Import the file
 		if ( isset( $options['dry'] ) ) {
-			echo( " publishing {$file} by '" . $wgUser->getName() . "', comment '$commentText'... " );
+			echo " publishing {$file} by '" . $wgUser->getName() . "', comment '$commentText'... ";
 		} else {
 			$props = FSFile::getPropsFromPath( $file );
 			$flags = 0;
@@ -239,9 +239,9 @@ if ( $count > 0 ) {
 			}
 			$archive = $image->publish( $file, $flags, $options );
 			if ( !$archive->isGood() ) {
-				echo( "failed. (" .
+				echo "failed. (" .
 					$archive->getWikiText() .
-					")\n" );
+					")\n";
 				$failed++;
 				continue;
 			}
@@ -253,10 +253,10 @@ if ( $count > 0 ) {
 		}
 
 		if ( isset( $options['dry'] ) ) {
-			echo( "done.\n" );
+			echo "done.\n";
 		} elseif ( $image->recordUpload2( $archive->value, $summary, $commentText, $props, $timestamp ) ) {
 			# We're done!
-			echo( "done.\n" );
+			echo "done.\n";
 
 			$doProtect = false;
 
@@ -279,7 +279,7 @@ if ( $count > 0 ) {
 					sleep( 2.0 ); # Why this sleep?
 					wfWaitForSlaves();
 
-					echo( "\nSetting image restrictions ... " );
+					echo "\nSetting image restrictions ... ";
 
 					$cascade = false;
 					$restrictions = array();
@@ -289,11 +289,11 @@ if ( $count > 0 ) {
 
 					$page = WikiPage::factory( $title );
 					$status = $page->doUpdateRestrictions( $restrictions, array(), $cascade, '', $user );
-					echo( ( $status->isOK() ? 'done' : 'failed' ) . "\n" );
+					echo ( $status->isOK() ? 'done' : 'failed' ) . "\n";
 			}
 
 		} else {
-			echo( "failed. (at recordUpload stage)\n" );
+			echo "failed. (at recordUpload stage)\n";
 			$svar = 'failed';
 		}
 
@@ -310,24 +310,24 @@ if ( $count > 0 ) {
 	}
 
 	# Print out some statistics
-	echo( "\n" );
+	echo "\n";
 	foreach ( array( 'count' => 'Found', 'limit' => 'Limit', 'ignored' => 'Ignored',
 		'added' => 'Added', 'skipped' => 'Skipped', 'overwritten' => 'Overwritten',
 		'failed' => 'Failed' ) as $var => $desc ) {
 		if ( $$var > 0 ) {
-			echo( "{$desc}: {$$var}\n" );
+			echo "{$desc}: {$$var}\n";
 		}
 	}
 
 } else {
-	echo( "No suitable files could be found for import.\n" );
+	echo "No suitable files could be found for import.\n";
 }
 
 exit( 0 );
 
 function showUsage( $reason = false ) {
 	if ( $reason ) {
-		echo( $reason . "\n" );
+		echo $reason . "\n";
 	}
 
 	echo <<<TEXT

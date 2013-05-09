@@ -25,14 +25,14 @@
 $options = array( 'help', 'nooverwrite', 'norc' );
 $optionsWithArgs = array( 'title', 'user', 'comment' );
 require_once( __DIR__ . '/commandLine.inc' );
-echo( "Import Text File\n\n" );
+echo "Import Text File\n\n";
 
 if ( count( $args ) < 1 || isset( $options['help'] ) ) {
 	showHelp();
 } else {
 
 	$filename = $args[0];
-	echo( "Using {$filename}..." );
+	echo "Using {$filename}...";
 	if ( is_file( $filename ) ) {
 
 		$title = isset( $options['title'] ) ? $options['title'] : titleFromFilename( $filename );
@@ -40,7 +40,7 @@ if ( count( $args ) < 1 || isset( $options['help'] ) ) {
 
 		if ( is_object( $title ) ) {
 
-			echo( "\nUsing title '" . $title->getPrefixedText() . "'..." );
+			echo "\nUsing title '" . $title->getPrefixedText() . "'...";
 			if ( !$title->exists() || !isset( $options['nooverwrite'] ) ) {
 
 				$text = file_get_contents( $filename );
@@ -49,31 +49,31 @@ if ( count( $args ) < 1 || isset( $options['help'] ) ) {
 
 				if ( is_object( $user ) ) {
 
-					echo( "\nUsing username '" . $user->getName() . "'..." );
+					echo "\nUsing username '" . $user->getName() . "'...";
 					$wgUser =& $user;
 					$comment = isset( $options['comment'] ) ? $options['comment'] : 'Importing text file';
 					$flags = 0 | ( isset( $options['norc'] ) ? EDIT_SUPPRESS_RC : 0 );
 
-					echo( "\nPerforming edit..." );
+					echo "\nPerforming edit...";
 					$page = WikiPage::factory( $title );
 					$content = ContentHandler::makeContent( $text, $title );
 					$page->doEditContent( $content, $comment, $flags, false, $user );
-					echo( "done.\n" );
+					echo "done.\n";
 
 				} else {
-					echo( "invalid username.\n" );
+					echo "invalid username.\n";
 				}
 
 			} else {
-				echo( "page exists.\n" );
+				echo "page exists.\n";
 			}
 
 		} else {
-			echo( "invalid title.\n" );
+			echo "invalid title.\n";
 		}
 
 	} else {
-		echo( "does not exist.\n" );
+		echo "does not exist.\n";
 	}
 
 }
