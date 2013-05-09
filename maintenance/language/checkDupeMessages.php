@@ -95,22 +95,22 @@ if ( $run ) {
 	if ( ( $messageExist ) && ( $messageCExist ) ) {
 
 		if ( !strcmp( $runMode, 'php' ) ) {
-			print( "<?php\n" );
-			print( '$dupeMessages = array(' . "\n" );
+			print "<?php\n";
+			print '$dupeMessages = array(' . "\n";
 		}
 		foreach ( $wgMessages[$langCodeC] as $key => $value ) {
 			foreach ( $wgMessages[$langCode] as $ckey => $cvalue ) {
 				if ( !strcmp( $key, $ckey ) ) {
 					if ( ( !strcmp( $key, $ckey ) ) && ( !strcmp( $value, $cvalue ) ) ) {
 						if ( !strcmp( $runMode, 'raw' ) ) {
-							print( "$key\n" );
+							print "$key\n";
 						} elseif ( !strcmp( $runMode, 'php' ) ) {
-							print( "'$key' => '',\n" );
+							print "'$key' => '',\n";
 						} elseif ( !strcmp( $runMode, 'wiki' ) ) {
 							$uKey = ucfirst( $key );
-							print( "* MediaWiki:$uKey/$langCode\n" );
+							print "* MediaWiki:$uKey/$langCode\n";
 						} else {
-							print( "* $key\n" );
+							print "* $key\n";
 						}
 						$count++;
 					}
@@ -118,7 +118,7 @@ if ( $run ) {
 			}
 		}
 		if ( !strcmp( $runMode, 'php' ) ) {
-			print( ");\n" );
+			print ");\n";
 		}
 		if ( !strcmp( $runMode, 'text' ) ) {
 			if ( $count == 1 ) {

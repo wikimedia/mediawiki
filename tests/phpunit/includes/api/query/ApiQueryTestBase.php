@@ -109,10 +109,10 @@ STR;
 			if ( is_array( $message ) ) {
 				$message = http_build_query( $message );
 			}
-			print( "\nRequest: $message\n" );
-			print( "\nExpected:\n" );
+			print "\nRequest: $message\n";
+			print "\nExpected:\n";
 			print_r( $exp );
-			print( "\nResult:\n" );
+			print "\nResult:\n";
 			print_r( $result );
 			throw $e; // rethrow it
 		}

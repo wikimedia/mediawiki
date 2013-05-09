@@ -428,11 +428,11 @@ class WikiImporter {
 			}
 		}
 
-		print( var_dump(
+		print var_dump(
 			$lookup[$this->reader->nodeType],
 			$this->reader->name,
 			$this->reader->value
-		) . "\n\n" );
+		) . "\n\n";
 	}
 
 	/**

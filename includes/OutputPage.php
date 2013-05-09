@@ -2076,7 +2076,7 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Actually output something with print().
+	 * Actually output something with print.
 	 *
 	 * @param string $ins the string to output
 	 */

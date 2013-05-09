@@ -327,7 +327,7 @@ abstract class Maintenance {
 		}
 		if ( $channel === null ) {
 			$this->cleanupChanneled();
-			print( $out );
+			print $out;
 		} else {
 			$out = preg_replace( '/\n\z/', '', $out );
 			$this->outputChanneled( $out, $channel );

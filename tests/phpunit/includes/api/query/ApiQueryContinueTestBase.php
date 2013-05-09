@@ -75,7 +75,7 @@ abstract class ApiQueryContinueTestBase extends ApiQueryTestBase {
 			//$reqStr = str_replace( '&', ' & ', $reqStr );
 			$this->assertLessThan( $expectedCount, $count, "$id more data: $reqStr" );
 			if ( $this->mVerbose ) {
-				print ( "$id (#$count): $reqStr\n" );
+				print "$id (#$count): $reqStr\n";
 			}
 			try {
 				$data = $this->doApiRequest( $request );
@@ -145,7 +145,7 @@ abstract class ApiQueryContinueTestBase extends ApiQueryTestBase {
 		self::GetItems( $q, 'allpages', 'Pages', $print );
 		self::GetItems( $q, 'alllinks', 'Links', $print );
 		self::GetItems( $q, 'alltransclusions', 'Trnscl', $print );
-		print( ' ' . implode( '  ', $print ) . "\n" );
+		print ' ' . implode( '  ', $print ) . "\n";
 	}
 
 	private static function GetItems( $q, $moduleName, $name, &$print ) {

@@ -674,7 +674,7 @@ class DatabaseMssql extends DatabaseBase {
 		$res = sqlsrv_query( $this->mConn, "SELECT * FROM information_schema.tables
 			WHERE table_type='BASE TABLE' AND table_name = '$table'" );
 		if ( $res === false ) {
-			print( "Error in tableExists query: " . $this->getErrors() );
+			print "Error in tableExists query: " . $this->getErrors();
 			return false;
 		}
 		if ( sqlsrv_fetch( $res ) ) {
@@ -693,7 +693,7 @@ class DatabaseMssql extends DatabaseBase {
 		$res = sqlsrv_query( $this->mConn, "SELECT DATA_TYPE FROM INFORMATION_SCHEMA.Columns
 			WHERE TABLE_NAME = '$table' AND COLUMN_NAME = '$field'" );
 		if ( $res === false ) {
-			print( "Error in fieldExists query: " . $this->getErrors() );
+			print "Error in fieldExists query: " . $this->getErrors();
 			return false;
 		}
 		if ( sqlsrv_fetch( $res ) ) {
@@ -708,7 +708,7 @@ class DatabaseMssql extends DatabaseBase {
 		$res = sqlsrv_query( $this->mConn, "SELECT * FROM INFORMATION_SCHEMA.Columns
 			WHERE TABLE_NAME = '$table' AND COLUMN_NAME = '$field'" );
 		if ( $res === false ) {
-			print( "Error in fieldInfo query: " . $this->getErrors() );
+			print "Error in fieldInfo query: " . $this->getErrors();
 			return false;
 		}
 		$meta = $this->fetchRow( $res );
