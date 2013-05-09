@@ -210,27 +210,27 @@ class ApiUpload extends ApiBase {
 		// Check we added the last chunk:
 		if ( $this->mParams['offset'] + $chunkSize == $this->mParams['filesize'] ) {
 			if ( $this->mParams['async'] ) {
-				$progress = UploadBase::getSessionStatus( $this->mParams['filekey'] );
+				$progress = UploadBase::getSessionStatus( $filekey );
 				if ( $progress && $progress['result'] === 'Poll' ) {
 					$this->dieUsage( "Chunk assembly already in progress.", 'stashfailed' );
 				}
 				UploadBase::setSessionStatus(
-					$this->mParams['filekey'],
+					$filekey,
 					array( 'result' => 'Poll',
 						'stage' => 'queued', 'status' => Status::newGood() )
 				);
 				$ok = JobQueueGroup::singleton()->push( new AssembleUploadChunksJob(
-					Title::makeTitle( NS_FILE, $this->mParams['filekey'] ),
+					Title::makeTitle( NS_FILE, $filekey ),
 					array(
 						'filename' => $this->mParams['filename'],
-						'filekey' => $this->mParams['filekey'],
+						'filekey' => $filekey,
 						'session' => $this->getContext()->exportSession()
 					)
 				) );
 				if ( $ok ) {
 					$result['result'] = 'Poll';
 				} else {
-					UploadBase::setSessionStatus( $this->mParams['filekey'], false );
+					UploadBase::setSessionStatus( $filekey, false );
 					$this->dieUsage(
 						"Failed to start AssembleUploadChunks.php", 'stashfailed' );
 				}
