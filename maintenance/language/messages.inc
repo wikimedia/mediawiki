@@ -464,6 +464,7 @@ $wgMessageStructure = array(
 		'gotaccount',
 		'gotaccountlink',
 		'userlogin-resetlink',
+		'userlogin-resetpassword-link',
 		'helplogin-url',
 		'userlogin-helplink',
 		'createacct-join',
