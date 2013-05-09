@@ -62,4 +62,4 @@ class GetTextMaint extends Maintenance {
 }
 
 $maintClass = "GetTextMaint";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

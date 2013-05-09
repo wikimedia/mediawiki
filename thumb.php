@@ -22,7 +22,7 @@
  */
 
 define( 'MW_NO_OUTPUT_COMPRESSION', 1 );
-require( __DIR__ . '/includes/WebStart.php' );
+require __DIR__ . '/includes/WebStart.php';
 
 // Don't use fancy mime detection, just check the file extension for jpg/gif/png
 $wgTrivialMimeDetection = true;

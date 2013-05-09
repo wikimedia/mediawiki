@@ -59,4 +59,4 @@ class DumpSisterSites extends Maintenance {
 }
 
 $maintClass = "DumpSisterSites";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

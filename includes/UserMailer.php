@@ -260,7 +260,7 @@ class UserMailer {
 				wfDebug( "PEAR Mail_Mime package is not installed. Falling back to text email.\n" );
 			}
 			else {
-				require_once( 'Mail/mime.php' );
+				require_once 'Mail/mime.php';
 				if ( wfIsWindows() ) {
 					$body['text'] = str_replace( "\n", "\r\n", $body['text'] );
 					$body['html'] = str_replace( "\n", "\r\n", $body['html'] );
@@ -300,7 +300,7 @@ class UserMailer {
 			if ( !stream_resolve_include_path( 'Mail.php' ) ) {
 				throw new MWException( 'PEAR mail package is not installed' );
 			}
-			require_once( 'Mail.php' );
+			require_once 'Mail.php';
 
 			wfSuppressWarnings();
 

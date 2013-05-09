@@ -29,7 +29,7 @@
 $optionsWithArgs = array( 'output' );
 
 require_once( __DIR__ . '/../commandLine.inc' );
-require_once( 'languages.inc' );
+require_once 'languages.inc';
 require_once( __DIR__ . '/StatOutputs.php' );
 
 

@@ -69,4 +69,4 @@ class CountMessages extends Maintenance {
 }
 
 $maintClass = "CountMessages";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

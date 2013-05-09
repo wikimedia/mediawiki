@@ -62,4 +62,4 @@ class bench_HTTP_HTTPS extends Benchmarker {
 }
 
 $maintClass = 'bench_HTTP_HTTPS';
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

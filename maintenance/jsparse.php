@@ -74,4 +74,4 @@ class JSParseHelper extends Maintenance {
 }
 
 $maintClass = "JSParseHelper";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

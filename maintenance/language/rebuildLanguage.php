@@ -23,8 +23,8 @@
  */
 
 require_once( __DIR__ . '/../commandLine.inc' );
-require_once( 'languages.inc' );
-require_once( 'writeMessagesArray.inc' );
+require_once 'languages.inc';
+require_once 'writeMessagesArray.inc';
 
 /**
  * Rewrite a messages array.

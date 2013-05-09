@@ -521,4 +521,4 @@ class GenerateSitemap extends Maintenance {
 }
 
 $maintClass = "GenerateSitemap";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

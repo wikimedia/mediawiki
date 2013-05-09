@@ -58,4 +58,4 @@ class CheckUsernames extends Maintenance {
 }
 
 $maintClass = "CheckUsernames";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

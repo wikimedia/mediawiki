@@ -116,4 +116,4 @@ class nextJobDB extends Maintenance {
 }
 
 $maintClass = "nextJobDb";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

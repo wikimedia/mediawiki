@@ -104,4 +104,4 @@ class PopulateFilearchiveSha1 extends LoggedUpdateMaintenance {
 }
 
 $maintClass = "PopulateFilearchiveSha1";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

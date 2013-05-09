@@ -55,4 +55,4 @@ class Undelete extends Maintenance {
 }
 
 $maintClass = "Undelete";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

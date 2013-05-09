@@ -22,8 +22,8 @@
  */
 
 require_once( __DIR__ . '/../commandLine.inc' );
-require_once( 'checkLanguage.inc' );
-require_once( 'languages.inc' );
+require_once 'checkLanguage.inc';
+require_once 'languages.inc';
 
 $cli = new CheckLanguageCLI( $options );
 

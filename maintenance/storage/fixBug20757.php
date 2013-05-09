@@ -348,4 +348,4 @@ class FixBug20757 extends Maintenance {
 }
 
 $maintClass = 'FixBug20757';
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

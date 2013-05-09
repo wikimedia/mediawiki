@@ -213,4 +213,4 @@ class ImageCleanup extends TableCleanup {
 }
 
 $maintClass = "ImageCleanup";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

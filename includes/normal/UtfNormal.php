@@ -190,7 +190,7 @@ class UtfNormal {
 	 */
 	static function loadData() {
 		if( !isset( self::$utfCombiningClass ) ) {
-			require_once( __DIR__ . '/UtfNormalData.inc' );
+			require_once __DIR__ . '/UtfNormalData.inc';
 		}
 	}
 
@@ -491,7 +491,7 @@ class UtfNormal {
 	 */
 	static function NFKD( $string ) {
 		if( !isset( self::$utfCompatibilityDecomp ) ) {
-			require_once( 'UtfNormalDataK.inc' );
+			require_once 'UtfNormalDataK.inc';
 		}
 		return self::fastCombiningSort(
 			self::fastDecompose( $string, self::$utfCompatibilityDecomp ) );
