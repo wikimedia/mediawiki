@@ -170,12 +170,12 @@ abstract class ApiFormatBase extends ApiBase {
 ?>
 <br />
 <small>
-You are looking at the HTML representation of the <?php echo( $this->mFormat ); ?> format.<br />
+You are looking at the HTML representation of the <?php echo $this->mFormat; ?> format.<br />
 HTML is good for debugging, but is unsuitable for application use.<br />
 Specify the format parameter to change the output format.<br />
-To see the non HTML representation of the <?php echo( $this->mFormat ); ?> format, set format=<?php echo( strtolower( $this->mFormat ) ); ?>.<br />
+To see the non HTML representation of the <?php echo $this->mFormat; ?> format, set format=<?php echo strtolower( $this->mFormat ); ?>.<br />
 See the <a href='https://www.mediawiki.org/wiki/API'>complete documentation</a>, or
-<a href='<?php echo( $script ); ?>'>API help</a> for more information.
+<a href='<?php echo $script; ?>'>API help</a> for more information.
 </small>
 <pre style='white-space: pre-wrap;'>
 <?php

@@ -123,6 +123,6 @@ try {
 	$factory->commitMasterChanges();
 	$factory->shutdown();
 } catch ( MWException $mwe ) {
-	echo( $mwe->getText() );
+	echo $mwe->getText();
 	exit( 1 );
 }

@@ -112,6 +112,6 @@ HTML;
 		$finalOutput = ( $type == 'load.php' ) ? "/* $message */" : $message;
 		header( "$protocol 500 MediaWiki configuration Error" );
 	}
-	echo( "$finalOutput\n" );
+	echo "$finalOutput\n";
 	die( 1 );
 }

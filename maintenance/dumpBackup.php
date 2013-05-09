@@ -44,7 +44,7 @@ if ( isset( $options['pagelist'] ) ) {
 	$pages = file( $options['pagelist'] );
 	chdir( $olddir );
 	if ( $pages === false ) {
-		echo( "Unable to open file {$options['pagelist']}\n" );
+		echo "Unable to open file {$options['pagelist']}\n";
 		die( 1 );
 	}
 	$pages = array_map( 'trim', $pages );
