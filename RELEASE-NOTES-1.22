@@ -110,6 +110,7 @@ production.
 * (bug 47219) Allow specifying change type of Wikipedia feed items
 * prop=imageinfo now allows setting iiurlheight without setting iiurlwidth
 * prop=info now adds the content model of the title.
+* The new query module list=allfileusages to enumerate file usages was added.
 
 === Languages updated in 1.22===
 

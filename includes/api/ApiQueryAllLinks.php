@@ -37,23 +37,40 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 				$prefix = 'al';
 				$this->table = 'pagelinks';
 				$this->tablePrefix = 'pl_';
+				$this->fieldTitle = 'title';
 				$this->dfltNamespace = NS_MAIN;
+				$this->hasNamespace = true;
 				$this->indexTag = 'l';
 				$this->description = 'Enumerate all links that point to a given namespace';
-				$this->descriptionLink = 'link';
-				$this->descriptionLinked = 'linked';
+				$this->descriptionWhat = 'link';
+				$this->descriptionTargets = 'linked titles';
 				$this->descriptionLinking = 'linking';
 				break;
 			case 'alltransclusions':
 				$prefix = 'at';
 				$this->table = 'templatelinks';
 				$this->tablePrefix = 'tl_';
+				$this->fieldTitle = 'title';
 				$this->dfltNamespace = NS_TEMPLATE;
+				$this->hasNamespace = true;
 				$this->indexTag = 't';
 				$this->description = 'List all transclusions (pages embedded using {{x}}), including non-existing';
-				$this->descriptionLink = 'transclusion';
-				$this->descriptionLinked = 'transcluded';
+				$this->descriptionWhat = 'transclusion';
+				$this->descriptionTargets = 'transcluded titles';
 				$this->descriptionLinking = 'transcluding';
+				break;
+			case 'allfileusages':
+				$prefix = 'af';
+				$this->table = 'imagelinks';
+				$this->tablePrefix = 'il_';
+				$this->fieldTitle = 'to';
+				$this->dfltNamespace = NS_FILE;
+				$this->hasNamespace = false;
+				$this->indexTag = 'f';
+				$this->description = 'List all file usages, including non-existing';
+				$this->descriptionWhat = 'file';
+				$this->descriptionTargets = 'file titles';
+				$this->descriptionLinking = 'using';
 				break;
 			default:
 				ApiBase::dieDebug( __METHOD__, 'Unknown module name' );
@@ -83,21 +100,29 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 		$params = $this->extractRequestParams();
 
 		$pfx = $this->tablePrefix;
+		$fieldTitle = $this->fieldTitle;
 		$prop = array_flip( $params['prop'] );
 		$fld_ids = isset( $prop['ids'] );
 		$fld_title = isset( $prop['title'] );
+		if ( $this->hasNamespace ) {
+			$namespace = $params['namespace'];
+		} else {
+			$namespace = $this->dfltNamespace;
+		}
 
 		if ( $params['unique'] ) {
 			if ( $fld_ids ) {
 				$this->dieUsage(
-					"{$this->getModuleName()} cannot return corresponding page ids in unique {$this->descriptionLink}s mode",
+					"{$this->getModuleName()} cannot return corresponding page ids in unique {$this->descriptionWhat}s mode",
 					'params' );
 			}
 			$this->addOption( 'DISTINCT' );
 		}
 
 		$this->addTables( $this->table );
-		$this->addWhereFld( $pfx . 'namespace', $params['namespace'] );
+		if ( $this->hasNamespace ) {
+			$this->addWhereFld( $pfx . 'namespace', $namespace );
+		}
 
 		$continue = !is_null( $params['continue'] );
 		if ( $continue ) {
@@ -106,14 +131,14 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 			if ( $params['unique'] ) {
 				$this->dieContinueUsageIf( count( $continueArr ) != 1 );
 				$continueTitle = $db->addQuotes( $continueArr[0] );
-				$this->addWhere( "{$pfx}title $op= $continueTitle" );
+				$this->addWhere( "{$pfx}{$fieldTitle} $op= $continueTitle" );
 			} else {
 				$this->dieContinueUsageIf( count( $continueArr ) != 2 );
 				$continueTitle = $db->addQuotes( $continueArr[0] );
 				$continueFrom = intval( $continueArr[1] );
 				$this->addWhere(
-					"{$pfx}title $op $continueTitle OR " .
-					"({$pfx}title = $continueTitle AND " .
+					"{$pfx}{$fieldTitle} $op $continueTitle OR " .
+					"({$pfx}{$fieldTitle} = $continueTitle AND " .
 					"{$pfx}from $op= $continueFrom)"
 				);
 			}
@@ -122,22 +147,24 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 		// 'continue' always overrides 'from'
 		$from = ( $continue || is_null( $params['from'] ) ? null : $this->titlePartToKey( $params['from'] ) );
 		$to = ( is_null( $params['to'] ) ? null : $this->titlePartToKey( $params['to'] ) );
-		$this->addWhereRange( $pfx . 'title', 'newer', $from, $to );
+		$this->addWhereRange( $pfx . $fieldTitle, 'newer', $from, $to );
 
 		if ( isset( $params['prefix'] ) ) {
-			$this->addWhere( $pfx . 'title' . $db->buildLike( $this->titlePartToKey( $params['prefix'] ), $db->anyString() ) );
+			$this->addWhere( $pfx . $fieldTitle . $db->buildLike( $this->titlePartToKey( $params['prefix'] ), $db->anyString() ) );
 		}
 
-		$this->addFields( array( 'pl_title' => $pfx . 'title' ) );
+		$this->addFields( array( 'pl_title' => $pfx . $fieldTitle ) );
 		$this->addFieldsIf( array( 'pl_from' => $pfx . 'from' ), !$params['unique'] );
 
-		$this->addOption( 'USE INDEX', $pfx . 'namespace' );
+		if ( $this->hasNamespace ) {
+			$this->addOption( 'USE INDEX', $pfx . 'namespace' );
+		}
 		$limit = $params['limit'];
 		$this->addOption( 'LIMIT', $limit + 1 );
 
 		$sort = ( $params['dir'] == 'descending' ? ' DESC' : '' );
 		$orderBy = array();
-		$orderBy[] = $pfx . 'title' . $sort;
+		$orderBy[] = $pfx . $fieldTitle . $sort;
 		if ( !$params['unique'] ) {
 			$orderBy[] = $pfx . 'from' . $sort;
 		}
@@ -166,7 +193,7 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 					$vals['fromid'] = intval( $row->pl_from );
 				}
 				if ( $fld_title ) {
-					$title = Title::makeTitle( $params['namespace'], $row->pl_title );
+					$title = Title::makeTitle( $namespace, $row->pl_title );
 					ApiQueryBase::addTitleInfo( $vals, $title );
 				}
 				$fit = $result->addValue( array( 'query', $this->getModuleName() ), null, $vals );
@@ -179,7 +206,7 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 					break;
 				}
 			} elseif ( $params['unique'] ) {
-				$titles[] = Title::makeTitle( $params['namespace'], $row->pl_title );
+				$titles[] = Title::makeTitle( $namespace, $row->pl_title );
 			} else {
 				$pageids[] = $row->pl_from;
 			}
@@ -195,63 +222,68 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 	}
 
 	public function getAllowedParams() {
-		return array(
-			'continue' => null,
-			'from' => null,
-			'to' => null,
-			'prefix' => null,
-			'unique' => false,
-			'prop' => array(
-				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_DFLT => 'title',
-				ApiBase::PARAM_TYPE => array(
-					'ids',
-					'title'
-				)
-			),
-			'namespace' => array(
+		$allowedParams = array();
+		$allowedParams['continue'] = null;
+		$allowedParams['from'] = null;
+		$allowedParams['to'] = null;
+		$allowedParams['prefix'] = null;
+		$allowedParams['unique'] = false;
+		$allowedParams['prop'] = array(
+			ApiBase::PARAM_ISMULTI => true,
+			ApiBase::PARAM_DFLT => 'title',
+			ApiBase::PARAM_TYPE => array(
+				'ids',
+				'title'
+			)
+		);
+		if ( $this->hasNamespace ) {
+			$allowedParams['namespace'] = array(
 				ApiBase::PARAM_DFLT => $this->dfltNamespace,
 				ApiBase::PARAM_TYPE => 'namespace'
-			),
-			'limit' => array(
-				ApiBase::PARAM_DFLT => 10,
-				ApiBase::PARAM_TYPE => 'limit',
-				ApiBase::PARAM_MIN => 1,
-				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
-				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
-			),
-			'dir' => array(
-				ApiBase::PARAM_DFLT => 'ascending',
-				ApiBase::PARAM_TYPE => array(
-					'ascending',
-					'descending'
-				)
-			),
+			);
+		}
+		$allowedParams['limit'] = array(
+			ApiBase::PARAM_DFLT => 10,
+			ApiBase::PARAM_TYPE => 'limit',
+			ApiBase::PARAM_MIN => 1,
+			ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
+			ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
 		);
+		$allowedParams['dir'] = array(
+			ApiBase::PARAM_DFLT => 'ascending',
+			ApiBase::PARAM_TYPE => array(
+				'ascending',
+				'descending'
+			)
+		);
+		return $allowedParams;
 	}
 
 	public function getParamDescription() {
 		$p = $this->getModulePrefix();
-		$link = $this->descriptionLink;
+		$what = $this->descriptionWhat;
+		$targets = $this->descriptionTargets;
 		$linking = $this->descriptionLinking;
-		return array(
-			'from' => "The title of the $link to start enumerating from",
-			'to' => "The title of the $link to stop enumerating at",
-			'prefix' => "Search for all $link titles that begin with this value",
-			'unique' => array(
-					"Only show distinct $link titles. Cannot be used with {$p}prop=ids.",
-					'When used as a generator, yields target pages instead of source pages.',
-			),
-			'prop' => array(
-				'What pieces of information to include',
-				" ids    - Adds the pageid of the $linking page (Cannot be used with {$p}unique)",
-				" title  - Adds the title of the $link",
-			),
-			'namespace' => 'The namespace to enumerate',
-			'limit' => "How many total items to return",
-			'continue' => 'When more results are available, use this to continue',
-			'dir' => 'The direction in which to list',
+		$paramDescription = array();
+		$paramDescription['from'] = "The title of the $what to start enumerating from";
+		$paramDescription['to'] = "The title of the $what to stop enumerating at";
+		$paramDescription['prefix'] = "Search for all $targets that begin with this value";
+		$paramDescription['unique'] = array(
+			"Only show distinct $targets. Cannot be used with {$p}prop=ids.",
+			'When used as a generator, yields target pages instead of source pages.',
 		);
+		$paramDescription['prop'] = array(
+			'What pieces of information to include',
+			" ids    - Adds the pageid of the $linking page (Cannot be used with {$p}unique)",
+			" title  - Adds the title of the $what",
+		);
+		if ( $this->hasNamespace ) {
+			$paramDescription['namespace'] = 'The namespace to enumerate';
+		}
+		$paramDescription['limit'] = 'How many total items to return';
+		$paramDescription['continue'] = 'When more results are available, use this to continue';
+		$paramDescription['dir'] = 'The direction in which to list';
+		return $paramDescription;
 	}
 
 	public function getResultProperties() {
@@ -272,29 +304,31 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 
 	public function getPossibleErrors() {
 		$m = $this->getModuleName();
-		$link = $this->descriptionLink;
+		$what = $this->descriptionWhat;
 		return array_merge( parent::getPossibleErrors(), array(
-			array( 'code' => 'params', 'info' => "{$m} cannot return corresponding page ids in unique {$link}s mode" ),
+			array( 'code' => 'params', 'info' => "{$m} cannot return corresponding page ids in unique {$what}s mode" ),
 		) );
 	}
 
 	public function getExamples() {
 		$p = $this->getModulePrefix();
-		$link = $this->descriptionLink;
-		$linked = $this->descriptionLinked;
+		$name = $this->getModuleName();
+		$what = $this->descriptionWhat;
+		$targets = $this->descriptionTargets;
 		return array(
-			"api.php?action=query&list=all{$link}s&{$p}from=B&{$p}prop=ids|title"
-					=> "List $linked titles with page ids they are from, including missing ones. Start at B",
-			"api.php?action=query&list=all{$link}s&{$p}unique=&{$p}from=B"
-					=> "List unique $linked titles",
-			"api.php?action=query&generator=all{$link}s&g{$p}unique=&g{$p}from=B"
-					=> "Gets all $link targets, marking the missing ones",
-			"api.php?action=query&generator=all{$link}s&g{$p}from=B"
-					=> "Gets pages containing the {$link}s",
+			"api.php?action=query&list={$name}&{$p}from=B&{$p}prop=ids|title"
+					=> "List $targets with page ids they are from, including missing ones. Start at B",
+			"api.php?action=query&list={$name}&{$p}unique=&{$p}from=B"
+					=> "List unique $targets",
+			"api.php?action=query&generator={$name}&g{$p}unique=&g{$p}from=B"
+					=> "Gets all $targets, marking the missing ones",
+			"api.php?action=query&generator={$name}&g{$p}from=B"
+					=> "Gets pages containing the {$what}s",
 		);
 	}
 
 	public function getHelpUrls() {
-		return "https://www.mediawiki.org/wiki/API:All{$this->descriptionLink}s";
+		$name = ucfirst( $this->getModuleName() );
+		return "https://www.mediawiki.org/wiki/API:{$name}";
 	}
 }
