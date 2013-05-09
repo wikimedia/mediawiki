@@ -146,7 +146,7 @@ wfProfileIn( 'WebStart.php-ob_start' );
 # that would cause us to potentially mix gzip and non-gzip output, creating a
 # big mess.
 if ( !defined( 'MW_NO_OUTPUT_BUFFER' ) && ob_get_level() == 0 ) {
-	require_once "$IP/includes/OutputHandler.php" ;
+	require_once "$IP/includes/OutputHandler.php";
 	ob_start( 'wfOutputHandler' );
 }
 wfProfileOut( 'WebStart.php-ob_start' );

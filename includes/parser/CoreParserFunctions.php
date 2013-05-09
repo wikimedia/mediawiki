@@ -701,7 +701,7 @@ class CoreParserFunctions {
 			# We are on current page (and not in PST), so
 			# take length of input to parser.
 			$length = $parser->mInputSize;
-		} elseif( isset( $cache[$page] ) ) {
+		} elseif ( isset( $cache[$page] ) ) {
 			$length = $cache[$page];
 		} elseif ( $parser->incrementExpensiveFunctionCount() ) {
 			$rev = Revision::newFromTitle( $title, false, Revision::READ_NORMAL );

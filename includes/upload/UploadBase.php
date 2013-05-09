@@ -1087,7 +1087,7 @@ abstract class UploadBase {
 			// bytes. There shouldn't be a legitimate reason for this to happen.
 			wfDebug( __METHOD__ . ": Unmatched XML declaration start\n" );
 			return true;
-		} elseif ( substr( $contents, 0, 4) == "\x4C\x6F\xA7\x94" ) {
+		} elseif ( substr( $contents, 0, 4 ) == "\x4C\x6F\xA7\x94" ) {
 			// EBCDIC encoded XML
 			wfDebug( __METHOD__ . ": EBCDIC Encoded XML\n" );
 			return true;
