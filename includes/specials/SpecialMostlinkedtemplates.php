@@ -29,7 +29,6 @@
  * @ingroup SpecialPage
  */
 class MostlinkedTemplatesPage extends QueryPage {
-
 	function __construct( $name = 'Mostlinkedtemplates' ) {
 		parent::__construct( $name );
 	}
@@ -64,9 +63,11 @@ class MostlinkedTemplatesPage extends QueryPage {
 	public function getQueryInfo() {
 		return array(
 			'tables' => array( 'templatelinks' ),
-			'fields' => array( 'namespace' => 'tl_namespace',
-					'title' => 'tl_title',
-					'value' => 'COUNT(*)' ),
+			'fields' => array(
+				'namespace' => 'tl_namespace',
+				'title' => 'tl_title',
+				'value' => 'COUNT(*)'
+			),
 			'conds' => array( 'tl_namespace' => NS_TEMPLATE ),
 			'options' => array( 'GROUP BY' => array( 'tl_namespace', 'tl_title' ) )
 		);
@@ -102,8 +103,15 @@ class MostlinkedTemplatesPage extends QueryPage {
 	public function formatResult( $skin, $result ) {
 		$title = Title::makeTitleSafe( $result->namespace, $result->title );
 		if ( !$title ) {
-			return Html::element( 'span', array( 'class' => 'mw-invalidtitle' ),
-				Linker::getInvalidTitleDescription( $this->getContext(), $result->namespace, $result->title ) );
+			return Html::element(
+				'span',
+				array( 'class' => 'mw-invalidtitle' ),
+				Linker::getInvalidTitleDescription(
+					$this->getContext(),
+					$result->namespace,
+					$result->title
+				)
+			);
 		}
 
 		return $this->getLanguage()->specialList(
@@ -122,6 +130,7 @@ class MostlinkedTemplatesPage extends QueryPage {
 	private function makeWlhLink( $title, $result ) {
 		$wlh = SpecialPage::getTitleFor( 'Whatlinkshere', $title->getPrefixedText() );
 		$label = $this->msg( 'ntransclusions' )->numParams( $result->value )->escaped();
+
 		return Linker::link( $wlh, $label );
 	}
 

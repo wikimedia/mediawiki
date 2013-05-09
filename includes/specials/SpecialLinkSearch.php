@@ -88,11 +88,21 @@ class LinkSearchPage extends QueryPage {
 			'<nowiki>' . $this->getLanguage()->commaList( $protocols_list ) . '</nowiki>',
 			count( $protocols_list )
 		);
-		$s = Html::openElement( 'form', array( 'id' => 'mw-linksearch-form', 'method' => 'get', 'action' => $wgScript ) ) . "\n" .
+		$s = Html::openElement(
+			'form',
+			array( 'id' => 'mw-linksearch-form', 'method' => 'get', 'action' => $wgScript )
+		) . "\n" .
 			Html::hidden( 'title', $this->getTitle()->getPrefixedDBkey() ) . "\n" .
 			Html::openElement( 'fieldset' ) . "\n" .
 			Html::element( 'legend', array(), $this->msg( 'linksearch' )->text() ) . "\n" .
-			Xml::inputLabel( $this->msg( 'linksearch-pat' )->text(), 'target', 'target', 50, $target ) . "\n";
+			Xml::inputLabel(
+				$this->msg( 'linksearch-pat' )->text(),
+				'target',
+				'target',
+				50,
+				$target
+			) . "\n";
+
 		if ( !$wgMiserMode ) {
 			$s .= Html::namespaceSelector(
 				array(
@@ -106,6 +116,7 @@ class LinkSearchPage extends QueryPage {
 				)
 			);
 		}
+
 		$s .= Xml::submitButton( $this->msg( 'linksearch-ok' )->text() ) . "\n" .
 			Html::closeElement( 'fieldset' ) . "\n" .
 			Html::closeElement( 'form' ) . "\n";
@@ -143,12 +154,14 @@ class LinkSearchPage extends QueryPage {
 		$rv = LinkFilter::makeLikeArray( $query, $prot );
 		if ( $rv === false ) {
 			// LinkFilter doesn't handle wildcard in IP, so we'll have to munge here.
-			if ( preg_match( '/^(:?[0-9]{1,3}\.)+\*\s*$|^(:?[0-9]{1,3}\.){3}[0-9]{1,3}:[0-9]*\*\s*$/', $query ) ) {
+			$pattern = '/^(:?[0-9]{1,3}\.)+\*\s*$|^(:?[0-9]{1,3}\.){3}[0-9]{1,3}:[0-9]*\*\s*$/';
+			if ( preg_match( $pattern, $query ) ) {
 				$dbr = wfGetDB( DB_SLAVE );
 				$rv = array( $prot . rtrim( $query, " \t*" ), $dbr->anyString() );
 				$field = 'el_to';
 			}
 		}
+
 		return array( $rv, $field );
 	}
 
@@ -159,6 +172,7 @@ class LinkSearchPage extends QueryPage {
 		if ( isset( $this->mNs ) && !$wgMiserMode ) {
 			$params['namespace'] = $this->mNs;
 		}
+
 		return $params;
 	}
 
@@ -167,8 +181,7 @@ class LinkSearchPage extends QueryPage {
 		$dbr = wfGetDB( DB_SLAVE );
 		// strip everything past first wildcard, so that
 		// index-based-only lookup would be done
-		list( $this->mMungedQuery, $clause ) = self::mungeQuery(
-				$this->mQuery, $this->mProt );
+		list( $this->mMungedQuery, $clause ) = self::mungeQuery( $this->mQuery, $this->mProt );
 		if ( $this->mMungedQuery === false ) {
 			// Invalid query; return no results
 			return array( 'tables' => 'page', 'fields' => 'page_id', 'conds' => '0=1' );
@@ -178,16 +191,23 @@ class LinkSearchPage extends QueryPage {
 		$like = $dbr->buildLike( $stripped );
 		$retval = array(
 			'tables' => array( 'page', 'externallinks' ),
-			'fields' => array( 'namespace' => 'page_namespace',
-					'title' => 'page_title',
-					'value' => 'el_index', 'url' => 'el_to' ),
-			'conds' => array( 'page_id = el_from',
-					"$clause $like" ),
+			'fields' => array(
+				'namespace' => 'page_namespace',
+				'title' => 'page_title',
+				'value' => 'el_index',
+				'url' => 'el_to'
+			),
+			'conds' => array(
+				'page_id = el_from',
+				"$clause $like"
+			),
 			'options' => array( 'USE INDEX' => $clause )
 		);
+
 		if ( isset( $this->mNs ) && !$wgMiserMode ) {
 			$retval['conds']['page_namespace'] = $this->mNs;
 		}
+
 		return $retval;
 	}
 

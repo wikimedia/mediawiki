@@ -35,16 +35,21 @@ class SpecialPreferences extends SpecialPage {
 		$this->setHeaders();
 		$this->outputHeader();
 		$out = $this->getOutput();
-		$out->disallowUserJs();  # Prevent hijacked user scripts from sniffing passwords etc.
+		$out->disallowUserJs(); # Prevent hijacked user scripts from sniffing passwords etc.
 
 		$user = $this->getUser();
 		if ( $user->isAnon() ) {
-			throw new ErrorPageError( 'prefsnologin', 'prefsnologintext', array( $this->getTitle()->getPrefixedDBkey() ) );
+			throw new ErrorPageError(
+				'prefsnologin',
+				'prefsnologintext',
+				array( $this->getTitle()->getPrefixedDBkey() )
+			);
 		}
 		$this->checkReadOnly();
 
 		if ( $par == 'reset' ) {
 			$this->showResetForm();
+
 			return;
 		}
 

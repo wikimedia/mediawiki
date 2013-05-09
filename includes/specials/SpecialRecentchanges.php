@@ -60,6 +60,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		$opts->add( 'categories', '' );
 		$opts->add( 'categories_any', false );
 		$opts->add( 'tagfilter', '' );
+
 		return $opts;
 	}
 
@@ -85,6 +86,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		}
 
 		$opts->validateIntBounds( 'limit', 0, 5000 );
+
 		return $opts;
 	}
 
@@ -98,6 +100,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 			$this->customFilters = array();
 			wfRunHooks( 'SpecialRecentChangesFilters', array( $this, &$this->customFilters ) );
 		}
+
 		return $this->customFilters;
 	}
 
@@ -111,6 +114,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		$opts = $this->getDefaultOptions();
 		$opts->fetchValuesFromRequest( $this->getRequest() );
 		$opts->validateIntBounds( 'limit', 0, $wgFeedLimit );
+
 		return $opts;
 	}
 
@@ -126,6 +130,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 			}
 			$this->rcOptions = $isFeed ? $this->feedSetup() : $this->setup( $this->rcSubpage );
 		}
+
 		return $this->rcOptions;
 	}
 
@@ -158,6 +163,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 			if ( !$this->including() ) {
 				$this->doHeader( $opts );
 			}
+
 			return;
 		}
 
@@ -194,6 +200,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 			$this->msg( 'recentchanges-feed-description' )->inContentLanguage()->text(),
 			$this->getTitle()->getFullURL()
 		);
+
 		return array( $changesFeed, $formatter );
 	}
 
@@ -266,6 +273,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 				return false;
 			}
 		}
+
 		return $lastmod;
 	}
 
@@ -340,7 +348,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		# Namespace filtering
 		if ( $opts['namespace'] !== '' ) {
 			$selectedNS = $dbr->addQuotes( $opts['namespace'] );
-			$operator = $opts['invert'] ? '!='  : '=';
+			$operator = $opts['invert'] ? '!=' : '=';
 			$boolean = $opts['invert'] ? 'AND' : 'OR';
 
 			# namespace association (bug 2429)
@@ -358,6 +366,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 
 			$conds[] = $condition;
 		}
+
 		return $conds;
 	}
 
@@ -392,7 +401,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 				'wl_user' => $uid,
 				'wl_title=rc_title',
 				'wl_namespace=rc_namespace'
-			));
+			) );
 		}
 		if ( $this->getUser()->isAllowed( 'rollback' ) ) {
 			$tables[] = 'page';
@@ -410,8 +419,8 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		);
 
 		if ( !wfRunHooks( 'SpecialRecentChangesQuery',
-			array( &$conds, &$tables, &$join_conds, $opts, &$query_options, &$fields ) ) )
-		{
+			array( &$conds, &$tables, &$join_conds, $opts, &$query_options, &$fields ) )
+		) {
 			return false;
 		}
 
@@ -423,14 +432,15 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		if ( $namespace === ''
 			|| ( $invert || $associated )
 			|| $opts['tagfilter'] != ''
-			|| !$dbr->unionSupportsOrderAndLimit() )
-		{
+			|| !$dbr->unionSupportsOrderAndLimit()
+		) {
 			$res = $dbr->select( $tables, $fields, $conds, __METHOD__,
 				array( 'ORDER BY' => 'rc_timestamp DESC', 'LIMIT' => $limit ) +
-				$query_options,
+					$query_options,
 				$join_conds );
-		// We have a new_namespace_time index! UNION over new=(0,1) and sort result set!
 		} else {
+			// We have a new_namespace_time index! UNION over new=(0,1) and sort result set!
+
 			// New pages
 			$sqlNew = $dbr->selectSQLText(
 				$tables,
@@ -444,6 +454,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 				),
 				$join_conds
 			);
+
 			// Old pages
 			$sqlOld = $dbr->selectSQLText(
 				$tables,
@@ -457,6 +468,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 				),
 				$join_conds
 			);
+
 			# Join the two fast queries, and sort the result set
 			$sql = $dbr->unionQueries( array( $sqlNew, $sqlOld ), false ) .
 				' ORDER BY rc_timestamp DESC';
@@ -495,7 +507,8 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 			$this->filterByCategories( $rows, $opts );
 		}
 
-		$showWatcherCount = $wgRCShowWatchingUsers && $this->getUser()->getOption( 'shownumberswatching' );
+		$showNumsWachting = $this->getUser()->getOption( 'shownumberswatching' );
+		$showWatcherCount = $wgRCShowWatchingUsers && $showNumsWachting;
 		$watcherCache = array();
 
 		$dbr = wfGetDB( DB_SLAVE );
@@ -601,10 +614,22 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 
 			$out .= Xml::openElement( 'tr' );
 			if ( is_array( $optionRow ) ) {
-				$out .= Xml::tags( 'td', array( 'class' => 'mw-label mw-' . $name . '-label' ), $optionRow[0] );
-				$out .= Xml::tags( 'td', array( 'class' => 'mw-input' ), $optionRow[1] . $addSubmit );
+				$out .= Xml::tags(
+					'td',
+					array( 'class' => 'mw-label mw-' . $name . '-label' ),
+					$optionRow[0]
+				);
+				$out .= Xml::tags(
+					'td',
+					array( 'class' => 'mw-input' ),
+					$optionRow[1] . $addSubmit
+				);
 			} else {
-				$out .= Xml::tags( 'td', array( 'class' => 'mw-input', 'colspan' => 2 ), $optionRow . $addSubmit );
+				$out .= Xml::tags(
+					'td',
+					array( 'class' => 'mw-input', 'colspan' => 2 ),
+					$optionRow . $addSubmit
+				);
 			}
 			$out .= Xml::closeElement( 'tr' );
 		}
@@ -622,7 +647,11 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		$panelString = implode( "\n", $panel );
 
 		$this->getOutput()->addHTML(
-			Xml::fieldset( $this->msg( 'recentchanges-legend' )->text(), $panelString, array( 'class' => 'rcoptions' ) )
+			Xml::fieldset(
+				$this->msg( 'recentchanges-legend' )->text(),
+				$panelString,
+				array( 'class' => 'rcoptions' )
+			)
 		);
 
 		$this->setBottomText( $opts );
@@ -649,6 +678,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		}
 
 		wfRunHooks( 'SpecialRecentChangesPanel', array( &$extraOpts, $opts ) );
+
 		return $extraOpts;
 	}
 
@@ -679,7 +709,8 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	 *
 	 * @param FormOptions $opts
 	 */
-	function setBottomText( FormOptions $opts ) {}
+	function setBottomText( FormOptions $opts ) {
+	}
 
 	/**
 	 * Creates the choose namespace selection
@@ -704,6 +735,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 			$opts['associated'],
 			array( 'title' => $this->msg( 'tooltip-namespace_association' )->text() )
 		);
+
 		return array( $nsLabel, "$nsSelect $invert $associated" );
 	}
 
@@ -812,6 +844,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		if ( $active ) {
 			$text = '<strong>' . $text . '</strong>';
 		}
+
 		return Linker::linkKnown( $this->getTitle(), $text, array(), $params );
 	}
 
@@ -898,13 +931,15 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 			$now, array( 'from' => $timestamp ), $nondefaults
 		);
 
-		$rclinks = $this->msg( 'rclinks' )->rawParams( $cl, $dl, $lang->pipeList( $links ) )->parse();
+		$rclinks = $this->msg( 'rclinks' )->rawParams( $cl, $dl, $lang->pipeList( $links ) )
+			->parse();
 		$rclistfrom = $this->msg( 'rclistfrom' )->rawParams( $tl )->parse();
+
 		return "{$note}$rclinks<br />$rclistfrom";
 	}
 
 	/**
-	 * add javascript specific to the [[Special:RecentChanges]] page
+	 * Add JavaScript to the page
 	 */
 	function addRecentChangesJS() {
 		$this->getOutput()->addModules( array(

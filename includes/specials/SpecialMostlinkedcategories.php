@@ -30,7 +30,6 @@
  * @ingroup SpecialPage
  */
 class MostlinkedCategoriesPage extends QueryPage {
-
 	function __construct( $name = 'Mostlinkedcategories' ) {
 		parent::__construct( $name );
 	}
@@ -43,8 +42,8 @@ class MostlinkedCategoriesPage extends QueryPage {
 		return array(
 			'tables' => array( 'category' ),
 			'fields' => array( 'title' => 'cat_title',
-					'namespace' => NS_CATEGORY,
-					'value' => 'cat_pages' ),
+				'namespace' => NS_CATEGORY,
+				'value' => 'cat_pages' ),
 		);
 	}
 
@@ -83,15 +82,20 @@ class MostlinkedCategoriesPage extends QueryPage {
 
 		$nt = Title::makeTitleSafe( NS_CATEGORY, $result->title );
 		if ( !$nt ) {
-			return Html::element( 'span', array( 'class' => 'mw-invalidtitle' ),
-				Linker::getInvalidTitleDescription( $this->getContext(), NS_CATEGORY, $result->title ) );
+			return Html::element(
+				'span',
+				array( 'class' => 'mw-invalidtitle' ),
+				Linker::getInvalidTitleDescription(
+					$this->getContext(),
+					NS_CATEGORY,
+					$result->title )
+			);
 		}
 
 		$text = $wgContLang->convert( $nt->getText() );
-
 		$plink = Linker::link( $nt, htmlspecialchars( $text ) );
-
 		$nlinks = $this->msg( 'nmembers' )->numParams( $result->value )->escaped();
+
 		return $this->getLanguage()->specialList( $plink, $nlinks );
 	}
 
