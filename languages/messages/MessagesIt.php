@@ -751,9 +751,9 @@ Non dimenticare di personalizzare le [[Special:Preferences|preferenze di {{SITEN
 'createacct-imgcaptcha-ph' => 'Inserisci il testo che vedi sopra',
 'createacct-submit' => 'Crea la tua utenza',
 'createacct-benefit-heading' => '{{SITENAME}} è fatta da persone come te.',
-'createacct-benefit-body1' => 'modifiche',
-'createacct-benefit-body2' => 'pagine',
-'createacct-benefit-body3' => 'contributori recenti',
+'createacct-benefit-body1' => '{{PLURAL:$1|modifica|modifiche}}',
+'createacct-benefit-body2' => '{{PLURAL:$1|pagina|pagine}}',
+'createacct-benefit-body3' => '{{PLURAL:$1|contributore recente|contributori recenti}}',
 'badretype' => 'Le password inserite non coincidono tra loro.',
 'userexists' => 'Il nome utente inserito è già utilizzato.
 Scegliere un nome utente diverso.',

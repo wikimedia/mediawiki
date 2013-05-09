@@ -1329,8 +1329,8 @@ Detaljar kan ein finna i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE
 'searcheverything-enable' => 'Søk i alle namneroma',
 'searchrelated' => 'relatert',
 'searchall' => 'alle',
-'showingresults' => "Nedanfor er opp til {{PLURAL:$1|'''eitt''' resultat|'''$1''' resultat}} som byrjar med nummer '''$2''' vist{{PLURAL:$1||e}}.",
-'showingresultsnum' => "Nedanfor er {{PLURAL:$3|'''eitt''' resultat|'''$3''' resultat}} som byrjar med nummer '''$2''' vist.",
+'showingresults' => "Nedanfor er opp til {{PLURAL:$1|'''eitt'''|'''$1'''}} resultat som byrjar med nummer '''$2''' vist{{PLURAL:$1||e}}.",
+'showingresultsnum' => "Nedanfor er {{PLURAL:$3|'''eitt'''|'''$3'''}} resultat som byrjar med nummer '''$2''' {{PLURAL:$3|vist|viste}}.",
 'showingresultsheader' => "{{PLURAL:$5|Resultat '''$1''' av '''$3'''|Resultat '''$1 - $2''' av '''$3'''}} for '''$4'''",
 'nonefound' => "'''Merk:''' Som standard blir det berre søkt i enkelte namnerom.
 For å søkja i alle, bruk prefikset ''all:'' (det inkluderer diskusjonssider, malar etc.), eller bruk det ønskte namnerommet som prefiks.",

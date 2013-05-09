@@ -502,9 +502,9 @@ No te sce scurdanne de cangià le [[Special:Preferences|{{SITENAME}} preferenze 
 'createacct-imgcaptcha-ph' => "Mitte 'u teste tune aqquà sus",
 'createacct-submit' => "Ccreje 'u cunde utende tune",
 'createacct-benefit-heading' => '{{SITENAME}} jè fatte da crestiane cumme a te.',
-'createacct-benefit-body1' => 'cangiaminde',
-'createacct-benefit-body2' => 'pàggene',
-'createacct-benefit-body3' => 'condrebbutore recende',
+'createacct-benefit-body1' => '{{PLURAL:$1|cangiamende|cangiaminde}}',
+'createacct-benefit-body2' => '{{PLURAL:$1|pàgene|pàggene}}',
+'createacct-benefit-body3' => '{{PLURAL:$1|condrebbutore}} recende',
 'badretype' => 'Le passuord ca è scritte non ge sonde uguale.',
 'userexists' => "'U nome de l'utende ca è scritte jè già ausate.
 Pe piacere scacchiane n'otre.",
