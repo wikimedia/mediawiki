@@ -27,7 +27,6 @@
  * @ingroup SpecialPage
  */
 class SpecialPasswordReset extends FormSpecialPage {
-
 	/**
 	 * @var Message
 	 */
@@ -70,6 +69,7 @@ class SpecialPasswordReset extends FormSpecialPage {
 				'type' => 'text',
 				'label-message' => 'passwordreset-username',
 			);
+
 			if ( $this->getUser()->isLoggedIn() ) {
 				$a['Username']['default'] = $this->getUser()->getName();
 			}
@@ -118,6 +118,7 @@ class SpecialPasswordReset extends FormSpecialPage {
 		if ( isset( $wgPasswordResetRoutes['domain'] ) && $wgPasswordResetRoutes['domain'] ) {
 			$i++;
 		}
+
 		return $this->msg( 'passwordreset-pretext', $i )->parseAsBlock();
 	}
 
@@ -142,7 +143,8 @@ class SpecialPasswordReset extends FormSpecialPage {
 		}
 
 		if ( isset( $data['Capture'] ) && !$this->getUser()->isAllowed( 'passwordreset' ) ) {
-			// The user knows they don't have the passwordreset permission, but they tried to spoof the form.  That's naughty
+			// The user knows they don't have the passwordreset permission,
+			// but they tried to spoof the form. That's naughty
 			throw new PermissionsError( 'passwordreset' );
 		}
 
@@ -156,8 +158,8 @@ class SpecialPasswordReset extends FormSpecialPage {
 			$users = array( User::newFromName( $data['Username'] ) );
 		} elseif ( isset( $data['Email'] )
 			&& $data['Email'] !== ''
-			&& Sanitizer::validateEmail( $data['Email'] ) )
-		{
+			&& Sanitizer::validateEmail( $data['Email'] )
+		) {
 			$method = 'email';
 			$res = wfGetDB( DB_SLAVE )->select(
 				'user',
@@ -165,8 +167,10 @@ class SpecialPasswordReset extends FormSpecialPage {
 				array( 'user_email' => $data['Email'] ),
 				__METHOD__
 			);
+
 			if ( $res ) {
 				$users = array();
+
 				foreach ( $res as $row ) {
 					$users[] = User::newFromRow( $row );
 				}
@@ -209,9 +213,13 @@ class SpecialPasswordReset extends FormSpecialPage {
 		foreach ( $users as $user ) {
 			if ( $user->isPasswordReminderThrottled() ) {
 				global $wgPasswordReminderResendTime;
+
 				# Round the time in hours to 3 d.p., in case someone is specifying
 				# minutes or seconds.
-				return array( array( 'throttled-mailpassword', round( $wgPasswordReminderResendTime, 3 ) ) );
+				return array( array(
+					'throttled-mailpassword',
+					round( $wgPasswordReminderResendTime, 3 )
+				) );
 			}
 		}
 
@@ -244,8 +252,8 @@ class SpecialPasswordReset extends FormSpecialPage {
 			$password = $user->randomPassword();
 			$user->setNewpassword( $password );
 			$user->saveSettings();
-			$passwords[] = $this->msg( 'passwordreset-emailelement', $user->getName(), $password
-				)->inLanguage( $userLanguage )->text(); // We'll escape the whole thing later
+			$passwords[] = $this->msg( 'passwordreset-emailelement', $user->getName(), $password )
+				->inLanguage( $userLanguage )->text(); // We'll escape the whole thing later
 		}
 		$passwordBlock = implode( "\n\n", $passwords );
 
@@ -276,8 +284,9 @@ class SpecialPasswordReset extends FormSpecialPage {
 			// The email didn't send, but maybe they knew that and that's why they captured it
 			return true;
 		} else {
-			// @todo FIXME: The email didn't send, but we have already set the password throttle
-			// timestamp, so they won't be able to try again until it expires...  :(
+			// @todo FIXME: The email wasn't sent, but we have already set
+			// the password throttle timestamp, so they won't be able to try
+			// again until it expires...  :(
 			return array( array( 'mailerror', $this->result->getMessage() ) );
 		}
 	}
@@ -305,8 +314,8 @@ class SpecialPasswordReset extends FormSpecialPage {
 
 		// Maybe password resets are disabled, or there are no allowable routes
 		if ( !is_array( $wgPasswordResetRoutes ) ||
-			 !in_array( true, array_values( $wgPasswordResetRoutes ) ) )
-		{
+			!in_array( true, array_values( $wgPasswordResetRoutes ) )
+		) {
 			return 'passwordreset-disabled';
 		}
 

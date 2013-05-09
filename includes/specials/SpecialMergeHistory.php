@@ -91,11 +91,13 @@ class SpecialMergeHistory extends SpecialPage {
 
 		if ( $this->mTargetID && $this->mDestID && $this->mAction == 'submit' && $this->mMerge ) {
 			$this->merge();
+
 			return;
 		}
 
 		if ( !$this->mSubmitted ) {
 			$this->showMergeForm();
+
 			return;
 		}
 
@@ -126,7 +128,6 @@ class SpecialMergeHistory extends SpecialPage {
 		} else {
 			$this->showHistory();
 		}
-
 	}
 
 	function showMergeForm() {
@@ -138,25 +139,25 @@ class SpecialMergeHistory extends SpecialPage {
 			Xml::openElement( 'form', array(
 				'method' => 'get',
 				'action' => $wgScript ) ) .
-			'<fieldset>' .
-			Xml::element( 'legend', array(),
-				$this->msg( 'mergehistory-box' )->text() ) .
-			Html::hidden( 'title', $this->getTitle()->getPrefixedDBkey() ) .
-			Html::hidden( 'submitted', '1' ) .
-			Html::hidden( 'mergepoint', $this->mTimestamp ) .
-			Xml::openElement( 'table' ) .
-			'<tr>
+				'<fieldset>' .
+				Xml::element( 'legend', array(),
+					$this->msg( 'mergehistory-box' )->text() ) .
+				Html::hidden( 'title', $this->getTitle()->getPrefixedDBkey() ) .
+				Html::hidden( 'submitted', '1' ) .
+				Html::hidden( 'mergepoint', $this->mTimestamp ) .
+				Xml::openElement( 'table' ) .
+				'<tr>
 				<td>' . Xml::label( $this->msg( 'mergehistory-from' )->text(), 'target' ) . '</td>
 				<td>' . Xml::input( 'target', 30, $this->mTarget, array( 'id' => 'target' ) ) . '</td>
 			</tr><tr>
 				<td>' . Xml::label( $this->msg( 'mergehistory-into' )->text(), 'dest' ) . '</td>
 				<td>' . Xml::input( 'dest', 30, $this->mDest, array( 'id' => 'dest' ) ) . '</td>
 			</tr><tr><td>' .
-			Xml::submitButton( $this->msg( 'mergehistory-go' )->text() ) .
-			'</td></tr>' .
-			Xml::closeElement( 'table' ) .
-			'</fieldset>' .
-			'</form>'
+				Xml::submitButton( $this->msg( 'mergehistory-go' )->text() ) .
+				'</td></tr>' .
+				Xml::closeElement( 'table' ) .
+				'</fieldset>' .
+				'</form>'
 		);
 	}
 
@@ -188,32 +189,32 @@ class SpecialMergeHistory extends SpecialPage {
 			# in a nice little table
 			$table =
 				Xml::openElement( 'fieldset' ) .
-				$this->msg( 'mergehistory-merge', $this->mTargetObj->getPrefixedText(),
-					$this->mDestObj->getPrefixedText() )->parse() .
-				Xml::openElement( 'table', array( 'id' => 'mw-mergehistory-table' ) ) .
+					$this->msg( 'mergehistory-merge', $this->mTargetObj->getPrefixedText(),
+						$this->mDestObj->getPrefixedText() )->parse() .
+					Xml::openElement( 'table', array( 'id' => 'mw-mergehistory-table' ) ) .
 					'<tr>
 						<td class="mw-label">' .
-							Xml::label( $this->msg( 'mergehistory-reason' )->text(), 'wpComment' ) .
-						'</td>
-						<td class="mw-input">' .
-							Xml::input( 'wpComment', 50, $this->mComment, array( 'id' => 'wpComment' ) ) .
-						'</td>
+					Xml::label( $this->msg( 'mergehistory-reason' )->text(), 'wpComment' ) .
+					'</td>
+					<td class="mw-input">' .
+					Xml::input( 'wpComment', 50, $this->mComment, array( 'id' => 'wpComment' ) ) .
+					'</td>
 					</tr>
 					<tr>
 						<td>&#160;</td>
 						<td class="mw-submit">' .
-							Xml::submitButton( $this->msg( 'mergehistory-submit' )->text(), array( 'name' => 'merge', 'id' => 'mw-merge-submit' ) ) .
-						'</td>
+					Xml::submitButton( $this->msg( 'mergehistory-submit' )->text(), array( 'name' => 'merge', 'id' => 'mw-merge-submit' ) ) .
+					'</td>
 					</tr>' .
-				Xml::closeElement( 'table' ) .
-				Xml::closeElement( 'fieldset' );
+					Xml::closeElement( 'table' ) .
+					Xml::closeElement( 'fieldset' );
 
 			$out->addHTML( $table );
 		}
 
 		$out->addHTML(
 			'<h2 id="mw-mergehistory">' .
-			$this->msg( 'mergehistory-list' )->escaped() . "</h2>\n"
+				$this->msg( 'mergehistory-list' )->escaped() . "</h2>\n"
 		);
 
 		if ( $haveRevisions ) {
@@ -319,6 +320,7 @@ class SpecialMergeHistory extends SpecialPage {
 		# Destination page must exist with revisions
 		if ( !$maxtimestamp ) {
 			$this->getOutput()->addWikiMsg( 'mergehistory-fail' );
+
 			return false;
 		}
 		# Get the latest timestamp of the source
@@ -331,6 +333,7 @@ class SpecialMergeHistory extends SpecialPage {
 		# $this->mTimestamp must be older than $maxtimestamp
 		if ( $this->mTimestamp >= $maxtimestamp ) {
 			$this->getOutput()->addWikiMsg( 'mergehistory-fail' );
+
 			return false;
 		}
 		# Update the revisions
@@ -407,6 +410,7 @@ class SpecialMergeHistory extends SpecialPage {
 		# Check if this did anything
 		if ( !$count ) {
 			$this->getOutput()->addWikiMsg( 'mergehistory-fail' );
+
 			return false;
 		}
 		# Update our logs
@@ -475,6 +479,7 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 		$this->mResult->seek( 0 );
 
 		wfProfileOut( __METHOD__ );
+
 		return '';
 	}
 
@@ -486,6 +491,7 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 		$conds = $this->mConds;
 		$conds['rev_page'] = $this->articleID;
 		$conds[] = "rev_timestamp < {$this->maxTimestamp}";
+
 		return array(
 			'tables' => array( 'revision', 'page', 'user' ),
 			'fields' => array_merge( Revision::selectFields(), Revision::selectUserFields() ),

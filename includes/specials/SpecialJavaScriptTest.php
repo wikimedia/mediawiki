@@ -55,24 +55,28 @@ class SpecialJavaScriptTest extends SpecialPage {
 		if ( $par == '' ) {
 			$out->setPageTitle( $this->msg( 'javascripttest' ) );
 			$summary = $this->wrapSummaryHtml(
-				$this->msg( 'javascripttest-pagetext-noframework' )->escaped() . $this->getFrameworkListHtml(),
+				$this->msg( 'javascripttest-pagetext-noframework' )->escaped() .
+					$this->getFrameworkListHtml(),
 				'noframework'
 			);
 			$out->addHtml( $summary );
-
-		// Matched! Display proper title and initialize the framework
 		} elseif ( isset( self::$frameworks[$framework] ) ) {
-			$out->setPageTitle( $this->msg( 'javascripttest-title', $this->msg( "javascripttest-$framework-name" )->plain() ) );
-			$out->setSubtitle( $this->msg( 'javascripttest-backlink' )->rawParams( Linker::linkKnown( $this->getTitle() ) ) );
+			// Matched! Display proper title and initialize the framework
+			$out->setPageTitle(	$this->msg(
+				'javascripttest-title',
+				$this->msg( "javascripttest-$framework-name" )->plain()
+			) );
+			$out->setSubtitle( $this->msg( 'javascripttest-backlink' )
+				->rawParams( Linker::linkKnown( $this->getTitle() ) ) );
 			$this->{self::$frameworks[$framework]}();
-
-		// Framework not found, display error
 		} else {
+			// Framework not found, display error
 			$out->setPageTitle( $this->msg( 'javascripttest' ) );
-			$summary = $this->wrapSummaryHtml( '<p class="error">'
-				. $this->msg( 'javascripttest-pagetext-unknownframework', $par )->escaped()
-				. '</p>'
-				. $this->getFrameworkListHtml(),
+			$summary = $this->wrapSummaryHtml(
+				'<p class="error">' .
+					$this->msg( 'javascripttest-pagetext-unknownframework', $par )->escaped() .
+					'</p>' .
+					$this->getFrameworkListHtml(),
 				'unknownframework'
 			);
 			$out->addHtml( $summary );
@@ -80,8 +84,10 @@ class SpecialJavaScriptTest extends SpecialPage {
 	}
 
 	/**
-	 * Get a list of frameworks (including introduction paragraph and links to the framework run pages)
-	 * @return String: HTML
+	 * Get a list of frameworks (including introduction paragraph and links
+	 * to the framework run pages)
+	 *
+	 * @return string HTML
 	 */
 	private function getFrameworkListHtml() {
 		$list = '<ul>';
@@ -89,13 +95,16 @@ class SpecialJavaScriptTest extends SpecialPage {
 			$list .= Html::rawElement(
 				'li',
 				array(),
-				Linker::link( $this->getTitle( $framework ), $this->msg( "javascripttest-$framework-name" )->escaped() )
+				Linker::link(
+					$this->getTitle( $framework ),
+					$this->msg( "javascripttest-$framework-name" )->escaped()
+				)
 			);
 		}
 		$list .= '</ul>';
-		$msg = $this->msg( 'javascripttest-pagetext-frameworks' )->rawParams( $list )->parseAsBlock();
 
-		return $msg;
+		return $this->msg( 'javascripttest-pagetext-frameworks' )->rawParams( $list )
+			->parseAsBlock();
 	}
 
 	/**
@@ -109,12 +118,14 @@ class SpecialJavaScriptTest extends SpecialPage {
 	 */
 	private function wrapSummaryHtml( $html, $state ) {
 		$validStates = array( 'noframework', 'unknownframework', 'frameworkfound' );
+
 		if ( !in_array( $state, $validStates ) ) {
 			throw new MWException( __METHOD__
 				. ' given an invalid state. Must be one of "'
 				. join( '", "', $validStates ) . '".'
 			);
 		}
+
 		return "<div id=\"mw-javascripttest-summary\" class=\"mw-javascripttest-$state\">$html</div>";
 	}
 
@@ -155,7 +166,10 @@ HTML;
 
 		// Used in ./tests/qunit/data/testrunner.js, see also documentation of
 		// $wgJavaScriptTestConfig in DefaultSettings.php
-		$out->addJsConfigVars( 'QUnitTestSwarmInjectJSPath', $wgJavaScriptTestConfig['qunit']['testswarm-injectjs'] );
+		$out->addJsConfigVars(
+			'QUnitTestSwarmInjectJSPath',
+			$wgJavaScriptTestConfig['qunit']['testswarm-injectjs']
+		);
 	}
 
 	protected function getGroupName() {
