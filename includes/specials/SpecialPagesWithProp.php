@@ -23,7 +23,6 @@
  * @author Brad Jorsch
  */
 
-
 /**
  * Special:PagesWithProp to search the page_props table
  * @ingroup SpecialPage
@@ -128,11 +127,11 @@ class SpecialPagesWithProp extends QueryPage {
 		$title = Title::newFromRow( $result );
 		$ret = Linker::link( $title, null, array(), array(), array( 'known' ) );
 		if ( $result->pp_value !== '' ) {
-			$value = $this->msg( 'parentheses' )
-				->rawParams( Html::element( 'span', array( 'class' => 'prop-value' ), $result->pp_value ) )
-				->escaped();
+			$propValue = Html::element( 'span', array( 'class' => 'prop-value' ), $result->pp_value );
+			$value = $this->msg( 'parentheses' )->rawParams( $propValue )->escaped();
 			$ret .= " $value";
 		}
+
 		return $ret;
 	}
 

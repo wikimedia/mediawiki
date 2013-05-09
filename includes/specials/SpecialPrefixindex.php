@@ -98,37 +98,38 @@ class SpecialPrefixindex extends SpecialAllpages {
 		$out .= Xml::openElement( 'table', array( 'id' => 'nsselect', 'class' => 'allpages' ) );
 		$out .= "<tr>
 				<td class='mw-label'>" .
-				Xml::label( $this->msg( 'allpagesprefix' )->text(), 'nsfrom' ) .
-				"</td>
+			Xml::label( $this->msg( 'allpagesprefix' )->text(), 'nsfrom' ) .
+			"</td>
 				<td class='mw-input'>" .
-					Xml::input( 'prefix', 30, str_replace( '_', ' ', $from ), array( 'id' => 'nsfrom' ) ) .
-				"</td>
+			Xml::input( 'prefix', 30, str_replace( '_', ' ', $from ), array( 'id' => 'nsfrom' ) ) .
+			"</td>
 			</tr>
 			<tr>
-				<td class='mw-label'>" .
-					Xml::label( $this->msg( 'namespace' )->text(), 'namespace' ) .
-				"</td>
+			<td class='mw-label'>" .
+			Xml::label( $this->msg( 'namespace' )->text(), 'namespace' ) .
+			"</td>
 				<td class='mw-input'>" .
-				Html::namespaceSelector( array(
-						'selected' => $namespace,
-					), array(
-						'name' => 'namespace',
-						'id' => 'namespace',
-						'class' => 'namespaceselector',
-				) ) .
-				Xml::checkLabel(
-					$this->msg( 'allpages-hide-redirects' )->text(),
-					'hideredirects',
-					'hideredirects',
-					$hideredirects
-				) . ' ' .
-				Xml::submitButton( $this->msg( 'allpagessubmit' )->text() ) .
-				"</td>
+			Html::namespaceSelector( array(
+				'selected' => $namespace,
+			), array(
+				'name' => 'namespace',
+				'id' => 'namespace',
+				'class' => 'namespaceselector',
+			) ) .
+			Xml::checkLabel(
+				$this->msg( 'allpages-hide-redirects' )->text(),
+				'hideredirects',
+				'hideredirects',
+				$hideredirects
+			) . ' ' .
+			Xml::submitButton( $this->msg( 'allpagessubmit' )->text() ) .
+			"</td>
 			</tr>";
 		$out .= Xml::closeElement( 'table' );
 		$out .= Xml::closeElement( 'fieldset' );
 		$out .= Xml::closeElement( 'form' );
 		$out .= Xml::closeElement( 'div' );
+
 		return $out;
 	}
 
@@ -212,9 +213,11 @@ class SpecialPrefixindex extends SpecialAllpages {
 						$out .= '</tr>';
 					}
 				}
-				if ( ($n % 3) != 0 ) {
+
+				if ( ( $n % 3 ) != 0 ) {
 					$out .= '</tr>';
 				}
+
 				$out .= Xml::closeElement( 'table' );
 			} else {
 				$out = '';
@@ -230,11 +233,13 @@ class SpecialPrefixindex extends SpecialAllpages {
 			$out2 = Xml::openElement( 'table', array( 'id' => 'mw-prefixindex-nav-table' ) ) .
 				'<tr>
 					<td>' .
-						$nsForm .
-					'</td>
-					<td id="mw-prefixindex-nav-form" class="mw-prefixindex-nav">';
+				$nsForm .
+				'</td>
+				<td id="mw-prefixindex-nav-form" class="mw-prefixindex-nav">';
 
-			if ( isset( $res ) && $res && ( $n == $this->maxPerPage ) && ( $s = $res->fetchObject() ) ) {
+			if ( isset( $res ) && $res && ( $n == $this->maxPerPage ) &&
+				( $s = $res->fetchObject() )
+			) {
 				$query = array(
 					'from' => $s->page_title,
 					'prefix' => $prefix,
@@ -246,16 +251,22 @@ class SpecialPrefixindex extends SpecialAllpages {
 					// This tells us we're not just a holdover from old links.
 					$query['namespace'] = $namespace;
 				}
+
 				$nextLink = Linker::linkKnown(
-						$self,
-						$this->msg( 'nextpage', str_replace( '_', ' ', $s->page_title ) )->escaped(),
-						array(),
-						$query
-					);
+					$self,
+					$this->msg( 'nextpage', str_replace( '_', ' ', $s->page_title ) )->escaped(),
+					array(),
+					$query
+				);
+
 				$out2 .= $nextLink;
 
-				$footer = "\n" . Html::element( "hr" )
-					. Html::rawElement( "div", array( "class" => "mw-prefixindex-nav" ), $nextLink );
+				$footer = "\n" . Html::element( 'hr' ) .
+					Html::rawElement(
+						'div',
+						array( 'class' => 'mw-prefixindex-nav' ),
+						$nextLink
+					);
 			}
 			$out2 .= "</td></tr>" .
 				Xml::closeElement( 'table' );
