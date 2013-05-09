@@ -75,6 +75,9 @@ class FileBackendMultiWrite extends FileBackend {
 	 *   - autoResync     : Automatically resync the clone backends to the master backend
 	 *                      when pre-operation sync checks fail. This should only be used
 	 *                      if the master backend is stable and not missing any files.
+	 *                      Use "conservative" to limit resyncing to copying newer master
+	 *                      backend files over older (or non-existing) clone backend files.
+	 *                      Cases that cannot be handled will result in operation abortion.
 	 *   - noPushQuickOps : (hack) Only apply doQuickOperations() to the master backend.
 	 *   - noPushDirConts : (hack) Only apply directory functions to the master backend.
 	 *
@@ -86,7 +89,9 @@ class FileBackendMultiWrite extends FileBackend {
 		$this->syncChecks = isset( $config['syncChecks'] )
 			? $config['syncChecks']
 			: self::CHECK_SIZE;
-		$this->autoResync = !empty( $config['autoResync'] );
+		$this->autoResync = isset( $config['autoResync'] )
+			? $config['autoResync']
+			: false;
 		$this->noPushQuickOps = isset( $config['noPushQuickOps'] )
 			? $config['noPushQuickOps']
 			: false;
@@ -304,11 +309,11 @@ class FileBackendMultiWrite extends FileBackend {
 		$mBackend = $this->backends[$this->masterIndex];
 		foreach ( $paths as $path ) {
 			$mPath = $this->substPaths( $path, $mBackend );
-			$mSha1 = $mBackend->getFileSha1Base36( array( 'src' => $mPath ) );
-			$mExist = $mBackend->fileExists( array( 'src' => $mPath ) );
-			// Check if the master backend is available...
-			if ( $mExist === null ) {
+			$mSha1 = $mBackend->getFileSha1Base36( array( 'src' => $mPath, 'latest' => true ) );
+			$mStat = $mBackend->getFileStat( array( 'src' => $mPath, 'latest' => true ) );
+			if ( $mStat === null || ( $mSha1 !== false && !$mStat ) ) { // sanity
 				$status->fatal( 'backend-fail-internal', $this->name );
+				continue; // file is not available on the master backend...
 			}
 			// Check of all clone backends agree with the master...
 			foreach ( $this->backends as $index => $cBackend ) {
@@ -316,15 +321,31 @@ class FileBackendMultiWrite extends FileBackend {
 					continue; // master
 				}
 				$cPath = $this->substPaths( $path, $cBackend );
-				$cSha1 = $cBackend->getFileSha1Base36( array( 'src' => $cPath ) );
+				$cSha1 = $cBackend->getFileSha1Base36( array( 'src' => $cPath, 'latest' => true ) );
+				$cStat = $cBackend->getFileStat( array( 'src' => $cPath, 'latest' => true ) );
+				if ( $cStat === null || ( $cSha1 !== false && !$cStat ) ) { // sanity
+					$status->fatal( 'backend-fail-internal', $cBackend->getName() );
+					continue; // file is not available on the clone backend...
+				}
 				if ( $mSha1 === $cSha1 ) {
 					// already synced; nothing to do
-				} elseif ( $mSha1 ) { // file is in master
-					$fsFile = $mBackend->getLocalReference( array( 'src' => $mPath ) );
+				} elseif ( $mSha1 !== false ) { // file is in master
+					if ( $this->autoResync === 'conservative'
+						&& $cStat && $cStat['mtime'] > $mStat['mtime'] )
+					{
+						$status->fatal( 'backend-fail-synced', $path );
+						continue; // don't rollback data
+					}
+					$fsFile = $mBackend->getLocalReference(
+						array( 'src' => $mPath, 'latest' => true ) );
 					$status->merge( $cBackend->quickStore(
 						array( 'src' => $fsFile->getPath(), 'dst' => $cPath )
 					) );
-				} elseif ( $mExist === false ) { // file is not in master
+				} elseif ( $mStat === false ) { // file is not in master
+					if ( $this->autoResync === 'conservative' ) {
+						$status->fatal( 'backend-fail-synced', $path );
+						continue; // don't delete data
+					}
 					$status->merge( $cBackend->quickDelete( array( 'src' => $cPath ) ) );
 				}
 			}
