@@ -30,7 +30,6 @@
  * @ingroup SpecialPage
  */
 class MostinterwikisPage extends QueryPage {
-
 	function __construct( $name = 'Mostinterwikis' ) {
 		parent::__construct( $name );
 	}
@@ -100,8 +99,15 @@ class MostinterwikisPage extends QueryPage {
 	function formatResult( $skin, $result ) {
 		$title = Title::makeTitleSafe( $result->namespace, $result->title );
 		if ( !$title ) {
-			return Html::element( 'span', array( 'class' => 'mw-invalidtitle' ),
-				Linker::getInvalidTitleDescription( $this->getContext(), $result->namespace, $result->title ) );
+			return Html::element(
+				'span',
+				array( 'class' => 'mw-invalidtitle' ),
+				Linker::getInvalidTitleDescription(
+					$this->getContext(),
+					$result->namespace,
+					$result->title
+				)
+			);
 		}
 
 		if ( $this->isCached() ) {
