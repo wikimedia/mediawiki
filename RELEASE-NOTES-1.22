@@ -115,6 +115,7 @@ production.
 * (bug 30213) JavaScript for search suggestions is now disabled when the API
   is disabled, and AJAX patrolling and watching are now disabled when use of
   the write API is not allowed.
+* (bug 48294) API: Fix chunk upload async mode.
 
 === API changes in 1.22 ===
 * (bug 46626) xmldoublequote parameter was removed. Because of a bug, the
