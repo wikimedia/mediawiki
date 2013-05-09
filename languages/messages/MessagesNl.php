@@ -400,7 +400,7 @@ $messages = array(
 'tog-showhiddencats' => 'Verborgen categorieën weergeven',
 'tog-noconvertlink' => 'Paginanaamconversie uitschakelen',
 'tog-norollbackdiff' => 'Wijzigingen weglaten na terugdraaien',
-'tog-useeditwarning' => 'Waarschuw mij als ik een bewerkte pagina die nog niet is opgeslagen wil verlaten',
+'tog-useeditwarning' => 'U waarschuwen als u een bewerkte pagina die nog niet is opgeslagen wil verlaten',
 
 'underline-always' => 'Altijd',
 'underline-never' => 'Nooit',
@@ -826,9 +826,9 @@ Vergeet niet uw [[Special:Preferences|voorkeuren voor {{SITENAME}}]] aan te pass
 'createacct-imgcaptcha-ph' => 'Geef de tekst in die u hierboven ziet',
 'createacct-submit' => 'Gebruiker aanmaken',
 'createacct-benefit-heading' => '{{SITENAME}} wordt gemaakt door mensen zoals u.',
-'createacct-benefit-body1' => 'bewerkingen',
-'createacct-benefit-body2' => "pagina{{PLURAL:{{NUMBEROFARTICLES:R}}||'s}}",
-'createacct-benefit-body3' => 'bijdrager{{PLURAL:$1||s}}',
+'createacct-benefit-body1' => 'bewerking{{PLURAL:$1||en}}',
+'createacct-benefit-body2' => "pagina{{PLURAL:$1||'s}}",
+'createacct-benefit-body3' => 'recente bijdrager{{PLURAL:$1||s}}',
 'badretype' => 'De ingevoerde wachtwoorden verschillen van elkaar.',
 'userexists' => 'De gekozen gebruikersnaam is al in gebruik.
 Kies een andere naam.',

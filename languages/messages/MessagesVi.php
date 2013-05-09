@@ -762,9 +762,9 @@ Hãy nhớ thay đổi [[Special:Preferences|tùy chọn cá nhân {{SITENAME}}]
 'createacct-imgcaptcha-ph' => 'Nhập dòng chữ bạn thấy bên dưới',
 'createacct-submit' => 'Tạo tài khoản',
 'createacct-benefit-heading' => '{{SITENAME}} được xây dựng bởi những người như bạn.',
-'createacct-benefit-body1' => 'lần sửa đổi',
-'createacct-benefit-body2' => 'trang nội dung',
-'createacct-benefit-body3' => 'người đóng góp gần đây',
+'createacct-benefit-body1' => '{{PLURAL:$1}}lần sửa đổi',
+'createacct-benefit-body2' => '{{PLURAL:$1}}trang nội dung',
+'createacct-benefit-body3' => '{{PLURAL:$1}}người đóng góp gần đây',
 'badretype' => 'Hai mật khẩu không khớp.',
 'userexists' => 'Tên người dùng được nhập đã có người lấy.
 Hãy chọn một tên khác.',

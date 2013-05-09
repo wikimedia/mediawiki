@@ -132,8 +132,8 @@ $messages = array(
 'may-gen' => 'maj',
 'june-gen' => 'giugn',
 'july-gen' => 'luj',
-'august-gen' => 'Aost',
-'september-gen' => 'Stèmber',
+'august-gen' => 'ost',
+'september-gen' => 'stèmber',
 'october-gen' => 'Otóber',
 'november-gen' => 'Novèmber',
 'december-gen' => 'Dzèmber',
@@ -2041,7 +2041,7 @@ L'adrëssa ëd pòsta eletrònica ch'a l'ha butà ant ij [[Special:Preferences|s
 'usermessage-editor' => 'Mëssagerìa ëd sistema',
 
 # Watchlist
-'watchlist' => 'Ròba che as ten sot euj',
+'watchlist' => 'Ròba che as ten sot-euj',
 'mywatchlist' => 'Ròba che as ten sot euj',
 'watchlistfor2' => 'Për $1 $2',
 'nowatchlist' => "A l'ha ancó pa marcà dj'artìcoj coma ròba da tnì sot-euj.",

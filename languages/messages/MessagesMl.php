@@ -3851,7 +3851,7 @@ $5
 'watchlistedit-raw-removed' => '{{PLURAL:$1|1 താൾ|$1 താളുകൾ}} പട്ടികയിൽ നിന്നു മാറ്റിയിരിക്കുന്നു:',
 
 # Watchlist editing tools
-'watchlisttools-view' => 'ബന്ധപ്പെട്ട മാറ്റങ്ങൾ കാട്ടുക',
+'watchlisttools-view' => 'ബന്ധപ്പെട്ട മാറ്റങ്ങൾ പ്രദർശിപ്പിക്കുക',
 'watchlisttools-edit' => 'ശ്രദ്ധിക്കുന്ന താളുകളുടെ പട്ടിക കാണുക, തിരുത്തുക',
 'watchlisttools-raw' => 'താങ്കൾ ശ്രദ്ധിക്കുന്ന താളുകളുടെ പട്ടികയുടെ മൂലരൂപം തിരുത്തുക',
 

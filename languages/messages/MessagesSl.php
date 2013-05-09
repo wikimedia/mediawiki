@@ -647,14 +647,16 @@ Ne pozabite si prilagoditi vaših [[Special:Preferences|nastavitev {{GRAMMAR:rod
 'createacct-realname' => 'Pravo ime (izbirno)',
 'createaccountreason' => 'Razlog:',
 'createacct-reason' => 'Razlog',
+'createacct-reason-ph' => 'Zakaj ustvarjate drug račun',
 'createacct-captcha' => 'Varnostno preverjanje',
 'createacct-captcha-help-url' => '{{ns:Project}}:Prošnja za račun',
-'createacct-imgcaptcha-help' => 'Ne morete videti slike? [[{{MediaWiki:createacct-captcha-help-url}}|Zaprosite za račun]]',
+'createacct-imgcaptcha-help' => 'Ne vidite slike? [[{{MediaWiki:createacct-captcha-help-url}}|Zaprosite za račun]]',
 'createacct-imgcaptcha-ph' => 'Vnesite zgornje besedilo',
+'createacct-submit' => 'Ustvarite svoj račun',
 'createacct-benefit-heading' => '{{GRAMMAR:tožilnik|{{SITENAME}}}} ustvarjajo ljudje, kot ste vi.',
-'createacct-benefit-body1' => 'urejanj',
-'createacct-benefit-body2' => 'strani',
-'createacct-benefit-body3' => 'nedavni sodelavci',
+'createacct-benefit-body1' => '{{PLURAL:$1|urejanje|urejanji|urejanja|urejanj}}',
+'createacct-benefit-body2' => '{{PLURAL:$1|stran|strani}}',
+'createacct-benefit-body3' => '{{PLURAL:$1|nedavni sodelavec|nedavna sodelavca|nedavni sodelavci|nedavnih sodelavcev}}',
 'badretype' => 'Gesli, ki ste ju vnesli, se ne ujemata.',
 'userexists' => 'Uporabniško ime, ki ste ga vnesli, je že zasedeno.
 Prosimo, izberite drugo.',
@@ -1443,6 +1445,7 @@ Ko vas drugi uporabniki kontaktirajo, jim vašega e-poštnega naslova ne bomo ra
 'userrights-notallowed' => 'Vaš račun nima dovoljenja za dodajanje ali odstranjevanje uporabniških pravic.',
 'userrights-changeable-col' => 'Skupine, ki jih lahko spremenite',
 'userrights-unchangeable-col' => 'Skupine, ki jih ne morete spremeniti',
+'userrights-conflict' => 'Spor uporabniških pravic! Prosimo, da ponovno uveljavite svoje spremembe.',
 
 # Groups
 'group' => 'Skupina:',

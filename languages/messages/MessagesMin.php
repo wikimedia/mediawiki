@@ -479,14 +479,14 @@ Parhatian bahawa bara laman mungkin masih taruih manunjukkan bahawa Sanak masih 
 'createacct-reason' => 'Alasan',
 'createacct-reason-ph' => 'Manga Sanak mambuek akun lain',
 'createacct-captcha' => 'Pamarisoan kaamanan',
-'createacct-captcha-help-url' => '{{ns:Project}}:Mohon buekkan akun',
+'createacct-captcha-help-url' => '{{ns:Project}}:Pamintaan mambuek akun',
 'createacct-imgcaptcha-help' => 'Indak dapek mancaliak gambar? [[{{MediaWiki:createacct-captcha-help-url}}|Mohon buekkan akun]]',
 'createacct-imgcaptcha-ph' => 'Masuakan teks nan Sanak caliak di ateh',
 'createacct-submit' => 'Buek akun Sanak',
 'createacct-benefit-heading' => '{{SITENAME}} dibuek dek urang-urang saroman Sanak.',
-'createacct-benefit-body1' => 'suntiangan',
-'createacct-benefit-body2' => 'laman',
-'createacct-benefit-body3' => 'kontributor tarakhia',
+'createacct-benefit-body1' => '{{PLURAL:$1|suntiangan}}',
+'createacct-benefit-body2' => '{{PLURAL:$1|laman}}',
+'createacct-benefit-body3' => '{{PLURAL:$1|panyuntiang}} tarakhia',
 'badretype' => 'Kato sandi nan Sanak masuakan salah.',
 'userexists' => 'Namo pangguno nan dipiliah alah tapakai.
 Piliah namo nan lain.',
@@ -2329,6 +2329,8 @@ Nan lainnyo akan tasuruak sacaro baku.
 'autosumm-new' => '←Mambuek laman baisi "$1"',
 
 # Watchlist editor
+'watchlistedit-normal-legend' => 'Hapuih judul dari daftar pantau',
+'watchlistedit-normal-done' => '{{PLURAL:$1|$1 judul}} alah dihapuih dari daftar pantauan Sanak:',
 'watchlistedit-raw-titles' => 'Judul:',
 'watchlistedit-raw-submit' => 'Pabarui pantauan',
 'watchlistedit-raw-done' => 'Pantauan Sanak lah dipabarui',
@@ -2360,6 +2362,11 @@ Nan lainnyo akan tasuruak sacaro baku.
 'version-license' => 'Lisensi',
 'version-poweredby-credits' => "Wiki ko didukuang jo '''[//www.mediawiki.org/ MediaWiki]''', hak cipta © 2001-$1 $2.",
 'version-poweredby-others' => 'lainnyo',
+'version-license-info' => 'MediaWiki adolah parangkaik lunak bebas; Sanak dapek mandistribusian dan/atau mamodfikasinyo jo syaraik Lisensi Publik Umum GNU nan dikaluaan dek Free Software Foundation; versi 2 atau nan tabaru.
+
+MediaWiki didistribusian jo harapan dapek digunoan, tapi INDAK JO JAMINAN APO PUN; indak ado jaminan PADAGANGAN atau KACOCOKAN UNTUAK TUJUAN TATANTU. Caliak Lisensi Publik Umum GNU untuak informasi lebiah lanjuik.
+
+Sanak mustilah alah manarimo [{{SERVER}}{{SCRIPTPATH}}/COPYING salinan Lisensi Publik Umum GNU] basamo jo program iko; jikok indak, kiriman suraik ka Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA atau [//www.gnu.org/licenses/old-licenses/gpl-2.0.html baco sacaro online].',
 'version-software' => 'Parangkaik lunak tapasang',
 'version-software-product' => 'Produk',
 'version-software-version' => 'Versi',

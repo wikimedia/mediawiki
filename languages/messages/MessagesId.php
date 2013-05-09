@@ -800,9 +800,9 @@ Perhatikan bahwa beberapa halaman mungkin masih terus menunjukkan bahwa Anda mas
 'createacct-imgcaptcha-ph' => 'Masukkan teks yang Anda lihat di atas',
 'createacct-submit' => 'Buat akun Anda',
 'createacct-benefit-heading' => '{{SITENAME}} dibuat oleh orang-orang seperti Anda.',
-'createacct-benefit-body1' => 'suntingan',
-'createacct-benefit-body2' => 'halaman',
-'createacct-benefit-body3' => 'kontributor terakhir',
+'createacct-benefit-body1' => '{{PLURAL:$1|suntingan}}',
+'createacct-benefit-body2' => '{{PLURAL:$1|halaman}}',
+'createacct-benefit-body3' => '{{PLURAL:$1|kontributor}} terakhir',
 'badretype' => 'Kata sandi yang Anda masukkan salah.',
 'userexists' => 'Nama pengguna yang dimasukkan telah digunakan.
 Silakan tentukan nama yang lain.',

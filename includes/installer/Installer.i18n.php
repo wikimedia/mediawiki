@@ -14624,6 +14624,8 @@ Na het plaatsen van het bestand met instellingen kunt u '''[$2 uw wiki betreden]
 	'config-download-localsettings' => '<code>LocalSettings.php</code> downloaden',
 	'config-help' => 'hulp',
 	'config-nofile' => 'Het bestand "$1" is niet gevonden. Is het verwijderd?',
+	'config-extension-link' => 'Weet u dat u [//www.mediawiki.org/wiki/Manual:Extensions uitbreidingen] kunt gebruiken voor uw wiki?
+U kunt [//www.mediawiki.org/wiki/Category:Extensions_by_category uitbreidingen op categorie] bekijken of ga naar de [//www.mediawiki.org/wiki/Extension_Matrix Uitbreidingenmatrix] om de volledige lijst met uitbreidingen te bekijken.',
 	'mainpagetext' => "'''De installatie van MediaWiki is geslaagd.'''",
 	'mainpagedocfooter' => 'Raadpleeg de [//meta.wikimedia.org/wiki/NL_Help:Inhoudsopgave handleiding] voor informatie over het gebruik van de wikisoftware.
 
