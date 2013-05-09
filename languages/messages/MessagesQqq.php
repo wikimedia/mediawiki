@@ -1084,7 +1084,7 @@ See example: [{{canonicalurl:Special:UserLogin|type=signup&useNew=1}} Special:Us
 'userlogin-remembermypassword' => 'The text for a check box in the new-style [[Special:UserLogin]].
 
 See example: [{{canonicalurl:Special:UserLogin|useNew=1}} Special:UserLogin?useNew=1]',
-'userlogin-signwithsecure' => 'Text of link to HTTPS login form',
+'userlogin-secure-link' => 'Text of link to HTTPS login form',
 'securelogin-stick-https' => 'Used as label for checkbox.',
 'yourdomainname' => 'Used as label for listbox.',
 'password-change-forbidden' => 'Error message shown when an external authentication source does not allow the password to be changed.',
@@ -1141,6 +1141,12 @@ It is also used on the top of the page for logged out users, where it appears ne
 'gotaccountlink' => 'Text of the link to the log in form. Before that link, the message {{msg-mw|Gotaccount}} appears.
 {{Identical|Log in}}',
 'userlogin-resetlink' => 'Used on the login page.',
+'userlogin-resetpassword-link' => 'Text of link to [[Special:ResetPassword]] on new vertical-layout create account form.
+
+See example: [{{canonicalurl:Special:UserLogin|useNew=1}} Special:UserLogin?useNew=1]
+
+See also:
+* {{msg-mw|userlogin-resetlink}}, this message must be short',
 'helplogin-url' => '{{doc-important|Do not translate the namespace name <code>Help</code>.}}
 Used as name of the page that provides information about logging into the wiki.
 

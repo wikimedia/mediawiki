@@ -69,7 +69,7 @@ class UserloginTemplateVForm extends BaseTemplate {
 					echo Html::element( 'a', array(
 							'href' => $this->data['secureLoginUrl'],
 							'class' => 'mw-ui-flush-right mw-secure',
-						), $this->getMsg( 'userlogin-signwithsecure' )->text() );
+						), $this->getMsg( 'userlogin-secure-link' )->text() );
 				} ?>
 			</label>
 			<?php
@@ -98,7 +98,7 @@ class UserloginTemplateVForm extends BaseTemplate {
 			if ( $this->data['useemail'] && $this->data['canreset'] && $this->data['resetlink'] === true ) {
 				echo Linker::link(
 					SpecialPage::getTitleFor( 'PasswordReset' ),
-					$this->getMsg( 'userlogin-resetlink' )->parse(),
+					$this->getMsg( 'userlogin-resetpassword-link' )->parse(),
 					array( 'class' => 'mw-ui-flush-right' )
 					);
 				// TODO: remove the wpMailmypassword code branch from
