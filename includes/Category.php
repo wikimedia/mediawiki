@@ -195,29 +195,54 @@ class Category {
 		return $cat;
 	}
 
-	/** @return mixed DB key name, or false on failure */
+	/**
+	 * @return mixed DB key name, or false on failure
+	 */
 	public function getName() {
-		return $this->getX( 'mName' );
+		if ( !$this->initialize() ) {
+			return false;
+		}
+		return $this->mName;
 	}
 
-	/** @return mixed Category ID, or false on failure */
+	/**
+	 * @return mixed Category ID, or false on failure
+	 */
 	public function getID() {
-		return $this->getX( 'mID' );
+		if ( !$this->initialize() ) {
+			return false;
+		}
+		return $this->mID;
 	}
 
-	/** @return mixed Total number of member pages, or false on failure */
+	/**
+	 * @return mixed Total number of member pages, or false on failure
+	 */
 	public function getPageCount() {
-		return $this->getX( 'mPages' );
+		if ( !$this->initialize() ) {
+			return false;
+		}
+		return $this->mPages;
 	}
 
-	/** @return mixed Number of subcategories, or false on failure */
+	/**
+	 * @return mixed Number of subcategories, or false on failure
+	 */
 	public function getSubcatCount() {
-		return $this->getX( 'mSubcats' );
+		if ( !$this->initialize() ) {
+			return false;
+		}
+		return $this->mSubcats;
 	}
 
-	/** @return mixed Number of member files, or false on failure */
+	/**
+	 * @return mixed Number of member files, or false on failure
+	 */
 	public function getFileCount() {
-		return $this->getX( 'mFiles' );
+		if ( !$this->initialize() ) {
+			return false;
+		}
+		return $this->mFiles;
 	}
 
 	/**
@@ -273,17 +298,6 @@ class Category {
 		wfProfileOut( __METHOD__ );
 
 		return $result;
-	}
-
-	/**
-	 * Generic accessor
-	 * @return bool
-	 */
-	private function getX( $key ) {
-		if ( !$this->initialize() ) {
-			return false;
-		}
-		return $this->{$key};
 	}
 
 	/**
