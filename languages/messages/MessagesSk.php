@@ -3255,7 +3255,7 @@ Ostatné budú predvolene skryté.
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Šírka',
 'exif-imagelength' => 'Výška',
 'exif-bitspersample' => 'Bitov na zložku',
@@ -3433,7 +3433,7 @@ Ostatné budú predvolene skryté.
 'exif-originalimageheight' => 'Výška obrázka pred orezaním',
 'exif-originalimagewidth' => 'Šírka obrázka pred orezaním',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Bez kompresie',
 'exif-compression-2' => 'CCITT Group 3 1-rozmerné modifikované Huffmanovo kódovanie RLE',
 'exif-compression-3' => 'CCITT Group 3 faxové kódovanie',

@@ -3073,7 +3073,7 @@ Cuddir y meysydd eraill trwy ragosodiad.
 * gpslongitude
 * gpsaltitude",
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Lled',
 'exif-imagelength' => 'Uchder',
 'exif-bitspersample' => 'Nifer y didau i bob cydran',
@@ -3251,7 +3251,7 @@ Cuddir y meysydd eraill trwy ragosodiad.
 'exif-originalimageheight' => 'Uchder y ddelwedd cyn iddi gael ei thocio',
 'exif-originalimagewidth' => 'Lled y ddelwedd cyn iddi gael ei thocio',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Heb ei gywasgu',
 'exif-compression-2' => 'Amgodio hyd rhediad Huffman Addasedig 1-Dimensiwn Grŵp 3 y CCITT',
 'exif-compression-3' => 'Amgodio ffacs Grŵp 3 CCITT',

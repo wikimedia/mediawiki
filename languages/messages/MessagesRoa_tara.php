@@ -3181,7 +3181,7 @@ Otre avènene scunnute pe defolt.
 'metadata-langitem' => "'''$2:''' $1",
 'metadata-langitem-default' => '$1',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Larghezze',
 'exif-imagelength' => 'Altezze',
 'exif-bitspersample' => 'Bit pe combonende',
@@ -3374,7 +3374,7 @@ $4, $5, $6 $7
 $8',
 'exif-subjectnewscode-value' => '$2 ($1)',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'No combresse',
 'exif-compression-2' => "Gruppe CCITT 3 Decodifeche de Esecuzione d'a lunghezze 1-Dimenzionale Cangiate de Huffman",
 'exif-compression-3' => "Gruppe CCITT 3 de decodifeche d'u fax",

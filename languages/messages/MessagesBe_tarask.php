@@ -675,7 +675,7 @@ $2',
 'yourname' => 'Імя ўдзельніка:',
 'userlogin-yourname' => 'Імя ўдзельніка',
 'userlogin-yourname-ph' => 'Увядзіце вашае імя ўдзельніка',
-'createacct-helpusername-url' => '{{ns:Project}}:Правілы_імёнаў_удзельнікаў',
+'createacct-helpusername-url' => '{{ns:Project}}:Правілы_найменьня_ўдзельнікаў',
 'createacct-helpusername-link' => '[[{{MediaWiki:createacct-helpusername-url}}|(дапамажыце выбраць)]]',
 'yourpassword' => 'Пароль:',
 'userlogin-yourpassword' => 'Пароль',
@@ -719,14 +719,14 @@ $2',
 'createacct-reason' => 'Прычына',
 'createacct-reason-ph' => 'Зь якой мэтай вы ствараеце іншы рахунак',
 'createacct-captcha' => 'Праверка бясьпекі',
-'createacct-captcha-help-url' => '{{ns:Project}}:Запыты рахункаў',
+'createacct-captcha-help-url' => '{{ns:Project}}:Запыты на стварэньне рахункаў',
 'createacct-imgcaptcha-help' => 'Ня бачыце рысунак? [[{{MediaWiki:createacct-captcha-help-url}}|Запытайце рахунак]]',
 'createacct-imgcaptcha-ph' => 'Увядзіце тэкст, што бачыце вышэй',
 'createacct-submit' => 'Стварыць рахунак',
 'createacct-benefit-heading' => '{{SITENAME}} створаная людзьмі, такімі як вы.',
-'createacct-benefit-body1' => 'правак',
-'createacct-benefit-body2' => 'старонак',
-'createacct-benefit-body3' => 'удзельнікаў за апошні час',
+'createacct-benefit-body1' => '{{PLURAL:$1|праўка|праўкі|правак}}',
+'createacct-benefit-body2' => '{{PLURAL:$1|старонка|старонкі|старонак}}',
+'createacct-benefit-body3' => '{{PLURAL:$1|удзельнік|удзельніка|удзельнікаў}} за апошні час',
 'badretype' => 'Уведзеныя Вамі паролі не супадаюць.',
 'userexists' => 'Уведзенае Вамі імя ўдзельніка ўжо выкарыстоўваецца кімсьці іншым. 
 Калі ласка, выберыце іншае імя.',
@@ -1495,6 +1495,7 @@ $1",
 'userrights-notallowed' => 'Ваш рахунак ня мае права прызначаць ці выдаляць правы ўдзельнікам.',
 'userrights-changeable-col' => 'Групы, якія Вы можаце мяняць',
 'userrights-unchangeable-col' => 'Групы, якія Вы ня можаце мяняць',
+'userrights-conflict' => 'Канфлікт правоў удзельнікаў! Калі ласка, захавайце зьмены яшчэ раз.',
 
 # Groups
 'group' => 'Група:',
@@ -3238,7 +3239,7 @@ $1',
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Шырыня',
 'exif-imagelength' => 'Вышыня',
 'exif-bitspersample' => 'Глыбіня колеру',
@@ -3417,7 +3418,7 @@ $1',
 'exif-originalimageheight' => 'Вышыня выявы да кадраваньня',
 'exif-originalimagewidth' => 'Шырыня выявы да кадраваньня',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Нясьціснуты',
 'exif-compression-2' => 'CCITT Група 3 аднамернае абноўленае кадаваньне адлегласьці Хафмана',
 'exif-compression-3' => 'CCITT Група 3 факсымільнае кадаваньне',

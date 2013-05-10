@@ -3031,7 +3031,7 @@ Tóbájẹ́pé fáìlì ọ̀hún ti jẹ́ títúnṣe sí bóṣewà ní bẹ
 * gpslongitude
 * gpsaltitude",
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Fífẹ̀sí',
 'exif-imagelength' => 'Gígasí',
 'exif-bitspersample' => 'Bit fún àkóónú kọ̀ọ̀kan',
@@ -3152,7 +3152,7 @@ Tóbájẹ́pé fáìlì ọ̀hún ti jẹ́ títúnṣe sí bóṣewà ní bẹ
 'exif-organisationinimage' => 'Àgbájọ tó ṣe',
 'exif-personinimage' => 'Ẹni àfihàn',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Àìtẹ̀pọ̀',
 
 'exif-copyrighted-true' => 'Ó ní ẹ̀tọ́-àwòkọ',

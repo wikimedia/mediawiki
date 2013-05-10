@@ -3443,7 +3443,7 @@ Andere velden worden verborgen.
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Breedte',
 'exif-imagelength' => 'Hoogte',
 'exif-bitspersample' => 'Bits per component',
@@ -3621,7 +3621,7 @@ Andere velden worden verborgen.
 'exif-originalimageheight' => 'Hoogte van de afbeelding voor bijsnijden',
 'exif-originalimagewidth' => 'Breedte van de afbeelding voor bijsnijden',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Ongecomprimeerd',
 'exif-compression-2' => 'CCITT Groep 3 1-dimensionale aangepaste "Huffman run length"-codering',
 'exif-compression-3' => 'CCITT Groep 3 faxcodering',

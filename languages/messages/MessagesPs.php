@@ -2285,7 +2285,7 @@ $1',
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'سوروالی',
 'exif-imagelength' => 'لوړوالی',
 'exif-datetime' => 'د دوتنې د بدلون وخت او نېټه',

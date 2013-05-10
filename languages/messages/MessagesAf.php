@@ -3212,7 +3212,7 @@ Ander velde sal versteek wees.
 * gpslongitude
 * gpsaltitude",
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Breedte',
 'exif-imagelength' => 'Hoogte',
 'exif-bitspersample' => 'Grepe per komponent',
@@ -3390,7 +3390,7 @@ Ander velde sal versteek wees.
 'exif-originalimageheight' => 'Hoogte van beeld voor dit besny is',
 'exif-originalimagewidth' => 'Wydte van beeld voor dit besny is',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Ongekompakteerd',
 'exif-compression-2' => 'CCITT Groep 3 1-dimensionale aangepaste "Huffman run length"-kodering',
 'exif-compression-3' => 'CCITT Groep 3 fakskodering',

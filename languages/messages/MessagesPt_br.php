@@ -3330,7 +3330,7 @@ Por padrão, outros campos estarão ocultos.
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Largura',
 'exif-imagelength' => 'Altura',
 'exif-bitspersample' => 'Bits por componente',
@@ -3508,7 +3508,7 @@ Por padrão, outros campos estarão ocultos.
 'exif-originalimageheight' => 'Altura da imagem antes de ser cortada',
 'exif-originalimagewidth' => 'Largura da imagem antes de ser cortada',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Sem compressão',
 'exif-compression-2' => 'CCITT Grupo 3 Codificação run length de Huffman modificado unidimensional',
 'exif-compression-3' => 'CCITT Grupo 3 codificação de fax',

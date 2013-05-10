@@ -62,6 +62,7 @@
  * @author Wrightbus
  * @author Xiaomingyan
  * @author Yfdyh000
+ * @author 乌拉跨氪
  * @author 燃玉
  * @author 阿pp
  */
@@ -812,7 +813,7 @@ $2',
 'createacct-benefit-heading' => '{{SITENAME}} 是由像你这样的人建立的。',
 'createacct-benefit-body1' => '编辑数',
 'createacct-benefit-body2' => '条目数',
-'createacct-benefit-body3' => '位最近贡献者',
+'createacct-benefit-body3' => '最近贡献者数',
 'badretype' => '您所输入的密码并不相同。',
 'userexists' => '用户名已存在。请使用其他名称。',
 'loginerror' => '登录错误',
@@ -3246,7 +3247,7 @@ Variants for Chinese language
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => '宽度',
 'exif-imagelength' => '高度',
 'exif-bitspersample' => '每像素字节数',
@@ -3424,7 +3425,7 @@ Variants for Chinese language
 'exif-originalimageheight' => '裁剪前的图像高度',
 'exif-originalimagewidth' => '裁剪前的图像宽度',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => '未压缩',
 'exif-compression-2' => 'CCITT第3组一维修改霍夫曼游程编码',
 'exif-compression-3' => 'CCITT第3组传真编码',

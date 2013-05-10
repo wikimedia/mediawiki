@@ -3071,7 +3071,7 @@ $1',
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'પહોળાઈ',
 'exif-imagelength' => 'ઊંચાઈ',
 'exif-bitspersample' => 'બીટ્સ પ્રતિ ભાગ',
@@ -3249,7 +3249,7 @@ $1',
 'exif-originalimageheight' => 'છબી પર ફેરફાર કર્યા પહેલા ની ઊંચાઈ',
 'exif-originalimagewidth' => 'છબી પર ફેરફાર કર્યા પહેલા ની પહોળાઈ',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'અસંકોચિત',
 'exif-compression-2' => 'CCITT સમુદાય ૩ ૧-પરિમાણિય ફેરફાર કરેલુ Huffman રન લંબઈ એન્કોડિંગ',
 'exif-compression-3' => 'CCITT સમૂહ 3 ફેક્સ ઍનકોડિંગ',

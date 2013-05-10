@@ -3070,7 +3070,7 @@ I colegamenti dopo, su la stessa riga, i xe considerai come ecession (cioè, pag
 * gpslongitude
 * gpsaltitude",
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Largheza',
 'exif-imagelength' => 'Alteza',
 'exif-bitspersample' => 'Bit par campione',
@@ -3248,7 +3248,7 @@ I colegamenti dopo, su la stessa riga, i xe considerai come ecession (cioè, pag
 'exif-originalimageheight' => "Altesa de l'imaxene prima che ła fuse tajà",
 'exif-originalimagewidth' => "Larghesa de l'imaxene prima che ła fuse tajà",
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'No conpresso',
 'exif-compression-2' => 'CCITT grupo 3 monodimensionałe - codifega run length de Huffman modifegà',
 'exif-compression-3' => 'Codifega fax CCITT Group 3',

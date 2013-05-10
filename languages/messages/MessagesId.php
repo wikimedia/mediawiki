@@ -3372,7 +3372,7 @@ Data lain akan disembunyikan secara bawaan.
 'metadata-langitem' => "'''$2:''' $1",
 'metadata-langitem-default' => '$1',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Lebar',
 'exif-imagelength' => 'Tinggi',
 'exif-bitspersample' => 'Bit per komponen',
@@ -3565,7 +3565,7 @@ $4, $5 - $6, $7
 $8',
 'exif-subjectnewscode-value' => '$2 ($1)',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Tak terkompresi',
 'exif-compression-2' => 'CCITT Group 3 1-Dimensional Modified Huffman RLE',
 'exif-compression-3' => 'CCITT Group 3 fax encoding',

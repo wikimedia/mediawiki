@@ -3304,7 +3304,7 @@ Altele vor fi ascunse implicit.
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Lățime',
 'exif-imagelength' => 'Înălțime',
 'exif-bitspersample' => 'Biți pe componentă',
@@ -3482,7 +3482,7 @@ Altele vor fi ascunse implicit.
 'exif-originalimageheight' => 'Înălțimea imaginii înainte de trunchiere',
 'exif-originalimagewidth' => 'Lățimea imaginii înainte de trunchiere',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Necomprimată',
 'exif-compression-2' => 'CCITT Grupa 3 Lungimea codificării Huffman modificată de dimensiune 1',
 'exif-compression-3' => 'CCITT Grupa 3 codificare fax',

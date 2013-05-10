@@ -1129,7 +1129,7 @@ Bidde cēos ōðerne naman.',
 'metadata-expand' => 'Oferȝehanda sēon',
 'metadata-collapse' => 'Oferȝehanda hȳdan',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Ƿīdnes',
 'exif-imagelength' => 'Hīehþ',
 'exif-compression' => 'Ȝeþryccungmōd',
@@ -1149,7 +1149,7 @@ Bidde cēos ōðerne naman.',
 'exif-gpsmeasuremode' => 'Mētungmōd',
 'exif-gpsimgdirection' => 'Rihtung þæs biliðes',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Unȝeþrycced',
 
 'exif-meteringmode-0' => 'Uncūþ',

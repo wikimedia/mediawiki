@@ -3523,7 +3523,7 @@ Variants for Chinese language
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => '画像の幅',
 'exif-imagelength' => '画像の高さ',
 'exif-bitspersample' => '画像のビットの深さ',
@@ -3701,7 +3701,7 @@ Variants for Chinese language
 'exif-originalimageheight' => 'トリミングされる前の画像の高さ',
 'exif-originalimagewidth' => 'トリミングされる前の画像の幅',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => '無圧縮',
 'exif-compression-2' => 'CCITT Group 3 1次元修正ハフマン連長符号化',
 'exif-compression-3' => 'CCITT Group 3 ファックス符号化',

@@ -3274,7 +3274,7 @@ Aliaj estos kaŝitaj defaŭlte.
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Larĝeco',
 'exif-imagelength' => 'Alteco',
 'exif-bitspersample' => 'Bitokoj en komponanto',
@@ -3452,7 +3452,7 @@ Aliaj estos kaŝitaj defaŭlte.
 'exif-originalimageheight' => 'Alto de bildo antaŭ stuco',
 'exif-originalimagewidth' => 'Larĝo de bildo antaŭ stuco',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Nedensigita',
 'exif-compression-2' => 'CCITT-Grupo 3 modifita ciferado laŭ Huffman Dimensio-1',
 'exif-compression-3' => 'CCITT Grupo-3 ĉifrado por faksilo',

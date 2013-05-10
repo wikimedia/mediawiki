@@ -3383,7 +3383,7 @@ $1',
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'רוחב',
 'exif-imagelength' => 'גובה',
 'exif-bitspersample' => 'ביטים לרכיב',
@@ -3562,7 +3562,7 @@ $1',
 'exif-originalimageheight' => 'גובה התמונה לפני קיטוע',
 'exif-originalimagewidth' => 'רוחב התמונה לפני קיטוע',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'לא דחוס',
 'exif-compression-2' => 'קידוד הופמן מואתם חד-מימדי לאורך ריצה CCITT קבוצה 3',
 'exif-compression-3' => 'קידוד פקס CCITT קבוצה 3',

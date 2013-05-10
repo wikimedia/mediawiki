@@ -2986,7 +2986,7 @@ Sche la datoteca è vegnida midada dal status original èn tscherts detagls even
 * gpslongitude
 * gpsaltitude",
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Ladezza',
 'exif-imagelength' => 'Autezza',
 'exif-bitspersample' => 'Bits per cumponenta da colur',
@@ -3164,7 +3164,7 @@ Sche la datoteca è vegnida midada dal status original èn tscherts detagls even
 'exif-originalimageheight' => 'Autezza avant tagliar',
 'exif-originalimagewidth' => 'Ladezza avant tagliar',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Betg cumprimà',
 'exif-compression-2' => 'GGITT gruppa 3 codaziun da lunghezza currenta Hufman modifitgada en 1 dimensiun',
 'exif-compression-3' => 'CCITT gruppa 3 codaziun da fax',

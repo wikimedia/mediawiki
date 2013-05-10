@@ -3103,7 +3103,7 @@ Kuzhet e vo ar re all dre ziouer.
 * gpslongitude
 * gpsaltitude",
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Ledander',
 'exif-imagelength' => 'Hed',
 'exif-bitspersample' => 'Niv. a vitoù dre barzhioù',
@@ -3281,7 +3281,7 @@ Kuzhet e vo ar re all dre ziouer.
 'exif-originalimageheight' => 'Sav ar skeudenn a-raok na vije bet krennet',
 'exif-originalimagewidth' => 'Ledander ar skeudenn a-raok na vije bet krennet',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Hep gwaskañ',
 'exif-compression-2' => 'CCITT Strollad 3 1 Hirder kodañ Huffman kemmet a vent 1',
 'exif-compression-3' => 'CCITT Strollad 3 kodañ ar pelleiler',

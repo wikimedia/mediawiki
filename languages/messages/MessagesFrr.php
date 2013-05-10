@@ -1525,7 +1525,7 @@ Java-dateien kön ei tuläät wurd, auer jo det seekerhaid uun fraag stel küd.'
 'sourcefilename' => 'Kweldateinööm:',
 'sourceurl' => 'Kwel-URL:',
 'destfilename' => 'Nei dateinööm:',
-'upload-maxfilesize' => 'Maksimaal dateigrate: $1',
+'upload-maxfilesize' => 'Datei ei grater üs: $1',
 'upload-description' => 'Dateibeskriiwang',
 'upload-options' => "Mögelkhaiden för't huuchsjüüren",
 'watchthisupload' => 'Luke efter detdiar datei',
@@ -1542,19 +1542,128 @@ $1",
 'upload-warning-msg' => "Diar as wat skiaf gingen bi't huuchsjüüren faan [$2]. Gung turag tu't  [[Special:Upload/stash/$1|sidj för't huuchsjüüren]], am det üüb a rä tu fun.",
 
 'upload-proto-error' => 'Ferkiard protokol',
+'upload-proto-error-text' => 'Det URL skal mä <code>http://</code> of <code>ftp://</code> began.',
 'upload-file-error' => 'Diar as wat skiaf gingen',
+'upload-file-error-text' => "Bi't maagin faan det tidjwiis datei as wat skiaf gingen. Wees so gud an skriiw det tu en [[Special:ListUsers/sysop|administraator]].",
+'upload-misc-error' => "Bi't huuchsjüüren as wat skiaf gingen.",
+'upload-misc-error-text' => "Bi't huuchsjüüren as wat skiaf gingen. Luke di det URL noch ans uun, an of det sidj uk würelk diar as.
+Wan det goorei wal, do skriiw tu en [[Special:ListUsers/sysop|administraator]].",
+'upload-too-many-redirects' => 'Det URL hää tuföl widjerfeerangen.',
+'upload-unknown-size' => 'Ünbekäänd grate',
+'upload-http-error' => 'Diar as en HTTP-feeler mä: $1',
+'upload-copy-upload-invalid-domain' => 'Kopiin faan dateien kön faan detdiar domeen ei huuchsjüürd wurd.',
 
 # File backend
 'backend-fail-stream' => 'Det datei $1 küd ei auerdraanj wurd.',
+'backend-fail-backup' => 'Det datei $1 küd ei seekert wurd.',
+'backend-fail-notexists' => 'Det datei $1 jaft at ei.',
+'backend-fail-hashes' => 'Küd nään hash-wäärs tu fergliken finj.',
+'backend-fail-notsame' => 'Diar as al en ööder datei mä di nööm $1.',
+'backend-fail-invalidpath' => '$1 as nian tuläät steed tu seekrin.',
 'backend-fail-delete' => 'Det datei $1 küd ei stregen wurd.',
+'backend-fail-describe' => 'A metadooten för det datei „$1“ küd ei anert wurd.',
+'backend-fail-alreadyexists' => 'Det sidj $1 jaft at al.',
 'backend-fail-store' => 'Det datei $1 küd ei oner $2 seekert wurd.',
 'backend-fail-copy' => 'Det datei $1 küd ei efter $2 kopiaret wurd.',
 'backend-fail-move' => 'Det datei $1 küd ei efter $2 fersköwen wurd.',
+'backend-fail-opentemp' => 'Det tidjwiis datei küd ei eeben maaget wurd.',
+'backend-fail-writetemp' => 'Det tidjwiis datei küd ei skrewen wurd.',
+'backend-fail-closetemp' => 'Det tidjwiis datei küd ei sacht maaget wurd.',
 'backend-fail-read' => 'Det datei $1 küd ei leesen wurd.',
 'backend-fail-create' => 'Det datei $1 küd ei seekert wurd.',
+'backend-fail-maxsize' => 'Det datei $1 küd ei seekert wurd, auer det grater üs {{PLURAL:$2|1 byte|$2 bytes}} as.',
+'backend-fail-readonly' => 'Det süsteem „$1“ koon uun uugenblak bluas lees. Di grünj as: „$2“',
+'backend-fail-synced' => "Det datei „$1“ woort jüst faan't süsteem bewerket.",
+'backend-fail-connect' => "Küd ei mä't süsteem „$1“ ferbinj.",
+'backend-fail-internal' => "Uun't süsteem „$1“ as wat skiaf gingen.",
+'backend-fail-contenttype' => "Di slach faan det datei uun't steed „$1“ küd ei bestemet wurd.",
+'backend-fail-batchsize' => "En batch uun't süsteem koon ei {{PLURAL:$1|1 apgoow|$1 apgoowen}} bewerke. Det mut ei muar üs {{PLURAL:$2|1 apgoow|$2 apgowen}} tu tidj wees.",
+'backend-fail-usable' => 'Det datei „$1“ küd ei ufrepen of seekert wurd, auer diar eder det fertiaknis waant of a brükerrochten ei ling.',
+
+# File journal errors
+'filejournal-fail-dbconnect' => "Küd ei ferbinj mä't jurnaal-dootenbeenk uun't süsteem „$1“.",
+'filejournal-fail-dbquery' => "Det jurnaal-dootenbeenk faan't süsteem „$1“ küd ei aktualisiaret wurd.",
+
+# Lock manager
+'lockmanager-notlocked' => 'Küd det sper faan „$1“ ei apliase, auer diar goor nian sper wiar.',
+'lockmanager-fail-closelock' => 'Det sperdatei för „$1“ küd ei slööden wurd.',
+'lockmanager-fail-deletelock' => 'Det sperdatei för „$1“ küd ei stregen wurd.',
+'lockmanager-fail-acquirelock' => 'Det sper för „$1“ küd ei ufrepen  wurd.',
+'lockmanager-fail-openlock' => 'Det sperdatei för „$1“ küd ei eeben maaget wurd.',
+'lockmanager-fail-releaselock' => 'Det sper för „$1“ küd ei apliaset wurd.',
+'lockmanager-fail-db-bucket' => 'Mä $1 küd ei nooch ferbinjangen tu sperdootenbeenken iinracht wurd.',
+'lockmanager-fail-db-release' => "A speren uun't dootenbeenk $1 küd ei apliaset wurd.",
+'lockmanager-fail-svr-acquire' => 'A speren üüb server $1 küd ei ufrepen wurd.',
+'lockmanager-fail-svr-release' => 'A speren üüb server $1 küd ei apliaset wurd.',
+
+# ZipDirectoryReader
+'zip-file-open-error' => "Diar as wat skiaf gingen bi't leesen faan det datei tu't ZIP-preew.",
+'zip-wrong-format' => 'Detdiar datei as nian ZIP-datei.',
+'zip-bad' => 'Det ZIP-datei as uunstaken of koon ütj irgent en öödern grünj ei leesen wurd. Diaram koon det uk ei üüb seekerhaid preewet wurd.',
+'zip-unsupported' => 'Detdiar ZIP-datei as faan en slach, diar MediaWiki ei lees koon. Diaram koon det uk ei üüb seekerhaid preewet wurd.',
+
+# Special:UploadStash
+'uploadstash' => "Teskenseekerang bi't huuchsjüüren",
+'uploadstash-summary' => 'Üüb detdiar sidj kem dateien föör, diar man jüst huuchsjüürd wurden san. Bluas, hoker jo huuchsjüürd hää, koon jo sä.',
+'uploadstash-clear' => 'Teskenseekert dateien wechnem',
+'uploadstash-nofiles' => 'Diar san nian teskenseekert dateien.',
+'uploadstash-badtoken' => 'Teskenseekert dateien küd ei wechnimen wurd. Ferlicht beest dü ei muar uunmeldet. Fersjük det man noch ans.',
+'uploadstash-errclear' => 'Teskenseekert dateien küd ei wechnimen wurd.',
+'uploadstash-refresh' => 'List mä dateien aktualisiare.',
+'invalid-chunk-offset' => 'Di began as diar ei tuläät.',
+
+# img_auth script messages
+'img-auth-accessdenied' => 'Tugrip ei mögelk',
+'img-auth-nopathinfo' => 'Diar as nään PATH_INFO.
+Di server koon detdiar informatsjuun ei widjerdu.
+Ferlicht as det uun CGI iinbünjen an komt diaram uk ei mä „img_auth“ turocht.
+Üüb det sidj https://www.mediawiki.org/wiki/Manual:Image_Authorization (ingelsk) stäänt diar muar auer.',
+'img-auth-notindir' => 'Detdiar fertiaknis as ei föörsen tu huuchsjüüren.',
+'img-auth-badtitle' => 'Mä „$1“ küd nään tiitel maaget wurd.',
+'img-auth-nologinnWL' => "Dü beest ei uunmeldet, an „$1“ stäänt ei uun't whitelist.",
+'img-auth-nofile' => 'Diar as nään datei „$1“.',
+'img-auth-isdir' => 'Dü wel üüb en fertiaknis „$1“ tugrip. Dü mutst bluas üüb dateien tugrip.',
+'img-auth-streaming' => '„$1“ woort iinleesen.',
+'img-auth-public' => 'Mä img_auth.php wurd dateien faan en priwoot Wiki ütjden.
+Detheer as oober en öfentelk Wiki.
+För a seekerhaid as img_auth.php ei aktiwiaret.',
+'img-auth-noread' => 'Di brüker hää nian rocht, „$1“ tu leesen.',
+'img-auth-bad-query-string' => 'Uun det URL san ei tuläät uffraagtiakens.',
+
+# HTTP errors
+'http-invalid-url' => 'Ei tuläät URL: $1',
+'http-invalid-scheme' => 'URLs mä det münster „$1“ kön ei brükt wurd.',
+'http-request-error' => "HTTP-feeler bi't uffraagin.",
+'http-read-error' => "HTTP-feeler bi't leesen.",
+'http-timed-out' => 'Det HTTP-uffraag hää tu loong düüret (time-out).',
+'http-curl-error' => "Feeler bi't ufrepen faan det URL: $1",
+'http-bad-status' => "Feeler bi't HTTP-uffraag: $1 $2",
+
+# Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
+'upload-curl-error6' => 'URL küd ei fünjen wurd',
+'upload-curl-error6-text' => 'Det URL küd ei fünjen wurd. Luke di det URL noch ans uun, an of det sidj uk würelk diar as.',
+'upload-curl-error28' => 'Det huuchsjüüren hää tu loong düüret (time-out).',
+'upload-curl-error28-text' => 'Det sidj hää tu loong ei swaaret (time-out). Luke noch ans efter, of det sidj uk würelk diar as. Fersjük det beeder leeder noch ans weder.',
 
 'license' => 'Lisens:',
 'license-header' => 'Lisens',
+'nolicense' => 'Nian ütjwool',
+'license-nopreview' => '(Diar as noch niks tu sen)',
+'upload_source_url' => '(en tuläät URL)',
+'upload_source_file' => '(en datei üüb dan computer)',
+
+# Special:ListFiles
+'listfiles-summary' => 'Üüb detdiar spezialsidj wurd aal a huuchsjüürd dateien uunwiset. Dü könst uk efter brükern filtre, diar dateien tuleetst bewerket haa.',
+'listfiles_search_for' => 'Sjük efter det datei:',
+'imgfile' => 'datei',
+'listfiles' => 'List faan dateien',
+'listfiles_thumb' => 'Letjer bil',
+'listfiles_date' => 'Dootem',
+'listfiles_name' => 'Nööm',
+'listfiles_user' => 'Brüker',
+'listfiles_size' => 'Grate',
+'listfiles_description' => 'Beskriiwang',
+'listfiles_count' => 'Wersjuunen',
 
 # File description page
 'file-anchor-link' => 'Datei',
@@ -1570,7 +1679,9 @@ $1",
 'filehist-nothumb' => 'Niinj forlökbil deer',
 'filehist-user' => 'brüker',
 'filehist-dimensions' => 'Mätje',
+'filehist-filesize' => 'Dateigrate',
 'filehist-comment' => 'Komentoor',
+'filehist-missing' => 'Datei ei diar',
 'imagelinks' => 'Hü det datei brükt woort',
 'linkstoimage' => '{{PLURAL:$1|Jü füliend sid ferwånt|Da füliende $1 side ferwiinje}} jüdeer dååtäi:',
 'nolinkstoimage' => 'Nään artiikel brükt detheer datei',

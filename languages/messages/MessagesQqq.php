@@ -7287,7 +7287,7 @@ $1 is the value of the property (in one language), $2 is the language name that 
 'metadata-langitem-default' => '{{optional}}
 Similar to "metadata-langitem" but for the case where a multilingual property has a default specified that does not specify what language the default is in. $1 is the value of the property.',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 {{Identical|Width}}',
 'exif-imagelength' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
@@ -7724,7 +7724,7 @@ Note, not all fields are guaranteed to be present, some may be empty strings.',
 *$1 is numeric IPTC subject news code (one of http://cv.iptc.org/newscodes/subjectcode )
 *$2 is one of 17 broad categories that the code falls into. For example any code starting with 15 has the contents of {{msg-mw|exif-iimcategory-spo}} for $2.',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => '{{Related|Exif-compression}}',
 'exif-compression-2' => '{{Related|Exif-compression}}',
 'exif-compression-3' => '{{Related|Exif-compression}}',

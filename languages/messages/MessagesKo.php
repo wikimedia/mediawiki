@@ -3426,7 +3426,7 @@ Variants for Chinese language
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => '너비',
 'exif-imagelength' => '높이',
 'exif-bitspersample' => '픽셀당 비트 수',
@@ -3604,7 +3604,7 @@ Variants for Chinese language
 'exif-originalimageheight' => '자르기 전 그림의 세로 길이',
 'exif-originalimagewidth' => '자르기 전 그림의 가로 길이',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => '압축되지 않음',
 'exif-compression-2' => 'CCITT 그룹-3 1차원 수정 허프먼 반복 길이 부호화',
 'exif-compression-3' => 'CCITT 그룹-3 팩스 인코딩',

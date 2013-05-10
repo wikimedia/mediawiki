@@ -2280,7 +2280,7 @@ Onnur metadáta verða fjald sum standard.
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-artist' => 'Rithøvundur',
 'exif-copyright' => 'Upphavsrætt haldari',
 'exif-headline' => 'Yvirskrift',

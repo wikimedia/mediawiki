@@ -767,22 +767,22 @@ Wexta ke verhafızayê cıgerayoxê şıma pak beno no benate de taye peli de he
 'userlogin-resetlink' => 'Melumatê cıkewtışi xo vira kerdê?',
 'helplogin-url' => 'Help:Qeydbiyayış',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Desteg be qeydbiyayış ra]]',
-'createacct-join' => 'Bıni melumate xo defiye de',
+'createacct-join' => 'Cêr melumatê xo cı ke',
 'createacct-emailrequired' => 'Adresa e-postey',
 'createacct-emailoptional' => 'Adresa e-postey (mecburi niya)',
 'createacct-email-ph' => 'Adresa e-posteyê xo cıkewe',
-'createaccountmail' => 'mı rê e-mail sera raşt ameye adresan ra spesifik parola bırışe',
+'createaccountmail' => 'Yew parolaya rastameyiya ravêrdiye bıgurene û parola ena adresa e-postey rê bırışe',
 'createacct-realname' => 'Nameyo raştıkên (mecburi niyo)',
 'createaccountreason' => 'Sebeb:',
 'createacct-reason' => 'Sebeb',
 'createacct-captcha' => 'Qontrolê asayişi',
-'createacct-captcha-help-url' => '{{ns:Project}}:Jew hesab bıwaze',
-'createacct-imgcaptcha-help' => 'Resim nêvineya? [[{{MediaWiki:createacct-captcha-help-url}}|Jew hesab bıwaze]]',
-'createacct-imgcaptcha-ph' => 'Nusne xo ye cori asayışe defiye de',
-'createacct-submit' => 'Jew hesab vıraze',
-'createacct-benefit-body1' => '{{PLURAL:$1|vurnayîş|vurnayîşî}}',
+'createacct-captcha-help-url' => '{{ns:Project}}:Yew hesab bıwaze',
+'createacct-imgcaptcha-help' => 'Resım nêvêniya? [[{{MediaWiki:createacct-captcha-help-url}}|Yew hesab bıwaze]]',
+'createacct-imgcaptcha-ph' => 'Nuşteyo ke cor aseno ey cı ke',
+'createacct-submit' => 'Hesabê xo vıraze',
+'createacct-benefit-body1' => '{{PLURAL:$1|vurnayış|vurnayışi}}',
 'createacct-benefit-body2' => '{{PLURAL:$1|pele|peli}}',
-'createacct-benefit-body3' => 'İştıraqkerdoğê na aşme',
+'createacct-benefit-body3' => '{{PLURAL:$1|iştıraqkerdoğo nıkayên|iştıraqkerdoğê nıkayêni}}',
 'badretype' => 'Parolayê ke şıma nuşti yewbini nêtepışneni.',
 'userexists' => 'Jewna karber enê nami karneno.
 Mara reca xorê jewna name bınusnê.',
@@ -824,8 +824,8 @@ Eke vurnayişê parolayi, şıma nêwaşt ya zi parolayê şıma ameyo şıma vi
 'blocked-mailpassword' => 'Cıkewetışê na keyepel de şıma qedexe biye, ey ra newe yew şifre nêerşawyeno.',
 'eauthentsent' => 'Adreso ke şıma dayo ma, ma yew e-posta rışt uca, o e-posta de kodê araşt kerdış esto.
 Heta ke şıma o e-postaaraşt nêkeri ma yewna e-posta şıma ri nêrışêno.',
-'throttled-mailpassword' => 'Parola vir ardış, zerreyê {{PLURAL:$1|yew seet|$1 seet}} de erşawiya.
-Parola her {{PLURAL:$1|yew seete|$1 seete}} de yew rey erşawiyena.',
+'throttled-mailpassword' => 'Eyarkerdışê parola xora zerreyê {{PLURAL:$1|yew saete|$1 saetan}} erşawiya.
+Seba xırabgurenayışê xızmete ra, her {{PLURAL:$1|yew saete|$1 saetan}} de rey tenya yew eyarkerdışê parola erşawiyeno.',
 'mailerror' => 'Erşawıtışe xetayê e-posta: $1',
 'acct_creation_throttle_hit' => 'Yew ten IP adresê şıma xebıtnayo u kewto no wiki, roco peyin de {{PLURAL:$1|1 hesab|$1 hesab}} vıraşto.
 xulasa ney kesê ke IP adresê şıma xebıtneni hini nêeşkeni ney ra zêdêr hesab akeri.',
@@ -873,7 +873,7 @@ Bıne vındere u newe ra dest pê bıkere.',
 
 # Special:PasswordReset
 'passwordreset' => 'Parola reset ke',
-'passwordreset-text' => 'Nê formi melumatê hesab dê şıma birê şıma viri deye pırkerê.',
+'passwordreset-text' => 'Seba eyarkerdışê parolaya xo ra nê formi pır kerê.',
 'passwordreset-legend' => 'Parola reset ke',
 'passwordreset-disabled' => 'Parola reset kerdış ena viki sera qefılneyayo.',
 'passwordreset-pretext' => '{{PLURAL:$1||Enê cerenan ra jeweri defiye de}}',
@@ -3353,7 +3353,7 @@ Eg ena dosya, kondisyonê orcinali ra bıvuriya, belki detayanê hemi nıeseno.'
 'metadata-langitem' => "'''$2:''' $1",
 'metadata-langitem-default' => '$1',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Herayey',
 'exif-imagelength' => 'Dergi',
 'exif-bitspersample' => 'yew parçe de biti',
@@ -3546,7 +3546,7 @@ $4, $5, $6 $7
 $8',
 'exif-subjectnewscode-value' => '$2 ($1)',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Nêdegusneyayo',
 'exif-compression-2' => 'CCITT Grube 3 1-ebadın kodkerdışê dergiya gurenayışê Huffmanio modifiyekerde',
 'exif-compression-3' => 'CCITT Group 3 fax kodkerdış',

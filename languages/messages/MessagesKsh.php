@@ -3374,7 +3374,7 @@ Donoh kumme, en däsellve Reih, Links op Sigge wo die Datei trotz dämm jenehm e
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Breejd',
 'exif-imagelength' => 'Läng',
 'exif-bitspersample' => 'Bits per Färvaandeil',
@@ -3553,7 +3553,7 @@ Donoh kumme, en däsellve Reih, Links op Sigge wo die Datei trotz dämm jenehm e
 'exif-originalimageheight' => 'De Hühde vum Beld, ih dat es zohjeschnedde wood, en Pixelle',
 'exif-originalimagewidth' => 'De Breede vum Beld, ih dat es zohjeschnedde wood, en Pixelle',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Oohne Kompressjuhn',
 'exif-compression-2' => 'Noh de <i lang="en">CCITT</i> ier Jrop 3 kodeet mem eindimänsjonalle aanjepaßte Verfahre noh_m <i lang="en">Huffman</i> singe „Läng vum Rötsch“',
 'exif-compression-3' => 'Noh de <i lang="en">CCITT</i> ier Jrop 3 als Fax kodeet',

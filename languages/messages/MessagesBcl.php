@@ -3082,7 +3082,7 @@ An mga iba pagtatagoon sa paagi nin pirmehan.
 * gpspalaba
 * gpspalangkaw',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Lakbáng',
 'exif-imagelength' => 'Langkáw',
 'exif-bitspersample' => 'Panaradit kada komponente',
@@ -3261,7 +3261,7 @@ Sublokas kan siyudad na ipinahiling',
 'exif-originalimageheight' => 'Langkaw kan imahe bago ini pinagkrap',
 'exif-originalimagewidth' => 'Lakbang kan imahe bago ini pinagkrap',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Pinaghalugaan',
 'exif-compression-2' => 'CCITT Grupong 3 1-Dimensyonal na pagbabago ni Huffman nagdadalagan nin halawig na pag-enkod',
 'exif-compression-3' => 'CCITT Grupong 3 pinag-enkod sa fax',

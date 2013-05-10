@@ -3390,7 +3390,7 @@ Weitere werden standardmäßig nicht angezeigt.
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Breite',
 'exif-imagelength' => 'Höhe',
 'exif-bitspersample' => 'Bits pro Farbkomponente',
@@ -3568,7 +3568,7 @@ Weitere werden standardmäßig nicht angezeigt.
 'exif-originalimageheight' => 'Bildhöhe vor dem Zuschneiden',
 'exif-originalimagewidth' => 'Bildbreite vor dem Zuschneiden',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Unkomprimiert',
 'exif-compression-2' => 'CCITT Gruppe 3 1-dimensionale modifizierte Huffman-Lauflängenkodierung',
 'exif-compression-3' => 'CCITT Gruppe 3 Faxcodierung',

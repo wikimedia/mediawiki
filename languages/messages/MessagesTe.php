@@ -2862,7 +2862,7 @@ $1',
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'వెడల్పు',
 'exif-imagelength' => 'ఎత్తు',
 'exif-bitspersample' => 'ఒక్కో కాంపొనెంటుకు బిట్లు',
@@ -3028,7 +3028,7 @@ $1',
 'exif-originalimageheight' => 'కత్తిరించబడక ముందు బొమ్మ యొక్క ఎత్తు',
 'exif-originalimagewidth' => 'కత్తిరించబడక ముందు బొమ్మ యొక్క వెడల్పు',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'కుదించని',
 
 'exif-copyrighted-true' => 'నకలుహక్కులుకలది',

@@ -3108,7 +3108,7 @@ $1',
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'ברייט',
 'exif-imagelength' => 'הייך',
 'exif-bitspersample' => 'ביטס פער באשטאנדטייל',
@@ -3260,7 +3260,7 @@ $1',
 'exif-intellectualgenre' => 'ארט  איינהייט',
 'exif-subjectnewscode' => 'טעמע קאד',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'אומ-צאמגעקוועטשט',
 
 'exif-copyrighted-true' => 'געשיצט מיט קאפירעכט',
