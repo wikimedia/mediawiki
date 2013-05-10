@@ -28,7 +28,7 @@
 /**
  * PHP Parser - Processes wiki markup (which uses a more user-friendly
  * syntax, such as "[[link]]" for making links), and provides a one-way
- * transformation of that wiki markup it into XHTML output / markup
+ * transformation of that wiki markup it into (X)HTML output / markup
  * (which in turn the browser understands, and can display).
  *
  * There are seven main entry points into the Parser class:
@@ -4131,7 +4131,7 @@ class Parser {
 	 * @private
 	 */
 	function formatHeadings( $text, $origText, $isMain = true ) {
-		global $wgMaxTocLevel, $wgHtml5, $wgExperimentalHtmlIds;
+		global $wgMaxTocLevel, $wgExperimentalHtmlIds;
 
 		# Inhibit editsection links if requested in the page
 		if ( isset( $this->mDoubleUnderscores['noeditsection'] ) ) {
@@ -4309,7 +4309,7 @@ class Parser {
 			# Save headline for section edit hint before it's escaped
 			$headlineHint = $safeHeadline;
 
-			if ( $wgHtml5 && $wgExperimentalHtmlIds ) {
+			if ( $wgExperimentalHtmlIds ) {
 				# For reverse compatibility, provide an id that's
 				# HTML4-compatible, like we used to.
 				#

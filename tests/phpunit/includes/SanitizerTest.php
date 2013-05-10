@@ -71,8 +71,6 @@ class SanitizerTest extends MediaWikiTestCase {
 	 */
 	function testRemovehtmltagsOnHtml5Tags( $tag, $escaped ) {
 		$this->setMwGlobals( array(
-			# Enable HTML5 mode
-			'wgHtml5' => true,
 			'wgUseTidy' => false
 		) );
 
