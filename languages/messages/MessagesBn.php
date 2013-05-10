@@ -2993,7 +2993,7 @@ $1',
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'চওড়া',
 'exif-imagelength' => 'লম্বা',
 'exif-bitspersample' => 'উপাদানপ্রতি বিট',
@@ -3171,7 +3171,7 @@ $1',
 'exif-originalimageheight' => 'ক্রপ করার পূর্বে চিত্রটির উচ্চতা',
 'exif-originalimagewidth' => 'ক্রপ করার পূর্বে চিত্রটির প্রস্থ',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'অসংকুচিত',
 
 'exif-copyrighted-true' => 'কপিরাইটকৃত',

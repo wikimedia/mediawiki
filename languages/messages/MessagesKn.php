@@ -1946,7 +1946,7 @@ $1',
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'ಅಗಲ',
 'exif-imagelength' => 'ಎತ್ತರ',
 'exif-bitspersample' => 'ಪ್ರತಿ ಭಾಗಕ್ಕಿರುವ ಬಿಟ್‍ಗಳು',

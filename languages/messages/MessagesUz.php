@@ -1600,7 +1600,7 @@ Umumiy omborda [[:$1]] mavjud. Faylning bu nomga qayta nomlanishi faylning umumi
 'metadata-expand' => 'Batafsil axborotni koʻrsatish',
 'metadata-collapse' => 'Batafsil axborotni yashirish',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Eni',
 'exif-imagelength' => 'Boʻyi',
 'exif-artist' => 'Muallif',

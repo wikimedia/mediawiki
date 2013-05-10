@@ -2839,7 +2839,7 @@ $1',
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Кенглик',
 'exif-imagelength' => 'Мийиклик',
 'exif-bitspersample' => 'Бояуну теренлиги',
@@ -2999,7 +2999,7 @@ $1',
 'exif-organisationinimage' => 'Суратланнган организация',
 'exif-personinimage' => 'Суратланнган адам',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Къысдырылмагъан',
 'exif-compression-3' => 'CCITT Group 3, факс кодлау',
 'exif-compression-4' => 'CCITT Group 4, факс кодлау',

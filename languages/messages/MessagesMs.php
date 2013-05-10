@@ -3136,7 +3136,7 @@ Ruangan-ruangan yang lain pula akan disembunyikan pada asali.
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Lebar',
 'exif-imagelength' => 'Tinggi',
 'exif-bitspersample' => 'Bit sekomponen',
@@ -3314,7 +3314,7 @@ Ruangan-ruangan yang lain pula akan disembunyikan pada asali.
 'exif-originalimageheight' => 'Ketinggian imej sebelum dipangkas',
 'exif-originalimagewidth' => 'Lebar imej sebelum dipangkas',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Tak termampat',
 'exif-compression-2' => 'Pengekodan panjang jalan Huffman Terubahsuai 1-Dimensi Kumpulan 3 CCITT',
 'exif-compression-3' => 'Pengekodan faks Kumpulan 3 CCITT',

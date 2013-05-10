@@ -3492,7 +3492,7 @@ Variants for Chinese language
 'metadata-langitem' => "'''$2:''' $1",
 'metadata-langitem-default' => '$1',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Ширина',
 'exif-imagelength' => 'Висина',
 'exif-bitspersample' => 'Дубина боје',
@@ -3685,7 +3685,7 @@ $4, $5, $6 $7
 $8',
 'exif-subjectnewscode-value' => '$2 ($1)',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Несажето',
 'exif-compression-2' => 'CCITT Group 3 1 – Димензионално измењено Хафманово кодирање по дужини',
 'exif-compression-3' => 'CCITT Group 3 факс кодирање',

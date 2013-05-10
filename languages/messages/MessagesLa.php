@@ -537,8 +537,8 @@ Noli oblivisci [[Special:Preferences|praeferentias]] tuas apud {{grammar:accusat
 'createaccountreason' => 'Causa:',
 'createacct-reason' => 'Causa',
 'createacct-imgcaptcha-ph' => 'Textum quem supra vidis inscribe',
-'createacct-benefit-body1' => 'recensiones',
-'createacct-benefit-body2' => 'paginae',
+'createacct-benefit-body1' => '{{PLURAL:$1|recensio|recensiones}}',
+'createacct-benefit-body2' => '{{PLURAL:$1|pagina|paginae}}',
 'badretype' => 'Tesserae quas scripsisti inter se non congruunt.',
 'userexists' => 'Nomen usoris quod selegisti iam est.
 Nomen usoris alium selige.',
@@ -2050,7 +2050,7 @@ Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic m
 'metadata-expand' => 'Plura ostende',
 'metadata-collapse' => 'Partim celare',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Amplitudo',
 'exif-imagelength' => 'Altitudo',
 'exif-bitspersample' => 'Biti per componentem',
@@ -2123,7 +2123,7 @@ Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic m
 'exif-gpsdatestamp' => 'Dies GPS',
 'exif-gpsdifferential' => 'Correctio differentialis GPS',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Incompressus',
 
 'exif-unknowndate' => 'Dies ignota',

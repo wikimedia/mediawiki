@@ -3272,7 +3272,7 @@ $1',
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Πλάτος',
 'exif-imagelength' => 'Υψος',
 'exif-bitspersample' => 'Bits ανά στοιχείο',
@@ -3450,7 +3450,7 @@ $1',
 'exif-originalimageheight' => 'Ύψος εικόνας πριν από την περικοπή της',
 'exif-originalimagewidth' => 'Πλάτος της εικόνας πριν από την περικοπή της',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Έχει αποσυμπιεστεί.',
 'exif-compression-2' => 'Εκτέλεση μήκους κωδικοποίησης CCITT Ομάδα 3 Μιας-Διαστάσεως Modified Huffman',
 'exif-compression-3' => 'Κωδικοποίηση Φαξ CCITT Ομάδας 3',

@@ -2544,7 +2544,7 @@ $1',
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => '寬',
 'exif-imagelength' => '長',
 'exif-photometricinterpretation' => '像素構成',

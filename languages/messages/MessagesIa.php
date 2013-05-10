@@ -251,16 +251,6 @@ $messages = array(
 'nov' => 'nov',
 'dec' => 'dec',
 
-'monday-at' => 'Lunedi a $1',
-'tuesday-at' => 'Martedi a $1',
-'wednesday-at' => 'Mercuridi a $1',
-'thursday-at' => 'Jovedi a $1',
-'friday-at' => 'Venerdi a $1',
-'saturday-at' => 'Sabbato a $1',
-'sunday-at' => 'Dominica a $1',
-'today-at' => '$1',
-'yesterday-at' => 'Heri a $1',
-
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Categoria|Categorias}}',
 'category_header' => 'Articulos in le categoria "$1"',
@@ -569,10 +559,19 @@ Nota que alcun paginas pote continuar a apparer como si tu esserea ancora authen
 Non oblida personalisar tu [[Special:Preferences|preferentias in {{SITENAME}}]].',
 'yourname' => 'Nomine de usator:',
 'userlogin-yourname' => 'Nomine de usator�',
+'userlogin-yourname-ph' => 'Entra tu nomine de usator',
+'createacct-helpusername-url' => '{{ns:Project}}:Politica_de_nomines_de_usator',
+'createacct-helpusername-link' => '[[{{MediaWiki:createacct-helpusername-url}}|(adjuta me a seliger)]]',
 'yourpassword' => 'Contrasigno:',
 'userlogin-yourpassword' => 'Contrasigno',
+'userlogin-yourpassword-ph' => 'Entra tu contrasigno',
+'createacct-yourpassword-ph' => 'Entra un contrasigno',
 'yourpasswordagain' => 'Repete contrasigno:',
+'createacct-yourpasswordagain' => 'Confirma contrasigno',
+'createacct-yourpasswordagain-ph' => 'Repete le contrasigno',
 'remembermypassword' => 'Memorar mi contrasigno in iste navigator (pro un maximo de $1 {{PLURAL:$1|die|dies}})',
+'userlogin-remembermypassword' => 'Mantener mi session aperte',
+'userlogin-signwithsecure' => 'Aperir session con servitor secur',
 'securelogin-stick-https' => 'Remaner connectite via HTTPS post apertura de session',
 'yourdomainname' => 'Tu dominio:',
 'password-change-forbidden' => 'Non es possibile cambiar le contrasigno in iste wiki.',
@@ -585,12 +584,15 @@ Non oblida personalisar tu [[Special:Preferences|preferentias in {{SITENAME}}]].
 'logout' => 'Clauder session',
 'userlogout' => 'Clauder session',
 'notloggedin' => 'Tu non ha aperite un session',
+'userlogin-noaccount' => 'Non ha un conto?',
 'nologin' => "Tu non ha un conto? '''$1'''.",
 'nologinlink' => 'Crear un conto',
 'createaccount' => 'Crear conto',
 'gotaccount' => "Tu jam ha un conto? '''$1'''.",
 'gotaccountlink' => 'Aperir session',
 'userlogin-resetlink' => 'Datos de authentication oblidate?',
+'helplogin-url' => 'Help:Aperir session',
+'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Adjuta a aperir session]]',
 'createaccountmail' => 'Usar un contrasigno aleatori temporari e inviar lo al adresse de e-mail specificate hic infra',
 'createaccountreason' => 'Motivo:',
 'badretype' => 'Le duo contrasignos que tu scribeva non es identic.',
@@ -2139,6 +2141,15 @@ Isto necessita specificar al minus le dominio de nivello superior, per exemplo "
 'listusers-noresult' => 'Nulle usator trovate.',
 'listusers-blocked' => '(blocate)',
 
+# Special:ActiveUsers
+'activeusers' => 'Lista de usatores active',
+'activeusers-intro' => 'Isto es un lista de usatores que habeva alcun typo de activitate intra le ultime $1 {{PLURAL:$1|die|dies}}.',
+'activeusers-count' => '$1 {{PLURAL:$1|action|actiones}} in le ultime {{PLURAL:$3|die|$3 dies}}',
+'activeusers-from' => 'Presentar usatores a partir de:',
+'activeusers-hidebots' => 'Celar bots',
+'activeusers-hidesysops' => 'Celar administratores',
+'activeusers-noresult' => 'Nulle usator trovate.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Derectos del gruppos de usatores',
 'listgrouprights-summary' => 'Lo sequente es un lista de gruppos de usatores definite in iste wiki, con lor derectos de accesso associate.
@@ -3133,6 +3144,19 @@ Le execution de illo pote compromitter le securitate de tu systema.",
 'ago' => '$1 retro',
 'just-now' => 'Justo nunc',
 
+# Human-readable timestamps
+'hours-ago' => '$1 {{PLURAL:$1|hora|horas}} retro',
+'minutes-ago' => '$1 {{PLURAL:$1|minuta|minutas}} retro',
+'seconds-ago' => '$1 {{PLURAL:$1|secunda|secundas}} retro',
+'monday-at' => 'Lunedi a $1',
+'tuesday-at' => 'Martedi a $1',
+'wednesday-at' => 'Mercuridi a $1',
+'thursday-at' => 'Jovedi a $1',
+'friday-at' => 'Venerdi a $1',
+'saturday-at' => 'Sabbato a $1',
+'sunday-at' => 'Dominica a $1',
+'yesterday-at' => 'Heri a $1',
+
 # Bad image list
 'bad_image_list' => 'Le formato es como seque:
 
@@ -3162,7 +3186,7 @@ Le alteres essera initialmente celate.
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Latitude',
 'exif-imagelength' => 'Altitude',
 'exif-bitspersample' => 'Bits per componente',
@@ -3340,7 +3364,7 @@ Le alteres essera initialmente celate.
 'exif-originalimageheight' => 'Altitude del imagine ante taliar',
 'exif-originalimagewidth' => 'Latitude del imagine ante taliar',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Non comprimite',
 'exif-compression-2' => 'CCITT Group 3 1-Dimensional Modified Huffman run length encoding',
 'exif-compression-3' => 'CCITT Group 3 codification fax',
@@ -3759,13 +3783,6 @@ Vos deberea haber recipite [{{SERVER}}{{SCRIPTPATH}}/COPYING un exemplar del Lic
 'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Cammino al articulo]',
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Cammino al script]',
 
-# Special:FilePath
-'filepath' => 'Cammino del file',
-'filepath-page' => 'File:',
-'filepath-submit' => 'Va',
-'filepath-summary' => 'Iste pagina special retorna le cammino complete de un file.
-Le imagines se monstra in plen resolution, le altere typos de file se executa directemente con lor programmas associate.',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Cercar files duplicate',
 'fileduplicatesearch-summary' => "Cercar files duplicate a base de lor summas de verification ''(hash).''",
@@ -3972,8 +3989,4 @@ Si non, tu pote usar le formulario facile hic infra. Tu commento essera addite a
 # Image rotation
 'rotate-comment' => 'Imagine rotate de $1 {{PLURAL:$1|grado|grados}} in senso horologic',
 
-# Unknown messages
-'hours-ago' => '$1 {{PLURAL:$1|hora|horas}} retro',
-'minutes-ago' => '$1 {{PLURAL:$1|minuta|minutas}} retro',
-'seconds-ago' => '$1 {{PLURAL:$1|secunda|secundas}} retro',
 );

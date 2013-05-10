@@ -3146,7 +3146,7 @@ Others will be hidden by default.
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'පළල',
 'exif-imagelength' => 'උස',
 'exif-bitspersample' => 'එක් සංරචකයකට බිට් ගණන',
@@ -3325,7 +3325,7 @@ Others will be hidden by default.
 'exif-personinimage' => 'පුද්ගලික වචනයෙන් විස්තර කරන ලද',
 'exif-originalimageheight' => 'කප්පාදුවට පෙර රූපයෙහි උස',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'අසංක්ෂිප්ත',
 'exif-compression-3' => 'CCITT සමූහය 3 ෆැක්ස් කේතීකරණය',
 'exif-compression-4' => 'CCITT සමූහය 4 ෆැක්ස් කේතීකරණය',

@@ -3215,7 +3215,7 @@ Druga bodo po privzetem skrita.
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Širina',
 'exif-imagelength' => 'Višina',
 'exif-bitspersample' => 'Bitov na barvni gradnik',
@@ -3393,7 +3393,7 @@ Druga bodo po privzetem skrita.
 'exif-originalimageheight' => 'Višina slike, preden je bila obrezana',
 'exif-originalimagewidth' => 'Širina slike, preden je bila obrezana',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Nestisnjeno',
 'exif-compression-2' => 'Kodiranje CCITT skupina 3 1-razsežnostna spremenjena dolžina teka Huffman',
 'exif-compression-3' => 'Kodiranje CCITT skupina 3 faks',

@@ -3518,7 +3518,7 @@ $1',
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'العرض',
 'exif-imagelength' => 'الارتفاع',
 'exif-bitspersample' => 'بت لكل مكونة',
@@ -3701,7 +3701,7 @@ $1',
 # Make & model, can be wikified in order to link to the camera and model name
 'exif-subjectnewscode-value' => '$2 ($1)',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'غير مضغوط',
 'exif-compression-2' => 'CCITT المجموعة 3 -1 تعديل طول تشغيل ترميز هوفمان البعدي',
 'exif-compression-3' => 'ترميز فاكس المجموعة 3 CCITT',

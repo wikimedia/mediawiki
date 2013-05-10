@@ -3405,7 +3405,7 @@ $1',
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Ширина',
 'exif-imagelength' => 'Высота',
 'exif-bitspersample' => 'Глубина цвета',
@@ -3584,7 +3584,7 @@ $1',
 'exif-originalimageheight' => 'Высота изображения до кадрирования',
 'exif-originalimagewidth' => 'Ширина изображения до кадрирования',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Несжатый',
 'exif-compression-2' => 'CCITT Group 3, 1-мерная модификация кодирования длин серий Хаффмана',
 'exif-compression-3' => 'CCITT Group 3, факсовое кодирование',

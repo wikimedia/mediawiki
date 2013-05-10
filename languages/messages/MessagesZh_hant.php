@@ -3222,7 +3222,7 @@ Variants for Chinese language
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => '寬度',
 'exif-imagelength' => '高度',
 'exif-bitspersample' => '每象素比特數',
@@ -3400,7 +3400,7 @@ Variants for Chinese language
 'exif-originalimageheight' => '被裁剪前高度',
 'exif-originalimagewidth' => '被裁剪前寬度',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => '未壓縮',
 'exif-compression-2' => 'CCITT第3組一維修改霍夫曼遊程編碼',
 'exif-compression-3' => 'CCITT第3組傳真編碼',

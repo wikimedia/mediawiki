@@ -3089,7 +3089,7 @@ Vitja [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [//trans
 'markedaspatrollederror' => 'Kan ikkje merke sida som patruljert',
 'markedaspatrollederrortext' => 'Du må markere ein versjon for å kunne godkjenne.',
 'markedaspatrollederror-noautopatrol' => 'Ein har ikkje høve til å merkje sine eigne endringar som godkjende.',
-'markedaspatrollednotify' => 'Denne endringa på $1 har vorte merkt som patruljert.',
+'markedaspatrollednotify' => 'Denne endringa på $1 vart merkt som patruljert.',
 'markedaspatrollederrornotify' => 'Det gjekk ikkje å merkja endringa som patruljert.',
 
 # Patrol log
@@ -3187,7 +3187,7 @@ Andre er gøymde som standard.
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Breidd',
 'exif-imagelength' => 'Høgd',
 'exif-bitspersample' => 'Bitar per komponent',
@@ -3365,7 +3365,7 @@ Andre er gøymde som standard.
 'exif-originalimageheight' => 'Høgda på biletet før det vart beskåren',
 'exif-originalimagewidth' => 'Bredda på biletet før det vart beskåren',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Ukomprimert',
 'exif-compression-2' => 'CCITT Gruppe 3 1-dimensjonal modifisert Huffman-kjøyrelengdekoding',
 'exif-compression-3' => 'CCITT Gruppe 3 faks-koding',

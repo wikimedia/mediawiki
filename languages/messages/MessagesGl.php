@@ -715,9 +715,9 @@ Non esqueza personalizar as súas [[Special:Preferences|preferencias de {{SITENA
 'createacct-imgcaptcha-ph' => 'Insira o texto que ve enriba',
 'createacct-submit' => 'Crear a conta',
 'createacct-benefit-heading' => 'Xente coma vostede elabora {{SITENAME}}.',
-'createacct-benefit-body1' => 'edicións',
-'createacct-benefit-body2' => 'páxinas',
-'createacct-benefit-body3' => 'colaboradores recentes',
+'createacct-benefit-body1' => '{{PLURAL:$1|edición|edicións}}',
+'createacct-benefit-body2' => '{{PLURAL:$1|páxina|páxinas}}',
+'createacct-benefit-body3' => '{{PLURAL:$1|colaborador recente|colaboradores recentes}}',
 'badretype' => 'Os contrasinais que inseriu non coinciden.',
 'userexists' => 'O nome de usuario que inseriu xa está en uso.
 Escolla un nome diferente.',
@@ -3291,7 +3291,7 @@ Os demais agocharanse por omisión.
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Ancho',
 'exif-imagelength' => 'Alto',
 'exif-bitspersample' => 'Bits por compoñente',
@@ -3469,7 +3469,7 @@ Os demais agocharanse por omisión.
 'exif-originalimageheight' => 'Altura da imaxe antes de ser cortada',
 'exif-originalimagewidth' => 'Ancho da imaxe antes de ser cortada',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Sen comprimir',
 'exif-compression-2' => 'CCITT Grupo 3 Lonxitude de codificación unidimensional Huffman modificada',
 'exif-compression-3' => 'CCITT Grupo 3 codificación de fax',

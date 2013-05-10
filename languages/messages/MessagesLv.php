@@ -2571,7 +2571,7 @@ Pārējie lauki, pēc noklusējuma, būs paslēpti.
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'platums',
 'exif-imagelength' => 'augstums',
 'exif-bitspersample' => 'biti komponentē',
@@ -2702,7 +2702,7 @@ Pārējie lauki, pēc noklusējuma, būs paslēpti.
 'exif-organisationinimage' => 'Attēlotā organizācija',
 'exif-personinimage' => 'Attēlotā persona',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Nekompresēts',
 
 'exif-copyrighted-true' => 'Ar autortiesībām',

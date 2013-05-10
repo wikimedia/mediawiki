@@ -345,7 +345,7 @@ $messages = array(
 'mypage' => 'Долахь йолу агӀо',
 'mytalk' => 'Сан дийцаре агӀо',
 'anontalk' => 'Дийцаре хӀара IP-долуметтиг',
-'navigation' => 'Шавигар',
+'navigation' => 'Навигаци',
 'and' => '&#32;а',
 
 # Cologne Blue skin
@@ -360,7 +360,7 @@ $messages = array(
 
 # Vector skin
 'vector-action-addsection' => 'Тlетоха хьедар',
-'vector-action-delete' => 'Дlадайá',
+'vector-action-delete' => 'ДӀаяккха',
 'vector-action-move' => 'Цlе хийца',
 'vector-action-protect' => 'Гlаролла дé',
 'vector-action-undelete' => 'Меттахlоттадé',
@@ -394,8 +394,8 @@ $messages = array(
 'create' => 'Кхолла',
 'editthispage' => 'Нисйé хlара агlо',
 'create-this-page' => 'Кхолла хlара агlо',
-'delete' => 'Дlадайá',
-'deletethispage' => 'Дlайайá хlара агlо',
+'delete' => 'ДӀаяккха',
+'deletethispage' => 'ДӀаяккха хӀара агӀо',
 'undelete_short' => 'Меттахlоттайé $1 {{PLURAL:$1|нисйинарг|нисйинарш|нисйинарш}}',
 'viewdeleted_short' => 'Хьажар {{PLURAL:$1|$1 дlадаьккхина нийсдар|$1 дlадаьхна нийсдарш|$1 дlадаьхна нийсдарш}}',
 'protect' => 'Гlаролла дé',
@@ -428,7 +428,7 @@ $messages = array(
 'viewcount' => 'Хlокху агlонга хьойсина $1 {{PLURAL:$1|за|за|за}}.',
 'protectedpage' => 'Гlароллийца йолу агlо',
 'jumpto' => 'Дехьавала оцу:',
-'jumptonavigation' => 'шавигар',
+'jumptonavigation' => 'навигаци',
 'jumptosearch' => 'лаха',
 'view-pool-error' => 'Бехк цабиллар доьха, хlинц гlулкхдириг йоьттина йу.
 Каьчна дуккха дехарш хlокху агlонтlе хьажарца.
@@ -488,7 +488,7 @@ $1',
 'collapsible-expand' => 'хьайаста',
 'thisisdeleted' => 'Хьажа йа меттахlоттайé $1?',
 'viewdeleted' => 'Хьалххьожи $1?',
-'restorelink' => '{{PLURAL:$1|$1 дlайайина йолу нисйинарг|$1 дlайайина йолу нисйинарш|$1 дlайайина йолу нисйинарш}}',
+'restorelink' => '{{PLURAL:$1|$1 дӀадаьккхина нийсдар|$1 дӀадаьхна нийсдарш|$1 дӀадаьхна нийсдарш}}',
 'feedlinks' => 'Оцу хатlаьхь:',
 'feed-invalid' => 'Тайпан нийсадоцу талол оцу куьгтаlорна.',
 'feed-unavailable' => 'Хаитарца йолу асанаш тlекхочучехь яц',
@@ -530,6 +530,7 @@ $1',
 'missingarticle-diff' => '(тейп тайпнара: $1, $2)',
 'internalerror' => 'Чоьхьара гlалат',
 'internalerror_info' => 'Чоьхьара гlалат: $1',
+'filedeleteerror' => 'ДӀаяккха цатарло файл «$1».',
 'badtitle' => 'Цамегаш йолу цlе',
 'badtitletext' => 'Дехарца йолу агlонан цlе нийса яц, йаьсса ю, хила мега нийса ца хlоттийна меттаюкъар йа юкъарвики цlе. Хила мега, цlарца цамагош йолу саберг.',
 'viewsource' => 'Хьажар',
@@ -840,6 +841,9 @@ $1',
 'grouppage-bureaucrat' => '{{ns:project}}:Даржахой',
 'grouppage-suppress' => '{{ns:project}}:Левисорхой',
 
+# Rights
+'right-delete' => 'агӀош дӀаяхар',
+
 # Special:Log/newusers
 'newuserlogpage' => 'Декъашхой дlабазбина тептар',
 
@@ -892,8 +896,8 @@ $1',
 'upload' => 'Чуйаккха файл',
 'uploadbtn' => 'Чуйаккха файл',
 'uploadlogpage' => 'Чуйахаран тéптар',
-'uploadlogpagetext' => 'Лахахьа гойтуш бу могlам тlаьххьара чуяхна хlумнаши. Ишта хьажа. [[Special:ImageList|хlумнаши могlам]] йа [[Special:NewImages|галеларе хlумнаши]].',
-'filename' => 'Хlуман цlе',
+'uploadlogpagetext' => 'Лахахьа гойтуш бу могlам тlаьххьара чуяхна файлаши. Ишта хьажа. [[Special:ImageList|файлаши могlам]] йа [[Special:NewImages|галеларе файлаши]].',
+'filename' => 'Файлан цӀе',
 'uploadwarning' => 'Дlахьедар',
 'uploadedimage' => 'чуяккхина «[[$1]]»',
 'filename-prefix-blacklist' => '#<!-- битийша хlара могlа ша мабарра --> <pre>
@@ -914,10 +918,12 @@ PICT # тайп тайпан
 'license' => 'Бакъойалар:',
 
 # Special:ListFiles
+'listfiles-summary' => 'Лахахь гойтуш ю ерриг файлаш.
+Декъашхо къастичи, цун керла файлаш гойту.',
 'listfiles_search_for' => 'Лаха хIуман цIарца:',
 'imgfile' => 'файл',
-'listfiles' => 'Хlумнаши могlам',
-'listfiles_name' => 'Хlуман цlе',
+'listfiles' => 'Файлаши могӀам',
+'listfiles_name' => 'Файлан цӀе',
 'listfiles_user' => 'Декъашхо',
 'listfiles_size' => 'Барам',
 'listfiles_description' => 'Цуьнах лаьцна',
@@ -926,8 +932,8 @@ PICT # тайп тайпан
 'file-anchor-link' => 'Файл',
 'filehist' => 'Файлан истори',
 'filehist-help' => 'Тlетаlаде терахь/хан, муха хилла хьажарна и файл.',
-'filehist-deleteall' => 'дlадайá массо',
-'filehist-deleteone' => 'дlадайá',
+'filehist-deleteall' => 'массо дӀаяккха',
+'filehist-deleteone' => 'дӀаяккха',
 'filehist-current' => 'карара',
 'filehist-datetime' => 'Терахь/Хан',
 'filehist-thumb' => 'Жима',
@@ -945,8 +951,16 @@ PICT # тайп тайпан
 'filerevert-submit' => 'Юхаяккха',
 
 # File deletion
-'filedelete-legend' => 'Дlайайá и файл',
-'filedelete-submit' => 'Дlадайá',
+'filedelete-legend' => 'ДӀаяккха и файл',
+'filedelete-intro' => "<div class=\"plainlinks\">
+Хьо  дӀаяккха лууш ву '''[[Media:\$1|\$1]]''' ([{{fullurl:{{FULLPAGENAME}}|action=history}} истори])
+
+* '''Тешна хила, и файл [{{fullurl:Special:WhatLinksHere/File:\$1|hidetrans=1&hideredirs=1&hidelinks=1}} лелош цахиларна]''' (йа [[:commons:File:{{PAGENAME}}|оцуьнах терра файл ю]] оц ВикидӀайуьллуче чохь)
+* Хьажа [{{fullurl:Special:WhatLinksHere/File:\$1|hideimages=1}} гуттаралера хьажориг йуй] оц файлан тӀе
+
+{{#ifexist:{{TALKPAGENAME}}|ХӀокху агӀона ю '''[[{{TALKPAGENAME}}|дийцаре агӀо]].'''}}
+</div>",
+'filedelete-submit' => 'ДӀаяккха',
 'filedelete-otherreason' => 'Кхин бахьан:',
 'filedelete-reason-otherlist' => 'Кхин бахьан',
 
@@ -989,7 +1003,7 @@ PICT # тайп тайпан
 
 'brokenredirects' => 'ДIахаьдна долу дIасахьажораш',
 'brokenredirects-edit' => 'нисйé',
-'brokenredirects-delete' => 'дlадайá',
+'brokenredirects-delete' => 'дӀаяккха',
 
 'withoutinterwiki' => 'Кхечу меттанашан хьажориг йоцу агIонаш',
 'withoutinterwiki-submit' => 'Гайта',
@@ -1067,6 +1081,7 @@ PICT # тайп тайпан
 
 # Special:DeletedContributions
 'deletedcontributions' => 'Декъашхочуьн дlабайина къинхьегам',
+'deletedcontributions-title' => 'ДӀабаьккхина къинхьегам',
 'sp-deletedcontributions-contribs' => 'къинхьегам',
 
 # Special:LinkSearch
@@ -1113,19 +1128,20 @@ PICT # тайп тайпан
 'unwatching' => 'Тергаме мlогаман чура дlайаккха…',
 
 # Delete
-'deletepage' => 'Дlайайá агlо',
+'deletepage' => 'ДӀаяккха агӀо',
 'confirm' => 'Къобалде',
 'excontent' => 'чуьраниг: «$1»',
 'excontentauthor' => 'чуьраниг: «$1» (дуьххьара кхоллина да вара иза [[Special:Contributions/$2|$2]])',
 'exbeforeblank' => 'чуьраниг дlацlанйале хьалха: «$1»',
 'exblank' => 'агlо йаьсса йара',
+'delete-confirm' => '$1 — дӀаяккхар',
 'delete-legend' => 'Дlадайáр',
 'confirmdeletetext' => 'Хьан дехар ду хlара агlо ше бухци дlабайа аьлла (йа сурт) а массо цуьнан истори оцу бух чура. Дехар до, бакъде, билгала хьайна иза лаахь, кхеташ хира ву хьо тlаьхьа хир долу чун, иза деш ду ахьа бакъонца догlуш, вахьа дехкина долучу дакъанца [[{{MediaWiki:Policy-url}}]].',
 'actioncomplete' => 'Дешдерг кхочушди',
 'deletedtext' => '«$1» дlаяккхина йара.
 Хьажа. $2 хьажарна оцу тlаьхьара дlадайаран могlаме.',
-'dellogpage' => 'Дlадайарш долу тéптар',
-'deletionlog' => 'дlадайарш долу тéптар',
+'dellogpage' => 'ДӀадаьхнарш долу тéптар',
+'deletionlog' => 'дӀадаьхнарш долу тéптар',
 'deletecomment' => 'Бахьан:',
 'deleteotherreason' => 'Кхин бахьан/тlетохар:',
 'deletereasonotherlist' => 'Кхин бахьан',
@@ -1205,11 +1221,13 @@ PICT # тайп тайпан
 
 'sp-contributions-newbies' => 'Гайта бекъ къинхьегам, керла дlабазбиначара бина болу',
 'sp-contributions-blocklog' => 'сацораш',
+'sp-contributions-deleted' => 'дӀадаьхна нийсдарш',
 'sp-contributions-logs' => 'тéптарш',
 'sp-contributions-talk' => 'дийцаре',
 'sp-contributions-userrights' => 'декъашхочуьн бакъона урхалладар',
 'sp-contributions-search' => 'Къинхьегам лахар',
 'sp-contributions-username' => 'IP-долу меттиг йа декъашхон цlе:',
+'sp-contributions-toponly' => 'ТӀаьхьара бина хийцамаш гайта',
 'sp-contributions-submit' => 'Лаха',
 
 # What links here
@@ -1283,8 +1301,8 @@ PICT # тайп тайпан
 'movelogpage' => 'Цlераш хийцаран тептар',
 'movereason' => 'Бахьан:',
 'revertmove' => 'йухаяккха',
-'delete_and_move' => 'Цle а хуьйцуш дlадайá',
-'delete_and_move_confirm' => 'Хlаъ, дlайайъа хlара агlо',
+'delete_and_move' => 'Цle а хуьйцуш дӀаяккха',
+'delete_and_move_confirm' => 'Хlаъ, дӀаяккха хlара агlо',
 'protectedpagemovewarning' => "'''Дlахьедар.''' Хlара агlо гlаролла йина йу; цlе хийца йа нисйа а бакъо йолуш адаманкуьйгалхой бе бац.
 Лахахьа тептаро балийна тlаьхьаралера дlаязбина хаам:",
 'semiprotectedpagemovewarning' => "'''Дlахьедо.''' Хlара агlо гlаролла йина йу; дlабазбиначу декъашхошка бе цlе хийцалуш яц.
@@ -1320,7 +1338,7 @@ PICT # тайп тайпан
 'import' => 'Кхин яззам агlонаш чуяхар',
 'import-interwiki-source' => 'Вики-хьост/агlо:',
 'import-interwiki-templates' => 'Лата де массо куцкепаш',
-'import-upload-filename' => 'Хlуман цlе:',
+'import-upload-filename' => 'Файлан цӀе:',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'Декъашхочуьна агlо',
@@ -1337,7 +1355,7 @@ PICT # тайп тайпан
 'tooltip-ca-history' => 'Хlокху агlон хийцамаш болу тептар',
 'tooltip-ca-protect' => 'Гlаролла дé хlокху агlон хийцам цабайта',
 'tooltip-ca-unprotect' => 'Дlадаккха хlокху агlонна долу гаролла',
-'tooltip-ca-delete' => 'Дlайайá хlара агlо',
+'tooltip-ca-delete' => 'ДӀаяккха хӀара агӀо',
 'tooltip-ca-move' => 'Агlон цlе хийца',
 'tooltip-ca-watch' => 'Тlетоха хlара агlо сан тергаме могlам юкъа',
 'tooltip-ca-unwatch' => 'Дlайаккха хlара агlо хьай тергаме могlам юкъар',
@@ -1448,7 +1466,7 @@ PICT # тайп тайпан
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-datetime' => 'Хlума хийцина терахь а хан',
 'exif-datetimeoriginal' => 'Дуьххьарлера терахь а хан',
 
@@ -1481,6 +1499,7 @@ PICT # тайп тайпан
 'table_pager_first' => 'Дуьххьаралера агlо',
 'table_pager_last' => 'Тlаьххьаралера агlо',
 'table_pager_limit' => 'Гайта $1 хlумнаш агlон тlаьхь',
+'table_pager_limit_label' => 'АгӀона чохь гойтуш ю оццул:',
 'table_pager_limit_submit' => 'Кхочушдé',
 'table_pager_empty' => 'Цакарийна',
 

@@ -3056,7 +3056,7 @@ $1',
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'ความกว้าง',
 'exif-imagelength' => 'ความสูง',
 'exif-bitspersample' => 'บิต ต่อคอมโพเนนต์',
@@ -3180,7 +3180,7 @@ $1',
 'exif-label' => 'ป้ายฉลาก',
 'exif-usageterms' => 'ข้อตกลงในการใช้งาน',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'ไม่ได้บีบอัด',
 
 'exif-unknowndate' => 'ไม่ทราบวัน',

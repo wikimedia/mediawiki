@@ -800,9 +800,9 @@ $2',
 'createacct-imgcaptcha-ph' => 'മുകളിൽ കാണുന്ന എഴുത്ത് ഇവിടെ നൽകുക',
 'createacct-submit' => 'താങ്കളുടെ അംഗത്വം സൃഷ്ടിക്കുക',
 'createacct-benefit-heading' => 'താങ്കളെപ്പോലെയുള്ളവരാണ്  {{SITENAME}}  പടുത്തുയർത്തിയിരിക്കുന്നത്.',
-'createacct-benefit-body1' => 'തിരുത്തുകൾ',
-'createacct-benefit-body2' => 'താളുകൾ',
-'createacct-benefit-body3' => 'സമീപകാലത്ത് സംഭാവന ചെയ്തവർ',
+'createacct-benefit-body1' => '{{PLURAL:$1|തിരുത്ത്|തിരുത്തുകൾ}}',
+'createacct-benefit-body2' => '{{PLURAL:$1|താൾ|താളുകൾ}}',
+'createacct-benefit-body3' => 'സമീപകാലത്ത് സംഭാവന {{PLURAL:$1|ചെയ്തയാൾ|ചെയ്തവർ}}',
 'badretype' => 'താങ്കൾ നൽകിയ രഹസ്യവാക്കുകൾ സമമല്ല.',
 'userexists' => 'നൽകിയ ഉപയോക്തൃനാമം മുമ്പേ നിലവിലുണ്ട്.
 ദയവായി മറ്റൊരു ഉപയോക്തൃനാമം തിരഞ്ഞെടുക്കുക.',
@@ -3304,7 +3304,7 @@ $1',
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'വീതി',
 'exif-imagelength' => 'ഉയരം',
 'exif-bitspersample' => 'ഓരോ ഘടകത്തിലുമുള്ള ബിറ്റുകൾ',
@@ -3478,7 +3478,7 @@ $1',
 'exif-originalimageheight' => 'വെട്ടിയെടുക്കുന്നതിനു മുമ്പ് ചിത്രത്തിന്റെ ഉയരം',
 'exif-originalimagewidth' => 'വെട്ടിയെടുക്കുന്നതിനു മുമ്പ് ചിത്രത്തിന്റെ വീതി',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'ചുരുക്കാത്തത്',
 'exif-compression-5' => 'എൽ.സെഡ്.ഡബ്ല്യു.',
 'exif-compression-6' => 'ജെപിഇജി (പഴയത്)',

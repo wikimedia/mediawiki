@@ -3327,7 +3327,7 @@ Obsahuje pouze seznam s odrážkami (řádka začíná s *). První odkaz na ř�
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Šířka',
 'exif-imagelength' => 'Výška',
 'exif-bitspersample' => 'Bitů na složku',
@@ -3505,7 +3505,7 @@ Obsahuje pouze seznam s odrážkami (řádka začíná s *). První odkaz na ř�
 'exif-originalimageheight' => 'Výška obrázku před oříznutím',
 'exif-originalimagewidth' => 'Šířka obrázku před oříznutím',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Nekomprimovaný',
 'exif-compression-2' => '1-rozměrné modifikované Huffmanovo kódování délky běhu CCITT Group 3',
 'exif-compression-3' => 'Kódování faxů CCITT Group 3',

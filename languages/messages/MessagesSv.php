@@ -3324,7 +3324,7 @@ Andra kommer att gömmas som standard
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Bredd',
 'exif-imagelength' => 'Höjd',
 'exif-bitspersample' => 'Bitar per komponent',
@@ -3502,7 +3502,7 @@ Andra kommer att gömmas som standard
 'exif-originalimageheight' => 'Bildens höjd innan den beskärdes',
 'exif-originalimagewidth' => 'Bildens bredd innan den beskärdes',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Inte komprimerad',
 'exif-compression-2' => 'CCITT Grupp 3 1-dimensionell modifierad Huffman-skurlängdskodning',
 'exif-compression-3' => 'CCITT Grupp 3 fax-kodning',

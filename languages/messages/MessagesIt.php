@@ -3225,7 +3225,7 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 * gpslongitude
 * gpsaltitude",
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Larghezza',
 'exif-imagelength' => 'Altezza',
 'exif-bitspersample' => 'Bit per campione',
@@ -3403,7 +3403,7 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 'exif-originalimageheight' => "Altezza dell'immagine prima che fosse ritagliata",
 'exif-originalimagewidth' => "Larghezza dell'immagine prima che fosse ritagliata",
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Nessuno',
 'exif-compression-2' => 'CCITT gruppo 3 monodimensionale - codifica run length di Huffman modificata',
 'exif-compression-3' => 'Codifica fax CCITT Group 3',

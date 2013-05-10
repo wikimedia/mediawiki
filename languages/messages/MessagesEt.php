@@ -3237,7 +3237,7 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Laius',
 'exif-imagelength' => 'Kõrgus',
 'exif-bitspersample' => 'Bitti komponendi kohta',
@@ -3397,7 +3397,7 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'exif-originalimageheight' => 'Pildi kõrgus enne kärpimist',
 'exif-originalimagewidth' => 'Pildi laius enne kärpimist',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Pakkimata',
 
 'exif-copyrighted-true' => 'Kaitstud',

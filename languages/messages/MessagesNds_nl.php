@@ -3176,7 +3176,7 @@ Aandere velden wörden verbörgen.
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Wiedte',
 'exif-imagelength' => 'Heugte',
 'exif-bitspersample' => 'Bits per komponent',
@@ -3354,7 +3354,7 @@ Aandere velden wörden verbörgen.
 'exif-originalimageheight' => 'Heugte van de aofbeelding veur biesniejen',
 'exif-originalimagewidth' => 'Breedte van de aofbeelding veur biesniejen',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Niet ekomprimeerd',
 'exif-compression-2' => 'CCITT-groep 3 1-dimensionale an-epasten "Huffman run length"-kodering',
 'exif-compression-3' => 'CCITT-groep 3 faxcodering',

@@ -3386,7 +3386,7 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 * gpsaltitude",
 'metadata-langitem' => "'''$2&nbsp;:''' $1",
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Largeur',
 'exif-imagelength' => 'Hauteur',
 'exif-bitspersample' => 'Bits par composante',
@@ -3564,7 +3564,7 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-originalimageheight' => "Hauteur de l'image avant qu'elle ait été recadrée",
 'exif-originalimagewidth' => "Largeur de l'image avant qu'elle ait été recadrée",
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Non compressé',
 'exif-compression-2' => 'CCITT Groupe 3 Longueur du codage Huffman modifié de dimension 1',
 'exif-compression-3' => 'CCITT Groupe 3 codage du fax',

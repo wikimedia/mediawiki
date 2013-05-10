@@ -3206,7 +3206,7 @@ Kaikki muut linkit ovat poikkeuksia eli toisin sanoen sivuja, joissa tiedostoa s
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Leveys',
 'exif-imagelength' => 'Korkeus',
 'exif-bitspersample' => 'Bittiä komponentissa',
@@ -3384,7 +3384,7 @@ Kaikki muut linkit ovat poikkeuksia eli toisin sanoen sivuja, joissa tiedostoa s
 'exif-originalimageheight' => 'Kuvan korkeus ennen kuin sitä rajattiin',
 'exif-originalimagewidth' => 'Kuvan leveys ennen kuin sitä rajattiin',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Pakkaamaton',
 'exif-compression-2' => 'CCITT:n Group 3 -yksiulotteinen muokattu Huffman-ajopituuskoodaus',
 'exif-compression-3' => 'CCITT:n Group 3 -faksipakkaus',

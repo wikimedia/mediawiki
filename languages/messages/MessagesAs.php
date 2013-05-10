@@ -3189,7 +3189,7 @@ Any subsequent links on the same line are considered to be exceptions, i.e. page
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'প্ৰস্থ',
 'exif-imagelength' => 'উচ্চতা',
 'exif-bitspersample' => 'প্ৰতি অংশৰ বিট',
@@ -3367,7 +3367,7 @@ Any subsequent links on the same line are considered to be exceptions, i.e. page
 'exif-originalimageheight' => "ক্ৰ'প কৰাৰ আগত ছবিৰ উচ্চতা",
 'exif-originalimagewidth' => "ক্ৰ'প কৰাৰ আগত ছবিৰ প্ৰস্থতা",
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'অসংকুচিত',
 'exif-compression-2' => "CCITT দল ৩ ১-পৰিসৰ পৰিৱৰ্তীত Huffman চলন দৈৰ্ঘ্য এনক'ডিং",
 'exif-compression-3' => "CCITT দল ৩ ফেক্স এনক'ডিং",

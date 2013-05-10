@@ -3139,7 +3139,7 @@ La resta d'enllaços de la línia són les excepcions, és a dir, les pàgines o
 * gpslongitude
 * gpsaltitude",
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Amplada',
 'exif-imagelength' => 'Alçada',
 'exif-bitspersample' => 'Octets per component',
@@ -3317,7 +3317,7 @@ La resta d'enllaços de la línia són les excepcions, és a dir, les pàgines o
 'exif-originalimageheight' => 'Alçada de la imatge abans que fos retallada',
 'exif-originalimagewidth' => 'Amplada de la imatge abans que fos retallada',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Sense compressió',
 'exif-compression-2' => 'Codificació CCITT Grup 3 longitud monodimensional de Huffman modificat',
 'exif-compression-3' => 'Codificació de fax CCITT grup 3',

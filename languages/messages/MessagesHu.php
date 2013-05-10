@@ -3236,7 +3236,7 @@ míg a többi elem a táblázat összecsukása után alapértelmezett esetben re
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Szélesség',
 'exif-imagelength' => 'Magasság',
 'exif-bitspersample' => 'Bitek összetevőnként',
@@ -3414,7 +3414,7 @@ míg a többi elem a táblázat összecsukása után alapértelmezett esetben re
 'exif-originalimageheight' => 'Kép magassága a levágás előtt',
 'exif-originalimagewidth' => 'Kép szélessége a levágás előtt',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Nem tömörített',
 'exif-compression-2' => 'CCITT Group 3 1 dimenziós módosított Huffman kódolás',
 'exif-compression-3' => 'CCITT Group 3 fax kódolás',

@@ -3155,7 +3155,7 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Bredde',
 'exif-imagelength' => 'Længde',
 'exif-bitspersample' => 'Bits pr. farvekomponent',
@@ -3333,7 +3333,7 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 'exif-originalimageheight' => 'Højden af billedet inden det blev beskåret',
 'exif-originalimagewidth' => 'Bredden af billedet inden det blev beskåret',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Ukomprimeret',
 'exif-compression-2' => 'CCITT Gruppe 3 1-dimensionel modificeret Huffman run length encoding',
 'exif-compression-3' => 'CCITT Gruppe 3 fax-kodning',

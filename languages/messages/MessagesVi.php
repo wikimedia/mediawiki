@@ -3334,7 +3334,7 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Chiều ngang',
 'exif-imagelength' => 'Chiều cao',
 'exif-bitspersample' => 'Bit trên mẫu',
@@ -3514,7 +3514,7 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 'exif-originalimageheight' => 'Chiều cao của hình trước khi được cắt',
 'exif-originalimagewidth' => 'Chiều rộng của hình trước khi được cắt',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Không nén',
 'exif-compression-2' => 'CCITT Nhóm 3: mã hóa thời gian chạy Huffman sửa một chiều',
 'exif-compression-3' => 'CCITT Nhóm 3: mã hóa fax',

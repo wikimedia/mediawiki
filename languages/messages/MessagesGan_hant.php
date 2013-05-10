@@ -1870,7 +1870,7 @@ $1',
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => '闊',
 'exif-imagelength' => '高',
 'exif-bitspersample' => '每像素byte數',
@@ -1984,7 +1984,7 @@ $1',
 'exif-gpsdatestamp' => 'GPS日期',
 'exif-gpsdifferential' => 'GPS差動修正',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => '冇壓縮',
 
 'exif-unknowndate' => '未知嗰日期',

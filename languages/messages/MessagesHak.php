@@ -478,9 +478,9 @@ $2',
 'createacct-imgcaptcha-ph' => '輸入汝在上背看到嘅字符',
 'createacct-submit' => '建立帳號',
 'createacct-benefit-heading' => '{{SITENAME}}是由與您共樣嘅人建立。',
-'createacct-benefit-body1' => '編寫數目',
-'createacct-benefit-body2' => '頁面數',
-'createacct-benefit-body3' => '近期貢獻人',
+'createacct-benefit-body1' => '$1 次編寫',
+'createacct-benefit-body2' => '$1 頁',
+'createacct-benefit-body3' => '近期 $1 隻貢獻人',
 'badretype' => '汝所撳入嘅密碼並無相同',
 'userexists' => '!汝所填入嘅用戶名稱已經存在，請另選一隻名稱。',
 'loginerror' => '登入差錯',
@@ -506,44 +506,80 @@ $2',
 'password-login-forbidden' => '邇隻用戶名稱及密碼嘅使用係畀禁止嘅。',
 'mailmypassword' => '用電郵寄新密碼分亻厓',
 'passwordremindertitle' => '{{SITENAME}}嘅新臨時密碼',
-'passwordremindertext' => 'Yû-ngìn （khó-nèn he ngì, lòi-chhṳ IP thi-tiám $1） yêu-khiù chiông sîn-ke{{SITENAME}} （$4） ke tên-ngi̍p me̍t-me̍t ki-kî. Yung-fu "$2" ke me̍t-me̍t hien-chhai he "$3". Chhiáng chhṳ-li̍p tên-ngi̍p pin kiên-kói me̍t-me̍t. Kó-yèn he khì-thâ ngìn  fat-chhut ke-chhiáng-khiù, fe̍t-chá ngì yí-kîn ki-tet me̍t-me̍t pin put chún-phi kói-pien kí, khó-yî fut-lio̍k chhṳ́ sêu-sit khi̍p ki-siu̍k sṳ́-yung ngì-ke khiu me̍t-me̍t.',
+'passwordremindertext' => '有人（可能係汝本人，來自IP位址$1）已請求{{SITENAME}}个新密碼 （$4）。
+用戶"$2"个一個新臨時密碼今下已畀設定好為"$3"。
+係話邇隻動作係汝所指示个，汝就需要立即登入並選擇一隻新个密碼。
+汝个臨時密碼將於{{PLURAL:$5|一|$5}}日之內過期。
+
+如果係其他人發出邇隻請求，或者汝已經回想起汝个密碼，故所毋準備改變其，
+汝可以忽略略邇條消息並且繼續使用汝个舊密碼。',
 'noemail' => '用戶“$1”無登記電子郵件地址。',
 'passwordsent' => '用戶“$1”嘅新密碼已經寄到所登記嘅電子郵件地址。
 請在收到後再登入。',
 'blocked-mailpassword' => '汝嘅IP地址處於查封狀態故所毋允許編輯，為矣安全起見，密碼恢復功能已分禁用。',
 'eauthentsent' => '一封確認信已經發送到推薦地址。在發送其它郵件到邇隻賬戶前，汝必須首先按照邇封信肚嘅指導確認邇隻電子郵件信箱真實有效。',
-'throttled-mailpassword' => 'Me̍t-me̍t thì-siáng yí-kîn chhai-chhièn $1 séu-sṳ̀ nui fat-sung. Yîn-vi fòng-chṳ́ lam-yung, han-thin chhai $1 séu-sṳ̀ nui fat-sung yit-chhṳ me̍t-me̍t thì-siáng.',
+'throttled-mailpassword' => '密碼提醒已經在最近$1小時內發送。
+為防止濫用，限定在$1小時內僅發送一次密碼提醒。',
 'mailerror' => '發送郵件出差錯:$1',
-'acct_creation_throttle_hit' => 'Tui-put-hí, ngì yí-kîn chu-chhak liáu $1 chong-ho. Ngì put-nèn chai chu-chhak liáu.',
-'emailauthenticated' => 'Ngì-ke email thi-tiám yí-kîn chhai-yî $1 khok-ngin yû-háu.',
+'acct_creation_throttle_hit' => '在邇隻wiki上係話訪客利用汝个IP地址在昨天創建矣$1個賬戶，係在邇段時間肚的上限。
+結果利用這個IP地址个訪客在邇段時間中無辦法創建更多个賬戶。',
+'emailauthenticated' => '汝个電郵地址已經於$2 $3確認有效。',
 'emailnotauthenticated' => '汝嘅郵箱地址<strong>還無分認証</strong>。以下功能將毋會發送任何郵件。',
 'noemailprefs' => '在您嘅偏好設定肚指定一隻電子郵件地址來使用邇隻功能。',
 'emailconfirmlink' => '確認汝嘅郵箱地址',
-'invalidemailaddress' => 'Email thi-tiám kak-sṳt put chṳn-khok, chhiáng sû-ngi̍p chṳn-khok ke email chhai-vi fe̍t-chá chhîn-khûng ke-sû-ngi̍p  khiông.',
+'invalidemailaddress' => '郵箱地址格式不正確，請輸入正確个郵箱位址或清空該輸入框。',
+'emaildisabled' => '邇隻網站毋可以發送電子郵件。',
 'accountcreated' => '已建立賬戶',
 'accountcreatedtext' => '$1嘅賬戶已經分建立。',
 'createaccount-title' => '在{{SITENAME}}肚建立新賬戶',
+'createaccount-text' => '有人在{{SITENAME}}中利用汝个電郵創建矣一個名為 "$2" 个新賬戶（$4），密碼係 "$3" 。汝應該立即登入並更改密碼。
+
+如果該賬戶建立錯誤个話，汝可以忽略邇條訊息。',
+'usernamehasherror' => '用戶名稱毋可以包含Hash字符',
+'login-throttled' => '爾已經嘗試多次个登入動作。
+請等陣再試。',
+'login-abort-generic' => '登入錯誤 - 中止',
 'loginlanguagelabel' => '語言：$1',
+'suspicious-userlogout' => '您登出个要求已經畀拒絕，因為其可能係由已損壞个瀏覽器或者緩存代理傳送。',
+
+# Email sending
+'php-mail-error-unknown' => '在 PHP 个 mail() 參數肚个未知錯誤',
+'user-mail-no-addy' => '嘗試毋帶電郵地址發送電郵。',
+'user-mail-no-body' => '試圖發送空个或主體不合理短个電子郵件。',
 
 # Change password dialog
 'resetpass' => '更改密碼',
 'resetpass_announce' => '汝係通過一隻發送到電子郵件肚嘅臨時代碼登入的。愛完成登入，汝必須在邇位設定一隻新密碼:',
 'resetpass_text' => '<!-- 在邇處加入文字 -->',
-'resetpass_header' => 'Chhùng-sat me̍t-me̍t',
+'resetpass_header' => '更改賬戶密碼',
 'oldpassword' => '舊密碼:',
 'newpassword' => '舊密碼:',
 'retypenew' => '再一擺輸入密碼：',
 'resetpass_submit' => '設定密碼並登入',
 'resetpass_success' => '汝成功更改矣汝嘅密碼！
 今下為汝登入緊...',
-'resetpass_forbidden' => 'Mò-fap chhai chhṳ́ wiki sông kiên-kói me̍t-me̍',
+'resetpass_forbidden' => '無辦法更改密碼',
+'resetpass-no-info' => '爾必須登入後直接進入邇隻頁面。',
 'resetpass-submit-loggedin' => '更改密碼',
 'resetpass-submit-cancel' => '取消',
+'resetpass-wrong-oldpass' => '無效个臨時或現有个密碼。
+爾可能已成功地更改了爾个密碼，或者已經請求一個新个臨時密碼。',
+'resetpass-temp-password' => '臨時密碼:',
+'resetpass-abort-generic' => '擴充插件已中止矣更改密碼操作。',
 
 # Special:PasswordReset
+'passwordreset' => '重設密碼',
+'passwordreset-text' => '完成此表格以重置汝个密碼。',
+'passwordreset-legend' => '重置密码',
+'passwordreset-disabled' => '邇隻維基上已禁止矣重設密碼。',
+'passwordreset-emaildisabled' => '電子郵件功能在此 wiki 上已禁用。',
+'passwordreset-pretext' => '{{PLURAL:$1||輸入下列其中一隻}}',
 'passwordreset-username' => '用戶名：',
 'passwordreset-domain' => '域名：',
+'passwordreset-capture' => '查看生成个電子郵件係無？',
+'passwordreset-capture-help' => '係話汝選中邇隻框，電子郵件（包括臨時密碼）將顯示，並發送分用戶。',
 'passwordreset-email' => '電郵地址：',
+'passwordreset-emailtitle' => '在{{SITENAME}}上个詳細信息',
 
 # Special:ChangeEmail
 'changeemail-none' => '（無）',
@@ -582,7 +618,7 @@ $2',
 汝嘅IP地址將記錄在邇頁嘅編寫歷史肚。",
 'missingsummary' => "'''Thì-sṳ:''' Kgì hàn-mò thì-kiûng yit-ke phiên-siá chak-yeu. Kó-yèn ngì chai-chhṳ tân-kit tú-chhùn, ngì-ke phiên-siá chiông put-tai phiên-siá chak-yeu tú-chhùn.",
 'missingcommenttext' => 'Chhiáng chhai ha-mien sû-ngi̍p phìn-lun.',
-'missingcommentheader' => "'''Thì-sṳ:''' ngì hàn-mò vi-chhṳ́ phìn-lun thì-kiûng yit-ke phêu-thì. Kó-yèn ngì chai-chhṳ tân-kit tú-chhùn, ngì-ke phiên-siá chiông put-tai phêu-thì tú-chhùn.",
+'missingcommentheader' => "'''提示:''' 汝還無為邇條評論提供一個標題。如果汝再次單擊「{{int:savearticle}}」，您个編輯將不帶標題儲存。",
 'summary-preview' => 'Chak-yeu yi-ko:',
 'subject-preview' => 'Chú-thì/phêu-thì yi-ko:',
 'blockedtitle' => 'Yung-fu pûn chhà-fûng',

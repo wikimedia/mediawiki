@@ -134,8 +134,8 @@ $messages = array(
 'july-gen' => 'luj',
 'august-gen' => 'ost',
 'september-gen' => 'stèmber',
-'october-gen' => 'Otóber',
-'november-gen' => 'Novèmber',
+'october-gen' => 'otóber',
+'november-gen' => 'novèmber',
 'december-gen' => 'Dzèmber',
 'jan' => 'Gen',
 'feb' => 'Fër',
@@ -2975,7 +2975,7 @@ J'àutri a saran stërmà coma stàndard.
 * gpslongitude
 * gpsaltitude",
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Larghëssa',
 'exif-imagelength' => 'Autëssa',
 'exif-bitspersample' => 'Bit për campion',
@@ -3153,7 +3153,7 @@ J'àutri a saran stërmà coma stàndard.
 'exif-originalimageheight' => "Autëssa dla figura prima ch'a fussa ritajà",
 'exif-originalimagewidth' => "Larghëssa dla figura prima ch'a fussa ritajà",
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Nen comprimù',
 'exif-compression-2' => "CCITT Partìa 3 longheur dla codìfica d'esecussion dla codìfica Huffman modificà ëd dimension 1",
 'exif-compression-3' => 'CCITT Partìa 3 codìfica dël fax',

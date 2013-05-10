@@ -3094,7 +3094,7 @@ Los demás tarán anubríos de mou predetermináu.
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Anchor',
 'exif-imagelength' => 'Altor',
 'exif-bitspersample' => 'Bits por componente',
@@ -3272,7 +3272,7 @@ Los demás tarán anubríos de mou predetermináu.
 'exif-originalimageheight' => 'Altor de la imaxe enantes de cortase',
 'exif-originalimagewidth' => 'Anchor de la imaxe enantes de cortase',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Non comprimida',
 'exif-compression-2' => 'CCITT Grupu 3 codificación Huffman RLE con Modificación 1-Dimensional',
 'exif-compression-3' => 'Codificación de fax CCITT Grupu 3',

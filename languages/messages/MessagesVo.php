@@ -2370,7 +2370,7 @@ Nünabinets votik poklänedons.
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Vidot',
 'exif-imagelength' => 'Geilot',
 'exif-bitspersample' => 'Jölätabinets a köl',
@@ -2482,7 +2482,7 @@ Nünabinets votik poklänedons.
 'exif-languagecode' => 'Pük',
 'exif-iimcategory' => 'Klad',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'No pekobopedöl',
 
 'exif-unknowndate' => 'Dät nesevädik',

@@ -1882,7 +1882,7 @@ Kokkovõttõria pääle või kirotaq tagasivõtmisõ põhjusõ.',
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Lakjus',
 'exif-imagelength' => 'Korgus',
 'exif-bitspersample' => 'Bitti osa kotsilõ',
@@ -1996,7 +1996,7 @@ Kokkovõttõria pääle või kirotaq tagasivõtmisõ põhjusõ.',
 'exif-gpsdatestamp' => 'GPS-kuupäiv',
 'exif-gpsdifferential' => 'GPS-differentsiaalparandus',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Kokkopakmalda',
 
 'exif-unknowndate' => 'Tundmalda kuupäiv',

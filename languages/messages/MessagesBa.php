@@ -3065,7 +3065,7 @@ $1',
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Киңлек',
 'exif-imagelength' => 'Бейеклек',
 'exif-bitspersample' => 'Төҫтәрҙең тәрәнлеге',
@@ -3243,7 +3243,7 @@ $1',
 'exif-originalimageheight' => 'Кадрлауға тиклемге рәсем бейеклеге',
 'exif-originalimagewidth' => 'Кадрлауға тиклемге рәсем киңлеге',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Ҡыҫылмаған',
 'exif-compression-2' => 'CCITT Group 3, Хаффман сериялары оҙонлоҡтарын кодлауҙың 1 үлсәмле модификацияһы',
 'exif-compression-3' => 'CCITT Group 3, факслы кодлау',

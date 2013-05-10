@@ -480,7 +480,7 @@ Parhatian bahawa bara laman mungkin masih taruih manunjukkan bahawa Sanak masih 
 'createacct-reason-ph' => 'Manga Sanak mambuek akun lain',
 'createacct-captcha' => 'Pamarisoan kaamanan',
 'createacct-captcha-help-url' => '{{ns:Project}}:Pamintaan mambuek akun',
-'createacct-imgcaptcha-help' => 'Indak dapek mancaliak gambar? [[{{MediaWiki:createacct-captcha-help-url}}|Mohon buekkan akun]]',
+'createacct-imgcaptcha-help' => 'Indak dapek mancaliak gambar? [[{{MediaWiki:createacct-captcha-help-url}}|Mintaklah mambuek akun]]',
 'createacct-imgcaptcha-ph' => 'Masuakan teks nan Sanak caliak di ateh',
 'createacct-submit' => 'Buek akun Sanak',
 'createacct-benefit-heading' => '{{SITENAME}} dibuek dek urang-urang saroman Sanak.',
@@ -2286,7 +2286,7 @@ Nan lainnyo akan tasuruak sacaro baku.
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Leba',
 'exif-imagelength' => 'Tinggi',
 'exif-bitspersample' => 'Bita per komponen',
@@ -2330,7 +2330,17 @@ Nan lainnyo akan tasuruak sacaro baku.
 
 # Watchlist editor
 'watchlistedit-normal-legend' => 'Hapuih judul dari daftar pantau',
+'watchlistedit-normal-explain' => 'Judul pado daftar pantauan Sanak ditunjuakan di bawah ko.
+Untuak mangapuih judul, agiah tando cek pado kotak di sampiangnyo, dan takan "{{int:Watchlistedit-normal-submit}}".
+Sanak dapek juo [[Special:EditWatchlist/raw|manyuntiang daftar mantahnyo]].',
+'watchlistedit-normal-submit' => 'Hapuih judul',
 'watchlistedit-normal-done' => '{{PLURAL:$1|$1 judul}} alah dihapuih dari daftar pantauan Sanak:',
+'watchlistedit-raw-title' => 'Suntiang pantauan mantah',
+'watchlistedit-raw-legend' => 'Suntiang pantauan mantah',
+'watchlistedit-raw-explain' => 'Judul pado daftar pantauan Sanak ditunjuakan di bawah ko, dan dapek disuntiang jo manambahan atau mengapuihnya dari daftar;
+ciek judul satiok barihnyo.
+Kok alah salasai, takan "{{int:Watchlistedit-raw-submit}}".
+Sanak dapek juo [[Special:EditWatchlist|manggunoan panyuntiang standarnyo]].',
 'watchlistedit-raw-titles' => 'Judul:',
 'watchlistedit-raw-submit' => 'Pabarui pantauan',
 'watchlistedit-raw-done' => 'Pantauan Sanak lah dipabarui',
@@ -2450,10 +2460,11 @@ Situs ko mangalami masalah teknis.',
 'logentry-delete-restore' => '$1 {{GENDER:$2|mangambalian}} laman $3',
 'logentry-patrol-patrol' => '$1 {{GENDER:$2|manandoi}} revisi $4 dari laman $3 tapatroli',
 'logentry-patrol-patrol-auto' => '$1 otomatih {{GENDER:$2|manandoi}} revisi $4 dari laman $3 tapatroli',
-'logentry-newusers-newusers' => 'Akun pangguno $1 lah dibuek',
-'logentry-newusers-create' => '$1 mambuek akun pangguno',
-'logentry-newusers-create2' => 'Akun pangguno $3 dibuek jo $1',
-'logentry-newusers-autocreate' => 'Akun $1 dibuek sacaro otomatis',
+'logentry-newusers-newusers' => 'Akun pangguno $1 alah {{GENDER:$2|dibuek}}',
+'logentry-newusers-create' => 'Akun pangguno $1 alah {{GENDER:$2|dibuek}}',
+'logentry-newusers-create2' => 'Akun pangguno $3 alah {{GENDER:$2|dibuek}} dek $1',
+'logentry-newusers-byemail' => 'Akun pangguno $3 alah {{GENDER:$2|dibuek}} dek $1 dan kato sandi alah dikirim jo surel',
+'logentry-newusers-autocreate' => 'Akun pangguno $1 alah {{GENDER:$2|dibuek}} sacaro otomatih',
 'logentry-rights-rights' => '$1 {{GENDER:$2|maubah}} kaanggotaan kalompok $3 dari $4 manjadi $5',
 'logentry-rights-rights-legacy' => '$1 {{GENDER:$2|maubah}} kaanggotaan kalompok $3',
 'rightsnone' => '(indak ado)',
@@ -2464,5 +2475,8 @@ Situs ko mangalami masalah teknis.',
 
 # Durations
 'duration-millennia' => '$1 {{PLURAL:$1|milenium}}',
+
+# Image rotation
+'rotate-comment' => 'Gambar diputa $1 {{PLURAL:$1|darajaik}} saarah jarum jam',
 
 );

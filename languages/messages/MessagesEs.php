@@ -832,8 +832,8 @@ No olvides cambiar tus [[Special:Preferences|preferencias de {{SITENAME}} ]].',
 'createacct-submit' => 'Crea tu cuenta',
 'createacct-benefit-heading' => '{{SITENAME}} lo construye gente como tú.',
 'createacct-benefit-body1' => 'ediciones',
-'createacct-benefit-body2' => 'páginas',
-'createacct-benefit-body3' => 'colaboradores recientes',
+'createacct-benefit-body2' => '{{PLURAL:$1|página|páginas}}',
+'createacct-benefit-body3' => '{{PLURAL:$1|colaborador reciente|colaboradores recientes}}',
 'badretype' => 'Las contraseñas no coinciden.',
 'userexists' => 'El nombre de usuario indicado ya está en uso.
 Por favor escoge un nombre diferente.',
@@ -3377,7 +3377,7 @@ Existen otros campos que se mantendrán ocultos por defecto.
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Anchura',
 'exif-imagelength' => 'Altura',
 'exif-bitspersample' => 'Bits por componente',
@@ -3555,7 +3555,7 @@ Existen otros campos que se mantendrán ocultos por defecto.
 'exif-originalimageheight' => 'Altura de la imagen antes de que fuera recortada',
 'exif-originalimagewidth' => 'Ancho de la imagen antes de que fuera recortada',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Sin comprimir',
 'exif-compression-2' => 'CCITT Group 3 1-Dimensional Modified Huffman run length encoding',
 'exif-compression-3' => 'Codificación de fax CCITT grupo 3',

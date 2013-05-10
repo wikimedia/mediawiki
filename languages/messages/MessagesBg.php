@@ -3022,7 +3022,7 @@ $1',
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Ширина',
 'exif-imagelength' => 'Височина',
 'exif-bitspersample' => 'Дълбочина на цвета (битове)',
@@ -3177,7 +3177,7 @@ $1',
 'exif-originalimageheight' => 'Височина на изображението преди намаляването',
 'exif-originalimagewidth' => 'Ширина на изображението преди намаляването',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Некомпресиран',
 
 'exif-copyrighted-true' => 'С авторски права',

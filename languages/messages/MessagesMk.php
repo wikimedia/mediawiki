@@ -820,9 +820,9 @@ $2',
 'createacct-imgcaptcha-ph' => 'Внесете го гореприкажаниот текст',
 'createacct-submit' => 'Направи ја',
 'createacct-benefit-heading' => '{{SITENAME}} е дело на луѓе како вас.',
-'createacct-benefit-body1' => 'уредувања',
-'createacct-benefit-body2' => 'страници',
-'createacct-benefit-body3' => 'скорешни учесници',
+'createacct-benefit-body1' => '{{PLURAL:$1|уредување|уредувања}}',
+'createacct-benefit-body2' => '{{PLURAL:$1|страница|страници}}',
+'createacct-benefit-body3' => '{{PLURAL:$1|скорешен учесник|скорешни учесници}}',
 'badretype' => 'Внесените лозинки не се совпаѓаат.',
 'userexists' => 'Корисничкото име што го внесовте е зафатено.
 Изберете друго име.',
@@ -3464,7 +3464,7 @@ Variants for Chinese language
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Ширина',
 'exif-imagelength' => 'Висина',
 'exif-bitspersample' => 'Длабочина на бојата',
@@ -3644,7 +3644,7 @@ Variants for Chinese language
 'exif-originalimageheight' => 'Висина на сликата пред кастрењето',
 'exif-originalimagewidth' => 'Ширина на сликата пред кастрењето',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Ненабиена',
 'exif-compression-2' => 'CCITT Група 3 1 — Димензионално изменето Хафманово шифрирање по должина на низите',
 'exif-compression-3' => 'CCITT Група 3 — Факс-шифрирање',

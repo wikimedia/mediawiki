@@ -3257,7 +3257,7 @@ Andre vil skjules som standard.
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Bredde',
 'exif-imagelength' => 'Høyde',
 'exif-bitspersample' => 'Bits per komponent',
@@ -3435,7 +3435,7 @@ Andre vil skjules som standard.
 'exif-originalimageheight' => 'Høyde på bildet før det ble beskåret',
 'exif-originalimagewidth' => 'Bredde på bildet før det ble beskåret',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Ukomprimert',
 'exif-compression-2' => 'CCITT Gruppe 3 1-dimensjonal modifisert Huffman-kjørelengdekoding',
 'exif-compression-3' => 'CCITT Gruppe 3 faks-koding',

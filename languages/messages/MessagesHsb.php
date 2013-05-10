@@ -3045,7 +3045,7 @@ Nasledne wotkazy na samsnej lince definuja wuwzaća, hdźež so wobraz smě naje
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Šěrokosć',
 'exif-imagelength' => 'Wysokosć',
 'exif-bitspersample' => 'Bitow na barbowu komponentu',
@@ -3223,7 +3223,7 @@ Nasledne wotkazy na samsnej lince definuja wuwzaća, hdźež so wobraz smě naje
 'exif-originalimageheight' => 'Wysokosć wobraza před přitřihowanjom',
 'exif-originalimagewidth' => 'Šěrokosć wobraza před přitřihowanjom',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Njekomprimowany',
 'exif-compression-2' => 'CCITT skupina 3 jednodimensionalne modificěrowane kodowanje Huffman běhoweje dołhosće',
 'exif-compression-3' => 'CCITT skupina 3 faksowe kodowanje',

@@ -3143,7 +3143,7 @@ Déi aner sinn am Standard verstoppt.
 * gpslongitude
 * gpsaltitude",
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Breet',
 'exif-imagelength' => 'Längt',
 'exif-bitspersample' => 'Bite pro Faarfkomponent',
@@ -3319,7 +3319,7 @@ Déi aner sinn am Standard verstoppt.
 'exif-originalimageheight' => 'Héicht vum Bild virum Ofschneiden',
 'exif-originalimagewidth' => 'Breet vum Bild virum Ofschneiden',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Onkompriméiert',
 
 'exif-copyrighted-true' => 'Duerch Copyright geschützt',

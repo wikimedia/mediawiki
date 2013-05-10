@@ -2794,7 +2794,7 @@ Variants for Chinese language
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => '闊',
 'exif-imagelength' => '高',
 'exif-bitspersample' => '每部位位元數',
@@ -2910,7 +2910,7 @@ Variants for Chinese language
 'exif-gpsdifferential' => 'GPS 差動修正',
 'exif-objectname' => '短標題',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => '未壓過',
 
 'exif-unknowndate' => '未知日期',

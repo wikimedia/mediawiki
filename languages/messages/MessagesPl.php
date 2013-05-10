@@ -3321,7 +3321,7 @@ Pozostałe pola zostaną domyślnie ukryte.
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Szerokość',
 'exif-imagelength' => 'Wysokość',
 'exif-bitspersample' => 'Bitów na próbkę',
@@ -3501,7 +3501,7 @@ Pozostałe pola zostaną domyślnie ukryte.
 'exif-originalimageheight' => 'Wysokość obrazu zanim został przycięty',
 'exif-originalimagewidth' => 'Szerokość obrazu zanim został przycięty',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'nieskompresowany',
 'exif-compression-2' => 'CCITT Grupa 3 Jednowymiarowe zmodyfikowane kodowanie długości algorytmem Huffmana',
 'exif-compression-3' => 'CCITT Grupa 3 kodowanie faksowe',
