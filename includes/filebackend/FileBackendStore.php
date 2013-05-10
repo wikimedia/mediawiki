@@ -1132,6 +1132,10 @@ abstract class FileBackendStore extends FileBackend {
 		wfProfileIn( __METHOD__ . '-' . $this->name );
 		$status = Status::newGood();
 
+		if ( !count( $ops ) ) {
+			return $status; // nothing to do
+		}
+
 		// Fix up custom header name/value pairs...
 		$ops = array_map( array( $this, 'stripInvalidHeadersFromOp' ), $ops );
 
@@ -1183,6 +1187,10 @@ abstract class FileBackendStore extends FileBackend {
 		wfProfileIn( __METHOD__ );
 		wfProfileIn( __METHOD__ . '-' . $this->name );
 		$status = Status::newGood();
+
+		if ( !count( $ops ) ) {
+			return $status; // nothing to do
+		}
 
 		// Fix up custom header name/value pairs...
 		$ops = array_map( array( $this, 'stripInvalidHeadersFromOp' ), $ops );
