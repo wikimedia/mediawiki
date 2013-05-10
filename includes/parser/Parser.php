@@ -4131,7 +4131,7 @@ class Parser {
 	 * @private
 	 */
 	function formatHeadings( $text, $origText, $isMain = true ) {
-		global $wgMaxTocLevel, $wgHtml5, $wgExperimentalHtmlIds;
+		global $wgMaxTocLevel, $wgExperimentalHtmlIds;
 
 		# Inhibit editsection links if requested in the page
 		if ( isset( $this->mDoubleUnderscores['noeditsection'] ) ) {
@@ -4309,7 +4309,7 @@ class Parser {
 			# Save headline for section edit hint before it's escaped
 			$headlineHint = $safeHeadline;
 
-			if ( $wgHtml5 && $wgExperimentalHtmlIds ) {
+			if ( $wgExperimentalHtmlIds ) {
 				# For reverse compatibility, provide an id that's
 				# HTML4-compatible, like we used to.
 				#
