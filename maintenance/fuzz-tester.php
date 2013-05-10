@@ -2543,7 +2543,7 @@ function runWikiTest( pageTest $test, &$testname, $can_overwrite = false ) {
 		if ( !$valid ) print "\nW3C web validation failed - view details with: html2text " . DIRECTORY . "/" . $testname . ".validator_output.html";
 	}
 
-	// Get tidy to check the page, unless we already know it produces non-XHTML output.
+	// Get tidy to check the page, unless we already know it produces non-(X)HTML output.
 	if ( $test->tidyValidate() ) {
 		$valid = tidyCheckFile( $testname . HTML_FILE ) && $valid;
 	}

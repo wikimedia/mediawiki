@@ -105,11 +105,10 @@ class DumpRenderer extends Maintenance {
 		$output = $content->getParserOutput( $title, null, $options );
 
 		file_put_contents( $filename,
-			"<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" " .
-			"\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n" .
-			"<html xmlns=\"http://www.w3.org/1999/xhtml\">\n" .
+			"<!DOCTYPE html>\n" .
+			"<html lang=\"en\" dir=\"ltr\">\n" .
 			"<head>\n" .
-			"<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />\n" .
+			"<meta charset=\"UTF-8\" />\n" .
 			"<title>" . htmlspecialchars( $display ) . "</title>\n" .
 			"</head>\n" .
 			"<body>\n" .

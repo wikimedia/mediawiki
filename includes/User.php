@@ -4507,8 +4507,7 @@ class User {
 	 *
 	 * @return array Array of HTML attributes suitable for feeding to
 	 *   Html::element(), directly or indirectly.  (Don't feed to Xml::*()!
-	 *   That will potentially output invalid XHTML 1.0 Transitional, and will
-	 *   get confused by the boolean attribute syntax used.)
+	 *   That will get confused by the boolean attribute syntax used.)
 	 */
 	public static function passwordChangeInputAttribs() {
 		global $wgMinimalPasswordLength;
