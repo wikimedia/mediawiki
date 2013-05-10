@@ -1221,36 +1221,31 @@ function wfIncrStats( $key, $count = 1 ) {
 }
 
 /**
- * Check if the wiki read-only lock file is present. This can be used to lock
- * off editing functions, but doesn't guarantee that the database will not be
- * modified.
+ * Check whether the wiki is in read-only mode.
  *
  * @return bool
  */
 function wfReadOnly() {
-	global $wgReadOnlyFile, $wgReadOnly;
-
-	if ( !is_null( $wgReadOnly ) ) {
-		return (bool)$wgReadOnly;
-	}
-	if ( $wgReadOnlyFile == '' ) {
-		return false;
-	}
-	// Set $wgReadOnly for faster access next time
-	if ( is_file( $wgReadOnlyFile ) ) {
-		$wgReadOnly = file_get_contents( $wgReadOnlyFile );
-	} else {
-		$wgReadOnly = false;
-	}
-	return (bool)$wgReadOnly;
+	return wfReadOnlyReason() !== false;
 }
 
 /**
- * @return bool
+ * Get the value of $wgReadOnly or the contents of $wgReadOnlyFile.
+ *
+ * @return string|bool: String when in read-only mode; false otherwise
  */
 function wfReadOnlyReason() {
-	global $wgReadOnly;
-	wfReadOnly();
+	global $wgReadOnly, $wgReadOnlyFile;
+
+	if ( $wgReadOnly === null ) {
+		// Set $wgReadOnly for faster access next time
+		if ( is_file( $wgReadOnlyFile ) && filesize( $wgReadOnlyFile ) > 0 ) {
+			$wgReadOnly = file_get_contents( $wgReadOnlyFile );
+		} else {
+			$wgReadOnly = false;
+		}
+	}
+
 	return $wgReadOnly;
 }
 
