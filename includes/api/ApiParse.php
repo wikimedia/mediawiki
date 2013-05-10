@@ -173,7 +173,7 @@ class ApiParse extends ApiBase {
 			$popts = $pageObj->makeParserOptions( $this->getContext() );
 			$popts->enableLimitReport( !$params['disablepp'] );
 
-			if ( is_null( $text ) ) {
+			if ( is_null( $text ) && $title !== 'API' ) {
 				$this->dieUsage( 'The text parameter should be passed with the title parameter. Should you be using the "page" parameter instead?', 'params' );
 			}
 
@@ -679,7 +679,10 @@ class ApiParse extends ApiBase {
 
 	public function getExamples() {
 		return array(
-			'api.php?action=parse&text={{Project:Sandbox}}'
+			'api.php?action=parse&page=Project:Sandbox' => 'Parse a page',
+			'api.php?action=parse&text={{Project:Sandbox}}' => 'Parse wikitext',
+			'api.php?action=parse&text={{PAGENAME}}&title=Test' => 'Parse wikitext, specifying the page title',
+			'api.php?action=parse&summary=Some+[[link]]&prop=' => 'Parse a summary',
 		);
 	}
 
