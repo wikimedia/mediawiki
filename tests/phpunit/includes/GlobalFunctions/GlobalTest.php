@@ -103,13 +103,6 @@ class GlobalTest extends MediaWikiTestCase {
 			UserMailer::quotedPrintable( "\xc4\x88u legebla?", "UTF-8" ) );
 	}
 
-	function testTime() {
-		$start = wfTime();
-		$this->assertInternalType( 'float', $start );
-		$end = wfTime();
-		$this->assertTrue( $end > $start, "Time is running backwards!" );
-	}
-
 	public static function provideArrayToCGI() {
 		return array(
 			array( array(), '' ), // empty
