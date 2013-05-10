@@ -36,6 +36,7 @@
 		</testsuite>
 		<testsuite name="extensions">
 			<file>suites/ExtensionsTestSuite.php</file>
+			<file>suites/ExtensionsParserTestSuite.php</file>
 		</testsuite>
 	</testsuites>
 	<groups>
