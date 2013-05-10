@@ -170,7 +170,7 @@ abstract class BagOStuff {
 	 */
 	public function lock( $key, $timeout = 60 ) {
 		$timestamp = microtime( true ); // starting UNIX timestamp
-		if ( $this->add( "{$key}:lock", $timeout ) ) {
+		if ( $this->add( "{$key}:lock", 'lock', $timeout ) ) {
 			return true;
 		}
 
@@ -186,7 +186,7 @@ abstract class BagOStuff {
 				$sleep *= 2;
 			}
 			usleep( $sleep ); // back off
-			$locked = $this->add( "{$key}:lock", $timeout );
+			$locked = $this->add( "{$key}:lock", 'lock', $timeout );
 		} while ( !$locked );
 
 		return $locked;
