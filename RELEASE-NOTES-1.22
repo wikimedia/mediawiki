@@ -88,6 +88,10 @@ production.
 * A bias in wfRandomString() toward digits 1-7 has been corrected. Generated
   strings will now start with digits 0 and 8-f as often as they should.
 * (bug 45371) Removed Parser_LinkHooks and CoreLinkFunctions classes.
+* (bug 48319) action=parse no longer returns an error if passed none of 'oldid',
+  'pageid', 'page', 'title', and 'text' (e.g. if only passed 'summary'). A
+  warning will instead be issued if 'title' is non-default, unless no props are
+  requested.
 
 === API changes in 1.22 ===
 * (bug 46626) xmldoublequote parameter was removed. Because of a bug, the
