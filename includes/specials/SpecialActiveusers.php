@@ -120,10 +120,6 @@ class ActiveUsersPager extends UsersPager {
 				'GROUP BY' => array( 'rc_user_text' ),
 				'USE INDEX' => array( 'recentchanges' => 'rc_user_text' )
 			),
-			'join_conds' => array( // check for suppression blocks
-				'ipblocks' => array( 'LEFT JOIN',
-					array( 'rc_user=ipb_user', 'ipb_deleted' => 1 ) ),
-			),
 			'conds' => $conds
 		);
 	}
