@@ -250,7 +250,7 @@ class ImagePage extends Article {
 	 *
 	 * @todo FIXME: Bad interface, see note on MediaHandler::formatMetadata().
 	 *
-	 * @param array $metadata the array containing the EXIF data
+	 * @param array $metadata the array containing the Exif data
 	 * @return String The metadata table. This is treated as Wikitext (!)
 	 */
 	protected function makeMetadataTable( $metadata ) {

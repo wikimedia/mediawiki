@@ -545,7 +545,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			'thumbmime' =>      ' thumbmime     - Adds MIME type of the image thumbnail' .
 				' (requires url and param ' . $modulePrefix . 'urlwidth)',
 			'mediatype' =>      ' mediatype     - Adds the media type of the image',
-			'metadata' =>       ' metadata      - Lists EXIF metadata for the version of the image',
+			'metadata' =>       ' metadata      - Lists Exif metadata for the version of the image',
 			'archivename' =>    ' archivename   - Adds the file name of the archive version for non-latest versions',
 			'bitdepth' =>       ' bitdepth      - Adds the bit depth of the version',
 		);

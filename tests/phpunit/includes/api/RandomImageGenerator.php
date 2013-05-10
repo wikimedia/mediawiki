@@ -34,7 +34,7 @@ class RandomImageGenerator {
 	private $shapesToDraw = 5;
 
 	/**
-	 * Orientations: 0th row, 0th column, EXIF orientation code, rotation 2x2 matrix that is opposite of orientation
+	 * Orientations: 0th row, 0th column, Exif orientation code, rotation 2x2 matrix that is opposite of orientation
 	 * n.b. we do not handle the 'flipped' orientations, which is why there is no entry for 2, 4, 5, or 7. Those
 	 * seem to be rare in real images anyway
 	 * (we also would need a non-symmetric shape for the images to test those, like a letter F)
@@ -304,7 +304,7 @@ class RandomImageGenerator {
 
 	/**
 	 * Given an image specification, produce rotated version
-	 * This is used when simulating a rotated image capture with EXIF orientation
+	 * This is used when simulating a rotated image capture with Exif orientation
 	 * @param $spec Object returned by getImageSpec
 	 * @param $matrix 2x2 transformation matrix
 	 * @return transformed Spec

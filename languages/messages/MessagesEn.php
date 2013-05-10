@@ -4032,7 +4032,7 @@ Others will be hidden by default.
 'metadata-langitem'         => "'''$2:''' $1", # only translate this message to other languages if you have to change it
 'metadata-langitem-default' => '$1', # only translate this message to other languages if you have to change it
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth'                  => 'Width',
 'exif-imagelength'                 => 'Height',
 'exif-bitspersample'               => 'Bits per component',
@@ -4229,7 +4229,7 @@ $4, $5, $6 $7
 $8', # only translate this message to other languages if you have to change it
 'exif-subjectnewscode-value'  => '$2 ($1)', # only translate this message to other languages if you have to change it
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1'     => 'Uncompressed',
 'exif-compression-2'     => 'CCITT Group 3 1-Dimensional Modified Huffman run length encoding',
 'exif-compression-3'     => 'CCITT Group 3 fax encoding',

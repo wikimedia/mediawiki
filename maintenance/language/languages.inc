@@ -43,7 +43,7 @@ class languages {
 	 * Load the list of languages: all the Messages*.php
 	 * files in the languages directory.
 	 *
-	 * @param $exif bool Treat the EXIF messages?
+	 * @param $exif bool Treat the Exif messages?
 	 */
 	function __construct( $exif = true ) {
 		require( __DIR__ . '/messageTypes.inc' );

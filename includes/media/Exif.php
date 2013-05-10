@@ -114,7 +114,7 @@ class Exif {
 	 */
 	function __construct( $file, $byteOrder = '' ) {
 		/**
-		 * Page numbers here refer to pages in the EXIF 2.2 standard
+		 * Page numbers here refer to pages in the Exif 2.2 standard
 		 *
 		 * Note, Exif::UNDEFINED is treated as a string, not as an array of bytes
 		 * so don't put a count parameter for any UNDEFINED values.
@@ -168,7 +168,7 @@ class Exif {
 			# Exif IFD Attribute Information (p30-31)
 			'EXIF' => array(
 				# TODO: NOTE: Nonexistence of this field is taken to mean nonconformance
-				# to the EXIF 2.1 AND 2.2 standards
+				# to the Exif 2.1 AND 2.2 standards
 				'ExifVersion' => Exif::UNDEFINED,			# Exif version
 				'FlashPixVersion' => Exif::UNDEFINED,			# Supported Flashpix version #p32
 

@@ -84,7 +84,7 @@ class ExifBitmapHandler extends BitmapHandler {
 			return self::METADATA_GOOD;
 		}
 		if ( $metadata === self::OLD_BROKEN_FILE ) {
-			# Old special value indicating that there is no EXIF data in the file.
+			# Old special value indicating that there is no Exif data in the file.
 			# or that there was an error well extracting the metadata.
 			wfDebug( __METHOD__ . ": back-compat version\n" );
 			return self::METADATA_COMPATIBLE;

@@ -131,7 +131,7 @@ class BitmapHandler extends ImageHandler {
 			# The size of the image on the page
 			'clientWidth' => $params['width'],
 			'clientHeight' => $params['height'],
-			# Comment as will be added to the EXIF of the thumbnail
+			# Comment as will be added to the Exif of the thumbnail
 			'comment' => isset( $params['descriptionUrl'] ) ?
 				"File source: {$params['descriptionUrl']}" : '',
 			# Properties of the original image
