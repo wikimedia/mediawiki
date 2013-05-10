@@ -103,13 +103,6 @@ class GlobalTest extends MediaWikiTestCase {
 			UserMailer::quotedPrintable( "\xc4\x88u legebla?", "UTF-8" ) );
 	}
 
-	function testTime() {
-		$start = wfTime();
-		$this->assertInternalType( 'float', $start );
-		$end = wfTime();
-		$this->assertTrue( $end > $start, "Time is running backwards!" );
-	}
-
 	public static function provideArrayToCGI() {
 		return array(
 			array( array(), '' ), // empty
@@ -378,19 +371,6 @@ class GlobalTest extends MediaWikiTestCase {
 		if ( isset( $old_server_setting ) ) {
 			$_SERVER['HTTP_ACCEPT_ENCODING'] = $old_server_setting;
 		}
-	}
-
-	function testSwapVarsTest() {
-		$var1 = 1;
-		$var2 = 2;
-
-		$this->assertEquals( $var1, 1, 'var1 is set originally' );
-		$this->assertEquals( $var2, 2, 'var1 is set originally' );
-
-		swap( $var1, $var2 );
-
-		$this->assertEquals( $var1, 2, 'var1 is swapped' );
-		$this->assertEquals( $var2, 1, 'var2 is swapped' );
 	}
 
 	function testWfPercentTest() {

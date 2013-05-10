@@ -130,14 +130,16 @@ function wfArrayDiff2_cmp( $a, $b ) {
 
 /**
  * Array lookup
- * Returns an array where the values in the first array are replaced by the
- * values in the second array with the corresponding keys
+ * Returns an array where the values in array $b are replaced by the
+ * values in array $a with the corresponding keys
  *
+ * @deprecated since 1.22; use array_intersect_key()
  * @param $a Array
  * @param $b Array
  * @return array
  */
 function wfArrayLookup( $a, $b ) {
+	wfDeprecated( __FUNCTION__, '1.22' );
 	return array_flip( array_intersect( array_flip( $a ), array_keys( $b ) ) );
 }
 
@@ -2024,9 +2026,11 @@ function wfEscapeWikiText( $text ) {
 
 /**
  * Get the current unix timestamp with microseconds.  Useful for profiling
+ * @deprecated since 1.22; call microtime() directly
  * @return Float
  */
 function wfTime() {
+	wfDeprecated( __FUNCTION__, '1.22' );
 	return microtime( true );
 }
 
@@ -2437,10 +2441,12 @@ function wfIsHipHop() {
 /**
  * Swap two variables
  *
+ * @deprecated since 1.22
  * @param $x Mixed
  * @param $y Mixed
  */
 function swap( &$x, &$y ) {
+	wfDeprecated( __FUNCTION__, '1.22' );
 	$z = $x;
 	$x = $y;
 	$y = $z;
