@@ -2518,48 +2518,36 @@ $wgLocalTZoffset = null;
 $wgMimeType = 'text/html';
 
 /**
- * The content type used in script tags.  This is mostly going to be ignored if
- * $wgHtml5 is true, at least for actual HTML output, since HTML5 doesn't
- * require a MIME type for JavaScript or CSS (those are the default script and
- * style languages).
+ * The content type used in script tags.  This is mostly going to be ignored at
+ * least for actual HTML output, since HTML5 doesn't require a MIME type for
+ * JavaScript or CSS (those are the default script and style languages).
  */
 $wgJsMimeType = 'text/javascript';
 
 /**
- * The HTML document type.  Ignored if $wgHtml5 is true, since <!DOCTYPE html>
- * doesn't actually have a doctype part to put this variable's contents in.
+ * The default xmlns attribute. The option to define this has been removed.
+ * The value of this variable is no longer used by core and is set to a fixed
+ * value in Setup.php for compatibility with extensions that depend on the value
+ * of this variable being set. Such a dependency however is deprecated.
+ * @deprecated since 1.21
  */
-$wgDocType = '-//W3C//DTD XHTML 1.0 Transitional//EN';
+$wgXhtmlDefaultNamespace = null;
 
 /**
- * The URL of the document type declaration.  Ignored if $wgHtml5 is true,
- * since HTML5 has no DTD, and <!DOCTYPE html> doesn't actually have a DTD part
- * to put this variable's contents in.
- */
-$wgDTD = 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd';
-
-/**
- * The default xmlns attribute.  Ignored if $wgHtml5 is true (or it's supposed
- * to be), since we don't currently support XHTML5, and in HTML5 (i.e., served
- * as text/html) the attribute has no effect, so why bother?
- */
-$wgXhtmlDefaultNamespace = 'http://www.w3.org/1999/xhtml';
-
-/**
- * Should we output an HTML5 doctype?  If false, use XHTML 1.0 Transitional
- * instead, and disable HTML5 features.  This may eventually be removed and set
- * to always true.  If it's true, a number of other settings will be irrelevant
- * and have no effect.
+ * Previously used to determine if we should output an HTML5 doctype.
+ * This is no longer used as we always output HTML5 now. For compatibility with
+ * extensions that still check the value of this config it's value is now forced
+ * to true by Setup.php.
+ * @deprecated since 1.21
  */
 $wgHtml5 = true;
 
 /**
  * Defines the value of the version attribute in the &lt;html&gt; tag, if any.
- * This is ignored if $wgHtml5 is false.  If $wgAllowRdfaAttributes and
- * $wgHtml5 are both true, and this evaluates to boolean false (like if it's
- * left at the default null value), it will be auto-initialized to the correct
- * value for RDFa+HTML5.  As such, you should have no reason to ever actually
- * set this to anything.
+ * If $wgAllowRdfaAttributes is true, and this evaluates to boolean false
+ * (like if it's left at the default null value), it will be auto-initialized
+ * to the correct value for RDFa+HTML5.  As such, you should have no reason to
+ * ever actually set this to anything.
  */
 $wgHtml5Version = null;
 
@@ -2570,7 +2558,7 @@ $wgHtml5Version = null;
 $wgAllowRdfaAttributes = false;
 
 /**
- * Enabled HTML5 microdata attributes for use in wikitext, if $wgHtml5 is also true.
+ * Enabled HTML5 microdata attributes for use in wikitext.
  */
 $wgAllowMicrodataAttributes = false;
 
@@ -2604,8 +2592,7 @@ $wgWellFormedXml = true;
  * Normally we wouldn't have to define this in the root "<html>"
  * element, but IE needs it there in some circumstances.
  *
- * This is ignored if $wgHtml5 is true, for the same reason as
- * $wgXhtmlDefaultNamespace.
+ * This is ignored if $wgMimeType is set to a non-XML mimetype.
  */
 $wgXhtmlNamespaces = array();
 

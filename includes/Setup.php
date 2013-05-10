@@ -344,7 +344,14 @@ foreach ( $wgDisabledActions as $action ) {
 	$wgActions[$action] = false;
 }
 
-if ( !$wgHtml5Version && $wgHtml5 && $wgAllowRdfaAttributes ) {
+# We always output html5 since 1.21, override any change made by local settings
+$wgHtml5 = true;
+
+# Setting wgXhtmlDefaultNamespace is not supported since 1.21.
+# However we define it here for extensions that depend on its value.
+$wgXhtmlDefaultNamespace = 'http://www.w3.org/1999/xhtml';
+
+if ( !$wgHtml5Version && $wgAllowRdfaAttributes ) {
 	# see http://www.w3.org/TR/rdfa-in-html/#document-conformance
 	if ( $wgMimeType == 'application/xhtml+xml' ) {
 		$wgHtml5Version = 'XHTML+RDFa 1.0';

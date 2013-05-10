@@ -629,8 +629,8 @@ The sidebar for MonoBook is generated from this message, lines that do not
 begin with * or ** are discarded, furthermore lines that do begin with ** and
 do not contain | are also discarded, but do not depend on this behavior for
 future releases. Also note that since each list value is wrapped in a unique
-XHTML id it should only appear once and include characters that are legal
-XHTML id names.
+(X)HTML id it should only appear once and include characters that are legal
+(X)HTML id names.
 */
 'sidebar' => '
 * navigation
