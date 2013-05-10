@@ -130,14 +130,16 @@ function wfArrayDiff2_cmp( $a, $b ) {
 
 /**
  * Array lookup
- * Returns an array where the values in the first array are replaced by the
- * values in the second array with the corresponding keys
+ * Returns an array where the values in array $b are replaced by the
+ * values in array $a with the corresponding keys
  *
+ * @deprecated since 1.22; use array_intersect_key()
  * @param $a Array
  * @param $b Array
  * @return array
  */
 function wfArrayLookup( $a, $b ) {
+	wfDeprecated( __FUNCTION__, '1.22' );
 	return array_flip( array_intersect( array_flip( $a ), array_keys( $b ) ) );
 }
 
@@ -163,11 +165,13 @@ function wfAppendToArrayIfNotDefault( $key, $value, $default, &$changed ) {
  * Backwards array plus for people who haven't bothered to read the PHP manual
  * XXX: will not darn your socks for you.
  *
+ * @deprecated since 1.22; use array_replace()
  * @param $array1 Array
  * @param [$array2, [...]] Arrays
  * @return Array
  */
 function wfArrayMerge( $array1/* ... */ ) {
+	wfDeprecated( __FUNCTION__, '1.22' );
 	$args = func_get_args();
 	$args = array_reverse( $args, true );
 	$out = array();
@@ -2024,9 +2028,11 @@ function wfEscapeWikiText( $text ) {
 
 /**
  * Get the current unix timestamp with microseconds.  Useful for profiling
+ * @deprecated since 1.22; call microtime() directly
  * @return Float
  */
 function wfTime() {
+	wfDeprecated( __FUNCTION__, '1.22' );
 	return microtime( true );
 }
 
