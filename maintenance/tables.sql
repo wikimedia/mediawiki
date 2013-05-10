@@ -807,7 +807,7 @@ CREATE TABLE /*_*/image (
   img_width int NOT NULL default 0,
   img_height int NOT NULL default 0,
 
-  -- Extracted EXIF metadata stored as a serialized PHP array.
+  -- Extracted Exif metadata stored as a serialized PHP array.
   img_metadata mediumblob NOT NULL,
 
   -- For images, bits per pixel if known.

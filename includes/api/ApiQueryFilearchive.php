@@ -281,7 +281,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 				' parseddescription - Parse the description on the version',
 				' mime              - Adds MIME of the image',
 				' mediatype         - Adds the media type of the image',
-				' metadata          - Lists EXIF metadata for the version of the image',
+				' metadata          - Lists Exif metadata for the version of the image',
 				' bitdepth          - Adds the bit depth of the version',
 				' archivename       - Adds the file name of the archive version for non-latest versions'
 			),

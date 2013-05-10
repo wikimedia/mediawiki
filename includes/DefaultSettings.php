@@ -496,11 +496,11 @@ $wgFileBackends = array();
 $wgLockManagers = array();
 
 /**
- * Show EXIF data, on by default if available.
- * Requires PHP's EXIF extension: http://www.php.net/manual/en/ref.exif.php
+ * Show Exif data, on by default if available.
+ * Requires PHP's Exif extension: http://www.php.net/manual/en/ref.exif.php
  *
  * @note FOR WINDOWS USERS:
- * To enable EXIF functions, add the following lines to the "Windows
+ * To enable Exif functions, add the following lines to the "Windows
  * extensions" section of php.ini:
  * @code{.ini}
  * extension=extensions/php_mbstring.dll
@@ -848,7 +848,7 @@ $wgJpegTran = '/usr/bin/jpegtran';
 
 
 /**
- * Some tests and extensions use exiv2 to manipulate the EXIF metadata in some
+ * Some tests and extensions use exiv2 to manipulate the Exif metadata in some
  * image formats.
  */
 $wgExiv2Command = '/usr/bin/exiv2';

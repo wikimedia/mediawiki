@@ -222,7 +222,7 @@ Parameters:
 	--links: Link the message values (default off).
 	--prefix: prefix to add to links.
 	--wikilang: For the links, what is the content language of the wiki to display the output in (default en).
-	--noexif: Do not check for EXIF messages (a bit hard and boring to translate), if you know
+	--noexif: Do not check for Exif messages (a bit hard and boring to translate), if you know
 		that they are currently not translated and want to focus on other problems (default off).
 	--whitelist: Do only the following checks (form: code,code).
 	--blacklist: Do not do the following checks (form: code,code).
