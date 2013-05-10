@@ -71,6 +71,7 @@ $wgAutoloadClasses += array(
 
 	# tests/phpunit/includes/parser
 	'NewParserTest' => "$testDir/phpunit/includes/parser/NewParserTest.php",
+	'MediaWikiParserTest' => "$testDir/phpunit/includes/parser/MediaWikiParserTest.php",
 
 	# tests/phpunit/includes/libs
 	'GenericArrayObjectTest' => "$testDir/phpunit/includes/libs/GenericArrayObjectTest.php",
