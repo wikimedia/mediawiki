@@ -1674,7 +1674,7 @@ function wfMsgExt( $key, $options ) {
 
 /**
  * Since wfMsg() and co suck, they don't return false if the message key they
- * looked up didn't exist but a XHTML string, this function checks for the
+ * looked up didn't exist but instead the key wrapped in <>'s, this function checks for the
  * nonexistence of messages by checking the MessageCache::get() result directly.
  *
  * @deprecated since 1.18. Use Message::isDisabled().

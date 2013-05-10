@@ -61,12 +61,12 @@ function wfPHPVersionError( $type ) {
 		header( 'Pragma: no-cache' );
 
 		$finalOutput = <<<HTML
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns='http://www.w3.org/1999/xhtml' lang='en'>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
 	<head>
+		<meta charset="UTF-8" />
 		<title>MediaWiki {$mwVersion}</title>
-		<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
-		<style type='text/css' media='screen'>
+		<style media='screen'>
 			body {
 				color: #000;
 				background-color: #fff;

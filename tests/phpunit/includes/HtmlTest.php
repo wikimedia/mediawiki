@@ -37,7 +37,6 @@ class HtmlTest extends MediaWikiTestCase {
 			'wgLanguageCode' => $langCode,
 			'wgContLang' => $langObj,
 			'wgLang' => $langObj,
-			'wgHtml5' => true,
 			'wgWellFormedXml' => false,
 		) );
 	}
@@ -68,6 +67,31 @@ class HtmlTest extends MediaWikiTestCase {
 			Html::element( 'img', null, '' ),
 			'Self-closing tag for short-tag elements (wgWellFormedXml = true)'
 		);
+	}
+
+	public function dataXmlMimeType() {
+		return array(
+			// ( $mimetype, $isXmlMimeType )
+			# HTML is not an XML MimeType
+			array( 'text/html', false ),
+			# XML is an XML MimeType
+			array( 'text/xml', true ),
+			array( 'application/xml', true ),
+			# XHTML is an XML MimeType
+			array( 'application/xhtml+xml', true ),
+			# Make sure other +xml MimeTypes are supported
+			# SVG is another random MimeType even though we don't use it
+			array( 'image/svg+xml', true ),
+			# Complete random other MimeTypes are not XML
+			array( 'text/plain', false ),
+		);
+	}
+
+	/**
+	 * @dataProvider dataXmlMimeType
+	 */
+	public function testXmlMimeType( $mimetype, $isXmlMimeType ) {
+		$this->assertEquals( $isXmlMimeType, Html::isXmlMimeType( $mimetype ) );
 	}
 
 	public function testExpandAttributesSkipsNullAndFalse() {
@@ -116,14 +140,6 @@ class HtmlTest extends MediaWikiTestCase {
 			' selected=""',
 			Html::expandAttributes( array( 'selected' => true ) ),
 			'Boolean attributes have empty string value when value is true (wgWellFormedXml)'
-		);
-
-		$this->setMwGlobals( 'wgHtml5', false );
-
-		$this->assertEquals(
-			' selected="selected"',
-			Html::expandAttributes( array( 'selected' => true ) ),
-			'Boolean attributes have their key as value when value is true (wgWellFormedXml, wgHTML5 = false)'
 		);
 	}
 
