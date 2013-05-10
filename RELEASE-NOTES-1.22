@@ -146,6 +146,10 @@ production.
 * (bug 14176) System messages that are empty were previously incorrectly treated
   as non-existent, causing a fallback to the default. This stopped users from
   overriding system messages to make them blank.
+* (bug 48319) action=parse no longer returns an error if passed none of 'oldid',
+  'pageid', 'page', 'title', and 'text' (e.g. if only passed 'summary'). A
+  warning will instead be issued if 'title' is non-default, unless no props are
+  requested.
 
 === API changes in 1.22 ===
 * (bug 46626) xmldoublequote parameter was removed. Because of a bug, the

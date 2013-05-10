@@ -171,7 +171,14 @@ class ApiParse extends ApiBase {
 			$popts = $this->makeParserOptions( $pageObj, $params );
 
 			if ( is_null( $text ) ) {
-				$this->dieUsage( 'The text parameter should be passed with the title parameter. Should you be using the "page" parameter instead?', 'params' );
+				if ( $title !== 'API' && ( $prop || $params['generatexml'] ) ) {
+					$this->setWarning(
+						"'title' used without 'text', and parsed page properties were requested " .
+						"(did you mean to use 'page' instead of 'title'?)"
+					);
+				}
+				// Prevent warning from ContentHandler::makeContent()
+				$text = '';
 			}
 
 			try {
@@ -685,7 +692,6 @@ class ApiParse extends ApiBase {
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'code' => 'params', 'info' => 'The page parameter cannot be used together with the text and title parameters' ),
-			array( 'code' => 'params', 'info' => 'The text parameter should be passed with the title parameter. Should you be using the "page" parameter instead?' ),
 			array( 'code' => 'missingrev', 'info' => 'There is no revision ID oldid' ),
 			array( 'code' => 'permissiondenied', 'info' => 'You don\'t have permission to view deleted revisions' ),
 			array( 'code' => 'missingtitle', 'info' => 'The page you specified doesn\'t exist' ),
@@ -700,7 +706,10 @@ class ApiParse extends ApiBase {
 
 	public function getExamples() {
 		return array(
-			'api.php?action=parse&text={{Project:Sandbox}}'
+			'api.php?action=parse&page=Project:Sandbox' => 'Parse a page',
+			'api.php?action=parse&text={{Project:Sandbox}}' => 'Parse wikitext',
+			'api.php?action=parse&text={{PAGENAME}}&title=Test' => 'Parse wikitext, specifying the page title',
+			'api.php?action=parse&summary=Some+[[link]]&prop=' => 'Parse a summary',
 		);
 	}
 
