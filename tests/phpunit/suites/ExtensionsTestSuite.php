@@ -15,6 +15,12 @@ class ExtensionsTestSuite extends PHPUnit_Framework_TestSuite {
 		if ( !count( $files ) ) {
 			$this->addTest( new DummyExtensionsTest( 'testNothing' ) );
 		}
+
+		$suites =  MediaWikiParserTest::suite( MediaWikiParserTest::WITH_REST );
+		foreach( $suites as $parserSuite ) {
+			$this->addTest( $parserSuite );
+		}
+
 	}
 
 	public static function suite() {
