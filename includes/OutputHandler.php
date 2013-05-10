@@ -177,20 +177,8 @@ function wfHtmlValidationHandler( $s ) {
 
 	header( 'Cache-Control: no-cache' );
 
-	$out = <<<EOT
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" dir="ltr">
-<head>
-<title>HTML validation error</title>
-<style>
-.highlight { background-color: #ffc }
-li { white-space: pre }
-</style>
-</head>
-<body>
-<h1>HTML validation error</h1>
-<ul>
-EOT;
+	$out = Html::element( 'h1', null, 'HTML validation error' );
+	$out .= Html::openElement( 'ul' );
 
 	$error = strtok( $errors, "\n" );
 	$badLines = array();
@@ -198,26 +186,40 @@ EOT;
 		if ( preg_match( '/^line (\d+)/', $error, $m ) ) {
 			$lineNum = intval( $m[1] );
 			$badLines[$lineNum] = true;
-			$out .= "<li><a href=\"#line-{$lineNum}\">" . htmlspecialchars( $error ) . "</a></li>\n";
+			$out .= Html::rawElement( 'li', null,
+				Html::element( 'a', array( 'href' => "#line-{$lineNum}" ), $error ) ) . "\n";
 		}
 		$error = strtok( "\n" );
 	}
 
-	$out .= '</ul>';
-	$out .= '<pre>' . htmlspecialchars( $errors ) . '</pre>';
-	$out .= "<ol>\n";
+	$out .= Html::closeElement( 'ul' );
+	$out .= Html::element( 'pre', null, $errors );
+	$out .= Html::openElement( 'ol' ) . "\n";
 	$line = strtok( $s, "\n" );
 	$i = 1;
 	while ( $line !== false ) {
+		$attrs = array();
 		if ( isset( $badLines[$i] ) ) {
-			$out .= "<li class=\"highlight\" id=\"line-$i\">";
-		} else {
-			$out .= '<li>';
+			$attrs['class'] = 'highlight';
+			$attrs['id'] = "line-$i";
 		}
-		$out .= htmlspecialchars( $line ) . "</li>\n";
+		$out .= Html::element( 'li', $attrs, $line ) . "\n";
 		$line = strtok( "\n" );
 		$i++;
 	}
-	$out .= '</ol></body></html>';
+	$out .= Html::closeElement( 'ol' );
+
+	$style = <<<CSS
+.highlight { background-color: #ffc }
+li { white-space: pre }
+CSS;
+
+	$out = Html::htmlHeader( array( 'lang' => 'en', 'dir' => 'ltr' ) ) .
+		Html::rawElement( 'head', null,
+			Html::element( 'title', null, 'HTML validation error' ) .
+			Html::inlineStyle( $style ) ) .
+		Html::rawElement( 'body', null, $out ) .
+		Html::closeElement( 'html' );
+
 	return $out;
 }

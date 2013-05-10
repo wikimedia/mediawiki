@@ -1,6 +1,6 @@
 <?php
 /**
- * XHTML sanitizer for %MediaWiki.
+ * HTML sanitizer for %MediaWiki.
  *
  * Copyright © 2002-2005 Brion Vibber <brion@pobox.com> et al
  * http://www.mediawiki.org/
@@ -25,7 +25,7 @@
  */
 
 /**
- * XHTML sanitizer for MediaWiki
+ * HTML sanitizer for MediaWiki
  * @ingroup Parser
  */
 class Sanitizer {
@@ -364,7 +364,7 @@ class Sanitizer {
 	 * @return string
 	 */
 	static function removeHTMLtags( $text, $processCallback = null, $args = array(), $extratags = array(), $removetags = array() ) {
-		global $wgUseTidy, $wgHtml5, $wgAllowMicrodataAttributes, $wgAllowImageTag;
+		global $wgUseTidy, $wgAllowMicrodataAttributes, $wgAllowImageTag;
 
 		static $htmlpairsStatic, $htmlsingle, $htmlsingleonly, $htmlnest, $tabletags,
 			$htmllist, $listtags, $htmlsingleallowed, $htmlelementsStatic, $staticInitialised;
@@ -373,7 +373,7 @@ class Sanitizer {
 
 		// Base our staticInitialised variable off of the global config state so that if the globals
 		// are changed (like in the screwed up test system) we will re-initialise the settings.
-		$globalContext = implode( '-', compact( 'wgHtml5', 'wgAllowMicrodataAttributes', 'wgAllowImageTag' ) );
+		$globalContext = implode( '-', compact( 'wgAllowMicrodataAttributes', 'wgAllowImageTag' ) );
 		if ( !$staticInitialised || $staticInitialised != $globalContext ) {
 
 			$htmlpairsStatic = array( # Tags that must be closed
@@ -382,18 +382,15 @@ class Sanitizer {
 				'strike', 'strong', 'tt', 'var', 'div', 'center',
 				'blockquote', 'ol', 'ul', 'dl', 'table', 'caption', 'pre',
 				'ruby', 'rt', 'rb', 'rp', 'p', 'span', 'abbr', 'dfn',
-				'kbd', 'samp'
+				'kbd', 'samp', 'data', 'time', 'mark'
 			);
-			if ( $wgHtml5 ) {
-				$htmlpairsStatic = array_merge( $htmlpairsStatic, array( 'data', 'time', 'mark' ) );
-			}
 			$htmlsingle = array(
 				'br', 'hr', 'li', 'dt', 'dd'
 			);
 			$htmlsingleonly = array( # Elements that cannot have close tags
 				'br', 'hr'
 			);
-			if ( $wgHtml5 && $wgAllowMicrodataAttributes ) {
+			if ( $wgAllowMicrodataAttributes ) {
 				$htmlsingle[] = $htmlsingleonly[] = 'meta';
 				$htmlsingle[] = $htmlsingleonly[] = 'link';
 			}
@@ -709,7 +706,7 @@ class Sanitizer {
 	 * @todo Check for unique id attribute :P
 	 */
 	static function validateAttributes( $attribs, $whitelist ) {
-		global $wgAllowRdfaAttributes, $wgAllowMicrodataAttributes, $wgHtml5;
+		global $wgAllowRdfaAttributes, $wgAllowMicrodataAttributes;
 
 		$whitelist = array_flip( $whitelist );
 		$hrefExp = '/^(' . wfUrlProtocols() . ')[^\s]+$/';
@@ -725,8 +722,8 @@ class Sanitizer {
 				continue;
 			}
 
-			# Allow any attribute beginning with "data-", if in HTML5 mode
-			if ( !( $wgHtml5 && preg_match( '/^data-/i', $attribute ) ) && !isset( $whitelist[$attribute] ) ) {
+			# Allow any attribute beginning with "data-"
+			if ( !preg_match( '/^data-/i', $attribute ) && !isset( $whitelist[$attribute] ) ) {
 				continue;
 			}
 
@@ -1029,10 +1026,10 @@ class Sanitizer {
 	 * @return String
 	 */
 	static function escapeId( $id, $options = array() ) {
-		global $wgHtml5, $wgExperimentalHtmlIds;
+		global $wgExperimentalHtmlIds;
 		$options = (array)$options;
 
-		if ( $wgHtml5 && $wgExperimentalHtmlIds && !in_array( 'legacy', $options ) ) {
+		if ( $wgExperimentalHtmlIds && !in_array( 'legacy', $options ) ) {
 			$id = Sanitizer::decodeCharReferences( $id );
 			$id = preg_replace( '/[ \t\n\r\f_\'"&#%]+/', '_', $id );
 			$id = trim( $id, '_' );
@@ -1422,10 +1419,10 @@ class Sanitizer {
 	 * @return Array
 	 */
 	static function setupAttributeWhitelist() {
-		global $wgAllowRdfaAttributes, $wgHtml5, $wgAllowMicrodataAttributes;
+		global $wgAllowRdfaAttributes, $wgAllowMicrodataAttributes;
 
 		static $whitelist, $staticInitialised;
-		$globalContext = implode( '-', compact( 'wgAllowRdfaAttributes', 'wgHtml5', 'wgAllowMicrodataAttributes' ) );
+		$globalContext = implode( '-', compact( 'wgAllowRdfaAttributes', 'wgAllowMicrodataAttributes' ) );
 
 		if ( isset( $whitelist ) && $staticInitialised == $globalContext ) {
 			return $whitelist;
@@ -1451,7 +1448,7 @@ class Sanitizer {
 			) );
 		}
 
-		if ( $wgHtml5 && $wgAllowMicrodataAttributes ) {
+		if ( $wgAllowMicrodataAttributes ) {
 			# add HTML5 microdata tags as specified by http://www.whatwg.org/specs/web-apps/current-work/multipage/microdata.html#the-microdata-model
 			$common = array_merge( $common, array(
 				'itemid', 'itemprop', 'itemref', 'itemscope', 'itemtype'
@@ -1590,8 +1587,8 @@ class Sanitizer {
 			# 15.3
 			'hr'         => array_merge( $common, array( 'noshade', 'size', 'width' ) ),
 
-			# XHTML Ruby annotation text module, simple ruby only.
-			# http://www.w3c.org/TR/ruby/
+			# HTML Ruby annotation text module, simple ruby only.
+			# http://www.whatwg.org/specs/web-apps/current-work/multipage/text-level-semantics.html#the-ruby-element
 			'ruby'       => $common,
 			# rbc
 			# rtc
@@ -1607,25 +1604,20 @@ class Sanitizer {
 			# HTML 5 section 4.6
 			'bdi' => $common,
 
-		);
-
-		if ( $wgHtml5 ) {
 			# HTML5 elements, defined by:
 			# http://www.whatwg.org/specs/web-apps/current-work/multipage/
-			$whitelist += array(
-				'data' => array_merge( $common, array( 'value' ) ),
-				'time' => array_merge( $common, array( 'datetime' ) ),
-				'mark' => $common,
+			'data' => array_merge( $common, array( 'value' ) ),
+			'time' => array_merge( $common, array( 'datetime' ) ),
+			'mark' => $common,
 
-				// meta and link are only permitted by removeHTMLtags when Microdata
-				// is enabled so we don't bother adding a conditional to hide these
-				// Also meta and link are only valid in WikiText as Microdata elements
-				// (ie: validateTag rejects tags missing the attributes needed for Microdata)
-				// So we don't bother including $common attributes that have no purpose.
-				'meta' => array( 'itemprop', 'content' ),
-				'link' => array( 'itemprop', 'href' ),
-			);
-		}
+			// meta and link are only permitted by removeHTMLtags when Microdata
+			// is enabled so we don't bother adding a conditional to hide these
+			// Also meta and link are only valid in WikiText as Microdata elements
+			// (ie: validateTag rejects tags missing the attributes needed for Microdata)
+			// So we don't bother including $common attributes that have no purpose.
+			'meta' => array( 'itemprop', 'content' ),
+			'link' => array( 'itemprop', 'href' ),
+		);
 
 		$staticInitialised = $globalContext;
 
