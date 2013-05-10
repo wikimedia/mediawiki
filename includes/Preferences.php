@@ -409,8 +409,8 @@ class Preferences {
 
 			$disableEmailPrefs = false;
 
-			$emailauthenticationclass = 'mw-email-not-authenticated';
 			if ( $wgEmailAuthentication ) {
+				$emailauthenticationclass = 'mw-email-not-authenticated';
 				if ( $user->getEmail() ) {
 					if ( $user->getEmailAuthenticationTimestamp() ) {
 						// date and time are separate parameters to facilitate localisation.
@@ -449,8 +449,8 @@ class Preferences {
 					# Apply the same CSS class used on the input to the message:
 					'cssclass' => $emailauthenticationclass,
 				);
+				$defaultPreferences['emailaddress']['cssclass'] = $emailauthenticationclass;
 			}
-			$defaultPreferences['emailaddress']['cssclass'] = $emailauthenticationclass;
 
 			if ( $wgEnableUserEmail && $user->isAllowed( 'sendemail' ) ) {
 				$defaultPreferences['disablemail'] = array(
