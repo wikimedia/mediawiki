@@ -43,6 +43,10 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	const EDIT_RAW = 2;
 	const EDIT_NORMAL = 3;
 
+	protected $offset = null;
+	protected $offsetNS = 0;
+	protected $limit = 0;
+	protected $dir = null;
 	protected $successMessage;
 
 	protected $toc;
@@ -83,6 +87,10 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			}
 		}
 		$mode = self::getMode( $this->getRequest(), $mode );
+		$this->limit = $this->getRequest()->getInt( 'limit', 50 );
+		$this->offsetNS = $this->getRequest()->getInt( 'offset-ns', 0 );
+		$this->offset = $this->getRequest()->getVal( 'offset' );
+		$this->dir = $this->getRequest()->getVal( 'dir' );
 
 		switch ( $mode ) {
 			case self::EDIT_RAW:
@@ -321,34 +329,81 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	}
 
 	/**
-	 * Get a list of titles on a user's watchlist, excluding talk pages,
-	 * and return as a two-dimensional array with namespace and title.
-	 *
-	 * @return array
-	 */
-	private function getWatchlistInfo() {
-		$titles = array();
+	* Get a list of watchlist items watched by the current user
+	*
+	* @return array
+	*/
+	private function selectWatchListInfo() {
+		// add extra row, to determine whether there is prev/next
+		$options = array( 'LIMIT' => $this->limit + 1 );
 		$dbr = wfGetDB( DB_MASTER );
 
-		$res = $dbr->select(
-			array( 'watchlist' ),
-			array( 'wl_namespace', 'wl_title' ),
-			array( 'wl_user' => $this->getUser()->getId() ),
-			__METHOD__,
-			array( 'ORDER BY' => array( 'wl_namespace', 'wl_title' ) )
+		$whereCond = array(
+			'wl_user' => $this->getUser()->getId(),
+			'wl_namespace' => MWNamespace::getSubjectNamespaces()
 		);
 
-		$lb = new LinkBatch();
-
-		foreach ( $res as $row ) {
-			$lb->add( $row->wl_namespace, $row->wl_title );
-			if ( !MWNamespace::isTalk( $row->wl_namespace ) ) {
-				$titles[$row->wl_namespace][$row->wl_title] = 1;
+		if ( $this->offset !== null ) {
+			$offsetNS = $dbr->addQuotes( $this->offsetNS );
+			if ( $this->dir === 'prev' ) {
+				$titleCond = 'wl_title <' . $dbr->addQuotes( $this->offset );
+				$whereCond[] = "(wl_namespace < $offsetNS OR (wl_namespace = $offsetNS AND $titleCond))";
+				$options['ORDER BY'] = array( 'wl_namespace DESC', 'wl_title DESC' );
+			} else {
+				$titleCond = 'wl_title ' . ( $this->dir == 'next' ? '>' : '>=' ) . $dbr->addQuotes( $this->offset );
+				$whereCond[] = "(wl_namespace > $offsetNS OR (wl_namespace = $offsetNS AND $titleCond))";
+				$options['ORDER BY'] = array( 'wl_namespace', 'wl_title' );
 			}
 		}
 
-		$lb->execute();
+		$res = $dbr->select(
+			array( 'watchlist' ),
+			array( 'wl_namespace',  'wl_title' ),
+			$whereCond,
+			__METHOD__,
+			$options
+		);
 
+		return $res;
+	}
+
+	/**
+	 * Get a list of titles on a user's watchlist, excluding talk pages,
+	 * and return as a two-dimensional array with namespace and title.
+	 *
+	 * @param $watchedItems rows of watched items
+	 * @return array
+	 */
+	private function getWatchlistInfo( $watchedItems ) {
+		$titles = array();
+		$lb = new LinkBatch();
+		$count = 0;
+		if ( $this->dir === 'prev' ) {
+			$numRows = $watchedItems->numRows();
+			//in prev dir go over the result in reverse order
+			for ( $i = $numRows - 1; $i >= 0; $i-- ) {
+				$watchedItems->seek( $i );
+				$row = $watchedItems->fetchObject();
+				$lb->add( $row->wl_namespace, $row->wl_title );
+				$titles[$row->wl_namespace][$row->wl_title] = 1;
+				$count++;
+				//the result contains 1 extra row that isn't displayed used for next/prev links
+				if( $count === $this->limit ) {
+					break;
+				}
+			}
+		} else {
+			foreach ( $watchedItems as $row ) {
+				$lb->add( $row->wl_namespace, $row->wl_title );
+				$titles[$row->wl_namespace][$row->wl_title] = 1;
+				$count++;
+				//the result contains 1 extra row that isn't displayed used for next/prev links
+				if( $count === $this->limit ) {
+					break;
+				}
+			}
+		}
+		$lb->execute();
 		return $titles;
 	}
 
@@ -532,7 +587,11 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		$fields = array();
 		$count = 0;
 
-		foreach ( $this->getWatchlistInfo() as $namespace => $pages ) {
+		$watchedItems = $this->selectWatchListInfo();
+		$rowNum = $watchedItems->numRows();
+		$watchlistInfo = $this->getWatchlistInfo( $watchedItems );
+
+		foreach ( $watchlistInfo as $namespace => $pages ) {
 			if ( $namespace >= 0 ) {
 				$fields['TitlesNs' . $namespace] = array(
 					'class' => 'EditWatchlistCheckboxSeriesField',
@@ -540,10 +599,8 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 					'section' => "ns$namespace",
 				);
 			}
-
 			foreach ( array_keys( $pages ) as $dbkey ) {
 				$title = Title::makeTitleSafe( $namespace, $dbkey );
-
 				if ( $this->checkTitle( $title, $namespace, $dbkey ) ) {
 					$text = $this->buildRemoveLine( $title );
 					$fields['TitlesNs' . $namespace]['options'][$text] = $title->getPrefixedText();
@@ -577,16 +634,85 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		$context->setTitle( $this->getPageTitle() ); // Remove subpage
 		$form = new EditWatchlistNormalHTMLForm( $fields, $context );
 		$form->setSubmitTextMsg( 'watchlistedit-normal-submit' );
+		$form->setSubmitID( 'watchlistedit-submit' );
 		# Used message keys:
 		# 'accesskey-watchlistedit-normal-submit', 'tooltip-watchlistedit-normal-submit'
 		$form->setSubmitTooltip( 'watchlistedit-normal-submit' );
 		$form->setWrapperLegendMsg( 'watchlistedit-normal-legend' );
-		$form->addHeaderText( $this->msg( 'watchlistedit-normal-explain' )->parse() );
+
+		$paging = $this->buildNavigationLinks( $watchlistInfo, $rowNum );
+		$form->addHeaderText( $this->msg( 'watchlistedit-normal-explain' )->parse() . $paging );
 		$form->setSubmitCallback( array( $this, 'submitNormal' ) );
 
 		return $form;
 	}
 
+
+	/*
+	 * Creates prev/next navigation links
+	 *
+	 * @param $watchlistInfo query result
+	 * @param $rowNum number of result rows
+	 * @return string
+	 */
+	private function buildNavigationLinks( $watchlistInfo, $rowNum ) {
+		global $wgContLang;
+		$offsetQuery = array();
+
+		if ( $rowNum > 0 ) {
+			$displayedNS = array_keys( $watchlistInfo );
+			$firstNs = $displayedNS[0];
+			$lastNS = end( $displayedNS );
+			$firstTitle = reset( array_keys( $watchlistInfo[$firstNs] ) );
+			$lastTitle = end( array_keys( $watchlistInfo[$lastNS] ) );
+
+			$hasPrev = ( $rowNum <= $this->limit && $this->dir === 'prev' ) || ( $this->offset === null );
+			$hasNext = $rowNum <= $this->limit && $this->dir === 'next';
+
+			$prevLink = $hasPrev ? $this->msg( 'prevn' )->rawParams( $this->limit ) : Linker::linkKnown(
+				$this->getTitle(),
+				$this->msg( 'prevn' )->rawParams( $this->limit ),
+				array( 'class' => 'mw-prevlink','rel' => 'prev' ),
+				array(
+					'offset' => $firstTitle,
+					'offset-ns' => $firstNs,
+					'dir' => 'prev',
+					'limit' => $this->limit
+				)
+			);
+			$nextLink = $hasNext? $this->msg( 'nextn' )->rawParams( $this->limit ) : Linker::linkKnown(
+				$this->getTitle(),
+				$this->msg( 'nextn' )->rawParams( $this->limit ),
+				array( 'class' => 'mw-nextlink','rel' => 'next' ),
+				array(
+					'offset' => $lastTitle,
+					'offset-ns' => $lastNS,
+					'dir' => 'next',
+					'limit' => $this->limit
+				)
+			);
+
+			$offsetQuery['offset'] = $firstTitle;
+			$offsetQuery['offset-ns'] = $firstNs;
+		} else {
+			$prevLink = $this->msg( 'prevn' )->rawParams( $this->limit );
+			$nextLink = $this->msg( 'nextn' )->rawParams( $this->limit );
+		}
+
+		$numLinks = array();
+		foreach ( array( 20, 50, 100, 250, 500 ) as $num ) {
+			$numLinks[] = Linker::linkKnown(
+				$this->getTitle(),
+				$num,
+				array('class' => 'mw-numlink' ),
+				array_merge( $offsetQuery, array( 'limit' => $num ) )
+			);
+		}
+
+		$paging = '<p>' . $this->msg( 'viewprevnext' )->rawParams( $prevLink,
+				$nextLink, $wgContLang->pipeList( $numLinks ) )->escaped() . '</p>';
+		return $paging;
+	}
 	/**
 	 * Build the label for a checkbox, with a link to the title, and various additional bits
 	 *
@@ -624,7 +750,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			array( &$tools, $title, $title->isRedirect(), $this->getSkin() )
 		);
 
-		return $link . " (" . $this->getLanguage()->pipeList( $tools ) . ")";
+		return '<span class="watchlist-item">' . $link . '</span> ' . $this->msg( 'parentheses' )->rawParams( $this->getLanguage()->pipeList( $tools ) )->parse();
 	}
 
 	/**
