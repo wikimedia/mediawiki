@@ -314,6 +314,9 @@ abstract class FileBackend {
 		if ( empty( $opts['bypassReadOnly'] ) && $this->isReadOnly() ) {
 			return Status::newFatal( 'backend-fail-readonly', $this->name, $this->readOnly );
 		}
+		if ( !count( $ops ) ) {
+			return Status::newGood(); // nothing to do
+		}
 		if ( empty( $opts['force'] ) ) { // sanity
 			unset( $opts['nonLocking'] );
 		}
@@ -544,6 +547,9 @@ abstract class FileBackend {
 	final public function doQuickOperations( array $ops, array $opts = array() ) {
 		if ( empty( $opts['bypassReadOnly'] ) && $this->isReadOnly() ) {
 			return Status::newFatal( 'backend-fail-readonly', $this->name, $this->readOnly );
+		}
+		if ( !count( $ops ) ) {
+			return Status::newGood(); // nothing to do
 		}
 		foreach ( $ops as &$op ) {
 			$op['overwrite'] = true; // avoids RTTs in key/value stores
