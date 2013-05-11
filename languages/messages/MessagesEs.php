@@ -59,6 +59,7 @@
  * @author Lin linao
  * @author Linterweb
  * @author Locos epraix
+ * @author Luckas
  * @author Mahadeva
  * @author Manuelt15
  * @author Maor X
@@ -831,7 +832,7 @@ No olvides cambiar tus [[Special:Preferences|preferencias de {{SITENAME}} ]].',
 'createacct-imgcaptcha-ph' => 'Escribe el texto de arriba',
 'createacct-submit' => 'Crea tu cuenta',
 'createacct-benefit-heading' => '{{SITENAME}} lo construye gente como tú.',
-'createacct-benefit-body1' => 'ediciones',
+'createacct-benefit-body1' => '{{PLURAL:$1|edición|ediciones}}',
 'createacct-benefit-body2' => '{{PLURAL:$1|página|páginas}}',
 'createacct-benefit-body3' => '{{PLURAL:$1|colaborador reciente|colaboradores recientes}}',
 'badretype' => 'Las contraseñas no coinciden.',

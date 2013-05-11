@@ -789,8 +789,8 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências no 
 'createacct-imgcaptcha-ph' => 'Digite o texto acima',
 'createacct-submit' => 'Crie sua conta',
 'createacct-benefit-heading' => '{{SITENAME}} é feita por pessoas como você.',
-'createacct-benefit-body1' => 'edições',
-'createacct-benefit-body2' => 'páginas',
+'createacct-benefit-body1' => '{{PLURAL:$1|edição|edições}}',
+'createacct-benefit-body2' => '{{PLURAL:$1|página|páginas}}',
 'createacct-benefit-body3' => 'contribuidores recentes',
 'badretype' => 'As senhas que você digitou não são iguais.',
 'userexists' => 'O nome de usuário fornecido já está em uso.

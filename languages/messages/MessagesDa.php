@@ -1984,9 +1984,9 @@ En side behandles som en side med en flertydig titel hvis den bruger en skabelon
 
 'pageswithprop' => 'Sider med en sideegenskab',
 'pageswithprop-legend' => 'Sider med en sideegenskab',
-'pageswithprop-text' => 'Denne side viser en liste over sider, der bruger en bestemt sideegenskaben.',
+'pageswithprop-text' => 'Denne side viser en liste over sider, der har en bestemt sideegenskab.',
 'pageswithprop-prop' => 'Egenskabsnavn:',
-'pageswithprop-submit' => 'Gå',
+'pageswithprop-submit' => 'Vis',
 
 'doubleredirects' => 'Dobbelte omdirigeringer',
 'doubleredirectstext' => 'Dette er en liste over sider som omdirigerer til andre omdirigeringssider.

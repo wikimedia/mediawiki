@@ -1180,7 +1180,7 @@ $1",
 'prefs-textboxsize' => 'தொகுக்கும் சாளரத்தின் அளவு',
 'youremail' => 'மின்னஞ்சல்:',
 'username' => '{{GENDER:$1|பயனர் பெயர்}}:',
-'uid' => '{{பாலினம்:$1|பயனர்}}:',
+'uid' => 'பயனர்:',
 'prefs-memberingroups' => 'பின்வரும் {{பன்மை:$1|குழு|குழுக்களில்}} {{பாலினம்:$2|உறுப்பினர்}}:',
 'prefs-registration' => 'பதிவு செய்யும் நேரம்:',
 'yourrealname' => 'உண்மைப் பெயர்:',
@@ -1925,6 +1925,15 @@ $1',
 'listusers-submit' => 'காட்டு',
 'listusers-noresult' => 'ஒரு பயனரும் இல்லை.',
 'listusers-blocked' => '(தடை செய்யப்பட்டுள்ளது)',
+
+# Special:ActiveUsers
+'activeusers' => 'தொடர்பங்களிப்பாளர்களின் பட்டியல்',
+'activeusers-intro' => 'கடைசி $1 {{PLURAL:$1|நாள்|நாட்கள்}} ஏதேனும் செயலை செய்த பயனர்களின் பட்டியல் இது.',
+'activeusers-count' => '$1 {{PLURAL:$1|திருத்தம்|திருத்தங்கள்}} கடைசி {{PLURAL:$3|நாள்|$3 நாட்கள்}}',
+'activeusers-from' => 'பின்வரும் எழுத்துடன் தொடங்கும் பயனர்களைக் காட்டு:',
+'activeusers-hidebots' => 'தானியங்கிகளை மறை',
+'activeusers-hidesysops' => 'நிர்வாகிகளை மறை',
+'activeusers-noresult' => 'எந்தவொரு பயனர்களும் காணப்படவில்லை.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'பயனர் குழு உரிமைகள்',
@@ -2847,7 +2856,7 @@ $1',
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'அகலம்',
 'exif-imagelength' => 'உயரம்',
 'exif-bitspersample' => 'ஒவ்வொரு உறுப்பின்படி பிட்கள்.',
@@ -3024,7 +3033,7 @@ $1',
 'exif-originalimageheight' => 'சரிசெய்யப்படும் முன் படத்தின் உயரம்',
 'exif-originalimagewidth' => 'சரிசெய்யப்படும் முன் படத்தின் அகலம்',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'சுருக்கப்படாத',
 
 'exif-copyrighted-true' => 'பதிப்புரிமைப்பட்டது',
@@ -3419,13 +3428,6 @@ $5
 'version-entrypoints' => 'நுழைவு புள்ளி உரலிகள்',
 'version-entrypoints-header-entrypoint' => 'நுழைவு புள்ளி',
 'version-entrypoints-header-url' => 'உரலி (URL)',
-
-# Special:FilePath
-'filepath' => 'கோப்பு வழி',
-'filepath-page' => 'கோப்பு:',
-'filepath-submit' => 'செல்',
-'filepath-summary' => 'இச்சிறப்புப் பக்கம் கோப்பு ஒன்றுக்கான முழுமையான முகவரியை பெற்றுக் கொடுக்கிறது.
-படிமங்கள் அவற்றின் முழு அளவில் காட்டபடுவதோடு ஏனைய கோப்புகள் அவற்றுக்கான மென்பொருளில் நேரடியாகத் திறக்கப்படும்.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'நகல் கோப்புகளைத் தேடுக',

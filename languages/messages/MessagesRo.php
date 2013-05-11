@@ -767,9 +767,9 @@ Nu uitați să vă modificați [[Special:Preferences|preferințele]] pentru {{SI
 'createacct-imgcaptcha-ph' => 'Introduceți textul pe care îl vedeți deasupra',
 'createacct-submit' => 'Creați-vă contul',
 'createacct-benefit-heading' => '{{SITENAME}} este un proiect clădit de oameni ca dumneavoastră.',
-'createacct-benefit-body1' => 'modificări',
-'createacct-benefit-body2' => 'pagini',
-'createacct-benefit-body3' => 'contribuitori recenți',
+'createacct-benefit-body1' => '{{PLURAL:$1|modificare|modificări|de modificări}}',
+'createacct-benefit-body2' => '{{PLURAL:$1|pagină|pagini|de pagini}}',
+'createacct-benefit-body3' => '{{PLURAL:$1|contribuitor recent|contribuitori recenți|de contribuitori recenți}}',
 'badretype' => 'Parolele pe care le-ați introdus diferă.',
 'userexists' => 'Numele de utilizator pe care l-ați introdus este deja folosit.
 Vă rugăm să alegeți un alt nume.',

@@ -648,9 +648,9 @@ Vergiesst net fir Är [[Special:Preferences|{{SITENAME}} Astellungen]] z'ännere
 'createacct-imgcaptcha-ph' => 'Gitt den Text an deen Dir hei driwwer gesitt',
 'createacct-submit' => 'Äre Benotzerkont uleeën',
 'createacct-benefit-heading' => '{{SITENAME}} gëtt vu Leit wéi Iech gemaach.',
-'createacct-benefit-body1' => 'Ännerungen',
-'createacct-benefit-body2' => 'Säiten',
-'createacct-benefit-body3' => 'rezent Mataarbechter',
+'createacct-benefit-body1' => '{{PLURAL:$1|Ännerung|Ännerungen}}',
+'createacct-benefit-body2' => '{{PLURAL:$1|Säit|Säiten}}',
+'createacct-benefit-body3' => 'rezent {{PLURAL:$1|Mataarbechter}}',
 'badretype' => 'Är Passwierder stëmmen net iwwerdeneen.',
 'userexists' => 'De Benotzernumm deen agi gouf gëtt scho benotzt.
 Sicht Iech een anere Benotzernumm.',

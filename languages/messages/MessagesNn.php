@@ -724,7 +724,7 @@ Gløym ikkje å endra [[Special:Preferences|innstillingane dine for {{SITENAME}}
 'userlogin-yourpassword-ph' => 'Skriv inn passordet ditt',
 'yourpasswordagain' => 'Skriv opp att passordet',
 'remembermypassword' => 'Hugs innlogginga mi på denne datamaskinen (høgst {{PLURAL:$1|éin dag|$1 dagar}})',
-'userlogin-remembermypassword' => 'Hugs meg',
+'userlogin-remembermypassword' => 'Hald meg innlogga',
 'userlogin-signwithsecure' => 'Logg inn med trygg tenar',
 'securelogin-stick-https' => 'Fortset HTTPS-tilkopling etter innlogging.',
 'yourdomainname' => 'Domenet ditt',
@@ -1212,8 +1212,8 @@ $1",
 'revdel-restore-visible' => 'synlege versjonar',
 'pagehist' => 'Sidehistorikk',
 'deletedhist' => 'Sletta historikk',
-'revdelete-hide-current' => 'Feil under skjuling av objektet datert $2, $1: dette er den gjeldande revisjonen.
-Han kan ikkje skjulast.',
+'revdelete-hide-current' => 'Feil under løyning av objektet datert $2, $1: dette er den gjeldande versjonen.
+Han kan ikkje løynast.',
 'revdelete-show-no-access' => 'Feil under vising av objekt datert $2, $1: dette objektet har vorte markert "avgrensa".
 Du har ikkje tilgjenge til det.',
 'revdelete-modify-no-access' => 'Feil ved endringa av eininga datert $2, $1: denne eininga har vorte markert som "avgrensa".
@@ -3881,7 +3881,7 @@ Du skal ha motteke [{{SERVER}}{{SCRIPTPATH}}/COPYING ein kopi av GNU General Pub
 'logentry-suppress-revision' => '$1 {{GENDER:$2|endra}} i løyndom synlegdomen til {{PLURAL:$5|éin versjon|$5 versjonar}} på sida $3: $4',
 'logentry-suppress-event-legacy' => '$1 {{GENDER:$2|endra}} i løyndom synlegdomen til logghendingar på $3',
 'logentry-suppress-revision-legacy' => '$1 {{GENDER:$2|endra}} i løyndom synlegdomen til versjonar på sida $3',
-'revdelete-content-hid' => 'innhald gøymt',
+'revdelete-content-hid' => 'innhald løynt',
 'revdelete-summary-hid' => 'endringsamandrag gøymt',
 'revdelete-uname-hid' => 'brukarnamn gøymt',
 'revdelete-content-unhid' => 'innhald gjort synleg',

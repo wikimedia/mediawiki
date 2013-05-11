@@ -794,7 +794,7 @@ Ef það varst ekki þú sem fórst fram á þetta, eða ef þú mannst lykilor�
 Tímabundið lykilorð: $2',
 'passwordreset-emailsent' => 'Töluvpóstur til að endursetja lykilorðið hefur verið sendur.',
 'passwordreset-emailsent-capture' => 'Tölvupóstur til að endursetja lykilorðið hefur verið sendur í tölvupósti, sem er sýndur hér fyrir neðan.',
-'passwordreset-emailerror-capture' => 'Tölvupóstur til að endursetja lykilorðið var búinn til, sem er sýndur hér fyrir neðan, en ekki tókst að senda hana til notandans: $1',
+'passwordreset-emailerror-capture' => 'Tölvupóstur til að endursetja lykilorðið var búinn til, sem er sýndur hér fyrir neðan, en ekki tókst að senda hana til {{GENDER:$2|notandans}}: $1',
 
 # Special:ChangeEmail
 'changeemail' => 'Breyting netfangs',
@@ -2167,6 +2167,15 @@ Leitin þarf að minnsta kosti að innihalda rótarlén, eins og "*.org"
 'listusers-noresult' => 'Enginn notandi fannst.',
 'listusers-blocked' => '(bannaður)',
 
+# Special:ActiveUsers
+'activeusers' => 'Virkir notendur',
+'activeusers-intro' => 'Þetta er listi yfir notendur sem hafa verið virkir {{PLURAL:$1|síðasta|síðustu}} $1 {{PLURAL:$1|dag|daga}}.',
+'activeusers-count' => '$1 {{PLURAL:$1|aðgerð|aðgerðir}} á {{PLURAL:$3|síðastliðnum degi|síðustu $3 dögum}}',
+'activeusers-from' => 'Sýna notendur sem byrja á:',
+'activeusers-hidebots' => 'Fela vélmenni',
+'activeusers-hidesysops' => 'Fela möppudýr',
+'activeusers-noresult' => 'Enginn notandi fannst.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Notandahópréttindi',
 'listgrouprights-summary' => 'Hér er listi yfir notendahópa á þessum wiki, með þeirra réttindum. 
@@ -3162,7 +3171,7 @@ Ef skránni hefur verið breytt, kann að vera að einhverjar upplýsingar eigi 
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Breidd',
 'exif-imagelength' => 'Hæð',
 'exif-bitspersample' => 'Bæti á einingu',
@@ -3321,7 +3330,7 @@ Ef skránni hefur verið breytt, kann að vera að einhverjar upplýsingar eigi 
 'exif-originalimageheight' => 'Hæð myndarinnar fyrir skerðingu',
 'exif-originalimagewidth' => 'Breidd myndar fyrir skerðingu',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Ósamþjappað',
 
 'exif-copyrighted-true' => 'Höfundaréttarvarið',
@@ -3697,13 +3706,6 @@ MediaWiki er útgefin í þeirri von að hann sé gagnlegur, en ÁN ALLRAR ÁBYR
 'version-software-product' => 'Vara',
 'version-software-version' => 'Útgáfa',
 'version-entrypoints-header-url' => 'vefslóð',
-
-# Special:FilePath
-'filepath' => 'Slóð skráar',
-'filepath-page' => 'Skrá:',
-'filepath-submit' => 'Áfram',
-'filepath-summary' => 'Þessi kerfisíða birtir fulla vefslóð skráar. 
-Myndir eru sýndar í fullri upplausn og önnur skráarsnið eru ræst í sjálfvöldu forriti til þess að opna skránna.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Leita að afriti',
