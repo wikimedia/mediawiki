@@ -144,6 +144,12 @@ $wgNamespaceAliases['Image'] = NS_FILE;
 $wgNamespaceAliases['Image_talk'] = NS_FILE_TALK;
 
 /**
+ * The MediaWiki API is always enabled as of 1.22.
+ * These variables are set for extension compatibility and are deprecated.
+ */
+$wgEnableAPI = $wgEnableWriteAPI = true;
+
+/**
  * Initialise $wgLockManagers to include basic FS version
  */
 $wgLockManagers[] = array(

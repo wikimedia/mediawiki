@@ -36,11 +36,9 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	 * @return array
 	 */
 	protected function getConfig( $context ) {
-		global $wgLoadScript, $wgScript, $wgStylePath, $wgScriptExtension,
-			$wgArticlePath, $wgScriptPath, $wgServer, $wgContLang,
-			$wgVariantArticlePath, $wgActionPaths, $wgVersion,
-			$wgEnableAPI, $wgEnableWriteAPI, $wgDBname,
-			$wgSitename, $wgFileExtensions, $wgExtensionAssetsPath,
+		global $wgLoadScript, $wgScript, $wgStylePath, $wgScriptExtension, $wgArticlePath,
+			$wgScriptPath, $wgServer, $wgContLang, $wgVariantArticlePath, $wgActionPaths,
+			$wgVersion, $wgDBname, $wgSitename, $wgFileExtensions, $wgExtensionAssetsPath,
 			$wgCookiePrefix, $wgResourceLoaderMaxQueryLength;
 
 		$mainPage = Title::newMainPage();
@@ -78,8 +76,10 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'wgUserLanguage' => $context->getLanguage(),
 			'wgContentLanguage' => $wgContLang->getCode(),
 			'wgVersion' => $wgVersion,
-			'wgEnableAPI' => $wgEnableAPI,
-			'wgEnableWriteAPI' => $wgEnableWriteAPI,
+			// The MediaWiki API is always enabled as of 1.22.
+			// Use of the below two variables in scripts is deprecated.
+			'wgEnableAPI' => true,
+			'wgEnableWriteAPI' => true,
 			'wgMainPageTitle' => $mainPage->getPrefixedText(),
 			'wgFormattedNamespaces' => $wgContLang->getFormattedNamespaces(),
 			'wgNamespaceIds' => $namespaceIds,

@@ -116,6 +116,8 @@ class ApiParamInfo extends ApiBase {
 			$retval['readrights'] = '';
 		}
 		if ( $obj->isWriteMode() ) {
+			// The property is called 'writerights' because these modules used to
+			// require a 'writeapi' right to be executed (until 1.22).
 			$retval['writerights'] = '';
 		}
 		if ( $obj->mustBePosted() ) {

@@ -1068,10 +1068,10 @@ class UploadForm extends HTMLForm {
 	 * Add upload JS to the OutputPage
 	 */
 	protected function addUploadJS() {
-		global $wgUseAjax, $wgAjaxUploadDestCheck, $wgAjaxLicensePreview, $wgEnableAPI, $wgStrictFileExtensions;
+		global $wgUseAjax, $wgAjaxUploadDestCheck, $wgAjaxLicensePreview, $wgStrictFileExtensions;
 
 		$useAjaxDestCheck = $wgUseAjax && $wgAjaxUploadDestCheck;
-		$useAjaxLicensePreview = $wgUseAjax && $wgAjaxLicensePreview && $wgEnableAPI;
+		$useAjaxLicensePreview = $wgUseAjax && $wgAjaxLicensePreview;
 		$this->mMaxUploadSize['*'] = UploadBase::getMaxUploadSize();
 
 		$scriptVars = array(
