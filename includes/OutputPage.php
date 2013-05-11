@@ -2474,7 +2474,7 @@ $templates
 	 * @return String: The doctype, opening "<html>", and head element.
 	 */
 	public function headElement( Skin $sk, $includeStyle = true ) {
-		global $wgContLang;
+		global $wgContLang, $wgMimeType;
 
 		$userdir = $this->getLanguage()->getDir();
 		$sitedir = $wgContLang->getDir();
@@ -2495,10 +2495,22 @@ $templates
 			$ret .= "$openHead\n";
 		}
 
+		if ( !Html::isXmlMimeType( $wgMimeType ) ) {
+			// Add <meta charset="UTF-8">
+			// This should be before <title> since it defines the charset used by
+			// text including the text inside <title>.
+			// The spec recommends defining XHTML5's charset using the XML declaration
+			// instead of meta.
+			// Our XML declaration is output by Html::htmlHeader.
+			// http://www.whatwg.org/specs/web-apps/current-work/multipage/semantics.html#attr-meta-http-equiv-content-type
+			// http://www.whatwg.org/specs/web-apps/current-work/multipage/semantics.html#charset
+			$ret .= Html::element( 'meta', array( 'charset' => 'UTF-8' ) );
+		}
+
 		$ret .= Html::element( 'title', null, $this->getHTMLTitle() ) . "\n";
 
 		$ret .= implode( "\n", array(
-			$this->getHeadLinks( null, true ),
+			$this->getHeadLinks(),
 			$this->buildCssLinks(),
 			$this->getHeadScripts(),
 			$this->getHeadItems()
@@ -3127,11 +3139,9 @@ $templates
 	}
 
 	/**
-	 * @param bool $addContentType Whether "<meta>" specifying content type should be returned
-	 *
 	 * @return array in format "link name or number => 'link html'".
 	 */
-	public function getHeadLinksArray( $addContentType = false ) {
+	public function getHeadLinksArray() {
 		global $wgUniversalEditButton, $wgFavicon, $wgAppleTouchIcon, $wgEnableAPI,
 			$wgSitename, $wgVersion,
 			$wgFeed, $wgOverrideSiteFeed, $wgAdvertisedFeedTypes,
@@ -3141,12 +3151,6 @@ $templates
 		$tags = array();
 
 		$canonicalUrl = $this->mCanonicalUrl;
-
-		if ( $addContentType ) {
-			# More succinct than <meta http-equiv=Content-Type>, has the
-			# same effect
-			$tags['meta-charset'] = Html::element( 'meta', array( 'charset' => 'UTF-8' ) );
-		}
 
 		$tags['meta-generator'] = Html::element( 'meta', array(
 			'name' => 'generator',
@@ -3365,13 +3369,10 @@ $templates
 	}
 
 	/**
-	 * @param $unused
-	 * @param bool $addContentType Whether "<meta>" specifying content type should be returned
-	 *
 	 * @return string HTML tag links to be put in the header.
 	 */
-	public function getHeadLinks( $unused = null, $addContentType = false ) {
-		return implode( "\n", $this->getHeadLinksArray( $addContentType ) );
+	public function getHeadLinks() {
+		return implode( "\n", $this->getHeadLinksArray() );
 	}
 
 	/**
