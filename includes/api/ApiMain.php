@@ -117,14 +117,10 @@ class ApiMain extends ApiBase {
 	 *                          );
 	 */
 	private static $mRights = array(
-		'writeapi' => array(
-			'msg' => 'Use of the write API',
-			'params' => array()
-		),
 		'apihighlimits' => array(
 			'msg' => 'Use higher limits in API queries (Slow queries: $1 results; Fast queries: $2 results). The limits for slow queries also apply to multivalue parameters.',
 			'params' => array( ApiBase::LIMIT_SML2, ApiBase::LIMIT_BIG2 )
-		)
+		),
 	);
 
 	/**
@@ -134,7 +130,6 @@ class ApiMain extends ApiBase {
 
 	private $mModuleMgr, $mResult;
 	private $mAction;
-	private $mEnableWrite;
 	private $mInternalMode, $mSquidMaxage, $mModule;
 
 	private $mCacheMode = 'private';
@@ -145,9 +140,8 @@ class ApiMain extends ApiBase {
 	 * Constructs an instance of ApiMain that utilizes the module and format specified by $request.
 	 *
 	 * @param $context IContextSource|WebRequest - if this is an instance of FauxRequest, errors are thrown and no printing occurs
-	 * @param bool $enableWrite should be set to true if the api may modify data
 	 */
-	public function __construct( $context = null, $enableWrite = false ) {
+	public function __construct( $context = null ) {
 		if ( $context === null ) {
 			$context = RequestContext::getMain();
 		} elseif ( $context instanceof WebRequest ) {
@@ -189,7 +183,6 @@ class ApiMain extends ApiBase {
 		$this->mModuleMgr->addModules( self::$Formats, 'format' );
 
 		$this->mResult = new ApiResult( $this );
-		$this->mEnableWrite = $enableWrite;
 
 		$this->mSquidMaxage = - 1; // flag for executeActionWithErrorHandling()
 		$this->mCommit = false;
@@ -774,16 +767,8 @@ class ApiMain extends ApiBase {
 		{
 			$this->dieUsageMsg( 'readrequired' );
 		}
-		if ( $module->isWriteMode() ) {
-			if ( !$this->mEnableWrite ) {
-				$this->dieUsageMsg( 'writedisabled' );
-			}
-			if ( !$user->isAllowed( 'writeapi' ) ) {
-				$this->dieUsageMsg( 'writerequired' );
-			}
-			if ( wfReadOnly() ) {
-				$this->dieReadOnly();
-			}
+		if ( $module->isWriteMode() && wfReadOnly() ) {
+			$this->dieReadOnly();
 		}
 
 		// Allow extensions to stop execution for arbitrary reasons.

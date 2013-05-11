@@ -91,7 +91,7 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 		// set up local environment
 		$context = $this->apiContext->newTestContext( $wgRequest, $wgUser );
 
-		$module = new ApiMain( $context, true );
+		$module = new ApiMain( $context );
 
 		// run it!
 		$module->execute();

@@ -123,8 +123,6 @@ Wiki configuration for testing:
   $wgDBerrorLog = "/root/mediawiki-db-error-log.txt";  // log DB errors, replace with suitable path.
   $wgShowSQLErrors = true;    // Show SQL errors (instead of saying the query was hidden).
   $wgShowExceptionDetails = true;  // want backtraces.
-  $wgEnableAPI = true;        // enable API.
-  $wgEnableWriteAPI = true;   // enable API.
 
   // Install & enable Parser Hook extensions to increase code coverage. E.g.:
   require_once "extensions/ParserFunctions/ParserFunctions.php";
