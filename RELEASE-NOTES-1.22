@@ -26,6 +26,8 @@ production.
 * $wgHandheldStyle was removed.
 * $wgJsMimeType is no longer used by core. Most usage has been removed since
   HTML output is now exclusively HTML5.
+* (bug 30123) Removed $wgEnableAPI, $wgEnableWriteAPI, and the 'writeapi'
+  user right; the MediaWiki API is now unconditionally enabled.
 
 === New features in 1.22 ===
 * (bug 44525) mediawiki.jqueryMsg can now parse (whitelisted) HTML elements and attributes.

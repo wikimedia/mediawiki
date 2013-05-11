@@ -3144,7 +3144,7 @@ $templates
 	 * @return array in format "link name or number => 'link html'".
 	 */
 	public function getHeadLinksArray() {
-		global $wgUniversalEditButton, $wgFavicon, $wgAppleTouchIcon, $wgEnableAPI,
+		global $wgUniversalEditButton, $wgFavicon, $wgAppleTouchIcon,
 			$wgSitename, $wgVersion,
 			$wgFeed, $wgOverrideSiteFeed, $wgAdvertisedFeedTypes,
 			$wgDisableLangConversion, $wgCanonicalLanguageLinks,
@@ -3249,19 +3249,17 @@ $templates
 			'title' => $this->msg( 'opensearch-desc' )->inContentLanguage()->text(),
 		) );
 
-		if ( $wgEnableAPI ) {
-			# Real Simple Discovery link, provides auto-discovery information
-			# for the MediaWiki API (and potentially additional custom API
-			# support such as WordPress or Twitter-compatible APIs for a
-			# blogging extension, etc)
-			$tags['rsd'] = Html::element( 'link', array(
-				'rel' => 'EditURI',
-				'type' => 'application/rsd+xml',
-				// Output a protocol-relative URL here if $wgServer is protocol-relative
-				// Whether RSD accepts relative or protocol-relative URLs is completely undocumented, though
-				'href' => wfExpandUrl( wfAppendQuery( wfScript( 'api' ), array( 'action' => 'rsd' ) ), PROTO_RELATIVE ),
-			) );
-		}
+		# Real Simple Discovery link, provides auto-discovery information
+		# for the MediaWiki API (and potentially additional custom API
+		# support such as WordPress or Twitter-compatible APIs for a
+		# blogging extension, etc)
+		$tags['rsd'] = Html::element( 'link', array(
+			'rel' => 'EditURI',
+			'type' => 'application/rsd+xml',
+			// Output a protocol-relative URL here if $wgServer is protocol-relative
+			// Whether RSD accepts relative or protocol-relative URLs is completely undocumented, though
+			'href' => wfExpandUrl( wfAppendQuery( wfScript( 'api' ), array( 'action' => 'rsd' ) ), PROTO_RELATIVE ),
+		) );
 
 		# Language variants
 		if ( !$wgDisableLangConversion && $wgCanonicalLanguageLinks ) {
