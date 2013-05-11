@@ -17,6 +17,7 @@ production.
 * $wgVectorUseIconWatch is now enabled by default.
 * $wgCascadingRestrictionLevels was added.
 * $wgHandheldStyle was removed.
+* $wgHandheldForIPhone was removed.
 
 === New features in 1.22 ===
 * (bug 44525) mediawiki.jqueryMsg can now parse (whitelisted) HTML elements and attributes.
