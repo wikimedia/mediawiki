@@ -8407,6 +8407,7 @@ See also:
 * {{msg-mw|Accesskey-watchlistedit-normal-submit}}
 * {{msg-mw|Tooltip-watchlistedit-normal-submit}}',
 'watchlistedit-normal-done' => 'Message on [[Special:EditWatchlist]] after pages are removed from the watchlist.',
+'watchlistedit-normal-submitting' => 'Text of submit button on [[Special:Watchlist/edit]] when submiting an AJAX request',
 'watchlistedit-raw-title' => 'Title of [[Special:Watchlist/raw|Special page]].
 
 {{Identical|Edit raw watchlist}}',
