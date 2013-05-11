@@ -2659,18 +2659,6 @@ $wgSkipSkin = '';
 $wgSkipSkins = array();
 
 /**
- * If set, 'screen' and 'handheld' media specifiers for stylesheets are
- * transformed such that they apply to the iPhone/iPod Touch Mobile Safari,
- * which doesn't recognize 'handheld' but does support media queries on its
- * screen size.
- *
- * Consider only using this if you have a *really good* handheld stylesheet,
- * as iPhone users won't have any way to disable it and use the "grown-up"
- * styles instead.
- */
-$wgHandheldForIPhone = false;
-
-/**
  * Allow user Javascript page?
  * This enables a lot of neat customizations, but may
  * increase security risk to users and server load.

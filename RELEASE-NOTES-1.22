@@ -15,7 +15,7 @@ production.
   activated; when $wgUseVFormCreateAccount is true, the redesign of
   Special:UserLogin/signup is activated.
 * $wgVectorUseIconWatch is now enabled by default.
-* $wgHandheldStyle was removed.
+* $wgHandheldStyle and $wgHandheldForIPhone were removed.
 
 === New features in 1.22 ===
 * (bug 44525) mediawiki.jqueryMsg can now parse (whitelisted) HTML elements and attributes.
