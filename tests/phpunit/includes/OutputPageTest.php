@@ -19,7 +19,6 @@ class OutputPageTest extends MediaWikiTestCase {
 	 *
 	 * options['printableQuery'] - value of query string for printable, or omitted for none
 	 * options['handheldQuery'] - value of query string for handheld, or omitted for none
-	 * options['handheldForIPhone'] - value of the $wgHandheldForIPhone global
 	 * options['media'] - passed into the method under the same name
 	 * options['expectedReturn'] - expected return value
 	 * options['message'] - PHPUnit message for assertion
@@ -39,7 +38,6 @@ class OutputPageTest extends MediaWikiTestCase {
 		$fauxRequest = new FauxRequest( $queryData, false );
 		$this->setMWGlobals( array(
 			'wgRequest' => $fauxRequest,
-			'wgHandheldForIPhone' => $args['handheldForIPhone']
 		) );
 
 		$actualReturn = OutputPage::transformCssMedia( $args['media'] );
@@ -47,50 +45,31 @@ class OutputPageTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * Tests a case of transformCssMedia with both values of wgHandheldForIPhone.
-	 * Used to verify that behavior is orthogonal to that option.
-	 *
-	 * If the value of wgHandheldForIPhone should matter, use assertTransformCssMediaCase.
-	 *
-	 * @param array $args key-value array of arguments as shown in assertTransformCssMediaCase.
-	 * Will be mutated.
-	 */
-	protected function assertTransformCssMediaCaseWithBothHandheldForIPhone( $args ) {
-		$message = $args['message'];
-		foreach ( array( true, false ) as $handheldForIPhone ) {
-			$args['handheldForIPhone'] = $handheldForIPhone;
-			$stringHandheldForIPhone = var_export( $handheldForIPhone, true );
-			$args['message'] = "$message. \$wgHandheldForIPhone was $stringHandheldForIPhone";
-			$this->assertTransformCssMediaCase( $args );
-		}
-	}
-
-	/**
 	 * Tests print requests
 	 */
 	public function testPrintRequests() {
-		$this->assertTransformCssMediaCaseWithBothHandheldForIPhone( array(
+		$this->assertTransformCssMediaCase( array(
 			'printableQuery' => '1',
 			'media' => 'screen',
 			'expectedReturn' => null,
 			'message' => 'On printable request, screen returns null'
 		) );
 
-		$this->assertTransformCssMediaCaseWithBothHandheldForIPhone( array(
+		$this->assertTransformCssMediaCase( array(
 			'printableQuery' => '1',
 			'media' => self::SCREEN_MEDIA_QUERY,
 			'expectedReturn' => null,
 			'message' => 'On printable request, screen media query returns null'
 		) );
 
-		$this->assertTransformCssMediaCaseWithBothHandheldForIPhone( array(
+		$this->assertTransformCssMediaCase( array(
 			'printableQuery' => '1',
 			'media' => self::SCREEN_ONLY_MEDIA_QUERY,
 			'expectedReturn' => null,
 			'message' => 'On printable request, screen media query with only returns null'
 		) );
 
-		$this->assertTransformCssMediaCaseWithBothHandheldForIPhone( array(
+		$this->assertTransformCssMediaCase( array(
 			'printableQuery' => '1',
 			'media' => 'print',
 			'expectedReturn' => '',
@@ -103,25 +82,30 @@ class OutputPageTest extends MediaWikiTestCase {
 	 */
 	public function testScreenRequests() {
 		$this->assertTransformCssMediaCase( array(
-			'handheldForIPhone' => false,
 			'media' => 'screen',
 			'expectedReturn' => 'screen',
-			'message' => 'On screen request, with handheldForIPhone false, screen media type is preserved'
+			'message' => 'On screen request, screen media type is preserved'
 		) );
 
-		$this->assertTransformCssMediaCaseWithBothHandheldForIPhone( array(
+		$this->assertTransformCssMediaCase( array(
+			'media' => 'handheld',
+			'expectedReturn' => 'handheld',
+			'message' => 'On screen request, handheld media type is preserved'
+		) );
+
+		$this->assertTransformCssMediaCase( array(
 			'media' => self::SCREEN_MEDIA_QUERY,
 			'expectedReturn' => self::SCREEN_MEDIA_QUERY,
 			'message' => 'On screen request, screen media query is preserved.'
 		) );
 
-		$this->assertTransformCssMediaCaseWithBothHandheldForIPhone( array(
+		$this->assertTransformCssMediaCase( array(
 			'media' => self::SCREEN_ONLY_MEDIA_QUERY,
 			'expectedReturn' => self::SCREEN_ONLY_MEDIA_QUERY,
 			'message' => 'On screen request, screen media query with only is preserved.'
 		) );
 
-		$this->assertTransformCssMediaCaseWithBothHandheldForIPhone( array(
+		$this->assertTransformCssMediaCase( array(
 			'media' => 'print',
 			'expectedReturn' => 'print',
 			'message' => 'On screen request, print media type is preserved'
@@ -129,44 +113,21 @@ class OutputPageTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * Tests handheld and wgHandheldForIPhone behavior
+	 * Tests handheld behavior
 	 */
 	public function testHandheld() {
-		$this->assertTransformCssMediaCaseWithBothHandheldForIPhone( array(
+		$this->assertTransformCssMediaCase( array(
 			'handheldQuery' => '1',
 			'media' => 'handheld',
 			'expectedReturn' => '',
 			'message' => 'On request with handheld querystring and media is handheld, returns empty string'
 		) );
 
-		$this->assertTransformCssMediaCaseWithBothHandheldForIPhone( array(
+		$this->assertTransformCssMediaCase( array(
 			'handheldQuery' => '1',
 			'media' => 'screen',
 			'expectedReturn' => null,
 			'message' => 'On request with handheld querystring and media is screen, returns null'
-		) );
-
-		// A bit counter-intuitively, $wgHandheldForIPhone should only matter if the query handheld is false or omitted
-		$this->assertTransformCssMediaCase( array(
-			'handheldQuery' => '0',
-			'media' => 'screen',
-			'handheldForIPhone' => true,
-			'expectedReturn' => 'screen and (min-device-width: 481px)',
-			'message' => 'With $wgHandheldForIPhone true, screen media type is transformed'
-		) );
-
-		$this->assertTransformCssMediaCase( array(
-			'media' => 'handheld',
-			'handheldForIPhone' => true,
-			'expectedReturn' => 'handheld, only screen and (max-device-width: 480px)',
-			'message' => 'With $wgHandheldForIPhone true, handheld media type is transformed'
-		) );
-
-		$this->assertTransformCssMediaCase( array(
-			'media' => 'handheld',
-			'handheldForIPhone' => false,
-			'expectedReturn' => 'handheld',
-			'message' => 'With $wgHandheldForIPhone false, handheld media type is preserved'
 		) );
 	}
 }
