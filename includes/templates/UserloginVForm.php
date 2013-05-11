@@ -190,6 +190,7 @@ class UserloginTemplateVForm extends BaseTemplate {
 <?php if ( $this->haveData( 'token' ) ) { ?><input type="hidden" name="wpLoginToken" value="<?php $this->text( 'token' ); ?>" /><?php } ?>
 </form>
 </div>
+<div id="mw-userlogin-end"><?php echo $this->getMsg( 'userlogin-end' ); ?></div>
 </div>
 <?php
 	}

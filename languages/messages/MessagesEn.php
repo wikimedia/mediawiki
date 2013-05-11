@@ -1201,6 +1201,8 @@ To prevent abuse, only one password reset email will be sent per {{PLURAL:$1|hou
 'signupstart'                  => '{{int:loginstart}}', # do not translate or duplicate this message to other languages
 'signupend'                    => '{{int:loginend}}', # do not translate or duplicate this message to other languages
 'signupend-https'              => '', # do not translate or duplicate this message to other languages
+'userlogin-end'                => '', # do not translate or duplicate this message to other languages
+'createacct-end'               => '', # do not translate or duplicate this message to other languages
 'mailerror'                    => 'Error sending mail: $1',
 'acct_creation_throttle_hit'   => 'Visitors to this wiki using your IP address have created {{PLURAL:$1|1 account|$1 accounts}} in the last day, which is the maximum allowed in this time period.
 As a result, visitors using this IP address cannot create any more accounts at the moment.',

@@ -282,6 +282,7 @@ class UsercreateTemplateVForm extends BaseTemplate {
 	?>
 	</div>
 </div>
+<div id="mw-createacct-end"><?php echo $this->getMsg( 'createacct-end' ); ?></div>
 </div>
 <?php
 
