@@ -164,7 +164,6 @@ class User {
 		'upload_by_url',
 		'userrights',
 		'userrights-interwiki',
-		'writeapi',
 	);
 	/**
 	 * String Cached results of getAllRights()

@@ -26,7 +26,7 @@ class UploadFromUrlTest extends ApiTestCase {
 		session_write_close();
 
 		$req = new FauxRequest( $params, true, $_SESSION );
-		$module = new ApiMain( $req, true );
+		$module = new ApiMain( $req );
 		$module->execute();
 
 		wfSetupSession( $sessionId );

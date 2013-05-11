@@ -3882,7 +3882,6 @@ $wgGroupPermissions['*']['read'] = true;
 $wgGroupPermissions['*']['edit'] = true;
 $wgGroupPermissions['*']['createpage'] = true;
 $wgGroupPermissions['*']['createtalk'] = true;
-$wgGroupPermissions['*']['writeapi'] = true;
 #$wgGroupPermissions['*']['patrolmarks'] = false; // let anons see what was patrolled
 
 // Implicit group for all logged-in accounts
@@ -3894,7 +3893,6 @@ $wgGroupPermissions['user']['read'] = true;
 $wgGroupPermissions['user']['edit'] = true;
 $wgGroupPermissions['user']['createpage'] = true;
 $wgGroupPermissions['user']['createtalk'] = true;
-$wgGroupPermissions['user']['writeapi'] = true;
 $wgGroupPermissions['user']['upload'] = true;
 $wgGroupPermissions['user']['reupload'] = true;
 $wgGroupPermissions['user']['reupload-shared'] = true;
@@ -3913,7 +3911,6 @@ $wgGroupPermissions['bot']['nominornewtalk'] = true;
 $wgGroupPermissions['bot']['autopatrol'] = true;
 $wgGroupPermissions['bot']['suppressredirect'] = true;
 $wgGroupPermissions['bot']['apihighlimits'] = true;
-$wgGroupPermissions['bot']['writeapi'] = true;
 #$wgGroupPermissions['bot']['editprotected'] = true; // can edit all protected pages without cascade protection enabled
 
 // Most extra permission abilities go to this group
@@ -5924,21 +5921,6 @@ $wgExemptFromUserRobotsControl = null;
  */
 
 /**
- * Enable the MediaWiki API for convenient access to
- * machine-readable data via api.php
- *
- * See http://www.mediawiki.org/wiki/API
- */
-$wgEnableAPI = true;
-
-/**
- * Allow the API to be used to perform write operations
- * (page edits, rollback, etc.) when an authorised user
- * accesses it
- */
-$wgEnableWriteAPI = true;
-
-/**
  *
  *     WARNING: SECURITY THREAT - debug use only
  *
@@ -6023,7 +6005,7 @@ $wgAjaxWatch = true;
 $wgAjaxUploadDestCheck = true;
 
 /**
- * Enable previewing licences via AJAX. Also requires $wgEnableAPI to be true.
+ * Enable previewing licenses via AJAX.
  */
 $wgAjaxLicensePreview = true;
 

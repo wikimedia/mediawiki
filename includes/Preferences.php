@@ -877,7 +877,7 @@ class Preferences {
 	 * @param $defaultPreferences
 	 */
 	static function watchlistPreferences( $user, IContextSource $context, &$defaultPreferences ) {
-		global $wgUseRCPatrol, $wgEnableAPI, $wgRCMaxAge;
+		global $wgUseRCPatrol, $wgRCMaxAge;
 
 		$watchlistdaysMax = ceil( $wgRCMaxAge / ( 3600 * 24 ) );
 
@@ -938,18 +938,16 @@ class Preferences {
 			);
 		}
 
-		if ( $wgEnableAPI ) {
-			# Some random gibberish as a proposed default
-			// @todo Fixme: this should use CryptRand but we may not want to read urandom on every view
-			$hash = sha1( mt_rand() . microtime( true ) );
+		# Some random gibberish as a proposed default
+		// @todo Fixme: this should use CryptRand but we may not want to read urandom on every view
+		$hash = sha1( mt_rand() . microtime( true ) );
 
-			$defaultPreferences['watchlisttoken'] = array(
-				'type' => 'text',
-				'section' => 'watchlist/advancedwatchlist',
-				'label-message' => 'prefs-watchlist-token',
-				'help' => $context->msg( 'prefs-help-watchlist-token', $hash )->escaped()
-			);
-		}
+		$defaultPreferences['watchlisttoken'] = array(
+			'type' => 'text',
+			'section' => 'watchlist/advancedwatchlist',
+			'label-message' => 'prefs-watchlist-token',
+			'help' => $context->msg( 'prefs-help-watchlist-token', $hash )->escaped()
+		);
 
 		$watchTypes = array(
 			'edit' => 'watchdefault',

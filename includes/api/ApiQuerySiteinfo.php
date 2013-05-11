@@ -194,9 +194,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			$data['readonly'] = '';
 			$data['readonlyreason'] = wfReadOnlyReason();
 		}
-		if ( $GLOBALS['wgEnableWriteAPI'] ) {
-			$data['writeapi'] = '';
-		}
+		$data['writeapi'] = '';
 
 		$tz = $GLOBALS['wgLocaltimezone'];
 		$offset = $GLOBALS['wgLocalTZoffset'];
