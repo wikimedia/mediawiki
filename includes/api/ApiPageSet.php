@@ -1116,7 +1116,8 @@ class ApiPageSet extends ApiBase {
 			'generator' => array( 'Get the list of pages to work on by executing the specified query module.',
 				'NOTE: generator parameter names must be prefixed with a \'g\', see examples' ),
 			'redirects' => 'Automatically resolve redirects',
-			'converttitles' => array( 'Convert titles to other variants if necessary. Only works if the wiki\'s content language supports variant conversion.',
+			'converttitles' => array( 'Convert titles to other variants if necessary.' . 
+						'Only works if the wiki\'s content language supports variant conversion.',
 				'Languages that support variant conversion include ' . implode( ', ', LanguageConverter::$languagesWithVariants ) ),
 		);
 	}

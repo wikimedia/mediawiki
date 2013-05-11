@@ -114,6 +114,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			case self::EDIT_NORMAL:
 			default:
 				$out->setPageTitle( $this->msg( 'watchlistedit-normal-title' ) );
+				$out->addModules( 'mediawiki.special.editWatchlist' );
 				$form = $this->getNormalForm();
 				if ( $form->show() ) {
 					$out->addHTML( $this->successMessage );
@@ -199,8 +200,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 				return false;
 			}
 
-			$this->successMessage .= ' ' . $this->msg( 'watchlistedit-raw-removed' )
-				->numParams( count( $current ) )->parse();
+			$this->successMessage .= ' ' . $this->msg( 'watchlistedit-raw-removed' )->numParams( count( $current ) )->parse();
 			$this->showTitles( $current, $this->successMessage );
 		}
 
@@ -367,7 +367,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			$this->badItems[] = array( $title, $namespace, $dbKey );
 		}
 
-		return (bool)$title;
+		return (bool) $title;
 	}
 
 	/**
@@ -614,7 +614,8 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		}
 
 		wfRunHooks( 'WatchlistEditorBuildRemoveLine', array( &$tools, $title, $title->isRedirect(), $this->getSkin() ) );
-		return '<span class="watchlist-item">' . $link . '</span> ' . $this->msg( 'parentheses')->rawParams( $this->getLanguage()->pipeList( $tools ) )->parse();
+		return '<span class="watchlist-item">' . $link . '</span> ' .
+			$this->msg( 'parentheses')->rawParams( $this->getLanguage()->pipeList( $tools ) )->parse();
 	}
 
 	/**
