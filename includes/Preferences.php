@@ -1476,7 +1476,7 @@ class Preferences {
 	}
 
 	/**
-	 * @deprecated in 1.19; will be removed in 1.20.
+	 * @deprecated in 1.19
 	 * @param $user User
 	 * @return array
 	 */

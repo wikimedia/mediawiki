@@ -2242,7 +2242,7 @@ class Title {
 	 * Protect css subpages of user pages: can $wgUser edit
 	 * this page?
 	 *
-	 * @deprecated in 1.19; will be removed in 1.20. Use getUserPermissionsErrors() instead.
+	 * @deprecated in 1.19; use getUserPermissionsErrors() instead.
 	 * @return Bool
 	 */
 	public function userCanEditCssSubpage() {
@@ -2256,7 +2256,7 @@ class Title {
 	 * Protect js subpages of user pages: can $wgUser edit
 	 * this page?
 	 *
-	 * @deprecated in 1.19; will be removed in 1.20. Use getUserPermissionsErrors() instead.
+	 * @deprecated in 1.19; use getUserPermissionsErrors() instead.
 	 * @return Bool
 	 */
 	public function userCanEditJsSubpage() {
@@ -2349,7 +2349,7 @@ class Title {
 	/**
 	 * Update the title protection status
 	 *
-	 * @deprecated in 1.19; will be removed in 1.20. Use WikiPage::doUpdateRestrictions() instead.
+	 * @deprecated in 1.19; use WikiPage::doUpdateRestrictions() instead.
 	 * @param $create_perm String Permission required for creation
 	 * @param string $reason Reason for protection
 	 * @param string $expiry Expiry timestamp
