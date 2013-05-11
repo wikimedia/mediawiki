@@ -191,6 +191,7 @@ class CopyFileBackend extends Maintenance {
 			if ( !$fsFile ) {
 				if ( $src->fileExists( array( 'src' => $srcPath ) ) === false ) {
 					$this->error( "File '$srcPath' was listed be must have been deleted." );
+					continue;
 				} else {
 					$this->error( "Could not get local copy of $srcPath.", 1 ); // die
 				}
