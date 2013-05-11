@@ -3595,7 +3595,7 @@ $templates
 	 * this stylesheet
 	 */
 	public static function transformCssMedia( $media ) {
-		global $wgRequest, $wgHandheldForIPhone;
+		global $wgRequest;
 
 		// http://www.w3.org/TR/css3-mediaqueries/#syntax
 		$screenMediaQueryRegex = '/^(?:only\s+)?screen\b/i';
@@ -3624,18 +3624,6 @@ $templates
 						return null;
 					}
 				}
-			}
-		}
-
-		// Expand longer media queries as iPhone doesn't grok 'handheld'
-		if ( $wgHandheldForIPhone ) {
-			$mediaAliases = array(
-				'screen' => 'screen and (min-device-width: 481px)',
-				'handheld' => 'handheld, only screen and (max-device-width: 480px)',
-			);
-
-			if ( isset( $mediaAliases[$media] ) ) {
-				$media = $mediaAliases[$media];
 			}
 		}
 

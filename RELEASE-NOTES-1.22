@@ -24,6 +24,7 @@ production.
 * $wgXhtmlDefaultNamespace is no longer used by core. Setting it will no longer change the
   xmlns used by MediaWiki. Reliance on this variable by extensions is deprecated.
 * $wgHandheldStyle was removed.
+* $wgHandheldForIPhone was removed.
 
 === New features in 1.22 ===
 * (bug 44525) mediawiki.jqueryMsg can now parse (whitelisted) HTML elements and attributes.
