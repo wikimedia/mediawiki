@@ -61,6 +61,10 @@ changes to languages because of Bugzilla reports.
 * mediawiki.util.$content no longer supports old versions of the Vector,
   Monobook, Modern and CologneBlue skins that don't yet implement the "mw-body"
   and/or "mw-body-primary" class name in their html.
+* BREAKING CHANGE: Skins built for MediaWiki 1.15 and earlier that do no use the
+  "headelement" tpl key are no longer supported. Setting $useHeadElement = false;
+  is no longer supported and will not cause old keys like "headlinks",
+  "skinnameclass", etc. to be defined.
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
