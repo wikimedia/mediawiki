@@ -597,6 +597,7 @@ class SkinTemplate extends Skin {
 				'text' => $this->username,
 				'href' => &$this->userpageUrlDetails['href'],
 				'class' => $this->userpageUrlDetails['exists'] ? false : 'new',
+				'exists' => $this->userpageUrlDetails['exists'],
 				'active' => ( $this->userpageUrlDetails['href'] == $pageurl ),
 				'dir' => 'auto'
 			);
@@ -682,6 +683,7 @@ class SkinTemplate extends Skin {
 					'text' => $this->username,
 					'href' => $href,
 					'class' => $this->userpageUrlDetails['exists'] ? false : 'new',
+					'exists' => $this->userpageUrlDetails['exists'],
 					'active' => ( $pageurl == $href )
 				);
 				$usertalkUrlDetails = $this->makeTalkUrlDetails( $this->userpage );
@@ -690,6 +692,7 @@ class SkinTemplate extends Skin {
 					'text' => $this->msg( 'anontalk' )->text(),
 					'href' => $href,
 					'class' => $usertalkUrlDetails['exists'] ? false : 'new',
+					'exists' => $usertalkUrlDetails['exists'],
 					'active' => ( $pageurl == $href )
 				);
 			}
@@ -722,6 +725,7 @@ class SkinTemplate extends Skin {
 		if ( $selected ) {
 			$classes[] = 'selected';
 		}
+		$exists = true;
 		if ( $checkEdit && !$title->isKnown() ) {
 			$classes[] = 'new';
 			if ( $query !== '' ) {
@@ -729,6 +733,7 @@ class SkinTemplate extends Skin {
 			} else {
 				$query = 'action=edit&redlink=1';
 			}
+			$exists = false;
 		}
 
 		// wfMessageFallback will nicely accept $message as an array of fallbacks
@@ -757,6 +762,7 @@ class SkinTemplate extends Skin {
 			'class' => implode( ' ', $classes ),
 			'text' => $text,
 			'href' => $title->getLocalURL( $query ),
+			'exists' => $exists,
 			'primary' => true );
 	}
 
@@ -1516,7 +1522,7 @@ abstract class BaseTemplate extends QuickTemplate {
 			if ( isset( $plink['active'] ) ) {
 				$ptool['active'] = $plink['active'];
 			}
-			foreach ( array( 'href', 'class', 'text' ) as $k ) {
+			foreach ( array( 'href', 'class', 'text', 'exists' ) as $k ) {
 				if ( isset( $plink[$k] ) ) {
 					$ptool['links'][0][$k] = $plink[$k];
 				}
@@ -1715,7 +1721,7 @@ abstract class BaseTemplate extends QuickTemplate {
 
 		if ( isset( $item['href'] ) || isset( $options['link-fallback'] ) ) {
 			$attrs = $item;
-			foreach ( array( 'single-id', 'text', 'msg', 'tooltiponly' ) as $k ) {
+			foreach ( array( 'single-id', 'text', 'msg', 'tooltiponly', 'exists' ) as $k ) {
 				unset( $attrs[$k] );
 			}
 
@@ -1723,13 +1729,14 @@ abstract class BaseTemplate extends QuickTemplate {
 				$item['single-id'] = $item['id'];
 			}
 			if ( isset( $item['single-id'] ) ) {
+				$tooltipOption = ( isset( $item['exists'] ) && $item['exists'] == false ) ? 'redlink' : null;
 				if ( isset( $item['tooltiponly'] ) && $item['tooltiponly'] ) {
-					$title = Linker::titleAttrib( $item['single-id'] );
+					$title = Linker::titleAttrib( $item['single-id'], $tooltipOption );
 					if ( $title !== false ) {
 						$attrs['title'] = $title;
 					}
 				} else {
-					$tip = Linker::tooltipAndAccesskeyAttribs( $item['single-id'] );
+					$tip = Linker::tooltipAndAccesskeyAttribs( $item['single-id'], $tooltipOption );
 					if ( isset( $tip['title'] ) && $tip['title'] !== false ) {
 						$attrs['title'] = $tip['title'];
 					}

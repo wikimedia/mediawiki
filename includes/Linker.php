@@ -2074,13 +2074,15 @@ class Linker {
 	 * element than the id, for reverse-compatibility, etc.)
 	 *
 	 * @param string $name id of the element, minus prefixes.
-	 * @param $options Mixed: null or the string 'withaccess' to add an access-
-	 *   key hint
+	 * @param $options Array: 'withaccess': add an access-key hint
+	 *                        'redlink': add (page does not exist)
 	 * @return String: contents of the title attribute (which you must HTML-
 	 *   escape), or false for no title attribute
 	 */
 	public static function titleAttrib( $name, $options = null ) {
 		wfProfileIn( __METHOD__ );
+
+		$options = (array)$options;
 
 		$message = wfMessage( "tooltip-$name" );
 
@@ -2096,7 +2098,16 @@ class Linker {
 			}
 		}
 
-		if ( $options == 'withaccess' ) {
+		if ( in_array( 'redlink', $options ) ) {
+			if ( $tooltip !== false || $tooltip !== '' ) {
+				$message = wfMessage( "red-link-title", $tooltip );
+				if ( !$message->isDisabled() ) {
+					$tooltip = $message->text();
+				}
+			}
+		}
+
+		if ( in_array( 'withaccess', $options ) ) {
 			$accesskey = self::accesskey( $name );
 			if ( $accesskey !== false ) {
 				if ( $tooltip === false || $tooltip === '' ) {
@@ -2387,12 +2398,14 @@ class Linker {
 	 * Returns the attributes for the tooltip and access key.
 	 * @return array
 	 */
-	public static function tooltipAndAccesskeyAttribs( $name ) {
+	public static function tooltipAndAccesskeyAttribs( $name, $options = null ) {
+		$options = (array)$options;
+		$options[] = 'withaccess';
 		# @todo FIXME: If Sanitizer::expandAttributes() treated "false" as "output
 		# no attribute" instead of "output '' as value for attribute", this
 		# would be three lines.
 		$attribs = array(
-			'title' => self::titleAttrib( $name, 'withaccess' ),
+			'title' => self::titleAttrib( $name, $options ),
 			'accesskey' => self::accesskey( $name )
 		);
 		if ( $attribs['title'] === false ) {
