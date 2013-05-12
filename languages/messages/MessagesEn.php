@@ -397,6 +397,7 @@ $specialPageAliases = array(
 	'CreateAccount'             => array( 'CreateAccount' ),
 	'Deadendpages'              => array( 'DeadendPages' ),
 	'DeletedContributions'      => array( 'DeletedContributions' ),
+	'DiffLink'                  => array( 'DiffLink' ),
 	'Disambiguations'           => array( 'Disambiguations' ),
 	'DoubleRedirects'           => array( 'DoubleRedirects' ),
 	'EditWatchlist'             => array( 'EditWatchlist' ),

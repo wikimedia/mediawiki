@@ -1395,3 +1395,23 @@ class SpecialPermanentLink extends RedirectSpecialPage {
 		return true;
 	}
 }
+
+/**
+ * Redirect from Special:DiffLink/### to index.php?diff=###
+ */
+class SpecialDiffLink extends RedirectSpecialPage {
+	function __construct() {
+		parent::__construct( 'DiffLink' );
+		$this->mAllowedRedirectParams = array();
+	}
+
+	function getRedirect( $subpage ) {
+		$subpage = intval( $subpage );
+		if ( $subpage === 0 ) {
+			# throw an error page when no subpage was given
+			throw new ErrorPageError( 'nopagetitle', 'nopagetext' );
+		}
+		$this->mAddedRedirectParams['diff'] = $subpage;
+		return true;
+	}
+}
