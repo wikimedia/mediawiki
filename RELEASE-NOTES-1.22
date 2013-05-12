@@ -209,6 +209,10 @@ changes to languages because of Bugzilla reports.
 * (bug 40785) mediawiki.legacy.ajax has been marked as deprecated. The following
   properties now emit mw.log.warn when accessed: sajax_debug, sajax_init_object,
   sajax_do_call and wfSupportsAjax.
+* BREAKING CHANGE: Old skins built for MediaWiki 1.15 and earlier which do not
+  use the headelement tpl key are no longer supported. MediaWiki will no longer
+  output keys like headlinks, skinnameclass, etc... when a skin does not define
+  $useHeadElement = true;
 
 == Compatibility ==
 
