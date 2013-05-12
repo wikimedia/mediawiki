@@ -1705,7 +1705,7 @@ $revision: New Revision of the article
 page is written. Defaults to the wiki content language ($wgContLang).
 $title: Title object
 &$pageLang: the page content language (either an object or a language code)
-$wgLang: the user language
+$lang: the user language
 
 'PageContentSave': Before an article is saved.
 $wikiPage: the WikiPage (object) being saved
@@ -1747,6 +1747,14 @@ $queryInfo: the query parameters
 which depends on user options should install this hook and append its values to
 the key.
 $hash: reference to a hash key string which can be modified
+
+'PageTitleLanguage': Allows changing the language in which the title of a
+page is written. Defaults to the page content language which can be overridden
+by the PageContentLanguage hook. This hook is for situations where the title's
+language is different than that of the content.
+$title: Title object
+&$pageLang: the page title language (either an object or a language code)
+$lang: the user language
 
 'ParserAfterParse': Called from Parser::parse() just after the call to
 Parser::internalParse() returns.

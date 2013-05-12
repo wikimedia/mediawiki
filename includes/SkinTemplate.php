@@ -247,10 +247,6 @@ class SkinTemplate extends Skin {
 		wfProfileOut( __METHOD__ . '-stuff-head' );
 
 		wfProfileIn( __METHOD__ . '-stuff2' );
-		$tpl->set( 'title', $out->getPageTitle() );
-		$tpl->set( 'pagetitle', $out->getHTMLTitle() );
-		$tpl->set( 'displaytitle', $out->mPageLinkTitle );
-
 		$tpl->setRef( 'thispage', $this->thispage );
 		$tpl->setRef( 'titleprefixeddbkey', $this->thispage );
 		$tpl->set( 'titletext', $title->getText() );
@@ -435,19 +431,38 @@ class SkinTemplate extends Skin {
 
 		# An ID that includes the actual body text; without categories, contentSub, ...
 		$realBodyAttribs = array( 'id' => 'mw-content-text' );
+		$realTitleAttribs = array();
+
+		// @fixme We shouldn't be using these methods on title. Page language can potentially
+		// depend on content of the revision being displayed. But these methods use the most
+		// recent revision of the page. Trying to guess whether the user is on a page view or
+		// something like an action is also really hacky. Defining the language of what we are
+		// outputting to the user should be the job of whatever class is rendering the view
+		// we're looking at, whether it's an article, action, or special page.
+		$pageLang = $title->getPageViewLanguage( $this->getContext() );
+		$pageTitleLang = $title->getPageTitleLanguage( $this->getContext() );
 
 		# Add a mw-content-ltr/rtl class to be able to style based on text direction
 		# when the content is different from the UI language, i.e.:
 		# not for special pages or file pages AND only when viewing AND if the page exists
 		# (or is in MW namespace, because that has default content)
-		if ( !in_array( $title->getNamespace(), array( NS_SPECIAL, NS_FILE ) ) &&
+		if ( !$title->inNamespaces( NS_SPECIAL, NS_FILE ) &&
 			Action::getActionName( $this ) === 'view' &&
-			( $title->exists() || $title->getNamespace() == NS_MEDIAWIKI ) ) {
-			$pageLang = $title->getPageViewLanguage();
+			( $title->exists() || $title->inNamespace( NS_MEDIAWIKI ) ) ) {
 			$realBodyAttribs['lang'] = $pageLang->getHtmlCode();
 			$realBodyAttribs['dir'] = $pageLang->getDir();
 			$realBodyAttribs['class'] = 'mw-content-' . $pageLang->getDir();
+			$realTitleAttribs['lang'] = $pageTitleLang->getHtmlCode();
+			$realTitleAttribs['dir'] = $pageTitleLang->getDir();
 		}
+
+		// Override the directionality of the title with auto until we properly fix 32403
+		$realTitleAttribs['dir'] = 'auto';
+
+		$titleHtml = Html::rawElement( 'span', $realTitleAttribs, $out->getPageTitle() );
+		$tpl->set( 'title', $titleHtml );
+		$tpl->set( 'pagetitle', $out->getHTMLTitle() );
+		$tpl->set( 'displaytitle', $out->mPageLinkTitle );
 
 		$out->mBodytext = Html::rawElement( 'div', $realBodyAttribs, $out->mBodytext );
 		$tpl->setRef( 'bodytext', $out->mBodytext );
