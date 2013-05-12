@@ -338,17 +338,6 @@ changes to languages because of Bugzilla reports.
   - ShowStats -> ShowSiteStats.
 * BREAKING CHANGE: (bug 38244) Removed the mediawiki.api.titleblacklist module
   and moved it to the TitleBlacklist extension.
-* BREAKING CHANGE: Implementation of MediaWiki's JS and JSON value encoding
-  has changed:
-** MediaWiki no longer supports PHP installations in which the native JSON
-   extension is missing or disabled.
-** XmlJsCode objects can no longer be nested inside objects or arrays.
-   (For Xml::encodeJsCall(), this individually applies to each argument.)
-** The sets of characters escaped by default, along with the precise escape
-   sequences used, have changed (except for the Xml::escapeJsString()
-   function, which is now deprecated).
-* BREAKING CHANGE: The Services_JSON class has been removed. If necessary,
-  be sure to upgrade affected extensions at the same time (e.g. Collection).
 
 == Compatibility ==
 
