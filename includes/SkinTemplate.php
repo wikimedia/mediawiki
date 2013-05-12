@@ -329,13 +329,12 @@ class SkinTemplate extends Skin {
 		$tpl->setRef( 'userpageurl', $this->userpageUrlDetails['href'] );
 		$tpl->set( 'userlang', $userLangCode );
 
-		$tpl->set( 'pageviewlang', $title->getPageViewLanguage()->getHtmlCode() );
-
 		// Users can have their language set differently than the
 		// content of the wiki. For these users, tell the web browser
 		// that interface elements are in a different language.
 		$tpl->set( 'userlangattributes', '' );
 		$tpl->set( 'specialpageattributes', '' ); # obsolete
+		$tpl->set( 'pageviewlangattributes', '' );
 
 		if ( $userLangCode !== $wgContLang->getHtmlCode() || $userLangDir !== $wgContLang->getDir() ) {
 			$escUserlang = htmlspecialchars( $userLangCode );
@@ -345,6 +344,11 @@ class SkinTemplate extends Skin {
 			$attrs = " lang=\"$escUserlang\" dir=\"$escUserdir\"";
 			$tpl->set( 'userlangattributes', $attrs );
 		}
+
+		$pageviewlang = $title->getPageViewLanguage();
+		$escPageviewlang = $pageviewlang->getHtmlCode();
+		$escPageviewdir = $pageviewlang->getDir();
+		$tpl->set( 'pageviewlangattributes', " lang=\"$escPageviewlang\" dir=\"$escPageviewdir\"" );
 
 		wfProfileOut( __METHOD__ . '-stuff2' );
 
