@@ -30,7 +30,10 @@ class PreferencesTest extends MediaWikiTestCase {
 	protected function setUp() {
 		parent::setUp();
 
-		$this->setMwGlobals( 'wgEnableEmail', true );
+		$this->setMwGlobals( array(
+			'wgEnableEmail' => true,
+			'wgEmailAuthentication' => true,
+		) );
 	}
 
 	/**
