@@ -135,12 +135,17 @@ class ContentHandlerTest extends MediaWikiTestCase {
 		}
 	}
 
-	public static function dataGetPageLanguage() {
+	public static function dataGetPageLanguages() {
 		global $wgLanguageCode;
 
+		// Title, page lang, page view lang, title lang
+		// For brevity lang codes that are omitted or null will fall back to the prev arg
 		return [
 			[ "Main", $wgLanguageCode ],
 			[ "Dummy:Foo", $wgLanguageCode ],
+			[ "MediaWiki:Version", $wgLanguageCode ],
+			[ "MediaWiki:Version/en", 'en', null, 'en' ],
+			[ "MediaWiki:Version/fr", 'fr', null, 'en' ],
 			[ "MediaWiki:common.js", 'en' ],
 			[ "User:Foo/common.js", 'en' ],
 			[ "MediaWiki:common.css", 'en' ],
@@ -152,21 +157,42 @@ class ContentHandlerTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @dataProvider dataGetPageLanguage
+	 * @dataProvider dataGetPageLanguages
 	 * @covers ContentHandler::getPageLanguage
 	 */
-	public function testGetPageLanguage( $title, $expected ) {
+	public function testGetPageLanguages( $title, $pageLang, $pageViewLang = null,
+		$pageTitleLang = null
+	) {
 		if ( is_string( $title ) ) {
 			$title = Title::newFromText( $title );
 			LinkCache::singleton()->addBadLinkObj( $title );
 		}
 
-		$expected = wfGetLangObj( $expected );
+		if ( is_null( $pageViewLang ) ) {
+			$pageViewLang = $pageLang;
+		}
+		if ( is_null( $pageTitleLang ) ) {
+			$pageTitleLang = $pageViewLang;
+		}
+
+		$pageLang = wfGetLangObj( $pageLang );
+		$pageViewLang = wfGetLangObj( $pageViewLang );
+		$pageTitleLang = wfGetLangObj( $pageTitleLang );
 
 		$handler = ContentHandler::getForTitle( $title );
-		$lang = $handler->getPageLanguage( $title );
 
-		$this->assertEquals( $expected->getCode(), $lang->getCode() );
+		$this->assertEquals(
+			$pageLang->getCode(),
+			$handler->getPageLanguage( $title )->getCode()
+		);
+		$this->assertEquals(
+			$pageViewLang->getCode(),
+			$handler->getPageViewLanguage( $title )->getCode()
+		);
+		$this->assertEquals(
+			$pageTitleLang->getCode(),
+			$handler->getPageTitleLanguage( $title )->getCode()
+		);
 	}
 
 	public static function dataGetContentText_Null() {
