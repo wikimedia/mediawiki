@@ -32,7 +32,6 @@ if ( !defined( 'MEDIAWIKI' ) ) {
  * @ingroup Skins
  */
 class SkinVector extends SkinTemplate {
-	public $useHeadElement = true;
 	public $skinname = 'vector';
 	public $stylename = 'vector';
 	public $template = 'VectorTemplate';

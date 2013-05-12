@@ -39,7 +39,6 @@ class SkinMonoBook extends SkinTemplate {
 	public $skinname = 'monobook';
 	public $stylename = 'monobook';
 	public $template = 'MonoBookTemplate';
-	public $useHeadElement = true;
 
 	/**
 	 * @param OutputPage $out
