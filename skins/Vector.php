@@ -127,12 +127,13 @@ class VectorTemplate extends BaseTemplate {
 						' class="' . htmlspecialchars( $link['class'] ) . '"';
 					unset( $nav[$section][$key]['class'] );
 				}
+				$tooltipoption = ( isset( $link['exists'] ) && $link['exists'] == false ) ? 'redlink' : null;
 				if ( isset( $link['tooltiponly'] ) && $link['tooltiponly'] ) {
 					$nav[$section][$key]['key'] =
-						Linker::tooltip( $xmlID );
+						Linker::tooltip( $xmlID, $tooltipoption );
 				} else {
 					$nav[$section][$key]['key'] =
-						Xml::expandAttributes( Linker::tooltipAndAccesskeyAttribs( $xmlID ) );
+						Xml::expandAttributes( Linker::tooltipAndAccesskeyAttribs( $xmlID, $tooltipoption ) );
 				}
 			}
 		}
