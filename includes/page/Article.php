@@ -1437,7 +1437,7 @@ class Article implements Page {
 	 * @deprecated since 1.30
 	 */
 	public function viewRedirect( $target, $appendSubtitle = true, $forceKnown = false ) {
-		$lang = $this->getTitle()->getPageLanguage();
+		$lang = $this->getTitle()->getPageViewLanguage();
 		$out = $this->getContext()->getOutput();
 		if ( $appendSubtitle ) {
 			$out->addSubtitle( wfMessage( 'redirectpagesub' ) );

@@ -648,11 +648,15 @@ abstract class ContentHandler {
 	 *
 	 * @param Title $title The page to determine the language for.
 	 * @param Content $content The page's content, if you have it handy, to avoid reloading it.
+	 * @param IContextSource $context The context to use in case we're using something like the
+	 *   user's language.
 	 *
 	 * @return Language The page's language
 	 */
-	public function getPageLanguage( Title $title, Content $content = null ) {
-		global $wgContLang, $wgLang;
+	public function getPageLanguage( Title $title, Content $content = null,
+		IContextSource $context = null
+	) {
+		global $wgContLang;
 		$pageLang = $wgContLang;
 
 		if ( $title->getNamespace() == NS_MEDIAWIKI ) {
@@ -661,7 +665,10 @@ abstract class ContentHandler {
 			$pageLang = Language::factory( $lang );
 		}
 
-		Hooks::run( 'PageContentLanguage', [ $title, &$pageLang, $wgLang ] );
+		if ( is_null( $context ) ) {
+			$context = RequestContext::getMain();
+		}
+		Hooks::run( 'PageContentLanguage', [ $title, &$pageLang, $context->getLanguage() ] );
 
 		return wfGetLangObj( $pageLang );
 	}
@@ -683,11 +690,15 @@ abstract class ContentHandler {
 	 *
 	 * @param Title $title The page to determine the language for.
 	 * @param Content $content The page's content, if you have it handy, to avoid reloading it.
+	 * @param IContextSource $context The context to use in case we're using something like the
+	 *   user's language.
 	 *
 	 * @return Language The page's language for viewing
 	 */
-	public function getPageViewLanguage( Title $title, Content $content = null ) {
-		$pageLang = $this->getPageLanguage( $title, $content );
+	public function getPageViewLanguage( Title $title, Content $content = null,
+		IContextSource $context = null
+	) {
+		$pageLang = $this->getPageLanguage( $title, $content, $context );
 
 		if ( $title->getNamespace() !== NS_MEDIAWIKI ) {
 			// If the user chooses a variant, the content is actually
@@ -698,6 +709,43 @@ abstract class ContentHandler {
 			}
 		}
 
+		return $pageLang;
+	}
+
+	/**
+	 * Get the language in which the title of this page is written when
+	 * viewed by user. Defaults to $this->getPageViewLanguage().
+	 *
+	 * This default implementation just returns $this->getPageViewLanguage( $title, $content ).
+	 *
+	 * Note that the page title's view language is not cacheable, since it depends on user settings.
+	 *
+	 * Also note that the page title's language may or may not depend on the actual content of the
+	 * page, that is, this method may load the content in order to determine the language.
+	 *
+	 * @since 1.31
+	 *
+	 * @param Title $title the page to determine the language title for.
+	 * @param Content|null $content the page's content, if you have it handy, to avoid reloading it.
+	 * @param IContextSource $context The context to use in case we're using something like the
+	 *   user's language.
+	 *
+	 * @return Language the page title's language for viewing
+	 */
+	public function getPageTitleLanguage( Title $title, Content $content = null,
+		IContextSource $context = null
+	) {
+		if ( is_null( $context ) ) {
+			$context = RequestContext::getMain();
+		}
+		$pageLang = $this->getPageViewLanguage( $title, $content, $context );
+
+		if ( $title->inNamespace( NS_MEDIAWIKI ) ) {
+			// MediaWiki: namespace titles are always in English
+			$pageLang = Language::factory( 'en' );
+		}
+
+		wfRunHooks( 'PageTitleLanguage', [ $title, &$pageLang, $context->getLanguage() ] );
 		return $pageLang;
 	}
 
