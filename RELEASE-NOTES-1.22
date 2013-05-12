@@ -165,6 +165,10 @@ changes to languages because of Bugzilla reports.
   to redirect through Special:Redirect.
 * Monobook: Removed the old conditional stylesheets for Opera 6, 7 and 9.
 * Support for XHTML 1.0 has been removed. MediaWiki now only outputs (X)HTML5.
+* BREAKING CHANGE: Old skins built for MediaWiki 1.15 and earlier which do not
+  use the headelement tpl key are no longer supported. MediaWiki will no longer
+  output keys like headlinks, skinnameclass, etc... when a skin does not define
+  $useHeadElement = true;
 
 == Compatibility ==
 
