@@ -490,7 +490,8 @@ class GenerateSitemap extends Maintenance {
 	function fileEntry( $url, $date, $priority ) {
 		return
 			"\t<url>\n" .
-			"\t\t<loc>$url</loc>\n" .
+			// bug 34666: $url may contain bad characters such as ampersands.
+			"\t\t<loc>" . htmlspecialchars( $url ) . "</loc>\n" .
 			"\t\t<lastmod>$date</lastmod>\n" .
 			"\t\t<priority>$priority</priority>\n" .
 			"\t</url>\n";
