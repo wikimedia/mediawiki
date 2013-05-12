@@ -65,6 +65,9 @@ production.
   its #test method when strings are used in the browser map: version '1.10' is
   now correctly considered larger than '1.2'. Using numbers in the version map
   is not affected.
+* [[Special:Diff]] was added, allowing users to create internal links to
+  revision comparison pages using syntax such as [[Special:Diff/12345]],
+  [[Special:Diff/12345/prev]] or [[Special:Diff/12345/98765]].
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent
