@@ -59,6 +59,9 @@ production.
 * Added ApiBeforeMain hook, roughly equivalent to the BeforeInitialize hook:
   it's called after everything is set up but before any major processing
   happens.
+* [[Special:Diff]] was added, allowing users to create internal links to
+  revision comparison pages using syntax such as [[Special:Diff/12345]],
+  [[Special:Diff/12345/prev]] or [[Special:Diff/12345/98765]].
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent
