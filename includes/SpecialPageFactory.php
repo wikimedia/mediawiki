@@ -155,6 +155,7 @@ class SpecialPageFactory {
 
 		// Unlisted / redirects
 		'Blankpage'                 => 'SpecialBlankpage',
+		'Diff'                      => 'SpecialDiff',
 		'Emailuser'                 => 'SpecialEmailUser',
 		'Movepage'                  => 'MovePageForm',
 		'Mycontributions'           => 'SpecialMycontributions',
