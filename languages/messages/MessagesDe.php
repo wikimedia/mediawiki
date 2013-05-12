@@ -13,6 +13,7 @@
  * @author Church of emacs
  * @author DaSch
  * @author Das Schäfchen
+ * @author DerHexer
  * @author Dschwen
  * @author Duesentrieb
  * @author Filzstift
@@ -837,7 +838,7 @@ Vergiss nicht, deine [[Special:Preferences|{{SITENAME}}-Einstellungen]] zu ände
 'createacct-yourpasswordagain-ph' => 'Gib das Passwort erneut ein',
 'remembermypassword' => 'Mit diesem Browser dauerhaft angemeldet bleiben (maximal $1 {{PLURAL:$1|Tag|Tage}})',
 'userlogin-remembermypassword' => 'Angemeldet bleiben',
-'userlogin-signwithsecure' => 'Über den sicheren Server anmelden',
+'userlogin-signwithsecure' => 'Sichere Verbindung verwenden',
 'securelogin-stick-https' => 'Nach dem Anmelden mit HTTPS verbunden bleiben',
 'yourdomainname' => 'Deine Domain:',
 'password-change-forbidden' => 'Du kannst auf diesem Wiki keine Passwörter ändern.',
@@ -858,6 +859,7 @@ Vergiss nicht, deine [[Special:Preferences|{{SITENAME}}-Einstellungen]] zu ände
 'gotaccount' => "Du hast bereits ein Benutzerkonto? '''$1'''.",
 'gotaccountlink' => 'Anmelden',
 'userlogin-resetlink' => 'Die Anmeldedaten vergessen?',
+'userlogin-resetpassword-link' => 'Passwort zurücksetzen',
 'helplogin-url' => 'Help:Anmelden',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Hilfe beim Anmelden]]',
 'createacct-join' => 'Gib unten deine Informationen ein.',
@@ -4133,7 +4135,7 @@ Eine [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie der ''GNU General Public License'']
 'logentry-move-move' => '$1 {{GENDER:$2|verschob}} Seite $3 nach $4',
 'logentry-move-move-noredirect' => '$1 {{GENDER:$2|verschob}} Seite $3 nach $4, ohne dabei eine Weiterleitung anzulegen',
 'logentry-move-move_redir' => '$1 {{GENDER:$2|verschob}} Seite $3 nach $4 und überschrieb dabei eine Weiterleitung',
-'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|verschob}} Seite $3 nach $4 und überschrieb dabei eine Weiterleitung ohne selbst eine Weiterleitung anzulegen',
+'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|verschob}} Seite $3 nach $4 und überschrieb dabei eine Weiterleitung, ohne selbst eine Weiterleitung anzulegen',
 'logentry-patrol-patrol' => '$1 {{GENDER:$2|markierte}} Version $4 von Seite $3 als kontrolliert',
 'logentry-patrol-patrol-auto' => '$1 {{GENDER:$2|markierte}} automatisch Version $4 von Seite $3 als kontrolliert',
 'logentry-newusers-newusers' => 'Benutzerkonto $1 wurde {{GENDER:$2|erstellt}}',

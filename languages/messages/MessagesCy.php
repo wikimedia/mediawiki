@@ -540,7 +540,7 @@ Sylwer y bydd rhai tudalennau yn parhau i ymddangos fel ag yr oeddent pan oeddec
 'createacct-yourpasswordagain-ph' => 'Rhowch eich cyfrinair eto',
 'remembermypassword' => "Y porwr hwn i gofio'r manylion mewngofnodi (am hyd at $1 {{PLURAL:$1||diwrnod|ddiwrnod|diwrnod}})",
 'userlogin-remembermypassword' => "Cadw'r sesiwn yn fyw tan i mi allgofnodi",
-'userlogin-signwithsecure' => 'Mewngofnodi drwy weinydd diogel',
+'userlogin-signwithsecure' => 'Defnyddio cysylltiad diogel',
 'securelogin-stick-https' => "Cadw'r cyswllt â HTTPS ar ôl mewngofnodi",
 'yourdomainname' => 'Eich parth:',
 'password-change-forbidden' => 'Ni allwch newid cyfrineiriau ar y wici hwn.',
@@ -561,6 +561,7 @@ Sylwer y bydd rhai tudalennau yn parhau i ymddangos fel ag yr oeddent pan oeddec
 'gotaccount' => "Oes cyfrif gennych eisoes? '''$1'''.",
 'gotaccountlink' => 'Mewngofnodwch',
 'userlogin-resetlink' => 'Ydych chi wedi anghofio eich manylion mewngofnodi?',
+'userlogin-resetpassword-link' => 'Ailosod eich cyfrinair',
 'helplogin-url' => 'Help:Mewngofnodi',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Cymorth i fewngofnodi]]',
 'createacct-join' => 'Rhowch eich manylion isod',
@@ -3756,6 +3757,7 @@ Dylech fod wedi derbyn [{{SERVER}}{{SCRIPTPATH}}/COPYING gopi o GNU General Publ
 'htmlform-selectorother-other' => 'Arall',
 'htmlform-no' => 'Na/Nac ydw/Na fydd...',
 'htmlform-yes' => 'Ie/Iawn/Ydw/Oes...',
+'htmlform-chosen-placeholder' => 'Dewiswch opsiwn',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 gyda chymorth chwilio yr holl destun',

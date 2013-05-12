@@ -1179,6 +1179,14 @@ $1',
 'listusers-noresult' => 'ܠܐ ܐܫܬܟܚ ܡܦܠܚܢܐ ܚܕ.',
 'listusers-blocked' => '(ܚܪܝܡܐ)',
 
+# Special:ActiveUsers
+'activeusers' => 'ܡܟܬܒܘܬܐ ܕܗܕ̈ܡܐ ܙܪ̄ܝܙܐ',
+'activeusers-count' => '$1 {{PLURAL:$1|ܥܒܕܐ|ܥܒܕ̈ܐ}} ܒ {{PLURAL:$3|ܝܘܡܐ ܐܚܪܝܐ|$3 ܝܘܡܬ̈ܐ ܐܚܪ̈ܝܐ}}',
+'activeusers-from' => 'ܚܘܝ ܡܦܠܚܢ̈ܐ ܕܫܪܐ ܥܡ:',
+'activeusers-hidebots' => 'ܛܫܝ ܒܘܬ̈ܐ (bots)',
+'activeusers-hidesysops' => 'ܛܫܝ ܡܕܒܪ̈ܢܐ',
+'activeusers-noresult' => 'ܠܐ ܐܫܬܟܚ ܡܦܠܚܢ̈ܐ ܐܢܫ̈ܝܢ.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'ܙܕ̈ܩܐ ܕܟܢܘܫܬܐ ܕܡܦܠܚܢ̈ܐ',
 'listgrouprights-group' => 'ܟܢܘܫܬܐ',
@@ -1347,7 +1355,7 @@ $1',
 'blanknamespace' => '(ܪܫܝܬܐ)',
 
 # Contributions
-'contributions' => 'ܫܘܬܦܘ̈ܬܐ ܕܡܦܠܚܢܐ',
+'contributions' => 'ܫܘܬܦܘ̈ܬܐ {{GENDER:$1|ܕܡܦܠܚܢܐ|ܕܡܦܠܚܢܬܐ}}',
 'contributions-title' => 'ܫܘܬܦܘ̈ܬܐ ܕܡܦܠܚܢܐ ܠ$1',
 'mycontris' => 'ܫܘܬܦܘ̈ܬܐ',
 'contribsub2' => 'ܕ $1 ($2)',
@@ -1635,7 +1643,7 @@ $1',
 'metadata-expand' => 'ܚܘܝ ܐܪ̈ܝܟܬܐ ܪ̈ܘܝܚܬܐ',
 'metadata-collapse' => 'ܛܫܝ ܐܪ̈ܝܟܬܐ ܪ̈ܘܝܚܬܐ',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'ܦܬܘܐ',
 'exif-imagelength' => 'ܐܘܪܟܐ',
 'exif-xresolution' => 'ܢܩܕܘܬܐ ܐܘܦܩܝܬܐ',
@@ -1764,11 +1772,6 @@ $1',
 'version-version' => '(ܨܚܚܐ $1)',
 'version-poweredby-others' => 'ܐܚܪ̈ܢܐ',
 'version-software-version' => 'ܨܚܚܐ',
-
-# Special:FilePath
-'filepath' => 'ܫܒܝܠܐ ܕܠܦܦܐ',
-'filepath-page' => 'ܠܦܦܐ',
-'filepath-submit' => 'ܙܠ',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'ܒܨܝ ܥܠ ܠܦܦ̈ܐ ܥܦܝܦ̈ܐ',

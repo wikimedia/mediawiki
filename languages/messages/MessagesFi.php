@@ -732,7 +732,7 @@ Huomaa, että jotkut sivut saattavat näkyä edelleen kuin olisit kirjautunut si
 'createacct-yourpasswordagain-ph' => 'Kirjoita salasana uudelleen',
 'remembermypassword' => 'Muista minut (enintään $1 {{PLURAL:$1|päivä|päivää}})',
 'userlogin-remembermypassword' => 'Pidä minut kirjautuneena',
-'userlogin-signwithsecure' => 'Kirjaudu sisään salatun yhteyden yli',
+'userlogin-signwithsecure' => 'Käytä salattua yhteyttä',
 'securelogin-stick-https' => 'Jatka salatun yhteyden käyttämistä sisäänkirjautumisen jälkeen',
 'yourdomainname' => 'Verkkonimi',
 'password-change-forbidden' => 'Et voi muuttaa salasanoja tässä wikissä.',

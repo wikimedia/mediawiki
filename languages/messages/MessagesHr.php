@@ -978,7 +978,7 @@ Više informacija možete pronaći u [{{fullurl:{{#Special:Log}}/delete|page={{F
 'userpage-userdoesnotexist-view' => 'Suradnički račun "$1" nije registriran.',
 'blocked-notice-logextract' => 'Ovaj suradnik je trenutačno blokiran.
 Posljednja stavka evidencije blokiranja navedena je niže kao napomena:',
-'clearyourcache' => "'''Napomena:''' Nakon snimanja možda ćete trebate očistiti međuspremnik svog preglednika kako biste vidjeli promjene.
+'clearyourcache' => "'''Napomena:''' Nakon snimanja ćete možda trebati očistiti međuspremnik svog preglednika kako biste vidjeli promjene.
 * '''Firefox / Safari:''' držite ''Shift'' i pritisnite ''Reload'', ili pritisnite bilo ''Ctrl-F5'' ili ''Ctrl-R'' (''Command-R'' na Macu)
 * '''Google Chrome:''' pritisnite ''Ctrl-Shift-R'' (''Command-Shift-R'' na Macu)
 * '''Internet Explorer:''' držite ''Ctrl'' i kliknite ''Refresh'', ili pritisnite ''Ctrl-F5''
@@ -2204,6 +2204,15 @@ Podržani {{PLURAL:$2|protokol|protokoli}}: <code>$1</code> (default je http:// 
 'listusers-noresult' => 'Nema takvih suradnika.',
 'listusers-blocked' => '(blokiran)',
 
+# Special:ActiveUsers
+'activeusers' => 'Popis aktivnih suradnika',
+'activeusers-intro' => 'Ovo je popis suradnika koji su napravili neku aktivnost u {{PLURAL:$1|zadnji $1 dan|zadnja $1 dana|zadnjih $1 dana}}.',
+'activeusers-count' => '{{PLURAL:$1|nedavna $1 izmjena|nedavne $1 izmjene|nedavnih $1 izmjena}} u {{PLURAL:$3|posljednji $3 dan|posljednja $3 dana|posljednjih $3 dana}}',
+'activeusers-from' => 'Prikaži suradnike počevši od:',
+'activeusers-hidebots' => 'Sakrij botove',
+'activeusers-hidesysops' => 'Sakrij administratore',
+'activeusers-noresult' => 'Niti jedan suradnik nije nađen.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Prava suradničkih skupina',
 'listgrouprights-summary' => 'Ovo je popis suradničkih skupina određenih na ovoj wiki, s njihovim pripadajućim pravima.
@@ -3184,7 +3193,7 @@ Svaka sljedeća poveznica u istom retku je izuzetak, npr. kod stranica gdje se s
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Širina',
 'exif-imagelength' => 'Visina',
 'exif-bitspersample' => 'Dubina boje',
@@ -3362,7 +3371,7 @@ Svaka sljedeća poveznica u istom retku je izuzetak, npr. kod stranica gdje se s
 'exif-originalimageheight' => 'Visina slike prije nego što je obrezana',
 'exif-originalimagewidth' => 'Širina slike prije nego što je obrezana',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Nesažeto',
 'exif-compression-2' => 'CCITT Grupa 3 1 — Dimenzionalno izmijenjeno Huffmanovo šifriranje po dužini',
 'exif-compression-3' => 'CCITT Grupa 3 faks kodiranje',
@@ -3830,13 +3839,6 @@ Trebali ste primiti [{{SERVER}}{{SCRIPTPATH}}/COPYING kopiju GNU opće javne lic
 'version-entrypoints' => 'URL adresa instalacije',
 'version-entrypoints-header-entrypoint' => 'Početna adresa',
 'version-entrypoints-header-url' => 'URL',
-
-# Special:FilePath
-'filepath' => 'Putanja datoteke',
-'filepath-page' => 'Datoteka:',
-'filepath-submit' => 'Idi',
-'filepath-summary' => 'Ova posebna stranica daje Vam kompletnu putanju do neke datoteke.
-Slike se na taj način prikazuju u punoj rezoluciji, a drugi tipovi datoteka se otvaraju na klik (kako je već namješteno u Vašem operacijskom sustavu).',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Traži kopije datoteka',

@@ -950,6 +950,7 @@ Agar siz uni ko'rsatsangiz, undan sahifa tahriri kim tomonidan kiritilganligini 
 'minoreditletter' => 'k',
 'newpageletter' => 'Y',
 'boteditletter' => 'b',
+'newsectionsummary' => '/* $1 */ yangi mavzu',
 'rc-enhanced-expand' => 'Tasfilotlarni koʻrsatish (JavaScript talab qilinadi)',
 'rc-enhanced-hide' => 'Tafsilotlolarni yashirish',
 'rc-old-title' => 'dastlab "$1" sifatida yaratilgan',

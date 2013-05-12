@@ -728,7 +728,7 @@ Nie zapomnij dostosować [[Special:Preferences|preferencji]].',
 'createacct-yourpasswordagain-ph' => 'Wprowadź hasło jeszcze raz',
 'remembermypassword' => 'Zapamiętaj moje hasło na tym komputerze (maksymalnie przez $1 {{PLURAL:$1|dzień|dni}})',
 'userlogin-remembermypassword' => 'Nie wylogowuj mnie',
-'userlogin-signwithsecure' => 'Zaloguj się na bezpiecznym serwerze',
+'userlogin-signwithsecure' => 'Użyj bezpiecznego połączenia',
 'securelogin-stick-https' => 'Po zalogowaniu utrzymuj połączenie poprzez HTTPS',
 'yourdomainname' => 'Twoja domena',
 'password-change-forbidden' => 'Nie można zmieniać haseł na tej wiki.',
@@ -749,6 +749,7 @@ Nie zapomnij dostosować [[Special:Preferences|preferencji]].',
 'gotaccount' => "Masz już konto? '''$1'''.",
 'gotaccountlink' => 'Zaloguj się',
 'userlogin-resetlink' => 'Zapomniałeś danych do zalogowania się?',
+'userlogin-resetpassword-link' => 'Nie pamiętasz hasła?',
 'helplogin-url' => 'Help:Logowanie',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Pomoc z logowaniem]]',
 'createacct-join' => 'Wpisz poniżej swoje dane.',
@@ -760,6 +761,8 @@ Nie zapomnij dostosować [[Special:Preferences|preferencji]].',
 'createaccountreason' => 'Powód',
 'createacct-reason' => 'Powód',
 'createacct-reason-ph' => 'Dlaczego zakładasz kolejne konto',
+'createacct-captcha' => 'Kontrola bezpieczeństwa',
+'createacct-imgcaptcha-ph' => 'Wpisz tekst widoczny powyżej',
 'createacct-submit' => 'Utwórz konto',
 'createacct-benefit-heading' => '{{grammar:4sg|{{SITENAME}}}} tworzą ludzie tacy jak ty.',
 'createacct-benefit-body1' => '{{PLURAL:{{NUMBEROFEDITS:R}}|edycja|edycje|edycji}}',
@@ -862,6 +865,7 @@ Aby zakończyć proces logowania, musisz ustawić nowe hasło:',
 'resetpass-wrong-oldpass' => 'Nieprawidłowe tymczasowe lub aktualne hasło.
 Być może właśnie zmienił{{GENDER:|eś|aś|eś(‐aś)}} swoje hasło lub poprosił{{GENDER:|eś|aś|eś(‐aś)}} o nowe tymczasowe hasło.',
 'resetpass-temp-password' => 'Tymczasowe hasło:',
+'resetpass-abort-generic' => 'Zmiana hasła została przerwana przez rozszerzenie.',
 
 # Special:PasswordReset
 'passwordreset' => 'Wyczyść hasło',
@@ -3969,6 +3973,10 @@ Powinieneś otrzymać [{{SERVER}}{{SCRIPTPATH}}/COPYING kopię licencji GNU Gene
 'version-entrypoints-header-entrypoint' => 'Punkt wejścia',
 'version-entrypoints-header-url' => 'URL',
 
+'redirect-value' => 'Wartość:',
+'redirect-user' => 'ID użytkownika',
+'redirect-file' => 'Nazwa pliku',
+
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Szukaj duplikatów pliku',
 'fileduplicatesearch-summary' => 'Szukaj duplikatów pliku na podstawie wartości funkcji skrótu.',
@@ -4059,6 +4067,7 @@ Powinieneś otrzymać [{{SERVER}}{{SCRIPTPATH}}/COPYING kopię licencji GNU Gene
 'htmlform-selectorother-other' => 'Inne',
 'htmlform-no' => 'Nie',
 'htmlform-yes' => 'Tak',
+'htmlform-chosen-placeholder' => 'Wybierz opcję',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 z obsługą pełnotekstowego wyszukiwania',

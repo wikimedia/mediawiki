@@ -8,6 +8,7 @@
  * @file
  *
  * @author Anson2812
+ * @author Dream hot
  * @author Hakka
  * @author Jetlag
  * @author Mnemonic kek
@@ -128,7 +129,7 @@ $messages = array(
 'category_header' => '“$1”分類肚嘅頁面',
 'subcategories' => '子分類',
 'category-media-header' => '“$1”分類肚嘅媒體',
-'category-empty' => "''邇隻分類目前還吂包含頁面或者媒體。''",
+'category-empty' => "''邇隻分類目前還吂包含頁面或者媒體文件。''",
 'hidden-categories' => '$1隻隱藏分類',
 'hidden-category-category' => '隱藏分類',
 'category-subcat-count' => '{{PLURAL:$2|邇隻分類有以下一隻子分類。|邇隻分類有$2隻子分類，以下列出矣$1隻。}}',
@@ -137,7 +138,7 @@ $messages = array(
 'category-article-count-limited' => '邇隻分類有以下 $1 隻頁面。',
 'category-file-count' => '{{PLURAL:$2|邇隻分類有以下一隻文件。|邇隻分類有$2隻文件，以下列出矣$1隻。}}',
 'category-file-count-limited' => '邇隻分類有 $1 隻文件。',
-'listingcontinuesabbrev' => '繼續',
+'listingcontinuesabbrev' => '續',
 'index-category' => '既索引嘅頁面',
 'noindex-category' => '還無索引嘅頁面',
 'broken-file-category' => '含有損壞文件鏈接嘅頁面',
@@ -147,7 +148,7 @@ $messages = array(
 'newwindow' => '（在新視窗肚打開）',
 'cancel' => '取消',
 'moredotdotdot' => '還較多...',
-'morenotlisted' => '又較多還吂列出嘅項目...',
+'morenotlisted' => '有較多還吂列出嘅項目...',
 'mypage' => '頁面',
 'mytalk' => '交流',
 'anontalk' => '本IP地址嘅交流',
@@ -171,7 +172,7 @@ $messages = array(
 'vector-action-protect' => '保護',
 'vector-action-undelete' => '恢復',
 'vector-action-unprotect' => '更改保護',
-'vector-simplesearch-preference' => '啟用簡化搜尋欄（僅限 Vector 外觀）',
+'vector-simplesearch-preference' => '啟用簡化搜尋欄（僅限Vector外皮）',
 'vector-view-create' => '建立',
 'vector-view-edit' => '編寫',
 'vector-view-history' => '查看歷史',
@@ -266,7 +267,7 @@ $1',
 
 'badaccess' => '權限差錯',
 'badaccess-group0' => '系統毋准汝執行頭先講求嘅操作。',
-'badaccess-groups' => '您正先請求嘅操作單淨有{{PLURAL:$2|這個|這些}}用戶群組嘅用戶做得使用：$1',
+'badaccess-groups' => '汝正先請求嘅操作單淨有{{PLURAL:$2|邇隻|邇兜}}用戶群組嘅用戶做得使用：$1',
 
 'versionrequired' => '愛有MediaWiki $1版',
 'versionrequiredtext' => '愛有版本$1嘅MediaWiki正做得使用本頁。
@@ -289,7 +290,7 @@ $1',
 'viewsourcelink' => '查看源碼',
 'editsectionhint' => '編寫章節: $1',
 'toc' => '目錄',
-'showtoc' => '顯示',
+'showtoc' => '展示',
 'hidetoc' => '隱藏',
 'collapsible-collapse' => '摺叠',
 'collapsible-expand' => '展開',
@@ -321,13 +322,13 @@ $1',
 
 # Main script and global functions
 'nosuchaction' => '無邇條命令',
-'nosuchactiontext' => '該URL所指定嘅動作無效。
-汝可能打錯URL，或撳到錯誤連結。
+'nosuchactiontext' => '邇URL所指定嘅動作無效。
+汝可能打錯URL，或撳到錯誤鏈接。
 還可能係{{SITENAME}}所使用嘅軟件出現矣錯誤。',
 'nosuchspecialpage' => '邇隻特殊页面毋存在',
-'nospecialpagetext' => '<strong>您請求嘅特殊頁面無效。</strong>
+'nospecialpagetext' => '<strong>汝請求嘅特殊頁面無效。</strong>
 
-[[Special:SpecialPages|{{int:specialpages}}]]中載有所有效特殊頁面嘅列表。',
+[[Special:SpecialPages|{{int:specialpages}}]]肚列出矣所有效特殊頁面嘅列表。',
 
 # General errors
 'error' => '差錯',
@@ -356,7 +357,7 @@ $1',
 
 假使情況毋係恁樣，汝可能尋到矣軟件嘅一隻臭蟲（bug）。請錄下URL地址，並向[[Special:ListUsers/sysop|管理員]]報告。',
 'missingarticle-rev' => '（修訂版本號#: $1）',
-'missingarticle-diff' => '（毋同: $1,$2）',
+'missingarticle-diff' => '（差別: $1,$2）',
 'readonly_lag' => '附屬數據庫服務器正在將緩存更新到主服務器肚，數據庫已分自動鎖定',
 'internalerror' => '內部差錯',
 'internalerror_info' => '內部差錯：$1',
@@ -401,8 +402,8 @@ $1',
 'sqlhidden' => '（隱藏SQL查詢）',
 'cascadeprotected' => '邇隻頁面已經畀保護，因為邇隻頁面被以下已標註"聯鎖保護"嘅{{PLURAL:$1|一個|多個}}畀保護頁面包含：
 $2',
-'namespaceprotected' => "您還無權限編輯'''$1'''名字空間嘅頁面。",
-'customcssprotected' => '你還無權限編輯邇隻CSS頁面，因為其包含矣其他用戶嘅個人設置。',
+'namespaceprotected' => "汝還無權限編輯'''$1'''名字空間嘅頁面。",
+'customcssprotected' => '汝還無權限編輯邇隻CSS頁面，因為其包含矣其他用戶嘅個人設置。',
 'customjsprotected' => '你還無權限去編輯邇隻JavaScript頁面，因為其包含矣另一用戶嘅個人設定。',
 'ns-specialprotected' => '邇兜特殊頁面係毋做得編輯嘅。',
 'titleprotected' => "邇隻標題已經分[[User:$1|$1]]保護來防止建立。理由係''$2''。",
@@ -440,7 +441,7 @@ $2',
 'createacct-yourpasswordagain-ph' => '再一擺輸入密碼',
 'remembermypassword' => '在邇隻瀏覽器上記下𠊎嘅登入狀態（最長$1日）',
 'userlogin-remembermypassword' => '保持𠊎嘅登入狀態',
-'userlogin-signwithsecure' => '使用安全伺服器登入',
+'userlogin-signwithsecure' => '使用安全連線',
 'securelogin-stick-https' => '登入後繼續用HTTPS連接',
 'yourdomainname' => '汝嘅域名：',
 'password-change-forbidden' => '汝做毋得更改本wiki上嘅密碼。',
@@ -461,6 +462,7 @@ $2',
 'gotaccount' => '已經擁有帳號係無？$1。',
 'gotaccountlink' => '登入',
 'userlogin-resetlink' => '毋記得汝嘅登入信息？',
+'userlogin-resetpassword-link' => '重置爾嘅密碼',
 'helplogin-url' => 'Help:登入',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|登入説明]]',
 'createacct-join' => '輸入汝嘅基本資料：',
@@ -471,18 +473,19 @@ $2',
 'createacct-realname' => '實名（可選）',
 'createaccountreason' => '原因:',
 'createacct-reason' => '原因',
-'createacct-reason-ph' => '您做麽嘅愛創建另一隻帳號',
+'createacct-reason-ph' => '汝做麽嘅愛創建另一隻帳號',
 'createacct-captcha' => '安全檢查',
 'createacct-captcha-help-url' => '{{ns:Project}}:請求建立用戶',
 'createacct-imgcaptcha-help' => '看毋到圖像係無？[[{{MediaWiki:createacct-captcha-help-url}}|請求建立用戶]]',
 'createacct-imgcaptcha-ph' => '輸入汝在上背看到嘅字符',
 'createacct-submit' => '建立帳號',
-'createacct-benefit-heading' => '{{SITENAME}}是由與您共樣嘅人建立。',
-'createacct-benefit-body1' => '$1 次編寫',
-'createacct-benefit-body2' => '$1 頁',
-'createacct-benefit-body3' => '近期 $1 隻貢獻人',
+'createacct-benefit-heading' => '{{SITENAME}}是由撈您共樣嘅人建立。',
+'createacct-benefit-body1' => '$1次編寫',
+'createacct-benefit-body2' => '$1頁',
+'createacct-benefit-body3' => '近期$1隻貢獻人',
 'badretype' => '汝所撳入嘅密碼並無相同',
-'userexists' => '!汝所填入嘅用戶名稱已經存在，請另選一隻名稱。',
+'userexists' => '汝所填入嘅用戶名稱已經存在。
+請另選一隻名稱。',
 'loginerror' => '登入差錯',
 'createacct-error' => '帳戶建立差錯',
 'createaccounterror' => '無辦法建立帳號：$1',
@@ -502,18 +505,19 @@ $2',
 'wrongpassword' => '汝輸入嘅密碼有錯，請再試一擺。',
 'wrongpasswordempty' => '還無輸入密碼！請重試。',
 'passwordtooshort' => '汝嘅密碼毋得少過$1隻字符。',
-'password-name-match' => '汝嘅密碼必須與汝嘅用戶名毋相同。',
+'password-name-match' => '汝嘅密碼必須撈汝嘅用戶名毋相同。',
 'password-login-forbidden' => '邇隻用戶名稱及密碼嘅使用係畀禁止嘅。',
 'mailmypassword' => '用電郵寄新密碼分亻厓',
 'passwordremindertitle' => '{{SITENAME}}嘅新臨時密碼',
-'passwordremindertext' => '有人（可能係汝本人，來自IP位址$1）已請求{{SITENAME}}个新密碼 （$4）。
-用戶"$2"个一個新臨時密碼今下已畀設定好為"$3"。
-係話邇隻動作係汝所指示个，汝就需要立即登入並選擇一隻新个密碼。
-汝个臨時密碼將於{{PLURAL:$5|一|$5}}日之內過期。
+'passwordremindertext' => '有人（可能係汝本人，來自IP地址$1）已請求{{SITENAME}}嘅新密碼 （$4）。
+用戶"$2"嘅一隻新臨時密碼今下已分設定好為"$3"。
+係話邇隻動作係汝所指示嘅，汝就愛立即登入並選擇一隻新嘅密碼。
+汝嘅臨時密碼將於{{PLURAL:$5|一|$5}}日之內過期。
 
-如果係其他人發出邇隻請求，或者汝已經回想起汝个密碼，故所毋準備改變其，
-汝可以忽略略邇條消息並且繼續使用汝个舊密碼。',
+如果係其他人發出邇隻請求，或者汝已經回想起汝嘅密碼，故所毋準備改變其，
+汝可以忽略略邇條消息並且繼續使用汝嘅舊密碼。',
 'noemail' => '用戶“$1”無登記電子郵件地址。',
+'noemailcreate' => '汝愛提供一隻有效嘅電子郵件地址。',
 'passwordsent' => '用戶“$1”嘅新密碼已經寄到所登記嘅電子郵件地址。
 請在收到後再登入。',
 'blocked-mailpassword' => '汝嘅IP地址處於查封狀態故所毋允許編輯，為矣安全起見，密碼恢復功能已分禁用。',
@@ -525,27 +529,27 @@ $2',
 結果利用這個IP地址个訪客在邇段時間中無辦法創建更多个賬戶。',
 'emailauthenticated' => '汝个電郵地址已經於$2 $3確認有效。',
 'emailnotauthenticated' => '汝嘅郵箱地址<strong>還無分認証</strong>。以下功能將毋會發送任何郵件。',
-'noemailprefs' => '在您嘅偏好設定肚指定一隻電子郵件地址來使用邇隻功能。',
+'noemailprefs' => '在嘅嘅偏好設定肚指定一隻電子郵件地址來使用邇隻功能。',
 'emailconfirmlink' => '確認汝嘅郵箱地址',
 'invalidemailaddress' => '郵箱地址格式不正確，請輸入正確个郵箱位址或清空該輸入框。',
 'emaildisabled' => '邇隻網站毋可以發送電子郵件。',
 'accountcreated' => '已建立賬戶',
 'accountcreatedtext' => '$1嘅賬戶已經分建立。',
 'createaccount-title' => '在{{SITENAME}}肚建立新賬戶',
-'createaccount-text' => '有人在{{SITENAME}}中利用汝个電郵創建矣一個名為 "$2" 个新賬戶（$4），密碼係 "$3" 。汝應該立即登入並更改密碼。
+'createaccount-text' => '有人在{{SITENAME}}中利用汝嘅電郵創建矣一隻喊做 "$2" 嘅新賬戶（$4），密碼係 "$3" 。汝應該立即登入並更改密碼。
 
-如果該賬戶建立錯誤个話，汝可以忽略邇條訊息。',
-'usernamehasherror' => '用戶名稱毋可以包含Hash字符',
-'login-throttled' => '爾已經嘗試多次个登入動作。
+如果該賬戶建立錯誤嘅話，汝可以忽略邇條訊息。',
+'usernamehasherror' => '用戶名毋可以包含Hash字符',
+'login-throttled' => '汝已經嘗試多次登入動作。
 請等陣再試。',
 'login-abort-generic' => '登入錯誤 - 中止',
 'loginlanguagelabel' => '語言：$1',
-'suspicious-userlogout' => '您登出个要求已經畀拒絕，因為其可能係由已損壞个瀏覽器或者緩存代理傳送。',
+'suspicious-userlogout' => '您登出嘅要求已經分拒絕，因為其可能係由已損壞嘅瀏覽器或者緩存代理傳送。',
 
 # Email sending
-'php-mail-error-unknown' => '在 PHP 个 mail() 參數肚个未知錯誤',
+'php-mail-error-unknown' => '在PHP嘅mail()參數肚嘅未知錯誤',
 'user-mail-no-addy' => '嘗試毋帶電郵地址發送電郵。',
-'user-mail-no-body' => '試圖發送空个或主體不合理短个電子郵件。',
+'user-mail-no-body' => '試圖發送空嘅或主體毋合理短嘅電子郵件。',
 
 # Change password dialog
 'resetpass' => '更改密碼',
@@ -559,17 +563,17 @@ $2',
 'resetpass_success' => '汝成功更改矣汝嘅密碼！
 今下為汝登入緊...',
 'resetpass_forbidden' => '無辦法更改密碼',
-'resetpass-no-info' => '爾必須登入後直接進入邇隻頁面。',
+'resetpass-no-info' => '汝必須登入後直接進入邇隻頁面。',
 'resetpass-submit-loggedin' => '更改密碼',
 'resetpass-submit-cancel' => '取消',
-'resetpass-wrong-oldpass' => '無效个臨時或現有个密碼。
-爾可能已成功地更改了爾个密碼，或者已經請求一個新个臨時密碼。',
+'resetpass-wrong-oldpass' => '無效嘅臨時或現有嘅密碼。
+汝可能已成功地更改矣汝嘅密碼，或者已經請求一隻新嘅臨時密碼。',
 'resetpass-temp-password' => '臨時密碼:',
 'resetpass-abort-generic' => '擴充插件已中止矣更改密碼操作。',
 
 # Special:PasswordReset
 'passwordreset' => '重設密碼',
-'passwordreset-text' => '完成此表格以重置汝个密碼。',
+'passwordreset-text' => '完成邇隻表格以重置汝嘅密碼。',
 'passwordreset-legend' => '重置密码',
 'passwordreset-disabled' => '邇隻維基上已禁止矣重設密碼。',
 'passwordreset-emaildisabled' => '電子郵件功能在此 wiki 上已禁用。',
@@ -579,9 +583,15 @@ $2',
 'passwordreset-capture' => '查看生成个電子郵件係無？',
 'passwordreset-capture-help' => '係話汝選中邇隻框，電子郵件（包括臨時密碼）將顯示，並發送分用戶。',
 'passwordreset-email' => '電郵地址：',
-'passwordreset-emailtitle' => '在{{SITENAME}}上个詳細信息',
+'passwordreset-emailtitle' => '在{{SITENAME}}上嘅詳細信息',
+'passwordreset-emailsent' => '密碼重置電子郵件已發送。',
 
 # Special:ChangeEmail
+'changeemail' => '更改電子郵件地址',
+'changeemail-header' => '更改電子郵件帳戶',
+'changeemail-no-info' => '汝必須登入後直接進入邇隻頁面。',
+'changeemail-oldemail' => '當前電郵地址：',
+'changeemail-newemail' => '新嘅電郵地址：',
 'changeemail-none' => '（無）',
 'changeemail-submit' => '更改電郵地址',
 'changeemail-cancel' => '取消',
@@ -616,9 +626,10 @@ $2',
 'showdiff' => '展示差別',
 'anoneditwarning' => "'''警告：'''汝還吂登入。
 汝嘅IP地址將記錄在邇頁嘅編寫歷史肚。",
-'missingsummary' => "'''Thì-sṳ:''' Kgì hàn-mò thì-kiûng yit-ke phiên-siá chak-yeu. Kó-yèn ngì chai-chhṳ tân-kit tú-chhùn, ngì-ke phiên-siá chiông put-tai phiên-siá chak-yeu tú-chhùn.",
-'missingcommenttext' => 'Chhiáng chhai ha-mien sû-ngi̍p phìn-lun.',
-'missingcommentheader' => "'''提示:''' 汝還無為邇條評論提供一個標題。如果汝再次單擊「{{int:savearticle}}」，您个編輯將不帶標題儲存。",
+'anonpreviewwarning' => '“警告：汝還吂登入。汝嘅IP地址將會記錄在邇頁嘅編輯歷史中”',
+'missingsummary' => "'''提示:''' 汝無提供一隻編寫摘要。假使汝再次單擊「{{int:savearticle}}」，汝嘅編寫將毋帶編寫摘要保存。",
+'missingcommenttext' => '請在下背輸入評論。',
+'missingcommentheader' => "'''提示:''' 汝還無為邇條評論提供一隻標題。假使汝再次單擊「{{int:savearticle}}」，您嘅編寫將毋帶標題保存。",
 'summary-preview' => 'Chak-yeu yi-ko:',
 'subject-preview' => 'Chú-thì/phêu-thì yi-ko:',
 'blockedtitle' => 'Yung-fu pûn chhà-fûng',
@@ -657,8 +668,10 @@ Tshiáng chhai kien-li̍p／piên-sip liá-ke vùn-tsông tshièn siên kiám-ts
 'note' => "'''注意:'''",
 'previewnote' => "'''請記到邇單淨係預覽。'''
 汝嘅更改還吂保存！",
-'previewconflict' => 'Liá-ke yi-liau hién-sṳ liáu song-mien vùn-sṳ phiên-siá khî-chûng ke nui-yùng. Chiông-voi chhai ngì sién-chet pó-chhùn heu chhut-hien.',
-'session_fail_preview' => "'''Chṳ̂n-he tui-put-hí! Lî-yù he phu-fun chṳ̂-yì-sṳt, mò-fap chhú-lî ngì-ke phiên-siá. Chhiáng chai-chhṳ yit-chhṳ, kó-yèn yìn-yèn sṳt-phai, chhiáng tên-chhut heu chhùng-sîn tên-ngi̍p.'''",
+'previewconflict' => '邇隻預覽展示矣上片文字編寫區肚嘅內容。其將在汝選擇保存後出現。',
+'session_fail_preview' => "'''好抱歉！由於部份數據遺失，亻厓兜無法處理汝嘅編寫。'''
+請再試一次。
+係講還係失敗，請[[Special:UserLogout|登出]]後重新登入。",
 'session_fail_preview_html' => "'''Chṳ̂n tui-put-hí! Phu-fun chṳ̂-liau yí-kîn yì-sṳt, mò-fap chhú-lî ngì-ke phiên-siá.'''
 
 '''Kó-yèn liá-ke phiên-siá ko-chhàng mò-yû mun-thì, chhiáng chai-chhṳ yit-chhṳ. Yìn-yèn yû mun-thì, chhiáng tên-chhut heu chhùng-sîn tên-ngi̍p yit-chhṳ.'''",
@@ -667,35 +680,37 @@ Tshiáng chhai kien-li̍p／piên-sip liá-ke vùn-tsông tshièn siên kiám-ts
 'editingsection' => '編寫 $1 （段落）',
 'editingcomment' => 'Chang-chhai phiên-siá $1 （phìn-lun）',
 'editconflict' => '編寫衝突：$1',
-'explainconflict' => "Yû-ngìn chhai ngì khôi-sṳ́ phiên-siá heu kiên-kói liáu vùn-chông.
-Song-mien ke vùn-sṳ khiông-nui he hién-sṳ muk-chhièn pún-chông ke nui-yùng.
-Ngì só-cho ke siù-chho hién-sṳ chhai ha-mien ke vùn-sṳ khiông-chûng.
-Ngì yin-tông chiông ngì só-cho ke siù-chho kâ-ngi̍p hien-yû ke nui-yùng chûng.
-'''Chṳ́-yû''' chhai song-mien vùn-sṳ khiông-chûng ke nui-yùng chiông-voi chhai ngì tiám-kit \"{{int:savearticle}}\" heu pûn pó-chhùn.",
+'explainconflict' => "有人在汝開始編寫後更改矣頁面。
+上片嘅文字框內展示嘅是當前本頁嘅內容。
+汝所做嘅修改展示在下背嘅文字框肚。
+汝應該將汝所做嘅修改加入現有嘅內容肚。
+'''單淨'''在上片文字框肚嘅內容會在汝點擊「{{int:savearticle}}」後分保存。",
 'yourtext' => '汝嘅文字',
 'storedversion' => '已保存嘅修訂版本',
-'nonunicodebrowser' => "'''Kín-ko: Ngì-ke hi-khí put-nèn kiâm-yùng Unicode phiên-ho. Liá-piên yû yit-ke kûng-chok-khî chiông-voi hó-sṳ́ ngì nèn ôn-chhiòn-thi phiên-siá vùn-chông: fi ASCII sṳ-kûng chiông-yung sṳ̍p-liuk chin-chṳ phiên-ho mù-hìn chhut-hien chhai phiên-siá khiông-chûng.'''",
-'editingold' => "'''Kín-ko: Ngì chang-chhai phiên-siá-ke he pún-chông ke khiu pán-pún. Ngì pó-chhùn kí sṳ̀, chhai pún pán-pún chṳ̂-hei ke ngim-hò chhùng-siû tû-voi tiû-sṳt.'''",
+'nonunicodebrowser' => "'''警告: 汝嘅瀏覽器毋兼容Unicode編碼。'''邇肚有一隻工作區將使汝做得安全編寫頁面: 非ASCII字符將以十六進製編碼模式出現在編輯框肚。",
+'editingold' => "'''警告：汝在編輯中嘅係本頁嘅舊版本。'''
+係講汝保存其嘅話，在本版本之後嘅任何更改都會遺失。",
 'yourdiff' => '差別',
 'copyrightwarning' => "Chhiáng chu-yi ngì tui {{SITENAME}} ke só-yû kung-hien tû pûn-ngìn ngin-vì he chhai $2-hâ fat-phu, chhiáng chhà-khon chhai $1-ke se-chiet. Kó-yèn ngì chhin-mò hî-mong ngì-ke vùn-sṳ pûn-ngìn ngim-yi siù-chho lâu chai san-pu, chhiáng mò-yeu thì-kâu.<br /> Ngì thùng-sṳ̀ ya-yeu hiong Wikimedia pó-chṳn ngì só thì-kâu ke nui-yùng he chhṳ-kí só chok, fe̍t-chá lòi-chhṳ yit-ke mò-su pán-khièn pó-fu fe̍t-he siông-thùng chhṳ-yù ke lòi-ngièn. '''Mò-yeu chhai hàn-mò su-khièn ke chhìn-khóng-hâ fat-péu！'''<br />",
-'copyrightwarning2' => "Chhiáng chu-yi ngì tui {{SITENAME}} ke só-yû kung-hien tû khó-nèn pûn khì-thâ kung-hien-chá phiên-cho, siû-kói fe̍t-he chhù-thet.
-Kó-yèn ngì chhin-mò hî-mong ngì-ke ngì-ke vùn-sṳ pûn-ngìn ngim-yi chhùng-siû lâu chai san-pu, chhiáng mò-yeu thì-kâu.<br />
-Ngì thùng-sṳ̀ ya-yeu hiong Wikimedia pó-chṳn ngì só thì-kâu ke nui-yùng he chhṳ-kí só chok，fe̍t-chá lòi-chhṳ yit-ke mò-su pán-khièn pó-fu fe̍t-he he siông-thùng chhṳ-yù ke lòi-ngièn （Chhâm-siòng $1 ke se-chiet）.
-''' Mò-yeu chhai hàn-mò su-khièn ke chhìn-khóng-hâ fat-péu！'''",
+'copyrightwarning2' => "請注意汝對{{SITENAME}}嘅所有貢獻
+都可能分其他貢獻人編寫、修改或刪除。
+係講汝毋希望您嘅文字分任意修改撈再散佈，請毋好提交。<br />
+汝同時也愛向亻厓兜保證汝所提交嘅內容係自家所作，或得自一隻毋受版權保護或相似自由嘅來源（參閱$1的細節）。
+'''毋好在未獲授權嘅情況下發表！'''",
 'longpageerror' => "'''Chho-ngu: Ngì só thì-kâu ke vùn-sṳ chhòng-thu yû $1KB, liá thai-yî $2KB ke chui-thai chhṳ̍t, ke-vùn-chông put-nèn pûn tú-chhùn.'''",
 'readonlywarning' => "'''Kín-ko: chṳ̂-liau-khu pûn-ngìn fûng-só yîn-vi chin-hàng vì-fu, só-yî muk-chhièn mò-fap pó-chhùn ngì-ke siù-chho. Ngì fe̍t-hí hî-mong chhai-siên chiông pún-thon vùn-sṳ fu̍k-chṳ pin pó-chhùn to vùn-sṳ vùn-khien, yèn-heu tén-yit-ha chai siù-chho.'''",
 'protectedpagewarning' => "'''Kín-ko: Pún-chông yí-kîn pûn pó-fu, chṳ́-yû yúng-yû Kón-lî-yèn hí-khó-khièn ke yung-fu chhòi-nèn siù-chho.'''",
 'semiprotectedpagewarning' => "'''Chu-yi:''' Pún vùn-chông pûn só-thin, tên-ki ke yung-fu hí-khó phiên-siá.",
-'cascadeprotectedwarning' => "'''Kín-ko''': Pún-chông yí-kîn pûn pó-fu, chṳ́-yû yúng-yû Kón-lî-yèn khièn-han ke yung-fu chhòi-nèn siù-chho, yîn-vi pún-chông yí-kîn pûn yî-ha lièn-só pó-fu ke {{PLURAL:$1|yit-ke|tô-ke}} vùn-chông só pâu-hàm:",
+'cascadeprotectedwarning' => "'''警告：'''本頁已經分保護，單淨係擁有管理員權限嘅用戶正做得修改，因為本頁已分下背連鎖保護嘅{{PLURAL:$1|一隻|多隻}}頁面所包含:",
 'templatesused' => '邇頁面包含下背{{PLURAL:$1|模板|模板}}:',
 'templatesusedpreview' => 'Chhṳ́-chhṳ yi-siên chûng sṳ́-yung ke mù-pán yû:',
 'templatesusedsection' => 'Chhai liá-ke thon-lo̍k song sṳ́-yung ke mù-pán yû:',
 'template-protected' => '（保護）',
 'template-semiprotected' => '（半保護）',
 'hiddencategories' => '邇頁屬於$1隻隱藏分類嘅成員:',
-'edittools' => '<!-- Chhṳ́-chhu ke vùn-sṳ chiông-voi pûn hién-sṳ chhai yî-ha phiên-cho lâu song-chhòn péu-tân chûng. -->',
+'edittools' => '<!-- 邇肚嘅文字將分展示在編輯和上傳表單以下。 -->',
 'nocreatetext' => 'Chhṳ́ mióng-chham han-chṳ chhóng-chho sîn hong-mien ke kûng-yung. ngì khó-yî fán-fì pin phiên-cho yí-kîn yû ke hong-mien, fe̍t-chá [[Special:UserLogin|tên-liu̍k fe̍t-he chhóng-kien sîn chong-fu]].',
-'nocreate-loggedin' => 'Ngì chhai liá-ke wiki-tsûng hàn-mò hí-khó-khièn kien-li̍p sîn vùn-tsông.',
+'nocreate-loggedin' => '汝並無權限去創建新頁面。',
 'permissionserrors' => '權限差錯',
 'permissionserrorstext' => 'Kîn-kí yî-ha ke ngièn-yîn, ngì vù-yû khièn-han hi-tso yî-ha ke thung-tsok:',
 'permissionserrorstext-withaction' => '根據下背嘅{{PLURAL:$1|原因|原因}}，汝並無權限去做$2:',
@@ -706,13 +721,14 @@ Ngì thùng-sṳ̀ ya-yeu hiong Wikimedia pó-chṳn ngì só thì-kâu ke nui-y
 'moveddeleted-notice' => '邇隻頁面已經刪除。
 邇隻頁面嘅刪除撈移動日誌已經在下背提供來參考。',
 'log-fulllog' => '查看完整日誌',
-'edit-hook-aborted' => '編輯分鈎取消。
+'edit-hook-aborted' => '編寫分鈎取消。
 其並無分出解釋。',
 'edit-gone-missing' => 'Vù-nèn kiên-sîn vùn-tsông. Khó-nèn kông pûn-ngìn tshù-thet.',
 'edit-conflict' => '編寫衝突。',
 'edit-no-change' => 'Piên-sip yí-kîn pûn fut-lio̍k, yîn-vi vùn-sṳ mò ngim-hò kói-pien.',
 'edit-already-exists' => 'Put-nèn kien-li̍p yit-ke sîn vùn-tsông. Têu yí-kîn tshùn-tshai.',
 'defaultmessagetext' => '默認消息文字',
+'invalid-content-data' => '無效嘅數據內容',
 
 # Content models
 'content-model-wikitext' => 'wiki語法',
@@ -729,21 +745,21 @@ Ngì thùng-sṳ̀ ya-yeu hiong Wikimedia pó-chṳn ngì só thì-kâu ke nui-y
 'post-expand-template-argument-category' => '包含緊略過模板參數嘅頁面',
 
 # "Undo" feature
-'undo-success' => 'Ke phiên-cho khó-yî pûn chhat-sêu. Chhiáng kiám-chhà yî-ha tui-pí fu̍t-sṳ̍t liá chang-he ngì sióng-cho ke, yèn-heu tú-chhùn yî-ha kiên-kói vàn-sṳ̀n chhat-sêu phiên-siá.',
-'undo-failure' => 'Chhut-yì chûng-thù ke phiên-chho put yit-chṳ, chhṳ́ phiên-siá put-nèn chhat-sêu.',
-'undo-norev' => 'Liá-ke siù-tsho pán-pún hàn-mò tshùn-tshai fe̍t-tsá yí-kîn tshù-tshiang, piên-sip put-nèn tshat-sêu.',
+'undo-success' => '邇次編寫可以分撤銷。請檢查下背對比來核實邇確實係汝想做嘅，之後保存下背更改來完成撤銷編寫。',
+'undo-failure' => '由於中途嘅編寫毋一致，本編輯毋做得撤銷。',
+'undo-norev' => '由於其嘅修訂版本毋存在或已刪除，本編寫毋做得撤銷。',
 'undo-summary' => 'Chhí-sêu yù [[Special:Contributions/$2|$2]] （[[User talk:$2|tui-fa]]） só chok-chhut ke siû-thin $1',
 
 # Account creation failure
 'cantcreateaccounttitle' => '無法建立帳號',
-'cantcreateaccount-text' => "Tshiùng liá-ke IP thi-tiám （<b>$1</b>） kien-li̍p tsong-ho yí-kîn pûn [[User:$3|$3]] kim-tsṳ́ .
+'cantcreateaccount-text' => "從邇隻IP地址（'''$1'''）建立帳號已經分[[User:$3|$3]]禁止。
 
-Tông-tsûng pûn $3 fûng-só ke ngièn-yîn he ''$2''",
+當中分$3封禁嘅原因是''$2''",
 
 # History pages
 'viewpagelogs' => '查看邇隻頁面嘅日誌',
-'nohistory' => 'Mò-yû pún-chông ke siû-thin ki-liu̍k.',
-'currentrev' => 'Tông-chhièn siû-thin pán-pún',
+'nohistory' => '無本頁嘅修訂版本記錄。',
+'currentrev' => '最新版本',
 'currentrev-asof' => '$1嘅最新修訂版本',
 'revisionasof' => '$1嘅修訂版本',
 'revision-info' => '在$1由$2所做嘅修訂版本',
@@ -783,6 +799,7 @@ Tông-tsûng pûn $3 fûng-só ke ngièn-yîn he ''$2''",
 'revdelete-nooldid-title' => '無效嘅目標修訂版本',
 'revdelete-nooldid-text' => '汝還吂指定一隻目標修訂版本去進行邇隻功能、
 所指定嘅修訂版本毋存在，或者汝嘗試去隱藏今下嘅修訂版本。',
+'revdelete-no-file' => '指定嘅文件毋存在',
 'revdelete-show-file-submit' => '係',
 'revdelete-selected' => "'''選取[[:$1]]嘅$2次修訂:'''",
 'logdelete-selected' => "'''Chhí-chhṳ '''$1''' ke $2-ke ngit-ki hong-muk:'''",

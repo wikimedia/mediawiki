@@ -556,9 +556,12 @@ $2',
 'yourpassword' => 'సంకేతపదం:',
 'userlogin-yourpassword' => 'సంకేతపదం',
 'userlogin-yourpassword-ph' => 'మీ సంకేతపదాన్ని ఇవ్వండి',
+'createacct-yourpassword-ph' => 'సంకేతపదాన్ని ఇవ్వండి',
 'yourpasswordagain' => 'సంకేతపదాన్ని మళ్ళీ ఇవ్వండి:',
+'createacct-yourpasswordagain' => 'సంకేతపదాన్ని నిర్ధారించండి',
+'createacct-yourpasswordagain-ph' => 'సంకేతపదాన్ని మళ్ళీ ఇవ్వండి',
 'remembermypassword' => 'ఈ కంప్యూటరులో నా ప్రవేశాన్ని గుర్తుంచుకో (గరిష్ఠంగా $1 {{PLURAL:$1|రోజు|రోజుల}}కి)',
-'userlogin-remembermypassword' => 'నన్ను గుర్తుంచుకో',
+'userlogin-remembermypassword' => 'నన్ను ప్రవేశింపజేసి ఉంచు',
 'securelogin-stick-https' => 'ప్రవేశం తర్వాత కూడా HTTPSకి అనుసంధానమై ఉండు',
 'yourdomainname' => 'మీ డోమైను',
 'password-change-forbidden' => 'ఈ వికీలో మీరు సంకేతపదాలను మార్చలేరు.',
@@ -579,8 +582,23 @@ $2',
 'gotaccount' => 'ఇప్పటికే మీకు ఖాతా ఉందా? $1.',
 'gotaccountlink' => 'ప్రవేశించండి',
 'userlogin-resetlink' => 'మీ ప్రవేశ వివరాలను మరచిపోయారా?',
-'createaccountmail' => 'ఈ-మెయిలు ద్వారా',
+'createacct-join' => 'మీ సమాచారాన్ని క్రింద ఇవ్వండి.',
+'createacct-emailrequired' => 'ఈమెయిలు చిరునామా',
+'createacct-emailoptional' => 'ఈమెయిలు చిరునామా (ఐచ్చికం)',
+'createacct-email-ph' => 'మీ ఈమెయిలు చిరునామాను ఇవ్వండి',
+'createaccountmail' => 'తాత్కాలిక యాదృచ్చిక సంకేతపదాన్ని వాడి దాన్ని ఈ క్రింద ఇచ్చిన ఈమెయిలు చిరునామాకు పంపించు',
+'createacct-realname' => 'అసలు పేరు (ఐచ్చికం)',
 'createaccountreason' => 'కారణం:',
+'createacct-reason' => 'కారణం',
+'createacct-reason-ph' => 'మీరు మరో ఖాతాను ఎందుకు సృష్టించుకుంటున్నారు',
+'createacct-captcha' => 'భద్రతా తనిఖీ',
+'createacct-captcha-help-url' => '{{ns:Project}}:ఖాతా కొరకు అభ్యర్థించండి',
+'createacct-imgcaptcha-help' => 'బొమ్మను చూడలేకున్నారా? [[{{MediaWiki:createacct-captcha-help-url}}|ఒక ఖాతా కొరకు అభ్యర్థించండి]]',
+'createacct-imgcaptcha-ph' => 'పైన కనబడే మాటలను ఇక్కడ ఇవ్వండి',
+'createacct-submit' => 'మీ ఖాతాను సృష్టించుకోండి',
+'createacct-benefit-heading' => '{{SITENAME}}ను తయారుచేసేది మీలాంటి ప్రజలే.',
+'createacct-benefit-body1' => '{{PLURAL:$1|మార్పు|మార్పులు}}',
+'createacct-benefit-body2' => '{{PLURAL:$1|పేజీ|పేజీలు}}',
 'badretype' => 'మీరు ఇచ్చిన రెండు సంకేతపదాలు ఒకదానితో మరొకటి సరిపోలడం లేదు.',
 'userexists' => 'ఇచ్చిన వాడుకరిపేరు ఇప్పటికే వాడుకలో ఉంది.
 వేరే పేరును ఎంచుకోండి.',
@@ -1243,8 +1261,8 @@ $1",
 'prefs-textboxsize' => 'దిద్దుబాటు కిటికీ పరిమాణం',
 'youremail' => 'మీ ఈ-మెయిలు*',
 'username' => '{{GENDER:$1|వాడుకరి పేరు}}:',
-'uid' => 'వాడుకరి ID:',
-'prefs-memberingroups' => 'సభ్యులుగా ఉన్న {{PLURAL:$1|గుంపు|గుంపులు}}:',
+'uid' => '{{GENDER:$1|వాడుకరి}} ID:',
+'prefs-memberingroups' => 'ఈ {{PLURAL:$1|గుంపులో|గుంపులలో}} {{GENDER:$2|సభ్యుడు|సభ్యురాలు}}:',
 'prefs-registration' => 'నమోదైన సమయం:',
 'yourrealname' => 'అసలు పేరు:',
 'yourlanguage' => 'భాష:',
@@ -1725,6 +1743,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization చూడండి.',
 'shared-repo-from' => '$1 నుండి',
 'shared-repo' => 'సామూహిక నిక్షేపం',
 'shared-repo-name-wikimediacommons' => 'వికీమీడియా కామన్స్',
+'upload-disallowed-here' => 'ఈ దస్త్రాన్ని మీరు తిరగరాయలేరు.',
 
 # File reversion
 'filerevert' => '$1 ను వెనక్కు తీసుకుపో',
@@ -2175,7 +2194,7 @@ $UNWATCHURL కి వెళ్ళండి.
 'protect-default' => 'అందరు వాడుకరులను అనుమతించు',
 'protect-fallback' => '"$1" అనుమతి అవసరం',
 'protect-level-autoconfirmed' => 'కొత్త మరియు నమోదుకాని వాడుకరులను నిరోధించు',
-'protect-level-sysop' => 'నిర్వాహకులు మాత్రమే',
+'protect-level-sysop' => 'నిర్వాహకులను మాత్రమే అనుమతించు',
 'protect-summary-cascade' => 'కాస్కేడింగు',
 'protect-expiring' => '$1 (UTC)న కాలంచెల్లుతుంది',
 'protect-expiring-local' => '$1న కాలంచెల్లుతుంది',
@@ -2240,7 +2259,8 @@ $UNWATCHURL కి వెళ్ళండి.
 'undeletedrevisions' => '{{PLURAL:$1|ఒక సంచిక|$1 సంచికల}} పునఃస్థాపన జరిగింది',
 'undeletedrevisions-files' => '{{PLURAL:$1|ఒక కూర్పు|$1 కూర్పులు}} మరియు {{PLURAL:$2|ఒక ఫైలు|$2 ఫైళ్ళ}}ను పునస్థాపించాం',
 'undeletedfiles' => '{{PLURAL:$1|ఒక ఫైలును|$1 ఫైళ్లను}} పునఃస్థాపించాం',
-'cannotundelete' => 'తొలగింపు రద్దు విఫలమైంది; ఆ పేజీ తొలగింపును వేరెవరైనా రద్దు చేసి ఉండవచ్చు.',
+'cannotundelete' => 'తొలగింపు రద్దు విఫలమైంది:
+$1',
 'undeletedpage' => "'''$1 ను పునస్థాపించాం'''
 
 ఇటీవల జరిగిన తొలగింపులు, పునస్థాపనల కొరకు [[Special:Log/delete|తొలగింపు చిట్టా]]ని చూడండి.",
@@ -2753,6 +2773,8 @@ $UNWATCHURL కి వెళ్ళండి.
 'pageinfo-protect-cascading-yes' => 'అవును',
 'pageinfo-category-info' => 'వర్గపు సమాచారం',
 'pageinfo-category-pages' => 'పేజీల సంఖ్య',
+'pageinfo-category-subcats' => 'ఉపవర్గాల సంఖ్య',
+'pageinfo-category-files' => 'దస్త్రాల సంఖ్య',
 
 # Skin names
 'skinname-cologneblue' => 'కలోన్ నీలం',
@@ -2835,6 +2857,12 @@ $1',
 'years' => '{{PLURAL:$1|ఒక సంవత్సరం|$1 సంవత్సరాల}}',
 'ago' => '$1 క్రితం',
 'just-now' => 'ఇప్పుడే',
+
+# Human-readable timestamps
+'hours-ago' => '$1 {{PLURAL:$1|గంట|గంటల}} క్రితం',
+'minutes-ago' => '$1 {{PLURAL:$1|నిమిషం|నిమిషాల}} క్రితం',
+'seconds-ago' => '$1 {{PLURAL:$1|క్షణం|క్షణాల}} క్రితం',
+'yesterday-at' => 'నిన్న $1కి',
 
 # Bad image list
 'bad_image_list' => 'కింద తెలిపిన తీరులో కలపాలి:
@@ -3407,6 +3435,13 @@ $5
 'version-entrypoints-header-entrypoint' => 'ప్రవేశ బిందువు',
 'version-entrypoints-header-url' => 'చిరునామా',
 
+'redirect-submit' => 'వెళ్ళు',
+'redirect-value' => 'విలువ:',
+'redirect-user' => 'వాడుకరి ID',
+'redirect-revision' => 'పేజీ కూర్పు',
+'redirect-file' => 'దస్త్రపు పేరు',
+'redirect-not-exists' => 'విలువ కనబడలేదు',
+
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'ఫైళ్ల మారుప్రతుల కోసం వెతుకు',
 'fileduplicatesearch-summary' => 'మారుప్రతుల కోసం ఫైళ్ల హాష్ విలువ ఆధారంగా వెతుకు.',
@@ -3433,7 +3468,7 @@ $5
 'specialpages-group-highuse' => 'అధిక వాడుక పేజీలు',
 'specialpages-group-pages' => 'పేజీల యొక్క జాబితాలు',
 'specialpages-group-pagetools' => 'పేజీ పనిముట్లు',
-'specialpages-group-wiki' => 'వికీ డాటా మరియు పనిముట్లు',
+'specialpages-group-wiki' => 'డాటా మరియు పనిముట్లు',
 'specialpages-group-redirects' => 'ప్రత్యేక పేజీల దారిమార్పులు',
 'specialpages-group-spam' => 'స్పామ్ పనిముట్లు',
 
@@ -3474,6 +3509,7 @@ $5
 'compare-submit' => 'పోల్చిచూడు',
 'compare-invalid-title' => 'మీరు ఇచ్చిన శీర్షిక చెల్లనిది.',
 'compare-title-not-exists' => 'మీరు పేర్కొన్న శీర్షిక లేనే లేదు.',
+'compare-revision-not-exists' => 'మీరు పేర్కొన్న కూర్పు లేనే లేదు.',
 
 # Database error messages
 'dberr-header' => 'ఈ వికీ సమస్యాత్మకంగా ఉంది',
@@ -3495,6 +3531,8 @@ $5
 'htmlform-submit' => 'దాఖలుచెయ్యి',
 'htmlform-reset' => 'మార్పులను రద్దుచెయ్యి',
 'htmlform-selectorother-other' => 'ఇతర',
+'htmlform-no' => 'కాదు',
+'htmlform-yes' => 'అవును',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 పూర్తి-పాఠ్య అన్వేషణ తోడ్పాటుతో',
