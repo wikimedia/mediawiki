@@ -276,13 +276,42 @@ class SkinTemplate extends Skin {
 		# not for special pages or file pages AND only when viewing
 		if ( !in_array( $title->getNamespace(), [ NS_SPECIAL, NS_FILE ] ) &&
 			Action::getActionName( $this ) === 'view' ) {
-			$pageLang = $title->getPageViewLanguage();
+			$pageLang = $title->getPageViewLanguage( $this->getContext() );
 			$realBodyAttribs['lang'] = $pageLang->getHtmlCode();
 			$realBodyAttribs['dir'] = $pageLang->getDir();
 			$realBodyAttribs['class'] = 'mw-content-' . $pageLang->getDir();
 		}
 
 		return Html::rawElement( 'div', $realBodyAttribs, $html );
+	}
+
+	/**
+	 * Wrap the title text with language information and identifiable element
+	 *
+	 * @since 1.29
+	 * @param Title $title
+	 * @param string $html title text
+	 * @return string html
+	 */
+	protected function wrapTitleHTML( $title, $html ) {
+		# An ID that includes the actual title text
+		$realTitleAttribs = [];
+
+		// @fixme We shouldn't be using these methods on title. Page language can potentially
+		// depend on content of the revision being displayed. But these methods use the most
+		// recent revision of the page. Trying to guess whether the user is on a page view or
+		// something like an action is also really hacky. Defining the language of what we are
+		// outputting to the user should be the job of whatever class is rendering the view
+		// we're looking at, whether it's an article, action, or special page.
+		$pageTitleLang = $title->getPageTitleLanguage( $this->getContext() );
+
+		if ( !in_array( $title->getNamespace(), [ NS_SPECIAL ] ) &&
+			Action::getActionName( $this ) === 'view' ) {
+			$realTitleAttribs['lang'] = $pageTitleLang->getHtmlCode();
+			$realTitleAttribs['dir'] = $pageTitleLang->getDir();
+		}
+
+		return Html::rawElement( 'span', $realTitleAttribs, $html );
 	}
 
 	/**
@@ -302,7 +331,7 @@ class SkinTemplate extends Skin {
 		$out = $this->getOutput();
 		$tpl = $this->setupTemplateForOutput();
 
-		$tpl->set( 'title', $out->getPageTitle() );
+		$tpl->set( 'title', $this->wrapTitleHTML( $title, $out->getPageTitle() ) );
 		$tpl->set( 'pagetitle', $out->getHTMLTitle() );
 		$tpl->set( 'displaytitle', $out->mPageLinkTitle );
 
