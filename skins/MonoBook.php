@@ -88,7 +88,7 @@ class MonoBookTemplate extends BaseTemplate {
 	<h1 id="firstHeading" class="firstHeading" lang="<?php
 		$this->data['pageLanguage'] = $this->getSkin()->getTitle()->getPageViewLanguage()->getCode();
 		$this->html( 'pageLanguage' );
-	?>"><span dir="auto"><?php $this->html( 'title' ) ?></span></h1>
+	?>"><?php $this->html( 'title' ) ?></h1>
 	<div id="bodyContent" class="mw-body">
 		<div id="siteSub"><?php $this->msg( 'tagline' ) ?></div>
 		<div id="contentSub"<?php $this->html( 'userlangattributes' ) ?>><?php $this->html( 'subtitle' ) ?></div>

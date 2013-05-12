@@ -247,7 +247,7 @@ class SkinTemplate extends Skin {
 		wfProfileOut( __METHOD__ . '-stuff-head' );
 
 		wfProfileIn( __METHOD__ . '-stuff2' );
-		$tpl->set( 'title', $out->getPageTitle() );
+		$tpl->set( 'title', '<span dir="auto">' . $out->getPageTitle() . '</span>' );
 		$tpl->set( 'pagetitle', $out->getHTMLTitle() );
 		$tpl->set( 'displaytitle', $out->mPageLinkTitle );
 

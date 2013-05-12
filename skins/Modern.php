@@ -69,7 +69,7 @@ class ModernTemplate extends MonoBookTemplate {
 	<div id="mw_header"><h1 id="firstHeading" lang="<?php
 		$this->data['pageLanguage'] = $this->getSkin()->getTitle()->getPageViewLanguage()->getCode();
 		$this->html( 'pageLanguage' );
-	?>"><span dir="auto"><?php $this->html( 'title' ) ?></span></h1></div>
+	?>"><?php $this->html( 'title' ) ?></h1></div>
 
 	<div id="mw_main">
 	<div id="mw_contentwrapper">
