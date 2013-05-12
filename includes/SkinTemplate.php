@@ -90,12 +90,6 @@ class SkinTemplate extends Skin {
 	 */
 	var $template = 'QuickTemplate';
 
-	/**
-	 * Whether this skin use OutputPage::headElement() to generate the "<head>"
-	 * tag
-	 */
-	var $useHeadElement = false;
-
 	/**#@-*/
 
 	/**
@@ -174,7 +168,6 @@ class SkinTemplate extends Skin {
 		global $wgContLang;
 		global $wgScript, $wgStylePath;
 		global $wgMimeType, $wgJsMimeType;
-		global $wgXhtmlNamespaces, $wgHtml5Version;
 		global $wgDisableCounters, $wgSitename, $wgLogo;
 		global $wgMaxCredits, $wgShowCreditsIfMax;
 		global $wgPageShowWatchingUsers;
@@ -225,26 +218,6 @@ class SkinTemplate extends Skin {
 		}
 
 		wfProfileOut( __METHOD__ . '-stuff' );
-
-		wfProfileIn( __METHOD__ . '-stuff-head' );
-		if ( !$this->useHeadElement ) {
-			$tpl->set( 'pagecss', false );
-			$tpl->set( 'usercss', false );
-
-			$tpl->set( 'userjs', false );
-			$tpl->set( 'userjsprev', false );
-
-			$tpl->set( 'jsvarurl', false );
-
-			$tpl->set( 'xhtmldefaultnamespace', 'http://www.w3.org/1999/xhtml' );
-			$tpl->set( 'xhtmlnamespaces', $wgXhtmlNamespaces );
-			$tpl->set( 'html5version', $wgHtml5Version );
-			$tpl->set( 'headlinks', $out->getHeadLinks() );
-			$tpl->set( 'csslinks', $out->buildCssLinks() );
-			$tpl->set( 'pageclass', $this->getPageClasses( $title ) );
-			$tpl->set( 'skinnameclass', ( 'skin-' . Sanitizer::escapeClass( $this->getSkinName() ) ) );
-		}
-		wfProfileOut( __METHOD__ . '-stuff-head' );
 
 		wfProfileIn( __METHOD__ . '-stuff2' );
 		$tpl->set( 'title', $out->getPageTitle() );
@@ -472,11 +445,7 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'nav_urls', $this->buildNavUrls() );
 
 		// Set the head scripts near the end, in case the above actions resulted in added scripts
-		if ( $this->useHeadElement ) {
-			$tpl->set( 'headelement', $out->headElement( $this ) );
-		} else {
-			$tpl->set( 'headscripts', $out->getHeadScripts() . $out->getHeadItems() );
-		}
+		$tpl->set( 'headelement', $out->headElement( $this ) );
 
 		$tpl->set( 'debug', '' );
 		$tpl->set( 'debughtml', $this->generateDebugHTML() );
