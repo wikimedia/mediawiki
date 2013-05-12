@@ -33,12 +33,16 @@ abstract class CodeContentHandler extends TextContentHandler {
 	 *
 	 * @param Title $title
 	 * @param Content $content
+	 * @param IContextSource $context The context to use in case we're using something like the
+	 *   user's language.
 	 *
 	 * @return Language
 	 *
 	 * @see ContentHandler::getPageLanguage()
 	 */
-	public function getPageLanguage( Title $title, Content $content = null ) {
+	public function getPageLanguage( Title $title, Content $content = null,
+		IContextSource $context = null
+	) {
 		return Language::factory( 'en' );
 	}
 
@@ -47,12 +51,16 @@ abstract class CodeContentHandler extends TextContentHandler {
 	 *
 	 * @param Title $title
 	 * @param Content $content
+	 * @param IContextSource $context The context to use in case we're using something like the
+	 *   user's language.
 	 *
 	 * @return Language
 	 *
 	 * @see ContentHandler::getPageViewLanguage()
 	 */
-	public function getPageViewLanguage( Title $title, Content $content = null ) {
+	public function getPageViewLanguage( Title $title, Content $content = null,
+		IContextSource $context = null
+	) {
 		return Language::factory( 'en' );
 	}
 
