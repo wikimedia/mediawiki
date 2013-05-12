@@ -152,6 +152,7 @@ changes to languages because of Bugzilla reports.
   user ID, or file name.  The old Special:Filepath page was reimplemented
   to redirect through Special:Redirect.
 * Monobook: Removed the old conditional stylesheets for Opera 6, 7 and 9.
+* BREAKING CHANGE: Old skins not using headelement are no longer supported.
 
 == Compatibility ==
 

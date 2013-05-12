@@ -437,8 +437,10 @@ class OutputPage extends ContextSource {
 	 * Get all registered JS and CSS tags for the header.
 	 *
 	 * @return String
+	 * @deprecated since 1.22 Use OutputPage::headElement to build the full header.
 	 */
 	function getScript() {
+		wfDeprecated( __METHOD__, '1.22' );
 		return $this->mScripts . $this->getHeadItems();
 	}
 
@@ -592,8 +594,11 @@ class OutputPage extends ContextSource {
 	 * Get all header items in a string
 	 *
 	 * @return String
+	 * @deprecated since 1.22 Use OutputPage::headElement or
+	 *     if absolutely necessary use OutputPage::getHeadItemsArray.
 	 */
 	function getHeadItems() {
+		wfDeprecated( __METHOD__, '1.22' );
 		$s = '';
 		foreach ( $this->mHeadItems as $item ) {
 			$s .= $item;
@@ -2498,12 +2503,15 @@ $templates
 
 		$ret .= Html::element( 'title', null, $this->getHTMLTitle() ) . "\n";
 
-		$ret .= implode( "\n", array(
-			$this->getHeadLinks( null, true ),
-			$this->buildCssLinks(),
-			$this->getHeadScripts(),
-			$this->getHeadItems()
-		) );
+		foreach ( $this->getHeadLinksArray( true ) as $item ) {
+			$ret .= $item . "\n";
+		}
+		$ret .= $this->buildCssLinks() . "\n";
+		$ret .= $this->getHeadScripts() . "\n";
+
+		foreach ( $this->mHeadItems as $item ) {
+			$ret .= $item . "\n";
+		}
 
 		$closeHead = Html::closeElement( 'head' );
 		if ( $closeHead ) {
@@ -3381,8 +3389,10 @@ $templates
 	 * @param bool $addContentType Whether "<meta>" specifying content type should be returned
 	 *
 	 * @return string HTML tag links to be put in the header.
+	 * @deprecated since 1.22 Use OutputPage::headElement or if you have to, OutputPage::getHeadLinksArray directly.
 	 */
 	public function getHeadLinks( $unused = null, $addContentType = false ) {
+		wfDeprecated( __METHOD__, '1.22' );
 		return implode( "\n", $this->getHeadLinksArray( $addContentType ) );
 	}
 
