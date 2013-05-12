@@ -113,12 +113,17 @@ class ContentHandlerTest extends MediaWikiTestCase {
 		}
 	}
 
-	public static function dataGetPageLanguage() {
+	public static function dataGetPageLanguages() {
 		global $wgLanguageCode;
 
+		// Title, page lang, page view lang, title lang
+		// For brevity lang codes that are omitted or null will fall back to the prev arg
 		return array(
 			array( "Main", $wgLanguageCode ),
 			array( "Dummy:Foo", $wgLanguageCode ),
+			array( "MediaWiki:Version", $wgLanguageCode ),
+			array( "MediaWiki:Version/en", 'en', null, 'en' ),
+			array( "MediaWiki:Version/fr", 'fr', null, 'en' ),
 			array( "MediaWiki:common.js", 'en' ),
 			array( "User:Foo/common.js", 'en' ),
 			array( "MediaWiki:common.css", 'en' ),
@@ -130,19 +135,29 @@ class ContentHandlerTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @dataProvider dataGetPageLanguage
+	 * @dataProvider dataGetPageLanguages
 	 */
-	public function testGetPageLanguage( $title, $expected ) {
+	public function testGetPageLanguages( $title, $pageLang, $pageViewLang = null, $pageTitleLang = null ) {
 		if ( is_string( $title ) ) {
 			$title = Title::newFromText( $title );
 		}
 
-		$expected = wfGetLangObj( $expected );
+		if ( is_null( $pageViewLang ) ) {
+			$pageViewLang = $pageLang;
+		}
+		if ( is_null( $pageTitleLang ) ) {
+			$pageTitleLang = $pageViewLang;
+		}
+
+		$pageLang = wfGetLangObj( $pageLang );
+		$pageViewLang = wfGetLangObj( $pageViewLang );
+		$pageTitleLang = wfGetLangObj( $pageTitleLang );
 
 		$handler = ContentHandler::getForTitle( $title );
-		$lang = $handler->getPageLanguage( $title );
 
-		$this->assertEquals( $expected->getCode(), $lang->getCode() );
+		$this->assertEquals( $pageLang->getCode(), $handler->getPageLanguage( $title )->getCode() );
+		$this->assertEquals( $pageViewLang->getCode(), $handler->getPageViewLanguage( $title )->getCode() );
+		$this->assertEquals( $pageTitleLang->getCode(), $handler->getPageTitleLanguage( $title )->getCode() );
 	}
 
 	public static function dataGetContentText_Null() {
