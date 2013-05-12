@@ -4723,52 +4723,81 @@ class Title {
 	/**
 	 * Get the language in which the content of this page is written in
 	 * wikitext. Defaults to $wgContLang, but in certain cases it can be
-	 * e.g. $wgLang (such as special pages, which are in the user language).
+	 * others such as the user lang on special pages.
 	 *
 	 * @since 1.18
+	 * @param IContextSource $context The context to use in case we're using something like the user's language.
 	 * @return Language
 	 */
-	public function getPageLanguage() {
-		global $wgLang;
+	public function getPageLanguage( IContextSource $context = null ) {
 		if ( $this->isSpecialPage() ) {
 			// special pages are in the user language
-			return $wgLang;
+			if ( is_null( $context ) ) {
+				$context = RequestContext::getMain();
+			}
+			return $context->getLanguage();
 		}
 
 		//TODO: use the LinkCache to cache this! Note that this may depend on user settings, so the cache should be only per-request.
 		//NOTE: ContentHandler::getPageLanguage() may need to load the content to determine the page language!
 		$contentHandler = ContentHandler::getForTitle( $this );
-		$pageLang = $contentHandler->getPageLanguage( $this );
+		$pageLang = $contentHandler->getPageLanguage( $this, null, $context );
 
 		return wfGetLangObj( $pageLang );
 	}
 
 	/**
 	 * Get the language in which the content of this page is written when
-	 * viewed by user. Defaults to $wgContLang, but in certain cases it can be
-	 * e.g. $wgLang (such as special pages, which are in the user language).
+	 * viewed by user. Defaults to $wgContLang, but in certain cases it
+	 * can be others such as the user lang on special pages.
 	 *
 	 * @since 1.20
+	 * @param IContextSource $context The context to use in case we're using something like the user's language.
 	 * @return Language
 	 */
-	public function getPageViewLanguage() {
-		global $wgLang;
-
+	public function getPageViewLanguage( IContextSource $context = null ) {
 		if ( $this->isSpecialPage() ) {
 			// If the user chooses a variant, the content is actually
 			// in a language whose code is the variant code.
-			$variant = $wgLang->getPreferredVariant();
-			if ( $wgLang->getCode() !== $variant ) {
+			if ( is_null( $context ) ) {
+				$context = RequestContext::getMain();
+			}
+			$lang = $context->getLanguage();
+			$variant = $lang->getPreferredVariant();
+			if ( $lang->getCode() !== $variant ) {
 				return Language::factory( $variant );
 			}
-
-			return $wgLang;
+			return $lang;;
 		}
 
 		//NOTE: can't be cached persistently, depends on user settings
 		//NOTE: ContentHandler::getPageViewLanguage() may need to load the content to determine the page language!
 		$contentHandler = ContentHandler::getForTitle( $this );
-		$pageLang = $contentHandler->getPageViewLanguage( $this );
+		$pageLang = $contentHandler->getPageViewLanguage( $this, null, $context );
+		return $pageLang;
+	}
+
+	/**
+	 * Get the language in which the title of this page is written when
+	 * viewed by user. Defaults to $wgContLang, but in certain cases it
+	 * can be others such as the user lang on special pages.
+	 *
+	 * @since 1.22
+	 * @param IContextSource $context The context to use in case we're using something like the user's language.
+	 * @return Language
+	 */
+	public function getPageTitleLanguage( IContextSource $context = null ) {
+		global $wgLang;
+
+		if ( $this->isSpecialPage() ) {
+			// If it's a special page just use getPageViewLanguage.
+			return $this->getPageViewLanguage( $context );
+		}
+
+		//NOTE: can't be cached persistently, depends on user settings
+		//NOTE: ContentHandler::getPageTitleLanguage() may need to load the content to determine the page language!
+		$contentHandler = ContentHandler::getForTitle( $this );
+		$pageLang = $contentHandler->getPageTitleLanguage( $this, null, $context );
 		return $pageLang;
 	}
 

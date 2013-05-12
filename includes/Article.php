@@ -1463,7 +1463,7 @@ class Article implements Page {
 			$target = array( $target );
 		}
 
-		$lang = $this->getTitle()->getPageLanguage();
+		$lang = $this->getTitle()->getPageViewLanguage();
 		$imageDir = $lang->getDir();
 
 		if ( $appendSubtitle ) {
