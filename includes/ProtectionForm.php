@@ -614,7 +614,7 @@ class ProtectionForm {
 	}
 
 	function buildCleanupScript() {
-		global $wgRestrictionLevels, $wgCascadingRestrictionLevels, $wgOut;
+		global $wgCascadingRestrictionLevels, $wgOut;
 
 		$cascadeableLevels = $wgCascadingRestrictionLevels;
 		$options = array(
