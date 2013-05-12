@@ -473,8 +473,10 @@ class OutputPage extends ContextSource {
 	 * Get all registered JS and CSS tags for the header.
 	 *
 	 * @return string
+	 * @deprecated since 1.24 Use OutputPage::headElement to build the full header.
 	 */
 	function getScript() {
+		wfDeprecated( __METHOD__, '1.24' );
 		return $this->mScripts . $this->getHeadItems();
 	}
 
@@ -630,8 +632,11 @@ class OutputPage extends ContextSource {
 	 * Get all header items in a string
 	 *
 	 * @return string
+	 * @deprecated since 1.24 Use OutputPage::headElement or
+	 *   if absolutely necessary use OutputPage::getHeadItemsArray
 	 */
 	function getHeadItems() {
+		wfDeprecated( __METHOD__, '1.24' );
 		$s = '';
 		foreach ( $this->mHeadItems as $item ) {
 			$s .= $item;
@@ -2585,15 +2590,18 @@ $templates
 
 		$ret .= Html::element( 'title', null, $this->getHTMLTitle() ) . "\n";
 
-		$ret .= (
-			$this->getHeadLinks() .
-			"\n" .
-			$this->buildCssLinks() .
-			// No newline after buildCssLinks since makeResourceLoaderLink did that already
-			$this->getHeadScripts() .
-			"\n" .
-			$this->getHeadItems()
-		);
+		foreach ( $this->getHeadLinksArray() as $item ) {
+			$ret .= $item . "\n";
+		}
+
+		// No newline after buildCssLinks since makeResourceLoaderLink did that already
+		$ret .= $this->buildCssLinks();
+
+		$ret .= $this->getHeadScripts() . "\n";
+
+		foreach ( $this->mHeadItems as $item ) {
+			$ret .= $item . "\n";
+		}
 
 		$closeHead = Html::closeElement( 'head' );
 		if ( $closeHead ) {
@@ -3434,8 +3442,11 @@ $templates
 
 	/**
 	 * @return string HTML tag links to be put in the header.
+	 * @deprecated since 1.24 Use OutputPage::headElement or if you have to,
+	 *   OutputPage::getHeadLinksArray directly.
 	 */
 	public function getHeadLinks() {
+		wfDeprecated( __METHOD__, '1.24' );
 		return implode( "\n", $this->getHeadLinksArray() );
 	}
 
