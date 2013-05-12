@@ -455,6 +455,10 @@ changes to languages because of Bugzilla reports.
   The skins/common/wikiprintable.css file no longer exists. Return value of
   Skin#commonPrintStylesheet is ignored. Please use the 'mediawiki.legacy.commonPrint'
   module instead or base your skin on SkinTemplate.
+* BREAKING CHANGE: Skins built for MediaWiki 1.15 and earlier that do no use the
+  "headelement" tpl key are no longer supported. Setting $useHeadElement = false;
+  is no longer supported and will not cause old keys like "headlinks",
+  "skinnameclass", etc. to be defined.
 
 == Compatibility ==
 
