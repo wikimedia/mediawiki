@@ -480,7 +480,7 @@ class CategoryViewer extends ContextSource {
 			$list = self::shortList( $articles, $articles_start_char );
 		}
 
-		$pageLang = $this->title->getPageLanguage();
+		$pageLang = $this->title->getPageViewLanguage();
 		$attribs = array( 'lang' => $pageLang->getCode(), 'dir' => $pageLang->getDir(),
 			'class' => 'mw-content-' . $pageLang->getDir() );
 		$list = Html::rawElement( 'div', $attribs, $list );

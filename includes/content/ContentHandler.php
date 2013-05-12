@@ -609,17 +609,20 @@ abstract class ContentHandler {
 	 *
 	 * @return Language the page's language
 	 */
-	public function getPageLanguage( Title $title, Content $content = null ) {
-		global $wgContLang, $wgLang;
+	public function getPageLanguage( Title $title, Content $content = null, IContextSource $context = null ) {
+		global $wgContLang;
 		$pageLang = $wgContLang;
 
-		if ( $title->getNamespace() == NS_MEDIAWIKI ) {
+		if ( $title->inNamespace( NS_MEDIAWIKI ) ) {
 			// Parse mediawiki messages with correct target language
 			list( /* $unused */, $lang ) = MessageCache::singleton()->figureMessage( $title->getText() );
 			$pageLang = wfGetLangObj( $lang );
 		}
 
-		wfRunHooks( 'PageContentLanguage', array( $title, &$pageLang, $wgLang ) );
+		if ( is_null( $context ) ) {
+			$context = RequestContext::getMain();
+		}
+		wfRunHooks( 'PageContentLanguage', array( $title, &$pageLang, $context->getLanguage() ) );
 		return wfGetLangObj( $pageLang );
 	}
 
@@ -643,10 +646,10 @@ abstract class ContentHandler {
 	 *
 	 * @return Language the page's language for viewing
 	 */
-	public function getPageViewLanguage( Title $title, Content $content = null ) {
-		$pageLang = $this->getPageLanguage( $title, $content );
+	public function getPageViewLanguage( Title $title, Content $content = null, IContextSource $context = null ) {
+		$pageLang = $this->getPageLanguage( $title, $content, $context );
 
-		if ( $title->getNamespace() !== NS_MEDIAWIKI ) {
+		if ( !$title->inNamespace( NS_MEDIAWIKI ) ) {
 			// If the user chooses a variant, the content is actually
 			// in a language whose code is the variant code.
 			$variant = $pageLang->getPreferredVariant();
@@ -655,6 +658,39 @@ abstract class ContentHandler {
 			}
 		}
 
+		return $pageLang;
+	}
+
+	/**
+	 * Get the language in which the title of this page is written when
+	 * viewed by user. Defaults to $this->getPageViewLanguage().
+	 *
+	 * This default implementation just returns $this->getPageViewLanguage( $title, $content ).
+	 *
+	 * Note that the page title's view language is not cacheable, since it depends on user settings.
+	 *
+	 * Also note that the page title's language may or may not depend on the actual content of the page,
+	 * that is, this method may load the content in order to determine the language.
+	 *
+	 * @since 1.22
+	 *
+	 * @param Title        $title the page to determine the language title for.
+	 * @param Content|null $content the page's content, if you have it handy, to avoid reloading it.
+	 *
+	 * @return Language the page title's language for viewing
+	 */
+	public function getPageTitleLanguage( Title $title, Content $content = null, IContextSource $context = null ) {
+		if ( is_null( $context ) ) {
+			$context = RequestContext::getMain();
+		}
+		$pageLang = $this->getPageViewLanguage( $title, $content, $context );
+
+		if ( $title->inNamespace( NS_MEDIAWIKI ) ) {
+			// MediaWiki: namespace titles are always in English
+			$pageLang = Language::factory( 'en' );
+		}
+
+		wfRunHooks( 'PageTitleLanguage', array( $title, &$pageLang, $context->getLanguage() ) );
 		return $pageLang;
 	}
 
