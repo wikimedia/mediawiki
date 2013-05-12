@@ -582,6 +582,12 @@ return array(
 			'mediawiki.Title',
 		),
 	),
+	'mediawiki.api.login' => array(
+		'scripts' => 'resources/mediawiki.api/mediawiki.api.login.js',
+		'dependencies' => array(
+			'mediawiki.api',
+		),
+	),
 	'mediawiki.api.parse' => array(
 		'scripts' => 'resources/mediawiki.api/mediawiki.api.parse.js',
 		'dependencies' => 'mediawiki.api',
