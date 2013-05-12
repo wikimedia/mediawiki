@@ -192,8 +192,9 @@ class CopyFileBackend extends Maintenance {
 				if ( $src->fileExists( array( 'src' => $srcPath ) ) === false ) {
 					$this->error( "File '$srcPath' was listed be must have been deleted." );
 				} else {
-					$this->error( "Could not get local copy of $srcPath.", 1 ); // die
+					$this->error( "Could not get local copy of $srcPath." );
 				}
+				continue;
 			} elseif ( !$fsFile->exists() ) {
 				// FSFileBackends just return the path for getLocalReference() and paths with
 				// illegal slashes may get normalized to a different path. This can cause the
