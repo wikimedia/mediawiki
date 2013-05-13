@@ -1986,7 +1986,8 @@ class OutputPage extends ContextSource {
 	 * the object, let's actually output it:
 	 */
 	public function output() {
-		global $wgLanguageCode, $wgDebugRedirects, $wgMimeType, $wgVaryOnXFP;
+		global $wgLanguageCode, $wgDebugRedirects, $wgMimeType, $wgVaryOnXFP,
+			$wgUseAjax;
 
 		if ( $this->mDoNothing ) {
 			return;
@@ -2051,9 +2052,19 @@ class OutputPage extends ContextSource {
 		if ( $this->mArticleBodyOnly ) {
 			$this->out( $this->mBodytext );
 		} else {
-			$this->addDefaultModules();
-
+			// add required startup module
+			$this->addModules( 'mediawiki.page.startup' );
 			$sk = $this->getSkin();
+			// add skin specific modules
+			$modules = $sk->getDefaultModules();
+			foreach( $modules as $group ) {
+				$this->addModules( $group );
+			}
+			MWDebug::addModules( $this );
+			if ( $wgUseAjax ) {
+				// FIXME: deprecate? - not clear why this is useful
+				wfRunHooks( 'AjaxAddScript', array( &$this ) );
+			}
 
 			// Hook that allows last minute changes to the output page, e.g.
 			// adding of CSS or Javascript by extensions.
@@ -2537,59 +2548,6 @@ $templates
 		$ret .= Html::openElement( 'body', $bodyAttrs ) . "\n";
 
 		return $ret;
-	}
-
-	/**
-	 * Add the default ResourceLoader modules to this object
-	 */
-	private function addDefaultModules() {
-		global $wgIncludeLegacyJavaScript, $wgPreloadJavaScriptMwUtil, $wgUseAjax,
-			$wgAjaxWatch, $wgResponsiveImages;
-
-		// Add base resources
-		$this->addModules( array(
-			'mediawiki.user',
-			'mediawiki.page.startup',
-			'mediawiki.page.ready',
-		) );
-		if ( $wgIncludeLegacyJavaScript ) {
-			$this->addModules( 'mediawiki.legacy.wikibits' );
-		}
-
-		if ( $wgPreloadJavaScriptMwUtil ) {
-			$this->addModules( 'mediawiki.util' );
-		}
-
-		MWDebug::addModules( $this );
-
-		// Add various resources if required
-		if ( $wgUseAjax ) {
-			$this->addModules( 'mediawiki.legacy.ajax' );
-
-			wfRunHooks( 'AjaxAddScript', array( &$this ) );
-
-			if ( $wgAjaxWatch && $this->getUser()->isLoggedIn() ) {
-				$this->addModules( 'mediawiki.page.watch.ajax' );
-			}
-
-			if ( !$this->getUser()->getOption( 'disablesuggest', false ) ) {
-				$this->addModules( 'mediawiki.searchSuggest' );
-			}
-		}
-
-		if ( $this->getUser()->getBoolOption( 'editsectiononrightclick' ) ) {
-			$this->addModules( 'mediawiki.action.view.rightClickEdit' );
-		}
-
-		# Crazy edit-on-double-click stuff
-		if ( $this->isArticle() && $this->getUser()->getOption( 'editondblclick' ) ) {
-			$this->addModules( 'mediawiki.action.view.dblClickEdit' );
-		}
-
-		// Support for high-density display images
-		if ( $wgResponsiveImages ) {
-			$this->addModules( 'mediawiki.hidpi' );
-		}
 	}
 
 	/**
