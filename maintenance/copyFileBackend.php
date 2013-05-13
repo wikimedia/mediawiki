@@ -158,6 +158,7 @@ class CopyFileBackend extends Maintenance {
 		$ops = array();
 		$fsFiles = array();
 		$copiedRel = array(); // for output message
+		$wikiId = $src->getWikiId();
 
 		// Download the batch of source files into backend cache...
 		if ( $this->hasOption( 'missingonly' ) ) {
@@ -177,7 +178,7 @@ class CopyFileBackend extends Maintenance {
 			$srcPath = $src->getRootStoragePath() . "/$backendRel/$srcPathRel";
 			$dstPath = $dst->getRootStoragePath() . "/$backendRel/$srcPathRel";
 			if ( $this->hasOption( 'utf8only' ) && !mb_check_encoding( $srcPath, 'UTF-8' ) ) {
-				$this->error( "Detected illegal (non-UTF8) path for $srcPath." );
+				$this->error( "$wikiId: Detected illegal (non-UTF8) path for $srcPath." );
 				continue;
 			} elseif ( !$this->hasOption( 'missingonly' )
 				&& $this->filesAreSame( $src, $dst, $srcPath, $dstPath ) )
@@ -190,17 +191,17 @@ class CopyFileBackend extends Maintenance {
 				: $src->getLocalReference( array( 'src' => $srcPath, 'latest' => 1 ) );
 			if ( !$fsFile ) {
 				if ( $src->fileExists( array( 'src' => $srcPath ) ) === false ) {
-					$this->error( "File '$srcPath' was listed but must have been deleted." );
+					$this->error( "$wikiId: File '$srcPath' was listed but does not exist." );
 					continue;
 				} else {
-					$this->error( "Could not get local copy of $srcPath." );
+					$this->error( "$wikiId: Could not get local copy of $srcPath." );
 				}
 				continue;
 			} elseif ( !$fsFile->exists() ) {
 				// FSFileBackends just return the path for getLocalReference() and paths with
 				// illegal slashes may get normalized to a different path. This can cause the
 				// local reference to not exist...skip these broken files.
-				$this->error( "Detected possible illegal path for $srcPath." );
+				$this->error( "$wikiId: Detected possible illegal path for $srcPath." );
 				continue;
 			}
 			$fsFiles[] = $fsFile; // keep TempFSFile objects alive as needed
@@ -208,7 +209,7 @@ class CopyFileBackend extends Maintenance {
 			$status = $dst->prepare( array( 'dir' => dirname( $dstPath ), 'bypassReadOnly' => 1 ) );
 			if ( !$status->isOK() ) {
 				$this->error( print_r( $status->getErrorsArray(), true ) );
-				$this->error( "Could not copy $srcPath to $dstPath.", 1 ); // die
+				$this->error( "$wikiId: Could not copy $srcPath to $dstPath.", 1 ); // die
 			}
 			$ops[] = array( 'op' => 'store',
 				'src' => $fsFile->getPath(), 'dst' => $dstPath, 'overwrite' => 1 );
@@ -225,7 +226,7 @@ class CopyFileBackend extends Maintenance {
 		$ellapsed_ms = floor( ( microtime( true ) - $t_start ) * 1000 );
 		if ( !$status->isOK() ) {
 			$this->error( print_r( $status->getErrorsArray(), true ) );
-			$this->error( "Could not copy file batch.", 1 ); // die
+			$this->error( "$wikiId: Could not copy file batch.", 1 ); // die
 		} elseif ( count( $copiedRel ) ) {
 			$this->output( "\nCopied these file(s) [{$ellapsed_ms}ms]:\n" .
 				implode( "\n", $copiedRel ) . "\n\n" );
