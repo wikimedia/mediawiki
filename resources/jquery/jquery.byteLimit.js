@@ -78,7 +78,8 @@
 		// Chop off characters from the end of the "inserted content" string
 		// until the limit is statisfied.
 		if ( fn ) {
-			while ( $.byteLength( fn( inpParts.join( '' ) ) ) > byteLimit ) {
+			// stop, when there is nothing to slice - bug 41450
+			while ( $.byteLength( fn( inpParts.join( '' ) ) ) > byteLimit && inpParts[1].length > 0 ) {
 				inpParts[1] = inpParts[1].slice( 0, -1 );
 			}
 		} else {

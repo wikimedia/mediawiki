@@ -191,6 +191,18 @@
 		expected: 'User:Sample'
 	} );
 
+	byteLimitTest( {
+		description: 'text of callback is longer than max - bug 41450',
+		$input: $( '<input type="text"/>' )
+		.byteLimit( 5, function ( text ) {
+			return 'longText' + text;
+		} ),
+		sample: 'A',
+		hasLimit: true,
+		limit: 8, // length of 'longText'
+		expected: '' // sample text is rejected
+	} );
+
 	QUnit.test( 'Confirm properties and attributes set', 4, function ( assert ) {
 		var $el, $elA, $elB;
 
