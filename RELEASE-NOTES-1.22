@@ -16,6 +16,8 @@ production.
   Special:UserLogin/signup is activated.
 * $wgVectorUseIconWatch is now enabled by default.
 * $wgCascadingRestrictionLevels was added.
+* ftps, ssh, sftp, xmpp, sip, sips, tel, sms, bitcoin, magnet, urn, and geo
+  have been whitelisted inside of $wgUrlProtocols.
 
 === New features in 1.22 ===
 * (bug 44525) mediawiki.jqueryMsg can now parse (whitelisted) HTML elements and attributes.
