@@ -198,6 +198,66 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
+	 * Defines the ResourceLoader modules that should be added to the skin
+	 * It is recommended that skins wishing to override call parent::getDefaultModules()
+	 * and substitute out any modules they wish to change by using a key to look them up
+	 * @return Array of modules with helper keys for easy overriding
+	 */
+	public function getDefaultModules() {
+		global $wgIncludeLegacyJavaScript, $wgPreloadJavaScriptMwUtil, $wgUseAjax,
+			$wgAjaxWatch, $wgResponsiveImages;
+
+		$out = $this->getOutput();
+		$user = $out->getUser();
+		$modules = array(
+			'enhancements' => array( // modules that enhance the page content in some way
+				'mediawiki.page.ready',
+			),
+			'legacy' => array(), // modules that exist for legacy reasons
+			'lib' => array( // modules that provide libraries
+				'mediawiki.user',
+			),
+			'search' => array(), // modules relating to search functionality
+			'watch' => array(), // modules relating to watch star functionality
+		);
+		if ( $wgIncludeLegacyJavaScript ) {
+			$modules['legacy'][] = 'mediawiki.legacy.wikibits';
+		}
+
+		if ( $wgPreloadJavaScriptMwUtil ) {
+			$modules['lib'][] = 'mediawiki.util';
+		}
+
+		// Add various resources if required
+		if ( $wgUseAjax ) {
+			$modules['legacy'][] = 'mediawiki.legacy.ajax';
+
+			if ( $wgAjaxWatch && $user->isLoggedIn() ) {
+				$modules['watch'][] = 'mediawiki.page.watch.ajax';
+			}
+
+			if ( !$user->getOption( 'disablesuggest', false ) ) {
+				$modules['search'][] =  'mediawiki.searchSuggest';
+			}
+		}
+
+		if ( $user->getBoolOption( 'editsectiononrightclick' ) ) {
+			$modules['enhancements'][] = 'mediawiki.action.view.rightClickEdit';
+		}
+
+		# Crazy edit-on-double-click stuff
+		if ( $out->isArticle() && $user->getOption( 'editondblclick' ) ) {
+			$modules['enhancements'][] = 'mediawiki.action.view.dblClickEdit';
+		}
+
+		// Support for high-density display images
+		if ( $wgResponsiveImages ) {
+			$modules['enhancements'][] = 'mediawiki.hidpi';
+		}
+		return $modules;
+	}
+
+	/**
 	 * Preload the existence of three commonly-requested pages in a single query
 	 */
 	function preloadExistence() {
