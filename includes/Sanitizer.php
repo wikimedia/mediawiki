@@ -388,10 +388,10 @@ class Sanitizer {
 				$htmlpairsStatic = array_merge( $htmlpairsStatic, array( 'data', 'time', 'mark' ) );
 			}
 			$htmlsingle = array(
-				'br', 'hr', 'li', 'dt', 'dd'
+				'br', 'wbr', 'hr', 'li', 'dt', 'dd'
 			);
 			$htmlsingleonly = array( # Elements that cannot have close tags
-				'br', 'hr'
+				'br', 'wbr', 'hr'
 			);
 			if ( $wgHtml5 && $wgAllowMicrodataAttributes ) {
 				$htmlsingle[] = $htmlsingleonly[] = 'meta';
@@ -1520,6 +1520,9 @@ class Sanitizer {
 
 			# 9.3.2
 			'br'         => array( 'id', 'class', 'title', 'style', 'clear' ),
+
+			# http://www.whatwg.org/html/text-level-semantics.html#the-wbr-element
+			'wbr'        => array( 'id', 'class', 'title', 'style' ),
 
 			# 9.3.4
 			'pre'        => array_merge( $common, array( 'width' ) ),

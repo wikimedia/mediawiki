@@ -70,6 +70,7 @@ production.
   uses ES5 getter/setter to emit a warning when they are used.
 * $wgCascadingRestrictionLevels was added, allowing one to specify restriction levels
   which can be cascading (previously 'sysop' was hard-coded as the only one).
+* <wbr> can now be used inside WikiText.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail. Previously one could still
