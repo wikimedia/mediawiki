@@ -36,8 +36,8 @@ class HashRing {
 	 * @param array $map (location => weight)
 	 */
 	public function __construct( array $map ) {
-		$sum = array_sum( $map );
-		if ( !count( $map ) || $sum <= 0 ) {
+		$map = array_filter( $map, function( $w ) { return $w > 0; } );
+		if ( !count( $map ) ) {
 			throw new MWException( "Ring is empty or all weights are zero." );
 		}
 		// Sort the locations based on the hash of their names
