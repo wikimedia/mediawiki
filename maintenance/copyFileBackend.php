@@ -190,9 +190,9 @@ class CopyFileBackend extends Maintenance {
 				? $fsFiles[$srcPath]
 				: $src->getLocalReference( array( 'src' => $srcPath, 'latest' => 1 ) );
 			if ( !$fsFile ) {
-				if ( $src->fileExists( array( 'src' => $srcPath ) ) === false ) {
-					$this->error( "$wikiId: File '$srcPath' was listed but does not exist." );
-					continue;
+				$src->clearCache( array( $srcPath ) );
+				if ( $src->fileExists( array( 'src' => $srcPath, 'latest' => 1 ) ) === false ) {
+					$this->error( "$wikiID: File '$srcPath' was listed but does not exist." );
 				} else {
 					$this->error( "$wikiId: Could not get local copy of $srcPath." );
 				}
