@@ -312,7 +312,7 @@ class ParserOptions {
 	function setAllowSpecialInclusion( $x )     { return wfSetVar( $this->mAllowSpecialInclusion, $x ); }
 	function setTidy( $x )                      { return wfSetVar( $this->mTidy, $x ); }
 
-	/** @deprecated in 1.19; will be removed in 1.20 */
+	/** @deprecated in 1.19 */
 	function setSkin( $x )                      { wfDeprecated( __METHOD__, '1.19' ); }
 	function setInterfaceMessage( $x )          { return wfSetVar( $this->mInterfaceMessage, $x ); }
 	function setTargetLanguage( $x )            { return wfSetVar( $this->mTargetLanguage, $x, true ); }
