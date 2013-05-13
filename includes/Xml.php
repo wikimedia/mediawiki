@@ -739,8 +739,8 @@ class Xml {
 	/**
 	 * Generate a form (without the opening form element).
 	 * Output optionally includes a submit button.
-	 * @param array $fields Associative array, key is message corresponding to a description for the field (colon is in the message), value is appropriate input.
-	 * @param string $submitLabel A message containing a label for the submit button.
+	 * @param array $fields Associative array, key is the name of a message that contains a description for the field, value is an HTML string containing the appropriate input.
+	 * @param string $submitLabel The name of a message containing a label for the submit button.
 	 * @return string HTML form.
 	 */
 	public static function buildForm( $fields, $submitLabel = null ) {
@@ -750,6 +750,11 @@ class Xml {
 		foreach ( $fields as $labelmsg => $input ) {
 			$id = "mw-$labelmsg";
 			$form .= Xml::openElement( 'tr', array( 'id' => $id ) );
+
+			// TODO use a <label> here for accessibility purposes - will need
+			// to either not use a table to build the form, or find the ID of
+			// the input somehow.
+
 			$form .= Xml::tags( 'td', array( 'class' => 'mw-label' ), wfMessage( $labelmsg )->parse() );
 			$form .= Xml::openElement( 'td', array( 'class' => 'mw-input' ) ) . $input . Xml::closeElement( 'td' );
 			$form .= Xml::closeElement( 'tr' );
