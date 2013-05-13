@@ -731,7 +731,7 @@ class User {
 	 * Does a string look like an e-mail address?
 	 *
 	 * This validates an email address using an HTML5 specification found at:
-	 * http://www.whatwg.org/specs/web-apps/current-work/multipage/states-of-the-type-attribute.html#valid-e-mail-address
+	 * http://www.whatwg.org/html/states-of-the-type-attribute.html#valid-e-mail-address
 	 * Which as of 2011-01-24 says:
 	 *
 	 *     A valid e-mail address is a string that matches the ABNF production

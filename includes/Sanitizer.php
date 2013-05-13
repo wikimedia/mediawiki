@@ -740,7 +740,7 @@ class Sanitizer {
 
 			# WAI-ARIA
 			# http://www.w3.org/TR/wai-aria/
-			# http://www.whatwg.org/specs/web-apps/current-work/multipage/elements.html#wai-aria
+			# http://www.whatwg.org/html/elements.html#wai-aria
 			# For now we only support role="presentation" until we work out what roles should be
 			# usable by content and we ensure that our code explicitly rejects patterns that
 			# violate HTML5's ARIA restrictions.
@@ -1012,7 +1012,7 @@ class Sanitizer {
 	 *                                                          in the id and
 	 *                                                          name attributes
 	 * @see http://www.w3.org/TR/html401/struct/links.html#h-12.2.3 Anchors with the id attribute
-	 * @see http://www.whatwg.org/specs/web-apps/current-work/multipage/elements.html#the-id-attribute
+	 * @see http://www.whatwg.org/html/elements.html#the-id-attribute
 	 *   HTML5 definition of id attribute
 	 *
 	 * @param string $id id to escape
@@ -1450,7 +1450,7 @@ class Sanitizer {
 		}
 
 		if ( $wgAllowMicrodataAttributes ) {
-			# add HTML5 microdata tags as specified by http://www.whatwg.org/specs/web-apps/current-work/multipage/microdata.html#the-microdata-model
+			# add HTML5 microdata tags as specified by http://www.whatwg.org/html/microdata.html#the-microdata-model
 			$common = array_merge( $common, array(
 				'itemid', 'itemprop', 'itemref', 'itemscope', 'itemtype'
 			) );
@@ -1606,7 +1606,7 @@ class Sanitizer {
 			'bdi' => $common,
 
 			# HTML5 elements, defined by:
-			# http://www.whatwg.org/specs/web-apps/current-work/multipage/
+			# http://www.whatwg.org/html/
 			'data' => array_merge( $common, array( 'value' ) ),
 			'time' => array_merge( $common, array( 'datetime' ) ),
 			'mark' => $common,
@@ -1723,7 +1723,7 @@ class Sanitizer {
 	 * Does a string look like an e-mail address?
 	 *
 	 * This validates an email address using an HTML5 specification found at:
-	 * http://www.whatwg.org/specs/web-apps/current-work/multipage/states-of-the-type-attribute.html#valid-e-mail-address
+	 * http://www.whatwg.org/html/states-of-the-type-attribute.html#valid-e-mail-address
 	 * Which as of 2011-01-24 says:
 	 *
 	 *   A valid e-mail address is a string that matches the ABNF production
