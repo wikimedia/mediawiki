@@ -762,7 +762,7 @@ Perhatikan bahwa beberapa halaman mungkin masih terus menunjukkan bahwa Anda mas
 'createacct-yourpasswordagain-ph' => 'Masukkan lagi kata sandi',
 'remembermypassword' => 'Ingat kata sandi saya di komputer ini (selama $1 {{PLURAL:$1|hari|hari}})',
 'userlogin-remembermypassword' => 'Biarkan saya tetap masuk',
-'userlogin-signwithsecure' => 'Masuk log dengan server aman',
+'userlogin-signwithsecure' => 'Gunakan server aman',
 'securelogin-stick-https' => 'Tetap terhubung ke HTTPS setelah masuk',
 'yourdomainname' => 'Domain Anda:',
 'password-change-forbidden' => 'Anda tidak dapat mengubah kata sandi pada wiki ini.',
@@ -783,6 +783,7 @@ Perhatikan bahwa beberapa halaman mungkin masih terus menunjukkan bahwa Anda mas
 'gotaccount' => "Sudah terdaftar sebagai pengguna? '''$1'''.",
 'gotaccountlink' => 'Masuk log',
 'userlogin-resetlink' => 'Lupa detail info masuk Anda?',
+'userlogin-resetpassword-link' => 'Buat ulang kata sandi',
 'helplogin-url' => 'Help:Masuk log',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Bantuan masuk log]]',
 'createacct-join' => 'Masukkan informasi Anda di bawah ini.',
@@ -4060,6 +4061,8 @@ Anda seharusnya telah menerima [{{SERVER}}{{SCRIPTPATH}}/COPYING salinan Lisensi
 'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Artikel path]',
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Skrip path]',
 
+'redirect' => 'Pengalihan oleh berkas, pengguna atau ID revisi',
+'redirect-legend' => 'Pengalihan ke sebuah berkas atau halaman',
 'redirect-submit' => 'Lanjut',
 
 # Special:FileDuplicateSearch

@@ -446,7 +446,7 @@ Parhatian bahawa bara laman mungkin masih taruih manunjukkan bahawa Sanak masih 
 'createacct-yourpasswordagain-ph' => 'Masuakan lai kato sandi',
 'remembermypassword' => 'Ingek log masuak denai di paramban ko (salamo $1 {{PLURAL:$1|hari}})',
 'userlogin-remembermypassword' => 'Biakan ambo tetap masuak',
-'userlogin-signwithsecure' => 'Masuak log jo server aman',
+'userlogin-signwithsecure' => 'Gunoan server aman',
 'securelogin-stick-https' => 'Tetap tahubuang ka HTTPS sasudah masuk log',
 'yourdomainname' => 'Domain Sanak:',
 'password-change-forbidden' => 'Sanak indak dapek maubah kato sandi di wiki ko.',

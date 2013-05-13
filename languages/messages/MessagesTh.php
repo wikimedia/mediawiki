@@ -21,6 +21,7 @@
  * @author Octahedron80
  * @author Passawuth
  * @author TMo3289
+ * @author Taweetham
  * @author Woraponboonkerd
  * @author לערי ריינהארט
  * @author จักรกฤช วงศ์สระหลวง (Jakkrit Vongsraluang) / PaePae
@@ -222,7 +223,7 @@ $messages = array(
 'tog-enotifwatchlistpages' => 'อีเมลหาเมื่อหน้าหรือไฟล์ในรายการเฝ้าดูมีการเปลี่ยนแปลง',
 'tog-enotifusertalkpages' => 'อีเมลหาเมื่อหน้าคุยกับผู้ใช้ของฉันมีการเปลี่ยนแปลง',
 'tog-enotifminoredits' => 'อีเมลหาเช่นกันสำหรับการแก้ไขหน้าและไฟล์เล็กน้อย',
-'tog-enotifrevealaddr' => 'เผยที่อยู่อีเมลในอีเมลที่ชี้แจง',
+'tog-enotifrevealaddr' => 'เปิดเผยที่อยู่อีเมล์ของฉันในอีเมล์แจ้งเตือน',
 'tog-shownumberswatching' => 'แสดงจำนวนผู้ใช้ที่เฝ้าดู',
 'tog-oldsig' => 'ลายเซ็นที่ใช้อยู่:',
 'tog-fancysig' => 'ใช้คำสั่งวิกิที่ปรากฏในลายเซ็นนี้ (โดยไม่มีลิงก์อัตโนมัติ)',
@@ -615,8 +616,8 @@ $1',
 'userlogin-yourpassword-ph' => 'กรอกรหัสผ่าน',
 'yourpasswordagain' => 'พิมพ์รหัสผ่านอีกครั้ง:',
 'remembermypassword' => 'จำการล็อกอินของฉันบนเบราเซอร์นี้ (นานสุด $1 วัน)',
-'userlogin-remembermypassword' => 'จำฉัน',
-'userlogin-signwithsecure' => 'ล็อกอินในเซิร์ฟเวอร์ปลอดภัย',
+'userlogin-remembermypassword' => 'ให้ฉันอยู่ในระบบ',
+'userlogin-signwithsecure' => 'ใช้การเชื่อมต่อที่ปลอดภัย',
 'securelogin-stick-https' => 'ยังคงเชื่อมต่อกับ HTTPS หลังจากล็อกอิน',
 'yourdomainname' => 'โดเมนของคุณ:',
 'password-change-forbidden' => 'คุณไม่สามารถเปลี่ยนรหัสผ่านบนวิกินี้',
@@ -637,10 +638,12 @@ $1',
 'gotaccount' => "มีบัญชีแล้วใช่ไหม '''$1'''",
 'gotaccountlink' => 'ล็อกอิน',
 'userlogin-resetlink' => 'ลืมรายละเอียดล็อกอินของคุณหรือ',
+'userlogin-resetpassword-link' => 'รีเซ็ตรหัสผ่านของคุณ',
 'helplogin-url' => 'Help:การล็อกอิน',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|คำอธิบายเรื่องการล็อกอิน]]',
 'createaccountmail' => 'ใช้รหัสผ่านสุ่มชั่วคราวและส่งไปยังที่อยู่อีเมลที่ระบุด้านล่าง',
 'createaccountreason' => 'เหตุผล:',
+'createacct-submit' => 'สร้างบัญชีของคุณ',
 'badretype' => 'รหัสผ่านที่ใส่ไม่ตรงกัน',
 'userexists' => 'ชื่อผู้ใช้ที่กรอกมีผู้อื่นใช้ไปแล้ว กรุณาเลือกชื่ออื่น',
 'loginerror' => 'ล็อกอินผิดพลาด',
@@ -2400,7 +2403,7 @@ $1',
 'mycontris' => 'เรื่องที่เขียน',
 'contribsub2' => 'สำหรับ $1 ($2)',
 'nocontribs' => 'ไม่พบการเปลี่ยนแปลงตรงกับเงื่อนไขเหล่านี้',
-'uctop' => ' (บนสุด)',
+'uctop' => '(ล่าสุด)',
 'month' => 'จากเดือน (และก่อนหน้า):',
 'year' => 'จากปี (และก่อนหน้า):',
 

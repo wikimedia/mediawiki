@@ -1959,6 +1959,15 @@ $1',
 'listusers-noresult' => 'ھیچ بەکارھێنەرێک نەدۆزرایەوە.',
 'listusers-blocked' => '(بەربەست کراوە)',
 
+# Special:ActiveUsers
+'activeusers' => 'پێرستی بەکارھێنەرە چالاکەکان',
+'activeusers-intro' => 'ئەمە لیستێکی ئەو بەکارھێنەرانەیە کە لە  $1 {{PLURAL:$1|ڕۆژ|ڕۆژ}}ی ڕابردوودا بە جۆرێک چالاکییەکیان ھەبووە.',
+'activeusers-count' => '$1 {{PLURAL:$1|کردەوە}} لە دوایین {{PLURAL:$3|ڕۆژ|$3 ڕۆژ}}دا',
+'activeusers-from' => 'نیشاندانی بەکارھێنەران بە دەستپێکردن لە:',
+'activeusers-hidebots' => 'بۆتەکان بشارەوە',
+'activeusers-hidesysops' => 'بەڕێوبەران بشارەوە',
+'activeusers-noresult' => 'هیچ بەکارهێنەرێک نەدۆزرایەوە',
+
 # Special:ListGroupRights
 'listgrouprights' => 'مافەکانی گرووپی بەکارھێنەر',
 'listgrouprights-summary' => 'ئەمە لیستێکە لە گرووپەکانی بەکارهێنەر لەسەر ئەم ویکی‌یە، دەگەڵ مافەکانی دەست‌پێ‌گەیشتنی هاوپەیوەندیان.
@@ -1987,7 +1996,7 @@ $1',
 'emailpage' => 'ئیمەیل بۆ بەکارھێنەر',
 'emailpagetext' => 'دەتوانی لەم فۆرمەی ژێرەوە بۆ ناردنی ئیمەیلێک بۆ ئەم {{GENDER:$1|بەکارھێنەر}}ە کەڵک وەربگریت.
 ئەو ناونیشانە ئیمەیلە لە [[Special:Preferences|ھەڵبژاردەکانی بەکارھێنەر‌یتدا]] نووسیوتە، لە ناونیشانی «لەلایەن»ی (From) ئیمەیلەکەدا نیشان دەدرێت، کە وایە بەکارھێنەری وەرگر دەتوانێ ڕاستەوخۆ وەڵامت بداتەوە.',
-'defemailsubject' => 'ئیمەیڵی {{SITENAME}} لە بەکارھێنەر «$1»ەوە',
+'defemailsubject' => 'ئیمەیلی {{SITENAME}} لە بەکارھێنەر «$1»ەوە',
 'usermaildisabled' => 'ئیمەیڵی بەکارهێنەر لەکاردانیە',
 'noemailtitle' => 'هیچ ناونیشانێکی ئی‌مەیل نییە',
 'noemailtext' => 'ئەم بەکارهێنەرە ناونێشانێکی بڕوا پێکراوی ئی‌مەیلی دانەناوە.',
@@ -2884,7 +2893,7 @@ $1',
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'پانی',
 'exif-imagelength' => 'بەرزی',
 'exif-ycbcrpositioning' => 'شوێنی Y و C',
@@ -2951,7 +2960,7 @@ $1',
 # Make & model, can be wikified in order to link to the camera and model name
 'exif-subjectnewscode-value' => '$2 ($1)',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'نەپەستێنراو',
 
 'exif-copyrighted-true' => 'خاوەنی مافی بڵاوکردنەوە',
