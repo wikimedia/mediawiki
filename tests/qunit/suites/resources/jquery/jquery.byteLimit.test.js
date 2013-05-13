@@ -186,6 +186,19 @@
 		expected: '1234'
 	} );
 
+	// Regression tests for bug 41450
+	byteLimitTest( {
+		description: 'Input filter of which the base exceeds the limit',
+		$input: $( '<input type="text"/>' )
+		.byteLimit( 3, function ( text ) {
+			return 'prefix' + text;
+		} ),
+		sample: simpleSample,
+		hasLimit: true,
+		limit: 6, // 'prefix' length
+		expected: ''
+	} );
+
 	QUnit.test( 'Confirm properties and attributes set', 4, function ( assert ) {
 		var $el, $elA, $elB;
 
