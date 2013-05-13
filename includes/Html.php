@@ -185,7 +185,7 @@ class Html {
 
 		// In text/html, initial <html> and <head> tags can be omitted under
 		// pretty much any sane circumstances, if they have no attributes.  See:
-		// <http://www.whatwg.org/specs/web-apps/current-work/multipage/syntax.html#optional-tags>
+		// <http://www.whatwg.org/html/syntax.html#optional-tags>
 		if ( !$wgWellFormedXml && !$attribs
 		&& in_array( $element, array( 'html', 'head' ) ) ) {
 			return '';
@@ -259,7 +259,7 @@ class Html {
 		$element = strtolower( $element );
 
 		// Reference:
-		// http://www.whatwg.org/specs/web-apps/current-work/multipage/syntax.html#optional-tags
+		// http://www.whatwg.org/html/syntax.html#optional-tags
 		if ( !$wgWellFormedXml && in_array( $element, array(
 			'html',
 			'head',
@@ -964,7 +964,7 @@ class Html {
 		$candidates = array();
 		foreach ( $urls as $density => $url ) {
 			// Image candidate syntax per current whatwg live spec, 2012-09-23:
-			// http://www.whatwg.org/specs/web-apps/current-work/multipage/embedded-content-1.html#attr-img-srcset
+			// http://www.whatwg.org/html/embedded-content-1.html#attr-img-srcset
 			$candidates[] = "{$url} {$density}x";
 		}
 		return implode( ", ", $candidates );
