@@ -198,6 +198,60 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
+	 * Defines the ResourceLoader modules that should be added to the skin
+	 * @param $out OutputPage
+	 */
+	public function addDefaultModules( $out ) {
+		global $wgIncludeLegacyJavaScript, $wgPreloadJavaScriptMwUtil, $wgUseAjax,
+			$wgAjaxWatch, $wgResponsiveImages;
+
+		// Add base resources
+		$out->addModules( array(
+			'mediawiki.user',
+			'mediawiki.page.startup',
+			'mediawiki.page.ready',
+		) );
+		if ( $wgIncludeLegacyJavaScript ) {
+			$out->addModules( 'mediawiki.legacy.wikibits' );
+		}
+
+		if ( $wgPreloadJavaScriptMwUtil ) {
+			$out->addModules( 'mediawiki.util' );
+		}
+
+		MWDebug::addModules( $out );
+
+		// Add various resources if required
+		if ( $wgUseAjax ) {
+			$out->addModules( 'mediawiki.legacy.ajax' );
+
+			wfRunHooks( 'AjaxAddScript', array( &$out ) );
+
+			if ( $wgAjaxWatch && $out->getUser()->isLoggedIn() ) {
+				$out->addModules( 'mediawiki.page.watch.ajax' );
+			}
+
+			if ( !$out->getUser()->getOption( 'disablesuggest', false ) ) {
+				$out->addModules( 'mediawiki.searchSuggest' );
+			}
+		}
+
+		if ( $out->getUser()->getBoolOption( 'editsectiononrightclick' ) ) {
+			$out->addModules( 'mediawiki.action.view.rightClickEdit' );
+		}
+
+		# Crazy edit-on-double-click stuff
+		if ( $out->isArticle() && $out->getUser()->getOption( 'editondblclick' ) ) {
+			$out->addModules( 'mediawiki.action.view.dblClickEdit' );
+		}
+
+		// Support for high-density display images
+		if ( $wgResponsiveImages ) {
+			$out->addModules( 'mediawiki.hidpi' );
+		}
+	}
+
+	/**
 	 * Preload the existence of three commonly-requested pages in a single query
 	 */
 	function preloadExistence() {

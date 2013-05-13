@@ -1,0 +1,50 @@
+diff --git a/includes/api/ApiQueryAllImages.php b/includes/api/ApiQueryAllImages.php
+index 2319263..b03846d 100644
+--- a/includes/api/ApiQueryAllImages.php
++++ b/includes/api/ApiQueryAllImages.php
+@@ -224,6 +224,14 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
+ 		$titles = array();
+ 		$count = 0;
+ 		$result = $this->getResult();
++		if ( isset( $params['width'] ) ) {
++			$thumbParams = array(
++				'width' => $params['width'],
++			);
++		} else {
++			$thumbParams = null;
++		}
++
+ 		foreach ( $res as $row ) {
+ 			if ( ++ $count > $limit ) {
+ 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
+@@ -237,8 +245,9 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
+ 
+ 			if ( is_null( $resultPageSet ) ) {
+ 				$file = $repo->newFileFromRow( $row );
++
+ 				$info = array_merge( array( 'name' => $row->img_name ),
+-					ApiQueryImageInfo::getInfo( $file, $prop, $result ) );
++					ApiQueryImageInfo::getInfo( $file, $prop, $result, $thumbParams ) );
+ 				self::addTitleInfo( $info, $file->getTitle() );
+ 
+ 				$fit = $result->addValue( array( 'query', $this->getModuleName() ), null, $info );
+@@ -324,6 +333,7 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
+ 				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
+ 				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
+ 			),
++			'width' => null,
+ 		);
+ 	}
+ 
+diff --git a/includes/api/ApiUpload.php b/includes/api/ApiUpload.php
+index 89eff2e..f360daa 100644
+--- a/includes/api/ApiUpload.php
++++ b/includes/api/ApiUpload.php
+@@ -107,6 +107,7 @@ class ApiUpload extends ApiBase {
+ 
+ 		if ( $result['result'] === 'Success' ) {
+ 			$result['imageinfo'] = $this->mUpload->getImageInfo( $this->getResult() );
++			$result['foo'] = 'br';
+ 		}
+ 
+ 		$this->getResult()->addValue( null, $this->getModuleName(), $result );
