@@ -1667,7 +1667,8 @@ class LocalFile extends File {
 	 */
 	function isCacheable() {
 		$this->load(); // if loaded from cache, metadata will be null if it didn't fit
-		return $this->metadata !== null && strlen( $this->metadata ) <= self::CACHE_FIELD_MAX_LEN;
+		return $this->metadata !== null
+			&& strlen( serialize( $this->metadata ) ) <= self::CACHE_FIELD_MAX_LEN;
 	}
 
 	/**
