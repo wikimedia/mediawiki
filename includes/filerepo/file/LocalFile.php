@@ -1666,8 +1666,9 @@ class LocalFile extends File {
 	 * @return bool Whether to cache in RepoGroup (this avoids OOMs)
 	 */
 	function isCacheable() {
-		$this->load(); // if loaded from cache, metadata will be null if it didn't fit
-		return $this->metadata !== null
+		$this->load();
+		// If extra data (metadata) was not loaded then it must have been large
+		return $this->extraDataLoaded
 			&& strlen( serialize( $this->metadata ) ) <= self::CACHE_FIELD_MAX_LEN;
 	}
 
