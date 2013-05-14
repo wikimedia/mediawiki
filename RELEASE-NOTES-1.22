@@ -129,6 +129,8 @@ production.
   is disabled, and AJAX patrolling and watching are now disabled when use of
   the write API is not allowed.
 * (bug 48294) API: Fix chunk upload async mode.
+* (bug 48342) Fixed a fatal error when $wgValidateAllHtml is set to true and
+  the function apache_request_headers() function is not available.
 
 === API changes in 1.22 ===
 * (bug 46626) xmldoublequote parameter was removed. Because of a bug, the
