@@ -786,7 +786,7 @@ Nezapomeňte si upravit své [[Special:Preferences|nastavení {{grammar:2sg|{{SI
 'createacct-yourpasswordagain-ph' => 'Zadejte heslo ještě jednou',
 'remembermypassword' => 'Zapamatovat si mé přihlášení na tomto počítači (maximálně $1 {{PLURAL:$1|den|dny|dní}})',
 'userlogin-remembermypassword' => 'Přihlásit trvale',
-'userlogin-signwithsecure' => 'Přihlášení na zabezpečený server',
+'userlogin-signwithsecure' => 'Používat zabezpečené připojení',
 'securelogin-stick-https' => 'Zůstat po přihlášení připojen přes HTTPS',
 'yourdomainname' => 'Vaše doména',
 'password-change-forbidden' => 'Na této wiki nemůžete měnit hesla.',
@@ -824,9 +824,9 @@ Nezapomeňte si upravit své [[Special:Preferences|nastavení {{grammar:2sg|{{SI
 'createacct-imgcaptcha-ph' => 'Opište výše zobrazený text',
 'createacct-submit' => 'Vytvořit účet',
 'createacct-benefit-heading' => '{{grammar:4sg|{{SITENAME}}}} tvoří lidé jako vy.',
-'createacct-benefit-body1' => '{{PLURAL:{{NUMBEROFEDITS:R}}|editace|editace|editací}}',
-'createacct-benefit-body2' => '{{PLURAL:{{NUMBEROFARTICLES:R}}|stránka|stránky|stránek}}',
-'createacct-benefit-body3' => '{{PLURAL:{{NUMBEROFACTIVEUSERS:R}}|nedávný přispěvatel|nedávní přispěvatelé|nedávných přispěvatelů}}',
+'createacct-benefit-body1' => '{{PLURAL:$1|editace|editace|editací}}',
+'createacct-benefit-body2' => '{{PLURAL:$1|stránka|stránky|stránek}}',
+'createacct-benefit-body3' => '{{PLURAL:$1|nedávný přispěvatel|nedávní přispěvatelé|nedávných přispěvatelů}}',
 'badretype' => 'Vámi napsaná hesla nesouhlasí.',
 'userexists' => 'Zadané uživatelské jméno se již používá.
 Zvolte si prosím jiné jméno.',
@@ -2513,7 +2513,7 @@ Poslední editaci této stránky provedl(a) [[User:$3|$3]] ([[User talk:$3|disku
 'sessionfailure-title' => 'Chyba sezení',
 'sessionfailure' => 'Zřejmě je nějaký problém s vaším přihlášením;
 vámi požadovaná činnost byla stornována jako prevence před neoprávněným přístupem.
-Stiskněte tlačítko „zpět“, obnovte stránku, ze které jste přišli a zkuste činnost znovu.',
+Stiskněte tlačítko „zpět“, obnovte stránku, ze které jste přišli, a zkuste činnost znovu.',
 
 # Protect
 'protectlogpage' => 'Kniha zamčení',

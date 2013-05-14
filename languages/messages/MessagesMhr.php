@@ -351,7 +351,7 @@ $messages = array(
 'yourname' => 'Пайдаланышын лӱмжӧ:',
 'yourpassword' => 'Шолыпмут:',
 'yourpasswordagain' => 'Шолыпмутым угыч пуртымаш:',
-'remembermypassword' => 'Тиде браузерыште мыйын шолыпмутым шарнаш (эн шуко $1 {{PLURAL:$1|кечылан|кечылан}})',
+'remembermypassword' => 'Тиде компьютерыште мыйым шарнаш (эн шуко $1 {{PLURAL:$1|кечылан|кечылан}})',
 'yourdomainname' => 'Тендан домен:',
 'login' => 'Шке денет палымым ыште',
 'nav-login-createaccount' => 'Пураш/Регистрацийым эрте',
@@ -889,6 +889,7 @@ $messages = array(
 
 'sp-contributions-newbies' => 'У пайдалнышын гына пашам ончыкташ',
 'sp-contributions-blocklog' => 'блокирований журнал',
+'sp-contributions-uploads' => 'пуртымаш-влак',
 'sp-contributions-logs' => 'Журнал-влак',
 'sp-contributions-talk' => 'каҥашымаш',
 'sp-contributions-search' => 'Пашам кычалаш',

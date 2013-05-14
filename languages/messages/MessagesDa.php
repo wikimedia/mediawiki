@@ -814,7 +814,7 @@ Midlertidig adgangskode: $2',
 # Edit pages
 'summary' => 'Beskrivelse:',
 'subject' => 'Emne/overskrift:',
-'minoredit' => 'Dette er en mindre ændring.',
+'minoredit' => 'Dette er en mindre ændring',
 'watchthis' => 'Overvåg denne side',
 'savearticle' => 'Gem side',
 'preview' => 'Forhåndsvisning',

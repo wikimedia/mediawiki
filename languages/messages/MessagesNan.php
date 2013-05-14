@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Hiong3-eng5
  * @author Ianbu
  * @author Kaihsu
  */
@@ -53,8 +54,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Hián-sī tng leh khoàⁿ ê iōng-chiá sò͘-bo̍k',
 'tog-oldsig' => 'Chit-má ê chhiam-miâ:',
 'tog-fancysig' => 'Chhiam-miâ mài chò liân-kiat',
-'tog-externaleditor' => 'Iōng gōa-pō· pian-chi̍p-khì',
-'tog-externaldiff' => 'Iōng gōa-pō· diff',
 'tog-showjumplinks' => 'Hō͘ "thiàu khì" chit ê liân-chiap ē-sái',
 'tog-uselivepreview' => 'Ēng sui khoàⁿ-māi (ài ū JavaScript) (chhì-giām--ê)',
 'tog-forceeditsummary' => 'Pian-chi̍p khài-iàu bô thiⁿ ê sî-chūn, kā goá thê-chhéⁿ',
@@ -396,7 +395,9 @@ $2',
 Lí ē-sái mài kì-miâ kè-siok sú-iōng {{SITENAME}}, mā ē-sái iōng kāng-ê a̍h-sī pa̍t-ê sin-hūn têng teng-ji̍p.
 Chhiaⁿ chù-ì: ū-kóa ia̍h ū khó-lêng khoàⁿ-tio̍h bē-su lí iû-goân teng-ji̍p tiong; che chi-iàu piàⁿ tiāu lí ê browser ê cache chiū ē chèng-siông.",
 'yourname' => 'Lí ê iōng-chiá miâ-chheng:',
+'userlogin-yourname' => 'Iōng-chiá miâ-chheng',
 'yourpassword' => 'Lí ê bi̍t-bé:',
+'userlogin-yourpassword' => 'Bi̍t-bé',
 'yourpasswordagain' => 'Têng phah bi̍t-bé:',
 'remembermypassword' => 'Kì tiâu góa ê bi̍t-bé (āu-chhiú teng-ji̍p iōng) (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'login' => 'Teng-ji̍p',
@@ -602,9 +603,6 @@ Lí ê kái-piàn tī ē-kha ê bûn-jī-keh. Lí su-iàu chiōng lí chò ê k�
 'showingresultsnum' => 'Ē-kha tùi #<b>$2</b> khai-sí hián-sī <b>$3</b> hāng kiat-kó.',
 'powersearch' => 'Kiám-sek',
 'powersearch-legend' => 'Kiám-sek',
-
-# Quickbar
-'qbsettings' => 'Quickbar ê siat-tēng',
 
 # Preferences page
 'preferences' => 'Siat-tēng',
@@ -1175,9 +1173,6 @@ Chit tiuⁿ phoe ê khak-jīn-bé ē chū-tōng tī $4 kòe-kî.',
 
 # Special:Version
 'version' => 'Pán-pún',
-
-# Special:FilePath
-'filepath' => 'Tóng-àn ê soàⁿ-lō·',
 
 # Special:SpecialPages
 'specialpages' => 'Te̍k-sû-ia̍h',
