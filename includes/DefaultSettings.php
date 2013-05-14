@@ -2638,6 +2638,8 @@ $wgSiteSupportPage = '';
 /**
  * Validate the overall output using tidy and refuse
  * to display the page if it's not valid.
+ *
+ * This is ignored if the apache_request_headers() function is not available.
  */
 $wgValidateAllHtml = false;
 
