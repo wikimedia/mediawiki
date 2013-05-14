@@ -218,6 +218,8 @@ production.
 * (bug 50870) mediawiki.notification: Notification area should remain visible
   when scrolled down.
 * (bug 13438) Special:MIMESearch no longer an expensive special page.
+* (bug 48342) Fixed a fatal error when $wgValidateAllHtml is set to true and
+  the function apache_request_headers() function is not available.
 
 === API changes in 1.22 ===
 * (bug 25553) The JSON output formatter now leaves forward slashes unescaped

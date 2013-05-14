@@ -31,11 +31,19 @@ function wfOutputHandler( $s ) {
 	global $wgDisableOutputCompression, $wgValidateAllHtml;
 	$s = wfMangleFlashPolicy( $s );
 	if ( $wgValidateAllHtml ) {
-		$headers = apache_response_headers();
-		$isHTML = true;
-		foreach ( $headers as $name => $value ) {
-			if ( strtolower( $name ) == 'content-type' && strpos( $value, 'text/html' ) === false && strpos( $value, 'application/xhtml+xml' ) === false ) {
-				$isHTML = false;
+		$headers = headers_list();
+		$isHTML = false;
+		foreach ( $headers as $header ) {
+			$parts = explode( ':', $header, 2 );
+			if ( count( $parts ) !== 2 ) {
+				continue;
+			}
+			$name = strtolower( trim( $parts[0] ) );
+			$value = trim( $parts[1] );
+			if ( $name == 'content-type' && ( strpos( $value, 'text/html' ) !== false
+				|| strpos( $value, 'application/xhtml+xml' ) !== false )
+			) {
+				$isHTML = true;
 				break;
 			}
 		}
