@@ -262,6 +262,7 @@ $specialPageAliases = array(
 	'MIMEsearch'                => array( 'Pencarian_MIME', 'PencarianMIME' ),
 	'Mostcategories'            => array( 'Kategori_terbanyak', 'KategoriTerbanyak' ),
 	'Mostimages'                => array( 'Berkas_paling_digunakan', 'BerkasPalingDigunakan' ),
+	'Mostinterwikis'            => array( 'Interwiki_terbanyak', 'InterwikiTerbanyak' ),
 	'Mostlinked'                => array( 'Halaman_paling_digunakan', 'HalamanPalingDigunakan' ),
 	'Mostlinkedcategories'      => array( 'Kategori_paling_digunakan', 'KategoriPalingDigunakan' ),
 	'Mostlinkedtemplates'       => array( 'Templat_paling_digunakan', 'TemplatPalingDigunakan' ),

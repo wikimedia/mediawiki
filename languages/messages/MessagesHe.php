@@ -104,6 +104,7 @@ $specialPageAliases = array(
 	'MIMEsearch'                => array( 'חיפוש_MIME' ),
 	'Mostcategories'            => array( 'הקטגוריות_הרבות_ביותר', 'הדפים_מרובי-הקטגוריות_ביותר' ),
 	'Mostimages'                => array( 'הקבצים_המקושרים_ביותר', 'התמונות_המקושרות_ביותר' ),
+	'Mostinterwikis'            => array( 'קישורי_שפה_ביותר' ),
 	'Mostlinked'                => array( 'הדפים_המקושרים_ביותר', 'המקושרים_ביותר' ),
 	'Mostlinkedcategories'      => array( 'הקטגוריות_המקושרות_ביותר' ),
 	'Mostlinkedtemplates'       => array( 'התבניות_המקושרות_ביותר' ),

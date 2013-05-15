@@ -35,6 +35,12 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'تۈر مۇنازىرىسى',
 );
 
+$specialPageAliases = array(
+	'Allmessages'               => array( 'بارلىق_خەۋەرلەر' ),
+	'Allpages'                  => array( 'بارلىق_بەتلەر' ),
+	'Ancientpages'              => array( 'كونا_بەتلەر' ),
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline' => 'ئۇلانما ئاستى سىزىقى:',

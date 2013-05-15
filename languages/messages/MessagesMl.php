@@ -139,6 +139,7 @@ $specialPageAliases = array(
 	'Myuploads'                 => array( 'ഞാൻഅപ്‌ലോഡ്‌ചെയ്തവ' ),
 	'Newimages'                 => array( 'പുതിയ_പ്രമാണങ്ങൾ', 'പുതിയ_ചിത്രങ്ങൾ' ),
 	'Newpages'                  => array( 'പുതിയ_താളുകൾ' ),
+	'PagesWithProp'             => array( 'താളുകളുടെഉള്ളടക്കപ്രത്യേകതകൾ' ),
 	'PasswordReset'             => array( 'രഹസ്യവാക്ക്‌‌പുനക്രമീകരണം' ),
 	'PermanentLink'             => array( 'സ്ഥിരംകണ്ണി' ),
 	'Popularpages'              => array( 'ജനപ്രിയതാളുകൾ' ),

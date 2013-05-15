@@ -178,6 +178,7 @@ $specialPageAliases = array(
 	'Randomredirect'            => array( '隨機重定向頁面' ),
 	'Recentchanges'             => array( '最近更改' ),
 	'Recentchangeslinked'       => array( '鏈出更改' ),
+	'Redirect'                  => array( '重定向' ),
 	'Revisiondelete'            => array( '刪除或恢復版本' ),
 	'Search'                    => array( '搜索' ),
 	'Shortpages'                => array( '短頁面' ),

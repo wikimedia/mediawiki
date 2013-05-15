@@ -65,6 +65,12 @@ $namespaceAliases = array(
 $namespaceGenderAliases = array();
 
 $specialPageAliases = array(
+	'Blankpage'                 => array( 'Пуста_лаштык' ),
+	'BrokenRedirects'           => array( 'Кӱрылтшӧ__вес_вере_колтымаш-влак' ),
+	'Categories'                => array( 'Категорий-влак' ),
+	'ComparePages'              => array( 'Лаштык-влакым_тергымаш' ),
+	'Emailuser'                 => array( 'Пайдаланышылан_серышым_колташ' ),
+	'Longpages'                 => array( 'Кужу_лаштык-влак' ),
 	'Preferences'               => array( 'Келыштарымаш' ),
 	'Recentchanges'             => array( 'Пытартыш_тӧрлатымаш-влак' ),
 	'Search'                    => array( 'Кычалмаш' ),
