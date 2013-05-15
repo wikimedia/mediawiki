@@ -53,7 +53,7 @@ $namespaceAliases = array(
 );
 
 $magicWords = array(
-	'redirect'                  => array( '0', '#YONALTIRISH', '#REDIRECT' ),
+	'redirect'                  => array( '0', '#YOʻNALTIRISH', '#YONALTIRISH', '#REDIRECT' ),
 	'notoc'                     => array( '0', '__ICHIDAGILARYOQ__', '__NOTOC__' ),
 	'nogallery'                 => array( '0', '__GALEREYAYOQ__', '__NOGALLERY__' ),
 	'forcetoc'                  => array( '0', '__ICHIDAGILARMAJBURIY__', '__FORCETOC__' ),
@@ -89,6 +89,10 @@ $magicWords = array(
 	'numberofedits'             => array( '1', 'OZGARISHSONI', 'NUMBEROFEDITS' ),
 	'numberofviews'             => array( '1', 'KORISHSONI', 'NUMBEROFVIEWS' ),
 	'pagename'                  => array( '1', 'SAHIFANOMI', 'PAGENAME' ),
+	'namespace'                 => array( '1', 'NOMFAZO', 'NAMESPACE' ),
+	'gender'                    => array( '0', 'JINS', 'GENDER:' ),
+	'currentweek'               => array( '1', 'JORIYHAFTA', 'CURRENTWEEK' ),
+	'language'                  => array( '0', '#TIL:', '#LANGUAGE:' ),
 	'numberofadmins'            => array( '1', 'ADMINISTRATORSONI', 'NUMBEROFADMINS' ),
 	'special'                   => array( '0', 'maxsus', 'special' ),
 	'tag'                       => array( '0', 'yorliq', 'tag' ),

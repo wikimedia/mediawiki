@@ -87,6 +87,7 @@ $magicWords = array(
 	'img_top'                   => array( '1', 'кӱшычын', 'сверху', 'top' ),
 	'img_middle'                => array( '1', 'покшелне', 'посередине', 'middle' ),
 	'img_bottom'                => array( '1', 'ӱлычын', 'снизу', 'bottom' ),
+	'sitename'                  => array( '1', 'САЙТЛӰМ', 'НАЗВАНИЕ_САЙТА', 'SITENAME' ),
 );
 
 $messages = array(

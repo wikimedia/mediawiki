@@ -119,7 +119,22 @@ $specialPageAliases = array(
 
 $magicWords = array(
 	'redirect'                  => array( '0', '#STIVREN', '#OĐĐASITSTIVREN', '#REDIRECT' ),
-	'numberofarticles'          => array( '1', 'ARTIHKKALIIDMEARRI', 'NUMBEROFARTICLES' ),
+	'notoc'                     => array( '0', '__IISISDOALLU__', '__IISIS__', '__NOTOC__' ),
+	'nogallery'                 => array( '0', '__IIGALLERIIJA__', '__NOGALLERY__' ),
+	'toc'                       => array( '0', '__SISDOALLU__', ' __SIS__', '__TOC__' ),
+	'noeditsection'             => array( '0', '__IIRIEVDADITOASI__', '__NOEDITSECTION__' ),
+	'numberofarticles'          => array( '1', 'ARTIHKKALIIDMEARRI', ' ARTIHKALMEARRI', 'NUMBEROFARTICLES' ),
+	'numberoffiles'             => array( '1', 'FIILLAIDMEARRI', 'FIILAMEARRI', ' GOVAIDMEARRI', ' GOVVAMEARRI', 'NUMBEROFFILES' ),
+	'numberofusers'             => array( '1', 'GEAVAHEDDJIIDMEARRI', ' GEAVAHEADDJIMEARRI', ' GEAVAHEADDJEMEARRI', 'NUMBEROFUSERS' ),
+	'numberofactiveusers'       => array( '1', 'AKTIIVAGEAVAHEDDJIIDMEARRI', ' AKTIIVAGEAVAHEADDJIMEARRI', ' AKTIIVAGEAVAHEADDJEMEARRI', 'NUMBEROFACTIVEUSERS' ),
+	'numberofedits'             => array( '1', 'RIEVDADUSAIDMEARRI', ' RIEVDADUSMEARRI', 'NUMBEROFEDITS' ),
+	'subst'                     => array( '0', 'LIIBME:', 'SUBST:' ),
+	'img_thumbnail'             => array( '1', 'mini', 'thumbnail', 'thumb' ),
+	'img_manualthumb'           => array( '1', 'mini=$1', 'thumbnail=$1', 'thumb=$1' ),
+	'img_right'                 => array( '1', 'olgeš', 'right' ),
+	'img_left'                  => array( '1', 'gurut', 'left' ),
+	'img_center'                => array( '1', 'gasku', 'center', 'centre' ),
+	'img_link'                  => array( '1', 'liŋka=$1', 'link=$1' ),
 );
 
 $separatorTransformTable = array( ',' => "\xc2\xa0", '.' => ',' );

@@ -254,6 +254,7 @@ $magicWords = array(
 	'pagenamee'                 => array( '1', 'НАЗВАНИЕ_СТРАНИЦЫ_2', 'PAGENAMEE' ),
 	'namespace'                 => array( '1', 'ПРОСТРАНСТВО_ИМЁН', 'NAMESPACE' ),
 	'namespacee'                => array( '1', 'ПРОСТРАНСТВО_ИМЁН_2', 'NAMESPACEE' ),
+	'namespacenumber'           => array( '1', 'НОМЕР_ПРОСТРАНСТВА_ИМЁН', 'NAMESPACENUMBER' ),
 	'talkspace'                 => array( '1', 'ПРОСТРАНСТВО_ОБСУЖДЕНИЙ', 'TALKSPACE' ),
 	'talkspacee'                => array( '1', 'ПРОСТРАНСТВО_ОБСУЖДЕНИЙ_2', 'TALKSPACEE' ),
 	'subjectspace'              => array( '1', 'ПРОСТРАНСТВО_СТАТЕЙ', 'SUBJECTSPACE', 'ARTICLESPACE' ),
@@ -301,6 +302,7 @@ $magicWords = array(
 	'localurl'                  => array( '0', 'ЛОКАЛЬНЫЙ_АДРЕС:', 'LOCALURL:' ),
 	'localurle'                 => array( '0', 'ЛОКАЛЬНЫЙ_АДРЕС_2:', 'LOCALURLE:' ),
 	'articlepath'               => array( '0', 'ПУТЬ_К_СТАТЬЕ', 'ARTICLEPATH' ),
+	'pageid'                    => array( '0', 'ИДЕНТИФИКАТОР_СТРАНИЦЫ', 'PAGEID' ),
 	'server'                    => array( '0', 'СЕРВЕР', 'SERVER' ),
 	'servername'                => array( '0', 'НАЗВАНИЕ_СЕРВЕРА', 'SERVERNAME' ),
 	'scriptpath'                => array( '0', 'ПУТЬ_К_СКРИПТУ', 'SCRIPTPATH' ),
@@ -362,6 +364,10 @@ $magicWords = array(
 	'url_path'                  => array( '0', 'ПУТЬ', 'PATH' ),
 	'url_wiki'                  => array( '0', 'ВИКИ', 'WIKI' ),
 	'url_query'                 => array( '0', 'ЗАПРОС', 'QUERY' ),
+	'pagesincategory_all'       => array( '0', 'все', 'all' ),
+	'pagesincategory_pages'     => array( '0', 'страницы', 'pages' ),
+	'pagesincategory_subcats'   => array( '0', 'подкатегории', 'subcats' ),
+	'pagesincategory_files'     => array( '0', 'файлы', 'files' ),
 );
 
 
