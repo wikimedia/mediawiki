@@ -49,6 +49,7 @@ class HashRing {
 			return strcmp( $hashes[$a], $hashes[$b] );
 		} );
 		// Fit the map to weight-proportionate one with a space of size RING_SIZE
+		$sum = array_sum( $map );
 		$standardMap = array();
 		foreach ( $map as $location => $weight ) {
 			$standardMap[$location] = (int)floor( $weight / $sum * self::RING_SIZE );
