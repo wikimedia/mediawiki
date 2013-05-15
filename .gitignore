@@ -16,7 +16,9 @@ cscope.out
 ## NetBeans
 nbproject*
 project.index
+## Sublime
 sublime-*
+sftp-config.json
 
 # MediaWiki install & usage
 /cache
