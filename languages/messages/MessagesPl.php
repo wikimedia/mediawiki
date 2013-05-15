@@ -3973,6 +3973,7 @@ Powinieneś otrzymać [{{SERVER}}{{SCRIPTPATH}}/COPYING kopię licencji GNU Gene
 'version-entrypoints-header-entrypoint' => 'Punkt wejścia',
 'version-entrypoints-header-url' => 'URL',
 
+# Special:Redirect
 'redirect-value' => 'Wartość:',
 'redirect-user' => 'ID użytkownika',
 'redirect-file' => 'Nazwa pliku',

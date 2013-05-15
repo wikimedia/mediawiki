@@ -3818,6 +3818,7 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 'version-entrypoints-header-entrypoint' => '入口點',
 'version-entrypoints-header-url' => 'URL',
 
+# Special:Redirect
 'redirect' => '重定向檔案、用戶ID或頁面修訂ID',
 'redirect-legend' => '重定向到檔案或頁面',
 'redirect-summary' => '此特殊頁面重定向到檔案（指定的檔案名稱）、頁面 （指定的頁面修訂ID） 或用戶頁面（指定的用戶ID數值）。',

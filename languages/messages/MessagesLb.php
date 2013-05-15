@@ -3717,6 +3717,8 @@ Dir misst eng [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie vun der GNU General Public
 'version-entrypoints-header-entrypoint' => 'Agangspunkt',
 'version-entrypoints-header-url' => 'URL',
 
+# Special:Redirect
+'redirect' => 'Viruleedung duerch e Fichier, Benotzer oder Versiouns-ID',
 'redirect-legend' => 'Viruleedung op ee Fichier oder eng Säit',
 'redirect-submit' => 'Lass',
 'redirect-lookup' => 'Nosichen:',

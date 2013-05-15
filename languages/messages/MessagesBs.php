@@ -2209,6 +2209,15 @@ Podržani protokoli: <code>$1</code> (ne dodavajte bilo koji od ovih u vašu pre
 'listusers-noresult' => 'Nije pronađen korisnik.',
 'listusers-blocked' => '(blokiran)',
 
+# Special:ActiveUsers
+'activeusers' => 'Spisak aktivnih korisnika',
+'activeusers-intro' => 'Ovo je spisak korisnika koji su napravili neku aktivnost u {{PLURAL:$1|zadnji $1 dan|zadnja $1 dana|zadnjih $1 dana}}.',
+'activeusers-count' => '{{PLURAL:$1|nedavna $1 izmjena|nedavne $1 izmjene|nedavnih $1 izmjena}} u {{PLURAL:$3|posljednji $3 dan|posljednja $3 dana|posljednjih $3 dana}}',
+'activeusers-from' => 'Prikaži korisnike koji počinju sa:',
+'activeusers-hidebots' => 'Sakrij botove',
+'activeusers-hidesysops' => 'Sakrij administratore',
+'activeusers-noresult' => 'Nije pronađen korisnik.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Prava korisničkih grupa',
 'listgrouprights-summary' => 'Slijedi spisak korisničkih grupa na ovoj wiki, s njihovim pravima pristupa.
@@ -3088,6 +3097,7 @@ Ovo je vjerovatno izazvao vezom ka vanjskoj nepoželjnoj stranici.',
 'pageinfo-contentpage-yes' => 'Da',
 'pageinfo-protect-cascading-yes' => 'Da',
 'pageinfo-category-pages' => 'Broj stranica',
+'pageinfo-category-files' => 'Broj datoteka',
 
 # Skin names
 'skinname-cologneblue' => 'Kelnsko plavo',
@@ -3199,7 +3209,7 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Širina',
 'exif-imagelength' => 'Visina',
 'exif-bitspersample' => 'Bita po komponenti',
@@ -3377,7 +3387,7 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 'exif-originalimageheight' => 'Visina slike prije nego što je odrezana',
 'exif-originalimagewidth' => 'Širina slike prije nego što je odrezana',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Nekompresovano',
 'exif-compression-2' => 'CCITT Grupa 3 1 — Dimenzionalno izmijenjeo Huffmanovo šifriranje po dužini',
 'exif-compression-3' => 'CCITT Grupa 3 faks šifriranje',
@@ -3849,13 +3859,6 @@ Trebali biste dobiti [{{SERVER}}{{SCRIPTPATH}}/KOPIJU GNU opće javne licence] z
 'version-entrypoints-header-entrypoint' => 'Ulazna tačka',
 'version-entrypoints-header-url' => 'URL',
 
-# Special:FilePath
-'filepath' => 'Putanja datoteke',
-'filepath-page' => 'Datoteka:',
-'filepath-submit' => 'Idi',
-'filepath-summary' => 'Ova posebna stranica prikazuje potpunu putanju za datoteku.
-Slike su prikazane u punoj veličini, ostale vrste datoteka su prikazane direktno sa, s njima povezanim, programom.',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Pretraga za duplim datotekama',
 'fileduplicatesearch-summary' => 'Pretraga za duplim datotekama na bazi njihove haš vrijednosti.',
@@ -3952,15 +3955,15 @@ Slike su prikazane u punoj veličini, ostale vrste datoteka su prikazane direktn
 # New logging system
 'logentry-delete-delete' => '$1 je {{GENDER:$2|obrisao|obrisala}} stranicu $3',
 'logentry-delete-restore' => '$1 je {{GENDER:$2|vratio|vratila}} stranicu $3',
-'logentry-delete-event' => '$1 je {{GENDER:|promijenio|promijenila}} vidljivost {{PLURAL:$5|događaja|$5 događaja}} u evidenciji na $3: $4',
-'logentry-delete-revision' => '$1 je {{GENDER:|promijenio|promijenila}} vidljivost {{PLURAL:$5|izmjene|$5 izmjene|$5 izmjena}} na stranici  $3: $4',
-'logentry-delete-event-legacy' => '$1 je {{GENDER:|promijenio|promijenila}} vidljivost događaja u evidenciji na $3',
-'logentry-delete-revision-legacy' => '$1 je {{GENDER:|promijenio|promijenila}} vidljivost izmjena na stranici $3',
-'logentry-suppress-delete' => '$1 {{GENDER:|je potisnuo|je potisnula}} stranicu $3',
-'logentry-suppress-event' => '$1 je tajno {{GENDER:|promijenio|promijenila}} vidljivost {{PLURAL:$5|događaja|$5 događaja}} u evidenciji na $3: $4',
-'logentry-suppress-revision' => '$1 je tajno {{GENDER:|promijenio|promijenila}} vidljivost {{PLURAL:$5|izmjene|$5 izmjene|$5 izmjena}} na stranici  $3: $4',
-'logentry-suppress-event-legacy' => '$1 je tajno {{GENDER:|promijenio|promijenila}} vidljivost događaja u evidenciji na $3',
-'logentry-suppress-revision-legacy' => '$1 je tajno {{GENDER:|promijenio|promijenila}} vidljivost izmjena na stranici $3',
+'logentry-delete-event' => '$1 je {{GENDER:$2|promijenio|promijenila}} vidljivost {{PLURAL:$5|događaja|$5 događaja}} u evidenciji na $3: $4',
+'logentry-delete-revision' => '$1 je {{GENDER:$2|promijenio|promijenila}} vidljivost {{PLURAL:$5|izmjene|$5 izmjene|$5 izmjena}} na stranici $3: $4',
+'logentry-delete-event-legacy' => '$1 je {{GENDER:$2|promijenio|promijenila}} vidljivost događaja u evidenciji na $3',
+'logentry-delete-revision-legacy' => '$1 je {{GENDER:$2|promijenio|promijenila}} vidljivost izmjena na stranici $3',
+'logentry-suppress-delete' => '$1 je {{GENDER:$2|potisnuo|potisnula}} stranicu $3',
+'logentry-suppress-event' => '$1 je tajno {{GENDER:$2|promijenio|promijenila}} vidljivost {{PLURAL:$5|događaja|$5 događaja}} u evidenciji na $3: $4',
+'logentry-suppress-revision' => '$1 je tajno {{GENDER:$2|promijenio|promijenila}} vidljivost {{PLURAL:$5|izmjene|$5 izmjene|$5 izmjena}} na stranici $3: $4',
+'logentry-suppress-event-legacy' => '$1 je tajno {{GENDER:$2|promijenio|promijenila}} vidljivost događaja u evidenciji na $3',
+'logentry-suppress-revision-legacy' => '$1 je tajno {{GENDER:$2|promijenio|promijenila}} vidljivost izmjena na stranici $3',
 'revdelete-content-hid' => 'skriveni sadržaj',
 'revdelete-summary-hid' => 'sažetak izmjene je sakriven',
 'revdelete-uname-hid' => 'sažetak izmjene je sakriven',
@@ -3969,20 +3972,20 @@ Slike su prikazane u punoj veličini, ostale vrste datoteka su prikazane direktn
 'revdelete-uname-unhid' => 'korisničko ime je otkriveno',
 'revdelete-restricted' => 'primijenjena ograničenja za administratore',
 'revdelete-unrestricted' => 'uklonjena ograničenja za administratore',
-'logentry-move-move' => '$1 je premjestio stranicu $3 na $4',
-'logentry-move-move-noredirect' => '$1 je premjestio stranicu $3 na $4 bez ostavljanja preusmjerenja',
-'logentry-move-move_redir' => '$1 je premjestio stranicu $3 na $4 preko preusmjeravanja',
-'logentry-move-move_redir-noredirect' => '$1 je premjestio stranicu $3 na $4 preko preusmjeravanja bez ostavljanja preusmjeravanja',
-'logentry-patrol-patrol' => '$1 je označio izmjenu $4 stranice $3 pregledanim',
-'logentry-patrol-patrol-auto' => '$1 je automatski označio izmjenu $4 stranice $3 pregledanim',
-'logentry-newusers-newusers' => 'Korisnički račun $1 je napravljen',
-'logentry-newusers-create' => 'Korisnički račun $1 je napravljen',
+'logentry-move-move' => '$1 je {{GENDER:$2|premjestio|premjestila}} stranicu $3 na $4',
+'logentry-move-move-noredirect' => '$1 je {{GENDER:$2|premjestio|premjestila}} stranicu $3 na $4 bez ostavljanja preusmjerenja',
+'logentry-move-move_redir' => '$1 je {{GENDER:$2|premjestio|premjestila}} stranicu $3 na $4 preko preusmjeravanja',
+'logentry-move-move_redir-noredirect' => '$1 je {{GENDER:$2|premjestio|premjestila}} stranicu $3 na $4 preko preusmjeravanja bez ostavljanja preusmjeravanja',
+'logentry-patrol-patrol' => '$1 je {{GENDER:$2|označio|označila}} izmjenu $4 stranice $3 pregledanim',
+'logentry-patrol-patrol-auto' => '$1 je automatski {{GENDER:$2|označio|označila}} izmjenu $4 stranice $3 pregledanim',
+'logentry-newusers-newusers' => 'Korisnički račun $1 je {{GENDER:$2|napravljen}}',
+'logentry-newusers-create' => 'Korisnički račun $1 je {{GENDER:$2|napravljen}}',
 'logentry-newusers-create2' => '$3 je {{GENDER:$2|napravio|napravila}} korisnički račun $1',
-'logentry-newusers-byemail' => 'Korisnički račun $3 je napravio $1 i lozinka/šifra je poslana putem e-maila',
-'logentry-newusers-autocreate' => 'Korisnički račun $1 je automatski napravljen',
-'logentry-rights-rights' => '$1 {{GENDER:$1|je promijenio|je promijenila|je promijenio}} članstvo grupe za $3 iz $4 u $5',
+'logentry-newusers-byemail' => 'Korisnički račun $3 je {{GENDER:$2|napravio|napravila}} $1 i lozinka/šifra je poslana putem e-maila',
+'logentry-newusers-autocreate' => 'Korisnički račun $1 je automatski {{GENDER:$2|napravljen}}',
+'logentry-rights-rights' => '$1 je {{GENDER:$2|promijenio|promijenila|promijenio}} članstvo grupe za $3 iz $4 u $5',
 'logentry-rights-rights-legacy' => '$1 je {{GENDER:$2|promijenio|promijenila|promijenio}} članstvo grupe za $3',
-'logentry-rights-autopromote' => 'Korisničkom računu $1 {{GENDER:$1|je automatski promijenjeno članstvo|su automatski promijenjena članstva}} iz $4 u $5',
+'logentry-rights-autopromote' => '$1 {{GENDER:$1|je automatski promijenjeno članstvo|su automatski promijenjena članstva}} iz $4 u $5',
 'rightsnone' => '(nema)',
 
 # Feedback

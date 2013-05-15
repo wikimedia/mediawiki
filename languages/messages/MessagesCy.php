@@ -3655,6 +3655,7 @@ Dylech fod wedi derbyn [{{SERVER}}{{SCRIPTPATH}}/COPYING gopi o GNU General Publ
 'version-entrypoints-header-entrypoint' => 'Man cyflwyno',
 'version-entrypoints-header-url' => 'URL',
 
+# Special:Redirect
 'redirect' => 'Ailgyfeirio yn ôl enw ffeil, ID defnyddiwr neu ID diwygiad tudalen',
 'redirect-legend' => 'Ailgyfeirio i ffeil neu dudalen',
 'redirect-summary' => "Mae'r dudalen arbennig hon yn arwain at ffeil (o roi enw'r ffeil), at dudalen (o roi ID rhyw ddidwygiad o'r dudalen), neu at dudalen defnyddiwr (o roi rhif y defnyddiwr).",

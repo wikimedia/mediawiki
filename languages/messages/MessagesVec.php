@@ -3661,6 +3661,7 @@ Insieme co sto programa te dovaressi 'ver ricevùo na copia de la Licensa Public
 'version-entrypoints-header-entrypoint' => 'Punti de aceso',
 'version-entrypoints-header-url' => 'URL',
 
+# Special:Redirect
 'redirect' => 'Rimando par file, utente, o ID de revision.',
 'redirect-legend' => 'Rimandar a un file o na pagina',
 'redirect-summary' => "Sta pagina speciale la rimanda a un file (dato el nome del file), a na pagina (dato l'ID de la revision), o a na pagina utente (dato l'ID de l'utente).",

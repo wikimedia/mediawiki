@@ -3138,7 +3138,7 @@ Este bloqueio foi provavelmente causado por um link para um site externo que con
 'pageinfo-header-edits' => 'Histórico de edições',
 'pageinfo-header-restrictions' => 'Proteção da página',
 'pageinfo-header-properties' => 'Propriedades da página',
-'pageinfo-display-title' => 'Exibir título',
+'pageinfo-display-title' => 'Título exibido',
 'pageinfo-length' => 'Tamanho da página (em bytes)',
 'pageinfo-article-id' => 'ID da página',
 'pageinfo-language' => 'Idioma do conteúdo da página',

@@ -3807,6 +3807,7 @@ Saam met die program moes u \'n [{{SERVER}}{{SCRIPTPATH}}/COPYING kopie van van 
 'version-entrypoints-header-entrypoint' => 'Ingang',
 'version-entrypoints-header-url' => 'URL',
 
+# Special:Redirect
 'redirect' => 'Aanstuur volgens lêer, gebruiker of weergawenommer',
 'redirect-legend' => "Aanstuur na 'n lêer of bladsy",
 'redirect-summary' => "Hierdie spesiale bladsy stuur aan na 'n lêer (as 'n lêernaam verskaf word), 'n bladsy (as 'n weergawe-nommer verskaf word) of 'n gebruikersblad (as 'n gebruiker-ID verskaf word).",

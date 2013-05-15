@@ -3841,6 +3841,7 @@ MediaWiki发表时预期有用，但对此'''无任何保证'''，亦无隐含�
 'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath 条目路径]',
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath 脚本路径]',
 
+# Special:Redirect
 'redirect' => '重定向',
 'redirect-legend' => '重定向至一个文件或页面',
 'redirect-summary' => '本特殊页面会重定向到一个文件（给予文件名），一个页面（给予修订版本ID），或一个用户页面（给予用户数字ID）。',

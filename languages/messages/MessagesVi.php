@@ -4022,6 +4022,7 @@ hoặc [//www.gnu.org/licenses/old-licenses/gpl-2.0.html đọc nó trực tuy�
 'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath?uselang=vi Đường dẫn bài]',
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath?uselang=vi Đường dẫn kịch bản]',
 
+# Special:Redirect
 'redirect' => 'Đổi hướng đến tập tin, người dùng, hoặc số phiên bản',
 'redirect-legend' => 'Đổi hướng đến tập tin hoặc trang',
 'redirect-summary' => 'Trang đặc biệt này đổi hướng đến một tập tin (theo tên tập tin được cho vào), trang (theo số phiên bản được cho vào), hoặc trang cá nhân (theo số thành viên).',

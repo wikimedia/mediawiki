@@ -3797,6 +3797,7 @@ Sinun olisi pitänyt saada [{{SERVER}}{{SCRIPTPATH}}/COPYING kopio GNU General P
 'version-entrypoints-header-entrypoint' => 'Aloituskohta',
 'version-entrypoints-header-url' => 'URL',
 
+# Special:Redirect
 'redirect-submit' => 'Siirry',
 'redirect-file' => 'Tiedostonimi',
 

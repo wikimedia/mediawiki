@@ -4035,6 +4035,7 @@ $5
 'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath 문서 경로]',
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath 스크립트 경로]',
 
+# Special:Redirect
 'redirect' => '파일, 사용자나 판 ID별 넘겨주기',
 'redirect-legend' => '파일이나 문서로 넘겨주기',
 'redirect-summary' => '이 특수 문서는 파일(파일 이름을 지정), 문서(판 ID를 지정)나 사용자 문서(사용자 ID를 정수로 지정)로 넘겨줍니다.',

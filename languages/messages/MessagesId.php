@@ -2200,7 +2200,7 @@ Nama yang telah <del>dicoret</del> berarti telah dibetulkan.',
 'mostcategories' => 'Halaman dengan kategori terbanyak',
 'mostimages' => 'Berkas yang tersering digunakan',
 'mostinterwikis' => 'Halaman dengan interwiki terbanyak',
-'mostrevisions' => 'Laman jo parubahan tabanyak',
+'mostrevisions' => 'Halaman dengan perubahan terbanyak',
 'prefixindex' => 'Semua halaman dengan awalan',
 'prefixindex-namespace' => 'Semua halaman dengan awalan (ruang nama $1)',
 'shortpages' => 'Halaman pendek',
@@ -4062,6 +4062,7 @@ Anda seharusnya telah menerima [{{SERVER}}{{SCRIPTPATH}}/COPYING salinan Lisensi
 'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Artikel path]',
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Skrip path]',
 
+# Special:Redirect
 'redirect' => 'Pengalihan oleh berkas, pengguna atau ID revisi',
 'redirect-legend' => 'Pengalihan ke sebuah berkas atau halaman',
 'redirect-submit' => 'Lanjut',

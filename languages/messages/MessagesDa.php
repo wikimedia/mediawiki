@@ -3740,6 +3740,7 @@ Du skulle have modtaget [{{SERVER}}{{SCRIPTPATH}}/COPYING en kopi af GNU General
 'version-entrypoints-header-entrypoint' => 'Indgangspunkt',
 'version-entrypoints-header-url' => 'URL',
 
+# Special:Redirect
 'redirect' => 'Omdirigering pga. fil, bruger eller udgave ID',
 'redirect-legend' => 'Omstilling til en fil eller en side',
 'redirect-summary' => "Denne side omdirigerer en (hvis filnavnet er angivet), en side (hvis udgave ID'et er angivet) eller en brugerside (hvis et numerisk brugernummer er angivet).",

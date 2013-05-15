@@ -3435,6 +3435,7 @@ $5
 'version-entrypoints-header-entrypoint' => 'ప్రవేశ బిందువు',
 'version-entrypoints-header-url' => 'చిరునామా',
 
+# Special:Redirect
 'redirect-submit' => 'వెళ్ళు',
 'redirect-value' => 'విలువ:',
 'redirect-user' => 'వాడుకరి ID',
