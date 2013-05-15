@@ -172,7 +172,7 @@ $specialPageAliases = array(
 );
 
 $magicWords = array(
-	'redirect'                  => array( '0', '#पुनर्निदेशन', '#REDIRECT' ),
+	'redirect'                  => array( '0', '#पुनर्निदेशन', '#अनुप्रेषित', '#REDIRECT' ),
 	'notoc'                     => array( '0', '__नैवअनुक्रमणी__', '__NOTOC__' ),
 	'nogallery'                 => array( '0', '__नैवसंक्रमणका__', '__NOGALLERY__' ),
 	'forcetoc'                  => array( '0', '__अनुक्रमणीसचते__', '__FORCETOC__' ),

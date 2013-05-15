@@ -84,6 +84,7 @@ $magicWords = array(
 	'pagenamee'                 => array( '1', 'NAMALAMANE', 'PAGENAMEE' ),
 	'namespace'                 => array( '1', 'RUANGNAMA', 'NAMESPACE' ),
 	'namespacee'                => array( '1', 'RUANGNAMAE', 'NAMESPACEE' ),
+	'namespacenumber'           => array( '1', 'NOMBORRUANGNAMA', 'NAMESPACENUMBER' ),
 	'talkspace'                 => array( '1', 'RUANGBINCANG', 'TALKSPACE' ),
 	'talkspacee'                => array( '1', 'RUANGBINCANGE', 'TALKSPACEE' ),
 	'fullpagename'              => array( '1', 'NAMALAMANPENUH', 'FULLPAGENAME' ),
@@ -94,9 +95,11 @@ $magicWords = array(
 	'img_left'                  => array( '1', 'kanan', 'left' ),
 	'img_none'                  => array( '1', 'tiada', 'none' ),
 	'img_center'                => array( '1', 'tengah', 'center', 'centre' ),
+	'img_border'                => array( '1', 'bingkai', 'border' ),
 	'sitename'                  => array( '1', 'NAMATAPAK', 'SITENAME' ),
 	'ns'                        => array( '0', 'RN:', 'NS:' ),
 	'nse'                       => array( '0', 'RNE:', 'NSE:' ),
+	'gender'                    => array( '0', 'JANTINA:', 'GENDER:' ),
 	'currentweek'               => array( '1', 'MINGGUSEMASA', 'CURRENTWEEK' ),
 );
 

@@ -179,7 +179,7 @@ $specialPageAliases = array(
 );
 
 $magicWords = array(
-	'redirect'                  => array( '0', '#ALIDIREKTU', '#ALIDIREKTI', '#AL', '#REDIRECT' ),
+	'redirect'                  => array( '0', '#ALIDIREKTI', '#ALIDIREKTU', '#AL', '#REDIRECT' ),
 	'notoc'                     => array( '0', '__NI__', '__NEINDEKSO__', '__NT__', '__NOTOC__' ),
 	'nogallery'                 => array( '0', '__NG__', '__SENBILDARO__', '__SB__', '__SG__', '__SENGALERIO__', '__NOGALLERY__' ),
 	'forcetoc'                  => array( '0', '__FI__', '__FORTUINDEKSON__', '__FT__', '__FORCETOC__' ),
@@ -218,6 +218,7 @@ $magicWords = array(
 	'pagenamee'                 => array( '1', 'PAĜONOMOO', 'PAGXONOMOO', 'PAĜNOMOO', 'PAGXNOMOO', 'PAGENAMEE' ),
 	'namespace'                 => array( '1', 'NOMSPACO', 'NAMESPACE' ),
 	'namespacee'                => array( '1', 'NOMSPACOO', 'NAMESPACEE' ),
+	'namespacenumber'           => array( '1', 'NUMERODENOMSPACO', 'NOMSPACNUMERO', 'NAMESPACENUMBER' ),
 	'talkspace'                 => array( '1', 'DISKUTNOMSPACO', 'TALKSPACE' ),
 	'talkspacee'                => array( '1', 'DISKUTNOMSPACOO', 'TALKSPACEE' ),
 	'fullpagename'              => array( '1', 'TUTAPAĜONOMO', 'TUTAPAGXONOMO', 'TUTAPAĜNOMO', 'TUTAPAGXNOMO', 'FULLPAGENAME' ),
@@ -253,12 +254,14 @@ $magicWords = array(
 	'img_text_bottom'           => array( '1', 'suba-teksto', 'text-bottom' ),
 	'img_link'                  => array( '1', 'ligilo=$1', 'link=$1' ),
 	'img_alt'                   => array( '1', 'alternative=$1', 'alt=$1' ),
+	'img_class'                 => array( '1', 'klaso=$1', 'class=$1' ),
 	'int'                       => array( '0', 'ENE:', 'INT:' ),
 	'sitename'                  => array( '1', 'TTT-NOMO', 'RETPAĜNOMO', 'RETPAGXNOMO', 'RETEJNOMO', 'SITENAME' ),
 	'nse'                       => array( '0', 'NSS:', 'NSO:', 'NSE:' ),
 	'localurl'                  => array( '0', 'LOKATTT:', 'LOCALURL:' ),
 	'localurle'                 => array( '0', 'LOKATTTT:', 'LOCALURLE:' ),
 	'articlepath'               => array( '0', 'ARTIKOLAPADO', 'ARTIKOLAVOJO', 'ARTICLEPATH' ),
+	'pageid'                    => array( '0', 'IDENTIGILODEPAĜO', 'PAĜID', 'PAGEID' ),
 	'server'                    => array( '0', 'SERVILO', 'SERVER' ),
 	'servername'                => array( '0', 'NOMODESERVILO', 'SERVILANOMO', 'SERVILONOMO', 'SERVERNAME' ),
 	'scriptpath'                => array( '0', 'SKRIPTO-VOJO', 'SKRIPTOVOJO', 'SKRIPTVOJO', 'SCRIPTPATH' ),

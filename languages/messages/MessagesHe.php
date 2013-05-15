@@ -199,6 +199,7 @@ $magicWords = array(
 	'pagenamee'                 => array( '1', 'שם הדף מקודד', 'PAGENAMEE' ),
 	'namespace'                 => array( '1', 'מרחב השם', 'NAMESPACE' ),
 	'namespacee'                => array( '1', 'מרחב השם מקודד', 'NAMESPACEE' ),
+	'namespacenumber'           => array( '1', 'מספר_מרחב_השם', 'NAMESPACENUMBER' ),
 	'talkspace'                 => array( '1', 'מרחב השיחה', 'TALKSPACE' ),
 	'talkspacee'                => array( '1', 'מרחב השיחה מקודד', 'TALKSPACEE' ),
 	'subjectspace'              => array( '1', 'מרחב הנושא', 'מרחב הערכים', 'SUBJECTSPACE', 'ARTICLESPACE' ),
@@ -311,6 +312,7 @@ $magicWords = array(
 	'url_query'                 => array( '0', 'שאילתה', 'QUERY' ),
 	'defaultsort_noerror'       => array( '0', 'ללא שגיאה', 'noerror' ),
 	'defaultsort_noreplace'     => array( '0', 'ללא החלפה', 'noreplace' ),
+	'pagesincategory_pages'     => array( '0', 'דפים', 'pages' ),
 );
 
 $datePreferences = array(

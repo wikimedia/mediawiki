@@ -212,6 +212,7 @@ $specialPageAliases = array(
 );
 
 $magicWords = array(
+	'redirect'                  => array( '0', '#重定向', '#REDIRECT' ),
 	'notoc'                     => array( '0', '__無目錄__', '__无目录__', '__NOTOC__' ),
 	'nogallery'                 => array( '0', '__無圖庫__', '__无图库__', '__NOGALLERY__' ),
 	'forcetoc'                  => array( '0', '__強制目錄__', '__强显目录__', '__FORCETOC__' ),
@@ -233,10 +234,10 @@ $magicWords = array(
 	'img_page'                  => array( '1', '頁=$1', '$1頁', '页数=$1', '$1页', 'page=$1', 'page $1' ),
 	'img_link'                  => array( '1', '連結=$1', '链接=$1', 'link=$1' ),
 	'sitename'                  => array( '1', '網站名稱', '站点名称', 'SITENAME' ),
-	'ns'                        => array( '0', '名字空間', '名字空间:', 'NS:' ),
-	'nse'                       => array( '0', '名字空間E', '名字空间E:', 'NSE:' ),
-	'localurl'                  => array( '0', '本地URL', '本地URL:', 'LOCALURL:' ),
-	'localurle'                 => array( '0', '本地URLE', '本地URLE:', 'LOCALURLE:' ),
+	'ns'                        => array( '0', '名字空間:', '名字空间:', 'NS:' ),
+	'nse'                       => array( '0', '名字空間E:', '名字空间E:', 'NSE:' ),
+	'localurl'                  => array( '0', '本地URL:', 'LOCALURL:' ),
+	'localurle'                 => array( '0', '本地URLE:', 'LOCALURLE:' ),
 	'pageid'                    => array( '0', '頁面ID', '页面ID', 'PAGEID' ),
 	'server'                    => array( '0', '伺服器', '服务器', 'SERVER' ),
 	'servername'                => array( '0', '伺服器名稱', '服务器名', 'SERVERNAME' ),
@@ -245,6 +246,7 @@ $magicWords = array(
 	'nocontentconvert'          => array( '0', '__不轉換內容__', '__不转换内容__', '__NOCONTENTCONVERT__', '__NOCC__' ),
 	'displaytitle'              => array( '1', '顯示標題', '显示标题', 'DISPLAYTITLE' ),
 	'currentversion'            => array( '1', '當前版本', '当前版本', 'CURRENTVERSION' ),
+	'language'                  => array( '0', '#語言:', '#语言:', '#LANGUAGE:' ),
 	'hiddencat'                 => array( '1', '__隱藏分類__', '__隐藏分类__', '__HIDDENCAT__' ),
 	'staticredirect'            => array( '1', '__靜態重定向__', '__静态重定向__', '__STATICREDIRECT__' ),
 );

@@ -319,6 +319,7 @@ $magicWords = array(
 	'pagesize'                  => array( '1', 'താൾവലിപ്പം', 'PAGESIZE' ),
 	'index'                     => array( '1', '‌‌__സൂചിക__', '__INDEX__' ),
 	'noindex'                   => array( '1', '__സൂചികവേണ്ട__', '__NOINDEX__' ),
+	'numberingroup'             => array( '1', 'ഗണത്തിലെയെണ്ണം', 'NUMBERINGROUP', 'NUMINGROUP' ),
 	'staticredirect'            => array( '1', '_സ്ഥിരസ്ഥിതതിരിച്ചുവിടൽ_', '__STATICREDIRECT__' ),
 	'protectionlevel'           => array( '1', 'സംരക്ഷണതലം', 'PROTECTIONLEVEL' ),
 	'formatdate'                => array( '0', 'ദിനരേഖീകരണരീതി', 'ദിവസരേഖീകരണരീതി', 'formatdate', 'dateformat' ),
