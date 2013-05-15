@@ -500,6 +500,17 @@ class JobQueueDB extends JobQueue {
 	}
 
 	/**
+	 * @see JobQueue::doDelete()
+	 * @return bool
+	 */
+	protected function doDelete() {
+		list( $dbw, $scope ) = $this->getMasterDB();
+
+		$dbw->delete( 'job', array( 'job_type' => $this->type ) );
+		return true;
+	}
+
+	/**
 	 * @see JobQueue::doWaitForBackups()
 	 * @return void
 	 */

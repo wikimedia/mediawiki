@@ -485,6 +485,26 @@ LUA;
 	}
 
 	/**
+	 * @see JobQueue::doDelete()
+	 * @return bool
+	 */
+	protected function doDelete() {
+		static $props = array( 'l-unclaimed', 'z-claimed', 'z-abandoned',
+			'z-delayed', 'h-idBySha1', 'h-sha1ById', 'h-attempts', 'h-data' );
+
+		$conn = $this->getConnection();
+		try {
+			$keys = array();
+			foreach ( $props as $prop ) {
+				$keys[] = $this->getQueueKey( $prop );
+			}
+			$res = ( $conn->delete( $keys ) !== false );
+		} catch ( RedisException $e ) {
+			$this->throwRedisException( $this->server, $conn, $e );
+		}
+	}
+
+	/**
 	 * @see JobQueue::getAllQueuedJobs()
 	 * @return Iterator
 	 */
