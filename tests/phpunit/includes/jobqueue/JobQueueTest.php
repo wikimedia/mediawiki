@@ -62,12 +62,7 @@ class JobQueueTest extends MediaWikiTestCase {
 			) as $q
 		) {
 			if ( $this->$q ) {
-				do {
-					$job = $this->$q->pop();
-					if ( $job ) {
-						$this->$q->ack( $job );
-					}
-				} while ( $job );
+				$this->$q->delete();
 			}
 			$this->$q = null;
 		}
@@ -149,6 +144,15 @@ class JobQueueTest extends MediaWikiTestCase {
 
 		$queue->flushCaches();
 		$this->assertEquals( 0, $queue->getAcquiredCount(), "Active job count ($desc)" );
+
+		$this->assertTrue( $queue->batchPush( array( $this->newJob(), $this->newJob() ) ),
+			"Push worked ($desc)" );
+		$this->assertFalse( $queue->isEmpty(), "Queue is not empty ($desc)" );
+
+		$queue->delete();
+		$queue->flushCaches();
+		$this->assertTrue( $queue->isEmpty(), "Queue is empty ($desc)" );
+		$this->assertEquals( 0, $queue->getSize(), "Queue is empty ($desc)" );
 	}
 
 	/**

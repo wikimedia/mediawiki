@@ -508,6 +508,28 @@ abstract class JobQueue {
 	}
 
 	/**
+	 * Deleted all unclaimed and delayed jobs from the queue
+	 *
+	 * @return bool Success
+	 * @throws MWException
+	 * @since 1.22
+	 */
+	final public function delete() {
+		wfProfileIn( __METHOD__ );
+		$res = $this->doDelete();
+		wfProfileOut( __METHOD__ );
+		return $res;
+	}
+
+	/**
+	 * @see JobQueue::delete()
+	 * @return bool Success
+	 */
+	protected function doDelete() {
+		throw new MWException( "This method is not implemented." );
+	}
+
+	/**
 	 * Wait for any slaves or backup servers to catch up.
 	 *
 	 * This does nothing for certain queue classes.

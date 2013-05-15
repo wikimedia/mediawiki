@@ -298,6 +298,12 @@ class JobQueueFederated extends JobQueue {
 		return $this->partitionQueues[$job->metadata['QueuePartition']]->ack( $job );
 	}
 
+	protected function doDelete() {
+		foreach ( $this->partitionQueues as $queue ) {
+			$queue->doDelete();
+		}
+	}
+
 	protected function doWaitForBackups() {
 		foreach ( $this->partitionQueues as $queue ) {
 			$queue->waitForBackups();
