@@ -270,6 +270,11 @@ class JobQueueDB extends JobQueue {
 
 		list( $dbw, $scope ) = $this->getMasterDB();
 		$dbw->commit( __METHOD__, 'flush' ); // flush existing transaction
+		$autoTrx = $dbw->getFlag( DBO_TRX ); // get current setting
+		$dbw->clearFlag( DBO_TRX ); // make each query its own transaction
+		$scopedReset = new ScopedCallback( function() use ( $dbw, $autoTrx ) {
+			$dbw->setFlag( $autoTrx ? DBO_TRX : 0 ); // restore old setting
+		} );
 
 		$uuid = wfRandomString( 32 ); // pop attempt
 		$job = false; // job popped off
@@ -457,6 +462,11 @@ class JobQueueDB extends JobQueue {
 
 		list( $dbw, $scope ) = $this->getMasterDB();
 		$dbw->commit( __METHOD__, 'flush' ); // flush existing transaction
+		$autoTrx = $dbw->getFlag( DBO_TRX ); // get current setting
+		$dbw->clearFlag( DBO_TRX ); // make each query its own transaction
+		$scopedReset = new ScopedCallback( function() use ( $dbw, $autoTrx ) {
+			$dbw->setFlag( $autoTrx ? DBO_TRX : 0 ); // restore old setting
+		} );
 
 		// Delete a row with a single DELETE without holding row locks over RTTs...
 		$dbw->delete( 'job',
