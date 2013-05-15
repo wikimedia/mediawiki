@@ -144,7 +144,7 @@ class DatabaseTestHelper extends DatabaseBase {
 		return -1;
 	}
 
-	static function getSoftwareLink() {
+	function getSoftwareLink() {
 		return 'test';
 	}
 
