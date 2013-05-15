@@ -209,7 +209,7 @@ class DerivativeContext extends ContextSource {
 	/**
 	 * Set the Language object
 	 *
-	 * @deprecated 1.19 Use setLanguage instead
+	 * @deprecated since 1.19 Use setLanguage instead
 	 * @param Language|string $l Language instance or language code
 	 */
 	public function setLang( $l ) {
@@ -237,7 +237,7 @@ class DerivativeContext extends ContextSource {
 	}
 
 	/**
-	 * @deprecated 1.19 Use getLanguage instead
+	 * @deprecated since 1.19 Use getLanguage instead
 	 * @return Language
 	 */
 	public function getLang() {

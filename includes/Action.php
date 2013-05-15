@@ -213,7 +213,7 @@ abstract class Action {
 	/**
 	 * Shortcut to get the user Language being used for this instance
 	 *
-	 * @deprecated 1.19 Use getLanguage instead
+	 * @deprecated since 1.19 Use getLanguage instead
 	 * @return Language
 	 */
 	final public function getLang() {
