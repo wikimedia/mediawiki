@@ -173,7 +173,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		$this->called['setUp'] = 1;
 
 		/*
-		//@todo: global variables to restore for *every* test
+		// @todo global variables to restore for *every* test
 		array(
 			'wgLang',
 			'wgContLang',
@@ -847,7 +847,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		}
 
 		// give up
-		// @todo: Inside a test, we could skip the test as incomplete.
+		// @todo Inside a test, we could skip the test as incomplete.
 		//        But frequently, this is used in fixture setup.
 		throw new MWException( "No namespace defaults to wikitext!" );
 	}

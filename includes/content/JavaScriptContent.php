@@ -46,7 +46,7 @@ class JavaScriptContent extends TextContent {
 	 */
 	public function preSaveTransform( Title $title, User $user, ParserOptions $popts ) {
 		global $wgParser;
-		// @todo: make pre-save transformation optional for script pages
+		// @todo Make pre-save transformation optional for script pages
 		// See bug #32858
 
 		$text = $this->getNativeData();

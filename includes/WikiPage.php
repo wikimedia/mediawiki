@@ -187,7 +187,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * (and only when) $wgActions[$action] === true. This allows subclasses
 	 * to override the default behavior.
 	 *
-	 * @todo: move this UI stuff somewhere else
+	 * @todo Move this UI stuff somewhere else
 	 *
 	 * @return Array
 	 */
@@ -648,7 +648,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @return String|false The text of the current revision
 	 * @deprecated as of 1.21, getContent() should be used instead.
 	 */
-	public function getText( $audience = Revision::FOR_PUBLIC, User $user = null ) { // @todo: deprecated, replace usage!
+	public function getText( $audience = Revision::FOR_PUBLIC, User $user = null ) { // @todo deprecated, replace usage!
 		ContentHandler::deprecated( __METHOD__, '1.21' );
 
 		$this->loadLastEdit();
@@ -1175,7 +1175,7 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
-			// @todo: move this logic to MessageCache
+			// @todo move this logic to MessageCache
 
 			if ( $this->exists() ) {
 				// NOTE: use transclusion text for messages.
@@ -1459,8 +1459,8 @@ class WikiPage implements Page, IDBAccessObject {
 	 *
 	 * @return boolean whether sections are supported.
 	 *
-	 * @todo: the skin should check this and not offer section functionality if sections are not supported.
-	 * @todo: the EditPage should check this and not offer section functionality if sections are not supported.
+	 * @todo The skin should check this and not offer section functionality if sections are not supported.
+	 * @todo The EditPage should check this and not offer section functionality if sections are not supported.
 	 */
 	public function supportsSections() {
 		return $this->getContentHandler()->supportsSections();
@@ -1956,7 +1956,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$options = $this->getContentHandler()->makeParserOptions( $context );
 
 		if ( $this->getTitle()->isConversionTable() ) {
-			//@todo: ConversionTable should become a separate content model, so we don't need special cases like this one.
+			// @todo ConversionTable should become a separate content model, so we don't need special cases like this one.
 			$options->disableContentConversion();
 		}
 
@@ -2110,7 +2110,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 		DeferredUpdates::addUpdate( new SiteStatsUpdate( 0, 1, $good, $total ) );
 		DeferredUpdates::addUpdate( new SearchUpdate( $id, $title, $content->getTextForSearchIndex() ) );
-		// @TODO: let the search engine decide what to do with the content object
+		// @todo let the search engine decide what to do with the content object
 
 		// If this is another user's talk page, update newtalk.
 		// Don't do this if $options['changed'] = false (null-edits) nor if
@@ -2673,7 +2673,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * performs permissions checks on $user, then calls commitRollback()
 	 * to do the dirty work
 	 *
-	 * @todo: separate the business/permission stuff out from backend code
+	 * @todo Separate the business/permission stuff out from backend code
 	 *
 	 * @param string $fromP Name of the user whose edits to rollback.
 	 * @param string $summary Custom summary. Set to default summary if empty.
@@ -2941,7 +2941,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * Purge caches on page update etc
 	 *
 	 * @param $title Title object
-	 * @todo:  verify that $title is always a Title object (and never false or null), add Title hint to parameter $title
+	 * @todo Verify that $title is always a Title object (and never false or null), add Title hint to parameter $title
 	 */
 	public static function onArticleEdit( $title ) {
 		// Invalidate caches of articles which include this page
@@ -3403,7 +3403,7 @@ class PoolWorkArticleView extends PoolCounterWork {
 	function doWork() {
 		global $wgUseFileCache;
 
-		// @todo: several of the methods called on $this->page are not declared in Page, but present
+		// @todo several of the methods called on $this->page are not declared in Page, but present
 		//        in WikiPage and delegated by Article.
 
 		$isCurrent = $this->revid === $this->page->getLatest();

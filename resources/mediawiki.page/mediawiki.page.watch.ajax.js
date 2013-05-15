@@ -71,7 +71,7 @@
 
 		actionPaths = mw.config.get( 'wgActionPaths' );
 
-		// @todo: Does MediaWiki give action path or query param
+		// @todo Does MediaWiki give action path or query param
 		// precedence ? If the former, move this to the bottom
 		action = mw.util.getParamValue( 'action', url );
 		if ( action !== null ) {

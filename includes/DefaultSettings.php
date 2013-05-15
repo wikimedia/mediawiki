@@ -6331,7 +6331,7 @@ $wgContentHandlerUseDB = true;
  * of texts are also rendered as wikitext, it only means that links, magic words, etc will have
  * the effect on the database they would have on a wikitext page.
  *
- * @todo: On the long run, it would be nice to put categories etc into a separate structure,
+ * @todo On the long run, it would be nice to put categories etc into a separate structure,
  * or at least parse only the contents of comments in the scripts.
  *
  * @since 1.21

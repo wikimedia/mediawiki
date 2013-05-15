@@ -560,7 +560,7 @@ class Revision implements IDBAccessObject {
 
 			# if we have a content object, use it to set the model and type
 			if ( !empty( $row['content'] ) ) {
-				//@todo: when is that set? test with external store setup! check out insertOn() [dk]
+				// @todo when is that set? test with external store setup! check out insertOn() [dk]
 				if ( !empty( $row['text_id'] ) ) {
 					throw new MWException( "Text already stored in external store (id {$row['text_id']}), " .
 						"can't serialize content object" );
@@ -918,7 +918,7 @@ class Revision implements IDBAccessObject {
 	 *              to the $audience parameter
 	 *
 	 * @deprecated in 1.21, use getContent() instead
-	 * @todo: replace usage in core
+	 * @todo Replace usage in core
 	 * @return String
 	 */
 	public function getText( $audience = self::FOR_PUBLIC, User $user = null ) {

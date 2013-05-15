@@ -46,7 +46,7 @@ class CssContent extends TextContent {
 	 */
 	public function preSaveTransform( Title $title, User $user, ParserOptions $popts ) {
 		global $wgParser;
-		// @todo: make pre-save transformation optional for script pages
+		// @todo Make pre-save transformation optional for script pages
 
 		$text = $this->getNativeData();
 		$pst = $wgParser->preSaveTransform( $text, $title, $user, $popts );

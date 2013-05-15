@@ -683,7 +683,7 @@ class Block {
 		if ( $ipblock ) {
 			# Check if the block is an autoblock and would exceed the user block
 			# if renewed. If so, do nothing, otherwise prolong the block time...
-			if ( $ipblock->mAuto && // @TODO: why not compare $ipblock->mExpiry?
+			if ( $ipblock->mAuto && // @todo Why not compare $ipblock->mExpiry?
 				$this->mExpiry > Block::getAutoblockExpiry( $ipblock->mTimestamp )
 			) {
 				# Reset block timestamp to now and its expiry to

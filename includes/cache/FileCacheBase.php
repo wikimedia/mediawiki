@@ -35,7 +35,7 @@ abstract class FileCacheBase {
 	/* lazy loaded */
 	protected $mCached;
 
-	/* @TODO: configurable? */
+	/* @todo configurable? */
 	const MISS_FACTOR = 15; // log 1 every MISS_FACTOR cache misses
 	const MISS_TTL_SEC = 3600; // how many seconds ago is "recent"
 

@@ -944,7 +944,7 @@ class Title {
 	 * @return Bool
 	 */
 	public function isConversionTable() {
-		//@todo: ConversionTable should become a separate content model.
+		// @todo ConversionTable should become a separate content model.
 
 		return $this->getNamespace() == NS_MEDIAWIKI &&
 			strpos( $this->getText(), 'Conversiontable/' ) === 0;

@@ -930,7 +930,7 @@ return array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.undelete.js',
 	),
 	'mediawiki.special.upload' => array(
-		// @TODO: merge in remainder of mediawiki.legacy.upload
+		// @todo merge in remainder of mediawiki.legacy.upload
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.upload.js',
 		'messages' => array(
 			'widthheight',

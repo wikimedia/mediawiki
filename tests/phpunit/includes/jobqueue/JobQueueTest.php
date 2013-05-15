@@ -47,7 +47,9 @@ class JobQueueTest extends MediaWikiTestCase {
 					$this->$q->setTestingPrefix( 'unittests-' . wfRandomString( 32 ) );
 				}
 			} catch ( MWException $e ) {
-			}; // unsupported? (@TODO: what if it was another error?)
+				// unsupported?
+				// @todo What if it was another error?
+			};
 		}
 	}
 

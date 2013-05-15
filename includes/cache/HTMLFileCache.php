@@ -182,7 +182,7 @@ class HTMLFileCache extends FileCacheBase {
 
 		// gzip output to buffer as needed and set headers...
 		if ( $this->useGzip() ) {
-			// @TODO: ugly wfClientAcceptsGzip() function - use context!
+			// @todo Ugly wfClientAcceptsGzip() function - use context!
 			if ( wfClientAcceptsGzip() ) {
 				header( 'Content-Encoding: gzip' );
 				return $compressed;

@@ -689,7 +689,7 @@ class XmlDumpWriter {
 			$content_model = strval( $row->rev_content_model );
 		} else {
 			// probably using $wgContentHandlerUseDB = false;
-			// @todo: test!
+			// @todo test!
 			$title = Title::makeTitle( $row->page_namespace, $row->page_title );
 			$content_model = ContentHandler::getDefaultModelFor( $title );
 		}
@@ -700,7 +700,7 @@ class XmlDumpWriter {
 			$content_format = strval( $row->rev_content_format );
 		} else {
 			// probably using $wgContentHandlerUseDB = false;
-			// @todo: test!
+			// @todo test!
 			$content_handler = ContentHandler::getForModelID( $content_model );
 			$content_format = $content_handler->getDefaultFormat();
 		}

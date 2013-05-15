@@ -569,7 +569,7 @@ class WikiPageTest extends MediaWikiLangTestCase {
 	public static function provideGetParserOutput() {
 		return array(
 			array( CONTENT_MODEL_WIKITEXT, "hello ''world''\n", "<p>hello <i>world</i></p>" ),
-			// @todo: more...?
+			// @todo more...?
 		);
 	}
 
@@ -609,7 +609,7 @@ class WikiPageTest extends MediaWikiLangTestCase {
 		$opt = new ParserOptions();
 		$po = $page->getParserOutput( $opt, $page->getLatest() + 1234 );
 
-		//@todo: would be neat to also test deleted revision
+		// @todo would be neat to also test deleted revision
 
 		$this->assertFalse( $po, "getParserOutput() shall return false for non-existing revisions." );
 	}

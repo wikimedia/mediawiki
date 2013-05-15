@@ -64,7 +64,7 @@ abstract class FileOp {
 	final public function __construct( FileBackendStore $backend, array $params ) {
 		$this->backend = $backend;
 		list( $required, $optional ) = $this->allowedParams();
-		// @TODO: normalizeAnyStoragePaths() calls are overzealous, use a parameter list
+		// @todo normalizeAnyStoragePaths() calls are overzealous, use a parameter list
 		foreach ( $required as $name ) {
 			if ( isset( $params[$name] ) ) {
 				// Normalize paths so the paths to the same file have the same string

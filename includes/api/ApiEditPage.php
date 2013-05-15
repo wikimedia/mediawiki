@@ -146,7 +146,7 @@ class ApiEditPage extends ApiBase {
 				}
 			}
 
-			// @todo: Add support for appending/prepending to the Content interface
+			// @todo Add support for appending/prepending to the Content interface
 
 			if ( !( $content instanceof TextContent ) ) {
 				$mode = $contentHandler->getModelID();

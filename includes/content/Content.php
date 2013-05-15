@@ -40,8 +40,8 @@ interface Content {
 	 *   building a full text search index. If no useful representation exists,
 	 *   this method returns an empty string.
 	 *
-	 * @todo: test that this actually works
-	 * @todo: make sure this also works with LuceneSearch / WikiSearch
+	 * @todo Test that this actually works
+	 * @todo Make sure this also works with LuceneSearch / WikiSearch
 	 */
 	public function getTextForSearchIndex();
 
@@ -51,11 +51,11 @@ interface Content {
 	 * @return string|false The wikitext to include when another page includes this
 	 * content, or false if the content is not includable in a wikitext page.
 	 *
-	 * @todo allow native handling, bypassing wikitext representation, like
-	 *    for includable special pages.
-	 * @todo allow transclusion into other content models than Wikitext!
-	 * @todo used in WikiPage and MessageCache to get message text. Not so
-	 *    nice. What should we use instead?!
+	 * @todo Allow native handling, bypassing wikitext representation, like
+	 *  for includable special pages.
+	 * @todo Allow transclusion into other content models than Wikitext!
+	 * @todo Used in WikiPage and MessageCache to get message text. Not so
+	 *  nice. What should we use instead?!
 	 */
 	public function getWikitextForTransclusion();
 
