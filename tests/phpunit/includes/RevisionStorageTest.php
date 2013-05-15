@@ -365,7 +365,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 		$page = $this->createPage( 'RevisionStorageTest_testIsCurrent', 'Lorem Ipsum', CONTENT_MODEL_WIKITEXT );
 		$rev1 = $page->getRevision();
 
-		# @todo: find out if this should be true
+		# @todo find out if this should be true
 		# $this->assertTrue( $rev1->isCurrent() );
 
 		$rev1x = Revision::newFromId( $rev1->getId() );
@@ -374,7 +374,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 		$page->doEditContent( ContentHandler::makeContent( 'Bla bla', $page->getTitle(), CONTENT_MODEL_WIKITEXT ), 'second rev' );
 		$rev2 = $page->getRevision();
 
-		# @todo: find out if this should be true
+		# @todo find out if this should be true
 		# $this->assertTrue( $rev2->isCurrent() );
 
 		$rev1x = Revision::newFromId( $rev1->getId() );

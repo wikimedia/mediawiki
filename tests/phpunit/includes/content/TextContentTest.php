@@ -162,7 +162,7 @@ class TextContentTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @todo: test needs database! Should be done by a test class in the Database group.
+	 * @todo Test needs database! Should be done by a test class in the Database group.
 	 */
 	/*
 	public function getRedirectChain() {
@@ -172,7 +172,7 @@ class TextContentTest extends MediaWikiLangTestCase {
 	*/
 
 	/**
-	 * @todo: test needs database! Should be done by a test class in the Database group.
+	 * @todo Test needs database! Should be done by a test class in the Database group.
 	 */
 	/*
 	public function getUltimateRedirectTarget() {

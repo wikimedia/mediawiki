@@ -171,7 +171,7 @@ class TextContent extends AbstractContent {
 
 		$this->checkModelID( $that->getModel() );
 
-		# @todo: could implement this in DifferenceEngine and just delegate here?
+		// @todo could implement this in DifferenceEngine and just delegate here?
 
 		if ( !$lang ) {
 			$lang = $wgContLang;

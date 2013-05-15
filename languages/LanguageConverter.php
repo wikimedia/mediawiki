@@ -952,7 +952,7 @@ class LanguageConverter {
 						$txt = $revision->getContent( Revision::RAW )->getNativeData();
 					}
 
-					//@todo: in the future, use a specialized content model, perhaps based on json!
+					// @todo in the future, use a specialized content model, perhaps based on json!
 				}
 			}
 		}

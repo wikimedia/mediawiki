@@ -256,7 +256,7 @@ abstract class UploadBase {
 		wfProfileIn( __METHOD__ );
 		$repo = RepoGroup::singleton()->getLocalRepo();
 		if ( $repo->isVirtualUrl( $srcPath ) ) {
-			// @TODO: just make uploads work with storage paths
+			// @todo just make uploads work with storage paths
 			// UploadFromStash loads files via virtual URLs
 			$tmpFile = $repo->getLocalCopy( $srcPath );
 			$tmpFile->bind( $this ); // keep alive with $this

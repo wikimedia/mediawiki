@@ -298,7 +298,7 @@ class SearchSqlite extends SearchEngine {
 		if ( !$this->fulltextSearchSupported() ) {
 			return;
 		}
-		// @todo: find a method to do it in a single request,
+		// @todo find a method to do it in a single request,
 		// couldn't do it so far due to typelessness of FTS3 tables.
 		$dbw = wfGetDB( DB_MASTER );
 

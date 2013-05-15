@@ -27,7 +27,7 @@
  */
 class LinksUpdate extends SqlDataUpdate {
 
-	// @todo: make members protected, but make sure extensions don't break
+	// @todo make members protected, but make sure extensions don't break
 
 	public $mId,         //!< Page ID of the article linked from
 		$mTitle,         //!< Title object of the article linked from

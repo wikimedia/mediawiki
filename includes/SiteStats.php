@@ -258,7 +258,7 @@ class SiteStatsUpdate implements DeferrableUpdate {
 	protected $users = 0;
 	protected $images = 0;
 
-	// @TODO: deprecate this constructor
+	// @todo deprecate this constructor
 	function __construct( $views, $edits, $good, $pages = 0, $users = 0 ) {
 		$this->views = $views;
 		$this->edits = $edits;

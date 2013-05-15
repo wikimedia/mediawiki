@@ -68,7 +68,7 @@ class DatabaseSqlite extends DatabaseBase {
 	}
 
 	/**
-	 * @todo: check if it should be true like parent class
+	 * @todo Check if it should be true like parent class
 	 *
 	 * @return bool
 	 */

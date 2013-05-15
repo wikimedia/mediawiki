@@ -147,7 +147,7 @@ class LinksUpdateTest extends MediaWikiTestCase {
 		) );
 	}
 
-	#@todo: test recursive, too!
+	// @todo test recursive, too!
 
 	protected function assertLinksUpdate( Title $title, ParserOutput $parserOutput, $table, $fields, $condition, array $expectedRows ) {
 		$update = new LinksUpdate( $title, $parserOutput );

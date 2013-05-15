@@ -233,7 +233,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 
 		if ( $this->isWikitextNS( NS_MAIN ) ) {
 			//NOTE: some content models don't allow moving
-			//@todo: find a Wikitext namespace for testing
+			// @todo find a Wikitext namespace for testing
 
 			$this->setTitle( NS_MAIN );
 			$this->setUser( 'anon' );

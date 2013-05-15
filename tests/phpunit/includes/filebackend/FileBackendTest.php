@@ -1460,7 +1460,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		}
 	}
 
-	// @TODO: testSecure
+	// @todo testSecure
 
 	public function testDoOperations() {
 		$this->backend = $this->singleBackend;

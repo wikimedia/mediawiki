@@ -123,7 +123,7 @@ class MediaWikiSite extends Site {
 				'converttitles' => true,
 				'format' => 'json',
 				'titles' => $pageName,
-				//@todo: options for maxlag and maxage
+				// @todo options for maxlag and maxage
 				// Note that maxlag will lead to a long delay before a reply is made,
 				// but that maxage can avoid the extreme delay. On the other hand
 				// maxage could be nice to use anyhow as it stops unnecessary requests.
@@ -133,7 +133,7 @@ class MediaWikiSite extends Site {
 			$url = wfAppendQuery( $this->getFileUrl( 'api.php' ), $args );
 
 			// Go on call the external site
-			//@todo: we need a good way to specify a timeout here.
+			// @todo we need a good way to specify a timeout here.
 			$ret = Http::get( $url );
 		}
 

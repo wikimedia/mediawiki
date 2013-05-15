@@ -789,7 +789,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		if ( $this->getNumRows() > 1 ) {
 			$id = $rev->getId();
 			$radio = array( 'type' => 'radio', 'value' => $id );
-			/** @todo: move title texts to javascript */
+			/** @todo Move title texts to javascript */
 			if ( $firstInList ) {
 				$first = Xml::element( 'input',
 					array_merge( $radio, array(

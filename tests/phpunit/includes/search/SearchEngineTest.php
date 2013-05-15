@@ -45,7 +45,7 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 		}
 
 		if ( !$this->isWikitextNS( NS_MAIN ) ) {
-			//@todo: cover the case of non-wikitext content in the main namespace
+			// @todo cover the case of non-wikitext content in the main namespace
 			return;
 		}
 
