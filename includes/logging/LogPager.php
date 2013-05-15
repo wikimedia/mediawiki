@@ -34,14 +34,14 @@ class LogPager extends ReverseChronologicalPager {
 	/**
 	 * Constructor
 	 *
-	 * @param $list LogEventsList
+	 * @param LogEventsList $list
 	 * @param string $types or Array: log types to show
 	 * @param string $performer the user who made the log entries
 	 * @param string|Title $title the page title the log entries are for
 	 * @param string $pattern do a prefix search rather than an exact title match
 	 * @param array $conds extra conditions for the query
-	 * @param $year Integer: the year to start from
-	 * @param $month Integer: the month to start from
+	 * @param int $year The year to start from
+	 * @param int $month The month to start from
 	 * @param string $tagFilter tag
 	 */
 	public function __construct( $list, $types = array(), $performer = '', $title = '', $pattern = '',
