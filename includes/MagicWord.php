@@ -514,7 +514,7 @@ class MagicWord {
 	 */
 	function replace( $replacement, $subject, $limit = -1 ) {
 		$res = preg_replace( $this->getRegex(), StringUtils::escapeRegexReplacement( $replacement ), $subject, $limit );
-		$this->mModified = !($res === $subject);
+		$this->mModified = $res !== $subject;
 		return $res;
 	}
 
@@ -530,7 +530,7 @@ class MagicWord {
 	 */
 	function substituteCallback( $text, $callback ) {
 		$res = preg_replace_callback( $this->getVariableRegex(), $callback, $text );
-		$this->mModified = !($res === $text);
+		$this->mModified = $res !== $text;
 		return $res;
 	}
 
@@ -609,7 +609,7 @@ class MagicWord {
 		}
 
 		$result = preg_replace( $search, $replace, $subject );
-		return !($result === $subject);
+		return $result !== $subject;
 	}
 
 	/**

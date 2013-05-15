@@ -1308,12 +1308,12 @@ class Sanitizer {
 	 * @return Boolean
 	 */
 	private static function validateCodepoint( $codepoint ) {
-		return ($codepoint ==    0x09)
-			|| ($codepoint ==    0x0a)
-			|| ($codepoint ==    0x0d)
-			|| ($codepoint >=    0x20 && $codepoint <=   0xd7ff)
-			|| ($codepoint >=  0xe000 && $codepoint <=   0xfffd)
-			|| ($codepoint >= 0x10000 && $codepoint <= 0x10ffff);
+		return $codepoint == 0x09
+			|| $codepoint == 0x0a
+			|| $codepoint == 0x0d
+			|| ( $codepoint >= 0x20 && $codepoint <= 0xd7ff )
+			|| ( $codepoint >= 0xe000 && $codepoint <= 0xfffd )
+			|| ( $codepoint >= 0x10000 && $codepoint <= 0x10ffff );
 	}
 
 	/**

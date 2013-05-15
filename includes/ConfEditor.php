@@ -570,7 +570,7 @@ class ConfEditor {
 	public function parse() {
 		$this->initParse();
 		$this->pushState( 'file' );
-		$this->pushPath( '@extra-' . ($this->serial++) );
+		$this->pushPath( '@extra-' . ( $this->serial++ ) );
 		$token = $this->firstToken();
 
 		while ( !$token->isEnd() ) {
@@ -642,7 +642,7 @@ class ConfEditor {
 				}
 				$this->skipSpace();
 				$this->expect( ';' );
-				$this->nextPath( '@extra-' . ($this->serial++) );
+				$this->nextPath( '@extra-' . ( $this->serial++ ) );
 				break;
 			case 'expression':
 				$token = $this->skipSpace();
@@ -662,7 +662,7 @@ class ConfEditor {
 				$this->skipSpace();
 				$this->expect( '(' );
 				$this->skipSpace();
-				$this->pushPath( '@extra-' . ($this->serial++) );
+				$this->pushPath( '@extra-' . ( $this->serial++ ) );
 				if ( $this->isAhead( ')' ) ) {
 					// Empty array
 					$this->pushState( 'array end' );
@@ -694,7 +694,7 @@ class ConfEditor {
 					$this->endPathValue();
 					$this->markComma();
 					$this->nextToken();
-					$this->nextPath( '@extra-' . ($this->serial++) );
+					$this->nextPath( '@extra-' . ( $this->serial++ ) );
 					// Look ahead to find ending bracket
 					if ( $this->isAhead( ")" ) ) {
 						// Found ending bracket, no continuation

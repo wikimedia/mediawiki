@@ -74,7 +74,7 @@ class LogEventsList extends ContextSource {
 	public function showHeader( $type ) {
 		wfDeprecated( __METHOD__, '1.19' );
 		// If only one log type is used, then show a special message...
-		$headerType = (count( $type ) == 1) ? $type[0] : '';
+		$headerType = count( $type ) == 1 ? $type[0] : '';
 		$out = $this->getOutput();
 		if ( LogPage::isLogType( $headerType ) ) {
 			$page = new LogPage( $headerType );
