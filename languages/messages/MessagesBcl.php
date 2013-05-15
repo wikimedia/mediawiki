@@ -3674,6 +3674,7 @@ Ika dapat na nakapagresibe na kan [{{SERVER}}{{SCRIPTPATH}}/COPYING sarong kopya
 'version-entrypoints-header-entrypoint' => 'Puntong pan-entrada',
 'version-entrypoints-header-url' => 'Kilyawan',
 
+# Special:Redirect
 'redirect' => 'Palikwatong sa paagi nin sagunson, paragamit, or rebisyon kan ID',
 'redirect-legend' => 'Palikwatong pasiring sa sarong sagunson o pahina',
 'redirect-summary' => 'Ining espesyal na pahina minalikwat pasiring sa sarong sagunson (ipinagtao an ngaran kan sagunson), sarong pahina (ipinagtao an sarong rebisyon kan ID), o sarong pahina nin paragamit (ipinagtao an numerikong ID nin paragamit).',

@@ -3900,6 +3900,7 @@ $5
 'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath ലേഖന പഥം]',
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath സ്ക്രിപ്റ്റ് പഥം]',
 
+# Special:Redirect
 'redirect' => 'പ്രമാണത്താൽ, ഉപയോക്താവിനാൽ അഥവാ നാൾപ്പതിപ്പ് ഐ.ഡി. ചെയ്യുന്ന തിരിച്ചുവിടൽ',
 'redirect-legend' => 'ഒരു പ്രമാണത്തിലോട്ടോ താളിലോട്ടോ ഉള്ള തിരിച്ചുവിടൽ',
 'redirect-summary' => 'ഈ പ്രത്യേക താൾ ഒരു പ്രമാണത്തിലേയ്ക്കോ (പ്രമാണത്തിന്റെ പേര് തന്നിട്ടുണ്ട്), ഒരു താളിലേയ്ക്കോ (നാൾപ്പതിപ്പിന്റെ ഐഡി തന്നിട്ടുണ്ട്), അല്ലെങ്കിൽ ഒരു ഉപയോക്തൃതാളിലേയ്ക്കോ (ഉപയോക്താവിന്റെ സംഖ്യാ ഐ.ഡി. തന്നിട്ടുണ്ട്) തിരിച്ചുവിടുന്നു.',

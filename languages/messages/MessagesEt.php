@@ -3787,6 +3787,7 @@ GNU Üldise Avaliku Litsentsi [{{SERVER}}{{SCRIPTPATH}}/COPYING eksemplar] peaks
 'version-entrypoints-header-entrypoint' => 'Sisendpunkt',
 'version-entrypoints-header-url' => 'URL',
 
+# Special:Redirect
 'redirect' => 'Ümbersuunamine faili, kasutaja või redaktsiooni identifikaatori järgi',
 'redirect-legend' => 'Ümbersuunamine faili juurde või leheküljele',
 'redirect-summary' => 'See erilehekülg suunab ümber faili (toodud failinimi), lehekülje (toodud redaktsiooni identifikaator) või kasutajalehekülje (toodud numbriline kasutaja identfikaator) juurde.',

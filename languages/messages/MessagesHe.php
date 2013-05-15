@@ -4041,6 +4041,7 @@ $5
 'version-entrypoints-header-entrypoint' => 'נקודת כניסה',
 'version-entrypoints-header-url' => 'כתובת',
 
+# Special:Redirect
 'redirect' => 'הפניה לפי שם קובץ, מספר משתמש או מספר גרסה',
 'redirect-legend' => 'הפניה לקובץ או לדף',
 'redirect-summary' => 'דף מיוחד זה מפנה לקובץ (בהינתן שם הקובץ), לדף (בהינתן מספר גרסה), או לדף משתמש (בהינתן מספר משתמש).',

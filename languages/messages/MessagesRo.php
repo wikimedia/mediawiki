@@ -3889,6 +3889,7 @@ MediaWiki este distribuit în speranța că va fi folositor, dar FĂRĂ VREO GAR
 'version-entrypoints-header-entrypoint' => 'Punct de intrare',
 'version-entrypoints-header-url' => 'URL',
 
+# Special:Redirect
 'redirect' => 'Redirecționare după fișier, utilizator sau ID-ul versiunii',
 'redirect-legend' => 'Redirecționare către un fișier sau o pagină',
 'redirect-summary' => 'Această pagină specială vă redirecționează către un fișier (dat fiind un nume de fișier), o pagină (dat fiind ID-ul unei versiuni) sau o pagină de utilizator (dat fiind un ID numeric al utilizatorului).',

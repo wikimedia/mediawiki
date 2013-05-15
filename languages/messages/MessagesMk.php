@@ -4170,6 +4170,7 @@ $5
 'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath?uselang=mk Статија]',
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath?uselang=mk Скрипта]',
 
+# Special:Redirect
 'redirect' => 'Пренасочување по податотека, корисник или назнака на ревизија',
 'redirect-legend' => 'Пренасочување кон податотека или страница',
 'redirect-summary' => 'Оваа специјална страница пренасочува кон податотека (се задава името), страница (се задава назнаката на ревизијата) или корисничка странца (се задава бројчената назнака на корисникот).',

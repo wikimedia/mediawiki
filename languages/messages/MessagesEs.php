@@ -664,7 +664,7 @@ $1',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main' => 'Página',
-'nstab-user' => 'Página de usuario',
+'nstab-user' => 'Página {{GENDER:{{ROOTPAGENAME}}|del usuario|de la usuaria}}',
 'nstab-media' => 'Media',
 'nstab-special' => 'Página especial',
 'nstab-project' => 'Página del proyecto',
@@ -3968,6 +3968,7 @@ Has recibido [{{SERVER}}{{SCRIPTPATH}}/COPYING una copia de la Licencia Pública
 'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Ruta del artículo]',
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Ruta de la secuencia de comandos (script)]',
 
+# Special:Redirect
 'redirect' => 'Redirigir por archivo, usuario o ID de revisión',
 'redirect-legend' => 'Redirigir a un archivo o página',
 'redirect-summary' => 'Esta página especial redirige a un fichero (dado un nombre de fichero), a una página (dado un identificador de revisión) o a una página de usuario (dado en identificador numérico de usuario).',

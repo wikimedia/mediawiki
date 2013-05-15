@@ -3920,6 +3920,7 @@ Du bör ha fått [{{SERVER}}{{SCRIPTPATH}}/COPYING en kopia av GNU General Publi
 'version-entrypoints-header-entrypoint' => 'Startpunkt',
 'version-entrypoints-header-url' => 'URL',
 
+# Special:Redirect
 'redirect' => 'Omdirigering efter filnamn, användar-ID eller versions-ID',
 'redirect-legend' => 'Omdirigera till en fil eller sida',
 'redirect-summary' => 'Den här specialsidan omdirigerar till en fil (efter filnamn), en sida (efter versions-id) eller en användarsida (efter användar-id).',

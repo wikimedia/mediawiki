@@ -6495,16 +6495,17 @@ $messages['gan-hans'] = array(
 );
 
 /** Traditional Gan script (贛語（繁體）‎)
+ * @author Symane
  */
 $messages['gan-hant'] = array(
-	'mainpagetext' => "'''安裝正MediaWiki嘍。'''",
+	'mainpagetext' => "'''安裝正MediaWiki哩。'''",
 	'mainpagedocfooter' => '參看[//meta.wikimedia.org/wiki/Help:Contents 用戶指南]裡頭會話到啷用wiki軟件
 
 == 開始使用 ==
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings MediaWiki 配置設定列表]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki 平常問題解答]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki 發佈email清單]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki 發佈email清單]', # Fuzzy
 );
 
 /** Scottish Gaelic (Gàidhlig)
@@ -12288,6 +12289,7 @@ Dir kënnt elo déi Astellungen déi nach iwwreg sinn iwwersprangen an d'Wiki el
 	'config-install-step-failed' => 'huet net fonctionnéiert',
 	'config-install-extensions' => 'Mat den Ereiderungen',
 	'config-install-database' => 'Datebank gëtt installéiert',
+	'config-install-pg-plpgsql' => 'No der Sprooch PL/pgSQL sichen',
 	'config-pg-no-plpgsql' => "Fir d'Datebank $1 muss d'Datebanksprooch PL/pgSQL installéiert ginn",
 	'config-install-user' => 'Datebank Benotzer uleeën',
 	'config-install-user-alreadyexists' => 'De Benotzer "$1" gëtt et schonn!',
@@ -12305,12 +12307,13 @@ Dir kënnt elo déi Astellungen déi nach iwwreg sinn iwwersprangen an d'Wiki el
 	'config-help' => 'Hëllef',
 	'config-nofile' => 'De Fichier "$1" gouf net fonnt. Gouf e geläscht?',
 	'mainpagetext' => "'''MediaWiki gouf installéiert.'''",
-	'mainpagedocfooter' => "Kuckt w.e.g. [//meta.wikimedia.org/wiki/Help:Contents d'Benotzerhandbuch] fir den Interface ze personnaliséieren.
+	'mainpagedocfooter' => "Kuckt w.e.g. [//meta.wikimedia.org/wiki/Help:Contents d'Benotzerhandbuch] fir Informatiounen iwwer de Gebruach vun der Wiki Software.
 
-== Starthëllefen ==
+== Fir  unzefänken ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Hëllef bei der Konfiguratioun]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki-FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailinglëscht vun neie MediaWiki-Versiounen]", # Fuzzy
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailinglëscht vun neie MediaWiki-Versiounen]
+* [//www.mediawiki.org/wiki/Localisation#Translation_resources Lokaliséiert MediaWiki fir Är Sprooch]",
 );
 
 /** Lingua Franca Nova (Lingua Franca Nova)

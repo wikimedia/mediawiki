@@ -807,6 +807,7 @@ Nezapomeňte si upravit své [[Special:Preferences|nastavení {{grammar:2sg|{{SI
 'gotaccount' => "Už jste registrováni? '''$1'''.",
 'gotaccountlink' => 'Přihlaste se',
 'userlogin-resetlink' => 'Zapomněli jste přihlašovací údaje?',
+'userlogin-resetpassword-link' => 'Obnovit heslo',
 'helplogin-url' => 'Help:Přihlášení',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Nápověda k přihlašování]]',
 'createacct-join' => 'Níže zadejte své údaje.',
@@ -3979,6 +3980,7 @@ MediaWiki je distribuována v naději, že bude užitečná, avšak BEZ JAKÉKOL
 'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Cesta k článkům]',
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Cesta ke skriptům]',
 
+# Special:Redirect
 'redirect' => 'Přesměrování podle souboru, uživatele nebo ID revize',
 'redirect-legend' => 'Přesměrování na soubor či stránku',
 'redirect-summary' => 'Tato speciální stránka přesměrovává na soubor (podle názvu), stránku (podle ID revize) nebo uživatele (podle číselného uživatelského ID).',

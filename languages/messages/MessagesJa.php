@@ -4205,6 +4205,7 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath/ja 記事のパス]',
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath/ja スクリプトパス]',
 
+# Special:Redirect
 'redirect' => 'ファイル名、利用者ID、版IDでの転送',
 'redirect-legend' => 'ファイルまたはページヘの転送',
 'redirect-summary' => 'この特別ページは、ファイル (ファイル名を指定)、ページ (版 ID を指定)、利用者ページ (利用者 ID を整数で指定) に転送されます。',

@@ -3788,6 +3788,7 @@ $5
 'version-entrypoints-header-entrypoint' => 'প্ৰৱেশ পইণ্ট',
 'version-entrypoints-header-url' => 'ইউআৰএল',
 
+# Special:Redirect
 'redirect' => 'ফাইল, সদস্য, বা সংশোধন আই ডিৰে পুনঃনিৰ্দেশ',
 'redirect-legend' => 'এটা ফাইল বা এখন এখন পৃষ্ঠালৈ পুনঃনিৰ্দেশ',
 'redirect-submit' => 'যাওক',

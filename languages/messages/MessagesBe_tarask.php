@@ -3844,6 +3844,7 @@ MediaWiki распаўсюджваецца з надзеяй, што будзе 
 'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Шлях да артыкула]',
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Пуць да скрыпту]',
 
+# Special:Redirect
 'redirect' => 'Перанакіраваньне да файла, удзельніка або вэрсіі старонкі',
 'redirect-legend' => 'Перанакіраваньне да файла або старонкі',
 'redirect-summary' => 'Гэтая спэцыяльная старонка перанакіруе да файла (паводле імя файла), старонкі (паводле нумара вэрсіі) або старонкі ўдзельніка (паводле нумара ўдзельніка).',

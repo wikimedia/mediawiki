@@ -4008,6 +4008,7 @@ Eine [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie der ''GNU General Public License'']
 'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Artikelpfad]',
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Skriptpfad]',
 
+# Special:Redirect
 'redirect' => 'Weiterleitung auf Benutzerseite, Seitenversion oder Datei',
 'redirect-legend' => 'Weiterleitung auf eine Benutzerseite, Seitenversion oder Datei',
 'redirect-summary' => 'Diese Spezialseite leitet auf eine Benutzerseite (numerische Benutzerkennung angegeben), Seitenversion (Versionskennung angegeben) oder Datei (Dateiname angegeben) weiter.',

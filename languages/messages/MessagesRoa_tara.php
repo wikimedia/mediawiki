@@ -3910,6 +3910,7 @@ Avisse avè ricevute [{{SERVER}}{{SCRIPTPATH}}/COPYING 'na copie d'a GNU (Licenz
 'version-entrypoints-header-entrypoint' => "Punde d'ingresse",
 'version-entrypoints-header-url' => 'URL',
 
+# Special:Redirect
 'redirect' => "Redirette da 'u file, utende o ID d'a revisione",
 'redirect-legend' => "Redirette a 'nu file o 'na pàgene",
 'redirect-summary' => "Sta pàgena speciale redirezione a 'nu file (date 'u nome d'u file), 'na pàgene (fate 'n'ID de revisione), o 'na pàgene utende (date 'n'ID numeriche de l'utende).",

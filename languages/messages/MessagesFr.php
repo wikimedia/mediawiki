@@ -4061,6 +4061,7 @@ Vous devriez avoir reçu [{{SERVER}}{{SCRIPTPATH}}/COPYING une copie de la Licen
 'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Chemin d’article]',
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Chemin de script]',
 
+# Special:Redirect
 'redirect' => 'Redirigé par fichier, utilisateur, ou ID de révision',
 'redirect-legend' => 'Rediriger vers une page ou un fichier',
 'redirect-summary' => "Cette page spéciale redirige vers un fichier (nom donné au fichier), une page (ID attribuée à la révision) ou une page d'utilisateur (identifiant numérique attribué à l'utilisateur).",

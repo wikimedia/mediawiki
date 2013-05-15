@@ -3817,6 +3817,7 @@ Skupaj s programom bi morali bi prejeti [{{SERVER}}{{SCRIPTPATH}}/COPYING kopijo
 'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Pot članka]',
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Pot skripta]',
 
+# Special:Redirect
 'redirect-legend' => 'Preusmeritev na datoteko ali stran',
 'redirect-submit' => 'Pojdi',
 'redirect-lookup' => 'Iskanje:',

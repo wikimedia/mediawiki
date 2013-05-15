@@ -8617,6 +8617,7 @@ A short description of the article path entry point. Links to the mediawiki.org 
 'version-entrypoints-scriptpath' => '{{Optional}}
 A short description of the script path entry point. Links to the mediawiki.org documentation page for $wgScriptPath.',
 
+# Special:Redirect
 'redirect' => "{{doc-special|Redirect}}
 This means \"Redirect by file'''name''', user '''ID''', or revision ID\".",
 'redirect-legend' => 'Legend of fieldset around input box in [[Special:Redirect]]',

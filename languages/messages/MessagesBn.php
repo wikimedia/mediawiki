@@ -3555,6 +3555,7 @@ $4-এ নিশ্চিতকরণ কোডটি মেয়াদোত�
 'version-entrypoints-header-entrypoint' => 'শুরু',
 'version-entrypoints-header-url' => 'ইউআরএল',
 
+# Special:Redirect
 'redirect-submit' => 'যাও',
 'redirect-lookup' => 'দেখুন:',
 'redirect-value' => 'মান:',
