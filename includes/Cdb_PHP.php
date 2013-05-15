@@ -73,10 +73,10 @@ class CdbFunctions {
 	public static function hash( $s ) {
 		$h = 5381;
 		for ( $i = 0; $i < strlen( $s ); $i++ ) {
-			$h5 = ($h << 5) & 0xffffffff;
+			$h5 = ( $h << 5 ) & 0xffffffff;
 			// Do a 32-bit sum
 			// Inlined here for speed
-			$sum = ($h & 0x3fffffff) + ($h5 & 0x3fffffff);
+			$sum = ( $h & 0x3fffffff ) + ( $h5 & 0x3fffffff );
 			$h =
 				(
 					( $sum & 0x40000000 ? 1 : 0 )

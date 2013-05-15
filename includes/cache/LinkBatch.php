@@ -98,7 +98,7 @@ class LinkBatch {
 	 * @return bool
 	 */
 	public function isEmpty() {
-		return ($this->getSize() == 0);
+		return $this->getSize() == 0;
 	}
 
 	/**

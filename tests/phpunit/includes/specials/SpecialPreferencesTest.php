@@ -22,17 +22,17 @@ class SpecialPreferencesTest extends MediaWikiTestCase {
 
 		$user = $this->getMock( 'User' );
 		$user->expects( $this->any() )
-			->method('isAnon')
-			->will( $this->returnValue(false) );
+			->method( 'isAnon' )
+			->will( $this->returnValue( false ) );
 
 		# Yeah foreach requires an array, not NULL =(
 		$user->expects( $this->any() )
-			->method('getEffectiveGroups')
+			->method( 'getEffectiveGroups' )
 			->will( $this->returnValue( array() ) );
 
 		# The mocked user has a long nickname
 		$user->expects( $this->any() )
-			->method('getOption')
+			->method( 'getOption' )
 			->will( $this->returnValueMap( array(
 				array( 'nickname', null, false, 'superlongnickname' ),
 			)

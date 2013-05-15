@@ -212,7 +212,7 @@ class SpecialPrefixindex extends SpecialAllpages {
 						$out .= '</tr>';
 					}
 				}
-				if ( ($n % 3) != 0 ) {
+				if ( $n % 3 != 0 ) {
 					$out .= '</tr>';
 				}
 				$out .= Xml::closeElement( 'table' );

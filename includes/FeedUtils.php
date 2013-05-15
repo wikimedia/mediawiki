@@ -84,7 +84,7 @@ class FeedUtils {
 		return self::formatDiffRow( $titleObj,
 			$row->rc_last_oldid, $row->rc_this_oldid,
 			$timestamp,
-			($row->rc_deleted & Revision::DELETED_COMMENT)
+			$row->rc_deleted & Revision::DELETED_COMMENT
 				? wfMessage( 'rev-deleted-comment' )->escaped()
 				: $row->rc_comment,
 			$actiontext
