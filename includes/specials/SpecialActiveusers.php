@@ -109,7 +109,7 @@ class ActiveUsersPager extends UsersPager {
 		}
 
 		return array(
-			'tables' => 'recentchanges',
+			'tables' => array( 'recentchanges' ),
 			'fields' => array(
 				'user_name' => 'rc_user_text', // for Pager inheritance
 				'rc_user_text', // for Pager
