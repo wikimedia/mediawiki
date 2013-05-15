@@ -184,7 +184,7 @@ interface DatabaseType {
 	 *
 	 * @return string: wikitext of a link to the server software's web site
 	 */
-	static function getSoftwareLink();
+	function getSoftwareLink();
 
 	/**
 	 * A string describing the current software version, like from

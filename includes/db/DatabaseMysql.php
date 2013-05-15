@@ -671,7 +671,7 @@ class DatabaseMysql extends DatabaseBase {
 	/**
 	 * @return string
 	 */
-	public static function getSoftwareLink() {
+	public function getSoftwareLink() {
 		return '[http://www.mysql.com/ MySQL]';
 	}
 
