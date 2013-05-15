@@ -797,7 +797,7 @@ class SpecialPage {
 	/**
 	 * Shortcut to get user's language
 	 *
-	 * @deprecated 1.19 Use getLanguage instead
+	 * @deprecated since 1.19 Use getLanguage instead
 	 * @return Language
 	 * @since 1.18
 	 */

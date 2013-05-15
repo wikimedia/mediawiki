@@ -287,7 +287,7 @@ class SpecialPageFactory {
 	 *
 	 * @param $page Mixed: SpecialPage or string
 	 * @param $group String
-	 * @deprecated 1.21 Override SpecialPage::getGroupName
+	 * @deprecated since 1.21 Override SpecialPage::getGroupName
 	 */
 	public static function setGroup( $page, $group ) {
 		wfDeprecated( __METHOD__, '1.21' );
@@ -302,7 +302,7 @@ class SpecialPageFactory {
 	 *
 	 * @param $page SpecialPage
 	 * @return String
-	 * @deprecated 1.21 Use SpecialPage::getFinalGroupName
+	 * @deprecated since 1.21 Use SpecialPage::getFinalGroupName
 	 */
 	public static function getGroup( &$page ) {
 		wfDeprecated( __METHOD__, '1.21' );
