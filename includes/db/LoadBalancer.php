@@ -117,7 +117,7 @@ class LoadBalancer {
 	 * Given an array of non-normalised probabilities, this function will select
 	 * an element and return the appropriate key
 	 *
-	 * @deprecated 1.21, use ArrayUtils::pickRandom()
+	 * @deprecated since 1.21, use ArrayUtils::pickRandom()
 	 *
 	 * @param $weights array
 	 *

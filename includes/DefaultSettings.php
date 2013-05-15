@@ -5804,7 +5804,7 @@ $wgDisableQueryPageUpdate = false;
  * List of special pages, followed by what subtitle they should go under
  * at Special:SpecialPages
  *
- * @deprecated 1.21 Override SpecialPage::getGroupName instead
+ * @deprecated since 1.21 Override SpecialPage::getGroupName instead
  */
 $wgSpecialPageGroups = array();
 

@@ -79,7 +79,7 @@ interface IContextSource {
 	/**
 	 * Get the Language object
 	 *
-	 * @deprecated 1.19 Use getLanguage instead
+	 * @deprecated since 1.19 Use getLanguage instead
 	 * @return Language
 	 */
 	public function getLang();

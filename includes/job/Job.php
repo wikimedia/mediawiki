@@ -84,7 +84,7 @@ abstract class Job {
 	 *
 	 * @param array $jobs of Job objects
 	 * @return bool
-	 * @deprecated 1.21
+	 * @deprecated since 1.21
 	 */
 	public static function batchInsert( $jobs ) {
 		return JobQueueGroup::singleton()->push( $jobs );
@@ -99,7 +99,7 @@ abstract class Job {
 	 *
 	 * @param array $jobs of Job objects
 	 * @return bool
-	 * @deprecated 1.21
+	 * @deprecated since 1.21
 	 */
 	public static function safeBatchInsert( $jobs ) {
 		return JobQueueGroup::singleton()->push( $jobs, JobQueue::QOS_ATOMIC );
@@ -112,7 +112,7 @@ abstract class Job {
 	 *
 	 * @param $type string
 	 * @return Job|bool Returns false if there are no jobs
-	 * @deprecated 1.21
+	 * @deprecated since 1.21
 	 */
 	public static function pop_type( $type ) {
 		return JobQueueGroup::singleton()->get( $type )->pop();
@@ -123,7 +123,7 @@ abstract class Job {
 	 * This is subject to $wgJobTypesExcludedFromDefaultQueue.
 	 *
 	 * @return Job or false if there's no jobs
-	 * @deprecated 1.21
+	 * @deprecated since 1.21
 	 */
 	public static function pop() {
 		return JobQueueGroup::singleton()->pop();
@@ -150,7 +150,7 @@ abstract class Job {
 
 	/**
 	 * @return integer May be 0 for jobs stored outside the DB
-	 * @deprecated 1.22
+	 * @deprecated since 1.22
 	 */
 	public function getId() {
 		return $this->id;
@@ -270,7 +270,7 @@ abstract class Job {
 	/**
 	 * Insert a single job into the queue.
 	 * @return bool true on success
-	 * @deprecated 1.21
+	 * @deprecated since 1.21
 	 */
 	public function insert() {
 		return JobQueueGroup::singleton()->push( $this );
