@@ -1065,13 +1065,14 @@ class OutputPage extends ContextSource {
 		global $wgAdvertisedFeedTypes;
 
 		$this->mFeedLinks = array();
+		$title = $this->getTitle();
 
 		foreach ( $wgAdvertisedFeedTypes as $type ) {
 			$query = "feed=$type";
 			if ( is_string( $val ) ) {
 				$query .= '&' . $val;
 			}
-			$this->mFeedLinks[$type] = $this->getTitle()->getLocalURL( $query );
+			$this->mFeedLinks[$type] = $title->getLocalURL( $query );
 		}
 	}
 
@@ -2665,25 +2666,31 @@ $templates
 		}
 
 		$links = '';
+		$contextUser = $this->getUser();
+		$langCode = $this->getLanguage()->getCode();
+		$skinName = $this->getSkin()->getSkinName();
+		$inDebugMode = ResourceLoader::inDebugMode();
+		$isPrintable = $this->isPrintable();
+		$isHandheld = $this->getRequest()->getBool( 'handheld' );
 		foreach ( $groups as $group => $grpModules ) {
 			// Special handling for user-specific groups
 			$user = null;
-			if ( ( $group === 'user' || $group === 'private' ) && $this->getUser()->isLoggedIn() ) {
-				$user = $this->getUser()->getName();
+			if ( ( $group === 'user' || $group === 'private' ) && $contextUser->isLoggedIn() ) {
+				$user = $contextUser->getName();
 			}
 
 			// Create a fake request based on the one we are about to make so modules return
 			// correct timestamp and emptiness data
 			$query = ResourceLoader::makeLoaderQuery(
 				array(), // modules; not determined yet
-				$this->getLanguage()->getCode(),
-				$this->getSkin()->getSkinName(),
+				$langCode,
+				$skinName,
 				$user,
 				null, // version; not determined yet
-				ResourceLoader::inDebugMode(),
+				$inDebugMode,
 				$only === ResourceLoaderModule::TYPE_COMBINED ? null : $only,
-				$this->isPrintable(),
-				$this->getRequest()->getBool( 'handheld' ),
+				$isPrintable,
+				$isHandheld,
 				$extraQuery
 			);
 			$context = new ResourceLoaderContext( $resourceLoader, new FauxRequest( $query ) );
@@ -2747,14 +2754,14 @@ $templates
 
 			$url = ResourceLoader::makeLoaderURL(
 				array_keys( $grpModules ),
-				$this->getLanguage()->getCode(),
-				$this->getSkin()->getSkinName(),
+				$langCode,
+				$skinName,
 				$user,
 				$version,
-				ResourceLoader::inDebugMode(),
+				$inDebugMode,
 				$only === ResourceLoaderModule::TYPE_COMBINED ? null : $only,
-				$this->isPrintable(),
-				$this->getRequest()->getBool( 'handheld' ),
+				$isPrintable,
+				$isHandheld,
 				$extraQuery
 			);
 			if ( $useESI && $wgResourceLoaderUseESI ) {
@@ -3277,11 +3284,12 @@ $templates
 
 				if ( !$urlvar ) {
 					$variants = $lang->getVariants();
+					$title = $this->getTitle();
 					foreach ( $variants as $_v ) {
 						$tags["variant-$_v"] = Html::element( 'link', array(
 							'rel' => 'alternate',
 							'hreflang' => $_v,
-							'href' => $this->getTitle()->getLocalURL( array( 'variant' => $_v ) ) )
+							'href' => $title->getLocalURL( array( 'variant' => $_v ) ) )
 						);
 					}
 				} else {
@@ -3313,6 +3321,7 @@ $templates
 
 		# Feeds
 		if ( $wgFeed ) {
+			$titlePrefixedText = $this->getTitle()->getPrefixedText();
 			foreach ( $this->getSyndicationLinks() as $format => $link ) {
 				# Use the page name for the title.  In principle, this could
 				# lead to issues with having the same name for different feeds
@@ -3323,7 +3332,7 @@ $templates
 					$format,
 					$link,
 					# Used messages: 'page-rss-feed' and 'page-atom-feed' (for an easier grep)
-					$this->msg( "page-{$format}-feed", $this->getTitle()->getPrefixedText() )->text()
+					$this->msg( "page-{$format}-feed", $titlePrefixedText )->text()
 				);
 			}
 

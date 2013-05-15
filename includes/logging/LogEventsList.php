@@ -156,6 +156,7 @@ class LogEventsList extends ContextSource {
 		// Option value -> message mapping
 		$links = array();
 		$hiddens = ''; // keep track for "go" button
+		$title = $this->getTitle();
 		foreach ( $filter as $type => $val ) {
 			// Should the below assignment be outside the foreach?
 			// Then it would have to be copied. Not certain what is more expensive.
@@ -166,7 +167,7 @@ class LogEventsList extends ContextSource {
 			$query[$queryKey] = $hideVal;
 
 			$link = Linker::linkKnown(
-				$this->getTitle(),
+				$title,
 				$messages[$hideVal],
 				array(),
 				$query
@@ -211,11 +212,12 @@ class LogEventsList extends ContextSource {
 	 */
 	public function getTypeSelector() {
 		$typesByName = array(); // Temporary array
+		$user = $this->getUser();
 		// First pass to load the log names
 		foreach ( LogPage::validTypes() as $type ) {
 			$page = new LogPage( $type );
 			$restriction = $page->getRestriction();
-			if ( $this->getUser()->isAllowed( $restriction ) ) {
+			if ( $user->isAllowed( $restriction ) ) {
 				$typesByName[$type] = $page->getName()->text();
 			}
 		}

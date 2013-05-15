@@ -309,10 +309,12 @@ abstract class QueryPage extends SpecialPage {
 			if ( $res ) {
 				$num = $res->numRows();
 				# Fetch results
+				$usesTimestamps = $this->usesTimestamps();
+				$name = $this->getName();
 				$vals = array();
 				while ( $res && $row = $dbr->fetchObject( $res ) ) {
 					if ( isset( $row->value ) ) {
-						if ( $this->usesTimestamps() ) {
+						if ( $usesTimestamps ) {
 							$value = wfTimestamp( TS_UNIX,
 								$row->value );
 						} else {
@@ -322,7 +324,7 @@ abstract class QueryPage extends SpecialPage {
 						$value = 0;
 					}
 
-					$vals[] = array( 'qc_type' => $this->getName(),
+					$vals[] = array( 'qc_type' => $name,
 							'qc_namespace' => $row->namespace,
 							'qc_title' => $row->title,
 							'qc_value' => $value );

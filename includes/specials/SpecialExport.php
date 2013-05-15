@@ -372,6 +372,7 @@ class SpecialExport extends SpecialPage {
 		if ( $exportall ) {
 			$exporter->allPages();
 		} else {
+			$user = $this->getUser();
 			foreach ( $pages as $page ) {
 				#Bug 8824: Only export pages the user can read
 				$title = Title::newFromText( $page );
@@ -380,7 +381,7 @@ class SpecialExport extends SpecialPage {
 					continue;
 				}
 
-				if ( !$title->userCan( 'read', $this->getUser() ) ) {
+				if ( !$title->userCan( 'read', $user ) ) {
 					// @todo Perhaps output an <error> tag or something.
 					continue;
 				}

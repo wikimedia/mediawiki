@@ -259,6 +259,7 @@ class ImageGallery {
 			'height' => $this->mHeights
 		);
 		# Output each image...
+		$contextTitle = $this->getContextTitle();
 		foreach ( $this->mImages as $pair ) {
 			$nt = $pair[0];
 			$text = $pair[1]; # "text" means "caption" here
@@ -286,7 +287,7 @@ class ImageGallery {
 				# We're dealing with a non-image, spit out the name and be done with it.
 				$thumbhtml = "\n\t\t\t" . '<div style="height: ' . ( self::THUMB_PADDING + $this->mHeights ) . 'px;">'
 					. htmlspecialchars( $nt->getText() ) . '</div>';
-			} elseif ( $this->mHideBadImages && wfIsBadImage( $nt->getDBkey(), $this->getContextTitle() ) ) {
+			} elseif ( $this->mHideBadImages && wfIsBadImage( $nt->getDBkey(), $contextTitle ) ) {
 				# The image is blacklisted, just show it as a text link.
 				$thumbhtml = "\n\t\t\t" . '<div style="height: ' . ( self::THUMB_PADDING + $this->mHeights ) . 'px;">' .
 					Linker::link(

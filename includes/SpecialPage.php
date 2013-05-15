@@ -858,11 +858,12 @@ class SpecialPage {
 		global $wgFeedClasses;
 
 		$feedTemplate = wfScript( 'api' );
+		$out = $this->getOutput();
 
 		foreach ( $wgFeedClasses as $format => $class ) {
 			$theseParams = $params + array( 'feedformat' => $format );
 			$url = wfAppendQuery( $feedTemplate, $theseParams );
-			$this->getOutput()->addFeedLink( $format, $url );
+			$out->addFeedLink( $format, $url );
 		}
 	}
 
@@ -1146,9 +1147,10 @@ abstract class RedirectSpecialPage extends UnlistedSpecialPage {
 	public function getRedirectQuery() {
 		$params = array();
 
+		$request = $this->getRequest();
 		foreach ( $this->mAllowedRedirectParams as $arg ) {
-			if ( $this->getRequest()->getVal( $arg, null ) !== null ) {
-				$params[$arg] = $this->getRequest()->getVal( $arg );
+			if ( $request->getVal( $arg, null ) !== null ) {
+				$params[$arg] = $request->getVal( $arg );
 			}
 		}
 

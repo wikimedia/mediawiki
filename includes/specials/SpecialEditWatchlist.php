@@ -409,6 +409,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		$dbw = wfGetDB( DB_MASTER );
 		$rows = array();
 
+		$userId = $this->getUser()->getId();
 		foreach ( $titles as $title ) {
 			if ( !$title instanceof Title ) {
 				$title = Title::newFromText( $title );
@@ -416,13 +417,13 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 
 			if ( $title instanceof Title ) {
 				$rows[] = array(
-					'wl_user' => $this->getUser()->getId(),
+					'wl_user' => $userId,
 					'wl_namespace' => MWNamespace::getSubject( $title->getNamespace() ),
 					'wl_title' => $title->getDBkey(),
 					'wl_notificationtimestamp' => null,
 				);
 				$rows[] = array(
-					'wl_user' => $this->getUser()->getId(),
+					'wl_user' => $userId,
 					'wl_namespace' => MWNamespace::getTalk( $title->getNamespace() ),
 					'wl_title' => $title->getDBkey(),
 					'wl_notificationtimestamp' => null,
@@ -444,6 +445,8 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	private function unwatchTitles( $titles ) {
 		$dbw = wfGetDB( DB_MASTER );
 
+		$user = $this->getUser();
+		$userId = $user->getId();
 		foreach ( $titles as $title ) {
 			if ( !$title instanceof Title ) {
 				$title = Title::newFromText( $title );
@@ -453,7 +456,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 				$dbw->delete(
 					'watchlist',
 					array(
-						'wl_user' => $this->getUser()->getId(),
+						'wl_user' => $userId,
 						'wl_namespace' => MWNamespace::getSubject( $title->getNamespace() ),
 						'wl_title' => $title->getDBkey(),
 					),
@@ -463,7 +466,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 				$dbw->delete(
 					'watchlist',
 					array(
-						'wl_user' => $this->getUser()->getId(),
+						'wl_user' => $userId,
 						'wl_namespace' => MWNamespace::getTalk( $title->getNamespace() ),
 						'wl_title' => $title->getDBkey(),
 					),
@@ -471,7 +474,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 				);
 
 				$page = WikiPage::factory( $title );
-				wfRunHooks( 'UnwatchArticleComplete', array( $this->getUser(), &$page ) );
+				wfRunHooks( 'UnwatchArticleComplete', array( $user, &$page ) );
 			}
 		}
 	}
@@ -531,6 +534,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			$this->toc = Linker::tocIndent();
 			$tocLength = 0;
 
+			$language = $this->getLanguage();
 			foreach ( $fields as $data ) {
 				# strip out the 'ns' prefix from the section name:
 				$ns = substr( $data['section'], 2 );
@@ -539,7 +543,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 					? $this->msg( 'blanknamespace' )->escaped()
 					: htmlspecialchars( $wgContLang->getFormattedNsText( $ns ) );
 				$this->toc .= Linker::tocLine( "editwatchlist-{$data['section']}", $nsText,
-					$this->getLanguage()->formatNum( ++$tocLength ), 1 ) . Linker::tocLineEnd();
+					$language->formatNum( ++$tocLength ), 1 ) . Linker::tocLineEnd();
 			}
 
 			$this->toc = Linker::tocList( $this->toc );

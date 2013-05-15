@@ -1564,6 +1564,8 @@ class Parser {
 		$s = array_shift( $bits );
 
 		$i = 0;
+		$targetLanguage = $this->getTargetLanguage();
+		$converterLanguage = $this->getConverterLanguage();
 		while ( $i < count( $bits ) ) {
 			$url = $bits[$i++];
 			$i++; // protocol
@@ -1594,7 +1596,7 @@ class Parser {
 			# No link text, e.g. [http://domain.tld/some.link]
 			if ( $text == '' ) {
 				# Autonumber
-				$langObj = $this->getTargetLanguage();
+				$langObj = $targetLanguage;
 				$text = '[' . $langObj->formatNum( ++$this->mAutonumber ) . ']';
 				$linktype = 'autonumber';
 			} else {
@@ -1603,7 +1605,7 @@ class Parser {
 				list( $dtrail, $trail ) = Linker::splitTrail( $trail );
 			}
 
-			$text = $this->getConverterLanguage()->markNoConversion( $text );
+			$text = $converterLanguage->markNoConversion( $text );
 
 			$url = Sanitizer::cleanUrl( $url );
 
@@ -4198,6 +4200,7 @@ class Parser {
 		$byteOffset = 0;
 		$tocraw = array();
 		$refers = array();
+		$targetLanguage = $this->getTargetLanguage();
 
 		foreach ( $matches[3] as $headline ) {
 			$isTemplate = false;
@@ -4269,7 +4272,7 @@ class Parser {
 					if ( $dot ) {
 						$numbering .= '.';
 					}
-					$numbering .= $this->getTargetLanguage()->formatNum( $sublevelCount[$i] );
+					$numbering .= $targetLanguage->formatNum( $sublevelCount[$i] );
 					$dot = 1;
 				}
 			}

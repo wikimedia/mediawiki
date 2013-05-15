@@ -185,6 +185,7 @@ class SpecialStatistics extends SpecialPage {
 	private function getGroupStats() {
 		global $wgGroupPermissions, $wgImplicitGroups;
 		$text = '';
+		$language = $this->getLanguage();
 		foreach ( $wgGroupPermissions as $group => $permissions ) {
 			# Skip generic * and implicit groups
 			if ( in_array( $group, $wgImplicitGroups ) || $group == '*' ) {
@@ -221,7 +222,7 @@ class SpecialStatistics extends SpecialPage {
 				$classZero = ' statistics-group-zero';
 			}
 			$text .= $this->formatRow( $grouppage . ' ' . $grouplink,
-				$this->getLanguage()->formatNum( $countUsers ),
+				$language->formatNum( $countUsers ),
 				array( 'class' => 'statistics-group-' . Sanitizer::escapeClass( $group ) . $classZero ) );
 		}
 		return $text;
@@ -264,11 +265,12 @@ class SpecialStatistics extends SpecialPage {
 				$text .= Xml::openElement( 'tr' );
 				$text .= Xml::tags( 'th', array( 'colspan' => '2' ), $this->msg( 'statistics-mostpopular' )->parse() );
 				$text .= Xml::closeElement( 'tr' );
+				$language = $this->getLanguage();
 				foreach ( $res as $row ) {
 					$title = Title::makeTitleSafe( $row->page_namespace, $row->page_title );
 					if ( $title instanceof Title ) {
 						$text .= $this->formatRow( Linker::link( $title ),
-								$this->getLanguage()->formatNum( $row->page_counter ) );
+								$language->formatNum( $row->page_counter ) );
 
 					}
 				}
@@ -286,6 +288,7 @@ class SpecialStatistics extends SpecialPage {
 	 */
 	private function getOtherStats( array $stats ) {
 		$return = '';
+		$language = $this->getLanguage();
 
 		foreach ( $stats as $header => $items ) {
 			// Identify the structure used
@@ -301,7 +304,7 @@ class SpecialStatistics extends SpecialPage {
 					$name = $this->msg( $key )->inContentLanguage()->parse();
 					$number = htmlspecialchars( $value );
 
-					$return .= $this->formatRow( $name, $this->getLanguage()->formatNum( $number ), array( 'class' => 'mw-statistics-hook' ) );
+					$return .= $this->formatRow( $name, $language->formatNum( $number ), array( 'class' => 'mw-statistics-hook' ) );
 				}
 			} else {
 				// Create the legacy header only once

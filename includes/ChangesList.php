@@ -871,6 +871,9 @@ class EnhancedChangesList extends ChangesList {
 
 		wfProfileIn( __METHOD__ );
 
+		$contextUser = $this->getUser();
+		$contextLanguage = $this->getLanguage();
+
 		# Add the namespace and title of the block as part of the class
 		$classes = array( 'mw-collapsible', 'mw-collapsed', 'mw-enhanced-rc' );
 		if ( $block[0]->mAttribs['rc_log_type'] ) {
@@ -942,9 +945,9 @@ class EnhancedChangesList extends ChangesList {
 		$users = array();
 		foreach ( $userlinks as $userlink => $count ) {
 			$text = $userlink;
-			$text .= $this->getLanguage()->getDirMark();
+			$text .= $contextLanguage->getDirMark();
 			if ( $count > 1 ) {
-				$text .= ' ' . $this->msg( 'parentheses' )->rawParams( $this->getLanguage()->formatNum( $count ) . '×' )->escaped();
+				$text .= ' ' . $this->msg( 'parentheses' )->rawParams( $contextLanguage->formatNum( $count ) . '×' )->escaped();
 			}
 			array_push( $users, $text );
 		}
@@ -977,7 +980,7 @@ class EnhancedChangesList extends ChangesList {
 			$this->insertArticleLink( $r, $block[0], $block[0]->unpatrolled, $block[0]->watched );
 		}
 
-		$r .= $this->getLanguage()->getDirMark();
+		$r .= $contextLanguage->getDirMark();
 
 		$queryParams['curid'] = $curId;
 		# Changes message
@@ -990,7 +993,7 @@ class EnhancedChangesList extends ChangesList {
 		$r .= ' ';
 		$logtext = '';
 		if ( !$allLogs ) {
-			if ( !ChangesList::userCan( $rcObj, Revision::DELETED_TEXT, $this->getUser() ) ) {
+			if ( !ChangesList::userCan( $rcObj, Revision::DELETED_TEXT, $contextUser ) ) {
 				$logtext .= $nchanges[$n];
 			} elseif ( $isnew ) {
 				$logtext .= $nchanges[$n];
@@ -1085,7 +1088,7 @@ class EnhancedChangesList extends ChangesList {
 			if ( $type == RC_LOG ) {
 				$link = $rcObj->timestamp;
 			# Revision link
-			} elseif ( !ChangesList::userCan( $rcObj, Revision::DELETED_TEXT, $this->getUser() ) ) {
+			} elseif ( !ChangesList::userCan( $rcObj, Revision::DELETED_TEXT, $contextUser ) ) {
 				$link = '<span class="history-deleted">' . $rcObj->timestamp . '</span> ';
 			} else {
 				if ( $rcObj->unpatrolled && $type == RC_NEW ) {

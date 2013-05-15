@@ -139,9 +139,11 @@ class SpecialBookSources extends SpecialPage {
 	private function showList() {
 		global $wgContLang;
 
+		$out = $this->getOutput();
+
 		# Hook to allow extensions to insert additional HTML,
 		# e.g. for API-interacting plugins and so on
-		wfRunHooks( 'BookInformation', array( $this->isbn, $this->getOutput() ) );
+		wfRunHooks( 'BookInformation', array( $this->isbn, $out ) );
 
 		# Check for a local page such as Project:Book_sources and use that if available
 		$page = $this->msg( 'booksources' )->inContentLanguage()->text();
@@ -163,13 +165,13 @@ class SpecialBookSources extends SpecialPage {
 		}
 
 		# Fall back to the defaults given in the language file
-		$this->getOutput()->addWikiMsg( 'booksources-text' );
-		$this->getOutput()->addHTML( '<ul>' );
+		$out->addWikiMsg( 'booksources-text' );
+		$out->addHTML( '<ul>' );
 		$items = $wgContLang->getBookstoreList();
 		foreach ( $items as $label => $url ) {
-			$this->getOutput()->addHTML( $this->makeListItem( $label, $url ) );
+			$out->addHTML( $this->makeListItem( $label, $url ) );
 		}
-		$this->getOutput()->addHTML( '</ul>' );
+		$out->addHTML( '</ul>' );
 
 		return true;
 	}

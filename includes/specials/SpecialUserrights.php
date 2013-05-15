@@ -182,10 +182,11 @@ class UserrightsPage extends SpecialPage {
 
 		// This could possibly create a highly unlikely race condition if permissions are changed between
 		//  when the form is loaded and when the form is saved. Ignoring it for the moment.
+		$request = $this->getRequest();
 		foreach ( $allgroups as $group ) {
 			// We'll tell it to remove all unchecked groups, and add all checked groups.
 			// Later on, this gets filtered for what can actually be removed
-			if ( $this->getRequest()->getCheck( "wpGroup-$group" ) ) {
+			if ( $request->getCheck( "wpGroup-$group" ) ) {
 				$addgroup[] = $group;
 			} else {
 				$removegroup[] = $group;

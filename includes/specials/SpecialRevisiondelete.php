@@ -356,14 +356,15 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	protected function showForm() {
 		$UserAllowed = true;
 
+		$out = $this->getOutput();
 		if ( $this->typeName == 'logging' ) {
-			$this->getOutput()->addWikiMsg( 'logdelete-selected', $this->getLanguage()->formatNum( count( $this->ids ) ) );
+			$out->addWikiMsg( 'logdelete-selected', $this->getLanguage()->formatNum( count( $this->ids ) ) );
 		} else {
-			$this->getOutput()->addWikiMsg( 'revdelete-selected',
+			$out->addWikiMsg( 'revdelete-selected',
 				$this->targetObj->getPrefixedText(), count( $this->ids ) );
 		}
 
-		$this->getOutput()->addHTML( "<ul>" );
+		$out->addHTML( "<ul>" );
 
 		$numRevisions = 0;
 		// Live revisions...
@@ -377,14 +378,14 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 				$UserAllowed = false;
 			}
 			$numRevisions++;
-			$this->getOutput()->addHTML( $item->getHTML() );
+			$out->addHTML( $item->getHTML() );
 		}
 
 		if ( !$numRevisions ) {
 			throw new ErrorPageError( 'revdelete-nooldid-title', 'revdelete-nooldid-text' );
 		}
 
-		$this->getOutput()->addHTML( "</ul>" );
+		$out->addHTML( "</ul>" );
 		// Explanation text
 		$this->addUsageText();
 
@@ -449,7 +450,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 				$out .= Xml::tags( 'p', array( 'class' => 'mw-revdel-editreasons' ), $link ) . "\n";
 			}
 		}
-		$this->getOutput()->addHTML( $out );
+		$out->addHTML( $out );
 	}
 
 	/**
@@ -582,9 +583,10 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	 */
 	protected function extractBitParams() {
 		$bitfield = array();
+		$request = $this->getRequest();
 		foreach ( $this->checks as $item ) {
 			list( /* message */, $name, $field ) = $item;
-			$val = $this->getRequest()->getInt( $name, 0 /* unchecked */ );
+			$val = $request->getInt( $name, 0 /* unchecked */ );
 			if ( $val < -1 || $val > 1 ) {
 				$val = -1; // -1 for existing value
 			}
