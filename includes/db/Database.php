@@ -1239,7 +1239,7 @@ abstract class DatabaseBase implements DatabaseType {
 			$startOpts .= ' SQL_NO_CACHE';
 		}
 
-		if ( isset( $options['USE INDEX'] ) && ! is_array( $options['USE INDEX'] ) ) {
+		if ( isset( $options['USE INDEX'] ) && is_string( $options['USE INDEX'] ) ) {
 			$useIndex = $this->useIndexClause( $options['USE INDEX'] );
 		} else {
 			$useIndex = '';
@@ -1461,28 +1461,26 @@ abstract class DatabaseBase implements DatabaseType {
 		}
 
 		$options = (array)$options;
+		$useIndexes = ( isset( $options['USE INDEX'] ) && is_array( $options['USE INDEX'] ) )
+			? $options['USE INDEX']
+			: array();
 
 		if ( is_array( $table ) ) {
-			$useIndex = ( isset( $options['USE INDEX'] ) && is_array( $options['USE INDEX'] ) )
-				? $options['USE INDEX']
-				: array();
-			if ( count( $join_conds ) || count( $useIndex ) ) {
-				$from = ' FROM ' .
-					$this->tableNamesWithUseIndexOrJOIN( $table, $useIndex, $join_conds );
-			} else {
-				$from = ' FROM ' . implode( ',', $this->tableNamesWithAlias( $table ) );
-			}
+			$from = ' FROM ' .
+				$this->tableNamesWithUseIndexOrJOIN( $table, $useIndexes, $join_conds );
 		} elseif ( $table != '' ) {
 			if ( $table[0] == ' ' ) {
 				$from = ' FROM ' . $table;
 			} else {
-				$from = ' FROM ' . $this->tableName( $table );
+				$from = ' FROM ' .
+					$this->tableNamesWithUseIndexOrJOIN( array( $table ), $useIndexes, array() );
 			}
 		} else {
 			$from = '';
 		}
 
-		list( $startOpts, $useIndex, $preLimitTail, $postLimitTail ) = $this->makeSelectOptions( $options );
+		list( $startOpts, $useIndex, $preLimitTail, $postLimitTail ) =
+			$this->makeSelectOptions( $options );
 
 		if ( !empty( $conds ) ) {
 			if ( is_array( $conds ) ) {
@@ -2260,11 +2258,11 @@ abstract class DatabaseBase implements DatabaseType {
 		}
 
 		// We can't separate explicit JOIN clauses with ',', use ' ' for those
-		$straightJoins = !empty( $ret ) ? implode( ',', $ret ) : "";
-		$otherJoins = !empty( $retJOIN ) ? implode( ' ', $retJOIN ) : "";
+		$implicitJoins = !empty( $ret ) ? implode( ',', $ret ) : "";
+		$explicitJoins = !empty( $retJOIN ) ? implode( ' ', $retJOIN ) : "";
 
 		// Compile our final table clause
-		return implode( ' ', array( $straightJoins, $otherJoins ) );
+		return implode( ' ', array( $implicitJoins, $explicitJoins ) );
 	}
 
 	/**
