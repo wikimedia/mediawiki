@@ -1577,10 +1577,9 @@ abstract class ApiBase extends ContextSource {
 			}
 			if ( array_key_exists( 'continue', $params ) ) {
 				$ret[] = array(
-					array(
-						'code' => 'badcontinue',
-						'info' => 'Invalid continue param. You should pass the original value returned by the previous query'
-					) );
+					'code' => 'badcontinue',
+					'info' => 'Invalid continue param. You should pass the original value returned by the previous query'
+				);
 			}
 		}
 
