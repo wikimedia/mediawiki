@@ -239,4 +239,8 @@ class ApiQueryIWBacklinks extends ApiQueryGeneratorBase {
 			'api.php?action=query&generator=iwbacklinks&giwbltitle=Test&giwblprefix=wikibooks&prop=info'
 		);
 	}
+
+	public function getHelpUrls() {
+		return 'https://www.mediawiki.org/wiki/API:Iwbacklinks';
+	}
 }

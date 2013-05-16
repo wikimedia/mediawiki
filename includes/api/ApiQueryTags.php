@@ -194,4 +194,8 @@ class ApiQueryTags extends ApiQueryBase {
 			'api.php?action=query&list=tags&tgprop=displayname|description|hitcount'
 		);
 	}
+
+	public function getHelpUrls() {
+		return 'https://www.mediawiki.org/wiki/API:Tags';
+	}
 }
