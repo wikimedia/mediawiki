@@ -26,6 +26,22 @@
  * in the queue and/or sleep for a brief time period. These can be used
  * to represent "no-op" jobs or test lock contention and performance.
  *
+ * @par Example:
+ * Inserting a null job in the configured job queue:
+ * @code
+ * $ php maintenance/eval.php
+ * > $queue = JobQueueGroup::singleton();
+ * > $job = new NullJob( Title::newMainPage(), array( 'lives' => 10 ) );
+ * > $queue->push( $job );
+ * @endcode
+ * You can then confirm the job has been enqueued by using the showJobs.php
+ * maintenance utility:
+ * @code
+ * $ php maintenance/showJobs.php --group
+ * null: 1 queue; 0 claimed (0 active, 0 abandoned)
+ * $
+ * @endcode
+ *
  * @ingroup JobQueue
  */
 class NullJob extends Job {
