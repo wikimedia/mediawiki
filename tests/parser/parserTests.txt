@@ -4334,6 +4334,27 @@ mótmælenda[[söfnuður|söfnuðir]]xxx
 !! end
 
 !! test
+Parsoid link trail escaping
+!! options
+parsoid=html2wt,html2html
+!! input
+[[apple]]<nowiki/>s
+!! result
+<p><a rel="mw:WikiLink" href="Apple">apple</a>s</p>
+!! end
+
+!! test
+Parsoid link prefix escaping
+!! options
+language=is
+parsoid=html2wt,html2html
+!! input
+Aðrir mótmælenda<nowiki/>[[söfnuður]]
+!! result
+<p>Aðrir mótmælenda<a rel="mw:WikiLink" href="Söfnuður">söfnuður</a></p>
+!! end
+
+!! test
 Parsoid-centric test: Whitespace in ext- and wiki-links should be preserved
 !! input
 [[Foo|  bar]]
