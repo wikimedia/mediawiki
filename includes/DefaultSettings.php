@@ -4328,7 +4328,7 @@ $wgRateLimits = array(
 		'user' => null, // for each logged-in user
 		'newbie' => null, // for each recent (autoconfirmed) account; overrides 'user'
 		'ip' => null, // for each anon and recent account
-		'subnet' => null, // ... with final octet removed
+		'subnet' => null, // ... within a /24 subnet in IPv4 or /64 in IPv6
 	),
 	'move' => array(
 		'user' => null,
