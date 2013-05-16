@@ -912,7 +912,7 @@ class User {
 	 *
 	 * @param $item String
 	 */
-	private function setItemLoaded( $item ) {
+	protected function setItemLoaded( $item ) {
 		if ( is_array( $this->mLoadedItems ) ) {
 			$this->mLoadedItems[$item] = true;
 		}
@@ -3668,7 +3668,7 @@ class User {
 	 * @param &$expiration \mixed Accepts the expiration time
 	 * @return String New token
 	 */
-	private function confirmationToken( &$expiration ) {
+	protected function confirmationToken( &$expiration ) {
 		global $wgUserEmailConfirmationTokenExpiry;
 		$now = time();
 		$expires = $now + $wgUserEmailConfirmationTokenExpiry;
@@ -3686,7 +3686,7 @@ class User {
 	 * @param string $token Accepts the email confirmation token
 	 * @return String New token URL
 	 */
-	private function confirmationTokenUrl( $token ) {
+	protected function confirmationTokenUrl( $token ) {
 		return $this->getTokenUrl( 'ConfirmEmail', $token );
 	}
 
@@ -3695,7 +3695,7 @@ class User {
 	 * @param string $token Accepts the email confirmation token
 	 * @return String New token URL
 	 */
-	private function invalidationTokenUrl( $token ) {
+	protected function invalidationTokenUrl( $token ) {
 		return $this->getTokenUrl( 'InvalidateEmail', $token );
 	}
 
