@@ -1,0 +1,311 @@
+<?php
+/**
+ * Provides components to easily update and entire tables row via a batching process
+ *
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @file
+ * @ingroup Maintenance
+ */
+
+/**
+ * Ties together the batch update components to provide a composable method
+ * of batch updating rows in a database. To use create a class implementing
+ * the RowUpdateGenerator interface and configure the BatchRowIterator and
+ * BatchUpdateWriter for access to the correct table. The components will
+ * handle reading, writing, and waiting for slaves while your implementation
+ * only needs to worry about generating update arrays for singular rows.
+ *
+ * Instantiate:
+ *   $updater = new BatchRowUpdate(
+ *       new BatchRowIterator( $dbr, 'some_table', 'primary_key_column', 500 ),
+ *       new BatchRowWriter( $dbw, 'clusterName', 'some_table', 'primary_key_column' ),
+ *       new MyImplementationOfRowUpdateGenerator
+ *   );
+ *
+ * Run:
+ *   $updater->execute();
+ *
+ * An example maintenance script utilizing the BatchRowUpdate can be located in the Echo
+ * extension file maintenance/updateEchoSchemaForSuppression.php
+ *
+ * @ingroup Maintenance
+ */
+class BatchRowUpdate {
+	/**
+	 * @var Iterator Iterator that returns an array of database rows
+	 */
+	protected $reader;
+
+	/**
+	 * @var BatchRowWriter Writer capable of pushing row updates to the database
+	 */
+	protected $writer;
+
+	/**
+	 * @var RowUpdateGenerator Generates single row updates based on the rows content
+	 */
+	protected $generator;
+
+	/**
+	 * @var callable Output callback
+	 */
+	protected $output;
+
+	/**
+	 * @param $reader Iterator Iterator that returns an array of database rows
+	 * @param $writer BatchRowWriter Writer capable of pushing row updates to the database
+	 * @param $generator RowUpdateGenerator Generates single row updates based on the rows content
+	 */
+	public function __construct( Iterator $reader, BatchRowWriter $writer, RowUpdateGenerator $generator ) {
+		$this->reader = $reader;
+		$this->writer = $writer;
+		$this->generator = $generator;
+		$this->output = function() {
+		}; // noop
+	}
+
+	/**
+	 * Runs the batch update process
+	 */
+	public function execute() {
+		foreach ( $this->reader as $rows ) {
+			$updates = array();
+			foreach ( $rows as $row ) {
+				list( $id, $update ) = $this->generator->update( $row );
+				if ( $update ) {
+					$updates[$id] = $update;
+				}
+			}
+
+			if ( $updates ) {
+				$this->output( "Processing " . count( $updates ) . " rows\n" );
+				$this->writer->write( $updates );
+			}
+		}
+
+		$this->output( "Completed\n" );
+	}
+
+	/**
+	 * Accepts a callable which will accept a single parameter containing
+	 * string status updates
+	 *
+	 * @param $output callable A callback taking a single text parameter to output
+	 */
+	public function setOutput( $output ) {
+		if ( !is_callable( $output ) ) {
+			throw new MWException( 'Provided $output param is required to be callable.' );
+		}
+		$this->output = $output;
+	}
+
+	/**
+	 * Write out a status update
+	 *
+	 * @param $text string The value to print
+	 */
+	protected function output( $text ) {
+		call_user_func( $this->output, $text );
+	}
+}
+
+/**
+ * Interface for generating updates to single rows in the database
+ *
+ * @ingroup Maintenance
+ */
+interface RowUpdateGenerator {
+
+	/**
+	 * Given a database row, generates an array of updates to that column
+	 *
+	 * @param $row stdClass A row from the database
+	 * @return [int, array] Array containing row id to update and array mapping column
+	 *   to update value. When no update is required return an empty array as the second value.
+	 */
+	function update( $row );
+}
+
+/**
+ * Updates database rows by id in batches. Only supports tables with a single
+ * primary key.
+ *
+ * @ingroup Maintenance
+ */
+class BatchRowWriter {
+	/**
+	 * @var DatabaseType The database to write to
+	 */
+	protected $db;
+
+	/**
+	 * @var string A cluster name valid for use with LBFactory
+	 */
+	protected $clusterName;
+
+	/**
+	 * @var string The table to update
+	 */
+	protected $table;
+
+	/**
+	 * @var string The primary key column of the table to updates
+	 */
+	protected $idField;
+
+	/**
+	 * @param $db          DatabaseType The database to write to
+	 * @param $clusterName string       A cluster name valid for use with LBFactory
+	 * @param $table       string       The table to update
+	 * @param $idField     string       The primary key column of the table to update
+	 */
+	public function __construct( DatabaseType $db, $clusterName, $table, $idField ) {
+		$this->db = $db;
+		$this->clusterName = $clusterName;
+		$this->table = $table;
+		$this->idField = $idField;
+	}
+
+	/**
+	 * @param $updates [$id => array] Array mapping row id to the update to run for the row
+	 */
+	public function write( array $updates ) {
+		$this->db->begin();
+
+		foreach ( $updates as $id => $update ) {
+			$this->db->update(
+				$this->table,
+				$update,
+				array( $this->idField => $id ),
+				__METHOD__
+			);
+		}
+
+		$this->db->commit();
+		wfWaitForSlaves( false, false, $this->clusterName );
+	}
+}
+
+/**
+ * Fetches rows batched into groups from the database
+ *
+ * @ingroup Maintenance
+ */
+class BatchRowIterator implements Iterator {
+
+	/**
+	 * @var DatabaseType The database to read from
+	 */
+	protected $db;
+
+	/**
+	 * @var string The table to read from
+	 */
+	protected $table;
+
+	/**
+	 * @var string The primary key column of the table being read
+	 */
+	protected $idField;
+
+	/**
+	 * @var integer The number of rows to fetch per iteration
+	 */
+	protected $batchSize;
+
+	/**
+	 * @var array Array of strings containing SQL conditions to add to the query
+	 */
+	protected $conditions = array();
+
+	/**
+	 * @var integer The maximum primary key seen since self::reset()
+	 */
+	protected $maxId = 0;
+
+	/**
+	 * @var array The current iterator value
+	 */
+	protected $current;
+
+	/**
+	 * @param $db        DatabaseType The database to read from
+	 * @param $table     string       The table to read from
+	 * @param $idField   string       The primary key of the table being read
+	 * @param $batchSize integer      The number of rows to fetch per query
+	 */
+	public function __construct( DatabaseType $db, $table, $idField, $batchSize ) {
+		if ( $batchSize < 1 ) {
+			throw new MWException( 'Batch size must be at least 1 row.' );
+		}
+		$this->db = $db;
+		$this->table = $table;
+		$this->idField = $idField;
+		$this->batchSize = $batchSize;
+	}
+
+	/**
+	 * @param $condition string An sql query condition
+	 */
+	public function addCondition( $condition ) {
+		$this->conditions[] = $condition;
+	}
+
+	public function current() {
+		return $this->current;
+	}
+
+	public function key() {
+		return $this->maxId;
+	}
+
+	public function rewind() {
+		$this->maxId = 0;
+		$this->next();
+	}
+
+	public function valid() {
+		return (bool) $this->current;
+	}
+
+	public function next() {
+		$conditions = $this->conditions;
+		$conditions[] = "{$this->idField} > {$this->maxId}";
+
+		$res = $this->db->select(
+			$this->table,
+			array( '*' ),
+			$conditions,
+			__METHOD__,
+			array(
+				'LIMIT' => $this->batchSize,
+				"ORDER BY {$this->idField} ASC",
+			)
+		);
+
+		$this->current = iterator_to_array( $res );
+
+		// If $this->current is empty then self::valid() will return false
+		// so no need to handle edge case
+		if ( $this->current ) {
+			$row = end( $this->current );
+			$this->maxId = $row->{$this->idField};
+		}
+	}
+}
+
