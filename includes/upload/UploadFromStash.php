@@ -137,14 +137,9 @@ class UploadFromStash extends UploadBase {
 		return $this->mFileProps['sha1'];
 	}
 
-	/**
-	 * File has been previously verified so no need to do so again.
-	 *
-	 * @return bool
+	/*
+	 * protected function verifyFile() inherited
 	 */
-	protected function verifyFile() {
-		return true;
-	}
 
 	/**
 	 * Stash the file.
