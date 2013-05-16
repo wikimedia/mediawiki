@@ -478,7 +478,7 @@ Nun t'escaezas d'escoyer les tos [[Special:Preferences|preferencies de {{SITENAM
 'yourname' => "Nome d'usuariu:",
 'userlogin-yourname' => "Nome d'usuariu",
 'userlogin-yourname-ph' => "Escriba'l so nome d'usuariu",
-'createacct-helpusername-url' => '{{ns:Project}}:Política_de_nomes',
+'createacct-helpusername-url' => "{{ns:Project}}:Política_de_nomes_d'usuariu",
 'createacct-helpusername-link' => '[[{{MediaWiki:createacct-helpusername-url}}|(ayudame a escoyer)]]',
 'yourpassword' => 'Contraseña:',
 'userlogin-yourpassword' => 'Contraseña',
@@ -488,8 +488,8 @@ Nun t'escaezas d'escoyer les tos [[Special:Preferences|preferencies de {{SITENAM
 'createacct-yourpasswordagain' => 'Confirmar la contraseña',
 'createacct-yourpasswordagain-ph' => 'Escriba nuevamente la contraseña',
 'remembermypassword' => "Recordar la mio identificación nesti restolador (un máximu {{PLURAL:$1|d'un día|de $1 díes}})",
-'userlogin-remembermypassword' => 'Recordame',
-'userlogin-signwithsecure' => 'Aniciar sesión con un sirvidor seguru',
+'userlogin-remembermypassword' => 'Caltener abierta la sesión',
+'userlogin-signwithsecure' => 'Usar una conexón segura',
 'securelogin-stick-https' => "Siguir coneutáu al HTTPS dempués d'identificase",
 'yourdomainname' => 'El to dominiu:',
 'password-change-forbidden' => 'Nun se pueden camudar les contraseñes nesta wiki.',
@@ -510,6 +510,7 @@ Nun t'escaezas d'escoyer les tos [[Special:Preferences|preferencies de {{SITENAM
 'gotaccount' => '¿Ya tienes una cuenta? $1.',
 'gotaccountlink' => 'Identificase',
 'userlogin-resetlink' => "¿Escaecisti los datos d'identificación?",
+'userlogin-resetpassword-link' => 'Reaniciar la contraseña',
 'helplogin-url' => 'Help:Aniciar sesión',
 'userlogin-helplink' => "[[{{MediaWiki:helplogin-url}}|Ayuda p'aniciar sesión]]",
 'createacct-join' => 'Escriba abaxo la so información.',
@@ -520,14 +521,16 @@ Nun t'escaezas d'escoyer les tos [[Special:Preferences|preferencies de {{SITENAM
 'createacct-realname' => 'Nome real (opcional)',
 'createaccountreason' => 'Motivu:',
 'createacct-reason' => 'Motivu',
+'createacct-reason-ph' => 'Por qué quier crear otra cuenta',
 'createacct-captcha' => 'Comprobación de seguridá',
-'createacct-captcha-help-url' => '{{ns:Project}}:Solicitar una cuenta',
+'createacct-captcha-help-url' => '{{ns:Project}}:Solicite una cuenta',
 'createacct-imgcaptcha-help' => '¿Nun pue ver la imaxe? [[{{MediaWiki:createacct-captcha-help-url}}|Solicite una cuenta]]',
 'createacct-imgcaptcha-ph' => "Escriba'l testu qu'apaez arriba",
+'createacct-submit' => 'Crear la cuenta',
 'createacct-benefit-heading' => '{{SITENAME}} failu xente como vusté.',
-'createacct-benefit-body1' => 'ediciones',
-'createacct-benefit-body2' => 'Páxines',
-'createacct-benefit-body3' => 'collaboradores esti mes',
+'createacct-benefit-body1' => '{{PLURAL:$1|edición|ediciones}}',
+'createacct-benefit-body2' => '{{PLURAL:$1|páxina|páxines}}',
+'createacct-benefit-body3' => '{{PLURAL:$1|collaborador|collaboradores}} de recién',
 'badretype' => "Les claves qu'escribisti nun concuayen.",
 'userexists' => "El nome d'usuariu conseñáu yá ta usándose.
 Por favor escueyi un nome diferente.",
@@ -629,6 +632,7 @@ Pasando a identificate...',
 'resetpass-wrong-oldpass' => 'Clave provisional o actual non válida.
 Seique yá camudaras correutamente la clave o que pidieras una nueva clave provisional.',
 'resetpass-temp-password' => 'Clave provisional:',
+'resetpass-abort-generic' => "Una estensión encaboxó'l cambiu de la contraseña.",
 
 # Special:PasswordReset
 'passwordreset' => 'Reaniciar clave',
@@ -1318,6 +1322,7 @@ Esta información sedrá pública.",
 'userrights-notallowed' => "La to cuenta nun tien permisu p'amestar o desaniciar permisos d'usuariu.",
 'userrights-changeable-col' => 'Grupos que pues camudar',
 'userrights-unchangeable-col' => 'Grupos que nun pues camudar',
+'userrights-conflict' => "¡Hai un conflictu de permisos d'usuariu! Por favor, vuelva a aplicar los cambios.",
 
 # Groups
 'group' => 'Grupu:',
@@ -3693,6 +3698,18 @@ Tendría d'haber recibío [{{SERVER}}{{SCRIPTPATH}}/COPYING una copia de la Llic
 'version-entrypoints-header-entrypoint' => "Puntu d'entrada",
 'version-entrypoints-header-url' => 'URL',
 
+# Special:Redirect
+'redirect' => "Redireición por nome de ficheru, o ID d'usuariu o de revisión",
+'redirect-legend' => 'Redirixir a un ficheru o una páxina',
+'redirect-summary' => "Esta páxina especial redirixe a un ficheru (dando'l nome), una páxina (dando una ID de revisión) o una páxina d'usuariu (dando una ID d'usuariu).",
+'redirect-submit' => 'Dir',
+'redirect-lookup' => 'Buscar:',
+'redirect-value' => 'Valor:',
+'redirect-user' => "ID d'usuariu:",
+'redirect-revision' => 'Revisión de páxina',
+'redirect-file' => 'Nome del ficheru',
+'redirect-not-exists' => "Nun s'alcontró'l valor",
+
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Buscar archivos duplicaos',
 'fileduplicatesearch-summary' => 'Busca archivos duplicaos basándose nos sos valores fragmentarios.',
@@ -3784,6 +3801,7 @@ Tendría d'haber recibío [{{SERVER}}{{SCRIPTPATH}}/COPYING una copia de la Llic
 'htmlform-selectorother-other' => 'Otros',
 'htmlform-no' => 'Non',
 'htmlform-yes' => 'Sí',
+'htmlform-chosen-placeholder' => 'Seleicione una opción',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 con sofitu pa gueta en testu completu',

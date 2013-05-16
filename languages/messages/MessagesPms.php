@@ -146,8 +146,8 @@ $messages = array(
 'jul' => 'luj',
 'aug' => 'ost',
 'sep' => 'stè',
-'oct' => 'Otó',
-'nov' => 'Nov',
+'oct' => 'otó',
+'nov' => 'nov',
 'dec' => 'Dzè',
 
 # Categories related messages

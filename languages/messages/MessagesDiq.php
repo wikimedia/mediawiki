@@ -765,6 +765,7 @@ Wexta ke verhafızayê cıgerayoxê şıma pak beno no benate de taye peli de he
 'gotaccount' => "Hesabê şıma esto? '''$1'''.",
 'gotaccountlink' => 'Cı kewe',
 'userlogin-resetlink' => 'Melumatê cıkewtışi xo vira kerdê?',
+'userlogin-resetpassword-link' => 'Parolaya xo reset ke',
 'helplogin-url' => 'Help:Qeydbiyayış',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Desteg be qeydbiyayış ra]]',
 'createacct-join' => 'Cêr melumatê xo cı ke',
@@ -775,6 +776,7 @@ Wexta ke verhafızayê cıgerayoxê şıma pak beno no benate de taye peli de he
 'createacct-realname' => 'Nameyo raştıkên (mecburi niyo)',
 'createaccountreason' => 'Sebeb:',
 'createacct-reason' => 'Sebeb',
+'createacct-reason-ph' => 'Şımaye çı xo re zewbi hesab vırazeni?',
 'createacct-captcha' => 'Qontrolê asayişi',
 'createacct-captcha-help-url' => '{{ns:Project}}:Yew hesab bıwaze',
 'createacct-imgcaptcha-help' => 'Resım nêvêniya? [[{{MediaWiki:createacct-captcha-help-url}}|Yew hesab bıwaze]]',
@@ -2261,7 +2263,7 @@ hem zi bıewnê [[Special:WantedCategories|kategori yê ke waziyeni]].',
 'linksearch-ok' => 'Cı geyre',
 'linksearch-text' => 'Jokeri ê zey "*.wikipedia.org"i benê ke bıgureniyê.
 Tewr senık yew sewiya serêna cayê tesiri lazıma, mesela "*.org".<br />
-Qeydeyê destegbiyayey: <code>$1</code> (qet yew qeydeyo hesabiyaye http:// ke name nêbiyo).',
+Qeydeyê {{PLURAL:$2|protoqol|protoqoli}}:destegbiyayey: <code>$1</code> (qet yew qeydeyo hesabiyaye http:// ke name nêbiyo).',
 'linksearch-line' => '$1, $2 ra link biya',
 'linksearch-error' => 'jokeri têna nameyê makina ya serekini de aseni/eseni.',
 
@@ -2274,7 +2276,7 @@ Qeydeyê destegbiyayey: <code>$1</code> (qet yew qeydeyo hesabiyaye http:// ke n
 # Special:ActiveUsers
 'activeusers' => 'Listey karberan de aktivan',
 'activeusers-intro' => 'Ena yew listeya karberê ke $1 {{PLURAL:$1|roc|rocan}} ra tepya iştiraq kerdo ênan mocneno.',
-'activeusers-count' => 'Karberi {{PLURAL:$3|roce peyni de|$3 roca peyni de}} $1 {{PLURAL:$1|vurnayış|vurnayışi}} kerdê',
+'activeusers-count' => '$1 peyni {{PLURAL:$3|roz de|$3 rozan de}} $1 {{PLURAL:$1|hereket|hereketi}} kerdê',
 'activeusers-from' => 'Enê karberi ra tepya bımocne:',
 'activeusers-hidebots' => 'Botan bınımne',
 'activeusers-hidesysops' => 'İdarekerdoğan bınımne',
@@ -2349,7 +2351,7 @@ qey heqê şexsi de [[{{MediaWiki:Listgrouprights-helppage}}|hema malumato ziyed
 'watchnologintext' => 'qey vurnayişê listeya temaşakerdışi [[Special:UserLogin|gani şıma hesab akeri]].',
 'addwatch' => 'Listeyê seyri deke',
 'addedwatchtext' => 'Ma pele "[[:$1]]" zerri [[Special:Watchlist|watchlist]]ê tı kerd de.
-Ena deme ra, ma qe vurnayışan ser ena pele tı haberdar keni. Hem zi çı dem ma tu ri heber dun, zerri [[Special:RecentChanges|list of recent changes]] name pele beno qalın. Tı ri beno qolay çıta vurnaye biyo.',
+Ena deme ra, ma qe vurnayışan ser ena pele tı haberdar keni.',
 'removewatch' => 'Listedê mınê seyr kerdışi ra hewad',
 'removedwatchtext' => 'Ena pela "[[:$1]]" biya wedariya [[Special:Watchlist|listeyê seyr-kerdışi şıma]].',
 'watch' => 'Temaşe ke',
@@ -4082,6 +4084,17 @@ enê programiya piya [{{SERVER}}{{SCRIPTPATH}}/COPYING jew kopyay lisans dê GNU
 'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Article path]',
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Script path]',
 
+# Special:Redirect
+'redirect' => "Hetenayışa dosyay, karberi yana  rewizyona ID'i",
+'redirect-legend' => 'Hetenayışa dosya yana pela',
+'redirect-submit' => 'Şo',
+'redirect-lookup' => 'Bewni',
+'redirect-value' => 'Erc:',
+'redirect-user' => "ID'ê Karberi",
+'redirect-revision' => 'Rewizyona pela',
+'redirect-file' => 'Namey dosya',
+'redirect-not-exists' => 'Erc nêvineyê',
+
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Dosyayanê zey pêyan cı geyrê',
 'fileduplicatesearch-summary' => 'Dosyanê çıftan bınê têmiyankewteyan de bıgeyre.',
@@ -4174,6 +4187,7 @@ Ena sita dı newke xırabiya teknik esta.',
 'htmlform-selectorother-other' => 'Bin',
 'htmlform-no' => 'Nê',
 'htmlform-yes' => 'Eya',
+'htmlform-chosen-placeholder' => 'Opsiyon weçine',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 tam-metn destegê cı geyrayışiya piya',

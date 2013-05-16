@@ -527,7 +527,7 @@ $1',
 
 Нагахьсан гlулкх цуьнах доьзна дацахь, хьуна карийна гlирс латточехь гlалат.
 Дехар до, хаам бе оцуьнах [[Special:ListUsers/sysop|адаманкуьйгалхога]], гойтуш URL.',
-'missingarticle-rev' => '(варси № $1)',
+'missingarticle-rev' => '(верси № $1)',
 'missingarticle-diff' => '(тейп тайпнара: $1, $2)',
 'internalerror' => 'Чоьхьара гlалат',
 'internalerror_info' => 'Чоьхьара гlалат: $1',
@@ -700,11 +700,11 @@ $1',
 
 # History pages
 'viewpagelogs' => 'Гайта хlокху агlонан тептар',
-'currentrev-asof' => 'Хlинцлера варси оцу $1',
-'revisionasof' => 'Варси $1',
+'currentrev-asof' => 'ХӀинцлера верси оцу $1',
+'revisionasof' => 'Верси $1',
 'previousrevision' => '← Хьалха йоьдург',
 'nextrevision' => 'Тlаьхьайогlург →',
-'currentrevisionlink' => 'Хlинцлера варси',
+'currentrevisionlink' => 'Хlинцлера верси',
 'cur' => 'карара.',
 'next' => 'кхин',
 'last' => 'хьалх.',
@@ -975,10 +975,11 @@ PICT # тайп тайпан
 'filehist-thumb' => 'Жима',
 'filehist-thumbtext' => 'Жимо башхо оцу $1',
 'filehist-user' => 'Декъашхо',
-'filehist-dimensions' => 'Хlуман барам',
+'filehist-dimensions' => 'Файлан барам',
 'filehist-comment' => 'Билгалдаккхар',
 'imagelinks' => 'Хьажоригаш оцу файлан',
 'linkstoimage' => '{{PLURAL:$1|Тlаьхьайогlу $1 агlо тlетойжина|Тlаьхьайогlу $1 агlонаш тlетойжина|Тlаьхьайогlу $1 агlонаш тlетойжина}} хlокху хlуман:',
+'nolinkstoimage' => 'АгӀонашчохь файл лелош яц.',
 'sharedupload' => 'Хlара хlума оцун $1 чура ю иза хила мега лелош кхечу кхолламашкахь.',
 'uploadnewversion-linktext' => 'Чуяккха керла башхо хlокху хlуман',
 'shared-repo-name-wikimediacommons' => 'Викидlайуллуче',
@@ -999,6 +1000,7 @@ PICT # тайп тайпан
 </div>",
 'filedelete-comment' => 'Бахьан:',
 'filedelete-submit' => 'ДӀаяккха',
+'filedelete-success' => '$1 дӀаяккхи.',
 'filedelete-otherreason' => 'Кхин бахьан:',
 'filedelete-reason-otherlist' => 'Кхин бахьан',
 
@@ -1053,7 +1055,7 @@ PICT # тайп тайпан
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|байт|байташ|байт}}',
 'ncategories' => '$1 {{PLURAL:$1|категори|категореш|категореш}}',
-'nmembers' => '$1 {{PLURAL:$1|файл|файлана|файлаш}}',
+'nmembers' => '$1 {{PLURAL:$1|файл|файл|файлаш}}',
 'specialpage-empty' => 'Дехаро хlумма ца елла.',
 'lonelypages' => 'Байлахь йисина агIонаш',
 'uncategorizedpages' => 'Категори йоцу агIонаш',
@@ -1072,6 +1074,7 @@ PICT # тайп тайпан
 'mostimages' => 'Массарел дуккха лелайо файлаш',
 'mostrevisions' => 'Сих сиха нисйина йолу агIонаш',
 'prefixindex' => 'Хьалха агlонашан цlераш хlотто йеза',
+'prefixindex-namespace' => 'Хьалха агӀонашан цӀераш хӀотто еза («{{ns:$1}}»)',
 'shortpages' => 'Боцоа яззамаш',
 'longpages' => 'Беха яззамаш',
 'deadendpages' => 'Дика йоцу агIонаш',
@@ -1119,6 +1122,7 @@ PICT # тайп тайпан
 'allpagesprefix' => 'Лаха агlонаш, дlайуьлалуш йолу:',
 'allpagesbadtitle' => 'Цамагош йолу агlон цlе. Коьрта могlан юкъах ю юкъарвики меттанашан юкъе тlечlагlйина йолу хьаьрк йа магийна доцу оцу коьрта моlанца сабол элп йа кхин.',
 'allpages-bad-ns' => '{{SITENAME}} кху чохь ана цlераш яц «$1».',
+'allpages-hide-redirects' => 'Къайлаяха дӀасахьажийнарш',
 
 # Special:Categories
 'categories' => 'Кадегарш',
@@ -1518,9 +1522,9 @@ PICT # тайп тайпан
 'imagemaxsize' => "Суьртан бараман доза тохар:<br />''(Файла агӀона куц дийцар)''",
 'thumbsize' => 'Жима дина суьртан барам:',
 'widthheightpage' => '$1 × $2, $3 {{PLURAL:$3|агlо|агlонаш|агlонаш}}',
-'file-info-size' => '$1 × $2 сиртакх, хlуман барам: $3, MIME-тайп: $4',
+'file-info-size' => '$1 × $2 {{PLURAL:$2|пиксель|пикселш|пикселш}}, файлан барам: $3, MIME-тайп: $4',
 'file-nohires' => 'Кхи йоккха гlоле башхо яц.',
-'svg-long-desc' => 'SVG-хlума, хlоттамца $1 × $2 цинташ, хlуман барам: $3',
+'svg-long-desc' => 'SVG-файл, лартӀахь ю $1 × $2 {{PLURAL:$2|пиксель|пикселш|пикселш}}, файлан барам: $3',
 'show-big-image' => 'Сурт цlанал лаккхара бакъонца',
 
 # Special:NewFiles
@@ -1540,7 +1544,7 @@ PICT # тайп тайпан
 
 # Metadata
 'metadata' => 'Метахаамаш',
-'metadata-help' => 'Хlокху хlуманца кхин тlе хаам бу, даиман чуйоккхуш йолу терахьца чоьнашца йа тlейоккхучуьнца. Нагахь хlуман тlаьхьа хийцам биняхь, тlаккха цlхьаболу барам цlхьаьна ца ба мега хlинцлера суртаца.',
+'metadata-help' => 'ХӀокху файлаца кхин тӀе хаам бу, даиман чуйоккхуш йолу терахьца чоьнашца йа тӀейоккхучуьнца. Нагахь файлан тӀаьхьа хийцам биняхь, тӀаккха цӀхьаболу барам цӀхьаьна ца ба мега хӀинцалера суьртаца.',
 'metadata-expand' => 'Гайта кхин тlе болу хаам',
 'metadata-collapse' => 'Къайла баккха кхин тlе болу хаам',
 'metadata-fields' => 'Метахааман майда, хьахийна йолу хlокху могlамца, lад-йитича гойтур ю суьрти агlонца, йисинарш хира ю къайлаха.
@@ -1615,7 +1619,7 @@ PICT # тайп тайпан
 'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|дийцаре]])',
 
 # Special:Version
-'version' => 'Варси MediaWiki',
+'version' => 'Верси MediaWiki',
 'version-other' => 'Кхин',
 
 # Special:FileDuplicateSearch
