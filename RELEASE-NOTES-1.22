@@ -18,6 +18,11 @@ production.
 * $wgCascadingRestrictionLevels was added.
 * ftps, ssh, sftp, xmpp, sip, sips, tel, sms, bitcoin, magnet, urn, and geo
   have been whitelisted inside of $wgUrlProtocols.
+* $wgDocType and $wgDTD have been removed and are no longer used for the DOCTYPE.
+* $wgHtml5 is no longer used by core. Setting it to false will no longer disable HTML5.
+  It is still set to true for extension compatibility but doing so in extensions is deprecated.
+* $wgXhtmlDefaultNamespace is no longer used by core. Setting it will no longer change the
+  xmlns used by MediaWiki. Reliance on this variable by extensions is deprecated.
 
 === New features in 1.22 ===
 * (bug 44525) mediawiki.jqueryMsg can now parse (whitelisted) HTML elements and attributes.
@@ -72,6 +77,8 @@ production.
   uses ES5 getter/setter to emit a warning when they are used.
 * $wgCascadingRestrictionLevels was added, allowing one to specify restriction levels
   which can be cascading (previously 'sysop' was hard-coded as the only one).
+* XHTML5 support has been improved. If you set $wgMimeType = 'application/xhtml+xml'
+  MediaWiki will try outputting markup acording to XHTML5 rules.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
@@ -155,6 +162,7 @@ changes to languages because of Bugzilla reports.
   user ID, or file name.  The old Special:Filepath page was reimplemented
   to redirect through Special:Redirect.
 * Monobook: Removed the old conditional stylesheets for Opera 6, 7 and 9.
+* Support for XHTML 1.0 has been removed. MediaWiki now only outputs (X)HTML5.
 
 == Compatibility ==
 

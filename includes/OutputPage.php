@@ -3133,7 +3133,7 @@ $templates
 	 */
 	public function getHeadLinksArray( $addContentType = false ) {
 		global $wgUniversalEditButton, $wgFavicon, $wgAppleTouchIcon, $wgEnableAPI,
-			$wgSitename, $wgVersion, $wgHtml5, $wgMimeType,
+			$wgSitename, $wgVersion,
 			$wgFeed, $wgOverrideSiteFeed, $wgAdvertisedFeedTypes,
 			$wgDisableLangConversion, $wgCanonicalLanguageLinks,
 			$wgRightsPage, $wgRightsUrl;
@@ -3143,20 +3143,9 @@ $templates
 		$canonicalUrl = $this->mCanonicalUrl;
 
 		if ( $addContentType ) {
-			if ( $wgHtml5 ) {
-				# More succinct than <meta http-equiv=Content-Type>, has the
-				# same effect
-				$tags['meta-charset'] = Html::element( 'meta', array( 'charset' => 'UTF-8' ) );
-			} else {
-				$tags['meta-content-type'] = Html::element( 'meta', array(
-					'http-equiv' => 'Content-Type',
-					'content' => "$wgMimeType; charset=UTF-8"
-				) );
-				$tags['meta-content-style-type'] = Html::element( 'meta', array( // bug 15835
-					'http-equiv' => 'Content-Style-Type',
-					'content' => 'text/css'
-				) );
-			}
+			# More succinct than <meta http-equiv=Content-Type>, has the
+			# same effect
+			$tags['meta-charset'] = Html::element( 'meta', array( 'charset' => 'UTF-8' ) );
 		}
 
 		$tags['meta-generator'] = Html::element( 'meta', array(
