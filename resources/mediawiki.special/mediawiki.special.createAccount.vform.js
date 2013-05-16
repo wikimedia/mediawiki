@@ -8,8 +8,9 @@
 			$submit = $content.find( '#wpCreateaccount' ),
 			tabIndex,
 			$captchaStuff,
+			$captchaImageContainer,
 			helpMsg = mw.config.get( 'wgCreateacctImgcaptchaHelp' ),
-			captchaImage;
+			helpHtml = '';
 
 		/*
 		 * CAPTCHA
@@ -26,40 +27,39 @@
 
 		if ( $captchaStuff.length ) {
 
-			// The FancyCaptcha image has this class in the ConfirmEdit extension
+			// The FancyCaptcha has this class in the ConfirmEdit extension
 			// after 2013-04-18.
-			captchaImage = $captchaStuff.find( 'img.fancycaptcha-image' );
-			if ( captchaImage.length !== 1 ) {
+			$captchaImageContainer = $captchaStuff.find( '.fancycaptcha-image-container' );
+			if ( $captchaImageContainer.length !== 1 ) {
 				return;
 			}
 
 			$captchaStuff.remove();
 
-			// Insert another div before the submit button.
+			if ( helpMsg) {
+				helpHtml = '<small class="mw-createacct-captcha-assisted">' + helpMsg + '</small>';
+			}
+
+			// Insert another div before the submit button that will include the 
+			// repositioned FancyCaptcha div, an input field, and possible help.
 			$submit.closest( 'div' )
 				.before( [
 			'<div>',
 				'<label for="wpCaptchaWord">' + mw.message( 'createacct-captcha' ).escaped() + '</label>',
 				'<div class="mw-createacct-captcha-container">',
-					'<div class="mw-createacct-captcha-and-reload">',
-						'<div class="mw-createacct-captcha-image-container">',
-							'<img id="mw-createacct-captcha" alt="PLACEHOLDER">',
-						'</div>',
-					'</div>',
+					'<div class="mw-createacct-captcha-and-reload" />',
 					'<input id="wpCaptchaWord" name="wpCaptchaWord" type="text" placeholder="' +
 						mw.message( 'createacct-imgcaptcha-ph' ).escaped() +
 						'" tabindex="' + tabIndex + '" autocapitalize="off" autocorrect="off">',
-					'<small class="mw-createacct-captcha-assisted">' + helpMsg + '</small>',
+						helpHtml,
 				'</div>',
 			'</div>'
 					].join( '' )
 				);
 
-			// Replace the placeholder img with the img from the old CAPTCHA.
-			captchaImage.replaceAll( $content.find( '#mw-createacct-captcha' ) );
-
-			// Append CAPTCHA reload, if any.
-			$( '.mw-createacct-captcha-and-reload' ).append( $captchaStuff.find( '.confirmedit-captcha-reload' ) );
+			// Stick the FancyCaptcha container inside our bordered and framed parents.
+			$captchaImageContainer
+				.prependTo( $content.find( '.mw-createacct-captcha-and-reload' ) );
 
 			// Find the input field, add the text (if any) of the existing CAPTCHA
 			// field (although usually it's blanked out on every redisplay),
@@ -70,6 +70,6 @@
 				.after( $captchaStuff.find( '#wpCaptchaId' ) );
 		}
 
-	});
+	} );
 
 }( mediaWiki, jQuery ) );
