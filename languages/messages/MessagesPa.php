@@ -624,7 +624,6 @@ Note that some pages may continue to be displayed as if you were still logged in
 'createaccountreason' => 'ਕਾਰਨ:',
 'createacct-reason' => 'ਕਾਰਨ',
 'createacct-captcha' => 'ਸੁਰੱਖਿਆ ਜਾਂਚ',
-'createacct-captcha-help-url' => '{{ns:Project}}:ਖਾਤੇ ਲਈ ਮੰਗ ਕਰੋ',
 'createacct-imgcaptcha-ph' => 'ਉੱਤੇ ਵੇਖਾਈ ਦੇ ਰਿਹਾ ਸ਼ਬਦ ਦਿਉ',
 'createacct-benefit-heading' => '{{SITENAME}} ਨੂੰ ਤੁਹਾਡੇ ਵਰਗੇ ਲੋਕਾਂ ਵਲੋਂ ਹੀ ਬਣਾਇਆ ਗਿਆ ਹੈ।',
 'createacct-benefit-body1' => 'ਸੋਧਾਂ',

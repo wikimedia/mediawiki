@@ -1050,9 +1050,6 @@ See examples: [{{canonicalurl:Special:UserLogin|useNew=1}} Special:UserLogin?use
 'userlogin-yourname-ph' => 'Placeholder text in new userlogin/create account form field.
 
 See example: [{{canonicalurl:Special:UserLogin|useNew=1}} Special:UserLogin?useNew=1] and [{{canonicalurl:Special:UserLogin|type=signup&useNew=1}} Special:UserLogin?type=signup&useNew=1]',
-'createacct-helpusername' => 'Message in new create account form providing guidance for username.
-
-See example: [{{canonicalurl:Special:UserLogin|type=signup&useNew=1}} Special:UserLogin?type=signup&useNew=1]',
 'yourpassword' => 'In user preferences
 
 {{Identical|Password}}',

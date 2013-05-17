@@ -730,8 +730,6 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências]].'
 'yourname' => 'Nome de utilizador:',
 'userlogin-yourname' => 'Nome de utilizador(a):',
 'userlogin-yourname-ph' => 'Digite seu nome de utilizador(a)',
-'createacct-helpusername-url' => '{{ns:Project}}:Política_de_nome_de_utilizador(a)',
-'createacct-helpusername-link' => '[[{{MediaWiki:createacct-helpusername-url}}|(ajude-me a escolher)]]',
 'yourpassword' => 'Palavra-chave:',
 'userlogin-yourpassword' => 'Palavra-chave',
 'userlogin-yourpassword-ph' => 'Digite sua palavra-chave',

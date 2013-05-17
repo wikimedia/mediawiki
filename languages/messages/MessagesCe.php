@@ -376,6 +376,7 @@ $messages = array(
 'namespaces' => 'Цlерийн ана',
 'variants' => 'Кепараш',
 
+'navigation-heading' => 'Навигацин меню',
 'errorpagetitle' => 'Гlалат',
 'returnto' => 'Юхагlо оцу агlоне $1.',
 'tagline' => 'Гlирс хlокхуьна бу {{grammar:genitive|{{SITENAME}}}}',
@@ -402,8 +403,8 @@ $messages = array(
 'protect' => 'Гlаролла дé',
 'protect_change' => 'хийца',
 'protectthispage' => 'Гlаролла дé хlокху агlон',
-'unprotect' => 'Гlароллех къаста',
-'unprotectthispage' => 'Гlароллех къаста',
+'unprotect' => 'ГӀароллех къаста',
+'unprotectthispage' => 'ГӀароллех къаста',
 'newpage' => 'Керла агlо',
 'talkpage' => 'Дийцаре йила хlара агlо',
 'talkpagelinktext' => 'Дийцаре',
@@ -452,7 +453,7 @@ $1',
 'edithelp' => 'Нийсвохаам оцу тадарна',
 'edithelppage' => '{{ns:project}}:Нийсвохаам_оцу_тадарна',
 'helppage' => 'Help:Чулацам',
-'mainpage' => 'Коьрта агlо',
+'mainpage' => 'Коьрта агӀо',
 'mainpage-description' => 'Коьрта агlо',
 'policy-url' => 'Project:Бакъо',
 'portal' => 'Юкъаралла',
@@ -474,6 +475,7 @@ $1',
 'youhavenewmessages' => 'Хьуна кхечи $1 ($2).',
 'newmessageslink' => 'керла хаамаш',
 'newmessagesdifflink' => 'тlаьххьара хийцамаш',
+'youhavenewmessagesfromusers' => 'Хьуна кхачанна $1 {{PLURAL:$3|$3 декъашхочунгара|$3 декъашхошкара|$3 декъашхошкара}} ($2).',
 'youhavenewmessagesmulti' => 'Хьуна кхаьчна керла хаам оцу $1',
 'editsection' => 'нисйé',
 'editsection-brackets' => '[$1]',
@@ -571,6 +573,8 @@ $1',
 'gotaccountlink' => 'Вовзийта хьой',
 'createaccountmail' => 'хааман зlене хула',
 'createaccountreason' => 'Бахьан:',
+'createacct-reason' => 'Бахьна',
+'createacct-reason-ph' => '{{PLURAL:$1|агӀо|агӀонаш}}‎',
 'loginerror' => 'Гlалат ду декъашхо вовзарехь',
 'nocookiesforlogin' => '{{int:nocookieslogin}}',
 'loginsuccesstitle' => 'Хьо вовзар хаз чакхдели',
@@ -595,8 +599,13 @@ $1',
 'resetpass-submit-loggedin' => 'Хийца ишар',
 'resetpass-submit-cancel' => 'Цаоьшу',
 
+# Special:PasswordReset
+'passwordreset-username' => 'Декъашхочун цӀе:',
+
 # Special:ChangeEmail
 'changeemail' => 'Хийца электрони почт',
+'changeemail-submit' => 'Хийца email',
+'changeemail-cancel' => 'Цаоьшу',
 
 # Edit page toolbar
 'bold_sample' => 'Дерстино до йоза',
@@ -630,6 +639,7 @@ $1',
 'anoneditwarning' => "'''Тергам бе''': Ахьа хьо вовзитина вац гlирсан. Хьан IP-долу меттиг дlаязйина хира ю хlокху агlон истори чу.",
 'summary-preview' => 'Цуьнах лаьцна хирду:',
 'blockedtitle' => 'Декъашхо сацийна',
+'loginreqlink' => 'Логин',
 'accmailtitle' => 'Ишар дlаяхьийтина.',
 'accmailtext' => "Ишар декъашхочуьна [[User talk:$1|$1]], йина ша шех хитта делла чу элпашах, дlаяхийтина хьокху хааман зlен чу $2.
 
@@ -690,6 +700,10 @@ $1',
 Хаийтарна лахахьа гойту, цуьнца долу дlаяздарш кху дlадайина тептар чура а цlе хийцарш а.',
 'log-fulllog' => 'Хьажа деригге тептаре',
 
+# Content models
+'content-model-javascript' => 'JavaScript',
+'content-model-css' => 'CSS',
+
 # Parser/template warnings
 'parser-template-loop-warning' => 'Карийна куцкепаш юкъахь хилла шад: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Дозанал хьалаваьлла кlоргенца йух йуха дина кеп ($1)',
@@ -715,9 +729,11 @@ $1',
 'history-show-deleted' => 'ДӀаяхинарш',
 'histfirst' => 'ширниш',
 'histlast' => 'хьалхарниш',
+'historysize' => '({{PLURAL:$1|1 байт|$1 байташ}})',
 'historyempty' => '(йаьсса)',
 
 # Revision feed
+'history-feed-title' => 'Хийцаман истори',
 'history-feed-item-nocomment' => '$1 оцу $2',
 
 # Revision deletion
@@ -801,6 +817,7 @@ $1',
 'prefs-beta' => 'Гlоле таронаш',
 'prefs-datetime' => 'Терахь а хан',
 'prefs-labs' => 'Муха ю хьажарна таронаш',
+'prefs-user-pages' => 'Декъашхочун агӀо',
 'prefs-personal' => 'Долахь болу хаамаш',
 'prefs-rc' => 'Керла нисдарш',
 'prefs-watchlist' => 'Тергаме могlам',
@@ -826,7 +843,7 @@ $1',
 'username' => 'Дlаязвиначуьна цlе:',
 'uid' => 'Декъашхочун {{GENDER:$1|код}}:',
 'prefs-memberingroups' => '{{GENDER:$2|Тобана|Тобана}} {{PLURAL:$1|декъашхо|декъашхо}}:',
-'prefs-registration' => 'ДӀавазвелла (елла) хан:',
+'prefs-registration' => '{{GENDER:$2|ДӀавазвелла|ДӀаязелла}} хан:',
 'yourrealname' => 'Хьан бакъ цlе:',
 'yourlanguage' => 'Мотт:',
 'yourvariant' => 'Метта башхо',
@@ -835,6 +852,7 @@ $1',
 'gender-unknown' => 'хlоттийна яц',
 'gender-male' => 'борша',
 'gender-female' => 'сте',
+'email' => 'Email',
 'prefs-help-email' => 'Кехат яздо зlен цlе цахlоттийча аъ хlумма дац, амма иза оьшар ю, нагахь хьуна хьай ишар йицлахь.',
 'prefs-info' => 'Коьрта хаам',
 'prefs-i18n' => 'Юкъардекъа мотт',
@@ -852,6 +870,7 @@ $1',
 # User rights
 'userrights' => 'Декъашхочуьн бакъона урхалладар',
 'editinguser' => "Хийца декъашхочуьна бакъо '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-groupsmember' => 'Декъашхо:',
 'userrights-reason' => 'Бахьан:',
 
 # Groups
@@ -888,6 +907,7 @@ $1',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit' => 'нисйа хlара агlо',
+'action-delete' => 'дӀаяккха хӀара агӀо',
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|хийцам|хийцамаш|хийцамаш}}',
@@ -934,6 +954,7 @@ $1',
 'uploadlogpage' => 'Чуйахаран тéптар',
 'uploadlogpagetext' => 'Лахахьа гойтуш бу могlам тlаьххьара чуяхна файлаши. Ишта хьажа. [[Special:ImageList|файлаши могlам]] йа [[Special:NewImages|галеларе файлаши]].',
 'filename' => 'Файлан цӀе',
+'filereuploadsummary' => 'Файлан хийцамаш:',
 'uploadwarning' => 'Дlахьедар',
 'uploadedimage' => 'чуяккхина «[[$1]]»',
 'filename-prefix-blacklist' => '#<!-- битийша хlара могlа ша мабарра --> <pre>
@@ -1083,7 +1104,7 @@ PICT # тайп тайпан
 'listusers' => 'Декъашхой могlам',
 'listusers-editsonly' => 'Цхаъ мукъане а хийцам бина декъашхой гайта',
 'listusers-creationsort' => 'Кхолларан хене хьаьжна нисъяр',
-'usercreated' => '{{GENDER:$3|ДӀавазвелла}} $1 $2',
+'usercreated' => '{{GENDER:$3|дӀавазвелла|дӀаязелла}} $1 $2',
 'newpages' => 'Керла агlонаш',
 'newpages-username' => 'Декъашхо:',
 'ancientpages' => 'Яззамаш оцу терахьца тяххьара тадар дина долу',
@@ -1210,11 +1231,14 @@ PICT # тайп тайпан
 'modifiedarticleprotection' => 'агlонан гlаролли локхалла хийцина «[[$1]]»',
 'unprotectedarticle' => 'ГӀоролла дӀадаьстина «[[$1]]»',
 'movedarticleprotection' => '«[[$2]]» гӀаролла сехьадаккха «[[$1]]»',
+'protect-title' => 'Оцунна «$1» гӀоралла дар',
 'prot_1movedto2' => '«[[$1]]» цlе хийцина оцу «[[$2]]»',
+'protect-legend' => 'Бакъде гӀоралла дар',
 'protectcomment' => 'Бахьан:',
 'protectexpiry' => 'Чекхйолу:',
 'protect_expiry_invalid' => 'Нийса йоцу хан гlаролла дlайаларехь.',
 'protect_expiry_old' => 'Хан чаккхе — хьалхалера.',
+'protect-unchain-permissions' => 'Схьабелла кхин гӀорралин гӀирс',
 'protect-text' => "Кхузéхь хьо хьажало хийцалуш гlаролли локхалла оцу агlонашна '''$1'''.",
 'protect-locked-access' => "Хьан дlаязваларéхь тоъал бакъо яц гlароллийн локхаллéхь агlон хийцам бá. Дlадоьлху хlоттийнарш оцу агlонна '''$1''':",
 'protect-cascadeon' => 'Хlара агlо гlароллийца ю, хlунд аьлча иза латийна {{PLURAL:$1|лахахьа гойтучу агlонца, цуьнца хlоттийна|лахахьа гойтучу агlоншца, цаьрца хlоттийна}} чахчарийца гlаролла. Хьога хийцалур ю гlаролли локхалла хlокху агlон, амма оцо хийцам бийра бац чахчарехь йолучу гlароллийна.',
@@ -1227,6 +1251,9 @@ PICT # тайп тайпан
 'protect-expiry-indefinite' => 'хан чаккхе йоцуш',
 'protect-cascade' => 'Гlаролла йé агlонаш, хlокху агlонца хlоттайелларш (чахчарé гlаролла)',
 'protect-cantedit' => 'Хьéга хийцам цабало хlокху агlон гlаролли локхалан, хlуд аьлча хьан бакъо яц оцун рéдаккха.',
+'protect-othertime' => 'Кхин хан:',
+'protect-othertime-op' => 'кхин хан',
+'protect-otherreason' => 'Кхин бахьна/тӀетохар:',
 'protect-otherreason-op' => 'Кхин бахьан',
 'restriction-type' => 'Бакъо:',
 'restriction-level' => 'Тlевитарна локхалла:',
@@ -1248,7 +1275,7 @@ PICT # тайп тайпан
 'undeleterevdel' => 'Метта хlоттор хира дац, нагахь иза дакъошкахь дlадайина далахь а тlаьххьара кисак башхо йа хlума.
 Иштнарг хилча ахьа дlабаккха беза хlоттийна болу къастам йа хьагайта тlаьххьара дlайайина башхо.',
 'undeletebtn' => 'МеттахӀоттае',
-'undeletelink' => 'хьажа/метта хlоттаде',
+'undeletelink' => 'хьажа/меттахӀоттае',
 'undeleteviewlink' => 'хьажа',
 'undeleteinvert' => 'Къастае массо',
 'undeletecomment' => 'Бахьан:',
@@ -1311,10 +1338,19 @@ PICT # тайп тайпан
 'ipbexpiry' => 'Хан чекхйолу:',
 'ipbreason' => 'Бахьан:',
 'ipbreasonotherlist' => 'Кхин бахьан',
+'ipbreason-dropdown' => '* Гуттар хуьлу бахьанца сацийна
+** Харц хаамаш дӀаязбеш ву
+** АгӀонашчур яззамаш дӀабохуш ву
+** Спам-хьажоригаш кхечу сайташ тӀе 
+** МаьӀнадоцу йозанаш яздеш ву
+** Декъашхошна кхерам туьйсуш тӀехьавелла ву
+** Массийта цӀерашца зулам деш ву (ю)
+** Декъашхочун цӀе тӀеэца йиш йоцуш ю',
 'ipbcreateaccount' => 'Цамагдо дӀаязвалар',
 'ipbemailban' => 'Цамагдо декъашхошка хааман кехаташ кхехьийта',
 'ipbenableautoblock' => 'Сацае декъашхочо лелош йолу IP-адресаш',
 'ipbsubmit' => 'Сацаве декъашхо',
+'ipbother' => 'Кхин хан:',
 'ipboptions' => '2 сахьат:2 hours,1 де:1 day,3 де:3 days,1 кlиран:1 week,2 кlиран:2 weeks,1 бутт:1 month,3 бутт:3 months,6 бутт:6 months,1 шо:1 year,цlкъа:infinite',
 'ipbwatchuser' => 'ТӀетоха тергаме могӀам юкъа цуьнан долахь йолу агӀо а цуьнан дийцаре агӀо а',
 'ipb-disableusertalk' => 'Цамагдо шин дийцаре агӀо та я сацийна волучу хенахь',
@@ -1327,6 +1363,7 @@ PICT # тайп тайпан
 'ipblocklist' => 'Сацийна IP-долу меттиг а дlалаьрра язбаларш',
 'blocklist-reason' => 'Бахьан:',
 'ipblocklist-submit' => 'Лаха',
+'infiniteblock' => 'хан чаккхе йоцуш',
 'blocklink' => 'сацаве',
 'unblocklink' => 'хьаваста',
 'change-blocklink' => 'хийцам бе сацорна',
@@ -1673,6 +1710,8 @@ PICT # тайп тайпан
 'logentry-move-move-noredirect' => '$1 {{GENDER:$2|цӀе хийцина|цӀе хийцина}} $3 оцу $4 дӀасахьажийнарг цаюьтуш',
 'logentry-move-move_redir' => '$1 {{GENDER:$2|цӀе хийцина|цӀе хийцина}} $3 оцу $4 дӀасахьажоран тӀохул',
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|цӀе хийцина|цӀе хийцина}} $3 оцу $4 дӀасахьажоран тӀохул а дӀасахьажийнарг цаюьтуш а',
+'logentry-newusers-newusers' => '{{GENDER:$2|ДӀавазвелла|ДӀаязелла}} керла декъашхо $1',
+'logentry-newusers-create' => '{{GENDER:$2|ДӀавазвелла|ДӀаязелла}} керла декъашхо $1',
 
 # Search suggestions
 'searchsuggest-search' => 'Лаха',

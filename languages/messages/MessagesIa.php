@@ -560,8 +560,6 @@ Non oblida personalisar tu [[Special:Preferences|preferentias in {{SITENAME}}]].
 'yourname' => 'Nomine de usator:',
 'userlogin-yourname' => 'Nomine de usator�',
 'userlogin-yourname-ph' => 'Entra tu nomine de usator',
-'createacct-helpusername-url' => '{{ns:Project}}:Politica_de_nomines_de_usator',
-'createacct-helpusername-link' => '[[{{MediaWiki:createacct-helpusername-url}}|(adjuta me a seliger)]]',
 'yourpassword' => 'Contrasigno:',
 'userlogin-yourpassword' => 'Contrasigno',
 'userlogin-yourpassword-ph' => 'Entra tu contrasigno',
