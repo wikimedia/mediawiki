@@ -685,14 +685,25 @@ $2',
 'logout' => 'Դուրս գալ համակարգից',
 'userlogout' => 'Ելնել համակարգից',
 'notloggedin' => 'Դուք չեք մտել համակարգ',
-'nologin' => "Դեռևս չե՞ք գրանցվել։ '''$1'''։",
+'userlogin-joinproject' => 'Միցել է {{SITENAME}}-{{grammar:genitive|ը}}',
+'nologin' => "Դեռևս չե՞ք գրանցվել '''$1'''։",
 'nologinlink' => 'Ստեղծեք մասնակցային հաշիվ',
 'createaccount' => 'Ստեղծել նոր հաշիվ',
 'gotaccount' => "Դուք արդեն գրանցվա՞ծ եք։ '''$1'''։",
 'gotaccountlink' => 'Մուտք գործեք համակարգ',
 'userlogin-resetlink' => 'Մոռացե՞լ եք Ձեր լոգին տվյալները։',
+'createacct-emailrequired' => 'Էլ-փոստի հասցեն',
 'createaccountmail' => 'էլ-փոստով',
 'createaccountreason' => 'Պատճառը՝',
+'createacct-reason' => 'Պատճառ',
+'createacct-reason-ph' => 'Ինչու եք ստեղծել մեկ այլ հաշիվ',
+'createacct-captcha' => 'Անվտանգության ստուգում',
+'createacct-imgcaptcha-ph' => 'Մուտքագրեք տեքստը տեսնում եք վերը նշվածը',
+'createacct-submit' => 'Ստեղծեք ձեր հաշիվը',
+'createacct-benefit-heading' => '{{SITENAME}}-ը կատարվում է նման մարդկանց համար:',
+'createacct-benefit-body1' => '{{PLURAL:$1|խմբագրել|խմբագրումներ}}',
+'createacct-benefit-body2' => '{{PLURAL:$1|էջ|էջեր}}',
+'createacct-benefit-body3' => 'վերջին {{PLURAL:$1|ներդրումը|ներդրումները}}',
 'badretype' => 'Ձեր մուտքագրած գաղտնաբառերը չեն համընկնում։',
 'userexists' => 'Այս մասնակցի անունը արդեն զբաղված է։ Խնդրում ենք ընտրել մեկ այլ անուն։',
 'loginerror' => 'Մուտքի սխալ',
@@ -777,7 +788,9 @@ $2',
 'passwordreset-legend' => 'Վերականգնել գաղտնաբառը',
 'passwordreset-disabled' => 'Գաղտնաբառի վերականգնումը այս վիքիում թույլատրված չէ։',
 'passwordreset-username' => 'Մասնակցի անուն՝',
+'passwordreset-domain' => 'Դոմեն՝',
 'passwordreset-email' => 'Էլ-փոստի հասցեն՝',
+'passwordreset-emailtitle' => '{{SITENAME}} հաշվի մանրամասները',
 'passwordreset-emailelement' => 'Մասնակցային անունը՝ $1
 Ժամանակավոր գաղտնաբառը՝ $2',
 'passwordreset-emailsent' => 'Ուղարկվեց հիշեցնող էլ․ նամակ։',
@@ -1748,6 +1761,10 @@ $1-ը հղվել է $2 ից',
 'listusers-noresult' => 'Այդպիսի մասնակիցներ չգտնվեցին։',
 'listusers-blocked' => '(արգելափակված)',
 
+# Special:ActiveUsers
+'activeusers' => 'Ակտիվ մասնակիցների ցանկ',
+'activeusers-noresult' => 'Այդպիսի մասնակիցներ չեն գտնվել։',
+
 # Special:ListGroupRights
 'listgrouprights-members' => '(անդամների ցանկ)',
 'listgrouprights-addgroup' => 'Ավելացնեել {{PLURAL:$2|խումբ|խմբեր}}՝  $1',
@@ -2526,7 +2543,7 @@ $1',
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Լայնք',
 'exif-imagelength' => 'Բարձրություն',
 'exif-artist' => 'Հեղինակ',
@@ -2668,10 +2685,6 @@ $3
 
 # Special:Version
 'version' => 'ՄեդիաՎիքի տարբերակը',
-
-# Special:FilePath
-'filepath-page' => 'Նիշք՝',
-'filepath-submit' => 'Անցնել',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Փնտրել կրկնօրինակ պատկերներ',

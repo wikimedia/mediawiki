@@ -148,11 +148,11 @@ $messages = array(
 'sep' => 'stè',
 'oct' => 'otó',
 'nov' => 'nov',
-'dec' => 'Dzè',
+'dec' => 'dzè',
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Categorìa|Categorìe}}',
-'category_header' => 'Artìcoj ant la categorìa "$1"',
+'category_header' => 'Pàgine ant la categorìa «$1»',
 'subcategories' => 'Sotacategorìe',
 'category-media-header' => 'Archivi ant la categorìa "$1"',
 'category-empty' => "''Al dì d'ancheuj la categorìa a l'ha pa andrinta nì 'd pàgine, nì d'archivi multimojen.''",

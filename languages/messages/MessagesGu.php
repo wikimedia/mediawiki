@@ -604,6 +604,7 @@ $2',
 'userlogin-resetlink' => 'પોતાની પ્રવેશ માહિતી ભૂલી ગયા છો?',
 'userlogin-resetpassword-link' => 'તમારો પાસવર્ડ બદલો',
 'helplogin-url' => 'Help:પ્રવેશ માટે',
+'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|પ્વેશવા માટેની મદદ]]',
 'createacct-join' => 'તમારી માહિતી નીચે દાખલ કરો.',
 'createacct-emailrequired' => 'ઇમેલ સરનામું',
 'createacct-emailoptional' => 'ઇમેલ સરનામું (વૈકલ્પિક)',
@@ -612,10 +613,11 @@ $2',
 'createacct-realname' => 'સાચું નામ (વૈકલ્પિક)',
 'createaccountreason' => 'કારણ:',
 'createacct-reason' => 'કારણ',
+'createacct-reason-ph' => 'તમે કેમ બીજું ખાતું બનાવો છો',
 'createacct-captcha' => 'સલામતી ચકાસણી',
-'createacct-captcha-help-url' => '{{ns:Project}}:ખાતાની વિનંતી કરો',
 'createacct-imgcaptcha-ph' => 'તમે જે લખાણ જુઓ છો તે દાખલ કરો',
 'createacct-submit' => 'તમારું ખાતું બનાવો',
+'createacct-benefit-heading' => '{{SITENAME}} એ તમારા જેવા લોકો વડે બનાવેલ છે.',
 'createacct-benefit-body1' => '{{PLURAL:$1|ફેરફાર|ફેરફારો}}',
 'createacct-benefit-body2' => '{{PLURAL:$1|પાનું|પાનાંઓ}}',
 'createacct-benefit-body3' => 'તાજેતરનાં {{PLURAL:$1|યોગદાનકર્તા|યોગદાનકર્તાઓ}}',
@@ -718,6 +720,7 @@ $2',
 'resetpass-wrong-oldpass' => 'અવૈધ હંગામે કે કાયમી ગુપ્તસંજ્ઞા.
 કદાચ તમે પહેલેથી સફળતા પૂર્વક તમારી ગુપ્ત સંજ્ઞા બદલી દીધી હોય કે નવી ગુપ્ત સંંજ્ઞામાટે વિનંતિ કરી હોય',
 'resetpass-temp-password' => 'કામચલાવ ગુપ્તસંજ્ઞા:',
+'resetpass-abort-generic' => 'વિસ્તારક વડે પાસવર્ડ બદલવાનું રોકી રખાયું છે.',
 
 # Special:PasswordReset
 'passwordreset' => 'પાસવર્ડ રીસેટ કરો',
@@ -748,7 +751,7 @@ $2
 કામચલાઉ પાસવર્ડ: $2',
 'passwordreset-emailsent' => 'પાસવર્ડ બદલવાનો ઇમેલ મોકલવામાં આવ્યો છે.',
 'passwordreset-emailsent-capture' => 'પાસવર્ડ બદલવાનો ઇમેલ મોકલવામાં આવ્યો છે, જે નીચે પ્રમાણે છે.',
-'passwordreset-emailerror-capture' => 'એક પાસવર્ડ રિસેટ ઇમેલ બનાવવામાં આવ્યો છે, જે નીચે પ્રમાણે છે, પરંતુ તે સભ્યને મોકલવામાં નિષ્ફળ થયો છે: $1',
+'passwordreset-emailerror-capture' => 'પાસવર્ડ ફરી ગોઠવવા માટેનો ઇમેલ બનાવવામાં આવ્યો છે, જે નીચે પ્રમાણે છે, પરંતુ તે {{GENDER:$2|સભ્ય}}ને મોકલવામાં નિષ્ફળ થયો છે: $1',
 
 # Special:ChangeEmail
 'changeemail' => 'ઈ મેલ ખાતુ બદલવા માટે',
@@ -3690,6 +3693,8 @@ $5
 
 # Special:Redirect
 'redirect-submit' => 'જાઓ',
+'redirect-value' => 'કિંમત:',
+'redirect-user' => 'સભ્ય નામ',
 'redirect-revision' => 'પાનાંની આવૃત્તિ',
 'redirect-file' => 'ફાઇલ નામ',
 'redirect-not-exists' => 'કિંમત મળી નહી',
@@ -3794,7 +3799,7 @@ $5
 # New logging system
 'logentry-delete-delete' => '$1 દ્વારા પાનું $3 {{GENDER:$2|દૂર કરવામાં આવ્યું}}',
 'logentry-delete-restore' => '$1 {{GENDER:$2|પુનઃસંગ્રહ}} પાનું $3',
-'logentry-delete-event' => '$1 બદલાઈ ના દૃશ્યતા {{PLURAL: $5 | લોગ ઘટના | $5 લોગ}} $3 ઘટનાઓ પર $4',
+'logentry-delete-event' => '$1 એ {{PLURAL:$5|લૉગ ઘટના|$5 લૉગ ઘટનાઓ}} ની દ્રશ્યતા $3 પર {{GENDER:$2|બદલેલ}} છે: $4',
 'logentry-delete-revision' => '$1 બદલાઈ ના દૃશ્યતા {{PLURAL: $5 | સુધારણા | $5 આવૃત્તિઓ}} $3 પાનાં પર: $4',
 'logentry-delete-event-legacy' => '$1 બદલાઈ $3 પર લોગ ઘટનાઓ દૃશ્યતા',
 'logentry-delete-revision-legacy' => '$1 બદલાઈ પાનાં પર આવૃત્તિઓની દૃશ્યતા $3',

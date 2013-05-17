@@ -107,6 +107,7 @@ $messages = array(
 'tog-diffonly' => 'Ayaw igpakita an sulod han pakli ha ilarom han pagkakaiba',
 'tog-showhiddencats' => 'Igpakita an mga tinago nga mga kaarangay',
 'tog-norollbackdiff' => 'Iglat-ang an kaiban kahuman himoa an libot-pabalik',
+'tog-useeditwarning' => 'Pasabti ako kun nabaya ako hin ginliwat ng pakli nga waray katipig an mga pagbag-o',
 
 'underline-always' => 'Pirme',
 'underline-never' => 'Diri',
@@ -449,6 +450,9 @@ Alayon pagutro kahuman hin pipira ka mga minuto.',
 'viewyourtext' => "Puydi nim makit-an ngan makopya an tinikangan han '''imo mga pagliwat''' ha dinhi nga pakli:",
 'protectedinterface' => 'Ini nga pakli in nahatag hin teksto hit interface para han software han hin nga wiki, ngan in pinasasaliporan para makalikay hit pag-abuso.
 Para makadugang o makaliwat hin mga paghubad para han tanan nga mga wiki, alayon paggamit han [//translatewiki.net/ translatewiki.net], an kanan MediaWiki proyekto hin lokalisasyon.',
+'editinginterface' => "'''Pahimatngon:''' Imo ginliliwat an pakli nga gingagamit paghatag hin interface text para han software.
+An mga pagbag-o hini nga pakli in makakaapekto han user interface han iba nga mga gumaramit hini nga wiki.
+Para makadugang o makabag-o han mga paghubad para han ngatanan nga mga wiki, alayon paggamit han [//translatewiki.net/ translatewiki.net], an lokalisasyon nga proyekto han MediaWiki.",
 'sqlhidden' => '(nakatago an SQL query)',
 'namespaceprotected' => "Diri ka gintutugutan pagliwat han mga pakli ha ngaran-lat'ang nga '''$1'''.",
 'customcssprotected' => 'Diri ka gintutugotan pagliwat hini nga CSS nga pakli, tungod nga nagsusulod ini hin kanan iba nga tawo personal nga karuyagon.',
@@ -460,6 +464,7 @@ An katadungan nga ginhatag amo in "\'\'$2\'\'".',
 
 An magdudurmara nga nagtrangka hini in naghatag hini nga eksplenasyon: "$3".',
 'invalidtitle-knownnamespace' => 'Titulo nga inbalido nga may pan-ngaran "$2 ngan teksto nga "$3"',
+'invalidtitle-unknownnamespace' => 'Diri ginkakarawat nga titulo tungod mayda ini hin mga diri nakikilala nga ngaran-lat\'ang ihap $1 ngan teksto "$2"',
 'exception-nologin' => 'Diri nakalog-in',
 'exception-nologin-text' => 'Ini nga pakli o pagbuhat in nagkikinahanglan nga ikaw in mag-log-in ha dinhi nga wiki.',
 
@@ -476,12 +481,22 @@ Puydi ka magpadayon paggamit hin {{SITENAME}} nga diri magpapakilala, o puydi ka
 'welcomecreation-msg' => 'An im akawnt in nahimo na.
 Ayaw kalimti pagbalyo han imo [[Special:Preferences|{{SITENAME}} preperensya]].',
 'yourname' => 'Agnay hit gumaramit:',
+'userlogin-yourname' => 'Ngaran han gumaramit',
+'userlogin-yourname-ph' => 'Igbutang an imo ngaran-gumaramit',
 'yourpassword' => 'Tigaman-pagsulod:',
+'userlogin-yourpassword' => 'Tigaman pagsakob',
+'userlogin-yourpassword-ph' => 'Igbutang an imo tigaman-pagsakob',
+'createacct-yourpassword-ph' => 'Pagbutang hin uska tigaman-pagsakob',
 'yourpasswordagain' => 'Utroha pagbutang an tigaman-han-pagsakob:',
+'createacct-yourpasswordagain' => 'Igkompirma an tigaman-pagsakob',
+'createacct-yourpasswordagain-ph' => 'Igbutang an tigaman-pagsakob utro',
 'remembermypassword' => "Hinumdumi an akon pan-sakob dinhi nga panngaykay ''(browser)'' (para ha pinakamaiha $1 {{PLURAL:$1|ka adlaw|ka mga adlaw}})",
+'userlogin-remembermypassword' => 'I-log-in la ako',
+'userlogin-signwithsecure' => 'Gamit hin koneksyon nga nakakasegurado',
 'securelogin-stick-https' => 'Nagpapabilin nga masumpay ha HTTPS kahuman makalog-in',
 'yourdomainname' => 'Imo dominyo:',
 'password-change-forbidden' => 'Diri ka makakabalyo hin pulong-pagsulod ha dinhi nga wiki.',
+'externaldberror' => 'Mayda authenticaton database error o diri ka tinutugotan pag-update an imo akwant ha gawas.',
 'login' => 'Sakob',
 'nav-login-createaccount' => 'Magpalista nga masakob / paghimo hin bag-o nga akawnt',
 'loginprompt' => "Kinahanglan mo hin mga kuki (''cookie'') para makapag log-in ha {{SITENAME}}.",
@@ -490,18 +505,37 @@ Ayaw kalimti pagbalyo han imo [[Special:Preferences|{{SITENAME}} preperensya]].'
 'logout' => 'Gawas',
 'userlogout' => 'Gawas',
 'notloggedin' => 'Diri sakob',
+'userlogin-noaccount' => 'Waray ka akawnt?',
+'userlogin-joinproject' => 'Tambong ha {{SITENAME}}',
 'nologin' => 'Waray ka akawnt? $1.',
 'nologinlink' => 'Paghimo hin akawnt',
 'createaccount' => 'Himo-a an akawnt',
 'gotaccount' => '¿Mayda kana akawnt? $1.',
 'gotaccountlink' => 'Sakob',
 'userlogin-resetlink' => 'Nangalimot han imo detalye han pagsakob?',
+'userlogin-resetpassword-link' => 'Ig-reset an imo tigaman-pagsakob',
+'helplogin-url' => 'Help:Pag-log-in',
+'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Bulig han pag-log-in]]',
+'createacct-join' => 'Igbutang an imo impormasyon ha ubos.',
+'createacct-emailrequired' => 'Email address',
+'createacct-emailoptional' => 'Email address (opsyonal)',
+'createacct-email-ph' => 'Igbutang an imo email address',
 'createaccountmail' => 'Gamiti hin temporaryo nga bisan ano nag password ngan igpadangat ngada ha e-mail address nga nakasurat ha ubos',
+'createacct-realname' => 'Tinuod nga ngaran (opsyonal)',
 'createaccountreason' => 'Rason:',
+'createacct-reason' => 'Rason',
+'createacct-reason-ph' => 'Kay ano nahimo ka hin usa pa nga akawnt',
+'createacct-captcha' => 'Pagkita han seguridad',
+'createacct-imgcaptcha-ph' => 'Igbutang an sinurat nga nakikita mo ha igbaw',
+'createacct-submit' => 'Ighimo an im akawnt',
+'createacct-benefit-heading' => '{{SITENAME}} in ginhimo hin tawo nga sugad ha imo.',
+'createacct-benefit-body1' => '{{PLURAL:$1|pagliwat|mga pagliwat}}',
+'createacct-benefit-body2' => '{{PLURAL:$1|ka pakli|ka mga pakli}}',
 'badretype' => 'Diri naangay an mga tigaman-pagsulod nga im ginbutang',
 'userexists' => 'An agnay hiton gumaramit nga im ginbutang in gingamit na.
 Alayon pagpili hin lain nga ngaran.',
 'loginerror' => 'Sayop hin pagsakob',
+'createacct-error' => 'Pakyas an paghimo han akawnt',
 'createaccounterror' => 'Diri makakahimo hin akawnt: $1',
 'nocookieslogin' => '{{SITENAME}} in nagkikinahanglan hin mga kuki para makapagpalog-in hin mga gumaramit.  An im mga kuki in diri nagana.
 Alayon paganaha hira ngan utro liwat.',
@@ -1001,6 +1035,7 @@ Diri ka gintutugotan pagliwat han mga katungod han gumaramit ha iba nga mga wiki
 'right-blockemail' => 'Pugnga an uska gumaramit tikang ha pagpadangat hin e-mail',
 'right-hideuser' => 'Pugnga an uska agnay-hin-gumaramit, tago-a ito tikang ha publiko',
 'right-unblockself' => 'Lugaring nga makakatanggal han pagpugong',
+'right-editinterface' => 'Igliwat an user interface',
 'right-editusercssjs' => 'Igliwat an kanan iba mga gumaramit nga mga paypay han CSS ngan JavaScript',
 'right-editusercss' => 'Igliwat an kanan iba mga gumaramit nga mga paypay han CSS',
 'right-edituserjs' => 'Iliwat an kanan iba mga gumaramit nga paypay han JavaScript',
@@ -1421,6 +1456,12 @@ An paglaladawan han iya [$2 fayl han paglaladawan nga pakli] didto in ginpapakit
 'listusers-submit' => 'Pakit-a',
 'listusers-noresult' => 'Waray gumaramit nga nahiagian.',
 'listusers-blocked' => '(ginpugngan)',
+
+# Special:ActiveUsers
+'activeusers' => 'Taramdan hin mga gumaramit nga nanggigios',
+'activeusers-hidebots' => 'Igtago an mga bot',
+'activeusers-hidesysops' => 'Igtago an mga magdudumara',
+'activeusers-noresult' => 'Waray gumaramit nga nahiagian.',
 
 # Special:ListGroupRights
 'listgrouprights-group' => 'Hugpo',
@@ -1969,7 +2010,7 @@ An iba in daan nakatago.
 * gpsngalongitud
 * gpsngaaltitud',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Kahaluag',
 'exif-imagelength' => 'Kahitaas',
 'exif-ycbcrpositioning' => 'Pagpoposisyon han Y ngan C',
@@ -2228,11 +2269,6 @@ An iba in daan nakatago.
 'version-entrypoints' => 'Surudlan nga mga URL',
 'version-entrypoints-header-entrypoint' => 'Surudlan',
 'version-entrypoints-header-url' => 'URL',
-
-# Special:FilePath
-'filepath' => 'Aragian han paypay',
-'filepath-page' => 'Paypay:',
-'filepath-submit' => 'Kadto-a',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Pamiling hin nadoble nga mga paypay',

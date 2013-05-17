@@ -81,6 +81,7 @@
  * @author Александр Сигачёв
  * @author Гусейн
  * @author ОйЛ
+ * @author Умар
  * @author לערי ריינהארט
  * @author გიორგიმელა
  */
@@ -841,7 +842,6 @@ $2',
 'yourname' => 'Имя учётной записи:',
 'userlogin-yourname' => 'Имя учётной записи',
 'userlogin-yourname-ph' => 'Введите имя вашей учётной записи',
-'createacct-helpusername-link' => '[[{{MediaWiki:createacct-helpusername-url}}|(помогите мне выбрать)]]',
 'yourpassword' => 'Пароль:',
 'userlogin-yourpassword' => 'Пароль',
 'userlogin-yourpassword-ph' => 'Введите ваш пароль',
@@ -872,6 +872,7 @@ $2',
 'gotaccount' => "Вы уже зарегистрированы? '''$1'''.",
 'gotaccountlink' => 'Представьтесь',
 'userlogin-resetlink' => 'Забыли данные для входа?',
+'userlogin-resetpassword-link' => 'Сброс пароля',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Помощь со входом в систему]]',
 'createacct-join' => 'Введите свои данные ниже.',
 'createacct-emailrequired' => 'Адрес электронной почты',
@@ -883,6 +884,7 @@ $2',
 'createacct-reason' => 'Причина',
 'createacct-captcha' => 'Проверка безопасности',
 'createacct-imgcaptcha-ph' => 'Введите текст, который вы видите выше',
+'createacct-submit' => 'Зарегистрировать учётную запись',
 'createacct-benefit-heading' => '{{SITENAME}} сделана такими же людьми, как вы.',
 'createacct-benefit-body1' => '{{PLURAL:$1|правка|правки|правок}}',
 'createacct-benefit-body2' => '{{PLURAL:$1|страница|страницы|страниц}}',

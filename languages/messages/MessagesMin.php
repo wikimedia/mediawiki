@@ -313,19 +313,19 @@ $1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite' => 'Tantang {{SITENAME}}',
-'aboutpage' => 'Project:Tantang',
+'aboutpage' => 'Project:Tantang_{{SITENAME}}',
 'copyright' => 'Isi tasadio dalam $1',
 'copyrightpage' => '{{ns:project}}:Hak cipta',
 'currentevents' => 'Kajadian kini ko',
 'currentevents-url' => 'Project:Kajadian kini ko',
-'disclaimers' => 'Sanggah',
+'disclaimers' => 'Sanggahan umum',
 'disclaimerpage' => 'Project:Sanggahan umum',
 'edithelp' => 'Bantuan suntiangan',
 'edithelppage' => 'Help:Panyuntiangan',
 'helppage' => 'Help:Isi',
 'mainpage' => 'Palanta',
 'mainpage-description' => 'Palanta',
-'policy-url' => 'Project:Kabijakan',
+'policy-url' => 'Project:Kabijakan jo padoman',
 'portal' => 'Portal komunitas',
 'portal-url' => 'Project:Portal komunitas',
 'privacy' => 'Kabijakan privasi',
@@ -491,8 +491,6 @@ Parhatian bahawa bara laman mungkin masih taruih manunjukkan bahawa Sanak masih 
 'yourname' => 'Namo pangguno:',
 'userlogin-yourname' => 'Namo pangguno',
 'userlogin-yourname-ph' => 'Masuakan namo pangguno',
-'createacct-helpusername-url' => '{{ns:Project}}:Kabijakan namo pangguno',
-'createacct-helpusername-link' => '[[{{MediaWiki:createacct-helpusername-url}}|(piliahan namo pangguno)]]',
 'yourpassword' => 'Kato sandi:',
 'userlogin-yourpassword' => 'Kato sandi',
 'userlogin-yourpassword-ph' => 'Masuakan kato sandi',
@@ -523,6 +521,7 @@ Parhatian bahawa bara laman mungkin masih taruih manunjukkan bahawa Sanak masih 
 'gotaccount' => "Alah tadaftar sabagai pangguno? '''$1'''.",
 'gotaccountlink' => 'Masuak log',
 'userlogin-resetlink' => 'Lupo rincian info masuak Sanak?',
+'userlogin-resetpassword-link' => 'Buek ulang kato sandi',
 'helplogin-url' => 'Help:Masuak log',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Bantuan untuak masuak log]]',
 'createacct-join' => 'Masuakan informasi Sanak di bawah ko.',
@@ -535,7 +534,6 @@ Parhatian bahawa bara laman mungkin masih taruih manunjukkan bahawa Sanak masih 
 'createacct-reason' => 'Alasan',
 'createacct-reason-ph' => 'Manga Sanak mambuek akun lain',
 'createacct-captcha' => 'Pamarisoan kaamanan',
-'createacct-captcha-help-url' => '{{ns:Project}}:Pamintaan mambuek akun',
 'createacct-imgcaptcha-ph' => 'Masuakan teks nan Sanak caliak di ateh',
 'createacct-submit' => 'Buek akun Sanak',
 'createacct-benefit-heading' => '{{SITENAME}} dibuek dek urang-urang saroman Sanak.',
@@ -765,8 +763,8 @@ Jikok Sanak indak sangajo sampai ka laman ko, klik tombol '''back''' pado paramb
 'anontalkpagetext' => "----''Iko adolah laman rundiang saurang pangguno anonim nan alun mambuek akun atau indak manggunoannyo.
 Jadi, kami tapaso mamakai alamat IP nan takaik untuak mangenalinyo.
 Jikok Sanak adolah pangguno anonim dan maraso mandapek komentar nan indak lamak nan ditujuan langsung kapado Sanak, cubolah [[Special:UserLogin/signup|mambuek akun]] atau [[Special:UserLogin|masuak log]] guno manghindari karancuan jo pangguno anonim lainnyo.''",
-'noarticletext' => 'Kini ko indak ada teks di laman iko.
-Sanak dapek [[Special:Search/{{PAGENAME}}|malakukan pancarian untuak judul laman iko]] di laman-laman lain, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} mancari log takaik], atau [{{fullurl:{{FULLPAGENAME}}|action=edit}} manyuntiang laman iko]</span>.',
+'noarticletext' => 'Kini ko indak ado teks di laman ko.
+Sanak dapek [[Special:Search/{{PAGENAME}}|malakuan pancarian untuak judul laman ko]] di laman-laman lain, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} mancari log takaik], atau [{{fullurl:{{FULLPAGENAME}}|action=edit}} manyuntiang laman iko]</span>.',
 'noarticletext-nopermission' => 'Kini ko indak ado teks dalam laman ko.
 Sanak dapek [[Special:Search/{{PAGENAME}}|malakukan pancarian untuak judul laman ko]] di laman lain, atau <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} mancahari log takaik] </span>, tapi Sanak indak punyo izin untuak mambuek laman ko.',
 'missing-revision' => 'Revisi $1 di laman nan banamo "{{PAGENAME}}" ko indak ado.
@@ -2278,12 +2276,12 @@ Sanak hanyo buliah mancaliak sumbernyo sajo',
 'minutes-abbrev' => '$1 min',
 'hours-abbrev' => '$1 j',
 'days-abbrev' => '$1 h',
-'seconds' => '{{PLURAL:$1|$1 datiak}}',
-'minutes' => '{{PLURAL:$1|$1 minik}}',
-'hours' => '{{PLURAL:$1|$1 jam}}',
-'days' => '{{PLURAL:$1|$1 ari}}',
-'weeks' => '{{PLURAL:$1|$1 minggu}}',
-'months' => '{{PLURAL:$1|$1 bulan}}',
+'seconds' => '{{PLURAL:$1|satu datiak|$1 datiak}}',
+'minutes' => '{{PLURAL:$1|$1 minik|$1 minik}}',
+'hours' => '$1 {{PLURAL:$1|jam}}',
+'days' => '$1 {{PLURAL:$1|ari}}',
+'weeks' => '$1 {{PLURAL:$1|minggu}}',
+'months' => '$1 {{PLURAL:$1|bulan}}',
 'years' => '{{PLURAL:$1|$1 taun}}',
 'ago' => '$1 nan lalu',
 'just-now' => 'sabanta ko',
@@ -2384,7 +2382,7 @@ Nan lainnyo akan tasuruak sacaro baku.
 'exif-relatedsoundfile' => 'Berkas audio nan bahubuangan',
 
 # External editor support
-'edit-externally' => 'Suntiang berkas ko dengan aplikasi lua',
+'edit-externally' => 'Suntiang berkas ko jo aplikasi lua',
 'edit-externally-help' => '(Caliak [//www.mediawiki.org/wiki/Manual:External_editors instruksi pangaturan] untuak informasi lanjuiknyo)',
 
 # 'all' in various places, this might be different for inflected languages
