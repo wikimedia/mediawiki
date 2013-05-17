@@ -4607,6 +4607,22 @@ $wgShowSQLErrors = false;
 $wgShowExceptionDetails = false;
 
 /**
+ * Array of functions which need parameters redacted from stack traces shown to
+ * clients and logged. Keys are in the format '[class::]function', and the
+ * values should be either an integer or an array of integers. These are the
+ * indexes of the parameters which need to be kept secret.
+ */
+$wgRedactedFunctionArguments = array(
+	'User::setPassword' => 0,
+	'User::setInternalPassword' => 0,
+	'User::checkPassword' => 0,
+	'User::setNewpassword' => 0,
+	'User::comparePasswords' => array( 0, 1 ),
+	'User::checkTemporaryPassword' => 0,
+	'User::setToken' => 0,
+);
+
+/**
  * If true, show a backtrace for database errors
  */
 $wgShowDBErrorBacktrace = false;
