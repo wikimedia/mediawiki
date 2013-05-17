@@ -309,6 +309,18 @@ This option means "underline links as in your user skin or your browser", there 
 'oct' => 'Abbreviation of October, the tenth month of the Gregorian calendar',
 'nov' => 'Abbreviation of November, the eleventh month of the Gregorian calendar',
 'dec' => 'Abbreviation of December, the twelfth month of the Gregorian calendar',
+'january-date' => 'A date in the Gregorian month of January. $1 is the numerical date, for example "23".',
+'february-date' => 'A date in the Gregorian month of February. $1 is the numerical date, for example "23".',
+'march-date' => 'A date in the Gregorian month of March. $1 is the numerical date, for example "23".',
+'april-date' => 'A date in the Gregorian month of April. $1 is the numerical date, for example "23".',
+'may-date' => 'A date in the Gregorian month of May. $1 is the numerical date, for example "23". The month name is not abbreviated.',
+'june-date' => 'A date in the Gregorian month of June. $1 is the numerical date, for example "23".',
+'july-date' => 'A date in the Gregorian month of July. $1 is the numerical date, for example "23".',
+'august-date' => 'A date in the Gregorian month of August. $1 is the numerical date, for example "23".',
+'september-date' => 'A date in the Gregorian month of September. $1 is the numerical date, for example "23".',
+'october-date' => 'A date in the Gregorian month of October. $1 is the numerical date, for example "23".',
+'november-date' => 'A date in the Gregorian month of November. $1 is the numerical date, for example "23".',
+'december-date' => 'A date in the Gregorian month of December. $1 is the numerical date, for example "23".',
 
 # Categories related messages
 'pagecategories' => 'Used in the categories section of pages. Is followed by a colon and a list of categories.',
