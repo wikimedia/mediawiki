@@ -865,14 +865,16 @@ class MessageCache {
 	 *
 	 * @param string $title Message cache key with initial uppercase letter.
 	 * @param string $code Code denoting the language to try.
-	 * @return string|bool False on failure
+	 * @return string|bool The message, or false iff it does not exist or on error
 	 */
 	function getMsgFromNamespace( $title, $code ) {
 		$this->load( $code );
 		if ( isset( $this->mCache[$code][$title] ) ) {
 			$entry = $this->mCache[$code][$title];
 			if ( substr( $entry, 0, 1 ) === ' ' ) {
-				return substr( $entry, 1 );
+				// The message exists, so make sure a string
+				// is returned.
+				return (string)substr( $entry, 1 );
 			} elseif ( $entry === '!NONEXISTENT' ) {
 				return false;
 			} elseif ( $entry === '!TOO BIG' ) {
@@ -895,7 +897,9 @@ class MessageCache {
 		if ( $entry ) {
 			if ( substr( $entry, 0, 1 ) === ' ' ) {
 				$this->mCache[$code][$title] = $entry;
-				return substr( $entry, 1 );
+				// The message exists, so make sure a string
+				// is returned.
+				return (string)substr( $entry, 1 );
 			} elseif ( $entry === '!NONEXISTENT' ) {
 				$this->mCache[$code][$title] = '!NONEXISTENT';
 				return false;

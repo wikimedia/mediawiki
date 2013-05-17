@@ -143,6 +143,9 @@ production.
 * (bug 48294) API: Fix chunk upload async mode.
 * (bug 46749) Broken files tracking category removed from pages if an image
   with that name is uploaded.
+* (bug 14176) System messages that are empty were previously incorrectly treated
+  as non-existent, causing a fallback to the default. This stopped users from
+  overriding system messages to make them blank.
 
 === API changes in 1.22 ===
 * (bug 46626) xmldoublequote parameter was removed. Because of a bug, the
