@@ -309,6 +309,18 @@ This option means "underline links as in your user skin or your browser", there 
 'oct' => 'Abbreviation of October, the tenth month of the Gregorian calendar',
 'nov' => 'Abbreviation of November, the eleventh month of the Gregorian calendar',
 'dec' => 'Abbreviation of December, the twelfth month of the Gregorian calendar',
+'january-date' => 'A date in the Gregorian month of January. $1 is the numerical date, for example "23". The month name may be in the genitive case or not depending on the language.',
+'february-date' => 'A date in the Gregorian month of February. $1 is the numerical date, for example "23". The month name may be in the genitive case or not depending on the language.',
+'march-date' => 'A date in the Gregorian month of March. $1 is the numerical date, for example "23". The month name may be in the genitive case or not depending on the language.',
+'april-date' => 'A date in the Gregorian month of April. $1 is the numerical date, for example "23". The month name may be in the genitive case or not depending on the language.',
+'may-date' => 'A date in the Gregorian month of May. $1 is the numerical date, for example "23". The month name may be in the genitive case or not depending on the language. The month name is not abbreviated.',
+'june-date' => 'A date in the Gregorian month of June. $1 is the numerical date, for example "23". The month name may be in the genitive case or not depending on the language.',
+'july-date' => 'A date in the Gregorian month of July. $1 is the numerical date, for example "23". The month name may be in the genitive case or not depending on the language.',
+'august-date' => 'A date in the Gregorian month of August. $1 is the numerical date, for example "23". The month name may be in the genitive case or not depending on the language.',
+'september-date' => 'A date in the Gregorian month of September. $1 is the numerical date, for example "23". The month name may be in the genitive case or not depending on the language.',
+'october-date' => 'A date in the Gregorian month of October. $1 is the numerical date, for example "23". The month name may be in the genitive case or not depending on the language.',
+'november-date' => 'A date in the Gregorian month of November. $1 is the numerical date, for example "23". The month name may be in the genitive case or not depending on the language.',
+'december-date' => 'A date in the Gregorian month of December. $1 is the numerical date, for example "23". The month name may be in the genitive case or not depending on the language.',
 
 # Categories related messages
 'pagecategories' => 'Used in the categories section of pages. Is followed by a colon and a list of categories.',
