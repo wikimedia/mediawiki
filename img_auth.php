@@ -40,7 +40,7 @@
  */
 
 define( 'MW_NO_OUTPUT_COMPRESSION', 1 );
-require ( __DIR__ . '/includes/WebStart.php' );
+require __DIR__ . '/includes/WebStart.php';
 wfProfileIn( 'img_auth.php' );
 
 # Set action base paths so that WebRequest::getPathInfo()

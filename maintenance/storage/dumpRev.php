@@ -21,7 +21,7 @@
  * @ingroup Maintenance ExternalStorage
  */
 
-require_once( __DIR__ . '/../Maintenance.php' );
+require_once __DIR__ . '/../Maintenance.php';
 
 /**
  * Maintenance script that gets the text of a revision,

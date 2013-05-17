@@ -24,7 +24,7 @@
  * @author  Platonides
  */
 
-require_once( __DIR__ . '/Benchmarker.php' );
+require_once __DIR__ . '/Benchmarker.php';
 
 /**
  * Maintenance script that benchmarks HTTP request vs HTTPS request.

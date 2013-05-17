@@ -163,7 +163,7 @@ MemCacheClient::set_compression($setting)
 
 EXAMPLE:
 <?php
-require("MemCachedClient.inc.php");
+require 'MemCachedClient.inc.php';
 
 // set the servers, with the last one having an integer weight value of 3
 $options["servers"] = array("10.0.0.15:11000","10.0.0.16:11001",array("10.0.0.17:11002", 3));

@@ -21,7 +21,7 @@
  * @ingroup Maintenance
  */
 
-require_once( __DIR__ . '/Maintenance.php' );
+require_once __DIR__ . '/Maintenance.php';
 
 global $optionsWithArgs;
 if ( !isset( $optionsWithArgs ) ) {
@@ -55,5 +55,5 @@ class CommandLineInc extends Maintenance {
 }
 
 $maintClass = 'CommandLineInc';
-require( RUN_MAINTENANCE_IF_MAIN );
+require RUN_MAINTENANCE_IF_MAIN;
 

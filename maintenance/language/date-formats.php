@@ -21,7 +21,7 @@
  * @ingroup MaintenanceLanguage
  */
 
-require_once( __DIR__ . '/../Maintenance.php' );
+require_once __DIR__ . '/../Maintenance.php';
 
 /**
  * Maintenance script that tests various language time and date functions.

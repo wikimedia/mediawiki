@@ -88,7 +88,7 @@ $doxyGenerateMan = false;
 #
 
 define( 'MEDIAWIKI', true );
-require_once( "$mwPath/includes/GlobalFunctions.php" );
+require_once "$mwPath/includes/GlobalFunctions.php";
 
 /**
  * Read a line from the shell

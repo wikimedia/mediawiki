@@ -23,7 +23,7 @@
  */
 
 /** */
-require_once( __DIR__ . '/commandLine.inc' );
+require_once __DIR__ . '/commandLine.inc';
 
 $options = getopt( '', array( 'debug', 'help', 'cache:' ) );
 

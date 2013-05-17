@@ -26,7 +26,7 @@
 
 #$optionsWithArgs = array( 'begin', 'max-slave-lag' );
 
-require_once( __DIR__ . '/Maintenance.php' );
+require_once __DIR__ . '/Maintenance.php';
 
 /**
  * Maintenance script that will find all rows in the categorylinks table

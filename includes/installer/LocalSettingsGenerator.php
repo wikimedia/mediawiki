@@ -144,7 +144,7 @@ class LocalSettingsGenerator {
 
 			foreach ( $this->extensions as $extName ) {
 				$encExtName = self::escapePhpString( $extName );
-				$localSettings .= "require_once( \"\$IP/extensions/$encExtName/$encExtName.php\" );\n";
+				$localSettings .= "require_once \"\$IP/extensions/$encExtName/$encExtName.php\";\n";
 			}
 		}
 

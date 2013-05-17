@@ -895,7 +895,7 @@ release and submitting bug reports.
   when the function exists but is disabled. Introduced
   Maintenance::posix_isatty().
 * (bug 30264) Changed installer-generated LocalSettings.php to use
-  require_once() instead require() for included extensions.
+  require_once instead of require for included extensions.
 * Do not convert text in the user interface language to another script.
 * (bug 26283) Previewing user JS/CSS pages didn't load other user JS/CSS pages.
 * (bug 26486) ResourceLoader modules with paths to nonexistent files cause PHP
@@ -1718,8 +1718,8 @@ Selected changes since MediaWiki 1.17 that may be of interest:
   #REDIRECT [[Foo]] is invalid JS.
 * (bug 30335) Fix for HTMLForms using GET breaking when non-friendly URLs
   are used.
-* (bug 30264) Changed installer-generated LocalSettings.php to use require_once()
- instead require() for included extensions.
+* (bug 30264) Changed installer-generated LocalSettings.php to use require_once
+ instead of require for included extensions.
 * Tracking categories are no longer shown in footer for special pages.
 * (bug 30684) Fix bad escaping in mw.message for inexistent messages (i.e. <key>).
 * $wgOverrideSiteFeed no longer double escapes urls.
@@ -2012,8 +2012,8 @@ Selected changes since MediaWiki 1.16 that may be of interest:
 * Installer checked for magic_quotes_runtime instead of register_globals
 * (bug 30131) XCache with variable caching disabled no longer used for variable
   caching (CACHE_ACCEL)
-* (bug 30264) Changed installer-generated LocalSettings.php to use require_once()
-  instead require() for included extensions.
+* (bug 30264) Changed installer-generated LocalSettings.php to use require_once
+  instead of require for included extensions.
 * (bug 26486) ResourceLoader modules with paths to nonexistent files cause PHP
   warnings/notices to be thrown
 * (bug 30907) Special:Unusedcategories should sort ascendingly.
@@ -8261,7 +8261,7 @@ they will be run along with the main tests by maintenance/parserTests.php
 * Regression fix: suppress warning about session failure when clicking to
   edit with 'preview on first edit' enabled.
 * (bug 6230) Regression fix: <nowiki> in [URL link text]
-* Added AutoLoader.php, which loads classes without need of require_once()
+* Added AutoLoader.php, which loads classes without need of require_once.
 * (bug 5981) Add plural function Slovenian (sl)
 * (bug 5945) Introduce {{CONTENTLANGUAGE}} magic word
 * {{PLURAL}} can now take up to five forms

@@ -23,7 +23,7 @@
  * @todo Make this more useful, right now just dumps $wgContLang
  */
 
-require_once( __DIR__ . '/../Maintenance.php' );
+require_once __DIR__ . '/../Maintenance.php';
 
 /**
  * Maintenance script that dumps an entire language, using the keys from English.

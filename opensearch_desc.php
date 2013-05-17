@@ -20,7 +20,7 @@
  * @file
  */
 
-require_once( __DIR__ . '/includes/WebStart.php' );
+require_once __DIR__ . '/includes/WebStart.php';
 
 if ( $wgRequest->getVal( 'ctype' ) == 'application/xml' ) {
 	// Makes testing tweaks about a billion times easier

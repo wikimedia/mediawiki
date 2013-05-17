@@ -23,7 +23,7 @@
  * @author Pablo Castellano <pablo@anche.no>
  */
 
-require_once( __DIR__ . '/Maintenance.php' );
+require_once __DIR__ . '/Maintenance.php';
 
 /**
  * Maintenance script to create an account and grant it administrator rights.

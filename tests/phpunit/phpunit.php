@@ -12,7 +12,7 @@
 define( 'MW_PHPUNIT_TEST', true );
 
 // Start up MediaWiki in command-line mode
-require_once( dirname( dirname( __DIR__ ) ) . "/maintenance/Maintenance.php" );
+require_once dirname( dirname( __DIR__ ) ) . "/maintenance/Maintenance.php";
 
 class PHPUnitMaintClass extends Maintenance {
 
@@ -98,7 +98,7 @@ class PHPUnitMaintClass extends Maintenance {
 }
 
 $maintClass = 'PHPUnitMaintClass';
-require( RUN_MAINTENANCE_IF_MAIN );
+require RUN_MAINTENANCE_IF_MAIN;
 
 require_once 'PHPUnit/Runner/Version.php';
 
@@ -109,5 +109,5 @@ if ( PHPUnit_Runner_Version::id() !== '@package_version@'
 }
 require_once 'PHPUnit/Autoload.php';
 
-require_once( "$IP/tests/TestsAutoLoader.php" );
+require_once "$IP/tests/TestsAutoLoader.php";
 MediaWikiPHPUnitCommand::main();

@@ -23,7 +23,7 @@
  * @ingroup Benchmark
  */
 
-require_once( __DIR__ . '/Benchmarker.php' );
+require_once __DIR__ . '/Benchmarker.php';
 
 function bfNormalizeTitleStrTr( $str ) {
 	return strtr( $str, '_', ' ' );

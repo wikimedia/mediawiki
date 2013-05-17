@@ -23,7 +23,7 @@
 // Make sure we're on PHP5.3.2 or better
 if ( !function_exists( 'version_compare' ) || version_compare( PHP_VERSION, '5.3.2' ) < 0 ) {
 	// We need to use dirname( __FILE__ ) here cause __DIR__ is PHP5.3+
-	require_once( dirname( __FILE__ ) . '/../includes/PHPVersionError.php' );
+	require_once dirname( __FILE__ ) . '/../includes/PHPVersionError.php';
 	wfPHPVersionError( 'cli' );
 }
 
@@ -454,7 +454,7 @@ abstract class Maintenance {
 		// Make sure the class is loaded first
 		if ( !MWInit::classExists( $maintClass ) ) {
 			if ( $classFile ) {
-				require_once( $classFile );
+				require_once $classFile;
 			}
 			if ( !MWInit::classExists( $maintClass ) ) {
 				$this->error( "Cannot spawn child: $maintClass" );
@@ -1026,7 +1026,7 @@ abstract class Maintenance {
 						( strpos( file_get_contents( $file ), '$maintClass' ) === false ) ) {
 						continue;
 					}
-					require( $file );
+					require $file;
 					$vars = get_defined_vars();
 					if ( array_key_exists( 'maintClass', $vars ) ) {
 						self::$mCoreScripts[$vars['maintClass']] = $file;

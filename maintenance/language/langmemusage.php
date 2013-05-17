@@ -22,8 +22,8 @@
  */
 
 /** This is a command line script */
-require_once( __DIR__ . '/../Maintenance.php' );
-require_once( __DIR__ . '/languages.inc' );
+require_once __DIR__ . '/../Maintenance.php';
+require_once __DIR__ . '/languages.inc';
 
 /**
  * Maintenance script that tries to get the memory usage for each language file.

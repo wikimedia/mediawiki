@@ -21,9 +21,9 @@
  * @ingroup MaintenanceLanguage
  */
 
-require_once( __DIR__ . '/../../includes/normal/UtfNormalUtil.php' );
+require_once __DIR__ . '/../../includes/normal/UtfNormalUtil.php';
 
-require_once( __DIR__ . '/../Maintenance.php' );
+require_once __DIR__ . '/../Maintenance.php';
 
 /**
  * Generates normalizer data files for Arabic and Malayalam.

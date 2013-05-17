@@ -27,7 +27,7 @@ define( 'REPORTING_INTERVAL', 100 );
 if ( !defined( 'MEDIAWIKI' ) ) {
 	$optionsWithArgs = array( 'm' );
 
-	require_once( __DIR__ . '/../commandLine.inc' );
+	require_once __DIR__ . '/../commandLine.inc';
 
 	resolveStubs();
 }

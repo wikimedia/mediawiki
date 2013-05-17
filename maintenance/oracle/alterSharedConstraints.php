@@ -27,7 +27,7 @@
  * i.e.: GRANT REFERENCES (user_id) ON mwuser TO hubclient;
  */
 
-require_once( __DIR__ . '/../Maintenance.php' );
+require_once __DIR__ . '/../Maintenance.php';
 
 class AlterSharedConstraints extends Maintenance {
 	public function __construct() {
