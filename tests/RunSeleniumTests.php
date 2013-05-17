@@ -30,7 +30,7 @@ if ( PHP_SAPI != 'cli' ) {
 
 define( 'SELENIUMTEST', true );
 
-require( __DIR__ . '/../maintenance/Maintenance.php' );
+require __DIR__ . '/../maintenance/Maintenance.php';
 
 require_once 'PHPUnit/Runner/Version.php';
 if ( version_compare( PHPUnit_Runner_Version::id(), '3.5.0', '>=' ) ) {
@@ -44,7 +44,7 @@ if ( version_compare( PHPUnit_Runner_Version::id(), '3.5.0', '>=' ) ) {
 require_once 'PHPUnit/Extensions/SeleniumTestCase.php';
 include_once 'PHPUnit/Util/Log/JUnit.php';
 
-require_once( __DIR__ . "/selenium/SeleniumServerManager.php" );
+require_once __DIR__ . "/selenium/SeleniumServerManager.php";
 
 class SeleniumTester extends Maintenance {
 	protected $selenium;
@@ -133,7 +133,7 @@ class SeleniumTester extends Maintenance {
 		}
 
 		foreach ( $seleniumTestSuites as $testSuiteName => $testSuiteFile ) {
-			require( $testSuiteFile );
+			require $testSuiteFile;
 			$suite = new $testSuiteName();
 			$suite->setName( $testSuiteName );
 			$suite->addTests();

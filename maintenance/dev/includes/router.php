@@ -58,7 +58,7 @@ if ( $ext == 'php' || $ext == 'php5' ) {
 	# We use require and return true here because when you return false
 	# the php webserver will discard post data and things like login
 	# will not function in the dev environment.
-	require( $file );
+	require $file;
 	return true;
 }
 $mime = false;

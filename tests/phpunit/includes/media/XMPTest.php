@@ -62,7 +62,7 @@ class XMPTest extends MediaWikiTestCase {
 			// result array, but it seems kind of big to put directly in the test
 			// file.
 			$result = null;
-			include( $xmpPath . $file[0] . '.result.php' );
+			include $xmpPath . $file[0] . '.result.php';
 			$data[] = array( $xmp, $result, '[' . $file[0] . '.xmp] ' . $file[1] );
 		}
 

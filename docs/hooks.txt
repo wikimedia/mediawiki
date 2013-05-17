@@ -120,7 +120,7 @@ If the code is well enough isolated, it can even be excluded when not used --
 making for some slight savings in memory and load-up performance at runtime.
 Admins who want to have all the reversed titles can add:
 
-	require_once('extensions/ReverseTitle.php');
+	require_once 'extensions/ReverseTitle.php';
 
 ...to their LocalSettings.php file; those of us who don't want or need it can
 just leave it out.

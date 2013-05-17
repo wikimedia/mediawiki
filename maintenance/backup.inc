@@ -116,7 +116,7 @@ class BackupDumper {
 	 */
 	function loadPlugin( $class, $file ) {
 		if ( $file != '' ) {
-			require_once( $file );
+			require_once $file;
 		}
 		$register = array( $class, 'register' );
 		call_user_func_array( $register, array( &$this ) );

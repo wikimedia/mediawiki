@@ -21,7 +21,7 @@
  * @ingroup MaintenanceLanguage
  */
 
-require_once( __DIR__ . '/../commandLine.inc' );
+require_once __DIR__ . '/../commandLine.inc';
 $messagesDir = __DIR__ . '/../../languages/messages/';
 $runTest = false;
 $run = false;
@@ -80,12 +80,12 @@ if ( $run ) {
 	} elseif ( !strcmp( $runMode, 'raw' ) ) {
 		$runMode = 'raw';
 	}
-	include( $messagesFile );
+	include $messagesFile;
 	$messageExist = isset( $messages );
 	if ( $messageExist ) {
 		$wgMessages[$langCode] = $messages;
 	}
-	include( $messagesFileC );
+	include $messagesFileC;
 	$messageCExist = isset( $messages );
 	if ( $messageCExist ) {
 		$wgMessages[$langCodeC] = $messages;

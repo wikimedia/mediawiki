@@ -23,7 +23,7 @@
  * @author Antoine Musso
  */
 
-require_once( __DIR__ . '/Maintenance.php' );
+require_once __DIR__ . '/Maintenance.php';
 
 /**
  * Print serialized output of MediaWiki config vars

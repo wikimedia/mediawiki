@@ -32,7 +32,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 
 # Read language names
 global $wgLanguageNames;
-require_once( __DIR__ . '/Names.php' );
+require_once __DIR__ . '/Names.php';
 
 if ( function_exists( 'mb_strtoupper' ) ) {
 	mb_internal_encoding( 'UTF-8' );
@@ -378,7 +378,7 @@ class Language {
 		static $coreLanguageNames;
 
 		if ( $coreLanguageNames === null ) {
-			include( MWInit::compiledPath( 'languages/Names.php' ) );
+			include MWInit::compiledPath( 'languages/Names.php' );
 		}
 
 		if ( isset( $coreLanguageNames[$tag] )
@@ -415,7 +415,7 @@ class Language {
 		}
 
 		if ( file_exists( "$IP/languages/classes/$class.php" ) ) {
-			include_once( "$IP/languages/classes/$class.php" );
+			include_once "$IP/languages/classes/$class.php";
 		}
 	}
 
@@ -849,7 +849,7 @@ class Language {
 		static $coreLanguageNames;
 
 		if ( $coreLanguageNames === null ) {
-			include( MWInit::compiledPath( 'languages/Names.php' ) );
+			include MWInit::compiledPath( 'languages/Names.php' );
 		}
 
 		$names = array();

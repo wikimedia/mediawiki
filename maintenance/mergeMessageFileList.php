@@ -25,7 +25,7 @@
 # Start from scratch
 define( 'MW_NO_EXTENSION_MESSAGES', 1 );
 
-require_once( __DIR__ . '/Maintenance.php' );
+require_once __DIR__ . '/Maintenance.php';
 $maintClass = 'MergeMessageFileList';
 $mmfl = false;
 
@@ -98,7 +98,7 @@ foreach ( $mmfl['setupFiles'] as $fileName ) {
 	if ( empty( $mmfl['quiet'] ) ) {
 		fwrite( STDERR, "Loading data from $fileName\n" );
 	}
-	if ( !include_once( $fileName ) ) {
+	if ( !( include_once $fileName ) ) {
 		fwrite( STDERR, "Unable to read $fileName\n" );
 		exit( 1 );
 	}

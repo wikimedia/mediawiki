@@ -23,7 +23,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-require_once ( __DIR__ . '/MediaWikiInstallationCommonFunction.php' );
+require_once __DIR__ . '/MediaWikiInstallationCommonFunction.php';
 
 /**
  * Test Case ID   : 14, 15, 16, 17 (http://www.mediawiki.org/wiki/New_installer/Test_plan)

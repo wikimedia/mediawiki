@@ -1,7 +1,7 @@
 #!/usr/bin/hhvm -f
 <?php
 
-require( __DIR__ . '/../Maintenance.php' );
+require __DIR__ . '/../Maintenance.php';
 
 class RunHipHopServer extends Maintenance {
 	function __construct() {

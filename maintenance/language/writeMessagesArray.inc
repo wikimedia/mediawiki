@@ -110,11 +110,11 @@ $messages = array(
 		# Load messages
 		$dir = $prefix ? $prefix : __DIR__;
 
-		require( $dir . '/messages.inc' );
+		require $dir . '/messages.inc';
 		self::$messageStructure = $wgMessageStructure;
 		self::$blockComments = $wgBlockComments;
 
-		require( $dir . '/messageTypes.inc' );
+		require $dir . '/messageTypes.inc';
 		self::$ignoredMessages = $wgIgnoredMessages;
 		self::$optionalMessages = $wgOptionalMessages;
 

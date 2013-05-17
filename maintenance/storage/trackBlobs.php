@@ -22,7 +22,7 @@
  * @see wfWaitForSlaves()
  */
 
-require( __DIR__ . '/../commandLine.inc' );
+require __DIR__ . '/../commandLine.inc';
 
 
 if ( count( $args ) < 1 ) {

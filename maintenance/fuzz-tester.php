@@ -127,17 +127,17 @@ Wiki configuration for testing:
   $wgEnableWriteAPI = true;   // enable API.
 
   // Install & enable Parser Hook extensions to increase code coverage. E.g.:
-  require_once("extensions/ParserFunctions/ParserFunctions.php");
-  require_once("extensions/Cite/Cite.php");
-  require_once("extensions/inputbox/inputbox.php");
-  require_once("extensions/Sort/Sort.php");
-  require_once("extensions/wikihiero/wikihiero.php");
-  require_once("extensions/CharInsert/CharInsert.php");
-  require_once("extensions/FixedImage/FixedImage.php");
+  require_once "extensions/ParserFunctions/ParserFunctions.php";
+  require_once "extensions/Cite/Cite.php";
+  require_once "extensions/inputbox/inputbox.php";
+  require_once "extensions/Sort/Sort.php";
+  require_once "extensions/wikihiero/wikihiero.php";
+  require_once "extensions/CharInsert/CharInsert.php";
+  require_once "extensions/FixedImage/FixedImage.php";
 
   // Install & enable Special Page extensions to increase code coverage. E.g.:
-  require_once("extensions/Cite/SpecialCite.php");
-  require_once("extensions/Renameuser/SpecialRenameuser.php");
+  require_once "extensions/Cite/SpecialCite.php";
+  require_once "extensions/Renameuser/SpecialRenameuser.php";
   // --------- End ---------
 
   If you want to try E_STRICT error logging, add this to the above:
@@ -181,7 +181,7 @@ TODO:
 // ///////////////////////// COMMAND LINE HELP ////////////////////////////////////
 
 // This is a command line script, load MediaWiki env (gives command line options);
-require_once( __DIR__ . '/commandLine.inc' );
+require_once __DIR__ . '/commandLine.inc';
 
 // if the user asked for an explanation of command line options.
 if ( isset( $options["help"] ) ) {

@@ -22,7 +22,7 @@
  * @ingroup Maintenance
  */
 
-require_once( __DIR__ . '/Maintenance.php' );
+require_once __DIR__ . '/Maintenance.php';
 
 /**
  * Maintenance script to update cached special pages.
@@ -67,7 +67,7 @@ class UpdateSpecialPages extends Maintenance {
 		}
 
 		// This is needed to initialise $wgQueryPages
-		require_once( "$IP/includes/QueryPage.php" );
+		require_once "$IP/includes/QueryPage.php";
 
 		foreach ( $wgQueryPages as $page ) {
 			list( $class, $special ) = $page;
@@ -94,7 +94,7 @@ class UpdateSpecialPages extends Maintenance {
 			} else {
 				if ( !class_exists( $class ) ) {
 					$file = $specialObj->getFile();
-					require_once( $file );
+					require_once $file;
 				}
 				$queryPage = new $class;
 			}

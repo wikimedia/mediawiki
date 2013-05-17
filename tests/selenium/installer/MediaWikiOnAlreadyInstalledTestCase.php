@@ -24,7 +24,7 @@
  */
 
 
-require_once ( __DIR__ . '/MediaWikiInstallationCommonFunction.php' );
+require_once __DIR__ . '/MediaWikiInstallationCommonFunction.php';
 
 
 /**

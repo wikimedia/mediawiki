@@ -54,6 +54,6 @@ been thoroughly tested on other configurations.
 
 If the php_normal.so module is loaded in php.ini, the normalization functions
 will automatically use it. If you can't (or don't want to) load it in php.ini,
-you may be able to load it using the dl() function before include()ing or
-require()ing UtfNormal.php, and it will be picked up.
+you may be able to load it using the dl() function before the inclusion of
+UtfNormal.php, and it will be picked up.
 

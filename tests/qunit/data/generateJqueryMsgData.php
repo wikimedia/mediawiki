@@ -61,7 +61,7 @@
  * </code>
  */
 
-require( __DIR__ . '/../../../maintenance/Maintenance.php' );
+require __DIR__ . '/../../../maintenance/Maintenance.php';
 
 class GenerateJqueryMsgData extends Maintenance {
 

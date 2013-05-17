@@ -29,7 +29,7 @@
  * @license GNU General Public License 2.0 or later
  */
 
-require_once( __DIR__ . '/Maintenance.php' );
+require_once __DIR__ . '/Maintenance.php';
 
 /**
  * Maintenance script to show the cached statistics.

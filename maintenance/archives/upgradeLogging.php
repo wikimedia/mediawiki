@@ -21,7 +21,7 @@
  * @ingroup MaintenanceArchive
  */
 
-require( __DIR__ . '/../commandLine.inc' );
+require __DIR__ . '/../commandLine.inc';
 
 /**
  * Maintenance script that upgrade for log_id/log_deleted fields in a

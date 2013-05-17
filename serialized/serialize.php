@@ -24,7 +24,7 @@
 if ( !defined( 'MEDIAWIKI' ) ) {
 	$wgNoDBParam = true;
 	$optionsWithArgs = array( 'o' );
-	require_once( __DIR__ .'/../maintenance/commandLine.inc' );
+	require_once __DIR__ .'/../maintenance/commandLine.inc';
 
 	$stderr = fopen( 'php://stderr', 'w' );
 	if ( !isset( $args[0] ) ) {
@@ -65,7 +65,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 //----------------------------------------------------------------------------
 
 function getVars( $_gv_filename ) {
-	require( $_gv_filename );
+	require $_gv_filename;
 	$vars = get_defined_vars();
 	unset( $vars['_gv_filename'] );
 

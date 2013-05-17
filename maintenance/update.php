@@ -26,12 +26,12 @@
  */
 
 if ( !function_exists( 'version_compare' ) || ( version_compare( phpversion(), '5.3.2' ) < 0 ) ) {
-	require( dirname( __FILE__ ) . '/../includes/PHPVersionError.php' );
+	require dirname( __FILE__ ) . '/../includes/PHPVersionError.php';
 	wfPHPVersionError( 'cli' );
 }
 
 $wgUseMasterForMaintenance = true;
-require_once( __DIR__ . '/Maintenance.php' );
+require_once __DIR__ . '/Maintenance.php';
 
 /**
  * Maintenance script to run database schema updates.
