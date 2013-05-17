@@ -72,6 +72,8 @@ production.
   uses ES5 getter/setter to emit a warning when they are used.
 * $wgCascadingRestrictionLevels was added, allowing one to specify restriction levels
   which can be cascading (previously 'sysop' was hard-coded as the only one).
+* Add a variable (wgRedactedFunctionArguments) to redact the values sent as certain function
+  parameters from exception stack traces.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
