@@ -9469,6 +9469,7 @@ Parameters:
 
 # Delete conflict
 'deletedwhileediting' => 'Used as warning in the EditPage page.',
+'editedwhiledeleting' => 'Used as warning when confirming deletion.',
 'confirmrecreate' => 'Followed by the checkbox which has the label {{msg-mw|Recreate}}.
 
 Parameters:

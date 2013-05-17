@@ -3492,6 +3492,7 @@ $wgMessageStructure = array(
 	),
 	'deleteconflict' => array(
 		'deletedwhileediting',
+		'editedwhiledeleting',
 		'confirmrecreate',
 		'confirmrecreate-noreason',
 		'recreate',
