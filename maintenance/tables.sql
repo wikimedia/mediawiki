@@ -1052,7 +1052,7 @@ CREATE TABLE /*_*/recentchanges (
   -- rev_id of the prior revision, for generating diff links.
   rc_last_oldid int unsigned NOT NULL default 0,
 
-  -- The type of change entry (RC_EDIT,RC_NEW,RC_LOG)
+  -- The type of change entry (RC_EDIT,RC_NEW,RC_LOG,RC_EXTERNAL)
   rc_type tinyint unsigned NOT NULL default 0,
 
   -- If the Recent Changes Patrol option is enabled,
