@@ -222,4 +222,8 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 			'api.php?action=query&list=querypage&qppage=Ancientpages'
 		);
 	}
+
+	public function getHelpUrls() {
+		return 'https://www.mediawiki.org/wiki/API:Querypage';
+	}
 }
