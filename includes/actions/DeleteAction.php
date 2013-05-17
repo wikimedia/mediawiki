@@ -160,8 +160,16 @@ class DeleteAction extends FormAction {
 			return;
 		}
 
+		# If we are not processing the results of the deletion confirmation dialog, show the form
 		$token = $request->getVal( 'wpEditToken' );
 		if ( !$request->wasPosted() || !$user->matchEditToken( $token, [ 'delete', $title->getPrefixedText() ] ) ) {
+			$this->tempConfirmDelete();
+			return;
+		}
+
+		# Check to make sure the page has not been edited while the deletion was being confirmed
+		if ( $article->getRevIdFetched() !== $request->getIntOrNull( 'wpConfirmationRevId' ) ) {
+			$this->showEditedWarning();
 			$this->tempConfirmDelete();
 			return;
 		}
@@ -271,6 +279,12 @@ class DeleteAction extends FormAction {
 		}
 	}
 
+	protected function showEditedWarning(): void {
+		$this->getOutput()->addHTML(
+			Html::warningBox( $this->getContext()->msg( 'editedwhiledeleting' )->parse() )
+		);
+	}
+
 	private function showHistoryWarnings(): void {
 		$context = $this->getContext();
 		$title = $this->getTitle();
@@ -354,11 +368,19 @@ class DeleteAction extends FormAction {
 
 	private function tempConfirmDelete(): void {
 		$this->prepareOutputForForm();
-		$ctx = $this->getContext();
-		$outputPage = $ctx->getOutput();
+		$context = $this->getContext();
+		$outputPage = $context->getOutput();
+		$article = $this->getArticle();
 
 		$reason = $this->getDefaultReason();
 
+		// oldid is set to the revision id of the page when the page was displayed.
+		// Check to make sure the page has not been edited between loading the page
+		// and clicking the delete link
+		$oldid = $context->getRequest()->getIntOrNull( 'oldid' );
+		if ( $oldid !== null && $oldid !== $article->getRevIdFetched() ) {
+			$this->showEditedWarning();
+		}
 		// If the page has a history, insert a warning
 		if ( $this->pageHasHistory() ) {
 			$this->showHistoryWarnings();
@@ -414,6 +436,7 @@ class DeleteAction extends FormAction {
 	protected function getFormFields(): array {
 		$user = $this->getUser();
 		$title = $this->getTitle();
+		$article = $this->getArticle();
 
 		$fields = [];
 
@@ -490,6 +513,12 @@ class DeleteAction extends FormAction {
 			'tabindex' => 6,
 			'buttonlabel' => $this->getFormMsg( self::MSG_SUBMIT )->text(),
 			'flags' => [ 'primary', 'destructive' ],
+		];
+
+		$fields['ConfirmationRevId'] = [
+			'type' => 'hidden',
+			'id' => 'wpConfirmationRevId',
+			'default' => $article->getRevIdFetched(),
 		];
 
 		return $fields;

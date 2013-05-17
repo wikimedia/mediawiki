@@ -1207,7 +1207,10 @@ class SkinTemplate extends Skin {
 							'text' => $this->getSkinNavOverrideableLabel(
 								'action-delete'
 							),
-							'href' => $title->getLocalURL( 'action=delete' )
+							'href' => $title->getLocalURL( [
+								'action' => 'delete',
+								'oldid' => $out->getRevisionId(),
+							] )
 						];
 					}
 
