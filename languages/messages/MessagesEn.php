@@ -4555,6 +4555,7 @@ This confirmation code will expire at $4.',
 
 # Delete conflict
 'deletedwhileediting'      => "'''Warning:''' This page was deleted after you started editing!",
+'editedwhiledeleting'      => "The page you are deleting has been edited. Please reconfirm deletion.",
 'confirmrecreate'          => "User [[User:$1|$1]] ([[User talk:$1|talk]]) deleted this page after you started editing with reason:
 : ''$2''
 Please confirm that you really want to recreate this page.",

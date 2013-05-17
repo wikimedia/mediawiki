@@ -8235,6 +8235,7 @@ See also [[MediaWiki:Confirmemail_body_changed]].
 
 # Delete conflict
 'deletedwhileediting' => 'Used as warning in the EditPage page.',
+'editedwhiledeleting' => 'Used as warning when confirming deletion.',
 'confirmrecreate' => '* $1 - username
 * $2 - reason
 See also:
