@@ -1521,28 +1521,7 @@ abstract class Skin extends ContextSource {
 			array( 'noclasses', 'known' )
 		);
 
-		# Run the old hook.  This takes up half of the function . . . hopefully
-		# we can rid of it someday.
-		$attribs = '';
-		if ( $tooltip ) {
-			$attribs = wfMessage( 'editsectionhint' )->rawParams( $tooltip )
-				->inLanguage( $lang )->escaped();
-			$attribs = " title=\"$attribs\"";
-		}
-		$result = null;
-		wfRunHooks( 'EditSectionLink', array( &$this, $nt, $section, $attribs, $link, &$result, $lang ) );
-		if ( !is_null( $result ) ) {
-			# For reverse compatibility, add the brackets *after* the hook is
-			# run, and even add them to hook-provided text.  (This is the main
-			# reason that the EditSectionLink hook is deprecated in favor of
-			# DoEditSectionLink: it can't change the brackets or the span.)
-			$result = wfMessage( 'editsection-brackets' )->rawParams( $result )
-				->inLanguage( $lang )->escaped();
-			return "<span class=\"mw-editsection\">$result</span>";
-		}
-
-		# Add the brackets and the span, and *then* run the nice new hook, with
-		# clean and non-redundant arguments.
+		# Add the brackets and the span and run the hook.
 		$result = wfMessage( 'editsection-brackets' )->rawParams( $link )
 			->inLanguage( $lang )->escaped();
 		$result = "<span class=\"mw-editsection\">$result</span>";
