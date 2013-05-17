@@ -1537,6 +1537,7 @@ class Article implements Page {
 		$title = $this->getTitle();
 		$context = $this->getContext();
 		$user = $context->getUser();
+		$request = $this->getContext()->getRequest();
 
 		# Check permissions
 		$permissionErrors = $title->getUserPermissionsErrors( 'delete', $user );
@@ -1570,7 +1571,14 @@ class Article implements Page {
 			return;
 		}
 
-		$request = $context->getRequest();
+		// If we are not processing the results of the deletion confirmation dialog, show the form
+		if ( !( $request->wasPosted() && $user->matchEditToken( $request->getVal( 'wpEditToken' ),
+			array( 'delete', $this->getTitle()->getPrefixedText() ) ) ) )
+		{
+			$this->confirmDelete();
+			return;
+		}
+
 		$deleteReasonList = $request->getText( 'wpDeleteReasonList', 'other' );
 		$deleteReason = $request->getText( 'wpReason' );
 
@@ -1584,25 +1592,52 @@ class Article implements Page {
 			$reason = $deleteReasonList;
 		}
 
-		if ( $request->wasPosted() && $user->matchEditToken( $request->getVal( 'wpEditToken' ),
-			array( 'delete', $this->getTitle()->getPrefixedText() ) )
-		) {
-			# Flag to hide all contents of the archived revisions
-			$suppress = $request->getVal( 'wpSuppress' ) && $user->isAllowed( 'suppressrevision' );
-
-			$this->doDelete( $reason, $suppress );
-
-			WatchAction::doWatchOrUnwatch( $request->getCheck( 'wpWatch' ), $title, $user );
-
+		// Check to make sure the page has not been edited while the deletion was being confirmed
+		if ( $this->getRevIdFetched() !== $request->getIntorNull( 'wpConfirmationRevId' ) ) {
+			$this->getContext()->getOutput()->wrapWikiMsg( "<div class='error'>\n$1\n</div>\n", 'editedwhiledeleting' );
+			$this->confirmDelete( $reason );
 			return;
 		}
 
-		// Generate deletion reason
+		# Flag to hide all contents of the archived revisions
+		$suppress = $request->getVal( 'wpSuppress' ) && $user->isAllowed( 'suppressrevision' );
+
+		$this->doDelete( $reason, $suppress );
+
+		WatchAction::doWatchOrUnwatch( $request->getCheck( 'wpWatch' ), $title, $user );
+	}
+
+	/**
+	 * Output deletion confirmation dialog
+	 * @todo FIXME: Move to another file?
+	 * @param string $reason optional prefilled reason
+	 */
+	public function confirmDelete( $reason = null ) {
+		wfDebug( "Article::confirmDelete\n" );
+
+		$outputPage = $this->getContext()->getOutput();
+		$outputPage->setPageTitle( wfMessage( 'delete-confirm', $this->getTitle()->getPrefixedText() ) );
+		$outputPage->addBacklinkSubtitle( $this->getTitle() );
+		$outputPage->setRobotPolicy( 'noindex,nofollow' );
+
+		// oldid is set to the revision id of the page when the page was displayed.
+		// Check to make sure the page has not been edited between loading the page
+		// and clicking the delete link
+		$oldid = $this->getContext()->getRequest()->getIntorNull( 'oldid' );
+		if( $oldid !== null && $oldid !== $this->getRevIdFetched() ) {
+			$outputPage->wrapWikiMsg( "<div class='error'>\n$1\n</div>\n", 'editedwhiledeleting' );
+		}
+
+		// Check to see if page has history and generate deletion reason if necessary
 		$hasHistory = false;
-		if ( !$reason ) {
-			try {
+		try {
+			if ( !$reason ) {
 				$reason = $this->generateReason( $hasHistory );
-			} catch ( Exception $e ) {
+			} else {
+				$this->generateReason( $hasHistory );
+			}
+		} catch ( MWException $e ) {
+			if ( !$reason ) {
 				# if a page is horribly broken, we still want to be able to
 				# delete it. So be lenient about errors here.
 				wfDebug( "Error while building auto delete summary: $e" );
@@ -1631,7 +1666,7 @@ class Article implements Page {
 			$context->getOutput()->addHTML(
 				'<strong class="mw-delete-warning-revisions">' .
 				$context->msg( 'historywarning' )->numParams( $revisions )->parse() .
-				$context->msg( 'word-separator' )->escaped() . Linker::linkKnown( $title,
+				wfMessage( 'word-separator' )->plain() . Linker::linkKnown( $this->getTitle(),
 					$context->msg( 'history' )->escaped(),
 					array( 'rel' => 'archives' ),
 					array( 'action' => 'history' ) ) .
@@ -1649,29 +1684,6 @@ class Article implements Page {
 			}
 		}
 
-		$this->confirmDelete( $reason );
-	}
-
-	/**
-	 * Output deletion confirmation dialog
-	 * @todo FIXME: Move to another file?
-	 * @param string $reason Prefilled reason
-	 */
-	public function confirmDelete( $reason ) {
-		wfDebug( "Article::confirmDelete\n" );
-
-		$title = $this->getTitle();
-		$ctx = $this->getContext();
-		$outputPage = $ctx->getOutput();
-		$useMediaWikiUIEverywhere = $ctx->getConfig()->get( 'UseMediaWikiUIEverywhere' );
-		$outputPage->setPageTitle( wfMessage( 'delete-confirm', $title->getPrefixedText() ) );
-		$outputPage->addBacklinkSubtitle( $title );
-		$outputPage->setRobotPolicy( 'noindex,nofollow' );
-		$backlinkCache = $title->getBacklinkCache();
-		if ( $backlinkCache->hasLinks( 'pagelinks' ) || $backlinkCache->hasLinks( 'templatelinks' ) ) {
-			$outputPage->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1\n</div>\n",
-				'deleting-backlinks-warning' );
-		}
 		$outputPage->addWikiMsg( 'confirmdeletetext' );
 
 		Hooks::run( 'ArticleConfirmDelete', array( $this, $outputPage, &$reason ) );
@@ -1727,6 +1739,8 @@ class Article implements Page {
 						'wpWatch', 'wpWatch', $checkWatch, array( 'tabindex' => '3' ) );
 		}
 
+		// wpConfirmationRevId will be compared with the current revision id at deletion
+		// to check if the page has been modified while the deletion was being confirmed.
 		$form .=
 				Html::openElement( 'div' ) .
 				$suppress .
@@ -1745,6 +1759,7 @@ class Article implements Page {
 				'wpEditToken',
 				$user->getEditToken( array( 'delete', $title->getPrefixedText() ) )
 			) .
+			Html::hidden( 'wpConfirmationRevId', $this->getRevIdFetched() ) .
 			Xml::closeElement( 'form' );
 
 			if ( $user->isAllowed( 'editinterface' ) ) {
