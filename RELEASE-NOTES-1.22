@@ -79,6 +79,8 @@ production.
   which can be cascading (previously 'sysop' was hard-coded as the only one).
 * XHTML5 support has been improved. If you set $wgMimeType = 'application/xhtml+xml'
   MediaWiki will try outputting markup acording to XHTML5 rules.
+* (bug 48256) Make brackets in section edit links accessible to CSS.
+  They are now wrapped in <span class="mw-editsection-bracket" />.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
@@ -167,6 +169,9 @@ changes to languages because of Bugzilla reports.
 * Support for XHTML 1.0 has been removed. MediaWiki now only outputs (X)HTML5.
 * BREAKING CHANGE: The EditSectionLink hook was removed after being
   deprecated since MediaWiki 1.14. Use DoEditSectionLink instead.
+* (bug 48256) The 'editsection-brackets' optional message was removed.
+  Section edit links' brackets can now be customized using CSS by
+  styling span.mw-editsection-bracket.
 
 == Compatibility ==
 
