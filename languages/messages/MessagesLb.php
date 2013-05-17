@@ -645,7 +645,6 @@ Vergiesst net fir Är [[Special:Preferences|{{SITENAME}} Astellungen]] z'ännere
 'createacct-reason-ph' => 'Fir wat Dir een anere Benotzerkonnt uleet',
 'createacct-captcha' => 'Sécherheets-Check',
 'createacct-captcha-help-url' => '{{ns:Project}}:E Benotzerkont ufroen',
-'createacct-imgcaptcha-help' => "Dir kënnt d'Bild net gesinn? [[{{MediaWiki:createacct-captcha-help-url}}|Frot e Benotzerkont]]",
 'createacct-imgcaptcha-ph' => 'Gitt den Text an deen Dir hei driwwer gesitt',
 'createacct-submit' => 'Äre Benotzerkont uleeën',
 'createacct-benefit-heading' => '{{SITENAME}} gëtt vu Leit wéi Iech gemaach.',

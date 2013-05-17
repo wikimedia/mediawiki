@@ -714,7 +714,6 @@ Non esqueza personalizar as súas [[Special:Preferences|preferencias de {{SITENA
 'createacct-reason-ph' => 'Por que crea outra conta?',
 'createacct-captcha' => 'Comprobación de seguridade',
 'createacct-captcha-help-url' => '{{ns:Project}}:Solicitar unha conta',
-'createacct-imgcaptcha-help' => 'Non pode ver a imaxe? [[{{MediaWiki:createacct-captcha-help-url}}|Solicite unha conta]]',
 'createacct-imgcaptcha-ph' => 'Insira o texto que ve enriba',
 'createacct-submit' => 'Crear a conta',
 'createacct-benefit-heading' => 'Xente coma vostede elabora {{SITENAME}}.',

@@ -827,7 +827,6 @@ Vergeet niet uw [[Special:Preferences|voorkeuren voor {{SITENAME}}]] aan te pass
 'createacct-reason-ph' => 'Waarom u een andere gebruiker aanmaakt',
 'createacct-captcha' => 'Veiligheidscontrole',
 'createacct-captcha-help-url' => '{{ns:Project}}:Gebruiker_aanvragen',
-'createacct-imgcaptcha-help' => 'Kunt u de afbeelding niet zien? [[{{MediaWiki:createacct-captcha-help-url}}|Vraag dan een gebruiker aan]]',
 'createacct-imgcaptcha-ph' => 'Geef de tekst in die u hierboven ziet',
 'createacct-submit' => 'Gebruiker aanmaken',
 'createacct-benefit-heading' => '{{SITENAME}} wordt gemaakt door mensen zoals u.',

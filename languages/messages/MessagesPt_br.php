@@ -785,7 +785,6 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências no 
 'createacct-reason-ph' => 'Por que você está criando outra conta',
 'createacct-captcha' => 'Verificação de segurança',
 'createacct-captcha-help-url' => '{{ns:Project}}:Solicitar uma conta',
-'createacct-imgcaptcha-help' => 'Não consegue ver a imagem? [[{{MediaWiki:createacct-captcha-help-url}}|Solicitar uma conta]]',
 'createacct-imgcaptcha-ph' => 'Digite o texto acima',
 'createacct-submit' => 'Crie sua conta',
 'createacct-benefit-heading' => '{{SITENAME}} é feita por pessoas como você.',

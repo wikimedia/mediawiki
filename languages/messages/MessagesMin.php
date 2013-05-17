@@ -536,7 +536,6 @@ Parhatian bahawa bara laman mungkin masih taruih manunjukkan bahawa Sanak masih 
 'createacct-reason-ph' => 'Manga Sanak mambuek akun lain',
 'createacct-captcha' => 'Pamarisoan kaamanan',
 'createacct-captcha-help-url' => '{{ns:Project}}:Pamintaan mambuek akun',
-'createacct-imgcaptcha-help' => 'Indak dapek mancaliak gambar? [[{{MediaWiki:createacct-captcha-help-url}}|Mintaklah mambuek akun]]',
 'createacct-imgcaptcha-ph' => 'Masuakan teks nan Sanak caliak di ateh',
 'createacct-submit' => 'Buek akun Sanak',
 'createacct-benefit-heading' => '{{SITENAME}} dibuek dek urang-urang saroman Sanak.',

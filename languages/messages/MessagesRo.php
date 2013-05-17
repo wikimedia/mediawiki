@@ -764,7 +764,6 @@ Nu uitați să vă modificați [[Special:Preferences|preferințele]] pentru {{SI
 'createacct-reason-ph' => 'De ce creați un alt cont',
 'createacct-captcha' => 'Verificare de securitate',
 'createacct-captcha-help-url' => '{{ns:Project}}:Solicitare cont',
-'createacct-imgcaptcha-help' => 'Nu puteți vedea imaginea? [[{{MediaWiki:createacct-captcha-help-url}}|Solicitați un cont]]',
 'createacct-imgcaptcha-ph' => 'Introduceți textul pe care îl vedeți deasupra',
 'createacct-submit' => 'Creați-vă contul',
 'createacct-benefit-heading' => '{{SITENAME}} este un proiect clădit de oameni ca dumneavoastră.',

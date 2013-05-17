@@ -499,7 +499,6 @@ No te sce scurdanne de cangià le [[Special:Preferences|{{SITENAME}} preferenze 
 'createacct-reason-ph' => "Purcé tu ste ccreje 'n'otre cunde utende?",
 'createacct-captcha' => 'Verifiche de securezze',
 'createacct-captcha-help-url' => "{{ns:Project}}:Cirche 'nu cunde",
-'createacct-imgcaptcha-help' => "Non ge puè 'ndrucà l'immaggine? [[{{MediaWiki:createacct-captcha-help-url}}|Cirche 'nu cunde]]",
 'createacct-imgcaptcha-ph' => "Mitte 'u teste tune aqquà sus",
 'createacct-submit' => "Ccreje 'u cunde utende tune",
 'createacct-benefit-heading' => '{{SITENAME}} jè fatte da crestiane cumme a te.',

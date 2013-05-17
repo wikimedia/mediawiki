@@ -574,8 +574,6 @@ Warning: Page may not contain recent updates.',
 'createacct-reason' => 'وجہ',
 'createacct-captcha' => 'حفاظتی تدبیر',
 'createacct-captcha-help-url' => '{{ns:Project}}: ایک اکاؤنٹ کی درخواست کریں',
-'createacct-imgcaptcha-help' => 'یہ تصویر نہیں دیکھ سکتے؟
-[[{{MediaWiki:createacct-captcha-help-url}}|اکاؤنٹ بنانے کے لیے درخواست کریں]]',
 'createacct-imgcaptcha-ph' => 'آپ اوپر دیکھ متن داخل کریں',
 'createacct-benefit-heading' => '{{SITENAME}} آپ جیسے لوگوں کی طرف سے بنایا گیا ہے ۔',
 'createacct-benefit-body1' => 'ترمیم',

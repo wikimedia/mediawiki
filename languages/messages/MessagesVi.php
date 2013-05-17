@@ -781,7 +781,6 @@ Hãy nhớ thay đổi [[Special:Preferences|tùy chọn cá nhân {{SITENAME}}]
 'createacct-reason-ph' => 'Nhập lý do tạo một tài khoản khác',
 'createacct-captcha' => 'Kiểm tra an toàn',
 'createacct-captcha-help-url' => '{{ns:Project}}:Yêu cầu tạo tài khoản',
-'createacct-imgcaptcha-help' => 'Bạn không thấy hình ảnh? [[{{MediaWiki:createacct-captcha-help-url}}|Yêu cầu có tài khoản]]',
 'createacct-imgcaptcha-ph' => 'Nhập dòng chữ bạn thấy bên dưới',
 'createacct-submit' => 'Tạo tài khoản',
 'createacct-benefit-heading' => '{{SITENAME}} được xây dựng bởi những người như bạn.',

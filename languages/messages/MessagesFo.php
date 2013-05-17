@@ -573,7 +573,6 @@ Gloym ikki at broyta tínar [[Special:Preferences|{{SITENAME}}-innstillingar]].'
 'createacct-reason' => 'Orsøk',
 'createacct-captcha' => 'Trygdarkekk',
 'createacct-captcha-help-url' => '{{ns:Project}}:Bílegg eina konto',
-'createacct-imgcaptcha-help' => 'Sært tú ikki myndina? [[{{MediaWiki:createacct-captcha-help-url}}|Bið um eina konto]]',
 'createacct-imgcaptcha-ph' => 'Skriva tekstin ið tú sært omanfyri',
 'createacct-benefit-heading' => '{{SITENAME}} er gjørd av fólki sum tær.',
 'createacct-benefit-body1' => 'rættingar',

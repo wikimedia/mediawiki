@@ -481,7 +481,6 @@ Ferjid det ei, an aachte üüb din [[Special:Preferences|{{SITENAME}} iinstelang
 'createacct-reason-ph' => 'Huaram dü en ööder brükerkonto iinrachtst',
 'createacct-captcha' => 'Seekerhaidspreew',
 'createacct-captcha-help-url' => '{{ns:Project}}:Am en brükerkonto uunfraage',
-'createacct-imgcaptcha-help' => 'Könst det bil ei sä ? [[{{MediaWiki:createacct-captcha-help-url}}|Am en brükerkonto uunfraage]]',
 'createacct-imgcaptcha-ph' => 'Skriiw di tekst, diar dü boowen schochst',
 'createacct-submit' => 'Din brükerkonto iinracht',
 'createacct-benefit-heading' => '{{SITENAME}} woort faan lidj üs di maaget.',

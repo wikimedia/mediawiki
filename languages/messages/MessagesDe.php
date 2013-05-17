@@ -877,7 +877,6 @@ Vergiss nicht, deine [[Special:Preferences|{{SITENAME}}-Einstellungen]] zu ände
 'createacct-reason-ph' => 'Warum du ein anderes Benutzerkonto erstellst',
 'createacct-captcha' => 'Sicherheitsprüfung',
 'createacct-captcha-help-url' => '{{ns:Project}}:Benutzerkontenanträge',
-'createacct-imgcaptcha-help' => 'Das Bild ist nicht sichtbar? [[{{MediaWiki:createacct-captcha-help-url}}|Beantrage ein Benutzerkonto]].',
 'createacct-imgcaptcha-ph' => 'Gib den Text ein, den du oben siehst.',
 'createacct-submit' => 'Dein Benutzerkonto erstellen',
 'createacct-benefit-heading' => '{{SITENAME}} wird von Leuten wie dir erstellt.',

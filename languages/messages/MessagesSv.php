@@ -781,7 +781,6 @@ Glöm inte att justera dina [[Special:Preferences|{{SITENAME}}-inställningar]].
 'createacct-reason-ph' => 'Varför du skapar ett annat konto',
 'createacct-captcha' => 'Säkerhetskontroll',
 'createacct-captcha-help-url' => '{{ns:Project}}:Begär ett konto',
-'createacct-imgcaptcha-help' => 'Kan du inte se bilden? [[{{MediaWiki:createacct-captcha-help-url}}|Begär ett konto]]',
 'createacct-imgcaptcha-ph' => 'Fyll i texten du ser ovan',
 'createacct-submit' => 'Skapa ditt konto',
 'createacct-benefit-heading' => '{{SITENAME}} är skapad av människor som dig.',

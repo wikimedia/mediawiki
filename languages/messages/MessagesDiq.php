@@ -779,7 +779,6 @@ Wexta ke verhafızayê cıgerayoxê şıma pak beno no benate de taye peli de he
 'createacct-reason-ph' => 'Şımaye çı xo re zewbi hesab vırazeni?',
 'createacct-captcha' => 'Qontrolê asayişi',
 'createacct-captcha-help-url' => '{{ns:Project}}:Yew hesab bıwaze',
-'createacct-imgcaptcha-help' => 'Resım nêvêniya? [[{{MediaWiki:createacct-captcha-help-url}}|Yew hesab bıwaze]]',
 'createacct-imgcaptcha-ph' => 'Nuşteyo ke cor aseno ey cı ke',
 'createacct-submit' => 'Hesabê xo vıraze',
 'createacct-benefit-body1' => '{{PLURAL:$1|vurnayış|vurnayışi}}',

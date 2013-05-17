@@ -524,7 +524,6 @@ Nun t'escaezas d'escoyer les tos [[Special:Preferences|preferencies de {{SITENAM
 'createacct-reason-ph' => 'Por qué quier crear otra cuenta',
 'createacct-captcha' => 'Comprobación de seguridá',
 'createacct-captcha-help-url' => '{{ns:Project}}:Solicite una cuenta',
-'createacct-imgcaptcha-help' => '¿Nun pue ver la imaxe? [[{{MediaWiki:createacct-captcha-help-url}}|Solicite una cuenta]]',
 'createacct-imgcaptcha-ph' => "Escriba'l testu qu'apaez arriba",
 'createacct-submit' => 'Crear la cuenta',
 'createacct-benefit-heading' => '{{SITENAME}} failu xente como vusté.',

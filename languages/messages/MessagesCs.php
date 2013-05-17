@@ -821,7 +821,6 @@ Nezapomeňte si upravit své [[Special:Preferences|nastavení {{grammar:2sg|{{SI
 'createacct-reason-ph' => 'Proč si vytváříte další účet',
 'createacct-captcha' => 'Bezpečnostní kontrola',
 'createacct-captcha-help-url' => '{{ns:Project}}:Žádost o účet',
-'createacct-imgcaptcha-help' => 'Nevidíte obrázek? [[{{MediaWiki:createacct-captcha-help-url}}|Požádejte o účet]]',
 'createacct-imgcaptcha-ph' => 'Opište výše zobrazený text',
 'createacct-submit' => 'Vytvořit účet',
 'createacct-benefit-heading' => '{{grammar:4sg|{{SITENAME}}}} tvoří lidé jako vy.',

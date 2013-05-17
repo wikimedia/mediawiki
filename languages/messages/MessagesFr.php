@@ -849,7 +849,6 @@ N'oubliez pas de modifier [[Special:Preferences|vos préférences pour {{SITENAM
 'createacct-reason-ph' => 'Pourquoi créez-vous un autre compte',
 'createacct-captcha' => 'Contrôle de sécurité',
 'createacct-captcha-help-url' => '{{ns:Project}}:Demander un compte',
-'createacct-imgcaptcha-help' => "Vous ne pouvez pas voir l'image ? [[{{MediaWiki:createacct-captcha-help-url}}|Demandez la création d'un compte]]",
 'createacct-imgcaptcha-ph' => 'Entrez le texte que vous voyez ci-dessus',
 'createacct-submit' => 'Créez votre compte',
 'createacct-benefit-heading' => '{{SITENAME}} est écrit par des gens comme vous.',

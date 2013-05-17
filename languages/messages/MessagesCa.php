@@ -656,7 +656,6 @@ No oblideu de canviar les vostres [[Special:Preferences|preferències de {{SITEN
 'createacct-reason' => 'Motiu',
 'createacct-captcha' => 'Control de seguretat',
 'createacct-captcha-help-url' => '{{ns:Project}}:Sol·licitar un compte',
-'createacct-imgcaptcha-help' => 'No podeu veure la imatge? [[{{MediaWiki:createacct-captcha-help-url}}|Sol·liciteu un compte]]',
 'createacct-imgcaptcha-ph' => 'Introduïu el text que apareix a dalt',
 'createacct-benefit-heading' => '{{SITENAME}} és feta per gent com tu.',
 'createacct-benefit-body1' => 'edicions',

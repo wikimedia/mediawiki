@@ -650,7 +650,6 @@ Ne pozabite si prilagoditi vaših [[Special:Preferences|nastavitev {{GRAMMAR:rod
 'createacct-reason-ph' => 'Zakaj ustvarjate drug račun',
 'createacct-captcha' => 'Varnostno preverjanje',
 'createacct-captcha-help-url' => '{{ns:Project}}:Prošnja za račun',
-'createacct-imgcaptcha-help' => 'Ne vidite slike? [[{{MediaWiki:createacct-captcha-help-url}}|Zaprosite za račun]]',
 'createacct-imgcaptcha-ph' => 'Vnesite zgornje besedilo',
 'createacct-submit' => 'Ustvarite svoj račun',
 'createacct-benefit-heading' => '{{GRAMMAR:tožilnik|{{SITENAME}}}} ustvarjajo ljudje, kot ste vi.',

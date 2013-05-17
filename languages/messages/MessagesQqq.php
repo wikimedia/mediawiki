@@ -1187,7 +1187,6 @@ See example: [{{canonicalurl:Special:UserLogin|type=signup&useNew=1}} Special:Us
 
 See example: [{{canonicalurl:Special:UserLogin|type=signup&useNew=1}} Special:UserLogin?type=signup&useNew=1]',
 'createacct-captcha' => 'Label in vertical-layout create account form for CAPTCHA input field when repositioned by JavaScript.',
-'createacct-imgcaptcha-help' => 'Help text in vertical-layout create account form for image CAPTCHA input field when repositioned by JavaScript.',
 'createacct-imgcaptcha-ph' => 'Placehodler text in vertical-layout create account form for image CAPTCHA input field when repositioned by JavaScript.',
 'createacct-submit' => 'Submit button on vertical-layout create account form.
 

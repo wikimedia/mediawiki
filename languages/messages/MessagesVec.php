@@ -616,7 +616,6 @@ Nó desmentegarte de personałixare łe [[Special:Preferences|prefarense de {{SI
 'createacct-reason-ph' => "Com'èla te sì drio crear n'altra utensa",
 'createacct-captcha' => 'Controlo de sicuresa',
 'createacct-captcha-help-url' => '{{ns:Project}}:Dimanda na utensa',
-'createacct-imgcaptcha-help' => "No sito mia bon de védar l'imagine? [[{{MediaWiki:createacct-captcha-help-url}}|Dimanda na utensa]]",
 'createacct-imgcaptcha-ph' => 'Inserissi el testo che te vedi de sora',
 'createacct-submit' => 'Crea la to utensa',
 'createacct-benefit-heading' => '{{SITENAME}} xe fato da gente come ti.',

@@ -748,7 +748,6 @@ Non dimenticare di personalizzare le [[Special:Preferences|preferenze di {{SITEN
 'createacct-reason-ph' => "Perché stai creando un'altra utenza",
 'createacct-captcha' => 'Controllo di sicurezza',
 'createacct-captcha-help-url' => '{{ns:Project}}:Richieste di utenze',
-'createacct-imgcaptcha-help' => "Non riesci a vedere l'immagine? [[{{MediaWiki:createacct-captcha-help-url}}|Richiedi un'utenza]]",
 'createacct-imgcaptcha-ph' => 'Inserisci il testo che vedi sopra',
 'createacct-submit' => 'Crea la tua utenza',
 'createacct-benefit-heading' => '{{SITENAME}} è fatta da persone come te.',

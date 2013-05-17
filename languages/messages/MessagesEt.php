@@ -749,7 +749,6 @@ Pane tähele, et seni kuni sa pole oma võrgulehitseja puhvrit tühjendanud, võ
 'createacct-reason-ph' => 'Miks lood teist kontot?',
 'createacct-captcha' => 'Turvakontroll',
 'createacct-captcha-help-url' => '{{ns:Project}}:Kontotaotlus',
-'createacct-imgcaptcha-help' => 'Kas sa ei näe pilti? [[{{MediaWiki:createacct-captcha-help-url}}|Taotle kontot]]',
 'createacct-imgcaptcha-ph' => 'Sisesta ülalnähtav tekst',
 'createacct-submit' => 'Loo oma konto',
 'createacct-benefit-heading' => '{{SITENAME}} on sinusuguste inimeste tehtud.',

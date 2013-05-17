@@ -575,7 +575,6 @@ Sylwer y bydd rhai tudalennau yn parhau i ymddangos fel ag yr oeddent pan oeddec
 'createacct-reason-ph' => 'Pam ydych yn creu cyfrif arall?',
 'createacct-captcha' => 'Gwiriad diogelwch',
 'createacct-captcha-help-url' => '{{ns:Project}}:Gwneud cais am gyfri',
-'createacct-imgcaptcha-help' => 'Methu gweld y ddelwedd? [[{{MediaWiki:createacct-captcha-help-url}}|Gwnewch gais am gyfrif]]',
 'createacct-imgcaptcha-ph' => 'Nodwch y testun a welwch uchod',
 'createacct-submit' => 'Creer y cyfrif',
 'createacct-benefit-heading' => 'Ffrwyth llafur pobl fel chi yw {{SITENAME}}.',

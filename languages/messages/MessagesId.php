@@ -798,7 +798,6 @@ Perhatikan bahwa beberapa halaman mungkin masih terus menunjukkan bahwa Anda mas
 'createacct-reason-ph' => 'Mengapa Anda membuat akun lain',
 'createacct-captcha' => 'Pemeriksaan keamanan',
 'createacct-captcha-help-url' => '{{ns:Project}}:Mohon buatkan akun',
-'createacct-imgcaptcha-help' => 'Tidak dapat melihat gambar? [[{{MediaWiki:createacct-captcha-help-url}}|Mohon buatkan akun]]',
 'createacct-imgcaptcha-ph' => 'Masukkan teks yang Anda lihat di atas',
 'createacct-submit' => 'Buat akun Anda',
 'createacct-benefit-heading' => '{{SITENAME}} dibuat oleh orang-orang seperti Anda.',

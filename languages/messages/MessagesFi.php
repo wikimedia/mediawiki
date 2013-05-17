@@ -766,7 +766,6 @@ Huomaa, että jotkut sivut saattavat näkyä edelleen kuin olisit kirjautunut si
 'createacct-reason-ph' => 'Tunnuksen luomisen syy',
 'createacct-captcha' => 'Turvatarkastus',
 'createacct-captcha-help-url' => '{{ns:Project}}:Pyydä tunnusta',
-'createacct-imgcaptcha-help' => 'Et näe kuvaa? [[{{MediaWiki:createacct-captcha-help-url}}|Pyydä tunnusta]]',
 'createacct-imgcaptcha-ph' => 'Kirjoita teksti, jonka näet edellä',
 'createacct-submit' => 'Luo tunnus',
 'createacct-benefit-heading' => '{{SITENAME}} on sinun kaltaisesi ihmisten tekemä.',

@@ -557,7 +557,6 @@ Dae malingaw na liwaton an saimong [[Special:Preferences|{{SITENAME}} mga kamuya
 'createacct-reason' => 'Rason',
 'createacct-captcha' => 'Rikisang panseguridad',
 'createacct-captcha-help-url' => '{{ns:Project}}:Maghagad nin panindog',
-'createacct-imgcaptcha-help' => 'Dae nahihiling an imahe? [[{{MediaWiki:createacct-captcha-help-url}}|Maghagad nin panindog]]',
 'createacct-imgcaptcha-ph' => 'Pakikaag an tekstong nahihiling mo sa ibabaw',
 'createacct-benefit-heading' => '{{SITENAME}} pinaghimo kan mga tawong siring mo.',
 'createacct-benefit-body1' => 'mga pagliliwat',
