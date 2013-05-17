@@ -3448,6 +3448,7 @@ class Title {
 			}
 		}
 
+		wfRunHooks( 'TitleSquidURLs', array( $this, &$urls ) );
 		return $urls;
 	}
 
