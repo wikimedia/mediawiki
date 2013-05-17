@@ -119,6 +119,8 @@ production.
   watchlists.
 * (bug 40518) mw.toolbar: Implemented mw.toolbar.addButtons for adding multiple
  button objects in one call.
+* (bug 48256) Make brackets in section edit links accessible to CSS.
+  They are now wrapped in <span class="mw-editsection-bracket" />.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
@@ -277,6 +279,9 @@ changes to languages because of Bugzilla reports.
   tantamount to a 'return true' in earlier versions of MediaWiki.
 * BREAKING CHANGE: The EditSectionLink hook was removed after being
   deprecated since MediaWiki 1.14. Use DoEditSectionLink instead.
+* (bug 48256) The 'editsection-brackets' optional message was removed.
+  Section edit links' brackets can now be customized using CSS by
+  styling span.mw-editsection-bracket.
 
 == Compatibility ==
 
