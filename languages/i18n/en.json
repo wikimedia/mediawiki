@@ -3136,6 +3136,7 @@
 	"scarytranscludefailed-httpstatus": "[Template fetch failed for $1: HTTP $2]",
 	"scarytranscludetoolong": "[URL is too long]",
 	"deletedwhileediting": "<strong>Warning:</strong> This page was deleted after you started editing!",
+	"editedwhiledeleting": "The page you are deleting has been edited. Please reconfirm deletion.",
 	"confirmrecreate": "User [[User:$1|$1]] ([[User talk:$1|talk]]) deleted this page after you started editing with reason:\n: <em>$2</em>\nPlease confirm that you really want to recreate this page.",
 	"confirmrecreate-noreason": "User [[User:$1|$1]] ([[User talk:$1|talk]]) deleted this page after you started editing. Please confirm that you really want to recreate this page.",
 	"recreate": "Recreate",

@@ -3306,6 +3306,7 @@
 	"scarytranscludefailed-httpstatus": "Identical to {{msg-mw|Scarytranscludefailed}}, but shows the HTTP error which was received. This will not be parsed as wikitext and will appear as is. Parameters:\n* $1 - URL which points to interwiki template\n* $2 - HTTP status, integer (other than 200)",
 	"scarytranscludetoolong": "The URL was too long.",
 	"deletedwhileediting": "Used as warning in the EditPage page.",
+	"editedwhiledeleting": "Used as warning when confirming deletion in case someone has edited the page between the deleter clicking delete, and clicking ok to the confirmation dialog.",
 	"confirmrecreate": "Followed by the checkbox which has the label {{msg-mw|Recreate}}.\n\nParameters:\n* $1 - username\n* $2 - reason\nSee also:\n* {{msg-mw|Confirmrecreate-noreason}}",
 	"confirmrecreate-noreason": "Followed by the checkbox which has the label {{msg-mw|Recreate}}.\n\nParameters:\n* $1 - username\n* $2 - (Unused) reason\nSee also:\n* {{msg-mw|Confirmrecreate}}",
 	"recreate": "Used as link text.\n\nSee also:\n* {{msg-mw|Recreate}}\n* {{msg-mw|Tooltip-recreate}}",
