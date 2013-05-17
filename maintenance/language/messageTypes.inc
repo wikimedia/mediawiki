@@ -263,7 +263,6 @@ $wgIgnoredMessages = array(
 /** Optional messages, which may be translated only if changed in the target language. */
 $wgOptionalMessages = array(
 	'linkprefix',
-	'editsection-brackets',
 	'feed-atom',
 	'feed-rss',
 	'unit-pixel',
