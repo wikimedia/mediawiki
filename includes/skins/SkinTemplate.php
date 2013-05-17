@@ -953,7 +953,10 @@ class SkinTemplate extends Skin {
 							'class' => ( $onPage && $action == 'delete' ) ? 'selected' : false,
 							'text' => wfMessageFallback( "$skname-action-delete", 'delete' )
 								->setContext( $this->getContext() )->text(),
-							'href' => $title->getLocalURL( 'action=delete' )
+							'href' => $title->getLocalURL( array(
+								'action' => 'delete',
+								'oldid' => $this->getRevisionId(),
+							) )
 						);
 					}
 
