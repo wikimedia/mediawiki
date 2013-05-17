@@ -243,7 +243,7 @@ class Xml {
 		$selected = isset( $languages[$selected] ) ? $selected : $wgLanguageCode;
 		$options = "\n";
 		foreach ( $languages as $code => $name ) {
-			$options .= Xml::option( "$code - $name", $code, ($code == $selected) ) . "\n";
+			$options .= Xml::option( "$code - $name", $code, $code == $selected ) . "\n";
 		}
 
 		$attrs = array( 'id' => 'wpUserLanguage', 'name' => 'wpUserLanguage' );
@@ -889,7 +889,7 @@ class XmlSelect {
 	 */
 	public function addOption( $name, $value = false ) {
 		// Stab stab stab
-		$value = ($value !== false) ? $value : $name;
+		$value = $value !== false ? $value : $name;
 
 		$this->options[] = array( $name => $value );
 	}

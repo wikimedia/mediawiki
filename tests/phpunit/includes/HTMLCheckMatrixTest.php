@@ -18,12 +18,12 @@ class HtmlCheckMatrixTest extends MediaWikiTestCase {
 			return;
 		}
 
-		$this->fail('Expected MWException indicating missing parameters but none was thrown.');
+		$this->fail( 'Expected MWException indicating missing parameters but none was thrown.' );
 	}
 
 	public function testInstantiationWithMinimumRequiredParameters() {
 		$form = new HTMLCheckMatrix( self::$defaultOptions );
-		$this->assertTrue(true); // form instantiation must throw exception on failure
+		$this->assertTrue( true ); // form instantiation must throw exception on failure
 	}
 
 	public function testValidateCallsUserDefinedValidationCallback() {
@@ -49,7 +49,7 @@ class HtmlCheckMatrixTest extends MediaWikiTestCase {
 
 	public function testValidateAllowsOnlyKnownTags() {
 		$field = new HTMLCheckMatrix( self::$defaultOptions );
-		$this->assertInternalType('string', $this->validate( $field, array( 'foo' ) ) );
+		$this->assertInternalType( 'string', $this->validate( $field, array( 'foo' ) ) );
 	}
 
 	public function testValidateAcceptsPartialTagList() {
@@ -76,7 +76,7 @@ class HtmlCheckMatrixTest extends MediaWikiTestCase {
 			'c2-r1' => true,
 			'c2-r2' => false,
 		);
-		$this->assertEquals($expected, $field->filterDataForSubmit( array() ) );
+		$this->assertEquals( $expected, $field->filterDataForSubmit( array() ) );
 	}
 
 	public function testValuesForcedOffRemainOff() {
@@ -90,7 +90,7 @@ class HtmlCheckMatrixTest extends MediaWikiTestCase {
 			'c2-r2' => false,
 		);
 		// array_keys on the result simulates submitting all fields checked
-		$this->assertEquals($expected, $field->filterDataForSubmit( array_keys($expected) ) );
+		$this->assertEquals( $expected, $field->filterDataForSubmit( array_keys( $expected ) ) );
 	}
 
 	protected function validate( HTMLFormField $field, $submitted ) {

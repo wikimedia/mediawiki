@@ -644,7 +644,7 @@ class Message {
 		foreach ( $this->parameters as $n => $param ) {
 			list( $paramType, $value ) = $this->extractParam( $param );
 			if ( $type === $paramType ) {
-				$replacementKeys['$' . ($n + 1)] = $value;
+				$replacementKeys['$' . ( $n + 1 )] = $value;
 			}
 		}
 		$message = strtr( $message, $replacementKeys );

@@ -386,7 +386,7 @@ class ProtectionForm {
 				'mwProtect-reason', 4 );
 			$scExpiryOptions = wfMessage( 'protect-expiry-options' )->inContentLanguage()->text();
 
-			$showProtectOptions = ($scExpiryOptions !== '-' && !$this->disabled);
+			$showProtectOptions = $scExpiryOptions !== '-' && !$this->disabled;
 
 			$mProtectexpiry = Xml::label(
 				wfMessage( 'protectexpiry' )->text(),

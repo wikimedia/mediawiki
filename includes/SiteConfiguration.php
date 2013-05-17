@@ -317,7 +317,7 @@ class SiteConfiguration {
 	 * @return bool The value of the setting requested.
 	 */
 	public function getBool( $setting, $wiki, $suffix = null, $wikiTags = array() ) {
-		return (bool)($this->get( $setting, $wiki, $suffix, array(), $wikiTags ) );
+		return (bool)$this->get( $setting, $wiki, $suffix, array(), $wikiTags );
 	}
 
 	/**

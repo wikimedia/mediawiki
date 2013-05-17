@@ -609,7 +609,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			if ( $val == 1 ) {
 				$newBits |= $const; // $const is the *_deleted const
 			} elseif ( $val == -1 ) {
-				$newBits |= ($oldfield & $const); // use existing
+				$newBits |= ( $oldfield & $const ); // use existing
 			}
 		}
 		return $newBits;

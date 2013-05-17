@@ -43,7 +43,7 @@ class TiffHandler extends ExifBitmapHandler {
 	function canRender( $file ) {
 		global $wgTiffThumbnailType;
 		return (bool)$wgTiffThumbnailType
-			|| ($file->getRepo() instanceof ForeignAPIRepo);
+			|| $file->getRepo() instanceof ForeignAPIRepo;
 	}
 
 	/**

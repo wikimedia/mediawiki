@@ -60,7 +60,7 @@ class StubObject {
 	 * @return Boolean: true if $obj is not an instance of StubObject class.
 	 */
 	static function isRealObject( $obj ) {
-		return is_object( $obj ) && !($obj instanceof StubObject);
+		return is_object( $obj ) && !$obj instanceof StubObject;
 	}
 
 	/**
@@ -113,7 +113,7 @@ class StubObject {
 	function _unstub( $name = '_unstub', $level = 2 ) {
 		static $recursionLevel = 0;
 
-		if ( !($GLOBALS[$this->mGlobal] instanceof StubObject) ) {
+		if ( !$GLOBALS[$this->mGlobal] instanceof StubObject ) {
 			return $GLOBALS[$this->mGlobal]; // already unstubbed.
 		}
 
