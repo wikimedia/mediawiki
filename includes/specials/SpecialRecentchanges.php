@@ -294,7 +294,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 
 		// Calculate cutoff
 		$cutoff_unixtime = time() - ( $opts['days'] * 86400 );
-		$cutoff_unixtime = $cutoff_unixtime - ($cutoff_unixtime % 86400);
+		$cutoff_unixtime = $cutoff_unixtime - ( $cutoff_unixtime % 86400 );
 		$cutoff = $dbr->timestamp( $cutoff_unixtime );
 
 		$fromValid = preg_match( '/^[0-9]{14}$/', $opts['from'] );

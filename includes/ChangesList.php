@@ -844,7 +844,7 @@ class EnhancedChangesList extends ChangesList {
 		$secureName = $title->getPrefixedDBkey();
 		if ( $type == RC_MOVE || $type == RC_MOVE_OVER_REDIRECT ) {
 			# Use an @ character to prevent collision with page names
-			$this->rc_cache['@@' . ($this->rcMoveIndex++)] = array( $rc );
+			$this->rc_cache['@@' . ( $this->rcMoveIndex++ )] = array( $rc );
 		} else {
 			# Logs are grouped by type
 			if ( $type == RC_LOG ) {

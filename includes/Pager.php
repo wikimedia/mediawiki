@@ -593,7 +593,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 			$this->doQuery();
 		}
 		// Hide navigation by default if there is nothing to page
-		return !($this->mIsFirst && $this->mIsLast);
+		return !( $this->mIsFirst && $this->mIsLast );
 	}
 
 	/**

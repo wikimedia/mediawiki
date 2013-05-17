@@ -8,7 +8,7 @@ class HashRingTest extends MediaWikiTestCase {
 		$ring = new HashRing( array( 's1' => 1, 's2' => 1, 's3' => 2, 's4' => 2, 's5' => 2, 's6' => 3 ) );
 
 		$locations = array();
-		for ( $i=0; $i<20; $i++ ) {
+		for ( $i = 0; $i < 20; $i++ ) {
 			$locations[ "hello$i"] = $ring->getLocation( "hello$i" );
 		}
 		$expectedLocations = array(
@@ -37,7 +37,7 @@ class HashRingTest extends MediaWikiTestCase {
 		$this->assertEquals( $expectedLocations, $locations, 'Items placed at proper locations' );
 
 		$locations = array();
-		for ( $i=0; $i<5; $i++ ) {
+		for ( $i = 0; $i < 5; $i++ ) {
 			$locations[ "hello$i"] = $ring->getLocations( "hello$i", 2 );
 		}
 

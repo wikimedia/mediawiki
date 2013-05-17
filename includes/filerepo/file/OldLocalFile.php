@@ -291,7 +291,7 @@ class OldLocalFile extends LocalFile {
 	 */
 	function isDeleted( $field ) {
 		$this->load();
-		return ($this->deleted & $field) == $field;
+		return ( $this->deleted & $field ) == $field;
 	}
 
 	/**

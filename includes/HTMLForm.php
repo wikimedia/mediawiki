@@ -1940,7 +1940,7 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 					'id' => "{$this->mID}-$thisTag",
 					'value' => $thisTag,
 				);
-				$checked = in_array( $thisTag, (array)$value, true);
+				$checked = in_array( $thisTag, (array)$value, true );
 				if ( $this->isTagForcedOff( $thisTag ) ) {
 					$checked = false;
 					$thisAttribs['disabled'] = 1;
@@ -2049,7 +2049,7 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 				$thisTag = "$column-$row";
 				if ( $this->isTagForcedOff( $thisTag ) ) {
 					$res[$thisTag] = false;
-				} elseif ($this->isTagForcedOn( $thisTag ) ) {
+				} elseif ( $this->isTagForcedOn( $thisTag ) ) {
 					$res[$thisTag] = true;
 				} else {
 					$res[$thisTag] = in_array( $thisTag, $data );

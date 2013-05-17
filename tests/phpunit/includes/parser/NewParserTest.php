@@ -110,7 +110,7 @@ class NewParserTest extends MediaWikiTestCase {
 		# actual thumbnails to do parser testing, we only care about receiving
 		# a ThumbnailImage properly initialized.
 		global $wgMediaHandlers;
-		foreach( $wgMediaHandlers as $type => $handler ) {
+		foreach ( $wgMediaHandlers as $type => $handler ) {
 			$tmpGlobals['wgMediaHandlers'][$type] = 'MockBitmapHandler';
 		}
 
@@ -463,7 +463,7 @@ class NewParserTest extends MediaWikiTestCase {
 		}
 
 		$backend = RepoGroup::singleton()->getLocalRepo()->getBackend();
-		if( $backend instanceof MockFileBackend ) {
+		if ( $backend instanceof MockFileBackend ) {
 			# In memory backend, so dont bother cleaning them up.
 			return;
 		}

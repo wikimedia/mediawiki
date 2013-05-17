@@ -462,8 +462,8 @@ class Profiler {
 				# Adjust for profiling overhead (except special values with elapsed=0
 				if ( $elapsed ) {
 					$elapsed -= $overheadInternal;
-					$elapsed -= ($subcalls * $overheadTotal);
-					$memory -= ($subcalls * $overheadMemory);
+					$elapsed -= ( $subcalls * $overheadTotal );
+					$memory -= ( $subcalls * $overheadMemory );
 				}
 			}
 
@@ -509,7 +509,17 @@ class Profiler {
 			$calls = $this->mCalls[$fname];
 			$percent = $total ? 100. * $elapsed / $total : 0;
 			$memory = $this->mMemory[$fname];
-			$prof .= sprintf( $format, substr( $fname, 0, $nameWidth ), $calls, (float) ($elapsed * 1000), (float) ($elapsed * 1000) / $calls, $percent, $memory, ( $this->mMin[$fname] * 1000.0 ), ( $this->mMax[$fname] * 1000.0 ), $this->mOverhead[$fname] );
+			$prof .= sprintf( $format,
+				substr( $fname, 0, $nameWidth ),
+				$calls,
+				(float) ( $elapsed * 1000 ),
+				(float) ( $elapsed * 1000 ) / $calls,
+				$percent,
+				$memory,
+				( $this->mMin[$fname] * 1000.0 ),
+				( $this->mMax[$fname] * 1000.0 ),
+				$this->mOverhead[$fname]
+			);
 		}
 		$prof .= "\nTotal: $total\n\n";
 
@@ -573,13 +583,13 @@ class Profiler {
 
 			foreach ( $this->mCollated as $name => $elapsed ) {
 				$eventCount = $this->mCalls[$name];
-				$timeSum = (float) ($elapsed * 1000);
+				$timeSum = (float) ( $elapsed * 1000 );
 				$memorySum = (float)$this->mMemory[$name];
 				$name = substr( $name, 0, 255 );
 
 				// Kludge
-				$timeSum = ($timeSum >= 0) ? $timeSum : 0;
-				$memorySum = ($memorySum >= 0) ? $memorySum : 0;
+				$timeSum = $timeSum >= 0 ? $timeSum : 0;
+				$memorySum = $memorySum >= 0 ? $memorySum : 0;
 
 				$dbw->update( 'profiling',
 					array(

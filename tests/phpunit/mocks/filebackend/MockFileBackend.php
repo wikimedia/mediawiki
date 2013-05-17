@@ -42,24 +42,24 @@ class MockFileBackend extends FileBackendStore {
 	}
 
 	protected function doCreateInternal( array $params ) {
-		if( isset( $params['content'] ) ) {
+		if ( isset( $params['content'] ) ) {
 			$content = $params['content'];
 		} else {
 			$content = 'Default mocked file content';
 		}
-		$this->debug(serialize($params));
+		$this->debug( serialize( $params ) );
 		$dst = $params['dst'];
 		$this->mocked[$dst] = $content;
 		return Status::newGood();
 	}
 
 	protected function doStoreInternal( array $params ) {
-		$this->debug(serialize($params));
+		$this->debug( serialize( $params ) );
 		return $this->doCreateInternal( $params );
 	}
 
 	protected function doCopyInternal( array $params ) {
-		$this->debug(serialize($params));
+		$this->debug( serialize( $params ) );
 		$src = $params['src'];
 		$dst = $params['dst'];
 		$this->mocked[$dst] = $this->mocked[$src];
@@ -67,7 +67,7 @@ class MockFileBackend extends FileBackendStore {
 	}
 
 	protected function doDeleteInternal( array $params ) {
-		$this->debug(serialize($params));
+		$this->debug( serialize( $params ) );
 		$src = $params['src'];
 		unset( $this->mocked[$src] );
 		return Status::newGood();
@@ -75,7 +75,7 @@ class MockFileBackend extends FileBackendStore {
 
 	protected function doGetFileStat( array $params ) {
 		$src = $params['src'];
-		if( array_key_exists( $src, $this->mocked ) ) {
+		if ( array_key_exists( $src, $this->mocked ) ) {
 			$this->debug( "('$src') found" );
 			return array(
 				'mtime' => wfTimestamp( TS_MW ),
@@ -91,10 +91,10 @@ class MockFileBackend extends FileBackendStore {
 	protected function doGetLocalCopyMulti( array $params ) {
 		$tmpFiles = array(); // (path => MockFSFile)
 
-		$this->debug( '(' . serialize($params) . ')' );
-		foreach( $params['srcs'] as $src ) {
+		$this->debug( '(' . serialize( $params ) . ')' );
+		foreach ( $params['srcs'] as $src ) {
 			$tmpFiles[$src] = new MockFSFile(
-				wfTempDir() . '/' . wfRandomString(32)
+				wfTempDir() . '/' . wfRandomString( 32 )
 			);
 		}
 		return $tmpFiles;
