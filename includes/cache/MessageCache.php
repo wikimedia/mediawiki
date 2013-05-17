@@ -755,7 +755,7 @@ class MessageCache {
 		if ( isset( $this->mCache[$code][$title] ) ) {
 			$entry = $this->mCache[$code][$title];
 			if ( substr( $entry, 0, 1 ) === ' ' ) {
-				return substr( $entry, 1 );
+				return (string)substr( $entry, 1 );
 			} elseif ( $entry === '!NONEXISTENT' ) {
 				return false;
 			} elseif ( $entry === '!TOO BIG' ) {
@@ -778,7 +778,7 @@ class MessageCache {
 		if ( $entry ) {
 			if ( substr( $entry, 0, 1 ) === ' ' ) {
 				$this->mCache[$code][$title] = $entry;
-				return substr( $entry, 1 );
+				return (string)substr( $entry, 1 );
 			} elseif ( $entry === '!NONEXISTENT' ) {
 				$this->mCache[$code][$title] = '!NONEXISTENT';
 				return false;
