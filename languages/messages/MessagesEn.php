@@ -753,6 +753,20 @@ future releases. Also note that since each list value is wrapped in a unique
 'nov'           => 'Nov',
 'dec'           => 'Dec',
 
+# Month with date (Some languages use genitive case, some don't. See bug 47211.)
+'january-date'   => 'January $1',
+'february-date'  => 'February $1',
+'march-date'     => 'March $1',
+'april-date'     => 'April $1',
+'may-date'       => 'May $1',
+'june-date'      => 'June $1',
+'july-date'      => 'July $1',
+'august-date'    => 'August $1',
+'september-date' => 'September $1',
+'october-date'   => 'October $1',
+'november-date'  => 'November $1',
+'december-date'  => 'December $1',
+
 # Categories related messages
 'pagecategories'                 => '{{PLURAL:$1|Category|Categories}}',
 'pagecategorieslink'             => 'Special:Categories', # do not translate or duplicate this message to other languages
