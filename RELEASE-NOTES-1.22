@@ -79,6 +79,8 @@ production.
   which can be cascading (previously 'sysop' was hard-coded as the only one).
 * XHTML5 support has been improved. If you set $wgMimeType = 'application/xhtml+xml'
   MediaWiki will try outputting markup acording to XHTML5 rules.
+* New hook 'TitleSquidURLs' for manipulating the list of URLs to be purged from
+  HTTP caches when a page is changed.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
