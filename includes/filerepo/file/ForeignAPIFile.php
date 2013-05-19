@@ -119,12 +119,25 @@ class ForeignAPIFile extends File {
 		// Note, the this->canRender() check above implies
 		// that we have a handler, and it can do makeParamString.
 		$otherParams = $this->handler->makeParamString( $params );
+		$width = isset( $params['width'] ) ? $params['width'] : -1;
+		$height = isset( $params['height'] ) ? $params['height'] : -1;
 
 		$thumbUrl = $this->repo->getThumbUrlFromCache(
 			$this->getName(),
-			isset( $params['width'] ) ? $params['width'] : -1,
-			isset( $params['height'] ) ? $params['height'] : -1,
-			$otherParams );
+			$width,
+			$height,
+			$otherParams
+		);
+		if ( $thumbUrl === false ) {
+			global $wgLang;
+			return $this->repo->getThumbError(
+				$this->getName(),
+				$width,
+				$height,
+				$otherParams,
+				$wgLang->getCode()
+			);
+		}
 		return $this->handler->getTransform( $this, 'bogus', $thumbUrl, $params );
 	}
 

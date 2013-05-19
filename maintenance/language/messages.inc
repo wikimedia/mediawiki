@@ -2447,6 +2447,7 @@ $wgMessageStructure = array(
 		'thumbnail-more',
 		'filemissing',
 		'thumbnail_error',
+		'thumbnail_error_remote',
 		'djvu_page_error',
 		'djvu_no_xml',
 		'thumbnail-temp-create',

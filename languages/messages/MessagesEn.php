@@ -3516,6 +3516,8 @@ Please visit [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and 
 'thumbnail-more'           => 'Enlarge',
 'filemissing'              => 'File missing',
 'thumbnail_error'          => 'Error creating thumbnail: $1',
+'thumbnail_error_remote'   => 'Error message from $1:
+$2',
 'djvu_page_error'          => 'DjVu page out of range',
 'djvu_no_xml'              => 'Unable to fetch XML for DjVu file',
 'thumbnail-temp-create'    => 'Unable to create temporary thumbnail file',

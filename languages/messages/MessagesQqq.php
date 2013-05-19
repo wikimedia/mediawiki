@@ -6079,6 +6079,9 @@ The reason $1 is one of the following messages:
 * {{msg-mw|Djvu page error}}
 * {{msg-mw|Svg-long-error}}
 * other custom string',
+'thumbnail_error_remote' => 'Message shown in a thumbnail frame when creation of the thumbnail fails. Parameters:
+* $1 - is the name of the shared repository, see {{msg-mw|shardupload}}
+* $2 - the reason, see {{msg-mw|thumbnail_error}}',
 'djvu_page_error' => 'Used as error message.
 
 See also:

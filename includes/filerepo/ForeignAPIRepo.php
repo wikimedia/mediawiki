@@ -143,7 +143,7 @@ class ForeignAPIRepo extends FileRepo {
 	 * @return string
 	 */
 	function fetchImageQuery( $query ) {
-		global $wgMemc;
+		global $wgMemc, $wgLanguageCode;
 
 		$query = array_merge( $query,
 			array(
@@ -151,6 +151,9 @@ class ForeignAPIRepo extends FileRepo {
 				'action' => 'query',
 				'redirects' => 'true'
 			) );
+		if ( !isset( $query['uselang'] ) ) { // uselang is unset or null
+			$query['uselang'] = $wgLanguageCode;
+		}
 		if ( $this->mApiBase ) {
 			$url = wfAppendQuery( $this->mApiBase, $query );
 		} else {
@@ -237,6 +240,40 @@ class ForeignAPIRepo extends FileRepo {
 			wfDebug( __METHOD__ . " got remote thumb " . $info['thumburl'] . "\n" );
 			$result = $info;
 			return $info['thumburl'];
+		} else {
+			return false;
+		}
+	}
+
+	/**
+	 * @param $name string
+	 * @param $width int
+	 * @param $height int
+	 * @param $otherParams string
+	 * @return bool|MediaTransformError
+	 * @since 1.22
+	 */
+	function getThumbError( $name, $width = -1, $height = -1, $otherParams = '', $lang = null ) {
+		$data = $this->fetchImageQuery( array(
+			'titles' => 'File:' . $name,
+			'iiprop' => 'url|timestamp',
+			'iiurlwidth' => $width,
+			'iiurlheight' => $height,
+			'iiurlparam' => $otherParams,
+			'prop' => 'imageinfo',
+			'uselang' => $lang,
+		) );
+		$info = $this->getImageInfo( $data );
+
+		if( $data && $info && isset( $info['thumberror'] ) ) {
+			wfDebug( __METHOD__ . " got remote thumb error " . $info['thumberror'] . "\n" );
+			return new MediaTransformError(
+				'thumbnail_error_remote',
+				$width,
+				$height,
+				$this->getDisplayName(),
+				$info['thumberror'] // already parsed message from foreign repo
+			);
 		} else {
 			return false;
 		}
