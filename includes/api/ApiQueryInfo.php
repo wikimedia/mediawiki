@@ -352,7 +352,8 @@ class ApiQueryInfo extends ApiQueryBase {
 		$ns = $title->getNamespace();
 		$dbkey = $title->getDBkey();
 
-		$pageInfo['contentmodel'] = $title->getContentModel();
+		$pageInfo['contentmodel'] = $title->getContentModel();		
+		$pageInfo['pagelanguage'] = $title->getPageLanguage()->getCode();		
 
 		if ( $titleExists ) {
 			global $wgDisableCounters;
