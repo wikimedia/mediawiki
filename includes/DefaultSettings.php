@@ -336,13 +336,6 @@ $wgAllowImageMoving = true;
 $wgEnableAsyncUploads = false;
 
 /**
- * Allow chunked uploads.  This should only really be needed if you
- * use the UploadWizard extension or allow huge file uploads.
- * https://www.mediawiki.org/wiki/API:Upload#Chunked_uploading
- */
-$wgAllowChunkedUploads = false;
-
-/**
  * These are additional characters that should be replaced with '-' in filenames
  */
 $wgIllegalFileChars = ":";
