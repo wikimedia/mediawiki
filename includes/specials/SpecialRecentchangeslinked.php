@@ -72,7 +72,7 @@ class SpecialRecentchangeslinked extends SpecialRecentChanges {
 		$outputPage = $this->getOutput();
 		$title = Title::newFromURL( $target );
 		if ( !$title || $title->getInterwiki() != '' ) {
-			$outputPage->wrapWikiMsg( "<div class=\"errorbox\">\n$1\n</div><br style=\"clear: both\" />", 'allpagesbadtitle' );
+			$outputPage->wrapWikiMsg( "<div class=\"errorbox\">\n$1\n</div>", 'allpagesbadtitle' );
 			return false;
 		}
 

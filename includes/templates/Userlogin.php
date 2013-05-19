@@ -40,8 +40,7 @@ class UserloginTemplate extends QuickTemplate {
 		}
 		?>
 		<?php $this->html( 'message' ); ?>
-	</div>
-	<div class="visualClear"></div><?php
+	</div><?php
 
 		}
 ?>
