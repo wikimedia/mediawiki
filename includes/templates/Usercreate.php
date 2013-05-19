@@ -54,7 +54,6 @@ class UsercreateTemplate extends QuickTemplate {
 			$this->html( 'message' );
 ?>
 	</div>
-	<div class="visualClear"></div>
 <?php
 		}
 ?>
