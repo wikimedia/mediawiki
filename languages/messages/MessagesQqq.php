@@ -4503,21 +4503,19 @@ Possible alternatives to the word 'content' are 'subject matter' or 'wiki subjec
 See also:
 * {{msg-mw|Cantrollback}}',
 'watchnochange' => 'Used in [[Special:Watchlist]] if there is nothing to show.',
-'watchlist-details' => 'Message on [[Special:Watchlist]]. Parameters:
+'watchlist-details' => 'Message at the top of [[Special:Watchlist]]. Has to be a full sentence. Parameters:
 * $1 - number of pages in your watchlist
 This is paired with the message {{msg-mw|Nowatchlist}} which appears instead of Watchlist-details when $1 is 0.
 
 See also:
 * {{msg-mw|Watchlist-options|fieldset}}
-* {{msg-mw|Wlheader-enotif|watchlist header}}
 * {{msg-mw|enotif reset|Submit button text}}',
-'wlheader-enotif' => 'Used in [[Special:Watchlist]].
+'wlheader-enotif' => 'Message at the top of [[Special:Watchlist]], after {{msg-mw|watchlist-details}}. Has to be a full sentence.
 
 See also:
 * {{msg-mw|Watchlist-options|fieldset}}
-* {{msg-mw|Watchlist-details|watchlist header}}
 * {{msg-mw|enotif reset|Submit button text}}',
-'wlheader-showupdated' => 'This message shows up near top of users watchlist page.',
+'wlheader-showupdated' => 'Message at the top of [[Special:Watchlist]], after {{msg-mw|watchlist-details}}. Has to be a full sentence.',
 'watchmethod-recent' => 'See also:
 * {{msg-mw|Watchmethod-list}}',
 'watchmethod-list' => 'See also:

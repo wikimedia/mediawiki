@@ -1604,7 +1604,7 @@ Coppite yiy ñëw yu xët wi ak xëtu waxtaanuwaay wi mu àndal di nañu leen fa
 'unwatchthispage' => 'Bul toppati',
 'watchnochange' => 'Lenn ci xët yi ngay topp soppikuwul ci diir bii',
 'watchlist-details' => 'Topp nga $1 {{PLURAL:$1|xët|ciy xët}}, soo waññiwaalewul xëti waxtaanuwaay yi.',
-'wlheader-showupdated' => '* Xët yi ñu soppiwoon ca sa duggu bu mujj ñoom la ñu fesal ñu <b>xëm</b>',
+'wlheader-showupdated' => 'Xët yi ñu soppiwoon ca sa duggu bu mujj ñoom la ñu fesal ñu <b>xëm</b>.',
 'watchmethod-recent' => 'saytug coppite yu mujj yu xët yi ngay topp',
 'watchmethod-list' => 'saytug xët yi ñuy topp ngir ay coppite yu mujj',
 'watchlistcontains' => "Sa limu toppte am na '''$1''' {{PLURAL:$1|xët|xët}}.",

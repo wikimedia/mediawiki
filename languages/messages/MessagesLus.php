@@ -1423,7 +1423,7 @@ Hetah hian [[Special:UnusedCategories|pawl hman lohho]] pholan tel a ni lo.
 'notvisiblerev' => 'Hmangtu dang tihdanglamna thar paihbo a ni.',
 'watchnochange' => 'I hun sawi chhungah khan i ralvèn khawih buai a ni lo.',
 'watchlist-details' => 'I ralvèn zing aţanga {{PLURAL:$1| phêk $1 |phêk $1}}, sawihona phêk chhiar lohvin.',
-'wlheader-enotif' => '*E-lehkha inhriattirna tihnun a ni.',
+'wlheader-enotif' => 'E-lehkha inhriattirna tihnun a ni.',
 'wlheader-showupdated' => "I tlawh hnuhnun ber hnua tihdanglam phêk te chu a '''thau'''va tihlan a ni.",
 'watchmethod-recent' => 'phêk vèn tihdanglam leh danglam loh kan enfiah mek!',
 'watchmethod-list' => 'phêk vèn tunhnaia tihdanglam a awm em kan enfiah',

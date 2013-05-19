@@ -1877,7 +1877,7 @@ Mehr Informatschonen över enkelte Rechten staht ünner [[{{MediaWiki:Listgroupr
 'watchnochange' => 'Kene Siet op dien Oppasslist is in den wiesten Tietruum ännert worrn.',
 'watchlist-details' => '{{PLURAL:$1|Ene Siet is|$1 Sieden sünd}} op dien Oppasslist (ahn Diskuschoonssieden).',
 'wlheader-enotif' => 'Benarichtigen per E-Mail is anstellt.',
-'wlheader-showupdated' => "* Sieden, de siet dien letzten Besöök ännert worrn sünd, warrt '''fett''' wiest.",
+'wlheader-showupdated' => "Sieden, de siet dien letzten Besöök ännert worrn sünd, warrt '''fett''' wiest.",
 'watchmethod-recent' => 'letzte Ännern no Oppasslist pröven',
 'watchmethod-list' => 'Oppasslist na letzte Ännern nakieken',
 'watchlistcontains' => 'Diene Oppasslist bargt {{PLURAL:$1|ene Siet|$1 Sieden}}.',
