@@ -1092,6 +1092,7 @@ class Article implements Page {
 	public function showMissingArticle() {
 		global $wgSend404Code;
 		$outputPage = $this->getContext()->getOutput();
+		// Whether the page is a root user page of an existing user (but not a subpage)
 		$validUserPage = false;
 
 		# Show info in user (talk) namespace. Does the user exist? Is he blocked?
@@ -1119,9 +1120,9 @@ class Article implements Page {
 						)
 					)
 				);
-				$validUserPage = true;
+				$validUserPage = !$this->getTitle->isSubpage();
 			} else {
-				$validUserPage = true;
+				$validUserPage = !$this->getTitle->isSubpage();
 			}
 		}
 
