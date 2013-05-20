@@ -36,23 +36,35 @@
  * @since 1.21
  */
 class RedisConnectionPool {
-	// Settings for all connections in this pool
-	protected $connectTimeout; // string; connection timeout
-	protected $persistent; // bool; whether connections persist
-	protected $password; // string; plaintext auth password
-	protected $serializer; // integer; the serializer to use (Redis::SERIALIZER_*)
+	/**
+	 * @name Pool settings.
+	 * Settings there are shared for any connection made in this pool.
+	 * See the singleton() method documentation for more details.
+	 * @{
+	 */
+	/** @var string Connection timeout in seconds */
+	protected $connectTimeout;
+	/** @var string Plaintext auth password */
+	protected $password;
+	/** @var bool Whether connections persist */
+	protected $persistent;
+	/** @var integer Serializer to use (Redis::SERIALIZER_*) */
+	protected $serializer;
+	/** @} */
 
-	protected $idlePoolSize = 0; // integer; current idle pool size
+	/** @var integer Current idle pool size */
+	protected $idlePoolSize = 0;
 
 	/** @var Array (server name => ((connection info array),...) */
 	protected $connections = array();
 	/** @var Array (server name => UNIX timestamp) */
 	protected $downServers = array();
 
-	/** @var Array */
-	protected static $instances = array(); // (pool ID => RedisConnectionPool)
+	/** @var Array (pool ID => RedisConnectionPool) */
+	protected static $instances = array();
 
-	const SERVER_DOWN_TTL = 30; // integer; seconds to cache servers as "down"
+	/** integer; seconds to cache servers as "down". */
+	const SERVER_DOWN_TTL = 30;
 
 	/**
 	 * @param array $options
