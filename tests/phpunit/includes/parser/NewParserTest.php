@@ -31,6 +31,11 @@ class NewParserTest extends MediaWikiTestCase {
 
 	protected $file = false;
 
+	public static function setUpBeforeClass() {
+		// Inject ParserTest well-known interwikis
+		ParserTest::setupInterwikis();
+	}
+
 	protected function setUp() {
 		global $wgNamespaceAliases;
 		global $wgHooks, $IP;
@@ -149,49 +154,8 @@ class NewParserTest extends MediaWikiTestCase {
 
 	function addDBData() {
 		$this->tablesUsed[] = 'site_stats';
-		$this->tablesUsed[] = 'interwiki';
 		# disabled for performance
 		#$this->tablesUsed[] = 'image';
-
-		# Hack: insert a few Wikipedia in-project interwiki prefixes,
-		# for testing inter-language links
-		$this->db->insert( 'interwiki', array(
-				array( 'iw_prefix' => 'wikipedia',
-					'iw_url' => 'http://en.wikipedia.org/wiki/$1',
-					'iw_api' => '',
-					'iw_wikiid' => '',
-					'iw_local' => 0 ),
-				array( 'iw_prefix' => 'meatball',
-					'iw_url' => 'http://www.usemod.com/cgi-bin/mb.pl?$1',
-					'iw_api' => '',
-					'iw_wikiid' => '',
-					'iw_local' => 0 ),
-				array( 'iw_prefix' => 'zh',
-					'iw_url' => 'http://zh.wikipedia.org/wiki/$1',
-					'iw_api' => '',
-					'iw_wikiid' => '',
-					'iw_local' => 1 ),
-				array( 'iw_prefix' => 'es',
-					'iw_url' => 'http://es.wikipedia.org/wiki/$1',
-					'iw_api' => '',
-					'iw_wikiid' => '',
-					'iw_local' => 1 ),
-				array( 'iw_prefix' => 'fr',
-					'iw_url' => 'http://fr.wikipedia.org/wiki/$1',
-					'iw_api' => '',
-					'iw_wikiid' => '',
-					'iw_local' => 1 ),
-				array( 'iw_prefix' => 'ru',
-					'iw_url' => 'http://ru.wikipedia.org/wiki/$1',
-					'iw_api' => '',
-					'iw_wikiid' => '',
-					'iw_local' => 1 ),
-				/**
-				 * @todo Fixme! Why are we inserting duplicate data here? Shouldn't
-				 * need this IGNORE or shouldn't need the insert at all.
-				 */
-			), __METHOD__, array( 'IGNORE' )
-		);
 
 		# Update certain things in site_stats
 		$this->db->insert( 'site_stats',
