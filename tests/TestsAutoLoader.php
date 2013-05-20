@@ -91,6 +91,7 @@ $wgAutoloadClasses += array(
 	'MockFileBackend' => "$testDir/phpunit/mocks/filebackend/MockFileBackend.php",
 	'MockBitmapHandler' => "$testDir/phpunit/mocks/media/MockBitmapHandler.php",
 	'MockImageHandler' => "$testDir/phpunit/mocks/media/MockImageHandler.php",
+	'MockLinkCache' => "$testDir/phpunit/mocks/cache/MockLinkCache.php",
 	'MockSvgHandler' => "$testDir/phpunit/mocks/media/MockSvgHandler.php",
 
 	# tests/parser
