@@ -41,7 +41,7 @@ class DeleteEqualMessages extends Maintenance {
 	 * @param string|bool $langCode See --lang-code option.
 	 */
 	protected function fetchMessageInfo( $langCode, array &$messageInfo ) {
-		global $wgUser, $wgContLang;
+		global $wgContLang;
 
 		if ( $langCode ) {
 			$this->output( "\n... fetching message info for language: $langCode" );
@@ -152,6 +152,7 @@ class DeleteEqualMessages extends Maintenance {
 		if ( !$user ) {
 			$this->error( "Invalid username", true );
 		}
+		global $wgUser;
 		$wgUser = $user;
 
 		// Hide deletions from RecentChanges
