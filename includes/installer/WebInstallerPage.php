@@ -1083,7 +1083,7 @@ class WebInstaller_Options extends WebInstallerPage {
 			'&#160;&#160;' .
 			htmlspecialchars( $this->getVar( 'wgRightsText' ) ) .
 			"</p>\n" .
-			"<p style=\"text-align: center\">" .
+			"<p style=\"text-align: center;\">" .
 			Html::element( 'a',
 				array(
 					'href' => $this->getCCPartnerUrl(),
@@ -1092,7 +1092,7 @@ class WebInstaller_Options extends WebInstallerPage {
 				wfMessage( 'config-cc-again' )->text()
 			) .
 			"</p>\n" .
-			"<script type=\"text/javascript\">\n" .
+			"<script>\n" .
 			# Reduce the wrapper div height
 			htmlspecialchars( $reduceJs ) .
 			"\n" .
@@ -1255,8 +1255,7 @@ class WebInstaller_Complete extends WebInstallerPage {
 		if ( isset( $_SERVER['HTTP_USER_AGENT'] ) &&
 			 strpos( $_SERVER['HTTP_USER_AGENT'], 'MSIE' ) !== false ) {
 			// JS appears the only method that works consistently with IE7+
-			$this->addHtml( "\n<script type=\"" . $GLOBALS['wgJsMimeType'] .
-				'">jQuery( document ).ready( function() { document.location=' .
+			$this->addHtml( "\n<script>jQuery( document ).ready( function () { document.location = " .
 				Xml::encodeJsVar( $lsUrl ) . "; } );</script>\n" );
 		} else {
 			$this->parent->request->response()->header( "Refresh: 0;url=$lsUrl" );
