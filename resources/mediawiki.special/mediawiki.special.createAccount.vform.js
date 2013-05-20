@@ -9,6 +9,8 @@
 			tabIndex,
 			$captchaStuff,
 			$captchaImageContainer,
+			// JavaScript can't yet parse the message createacct-imgcaptcha-help when it
+			// contains a MediaWiki transclusion, so PHP parses it and sends the HTML.
 			helpMsg = mw.config.get( 'wgCreateacctImgcaptchaHelp' ),
 			helpHtml = '';
 
@@ -40,7 +42,7 @@
 				helpHtml = '<small class="mw-createacct-captcha-assisted">' + helpMsg + '</small>';
 			}
 
-			// Insert another div before the submit button that will include the 
+			// Insert another div before the submit button that will include the
 			// repositioned FancyCaptcha div, an input field, and possible help.
 			$submit.closest( 'div' )
 				.before( [
