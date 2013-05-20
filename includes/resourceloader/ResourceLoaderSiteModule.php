@@ -37,7 +37,7 @@ class ResourceLoaderSiteModule extends ResourceLoaderWikiModule {
 	 * @return Array: List of pages
 	 */
 	protected function getPages( ResourceLoaderContext $context ) {
-		global $wgUseSiteJs, $wgUseSiteCss, $wgHandheldStyle;
+		global $wgUseSiteJs, $wgUseSiteCss;
 
 		$pages = array();
 		if ( $wgUseSiteJs ) {
@@ -50,11 +50,6 @@ class ResourceLoaderSiteModule extends ResourceLoaderWikiModule {
 
 		}
 		$pages['MediaWiki:Print.css'] = array( 'type' => 'style', 'media' => 'print' );
-		if ( $wgHandheldStyle ) {
-			$pages['MediaWiki:Handheld.css'] = array(
-				'type' => 'style',
-				'media' => 'handheld' );
-		}
 		return $pages;
 	}
 
