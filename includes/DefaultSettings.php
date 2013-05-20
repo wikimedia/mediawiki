@@ -2518,11 +2518,13 @@ $wgLocalTZoffset = null;
 $wgMimeType = 'text/html';
 
 /**
- * The content type used in script tags.  This is mostly going to be ignored at
- * least for actual HTML output, since HTML5 doesn't require a MIME type for
- * JavaScript or CSS (those are the default script and style languages).
+ * Previously used as content type in HTML script tags. This is now ignored since
+ * HTML5 doesn't require a MIME type for script tags (javascript is the default).
+ * It was also previously used by RawAction to determine the ctype query parameter
+ * value that will result in a javascript response.
+ * @deprecated since 1.22
  */
-$wgJsMimeType = 'text/javascript';
+$wgJsMimeType = null;
 
 /**
  * The default xmlns attribute. The option to define this has been removed.

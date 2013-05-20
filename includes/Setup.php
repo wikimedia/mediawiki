@@ -344,12 +344,11 @@ foreach ( $wgDisabledActions as $action ) {
 	$wgActions[$action] = false;
 }
 
-# We always output html5 since 1.22, override any change made by local settings
+# We always output HTML5 since 1.22, overriding these is no longer supported
+# we set them here for extensions that depend on its value.
 $wgHtml5 = true;
-
-# Setting wgXhtmlDefaultNamespace is not supported since 1.22.
-# However we define it here for extensions that depend on its value.
 $wgXhtmlDefaultNamespace = 'http://www.w3.org/1999/xhtml';
+$wgJsMimeType = 'text/javascript';
 
 if ( !$wgHtml5Version && $wgAllowRdfaAttributes ) {
 	# see http://www.w3.org/TR/rdfa-in-html/#document-conformance
