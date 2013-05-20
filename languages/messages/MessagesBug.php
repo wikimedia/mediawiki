@@ -73,7 +73,6 @@ $messages = array(
 'qbbrowse' => 'Berowoso',
 'qbedit' => 'Padécéŋ',
 'qbpageoptions' => 'Édé leppa',
-'qbpageinfo' => 'Konteks',
 'qbmyoptions' => "Leppana iya'",
 'qbspecialpages' => 'Leppa spésiala',
 'faq' => 'FAQ',
@@ -248,9 +247,6 @@ $messages = array(
 'searchhelp-url' => 'Help:Lise',
 'search-result-size' => '$1 ({{PLURAL:$2|1 ada|$2 ada}})',
 'search-redirect' => '(redirect $1)',
-
-# Quickbar
-'qbsettings-none' => 'Dégaga',
 
 # Preferences page
 'mypreferences' => 'Bérékkeŋeŋna iyya',

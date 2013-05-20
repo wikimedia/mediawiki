@@ -652,6 +652,11 @@ $1',
 [[Special:UnusedCategories|Unused categories]] are not shown here.
 Also see [[Special:WantedCategories|wanted categories]].',
 
+# Special:ActiveUsers
+'activeusers' => 'ހަރަކާތްތެރި މެމްބަރުންގެ ލިސްޓު',
+'activeusers-hidebots' => 'ބޮޓް ފޮރުއްވާ',
+'activeusers-hidesysops' => 'އެޑްމިނިސްޓްރޭޓަރުން ފޮރުއްވާ',
+
 # Special:ListGroupRights
 'listgrouprights-members' => '(މެމްބަރުންގެ ލިސްޓު)',
 
@@ -814,7 +819,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 # Metadata
 'metadata' => 'މެޓަޑޭޓާ',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'ފުޅާމިން',
 'exif-imagelength' => 'އުސްމިން',
 'exif-imagedescription' => 'ތަސްވީރުގެ ސުރުހީ',

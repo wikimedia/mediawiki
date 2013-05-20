@@ -43,8 +43,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Ml uṭṭun n Midn lli swurn ɣ tasna yad',
 'tog-oldsig' => 'Asmmaql (Tiẓṛi) n ukrraj n ufus lli illan:',
 'tog-fancysig' => 'Skr akrrag n ufus s taɣarast  n  wikitext (bla azday utumatik)',
-'tog-externaleditor' => 'Swwur s yan umẓṛg u uṭṛiṣ n brra ( i imskarn lli bahra ḥrcnin, ira mayad riglaj iẓlin ɣ urdinatur)',
-'tog-externaldiff' => 'Skr s yan umsnaḥya abrrani ( i midn lli bahra ḥrcnin, mayad ira riglaj ɣ urdinatur)',
 'tog-showjumplinks' => 'Srɣ izdayn « Amuddu » d « acnubc » niḍ « Asiǧl » ɣ uflla n tasna',
 'tog-uselivepreview' => 'Skr s umẓri amaynu izrbn (ira JavaScript) (Arm)',
 'tog-forceeditsummary' => 'Ayyit tini iɣ ur iwiɣ imsmun n imbdln',
@@ -405,7 +403,7 @@ Ussaɣ n isqdacn ḥiln hlli.
 'emailconfirmlink' => 'Als i tasna nk n tbratin izd nit nttat ayan.',
 'loginlanguagelabel' => 'Tutlayt: $1',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Kra ur igadda tasɣnt btbratin() n PHP.',
 
 # Change password dialog
@@ -657,14 +655,6 @@ Tigira n ujbbad ns, ar takka yat tayafut bahra imqqurn,  ɣayan afan ur ttili.',
 Tzdar at cabbat ɣilad ɣ Google.
 Izdar ad urtili ɣ isbidn n mayllan ɣ {{SITENAME}} .',
 
-# Quickbar
-'qbsettings' => 'Tafeggagt izrbn',
-'qbsettings-none' => 'Ur iḥudda',
-'qbsettings-fixedleft' => 'Aẓẓugz azlmaḍ',
-'qbsettings-fixedright' => 'Azzugz afasi',
-'qbsettings-floatingleft' => 'Yaywul su uzlmad',
-'qbsettings-floatingright' => 'Yaywul su ufasi',
-
 # Preferences page
 'preferences' => 'Timssusmin',
 'mypreferences' => 'Timssusmin',
@@ -911,7 +901,7 @@ Mel imbddeln z tisniwin li ittuyzdayni bla tasna li trit.',
 # Special:ListGroupRights
 'listgrouprights-members' => 'Umuɣ n  midn',
 
-# E-mail user
+# Email user
 'emailuser' => 'Azn tabrat umsqdac ad',
 
 # Watchlist
@@ -1292,10 +1282,6 @@ Wiyyaḍ raggis ḥbun s ɣiklli sttin kkan gantn.
 'version-poweredby-others' => 'wiyyad',
 'version-software-product' => 'lmntoj',
 'version-software-version' => 'noskha',
-
-# Special:FilePath
-'filepath-page' => 'Asdaw:',
-'filepath-submit' => 'Ftu',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-filename' => 'smiyt n-wasdaw:',

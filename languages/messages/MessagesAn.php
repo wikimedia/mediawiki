@@ -1938,6 +1938,15 @@ Protocolos suportados: <code>$1</code> (no los adhiba en a suya busca).',
 'listusers-noresult' => "No s'ha trobato ixe usuario.",
 'listusers-blocked' => '({{GENDER:$1|bloqueyato|bloqueyata}})',
 
+# Special:ActiveUsers
+'activeusers' => "Lista d'usuarios activos",
+'activeusers-intro' => "Ista ye una lista d'usuarios que han teniu bella actividat en os zaguers $1 {{PLURAL:$1|diya|diyas}}.",
+'activeusers-count' => '$1 {{PLURAL:$1|edición|edicions}} en os zaguers {{PLURAL:$3|diya|$3 diyas}}',
+'activeusers-from' => "Amostrar nombres d'usuario que prencipien por:",
+'activeusers-hidebots' => 'Amagar robots',
+'activeusers-hidesysops' => 'Amagar administradors',
+'activeusers-noresult' => "No s'han trobato usuarios.",
+
 # Special:ListGroupRights
 'listgrouprights' => "Dreitos d'a colla d'usuarios",
 'listgrouprights-summary' => "Contino trobará a lista de collas d'usuario definitas en iste wiki, con os suyos dreitos d'acceso asociatos. Tamién puet trobar aquí [[{{MediaWiki:Listgrouprights-helppage}}|información adicional]] sobre os dreitos individuals.",
@@ -2011,8 +2020,8 @@ L\'adreza de correu-e que endicó en as suyas [[Special:Preferences|preferencias
 'notvisiblerev' => "S'ha borrato a revisión",
 'watchnochange' => "Dengún d'os articlos d'a suya lista de seguimiento no s'ha editato en o periodo de tiempo amostrato.",
 'watchlist-details' => '{{PLURAL:$1|$1 pachina|$1 pachinas}} en a suya lista de seguimiento, sin contar-ie as pachinas de descusión.',
-'wlheader-enotif' => 'A notificación por correu electronico ye activata.',
-'wlheader-showupdated' => "Las pachinas cambiadas dende a suya zaguer vesita s'amuestran en '''negreta'''.",
+'wlheader-enotif' => 'A notificación por correu electronico ye activata',
+'wlheader-showupdated' => "Las pachinas cambiadas dende a suya zaguer vesita s'amuestran en '''negreta'''",
 'watchmethod-recent' => 'Mirando pachinas cosiratas en os zaguers cambeos',
 'watchmethod-list' => 'mirando edicions recients en as pachinas cosiratas',
 'watchlistcontains' => 'A suya lista de seguimiento tiene $1 {{PLURAL:$1|pachina|pachinas}}.',
@@ -2856,7 +2865,7 @@ Os campos de metadatos d'a imachen que amaneixen en iste mensache s'amostrarán 
 * gpslongitude
 * gpsaltitude",
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Amplaria',
 'exif-imagelength' => 'Altaria',
 'exif-bitspersample' => 'Bits por component',
@@ -3034,7 +3043,7 @@ Os campos de metadatos d'a imachen que amaneixen en iste mensache s'amostrarán 
 'exif-originalimageheight' => "Altaria d'a imachen antes d'estar retallada",
 'exif-originalimagewidth' => "Amplaria d'a imachen antes d'estar retallada",
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Sin de compresión',
 'exif-compression-2' => 'CCITT Group 3 1-Dimensional Modified Huffman run length encoding',
 'exif-compression-3' => 'Codificación de fax CCITT grupo 3',
@@ -3435,13 +3444,6 @@ Con iste programa ha d'haber recibiu [{{SERVER}}{{SCRIPTPATH}}/COPYING una copia
 'version-software' => 'Software instalato',
 'version-software-product' => 'Producto',
 'version-software-version' => 'Versión',
-
-# Special:FilePath
-'filepath' => "Camín d'o fichero",
-'filepath-page' => 'Fichero:',
-'filepath-submit' => 'Ir-ie',
-'filepath-summary' => "Ista pachina especial le retorna o camín completo d'un fichero.
-As imachens s'amuestran en resolución completa, a resta de fichers fan encetar dreitament os suyos programas asociatos.",
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Mirar fichers duplicatos',

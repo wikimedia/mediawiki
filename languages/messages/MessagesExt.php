@@ -49,8 +49,6 @@ $messages = array(
 'tog-shownumberswatching' => "Muestral el númeru d'usuárius que la vehilan",
 'tog-oldsig' => 'Firma dessistenti:',
 'tog-fancysig' => 'Tratal la firma cumu testu wiki (sin atiju automáticu)',
-'tog-externaleditor' => 'Gastal eitol esternu pol defeutu (solu pa sabihondus, es mestel una configuración especial nel ordinaol)',
-'tog-externaldiff' => 'Gastal def esternu pol defeutu (solu pa sabihondus, es mestel una configuración especial nel ordinaol)',
 'tog-showjumplinks' => 'Premitil los atihus d\'acesibiliá "sartal a"',
 'tog-uselivepreview' => 'Gastal "live preview" (JavaScript) (en prebas)',
 'tog-forceeditsummary' => 'Avisalmi cuandu nu escreba una síntesis dun chambu',
@@ -797,14 +795,6 @@ Asigurati e qu'esti chambu mantenga la continuiá el estorial la páhina.",
 'search-external' => 'Landeu estelnu',
 'searchdisabled' => 'Los landeus en {{SITENAME}} están temporalmenti desativaus. Mentris tantu, pueis landeal meyanti landerus esternus, inque ten en cuenta que los sus éndicis concernientis a {{SITENAME}} puein nu estal atualizaus.',
 
-# Quickbar
-'qbsettings' => 'Preferéncias la "Quickbar"',
-'qbsettings-none' => 'Dengunu',
-'qbsettings-fixedleft' => 'Asiahau a la gocha',
-'qbsettings-fixedright' => 'Asiahau a la derecha',
-'qbsettings-floatingleft' => 'Frotanti ena gocha',
-'qbsettings-floatingright' => 'Frotanti ena derecha',
-
 # Preferences page
 'preferences' => 'Preferéncias',
 'mypreferences' => 'Las mis preferéncias',
@@ -1399,7 +1389,7 @@ Si quieis ehal de vehilal la páhina, pursa sobri \"Ehal de vehilal\".",
 'watchnochange' => 'Nu s´eitó denguna e las tus páhinas vehilás nel períu lihiu.',
 'watchlist-details' => '{{PLURAL:$1|$1 artículu|$1 artículus}} vehilaus (sin contal las carabas).',
 'wlheader-enotif' => 'Se premitin notificacionis pol email.',
-'wlheader-showupdated' => "Las páhinas que s'án emburacau dendi la úrtima vezi que las visoreasti son muestrás en '''negrina'''.",
+'wlheader-showupdated' => "Las páhinas que s'án emburacau dendi la úrtima vezi que las visoreasti son muestrás en '''negrina'''",
 'watchmethod-recent' => 'comprebandu las úrtimas eicionis en páhinas vehilás',
 'watchmethod-list' => 'Revisandu las páhinas vehilás en cata los úrtimus chambus',
 'watchlistcontains' => 'Ai $1 {{PLURAL:$1|páhina|páhinas}} ena tu lista e seguimientu.',
@@ -2009,7 +1999,7 @@ Cualisquiel otru atihu ena mesma línia se consierará ececión, p.s. páhinas o
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Anchón',
 'exif-imagelength' => 'Artura',
 'exif-bitspersample' => 'Bits pol componenti',
@@ -2093,7 +2083,7 @@ Cualisquiel otru atihu ena mesma línia se consierará ececión, p.s. páhinas o
 'exif-gpsdatestamp' => 'Fecha el GPS',
 'exif-gpsdifferential' => 'Correción diferencial de GPS',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Descomprimiu',
 
 'exif-unknowndate' => 'Fecha andarria',
@@ -2363,13 +2353,6 @@ Pol favol, confirma si rialmenti quieis gorvel a crial la páhina.",
 'version-software' => 'Software istalau',
 'version-software-product' => 'Proutu',
 'version-software-version' => 'Velsión',
-
-# Special:FilePath
-'filepath' => "Ruta d'archivu",
-'filepath-page' => 'Archivu:',
-'filepath-submit' => 'Ruta',
-'filepath-summary' => "Esta páhina especial degüervi la ruta compreta dun archivu.
-Las imahin se muestran a resolución compreta; las demas crasis d'archivu s'ehecutan diretamenti con el su pograma asociau.",
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Landeal archivus dupricaus',

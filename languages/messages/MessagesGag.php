@@ -124,8 +124,6 @@ $messages = array(
 'tog-enotifrevealaddr' => 'Bildirmää maillerinde e-mail adresimi göster.',
 'tog-shownumberswatching' => 'İzlään kullanıcı sayısın göster',
 'tog-fancysig' => 'Çii imza (İmzanız görüner nesoy onu yukarda belirttiniz. Sayfanıza avtomatik baalantı yaratılmaycêk)',
-'tog-externaleditor' => 'Düzmää başka editor programmasılan yap',
-'tog-externaldiff' => 'Karşılaştırmakları dış programmalan yap.',
 'tog-showjumplinks' => '"Git" baalantısın işlet',
 'tog-uselivepreview' => 'Tez cannı ön siiri kullan (JavaScript) (êksperimental)',
 'tog-forceeditsummary' => 'Bana haber ver ne zaman ani kısa annatmanı boş braacam',
@@ -797,7 +795,7 @@ Sizin bakmaa [[Special:Watchlist|listasındaki]] sayfalar verildi '''kalın''' b
 # Special:ListGroupRights
 'listgrouprights-members' => '(azaların listası)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Gönder bu kullanıcıya bir e-mail',
 
 # Watchlist

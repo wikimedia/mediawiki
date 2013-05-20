@@ -2106,6 +2106,15 @@ Protokolli aċċettati: <code>$1</code> (jekk ma jiġi speċifikat l-ebda protok
 'listusers-noresult' => 'L-ebda utent ma nstab.',
 'listusers-blocked' => '(imblukkat)',
 
+# Special:ActiveUsers
+'activeusers' => 'Lista tal-utenti attivi',
+'activeusers-intro' => "Din hija lista ta' utenti li kellhom xi tip ta' attività f'dawn l-aħħar $1 {{PLURAL:$1|ġurnata|ġurnata}}.",
+'activeusers-count' => '$1 {{PLURAL:$1|modifika|modifika}} fl-aħħar {{PLURAL:$3|jum|$3 jum}}',
+'activeusers-from' => 'Uri utenti li jibdew minn:',
+'activeusers-hidebots' => 'Aħbi l-bots',
+'activeusers-hidesysops' => 'Aħbi amministraturi',
+'activeusers-noresult' => 'L-ebda utent ma nstab.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Drittijiet tal-grupp tal-utenti',
 'listgrouprights-summary' => "Hawn taħt hawn elenkati l-gruppi tal-utenti għal din il-wiki, bid-drittijiet ta' aċċess rispettiv.
@@ -2183,7 +2192,7 @@ Kwalunkwe modifika li ssir fil-futur, kemm fuq din il-paġna u fil-paġna ta\' d
 'watchnochange' => 'L-ebda waħda mill-paġni osservati tiegħek ma ġiet modifikata fil-ħin stipulat.',
 'watchlist-details' => "Il-lista ta' osservazzjoni fiha {{PLURAL:$1|paġna waħda (u l-paġna ta' diskussjoni tagħha)|$1 paġni (u l-paġni ta' diskussjoni tagħhom)}}.",
 'wlheader-enotif' => 'In-notifikazzjoni bl-użu tal-posta elettronika hija attivata.',
-'wlheader-showupdated' => "Il-paġni li ġew editjati wara l-aħħar żjara tiegħek qed jiġu murija b'tipa '''ħoxna'''.",
+'wlheader-showupdated' => "Il-paġni li ġew editjati wara l-aħħar żjara tiegħek qed jiġu murija b'tipa '''ħoxna'''",
 'watchmethod-recent' => "Kontroll ta' modifiki riċenti għall-osservati speċjali.",
 'watchmethod-list' => 'Kontroll tal-osservati speċjali għal modifiki riċenti',
 'watchlistcontains' => "Il-lista ta' osservazzjoni fiha {{PLURAL:$1|paġna|$1 paġni}}.",
@@ -3051,7 +3060,7 @@ Oħrajn jiġu moħbija kif inhu definit oriġinarjament.
 * gpslongitude
 * gpsaltitude",
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => "Wisa'",
 'exif-imagelength' => 'Għoli',
 'exif-bitspersample' => 'Bits għal kull komponent',
@@ -3229,7 +3238,7 @@ Oħrajn jiġu moħbija kif inhu definit oriġinarjament.
 'exif-originalimageheight' => 'Għoli tal-istampa qabel ma ġiet maqtugħa',
 'exif-originalimagewidth' => "Wisa' tal-istampa qabel ma ġiet maqtugħa",
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'L-Ebda',
 
 'exif-copyrighted-true' => 'Protetta bil-copyright',
@@ -3649,13 +3658,6 @@ Flimkien ma' dan il-programm suppost kellek tirċievi [{{SERVER}}{{SCRIPTPATH}}/
 'version-entrypoints' => "URL ta' aċċess",
 'version-entrypoints-header-entrypoint' => "Punt ta' dħul",
 'version-entrypoints-header-url' => 'URL',
-
-# Special:FilePath
-'filepath' => 'Post tal-fajl',
-'filepath-page' => 'Fajl:',
-'filepath-submit' => 'Mur',
-'filepath-summary' => "Din il-paġna speċjali tagħti lura l-indirizz komplet tal-posta għal fajl.
-Stampi huwa mogħrija b'risoluzzjoni sħiħa, tipi tal-fajl oħrajn jibdew bil-program assoċjat magħhom direttament.",
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Fittex fajls duplikati',

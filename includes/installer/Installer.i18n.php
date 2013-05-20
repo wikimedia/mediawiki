@@ -1182,7 +1182,7 @@ $messages['aln'] = array(
 
 * [//www.mediawiki.org/wiki/Help:Configuration_settings Konfigurimi i MediaWikit]
 * [//www.mediawiki.org/wiki/Help:FAQ Pyetjet e shpeshta rreth MediaWikit]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Njoftime rreth MediaWikit]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Njoftime rreth MediaWikit]', # Fuzzy
 );
 
 /** Amharic (አማርኛ)
@@ -1195,7 +1195,7 @@ $messages['am'] = array(
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]", # Fuzzy
 );
 
 /** Aragonese (aragonés)
@@ -1209,7 +1209,7 @@ $messages['an'] = array(
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Lista de caracteristicas confegurables]
 * [//www.mediawiki.org/wiki/Manual:FAQ Preguntas cutianas sobre MediaWiki (FAQ)]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de correu sobre ta anuncios de MediaWiki]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de correu sobre ta anuncios de MediaWiki]", # Fuzzy
 );
 
 /** Old English (Ænglisc)
@@ -1222,7 +1222,7 @@ $messages['ang'] = array(
 == Beȝinnunȝ ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Onfæstnunȝa ȝesetednessa ȝetæl]
 * [//www.mediawiki.org/wiki/Manual:FAQ Ȝetæl oft ascodra ascunȝa ymb MediaǷiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Ǣrendunȝȝetæl nīƿra MediaǷiki forþsendnessa]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Ǣrendunȝȝetæl nīƿra MediaǷiki forþsendnessa]', # Fuzzy
 );
 
 /** Arabic (العربية)
@@ -1288,7 +1288,7 @@ $messages['ary'] = array(
 == L-bdaya mĝa MediaWiki ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Lista dyal l-paramétraṫ dyal l-konfigurasyon]
 * [//www.mediawiki.org/wiki/Manual:FAQ/fr FAQ fe MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista dyal l-modakaraṫ ĝla versyonaṫ jdad dyal MediaWiki]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista dyal l-modakaraṫ ĝla versyonaṫ jdad dyal MediaWiki]', # Fuzzy
 );
 
 /** Egyptian Spoken Arabic (مصرى)
@@ -1301,10 +1301,10 @@ $messages['arz'] = array(
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings لستة اعدادات الضبط]
 * [//www.mediawiki.org/wiki/Manual:FAQ أسئلة بتكرر حوالين الميدياويكى]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce لستة الايميلات بتاعة اعلانات الميدياويكى]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce لستة الايميلات بتاعة اعلانات الميدياويكى]', # Fuzzy
 );
 
-/** Assamese (অসমীয়া)
+/** Assamese (অসমীয়া)
  * @author Chaipau
  * @author Gitartha.bordoloi
  */
@@ -1315,7 +1315,7 @@ $messages['as'] = array(
 == আৰম্ভণি কৰিবলৈ ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]", # Fuzzy
 );
 
 /** Asturian (asturianu)
@@ -1401,7 +1401,6 @@ $messages['az'] = array(
 	'config-page-install' => 'Nizamlama',
 	'config-page-complete' => 'Komplektləşdir!',
 	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',
-	'config-type-ibm_db2' => 'IBM DB2',
 	'config-mysql-myisam' => 'MyISAM',
 	'config-mysql-utf8' => 'UTF-8',
 	'config-ns-generic' => 'Layihə',
@@ -1415,7 +1414,7 @@ $messages['az'] = array(
 == Faydalı keçidlər ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Tənzimləmələrin siyahısı]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki haqqında tez-tez soruşulan suallar]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki e-poçt siyahısı]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki e-poçt siyahısı]', # Fuzzy
 );
 
 /** Bashkir (башҡортса)
@@ -1428,7 +1427,7 @@ $messages['ba'] = array(
 == Файҙалы сығанаҡтар ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Көйләүҙәр исемлеге (инг.)];
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki тураһында йыш бирелгән һорауҙар һәм яуаптар (инг.)];
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki-ның яңы версиялары тураһында хәбәрҙәр алып тороу].',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki-ның яңы версиялары тураһында хәбәрҙәр алып тороу].', # Fuzzy
 );
 
 /** Bavarian (Boarisch)
@@ -1442,7 +1441,7 @@ $messages['bar'] = array(
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Listen voh de Konfigurazionsvariaablen]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki-FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailinglisten voh de neichen MediaWiki-Versionen]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailinglisten voh de neichen MediaWiki-Versionen]', # Fuzzy
 );
 
 /** Southern Balochi (بلوچی مکرانی)
@@ -1454,7 +1453,7 @@ $messages['bcc'] = array(
 == شروع بیت ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]", # Fuzzy
 );
 
 /** Bikol Central (Bikol Central)
@@ -1467,7 +1466,7 @@ $messages['bcl'] = array(
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]", # Fuzzy
 );
 
 /** Belarusian (беларуская)
@@ -1480,7 +1479,7 @@ $messages['be'] = array(
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Пералік параметраў канфігурацыі (англ.)]
 * [//www.mediawiki.org/wiki/Manual:FAQ ЧАПЫ MediaWiki (англ.)]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Ліставанне аб выпусках MediaWiki (англ.)]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Ліставанне аб выпусках MediaWiki (англ.)]', # Fuzzy
 );
 
 /** Belarusian (Taraškievica orthography) (беларуская (тарашкевіца)‎)
@@ -1931,7 +1930,7 @@ chmod a+w $3</pre>',
 	'config-logo-help' => 'Афармленьне MediaWiki па змоўчваньні уключае прастору для лягатыпу памерам 135×160 піксэляў у верхнім левым куце.
 Загрузіце выяву адпаведнага памеру і увядзіце тут URL-адрас.
 
-Калі Вы не жадаеце мець ніякага лягатыпу, пакіньце поле пустым.',
+Калі Вы не жадаеце мець ніякага лягатыпу, пакіньце поле пустым.', # Fuzzy
 	'config-instantcommons' => 'Дазволіць Instant Commons',
 	'config-instantcommons-help' => '[//www.mediawiki.org/wiki/InstantCommons Instant Commons] — магчымасьць, якая дазваляе вікі выкарыстоўваць выявы, гукі і іншыя мэдыя, якія знаходзяцца на сайце [//commons.wikimedia.org/ Wikimedia Commons].
 Каб гэта зрабіць, MediaWiki патрабуе доступу да Інтэрнэту.
@@ -2452,7 +2451,7 @@ chmod a+w $3</pre>',
 	'config-logo-help' => 'Обликът по подразбиране на МедияУики вклчва място с размери 135х160 пиксела за лого над страничното меню.
 Ако има наличен файл с подходящ размер, неговият адрес може да бъде посочен тук.
 
-Ако не е необходимо лого, полето може да се остави празно.',
+Ако не е необходимо лого, полето може да се остави празно.', # Fuzzy
 	'config-instantcommons' => 'Включване на Instant Commons',
 	'config-instantcommons-help' => '[//www.mediawiki.org/wiki/InstantCommons Instant Commons] е функционалност, която позволява на уикитата да използват картинки, звуци и друга медиа от сайта на Уикимедия [//commons.wikimedia.org/ Общомедия].
 За да е възможно това, МедияУики изисква достъп до Интернет.
@@ -2565,7 +2564,7 @@ $messages['bjn'] = array(
 == Gasan bamula ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Daptar konpigurasi setélan]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki nang rancak ditakunakan]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki rilis milis]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki rilis milis]', # Fuzzy
 );
 
 /** Bengali (বাংলা)
@@ -2611,12 +2610,10 @@ $messages['bn'] = array(
 	'config-sqlite-dir' => 'এসকিউলাইট ডেটা ডিরেক্টরি:',
 	'config-oracle-def-ts' => 'পূর্বনির্ধারিত টেবিলস্পেস',
 	'config-oracle-temp-ts' => 'সাময়কি টেবিলস্পেস:',
-	'config-type-ibm_db2' => 'আইবিএম ডিবি২',
 	'config-header-mysql' => 'মাইএসকিউএল সেটিংস',
 	'config-header-postgres' => 'পোস্টগ্রেএসকিউএল সেটিংস',
 	'config-header-sqlite' => 'এসকিউলাইট সেটিংস',
 	'config-header-oracle' => 'ওরাকল সেটিংস',
-	'config-header-ibm_db2' => 'আইবিএম ডিবি২ সেটিংস',
 	'config-invalid-db-type' => 'ডেটাবেজের ধরন অগ্রহযোগ্য',
 	'config-missing-db-name' => 'আপনাকে অবশ্যই "ডেটাবেজ নাম"-এর জন্য একটি মান প্রবেশ করাতে হবে',
 	'config-missing-db-host' => 'আপনাকে অবশ্যই "ডেটাবেজ হোস্ট"-এর জন্য একটি মান প্রবেশ করাতে হবে',
@@ -2646,7 +2643,7 @@ $messages['bn'] = array(
 	'config-optional-continue' => 'আরও প্রশ্ন জিজ্ঞেস করুন।',
 	'config-optional-skip' => 'আমি ইতিমধ্যেই বিরক্ত হয়ে গেছি, উইকিটি ইন্সটল করো।',
 	'config-profile' => 'ব্যবহারকারী অধিকার প্রোফাইল:',
-	'config-profile-wiki' => 'গতানুগতিক উইকি',
+	'config-profile-wiki' => 'গতানুগতিক উইকি', # Fuzzy
 	'config-profile-no-anon' => 'অ্যাকাউন্ট তৈরি করা বাধ্যতামূলক',
 	'config-profile-fishbowl' => 'শুধুমাত্র নির্ধারিত সম্পাদকদের  জন্যই',
 	'config-profile-private' => 'ব্যক্তিগত উইকি',
@@ -2680,7 +2677,7 @@ $messages['bn'] = array(
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings কনফিগারেশন সেটিংস তালিকা]
 * [//www.mediawiki.org/wiki/Manual:FAQ প্রশ্নোত্তরে মিডিয়াউইকি]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce মিডিয়াউইকি রিলিজের মেইলিং লিস্ট]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce মিডিয়াউইকি রিলিজের মেইলিং লিস্ট]', # Fuzzy
 );
 
 /** Bishnupria Manipuri (বিষ্ণুপ্রিয়া মণিপুরী)
@@ -2693,7 +2690,7 @@ $messages['bpy'] = array(
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings কনফিগারেশন সেটিংর তালিকাহান]
 * [//www.mediawiki.org/wiki/Manual:FAQ মিডিয়া উইকি আঙলাক]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce মিডিয়া উইকির ফঙপার বারে মেইলর তালিকাহান]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce মিডিয়া উইকির ফঙপার বারে মেইলর তালিকাহান]', # Fuzzy
 );
 
 /** Breton (brezhoneg)
@@ -3211,7 +3208,7 @@ $messages['ce'] = array(
 == Цхьаболу пайде гlирсаш ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Гlирс нисбан тарлушболу могlам];
 * [//www.mediawiki.org/wiki/Manual:FAQ Сих сиха лушдолу хаттарш а жоьпаш оцу MediaWiki];
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Хаам бохьуьйту араяларца башхонца керла MediaWiki].',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Хаам бохьуьйту араяларца башхонца керла MediaWiki].', # Fuzzy
 );
 
 /** Cebuano (Cebuano)
@@ -3223,7 +3220,7 @@ $messages['ceb'] = array(
 == Pagsugod ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Listahan sa mga setting sa kompigurasyon]
 * [//www.mediawiki.org/wiki/Manual:FAQ FAQ sa MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce  Mailing list sa mga release sa MediaWiki]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce  Mailing list sa mga release sa MediaWiki]', # Fuzzy
 );
 
 /** Sorani Kurdish (کوردی)
@@ -3255,7 +3252,7 @@ $messages['cps'] = array(
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Lista sang mga setting sang konpigurayon]
 * [//www.mediawiki.org/wiki/Manual:FAQ Mga perme napangkot sa MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista sang mga ginapadal-an sang sulat sang MediaWiki]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista sang mga ginapadal-an sang sulat sang MediaWiki]', # Fuzzy
 );
 
 /** Crimean Turkish (Cyrillic script) (къырымтатарджа (Кирилл)‎)
@@ -3267,7 +3264,7 @@ $messages['crh-cyrl'] = array(
 == Базы файдалы сайтлар ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Олуджы сазламалар джедвели];
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki боюнджа сыкъ берильген суаллернен джеваплар];
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki-нинъ янъы версияларынынъ чыкъувындан хабер йиберюв].",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki-нинъ янъы версияларынынъ чыкъувындан хабер йиберюв].", # Fuzzy
 );
 
 /** Crimean Turkish (Latin script) (qırımtatarca (Latin)‎)
@@ -3279,7 +3276,7 @@ $messages['crh-latn'] = array(
 == Bazı faydalı saytlar ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Olucı sazlamalar cedveli];
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki boyunca sıq berilgen suallernen cevaplar];
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki-niñ yañı versiyalarınıñ çıquvından haber yiberüv].",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki-niñ yañı versiyalarınıñ çıquvından haber yiberüv].", # Fuzzy
 );
 
 /** Czech (česky)
@@ -3851,7 +3848,7 @@ $messages['cv'] = array(
 == Пулăшма пултарĕç ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Ĕнерлевсен списокĕ];
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki тăрăх час-часах ыйтакан ыйтусемпе хуравсем];
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki çĕнĕ верси тухнине пĕлтерекен рассылка].',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki çĕнĕ верси тухнине пĕлтерекен рассылка].', # Fuzzy
 );
 
 /** Welsh (Cymraeg)
@@ -3865,7 +3862,7 @@ $messages['cy'] = array(
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Rhestr osodiadau wrth gyflunio]
 * [//www.mediawiki.org/wiki/Manual:FAQ Cwestiynau poblogaidd ar MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Rhestr postio datganiadau MediaWiki]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Rhestr postio datganiadau MediaWiki]', # Fuzzy
 );
 
 /** Danish (dansk)
@@ -3878,7 +3875,7 @@ $messages['da'] = array(
 == At komme i gang ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Listen over opsætningsmuligheder]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki ofte stillede spørgsmål]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Postliste angående udgivelser af MediaWiki]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Postliste angående udgivelser af MediaWiki]', # Fuzzy
 );
 
 /** German (Deutsch)
@@ -4456,7 +4453,7 @@ $messages['de-formal'] = array(
 == Starthilfen ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Liste der Konfigurationsvariablen]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki-FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailingliste neuer MediaWiki-Versionen]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailingliste neuer MediaWiki-Versionen]', # Fuzzy
 );
 
 /** Zazaki (Zazaki)
@@ -4494,7 +4491,6 @@ $messages['diq'] = array(
 	'config-charset-mysql5-binary' => 'MySQL 4.1/5.0 dılet',
 	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',
 	'config-db-port' => 'Portê database:',
-	'config-type-ibm_db2' => 'IBM DB2',
 	'config-header-mysql' => 'Sazkardışê MySQL',
 	'config-mysql-innodb' => 'InnoDB',
 	'config-mysql-myisam' => 'MyISAM',
@@ -4523,7 +4519,7 @@ $messages['diq'] = array(
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Lista eyaranê vıraştışi]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki de ÇZP]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki ra lista serbest-dayışê postey]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki ra lista serbest-dayışê postey]', # Fuzzy
 );
 
 /** Lower Sorbian (dolnoserbski)
@@ -4553,7 +4549,7 @@ $messages['dtp'] = array(
 == Kopotimpuunan ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Lis papatantu nuludan]
 * [//www.mediawiki.org/wiki/Manual:FAQ Ponguhatan Koinsoruan om Simbar ModiaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lis pininsuratan pinolabus do ModiaWiki]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lis pininsuratan pinolabus do ModiaWiki]', # Fuzzy
 );
 
 /** Greek (Ελληνικά)
@@ -4593,7 +4589,6 @@ $messages['el'] = array(
 	'config-header-postgres' => 'Ρυθμίσεις PostgreSQL',
 	'config-header-sqlite' => 'Ρυθμίσεις SQLite',
 	'config-header-oracle' => 'Ρυθμίσεις Oracle',
-	'config-header-ibm_db2' => 'Ρυθμίσεις IBM DB2',
 	'config-invalid-db-type' => 'Μη έγκυρος τύπος βάσης δεδομένων',
 	'config-mysql-utf8' => 'UTF-8',
 	'config-site-name' => 'Όνομα του βίκι:',
@@ -4661,7 +4656,7 @@ $messages['eo'] = array(
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Listo de konfiguraĵoj] (angla)
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki Oftaj Demandoj] (angla)
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki dissendolisto pri anoncoj] (angla)",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki dissendolisto pri anoncoj] (angla)", # Fuzzy
 );
 
 /** Spanish (español)
@@ -5227,7 +5222,7 @@ $messages['es-formal'] = array(
 == Empezando ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Lista de ajustes de configuración]
 * [//www.mediawiki.org/wiki/Manual:FAQ/es FAQ de MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de correo de anuncios de distribución de MediaWiki]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de correo de anuncios de distribución de MediaWiki]', # Fuzzy
 );
 
 /** Estonian (eesti)
@@ -5372,7 +5367,7 @@ $messages['eu'] = array(
 	'config-admin-password' => 'Pasahitza:',
 	'config-admin-password-confirm' => 'Pasahitza berriz:',
 	'config-admin-email' => 'E-posta helbidea:',
-	'config-profile-wiki' => 'Wiki tradizionala',
+	'config-profile-wiki' => 'Wiki tradizionala', # Fuzzy
 	'config-profile-private' => 'Wiki pribatua',
 	'config-license' => 'Copyright eta lizentzia:',
 	'config-license-pd' => 'Domeinu Askea',
@@ -5388,7 +5383,7 @@ $messages['eu'] = array(
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Konfigurazio balioen zerrenda]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ (Maiz egindako galderak)]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWikiren argitalpenen posta zerrenda]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWikiren argitalpenen posta zerrenda]', # Fuzzy
 );
 
 /** Extremaduran (estremeñu)
@@ -5401,7 +5396,7 @@ $messages['ext'] = array(
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]", # Fuzzy
 );
 
 /** Persian (فارسی)
@@ -6260,7 +6255,7 @@ $messages['frc'] = array(
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Réglage]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki: Questions Souvent Posées]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki Liste à Malle]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki Liste à Malle]', # Fuzzy
 );
 
 /** Franco-Provençal (arpetan)
@@ -6452,7 +6447,7 @@ $messages['fy'] = array(
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings List mei ynstellings]
 * [//www.mediawiki.org/wiki/Manual:FAQ Faak stelde fragen (FAQ)]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailinglist foar oankundigings fan nije ferzjes]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailinglist foar oankundigings fan nije ferzjes]", # Fuzzy
 );
 
 /** Irish (Gaeilge)
@@ -6465,7 +6460,7 @@ $messages['ga'] = array(
 	'config-help' => 'Cuidiú',
 	'mainpagetext' => "'''D'éirigh le suiteáil MediaWiki.'''",
 	'mainpagedocfooter' => 'Féach ar [//meta.wikimedia.org/wiki/MediaWiki_localisation doiciméid um conas an chomhéadán a athrú]
-agus an [//meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar úsáideora] chun cabhair úsáide agus fíoraíochta a fháil.',
+agus an [//meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar úsáideora] chun cabhair úsáide agus fíoraíochta a fháil.', # Fuzzy
 );
 
 /** Gagauz (Gagauz)
@@ -6478,7 +6473,7 @@ $messages['gag'] = array(
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]", # Fuzzy
 );
 
 /** Simplified Gan script (赣语（简体）‎)
@@ -6491,7 +6486,7 @@ $messages['gan-hans'] = array(
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings MediaWiki 配置设定列表]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki 平常问题解答]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki 发布email清单]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki 发布email清单]', # Fuzzy
 );
 
 /** Traditional Gan script (贛語（繁體）‎)
@@ -7102,7 +7097,7 @@ $messages['grc'] = array(
 == Ἄρξασθε ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Διαλογή παραμέτρων διαμορφώσεως]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki: τὰ πολλάκις αἰτηθέντα]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Διαλογή διαλέξεων ἐπὶ τῶν διανομῶν τῆς MediaWiki]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Διαλογή διαλέξεων ἐπὶ τῶν διανομῶν τῆς MediaWiki]', # Fuzzy
 );
 
 /** Swiss German (Alemannisch)
@@ -7247,7 +7242,7 @@ $messages['hak'] = array(
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings MediaWiki Phi-chṳ sat-thin chhîn-tân]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki Phìn-sòng mun-thì kié-tap]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki fat-phu email chhîn-tân]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki fat-phu email chhîn-tân]', # Fuzzy
 );
 
 /** Hawaiian (Hawai`i)
@@ -7695,7 +7690,7 @@ chmod a+w $3</pre></div>',
 	'config-logo-help' => 'המראה ההתחלתי של מדיה־ויקי מכיל מקום לסמל של 135 על 160 פיקסלים בפינה העליונה מעל תפריט הצד.
 יש להעלות תמונה בגודל מתאים ולהכניס את הכתובת כאן.
 
-אם אינכם רוצים סמל, השאירו את התיבה הזאת ריקה.',
+אם אינכם רוצים סמל, השאירו את התיבה הזאת ריקה.', # Fuzzy
 	'config-instantcommons' => 'להפעיל את Instant Commons',
 	'config-instantcommons-help' => '[//www.mediawiki.org/wiki/InstantCommons Instant Commons] היא תכונה שמאפשרת לאתרי ויקי להשתמש בתמונות, בצלילים ובמדיה אחרת שנמצאת באתר [//commons.wikimedia.org/ ויקישיתוף] (Wikimedia Commons).
 כדי לעשות את זה, מדיה־ויקי צריך לגשת לאינטרנט.
@@ -7807,7 +7802,7 @@ $messages['hi'] = array(
 == शुरुवात करें ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings कॉन्फिगरेशन सेटींगकी सूची]
 * [//www.mediawiki.org/wiki/Manual:FAQ मीडियाविकिके बारे में प्राय: पूछे जाने वाले सवाल]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce मीडियाविकि मेलिंग लिस्ट]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce मीडियाविकि मेलिंग लिस्ट]', # Fuzzy
 );
 
 /** Fiji Hindi (Latin script) (Fiji Hindi)
@@ -7820,7 +7815,7 @@ $messages['hif-latn'] = array(
 == Getting started ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]", # Fuzzy
 );
 
 /** Hiligaynon (Ilonggo)
@@ -7833,7 +7828,7 @@ $messages['hil'] = array(
 == Pag-umpisa ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Lista sang mga konpigorasyon sang pagkay-o]
 * [//www.mediawiki.org/wiki/Manual:FAQ Mga Masami Pamangkoton sa MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista sang mga ginapadal-an sang sulat kon may paguha-on nga MediaWiki]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista sang mga ginapadal-an sang sulat kon may paguha-on nga MediaWiki]", # Fuzzy
 );
 
 /** Croatian (hrvatski)
@@ -7841,7 +7836,7 @@ $messages['hil'] = array(
 $messages['hr'] = array(
 	'mainpagetext' => "'''Softver MediaWiki je uspješno instaliran.'''",
 	'mainpagedocfooter' => 'Pogledajte [//meta.wikimedia.org/wiki/MediaWiki_localisation dokumentaciju o prilagodbi sučelja]
-i [//meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] za pomoć pri uporabi i podešavanju.',
+i [//meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] za pomoć pri uporabi i podešavanju.', # Fuzzy
 );
 
 /** Upper Sorbian (hornjoserbsce)
@@ -8202,7 +8197,7 @@ $messages['ht'] = array(
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Lis paramèt yo pou konfigirasyon]
 * [//www.mediawiki.org/wiki/Manyèl:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lis diskisyon ki parèt sou MediaWiki]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lis diskisyon ki parèt sou MediaWiki]', # Fuzzy
 );
 
 /** Hungarian (magyar)
@@ -8629,7 +8624,7 @@ Normális esetben ennek nem szabad elérhetőnek lennie az internetről.',
 	'config-logo-help' => 'A MediaWiki alapértelmezett felülete helyet ad egy 135×160 pixeles logónak a bal felső sarokban.
 Tölts fel egy megfelelő méretű képet, majd írd be ide az URL-címét!
 
-Ha nem szeretnél logót használni, egyszerűen hagyd üresen a mezőt.',
+Ha nem szeretnél logót használni, egyszerűen hagyd üresen a mezőt.', # Fuzzy
 	'config-instantcommons' => 'Instant Commons engedélyezése',
 	'config-instantcommons-help' => 'Az [//www.mediawiki.org/wiki/InstantCommons Instant Commons] lehetővé teszi, hogy a wikin használhassák a [//commons.wikimedia.org/ Wikimedia Commons] oldalon található képeket, hangokat és más médiafájlokat.
 A használatához a MediaWikinek internethozzáférésre van szüksége.
@@ -8814,7 +8809,7 @@ $messages['hy'] = array(
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]", # Fuzzy
 );
 
 /** Interlingua (interlingua)
@@ -9260,7 +9255,7 @@ Idealmente, isto non debe esser accessibile ab le web.',
 	'config-logo-help' => 'Le apparentia predefinite de MediaWiki include spatio pro un logotypo de 135×160 pixels supra le menu del barra lateral.
 Incarga un imagine con le dimensiones appropriate, e entra le URL hic.
 
-Si tu non vole un logotypo, lassa iste quadro vacue.',
+Si tu non vole un logotypo, lassa iste quadro vacue.', # Fuzzy
 	'config-instantcommons' => 'Activar "Instant Commons"',
 	'config-instantcommons-help' => '[//www.mediawiki.org/wiki/InstantCommons Instant Commons] es un function que permitte a wikis de usar imagines, sonos e altere multimedia trovate in le sito [//commons.wikimedia.org/ Wikimedia Commons].
 Pro poter facer isto, MediaWiki require accesso a Internet.
@@ -9786,7 +9781,7 @@ Idealnya, direktori ini tidak boleh dapat diakses dari web.',
 	'config-logo-help' => 'Kulit bawaan MediaWiki memberikan ruang untuk logo berukuran 135x160 piksel di atas menu bilah samping.
 Unggah gambar dengan ukuran yang sesuai, lalu masukkan URL di sini.
 
-Jika Anda tidak ingin menyertakan logo, biarkan kotak ini kosong.',
+Jika Anda tidak ingin menyertakan logo, biarkan kotak ini kosong.', # Fuzzy
 	'config-instantcommons' => 'Aktifkan Instant Commons',
 	'config-instantcommons-help' => '[//www.mediawiki.org/wiki/InstantCommons Instant Commons] adalah fitur yang memungkinkan wiki untuk menggunakan gambar, suara, dan media lain dari [//commons.wikimedia.org/ Wikimedia Commons].
 Untuk melakukannya, MediaWiki memerlukan akses ke Internet.
@@ -9924,7 +9919,7 @@ $messages['io'] = array(
 == Komencar ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Listo di ''Configuration setting'']
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki OQQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki nova versioni posto-listo]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki nova versioni posto-listo]", # Fuzzy
 );
 
 /** Icelandic (íslenska)
@@ -9937,7 +9932,7 @@ $messages['is'] = array(
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Listi yfir uppsetningarstillingar]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki Algengar spurningar MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Póstlisti MediaWiki-útgáfa]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Póstlisti MediaWiki-útgáfa]', # Fuzzy
 );
 
 /** Italian (italiano)
@@ -10702,7 +10697,7 @@ $messages['jam'] = array(
 == Taatop ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]", # Fuzzy
 );
 
 /** Jutish (jysk)
@@ -10710,7 +10705,7 @@ $messages['jam'] = array(
  */
 $messages['jut'] = array(
 	'mainpagetext' => "'''MediaWiki er nu installeret.'''",
-	'mainpagedocfooter' => "Se vores engelskspråĝede [//meta.wikimedia.org/wiki/MediaWiki_localisation dokumentåsje tilpasnenge'm åf æ brugergrænseflade] og [//meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide æ brugervejlednenge] før åplysnenger åpsætnenge'm og anvendelse.",
+	'mainpagedocfooter' => "Se vores engelskspråĝede [//meta.wikimedia.org/wiki/MediaWiki_localisation dokumentåsje tilpasnenge'm åf æ brugergrænseflade] og [//meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide æ brugervejlednenge] før åplysnenger åpsætnenge'm og anvendelse.", # Fuzzy
 );
 
 /** Javanese (Basa Jawa)
@@ -10721,7 +10716,7 @@ $messages['jv'] = array(
 == Miwiti panggunan  ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Daftar pangaturan préférènsi]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Milis rilis MediaWiki]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Milis rilis MediaWiki]", # Fuzzy
 );
 
 /** Georgian (ქართული)
@@ -10769,7 +10764,6 @@ $messages['ka'] = array(
 	'config-header-postgres' => 'PostgreSQL-ის პარამეტრები',
 	'config-header-sqlite' => 'SQLite-ის პარამეტრები',
 	'config-header-oracle' => 'Oracle-ის პარამეტრები',
-	'config-header-ibm_db2' => 'IBM DB2-ის პარამეტრები',
 	'config-invalid-db-type' => 'არასწორი მონაცემთა ბაზის ტიპი',
 	'config-mysql-innodb' => 'InnoDB',
 	'config-mysql-myisam' => 'MyISAM',
@@ -10830,7 +10824,7 @@ $messages['kaa'] = array(
 == Baslaw ushın ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Konfiguratsiya sazlaw dizimi]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWikidin' Ko'p Soralatug'ın Sorawları]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki haqqında xat tarqatıw dizimi]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki haqqında xat tarqatıw dizimi]", # Fuzzy
 );
 
 /** Адыгэбзэ (Адыгэбзэ)
@@ -10844,7 +10838,7 @@ $messages['kbd-cyrl'] = array(
 == Къыщхьэпэгъуэ хъуфынухэр ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Зэгъэзэхуэгъуэ гуэрэхэм я тхылъ];
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki-м упщӀэ нахъыбу ятхэмрэ я жэуапхэмрэ];
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki-м и версиэ щӀэуэ къэжахэм я къэӀохугъуэ].',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki-м и версиэ щӀэуэ къэжахэм я къэӀохугъуэ].', # Fuzzy
 );
 
 /** Khowar (کھوار)
@@ -10864,7 +10858,7 @@ $messages['kiu'] = array(
 == Gamê verêni ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Lista ayarunê vırastene]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki de ÇZP]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki ra lista serbest-daena postey]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki ra lista serbest-daena postey]", # Fuzzy
 );
 
 /** Kazakh (Arabic script) (قازاقشا (تٴوتە)‏)
@@ -10876,7 +10870,7 @@ $messages['kk-arab'] = array(
 == باستاۋ ٴۇشىن ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings باپتالىم قالاۋلارىنىڭ ٴتىزىمى]
 * [//www.mediawiki.org/wiki/Manual:FAQ مەدىياۋىيكىيدىڭ جىيى قويىلعان ساۋالدارى]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce مەدىياۋىيكىي شىعۋ تۋرالى حات تاراتۋ ٴتىزىمى]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce مەدىياۋىيكىي شىعۋ تۋرالى حات تاراتۋ ٴتىزىمى]', # Fuzzy
 );
 
 /** Kazakh (Cyrillic script) (қазақша (кирил)‎)
@@ -10888,7 +10882,7 @@ $messages['kk-cyrl'] = array(
 == Бастау үшін ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Бапталым қалауларының тізімі]
 * [//www.mediawiki.org/wiki/Manual:FAQ МедиаУикидің Жиы Қойылған Сауалдары]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce МедиаУики шығу туралы хат тарату тізімі]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce МедиаУики шығу туралы хат тарату тізімі]', # Fuzzy
 );
 
 /** Kazakh (Latin script) (qazaqşa (latın)‎)
@@ -10900,7 +10894,7 @@ $messages['kk-latn'] = array(
 == Bastaw üşin ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Baptalım qalawlarınıñ tizimi]
 * [//www.mediawiki.org/wiki/Manual:FAQ MedïaWïkïdiñ Jïı Qoýılğan Sawaldarı]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MedïaWïkï şığw twralı xat taratw tizimi]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MedïaWïkï şığw twralı xat taratw tizimi]', # Fuzzy
 );
 
 /** Khmer (ភាសាខ្មែរ)
@@ -10930,7 +10924,7 @@ $messages['km'] = array(
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings បញ្ជីកំណត់ទម្រង់]
 * [//www.mediawiki.org/wiki/Manual:FAQ/km សំណួរញឹកញាប់​មេឌាវិគី]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce បញ្ជី​ពិភាក្សា​ការផ្សព្វផ្សាយ​របស់​មេឌាវិគី]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce បញ្ជី​ពិភាក្សា​ការផ្សព្វផ្សាយ​របស់​មេឌាវិគី]', # Fuzzy
 );
 
 /** Kannada (ಕನ್ನಡ)
@@ -10943,7 +10937,7 @@ $messages['kn'] = array(
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
 * [//www.mediawiki.org/wiki/Manual:FAQ ಮೀಡಿಯವಿಕಿ FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]', # Fuzzy
 );
 
 /** Korean (한국어)
@@ -11505,7 +11499,7 @@ $messages['krc'] = array(
 == Файдалы ресурсла ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings тюрлендириулени списогу (ингил.)];
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki-ни юсюнден кёб берилген соруула];
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki-ни джангы версиясыны чыкъгъанын билдириу письмола].",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki-ни джангы версиясыны чыкъгъанын билдириу письмола].", # Fuzzy
 );
 
 /** Colognian (Ripoarisch)
@@ -11650,6 +11644,8 @@ Et Enreeschte kunnt doh draan kappott jon!",
 Et <i lang="en">object caching</i> es nit müjjelesh un ußjeschalldt.',
 	'config-mod-security' => "'''Opjepaß''': Dinge Webßööver hät <code lang=\"en\">[http://modsecurity.org/ mod_security]</code> enjeschalldt. Wann doh derbei en Enschtällong nit janz akeraat paßß, dann kann et goot sin, dat mer Probleme met MeedijaWiki un oc met ander Projramme kritt, die zohlööt, dat vun ußerhallef öhndsene Krohm op dä Webßööver jebraat wääde künnt.Beloor Der di Sigg <code lang=\"en\">[http://modsecurity.org/documentation/ mod_security documentation]</code> udder donn met dä Fachlück för Dinge Webßööver kalle, wann zohfälleje un koomijje Fähler bemerke deihß.",
 	'config-diff3-bad' => 'Mer han <i lang="en">GNU</i> <code lang="en">diff3</code> nit jefonge.',
+	'config-git' => 'Mer han de Väsjohn <code>$1</code> vun däm Väsjohnsverwalldongsprojamm <i lang="en">Git</i> jefonge.',
+	'config-git-bad' => 'Dat Väsjohnsverwalldongsprojamm <i lang="en">Git</i> ham_mer nit jefonge.',
 	'config-imagemagick' => 'Mer han <i lang="en">ImageMagick</i> jefonge: <code>$1</code>.
 Et Ömrääschne en Minni-Beldsche weed müjjelesch sin, wann De et Belder Huhlaade zohlöhß.',
 	'config-gd' => 'Mer han de ennjeboute GD-Jrafik-Projramm-Biblijotheek jefonge.
@@ -11669,7 +11665,7 @@ Heh jeihd et nit wigger.',
 	'config-using531' => 'MediaWiki läuf nit met PHP $1 zosamme wääje enem [//bugs.php.net/bug.php?id=50394 Fähler em Zosammehang met Parrameetere för <code lang="en">__call()</code>].
 Jangk op de Version 5.3.2 vum <i lang="en">PHP</i> ov dohnoh, udder op de Version 5.3.0 udder dovöör, öm dat Problem ze ömjonn.
 Heh jeiht et nit wigger.',
-	'config-suhosin-max-value-length' => '<i lang="en">Suhosin</i> es enschtalleet. Dröm kann ene <code lang="en">GET</code>-Parrameeter nit övver {{PLURAL:$1|ei Byte|$q Bytes|noll Byte}} lang wääde. En MediaWiki singe <i lang="en">ResourceLoader</i> kütt doh zwa drömeröm, ävver dat brems. Wann müjelesch, doht <code lang="en">suhosin.get.max_value_length</code> en dä Dattei <code lang="en">php.ini</code> op 1024 Bytes udder drövver enschtälle. un dann moß <code lang="en">$wgResourceLoaderMaxQueryLength</code> en dä Dattei <code lang="en">LocalSettings.php</code> op däsälve Wäät jesaz wääde.', # Fuzzy
+	'config-suhosin-max-value-length' => '<i lang="en">Suhosin</i> es enschtalleet. Dröm kann ene <code lang="en">GET</code>-Parrameeter nit övver {{PLURAL:$1|ei Byte|$1 Bytes|noll Byte}} lang wääde. Dem MediaWiki singe <i lang="en">ResourceLoader</i> kütt doh zwa drömeröm, ävver dat bräms. Wann müjelesch, doht <code lang="en">suhosin.get.max_value_length</code> en dä Dattei <code lang="en">php.ini</code> op 1024 Bytes udder drövver enschtälle, un dann moß <code lang="en">$wgResourceLoaderMaxQueryLength</code> en dä Dattei <code lang="en">LocalSettings.php</code> op däsälve Wäät jesaz wääde.',
 	'config-db-type' => 'De Zoot Daatebangk:',
 	'config-db-host' => 'Dä Name vun däm Rääschner met dä Daatebangk:',
 	'config-db-host-help' => 'Wann Dinge ẞööver för de Daatebangk ob enem andere Rääschner es, donn heh dämm singe Name udder dämm sing <i lang="en">IP</i>-Addräß enjävve.
@@ -11840,6 +11836,13 @@ Dä aanjejovve Zohjang för der Nomaalbedrief moß dröm schunn enjersht sen!',
 
 Wann Ding <i lang="en">MySQL</i> et Schpeischere en <i lang="en">InnoDB</i>-Datteije ongerschtöze deiht, dom_mer dat nohdröcklesch ämfähle.
 Kann dä ẞööver dat nit, künnd et joode jelääjeheit sin, dä ens op der neuste Schtand ze bränge.',
+	'config-mysql-only-myisam-dep' => '\'\'\'Opjepaß:\'\'\' <i lang="en">MyISAM</i> es de einzeje Zoot Speischerprojramm för <i lang="en">MySQL</i>, di nit för MediaWiki ze ämfähle es, weil:
+* wääje dem Schpärre vun jannze Tabälle sin koum paralleele Axjuhne en dä Daatebangk möjjelesch,
+* et es aanfällesch för Probleeme met de Daate es, un
+* et weed vun MediaWiki nit emmer jood ongerschtöz.
+
+Ding Enschtallazjuhn vum <i lang="en">MySQL</i> kann nit met <i lang="en">InnoDB</i> ömjonn.
+Wi wöhr et met ener neuere väsjohn vum <i lang="en">MySQL</i>?',
 	'config-mysql-engine-help' => "'''InnoDB''' es fö jewöhnlesch et beß, weil vill Zohjreffe op eijmohl joot ongershtöz wääde.
 
 '''MyISAM''' es flöcker op Rääschnere met bloß einem Minsch draan, un bei Wikis, di mer bloß lässe un nit schrieeve kann.
@@ -11894,25 +11897,25 @@ Do künnts jez der Räß vun de einzel Enshtellunge övverjonn, un et Wiki tirä
 	'config-optional-continue' => 'De wells noch mieh Frore jeshtallt krijje un noch mieh Enshtällunge maache?',
 	'config-optional-skip' => 'Nä, lohß dä Ömshtand, donn eifarr_et Wiki opsäze.',
 	'config-profile' => 'Enshtällunge för de Metmaacher ier Rääschte:',
-	'config-profile-wiki' => 'E tradizjonäll offe Wiki', # Fuzzy
+	'config-profile-wiki' => 'En offe Wiki',
 	'config-profile-no-anon' => 'Schriever möße enlogge',
 	'config-profile-fishbowl' => 'Bloß ußdröcklesch zohjelohße Schriever',
 	'config-profile-private' => 'E jeschloße Privat_Wiki',
-	'config-profile-help' => "Wikis loufe et beß, wam_mer esu vill Lück wi müjjelesch draan metmaache un schrieve löht.
-Met MediaWiki es et ejfach, de neuste Änderunge ze beloore un wat ahnungslose udder fiese Lück kapott jemaat han wider retuur ze maache.
+	'config-profile-help' => "Wikis loufe et bäß, wam_mer esu vill Lück wi möjjelesch draan metmaache un schrieve löht.
+Met MediaWiki es et ejfach, de neuste Änderonge ze beloore un wat ahnungslose udder fiese Lück kapott jemaat han wider retuur ze maache.
 
-Bloß, mänsh eine häd_eruß jefonge, dat mer MediaWiki jood en en jruuße Zahl ongerscheidlijje Rolle bruche kann, un nit emmer es et leish, ene vum onverfälschte Wiki_Wääsch ze övverzeuje.
+Bloß, mänsch eine häd_eruß jefonge, dat mer MediaWiki jood en en jruuße Zahl ongerscheidlijje Rolle bruche kann, un nit emmer es et leisch, ene vum onverfälschte Wiki_Wääsch ze övverzeuje.
 Esu häß De de Wahl:
 
-'''{{int:config-profile-wiki}}''' löht jeder_ein metschrieve, och ohne enzelogge.
+'''{{int:config-profile-wiki}}''' löht jeder_ein metschrieve, och ohne sesch enzelogge.
 
-'''{{int:config-profile-no-anon}}''', dat sorsh för mieh seeshbaa Verantwootlishkeite, künnt ävver zohfällije Methellefer verschrecke.
+'''{{int:config-profile-no-anon}}''', dat sorsch för mieh seeschbaa Verantwootlischkeite, künnt ävver zohfällije Methellefer verschrecke.
 
 '''{{int:config-profile-fishbowl}}''' löht nor de ußjesöhk Metmaacher schrieve, ävver de janze Öffentleshkeit kann et lässe un süht och de ällder Versione, un wat wää wann draan jedonn hät.
 
 '''{{int:config-profile-private}}''' kann nur lässe, wäh en et Wiki zohjelohße es, un desellve Jropp kann uch schrieve.
 
-Noch ander un un opwändijere Enshtellunge för de Rääschte sin müjjelesch, wann et Wiki ens aam Loufe es. Loor Der doför de [//www.mediawiki.org/wiki/Manual:User_rights zopaß Hölp em Handbooch] aan.", # Fuzzy
+Noch ander un un opwändijere Enschtellunge för de Rääschte sin möjjelesch, wann et Wiki ens aam Loufe es. Loor Der doför de [//www.mediawiki.org/wiki/Manual:User_rights zopaß Hölp em Handbooch] aan.",
 	'config-license' => 'Urhävverrääsch un Lizänz:',
 	'config-license-none' => 'Kein Fooßreih övver de Lizänz',
 	'config-license-cc-by-sa' => '<i lang="en">Creative Commons</i> Der Name moß jenannt sin, et Wiggerjävve es zohjelohße onger dersellve Bedengunge',
@@ -11961,7 +11964,9 @@ Et bäß es, wam_mer vum <i lang="en">world wide web</i> doh nit drahn kumme kan
 	'config-logo-help' => 'De Schtandart_Bedeen_Bovverfläsch vum MediaWiki hät e Logo bovve en der Eck met 135x160 Pixele.
 Donn e zopaß Logo huh laade, un donn däm sing URL heh endraare.
 
-Wells De kei Logo han, draach heh nix en.', # Fuzzy
+Do kanns <code lang="en">$wgStylePath</code> udder <code lang="en">$wgScriptPath</code> nämme, wann Ding Logo en einem vun dänne Pahde litt.
+
+Wells De kei Logo han, draach heh nix en.',
 	'config-instantcommons' => 'Donn <i lang="en">InstantCommons</i> zohlohße.',
 	'config-instantcommons-help' => '<i lang="en">[//www.mediawiki.org/wiki/InstantCommons InstantCommons]</i> es en Eijeschaff, di et för Wikis müjjelesch määt, Belder, Tondatteie un ander Meedijedatteie enzebenge, di op dä Webßait vun de <i lang="en">[//commons.wikimedia.org/ Wikimedia Commons]</i> ongerjebraat sin. Öm dat noze ze künne, moß dä ẞööver vum MediaWiki en Verbendung nohm Internet opnämme künne.
 
@@ -11995,7 +12000,7 @@ Do kann se heh un jez aanschallde, ävver se künnte noch zohsäzlesch Enshtellu
 Et sühd esu uß, wi wann De MediaWiki ald enshtalleet hätß, un wöhrs aam Versöhke, dat norr_ens ze donn.
 Jang wigger op de näähßte Sigg.",
 	'config-install-begin' => 'Wann De op „{{int:config-continue}}“ klecks, jeiht de Enshtallazjuhn vum MediaWiki loßß.
-Wann De noch Änderonge maache wells, dann kleck op „{{int:config-back}}“.', # Fuzzy
+Wann De noch Änderonge maache wells, dann kleck op „{{int:config-back}}“.',
 	'config-install-step-done' => 'jedonn',
 	'config-install-step-failed' => 'donävve jejange',
 	'config-install-extensions' => 'Zohsazprojramme enjeschloße',
@@ -12055,14 +12060,18 @@ Wann De mem Ronger- un widder Huhlaade fäädesh bes, kanns De '''[\$2 en Ding W
 	'config-download-localsettings' => 'Donn di Dattei <code lang="en">LocalSettings.php</code> eronger laade',
 	'config-help' => 'Hölp',
 	'config-nofile' => 'De Dattei „$1“ ham_mer nit jefonge. Es di fottjeschmeße?',
+	'config-extension-link' => 'Häs De jewoß, dat et Wiki [//www.mediawiki.org/wiki/Manual:Extensions Zohsazprojramme] hann kann?
+
+Do kanns [//www.mediawiki.org/wiki/Category:Extensions_by_category Zohsazprojramme noh Saachjroppe] söhke udder en de [//www.mediawiki.org/wiki/Extension_Matrix Tabäll met de Zohsazprojramme] kike, öm de kumplätte Leß met de Zohsazprojramme ze krijje.',
 	'mainpagetext' => "'''MediaWiki es jetz enstalleet.'''",
-	'mainpagedocfooter' => 'Luur en et (änglesche) [//meta.wikimedia.org/wiki/Help:Contents Handboch] wann De wesse wells wie de Wiki-Soffwär jebruch un bedeent wääde muss.
+	'mainpagedocfooter' => 'Luur en et (änglesche) [//meta.wikimedia.org/wiki/Help:Contents Handbooch] wann De wesse wells wie de Wiki-Soffwär jebruch un bedeent wääde moß.
 
 == För dä Aanfang ==
 Dat es och all op Änglesch:
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]', # Fuzzy
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]
+* [//www.mediawiki.org/wiki/Localisation#Translation_resources Donn MediaWiki op Ding Schprooch aanpaße]',
 );
 
 /** Kurdish (Latin script) (Kurdî (latînî)‎)
@@ -12084,7 +12093,7 @@ $messages['ku-latn'] = array(
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Lîsteya varîyablên konfîgûrasîyonê]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lîsteya e-nameyên versyonên nuh yê MediaWiki]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lîsteya e-nameyên versyonên nuh yê MediaWiki]', # Fuzzy
 );
 
 /** Ladino (Ladino)
@@ -12097,7 +12106,7 @@ $messages['lad'] = array(
 == En Empeçando ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings La lista de los arreglamientos de la konfiggurasyón]
 * [//www.mediawiki.org/wiki/Manual:FAQ/lad DDS de MedyaViki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce La lista de las letrales (e-mail) de MedyaViki]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce La lista de las letrales (e-mail) de MedyaViki]', # Fuzzy
 );
 
 /** Luxembourgish (Lëtzebuergesch)
@@ -12326,7 +12335,7 @@ $messages['lfn'] = array(
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Lista de ajustas de la desinia]
 * [//www.mediawiki.org/wiki/Manual:FAQ Demandas comun de MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista per receta anunsias de novas supra MediaWiki]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista per receta anunsias de novas supra MediaWiki]', # Fuzzy
 );
 
 /** Ganda (Luganda)
@@ -12339,7 +12348,7 @@ $messages['lg'] = array(
 == Amagezi agakuyamba okutandika ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Lukalala lw'eby'enteekateeka yo]
 * [//www.mediawiki.org/wiki/Manual:FAQ Ebiter'okubuuzibwa ku MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Wewandise ofunenga amawulire aga email ag'ebifa ku MediaWiki]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Wewandise ofunenga amawulire aga email ag'ebifa ku MediaWiki]", # Fuzzy
 );
 
 /** Limburgish (Limburgs)
@@ -12352,7 +12361,7 @@ $messages['li'] = array(
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Lies mit instellinge]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki VGV (FAQ)]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki mailinglies veur nuuj versies]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki mailinglies veur nuuj versies]", # Fuzzy
 );
 
 /** Lao (ລາວ)
@@ -12382,12 +12391,10 @@ $messages['lt'] = array(
 	'config-page-upgradedoc' => 'Atnaujinama',
 	'config-restart' => 'Taip, paleiskite jį iš naujo',
 	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',
-	'config-type-ibm_db2' => 'IBM DB2',
 	'config-header-mysql' => 'MySQL nustatymai',
 	'config-header-postgres' => 'PostgreSQL nustatymai',
 	'config-header-sqlite' => 'SQLite nustatymai',
 	'config-header-oracle' => 'Oracle nustatymai',
-	'config-header-ibm_db2' => 'IBM DB2 nustatymai',
 	'config-mysql-innodb' => 'InnoDB',
 	'config-mysql-myisam' => 'MyISAM',
 	'config-mysql-utf8' => 'UTF-8',
@@ -12408,7 +12415,7 @@ $messages['lt'] = array(
 	'config-optional-continue' => 'Paklausti daugiau klausimų.',
 	'config-optional-skip' => 'Man jau nuobodu, tiesiog įdiekite viki.',
 	'config-profile' => 'Vartotojo teisių paskyra:',
-	'config-profile-wiki' => 'Tradicinė viki',
+	'config-profile-wiki' => 'Tradicinė viki', # Fuzzy
 	'config-profile-private' => 'Privati viki',
 	'config-license-pd' => 'Viešas Domenas',
 	'config-email-settings' => 'El. pašto nustatymai',
@@ -12455,7 +12462,7 @@ $messages['lv'] = array(
 == Pirmie soļi ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Konfigurācijas iespēju saraksts]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki J&A]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Parakstīties uz paziņojumiem par jaunām MediaWiki versijām]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Parakstīties uz paziņojumiem par jaunām MediaWiki versijām]', # Fuzzy
 );
 
 /** Literary Chinese (文言)
@@ -12468,7 +12475,7 @@ $messages['lzh'] = array(
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]", # Fuzzy
 );
 
 /** Lazuri (Lazuri)
@@ -12481,7 +12488,7 @@ $messages['lzz'] = array(
 == Ağani na gyoç’k’u maxmarepe ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Ok'iduşi ayarepeşi liste]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki P'anda Na-k'itxu K'itxalape]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki e-mailepeşiş liste]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki e-mailepeşiş liste]", # Fuzzy
 );
 
 /** Maithili (मैथिली)
@@ -12494,7 +12501,7 @@ $messages['mai'] = array(
 ==प्रारम्भ कोना करी==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]", # Fuzzy
 );
 
 /** Moksha (мокшень)
@@ -12507,7 +12514,7 @@ $messages['mdf'] = array(
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Васьфневи арафнематнень кярькссь]
 * [//www.mediawiki.org/wiki/Manual:FAQ МедиаВикить Сидеста Кеподеви Кизефксне]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce МедиаВикить од верзиятнень колга кулянь пачфтема]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce МедиаВикить од верзиятнень колга кулянь пачфтема]', # Fuzzy
 );
 
 /** Malagasy (Malagasy)
@@ -12541,7 +12548,7 @@ $messages['mg'] = array(
 	'config-admin-name' => 'Ny anaranao :',
 	'config-admin-password' => 'Tenimiafina :',
 	'config-admin-email' => 'Adiresy imailaka :',
-	'config-profile-wiki' => 'Wiki tsotra',
+	'config-profile-wiki' => 'Wiki tsotra', # Fuzzy
 	'config-profile-no-anon' => 'Mila mamorona kaonty',
 	'config-profile-fishbowl' => 'Mpanova mahazo alalana ihany',
 	'config-profile-private' => 'Wiki tsy sarababem-bahoaka',
@@ -12565,7 +12572,7 @@ $messages['mg'] = array(
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Lisitra ny paramètre de configuration]
 * [//www.mediawiki.org/wiki/Manual:FAQ/fr FAQ momba ny MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Resaka momba ny fizaràn'ny MediaWiki]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Resaka momba ny fizaràn'ny MediaWiki]", # Fuzzy
 );
 
 /** Eastern Mari (олык марий)
@@ -13312,7 +13319,7 @@ $messages['mn'] = array(
 == Эхлэх ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Тохиргоо]
 * [//www.mediawiki.org/wiki/Manual:FAQ МедиаВикигийн тогтмол тавигддаг асуултууд]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce МедиаВикигийн мэдээний мэйл явуулах жагсаалт]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce МедиаВикигийн мэдээний мэйл явуулах жагсаалт]', # Fuzzy
 );
 
 /** Marathi (मराठी)
@@ -13325,7 +13332,7 @@ $messages['mr'] = array(
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings कॉन्फिगरेशन सेटींगची यादी]
 * [//www.mediawiki.org/wiki/Manual:FAQ मीडियाविकी नेहमी विचारले जाणारे प्रश्न]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce मीडियाविकि मेलिंग लिस्ट]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce मीडियाविकि मेलिंग लिस्ट]', # Fuzzy
 );
 
 /** Malay (Bahasa Melayu)
@@ -13366,12 +13373,10 @@ Bagaimanapun, MediaWiki memerlukan PHP $2 ke atas.',
 	'config-unicode-using-utf8' => 'utf8_normalize.so oleh Brion Vibber digunakan untuk penormalan Unicode.',
 	'config-unicode-using-intl' => '[http://pecl.php.net/intl Sambungan intl PECL] digunakan untuk penormalan Unicode.',
 	'config-db-charset' => 'Peranggu aksara pangkalan data',
-	'config-type-ibm_db2' => 'IBM DB2',
 	'config-header-mysql' => 'Keutamaan MySQL',
 	'config-header-postgres' => 'Keutamaan PostgreSQL',
 	'config-header-sqlite' => 'Keutamaan SQLite',
 	'config-header-oracle' => 'Keutamaan Oracle',
-	'config-header-ibm_db2' => 'Keutamaan IBM DB2',
 	'config-invalid-db-type' => 'Jenis pangkalan data tidak sah',
 	'config-db-web-account-same' => 'Gunakan akaun yang sama seperti dalam pemasangan',
 	'config-db-web-create' => 'Ciptakan akaun jika belum wujud',
@@ -13564,7 +13569,7 @@ $messages['nan'] = array(
 == 入門 ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings 配置的設定]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki時常問答]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki的公布列單]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki的公布列單]', # Fuzzy
 );
 
 /** Norwegian Bokmål (norsk bokmål)
@@ -14039,7 +14044,7 @@ $messages['nds'] = array(
 un dat [//meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] för Hülp to de Bruuk un Konfiguratschoon.', # Fuzzy
 );
 
-/** Nedersaksisch (Nedersaksisch)
+/** Low Saxon (Netherlands) (Nedersaksies)
  * @author Servien
  */
 $messages['nds-nl'] = array(
@@ -14049,7 +14054,7 @@ $messages['nds-nl'] = array(
 == Meer hulpe ==
 * [//www.mediawiki.org/wiki/Help:Configuration_settings Lieste mit instellingen]
 * [//www.mediawiki.org/wiki/Help:FAQ MediaWiki-vragen die vake esteld wörden]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki-postlieste veur nieje versies]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki-postlieste veur nieje versies]', # Fuzzy
 );
 
 /** Nepali (नेपाली)
@@ -14063,7 +14068,7 @@ $messages['ne'] = array(
 == सुरू गर्नको लागि  ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings विन्यास सेटिङ्ग सूची]
 * [//www.mediawiki.org/wiki/Manual:FAQ मेडियाविकि सामान्य प्रश्नका उत्तरहरु]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce मेडियाविकि सुचना मेलिङ्ग सूची]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce मेडियाविकि सुचना मेलिङ्ग सूची]', # Fuzzy
 );
 
 /** Dutch (Nederlands)
@@ -14885,7 +14890,7 @@ Na het plaatsen van het bestand met instellingen kan je '''[$2 je wiki betreden]
 * [//www.mediawiki.org/wiki/Localisation#Translation_resources Maak MediaWiki beschikbaar in jouw taal]',
 );
 
-/** Norwegian Nynorsk (norsk (nynorsk)‎)
+/** Norwegian Nynorsk (norsk nynorsk)
  * @author Harald Khan
  * @author Nghtwlkr
  */
@@ -14932,7 +14937,7 @@ Berre bruk ASCII-bokstavar (a-z, A-Z), tal (0-9) og undestrekar (_).',
 ==Kome i gang==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Liste over oppsettsinnstillingar]
 * [//www.mediawiki.org/wiki/Manual:FAQ Spørsmål og svar om MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce E-postliste med informasjon om nye MediaWiki-versjonar]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce E-postliste med informasjon om nye MediaWiki-versjonar]', # Fuzzy
 );
 
 /** Norwegian (bokmål)‬ (‪norsk (bokmål)‬) */
@@ -14950,10 +14955,10 @@ $messages['oc'] = array(
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Lista dels paramètres de configuracion]
 * [//www.mediawiki.org/wiki/Manual:FAQ/fr FAQ MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de discussions de las parucions de MediaWiki]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de discussions de las parucions de MediaWiki]", # Fuzzy
 );
 
-/** Oriya (ଓଡ଼ିଆ)
+/** Oriya (ଓଡ଼ିଆ)
  * @author Jnanaranjan Sahu
  */
 $messages['or'] = array(
@@ -14988,7 +14993,7 @@ $messages['pam'] = array(
 == Pamagumpisa ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]", # Fuzzy
 );
 
 /** Picard (Picard)
@@ -15012,7 +15017,7 @@ $messages['pdc'] = array(
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Lischt vun Gnepp zum Konfiguriere]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki-FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Eposchde-Lischt fer neie MediaWiki-Versione]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Eposchde-Lischt fer neie MediaWiki-Versione]", # Fuzzy
 );
 
 /** Polish (polski)
@@ -16116,7 +16121,7 @@ $messages['prg'] = array(
 == En pagaūseņu ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]', # Fuzzy
 );
 
 /** Pashto (پښتو)
@@ -16724,6 +16729,7 @@ Depois de terminar o passo anterior, pode '''[$2 entrar na wiki]'''.",
 /** Brazilian Portuguese (português do Brasil)
  * @author Giro720
  * @author Gustavo
+ * @author Luckas
  * @author Marcionunes
  * @author 555
  */
@@ -16769,6 +16775,7 @@ Verifique o seu php.ini e certifique-se de que em <code>session.save_path</code>
 	'config-page-releasenotes' => 'Notas de lançamento',
 	'config-page-copying' => 'Copiando',
 	'config-page-upgradedoc' => 'Atualizando',
+	'config-page-existingwiki' => 'Wiki existente',
 	'config-help-restart' => 'Deseja limpar todos os dados salvos que você introduziu e reiniciar o processo de instalação?',
 	'config-restart' => 'Sim, reiniciar',
 	'config-welcome' => '=== Verificações do ambiente ===
@@ -16802,10 +16809,24 @@ Se o seu site tem um alto volume de tráfego, devia informar-se um pouco sobre a
 	'config-register-globals' => "' ' 'Aviso: A opção <code>[http://php.net/register_globals register_globals]</code> do PHP está ativada.'''
 ' ' 'Desative-a, se puder.'''
 O MediaWiki funcionará mesmo assim, mas o seu servidor ficará exposto a potenciais vulnerabilidades de segurança.",
+	'config-charset-mysql5-binary' => 'MySQL 4.1/5.0 binário',
+	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',
+	'config-mysql-innodb' => 'InnoDB',
+	'config-mysql-myisam' => 'MyISAM',
+	'config-mysql-binary' => 'Binário',
+	'config-mysql-utf8' => 'UTF-8',
+	'config-ns-generic' => 'Projeto',
+	'config-admin-box' => 'Conta de administrador',
+	'config-admin-name' => 'Seu nome:',
+	'config-admin-password' => 'Senha:',
+	'config-license-pd' => 'Domínio público',
 	'config-logo-help' => 'O tema padrão do MediaWiki inclui espaço para um logotipo de 135x160 pixels no canto superior esquerdo.
 Faça o upload de uma imagem com estas dimensões e introduza aqui a URL dessa imagem.
 
 Se você não pretende usar um logotipo, deixe este campo em branco.', # Fuzzy
+	'config-advanced-settings' => 'Configuração avançada',
+	'config-extensions' => 'Extensões',
+	'config-help' => 'ajuda',
 	'mainpagetext' => "'''MediaWiki instalado com sucesso.'''",
 	'mainpagedocfooter' => 'Consulte o [//meta.wikimedia.org/wiki/Help:Contents Manual de Usuário] para informações de como usar o software wiki.
 
@@ -16858,7 +16879,7 @@ $messages['rm'] = array(
 == Cumenzar ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Glista da las opziuns per la configuraziun]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Glista da mail da MediaWiki cun annunzias da novas versiuns]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Glista da mail da MediaWiki cun annunzias da novas versiuns]", # Fuzzy
 );
 
 /** Romanian (română)
@@ -17493,7 +17514,7 @@ GFDL может быть использована, но она сложна дл
 	'config-logo-help' => 'Стандартная тема оформления MediaWiki содержит над боковой панелью пространство для логотипа размером 135x160 пикселей.
 Загрузите изображение соответствующего размера, и введите его URL здесь.
 
-Если вам не нужен логотип, оставьте это поле пустым.',
+Если вам не нужен логотип, оставьте это поле пустым.', # Fuzzy
 	'config-instantcommons' => 'Включить Instant Commons',
 	'config-instantcommons-help' => '[//www.mediawiki.org/wiki/InstantCommons Instant Commons] — это функция, позволяющая использовать изображения, звуки и другие медиафайлы с Викисклада ([//commons.wikimedia.org/ Wikimedia Commons]).
 Для работы этой функции MediaWiki необходим доступ к Интернету.
@@ -17607,7 +17628,7 @@ $messages['rue'] = array(
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Наставлїня конфіґурації]
 * [//www.mediawiki.org/wiki/Manual:FAQ Часты вопросы о MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Розосыланя повідомлїнь про новы верзії MediaWiki]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Розосыланя повідомлїнь про новы верзії MediaWiki]', # Fuzzy
 );
 
 /** Sanskrit (संस्कृतम्)
@@ -17627,7 +17648,7 @@ $messages['sah'] = array(
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Конфигурация уларытыытын параметрдара]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki релизтарын почтовай испииһэгэ]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki релизтарын почтовай испииһэгэ]', # Fuzzy
 );
 
 /** Sardinian (sardu)
@@ -17646,7 +17667,7 @@ $messages['scn'] = array(
 == P'accuminzari ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Alencu di mpustazzioni di cunfigurazzioni]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailing list dî rilassi di MediaWiki]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailing list dî rilassi di MediaWiki]", # Fuzzy
 );
 
 /** Scots (Scots)
@@ -17659,7 +17680,7 @@ $messages['sco'] = array(
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settins leet]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki releese mailin leet]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki releese mailin leet]", # Fuzzy
 );
 
 /** Sassaresu (Sassaresu)
@@ -17673,7 +17694,7 @@ Li sighenti cullegamenti so in linga ingrese:
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Impusthazioni di cunfigurazioni]
 * [//www.mediawiki.org/wiki/Manual:FAQ Prigonti friquenti i MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailing list annùnzii MediaWiki]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailing list annùnzii MediaWiki]", # Fuzzy
 );
 
 /** Cmique Itom (Cmique Itom)
@@ -17692,7 +17713,7 @@ $messages['sh'] = array(
 == Početak ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Lista postavki]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki najčešće postavljana pitanja]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista E-Mail adresa MediaWiki]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista E-Mail adresa MediaWiki]', # Fuzzy
 );
 
 /** Tachelhit (Tašlḥiyt/ⵜⴰⵛⵍⵃⵉⵜ)
@@ -17705,7 +17726,7 @@ $messages['shi'] = array(
 == Izwir d MediaWiki ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Umuɣ n iɣwwarn n usgadda ]
 * [//www.mediawiki.org/wiki/Manual:FAQ/fr Isqqsitn f MidyWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Umuɣ n imsgdaln f imbḍitn n MidyaWiki]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Umuɣ n imsgdaln f imbḍitn n MidyaWiki]', # Fuzzy
 );
 
 /** Sinhala (සිංහල)
@@ -18099,7 +18120,7 @@ $messages['sli'] = array(
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Liste der Konfigurationsvariablen]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki-FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailingliste neuer MediaWiki-Versionen]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailingliste neuer MediaWiki-Versionen]', # Fuzzy
 );
 
 /** Somali (Soomaaliga)
@@ -18111,7 +18132,7 @@ $messages['so'] = array(
 == Bilaaw ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]", # Fuzzy
 );
 
 /** Albanian (shqip)
@@ -18123,7 +18144,7 @@ $messages['sq'] = array(
 == Sa për fillim==
 * [//www.mediawiki.org/wiki/Help:Configuration_settings Parazgjedhjet e MediaWiki-t]
 * [//www.mediawiki.org/wiki/Help:FAQ Pyetjet e shpeshta rreth MediaWiki-t]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Njoftime rreth MediaWiki-t]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Njoftime rreth MediaWiki-t]', # Fuzzy
 );
 
 /** Serbian (Cyrillic script) (српски (ћирилица)‎)
@@ -18169,7 +18190,7 @@ $messages['sr-ec'] = array(
 == Увод ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Помоћ у вези са подешавањима]
 * [//www.mediawiki.org/wiki/Manual:FAQ Често постављена питања]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Дописна листа о издањима Медијавикија]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Дописна листа о издањима Медијавикија]', # Fuzzy
 );
 
 /** Serbian (Latin script) (srpski (latinica)‎)
@@ -18213,7 +18234,7 @@ Proverite Vaš php.ini i obezbedite da je <code>session.save_path</code> postavl
 == Za početak ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Pomoć u vezi sa podešavanjima]
 * [//www.mediawiki.org/wiki/Manual:FAQ Najčešće postavljena pitanja]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mejling lista o izdanjima MedijaVikija]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mejling lista o izdanjima MedijaVikija]', # Fuzzy
 );
 
 /** Sranan Tongo (Sranantongo)
@@ -18226,7 +18247,7 @@ $messages['srn'] = array(
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Den seti]
 * [//www.mediawiki.org/wiki/Manual:FAQ Sani di ben aksi furu (FAQ)]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Boskopu grupu gi nyun meki]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Boskopu grupu gi nyun meki]', # Fuzzy
 );
 
 /** Swati (SiSwati)
@@ -18240,14 +18261,14 @@ $messages['ss'] = array(
  */
 $messages['stq'] = array(
 	'mainpagetext' => "'''Ju MediaWiki Software wuude mäd Ärfoulch installierd.'''",
-	'mainpagedocfooter' => 'Sjuch ju [//meta.wikimedia.org/wiki/MediaWiki_localization Dokumentation tou de Anpaasenge fon dän Benutseruurfläche] un dät [//meta.wikimedia.org/wiki/Help:Contents Benutserhondbouk] foar Hälpe tou ju Benutsenge un Konfiguration.',
+	'mainpagedocfooter' => 'Sjuch ju [//meta.wikimedia.org/wiki/MediaWiki_localization Dokumentation tou de Anpaasenge fon dän Benutseruurfläche] un dät [//meta.wikimedia.org/wiki/Help:Contents Benutserhondbouk] foar Hälpe tou ju Benutsenge un Konfiguration.', # Fuzzy
 );
 
 /** Sundanese (Basa Sunda)
  */
 $messages['su'] = array(
 	'mainpagetext' => "'''''Software'' MediaWiki geus diinstal.'''",
-	'mainpagedocfooter' => "Mangga tingal ''[//meta.wikimedia.org/wiki/MediaWiki_localisation documentation on customizing the interface]'' jeung [//meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Tungtunan Pamaké] pikeun pitulung maké jeung konfigurasi.",
+	'mainpagedocfooter' => "Mangga tingal ''[//meta.wikimedia.org/wiki/MediaWiki_localisation documentation on customizing the interface]'' jeung [//meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Tungtunan Pamaké] pikeun pitulung maké jeung konfigurasi.", # Fuzzy
 );
 
 /** Swedish (svenska)
@@ -18448,7 +18469,7 @@ $messages['sw'] = array(
 == Msaada wa kianzio ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Orodha ya mipangilio ya msingi]
 * [//www.mediawiki.org/wiki/Manual:FAQ FAQ ya MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Orodha ya utoaji wa habari za MediaWiki]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Orodha ya utoaji wa habari za MediaWiki]', # Fuzzy
 );
 
 /** Silesian (ślůnski)
@@ -18461,7 +18482,7 @@ $messages['szl'] = array(
 == Na sztart ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Lista sztalowań konfiguracyje]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Komuńikaty uo nowych wersyjach MediaWiki]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Komuńikaty uo nowych wersyjach MediaWiki]', # Fuzzy
 );
 
 /** Tamil (தமிழ்)
@@ -18578,7 +18599,7 @@ $messages['tcy'] = array(
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
 * [//www.mediawiki.org/wiki/Manual:FAQ ಮೀಡಿಯವಿಕಿ FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]', # Fuzzy
 );
 
 /** Telugu (తెలుగు)
@@ -18624,7 +18645,7 @@ $messages['te'] = array(
 	'config-admin-password-confirm' => 'సంకేతపదం మళ్ళీ:',
 	'config-admin-email' => 'ఈ-మెయిలు చిరునామా:',
 	'config-optional-continue' => 'నన్ను మరిన్ని ప్రశ్నలు అడుగు.',
-	'config-profile-wiki' => 'సంప్రదాయ వికీ',
+	'config-profile-wiki' => 'సంప్రదాయ వికీ', # Fuzzy
 	'config-profile-no-anon' => 'ఖాతా సృష్టింపు తప్పనిసరి',
 	'config-profile-private' => 'అంతరంగిక వికీ',
 	'config-license' => 'కాపీహక్కులు మరియు లైసెన్సు:',
@@ -18642,7 +18663,7 @@ $messages['te'] = array(
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings మీడియావికీ పనితీరు, అమరిక మార్చుకునేందుకు వీలుకల్పించే చిహ్నాల జాబితా]
 * [//www.mediawiki.org/wiki/Manual:FAQ మీడియావికీపై తరుచుగా అడిగే ప్రశ్నలు]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce మీడియావికీ సాఫ్టువేరు కొత్త వెర్షను విడుదలల గురించి తెలిపే మెయిలింగు లిస్టు]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce మీడియావికీ సాఫ్టువేరు కొత్త వెర్షను విడుదలల గురించి తెలిపే మెయిలింగు లిస్టు]', # Fuzzy
 );
 
 /** Tetum (tetun)
@@ -18663,7 +18684,7 @@ $messages['tg-cyrl'] = array(
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Феҳристи танзимоти пайгирбандӣ]
 * [//www.mediawiki.org/wiki/Manual:FAQ Пурсишҳои МедиаВики]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Феҳристи ройномаҳои нусхаҳои МедиаВики]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Феҳристи ройномаҳои нусхаҳои МедиаВики]', # Fuzzy
 );
 
 /** Tajik (Latin script) (tojikī)
@@ -18677,7 +18698,7 @@ $messages['tg-latn'] = array(
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Fehristi tanzimoti pajgirbandī]
 * [//www.mediawiki.org/wiki/Manual:FAQ Pursişhoi MediaViki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Fehristi rojnomahoi nusxahoi MediaViki]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Fehristi rojnomahoi nusxahoi MediaViki]', # Fuzzy
 );
 
 /** Thai (ไทย)
@@ -18691,7 +18712,7 @@ $messages['th'] = array(
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings รายการการปรับแต่งระบบ] (ภาษาอังกฤษ)
 * [//www.mediawiki.org/wiki/Manual:FAQ คำถามที่ถามบ่อยในมีเดียวิกิ] (ภาษาอังกฤษ)
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce เมลลิงลิสต์ของมีเดียวิกิ]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce เมลลิงลิสต์ของมีเดียวิกิ]', # Fuzzy
 );
 
 /** Turkmen (Türkmençe)
@@ -18704,7 +18725,7 @@ $messages['tk'] = array(
 == Öwrenjeler ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Konfigurasiýa sazlamalary]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki SSS]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki e-poçta sanawy]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki e-poçta sanawy]', # Fuzzy
 );
 
 /** Tagalog (Tagalog)
@@ -19146,7 +19167,7 @@ Ideyal na dapat itong  hindi mapupuntahan mula sa web.',
 	'config-logo-help' => 'Ang likas na nakatakdang pabalat ng MediaWiki ay nagsasama ng puwang para sa isang logong 135x160 ang piksel na nasa itaas ng menu ng panggilid na bareta.
 Magkargang papaitaas ng isang imahe na mayroong naaangkop na sukat, at ipasok dito ang URL.
 
-Kung ayaw mo ng isang logo, iwanang walang laman ang kahong ito.',
+Kung ayaw mo ng isang logo, iwanang walang laman ang kahong ito.', # Fuzzy
 	'config-instantcommons' => 'Paganahin ang Mga Pangkaraniwang Biglaan',
 	'config-instantcommons-help' => 'Ang [//www.mediawiki.org/wiki/InstantCommons Instant Commons] ay isang tampok na nagpapahintulot sa mga wiki upang gumamit ng mga imahe, mga tunog at iba pang mga midyang matatagpuan sa pook ng [//commons.wikimedia.org/ Wikimedia Commons].
 Upang magawa ito, nangangailangan ang MediaWiki ng pagka nakakapunta sa Internet.
@@ -19265,7 +19286,7 @@ $messages['tr'] = array(
 == Yeni Başlayanlar ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Yapılandırma ayarlarının listesi]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki SSS]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki e-posta listesi]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki e-posta listesi]', # Fuzzy
 );
 
 /** Tatar (Cyrillic script) (татарча)
@@ -19278,7 +19299,7 @@ $messages['tt-cyrl'] = array(
 == Кайбер файдалы ресурслар ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Көйләнмәләр исемлеге (инг.)];
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki турында еш бирелгән сораулар һәм җаваплар (инг.)];
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki'ның яңа версияләре турында хәбәрләр яздырып алу].",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki'ның яңа версияләре турында хәбәрләр яздырып алу].", # Fuzzy
 );
 
 /** Tatar (Latin script) (tatarça)
@@ -19291,7 +19312,7 @@ $messages['tt-latn'] = array(
 == Qayber faydalı resurslar ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Köylänmälär isemlege (ing.)];
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki turında yış birelgän sorawlar häm cawaplar (ing.)];
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki'nıñ yaña versiäläre turında xäbärlär yazdırıp alu].",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki'nıñ yaña versiäläre turında xäbärlär yazdırıp alu].", # Fuzzy
 );
 
 /** Udmurt (удмурт)
@@ -19311,7 +19332,7 @@ $messages['ug-arab'] = array(
 == دەسلەپكى ساۋات ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings سەپلىمە تەڭشەك تىزىملىكى]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki كۆپ ئۇچرايدىغان مەسىلىلەرگە جاۋاب]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki تارقاتقان ئېلخەت تىزىملىكى]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki تارقاتقان ئېلخەت تىزىملىكى]', # Fuzzy
 );
 
 /** Ukrainian (українська)
@@ -19752,7 +19773,7 @@ GFDL — допустима ліцензія, але у ній важко роз
 	'config-logo-help' => 'Стандартна схема оформлення MediaWiki містить вільне для логотипу місце над бічною панеллю розміром 135x160 пікселів. 
 Завантажте зображення відповідного розміру і введіть тут його URL.
 
-Якщо Вам не потрібен логотип, залиште це поле пустим.',
+Якщо Вам не потрібен логотип, залиште це поле пустим.', # Fuzzy
 	'config-instantcommons' => 'Увімкнути Instant Commons',
 	'config-instantcommons-help' => '[//www.mediawiki.org/wiki/InstantCommons Instant Commons] це функція, що дозволяє вікі використовувати зображення, звуки та інші медіа, розміщені на [//commons.wikimedia.org/ Вікісховищі].
 Для цього MediaWiki необхідний доступ до інтернету.
@@ -19902,7 +19923,7 @@ $messages['uz'] = array(
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Moslamalar ro'yxati]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki haqida ko'p so'raladigan savollar]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki yangi versiyasi chiqqanda xabar berish ro'yxati]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki yangi versiyasi chiqqanda xabar berish ro'yxati]", # Fuzzy
 );
 
 /** vèneto (vèneto)
@@ -19918,7 +19939,7 @@ I seguenti cołegamenti i xé en łengua inglese:
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Inpostasion de configurasion]
 * [//www.mediawiki.org/wiki/Manual:FAQ Domande frequenti so MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailing list anunsi MediaWiki]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailing list anunsi MediaWiki]", # Fuzzy
 );
 
 /** Veps (vepsän kel’)
@@ -19931,7 +19952,7 @@ $messages['vep'] = array(
 == Erased tarbhaižed resursad ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Järgendusiden nimikirjutez]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce počtnimikirjutez]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce počtnimikirjutez]', # Fuzzy
 );
 
 /** Vietnamese (Tiếng Việt)
@@ -19953,7 +19974,7 @@ $messages['vi'] = array(
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Danh sách các thiết lập cấu hình]
 * [//www.mediawiki.org/wiki/Manual:FAQ Các câu hỏi thường gặp MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Danh sách gửi thư về việc phát hành MediaWiki]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Danh sách gửi thư về việc phát hành MediaWiki]', # Fuzzy
 );
 
 /** Volapük (Volapük)
@@ -19966,7 +19987,7 @@ $messages['vo'] = array(
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Parametalised]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki: SSP]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Potalised tefü fomams nulik ela MediaWiki]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Potalised tefü fomams nulik ela MediaWiki]', # Fuzzy
 );
 
 /** Võro (Võro)
@@ -19977,7 +19998,7 @@ $messages['vro'] = array(
 * [//meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide MediaWiki pruukmisoppus (inglüse keelen)].
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Säädmiisi oppus (inglüse keelen)]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki kõgõ küsütümbäq küsümiseq (inglüse keelen)]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce E-postilist, minka andas teedäq MediaWiki vahtsist kujõst].',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce E-postilist, minka andas teedäq MediaWiki vahtsist kujõst].', # Fuzzy
 );
 
 /** Walloon (walon)
@@ -19997,7 +20018,7 @@ $messages['war'] = array(
 == Ha pagtikang==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]", # Fuzzy
 );
 
 /** Wolof (Wolof)
@@ -20010,7 +20031,7 @@ $messages['wo'] = array(
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Limu jumtukaayi kocc-koccal gi]
 * [//www.mediawiki.org/wiki/Manual:FAQ FAQ MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Limu waxtaan ci liy-génn ci MediaWiki]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Limu waxtaan ci liy-génn ci MediaWiki]', # Fuzzy
 );
 
 /** Wu (吴语)
@@ -20023,7 +20044,7 @@ $messages['wuu'] = array(
 == 入门 ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings MediaWiki 配置设置列表]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki 常见问题解答]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki 发布邮件列表]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki 发布邮件列表]', # Fuzzy
 );
 
 /** Kalmyk (хальмг)
@@ -20036,7 +20057,7 @@ $messages['xal'] = array(
 == Туста заавр ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Көгүдә бүрткл]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki туск ЮмБи]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki шинҗллһнә бүрткл]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki шинҗллһнә бүрткл]', # Fuzzy
 );
 
 /** Yiddish (ייִדיש)
@@ -20086,7 +20107,7 @@ $messages['yo'] = array(
 == Láti bẹ̀rẹ̀ ==
 *  [//www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]", # Fuzzy
 );
 
 /** Cantonese (粵語)
@@ -20098,7 +20119,7 @@ $messages['yue'] = array(
 ==開始使用==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings 配置設定清單]（英）
 * [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki 常見問題]（英）
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki 發佈郵件名單]（英）',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki 發佈郵件名單]（英）', # Fuzzy
 );
 
 /** Zeeuws (Zeêuws)
@@ -20111,7 +20132,7 @@ $messages['zea'] = array(
 
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Lieste mie instelliengen]
 * [//www.mediawiki.org/wiki/Manual:FAQ Veehestelde vraehen (FAQ)]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailienglieste voe ankondigiengen van nieuwe versies]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailienglieste voe ankondigiengen van nieuwe versies]", # Fuzzy
 );
 
 /** Simplified Chinese (中文（简体）‎)
@@ -20920,7 +20941,7 @@ GNU自由文檔許可證是維基百科曾經使用過的許可證，並迄今�
 	'config-logo' => '標誌URL：',
 	'config-logo-help' => '在MediaWiki的默認外觀中，左側欄菜單之上有一塊135x160像素的標誌區。請上傳一幅相應大小的圖像，並在此輸入URL。
 
-如果您不希望使用標誌，請將本處留空。',
+如果您不希望使用標誌，請將本處留空。', # Fuzzy
 	'config-instantcommons' => '啟用即時共享資源',
 	'config-instantcommons-help' => '[//www.mediawiki.org/wiki/InstantCommons 即時共享資源]可以讓wiki使用來自[//commons.wikimedia.org/ 維基共享資源]網站的圖像、音頻和其他媒體文件。要啟用該功能，MediaWiki必須能夠訪問互聯網。
 

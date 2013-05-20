@@ -1744,7 +1744,7 @@ Sing liyane bakal diumpetna sacara ''default''.
 * gpslongitude
 * gpsaltitude",
 
-# EXIF tags
+# Exif tags
 'exif-lightsource' => 'Sumber cahya',
 
 'exif-meteringmode-6' => 'Sebagiyan',
@@ -1782,9 +1782,6 @@ Sing liyane bakal diumpetna sacara ''default''.
 
 # Core parser functions
 'duplicate-defaultsort' => "'''Pènget:''' Kunci baku sing nggo ngurutna (''Default sort key'') yakuwe \"\$2\" wis nggantèkna kunci baku sing nggo ngurutna sedurungé \"\$1\".",
-
-# Special:FilePath
-'filepath-submit' => 'Golèti',
 
 # Special:SpecialPages
 'specialpages' => 'Kaca-kaca khusus',

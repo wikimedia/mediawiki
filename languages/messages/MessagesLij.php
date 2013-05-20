@@ -1319,7 +1319,7 @@ I inganci sucescivi, in scia mæxima riga, van conscideræ comme eceçioìn (pag
 * gpslongitude
 * gpsaltitude",
 
-# EXIF tags
+# Exif tags
 'exif-datetime' => 'Data e öa do cangiamento do papê',
 'exif-artist' => 'Autô',
 'exif-copyright' => "Diritti d'autô de",

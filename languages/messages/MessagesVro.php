@@ -1322,7 +1322,7 @@ ja sul piät umin [[Special:Preferences|säädmiisin]] olõma e-postiaadrõs, et
 'watchnochange' => 'Taa ao seen olõ-i üttegi perräkaetavat lehte muudõt.',
 'watchlist-details' => 'Perräkaemisnimekirän om {{PLURAL:$1|$1 leht|$1 lehte}}, rehkendämäldä arotuslehti.',
 'wlheader-enotif' => 'E-postiga teedäqandmisõq ommaq käügin.',
-'wlheader-showupdated' => "Leheq, midä om muudõt päält su viimäst käümist, ommaq '''paksun kirän'''.",
+'wlheader-showupdated' => "Leheq, midä om muudõt päält su viimäst käümist, ommaq '''paksun kirän'''",
 'watchmethod-recent' => 'kontrollitas perräkaetavidõ lehti perämäidsi muutmiisi',
 'watchmethod-list' => 'perräkaetavidõ lehti perämädseq muutmisõq',
 'watchlistcontains' => 'Perräkaemisnimekirän om $1 {{PLURAL:$1|leht|lehte}}.',

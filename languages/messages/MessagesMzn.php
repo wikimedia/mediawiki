@@ -156,8 +156,6 @@ $messages = array(
 'tog-shownumberswatching' => 'دمبالکرونِ سِراق هدائن',
 'tog-oldsig' => 'پیش نیمایش ایمضای موجود:',
 'tog-fancysig' => 'ایمضا ره ویکی متن نظر بیرین (بدون لینک هایتن)',
-'tog-externaleditor' => 'به شیکل پیش فرض خارجی ویرایشگرون جه ایستیفاده بواشه',
-'tog-externaldiff' => 'ایستیفاده از تفاوت‌گیر جه (diff) خارجی به‌طور پیش‌فرض.',
 'tog-showjumplinks' => 'فعال هکردن بپرسنی پیوندون مندرجات فهرست دله',
 'tog-uselivepreview' => 'ایستیفاده از پیش نیمایش زنده (جاوا اسکریپ) (جدیده)',
 'tog-forceeditsummary' => 'زمونی که خولاصه دچی‌ین ره ننویشتمه مه ره بائو',
@@ -851,8 +849,8 @@ $2، $1',
 'unwatchthispage' => 'دیگه این صفحه ره دمبال نکاردن',
 'watchnochange' => 'هیچ‌کادوم از چیزایی که شِما دمبال کانـّی چن وقته عوض نینه.',
 'watchlist-details' => 'بدون حیساب گپ ولگ‌ئون، {{PLURAL:$1|$1 صفحه|$1 صفحه}} شمه دمبال‌هاکردنی‌ئون میون قرار {{PLURAL:$1|دارنه|دانه}}.',
-'wlheader-enotif' => 'تونی ایمیل جه مطلع بواشین.',
-'wlheader-showupdated' => "صفحه‌ئونی که بعد از آخرین سربزوئنتون عوض بینه '''پر رنگ''' نشون هدائه بیّه.",
+'wlheader-enotif' => '*تونی ایمیل جه مطلع بواشین.',
+'wlheader-showupdated' => "*صفحه‌ئونی که بعد از آخرین سربزوئنتون عوض بینه '''پر رنگ''' نشون هدائه بیّه.",
 'wlnote' => "ایجه {{PLURAL:$1|پایانی دأچیه‌ن|پایانی '''$1''' دأچیه‌ن‌ئونی}} هأسه که ای $2 ساعت ده‌له دأکه‌ته.",
 'watchlist-options' => 'دمبال هاکردن گوزینه‌ها',
 
@@ -1032,12 +1030,12 @@ $2، $1',
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'video-dims' => '$1, $2×$3',
 
-# EXIF tags
+# Exif tags
 'exif-gpsareainformation' => 'جی پی اس ناحیه نوم',
 'exif-gpsdatestamp' => 'جی پی اس روز',
 'exif-gpsdifferential' => 'جی پی اس په‌چه‌ک درس هأکه‌ردن',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'فه‌شورده نئی',
 
 'exif-unknowndate' => 'نه‌شناسی روز',

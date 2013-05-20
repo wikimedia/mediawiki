@@ -574,7 +574,7 @@ Geen verduideliking is verskaf nie.",
 'badtitletext' => "Die bladsytitel waarvoor gevra is, is ongeldig, leeg, of
 'n verkeerd geskakelde tussen-taal of tussen-wiki titel.",
 'perfcached' => "Die volgende inligting is gekas en mag dalk nie op datum wees nie. 'n Maksimum van {{PLURAL:$1|een resultaat|$1 resultate}} is in die kas beskikbaar.",
-'perfcachedts' => "Die volgende data is gekas en is laas op $1 bygewerk. 'n Maksimum van {{PLURAL:$4|een resultaat|$4 resultate}} is in die kas beskikbaar.",
+'perfcachedts' => "Die volgende data is gekas en is laas op $2 om $3 bygewerk. 'n Maksimum van {{PLURAL:$4|een resultaat|$4 resultate}} is in die kas beskikbaar.",
 'querypage-no-updates' => 'Opdatering van hierdie bladsy is huidiglik afgeskakel. Inligting hier sal nie tans verfris word nie.',
 'wrong_wfQuery_params' => 'Foutiewe parameters na wfQuery()<br />
 Funksie: $1<br />
@@ -2278,7 +2278,7 @@ Toekomstige wysigings aan hierdie bladsy en sy bybehorende besprekingsblad sal h
 'watchnochange' => 'Geen item op die dophoulys is geredigeer in die gekose periode nie.',
 'watchlist-details' => '{{PLURAL:$1|$1 bladsy|$1 bladsye}} in u dophoulys, besprekingsbladsye uitgesluit.',
 'wlheader-enotif' => 'E-pos notifikasie is aangeskakel.',
-'wlheader-showupdated' => "Bladsye wat verander is sedert u hulle laas besoek het word in '''vetdruk''' uitgewys.",
+'wlheader-showupdated' => "Bladsye wat verander is sedert u hulle laas besoek het word in '''vetdruk''' uitgewys",
 'watchmethod-recent' => 'Kontroleer onlangse wysigings aan bladsye op dophoulys',
 'watchmethod-list' => 'kontroleer bladsye op dophoulys vir wysigings',
 'watchlistcontains' => 'Jou dophoulys bevat $1 {{PLURAL:$1|bladsy|bladsye}}.',

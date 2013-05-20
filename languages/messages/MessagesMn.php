@@ -1949,6 +1949,15 @@ URL нь зөв болон сайт ажиллагаатай байгаа эсэ
 'listusers-noresult' => 'Хэрэглэгч олдсонгүй.',
 'listusers-blocked' => '(түгжигдсэн)',
 
+# Special:ActiveUsers
+'activeusers' => 'Идэвхитэй хэрэглэгчдийн жагсаалт',
+'activeusers-intro' => 'Энэ нь сүүлийн $1 {{PLURAL:$1|өдөрт|өдөрт}} ямар нэг байдлаар үйлдэл хийсэн хэрэглэгчдийн жагсаалт юм.',
+'activeusers-count' => 'Сүүлийн {{PLURAL:$3|нэг өдөрт|$3 өдөрт}} $1 {{PLURAL:$1|засвар|засвар}}',
+'activeusers-from' => 'Хамгийн эхэлж харуулах хэрэглэгч:',
+'activeusers-hidebots' => 'Ботуудыг нуух',
+'activeusers-hidesysops' => 'Администраторуудыг нуух',
+'activeusers-noresult' => 'Хэрэглэгч олдсонгүй.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Хэрэглэгчийн бүлгийн эрхүүд',
 'listgrouprights-summary' => 'Дараах нь энэ вики дээрх хэрэглэгчийн бүлгүүд болон тэдгээрийн эрх, зөвшөөрлүүдийн жагсаалт юм.
@@ -2027,7 +2036,7 @@ URL нь зөв болон сайт ажиллагаатай байгаа эсэ
 'watchnochange' => 'Дурьдагдсан хугацаанд таны хянаж буй хуудсуудад өөрчлөлт ороогүй байна.',
 'watchlist-details' => 'Хяналтын жагсаалтад {{PLURAL:$1|$1 хуудас|$1 хуудаснууд}} байна.',
 'wlheader-enotif' => 'И-мэйл мэдэгдэл хүчинтэй боллоо.',
-'wlheader-showupdated' => "Таны хамгийн сүүлд айлчилснаас хойш өөрчлөгдсөн хуудсууд '''тодоор''' бичигдсэн байгаа.",
+'wlheader-showupdated' => "Таны хамгийн сүүлд айлчилснаас хойш өөрчлөгдсөн хуудсууд '''тодоор''' бичигдсэн байгаа",
 'watchmethod-recent' => 'хяналтад буй хуудсуудад шинэ өөрчлөлт орсон эсэхийг шалгаж байна',
 'watchmethod-list' => 'хяналтад буй хуудсуудад саяхан өөрчлөлт орсон эсэхийг шалгаж байна',
 'watchlistcontains' => 'Таны хянах жагсаалтанд $1 хуудас байна.',
@@ -2865,7 +2874,7 @@ $1',
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Өргөн',
 'exif-imagelength' => 'Өндөр',
 'exif-bitspersample' => 'Бүрэлдэхүүн хэсэг бүр дэх бит',
@@ -3019,7 +3028,7 @@ $1',
 'exif-giffilecomment' => 'GIF файлын тэмдэглэгээ',
 'exif-intellectualgenre' => 'Зүйлийн төрөл',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Шахагдаагүй',
 
 'exif-unknowndate' => 'Мэдэгдэхгүй огноо',
@@ -3357,13 +3366,6 @@ $5
 'version-software' => 'Суулгасан программ',
 'version-software-product' => 'Бүтээгдэхүүн',
 'version-software-version' => 'Хувилбар',
-
-# Special:FilePath
-'filepath' => 'Файлын зам',
-'filepath-page' => 'Файл:',
-'filepath-submit' => 'Явах',
-'filepath-summary' => 'Энэхүү тусгай хуудас нь файлын бүтэн замыг дуудна.
-Зургууд нь бүтэн хэмжээгээрээ гарах ба бусад файлын төрлүүд нь тохирох програмаараа шууд нээгдэнэ.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Давхардсан файлуудыг хайх',

@@ -420,9 +420,6 @@ Paesswatt fer nau: $2',
 'powersearch-togglenone' => 'Ken',
 'search-external' => 'Guck im Gewebb',
 
-# Quickbar
-'qbsettings-none' => 'Ken',
-
 # Preferences page
 'preferences' => 'Paerseenlich Profil',
 'mypreferences' => 'Uffschtellinge',
@@ -677,7 +674,7 @@ Paesswatt fer nau: $2',
 'listgrouprights-addgroup' => 'Yuuser zu {{PLURAL:$2|daer Druppe|denne Druppe}} dezu duh: $1',
 'listgrouprights-addgroup-all' => 'Yuuser zu alle Druppe dezu duh',
 
-# E-mail user
+# Email user
 'emailuser' => 'E-Poschd fer den Yuuser',
 'defemailsubject' => '{{SITENAME}} - E-Poschde vun Yuuser „$1“',
 'emailusername' => 'Yuuser-Naame:',
@@ -906,7 +903,7 @@ Guck $2 fer e Lischt vun de letscht Leschunge.',
 # Metadata
 'metadata' => 'Metadaade',
 
-# EXIF tags
+# Exif tags
 'exif-imagelength' => 'Leng',
 'exif-software' => 'Geyuust Software',
 'exif-usercomment' => 'Anmaerrickinge vun Yuuser',
@@ -975,11 +972,6 @@ Guck $2 fer e Lischt vun de letscht Leschunge.',
 'version-version' => '(Version $1)',
 'version-poweredby-others' => 'annere',
 'version-software-version' => 'Version',
-
-# Special:FilePath
-'filepath' => 'Feilpaad',
-'filepath-page' => 'Feil:',
-'filepath-submit' => 'Geh',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-filename' => 'Feilnaame:',

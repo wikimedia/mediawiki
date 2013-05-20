@@ -2113,6 +2113,15 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization देखें।',
 'listusers-noresult' => 'सदस्य नहीं मिला।',
 'listusers-blocked' => '(अवरोधित)',
 
+# Special:ActiveUsers
+'activeusers' => 'सक्रिय सदस्यों की सूची',
+'activeusers-intro' => 'यह सक्रिय सदस्यों की सूची है जिन्होंने पिछले $1 {{PLURAL:$1|दिन|दिनों}} में कुछ गतिविधि करी है।',
+'activeusers-count' => '$1 {{PLURAL:$1|सम्पादन}} पिछले $3 {{PLURAL:$3|दिन|दिनों}} में',
+'activeusers-from' => 'इस अक्षर से शुरू होने वाले सदस्य दिखाएँ:',
+'activeusers-hidebots' => 'बॉट छुपाएँ',
+'activeusers-hidesysops' => 'प्रबंधक छुपाएँ',
+'activeusers-noresult' => 'कोई सदस्य नहीं मिले।',
+
 # Special:ListGroupRights
 'listgrouprights' => 'सदस्य समूह अधिकार',
 'listgrouprights-summary' => 'नीचे इसे विकि के लिए परिभाषित सदस्य समूहों की सूची है, साथ में हर समूह से जुड़े अधिकार भी वर्णित हैं।
@@ -3084,7 +3093,7 @@ $1',
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'चौडाई',
 'exif-imagelength' => 'ऊँचाई',
 'exif-bitspersample' => 'प्रति घटक बीट्स',
@@ -3261,7 +3270,7 @@ $1',
 'exif-originalimageheight' => 'छवि की ऊँचाई उभरा होने से पहले',
 'exif-originalimagewidth' => 'छवि की चौड़ाई उभरा होने से पहले',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'अनकॉम्प्रेस्स्ड',
 'exif-compression-3' => 'CCITT ग्रुप 3 फ़ैक्स एनकोडिंग',
 'exif-compression-4' => 'CCITT ग्रुप 4 फ़ैक्स एनकोडिंग',
@@ -3702,13 +3711,6 @@ $5
 'version-software-product' => 'प्रोडक्ट',
 'version-software-version' => 'अवतरण',
 'version-entrypoints-header-url' => 'यू॰आर॰एल',
-
-# Special:FilePath
-'filepath' => 'सञ्चिका पथ',
-'filepath-page' => 'सञ्चिका:',
-'filepath-submit' => 'जाइए',
-'filepath-summary' => 'यह विशेष पृष्ठ सञ्चिका का पूरा पथ देता है।
-चित्र पूरे रिज़ोल्यूशन के साथ दिखता हैं, अन्य सञ्चिका प्रकार उनके सम्बन्धित प्रोग्रेम डाइरेक्टरी से आरम्भ होते हैं।',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'फ़ाईल द्विरावृत्ति खोजें',

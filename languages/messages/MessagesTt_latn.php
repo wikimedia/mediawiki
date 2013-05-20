@@ -122,8 +122,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Bitne küzätü isemleklärenä östägän qullanuçılar sanın kürsätelsen',
 'tog-oldsig' => 'Xäzerge imzanı aldan qaraw:',
 'tog-fancysig' => 'İmzanıñ şäxsi wiki-bilgelämäse (avtomatik sıltamasız)',
-'tog-externaleditor' => 'Tışqı redaqtor qullanu (kompyuter maxsus köylängän bulu zarur)',
-'tog-externaldiff' => 'Tışqı versiä çağıştıru programmasın qullanu (kompyuter maxsus köylängän bulu zarur)',
 'tog-showjumplinks' => '«Küçü» yärdämçe sıltamaları yalğansın',
 'tog-uselivepreview' => 'Tiz qarap alu qullanılsın (JavaScript, eksperimental)',
 'tog-forceeditsummary' => 'Üzgärtülärne taswirlaw yulı tutırılmağan bulsa, kisätü',
@@ -939,14 +937,6 @@ Barlıq alannarda (bäxäs bitläre, ürnäklär, h.b.) ezläw öçen ''all'' s�
 'powersearch-toggleall' => 'Barısı',
 'powersearch-togglenone' => 'Birni dä yuq',
 'search-external' => 'Tışqı ezläw',
-
-# Quickbar
-'qbsettings' => 'Küçeşlär aslığı',
-'qbsettings-none' => 'Kürsätmäw',
-'qbsettings-fixedleft' => 'Sulda küçerelmäs',
-'qbsettings-fixedright' => 'Uñda küçerelmäs',
-'qbsettings-floatingleft' => 'Sulda yözmä',
-'qbsettings-floatingright' => 'Uñda yözmä',
 
 # Preferences page
 'preferences' => 'Köylänmälär',
@@ -1893,13 +1883,8 @@ Zinhar başqa isem saylağız.',
 'spamprotectiontitle' => 'Spam filtrı',
 
 # Skin names
-'skinname-standard' => 'Klassik',
-'skinname-nostalgia' => 'İskä alu',
 'skinname-cologneblue' => 'Zäñgär sağış',
 'skinname-monobook' => 'Kitap',
-'skinname-myskin' => 'Üzem',
-'skinname-chick' => 'Çebi',
-'skinname-simple' => 'Ğädi',
 'skinname-modern' => 'Zamana',
 'skinname-vector' => 'Sızımlı',
 
@@ -1970,7 +1955,7 @@ Yulnıñ berençe sıltaması quyma öçen tıyılğan räsemgä sıltama bulır
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Kiñlek',
 'exif-imagelength' => 'Bieklek',
 'exif-imagedescription' => 'Räsemneñ iseme',
@@ -2137,11 +2122,6 @@ Yulnıñ berençe sıltaması quyma öçen tıyılğan räsemgä sıltama bulır
 'version-software' => "Urnaştırılğan programma belän tä'min iteleşne",
 'version-software-product' => 'Produkt',
 'version-software-version' => 'Versiä',
-
-# Special:FilePath
-'filepath' => 'Faylğa yul',
-'filepath-page' => 'Fayl:',
-'filepath-submit' => 'Küçü',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-submit' => 'Ezläw',

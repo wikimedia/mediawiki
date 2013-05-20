@@ -71,8 +71,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Страницăна миçе хутшăнакан сăнав списокне кĕртнине кăтартмалла',
 'tog-oldsig' => 'Хальхи алӑ пусни:',
 'tog-fancysig' => 'Хăвăр тунă алă пуснин вики-паллисем',
-'tog-externaleditor' => 'Палăртман чухне тулашри редактора усă курмалла',
-'tog-externaldiff' => 'Палăртман чухне версисене танлаштарма тулашри программăна усă курмалла',
 'tog-showjumplinks' => '«... патне куç» хушма каçăсене усă курмалла',
 'tog-uselivepreview' => 'Хăвăрт кăтартакан малтанхи курăнăва усă курмалла (JavaScript, экспериментлă)',
 'tog-forceeditsummary' => 'Тӳрлетӳсен кĕске ăнлантарăвне кăтартман чухне асăрхаттармалла',
@@ -587,9 +585,6 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 'powersearch' => 'Анлă шырав',
 'powersearch-legend' => 'Анлă шырав',
 
-# Quickbar
-'qbsettings' => 'Навигаци хăми',
-
 # Preferences page
 'preferences' => 'Ĕнерлевсем',
 'mypreferences' => 'Ман ĕнерлевсем',
@@ -888,7 +883,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'listgrouprights-group' => 'Ушкăн',
 'listgrouprights-helppage' => 'Help:Ушкăн прависем',
 
-# E-mail user
+# Email user
 'emailuser' => 'Хутшăнакана çыру яр... (Письмо участнику)',
 'usermailererror' => 'Электронлă почта урлă пĕлтерӳ янă чухне йăнăш тухрĕ:',
 'noemailtitle' => 'Электронлă почта адресĕ çук',
@@ -1128,7 +1123,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 # Metadata
 'metadata' => 'Метаданнăйсем:',
 
-# EXIF tags
+# Exif tags
 'exif-exifversion' => 'Exif версийĕ',
 'exif-flashpixversion' => 'Ĕçлеме пултаракан FlashPix версийĕ',
 'exif-gpsversionid' => 'GPS-информаци блокĕн версийĕ',
@@ -1147,7 +1142,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'watchlistall2' => 'пурте',
 'namespacesall' => 'пурте',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail_sent' => 'Çирĕплетмелли ыйтуллă çырăва ятăмăр.',
 'confirmemail_success' => 'Сирĕн электронлă почтăн адресне çирĕплентĕ.',
 'confirmemail_loggedin' => 'Сирĕн электронлă почтăн адресне çирĕплетрĕмĕр.',
@@ -1192,10 +1187,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 
 # Special:Version
 'version' => 'MediaWiki версийĕ',
-
-# Special:FilePath
-'filepath' => 'Файл çулĕ',
-'filepath-submit' => 'Çул',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Пĕр пек файлсен шыравĕ',

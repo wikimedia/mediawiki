@@ -1871,6 +1871,15 @@ $1",
 'listusers-noresult' => 'ورتن آلا نئیں لبیا۔',
 'listusers-blocked' => '(روکیا گیا)',
 
+# Special:ActiveUsers
+'activeusers' => 'کم کرن والیاں دی لسٹ',
+'activeusers-intro' => 'اے اوناں ورتن والیاں دی لسٹ اے جنان پچھلے $1 {{PLURAL:$1|دن|دناں}} چ کم کیتا اے۔',
+'activeusers-count' => '$1 {{PLURAL:$1|تبدیلی|تبدیلیاں}} پچھلے{{PLURAL:$3|دن|$3 دن}} چ',
+'activeusers-from' => 'ورتن والے ایس توں شروع ہون والے دسو:',
+'activeusers-hidebots' => 'بوٹ چھپاؤ',
+'activeusers-hidesysops' => 'مکھۓ لکاؤ',
+'activeusers-noresult' => 'کوئی ورتن والا نئیں لبیا۔',
+
 # Special:ListGroupRights
 'listgrouprights' => 'ورتن ٹرلی حق',
 'listgrouprights-summary' => 'تھلے اک لسٹ اے ورتن ٹولیاں دی ای وکی تے، اپنے رلدے حقاں نال۔ 
@@ -1947,8 +1956,8 @@ $1",
 'notvisiblerev' => 'آخری ریوین کسے ہور ورتن والے دی مٹادتی گئی اے۔',
 'watchnochange' => 'دسے گۓ ویلے چ تھواڈیاں ویکھیاںشیواں نئیں بدلیاں گیاں۔',
 'watchlist-details' => '{{PLURAL:$1|$1 صفحہ|$1 صفحہ}} تواڈی اکھ تھلے گلاں باتاں شامل نہیں۔',
-'wlheader-enotif' => 'ای-میل نوٹیفیکیشن قابل۔',
-'wlheader-showupdated' => 'صفے جیہڑے بدلے کۓ تھواڈے آخری وار آن مکرون  اونان نوں موٹا کرکے دسیا گیا اے۔',
+'wlheader-enotif' => 'ای-میل نوٹیفیکیشن قابل',
+'wlheader-showupdated' => ' صفے جیہڑے بدلے کۓ تھواڈے آخری وار آن مکرون  اونان نوں موٹا کرکے دسیا گیا اے۔',
 'watchmethod-recent' => 'نیڑے ہویاں تبدیلیاں چائیدے صفیاں دیاں ویکھے جان والے صفیاں لئی۔',
 'watchmethod-list' => 'ویکھے کے صفے نیڑے ہون والیاں تبدیلیاں دی پڑتال',
 'watchlistcontains' => 'تھواڈی اکھ تھلے رکھی لسٹ چ $1 {{PLURAL:$1|صفہ|صفے}}  نیں۔',
@@ -2793,7 +2802,7 @@ $1',
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'چوڑائی',
 'exif-imagelength' => 'اچائی',
 'exif-bitspersample' => 'اک کمپوننٹ وچ بٹ',
@@ -2971,7 +2980,7 @@ $1',
 'exif-originalimageheight' => 'مورت دی اچائی کٹن توں پہلے',
 'exif-originalimagewidth' => 'مورت دی چوڑائی کٹن توں پہلے',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'کھولی گئی',
 'exif-compression-2' => 'سی سی آئی ٹی ٹی گروپ 3 1-ڈائمینشنل موڈیفائیڈ ہفمین رن فل لنتھ انکوڈنگ',
 'exif-compression-3' => 'سی سی آئی ٹی ٹی گروپ 3 فیکس اینکوڈنگ',
@@ -3379,13 +3388,6 @@ the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 
 'version-software' => 'سافٹوئر چڑھ گیا۔',
 'version-software-product' => 'پراڈکٹ',
 'version-software-version' => 'ورژن',
-
-# Special:FilePath
-'filepath' => 'فائل راہ',
-'filepath-page' => 'فائل:',
-'filepath-submit' => 'چلو',
-'filepath-summary' => 'اے خاص صفہاک فائل دا پورا راہ دسدا اے۔
-مورتاں پورے ریزولوشن چ دسیاں گیاں نئیں، دوجیاں فائل ٹائپ نوں نوں اوناں دے رلدے پروکراماں نال ٹوریا گیا اے۔',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'دوہری فائلاں دی کھوج کرو',

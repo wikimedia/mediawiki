@@ -1341,7 +1341,7 @@ Hueliz cah inīn huēyi tlapatlaliztli. Timitztlātlauhtia ticmatīz cuallōtl a
 'metadata-expand' => 'Tiquittāz tlanōnōtzaliztli huehca ōmpa',
 'metadata-collapse' => 'Tictlātīz tlanōnōtzaliztli huehca ōmpa',
 
-# EXIF tags
+# Exif tags
 'exif-photometricinterpretation' => 'Pixel tlachīhualiztli',
 'exif-imagedescription' => 'Īxiptli ītōcā',
 'exif-software' => 'Software ōmotēquitilti',
@@ -1470,10 +1470,6 @@ Niman tihuelīti [[Special:UserLogin|timocalaqui]] auh ticpactiāz huiquitica.',
 'version-other' => 'Occē',
 'version-version' => '(Machiyōtzin $1)',
 'version-software-version' => 'Machiyōtzin',
-
-# Special:FilePath
-'filepath-page' => 'Tlahcuilōlli:',
-'filepath-submit' => 'Yāuh',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-filename' => 'Tlahcuilōlli ītōcā:',

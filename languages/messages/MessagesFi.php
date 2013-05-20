@@ -753,6 +753,7 @@ Huomaa, että jotkut sivut saattavat näkyä edelleen kuin olisit kirjautunut si
 'gotaccountlink' => 'kirjautua sisään',
 'userlogin-resetlink' => 'Unohditko salasanasi?',
 'userlogin-resetpassword-link' => 'Salasanan alustus',
+'helplogin-url' => 'Help:Sisäänkirjautuminen',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Auta sisäänkirjautumisessa]]',
 'createacct-join' => 'Kirjoita tietosi alle.',
 'createacct-emailrequired' => 'Sähköpostiosoite',
@@ -847,6 +848,7 @@ Odota ennen kuin yrität uudelleen.',
 'resetpass-wrong-oldpass' => 'Virheellinen väliaikainen tai nykyinen salasana.
 Olet saattanut jo onnistuneesti vaihtaa salasanasi tai pyytää uutta väliaikaista salasanaa.',
 'resetpass-temp-password' => 'Väliaikainen salasana:',
+'resetpass-abort-generic' => 'Lisäosa hylkäsi salasanan vaihdon.',
 
 # Special:PasswordReset
 'passwordreset' => 'Salasanan alustus',
@@ -861,14 +863,15 @@ Olet saattanut jo onnistuneesti vaihtaa salasanasi tai pyytää uutta väliaikai
 'passwordreset-capture-help' => 'Jos valitset tämän, sähköposti (tilapäisellä salasanalla) näytetään sinulle sekä lähetetään käyttäjälle.',
 'passwordreset-email' => 'Sähköpostiosoite',
 'passwordreset-emailtitle' => 'Tunnuksen tiedot {{GRAMMAR:inessive|{{SITENAME}}}}',
-'passwordreset-emailtext-ip' => 'Joku (todennäköisesti sinä, IP-osoitteesta $1) pyysi muistutusta tunnuksesi tiedoista sivustolla {{SITENAME}} ($4).
-{{PLURAL:$3|Seuraava käyttäjätunnus on|Seuraavat käyttäjätunnukset ovat}} liitetty tähän sähköpostiosoitteeseen:
+'passwordreset-emailtext-ip' => 'Joku (todennäköisesti sinä, IP-osoitteesta $1) pyysi salasanasi
+palautusta sivustolla {{SITENAME}} ($4). {{PLURAL:$3|Seuraava käyttäjätili on|Seuraavat käyttäjätilit ovat}}
+yhdistettynä tähän sähköpostiosoitteeseen:
 
 $2
 
-{{PLURAL:$3|Tämä väliaikainen salasana vanhentuu|Nämä väliaikaiset salasanat vanhentuvat}} {{PLURAL:$5|yhden päivän|$5 päivän}} kuluttua.
-Sinun kannattaa kirjautua sisään ja valita uusi salasana. Jos joku toinen teki tämän
-pyynnön, tai muistat sittenkin vanhan salasanasi, etkä halua muuttaa sitä,
+{{PLURAL:$3|Tämä väliaikainen salasana vanhenee|Nämä väliaikaiset salasanat vanhenevat}} {{PLURAL:$5|yhden päivän|$5 päivän}} kuluttua.
+Ole hyvä ja kirjaudu sisään nyt ja valitse uusi salasana. Jos joku toinen pyysi tätä,
+tai jos muistit jo vanhan salasanasi, etkä halua enää muuttaa sitä
 voit jättää tämän viestin huomiotta ja jatkaa vanhan salasanan käyttöä.',
 'passwordreset-emailtext-user' => 'Käyttäjä $1 pyysi muistutusta tunnuksesi tiedoista sivustolla {{SITENAME}} ($4).
 {{PLURAL:$3|Seuraava käyttäjätunnus on|Seuraavat käyttäjätunnukset ovat}} liitetty tähän sähköpostiosoitteeseen:
@@ -881,8 +884,8 @@ pyynnön, tai muistat sittenkin vanhan salasanasi, etkä halua muuttaa sitä,
 voit jättää tämän viestin huomiotta ja jatkaa vanhan salasanan käyttöä.',
 'passwordreset-emailelement' => 'Käyttäjätunnus: $1
 Väliaikainen salasana: $2',
-'passwordreset-emailsent' => 'Sähköpostimuistutus on lähetetty.',
-'passwordreset-emailsent-capture' => 'Muistutussähköposti on lähetetty. Se näkyy myös alla.',
+'passwordreset-emailsent' => 'Salasananpalautusviesti on lähetetty.',
+'passwordreset-emailsent-capture' => 'Salasananpalautusviesti on lähetetty, se näkyy myös alla.',
 'passwordreset-emailerror-capture' => 'Alla näytettävä sähköpostiviesti luotiin, mutta sen lähettäminen käyttäjälle epäonnistui: $1',
 
 # Special:ChangeEmail
@@ -3172,10 +3175,24 @@ Suorittamalla sen järjestelmäsi voi muuttua epäluotettavaksi.",
 'minutes' => '{{PLURAL:$1|$1 minuutti|$1 minuuttia}}',
 'hours' => '{{PLURAL:$1|$1 tunti|$1 tuntia}}',
 'days' => '{{PLURAL:$1|$1 päivä|$1 päivää}}',
+'weeks' => '{{PLURAL:$1|viikko|$1 viikkoa}}',
 'months' => '{{PLURAL:$1|$1 kuukausi|$1 kuukautta}}',
 'years' => '{{PLURAL:$1|$1 vuosi|$1 vuotta}}',
 'ago' => '$1 sitten',
 'just-now' => 'juuri nyt',
+
+# Human-readable timestamps
+'hours-ago' => '{{PLURAL:$1|tunti|$1 tuntia}} sitten',
+'minutes-ago' => '{{PLURAL:$1|minuutti|$1 minuuttia}} sitten',
+'seconds-ago' => '{{PLURAL:$1|sekunti|$1 sekuntia}} sitten',
+'monday-at' => 'Maanantaina klo $1',
+'tuesday-at' => 'Tiistaina klo $1',
+'wednesday-at' => 'Keskiviikkona klo $1',
+'thursday-at' => 'Torstaina klo $1',
+'friday-at' => 'Perjantaina klo $1',
+'saturday-at' => 'Lauantaina klo $1',
+'sunday-at' => 'Sunnuntaina klo $1',
+'yesterday-at' => 'Eilen klo $1',
 
 # Bad image list
 'bad_image_list' => 'Listan muoto on seuraava:
@@ -3795,6 +3812,8 @@ Sinun olisi pitänyt saada [{{SERVER}}{{SCRIPTPATH}}/COPYING kopio GNU General P
 'version-entrypoints-header-url' => 'URL',
 
 # Special:Redirect
+'redirect' => 'Uudelleenohjaa tiedoston, käyttäjän tai muutostunnuksen mukaan',
+'redirect-legend' => 'Uudelleenohjaa tiedostoon tai sivulle',
 'redirect-submit' => 'Siirry',
 'redirect-file' => 'Tiedostonimi',
 

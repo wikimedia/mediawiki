@@ -63,7 +63,6 @@ $messages = array(
 'tog-enotifrevealaddr' => 'Descovre la me adirije de eposta en postas de nota',
 'tog-shownumberswatching' => 'Mostra la numero de usores oservante',
 'tog-fancysig' => 'Sinias simple (sin lia automatica)',
-'tog-externaleditor' => 'Usa costumal editadores esterna',
 'tog-watchlisthideown' => 'Asconde me editas de la lista de pajes oservada',
 'tog-watchlisthidebots' => 'Asconde editas par bot de la lista de pajes oservada',
 'tog-watchlisthideminor' => 'Asconde editas minor de la lista de pajes oservada',
@@ -662,7 +661,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'listgrouprights-group' => 'Grupo',
 'listgrouprights-members' => '(lista de membros)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Envia un eposta a esta usor',
 'emailfrom' => 'De',
 'emailto' => 'Per',
@@ -930,7 +929,7 @@ Si la fix ia es cambiada de se stato orijinal, alga detalias pote no es clara en
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-exposuretime-format' => '$1 sec. ($2)',
 
 # External editor support
@@ -953,9 +952,6 @@ Si la fix ia es cambiada de se stato orijinal, alga detalias pote no es clara en
 # Special:Version
 'version' => 'Varia',
 'version-version' => '(Varia $1)',
-
-# Special:FilePath
-'filepath-page' => 'Fix:',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-submit' => 'Xerca',

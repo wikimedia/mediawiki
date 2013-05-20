@@ -632,6 +632,10 @@ Ita-nia mudansa la armazenadu seidauk!",
 # Special:ListUsers
 'listusers-submit' => 'Hatudu',
 
+# Special:ActiveUsers
+'activeusers-hidebots' => 'Subar bot sira',
+'activeusers-hidesysops' => 'Subar administradór sira',
+
 # Special:ListGroupRights
 'listgrouprights-group' => 'Grupu',
 'listgrouprights-rights' => 'Priviléjiu',
@@ -872,7 +876,7 @@ Liña hotu tenke komesa ho *
 Ligasaun uluk iha liña tenke ligasaun bá imajen aat.
 Ligasaun seluk iha liña - ne'e pájina sira iha ne'ebé bele inklui imajen aat.",
 
-# EXIF tags
+# Exif tags
 'exif-make' => 'Fabrikante kámara nian',
 'exif-model' => 'Kámara',
 'exif-artist' => 'Autór',
@@ -952,10 +956,6 @@ Ligasaun seluk iha liña - ne'e pájina sira iha ne'ebé bele inklui imajen aat.
 'version-poweredby-others' => 'ema seluk',
 'version-software-product' => 'Produtu',
 'version-software-version' => 'Versaun',
-
-# Special:FilePath
-'filepath-page' => 'Fail:',
-'filepath-submit' => 'Bá',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-submit' => 'Buka',

@@ -3022,6 +3022,8 @@ Bitte besuche die Seiten [//www.mediawiki.org/wiki/Localisation MediaWiki-Lokali
 'thumbnail-more' => 'vergrößern',
 'filemissing' => 'Datei fehlt',
 'thumbnail_error' => 'Fehler beim Erstellen des Vorschaubildes: $1',
+'thumbnail_error_remote' => 'Fehlermeldung von $1:
+$2',
 'djvu_page_error' => 'DjVu-Seite außerhalb des Seitenbereichs',
 'djvu_no_xml' => 'XML-Daten können für die DjVu-Datei nicht abgerufen werden',
 'thumbnail-temp-create' => 'Die Datei für die temporäre Miniaturansicht konnte nicht erstellt werden',

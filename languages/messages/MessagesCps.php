@@ -43,9 +43,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Ipakita ang mga numero sang mga gatan-aw nga manug-usar',
 'tog-oldsig' => 'Nagkayara nga pirma:',
 'tog-fancysig' => 'Ituring ang pirma bilang teksto sang wiki (wala sang automatik nga link)',
-'tog-externaleditor' => 'Maggamit sang panggwa nga manug-ilis paagi sa default ( para sa mga ekspeto lang, kinanglan ang espesyal nga mga setting sa imo kompyuter)',
-'tog-externaldiff' => 'Maggamit sang panggwa nga kinala-in paagi sa default ( para sa mga ekspeto lang, kinanglan ang espesyal nga setting sa imo kumpyuter.
-[//www.mediawiki.org/wiki/Manual:External_editors Mas madamu pa nga impormasyon.])',
 'tog-showjumplinks' => 'Pasugtan ang mga "tumbo sa" kadali-an nga mga link',
 'tog-uselivepreview' => 'Maggamit sang buhi nga prebyu (kinanglan ang Javascript) (Eksperimental)',
 'tog-forceeditsummary' => 'Hambalan ako kung nagapasulod sang wala unod nga pag-ilis kabilugan',
@@ -720,7 +717,7 @@ Ang paglarawan nga yara sa ibabaw sang [$2 pahina sang paglarawan sang akta] sin
 # Special:ListGroupRights
 'listgrouprights-members' => '(lista sang mga myembro)',
 
-# E-mail user
+# Email user
 'emailuser' => 'I-email mini nga naga-usar',
 
 # Watchlist

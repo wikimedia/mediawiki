@@ -1697,6 +1697,12 @@ PICT # төрле
 'listusers-noresult' => 'Кулланучыларны табылмады.',
 'listusers-blocked' => '(тыелган)',
 
+# Special:ActiveUsers
+'activeusers' => 'Актив кулланучылар исемлеге',
+'activeusers-hidebots' => 'Ботларны яшер',
+'activeusers-hidesysops' => 'Идарәчеләрне яшер',
+'activeusers-noresult' => 'Кулланучылар табылмады.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Кулланучы төркемнәренең хокуклары',
 'listgrouprights-group' => 'Төркем',
@@ -2224,7 +2230,7 @@ $1',
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Киңлек',
 'exif-imagelength' => 'Биеклек',
 'exif-imagedescription' => 'Рәсемнең исеме',
@@ -2433,11 +2439,6 @@ $1',
 'version-software' => 'Урнаштырылган программа белән тәэмин ителешне',
 'version-software-product' => 'Продукт',
 'version-software-version' => 'Версия',
-
-# Special:FilePath
-'filepath' => 'Файлга юл',
-'filepath-page' => 'Файл:',
-'filepath-submit' => 'Күчү',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Бер үк файлларны эзләү',

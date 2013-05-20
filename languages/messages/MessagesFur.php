@@ -1099,6 +1099,15 @@ Cjale ancje lis [[Special:WantedCategories|categoriis desideradis]].',
 'listusers-noresult' => 'Nissun utent cjatât.',
 'listusers-blocked' => '({{GENDER:$1|blocât|blocade}})',
 
+# Special:ActiveUsers
+'activeusers' => 'Liste dai utents atîfs',
+'activeusers-intro' => 'Cheste e je une liste dai utents che a àn vût cualchi gjenar di ativitât {{PLURAL:$1|te ultime dì|tai ultins $1 diis}}.',
+'activeusers-count' => '$1 {{PLURAL:$1|cambiament|cambiaments}} {{PLURAL:$3|te ultime dì|tai ultins $3 diis}}',
+'activeusers-from' => 'Mostre i utents scomençant di:',
+'activeusers-hidebots' => 'Plate i bots',
+'activeusers-hidesysops' => 'Plate i aministradôrs',
+'activeusers-noresult' => 'Nissun utent cjatât.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Dirits dai grups di utents',
 'listgrouprights-group' => 'Grup',
@@ -1142,7 +1151,7 @@ e la pagjine e sarà '''gruessute''' te [[Special:RecentChanges|liste dai ultins
 'watchnochange' => 'Nissun element di chei tignûts di voli al è stât cambiât tal periodi mostrât.',
 'watchlist-details' => '{{PLURAL:$1|E je $1 pagjine tignude|A son $1 pagjinis tignudis}} di voli, cence contâ lis pagjinis di discussion.',
 'wlheader-enotif' => 'Notifiche par pueste eletroniche ativade.',
-'wlheader-showupdated' => "Lis pagjinis gambiadis de ultime volte che tu lis âs cjaladis a son mostradis in '''gruessut'''.",
+'wlheader-showupdated' => "Lis pagjinis gambiadis de ultime volte che tu lis âs cjaladis a son mostradis in '''gruessut'''",
 'watchlistcontains' => 'Tu stâs tignint di voli $1 {{PLURAL:$1|pagjine|pagjinis}}.',
 'wlnote' => "Ca sot {{PLURAL:$1|al è il cambiament plui recent|a son i '''$1''' cambiaments plui recents}} {{PLURAL:$2|inte ultime ore|intes '''$2''' oris passadis}}.",
 'wlshowlast' => 'Mostre ultimis $1 oris $2 zornadis $3',
@@ -1515,7 +1524,7 @@ Se il file al è stât cambiât rispiet al so stât origjinâl, cualchi informaz
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Largjece',
 'exif-imagelength' => 'Altece',
 'exif-orientation' => 'Orientament',
@@ -1533,7 +1542,7 @@ Se il file al è stât cambiât rispiet al so stât origjinâl, cualchi informaz
 'exif-contrast' => 'Control contrast',
 'exif-gpsaltitude' => 'Altitudin',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Cence compression',
 
 'exif-unknowndate' => 'Date no cognossude',
@@ -1617,9 +1626,6 @@ Se il file al è stât cambiât rispiet al so stât origjinâl, cualchi informaz
 'version-version' => '(Version $1)',
 'version-license' => 'Licence',
 'version-software-version' => 'Version',
-
-# Special:FilePath
-'filepath-page' => 'Non dal file:',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-filename' => 'Non dal file:',

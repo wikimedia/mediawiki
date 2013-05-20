@@ -49,8 +49,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Montrer le montant de guetteurs',
 'tog-oldsig' => '↓ Preview du signature existant:',
 'tog-fancysig' => 'Signature brute (sans liens préparés)',
-'tog-externaleditor' => 'Utiliser par défaut un éditeur de texte externe (pour les utilisateurs avancés, nécessite des réglages spécifiques sur votre ordinateur)',
-'tog-externaldiff' => 'User un autre comparateur comme réglage ordinaire',
 'tog-showjumplinks' => 'Mettre les "liens vites" en haut de la page',
 'tog-uselivepreview' => "User la vue d'avance vite (JavaScript) (En assai)",
 'tog-forceeditsummary' => "M'avertir quand j'ai laissé la boëte de commentaires vide",
@@ -141,7 +139,6 @@ $messages = array(
 'qbbrowse' => 'Regarder',
 'qbedit' => 'Changer',
 'qbpageoptions' => 'Page de choix',
-'qbpageinfo' => "Page d'information",
 'qbmyoptions' => 'Mes options',
 'qbspecialpages' => 'Pages espéciales',
 'faq' => 'Questions Communes',
@@ -327,9 +324,6 @@ $2',
 
 Vous pouvez continuer à user {{SITENAME}} sans nom ou vous pouvez connecter encore une fois avec le même nom ou un autre nom.
 Notez: certaines pages pourriont être vues comme si vous êtes connecté, jusqu'à vous videz l'information de votre navigateur.",
-'welcomecreation' => '== Bonjour, $1! ==
-
-Votre compte a été créé.  Oubliez pas de changer votre réglage sus {{SITENAME}}.',
 'yourname' => "Nom d'useur:",
 'yourpassword' => 'Mot de passe:',
 'yourpasswordagain' => 'Mot de passe encore:',
@@ -517,7 +511,6 @@ Il foudra que vous mettez vos changements dans le texte qu'est là asteur.
 'template-protected' => '(protégé)',
 'template-semiprotected' => '(demi-protégé)',
 'edittools' => "<!-- Le texte que vous mettez ici va être montré sous les boëttes de changements ou d'import de dossier. -->",
-'nocreatetitle' => 'Création de page limitée',
 'nocreatetext' => "La création des pages est limitée.  Vous pouvez changer une page qu'a été déjà créée ou [[Special:UserLogin|connecter ou créer un compte]].",
 'nocreate-loggedin' => 'Vous avez pas la permission de créer des nouvelles pages.',
 'permissionserrors' => 'Erreur de permissions',
@@ -651,7 +644,7 @@ Des autres administrateurs sus ce wiki ont la permission de voir et de rétablir
 # Special:Categories
 'categories' => 'Classes',
 
-# E-mail user
+# Email user
 'emailuser' => 'E-mail cet useur',
 
 # Watchlist

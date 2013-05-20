@@ -480,7 +480,7 @@ Yu go ebul luk im sos.',
 'namespacesall' => 'ol',
 'monthsall' => 'ol',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Konfam yu e-mail adrehs',
 'confirmemail_noemail' => 'Di email adrehs we yu pu na [[Special:Preferences|user preferences]] noh de.',
 

@@ -224,6 +224,7 @@ $messages = array(
 'tog-watchlisthideliu' => "Cudha chanjyow gans devnydhyoryon omgelmys y'n rol golyas",
 'tog-watchlisthideanons' => "Cudha chanjyow gans devnydhyoryon heb hanow y'n rol golyas",
 'tog-showhiddencats' => 'Disqwedhes classys cudhys',
+'tog-useeditwarning' => 'Gwra ow gwarnya pan wrellen vy gasa folen chanjya gans chanjyow nag eus gwithys',
 
 'underline-always' => 'Puppres',
 'underline-never' => 'Jammes',
@@ -654,6 +655,8 @@ Gwrewgh checkya mars yw whans dhywgh gwruthyl/chanjya an folen-ma.',
 'moveddeleted-notice' => 'Diles yw an folen-ma.
 Yma covnoten dhileans ha gwayans an folen a-woles.',
 'log-fulllog' => 'Gweles an govnoten dien',
+'editwarning-warning' => 'Mar tewgh why ha gasa an folen-ma, chanjyow eus gwres genowgh a alsa bos kellys.
+Mars owgh why omgelmys, why a yll dialosegy an gwarnyans-ma yn trogh "Chanjya" agas dowisyansow.',
 
 # "Undo" feature
 'undo-summary' => 'Diswul amendyans $1 gans [[Special:Contributions/$2|$2]] ([[User talk:$2|kescows]])',
@@ -1308,7 +1311,7 @@ Why a yll gweles hy fennfenten.',
 'metadata-expand' => 'Disqwedhes manylyon ystynnys',
 'metadata-collapse' => 'Cudha manylyon ystynnys',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Les',
 'exif-imagelength' => 'Uhelder',
 'exif-artist' => 'Awtour',
@@ -1390,9 +1393,6 @@ Why a yll [[Special:EditWatchlist|usya an janjyel usadow]] ynwedh.',
 'version' => 'Versyon',
 'version-other' => 'Aral',
 'version-version' => '(Versyon $1)',
-
-# Special:FilePath
-'filepath-page' => 'Restren:',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-filename' => 'Hanow an restren:',

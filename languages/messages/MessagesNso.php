@@ -66,7 +66,6 @@ $messages = array(
 'tog-enotifrevealaddr' => 'Bonagatša email atrese go temošo tša poso',
 'tog-shownumberswatching' => 'Laetša palo bašomiši bao ba tlhapetšego',
 'tog-fancysig' => 'Tsaeno ya gose fihliwe',
-'tog-externaleditor' => 'Šomiša sengwadi sa kantle (bašumiši bao banalego botsibi fela.  [//www.mediawiki.org/wiki/Manual:External_editors More information.])',
 'tog-forceeditsummary' => 'Ntaetše ge kesa tsenye mongwalo go kakaretšo ya dithetogo',
 'tog-watchlisthideown' => 'Fihla diphetogo tšeo di direlego ke nna go lenano la ditlhapetšo.',
 'tog-watchlisthideminor' => 'Fihla diphetogo tše nyenyane tšeo di direlego ke nna go lenano la ditlhapetšo',
@@ -1209,7 +1208,7 @@ letlakala la seswantšho ge tafola ya metadata e bulwa. Tše dingwe tša di ''fi
 * gpslongitude
 * gpsaltitude",
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Bophara',
 'exif-imagelength' => 'Botelele',
 'exif-artist' => 'Mongwadi',

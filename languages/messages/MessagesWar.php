@@ -608,7 +608,7 @@ Ikaw in naglalog-in yana...',
 Temporaryo nga tigaman han pagsakob: $2',
 'passwordreset-emailsent' => 'Ginpadangat an password reset email.',
 'passwordreset-emailsent-capture' => 'Ginpadangat an password reset email, nga ginpakita ha ubos.',
-'passwordreset-emailerror-capture' => 'Ginhimo an password reset email, kun diin nakikita ha ubos, pero pakyas an pagpadara: $1',
+'passwordreset-emailerror-capture' => 'Ginhimo an password reset email, kun diin nakikita ha ubos, pero pakyas an pagpadara ha  {{GENDER:$2|gumaramit}}: $1',
 
 # Special:ChangeEmail
 'changeemail' => 'Igliwan an e-mail address',
@@ -737,8 +737,13 @@ An iba nga mga batakan in diri mauupod.",
 Ini nga mga argumento in ginlaktawan.",
 'post-expand-template-argument-category' => 'Mga pakli nga nagsusulod hin ginlaktawan nga mga argumento hin batakan',
 
+# "Undo" feature
+'undo-norev' => 'An pagliwat in diri mapapawaray-buhat tungod waray ito dida o napara na.',
+'undo-summary' => 'Igpawaray-buhat an rebisyon nga $1 ni [[Special:Contributions/$2|$2]] ([[User talk:$2|talk]])',
+
 # Account creation failure
 'cantcreateaccounttitle' => 'Diri makakahimo hin akawnt',
+'cantcreateaccount-text' => "An paghimo hin akawnt hini nga IP address  ('''$1''') in ginpugngan ni [[User:$3|$3]]. An rason nga ginhatag ni $3 in ''$2''",
 
 # History pages
 'viewpagelogs' => 'Kitaa an mga log para hini nga pakli',
@@ -768,12 +773,18 @@ Leyenda: '''({{int:cur}})''' = kaibhan ha giuurhii nga pag-bag-o, '''({{int:last
 'history-feed-title' => 'Kaagi han pagliwat',
 'history-feed-description' => 'Kaagi han pagliwat para hini nga pakli ha wiki',
 'history-feed-item-nocomment' => '$1 ha $2',
+'history-feed-empty' => 'An imo ginpaalayon nga pakli in waray dida.
+Bangin ini napara tikang ha wiki, o ginngaranan hin iba.
+
+[[Special:Search|pamilnga ha wiki]] para han may pagkahisumpay nga bag-o nga pakli.',
 
 # Revision deletion
 'rev-deleted-comment' => '(gintanggal an kaagi han dalikyat nga sumat)',
 'rev-deleted-user' => '(gintanggal an agnay hiton gumaramit)',
 'rev-deleted-event' => '(gintanggal an talaan han mga buhat)',
 'rev-deleted-user-contribs' => '[gintanggal an agnay-hit-gumaramit o IP address - an pagliwat in gintago tikang han mga amot]',
+'rev-deleted-text-permission' => "Ini nga rebisyon han pakli in '''ginpara'''.
+An mga detalye in mabibilngan ha [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].",
 'rev-suppressed-no-diff' => "Diri mo makikita ini nga kaibhan tungod nga usa ha mga rebisyon in '''ginpara'''.",
 'rev-delundel' => 'igpakita/igtago',
 'rev-showdeleted' => 'igpakita',
@@ -1044,6 +1055,7 @@ Diri ka gintutugotan pagliwat han mga katungod han gumaramit ha iba nga mga wiki
 'right-mergehistory' => 'Igtampo an kaagi han mga pakli',
 'right-userrights' => 'Igliwat an ngatanan nga mga katungod han gumaramit',
 'right-userrights-interwiki' => 'Igliwat an mga katungod han gumaramit han mga gumaramit ha iba nga mga wiki',
+'right-siteadmin' => 'Igtrangka ngan igrangka an database',
 'right-sendemail' => 'Padad-i hin e-mail ngada ha iba nga mga gumaramit',
 
 # Special:Log/newusers

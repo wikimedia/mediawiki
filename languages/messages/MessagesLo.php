@@ -122,8 +122,6 @@ $messages = array(
 'tog-enotifminoredits' => 'ສົ່ງ ອີເມລ ໃຫ້ຂ້ອຍ ເວລາມີການດັດແກ້ເລັກນ້ອຍນຳ',
 'tog-enotifrevealaddr' => 'ສະແດງ ອີເມລ ຂອງຂ້ອຍ ໃນ ການແຈ້ງວ່າມີຂໍ້ຄວາມອີເມລ',
 'tog-shownumberswatching' => 'ສະແດງ ຈຳນວນຜູ້ໃຊ້ ຕິດຕາມໝ້ານີ້',
-'tog-externaleditor' => 'ໃຊ້ ເອດິດເຕີທາງນອກ ຖ້າບໍ່ມີການຕັ້ງ',
-'tog-externaldiff' => 'ໃຊ້ ສ່ວນຕ່າງທາງນອກ ຖ້າບໍ່ມີ ການກຳໜົດ',
 'tog-forceeditsummary' => 'ເຕື່ອນຂ້ອຍ ຖ້າບໍ່ໄດ້ຂຽນຫຍັງໃສ່ ຊ່ອງ ສະຫຼຸບການດັດແກ້',
 'tog-watchlisthideown' => 'ເຊື່ອງ ການດັດແກ້ໂດຍຂ້ອຍ ໃນ ລາຍການຕິດຕາມຂອງຂ້ອຍ',
 'tog-watchlisthidebots' => 'ເຊື່ອງ ການດັດແກ້ ໂດຍ ບອທ໌ ໃນລາຍການຕິດຕາມຂອງຂ້ອຍ',
@@ -687,7 +685,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 # Special:ListUsers
 'listusers-submit' => 'ສະແດງ',
 
-# E-mail user
+# Email user
 'emailuser' => 'ສົ່ງອີເມລ ຫາ ຜູ້ໃຊ້ນີ້',
 'emailpage' => 'ສົ່ງອີເມລ ຫາ ຜູ້ໃຊ້',
 'emailpagetext' => 'ຖ້າຜູ້ໃຊ້ນີ້ ຂຽນທີ່ຢູ່ອີເມລຢ່າງຖືກຕ້ອງຢູ່ການຕັ້ງຄ່າຂອງລາວ, ຟອມທາງລຸ່ມນີ້​ ຈະສົ່ງຂໍ້ຄວາມໜຶ່ງຫາທີ່ຢູ່ອີເມລນັ້ນ.
@@ -714,7 +712,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'watchthispage' => 'ຕິດຕາມໜ້ານີ້',
 'unwatch' => 'ເຊົາຕິດຕາມ',
 'watchnochange' => 'ບໍ່ມີໜ້າທີ່ທ່ານຕິດຕາມໃດໆ ຖືກດັດແປງໃນໄລຍະສະແດງຂ້າງເທິງນີ້.',
-'wlheader-showupdated' => "ບັນດາ ໜ້າ ທີ່ມີການປ່ຽນແປງ ຫຼັງຈາກທີ່ທ່ານ ເຂົ້າຊົມຫຼ້າສຸດ ຈະຖືກສະແດງເປັນ ໂຕໜັງສື  '''ເຂັ້ມ'''.",
+'wlheader-showupdated' => "ບັນດາ ໜ້າ ທີ່ມີການປ່ຽນແປງ ຫຼັງຈາກທີ່ທ່ານ ເຂົ້າຊົມຫຼ້າສຸດ ຈະຖືກສະແດງເປັນ ໂຕໜັງສື  '''ເຂັ້ມ'''",
 'wlshowlast' => 'ສະແດງ $1 ຊົ່ວໂມງຫຼ້າສຸດ $2 ມື້ຫຼ້າສຸດ $3',
 
 # Displayed when you click the "watch" button and it is in the process of watching
@@ -901,7 +899,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 # Metadata
 'metadata-expand' => 'ສະແດງລະອຽດຕື່ມ',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'ຄວາມກ້ວາງ',
 'exif-imagelength' => 'ຄວາມສູງ',
 'exif-imagedescription' => 'ຫົວຂໍ້ຮູບ',
@@ -917,7 +915,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'namespacesall' => 'ທັງໝົດ',
 'monthsall' => 'ທັງໝົດ',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'ຢືນຢັນ ທີ່ຢູ່ ອີເມລ',
 'confirmemail_pending' => 'ລະຫັດຢືນຢັນ ໄດ້ຖືກສົ່ງໄປ ທີ່ຢູ່ ອີເມລ ຂອງ ທ່ານ; ຖ້າ ທ່ານ ຫາກໍ່ສ້າງບັນຊີ
 , ທ່ານ ຄວນຈະລໍຖ້າໜ້ອຍໜຶ່ງ ກ່ອນຈະ ພະຍາຍາມ
@@ -961,9 +959,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 
 # Special:Version
 'version' => 'ສະບັບ',
-
-# Special:FilePath
-'filepath' => 'ທາງໄປຫາໄຟລ໌',
 
 # Special:SpecialPages
 'specialpages' => 'ໜ້າພິເສດ',

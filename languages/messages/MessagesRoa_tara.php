@@ -2146,7 +2146,7 @@ Le cangiaminde future a sta pàgene e 'a pàgene de le 'ngazzaminde associete le
 'watchnochange' => "Niscune de le vôsce condrollete onne state cangete jndr'à 'u periode visualizzate.",
 'watchlist-details' => "{{PLURAL:$1|$1 pàgene|$1 pàggene}} jndr'à liste de le pàggene condrollete, scartanne le pàggene de le 'ngazzaminde.",
 'wlheader-enotif' => "'A notifiche de le e-mail notification jè abbilitete.",
-'wlheader-showupdated' => "Le pàggene ca onne cangete da quanne tu l'è visitate sonde visualizzate in '''grascette'''.",
+'wlheader-showupdated' => "Le pàggene ca onne cangete da quanne tu l'è visitate sonde visualizzate in '''grascette'''",
 'watchmethod-recent' => 'verifiche de le cangiaminde recende pe le pàggene condrollete',
 'watchmethod-list' => 'stoche a condrolle le pàggene condrollete pe le urteme cangiaminde',
 'watchlistcontains' => "'A liste de le pàggene condrollete toje condene $1 {{PLURAL:$1|pàgene|pàggene}}.",

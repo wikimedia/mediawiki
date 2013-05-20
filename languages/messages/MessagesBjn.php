@@ -2044,6 +2044,15 @@ Protokol nang didukung: <code>$1</code> (jangan tambahakan dalam panggagaian Pia
 'listusers-noresult' => 'Kadada pamuruk tatamu.',
 'listusers-blocked' => '(diblukir)',
 
+# Special:ActiveUsers
+'activeusers' => 'Daptar pamuruk aktip',
+'activeusers-intro' => 'Ngini adalah sabuah daptar papamuruk sabuah bantuk kagiatan dalam tauncit $1 {{PLURAL:$1|hari|hahari}}.',
+'activeusers-count' => '$1 {{PLURAL:$1|babak|babakan}} dalam tauncit {{PLURAL:$3|hari|$3 hahari}}',
+'activeusers-from' => 'Manampaiakan papamuruk mulai matan:',
+'activeusers-hidebots' => 'Sungkupakan bot',
+'activeusers-hidesysops' => 'Sungkupakan pambakal',
+'activeusers-noresult' => 'Kadada papamuruk tatamu.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Galambang hak pamuruk',
 'listgrouprights-summary' => 'Barikut adalah sabuah daptar matan galambang pamuruk nang ada di wiki ngini, lawan hak ungkai masing-masing.
@@ -2120,7 +2129,7 @@ Paubahan-paubahan salanjutnya pada tungkaran ngini dan tungkaran pamandiran tara
 'watchnochange' => 'Kadada nang Pian itihi dibabak parhatan jangka wayah ngitu.',
 'watchlist-details' => '{{PLURAL:$1|$1 tungkaran|$1 tungkaran}} dalam daptar itihan Pian, kada mahitung tungkaran pamandiran.',
 'wlheader-enotif' => 'Suril pamadahan dipajahi.',
-'wlheader-showupdated' => "Tutungkaran nang ba-ubah tumatan ilangan tauncit Pian ditampaiakan dalam '''hurup kandal'''.",
+'wlheader-showupdated' => "Tutungkaran nang ba-ubah tumatan ilangan tauncit Pian ditampaiakan dalam '''hurup kandal'''",
 'watchmethod-recent' => 'pariksa bababakan pahanyarnya gasan tungkaran nang diitihi.',
 'watchmethod-list' => 'pariksa tutungkaran nang diitihi gasan bababakan pahanyarnya',
 'watchlistcontains' => 'Paitihan Pian mangandung $1 {{PLURAL:$1|tungkaran|tutungkaran}}.',
@@ -3002,7 +3011,7 @@ Tautan-tautan abis tu pada baris sama dipartimbangkan sabagai pangacualian, nang
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Libar',
 'exif-imagelength' => 'Pancau',
 'exif-bitspersample' => 'Bit par kumpunin',
@@ -3180,7 +3189,7 @@ Tautan-tautan abis tu pada baris sama dipartimbangkan sabagai pangacualian, nang
 'exif-originalimageheight' => 'Pancau gambar sabalum dihandapi',
 'exif-originalimagewidth' => 'Lingai gambar sabalum dihandapi',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Kada dikumpris',
 'exif-compression-2' => 'Galambang CCITT 3 1-Dimensional Modified Huffman manjalankan panjang encoding',
 'exif-compression-3' => 'Galambang CCITT 3 paks encoding',
@@ -3595,13 +3604,6 @@ Pian saharusnya [{{SERVER}}{{SCRIPTPATH}}/COPYING sabuting salinan Lisansi Publi
 'version-software-product' => 'Produk',
 'version-software-version' => 'Virsi',
 'version-entrypoints-header-url' => 'URL',
-
-# Special:FilePath
-'filepath' => 'Wadah barakas',
-'filepath-page' => 'Barakas:',
-'filepath-submit' => 'Gagai',
-'filepath-summary' => 'Tungkaran istimiwa ngini mambulikakan jalur panuntungan sabuah barakas.
-Gambar ditampaiakan dalam risulusi hibak, janis barakas lain dimula lawan prugram taraitnya langsung.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Gagai gasan babarakas baganda',

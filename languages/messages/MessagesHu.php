@@ -727,8 +727,8 @@ Ne felejtsd el módosítani a [[Special:Preferences|{{SITENAME}} beállításaid
 'userlogin-yourpassword' => 'Jelszó',
 'yourpasswordagain' => 'Jelszavad ismét:',
 'remembermypassword' => 'Emlékezzen rám ezen a számítógépen (legfeljebb $1 napig)',
-'userlogin-remembermypassword' => 'Emlékezzen rám',
-'userlogin-signwithsecure' => 'Bejelentkezés a biztonságos kiszolgálón keresztül',
+'userlogin-remembermypassword' => 'Maradjak bejelentkezve',
+'userlogin-signwithsecure' => 'Biztonságos kapcsolat használata',
 'securelogin-stick-https' => 'Kapcsolódás HTTPS-en keresztül bejelentkezés után is',
 'yourdomainname' => 'A domainneved:',
 'password-change-forbidden' => 'Nem módosíthatod a jelszót ezen a wikin.',
@@ -855,20 +855,20 @@ Lehet, hogy már sikeresen megváltoztattad a jelszavad, vagy pedig időközben 
 'passwordreset-capture-help' => 'Ha kipipálod a dobozt, elmegy az üzenet a felhasználónak és megjelenik számodra (az ideiglenes jelszóval együtt).',
 'passwordreset-email' => 'E-mail cím:',
 'passwordreset-emailtitle' => 'A(z) {{SITENAME}}-fiók adatai',
-'passwordreset-emailtext-ip' => 'Valaki (vélhetően Te, a $1 IP-címről) emlékeztetőt kért a {{SITENAME}} ($4) oldalon felvett fiókokról. A következő felhasználói {{PLURAL:$3|fiók van|fiókok vannak}} hozzárendelve ehhez az e-mail címhez:
+'passwordreset-emailtext-ip' => 'Valaki (vélhetően Te, a $1 IP-címről) a jelszavad visszaállítását kérte a {{SITENAME}} ($4) oldalon felvett {{PLURAL:$3|fiókban|fiókokban}}. A következő felhasználói {{PLURAL:$3|fiók van|fiókok vannak}} hozzárendelve ehhez az e-mail címhez:
 
 $2
 
 {{PLURAL:$3|Ez az ideiglenes jelszó|Ezek az ideiglenes jelszavak}} $5 nap múlva {{PLURAL:$3|jár|járnak}} le. Jelentkezz be, és cseréld le a jelszavadat. Ha valaki más kérte az emlékeztetőt, vagy eszedbe jutott a régi jelszó, és nem akarod lecserélni a jelszavadat, hagyd figyelmen kívül ezt az üzenetet, és használd a régi jelszavadat.',
-'passwordreset-emailtext-user' => '$1 felhasználó emlékeztetők kért a {{SITENAME}} ($4) oldalon felvett fiókokról. A következő felhasználói {{PLURAL:$3|fiók van|fiókok vannak}} hozzárendelve ehhez az e-mail címhez:
+'passwordreset-emailtext-user' => '$1 felhasználó jelszó-visszaállítást kért a {{SITENAME}} ($4) oldalon felvett {{PLURAL:$3|fiókban|fiókokban}}. A következő felhasználói {{PLURAL:$3|fiók van|fiókok vannak}} hozzárendelve ehhez az e-mail címhez:
 
 $2
 
 {{PLURAL:$3|Ez az ideiglenes jelszó|Ezek az ideiglenes jelszavak}} $5 nap múlva {{PLURAL:$3|jár|járnak}} le. Jelentkezz be, és cseréld le a jelszavadat. Ha valaki más kérte az emlékeztetőt, vagy eszedbe jutott a régi jelszó, és nem akarod lecserélni a jelszavadat, hagyd figyelmen kívül ezt az üzenetet, és használd a régi jelszavadat.',
 'passwordreset-emailelement' => 'Felhasználónév: $1
 Ideiglenes jelszó: $2',
-'passwordreset-emailsent' => 'Emlékeztető e-mail elküldve.',
-'passwordreset-emailsent-capture' => 'Az alább látható emlékeztető e-mail lett elküldve.',
+'passwordreset-emailsent' => 'Jelszó-visszaállító e-mail elküldve.',
+'passwordreset-emailsent-capture' => 'Az alább látható jelszó-visszaállító e-mail lett elküldve.',
 'passwordreset-emailerror-capture' => 'Az emlékeztető levél generálása megtörtént, mint az alább látszik, de elküldése a szerkesztőnek nem sikerült: $1',
 
 # Special:ChangeEmail

@@ -100,8 +100,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Нишон додани шумораи корбарони пайгир',
 'tog-oldsig' => 'Пешнамоиши имзои вуҷуддошта:',
 'tog-fancysig' => 'Имзоро ба сурати викиматн ба назар бигир (бе пайванди худкор)',
-'tog-externaleditor' => 'Истифода аз вироишгари хориҷӣ ба таври пешфарз (фақат барои корбарони пешрафта, ниёзманди танзимоти вижа дар ройонаи шумо аст. [//www.mediawiki.org/wiki/Manual:External_editors Иттилооти бештар.])',
-'tog-externaldiff' => 'Истифода аз тафовутгири (diff) хориҷӣ ба таври пешфарз (фақат барои корбарони пешрафта, ниёзманди танзимоти вижа дар ройонаи шумо аст. [//www.mediawiki.org/wiki/Manual:External_editors Иттилооти бештар.])',
 'tog-showjumplinks' => 'Намоиши пайвандҳои дастрасии "ҷаҳиш ба" дар феҳристи мундариҷот',
 'tog-uselivepreview' => 'Истифода аз пешнамоиши зинда (ҶаваСкрипт) (Озмоишӣ)',
 'tog-forceeditsummary' => 'Ҳангоме ки хулосаи вироиш нанавиштаам юа ман ислоҳ бидеҳ',
@@ -864,14 +862,6 @@ $1',
 'search-external' => 'Ҷустуҷӯи хориҷӣ',
 'searchdisabled' => 'Ҷустуҷу дар {{SITENAME}} ғайрифаъол карда шудааст. Шумо метавонед тариқи Google дар ҳол ҷустуҷӯ кунед. Таваҷҷӯҳ кунед, ки натоиҷи ҷустуҷӯ {{SITENAME}} метавонад барӯз набошад.',
 
-# Quickbar
-'qbsettings' => 'Танзимоти тезхат (Quickbar)',
-'qbsettings-none' => 'Набошад',
-'qbsettings-fixedleft' => 'Сабти чап',
-'qbsettings-fixedright' => 'Сабти рост',
-'qbsettings-floatingleft' => 'Шиновар чап',
-'qbsettings-floatingright' => 'Шиновар рост',
-
 # Preferences page
 'preferences' => 'Тарҷиҳот',
 'mypreferences' => 'Танзимот',
@@ -1453,7 +1443,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'watchnochange' => 'Ягон мавриди пайгириҳои шумо дар давраи замони намоишёфта вироиш нашуда аст.',
 'watchlist-details' => '{{PLURAL:$1|$1 саҳифаи|$1 саҳифаҳои}} дар феҳристи пайгириҳои шумо, бидуни ҳисоби саҳифаҳои баҳс.',
 'wlheader-enotif' => 'Иттилоорасонии тариқи почтаи электронӣ (E-mail) имконпазир аст.',
-'wlheader-showupdated' => "Саҳифаҳое, ки пас аз охирин сар заданатон ба онҳо тағйир кардаанд '''пурранг''' нишон дода шудаанд.",
+'wlheader-showupdated' => "Саҳифаҳое, ки пас аз охирин сар заданатон ба онҳо тағйир кардаанд '''пурранг''' нишон дода шудаанд",
 'watchmethod-recent' => 'баррасии вироишҳои охир барои саҳифаҳои пайгиришуда',
 'watchmethod-list' => 'баррасии саҳифаҳои пайгиришуда барои вироишҳои охир',
 'watchlistcontains' => 'Феҳристи пайгириҳои шумо $1 {{PLURAL:$1|саҳифаро|саҳифаҳоро}} дар бар мегирад.',
@@ -2092,7 +2082,7 @@ $1',
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Васеъӣ',
 'exif-imagelength' => 'Баландӣ',
 'exif-bitspersample' => 'Нуқта дар ҳар ҷузъ',
@@ -2206,7 +2196,7 @@ $1',
 'exif-gpsdatestamp' => 'Таърихи ҶПС',
 'exif-gpsdifferential' => 'Тасҳеҳи ҷузъии ҶПС',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Ғайрифишурда',
 
 'exif-unknowndate' => 'Таърихи номаълум',
@@ -2506,15 +2496,6 @@ $5
 'version-software' => 'Нусхаи насбшуда',
 'version-software-product' => 'Маҳсул',
 'version-software-version' => 'Нусха',
-
-# Special:FilePath
-'filepath' => 'Масири парванда',
-'filepath-page' => 'Парванда:',
-'filepath-submit' => 'Масир',
-'filepath-summary' => 'Ин саҳифаи вижа нишонаи комил барои як парвандаро нишон медиҳад.
-Аксҳо бо кайфият бо ҳаҷми пурраашон нишон дода мешаванд, дигар навъҳои парвандаҳои дигар бо барномаҳои алоқаманди махсус ба худашон боз мешаванд.
-
-Нишонаи пайвандро бидуни пешванд "{{ns:file}}:" ворид кунед.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Ҷустуҷӯ барои парвандаҳои такрорӣ',

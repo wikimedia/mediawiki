@@ -86,8 +86,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Тер халх шинҗлдг демнчнрин то үзүлх',
 'tog-oldsig' => 'Бәәдг тәвсн һарна хәләвр:',
 'tog-fancysig' => 'Эврән тәвсн һарна бики темдлһн (авто заалһта уга)',
-'tog-externaleditor' => 'Һаза чикллгч олзлх (һанцхн эрдмчнрт, тана тоолцврт шишлң көг кергтә. [//www.mediawiki.org/wiki/Manual:External_editors Дәкәд өггцн.])',
-'tog-externaldiff' => 'Һаза йилһән үзүлдг програм олзлх (һанцхн эрдмчнрт, тана тоолцврт шишлң көг кергтә [//www.mediawiki.org/wiki/Manual:External_editors Дәкәд өггцн.])',
 'tog-showjumplinks' => 'Туслмҗ заалһуд «-д/-т һарх» йовулх',
 'tog-uselivepreview' => 'Шамдһа хәләвр олзлх (JavaScript кергтә, амслһн)',
 'tog-forceeditsummary' => 'Учр-утх хоосн бәәхлә медүлх',
@@ -604,9 +602,6 @@ $1',
 'powersearch-field' => 'Хәәх',
 'powersearch-togglenone' => 'Уга',
 
-# Quickbar
-'qbsettings' => 'Ормин самбр',
-
 # Preferences page
 'preferences' => 'Дурллһн',
 'mypreferences' => 'Көгүд',
@@ -858,7 +853,7 @@ $1',
 # Special:ListGroupRights
 'listgrouprights-members' => '(мөчүдин сеткүл)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Энд E-mail йовулх',
 
 # Watchlist
@@ -1156,7 +1151,7 @@ $2 шидрә һарһлһна төлә хәләтн.',
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Өргн',
 'exif-imagelength' => 'Өндр',
 'exif-bitspersample' => 'Өңгин гүн',
@@ -1233,11 +1228,6 @@ $2 шидрә һарһлһна төлә хәләтн.',
 # Special:Version
 'version-software-product' => 'Һарц',
 'version-software-version' => 'Һарц',
-
-# Special:FilePath
-'filepath' => 'Боомгд хаалһ',
-'filepath-page' => 'Боомг:',
-'filepath-submit' => 'Орх',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-filename' => 'Боомгин нерн:',

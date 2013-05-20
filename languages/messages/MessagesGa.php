@@ -124,8 +124,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Taispeán an méid úsáideoirí atá ag faire',
 'tog-oldsig' => 'Réamhamharc ar an síniú atá ann:',
 'tog-fancysig' => 'Sínithe bunúsacha mar vicítéacs (gan nasc uathoibríoch)',
-'tog-externaleditor' => 'Bain úsáid as eagarthóir seachtrach mar réamhshocrú (saineolaithe amháin, tá socrú speisialta de dhíth ort. [//www.mediawiki.org/wiki/Manual:External_editors Tuilleadh eolais.])',
-'tog-externaldiff' => 'Bain úsáid as difríocht sheachtrach mar réamhshocrú (saineolaithe amháin, tá socrú speisialta de dhíth ort. [//www.mediawiki.org/wiki/Manual:External_editors Tuilleadh eolais.])',
 'tog-showjumplinks' => 'Cumasaigh naisc insroichteachta “léim go dtí”',
 'tog-uselivepreview' => 'Bain úsáid as réamhamharc beo (JavaScript) (Turgnamhach)',
 'tog-forceeditsummary' => 'Cuir in iúl dom nuair a chuirim isteach achoimre eagair folamh',
@@ -822,14 +820,6 @@ Bain triail as ''all:'' a chur roimh d'iarratas chun an t-inneachar ar fad (leat
 'powersearch-toggleall' => 'Uile',
 'powersearch-togglenone' => 'Tada',
 'searchdisabled' => "Tá brón orainn! Mhíchumasaíodh an cuardach téacs iomlán go sealadach chun luas an tsuímh a chosaint. Idir an dá linn, is féidir leat an cuardach Google anseo thíos a úsáid - b'fhéidir go bhfuil sé as dáta.",
-
-# Quickbar
-'qbsettings' => 'Sainroghanna an bosca uirlisí',
-'qbsettings-none' => 'Faic',
-'qbsettings-fixedleft' => 'Greamaithe ar chlé',
-'qbsettings-fixedright' => 'Greamaithe ar dheis',
-'qbsettings-floatingleft' => 'Ag faoileáil ar chlé',
-'qbsettings-floatingright' => 'Ag faoileáil ar dheis',
 
 # Preferences page
 'preferences' => 'Sainroghanna',
@@ -1780,13 +1770,8 @@ iarradh sábháil. Is dócha gur nasc chuig suíomh seachtrach ba chúis leis.',
 'spambot_username' => 'MediaWiki turscar glanadh',
 
 # Skin names
-'skinname-standard' => 'Clasaiceach',
-'skinname-nostalgia' => 'Sean-nós',
 'skinname-cologneblue' => 'Gorm Köln',
 'skinname-monobook' => 'MonoBook',
-'skinname-myskin' => 'MoChraiceann',
-'skinname-chick' => 'Sicín',
-'skinname-simple' => 'Simplí',
 'skinname-modern' => 'Nua-aimseartha',
 'skinname-vector' => 'Veicteoir',
 
@@ -1860,7 +1845,7 @@ Beidh na cinn eile ceilte de réir réamhshocraithe.
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Leithead',
 'exif-imagelength' => 'Airde',
 'exif-bitspersample' => 'Gíotáin sa chomhpháirt',
@@ -1977,7 +1962,7 @@ Beidh na cinn eile ceilte de réir réamhshocraithe.
 'exif-languagecode' => 'Teanga',
 'exif-iimcategory' => 'Catagóir',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Neamh-chomhbhrúite',
 
 'exif-unknowndate' => 'Dáta anaithnid',
@@ -2208,11 +2193,6 @@ Rachaidh an cód deimhnithe seo as feidhm ag $4.',
 'version-software' => 'Bogearraí suiteáilte',
 'version-software-version' => 'Leagan',
 'version-entrypoints-header-url' => 'URL',
-
-# Special:FilePath
-'filepath' => 'Cosán comhaid',
-'filepath-page' => 'Comhad:',
-'filepath-submit' => 'Gabh',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-filename' => 'Ainm comhaid:',

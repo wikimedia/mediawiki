@@ -614,9 +614,6 @@ $messages = array(
 'powersearch-togglenone' => 'Τιδέν',
 'search-external' => 'Εύρον σα εξ μερέαν',
 
-# Quickbar
-'qbsettings-none' => 'Τιδέν',
-
 # Preferences page
 'preferences' => 'Αγαπεμένα',
 'mypreferences' => "Τ' εμά τ' αγαπεμένα",
@@ -948,7 +945,7 @@ $messages = array(
 'listgrouprights-rights' => 'Δικαιώματα',
 'listgrouprights-members' => '(κατάλογον μελών)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Στείλον μένεμαν σον χρήστεν ατόν',
 'emailfrom' => 'Ασά:',
 'emailto' => 'Σο:',
@@ -1306,7 +1303,7 @@ $messages = array(
 * gpslongitude
 * gpsaltitude",
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Πλάτος',
 'exif-imagelength' => 'Ύψηλος',
 'exif-bitspersample' => 'Bits ανά στοιχείο',
@@ -1407,10 +1404,6 @@ $messages = array(
 'version-license' => 'Ἀδεια',
 'version-software' => "Λογισμικόν ντ'εθέκεν",
 'version-software-version' => 'Έκδοση',
-
-# Special:FilePath
-'filepath-page' => 'Αρχείον:',
-'filepath-submit' => 'Δέβα',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-filename' => 'Όνεμα αρχείου:',

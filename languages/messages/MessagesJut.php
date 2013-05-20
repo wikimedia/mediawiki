@@ -42,8 +42,6 @@ $messages = array(
 'tog-enotifrevealaddr' => "Ves miin e-mail-adresse i mails ve besked ændrenger'm",
 'tog-shownumberswatching' => 'Ves åntal brugere, der åvervåger',
 'tog-fancysig' => 'Signaturer uden åtåmatisk henvesnenge',
-'tog-externaleditor' => 'Brug ekstern redigærengsmåskiin åtåmatisk',
-'tog-externaldiff' => 'Brug ekstern førskelsvesnenge åtåmatisk',
 'tog-showjumplinks' => 'Ves tilgængelegheds-henvesnenger',
 'tog-uselivepreview' => 'Brug åtåmatisk førhåndsvesnenge (JavaScript) (eksperimentel)',
 'tog-forceeditsummary' => 'Advar, hves sammenfatnenge mangler ve gemnenge',
@@ -609,7 +607,7 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 'linksearch-line' => '$2 linker til $1',
 'linksearch-error' => "Wildkårter må ken benyttes i'n stårt åf håstnavnet.",
 
-# E-mail user
+# Email user
 'emailuser' => 'E-mail til denne bruger',
 
 # Watchlist

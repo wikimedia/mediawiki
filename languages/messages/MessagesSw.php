@@ -1913,6 +1913,15 @@ Itifaki zinazoungwa mkono: <code>$1</code> (usiongeza hizi unapotafuta).',
 'listusers-noresult' => 'Mtumiaji hakupatikana.',
 'listusers-blocked' => '(imezuiwa)',
 
+# Special:ActiveUsers
+'activeusers' => 'Orodha ya watumiaji hai',
+'activeusers-intro' => 'Hii ni orodha ya watumiaji walioshughulika jambo fulani ndani ya siku $1 {{PLURAL:$1|iliyopita|zilizopita}}.',
+'activeusers-count' => '{{PLURAL:$1|haririo|maharirio}} $1 katika siku $3 {{PLURAL:$3|iliyopita|zilizopita}}',
+'activeusers-from' => 'Onyesha watumiaji kuanzia:',
+'activeusers-hidebots' => 'Ficha boti',
+'activeusers-hidesysops' => 'Ficha wakabidhi',
+'activeusers-noresult' => 'Watumiaji hawakupatikana.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Wezo za kundi za watumiaji',
 'listgrouprights-summary' => 'Inafuata orodha ya kundi za watumiaji wa wiki hii, pamoja na maelezo ya wezo zao za kushughulika mambo.
@@ -1995,7 +2004,7 @@ Ukitaka kufuta ukurasa huo kutoka maangalizi yako baadaye, bonyeza \"Acha kufuat
 'watchnochange' => 'Hakuna kitu kati ya maangalizi yako kilichohaririwa katika kipindi kilichotajwa.',
 'watchlist-details' => 'Unafuatilia {{PLURAL:$1|ukurasa $1|kurasa $1}} bila kuzingatia kurasa za majadiliano.',
 'wlheader-enotif' => 'Huduma ya kuarifu kwa barua pepe imewezeshwa.',
-'wlheader-showupdated' => "Kurasa zilizobadilika tangu ulivyotembelea mara ya mwisho zinaonyeshwa katika hali ya '''kukooza'''.",
+'wlheader-showupdated' => "Kurasa zilizobadilika tangu ulivyotembelea mara ya mwisho zinaonyeshwa katika hali ya '''kukooza'''",
 'watchmethod-recent' => 'kupitia madabiliko ya karibuni ili kupata kurasa za maangalizi',
 'watchmethod-list' => 'Kupitia kurasa za maangalizi ili kupata madabiliko ya karibuni',
 'watchlistcontains' => 'Orodha ya maangalizi yako ina {{PLURAL:$1|pages|kurasa}}.',
@@ -2657,7 +2666,7 @@ likifupishwa. Nyuga zingine zitafichwa kama chaguo-msingi.
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Upana',
 'exif-imagelength' => 'Urefu',
 'exif-jpeginterchangeformatlength' => 'Idadi ya baiti za data ya JPEG',
@@ -3030,12 +3039,6 @@ Huwa unapokea [{{SERVER}}{{SCRIPTPATH}}/COPYING nakala ya GNU General Public Lic
 'version-software-product' => 'Bidhaa',
 'version-software-version' => 'Toleo',
 'version-entrypoints-header-url' => 'KISARA Kioneshi Sanifu Raslimali',
-
-# Special:FilePath
-'filepath' => 'Njia ya faili',
-'filepath-page' => 'Faili:',
-'filepath-submit' => 'Nenda',
-'filepath-summary' => 'Ukurasa huu maalumu unarejesha njia kamili ya faili. Picha inaonyeshwa ukubwa wote, faili za aina zingine zinaanza na programu zake zinazohusiana moja kwa moja.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Tafuta mafaili ya nakili',

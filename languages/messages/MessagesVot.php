@@ -404,9 +404,6 @@ Proovvi lizät etsün alkuu ''all:'', nii ettsü etsib kõikkõõ sisältoo (taa
 'powersearch-redir' => 'Spiiska mešaitussijõ',
 'powersearch-field' => 'Etsi',
 
-# Quickbar
-'qbsettings-none' => 'Eb õõ',
-
 # Preferences page
 'preferences' => 'Koozid',
 'mypreferences' => 'Minu koozid',
@@ -603,7 +600,7 @@ Seness [$2 kuvauhsõ lehocülless] informaattsija on alapallõ annõttu.',
 # Special:ListGroupRights
 'listgrouprights-members' => '(selttsilainspiiska)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Lähettega elektropoštia selle cäüttijälle',
 'emailusername' => 'Cäüttijänimi:',
 'emailmessage' => 'Ilmottamin:',
@@ -890,7 +887,7 @@ Kui faili on muutõttu, siiz detaaľid võivad õlla kahõllaizõd muutõtull fa
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-gpstimestamp' => 'GPS-aika',
 'exif-languagecode' => 'Ceeli',
 'exif-iimcategory' => 'Gruppa',
@@ -933,10 +930,6 @@ Kui faili on muutõttu, siiz detaaľid võivad õlla kahõllaizõd muutõtull fa
 
 # Core parser functions
 'duplicate-defaultsort' => '\'\'\'Warning:\'\'\' Default sort key "$2" overrides earlier default sort key "$1".',
-
-# Special:FilePath
-'filepath-page' => 'Faili:',
-'filepath-submit' => 'Mee',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-filename' => 'Failinimi:',

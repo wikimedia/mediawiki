@@ -54,8 +54,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Oazoahl derr beobachtenden Nutzer oazäan',
 'tog-oldsig' => 'Vorschau der aktuella Signatur:',
 'tog-fancysig' => 'Signatur ols Wikitext behandeln (ohne automatische Verlinkung)',
-'tog-externaleditor' => "Extern'n Editor als Standard benutza (nur fier Experta, is missa spezielle Einstellungen uff dam eegenen Rechner vurgenumma warn)",
-'tog-externaldiff' => 'Externes Diff-Programm als Standard benutza (nur fier Experta, is missa spezielle Einstellungen uff dam eegenen Rechner vurgenumma warn)',
 'tog-showjumplinks' => '„Wechseln zu“-Verknipfunga aktiviern',
 'tog-uselivepreview' => 'Direkte Vurschau notza (beneetigt JavaScript) (vrsuchsweise)',
 'tog-forceeditsummary' => 'Warnen, wenn bem Speichern de Zsoammafassung fahln tutt',
@@ -806,10 +804,6 @@ Stelle sicher, doaß de Versionsgeschichte anner Seite historisch korrekt ies.',
 'powersearch-toggleall' => 'Olle',
 'powersearch-togglenone' => 'Kenne',
 'searchdisabled' => 'De {{SITENAME}}-Suche ies deaktiviert. Du koast underdessa miet Google sucha. Bitte bedenke, doaß der Suchindex fier {{SITENAME}} veraltet sei koan.',
-
-# Quickbar
-'qbsettings' => 'Seytaleiste',
-'qbsettings-none' => 'Keene',
 
 # Preferences page
 'preferences' => 'Eenstellunga',
@@ -2046,7 +2040,7 @@ Weitere werden standardmäßig nicht angezeigt.
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagelength' => 'Länge',
 'exif-bitspersample' => 'Bits pro Forbkomponente',
 'exif-compression' => 'Oart dar Kompression',
@@ -2297,12 +2291,6 @@ Du koast au de [[Special:EditWatchlist|Standard-Beoarbeetungsseyte]] benutza.',
 'version-parser-function-hooks' => 'Parser-Funksjonna',
 'version-hook-name' => 'Schnittstallanoame',
 'version-hook-subscribedby' => 'Uffruff vu',
-
-# Special:FilePath
-'filepath-submit' => 'Pfad sucha',
-'filepath-summary' => 'Miet dieser Spezialseyte lässt siech dar komplette Pfad dar aktuella Version einer Datei ohne Umweg obfroaga. De oagefroagte Datei werd direkt dargestallt bzw. miet der verkniepfta Oawendung gestartet.
-
-De Eengabe muuß ohne dann Zusatz „{{ns:file}}:“ erfolga.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-summary' => 'Suche noach Dateiduplikaten uff Basis ihres Hashwertes.',

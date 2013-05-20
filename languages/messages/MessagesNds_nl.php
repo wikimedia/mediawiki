@@ -2305,7 +2305,7 @@ Toekomstige wiezigingen op disse zied en de overlegzied zullen hier vermeld wör
 'notvisiblerev' => 'Bewarking is vortedaon',
 'watchnochange' => 'Gien van de ziejen op joew volglieste is in disse periode ewiezigd',
 'watchlist-details' => 'Der {{PLURAL:$1|steet één zied|staon $1 ziejen}} op joew volglieste, zonder de overlegziejen mee-erekend.',
-'wlheader-enotif' => 'Je kriegen bericht per netpost.',
+'wlheader-enotif' => 'Je kriegen bericht per netpost',
 'wlheader-showupdated' => "Ziejen die sinds joew leste bezeuk bie-ewörken bin, staon '''vet-edrokt'''.",
 'watchmethod-recent' => "leste wiezigingen an t naokieken op ziejen die'j volgen",
 'watchmethod-list' => 'Kik joew nao volglieste veur de leste wiezigingen',

@@ -2234,7 +2234,7 @@ Fremtidige ændringer af denne side og dens tilknyttede diskussionsside vil bliv
 'watchnochange' => 'Ingen af siderne i din overvågningsliste er ændret i den valgte periode.',
 'watchlist-details' => 'Du har $1 {{PLURAL:$1|side|sider}} på din overvågningsliste (ekskl. diskussionssider).',
 'wlheader-enotif' => 'E-mail-underretning er slået til.',
-'wlheader-showupdated' => "Sider der er ændret siden dit sidste besøg, er '''fremhævet'''.",
+'wlheader-showupdated' => "Sider der er ændret siden dit sidste besøg, er '''fremhævet'''",
 'watchmethod-recent' => 'Tjekker seneste ændringer for sider i din overvågningsliste',
 'watchmethod-list' => 'Tjekker seneste ændringer for sider i din overvågningsliste',
 'watchlistcontains' => 'Din overvågningsliste indeholder $1 {{PLURAL:$1|side|sider}}.',

@@ -333,8 +333,6 @@ $messages = array(
 'tog-shownumberswatching' => 'بين عدد اليوزرز المراقبين',
 'tog-oldsig' => 'الامضا دلوقتى:',
 'tog-fancysig' => 'امضا خام (من غير لينك أوتوماتيك)',
-'tog-externaleditor' => 'استخدم محرر خارجى بشكل افتراضى (للخبرا بس، يحتاج إعدادات خاصة على كومبيوترك) ([//www.mediawiki.org/wiki/Manual:External_editors لمزيد من المعلومات].)',
-'tog-externaldiff' => 'استخدم فرق خارجى بشكل افتراضى (للخبرا بس، يحتاج إعدادات خاصة على كومبيوترك) ([//www.mediawiki.org/wiki/Manual:External_editors لمعلومات اكتر].)',
 'tog-showjumplinks' => 'خلى وصلات "روح لـ" تكون شغالة.',
 'tog-uselivepreview' => 'استخدم البروفة السريعة (جافاسكريبت) (تجريبي)',
 'tog-forceeditsummary' => 'نبهنى عند تدخيل ملخص للتعديل  فاضي',
@@ -349,6 +347,7 @@ $messages = array(
 'tog-showhiddencats' => 'بين التّصنيفات المستخبية',
 'tog-noconvertlink' => 'عطل تحويل عناوين الوصلات',
 'tog-norollbackdiff' => 'الغى الاختلافات بعد ما تعمل الرول باك',
+'tog-useeditwarning' => 'حذّرنى لما اسيب صفحة تعديل فيها تغييرات مش متسييڤه',
 
 'underline-always' => 'دايما',
 'underline-never' => 'ابدا',
@@ -980,6 +979,8 @@ $2',
 'edit-no-change' => 'تعديلك تم تجاهله، لأن ما حصلش أى تعديل للنص.',
 'edit-already-exists' => 'لم يمكن إنشاء صفحة جديدة.
 هى موجودة بالفعل.',
+'editwarning-warning' => 'لو سيبت الصفحه دى ممكن يخلّيك تضيّع اى تغييرات عملتها.
+لو انت مسجّل دخولك, ممكن تعطّل التحذير ده من الجزء بتاع "تعديل" فى تفضيلاتك.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'تحذير: الصفحه دى فيهااستدعاءات دالة محلل كثيرة مكلفة.
@@ -1244,14 +1245,6 @@ $1",
 'searchdisabled' => 'التدوير فى {{SITENAME}} متعطل.
 ممكن تدور فى جوجل دلوقتي.
 لاحظ أن فهارسه لمحتوى {{SITENAME}} يمكن تكون مش متحدثة.',
-
-# Quickbar
-'qbsettings' => 'البار السريع',
-'qbsettings-none' => 'ما فى ش',
-'qbsettings-fixedleft' => 'متثبت فى الشمال',
-'qbsettings-fixedright' => 'متثبت فى اليمين',
-'qbsettings-floatingleft' => 'عايم على الشمال',
-'qbsettings-floatingright' => 'عايم على اليمين',
 
 # Preferences page
 'preferences' => 'تفضيلات',
@@ -1716,7 +1709,6 @@ PICT # misc.
 'http-read-error' => 'فى غلط فى قراية ال HTTP',
 'http-timed-out' => 'طلب ال HTTP خلص وقته',
 'http-curl-error' => 'حصل غلط و احنا بنجيب الURL : $1',
-'http-host-unreachable' => 'ما قدرناش نوصل لل URL.',
 'http-bad-status' => 'HTTP : حصلت مشكله وقت طلب ال $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -2088,8 +2080,8 @@ PICT # misc.
 'notvisiblerev' => 'النسحة اتمسحت',
 'watchnochange' => 'مافيش ولا صفحة اتعدلت فى لستة مراقبتك فى الفترة الزمنية اللى حددتها.',
 'watchlist-details' => '{{PLURAL:$1|$1 صفحه|$1 صفحه}} فى قايمه مراقبتك، بدون عد صفحات المناقشه.',
-'wlheader-enotif' => 'خاصية الاعلام بالايميل متفعلة.',
-'wlheader-showupdated' => "الصفحات اللى اتغيرت  بعد زيارتك ليها اخر مرة معروضة بالخط '''العريض'''.",
+'wlheader-enotif' => '*خاصية الاعلام بالايميل متفعلة',
+'wlheader-showupdated' => "الصفحات اللى اتغيرت  بعد زيارتك ليها اخر مرة معروضة بالخط '''العريض'''",
 'watchmethod-recent' => 'التشييك على التعديلات الاخيرة للصفحات المتراقبة',
 'watchmethod-list' => 'التشييك فى الصفحات المتراقبة على التعديلات الاخيرة',
 'watchlistcontains' => 'لستة المراقبة بتاعتك فيها $1 {{PLURAL:$1|صفحة|صفحات}}.',
@@ -2738,13 +2730,8 @@ $1',
 
 # Stylesheets
 'common.css' => '/* الأنماط المتراصة CSS المعروضة هنا ستؤثر على كل الواجهات */',
-'standard.css' => '/* الأنماط المتراصة CSS المعروضة هنا ستؤثر على مستخدمى واجهة ستاندرد */',
-'nostalgia.css' => '/* الأنماط المتراصة CSS المعروضة هنا ستؤثر على مستخدمى واجهة نوستالشيا */',
 'cologneblue.css' => '/* الأنماط المتراصة CSS المعروضة هنا ستؤثر على مستخدمى واجهة كولون بلو */',
 'monobook.css' => '/* الأنماط المتراصة CSS المعروضة هنا ستؤثر على مستخدمى واجهة مونوبوك */',
-'myskin.css' => '/* الأنماط المتراصة CSS المعروضة هنا ستؤثر على مستخدمى واجهة ماى سكين */',
-'chick.css' => '/* الأنماط المتراصة CSS المعروضة هنا ستؤثر على مستخدمى واجهة تشيك */',
-'simple.css' => '/* الأنماط المتراصة CSS المعروضة هنا ستؤثر على مستخدمى واجهة سيمبل */',
 'modern.css' => '/* الأنماط المتراصة CSS المعروضة هنا ستؤثر على مستخدمى واجهة مودرن */',
 'vector.css' => '/* CSS اللى هنا حتأثر على اليوزرز اللى بيستخدموا واجهة فكتور */',
 'print.css' => '/* الأنماط المتراصة CSS المعروضة هنا ستؤثر على ناتج الطباعة */',
@@ -2752,13 +2739,8 @@ $1',
 
 # Scripts
 'common.js' => '/*  أى جافاسكريبت  هناح يتحمل لكل اليوزرز مع كل تحميل للصفحة. */',
-'standard.js' => '/* أى جافاسكريبت هنا ح تتحمل لليوزرز اللى بيستعملو واجهة ستاندرد */',
-'nostalgia.js' => '/* أى جافاسكريبت هنا ح تتحمل لليوزرز اللى بيستعملو واجهة نوستالجيا */',
 'cologneblue.js' => '/* أى جافاسكريبت هنا ح تتحمل لليوزرز اللى بيستعملو واجهة كولون بلو */',
 'monobook.js' => '/* أى جافاسكريبت هنا ح تتحمل لليوزرز اللى بيستعملو واجهة مونوبوك */',
-'myskin.js' => '/* أى جافاسكريبت هنا ح تتحمل لليوزرز اللى بيستعملو واجهة ماى سكين */',
-'chick.js' => '/* أى جافاسكريبت هنا ح تتحمل لليوزرز اللى بيستعملو واجهة تشيك */',
-'simple.js' => '/* أى جافاسكريبت هنا ح تتحمل لليوزرز اللى بيستعملو واجهة سيمبل */',
 'modern.js' => '/* أى جافاسكريبت هنا ح تتحمل لليوزرز اللى بيستعملو واجهة مودرن */',
 'vector.js' => '/* اى جافاسكريبت هنا حتتحمل لكل يوزر بيستخدم واجهة فكتور */',
 
@@ -2787,13 +2769,8 @@ $1',
 'spam_blanking' => 'كل النسخ فيها لينكات ل $1، فضيها',
 
 # Skin names
-'skinname-standard' => 'كلاسيك',
-'skinname-nostalgia' => 'نوستالجيا',
 'skinname-cologneblue' => 'كولون بلو',
 'skinname-monobook' => 'مونوبوك',
-'skinname-myskin' => 'ماى سكين',
-'skinname-chick' => 'تشيك',
-'skinname-simple' => 'سيمبل',
 'skinname-modern' => 'مودرن',
 
 # Patrolling
@@ -2888,7 +2865,7 @@ $1',
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'العرض',
 'exif-imagelength' => 'الطول',
 'exif-bitspersample' => 'بتس لكل مكون',
@@ -3004,7 +2981,7 @@ $1',
 'exif-gpsdatestamp' => 'تاريخ GPS',
 'exif-gpsdifferential' => 'تصحيح GPS التفاضلي',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'مش مضغوط',
 'exif-compression-6' => 'جيه بى إى جي',
 
@@ -3384,13 +3361,6 @@ $5
 'version-software' => 'السوفتوير المتستاب',
 'version-software-product' => 'المنتج',
 'version-software-version' => 'النسخه',
-
-# Special:FilePath
-'filepath' => 'مسار ملف',
-'filepath-page' => 'الملف:',
-'filepath-submit' => 'المسار',
-'filepath-summary' => 'الصفحة المخصوصة دى بتعرض المسار الكامل  بتاع ملف.
-الصور بتتعرض  بدقة كاملة، أنواع الملفات التانية ح تشتغل فى البرنامج بتاعهم مباشرة.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'دور على الملفات المتكررة',

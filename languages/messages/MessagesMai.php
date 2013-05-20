@@ -1848,6 +1848,15 @@ $1',
 'listusers-noresult' => 'कोनो प्रयोक्ता नै',
 'listusers-blocked' => '(प्रतिबन्धित)',
 
+# Special:ActiveUsers
+'activeusers' => 'सक्रिय प्रयोक्ता सभक सूची',
+'activeusers-intro' => 'ई ओहेन प्रयोक्ता सभक सूची अछि जे पछिला $1 {{PLURAL:$1|दिन|दिन}} मे किछु सक्रियता देखेने छथि।',
+'activeusers-count' => '$1 {{PLURAL:$1|सम्पादन|सम्पादन सभ}} paChilaa {{PLURAL:$3|दिन|$3 दिन}}',
+'activeusers-from' => 'प्रयोक्ता प्रदर्शन प्रारम्भ भेल:',
+'activeusers-hidebots' => 'स्वचालन नुकाउ',
+'activeusers-hidesysops' => 'संचालक नुकाउ',
+'activeusers-noresult' => 'कोनो प्रयोक्ता नै भेटल',
+
 # Special:ListGroupRights
 'listgrouprights' => 'प्रयोक्ता संवर्ग अधिकार',
 'listgrouprights-summary' => 'ई सभ प्रयोक्ता संवर्गक एकटा सूची अछि जे ऐ विकीपरपरिभाषित अछि ओकर संसर्गित प्रवेश अधिकारक संग।
@@ -1925,7 +1934,7 @@ $1',
 'watchnochange' => 'अहाँक साकांक्ष सूचीमे सँ कोनोमे ऐ अवधिमे सम्पादन नै कएल गेल।',
 'watchlist-details' => '{{PLURAL:$1|$1 पन्ना|$1 पन्ना सभ}} अहाँक साकांक्षसूचीमे, चौबटिया पन्ना नै गानल गेल।',
 'wlheader-enotif' => 'ई-पत्र सूचना लागू अछि।',
-'wlheader-showupdated' => "पन्ना सभ जे अहाँक एतए अन्तिम बेर अएलाक बाद बदलल अछि तकर सूची देल अछि '''गाढ़''' मे।",
+'wlheader-showupdated' => "पन्ना सभ जे अहाँक एतए अन्तिम बेर अएलाक बाद बदलल अछि तकर सूची देल अछि '''गाढ़''' मे",
 'watchmethod-recent' => 'साकांक्ष सूचीक हालक सम्पादन जाँचि रहल छी',
 'watchmethod-list' => 'साकांक्ष-सूचीक हालक सम्पादनकेँ देखि रहल छी',
 'watchlistcontains' => 'अहाँक साकांक्ष-सूचीमे अछि $1 {{PLURAL:$1|पन्ना|पन्ना}}।',
@@ -2780,7 +2789,7 @@ Variants for Chinese language
 'metadata-langitem' => "'''$2:''' $1",
 'metadata-langitem-default' => '$1',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'चौड़ाई',
 'exif-imagelength' => 'ऊँच',
 'exif-bitspersample' => 'प्रति भाग अष्टक',
@@ -2959,7 +2968,7 @@ Variants for Chinese language
 'exif-originalimageheight' => 'काटहि सें पहिने तस्वीरक ऊँचाई',
 'exif-originalimagewidth' => 'काटहि सें पहिने तस्वीरक चौड़ाई',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'असम्पीडित',
 'exif-compression-2' => 'सी.सी.आइ.टी.टी. वर्ग ३ १ - बीम संशोधित हफमैन कूट सोझ लम्बाइ',
 'exif-compression-3' => 'सी.सी.आइ.टी.टी. वर्ग ३ फैक्स संकूट',
@@ -3369,13 +3378,6 @@ $5
 'version-software' => 'प्रतिष्ठापित तंत्रांश',
 'version-software-product' => 'उत्पाद',
 'version-software-version' => 'संस्करण',
-
-# Special:FilePath
-'filepath' => 'संचिकाक रस्ता',
-'filepath-page' => 'संचिका',
-'filepath-submit' => 'जाऊ',
-'filepath-summary' => 'ई विशेष पन्ना संचिकाक पूर्ण रस्ता देखबैत अछि।
-चित्र सभ पूर्ण आकारमे देखाएल जाइत अछि, दोसर संचिका प्रकार चालित होइए सोझे सम्बन्धित संविधि द्वारा।',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'द्वितीयक संचिका ताकू',

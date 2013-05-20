@@ -2070,7 +2070,7 @@ Midadas futuras vid questa pagina e la pagina da discussiun appertegnenta vegnan
 'watchnochange' => 'Nagin dals artitgels che ti observeschas è vegnì midà durant la perioda da temp inditgada.',
 'watchlist-details' => "{{PLURAL:$1|Ina pagina|$1 paginas}} èn sin tia glista d'observaziun (senza dumbrar las paginas da discussiun).",
 'wlheader-enotif' => "Il servetsch d'infurmaziun per e-mail è activà.",
-'wlheader-showupdated' => "Artitgels ch'èn vegnids midads suenter che ti has vis els la davosa giada èn mussads '''grass'''.",
+'wlheader-showupdated' => "Artitgels ch'èn vegnids midads suenter che ti has vis els la davosa giada èn mussads '''grass'''",
 'watchmethod-recent' => "intercurir las davosas midadas per la glista d'observaziun",
 'watchmethod-list' => 'intercurir las paginas observadas davart novas midadas',
 'watchlistcontains' => "Tia glista d'observaziun cuntegna $1 {{PLURAL:$1|pagina|paginas}}.",

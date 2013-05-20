@@ -131,8 +131,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Nîşan bide, çiqas bikarhêner dişopînin',
 'tog-oldsig' => 'Pêşdîtina îmzeya heye:',
 'tog-fancysig' => 'Di îmzeyê de girêdana otomatîk a bikarhêner betal bike',
-'tog-externaleditor' => 'Edîtorekî derve bike "standard" (ji yên bi ezmûn re, tercîhên taybet di komputerê de hewce ne)',
-'tog-externaldiff' => 'Birnemijekî derve biguherîne "standard" (ji yên bi ezmûn re, tercîhên taybet di komputerê de hewce ne)',
 'tog-showjumplinks' => 'Girêdanên "Here-berve" qebûlbike',
 'tog-uselivepreview' => 'Pêşdîtina "zindî" bi kar bîne (JavaScript pêwîst e) (ceribandinî)',
 'tog-forceeditsummary' => 'Hinga kurteyeke vala hate tomarkirin min agahdar bike',
@@ -858,9 +856,6 @@ Sedema qedexekirina $3 ev e: ''$2''",
 'searchdisabled' => '<p>Tu dikarî li {{SITENAME}} bi Google an Yahoo! bigere. Têbînî: Dibe ku encamen lêgerîne ne yên herî nû ne.
 </p>',
 
-# Quickbar
-'qbsettings-none' => 'Tune',
-
 # Preferences page
 'preferences' => 'Tercîhên min',
 'mypreferences' => 'Tercihên min',
@@ -1004,10 +999,10 @@ Sedema qedexekirina $3 ev e: ''$2''",
 'right-sendemail' => 'Ji bikarhênerên di re e-name bişîne',
 
 # Special:Log/newusers
-'newuserlogpage' => 'çêkirina hesabê nû',
+'newuserlogpage' => 'Çêkirina hesabê nû',
 
 # User rights log
-'rightslog' => 'guhertina mafê bikarhêneriyê',
+'rightslog' => 'Guhertina mafê bikarhêneriyê',
 'rightslogtext' => 'Ev guhertineke ji bo mafên bikarhêneriyê ye.',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -1351,6 +1346,12 @@ Li [[Special:WantedCategories|kategoriyên xwestî]] binêre.',
 'listusers-noresult' => 'Bikarhêner nehate dîtin.',
 'listusers-blocked' => '(hate astengkirin)',
 
+# Special:ActiveUsers
+'activeusers' => 'Lîsteya bikarhênerên çalak',
+'activeusers-hidebots' => "Bot'an veşêre",
+'activeusers-hidesysops' => 'Rêveberan veşêre',
+'activeusers-noresult' => 'Tu bikarhêner nehate dîtin.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Mafên koma bikarhêner',
 'listgrouprights-group' => 'Kom',
@@ -1456,7 +1457,7 @@ Paşagahîdan û alîkaraya din:
 'actioncomplete' => 'Çalakî pêk hat',
 'actionfailed' => 'Çalakî têkçû',
 'deletedtext' => '"$1" hat jêbirin. Ji bo qeyda rûpelên ku di dema nêzîk de hatin jêbirin binêre $2.',
-'dellogpage' => 'jêbirina rûpelê',
+'dellogpage' => 'Jêbirina rûpelê',
 'dellogpagetext' => 'Li jêr lîsteyek ji jêbirinên dawî heye.',
 'deletionlog' => 'jêbirina rûpelê',
 'reverted' => 'Hate şondabirin berve verzyonekî berê',
@@ -1472,7 +1473,7 @@ Paşagahîdan û alîkaraya din:
 'delete-warning-toobig' => "Dîroka vê rûpelê pir mezin e, zêdetirî $1 guherandin. Jêbirina van rûpelan dikarin şaşbûnan di database'ê {{SITENAME}} da çêkin; zandibe tu çi dikê!",
 
 # Rollback
-'rollback_short' => 'bizîvirîne pêş',
+'rollback_short' => 'Bizîvirîne pêş',
 'rollbacklink' => 'bizîvirîne pêş',
 'cantrollback' => 'Guherto naye vegerandin;
 bikarhênerê dawî, tenya nivîskarê vê rûpelê ye.',
@@ -1735,7 +1736,7 @@ da bikarî navê wê rûpelê biguherînî.',
 'movepage-page-exists' => 'Rûpela $1 berê heye û ew nikane otomatîk were jêbirin.',
 'movepage-page-moved' => 'Rûpela $1 çû cihê $2.',
 'movepage-page-unmoved' => 'Rûpela $1 nikanî çûba ciha $2.',
-'movelogpage' => 'guhertina nav',
+'movelogpage' => 'Guhertina nav',
 'movelogpagetext' => 'Li jêr lîsteyek ji rûpelan ku navê wan hatiye guherandin heye.',
 'movenosubpage' => 'Binrûpelên vê rûpelê tune ne.',
 'movereason' => 'Sedem',
@@ -1924,7 +1925,7 @@ Ji ber ku girêdaneke derve di wê rûpelê de heye ev pirsgirêk pêk hat.',
 'metadata-expand' => 'Detayên dirêj nîşan bide',
 'metadata-collapse' => 'Detayên dirêj veşêre',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Panbûn',
 'exif-imagelength' => 'Dirêjbûn',
 'exif-jpeginterchangeformatlength' => "Byte'ên daneya JPEG",
@@ -2091,10 +2092,6 @@ Ji kerema xwe zanibe ku tu bi rastî dixwazî vê rûpelê dîsa çêkî.",
 'version-software-product' => 'Berhem',
 'version-software-version' => 'Guherto',
 'version-entrypoints-header-url' => 'URL',
-
-# Special:FilePath
-'filepath-page' => 'Wêne:',
-'filepath-submit' => 'Gotar',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-filename' => 'Navê dosyeyê:',

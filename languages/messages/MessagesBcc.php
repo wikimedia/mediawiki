@@ -171,8 +171,6 @@ $messages = array(
 'tog-enotifrevealaddr' => 'منی ایمیل پیش دار ته ایمیل أن هوژاری',
 'tog-shownumberswatching' => 'پیش دار تعداد کاربرانی که چارگتن',
 'tog-fancysig' => 'امضاءَ په داب ویکی متنی بزان(بی اتوماتیکی لینک)',
-'tog-externaleditor' => 'به طور پیش فرض اصلاح کنوک حارجی استفاده کن',
-'tog-externaldiff' => 'به طور پیش فرض چه حارجی تمایز استفاده کن',
 'tog-showjumplinks' => 'فعال کن "jump to" لینکان دست رسی آ',
 'tog-uselivepreview' => 'چه زنده این بازبین استفاده کن(جاوا)(تجربی)',
 'tog-forceeditsummary' => 'من آ هال دی وهدی وارد کتن یک هالیکین خلاصه ی اصلاح',
@@ -1000,14 +998,6 @@ $1",
 'searchdisabled' => '{{SITENAME}} گردگ غیر فعالنت.
 شما نونیت بگردیت چه طرق گوگل هم زمان.
 توجه که اندیکس آن {{SITENAME}} محتوا شاید تاریح گوستگین بنت.',
-
-# Quickbar
-'qbsettings' => 'میله سریع',
-'qbsettings-none' => 'هچ یک',
-'qbsettings-fixedleft' => 'چپ ثابت',
-'qbsettings-fixedright' => 'راست ثابت',
-'qbsettings-floatingleft' => 'چپ شناور',
-'qbsettings-floatingright' => 'راست شناور',
 
 # Preferences page
 'preferences' => 'ترجیحات',
@@ -2409,13 +2399,8 @@ $1',
 'spam_blanking' => 'کل بازبینی آن شامل لینکان په $1, بوتت  هالیکی',
 
 # Skin names
-'skinname-standard' => 'کلاسیک',
-'skinname-nostalgia' => 'نوستالجیک',
 'skinname-cologneblue' => 'نیلی کولاجن',
 'skinname-monobook' => 'منوبوک',
-'skinname-myskin' => 'منی جلد',
-'skinname-chick' => 'شیک',
-'skinname-simple' => 'ساده',
 'skinname-modern' => 'مدرن',
 
 # Patrolling
@@ -2486,8 +2471,6 @@ $1',
 
 /*
 Short names for language variants used for language conversion links.
-To disable showing a particular link, set it to 'disable', e.g.
-'variantname-zh-sg' => 'disable',
 Variants for Chinese language
 */
 'variantname-zh-hans' => 'هانس',
@@ -2544,7 +2527,7 @@ Variants for Chinese language
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'پهنات',
 'exif-imagelength' => 'بلندی',
 'exif-bitspersample' => 'بیت ته جز',
@@ -2660,7 +2643,7 @@ Variants for Chinese language
 'exif-gpsdatestamp' => 'تاریح جی پی اس',
 'exif-gpsdifferential' => 'اصلاح متفاوت جی پی اس',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'کمپرس نه بوتت',
 'exif-compression-6' => 'جیی پی ای جی',
 
@@ -3037,13 +3020,6 @@ $5
 'version-software' => 'نصبین برنامه',
 'version-software-product' => 'محصول',
 'version-software-version' => 'نسخه',
-
-# Special:FilePath
-'filepath' => 'مسیر فایل',
-'filepath-page' => 'فایل:',
-'filepath-submit' => 'مسیر',
-'filepath-summary' => 'ای حاصین صفحه مسیر کامل په یک فایل پیش داریت.
-تصاویر گون وضوح کامل پیش دارگ بنت و دگه نوع فایلان گون وتی برنامه یانش مستقیما پچ بنت.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'گردگ په کپی  فایلان',

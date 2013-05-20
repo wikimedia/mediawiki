@@ -74,9 +74,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Antaal fon do beooboachtjende Benutsere anwiese',
 'tog-oldsig' => 'Aktuälle Signatuur:',
 'tog-fancysig' => 'Unnerskrift as Wikitext behonnelje (sunner automatiske Ferlinkenge)',
-'tog-externaleditor' => 'Externen Editor as Standoard benutsje (bloot foar Experte, der mouten spezielle Ienstaalengen ap dän oaine Computer moaked wäide. [//www.mediawiki.org/wiki/Manual:External_editors Moor Information hiertou.])',
-'tog-externaldiff' => 'Extern Diff-Program as Standoard benutsje (bloot foar Experte, der mouten spezielle Ienstaalengen ap dän oaine Computer moaked wäide.
- [//www.mediawiki.org/wiki/Manual:External_editors Wiedere Informatione hiertou.])',
 'tog-showjumplinks' => '"Wikselje tou"-Links muugelk moakje',
 'tog-uselivepreview' => 'Live-Foarbekiek nutsje (JavaScript) (experimentell)',
 'tog-forceeditsummary' => 'Woarskauje, wan bie dät Spiekerjen ju Touhoopefoatenge failt',
@@ -1022,15 +1019,6 @@ Staal deertruch sicher, dät ju Versionsgeskichte fon n Artikkel historisk akroa
 'search-external' => 'Externe Säike',
 'searchdisabled' => 'Ju {{SITENAME}} Fultextsäike is weegen Uurläästenge apstuuns deaktivierd. Du koast insteede deerfon ne Google- of Yahoo-Säike startje. Do Resultoate foar {{SITENAME}} speegelje oawers nit uunbedingd dän aktuällen Stand wier.',
 
-# Quickbar
-'qbsettings' => 'Siedenlieste',
-'qbsettings-none' => 'Naan',
-'qbsettings-fixedleft' => 'Links, fääst',
-'qbsettings-fixedright' => 'Gjuchts, fääst',
-'qbsettings-floatingleft' => 'Links, swieuwjend',
-'qbsettings-floatingright' => 'Gjuchts, swieuwjend',
-'qbsettings-directionality' => 'Fääst, ouhongich fon de Skrieuwgjuchte fon ju wäälde Sproake',
-
 # Preferences page
 'preferences' => 'Ienstaalengen',
 'mypreferences' => 'Ienstaalengen',
@@ -1525,7 +1513,6 @@ Uut Sicherhaidsgruunde is img_auth.php deaktivierd.',
 'http-read-error' => 'HTTP-Leesefailer.',
 'http-timed-out' => 'Tied is ferron bie ju HTTP-Anfroage.',
 'http-curl-error' => 'Failer bier dän Ouroup fon ju URL: $1',
-'http-host-unreachable' => 'URL is nit tou beloangjen',
 'http-bad-status' => 'Unner ju HTTP-Anfroage is n Failer aptreeden: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -2696,7 +2683,7 @@ Wiedere wäide standoardmäitich nit anwiesd.
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Bratte',
 'exif-imagelength' => 'Laangte',
 'exif-bitspersample' => 'Bits pro Faawenkomponente',
@@ -2854,7 +2841,7 @@ Wiedere wäide standoardmäitich nit anwiesd.
 'exif-copyrighted' => 'Uurhieuwergjuchtstoatus',
 'exif-copyrightowner' => 'Uurhieuwergjuchtsienhääber',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Uunkomprimierd',
 
 'exif-unknowndate' => 'Uunbekoand Doatum',
@@ -3185,12 +3172,6 @@ Ne [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie fon ju ''GNU General Public License''
 'version-software' => 'Installierde Software',
 'version-software-product' => 'Produkt',
 'version-software-version' => 'Version',
-
-# Special:FilePath
-'filepath' => 'Doatäipaad',
-'filepath-page' => 'Doatäi:',
-'filepath-submit' => 'Gung',
-'filepath-summary' => 'Mäd disse Spezialsiede lät sik die komplette Paad fon ju aktuelle Version fon ne Doatäi sunner Uumwai oufräigje. Ju anfräigede Doatäi wäd fluks deerstoald blw. mäd ju ferknätte Anweendenge started.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Doatäi-Duplikoat-Säike',

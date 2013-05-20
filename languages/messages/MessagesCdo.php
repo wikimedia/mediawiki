@@ -570,7 +570,7 @@ Siók-mìng: (dāng) = gâe̤ng dék sĭng bēng-buōng bī-piâng, (sèng) = g�
 # Special:LinkSearch
 'linksearch-ok' => 'Sìng-tō̤',
 
-# E-mail user
+# Email user
 'emailuser' => 'Gié diêng-piĕ ké̤ṳk ĭ',
 'emailpage' => 'Gié diêng-piĕ ké̤ṳk ĭ',
 'defemailsubject' => '{{SITENAME}} diêng-piĕ',
@@ -830,7 +830,7 @@ Nâ cūng-kuāng, nṳ̄ â̤-sāi cê-gă iè-dông hĕ̤k-ciā sê hăk-biáng
 'namespacesall' => 'sū-iū',
 'monthsall' => 'gó̤-lòng nièng',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Káuk-nêng diêng-piĕ dê-cī',
 'confirmemail_invalid' => 'Káuk-nêng mā mò̤-hâu, kō̤-nèng ī-gĭng guó-gĭ lāu.',
 'confirmemail_needlogin' => 'Chiāng nṳ̄ sĕng $1 nṳ̄ gì diêng-piĕ dê-cī.',
@@ -887,9 +887,6 @@ Nâ-sāi ĭ *ng-sê* nṳ̄, chiāng mŏ̤h chák ĭ. Gáu $4, káuk-nêng-mā �
 'watchlisttools-view' => 'Káng siŏng-guăng gāi-biéng',
 'watchlisttools-edit' => 'Káng gâe̤ng siŭ-gāi gáng-sê-dăng',
 'watchlisttools-raw' => 'Siŭ-gāi nguòng-sṳ̄ gáng-sê-dăng',
-
-# Special:FilePath
-'filepath-page' => 'Ùng-giông:',
 
 # Special:SpecialPages
 'specialpages' => 'Dĕk-sṳ̀ hiĕk',

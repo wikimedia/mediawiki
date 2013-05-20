@@ -566,8 +566,6 @@ Njezabudź swoje [[Special:Preferences|nastajenja za {{GRAMMAR:akuzatiw|{{SITENA
 'yourname' => 'Wužiwarske mjeno:',
 'userlogin-yourname' => 'Wužiwarske mjeno',
 'userlogin-yourname-ph' => 'Zapodaj swoje wužiwarske mjeno',
-'createacct-helpusername-url' => '{{ns:Project}}:Prawidła_za_wužiwarske_mjena',
-'createacct-helpusername-link' => '[[{{MediaWiki:createacct-helpusername-url}}|(pomóž wubrać)]]',
 'yourpassword' => 'Hesło:',
 'userlogin-yourpassword' => 'Hesło',
 'userlogin-yourpassword-ph' => 'Zapodaj swoje hesło',

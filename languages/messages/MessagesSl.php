@@ -1897,7 +1897,7 @@ Ko so rezultati filtrirani po uporabniku, so prikazane samo datoteke, pri kateri
 # File description page
 'file-anchor-link' => 'Datoteka',
 'filehist' => 'Zgodovina datoteke',
-'filehist-help' => 'Kliknite na datum in čas za ogled datoteke, ki je bila takrat naložena.',
+'filehist-help' => 'Kliknite datum in čas za ogled datoteke, ki je bila takrat naložena.',
 'filehist-deleteall' => 'izbriši vse',
 'filehist-deleteone' => 'izbriši to',
 'filehist-revert' => 'vrni',

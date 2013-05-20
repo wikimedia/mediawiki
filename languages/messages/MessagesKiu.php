@@ -1115,6 +1115,9 @@ Cêr [$2 pela arezekerdena dosya de] arezekerdene asnina.',
 'listusers-noresult' => 'Karber nêdiya.',
 'listusers-blocked' => '(kilıt biyo)',
 
+# Special:ActiveUsers
+'activeusers' => 'Lista karberunê fealu',
+
 # Special:ListGroupRights
 'listgrouprights-group' => 'Kome',
 'listgrouprights-rights' => 'Heqi',
@@ -1513,7 +1516,7 @@ Eke dosya de peydêna vuriyais biyo ki, beno ke taê melumati gorê vurnaisê ne
 * gpslongitude
 * gpsaltitude",
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Verındêni',
 'exif-imagelength' => 'Berzêni',
 

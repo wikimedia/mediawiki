@@ -660,14 +660,6 @@ Prova a seberare ''totu:'' pro chircare in totu su cuntènnidu (inclùdidas pàg
 'powersearch-toggleall' => 'Totu',
 'powersearch-togglenone' => 'Nudda',
 
-# Quickbar
-'qbsettings' => 'Settaggio della barra menu',
-'qbsettings-none' => 'Nessuno',
-'qbsettings-fixedleft' => 'Fisso a sinistra',
-'qbsettings-fixedright' => 'Fisso a destra',
-'qbsettings-floatingleft' => 'Fluttuante a sinistra',
-'qbsettings-floatingright' => 'Fluttuante a destra',
-
 # Preferences page
 'preferences' => 'Preferèntzias',
 'mypreferences' => 'Preferèntzias meas',
@@ -1016,7 +1008,7 @@ Dia podent essere immàgines impreadas dae àteros giassos cun unu ligàmine dir
 'listgrouprights-group' => 'Grupu',
 'listgrouprights-members' => '(lista de is cumponentes)',
 
-# E-mail user
+# Email user
 'mailnologintext' => "Depes èsser [[Special:UserLogin|identificadu (login)]] e àer registradu un'indiritzu e-mail vàlidu in is [[Special:Preferences|preferèntzias tuas]] pro imbiare e-mail a àteros usuàrios.",
 'emailuser' => 'E-mail a custu usuàriu',
 'emailpage' => "Ispedi una missada a s'usuàriu",
@@ -1428,14 +1420,14 @@ Is acàpius chi sighint in sa matessi lìnia sunt cunsideraus comente eccetzione
 * gpslongitude
 * gpsaltitude",
 
-# EXIF tags
+# Exif tags
 'exif-artist' => 'Autore',
 'exif-exposuretime-format' => '$1 s ($2)',
 'exif-fnumber-format' => 'f/$1',
 'exif-flash' => 'Flash',
 'exif-focallength-format' => '$1 mm',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-6' => 'JPEG',
 
 'exif-photometricinterpretation-2' => 'RGB',
@@ -1473,7 +1465,7 @@ Is acàpius chi sighint in sa matessi lìnia sunt cunsideraus comente eccetzione
 'monthsall' => 'totu',
 'limitall' => 'totu',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => "Cunfirma s'indiritzu e-mail",
 
 # action=purge
@@ -1530,10 +1522,6 @@ Is acàpius chi sighint in sa matessi lìnia sunt cunsideraus comente eccetzione
 'version-version' => '(Versione $1)',
 'version-license' => 'Licèntzia',
 'version-software-version' => 'Versione',
-
-# Special:FilePath
-'filepath-page' => 'Nùmene de su file:',
-'filepath-submit' => 'Bae',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-submit' => 'Chirca',

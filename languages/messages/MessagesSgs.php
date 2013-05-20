@@ -87,8 +87,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Ruodītė keravuojantiu nauduotuoju skatliu',
 'tog-oldsig' => 'Esams parašos:',
 'tog-fancysig' => 'Parašos kāp wiki tekstos (ba autuomatėniu nūruodu)',
-'tog-externaleditor' => 'Vagol nutīliejėma nauduotė ėšuorini radaktuoriu (tėktās specam, rēk specēliū nustatīmu kompioteriō. [//www.mediawiki.org/wiki/Manual:External_editors Daugiau infuormacėjės.])',
-'tog-externaldiff' => 'Palē nutīliejėma nauduotė ėšuorinė skėrtomu ruodīma pruograma (tėktās specam, rēk specēliū nustatīmu kompioteriō. [//www.mediawiki.org/wiki/Manual:External_editors Daugiau infuormacėjės.])',
 'tog-showjumplinks' => 'Ijongtė „paršuoktė i“ pasėikiamoma nūruodas',
 'tog-uselivepreview' => 'Nauduotė tėisiogėne parvėiza (JavaScript) (Eksperimentėnis)',
 'tog-forceeditsummary' => 'Klaustė, kumet palėiku toščē pakeitėma kuomentara',
@@ -762,10 +760,6 @@ Kėtė admėnėstratuorē šėtom pruojekte vėsdar galės pasėiktė pasliepta 
 'powersearch-field' => 'Ėiškoutė',
 'search-external' => 'Ėšuorėnė paėiška',
 
-# Quickbar
-'qbsettings' => 'Greitasā pasėrėnkėms',
-'qbsettings-none' => 'Neruodītė',
-
 # Preferences page
 'preferences' => 'Nustatīmā',
 'mypreferences' => 'Mona nustatīmā',
@@ -1271,7 +1265,7 @@ Jēgo bikumet ožsėnuorietomiet liautėis keravuotė straipsnė, spauskat \"neb
 'watchnochange' => 'Pasėrėnkto čieso nebova redagouts nė vėins keravuojams straipsnis.',
 'watchlist-details' => 'Keravuojama $1 {{PLURAL:$1|poslapis|$1 poslapē|$1 poslapiu}} neskaitlioujant aptarėmu poslapiu.',
 'wlheader-enotif' => 'El. pašta primėnėmā ijongtė īr.',
-'wlheader-showupdated' => "Poslapē, katrėi pakeistė nu Tamstas paskotėnė apsėlonkėma čiesa anūs, īr pažīmietė '''pastuorintā'''.",
+'wlheader-showupdated' => "Poslapē, katrėi pakeistė nu Tamstas paskotėnė apsėlonkėma čiesa anūs, īr pažīmietė '''pastuorintā'''",
 'watchmethod-recent' => 'tėkrėnamė vielībė̅jė pakeitėmā keravuojamiems poslapiams',
 'watchmethod-list' => 'Ėiškuoma vielībūju pakeitėmu keravuojamūs poslapiūs',
 'watchlistcontains' => 'Tamstas kervuojamu sārašė īr $1 {{PLURAL:$1|poslapis|poslapē|poslapiu}}.',
@@ -1773,7 +1767,7 @@ Vėsas kėtas nūoruodas tuo patiuo eilotie īr laikomas ėšėmtim, tas rēšk 
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Platoms',
 'exif-imagelength' => 'Aukštoms',
 'exif-orientation' => 'Pasokims',
@@ -1907,10 +1901,6 @@ Tamsta tēpuogi galėt [[Special:EditWatchlist/raw|redagoutė grīnaji keravuoja
 # Special:Version
 'version' => 'Versėjė',
 'version-license' => 'Licenzėjė',
-
-# Special:FilePath
-'filepath' => 'Faila maršrots',
-'filepath-page' => 'Fails:',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Ėiškuotė doblikoutu failu',

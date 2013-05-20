@@ -2171,7 +2171,7 @@ I futuri canbiamenti a sta pàjina e a ła so pàjina de discusion i vegnarà el
 'watchnochange' => "Nissuna pagina tegnùa d'ocio la xe stà canbià nel periodo mostrà.",
 'watchlist-details' => "Te sì drio tegner d'ocio {{PLURAL:$1|una pagina (e la so pagina de discussion)|$1 pagine (e le so pagine de discussion)}}.",
 'wlheader-enotif' => 'Xe ativà la notifica via e-mail.',
-'wlheader-showupdated' => "Le pagine che xe stà canbià da la to ultima visita le xe segnà in '''grosso'''.",
+'wlheader-showupdated' => "Le pagine che xe stà canbià da la to ultima visita le xe segnà in '''grosso'''",
 'watchmethod-recent' => 'controło de łe ultime modifeghe par i osservati speciałi',
 'watchmethod-list' => 'controło de i osservati speciałi par modifeghe recenti',
 'watchlistcontains' => 'La lista de i osservati speciałi la contien {{PLURAL:$1|una pagina|$1 pagine}}.',

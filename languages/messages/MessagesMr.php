@@ -2146,6 +2146,15 @@ Input:contenttype/subtype, e.g. <code>image/jpeg</code>.',
 'listusers-noresult' => 'एकही सदस्य सापडला नाही.',
 'listusers-blocked' => '(खंडित)',
 
+# Special:ActiveUsers
+'activeusers' => 'कार्यरत सदस्यांची यादी',
+'activeusers-intro' => '$1 {{PLURAL:$1|day|days}} मधे शेवटी काम केलेल्या सदस्यांची यादी येथे मिळेल',
+'activeusers-count' => 'शेवटच्या {{PLURAL:$3|दिवसात|$3 दिवसांत}} $1 {{PLURAL:$1|संपादन|संपादने}}',
+'activeusers-from' => 'पुढील शब्दापासून सुरू होणारे सदस्य दाखवा:',
+'activeusers-hidebots' => 'सांगकामे लपवा',
+'activeusers-hidesysops' => 'प्रचालक लपवा',
+'activeusers-noresult' => 'एकही सदस्य सापडला नाही.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'सदस्य गट अधिकार',
 'listgrouprights-summary' => 'खाली या विकिवर दिलेली सदस्य गटांची यादी त्यांच्या अधिकारांसकट दर्शविलेली आहे. प्रत्येकाच्या अधिकारांची अधिक माहिती [[{{MediaWiki:Listgrouprights-helppage}}|इथे]] दिलेली आहे.',
@@ -3087,7 +3096,7 @@ $1',
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'रूंदी',
 'exif-imagelength' => 'उंची',
 'exif-bitspersample' => 'प्रती घटक बीट्स',
@@ -3266,7 +3275,7 @@ $1',
 'exif-originalimageheight' => 'चित्राचा आकार बदलण्यापुर्वीची उंची',
 'exif-originalimagewidth' => 'छाचाचित्राचा आकार बदलण्यापुर्वीची रूंदी',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'अनाकुंचीत',
 'exif-compression-2' => 'CCITT गट३ १-Dimensional Modified Huffman run length encoding',
 'exif-compression-3' => 'CCITT Group 3 फॅक्स संकेतन',
@@ -3670,13 +3679,6 @@ $5
 'version-entrypoints' => 'आत येणारी यू॰आर॰एल',
 'version-entrypoints-header-entrypoint' => 'आत येण्याचा मार्ग',
 'version-entrypoints-header-url' => 'यू॰आर॰एल',
-
-# Special:FilePath
-'filepath' => 'संचिका मार्ग',
-'filepath-page' => 'संचिका:',
-'filepath-submit' => 'चला',
-'filepath-summary' => 'हे विशेष पान संचिकेचा संपूर्ण मार्ग कळवते.
-चित्रे संपूर्ण रिझोल्युशन मध्ये दाखवली आहेत,इतर संचिका प्रकार त्यांच्या संबधित प्रोग्रामने प्रत्यक्ष सुरू होतात.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'जुळ्या संचिका शोधा',

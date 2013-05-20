@@ -1805,6 +1805,15 @@ Kiek ok bi de [[Special:WantedCategories|wünschten Kategorien]].',
 'listusers-noresult' => 'Keen Bruker funnen.',
 'listusers-blocked' => '(sperrt)',
 
+# Special:ActiveUsers
+'activeusers' => 'Aktive Brukers',
+'activeusers-intro' => 'Dit is en List von Brukers, de {{PLURAL:$1|den verleden Dag|de verleden $1 Daag}} aktiv wesen sünd.',
+'activeusers-count' => '$1 {{PLURAL:$1|Ännern|Ännern}} {{PLURAL:$3|den verleden Dag|in de verleden $3 Daag}}',
+'activeusers-from' => 'Brukers wiesen vanaf:',
+'activeusers-hidebots' => 'Bots nich wiesen',
+'activeusers-hidesysops' => 'Administraters nich wiesen',
+'activeusers-noresult' => 'Keen Brukers funnen.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Brukergruppen-Rechten',
 'listgrouprights-summary' => 'Dit is en List vun de Brukergruppen, de in dit Wiki defineert sünd, un de Rechten, de dor mit verbunnen sünd.
@@ -2598,7 +2607,7 @@ Wiedere warrt standardmatig nich anwiest:
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Breed',
 'exif-imagelength' => 'Hööchd',
 'exif-bitspersample' => 'Bits je Farvkomponent',
@@ -2716,7 +2725,7 @@ Wiedere warrt standardmatig nich anwiest:
 'exif-languagecode' => 'Spraak',
 'exif-iimcategory' => 'Kategorie',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Unkomprimeert',
 
 'exif-unknowndate' => 'Unbekannt Datum',
@@ -3029,14 +3038,6 @@ Du kannst ok de [[Special:EditWatchlist|normale Sied to’n Ännern]] bruken.',
 'version-software-product' => 'Produkt',
 'version-software-version' => 'Version',
 'version-entrypoints-header-url' => 'URL',
-
-# Special:FilePath
-'filepath' => 'Dateipadd',
-'filepath-page' => 'Datei:',
-'filepath-submit' => 'Los',
-'filepath-summary' => 'Disse Spezialsiet gifft den kumpletten Padd för ene Datei trüch. Biller warrt in vull Oplösen wiest, annere Datein warrt glieks mit dat Programm opropen, dat för de Soort Datein instellt is.
-
-Geev den Dateinaam ahn den Tosatz „{{ns:file}}:“ an.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Söök na Datein, de jüst gliek sünd',

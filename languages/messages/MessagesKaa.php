@@ -180,8 +180,6 @@ $messages = array(
 'tog-enotifrevealaddr' => "Eskertiw xatlarında e-mail adresimdi ko'rset",
 'tog-shownumberswatching' => "Baqlag'an paydalanıwshılar sanın ko'rset",
 'tog-fancysig' => 'İmzalardı wikitext dep qabıl etiw (avtomat siltewsiz)',
-'tog-externaleditor' => "Defolt boyınsha sırtqı o'zgertiwshini qollan (tek g'ana ta'jiriybeli paydalanıwshılar ushın, kompyuterin'izde qosımsha sazlawlar qılınıwı kerek. [//www.mediawiki.org/wiki/Manual:External_editors More information.])",
-'tog-externaldiff' => "Defoltta sırtqı parqtı qollan (tek ekspert paydalanıwshılar ushın, kompyuterin'izde arnawlı sazlawlardı talap etedi. [//www.mediawiki.org/wiki/Manual:External_editors More information.])",
 'tog-showjumplinks' => "«O'tip ketiw» siltewlerin qos",
 'tog-uselivepreview' => "Janlı ko'rip shıg'ıwdı qollan (JavaScript) (Sınawda)",
 'tog-forceeditsummary' => "O'zgertiw juwmag'ı bos qalg'anda mag'an eskert",
@@ -862,14 +860,6 @@ Barlıq mag'lıwmat tu'rin (sonın' ishinde sa'wbet betlerdi, shablonlardı h.t.
 'powersearch-redir' => "Qayta bag'ıtlawshı betlerdi ko'rset",
 'powersearch-field' => "İzlenetug'ın so'z (yamasa so'z dizbegi):",
 'search-external' => 'Sırtqı izlewshi',
-
-# Quickbar
-'qbsettings' => 'Navigatsiya paneli',
-'qbsettings-none' => 'Hesh qanday',
-'qbsettings-fixedleft' => 'Shepke bekitilgen',
-'qbsettings-fixedright' => "On'g'a bekitilgen",
-'qbsettings-floatingleft' => 'Shepte jıljıwshı',
-'qbsettings-floatingright' => "On'da jıljıwshı",
 
 # Preferences page
 'preferences' => 'Sazlawlar',
@@ -1829,7 +1819,7 @@ Eger fayl jaratılg'anınan keyin o'zgertilgen bolsa, geybir parametrleri o'zger
 * gpslongitude
 * gpsaltitude",
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Yeni:',
 'exif-imagelength' => "Uzunlıg'ı",
 'exif-imagedescription' => "Su'wret ataması",
@@ -1931,9 +1921,6 @@ Bul tastıyıqlaw kodının' pitetug'ın waqtı: $4.",
 
 # Special:Version
 'version' => "MediaWikidin' nusqası",
-
-# Special:FilePath
-'filepath' => 'Fayl jolı',
 
 # Special:SpecialPages
 'specialpages' => 'Arnawlı betler',

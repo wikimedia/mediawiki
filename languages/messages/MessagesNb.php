@@ -2348,7 +2348,7 @@ Fremtidige endringer til denne siden og den tilhørende diskusjonssiden blir lis
 'watchnochange' => 'Ingen av sidene i overvåkningslisten er endret i den valgte perioden.',
 'watchlist-details' => '{{PLURAL:$1|Én side|$1 sider}} på din overvåkningsliste, teller ikke diskusjonssider.',
 'wlheader-enotif' => 'E-postnotifikasjon er slått på.',
-'wlheader-showupdated' => "Sider som har blitt forandret siden du sist besøkte dem vises i '''fet tekst'''.",
+'wlheader-showupdated' => "Sider som har blitt forandret siden du sist besøkte dem vises i '''fet tekst'''",
 'watchmethod-recent' => 'sjekker siste endringer for sider i overvåkningslisten',
 'watchmethod-list' => 'sjekker siste endringer for sider i overvåkningslisten',
 'watchlistcontains' => 'Overvåkningslisten inneholder $1 {{PLURAL:$1|side|sider}}.',

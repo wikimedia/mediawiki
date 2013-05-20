@@ -118,8 +118,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Ozutada niiden kävutajiden lugu, kudambad oma mülütanuded lehtpolen ičeze kaclendnimikirjutesihe',
 'tog-oldsig' => 'Nügüdläine allekirjutez',
 'tog-fancysig' => 'Ičeze allekirjutesen wiki-znamišt (avtomatižeta kosketuseta)',
-'tog-externaleditor' => 'Kävutada irdredaktor augotižjärgendusen mödhe (vaiše ekspertoiden täht; pidab järgeta specialižikš kompjuter; [//www.mediawiki.org/wiki/Manual:External_editors Enamb informacijad.])',
-'tog-externaldiff' => 'Kävutada irdredaktor augotižjärgendusen mödhe (vaiše ekspertoiden täht; pidab järgeta specialižikš kompjuter; [//www.mediawiki.org/wiki/Manual:External_editors Enamb informacijad.])',
 'tog-showjumplinks' => 'Ližata "hüpähtada..."-abukosketused',
 'tog-uselivepreview' => 'Kävutada hered ezikacund (JavaScript) (Eksperimentaline)',
 'tog-forceeditsummary' => 'Varutada, kunz toižetusen ümbrikirjutandan pöud ei ole täuttud',
@@ -974,14 +972,6 @@ Kävutagat prefiks ''all:'', miše ectä kaikes südäimištospäi (lodulehtpoli
 Tö voit nügüd' ectä Google'n turbiš.
 Otkat sil'mnägubale üks-se, miše {{SITENAME}}-saitan sädäimišt voib olda vanhtunuden.",
 
-# Quickbar
-'qbsettings' => "Navigacijan panel'",
-'qbsettings-none' => 'Ala ozuta',
-'qbsettings-fixedleft' => 'Likumatoi huralpäi',
-'qbsettings-fixedright' => 'Likumatoi oiktalpäi',
-'qbsettings-floatingleft' => 'Ujui huralpäi',
-'qbsettings-floatingright' => 'Ujui oiktalpäi',
-
 # Preferences page
 'preferences' => 'Järgendused',
 'mypreferences' => 'Järgendused',
@@ -1409,7 +1399,6 @@ Ku problem jäb jäl'ghepäi-ki, säkat pagin [[Special:ListUsers/sysop|sistemad
 'http-read-error' => "HTTP'd lugemižen petuz.",
 'http-timed-out' => 'HTTP-he küzelendan aig om lopnus.',
 'http-curl-error' => "Petuz URL'ad ecmäs: $1",
-'http-host-unreachable' => 'Ei voi säta sidod URL:anke',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'Ei voi säta sidod URL:anke',
@@ -2371,13 +2360,8 @@ Voib olda, necil lehtpolel om kosketuz irdsaitale, kudamb om mustas nimikirjutes
 'pageinfo-authors' => 'Erazvuiččiden avtoroiden lugu',
 
 # Skin names
-'skinname-standard' => 'Klassine',
-'skinname-nostalgia' => "Nostal'gii",
 'skinname-cologneblue' => "Köl'nan sinine",
 'skinname-monobook' => 'MonoBook',
-'skinname-myskin' => 'Ičeze',
-'skinname-chick' => 'Cipuine',
-'skinname-simple' => 'Koveritoi',
 'skinname-modern' => "Nügüd'aigaine",
 
 # Patrolling
@@ -2453,8 +2437,6 @@ Jäl'ghižed kosketused siš-žo rives oma arvostadud kut erindad (lehtpoled, ku
 
 /*
 Short names for language variants used for language conversion links.
-To disable showing a particular link, set it to 'disable', e.g.
-'variantname-zh-sg' => 'disable',
 Variants for Chinese language
 */
 'variantname-zh-hans' => 'hans',
@@ -2480,7 +2462,7 @@ Ku fail redaktiruidihe sändan polhe, erased parametrad voidas erineda nügüdl�
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Leveduz',
 'exif-imagelength' => 'Korktuz’',
 'exif-bitspersample' => 'Mujun süvuz',
@@ -2612,7 +2594,7 @@ Ku fail redaktiruidihe sändan polhe, erased parametrad voidas erineda nügüdl�
 'exif-label' => 'Arbaine',
 'exif-pngfilecomment' => 'Kommentarii PNG-failha',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Ahtištamatoi',
 
 'exif-unknowndate' => 'Tundmatoi dat',
@@ -2959,11 +2941,6 @@ Kävutagat normaline ezikacund.',
 'version-software-product' => 'Produkt',
 'version-software-version' => 'Versii',
 'version-entrypoints-header-url' => 'URL',
-
-# Special:FilePath
-'filepath' => 'Te failannoks',
-'filepath-page' => 'Fail:',
-'filepath-submit' => 'Te',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Ectä kaksitadud failad',

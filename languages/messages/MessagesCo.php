@@ -83,7 +83,6 @@ $messages = array(
 
 # Cologne Blue skin
 'qbpageoptions' => 'Issa pagina',
-'qbpageinfo' => 'Cuntestu',
 'qbmyoptions' => 'E mo pagine',
 'qbspecialpages' => 'Pagine spiciale',
 
@@ -201,7 +200,6 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 'yourdiff' => 'Differenze',
 'template-protected' => '(prutettu)',
 'template-semiprotected' => '(mezu prutettu)',
-'nocreatetitle' => 'Creazione di pagina limitata',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Registramentu micca pussibile',
@@ -361,7 +359,7 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 # Special:ListUsers
 'listusers-submit' => 'Mustrà',
 
-# E-mail user
+# Email user
 'emailto' => 'À:',
 'emailsubject' => 'Sughjettu:',
 'emailmessage' => 'Messaghju:',
@@ -373,9 +371,8 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 'watch' => 'Seguità',
 
 'enotif_reset' => 'Marcà tutte e pagine visitate',
-'enotif_newpagetext' => 'Ista hè una pagina nova.',
-'changed' => 'cambiatu',
 'created' => 'creatu',
+'changed' => 'cambiatu',
 
 # Delete
 'deletepage' => 'Supprimà a pagina',
@@ -494,7 +491,7 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 'ilsubmit' => 'Ricerca',
 'bydate' => 'per data',
 
-# EXIF tags
+# Exif tags
 'exif-orientation' => 'Orientazione',
 'exif-imagedescription' => "Titulu di l'imagine",
 'exif-artist' => 'Autore',
@@ -534,9 +531,6 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 
 # Special:Version
 'version' => 'Versione',
-
-# Special:FilePath
-'filepath-page' => 'Schedariu:',
 
 # Special:SpecialPages
 'specialpages' => 'Pagine spiciale',

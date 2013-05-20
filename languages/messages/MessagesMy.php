@@ -710,13 +710,6 @@ Try prefixing your query with ''all:'' to search all content (including talk pag
 'powersearch-togglenone' => 'အမည်ညွှန်းမရှိ',
 'search-external' => 'အပြင်တွင် ရှာရန်',
 
-# Quickbar
-'qbsettings-none' => 'အမည်ညွှန်းမရှိ',
-'qbsettings-fixedleft' => 'ဘယ်ဘက်ကို အသေထားရန်',
-'qbsettings-fixedright' => 'ညာဘက်ကို အသေထားရန်',
-'qbsettings-floatingleft' => 'ဘယ်ဘက်ကို အရှင်ထားရန်',
-'qbsettings-floatingright' => 'ညာဘက်ကို အရှင်ထားရန်',
-
 # Preferences page
 'preferences' => '​ရွေး​ချယ်​စ​ရာ​များ​',
 'mypreferences' => '​ရွေး​ချယ်​စ​ရာ​များ​',
@@ -818,7 +811,7 @@ Your e-mail address is not revealed when other users contact you.
 'prefs-displaywatchlist' => 'ပြသရန် ရွေးချယ်မှု',
 'prefs-diffs' => 'ကွဲပြားချက်',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'အီးမေးလိပ်စာ တရားဝင်ပုံပေါ်သည်',
 'email-address-validity-invalid' => 'တရားဝင်အီးမေးလိပ်စာတစ်ခု ထည့်ပါ',
 
@@ -1043,7 +1036,6 @@ Your e-mail address is not revealed when other users contact you.
 
 # HTTP errors
 'http-invalid-url' => 'တရားမဝင်သော URL လင့် - $1',
-'http-host-unreachable' => 'URL လင့်သို့ သွားမရပါ။',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'URL လင့်သို့ သွားမရပါ',
@@ -1273,7 +1265,7 @@ Your e-mail address is not revealed when other users contact you.
 'listgrouprights-addgroup-self-all' => 'အုပ်စုအားလုံးကို မိမိ၏အကောင့်သို့ ပေါင်းထည့်ရန်',
 'listgrouprights-removegroup-self-all' => 'မိမိ၏အကောင့်မှ အုပ်စုအားလုံးကို ဖယ်ရှားရန်',
 
-# E-mail user
+# Email user
 'mailnologin' => 'ပို့ရန်လိပ်စာ မရှိပါ',
 'emailuser' => 'ဤ​အ​သုံး​ပြု​သူ​အား​အီး​မေး​ပို့​ပါ​',
 'emailpage' => 'အီးမေးအသုံးပြုသူ',
@@ -1707,7 +1699,7 @@ Your e-mail address is not revealed when other users contact you.
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'အကျယ်',
 'exif-imagelength' => 'အမြင့်',
 'exif-bitspersample' => 'အစိတ်အပိုင်းတစ်ခုတွင်ပါဝင်သော အပိုင်းငယ်များ',
@@ -1785,7 +1777,7 @@ Your e-mail address is not revealed when other users contact you.
 'monthsall' => 'အားလုံး',
 'limitall' => 'အားလုံး',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'အီးမေးကိုအတည်ပြုပါ',
 'confirmemail_send' => 'အတည်ပြုချက်ကုတ်ကို အီးမေးပို့ပေးရန်',
 
@@ -1836,11 +1828,6 @@ Your e-mail address is not revealed when other users contact you.
 'version-software' => 'သွင်းထားသော ဆော့ဝဲ',
 'version-software-product' => 'ထုတ်ကုန်',
 'version-software-version' => 'ဗားရှင်း',
-
-# Special:FilePath
-'filepath' => 'ဖိုင်လမ်းကြောင်း',
-'filepath-page' => 'ဖိုင်:',
-'filepath-submit' => 'သွား',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'နှစ်ခုထပ်နေသောဖိုင်များကို ရှာရန်',

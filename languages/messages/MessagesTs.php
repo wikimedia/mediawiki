@@ -38,8 +38,6 @@ $messages = array(
 'tog-enotifminoredits' => 'ndzurhumele e-mail loko ku endleka mindzulamiso leyi ntsongo',
 'tog-enotifrevealaddr' => 'Paluxa e-mail yamina eka mapapila lawa ndzimarhumelaka',
 'tog-shownumberswatching' => 'Komba ntsengo wa vatirhisi lava hlaleleke tluka',
-'tog-externaleditor' => 'Tirhisa xilulamisi xalehandle hikukongoma (Nhlawulo lowu i wavatirhisi lavangani ntokoto ntsena, wu lava ku cinca kokarhi eka khompuyuta yawena. [//www.mediawiki.org/wiki/Manual:External_editors vuxokoxoko hi mhakaleyi.])',
-'tog-externaldiff' => 'Tirhisa phurogiremi yalehandle hikukongoma (Nhlawulo lowu i wavatirhisi lavangani ntokoto ntsena, wu lava ku cinca kokarhi eka khompuyuta yawena. [//www.mediawiki.org/wiki/Manual:External_editors vuxokoxoko hi mhakaleyi.])',
 'tog-forceeditsummary' => 'Ndzivutisisi loko ndzinga hoxi nkomiso wa ndzulamiso lowu ndzi wu endleke',
 'tog-watchlisthideown' => 'Tumbeta mindzulamiso ya mina eka leswi ndzi swi languteke',
 'tog-watchlisthidebots' => 'Tumbeta mindzulamiso ya rhobhoti eka leswi ndzi swi languteke',
@@ -696,7 +694,7 @@ Nhlamuselo ya yona leyi nge ndzeni ka [$2 tluka ro hlamusela] hi yona leyi kombi
 # Special:ListGroupRights
 'listgrouprights-members' => '(nxaxamelo wa valandzeri)',
 
-# E-mail user
+# Email user
 'emailuser' => 'rhumela mutirhisi loyi E-mail',
 
 # Watchlist

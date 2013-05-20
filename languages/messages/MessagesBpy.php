@@ -76,8 +76,6 @@ $messages = array(
 'tog-shownumberswatching' => 'চাকুরার সংখ্যাহান দেহাদে',
 'tog-oldsig' => 'আগেত্তর আসে স্বাক্ষররহান:',
 'tog-fancysig' => 'স্বাক্ষরহানরে উইকিটেক্সট বুলিয়া নিংকর (নিজেত্ত লিঙ্ক নেইকরিয়া)',
-'tog-externaleditor' => 'অকরাতই বারেদের সম্পাদক ব্যবহার কর (হুদ্দা দক্ষ ব্যবহারকারীরকা, কম্পিউটারর মা বিশেষ সেটিংস দরকার। [//www.mediawiki.org/wiki/Manual:External_editors বিস্তারিত পৌ।])',
-'tog-externaldiff' => 'অকরাতই বারেদের সম্পাদক ব্যবহার কর (হুদ্দা দক্ষ ব্যবহারকারীরকা, কম্পিউটারর মা বিশেষ সেটিংস দরকার। [//www.mediawiki.org/wiki/Manual:External_editors বিস্তারিত পৌ।])',
 'tog-showjumplinks' => '"চঙদে" বুলতারা মিলাপর য়্যাথাঙদে',
 'tog-uselivepreview' => 'লগে লগে মিল্লেঙ আহান দেহাদে (জাভাস্ক্রিপ্ট) (লইনাসে)',
 'tog-forceeditsummary' => 'খালি পতা সারমর্ম হমিলে মরে হারপুৱাদে',
@@ -91,6 +89,7 @@ $messages = array(
 'tog-diffonly' => 'ফারাকর তলে পাতাহানর বিষয়বস্তু নাদেখাদি',
 'tog-showhiddencats' => 'আরুমে আসে থাকহানি ফংকর',
 'tog-norollbackdiff' => 'রোলব্যাকর পিসে ফারাক না দেখাদি',
+'tog-useeditwarning' => 'পতানির সময় ইতু নাকরিয়া বেলিয়া গেলেগা মরে সিঙকরেদিস',
 
 'underline-always' => 'হারি সময়',
 'underline-never' => 'সুপৌনা',
@@ -711,6 +710,8 @@ $2',
 'edit-conflict' => 'পতানিত বেসেপ ইসে',
 'edit-already-exists' => 'নুৱা পাতাহান হঙকরানি নাইল।
 পাতাএহান আগেত্তর আসে।',
+'editwarning-warning' => 'পাতা এহান বেলিয়া গেলেগা তি সিলকরিসত অতা মাঙুইতে পারে।
+তি লগইন করিসতগ ইলে, এরে সিঙকরানির পৌ এহান তর "পতানি" থাকেত্ত আরুম করানি পারর।',
 
 # Parser/template warnings
 'post-expand-template-inclusion-warning' => "'''সিঙুইস:''' টেমপ্লেটের ইনক্লুড অংতাহান ডাঙর অসে। টেমপ্লেট কতহান তিলকরানি নুওয়ারতে পারে।",
@@ -879,14 +880,6 @@ $2',
 'powersearch-toggleall' => 'হাব্বি',
 'powersearch-togglenone' => 'কিত্তাউ নেই',
 'search-external' => 'বারেদে বিসারা',
-
-# Quickbar
-'qbsettings' => 'কুইকবার',
-'qbsettings-none' => 'কিত্তাউ নেই',
-'qbsettings-fixedleft' => 'লেপ্পা বিঙ',
-'qbsettings-fixedright' => 'লেপ্পা বাত',
-'qbsettings-floatingleft' => 'বাহের বিঙ',
-'qbsettings-floatingright' => 'বাহের বাত',
 
 # Preferences page
 'preferences' => 'পছনহানি',
@@ -1675,11 +1668,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'version-software' => 'ইনস্টলঅসে সফটওয়্যার',
 'version-software-product' => 'পণ্য',
 'version-software-version' => 'সংস্করণ',
-
-# Special:FilePath
-'filepath' => 'ফাইলর পথহান:',
-'filepath-page' => 'ফাইল:',
-'filepath-submit' => 'পথ',
 
 # Special:SpecialPages
 'specialpages' => 'বিশেষ পাতাহানি',

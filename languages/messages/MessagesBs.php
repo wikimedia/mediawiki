@@ -2298,7 +2298,7 @@ Buduće promjene ove stranice i njoj pridružene stranice za razgovor će biti n
 'watchnochange' => 'Ništa što pratite nije promjenjeno u prikazanom vremenu.',
 'watchlist-details' => '{{PLURAL:$1|$1 stranica praćena|$1 stranice praćene|$1 stranica praćeno}} ne računajući stranice za razgovor.',
 'wlheader-enotif' => 'Obavještavanje e-poštom je omogućeno.',
-'wlheader-showupdated' => "Stranice koje su izmijenjene od kad ste ih posljednji put posjetili su prikazane '''podebljanim slovima'''.",
+'wlheader-showupdated' => "Stranice koje su izmijenjene od kad ste ih posljednji put posjetili su prikazane '''podebljanim slovima'''",
 'watchmethod-recent' => 'provjerava se da li ima praćenih stranica u nedavnim izmjenama',
 'watchmethod-list' => 'provjerava se da li ima nedavnih izmjena u praćenim stranicama',
 'watchlistcontains' => 'Vaš spisak praćenih članaka sadrži $1 {{PLURAL:$1|stranicu|stranica}}.',

@@ -2155,6 +2155,15 @@ Podržani {{PLURAL:$2|protokol|protokoli}}: <code>$1</code> (default je http:// 
 'listusers-noresult' => 'Nije pronađen korisnik.',
 'listusers-blocked' => '(blokiran)',
 
+# Special:ActiveUsers
+'activeusers' => 'Spisak aktivnih korisnika',
+'activeusers-intro' => 'Ovo je spisak korisnika koji su napravili neku aktivnost u {{PLURAL:$1|zadnji $1 dan|zadnja $1 dana|zadnjih $1 dana}}.',
+'activeusers-count' => '{{PLURAL:$1|$1 izmjena|$1 izmjene|$1 izmjena}} u {{PLURAL:$3|posljednji $3 dan|posljednja $3 dana|posljednjih $3 dana}}',
+'activeusers-from' => 'Prikaži korisnike koji počinju sa:',
+'activeusers-hidebots' => 'Sakrij botove',
+'activeusers-hidesysops' => 'Sakrij administratore',
+'activeusers-noresult' => 'Nije pronađen korisnik.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Prava korisničkih grupa',
 'listgrouprights-summary' => 'Slijedi spisak korisničkih grupa na ovoj wiki, s njihovim pravima pristupa.
@@ -2233,7 +2242,7 @@ Buduće promjene ove stranice i njoj pridružene stranice za razgovor će biti n
 'watchnochange' => 'Ništa što pratite nije promjenjeno u prikazanom vremenu.',
 'watchlist-details' => '{{PLURAL:$1|$1 stranica praćena|$1 stranice praćene|$1 stranica praćeno}} ne računajući stranice za razgovor.',
 'wlheader-enotif' => 'Obavještavanje e-poštom je omogućeno.',
-'wlheader-showupdated' => "Stranice koje su izmijenjene od kad ste ih posljednji put posjetili su prikazane '''podebljanim slovima'''.",
+'wlheader-showupdated' => "Stranice koje su izmijenjene od kad ste ih posljednji put posjetili su prikazane '''podebljanim slovima'''",
 'watchmethod-recent' => 'provjerava se da li ima praćenih stranica u nedavnim izmjenama',
 'watchmethod-list' => 'provjerava se da li ima nedavnih izmjena u praćenim stranicama',
 'watchlistcontains' => 'Vaš spisak praćenih članaka sadrži $1 {{PLURAL:$1|stranicu|stranica}}.',
@@ -3150,7 +3159,7 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Širina',
 'exif-imagelength' => 'Visina',
 'exif-bitspersample' => 'Bita po komponenti',
@@ -3330,7 +3339,7 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 'exif-originalimageheight' => 'Visina slike prije nego što je odrezana',
 'exif-originalimagewidth' => 'Širina slike prije nego što je odrezana',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Nekompresovano',
 'exif-compression-2' => 'CCITT Grupa 3 1 — Dimenzionalno izmijenjeo Huffmanovo šifriranje po dužini',
 'exif-compression-3' => 'CCITT Group 3 faks kodiranje',
@@ -3746,13 +3755,6 @@ Trebali biste dobiti [{{SERVER}}{{SCRIPTPATH}}/KOPIJU GNU opće javne licence] z
 'version-entrypoints' => 'URL adresa instalacije',
 'version-entrypoints-header-entrypoint' => 'Ulazna tačka',
 'version-entrypoints-header-url' => 'URL',
-
-# Special:FilePath
-'filepath' => 'Putanja datoteke',
-'filepath-page' => 'Datoteka:',
-'filepath-submit' => 'Idi',
-'filepath-summary' => 'Ova posebna stranica prikazuje potpunu putanju za datoteku.
-Slike su prikazane u punoj veličini, ostale vrste datoteka su prikazane direktno sa, s njima povezanim, programom.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Potraga za duplim datotekama',
