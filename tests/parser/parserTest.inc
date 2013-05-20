@@ -212,6 +212,61 @@ class ParserTest {
 			$wgStyleDirectory = "$IP/skins";
 		}
 
+		self::setupInterwikis();
+	}
+
+	/**
+	 * Insert hardcoded interwiki in the lookup table.
+	 *
+	 * This function insert a set of well known interwikis that are used in
+	 * the parser tests. They can be considered has fixtures are injected in
+	 * the interwiki cache by using the 'InterwikiLoadPrefix' hook.
+	 * Since we are not interested in looking up interwikis in the database,
+	 * the hook completely replace the existing mechanism (hook returns false).
+	 */
+	public static function setupInterwikis() {
+		# Hack: insert a few Wikipedia in-project interwiki prefixes,
+		# for testing inter-language links
+		Hooks::register( 'InterwikiLoadPrefix', function ( $prefix, &$iwData ) {
+			static $testInterwikis = array(
+				'wikipedia' => array(
+					'iw_url' => 'http://en.wikipedia.org/wiki/$1',
+					'iw_api' => '',
+					'iw_wikiid' => '',
+					'iw_local' => 0 ),
+				'meatball' => array(
+					'iw_url' => 'http://www.usemod.com/cgi-bin/mb.pl?$1',
+					'iw_api' => '',
+					'iw_wikiid' => '',
+					'iw_local' => 0 ),
+				'zh' => array(
+					'iw_url' => 'http://zh.wikipedia.org/wiki/$1',
+					'iw_api' => '',
+					'iw_wikiid' => '',
+					'iw_local' => 1 ),
+				'es' => array(
+					'iw_url' => 'http://es.wikipedia.org/wiki/$1',
+					'iw_api' => '',
+					'iw_wikiid' => '',
+					'iw_local' => 1 ),
+				'fr' => array(
+					'iw_url' => 'http://fr.wikipedia.org/wiki/$1',
+					'iw_api' => '',
+					'iw_wikiid' => '',
+					'iw_local' => 1 ),
+				'ru' => array(
+					'iw_url' => 'http://ru.wikipedia.org/wiki/$1',
+					'iw_api' => '',
+					'iw_wikiid' => '',
+					'iw_local' => 1 ),
+			);
+			if( array_key_exists( $prefix, $testInterwikis ) ) {
+				$iwData = $testInterwikis[$prefix];
+			}
+
+			// We only want to rely on the above fixtures
+			return false;
+		} );// hooks::register
 	}
 
 	public function setupRecorder( $options ) {
@@ -828,41 +883,6 @@ class ParserTest {
 				'user_id' => 0,
 				'user_name' => 'Anonymous' ) );
 		}
-
-		# Hack: insert a few Wikipedia in-project interwiki prefixes,
-		# for testing inter-language links
-		$this->db->insert( 'interwiki', array(
-			array( 'iw_prefix' => 'wikipedia',
-				'iw_url' => 'http://en.wikipedia.org/wiki/$1',
-				'iw_api' => '',
-				'iw_wikiid' => '',
-				'iw_local' => 0 ),
-			array( 'iw_prefix' => 'meatball',
-				'iw_url' => 'http://www.usemod.com/cgi-bin/mb.pl?$1',
-				'iw_api' => '',
-				'iw_wikiid' => '',
-				'iw_local' => 0 ),
-			array( 'iw_prefix' => 'zh',
-				'iw_url' => 'http://zh.wikipedia.org/wiki/$1',
-				'iw_api' => '',
-				'iw_wikiid' => '',
-				'iw_local' => 1 ),
-			array( 'iw_prefix' => 'es',
-				'iw_url' => 'http://es.wikipedia.org/wiki/$1',
-				'iw_api' => '',
-				'iw_wikiid' => '',
-				'iw_local' => 1 ),
-			array( 'iw_prefix' => 'fr',
-				'iw_url' => 'http://fr.wikipedia.org/wiki/$1',
-				'iw_api' => '',
-				'iw_wikiid' => '',
-				'iw_local' => 1 ),
-			array( 'iw_prefix' => 'ru',
-				'iw_url' => 'http://ru.wikipedia.org/wiki/$1',
-				'iw_api' => '',
-				'iw_wikiid' => '',
-				'iw_local' => 1 ),
-		) );
 
 		# Update certain things in site_stats
 		$this->db->insert( 'site_stats', array( 'ss_row_id' => 1, 'ss_images' => 2, 'ss_good_articles' => 1 ) );
