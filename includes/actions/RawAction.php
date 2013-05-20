@@ -48,7 +48,7 @@ class RawAction extends FormlessAction {
 	}
 
 	function onView() {
-		global $wgSquidMaxage, $wgForcedRawSMaxage, $wgJsMimeType;
+		global $wgSquidMaxage, $wgForcedRawSMaxage;
 
 		$this->getOutput()->disable();
 		$request = $this->getRequest();
@@ -79,7 +79,7 @@ class RawAction extends FormlessAction {
 
 		# Force caching for CSS and JS raw content, default: 5 minutes
 		if ( $smaxage === null ) {
-			if ( $contentType == 'text/css' || $contentType == $wgJsMimeType ) {
+			if ( $contentType == 'text/css' || $contentType == 'text/javascript' ) {
 				$smaxage = intval( $wgForcedRawSMaxage );
 			} else {
 				$smaxage = 0;
@@ -221,20 +221,18 @@ class RawAction extends FormlessAction {
 	 * @return String
 	 */
 	public function getContentType() {
-		global $wgJsMimeType;
-
 		$ctype = $this->getRequest()->getVal( 'ctype' );
 
 		if ( $ctype == '' ) {
 			$gen = $this->getRequest()->getVal( 'gen' );
 			if ( $gen == 'js' ) {
-				$ctype = $wgJsMimeType;
+				$ctype = 'text/javascript';
 			} elseif ( $gen == 'css' ) {
 				$ctype = 'text/css';
 			}
 		}
 
-		$allowedCTypes = array( 'text/x-wiki', $wgJsMimeType, 'text/css', 'application/x-zope-edit' );
+		$allowedCTypes = array( 'text/x-wiki', 'text/javascript', 'text/css', 'application/x-zope-edit' );
 		if ( $ctype == '' || !in_array( $ctype, $allowedCTypes ) ) {
 			$ctype = 'text/x-wiki';
 		}
