@@ -666,18 +666,28 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	 * @return array
 	 */
 	function getExtraOptions( $opts ) {
-		$opts->consumeValues( array(
-			'namespace', 'invert', 'associated', 'tagfilter', 'categories', 'categories_any'
-		) );
-
 		$extraOpts = array();
+
+		$opts->consumeValues( array( 'hideminor', 'hidebots', 'hideanons', 'hideliu', 'hidepatrolled', 'hidemyself' ) );
+		$extraOpts['show'] = $this->showFilterForm( $opts );
+
+		// Consume 'from' as it would otherwise overwrite 'days'
+		$opts->consumeValues( array( 'days', 'from' ) );
+		$extraOpts['showlast'] = $this->showlastFilterForm( $opts );
+
+		$opts->consumeValues( array( 'limit' ) );
+		$extraOpts['limit'] = $this->limitFilterForm( $opts );
+
+		$opts->consumeValues( array( 'namespace', 'invert', 'associated' ) );
 		$extraOpts['namespace'] = $this->namespaceFilterForm( $opts );
 
+		$opts->consumeValues( array( 'categories', 'categories_any' ) );
 		global $wgAllowCategorizedRecentChanges;
 		if ( $wgAllowCategorizedRecentChanges ) {
 			$extraOpts['category'] = $this->categoryFilterForm( $opts );
 		}
 
+		$opts->consumeValues( array( 'tagfilter' ) );
 		$tagFilter = ChangeTags::buildTagFilterSelector( $opts['tagfilter'] );
 		if ( count( $tagFilter ) ) {
 			$extraOpts['tagfilter'] = $tagFilter;
@@ -745,6 +755,99 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		);
 
 		return array( $nsLabel, "$nsSelect $invert $associated" );
+	}
+
+	/**
+	 * Creates the 'show bots/logged in/anons/...' checkboxes
+	 *
+	 * @param FormOptions $opts
+	 * @return string
+	 */
+	protected function showFilterForm( FormOptions $opts ) {
+		$user = $this->getUser();
+		$checkboxes = array();
+
+		$filters = array(
+			'hideminor' => 'rcshowhideminor',
+			'hidebots' => 'rcshowhidebots',
+			'hideanons' => 'rcshowhideanons',
+			'hideliu' => 'rcshowhideliu',
+			'hidepatrolled' => 'rcshowhidepatr',
+			'hidemyself' => 'rcshowhidemine',
+		);
+		foreach ( $this->getCustomFilters() as $key => $params ) {
+			$filters[$key] = $params['msg'];
+		}
+		// Disable some if needed
+		if ( !$user->useRCPatrol() ) {
+			unset( $filters['hidepatrolled'] );
+		}
+
+		foreach ( $filters as $key => $msg ) {
+			$checkboxes[] = Xml::checkLabel(
+				$this->msg( $msg )->text(),
+				$key,
+				"mw-recentchanges-showhide-$key",
+				$opts[$key]
+			);
+		}
+
+		return array(
+			$this->msg( 'rcshowhide' ),
+			implode( ' ', $checkboxes ),
+		);
+	}
+
+	/**
+	 * Creates the 'show last days' selector
+	 *
+	 * @param FormOptions $opts
+	 * @return string
+	 */
+	protected function showlastFilterForm( FormOptions $opts ) {
+		global $wgRCLinkDays;
+
+		$lang = $this->getLanguage();
+		$select = new XmlSelect( 'days', false, $opts['days'] );
+
+		foreach ( $wgRCLinkDays as $value ) {
+			// Language::formatTimePeriod provides no way to suppress minutes and seconds entirely...
+			// Assume we only get values which amount to full days or hours
+			if ( $value >= 1 ) {
+				$label = $this->msg( 'days', round( $value ) );
+			} else {
+				$label = $this->msg( 'hours', round( $value * 24 ) );
+			}
+			
+			$select->addOption( $label, $value );
+		}
+
+		return array(
+			Xml::label( $this->msg( 'rcshowlast' ), 'days' ),
+			$select->getHTML(),
+		);
+	}
+
+	/**
+	 * Creates the 'limit' selector
+	 *
+	 * @param FormOptions $opts
+	 * @return string
+	 */
+	protected function limitFilterForm( FormOptions $opts ) {
+		global $wgRCLinkLimits;
+
+		$lang = $this->getLanguage();
+		$select = new XmlSelect( 'limit', false, $opts['limit'] );
+
+		foreach ( $wgRCLinkLimits as $value ) {
+			$select->addOption( $lang->formatNum( $value ) , $value );
+		}
+
+		return array(
+			Xml::label( $this->msg( 'rclimit' ), 'limit' ),
+			$select->getHTML(),
+		);
 	}
 
 	/**
@@ -868,82 +971,31 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 
 		$options = $nondefaults + $defaults;
 
-		$note = '';
+		$output = array();
 		$msg = $this->msg( 'rclegend' );
 		if ( !$msg->isDisabled() ) {
-			$note .= '<div class="mw-rclegend">' . $msg->parse() . "</div>\n";
+			$output[] = '<div class="mw-rclegend">' . $msg->parse() . "</div>";
 		}
 
 		$lang = $this->getLanguage();
 		$user = $this->getUser();
 		if ( $options['from'] ) {
-			$note .= $this->msg( 'rcnotefrom' )->numParams( $options['limit'] )->params(
+			$output[] = $this->msg( 'rcnotefrom' )->numParams( $options['limit'] )->params(
 				$lang->userTimeAndDate( $options['from'], $user ),
 				$lang->userDate( $options['from'], $user ),
-				$lang->userTime( $options['from'], $user ) )->parse() . '<br />';
+				$lang->userTime( $options['from'], $user ) )->parseAsBlock();
 		}
 
-		# Sort data for display and make sure it's unique after we've added user data.
-		$wgRCLinkLimits[] = $options['limit'];
-		$wgRCLinkDays[] = $options['days'];
-		sort( $wgRCLinkLimits );
-		sort( $wgRCLinkDays );
-		$wgRCLinkLimits = array_unique( $wgRCLinkLimits );
-		$wgRCLinkDays = array_unique( $wgRCLinkDays );
-
-		// limit links
-		$cl = array();
-		foreach ( $wgRCLinkLimits as $value ) {
-			$cl[] = $this->makeOptionsLink( $lang->formatNum( $value ),
-				array( 'limit' => $value ), $nondefaults, $value == $options['limit'] );
-		}
-		$cl = $lang->pipeList( $cl );
-
-		// day links, reset 'from' to none
-		$dl = array();
-		foreach ( $wgRCLinkDays as $value ) {
-			$dl[] = $this->makeOptionsLink( $lang->formatNum( $value ),
-				array( 'days' => $value, 'from' => '' ), $nondefaults, $value == $options['days'] );
-		}
-		$dl = $lang->pipeList( $dl );
-
-		// show/hide links
-		$showhide = array( $this->msg( 'show' )->text(), $this->msg( 'hide' )->text() );
-		$filters = array(
-			'hideminor' => 'rcshowhideminor',
-			'hidebots' => 'rcshowhidebots',
-			'hideanons' => 'rcshowhideanons',
-			'hideliu' => 'rcshowhideliu',
-			'hidepatrolled' => 'rcshowhidepatr',
-			'hidemyself' => 'rcshowhidemine'
-		);
-		foreach ( $this->getCustomFilters() as $key => $params ) {
-			$filters[$key] = $params['msg'];
-		}
-		// Disable some if needed
-		if ( !$user->useRCPatrol() ) {
-			unset( $filters['hidepatrolled'] );
-		}
-
-		$links = array();
-		foreach ( $filters as $key => $msg ) {
-			$link = $this->makeOptionsLink( $showhide[1 - $options[$key]],
-				array( $key => 1 - $options[$key] ), $nondefaults );
-			$links[] = $this->msg( $msg )->rawParams( $link )->escaped();
-		}
-
-		// show from this onward link
+		// show "from now onward" link
 		$timestamp = wfTimestampNow();
 		$now = $lang->userTimeAndDate( $timestamp, $user );
 		$tl = $this->makeOptionsLink(
 			$now, array( 'from' => $timestamp ), $nondefaults
 		);
 
-		$rclinks = $this->msg( 'rclinks' )->rawParams( $cl, $dl, $lang->pipeList( $links ) )
-			->parse();
-		$rclistfrom = $this->msg( 'rclistfrom' )->rawParams( $tl )->parse();
+		$output[] = $this->msg( 'rclistfrom' )->rawParams( $tl )->parseAsBlock();
 
-		return "{$note}$rclinks<br />$rclistfrom";
+		return implode( "\n", $output );
 	}
 
 	/**
