@@ -129,6 +129,10 @@ production.
 * (bug 48294) API: Fix chunk upload async mode.
 
 === API changes in 1.22 ===
+* (bug 25553) The JSON output formatter now leaves forward slashes unescaped
+  to improve human readability of URLs and similar strings. Also, a "utf8"
+  option is now provided to use UTF-8 encoding instead of hex escape codes
+  for most non-ASCII characters.
 * (bug 46626) xmldoublequote parameter was removed. Because of a bug, the
   parameter has had no effect since MediaWiki 1.16, and so its removal is
   unlikely to impact existing clients.
@@ -163,6 +167,17 @@ changes to languages because of Bugzilla reports.
 * (bug 46751) Made Buryat (Russia) (буряад) (bxr) fallback to Russian.
 
 === Other changes in 1.22 ===
+* BREAKING CHANGE: Implementation of MediaWiki's JS and JSON value encoding
+  has changed:
+** MediaWiki no longer supports PHP installations in which the native JSON
+   extension is missing or disabled.
+** XmlJsCode objects can no longer be nested inside objects or arrays.
+   (For Xml::encodeJsCall(), this individually applies to each argument.)
+** The sets of characters escaped by default, along with the precise escape
+   sequences used, have changed (except for the Xml::escapeJsString()
+   function, which is now deprecated).
+* BREAKING CHANGE: The Services_JSON class has been removed. If necessary,
+  be sure to upgrade affected extensions at the same time (e.g. Collection).
 * redirect.php was removed. It was unused.
 * ClickTracking integration was dropped from the mediaWiki.user.bucket
   JavaScript function. The 'tracked' option is now ignored.

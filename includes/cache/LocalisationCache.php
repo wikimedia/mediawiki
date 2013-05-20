@@ -551,7 +551,7 @@ class LocalisationCache {
 	/**
 	 * Get the plural rule types for a given language from the XML files.
 	 * Cached.
-	 * @since 1.21
+	 * @since 1.22
 	 */
 	public function getPluralRuleTypes( $code ) {
 		if ( $this->pluralRuleTypes === null ) {

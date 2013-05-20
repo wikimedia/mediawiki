@@ -30,7 +30,7 @@ class FormatJson {
 	 * This encoding option saves 3 to 8 bytes (uncompressed) for each such character;
 	 * however, it could break compatibility with systems that incorrectly handle UTF-8.
 	 *
-	 * @since 1.21
+	 * @since 1.22
 	 */
 	const UTF8_OK = 1;
 
@@ -42,7 +42,7 @@ class FormatJson {
 	 * - HTML5, §4.3.1.2 Restrictions for contents of script elements
 	 * - XML 1.0 (5th Ed.), §2.4 Character Data and Markup
 	 *
-	 * @since 1.21
+	 * @since 1.22
 	 */
 	const XMLMETA_OK = 2;
 
@@ -51,7 +51,7 @@ class FormatJson {
 	 *
 	 * @warning When generating inline script blocks, use FormatJson::UTF8_OK instead.
 	 *
-	 * @since 1.21
+	 * @since 1.22
 	 */
 	const ALL_OK = 3;
 
@@ -80,7 +80,7 @@ class FormatJson {
 	 * @note Empty arrays are encoded as numeric arrays, not as objects, so cast any associative
 	 *       array that might be empty to an object before encoding it.
 	 *
-	 * @note In pre-1.21 versions of MediaWiki, using this function for generating inline script
+	 * @note In pre-1.22 versions of MediaWiki, using this function for generating inline script
 	 *       blocks may result in an XSS vulnerability, and quite likely will in XML documents
 	 *       (cf. FormatJson::XMLMETA_OK). Use Xml::encodeJsVar() instead in such cases.
 	 *

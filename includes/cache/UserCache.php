@@ -63,7 +63,7 @@ class UserCache {
 	 *
 	 * @param integer $userId
 	 * @param string $ip
-	 * @since 1.21
+	 * @since 1.22
 	 */
 	public function getUserName( $userId, $ip ) {
 		return $userId > 0 ? $this->getProp( $userId, 'name' ) : $ip;
