@@ -2214,14 +2214,14 @@ class WikiPage implements Page, IDBAccessObject {
 	 * This works for protection both existing and non-existing pages.
 	 *
 	 * @param array $limit set of restriction keys
-	 * @param $reason String
-	 * @param &$cascade Integer. Set to false if cascading protection isn't allowed.
 	 * @param array $expiry per restriction type expiration
-	 * @param $user User The user updating the restrictions
+	 * @param int &$cascade Set to false if cascading protection isn't allowed.
+	 * @param string $reason
+	 * @param User $user The user updating the restrictions
 	 * @return Status
 	 */
 	public function doUpdateRestrictions( array $limit, array $expiry, &$cascade, $reason, User $user ) {
-		global $wgContLang, $wgCascadingRestrictionLevels;
+		global $wgCascadingRestrictionLevels;
 
 		if ( wfReadOnly() ) {
 			return Status::newFatal( 'readonlytext', wfReadOnlyReason() );
@@ -2294,51 +2294,6 @@ class WikiPage implements Page, IDBAccessObject {
 			$logAction = 'protect';
 		}
 
-		$encodedExpiry = array();
-		$protectDescription = '';
-		# Some bots may parse IRC lines, which are generated from log entries which contain plain
-		# protect description text. Keep them in old format to avoid breaking compatibility.
-		# TODO: Fix protection log to store structured description and format it on-the-fly.
-		$protectDescriptionLog = '';
-		foreach ( $limit as $action => $restrictions ) {
-			$encodedExpiry[$action] = $dbw->encodeExpiry( $expiry[$action] );
-			if ( $restrictions != '' ) {
-				$protectDescriptionLog .= $wgContLang->getDirMark() . "[$action=$restrictions] (";
-				# $action is one of $wgRestrictionTypes = array( 'create', 'edit', 'move', 'upload' ).
-				# All possible message keys are listed here for easier grepping:
-				# * restriction-create
-				# * restriction-edit
-				# * restriction-move
-				# * restriction-upload
-				$actionText = wfMessage( 'restriction-' . $action )->inContentLanguage()->text();
-				# $restrictions is one of $wgRestrictionLevels = array( '', 'autoconfirmed', 'sysop' ),
-				# with '' filtered out. All possible message keys are listed below:
-				# * protect-level-autoconfirmed
-				# * protect-level-sysop
-				$restrictionsText = wfMessage( 'protect-level-' . $restrictions )->inContentLanguage()->text();
-				if ( $encodedExpiry[$action] != 'infinity' ) {
-					$expiryText = wfMessage(
-						'protect-expiring',
-						$wgContLang->timeanddate( $expiry[$action], false, false ),
-						$wgContLang->date( $expiry[$action], false, false ),
-						$wgContLang->time( $expiry[$action], false, false )
-					)->inContentLanguage()->text();
-				} else {
-					$expiryText = wfMessage( 'protect-expiry-indefinite' )
-						->inContentLanguage()->text();
-				}
-
-				if ( $protectDescription !== '' ) {
-					$protectDescription .= wfMessage( 'word-separator' )->inContentLanguage()->text();
-				}
-				$protectDescription .= wfMessage( 'protect-summary-desc' )
-					->params( $actionText, $restrictionsText, $expiryText )
-					->inContentLanguage()->text();
-				$protectDescriptionLog .= $expiryText . ') ';
-			}
-		}
-		$protectDescriptionLog = trim( $protectDescriptionLog );
-
 		if ( $id ) { // Protection of existing page
 			if ( !wfRunHooks( 'ArticleProtect', array( &$this, &$user, $limit, $reason ) ) ) {
 				return Status::newGood();
@@ -2366,7 +2321,7 @@ class WikiPage implements Page, IDBAccessObject {
 							'pr_type' => $action,
 							'pr_level' => $restrictions,
 							'pr_cascade' => ( $cascade && $action == 'edit' ) ? 1 : 0,
-							'pr_expiry' => $encodedExpiry[$action]
+							'pr_expiry' => $dbw->encodeExpiry( $expiry[$action] )
 						),
 						__METHOD__
 					);
@@ -2376,42 +2331,8 @@ class WikiPage implements Page, IDBAccessObject {
 				}
 			}
 
-			// Prepare a null revision to be added to the history
-			$editComment = $wgContLang->ucfirst(
-				wfMessage(
-					$revCommentMsg,
-					$this->mTitle->getPrefixedText()
-				)->inContentLanguage()->text()
-			);
-			if ( $reason ) {
-				$editComment .= wfMessage( 'colon-separator' )->inContentLanguage()->text() . $reason;
-			}
-			if ( $protectDescription ) {
-				$editComment .= wfMessage( 'word-separator' )->inContentLanguage()->text();
-				$editComment .= wfMessage( 'parentheses' )->params( $protectDescription )->inContentLanguage()->text();
-			}
-			if ( $cascade ) {
-				$editComment .= wfMessage( 'word-separator' )->inContentLanguage()->text();
-				$editComment .= wfMessage( 'brackets' )->params(
-					wfMessage( 'protect-summary-cascade' )->inContentLanguage()->text()
-				)->inContentLanguage()->text();
-			}
-
-			// Insert a null revision
-			$nullRevision = Revision::newNullRevision( $dbw, $id, $editComment, true );
-			$nullRevId = $nullRevision->insertOn( $dbw );
-
 			$latest = $this->getLatest();
-			// Update page record
-			$dbw->update( 'page',
-				array( /* SET */
-					'page_touched' => $dbw->timestamp(),
-					'page_restrictions' => '',
-					'page_latest' => $nullRevId
-				), array( /* WHERE */
-					'page_id' => $id
-				), __METHOD__
-			);
+			$nullRevision = $this->insertProtectNullRevision( $revCommentMsg, $limit, $expiry, $cascade, $reason, $user );
 
 			wfRunHooks( 'NewRevisionFromEditComplete', array( $this, $nullRevision, $latest, $user ) );
 			wfRunHooks( 'ArticleProtectComplete', array( &$this, &$user, $limit, $reason ) );
@@ -2427,7 +2348,7 @@ class WikiPage implements Page, IDBAccessObject {
 						'pt_title' => $this->mTitle->getDBkey(),
 						'pt_create_perm' => $limit['create'],
 						'pt_timestamp' => $dbw->encodeExpiry( wfTimestampNow() ),
-						'pt_expiry' => $encodedExpiry['create'],
+						'pt_expiry' => $dbw->encodeExpiry( $expiry['create'] ),
 						'pt_user' => $user->getId(),
 						'pt_reason' => $reason,
 					), __METHOD__
@@ -2446,16 +2367,148 @@ class WikiPage implements Page, IDBAccessObject {
 		InfoAction::invalidateCache( $this->mTitle );
 
 		if ( $logAction == 'unprotect' ) {
-			$logParams = array();
+			$params = array();
 		} else {
-			$logParams = array( $protectDescriptionLog, $cascade ? 'cascade' : '' );
+			$protectDescriptionLog = $this->protectDescriptionLog( $limit, $expiry );
+			$params = array( $protectDescriptionLog, $cascade ? 'cascade' : '' );
 		}
 
 		// Update the protection log
 		$log = new LogPage( 'protect' );
-		$log->addEntry( $logAction, $this->mTitle, trim( $reason ), $logParams, $user );
+		$log->addEntry( $logAction, $this->mTitle, trim( $reason ), $params, $user );
 
 		return Status::newGood();
+	}
+
+	/**
+	 * Insert a new null revision for this page
+	 *
+	 * @param string $revCommentMsg comment message key for the revision
+	 * @param array $limit set of restriction keys
+	 * @param array $expiry per restriction type expiration
+	 * @param $cascade Integer. Set to false if cascading protection isn't allowed.
+	 * @param $reason String
+	 * @param $user User The user updating the restrictions
+	 */
+	public function insertProtectNullRevision( $revCommentMsg, array $limit, array $expiry, $cascade, $reason, User $user ) {
+		global $wgContLang;
+		$dbw = wfGetDB( DB_MASTER );
+
+		// Prepare a null revision to be added to the history
+		$editComment = $wgContLang->ucfirst(
+			wfMessage(
+				$revCommentMsg,
+				$this->mTitle->getPrefixedText()
+			)->inContentLanguage()->text()
+		);
+		if ( $reason ) {
+			$editComment .= wfMessage( 'colon-separator' )->inContentLanguage()->text() . $reason;
+		}
+		$protectDescription = $this->protectDescription( $limit, $expiry );
+		if ( $protectDescription ) {
+			$editComment .= wfMessage( 'word-separator' )->inContentLanguage()->text();
+			$editComment .= wfMessage( 'parentheses' )->params( $protectDescription )->inContentLanguage()->text();
+		}
+		if ( $cascade ) {
+			$editComment .= wfMessage( 'word-separator' )->inContentLanguage()->text();
+			$editComment .= wfMessage( 'brackets' )->params(
+				wfMessage( 'protect-summary-cascade' )->inContentLanguage()->text()
+			)->inContentLanguage()->text();
+		}
+
+		$nullRev = Revision::newNullRevision( $dbw, $this->getId(), $editComment, true );
+		if ( $nullRev ) {
+			$nullRev->insertOn( $dbw );
+
+			// Update page record and touch page
+			$oldLatest = $nullRev->getParentId();
+			$this->updateRevisionOn( $dbw, $nullRev, $oldLatest );
+		}
+
+		return $nullRev;
+	}
+
+	/**
+	 * @param string $expiry 14-char timestamp or "infinity", or false if the input was invalid
+	 * @return string
+	 */
+	protected function formatExpiry( $expiry ) {
+		global $wgContLang;
+		$dbr = wfGetDB( DB_SLAVE );
+
+		$encodedExpiry = $dbr->encodeExpiry( $expiry );
+		if ( $encodedExpiry != 'infinity' ) {
+			return wfMessage(
+				'protect-expiring',
+				$wgContLang->timeanddate( $expiry, false, false ),
+				$wgContLang->date( $expiry, false, false ),
+				$wgContLang->time( $expiry, false, false )
+			)->inContentLanguage()->text();
+		} else {
+			return wfMessage( 'protect-expiry-indefinite' )
+				->inContentLanguage()->text();
+		}
+	}
+
+	/**
+	 * Builds the description to serve as comment for the edit.
+	 *
+	 * @param array $limit set of restriction keys
+	 * @param array $expiry per restriction type expiration
+	 * @return string
+	 */
+	public function protectDescription( array $limit, array $expiry ) {
+		$protectDescription = '';
+
+		foreach ( array_filter( $limit ) as $action => $restrictions ) {
+			# $action is one of $wgRestrictionTypes = array( 'create', 'edit', 'move', 'upload' ).
+			# All possible message keys are listed here for easier grepping:
+			# * restriction-create
+			# * restriction-edit
+			# * restriction-move
+			# * restriction-upload
+			$actionText = wfMessage( 'restriction-' . $action )->inContentLanguage()->text();
+			# $restrictions is one of $wgRestrictionLevels = array( '', 'autoconfirmed', 'sysop' ),
+			# with '' filtered out. All possible message keys are listed below:
+			# * protect-level-autoconfirmed
+			# * protect-level-sysop
+			$restrictionsText = wfMessage( 'protect-level-' . $restrictions )->inContentLanguage()->text();
+
+			$expiryText = $this->formatExpiry( $expiry[$action] );
+
+			if ( $protectDescription !== '' ) {
+				$protectDescription .= wfMessage( 'word-separator' )->inContentLanguage()->text();
+			}
+			$protectDescription .= wfMessage( 'protect-summary-desc' )
+				->params( $actionText, $restrictionsText, $expiryText )
+				->inContentLanguage()->text();
+		}
+
+		return $protectDescription;
+	}
+
+	/**
+	 * Builds the description to serve as comment for the log entry.
+	 *
+	 * Some bots may parse IRC lines, which are generated from log entries which contain plain
+	 * protect description text. Keep them in old format to avoid breaking compatibility.
+	 * TODO: Fix protection log to store structured description and format it on-the-fly.
+	 *
+	 * @param array $limit set of restriction keys
+	 * @param array $expiry per restriction type expiration
+	 * @return string
+	 */
+	public function protectDescriptionLog( array $limit, array $expiry ) {
+		global $wgContLang;
+
+		$protectDescriptionLog = '';
+
+		foreach ( array_filter( $limit ) as $action => $restrictions ) {
+			$expiryText = $this->formatExpiry( $expiry[$action] );
+			$protectDescriptionLog .= $wgContLang->getDirMark() . "[$action=$restrictions] ($expiryText)";
+		}
+
+		return trim( $protectDescriptionLog );
 	}
 
 	/**
@@ -2473,10 +2526,8 @@ class WikiPage implements Page, IDBAccessObject {
 		$bits = array();
 		ksort( $limit );
 
-		foreach ( $limit as $action => $restrictions ) {
-			if ( $restrictions != '' ) {
-				$bits[] = "$action=$restrictions";
-			}
+		foreach ( array_filter( $limit ) as $action => $restrictions ) {
+			$bits[] = "$action=$restrictions";
 		}
 
 		return implode( ':', $bits );
