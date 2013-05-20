@@ -59,6 +59,9 @@ class PHPUnitMaintClass extends Maintenance {
 				return false;
 			}
 		);
+
+		# Mock the LinkCache to no more rely on a database backend
+		LinkCache::setSingleton( new MockLinkCache() );
 	}
 
 	public function execute() {
