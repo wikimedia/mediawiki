@@ -1412,7 +1412,7 @@ Eger siz bul betti baqlaw dizimin'izden o'shirmekshi bolsan'ız bettin' joqarg'�
 'notanarticle' => "Mag'lıwmat beti emes",
 'notvisiblerev' => "Nusqa o'shirildi",
 'watchlist-details' => "Baqlaw dizimin'izde (sa'wbet betlerin esapqa almag'anda) {{PLURAL:$1|1 bet|$1 bet}} bar.",
-'wlheader-enotif' => "* E-mail arqalı eskertiw qosılg'an.",
+'wlheader-enotif' => "E-mail arqalı eskertiw qosılg'an.",
 'watchlistcontains' => "Sizin' baqlaw dizimin'izde {{PLURAL:$1|1 bet|$1 bet}} bar.",
 'wlnote' => "To'mende aqırg'ı {{PLURAL:$2|saattag'ı|'''$2''' saattag'ı}} {{PLURAL:$1|aqırg'ı o'zgeris bar|aqırg'ı '''$1''' o'zgeris bar}}.",
 'wlshowlast' => "Aqırg'ı $1 saat, $2 ku'n, $3 ko'rset",

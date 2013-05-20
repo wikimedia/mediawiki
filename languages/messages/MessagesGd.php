@@ -1328,7 +1328,7 @@ Nochdaidh mùthaidhean a nithear air an duilleag seo \'s air an duilleag deasbai
 'notanarticle' => 'Chan e duilleag susbaint a tha ann',
 'watchnochange' => "Cha deach na duilleagan air d' fhaire a dheasachadh anns a' chuairt ùine taisbeanta.",
 'watchlist-details' => 'Tha {{PLURAL:$1|$1 duilleag|$1 dhuilleag|$1 duilleagan|$1 duilleag}} air do chlàr-faire, gun luaidh air na duilleagan deasbaireachd.',
-'wlheader-showupdated' => "* Tha clò '''trom''' air duilleagan a chaidh atharrachadh on turas mu dheireadh a thadhail thu orra.",
+'wlheader-showupdated' => "Tha clò '''trom''' air duilleagan a chaidh atharrachadh on turas mu dheireadh a thadhail thu orra.",
 'watchmethod-recent' => "A' sgrùdadh deasachaidhean ùra airson duilleagan air d' fhaire",
 'watchmethod-list' => "A' sgrùdadh duilleagan air d' fhaire airson deasachaidhean ùra",
 'watchlistcontains' => 'Tha $1 {{PLURAL:$1|duilleag|dhuilleag|duilleagan|duilleag}} air do chlàr-faire.',

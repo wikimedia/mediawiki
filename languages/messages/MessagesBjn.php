@@ -2120,7 +2120,7 @@ Paubahan-paubahan salanjutnya pada tungkaran ngini dan tungkaran pamandiran tara
 'watchnochange' => 'Kadada nang Pian itihi dibabak parhatan jangka wayah ngitu.',
 'watchlist-details' => '{{PLURAL:$1|$1 tungkaran|$1 tungkaran}} dalam daptar itihan Pian, kada mahitung tungkaran pamandiran.',
 'wlheader-enotif' => 'Suril pamadahan dipajahi.',
-'wlheader-showupdated' => "* Tutungkaran nang ba-ubah tumatan ilangan tauncit Pian ditampaiakan dalam '''hurup kandal'''",
+'wlheader-showupdated' => "Tutungkaran nang ba-ubah tumatan ilangan tauncit Pian ditampaiakan dalam '''hurup kandal'''.",
 'watchmethod-recent' => 'pariksa bababakan pahanyarnya gasan tungkaran nang diitihi.',
 'watchmethod-list' => 'pariksa tutungkaran nang diitihi gasan bababakan pahanyarnya',
 'watchlistcontains' => 'Paitihan Pian mangandung $1 {{PLURAL:$1|tungkaran|tutungkaran}}.',

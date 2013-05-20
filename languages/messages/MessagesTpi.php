@@ -643,7 +643,7 @@ Sapos yu laik rausim dispela pes long lukautbuk bilong yu bihain, paitim \"Pinis
 'unwatch' => 'Pinis long lukautim',
 'unwatchthispage' => 'Pinis long lukautim',
 'watchlist-details' => '$1 pes istap long lukautbuk (dispela namba i no kaunim ol pes bilong toktok).',
-'wlheader-showupdated' => "* Ol pes i senis pinis bihain long taim yu lukim ol igat nem i '''strongpela'''",
+'wlheader-showupdated' => "Ol pes i senis pinis bihain long taim yu lukim ol igat nem i '''strongpela'''.",
 'wlshowlast' => 'Lukim dispela $1 aua $2 de $3',
 'watchlist-options' => 'Ol laik bilong Lukautbuk',
 

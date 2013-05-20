@@ -241,26 +241,35 @@ class SpecialWatchlist extends SpecialPage {
 		}
 
 		# Create output form
-		$form = Xml::fieldset( $this->msg( 'watchlist-options' )->text(), false, array( 'id' => 'mw-watchlist-options' ) );
+		$form = Xml::fieldset(
+			$this->msg( 'watchlist-options' )->text(),
+			false,
+			array( 'id' => 'mw-watchlist-options' )
+		);
 
 		# Show watchlist header
+		$form .= "<p>";
 		$form .= $this->msg( 'watchlist-details' )->numParams( $nitems )->parse() . "\n";
-
-		if ( $user->getOption( 'enotifwatchlistpages' ) && $wgEnotifWatchlist ) {
-			$form .= $this->msg( 'wlheader-enotif' )->parseAsBlock() . "\n";
+		if ( $wgEnotifWatchlist && $user->getOption( 'enotifwatchlistpages' ) ) {
+			$form .= $this->msg( 'wlheader-enotif' )->parse() . "\n";
 		}
 		if ( $wgShowUpdatedMarker ) {
-			$form .= Xml::openElement( 'form', array( 'method' => 'post',
-						'action' => $this->getTitle()->getLocalURL(),
-						'id' => 'mw-watchlist-resetbutton' ) ) . "\n" .
-					$this->msg( 'wlheader-showupdated' )->parse() .
-					Xml::submitButton( $this->msg( 'enotif_reset' )->text(), array( 'name' => 'dummy' ) ) . "\n" .
-					Html::hidden( 'reset', 'all' ) . "\n";
-					foreach ( $nondefaults as $key => $value ) {
-						$form .= Html::hidden( $key, $value ) . "\n";
-					}
-					$form .= Xml::closeElement( 'form' ) . "\n";
+			$form .= $this->msg( 'wlheader-showupdated' )->parse() . "\n";
 		}
+		$form .= "</p>";
+
+		if ( $wgShowUpdatedMarker ) {
+			$form .= Xml::openElement( 'form', array( 'method' => 'post',
+				'action' => $this->getTitle()->getLocalURL(),
+				'id' => 'mw-watchlist-resetbutton' ) ) . "\n" .
+			Xml::submitButton( $this->msg( 'enotif_reset' )->text(), array( 'name' => 'dummy' ) ) . "\n" .
+			Html::hidden( 'reset', 'all' ) . "\n";
+			foreach ( $nondefaults as $key => $value ) {
+				$form .= Html::hidden( $key, $value ) . "\n";
+			}
+			$form .= Xml::closeElement( 'form' ) . "\n";
+		}
+
 		$form .= "<hr />\n";
 
 		$tables = array( 'recentchanges', 'watchlist' );
