@@ -253,7 +253,7 @@
 		 * Returns null if not found.
 		 *
 		 * @param {string} param The parameter name.
-		 * @param {string} [url] URL to search through.
+		 * @param {string} [url=document.location.href] URL to search through, defaulting to the current document's URL.
 		 * @return {Mixed} Parameter value or null.
 		 */
 		getParamValue: function ( param, url ) {
