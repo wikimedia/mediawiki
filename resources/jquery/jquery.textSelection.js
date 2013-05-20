@@ -29,7 +29,7 @@
 			context,
 			hasIframe,
 			needSave,
-			retval;
+			result;
 
 		/**
 		 * Helper function to get an IE TextRange object for an element
@@ -69,27 +69,27 @@
 			 * in some browsers (IE/Opera)
 			 */
 			getSelection: function () {
-				var retval, range,
+				var result, range,
 					el = this.get( 0 );
 
 				if ( $(el).is( ':hidden' ) ) {
 					// Do nothing
-					retval = '';
+					result = '';
 				} else if ( document.selection && document.selection.createRange ) {
 					activateElementOnIE( el );
 					range = document.selection.createRange();
-					retval = range.text;
+					result = range.text;
 				} else if ( el.selectionStart || el.selectionStart === 0 ) {
-					retval = el.value.substring( el.selectionStart, el.selectionEnd );
+					result = el.value.substring( el.selectionStart, el.selectionEnd );
 				}
 
-				return retval;
+				return result;
 			},
 			/**
 			 * Ported from skins/common/edit.js by Trevor Parscal
 			 * (c) 2009 Wikimedia Foundation (GPLv2) - http://www.wikimedia.org
 			 *
-			 * Inserts text at the begining and end of a text selection, optionally
+			 * Inserts text at the beginning and end of a text selection, optionally
 			 * inserting text at the caret when selection is empty.
 			 *
 			 * @fixme document the options parameters
@@ -257,7 +257,7 @@
 			 * Some code copied from
 			 * http://www.dedestruct.com/2008/03/22/howto-cross-browser-cursor-position-in-textareas/
 			 *
-			 * Get the position (in resolution of bytes not nessecarily characters)
+			 * Get the position (in resolution of bytes not necessarily characters)
 			 * in a textarea
 			 *
 			 * Will focus the textarea in some browsers (IE/Opera)
@@ -562,12 +562,12 @@
 			context.fn.restoreSelection();
 			needSave = true;
 		}
-		retval = ( hasIframe ? context.fn : fn )[command].call( this, options );
+		result = ( hasIframe ? context.fn : fn )[command].call( this, options );
 		if ( hasIframe && needSave ) {
 			context.fn.saveSelection();
 		}
 
-		return retval;
+		return result;
 	};
 
 }( jQuery ) );
