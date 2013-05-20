@@ -19,7 +19,9 @@
 		 * @return {jQuery.Promise} See #post
 		 */
 		postWithEditToken: function ( params, ok, err ) {
-			var useTokenToPost, getTokenIfBad,
+			var api = this;
+			api.postWithToken( 'edit', params );
+			/*var useTokenToPost, getTokenIfBad,
 				api = this;
 			if ( cachedToken === null ) {
 				// We don't have a valid cached token, so get a fresh one and try posting.
@@ -43,8 +45,10 @@
 						err( code, result );
 					}
 				};
+
 				return api.post( params, { ok: ok, err: getTokenIfBad } );
-			}
+
+			}*/
 		},
 
 		/**
@@ -57,7 +61,9 @@
 		 * @return {string} return.done.token Received token.
 		 */
 		getEditToken: function ( ok, err ) {
-			var d = $.Deferred(),
+			var api = this;
+			api.getToken( 'edit' );
+			/*var d = $.Deferred(),
 				apiPromise;
 
 			// Backwards compatibility (< MW 1.20)
@@ -88,7 +94,7 @@
 				} )
 				.fail( d.reject );
 
-			return d.promise( { abort: apiPromise.abort } );
+			return d.promise( { abort: apiPromise.abort } );*/
 		},
 
 		/**
