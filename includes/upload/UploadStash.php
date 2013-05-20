@@ -393,6 +393,7 @@ class UploadStash {
 	 * uploads versus the desired filename. Maybe we can get that passed to us...
 	 */
 	public static function getExtensionForPath( $path ) {
+		global $wgFileBlacklist;
 		// Does this have an extension?
 		$n = strrpos( $path, '.' );
 		$extension = null;
@@ -412,7 +413,15 @@ class UploadStash {
 			throw new UploadStashFileException( "extension is null" );
 		}
 
-		return File::normalizeExtension( $extension );
+		$extension = File::normalizeExtension( $extension );
+		if ( in_array( $extension, $wgFileBlacklist ) ) {
+			// The file should already be checked for being evil.
+			// However, if somehow we got here, we definitely
+			// don't want to give it an extension of .php and
+			// put it in a web accesible directory.
+			return '';
+		}
+		return $extension;
 	}
 
 	/**
