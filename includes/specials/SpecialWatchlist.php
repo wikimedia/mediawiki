@@ -245,12 +245,8 @@ class SpecialWatchlist extends SpecialPage {
 			$output->showLagWarning( $lag );
 		}
 
-		# Create output form
-		$form = Xml::fieldset(
-			$this->msg( 'watchlist-options' )->text(),
-			false,
-			array( 'id' => 'mw-watchlist-options' )
-		);
+		# Create output
+		$form = "";
 
 		# Show watchlist header
 		$form .= "<p>";
@@ -275,7 +271,16 @@ class SpecialWatchlist extends SpecialPage {
 			$form .= Xml::closeElement( 'form' ) . "\n";
 		}
 
-		$form .= "<hr />\n";
+		$form .= Xml::openElement( 'form', array(
+			'method' => 'post',
+			'action' => $this->getTitle()->getLocalURL(),
+		'id' => 'mw-watchlist-form' )
+		);
+		$form .= Xml::fieldset(
+			$this->msg( 'watchlist-options' )->text(),
+			false,
+			array( 'id' => 'mw-watchlist-options' )
+		);
 
 		$tables = array( 'recentchanges', 'watchlist' );
 		$fields = RecentChange::selectFields();
@@ -386,8 +391,8 @@ class SpecialWatchlist extends SpecialPage {
 		foreach ( $hiddenFields as $key => $value ) {
 			$form .= Html::hidden( $key, $value ) . "\n";
 		}
-		$form .= Xml::closeElement( 'form' ) . "\n";
 		$form .= Xml::closeElement( 'fieldset' ) . "\n";
+		$form .= Xml::closeElement( 'form' ) . "\n";
 		$output->addHTML( $form );
 
 		# If there's nothing to show, stop here
