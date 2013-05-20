@@ -980,7 +980,7 @@ abstract class FormSpecialPage extends SpecialPage {
 		$form->setWrapperLegendMsg( $this->getMessagePrefix() . '-legend' );
 
 		$headerMsg = $this->msg( $this->getMessagePrefix() . '-text' );
-		if ( !$headerMsg->disabled() ) {
+		if ( !$headerMsg->isDisabled() ) {
 			$form->addHeaderText( $headerMsg->parseAsBlock() );
 		}
 
