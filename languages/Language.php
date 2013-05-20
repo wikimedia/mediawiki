@@ -2251,7 +2251,7 @@ class Language {
 	 * @param MWTimestamp $relativeTo Base timestamp
 	 * @param User $user User preferences to use
 	 * @return string Human timestamp
-	 * @since 1.21
+	 * @since 1.22
 	 */
 	public function getHumanTimestamp( MWTimestamp $ts, MWTimestamp $relativeTo, User $user ) {
 		$diff = $ts->diff( $relativeTo );
@@ -4504,7 +4504,7 @@ class Language {
 
 	/**
 	 * Get the plural rule types for the language
-	 * @since 1.21
+	 * @since 1.22
 	 * @return array Associative array with plural form number and plural rule type as key-value pairs
 	 */
 	public function getPluralRuleTypes() {
@@ -4535,7 +4535,7 @@ class Language {
 	 * Find the plural rule type appropriate for the given number
 	 * For example, if the language is set to Arabic, getPluralType(5) should
 	 * return 'few'.
-	 * @since 1.21
+	 * @since 1.22
 	 * @return string The name of the plural rule type, e.g. one, two, few, many
 	 */
 	public function getPluralRuleType( $number ) {

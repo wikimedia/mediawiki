@@ -1092,7 +1092,7 @@ class Block {
 	 * @param Bool $isAnon Exclude anonymous-only blocks if false
 	 * @param Bool $fromMaster Whether to query the master or slave database
 	 * @return Array of Blocks
-	 * @since 1.21
+	 * @since 1.22
 	 */
 	public static function getBlocksForIPList( array $ipChain, $isAnon, $fromMaster = false ) {
 		if ( !count( $ipChain ) ) {
