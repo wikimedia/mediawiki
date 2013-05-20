@@ -2967,6 +2967,7 @@ See also:
 {{Identical|Recent changes}}',
 'recentchanges-legend' => 'Legend of the fieldset of [[Special:RecentChanges]]',
 'recentchanges-summary' => 'Summary of [[Special:RecentChanges]].',
+'recentchanges-noresult' => 'Used in [[Special:RecentChanges]], [[Special:RecentChangesLinked]], and [[Special:Watchlist]] when there are no changes to be shown.',
 'recentchanges-feed-description' => 'Used in feed of RecentChanges. See example [{{canonicalurl:Special:RecentChanges|feed=atom}} feed].',
 'recentchanges-label-newpage' => 'Tooltip for {{msg-mw|newpageletter}}',
 'recentchanges-label-minor' => 'Tooltip for {{msg-mw|minoreditletter}}',
@@ -3065,7 +3066,6 @@ This message is followed by {{msg-mw|Recentchangeslinked-feed}}.
 
 Parameters:
 * \$1 - the name of the page for which related changes are shown",
-'recentchangeslinked-noresult' => 'Used in [[Special:RecentChangesLinked]], when there are no changes.',
 'recentchangeslinked-summary' => 'Summary of [[Special:RecentChangesLinked]].',
 'recentchangeslinked-page' => '{{Identical|Page name}}',
 'recentchangeslinked-to' => 'Checkbox in [[Special:RecentChangesLinked]].',
@@ -4502,7 +4502,6 @@ Possible alternatives to the word 'content' are 'subject matter' or 'wiki subjec
 
 See also:
 * {{msg-mw|Cantrollback}}',
-'watchnochange' => 'Used in [[Special:Watchlist]] if there is nothing to show.',
 'watchlist-details' => 'Message at the top of [[Special:Watchlist]]. Has to be a full sentence. Parameters:
 * $1 - number of pages in your watchlist
 This is paired with the message {{msg-mw|Nowatchlist}} which appears instead of Watchlist-details when $1 is 0.

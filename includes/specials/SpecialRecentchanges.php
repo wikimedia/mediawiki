@@ -516,45 +516,51 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		$counter = 1;
 		$list = ChangesList::newFromContext( $this->getContext() );
 
-		$s = $list->beginRecentChangesList();
-		foreach ( $rows as $obj ) {
-			if ( $limit == 0 ) {
-				break;
-			}
-			$rc = RecentChange::newFromRow( $obj );
-			$rc->counter = $counter++;
-			# Check if the page has been updated since the last visit
-			if ( $wgShowUpdatedMarker && !empty( $obj->wl_notificationtimestamp ) ) {
-				$rc->notificationtimestamp = ( $obj->rc_timestamp >= $obj->wl_notificationtimestamp );
-			} else {
-				$rc->notificationtimestamp = false; // Default
-			}
-			# Check the number of users watching the page
-			$rc->numberofWatchingusers = 0; // Default
-			if ( $showWatcherCount && $obj->rc_namespace >= 0 ) {
-				if ( !isset( $watcherCache[$obj->rc_namespace][$obj->rc_title] ) ) {
-					$watcherCache[$obj->rc_namespace][$obj->rc_title] =
-						$dbr->selectField(
-							'watchlist',
-							'COUNT(*)',
-							array(
-								'wl_namespace' => $obj->rc_namespace,
-								'wl_title' => $obj->rc_title,
-							),
-							__METHOD__ . '-watchers'
-						);
+		if ( $rows ) {
+			$s = $list->beginRecentChangesList();
+			foreach ( $rows as $obj ) {
+				if ( $limit == 0 ) {
+					break;
 				}
-				$rc->numberofWatchingusers = $watcherCache[$obj->rc_namespace][$obj->rc_title];
-			}
+				$rc = RecentChange::newFromRow( $obj );
+				$rc->counter = $counter++;
+				# Check if the page has been updated since the last visit
+				if ( $wgShowUpdatedMarker && !empty( $obj->wl_notificationtimestamp ) ) {
+					$rc->notificationtimestamp = ( $obj->rc_timestamp >= $obj->wl_notificationtimestamp );
+				} else {
+					$rc->notificationtimestamp = false; // Default
+				}
+				# Check the number of users watching the page
+				$rc->numberofWatchingusers = 0; // Default
+				if ( $showWatcherCount && $obj->rc_namespace >= 0 ) {
+					if ( !isset( $watcherCache[$obj->rc_namespace][$obj->rc_title] ) ) {
+						$watcherCache[$obj->rc_namespace][$obj->rc_title] =
+							$dbr->selectField(
+								'watchlist',
+								'COUNT(*)',
+								array(
+									'wl_namespace' => $obj->rc_namespace,
+									'wl_title' => $obj->rc_title,
+								),
+								__METHOD__ . '-watchers'
+							);
+					}
+					$rc->numberofWatchingusers = $watcherCache[$obj->rc_namespace][$obj->rc_title];
+				}
 
-			$changeLine = $list->recentChangesLine( $rc, !empty( $obj->wl_user ), $counter );
-			if ( $changeLine !== false ) {
-				$s .= $changeLine;
-				--$limit;
+				$changeLine = $list->recentChangesLine( $rc, !empty( $obj->wl_user ), $counter );
+				if ( $changeLine !== false ) {
+					$s .= $changeLine;
+					--$limit;
+				}
 			}
+			$s .= $list->endRecentChangesList();
+			$this->getOutput()->addHTML( $s );
+		} else {
+			$this->getOutput()->wrapWikiMsg(
+				"<div class='mw-changeslist-empty'>\n$1\n</div>", 'recentchanges-noresult'
+			);
 		}
-		$s .= $list->endRecentChangesList();
-		$this->getOutput()->addHTML( $s );
 	}
 
 	/**
@@ -707,8 +713,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	}
 
 	/**
-	 * Send the text to be displayed after the options, for use in
-	 * Recentchangeslinked
+	 * Send the text to be displayed after the options, for use in subclasses.
 	 *
 	 * @param FormOptions $opts
 	 */

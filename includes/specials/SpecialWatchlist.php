@@ -386,7 +386,9 @@ class SpecialWatchlist extends SpecialPage {
 
 		# If there's nothing to show, stop here
 		if ( $numRows == 0 ) {
-			$output->addWikiMsg( 'watchnochange' );
+			$output->wrapWikiMsg(
+				"<div class='mw-changeslist-empty'>\n$1\n</div>", 'recentchanges-noresult'
+			);
 			return;
 		}
 
