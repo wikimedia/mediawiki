@@ -301,6 +301,8 @@ abstract class UploadBase {
 	/**
 	 * Verify the mime type
 	 *
+	 * @note Only checks that it is not an evil mime. The does it have
+	 *  correct extension given its mime type check is in verifyFile.
 	 * @param $mime string representing the mime
 	 * @return mixed true if the file is verified, an array otherwise
 	 */
@@ -311,11 +313,6 @@ abstract class UploadBase {
 			global $wgMimeTypeBlacklist;
 			if ( $this->checkFileExtension( $mime, $wgMimeTypeBlacklist ) ) {
 				return array( 'filetype-badmime', $mime );
-			}
-
-			# XXX: Missing extension will be caught by validateName() via getTitle()
-			if ( $this->mFinalExtension != '' && !$this->verifyExtension( $mime, $this->mFinalExtension ) ) {
-				return array( 'filetype-mime-mismatch', $this->mFinalExtension, $mime );
 			}
 
 			# Check IE type
@@ -342,6 +339,56 @@ abstract class UploadBase {
 	 * @return mixed true of the file is verified, array otherwise.
 	 */
 	protected function verifyFile() {
+		global $wgVerifyMimeType;
+		wfProfileIn( __METHOD__ );
+
+		$status = $this->verifyPartialFile();
+		if ( $status !== true ) {
+			wfProfileOut( __METHOD__ );
+			return $status;
+		}
+
+		if ( $wgVerifyMimeType ) {
+			$this->mFileProps = FSFile::getPropsFromPath( $this->mTempPath, $this->mFinalExtension );
+			$mime = $this->mFileProps['file-mime'];
+
+			# XXX: Missing extension will be caught by validateName() via getTitle()
+			if ( $this->mFinalExtension != '' && !$this->verifyExtension( $mime, $this->mFinalExtension ) ) {
+				wfProfileOut( __METHOD__ );
+				return array( 'filetype-mime-mismatch', $this->mFinalExtension, $mime );
+			}
+		}
+
+		$handler = MediaHandler::getHandler( $mime );
+		if ( $handler ) {
+			$handlerStatus = $handler->verifyUpload( $this->mTempPath );
+			if ( !$handlerStatus->isOK() ) {
+				$errors = $handlerStatus->getErrorsArray();
+				wfProfileOut( __METHOD__ );
+				return reset( $errors );
+			}
+		}
+
+		wfRunHooks( 'UploadVerifyFile', array( $this, $mime, &$status ) );
+		if ( $status !== true ) {
+			wfProfileOut( __METHOD__ );
+			return $status;
+		}
+
+		wfDebug( __METHOD__ . ": all clear; passing.\n" );
+		wfProfileOut( __METHOD__ );
+		return true;
+	}
+
+	/**
+	 * A verification routine suitable for partial files
+	 *
+	 * Runs the blacklist checks, but not any checks that may
+	 * assume the entire file is present.
+	 *
+	 * @return Mixed true for valid or array with error message key.
+	 */
+	protected function verifyPartialFile() {
 		global $wgAllowJavaUploads, $wgDisableUploadScriptChecks;
 		# get the title, even though we are doing nothing with it, because
 		# we need to populate mFinalExtension
@@ -392,21 +439,6 @@ abstract class UploadBase {
 			return array( 'uploadvirus', $virus );
 		}
 
-		$handler = MediaHandler::getHandler( $mime );
-		if ( $handler ) {
-			$handlerStatus = $handler->verifyUpload( $this->mTempPath );
-			if ( !$handlerStatus->isOK() ) {
-				$errors = $handlerStatus->getErrorsArray();
-				return reset( $errors );
-			}
-		}
-
-		wfRunHooks( 'UploadVerifyFile', array( $this, $mime, &$status ) );
-		if ( $status !== true ) {
-			return $status;
-		}
-
-		wfDebug( __METHOD__ . ": all clear; passing.\n" );
 		return true;
 	}
 
