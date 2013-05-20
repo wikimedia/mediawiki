@@ -5,9 +5,7 @@
  * Copyright © 2013, Antoine Musso
  * Copyright © 2013, Wikimedia Foundation Inc.
  *
- */
-
-/**
+ * @group Database
  * @covers SpecialPreferences
  */
 class SpecialPreferencesTest extends MediaWikiTestCase {
