@@ -3,7 +3,7 @@
 class SeleniumTestHTMLLogger {
 	public function setHeaders() {
 		global $wgOut;
-		$wgOut->addHeadItem( 'selenium', '<style type="text/css">
+		$wgOut->addHeadItem( 'selenium', '<style>
 		.selenium pre {
 			overflow-x: auto; /* Use horizontal scroller if needed; for Firefox 2, not needed in Firefox 3 */
 			white-space: pre-wrap; /* css-3 */
