@@ -1876,9 +1876,10 @@ $article: the title being (un)protected
 $output: a string of the form HTML so far
 
 'ProtectionForm::save': Called when a protection form is submitted.
-$article: the title being (un)protected
-$errorMsg: an html message string of an error or an array of message name and
+$article: the Page being (un)protected
+&$errorMsg: an html message string of an error or an array of message name and
   its parameters
+$reasonstr: a string describing the reason page protection level is altered
 
 'ProtectionForm::showLogExtract': Called after the protection log extract is
 shown.
