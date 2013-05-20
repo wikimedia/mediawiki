@@ -48,7 +48,7 @@ class ORMRow implements IORMRow {
 	 * Settings this to false can prevent needless updating work in situations
 	 * such as deleting a university, which will then delete all it's courses.
 	 *
-	 * @deprecated since 1.21
+	 * @deprecated since 1.22
 	 * @since 1.20
 	 * @var bool
 	 */
@@ -59,14 +59,14 @@ class ORMRow implements IORMRow {
 	 * This mode indicates that only summary fields got updated,
 	 * which allows for optimizations.
 	 *
-	 * @deprecated since 1.21
+	 * @deprecated since 1.22
 	 * @since 1.20
 	 * @var bool
 	 */
 	protected $inSummaryMode = false;
 
 	/**
-	 * @deprecated since 1.21
+	 * @deprecated since 1.22
 	 * @since 1.20
 	 * @var ORMTable|null
 	 */
@@ -77,9 +77,9 @@ class ORMRow implements IORMRow {
 	 *
 	 * @since 1.20
 	 *
-	 * @param IORMTable|null $table Deprecated since 1.21
+	 * @param IORMTable|null $table Deprecated since 1.22
 	 * @param array|null $fields
-	 * @param boolean $loadDefaults Deprecated since 1.21
+	 * @param boolean $loadDefaults Deprecated since 1.22
 	 */
 	public function __construct( IORMTable $table = null, $fields = null, $loadDefaults = false ) {
 		$this->table = $table;
@@ -99,7 +99,7 @@ class ORMRow implements IORMRow {
 	 * Load the specified fields from the database.
 	 *
 	 * @since 1.20
-	 * @deprecated since 1.21
+	 * @deprecated since 1.22
 	 *
 	 * @param array|null $fields
 	 * @param boolean $override
@@ -164,7 +164,7 @@ class ORMRow implements IORMRow {
 	 * Gets the value of a field but first loads it if not done so already.
 	 *
 	 * @since 1.20
-	 * @deprecated since 1.21
+	 * @deprecated since 1.22
 	 *
 	 * @param $name string
 	 *
@@ -240,7 +240,7 @@ class ORMRow implements IORMRow {
 	 * Gets the fields => values to write to the table.
 	 *
 	 * @since 1.20
-	 * @deprecated since 1.21
+	 * @deprecated since 1.22
 	 *
 	 * @return array
 	 */
@@ -326,7 +326,7 @@ class ORMRow implements IORMRow {
 	 * Load the default values, via getDefaults.
 	 *
 	 * @since 1.20
-	 * @deprecated since 1.21
+	 * @deprecated since 1.22
 	 *
 	 * @param boolean $override
 	 */
@@ -339,7 +339,7 @@ class ORMRow implements IORMRow {
 	 * when it already exists, or inserting it when it doesn't.
 	 *
 	 * @since 1.20
-	 * @deprecated since 1.21 Use IORMTable->updateRow or ->insertRow
+	 * @deprecated since 1.22 Use IORMTable->updateRow or ->insertRow
 	 *
 	 * @param string|null $functionName
 	 *
@@ -357,7 +357,7 @@ class ORMRow implements IORMRow {
 	 * Updates the object in the database.
 	 *
 	 * @since 1.20
-	 * @deprecated since 1.21
+	 * @deprecated since 1.22
 	 *
 	 * @param string|null $functionName
 	 *
@@ -395,7 +395,7 @@ class ORMRow implements IORMRow {
 	 * Inserts the object into the database.
 	 *
 	 * @since 1.20
-	 * @deprecated since 1.21
+	 * @deprecated since 1.22
 	 *
 	 * @param string|null $functionName
 	 * @param array|null $options
@@ -428,7 +428,7 @@ class ORMRow implements IORMRow {
 	 * Removes the object from the database.
 	 *
 	 * @since 1.20
-	 * @deprecated since 1.21, use IROMtable->removeRow
+	 * @deprecated since 1.22, use IORMTable->removeRow
 	 *
 	 * @return boolean Success indicator
 	 */
@@ -448,7 +448,7 @@ class ORMRow implements IORMRow {
 	 * Gets called before an object is removed from the database.
 	 *
 	 * @since 1.20
-	 * @deprecated since 1.21
+	 * @deprecated since 1.22
 	 */
 	protected function beforeRemove() {
 		$this->loadFields( $this->getBeforeRemoveFields(), false, true );
@@ -472,7 +472,7 @@ class ORMRow implements IORMRow {
 	 * Can be overridden to get rid of linked data.
 	 *
 	 * @since 1.20
-	 * @deprecated since 1.21
+	 * @deprecated since 1.22
 	 */
 	protected function onRemoved() {
 		$this->setField( 'id', null );
@@ -520,7 +520,7 @@ class ORMRow implements IORMRow {
 	 * Add an amount (can be negative) to the specified field (needs to be numeric).
 	 *
 	 * @since 1.20
-	 * @deprecated since 1.21, use IORMTable->addToField
+	 * @deprecated since 1.22, use IORMTable->addToField
 	 *
 	 * @param string $field
 	 * @param integer $amount
@@ -535,7 +535,7 @@ class ORMRow implements IORMRow {
 	 * Return the names of the fields.
 	 *
 	 * @since 1.20
-	 * @deprecated since 1.21
+	 * @deprecated since 1.22
 	 *
 	 * @return array
 	 */
@@ -547,7 +547,7 @@ class ORMRow implements IORMRow {
 	 * Computes and updates the values of the summary fields.
 	 *
 	 * @since 1.20
-	 * @deprecated since 1.21
+	 * @deprecated since 1.22
 	 *
 	 * @param array|string|null $summaryFields
 	 */
@@ -559,7 +559,7 @@ class ORMRow implements IORMRow {
 	 * Sets the value for the @see $updateSummaries field.
 	 *
 	 * @since 1.20
-	 * @deprecated since 1.21
+	 * @deprecated since 1.22
 	 *
 	 * @param boolean $update
 	 */
@@ -571,7 +571,7 @@ class ORMRow implements IORMRow {
 	 * Sets the value for the @see $inSummaryMode field.
 	 *
 	 * @since 1.20
-	 * @deprecated since 1.21
+	 * @deprecated since 1.22
 	 *
 	 * @param boolean $summaryMode
 	 */
@@ -583,7 +583,7 @@ class ORMRow implements IORMRow {
 	 * Returns the table this IORMRow is a row in.
 	 *
 	 * @since 1.20
-	 * @deprecated since 1.21
+	 * @deprecated since 1.22
 	 *
 	 * @return IORMTable
 	 */

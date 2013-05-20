@@ -952,9 +952,9 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	}
 
 	/**
-	 * Updated the provided row in the database.
+	 * Updates the provided row in the database.
 	 *
-	 * @since 1.21
+	 * @since 1.22
 	 *
 	 * @param IORMRow $row The row to save
 	 * @param string|null $functionName
@@ -980,7 +980,7 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	/**
 	 * Inserts the provided row into the database.
 	 *
-	 * @since 1.21
+	 * @since 1.22
 	 *
 	 * @param IORMRow $row
 	 * @param string|null $functionName
@@ -1013,7 +1013,7 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	/**
 	 * Gets the fields => values to write to the table.
 	 *
-	 * @since 1.20
+	 * @since 1.22
 	 *
 	 * @param IORMRow $row
 	 *
@@ -1047,7 +1047,7 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	/**
 	 * Removes the provided row from the database.
 	 *
-	 * @since 1.21
+	 * @since 1.22
 	 *
 	 * @param IORMRow $row
 	 * @param string|null $functionName
@@ -1067,7 +1067,7 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	/**
 	 * Add an amount (can be negative) to the specified field (needs to be numeric).
 	 *
-	 * @since 1.21
+	 * @since 1.22
 	 *
 	 * @param array $conditions
 	 * @param string $field

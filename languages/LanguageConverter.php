@@ -1363,7 +1363,7 @@ class ConverterRule {
 	 * and may return false in this case (so this title conversion rule
 	 * will be ignored and the original title is shown).
 	 *
-	 * @since 1.21
+	 * @since 1.22
 	 * @param $variant The variant code to display page title in
 	 * @return String|false The converted title or false if just page name
 	 */

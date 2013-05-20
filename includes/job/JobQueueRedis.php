@@ -54,7 +54,7 @@
  *
  * @ingroup JobQueue
  * @ingroup Redis
- * @since 1.21
+ * @since 1.22
  */
 class JobQueueRedis extends JobQueue {
 	/** @var RedisConnectionPool */

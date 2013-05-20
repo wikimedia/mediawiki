@@ -280,9 +280,6 @@ production.
 * (bug 33304) list=allpages will now find really old indefinite protections.
 * (bug 45937) meta=allmessages will report a syntactically invalid lang as a
   proper error instead of as an uncaught exception.
-* The JSON output formatter now leaves forward slashes unescaped to improve human
-  readability of URLs and similar strings. Also, a "utf8" option is now provided
-  to use UTF-8 encoding instead of hex escape codes for most non-ASCII characters.
 
 === API internal changes in 1.21 ===
 * For debugging only, a new global $wgDebugAPI removes many API restrictions when true.
@@ -337,17 +334,6 @@ changes to languages because of Bugzilla reports.
   - ShowStats -> ShowSiteStats.
 * BREAKING CHANGE: (bug 38244) Removed the mediawiki.api.titleblacklist module
   and moved it to the TitleBlacklist extension.
-* BREAKING CHANGE: Implementation of MediaWiki's JS and JSON value encoding
-  has changed:
-** MediaWiki no longer supports PHP installations in which the native JSON
-   extension is missing or disabled.
-** XmlJsCode objects can no longer be nested inside objects or arrays.
-   (For Xml::encodeJsCall(), this individually applies to each argument.)
-** The sets of characters escaped by default, along with the precise escape
-   sequences used, have changed (except for the Xml::escapeJsString()
-   function, which is now deprecated).
-* BREAKING CHANGE: The Services_JSON class has been removed. If necessary,
-  be sure to upgrade affected extensions at the same time (e.g. Collection).
 
 == Compatibility ==
 
