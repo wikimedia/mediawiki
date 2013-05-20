@@ -111,7 +111,7 @@ class JpegMetadataExtractor {
 				if ( $com === $oldCom ) {
 					$segments["COM"][] = $oldCom;
 				} else {
-					wfDebug( __METHOD__ . ' Ignoring JPEG comment as is garbage.' );
+					wfDebug( __METHOD__ . " Ignoring JPEG comment as is garbage.\n" );
 				}
 
 			} elseif ( $buffer === "\xE1" ) {
@@ -140,7 +140,7 @@ class JpegMetadataExtractor {
 					} elseif ( $byteOrderMarker === 'II' ) {
 						$segments['byteOrder'] = 'LE';
 					} else {
-						wfDebug( __METHOD__ . ' Invalid byte ordering?!' );
+						wfDebug( __METHOD__ . " Invalid byte ordering?!\n" );
 					}
 				}
 			} elseif ( $buffer === "\xED" ) {

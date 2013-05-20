@@ -182,7 +182,7 @@ class GIFMetadataExtractor {
 					$data = fread( $fh, $blockLength );
 
 					if ( $blockLength != 11 ) {
-						wfDebug( __METHOD__ . ' GIF application block with wrong length' );
+						wfDebug( __METHOD__ . " GIF application block with wrong length\n" );
 						fseek( $fh, -( $blockLength + 1 ), SEEK_CUR );
 						self::skipBlock( $fh );
 						continue;

@@ -107,13 +107,13 @@ class PNGHandler extends BitmapHandler {
 		wfRestoreWarnings();
 
 		if ( !$data || !is_array( $data ) ) {
-			wfDebug( __METHOD__ . ' invalid png metadata' );
+			wfDebug( __METHOD__ . " invalid png metadata\n" );
 			return self::METADATA_BAD;
 		}
 
 		if ( !isset( $data['metadata']['_MW_PNG_VERSION'] )
 			|| $data['metadata']['_MW_PNG_VERSION'] != PNGMetadataExtractor::VERSION ) {
-			wfDebug( __METHOD__ . ' old but compatible png metadata' );
+			wfDebug( __METHOD__ . " old but compatible png metadata\n" );
 			return self::METADATA_COMPATIBLE;
 		}
 		return self::METADATA_GOOD;

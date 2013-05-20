@@ -231,7 +231,7 @@ class JobQueueDB extends JobQueue {
 					$method
 				);
 				foreach ( $res as $row ) {
-					wfDebug( "Job with hash '{$row->job_sha1}' is a duplicate." );
+					wfDebug( "Job with hash '{$row->job_sha1}' is a duplicate.\n" );
 					unset( $rowSet[$row->job_sha1] ); // already enqueued
 				}
 			}

@@ -854,7 +854,7 @@ class FormatMetadata {
 			return $vals[0];
 		}
 		elseif ( count( $vals ) === 0 ) {
-			wfDebug( __METHOD__ . ' metadata array with 0 elements!' );
+			wfDebug( __METHOD__ . " metadata array with 0 elements!\n" );
 			return ""; // paranoia. This should never happen
 		}
 		/* @todo FIXME: This should hide some of the list entries if there are

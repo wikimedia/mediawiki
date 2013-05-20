@@ -202,14 +202,14 @@ class PNGMetadataExtractor {
 
 							if ( $items[5] === false ) {
 								// decompression failed
-								wfDebug( __METHOD__ . ' Error decompressing iTxt chunk - ' . $items[1] );
+								wfDebug( __METHOD__ . ' Error decompressing iTxt chunk - ' . $items[1] . "\n");
 								fseek( $fh, self::$CRC_size, SEEK_CUR );
 								continue;
 							}
 
 						} else {
 							wfDebug( __METHOD__ . ' Skipping compressed png iTXt chunk due to lack of zlib,'
-								. ' or potentially invalid compression method' );
+								. " or potentially invalid compression method\n" );
 							fseek( $fh, self::$CRC_size, SEEK_CUR );
 							continue;
 						}
@@ -279,7 +279,7 @@ class PNGMetadataExtractor {
 					$compression = substr( $postKeyword, 0, 1 );
 					$content = substr( $postKeyword, 1 );
 					if ( $compression !== "\x00" ) {
-						wfDebug( __METHOD__ . " Unrecognized compression method in zTXt ($keyword). Skipping." );
+						wfDebug( __METHOD__ . " Unrecognized compression method in zTXt ($keyword). Skipping.\n" );
 						fseek( $fh, self::$CRC_size, SEEK_CUR );
 						continue;
 					}
@@ -290,7 +290,7 @@ class PNGMetadataExtractor {
 
 					if ( $content === false ) {
 						// decompression failed
-						wfDebug( __METHOD__ . ' Error decompressing zTXt chunk - ' . $keyword );
+						wfDebug( __METHOD__ . ' Error decompressing zTXt chunk - ' . $keyword . "\n");
 						fseek( $fh, self::$CRC_size, SEEK_CUR );
 						continue;
 					}
@@ -308,7 +308,7 @@ class PNGMetadataExtractor {
 					$text[$finalKeyword]['_type'] = 'lang';
 
 				} else {
-					wfDebug( __METHOD__ . " Cannot decompress zTXt chunk due to lack of zlib. Skipping." );
+					wfDebug( __METHOD__ . " Cannot decompress zTXt chunk due to lack of zlib. Skipping.\n" );
 					fseek( $fh, $chunk_size, SEEK_CUR );
 				}
 			} elseif ( $chunk_type == 'tIME' ) {
