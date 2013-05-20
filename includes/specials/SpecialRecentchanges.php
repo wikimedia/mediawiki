@@ -516,6 +516,13 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		$counter = 1;
 		$list = ChangesList::newFromContext( $this->getContext() );
 
+		if ( $rows->numRows() === 0 ) {
+			$this->getOutput()->wrapWikiMsg(
+				"<div class='mw-changeslist-empty'>\n$1\n</div>", 'recentchanges-noresult'
+			);
+			return;
+		}
+
 		$s = $list->beginRecentChangesList();
 		foreach ( $rows as $obj ) {
 			if ( $limit == 0 ) {
@@ -707,8 +714,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	}
 
 	/**
-	 * Send the text to be displayed after the options, for use in
-	 * Recentchangeslinked
+	 * Send the text to be displayed after the options, for use in subclasses.
 	 *
 	 * @param FormOptions $opts
 	 */
