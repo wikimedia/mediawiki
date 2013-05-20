@@ -79,6 +79,8 @@ production.
   which can be cascading (previously 'sysop' was hard-coded as the only one).
 * XHTML5 support has been improved. If you set $wgMimeType = 'application/xhtml+xml'
   MediaWiki will try outputting markup acording to XHTML5 rules.
+* LinkCache singleton can now be altered or cleared, letting one to specify
+  another instance that does not rely on a database backend.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
