@@ -2485,7 +2485,6 @@ This message indicates {{msg-mw|prefs-dateformat}} is default (= not specified).
 'prefs-watchlist-days-max' => 'Shown as hint in [[Special:Preferences]], tab "Watchlist"',
 'prefs-watchlist-edits' => 'Used in [[Special:Preferences]], tab "Watchlist".',
 'prefs-watchlist-edits-max' => 'Shown as hint in [[Special:Preferences]], tab "Watchlist"',
-'prefs-watchlist-token' => 'Used in [[Special:Preferences]], tab Watchlist.',
 'prefs-misc' => 'Tab used on the [[Special:Preferences|user preferences]] special page.',
 'prefs-resetpass' => 'Button on user data tab in user preferences. When you click the button you go to the special page [[Special:ResetPass]].
 
@@ -2532,7 +2531,6 @@ When changing this message, please also update {{msg-mw|vector-editwarning-warni
 'recentchangesdays-max' => 'Shown as hint in [[Special:Preferences]], tab "Recent changes"',
 'recentchangescount' => 'Used in [[Special:Preferences]], tab "Recent changes".',
 'prefs-help-recentchangescount' => 'Used in [[Special:Preferences]], tab "Recent changes".',
-'prefs-help-watchlist-token' => 'Used in [[Special:Preferences]], tab Watchlist.',
 'savedprefs' => 'This message appears after saving changes to your user preferences.',
 'timezonelegend' => '{{Identical|Time zone}}',
 'localtime' => 'Used as label in [[Special:Preferences#mw-prefsection-datetime|preferences]].',
