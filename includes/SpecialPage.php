@@ -27,7 +27,6 @@
  * @ingroup SpecialPage
  */
 class SpecialPage {
-
 	// The canonical name of this special page
 	// Also used for the default <h1> heading, @see getDescription()
 	protected $mName;
@@ -305,12 +304,14 @@ class SpecialPage {
 	 *     If you override execute(), you can recover the default behavior with userCanExecute()
 	 *     and displayRestrictionError()
 	 *
-	 * @param string $name name of the special page, as seen in links and URLs
-	 * @param string $restriction user right required, e.g. "block" or "delete"
-	 * @param bool $listed whether the page is listed in Special:Specialpages
-	 * @param $function Callback|Bool: function called by execute(). By default it is constructed from $name
-	 * @param string $file file which is included by execute(). It is also constructed from $name by default
-	 * @param bool $includable whether the page can be included in normal pages
+	 * @param string $name Name of the special page, as seen in links and URLs
+	 * @param string $restriction User right required, e.g. "block" or "delete"
+	 * @param bool $listed Whether the page is listed in Special:Specialpages
+	 * @param Callback|Bool $function Function called by execute(). By default
+	 * it is constructed from $name
+	 * @param string $file File which is included by execute(). It is also
+	 * constructed from $name by default
+	 * @param bool $includable Whether the page can be included in normal pages
 	 */
 	public function __construct(
 		$name = '', $restriction = '', $listed = true,
@@ -322,12 +323,14 @@ class SpecialPage {
 	/**
 	 * Do the real work for the constructor, mainly so __call() can intercept
 	 * calls to SpecialPage()
-	 * @param string $name name of the special page, as seen in links and URLs
-	 * @param string $restriction user right required, e.g. "block" or "delete"
-	 * @param bool $listed whether the page is listed in Special:Specialpages
-	 * @param $function Callback|Bool: function called by execute(). By default it is constructed from $name
-	 * @param string $file file which is included by execute(). It is also constructed from $name by default
-	 * @param bool $includable whether the page can be included in normal pages
+	 * @param string $name Name of the special page, as seen in links and URLs
+	 * @param string $restriction User right required, e.g. "block" or "delete"
+	 * @param bool $listed Whether the page is listed in Special:Specialpages
+	 * @param Callback|Bool $function Function called by execute(). By default
+	 * it is constructed from $name
+	 * @param string $file File which is included by execute(). It is also
+	 * constructed from $name by default
+	 * @param bool $includable Whether the page can be included in normal pages
 	 */
 	private function init( $name, $restriction, $listed, $function, $file, $includable ) {
 		$this->mName = $name;
@@ -749,7 +752,8 @@ class SpecialPage {
 		if ( $this->mContext instanceof IContextSource ) {
 			return $this->mContext;
 		} else {
-			wfDebug( __METHOD__ . " called and \$mContext is null. Return RequestContext::getMain(); for sanity\n" );
+			wfDebug( __METHOD__ . " called and \$mContext is null. " .
+				"Return RequestContext::getMain(); for sanity\n" );
 			return RequestContext::getMain();
 		}
 	}
@@ -956,7 +960,8 @@ abstract class FormSpecialPage extends SpecialPage {
 	 * Play with the HTMLForm if you need to more substantially
 	 * @param $form HTMLForm
 	 */
-	protected function alterForm( HTMLForm $form ) {}
+	protected function alterForm( HTMLForm $form ) {
+	}
 
 	/**
 	 * Get message prefix for HTMLForm
@@ -1011,7 +1016,8 @@ abstract class FormSpecialPage extends SpecialPage {
 	 * confirmation message
 	 * @since 1.22 Default is to do nothing
 	 */
-	public function onSuccess() {}
+	public function onSuccess() {
+	}
 
 	/**
 	 * Basic SpecialPage workflow: get a form, send it to the user; get some data back,
@@ -1174,6 +1180,7 @@ abstract class RedirectSpecialPage extends UnlistedSpecialPage {
 }
 
 abstract class SpecialRedirectToSpecial extends RedirectSpecialPage {
+	// @todo FIXME: Visibility must be declared
 	var $redirName, $redirSubpage;
 
 	function __construct(
@@ -1250,7 +1257,7 @@ class SpecialCreateAccount extends SpecialRedirectToSpecial {
  * - limit, offset: Useful for linking to history of one's own user page or
  * user talk page. For example, this would be a link to "the last edit to your
  * user talk page in the year 2010":
- * http://en.wikipedia.org/w/index.php?title=Special:MyPage&offset=20110000000000&limit=1&action=history
+ * http://en.wikipedia.org/wiki/Special:MyPage?offset=20110000000000&limit=1&action=history
  *
  * - feed: would allow linking to the current user's RSS feed for their user
  * talk page:
