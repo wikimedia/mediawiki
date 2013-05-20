@@ -33,6 +33,9 @@ class PHPUnitMaintClass extends Maintenance {
 		global $wgLocaltimezone, $wgLocalisationCacheConf;
 		global $wgDevelopmentWarnings;
 
+		// Inject test autoloader
+		require_once __DIR__ . '/../TestsAutoLoader.php';
+
 		// wfWarn should cause tests to fail
 		$wgDevelopmentWarnings = true;
 
@@ -108,6 +111,4 @@ if ( PHPUnit_Runner_Version::id() !== '@package_version@'
 	die( 'PHPUnit 3.6.7 or later required, you have ' . PHPUnit_Runner_Version::id() . ".\n" );
 }
 require_once 'PHPUnit/Autoload.php';
-
-require_once "$IP/tests/TestsAutoLoader.php";
 MediaWikiPHPUnitCommand::main();
