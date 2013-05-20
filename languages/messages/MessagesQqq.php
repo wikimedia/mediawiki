@@ -2990,24 +2990,17 @@ Similar to {{msg-mw|wlnote}} which is used on [[Special:Watchlist]].
 * Parameter $3 is a date. (alternative to $1)
 * Parameter $4 is a time. (alternative to $1)',
 'rclistfrom' => 'Used on [[Special:RecentChanges]]. Parameter $1 is a link to the revision of a specific date and time. The date and the time are the link description (without split of date and time, [[bugzilla:19104|Bug 19104]]). The corrosponding message is {{msg-mw|Rcnotefrom}}.',
-'rcshowhideminor' => "Option text in [[Special:RecentChanges]]. Parameters:
-* $1 is the 'show/hide' command, with the text taken from either {{msg-mw|show}} or {{msg-mw|hide}}.",
-'rcshowhidebots' => "Option text in [[Special:RecentChanges]]. Parameters:
-* $1 is the 'show/hide' command, with the text taken from either {{msg-mw|show}} or {{msg-mw|hide}}.
-{{Identical|$1 bots}}",
-'rcshowhideliu' => 'Option text in [[Special:RecentChanges]]',
-'rcshowhideanons' => "Option text in [[Special:RecentChanges]]. Parameters:
-* $1 is the 'show/hide' command, with the text taken from either {{msg-mw|show}} or {{msg-mw|hide}}.
-{{Identical|Anonymous user}}",
-'rcshowhidepatr' => "Option text in [[Special:RecentChanges]]. Parameters:
-* $1 is the 'show/hide' command, with the text taken from either {{msg-mw|show}} or {{msg-mw|hide}}.",
-'rcshowhidemine' => "Option text in [[Special:RecentChanges]]. Parameters:
-* $1 is the 'show/hide' command, with the text taken from either {{msg-mw|show}} or {{msg-mw|hide}}.",
-'rclinks' => "Used on [[Special:RecentChanges]].
-* '''\$1''' is a list of different choices with number of pages to be shown.<br />&nbsp;Example: \"''50{{int:pipe-separator}}100{{int:pipe-separator}}250{{int:pipe-separator}}500\".
-* '''\$2''' is a list of clickable links with a number of days for which recent changes are to be displayed.<br />&nbsp;Example: \"''1{{int:pipe-separator}}3{{int:pipe-separator}}7{{int:pipe-separator}}14{{int:pipe-separator}}30''\".
-* '''\$3''' is a block of text that consists of other messages.<br />&nbsp;Example: \"''Hide minor edits{{int:pipe-separator}}Show bots{{int:pipe-separator}}Hide anonymous users{{int:pipe-separator}}Hide logged-in users{{int:pipe-separator}}Hide patrolled edits{{int:pipe-separator}}Hide my edits''\"
-List elements are separated by {{msg-mw|pipe-separator}} each. Each list element is, or contains, a link.",
+'rcshowlast' => "Label for a dropdown select box on [[Special:RecentChanges]].
+'last' refers to a period of time like '6 hours' or '3 days'.",
+'rclimit' => "Label for a dropdown select box on [[Special:RecentChanges]].
+This refers to the maximum number of changes to show, like '50' or '200'.",
+'rcshowhide' => 'Label for a set of checkboxes on [[Special:RecentChanges]], each describing one type of edit to be shown or not.',
+'rcshowhideminor' => "Checkbox label on [[Special:RecentChanges]].",
+'rcshowhidebots' => "Checkbox label on [[Special:RecentChanges]].",
+'rcshowhideliu' => 'Checkbox label on [[Special:RecentChanges]]',
+'rcshowhideanons' => "Checkbox label on [[Special:RecentChanges]].",
+'rcshowhidepatr' => "Checkbox label on [[Special:RecentChanges]].",
+'rcshowhidemine' => "Checkbox label on [[Special:RecentChanges]].",
 'diff' => 'Short form of "differences". Used on [[Special:RecentChanges]], [[Special:Watchlist]], ...',
 'hist' => 'Short form of "history". Used on [[Special:RecentChanges]], [[Special:Watchlist]], ...',
 'hide' => '{{doc-actionlink}}
