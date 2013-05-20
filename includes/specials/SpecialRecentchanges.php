@@ -677,7 +677,10 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 			$extraOpts['tagfilter'] = $tagFilter;
 		}
 
-		wfRunHooks( 'SpecialRecentChangesPanel', array( &$extraOpts, $opts ) );
+		// Don't fire the hook for subclasses. (Or should we?)
+		if ( $this->getName() === 'Recentchanges' ) {
+			wfRunHooks( 'SpecialRecentChangesPanel', array( &$extraOpts, $opts ) );
+		}
 
 		return $extraOpts;
 	}
