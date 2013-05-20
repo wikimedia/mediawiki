@@ -265,10 +265,4 @@ class SpecialRecentchangeslinked extends SpecialRecentChanges {
 			$this->getOutput()->addBacklinkSubtitle( $target );
 		}
 	}
-
-	function setBottomText( FormOptions $opts ) {
-		if ( isset( $this->mResultEmpty ) && $this->mResultEmpty ) {
-			$this->getOutput()->addWikiMsg( 'recentchangeslinked-noresult' );
-		}
-	}
 }
