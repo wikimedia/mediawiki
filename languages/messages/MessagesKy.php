@@ -1089,6 +1089,12 @@ HTML-тегдеринин тууралыгын текшериңиз.',
 'listusers-noresult' => 'Катышуучу табылган жок.',
 'listusers-blocked' => '(блокировкаланды)',
 
+# Special:ActiveUsers
+'activeusers' => 'Активдүү катышуучулардын тизмеси',
+'activeusers-hidebots' => 'Ботторду жашыруу',
+'activeusers-hidesysops' => 'Администраторлорду жашыруу',
+'activeusers-noresult' => 'Катышуучулар табылган жок.',
+
 # Special:ListGroupRights
 'listgrouprights-group' => 'Топ',
 'listgrouprights-rights' => 'Укуктар',
@@ -1472,7 +1478,7 @@ HTML-тегдеринин тууралыгын текшериңиз.',
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Туурасы',
 'exif-imagelength' => 'Бийиктик',
 'exif-imagedescription' => 'Сүрөт аты',
@@ -1517,7 +1523,7 @@ HTML-тегдеринин тууралыгын текшериңиз.',
 'exif-intellectualgenre' => 'Объекттин түрү',
 'exif-subjectnewscode' => 'Теманын коду',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Кыстырылбаган',
 
 'exif-copyrighted-true' => 'Автордук укук менен корголгон',
@@ -1668,11 +1674,6 @@ HTML-тегдеринин тууралыгын текшериңиз.',
 'version-software-product' => 'Продукт',
 'version-software-version' => 'Версия',
 'version-entrypoints-header-url' => 'URL',
-
-# Special:FilePath
-'filepath' => 'Файл жолу',
-'filepath-page' => 'Файл:',
-'filepath-submit' => 'Өтүү',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-filename' => 'Файл аты:',

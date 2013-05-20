@@ -2375,7 +2375,7 @@ Framtida ändringar av den här sidan och dess diskussionssida kommer att listas
 'watchnochange' => 'Inga av dina bevakade sidor har ändrats inom den visade tidsperioden.',
 'watchlist-details' => 'Du har $1 {{PLURAL:$1|sida|sidor}} på din bevakningslista (diskussionssidor är inte medräknade).',
 'wlheader-enotif' => 'Bekräftelse per e-post är aktiverad.',
-'wlheader-showupdated' => "Sidor som har ändrats sedan ditt senaste besök visas i '''fetstil'''.",
+'wlheader-showupdated' => "Sidor som har ändrats sedan ditt senaste besök visas i '''fetstil.'''",
 'watchmethod-recent' => 'letar efter bevakade sidor bland senaste ändringar',
 'watchmethod-list' => 'letar efter nyligen gjorda ändringar bland bevakade sidor',
 'watchlistcontains' => 'Din bevakningslista innehåller $1 {{PLURAL:$1|sida|sidor}}.',

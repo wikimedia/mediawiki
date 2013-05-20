@@ -137,7 +137,6 @@ $messages = array(
 'tog-enotifrevealaddr' => 'Montrez mea e-posto adreso en notifiko e-posti',
 'tog-shownumberswatching' => 'Montrez nombro di surveyanta uzanti',
 'tog-fancysig' => 'Traktez signaturo kom wikikodo (sen automata ligilo)',
-'tog-externaleditor' => 'Uzez extera redaktanto nespecigite (nur por experti, bezonas specala moderi ye vua komputoro .[//www.mediawiki.org/wiki/Manual:External_editors Plusa informo.])',
 'tog-forceeditsummary' => 'Notifikez me kande skribanta vakua redakto-rezumo',
 'tog-watchlisthideown' => 'Celez mea redaktaji de la surveyaji',
 'tog-watchlisthidebots' => 'Celez redaktaji da roboti de la surveyaji',
@@ -682,10 +681,6 @@ Probez prefixizar vua demando kun ''all:'' por serchar omna kontenajo (inkluzant
 'search-external' => 'Extera sercho',
 'searchdisabled' => 'La sercho en la kompleta texto desaktivigesis temporale pro superkargo dil servanto. Ni esperas riaktivigar ol pos facar ula proxima aktualigi. Dum ica tempo, vu povas serchar per Google.',
 
-# Quickbar
-'qbsettings' => 'Preferaji pri "Quickbar"',
-'qbsettings-none' => 'Nula',
-
 # Preferences page
 'preferences' => 'Preferaji',
 'mypreferences' => 'Mea preferaji',
@@ -1035,7 +1030,7 @@ Volutez kontrolar <strong>[[:$1]]</strong> se vu ne esas certa pri chanjar olu.
 'listgrouprights-group' => 'Grupo',
 'listgrouprights-members' => '(listo di membri)',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Ne sendar adreso',
 'mailnologintext' => 'Vu mustas [[Special:UserLogin|enirir]] e havar valida e-adreso en vua [[Special:Preferences|preferaji]] por sendar e-posto ad altra uzanti.',
 'emailuser' => 'Sendar e-posto a ca uzanto',
@@ -1415,7 +1410,7 @@ Vu darfos adjuntar kauso en la rezumo.',
 # Metadata
 'metadata' => 'Metadonaji',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Larjeso',
 'exif-imagelength' => 'Alteso',
 'exif-artist' => 'Autoro',
@@ -1458,7 +1453,7 @@ Vu darfos adjuntar kauso en la rezumo.',
 'namespacesall' => 'omna',
 'monthsall' => 'omna',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail_needlogin' => 'Vu mustas $1 pro konfirmar vua adreso di e-posto.',
 
 # Scary transclusion
@@ -1515,9 +1510,6 @@ Vu darfos adjuntar kauso en la rezumo.',
 'version-license' => 'Licenco',
 'version-software-product' => 'Produkturo',
 'version-software-version' => 'Versiono',
-
-# Special:FilePath
-'filepath-page' => 'Arkivo:',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-submit' => 'Serchar',

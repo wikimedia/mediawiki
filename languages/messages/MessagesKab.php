@@ -150,16 +150,6 @@ $messages = array(
 'nov' => 'Wam',
 'dec' => 'Duj',
 
-'monday-at' => 'Arim af $1',
-'tuesday-at' => 'Aram af $1',
-'wednesday-at' => 'Ahad af $1',
-'thursday-at' => 'Amhad af $1',
-'friday-at' => 'Sem af $1',
-'saturday-at' => 'Sed af $1',
-'sunday-at' => 'Acer af $1',
-'today-at' => '$1',
-'yesterday-at' => 'Iḍelli af $1',
-
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Taggayt|Taggayin}}',
 'category_header' => 'Imagraden deg taggayt "$1"',
@@ -1920,6 +1910,15 @@ Ineggafen imazdayen : <code>$1</code> (ur d-renu acemma deg unadi inek/inem)',
 'listusers-noresult' => 'Ur yufi ḥedd (amseqdac).',
 'listusers-blocked' => '(yekyef)',
 
+# Special:ActiveUsers
+'activeusers' => 'Umuɣ n iseqdacen urmiden',
+'activeusers-intro' => 'Wagi d umuɣ n iseqdacen yexedmen armud deg {{PLURAL:$1|ass agi aneggaru|$1 ussan agi ineggura}}.',
+'activeusers-count' => '$1 {{PLURAL:$1|abeddel n ussan agi ineggura|ibeddilen n ussan agi ineggura}} deg {{PLURAL:$3|ass aneggaru|$3 ussan ineggura}}',
+'activeusers-from' => 'Ssken iseqdacen seg :',
+'activeusers-hidebots' => 'Ffer iṛubuten',
+'activeusers-hidesysops' => 'Ffer inedbalen',
+'activeusers-noresult' => 'Ur yufi aseqdac.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Izerfan n igrawen n iseqdacen',
 'listgrouprights-summary' => 'Asebter agi yesɛa yiwen umuɣ n igrawen i sengelen deg wiki agi dɣa izerfan n wadduf i qqenen.
@@ -2002,7 +2001,7 @@ Ma tebɣiḍ ad tekkseḍ asebter seg wumuɣ n uɛessi inek, wekki ɣef \"Fakk a
 'watchnochange' => 'Ulaḥedd n yiferdas n wumuɣ n uɛessi inek ma yettubeddel deg tawala i textareḍ.',
 'watchlist-details' => 'ttɛassaɣ {{PLURAL:$1|$1 usebter|$1 n isebtaren}} mebla isebtaren "amyannan".',
 'wlheader-enotif' => 'Yeǧǧa Email n talɣut.',
-'wlheader-showupdated' => "Isebtar ttubeddlen segwasmi tkecmeḍ tikelt taneggarut ttbanen-d s '''uḍris aberbuz'''.",
+'wlheader-showupdated' => "Isebtar ttubeddlen segwasmi tkecmeḍ tikelt taneggarut ttbanen-d s '''uḍris aberbuz'''",
 'watchmethod-recent' => 'yessenqed ibeddlen imaynuten n isebtar i ttɛasseɣ',
 'watchmethod-list' => 'yessenqed isebtar i ttɛassaɣ i ibeddlen imaynuten',
 'watchlistcontains' => 'Umuɣ n uɛessi inek ɣur-s $1 n {{PLURAL:$1|usebter|isebtar}}.',
@@ -2530,6 +2529,19 @@ Lukan a t-tesseqdceḍ yezmer ad yexsser aselkim inek/inem.",
 'ago' => '$1 aya',
 'just-now' => 'Tura kan',
 
+# Human-readable timestamps
+'hours-ago' => '$1 {{PLURAL:$1|asrag|isragen}} aya',
+'minutes-ago' => '$1 {{PLURAL:$1|tamrect|timercin}} aya',
+'seconds-ago' => '$1 {{PLURAL:$1|tasint|tisinin}} aya',
+'monday-at' => 'Arim af $1',
+'tuesday-at' => 'Aram af $1',
+'wednesday-at' => 'Ahad af $1',
+'thursday-at' => 'Amhad af $1',
+'friday-at' => 'Sem af $1',
+'saturday-at' => 'Sed af $1',
+'sunday-at' => 'Acer af $1',
+'yesterday-at' => 'Iḍelli af $1',
+
 # Bad image list
 'bad_image_list' => 'Amasal d-wagi :
 
@@ -2556,7 +2568,7 @@ Izdayen nniḍen ɣef yiwen ajerriḍ llan d tisuraf, am isebtar ɣef anta tugna
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Tehri',
 'exif-imagelength' => 'Taɣwzi',
 'exif-bitspersample' => 'Ibitten s isger',
@@ -2971,11 +2983,6 @@ G leɛnaya-k sentem belli ṣaḥḥ tebɣiḍ ad tɛiwedeḍ axlaq n usebter-ag
 'version-entrypoints-header-entrypoint' => 'Ired n wekcam',
 'version-entrypoints-header-url' => 'Tansa URL',
 
-# Special:FilePath
-'filepath' => 'Abrid n wadduf ufaylu',
-'filepath-page' => 'Afaylu :',
-'filepath-submit' => 'Ruḥ',
-
 # Special:SpecialPages
 'specialpages' => 'isebtar usligen',
 
@@ -3013,8 +3020,4 @@ G leɛnaya-k sentem belli ṣaḥḥ tebɣiḍ ad tɛiwedeḍ axlaq n usebter-ag
 'duration-centuries' => '$1 {{PLURAL:$1|timiḍi|timiḍa}}',
 'duration-millennia' => '$1 {{PLURAL:$1|agimseggwas|agimseggwasen}}',
 
-# Unknown messages
-'hours-ago' => '$1 {{PLURAL:$1|asrag|isragen}} aya',
-'minutes-ago' => '$1 {{PLURAL:$1|tamrect|timercin}} aya',
-'seconds-ago' => '$1 {{PLURAL:$1|tasint|tisinin}} aya',
 );

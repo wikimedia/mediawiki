@@ -632,13 +632,6 @@ $1 {{int:pipe-separator}} $2',
 'powersearch-toggleall' => 'Buot',
 'powersearch-togglenone' => 'Ii mihkkege',
 
-# Quickbar
-'qbsettings-none' => 'Ii maidige',
-'qbsettings-fixedleft' => 'Teaksta mielde, gurut',
-'qbsettings-fixedright' => 'Teaksta mielde, olgeš',
-'qbsettings-floatingleft' => 'Biso gurutbealde',
-'qbsettings-floatingright' => 'Biso olgesbealde',
-
 # Preferences page
 'preferences' => 'Ásahusat',
 'mypreferences' => 'Ásahusat',
@@ -1042,7 +1035,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'watchnochange' => 'Válljejuvvon áigodagas oktage du čuovvunlisttui gullevaš siidu leat rievdaduvvon.',
 'watchlist-details' => 'Du čuovvunlisttus {{PLURAL:$1|lea $1 siidu|leat $1 siiddu}}. Lohkui eai leat váldojuvvon ságastallansiidduid.',
 'wlheader-enotif' => 'E-poastaalmmuhusat leat anus.',
-'wlheader-showupdated' => "Siiddut, mat leat rievdaduvvon du maŋimus geavahangearddi maŋŋá leat merkojuvvon '''buoiddes teavsttain'''.",
+'wlheader-showupdated' => "Siiddut, mat leat rievdaduvvon du maŋimus geavahangearddi maŋŋá leat merkojuvvon '''buoiddes teavsttain'''",
 'watchmethod-recent' => 'dárkistuvvo varas rievdadusat čuovvunlisttu siidduide',
 'watchmethod-list' => 'dárkistuvvo čuovvunlisttu siidduid varas rievdadusat',
 'watchlistcontains' => 'Du čuovvunlisttus {{PLURAL:$1|lea okta siidu|leat $1 siiddu}}.',
@@ -1360,7 +1353,7 @@ Siiddus $2 lea listu maŋimus sihkomiin.',
 'metadata-expand' => 'Čájet buot sisdoallogovvádusaid',
 'metadata-collapse' => 'Čájet beare dehaleamos sisdoallogovvádusaid',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Viidodat',
 'exif-imagelength' => 'Allodat',
 'exif-bitspersample' => 'Bihtá komponeanttas',

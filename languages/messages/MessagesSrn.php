@@ -179,8 +179,6 @@ $messages = array(
 'tog-enotifminoredits' => 'E-mail mi fu pikin kenki fu peprewoysi opo mi sirey',
 'tog-enotifrevealaddr' => 'Sori mi e-mail nen ini den e-mail boskopu',
 'tog-shownumberswatching' => 'Sori omeni kebroikiman e tan luku a papira disi',
-'tog-externaleditor' => 'Tan kebroiki wan dorosey kenki-wrokosani (soso gi sabiman - spesrutu seti de fanowdu gi disi)',
-'tog-externaldiff' => 'Tan kebroiki wan dorosey agersi-wrokosani (soso gi sabiman - spesrutu set de fanowdu gi disi)',
 'tog-showjumplinks' => 'Sori den "go na" miti',
 'tog-uselivepreview' => 'Kebroiki "wanten sori-na-fesi" (JavaScript – ondrosuku fasi)',
 'tog-forceeditsummary' => 'Gi wan boskopu efu a "Syatu" boksu leygi',
@@ -641,14 +639,6 @@ A kan ben trowe efu dribi.
 'searchhelp-url' => 'Help:San de',
 'powersearch' => 'Suku moro dipi',
 
-# Quickbar
-'qbsettings' => 'Kwikbak',
-'qbsettings-none' => 'Nowan',
-'qbsettings-fixedleft' => 'Set na ku',
-'qbsettings-fixedright' => 'Set na pe',
-'qbsettings-floatingleft' => 'Han na ku',
-'qbsettings-floatingright' => 'Han na pe',
-
 # Preferences page
 'preferences' => 'Seti',
 'mypreferences' => 'Mi seti',
@@ -942,7 +932,7 @@ Papira ini [[Special:Watchlist|yu Tan Luku réy]] '''fatu'''.",
 'listusers-submit' => 'Libi si',
 'listusers-noresult' => 'No masyin dyaso.',
 
-# E-mail user
+# Email user
 'mailnologin' => 'No stiradresi',
 'emailuser' => 'E-mail a kebroikiman disi',
 'emailpage' => 'Mayin e-mail',

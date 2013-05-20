@@ -2019,6 +2019,15 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization صحیفه‌‌سین
 'listusers-noresult' => 'هئچ ایستیفاده‌چی تاپیلمادی.',
 'listusers-blocked' => '(باغلانیب)',
 
+# Special:ActiveUsers
+'activeusers' => 'چالیشان ایستیفاده‌چیلرین لیستی',
+'activeusers-intro' => 'بوردا سون {{PLURAL:$1|بیر|$1}} گون‌ده بیر ایشلر گؤرن ایستیفاده‌چیلرین لیستی گؤستریلیر.',
+'activeusers-count' => 'سون {{PLURAL:$3|گون|$3 گون}}‌ده، {{PLURAL:$1|$1}} چالیشما',
+'activeusers-from' => 'بوندان باشلایاراق ایستیفاده‌چیلری گؤستر:',
+'activeusers-hidebots' => 'بوتلاری گیزلت',
+'activeusers-hidesysops' => 'ایداره‌چیلری گیزلت',
+'activeusers-noresult' => 'هئچ ایستیفاده‌چی تاپیلمادی.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'ایستیفاده‌چی قروپ حاقلاری',
 'listgrouprights-summary' => 'آشاغیدا، بو ویکی‌ده تانیلان ایستیفاده‌چی گروپلاری و اونلارین حاقلاری گؤستریلیر.
@@ -2992,7 +3001,7 @@ $1',
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'گئنیش‌لیک',
 'exif-imagelength' => 'اوزوناسی',
 'exif-bitspersample' => 'هر جز دا نقطه',
@@ -3170,7 +3179,7 @@ $1',
 'exif-originalimageheight' => 'شکیلین کسیلمه دن اوولکی اوجالیقی',
 'exif-originalimagewidth' => 'شکیلین کسیلمه دن اوولکی گئنیش‌لیگی',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'سیخیلمامیش',
 'exif-compression-2' => 'پسوورد قویماق سی‌سی‌آی‌تی‌تی ۳  گروه دا بیر بعدی هافمن روشی ایله اوزوناسی اوستونده دییشیلیب',
 'exif-compression-3' => 'رمز قرار وئرمک سی‌سی‌آی‌تی‌تی قروپ ۳',
@@ -3581,13 +3590,6 @@ $5
 'version-entrypoints' => 'گیریش نقطه‌‌سی‌نین آدرسی',
 'version-entrypoints-header-entrypoint' => 'گیریش نقطه‌‌سی',
 'version-entrypoints-header-url' => 'اینترنت آدرسی',
-
-# Special:FilePath
-'filepath' => 'فايل يولو',
-'filepath-page' => 'فایل:',
-'filepath-submit' => 'گئت',
-'filepath-summary' => 'بو اؤزل صحیفه‌‌ بیر فايل اوچون تام يولو گتیرر. 
-شکیللر تام تصویرین گؤستریلیر، دیگر فايل نؤولری ایله باغلی پروقراملاری بیرباشا ایشه باشلايیر.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'دوبلیکات فايل آختاریشی',

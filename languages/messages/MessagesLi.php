@@ -2019,6 +2019,15 @@ Haet mèndestes e toepleveldomein, wie beveurbeildj "*.org".<br />
 'listusers-noresult' => 'Gein(e) gebroeker(s) gevonje.',
 'listusers-blocked' => '(geblok)',
 
+# Special:ActiveUsers
+'activeusers' => 'Aktief gebroekers',
+'activeusers-intro' => "Dit is 'n lies mit gebroekers die aktief zeen gewaes in de aafgeloupe {{PLURAL:$1|daag|$1 daag}}.",
+'activeusers-count' => '$1 {{PLURAL:$1|bewèrking|bewèrkinger}} inne {{PLURAL:$3|lèsten daag|lès $3 daag}}',
+'activeusers-from' => 'Tuin gebroekers vanaaf:',
+'activeusers-hidebots' => 'Verberg bots',
+'activeusers-hidesysops' => 'Verberg admins',
+'activeusers-noresult' => 'Gein gebroekers gevónje.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Rechte van gebroekersgróppe',
 'listgrouprights-summary' => 'Op dees pazjena sjtaon de gebroekersgróppe in deze wiki besjreve, mit zien biebehurende rechte.
@@ -2094,8 +2103,8 @@ Toekomstige verangeringe aan dees pagina en de biebehurende euverlèkpagina weur
 'notvisiblerev' => 'Bewèrking is verwiederd',
 'watchnochange' => 'Gein van dien gevolgde items is aangepas in dees periode.',
 'watchlist-details' => "D'r {{PLURAL:$1|sjteit ein pagina|sjtaon $1 pagina's}} op dien volglies mit oetzunjering van de euverlèkpagina's.",
-'wlheader-enotif' => 'Doe wörs per e-mail gewaarsjuwd.',
-'wlheader-showupdated' => "Pazjena's die verangerd zeen saers doe ze veur 't lètste bekeeks sjtaon '''vet'''.",
+'wlheader-enotif' => 'Doe wörs per e-mail gewaarsjuwd',
+'wlheader-showupdated' => "Pazjena's die verangerd zeen saers doe ze veur 't lètste bekeeks sjtaon '''vet'''",
 'watchmethod-recent' => "Controleer recènte verangere veur gevolgde pazjena's",
 'watchmethod-list' => "controlere van gevolgde pazjena's veur recènte verangeringe",
 'watchlistcontains' => "Dien volglies bevat $1 {{PLURAL:$1|pazjena|pazjena's}}.",
@@ -2910,7 +2919,7 @@ Alle volgende links die op dezelfde regel sjtaon, waere behanjeld es oetzunjerin
 * gpslongitude
 * gpsaltitude",
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Breidte',
 'exif-imagelength' => 'Hoogte',
 'exif-bitspersample' => 'Bits per componènt',
@@ -3088,7 +3097,7 @@ Alle volgende links die op dezelfde regel sjtaon, waere behanjeld es oetzunjerin
 'exif-originalimageheight' => 'Heugdje vanne aafbeilding veur biesnieje',
 'exif-originalimagewidth' => 'Brèdje vanne aafbeilding veur biesnieje',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Óngecómprimeerd',
 'exif-compression-2' => 'CCITT Groep 3 1-dimensionale aangepasde "Huffman run length"-codering',
 'exif-compression-3' => 'CCITT Groep 3 faxcodering',
@@ -3495,13 +3504,6 @@ Same mit dit programma heurs se 'n [{{SERVER}}{{SCRIPTPATH}}/COPYING kopie van d
 'version-entrypoints' => 'Ingang-URLs',
 'version-entrypoints-header-entrypoint' => 'Ingank',
 'version-entrypoints-header-url' => 'URL',
-
-# Special:FilePath
-'filepath' => 'Bestandjspaad',
-'filepath-page' => 'Bestandj:',
-'filepath-submit' => 'Zeuk',
-'filepath-summary' => "Dees speciaal pazjena guf 't vollejig paad veur 'n bestandj.
-Aafbeildinge waere in häör vollejige resolutie getoeandj. Anger bestandjstypes waere drèk in 't mit 't MIME-type verbónje programma geäöpendj.",
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Zeuk veur döbbelbestaondje bestenj',

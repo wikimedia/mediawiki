@@ -657,13 +657,6 @@ Fanapunta na para u na'nuebu i kolumna anggen un usa i inachetton nabegasion.",
 Siña hao manaligao gi Google gi entretanto.
 Fanapunta na fana'an ti gus nuebu i listan-ñiha i guinahan {{SITENAME}}.",
 
-# Quickbar
-'qbsettings-none' => "Tåya'",
-'qbsettings-fixedleft' => 'Maplanta gi akague',
-'qbsettings-fixedright' => "Maplanta gi agapa'",
-'qbsettings-floatingleft' => "Mamå'ya gi akague",
-'qbsettings-floatingright' => "Mamå'ya gi agapa'",
-
 # Preferences page
 'preferences' => "I ga'ña-mu",
 'mypreferences' => "I ga'ña-hu",
@@ -875,7 +868,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 # Special:LinkSearch
 'linksearch-ok' => 'Aligao',
 
-# E-mail user
+# Email user
 'emailuser' => "Na'e-mail i muna'sesetbi este",
 
 # Watchlist

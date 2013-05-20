@@ -2302,6 +2302,15 @@ Ils ant fôta de por lo muens un domêno de nivél de dessus, per ègzemplo « *
 'listusers-noresult' => 'Nion utilisator trovâ.',
 'listusers-blocked' => '(blocâ{{GENDER:$1||ye|(ye)}})',
 
+# Special:ActiveUsers
+'activeusers' => 'Lista des utilisators actifs',
+'activeusers-intro' => 'O est na lista des utilisators qu’ant ègzèrciê un’activitât la quinta que seye pendent {{PLURAL:$1|lo jorn passâ|los $1 jorns passâs}}.',
+'activeusers-count' => '$1 accion{{PLURAL:$1||s}} pendent {{PLURAL:$3|lo jorn passâ|los $3 jorns passâs}}',
+'activeusers-from' => 'Fâre vêre los utilisators dês :',
+'activeusers-hidebots' => 'Cachiér los robots',
+'activeusers-hidesysops' => 'Cachiér los administrators',
+'activeusers-noresult' => 'Nion utilisator trovâ.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Drêts de les tropes d’utilisators',
 'listgrouprights-summary' => 'Vê-que na lista de les tropes d’utilisators dèfenies sur ceti vouiqui et pués los sins drêts d’accès.
@@ -3310,7 +3319,7 @@ Los ôtros champs seront cachiês per dèfôt.
 * gpsaltitude',
 'metadata-langitem' => "'''$2 :''' $1",
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Largior',
 'exif-imagelength' => 'Hôtior',
 'exif-bitspersample' => 'Bits per composenta',
@@ -3488,7 +3497,7 @@ Los ôtros champs seront cachiês per dèfôt.
 'exif-originalimageheight' => 'Hôtior de l’émâge devant qu’el èye étâ tornâ cadrar',
 'exif-originalimagewidth' => 'Largior de l’émâge devant qu’el èye étâ tornâ cadrar',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Pas comprèssâ',
 'exif-compression-2' => 'CCITT tropa 3 longior du codâjo Huffman changiê de dimension 1',
 'exif-compression-3' => 'CCITT tropa 3 codâjo du faxe',
@@ -3980,13 +3989,6 @@ Vos devriâd avêr reçu un [{{SERVER}}{{SCRIPTPATH}}/COPYING ègzemplèro de la
 'version-entrypoints' => 'URL de pouent d’entrâ',
 'version-entrypoints-header-entrypoint' => 'Pouent d’entrâ',
 'version-entrypoints-header-url' => 'URL',
-
-# Special:FilePath
-'filepath' => 'Chemin d’accès du fichiér',
-'filepath-page' => 'Fichiér :',
-'filepath-submit' => 'Alar trovar',
-'filepath-summary' => 'Ceta pâge spèciâla montre lo chemin d’accès complèt d’un fichiér.
-Les émâges sont montrâs dens lor plêna rèsolucion, los ôtros fichiérs sont chargiês et dèmarrâs tot drêt avouéc lor programo associyê.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Rechèrche des fichiérs en doblo',

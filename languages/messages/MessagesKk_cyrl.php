@@ -1961,7 +1961,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'watchnochange' => 'Көрсетілген мерзімде еш бақыланған дана өңделген жоқ.',
 'watchlist-details' => 'Тізіміңізде $1 бет бар (талқылау беттері саналмайды).',
 'wlheader-enotif' => 'Ескерту хат жіберуі қосылған.',
-'wlheader-showupdated' => "Соңғы келіп-кетуіңізден бері өзгертілген беттерді '''жуан''' қаріпімен көрсет.",
+'wlheader-showupdated' => "Соңғы келіп-кетуіңізден бері өзгертілген беттерді '''жуан''' қаріпімен көрсет",
 'watchmethod-recent' => 'бақылаулы беттер үшін жуықтағы өзгерістерді тексеру',
 'watchmethod-list' => 'жуықтағы өзгерістер үшін бақылаулы беттерді тексеру',
 'watchlistcontains' => 'Бақылау тізіміңізде $1 бет бар.',
@@ -2658,7 +2658,7 @@ $1',
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Ені',
 'exif-imagelength' => 'Биіктігі',
 'exif-bitspersample' => 'Құраш сайын бит саны',
@@ -2772,7 +2772,7 @@ $1',
 'exif-gpsdatestamp' => 'GPS күн-айы',
 'exif-gpsdifferential' => 'GPS сараланған дұрыстау',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Ұлғайтылған',
 
 'exif-unknowndate' => 'Белгісіз күн-айы',
@@ -3105,13 +3105,6 @@ $5
 'version-software' => 'Орнатылған бағдарламалық жасақтама',
 'version-software-product' => 'Өнім',
 'version-software-version' => 'Нұсқасы',
-
-# Special:FilePath
-'filepath' => 'Файл орналасуы',
-'filepath-page' => 'Файл аты:',
-'filepath-submit' => 'Орналасуын тап',
-'filepath-summary' => 'Бұл арнайы бет файл орналасуы толық жолын қайтарады.
-Суреттер толық ажыратылымдығымен көрсетіледі, басқа файл түрлеріне қатысты бағдарламасы тура жегіледі.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Файл телнұсқаларын іздеу',

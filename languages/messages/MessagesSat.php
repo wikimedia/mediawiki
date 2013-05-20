@@ -1173,7 +1173,7 @@ f nombor
 isospeeddratings
 jeleń',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Ganḍe',
 'exif-imagelength' => 'Usul',
 'exif-datetime' => 'Rẽt bodol reaḱ tạrikh ar okte',

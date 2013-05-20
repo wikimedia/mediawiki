@@ -2280,6 +2280,15 @@ Podržani protokoli: <code>$1</code> (zadaje http:// ako ne navedete protokol).'
 'listusers-noresult' => 'Korisnik nije pronađen.',
 'listusers-blocked' => '({{GENDER:$1|blokiran|blokirana|blokiran}})',
 
+# Special:ActiveUsers
+'activeusers' => 'Spisak aktivnih korisnika',
+'activeusers-intro' => 'Ovo je spisak korisnika koji su bili aktivni {{PLURAL:$1|prethodni dan|u poslednja $1 dana|u poslednjih $1 dana}}.',
+'activeusers-count' => '$1 {{PLURAL:$1|izmena|izmene|izmena}} {{PLURAL:$3|prethodni dan|u poslednja $3 dana|u poslednjih $3 dana}}',
+'activeusers-from' => 'Prikaži korisnike počev od:',
+'activeusers-hidebots' => 'Sakrij botove',
+'activeusers-hidesysops' => 'Sakrij administratore',
+'activeusers-noresult' => 'Korisnik nije pronađen.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Prava korisničkih grupa',
 'listgrouprights-summary' => 'Sledi spisak korisničkih grupa na ovom vikiju, zajedno s pravima pristupa.
@@ -2363,7 +2372,7 @@ Ukoliko budete želeli da uklonite stranicu sa spiska nadgledanja, kliknite opet
 'watchnochange' => 'Ništa što nadgledate nije promenjeno u prikazanom vremenu.',
 'watchlist-details' => '{{PLURAL:$1|$1 stranica|$1 stranice|$1 stranica}} na vašem spisku nadgledanja, ne računajući stranice za razgovor.',
 'wlheader-enotif' => 'E-obaveštenje je omogućeno.',
-'wlheader-showupdated' => "Stranice koje su izmenjene otkad ste ih poslednji put posetili su '''podebljane'''.",
+'wlheader-showupdated' => "Stranice koje su izmenjene otkad ste ih poslednji put posetili su '''podebljane'''",
 'watchmethod-recent' => 'proverava se da li ima nadgledanih stranica u skorašnjim izmenama',
 'watchmethod-list' => 'proverava se da li ima skorašnjih izmena u nadgledanim stranicama',
 'watchlistcontains' => 'Vaš spisak nadgledanja sadrži $1 {{PLURAL:$1|stranicu|stranice|stranica}}.',
@@ -3352,7 +3361,7 @@ Ako je prvobitno stanje datoteke promenjeno, moguće je da neki detalji ne opisu
 'metadata-langitem' => "'''$2:''' $1",
 'metadata-langitem-default' => '$1',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Širina',
 'exif-imagelength' => 'Visina',
 'exif-bitspersample' => 'Dubina boje',
@@ -3545,7 +3554,7 @@ $4, $5, $6 $7
 $8',
 'exif-subjectnewscode-value' => '$2 ($1)',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Nesažeto',
 'exif-compression-2' => 'CCITT Group 3 1 – Dimenzionalno izmenjeno Hafmanovo kodiranje po dužini',
 'exif-compression-3' => 'CCITT Group 3 faks kodiranje',
@@ -4060,13 +4069,6 @@ Trebalo bi da ste primili [{{SERVER}}{{SCRIPTPATH}}/COPYING primerak GNU-ove op�
 'version-entrypoints' => 'Adrese ulazne tačke',
 'version-entrypoints-header-entrypoint' => 'Ulazna tačka',
 'version-entrypoints-header-url' => 'Adresa',
-
-# Special:FilePath
-'filepath' => 'Putanja datoteke',
-'filepath-page' => 'Datoteka:',
-'filepath-submit' => 'Idi',
-'filepath-summary' => 'Ova posebna stranica prikazuje potpunu putanju datoteke.
-Slike su prikazane u punoj veličini, a druge vrste datoteka se pokreću pomoću njima pridruženim programima.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Pretraga duplikata',

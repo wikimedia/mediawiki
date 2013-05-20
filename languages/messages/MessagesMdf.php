@@ -173,8 +173,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Няфтемс мъзяра сувсида конат арафтозь лопать эсь мельгеваномазост',
 'tog-oldsig' => 'Афкуксонь кядьтяшкс',
 'tog-fancysig' => 'Кядьтяшкст улихть викитекстокс (эслек тиеви сюлмафксфтома)',
-'tog-externaleditor' => 'Нолдамс тевс ушеширень петнить мъзярс илякс изь мярьгов (аньцек тевонь содайхненди, сяс мес эрявихть башка кядьёнкст-арафнемат содама машинаса [//www.mediawiki.org/wiki/Manual:External_editors сяда тов.])',
-'tog-externaldiff' => 'Нолдамс тевс ушеширень програм верзиень ваксс путоманкса мъзярс илякс изь мярьгов (аньцек тевонь содайхненди, сяс мес эрявихть башка кядьёнкст-арафнемат содама машинаса[//www.mediawiki.org/wiki/Manual:External_editors сяда тов.])',
 'tog-showjumplinks' => 'Мярьгомс "юпадемс" сатовома сюлмафкстненди',
 'tog-uselivepreview' => 'Максомс эряй васень няфтемась (JavaScript) (Варжамань)',
 'tog-forceeditsummary' => 'Няфтемс мондине мезе сёрмадомс шава петнема вальмас сувамста',
@@ -1041,14 +1039,6 @@ $3 макссь туфталсь - ''$2''",
 'powersearch-togglenone' => 'Фкявок аш',
 'search-external' => 'Ушеширень вешендема',
 'searchdisabled' => '{{SITENAME}}-са тяни вешендемась аш. Ули кода вешендемс Google эли иля вешендемань интернет програпнень вельде. Шарфтк мяльце тостонь {{SITENAME}}-нь потмонц верзиец, улема, сирелгодсь.',
-
-# Quickbar
-'qbsettings' => 'Навигациень седяфкс',
-'qbsettings-none' => 'Аф няфтемс',
-'qbsettings-fixedleft' => 'Кержи шири киртьф',
-'qbsettings-fixedright' => 'Види шири киртьф',
-'qbsettings-floatingleft' => 'Кержи ширеса уенди',
-'qbsettings-floatingright' => 'Виде ширеса уенди',
 
 # Preferences page
 'preferences' => 'Арафнематне',
@@ -2426,7 +2416,7 @@ $1',
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Келец',
 'exif-imagelength' => 'Серец',
 'exif-bitspersample' => 'Битт фкя компонентс',
@@ -2540,7 +2530,7 @@ $1',
 'exif-gpsdatestamp' => 'GPS ши',
 'exif-gpsdifferential' => 'GPS диференциень петнема',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Аф компрезияф',
 
 'exif-unknowndate' => 'Аф содаф шись',
@@ -2831,13 +2821,6 @@ $5
 'version-software' => 'Нолдаф програпне',
 'version-software-product' => 'Нолдафкс',
 'version-software-version' => 'Верзие',
-
-# Special:FilePath
-'filepath' => 'Файлти ян',
-'filepath-page' => 'Файл:',
-'filepath-submit' => 'Ян',
-'filepath-summary' => 'Тя башка тевонь лопась няфнесы сембе янць файлти.
-Архтофксне няфневихть сембе синь кувалмосост, иля файлонь сортсна нолдавихть видеста програпнень вельде конат сотфт мархтост.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Вешендемс кафонзаф файлхне',

@@ -97,8 +97,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Shfaqe numrin e përdoruesve mbikëqyrës',
 'tog-oldsig' => 'Parapamja e nënshkrimit ekzistues:',
 'tog-fancysig' => 'Trajto nënshkrimin si tekst (pa vegëz automatike)',
-'tog-externaleditor' => 'Përdor program të jashtëm për redaktim (vetëm për eksperta, lyp përcaktime speciale në kompjuterin tuej)',
-'tog-externaldiff' => 'Përdor program të jashtëm për dallime (vetëm për eksperta, lyp përcaktime speciale në kompjuterin tuej)',
 'tog-showjumplinks' => 'Lejo lidhjet é afrueshmerisë "kapërce tek"',
 'tog-uselivepreview' => 'Trego parapamjén meniheré (JavaScript) (Eksperimentale)',
 'tog-forceeditsummary' => 'Pyetem kur e le përmbledhjen e redaktimit zbrazt',
@@ -113,6 +111,7 @@ $messages = array(
 'tog-showhiddencats' => 'Trego kategoritë e mshefta',
 'tog-noconvertlink' => 'Mos lejo konvertimin e titullit vegëz',
 'tog-norollbackdiff' => 'Trego ndryshimin mbas procedurës së kthimit mbrapa',
+'tog-useeditwarning' => 'Paralajmëron mua kur unë të lë një redakto faqe me ndryshimet e para shpëtimit',
 
 'underline-always' => 'gjithmonë',
 'underline-never' => 'kurrë',
@@ -750,6 +749,7 @@ Duket se është grisur.',
 'edit-no-change' => 'Redaktimi juaj është anashkaluar pasi që asnjë ndryshim nuk u bë në tekst.',
 'edit-already-exists' => 'Faqja nuk mundej të hapet.
 Ajo tanimë ekziston.',
+'editwarning-warning' => 'Duke e lënë këtë faqe mund të bëjë që ju të humbni ndonjë ndryshim që keni bërë. Nëse ju jeni regjistruar, ju mund ta çaktivizoni këtë paralajmërim në "Tue redaktue" seksionin e preferencave tuaja.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Kujdes: Kjo faqe ka shumë kërkesa që kërkojnë analizë gramatikore të kushtueshme për sistemin.
@@ -946,14 +946,6 @@ Provoni me ia parashtue kërkesës tuej ''tâna:'' që me lypë tânë përmbajt
 'searchdisabled' => '{{SITENAME}} kërkimi âsht deaktivue.
 Ndërkohë mundeni me lypë me Google.
 Vini re se indeksat e tyne të përmbajtjes së {{SITENAME}} munden me qenë të vjetëruem.',
-
-# Quickbar
-'qbsettings' => 'Vegla të shpejta',
-'qbsettings-none' => 'Asnji',
-'qbsettings-fixedleft' => 'Lidhun majtas',
-'qbsettings-fixedright' => 'Lidhun djathtas',
-'qbsettings-floatingleft' => 'Pezull majtas',
-'qbsettings-floatingright' => 'Pezull djathtas',
 
 # Preferences page
 'preferences' => 'Parapëlqimet',
@@ -1503,13 +1495,8 @@ Lejon dhânien e arsyes në përmbledhje.',
 
 # Stylesheets
 'common.css' => '/* CSSi i vendosun këtu ka me u zbatue në tâna dukjet */',
-'standard.css' => '/* CSSi i vendosun këtu ka me i prekë përdoruesit e dukjes standarde */',
-'nostalgia.css' => '/* CSS i vendosun këtu ka me i prekë shfrytëzuesit e dukjes Nostalgia */',
 'cologneblue.css' => '/* CSS i vendosun këtu ka me i prekë shfrytëzuesit e dukjes Cologne Blue */',
 'monobook.css' => '/* CSS i vednosun këtu ka me i prekë shfrytëzuesit e dukjes Monobook */',
-'myskin.css' => '/* CSSi i vednosun këtu ka me i prekë shfrytëzuesit e dukjes MySkin */',
-'chick.css' => '/* CSSi i vednosun këtu ka me i prekë shfrytëzuesit e dukjes Chick */',
-'simple.css' => '/* CSSi i vednosun këtu ka me i prekë shfrytëzuesit e dukjes Simple */',
 'modern.css' => '/* CSSi i vednosun këtu ka me i prekë shfrytëzuesit e dukjes Modern */',
 'vector.css' => '/* CSSi i vednosun këtu ka me i prekë shfrytëzuesit e dukjes Vector */',
 'print.css' => '/* CSSi i vednosun këtu ka me e prekë pamjen e shtypjes */',
@@ -1517,13 +1504,8 @@ Lejon dhânien e arsyes në përmbledhje.',
 
 # Scripts
 'common.js' => '/* Çdo JavaScript këtu ka me u ngarkue për të gjithë përdoruesit në secilën thirrje të faqes. */',
-'standard.js' => '/* Çdo JavaScript këtu ka me u ngarkue për shfrytëzuesit që përdorin dukjen Standard */',
-'nostalgia.js' => '/* Çdo JavaScript këtu ka me u ngarkue për shfrytëzuesit që përdorin dukjen Nostalgia */',
 'cologneblue.js' => '/* Çdo JavaScript këtu ka me u ngarkue për shfrytëzuesit që përdorin dukjen Cologne Blue */',
 'monobook.js' => '/* Çdo JavaScript këtu ka me u ngarkue për shfrytëzuesit që përdorin dukjen MonoBook */',
-'myskin.js' => '/* Çdo JavaScript këtu ka me u ngarkue për shfrytëzuesit që përdorin dukjen MySkin */',
-'chick.js' => '/* Çdo JavaScript këtu ka me u ngarkue për shfrytëzuesit që përdorin dukjen Chick */',
-'simple.js' => '/* Çdo JavaScript këtu ka me u ngarkue për shfrytëzuesit që përdorin dukjen Simple */',
 'modern.js' => '/* Çdo JavaScript këtu ka me u ngarkue për shfrytëzuesit që përdorin dukjen Modern */',
 'vector.js' => '/* Çdo JavaScript këtu ka me u ngarkue për shfrytëzuesit që përdorin dukjen Vector */',
 
@@ -1558,8 +1540,6 @@ Krejt vegzat tjera në të njejtin rresht do të bajnë përjashtim, d.m.th. faq
 
 /*
 Short names for language variants used for language conversion links.
-To disable showing a particular link, set it to 'disable', e.g.
-'variantname-zh-sg' => 'disable',
 Variants for Chinese language
 */
 'variantname-zh-hans' => 'hans',

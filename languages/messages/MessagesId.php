@@ -2395,7 +2395,7 @@ Perubahan-perubahan berikutnya pada halaman tersebut dan halaman pembicaraan ter
 'watchnochange' => 'Tak ada halaman pantauan Anda yang telah berubah dalam jangka waktu yang dipilih.',
 'watchlist-details' => 'Terdapat {{PLURAL:$1|$1 halaman|$1 halaman}} di daftar pantauan Anda, tidak termasuk halaman pembicaraan.',
 'wlheader-enotif' => 'Notifikasi surel diaktifkan.',
-'wlheader-showupdated' => "Halaman-halaman yang telah berubah sejak kunjungan terakhir Anda ditampilkan dengan '''huruf tebal'''.",
+'wlheader-showupdated' => "Halaman-halaman yang telah berubah sejak kunjungan terakhir Anda ditampilkan dengan '''huruf tebal'''",
 'watchmethod-recent' => 'periksa daftar perubahan terbaru terhadap halaman yang dipantau',
 'watchmethod-list' => 'periksa halaman yang dipantau terhadap perubahan terbaru',
 'watchlistcontains' => 'Daftar pantauan Anda berisi $1 {{PLURAL:$1|halaman|halaman}}.',

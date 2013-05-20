@@ -776,8 +776,8 @@ $2',
 'createacct-yourpasswordagain' => 'Επιβεβαίωση κωδικού',
 'createacct-yourpasswordagain-ph' => 'Εισαγωγή κωδικού ξανά',
 'remembermypassword' => 'Διατήρηση του κωδικού πρόσβασης σε αυτόν τον υπολογιστή (για μέγιστο $1 {{PLURAL:$1|ημέρα|ημέρες}})',
-'userlogin-remembermypassword' => 'Να με θυμάστε',
-'userlogin-signwithsecure' => 'Συνδεθείτε με ασφαλή διακομιστή',
+'userlogin-remembermypassword' => 'Διατηρήστε με σε σύνδεση',
+'userlogin-signwithsecure' => 'Χρησιμοποιείστε ασφαλή σύνδεση',
 'securelogin-stick-https' => 'Μείνετε συνδεδεμένοι με HTTPS μετά την είσοδο',
 'yourdomainname' => 'Το domain σας:',
 'password-change-forbidden' => 'Δεν μπορείτε να αλλάξετε τους κωδικούς πρόσβασης σε αυτό το βίκι.',
@@ -799,7 +799,7 @@ $2',
 'gotaccountlink' => 'Είσοδος',
 'userlogin-resetlink' => 'Ξεχάσατε τα στοιχεία σύνδεσής σας;',
 'userlogin-resetpassword-link' => 'Έκδοση νέου κωδικού πρόσβασης',
-'helplogin-url' => 'Βοήθεια:Σύνδεση',
+'helplogin-url' => 'Help:Σύνδεση',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Βοήθεια για τη σύνδεσή σας]]',
 'createacct-join' => 'Εισάγετε τα στοιχεία σας παρακάτω.',
 'createacct-emailrequired' => 'Διεύθυνση ηλεκτρονικού ταχυδρομείου',
@@ -812,8 +812,11 @@ $2',
 'createacct-reason-ph' => 'Γιατί δημιουργείτε έναν άλλο λογαριασμό',
 'createacct-captcha' => 'Έλεγχος ασφαλείας',
 'createacct-imgcaptcha-ph' => 'Εισαγωγή του κειμένου που βλέπετε παραπάνω',
-'createacct-benefit-body1' => 'επεξεργασίες',
-'createacct-benefit-body2' => 'σελίδες',
+'createacct-submit' => 'Δημιουργία λογαριασμού χρήστη',
+'createacct-benefit-heading' => '{{SITENAME}} έχει γίνει από ανθρώπους όπως εσύ.',
+'createacct-benefit-body1' => '{{PLURAL:$1|επεξεργασία|επεξεργασίες}}',
+'createacct-benefit-body2' => '{{PLURAL:$1|σελίδα|σελίδες}}',
+'createacct-benefit-body3' => 'πρόσφατοι {{PLURAL:$1|συνεισφέρων|συνεισφέροντες}}',
 'badretype' => 'Οι κωδικοί που έχετε δηλώσει δεν συμφωνούν μεταξύ τους.',
 'userexists' => 'Το όνομα χρήστη που εισαγάγατε βρίσκεται ήδη σε χρήση.
 Παρακαλούμε, διαλέξτε ένα διαφορετικό.',
@@ -898,6 +901,7 @@ $2',
 'resetpass-wrong-oldpass' => 'Λάθος προσωρινός ή κανονικός κωδικός.
 Μπορεί να έχετε ήδη αλλάξει επιτυχώς τον κωδικό σας ή να έχετε ζητήσει έναν νέο προσωρινό κωδικό.',
 'resetpass-temp-password' => 'Προσωρινός κωδικός:',
+'resetpass-abort-generic' => 'Η αλλαγή του κωδικού έχει απορριφθεί από μια προέκταση.',
 
 # Special:PasswordReset
 'passwordreset' => 'Κωδικός επαναφοράς',
@@ -2116,6 +2120,7 @@ $1',
 Αντιθέτως θα έπρεπε να κατευθύνουν στο κατάλληλο θέμα.<br />
 Μια σελίδα αντιμετωπίζεται ως σελίδα αποσαφήνισης αν χρησιμοποιεί ένα πρότυπο το οποίο συνδέεται από το [[MediaWiki:Disambiguationspage]]",
 
+'pageswithprop-text' => 'Αυτή η σελίδα ταξινομεί σελίδες που χρησιμοποιούν μια συγκεκριμένη ιδιότητα σελίδας.',
 'pageswithprop-prop' => 'Όνομα ιδιότητας:',
 'pageswithprop-submit' => 'Μετάβαση',
 
@@ -3245,10 +3250,24 @@ $1',
 'minutes' => '{{PLURAL:$1|$1 λεπτό|$1 λεπτά}}',
 'hours' => '{{PLURAL:$1|$1 ώρα|$1 ώρες}}',
 'days' => '{{PLURAL:$1|$1 μέρα|$1 μέρες}}',
+'weeks' => '{{PLURAL:$1|$1 εβδομάδα|$1 εβδομάδες}}',
 'months' => '{{PLURAL:$1|$1 μήνας|$1 μήνες}}',
 'years' => '{{PLURAL:$1|$1 έτος|$1 έτη}}',
 'ago' => '$1 πριν',
 'just-now' => 'μόλις τώρα',
+
+# Human-readable timestamps
+'hours-ago' => '$1 {{PLURAL:$1|ώρα|ώρες}} πριν',
+'minutes-ago' => '$1 {{PLURAL:$1|λεπτό|λεπτά}} πριν',
+'seconds-ago' => '$1 {{PLURAL:$1|δευτερόλεπτο|δευτερόλεπτα}} πριν',
+'monday-at' => 'Δευτέρα στις  $1',
+'tuesday-at' => 'Τρίτη στις $1',
+'wednesday-at' => 'Τετάρτη στις $1',
+'thursday-at' => 'Πέμπτη στις $1',
+'friday-at' => 'Παρασκευή στις $1',
+'saturday-at' => 'Σαββάτο στις $1',
+'sunday-at' => 'Κυριακή στις $1',
+'yesterday-at' => 'Χθες στις $1',
 
 # Bad image list
 'bad_image_list' => 'Η σύνταξη είναι ως εξής:
@@ -3871,6 +3890,15 @@ $5
 'version-entrypoints-header-entrypoint' => 'Σημείο εισόδου',
 'version-entrypoints-header-url' => 'URL',
 
+# Special:Redirect
+'redirect-legend' => 'Ανακατεύθυνση σε ένα αρχείο ή μια σελίδα',
+'redirect-submit' => 'Μετάβαση',
+'redirect-value' => 'Τιμή:',
+'redirect-user' => 'Αναγνωριστικό χρήση',
+'redirect-revision' => 'Αναθεώρηση σελίδας',
+'redirect-file' => 'Όνομα αρχείου',
+'redirect-not-exists' => 'Η τιμή δε βρέθηκε',
+
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Αναζήτηση για διπλά αρχεία',
 'fileduplicatesearch-summary' => 'Αναζήτηση για διπλά αρχεία με βάση την τιμή hash του αρχείου.',
@@ -3969,7 +3997,7 @@ $5
 # New logging system
 'logentry-delete-delete' => '{{GENDER:$1|Ο|Η}} $1 διέγραψε τη σελίδα $3',
 'logentry-delete-restore' => 'Ο/Η $1 αποκατέστησε τη σελίδα $3',
-'logentry-delete-event' => '{{GENDER:$1|Ο|Η}} $1 άλλαξε την ορατότητα σε {{PLURAL:$5|ένα γεγονός καταγραφής|$5 log events}} στο $3: $4',
+'logentry-delete-event' => ' $1 {{GENDER:$1|άλλαξε}} την ορατότητα σε {{PLURAL:$5|ένα γεγονός καταγραφής|$5 γεγονότα καταγραφής}} στο $3: $4',
 'logentry-delete-revision' => '{{GENDER:$1|Ο|Η}} $1 άλλαξε την ορατότητα {{PLURAL:$5|μιας έκδοσης|$5 εκδόσεων}} στη σελίδα $3: $4',
 'logentry-delete-event-legacy' => '{{GENDER:$2|Ο|Η}} $1 άλλαξε την ορατότητα των καταγραφόμενων συμβάντων στη σελίδα $3',
 'logentry-delete-revision-legacy' => '{{GENDER:$1|Ο|Η}} $1 άλλαξε την  ορατότητα των αναθεωρήσεων στη σελίδα $3',
@@ -3999,7 +4027,7 @@ $5
 'logentry-newusers-autocreate' => 'Ο λογαριασμός $1 δημιουργήθηκε αυτόματα',
 'logentry-rights-rights' => '{{GENDER:$1|Ο|Η}} $1 άλλαξε την ιδιότητα μέλους ομάδας για {{GENDER:$3|τον|την}} $3 από $4 σε $5',
 'logentry-rights-rights-legacy' => '{{GENDER:$1|Ο|Η}} $1 άλλαξε την ιδιότητα μέλους ομάδας {{GENDER:$1|του|της}} $3',
-'logentry-rights-autopromote' => '$1 προωθήθηκε αυτόματα από το $4 στο $5',
+'logentry-rights-autopromote' => '$1 {{GENDER:$2|προωθήθηκε}} αυτόματα από το $4 στο $5',
 'rightsnone' => '(κανένα)',
 
 # Feedback

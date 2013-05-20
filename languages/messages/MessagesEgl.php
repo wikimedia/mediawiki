@@ -322,14 +322,6 @@ Cancellä',
 'powersearch-toggleall' => 'Tütt',
 'powersearch-togglenone' => 'Ansöin',
 
-# Quickbar
-'qbsettings' => 'Quickbar',
-'qbsettings-none' => 'Ansöin',
-'qbsettings-fixedleft' => 'Fiss a sinistar',
-'qbsettings-fixedright' => 'Fiss a destar',
-'qbsettings-floatingleft' => 'Fluttuant a sinistar',
-'qbsettings-floatingright' => 'Fluttuant a destar',
-
 # Preferences page
 'preferences' => 'Prefereinz',
 'mypreferences' => 'Al me prefereinz',
@@ -389,9 +381,6 @@ Cancellä',
 # Rights
 'right-read' => "Legg' pàgin",
 'right-edit' => 'Mudifich pàgin',
-
-# User rights log
-'rightsnone' => '(ansöin)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => "legg' custa pàgina ché",
@@ -465,7 +454,7 @@ Cancellä',
 # Special:ListGroupRights
 'listgrouprights-group' => 'Grüpp',
 
-# E-mail user
+# Email user
 'emailfrom' => 'Da:',
 'emailto' => 'A:',
 'emailsubject' => 'Uggett:',
@@ -479,8 +468,8 @@ Cancellä',
 'watchthispage' => 'Vadä custa pàgina ché',
 'unwatch' => "N'la vadär piö",
 
-'changed' => 'mudifegat',
 'created' => 'creät',
+'changed' => 'mudifegat',
 
 # Delete
 'delete-confirm' => 'Cancellä "$1"',
@@ -613,7 +602,7 @@ Vadä la pàgina dal file',
 # Metadata
 'metadata' => 'Metadat',
 
-# EXIF tags
+# Exif tags
 'exif-exposuretime-format' => '$1 s ($2)',
 'exif-gpsareainformation' => "Nom d'la zona GPS",
 'exif-gpsdatestamp' => 'Data GPS',
@@ -660,10 +649,6 @@ Vadä la pàgina dal file',
 'version-license' => 'Licinza',
 'version-poweredby-others' => 'ätar',
 
-# Special:FilePath
-'filepath-page' => 'Immàgin:',
-'filepath-submit' => 'Vé',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch-filename' => 'Nom dal file:',
 'fileduplicatesearch-submit' => 'Cercä',
@@ -683,6 +668,9 @@ Vadä la pàgina dal file',
 # HTML forms
 'htmlform-reset' => 'Turna indré cul la mudifich',
 'htmlform-selectorother-other' => 'Ätar',
+
+# New logging system
+'rightsnone' => '(ansöin)',
 
 # Feedback
 'feedback-subject' => 'Uggett:',

@@ -63,8 +63,6 @@ $messages = array(
 'tog-shownumberswatching' => '显示有几多人监视',
 'tog-oldsig' => '现有𠮶签名：',
 'tog-fancysig' => '搦签名以维基字对待（冇自动连结）',
-'tog-externaleditor' => '默认用外部编辑器（专家用𠮶功能，要到倷𠮶电脑上头特别𠮶设置一下）',
-'tog-externaldiff' => '默认用外部差异比较器（专家用𠮶功能，要到汝𠮶电脑上头特别𠮶设置下。[//www.mediawiki.org/wiki/Manual:External_editors 别𠮶信息]）',
 'tog-showjumplinks' => '启用“跳到”访问链接',
 'tog-uselivepreview' => '使用即时预览（JavaScript）（实验中）',
 'tog-forceeditsummary' => '冇改动注解时要同偶话',
@@ -776,14 +774,6 @@ $2',
 'powersearch-field' => '寻',
 'searchdisabled' => '{{SITENAME}}𠮶搜索功能已经关闭。倷可以用Google寻吖。但系佢𠮶索引可能系早先𠮶。',
 
-# Quickbar
-'qbsettings' => '快捷导航条',
-'qbsettings-none' => '冇',
-'qbsettings-fixedleft' => '左首固定',
-'qbsettings-fixedright' => '右首固定',
-'qbsettings-floatingleft' => '左首漂移',
-'qbsettings-floatingright' => '左首漂移',
-
 # Preferences page
 'preferences' => '参数设置',
 'mypreferences' => '偶𠮶参数设置',
@@ -1272,7 +1262,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'watchnochange' => '一径到显示𠮶时间之内，倷眏到𠮶页面冇改动。',
 'watchlist-details' => '$1只页面（伓算讨论页） 拖眏到哩',
 'wlheader-enotif' => '启动嘞email通知功能。',
-'wlheader-showupdated' => "上回倷眵𠮶页面改动𠮶部分用'''粗体'''显到。",
+'wlheader-showupdated' => "上回倷眵𠮶页面改动𠮶部分用'''粗体'''显到",
 'watchmethod-recent' => '眵吖拖眏到𠮶页面𠮶最近编辑',
 'watchmethod-list' => '望吖监视页里头最晏𠮶改动',
 'watchlistcontains' => '倷𠮶监视列表包含$1只页面。',
@@ -1858,7 +1848,7 @@ $1',
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => '阔',
 'exif-imagelength' => '高',
 'exif-bitspersample' => '每像素byte数',
@@ -1972,7 +1962,7 @@ $1',
 'exif-gpsdatestamp' => 'GPS日期',
 'exif-gpsdifferential' => 'GPS差动修正',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => '冇压缩',
 
 'exif-unknowndate' => '未知𠮶日期',
@@ -2233,11 +2223,6 @@ $3
 'version-poweredby-credits' => "个只 Wiki 由 '''[//www.mediawiki.org/ MediaWiki]''' 驱动，版权所有 © 2001-$1 $2。",
 'version-software' => '装正𠮶软件',
 'version-software-version' => '版本',
-
-# Special:FilePath
-'filepath' => '文件路径',
-'filepath-page' => '文件：',
-'filepath-submit' => '路径',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-filename' => '文件名:',

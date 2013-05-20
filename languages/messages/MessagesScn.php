@@ -1717,6 +1717,14 @@ Protucolli suppurtati: <code>$1</code>',
 'listusers-noresult' => "Nuddu utenti attruvatu. Virificari l'usu di caràttiri maiùsculi/minùsculi.",
 'listusers-blocked' => '(bloccatu)',
 
+# Special:ActiveUsers
+'activeusers' => 'Lista dî utenti attivi',
+'activeusers-count' => "$1 {{PLURAL:$1|canciamentu|canciamenti}} nti {{PLURAL:$3|l'ùrtimu jornu| nti l'ùrtimi $3 jorna}}",
+'activeusers-from' => 'Ammustra li utenti a pàrtiri da:',
+'activeusers-hidebots' => 'Bot ammucciati',
+'activeusers-hidesysops' => 'Amministratura ammucciati',
+'activeusers-noresult' => 'Nussun utenti truvatu.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Diritti dô gruppu utenti',
 'listgrouprights-summary' => "Ccà sutta sunnu elincati li gruppi utenti difiniti pi sta wiki, cu li dritti d'accessu assuciati a iddi. Pi sapìrinni chiossai supra li dritti, lèggiti [[{{MediaWiki:Listgrouprights-helppage}}|sta pàggina]].",
@@ -1778,7 +1786,7 @@ Protucolli suppurtati: <code>$1</code>',
 'watchnochange' => 'Nudda dî pàggini ossirvati hà statu canciata ntô pirìudu cunzidiratu.',
 'watchlist-details' => 'La lista dê pàggini taliati cunteni {{PLURAL:$1|na pàggina (cu la rispittiva pàggina di discussioni)|$1 pàggini (cu li rispittivi pàggini di discussioni)}}.',
 'wlheader-enotif' => 'La nutìfica via e-mail è attivata.',
-'wlheader-showupdated' => "Li pàggini ca hannu statu canciati dâ tò ùrtima vìsita sunnu evidinziati 'n '''grassettu'''.",
+'wlheader-showupdated' => "Li pàggini ca hannu statu canciati dâ tò ùrtima vìsita sunnu evidinziati 'n '''grassettu'''",
 'watchmethod-recent' => "cuntrollu dî canciamenti ricenti pi l'ossirvati spiciali",
 'watchmethod-list' => "cuntrollu di l'ossirvati spiciali pi canciamenti ricenti",
 'watchlistcontains' => 'La tò lista di ossirvati spiciali cunteni {{PLURAL:$1|na pàggina|$1 pàggini}}.',
@@ -2479,7 +2487,7 @@ Li lijami succissivi, supra la stissa riga, sunnu cunzidirati comu eccizzioni (p
 * gpslongitude
 * gpsaltitude",
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Larghizza',
 'exif-imagelength' => 'Autizza',
 'exif-bitspersample' => 'Bit pi campiuni',
@@ -2593,7 +2601,7 @@ Li lijami succissivi, supra la stissa riga, sunnu cunzidirati comu eccizzioni (p
 'exif-gpsdatestamp' => 'Data GPS',
 'exif-gpsdifferential' => 'Currezzioni diffirinziali GPS',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Nuddu',
 
 'exif-unknowndate' => 'Data scanusciuta',
@@ -2885,14 +2893,6 @@ Stu còdici di cunferma scadi automaticamenti a li $4.',
 'version-software' => 'Software nstallatu',
 'version-software-product' => 'Prodottu',
 'version-software-version' => 'Virsioni',
-
-# Special:FilePath
-'filepath' => 'Pircorsu di nu file',
-'filepath-page' => 'Nnomu dô file:',
-'filepath-submit' => 'Pircorsu',
-'filepath-summary' => 'Sta pàggina spiciali rimanna arredi lu traggittu cumpretu di nu file. Li mmàggini sù ammustrati cu la cchiù àuta risoluzzioni dispunìbbili, pi l\'àutri tipi di file parti direttamenti lu prugramma assuciatu.
-
-Mèttiri lu nomu dû file senza lu prifissu "{{ns:file}}:"',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Circata dê file duppiuni',

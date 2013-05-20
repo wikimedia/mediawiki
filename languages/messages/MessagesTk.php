@@ -68,8 +68,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Gözegçilikde saklaýan ulanyjylaryň sanyny görkez',
 'tog-oldsig' => 'Bar bolan gol:',
 'tog-fancysig' => 'Gola wikitekst hökmünde çemeleş (awtomatik çykgytsyz)',
-'tog-externaleditor' => 'Gaýybana daşarky redaktor ulan (diňe hünärmenler üçin, kompýuteriňizde ýörite sazlamalar talap edilýär. [//www.mediawiki.org/wiki/Manual:External_editors Jikme-jik.])',
-'tog-externaldiff' => 'Başga programmalaryň üsti bilen deňeşdir (diňe hünärmenler üçin, kompýuteriňizde ýörite sazlamalar talap edilýär)',
 'tog-showjumplinks' => '"Git" çykgydyny işlet',
 'tog-uselivepreview' => 'Gönümel deslapky syny ulan (JavaScript) (Synag edilýär)',
 'tog-forceeditsummary' => 'Gysgaça mazmuny boş galdyran mahalym maňa ýatlat',
@@ -1012,14 +1010,6 @@ Gözlegiňiziň başyna '''all:''' pristawkasyny goşup tutuş mazmuny (şol san
 Ýogsa-da, oňa çenli Google bilen gözleg geçirip bilersiňiz.
 Emma olaryň {{SITENAME}} indeksleriniň möwriti geçen bolmagy mümkindir.',
 
-# Quickbar
-'qbsettings' => 'Tiz panel',
-'qbsettings-none' => 'Hiç biri',
-'qbsettings-fixedleft' => 'Çepe berkidildi',
-'qbsettings-fixedright' => 'Saga berkidildi',
-'qbsettings-floatingleft' => 'Çepe ýaplanýar',
-'qbsettings-floatingright' => 'Saga ýaplanýar',
-
 # Preferences page
 'preferences' => 'Ileri tutmalar',
 'mypreferences' => 'Ileri tutmalar',
@@ -1484,7 +1474,6 @@ Howpsuzlygyň optimizasiýasy üçin, img_auth.php ýapylyp goýuldy.',
 'http-read-error' => 'HTTP okamak säwligi.',
 'http-timed-out' => 'HTTP talabynyň wagty geçdi.',
 'http-curl-error' => 'URL äkelmek säwligi: $1',
-'http-host-unreachable' => 'URL-ä baryp bolmaýar',
 'http-bad-status' => 'HTTP talaby wagtynda problema döredi: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -2616,7 +2605,7 @@ Ondan soňraky çykgyt(lar) kadadan çykma hökmünde kabul edilýär, meselem: 
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'In',
 'exif-imagelength' => 'Beýiklik',
 'exif-bitspersample' => 'Komponent başyna bit',
@@ -2732,7 +2721,7 @@ Ondan soňraky çykgyt(lar) kadadan çykma hökmünde kabul edilýär, meselem: 
 'exif-languagecode' => 'Dil',
 'exif-iimcategory' => 'Kategoriýa',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Gysylmadyk',
 
 'exif-unknowndate' => 'Näbelli sene',
@@ -3050,15 +3039,6 @@ Bu programmanyň ýany bilen siz [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU General P
 'version-software' => 'Gurlan programma üpjünçiligi',
 'version-software-product' => 'Önüm',
 'version-software-version' => 'Wersiýa',
-
-# Special:FilePath
-'filepath' => 'Faýla barýan ýol',
-'filepath-page' => 'Faýl:',
-'filepath-submit' => 'Git',
-'filepath-summary' => 'Bu ýörite sahypa faýla barýan doly ýoly gaýtaryp getirýär.
-Suratlar doly ölçegde görkezilýär, beýleki faýl görnüşleri degişli programmalary bilen gönümel başladylýar.
-
-Faýlyň adyny "{{ns:file}}:" pristawkasyz giriziň.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Dublikat faýllaryň gözlegi',

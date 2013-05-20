@@ -569,7 +569,7 @@ Non oblida personalisar tu [[Special:Preferences|preferentias in {{SITENAME}}]].
 'createacct-yourpasswordagain-ph' => 'Repete le contrasigno',
 'remembermypassword' => 'Memorar mi contrasigno in iste navigator (pro un maximo de $1 {{PLURAL:$1|die|dies}})',
 'userlogin-remembermypassword' => 'Mantener mi session aperte',
-'userlogin-signwithsecure' => 'Aperir session con servitor secur',
+'userlogin-signwithsecure' => 'Usar un connexion secur',
 'securelogin-stick-https' => 'Remaner connectite via HTTPS post apertura de session',
 'yourdomainname' => 'Tu dominio:',
 'password-change-forbidden' => 'Non es possibile cambiar le contrasigno in iste wiki.',
@@ -583,20 +583,37 @@ Non oblida personalisar tu [[Special:Preferences|preferentias in {{SITENAME}}]].
 'userlogout' => 'Clauder session',
 'notloggedin' => 'Tu non ha aperite un session',
 'userlogin-noaccount' => 'Non ha un conto?',
+'userlogin-joinproject' => 'Crear un conto in {{SITENAME}}',
 'nologin' => "Tu non ha un conto? '''$1'''.",
 'nologinlink' => 'Crear un conto',
 'createaccount' => 'Crear conto',
 'gotaccount' => "Tu jam ha un conto? '''$1'''.",
 'gotaccountlink' => 'Aperir session',
 'userlogin-resetlink' => 'Datos de authentication oblidate?',
+'userlogin-resetpassword-link' => 'Reinitialisar contrasigno',
 'helplogin-url' => 'Help:Aperir session',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Adjuta a aperir session]]',
+'createacct-join' => 'Specifica tu information hic infra.',
+'createacct-emailrequired' => 'Adresse de e-mail',
+'createacct-emailoptional' => 'Adresse de e-mail (optional)',
+'createacct-email-ph' => 'Entra tu adresse de e-mail',
 'createaccountmail' => 'Usar un contrasigno aleatori temporari e inviar lo al adresse de e-mail specificate hic infra',
+'createacct-realname' => 'Nomine real (optional)',
 'createaccountreason' => 'Motivo:',
+'createacct-reason' => 'Motivo',
+'createacct-reason-ph' => 'Proque crea tu un altere conto?',
+'createacct-captcha' => 'Controlo de securitate',
+'createacct-imgcaptcha-ph' => 'Scribe le texto que tu vide hic supra',
+'createacct-submit' => 'Crear tu conto',
+'createacct-benefit-heading' => '{{SITENAME}} es facite per gente como tu.',
+'createacct-benefit-body1' => '{{PLURAL:$1|modification|modificationes}}',
+'createacct-benefit-body2' => '{{PLURAL:$1|pagina|paginas}}',
+'createacct-benefit-body3' => '{{PLURAL:$1|contributor|contributores}} recente',
 'badretype' => 'Le duo contrasignos que tu scribeva non es identic.',
 'userexists' => 'Iste nomine de usator es jam in uso.
 Selige un altere nomine.',
 'loginerror' => 'Error in le apertura del session',
+'createacct-error' => 'Error de creation de conto',
 'createaccounterror' => 'Non poteva crear le conto: $1',
 'nocookiesnew' => "Le conto de usator ha essite create, sed tu non ha aperite un session.
 {{SITENAME}} usa ''cookies'' pro mantener le sessiones del usatores.
@@ -692,12 +709,14 @@ Pro completar le accesso, tu debe definir un nove contrasigno hic:',
 'resetpass-wrong-oldpass' => 'Le contrasigno temporari o actual es invalide.
 Es possibile que tu ha ja cambiate tu contrasigno o requestate un nove contrasigno temporari.',
 'resetpass-temp-password' => 'Contrasigno temporari:',
+'resetpass-abort-generic' => 'Le cambio del contrasigno ha essite abortate per un extension.',
 
 # Special:PasswordReset
 'passwordreset' => 'Reinitialisar contrasigno',
 'passwordreset-text' => 'Completa iste formulario pro reinitialisar tu contrasigno.',
 'passwordreset-legend' => 'Reinitialisar contrasigno',
 'passwordreset-disabled' => 'Le reinitialisation de contrasignos ha essite disactivate in iste wiki.',
+'passwordreset-emaildisabled' => 'Le functionalitate de e-mail ha essite disactivate in iste wiki.',
 'passwordreset-pretext' => '{{PLURAL:$1||Entra un del elementos de datos hic infra}}',
 'passwordreset-username' => 'Nomine de usator:',
 'passwordreset-domain' => 'Dominio:',
@@ -716,7 +735,7 @@ Tu deberea ora aperir session e eliger un nove contrasigno. Si un altere persona
 requesta, o si tu te ha rememorate tu contrasigno original e non plus
 vole cambiar lo, tu pote ignorar iste message e continuar a usar le ancian
 contrasigno.',
-'passwordreset-emailtext-user' => 'Le usator $1 in {{SITENAME}} requestava un rememoration del detalios de tu conto in {{SITENAME}}
+'passwordreset-emailtext-user' => 'Le usator $1 in {{SITENAME}} requestava un reinitialisation de tu contrasigno in {{SITENAME}}
 ($4). Le {{PLURAL:$3|conto|contos}} de usator sequente es associate con iste adresse de e-mail:
 
 $2
@@ -728,9 +747,9 @@ vole cambiar lo, tu pote ignorar iste message e continuar a usar le ancian
 contrasigno.',
 'passwordreset-emailelement' => 'Nomine de usator: $1
 Contrasigno temporari: $2',
-'passwordreset-emailsent' => 'Un e-mail de rememoration ha essite inviate.',
-'passwordreset-emailsent-capture' => 'Un e-mail de rememoration ha essite inviate; iste message es monstrate hic infra.',
-'passwordreset-emailerror-capture' => 'Un e-mail de rememoration ha essite generate; iste message es monstrate hic infra, ma le invio al usator ha fallite: $1',
+'passwordreset-emailsent' => 'Un message de e-mail pro le reinitialisation del contrasigno ha essite inviate.',
+'passwordreset-emailsent-capture' => 'Un message de e-mail pro le reinitialisation del contrasigno ha essite inviate; iste message es monstrate hic infra.',
+'passwordreset-emailerror-capture' => 'Un e-mail pro le reinitialisation del contrasigno ha essite generate; iste message es monstrate hic infra, ma le invio al {{GENDER:$2|usator}} ha fallite: $1',
 
 # Special:ChangeEmail
 'changeemail' => 'Cambiar adresse de e-mail',
@@ -1248,6 +1267,7 @@ Tenta prefixar tu consulta con ''all:'' pro cercar in tote le contento (includen
 'searchdisabled' => 'Le recerca in {{SITENAME}} es disactivate.
 Tu pote cercar via Google in le interim.
 Nota que lor indices del contento de {{SITENAME}} pote esser obsolete.',
+'search-error' => 'Un error ha occurrite durante le recerca: $1',
 
 # Preferences page
 'preferences' => 'Preferentias',
@@ -1391,6 +1411,7 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 'userrights-notallowed' => 'Tu conto non ha le permission de adder o remover derectos de usator.',
 'userrights-changeable-col' => 'Gruppos que tu pote modificar',
 'userrights-unchangeable-col' => 'Gruppos que tu non pote modificar',
+'userrights-conflict' => 'Conflicto inter derectos de usator! Per favor applica tu cambiamentos de novo.',
 
 # Groups
 'group' => 'Gruppo:',
@@ -2229,7 +2250,7 @@ Le modificationes futur in iste pagina e in le pagina de discussion associate es
 'watchnochange' => 'Nulle articulo que tu observa esseva modificate durante le periodo de tempore indicate.',
 'watchlist-details' => '{{PLURAL:$1|$1 pagina|$1 paginas}} es in tu observatorio, sin contar le paginas de discussion.',
 'wlheader-enotif' => 'Le notificationes via e-mail es active.',
-'wlheader-showupdated' => "Le paginas que ha essite modificate post tu ultime visita se monstra in litteras '''grasse'''.",
+'wlheader-showupdated' => "Le paginas que ha essite modificate post tu ultime visita se monstra in litteras '''grasse'''",
 'watchmethod-recent' => 'cerca paginas sub observation in modificationes recente',
 'watchmethod-list' => 'cerca modificationes recente in paginas sub observation',
 'watchlistcontains' => 'Tu observatorio contine $1 {{PLURAL:$1|pagina|paginas}}.',
@@ -2654,6 +2675,7 @@ Per favor contacta tu providitor de servicio internet o supporto technic e infor
 'sorbsreason' => 'Tu adresse IP es listate como proxy aperte in le DNSBL usate per {{SITENAME}}.',
 'sorbs_create_account_reason' => 'Tu adresse IP es listate como proxy aperte in le DNSBL usate per {{SITENAME}}.
 Tu non pote crear un conto',
+'xffblockreason' => 'Un adresse IP presente in le capite X-Forwarded-For, o le tue o illo de un servitor proxy que tu usa, ha essite blocate. Le motivo original pro le blocada es: $1',
 'cant-block-while-blocked' => 'Tu non pote blocar altere usatores durante que tu mesme es blocate.',
 'cant-see-hidden-user' => 'Le usator que tu tenta blocar ha ja essite blocate e celate. Post que tu non ha le derecto hideuser, tu non pote vider o modificar le blocada del usator.',
 'ipbblocked' => 'Tu non pote blocar o disblocar altere usatores, proque tu mesme es blocate',
@@ -3137,6 +3159,7 @@ Le execution de illo pote compromitter le securitate de tu systema.",
 'minutes' => '{{PLURAL:$1|$1 minuta|$1 minutas}}',
 'hours' => '{{PLURAL:$1|$1 hora|$1 horas}}',
 'days' => '{{PLURAL:$1|$1 die|$1 dies}}',
+'weeks' => '$1 {{PLURAL:$1|septimana|septimanas}}',
 'months' => '{{PLURAL:$1|$1 mense|$1 menses}}',
 'years' => '{{PLURAL:$1|$1 anno|$1 annos}}',
 'ago' => '$1 retro',
@@ -3781,6 +3804,18 @@ Vos deberea haber recipite [{{SERVER}}{{SCRIPTPATH}}/COPYING un exemplar del Lic
 'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Cammino al articulo]',
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Cammino al script]',
 
+# Special:Redirect
+'redirect' => 'Rediriger per nomine de file, ID de usator o ID de version',
+'redirect-legend' => 'Rediriger a un file o pagina',
+'redirect-summary' => 'Iste pagina special redirige a un file (si es date le nomine de un file), a un pagina (si es date un ID de version) o a un pagina de usator (si es date un ID de usator numeric).',
+'redirect-submit' => 'Va',
+'redirect-lookup' => 'Cercar:',
+'redirect-value' => 'Valor:',
+'redirect-user' => 'ID de usator',
+'redirect-revision' => 'Version de pagina',
+'redirect-file' => 'Nomine de file',
+'redirect-not-exists' => 'Valor non trovate',
+
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Cercar files duplicate',
 'fileduplicatesearch-summary' => "Cercar files duplicate a base de lor summas de verification ''(hash).''",
@@ -3870,23 +3905,26 @@ Vos deberea haber recipite [{{SERVER}}{{SCRIPTPATH}}/COPYING un exemplar del Lic
 'htmlform-submit' => 'Submitter',
 'htmlform-reset' => 'Disfacer modificationes',
 'htmlform-selectorother-other' => 'Altere',
+'htmlform-no' => 'No',
+'htmlform-yes' => 'Si',
+'htmlform-chosen-placeholder' => 'Selige un option',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 con supporto de recerca de texto integre',
 'sqlite-no-fts' => '$1 sin supporto de recerca de texto integre',
 
 # New logging system
-'logentry-delete-delete' => '$1 deleva le pagina $3',
-'logentry-delete-restore' => '$1 restaurava le pagina $3',
-'logentry-delete-event' => '$1 cambiava le visibilitate de {{PLURAL:$5|un entrata|$5 entratas}} de registro in $3: $4',
-'logentry-delete-revision' => '$1 cambiava le visibilitate de {{PLURAL:$5|un version|$5 versiones}} del pagina $3: $4',
-'logentry-delete-event-legacy' => '$1 cambiava le visibilitate de entratas de registro in $3',
-'logentry-delete-revision-legacy' => '$1 cambiava le visibilitate de versiones del pagina $3',
-'logentry-suppress-delete' => '$1 supprimeva le pagina $3',
-'logentry-suppress-event' => '$1 secretemente cambiava le visibilitate de {{PLURAL:$5|un entrata|$5 entratas}} de registro in $3: $4',
-'logentry-suppress-revision' => '$1 secretemente cambiava le visibilitate de {{PLURAL:$5|un version|$5 versiones}} del pagina $3: $4',
-'logentry-suppress-event-legacy' => '$1 secretemente cambiava le visibilitate de entratas de registro in $3',
-'logentry-suppress-revision-legacy' => '$1 secretemente cambiava le visibilitate de versiones del pagina $3',
+'logentry-delete-delete' => '$1 {{GENDER:$2|deleva}} le pagina $3',
+'logentry-delete-restore' => '$1 {{GENDER:$2|restaurava}} le pagina $3',
+'logentry-delete-event' => '$1 {{GENDER:$2|cambiava}} le visibilitate de {{PLURAL:$5|un entrata|$5 entratas}} de registro in $3: $4',
+'logentry-delete-revision' => '$1 {{GENDER:$2|cambiava}} le visibilitate de {{PLURAL:$5|un version|$5 versiones}} del pagina $3: $4',
+'logentry-delete-event-legacy' => '$1 {{GENDER:$2|cambiava}} le visibilitate de entratas de registro in $3',
+'logentry-delete-revision-legacy' => '$1 {{GENDER:$2|cambiava}} le visibilitate de versiones del pagina $3',
+'logentry-suppress-delete' => '$1 {{GENDER:$2|supprimeva}} le pagina $3',
+'logentry-suppress-event' => '$1 secretemente {{GENDER:$2|cambiava}} le visibilitate de {{PLURAL:$5|un entrata|$5 entratas}} de registro in $3: $4',
+'logentry-suppress-revision' => '$1 secretemente {{GENDER:$2|cambiava}} le visibilitate de {{PLURAL:$5|un version|$5 versiones}} del pagina $3: $4',
+'logentry-suppress-event-legacy' => '$1 secretemente {{GENDER:$2|cambiava}} le visibilitate de entratas de registro in $3',
+'logentry-suppress-revision-legacy' => '$1 secretemente {{GENDER:$2|cambiava}} le visibilitate de versiones del pagina $3',
 'revdelete-content-hid' => 'contento celate',
 'revdelete-summary-hid' => 'summario del modification celate',
 'revdelete-uname-hid' => 'nomine de usator celate',
@@ -3895,20 +3933,20 @@ Vos deberea haber recipite [{{SERVER}}{{SCRIPTPATH}}/COPYING un exemplar del Lic
 'revdelete-uname-unhid' => 'nomine de usator non plus celate',
 'revdelete-restricted' => 'restrictiones applicate al administratores',
 'revdelete-unrestricted' => 'restrictiones eliminate pro administratores',
-'logentry-move-move' => '$1 renominava le pagina $3 a $4',
-'logentry-move-move-noredirect' => '$1 renominava le pagina $3 a $4 sin lassar un redirection',
-'logentry-move-move_redir' => '$1 renominava le pagina $3 a $4, superscribente un redirection',
-'logentry-move-move_redir-noredirect' => '$1 renominava le pagina $3 a $4, superscribente un redirection sin lassar un nove redirection',
-'logentry-patrol-patrol' => '$1 marcava le version $4 del pagina $3 como patruliate',
-'logentry-patrol-patrol-auto' => '$1 automaticamente marcava le version $4 del pagina $3 como patruliate',
-'logentry-newusers-newusers' => 'Le conto de usator $1 ha essite create',
-'logentry-newusers-create' => 'Le conto de usator $1 ha essite create',
-'logentry-newusers-create2' => 'Le conto de usator $3 ha essite create per $1',
-'logentry-newusers-byemail' => 'Le conto de usator $3 ha essite create per $1 e le contrasigno ha essite inviate per e-mail',
-'logentry-newusers-autocreate' => 'Le conto $1 ha essite create automaticamente',
-'logentry-rights-rights' => '$1 cambiava le appertinentia a gruppos pro $3 de $4 a $5',
-'logentry-rights-rights-legacy' => '$1 cambiava le appertinentia a gruppos pro $3',
-'logentry-rights-autopromote' => '$1 ha essite automaticamente promovite de $4 a $5',
+'logentry-move-move' => '$1 {{GENDER:$2|renominava}} le pagina $3 a $4',
+'logentry-move-move-noredirect' => '$1 {{GENDER:$2|renominava}} le pagina $3 a $4 sin lassar un redirection',
+'logentry-move-move_redir' => '$1 {{GENDER:$2|renominava}} le pagina $3 a $4, superscribente un redirection',
+'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|renominava}} le pagina $3 a $4, superscribente un redirection sin lassar un nove redirection',
+'logentry-patrol-patrol' => '$1 {{GENDER:$2|marcava}} le version $4 del pagina $3 como patruliate',
+'logentry-patrol-patrol-auto' => '$1 automaticamente {{GENDER:$2|marcava}} le version $4 del pagina $3 como patruliate',
+'logentry-newusers-newusers' => 'Le conto de usator $1 ha essite {{GENDER:$2|create}}',
+'logentry-newusers-create' => 'Le conto de usator $1 ha essite {{GENDER:$2|create}}',
+'logentry-newusers-create2' => 'Le conto de usator $3 ha essite {{GENDER:$2|create}} per $1',
+'logentry-newusers-byemail' => 'Le conto de usator $3 ha essite {{GENDER:$2|create}} per $1 e le contrasigno ha essite inviate per e-mail',
+'logentry-newusers-autocreate' => 'Le conto $1 ha essite {{GENDER:$2|create}} automaticamente',
+'logentry-rights-rights' => '$1 {{GENDER:$2|cambiava}} le appertinentia a gruppos pro $3 de $4 a $5',
+'logentry-rights-rights-legacy' => '$1 {{GENDER:$2|cambiava}} le appertinentia a gruppos pro $3',
+'logentry-rights-autopromote' => '$1 ha essite automaticamente {{GENDER:$2|promovite}} de $4 a $5',
 'rightsnone' => '(nulle)',
 
 # Feedback

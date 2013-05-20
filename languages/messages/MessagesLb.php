@@ -880,7 +880,7 @@ D'Passwuert fir dësen neie Benotzerkont kann op der ''[[Special:ChangePassword|
 'newarticletext' => "Dir hutt op e Link vun enger Säit geklickt, déi et nach net gëtt. Fir déi Säit unzeleeën, gitt w.e.g. Ären Text an déi Këscht hei drënner an (kuckt d'[[{{MediaWiki:Helppage}}|Hëllef Säit]] fir méi Informatiounen). Wann Dir duerch een Iertum heihi komm sidd, da klickt einfach op de Knäppchen '''Zréck''' vun Ärem Browser.",
 'anontalkpagetext' => "---- ''Dëst ass d'Diskussiounssäit fir en anonyme Benotzer deen nach kee Kont opgemaach huet oder en net benotzt. Dowéinst musse mir d'IP Adress benotzen, fir de Benotzer z'identifizéieren.
 Sou eng IP Adress ka vun e puer Benotzer gedeelt ginn.
-Wann Dir en anonyme Benotzer sidd an Dir irrelevant Kommentäre krut, [[Special:UserLogin/signup|maacht w.e.g. e Kont op]] oder [[Special:UserLogin|loggt Iech an]], fir weider Verwiesselunge mat aneren anonyme Benotzer ze verhënneren.''",
+Wann Dir en anonyme Benotzer sidd an Dir irrelevant Bemierkunge krut, [[Special:UserLogin/signup|maacht w.e.g. e Kont op]] oder [[Special:UserLogin|loggt Iech an]], fir weider Verwiesselunge mat aneren anonyme Benotzer ze verhënneren.''",
 'noarticletext' => 'Dës Säit huet momentan keen Text.
 Dir kënnt op anere Säiten no [[Special:Search/{{PAGENAME}}|dësem Säitentitel sichen]],
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} an den entspriechende Logbicher nokucken] oder [{{fullurl:{{FULLPAGENAME}}|action=edit}} esou eng Säit uleeën]</span>.',
@@ -2217,8 +2217,8 @@ All weider Ännerungen op dëser Säit an der assoziéierter Diskussiounssäit g
 'notvisiblerev' => 'Versioun gouf geläscht',
 'watchnochange' => 'Keng vun Ären iwwerwaachte Säite gouf während der ugewisener Zäit verännert.',
 'watchlist-details' => "{{PLURAL:$1|1 Säit|$1 Säiten}} sinn op ärer Iwwerwaachungsklëscht (d'Diskussiounssäite net matgezielt).",
-'wlheader-enotif' => 'E-Mail-Bescheed ass aktivéiert.',
-'wlheader-showupdated' => "Säiten déi zënter ärer leschter Visite geännert goufen, si '''fett''' geschriwwen.",
+'wlheader-enotif' => 'E-Mail-Notifikatioun ass ageschalt.',
+'wlheader-showupdated' => "Säiten déi zënter ärer leschter Visite geännert goufen, si '''fett''' geschriwwen",
 'watchmethod-recent' => 'Rezent Ännerunge ginn op iwwerwaacht Säiten iwwerpréift',
 'watchmethod-list' => 'Iwwerwaachte Säite ginn op rezent Ännerungen iwwerpréift',
 'watchlistcontains' => 'Op ärer Iwwerwaachungslëscht $1 {{PLURAL:$1|steet $1 Säit|stinn $1 Säiten}}.',
@@ -2242,6 +2242,7 @@ All weider Ännerungen op dëser Säit an der assoziéierter Diskussiounssäit g
 'enotif_subject_changed' => "D'{{SITENAME}}-Säit $1 gouf vum {{gender:$2|$2}} geännert",
 'enotif_body_intro_deleted' => 'D\'{{SITENAME}}-Säit $1 gouf de(n) $PAGEEDITDATE {{gender:$2|vum $2|vun der $2}} geläscht, kuckt $3.',
 'enotif_body_intro_created' => 'D\'{{SITENAME}}-Säit $1 gouf den $PAGEEDITDATE vum $2 {{GENDER:$2|ugeluecht}}, kuckt $3 fir déi aktuell Versioun.',
+'enotif_body_intro_changed' => 'D\'{{SITENAME}}-Säit $1 gouf den $PAGEEDITDATE vum $2  {{GENDER:$2|geännert}}, kuckt $3 fir déi aktuell Versioun',
 'enotif_lastvisited' => 'All Ännerungen op ee Bléck: $1',
 'enotif_lastdiff' => 'Kuckt $1 fir dës Ännerung.',
 'enotif_anon_editor' => 'Anonyme Benotzer $1',
@@ -2349,6 +2350,7 @@ Kuckt d'[[Special:ProtectedPages|Lëscht vun de gespaarte Säite]] fir eng Lësc
 'prot_1movedto2' => '[[$1]] gouf op [[$2]] geréckelt',
 'protect-badnamespace-title' => 'Nummraum deen net gespaart ka ginn',
 'protect-badnamespace-text' => 'Säiten an dësem Nummraum kënnen net gespaart ginn.',
+'protect-norestrictiontypes-text' => 'Dës Säit kann net gespaart gi well keng Restriktiounstypen disponibel sinn.',
 'protect-norestrictiontypes-title' => 'Säit kann net gespaart ginn',
 'protect-legend' => "Confirméiert d'Protectioun",
 'protectcomment' => 'Grond:',
@@ -2789,6 +2791,8 @@ Besicht w.e.g. [//www.mediawiki.org/wiki/Localisation MediaWiki Localisatioun] a
 'thumbnail-more' => 'vergréisseren',
 'filemissing' => 'Fichier feelt',
 'thumbnail_error' => 'Feeler beim Erstelle vun der Miniatur: $1',
+'thumbnail_error_remote' => 'Feelermessage vum $1:
+$2',
 'djvu_page_error' => 'DjVu-Säit baussent dem Säiteberäich',
 'djvu_no_xml' => 'Den XML ka fir den DjVu-Fichier net ofgeruff ginn',
 'thumbnail-temp-create' => "Den temporäre Fichier fir d'Minitaurbild konnt net ugeluecht ginn",

@@ -547,25 +547,15 @@ Dee Grunt es: "$2"',
 
 # Stylesheets
 'common.css' => '/* CSS opp dise Sted woat opp aula Skins wirtje */',
-'standard.css' => '/* CSS opp dise Sted wirtjt opp dem Standard-Skin */',
-'nostalgia.css' => '/* CSS opp dise Sted wirtjt opp daut Nostalgia-Skin */',
 'cologneblue.css' => '/* CSS opp dise Sted wirtjt opp daut Keloonsch-Blau-Skin */',
 'monobook.css' => '/* CSS opp dise Sted wirtjt opp daut Monobook-Skin */',
-'myskin.css' => '/* CSS opp dise Sted wirtjt opp daut MySkin-Skin */',
-'chick.css' => '/* CSS opp dise Sted wirtjt opp daut Chick-Skin */',
-'simple.css' => '/* CSS opp dise Sted wirtjt opp daut Simple-Skin */',
 'modern.css' => '/* CSS opp dise Sted wirtjt opp daut Modern-Skin */',
 'print.css' => '/* CSS opp dise Sted woat daut Utkome vom Dretje aundasch moake */',
 
 # Scripts
 'common.js' => '/* Daut neachste JavaScript woat fe aula Brucka jelode. */',
-'standard.js' => '/* Daut neachste JavaScript woat fe Brucka mett Standard-Skin jelode. */',
-'nostalgia.js' => '/* Daut neachste JavaScript woat fe Brucka mett Nostalgie-Skin jelode. */',
 'cologneblue.js' => '/* Daut neachste JavaScript woat fe Brucka mett Keloonsch-Blau-Skin jelode */',
 'monobook.js' => '/* Daut neachste JavaScript woat fe Brucka mett Monobook-Skin jelode */',
-'myskin.js' => '/* Daut neachste JavaScript woat fe Brucka mett MySkin-Skin jelode */',
-'chick.js' => '/* Daut neachste JavaScript woat fe Brucka mett Chick-Skin jelode */',
-'simple.js' => '/* Daut neachste JavaScript woat fe Brucka mett Eenfach-Skin jelode */',
 'modern.js' => '/* Daut neachste JavaScript woat fe Brucka mett Modern-Skin jelode. */',
 
 # Metadata

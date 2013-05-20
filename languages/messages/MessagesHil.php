@@ -1889,7 +1889,7 @@ Ang iban ay pagataguon sang default.
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-lightsource' => 'Ginghalinan sang sanag',
 'exif-flash' => 'Igpat',
 'exif-subjectarea' => 'Subject area',

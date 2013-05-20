@@ -1465,6 +1465,14 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'listusers-noresult' => 'ማንም ተጠቃሚ አልተገኘም።',
 'listusers-blocked' => '(ታግዷል)',
 
+# Special:ActiveUsers
+'activeusers' => 'ተግባራዊ አባላት ዝርዝር',
+'activeusers-intro' => 'እነዚህ አባላት ባለፈው $1 ቀን ውስጥ ማናቸውንም አይነት ተግባር ፈጸሙ።',
+'activeusers-count' => '$1 {{PLURAL:$1|ለውጥ|ለውጦች}} ባለፈው $3 ቀን ውስጥ',
+'activeusers-hidebots' => 'ሎሌዎች ይደበቁ',
+'activeusers-hidesysops' => 'መጋቢዎች ይደበቁ',
+'activeusers-noresult' => 'ማንም ተጠቃሚ አልተገኘም።',
+
 # Special:ListGroupRights
 'listgrouprights' => 'የተጠቃሚ ስብስባ መብቶች',
 'listgrouprights-group' => 'ስብስባ',
@@ -1523,7 +1531,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'watchnochange' => 'ከተካከሉት ገጾች አንዳችም በተወሰነው ጊዜ ውስጥ አልተለወጠም።',
 'watchlist-details' => 'አሁን {{PLURAL:$1|$1 ገፅ|$1 ገፆች}} በምትከታተላቸው ገፆች ላይ አሉ (የውይይት ገፅ ሳይጨመር)።',
 'wlheader-enotif' => 'የ-ኢሜል ማስታወቂያ እንዲሠራ ተደርጓል።',
-'wlheader-showupdated' => "መጨረሻ ከጎበኟቸው ጀምሮ የተቀየሩት ገጾች በ'''ጉልህ ፊደላት''' ይታያሉ።",
+'wlheader-showupdated' => "መጨረሻ ከጎበኟቸው ጀምሮ የተቀየሩት ገጾች በ'''ጉልህ ፊደላት''' ይታያሉ",
 'watchmethod-recent' => 'የቅርብ ለውጦችን ለሚከታተሉት ገጾች በመፈለግ',
 'watchmethod-list' => 'የሚከታተሉትን ገጾች ለቅርብ ለውጦች በመፈለግ',
 'watchlistcontains' => 'አሁን በሙሉ $1 ገጾች እየተከታተሉ ነው።',
@@ -2136,7 +2144,7 @@ $1',
 * gpslongitude
 * gpsaltitude",
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'ስፋት',
 'exif-imagelength' => 'ቁመት',
 'exif-compression' => 'የመጨመቅ ዘዴ',
@@ -2243,7 +2251,7 @@ $1',
 'exif-cameraownername' => 'ባለ ካሜራ',
 'exif-personinimage' => 'የታየው ሰው',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'ያልተጨመቀ',
 
 'exif-unknowndate' => 'ያልታወቀ ቀን',
@@ -2510,13 +2518,6 @@ $3
 'version-software' => 'የተሳካ ሶፍትዌር',
 'version-software-product' => 'ሶፍትዌር',
 'version-software-version' => 'ዝርያ',
-
-# Special:FilePath
-'filepath' => 'የፋይል መንገድ',
-'filepath-page' => 'ፋይሉ፦',
-'filepath-submit' => 'መንገድ',
-'filepath-summary' => 'ይህ ልዩ ገጽ ለ1 ፋይል ሙሉ መንገድ ይሰጣል።<br />
-ስዕል በሙሉ ማጉላት ይታያል፤ ሌላ አይነት ፋይል በሚገባው ፕሮግራም በቀጥታ ይጀመራል።',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'ለቅጂ ፋይሎች መፈልግ',

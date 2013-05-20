@@ -171,8 +171,6 @@ $messages = array(
 'tog-shownumberswatching' => 'It tal brûkers sjen litte dat dizze side folget',
 'tog-oldsig' => 'Hûdige sinjatuerprintallyk:',
 'tog-fancysig' => 'Sinjatuer as wikitekst behannelje (sûnder automatyske keppeling)',
-'tog-externaleditor' => 'Standert in eksterne tekstbewurker brûke (allinne foar experts - foar dizze funksje binne spesjale ynstellings nedich)',
-'tog-externaldiff' => 'Standert in ekstern ferlikingsprogramma brûke (allinne foar experts - foar dizze funksje binne spesjale ynstellings nedich)',
 'tog-showjumplinks' => '"gean nei"-tapaslikens-links ynskeakelje',
 'tog-uselivepreview' => '"live proefbyld" brûke (JavaScript nedich - eksperimenteel)',
 'tog-forceeditsummary' => 'Warskôgje at ik de gearfetting leech lit.',
@@ -959,14 +957,6 @@ Jo kinne ek in nammerûmte as foarheaksel brûke.",
 'powersearch-togglenone' => 'Gjin',
 'search-external' => 'Utwindich sykje',
 'searchdisabled' => '<p>Op it stuit stiet it trochsykjen fan tekst út omdat dizze funksje tefolle kompjûterkapasiteit ferget. As we nije apparatuer krije, en dy is ûnderweis, dan wurdt dizze funksje wer aktyf. Oant salang kinne jo sykje fia Google:</p>',
-
-# Quickbar
-'qbsettings' => 'Menu',
-'qbsettings-none' => 'Ut',
-'qbsettings-fixedleft' => 'Lofts fêst',
-'qbsettings-fixedright' => 'Rjochts fêst',
-'qbsettings-floatingleft' => 'Lofts sweevjend',
-'qbsettings-floatingright' => 'Rjochts sweevjend',
 
 # Preferences page
 'preferences' => 'Ynstellings',
@@ -2117,10 +2107,6 @@ Sjoch: [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation], [//transl
 'spamprotectiontext' => "De side dy't jo fêstlizze woene is blokkearre troch in spam filter. Dit wurdt wierskynlik feroarsake troch in ferwizing nei in ekstern webstee.",
 'spamprotectionmatch' => 'De neikommende tekst hat it spam filter aktivearre: $1',
 
-# Skin names
-'skinname-standard' => 'Standert',
-'skinname-nostalgia' => 'Nostalgy',
-
 # Patrolling
 'markaspatrolleddiff' => 'Markearje as kontroleare',
 'markaspatrolledtext' => 'Markearje dizze side as kontrolearre',
@@ -2178,7 +2164,7 @@ Alle folgjende links dy't op deselde rigel steane, wurde behannele as útsûnder
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-samplesperpixel' => 'Oantal komponinten',
 'exif-xresolution' => 'Horizontale resolúsje',
 'exif-yresolution' => 'Fertikale resolúsje',
@@ -2315,11 +2301,6 @@ Wolle jo de side wier op 'e nij skriuwe?",
 'version-software' => 'Ynsteld software',
 'version-software-product' => 'Produkt',
 'version-software-version' => 'Ferzje',
-
-# Special:FilePath
-'filepath' => 'Triempad',
-'filepath-page' => 'Triem:',
-'filepath-submit' => 'Pad',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Sykje op duplikaten',

@@ -43,8 +43,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Waidinnais gīrbin stēisan nadirīntin tērpautajan',
 'tog-oldsig' => 'Twājs tēntiskas papeisāsenis',
 'tog-fancysig' => 'Laikais papeisāsenin per wikitekstan (šlāit autōmatiskan sēisnan)',
-'tog-externaleditor' => 'Auprestaminai tērpaus izwinaīnan editōran (tēr per ekspertans, izkīnina speciālins ensadīnsenins en kōmputeŗu)',
-'tog-externaldiff' => 'Auprestaminai tērpaus izwinaīnan prōgraman waidināntin šlaitīntans  (tēr per ekspertans, izkīnina speciālins ensadīnsenins en kōmputeŗu)',
 'tog-showjumplinks' => 'Enklaūjais autengīnsenins "sākais en"',
 'tog-uselivepreview' => 'Tērpaus dināmiskan pirmādiran (JavaScript) (eksperimentālin)',
 'tog-forceeditsummary' => 'Pawakēis mi nierpilninsenin stesse ebpeisāsenin stēisan kitawīdinsnan',
@@ -841,14 +839,6 @@ Bandais pagaūtun laukītan frāzin sen prefiksan \"all:\", kāi pralaukīlai pa
 En šissei kērdan tu mazzi laukītun sen Google.
 Pamēnais, kāi tenēisan indicai mazzi ni būtwei aktuālin.',
 
-# Quickbar
-'qbsettings' => 'Dīwas preiēisenes sawinzli',
-'qbsettings-none' => 'Nisatausnā',
-'qbsettings-fixedleft' => 'Preidrūktintan prei kāirai',
-'qbsettings-fixedright' => 'Preidrūktintan prei tikrai',
-'qbsettings-floatingleft' => 'Plūjants prei kāirai',
-'qbsettings-floatingright' => 'Plūjants prei tikrai',
-
 # Preferences page
 'preferences' => 'Pirminiskwas',
 'mypreferences' => 'Majjas pirminiskwas',
@@ -1588,7 +1578,7 @@ Eraīna šisse pāusas ēnturas kitawīdinsna anga diskusiōnis pāusas sēitan 
 'watchnochange' => 'Niaīnan iz nadirītans pāusans ni bēi redigītan en padātan kērdasetrapan.',
 'watchlist-details' => 'Ast {{PLURAL:$1|$1 pāusan|$1 pāusai}} en twajjai listin stēisan nadirītan, ni gīrbawintei diskusiōnis pāusans.',
 'wlheader-enotif' => 'E-mail pawakīsenei ast enklaūtan.',
-'wlheader-showupdated' => "Pastāi '''pastarīntan''' pāusai,  kawīdai bēi kitawīdintan ezze Twajjai panzdauman tenēisan kāimalukisnan.",
+'wlheader-showupdated' => "Pastāi '''pastarīntan''' pāusai,  kawīdai bēi kitawīdintan ezze Twajjai panzdauman tenēisan kāimalukisnan..",
 'watchmethod-recent' => 'Izbandasnā stēisan panzdauman kitawīdisnan sirzdau nadirītans pāusans',
 'watchmethod-list' => 'Izbandasnā stēisan nadirītan pāusan laukīntei panzdaumans kitawīdisnans',
 'watchlistcontains' => 'En twajjai listin stēisan nadirītan ast $1 {{PLURAL:$1|pāusan|pāusai}}.',
@@ -2254,7 +2244,7 @@ Kitāi wīrst būwusis kliptan auprestaminai.
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Plattu',
 'exif-imagelength' => 'Aūktan',
 'exif-bitspersample' => 'Bittai per izimlin',
@@ -2355,7 +2345,7 @@ Kitāi wīrst būwusis kliptan auprestaminai.
 'exif-gpsareainformation' => 'GPS areālas pabilisnā',
 'exif-gpsdatestamp' => 'GPS dātan',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Nikōmpresitan',
 
 'exif-unknowndate' => 'Niwaīstan dātan',
@@ -2622,15 +2612,6 @@ Tu mazzi dīgi [[Special:EditWatchlist|tērpautun stāndardiskan editōran]].',
 'version-license' => 'Licēnci',
 'version-software' => 'Instalītas prōgraminis',
 'version-software-version' => 'Wersiōni',
-
-# Special:FilePath
-'filepath' => 'Lunki en zūrbrukin',
-'filepath-page' => 'Zūrbrukis:',
-'filepath-submit' => 'Lunki',
-'filepath-summary' => 'Šin speciālin pāusan wartinna pastippan lunkin prei zūrbrukin.
-Bildei ast waīdintan en pilnan  rezōluciōnin, kitāi zūrbrukin tīpai ast etwertan en prōgramu preiristasmu prei tennans.
-
-Enpeisāis zūrbrukes pabilīsnan šlāit "{{ns:file}}:" prefiksan.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Laukīs dwigubbintans zūrbrukins',

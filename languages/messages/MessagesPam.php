@@ -45,8 +45,6 @@ Pabusten ing pamanaliling dake kapamilatan [alilan] ning suglung',
 'tog-shownumberswatching' => 'Ipakit la reng bilang da reng magbanteng talagamit',
 'tog-oldsig' => 'I-preview ya ing salukuyan a pirma',
 'tog-fancysig' => 'Ituring yang wikitext ing pirma (alang automatic link o tambing a suglung)',
-'tog-externaleditor' => 'Gumamit a pangkilual a editor kapamilatan ning kabud',
-'tog-externaldiff' => 'Tambing kang gumamit aliwa (diff) ibat a panglual',
 'tog-showjumplinks' => 'Salangian la reng suglung a pampabilis (accessibility links) a "luksu king" (jump to)',
 'tog-uselivepreview' => 'Gumamit kang live preview (JavaScript) (Experimental)',
 'tog-forceeditsummary' => 'Pabaluan mu ku ustung magpalub a blankung edit',
@@ -796,13 +794,6 @@ Tutuking $1 {{PLURAL:$1|result|results}}',
 'searchdisabled' => 'Makapatda/e gagana ing pamanintun king {{SITENAME}}.
 Samantala, maliari kang maintun kapamilatan ning Google.
 Pakitandanan mung maliaring e no makapanaun deng karelang index king kalamnan ning {{SITENAME}}.',
-
-# Quickbar
-'qbsettings-none' => 'Ala',
-'qbsettings-fixedleft' => 'Makapirmi ya ing kaili',
-'qbsettings-fixedright' => 'Makapirmi ya ing wanan',
-'qbsettings-floatingleft' => 'Kikimut ya ing kaili',
-'qbsettings-floatingright' => 'Kikimut ya ing wanan',
 
 # Preferences page
 'preferences' => 'Pinili',
@@ -2015,7 +2006,7 @@ Detang aliwa tambing (by default) lang makasalikut.
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Lapad',
 'exif-imagelength' => 'Katas',
 'exif-bitspersample' => 'Bit balang dake (component)',
@@ -2109,7 +2100,7 @@ Detang aliwa tambing (by default) lang makasalikut.
 'exif-source' => 'Pikuanan',
 'exif-cameraownername' => 'Mikibandi keng paglitratu',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'E makapitpit (uncompressed)',
 
 'exif-unknowndate' => 'E makabili ing petsa',
@@ -2320,11 +2311,6 @@ Mayari/mapasu ya ining confirmation code keng $4.',
 'version-license' => 'Lisensia',
 'version-software-product' => 'Produktu',
 'version-software-version' => 'Bersion',
-
-# Special:FilePath
-'filepath' => 'Dalan ning simpan (file path)',
-'filepath-page' => 'Simpan (file):',
-'filepath-submit' => 'Dalan',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Maintun simpan (file) a kapareu',

@@ -2047,6 +2047,15 @@ Jo nanejmjenjej głowna domena trěbna, na pśikład "*.org"<br />
 'listusers-noresult' => 'Žeden wužywaŕ njejo se namakał.',
 'listusers-blocked' => '(blokěrowany)',
 
+# Special:ActiveUsers
+'activeusers' => 'Lisćina aktiwnych wužywarjow',
+'activeusers-intro' => 'To jo lisćina wužywarjow, kotrež su byli aktiwne za {{PLURAL:$1|slědny źeń|slědnej $1 dnja|slědne $1 dny|slědnych $1 dnjow}}.',
+'activeusers-count' => '$1 {{PLURAL:$1|akcija|akciji|akcije|akcijow}} w {{PLURAL:$3|slědnem dnju|slědnyma $3 dnjoma|slědnych $3 dnjach}}',
+'activeusers-from' => 'Wužywarjow zwobrazniś, zachopinajucy z:',
+'activeusers-hidebots' => 'Boty schowaś',
+'activeusers-hidesysops' => 'Administratorow schowaś',
+'activeusers-noresult' => 'Žedne wužywarje namakane.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Pšawa wužywarskeje kupki',
 'listgrouprights-summary' => 'To jo lisćina wužywarskich kupkow definěrowanych w toś tom wikiju z jich zwězanymi pśistupnymi pšawami. Móžo [[{{MediaWiki:Listgrouprights-helppage}}|pśidatne informacije]] wó jadnotliwych pšawach daś.',
@@ -3011,7 +3020,7 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Šyrokosć',
 'exif-imagelength' => 'Wusokosć',
 'exif-bitspersample' => 'Bity na komponentu',
@@ -3189,7 +3198,7 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 'exif-originalimageheight' => 'Wusokosć wobraza pśed pśirězowanim',
 'exif-originalimagewidth' => 'Šyrokosć wobraza pśed pśirězowanim',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Njekompriměrowany',
 'exif-compression-2' => 'CCITT kupka 3 jadnodimensionalne modificěrowane koděrowanje Huffman běgoweje dłujkosći',
 'exif-compression-3' => 'CCITT kupka 3 faksowe koděrowanje',
@@ -3603,13 +3612,6 @@ Ty by dejał [{{SERVER}}{{SCRIPTPATH}}/COPYING kopiju licence GNU General Public
 'version-entrypoints' => 'URL zastupneho dypka',
 'version-entrypoints-header-entrypoint' => 'Zastupny dypk',
 'version-entrypoints-header-url' => 'URL',
-
-# Special:FilePath
-'filepath' => 'Datajowa droga',
-'filepath-page' => 'Dataja:',
-'filepath-submit' => 'Pytaś',
-'filepath-summary' => 'Toś ten specialny bok wróśa dopołnu drogu za dataju.
-Wobraze se w połnym wótgranicowanju pokazuju, druge datajowe typy se ze zwězanym programom direktnje startuju.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Za duplikatnymi datajami pytaś',

@@ -132,8 +132,6 @@ süi titul dai sezziún (JavaScript)',
 'tog-enotifrevealaddr' => "Lassa vedè 'l mè indirizz e-mail int i messagg d'avis",
 'tog-oldsig' => 'Anteprima de la firma esistenta:',
 'tog-fancysig' => 'Trata la firma cume test wiki (senza nissön ligam utumatich)',
-'tog-externaleditor' => "Dröva semper un prugrama da redatazión estern (dumà per espert, 'l gh'ha de besogn d'impustazión speciaj ins 'l to computer)",
-'tog-externaldiff' => 'Druvá sempar un "diff" estèrnu',
 'tog-watchlisthideown' => "Sconda i me mudifich dai pagin che a ten d'ögg",
 'tog-watchlisthidebots' => "Sconda i mudifich di bot da i pagin che a ten d'ögg",
 'tog-ccmeonemails' => 'Spedissem una copia di messagg spedii a i alter druvadur',
@@ -945,7 +943,7 @@ La descrizión sura la sua [$2 pagina de descrizión del file] l'è mustrada ch�
 'listgrouprights' => 'Dirit del grüp di druvat',
 'listgrouprights-members' => '(Lista di member)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Manda un email a quel druvadur chì',
 'emailsent' => 'Messagg spedii',
 'emailsenttext' => "El messagg e-mail l'è staa spedii.",
@@ -1338,7 +1336,7 @@ I ligam che i vegnen dopu, in sü l'istessa riga, i vegnen cónsideraa di ecezi�
 'namespacesall' => 'tücc',
 'monthsall' => 'tücc',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => "Cunferma l<nowiki>'</nowiki>''e-mail''",
 'confirmemail_text' => "Prima da pudé riçeef mesacc sül tò adrèss da pòsta letrònica l è neçessari verificál.
 Schiscjá ul butún che gh'è chi da sót par curfermá al tò adrèss.
@@ -1361,9 +1359,6 @@ Te riçevaree un mesacc cun deent un ligamm specjal; ti duvaree clicaa sül liga
 
 # Special:Version
 'version' => 'Versiun',
-
-# Special:FilePath
-'filepath' => 'Percuurz daj archivi',
 
 # Special:SpecialPages
 'specialpages' => 'Paginn special',

@@ -216,8 +216,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Невтемс зяро теицятнеде, конат аравтызь лопанть эсест ванома лемрисьментень',
 'tog-oldsig' => 'Уликс кедьпутовксось:',
 'tog-fancysig' => 'Лемпутовксось прок викитекст (сонсь теевиця сюлмавома певтеме)',
-'tog-externaleditor' => 'Нолдамс тевс ушоёнонь витнемканть, зярс лиякс апак аравто (ансяк тевень содыйтненень, арсий машинасот эрявить башка ёнкст-аравтомат [//www.mediawiki.org/wiki/Manual:External_editors подробнее])',
-'tog-externaldiff' => 'Нолдамс тевс ушоёнонь diff, зярс лиякс апак аравто (ансяк тевень содыйтненень, арсий машинасот эрявить башка ёнкст-аравтомат [//www.mediawiki.org/wiki/Manual:External_editors подробнее])',
 'tog-showjumplinks' => 'Меремс "тёкадемс" маласпонгомань сюлмавомапетнес',
 'tog-uselivepreview' => 'Максомс эряй васнянь невтевкс (JavaScript) (Варчамонь)',
 'tog-forceeditsummary' => 'Невтик монень, мезе сёрмадомс витнемадо-петнемадо ёвтамонь вальминентень',
@@ -1405,6 +1403,12 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'listusers-noresult' => 'Совицязо а муеви',
 'listusers-blocked' => '(саймас саезь)',
 
+# Special:ActiveUsers
+'activeusers' => 'Активной теицятнеде списка',
+'activeusers-hidebots' => 'Кекшемс ботатнень',
+'activeusers-hidesysops' => 'Кекшемс администратортнэнь',
+'activeusers-noresult' => 'Якинзэ-пакинзэ арасть',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Теиця куронть видечинзэ',
 'listgrouprights-group' => 'Куро',
@@ -1910,7 +1914,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Келе',
 'exif-imagelength' => 'Сэрь',
 'exif-bitspersample' => 'Эрьва компонентс зяро битт',
@@ -1962,7 +1966,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'exif-languagecode' => 'Кель',
 'exif-iimcategory' => 'Явовкс',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Апак сювордо',
 
 'exif-unknowndate' => 'Апак содань чи',
@@ -2169,11 +2173,6 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'version-software' => 'Нолдань программат',
 'version-software-product' => 'Шкавкс-нолдавкс',
 'version-software-version' => 'Верзия',
-
-# Special:FilePath
-'filepath' => 'Файлас яннэ',
-'filepath-page' => 'Файлась:',
-'filepath-submit' => 'Ютак',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Вешнэмс кавтаське файлат',

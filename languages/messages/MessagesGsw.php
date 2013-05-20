@@ -2020,6 +2020,15 @@ Lueg au d Lischt vu dr [[Special:WantedCategories|gwinschte Kategorie]].',
 'listusers-noresult' => 'Kei Benutzer gfunde.',
 'listusers-blocked' => '(gsperrt)',
 
+# Special:ActiveUsers
+'activeusers' => 'Lischt vu dr aktive Benutzer',
+'activeusers-intro' => 'Des isch e Lischt vu Benutzer, wu irgedebis bearbeitet hän {{PLURAL:$1|am letschte Tag|in dr letschte $1 Täg}}.',
+'activeusers-count' => '$1 {{PLURAL:$1|Bearbeitig|Bearbeitige}} {{PLURAL:$3|am letschte Tag|in dr letschte $3 Täg}}',
+'activeusers-from' => 'Zeig Benutzer ab:',
+'activeusers-hidebots' => 'Bötli uusblände',
+'activeusers-hidesysops' => 'Ammanne (Administratore) uusblände',
+'activeusers-noresult' => 'Kei Benutzer gfunde.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Benutzergruppe-Rächt',
 'listgrouprights-summary' => 'Des isch e Liste vu dr Benutzergruppe, wu in däm Wiki definiert sin, un dr Rächt, wu dermit verbunde sin.
@@ -2946,7 +2955,7 @@ Andri wäre standardmäßig nit aazeigt.
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Breiti',
 'exif-imagelength' => 'Längi',
 'exif-bitspersample' => 'Bit pro Farbkomponente',
@@ -3124,7 +3133,7 @@ Andri wäre standardmäßig nit aazeigt.
 'exif-originalimageheight' => 'Bildhechi vor em Zueschnyde',
 'exif-originalimagewidth' => 'Bildbreiti vor em Zueschnyde',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Uukomprimiert',
 'exif-compression-2' => 'CCITT Gruppe 3 1-dimensionali modifizierti Huffman-Lauflengekodierig',
 'exif-compression-3' => 'CCITT Gruppe 3 Faxkodierig',
@@ -3532,13 +3541,6 @@ E [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopi vu dr GNU General Public-Lizänz] sott 
 'version-entrypoints' => 'Yygangspunkt-URL',
 'version-entrypoints-header-entrypoint' => 'Yygangspunkt',
 'version-entrypoints-header-url' => 'URL',
-
-# Special:FilePath
-'filepath' => 'Dateipfad',
-'filepath-page' => 'Datei:',
-'filepath-submit' => 'Gang',
-'filepath-summary' => 'Mit däre Spezialsyte losst sich dr komplett Pfad vu dr aktuälle Version vun ere Datei ohni Umwäg abfroge.
-Di aagfrogt Datei wird diräkt dargstellt bzw. mit dr verchnipfte Aawändig gstartet.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Datei-Duplikat sueche',

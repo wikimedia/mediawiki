@@ -111,8 +111,6 @@ $messages = array(
 'tog-shownumberswatching' => 'İzləyən istifadəçilərin sayını göstər',
 'tog-oldsig' => 'Hazırkı imza:',
 'tog-fancysig' => 'Vikimətn şəklində imza (avtomatik keçid yaratmadan)',
-'tog-externaleditor' => 'Susmaya görə xarici müqayisə proqramlarından istifadə et',
-'tog-externaldiff' => 'Susmaya görə xarici müqayisə proqramlarından istifadə et',
 'tog-showjumplinks' => '"Keçid et:" linklərini aktivləşdir',
 'tog-uselivepreview' => 'Canlı sınaq baxışı xüsusiyyətindən istifadə et (JavaScript tələb edir, sınaq mərhələsindədir)',
 'tog-forceeditsummary' => 'Qısa məzmunu boş saxladıqda mənə bildir',
@@ -952,14 +950,6 @@ $1",
 'powersearch-togglenone' => 'Heç biri',
 'search-external' => 'Xarici axtarış',
 
-# Quickbar
-'qbsettings' => 'Naviqasiya paneli',
-'qbsettings-none' => 'Heç biri',
-'qbsettings-fixedleft' => 'Sola sabitləndi',
-'qbsettings-fixedright' => 'Sağa sabitləndi',
-'qbsettings-floatingleft' => 'Sola əyilir',
-'qbsettings-floatingright' => 'Sağa əyilir',
-
 # Preferences page
 'preferences' => 'Nizamlamalar',
 'mypreferences' => 'Nizamlamalar',
@@ -1393,7 +1383,6 @@ $1',
 'http-read-error' => 'HTTP oxuma xətası',
 'http-timed-out' => 'HTTP istəyinin vaxtı bitdi.',
 'http-curl-error' => 'URL-ə yanlış müraciət: $1',
-'http-host-unreachable' => 'URL-ə çatmaq olmadı.',
 'http-bad-status' => 'HTTP müraciətin yoxlanması zamanı problem aşkarlanmışdır: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -1728,7 +1717,7 @@ Fərdi hüquqlar haqqında əlavə məlumatı [[{{MediaWiki:Listgrouprights-help
 'notvisiblerev' => 'Başqa istifadıçinin son dəyişikliyi silinib',
 'watchnochange' => 'Verilən vaxt ərzində heç bir izlədiyiniz səhifə redaktə edilməmişdir.',
 'watchlist-details' => 'Müzakirə səhifələrini çıxmaq şərtilə {{PLURAL:$1|$1 səhifəni|$1 səhifəni}} izləyirsiniz.',
-'wlheader-enotif' => 'E-məktubla bildiriş aktivdir.',
+'wlheader-enotif' => ' E-məktubla bildiriş aktivdir.',
 'wlheader-showupdated' => "Son ziyarətinizdən sonra edilən dəyişikliklər '''qalın şriftlərlə''' göstərilmişdir.",
 'watchmethod-recent' => 'yeni dəyişikliklər izlənilən səhifələr üçün yoxlanılır',
 'watchmethod-list' => 'izlənilən səhifələr yeni dəyişikliklər üçün yoxlanılır',
@@ -2281,13 +2270,8 @@ Zəhmət olmasa başqa ad seçin.',
 
 # Stylesheets
 'common.css' => '/* Burada yerləşən CSS bütün skinlərə tətbiq olunur */',
-'standard.css' => '/* Burada yerləşən CSS Standard skin istifadəçilərinə tətbiq olunur */',
-'nostalgia.css' => '/* Burada yerləşən CSS Nostalgia skin istifadəçilərinə tətbiq olunur */',
 'cologneblue.css' => '/* Burada yerləşən CSS Cologne Blue skin istifadəçilərinə tətbiq olunur */',
 'monobook.css' => '/* Burada yerləşən CSS Monobook skin istifadəçilərinə tətbiq olunur */',
-'myskin.css' => '/* Burada yerləşən CSS MySkin skin istifadəçilərinə tətbiq olunur */',
-'chick.css' => '/* Burada yerləşən CSS Chick skin istifadəçilərinə tətbiq olunur */',
-'simple.css' => '/* Burada yerləşən CSS Simple skin istifadəçilərinə tətbiq olunur */',
 'modern.css' => '/* Burada yerləşən CSS Modern skin istifadəçilərinə tətbiq olunur */',
 'vector.css' => '/* Burada yerləşən CSS Vector istifadəçilərinə tətbiq olunur */',
 'group-autoconfirmed.css' => '/* Burada yerləşən CSS yalnız avtotəsdiqlənmiş istifadəçilərə şamil olunur */',
@@ -2297,13 +2281,8 @@ Zəhmət olmasa başqa ad seçin.',
 
 # Scripts
 'common.js' => '/* Burada istifadəçilərin hamısı üçün bütün səhifələrdə istənilən JavaScript yüklənəcək */',
-'standard.js' => '/* Burada Standard skin istifadəçiləri üçün istənilən JavaScript yüklənəcək */',
-'nostalgia.js' => '/* Burada Nostalgia skin istifadəçiləri üçün istənilən JavaScript yüklənəcək */',
 'cologneblue.js' => '/* Burada Cologne Blue skin istifadəçiləri üçün istənilən JavaScript yüklənəcək */',
 'monobook.js' => '/* Burada MonoBook skin istifadəçiləri üçün istənilən JavaScript yüklənəcək */',
-'myskin.js' => '/* Burada MySkin skin istifadəçiləri üçün istənilən JavaScript yüklənəcək */',
-'chick.js' => '/* Burada Chick skin istifadəçiləri üçün istənilən JavaScript yüklənəcək */',
-'simple.js' => '/* Burada Simple skin istifadəçiləri üçün istənilən JavaScript yüklənəcək */',
 'modern.js' => '/* Burada Modern skin istifadəçiləri üçün istənilən JavaScript yüklənəcək */',
 'vector.js' => '/* Burada Vector skin istifadəçiləri üçün istənilən JavaScript yüklənəcək */',
 'group-autoconfirmed.js' => '/* Burada istənilən JavaScript yalnız avtotəsdiqlənmiş istifadəçilər üçün yüklənəcək */',
@@ -2344,13 +2323,8 @@ Zəhmət olmasa başqa ad seçin.',
 'pageinfo-authors' => 'Fərqli müəlliflərin sayı',
 
 # Skin names
-'skinname-standard' => 'Classic',
-'skinname-nostalgia' => 'Nostalgia',
 'skinname-cologneblue' => 'Cologne Blue',
 'skinname-monobook' => 'MonoBook',
-'skinname-myskin' => 'MySkin',
-'skinname-chick' => 'Chick',
-'skinname-simple' => 'Simple',
 'skinname-modern' => 'Modern',
 'skinname-vector' => 'Vector',
 
@@ -2430,8 +2404,6 @@ Həmin sətirdəki növbəti keçidlər istisna hesab olunur. Məsələn, fayl m
 
 /*
 Short names for language variants used for language conversion links.
-To disable showing a particular link, set it to 'disable', e.g.
-'variantname-zh-sg' => 'disable',
 Variants for Chinese language
 */
 'variantname-zh-hans' => 'hans',
@@ -2475,7 +2447,7 @@ Variants for Chinese language
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Genişlik',
 'exif-imagelength' => 'Hündürlük',
 'exif-compression' => 'Sıxılmamış',
@@ -2601,7 +2573,7 @@ Variants for Chinese language
 'exif-organisationinimage' => 'Təsvir edilmiş təşkilat',
 'exif-personinimage' => 'Təsvir edilmiş şəxs',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Sıxılmış',
 
 'exif-copyrighted-true' => 'Müəlliflik hüququ ilə qorunur',
@@ -2904,11 +2876,6 @@ Variants for Chinese language
 'version-software-product' => 'Məhsul',
 'version-software-version' => 'Versiya',
 'version-entrypoints-header-url' => 'URL',
-
-# Special:FilePath
-'filepath' => 'Fayl yolu',
-'filepath-page' => 'Fayl:',
-'filepath-submit' => 'Get',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Dublikat fayl axtarışı',

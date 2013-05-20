@@ -377,9 +377,6 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 'powersearch-toggleall' => 'Nyɔ́nsɔ',
 'powersearch-togglenone' => 'Mɔ́kɔ́ tɛ́',
 
-# Quickbar
-'qbsettings-none' => 'Mɔ́kɔ́ tɛ́',
-
 # Preferences page
 'preferences' => 'Malúli',
 'mypreferences' => 'Malúli ma ngáí',
@@ -526,7 +523,7 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 # Special:Categories
 'categories' => 'Ndéngé',
 
-# E-mail user
+# Email user
 'emailuser' => 'Kotíndela yě mɛ́lɛ',
 'defemailsubject' => '{{SITENAME}} mokánda',
 'emailfrom' => 'útá',
@@ -703,7 +700,7 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 # Special:NewFiles
 'ilsubmit' => 'Boluki',
 
-# EXIF tags
+# Exif tags
 'exif-artist' => 'Mokeli',
 
 'exif-subjectdistancerange-2' => 'kokanga view',

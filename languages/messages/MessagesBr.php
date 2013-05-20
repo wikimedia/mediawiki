@@ -2199,7 +2199,7 @@ Amañ e vo rollet ar c\'hemmoù da zont evit ar bajenn-mañ hag ar bajenn gaozea
 'watchnochange' => "N'ez eus elfenn ebet eus ar re evezhiet ganeoc'h a zo bet kemmet e-pad ar prantad spisaet",
 'watchlist-details' => "Lakaet hoc'h eus {{PLURAL:$1|$1 bajenn|$1 pajenn}} dindan evezh, anez kontañ ar pajennoù kaozeal.",
 'wlheader-enotif' => "War enaou emañ ar c'has posteloù.",
-'wlheader-showupdated' => "E '''tev''' emañ merket ar pajennoù bet kemmet abaoe ar wezh ziwezhañ hoc'h eus sellet outo.",
+'wlheader-showupdated' => "E '''tev''' emañ merket ar pajennoù bet kemmet abaoe ar wezh ziwezhañ hoc'h eus sellet outo",
 'watchmethod-recent' => "Gwiriañ ar c'hemmoù diwezhañ er pajennoù dindan evezh",
 'watchmethod-list' => "Gwiriañ ar c'hemmoù diwezhañ evit ar pajennoù evezhiet",
 'watchlistcontains' => '$1 {{PLURAL:$1|pajenn|pajenn}} zo en ho rollad evezhiañ',

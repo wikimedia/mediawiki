@@ -456,16 +456,6 @@ $messages = array(
 'nov' => 'Kas',
 'dec' => 'Ara',
 
-'monday-at' => '$1 Pazartesi günü',
-'tuesday-at' => '$1 Salı günü',
-'wednesday-at' => '$1 Çarşamba günü',
-'thursday-at' => '$1 Perşembe günü',
-'friday-at' => '$1 Cuma günü',
-'saturday-at' => '$1 Cumartesi günü',
-'sunday-at' => '$1 Pazar günü',
-'today-at' => '$1',
-'yesterday-at' => '$1 dün itibariyle',
-
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Kategori|Kategoriler}}',
 'category_header' => '"$1" kategorisindeki sayfalar',
@@ -2222,6 +2212,15 @@ Desteklenen {{PLURAL:$2|iletişim kuralı|iletişim kuralları}}: <code>$1</code
 'listusers-noresult' => 'Kullanıcı bulunamadı.',
 'listusers-blocked' => '(engellenmiş)',
 
+# Special:ActiveUsers
+'activeusers' => 'Aktif kullanıcı listesi',
+'activeusers-intro' => 'Bu, son $1 {{PLURAL:$1|günde|günde}} bir çeşit etkinlik göstermiş kullanıcıların listesidir.',
+'activeusers-count' => 'Son {{PLURAL:$3|günde|$3 günde}} $1 {{PLURAL:$1|eylem|eylem}}',
+'activeusers-from' => 'Şununla başlayan kullanıcıları görüntüle:',
+'activeusers-hidebots' => 'Botları gizle',
+'activeusers-hidesysops' => 'Yöneticileri gizle',
+'activeusers-noresult' => 'Kullanıcı bulunamadı.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Kullanıcı grubu hakları',
 'listgrouprights-summary' => 'Aşağıdaki bu vikide tanımlanan kullanıcı gruplarının, ilgili erişim haklarıyla birlikte listesidir.
@@ -3152,6 +3151,19 @@ Bunu çalıştırmak, sisteminizi tehlikeye atabilir.",
 'ago' => '$1 önce',
 'just-now' => 'Hemen şimdi',
 
+# Human-readable timestamps
+'hours-ago' => '$1 {{PLURAL:$1|saat|saat}} önce',
+'minutes-ago' => '$1 {{PLURAL:$1|dakika|dakika}} önce',
+'seconds-ago' => '$1 {{PLURAL:$1|saniye|saniye}} önce',
+'monday-at' => '$1 Pazartesi günü',
+'tuesday-at' => '$1 Salı günü',
+'wednesday-at' => '$1 Çarşamba günü',
+'thursday-at' => '$1 Perşembe günü',
+'friday-at' => '$1 Cuma günü',
+'saturday-at' => '$1 Cumartesi günü',
+'sunday-at' => '$1 Pazar günü',
+'yesterday-at' => '$1 dün itibariyle',
+
 # Bad image list
 'bad_image_list' => 'Biçim aşağıdaki gibidir:
 
@@ -3183,7 +3195,7 @@ Diğerleri varsayılan olarak gizlenecektir.
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Genişlik',
 'exif-imagelength' => 'Yükseklik',
 'exif-bitspersample' => 'Bits per component',
@@ -3348,7 +3360,7 @@ Diğerleri varsayılan olarak gizlenecektir.
 'exif-originalimageheight' => 'Resmin kırpılmadan önceki yükseliği',
 'exif-originalimagewidth' => 'Resmin kırpılmadan önceki genişliği',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Sıkıştırılmamış',
 'exif-compression-6' => 'JPEG',
 
@@ -3782,13 +3794,6 @@ Bu programla birlikte [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU Genel Kamu Lisansın
 'version-entrypoints-header-entrypoint' => 'Giriş noktası',
 'version-entrypoints-header-url' => 'URL',
 
-# Special:FilePath
-'filepath' => 'Dosyanın konumu',
-'filepath-page' => 'Dosya adı:',
-'filepath-submit' => 'Git',
-'filepath-summary' => 'Bu özel sayfa bir dosya için tam yolu getirir.
-Resimler tam çözünürlükte görüntülenir, diğer dosya tipleri ilgili programlarıyla doğrudan başlatılır.',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Benzer dosyaları ara',
 'fileduplicatesearch-summary' => 'Sağlama değeri tabanında benzer dosyaları ara.',
@@ -3973,8 +3978,4 @@ Resimler tam çözünürlükte görüntülenir, diğer dosya tipleri ilgili prog
 'duration-centuries' => '$1 {{PLURAL:$1|yüzyıl|yüzyıl}}',
 'duration-millennia' => '$1 {{PLURAL:$1|bin yıl|bin yıl}}',
 
-# Unknown messages
-'hours-ago' => '$1 {{PLURAL:$1|saat|saat}} önce',
-'minutes-ago' => '$1 {{PLURAL:$1|dakika|dakika}} önce',
-'seconds-ago' => '$1 {{PLURAL:$1|saniye|saniye}} önce',
 );

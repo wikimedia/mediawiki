@@ -316,6 +316,9 @@ Hindi (hi)फ़िलहाल इस पन्ने पर कोई सा�
 
 'grouppage-sysop' => '{{ns:project}}:प्रचालक',
 
+# Special:Log/newusers
+'newuserlogpage' => 'नया सदस्यॊ के सूची',
+
 # User rights log
 'rightslog' => 'सदस्य अधिकार सूची',
 
@@ -406,13 +409,10 @@ Hindi (hi)फ़िलहाल इस पन्ने पर कोई सा�
 # Special:LinkSearch
 'linksearch' => 'बाहरी कड़ी',
 
-# Special:Log/newusers
-'newuserlogpage' => 'नया सदस्यॊ के सूची',
-
 # Special:ListGroupRights
 'listgrouprights-members' => '(सदस्य सूची)',
 
-# E-mail user
+# Email user
 'emailuser' => 'इ सदस्य कॆ ई-मेल भेजॊ',
 
 # Watchlist

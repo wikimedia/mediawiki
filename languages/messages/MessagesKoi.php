@@ -495,7 +495,7 @@ $messages = array(
 # Special:ListGroupRights
 'listgrouprights-members' => '(уджкериссезлöн нимлёдз)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Этiя ужкерисьлö гижöт',
 'emailfrom' => 'Кинсянь:',
 'emailto' => 'Кинлö:',
@@ -737,7 +737,7 @@ $messages = array(
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Пасьта',
 'exif-imagelength' => 'Вылына',
 

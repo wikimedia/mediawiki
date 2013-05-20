@@ -1966,6 +1966,15 @@ Support karaa gais protocol: <code>$1</code> (defaults to http:// if no protocol
 'listusers-noresult' => 'Koi sadasya ke nai pawa gais hai.',
 'listusers-blocked' => '(rok dewa gais hai)',
 
+# Special:ActiveUsers
+'activeusers' => 'Active sadasya ke list',
+'activeusers-intro' => 'Ii suchi uu sadasya ke hae jon ki pahile {{PLURAL:$1|din|din}} me kuchh karin hae.',
+'activeusers-count' => '$1 haali ke {{PLURAL:$1|badlao|badlao}} pichhle {{PLURAL:$3|din|$3 din}} me',
+'activeusers-from' => 'Sadasya jon ki hian se suruu hoe hai ke dekhao:',
+'activeusers-hidebots' => 'Bots ke lukao',
+'activeusers-hidesysops' => 'Administrator log ke lukao',
+'activeusers-noresult' => 'koi sadasya ke pawa nai gais hai.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Sadasya  ke group adhikar',
 'listgrouprights-summary' => 'Niche likha hai ek suchi hai groups ke jon ki ii wiki me defined hai, aapan  associated access rights ke saathe
@@ -2044,7 +2053,7 @@ Ii panna ke aage ke badlao aur usse jurra baat waala panna ki suchi hian pe hae.
 'watchnochange' => 'Aap ke koi bhi dhyan me rakkhaa gae chij ke ii time me badla nai gais hai.',
 'watchlist-details' => '{{PLURAL:$1|$1 panna|$1 panna}} pe dhyan dewa jae hai, baat waala panna ke chhorr ke.',
 'wlheader-enotif' => 'E-mail notification ke enable kar dewa gais hai.',
-'wlheader-showupdated' => "Panna jiske aap ke pichhla visit ke ke baad badal dewa gais hia ke '''bold''' me dekhawa gais hai.",
+'wlheader-showupdated' => "Panna jiske aap ke pichhla visit ke ke baad badal dewa gais hia ke '''bold''' me dekhawa gais hai",
 'watchmethod-recent' => 'Dhyan me rakkhaa gais panna ke nawaa badlao ke check karaa jaawe hai',
 'watchmethod-list' => 'dhyan me rakkha gais panna ke nawaa badlao ke khatir check karaa jaawe hai',
 'watchlistcontains' => 'Aap ke dhyan suchi me  $1 {{PLURAL:$1|panna|panna}} hai.',
@@ -2958,7 +2967,7 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Chaurrai',
 'exif-imagelength' => 'Unchai',
 'exif-bitspersample' => 'Bits per component',
@@ -3164,9 +3173,6 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 'version-specialpages' => 'Khaas panna',
 'version-other' => 'Duusra',
 'version-poweredby-others' => 'duusra waala',
-
-# Special:FilePath
-'filepath-submit' => 'Jaao',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-filename' => 'File ke naam:',

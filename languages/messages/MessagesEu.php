@@ -1867,6 +1867,14 @@ Baimendutako protokoloak: <code>$1</code> (protokoloa zehazten ez bada http:// h
 'listusers-noresult' => 'Ez da erabiltzailerik aurkitu.',
 'listusers-blocked' => '(blokeatua)',
 
+# Special:ActiveUsers
+'activeusers' => 'Lankide aktiboen zerrenda',
+'activeusers-count' => '{{PLURAL:$1|Ekintza berri bat|$1 ekintza berri}} azken {{PLURAL:$3|egunean|$3 egunetan}}',
+'activeusers-from' => 'Bilatu honela hasten diren lankideak:',
+'activeusers-hidebots' => 'Ezkutatu bot-ak',
+'activeusers-hidesysops' => 'Ezkutatu administratzaileak',
+'activeusers-noresult' => 'Ez da lankiderik aurkitu.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Erabiltzaile talde eskumenak',
 'listgrouprights-summary' => 'Ondorengo zerrendak wikian dauden lankide taldeak agertzen dira, beraien eskubideekin.
@@ -1938,7 +1946,7 @@ Jarraipen zerrendatik artikulua kentzeko, artikuluan ''ez jarraitu''ri eman.",
 'watchnochange' => 'Hautatutako denbora tartean ez da aldaketarik izan zure jarraipen zerrendako orrialdeetan.',
 'watchlist-details' => '{{PLURAL:$1|Orrialde $1|$1 orrialde}} jarraitzen, eztabaida orrialdeak kontuan hartu gabe.',
 'wlheader-enotif' => 'Posta bidezko ohartarazpena gaituta dago.',
-'wlheader-showupdated' => "Bisitatu zenituen azken alditik aldaketak izan dituzten orrialdeak '''beltzez''' nabarmenduta daude.",
+'wlheader-showupdated' => "Bisitatu zenituen azken alditik aldaketak izan dituzten orrialdeak '''beltzez''' nabarmenduta daude",
 'watchmethod-recent' => 'Aldaketa berriak aztertzen jarraipen zerrendako orrialdeen bila',
 'watchmethod-list' => 'jarraipen zerrendako orrialdeak aldaketa berrien bila aztertzen',
 'watchlistcontains' => 'Zure jarraipen zerrendak {{PLURAL:$1|orrialde $1 du|$1 orrialde ditu}}.',
@@ -2742,7 +2750,7 @@ Zerrenda elementuak (hasieran * duten lerroak) baino ez dira kontuan hartzen. Le
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Zabalera',
 'exif-imagelength' => 'Altuera',
 'exif-bitspersample' => 'Bit osagaiko',
@@ -2887,7 +2895,7 @@ Zerrenda elementuak (hasieran * duten lerroak) baino ez dira kontuan hartzen. Le
 'exif-copyrightowner' => 'Copyright-aren jabea',
 'exif-usageterms' => 'Erabilera baldintzak',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Konprimatu gabe',
 'exif-compression-6' => 'JPEG',
 
@@ -3242,13 +3250,6 @@ Halaber [[Special:EditWatchlist|aldatzaile estandarra]] erabil dezakezu.',
 'version-software-product' => 'Produktua',
 'version-software-version' => 'Bertsioa',
 'version-entrypoints-header-url' => 'URL',
-
-# Special:FilePath
-'filepath' => 'Fitxategi bidea',
-'filepath-page' => 'Fitxategia:',
-'filepath-submit' => 'Joan',
-'filepath-summary' => 'Orri berezi honek fitxategiaren ibilbidea itzultzen du.
-Irudiak bereizmen handienean daude, bestelako fitxategi motak beraiei esleitutako programarekin hasiko dira zuzenean.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Artxibo bikoiztuen bilaketa',

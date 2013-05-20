@@ -321,8 +321,6 @@ $messages = array(
 'tog-shownumberswatching' => "Afichar lo nombre d'utilizaires que seguisson aquesta pagina",
 'tog-oldsig' => 'Apercebut de la signatura existenta :',
 'tog-fancysig' => 'Tractar la signatura coma de wikitèxte (sens ligam automatic)',
-'tog-externaleditor' => 'Utilizar un editor extèrne per defaut (pels utilizaires avançats, necessita una configuracion especiala sus vòstre ordinator)',
-'tog-externaldiff' => "Utilizar un comparador extèrne per defaut (pels utilizaires avançats, necessita una configuracion especiala sus vòstre ordenador, [//www.mediawiki.org/wiki/Manual:External_editors/fr mai d'informacions]).",
 'tog-showjumplinks' => 'Activar los ligams « navigacion » e « recèrca » en naut de pagina (aparéncias Myskin e autres)',
 'tog-uselivepreview' => 'Utilizar l’apercebut rapid (JavaScript) (experimental)',
 'tog-forceeditsummary' => "M'avertir quand ai pas completat lo contengut de la bóstia de comentaris",
@@ -337,6 +335,7 @@ $messages = array(
 'tog-showhiddencats' => 'Afichar las categorias amagadas',
 'tog-noconvertlink' => 'Desactivar la conversion dels títols',
 'tog-norollbackdiff' => 'Ometre lo diff aprèp l’utilizacion d’un revert',
+'tog-useeditwarning' => 'M’avisar quand quiti una pagina de modificacion sens publicar los cambiaments',
 
 'underline-always' => 'Totjorn',
 'underline-never' => 'Pas jamai',
@@ -1006,6 +1005,8 @@ Sembla que siá estada suprimida.',
 'edit-already-exists' => 'La pagina novèla a pogut èsser creada .
 Existís ja.',
 'defaultmessagetext' => 'Messatge per defaut',
+'editwarning-warning' => "Quitar aquesta pagina vos farà pèrdre totas las modificacions qu'avètz fachas.
+Se sètz connectat amb vòstre compte, podètz levar aqueste avertiment dins la seccion {{int:prefs-editing}} de vòstras preferéncias.",
 
 # Content models
 'content-model-wikitext' => 'wikitèxte',
@@ -1272,14 +1273,6 @@ Ensajatz en utilizant lo prefix ''all:'' per recercar tot lo contengut (tot incl
 'searchdisabled' => 'La recèrca sus {{SITENAME}} es desactivada.
 En esperant la reactivacion, podètz efectuar una recèrca via Google.
 Atencion, lor indexacion de contengut {{SITENAME}} benlèu es pas a jorn.',
-
-# Quickbar
-'qbsettings' => "Barra d'aisinas",
-'qbsettings-none' => 'Pas cap',
-'qbsettings-fixedleft' => 'Esquèrra',
-'qbsettings-fixedright' => 'Drecha',
-'qbsettings-floatingleft' => 'Flotanta a esquèrra',
-'qbsettings-floatingright' => 'Flotanta a drecha',
 
 # Preferences page
 'preferences' => 'Preferéncias',
@@ -1782,7 +1775,6 @@ Per una seguretat optimala, img_auth.php es desactivat.",
 'http-read-error' => 'HTTP Error de lectura.',
 'http-timed-out' => 'HTTP request timed out.',
 'http-curl-error' => "Error al moment de la recuperacion de l'URL : $1",
-'http-host-unreachable' => "Impossible d'aténher l'URL",
 'http-bad-status' => 'I a agut un problèma al moment de la requèsta HTTP : $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -2165,7 +2157,7 @@ Las modificacions venentas d\'aquesta pagina e de la pagina de discussion associ
 'watchnochange' => 'Cap de las paginas que seguissètz son pas estadas modificadas pendent lo periòde afichat.',
 'watchlist-details' => 'I a {{PLURAL:$1|pagina|paginas}} dins vòstra lista de seguiment, sens comptar las paginas de discussion.',
 'wlheader-enotif' => 'La notificacion per corrièr electronic es activada.',
-'wlheader-showupdated' => 'Las paginas que son estadas modificadas dempuèi vòstra darrièra visita son mostradas en <b>gras</b>.',
+'wlheader-showupdated' => 'Las paginas que son estadas modificadas dempuèi vòstra darrièra visita son mostradas en <b>gras</b>',
 'watchmethod-recent' => 'verificacion dels darrièrs cambiaments de las paginas seguidas',
 'watchmethod-list' => 'verificacion de las paginas seguidas per de modificacions recentas',
 'watchlistcontains' => 'Vòstra lista de seguiment conten $1 {{PLURAL:$1|pagina|paginas}}.',
@@ -2820,13 +2812,8 @@ Salvatz-lo sus vòstre disc dur puèi importatz-lo aicí.",
 
 # Stylesheets
 'common.css' => '/** Lo CSS plaçat aicí serà aplicat a totas las aparéncias. */',
-'standard.css' => '/* Lo CSS plaçat aicí afectarà los utilizaires de l’abilhatge Estandard. */',
-'nostalgia.css' => '/* Lo CSS plaçat aicí afectarà los utilizaires de l’abilhatge Nostalgia. */',
 'cologneblue.css' => '/* Lo CSS plaçat aicí afectarà los utilizaires de l’abilhatge Cologne Blue */',
 'monobook.css' => '/* Lo CSS plaçat aicí afectarà los utilizaires del skin Monobook */',
-'myskin.css' => '/* Lo CSS plaçat aicí afectarà los utilizaires de l’abilhatge MySkin */',
-'chick.css' => '/* Lo CSS plaçat aicí afectarà los utilizaires de l’abilhatge Chick */',
-'simple.css' => '/* Lo CSS plaçat aicí afectarà los utilizaires de l’abilhatge Simple */',
 'modern.css' => '/* Lo CSS plaçat aicí afectarà los utilizaires de l’abilhatge Modern */',
 'vector.css' => '/* Lo CSS plaçat aicí afectarà los utilizaires de l’abilhatge Vector */',
 'print.css' => '/* Lo CSS plaçat aicí afectarà las impressions */',
@@ -2834,13 +2821,8 @@ Salvatz-lo sus vòstre disc dur puèi importatz-lo aicí.",
 
 # Scripts
 'common.js' => '/* Tot JavaScript serà cargat amb cada pagina accedida per un utilizaire quin que siá. */',
-'standard.js' => '/* Tot JavaScript aicí serà cargat amb las paginas accedidas pels utilizaires de l’abilhatge Standard unicament. */',
-'nostalgia.js' => '/* Tot JavaScript aicí serà cargat amb las paginas accedidas pels utilizaires de l’abilhatge Nostalgia unicament. */',
 'cologneblue.js' => '/* Tot JavaScript aicí serà cargat amb las paginas accedidas pels utilizaires de l’abilhatge Cologne Blue unicament. */',
 'monobook.js' => '/* Tot JavaScript aicí serà cargat amb las paginas accedidas pels utilizaires de l’abilhatge MonoBook unicament. */',
-'myskin.js' => '/* Tot JavaScript aicí serà cargat amb las paginas accedidas pels utilizaires de l’abilhatge MySkin unicament. */',
-'chick.js' => '/* Tot JavaScript aicí serà cargat amb las paginas accedidas pels utilizaires de l’abilhatge Chick unicament. */',
-'simple.js' => '/* Tot JavaScript aicí serà cargat amb las paginas accedidas pels utilizaires de l’abilhatge Simple unicament. */',
 'modern.js' => '/* Tot JavaScript aicí serà cargat amb las paginas accedidas pels utilizaires de l’abilhatge Modern unicament. */',
 'vector.js' => '/* Tot JavaScript aicí serà cargat amb las paginas accedidas pels utilizaires de l’abilhatge Vector unicament. */',
 
@@ -2907,13 +2889,8 @@ Aquò es probablament causat per un ligam sus lista negra que punta cap a un sit
 'pageinfo-category-files' => 'Nombre de fichièrs',
 
 # Skin names
-'skinname-standard' => 'Estandard',
-'skinname-nostalgia' => 'Nostalgia',
 'skinname-cologneblue' => 'Colonha Blau',
 'skinname-monobook' => 'Monobook',
-'skinname-myskin' => 'Mon interfàcia',
-'skinname-chick' => 'Poleton',
-'skinname-simple' => 'Simple',
 'skinname-modern' => 'Modèrne',
 
 # Patrolling
@@ -3021,7 +2998,7 @@ Los autres ligams sus la meteissa linha son considerats coma d'excepcions, per e
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Largor',
 'exif-imagelength' => 'Nautor',
 'exif-bitspersample' => 'Bits per compausanta',
@@ -3186,7 +3163,7 @@ Los autres ligams sus la meteissa linha son considerats coma d'excepcions, per e
 'exif-originalimageheight' => "Nautor de l'imatge abans d'èsser requadrada",
 'exif-originalimagewidth' => "Largor de l'imatge abans d'èsser requadrada",
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Sens compression',
 'exif-compression-2' => "CCITT Grop 3 Longor de l'encodatge Huffman modificat de dimension 1",
 'exif-compression-3' => 'CCITT Grop 3 encodatge del fax',
@@ -3575,13 +3552,6 @@ Ensajatz la previsualizacion normala.',
 'version-software' => 'Logicial installat',
 'version-software-product' => 'Produch',
 'version-software-version' => 'Version',
-
-# Special:FilePath
-'filepath' => "Camin d'accès d'un fichièr",
-'filepath-page' => 'Fichièr :',
-'filepath-submit' => 'Validar',
-'filepath-summary' => "Aquesta pagina especiala retorna lo camin d'accès complet d’un fichièr.
-Los imatges son afichats en nauta resolucion, los fichièrs àudio e vidèo son cargats e aviats dirèctament amb lor programa associat.",
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Recèrca dels fichièrs en doble',

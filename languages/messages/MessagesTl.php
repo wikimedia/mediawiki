@@ -2110,6 +2110,15 @@ Sinusuportahang mga protokolo: <code>$1</code> (huwag idagdag ang anuman sa mga 
 'listusers-noresult' => 'Walang nahanap na tagagamit.',
 'listusers-blocked' => '(hinarang)',
 
+# Special:ActiveUsers
+'activeusers' => 'Tala ng mga aktibong tagagamit',
+'activeusers-intro' => 'Isa itong talaan ng mga tagagamit na nagkaroon ng ilang uri ng galaw sa loob ng huling $1 {{PLURAL:$1|araw|mga araw}}.',
+'activeusers-count' => '$1 {{PLURAL:$1|pagbabago|mga pagbabago}} sa loob ng huling {{PLURAL:$3|araw|$3 mga araw}}',
+'activeusers-from' => 'Ipakita ang mga tagagamit simula sa:',
+'activeusers-hidebots' => 'Itago ang mga bots',
+'activeusers-hidesysops' => 'Itago ang mga tagapangasiwa',
+'activeusers-noresult' => 'Walang natagpuang mga tagagamit.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Mga uri ng tagagamit',
 'listgrouprights-summary' => 'Ang sumusunod ay isang talaan ng mga pangkat ng tagagamit na binigyang kahulugang sa wiking ito, kasama ang kanilang mga kaugnay na mga karapatan.
@@ -2190,7 +2199,7 @@ Makikita doon ang lahat ng mga susunod na pagbabago sa pahinang ito pati na ang 
 'watchnochange' => 'Wala sa binabantayan mo ang binago sa oras na nakikita.',
 'watchlist-details' => '{{PLURAL:$1|$1 pahinang|$1 mga pahinang}} nasa iyong talaan ng mga binabantayan, hindi binibilang ang mga pahina ng usapan.',
 'wlheader-enotif' => 'Umiiral ang pagpapahayag sa pamamagitan ng e-liham.',
-'wlheader-showupdated' => "Ipinapakitang may '''makakapal na mga panitik''' ang nabagong/binagong mga pahina mula pa noong huli mong pagdalaw sa kanila.",
+'wlheader-showupdated' => "Ipinapakitang may '''makakapal na mga panitik''' ang nabagong/binagong mga pahina mula pa noong huli mong pagdalaw sa kanila",
 'watchmethod-recent' => 'sinusuri ang kamakailan lamang na mga pagbabago para sa binabantayang mga pahina',
 'watchmethod-list' => 'sinusuri ang binabantayang mga pahina para sa mga kamakailan lamang na mga pagbabago',
 'watchlistcontains' => 'Naglalaman ng $1 {{PLURAL:$1|pahina|mga pahina}} ang iyong talaan ng mga binabantayan.',
@@ -3156,7 +3165,7 @@ Likas na nakatakdang itago ang iba pa.
 'metadata-langitem' => "'''$2:''' $1",
 'metadata-langitem-default' => '$1',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Lapad',
 'exif-imagelength' => 'Taas',
 'exif-bitspersample' => 'Mga bit (piraso) ng bawat komponente (bahagi)',
@@ -3349,7 +3358,7 @@ $4, $5, $6 $7
 $8',
 'exif-subjectnewscode-value' => '$2 ($1)',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Walang kompresyon',
 'exif-compression-2' => 'CCITT Pangkat 3 1-kodigo sa haba ng pagtakbo ng Pangdimensiyong Huffman na May Bahagyang Pagbabago',
 'exif-compression-3' => 'Kodigo ng Pangkat 3 ng CCITT',
@@ -3880,13 +3889,6 @@ Dapat na nakatanggap ka ng [{{SERVER}}{{SCRIPTPATH}}/COPYING isang sipi ng Pangk
 'version-entrypoints-header-url' => 'URL',
 'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Landas ng artikulo]',
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Landas ng panitik]',
-
-# Special:FilePath
-'filepath' => 'Lokasyon ng talaksan (file path)',
-'filepath-page' => 'Talaksan:',
-'filepath-submit' => 'Gawin',
-'filepath-summary' => 'Ibinabalik ng natatanging pahinang ito ang buong landas para sa isang talaksan.  
-Ipinapakita ang mga larawan sa buong kalinawan, tuwirang sinisimulan ang ibang uri ng mga talaksan sa pamamagitan ng kaugnay nilang mga programa.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Maghanap ng kaparehong mga talaksan',

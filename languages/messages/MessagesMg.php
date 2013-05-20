@@ -2084,6 +2084,15 @@ Protokoly zaka <code>$1</code> aza ampiana ao amin'ny karokao izy ireo.",
 'listusers-noresult' => 'Tsy nahitana mpikambana.',
 'listusers-blocked' => '(voasakana)',
 
+# Special:ActiveUsers
+'activeusers' => 'Lisitry ny mpikambana mavitrika',
+'activeusers-intro' => 'Ity ny lisitry ny mpikambana izay nanao zavatra iray nandritry ny andro $1 farany. {{PLURAL:}}',
+'activeusers-count' => "Tao $1{{PLURAL:}} tanatin'ny $3 andro",
+'activeusers-from' => 'Aseho ny mpikambana hatry ny :',
+'activeusers-hidebots' => 'Asitriho ny robo',
+'activeusers-hidesysops' => 'Asitriho ny mpandrindra',
+'activeusers-noresult' => 'Tsy nahitana mpikambana.',
+
 # Special:ListGroupRights
 'listgrouprights' => "Fahefan'ny vondrom-pikambana",
 'listgrouprights-summary' => "Ity pejy ity dia ahitana ny lisitry ny vondrom-pikambana voafaritra ato amin'ity wiki ity ary ny zo ananany. Mety misy [[{{MediaWiki:Listgrouprights-helppage}}|fampahalalana fanampiny]] mikasika ny zo manokana.",
@@ -2968,7 +2977,7 @@ Tokony sary tsy misy na sary tsy izy ny rohy voalohany anaty andalana iray .
 * gpslongitude
 * gpsaltitude",
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Halalaka',
 'exif-imagelength' => 'Haavo',
 'exif-bitspersample' => 'Bit isaky ny singa',
@@ -3208,13 +3217,6 @@ Andramo ny topi-maso tsotra',
 'version-software' => 'Rindrankahy voapetraka',
 'version-software-product' => 'Vokatra',
 'version-software-version' => 'Santiôna',
-
-# Special:FilePath
-'filepath' => "Lalan'ny drakitra",
-'filepath-page' => 'Rakitra',
-'filepath-submit' => 'Handeha',
-'filepath-summary' => "Mamerina ny lalam-pandehanana any amin'ilay rakitra ity pejy ity.
-Aseho amin'ny tena habeny ny sary aseho, ny hafa dia alefa miaraka amin'ny rindrankajy miaraka aminy avy hatrany.",
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Hitady rakitra mitovy endrika',

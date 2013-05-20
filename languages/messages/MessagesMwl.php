@@ -107,8 +107,6 @@ $messages = array(
 'tog-enotifrevealaddr' => 'Rebelar l miu andereço de correio eiletrónico nas noteficaçones',
 'tog-shownumberswatching' => "Amostrar l númaro d'outelizadores a begiar",
 'tog-fancysig' => 'Tratar assinatura cumo wikitesto (sin lhigaçon outomática)',
-'tog-externaleditor' => 'Por oumisson, outelizar un eiditor sterno (solo para outelizadores abançados, eisige cunfiguraçones adecionales ne l tou cumputador)',
-'tog-externaldiff' => 'Por oumisson, outelizar defrenças sternas (solo para outelizadores abançados, eisige cunfiguraçones adicionales ne l tou cumputador)',
 'tog-showjumplinks' => 'Posseblitar lhigaçones d\'acessibelidade "{{ant:jumpto}}"',
 'tog-uselivepreview' => "Ousar l'antebison an tiempo rial (JavaScrit) (Spurmental)",
 'tog-forceeditsummary' => 'Abisar-me al antroduzir un sumairo bazio',
@@ -852,7 +850,7 @@ Páiginas que steian ne ls [[Special:Watchlist|tous begiados]] son amostradas an
 'listgrouprights-rights' => 'Dreitos',
 'listgrouprights-members' => '(lista de nembros)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Ambiar carta eiletrónica a este outelizador',
 'emailfrom' => 'De:',
 'emailto' => 'Para:',
@@ -1087,13 +1085,8 @@ Por fabor, scuolhe outro nome.',
 Premite ajuntar la rezon de la eidiçon ne l sumário.',
 
 # Skin names
-'skinname-standard' => 'Clássico',
-'skinname-nostalgia' => 'Suidade',
 'skinname-cologneblue' => 'Azul',
 'skinname-monobook' => 'Lhibro',
-'skinname-myskin' => 'Piel',
-'skinname-chick' => 'Cipe-Çape',
-'skinname-simple' => 'Simpre',
 'skinname-modern' => 'Moderno',
 
 # Browsing diffs
@@ -1138,7 +1131,7 @@ Causo l fexeiro tenga sido demudado a partir de l sou stado oureginal, alguns de
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Ancho',
 'exif-imagelength' => 'Altura',
 'exif-imagedescription' => 'Títalo de la eimaige',
@@ -1212,11 +1205,6 @@ Causo l fexeiro tenga sido demudado a partir de l sou stado oureginal, alguns de
 'version-license' => 'Licença',
 'version-software-product' => 'Perduto',
 'version-software-version' => 'Berson',
-
-# Special:FilePath
-'filepath' => 'Camino de l fexeiro',
-'filepath-page' => 'Fexeiro',
-'filepath-submit' => 'Camino',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-filename' => 'Nome de l fexeiro',

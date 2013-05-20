@@ -129,8 +129,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Va ota va rupes favesik nedir !',
 'tog-oldsig' => 'Tisa sugdara',
 'tog-fancysig' => 'Krafiara va sugdaks wetce wikitext (a mivaskafi gluyasiki)',
-'tog-externaleditor' => 'Favera va divefi betasiki (anton gan aptacik, moe vusiko va yona aptafa vertara olegar)',
-'tog-externaldiff' => 'Omavafa favera va divefa "diff" xeka (anton gan aptacik, moe vusiko va yona aptafa vertara olegar)',
 'tog-showjumplinks' => 'Tutegirara va "grablera" vansarafi gluyasiki',
 'tog-uselivepreview' => 'Favera va abdiwira (JavaScript) (bagalon)',
 'tog-forceeditsummary' => 'Zo walzé viele betaravildeks tir vlardaf !',
@@ -864,14 +862,6 @@ Kan ''all:'' laganeyal ta varafa exulera (gon keyaksexo is teza ikz-), oke wetce
 'search-external' => 'Divafa aneyara',
 'searchdisabled' => "<p>La fonction de recherche sur l'intégralité du texte a été temporairement désactivée à cause de la grande charge que cela impose au serveur. Nous espérons la rétablir prochainement lorsque nous disposerons d'un serveur plus puissant. En attendant, vous pouvez faire la recherche avec Google:</p>",
 
-# Quickbar
-'qbsettings' => 'Tuweltara va xekobla',
-'qbsettings-none' => 'Mek',
-'qbsettings-fixedleft' => 'Roneon titickanaf',
-'qbsettings-fixedright' => 'Talteon titickanaf',
-'qbsettings-floatingleft' => 'Roneon ezas',
-'qbsettings-floatingright' => 'Talteon ezas',
-
 # Preferences page
 'preferences' => 'Lodamaceem',
 'mypreferences' => 'Jinaf lodamaceem',
@@ -943,7 +933,7 @@ Gotir le $1 {{PLURAL:$1|staa|staa}}.',
 Rinafe e-mail mane me zo razdar viele ar webesik uzerar.',
 'prefs-help-email-required' => 'E-mail mane zo kucilar.',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-invalid' => 'Va enafe e-mail mane bazel',
 
 # User rights
@@ -1427,7 +1417,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'listgrouprights-addgroup-all' => 'Va kota lospa roloplekur',
 'listgrouprights-removegroup-all' => 'Va kota lospa rosular',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Meke mane',
 'mailnologintext' => 'Rin gotil [[Special:UserLogin|dogluyarakiraf]]
 is bazeyes va wadafe internetmane ko rinaf [[Special:Preferences|lodamaceem]]
@@ -2046,7 +2036,7 @@ Kotari milconyafi gluyasiki roklon zo krafiar.',
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Mantuca',
 'exif-imagelength' => 'Ontinuca',
 'exif-compression' => 'Raxivaracave',
@@ -2121,7 +2111,7 @@ Kotari milconyafi gluyasiki roklon zo krafiar.',
 'exif-gpsdestdistance' => 'Kofa soluma',
 'exif-gpsdatestamp' => 'GPS evla',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Raxivariskafa',
 
 'exif-unknowndate' => 'Megrupena evla',
@@ -2230,7 +2220,7 @@ Kotari milconyafi gluyasiki roklon zo krafiar.',
 'namespacesall' => 'koto',
 'monthsall' => 'kot',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Va e-mail gruyel',
 'confirmemail_noemail' => 'Bazene "email" mane koe rinaf [[Special:Preferences|favesikaf lodamaceem]] me tir enafe.',
 'confirmemail_text' => "Ce wiki nécessite la vérification de votre adresse email avant de pouvoir utiliser toute fonction de messagerie. Utilisez le bouton ci dessous pour envoyer un email de confirmation à votre adresse. L'email contiendra un lien contenant un code, chargez ce lien dans votre navigateur pour valider votre adresse.",
@@ -2350,11 +2340,6 @@ This confirmation code will expire at $4.',
 'version-software' => 'Inkeyen talpeyot',
 'version-software-product' => 'Warzeks',
 'version-software-version' => 'Siatos',
-
-# Special:FilePath
-'filepath' => 'Iyeltakkelda',
-'filepath-page' => 'Iyeltak :',
-'filepath-submit' => 'Kelda',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Aneyara va jontolaf iyeltak',

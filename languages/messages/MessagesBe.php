@@ -1892,6 +1892,15 @@ $1',
 'listusers-noresult' => 'Удзельнікі не знойдзеныя.',
 'listusers-blocked' => '(Заблакаваны)',
 
+# Special:ActiveUsers
+'activeusers' => 'Актыўныя ўдзельнікі',
+'activeusers-intro' => 'Гэта пералік удзельнікаў, якія нешта рабілі за апошнія $1 {{PLURAL:$1|дзень|дзён}}.',
+'activeusers-count' => '$1 {{PLURAL:$1|праўка|праўкі|правак}} за апошні{{PLURAL:$3| дзень|я $3 дзён}}',
+'activeusers-from' => 'Паказ, пачынаючы з:',
+'activeusers-hidebots' => 'Без робатаў',
+'activeusers-hidesysops' => 'Без адміністратараў',
+'activeusers-noresult' => 'Няма такіх удзельнікаў.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Дазволы для груп удзельнікаў',
 'listgrouprights-summary' => 'Гэты пералік вызначаных у гэтай вікі груп удзельнікаў, разам з прыпісанымі ім дазволамі.
@@ -2800,7 +2809,7 @@ $1',
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Шырыня',
 'exif-imagelength' => 'Вышыня',
 'exif-bitspersample' => 'Бітаў на кампанент',
@@ -2979,7 +2988,7 @@ $1',
 'exif-originalimageheight' => 'Вышыня малюнка да кадравання',
 'exif-originalimagewidth' => 'Шырыня малюнка да кадравання',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Нясціснута',
 'exif-compression-2' => 'CCITT Group 3, 1-мерная мадыфікацыя кадзіравання даўжынь серый Хафмана',
 'exif-compression-3' => 'CCITT Group 3, факсавае кадзіраванне',
@@ -3372,13 +3381,6 @@ MediaWiki распаўсюджваецца, спадзеючыся на прыд
 'version-software' => 'Устаноўленыя праграмныя прадукты',
 'version-software-product' => 'Прадукт',
 'version-software-version' => 'Версія',
-
-# Special:FilePath
-'filepath' => 'Шлях да файла',
-'filepath-page' => 'Файл:',
-'filepath-submit' => 'Пуск',
-'filepath-summary' => 'Гэтая адмысловая старонка вяртае поўны шлях да файла.
-Выявы паказваюцца ў поўным памеры, іншыя тыпы файлаў адкрываюцца ў прыпісаных да іх праграмах.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Пошук дублікатных файлаў',

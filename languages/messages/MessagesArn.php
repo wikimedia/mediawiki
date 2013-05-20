@@ -636,7 +636,7 @@ Fey ñi chumngen mülelu ($2 fey ñi chumngen wülngiñ) pengeli tüfa mew.',
 # Special:ListGroupRights
 'listgrouprights-members' => '(koneltulu kellufe ñi wif)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Amulün werküwe tüfachi kellufe',
 'emailsubject' => 'Dungu',
 'emailmessage' => 'Dungu',
@@ -888,7 +888,7 @@ Ka dungu ellkangeay wünedullin reke.
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-artist' => 'Che llitun mew',
 'exif-exposuretime-format' => '$1 sek ($2)',
 

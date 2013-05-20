@@ -1068,7 +1068,7 @@ $messages = array(
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Шерал',
 'exif-imagelength' => 'Лакхал',
 'exif-imagedescription' => 'Сурта цIи',
@@ -1127,11 +1127,6 @@ $messages = array(
 'version-specialpages' => 'ГIулакхий оагIувнаш',
 'version-version' => '(Доржам $1)',
 'version-software-version' => 'Доржам',
-
-# Special:FilePath
-'filepath' => 'Паьлачу никъ',
-'filepath-page' => 'Паьл:',
-'filepath-submit' => 'Дехьавала/яла',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-filename' => 'ПаьлацIи:',

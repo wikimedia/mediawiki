@@ -533,7 +533,7 @@ Dov dorje värrhtoedimmie gååvnese bielieh, jallh [[Special:UserLogin|logge s�
 # Special:ListUsers
 'listusers-submit' => 'Vuesehte',
 
-# E-mail user
+# Email user
 'emailuser' => 'E-påaste dïhte nuhtjien',
 'emailpage' => 'E-påaste nuhtjien',
 'defemailsubject' => '{{SITENAME}} e-påaste',
@@ -558,7 +558,6 @@ Dov dorje värrhtoedimmie gååvnese bielieh, jallh [[Special:UserLogin|logge s�
 'watching' => 'Sïektjeminie...',
 'unwatching' => 'Ov-sïektjedh...',
 
-'enotif_newpagetext' => 'Dïhte lea orre bielie.',
 'enotif_impersonal_salutation' => '{{SITENAME}} nuhtjien',
 'created' => 'skaepede',
 
@@ -789,7 +788,7 @@ Jeatjebh dajveh lea gaptjedh goh sïejhme, bine vuesehte gåessie taabelle stoer
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Gamte',
 'exif-imagelength' => 'Gåhkoe',
 'exif-model' => 'Guvviedahke hammohke',

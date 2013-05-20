@@ -1353,7 +1353,7 @@ Bee adsyn elley follit dy seyr-obbragh.<br />
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Lheead',
 'exif-imagelength' => 'Yrjid',
 'exif-ycbcrpositioning' => 'Soie Y as C',
@@ -1450,9 +1450,6 @@ Bee adsyn elley follit dy seyr-obbragh.<br />
 'version-version' => '(Lhieggan $1)',
 'version-license' => 'Kiedoonys',
 'version-software-version' => 'Lhieggan',
-
-# Special:FilePath
-'filepath-page' => 'Coadan:',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-filename' => 'Ennym y choadan:',

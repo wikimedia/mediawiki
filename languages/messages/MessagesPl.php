@@ -14,6 +14,7 @@
  * @author BeginaFelicysym
  * @author Chrumps
  * @author Cysioland
+ * @author Debeet
  * @author Derbeth
  * @author Equadus
  * @author Fizykaa
@@ -1544,6 +1545,7 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'userrights-notallowed' => 'Nie jesteś upoważniony do nadawania i odbierania uprawnień użytkownikom.',
 'userrights-changeable-col' => 'Grupy, które możesz wybrać',
 'userrights-unchangeable-col' => 'Grupy, których nie możesz wybrać',
+'userrights-conflict' => 'Konflikt uprawnień użytkownika! Proszę zastosować zmiany ponownie.',
 
 # Groups
 'group' => 'Grupa',
@@ -2495,8 +2497,8 @@ Wszystkie aktywne zabezpieczenia odnajdziesz na liście [[Special:ProtectedPages
 'modifiedarticleprotection' => 'zmieniono stopień zabezpieczenia "[[$1]]"',
 'unprotectedarticle' => 'odbezpieczył [[$1]]',
 'movedarticleprotection' => 'przeniósł ustawienia zabezpieczeń z [[$2]] do [[$1]]',
-'protect-title' => 'Zmiana poziomu zabezpieczenia „$1”',
-'protect-title-notallowed' => 'Podgląd poziomu zabezpieczenia „$1”',
+'protect-title' => 'Zmiana stopnia zabezpieczenia „$1”',
+'protect-title-notallowed' => 'Podgląd stopnia zabezpieczenia „$1”',
 'prot_1movedto2' => 'stronę [[$1]] przeniósł do [[$2]]',
 'protect-badnamespace-title' => 'Przestrzeń nazw, w której nie można zabezpieczać stron',
 'protect-badnamespace-text' => 'Stron w tej przestrzeni nazw nie można zabezpieczać.',
@@ -3016,7 +3018,7 @@ Brak katalogu dla plików tymczasowych.',
 'importlogpagetext' => 'Rejestr przeprowadzonych importów stron z innych serwisów wiki.',
 'import-logentry-upload' => 'Zaimportowano [[$1]] przez pobieranie plików',
 'import-logentry-upload-detail' => '$1 {{PLURAL:$1|wersja|wersje|wersji}}',
-'import-logentry-interwiki' => '{{GENDER:$2|zaimportował|zaimportowała}} $1 używając transwiki',
+'import-logentry-interwiki' => 'zaimportowano $1 używając transwiki',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|wersja|wersje|wersji}} z $2',
 
 # JavaScriptTest
@@ -3972,9 +3974,13 @@ Powinieneś otrzymać [{{SERVER}}{{SCRIPTPATH}}/COPYING kopię licencji GNU Gene
 'version-entrypoints-header-url' => 'URL',
 
 # Special:Redirect
+'redirect-submit' => 'Przejdź',
+'redirect-lookup' => 'Wyszukaj:',
 'redirect-value' => 'Wartość:',
 'redirect-user' => 'ID użytkownika',
+'redirect-revision' => 'Wersja strony',
 'redirect-file' => 'Nazwa pliku',
+'redirect-not-exists' => 'Nie znaleziono wartości',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Szukaj duplikatów pliku',

@@ -409,7 +409,7 @@ $messages = array(
 'login-abort-generic' => 'Системаже таптыг эвес кирип тур силер',
 'loginlanguagelabel' => 'Дыл: $1',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'PHP-ниң mail() ажыл-чорудулгазында билбес алдаг бар.',
 
 # Change password dialog
@@ -955,7 +955,7 @@ It must not be more than $1 {{PLURAL:$1|character|characters}} long.',
 'listgrouprights-group' => 'Бөлүк кижилер',
 'listgrouprights-members' => '(кежигүннүң даңзызы)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Бо ажыглакчыга э-чагааны чорудаары',
 'defemailsubject' => '{{grammar:ablative|{{SITENAME}}}} э-чагаа',
 'emailusernamesubmit' => 'Күүcедири',
@@ -1199,13 +1199,8 @@ It must not be more than $1 {{PLURAL:$1|character|characters}} long.',
 'anonymous' => '{{grammar:genitive|{{SITENAME}}}} ат эвес {{PLURAL:$1|ажыглакчызы|ажыглакчылары}}',
 
 # Skin names
-'skinname-standard' => 'Классик',
-'skinname-nostalgia' => 'Ностальгия',
 'skinname-cologneblue' => 'Cologne Blue',
 'skinname-monobook' => 'МоноБук',
-'skinname-myskin' => 'МайСкин',
-'skinname-chick' => 'Чикк',
-'skinname-simple' => 'Симпел',
 'skinname-modern' => 'Модерн',
 'skinname-vector' => 'Вектор',
 
@@ -1266,7 +1261,7 @@ It must not be more than $1 {{PLURAL:$1|character|characters}} long.',
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Калбаа',
 'exif-imagelength' => 'Бедик',
 'exif-imagedescription' => 'Чуруктуң ады',
@@ -1343,10 +1338,6 @@ It must not be more than $1 {{PLURAL:$1|character|characters}} long.',
 'version-specialpages' => 'Тускай арыннар',
 'version-other' => 'Өске',
 'version-software-version' => 'Үндүрери',
-
-# Special:FilePath
-'filepath-page' => 'Файл:',
-'filepath-submit' => 'Күүcедири',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-filename' => 'Файлдың ады:',

@@ -46,8 +46,6 @@ $messages = array(
 'tog-shownumberswatching' => 'biyn aadad lmostakhdimin lmoraqibin',
 'tog-oldsig' => 'moaayana litawqia lmawjod',
 'tog-fancysig' => 'aaml nass bhal nass wiki (bla wsla otomatikia)',
-'tog-externaleditor' => 'stakhdm moharrir khariji iftiradiyan(faqat lilkhobaraa, kaybghi iaadadat khassa f lordinator dyalk)',
-'tog-externaldiff' => 'stakhdm farq khariji iftiradiyan(faqat lilkhobaraa, kaybghi iaadadat khassa f lordinator dyalk)',
 'tog-showjumplinks' => 'mkkn wassalat "sir l" lmossaaida',
 'tog-uselivepreview' => 'staml listiarad saria (khasso javascipt) (tjribi)',
 'tog-forceeditsummary' => 'nbhni ila kandkhl molkhass taadil khawi',
@@ -976,15 +974,6 @@ Jerreb be l-préfiks \"all:\" baċ ṫqelleb ĝla l-meḍmon kollo (o ḫṫa �
 Imken lik ṫqeleb fe google.
 Laḫed ana imken ikono l-indexaṫ dial {{SITENAME}} qdam o ma bqaoċ ṣalḫin.',
 
-# Quickbar
-'qbsettings' => "L-lawḫa 's-sariĝa",
-'qbsettings-none' => 'Ma kaynċ',
-'qbsettings-fixedleft' => "Meḫbos fe 'ċ-ċmal",
-'qbsettings-fixedright' => "Meḫbos fe 'l-limin",
-'qbsettings-floatingleft' => "Ḫor fe 'ċ-ċmal",
-'qbsettings-floatingright' => "Ḫor fe 'l-limen",
-'qbsettings-directionality' => 'ṫabṫ, ĝla ḫasab ṫṫijah l-kṫaba b-loġṫk',
-
 # Preferences page
 'preferences' => 'ṫfḍilaṫ',
 'mypreferences' => 'Ḫajaṫ li kanfeḍḍel',
@@ -1374,7 +1363,6 @@ $1',
 'http-read-error' => "khata' qira'at HTTP.",
 'http-timed-out' => 'salat moddat mohlat talab dyal HTTp.',
 'http-curl-error' => "khata' f jalb lmassar: $1",
-'http-host-unreachable' => 'manqdroch nwslo l had lmassar.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'manqdroch nwslo l had lmassar.',
@@ -1677,7 +1665,7 @@ L-Kṫaba dyal had ṣ-ṣefḫa ġaṫban '''ġliḍa''' fe [[Special:RecentCha
 'notanarticle' => 'Hadi maċi ṣefḫaṫ meḍmon',
 'watchlist-details' => '{{PLURAL:$1|ṣefḫa weḫda|$1 de ṣ-ṣefḫaṫ}} kaynin fe l-lista dyal s-suivi dyalṫek, bla ma nḫesbo ṣ-ṣefḫaṫ dyal n-niqaċ.',
 'wlheader-enotif' => 'l-iĝlam bl-email mtloq.',
-'wlheader-showupdated' => "ṣ-ṣfaḫi lli ṫġyyeraṫ mn aĥir ẓiyaṛa ṫaĝk mkṫoba b-ĥatt '''ġliḍ'''.",
+'wlheader-showupdated' => "ṣ-ṣfaḫi lli ṫġyyeraṫ mn aĥir ẓiyaṛa ṫaĝk mkṫoba b-ĥatt '''ġliḍ'''",
 'iteminvalidname' => "moċkil mĝa l-madda '$1', smia ma ṣḫiḫa-ċ...",
 'wlshowlast' => 'Werri  l-$1 de s-swayeĝ o l-$2 iyam l-leĥĥrin, ola werri $3',
 'watchlist-options' => 'Lé-Opsyon de l-lista dyal s-suivi',
@@ -2167,8 +2155,6 @@ L-lyanaṫ l-ĥrin l-li fe nefs ṣ-ṣter ka-nĝṫabrohom bḫal sṫiṫna'a�
 
 /*
 Short names for language variants used for language conversion links.
-To disable showing a particular link, set it to 'disable', e.g.
-'variantname-zh-sg' => 'disable',
 Variants for Chinese language
 */
 'variantname-zh-hans' => 'Kṫaba',
@@ -2222,7 +2208,7 @@ Ila ṫbeddel l-fiċyé men ḫalṫo l-'aṣliya, kaynin ċi ṫafaṣil ma mna
 * gpslongitude
 * gpsaltitude",
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'laard',
 'exif-imagelength' => 'lirtifaa',
 'exif-bitspersample' => 'bit lkol mokawwin',
@@ -2625,11 +2611,6 @@ jrreb l-ĝṛḍ l-ĝadi.',
 'version-software' => "lbarnamaj li m'anstalli",
 'version-software-product' => 'lmntoj',
 'version-software-version' => 'noskha',
-
-# Special:FilePath
-'filepath' => 'massar lfichier',
-'filepath-page' => 'mileff:',
-'filepath-submit' => 'Sir',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'qlleb ĝla milffaṫ mḍoḅla',

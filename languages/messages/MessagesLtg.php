@@ -595,7 +595,7 @@ Lopys, kas ir tovā [[Special:Watchlist|puorraugamūs rokstu sarokstā]] ir '''r
 'listgrouprights-members' => '(dalinīku saroksts)',
 'listgrouprights-addgroup' => 'Dalikt {{PLURAL:$2|grupu|grupys}}: $1',
 
-# E-mail user
+# Email user
 'emailuser' => 'Syuteit e-postu itam lītuotuojam',
 'emailmessage' => 'Viestejums:',
 
@@ -891,9 +891,6 @@ Puorejī lauki, piec nūklusiejuma, byus nūglobuoti.
 'version-poweredby-others' => 'cyti',
 'version-software-product' => 'Produkts',
 'version-software-version' => 'Verseja',
-
-# Special:FilePath
-'filepath-page' => 'Fails:',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-filename' => 'Faila pasauka:',

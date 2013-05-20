@@ -73,8 +73,6 @@ $messages = array(
 'tog-shownumberswatching' => "'t Antal gebrukers weerheven 't a deêze pahina volg",
 'tog-oldsig' => 'Bestaende onderteêkenienge',
 'tog-fancysig' => "As wikitekst behandel'n (zonder automaotische verwiezienge ni de gebrukersbladzie)",
-'tog-externaleditor' => 'Standard een externe tekstbewerker gebruken (alleêne vò experts - vò deêze functie ben speciaole ienstellienge nudig. [//www.mediawiki.org/wiki/Manual:External_editors Meê informaosie]).',
-'tog-externaldiff' => 'Standard een extern verheliekiengsprohramma gebruken (alleên vò experts - vò deêze functie ben speciaole ienstelliengen nudig. [//www.mediawiki.org/wiki/Manual:External_editors Meê informaosie]).',
 'tog-showjumplinks' => '“hi nae”-toehankelijkeidslienks inschaokelen',
 'tog-uselivepreview' => '“live voevertoônienge” gebruken (JavaScript vereist – experimenteêl)',
 'tog-forceeditsummary' => 'Heef me een meldieng bie een lehe saemenvattieng',
@@ -841,14 +839,6 @@ Zurg da je bie deêze wiezigieng de heschiedenisdeurloôpendeid van de pagina be
 'searchdisabled' => "Zoeken in {{SITENAME}} is nie meuhlijk.
 Je kan gebruuk maeken van Google.
 De hehevens over {{SITENAME}} zien meuhlijk nie bie'ewerkt.",
-
-# Quickbar
-'qbsettings' => 'Menubalke',
-'qbsettings-none' => 'Uuteschaokeld',
-'qbsettings-fixedleft' => 'Lienks vast',
-'qbsettings-fixedright' => 'Rechs vast',
-'qbsettings-floatingleft' => 'Lienks zwevend',
-'qbsettings-floatingright' => 'Rechs zwevend',
 
 # Preferences page
 'preferences' => 'Vòkeuren',

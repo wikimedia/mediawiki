@@ -45,8 +45,6 @@ $messages = array(
 'tog-shownumberswatching' => 'لوڑاک ممبرانن تعدادان پشاؤے',
 'tog-oldsig' => 'موجودہ دستخطو نمائش:',
 'tog-fancysig' => '(سادہ دسخط بلا خودکار ربط)',
-'tog-externaleditor' => 'ہمیشہ بیرونی تدوین کار استعمال کورے (صرفی ماہرینن بچے، ھمو بچے کمپیوٹرا خاص ترتیبات درکار بونیان)',
-'tog-externaldiff' => 'ہمیشہ بیرونی تدوین کار استعمال کورے (صرفی ماہرینن بچے، ھمو بچے کمپیوٹرا خاص ترتیبات درکار بونیان)',
 'tog-showjumplinks' => 'ھیہ ووشکی څروٹھاوے',
 'tog-uselivepreview' => 'براہِ راست نمائش استعمال کورے (JavaScript ضرورت بوی)',
 'tog-forceeditsummary' => 'کیاوتکی آوا ترمیمی خلاصو خالی پیڅھیتام تھے متے لو دیت',
@@ -1116,10 +1114,6 @@ HTML tags لوڑے.',",
 
 # Core parser functions
 'duplicate-defaultsort' => '\'\'\'خبردار:\'\'\' ڈیفالٹ تاڑٰ(نغڑی) "$2" پروشٹیو ڈیفالٹ تاڑا "$1" لیگی شیر۔',
-
-# Special:FilePath
-'filepath-page' => 'فایل',
-'filepath-submit' => 'Go/بوغے',
 
 # Special:SpecialPages
 'specialpages' => 'اسپیشل صفحہ',

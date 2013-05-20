@@ -1158,7 +1158,7 @@ Los otros campos se van a guardar por defecto.
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-filesource' => 'Manadéro de archivo',
 'exif-gpstimestamp' => 'Tiémpo GPS (óra atómica)',
 'exif-gpsdatestamp' => 'Dáta GPS',
@@ -1238,10 +1238,6 @@ Los otros campos se van a guardar por defecto.
 'version-version' => '(Versión $1)',
 'version-poweredby-others' => 'otros',
 'version-software-version' => 'Versión',
-
-# Special:FilePath
-'filepath-page' => 'Dosya:',
-'filepath-submit' => 'Yir',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-submit' => 'Buscar',

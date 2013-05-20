@@ -35,8 +35,6 @@ $messages = array(
 'tog-enotifrevealaddr' => 'Kamukile zwa adress di meli di xete peson kwa melina notifikasyona',
 'tog-shownumberswatching' => 'Kamukile tali di kentezi sebelu',
 'tog-fancysig' => "Ro sebu e data (dicon ling'ki auto)",
-'tog-externaleditor' => "Sebelize hloli ye ng'i ektenali dauto",
-'tog-externaldiff' => 'Sebelize petuho ektenali dauto',
 'tog-showjumplinks' => 'Nyembulisize "sinkumukezi" ling\'ki',
 'tog-uselivepreview' => 'Sebelize live PendiBe (bulukezi JavaScript) (yem nca)',
 'tog-watchlisthideown' => 'Cwankekile zwa afina di zwa mukoloko di kentezi',
@@ -461,9 +459,6 @@ Informasi: (bye) = petuho a nca selt,
 'showingresultsnum' => "Kamukile {{PLURAL:$3|'''1''' ekali|'''$3''' ekalina}} di #'''$2'''.",
 'powersearch' => 'Fatukile',
 
-# Quickbar
-'qbsettings-none' => 'Ni',
-
 # Preferences page
 'preferences' => 'Petohoni di sebelu',
 'mypreferences' => 'Zwa petohoni di sebelu',
@@ -695,7 +690,7 @@ di uplodezi media.',
 'listusers-submit' => 'Kamukile',
 'listusers-noresult' => 'Ni-di sebelu.',
 
-# E-mail user
+# Email user
 'emailuser' => 'Imeli bye sebelu',
 'emailpage' => 'Imeli sebelu',
 'defemailsubject' => '{{SITENAME}} meli',
@@ -1019,7 +1014,7 @@ Xete ling'ki kwa lina sa konsidisize desepo. Petulo dimedi inlinenikusize.",
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagedescription' => 'Sebu di imegi',
 
 # External editor support

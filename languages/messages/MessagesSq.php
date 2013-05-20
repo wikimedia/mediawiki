@@ -2102,6 +2102,15 @@ Protokolle të mbështetura: <code>$1<code> (mos shtoni ndonjërin nga këta në
 'listusers-noresult' => "Asnjë përdorues s'u gjet.",
 'listusers-blocked' => '(Bllokuar)',
 
+# Special:ActiveUsers
+'activeusers' => 'Lista e përdoruesve aktivë',
+'activeusers-intro' => 'Kjo është një listë e përdoruesve që kanë qenë aktivë për $1 {{PLURAL:$1|ditë|ditë}}.',
+'activeusers-count' => '$1 {{PLURAL:$1|redaktim|redaktime}} në {{PLURAL:$3|ditën|$3 ditët}} e fundit',
+'activeusers-from' => 'Trego përdoruesit duke filluar prej te:',
+'activeusers-hidebots' => 'Fshih robotët',
+'activeusers-hidesysops' => 'Fshih administratorët',
+'activeusers-noresult' => 'Asnjë përdorues nuk u gjet.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Grupime përdoruesish me privilegje',
 'listgrouprights-summary' => 'Më poshtë jepet grupimi i përdoruesve sipas privilegjeve që ju janë dhënë në këtë wiki. Më shumë informacion rreth privilegjeve në veçanti mund të gjendet [[{{MediaWiki:Listgrouprights-helppage}}|këtu]].',
@@ -2178,7 +2187,7 @@ Në qoftë se dëshironi të hiqni një faqe nga lista mbikqyrëse më vonë, sh
 'watchnochange' => 'Asnjë nga artikujt nën mbikqyrje nuk është redaktuar gjatë kohës së dhënë.',
 'watchlist-details' => '{{PLURAL:$1|$1 faqe|$1 faqe}} nën mbikqyrje duke mos numëruar faqet e diskutimit.',
 'wlheader-enotif' => 'Njoftimi me email është lejuar.',
-'wlheader-showupdated' => "Faqet që kanë ndryshuar nga vizita juaj e fundit do të tregohen të '''trasha'''.",
+'wlheader-showupdated' => "Faqet që kanë ndryshuar nga vizita juaj e fundit do të tregohen të '''trasha'''",
 'watchmethod-recent' => 'duke parë ndryshimet e fundit për faqet nën mbikqyrje',
 'watchmethod-list' => 'duke parë faqet nën mbikqyrje për ndryshimet e fundit',
 'watchlistcontains' => 'Lista mbikqyrëse e juaj ka $1 {{PLURAL:$1|faqe|faqe}}.',
@@ -3041,7 +3050,7 @@ Në qoftë se skeda është ndryshuar nga gjendja origjinale, disa hollësira mu
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Gjerësia',
 'exif-imagelength' => 'Gjatësia',
 'exif-bitspersample' => 'Bit për komponent',
@@ -3219,7 +3228,7 @@ Në qoftë se skeda është ndryshuar nga gjendja origjinale, disa hollësira mu
 'exif-originalimageheight' => 'Lartësia e fotografisë para se të shkurtohej',
 'exif-originalimagewidth' => 'Gjerësia e fotografisë para se të shkurtohej',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'E pangjeshur',
 'exif-compression-2' => 'CCITT Grupi 3 1-Dimensional Kodimi i Modifikuar Huffman i linjës së gjatësisë',
 'exif-compression-3' => 'CCITT Grupi 3 faks kodimi',
@@ -3624,13 +3633,6 @@ Ju duhet të keni marrë [{{SERVER}}{{SCRIPTPATH}}/COPYING një kopje të GNU Ge
 'version-software-product' => 'Produkti',
 'version-software-version' => 'Versioni',
 'version-entrypoints-header-url' => 'URL',
-
-# Special:FilePath
-'filepath' => 'Vendndodhja e skedave',
-'filepath-page' => 'Skeda:',
-'filepath-submit' => 'Shko',
-'filepath-summary' => 'Kjo faqe speciale jep vendndodhjen e plotë të një skede.
-Figurat tregohen me madhësi të plotë, skedat e tjera hapen me programet përkatëse.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Kërkoni për skeda të dyfishta',

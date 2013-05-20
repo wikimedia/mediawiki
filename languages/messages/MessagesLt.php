@@ -2058,6 +2058,15 @@ Palaikomi protokolai: <code>$1</code> (nei vieno iš jų nenurodykite paieškoje
 'listusers-noresult' => 'Nerasta jokių naudotojų.',
 'listusers-blocked' => '(užblokuotas)',
 
+# Special:ActiveUsers
+'activeusers' => 'Aktyvių naudotojų sąrašas',
+'activeusers-intro' => 'Tai naudotojų sąrašas, kurie ką nors padarė per $1 {{PLURAL:$1|paskutinę dieną|paskutines dienas|paskutinių dienų}}.',
+'activeusers-count' => '$1 {{PLURAL:$1|keitimas|keitimai|keitimų}} per $3 {{PLURAL:$3|paskutinę dieną|paskutines dienas|paskutinių dienų}}',
+'activeusers-from' => 'Rodyti naudotojus, pradedant:',
+'activeusers-hidebots' => 'Slėpti robotus',
+'activeusers-hidesysops' => 'Slėpti administratorius',
+'activeusers-noresult' => 'Nerasta jokių naudotojų.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Naudotojų grupių teisės',
 'listgrouprights-summary' => 'Žemiau pateiktas naudotojų grupių, apibrėžtų šioje wiki, ir su jomis susijusių teisių sąrašas.
@@ -2137,7 +2146,7 @@ taip pat bus '''paryškinti''' [[Special:RecentChanges|naujausių keitimų sąra
 'watchnochange' => 'Pasirinktu laikotarpiu nebuvo redaguotas nei vienas stebimas puslapis.',
 'watchlist-details' => 'Stebima {{PLURAL:$1|$1 puslapis|$1 puslapiai|$1 puslapių}} neskaičiuojant aptarimų puslapių.',
 'wlheader-enotif' => 'El. pašto priminimai yra įjungti.',
-'wlheader-showupdated' => "Puslapiai pakeisti nuo tada, kai paskutinį kartą apsilankėte juose, yra pažymėti '''pastorintai'''.",
+'wlheader-showupdated' => "Puslapiai pakeisti nuo tada, kai paskutinį kartą apsilankėte juose, yra pažymėti '''pastorintai'''",
 'watchmethod-recent' => 'tikrinami naujausi stebimųjų puslapių pakeitimai',
 'watchmethod-list' => 'ieškoma naujausių keitimų stebimuose puslapiuose',
 'watchlistcontains' => 'Jūsų stebimųjų sąraše yra $1 {{PLURAL:$1|puslapis|puslapiai|puslapių}}.',
@@ -3047,7 +3056,7 @@ Visos kitos nuorodos toje pačioje eilutėje yra laikomos išimtimis, t. y. pusl
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Plotis',
 'exif-imagelength' => 'Aukštis',
 'exif-bitspersample' => 'Bitai komponente',
@@ -3225,7 +3234,7 @@ Visos kitos nuorodos toje pačioje eilutėje yra laikomos išimtimis, t. y. pusl
 'exif-originalimageheight' => 'Piešinio aukštis prieš apkarpymą',
 'exif-originalimagewidth' => 'Piešinio plotis prieš apkarpymą',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Nesuspausta',
 'exif-compression-2' => 'CCITT grupės 3 1-Dimensijos Modifikuotas Hafmano duomenų paleidimo ilgio kodavimas.',
 'exif-compression-3' => 'CCITT 3 grupės fakso kodavimas',
@@ -3643,13 +3652,6 @@ Jūs turėjote gauti [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU General Public Licens
 'version-entrypoints' => 'Įėjimo taško URL',
 'version-entrypoints-header-entrypoint' => 'Įėjimo taškas',
 'version-entrypoints-header-url' => 'URL',
-
-# Special:FilePath
-'filepath' => 'Failo kelias',
-'filepath-page' => 'Failas:',
-'filepath-submit' => 'Kelias',
-'filepath-summary' => 'Šis specialusis puslapis parašo pilną kelią iki failo.
-Paveikslėliai yra rodomi pilna raiška, kiti failų tipai paleidžiami tiesiogiai su jų susietąja programa.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Ieškoti dublikuotų failų',

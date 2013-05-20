@@ -2122,6 +2122,15 @@ $1',
 'listusers-noresult' => 'მომხმარებელი ვერ ვიპოვეთ.',
 'listusers-blocked' => '(დაბლოკილია)',
 
+# Special:ActiveUsers
+'activeusers' => 'აქტიურ მომხმარებელთა სია',
+'activeusers-intro' => 'ეს არის მომხმარებელთა სია, რომელთაც აქვს წვლილი უკანასკნელი $1 {{PLURAL:$1|დღის|დღის}} განმავლობაში.',
+'activeusers-count' => '$1 {{PLURAL:$1|მოქმედება|მოქმედება}} {{PLURAL:$3|დღის|$3 დღის}} განმავლობაში.',
+'activeusers-from' => 'მომხმარებელთა ჩვენება, დაწყებული:',
+'activeusers-hidebots' => 'რობოტების დამალვა',
+'activeusers-hidesysops' => 'ადმინისტრატორების დამალვა',
+'activeusers-noresult' => 'მომხმარებლები არ არიან ნაპოვნი.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'მომხმარებელთა ჯგუფების უფლებები',
 'listgrouprights-summary' => 'ქვემოთ წარმოდგენილია ამ ვიკიში გარკვეულ ჯგუფთა სია და მათი უფლებები.
@@ -3130,7 +3139,7 @@ $1',
 'metadata-langitem' => "'''$2:''' $1",
 'metadata-langitem-default' => '$1',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'სიგანე',
 'exif-imagelength' => 'სიმაღლე',
 'exif-bitspersample' => 'ფერის კომპონენტთა სიღრმე',
@@ -3323,7 +3332,7 @@ $4, $5, $6 $7
 $8',
 'exif-subjectnewscode-value' => '$2 ($1)',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'შეუკუმშავი',
 'exif-compression-2' => 'CCITT Group 3, ჰაფმანის სერიის სიგრძის კოდირების 1-განზომილებიანი მოდიფიკაცია',
 'exif-compression-3' => 'CCITT Group 3 ფაქსის კოდირება',

@@ -1614,6 +1614,11 @@ Uobsůgiwane protokoły: <code>$1</code>',
 'listusers-submit' => 'Pokož',
 'listusers-noresult' => 'Ńy znejdźůno žodnygo užytkowńika.',
 
+# Special:ActiveUsers
+'activeusers-hidebots' => 'Schrůń boty',
+'activeusers-hidesysops' => 'Schrůń adminy',
+'activeusers-noresult' => 'Ńy sům używacze.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Uprawńyńo grup użytkowńikůw',
 'listgrouprights-summary' => 'Půńiży znojdowo śe spis grup użytkowńikůw zdefińjowanych na tyj wiki, s wyszczygůlńyńym przidźelůnych im prow dostympu.
@@ -1678,8 +1683,8 @@ Na tyi liśće bydźeš mjou rejer přišuych sprowjyń tyi zajty i jeji zajty g
 'notvisiblerev' => 'Wersyja zostoua wyćepano',
 'watchnochange' => 'Žodno ze zajtůw, na kere dowoš pozůr, ńy bůua sprowjano w podanym uokreśe.',
 'watchlist-details' => 'Na pozorliśće {{PLURAL:$1|je 1 artikel|sům $1 artikle|je $1 artikli}} ńy rachujůnc zajtůw godek.',
-'wlheader-enotif' => 'Wysůuańy powjadůmjyń na adres e-brif je zouůnčůne.',
-'wlheader-showupdated' => "Zajty, kere bouy sprowjane uod Twoi uostatńi wizyty na ńych zostoy naškryflane '''tuustym'''.",
+'wlheader-enotif' => 'Wysůuańy powjadůmjyń na adres e-brif je zouůnčůne',
+'wlheader-showupdated' => "Zajty, kere bouy sprowjane uod Twoi uostatńi wizyty na ńych zostoy naškryflane '''tuustym'''",
 'watchmethod-recent' => 'šnupańy za půmjyńanymi na uostatku w zajtach, na kere dowoš pozůr',
 'watchmethod-list' => 'šnupańy w zajtach, na kere dowoš pozůr pośrůd půmjyńanych na uostatku',
 'watchlistcontains' => 'Lista zajtůw, na kere dowoš pozůr mo {{PLURAL:$1|jedna pozycja|$1 pozycje|$1 pozycyji}}.',
@@ -2365,7 +2370,7 @@ Eli plik był modyfikowany, dane mogům w tajli ńy być we zgodźe ze parametr�
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Šyrokość',
 'exif-imagelength' => 'Wysokość',
 'exif-bitspersample' => 'Bitůw na průbka',
@@ -2479,7 +2484,7 @@ Eli plik był modyfikowany, dane mogům w tajli ńy być we zgodźe ze parametr�
 'exif-gpsdatestamp' => 'Data GPS',
 'exif-gpsdifferential' => 'Korekcyjo růžńicy GPS',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'ńyskůmpresowany',
 
 'exif-unknowndate' => 'ńyznano data',
@@ -2770,15 +2775,6 @@ Možeš tyž [[Special:EditWatchlist|užyć standardowygo edytora]].',
 'version-software' => 'Zainstalowane uoprůgramowańy',
 'version-software-product' => 'Mjano',
 'version-software-version' => 'Wersjo',
-
-# Special:FilePath
-'filepath' => 'Śćežka do plika',
-'filepath-page' => 'Plik:',
-'filepath-submit' => 'Śćežka',
-'filepath-summary' => 'Ta ekstra zajta zwraco peuno śćyžka do plika.
-Grafiki sům pokazywane w peunyj rozdźelčośći, inkše typy plikůw sům uodmykane we skojařůnym ś ńimi průgramje.
-
-Naškryflej sam mjano plika bez prefiksu „{{ns:file}}:”.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Šnupej za duplikatym plika',

@@ -2146,6 +2146,15 @@ Q\'imichisqa tantari {{PLURAL:$2|qillqa|qillqakuna}}: <code>$1</code> (mana mayq
 'listusers-noresult' => 'Ruraqqa manam tarisqachu.',
 'listusers-blocked' => "(hark'asqa)",
 
+# Special:ActiveUsers
+'activeusers' => "Llamk'achkaq ruraqkuna",
+'activeusers-intro' => "Kay qatiqpiqa ruraqkunatam rikunki, qhipaq $1 {{PLURAL:$1|p'unchawpi|p'unchawkunapi}} kay wikipi imatapas ruraq.",
+'activeusers-count' => "$1 {{PLURAL:$1|llamk'apusqa|llamk'apusqakuna}} ñaqha {{PLURAL:$3|p'unchawpi|$3 p'unchawkunapi}}",
+'activeusers-from' => 'Ruraqkunata rikuchiy, kaywan qallarispa:',
+'activeusers-hidebots' => 'Rurana antachakunata pakay',
+'activeusers-hidesysops' => 'Kamachiqkunata pakay',
+'activeusers-noresult' => 'Ruraqkunataqa manam tarinichu.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Ruraq huñup hayñinkuna',
 'listgrouprights-summary' => "Kay qatiq sutisuyupiqa kay wikipi sut'ichasqa ruraq huñukunatam, kikinpa chayamuna hayñinkunatawan rikunki.
@@ -3106,7 +3115,7 @@ Kikin siq'ipi ima qatiq t'inkillapas sapaqllatam hamut'arisqa, ahinataq siq'ipi 
 * gpslongitude
 * gpsaltitude",
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Suni kay',
 'exif-imagelength' => 'Hanaq kay',
 'exif-bitspersample' => 'Bitkuna ñawpariqninman',
@@ -3284,7 +3293,7 @@ Kikin siq'ipi ima qatiq t'inkillapas sapaqllatam hamut'arisqa, ahinataq siq'ipi 
 'exif-originalimageheight' => "Manaraq rutusqa rikch'ap hanaq kaynin",
 'exif-originalimagewidth' => "Manaraq rutusqa rikch'ap suni kaynin",
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => "Mana mat'isqa",
 'exif-compression-2' => 'CCITT Huñu 3 1-tupu wakinchasqa Huffman purina suni llawiy',
 'exif-compression-3' => 'CCITT Huñu 3 tilifaks llawiy',

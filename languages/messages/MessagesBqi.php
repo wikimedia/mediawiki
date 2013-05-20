@@ -45,8 +45,6 @@ $messages = array(
 'tog-enotifrevealaddr' => 'نشودادن امیل مو درامیلهای آگاهی-خبری',
 'tog-shownumberswatching' => 'نشودادن شماره کاربران درحال کار یاتماشا',
 'tog-fancysig' => 'امضاهای ناتمام - بدون لینکهای اتوماتیک',
-'tog-externaleditor' => 'بی دقتی در استفاده از اصلاح کننده های خارجی',
-'tog-externaldiff' => 'استفاده زه برنامه های مختلف خارجی بوسیله پیش نمایش(سی تجربه کردن فقط نیاز به تنظیم خاص کامپیوترتان دارین)',
 'tog-showjumplinks' => 'قادر ساختن "پرش به" لینکهای دردسترس',
 'tog-uselivepreview' => 'استفاده زه پیش نمایش زنده(جاوااسکریپ) (تجربی )',
 'tog-forceeditsummary' => 'یادآوری سریع به مو هنگام اصلاح عقیم وخلاصه',
@@ -548,7 +546,7 @@ $2',
 # Special:Categories
 'categories' => 'دسته ها',
 
-# E-mail user
+# Email user
 'emailuser' => 'امیل ای کاربر',
 
 # Watchlist

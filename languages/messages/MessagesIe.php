@@ -161,8 +161,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Monstrar li númere de usatores vigilant',
 'tog-oldsig' => 'Prevision de signature in existentie:',
 'tog-fancysig' => 'Tractar signature quam textu wiki (sin un catenun auto-crate)',
-'tog-externaleditor' => 'Usar redactor extern per contumacie (solmen por usatores expert, besona de colocationes special in tui computator. [//www.mediawiki.org/wiki/Manual:External_editors Plu information.])',
-'tog-externaldiff' => 'Usar diferentie extern per contumacie (solmen por usatores expert, besona de colocationes special in tui computator. [//www.mediawiki.org/wiki/Manual:External_editors Plu information.])',
 'tog-showjumplinks' => 'Permisser catenunes de accessebilitá "saltar a"',
 'tog-uselivepreview' => 'Usar prevision in vivi (exige JavaScript) (experimental)',
 'tog-forceeditsummary' => 'Suggester me quande intrar un redaction che summarium in blanc',
@@ -648,9 +646,6 @@ Vider li [[Special:IPBlockList|liste de bloc de IP]] por li liste de bloces e ba
 'search-nonefound' => 'Ne esset constatat resultates por li question.',
 'powersearch' => 'Serchar avansat',
 
-# Quickbar
-'qbsettings' => 'Personalisation del barre de utensiles',
-
 # Preferences page
 'preferences' => 'Preferenties',
 'mypreferences' => 'Mi preferenties',
@@ -997,7 +992,7 @@ Li descrition es in li [$2 págine de descrition del file] ta e es monstrat in i
 'watchnochange' => 'Nequant de tui tui partes vigilat esset redactet in li periode de témpor monstrat.',
 'watchlist-details' => '{{PLURAL:$1|$1 págine|$1 págines}} in tui liste de págines vigilat, sin págines de discussion.',
 'wlheader-enotif' => 'Li notification de e-mail es permisset.',
-'wlheader-showupdated' => "Págines quel hat esset mutat desde tui ultim visitation es monstrat in '''nigri'''.",
+'wlheader-showupdated' => "Págines quel hat esset mutat desde tui ultim visitation es monstrat in '''nigri'''",
 'watchmethod-recent' => 'controlant nov redactiones por págines vigilat',
 'watchmethod-list' => 'controlant págines vigilat por nov redactiones',
 'watchlistcontains' => 'Tui liste de págines vigilat contene $1 {{PLURAL:$1|págine|págines}}.',
@@ -1371,9 +1366,6 @@ Vu posse anc [[Special:EditWatchlist|usar li redactor uniform]].',
 'version-software' => 'Software installat',
 'version-software-product' => 'Producte',
 'version-software-version' => 'Version',
-
-# Special:FilePath
-'filepath-page' => 'Figura:',
 
 # Special:SpecialPages
 'specialpages' => 'Págines special',

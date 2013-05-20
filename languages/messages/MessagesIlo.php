@@ -2009,6 +2009,15 @@ Masapul ti kangatuan a pagturayan, a kaspagarigan "*.org".<br />
 'listusers-noresult' => 'Awan ti nasarakan nga agar-aramat.',
 'listusers-blocked' => '(naserraan)',
 
+# Special:ActiveUsers
+'activeusers' => 'Listaan dagiti nasiglat nga agar-aramat',
+'activeusers-intro' => 'Daytoy ti listaan dagiti agar-aramat nga adda inararamidda kadagiti napalabas a $1 {{PLURAL:$1|nga aldaw|nga alaldaw}}.',
+'activeusers-count' => '$1 {{PLURAL:$1|a tignay|tigtignay}} idi kalpasan ti {{PLURAL:$3|nga aldaw|$3 nga alaldaw}}',
+'activeusers-from' => 'Iparang dagiti agar-aramat a mangrugi iti:',
+'activeusers-hidebots' => 'Ilemmeng dagiti bot',
+'activeusers-hidesysops' => 'Ilemmeng dagiti administrador',
+'activeusers-noresult' => 'Awan ti nasarakan nga agar-aramat.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Dagiti karbengan ti grupo ti agar-aramat',
 'listgrouprights-summary' => 'Dagiti sumaganad a listaan ti bunggoy ti agar-aramat a naipalawag iti daytoy a wiki, a nairaman dagiti karbengan ti panagserrekda.
@@ -2087,7 +2096,7 @@ Dagiti masakbayan a panagsukat iti daytoy a panid ken dagiti mainaig a tungtunga
 'watchnochange' => 'Awan dagiti binambantayam ket naurnos dita panawen a naipakita.',
 'watchlist-details' => '{{PLURAL:$1|$1 panid|$1 dagiti panid}} a bambantayam, saan a mairaman dagiti panid ti tungtongan.',
 'wlheader-enotif' => 'Napakabaelan ti pakiammo ti esurat.',
-'wlheader-showupdated' => "Dagiti panid a nasukatan manipud ti kinaudi a panagsarungkarmo ket naipakita iti '''napuskol'''.",
+'wlheader-showupdated' => "Dagiti panid a nasukatan manipud ti kinaudi a panagsarungkarmo ket naipakita iti '''napuskol'''",
 'watchmethod-recent' => 'kitkitaen dagiti kinaudi nga inurnos kadagiti bambantayan a panid',
 'watchmethod-list' => 'kitkitaen dagiti bambantayan a panid kadagiti kinaudi nga inurnos',
 'watchlistcontains' => 'Ti listaan ti bambantayam ket aglaon ti $1 {{PLURAL:$1|a panid|a pampanid}}.',
@@ -3005,7 +3014,7 @@ Dagiti dadduma ket mailemmeng a kinasigud.
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Kaakaba',
 'exif-imagelength' => 'Katayag',
 'exif-bitspersample' => 'Bits tunggal maysa a  nagyan',
@@ -3182,7 +3191,7 @@ Dagiti dadduma ket mailemmeng a kinasigud.
 'exif-originalimageheight' => 'Kangato ti imahen sakbay nga naputed',
 'exif-originalimagewidth' => 'Kalawa ti imahen sakbay nga naputed',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Saan a napespes',
 
 'exif-copyrighted-true' => 'Nakarbengan a kopia',
@@ -3594,13 +3603,6 @@ Naka-awatka koman ti [{{SERVER}}{{SCRIPTPATH}}/COPYING kopia iti GNU Sapasap a  
 'version-entrypoints' => 'Paserrekan a puntos dagiti URL',
 'version-entrypoints-header-entrypoint' => 'Pagserrekan a puntos',
 'version-entrypoints-header-url' => 'URL',
-
-# Special:FilePath
-'filepath' => 'Dalanan ti papeles',
-'filepath-page' => 'Papeles:',
-'filepath-submit' => 'Inkan',
-'filepath-summary' => 'Daytoy nga espesial a panid ket agisubli ti kompleto a dalan ti papeles.
-Dagiti imahen ket agparang iti kadakkelan a resolusion, dagiti sabali a kita ti papeles ket dagus a mangrugida idiay nakairamananda a programa.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Agbiruk kadagiti duplikado a papeles',

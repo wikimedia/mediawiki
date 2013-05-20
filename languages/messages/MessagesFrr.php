@@ -445,7 +445,7 @@ Ferjid det ei, an aachte üüb din [[Special:Preferences|{{SITENAME}} iinstelang
 'createacct-yourpasswordagain-ph' => 'Du det paaswurd noch ans iin',
 'remembermypassword' => 'Aw diheere komputer foon duur önjmälde (maksimool for $1 {{PLURAL:$1|däi|deege}})',
 'userlogin-remembermypassword' => 'Uunmeldet bliiw',
-'userlogin-signwithsecure' => 'Auer di seeker server uunmelde',
+'userlogin-signwithsecure' => 'Seeker ferbinjang brük',
 'securelogin-stick-https' => 'Eefter önjmälding ma HTTPS ferbünen bliwe',
 'yourdomainname' => 'Din domain:',
 'password-change-forbidden' => 'Üüb detheer wiki könst dü nian paaswurden feranre.',
@@ -466,6 +466,7 @@ Ferjid det ei, an aachte üüb din [[Special:Preferences|{{SITENAME}} iinstelang
 'gotaccount' => "Dü hääst ål en brükerkonto? '''$1'''.",
 'gotaccountlink' => 'Önjmälde',
 'userlogin-resetlink' => 'Heest dü din login dooten ferjiden?',
+'userlogin-resetpassword-link' => 'Paaswurd turagsaat',
 'helplogin-url' => 'Help:Uunmelde',
 'userlogin-helplink' => "[[{{MediaWiki:helplogin-url}}|Halep bi't uunmeldin]]",
 'createacct-join' => 'Du oner din dooten iin.',
@@ -1680,12 +1681,68 @@ För a seekerhaid as img_auth.php ei aktiwiaret.',
 'filehist-missing' => 'Datei ei diar',
 'imagelinks' => 'Hü det datei brükt woort',
 'linkstoimage' => '{{PLURAL:$1|Jü füliend sid ferwånt|Da füliende $1 side ferwiinje}} jüdeer dååtäi:',
+'linkstoimage-more' => 'Muar üs $1 {{PLURAL:$1|sidj ferwiset|sidjen ferwise}} üüb detdiar datei.
+Det list wiset {{PLURAL:$1|at iarst ferwisang|a iarst $1 ferwisangen}} üüb detdiar datei.
+Dü könst uk det [[Special:WhatLinksHere/$2|hial list]] uunluke.',
 'nolinkstoimage' => 'Nään artiikel brükt detheer datei',
+'morelinkstoimage' => 'Dü könst [[Special:WhatLinksHere/$1|muar ferwisangen]] üüb detdiar datei uunwise läät.',
+'linkstoimage-redirect' => '$1 (widjerfeerang) $2',
+'duplicatesoffile' => '{{PLURAL:$1|Detdiar datei as en kopii|$1 dateien san kopiin}} faan det datei ([[Special:FileDuplicateSearch/$2|muar diartu]]):',
 'sharedupload' => 'Jüdeer dååtäi ståmt üt $1 än mötj foon ouder prujäkte brükt wårde.',
+'sharedupload-desc-there' => 'Detdiar datei as faan $1 an koon faan ööder projekten brükt wurd.
+Üüb det [$2 beskriiwangssidj] stäänt muar diartu.',
 'sharedupload-desc-here' => "Detheer bil as faan $1 an koon faan ööder projekten brükt wurd. 
 Det beskriiwang faan't [$2 beskriiwangssidj] woort oner uunwiset.",
+'sharedupload-desc-edit' => 'Detdiar datei as faan $1 an koon faan ööder projekten brükt wurd.
+Ferlicht wel dü det [$2 beskriiwangssidj] feranre.',
+'sharedupload-desc-create' => 'Detdiar datei as faan $1 an koon faan ööder projekten brükt wurd.
+Ferlicht wel dü det [$2 beskriiwangssidj] feranre.',
+'filepage-nofile' => 'En datei mä didiar nööm jaft at ei.',
+'filepage-nofile-link' => 'En datei mä didiar nööm jaft at ei, man dü könst det [$1 huuchsjüür].',
 'uploadnewversion-linktext' => 'En nai färsjoon foon jüdeer dåtäi huuchsiinje',
 'shared-repo-from' => 'foon $1',
+'shared-repo' => 'en gemiansoom archiif',
+'upload-disallowed-here' => 'Dü könst detdiar datei ei auerskriiw.',
+
+# File reversion
+'filerevert' => '"$1" turagsaat',
+'filerevert-legend' => 'Datei turagsaat',
+'filerevert-intro' => "Dü saatst det datei '''[[Media:$1|$1]]''' üüb det [$4 werjuun faan $2, klook $3] turag.",
+'filerevert-comment' => 'Grünj:',
+'filerevert-defaultcomment' => 'Turagsaat üüb det werjuun faan $1, klook $2',
+'filerevert-submit' => 'Turagsaat',
+'filerevert-success' => "'''[[Media:$1|$1]]''' as üüb det [$4 werjuun faan $3, klook $2] turagsaat wurden.",
+'filerevert-badversion' => 'Diar as nään werjuun faan detdiar datei tu didiar tidjponkt.',
+
+# File deletion
+'filedelete' => 'Strik "$1"',
+'filedelete-legend' => 'Strik datei',
+'filedelete-intro' => "Dü strikst det datei '''„[[Media:$1|$1]]“''' an uk aal a werjuunen.",
+'filedelete-intro-old' => "Dü strikst faan det datei '''[[Media:$1|$1]]''' det [$4 werjuun faan $2, klook $3].",
+'filedelete-comment' => 'Grünj:',
+'filedelete-submit' => 'Strik',
+'filedelete-success' => "'''„$1“''' as stregen wurden.",
+'filedelete-success-old' => "Faan det datei '''„[[Media:$1|$1]]“''' as det werjuun faan $2, klook $3 stregen wurden.",
+'filedelete-nofile' => "'''$1''' jaft at ei.",
+'filedelete-nofile-old' => "Diar as nian werjuun faan '''$1''' mä sok kääntiaken uun't archiif.",
+'filedelete-otherreason' => 'Ööder/noch en grünj:',
+'filedelete-reason-otherlist' => 'Ööder grünj:',
+'filedelete-reason-dropdown' => "*Grünjer för't striken
+** Kopiarrochten ei beaachtet
+** Kopii faan en datei",
+'filedelete-edit-reasonlist' => "Grünjer för't striken bewerke",
+'filedelete-maintenance' => 'Det striken of turaghaalin faan dateien gongt uun uugenblak ei.',
+'filedelete-maintenance-title' => 'Det datei koon ei stregen wurd',
+
+# MIME search
+'mimesearch' => 'Efter MIME-Typ schük',
+'mimesearch-summary' => 'Üüb detheer sidj könst dü dateien efter hör MIME-Typ filtre.
+Det formoot as leewen slach/onerslach üs uun det bispal: <code>image/jpeg</code>.',
+'mimetype' => 'MIME-Typ:',
+'download' => 'Deelloose',
+
+# Unwatched pages
+'unwatchedpages' => "Sidjen, diar näämen uun't uug hää",
 
 # Random page
 'randompage' => 'Tufali sid',

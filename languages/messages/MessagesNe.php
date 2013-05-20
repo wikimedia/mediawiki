@@ -83,8 +83,6 @@ $messages = array(
 'tog-shownumberswatching' => 'निगरानी गरिरहेका प्रयोगकर्ताहरुको संख्या देखाउने',
 'tog-oldsig' => 'वर्तमान हस्ताक्षर:',
 'tog-fancysig' => 'मेरो दस्तखतलाई विकि पाठको रुपमा लिने(स्वत सम्वन्ध बिना)',
-'tog-externaleditor' => 'पूर्वनिर्धारित रुपमा बाह्य सम्पादक प्रयोग गर्नुहोस् (विज्ञहरुको लागि मात्र, तपाईको कम्प्युटरमा विशेष अनुकुलता आवश्यक हुन्छ [//www.mediawiki.org/wiki/Manual:External_editors More information.])',
-'tog-externaldiff' => 'पूर्वनिर्धारित रुपमा बाह्य diff प्रयोग गर्नुहोस (विज्ञ प्रयोगकर्ताहरुको लागि मात्र, तपाईंको कम्प्युटरमा विशेष अनुकुलता आवश्यक हुन्छ [//www.mediawiki.org/wiki/Manual:External_editors More information.])',
 'tog-showjumplinks' => '"जाने" पहुँच सम्वन्ध सक्रिय पार्ने',
 'tog-uselivepreview' => 'प्रत्यक्ष पूर्वरुप प्रयोग गर्नुहोस् ( जाभा स्क्रिप्ट आवश्यक) (प्रयोगात्मक)',
 'tog-forceeditsummary' => 'खाली सम्पादन सार प्रविष्टि गरेमा मलाई सोध्ने',
@@ -1067,15 +1065,6 @@ $1",
 हाललाई तपाईले गूगलद्वारा खोज्न सक्नुहुन्छ ।
 याद गर्नुहोस् उनीहरुको {{SITENAME}}को सूची सामग्री पुरानो भएको हुनसक्छ ।',
 
-# Quickbar
-'qbsettings' => 'क्विकबार',
-'qbsettings-none' => 'कुनैपनि होइन',
-'qbsettings-fixedleft' => 'देब्रे निश्चित गरिएको',
-'qbsettings-fixedright' => 'दाहिने निश्चित गरिएको',
-'qbsettings-floatingleft' => 'देब्रे तैरने',
-'qbsettings-floatingright' => 'दाहिने तैरने',
-'qbsettings-directionality' => 'तपाईको भाषाको लेखाइ दिशाको आधारमा मिलान गरिएको छ',
-
 # Preferences page
 'preferences' => 'रोजाईहरू',
 'mypreferences' => 'प्राथमिकताहरु',
@@ -1546,7 +1535,6 @@ $1',
 'http-read-error' => 'HTTP बुझाइमा त्रुटि।',
 'http-timed-out' => 'HTTP माँगिएको समय सकियो।',
 'http-curl-error' => 'URL $1 लिनमा त्रुटि',
-'http-host-unreachable' => 'URL मा पुग्न सकिएन।',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'URLमा पुग्न सकिएन',
@@ -2520,13 +2508,8 @@ $1को बन्देजको कारण : "$2" हो',
 
 # Stylesheets
 'common.css' => '/* यहाँ राखिएका CSS सबै खोलहरुमा लागु हुनेछन् */',
-'standard.css' => '/* यहाँ राखिएका CSS हरुले स्तरीय खोल प्रयोग गर्ने प्रयोगकर्ताहरुलाई प्रभावित पार्छ  */',
-'nostalgia.css' => '/* यहाँ राखिएको CSS ले नस्टाल्जिया स्किनको प्रयोगकर्ताहरुलाई प्रभावित गर्ने छ  */',
 'cologneblue.css' => '/* यहाँ राखिएको CSS ले कोलोग्ने ब्लु स्किनको प्रयोगकर्ताहरुलाई प्रभावित गर्ने छ  */',
 'monobook.css' => '/* यहाँ राखिएको CSS ले मोनोबुक स्किनको प्रयोगकर्ताहरुलाई प्रभावित गर्ने छ  */',
-'myskin.css' => '/* यहाँ राखिएको CSS ले माइस्किन स्किनको प्रयोगकर्ताहरुलाई प्रभावित गर्ने छ  */',
-'chick.css' => '/* यहाँ राखिएको CSS ले चिक स्किनको प्रयोगकर्ताहरुलाई प्रभावित गर्ने छ  */',
-'simple.css' => '/* यहाँ राखिएको CSS ले सिम्पल स्किनको प्रयोगकर्ताहरुलाई प्रभावित गर्ने छ  */',
 'modern.css' => '/* यहाँ राखिएको CSS ले मोनोबुक मोडर्न प्रयोगकर्ताहरुलाई प्रभावित गर्ने छ  */',
 'vector.css' => '/* यहाँ राखिएको CSS ले भेक्टर स्किनको प्रयोगकर्ताहरुलाई प्रभावित गर्ने छ  */',
 'print.css' => '/* यहाँ राखिएको CSS मुद्रण नतिजालाई प्रभावित गर्छ  */',
@@ -2565,13 +2548,8 @@ $1को बन्देजको कारण : "$2" हो',
 'pageinfo-authors' => 'फरक सम्पादकरुको संख्या',
 
 # Skin names
-'skinname-standard' => 'क्लासिक',
-'skinname-nostalgia' => 'नोस्टाल्जिया',
 'skinname-cologneblue' => 'कोलोग्ने निलो',
 'skinname-monobook' => 'मोनोबुक',
-'skinname-myskin' => 'माइस्किन',
-'skinname-chick' => 'चिक',
-'skinname-simple' => 'सिम्पल',
 'skinname-modern' => 'मोडर्न',
 'skinname-vector' => 'भेक्टर',
 
@@ -2676,7 +2654,7 @@ Others will be hidden by default.
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'चौडाइ',
 'exif-imagelength' => 'उचाई',
 'exif-bitspersample' => 'घटक प्रति बिट्स',
@@ -2850,7 +2828,7 @@ $4, $5, $6 $7
 $8',
 'exif-subjectnewscode-value' => '$2 ($1)',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'नखादिएको(कम्प्रेस नगरिएको)',
 'exif-compression-2' => 'CCITT समूह 3 1-Dimensional Modified Huffman संचालन इन्कोडिङ्ग',
 'exif-compression-3' => 'CCITT Group 3  फ्याक्स इन्कोडिङ्ग',
@@ -3322,15 +3300,6 @@ $5
 'version-software' => 'स्थापना गरिएको सफ्टवेयर',
 'version-software-product' => 'उत्पादन',
 'version-software-version' => 'संस्करण',
-
-# Special:FilePath
-'filepath' => 'फाइल मार्ग:',
-'filepath-page' => 'फाइल',
-'filepath-submit' => 'जाने',
-'filepath-summary' => 'यस पृष्ठले फाइको पूरा बाटो(पाथ) दिन्छ ।
-तस्विरहु पूरा रिजोल्युशनमा देखाइन्छ अरु फाइहरु निका सम्बन्धित अनुप्रयोगहरुसँग खोलिन्छन ।
-
- "{{ns:file}}:" प्रिफिक्स(पूर्वसर्ग) बिना फाइल नाम प्रविष्ट गर्नुहोस् । .',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'नक्कल फाइल खोज्ने',

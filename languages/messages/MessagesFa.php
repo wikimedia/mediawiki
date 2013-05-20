@@ -539,16 +539,6 @@ $messages = array(
 'nov' => 'نوامبر',
 'dec' => 'دسامبر',
 
-'monday-at' => 'دوشنبهٔ $1',
-'tuesday-at' => 'سه‌شنبهٔ $1',
-'wednesday-at' => 'چهارشنبهٔ $1',
-'thursday-at' => 'پنج‌شنبهٔ $1',
-'friday-at' => 'جمعهٔ $1',
-'saturday-at' => 'شنبهٔ $1',
-'sunday-at' => 'یک‌شنبهٔ $1',
-'today-at' => '$1',
-'yesterday-at' => 'دیروز $1',
-
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|رده|رده‌ها}}',
 'category_header' => 'صفحه‌های ردهٔ «$1»',
@@ -2410,6 +2400,15 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'listusers-noresult' => 'هیچ کاربری یافت نشد.',
 'listusers-blocked' => '(بسته شده)',
 
+# Special:ActiveUsers
+'activeusers' => 'فهرست کاربران فعال',
+'activeusers-intro' => 'در زیر فهرستی از کاربرانی را می‌بینید که در $1 {{PLURAL:$1|روز|روز}} گذشته فعالیتی داشته‌اند.',
+'activeusers-count' => '$1 {{PLURAL:$1|فعالیت|فعالیت}} در {{PLURAL:$3|روز|$3 روز}} اخیر',
+'activeusers-from' => 'نمایش کاربران با آغاز از:',
+'activeusers-hidebots' => 'نهفتن ربات‌ها',
+'activeusers-hidesysops' => 'نهفتن مدیران',
+'activeusers-noresult' => 'کاربری پیدا نشد.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'اختیارات گروه‌های کاربری',
 'listgrouprights-summary' => 'فهرست زیر شامل گروه‌های کاربری تعریف شده در این ویکی و اختیارات داده شده به آن‌ها است.
@@ -2487,8 +2486,8 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'notvisiblerev' => 'آخرین نسخه توسط کاربری دیگر حذف شده‌است',
 'watchnochange' => 'هیچ یک از موارد در حال پی‌گیری شما در دورهٔ زمانی نمایش‌یافته ویرایش نشده است.',
 'watchlist-details' => 'بدون احتساب صفحه‌های بحث، {{PLURAL:$1|$1 صفحه|$1 صفحه}} در فهرست پی‌گیری‌های شما قرار {{PLURAL:$1|دارد|دارند}}.',
-'wlheader-enotif' => 'اطلاع‌رسانی از طریق رایانامه امکان‌پذیر است.',
-'wlheader-showupdated' => "صفحه‌هایی که پس از آخرین سرزدنتان به آنها تغییر کرده‌اند '''پررنگ''' نشان داده شده‌اند.",
+'wlheader-enotif' => '*اطلاع‌رسانی از طریق رایانامه امکان‌پذیر است.',
+'wlheader-showupdated' => "*صفحه‌هایی که پس از آخرین سرزدنتان به آنها تغییر کرده‌اند '''پررنگ''' نشان داده شده‌اند.",
 'watchmethod-recent' => 'بررسی ویرایش‌های اخیر برای صفحه‌های مورد پی‌گیری',
 'watchmethod-list' => 'بررسی صفحه‌های مورد پی‌گیری برای ویرایش‌های اخیر',
 'watchlistcontains' => 'فهرست پی‌گیری‌های شما حاوی $1 {{PLURAL:$1|صفحه|صفحه}} است.',
@@ -3387,6 +3386,19 @@ $1',
 'ago' => '$1 پیش',
 'just-now' => 'هم‌اکنون',
 
+# Human-readable timestamps
+'hours-ago' => '$1 {{PLURAL:$1|ساعت|ساعت}} قبل',
+'minutes-ago' => '$1 {{PLURAL:$1|دقیقه|دقیقه}} قبل',
+'seconds-ago' => '$1 {{PLURAL:$1|ثانیه|ثانیه}} قبل',
+'monday-at' => 'دوشنبهٔ $1',
+'tuesday-at' => 'سه‌شنبهٔ $1',
+'wednesday-at' => 'چهارشنبهٔ $1',
+'thursday-at' => 'پنج‌شنبهٔ $1',
+'friday-at' => 'جمعهٔ $1',
+'saturday-at' => 'شنبهٔ $1',
+'sunday-at' => 'یک‌شنبهٔ $1',
+'yesterday-at' => 'دیروز $1',
+
 # Bad image list
 'bad_image_list' => 'اطلاعات را باید اینگونه وارد کنید:
 
@@ -3414,7 +3426,7 @@ $1',
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'عرض',
 'exif-imagelength' => 'طول',
 'exif-bitspersample' => 'نقطه در هر جزء',
@@ -3593,7 +3605,7 @@ $1',
 'exif-originalimageheight' => 'بلندی تصویر قبل از برش دادن',
 'exif-originalimagewidth' => 'پهنای تصویر قبل از برش دادن',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'غیرفشرده',
 'exif-compression-2' => 'رمزگذاری سی‌سی‌آی‌تی‌تی گروه ۳ یک بعدی به روش هافمن تغییریافته روی طول',
 'exif-compression-3' => 'رمزگذاری نمابر سی‌سی‌آی‌تی‌تی گروه ۳',
@@ -4072,12 +4084,6 @@ $5
 'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath مسیر مقاله]',
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath مسیر اسکریپت]',
 
-# Special:FilePath
-'filepath' => 'مسیر پرونده',
-'filepath-page' => 'پرونده:',
-'filepath-submit' => 'برو',
-'filepath-summary' => 'این صفحهٔ ویژه نشانی کامل برای یک پرونده را نشان می‌دهد. تصاویر با کیفیت وضوح کامل نشان داده می‌شوند، سایر انواع پرونده با برنامه مخصوص به خودشان باز می‌شوند.',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'جستجو برای پرونده‌های تکراری',
 'fileduplicatesearch-summary' => 'جستجو برای پرونده‌های تکراری بر اساس مقدار درهم‌شدهٔ آن‌ها صورت می‌گیرد.',
@@ -4283,8 +4289,4 @@ $5
 # Image rotation
 'rotate-comment' => 'تصویر به دست $1 {{PLURAL:$1|درجهٔ|درجهٔ}} ساعت‌گرد چرخانده شد',
 
-# Unknown messages
-'hours-ago' => '$1 {{PLURAL:$1|ساعت|ساعت}} قبل',
-'minutes-ago' => '$1 {{PLURAL:$1|دقیقه|دقیقه}} قبل',
-'seconds-ago' => '$1 {{PLURAL:$1|ثانیه|ثانیه}} قبل',
 );

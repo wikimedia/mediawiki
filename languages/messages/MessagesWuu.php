@@ -1474,8 +1474,6 @@ $1",
 
 /*
 Short names for language variants used for language conversion links.
-To disable showing a particular link, set it to 'disable', e.g.
-'variantname-zh-sg' => 'disable',
 Variants for Chinese language
 */
 'variantname-zh-tw' => '台湾',
@@ -1503,7 +1501,7 @@ Variants for Chinese language
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-artist' => '作者',
 
 'exif-componentsconfiguration-0' => '弗存在',
@@ -1574,11 +1572,6 @@ Variants for Chinese language
 
 # Special:Version
 'version' => '版本',
-
-# Special:FilePath
-'filepath' => '文件路径',
-'filepath-page' => '文件：',
-'filepath-submit' => '路径',
 
 # Special:SpecialPages
 'specialpages' => '特殊页面',

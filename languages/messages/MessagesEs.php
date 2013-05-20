@@ -2428,7 +2428,7 @@ La dirección de correo electrónico que indicaste en [[Special:Preferences|tus 
 'watchnochange' => 'Ninguno de los artículos de tu lista de seguimiento fue editado en el periodo de tiempo mostrado.',
 'watchlist-details' => '{{PLURAL:$1|$1 página|$1 páginas}} en su lista de seguimiento, sin contar las de discusión.',
 'wlheader-enotif' => 'La notificación por correo electrónico está activada.',
-'wlheader-showupdated' => "Las páginas modificadas desde su última visita aparecen en '''negrita'''.",
+'wlheader-showupdated' => "Las páginas modificadas desde su última visita aparecen en '''negrita'''",
 'watchmethod-recent' => 'revisando cambios recientes en páginas vigiladas',
 'watchmethod-list' => 'revisando las páginas vigiladas en busca de cambios recientes',
 'watchlistcontains' => 'Tu lista de seguimiento posee $1 {{PLURAL:$1|página|páginas}}.',

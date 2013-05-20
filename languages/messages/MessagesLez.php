@@ -1220,7 +1220,7 @@ Cиягьда авай анжах (* лишандихъ галаз эгечIза
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Гьяркьуь',
 'exif-planarconfiguration' => 'Ганайбур тешкил авун',
 'exif-ycbcrsubsampling' => ' Y  ва C компонентрин кьадаррин нисбет',

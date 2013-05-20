@@ -760,7 +760,7 @@ $messages = array(
 # Special:NewFiles
 'ilsubmit' => 'ищи',
 
-# EXIF tags
+# Exif tags
 'exif-artist' => 'творьць',
 
 # 'all' in various places, this might be different for inflected languages
@@ -791,9 +791,6 @@ $messages = array(
 'version-version' => '(обраꙁъ $1)',
 'version-license' => 'прощєниѥ',
 'version-software-version' => 'обраꙁъ',
-
-# Special:FilePath
-'filepath-page' => 'дѣло :',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-submit' => 'ищи',

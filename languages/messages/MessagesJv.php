@@ -1932,6 +1932,15 @@ Perlu sedikitnya satu domain tingkat atas, misalnya "*.org".<br />
 'listusers-noresult' => 'Panganggo ora ditemokaké.',
 'listusers-blocked' => '(diblokir)',
 
+# Special:ActiveUsers
+'activeusers' => 'Dhaptar panganggo aktif',
+'activeusers-intro' => 'Iki daptar panganggo sing katon lakuné ing $1 {{PLURAL:$1|dina|dina}} kapungkur.',
+'activeusers-count' => '$1 {{PLURAL:$1|suntingan|suntingan}} ing {{PLURAL:$3|dina|$3 dina}} pungkasan',
+'activeusers-from' => 'Tampilna panganggo wiwit saka:',
+'activeusers-hidebots' => 'Delikna bot',
+'activeusers-hidesysops' => 'Delikna pangurus',
+'activeusers-noresult' => 'Panganggo ora ditemokaké.',
+
 # Special:ListGroupRights
 'listgrouprights' => 'Hak-hak grup panganggo',
 'listgrouprights-summary' => 'Ing ngisor iki kapacak dhaftar grup panganggo sing didéfinisi ing wiki iki, kanthi hak-hak aksès gandhèngané.
@@ -2010,7 +2019,7 @@ Owah-owahan sing dumadi ing tembé ing kaca iku lan kaca dhiskusi sing kagandhè
 'watchnochange' => 'Ora ana kaca ing daftar pangawasan panjenengan sing diowahi ing mangsa wektu sing dipilih.',
 'watchlist-details' => 'Ngawasaké {{PLURAL:$1|$1 kaca|$1 kaca}}, ora kalebu kaca-kaca dhiskusi.',
 'wlheader-enotif' => 'Notifikasi e-mail diaktifaké.',
-'wlheader-showupdated' => "Kaca-kaca sing wis owah wiwit ditiliki panjenengan kaping pungkasan, dituduhaké mawa '''aksara kandel'''.",
+'wlheader-showupdated' => "Kaca-kaca sing wis owah wiwit ditiliki panjenengan kaping pungkasan, dituduhaké mawa '''aksara kandel'''",
 'watchmethod-recent' => 'priksa daftar owah-owahan anyar kanggo kaca sing diawasi',
 'watchmethod-list' => 'priksa kaca sing diawasi kanggo owah-owahan anyar',
 'watchlistcontains' => 'Daftar pangawasan panjenengan isiné ana $1 {{PLURAL:$1|kaca|kaca}}.',
@@ -2898,7 +2907,7 @@ Pranala-pranala sabanjuré ing baris sing padha dianggep minangka ''pengecualian
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Jembar',
 'exif-imagelength' => 'Dhuwur',
 'exif-bitspersample' => 'Bit per komponèn',
@@ -3076,7 +3085,7 @@ Pranala-pranala sabanjuré ing baris sing padha dianggep minangka ''pengecualian
 'exif-originalimageheight' => 'Dhuwuré gambar sakdurungé dikethok',
 'exif-originalimagewidth' => 'Jembaré gambar sakdurungé dikethok',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Ora dikomprèsi',
 'exif-compression-2' => 'CCITT Group 3 1-Dimensional Modified Huffman RLE',
 'exif-compression-3' => 'CCITT Group 3 fax encoding',
@@ -3475,13 +3484,6 @@ Anda seharusnya telah menerima [{{SERVER}}{{SCRIPTPATH}}/COPYING salinan Lisensi
 'version-entrypoints' => 'URL tithik lebon',
 'version-entrypoints-header-entrypoint' => 'Tithik lebon',
 'version-entrypoints-header-url' => 'URL',
-
-# Special:FilePath
-'filepath' => 'Lokasi berkas',
-'filepath-page' => 'Berkas:',
-'filepath-submit' => 'Golèk',
-'filepath-summary' => 'Kaca astaméwa utawa kusus iki nuduhaké jalur pepak sawijining berkas.
-Gambar dituduhaké mawa résolusi kebak lan tipe liyané berkas bakal dibuka langsung mawa program kagandhèng.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Golèk berkas duplikat',

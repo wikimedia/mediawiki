@@ -97,8 +97,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Ipakita ang gidaghanon sa mga gumagamit nga nagbantay usab',
 'tog-oldsig' => 'Paunang tan-aw sa eksisting nga pirma:',
 'tog-fancysig' => 'Hilaw nga pirma (walay awtomatikong sumpay)',
-'tog-externaleditor' => 'Gamita ang eksternal nga editor isip default (para sa mga eksperto lamang, kinahanglan og espesyal nga setting sa imong kompyuter)',
-'tog-externaldiff' => 'Gamita ang eksternal nga diff isip default (para sa mga eksperto lamang, kinahanglan og espesyal nga setting sa imong kompyuter)',
 'tog-showjumplinks' => 'I-enable ang "ambak sa" nga sumpay sa aksesibilidad',
 'tog-uselivepreview' => 'Gamita ang live nga paunang tan-aw (JavaScript kinahanglan) (Eksperimental)',
 'tog-forceeditsummary' => 'Pahibaloi ako kon blangko ang mubong sugid alang sa pag-usab',
@@ -737,14 +735,6 @@ Sulayi'g prefix ang imong gipangita gamit ang ''all:'' alang mangita sa tanang s
 Puyde ka mangita gamit ang Google sa kasamtangan.
 Hinumdomi nga ang ilang indeks sa sulod sa {{SITENAME}} mahimong dugay-dugay na.',
 
-# Quickbar
-'qbsettings' => 'Quickbar',
-'qbsettings-none' => 'Wala',
-'qbsettings-fixedleft' => 'Naka-fix sa wala',
-'qbsettings-fixedright' => 'Naka-fix sa tuo',
-'qbsettings-floatingleft' => 'Floating sa wala',
-'qbsettings-floatingright' => 'Floating sa tuo',
-
 # Preferences page
 'preferences' => 'Mga preperensiya',
 'mypreferences' => 'Akong preperensiya',
@@ -978,7 +968,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 # Special:ListGroupRights
 'listgrouprights-members' => '(talaan sa mga miyembro)',
 
-# E-mail user
+# Email user
 'emailuser' => 'I-email kaning gumagamit',
 
 # Watchlist

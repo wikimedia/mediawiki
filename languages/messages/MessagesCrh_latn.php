@@ -1881,7 +1881,7 @@ Er satır * işaretinen başlamalı. Satırnıñ birinci bağlantısı qоşmağ
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-make' => 'Kamera markası',
 'exif-model' => 'Kamera modeli',
 'exif-artist' => 'Yaratıcısı',
@@ -1906,7 +1906,7 @@ Er satır * işaretinen başlamalı. Satırnıñ birinci bağlantısı qоşmağ
 'exif-gpstimestamp' => 'GPS saatı (atom saatı)',
 'exif-gpssatellites' => 'Ölçemek içün qullanğanı sputnikler',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Sıqıştırılmağan',
 
 'exif-orientation-3' => '180° aylandırılğan',

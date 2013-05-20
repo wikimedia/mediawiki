@@ -41,8 +41,6 @@ $messages = array(
 'tog-shownumberswatching' => "Ndaganga obungi bw'abagoberera olupapula",
 'tog-oldsig' => 'Omukono gwo kakano:',
 'tog-fancysig' => 'Omukono gubemu obubonero bwa ki-wiki (naye nga tegufuuka nyunzi)',
-'tog-externaleditor' => 'Wandikisanga puloguramu eri ku kompyuta yo (kyetaagisa bumanyirivu bungi, kubanga wetaaga okutegeka kompyuta yo mu ngeri ezitali za bulijjo. [//www.mediawiki.org/wiki/Manual:External_editors Okutangaaza okusingawo.])',
-'tog-externaldiff' => "Kozesanga puloguramu ey'oku kompyuta yo okukebera njawulo wakati w'ebiwandike (kyetaagisa bumanyirivu bungi, wetaaga ntegeka ezitali za bulijjo ku kompyuta yo. [//www.mediawiki.org/wiki/Manual:External_editors Okutangaaza okusingawo.])",
 'tog-showjumplinks' => 'Wabeerewo enyunzi eza "Genda ku"',
 'tog-uselivepreview' => 'Enkyukakyuka ze nkoze zirabikirewo nga tekyetaagisiza kumala kunyiga ppeesa (kyetaagisa JavaScript)(Kikyagezesebwa)',
 'tog-forceeditsummary' => 'Ŋambaako bwe mba ŋenda okuleka nga sinnyonyodde bye nkyusizza',
@@ -750,6 +748,9 @@ Kirabika lwagyibwawo.',
 'edit-no-change' => "Sisitemu ekubaze nga atalina ky'agikozeko, olw'okubanga ebiri ku lupapula obirese nga bwe wabisanze.",
 'edit-already-exists' => "Olupapula lw'ogeza okukolawo weruli, lwakolebwawo dda.<br />
 Tekisobose kuddamu n'ate oulukolawo.",
+'editwarning-warning' => 'Bw\'ova ku lupapula luno kiyinza okuleetera enkyukakyuka z\'olukozeko okuvawo.<br />
+Bw\'oba nga okola oyingidde mu sisitemu, okulabula kuno oyinza okukusirisa nga weyambisa<br />
+ebiri mu kitundu ekya "Kukyusa" eky\'omu "Nteekateeka yange".',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => "'''Kulabula:''' Olupapula luno luliko ebiragiro eby'ekikebera engoberera y'amateeka g'empandika ebizito ebiyitiridde obungi.<br />

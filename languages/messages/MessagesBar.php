@@ -88,8 +88,6 @@ $messages = array(
 'tog-shownumberswatching' => "D' Åzoi voh dé beówochterden Benutzer åzoang",
 'tog-oldsig' => 'Existente Unterschrift',
 'tog-fancysig' => 'Unterschrift ois Wikitext bhåndln (óne autómaatische Valinkung)',
-'tog-externaleditor' => "An externen Editor ois Standard bnutzen (netter fyr Experten, braucht spezielle Eihstellungen auf'm eigernen Computer)",
-'tog-externaldiff' => "A externs Programm fyr Versionsunterschiad ois Standard bnutzen (netter fyr Experten, dafordert spezielle Eihstellungen auf'm eiganen Computer)",
 'tog-showjumplinks' => '„Wexeln zu“-Links aktivirn',
 'tog-uselivepreview' => 'Live-Vurschau nutzen (dodafyr braucht ma JavaScript) (experimentoy)',
 'tog-forceeditsummary' => 'Warnen, wånn ban Speichern dé Zåmmerfossung fööd',
@@ -103,6 +101,7 @@ $messages = array(
 'tog-diffonly' => "Zoag beim Versiónsvagleich netter dé Unterschiad und néd d' voiständige Seiten",
 'tog-showhiddencats' => 'Vasteckte Kategorien åzoang',
 'tog-norollbackdiff' => "Unterschiad noch'm Zrucksetzen unterdrucker",
+'tog-useeditwarning' => ' A Warung geem, sofern a zur da Beorweitung geffnate Seiten valossen werd, de ned gspeicherde Änderrungen enthoit.',
 
 'underline-always' => 'oiwei',
 'underline-never' => 'nia',
@@ -614,6 +613,8 @@ Bittschee ibaleg da genau, obs sinnvoi is de Seitn ozlegn.
 Des Lesch- und Vaschiab-Logbuach dazua findsd do:",
 'moveddeleted-notice' => 'De Seitn do is glescht worn. Es foigt a Auszug ausm Lesch- und Vaschiabungs-Logbuch vo dea Seitn.',
 'edit-conflict' => 'Konflikt ban Beorwaten.',
+'editwarning-warning' => "'s Valossen vo derer Seiten kå dodazua fyrn, daas d' Änderrungen valurn geengan.
+Ois ågmödter Benutzer kå's Åzoang vo derer Warnung im \"Beorweiten\"-Bereich vo de Eistellungen obgschoiden wern.",
 
 # Parser/template warnings
 'post-expand-template-inclusion-warning' => 'Obocht: De Gress vo eibundne Vorlong is z gross.
@@ -1101,7 +1102,7 @@ Zuasätzlige Informaziónen ywer dé oahzelnen Rechtt kennan [[{{MediaWiki:Listg
 'listgrouprights-removegroup-self' => "'s oagerne Benutzerkóntó aus {{PLURAL:$2|derer Gruppm|dé Gruppm}} entferner: $1",
 'listgrouprights-addgroup-self-all' => 'Kauh olle Gruppm zum oagern Kóntó dazuadoah',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Du bist néd auhgmödt',
 'emailuser' => 'Mail an den Nutza',
 'emailpage' => 'E-Mail aun Benutzer',
@@ -1580,7 +1581,7 @@ Weidane wean standardmassi ned ozoagt.
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-gpsspeed' => 'Gschwindigkeid vom GPS-Empfänger',
 
 'exif-componentsconfiguration-0' => 'Gibts néd',
@@ -1594,7 +1595,7 @@ Weidane wean standardmassi ned ozoagt.
 'namespacesall' => 'olle',
 'monthsall' => 'olle',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'E-Post-Adressn bestäting (Authentifiziarung)',
 'confirmemail_noemail' => 'Du håst ka güitige E-Post-Adressn in deine [[Special:Preferences|persönlichn Eistellungen]] eitrång.',
 'confirmemail_send' => 'Bstätigungscode zuaschicker',

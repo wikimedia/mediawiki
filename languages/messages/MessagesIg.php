@@ -104,8 +104,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Zi onuogụgụ ndi na banife nke ne lé',
 'tog-oldsig' => 'Létu ntakiri ndẹlu ejị a ma gí:',
 'tog-fancysig' => 'Mesò ka nkábi nwéré édé wiki (nké énwéghị jikodo nke nọr na onwe)',
-'tog-externaleditor' => 'Jí irü èzí nà áká (màkà ndi òkà nání, ȯ chọrọ ndósé nke kárí na nsónùsòrò gi)',
-'tog-externaldiff' => 'Jí nkéichè èzí nà áká (màkà ndi òkà nání, ȯ chọrọ ndósé nke kárí na nsónùsòrò gi)',
 'tog-showjumplinks' => 'Kwé ka njikodo "mani énū" I mé',
 'tog-uselivepreview' => 'Jí nlé ntàkírí dí ndụ (Í gí nwé JavaScript) (mmètú kanyí lé)',
 'tog-forceeditsummary' => 'Gwam mgbè okwu nsem màkà orüm rürü a díghị',
@@ -749,14 +747,6 @@ Nwàné ótù okwu íshí na ihe Í nè tú jí ''háníle:'' Í tuó ihe nílé
 'powersearch-toggleall' => 'Haníle',
 'powersearch-togglenone' => 'Efù',
 
-# Quickbar
-'qbsettings' => 'Mkpọrọ-ȯsȯ-ọsọ',
-'qbsettings-none' => 'Efù',
-'qbsettings-fixedleft' => 'Gbado na áká èkpè',
-'qbsettings-fixedright' => 'Gbado na áká ìkengà',
-'qbsettings-floatingleft' => 'Ne fé na áká èkpè',
-'qbsettings-floatingright' => 'Ne fé na áká nrí',
-
 # Preferences page
 'preferences' => 'Otu ha dosẹrẹ ihe',
 'mypreferences' => 'Otú m shị na dose ihem',
@@ -1115,7 +1105,7 @@ Ubwa, o na ga [[$2]].',
 'listgrouprights-addgroup' => 'Gbàkọ {{PLURAL:$2|ọtú|ọtú}}: $1',
 'listgrouprights-addgroup-all' => 'Tìnyé ọtú nílé',
 
-# E-mail user
+# Email user
 'emailuser' => 'Zi onye á ózí-nsónùsòrò',
 'emailpage' => "Mé ọ'bànifé e-mailù",
 'defemailsubject' => 'e-mail {{SITENAME}}',
@@ -1524,7 +1514,7 @@ Nke ozor gí zonari na áká onwe ha.
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Àsáa',
 'exif-imagelength' => 'Ógólógó',
 'exif-orientation' => 'Ívú nà àsáa',
@@ -1694,11 +1684,6 @@ Nke ozor gí zonari na áká onwe ha.
 'version-software-version' => 'Ùdị',
 'version-entrypoints-header-entrypoint' => 'Ébé ọ̀bụ̀bà',
 'version-entrypoints-header-url' => 'URL',
-
-# Special:FilePath
-'filepath' => 'Uzọ usòrò',
-'filepath-page' => 'Usòrò:',
-'filepath-submit' => 'Gá',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-filename' => 'Áhà usòrò:',

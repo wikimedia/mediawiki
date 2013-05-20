@@ -42,8 +42,6 @@ $messages = array(
 'tog-enotifrevealaddr' => 'Xuniim henadressade e-iitom notificacionde e-iitóm',
 'tog-shownumberswatching' => 'Cohuatlöx caitóm cáminotómde numberam',
 'tog-fancysig' => 'Signaturenám brazzinám (sans linkám automaticám)',
-'tog-externaleditor' => 'Usadad ticpatlöx externöx auto',
-'tog-externaldiff' => 'Usadad diff extern auto',
 'tog-showjumplinks' => 'Záj "jumpöx" accessibilitiit linkám',
 'tog-uselivepreview' => 'Usadad cuáxiit live (JavaScript) (Experimentam)',
 'tog-forceeditsummary' => 'Ixuniimticpatlöx he jan nenenterom abvuatlde ticpatlöx',
@@ -582,10 +580,6 @@ Informacion: (curt) = quiíxde vercion currentua,
 'searchhelp-url' => 'Help:Caálixötöj',
 'powersearch' => 'Yahöx',
 
-# Quickbar
-'qbsettings' => 'Zuónaát',
-'qbsettings-none' => 'Nepartám',
-
 # Preferences page
 'preferences' => 'Quáatlaác',
 'mypreferences' => 'Hequáatlaác',
@@ -1023,7 +1017,7 @@ iitom e-iitomde diijömde caitóm.',
 'ilsubmit' => 'Yahöx',
 'bydate' => 'de datum',
 
-# EXIF tags
+# Exif tags
 'exif-fnumber' => 'F Numberam',
 'exif-gpslatitude' => 'Latitudam',
 'exif-gpslongitude' => 'Longitudam',

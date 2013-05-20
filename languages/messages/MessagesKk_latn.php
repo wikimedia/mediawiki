@@ -383,8 +383,6 @@ $messages = array(
 'tog-enotifrevealaddr' => 'E-poştamnıñ mekenjaýın eskertw xattarda aş',
 'tog-shownumberswatching' => 'Baqılap turğan qatıswşılardıñ sanın körset',
 'tog-fancysig' => 'Qam qoltañba (özdiktik siltemesiz)',
-'tog-externaleditor' => 'Şettik öñdewişti ädepkiden qoldan (tek sarapşılar üşin, komp′ywteriñizde arnawlı baptalımdar kerek)',
-'tog-externaldiff' => 'Şettik aýırmağıştı ädepkiden qoldan (tek sarapşılar üşin, komp′ywteriñizde arnawlı baptalımdar kerek)',
 'tog-showjumplinks' => '«Ötip ketw» qatınaw siltemelerin qos',
 'tog-uselivepreview' => 'Twra qarap şığwdı qoldanw (JavaScript) (Sınaqtama)',
 'tog-forceeditsummary' => 'Öñdemeniñ qısqaşa mazmundaması bos qalğanda mağan eskert',
@@ -1103,14 +1101,6 @@ Añğartpa: bağıttaw siltemelerin qoldanğanda bul bağan qaýta qoýıladı.'
 Äzirşe Google arqılı izdewge boladı.
 Añğartpa: {{SITENAME}} torabınıñ mağlumat tizbeleri eskirgen bolwı mümkin.',
 
-# Quickbar
-'qbsettings' => 'Mäzir',
-'qbsettings-none' => 'Eşqandaý',
-'qbsettings-fixedleft' => 'Solğa bekitilgen',
-'qbsettings-fixedright' => 'Oñğa bekitilgen',
-'qbsettings-floatingleft' => 'Solğa qalqığan',
-'qbsettings-floatingright' => 'Oñğa qalqığan',
-
 # Preferences page
 'preferences' => 'Baptalımdar',
 'mypreferences' => 'Baptalımdarım',
@@ -1696,7 +1686,7 @@ Bul bettiñ jäne baýlanıstı talqılaw betiniñ keleşektegi özgeristeri mı
 'watchnochange' => 'Körsetilgen merzimde eş baqılanğan dana öñdelgen joq.',
 'watchlist-details' => 'Talqılaw betterin sanamağanda $1 bet baqlanıladı.',
 'wlheader-enotif' => 'Eskertw xat jiberwi qosılğan.',
-'wlheader-showupdated' => "Soñğı kelip-ketwiñizden beri özgertilgen betterdi '''jwan''' qaripimen körset.",
+'wlheader-showupdated' => "Soñğı kelip-ketwiñizden beri özgertilgen betterdi '''jwan''' qaripimen körset",
 'watchmethod-recent' => 'baqılawlı better üşin jwıqtağı özgeristerdi tekserw',
 'watchmethod-list' => 'jwıqtağı özgerister üşin baqılawlı betterdi tekserw',
 'watchlistcontains' => 'Baqılaw tizimiñizde $1 bet bar.',
@@ -2236,24 +2226,14 @@ Wïkï-aparw üşin sırttan alw barlıq äreketter [[{{#special:Log}}/import|s�
 
 # Stylesheets
 'common.css' => '/* Mında ornalastırılğan CSS barlıq mänerlerde qoldanıladı */',
-'standard.css' => '/* Mında ornalastırılğan CSS tek «Dağdılı» (standard) mänerin paýdalanwşılarına ıqpal etedi */',
-'nostalgia.css' => '/* Mında ornalastırılğan CSS tek «Añsaw» (nostalgia) mänerin paýdalanwşılarına ıqpal etedi */',
 'cologneblue.css' => '/* Mında ornalastırılğan CSS tek «Köln zeñgirligi» (cologneblue) mänerin paýdalanwşılarına ıqpal etedi skin */',
 'monobook.css' => '/* Mında ornalastırılğan CSS tek «Dara kitap» (monobook) mänerin paýdalanwşılarına ıqpal etedi */',
-'myskin.css' => '/* Mında ornalastırılğan CSS tek «Öz mänerim» (myskin) mänerin paýdalanwşılarına ıqpal etedi */',
-'chick.css' => '/* Mında ornalastırılğan CSS tek «Balapan» (chick) mänerin paýdalanwşılarına ıqpal etedi */',
-'simple.css' => '/* Mında ornalastırılğan CSS tek «Kädimgi» (simple) mänerin paýdalanwşılarına ıqpal etedi */',
 'modern.css' => '/* Mında ornalastırılğan CSS tek «Zamanawï» (modern) mänerin paýdalanwşılarına ıqpal etedi */',
 
 # Scripts
 'common.js' => '/* Mındağı ärtürli JavaScript kez kelgen bet qotarılğanda barlıq paýdalanwşılar üşin jegiledi. */',
-'standard.js' => '/* Mındağı JavaScript tek «Dağdılı» (standard) mänerin paýdalanwşılar üşin jegiledi */',
-'nostalgia.js' => '/* Mındağı JavaScript tek «Añsaw» (nostalgia) mänerin paýdalanwşılar üşin jegiledi*/',
 'cologneblue.js' => '/* Mındağı JavaScript tek «Köln zeñgirligi» (cologneblue) mänerin paýdalanwşılar üşin jegiledi */',
 'monobook.js' => '/* Mındağı JavaScript tek «Dara kitap» (monobook) mänerin paýdalanwşılar üşin jegiledi */',
-'myskin.js' => '/* Mındağı JavaScript tek «Öz mänerim» (myskin) mänerin paýdalanwşılar üşin jegiledi */',
-'chick.js' => '/* Mındağı JavaScript tek «Balapan» (chick) mänerin paýdalanwşılar üşin jegiledi */',
-'simple.js' => '/* Mındağı JavaScript tek «Kädimgi» (simple) mänerin paýdalanwşılar üşin jegiledi */',
 'modern.js' => '/* Mındağı JavaScript tek «Zamanawï» (modern) mänerin paýdalanwşılar üşin jegiledi */',
 
 # Metadata
@@ -2279,13 +2259,8 @@ Bunıñ sebebi şettik torap siltemesinen bolwı mümkin.',
 'spam_blanking' => '$1 degenge siltemeleri bar barlıq tüzetwler tazartıldı',
 
 # Skin names
-'skinname-standard' => 'Dağdılı (standard)',
-'skinname-nostalgia' => 'Añsaw (nostalgia)',
 'skinname-cologneblue' => 'Köln zeñgirligi (cologneblue)',
 'skinname-monobook' => 'Dara kitap (monobook)',
-'skinname-myskin' => 'Öz mänerim (myskin)',
-'skinname-chick' => 'Balapan (chick)',
-'skinname-simple' => 'Kädimgi (simple)',
 'skinname-modern' => 'Zamanawï (modern)',
 
 # Patrolling
@@ -2373,7 +2348,7 @@ Basqaları ädepkiden jasırıladı.
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Eni',
 'exif-imagelength' => 'Bïiktigi',
 'exif-bitspersample' => 'Quraş saýın bït sanı',
@@ -2487,7 +2462,7 @@ Basqaları ädepkiden jasırıladı.
 'exif-gpsdatestamp' => 'GPS kün-aýı',
 'exif-gpsdifferential' => 'GPS saralanğan durıstaw',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Ulğaýtılğan',
 
 'exif-unknowndate' => 'Belgisiz kün-aýı',
@@ -2816,13 +2791,6 @@ Tağı da [[Special:EditWatchlist|qalıpalğan öñdewişti paýdalana]] alasız
 'version-software' => 'Ornatılğan bağdarlamalıq jasaqtama',
 'version-software-product' => 'Önim',
 'version-software-version' => 'Nusqası',
-
-# Special:FilePath
-'filepath' => 'Faýl ornalaswı',
-'filepath-page' => 'Faýl atı:',
-'filepath-submit' => 'Ornalaswın tap',
-'filepath-summary' => 'Bul arnaýı bet faýl ornalaswı tolıq jolın qaýtaradı.
-Swretter tolıq ajıratılımdığımen körsetiledi, basqa faýl türlerine qatıstı bağdarlaması twra jegiledi.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Faýl telnusqaların izdew',

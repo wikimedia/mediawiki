@@ -2294,7 +2294,7 @@ Promjene na toj stranici i njenoj stranici za razgovor bit će prikazane na popi
 'watchnochange' => 'Niti jedna od praćenih stranica nije promijenjena od Vašeg zadnjeg posjeta.',
 'watchlist-details' => '{{PLURAL:$1|$1 stranica|$1 stranice|$1 stranica}} se nalazi na popisu praćenja, ne brojeći stranice za razgovor.',
 'wlheader-enotif' => 'Uključeno je izvješćivanje e-mailom.',
-'wlheader-showupdated' => "Stranice koje su promijenjene od Vašeg zadnjeg posjeta prikazane su '''podebljano'''.",
+'wlheader-showupdated' => "Stranice koje su promijenjene od Vašeg zadnjeg posjeta prikazane su '''podebljano'''",
 'watchmethod-recent' => 'provjera nedavnih promjena praćenih stranica',
 'watchmethod-list' => 'provjera praćanih stranica za nedavne promjene',
 'watchlistcontains' => 'Vaš popis praćenja sadrži $1 {{PLURAL:$1|stranicu|stranice|stranica}}.',
