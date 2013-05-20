@@ -1024,7 +1024,6 @@ $wgMessageStructure = array(
 		'prefs-watchlist-days-max',
 		'prefs-watchlist-edits',
 		'prefs-watchlist-edits-max',
-		'prefs-watchlist-token',
 		'prefs-misc', // continue checking if used from here on (r49916)
 		'prefs-resetpass',
 		'prefs-changeemail',
@@ -1046,7 +1045,6 @@ $wgMessageStructure = array(
 		'recentchangesdays-max',
 		'recentchangescount',
 		'prefs-help-recentchangescount',
-		'prefs-help-watchlist-token',
 		'savedprefs',
 		'timezonelegend',
 		'localtime',
