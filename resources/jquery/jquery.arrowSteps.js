@@ -54,10 +54,12 @@
 		// Every step except the last one has an arrow pointing forward:
 		// at the right hand side in LTR languages, and at the left hand side in RTL.
 		// Also add in the padding for the calculated arrow width.
-		arrowWidth = parseInt( this.outerHeight(), 10 );
-		$steps.filter( ':not(:last-child)' ).addClass( 'arrow' )
-		      .find( 'div' ).css( paddingSide, arrowWidth.toString() + 'px' );
-
+		$stepDiv = $steps.filter( ':not(:last-child)' ).addClass( 'arrow' ).find( 'div' );
+		_this = this;
+		$(window).load(function() { // executes when complete page is fully loaded, including all frames, objects and images
+			arrowWidth = parseInt( _this.outerHeight(), 10 );
+			$stepDiv.css( paddingSide, arrowWidth.toString() + 'px' );
+		});
 		this.data( 'arrowSteps', $steps );
 		return this;
 	};
