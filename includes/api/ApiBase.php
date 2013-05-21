@@ -744,6 +744,38 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
+	 * Die if none of a certain set of parameters is set and not false.
+	 * @param array $params of parameter names
+	 */
+	public function requireAtLeastOneParameter( $params ) {
+		$required = func_get_args();
+		array_shift( $required );
+		$p = $this->getModulePrefix();
+
+		$intersection = array_intersect( array_keys( array_filter( $params,
+			array( $this, "parameterNotEmpty" ) ) ), $required );
+
+		if ( count( $intersection ) == 0 ) {
+			$this->dieUsage( "At least one of the parameters {$p}" . implode( ", {$p}", $required ) . ' is required', "{$p}missingparam" );
+		}
+	}
+
+	/**
+	 * Generates the possible errors requireAtLeastOneParameter() can die with
+	 *
+	 * @param $params array
+	 * @return array
+	 */
+	public function getRequireAtLeastOneParameterErrorMessages( $params ) {
+		$p = $this->getModulePrefix();
+		$params = implode( ", {$p}", $params );
+
+		return array(
+			array( 'code' => "{$p}missingparam", 'info' => "At least one of the parameters {$p}{$params} is required" ),
+		);
+	}
+
+	/**
 	 * @param $params array
 	 * @param bool|string $load Whether load the object's state from the database:
 	 *        - false: don't load (if the pageid is given, it will still be loaded)
