@@ -6,11 +6,14 @@ setting since version 1.2.0. If you have it on, turn it '''off''' if you can.
 
 == MediaWiki 1.20.6 ==
 
-This is a maintenance release of the MediaWiki 1.20 branch.
+This is a security and maintenance release of the MediaWiki 1.20 branch.
 
 === Changes since 1.20.5 ===
+* (bug 48306) SECURITY: Run file validation checks on chunked uploads, and chunks
+  of upload, during the upload process.
+* (bug 44327) mediawiki.user: Use session ID instead of 1-year cross-session cookies
 * (bug 47202) wikibits: FF2Fixes.css should not be loaded in Firefox 20.
-
+* (bug 31044) Make ResourceLoader behave in read-only mode
 
 == MediaWiki 1.20.5 ==
 
