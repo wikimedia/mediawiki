@@ -88,9 +88,10 @@ class ApiUpload extends ApiBase {
 			if ( !$this->mUpload->getTitle() ) {
 				$this->dieUsage( 'Invalid file title supplied', 'internal-error' );
 			}
-		} elseif ( $this->mParams['async'] ) {
+		} elseif ( $this->mParams['async'] && $this->mParams['filekey'] ) {
 			// defer verification to background process
 		} else {
+			wfDebug( __METHOD__ . 'about to verify' );
 			$this->verifyUpload();
 		}
 
@@ -195,7 +196,12 @@ class ApiUpload extends ApiBase {
 		$chunkPath = $request->getFileTempname( 'chunk' );
 		$chunkSize = $request->getUpload( 'chunk' )->getSize();
 		if ( $this->mParams['offset'] == 0 ) {
-			$filekey = $this->performStash();
+			try {
+				$filekey = $this->performStash();
+			} catch ( MWException $e ) {
+				// FIXME: Error handling here is wrong/different from rest of this
+				$this->dieUsage( $e->getMessage(), 'stashfailed' );
+			}
 		} else {
 			$filekey = $this->mParams['filekey'];
 			/** @var $status Status */

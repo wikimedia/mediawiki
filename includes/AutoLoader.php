@@ -997,6 +997,7 @@ $wgAutoloadLocalClasses = array(
 	'UnwatchedpagesPage' => 'includes/specials/SpecialUnwatchedpages.php',
 	'UploadChunkFileException' => 'includes/upload/UploadFromChunks.php',
 	'UploadChunkZeroLengthFileException' => 'includes/upload/UploadFromChunks.php',
+	'UploadChunkVerificationException' => 'includes/upload/UploadFromChunks.php',
 	'UploadForm' => 'includes/specials/SpecialUpload.php',
 	'UploadSourceField' => 'includes/specials/SpecialUpload.php',
 	'UserrightsPage' => 'includes/specials/SpecialUserrights.php',

@@ -70,6 +70,8 @@ class UploadFromChunks extends UploadFromFile {
 		// Stash file is the called on creating a new chunk session:
 		$this->mChunkIndex = 0;
 		$this->mOffset = 0;
+
+		$this->verifyChunk();
 		// Create a local stash target
 		$this->mLocalFile = parent::stashFile();
 		// Update the initial file offset ( based on file size )
@@ -131,9 +133,18 @@ class UploadFromChunks extends UploadFromFile {
 			return $status;
 		}
 		wfDebugLog( 'fileconcatenate', "Combined $i chunks in $tAmount seconds.\n" );
+
+		$this->mTempPath = $tmpPath; // file system path
+		$this->mFileSize = filesize( $this->mTempPath ); //Since this was set for the last chunk previously
+		$ret = $this->verifyUpload();
+		if ( $ret['status'] !== UploadBase::OK ) {
+			wfDebugLog( 'fileconcatenate', "Verification failed for chunked upload" );
+			$status->fatal( $this->getVerificationErrorCode( $ret['status'] ) );
+			return $status;
+		}
+
 		// Update the mTempPath and mLocalFile
 		// ( for FileUpload or normal Stash to take over )
-		$this->mTempPath = $tmpPath; // file system path
 		$tStart = microtime( true );
 		$this->mLocalFile = parent::stashFile( $this->user );
 		$tAmount = microtime( true ) - $tStart;
@@ -189,6 +200,15 @@ class UploadFromChunks extends UploadFromFile {
 			if ( $preAppendOffset == $offset ) {
 				// Update local chunk index for the current chunk
 				$this->mChunkIndex++;
+				try {
+					# For some reason mTempPath is set to first part
+					$oldTemp = $this->mTempPath;
+					$this->mTempPath = $chunkPath;
+					$this->verifyChunk();
+					$this->mTempPath = $oldTemp;
+				} catch ( UploadChunkVerificationException $e ) {
+					return Status::newFatal( $e->getMessage() );
+				}
 				$status = $this->outputChunk( $chunkPath );
 				if( $status->isGood() ) {
 					// Update local offset:
@@ -312,7 +332,26 @@ class UploadFromChunks extends UploadFromFile {
 		}
 		return $this->mFileKey . '.' . $index;
 	}
+
+	/**
+	 * Verify that the chunk isn't really an evil html file
+	 *
+	 * @throws UploadChunkVerificationException
+	 */
+	private function verifyChunk() {
+		// Rest mDesiredDestName here so we verify the name as if it were mFileKey
+		$oldDesiredDestName = $this->mDesiredDestName;
+		$this->mDesiredDestName = $this->mFileKey;
+		$this->mTitle = false;
+		$res = $this->verifyPartialFile();
+		$this->mDesiredDestName = $oldDesiredDestName;
+		$this->mTitle = false;
+		if( is_array( $res ) ) {
+			throw new UploadChunkVerificationException( $res[0] );
+		}
+	}
 }
 
 class UploadChunkZeroLengthFileException extends MWException {};
 class UploadChunkFileException extends MWException {};
+class UploadChunkVerificationException extends MWException {};
