@@ -96,6 +96,9 @@ class RefreshLinksJob extends Job {
 
 		$updates = $content->getSecondaryDataUpdates( $title, null, false, $parserOutput );
 		DataUpdate::runUpdates( $updates );
+
+		InfoAction::invalidateCache( $title );
+
 		wfProfileOut( $fname );
 	}
 }
