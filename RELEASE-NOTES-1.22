@@ -80,6 +80,10 @@ production.
   which can be cascading (previously 'sysop' was hard-coded as the only one).
 * XHTML5 support has been improved. If you set $wgMimeType = 'application/xhtml+xml'
   MediaWiki will try outputting markup acording to XHTML5 rules.
+* Revision tags (as displayed on Special:Tags) can now be added to changes via the
+  API rather than just on the server-side. $wgApiChangeTags contains the tags that
+  are allowed to be changed, and the 'changetags' permission allows users to add
+  those tags.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one

@@ -3899,6 +3899,7 @@ $wgGroupPermissions['bot']['autopatrol'] = true;
 $wgGroupPermissions['bot']['suppressredirect'] = true;
 $wgGroupPermissions['bot']['apihighlimits'] = true;
 $wgGroupPermissions['bot']['writeapi'] = true;
+$wgGroupPermissions['bot']['changetags'] = true;
 #$wgGroupPermissions['bot']['editprotected'] = true; // can edit all protected pages without cascade protection enabled
 
 // Most extra permission abilities go to this group
@@ -5994,6 +5995,14 @@ $wgAPIMaxUncachedDiffs = 1;
  * API request logging
  */
 $wgAPIRequestLog = false;
+
+/**
+ * Array of ChangeTags that can be added to changes via the API. All other
+ * ChangeTags can only be added on the server side by extensions.
+ * @see ChangeTags
+ * @since 1.22
+ */
+$wgApiChangeTags = array();
 
 /**
  * Set the timeout for the API help text cache. If set to 0, caching disabled

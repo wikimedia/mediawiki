@@ -84,6 +84,7 @@ class ApiMain extends ApiBase {
 		'userrights' => 'ApiUserrights',
 		'options' => 'ApiOptions',
 		'imagerotate' => 'ApiImageRotate',
+		'changetags' => 'ApiChangeTags'
 	);
 
 	/**

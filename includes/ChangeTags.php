@@ -74,50 +74,61 @@ class ChangeTags {
 	}
 
 	/**
+	 * Get tags to a change given its rc_id, rev_id and/or log_id
+	 *
+	 * @param int $rc_id Recent changes ID to get tags for
+	 * @param int $rev_id Revision ID to get tags for
+	 * @param int $log_id Log entry ID to get tags for
+	 *
+	 * @exception MWException when $rc_id, $rev_id and $log_id are all null
+	 * @return array Mapping of tag name to the its string parameter
+	 */
+	static function getTags( $rc_id = null, $rev_id = null, $log_id = null, $fromMaster = false ) {
+		self::fetchTagIds( $rc_id, $rev_id, $log_id );
+
+		$res = wfGetDB( $fromMaster ? DB_MASTER : DB_SLAVE )->select(
+			'change_tag',
+			array( 'ct_tag', 'ct_params' ),
+			array_filter( array(
+				'ct_rc_id' => $rc_id,
+				'ct_rev_id' => $rev_id,
+				'ct_log_id' => $log_id
+			) ),
+			__METHOD__
+		);
+
+		$tags = array();
+		foreach ( $res as $row ) {
+			$tags[$row->ct_tag] = $row->ct_params;
+		}
+
+		return $tags;
+	}
+
+	/**
 	 * Add tags to a change given its rc_id, rev_id and/or log_id
 	 *
 	 * @param string|array $tags Tags to add to the change
-	 * @param $rc_id int: rc_id of the change to add the tags to
-	 * @param $rev_id int: rev_id of the change to add the tags to
-	 * @param $log_id int: log_id of the change to add the tags to
+	 * @param int $rc_id rc_id of the change to add the tags to
+	 * @param int $rev_id rev_id of the change to add the tags to
+	 * @param int $log_id log_id of the change to add the tags to
 	 * @param string $params params to put in the ct_params field of table 'change_tag'
 	 *
-	 * @throws MWException
-	 * @return bool: false if no changes are made, otherwise true
-	 *
 	 * @exception MWException when $rc_id, $rev_id and $log_id are all null
+	 * @return bool: false if no changes are made, otherwise true
 	 */
 	static function addTags( $tags, $rc_id = null, $rev_id = null, $log_id = null, $params = null ) {
 		if ( !is_array( $tags ) ) {
 			$tags = array( $tags );
 		}
-
 		$tags = array_filter( $tags ); // Make sure we're submitting all tags...
 
-		if ( !$rc_id && !$rev_id && !$log_id ) {
-			throw new MWException( "At least one of: RCID, revision ID, and log ID MUST be specified when adding a tag to a change!" );
-		}
-
-		$dbr = wfGetDB( DB_SLAVE );
-
-		// Might as well look for rcids and so on.
-		if ( !$rc_id ) {
-			$dbr = wfGetDB( DB_MASTER ); // Info might be out of date, somewhat fractionally, on slave.
-			if ( $log_id ) {
-				$rc_id = $dbr->selectField( 'recentchanges', 'rc_id', array( 'rc_logid' => $log_id ), __METHOD__ );
-			} elseif ( $rev_id ) {
-				$rc_id = $dbr->selectField( 'recentchanges', 'rc_id', array( 'rc_this_oldid' => $rev_id ), __METHOD__ );
-			}
-		} elseif ( !$log_id && !$rev_id ) {
-			$dbr = wfGetDB( DB_MASTER ); // Info might be out of date, somewhat fractionally, on slave.
-			$log_id = $dbr->selectField( 'recentchanges', 'rc_logid', array( 'rc_id' => $rc_id ), __METHOD__ );
-			$rev_id = $dbr->selectField( 'recentchanges', 'rc_this_oldid', array( 'rc_id' => $rc_id ), __METHOD__ );
-		}
+		self::fetchTagIds( $rc_id, $rev_id, $log_id );
 
 		$tsConds = array_filter( array( 'ts_rc_id' => $rc_id, 'ts_rev_id' => $rev_id, 'ts_log_id' => $log_id ) );
 
 		## Update the summary row.
-		$prevTags = $dbr->selectField( 'tag_summary', 'ts_tags', $tsConds, __METHOD__ );
+		$prevTags = wfGetDB( DB_SLAVE )->selectField( 'tag_summary', 'ts_tags', $tsConds, __METHOD__ );
 		$prevTags = $prevTags ? $prevTags : '';
 		$prevTags = array_filter( explode( ',', $prevTags ) );
 		$newTags = array_unique( array_merge( $prevTags, $tags ) );
@@ -128,14 +139,6 @@ class ChangeTags {
 			// No change.
 			return false;
 		}
-
-		$dbw = wfGetDB( DB_MASTER );
-		$dbw->replace(
-			'tag_summary',
-			array( 'ts_rev_id', 'ts_rc_id', 'ts_log_id' ),
-			array_filter( array_merge( $tsConds, array( 'ts_tags' => implode( ',', $newTags ) ) ) ),
-			__METHOD__
-		);
 
 		// Insert the tags rows.
 		$tagsRows = array();
@@ -151,9 +154,58 @@ class ChangeTags {
 			);
 		}
 
+		$dbw = wfGetDB( DB_MASTER );
+		$dbw->begin();
+		$dbw->replace(
+			'tag_summary',
+			array( 'ts_rev_id', 'ts_rc_id', 'ts_log_id' ),
+			array_filter( array_merge( $tsConds, array( 'ts_tags' => implode( ',', $newTags ) ) ) ),
+			__METHOD__
+		);
 		$dbw->insert( 'change_tag', $tagsRows, __METHOD__, array( 'IGNORE' ) );
+		$dbw->commit();
 
 		return true;
+	}
+
+	/**
+	 * Given one or more of a rc/rev/log ID, fetch the remaining IDs for the change tag
+	 * associated with the given ID.
+	 *
+	 * @param int &$rc_id Recent changes ID
+	 * @param int &$rev_id Revision ID
+	 * @param int &$log_id Log entry ID
+	 * @param bool $force Force checking the database even if all three IDs are provided
+	 *
+	 * @return bool True if the IDs given matched something, false if invalid
+	 */
+	static function fetchTagIds( &$rc_id = null, &$rev_id = null, &$log_id = null, $force = false ) {
+		if ( !$rc_id && !$rev_id && !$log_id ) {
+			throw new MWException( "At least one of: RCID, revision ID, and log ID MUST be specified when adding a tag to a change!" );
+		} elseif ( !$force && $rc_id && $rev_id && $log_id ) {
+			// If we already have all three and no force, skip the database query.
+			return true;
+		}
+
+		// Info might be out of date, somewhat fractionally, on slave.
+		$res = wfGetDB( DB_MASTER )->selectRow(
+			'recentchanges',
+			array( 'rc_id', 'rc_logid', 'rc_this_oldid' ),
+			array_filter( array(
+				'rc_id' => $rc_id,
+				'rc_this_oldid' => $rev_id,
+				'rc_logid' => $log_id
+			) ),
+			__METHOD__
+		);
+
+		if ( $res ) {
+			$rc_id = $res->rc_id;
+			$rev_id = $res->rc_this_oldid;
+			$log_id = $res->rc_logid;
+		}
+
+		return (bool)$res;
 	}
 
 	/**
