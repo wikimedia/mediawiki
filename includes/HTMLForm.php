@@ -200,12 +200,12 @@ class HTMLForm extends ContextSource {
 			$this->setContext( $context );
 			$this->mTitle = false; // We don't need them to set a title
 			$this->mMessagePrefix = $messagePrefix;
-		} else {
+		} elseif ( is_null( $context ) && $messagePrefix !== '' ) {
+			$this->mMessagePrefix = $messagePrefix;
+		} elseif ( is_string( $context ) && $messagePrefix === '' ) {
 			// B/C since 1.18
-			if ( is_string( $context ) && $messagePrefix === '' ) {
-				// it's actually $messagePrefix
-				$this->mMessagePrefix = $context;
-			}
+			// it's actually $messagePrefix
+			$this->mMessagePrefix = $context;
 		}
 
 		// Expand out into a tree.
