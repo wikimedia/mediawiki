@@ -238,7 +238,8 @@ to add events to the MediaWiki code.
 where normally authentication against an external auth plugin would be creating
 a local account.
 $user: the User object about to be created (read-only, incomplete)
-&$abortMsg: out parameter: name of error message to be displayed to user
+&$abortMsg: out parameter: Error to display on abort. May be a string
+            containing HTML or a Message object.
 
 'AbortAutoblock': Return false to cancel an autoblock.
 $autoblockip: The IP going to be autoblocked.
@@ -268,7 +269,8 @@ $reason: the reason for the move (added in 1.13)
 
 'AbortNewAccount': Return false to cancel explicit account creation.
 $user: the User object about to be created (read-only, incomplete)
-&$msg: out parameter: HTML to display on abort
+&$msg: out parameter: Error to display on abort. May be a string
+       containing HTML or a Message object.
 
 'AbortChangePassword': Return false to cancel password change.
 $user: the User object to which the password change is occuring
