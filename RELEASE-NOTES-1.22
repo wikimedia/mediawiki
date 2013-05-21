@@ -146,6 +146,10 @@ production.
 * (bug 14176) System messages that are empty were previously incorrectly treated
   as non-existent, causing a fallback to the default. This stopped users from
   overriding system messages to make them blank.
+* (bug 38894) AbortNewAccount and AbortAutoAccount handlers may return an error
+  either as an HTML string or a Message object. Previously, AbortNewAccount
+  expected the returned error to be an HTML string, while AbortAutoAccount
+  expected it to be a message key.
 
 === API changes in 1.22 ===
 * (bug 46626) xmldoublequote parameter was removed. Because of a bug, the
