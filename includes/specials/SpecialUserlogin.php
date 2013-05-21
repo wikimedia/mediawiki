@@ -48,12 +48,16 @@ class LoginForm extends SpecialPage {
 	var $mLoginattempt, $mRemember, $mEmail, $mDomain, $mLanguage;
 	var $mSkipCookieCheck, $mReturnToQuery, $mToken, $mStickHTTPS;
 	var $mType, $mReason, $mRealName;
-	var $mAbortLoginErrorMsg = 'login-abort-generic';
+	var $mAbortLoginErrorMsg;
 	private $mLoaded = false;
 	private $mSecureLoginUrl;
 	// TODO Remove old forms and mShowVForm gating after all WMF wikis have
 	// adapted messages and help links to new versions.
 	private $mShowVForm;
+
+	/**
+	 * @var Message
+	 */
 
 	/**
 	 * @ var WebRequest
@@ -74,6 +78,7 @@ class LoginForm extends SpecialPage {
 		parent::__construct( 'Userlogin' );
 
 		$this->mOverrideRequest = $request;
+		$this->mAbortLoginErrorMsg = new Message( 'login-abort-generic' );
 	}
 
 	/**
@@ -458,7 +463,10 @@ class LoginForm extends SpecialPage {
 		if ( !wfRunHooks( 'AbortNewAccount', array( $u, &$abortError ) ) ) {
 			// Hook point to add extra creation throttles and blocks
 			wfDebug( "LoginForm::addNewAccountInternal: a hook blocked creation\n" );
-			return Status::newFatal( new RawMessage( $abortError ) );
+			if ( !( $abortError instanceof Message ) ) {
+				$abortError = new RawMessage( $abortError );
+			}
+			return Status::newFatal( $abortError );
 		}
 
 		// Hook point to check for exempt from account creation throttle
@@ -729,6 +737,9 @@ class LoginForm extends SpecialPage {
 		if ( !wfRunHooks( 'AbortAutoAccount', array( $user, &$abortError ) ) ) {
 			// Hook point to add extra creation throttles and blocks
 			wfDebug( "LoginForm::attemptAutoCreate: a hook blocked creation: $abortError\n" );
+			if ( !( $abortError instanceof Message ) ) {
+				$abortError = new RawMessage( $abortError );
+			}
 			$this->mAbortLoginErrorMsg = $abortError;
 			return self::ABORTED;
 		}
@@ -738,7 +749,7 @@ class LoginForm extends SpecialPage {
 
 		if ( !$status->isOK() ) {
 			$errors = $status->getErrorsByType( 'error' );
-			$this->mAbortLoginErrorMsg = $errors[0]['message'];
+			$this->mAbortLoginErrorMsg = $this->msg( $errors[0]['message'] );
 			return self::ABORTED;
 		}
 
@@ -829,7 +840,7 @@ class LoginForm extends SpecialPage {
 					$this->mUsername )->escaped() );
 				break;
 			case self::ABORTED:
-				$this->mainLoginForm( $this->msg( $this->mAbortLoginErrorMsg )->text() );
+				$this->mainLoginForm( $this->mAbortLoginErrorMsg->text() );
 				break;
 			default:
 				throw new MWException( 'Unhandled case value' );
