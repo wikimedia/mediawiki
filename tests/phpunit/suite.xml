@@ -29,6 +29,7 @@
 			<directory>maintenance</directory>
 		</testsuite>
 		<testsuite name="structure">
+			<file>AutoLoaderTest.php</file>
 			<file>StructureTest.php</file>
 		</testsuite>
 		<testsuite name="uploadfromurl">
