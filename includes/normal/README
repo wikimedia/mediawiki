@@ -48,8 +48,8 @@ grains of salt.
 
 There's an experimental PHP extension module which wraps the ICU library's
 normalization functions. This is *MUCH* faster than doing this work in pure
-PHP code. This is in the 'normal' directory in MediaWiki's CVS extensions
-module. It is known to work with PHP 4.3.8 and 5.0.2 on Linux/x86 but hasn't
+PHP code. This is at https://gerrit.wikimedia.org/r/gitweb?p=mediawiki/extensions/normal.git;a=summary.
+It is known to work with PHP 4.3.8 and 5.0.2 on Linux/x86 but hasn't
 been thoroughly tested on other configurations.
 
 If the php_normal.so module is loaded in php.ini, the normalization functions
