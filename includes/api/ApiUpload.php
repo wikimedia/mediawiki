@@ -195,7 +195,12 @@ class ApiUpload extends ApiBase {
 		$chunkPath = $request->getFileTempname( 'chunk' );
 		$chunkSize = $request->getUpload( 'chunk' )->getSize();
 		if ( $this->mParams['offset'] == 0 ) {
-			$filekey = $this->performStash();
+			try {
+				$filekey = $this->performStash();
+			} catch ( MWException $e ) {
+				// FIXME: Error handling here is wrong/different from rest of this
+				$this->dieUsage( $e->getMessage(), 'stashfailed' );
+			}
 		} else {
 			$filekey = $this->mParams['filekey'];
 			/** @var $status Status */
