@@ -29,7 +29,7 @@
 			<directory>maintenance</directory>
 		</testsuite>
 		<testsuite name="structure">
-			<file>StructureTest.php</file>
+			<directory>structure</directory>
 		</testsuite>
 		<testsuite name="uploadfromurl">
 			<file>suites/UploadFromUrlTestSuite.php</file>
