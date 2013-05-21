@@ -34,15 +34,30 @@ class MwSql extends Maintenance {
 		parent::__construct();
 		$this->mDescription = "Send SQL queries to a MediaWiki database";
 		$this->addOption( 'cluster', 'Use an external cluster by name', false, true );
+		$this->addOption( 'index', 'Server index ("master","slave" or an integer)', false, true );
 	}
 
 	public function execute() {
+		if ( $this->hasOption( 'index' ) ) {
+			switch ( $this->getOption( 'index' ) ) {
+				case 'master':
+					$index = DB_MASTER;
+					break;
+				case 'slave':
+					$index = DB_SLAVE;
+					break;
+				default:
+					$index = (int)$this->getOption( 'index' );
+			}
+		} else {
+			$index = DB_MASTER;
+		}
 		// Get a DB handle (with this wiki's DB select) from the appropriate load balancer
 		if ( $this->hasOption( 'cluster' ) ) {
 			$lb = wfGetLBFactory()->getExternalLB( $this->getOption( 'cluster' ) );
-			$dbw = $lb->getConnection( DB_MASTER ); // master for external LB
+			$dbw = $lb->getConnection( $index ); // master for external LB
 		} else {
-			$dbw = wfGetDB( DB_MASTER ); // master for primary LB for this wiki
+			$dbw = wfGetDB( $index ); // master for primary LB for this wiki
 		}
 		if ( $this->hasArg( 0 ) ) {
 			$file = fopen( $this->getArg( 0 ), 'r' );
