@@ -221,6 +221,8 @@ production.
 * (bug 47202) wikibits: FF2Fixes.css should not be loaded in Firefox 20.
 
 === API changes in 1.21 ===
+* BREAKING CHANGE: Chunked uploads are now disabled by default.  You can re-enable
+  them by setting $wgAllowChunkedUploads=true
 * prop=revisions can now report the contentmodel and contentformat.
   See docs/contenthandler.txt.
 * action=edit and action=parse now support contentmodel and contentformat

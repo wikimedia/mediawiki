@@ -358,6 +358,8 @@ class ApiUpload extends ApiBase {
 		}
 
 		if ( $this->mParams['chunk'] ) {
+			$this->checkChunkedEnabled();
+
 			// Chunk upload
 			$this->mUpload = new UploadFromChunks();
 			if( isset( $this->mParams['filekey'] ) ) {
@@ -651,6 +653,13 @@ class ApiUpload extends ApiBase {
 		}
 	}
 
+	protected function checkChunkedEnabled() {
+		global $wgAllowChunkedUploads;
+		if ( !$wgAllowChunkedUploads ) {
+			$this->dieUsage( 'Chunked uploads disabled', 'chunkeduploaddisabled' );
+		}
+	}
+
 	public function mustBePosted() {
 		return true;
 	}
@@ -807,6 +816,7 @@ class ApiUpload extends ApiBase {
 				array( 'code' => 'publishfailed', 'info' => 'Publishing of stashed file failed' ),
 				array( 'code' => 'internal-error', 'info' => 'An internal error occurred' ),
 				array( 'code' => 'asynccopyuploaddisabled', 'info' => 'Asynchronous copy uploads disabled' ),
+				array( 'code' => 'chunkeduploaddisabled', 'info' => 'Chunked uploads disabled' ),
 				array( 'fileexists-forbidden' ),
 				array( 'fileexists-shared-forbidden' ),
 			)
