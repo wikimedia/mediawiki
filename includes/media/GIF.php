@@ -119,13 +119,13 @@ class GIFHandler extends BitmapHandler {
 		wfRestoreWarnings();
 
 		if ( !$data || !is_array( $data ) ) {
-			wfDebug( __METHOD__ . ' invalid GIF metadata' );
+			wfDebug( __METHOD__ . " invalid GIF metadata\n" );
 			return self::METADATA_BAD;
 		}
 
 		if ( !isset( $data['metadata']['_MW_GIF_VERSION'] )
 			|| $data['metadata']['_MW_GIF_VERSION'] != GIFMetadataExtractor::VERSION ) {
-			wfDebug( __METHOD__ . ' old but compatible GIF metadata' );
+			wfDebug( __METHOD__ . " old but compatible GIF metadata\n" );
 			return self::METADATA_COMPATIBLE;
 		}
 		return self::METADATA_GOOD;
