@@ -84,7 +84,7 @@ class RunJobs extends Maintenance {
 		}
 
 		$flags = JobQueueGroup::USE_CACHE | JobQueueGroup::USE_PRIORITY;
-		$lastTime = time();
+		$lastTime = time(); // time since last slave check
 		do {
 			$job = ( $type === false )
 				? $group->pop( JobQueueGroup::TYPE_DEFAULT, $flags )
@@ -129,6 +129,7 @@ class RunJobs extends Maintenance {
 				$timePassed = time() - $lastTime;
 				if ( $timePassed >= 5 || $timePassed < 0 ) {
 					wfWaitForSlaves();
+					$lastTime = time();
 				}
 				// Don't let any queue slaves/backups fall behind
 				if ( $jobsRun > 0 && ( $jobsRun % 100 ) == 0 ) {
