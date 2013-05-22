@@ -227,10 +227,14 @@ class SanitizerTest extends MediaWikiTestCase {
 	public static function provideCssCommentsFixtures() {
 		/** array( <expected>, <css>, [message] ) */
 		return array(
-			array( ' ', '/**/' ),
+			// Valid comments spanning entire input
+			array( '/**/', '/**/' ),
+			array( '/* comment */', '/* comment */' ),
+			// Weird stuff
 			array( ' ', '/****/' ),
-			array( ' ', '/* comment */' ),
-			array( ' ', "\\2f\\2a foo \\2a\\2f",
+			array( ' ', '/* /* */' ),
+			array( 'display: block;', "display:/* foo */block;" ),
+			array( 'display: block;', "display:\\2f\\2a foo \\2a\\2f block;",
 				'Backslash-escaped comments must be stripped (bug 28450)' ),
 			array( '', '/* unfinished comment structure',
 				'Remove anything after a comment-start token' ),
