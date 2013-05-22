@@ -214,4 +214,49 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertEquals( $wgDefaultUserOptions['cols'], $this->user->getOption( 'cols' ) );
 		$this->assertEquals( 'test', $this->user->getOption( 'someoption' ) );
 	}
+
+	/**
+	 * Helper, fetch user properties from the database.
+	 * @param int $userId
+	 */
+	function dbUserProperties( $userId ) {
+		$res = wfGetDB( DB_SLAVE )->select(
+			'user_properties',
+			array( 'up_property', 'up_value' ),
+			array( 'up_user' => $userId ),
+			__METHOD__
+		);
+		$ret = array();
+		foreach( $res as $row ) {
+			$ret[$row->up_property] = $row->up_value;
+		}
+		return $ret;
+	}
+
+	public function testOnlySaveChangedOptions() {
+		$user = User::newFromName( 'UnitTestUser2' );
+		$user->addToDatabase();
+
+		// Fresh user only has default, so nothing should be in the DB
+		$dbProps = $this->dbUserProperties( $user->getId() );
+		$this->assertEmpty( $dbProps,
+			"A new user should not have any user property saved in the DB" );
+
+		// Make sure we only save the altered option
+		$user->setOption( 'changed_opt', 'alix_20281' );
+		$user->setOption( 'switch', 1 );
+		$user->setOption( 'anotherswitch', 1 );
+		$user->saveSettings();
+
+		$expected = array (
+			'changed_opt' => 'alix_20281',
+			'switch' => '1',
+			'anotherswitch' => '1',
+		);
+		$dbProps = $this->dbUserProperties( $user->getId() );
+
+		$this->assertEquals( $expected, $dbProps,
+			"non default options should be saved, and default ones should not" );
+
+	}
 }
