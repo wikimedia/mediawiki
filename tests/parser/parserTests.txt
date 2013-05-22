@@ -13290,6 +13290,34 @@ Screen
 !! end
 
 !! test
+Verify that displaytitle handles inline CSS styles (bug 26547) - rejected value
+!! options
+showtitle
+title=[[Screen]]
+!! config
+wgAllowDisplayTitle=true
+wgRestrictDisplayTitle=true
+!! input
+{{DISPLAYTITLE:<span style="display: none;">s</span>creen}}
+!! result
+<span style="/* attempt to bypass $wgRestrictDisplayTitle */">s</span>creen
+!! end
+
+!! test
+Verify that displaytitle handles inline CSS styles (bug 26547) - accepted value
+!! options
+showtitle
+title=[[Screen]]
+!! config
+wgAllowDisplayTitle=true
+wgRestrictDisplayTitle=true
+!! input
+{{DISPLAYTITLE:<span style="color: red;">s</span>creen}}
+!! result
+<span style="color:red;">s</span>creen
+!! end
+
+!! test
 preload: check <noinclude> and <includeonly>
 !! options
 preload

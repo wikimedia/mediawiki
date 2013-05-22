@@ -856,19 +856,24 @@ class Sanitizer {
 		$value = preg_replace_callback( $decodeRegex,
 			array( __CLASS__, 'cssDecodeCallback' ), $value );
 
-		// Remove any comments; IE gets token splitting wrong
-		// This must be done AFTER decoding character references and
-		// escape sequences, because those steps can introduce comments
-		// This step cannot introduce character references or escape
-		// sequences, because it replaces comments with spaces rather
-		// than removing them completely.
-		$value = StringUtils::delimiterReplace( '/*', '*/', ' ', $value );
+		// Let the value through if it's nothing but a single comment, to
+		// allow other functions which may reject it to pass some error
+		// message through.
+	if ( !preg_match( '!\^ \s* /\* [^*/]* \*/ \s* $ !x', $value ) ) {
+			// Remove any comments; IE gets token splitting wrong
+			// This must be done AFTER decoding character references and
+			// escape sequences, because those steps can introduce comments
+			// This step cannot introduce character references or escape
+			// sequences, because it replaces comments with spaces rather
+			// than removing them completely.
+			$value = StringUtils::delimiterReplace( '/*', '*/', ' ', $value );
 
-		// Remove anything after a comment-start token, to guard against
-		// incorrect client implementations.
-		$commentPos = strpos( $value, '/*' );
-		if ( $commentPos !== false ) {
-			$value = substr( $value, 0, $commentPos );
+			// Remove anything after a comment-start token, to guard against
+			// incorrect client implementations.
+			$commentPos = strpos( $value, '/*' );
+			if ( $commentPos !== false ) {
+				$value = substr( $value, 0, $commentPos );
+			}
 		}
 
 		// Reject problematic keywords and control characters
