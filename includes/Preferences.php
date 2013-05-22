@@ -1571,9 +1571,16 @@ class PreferencesForm extends HTMLForm {
 		foreach ( $this->mFlatFields as $fieldname => $field ) {
 			if ( $field instanceof HTMLNestedFilterable ) {
 				$info = $field->mParams;
-				$prefix = isset( $info['prefix'] ) ? $info['prefix'] : $fieldname;
+				if ( $field instanceof HTMLCheckMatrix ) {
+					// Echo's use of html check matrix expects the fieldname to be appended with -
+					// TODO: adjust echo to pass an explicit prefix containing the - and remove
+					//       this misdirection at that time.
+					$prefix = isset( $info['prefix'] ) ? $info['prefix'] : "$fieldname-";
+				} else {
+					$prefix = isset( $info['prefix'] ) ? $info['prefix'] : "$fieldname";
+				}
 				foreach ( $field->filterDataForSubmit( $data[$fieldname] ) as $key => $value ) {
-					$data["$prefix-$key"] = $value;
+					$data["$prefix$key"] = $value;
 				}
 				unset( $data[$fieldname] );
 			}
