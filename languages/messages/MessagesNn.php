@@ -3001,7 +3001,6 @@ Vitja [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [//trans
 'monobook.css' => '/* CSS-tekst som vert plassert her, endrar utsjånaden til sidedrakta Monobook */',
 'modern.css' => '/* CSS i denne fila vil gjelde alle som nyttar drakta Modern */',
 'print.css' => '/* CSS i denne fila vil påverke utskriftsversjonen */',
-'handheld.css' => '/* CSS i denne fila vil gjelde alle handheldte innretnigar konfigurert i $wgHandheldStyle */',
 
 # Scripts
 'common.js' => '/* Javascript i denne fila vil gjelde for alle drakter. */',

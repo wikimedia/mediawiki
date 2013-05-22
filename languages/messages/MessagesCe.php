@@ -250,7 +250,7 @@ $messages = array(
 'tog-watchlisthidepatrolled' => 'Къайладаха хьаьжина волу нисдарш оцу тергаме могlам чура',
 'tog-ccmeonemails' => 'Дlадахьийта суна исанна кехат, аса дохьуьйтуш долу кхечу декъашхошна.',
 'tog-diffonly' => 'Ма гайта агlон чулацам шина башхонца цхьатерра йолуш',
-'tog-showhiddencats' => 'Гайта къайлаха йолу кадегарш',
+'tog-showhiddencats' => 'Гайта къайлаха йолу категореш',
 'tog-noconvertlink' => 'Хааман хьажориг кхуллу гlирс дlабайа',
 'tog-norollbackdiff' => 'Йух яккхиначул тlаьхьа ма гайта къастаман башхо',
 'tog-useeditwarning' => 'Хаамбе бина хийцамаш дӀаязцабеш ара волучу хенахь',
@@ -335,6 +335,8 @@ $messages = array(
 'listingcontinuesabbrev' => '(кхин дlа)',
 'index-category' => 'Меттигтерахьйо агlонаш',
 'noindex-category' => 'ДӀахьушйоцу агӀонаш',
+'broken-file-category' => '{{#switch:{{NAMESPACE}}
+ |{{ns:0}}=Болх цабеш файланши хьажоригаш йолу агӀонаш}}',
 
 'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
 
@@ -1060,7 +1062,7 @@ PICT # тайп тайпан
 'statistics-users-active-desc' => 'Декъашхой, муьлха цхьа хlум дина болу, кху {{PLURAL:$1|тlаьххьара $1 динахь|тlаьххьара $1 дийнахь}}',
 
 'disambiguations' => 'Дуккха маьIнаш долу хьажорца йолу агIонаш',
-'disambiguationspage' => 'Куцкеп:цхьатера маьӀна доцуш',
+'disambiguationspage' => 'Кеп:цхьатера маьӀна доцуш',
 
 'doubleredirects' => 'ШалгIа дIасахьажийнарш',
 'double-redirect-fixed-move' => 'Агlон [[$1]] цlе хийцна, хlинца иза дlахьажийна оцу [[$2]]',
@@ -1084,15 +1086,15 @@ PICT # тайп тайпан
 'uncategorizedcategories' => 'Категори йоцу категореш',
 'uncategorizedimages' => 'Категори йоцу хIумнаш',
 'uncategorizedtemplates' => 'Категори йоцу кепаш',
-'unusedcategories' => 'Йаьсса кадегарш',
-'wantedcategories' => 'Оьшуш йолу кадегарш',
+'unusedcategories' => 'Йаьсса категореш',
+'wantedcategories' => 'Оьшуш йолу категореш',
 'wantedpages' => 'Оьшуш йолу агIонаш',
 'wantedfiles' => 'Оьшуш йолу хIумнаш',
 'wantedtemplates' => 'Оьшуш долу куцкепаш',
 'mostlinked' => 'Дуккха хьажоригаш тIе тоьхна йолу агIонаш',
-'mostlinkedcategories' => 'Дуккха тIе хьажораш йолу кадегарш',
+'mostlinkedcategories' => 'Дуккха тӀе хьажораш йолу категореш',
 'mostlinkedtemplates' => 'Массарел дуккха а леладо куцкепаш',
-'mostcategories' => 'Дуккха кадегарш тIе тоьхна йолу агIонаш',
+'mostcategories' => 'Дуккха категореш тӀе тоьхна йолу агӀонаш',
 'mostimages' => 'Массарел дуккха лелайо файлаш',
 'mostrevisions' => 'Сих сиха нисйина йолу агIонаш',
 'prefixindex' => 'Хьалха агlонашан цlераш хlотто йеза',
@@ -1147,7 +1149,7 @@ PICT # тайп тайпан
 'allpages-hide-redirects' => 'Къайлаяха дӀасахьажийнарш',
 
 # Special:Categories
-'categories' => 'Кадегарш',
+'categories' => 'Категореш',
 
 # Special:DeletedContributions
 'deletedcontributions' => 'Декъашхочуьн дlабайина къинхьегам',
@@ -1543,7 +1545,6 @@ PICT # тайп тайпан
 'common.css' => '/** Чуйиллина йолу кхузе CSS хир йу лелош масхьа кечйечу чохь */',
 'monobook.css' => '/* Чуйиллина йолу кхузе CSS хир йу лелош масхьа Monobook чохь */',
 'print.css' => '/* Чуйиллина йолу кхузе CSS хир йу лелош масхьа зорба тухучуче чохь */',
-'handheld.css' => '/* Чуйиллина йолу кхузе CSS хир йу лелош масхьа койнаш чохь, дукхах ерг хатl нисдеш оцу $wgHandheldStyle */',
 
 # Scripts
 'common.js' => '/* Чуйиллина йолу кхузе JavaScript ишар гучу ерайу массо декъашхошна оцара схьаелларца хlора агlо */',

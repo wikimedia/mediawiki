@@ -2817,7 +2817,6 @@ Salvatz-lo sus vòstre disc dur puèi importatz-lo aicí.",
 'modern.css' => '/* Lo CSS plaçat aicí afectarà los utilizaires de l’abilhatge Modern */',
 'vector.css' => '/* Lo CSS plaçat aicí afectarà los utilizaires de l’abilhatge Vector */',
 'print.css' => '/* Lo CSS plaçat aicí afectarà las impressions */',
-'handheld.css' => '/* Lo CSS plaçat aicí afectarà los aparelhs mobils en foncion de l\'abilhatge configurat $wgHandheldStyle */',
 
 # Scripts
 'common.js' => '/* Tot JavaScript serà cargat amb cada pagina accedida per un utilizaire quin que siá. */',

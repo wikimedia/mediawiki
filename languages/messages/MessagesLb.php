@@ -565,7 +565,7 @@ Ufro: $2',
 Fir Iwwersetzungen fir all Wikien bäizesetzen oder z'änneren gitt w.e.g. op [//translatewiki.net/ translatewiki.net], de MediaWiki-Lokalisatiouns-Projet.",
 'editinginterface' => "'''Opgepasst:''' Dir sidd am Gaang, eng Säit z'änneren, déi do ass, fir Interface-Text fir d'Software ze liwweren. 
 Ännerungen op dëser Säit änneren den Interface-Text, jee no Kontext, op allen oder verschiddene Säiten, déi vun alle Benotzer op dëser Wiki gesi ginn. 
-Fir d'Iwwersetzungen fir all Wikien derbäizesetzen oder z'änneren gitt w.e.g. op [//translatewiki.net translatewiki.net], de MediaWiki-Lokalisatiouns-Projet.",
+Fir d'Iwwersetzunge fir all Wikien derbäizesetzen oder z'änneren gitt w.e.g. op [//translatewiki.net translatewiki.net], de MediaWiki-Lokalisatiouns-Projet.",
 'sqlhidden' => '(SQL-Offro verstoppt)',
 'cascadeprotected' => 'Dës Säit gouf fir Ännerunge gespaart, well se duerch Cascadeprotectioun vun {{PLURAL:$1|dëser Säit|dëse Säite}} gespaart ass mat der Cascadenoptioun:
 $2',
@@ -2242,6 +2242,8 @@ All weider Ännerungen op dëser Säit an der assoziéierter Diskussiounssäit g
 'enotif_subject_changed' => "D'{{SITENAME}}-Säit $1 gouf vum {{gender:$2|$2}} geännert",
 'enotif_body_intro_deleted' => 'D\'{{SITENAME}}-Säit $1 gouf de(n) $PAGEEDITDATE {{gender:$2|vum $2|vun der $2}} geläscht, kuckt $3.',
 'enotif_body_intro_created' => 'D\'{{SITENAME}}-Säit $1 gouf den $PAGEEDITDATE vum $2 {{GENDER:$2|ugeluecht}}, kuckt $3 fir déi aktuell Versioun.',
+'enotif_body_intro_moved' => 'D\'{{SITENAME}}-Säit $1 gouf den $PAGEEDITDATE vum $2 {{GENDER:$2|geréckelt}}, kuckt $3 fir déi aktuell Versioun.',
+'enotif_body_intro_restored' => 'D\'{{SITENAME}}-Säit $1 gouf den $PAGEEDITDATE vum $2 {{GENDER:$2|restauréiert}}, kuckt $3 fir déi aktuell Versioun.',
 'enotif_body_intro_changed' => 'D\'{{SITENAME}}-Säit $1 gouf den $PAGEEDITDATE vum $2  {{GENDER:$2|geännert}}, kuckt $3 fir déi aktuell Versioun',
 'enotif_lastvisited' => 'All Ännerungen op ee Bléck: $1',
 'enotif_lastdiff' => 'Kuckt $1 fir dës Ännerung.',
@@ -3720,6 +3722,7 @@ Dir misst eng [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie vun der GNU General Public
 # Special:Redirect
 'redirect' => 'Viruleedung duerch e Fichier, Benotzer oder Versiouns-ID',
 'redirect-legend' => 'Viruleedung op ee Fichier oder eng Säit',
+'redirect-summary' => 'Dës Spezialsäit ass eng Viruleedung op e Fichier (Fichiersnumm uginn), eng Säit (Versiounsnummer uginn) oder eng Benotzersäit (numeresch Benotzeridentifikatioun uginn).',
 'redirect-submit' => 'Lass',
 'redirect-lookup' => 'Nosichen:',
 'redirect-value' => 'Wäert:',
@@ -3829,9 +3832,12 @@ Dir misst eng [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie vun der GNU General Public
 'logentry-delete-delete' => "$1 {{GENDER:$2|huet}} d'Säit $3 geläscht",
 'logentry-delete-restore' => "$1 {{GENDER:$2|huet}} d'Säit $3 restauréiert",
 'logentry-delete-event' => "$1 huet d'Visibilitéit vun {{PLURAL:$5|engem Evenement|$5 Evenementer}} am Logbuch op $3:$4 {{GENDER:$2|geännert}}",
+'logentry-delete-revision' => "$1 huet d'Visibilitéit {{PLURAL:$5|vun enger Versioun|vu(n) $5 Versiounen}} op der Säit $3:$4 {{GENDER:$2|geännert}}",
 'logentry-delete-event-legacy' => "$1 huet d'Visibilitéit vun Elementer am Log op $3 {{GENDER:$2|geännert}}",
 'logentry-delete-revision-legacy' => "$1 huet d'Visibilitéit vu Versioune vun der Säit $3 {{GENDER:$2|geännert}}",
 'logentry-suppress-delete' => "$1 {{GENDER:$2|huet}} d'Säit $3 ewechgeholl",
+'logentry-suppress-event' => "$1 huet diskret d'Visibilitéit vu(n) {{PLURAL:$5|engem Evenement|$5 Evenementer}} am Logbuch op $3:$4 {{GENDER:$2|geännert}}",
+'logentry-suppress-revision' => "$1 huet diskret d'Visibilitéit {{PLURAL:$5|vun enger Versioun|vu(n) $5 Versiounen}} op der Säit $3:$4 {{GENDER:$2|geännert}}",
 'logentry-suppress-event-legacy' => "$1 {{GENDER:$2|huet}} diskret d'Visibilitéit vun Elementer am Log op $3 geännert",
 'logentry-suppress-revision-legacy' => "$1 huet diskret d'Visibilitéit vu Versioune vun der Säit $3 {{GENDER:$2|geännert}}",
 'revdelete-content-hid' => 'Inhalt verstoppt',

@@ -4515,12 +4515,13 @@ Possible alternatives to the word 'content' are 'subject matter' or 'wiki subjec
 See also:
 * {{msg-mw|Cantrollback}}',
 'watchnochange' => 'Used in [[Special:Watchlist]] if there is nothing to show.',
-'watchlist-details' => 'Message at the top of [[Special:Watchlist]]. Has to be a full sentence. Parameters:
+'watchlist-details' => 'Message on [[Special:Watchlist]]. Parameters:
 * $1 - number of pages in your watchlist
 This is paired with the message {{msg-mw|Nowatchlist}} which appears instead of Watchlist-details when $1 is 0.
 
 See also:
 * {{msg-mw|Watchlist-options|fieldset}}
+* {{msg-mw|Wlheader-enotif|watchlist header}}
 * {{msg-mw|enotif reset|Submit button text}}',
 'wlheader-enotif' => 'Message at the top of [[Special:Watchlist]], after {{msg-mw|watchlist-details}}. Has to be a full sentence.
 
@@ -6090,7 +6091,7 @@ The reason $1 is one of the following messages:
 * {{msg-mw|Svg-long-error}}
 * other custom string',
 'thumbnail_error_remote' => 'Message shown in a thumbnail frame when creation of the thumbnail fails. Parameters:
-* $1 - is the name of the shared repository, see {{msg-mw|shardupload}}
+* $1 - the name of the shared repository, see {{msg-mw|sharedupload}}
 * $2 - the reason, see {{msg-mw|thumbnail_error}}',
 'djvu_page_error' => 'Used as error message.
 
@@ -6888,15 +6889,19 @@ See also:
 'pageinfo-views' => 'The number of times the page has been viewed.',
 'pageinfo-watchers' => 'The number of users watching the page.',
 'pageinfo-few-watchers' => 'Message displayed when there are fewer than $wgUnwatchedPageThreshold watchers. $1 is the value of $wgUnwatchedPageThreshold.',
-'pageinfo-redirects-name' => "The number of redirects to the page.
+'pageinfo-redirects-name' => 'Followed by the number of redirects to the page.
 
-Used as link text, linked to '{{int:Whatlinkshere-title}}' page ([[Special:WhatLinksHere]]).",
+Used as link text. The link points to "{{int:Whatlinkshere-title}}" page ([[Special:WhatLinksHere]]).
+
+See example: [{{canonicalurl:Main page|action=info}} Main page?action=info]',
 'pageinfo-redirects-value' => '{{Optional}}
 Parameters:
 * $1 - the number of redirects to the page',
-'pageinfo-subpages-name' => "The number of subpages of the page.
+'pageinfo-subpages-name' => 'Followed by the number of subpages of the page.
 
-Used as link text, linked to '{{int:Prefixindex}}' page ([[Special:PrefixIndex]]).",
+Used as link text. The link points to the "{{int:Prefixindex}}" page ([[Special:PrefixIndex]]).
+
+See example: [{{canonicalurl:Main page|action=info}} Main page?action=info]',
 'pageinfo-subpages-value' => 'Parameters:
 * $1 - the number of subpages of the page
 * $2 - the number of subpages of the page that are redirects
@@ -7135,36 +7140,28 @@ Abbreviation for "days". $1 is the number of days.
 See also {{msg-mw|days}}',
 'seconds' => 'Full word for "seconds". $1 is the number of seconds.
 
-See also {{msg-mw|Seconds-abbrev}}
-
-Part of variable $1 in {{msg-mw|Ago}}',
+See also {{msg-mw|seconds-abbrev}}, {{msg-mw|seconds-ago}}.',
 'minutes' => 'Full word for "minutes". $1 is the number of minutes.
 
-See also {{msg-mw|Minutes-abbrev}}
+See also {{msg-mw|minutes-abbrev}}, {{msg-mw|minutes-ago}}.
 
-Part of variable $1 in {{msg-mw|Ago}}.
 {{Identical|Minute}}',
 'hours' => 'Full word for "hours". $1 is the number of hours.
 
-See also {{msg-mw|Hours-abbrev}}
-
-Part of variable $1 in {{msg-mw|Ago}}',
+See also {{msg-mw|hours-abbrev}}, {{msg-mw|hours-ago}}.',
 'days' => 'Full word for "days". $1 is the number of days.
 
 See also {{msg-mw|Days-abbrev}}
 
-Part of variable $1 in {{msg-mw|Ago}}
 {{Identical|Day}}',
 'weeks' => 'Full word for "weeks".
 
-Used as <code>$1</code> in {{msg-mw|Ago}}. Parameters:
+Parameters:
 * $1 - the number of weeks',
-'months' => 'Full word for "months". $1 is the number of months.
-
-Part of variable $1 in {{msg-mw|Ago}}',
+'months' => 'Full word for "months". $1 is the number of months.',
 'years' => 'Full word for "years".
 
-Used as <code>$1</code> in {{msg-mw|Ago}}. Parameters:
+Parameters:
 * $1 - the number of years',
 'ago' => 'Phrase for indicating how long ago something happened. $1 is something like "3 days 10 hours", taken from these messages:
 *{{msg-mw|Seconds}}

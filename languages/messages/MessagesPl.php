@@ -2953,6 +2953,8 @@ Odwiedź [//www.mediawiki.org/wiki/Localisation Tłumaczenie MediaWiki] oraz [//
 'thumbnail-more' => 'Powiększ',
 'filemissing' => 'Brak pliku',
 'thumbnail_error' => 'Błąd przy generowaniu miniatury $1',
+'thumbnail_error_remote' => 'Komunikat o błędzie z  $1 :
+$2',
 'djvu_page_error' => 'Strona DjVu poza zakresem',
 'djvu_no_xml' => 'Nie można pobrać danych w formacie XML dla pliku DjVu',
 'thumbnail-temp-create' => 'Nie można utworzyć pliku tymczasowego miniatury',
@@ -3108,7 +3110,6 @@ Pozwala na wpisanie powodu w opisie zmian.',
 'modern.css' => '/* Umieszczony tutaj kod CSS wpłynie na wygląd skórki Nowoczesna */',
 'vector.css' => '/* Umieszczony tutaj kod CSS wpłynie na wygląd skórki Wektor */',
 'print.css' => '/* Umieszczony tutaj kod CSS wpłynie na wygląd wydruku */',
-'handheld.css' => '/* Umieszczony tutaj kod CSS wpłynie na wygląd na urządzeniach kieszonkowych skórki ustawionej w zmiennej $wgHandheldStyle */',
 'noscript.css' => '/* Umieszczony tu arkusz stylów CSS będzie wykorzystywany dla użytkowników z wyłączoną obsługą JavaScript */',
 'group-autoconfirmed.css' => '/* CSS tutaj umieszczony będzie dotyczyć tylko automatycznie zatwierdzonych użytkowników */',
 'group-bot.css' => '/* CSS tutaj umieszczony będzie obowiązywał tylko dla botów */',
@@ -3974,6 +3975,8 @@ Powinieneś otrzymać [{{SERVER}}{{SCRIPTPATH}}/COPYING kopię licencji GNU Gene
 'version-entrypoints-header-url' => 'URL',
 
 # Special:Redirect
+'redirect' => 'Przekierowanie przez identyfikator pliku, użytkownika lub zmiany',
+'redirect-legend' => 'Przekieruj do pliku lub strony',
 'redirect-submit' => 'Przejdź',
 'redirect-lookup' => 'Wyszukaj:',
 'redirect-value' => 'Wartość:',

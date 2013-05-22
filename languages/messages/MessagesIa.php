@@ -2999,7 +2999,6 @@ Es possibile adder un motivo in le summario.',
 'modern.css' => '/* Le CSS placiate hic afficera le usatores del apparentia Moderne */',
 'vector.css' => '/* Le CSS placiate hic afficera le usatores del apparentia Vector */',
 'print.css' => '/* Le CSS placiate hic influentiara le apparentia del paginas imprimite */',
-'handheld.css' => '/* Le CSS placiate hic afficera le apparatos mobile basate super le apparentia configurate in $wgHandheldStyle */',
 
 # Scripts
 'common.js' => '/* Omne JavaScript hic se executara pro tote le usatores a cata cargamento de pagina. */',

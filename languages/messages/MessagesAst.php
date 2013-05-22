@@ -294,10 +294,10 @@ $1",
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite' => 'Tocante a {{SITENAME}}',
 'aboutpage' => 'Project:Tocante a',
-'copyright' => 'El conteníu ta disponible baxo $1.',
+'copyright' => 'El conteníu ta disponible baxo los términos de la $1.',
 'copyrightpage' => "{{ns:project}}:Drechos d'autor",
-'currentevents' => 'Actualidá',
-'currentevents-url' => 'Project:Actualidá',
+'currentevents' => 'Fechos actuales',
+'currentevents-url' => 'Project:Fechos actuales',
 'disclaimers' => 'Avisu llegal',
 'disclaimerpage' => 'Project:Avisu xeneral',
 'edithelp' => "Ayuda d'edición",
@@ -424,7 +424,7 @@ Seique daquién yá lo desaniciara.",
 Nun conseñó esplicación.',
 'badtitle' => 'Títulu incorreutu',
 'badtitletext' => 'El títulu de páxina solicitáu nun ye válidu, ta baleru o tien enllaces interllingua o interwiki incorreutos.
-Pue contener un caráuter o más que nun se puen usar nos títulos.',
+Pue contener un caráuter o más que nun puen usase nos títulos.',
 'perfcached' => "Los datos siguientes tán na caché y seique nun tean anovaos. Hai un máximu {{PLURAL:$1|d'un resultáu disponible|de $1 resultaos disponibles}} na caché.",
 'perfcachedts' => "Los datos siguientes tán na caché y anovaronse por última vegada'l $1. Hai un máximu {{PLURAL:$4|d'un resultáu disponible|de $4 resultaos disponibles}} na caché.",
 'querypage-no-updates' => "Anguaño los anovamientos d'esta páxina tán desactivaos.
@@ -686,7 +686,7 @@ Contraseña temporal: $2",
 'link_sample' => 'Títulu del enllaz',
 'link_tip' => 'Enllaz internu',
 'extlink_sample' => 'http://www.example.com títulu del enllaz',
-'extlink_tip' => 'Enllaz esternu (alcuérdate del prefixu http://)',
+'extlink_tip' => "Enllaz esternu (recuerda'l prefixu http://)",
 'headline_sample' => 'Testu del titular',
 'headline_tip' => 'Cabecera de nivel 2',
 'nowiki_sample' => 'Pon equí testu ensin formatu',
@@ -767,7 +767,7 @@ La contraseña d'esta cuenta nueva pue camudase na páxina ''[[Special:ChangePas
 Pa crear la páxina, empecipia a escribir nel cuadru d'embaxo (mira la [[{{MediaWiki:Helppage}}|páxina d'ayuda]] pa más información).
 Si llegasti equí por enquivocu, calca nel botón '''atrás''' del to restolador.",
 'anontalkpagetext' => "----
-''Esta ye la páxina de'alderique pa un usuariu anónimu qu'inda nun creó una cuenta o que nun la usa.''
+''Esta ye la páxina d'alderique pa un usuariu anónimu qu'inda nun creó una cuenta o que nun la usa.''
 Pola mor d'ello ha usase la direición numbérica IP pa identificalu/la.
 Tala IP pue ser compartida por varios usuarios.
 Si yes un usuariu anónimu y notes qu'hai comentarios irrelevantes empobinaos pa ti, por favor [[Special:UserLogin/signup|crea una cuenta]] o [[Special:UserLogin/signup|identifícate]] pa torgar futures confusiones con otros usuarios anónimos.",
@@ -820,7 +820,7 @@ Si inda nun funciona, intenta [[Special:UserLogout|colar]] y volver a aniciar se
 'token_suffix_mismatch' => "'''La to edición nun s'aceutó porque'l to navegador mutiló los caráuteres de puntuación nel editor.'''
 La edición nun foi aceutada pa prevenir corrupciones na páxina de testu.
 Dacuando esto pasa por usar un serviciu proxy anónimu basáu en web que tenga fallos.",
-'edit_form_incomplete' => "'''Delles partes del formulariu d'edición nun llegaron al sirvidor; comprueba que les ediciones tean intactes y vuelve a tentalo.'''",
+'edit_form_incomplete' => "'''Delles partes del formulariu d'edición nun llegaron al sirvidor; comprueba que les ediciones tean intactes y vuelvi a tentalo.'''",
 'editing' => 'Editando $1',
 'creating' => 'Creando $1',
 'editingsection' => 'Editando $1 (seición)',
@@ -836,9 +836,9 @@ Vas tener que fusionar los tos cambios dientro del testu esistente.
 'nonunicodebrowser' => "'''Avisu: El to navegador nun cumple la norma Unicode.''' Hai un sistema alternativu que te permite editar páxines de forma segura: los caráuteres non-ASCII apaecerán nel cuadru d'edición como códigos hexadecimales.",
 'editingold' => "'''AVISU: Tas editando una revisión vieya d'esta páxina. Si la grabes, los cambios que se ficieron dende esta revisión van perdese.'''",
 'yourdiff' => 'Diferencies',
-'copyrightwarning' => "Por favor, ten en cuenta que toles contribuciones de {{SITENAME}} se consideren espublizaes baxo la $2 (ver $1 pa más detalles). Si nun quies que'l to trabayu s'edite ensin midida y se distribuya al debalu, nun lu pongas equí.<br />
-Amás tas dexándonos afitao qu'escribisti esto tu mesmu o que lo copiasti d'una fonte llibre de dominiu públicu o asemeyao.
-'''¡NUN PONGAS TRABAYOS CON DERECHOS D'AUTOR ENSIN PERMISU!'''",
+'copyrightwarning' => "Por favor, ten en cuenta que toles collaboraciones de {{SITENAME}} considerense espublizaes baxo la $2 (ver $1 pa más detalles). Si nun quies que'l to trabayu s'edite ensin midida y se distribuya al debalu, nun lu pongas equí.<br />
+Amás tas prometiendonos qu'escribisti esto tu mesmu o que copiastilo d'una fonte llibre de dominiu públicu o asemeyao.
+'''¡Nun unvies obres con drechos d'autor ensin permisu!'''",
 'copyrightwarning2' => "Por favor, ten en cuenta que toles contribuciones de {{SITENAME}} se puen editar, alterar o desaniciar por otros usuarios. Si nun quies que'l to trabayu s'edite ensin midida, nun lu pongas equí.<br />
 Amás tas dexándonos afitao qu'escribisti esto tu mesmu, o que lo copiasti d'una fonte llibre de dominiu públicu o asemeyao (ver $1 pa más detalles).
 '''¡Nun pongas trabayos con drechos d'autor ensin permisu!'''",
@@ -1242,7 +1242,7 @@ Equí tienes un valor al debalu que pues usar: $1",
 'allowemail' => 'Dexar a los otros usuarios mandate correos',
 'prefs-searchoptions' => 'Guetar',
 'prefs-namespaces' => 'Espacios de nome',
-'defaultns' => "D'otra miente, guetar nestos espacios de nome:",
+'defaultns' => 'Sinón, buscar nestos espacios de nome:',
 'default' => 'predetermináu',
 'prefs-files' => 'Ficheros',
 'prefs-custom-css' => 'CSS personalizada',
@@ -2149,7 +2149,7 @@ Los futuro cambeos nesta páxina y na so páxina d\'alderique asociada apaecerá
 'watchnochange' => 'Nenguna de les tos páxines vixilaes foi editada nel periodu escoyíu.',
 'watchlist-details' => "{{PLURAL:$1|$1 páxina|$1 páxines}} na to llista de vixilancia ensin cuntar les páxines d'alderique.",
 'wlheader-enotif' => 'La notificación per corréu electrónicu ta activada.',
-'wlheader-showupdated' => "Les páxines camudaes dende la to última visita amuésense en '''negrina'''",
+'wlheader-showupdated' => "Les páxines que camudaron dende que les visitasti anteriormente amuesense en '''negrina'''",
 'watchmethod-recent' => 'comprobando páxines vixilaes nos cambios recientes',
 'watchmethod-list' => 'comprobando ediciones recientes nes páxines vixilaes',
 'watchlistcontains' => 'La to llista de vixilancia tien $1 {{PLURAL:$1|páxina|páxines}}.',
@@ -2725,6 +2725,8 @@ Por favor visita [//www.mediawiki.org/wiki/Localisation Llocalización de MediaW
 'thumbnail-more' => 'Agrandar',
 'filemissing' => 'Falta archivu',
 'thumbnail_error' => 'Error al crear la miniatura: $1',
+'thumbnail_error_remote' => "Mensaxe d'error de $1:
+$2",
 'djvu_page_error' => 'Páxina DjVu fuera de llímites',
 'djvu_no_xml' => 'Nun se pudo obtener el XML pal archivu DjVu',
 'thumbnail-temp-create' => 'Nun se pudo crear el ficheru temporal de miniatura',
@@ -2879,7 +2881,6 @@ Pues ver el so códigu fonte.',
 'modern.css' => '/* Los CSS allugaos equí afeutarán a los usuarios del aspeutu Modern */',
 'vector.css' => '/* Los CSS allugaos equí afeutarán a los usuarios del aspeutu Vector */',
 'print.css' => '/* Los CSS allugaos equí afeutarán a la salida pola imprentadora */',
-'handheld.css' => '/* Los CSS allugaos equí afeutarán a los preseos portátiles basaos nel aspeutu configuráu en $wgHandheldStyle */',
 'noscript.css' => '/* Los CSS allugaos equí afeutarán a los usuarios col JavaScript desactiváu */',
 'group-autoconfirmed.css' => '/* Los CSS allugaos equí afeutarán a los usuarios autoconfirmaos namái */',
 'group-bot.css' => '/* Los CSS allugaos equí afeutarán a los bots namái */',

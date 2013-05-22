@@ -2420,7 +2420,6 @@ $1',
 'modern.css' => '/* 此之 CSS 用於時髦面之簿也 */',
 'vector.css' => '/* 此之 CSS 用於動力面之簿也 */',
 'print.css' => '/* 此之 CSS 用於印之出力也 */',
-'handheld.css' => '/* 此之 CSS 用於 $wgHandheldStyle 之手置面也 */',
 
 # Scripts
 'common.js' => '/* 此之JavaScript將載於全簿之頁。 */',

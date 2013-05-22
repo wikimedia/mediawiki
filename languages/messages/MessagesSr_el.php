@@ -12,6 +12,7 @@
  * @author Liangent
  * @author Meno25
  * @author Michaello
+ * @author Milicevic01
  * @author Rancher
  * @author Red Baron
  * @author Reedy
@@ -2618,7 +2619,7 @@ $1',
 'mycontris' => 'Doprinosi',
 'contribsub2' => 'Za $1 ($2)',
 'nocontribs' => 'Izmene koje odgovaraju ovim uslovima nisu pronađene.',
-'uctop' => '(vrh)',
+'uctop' => '(poslednja)',
 'month' => 'od meseca (i ranije):',
 'year' => 'od godine (i ranije):',
 
@@ -3107,7 +3108,6 @@ Pokušajte ponovo.',
 'modern.css' => '/* CSS postavljen ovde će uticati na sve korisnike teme „Savremeno“ */',
 'vector.css' => '/* CSS postavljen ovde će uticati na sve korisnike teme „Vektorsko“ */',
 'print.css' => '/* CSS postavljen ovde će uticati na izdanje za štampu */',
-'handheld.css' => '/* CSS postavljen ovde će uticati na ručne uređaje s temom prilagođenom u $wgHandheldStyle */',
 'noscript.css' => '/* CSS postavljen ovde će uticati na sve korisnike kojima je onemogućen javaskript */',
 'group-autoconfirmed.css' => '/* CSS postavljen ovde će uticati na samopotvrđene korisnike */',
 'group-bot.css' => '/* CSS postavljen ovde će uticati samo na botove */',
