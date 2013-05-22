@@ -4455,20 +4455,22 @@ class User {
 			return;
 		}
 
+		$defaultOptions = self::getDefaultOptions();
+
 		$userId = $this->getId();
 		$insert_rows = array();
-		foreach ( $saveOptions as $key => $value ) {
-			# Don't bother storing default values
-			$defaultOption = self::getDefaultOption( $key );
-			if ( ( is_null( $defaultOption ) &&
-					!( $value === false || is_null( $value ) ) ) ||
-					$value != $defaultOption ) {
-				$insert_rows[] = array(
-						'up_user' => $userId,
-						'up_property' => $key,
-						'up_value' => $value,
-					);
+
+		# Only bother storing values that changed
+		$changedOptions = array_diff( $saveOptions, $defaultOptions );
+		foreach( $changedOptions as $key => $value ) {
+			if( $value === false || is_null($value) ) {
+				continue;
 			}
+			$insert_rows[] = array(
+				'up_user' => $userId,
+				'up_property' => $key,
+				'up_value' => $value,
+			);
 		}
 
 		$dbw = wfGetDB( DB_MASTER );
