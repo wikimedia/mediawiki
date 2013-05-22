@@ -2938,7 +2938,7 @@ Mời vào [//www.mediawiki.org/wiki/Localisation?uselang=vi Địa phương hó
 'thumbnail-more' => 'Phóng lớn',
 'filemissing' => 'Không có tập tin',
 'thumbnail_error' => 'Hình thu nhỏ có lỗi: $1',
-'thumbnail_error_remote' => 'Thông báo lỗ từ $1:
+'thumbnail_error_remote' => 'Thông báo lỗi từ $1:
 $2',
 'djvu_page_error' => 'Trang DjVu quá xa',
 'djvu_no_xml' => 'Không thể truy xuất XML cho tập tin DjVu',
@@ -3093,7 +3093,6 @@ Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 'modern.css' => '/* Mã CSS tại đây sẽ ảnh hưởng đến những người dùng sử dụng hình dạng Hiện đại */',
 'vector.css' => '/* Mã CSS đặt ở đây sẽ ảnh hưởng đến thành viên sử dụng hình dạng Vectơ */',
 'print.css' => '/* Mã CSS tại đây sẽ ảnh hưởng đến bản để in */',
-'handheld.css' => '/* Mã CSS tại đây sẽ ảnh hưởng đến các thiết bị cầm tay dựa trên hình dạng cấu hình trong $wgHandheldStyle */',
 'noscript.css' => '/* Mã CSS tại đây sẽ ảnh hưởng đến những người dùng tắt JavaScript */',
 'group-autoconfirmed.css' => '/* Mã CSS tại đây sẽ chỉ ảnh hưởng đến các thành viên tự động xác nhận */',
 'group-bot.css' => '/* Mã CSS tại đây sẽ chỉ ảnh hưởng đến các bot */',

@@ -3167,7 +3167,6 @@ Permet de rétablir la version précédente et d'ajouter un motif dans la boîte
 'modern.css' => '/* Le CSS placé ici affectera les utilisateurs de l’habillage Modern. */',
 'vector.css' => '/* Le CSS placé ici affectera les utilisateurs de l’habillage Vector. */',
 'print.css' => '/* Le CSS placé ici affectera les impressions */',
-'handheld.css' => '/* Le CSS placé ici affectera les appareils mobiles en fonction de l\'habillage configuré $wgHandheldStyle */',
 'noscript.css' => '/* Le CSS placé ici affectera les utilisateurs ayant désactivé Javascript. */',
 'group-autoconfirmed.css' => '/* Le CSS placé ici affectera les utilisateurs auto-confirmés seulement. */',
 'group-bot.css' => '/* Le CSS placé ici affectera les robots seulement. */',

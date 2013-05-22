@@ -2147,7 +2147,7 @@ Pan fydd y dudalen hon, neu ei thudalen sgwrs, yn newid, fe fyddant yn ymddangos
 'watchnochange' => "Ni olygwyd dim o'r erthyglau yr ydych yn cadw golwg arnynt yn ystod y cyfnod uchod.",
 'watchlist-details' => '{{PLURAL:$1|Nid oes dim tudalennau|Mae $1 dudalen|Mae $1 dudalen|Mae $1 tudalen|Mae $1 thudalen|Mae $1 o dudalennau}} ar eich rhestr wylio, heb gynnwys tudalennau sgwrs.',
 'wlheader-enotif' => 'Galluogwyd hysbysiadau trwy e-bost.',
-'wlheader-showupdated' => "Mae tudalennau sydd wedi newid ers i chi ymweld ddiwethaf wedi'u '''hamlygu'''.",
+'wlheader-showupdated' => "Mae tudalennau sydd wedi newid ers i chi eu gweld ddiwethaf wedi'u '''hamlygu'''.",
 'watchmethod-recent' => "yn chwilio'r diwygiadau diweddar am dudalennau ar y rhestr wylio",
 'watchmethod-list' => "yn chwilio'r tudalennau ar y rhestr wylio am ddiwygiadau diweddar",
 'watchlistcontains' => '{{PLURAL:$1|Nid oes dim tudalennau|Mae $1 dudalen|Mae $1 dudalen|Mae $1 tudalen|Mae $1 thudalen|Mae $1 o dudalennau}} ar eich rhestr wylio.',
@@ -2724,6 +2724,8 @@ Os ydych am gyfrannu at y gwaith o gyfieithu ar gyfer holl prosiectau MediaWiki 
 'thumbnail-more' => 'Chwyddo',
 'filemissing' => 'Ffeil yn eisiau',
 'thumbnail_error' => "Cafwyd gwall wrth greu'r mân-lun: $1",
+'thumbnail_error_remote' => 'Neges am y gwall o $1:
+$2',
 'djvu_page_error' => 'Y dudalen DjVu allan o amrediad',
 'djvu_no_xml' => 'Ddim yn gallu mofyn XML ar gyfer ffeil DjVu',
 'thumbnail-temp-create' => 'Wedi methu gwneud ffeil mân-lun dros dro',

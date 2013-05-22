@@ -2883,6 +2883,8 @@ $1',
 'thumbnail-more' => 'Павялічыць',
 'filemissing' => 'Файл адсутны',
 'thumbnail_error' => 'Памылка стварэньня мініятуры: $1',
+'thumbnail_error_remote' => 'Паведамленьне пра памылку з {{GRAMMAR:родны|$1}}:
+$2',
 'djvu_page_error' => 'Старонка DjVu па-за прамежкам',
 'djvu_no_xml' => 'Немагчыма атрымаць XML для DjVu-файла',
 'thumbnail-temp-create' => 'Немагчыма стварыць часовы файл мініятуры',

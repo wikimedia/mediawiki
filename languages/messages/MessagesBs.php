@@ -3030,7 +3030,6 @@ Dopušta unos razloga u sažetak.',
 'monobook.css' => '/* CSS umetnut ovdje uticat će na korisnike koji koriste Monobook skin */',
 'modern.css' => '/* CSS umetnut ovdje uticat će na korisnike koji koriste Modern skin */',
 'print.css' => '/* CSS umetnut ovdje uticat će na izgled isprintane stranice */',
-'handheld.css' => '/* CSS umetnut ovdje uticat će na ručne sprave koji rade na skinu konfigurisanom u $wgHandheldStyle */',
 
 # Scripts
 'common.js' => '/* Bilo koja JavaScript će biti učitana za sve korisnike pri svakom učitavanju stranice. */',

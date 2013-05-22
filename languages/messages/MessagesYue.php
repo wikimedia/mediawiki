@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Anson2812
  * @author Horacewai2
  * @author Justincheng12345
  * @author Kaganer
@@ -1193,7 +1194,7 @@ $1",
 'resetprefs' => '清除未保存嘅更改',
 'restoreprefs' => '恢復全部預設設定',
 'prefs-editing' => '編輯中',
-'prefs-edit-boxsize' => '編輯框大細',
+'prefs-edit-boxsize' => '編寫框大細',
 'rows' => '列：',
 'columns' => '行：',
 'searchresultshead' => '搵嘢',
@@ -1236,7 +1237,7 @@ $1",
 'prefs-common-css-js' => '共有嘅CSS同埋JavaScript畀所有畫面用：',
 'prefs-reset-intro' => '你可以用呢版去重設你嘅喜好設定到網站預設值。呢個動作無得番轉頭。',
 'prefs-emailconfirm-label' => '電郵確認:',
-'prefs-textboxsize' => '編輯窗大細',
+'prefs-textboxsize' => '編寫框大細',
 'youremail' => '電郵:',
 'username' => '用戶名:',
 'uid' => '用戶 ID:',
@@ -2642,7 +2643,6 @@ $1',
 'modern.css' => '/* 響呢度放 CSS 碼去改用戶用嘅摩登畫面 */',
 'vector.css' => '/* 響呢度放 CSS 碼去改用戶用嘅域達畫面 */',
 'print.css' => '/* 響呢度放 CSS 碼去改打印輸出 */',
-'handheld.css' => '/* 響呢度放 CSS 碼去改響 $wgHandheldStyle 設定手提裝置畫面 */',
 
 # Scripts
 'common.js' => '/* 響每一次個頁面載入時，所有用戶都會載入呢度任何嘅JavaScript。 */',
