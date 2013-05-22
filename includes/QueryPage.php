@@ -47,7 +47,7 @@ $wgQueryPages = array(
 	array( 'MostimagesPage',                'Mostimages'                    ),
 	array( 'MostinterwikisPage',            'Mostinterwikis'                ),
 	array( 'MostlinkedCategoriesPage',      'Mostlinkedcategories'          ),
-	array( 'MostlinkedtemplatesPage',       'Mostlinkedtemplates'           ),
+	array( 'MostlinkedTemplatesPage',       'Mostlinkedtemplates'           ),
 	array( 'MostlinkedPage',                'Mostlinked'                    ),
 	array( 'MostrevisionsPage',             'Mostrevisions'                 ),
 	array( 'FewestrevisionsPage',           'Fewestrevisions'               ),
@@ -62,7 +62,7 @@ $wgQueryPages = array(
 	array( 'WantedFilesPage',               'Wantedfiles'                   ),
 	array( 'WantedPagesPage',               'Wantedpages'                   ),
 	array( 'WantedTemplatesPage',           'Wantedtemplates'               ),
-	array( 'UnwatchedPagesPage',            'Unwatchedpages'                ),
+	array( 'UnwatchedpagesPage',            'Unwatchedpages'                ),
 	array( 'UnusedtemplatesPage',           'Unusedtemplates'               ),
 	array( 'WithoutInterwikiPage',          'Withoutinterwiki'              ),
 );

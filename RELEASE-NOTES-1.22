@@ -170,6 +170,10 @@ changes to languages because of Bugzilla reports.
   to redirect through Special:Redirect.
 * Monobook: Removed the old conditional stylesheets for Opera 6, 7 and 9.
 * Support for XHTML 1.0 has been removed. MediaWiki now only outputs (X)HTML5.
+* MediaWiki autoloader attempts to find the requested class using a form
+  normalized lower case. That adds unnecessary overhead and is now being
+  deprecated. Make sure your class call match the class name registered in
+  includes/AutoLoader.php or $wgAutoloadClasses.
 
 == Compatibility ==
 

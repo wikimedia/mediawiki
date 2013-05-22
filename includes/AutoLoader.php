@@ -1126,12 +1126,23 @@ class AutoLoader {
 		} else {
 			# Try a different capitalisation
 			# The case can sometimes be wrong when unserializing PHP 4 objects
+			# https://bugs.php.net/bug.php?id=26762 (fixed in PHP v5.0.0 beta4).
+			#
+			# We want to eventually get rid of this and are thus emitting a
+			# deprecation warning.
+
 			$filename = false;
 			$lowerClass = strtolower( $className );
 
 			foreach ( $wgAutoloadLocalClasses as $class2 => $file2 ) {
 				if ( strtolower( $class2 ) == $lowerClass ) {
 					$filename = $file2;
+					if ( function_exists( 'wfDeprecated' ) ) {
+						# Fixed in PHP v5.0.0 beta4!
+						wfDeprecated( "Class '$className' case  mismatch registered '$class2'." .
+							" Please update your call.", '1.22' );
+					}
+
 				}
 			}
 
