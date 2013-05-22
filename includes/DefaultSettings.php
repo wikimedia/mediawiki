@@ -3497,8 +3497,9 @@ $wgNoFollowDomainExceptions = array();
 $wgAllowDisplayTitle = true;
 
 /**
- * For consistency, restrict DISPLAYTITLE to titles that normalize to the same
- * canonical DB key.
+ * For consistency, restrict DISPLAYTITLE to text that normalizes to the same
+ * canonical DB key. Also disallow some inline CSS rules like display: none;
+ * which can cause the text to be hidden or unselectable.
  */
 $wgRestrictDisplayTitle = true;
 
