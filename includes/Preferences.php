@@ -153,7 +153,7 @@ class Preferences {
 
 			foreach ( $columns as $column ) {
 				foreach ( $rows as $row ) {
-					if ( $user->getOption( "$prefix-$column-$row" ) ) {
+					if ( $user->getOption( "$prefix$column-$row" ) ) {
 						$val[] = "$column-$row";
 					}
 				}
@@ -1567,14 +1567,7 @@ class PreferencesForm extends HTMLForm {
 		foreach ( $this->mFlatFields as $fieldname => $field ) {
 			if ( $field instanceof HTMLNestedFilterable ) {
 				$info = $field->mParams;
-				if ( $field instanceof HTMLCheckMatrix ) {
-					// Echo's use of html check matrix expects the fieldname to be appended with -
-					// TODO: adjust echo to pass an explicit prefix containing the - and remove
-					//       this misdirection at that time.
-					$prefix = isset( $info['prefix'] ) ? $info['prefix'] : "$fieldname-";
-				} else {
-					$prefix = isset( $info['prefix'] ) ? $info['prefix'] : "$fieldname";
-				}
+				$prefix = isset( $info['prefix'] ) ? $info['prefix'] : $fieldname;
 				foreach ( $field->filterDataForSubmit( $data[$fieldname] ) as $key => $value ) {
 					$data["$prefix$key"] = $value;
 				}
