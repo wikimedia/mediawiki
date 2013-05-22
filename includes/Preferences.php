@@ -1572,10 +1572,6 @@ class PreferencesForm extends HTMLForm {
 			if ( $field instanceof HTMLNestedFilterable ) {
 				$info = $field->mParams;
 				$prefix = isset( $info['prefix'] ) ? $info['prefix'] : $fieldname;
-				// TODO: temporary hack can be removed after echo deployment with 'prefix' => 'echo-subscriptions-' as param
-				if ( $field instance HTMLCheckMatrix && $prefix === 'echo-subscriptions' ) {
-					$prefix = "$prefix-";
-				}
 				foreach ( $field->filterDataForSubmit( $data[$fieldname] ) as $key => $value ) {
 					$data["$prefix$key"] = $value;
 				}
