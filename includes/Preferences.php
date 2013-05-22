@@ -1571,9 +1571,9 @@ class PreferencesForm extends HTMLForm {
 		foreach ( $this->mFlatFields as $fieldname => $field ) {
 			if ( $field instanceof HTMLNestedFilterable ) {
 				$info = $field->mParams;
-				$prefix = isset( $info['prefix'] ) ? $info['prefix'] : $fieldname;
+				$prefix = isset( $info['prefix'] ) ? $info['prefix'] : "$fieldname-";
 				foreach ( $field->filterDataForSubmit( $data[$fieldname] ) as $key => $value ) {
-					$data["$prefix-$key"] = $value;
+					$data["$prefix$key"] = $value;
 				}
 				unset( $data[$fieldname] );
 			}
