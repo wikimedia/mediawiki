@@ -479,6 +479,7 @@ class LoadBalancer {
 
 		# Operation-based index
 		if ( $i == DB_SLAVE ) {
+			$this->mLastError = 'Unknown error'; // reset error string
 			$i = $this->getReaderIndex( false, $wiki );
 			# Couldn't find a working server in getReaderIndex()?
 			if ( $i === false ) {
