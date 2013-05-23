@@ -876,16 +876,19 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		}
 
 		# Sort data for display and make sure it's unique after we've added user data.
-		$wgRCLinkLimits[] = $options['limit'];
-		$wgRCLinkDays[] = $options['days'];
-		sort( $wgRCLinkLimits );
-		sort( $wgRCLinkDays );
-		$wgRCLinkLimits = array_unique( $wgRCLinkLimits );
-		$wgRCLinkDays = array_unique( $wgRCLinkDays );
+		$linkLimits = $wgRCLinkLimits;
+		$linkLimits[] = $options['limit'];
+		sort( $linkLimits );
+		$linkLimits = array_unique( $linkLimits );
+
+		$linkDays = $wgRCLinkDays;
+		$linkDays[] = $options['days'];
+		sort( $linkDays );
+		$linkDays = array_unique( $linkDays );
 
 		// limit links
 		$cl = array();
-		foreach ( $wgRCLinkLimits as $value ) {
+		foreach ( $linkLimits as $value ) {
 			$cl[] = $this->makeOptionsLink( $lang->formatNum( $value ),
 				array( 'limit' => $value ), $nondefaults, $value == $options['limit'] );
 		}
@@ -893,7 +896,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 
 		// day links, reset 'from' to none
 		$dl = array();
-		foreach ( $wgRCLinkDays as $value ) {
+		foreach ( $linkDays as $value ) {
 			$dl[] = $this->makeOptionsLink( $lang->formatNum( $value ),
 				array( 'days' => $value, 'from' => '' ), $nondefaults, $value == $options['days'] );
 		}
