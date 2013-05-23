@@ -34,6 +34,8 @@ class UploadFromUrl extends UploadBase {
 
 	protected $mTempPath, $mTmpHandle;
 
+	protected static $allowedUrls = array();
+
 	/**
 	 * Checks if the user is allowed to use the upload-by-URL feature. If the
 	 * user is not allowed, return the name of the user right as a string. If
@@ -102,6 +104,21 @@ class UploadFromUrl extends UploadBase {
 			*/
 		}
 		return $valid;
+	}
+
+	/**
+	 * Checks whether the URL is not allowed.
+	 *
+	 * @param $url string
+	 * @return bool
+	 */
+	public static function isAllowedUrl( $url ) {
+		if ( !isset( self::$allowedUrls[$url] ) ) {
+			$allowed = true;
+			wfRunHooks( 'IsUploadAllowedFromUrl', array( $url, &$allowed ) );
+			self::$allowedUrls[$url] = $allowed;
+		}
+		return self::$allowedUrls[$url];
 	}
 
 	/**
@@ -174,6 +191,9 @@ class UploadFromUrl extends UploadBase {
 
 		if ( !self::isAllowedHost( $this->mUrl ) ) {
 			return Status::newFatal( 'upload-copy-upload-invalid-domain' );
+		}
+		if ( !self::isAllowedUrl( $this->mUrl ) ) {
+			return Status::newFatal( 'upload-copy-upload-invalid-url' );
 		}
 		if ( !$this->mAsync ) {
 			return $this->reallyFetchFile();
