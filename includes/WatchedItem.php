@@ -89,6 +89,12 @@ class WatchedItem {
 		}
 		$this->loaded = true;
 
+		// Only loggedin user can have a watchlist
+		if ( $this->mUser->isAnon() ) {
+			$this->watched = false;
+			return;
+		}
+
 		# Pages and their talk pages are considered equivalent for watching;
 		# remember that talk namespaces are numbered as page namespace+1.
 
@@ -135,6 +141,11 @@ class WatchedItem {
 	 *        page is not watched or the notification timestamp is already NULL.
 	 */
 	public function resetNotificationTimestamp( $force = '' ) {
+		// Only loggedin user can have a watchlist
+		if ( wfReadOnly() || $this->mUser->isAnon() ) {
+			return;
+		}
+
 		if ( $force != 'force' ) {
 			$this->load();
 			if ( !$this->watched || $this->timestamp === null ) {
@@ -153,10 +164,16 @@ class WatchedItem {
 	/**
 	 * Given a title and user (assumes the object is setup), add the watch to the
 	 * database.
-	 * @return bool (always true)
+	 * @return bool
 	 */
 	public function addWatch() {
 		wfProfileIn( __METHOD__ );
+
+		// Only loggedin user can have a watchlist
+		if ( wfReadOnly() || $this->mUser->isAnon() ) {
+			wfProfileOut( __METHOD__ );
+			return false;
+		}
 
 		// Use INSERT IGNORE to avoid overwriting the notification timestamp
 		// if there's already an entry for this page
@@ -191,6 +208,12 @@ class WatchedItem {
 	 */
 	public function removeWatch() {
 		wfProfileIn( __METHOD__ );
+
+		// Only loggedin user can have a watchlist
+		if ( wfReadOnly() || $this->mUser->isAnon() ) {
+			wfProfileOut( __METHOD__ );
+			return false;
+		}
 
 		$success = false;
 		$dbw = wfGetDB( DB_MASTER );
