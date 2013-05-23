@@ -1363,6 +1363,10 @@ $article: article (object) being checked
 $ip: IP being check
 $result: Change this value to override the result of wfIsTrustedProxy()
 
+'IsUploadAllowedFromUrl': Override the result of UploadFromUrl::isAllowedUrl()
+$url: URL used to upload from
+&$allowed: Boolean indicating if uploading is allowed for given URL
+
 'isValidEmailAddr': Override the result of User::isValidEmailAddr(), for
 instance to return false if the domain name doesn't match your organization.
 $addr: The e-mail address entered by the user
