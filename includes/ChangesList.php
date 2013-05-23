@@ -246,10 +246,17 @@ class ChangesList extends ContextSource {
 			$formattedSizeClass = 'mw-plusminus-neg';
 		}
 
+		if ( $szdiff > 0 ) {
+			$formattedCharacterChange = $context->msg( 'rc-characters-more' )->numParams( $szdiff )->text();
+		} else {
+			
+			$formattedCharacterChange = $context->msg( 'rc-characters-less' )->numParams( -$szdiff )->text();
+		}
+
 		$formattedTotalSize = $context->msg( 'rc-change-size-new' )->numParams( $new )->text();
 
 		return Html::element( $tag,
-			array( 'dir' => 'ltr', 'class' => $formattedSizeClass, 'title' => $formattedTotalSize ),
+			array( 'dir' => 'ltr', 'class' => $formattedSizeClass, 'title' => $formattedTotalSize . "\n" . $formattedCharacterChange),
 			$context->msg( 'parentheses', $formattedSize )->plain() ) . $lang->getDirMark();
 	}
 

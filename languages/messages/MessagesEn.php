@@ -2187,6 +2187,8 @@ Your email address is not revealed when other users contact you.',
 'rc_categories_any'                 => 'Any',
 'rc-change-size'                    => '$1', # only translate this message to other languages if you have to change it
 'rc-change-size-new'                => '$1 {{PLURAL:$1|byte|bytes}} after change',
+'rc-characters-more'                => '$1 {{PLURAL:$1|character|characters}} more',
+'rc-characters-less'                => '$1 {{PLURAL:$1|character|characters}} less',
 'newsectionsummary'                 => '/* $1 */ new section',
 'rc-enhanced-expand'                => 'Show details (requires JavaScript)',
 'rc-enhanced-hide'                  => 'Hide details',
