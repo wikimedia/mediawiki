@@ -31,8 +31,10 @@
  * @param string $functionname name of the function we will profile
  */
 function wfProfileIn( $functionname ) {
-	global $wgProfiler;
-	if ( $wgProfiler instanceof Profiler || isset( $wgProfiler['class'] ) ) {
+	if ( Profiler::$__instance === null ) { // use this directly to reduce overhead
+		Profiler::instance();
+	}
+	if ( Profiler::$__instance && !( Profiler::$__instance instanceof ProfilerStub ) ) {
 		Profiler::instance()->profileIn( $functionname );
 	}
 }
@@ -42,8 +44,10 @@ function wfProfileIn( $functionname ) {
  * @param string $functionname name of the function we have profiled
  */
 function wfProfileOut( $functionname = 'missing' ) {
-	global $wgProfiler;
-	if ( $wgProfiler instanceof Profiler || isset( $wgProfiler['class'] ) ) {
+	if ( Profiler::$__instance === null ) { // use this directly to reduce overhead
+		Profiler::instance();
+	}
+	if ( Profiler::$__instance && !( Profiler::$__instance instanceof ProfilerStub ) ) {
 		Profiler::instance()->profileOut( $functionname );
 	}
 }
@@ -115,12 +119,10 @@ class Profiler {
 	 * @return Profiler
 	 */
 	public static function instance() {
-		if ( is_null( self::$__instance ) ) {
+		if ( self::$__instance === null ) {
 			global $wgProfiler;
 			if ( is_array( $wgProfiler ) ) {
 				if ( !isset( $wgProfiler['class'] ) ) {
-					wfDebug( __METHOD__ . " called without \$wgProfiler['class']"
-						. " set, falling back to ProfilerStub for safety\n" );
 					$class = 'ProfilerStub';
 				} else {
 					$class = $wgProfiler['class'];
@@ -129,8 +131,6 @@ class Profiler {
 			} elseif ( $wgProfiler instanceof Profiler ) {
 				self::$__instance = $wgProfiler; // back-compat
 			} else {
-				wfDebug( __METHOD__ . ' called with bogus $wgProfiler setting,'
-						. " falling back to ProfilerStub for safety\n" );
 				self::$__instance = new ProfilerStub( $wgProfiler );
 			}
 		}

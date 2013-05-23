@@ -21,9 +21,7 @@
  * @ingroup Maintenance
  */
 
-$wgProfiler = array( 'class' => 'ProfilerSimpleText' );
 error_reporting( E_ALL );
-
 require_once( __DIR__ . '/Maintenance.php' );
 
 /**
@@ -44,6 +42,8 @@ class TestFileOpPerformance extends Maintenance {
 	}
 
 	public function execute() {
+		Profiler::setInstance( new ProfilerSimpleText( array() ) ); // clear
+
 		$backend = FileBackendGroup::singleton()->get( $this->getOption( 'b1' ) );
 		$this->doPerfTest( $backend );
 
@@ -52,10 +52,8 @@ class TestFileOpPerformance extends Maintenance {
 			$this->doPerfTest( $backend );
 		}
 
-		$profiler = Profiler::instance();
-		$profiler->setTemplated( true );
-
-		//NOTE: as of MW1.21, $profiler->logData() is called implicitly by doMaintenance.php.
+		Profiler::instance()->setTemplated( true );
+		// NOTE: as of MW1.21, $profiler->logData() is called implicitly by doMaintenance.php.
 	}
 
 	protected function doPerfTest( FileBackend $backend ) {
