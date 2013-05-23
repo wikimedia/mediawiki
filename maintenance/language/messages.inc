@@ -2085,6 +2085,7 @@ $wgMessageStructure = array(
 		'delete-edit-reasonlist',
 		'delete-toobig',
 		'delete-warning-toobig',
+		'deleting-backlinks-warning',
 	),
 	'rollback' => array(
 		'rollback',
