@@ -105,6 +105,20 @@ class UploadFromUrl extends UploadBase {
 	}
 
 	/**
+	 * Checks whether the URL is not allowed.
+	 * Note: This being a static method can't cache the return value. The Api calls this twice
+	 * which might make the whole process slow.
+	 *
+	 * @param $url string
+	 * @return bool
+	 */
+	public static function isAllowedUrl( $url ) {
+		$allowed = true;
+		wfRunHooks( 'IsUploadAllowedFromUrl', array( $url, &$allowed ) );
+		return $allowed;
+	}
+
+	/**
 	 * Entry point for API upload
 	 *
 	 * @param $name string
@@ -174,6 +188,9 @@ class UploadFromUrl extends UploadBase {
 
 		if ( !self::isAllowedHost( $this->mUrl ) ) {
 			return Status::newFatal( 'upload-copy-upload-invalid-domain' );
+		}
+		if ( !self::isAllowedUrl( $this->mUrl ) ) {
+			return Status::newFatal( 'upload-copy-upload-invalid-url' );
 		}
 		if ( !$this->mAsync ) {
 			return $this->reallyFetchFile();
