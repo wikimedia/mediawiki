@@ -105,6 +105,18 @@ class UploadFromUrl extends UploadBase {
 	}
 
 	/**
+	 * Checks whether the URL is not allowed.
+	 *
+	 * @param $url string
+	 * @return bool
+	 */
+	public static function isAllowedUrl( $url ) {
+		$allowed = true;
+		wfRunHooks( 'UploadFromUrl', array( $url, $allowed ) );
+		return $allowed;
+	}
+
+	/**
 	 * Entry point for API upload
 	 *
 	 * @param $name string
