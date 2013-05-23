@@ -1371,6 +1371,7 @@ abstract class ApiBase extends ContextSource {
 		'uploaddisabled' => array( 'code' => 'uploaddisabled', 'info' => 'Uploads are not enabled. Make sure $wgEnableUploads is set to true in LocalSettings.php and the PHP ini setting file_uploads is true' ),
 		'copyuploaddisabled' => array( 'code' => 'copyuploaddisabled', 'info' => 'Uploads by URL is not enabled. Make sure $wgAllowCopyUploads is set to true in LocalSettings.php.' ),
 		'copyuploadbaddomain' => array( 'code' => 'copyuploadbaddomain', 'info' => 'Uploads by URL are not allowed from this domain.' ),
+		'copyuploadbadurl' => array( 'code' => 'copyuploadbadurl', 'info' => 'Upload not allowed from this URL.' ),
 
 		'filename-tooshort' => array( 'code' => 'filename-tooshort', 'info' => 'The filename is too short' ),
 		'filename-toolong' => array( 'code' => 'filename-toolong', 'info' => 'The filename is too long' ),
