@@ -15,6 +15,7 @@
 			// This is a whitelist based on, but simpler than, Sanitizer.php.
 			// Self-closing tags are not currently supported.
 			allowedHtmlElements : [
+				'a',
 				'b',
 				'i'
 			],
@@ -36,7 +37,14 @@
 			// Attributes allowed for specific elements.
 			// Key is element name in lower case
 			// Value is array of allowed attributes for that element
-			allowedHtmlAttributesByElement : {},
+			allowedHtmlAttributesByElement : {
+				a : [
+					'href',
+					'target',
+					'name',
+					'rel'
+				]
+			},
 			messages : mw.messages,
 			language : mw.language,
 

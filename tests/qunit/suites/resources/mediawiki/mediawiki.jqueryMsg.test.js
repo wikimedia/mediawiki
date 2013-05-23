@@ -567,7 +567,7 @@ QUnit.test( 'formatnum', formatnumTests.length, function ( assert ) {
 } );
 
 // HTML in wikitext
-QUnit.test( 'HTML', 26, function ( assert ) {
+QUnit.test( 'HTML', 27, function ( assert ) {
 	mw.messages.set( 'jquerymsg-italics-msg', '<i>Very</i> important' );
 
 	assertBothModes( assert, ['jquerymsg-italics-msg'], mw.messages.get( 'jquerymsg-italics-msg' ), 'Simple italics unchanged' );
@@ -708,6 +708,13 @@ QUnit.test( 'HTML', 26, function ( assert ) {
 		formatParse( 'jquerymsg-self-closing-tag' ),
 		'Foo&lt;tag/&gt;bar',
 		'Self-closing tags don\'t cause a parse error'
+	);
+
+	mw.messages.set( 'jquerymsg-anchor-tag', 'linking to <a href="http://example.com" target="_new" name="bar" rel="stuff">example</a>' );
+	assert.htmlEqual(
+		formatParse( 'jquerymsg-anchor-tag' ),
+		mw.messages.get( 'jquerymsg-anchor-tag' ),
+		'Anchor tags are parsed correctly'
 	);
 } );
 
