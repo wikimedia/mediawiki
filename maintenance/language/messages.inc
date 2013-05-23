@@ -658,6 +658,7 @@ $wgMessageStructure = array(
 		'blockednoreason',
 		'whitelistedittext',
 		'confirmedittext',
+		'deleting-backlinks-warning',
 		'nosuchsectiontitle',
 		'nosuchsectiontext',
 		'loginreqtitle',
