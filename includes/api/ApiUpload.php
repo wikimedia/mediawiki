@@ -402,6 +402,10 @@ class ApiUpload extends ApiBase {
 				$this->dieUsageMsg( 'copyuploadbaddomain' );
 			}
 
+			if ( !UploadFromUrl::isAllowedUrl( $this->mParams['url'] ) ) {
+				$this->dieUsageMsg( 'copyuploadbadurl' );
+			}
+
 			$async = false;
 			if ( $this->mParams['asyncdownload'] ) {
 				$this->checkAsyncDownloadEnabled();
