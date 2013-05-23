@@ -226,20 +226,24 @@ class SiteStats {
 	 * @return bool
 	 */
 	private static function isSane( $row ) {
-		if (
-			$row === false
+		if ( $row === false
 			|| $row->ss_total_pages < $row->ss_good_articles
 			|| $row->ss_total_edits < $row->ss_total_pages
+			|| $row->ss_users < $row->ss_active_users
 		) {
 			return false;
 		}
 		// Now check for underflow/overflow
-		foreach ( array( 'total_views', 'total_edits', 'good_articles',
-		'total_pages', 'users', 'images' ) as $member ) {
-			if (
-				$row->{"ss_$member"} > 2000000000
-				|| $row->{"ss_$member"} < 0
-			) {
+		foreach ( array(
+			'ss_total_views',
+			'ss_total_edits',
+			'ss_good_articles',
+			'ss_total_pages',
+			'ss_users',
+			'ss_active_users',
+			'ss_images',
+		) as $member ) {
+			if ( $row->$member > 2000000000 || $row->$member < 0 ) {
 				return false;
 			}
 		}
