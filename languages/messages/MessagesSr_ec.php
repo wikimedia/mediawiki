@@ -2736,7 +2736,7 @@ $1',
 'blanknamespace' => '(Главно)',
 
 # Contributions
-'contributions' => 'Кориснички доприноси',
+'contributions' => '{{GENDER:$1|Кориснички}} доприноси',
 'contributions-title' => 'Доприноси {{GENDER:$1|корисника|кориснице|корисника}} $1',
 'mycontris' => 'Доприноси',
 'contribsub2' => 'За $1 ($2)',

@@ -3182,7 +3182,7 @@ Bes esu joot, un versök et noch ens.',
 'tooltip-rollback' => 'Nemmp alle Änderunge zeröck, di dä Läzde jemaat hät, dä aan dä Sigg övverhoup jet jedonn hät. Deit nimmieh frore un määd ene automattesche Endraach en „{{int:Summary}}“',
 'tooltip-undo' => '„{{UCfirst:{{int:editundo}}}}“ määt der förije Zostand
 fun dä Sigg op, zom Beärbeide un widder Afspeichere.
-Esu kam_mer noch en Aanmerkung en „{{int:summary}}“ maache.',
+Esu kam_mer noch en Aanmärkong en „{{int:summary}}“ maache.',
 'tooltip-preferences-save' => 'Enstellunge faßhallde',
 'tooltip-summary' => 'Jif en koote Zesammefassung en',
 

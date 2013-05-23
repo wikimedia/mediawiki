@@ -423,7 +423,7 @@ $messages = array(
 'mediawikipage' => 'Хьагайта хааман агlо',
 'templatepage' => 'Хьажа куцкепа агlоне',
 'viewhelppage' => 'Схьаэца нисвохаам',
-'categorypage' => 'Хьажа кадегарши агlоне',
+'categorypage' => 'Хьажа категореши агӀоне',
 'viewtalkpage' => 'Хьажа дийцаре',
 'otherlanguages' => 'Кхечу маттахь дерш',
 'redirectedfrom' => '(Дlасахьажийна кху $1)',
@@ -670,7 +670,7 @@ $1',
 'creating' => 'АгӀо кхоллар «$1»',
 'editingsection' => 'Тадар $1 (даакъа)',
 'editingcomment' => 'Тадар $1 (керла даакъа)',
-'editconflict' => 'Редаккхарна дойнаш: $1',
+'editconflict' => 'Тадарна дойнаш: $1',
 'yourtext' => 'Хьан йоза',
 'yourdiff' => 'Башхаллаш',
 'copyrightwarning' => "Тергаме хьажа, массо яззаман чутухуш долу йозан хийцам хьажарехь бу, арахоьцушсанна оцу бакъойалар хьоляхь $2 (хьаж. $1).
@@ -707,7 +707,7 @@ $1',
 'content-model-css' => 'CSS',
 
 # Parser/template warnings
-'parser-template-loop-warning' => 'Карийна куцкепаш юкъахь хилла шад: [[$1]]',
+'parser-template-loop-warning' => 'Карийна кепаш юкъахь хилла шад: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Дозанал хьалаваьлла кlоргенца йух йуха дина кеп ($1)',
 
 # "Undo" feature
@@ -800,7 +800,7 @@ $1',
 'searchall' => 'массо',
 'showingresults' => 'Лахахьа {{PLURAL:$1|гойта|гойту|гойту}} <strong>$1</strong> {{PLURAL:$1|хилам|хиламаш|хиламаш}}, дlаболало кху № <strong>$2</strong>.',
 'showingresultsheader' => "{{PLURAL:$5|Хилам '''$1''' кху '''$3'''|Хиламаш '''$1 — $2''' кху '''$3'''}} оцун '''$4'''",
-'nonefound' => "'''Билгалдаккхар.''' Хlумма цадеш lад йитича массо цlеран энахь цалоху. Лела йе тlехуттург ''all:'', лахийта массо цlеран энахь (юкъадалош декъашхойн дийцарш а куцкепаш а кхин дерг.), йа хlотта йе оьшуш йолу цlеран эна.",
+'nonefound' => "'''Билгалдаккхар.''' ХӀумма цадеш Ӏад йитича массо цӀеран энахь цалоху. Лела йе тӀехуттург ''all:'', лахийта массо цӀеран энахь (юкъадалош декъашхойн дийцарш а кепаш а кхин дерг.), йа хӀотта йе оьшуш йолу цӀеран эна.",
 'search-nonefound' => 'Дехарар терра цхьа хlума цакарийна.',
 'powersearch' => 'Шуьйра лахар',
 'powersearch-legend' => 'Шуьро лахар',
@@ -1038,7 +1038,7 @@ PICT # тайп тайпан
 'listredirects' => 'ДIасахьажоран могIам',
 
 # Unused templates
-'unusedtemplates' => 'Лелош доцу куцкепаш',
+'unusedtemplates' => 'Лелош доцу кепаш',
 
 # Random page
 'randompage' => 'Цахуаш нисйелла агlо',
@@ -1090,10 +1090,10 @@ PICT # тайп тайпан
 'wantedcategories' => 'Оьшуш йолу категореш',
 'wantedpages' => 'Оьшуш йолу агIонаш',
 'wantedfiles' => 'Оьшуш йолу хIумнаш',
-'wantedtemplates' => 'Оьшуш долу куцкепаш',
+'wantedtemplates' => 'Оьшуш долу кепаш',
 'mostlinked' => 'Дуккха хьажоригаш тIе тоьхна йолу агIонаш',
 'mostlinkedcategories' => 'Дуккха тӀе хьажораш йолу категореш',
-'mostlinkedtemplates' => 'Массарел дуккха а леладо куцкепаш',
+'mostlinkedtemplates' => 'Массарел дуккха а леладо кепаш',
 'mostcategories' => 'Дуккха категореш тӀе тоьхна йолу агӀонаш',
 'mostimages' => 'Массарел дуккха лелайо файлаш',
 'mostrevisions' => 'Сих сиха нисйина йолу агIонаш',
@@ -1458,7 +1458,7 @@ PICT # тайп тайпан
 Кхечу меттера яззамаш чуйаха, чуязйе цlе редокхчу метте, цlхьа могlан цlе могlаршкахь, йуха харжа лаьи шуна Кхечу меттер чуйаха массо яззамашна истори хийцамбарш йа тlяхьаралера яззамна башхо.
 
 Шуьга кхи даландерг, лелаеш йолу меттиг къастаман машан хьажориг кхечу меттер чудаха тlяхьарлера башхон яззамаш. Массала оцу яззамна [[{{MediaWiki:Mainpage}}]] хlара хира йу хьажориг [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]].',
-'export-templates' => 'Латадé куцкепаш',
+'export-templates' => 'Латадé кепаш',
 
 # Namespace 8 related
 'allmessages' => 'Гlирса хаамаш',
@@ -1480,7 +1480,7 @@ PICT # тайп тайпан
 # Special:Import
 'import' => 'Кхин яззам агlонаш чуяхар',
 'import-interwiki-source' => 'Вики-хьост/агlо:',
-'import-interwiki-templates' => 'Лата де массо куцкепаш',
+'import-interwiki-templates' => 'Лата де массо кепаш',
 'import-upload-filename' => 'Файлан цӀе:',
 
 # Tooltip help for the actions
@@ -1531,7 +1531,7 @@ PICT # тайп тайпан
 'tooltip-ca-nstab-image' => 'Хlуман агlо',
 'tooltip-ca-nstab-mediawiki' => 'Хааман агlо MediaWiki',
 'tooltip-ca-nstab-template' => 'Куцкепа агlо',
-'tooltip-ca-nstab-category' => 'Кадегарши агlо',
+'tooltip-ca-nstab-category' => 'Категореши агӀо',
 'tooltip-minoredit' => 'Къастам бé хlокху хийцамна кlеззиг боуш санна',
 'tooltip-save' => 'Хьан хийцамаш lалашбой',
 'tooltip-preview' => 'Дехар до, агlо lалаш йарал хьалха хьажа муха йу яз!',

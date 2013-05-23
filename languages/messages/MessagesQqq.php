@@ -4267,7 +4267,7 @@ See also:
 * {{msg-mw|Special-categories-sort-count}}',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'The message is shown as a link on user contributions page (like [[Special:Contributions/User]]) to the corresponding [[Special:DeletedContributions]] page.
+'deletedcontributions' => 'The message is shown as a link on [[Special:SpecialPages]] to [[Special:DeletedContributions]].
 
 {{Identical|Deleted user contributions}}',
 'deletedcontributions-title' => 'Title of [[Special:DeletedContributions]] (extension), a special page with a list of edits to pages which were deleted. Only viewable by sysops.

@@ -174,7 +174,7 @@ $messages = array(
 'newwindow' => '(as deurb ant na fnestra neuva)',
 'cancel' => 'Anulé',
 'moredotdotdot' => 'Ëd pì...',
-'morenotlisted' => "A-i é ëdcò d'àutre nen ant la lista...",
+'morenotlisted' => "A-i na j'é ëdcò d'àutri nen ant la lista...",
 'mypage' => 'Pàgina',
 'mytalk' => 'Ciaciarade',
 'anontalk' => "Ciaciarade për st'adrëssa IP-sì",
@@ -182,7 +182,7 @@ $messages = array(
 'and' => '&#32;e',
 
 # Cologne Blue skin
-'qbfind' => 'Treuva',
+'qbfind' => 'Trové',
 'qbbrowse' => 'Sfeuja',
 'qbedit' => 'Modìfica',
 'qbpageoptions' => 'Opsion dla pàgina',

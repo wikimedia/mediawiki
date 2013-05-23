@@ -167,6 +167,18 @@ $messages = array(
 'oct' => 'och',
 'nov' => 'pay',
 'dec' => 'avi',
+'january-date' => '$1 de xineru',
+'february-date' => '$1 de febreru',
+'march-date' => '$1 de marzu',
+'april-date' => "$1 d'abril",
+'may-date' => '$1 de mayu',
+'june-date' => '$1 de xunu',
+'july-date' => '$1 de xunetu',
+'august-date' => "$1 d'agostu",
+'september-date' => '$1 de setiembre',
+'october-date' => "$1 d'ochobre",
+'november-date' => '$1 de payares',
+'december-date' => "$1 d'avientu",
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Categoría|Categoríes}}',

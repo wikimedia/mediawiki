@@ -462,6 +462,18 @@ $messages = array(
 'oct' => "אוק'",
 'nov' => "נוב'",
 'dec' => "דצמ'",
+'january-date' => '$1 בינואר',
+'february-date' => '$1 בפברואר',
+'march-date' => '$1 במרץ',
+'april-date' => '$1 באפריל',
+'may-date' => '$1 במאי',
+'june-date' => '$1 ביוני',
+'july-date' => '$1 ביולי',
+'august-date' => '$1 באוגוסט',
+'september-date' => '$1 בספטמבר',
+'october-date' => '$1 באוקטובר',
+'november-date' => '$1 בנובמבר',
+'december-date' => '$1 בדצמבר',
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|קטגוריה|קטגוריות}}',

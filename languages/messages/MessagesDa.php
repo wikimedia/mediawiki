@@ -1402,8 +1402,8 @@ Hvis du vælger at oplyse dit navn, vil det blive brugt til at tilskrive dig dit
 'saveusergroups' => 'Gem brugergrupper',
 'userrights-groupsmember' => 'Medlem af:',
 'userrights-groupsmember-auto' => 'Implicit medlem af:',
-'userrights-groups-help' => 'Du kan ændre denne brugers gruppermedlemsskaber:
-* Et markeret afkrydsningsfelt betyder at brugeren er medlen af den pågældende gruppe..
+'userrights-groups-help' => 'Du kan ændre denne brugers gruppemedlemsskaber:
+* Et markeret afkrydsningsfelt betyder at brugeren er medlen af den pågældende gruppe.
 * Et umarkeret felt betyder at brugeren ikke er medlem af gruppen.
 * En * betyder at du ikke kan fravælge gruppen, når den først er tilføjet og omvendt.',
 'userrights-reason' => 'Årsag:',
@@ -2125,7 +2125,7 @@ Se også [[Special:WantedCategories|ønskede kategorier]].',
 'special-categories-sort-abc' => 'sorter alfabetisk',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'slettede brugerbidrag',
+'deletedcontributions' => 'Slettede brugerbidrag',
 'deletedcontributions-title' => 'Slettede brugerbidrag',
 'sp-deletedcontributions-contribs' => 'bidrag',
 

@@ -224,6 +224,18 @@ $messages = array(
 'oct' => 'Hyd',
 'nov' => 'Tach',
 'dec' => 'Rhag',
+'january-date' => '$1 Ionawr',
+'february-date' => '$1 Chwefror',
+'march-date' => '$1 Mawrth',
+'april-date' => '$1 Ebrill',
+'may-date' => '$1 Mai',
+'june-date' => '$1 Mehefin',
+'july-date' => '$1 Gorffennaf',
+'august-date' => '$1 Awst',
+'september-date' => '$1 Medi',
+'october-date' => '$1 Hydref',
+'november-date' => '$1 Tachwedd',
+'december-date' => '$1 Rhagfyr',
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Categori|Categori|Categorïau|Categorïau|Categorïau|Categorïau}}',

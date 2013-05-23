@@ -464,6 +464,18 @@ $messages = array(
 'oct' => 'жов',
 'nov' => 'лис',
 'dec' => 'груд',
+'january-date' => '$1 січня',
+'february-date' => '$1 лютого',
+'march-date' => '$1 березня',
+'april-date' => '$1 квітня',
+'may-date' => '$1 травня',
+'june-date' => '$1 червня',
+'july-date' => '$1 липня',
+'august-date' => '$1 серпня',
+'september-date' => '$1 вересня',
+'october-date' => '$1 жовтня',
+'november-date' => '$1 листопада',
+'december-date' => '$1 грудня',
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Категорія|Категорії}}',

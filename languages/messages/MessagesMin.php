@@ -1317,7 +1317,7 @@ Alamaik surel Sanak indakkan tau dek urang nan manghubuangi sanak tu.',
 'recentchanges' => 'Parubahan baru',
 'recentchanges-legend' => 'Piliahan parubahan baru',
 'recentchanges-summary' => 'Caliak parubahan tabaru pado wiki di laman ko.',
-'recentchanges-feed-description' => 'Temukan parubahan baru dalam umpan wiki ko',
+'recentchanges-feed-description' => 'Tamuan parubahan baru dalam umpan wiki ko',
 'recentchanges-label-newpage' => 'Suntiangan ko mambuek laman baru',
 'recentchanges-label-minor' => 'Iko suntiangan ketek',
 'recentchanges-label-bot' => 'Suntiang ko dibuek dek bot',
@@ -1845,6 +1845,10 @@ Awak dapek maubah tingkek perlindungannyo, walaupun indak pangaruah pado perlind
 'undeletelink' => 'caliak/baliakan',
 'undeleteviewlink' => 'caliak',
 'undeletedrevisions' => '{{PLURAL:$1|$1 revisi}} alah dikambalian',
+'undelete-header' => 'Caliak [[Special:Log/delete|log pangapuihan]] untuak daftar laman nan baru dihapuih.',
+'undelete-search-title' => 'Cari laman nan dihapuih',
+'undelete-search-box' => 'Cari laman nan dihapuih',
+'undelete-search-prefix' => 'Tunjuakan laman mulai dari:',
 'undelete-cleanup-error' => 'Kasalahan sawaktu mangapuih arsip berkas "$1" nan indak digunoan.',
 
 # Namespace form on various pages
@@ -2065,6 +2069,15 @@ Silakan piliah namo lain.',
 
 # Export
 'export' => 'Ekspor laman',
+'exporttext' => 'Sanak dapek mangekspor teks jo sajarah panyuntiangan suatu laman tatantu atau satu set laman dalam bantuak XML tatantu.
+Hasil ekspor ko salanjuiknyo dapek diimpor ka wiki lainnyo nan manggunoan parangkaik lunak MediaWiki, jo manggunoan fasilitas [[Special:Import|laman impor]].
+
+Untuak mangekspor laman, masuakan judul dalam kotak teks di bawah ko, satu judul pabarih, dan piliah apo Sanak nio mangekspor sacaro langkok jo versi tadaulu, atau hanyo versi tabaru jo catatan panyuntiangan tarakhia.
+
+Jikok Sanak hanyo nio mangimpor versi tabaru, Sanak dapek malakuannyo labiah capek jo manggunoan pautan khusuih, sabagai contoh: [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] untuak mangekspor laman "[[{{MediaWiki:Mainpage}}]]".',
+'export-addcattext' => 'Tambah laman dari kategori:',
+'export-addcat' => 'Tambah',
+'export-addnstext' => 'Tambah laman dari ruangnamo:',
 
 # Namespace 8 related
 'allmessages' => 'Pasan sistem',
@@ -2080,6 +2093,7 @@ Silakan piliah namo lain.',
 # Special:Import
 'import' => 'Impor laman',
 'importstart' => 'Mangimpor laman...',
+'importnosources' => 'Indak ado sumber impor transwiki nan lah dibuek dan pamuatan riwayaik sacaro langsuang alah dinon-aktipan.',
 
 # Import log
 'importlogpagetext' => 'Administrasi laman impor jo riwayaik panyuntiangannyo dari wiki lain.',
