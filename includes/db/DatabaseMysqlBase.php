@@ -30,6 +30,8 @@
  * @see Database
  */
 abstract class DatabaseMysqlBase extends DatabaseBase {
+	/** @var MysqlMasterPos */
+	protected $lastKnownSlavePos;
 
 	/**
 	 * @return string
@@ -578,23 +580,24 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 
 	/**
 	 * Wait for the slave to catch up to a given master position.
+	 * @TODO: return values for this and base class are rubbish
 	 *
 	 * @param $pos DBMasterPos object
 	 * @param $timeout Integer: the maximum number of seconds to wait for synchronisation
 	 * @return bool|string
 	 */
 	function masterPosWait( DBMasterPos $pos, $timeout ) {
-		$fname = __METHOD__;
-		wfProfileIn( $fname );
-
-		# Commit any open transactions
-		if ( $this->mTrxLevel ) {
-			$this->commit( $fname );
+		if ( $this->lastKnownSlavePos && $this->lastKnownSlavePos->hasReached( $pos ) ) {
+			return '0'; // http://dev.mysql.com/doc/refman/5.0/en/miscellaneous-functions.html
 		}
+
+		wfProfileIn( __METHOD__ );
+		# Commit any open transactions
+		$this->commit( __METHOD__, 'flush' );
 
 		if ( !is_null( $this->mFakeSlaveLag ) ) {
 			$status = parent::masterPosWait( $pos, $timeout );
-			wfProfileOut( $fname );
+			wfProfileOut( __METHOD__ );
 			return $status;
 		}
 
@@ -604,12 +607,16 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 		$sql = "SELECT MASTER_POS_WAIT($encFile, $encPos, $timeout)";
 		$res = $this->doQuery( $sql );
 
+		$status = false;
 		if ( $res && $row = $this->fetchRow( $res ) ) {
-			wfProfileOut( $fname );
-			return $row[0];
+			$status = $row[0]; // can be NULL, -1, or 0+ per the MySQL manual
+			if ( ctype_digit( $status ) ) { // success
+				$this->lastKnownSlavePos = $pos;
+			}
 		}
-		wfProfileOut( $fname );
-		return false;
+
+		wfProfileOut( __METHOD__ );
+		return $status;
 	}
 
 	/**
@@ -1068,6 +1075,24 @@ class MySQLMasterPos implements DBMasterPos {
 	}
 
 	function __toString() {
+		// e.g db1034-bin.000976/843431247
 		return "{$this->file}/{$this->pos}";
+	}
+
+	/**
+	 * @return array|false (int, int)
+	 */
+	protected function getCoordinates() {
+		$m = array();
+		if ( preg_match( '!\.(\d+)/(\d+)$!', (string)$this, $m ) ) {
+			return array( (int)$m[1], (int)$m[2] );
+		}
+		return false;
+	}
+
+	function hasReached( MySQLMasterPos $pos ) {
+		$thisPos = $this->getCoordinates();
+		$thatPos = $pos->getCoordinates();
+		return ( $thisPos && $thatPos && $thisPos >= $thatPos );
 	}
 }
