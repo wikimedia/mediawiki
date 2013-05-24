@@ -32,7 +32,7 @@ abstract class MediaTransformOutput {
 	 */
 	var $file;
 
-	var $width, $height, $url, $page, $path;
+	var $width, $height, $url, $page, $path, $lang;
 
 	/**
 	 * @var array Associative array mapping optional supplementary image files
@@ -197,17 +197,26 @@ abstract class MediaTransformOutput {
 
 	/**
 	 * @param $title string
-	 * @param $params array
+	 * @param $params string|array Query parameters to add
 	 * @return array
 	 */
-	public function getDescLinkAttribs( $title = null, $params = '' ) {
-		$query = '';
+	public function getDescLinkAttribs( $title = null, $params = array() ) {
+		if ( is_array( $params ) ) {
+			$query = $params;
+		} else {
+			$query = array();
+		}
 		if ( $this->page && $this->page !== 1 ) {
-			$query = 'page=' . urlencode( $this->page );
+			$query['page'] = $this->page;
 		}
-		if ( $params ) {
-			$query .= $query ? '&' . $params : $params;
+		if( $this->lang ) {
+			$query['lang'] = $this->lang;
 		}
+
+		if ( is_string( $params ) && $params !== '' ) {
+			$query = $params . '&' . wfArrayToCgi( $query );
+		}
+
 		$attribs = array(
 			'href' => $this->file->getTitle()->getLocalURL( $query ),
 			'class' => 'image',
@@ -242,10 +251,12 @@ class ThumbnailImage extends MediaTransformOutput {
 		# Previous parameters:
 		#   $file, $url, $width, $height, $path = false, $page = false
 
+		$defaults = array(
+			'page' => false,
+			'lang' => false
+		);
+
 		if ( is_array( $parameters ) ) {
-			$defaults = array(
-				'page' => false
-			);
 			$actualParams = $parameters + $defaults;
 		} else {
 			# Using old format, should convert. Later a warning could be added here.
@@ -254,7 +265,7 @@ class ThumbnailImage extends MediaTransformOutput {
 				'width' => $path,
 				'height' => $parameters,
 				'page' => ( $numArgs > 5 ) ? func_get_arg( 5 ) : false
-			);
+			) + $defaults;
 			$path = ( $numArgs > 4 ) ? func_get_arg( 4 ) : false;
 		}
 
@@ -269,6 +280,7 @@ class ThumbnailImage extends MediaTransformOutput {
 		$this->height = round( $actualParams['height'] );
 
 		$this->page = $actualParams['page'];
+		$this->lang = $actualParams['lang'];
 	}
 
 	/**
