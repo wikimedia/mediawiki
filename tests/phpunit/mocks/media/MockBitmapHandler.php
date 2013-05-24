@@ -74,4 +74,16 @@ class MockBitmapHandler extends BitmapHandler {
 
 		return new ThumbnailImage( $image, $dstUrl, false, $params );
 	}
+
+	/**
+	 * If the file is an svg, then the thumbnail is a png file,
+	 * not an svg file
+	 */
+	function getThumbType( $ext, $mime, $params = null ) {
+		if ( $mime === 'image/svg+xml' ) {
+			return array( 'png', 'image/png' );
+		} else {
+			return parent::getThumbType( $ext, $mime, $params );
+		}
+	}
 }

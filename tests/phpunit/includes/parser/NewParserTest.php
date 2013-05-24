@@ -102,6 +102,10 @@ class NewParserTest extends MediaWikiTestCase {
 
 		$tmpGlobals['wgParser'] = new StubObject( 'wgParser', $GLOBALS['wgParserConf']['class'], array( $GLOBALS['wgParserConf'] ) );
 
+		$tmpGlobals['wgFileExtensions'][] = 'svg';
+		$tmpGlobals['wgSVGConverter'] = 'rsvg';
+		$tmpGlobals['wgSVGConverters']['rsvg'] = '$path/rsvg-convert -w $width -h $height $input -o $output';
+
 		if ( $GLOBALS['wgStyleDirectory'] === false ) {
 			$tmpGlobals['wgStyleDirectory'] = "$IP/skins";
 		}
@@ -269,6 +273,20 @@ class NewParserTest extends MediaWikiTestCase {
 					'fileExists' => true ),
 				$this->db->timestamp( '20010115123500' ), $user
 			);
+		}
+		$image = wfLocalFile( Title::makeTitle( NS_FILE, 'Foobar.svg' ) );
+		if ( !$this->db->selectField( 'image', '1', array( 'img_name' => $image->getName() ) ) ) {
+			$image->recordUpload2( '', 'Upload of some lame SVG', 'Some lame SVG', array(
+					'size'        => 12345,
+					'width'       => 200,
+					'height'      => 200,
+					'bits'        => 24,
+					'media_type'  => MEDIATYPE_DRAWING,
+					'mime'        => 'image/svg+xml',
+					'metadata'    => serialize( array() ),
+					'sha1'        => wfBaseConvert( '', 16, 36, 31 ),
+					'fileExists'  => true
+			), $this->db->timestamp( '20010115123500' ), $user );
 		}
 	}
 
@@ -440,6 +458,19 @@ class NewParserTest extends MediaWikiTestCase {
 		$backend->store( array(
 			'src' => "$IP/skins/monobook/headbg.jpg", 'dst' => "$base/local-public/0/09/Bad.jpg"
 		) );
+
+		// No helpful SVG file to copy, so make one ourselves
+		$tmpDir = wfTempDir();
+		$tempFsFile = new TempFSFile( "$tmpDir/Foobar.svg" );
+		$tempFsFile->autocollect(); // destroy file when $tempFsFile leaves scope
+		file_put_contents( "$tmpDir/Foobar.svg",
+			'<?xml version="1.0" encoding="utf-8"?>' .
+			'<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><text>Foo</text></svg>' );
+
+		$backend->prepare( array( 'dir' => "$base/local-public/f/ff" ) );
+		$backend->quickStore( array(
+			'src' => "$tmpDir/Foobar.svg", 'dst' => "$base/local-public/f/ff/Foobar.svg"
+		) );
 	}
 
 	/**
@@ -491,6 +522,14 @@ class NewParserTest extends MediaWikiTestCase {
 				"$base/local-public/e/ea/Thumb.png",
 
 				"$base/local-public/0/09/Bad.jpg",
+
+				"$base/local-public/f/ff/Foobar.svg",
+				"$base/local-thumb/f/ff/Foobar.svg/180px-Foobar.svg.jpg",
+				"$base/local-thumb/f/ff/Foobar.svg/270px-Foobar.svg.jpg",
+				"$base/local-thumb/f/ff/Foobar.svg/360px-Foobar.svg.jpg",
+				"$base/local-thumb/f/ff/Foobar.svg/langde-180px-Foobar.svg.jpg",
+				"$base/local-thumb/f/ff/Foobar.svg/langde-270px-Foobar.svg.jpg",
+				"$base/local-thumb/f/ff/Foobar.svg/langde-360px-Foobar.svg.jpg",
 
 				"$base/local-public/math/f/a/5/fa50b8b616463173474302ca3e63586b.png",
 			)
