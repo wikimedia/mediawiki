@@ -25,10 +25,6 @@
  * @ingroup Skins
  */
 
-if ( !defined( 'MEDIAWIKI' ) ) {
-	die( -1 );
-}
-
 /**
  * Inherit main code from SkinTemplate, set the CSS and template filter.
  * @todo document
