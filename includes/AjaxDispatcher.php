@@ -97,7 +97,7 @@ class AjaxDispatcher {
 	 * request.
 	 */
 	function performAction() {
-		global $wgAjaxExportList, $wgUser;
+		global $wgAjaxExportList;
 
 		if ( empty( $this->mode ) ) {
 			return;
@@ -114,7 +114,7 @@ class AjaxDispatcher {
 				"unknown function " . (string) $this->func_name
 			);
 		} elseif ( !in_array( 'read', User::getGroupPermissions( array( '*' ) ), true )
-			&& !$wgUser->isAllowed( 'read' ) )
+			&& !RequestContext::getMain()->getUser()->isAllowed( 'read' ) )
 		{
 			wfHttpError(
 				403,

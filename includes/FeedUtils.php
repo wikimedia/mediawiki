@@ -37,9 +37,11 @@ class FeedUtils {
 	 * @param string $key cache key of feed's content
 	 */
 	public static function checkPurge( $timekey, $key ) {
-		global $wgRequest, $wgUser, $messageMemc;
-		$purge = $wgRequest->getVal( 'action' ) === 'purge';
-		if ( $purge && $wgUser->isAllowed( 'purge' ) ) {
+		global $messageMemc;
+
+		$context = RequestContext::getMain();
+		$purge = $context->getRequest()->getVal( 'action' ) === 'purge';
+		if ( $purge && $context->getUser()->isAllowed( 'purge' ) ) {
 			$messageMemc->delete( $timekey );
 			$messageMemc->delete( $key );
 		}
@@ -52,15 +54,15 @@ class FeedUtils {
 	 * @return Boolean
 	 */
 	public static function checkFeedOutput( $type ) {
-		global $wgOut, $wgFeed, $wgFeedClasses;
+		global $wgFeed, $wgFeedClasses;
 
 		if ( !$wgFeed ) {
-			$wgOut->addWikiMsg( 'feed-unavailable' );
+			RequestContext::getMain()->getOutput()->addWikiMsg( 'feed-unavailable' );
 			return false;
 		}
 
 		if ( !isset( $wgFeedClasses[$type] ) ) {
-			$wgOut->addWikiMsg( 'feed-invalid' );
+			RequestContext::getMain()->getOutput()->addWikiMsg( 'feed-invalid' );
 			return false;
 		}
 

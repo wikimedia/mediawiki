@@ -47,7 +47,7 @@ Primary classes:
     override some of its functions. The User object contains a reference to a
     skin (according to that user's preference), and so rather than having a
     global skin object we just rely on the global User and get the skin with
-    $wgUser->getSkin().
+    RequestContext::getMain()->getUser()->getSkin().
     See also skin.txt.
 
   Language

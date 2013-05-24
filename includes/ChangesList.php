@@ -467,8 +467,7 @@ class ChangesList extends ContextSource {
 	 * @return Boolean
 	 */
 	public static function usePatrol() {
-		global $wgUser;
-		return $wgUser->useRCPatrol();
+		return RequestContext::getMain()->getUser()->useRCPatrol();
 	}
 
 	/**
@@ -502,7 +501,7 @@ class ChangesList extends ContextSource {
 	 * field of this revision, if it's marked as deleted.
 	 * @param $rc RCCacheEntry
 	 * @param $field Integer
-	 * @param $user User object to check, or null to use $wgUser
+	 * @param $user User object to check, or null to use RequestContext::getMain()->getUser()
 	 * @return Boolean
 	 */
 	public static function userCan( $rc, $field, User $user = null ) {
