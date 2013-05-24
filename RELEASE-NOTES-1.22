@@ -26,6 +26,7 @@ production.
 * $wgHandheldStyle was removed.
 * $wgJsMimeType is no longer used by core. Most usage has been removed since
   HTML output is now exclusively HTML5.
+* $wgDBOracleDRCP added. True enables persistent connection with DRCP on Oracle.
 
 === New features in 1.22 ===
 * (bug 44525) mediawiki.jqueryMsg can now parse (whitelisted) HTML elements and attributes.
@@ -84,6 +85,12 @@ production.
   MediaWiki will try outputting markup acording to XHTML5 rules.
 * New hook 'TitleSquidURLs' for manipulating the list of URLs to be purged from
   HTTP caches when a page is changed.
+* Oracle DB backend now supports Database Resident Connection Pooling (DRCP).
+  Can be enabled by setting $wgDBOracleDRCP=true. 
+  Requires DB 11gR1 or above, enabled DRCP inside the DB itself and a propper
+  connect string.
+  More about DRCP can be found at:
+  http://www.oracle-base.com/articles/11g/database-resident-connection-pool-11gr1.php
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
