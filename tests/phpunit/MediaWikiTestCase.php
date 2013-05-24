@@ -537,6 +537,12 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		global $wgDBprefix;
 
 		$tables = $db->listTables( $wgDBprefix, __METHOD__ );
+
+		if ( $db->getType() === 'mysql' ) {
+			# bug 43571: cannot clone VIEWs under MySQL
+			$views = $db->listViews( $wgDBprefix, __METHOD__ );
+			$tables = array_diff( $tables, $views );
+		}
 		$tables = array_map( array( __CLASS__, 'unprefixTable' ), $tables );
 
 		// Don't duplicate test tables from the previous fataled run
