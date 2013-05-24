@@ -29,6 +29,17 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	die( -1 );
 }
 
+$wgResourceModules['skins.monobook'] = array(
+	'styles' => array(
+		'common/commonElements.css' => array( 'media' => 'screen' ),
+		'common/commonContent.css' => array( 'media' => 'screen' ),
+		'common/commonInterface.css' => array( 'media' => 'screen' ),
+		'monobook/main.css' => array( 'media' => 'screen' ),
+	),
+	'remoteBasePath' => & $GLOBALS['wgStylePath'],
+	'localBasePath' => & $GLOBALS['wgStyleDirectory'],
+);
+
 /**
  * Inherit main code from SkinTemplate, set the CSS and template filter.
  * @todo document
@@ -36,8 +47,10 @@ if ( !defined( 'MEDIAWIKI' ) ) {
  */
 class SkinMonoBook extends SkinTemplate {
 	/** Using monobook. */
-	var $skinname = 'monobook', $stylename = 'monobook',
-		$template = 'MonoBookTemplate', $useHeadElement = true;
+	var $skinname = 'monobook',
+		$stylename = 'monobook',
+		$template = 'MonoBookTemplate',
+		$useHeadElement = true;
 
 	/**
 	 * @param $out OutputPage
@@ -321,5 +334,3 @@ echo $footerEnd;
 <?php
 	}
 } // end of class
-
-
