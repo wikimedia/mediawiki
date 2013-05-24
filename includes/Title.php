@@ -3670,7 +3670,7 @@ class Title {
 		// cl_timestamp, which may disturb time-based lists on some sites.
 		$prefixes = $dbw->select(
 			'categorylinks',
-			array( 'cl_sortkey_prefix', 'cl_to' ),
+			array( 'cl_sortkey_prefix', 'cl_to', 'cl_realto' ),
 			array( 'cl_from' => $pageid ),
 			__METHOD__
 		);
@@ -3681,10 +3681,13 @@ class Title {
 				array(
 					'cl_sortkey' => Collation::singleton()->getSortKey(
 						$nt->getCategorySortkey( $prefix ) ),
-					'cl_timestamp=cl_timestamp' ),
+					'cl_timestamp=cl_timestamp'
+				),
 				array(
 					'cl_from' => $pageid,
-					'cl_to' => $catTo ),
+					'cl_to' => $prefixRow->cl_to,
+					'cl_realto' => $prefixRow->cl_realto,
+				),
 				__METHOD__
 			);
 		}
@@ -4053,7 +4056,8 @@ class Title {
 			'categorylinks',
 			'cl_to',
 			array( 'cl_from' => $titleKey ),
-			__METHOD__
+			__METHOD__,
+			array( 'DISTINCT' )
 		);
 
 		if ( $res->numRows() > 0 ) {

@@ -441,6 +441,13 @@ class LinksUpdate extends SqlDataUpdate {
 		$arr = array();
 		foreach ( $diffs as $name => $prefix ) {
 			$nt = Title::makeTitleSafe( NS_CATEGORY, $name );
+
+			$content = WikiPage::factory( $nt )->getContent( Revision::RAW );
+			$realnt = $content ? $content->getRedirectTarget() : null;
+			if ( $realnt === null || !$realnt->inNamespace( NS_CATEGORY ) ) {
+				$realnt = $nt;
+			}
+
 			$wgContLang->findVariantLink( $name, $nt, true );
 
 			if ( $this->mTitle->getNamespace() == NS_CATEGORY ) {
@@ -460,7 +467,8 @@ class LinksUpdate extends SqlDataUpdate {
 
 			$arr[] = array(
 				'cl_from' => $this->mId,
-				'cl_to' => $name,
+				'cl_realto' => $name,
+				'cl_to' => $realnt->getDbKey(),
 				'cl_sortkey' => $sortkey,
 				'cl_timestamp' => $this->mDb->timestamp(),
 				'cl_sortkey_prefix' => $prefix,
