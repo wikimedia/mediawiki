@@ -25,10 +25,6 @@
  * @ingroup Skins
  */
 
-if ( !defined( 'MEDIAWIKI' ) ) {
-	die( -1 );
-}
-
 /**
  * Inherit main code from SkinTemplate, set the CSS and template filter.
  * @todo document
@@ -36,8 +32,10 @@ if ( !defined( 'MEDIAWIKI' ) ) {
  */
 class SkinMonoBook extends SkinTemplate {
 	/** Using monobook. */
-	var $skinname = 'monobook', $stylename = 'monobook',
-		$template = 'MonoBookTemplate', $useHeadElement = true;
+	var $skinname = 'monobook',
+		$stylename = 'monobook',
+		$template = 'MonoBookTemplate',
+		$useHeadElement = true;
 
 	/**
 	 * @param $out OutputPage
@@ -50,7 +48,6 @@ class SkinMonoBook extends SkinTemplate {
 		// TODO: Migrate all of these
 		$out->addStyle( 'monobook/IE60Fixes.css', 'screen', 'IE 6' );
 		$out->addStyle( 'monobook/IE70Fixes.css', 'screen', 'IE 7' );
-
 	}
 }
 
@@ -321,5 +318,3 @@ echo $footerEnd;
 <?php
 	}
 } // end of class
-
-
