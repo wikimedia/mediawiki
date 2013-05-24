@@ -523,6 +523,11 @@ CREATE TABLE /*_*/categorylinks (
   -- all such pages are in namespace 14 (NS_CATEGORY).
   cl_to varchar(255) binary NOT NULL default '',
 
+  -- Name of the actual category that was linked to.
+  -- In cases where a category is redirected to another category,
+  -- this will always contain the actual link.
+  cl_realto varchar(255) binary NOT NULL default '',
+
   -- A binary string obtained by applying a sortkey generation algorithm
   -- (Collation::getSortKey()) to page_title, or cl_sortkey_prefix . "\n"
   -- . page_title if cl_sortkey_prefix is nonempty.

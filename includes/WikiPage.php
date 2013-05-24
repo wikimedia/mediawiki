@@ -1331,8 +1331,27 @@ class WikiPage implements Page, IDBAccessObject {
 			$dbw->delete( 'redirect', $where, __METHOD__ );
 		}
 
-		if ( $this->getTitle()->getNamespace() == NS_FILE ) {
+		$ns = $this->getTitle()->getNamespace();
+		if ( $ns == NS_FILE ) {
 			RepoGroup::singleton()->getLocalRepo()->invalidateImageRedirect( $this->getTitle() );
+		} elseif ( $ns == NS_CATEGORY ) {
+			if ( $isRedirect && $redirectTitle->getNamespace() == NS_CATEGORY ) {
+				$dbw->update(
+					'categorylinks',
+					array( 'cl_to' => $redirectTitle->getDbKey() ),
+					array( 'cl_realto' => $this->getTitle()->getDbKey() ),
+					__FUNCTION__,
+					array( 'LOW_PRIORITY' )
+				);
+			} elseif ( !$isRedirect ) {
+				$dbw->update(
+					'categorylinks',
+					array( 'cl_to' => $this->getTitle()->getDbKey() ),
+					array( 'cl_realto' => $this->getTitle()->getDbKey() ),
+					__FUNCTION__,
+					array( 'LOW_PRIORITY' )
+				);
+			}
 		}
 		wfProfileOut( __METHOD__ );
 
