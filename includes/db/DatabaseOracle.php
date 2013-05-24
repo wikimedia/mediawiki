@@ -249,6 +249,7 @@ class DatabaseOracle extends DatabaseBase {
 	 * @return DatabaseBase|null
 	 */
 	function open( $server, $user, $password, $dbName ) {
+                global $wgDBOracleDCRP;
 		if ( !function_exists( 'oci_connect' ) ) {
 			throw new DBConnectionError( $this, "Oracle functions missing, have you compiled PHP with the --with-oci8 option?\n (Note: if you recently installed PHP, you may need to restart your webserver and database)\n" );
 		}
@@ -276,9 +277,14 @@ class DatabaseOracle extends DatabaseBase {
 			return;
 		}
 
+                if ( $wgDBOracleDCRP ) $this->setFlag( DBO_PERSISTENT );
+
 		$session_mode = $this->mFlags & DBO_SYSDBA ? OCI_SYSDBA : OCI_DEFAULT;
+                
 		wfSuppressWarnings();
-		if ( $this->mFlags & DBO_DEFAULT ) {
+		if ( $this->mFlags & DBO_PERSISTENT ) {
+			$this->mConn = oci_pconnect( $this->mUser, $this->mPassword, $this->mServer, $this->defaultCharset, $session_mode );
+		} else if ( $this->mFlags & DBO_DEFAULT ) {
 			$this->mConn = oci_new_connect( $this->mUser, $this->mPassword, $this->mServer, $this->defaultCharset, $session_mode );
 		} else {
 			$this->mConn = oci_connect( $this->mUser, $this->mPassword, $this->mServer, $this->defaultCharset, $session_mode );
