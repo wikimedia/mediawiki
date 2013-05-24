@@ -32,7 +32,7 @@ abstract class MediaTransformOutput {
 	 */
 	var $file;
 
-	var $width, $height, $url, $page, $path;
+	var $width, $height, $url, $page, $path, $lang;
 
 	/**
 	 * @var array Associative array mapping optional supplementary image files
@@ -151,12 +151,7 @@ abstract class MediaTransformOutput {
 		if ( $this->isError() ) {
 			return false;
 		} elseif ( $this->path === null ) {
-			return $this->file->getLocalRefPath(); // assume thumb was not scaled
-		} elseif ( FileBackend::isStoragePath( $this->path ) ) {
-			$be = $this->file->getRepo()->getBackend();
-			// The temp file will be process cached by FileBackend
-			$fsFile = $be->getLocalReference( array( 'src' => $this->path ) );
-			return $fsFile ? $fsFile->getPath() : false;
+			return $this->file->getLocalRefPath();
 		} else {
 			return $this->path; // may return false
 		}
@@ -197,17 +192,21 @@ abstract class MediaTransformOutput {
 
 	/**
 	 * @param $title string
-	 * @param $params array
+	 * @param $params array|string
 	 * @return array
 	 */
 	public function getDescLinkAttribs( $title = null, $params = '' ) {
 		$query = '';
 		if ( $this->page && $this->page !== 1 ) {
-			$query = 'page=' . urlencode( $this->page );
+			wfAppendQuery( $query, 'page=' . urlencode( $this->page ) );
 		}
-		if ( $params ) {
-			$query .= $query ? '&' . $params : $params;
+		if( $params ) {
+			wfAppendQuery( $query, $params );
 		}
+		if( $this->lang ) {
+			wfAppendQuery( $query, 'lang=' . urlencode( $this->lang ) );
+		}
+
 		$attribs = array(
 			'href' => $this->file->getTitle()->getLocalURL( $query ),
 			'class' => 'image',
@@ -242,9 +241,10 @@ class ThumbnailImage extends MediaTransformOutput {
 		# Previous parameters:
 		#   $file, $url, $width, $height, $path = false, $page = false
 
-		if ( is_array( $parameters ) ) {
+		if( is_array( $parameters ) ) {
 			$defaults = array(
-				'page' => false
+				'page' => false,
+				'lang' => false
 			);
 			$actualParams = $parameters + $defaults;
 		} else {
@@ -254,7 +254,7 @@ class ThumbnailImage extends MediaTransformOutput {
 				'width' => $path,
 				'height' => $parameters,
 				'page' => ( $numArgs > 5 ) ? func_get_arg( 5 ) : false
-			);
+			) + $defaults;
 			$path = ( $numArgs > 4 ) ? func_get_arg( 4 ) : false;
 		}
 
@@ -269,6 +269,7 @@ class ThumbnailImage extends MediaTransformOutput {
 		$this->height = round( $actualParams['height'] );
 
 		$this->page = $actualParams['page'];
+		$this->lang = $actualParams['lang'];
 	}
 
 	/**
@@ -301,7 +302,7 @@ class ThumbnailImage extends MediaTransformOutput {
 	 */
 	function toHtml( $options = array() ) {
 		if ( count( func_get_args() ) == 2 ) {
-			throw new MWException( __METHOD__ . ' called in the old style' );
+			throw new MWException( __METHOD__ .' called in the old style' );
 		}
 
 		$alt = empty( $options['alt'] ) ? '' : $options['alt'];

@@ -7757,6 +7757,37 @@ Thumbnail image caption with a free URL and explicit alt
 
 !! end
 
+
+!! test
+SVG thumbnails with no language set
+!! options
+!! input
+[[File:Foobar.svg|thumb|width=200]]
+!! result
+<div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.svg" class="image"><img alt="" src="http://example.com/images/thumb/f/ff/Foobar.svg/180px-Foobar.svg.png" width="180" height="180" class="thumbimage" srcset="http://example.com/images/thumb/f/ff/Foobar.svg/270px-Foobar.svg.png 1.5x, http://example.com/images/thumb/f/ff/Foobar.svg/360px-Foobar.svg.png 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.svg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>width=200</div></div></div>
+
+!! end
+
+!! test
+SVG thumbnails with language de
+!! options
+!! input
+[[File:Foobar.svg|thumb|width=200|lang=de]]
+!! result
+<div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/index.php?title=File:Foobar.svg&amp;lang=de" class="image"><img alt="" src="http://example.com/images/thumb/f/ff/Foobar.svg/langde-180px-Foobar.svg.png" width="180" height="180" class="thumbimage" srcset="http://example.com/images/thumb/f/ff/Foobar.svg/langde-270px-Foobar.svg.png 1.5x, http://example.com/images/thumb/f/ff/Foobar.svg/langde-360px-Foobar.svg.png 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.svg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>width=200</div></div></div>
+
+!! end
+
+!! test
+SVG thumbnails with invalid language code
+!! options
+!! input
+[[File:Foobar.svg|thumb|width=200|lang=invalid.language.code]]
+!! result
+<div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.svg" class="image"><img alt="" src="http://example.com/images/thumb/f/ff/Foobar.svg/180px-Foobar.svg.png" width="180" height="180" class="thumbimage" srcset="http://example.com/images/thumb/f/ff/Foobar.svg/270px-Foobar.svg.png 1.5x, http://example.com/images/thumb/f/ff/Foobar.svg/360px-Foobar.svg.png 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.svg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>lang=invalid.language.code</div></div></div>
+
+!! end
+
 !! test
 BUG 1887: A ISBN with a thumbnail
 !! input
@@ -13930,6 +13961,7 @@ HttP://MediaWiki.Org/
 <p><a rel="nofollow" class="external free" href="HttP://MediaWiki.Org/">HttP://MediaWiki.Org/</a>
 </p>
 !! end
+
 
 ###
 ### Parsoids-specific tests
