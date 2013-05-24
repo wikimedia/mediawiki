@@ -109,6 +109,8 @@ class RefreshLinksJob extends Job {
 class RefreshLinksJob2 extends Job {
 	function __construct( $title, $params, $id = 0 ) {
 		parent::__construct( 'refreshLinks2', $title, $params, $id );
+		// Base jobs for large templates can easily be de-duplicated
+		$this->removeDuplicates = !isset( $params['start'] ) && !isset( $params['end'] );
 	}
 
 	/**
