@@ -9914,7 +9914,7 @@ Parameters:
 * $1 - (Unused) directory revision number or empty string
 * $2 - checkout revision number
 {{Identical|Revision}}',
-'version-license' => '{{Identical|License}}',
+'version-license' => '{{Identical|License}} but used specifically for the MediaWiki software',
 'version-poweredby-credits' => 'Message shown on [[Special:Version]]. Parameters:
 * $1 - the current year
 * $2 - a list of selected MediaWiki authors',
@@ -9939,6 +9939,11 @@ See also {{msg-mw|Version-entrypoints}}',
 A short description of the article path entry point. Links to the mediawiki.org documentation page for $wgArticlePath.',
 'version-entrypoints-scriptpath' => '{{Optional}}
 A short description of the script path entry point. Links to the mediawiki.org documentation page for $wgScriptPath.',
+'version-license-title' => 'Page title for an extended license for a piece of software. Argument $1 is the name of software.',
+'version-license-not-found' => 'Descriptive error used when detailed license text for a piece of software is not found',
+'version-credits-title' => 'Page title for an about/credits page for a MediaWiki extension. $1 is the name of the extension.',
+'version-credits-not-found' => 'Descriptive error used when detailed about/credits for an extension are not available.',
+'version-ext-license' => '{{Identical|License}}',
 
 # Special:Redirect
 'redirect' => "{{doc-special|Redirect}}
