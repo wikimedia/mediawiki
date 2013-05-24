@@ -501,6 +501,31 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				{
 						$ret['version'] = 'r' . $m[1];
 				}
+				if ( isset( $ext['path'] ) ) {
+					$extensionPath = dirname( $ext['path'] );
+					$gitInfo = new GitInfo( $extensionPath );
+					$vcsVersion = $gitInfo->getHeadSHA1();
+					if ( $vcsVersion !== false ) {
+						$ret['vcs-system'] = 'git';
+						$ret['vcs-version'] =  $vcsVersion;
+						$ret['vcs-url'] = $gitInfo->getHeadViewUrl();
+						$ret['vcs-date'] = wfTimestamp( TS_ISO_8601, $gitInfo->getHeadCommitDate() );
+					} else {
+						$svnInfo = self::getSvnInfo( $extensionPath );
+						if ( $svnInfo !== false ) {
+							$ret['vcs-system'] = 'svn';
+							$ret['vcs-version'] = $this->msg( 'version-svn-revision', $svnInfo['checkout-rev'] )->text();
+							$ret['vcs-url'] = isset( $svnInfo['viewvc-url'] ) ? $svnInfo['viewvc-url'] : '';
+						}
+					}
+					if ( SpecialVersion::getExtLicenseFileName( $extensionPath ) ) {
+						$ret['license-name'] = isset( $ext['license-name'] ) ? $ext['license-name'] : '';
+						$ret['license'] = SpecialPage::getTitleFor( 'Version', "License/{$ext['name']}" )->getLinkURL();
+					}
+					if ( SpecialVersion::getExtAuthorsFileName( $extensionPath ) ) {
+						$ret['credits'] = SpecialPage::getTitleFor( 'Version', "Credits/{$ext['name']}" )->getLinkURL();
+					}
+				}
 				$data[] = $ret;
 			}
 		}
