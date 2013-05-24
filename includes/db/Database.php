@@ -301,6 +301,12 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 */
 	protected $fileHandle = null;
 
+	/**
+	 * @since 1.22
+	 * @var Process cache of VIEWs names in the database
+	 */
+	protected $allViews = null;
+
 # ------------------------------------------------------------------------------
 # Accessors
 # ------------------------------------------------------------------------------
@@ -3442,6 +3448,40 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 */
 	function listTables( $prefix = null, $fname = __METHOD__ ) {
 		throw new MWException( 'DatabaseBase::listTables is not implemented in descendant class' );
+	}
+
+	/**
+	 * Reset the views process cache set by listViews()
+	 * @since 1.22
+	 */
+	final public function clearViewsCache() {
+		$this->allViews = null;
+	}
+
+	/**
+	 * Lists all the VIEWs in the database
+	 *
+	 * For caching purposes the list of all views should be stored in
+	 * $this->allViews. The process cache can be cleared with clearViewsCache()
+	 *
+	 * @param string $prefix   Only show VIEWs with this prefix, eg. unit_test_
+	 * @param string $fname    Name of calling function
+	 * @throws MWException
+	 * @since 1.22
+	 */
+	public function listViews( $prefix = null, $fname = __METHOD__ ) {
+		throw new MWException( 'DatabaseBase::listViews is not implemented in descendant class' );
+	}
+
+	/**
+	 * Differentiates between a TABLE and a VIEW
+	 *
+	 * @param $name string: Name of the database-structure to test.
+	 * @throws MWException
+	 * @since 1.22
+	 */
+	public function isView( $name ) {
+		throw new MWException( 'DatabaseBase::isView is not implemented in descendant class' );
 	}
 
 	/**

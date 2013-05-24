@@ -260,6 +260,9 @@ production.
   Previously in the "SimpleAntiSpam" extension by Ryan Schmidt.
 * populateRevisionLength.php maintenance script updated to also populate
   archive.ar_len field.
+* (bug 43571) DatabaseMySQLBase learned to list views, optionally filtered by a
+  prefix. Also fixed PHPUnit test suite when using a MySQL backend containing
+  views.
 
 === Bug fixes in 1.22 ===
 * (bug 47271) $wgContentHandlerUseDB should be set to false during the upgrade
