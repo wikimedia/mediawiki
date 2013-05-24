@@ -860,6 +860,7 @@ class Article implements Page {
 	 * TODO: actions other than 'view'
 	 */
 	public function getRobotPolicy( $action, $pOutput ) {
+		wfDebug( __METHOD__ );
 		global $wgArticleRobotPolicies, $wgNamespaceRobotPolicies, $wgDefaultRobotPolicy;
 
 		$ns = $this->getTitle()->getNamespace();
