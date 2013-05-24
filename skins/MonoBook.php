@@ -29,6 +29,17 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	die( -1 );
 }
 
+$wgResourceModules['skins.monobook'] = array(
+	'styles' => array(
+		'common/commonElements.css' => array( 'media' => 'screen' ),
+		'common/commonContent.css' => array( 'media' => 'screen' ),
+		'common/commonInterface.css' => array( 'media' => 'screen' ),
+		'monobook/main.css' => array( 'media' => 'screen' ),
+	),
+	'remoteBasePath' => & $GLOBALS['wgStylePath'],
+	'localBasePath' => & $GLOBALS['wgStyleDirectory'],
+);
+
 /**
  * Inherit main code from SkinTemplate, set the CSS and template filter.
  * @todo document
@@ -36,17 +47,24 @@ if ( !defined( 'MEDIAWIKI' ) ) {
  */
 class SkinMonoBook extends SkinTemplate {
 	/** Using monobook. */
-	var $skinname = 'monobook', $stylename = 'monobook',
-		$template = 'MonoBookTemplate', $useHeadElement = true;
+	var $skinname = 'monobook',
+		$stylename = 'monobook',
+		$template = 'MonoBookTemplate',
+		$useHeadElement = true;
 
 	/**
 	 * @param $out OutputPage
 	 */
 	function setupSkinUserCss( OutputPage $out ) {
 		parent::setupSkinUserCss( $out );
-
+	
 		$out->addModuleStyles( 'skins.monobook' );
-
+/*
+		$out->addStyle( 'monobook/main.css', 'screen' );
+		$out->addStyle( 'common/commonElements.css', 'screen' );
+		$out->addStyle( 'common/commonContent.css', 'screen' );
+		$out->addStyle( 'common/commonInterface.css', 'screen' );
+*/
 		// TODO: Migrate all of these
 		$out->addStyle( 'monobook/IE60Fixes.css', 'screen', 'IE 6' );
 		$out->addStyle( 'monobook/IE70Fixes.css', 'screen', 'IE 7' );
@@ -321,5 +339,3 @@ echo $footerEnd;
 <?php
 	}
 } // end of class
-
-
