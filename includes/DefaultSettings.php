@@ -1590,6 +1590,35 @@ $wgDBAvgStatusPoll = 2000;
 $wgDBmysql5 = false;
 
 /**
+ * Set true to enable Oracle DCRP (suported from 11gR1 onward)
+ * 
+ * When it comes to frequent shortlived DB connections like with MW
+ * Oracle tends to s***. The problem is the driver connects to the 
+ * database reasonably fast, but establishing a session takes time and
+ * resources. MW does not rely on session state (as it does not use 
+ * features such as package variables) so establishing a valid session
+ * is in this case an unwanted overhead that just slows things down.
+ * 
+ * Starting from 11gR1 you can use DCRP (Database Resident Connection
+ * Pool) that maintains established sessions and reuses them on new 
+ * connections.
+ * 
+ * To use this feature set to true and use a datasource defined as 
+ * POOLED (in tnsnames definition set server=pooled in connect_data
+ * block).
+ * 
+ * Not completely tested, but it shuld fall back on normal connection 
+ * in case the pool is full or the datasource is not configured as 
+ * pooled.
+ * And the other way around; using oci_pconnect on a non pooled 
+ * datasource should produce a normal connection.
+ * 
+ * @warning EXPERIMENTAL!
+ *
+ */
+$wgDBOracleDCRP = false;
+
+/**
  * Other wikis on this site, can be administered from a single developer
  * account.
  * Array numeric key => database name
