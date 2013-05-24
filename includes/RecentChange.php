@@ -96,18 +96,6 @@ class RecentChange {
 	}
 
 	/**
-	 * @param $row
-	 * @return RecentChange
-	 */
-	public static function newFromCurRow( $row ) {
-		$rc = new RecentChange;
-		$rc->loadFromCurRow( $row );
-		$rc->notificationtimestamp = false;
-		$rc->numberofWatchingusers = false;
-		return $rc;
-	}
-
-	/**
 	 * Obtain the recent change with a given rc_id value
 	 *
 	 * @param int $rcid rc_id value to retrieve
@@ -648,40 +636,6 @@ class RecentChange {
 		$this->mAttribs = get_object_vars( $row );
 		$this->mAttribs['rc_timestamp'] = wfTimestamp( TS_MW, $this->mAttribs['rc_timestamp'] );
 		$this->mAttribs['rc_deleted'] = $row->rc_deleted; // MUST be set
-	}
-
-	/**
-	 * Makes a pseudo-RC entry from a cur row
-	 *
-	 * @param $row
-	 */
-	public function loadFromCurRow( $row ) {
-		$this->mAttribs = array(
-			'rc_timestamp' => wfTimestamp( TS_MW, $row->rev_timestamp ),
-			'rc_cur_time' => $row->rev_timestamp,
-			'rc_user' => $row->rev_user,
-			'rc_user_text' => $row->rev_user_text,
-			'rc_namespace' => $row->page_namespace,
-			'rc_title' => $row->page_title,
-			'rc_comment' => $row->rev_comment,
-			'rc_minor' => $row->rev_minor_edit ? 1 : 0,
-			'rc_type' => $row->page_is_new ? RC_NEW : RC_EDIT,
-			'rc_cur_id' => $row->page_id,
-			'rc_this_oldid' => $row->rev_id,
-			'rc_last_oldid' => isset( $row->rc_last_oldid ) ? $row->rc_last_oldid : 0,
-			'rc_bot' => 0,
-			'rc_ip' => '',
-			'rc_id' => $row->rc_id,
-			'rc_patrolled' => $row->rc_patrolled,
-			'rc_new' => $row->page_is_new, # obsolete
-			'rc_old_len' => $row->rc_old_len,
-			'rc_new_len' => $row->rc_new_len,
-			'rc_params' => isset( $row->rc_params ) ? $row->rc_params : '',
-			'rc_log_type' => isset( $row->rc_log_type ) ? $row->rc_log_type : null,
-			'rc_log_action' => isset( $row->rc_log_action ) ? $row->rc_log_action : null,
-			'rc_logid' => isset( $row->rc_logid ) ? $row->rc_logid : 0,
-			'rc_deleted' => $row->rc_deleted // MUST be set
-		);
 	}
 
 	/**
