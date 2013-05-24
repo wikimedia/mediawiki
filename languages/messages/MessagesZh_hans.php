@@ -54,6 +54,7 @@
  * @author Shizhao
  * @author Simon Shek
  * @author Slboat
+ * @author Stevenliuyi
  * @author Supaiku
  * @author Tommyang
  * @author Waihorace
@@ -461,6 +462,18 @@ $messages = array(
 'oct' => '10月',
 'nov' => '11月',
 'dec' => '12月',
+'january-date' => '1月$1日',
+'february-date' => '2月$1日',
+'march-date' => '3月$1日',
+'april-date' => '4月$1日',
+'may-date' => '5月$1日',
+'june-date' => '6月$1日',
+'july-date' => '7月$1日',
+'august-date' => '8月$1日',
+'september-date' => '9月$1日',
+'october-date' => '10月$1日',
+'november-date' => '11月$1日',
+'december-date' => '12月$1日',
 
 # Categories related messages
 'pagecategories' => '$1个分类',
@@ -2298,8 +2311,8 @@ $1',
 'notvisiblerev' => '上次由不同用户所作的修订版本已经删除',
 'watchnochange' => '在显示的时间段内您所监视的页面没有更改。',
 'watchlist-details' => '不计讨论页面，你的监视列表中有$1个页面。',
-'wlheader-enotif' => '已经启动电子邮件通知功能。',
-'wlheader-showupdated' => "*你上次访问后更改的页面以'''粗体'''显示",
+'wlheader-enotif' => '已启用电子邮件通知',
+'wlheader-showupdated' => "你上次访问后更改的页面以'''粗体'''显示",
 'watchmethod-recent' => '检查被监视页面的最近编辑',
 'watchmethod-list' => '查看监视页中的最新修改',
 'watchlistcontains' => '您的监视列表包含$1个页面。',
@@ -2854,6 +2867,8 @@ $1被封禁的理由是：“$2”',
 'thumbnail-more' => '放大',
 'filemissing' => '无法找到文件',
 'thumbnail_error' => '生成缩略图错误：$1',
+'thumbnail_error_remote' => '来自$1的错误消息从：
+$2',
 'djvu_page_error' => 'DjVu页面超出范围',
 'djvu_no_xml' => '无法在DjVu文件中获取XML',
 'thumbnail-temp-create' => '无法创建临时缩略图文件',

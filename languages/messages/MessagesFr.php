@@ -10,6 +10,7 @@
  * @author Agzennay
  * @author Amqui
  * @author Arkanosis
+ * @author Ayack
  * @author Boniface
  * @author Brunoperel
  * @author Cedric31
@@ -495,6 +496,18 @@ $messages = array(
 'oct' => 'oct',
 'nov' => 'nov',
 'dec' => 'déc',
+'january-date' => '$1 janvier',
+'february-date' => '$1 février',
+'march-date' => '$1 mars',
+'april-date' => '$1 avril',
+'may-date' => '$1 mai',
+'june-date' => '$1 juin',
+'july-date' => '$1 juillet',
+'august-date' => '$1 août',
+'september-date' => '$1 septembre',
+'october-date' => '$1 octobre',
+'november-date' => '$1 novembre',
+'december-date' => '$1 décembre',
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Catégorie|Catégories}}',
@@ -3008,6 +3021,8 @@ Veuillez visiter la [//www.mediawiki.org/wiki/Localisation Localisation de Media
 'thumbnail-more' => 'Agrandir',
 'filemissing' => 'Fichier manquant',
 'thumbnail_error' => 'Erreur lors de la création de la miniature : $1',
+'thumbnail_error_remote' => "Message d'erreur de $1 :
+$2",
 'djvu_page_error' => 'Page DjVu hors limites',
 'djvu_no_xml' => 'Impossible de récupérer le XML pour le fichier DjVu',
 'thumbnail-temp-create' => 'Impossible de créer le fichier de vignette temporaire',

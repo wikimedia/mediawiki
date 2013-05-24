@@ -1077,7 +1077,7 @@ anjî ji bo file'ên dengî '''<nowiki>[[</nowiki>{{ns:media}}:File.ogg<nowiki>]
 'upload-preferred' => 'Cureyên pelan yên tên xwestin: $1.',
 'upload-prohibited' => 'Cureyên pelan yên qedexekirî: $1.',
 'uploadlog' => 'barkirina belgeyan',
-'uploadlogpage' => 'barkirina belgeyan',
+'uploadlogpage' => 'Barkirina belgeyan',
 'filename' => 'Navê pelê',
 'filedesc' => 'Danasîn',
 'fileuploadsummary' => 'Kurte:',

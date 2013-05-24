@@ -301,6 +301,18 @@ $messages = array(
 'oct' => 'אָקט׳',
 'nov' => 'נאָוו׳',
 'dec' => 'דעצ׳',
+'january-date' => '$1 יאנואר',
+'february-date' => '$1 פעברואר',
+'march-date' => '$1 מערץ',
+'april-date' => '$1 אפריל',
+'may-date' => '$1 מיי',
+'june-date' => '$1 יוני',
+'july-date' => '$1 יולי',
+'august-date' => '$1 אויגוסט',
+'september-date' => '$1 סעפטעמבער',
+'october-date' => '$1 אקטאבער',
+'november-date' => '$1 נאוועמבער',
+'december-date' => '$1 דעצעמבער',
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|קאַטעגאָריע|קאַטעגאָריעס}}',
@@ -336,7 +348,7 @@ $messages = array(
 
 # Cologne Blue skin
 'qbfind' => 'טרעף',
-'qbbrowse' => 'בלעטערט',
+'qbbrowse' => 'בלעטערן',
 'qbedit' => 'ענדערן',
 'qbpageoptions' => 'דער בלאט',
 'qbmyoptions' => 'מיינע בלעטער',
@@ -643,6 +655,7 @@ $2',
 'gotaccount' => "האסטו שוין א קאנטע? '''$1'''.",
 'gotaccountlink' => 'אַרײַנלאגירן',
 'userlogin-resetlink' => 'פארגעסן אײַערע אַרײַנלאָגירן פרטים?',
+'userlogin-resetpassword-link' => 'צוריקשטעלן אײַער פאַסווארט',
 'helplogin-url' => 'Help:אריינלאגירן',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|הילף מיט אריינלאגירן]]',
 'createacct-join' => 'גיט ארײַן אײַער אינפֿארמאציע אונטן.',
@@ -660,10 +673,12 @@ $2',
 'createacct-benefit-heading' => '{{SITENAME}} איז געמאכט דורך מענטשן ווי איר.',
 'createacct-benefit-body1' => '{{PLURAL:$1|רעדאַקטירונג|$1 רעדאַקטירונגען}}',
 'createacct-benefit-body2' => '$1 {{PLURAL:$1|בלאַט|בלעטער}}',
+'createacct-benefit-body3' => 'לעצטיקע {{PLURAL:$1|בײַשטײַערער}}',
 'badretype' => 'די פאסווערטער וואס איר האט אריינגעלייגט זענען נישט אייניג.',
 'userexists' => 'דער באַניצער נאָמען איז שוין געניצט.
 ביטע קלײַבט אױס אַן אַנדער נאָמען.',
 'loginerror' => 'לאגירן פֿעלער',
+'createacct-error' => 'קאנטע שאפן פעלער',
 'createaccounterror' => 'האט נישט געקענט שאַפֿן קאנטע: $1',
 'nocookiesnew' => 'די באניצער קאנטע איז באשאפן, אבער איר זענט נישט אריינלאגירט.
 {{SITENAME}} ניצט קיכלעך אריינצולאגירן באניצער.

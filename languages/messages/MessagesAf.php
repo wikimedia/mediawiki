@@ -851,19 +851,19 @@ Tydelike wagwoord: $2',
 'summary-preview' => 'Opsommingsvoorskou:',
 'subject-preview' => 'Onderwerp/opskrif voorskou:',
 'blockedtitle' => 'Gebruiker is geblokkeer',
-'blockedtext' => "'''U gebruikersnaam of IP-adres is geblokkeer.'''
+'blockedtext' => "'''U gebruiker of IP-adres is geblokkeer.'''
 
-Die blokkering is deur $1 gedoen.
-Die rede gegee is ''$2''.
+Die blokkade is deur $1 uitgevoer.
+Die rede verskaf is ''$2''.
 
 * Begin van blokkade: $8
 * Blokkade eindig: $6
-* Blokkering gemik op: $7
+* Blokkade gemik teen: $7
 
-U mag $1 of een van die ander [[{{MediaWiki:Grouppage-sysop}}|administreerders]] kontak om dit te bespreek.
-U kan nie die 'e-pos hierdie gebruiker'-opsie gebruik tensy 'n geldige e-pos adres gespesifiseer is in u [[Special:Preferences|rekening voorkeure]] en u nie geblokkeer is om dit te gebruik nie.
-U huidige IP-adres is $3, en die blokkering ID is #$5.
-Sluit asseblief een of albei hierdie verwysings in by enige navrae.",
+U mag $1 of een van die ander [[{{MediaWiki:Grouppage-sysop}}|administrateurs]] kontak om dit te bespreek.
+U kan nie die 'e-pos hierdie gebruiker'-opsie gebruik nie, tensy 'n geldige e-posadres in u [[Special:Preferences|voorkeure]] gespesifiseer is en u nie geblokkeer is om dit te gebruik nie.
+U huidige IP-adres is $3 en die blokkadenommer is #$5.
+Sluit asseblief een of albei hierdie verwysings by enige navrae in.",
 'autoblockedtext' => "U IP-adres is outomaties geblok omdat dit deur 'n gebruiker gebruik was, wat deur $1 geblokkeer is.
 Die rede verskaf is:
 
@@ -2579,8 +2579,8 @@ Die laaste inskrywing uit die blokkeerlogboek word hier ter inligting weergegee:
 'blockip' => 'Blokkeer gebruiker',
 'blockip-title' => 'Blokkeer gebruiker',
 'blockip-legend' => 'Blokkeer gebruiker of IP-adres',
-'blockiptext' => "Gebruik die vorm hier onder om skryftoegang van 'n sekere IP-adres te blok.
-Dit moet net gedoen word om vandalisme te voorkom en in ooreenstemming met [[{{MediaWiki:Policy-url}}|{{SITENAME}}-beleid]].
+'blockiptext' => "Gebruik die vorm hier onder om skryftoegang vir 'n gebruiker of IP-adres in te trek.
+Dit mag slegs as beskerming teen vandalisme en in ooreenstemming met die [[{{MediaWiki:Policy-url}}|beleid]] gedoen word.
 Vul 'n spesifieke rede hier onder in (haal byvoorbeeld spesifieke bladsye wat gevandaliseer is, aan).",
 'ipadressorusername' => 'IP-adres of gebruikersnaam:',
 'ipbexpiry' => 'Duur:',

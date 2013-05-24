@@ -431,6 +431,18 @@ $messages = array(
 'oct' => 'tháng 10',
 'nov' => 'tháng 11',
 'dec' => 'tháng 12',
+'january-date' => '$1 tháng 1',
+'february-date' => '$1 tháng 2',
+'march-date' => '$1 tháng 3',
+'april-date' => '$1 tháng 4',
+'may-date' => '$1 tháng 5',
+'june-date' => '$1 tháng 6',
+'july-date' => '$1 tháng 7',
+'august-date' => '$1 tháng 8',
+'september-date' => '$1 tháng 9',
+'october-date' => '$1 tháng 10',
+'november-date' => '$1 tháng 11',
+'december-date' => '$1 tháng 12',
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Thể loại|Thể loại}}',

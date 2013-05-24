@@ -503,6 +503,18 @@ $messages = array(
 'oct' => 'окт',
 'nov' => 'нов',
 'dec' => 'дец',
+'january-date' => '$1 јануар',
+'february-date' => '$1 фебруар',
+'march-date' => '$1 март',
+'april-date' => '$1 април',
+'may-date' => '$1 мај',
+'june-date' => '$1 јун',
+'july-date' => '$1 јул',
+'august-date' => '$1 август',
+'september-date' => '$1 семптембар',
+'october-date' => '$1 окотобар',
+'november-date' => '$1 новембар',
+'december-date' => '$1 децембар',
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Категорија|Категорије}}',
@@ -2483,8 +2495,8 @@ $1',
 'notvisiblerev' => 'Измена је обрисана',
 'watchnochange' => 'Ништа што надгледате није промењено у приказаном времену.',
 'watchlist-details' => '{{PLURAL:$1|$1 страница|$1 странице|$1 страница}} на вашем списку надгледања, не рачунајући странице за разговор.',
-'wlheader-enotif' => 'Е-обавештење је омогућено.',
-'wlheader-showupdated' => "Странице које су измењене откад сте их последњи пут посетили су '''подебљане'''",
+'wlheader-enotif' => 'Обавештење е-поруком је омогућено.',
+'wlheader-showupdated' => "Странице које су измењене откад сте их последњи пут посетили су '''подебљане'''.",
 'watchmethod-recent' => 'проверава се да ли има надгледаних страница у скорашњим изменама',
 'watchmethod-list' => 'проверава се да ли има скорашњих измена у надгледаним страницама',
 'watchlistcontains' => 'Ваш списак надгледања садржи $1 {{PLURAL:$1|страницу|странице|страница}}.',
@@ -4199,6 +4211,11 @@ $5
 'version-entrypoints' => 'Адресе улазне тачке',
 'version-entrypoints-header-entrypoint' => 'Улазна тачка',
 'version-entrypoints-header-url' => 'Адреса',
+
+# Special:Redirect
+'redirect-submit' => 'Иди',
+'redirect-value' => 'Вредност:',
+'redirect-file' => 'Назив датотеке',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Претрага дупликата',

@@ -126,6 +126,18 @@ $messages = array(
 'oct' => 'Okt.',
 'nov' => 'Now.',
 'dec' => 'Det.',
+'january-date' => '$1. Janewoore',
+'february-date' => '$1. Febrewoore',
+'march-date' => '$1. Maarts',
+'april-date' => '$1. April',
+'may-date' => '$1. Mei',
+'june-date' => '$1. Jüüne',
+'july-date' => '$1. Jüüle',
+'august-date' => '$1. August',
+'september-date' => '$1. September',
+'october-date' => '$1. Oktuuber',
+'november-date' => '$1. Nofember',
+'december-date' => '$1. Detsember',
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Kategorii|Kategoriie}}',
@@ -1744,20 +1756,116 @@ Det formoot as leewen slach/onerslach üs uun det bispal: <code>image/jpeg</code
 # Unwatched pages
 'unwatchedpages' => "Sidjen, diar näämen uun't uug hää",
 
+# List redirects
+'listredirects' => 'Widjerfeerangen',
+
+# Unused templates
+'unusedtemplates' => 'Ei iinbünjen föörlaagen',
+'unusedtemplatestext' => 'Sidjen uun a {{ns:template}}-nöömrüm, diar ei uun ööder sidjen iinbünjen san.
+Iar dü ian strikst, stel seeker, dat diar nian ferwisangen üüb detdetdiar föörlag saan.',
+'unusedtemplateswlh' => 'Ööder ferwisangen',
+
 # Random page
 'randompage' => 'Tufali sid',
+'randompage-nopages' => 'Diar san nian sidjen uun {{PLURAL:$2|nöömrüm|nöömrümer}}: $1.',
+
+# Random redirect
+'randomredirect' => 'Tufelag widjerfeerang',
+'randomredirect-nopages' => 'Uun di nöömrüm „$1“ san nian widjerfeerangen.',
 
 # Statistics
 'statistics' => 'Statistik',
+'statistics-header-pages' => 'Sidjenstatistik',
+'statistics-header-edits' => 'Statistik faan bewerkangen',
+'statistics-header-views' => 'Statistik faan kliks üüb sidjen',
+'statistics-header-users' => 'Brükerstatistik',
+'statistics-header-hooks' => 'Ööder statistiken',
+'statistics-articles' => 'Artiikler',
+'statistics-pages' => 'Sidjen',
+'statistics-pages-desc' => 'Aal a sidjen uun det wiki, mä diskusjuunssidjen, widjerfeerangen asw.',
+'statistics-files' => 'Huuchsjüürd dateien',
+'statistics-edits' => 'Bewerkangen, sant det sidj {{SITENAME}} maaget wurden as',
+'statistics-edits-average' => "Bewerkangen per sidj uun't madel",
+'statistics-views-total' => 'Kliks üüb det sidj',
+'statistics-views-total-desc' => 'Kliks üüb sidjen, diar\'t goorei jaft of "Spezial-"sidjen wurd ei mätääld.',
+'statistics-views-peredit' => 'Kliks per bewerkang',
+'statistics-users' => 'Registriaret [[Special:ListUsers|brükern]]',
+'statistics-users-active' => 'Aktiif brükern',
+'statistics-users-active-desc' => 'Brükern, diar wat bewerket haa uun a leetst {{PLURAL:$1|dai|$1 daar}}',
+'statistics-mostpopular' => 'Sidjen mä a miast kliks',
 
+'disambiguations' => 'Sidjen, diar üüb muardüüdag artiikler ferwise',
 'disambiguationspage' => 'Template:Muardüüdag artiikel',
+'disambiguations-text' => "Jodiar sidjen haa tumanst ian ferwisang üüb en '''muardüüdagen artiikel'''. Ferlicht skul jo beeder direkt üüb det mend sidj ferwise.
+
+En sidj täält üs '''muardüüdag artiikel''', wan hat tumanst ian föörlaag faan det [[MediaWiki:Disambiguationspage|Disambiguationspage]] häält.",
+
+'pageswithprop' => 'Sidjen mä en sidjeneegenoort',
+'pageswithprop-legend' => 'Sidjen mä en sidjeneegenoort',
+'pageswithprop-text' => 'Detheer Spezial-sidj feert sidjen mä was sidjeneegenoorten ap.',
+'pageswithprop-prop' => 'Sidjeneegenoort:',
+'pageswithprop-submit' => 'Widjer',
+
+'doubleredirects' => 'Dobelt widjerfeerangen',
+'doubleredirectstext' => "Detheer list feert widjerfeerangen ap, diar üüb widjerfeerangen widjer feer.
+Uun arke rä stun ferwisangen tu't iarst an ööder widjerfeerang an uk tu det sidj, huar det ööder widjerfeerang üüb ferwiset. <del>Trochstregen</del> iindracher san al bewerket wurden.",
+'double-redirect-fixed-move' => '[[$1]] as fersköwen wurden an feert nü widjer tu [[$2]].',
+'double-redirect-fixed-maintenance' => 'Dobelt widjerfeerang faan [[$1]] tu [[$2]] as apredet wurden.',
+'double-redirect-fixer' => 'Bot för widjerfeerangen',
+
+'brokenredirects' => 'Uunstaken widjerfeerangen',
+'brokenredirectstext' => "Jodiar widjerfeerangen ferwise üüb en sidj, diar't goorei jaft:",
+'brokenredirects-edit' => 'bewerke',
+'brokenredirects-delete' => 'strik',
+
+'withoutinterwiki' => 'Sidjen saner ferwisangen tu ööder spriaken',
+'withoutinterwiki-summary' => 'Jodiar sidjen haa nian ferwisangen tu ööder spriaken.',
+'withoutinterwiki-legend' => 'Prefix',
+'withoutinterwiki-submit' => 'Wise',
+
+'fewestrevisions' => 'Sidjen mä manst feranrangen',
 
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|byte|bytes}}',
 'ncategories' => '{{PLURAL:$1|kategorii|kategoriie}}',
+'ninterwikis' => '$1 {{PLURAL:$1|interwiki|interwikis}}',
 'nlinks' => '$1 {{PLURAL:$1|link|links}}',
 'nmembers' => '{{PLURAL:$1|1 önjdraag|$1 önjdraage}}',
+'nrevisions' => '$1 {{PLURAL:$1|feranrang|feranrangen}}',
+'nviews' => '$1 {{PLURAL:$1|klik|kliks}}',
+'nimagelinks' => 'Brükt üüb $1 {{PLURAL:$1|sidj|sidjen}}',
+'ntransclusions' => 'brükt üüb $1 {{PLURAL:$1|sidj|sidjen}}',
+'specialpage-empty' => 'Diar san tu tidj nian iindracher.',
+'lonelypages' => 'Sidjen, diar ei üüb ferwiset woort',
+'lonelypagestext' => 'Jodiar sidjen san ei uun ööder sidjen iinbünjen an diar woort uun {{SITENAME}} uk ei üüb ferwiset.',
+'uncategorizedpages' => 'Sidjen saner kategorii',
+'uncategorizedcategories' => 'Kategoriin saner kategorii',
+'uncategorizedimages' => 'Dateien saner kategorii',
+'uncategorizedtemplates' => 'Föörlaagen saner kategorii',
+'unusedcategories' => 'Kategoriin, diar ei brükt wurd',
+'unusedimages' => 'Dateien, diar ei brükt wurd',
+'popularpages' => 'Miats uunluket sidjen',
+'wantedcategories' => 'Kategoriin, diar brükt wurd',
+'wantedpages' => 'Sidjen, diar brükt wurd',
+'wantedpages-badtitle' => 'Diar as en artiikelnööm ei tuläät uun: $1',
+'wantedfiles' => 'Dateien, diar brükt wurd',
+'wantedfiletext-cat' => 'Jodiar dateien wurd brükt, oober san ei diar. Dateien faan ööder archiiwen wurd apfeerd, san oober <del>trochstregen</del>. An jo sidjen, diar sok dateien brük, stun uun  [[:$1]].',
+'wantedfiletext-nocat' => 'Jodiar dateien wurd brükt, oober san ei diar. Dateien faan ööder archiiwen wurd apfeerd, san oober <del>trochstregen</del>.',
+'wantedtemplates' => 'Föörlaagen, diar brükt wurd',
+'mostlinked' => 'Sidjen, huar a miast ööder sidjen üüb ferwise',
+'mostlinkedcategories' => 'Miast brükt kategoriin',
+'mostlinkedtemplates' => 'Miast brükt föörlaagen',
+'mostcategories' => 'Sidjen mä a miast kategoriin',
+'mostimages' => 'Dateien, huar a miast sidjen üüb ferwise',
+'mostinterwikis' => 'Sidjen mä a miast ferwisangen tu ööder spriaken',
+'mostrevisions' => 'Sidjen mä miast feranrangen',
 'prefixindex' => 'Åle side (ma prefiks)',
+'prefixindex-namespace' => 'Aal a sidjen mä prefix (nöömrüm $1)',
+'shortpages' => 'Kurt sidjen',
+'longpages' => 'Lung sidjen',
+'deadendpages' => 'Sidjen saner ferwisangen',
+'deadendpagestext' => 'Jodiar sidjen ferwise ei üüb ööder sidjen uun {{SITENAME}}.',
+'protectedpages' => 'Seekert sidjen',
 'usercreated' => '{{GENDER:$3|Maaget}} di $1 am a klook $2',
 'newpages' => 'Naie side',
 'newpages-username' => 'Brükernoome:',

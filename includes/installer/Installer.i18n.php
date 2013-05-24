@@ -12945,8 +12945,8 @@ chmod a+w $3</pre>',
 	'config-ns-other' => 'Друго (наведете)',
 	'config-ns-other-default' => 'МоеВики',
 	'config-project-namespace-help' => "По примерот на Википедија, многу викија ги чуваат страниците со правила на посебно место од самите содржини, т.е. во „'''проектен именски простор'''“.
-Сите наслови на страниците во овој именски простор почнуваат со извесен префикс, којшто можете да го укажете тука.
-По традиција префиксот произлегува од името на викито, но не смее да содржи интерпункциски знаци како „#“ или „:“.",
+Сите наслови на страниците во овој именски простор почнуваат со извесна претставка, којшто можете да го укажете тука.
+По традиција претставката произлегува од името на викито, но не смее да содржи интерпункциски знаци како „#“ или „:“.",
 	'config-ns-invalid' => 'Назначениот именски простор „<nowiki>$1</nowiki>“ е неважечки.
 Назначете друг проектен именски простор.',
 	'config-ns-conflict' => 'Наведениот именски простор „<nowiki>$1</nowiki>“ се коси со основниот именски простор на МедијаВики.
@@ -17034,8 +17034,13 @@ $messages['roa-tara'] = array(
 	'config-title' => 'Installazzione de MediaUicchi $1',
 	'config-information' => "'Mbormaziune",
 	'config-localsettings-key' => 'Chiave de aggiornamende:',
+	'config-localsettings-badkey' => "'A chiave ca è date non g'è corrette.",
+	'config-your-language' => "'A lènga toje:",
+	'config-your-language-help' => "Scacchie 'na lènghe da ausà duranne 'u processe de installazzione:",
+	'config-wiki-language' => 'Lènga de Uicchi:',
 	'config-page-language' => 'Lènghe',
 	'config-page-name' => 'Nome',
+	'config-db-type' => 'Tipe de database:',
 	'config-db-charset' => "'Nzieme de carattere d'u database",
 	'config-charset-mysql5-binary' => 'MySQL 4.1/5.0 binary',
 	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',
@@ -20891,7 +20896,7 @@ chmod a+w $3</pre>',
 	'config-optional-continue' => '多問我一些問題吧。',
 	'config-optional-skip' => '我已經不耐煩了，趕緊安裝我的wiki。',
 	'config-profile' => '用戶權限配置：',
-	'config-profile-wiki' => '傳統wiki', # Fuzzy
+	'config-profile-wiki' => '開放的wiki',
 	'config-profile-no-anon' => '需要註冊帳號',
 	'config-profile-fishbowl' => '編輯受限',
 	'config-profile-private' => '非公開wiki',
