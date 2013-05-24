@@ -48,41 +48,86 @@ class SpecialVersion extends SpecialPage {
 	 * main()
 	 */
 	public function execute( $par ) {
-		global $wgSpecialVersionShowHooks, $IP;
+		global $wgSpecialVersionShowHooks, $IP, $wgExtensionCredits;
 
 		$this->setHeaders();
 		$this->outputHeader();
 		$out = $this->getOutput();
 		$out->allowClickjacking();
 
-		if ( $par !== 'Credits' ) {
-			$text =
-				$this->getMediaWikiCredits() .
-				$this->softwareInformation() .
-				$this->getEntryPointInfo() .
-				$this->getExtensionCredits();
-			if ( $wgSpecialVersionShowHooks ) {
-				$text .= $this->getWgHooks();
+		// Explode the sub page information into useful bits
+		$parts = explode( '/', (string)$par );
+		if ( isset( $parts[1] ) ) {
+			$extName = $parts[1];
+			$extNode = null;
+			// Find it!
+			foreach ( $wgExtensionCredits as $group => $extensions ) {
+				foreach( $extensions as $ext ) {
+					if ( isset( $ext['name'] ) && ( $ext['name'] === $extName ) ) {
+						$extNode = &$ext;
+						break 2;
+					}
+				}
 			}
-
-			$out->addWikiText( $text );
-			$out->addHTML( $this->IPInfo() );
-
-			if ( $this->getRequest()->getVal( 'easteregg' ) ) {
-				// TODO: put something interesting here
+			if ( !$extNode ) {
+				$out->setStatusCode( 404 );
 			}
 		} else {
-			// Credits sub page
+			$extName = 'MediaWiki';
+		}
 
-			// Header
-			$out->addHTML( wfMessage( 'version-credits-summary' )->parseAsBlock() );
+		// Now figure out what to do
+		switch ( strtolower( $parts[0] ) ) {
+			case 'credits':
+				$wikiText = '{{int:version-credits-not-found}}';
+				if ( $extName === 'MediaWiki' ) {
+					$wikiText = file_get_contents( $IP . '/CREDITS' );
+				} elseif ( ( $extNode !== null ) && isset( $extNode['path'] ) ) {
+					$file = $this->getExtAuthorsFileName( $extNode['path'] );
+					if ( $file ) {
+						$wikiText = file_get_contents( $file );
+					}
+				}
 
-			$wikiText = file_get_contents( $IP . '/CREDITS' );
+				$out->setPageTitle( $this->msg( 'version-credits-title', $extName ) );
+				$out->addWikiText( $wikiText );
+				break;
 
-			// Take everything from the first section onwards, to remove the (not localized) header
-			$wikiText = substr( $wikiText, strpos( $wikiText, '==' ) );
+			case 'license':
+				$wikiText = '{{int:version-license-not-found}}';
+				if ( $extName === 'MediaWiki' ) {
+					$wikiText = file_get_contents( $IP . '/COPYING' );
+				} elseif ( ( $extNode !== null ) && isset( $extNode['path'] ) ) {
+					$file = $this->getExtLicenseFileName( dirname( $extNode['path'] ) );
+					if ( $file ) {
+						$wikiText = file_get_contents( $file );
+						if ( !isset( $extNode['license-name'] ) ) {
+							// If the developer did not explicitly set license-name they probably
+							// are unaware that we're now sucking this file in and thus it's probably
+							// not wikitext friendly.
+							$wikiText = "<pre>$wikiText</pre>";
+						}
+					}
+				}
 
-			$out->addWikiText( $wikiText );
+				$out->setPageTitle( $this->msg( 'version-license-title', $extName ) );
+				$out->addWikiText( $wikiText );
+				break;
+
+			default:
+				$out->addWikiText(
+					$this->getMediaWikiCredits() .
+					$this->softwareInformation() .
+					$this->getEntryPointInfo()
+				);
+				$out->addHtml( $this->getExtensionCredits() );
+				if ( $wgSpecialVersionShowHooks ) {
+					$out->addWikiText( $this->getWgHooks() );
+				}
+
+				$out->addHTML( $this->IPInfo() );
+
+				break;
 		}
 	}
 
@@ -295,7 +340,7 @@ class SpecialVersion extends SpecialPage {
 
 		$gitHeadCommitDate = $gitInfo->getHeadCommitDate();
 		if ( $gitHeadCommitDate ) {
-			$shortSHA1 .= "<br/>" . $wgLang->timeanddate( $gitHeadCommitDate, true );
+			$shortSHA1 .= Html::element( 'br' ) . $wgLang->timeanddate( $gitHeadCommitDate, true );
 		}
 
 		return self::getwgVersionLinked() . " $shortSHA1";
@@ -462,63 +507,115 @@ class SpecialVersion extends SpecialPage {
 	}
 
 	/**
-	 * Creates and formats the credits for a single extension and returns this.
+	 * Creates and formats a version line for a single extension.
+	 *
+	 * Information for four columns will be created. Parameters required in the
+	 * $extension array for part rendering are indicated in ()
+	 *  - The name of (name), and URL link to (url), the extension
+	 *   -- Also if available the short name of the license (license-name) and a linke
+	 *      to ((LICENSE)|(COPYING))(\.txt)? if it exists.
+	 *  - Official version number (version) and if available version control system
+	 *    revision (path), link, and date
+	 *  - Description of extension (descriptionmsg or description)
+	 *  - List of authors (author) and link to a ((AUTHORS)|(CREDITS))(\.txt)? file if it exists
 	 *
 	 * @param $extension Array
 	 *
 	 * @return string
 	 */
 	function getCreditsForExtension( array $extension ) {
-		global $wgLang;
+		$out = $this->getOutput();
 
-		$name = isset( $extension['name'] ) ? $extension['name'] : '[no name]';
+		/* === Obtain the information for all the bits and pieces === */
+		/* --- Extension name and link --- */
+		$extensionName = isset( $extension['name'] ) ? $extension['name'] : '[no name]';
+		if ( isset( $extension['url'] ) ) {
+			$extensionNameLink = Linker::makeExternalLink(
+				$extension['url'],
+				$extensionName,
+				true,
+				'',
+				array( 'class' => 'mw-version-ext-name' )
+			);
+		} else {
+			$extensionNameLink = $extensionName;
+		}
 
-		$vcsText = false;
+		/* --- Version information ---
+		   If the extension path is set we will check that directory for GIT and SVN
+		   metadata in an attempt to extract date and vcs commit metadata.
+		*/
+		$canonicalVersion = '-';
+		$extensionPath = null;
+		$vcsVersion = null;
+		$vcsLink = null;
+		$vcsDate = null;
+
+		if ( isset( $extension['version'] ) ) {
+			$canonicalVersion = $out->parseInline( $extension['version'] );
+		}
 
 		if ( isset( $extension['path'] ) ) {
-			$gitInfo = new GitInfo( dirname( $extension['path'] ) );
-			$gitHeadSHA1 = $gitInfo->getHeadSHA1();
-			if ( $gitHeadSHA1 !== false ) {
-				$vcsText = '(' . substr( $gitHeadSHA1, 0, 7 ) . ')';
-				$gitViewerUrl = $gitInfo->getHeadViewUrl();
-				if ( $gitViewerUrl !== false ) {
-					$vcsText = "[$gitViewerUrl $vcsText]";
-				}
-				$gitHeadCommitDate = $gitInfo->getHeadCommitDate();
-				if ( $gitHeadCommitDate ) {
-					$vcsText .= "<br/>" . $wgLang->timeanddate( $gitHeadCommitDate, true );
-				}
+			$extensionPath = dirname( $extension['path'] );
+			$gitInfo = new GitInfo( $extensionPath );
+			$vcsVersion = $gitInfo->getHeadSHA1();
+			if ( $vcsVersion !== false ) {
+				$vcsVersion = substr( $vcsVersion, 0, 7 );
+				$vcsLink = $gitInfo->getHeadViewUrl();
+				$vcsDate = $gitInfo->getHeadCommitDate();
 			} else {
-				$svnInfo = self::getSvnInfo( dirname( $extension['path'] ) );
-				# Make subversion text/link.
+				$svnInfo = self::getSvnInfo( $extensionPath );
 				if ( $svnInfo !== false ) {
-					$directoryRev = isset( $svnInfo['directory-rev'] ) ? $svnInfo['directory-rev'] : null;
-					$vcsText = $this->msg( 'version-svn-revision', $directoryRev, $svnInfo['checkout-rev'] )->text();
-					$vcsText = isset( $svnInfo['viewvc-url'] ) ? '[' . $svnInfo['viewvc-url'] . " $vcsText]" : $vcsText;
+					$vcsVersion = $this->msg( 'version-svn-revision', $svnInfo['checkout-rev'] )->text();
+					$vcsLink = isset( $svnInfo['viewvc-url'] ) ? $svnInfo['viewvc-url'] : '';
 				}
 			}
 		}
 
-		# Make main link (or just the name if there is no URL).
-		if ( isset( $extension['url'] ) ) {
-			$mainLink = "[{$extension['url']} $name]";
-		} else {
-			$mainLink = $name;
+		if ( $vcsVersion ) {
+			if ( $vcsLink ) {
+				$vcsVerString = Linker::makeExternalLink(
+					$vcsLink,
+					"({$vcsVersion})",
+					true,
+					'',
+					array( 'class' => 'mw-version-ext-vcs-version' )
+				);
+			} else {
+				$vcsVerString = Html::openElement( 'span', array( 'class' => 'mw-version-ext-vcs-version') ) .
+					"({$vcsVersion})" .
+					Html::closeElement( 'span' );
+			}
+
+			if ( $vcsDate ) {
+				$vcsTimeString = Html::element( 'br' ) .
+					Html::openElement( 'span', array( 'class' => 'mw-version-ext-vcs-timestamp') ) .
+					$this->getLanguage()->timeanddate( $vcsDate ) .
+					Html::closeElement( 'span' );
+			}
+		}
+		$versionString = Xml::span( $canonicalVersion, 'mw-version-ext-version' ) .
+			" {$vcsVerString} {$vcsTimeString}";
+
+		/* --- Get license information if it exists --- */
+		$licenseLink = '';
+		if ( isset( $extension['license-name'] ) ) {
+			$licenseLink = Linker::link(
+				$this->getTitle( 'License/' . $extensionName ),
+				$out->parseInline( $extension['license-name'] ),
+				array( 'class' => 'mw-version-ext-license' )
+			);
+		} elseif ( $this->getExtLicenseFileName( $extensionPath ) ) {
+			$licenseLink = Linker::link(
+				$this->getTitle( 'License/' . $extensionName ),
+				$this->msg( 'version-ext-license' ),
+				array( 'class' => 'mw-version-ext-license' )
+			);
 		}
 
-		if ( isset( $extension['version'] ) ) {
-			$versionText = '<span class="mw-version-ext-version">' .
-				$this->msg( 'version-version', $extension['version'] )->text() .
-				'</span>';
-		} else {
-			$versionText = '';
-		}
-
-		# Make description text.
-		$description = isset( $extension['description'] ) ? $extension['description'] : '';
-
+		/* --- Description Text --- */
 		if ( isset( $extension['descriptionmsg'] ) ) {
-			# Look for a localized description.
+			// Localized description of extension
 			$descriptionMsg = $extension['descriptionmsg'];
 
 			if ( is_array( $descriptionMsg ) ) {
@@ -529,23 +626,33 @@ class SpecialVersion extends SpecialPage {
 			} else {
 				$description = $this->msg( $descriptionMsg )->text();
 			}
-		}
-
-		if ( $vcsText !== false ) {
-			$extNameVer = "<tr>
-				<td><em>$mainLink $versionText</em></td>
-				<td><em>$vcsText</em></td>";
+		} elseif ( isset( $extension['description'] ) ) {
+			// Non localized version
+			$description = $out->parseInline( $extension['description'] );
 		} else {
-			$extNameVer = "<tr>
-				<td colspan=\"2\"><em>$mainLink $versionText</em></td>";
+			$description = '';
 		}
+		$description = $out->parseInline( $description );
 
-		$author = isset( $extension['author'] ) ? $extension['author'] : array();
-		$extDescAuthor = "<td>$description</td>
-			<td>" . $this->listAuthors( $author, false ) . "</td>
-			</tr>\n";
+		/* --- Authors list --- */
+		$authors = isset( $extension['author'] ) ? $extension['author'] : array();
+		$authors = $this->listAuthors( $authors, $extensionName, $extensionPath );
 
-		return $extNameVer . $extDescAuthor;
+		/* === Create the five columned table === */
+		$html = Html::openElement( 'tr', array(
+				'class' => 'mw-version-ext',
+				'id' => "mw-version-ext-{$extensionName}"
+			)
+		);
+
+		$html .= Html::rawElement( 'td', array(), '<b>' . $extensionNameLink . '</b><br />' . $versionString );
+		$html .= Html::rawElement( 'td', array(), $licenseLink );
+		$html .= Html::rawElement( 'td', array( 'class' => 'mw-version-ext-description' ), $description );
+		$html .= Html::rawElement( 'td', array( 'class' => 'mw-version-ext-authors' ), $authors );
+
+		$html .= Html::closeElement( 'td' );
+
+		return $html;
 	}
 
 	/**
@@ -613,21 +720,117 @@ class SpecialVersion extends SpecialPage {
 	/**
 	 * Return a formatted unsorted list of authors
 	 *
+	 * 'And Others'
+	 *   If an item in the $authors array is '...' it is assumed to indicate an
+	 *   'and others' string which will then be linked to an ((AUTHORS)|(CREDITS))(\.txt)?
+	 *   file if it exists in $dir.
+	 *
+	 *   Similarly an entry ending with ' ...]' is assumed to be a link to an
+	 *   'and others' page.
+	 *
+	 *   If no '...' string variant is found, but an authors file is found an
+	 *   'and others' will be added to the end of the credits.
+	 *
 	 * @param $authors mixed: string or array of strings
+	 * @param $extName string: name of the extension for link creation
+	 * @param $extDir  string: path to the extension root directory
+	 *
 	 * @return String: HTML fragment
 	 */
-	function listAuthors( $authors ) {
+	function listAuthors( $authors, $extName, $extDir ) {
+		$hasOthers = false;
+
 		$list = array();
 		foreach ( (array)$authors as $item ) {
 			if ( $item == '...' ) {
-				$list[] = $this->msg( 'version-poweredby-others' )->text();
+				$hasOthers = true;
+				$text = $this->msg( 'version-poweredby-others' )->text();
+
+				if ( $this->getExtAuthorsFileName( $extDir ) ) {
+					$text = Linker::link(
+						$this->getTitle( "Credits/$extName" ),
+						$text
+					);
+				}
+				$list[] = $text;
+
 			} elseif ( substr( $item, -5 ) == ' ...]' ) {
-				$list[] = substr( $item, 0, -4 ) . $this->msg( 'version-poweredby-others' )->text() . "]";
+				$hasOthers = true;
+				$list[] = $this->getOutput()->parseinline(
+					substr( $item, 0, -4 ) . $this->msg( 'version-poweredby-others' )->text() . "]"
+				);
+
 			} else {
-				$list[] = $item;
+				$list[] = $this->getOutput()->parseinline( $item );
 			}
 		}
+
+		if ( !$hasOthers && $this->getExtAuthorsFileName( $extDir ) ) {
+			$list[] = $text = Linker::link(
+				$this->getTitle( "Credits/$extName" ),
+				$this->msg( 'version-poweredby-others' )->text()
+			);
+		}
+
 		return $this->listToText( $list, false );
+	}
+
+	/**
+	 * Obtains the full path of an extensions authors or credits file if
+	 * one exists.
+	 *
+	 * @param $extDir string: Path to the extensions root directory
+	 *
+	 * @since 1.22
+	 *
+	 * @return bool|string False if no such file exists, otherwise returns
+	 * a path to it.
+	 */
+	public static function getExtAuthorsFileName( $extDir ) {
+		if ( !$extDir ) {
+			return false;
+		}
+
+		foreach( scandir( $extDir ) as $file ) {
+			$fullPath = $extDir . DIRECTORY_SEPARATOR . $file;
+			if ( preg_match( '/^((AUTHORS)|(CREDITS))(\.txt)?$/', $file ) &&
+				is_readable( $fullPath ) &&
+				is_file( $fullPath )
+			) {
+				return $fullPath;
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * Obtains the full path of an extensions copying or license file if
+	 * one exists.
+	 *
+	 * @param $extDir string: Path to the extensions root directory
+	 *
+	 * @since 1.22
+	 *
+	 * @return bool|string False if no such file exists, otherwise returns
+	 * a path to it.
+	 */
+	public static function getExtLicenseFileName( $extDir ) {
+		if ( !$extDir ) {
+			return false;
+		}
+
+		foreach( scandir( $extDir ) as $file ) {
+			$fullPath = $extDir . DIRECTORY_SEPARATOR . $file;
+			if ( preg_match( '/^((COPYING)|(LICENSE))(\.txt)?$/', $file ) &&
+				is_readable( $fullPath ) &&
+				is_file( $fullPath )
+			) {
+				return $fullPath;
+			}
+		}
+
+		return false;
 	}
 
 	/**
