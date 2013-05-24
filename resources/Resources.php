@@ -169,13 +169,6 @@ return array(
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
 	),
-	'skins.monobook.styles' => array(
-		'styles' => array(
-			'monobook/main.css' => array( 'media' => 'screen' ),
-		),
-		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => $GLOBALS['wgStyleDirectory'],
-	),
 	'skins.vector.js' => array(
 		'scripts' => array(
 			'vector/collapsibleTabs.js',
