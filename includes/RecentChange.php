@@ -32,6 +32,7 @@
  *  rc_type         is new entry, used to determine whether updating is necessary
  *  rc_minor        is minor
  *  rc_cur_id       page_id of associated page entry
+ *  rc_cur_id_assoc page_id of associated "associated page" entry
  *  rc_user         user id who made the entry
  *  rc_user_text    user name who made the entry
  *  rc_comment      edit summary
@@ -153,6 +154,7 @@ class RecentChange {
 			'rc_bot',
 			'rc_new',
 			'rc_cur_id',
+			'rc_cur_id_assoc',
 			'rc_this_oldid',
 			'rc_last_oldid',
 			'rc_type',
@@ -443,6 +445,7 @@ class RecentChange {
 			'rc_type'       => RC_EDIT,
 			'rc_minor'      => $minor ? 1 : 0,
 			'rc_cur_id'     => $title->getArticleID(),
+			'rc_cur_id_assoc' => $title->getAssociatedPage()->getArticleID(),
 			'rc_user'       => $user->getId(),
 			'rc_user_text'  => $user->getName(),
 			'rc_comment'    => $comment,
@@ -502,6 +505,7 @@ class RecentChange {
 			'rc_type'           => RC_NEW,
 			'rc_minor'          => $minor ? 1 : 0,
 			'rc_cur_id'         => $title->getArticleID(),
+			'rc_cur_id_assoc'   => $title->getAssociatedPage()->getArticleID(),
 			'rc_user'           => $user->getId(),
 			'rc_user_text'      => $user->getName(),
 			'rc_comment'        => $comment,
@@ -611,6 +615,7 @@ class RecentChange {
 			'rc_type'       => RC_LOG,
 			'rc_minor'      => 0,
 			'rc_cur_id'     => $target->getArticleID(),
+			'rc_cur_id_assoc' => $target->getAssociatedPage()->getArticleID(),
 			'rc_user'       => $user->getId(),
 			'rc_user_text'  => $user->getName(),
 			'rc_comment'    => $logComment,

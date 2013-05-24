@@ -1329,6 +1329,7 @@ $wgMessageStructure = array(
 		'recentchangeslinked-summary',
 		'recentchangeslinked-page',
 		'recentchangeslinked-to',
+		'recentchangeslinked-associated',
 	),
 	'upload' => array(
 		'upload',

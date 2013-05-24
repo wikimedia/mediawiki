@@ -37,6 +37,7 @@ class SpecialRecentchangeslinked extends SpecialRecentChanges {
 		$opts = parent::getDefaultOptions();
 		$opts->add( 'target', '' );
 		$opts->add( 'showlinkedto', false );
+		$opts->add( 'showassociated', false );
 		return $opts;
 	}
 
@@ -64,6 +65,7 @@ class SpecialRecentchangeslinked extends SpecialRecentChanges {
 	public function doMainQuery( $conds, $opts ) {
 		$target = $opts['target'];
 		$showlinkedto = $opts['showlinkedto'];
+		$showassociated = $opts['showassociated'];
 		$limit = $opts['limit'];
 
 		if ( $target === '' ) {
@@ -171,7 +173,11 @@ class SpecialRecentchangeslinked extends SpecialRecentChanges {
 				} else {
 					$subconds = array( "{$pfx}_namespace" => $ns, "{$pfx}_title" => $dbkey );
 				}
-				$subjoin = "rc_cur_id = {$pfx}_from";
+				if( $showassociated ) {
+					$subjoin = "rc_cur_id = {$pfx}_from OR rc_cur_id_assoc = {$pfx}_from";
+				} else {
+					$subjoin = "rc_cur_id = {$pfx}_from";
+				}
 			} else {
 				// find changes to pages linked from this page
 				$subconds = array( "{$pfx}_from" => $id );
@@ -230,13 +236,15 @@ class SpecialRecentchangeslinked extends SpecialRecentChanges {
 	 * @return array
 	 */
 	function getExtraOptions( $opts ) {
-		$opts->consumeValues( array( 'showlinkedto', 'target', 'tagfilter' ) );
+		$opts->consumeValues( array( 'showlinkedto', 'showassociated', 'target', 'tagfilter' ) );
 		$extraOpts = array();
 		$extraOpts['namespace'] = $this->namespaceFilterForm( $opts );
 		$extraOpts['target'] = array( $this->msg( 'recentchangeslinked-page' )->escaped(),
-			Xml::input( 'target', 40, str_replace( '_', ' ', $opts['target'] ) ) .
-			Xml::check( 'showlinkedto', $opts['showlinkedto'], array( 'id' => 'showlinkedto' ) ) . ' ' .
-			Xml::label( $this->msg( 'recentchangeslinked-to' )->text(), 'showlinkedto' ) );
+			Xml::input( 'target', 40, str_replace( '_', ' ',$opts['target']) ) .
+			Xml::check( 'showlinkedto', $opts['showlinkedto'], array('id' => 'showlinkedto') ) . ' ' .
+			Xml::label( $this->msg( 'recentchangeslinked-to' )->text(), 'showlinkedto' ) .
+			Xml::check( 'showassociated', $opts['showassociated'], array('id' => 'showassociated') ) . ' ' .
+			Xml::label( $this->msg( 'recentchangeslinked-associated' )->text(), 'showassociated' ) );
 		$tagFilter = ChangeTags::buildTagFilterSelector( $opts['tagfilter'] );
 		if ( $tagFilter ) {
 			$extraOpts['tagfilter'] = $tagFilter;

@@ -1061,6 +1061,19 @@ class Title {
 		return Title::makeTitle( $subjectNS, $this->getDBkey() );
 	}
 
+	/** Get a title object associated with the associated page of this
+	 *  page
+	 *
+	 * @return Title object of the associated page
+	 */
+	public function getAssociatedPage() {
+		if ( $this->isTalkPage() ) {
+			return $this->getSubjectPage();
+		} else {
+			return $this->getTalkPage();
+		}
+	}
+
 	/**
 	 * Get the default namespace index, for when there is no namespace
 	 *

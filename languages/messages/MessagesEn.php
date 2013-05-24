@@ -2193,15 +2193,16 @@ Your email address is not revealed when other users contact you.',
 'rc-old-title'                      => 'originally created as "$1"',
 
 # Recent changes linked
-'recentchangeslinked'          => 'Related changes',
-'recentchangeslinked-feed'     => 'Related changes',
-'recentchangeslinked-toolbox'  => 'Related changes',
-'recentchangeslinked-title'    => 'Changes related to "$1"',
-'recentchangeslinked-noresult' => 'No changes on linked pages during the given period.',
-'recentchangeslinked-summary'  => "This is a list of changes made recently to pages linked from a specified page (or to members of a specified category).
+'recentchangeslinked'            => 'Related changes',
+'recentchangeslinked-feed'       => 'Related changes',
+'recentchangeslinked-toolbox'    => 'Related changes',
+'recentchangeslinked-title'      => 'Changes related to "$1"',
+'recentchangeslinked-noresult'   => 'No changes on linked pages during the given period.',
+'recentchangeslinked-summary'    => "This is a list of changes made recently to pages linked from a specified page (or to members of a specified category).
 Pages on [[Special:Watchlist|your watchlist]] are '''bold'''.",
-'recentchangeslinked-page'     => 'Page name:',
-'recentchangeslinked-to'       => 'Show changes to pages linked to the given page instead',
+'recentchangeslinked-page'       => 'Page name:',
+'recentchangeslinked-to'         => 'Show changes to pages linked to the given page instead',
+'recentchangeslinked-associated' => 'Also show changes to the associated content or talk pages',
 
 # Upload
 'upload'                      => 'Upload file',
