@@ -464,7 +464,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	}
 
 	protected function appendExtensions( $property ) {
-		global $wgExtensionCredits;
+		global $wgExtensionCredits, $wgArticlePath;
 		$data = array();
 		foreach ( $wgExtensionCredits as $type => $extensions ) {
 			foreach ( $extensions as $ext ) {
@@ -500,6 +500,32 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 						$ext['svn-revision'], $m ) )
 				{
 						$ret['version'] = 'r' . $m[1];
+				}
+				if ( isset( $ext['path'] ) ) {
+					$extensionPath = dirname( $ext['path'] );
+					$gitInfo = new GitInfo( $extensionPath );
+					$vcsVersion = $gitInfo->getHeadSHA1();
+					if ( $vcsVersion !== false ) {
+						$ret['vcs-system'] = 'git';
+						$ret['vcs-version'] =  substr( $vcsVersion, 0, 7 );
+						$ret['vcs-url'] = $gitInfo->getHeadViewUrl();
+						$ret['vcs-date'] = date( 'c', $gitInfo->getHeadCommitDate() );
+					} else {
+						$svnInfo = self::getSvnInfo( $extensionPath );
+						if ( $svnInfo !== false ) {
+							$ret['vcs-system'] = 'svn';
+							$ret['vcs-version'] = $this->msg( 'version-svn-revision', $svnInfo['checkout-rev'] )->text();
+							$ret['vcs-url'] = isset( $svnInfo['viewvc-url'] ) ? $svnInfo['viewvc-url'] : '';
+							$ret['vcs-date'] = '';
+						}
+					}
+					if ( SpecialVersion::getExtLicenseFileName( $extensionPath ) ) {
+						$ret['license-name'] = isset( $ext['license-name'] ) ? $ext['license-name'] : '';
+						$ret['license'] = str_replace( '$1', "Special:Version/License/{$ext['name']}", $wgArticlePath );
+					}
+					if ( SpecialVersion::getExtAuthorsFileName( $extensionPath ) ) {
+						$ret['credits'] = str_replace( '$1', "Special:Version/Credits/{$ext['name']}", $wgArticlePath );
+					}
 				}
 				$data[] = $ret;
 			}
