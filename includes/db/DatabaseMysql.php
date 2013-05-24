@@ -917,6 +917,57 @@ class DatabaseMysql extends DatabaseBase {
 		return $endArray;
 	}
 
+
+	/**
+	 * Lists all the VIEWs in the database
+	 *
+	 * @param string $prefix   Only show VIEWs with this prefix, eg. unit_test_, or $wgDBprefix
+	 * @param string $fname    Name of calling function
+	 * @return array
+	 */
+	public function listViews( $prefix = null, $fname = __METHOD__ ) {
+
+		if ( !is_null($this->views) ) {
+			return $this->views;
+		}
+
+		// The name of the column containing the name of the VIEW
+		$propertyName = 'Tables_in_' . $this->mDBname;
+
+		// Query for the VIEWS
+		if ( !$prefix ) {
+			$sql = 'SHOW FULL TABLES WHERE TABLE_TYPE LIKE "VIEW"';
+		}
+		else {
+			$sql = sprintf(
+				'SHOW FULL TABLES LIKE "%s%%" WHERE TABLE_TYPE LIKE "VIEW"',
+				$this->strencode( $prefix )
+			);
+		}
+		$result = $this->query( $sql );
+
+		// Pull out the names
+		$this->views = array();
+		while ( ($row = $this->fetchRow($result)) !== false ) {
+			array_push( $this->views, $row[$propertyName] );
+		}
+		return $this->views;
+	}
+
+	/**
+	 * Differentiates between a TABLE and a VIEW.
+	 *
+	 * @param $name string: Name of the TABLE/VIEW to test
+	 * @return bool
+	 */
+	public function isView( $name ) {
+		if ( !$name ) {
+			return false;
+		}
+		return in_array( $name, $this->listViews() );
+	}
+
+
 	/**
 	 * @param $tableName
 	 * @param $fName string
