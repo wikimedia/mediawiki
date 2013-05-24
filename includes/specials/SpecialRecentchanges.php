@@ -488,27 +488,17 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	public function webOutput( $rows, $opts ) {
 		global $wgRCShowWatchingUsers, $wgShowUpdatedMarker, $wgAllowCategorizedRecentChanges;
 
-		$limit = $opts['limit'];
-
-		if ( !$this->including() ) {
-			// Output options box
-			$this->doHeader( $opts );
-		}
-
-		// And now for the content
-		$feedQuery = $this->getFeedQuery();
-		if ( $feedQuery !== '' ) {
-			$this->getOutput()->setFeedAppendQuery( $feedQuery );
-		} else {
-			$this->getOutput()->setFeedAppendQuery( false );
-		}
+		//
+		// Build the final data
+		//
 
 		if ( $wgAllowCategorizedRecentChanges ) {
 			$this->filterByCategories( $rows, $opts );
 		}
 
-		$showNumsWachting = $this->getUser()->getOption( 'shownumberswatching' );
-		$showWatcherCount = $wgRCShowWatchingUsers && $showNumsWachting;
+		$limit = $opts['limit'];
+
+		$showWatcherCount = $wgRCShowWatchingUsers && $this->getUser()->getOption( 'shownumberswatching' );
 		$watcherCache = array();
 
 		$dbr = wfGetDB( DB_SLAVE );
@@ -516,14 +506,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		$counter = 1;
 		$list = ChangesList::newFromContext( $this->getContext() );
 
-		if ( $rows->numRows() === 0 ) {
-			$this->getOutput()->wrapWikiMsg(
-				"<div class='mw-changeslist-empty'>\n$1\n</div>", 'recentchanges-noresult'
-			);
-			return;
-		}
-		
-		$s = $list->beginRecentChangesList();
+		$rclistOutput = $list->beginRecentChangesList();
 		foreach ( $rows as $obj ) {
 			if ( $limit == 0 ) {
 				break;
@@ -556,12 +539,36 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 
 			$changeLine = $list->recentChangesLine( $rc, !empty( $obj->wl_user ), $counter );
 			if ( $changeLine !== false ) {
-				$s .= $changeLine;
+				$rclistOutput .= $changeLine;
 				--$limit;
 			}
 		}
-		$s .= $list->endRecentChangesList();
-		$this->getOutput()->addHTML( $s );
+		$rclistOutput .= $list->endRecentChangesList();
+
+		//
+		// Print things out
+		//
+
+		if ( !$this->including() ) {
+			// Output options box
+			$this->doHeader( $opts );
+		}
+
+		// And now for the content
+		$feedQuery = $this->getFeedQuery();
+		if ( $feedQuery !== '' ) {
+			$this->getOutput()->setFeedAppendQuery( $feedQuery );
+		} else {
+			$this->getOutput()->setFeedAppendQuery( false );
+		}
+
+		if ( $rows->numRows() === 0 ) {
+			$this->getOutput()->wrapWikiMsg(
+				"<div class='mw-changeslist-empty'>\n$1\n</div>", 'recentchanges-noresult'
+			);
+		} else {
+			$this->getOutput()->addHTML( $rclistOutput );
+		}
 	}
 
 	/**
