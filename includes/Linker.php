@@ -319,7 +319,6 @@ class Linker {
 	 */
 	private static function linkAttribs( $target, $attribs, $options ) {
 		wfProfileIn( __METHOD__ );
-		global $wgUser;
 		$defaults = array();
 
 		if ( !in_array( 'noclasses', $options ) ) {
@@ -336,7 +335,11 @@ class Linker {
 			}
 
 			if ( !in_array( 'broken', $options ) ) { # Avoid useless calls to LinkCache (see r50387)
-				$colour = self::getLinkColour( $target, $wgUser->getStubThreshold() );
+				$colour = self::getLinkColour(
+					$target,
+					RequestContext::getMain()->getUser()->getStubThreshold()
+				);
+
 				if ( $colour !== '' ) {
 					$classes[] = $colour; # mw-redirect or stub
 				}
@@ -344,6 +347,7 @@ class Linker {
 			if ( $classes != array() ) {
 				$defaults['class'] = implode( ' ', $classes );
 			}
+
 			wfProfileOut( __METHOD__ . '-getClasses' );
 		}
 
@@ -407,10 +411,9 @@ class Linker {
 	 * @deprecated since 1.17
 	 */
 	static function makeSizeLinkObj( $size, $nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
-		global $wgUser;
 		wfDeprecated( __METHOD__, '1.17' );
 
-		$threshold = $wgUser->getStubThreshold();
+		$threshold = RequestContext::getMain()->getUser()->getStubThreshold();
 		$colour = ( $size < $threshold ) ? 'stub' : '';
 		// @todo FIXME: Replace deprecated makeColouredLinkObj by link()
 		return self::makeColouredLinkObj( $nt, $colour, $text, $query, $trail, $prefix );
@@ -1126,7 +1129,8 @@ class Linker {
 	public static function userToolLinks(
 		$userId, $userText, $redContribsWhenNoEdits = false, $flags = 0, $edits = null
 	) {
-		global $wgUser, $wgDisableAnonTalk, $wgLang;
+		global $wgDisableAnonTalk;
+
 		$talkable = !( $wgDisableAnonTalk && 0 == $userId );
 		$blockable = !( $flags & self::TOOL_LINKS_NOBLOCK );
 		$addEmailLink = $flags & self::TOOL_LINKS_EMAIL && $userId;
@@ -1151,11 +1155,15 @@ class Linker {
 
 			$items[] = self::link( $contribsPage, wfMessage( 'contribslink' )->escaped(), $attribs );
 		}
-		if ( $blockable && $wgUser->isAllowed( 'block' ) ) {
+
+		$context = RequestContext::getMain();
+		$user = $context->getUser();
+
+		if ( $blockable && $user->isAllowed( 'block' ) ) {
 			$items[] = self::blockLink( $userId, $userText );
 		}
 
-		if ( $addEmailLink && $wgUser->canSendEmail() ) {
+		if ( $addEmailLink && $user->canSendEmail() ) {
 			$items[] = self::emailLink( $userId, $userText );
 		}
 
@@ -1164,7 +1172,7 @@ class Linker {
 		if ( $items ) {
 			return wfMessage( 'word-separator' )->plain()
 				. '<span class="mw-usertoollinks">'
-				. wfMessage( 'parentheses' )->rawParams( $wgLang->pipeList( $items ) )->escaped()
+				. wfMessage( 'parentheses' )->rawParams( $context->getLanguage()->pipeList( $items ) )->escaped()
 				. '</span>';
 		} else {
 			return '';

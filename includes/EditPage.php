@@ -335,7 +335,6 @@ class EditPage {
 	 * the newly-edited page.
 	 */
 	function edit() {
-		global $wgOut, $wgRequest, $wgUser;
 		// Allow extensions to modify/prevent this form or submission
 		if ( !wfRunHooks( 'AlternateEdit', array( $this ) ) ) {
 			return;
@@ -344,14 +343,16 @@ class EditPage {
 		wfProfileIn( __METHOD__ );
 		wfDebug( __METHOD__ . ": enter\n" );
 
+		$context = RequestContext::getMain();
+
 		// If they used redlink=1 and the page exists, redirect to the main article
-		if ( $wgRequest->getBool( 'redlink' ) && $this->mTitle->exists() ) {
-			$wgOut->redirect( $this->mTitle->getFullURL() );
+		if ( $context->getRequest()->getBool( 'redlink' ) && $this->mTitle->exists() ) {
+			$context->getOutput()->redirect( $this->mTitle->getFullURL() );
 			wfProfileOut( __METHOD__ );
 			return;
 		}
 
-		$this->importFormData( $wgRequest );
+		$this->importFormData( $context->getRequest() );
 		$this->firsttime = false;
 
 		if ( $this->live ) {
@@ -385,7 +386,7 @@ class EditPage {
 		if ( $permErrors ) {
 			wfDebug( __METHOD__ . ": User can't edit\n" );
 			// Auto-block user's IP if the account was "hard" blocked
-			$wgUser->spreadAnyEditBlock();
+			$context->getUser()->spreadAnyEditBlock();
 
 			$this->displayPermissionsError( $permErrors );
 
@@ -447,12 +448,13 @@ class EditPage {
 	 * @return array
 	 */
 	protected function getEditPermissionErrors() {
-		global $wgUser;
-		$permErrors = $this->mTitle->getUserPermissionsErrors( 'edit', $wgUser );
+		$user = RequestContext::getMain()->getUser();
+		$permErrors = $this->mTitle->getUserPermissionsErrors( 'edit', $user );
+
 		# Can this title be created?
 		if ( !$this->mTitle->exists() ) {
 			$permErrors = array_merge( $permErrors,
-				wfArrayDiff2( $this->mTitle->getUserPermissionsErrors( 'create', $wgUser ), $permErrors ) );
+				wfArrayDiff2( $this->mTitle->getUserPermissionsErrors( 'create', $user ), $permErrors ) );
 		}
 		# Ignore some permissions errors when a user is just previewing/viewing diffs
 		$remove = array();
@@ -481,13 +483,13 @@ class EditPage {
 	 * @throws PermissionsError
 	 */
 	protected function displayPermissionsError( array $permErrors ) {
-		global $wgRequest, $wgOut;
+		$out = RequestContext::getMain()->getOutput();
 
-		if ( $wgRequest->getBool( 'redlink' ) ) {
+		if ( RequestContext::getMain()->getRequest()->getBool( 'redlink' ) ) {
 			// The edit page was reached via a red link.
 			// Redirect to the article page and let them click the edit tab if
 			// they really want a permission error.
-			$wgOut->redirect( $this->mTitle->getFullURL() );
+			$out->redirect( $this->mTitle->getFullURL() );
 			return;
 		}
 
@@ -500,29 +502,29 @@ class EditPage {
 			throw new PermissionsError( $action, $permErrors );
 		}
 
-		$wgOut->setRobotPolicy( 'noindex,nofollow' );
-		$wgOut->setPageTitle( wfMessage( 'viewsource-title', $this->getContextTitle()->getPrefixedText() ) );
-		$wgOut->addBacklinkSubtitle( $this->getContextTitle() );
-		$wgOut->addWikiText( $wgOut->formatPermissionsErrorMessage( $permErrors, 'edit' ) );
-		$wgOut->addHTML( "<hr />\n" );
+		$out->setRobotPolicy( 'noindex,nofollow' );
+		$out->setPageTitle( wfMessage( 'viewsource-title', $this->getContextTitle()->getPrefixedText() ) );
+		$out->addBacklinkSubtitle( $this->getContextTitle() );
+		$out->addWikiText( $out->formatPermissionsErrorMessage( $permErrors, 'edit' ) );
+		$out->addHTML( "<hr />\n" );
 
 		# If the user made changes, preserve them when showing the markup
 		# (This happens when a user is blocked during edit, for instance)
 		if ( !$this->firsttime ) {
 			$text = $this->textbox1;
-			$wgOut->addWikiMsg( 'viewyourtext' );
+			$out->addWikiMsg( 'viewyourtext' );
 		} else {
 			$text = $this->toEditText( $content );
-			$wgOut->addWikiMsg( 'viewsourcetext' );
+			$out->addWikiMsg( 'viewsourcetext' );
 		}
 
 		$this->showTextbox( $text, 'wpTextbox1', array( 'readonly' ) );
 
-		$wgOut->addHTML( Html::rawElement( 'div', array( 'class' => 'templatesUsed' ),
+		$out->addHTML( Html::rawElement( 'div', array( 'class' => 'templatesUsed' ),
 			Linker::formatTemplates( $this->getTemplates() ) ) );
 
 		if ( $this->mTitle->exists() ) {
-			$wgOut->returnToMain( null, $this->mTitle );
+			$out->returnToMain( null, $this->mTitle );
 		}
 	}
 
@@ -535,14 +537,13 @@ class EditPage {
 	function readOnlyPage( $source = null, $protected = false, $reasons = array(), $action = null ) {
 		wfDeprecated( __METHOD__, '1.19' );
 
-		global $wgRequest, $wgOut;
-		if ( $wgRequest->getBool( 'redlink' ) ) {
+		if ( RequestContext::getMain()->getRequest()->getBool( 'redlink' ) ) {
 			// The edit page was reached via a red link.
 			// Redirect to the article page and let them click the edit tab if
 			// they really want a permission error.
-			$wgOut->redirect( $this->mTitle->getFullURL() );
+			RequestContext::getMain()->getOutput()->redirect( $this->mTitle->getFullURL() );
 		} else {
-			$wgOut->readOnlyPage( $source, $protected, $reasons, $action );
+			RequestContext::getMain()->getOutput()->readOnlyPage( $source, $protected, $reasons, $action );
 		}
 	}
 
@@ -552,17 +553,20 @@ class EditPage {
 	 * @return bool
 	 */
 	protected function previewOnOpen() {
-		global $wgRequest, $wgUser, $wgPreviewOnOpenNamespaces;
-		if ( $wgRequest->getVal( 'preview' ) == 'yes' ) {
+		global $wgPreviewOnOpenNamespaces;
+
+		$request = RequestContext::getMain()->getRequest();
+
+		if ( $request->getVal( 'preview' ) == 'yes' ) {
 			// Explicit override from request
 			return true;
-		} elseif ( $wgRequest->getVal( 'preview' ) == 'no' ) {
+		} elseif ( $request->getVal( 'preview' ) == 'no' ) {
 			// Explicit override from request
 			return false;
 		} elseif ( $this->section == 'new' ) {
 			// Nothing *to* preview for new sections
 			return false;
-		} elseif ( ( $wgRequest->getVal( 'preload' ) !== null || $this->mTitle->exists() ) && $wgUser->getOption( 'previewonfirst' ) ) {
+		} elseif ( ( $request->getVal( 'preload' ) !== null || $this->mTitle->exists() ) && RequestContext::getMain()->getUser()->getOption( 'previewonfirst' ) ) {
 			// Standard preference behavior
 			return true;
 		} elseif ( !$this->mTitle->exists() &&

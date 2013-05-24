@@ -211,8 +211,10 @@ class AjaxResponse {
 	 * @return bool Returns true if the response code was set to 304 Not Modified.
 	 */
 	function checkLastModified( $timestamp ) {
-		global $wgCachePages, $wgCacheEpoch, $wgUser;
+		global $wgCachePages, $wgCacheEpoch;
+
 		$fname = 'AjaxResponse::checkLastModified';
+		$user = RequestContext::getMain()->getUser();
 
 		if ( !$timestamp || $timestamp == '19700101000000' ) {
 			wfDebug( "$fname: CACHE DISABLED, NO TIMESTAMP\n" );
@@ -224,13 +226,13 @@ class AjaxResponse {
 			return false;
 		}
 
-		if ( $wgUser->getOption( 'nocache' ) ) {
+		if ( $user->getOption( 'nocache' ) ) {
 			wfDebug( "$fname: USER DISABLED CACHE\n", false );
 			return false;
 		}
 
 		$timestamp = wfTimestamp( TS_MW, $timestamp );
-		$lastmod = wfTimestamp( TS_RFC2822, max( $timestamp, $wgUser->getTouched(), $wgCacheEpoch ) );
+		$lastmod = wfTimestamp( TS_RFC2822, max( $timestamp, $user->getTouched(), $wgCacheEpoch ) );
 
 		if ( !empty( $_SERVER['HTTP_IF_MODIFIED_SINCE'] ) ) {
 			# IE sends sizes after the date like this:
@@ -242,17 +244,17 @@ class AjaxResponse {
 			wfDebug( "$fname: -- client send If-Modified-Since: " . $modsince . "\n", false );
 			wfDebug( "$fname: --  we might send Last-Modified : $lastmod\n", false );
 
-			if ( ( $ismodsince >= $timestamp ) && $wgUser->validateCache( $ismodsince ) && $ismodsince >= $wgCacheEpoch ) {
+			if ( ( $ismodsince >= $timestamp ) && $user->validateCache( $ismodsince ) && $ismodsince >= $wgCacheEpoch ) {
 				ini_set( 'zlib.output_compression', 0 );
 				$this->setResponseCode( "304 Not Modified" );
 				$this->disable();
 				$this->mLastModified = $lastmod;
 
-				wfDebug( "$fname: CACHED client: $ismodsince ; user: {$wgUser->getTouched()} ; page: $timestamp ; site $wgCacheEpoch\n", false );
+				wfDebug( "$fname: CACHED client: $ismodsince ; user: {$user->getTouched()} ; page: $timestamp ; site $wgCacheEpoch\n", false );
 
 				return true;
 			} else {
-				wfDebug( "$fname: READY  client: $ismodsince ; user: {$wgUser->getTouched()} ; page: $timestamp ; site $wgCacheEpoch\n", false );
+				wfDebug( "$fname: READY  client: $ismodsince ; user: {$user->getTouched()} ; page: $timestamp ; site $wgCacheEpoch\n", false );
 				$this->mLastModified = $lastmod;
 			}
 		} else {
