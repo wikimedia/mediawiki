@@ -123,4 +123,85 @@ class DatabaseMysqlBaseTest extends MediaWikiTestCase {
 		return json_decode( '"' . $str . '"' );
 	}
 
+	function getMockForViews() {
+		$db = $this->getMockBuilder( 'DatabaseMysql' )
+			->disableOriginalConstructor()
+			->setMethods( array( 'fetchRow', 'query' ) )
+			->getMock();
+
+		$db->expects( $this->any() )
+			->method( 'query' )
+			->with( $this->anything() )
+			->will(
+				$this->returnValue( null )
+			);
+
+		$db->expects( $this->any() )
+			->method( 'fetchRow' )
+			->with( $this->anything() )
+			->will( $this->onConsecutiveCalls(
+				array( 'Tables_in_' => 'view1' ),
+				array( 'Tables_in_' => 'view2' ),
+				array( 'Tables_in_' => 'myview' ),
+				false  # no more rows
+			));
+		return $db;
+	}
+	/**
+	 * @covers DatabaseMysqlBase::listViews
+	 */
+	function testListviews() {
+		$db = $this->getMockForViews();
+
+		// The first call populate an internal cache of views
+		$this->assertEquals( array( 'view1', 'view2', 'myview'),
+			$db->listViews() );
+		$this->assertEquals( array( 'view1', 'view2', 'myview'),
+			$db->listViews() );
+
+		// Prefix filtering
+		$this->assertEquals( array( 'view1', 'view2' ),
+			$db->listViews( 'view' ) );
+		$this->assertEquals( array( 'myview' ),
+			$db->listViews( 'my' ) );
+		$this->assertEquals( array(),
+			$db->listViews( 'UNUSED_PREFIX' ) );
+	}
+
+	/**
+	 * @covers DatabaseMysqlBase::isView
+	 * @dataProvider provideViewExistanceChecks
+	 */
+	function testIsView( $isView, $viewName ) {
+		$db = $this->getMockForViews();
+
+		switch( $isView ) {
+			case true:
+				$this->assertTrue( $db->isView( $viewName ),
+					"$viewName should be considered a view" );
+			break;
+
+			case false:
+				$this->assertFalse( $db->isView( $viewName ),
+					"$viewName has not been defined as a view" );
+			break;
+		}
+
+	}
+
+	function provideViewExistanceChecks() {
+		return array(
+			// format: whether it is a view, view name
+			array( true, 'view1' ),
+			array( true, 'view2' ),
+			array( true, 'myview' ),
+
+			array( false, 'user' ),
+
+			array( false, 'view10' ),
+			array( false, 'my' ),
+			array( false, 'OH_MY_GOD' ),  # they killed kenny!
+		);
+	}
+
 }
