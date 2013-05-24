@@ -855,11 +855,11 @@ class Article implements Page {
 	/**
 	 * Get the robot policy to be used for the current view
 	 * @param string $action the action= GET parameter
-	 * @param $pOutput ParserOutput
+	 * @param $pOutput ParserOutput|null
 	 * @return Array the policy that should be set
 	 * TODO: actions other than 'view'
 	 */
-	public function getRobotPolicy( $action, $pOutput ) {
+	public function getRobotPolicy( $action, $pOutput = null ) {
 		global $wgArticleRobotPolicies, $wgNamespaceRobotPolicies, $wgDefaultRobotPolicy;
 
 		$ns = $this->getTitle()->getNamespace();
@@ -1140,6 +1140,13 @@ class Article implements Page {
 			// If there's no backing content, send a 404 Not Found
 			// for better machine handling of broken links.
 			$this->getContext()->getRequest()->response()->header( "HTTP/1.1 404 Not Found" );
+		}
+
+		if ( $validUserPage ) {
+			// Also apply the robot policy for nonexisting user pages (as those aren't served as 404)
+			$policy = $this->getRobotPolicy( 'view' );
+			$outputPage->setIndexPolicy( $policy['index'] );
+			$outputPage->setFollowPolicy( $policy['follow'] );
 		}
 
 		$hookResult = wfRunHooks( 'BeforeDisplayNoArticleText', array( $this ) );
