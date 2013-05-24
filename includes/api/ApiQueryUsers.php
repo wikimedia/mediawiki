@@ -204,11 +204,13 @@ class ApiQueryUsers extends ApiQueryBase {
 			}
 		}
 
+		$context = $this->getContext();
 		// Second pass: add result data to $retval
 		foreach ( $goodNames as $u ) {
 			if ( !isset( $data[$u] ) ) {
 				$data[$u] = array( 'name' => $u );
 				$urPage = new UserrightsPage;
+				$urPage->setContext( $context );
 				$iwUser = $urPage->fetchUser( $u );
 
 				if ( $iwUser instanceof UserRightsProxy ) {
