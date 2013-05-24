@@ -3208,6 +3208,31 @@ abstract class DatabaseBase implements DatabaseType {
 	}
 
 	/**
+	 * Lists all the VIEWs in the database
+	 *
+	 * @since 1.22
+	 *
+	 * @param string $prefix   Only show VIEWs with this prefix, eg. unit_test_
+	 * @param string $fname    Name of calling function
+	 * @throws MWException
+	 */
+	public function listViews( $prefix = null, $fname = __METHOD__ ) {
+		throw new MWException( __METHOD__ . ' is not implemented in descendant class' );
+	}
+
+	/**
+	 * Differentiates between a TABLE and a VIEW
+	 *
+	 * @since 1.22
+	 *
+	 * @param $name string: Name of the database-structure to test.
+	 * @throws MWException
+	 */
+	public function isView( $name ) {
+		throw new MWException( __METHOD__ . ' is not implemented in descendant class' );
+	}
+
+	/**
 	 * Convert a timestamp in one of the formats accepted by wfTimestamp()
 	 * to the format used for inserting into timestamp fields in this DBMS.
 	 *
