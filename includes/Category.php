@@ -249,7 +249,7 @@ class Category {
 		$dbr = wfGetDB( DB_SLAVE );
 
 		$conds = array( 'cl_to' => $this->getName(), 'cl_from = page_id' );
-		$options = array( 'ORDER BY' => 'cl_sortkey' );
+		$options = array( 'DISTINCT', 'ORDER BY' => 'cl_sortkey' );
 
 		if ( $limit ) {
 			$options['LIMIT'] = $limit;

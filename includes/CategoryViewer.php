@@ -306,6 +306,7 @@ class CategoryViewer extends ContextSource {
 				array_merge( array( 'cl_to' => $this->title->getDBkey() ), $extraConds ),
 				__METHOD__,
 				array(
+					'DISTINCT',
 					'USE INDEX' => array( 'categorylinks' => 'cl_sortkey' ),
 					'LIMIT' => $this->limit + 1,
 					'ORDER BY' => $this->flip[$type] ? 'cl_sortkey DESC' : 'cl_sortkey',

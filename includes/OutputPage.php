@@ -1235,8 +1235,16 @@ class OutputPage extends ContextSource {
 		# Add the remaining categories to the skin
 		if ( wfRunHooks( 'OutputPageMakeCategoryLinks', array( &$this, $categories, &$this->mCategoryLinks ) ) ) {
 			foreach ( $categories as $category => $type ) {
-				$origcategory = $category;
 				$title = Title::makeTitleSafe( NS_CATEGORY, $category );
+
+				$content = WikiPage::factory( $title )->getContent( Revision::RAW );
+				$realTitle = $content ? $content->getRedirectTarget() : null;
+				if ( $realTitle && $realTitle->inNamespace( NS_CATEGORY ) ) {
+					$title = $realTitle;
+					$category = $realTitle->getText();
+				}
+
+				$origcategory = $category;
 				$wgContLang->findVariantLink( $category, $title, true );
 				if ( $category != $origcategory ) {
 					if ( array_key_exists( $category, $categories ) ) {

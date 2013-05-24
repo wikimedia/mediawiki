@@ -523,6 +523,11 @@ CREATE TABLE /*_*/categorylinks (
   -- all such pages are in namespace 14 (NS_CATEGORY).
   cl_to varchar(255) binary NOT NULL default '',
 
+  -- Name of the actual category that was linked to.
+  -- In cases where a category is redirected to another category,
+  -- this will always contain the actual link.
+  cl_realto varchar(255) binary NOT NULL default '',
+
   -- A binary string obtained by applying a sortkey generation algorithm
   -- (Collation::getSortKey()) to page_title, or cl_sortkey_prefix . "\n"
   -- . page_title if cl_sortkey_prefix is nonempty.
@@ -552,10 +557,12 @@ CREATE TABLE /*_*/categorylinks (
   -- paginate the three categories separately.  This never has to be updated
   -- after the page is created, since none of these page types can be moved to
   -- any other.
-  cl_type ENUM('page', 'subcat', 'file') NOT NULL default 'page'
+  cl_type ENUM('page', 'subcat', 'file') NOT NULL default 'page',
+
+  PRIMARY KEY (cl_realto, cl_to, cl_from)
 ) /*$wgDBTableOptions*/;
 
-CREATE UNIQUE INDEX /*i*/cl_from ON /*_*/categorylinks (cl_from,cl_to);
+CREATE INDEX /*i*/cl_from ON /*_*/categorylinks (cl_from, cl_to);
 
 -- We always sort within a given category, and within a given type.  FIXME:
 -- Formerly this index didn't cover cl_type (since that didn't exist), so old
