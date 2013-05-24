@@ -536,7 +536,10 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	public static function listTables( $db ) {
 		global $wgDBprefix;
 
-		$tables = $db->listTables( $wgDBprefix, __METHOD__ );
+		$tablesAndViews = $db->listTables( $wgDBprefix, __METHOD__ );
+		$views = $db->listViews( $wgDBprefix, __METHOD__ );
+
+		$tables = array_diff( $tablesAndViews, $views );
 		$tables = array_map( array( __CLASS__, 'unprefixTable' ), $tables );
 
 		// Don't duplicate test tables from the previous fataled run

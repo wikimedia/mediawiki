@@ -917,6 +917,51 @@ class DatabaseMysql extends DatabaseBase {
 		return $endArray;
 	}
 
+
+	/**
+	 * Lists all the VIEWs in the database
+	 * 
+	 * @param string $prefix   Only show VIEWs with this prefix, eg. unit_test_ 
+	 * @param string $fname    Name of calling function
+	 * @return array
+	 */
+	public function listViews( $prefix = null, $fname = __METHOD__ ) {
+
+		// The name of the column containing the name of the VIEW
+		$propertyName = 'Tables_in_' . $this->mDBname;
+
+		// Query for the VIEWS
+		$result = $this->query( 'SHOW FULL TABLES WHERE TABLE_TYPE LIKE "VIEW"' );
+
+		// Pull out the names 
+		$views = array();
+		foreach ( $result as $row ) {
+			$vars = get_object_vars($row);
+			if ( !isSet($vars[$propertyName]) ) {
+				continue;
+			}
+			$view = $vars[$propertyName];
+			if ( !$prefix || strpos( $view, $view ) === 0 ) {
+				array_push( $views, $view );
+			}
+		}
+		return $views;
+	}
+
+	/**
+	 * Differentiates between a TABLE and a VIEW. 
+	 *
+	 * @param $name string: Name of the TABLE/VIEW to test
+	 * @return bool
+	 */
+	public function isView( $name ) {
+		if ( !$name ) {
+			return false;
+		}
+		return in_array( $name, $this->listViews() );
+	}
+
+
 	/**
 	 * @param $tableName
 	 * @param $fName string
@@ -955,6 +1000,8 @@ class DatabaseMysql extends DatabaseBase {
 
 		return $status;
 	}
+
+
 
 }
 
