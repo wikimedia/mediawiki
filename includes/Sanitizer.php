@@ -813,9 +813,10 @@ class Sanitizer {
 	/**
 	 * Pick apart some CSS and check it for forbidden or unsafe structures.
 	 * Returns a sanitized string. This sanitized string will have
-	 * character references and escape sequences decoded, and comments
-	 * stripped. If the input is just too evil, only a comment complaining
-	 * about evilness will be returned.
+	 * character references and escape sequences decoded and comments
+	 * stripped (unless it is itself one valid comment, in which case the value
+	 * will be passed through). If the input is just too evil, only a comment
+	 * complaining about evilness will be returned.
 	 *
 	 * Currently URL references, 'expression', 'tps' are forbidden.
 	 *
@@ -856,19 +857,24 @@ class Sanitizer {
 		$value = preg_replace_callback( $decodeRegex,
 			array( __CLASS__, 'cssDecodeCallback' ), $value );
 
-		// Remove any comments; IE gets token splitting wrong
-		// This must be done AFTER decoding character references and
-		// escape sequences, because those steps can introduce comments
-		// This step cannot introduce character references or escape
-		// sequences, because it replaces comments with spaces rather
-		// than removing them completely.
-		$value = StringUtils::delimiterReplace( '/*', '*/', ' ', $value );
+		// Let the value through if it's nothing but a single comment, to
+		// allow other functions which may reject it to pass some error
+		// message through.
+		if ( !preg_match( '! ^ \s* /\* [^*\\/]* \*/ \s* $ !x', $value ) ) {
+			// Remove any comments; IE gets token splitting wrong
+			// This must be done AFTER decoding character references and
+			// escape sequences, because those steps can introduce comments
+			// This step cannot introduce character references or escape
+			// sequences, because it replaces comments with spaces rather
+			// than removing them completely.
+			$value = StringUtils::delimiterReplace( '/*', '*/', ' ', $value );
 
-		// Remove anything after a comment-start token, to guard against
-		// incorrect client implementations.
-		$commentPos = strpos( $value, '/*' );
-		if ( $commentPos !== false ) {
-			$value = substr( $value, 0, $commentPos );
+			// Remove anything after a comment-start token, to guard against
+			// incorrect client implementations.
+			$commentPos = strpos( $value, '/*' );
+			if ( $commentPos !== false ) {
+				$value = substr( $value, 0, $commentPos );
+			}
 		}
 
 		// Reject problematic keywords and control characters
@@ -932,14 +938,7 @@ class Sanitizer {
 		$decoded = Sanitizer::decodeTagAttributes( $text );
 		$stripped = Sanitizer::validateTagAttributes( $decoded, $element );
 
-		$attribs = array();
-		foreach ( $stripped as $attribute => $value ) {
-			$encAttribute = htmlspecialchars( $attribute );
-			$encValue = Sanitizer::safeEncodeAttribute( $value );
-
-			$attribs[] = "$encAttribute=\"$encValue\"";
-		}
-		return count( $attribs ) ? ' ' . implode( ' ', $attribs ) : '';
+		return Sanitizer::safeEncodeTagAttributes( $stripped );
 	}
 
 	/**
@@ -1137,6 +1136,24 @@ class Sanitizer {
 			$attribs[$attribute] = Sanitizer::decodeCharReferences( $value );
 		}
 		return $attribs;
+	}
+
+	/**
+	 * Build a partial tag string from an associative array of attribute
+	 * names and values as returned by decodeTagAttributes.
+	 *
+	 * @param $assoc_array Array
+	 * @return String
+	 */
+	public static function safeEncodeTagAttributes( $assoc_array ) {
+		$attribs = array();
+		foreach ( $assoc_array as $attribute => $value ) {
+			$encAttribute = htmlspecialchars( $attribute );
+			$encValue = Sanitizer::safeEncodeAttribute( $value );
+
+			$attribs[] = "$encAttribute=\"$encValue\"";
+		}
+		return count( $attribs ) ? ' ' . implode( ' ', $attribs ) : '';
 	}
 
 	/**
