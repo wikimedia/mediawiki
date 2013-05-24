@@ -229,10 +229,14 @@ class Preferences {
 			'section' => 'personal/info',
 		);
 
+		$editCount = Linker::link( SpecialPage::getTitleFor( "Contributions", $userName ),
+			$lang->formatNum( $user->getEditCount() ) );
+
 		$defaultPreferences['editcount'] = array(
 			'type' => 'info',
+			'raw' => true,
 			'label-message' => 'prefs-edits',
-			'default' => $lang->formatNum( $user->getEditCount() ),
+			'default' => $editCount,
 			'section' => 'personal/info',
 		);
 
