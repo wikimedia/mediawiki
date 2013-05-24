@@ -21,6 +21,19 @@
  * @ingroup Media
  */
 
+class MockBitmapHandler extends BitmapHandler {
+	function doTransform( $image, $dstPath, $dstUrl, $params, $flags = 0 ) {
+		return MockImageHandler::doFakeTransform( $this, $image, $dstPath, $dstUrl, $params, $flags );
+	}
+	function doClientImage( $image, $scalerParams ) {
+			return $this->getClientScalingThumbnailImage( $image, $scalerParams );
+	}
+}
+class MockSvgHandler extends SvgHandler {
+	function doTransform( $image, $dstPath, $dstUrl, $params, $flags = 0 ) {
+		return MockImageHandler::doFakeTransform( $this, $image, $dstPath, $dstUrl, $params, $flags );
+	}
+}
 /**
  * Mock handler for images.
  *
@@ -28,7 +41,7 @@
  *
  * @ingroup Media
  */
-class MockBitmapHandler extends BitmapHandler {
+class MockImageHandler {
 
 	/**
 	 * Override BitmapHandler::doTransform() making sure we do not generate
@@ -36,14 +49,14 @@ class MockBitmapHandler extends BitmapHandler {
 	 * will be consumed by the unit test.  There is no need to create a real
 	 * thumbnail on the filesystem.
 	 */
-	function doTransform( $image, $dstPath, $dstUrl, $params, $flags = 0 ) {
+	static function doFakeTransform( $that, $image, $dstPath, $dstUrl, $params, $flags = 0 ) {
 		# Example of what we receive:
 		# $image: LocalFile
 		# $dstPath: /tmp/transform_7d0a7a2f1a09-1.jpg
 		# $dstUrl : http://example.com/images/thumb/0/09/Bad.jpg/320px-Bad.jpg
 		# $params:  width: 320,  descriptionUrl http://trunk.dev/wiki/File:Bad.jpg
 
-		$this->normaliseParams( $image, $params );
+		$that->normaliseParams( $image, $params );
 
 		$scalerParams = array(
 			# The size to which the image will be resized
@@ -67,9 +80,11 @@ class MockBitmapHandler extends BitmapHandler {
 		# In some cases, we do not bother generating a thumbnail.
 		if ( !$image->mustRender() &&
 			$scalerParams['physicalWidth'] == $scalerParams['srcWidth']
-			&& $scalerParams['physicalHeight'] == $scalerParams['srcHeight'] ) {
+			&& $scalerParams['physicalHeight'] == $scalerParams['srcHeight']
+		) {
 			wfDebug( __METHOD__ . ": returning unscaled image\n" );
-			return $this->getClientScalingThumbnailImage( $image, $scalerParams );
+			// getClientScalingThumbnailImage is protected
+			return $that->doClientImage( $image, $scalerParams );
 		}
 
 		return new ThumbnailImage( $image, $dstUrl, false, $params );
