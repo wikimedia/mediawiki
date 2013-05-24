@@ -51,7 +51,7 @@ class Article implements Page {
 	protected $mPage;
 
 	/**
-	 * ParserOptions object for $wgUser articles
+	 * ParserOptions object for RequestContext::getMain()->getUser() articles
 	 * @var ParserOptions $mParserOptions
 	 */
 	public $mParserOptions;
