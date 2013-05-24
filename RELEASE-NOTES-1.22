@@ -253,6 +253,9 @@ production.
   output in a HTML comment.
 * The 'UnwatchArticle' and 'WatchArticle' hooks now support a Status object
   instead of just a boolean return value to abort the hook.
+* (bug 43571) DatabaseMySQLBase learned to list views, optionally filtered by a
+  prefix. Also fixed PHPUnit test suite when using a MySQL backend containing
+  views.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
