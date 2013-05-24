@@ -996,6 +996,55 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 		return $status;
 	}
 
+	/**
+	 * Lists VIEWs in the database
+	 *
+	 * @param string $prefix   Only show VIEWs with this prefix, eg.
+	 * unit_test_, or $wgDBprefix. Default: null, would return all views.
+	 * @param string $fname    Name of calling function
+	 * @return array
+	 * @since 1.22
+	 */
+	public function listViews( $prefix = null, $fname = __METHOD__ ) {
+
+		if ( !isset( $this->allViews ) ) {
+
+			// The name of the column containing the name of the VIEW
+			$propertyName = 'Tables_in_' . $this->mDBname;
+
+			// Query for the VIEWS
+			$result = $this->query( 'SHOW FULL TABLES WHERE TABLE_TYPE = "VIEW"' );
+			$this->allViews = array();
+			while ( ($row = $this->fetchRow($result)) !== false ) {
+				array_push( $this->allViews, $row[$propertyName] );
+			}
+		}
+
+		if ( is_null($prefix) || $prefix === '' ) {
+			return $this->allViews;
+		}
+
+		$filteredViews = array();
+		foreach ( $this->allViews as $viewName ) {
+			// Does the name of this VIEW start with the table-prefix?
+			if ( strpos( $viewName, $prefix ) === 0 ) {
+				array_push( $filteredViews, $viewName );
+			}
+		}
+		return $filteredViews;
+	}
+
+	/**
+	 * Differentiates between a TABLE and a VIEW.
+	 *
+	 * @param $name string: Name of the TABLE/VIEW to test
+	 * @return bool
+	 * @since 1.22
+	 */
+	public function isView( $name, $prefix = null ) {
+		return in_array( $name, $this->listViews( $prefix ) );
+	}
+
 }
 
 
