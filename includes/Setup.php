@@ -424,6 +424,7 @@ wfProfileIn( $fname . '-includes' );
 require_once "$IP/includes/normal/UtfNormalUtil.php";
 require_once "$IP/includes/GlobalFunctions.php";
 require_once "$IP/includes/normal/UtfNormalDefines.php";
+require_once "$IP/skins/monobook/monobook.php";
 wfProfileOut( $fname . '-includes' );
 
 wfProfileIn( $fname . '-defaults2' );
