@@ -280,6 +280,12 @@ abstract class DatabaseBase implements DatabaseType {
 	 */
 	protected $fileHandle = null;
 
+	/**
+	 * @since 1.22
+	 * @var List of the VIEWs in the database
+	 */
+	protected $views = null;
+
 # ------------------------------------------------------------------------------
 # Accessors
 # ------------------------------------------------------------------------------
@@ -3208,6 +3214,27 @@ abstract class DatabaseBase implements DatabaseType {
 	}
 
 	/**
+	 * Lists all the VIEWs in the database
+	 * 
+	 * @param string $prefix   Only show VIEWs with this prefix, eg. unit_test_ 
+	 * @param string $fname    Name of calling function
+	 * @throws MWException
+	 */
+	public function listViews( $prefix = null, $fname = __METHOD__ ) {
+		throw new MWException( 'DatabaseBase::listViews is not implemented in descendant class' );
+	}
+
+	/**
+	 * Differentiates between a TABLE and a VIEW
+	 *
+	 * @param $name string: Name of the database-structure to test.
+	 * @throws MWException
+	 */
+	public function isView( $name ) {
+		throw new MWException( 'DatabaseBase::isView is not implemented in descendant class' );
+	}
+
+	/**
 	 * Convert a timestamp in one of the formats accepted by wfTimestamp()
 	 * to the format used for inserting into timestamp fields in this DBMS.
 	 *
@@ -3748,4 +3775,5 @@ abstract class DatabaseBase implements DatabaseType {
 			trigger_error( "Transaction idle or pre-commit callbacks still pending." ); // sanity
 		}
 	}
+
 }
