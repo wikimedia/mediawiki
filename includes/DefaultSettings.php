@@ -6344,3 +6344,8 @@ $wgCompiledFiles = array();
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}
  */
+
+/*
+ * Load default skins
+ */
+require_once( "$IP/skins/MonoBook.php" );
