@@ -414,6 +414,8 @@ class TextPassDumper extends BackupDumper {
 	 * @throws MWException
 	 */
 	function getText( $id ) {
+		global $wgContentHandlerUseDB;
+
 		$prefetchNotTried = true; // Whether or not we already tried to get the text via prefetch.
 		$text = false; // The candidate for a good text. false if no proper value.
 		$failures = 0; // The number of times, this invocation of getText already failed.
@@ -479,7 +481,23 @@ class TextPassDumper extends BackupDumper {
 				if ( ! isset( $this->db ) ) {
 					throw new MWException( "No database available" );
 				}
-				$revLength = $this->db->selectField( 'revision', 'rev_len', array( 'rev_id' => $revID ) );
+
+				$revLength = strlen( $text );
+				if ( $wgContentHandlerUseDB ) {
+					$row  = $this->db->selectRow( 'revision', array( 'rev_len', 'rev_content_model' ), array( 'rev_id' => $revID ), __METHOD__ );
+					if ( $row ) {
+						// only check the length for the wikitext content handler,
+						// it's a wasted (and failed) check otherwise
+						if ( $row->rev_content_model == 'CONTENT_MODEL_WIKITEXT' ) {
+							$revLength = $row->rev_len;
+						}
+					}
+
+				}
+				else {
+					$revLength = $this->db->selectField( 'revision', 'rev_len', array( 'rev_id' => $revID ) );
+				}
+
 				if ( strlen( $text ) == $revLength ) {
 					if ( $tryIsPrefetch ) {
 						$this->prefetchCount++;
