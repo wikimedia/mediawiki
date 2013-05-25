@@ -1738,7 +1738,7 @@ abstract class DatabaseBase implements DatabaseType {
 			return true;
 		}
 
-		$table = $this->tableName( $table );
+		$table = $this->tableName( $table, 'quoted', true );
 
 		if ( !is_array( $options ) ) {
 			$options = array( $options );
@@ -1832,7 +1832,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @return Boolean
 	 */
 	function update( $table, $values, $conds, $fname = __METHOD__, $options = array() ) {
-		$table = $this->tableName( $table );
+		$table = $this->tableName( $table, 'quoted', true );
 		$opts = $this->makeUpdateOptions( $options );
 		$sql = "UPDATE $opts $table SET " . $this->makeList( $values, LIST_SET );
 
@@ -2034,9 +2034,11 @@ abstract class DatabaseBase implements DatabaseType {
 	 *   quoted - Automatically pass the table name through addIdentifierQuotes()
 	 *            so that it can be used in a query.
 	 *   raw - Do not add identifier quotes to the table name
+	 * @param bool $noAlias Do not alias the table into the original name
+	 *                        when an alternative table is used.
 	 * @return String: full database name
 	 */
-	public function tableName( $name, $format = 'quoted' ) {
+	public function tableName( $name, $format = 'quoted', $noAlias = false ) {
 		global $wgSharedDB, $wgSharedPrefix, $wgSharedTables;
 		# Skip the entire process when we have a string quoted on both ends.
 		# Note that we check the end so that we will still quote any use of
@@ -2061,6 +2063,7 @@ abstract class DatabaseBase implements DatabaseType {
 		# We reverse the explode so that database.table and table both output
 		# the correct table.
 		$dbDetails = explode( '.', $name, 2 );
+		$requestedTable = false;
 		if ( count( $dbDetails ) == 2 ) {
 			list( $database, $table ) = $dbDetails;
 			# We don't want any prefix added in this case
@@ -2072,6 +2075,11 @@ abstract class DatabaseBase implements DatabaseType {
 				&& in_array( $table, $wgSharedTables ) # A shared table is selected
 			) {
 				$database = $wgSharedDB;
+				$altTable = array_search( $table, $wgSharedTables );
+				if ( is_string( $altTable ) ) {
+					$requestedTable = $table;
+					$table = $altTable;
+				}
 				$prefix = $wgSharedPrefix === null ? $this->mTablePrefix : $wgSharedPrefix;
 			} else {
 				$database = null;
@@ -2093,7 +2101,11 @@ abstract class DatabaseBase implements DatabaseType {
 			$tableName = $database . '.' . $tableName;
 		}
 
-		return $tableName;
+		if ( $noAlias || $requestedTable === false ) {
+			return $tableName;
+		} else {
+			return $tableName . ' ' . $this->addIdentifierQuotes( $requestedTable );
+		}
 	}
 
 	/**
@@ -2152,7 +2164,7 @@ abstract class DatabaseBase implements DatabaseType {
 		if ( !$alias || $alias == $name ) {
 			return $this->tableName( $name );
 		} else {
-			return $this->tableName( $name ) . ' ' . $this->addIdentifierQuotes( $alias );
+			return $this->tableName( $name, 'quoted', true ) . ' ' . $this->addIdentifierQuotes( $alias );
 		}
 	}
 
@@ -2449,7 +2461,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @param string $fname Calling function name (use __METHOD__) for logs/profiling
 	 */
 	public function replace( $table, $uniqueIndexes, $rows, $fname = __METHOD__ ) {
-		$quotedTable = $this->tableName( $table );
+		$quotedTable = $this->tableName( $table, 'quoted', true );
 
 		if ( count( $rows ) == 0 ) {
 			return;
@@ -2506,7 +2518,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @return ResultWrapper
 	 */
 	protected function nativeReplace( $table, $rows, $fname ) {
-		$table = $this->tableName( $table );
+		$table = $this->tableName( $table, 'quoted', true );
 
 		# Single row case
 		if ( !is_array( reset( $rows ) ) ) {
@@ -2558,7 +2570,7 @@ abstract class DatabaseBase implements DatabaseType {
 				'DatabaseBase::deleteJoin() called with empty $conds' );
 		}
 
-		$delTable = $this->tableName( $delTable );
+		$delTable = $this->tableName( $delTable, 'quoted', true );
 		$joinTable = $this->tableName( $joinTable );
 		$sql = "DELETE FROM $delTable WHERE $delVar IN (SELECT $joinVar FROM $joinTable ";
 		if ( $conds != '*' ) {
@@ -2622,7 +2634,7 @@ abstract class DatabaseBase implements DatabaseType {
 			throw new DBUnexpectedError( $this, 'DatabaseBase::delete() called with no conditions' );
 		}
 
-		$table = $this->tableName( $table );
+		$table = $this->tableName( $table, 'quoted', true );
 		$sql = "DELETE FROM $table";
 
 		if ( $conds != '*' ) {
@@ -2662,7 +2674,7 @@ abstract class DatabaseBase implements DatabaseType {
 		$fname = __METHOD__,
 		$insertOptions = array(), $selectOptions = array() )
 	{
-		$destTable = $this->tableName( $destTable );
+		$destTable = $this->tableName( $destTable, 'quoted', true );
 
 		if ( is_array( $insertOptions ) ) {
 			$insertOptions = implode( ' ', $insertOptions );
@@ -3670,7 +3682,7 @@ abstract class DatabaseBase implements DatabaseType {
 		if ( !$this->tableExists( $tableName, $fName ) ) {
 			return false;
 		}
-		$sql = "DROP TABLE " . $this->tableName( $tableName );
+		$sql = "DROP TABLE " . $this->tableName( $tableName, 'quoted', true );
 		if ( $this->cascadingDeletes() ) {
 			$sql .= " CASCADE";
 		}
