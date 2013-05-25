@@ -3,12 +3,10 @@ have it on, turn it '''off''' if you can.
 
 == MediaWiki 1.21 ==
 
-THIS IS NOT A RELEASE YET
-
-MediaWiki 1.21 is an alpha-quality branch and is not recommended for use in
-production.
+MediaWiki 1.21 is an stable branch and is recommended for use in production.
 
 === Configuration changes in 1.21 ===
+* (bug 48306) $wgAllowChunkedUploads has been added and is false by default.
 * (bug 29374) $wgVectorUseSimpleSearch is now enabled by default.
 * Deprecated $wgAllowRealName is removed. Use $wgHiddenPrefs[] = 'realname'
   instead.
@@ -223,6 +221,11 @@ production.
 === API changes in 1.21 ===
 * BREAKING CHANGE: Chunked uploads are now disabled by default.  You can re-enable
   them by setting $wgAllowChunkedUploads=true
+* BREAKING CHANGE: list=logevents output format changed for details of some log
+  types. Specifically, details that were formerly reported under a key like
+  "4::foo" will now be reported under a key of simply "foo".
+* BREAKING CHANGE: '??_badcontinue' error code was changed to '??badcontinue'
+  for all query modules.
 * prop=revisions can now report the contentmodel and contentformat.
   See docs/contenthandler.txt.
 * action=edit and action=parse now support contentmodel and contentformat
@@ -241,11 +244,6 @@ production.
   the same query. When both are present, 'from' is simply ignored.
 * list=alllinks & alltransclusions now allow 'unique' in generators, to yield
   a list of all link/template target pages instead of source pages.
-* BREAKING CHANGE: list=logevents output format changed for details of some log
-  types. Specifically, details that were formerly reported under a key like
-  "4::foo" will now be reported under a key of simply "foo".
-* BREAKING CHANGE: '??_badcontinue' error code was changed to '??badcontinue'
-  for all query modules.
 * ApiQueryBase adds 'badcontinue' error code if module has 'continue' parameter.
 * (bug 35885) Removed version parameter and all getVersion() methods.
 * action=options now takes a "resetkinds" option, which allows only resetting
@@ -288,18 +286,18 @@ production.
 * (bug 33304) list=allpages will now find really old indefinite protections.
 * (bug 45937) meta=allmessages will report a syntactically invalid lang as a
   proper error instead of as an uncaught exception.
-* (bug 48542) SpecialStatistics::getOtherStats() now uses the user language
+* (bug 48542) SpecialStatistics::getOtherStats() now uses the user language.
 
 === API internal changes in 1.21 ===
+* BREAKING CHANGE: ApiPageSet constructor now has two params instead of three, with only the
+  first one keeping its meaning. ApiPageSet is now derived from ApiBase.
+* BREAKING CHANGE: ApiQuery::newGenerator() and executeGeneratorModule() were deleted.
 * For debugging only, a new global $wgDebugAPI removes many API restrictions when true.
   Never use on the production servers, as this flag introduces security holes.
   Whenever enabled, a warning will also be added to all output.
 * ApiModuleManager now handles all submodules (actions,props,lists) and instantiation
 * Query stores prop/list/meta as submodules
 * ApiPageSet can now be used in any action to process titles/pageids/revids or any generator.
-* BREAKING CHANGE: ApiPageSet constructor now has two params instead of three, with only the
-  first one keeping its meaning. ApiPageSet is now derived from ApiBase.
-* BREAKING CHANGE: ApiQuery::newGenerator() and executeGeneratorModule() were deleted.
 * ApiQueryGeneratorBase::setGeneratorMode() now requires a pageset param.
 * $wgAPIGeneratorModules is now obsolete and will be ignored.
 * Added flags ApiResult::OVERRIDE and ADD_ON_TOP to setElement() and addValue()
@@ -327,7 +325,6 @@ changes to languages because of Bugzilla reports.
   were using it, you have to either copy it to your extension, or install the
   Vector extension (and possibly disable its features using config settings if
   you don't want them).
-* Experimental IBM DB2 support was removed due to lack of interest and maintainership.
 * BREAKING CHANGE: Filenames of maintenance scripts were standardized into
   lowerCamelCase format, and made more explicit:
   - clear_stats.php -> clearCacheStats.php
@@ -343,6 +340,7 @@ changes to languages because of Bugzilla reports.
   - ShowStats -> ShowSiteStats.
 * BREAKING CHANGE: (bug 38244) Removed the mediawiki.api.titleblacklist module
   and moved it to the TitleBlacklist extension.
+* Experimental IBM DB2 support was removed due to lack of interest and maintainership.
 
 == Compatibility ==
 
