@@ -202,7 +202,12 @@ class OracleUpdater extends DatabaseUpdater {
 	protected function doPageRestrictionsPKUKFix() {
 		$this->output( "Altering PAGE_RESTRICTIONS keys ... " );
 
-		$meta = $this->db->query( 'SELECT column_name FROM all_cons_columns WHERE owner = \''.strtoupper($this->db->getDBname()).'\' AND constraint_name = \'MW_PAGE_RESTRICTIONS_PK\' AND rownum = 1' );
+		$meta = $this->db->query( 'SELECT column_name FROM all_cons_columns WHERE owner = \'' .
+			strtoupper( $this->db->getDBname() ) .
+			'\' AND constraint_name = \'' .
+			$this->db->tablePrefix() .
+			'PAGE_RESTRICTIONS_PK\' AND rownum = 1'
+		);
 		$row = $meta->fetchRow();
 		if ( $row['column_name'] == 'PR_ID' ) {
 			$this->output( "seems to be up to date.\n" );
