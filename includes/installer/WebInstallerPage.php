@@ -462,7 +462,7 @@ class WebInstaller_DBConnect extends WebInstallerPage {
 
 		// It's possible that the library for the default DB type is not compiled in.
 		// In that case, instead select the first supported DB type in the list.
-		$compiledDBs = $this->parent->getVar( '_CompiledDBs' );
+		$compiledDBs = $this->parent->getCompiledDBs();
 		if ( !in_array( $defaultType, $compiledDBs ) ) {
 			$defaultType = $compiledDBs[0];
 		}
