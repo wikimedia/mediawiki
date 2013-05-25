@@ -596,6 +596,9 @@ return array(
 			'user.tokens',
 		),
 	),
+	'mediawiki.arrows' => array(
+		'styles' => 'resources/mediawiki/mediawiki.arrows.css',
+	),
 	'mediawiki.debug' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.debug.js',
 		'styles' => 'resources/mediawiki/mediawiki.debug.css',
@@ -902,7 +905,7 @@ return array(
 	),
 	'mediawiki.special.changeslist' => array(
 		'styles' => 'resources/mediawiki.special/mediawiki.special.changeslist.css',
-		'dependencies' => array( 'jquery.makeCollapsible' ),
+		'dependencies' => array( 'jquery.makeCollapsible', 'mediawiki.arrows' ),
 	),
 	'mediawiki.special.movePage' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.movePage.js',
