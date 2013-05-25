@@ -103,12 +103,6 @@ class ApiQueryUserInfo extends ApiQueryBase {
 			$vals['options'] = $user->getOptions();
 		}
 
-		if ( isset( $this->prop['preferencestoken'] ) &&
-			is_null( $this->getMain()->getRequest()->getVal( 'callback' ) )
-		) {
-			$vals['preferencestoken'] = $user->getEditToken( '', $this->getMain()->getRequest() );
-		}
-
 		if ( isset( $this->prop['editcount'] ) ) {
 			$vals['editcount'] = intval( $user->getEditCount() );
 		}
@@ -199,7 +193,6 @@ class ApiQueryUserInfo extends ApiQueryBase {
 					'rights',
 					'changeablegroups',
 					'options',
-					'preferencestoken',
 					'editcount',
 					'ratelimits',
 					'email',
@@ -222,7 +215,6 @@ class ApiQueryUserInfo extends ApiQueryBase {
 				'  rights           - Lists all the rights the current user has',
 				'  changeablegroups - Lists the groups the current user can add to and remove from',
 				'  options          - Lists all preferences the current user has set',
-				'  preferencestoken - Get a token to change current user\'s preferences',
 				'  editcount        - Adds the current user\'s edit count',
 				'  ratelimits       - Lists all rate limits applying to the current user',
 				'  realname         - Adds the user\'s real name',
@@ -261,9 +253,6 @@ class ApiQueryUserInfo extends ApiQueryBase {
 			),
 			'hasmsg' => array(
 				'messages' => 'boolean'
-			),
-			'preferencestoken' => array(
-				'preferencestoken' => 'string'
 			),
 			'editcount' => array(
 				'editcount' => 'integer'
