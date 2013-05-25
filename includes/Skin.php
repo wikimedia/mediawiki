@@ -93,7 +93,7 @@ abstract class Skin extends ContextSource {
 	 * only want to show skins users _can_ use.
 	 * @return array of strings
 	 */
-	public static function getUsableSkins() {
+	public static function getAllowedSkins() {
 		global $wgSkipSkins;
 
 		$allowedSkins = self::getSkinNames();

@@ -1074,9 +1074,8 @@ class Preferences {
 		$mptitle = Title::newMainPage();
 		$previewtext = $context->msg( 'skin-preview' )->text();
 
-		# Only show members of Skin::getSkinNames() rather than
-		# $skinNames (skins is all skin names from Language.php)
-		$validSkinNames = Skin::getUsableSkins();
+		# Only show skins that aren't disabled in $wgSkipSkins
+		$validSkinNames = Skin::getAllowedSkins();
 
 		# Sort by UI skin name. First though need to update validSkinNames as sometimes
 		# the skinkey & UI skinname differ (e.g. "standard" skinkey is "Classic" in the UI).
