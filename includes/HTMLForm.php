@@ -338,12 +338,13 @@ class HTMLForm extends ContextSource {
 	 */
 	function tryAuthorizedSubmit() {
 		$result = false;
-
 		$submit = false;
+		$request = $this->getRequest();
+
 		if ( $this->getMethod() != 'post' ) {
 			$submit = true; // no session check needed
-		} elseif ( $this->getRequest()->wasPosted() ) {
-			$editToken = $this->getRequest()->getVal( 'wpEditToken' );
+		} elseif ( $request->wasPosted() && $request->checkCSRF() ) {
+			$editToken = $request->getVal( 'wpEditToken' );
 			if ( $this->getUser()->isLoggedIn() || $editToken != null ) {
 				// Session tokens for logged-out users have no security value.
 				// However, if the user gave one, check it in order to give a nice

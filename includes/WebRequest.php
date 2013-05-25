@@ -1048,6 +1048,44 @@ HTML;
 	}
 
 	/**
+	 * Check if the Origin and Referer headers match the
+	 * Host header. This protects against CSRF attacks.
+	 *
+	 * @since 1.22
+	 * @return bool True if OK, false if not a match
+	 */
+	public function checkCSRF() {
+		$host = new Uri( self::detectServer() );
+		$proto = self::detectProtocol();
+
+		$referer = $this->getHeader( 'referer' );
+		if ( $referer ) {
+			$referer = new Uri( $referer );
+			if ( $referer->getHost() !== $host->getHost() ) {
+				return false;
+			}
+		}
+
+		$origins = array_filter( explode( ' ', trim( $this->getHeader( 'origin' ) ) ) );
+		foreach ( $origins as $origin ) {
+			if ( $origins === 'null' ) {
+				return false;
+			}
+
+			$origin = new Uri( $origin );
+			if (
+				$origin->getScheme() !== $proto ||
+				$origin->getPort() !== $host->getPort() ||
+				$origin->getHost() !== $host->getHost()
+			) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	/**
 	 * Fetch the raw IP from the request
 	 *
 	 * @since 1.19
