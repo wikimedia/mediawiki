@@ -338,19 +338,49 @@ class HTMLForm extends ContextSource {
 	 */
 	function tryAuthorizedSubmit() {
 		$result = false;
-
 		$submit = false;
+		$request = $this->getRequest();
+
 		if ( $this->getMethod() != 'post' ) {
 			$submit = true; // no session check needed
-		} elseif ( $this->getRequest()->wasPosted() ) {
+		} elseif ( $request->wasPosted() ) {
+			global $wgCanonicalServer;
+
+			// Set submit to true, and if any test fails negate it.
+			$submit = true;
+
+			$server = new Uri( $wgCanonicalServer );
+			$server->setScheme( WebRequest::detectProtocol() );
+
+			// Check the origin header.
+			$origins = $request->getHeader( 'origin' );
+			if ( $origins && $origins !== 'null' ) {
+				$origins = explode( ' ', $origins );
+				foreach ( $origins as $origin ) {
+					$origin = new Uri( $origin );
+					if (
+						$origin->getScheme() !== $server->getScheme() ||
+						$origin->getHost() !== $server->getHost()
+					) {
+						$submit = false;
+						break;
+					}
+				}
+			} elseif ( $origins === 'null' ) {
+				// Browser supports the 'origin' header, but sent 'null',
+				// meaning we didn't come from a form or script.
+				$submit = false;
+			}
+
+
+			// Check referer and edit token.
+			$referer = new Uri( (string)$request->getHeader( 'referer' ) );
 			$editToken = $this->getRequest()->getVal( 'wpEditToken' );
-			if ( $this->getUser()->isLoggedIn() || $editToken != null ) {
-				// Session tokens for logged-out users have no security value.
-				// However, if the user gave one, check it in order to give a nice
-				// "session expired" error instead of "permission denied" or such.
-				$submit = $this->getUser()->matchEditToken( $editToken );
-			} else {
-				$submit = true;
+			if (
+				$referer->getHost() !== $server->getHost() ||
+				!$this->getUser()->matchEditToken( $editToken )
+			) {
+				$submit = false;
 			}
 		}
 

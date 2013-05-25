@@ -332,7 +332,7 @@ function wfArrayToCgi( $array1, $array2 = null, $prefix = '' ) {
 		$array1 = $array1 + $array2;
 	}
 
-	$query = new UriFormQuery( $array1 );
+	$query = new UriPhpFormQuery( $array1 );
 	return $query->getQueryString();
 }
 
@@ -346,7 +346,7 @@ function wfArrayToCgi( $array1, $array2 = null, $prefix = '' ) {
  * @return array Array version of input
  */
 function wfCgiToArray( $query ) {
-	$query = new UriFormQuery( $query );
+	$query = new UriPhpFormQuery( $query );
 	return $query->getArray();
 }
 
