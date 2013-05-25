@@ -67,10 +67,10 @@ class DatabaseTest extends MediaWikiTestCase {
 		$oldPrefix = $wgSharedPrefix;
 
 		$wgSharedDB = $database;
-		$wgSharedTables = array( $table );
+		$wgSharedTables = (array)$table;
 		$wgSharedPrefix = $prefix;
 
-		$ret = $this->db->tableName( $table, $format );
+		$ret = $this->db->tableName( reset( $wgSharedTables ), $format );
 
 		$wgSharedDB = $oldName;
 		$wgSharedTables = $oldTables;
@@ -79,7 +79,7 @@ class DatabaseTest extends MediaWikiTestCase {
 		return $ret;
 	}
 
-	private function prefixAndQuote( $table, $database = null, $prefix = null, $format = 'quoted' ) {
+	private function prefixAndQuote( $table, $database = null, $prefix = null, $format = 'quoted', $alias = null ) {
 		if ( $this->db->getType() === 'sqlite' || $format !== 'quoted' ) {
 			$quote = '';
 		} elseif ( $this->db->getType() === 'mysql' ) {
@@ -96,7 +96,11 @@ class DatabaseTest extends MediaWikiTestCase {
 			$prefix = $this->dbPrefix();
 		}
 
-		return $database . $quote . $prefix . $table . $quote;
+		if ( $alias !== null ) {
+			$alias = ' ' . $quote . $prefix . $alias . $quote;
+		}
+
+		return $database . $quote . $prefix . $table . $quote . $alias;
 	}
 
 	function testTableNameLocal() {
@@ -122,6 +126,30 @@ class DatabaseTest extends MediaWikiTestCase {
 		$this->assertEquals(
 			$this->prefixAndQuote( 'tablename', 'sharedatabase', null ),
 			$this->getSharedTableName( 'tablename', 'sharedatabase', null )
+		);
+	}
+
+	function testTableNameRawSharedAlias() {
+		$this->assertEquals(
+			$this->prefixAndQuote( 'alttablename', 'sharedatabase', 'sh_', 'raw', 'tablename' ),
+			$this->getSharedTableName( array( 'alttablename' => 'tablename' ), 'sharedatabase', 'sh_', 'raw' )
+		);
+
+		$this->assertEquals(
+			$this->prefixAndQuote( 'alttablename', 'sharedatabase', null, 'raw', 'tablename' ),
+			$this->getSharedTableName( array( 'alttablename' => 'tablename' ), 'sharedatabase', null, 'raw' )
+		);
+	}
+
+	function testTableNameSharedAlias() {
+		$this->assertEquals(
+			$this->prefixAndQuote( 'alttablename', 'sharedatabase', 'sh_', 'quoted', 'tablename' ),
+			$this->getSharedTableName( array( 'alttablename' => 'tablename' ), 'sharedatabase', 'sh_' )
+		);
+
+		$this->assertEquals(
+			$this->prefixAndQuote( 'alttablename', 'sharedatabase', null, 'quoted', 'tablename' ),
+			$this->getSharedTableName( array( 'alttablename' => 'tablename' ), 'sharedatabase', null )
 		);
 	}
 
