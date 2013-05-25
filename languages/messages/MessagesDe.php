@@ -4155,7 +4155,7 @@ Eine [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie der ''GNU General Public License'']
 'logentry-newusers-newusers' => 'Benutzerkonto $1 wurde {{GENDER:$2|erstellt}}',
 'logentry-newusers-create' => 'Benutzerkonto $1 wurde {{GENDER:$2|erstellt}}',
 'logentry-newusers-create2' => 'Benutzerkonto $3 wurde von $1 {{GENDER:$2|erstellt}}',
-'logentry-newusers-byemail' => 'Das Benutzerkonto $3 wurde von $1 {{GENDER:$2|erstellt}} und das Passwort wurde per E-Mail zugesandt',
+'logentry-newusers-byemail' => 'Benutzerkonto $3 wurde von $1 {{GENDER:$2|erstellt}} und das Passwort wurde per E-Mail zugesandt',
 'logentry-newusers-autocreate' => 'Benutzerkonto $1 wurde automatisch {{GENDER:$2|erstellt}}',
 'logentry-rights-rights' => '$1 {{GENDER:$2|änderte}} die Gruppenzugehörigkeit für $3 von $4 zu $5',
 'logentry-rights-rights-legacy' => '$1 {{GENDER:$2|änderte}} die Gruppenzugehörigkeit für $3',
