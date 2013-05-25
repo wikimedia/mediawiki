@@ -1457,7 +1457,9 @@ $wgAllDBsAreLocalhost = false;
  * preferences shared (preferences were stored in the user table prior to 1.16)
  *
  * $wgSharedTables may be customized with a list of tables to share in the shared
- * database. However it is advised to limit what tables you do share as many of
+ * database. If an item has a non-numeric key (ie. used as an associative array),
+ * the key is used as the real table name on $wgSharedDB when the table (as value)
+ * is accessed. However it is advised to limit what tables you do share as many of
  * MediaWiki's tables may have side effects if you try to share them.
  *
  * $wgSharedPrefix is the table prefix for the shared database. It defaults to

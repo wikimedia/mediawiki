@@ -1476,7 +1476,7 @@ abstract class DatabaseBase implements DatabaseType {
 			if ( $table[0] == ' ' ) {
 				$from = ' FROM ' . $table;
 			} else {
-				$from = ' FROM ' . $this->tableName( $table );
+				$from = ' FROM ' . $this->tableName( $table, 'quoted', true );
 			}
 		} else {
 			$from = '';
@@ -2034,9 +2034,11 @@ abstract class DatabaseBase implements DatabaseType {
 	 *   quoted - Automatically pass the table name through addIdentifierQuotes()
 	 *            so that it can be used in a query.
 	 *   raw - Do not add identifier quotes to the table name
+	 * @param bool $alias Alias the table into the original name
+	 *                        when an alternative table is used.
 	 * @return String: full database name
 	 */
-	public function tableName( $name, $format = 'quoted' ) {
+	public function tableName( $name, $format = 'quoted', $alias = false ) {
 		global $wgSharedDB, $wgSharedPrefix, $wgSharedTables;
 		# Skip the entire process when we have a string quoted on both ends.
 		# Note that we check the end so that we will still quote any use of
@@ -2061,6 +2063,7 @@ abstract class DatabaseBase implements DatabaseType {
 		# We reverse the explode so that database.table and table both output
 		# the correct table.
 		$dbDetails = explode( '.', $name, 2 );
+		$requestedTable = false;
 		if ( count( $dbDetails ) == 2 ) {
 			list( $database, $table ) = $dbDetails;
 			# We don't want any prefix added in this case
@@ -2072,6 +2075,11 @@ abstract class DatabaseBase implements DatabaseType {
 				&& in_array( $table, $wgSharedTables ) # A shared table is selected
 			) {
 				$database = $wgSharedDB;
+				$altTable = array_search( $table, $wgSharedTables );
+				if ( is_string( $altTable ) ) {
+					$requestedTable = $table;
+					$table = $altTable;
+				}
 				$prefix = $wgSharedPrefix === null ? $this->mTablePrefix : $wgSharedPrefix;
 			} else {
 				$database = null;
@@ -2093,7 +2101,11 @@ abstract class DatabaseBase implements DatabaseType {
 			$tableName = $database . '.' . $tableName;
 		}
 
-		return $tableName;
+		if ( $alias && $requestedTable !== false ) {
+			return $tableName . ' ' . $this->addIdentifierQuotes( $requestedTable );
+		} else {
+			return $tableName;
+		}
 	}
 
 	/**
@@ -2112,7 +2124,7 @@ abstract class DatabaseBase implements DatabaseType {
 		$retVal = array();
 
 		foreach ( $inArray as $name ) {
-			$retVal[$name] = $this->tableName( $name );
+			$retVal[$name] = $this->tableName( $name, 'quoted', true );
 		}
 
 		return $retVal;
@@ -2134,7 +2146,7 @@ abstract class DatabaseBase implements DatabaseType {
 		$retVal = array();
 
 		foreach ( $inArray as $name ) {
-			$retVal[] = $this->tableName( $name );
+			$retVal[] = $this->tableName( $name, 'quoted', true );
 		}
 
 		return $retVal;
@@ -2150,7 +2162,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 */
 	public function tableNameWithAlias( $name, $alias = false ) {
 		if ( !$alias || $alias == $name ) {
-			return $this->tableName( $name );
+			return $this->tableName( $name, 'quoted', true );
 		} else {
 			return $this->tableName( $name ) . ' ' . $this->addIdentifierQuotes( $alias );
 		}
@@ -2559,7 +2571,7 @@ abstract class DatabaseBase implements DatabaseType {
 		}
 
 		$delTable = $this->tableName( $delTable );
-		$joinTable = $this->tableName( $joinTable );
+		$joinTable = $this->tableName( $joinTable, 'quoted', true );
 		$sql = "DELETE FROM $delTable WHERE $delVar IN (SELECT $joinVar FROM $joinTable ";
 		if ( $conds != '*' ) {
 			$sql .= 'WHERE ' . $this->makeList( $conds, LIST_AND );
@@ -2675,9 +2687,12 @@ abstract class DatabaseBase implements DatabaseType {
 		list( $startOpts, $useIndex, $tailOpts ) = $this->makeSelectOptions( $selectOptions );
 
 		if ( is_array( $srcTable ) ) {
-			$srcTable = implode( ',', array_map( array( &$this, 'tableName' ), $srcTable ) );
+			$self = $this;
+			$srcTable = implode( ',', array_map( function( $t ) use ( $self ) {
+				return $self->tableName( $t, 'quoted', true );
+			}, $srcTable ) );
 		} else {
-			$srcTable = $this->tableName( $srcTable );
+			$srcTable = $this->tableName( $srcTable, 'quoted', true );
 		}
 
 		$sql = "INSERT $insertOptions INTO $destTable (" . implode( ',', array_keys( $varMap ) ) . ')' .
