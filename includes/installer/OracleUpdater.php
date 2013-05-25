@@ -205,7 +205,9 @@ class OracleUpdater extends DatabaseUpdater {
 
 		$meta = $this->db->query( 'SELECT column_name FROM all_cons_columns WHERE owner = \'' .
 			strtoupper( $this->db->getDBname() ) .
-			'\' AND constraint_name = \'MW_PAGE_RESTRICTIONS_PK\' AND rownum = 1'
+			'\' AND constraint_name = \'' .
+			$this->db->tablePrefix() .
+			'PAGE_RESTRICTIONS_PK\' AND rownum = 1'
 		);
 		$row = $meta->fetchRow();
 		if ( $row['column_name'] == 'PR_ID' ) {
