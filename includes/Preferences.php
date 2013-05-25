@@ -732,45 +732,6 @@ class Preferences {
 		global $wgAllowUserCssPrefs;
 
 		## Editing #####################################
-		$defaultPreferences['cols'] = array(
-			'type' => 'int',
-			'label-message' => 'columns',
-			'section' => 'editing/textboxsize',
-			'min' => 4,
-			'max' => 1000,
-		);
-		$defaultPreferences['rows'] = array(
-			'type' => 'int',
-			'label-message' => 'rows',
-			'section' => 'editing/textboxsize',
-			'min' => 4,
-			'max' => 1000,
-		);
-
-		if ( $wgAllowUserCssPrefs ) {
-			$defaultPreferences['editfont'] = array(
-				'type' => 'select',
-				'section' => 'editing/advancedediting',
-				'label-message' => 'editfont-style',
-				'options' => array(
-					$context->msg( 'editfont-default' )->text() => 'default',
-					$context->msg( 'editfont-monospace' )->text() => 'monospace',
-					$context->msg( 'editfont-sansserif' )->text() => 'sans-serif',
-					$context->msg( 'editfont-serif' )->text() => 'serif',
-				)
-			);
-		}
-		$defaultPreferences['previewontop'] = array(
-			'type' => 'toggle',
-			'section' => 'editing/advancedediting',
-			'label-message' => 'tog-previewontop',
-		);
-		$defaultPreferences['previewonfirst'] = array(
-			'type' => 'toggle',
-			'section' => 'editing/advancedediting',
-			'label-message' => 'tog-previewonfirst',
-		);
-
 		if ( $wgAllowUserCssPrefs ) {
 			$defaultPreferences['editsection'] = array(
 				'type' => 'toggle',
@@ -788,36 +749,71 @@ class Preferences {
 			'section' => 'editing/advancedediting',
 			'label-message' => 'tog-editondblclick',
 		);
-		$defaultPreferences['showtoolbar'] = array(
-			'type' => 'toggle',
-			'section' => 'editing/advancedediting',
-			'label-message' => 'tog-showtoolbar',
-		);
 
+		if ( $wgAllowUserCssPrefs ) {
+			$defaultPreferences['editfont'] = array(
+				'type' => 'select',
+				'section' => 'editing/editor',
+				'label-message' => 'editfont-style',
+				'options' => array(
+					$context->msg( 'editfont-default' )->text() => 'default',
+					$context->msg( 'editfont-monospace' )->text() => 'monospace',
+					$context->msg( 'editfont-sansserif' )->text() => 'sans-serif',
+					$context->msg( 'editfont-serif' )->text() => 'serif',
+				)
+			);
+		}
+		$defaultPreferences['cols'] = array(
+			'type' => 'int',
+			'label-message' => 'columns',
+			'section' => 'editing/editor',
+			'min' => 4,
+			'max' => 1000,
+		);
+		$defaultPreferences['rows'] = array(
+			'type' => 'int',
+			'label-message' => 'rows',
+			'section' => 'editing/editor',
+			'min' => 4,
+			'max' => 1000,
+		);
 		if ( $user->isAllowed( 'minoredit' ) ) {
 			$defaultPreferences['minordefault'] = array(
 				'type' => 'toggle',
-				'section' => 'editing/advancedediting',
+				'section' => 'editing/editor',
 				'label-message' => 'tog-minordefault',
 			);
 		}
-
 		$defaultPreferences['forceeditsummary'] = array(
 			'type' => 'toggle',
-			'section' => 'editing/advancedediting',
+			'section' => 'editing/editor',
 			'label-message' => 'tog-forceeditsummary',
 		);
-
-		$defaultPreferences['uselivepreview'] = array(
-			'type' => 'toggle',
-			'section' => 'editing/advancedediting',
-			'label-message' => 'tog-uselivepreview',
-		);
-
 		$defaultPreferences['useeditwarning'] = array(
 			'type' => 'toggle',
-			'section' => 'editing/advancedediting',
+			'section' => 'editing/editor',
 			'label-message' => 'tog-useeditwarning',
+		);
+		$defaultPreferences['showtoolbar'] = array(
+			'type' => 'toggle',
+			'section' => 'editing/editor',
+			'label-message' => 'tog-showtoolbar',
+		);
+
+		$defaultPreferences['previewonfirst'] = array(
+			'type' => 'toggle',
+			'section' => 'editing/preview',
+			'label-message' => 'tog-previewonfirst',
+		);
+		$defaultPreferences['previewontop'] = array(
+			'type' => 'toggle',
+			'section' => 'editing/preview',
+			'label-message' => 'tog-previewontop',
+		);
+		$defaultPreferences['uselivepreview'] = array(
+			'type' => 'toggle',
+			'section' => 'editing/preview',
+			'label-message' => 'tog-uselivepreview',
 		);
 
 	}
