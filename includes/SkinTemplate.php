@@ -722,7 +722,6 @@ class SkinTemplate extends Skin {
 				: 'login';
 			$is_signup = $request->getText( 'type' ) == 'signup';
 
-			$login_id = $this->showIPinHeader() ? 'anonlogin' : 'login';
 			$login_url = array(
 				'text' => $this->msg( $loginlink )->text(),
 				'href' => self::makeSpecialUrl( 'Userlogin', $returnto ),
@@ -756,7 +755,7 @@ class SkinTemplate extends Skin {
 				$personal_urls['createaccount'] = $createaccount_url;
 			}
 
-			$personal_urls[$login_id] = $login_url;
+			$personal_urls['login'] = $login_url;
 		}
 
 		wfRunHooks( 'PersonalUrls', array( &$personal_urls, &$title, $this ) );
