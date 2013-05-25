@@ -1972,7 +1972,7 @@ class Linker {
 			$batch->execute();
 
 			# Construct the HTML
-			$outText = '<div class="mw-templatesUsedExplanation">';
+			$outText = '<div class="mw-footerListExplanation mw-templatesUsedExplanation">';
 			if ( $preview ) {
 				$outText .= wfMessage( 'templatesusedpreview' )->numParams( count( $templates ) )
 					->parseAsBlock();
@@ -2042,7 +2042,7 @@ class Linker {
 		$outText = '';
 		if ( count( $hiddencats ) > 0 ) {
 			# Construct the HTML
-			$outText = '<div class="mw-hiddenCategoriesExplanation">';
+			$outText = '<div class="mw-footerListExplanation mw-hiddenCategoriesExplanation">';
 			$outText .= wfMessage( 'hiddencategories' )->numParams( count( $hiddencats ) )->parseAsBlock();
 			$outText .= "</div><ul>\n";
 

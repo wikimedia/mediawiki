@@ -1649,9 +1649,11 @@ Also used in Edit Conflict page; the diff between {{msg-mw|yourtext}} and {{msg-
 'templatesused' => 'Displayed below the page when editing it. It indicates a list of templates which are used on that page.',
 'templatesusedpreview' => 'Used in editor when displaying a preview.',
 'templatesusedsection' => 'Used in editor when displaying a preview.',
+'templatesusedlabel' => 'Label used in the footer while editing to display the list of templates. Formerly {{msg-mw|vector-footercleanup-templates}}.',
 'template-protected' => '{{Identical|Protected}}',
 'template-semiprotected' => 'Used on [[Special:ProtectedPages]]. Appears in brackets after listed page titles which are semi-protected.',
 'hiddencategories' => "This message is shown below the edit form, like you have a section ''\"Templates used on this page\"''.",
+'hiddencategorieslabel' => 'Label used in the footer while editing to display the list of hidden templates. Formerly {{msg-mw|vector-footercleanup-categories}}.',
 'edittools' => '{{optional}}
 This text will be shown below edit and upload forms. It can be used to offer special characters not present on most keyboards for copying/pasting, and also often makes them clickable for insertion via a javascript. Since these are seen as specific to a wiki, however, this message should not contain anything but an html comment explaining how it should be used once the wiki has been installed.',
 'edittools-upload' => '{{optional}}

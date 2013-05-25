@@ -1516,9 +1516,11 @@ The latest log entry is provided below for reference:",
 'templatesused'                    => '{{PLURAL:$1|Template|Templates}} used on this page:',
 'templatesusedpreview'             => '{{PLURAL:$1|Template|Templates}} used in this preview:',
 'templatesusedsection'             => '{{PLURAL:$1|Template|Templates}} used in this section:',
+'templatesusedlabel'               => 'View templates on this page',
 'template-protected'               => '(protected)',
 'template-semiprotected'           => '(semi-protected)',
 'hiddencategories'                 => 'This page is a member of {{PLURAL:$1|1 hidden category|$1 hidden categories}}:',
+'hiddencategorieslabel'            => 'View hidden categories on this page',
 'edittools'                        => '<!-- Text here will be shown below edit and upload forms. -->', # only translate this message to other languages if you have to change it
 'edittools-upload'                 => '-', # only translate this message to other languages if you have to change it
 'nocreatetext'                     => '{{SITENAME}} has restricted the ability to create new pages.

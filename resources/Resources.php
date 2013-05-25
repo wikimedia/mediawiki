@@ -175,6 +175,11 @@ return array(
 		'styles' => 'resources/jquery/jquery.farbtastic.css',
 		'dependencies' => 'jquery.colorUtil',
 	),
+	'jquery.footerCollapsibleList' => array(
+		'scripts' => 'resources/jquery/jquery.footerCollapsibleList.js',
+		'styles' => 'resources/jquery/jquery.footerCollapsibleList.css',
+		'dependencies' => array( 'jquery.cookie', 'mediawiki.arrows' ),
+	),
 	'jquery.footHovzer' => array(
 		'scripts' => 'resources/jquery/jquery.footHovzer.js',
 		'styles' => 'resources/jquery/jquery.footHovzer.css',
@@ -598,6 +603,18 @@ return array(
 	),
 	'mediawiki.arrows' => array(
 		'styles' => 'resources/mediawiki/mediawiki.arrows.css',
+	),
+	'mediawiki.collapseFooterLists' => array(
+		'scripts' => 'resources/mediawiki/mediawiki.collapseFooterLists.js',
+		'dependencies' => array(
+			// The message require plural support at javascript.
+			'mediawiki.jqueryMsg',
+			'jquery.footerCollapsibleList'
+		),
+		'messages' => array (
+			'templatesusedlabel',
+			'hiddencategorieslabel',
+		),
 	),
 	'mediawiki.debug' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.debug.js',
