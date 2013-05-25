@@ -3597,10 +3597,6 @@ class Language {
 	 * @return string Correct form of plural for $count in this language
 	 */
 	function convertPlural( $count, $forms ) {
-		if ( !count( $forms ) ) {
-			return '';
-		}
-
 		// Handle explicit n=pluralform cases
 		foreach ( $forms as $index => $form ) {
 			if ( preg_match( '/\d+=/i', $form ) ) {
@@ -3611,7 +3607,11 @@ class Language {
 				unset( $forms[$index] );
 			}
 		}
+
 		$forms = array_values( $forms );
+		if ( !count( $forms ) ) {
+			return '';
+		}
 
 		$pluralForm = $this->getPluralRuleIndexNumber( $count );
 		$pluralForm = min( $pluralForm, count( $forms ) - 1 );

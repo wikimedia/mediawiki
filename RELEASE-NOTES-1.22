@@ -106,6 +106,7 @@ production.
   strings will now start with digits 0 and 8-f as often as they should.
 * (bug 45371) Removed Parser_LinkHooks and CoreLinkFunctions classes.
 * (bug 41545) Allow <kbd>, <samp>, and <var> to be nested like allowed in html.
+* PLURAL magic word no longer causes a PHP notice when no matching form exists.
 
 === API changes in 1.22 ===
 * (bug 46626) xmldoublequote parameter was removed. Because of a bug, the
