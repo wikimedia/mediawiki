@@ -3574,7 +3574,7 @@ class User {
 			if ( is_array( $salt ) ) {
 				$salt = implode( '|', $salt );
 			}
-			return md5( $token . $salt ) . EDIT_TOKEN_SUFFIX;
+			return hash_hmac( 'sha256', $token, $salt ) . EDIT_TOKEN_SUFFIX;
 		}
 	}
 
