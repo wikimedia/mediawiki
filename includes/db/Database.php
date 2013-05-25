@@ -2069,9 +2069,12 @@ abstract class DatabaseBase implements DatabaseType {
 			list( $table ) = $dbDetails;
 			if ( $wgSharedDB !== null # We have a shared database
 				&& !$this->isQuotedIdentifier( $table ) # Paranoia check to prevent shared tables listing '`table`'
-				&& in_array( $table, $wgSharedTables ) # A shared table is selected
+				&& ( $altTable = in_array( $table, $wgSharedTables ) ) !== false # A shared table is selected
 			) {
 				$database = $wgSharedDB;
+				if ( !is_numeric( $altTable ) ) {
+					$table = $altTable;
+				}
 				$prefix = $wgSharedPrefix === null ? $this->mTablePrefix : $wgSharedPrefix;
 			} else {
 				$database = null;
