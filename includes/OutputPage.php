@@ -2351,6 +2351,7 @@ class OutputPage extends ContextSource {
 $templates
 </div>
 " );
+			$this->addModules( 'mediawiki.collapseFooterLists' );
 		}
 
 		# If the title doesn't exist, it's fairly pointless to print a return

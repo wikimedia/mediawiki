@@ -1,0 +1,20 @@
+.collapsible-list-container > * {
+	margin-bottom: 1em;
+	margin-left: 2.5em;
+}
+
+.collapsible-list-container .collapsible-list {
+	margin-left: 0;
+	display: inline;
+	cursor: pointer;
+	min-width: 400px;
+}
+
+.collapsible-list span {
+	float: left;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	display: block;
+	height: 16px;
+	width: 16px;
+}
