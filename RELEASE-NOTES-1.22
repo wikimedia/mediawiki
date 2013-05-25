@@ -67,6 +67,7 @@ production.
 * mediawiki.log: Added log.warn wrapper (uses console.warn and console.trace).
 * mediawiki.log: Implemented log.deprecate. This method defines a property and
   uses ES5 getter/setter to emit a warning when they are used.
+* Support using alternative tables in $wgSharedTables.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail. Previously one could still
