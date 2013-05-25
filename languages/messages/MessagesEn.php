@@ -3623,7 +3623,6 @@ Please try again.',
 'accesskey-pt-watchlist'                => 'l', # do not translate or duplicate this message to other languages
 'accesskey-pt-mycontris'                => 'y', # do not translate or duplicate this message to other languages
 'accesskey-pt-login'                    => 'o', # do not translate or duplicate this message to other languages
-'accesskey-pt-anonlogin'                => 'o', # do not translate or duplicate this message to other languages
 'accesskey-pt-logout'                   => '', # do not translate or duplicate this message to other languages
 'accesskey-ca-talk'                     => 't', # do not translate or duplicate this message to other languages
 'accesskey-ca-edit'                     => 'e', # do not translate or duplicate this message to other languages
@@ -3693,7 +3692,6 @@ Please try again.',
 'tooltip-pt-watchlist'                => 'A list of pages you are monitoring for changes',
 'tooltip-pt-mycontris'                => 'A list of your contributions',
 'tooltip-pt-login'                    => 'You are encouraged to log in; however, it is not mandatory',
-'tooltip-pt-anonlogin'                => 'You are encouraged to log in; however, it is not mandatory',
 'tooltip-pt-logout'                   => 'Log out',
 'tooltip-ca-talk'                     => 'Discussion about the content page',
 'tooltip-ca-edit'                     => 'You can edit this page. Please use the preview button before saving',

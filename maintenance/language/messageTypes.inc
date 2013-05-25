@@ -32,7 +32,6 @@ $wgIgnoredMessages = array(
 	'accesskey-pt-watchlist',
 	'accesskey-pt-mycontris',
 	'accesskey-pt-login',
-	'accesskey-pt-anonlogin',
 	'accesskey-pt-logout',
 	'accesskey-ca-talk',
 	'accesskey-ca-edit',

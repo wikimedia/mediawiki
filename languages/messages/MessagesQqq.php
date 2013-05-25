@@ -1102,8 +1102,8 @@ See example: [{{canonicalurl:Special:UserLogin|useNew=1}} Special:UserLogin?useN
 
 See also:
 * {{msg-mw|Login}}
-* {{msg-mw|Accesskey-pt-anonlogin}}
-* {{msg-mw|Tooltip-pt-anonlogin}}
+* {{msg-mw|Accesskey-pt-login}}
+* {{msg-mw|Tooltip-pt-login}}
 {{Identical|Log in}}",
 'nav-login-createaccount' => "Shown to anonymous users in the upper right corner of the page. When you can't create an account, the message {{msg-mw|login}} is shown.
 {{Identical|Log in / create account}}",
@@ -6378,12 +6378,6 @@ See also:
 * {{msg-mw|Accesskey-pt-mycontris}}
 * {{msg-mw|Tooltip-pt-mycontris}}',
 'tooltip-pt-login' => "Tooltip shown when hovering over the link 'Log in / create account' in the upper right corner show on all pages while not logged in.",
-'tooltip-pt-anonlogin' => 'Used as tooltip for link {{msg-mw|Login}} in your personal toolbox (upper right side).
-
-See also:
-* {{msg-mw|Login}}
-* {{msg-mw|Accesskey-pt-anonlogin}}
-* {{msg-mw|Tooltip-pt-anonlogin}}',
 'tooltip-pt-logout' => 'Tooltip shown when hovering over the {{msg-mw|Logout}} link in your personal toolbox (upper right side).
 
 See also:
