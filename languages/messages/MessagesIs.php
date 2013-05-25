@@ -339,6 +339,18 @@ $messages = array(
 'oct' => 'okt',
 'nov' => 'nóv',
 'dec' => 'des',
+'january-date' => '$1. janúar',
+'february-date' => '$1. febrúar',
+'march-date' => '$1. mars',
+'april-date' => '$1. apríl',
+'may-date' => '$1. maí',
+'june-date' => '$1. júní',
+'july-date' => '$1. júlí',
+'august-date' => '$1. ágúst',
+'september-date' => '$1. september',
+'october-date' => '$1. október',
+'november-date' => '$1. nóvember',
+'december-date' => '$1. desember',
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Flokkur|Flokkar}}',

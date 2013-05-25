@@ -1795,7 +1795,7 @@ HTML 태그를 확인하세요.',
 'newsectionsummary' => '새 주제: /* $1 */',
 'rc-enhanced-expand' => '자세한 기록 보기 (자바스크립트 필요)',
 'rc-enhanced-hide' => '자세한 기록 숨기기',
-'rc-old-title' => '처음에  "$1"라는 제목으로 만들어짐',
+'rc-old-title' => '처음에 "$1"라는 제목으로 만들어졌습니다',
 
 # Recent changes linked
 'recentchangeslinked' => '가리키는 글의 바뀜',

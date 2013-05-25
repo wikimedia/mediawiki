@@ -1135,7 +1135,7 @@ Tshòng-tón pit-sî chhai $1-ke sṳ-ngièn yî-ha.',
 'nolinkstoimage' => '無頁面鏈接到本文件。',
 'sharedupload' => '本檔案來自於$1，渠可能在其它計劃項目肚分人應用。',
 'sharedupload-desc-here' => '邇文件來自於$1，其可能在其它計劃項目肚分應用。
-其在[$2文件描述頁面]遐片上嘅描述在下背展示。',
+其在[$2文件描述頁面]介片上嘅描述在下背展示。',
 'uploadnewversion-linktext' => '上傳邇隻文件嘅新版本',
 
 # File deletion
