@@ -2672,6 +2672,8 @@ See also:
 'prefs-timeoffset' => 'Used in [[Special:Preferences]], tab "Date and time".',
 'prefs-advancedediting' => 'Used in [[Special:Preferences]], tab "Editing".
 {{Identical|Advanced options}}',
+'prefs-editor' => 'Used in [[Special:Preferences]], tab "Editing".',
+'prefs-preview' => 'Used in [[Special:Preferences]], tab "Editing".',
 'prefs-advancedrc' => 'Used in [[Special:Preferences]], tab "Recent changes".
 {{Identical|Advanced options}}',
 'prefs-advancedrendering' => 'Used in [[Special:Preferences]], tab "Appearence".
