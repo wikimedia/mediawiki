@@ -201,6 +201,7 @@ production.
   "nolines", "packed", "packed-overlay", or "packed-hover".
 * (bug 47399) A success message is now displayed after changing the password.
 * Make thumb.php give HTTP redirects for file redirects
+* Support using alternative tables in $wgSharedTables.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
