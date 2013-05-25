@@ -1166,9 +1166,16 @@ class EditPage {
 	 */
 	function tokenOk( &$request ) {
 		global $wgUser;
-		$token = $request->getVal( 'wpEditToken' );
-		$this->mTokenOk = $wgUser->matchEditToken( $token );
-		$this->mTokenOkExceptSuffix = $wgUser->matchEditTokenNoSuffix( $token );
+
+		if ( !$request->checkCSRF() ) {
+			$this->mTokenOk = false;
+			$this->mTokenOkExceptSuffix = false;
+		} else {
+			$token = $request->getVal( 'wpEditToken' );
+			$this->mTokenOk = $wgUser->matchEditToken( $token );
+			$this->mTokenOkExceptSuffix = $wgUser->matchEditTokenNoSuffix( $token );
+		}
+
 		return $this->mTokenOk;
 	}
 
