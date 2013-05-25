@@ -2111,8 +2111,6 @@ $checkEdit: Whether or not the action=edit query should be added if appropriate.
 &$text: Link text.
 &$result: Complete assoc. array if you want to return true.
 
-'SkinTemplateTabs': TODO
-
 'SkinTemplateToolboxEnd': Called by SkinTemplate skins after toolbox links have
 been rendered (useful for adding more).
 $sk: The QuickTemplate based skin template running the hook.
