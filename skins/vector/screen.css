@@ -219,6 +219,12 @@ div.vectorMenu {
 	float: left;
 	/* @embed */
 	background-image: url(images/arrow-down-icon.png);
+	/* SVG support using a transparent gradient to guarantee cross-browser
+	 * compatibility (browsers able to understand gradient syntax support also SVG) */
+	/* @embed */
+	background-image: -webkit-linear-gradient(transparent, transparent), url(images/arrow-down-icon.svg);
+	/* @embed */
+	background-image: linear-gradient(transparent, transparent), url(images/arrow-down-icon.svg);
 	background-position: 100% 60%;
 	background-repeat: no-repeat;
 	cursor: pointer;
@@ -226,6 +232,12 @@ div.vectorMenu {
 div.vectorMenuFocus {
 	/* @embed */
 	background-image: url(images/arrow-down-focus-icon.png);
+	/* SVG support using a transparent gradient to guarantee cross-browser
+	 * compatibility (browsers able to understand gradient syntax support also SVG) */
+	/* @embed */
+	background-image: -webkit-linear-gradient(transparent, transparent), url(images/arrow-down-focus-icon.svg);
+	/* @embed */
+	background-image: linear-gradient(transparent, transparent), url(images/arrow-down-focus-icon.svg);
 	background-position: 100% 60%;
 }
 /* @noflip */
