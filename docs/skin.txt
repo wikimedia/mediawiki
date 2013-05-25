@@ -13,8 +13,9 @@ MediaWiki includes four core skins:
 * Modern: An attractive blue/grey theme with sidebar and top bar. Derived from
   Monobook.
 
-* Cologne Blue: A lightweight skin with minimal formatting. The oldest of
-  currently bundled skins, largely rewritten in 2012 while keeping the looks.
+* Cologne Blue: A lightweight skin with minimal formatting. The oldest of the
+  currently bundled skins, largely rewritten in 2012 while keeping its
+  appearance.
 
 
 Several legacy skins were removed in the 1.22 release, as the burden of
@@ -27,20 +28,20 @@ supporting them became too heavy to bear. Those were:
   This skin is now used for the old Wikipedia snapshot at
   http://nostalgia.wikipedia.org/
 
-* Chick: A lightweight Monobook skin with no sidebar, the sidebar links were
+* Chick: A lightweight Monobook skin with no sidebar. The sidebar links were
   given at the bottom of the page instead.
 
 * Simple: A lightweight skin with a simple white-background sidebar and no top
   bar.
 
-* MySkin: Monobook without the CSS. The idea was that you customise it using
-  user or site CSS.
+* MySkin: Essentially Monobook without the CSS. The idea was that it could be
+  customised using user-specific or site-wide CSS (see below).
 
 
 == Custom CSS/JS ==
 
 It is possible to customise the site CSS and JavaScript without editing any
-source files. This is done by editing some pages on the wiki:
+server-side source files. This is done by editing some pages on the wiki:
 
 * [[MediaWiki:Common.css]] -- for skin-independent CSS
 * [[MediaWiki:Common.js]] -- for skin-independent JavaScript
@@ -73,7 +74,7 @@ $wgSkipSkins[] = '<name>';
 
 This technique is used by the more ambitious MediaWiki site operators, to 
 create complex custom skins for their wikis. It should be preferred over 
-editing the core Monobook skin directly. 
+editing the core Monobook skin directly.
 
 See http://www.mediawiki.org/wiki/Manual:Skinning for more information.
 

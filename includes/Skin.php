@@ -25,7 +25,7 @@
  */
 
 /**
- * The main skin class that provide methods and properties for all other skins.
+ * The main skin class which provides methods and properties for all other skins.
  * This base class is also the "Standard" skin.
  *
  * See docs/skin.txt for more information.
@@ -88,7 +88,7 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * Fetch the list of usable skins in regards to $wgSkipSkins.
+	 * Fetch the list of user-selectable skins in regards to $wgSkipSkins.
 	 * Useful for Special:Preferences and other places where you
 	 * only want to show skins users _can_ use.
 	 * @return array of strings
@@ -96,13 +96,13 @@ abstract class Skin extends ContextSource {
 	public static function getUsableSkins() {
 		global $wgSkipSkins;
 
-		$usableSkins = self::getSkinNames();
+		$allowedSkins = self::getSkinNames();
 
 		foreach ( $wgSkipSkins as $skip ) {
-			unset( $usableSkins[$skip] );
+			unset( $allowedSkins[$skip] );
 		}
 
-		return $usableSkins;
+		return $allowedSkins;
 	}
 
 	/**
