@@ -544,12 +544,12 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 	public function appendSkins( $property ) {
 		$data = array();
-		$usable = Skin::getUsableSkins();
+		$allowed = Skin::getAllowedSkins();
 		$default = Skin::normalizeKey( 'default' );
 		foreach ( Skin::getSkinNames() as $name => $displayName ) {
 			$skin = array( 'code' => $name );
 			ApiResult::setContent( $skin, $displayName );
-			if ( !isset( $usable[$name] ) ) {
+			if ( !isset( $allowed[$name] ) ) {
 				$skin['unusable'] = '';
 			}
 			if ( $name === $default ) {
