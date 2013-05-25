@@ -84,6 +84,8 @@ production.
   MediaWiki will try outputting markup acording to XHTML5 rules.
 * New hook 'TitleSquidURLs' for manipulating the list of URLs to be purged from
   HTTP caches when a page is changed.
+* Changed the patrolling system to always show the link for patrolling in case the
+  current revision is patrollable. This also removed the usage of the rcid URI parameters.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
@@ -106,6 +108,9 @@ production.
   strings will now start with digits 0 and 8-f as often as they should.
 * (bug 45371) Removed Parser_LinkHooks and CoreLinkFunctions classes.
 * (bug 41545) Allow <kbd>, <samp>, and <var> to be nested like allowed in html.
+* (bug 36641) Patrol page links no longer show on non-existent revisions.
+* (bug 35810) Pages not linked from Special:RecentChanges or Special:NewPages
+  are patrollable now.
 
 === API changes in 1.22 ===
 * (bug 46626) xmldoublequote parameter was removed. Because of a bug, the
