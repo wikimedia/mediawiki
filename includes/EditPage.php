@@ -1146,10 +1146,46 @@ class EditPage {
 	 * @private
 	 */
 	function tokenOk( &$request ) {
-		global $wgUser;
-		$token = $request->getVal( 'wpEditToken' );
-		$this->mTokenOk = $wgUser->matchEditToken( $token );
-		$this->mTokenOkExceptSuffix = $wgUser->matchEditTokenNoSuffix( $token );
+		global $wgUser, $wgCanonicalServer;
+
+		$server = new Uri( $wgCanonicalServer );
+		$server->setScheme( WebRequest::detectProtocol() );
+
+		$origins = $request->getHeader( 'origin' );
+		if ( $origins && $origins !== 'null' ) {
+			$origins = explode( ' ', $origins );
+			foreach ( $origins as $origin ) {
+				$origin = new Uri( $origin );
+				if (
+					$origin->getScheme() !== $server->getScheme() ||
+					$origin->getHost() !== $server->getHost()
+				) {
+					$this->mTokenOk = false;
+					$this->mTokenOkExceptSuffix = false;
+
+					return $this->mTokenOk;
+				}
+			}
+		} elseif ( $origins === 'null' ) {
+			// Browser supports the 'origin' header, but sent 'null',
+			// meaning we didn't come from a form or script.
+			$this->mTokenOk = false;
+			$this->mTokenOkExceptSuffix = false;
+
+			return $this->mTokenOk;
+		}
+
+		$referer = new Uri( (string)$request->getHeader( 'referer' ) );
+
+		if( $referer->getHost() !== $server->getHost() ) {
+			$this->mTokenOk = false;
+			$this->mTokenOkExceptSuffix = false;
+		} else {
+			$token = $request->getVal( 'wpEditToken' );
+			$this->mTokenOk = $wgUser->matchEditToken( $token );
+			$this->mTokenOkExceptSuffix = $wgUser->matchEditTokenNoSuffix( $token );
+		}
+
 		return $this->mTokenOk;
 	}
 
