@@ -176,7 +176,7 @@ class User {
 	var $mId, $mName, $mRealName, $mPassword, $mNewpassword, $mNewpassTime,
 		$mEmail, $mTouched, $mToken, $mEmailAuthenticated,
 		$mEmailToken, $mEmailTokenExpires, $mRegistration, $mEditCount,
-		$mGroups, $mOptionOverrides;
+		$mGroups, $mOptionOverrides, $mEditToken;
 	//@}
 
 	/**
@@ -3539,18 +3539,38 @@ class User {
 	 * @return String The new edit token
 	 */
 	public function getEditToken( $salt = '', $request = null ) {
+		global $wgMainCacheType;
+
 		if ( $request == null ) {
 			$request = $this->getRequest();
 		}
 
-		if ( $this->isAnon() ) {
-			return EDIT_TOKEN_SUFFIX;
-		} else {
+		$token = null;
+		if ( $this->mEditToken !== null ) {
+			$token = $this->mEditToken;
+		} elseif ( $request->checkSessionCookie() ) {
 			$token = $request->getSessionData( 'wsEditToken' );
 			if ( $token === null ) {
 				$token = MWCryptRand::generateHex( 32 );
 				$request->setSessionData( 'wsEditToken', $token );
 			}
+		} elseif ( $wgMainCacheType != CACHE_NONE ) {
+			global $wgMemc;
+			$memcKey = wfMemcKey( 'edittoken', $request->getIP() );
+			$token = $wgMemc->get( $memcKey );
+			if ( $token === false ) {
+				$token = MWCryptRand::generateHex( 32 );
+				$wgMemc->set( $memcKey, $token );
+			}
+		} else {
+			$token = EDIT_TOKEN_SUFFIX;
+		}
+
+		if ( $token === null ) {
+			wfDebug( "Edit token failed to be generated." );
+			return EDIT_TOKEN_SUFFIX;
+		} else {
+			$this->mEditToken = $token;
 			if ( is_array( $salt ) ) {
 				$salt = implode( '|', $salt );
 			}
