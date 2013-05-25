@@ -380,7 +380,7 @@ class CologneBlueTemplate extends BaseTemplate {
 		);
 
 		$personalUrls = $this->getPersonalTools();
-		foreach ( array( 'logout', 'createaccount', 'login', 'anonlogin' ) as $key ) {
+		foreach ( array( 'logout', 'createaccount', 'login' ) as $key ) {
 			if ( $personalUrls[$key] ) {
 				$s[] = $this->makeListItem( $key, $personalUrls[$key], array( 'tag' => 'span' ) );
 			}
@@ -421,7 +421,7 @@ class CologneBlueTemplate extends BaseTemplate {
 
 		// Personal tools ("My pages")
 		$qbmyoptions = $this->getPersonalTools();
-		foreach ( array( 'logout', 'createaccount', 'login', 'anonlogin' ) as $key ) {
+		foreach ( array( 'logout', 'createaccount', 'login', ) as $key ) {
 			$qbmyoptions[$key] = null;
 		}
 
