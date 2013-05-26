@@ -63,7 +63,8 @@ class ForeignDBRepo extends LocalRepo {
 					'password' => $this->dbPassword,
 					'dbname' => $this->dbName,
 					'flags' => $this->dbFlags,
-					'tablePrefix' => $this->tablePrefix
+					'tablePrefix' => $this->tablePrefix,
+					'foreign' => true,
 				)
 			);
 		}

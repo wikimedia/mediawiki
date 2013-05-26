@@ -236,6 +236,7 @@ abstract class DatabaseBase implements DatabaseType {
 
 	protected $mTablePrefix;
 	protected $mFlags;
+	protected $mForeign;
 	protected $mTrxLevel = 0;
 	protected $mErrorCount = 0;
 	protected $mLBInfo = array();
@@ -738,7 +739,8 @@ abstract class DatabaseBase implements DatabaseType {
 				isset( $p['password'] ) ? $p['password'] : false,
 				isset( $p['dbname'] ) ? $p['dbname'] : false,
 				isset( $p['flags'] ) ? $p['flags'] : 0,
-				isset( $p['tablePrefix'] ) ? $p['tablePrefix'] : 'get from global'
+				isset( $p['tablePrefix'] ) ? $p['tablePrefix'] : 'get from global',
+				isset( $p['foreign'] ) ? $p['foreign'] : false
 			);
 		} else {
 			return null;
@@ -2068,6 +2070,7 @@ abstract class DatabaseBase implements DatabaseType {
 		} else {
 			list( $table ) = $dbDetails;
 			if ( $wgSharedDB !== null # We have a shared database
+				&& $this->mForeign == false # We're not working on a foreign database
 				&& !$this->isQuotedIdentifier( $table ) # Paranoia check to prevent shared tables listing '`table`'
 				&& in_array( $table, $wgSharedTables ) # A shared table is selected
 			) {
