@@ -1,6 +1,10 @@
 <?php
 /**
- * Generates normalizer data files for Arabic and Malayalam.
+ * Generates Utf8Case.ser from the Unicode Character Database and
+ * supplementary files.
+ *
+ * Copyright © 2004, 2008 Brion Vibber <brion@pobox.com>
+ * http://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,13 +28,12 @@
 require_once __DIR__ . '/../Maintenance.php';
 
 /**
- * Generates normalizer data files for Arabic and Malayalam.
- * For NFC see includes/normal.
+ * Generates Utf8Case.ser from the Unicode Character Database and
+ * supplementary files. For NFC see includes/normal.
  *
  * @ingroup MaintenanceLanguage
  */
-class GenerateNormalizerData extends Maintenance {
-	public $dataFile;
+class GenerateUtf8Case extends Maintenance {
 
 	public function __construct() {
 		parent::__construct();
@@ -40,26 +43,20 @@ class GenerateNormalizerData extends Maintenance {
 
 	public function execute() {
 		if ( !$this->hasOption( 'unicode-data-file' ) ) {
-			$this->dataFile = 'UnicodeData.txt';
-			if ( !file_exists( $this->dataFile ) ) {
-				$this->error( "Unable to find UnicodeData.txt. Please specify " .
-					"its location with --unicode-data-file=<FILE>" );
+			$dataFile = 'UnicodeData.txt';
+			if ( !file_exists( $dataFile ) ) {
+				$this->error( "Unable to find UnicodeData.txt. Please specify its location with --unicode-data-file=<FILE>" );
 				exit( 1 );
 			}
 		} else {
-			$this->dataFile = $this->getOption( 'unicode-data-file' );
-			if ( !file_exists( $this->dataFile ) ) {
+			$dataFile = $this->getOption( 'unicode-data-file' );
+			if ( !file_exists( $dataFile ) ) {
 				$this->error( 'Unable to find the specified data file.' );
 				exit( 1 );
 			}
 		}
 
-		$this->generateArabic();
-		$this->generateMalayalam();
-	}
-
-	function generateArabic() {
-		$file = fopen( $this->dataFile, 'r' );
+		$file = fopen( $dataFile, 'r' );
 		if ( !$file ) {
 			$this->error( 'Unable to open the data file.' );
 			exit( 1 );
@@ -84,7 +81,8 @@ class GenerateNormalizerData extends Maintenance {
 			'Simple_Titlecase_Mapping'
 		);
 
-		$pairs = array();
+		$upper = array();
+		$lower = array();
 
 		$lineNum = 0;
 		while ( false !== ( $line = fgets( $file ) ) ) {
@@ -103,58 +101,22 @@ class GenerateNormalizerData extends Maintenance {
 				$data[$name] = $numberedData[$number];
 			}
 
-			$code = base_convert( $data['Code'], 16, 10 );
-			if ( ( $code >= 0xFB50 && $code <= 0xFDFF ) # Arabic presentation forms A
-				|| ( $code >= 0xFE70 && $code <= 0xFEFF ) # Arabic presentation forms B
-			) {
-				if ( $data['Decomposition_Type_Mapping'] === '' ) {
-					// No decomposition
-					continue;
-				}
-				if ( !preg_match( '/^ *(<\w*>) +([0-9A-F ]*)$/',
-					$data['Decomposition_Type_Mapping'], $m )
-				) {
-					$this->error( "Can't parse Decomposition_Type/Mapping on line $lineNum" );
-					$this->error( $line );
-					continue;
-				}
-
-				$source = hexSequenceToUtf8( $data['Code'] );
-				$dest = hexSequenceToUtf8( $m[2] );
-				$pairs[$source] = $dest;
+			$source = hexSequenceToUtf8( $data['Code'] );
+			if ( $data['Simple_Uppercase_Mapping'] ) {
+				$upper[$source] = hexSequenceToUtf8( $data['Simple_Uppercase_Mapping'] );
+			}
+			if ( $data['Simple_Lowercase_Mapping'] ) {
+				$lower[$source] = hexSequenceToUtf8( $data['Simple_Lowercase_Mapping'] );
 			}
 		}
 
 		global $IP;
-		file_put_contents( "$IP/serialized/normalize-ar.ser", serialize( $pairs ) );
-		echo "ar: " . count( $pairs ) . " pairs written.\n";
-	}
-
-	function generateMalayalam() {
-		$hexPairs = array(
-			# From http://unicode.org/versions/Unicode5.1.0/#Malayalam_Chillu_Characters
-			'0D23 0D4D 200D' => '0D7A',
-			'0D28 0D4D 200D' => '0D7B',
-			'0D30 0D4D 200D' => '0D7C',
-			'0D32 0D4D 200D' => '0D7D',
-			'0D33 0D4D 200D' => '0D7E',
-
-			# From http://permalink.gmane.org/gmane.science.linguistics.wikipedia.technical/46413
-			'0D15 0D4D 200D' => '0D7F',
-		);
-
-		$pairs = array();
-		foreach ( $hexPairs as $hexSource => $hexDest ) {
-			$source = hexSequenceToUtf8( $hexSource );
-			$dest = hexSequenceToUtf8( $hexDest );
-			$pairs[$source] = $dest;
-		}
-
-		global $IP;
-		file_put_contents( "$IP/serialized/normalize-ml.ser", serialize( $pairs ) );
-		echo "ml: " . count( $pairs ) . " pairs written.\n";
+		file_put_contents( "$IP/serialized/Utf8Case.ser", serialize( array(
+			'wikiUpperChars' => $upper,
+			'wikiLowerChars' => $lower,
+		) ) );
 	}
 }
 
-$maintClass = 'GenerateNormalizerData';
+$maintClass = 'GenerateUtf8Case';
 require_once RUN_MAINTENANCE_IF_MAIN;
