@@ -760,7 +760,7 @@ class SpecialUndelete extends SpecialPage {
 
 		if ( $this->mTimestamp !== '' ) {
 			$this->showRevision( $this->mTimestamp );
-		} elseif ( $this->mFilename !== null ) {
+		} elseif ( $this->mFilename !== null && $this->mTargetObj->inNamespace( NS_FILE ) ) {
 			$file = new ArchivedFile( $this->mTargetObj, '', $this->mFilename );
 			// Check if user is allowed to see this file
 			if ( !$file->exists() ) {
