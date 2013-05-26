@@ -3,6 +3,11 @@
  * Tests for wfTimestamp()
  */
 class WfTimestampTest extends MediaWikiTestCase {
+
+	function testThatJenkinsRunsMe() {
+		$this->assertTrue( false );
+	}
+
 	/**
 	 * @dataProvider provideNormalTimestamps
 	 */
