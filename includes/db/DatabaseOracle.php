@@ -686,7 +686,7 @@ class DatabaseOracle extends DatabaseBase {
 				break;
 		}
 
-		return parent::tableName( strtoupper( $name ), $format );
+		return strtoupper( parent::tableName( $name, $format ) );
 	}
 
 	function tableNameInternal( $name ) {
@@ -875,7 +875,7 @@ class DatabaseOracle extends DatabaseBase {
 
 	/**
 	 * Query whether a given table exists (in the given schema, or the default mw one if not given)
-	 * @return int
+	 * @return bool
 	 */
 	function tableExists( $table, $fname = __METHOD__ ) {
 		$table = $this->tableName( $table );
@@ -883,13 +883,14 @@ class DatabaseOracle extends DatabaseBase {
 		$owner = $this->addQuotes( strtoupper( $this->mDBname ) );
 		$SQL = "SELECT 1 FROM all_tables WHERE owner=$owner AND table_name=$table";
 		$res = $this->doQuery( $SQL );
-		if ( $res ) {
-			$count = $res->numRows();
-			$res->free();
+		if ( $res && $res->numRows() > 0 ) {
+			$exists = true;
 		} else {
-			$count = 0;
+			$exists = false;
 		}
-		return $count;
+
+		$res->free();
+		return $exists;
 	}
 
 	/**
