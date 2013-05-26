@@ -636,6 +636,7 @@ class LoadBalancer {
 			$server = $this->mServers[$i];
 			$server['serverIndex'] = $i;
 			$server['foreignPoolRefCount'] = 0;
+			$server['foreign'] = true;
 			$conn = $this->reallyOpenConnection( $server, $dbName );
 			if ( !$conn->isOpen() ) {
 				wfDebug( __METHOD__ . ": error opening connection for $i/$wiki\n" );
