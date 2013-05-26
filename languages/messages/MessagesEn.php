@@ -2995,6 +2995,7 @@ Feedback and further assistance:
 'historywarning'         => "'''Warning:''' The page you are about to delete has a history with approximately $1 {{PLURAL:$1|revision|revisions}}:",
 'confirmdeletetext'      => 'You are about to delete a page along with all of its history.
 Please confirm that you intend to do this, that you understand the consequences, and that you are doing this in accordance with [[{{MediaWiki:Policy-url}}|the policy]].',
+'warnbacklinks'          => "'''Warning: The page you are about to delete is linked by [[Special:WhatLinksHere/$1|other pages]].'''",
 'actioncomplete'         => 'Action complete',
 'actionfailed'           => 'Action failed',
 'deletedtext'            => '"$1" has been deleted.

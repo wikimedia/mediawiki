@@ -1640,6 +1640,11 @@ class Article implements Page {
 		$outputPage->setPageTitle( wfMessage( 'delete-confirm', $this->getTitle()->getPrefixedText() ) );
 		$outputPage->addBacklinkSubtitle( $this->getTitle() );
 		$outputPage->setRobotPolicy( 'noindex,nofollow' );
+
+		if ( count( $this->getTitle()->getLinksTo() ) > 0 ) {
+                        $outputPage->addWikiMsg( 'warnbacklinks', $this->getTitle() );
+                }
+
 		$outputPage->addWikiMsg( 'confirmdeletetext' );
 
 		wfRunHooks( 'ArticleConfirmDelete', array( $this, $outputPage, &$reason ) );
