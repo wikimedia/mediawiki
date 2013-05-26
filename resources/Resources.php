@@ -1080,6 +1080,8 @@ return array(
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
 		'dependencies' => array(
+			'mediawiki.api',
+			'mediawiki.Title',
 			'mediawiki.legacy.wikibits',
 			'mediawiki.util',
 		),
