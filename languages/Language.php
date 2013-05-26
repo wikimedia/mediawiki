@@ -4209,7 +4209,7 @@ class Language {
 		$arr = wfGetPrecompiledData( 'Utf8Case.ser' );
 		if ( $arr === false ) {
 			throw new MWException(
-				"Utf8Case.ser is missing, please run \"make\" in the serialized directory\n" );
+				"Utf8Case.ser is missing, please run maintenance/language/generateUtf8Case.php\n" );
 		}
 		$wikiUpperChars = $arr['wikiUpperChars'];
 		$wikiLowerChars = $arr['wikiLowerChars'];
