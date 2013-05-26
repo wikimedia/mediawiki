@@ -668,6 +668,7 @@ return array(
 			'jquery.client',
 			'jquery.placeholder',
 			'jquery.suggestions',
+			'mediawiki.api',
 		),
 	),
 	'mediawiki.Title' => array(

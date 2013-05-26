@@ -139,36 +139,24 @@
 		$( searchboxesSelectors.join(', ') )
 			.suggestions( {
 				fetch: function ( query ) {
-					var $el, jqXhr;
-
 					if ( query.length !== 0 ) {
-						$el = $(this);
-						jqXhr = $.ajax( {
-							url: mw.util.wikiScript( 'api' ),
-							data: {
-								format: 'json',
-								action: 'opensearch',
-								search: query,
-								namespace: 0,
-								suggest: ''
-							},
-							dataType: 'json',
-							success: function ( data ) {
-								if ( $.isArray( data ) && data.length ) {
-									$el.suggestions( 'suggestions', data[1] );
-								}
-							}
-						});
-						$el.data( 'request', jqXhr );
+						$( this ).data( 'request', ( new mw.Api ).get( {
+							action: 'opensearch',
+							search: query,
+							namespace: 0,
+							suggest: ''
+						} ).done( function ( data ) {
+							$el.suggestions( 'suggestions', data[1] );
+						} ) );
 					}
 				},
 				cancel: function () {
-					var jqXhr = $(this).data( 'request' );
+					var apiDeferred = $( this ).data( 'request' );
 					// If the delay setting has caused the fetch to have not even happened
-					// yet, the jqXHR object will have never been set.
-					if ( jqXhr && $.isFunction( jqXhr.abort ) ) {
-						jqXhr.abort();
-						$(this).removeData( 'request' );
+					// yet, the apiDeferred object will have never been set.
+					if ( apiDeferred && $.isFunction( apiDeferred.abort ) ) {
+						apiDeferred.abort();
+						$( this ).removeData( 'request' );
 					}
 				},
 				result: {
