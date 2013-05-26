@@ -86,7 +86,10 @@ class OracleInstaller extends DatabaseInstaller {
 		$status = Status::newGood();
 		if ( !strlen( $newValues['wgDBserver'] ) ) {
 			$status->fatal( 'config-missing-db-server-oracle' );
-		} elseif ( !preg_match( '/^[a-zA-Z0-9_\.]+$/', $newValues['wgDBserver'] ) ) {
+		} elseif ( !preg_match( '/^(?:\/\/)?[a-zA-Z0-9_\-\.]+(?::[0-9]+)?(?:\/[a-zA-Z0-9_\-\.]+)(?::POOLED)?$/', $newValues['wgDBserver'] ) ) {
+			// regex should be able to validate all EZConnect formats
+			// [//]host[:port][/service_name][:POOLED]
+			// http://www.orafaq.com/wiki/EZCONNECT
 			$status->fatal( 'config-invalid-db-server-oracle', $newValues['wgDBserver'] );
 		}
 		if ( !preg_match( '/^[a-zA-Z0-9_]*$/', $newValues['wgDBprefix'] ) ) {
