@@ -2578,8 +2578,6 @@ $templates
 
 		// Add various resources if required
 		if ( $wgUseAjax ) {
-			$this->addModules( 'mediawiki.legacy.ajax' );
-
 			wfRunHooks( 'AjaxAddScript', array( &$this ) );
 
 			if ( $wgAjaxWatch && $this->getUser()->isLoggedIn() ) {

@@ -674,30 +674,6 @@ class SpecialUpload extends SpecialPage {
 	}
 
 	/**
-	 * Get a list of warnings
-	 *
-	 * @param string $filename local filename, e.g. 'file exists', 'non-descriptive filename'
-	 * @return Array: list of warning messages
-	 */
-	public static function ajaxGetExistsWarning( $filename ) {
-		$file = wfFindFile( $filename );
-		if ( !$file ) {
-			// Force local file so we have an object to do further checks against
-			// if there isn't an exact match...
-			$file = wfLocalFile( $filename );
-		}
-		$s = '&#160;';
-		if ( $file ) {
-			$exists = UploadBase::getExistsWarning( $file );
-			$warning = self::getExistsWarning( $exists );
-			if ( $warning !== '' ) {
-				$s = "<div>$warning</div>";
-			}
-		}
-		return $s;
-	}
-
-	/**
 	 * Construct a warning and a gallery from an array of duplicate files.
 	 * @param $dupes array
 	 * @return string
