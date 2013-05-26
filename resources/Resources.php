@@ -1049,6 +1049,7 @@ return array(
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
 		'dependencies' => array(
+			'mediawiki.api',
 			'mediawiki.legacy.wikibits',
 			'mediawiki.util',
 		),
