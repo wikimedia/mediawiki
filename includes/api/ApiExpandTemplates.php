@@ -34,9 +34,6 @@
 class ApiExpandTemplates extends ApiBase {
 
 	public function execute() {
-		// Cache may vary on $wgUser because ParserOptions gets data from it
-		$this->getMain()->setCacheMode( 'anon-public-user-private' );
-
 		// Get parameters
 		$params = $this->extractRequestParams();
 
@@ -74,6 +71,11 @@ class ApiExpandTemplates extends ApiBase {
 		$retval_array = array();
 		ApiResult::setContent( $retval_array, $retval );
 		$result->addValue( null, $this->getModuleName(), $retval_array );
+	}
+
+	public function getCacheMode( $params ) {
+		// Cache may vary on $wgUser because ParserOptions gets data from it
+		return 'anon-public-user-private';
 	}
 
 	public function getAllowedParams() {

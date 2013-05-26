@@ -37,9 +37,6 @@ class ApiParse extends ApiBase {
 	private $pstContent = null;
 
 	public function execute() {
-		// The data is hot but user-dependent, like page views, so we set vary cookies
-		$this->getMain()->setCacheMode( 'anon-public-user-private' );
-
 		// Get parameters
 		$params = $this->extractRequestParams();
 		$text = $params['text'];
@@ -547,6 +544,11 @@ class ApiParse extends ApiBase {
 				$this->getResult()->setIndexedTagName( $array[$key], $name );
 			}
 		}
+	}
+
+	public function getCacheMode( $params ) {
+		// The data is hot but user-dependent, like page views, so we set vary cookies
+		return 'anon-public-user-private';
 	}
 
 	public function getAllowedParams() {
