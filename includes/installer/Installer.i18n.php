@@ -259,7 +259,7 @@ If you do not see the database system you are trying to use listed below, then f
 	'config-missing-db-host'          => 'You must enter a value for "Database host"',
 	'config-missing-db-server-oracle' => 'You must enter a value for "Database TNS"',
 	'config-invalid-db-server-oracle' => 'Invalid database TNS "$1".
-Use only ASCII letters (a-z, A-Z), numbers (0-9), underscores (_) and dots (.).',
+Use either "TNS Name" or an "Easy Connect" string ([http://docs.oracle.com/cd/E11882_01/network.112/e10836/naming.htm Oracle Naming Methods])',
 	'config-invalid-db-name'          => 'Invalid database name "$1".
 Use only ASCII letters (a-z, A-Z), numbers (0-9), underscores (_) and hyphens (-).',
 	'config-invalid-db-prefix'        => 'Invalid database prefix "$1".
