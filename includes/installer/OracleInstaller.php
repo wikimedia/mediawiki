@@ -86,7 +86,7 @@ class OracleInstaller extends DatabaseInstaller {
 		$status = Status::newGood();
 		if ( !strlen( $newValues['wgDBserver'] ) ) {
 			$status->fatal( 'config-missing-db-server-oracle' );
-		} elseif ( !preg_match( '/^[a-zA-Z0-9_\.]+$/', $newValues['wgDBserver'] ) ) {
+		} elseif ( !self::checkConnectStringFormat( $newValues['wgDBserver'] ) ) {
 			$status->fatal( 'config-invalid-db-server-oracle', $newValues['wgDBserver'] );
 		}
 		if ( !preg_match( '/^[a-zA-Z0-9_]*$/', $newValues['wgDBprefix'] ) ) {
@@ -294,6 +294,26 @@ class OracleInstaller extends DatabaseInstaller {
 "# Oracle specific settings
 \$wgDBprefix = \"{$prefix}\";
 ";
+	}
+
+	/**
+	 * Function checks the format of Oracle connect string
+	 * The actual validity of the string is checked by attempting to connect
+	 *
+	 * Regex should be able to validate all connect string formats
+	 * [//](host|tns_name)[:port][/service_name][:POOLED]
+	 * http://www.orafaq.com/wiki/EZCONNECT
+	 *
+	 * @since 1.22
+	 *
+	 * @param string $connect_string
+	 *
+	 * @return bool Whether the connection string is valid.
+	 */
+	public static function checkConnectStringFormat( $connect_string ) {
+		$isValid  = preg_match( '/^[[:alpha:]][\w\-]*(?:\.[[:alpha:]][\w\-]*){0,2}$/', $connect_string ); // TNS name
+		$isValid |= preg_match( '/^(?:\/\/)?[\w\-\.]+(?::[\d]+)?(?:\/(?:[\w\-\.]+(?::(pooled|dedicated|shared))?)?(?:\/[\w\-\.]+)?)?$/', $connect_string ); // EZConnect
+		return (bool)$isValid;
 	}
 
 }
