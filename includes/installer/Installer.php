@@ -200,7 +200,7 @@ abstract class Installer {
 		'_NamespaceType' => 'site-name',
 		'_AdminName' => '', // will be set later, when the user selects language
 		'_AdminPassword' => '',
-		'_AdminPassword2' => '',
+		'_AdminPasswordConfirm' => '',
 		'_AdminEmail' => '',
 		'_Subscribe' => false,
 		'_SkipOptional' => 'continue',
