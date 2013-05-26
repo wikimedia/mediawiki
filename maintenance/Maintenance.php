@@ -731,7 +731,7 @@ abstract class Maintenance {
 			return;
 		}
 
-		$screenWidth = 80; // TODO: Caculate this!
+		$screenWidth = 80; // TODO: Calculate this!
 		$tab = "    ";
 		$descWidth = $screenWidth - ( 2 * strlen( $tab ) );
 
