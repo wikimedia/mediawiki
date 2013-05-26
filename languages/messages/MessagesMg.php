@@ -348,6 +348,7 @@ $messages = array(
 'newwindow' => '(sokafy anaty takila hafa)',
 'cancel' => 'Aoka ihany',
 'moredotdotdot' => 'Tohiny...',
+'morenotlisted' => 'Tohiny tsy voalisitra...',
 'mypage' => 'Pejy',
 'mytalk' => 'Dinika',
 'anontalk' => "Resaka ho an'io adiresy IP io",
@@ -467,7 +468,7 @@ $1',
 
 'badaccess' => 'Tsy manana alàlana',
 'badaccess-group0' => 'Tsy afaka manantontosa ny asa nangatahinao ianao tompoko',
-'badaccess-groups' => "Ny asa andramanao atao io dia voafetra amin'ny mpikambana ao amin'ny vondrona $1.{{PLURAL:$2||}}",
+'badaccess-groups' => "Ny asa andramanao atao io dia voafetra amin'ny mpikambana ao amin'ny vondrona $1.{{PLURAL:$2|}}",
 
 'versionrequired' => "
 Mitaky version $1-n'i MediaWiki",
@@ -626,6 +627,9 @@ Ny antony nomen\'ny mpandrindra nanidy azy: "$3".',
 
 Mbola afaka mampiasa ny {{SITENAME}} ianao na dia ef anivoaka aza, na afaka <span class='plainlinks'>[$1 miverina mihiditra]</span> ianao ambanin'ny anaranao na anaram-pikambana hafa.
 Fantaro fa ny endriky ny pejy sasany dia mety mitovy amin'ny endrika nahitanao azy tamin' ianao mbola niditra tato, ho toy izany ny endri-pejy raha tsy nofafanao ny cache.",
+'welcomeuser' => 'Tonga soa, $1',
+'welcomecreation-msg' => "Noforonina ny aontinao.
+Aza adin ny manova ny [[Special:Preferences|safidinao ro amin'i{{SITENAME}}]].",
 'yourname' => 'Solonanarana',
 'yourpassword' => 'Tenimiafina',
 'yourpasswordagain' => 'Avereno ampidirina eto ny tenimiafina',
@@ -649,7 +653,7 @@ Mila manaiky cookies ianao raha te hiditra amin'ny {{SITENAME}}.",
 'gotaccount' => "Efa manana kaonty? '''$1'''.",
 'gotaccountlink' => 'Midira',
 'userlogin-resetlink' => "Adinonavo ve ny antsipihan'ny fidiranao ?",
-'createaccountmail' => "amin'ny imailaka",
+'createaccountmail' => "Hampiasa tenimiafina kisendra vonjimaika ary handefa azy mailaka any amin'ny adiresy nolazaina teo ambany",
 'createaccountreason' => 'Antony :',
 'badretype' => 'Tsy mitovy ny tenimiafina nampidirinao.',
 'userexists' => 'Efa miasa io anaram-pikambana natsofokao io.
@@ -726,6 +730,7 @@ Andraso kely ary andramo indray.",
 # Email sending
 'php-mail-error-unknown' => "Hadisoana tsy fantatra tao amin'ny tao mial() an'i PHP.",
 'user-mail-no-addy' => 'Nanandrana nandefa imailaka tsy misy adiresy imailaka.',
+'user-mail-no-body' => 'Nanandrana nandefa mailaka babangoana na fohy loatra',
 
 # Change password dialog
 'resetpass' => 'Hanova ny tenimiafina',
@@ -743,6 +748,7 @@ Andraso kely ary andramo indray.",
 'resetpass-wrong-oldpass' => 'Tsy izy ny tenimiafinao (tsotra na miserana)
 Mety efa nanova tenimiafina na nanontany tenimiafina miserana angamba ianao.',
 'resetpass-temp-password' => 'Tenimiafina miserana :',
+'resetpass-abort-generic' => "Nosakanan'ny itatra (extension) iray ny fanovana tenimiafina.",
 
 # Special:PasswordReset
 'passwordreset' => 'Famafana ary famerenana ny tenimiafina',
@@ -781,6 +787,7 @@ Tenimiafina miserana : $2',
 'changeemail-oldemail' => 'Adiresy imailaka ankehitriny :',
 'changeemail-newemail' => 'Adiresy imailaka vaovao :',
 'changeemail-none' => '(tsy misy)',
+'changeemail-password' => "Tenimiafinao eo amin'i {{SITENAME}}:",
 'changeemail-submit' => 'Hanova ny adiresy imailaka',
 'changeemail-cancel' => 'Adinoy',
 
@@ -981,7 +988,15 @@ Mety voafafa angamba izy.',
 'edit-already-exists' => 'Tsy afaka amboarina ilay pejy vaovao.
 Efa misy izy.',
 'defaultmessagetext' => 'Hafatra raha tsy misy',
+'content-failed-to-parse' => "Tsy naha-parse ny votoatin'i $2 ho an'ny modely $1 : $3",
 'invalid-content-data' => "Data anaty votoatiny tsy miady amin'ny fepetra",
+'content-not-allowed-here' => "Votoatiny ''$1'' voarara eo amin'ny pejy [[$2]]",
+
+# Content models
+'content-model-wikitext' => 'wiki-soratra',
+'content-model-text' => 'soratra tsotra',
+'content-model-javascript' => 'JavaScript',
+'content-model-css' => 'CSS',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Tandremo : Betsaka loatra ny fanantsoana ny tao parser.
@@ -1338,7 +1353,7 @@ Fenoy araka ny datin'ny solosainan'ny mpitsidika",
 'youremail' => 'Imailaka:',
 'username' => '{{GENDER:$1}}Anaram-pikambana :',
 'uid' => '{{GENDER:$1}}mpikambana :',
-'prefs-memberingroups' => "mpikambana{{GENDER:$2}} ao amin'ny vondrona{{PLURAL:$1}} :",
+'prefs-memberingroups' => "Mpikambana{{GENDER:$2}} ao amin'ny vondrona{{PLURAL:$1}}:",
 'prefs-registration' => 'Daty fidirana :',
 'yourrealname' => 'Tena anarana marina:',
 'yourlanguage' => 'Tenim-pirenena:',
@@ -1679,6 +1694,8 @@ Marino ny option configuration file_uploads.",
 'uploadscripted' => "
 Misy kialo HTML na fango script mety tsy ho hain'ny navigateur sasany haseho ity rakitra ity.",
 'uploadvirus' => 'Misy viriosy io rakitra io! Toy izao ny antsipirihany: $1',
+'uploadjava' => 'Ny rakitra dia rakitra ZIP ahitana rakitra .class Java.
+Voarara ny mandefa rakitra Java satria mety hahavaky ny fepetra mikasika ny antoka ireo rakitra ireo.',
 'upload-source' => 'Rakitra fango',
 'sourcefilename' => "Anaran'ny rakitra:",
 'sourceurl' => 'Loharano URL :',
@@ -1721,6 +1738,7 @@ Raha mbola misy foana ilay  olana, manorata any amin'ny [[Special:ListUsers/syso
 'backend-fail-notsame' => "Efa misy rakitra samihafa ho an'i $1",
 'backend-fail-invalidpath' => '$1 dia lalam-pitahirizana tsy azo raisina.',
 'backend-fail-delete' => 'Tsy afaka mamafa ilay rakitra $1.',
+'backend-fail-describe' => 'Tsy nahasolo ny metadata ho an\'ny rakitra "$1".',
 'backend-fail-alreadyexists' => 'Efa misy ilay rakitra $1.',
 'backend-fail-store' => 'Tsy afaka mitahiry ilay rakitra $1 anaty $2.',
 'backend-fail-copy' => 'Tsy afaka mandika ilay rakitra $1 anaty $2.',
@@ -2168,8 +2186,8 @@ na tsy maniry handray imailaka avy amin'ny mpikambana hafa izy.",
 'notvisiblerev' => 'Voafafa ilay santiôna',
 'watchnochange' => 'Tsy niova nandritra ny fe-potoana miseho ny zavatra arahanao',
 'watchlist-details' => "Pejy $1{{PLURAL:}} ao amin'ny lisitry ny pejy arahanao, tsy isaina ny pejin-dresaka.",
-'wlheader-enotif' => "Mandeha ny fampilazana amin'ny alalan'ny imailaka.",
-'wlheader-showupdated' => "<b>Voasorabaventy</b> ny pejy niova taorian'ny famangianao farany.",
+'wlheader-enotif' => "Alefa ny fampilazana amin'ny mailaka.",
+'wlheader-showupdated' => "Aseho '''sorabaventy''' ny pejy niova taorian'ny famangianao azy farany.",
 'watchmethod-recent' => 'fanamarinana ny fanovana farany hahitana pejy arahana',
 'watchmethod-list' => 'fanamarinana ny pejy arahana ahitana fanovana farany',
 'watchlistcontains' => "Ao amin'ny pejy arahanao dia ahitana pejy $1{{PLURAL:}}.",
@@ -2403,7 +2421,7 @@ $1',
 'blanknamespace' => '(fotony)',
 
 # Contributions
-'contributions' => "Fandraisan'anjaran'ny mpikambana",
+'contributions' => "Fandraisan'anjaran'ny mpikambana{{GENDER:$1}}",
 'contributions-title' => "Fandraisan'anjaran'i $1",
 'mycontris' => "Fandraisan'anjara",
 'contribsub2' => "ho an'ny $1 ($2)",

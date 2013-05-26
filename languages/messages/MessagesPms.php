@@ -183,10 +183,10 @@ $messages = array(
 
 # Cologne Blue skin
 'qbfind' => 'Trové',
-'qbbrowse' => 'Sfeuja',
-'qbedit' => 'Modìfica',
-'qbpageoptions' => 'Opsion dla pàgina',
-'qbmyoptions' => 'Mie opsion',
+'qbbrowse' => 'Sfojé',
+'qbedit' => 'Modifiché',
+'qbpageoptions' => 'Costa pàgina',
+'qbmyoptions' => 'Mie pàgine',
 'qbspecialpages' => 'Pàgine speciaj',
 'faq' => 'Chestion frequente',
 'faqpage' => 'Project:Soèns An Ciamo',

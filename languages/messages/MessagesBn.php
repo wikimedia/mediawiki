@@ -178,6 +178,18 @@ $messages = array(
 'oct' => 'অক্টোবর',
 'nov' => 'নভেম্বর',
 'dec' => 'ডিসেম্বর',
+'january-date' => 'জানুয়ারি $1',
+'february-date' => 'ফেব্রুয়ারি $1',
+'march-date' => 'মার্চ $1',
+'april-date' => 'এপ্রিল $1',
+'may-date' => 'মে $1',
+'june-date' => 'জুন $1',
+'july-date' => 'জুলাই $1',
+'august-date' => 'আগষ্ট $1',
+'september-date' => 'সেপ্টেম্বর $1',
+'october-date' => 'অক্টোবর $1',
+'november-date' => 'নভেম্বর $1',
+'december-date' => 'ডিসেম্বর $1',
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|বিষয়শ্রেণী|বিষয়শ্রেণীসমূহ}}',

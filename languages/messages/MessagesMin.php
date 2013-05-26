@@ -403,8 +403,8 @@ $1',
 # Main script and global functions
 'nosuchaction' => 'Indak ado tindakan tasabuik',
 'nosuchactiontext' => 'Tindakan nan diminta dek URL tasabuik indak valid. Sanak mungkin salah mangetikkan URL, atau mangikuik pautan nan salah. Iko mungkin manunjuakan adonyo suatu bug pado parangkaik lunak nan dipagunoan dek {{SITENAME}}.',
-'nosuchspecialpage' => 'Indak ado laman istimewa tarsabuik',
-'nospecialpagetext' => '<strong>Sanak maminta laman istimewa nan indak sah.</strong>
+'nosuchspecialpage' => 'Indak ado laman istimewa tasabuik',
+'nospecialpagetext' => '<strong>Sanak mamintak laman istimewa nan indak sah.</strong>
 
 Daftar laman istimewa nan sah dapek dicaliak di [[Special:SpecialPages|{{int:specialpages}}]].',
 

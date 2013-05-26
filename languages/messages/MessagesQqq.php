@@ -832,7 +832,7 @@ See also:
 * {{msg-mw|Accesskey-ca-nstab-main}}
 * {{msg-mw|Tooltip-ca-nstab-main}}
 {{Identical|Page}}',
-'nstab-user' => 'The name for the tab of the user namespace. Example: [[User:Example]]. It is possible to use <nowiki>{{GENDER:{{BASEPAGENAME}}|male form|female form}}</nowiki> if needed.
+'nstab-user' => 'The name for the tab of the user namespace. Example: [[User:Example]]. It is possible to use <nowiki>{{GENDER:{{ROOTPAGENAME}}|male form|female form}}</nowiki> if needed.
 
 See also:
 * {{msg-mw|Nstab-user}}
