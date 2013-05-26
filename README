@@ -62,15 +62,6 @@ Sections of code written exclusively by Lee Crocker or Erik Moeller are also
 released into the public domain, which does not impair the obligations of users
 under the GPL for use of the whole code or other sections thereof.
 
-MediaWiki makes use of the Sajax Toolkit by modernmethod,
-http://www.modernmethod.com/sajax/ which has the following license:
-
-	'This work is licensed under the Creative Commons Attribution
-	License. To view a copy of this license, visit
-	http://creativecommons.org/licenses/by/2.0/ or send a letter
-	to Creative Commons, 559 Nathan Abbott Way,
-	Stanford, California 94305, USA.'
-
 MediaWiki use Creative Commons license marks to points to their online
 licenses. This content is trademarked and used under a specific license
 available at http://creativecommons.org/policies#trademark

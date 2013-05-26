@@ -343,6 +343,7 @@ $wgAutoloadLocalClasses = array(
 	'ApiExpandTemplates' => 'includes/api/ApiExpandTemplates.php',
 	'ApiFeedContributions' => 'includes/api/ApiFeedContributions.php',
 	'ApiFeedWatchlist' => 'includes/api/ApiFeedWatchlist.php',
+	'ApiFileExists' => 'includes/api/ApiFileExists.php',
 	'ApiFileRevert' => 'includes/api/ApiFileRevert.php',
 	'ApiFormatBase' => 'includes/api/ApiFormatBase.php',
 	'ApiFormatDbg' => 'includes/api/ApiFormatDbg.php',

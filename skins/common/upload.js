@@ -96,7 +96,7 @@ window.wgUploadWarningObj = {
 	'timeoutID': false,
 
 	'keypress': function () {
-		if ( !ajaxUploadDestCheck || !sajax_init_object() ) return;
+		if ( !ajaxUploadDestCheck ) return;
 
 		// Find file to upload
 		var destFile = document.getElementById('wpDestFile');
@@ -121,7 +121,7 @@ window.wgUploadWarningObj = {
 	},
 
 	'checkNow': function (fname) {
-		if ( !ajaxUploadDestCheck || !sajax_init_object() ) return;
+		if ( !ajaxUploadDestCheck ) return;
 		if ( this.timeoutID ) {
 			window.clearTimeout( this.timeoutID );
 		}
@@ -130,25 +130,22 @@ window.wgUploadWarningObj = {
 	},
 
 	'timeout' : function() {
-		if ( !ajaxUploadDestCheck || !sajax_init_object() ) return;
+		if ( !ajaxUploadDestCheck ) return;
 		injectSpinner( document.getElementById( 'wpDestFile' ), 'destcheck' );
 
-		// Get variables into local scope so that they will be preserved for the
-		// anonymous callback. fileName is copied so that multiple overlapping
-		// ajax requests can be supported.
-		var obj = this;
-		var fileName = this.nameToCheck;
-		sajax_do_call( 'SpecialUpload::ajaxGetExistsWarning', [this.nameToCheck],
-			function (result) {
-				obj.processResult(result, fileName)
-			}
-		);
+		var _this = this;
+		( new mw.Api ).get( {
+			action: 'fileexists',
+			name: this.nameToCheck,
+		} ).done( function( result ){
+			_this.processResult( result, _this.nameToCheck );
+		} );
 	},
 
-	'processResult' : function (result, fileName) {
+	'processResult' : function ( result, fileName ) {
 		removeSpinner( 'destcheck' );
-		this.setWarning(result.responseText);
-		this.responseCache[fileName] = result.responseText;
+		this.setWarning( result.html );
+		this.responseCache[fileName] = result.html;
 	},
 
 	'setWarning' : function (warning) {
@@ -159,7 +156,7 @@ window.wgUploadWarningObj = {
 
 		// Set a value in the form indicating that the warning is acknowledged and
 		// doesn't need to be redisplayed post-upload
-		if ( warning == '' || warning == '&nbsp;' ) {
+		if ( warning == '' ) {
 			ackElt[0].value = '';
 		} else {
 			ackElt[0].value = '1';
@@ -279,18 +276,15 @@ window.wgUploadLicenseObj = {
 		var title = document.getElementById('wpDestFile').value;
 		if ( !title ) title = 'File:Sample.jpg';
 
-		var url = mw.util.wikiScript( 'api' )
-			+ '?action=parse&text={{' + encodeURIComponent( license ) + '}}'
-			+ '&title=' + encodeURIComponent( title )
-			+ '&prop=text&pst&format=json';
-
-		var req = sajax_init_object();
-		req.onreadystatechange = function() {
-			if ( req.readyState == 4 && req.status == 200 )
-				wgUploadLicenseObj.processResult( eval( '(' + req.responseText + ')' ), license );
-		};
-		req.open( 'GET', url, true );
-		req.send( '' );
+		( new mw.Api ).get( {
+			action: 'parse',
+			text: '{{' + license + '}}',
+			title: title,
+			prop: 'text',
+			pst: ''
+		} ).done( function ( result ) {
+			wgUploadLicenseObj.processResult( result, license );
+		} );
 	},
 
 	'processResult' : function( result, license ) {

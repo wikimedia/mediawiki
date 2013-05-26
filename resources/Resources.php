@@ -996,16 +996,6 @@ return array(
 
 	/* MediaWiki Legacy */
 
-	'mediawiki.legacy.ajax' => array(
-		'scripts' => 'common/ajax.js',
-		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => $GLOBALS['wgStyleDirectory'],
-		'dependencies' => array(
-			'mediawiki.util',
-			'mediawiki.legacy.wikibits',
-		),
-		'position' => 'top', // Temporary hack for legacy support
-	),
 	'mediawiki.legacy.commonPrint' => array(
 		'styles' => array( 'common/commonPrint.css' => array( 'media' => 'print' ) ),
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
@@ -1051,6 +1041,7 @@ return array(
 		'dependencies' => array(
 			'mediawiki.legacy.wikibits',
 			'mediawiki.util',
+			'mediawiki.api',
 		),
 	),
 	'mediawiki.legacy.wikibits' => array(
