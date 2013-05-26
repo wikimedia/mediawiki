@@ -695,7 +695,7 @@ class WebInstaller_Name extends WebInstallerPage {
 				'label' => 'config-admin-password',
 			) ) .
 			$this->parent->getPasswordBox( array(
-				'var' => '_AdminPassword2',
+				'var' => '_AdminPasswordConfirm',
 				'label' => 'config-admin-password-confirm'
 			) ) .
 			$this->parent->getTextBox( array(
@@ -730,7 +730,7 @@ class WebInstaller_Name extends WebInstallerPage {
 	public function submit() {
 		$retVal = true;
 		$this->parent->setVarsFromRequest( array( 'wgSitename', '_NamespaceType',
-			'_AdminName', '_AdminPassword', '_AdminPassword2', '_AdminEmail',
+			'_AdminName', '_AdminPassword', '_AdminPasswordConfirm', '_AdminEmail',
 			'_Subscribe', '_SkipOptional', 'wgMetaNamespace' ) );
 
 		// Validate site name
@@ -808,7 +808,7 @@ class WebInstaller_Name extends WebInstallerPage {
 			# $user->getPasswordValidity just checks for $wgMinimalPasswordLength.
 			# This message is more specific and helpful.
 			$msg = 'config-admin-password-blank';
-		} elseif ( $pwd !== $this->getVar( '_AdminPassword2' ) ) {
+		} elseif ( $pwd !== $this->getVar( '_AdminPasswordConfirm' ) ) {
 			$msg = 'config-admin-password-mismatch';
 		} elseif ( $valid !== true ) {
 			# As of writing this will only catch the username being e.g. 'FOO' and
@@ -818,7 +818,7 @@ class WebInstaller_Name extends WebInstallerPage {
 		if ( $msg !== false ) {
 			call_user_func_array( array( $this->parent, 'showError' ), (array)$msg );
 			$this->setVar( '_AdminPassword', '' );
-			$this->setVar( '_AdminPassword2', '' );
+			$this->setVar( '_AdminPasswordConfirm', '' );
 			$retVal = false;
 		}
 

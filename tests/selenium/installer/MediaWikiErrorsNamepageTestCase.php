@@ -54,7 +54,7 @@ class MediaWikiErrorsNamepageTestCase extends MediaWikiInstallationCommonFunctio
 		// Verify warning message for the blank 'Site name'
 		$this->type( "config__AdminName", VALID_YOUR_NAME );
 		$this->type( "config__AdminPassword", VALID_PASSWORD );
-		$this->type( "config__AdminPassword2", VALID_PASSWORD_AGAIN );
+		$this->type( "config__AdminPasswordConfirm", VALID_PASSWORD_AGAIN );
 		parent::clickContinueButton();
 		$this->assertEquals( "Enter a site name.",
 			$this->getText( LINK_DIV . "div[2]/div[2]" ) );
@@ -103,7 +103,7 @@ class MediaWikiErrorsNamepageTestCase extends MediaWikiInstallationCommonFunctio
 		// Verify warning message for the blank 'Password again'
 		$this->type( "config_wgSitename", VALID_WIKI_NAME );
 		$this->type( "config__AdminPassword", VALID_PASSWORD );
-		$this->type( "config__AdminPassword2", " " );
+		$this->type( "config__AdminPasswordConfirm", " " );
 		parent::clickContinueButton();
 		$this->assertEquals( "The two passwords you entered do not match.",
 			$this->getText( LINK_DIV . "div[2]/div[2]" ) );
@@ -111,7 +111,7 @@ class MediaWikiErrorsNamepageTestCase extends MediaWikiInstallationCommonFunctio
 		// Verify warning message for the different'Password' and 'Password again'
 		$this->type( "config_wgSitename", VALID_WIKI_NAME );
 		$this->type( "config__AdminPassword", VALID_PASSWORD );
-		$this->type( "config__AdminPassword2", INVALID_PASSWORD_AGAIN );
+		$this->type( "config__AdminPasswordConfirm", INVALID_PASSWORD_AGAIN );
 		parent::clickContinueButton();
 		$this->assertEquals( "The two passwords you entered do not match.",
 			$this->getText( LINK_DIV . "div[2]/div[2]" ) );

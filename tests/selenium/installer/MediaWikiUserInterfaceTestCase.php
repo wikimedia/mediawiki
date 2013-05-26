@@ -291,7 +291,7 @@ class MediaWikiUserInterfaceTestCase extends MediaWikiInstallationCommonFunction
 			$this->getText( LINK_FORM . "fieldset/div[3]/div[1]/label" ) );
 
 		// 'Password again' text box available
-		$this->assertTrue( $this->isElementPresent( "config__AdminPassword2" ) );
+		$this->assertTrue( $this->isElementPresent( "config__AdminPasswordConfirm" ) );
 
 		// 'Email address' label avaialble
 		$this->assertEquals( "E-mail address:",

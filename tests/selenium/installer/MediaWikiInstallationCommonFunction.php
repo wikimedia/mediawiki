@@ -125,7 +125,7 @@ class MediaWikiInstallationCommonFunction extends PHPUnit_Extensions_SeleniumTes
 		$this->type( "config_wgSitename", NAME_OF_WIKI );
 		$this->type( "config__AdminName", ADMIN_USER_NAME );
 		$this->type( "config__AdminPassword", ADMIN_PASSWORD );
-		$this->type( "config__AdminPassword2", ADMIN_RETYPE_PASSWORD );
+		$this->type( "config__AdminPasswordConfirm", ADMIN_RETYPE_PASSWORD );
 		$this->type( "config__AdminEmail", ADMIN_EMAIL_ADDRESS );
 
 		$this->click( "submit-continue" );
@@ -156,7 +156,7 @@ class MediaWikiInstallationCommonFunction extends PHPUnit_Extensions_SeleniumTes
 		$this->type( "config_wgSitename", NAME_OF_WIKI );
 		$this->type( "config__AdminName", ADMIN_USER_NAME );
 		$this->type( "config__AdminPassword", ADMIN_PASSWORD );
-		$this->type( "config__AdminPassword2", ADMIN_RETYPE_PASSWORD );
+		$this->type( "config__AdminPasswordConfirm", ADMIN_RETYPE_PASSWORD );
 		$this->type( "config__AdminEmail", ADMIN_EMAIL_ADDRESS );
 
 		$this->click( "submit-continue" );
@@ -191,7 +191,7 @@ class MediaWikiInstallationCommonFunction extends PHPUnit_Extensions_SeleniumTes
 		$this->type( "config_wgSitename", NAME_OF_WIKI );
 		$this->type( "config__AdminName", ADMIN_USER_NAME );
 		$this->type( "config__AdminPassword", ADMIN_PASSWORD );
-		$this->type( "config__AdminPassword2", ADMIN_RETYPE_PASSWORD );
+		$this->type( "config__AdminPasswordConfirm", ADMIN_RETYPE_PASSWORD );
 		$this->type( "config__AdminEmail", ADMIN_EMAIL_ADDRESS );
 
 		$this->click( "submit-continue" );
@@ -212,7 +212,7 @@ class MediaWikiInstallationCommonFunction extends PHPUnit_Extensions_SeleniumTes
 		$this->type( "config_wgSitename", NAME_OF_WIKI );
 		$this->type( "config__AdminName", ADMIN_USER_NAME );
 		$this->type( "config__AdminPassword", ADMIN_PASSWORD );
-		$this->type( "config__AdminPassword2", ADMIN_RETYPE_PASSWORD );
+		$this->type( "config__AdminPasswordConfirm", ADMIN_RETYPE_PASSWORD );
 		$this->type( "config__AdminEmail", ADMIN_EMAIL_ADDRESS );
 		$this->click( "submit-continue" );
 		$this->waitForPageToLoad( PAGE_LOAD_TIME );
