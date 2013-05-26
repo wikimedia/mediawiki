@@ -137,7 +137,7 @@ class LocalFile extends File {
 			$conds['img_timestamp'] = $dbr->timestamp( $timestamp );
 		}
 
-		$row = $dbr->selectRow( 'image', self::selectFields(), $conds, __METHOD__ );
+		$row = $dbr->selectRow( $repo->tableName( 'image' ), self::selectFields(), $conds, __METHOD__ );
 		if ( $row ) {
 			return self::newFromRow( $row, $repo );
 		} else {
@@ -342,7 +342,7 @@ class LocalFile extends File {
 		$this->extraDataLoaded = true;
 
 		$dbr = $this->repo->getMasterDB();
-		$row = $dbr->selectRow( 'image', $this->getCacheFields( 'img_' ),
+		$row = $dbr->selectRow( $this->repo->tableName( 'image' ), $this->getCacheFields( 'img_' ),
 			array( 'img_name' => $this->getName() ), $fname );
 
 		if ( $row ) {
@@ -368,12 +368,12 @@ class LocalFile extends File {
 
 		$dbr = $this->repo->getSlaveDB();
 		// In theory the file could have just been renamed/deleted...oh well
-		$row = $dbr->selectRow( 'image', $this->getLazyCacheFields( 'img_' ),
+		$row = $dbr->selectRow( $this->repo->tableName( 'image' ), $this->getLazyCacheFields( 'img_' ),
 			array( 'img_name' => $this->getName() ), $fname );
 
 		if ( !$row ) { // fallback to master
 			$dbr = $this->repo->getMasterDB();
-			$row = $dbr->selectRow( 'image', $this->getLazyCacheFields( 'img_' ),
+			$row = $dbr->selectRow( $this->repo->tableName( 'image' ), $this->getLazyCacheFields( 'img_' ),
 				array( 'img_name' => $this->getName() ), $fname );
 		}
 
@@ -530,7 +530,7 @@ class LocalFile extends File {
 		}
 		wfDebug( __METHOD__ . ': upgrading ' . $this->getName() . " to the current schema\n" );
 
-		$dbw->update( 'image',
+		$dbw->update( $this->repo->tableName( 'image' ),
 			array(
 				'img_size' => $this->size, // sanity
 				'img_width' => $this->width,
@@ -935,7 +935,7 @@ class LocalFile extends File {
 	 */
 	function getHistory( $limit = null, $start = null, $end = null, $inc = true ) {
 		$dbr = $this->repo->getSlaveDB();
-		$tables = array( 'oldimage' );
+		$tables = array( $this->repo->tableName( 'oldimage' ) );
 		$fields = OldLocalFile::selectFields();
 		$conds = $opts = $join_conds = array();
 		$eq = $inc ? '=' : '';
@@ -995,7 +995,7 @@ class LocalFile extends File {
 		$dbr = $this->repo->getSlaveDB();
 
 		if ( $this->historyLine == 0 ) {// called for the first time, return line from cur
-			$this->historyRes = $dbr->select( 'image',
+			$this->historyRes = $dbr->select( $this->repo->tableName( 'image' ),
 				array(
 					'*',
 					"'' AS oi_archive_name",
@@ -1011,7 +1011,7 @@ class LocalFile extends File {
 				return false;
 			}
 		} elseif ( $this->historyLine == 1 ) {
-			$this->historyRes = $dbr->select( 'oldimage', '*',
+			$this->historyRes = $dbr->select( $this->repo->tableName( 'oldimage' ), '*',
 				array( 'oi_name' => $this->title->getDBkey() ),
 				$fname,
 				array( 'ORDER BY' => 'oi_timestamp DESC' )
@@ -1194,7 +1194,7 @@ class LocalFile extends File {
 		# Test to see if the row exists using INSERT IGNORE
 		# This avoids race conditions by locking the row until the commit, and also
 		# doesn't deadlock. SELECT FOR UPDATE causes a deadlock for every race condition.
-		$dbw->insert( 'image',
+		$dbw->insert( $this->repo->tableName( 'image' ),
 			array(
 				'img_name' => $this->getName(),
 				'img_size' => $this->size,
@@ -1649,7 +1649,7 @@ class LocalFile extends File {
 			$this->sha1 = $this->repo->getFileSha1( $this->getPath() );
 			if ( !wfReadOnly() && strval( $this->sha1 ) != '' ) {
 				$dbw = $this->repo->getMasterDB();
-				$dbw->update( 'image',
+				$dbw->update( $this->repo->tableName( 'image' ),
 					array( 'img_sha1' => $this->sha1 ),
 					array( 'img_name' => $this->getName() ),
 					__METHOD__ );
@@ -1686,7 +1686,7 @@ class LocalFile extends File {
 			$this->locked++;
 		}
 
-		return $dbw->selectField( 'image', '1',
+		return $dbw->selectField( $this->repo->tableName( 'image' ), '1',
 			array( 'img_name' => $this->getName() ), __METHOD__, array( 'FOR UPDATE' ) );
 	}
 
@@ -1772,7 +1772,7 @@ class LocalFileDeleteBatch {
 		$archiveNames = array();
 
 		$dbw = $this->file->repo->getMasterDB();
-		$result = $dbw->select( 'oldimage',
+		$result = $dbw->select( $this->file->repo->tableName( 'oldimage' ),
 			array( 'oi_archive_name' ),
 			array( 'oi_name' => $this->file->getName() ),
 			__METHOD__
@@ -1816,7 +1816,7 @@ class LocalFileDeleteBatch {
 		if ( count( $oldRels ) ) {
 			$dbw = $this->file->repo->getMasterDB();
 			$res = $dbw->select(
-				'oldimage',
+				$this->file->repo->tableName( 'oldimage' ),
 				array( 'oi_archive_name', 'oi_sha1' ),
 				'oi_archive_name IN (' . $dbw->makeList( array_keys( $oldRels ) ) . ')',
 				__METHOD__
@@ -1830,7 +1830,7 @@ class LocalFileDeleteBatch {
 
 					if ( $props['fileExists'] ) {
 						// Upgrade the oldimage row
-						$dbw->update( 'oldimage',
+						$dbw->update( $this->file->repo->tableName( 'oldimage' ),
 							array( 'oi_sha1' => $props['sha1'] ),
 							array( 'oi_name' => $this->file->getName(), 'oi_archive_name' => $row->oi_archive_name ),
 							__METHOD__ );
@@ -1888,7 +1888,8 @@ class LocalFileDeleteBatch {
 		if ( $deleteCurrent ) {
 			$concat = $dbw->buildConcat( array( "img_sha1", $encExt ) );
 			$where = array( 'img_name' => $this->file->getName() );
-			$dbw->insertSelect( 'filearchive', 'image',
+			$dbw->insertSelect( $this->file->repo->tableName( 'filearchive'),
+				$this->file->repo->tableName( 'image' ),
 				array(
 					'fa_storage_group' => $encGroup,
 					'fa_storage_key'   => "CASE WHEN img_sha1='' THEN '' ELSE $concat END",
@@ -1953,7 +1954,7 @@ class LocalFileDeleteBatch {
 		list( $oldRels, $deleteCurrent ) = $this->getOldRels();
 
 		if ( count( $oldRels ) ) {
-			$dbw->delete( 'oldimage',
+			$dbw->delete( $this->file->repo->tableName( 'oldimage' ),
 				array(
 					'oi_name' => $this->file->getName(),
 					'oi_archive_name' => array_keys( $oldRels )
@@ -1979,7 +1980,7 @@ class LocalFileDeleteBatch {
 		$dbw = $this->file->repo->getMasterDB();
 
 		if ( !empty( $oldRels ) ) {
-			$res = $dbw->select( 'oldimage',
+			$res = $dbw->select( $this->file->repo->tableName( 'oldimage' ),
 				array( 'oi_archive_name' ),
 				array( 'oi_name' => $this->file->getName(),
 					'oi_archive_name IN (' . $dbw->makeList( array_keys( $oldRels ) ) . ')',
@@ -2144,7 +2145,7 @@ class LocalFileRestoreBatch {
 		}
 
 		$result = $dbw->select(
-			'filearchive',
+			$this->file->repo->tableName( 'filearchive' ),
 			ArchivedFile::selectFields(),
 			$conditions,
 			__METHOD__,
@@ -2491,7 +2492,7 @@ class LocalFileMoveBatch {
 		$this->oldCount = 0;
 		$archiveNames = array();
 
-		$result = $this->db->select( 'oldimage',
+		$result = $this->db->select( $this->file->repo->tableName( 'oldimage' ),
 			array( 'oi_archive_name', 'oi_deleted' ),
 			array( 'oi_name' => $this->oldName ),
 			__METHOD__
@@ -2592,7 +2593,7 @@ class LocalFileMoveBatch {
 
 		// Update current image
 		$dbw->update(
-			'image',
+			$this->file->repo->tableName( 'image' ),
 			array( 'img_name' => $this->newName ),
 			array( 'img_name' => $this->oldName ),
 			__METHOD__

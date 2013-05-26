@@ -111,7 +111,7 @@ class LocalRepo extends FileRepo {
 		$options = ( $lock === 'lock' ) ? array( 'FOR UPDATE' ) : array();
 
 		$dbw = $this->getMasterDB();
-		return (bool)$dbw->selectField( 'filearchive', '1',
+		return (bool)$dbw->selectField( $this->tableName( 'filearchive' ), '1',
 			array( 'fa_storage_group' => 'deleted', 'fa_storage_key' => $key ),
 			__METHOD__, $options
 		);
@@ -131,7 +131,7 @@ class LocalRepo extends FileRepo {
 		$ext = File::normalizeExtension( substr( $key, strcspn( $key, '.' ) + 1 ) );
 
 		$dbw = $this->getMasterDB();
-		return (bool)$dbw->selectField( 'oldimage', '1',
+		return (bool)$dbw->selectField( $this->tableName( 'oldimage' ), '1',
 			array( 'oi_sha1' => $sha1,
 				'oi_archive_name ' . $dbw->buildLike( $dbw->anyString(), ".$ext" ),
 				$dbw->bitAnd( 'oi_deleted', File::DELETED_FILE ) => File::DELETED_FILE ),
@@ -182,7 +182,7 @@ class LocalRepo extends FileRepo {
 		}
 		$dbr = $this->getSlaveDB();
 		$row = $dbr->selectRow(
-			'redirect',
+			$this->tableName( 'redirect' ),
 			array( 'rd_title', 'rd_namespace' ),
 			array( 'rd_from' => $id ),
 			__METHOD__
@@ -211,7 +211,7 @@ class LocalRepo extends FileRepo {
 		}
 		$dbr = $this->getSlaveDB();
 		$id = $dbr->selectField(
-			'page', // Table
+			$this->tableName( 'page' ), // Table
 			'page_id', //Field
 			array( //Conditions
 				'page_namespace' => $title->getNamespace(),
@@ -232,7 +232,7 @@ class LocalRepo extends FileRepo {
 	function findBySha1( $hash ) {
 		$dbr = $this->getSlaveDB();
 		$res = $dbr->select(
-			'image',
+			$this->tableName( 'image' ),
 			LocalFile::selectFields(),
 			array( 'img_sha1' => $hash ),
 			__METHOD__,
@@ -264,7 +264,7 @@ class LocalRepo extends FileRepo {
 
 		$dbr = $this->getSlaveDB();
 		$res = $dbr->select(
-			'image',
+			$this->tableName( 'image' ),
 			LocalFile::selectFields(),
 			array( 'img_sha1' => $hashes ),
 			__METHOD__,
@@ -294,7 +294,7 @@ class LocalRepo extends FileRepo {
 		// Query database
 		$dbr = $this->getSlaveDB();
 		$res = $dbr->select(
-			'image',
+			$this->tableName( 'image' ),
 			LocalFile::selectFields(),
 			'img_name ' . $dbr->buildLike( $prefix, $dbr->anyString() ),
 			__METHOD__,
@@ -323,6 +323,15 @@ class LocalRepo extends FileRepo {
 	 */
 	function getMasterDB() {
 		return wfGetDB( DB_MASTER );
+	}
+
+	/**
+	 * Fix table name in database queries when necessary
+	 * @param $table String table name
+	 * @return String
+	 */
+	function tableName( $table ) {
+		return $table;
 	}
 
 	/**

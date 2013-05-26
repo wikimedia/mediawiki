@@ -78,6 +78,17 @@ class ForeignDBRepo extends LocalRepo {
 	}
 
 	/**
+	 * Fix table name in database queries when necessary
+	 * @param $table String table name
+	 * @return String
+	 */
+	function tableName( $table ) {
+		// Prefix table with dbName, so it's not affected by $wgSharedTables
+		// https://bugzilla.wikimedia.org/show_bug.cgi?id=48819
+		return $this->dbName . '.' . $table;
+	}
+
+	/**
 	 * @return bool
 	 */
 	function hasSharedCache() {
