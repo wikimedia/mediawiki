@@ -1384,6 +1384,9 @@ class LanguageTest extends LanguageClassesTestCase {
 			array( 'other', 2, array(
 				'kissa=kala', '1=2=3', 'other',
 			) ),
+			array( '', 2, array(
+				'0=explicit zero', '1=explicit one',
+			) ),
 		);
 	}
 
