@@ -350,6 +350,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		$mediatype = isset( $prop['mediatype'] );
 		$archive = isset( $prop['archivename'] );
 		$bitdepth = isset( $prop['bitdepth'] );
+		$uploadwarning = isset( $prop['uploadwarning'] );
 
 		if ( ( $url || $sha1 || $meta || $mime || $mediatype || $archive || $bitdepth )
 				&& $file->isDeleted( File::DELETED_FILE ) ) {
@@ -417,6 +418,10 @@ class ApiQueryImageInfo extends ApiQueryBase {
 
 		if ( $bitdepth ) {
 			$vals['bitdepth'] = $file->getBitDepth();
+		}
+
+		if ( $uploadwarning ) {
+			$vals['html'] = SpecialUpload::getExistsWarning( UploadBase::getExistsWarning( $file ) );
 		}
 
 		return $vals;
@@ -548,6 +553,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			'metadata' =>       ' metadata      - Lists Exif metadata for the version of the image',
 			'archivename' =>    ' archivename   - Adds the file name of the archive version for non-latest versions',
 			'bitdepth' =>       ' bitdepth      - Adds the bit depth of the version',
+			'uploadwarning' =>  ' uploadwarning - Used by the Special:Upload page to get information about an existing file. Not intended for use outside MediaWiki core',
 		);
 	}
 
