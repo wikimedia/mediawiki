@@ -636,10 +636,11 @@ ALTER TABLE &mw_prefix.valid_tag ADD CONSTRAINT &mw_prefix.valid_tag_pk PRIMARY 
 
 -- This table is not used unless profiling is turned on
 --CREATE TABLE &mw_prefix.profiling (
---  pf_count   NUMBER         DEFAULT 0 NOT NULL,
---  pf_time    NUMERIC(18,10)  DEFAULT 0 NOT NULL,
---  pf_name    CLOB            NOT NULL,
---  pf_server  CLOB            NULL
+--  pf_count   NUMBER          DEFAULT 0 NOT NULL,
+--  pf_time    NUMBER(18,10)   DEFAULT 0 NOT NULL,
+--  pf_memory  NUMBER(18,10)   DEFAULT 0 NOT NULL,
+--  pf_name    VARCHAR2(255),
+--  pf_server  VARCHAR2(30)
 --);
 --CREATE UNIQUE INDEX &mw_prefix.profiling_u01 ON &mw_prefix.profiling (pf_name, pf_server);
 
