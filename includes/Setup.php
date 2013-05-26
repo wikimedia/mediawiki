@@ -370,10 +370,6 @@ if ( $wgInvalidateCacheOnLocalSettingsChange ) {
 	$wgCacheEpoch = max( $wgCacheEpoch, gmdate( 'YmdHis', @filemtime( "$IP/LocalSettings.php" ) ) );
 }
 
-if ( $wgAjaxUploadDestCheck ) {
-	$wgAjaxExportList[] = 'SpecialUpload::ajaxGetExistsWarning';
-}
-
 if ( $wgNewUserLog ) {
 	# Add a new log type
 	$wgLogTypes[] = 'newusers';
