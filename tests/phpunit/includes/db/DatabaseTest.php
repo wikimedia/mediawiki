@@ -84,19 +84,29 @@ class DatabaseTest extends MediaWikiTestCase {
 			$quote = '';
 		} elseif ( $this->db->getType() === 'mysql' ) {
 			$quote = '`';
+		} elseif ( $this->db->getType() === 'oracle' ) {
+			$quote = '/*Q*/';
 		} else {
 			$quote = '"';
 		}
 
 		if ( $database !== null ) {
-			$database = $quote . $database . $quote . '.';
+			if ( $this->db->getType() === 'oracle' ) {
+				$database = $quote . $database . '.';
+			} else {
+				$database = $quote . $database . $quote . '.';
+			}
 		}
 
 		if ( $prefix === null ) {
 			$prefix = $this->dbPrefix();
 		}
 
-		return $database . $quote . $prefix . $table . $quote;
+		if ( $this->db->getType() === 'oracle' ) {
+			return strtoupper($database . $quote . $prefix . $table);
+		} else {
+			return $database . $quote . $prefix . $table . $quote;
+		}
 	}
 
 	function testTableNameLocal() {
