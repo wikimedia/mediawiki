@@ -29,10 +29,13 @@ if ( !function_exists( 'version_compare' ) || ( version_compare( phpversion(), '
 define( 'MW_CONFIG_CALLBACK', 'Installer::overrideConfig' );
 define( 'MEDIAWIKI_INSTALL', true );
 
-require_once dirname( __DIR__ ) . "/maintenance/Maintenance.php";
+require_once dirname( __DIR__ ) . '/maintenance/Maintenance.php';
 
 /**
  * Maintenance script to install and configure MediaWiki
+ *
+ * Default values for the options are defined in DefaultSettings.php (see the mapping in CliInstaller.php)
+ * Default for --dbpath (SQLite-specific) is defined in SqliteInstaller::getGlobalDefaults
  *
  * @ingroup Maintenance
  */
@@ -41,11 +44,14 @@ class CommandLineInstaller extends Maintenance {
 		parent::__construct();
 		global $IP;
 
-		$this->addArg( 'name', 'The name of the wiki', true );
+		$this->addDescription( "CLI-based MediaWiki installation and configuration.\n" .
+			"Defaut options are indicated in parenthesis." );
 
-		$this->addArg( 'admin', 'The username of the wiki administrator (WikiSysop)', true );
-		$this->addOption( 'pass', 'The password for the wiki administrator.', false, true );
-		$this->addOption( 'passfile', 'An alternative way to provide pass option, as the contents of this file', false, true );
+		$this->addArg( 'name', 'The name of the wiki (MediaWiki)', false );
+
+		$this->addArg( 'admin', 'The username of the wiki administrator (WikiSysop)', false );
+		$this->addOption( 'pass', 'The password for the wiki administrator', false, true );
+		$this->addOption( 'passfile', 'An alternative way to provide the pass option, as the contents of this file', false, true );
 		/* $this->addOption( 'email', 'The email for the wiki administrator', false, true ); */
 		$this->addOption( 'scriptpath', 'The relative path of the wiki in the web server (/wiki)', false, true );
 
@@ -56,32 +62,32 @@ class CommandLineInstaller extends Maintenance {
 		$this->addOption( 'dbserver', 'The database host (localhost)', false, true );
 		$this->addOption( 'dbport', 'The database port; only for PostgreSQL (5432)', false, true );
 		$this->addOption( 'dbname', 'The database name (my_wiki)', false, true );
-		$this->addOption( 'dbpath', 'The path for the SQLite DB (/var/data)', false, true );
+		$this->addOption( 'dbpath', 'The path for the SQLite DB ($IP/data)', false, true );
 		$this->addOption( 'dbprefix', 'Optional database table name prefix', false, true );
 		$this->addOption( 'installdbuser', 'The user to use for installing (root)', false, true );
-		$this->addOption( 'installdbpass', 'The pasword for the DB user to install as.', false, true );
+		$this->addOption( 'installdbpass', 'The password for the DB user to install as.', false, true );
 		$this->addOption( 'dbuser', 'The user to use for normal operations (wikiuser)', false, true );
-		$this->addOption( 'dbpass', 'The pasword for the DB user for normal operations', false, true );
+		$this->addOption( 'dbpass', 'The password for the DB user for normal operations', false, true );
 		$this->addOption( 'dbpassfile', 'An alternative way to provide dbpass option, as the contents of this file', false, true );
-		$this->addOption( 'confpath', "Path to write LocalSettings.php to, default $IP", false, true );
+		$this->addOption( 'confpath', "Path to write LocalSettings.php to ($IP)", false, true );
 		/* $this->addOption( 'dbschema', 'The schema for the MediaWiki DB in pg (mediawiki)', false, true ); */
-		/* $this->addOption( 'namespace', 'The project namespace (same as the name)', false, true ); */
+		/* $this->addOption( 'namespace', 'The project namespace (same as the "name" argument)', false, true ); */
 		$this->addOption( 'env-checks', "Run environment checks only, don't change anything" );
 	}
 
 	function execute() {
 		global $IP, $wgTitle;
-		$siteName = isset( $this->mArgs[0] ) ? $this->mArgs[0] : "Don't care"; // Will not be set if used with --env-checks
-		$adminName = isset( $this->mArgs[1] ) ? $this->mArgs[1] : null;
+		$siteName = $this->getArg( 0, 'MediaWiki' ); // Will not be set if used with --env-checks
+		$adminName = $this->getArg( 1, 'WikiSysop' );
 		$wgTitle = Title::newFromText( 'Installer script' );
 
-		$dbpassfile = $this->getOption( 'dbpassfile', false );
-		if ( $dbpassfile !== false ) {
-			if ( $this->getOption( 'dbpass', false ) !== false ) {
-				$this->error( 'WARNING: You provide the options "dbpass" and "dbpassfile". The content of "dbpassfile" overwrites "dbpass".' );
+		$dbpassfile = $this->getOption( 'dbpassfile' );
+		if ( $dbpassfile !== null ) {
+			if ( $this->getOption( 'dbpass' ) !== null ) {
+				$this->error( 'WARNING: You have provided the options "dbpass" and "dbpassfile". "dbpassfile" overrides "dbpass".' );
 			}
 			wfSuppressWarnings();
-			$dbpass = file_get_contents( $dbpassfile );
+			$dbpass = file_get_contents( $dbpassfile ); // returns false on failure
 			wfRestoreWarnings();
 			if ( $dbpass === false ) {
 				$this->error( "Couldn't open $dbpassfile", true );
@@ -89,24 +95,23 @@ class CommandLineInstaller extends Maintenance {
 			$this->mOptions['dbpass'] = trim( $dbpass, "\r\n" );
 		}
 
-		$passfile = $this->getOption( 'passfile', false );
-		if ( $passfile !== false ) {
-			if ( $this->getOption( 'pass', false ) !== false ) {
-				$this->error( 'WARNING: You provide the options "pass" and "passfile". The content of "passfile" overwrites "pass".' );
+		$passfile = $this->getOption( 'passfile' );
+		if ( $passfile !== null ) {
+			if ( $this->getOption( 'pass' ) !== null ) {
+				$this->error( 'WARNING: You have provided the options "pass" and "passfile". "passfile" overrides "pass".' );
 			}
 			wfSuppressWarnings();
-			$pass = file_get_contents( $passfile );
+			$pass = file_get_contents( $passfile ); // returns false on failure
 			wfRestoreWarnings();
 			if ( $pass === false ) {
 				$this->error( "Couldn't open $passfile", true );
 			}
-			$this->mOptions['pass'] = str_replace( array( "\n", "\r" ), "", $pass );
-		} elseif ( $this->getOption( 'pass', false ) === false ) {
+			$this->mOptions['pass'] = trim( $pass, "\r\n" );
+		} elseif ( $this->getOption( 'pass' ) === null ) {
 			$this->error( 'You need to provide the option "pass" or "passfile"', true );
 		}
 
-		$installer =
-			InstallerOverrides::getCliInstaller( $siteName, $adminName, $this->mOptions );
+		$installer = InstallerOverrides::getCliInstaller( $siteName, $adminName, $this->mOptions );
 
 		$status = $installer->doEnvironmentChecks();
 		if ( $status->isGood() ) {
@@ -128,6 +133,6 @@ class CommandLineInstaller extends Maintenance {
 	}
 }
 
-$maintClass = "CommandLineInstaller";
+$maintClass = 'CommandLineInstaller';
 
 require_once RUN_MAINTENANCE_IF_MAIN;
