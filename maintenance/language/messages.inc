@@ -2025,6 +2025,7 @@ $wgMessageStructure = array(
 		'delete-legend',
 		'historywarning',
 		'confirmdeletetext',
+		'deleting-backlinks-warning',
 		'actioncomplete',
 		'actionfailed',
 		'deletedtext',

@@ -4661,6 +4661,7 @@ $1 = the name of the page',
 'historywarning' => 'Warning when about to delete a page that has history.
 $1 is the <b>approximate</b> number of revisions that the page has, the message should not claim to give an exact count.',
 'confirmdeletetext' => 'Introduction shown when deleting a page.',
+'deleting-backlinks-warning' => "A warning shown when a page that is being deleted has links to it.",
 'actioncomplete' => 'Used in several situations, for example when a page has been deleted.
 
 See also:
