@@ -456,7 +456,6 @@ class SpecialUpload extends SpecialPage {
 	 */
 	public static function getInitialPageText( $comment = '', $license = '', $copyStatus = '', $source = '' ) {
 		global $wgUseCopyrightUpload, $wgForceUIMsgAsContentMsg;
-		$wgForceUIMsgAsContentMsg = (array) $wgForceUIMsgAsContentMsg;
 
 		$msg = array();
 		/* These messages are transcluded into the actual text of the description page.
@@ -464,7 +463,7 @@ class SpecialUpload extends SpecialPage {
 		 * instead of hardcoding it there in the uploader language.
 		 */
 		foreach ( array( 'license-header', 'filedesc', 'filestatus', 'filesource' ) as $msgName ) {
-			if ( in_array( $msgName, $wgForceUIMsgAsContentMsg ) ) {
+			if ( in_array( $msgName, (array)$wgForceUIMsgAsContentMsg ) ) {
 				$msg[$msgName] = "{{int:$msgName}}";
 			} else {
 				$msg[$msgName] = wfMessage( $msgName )->inContentLanguage()->text();
