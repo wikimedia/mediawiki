@@ -33,6 +33,8 @@ $digitTransformTable = array(
 	'9' => '୯', # &#x0b6f;
 );
 
+$linkTrail = "/^([a-z\x{0B00}-\x{0B7F}]+)(.*)$/sDu";
+
 /** namespace translations from translatewiki.net 
  * @author Shijualex
  * @author Psubhashish
