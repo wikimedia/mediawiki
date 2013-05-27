@@ -630,6 +630,11 @@ class Site implements Serializable {
 	}
 
 	/**
+	 * @deprecated since 1.22.
+	 * This API does not provide control over the object lifecycle,
+	 * uses global state and pretends to work when it cannot handle
+	 * the request properly.
+	 *
 	 * @since 1.21
 	 *
 	 * @param string $siteType
