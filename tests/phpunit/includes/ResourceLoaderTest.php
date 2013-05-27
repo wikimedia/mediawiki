@@ -79,7 +79,12 @@ class ResourceLoaderTest extends MediaWikiTestCase {
 				'Regression fixed in r88706 with dotless names',
 				array( 'foo', 'bar', 'baz' ),
 				'foo,bar,baz',
-			)
+			),
+			array(
+				'Prefixless modules after a prefixed module',
+				array( 'single.module', 'foobar', 'foobaz' ),
+				'single.module|foobar,foobaz',
+			),
 		);
 	}
 }
