@@ -96,7 +96,7 @@ class ResourceLoaderContext {
 				$pos = strrpos( $group, '.' );
 				if ( $pos === false ) {
 					// Prefixless modules, i.e. without dots
-					$retval = explode( ',', $group );
+					$retval = array_merge( $retval, explode( ',', $group ) );
 				} else {
 					// We have a prefix and a bunch of suffixes
 					$prefix = substr( $group, 0, $pos ); // 'foo'
