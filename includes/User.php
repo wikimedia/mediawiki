@@ -4315,6 +4315,7 @@ class User {
 	 *       no matter the value of $wgUser
 	 *     - 'create2' for a logged in user creating an account for someone else
 	 *     - 'byemail' when the created user will receive its password by e-mail
+	 *     - 'autocreate' when the user is automatically created (such as by CentralAuth).
 	 *   - Boolean means whether the account was created by e-mail (deprecated):
 	 *     - true will be converted to 'byemail'
 	 *     - false will be converted to 'create' if this object is the same as
