@@ -1,9 +1,19 @@
+= MediaWiki release notes =
+
 Security reminder: MediaWiki does not require PHP's register_globals. If you
 have it on, turn it '''off''' if you can.
 
-== MediaWiki 1.21 ==
+== MediaWiki 1.21.1 ==
+
+This is a maintenance release of the 1.21 branch.
 
 MediaWiki 1.21 is an stable branch and is recommended for use in production.
+
+=== Changes since 1.21.0 ===
+
+* An incorrect version number was used for 1.21.0.  1.21.1 has the correct number.
+* A problem with the Oracle SQL table creation was fixed.
+* (PdfHandler extension) Fix warning if pdfinfo fails but pdftext succeeds.
 
 === Configuration changes in 1.21 ===
 * (bug 48306) $wgAllowChunkedUploads has been added and is false by default.
