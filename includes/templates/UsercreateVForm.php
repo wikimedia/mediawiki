@@ -270,12 +270,9 @@ class UsercreateTemplateVForm extends BaseTemplate {
 		// Pass each benefit's head text (by default a number) as a parameter to the body's message for PLURAL handling.
 		$headUnescaped = $this->getMsg( "createacct-benefit-head$benefitIdx" )->text();
 	?>
-		<div>
-			<div class="mw-benefits-icon <?php $this->msg( "createacct-benefit-icon$benefitIdx" ); ?>"></div>
-			<div class="mw-number-text">
-				<h3><?php $this->msg( "createacct-benefit-head$benefitIdx" ); ?></h3>
-				<p><?php echo $this->getMsg( "createacct-benefit-body$benefitIdx" )->params( $headUnescaped )->escaped(); ?></p>
-			</div>
+		<div class="mw-number-text <?php $this->msg( "createacct-benefit-icon$benefitIdx" ); ?>">
+			<h3><?php $this->msg( "createacct-benefit-head$benefitIdx" ); ?></h3>
+			<p><?php echo $this->getMsg( "createacct-benefit-body$benefitIdx" )->params( $headUnescaped )->escaped(); ?></p>
 		</div>
 	<?php
 	}
