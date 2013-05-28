@@ -2310,7 +2310,7 @@ $1',
 'blanknamespace' => '(رئيسى)',
 
 # Contributions
-'contributions' => 'تعديلات اليوزر',
+'contributions' => 'تعديلات اليوزر {{GENDER:$1|اليوزر|اليوزره}}',
 'contributions-title' => 'مساهمات اليوزر ل$1',
 'mycontris' => 'تعديلاتى',
 'contribsub2' => 'لليوزر $1 ($2)',

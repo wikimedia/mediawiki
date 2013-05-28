@@ -3886,7 +3886,7 @@ Du skal ha motteke [{{SERVER}}{{SCRIPTPATH}}/COPYING ein kopi av GNU General Pub
 'logentry-suppress-event-legacy' => '$1 {{GENDER:$2|endra}} i løyndom synlegdomen til logghendingar på $3',
 'logentry-suppress-revision-legacy' => '$1 {{GENDER:$2|endra}} i løyndom synlegdomen til versjonar på sida $3',
 'revdelete-content-hid' => 'innhald løynt',
-'revdelete-summary-hid' => 'endringsamandrag gøymt',
+'revdelete-summary-hid' => 'endringsamandrag løynt',
 'revdelete-uname-hid' => 'brukarnamn gøymt',
 'revdelete-content-unhid' => 'innhald gjort synleg',
 'revdelete-summary-unhid' => 'endringssamandrag gjort synleg',

@@ -779,12 +779,12 @@ Wees so gud an kontroliare ales noch ans.",
 Boowen könst dü di aktuel stant sä. Oner stun din fernanrangen.
 Bluas wat '''boowen''' stäänt, woort seekert. Diaram kopiare din feranrangen boowen iin.
 An do trak „{{int:savearticle}}“.",
-'yourtext' => 'Din täkst',
+'yourtext' => 'Dan tekst',
 'storedversion' => 'Spiikerd färsjoon',
 'nonunicodebrowser' => "'''Påås aw:''' Dan browser koon unicode-tiikne ai rucht ferårbe. Brük hål en oudern browser am side tu ferårben.",
 'editingold' => "'''PÅÅS AW: Dü beårbest en üülj färsjoon foon jüdeer sid. \"
 Wan dü spiikerst, wårde åle naiere färsjoone ouerschraawen.",
-'yourdiff' => 'Ferschääle',
+'yourdiff' => 'Ferskeeler',
 'copyrightwarning' => "''' Hål kopiir niinj webside, da ai din äine san, brük niinj uurhääwerruchtlik schütsede wärke suner ferloof foon di uurhääwer!'''<br />
 Dü jeefst üs heerma dan tusååge, dåt dü di täkst '''seelew ferfooted''' hääst, dåt di täkst ålgemiingödj '''(public domain)''' as, unti dåt di '''uurhääwer''' sin '''tustiming''' jääwen heet. For di fål jüdeer täkst ål ouersweer ütdänj wörd, wis hål aw jü diskusjoonssid deeraw haane. <i>Beåcht hål, dåt åle {{SITENAME}}-tujeefte automaatisch uner jü „$2“ stönje (sii $1 for detaile). For di fål dü ai mååst, dåt diin årbe heer foon oudere feränred än språåt wårt, dan kröög ai aw „sid spikre“.</i>",
 'copyrightwarning2' => "Seenk diaram, dat det sidj {{SITENAME}} faan öödern bewerket, feranert of uk stregen wurd koon. Wan dü det ei wel, do skriiw heer niks iin! 
@@ -2103,6 +2103,8 @@ Am iinstelangen am sidjen, diar dü uun\'t uug behual wel, gung tu {{canonicalur
 Am det sidj ei linger uun\'t uug tu behualen, gung tu $UNWATCHURL.
 
 Halep an muar diartu: {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'maaget',
+'changed' => 'feranert',
 
 # Delete
 'deletepage' => 'Sid tunintemååge',
@@ -2488,6 +2490,16 @@ deeriinj niinj sid ouerschriwe.
 '''Woorschouing!'''
 Jü ferschüwing koon widlingende än ünfermousene fülie for beliifte side heewe.
 Dü schöist deerfor da konsekwänse ferstönjen heewe, iir dü baiblafst.",
+'movepagetext-noredirectfixer' => "Mä det diar formulaar könst dü en sidj mä aal sin werjuunen amnääm. Di ual nööm feert do widjer üüb di nei nööm.
+Paase üüb, dat dü aal a [[Special:DoubleRedirects|dobelt]] of [[Special:BrokenRedirects|breegen]] widjerfeerangen noch ans efterlukest.
+
+Bluas dü könst diarför surge, dat ferwisangen widjerhen rocht werke.
+
+Det sidj woort '''ei''' fersköwen, wan't al en sidj mä di nei nööm jaft. Det loket bluas, wan di nei nööm salew en widjerfeerang as.
+Det ment, dat dü det amnäämen turagsaat könst, wan dü niks ferkiard maaget heest. Dü könst oober nian sidj, diar't al jaft, auerskriiw.
+
+'''Paase üüb!'''
+Det fersküüwen hää widjloftag fulgen för ööder sidjen. Dü skulst begreben haa, wat dü diar maage wel.",
 'movepagetalktext' => "Jü deertu hiirende diskusjoonssid wård, süwid deer, maferschääwen, '''unti dåt moost weese:'''
 *Deer bestoont ål en diskusjoonssid ma dideere noome, unti
 *dü wäälst jü uner stönjene opsjoon ouf.
@@ -2496,6 +2508,7 @@ Dü schöist deerfor da konsekwänse ferstönjen heewe, iir dü baiblafst.",
 
 Hål di '''naie''' tiitel uner '''muul''' önjdreege, deeruner jü ambenååming hål '''begrüne.'''",
 'movearticle' => 'Sid ferschüwe:',
+'moveuserpage-warning' => "'''Paase üüb:''' Dü wel en brükersidj fersküüw. Seenk diaram, dat bluas det brükersidj amnäämd woort, oober '''ei''' di brüker. Hi behäält san ual nööm.",
 'movenologin' => 'Ei uunmeldet',
 'movenologintext' => 'Dü skel registriaret an [[Special:UserLogin|uunmeldet]] wees, am en sidj tu fersküüwen.',
 'movenotallowed' => 'Dü mutst nian sidjen fersküüw.',
@@ -2539,26 +2552,145 @@ Det sidj „[[:$1]]“ as al diar. Wel dü det strik, am det sidj tu fersküüwe
 'immobile-target-namespace-iw' => 'Dü könst nian sidj üüb en interwiki-link fersküüw.',
 'immobile-source-page' => 'Detdiar sidj koon ei fersköwen wurd.',
 'immobile-target-page' => 'Üüb detdiar sidj koon ei fersköwen wurd.',
+'bad-target-model' => 'Det nei sidj hää en ööder münster üs det ual. Det münster faan $1 koon ei tu det münster faan $2 feranert wurd.',
+'imagenocrossnamespace' => 'Datein kön ei ütj di {{ns:file}}-nöömrüm ütj fersköwen wurd.',
+'nonfile-cannot-move-to-file' => 'Det as nian datei, wat dü iin uun di {{ns:file}}-nöönmrüm fersküüw wel. Det gongt ei.',
+'imagetypemismatch' => 'Det nei dateiaanj as ei detsalew üs det ual.',
+'imageinvalidfilename' => 'Didiar dateinööm gongt ei.',
+'fix-double-redirects' => "Efter't fersküüwen aal a widjerfeerangen hen tu det ual sidj ferbeedre",
+'move-leave-redirect' => 'Widjerfeerang iinracht',
+'protectedpagemovewarning' => "'''Paase üüb: Detdiar sidj as speret wurden. Bluas administratooren kön det fersküüw.'''
+Uun't logbuk stäänt muar diartu:",
+'semiprotectedpagemovewarning' => "'''Paase üüb:''' Detdiar sidj as dialwiis tu't bewerkin speret wurden. Bluas gudkäänd brükern kön det fersküüw.
+Uun't logbuk stäänt muar diartu:",
+'move-over-sharedrepo' => '== Datei as al diar ==
+[[:$1]] stäänt uun en gemiansoom brükt archiif. Det fersküüwen üüb didiar nööm auerskraft det gemiansoom brükt datei.',
+'file-exists-sharedrepo' => 'Didiar dateinööm woort al uun en gemiansoom archiif brükt. Wees so gud, an nem en öödern nööm.',
 
 # Export
 'export' => 'Side äksportiire',
+'exporttext' => 'Mä detdiar spezial-sidj könst dü di tekst mä aal sin werjuunen tu en XML-datei eksportiare. Det nei datei koon do faan en ööder MediaWiki-Wiki [[Special:Import|importiaret]] wurd.
+
+Skriiw a sidjennöömer iin uun det tekstfial (man bluas ään noom uun arke rä).
+
+Di eksport as uk mä [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] mögelk, tun bispal för det [[{{MediaWiki:Mainpage}}]].',
+'exportall' => 'Aal a sidjen eksportiare',
+'exportcuronly' => 'Bluas det aktuel werjuun eksportiare, ei jo ual werjuunen',
+'exportnohistory' => "----
+'''Paase üüb:''' Di eksport faan det hial werjuunshistoore as uun uugenblak ei mögelk.",
+'exportlistauthors' => 'För arke sidj det hial list faan bewerkern mänem',
+'export-submit' => 'Eksport',
+'export-addcattext' => 'Sidjen faan detdiar kategorii diartunem:',
+'export-addcat' => 'Diartunem',
+'export-addnstext' => 'Sidjen faan didiar nöömrüm diartunem:',
+'export-addns' => 'Diartunem',
+'export-download' => 'Üs XML-datei seekre',
+'export-templates' => 'Mä föörlaagen',
+'export-pagelinks' => 'Ferwiset sidjen mänem bit tu en jipde faan:',
 
 # Namespace 8 related
+'allmessages' => 'MediaWiki-Süsteemnoorachten',
 'allmessagesname' => 'Nööm',
 'allmessagesdefault' => 'Standard tekst',
+'allmessagescurrent' => 'Aktuel tekst',
+'allmessagestext' => "Det as en list mä MediaWiki-süsteemteksten.
+Wees so gud an beschük a sidjen [//www.mediawiki.org/wiki/Localisation MediaWiki-auersaatang] an [//translatewiki.net translatewiki.net], wan dü bi't auersaaten mähalep meest.",
+'allmessagesnotsupportedDB' => 'Detdiar spezial-sidj koon ei brükt wurd, auer <tt>$wgUseDatabaseMessages</tt> ei aktiif as.',
+'allmessages-filter-legend' => 'Filter',
+'allmessages-filter' => 'Filter för di uunpaaset stant:',
+'allmessages-filter-unmodified' => 'Ünferanert',
+'allmessages-filter-all' => 'Aaltumaal',
+'allmessages-filter-modified' => 'Feranert',
+'allmessages-prefix' => 'Filter mä prefix:',
+'allmessages-language' => 'Spriak:',
+'allmessages-filter-submit' => 'Widjer',
 
 # Thumbnails
 'thumbnail-more' => 'fergrutre',
-'thumbnail_error' => "Bi't maagin faan't sümnaielbil ging wat skiaf: $1",
+'filemissing' => 'Datei ei diar',
+'thumbnail_error' => "Bi't skriiwen faan det sümnaielbil as wat skiaf gingen: $1",
+'thumbnail_error_remote' => 'Feeler faan $1:
+$2',
+'djvu_page_error' => 'DjVu-sidj as bütjen faan a sidjenrüm',
+'djvu_no_xml' => 'XML-dooten för det DjVu-datei kön ei ufrepen wurd',
+'thumbnail-temp-create' => 'Det datei för det tidjwiis sümnaielbil küd ei skrewen wurd',
+'thumbnail-dest-create' => 'Det sümnaielbil küd diar ei seekert wurd.',
+'thumbnail_invalid_params' => 'Sümnaieldooten steme ei',
+'thumbnail_dest_directory' => 'Det fertiaknis koon ei skrewen wurd.',
+'thumbnail_image-type' => 'Sok bilen kön ei brükt wurd',
+'thumbnail_gd-library' => 'GD-bibleteek ei gans diar: Det funktjuun $1 waant',
+'thumbnail_image-missing' => 'Det datei as wel ei diar: $1',
 
 # Special:Import
 'import' => 'Side importiire',
 'importinterwiki' => 'Transwiki import',
+'import-interwiki-text' => "Schük en Wiki an en sidj tu importiarin ütj. A werjuunen an brükernöömer bliiw erhäälen.
+Transwiki-import-aktjuunen wurd uun't [[Special:Log/import|Import-logbuk]] fäästhäälen.",
+'import-interwiki-source' => 'Faan hün Wiki/sidj:',
+'import-interwiki-history' => 'Aal a werjuunen faan det sidj importiare',
+'import-interwiki-templates' => 'Mä aal a föörlaagen',
 'import-interwiki-submit' => 'Import',
+'import-interwiki-namespace' => 'Tu hün nöömrüm:',
+'import-interwiki-rootpage' => 'Tu hün sidj (optional):',
+'import-upload-filename' => 'Dateinööm:',
+'import-comment' => 'Komentaar:',
+'importtext' => 'Wees so gud an eksportiare det datei mä det spezial-sidj [[Special:Export|Eksport]] ütj det ööder Wiki. Det seekerst dü üüb dan reegner an schüürst det do heer huuch.',
+'importstart' => 'Importiare sidjen ...',
+'import-revision-count' => '$1 {{PLURAL:$1|werjuun|werjuunen}}',
+'importnopages' => 'Diar san nian sidjen tu importiarin.',
+'imported-log-entries' => '$1 {{PLURAL:$1|logbukiindrach|logbukiindracher}} importiaret.',
+'importfailed' => 'Import as skiaf gingen: <nowiki>$1</nowiki>',
+'importunknownsource' => 'Ünbekäänd importkwel',
+'importcantopen' => 'Det import-datei küd ei eeben maaget wurd.',
+'importbadinterwiki' => 'Ferkiard interwiki-link',
+'importnotext' => 'Leesag of nään tekst',
+'importsuccess' => 'Import klaar!',
+'importhistoryconflict' => 'Diar san al ääler werjuunen diar. Ferlicht as det sidj al ans importiaret wurden.',
+'importnosources' => 'För di transwiki-import san nian kwelen uunden. Dü könst werjuunen ei direkt huuchschüür.',
+'importnofile' => 'Diar as nian importdatei bestemet wurden.',
+'importuploaderrorsize' => "Bi't huuchschüüren faan det importdatei as wat skiaf gingen. Det datei as tu grat.",
+'importuploaderrorpartial' => "Bi't huuchschüüren faan det importdatei as wat skiaf gingen. Det datei as bluas dialwiis huuchschüürd wurden.",
+'importuploaderrortemp' => "Bi't huuchschüüren faan det importdatei as wat skiaf gingen. Diar as nian tidjwiis fertiaknis.",
+'import-parse-failure' => "Bi't importiarin faan det XML-datei as wat skiaf gingen.",
+'import-noarticle' => 'Diar as nian sidj tu importiarin bestemet wurden.',
+'import-nonewrevisions' => 'Aal jodiar werjuunen san al ans importiaret wurden.',
+'xml-error-string' => '$1 uun rä $2, türn $3 (byte $4): $5',
+'import-upload' => 'XML-datein importiare',
+'import-token-mismatch' => 'Session dooten san wech. Ferschük det noch ans weder.',
+'import-invalid-interwiki' => 'Faan detdiar Wiki koon ik ei importiare.',
+'import-error-edit' => 'Det sidj „$1“ as ei importiaret wurden, auer dü det ei bewerke mutst.',
+'import-error-create' => 'Det sidj „$1“ as ei importiaret wurden, auer dü det ei maage mutst.',
+'import-error-interwiki' => 'Det sidj „$1“ as ei importiaret wurden, auer di nööm för ferwisangen (interwiki) föörsen as.',
+'import-error-special' => 'Det sidj „$1“ as ei importiaret wurden, auer hat tu en nöömrüm hiart, huar nian sidjen mögelk san.',
+'import-error-invalid' => 'Det sidj „$1“ as ei importiaret wurden, auer di nööm ei stemet.',
+'import-error-unserialize' => 'Det werjuun $2 faan det sidj „$1“ küd ei deserialisiaret wurd. Det werjuun woort mä det münster $3 brükt, an det as mä $4 serialisiaret.',
+'import-options-wrong' => 'Ferkiard {{PLURAL:$2|iinstelang|iinstelangen}}: <nowiki>$1</nowiki>',
+'import-rootpage-invalid' => 'Didiar sidjennööm as ferkiard.',
+'import-rootpage-nosubpage' => 'Uun di nöömrüm „$1“ jaft at nian onersidjen.',
+
+# Import log
+'importlogpage' => 'Import-logbuk',
+'importlogpagetext' => 'Administratiif import faan sidjen mä aal a werjuunen faan ööder Wikis.',
+'import-logentry-upload' => '„[[$1]]“ faan en datei importiaret',
+'import-logentry-upload-detail' => '$1 {{PLURAL:$1|werjuun|werjuunen}}',
+'import-logentry-interwiki' => '„$1“ mä transwiki importiaret',
+'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|werjuun|werjuunen}} faan $2',
+
+# JavaScriptTest
+'javascripttest' => 'JavaScript-test',
+'javascripttest-title' => '$1-tests wurd ütjfeerd.',
+'javascripttest-pagetext-noframework' => 'Detdiar sidj as för JavaScript-tests föörsen.',
+'javascripttest-pagetext-unknownframework' => 'Ünbekäänd test-framework „$1“.',
+'javascripttest-pagetext-frameworks' => 'Schük ian faan jodiar test-frameworks ütj: $1',
+'javascripttest-pagetext-skins' => 'Schük en brüker-skak ütj, am di test ütjtufeeren:',
+'javascripttest-qunit-intro' => 'Luke efter bi [$1 test dokumentatsjuun] üüb mediawiki.org',
+'javascripttest-qunit-heading' => 'JavaScript-QUnit-tester faan MediaWiki',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'Din brükersid',
+'tooltip-pt-anonuserpage' => 'Brükersidj faan det IP-adres, faan huar ütj dü werkest',
 'tooltip-pt-mytalk' => 'Din diskusjoonssid',
+'tooltip-pt-anontalk' => 'Diskusjuun auer feranrangen faan detdiar IP-adres',
 'tooltip-pt-preferences' => 'Äine önjstalinge',
 'tooltip-pt-watchlist' => 'List foon eefterkiikede side',
 'tooltip-pt-mycontris' => 'List foon din tujeefte',
@@ -2573,6 +2705,7 @@ Det sidj „[[:$1]]“ as al diar. Wel dü det strik, am det sidj tu fersküüwe
 'tooltip-ca-protect' => 'Jüdeer sid schütse',
 'tooltip-ca-unprotect' => 'Seekerang feranere',
 'tooltip-ca-delete' => 'Jüdeer sid tunintemååge',
+'tooltip-ca-undelete' => 'Iindracher faan det sidj turaghaale, iar det stregen wurden as.',
 'tooltip-ca-move' => 'Jüdeer sid ferschüwe',
 'tooltip-ca-watch' => 'Jüdeer sid tu jü persöönlike eefterkiiksid baitufäige',
 'tooltip-ca-unwatch' => 'Jüdeer sid foon jü persöönlike eefterkiikliste wächnaame',
@@ -2599,9 +2732,11 @@ Det sidj „[[:$1]]“ as al diar. Wel dü det strik, am det sidj tu fersküüwe
 'tooltip-t-permalink' => 'Wååri link tu jüdeer sidfärsjoon',
 'tooltip-ca-nstab-main' => 'Sidinhålt wise',
 'tooltip-ca-nstab-user' => 'Brükersid wise',
+'tooltip-ca-nstab-media' => 'Mediendateisidj uunwise',
 'tooltip-ca-nstab-special' => 'Jüdeer sid as en spetsjåålsid. Jü koon ai beåarbed wårde.',
 'tooltip-ca-nstab-project' => 'Portoolsid wise',
 'tooltip-ca-nstab-image' => 'Dååtäisid wise',
+'tooltip-ca-nstab-mediawiki' => 'MediaWiki-süsteemtekst uunwise',
 'tooltip-ca-nstab-template' => 'Forlååge wise',
 'tooltip-ca-nstab-help' => 'Heelpsid wise',
 'tooltip-ca-nstab-category' => 'Kategoriisid wise',
@@ -2611,22 +2746,177 @@ Det sidj „[[:$1]]“ as al diar. Wel dü det strik, am det sidj tu fersküüwe
 'tooltip-diff' => 'Änringe bai di täkst wise',
 'tooltip-compareselectedversions' => 'Ferschääl twasche tou ütwäälde färsjoone foon jüdeer sid wise.',
 'tooltip-watch' => 'Fäig jüdeer sid foon din eefterkiikliste tubai',
+'tooltip-watchlistedit-normal-submit' => 'Iindracher wechnem',
+'tooltip-watchlistedit-raw-submit' => "List mä sidjen, diar dü uun't uug behual wel, aktualisiare",
+'tooltip-recreate' => 'Sidj nei maage, likes dat det al ans stregen wurden as',
+'tooltip-upload' => 'Huuchsjüüren began',
 'tooltip-rollback' => 'Mååget åle leeste änringe foon jü sid, da foon di lik brüker fornümen wörden san, döör iinj klik tuninte.',
 'tooltip-undo' => 'Mååget bloot jüdeer iinje änring tuninte än wist dåt resultoot önj e forlöksid önj, deerma önj e tukuupefootingssid en begrüning önjjääwen wårde koon.',
+'tooltip-preferences-save' => 'Iinstelangen seekre',
 'tooltip-summary' => 'Faade det kurt tuup',
+
+# Metadata
+'notacceptable' => 'Di Wiki-server koon a dooten ei för dan aperoot apwerke.',
+
+# Attribution
+'anonymous' => '{{PLURAL:$1|anonüümen brüker|anonüüm brükern}} üüb {{SITENAME}}',
+'siteuser' => '{{SITENAME}}-brüker $1',
+'anonuser' => 'Anonüüm {{SITENAME}}-brüker $1',
+'lastmodifiedatby' => 'Det sidj as tuleetst di $1 am a klook $2 faan $3 feranert wurden.',
+'othercontribs' => 'Üüb grünjlaag faan det werk faan $1.',
+'others' => 'öödern',
+'siteusers' => '{{SITENAME}} {{PLURAL:$2|brüker|brükern}} $1',
+'anonusers' => '{{PLURAL:$2|anonüümen|anonüüm}} {{SITENAME}}-{{PLURAL:$2|brüker|brükern}} $1',
+'creditspage' => 'Sidjeninformatsjuunen',
+'nocredits' => 'Diar san nian sidjeninformatsjuunen',
+
+# Spam protection
+'spamprotectiontitle' => 'Spam-filter',
+'spamprotectiontext' => 'Di tekst, diar dü seekre wulst, as ei troch a spam-filter kimen. Det leit was uun en ferwisang üüb en sidj efter bütjen.',
+'spamprotectionmatch' => "'''Didiar tekst as faan a spam-filter fünjen wurden: ''$1'''''",
+'spambot_username' => 'MediaWiki-spam apklaarin',
+'spam_reverting' => 'Leetst werjuun saner ferwisangen tu $1 weder iinsteld.',
+'spam_blanking' => 'Aal a werjuunen mä en ferwisang tu $1 san apklaaret wurden.',
+'spam_deleting' => 'Aal a werjuunen mä en ferwisung tu $1 san stregen wurden.',
+
+# Info page
+'pageinfo-title' => 'Informatsjuun tu „$1“',
+'pageinfo-not-current' => 'Det informatsjuun jaft at ei för ual werjuunen.',
+'pageinfo-header-basic' => 'Grünjinformatsjuun',
+'pageinfo-header-edits' => 'Werjuunshistoore bewerke',
+'pageinfo-header-restrictions' => 'Sidjenseekerhaid',
+'pageinfo-header-properties' => 'Sidjeniinstelangen',
+'pageinfo-display-title' => 'Uunwiset sidjennööm',
+'pageinfo-default-sort' => 'Normool sortiariinstelang',
+'pageinfo-length' => 'Sidjenlengde (uun bytes)',
+'pageinfo-article-id' => 'Sidjenkäännumer (ID)',
+'pageinfo-language' => 'Sidjenspriak',
+'pageinfo-robot-policy' => 'Schükmaskiin-stant',
+'pageinfo-robot-index' => 'Koon indisiaret wurd',
+'pageinfo-robot-noindex' => 'Koon ei indisiaret wurd',
+'pageinfo-views' => 'Taal faan kliks üüb det sidj',
+'pageinfo-watchers' => "Taal faan brükern, diar det sidj uun't uug haa",
+'pageinfo-few-watchers' => "Maner üs {{PLURAL:$1|ään brüker|$1 brükern}}, diar det sidj uun't uug haa",
+'pageinfo-redirects-name' => 'Widjerfeerangen tu detdiar sidj',
+'pageinfo-subpages-name' => 'Onersidjen faan detdiar sidj',
+'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|widjerfeerang|widjerfeerangen}}; $3 {{PLURAL:$3|onersidj|onersidjen}})',
+'pageinfo-firstuser' => 'Hoker det sidj maaget hää',
+'pageinfo-firsttime' => 'Wan det sidj maaget wurden as',
+'pageinfo-lastuser' => 'Leetst skriiwer',
+'pageinfo-lasttime' => "Dootem faan't leetst feranrang",
+'pageinfo-edits' => 'Taal faan feranrangen',
+'pageinfo-authors' => 'Taal faan skriiwern',
+'pageinfo-recent-edits' => 'Taal faan a leetst feranrangen (uun a leetst $1)',
+'pageinfo-recent-authors' => 'Taal faan skriiwern',
+'pageinfo-magic-words' => 'Maagisk {{PLURAL:$1|wurd|wurden}} ($1)',
+'pageinfo-hidden-categories' => 'Ferbürgen {{PLURAL:$1|kategorii|kategoriin}} ($1)',
+'pageinfo-templates' => 'Iinbünjen {{PLURAL:$1|föörlaag|föörlaagen}} ($1)',
+'pageinfo-transclusions' => 'Iinbünjen uun {{PLURAL:$1|1 sidj|$1 sidjen}}',
+'pageinfo-toolboxlink' => 'Sidjeninformatjuun',
+'pageinfo-redirectsto' => 'Widjerfeerangen tu',
+'pageinfo-redirectsto-info' => 'informatsjuun',
+'pageinfo-contentpage' => 'Üs artiikel tääld',
+'pageinfo-contentpage-yes' => 'Ja',
+'pageinfo-protect-cascading' => 'Sidjen mä kaskaadenseekerhaid faan heer',
+'pageinfo-protect-cascading-yes' => 'Ja',
+'pageinfo-protect-cascading-from' => 'Sidjen mä kaskaadenseekerhaid faan',
+'pageinfo-category-info' => 'Kategorii-informatjuun',
+'pageinfo-category-pages' => 'Taal faan sidjen',
+'pageinfo-category-subcats' => 'Taal faan onerkategoriin',
+'pageinfo-category-files' => 'Taal faan datein',
+
+# Patrolling
+'markaspatrolleddiff' => 'Üs kontroliaret kääntiakne',
+'markaspatrolledtext' => 'Sidj üs kontroliaret kääntiakne',
+'markedaspatrolled' => 'Üs kontroliaret kääntiakne',
+'markedaspatrolledtext' => 'Detdiar werjuun faan [[:$1]] as üs kontroliaret kääntiakent wurden.',
+'rcpatroldisabled' => 'A leetst feranrangen kön ei kontroliaret wurd.',
+'rcpatroldisabledtext' => 'A leetst feranrangen kön tu tidj ei kontroliaret wurd.',
+'markedaspatrollederror' => "Koon ei üs '''kontroliaret''' kääntiakent wurd.",
+'markedaspatrollederrortext' => 'Dü mutst en werjuun besteme, diar dü üs köntroliaret kääntiakne wel.',
+'markedaspatrollederror-noautopatrol' => 'Dü könst ei din aanj feranrangen üs kontroliaret kääntiakne.',
+'markedaspatrollednotify' => 'Det feranrang faan $1 as üs kontroliaret kääntiakent wurden.',
+'markedaspatrollederrornotify' => 'Det werjuun küd ei üs kontroliaret kääntiakent wurd.',
+
+# Patrol log
+'patrol-log-page' => 'Kontrol-logbuk',
+'patrol-log-header' => 'Det as det kontrol-logbuk.',
+'log-show-hide-patrol' => 'Kontrol-logbuk $1',
+
+# Image deletion
+'deletedrevision' => 'Ual werjuun $1 stregen',
+'filedeleteerror-short' => "Bi't striken faan det datei $1 as wat skiaf gingen.",
+'filedeleteerror-long' => "Bi't striken faan det datei as wat skiaf gingen:
+
+$1",
+'filedelete-missing' => 'Det datei „$1“ koon ei stregen wurd, auer hat goorei diar as.',
+'filedelete-old-unregistered' => 'Det datei-werjuun „$1“ as ei diar uun a dootenbeenk.',
+'filedelete-current-unregistered' => 'Det datei „$1“ as ei diar uun a dootenbeenk.',
+'filedelete-archive-read-only' => 'Det archiif-fertiaknis "$1" koon faan a webserver ei beskrewen wurd.',
 
 # Browsing diffs
 'previousdiff' => '← Tu di leest färsjoonsferschääl',
 'nextdiff' => 'Tu di näist färsjoonsferschääl →',
 
 # Media information
+'mediawarning' => "'''Paase üüb:''' Son datei koon fülk programcode haa. Bi't deelloosin an eeben maagin koon dan reegner komer fu.",
+'imagemaxsize' => "Bil mut ei grater wees üs:<br />''(för datei-beskriiwangen)''",
+'thumbsize' => 'Grate faan sümnaielbilen:',
+'widthheightpage' => '$1 × $2, {{PLURAL:$3|1 sidj|$3 sidjen}}',
+'file-info' => 'Dateigrate: $1, MIME-typ: $2',
 'file-info-size' => '$1 × $2 pixele, dååtäigrutelse: $3, MIME-typ: $4',
+'file-info-size-pages' => '$1 × $2 pixel, dateigrate: $3, MIME-typ: $4, $5 {{PLURAL:$5|sidj|sidjen}}',
 'file-nohires' => 'Niinj huuger apliising as deer.',
-'svg-long-desc' => 'SVG-dåtäi, basisgrutelse: $1 × $2 pixel, dåtäigrutelse: $3',
+'svg-long-desc' => 'SVG-datei, grate: $1 × $2 pixel, dateigrate: $3',
+'svg-long-desc-animated' => 'Animiaret SVG-datei, grate $1 × $2 pixel, dateigrate: $3',
+'svg-long-error' => 'Ferkiard SVG-datei: $1',
 'show-big-image' => 'Färsjon önj huuger apliising',
+'show-big-image-preview' => 'Grate faan det sümnaielbil: $1.',
+'show-big-image-other' => 'Ööder {{PLURAL:$2|apliasang|apliasangen}}: $1.',
+'show-big-image-size' => '$1 × $2 pixel',
+'file-info-gif-looped' => 'sleuf saner aanj',
+'file-info-gif-frames' => '$1 {{PLURAL:$1|bil|bilen}}',
+'file-info-png-looped' => 'sleuf saner aanj',
+'file-info-png-repeat' => '$1 {{PLURAL:$1|-sis}} ufspelet',
+'file-info-png-frames' => '$1 {{PLURAL:$1|bil|bilen}}',
+'file-no-thumb-animation' => "'''Paase üüb: Ütj technisk grünjer wurd sümnaielbilen ei animiaret uunwiset.'''",
+'file-no-thumb-animation-gif' => "'''Paase üüb: Ütj technisk grünjer wurd sümnaielbilen faan huuchapliasin GIF-datein ei animiaret uunwiset.'''",
 
 # Special:NewFiles
+'newimages' => 'Nei datein',
+'imagelisttext' => "Diar as en list faan '''$1''' {{PLURAL:$1|datei|datein}}, sortiaret $2.",
+'newimages-summary' => 'Detdiar spezial-sidj wiset a tuleetst huuchsjüürd datein uun.',
+'newimages-legend' => 'Filter',
+'newimages-label' => 'Dateinööm (of en dial diarfaan):',
+'showhidebots' => '(Bots $1)',
+'noimages' => 'Niks tu sen.',
 'ilsubmit' => 'Sjük',
+'bydate' => 'efter dootem',
+'sp-newimages-showfrom' => 'Wise nei datein efter $1, klook $2',
+
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'seconds' => '{{PLURAL:$1|$1 sekund|$1 sekunden}}',
+'minutes' => '{{PLURAL:$1|$1 minüüt|$1 minüüten}}',
+'hours' => '{{PLURAL:$1|$1 stünj|$1 stünjen}}',
+'days' => '{{PLURAL:$1|$1 dai|$1 daar}}',
+'weeks' => '{{PLURAL:$1|$1 weg|$1 wegen}}',
+'months' => '{{PLURAL:$1|$1 muun|$1 muuner}}',
+'years' => '{{PLURAL:$1|$1 juar|$1 juaren}}',
+'ago' => 'föör $1',
+'just-now' => 'jüst nü',
+
+# Human-readable timestamps
+'hours-ago' => 'föör {{PLURAL:$1|ian stünj|$1 stünjen}}',
+'minutes-ago' => 'föör {{PLURAL:$1|ian minüüt|$1 minüüten}}',
+'seconds-ago' => 'föör {{PLURAL:$1|ian sekund|$1 sekunden}}',
+'monday-at' => 'Mundai am a klook $1',
+'tuesday-at' => 'Teisdai am a klook $1',
+'wednesday-at' => 'Wäärnsdai am a klook $1',
+'thursday-at' => 'Süürsdai am a klook $1',
+'friday-at' => 'Freidai am a klook $1',
+'saturday-at' => 'Saninj am a klook $1',
+'sunday-at' => 'Söndai am a klook $1',
+'yesterday-at' => 'Jister am a klook $1',
 
 # Bad image list
 'bad_image_list' => 'Formååt:
@@ -2655,7 +2945,393 @@ Deeraw föliende sidelinke önj dåtseelwi ra definiire ütnååme, önj di kont
 * gpsaltitude',
 
 # Exif tags
+'exif-imagewidth' => 'Breetje',
+'exif-imagelength' => 'Hööchde',
+'exif-bitspersample' => 'Bits per klöör',
+'exif-compression' => 'Komprimiarang',
+'exif-photometricinterpretation' => 'Pixel bonk',
+'exif-orientation' => 'Perspektiiw',
+'exif-samplesperpixel' => 'Taal faan komponenten',
+'exif-planarconfiguration' => 'Dooten skak',
+'exif-ycbcrsubsampling' => 'subsampling rate faan Y bit C',
+'exif-ycbcrpositioning' => 'Y an C positjuun',
+'exif-xresolution' => 'Wairocht apliasang',
+'exif-yresolution' => 'Luadrocht apliasang',
+'exif-stripoffsets' => 'Image data location',
+'exif-rowsperstrip' => 'Taal faan rän per strimel',
+'exif-stripbytecounts' => 'Bytes per komprimiaret strimel',
+'exif-jpeginterchangeformat' => 'Offset tu JPEG SOI',
+'exif-jpeginterchangeformatlength' => 'Bytes faan JPEG-dooten',
+'exif-whitepoint' => 'White point chromaticity',
+'exif-primarychromaticities' => 'Chromaticities of primarities',
+'exif-ycbcrcoefficients' => 'Color space transformation matrix coefficients',
+'exif-referenceblackwhite' => 'Suart/witj referens ponkter',
+'exif-datetime' => "Dootem an klooktidj faan't seekrin",
+'exif-imagedescription' => "Nööm faan't bil",
+'exif-make' => 'Knipser onernemen',
+'exif-model' => 'Knipser marke/model',
+'exif-software' => 'Software',
+'exif-artist' => 'Fotogroof',
+'exif-copyright' => 'Bilrochten',
 'exif-exifversion' => 'Stant faan Exif',
+'exif-flashpixversion' => 'Flashpix-werjuun',
+'exif-colorspace' => 'Klöörenrüm',
+'exif-componentsconfiguration' => 'Enkelt komponenten',
+'exif-compressedbitsperpixel' => 'Komprimiaret bits per pixel',
+'exif-pixelydimension' => 'Bilbreetje',
+'exif-pixelxdimension' => 'Bilhööchde',
+'exif-usercomment' => 'Brüker komentaaren',
+'exif-relatedsoundfile' => 'Ferbünjen tuundatei',
+'exif-datetimeoriginal' => "Dootem an klooktidj faan't knipsin",
+'exif-datetimedigitized' => "Dootem an klooktidj faan't digitalisiarin",
+'exif-subsectime' => 'Tidjponkt faan seekrin (1/100 s)',
+'exif-subsectimeoriginal' => "Tidjponkt faan't knipsin (1/100 s)",
+'exif-subsectimedigitized' => "Tidjponkt faan't digitalisiarin (1/100 s)",
+'exif-exposuretime' => 'Belaachtangstidj',
+'exif-exposuretime-format' => '$1 sekunden ($2)',
+'exif-fnumber' => 'F numer (blend)',
+'exif-exposureprogram' => 'Belaachtangsprogram',
+'exif-spectralsensitivity' => 'Spectral sensitivity',
+'exif-isospeedratings' => 'ISO emfintelkhaid',
+'exif-shutterspeedvalue' => 'APEX shutter speed',
+'exif-aperturevalue' => 'APEX aperture',
+'exif-brightnessvalue' => 'APEX brightness',
+'exif-exposurebiasvalue' => 'APEX exposure bias',
+'exif-maxaperturevalue' => 'Gratst blend',
+'exif-subjectdistance' => "Wai tu't subjekt",
+'exif-meteringmode' => 'Meed muude',
+'exif-lightsource' => 'Laachtkwel',
+'exif-flash' => 'Laid',
+'exif-focallength' => 'Braanwidjens',
+'exif-subjectarea' => 'Rüm',
+'exif-flashenergy' => 'Laidmäächt',
+'exif-focalplanexresolution' => 'Focal plane X resolution',
+'exif-focalplaneyresolution' => 'Focal plane Y resolution',
+'exif-focalplaneresolutionunit' => 'Focal plane resolution unit',
+'exif-subjectlocation' => "Steed faan't motiif",
+'exif-exposureindex' => 'Belaachtangsindex',
+'exif-sensingmethod' => 'Meed muude',
+'exif-filesource' => 'Dateikwel',
+'exif-scenetype' => 'Scene type',
+'exif-customrendered' => 'Custom image processing',
+'exif-exposuremode' => 'Belaachtangsmuude',
+'exif-whitebalance' => 'Witjufglik',
+'exif-digitalzoomratio' => 'Digital zoom ratio',
+'exif-focallengthin35mmfilm' => 'Braanwidjens bi en 35 mm film',
+'exif-scenecapturetype' => 'Scene capture type',
+'exif-gaincontrol' => 'Scene control',
+'exif-contrast' => 'Kontrast',
+'exif-saturation' => 'Intensiteet faan klöören',
+'exif-sharpness' => 'Skarepens',
+'exif-devicesettingdescription' => 'Iinstelangen',
+'exif-subjectdistancerange' => "Wai uf faan't motiif",
+'exif-imageuniqueid' => 'Bil-ID',
+'exif-gpsversionid' => 'GPS tag werjuun',
+'exif-gpslatituderef' => 'Nuurdelk of süüdelk breetje',
+'exif-gpslatitude' => 'Geograafisk Breetje',
+'exif-gpslongituderef' => 'Uastelk of waastelk lengde',
+'exif-gpslongitude' => 'Geograafisk lengde',
+'exif-gpsaltituderef' => 'Hööchde uun ferglik mä',
+'exif-gpsaltitude' => 'Hööchde',
+'exif-gpstimestamp' => 'GPS-tidj',
+'exif-gpssatellites' => "För't meeden brükt sateliten",
+'exif-gpsstatus' => 'Receiver status',
+'exif-gpsmeasuremode' => "Muude för't meeden",
+'exif-gpsdop' => "Nauhaid faan't meeden",
+'exif-gpsspeedref' => "Ianhaid faan't faard",
+'exif-gpsspeed' => 'Faard faan a GPS-aperoot',
+'exif-gpstrackref' => "Referens för di kurs faan't faard",
+'exif-gpstrack' => "Kurs faan't faard",
+'exif-gpsimgdirectionref' => "Referens för't ütjrachtang",
+'exif-gpsimgdirection' => "Ütjrachtang faan't bil",
+'exif-gpsmapdatum' => 'Geodeetisk referens-süsteem',
+'exif-gpsdestlatituderef' => "Referens för't geograafisk breetje",
+'exif-gpsdestlatitude' => "Geograafisk breetje faan't aanj",
+'exif-gpsdestlongituderef' => "Referens för't geograafisk lengde",
+'exif-gpsdestlongitude' => "Geograafisk lengde faan't aanj",
+'exif-gpsdestbearingref' => "Referens för di kurs faan't aanj",
+'exif-gpsdestbearing' => "Kurs faan't aanj",
+'exif-gpsdestdistanceref' => "Referens för di wai tu't motiif",
+'exif-gpsdestdistance' => "Wai tu't motiif",
+'exif-gpsprocessingmethod' => 'GPS muude',
+'exif-gpsareainformation' => 'GPS rüm',
+'exif-gpsdatestamp' => 'GPS dootem',
+'exif-gpsdifferential' => 'GPS diferential korektuur',
+'exif-jpegfilecomment' => 'JPEG dateikomentaar',
+'exif-keywords' => 'Steegwurden',
+'exif-worldregioncreated' => 'Weltregiuun, huar det bil apnimen wurden as',
+'exif-countrycreated' => 'Lun, huar det bil apnimen wurden as',
+'exif-countrycodecreated' => 'ISO-code faan det lun',
+'exif-provinceorstatecreated' => 'Prowins of federaalstoot, huar det bil aonimen wurden as',
+'exif-citycreated' => 'Stääd, huar det bil apnimen wurden as',
+'exif-sublocationcreated' => 'Stäädregiuun, huar det bil apnimen wurden as',
+'exif-worldregiondest' => 'Uunwiset weltregiuun',
+'exif-countrydest' => 'Uunwiset lun',
+'exif-countrycodedest' => 'ISO-code för det uunwiset lun',
+'exif-provinceorstatedest' => 'Prowins of federaalstoot',
+'exif-citydest' => 'Uunwiset stääd',
+'exif-sublocationdest' => 'Uunwiset stäädregiuun',
+'exif-objectname' => 'Kurt tiitel',
+'exif-specialinstructions' => 'Ekstra uunwisangen',
+'exif-headline' => 'Auerskraft',
+'exif-credit' => 'Faan hoker',
+'exif-source' => 'Faan huar',
+'exif-editstatus' => 'Hüwidj bewerket',
+'exif-urgency' => 'Hü nuadag',
+'exif-fixtureidentifier' => 'Ööders wat',
+'exif-locationdest' => 'Steed üüb det bil',
+'exif-locationdestcode' => "ISO-code faan det steed üüb't bil",
+'exif-objectcycle' => "Tidj üüb a dai för't iinstelen",
+'exif-contact' => 'Kontaktdooten',
+'exif-writer' => 'Skriiwer',
+'exif-languagecode' => 'Spriak',
+'exif-iimversion' => 'IIM werjuun',
+'exif-iimcategory' => 'Kategorii',
+'exif-iimsupplementalcategory' => 'Muar kategooriin',
+'exif-datetimeexpires' => 'Ei muar tu brüken efter',
+'exif-datetimereleased' => 'Ütjden di',
+'exif-originaltransmissionref' => 'ISO-code faan det steed, huar det bil auerdraanj wurden as',
+'exif-identifier' => 'Käänang',
+'exif-lens' => 'Hün objektiif',
+'exif-serialnumber' => 'Luupen numer faan a knipser',
+'exif-cameraownername' => 'Hoker di knipser hiart',
+'exif-label' => 'Betiaknang',
+'exif-datetimemetadata' => 'Leetst feranrang faan meta-dooten',
+'exif-nickname' => 'Nööm för det bil',
+'exif-rating' => 'Wäärdaghaid (1 tu 5, 5 as best)',
+'exif-rightscertificate' => 'Rights management certificate',
+'exif-copyrighted' => 'Copyright-Status:',
+'exif-copyrightowner' => 'Bilrochten lei bi',
+'exif-usageterms' => 'Brükerreegeln',
+'exif-webstatement' => 'Online copyright statement',
+'exif-originaldocumentid' => "Iandüüdag käänang (ID) faan't dokument",
+'exif-licenseurl' => 'URL for copyright license',
+'exif-morepermissionsurl' => 'Muar lisensen',
+'exif-attributionurl' => 'Wan dü det bil brük wel, saat en ferwisang üüb:',
+'exif-preferredattributionname' => 'Wan dü det bil brük wel, nääm:',
+'exif-pngfilecomment' => 'PNG dateikomentaar',
+'exif-disclaimer' => 'Disclaimer',
+'exif-contentwarning' => 'Wäärnang',
+'exif-giffilecomment' => 'GIF dateikomentaar',
+'exif-intellectualgenre' => 'Slach faan bil',
+'exif-subjectnewscode' => 'Motiif-code',
+'exif-scenecode' => 'IPTC-code',
+'exif-event' => 'Begeebenhaid',
+'exif-organisationinimage' => 'Organisatjuun',
+'exif-personinimage' => 'Persuun',
+'exif-originalimageheight' => "Hööchde faan't bil föör't beklapen",
+'exif-originalimagewidth' => "Breetje faan't bil föör't beklapen",
+
+# Exif attributes
+'exif-compression-1' => 'Ünkomprimiaret',
+'exif-compression-2' => 'CCITT Group 3 1-Dimensional Modified Huffman run length encoding',
+'exif-compression-3' => 'CCITT Group 3 fax encoding',
+'exif-compression-4' => 'CCITT Group 4 fax encoding',
+
+'exif-copyrighted-true' => 'Mä kopiarrocht',
+'exif-copyrighted-false' => 'Saner kopiarrocht',
+
+'exif-unknowndate' => 'Ünbekäänd dootem',
+
+'exif-orientation-1' => 'Normool',
+'exif-orientation-2' => 'Wairocht speegelt',
+'exif-orientation-3' => 'Am 180° dreid',
+'exif-orientation-4' => 'Luadrocht speegelt',
+'exif-orientation-5' => 'Jin a klook am 90° dreid an luadrocht speegelt.',
+'exif-orientation-6' => 'Jin a klook am 90° dreid',
+'exif-orientation-7' => 'Mä a klook am 90° dreid an luadrocht speegelt.',
+'exif-orientation-8' => 'Mä a klook am 90° dreid',
+
+'exif-planarconfiguration-1' => 'Grööw formaat',
+'exif-planarconfiguration-2' => 'Planaar formaat',
+
+'exif-colorspace-65535' => 'Ei kalibriaret',
+
+'exif-componentsconfiguration-0' => 'as ei diar',
+
+'exif-exposureprogram-0' => 'ei bekäänd',
+'exif-exposureprogram-1' => 'Manuel',
+'exif-exposureprogram-2' => 'Normool program',
+'exif-exposureprogram-3' => 'Tidjautomaatik',
+'exif-exposureprogram-4' => 'Blendenautomaatik',
+'exif-exposureprogram-5' => 'Kreatiifprogram mä jip skarepens',
+'exif-exposureprogram-6' => 'Aktjuunsprogram mä kurt belaachtangstidj',
+'exif-exposureprogram-7' => 'Portree-muude mä skarepen föörgrünj',
+'exif-exposureprogram-8' => 'Loonskap-muude mä skarepen bääftgrünj',
+
+'exif-subjectdistance-value' => '$1 meetern',
+
+'exif-meteringmode-0' => 'Ünbekäänd',
+'exif-meteringmode-1' => 'Madel',
+'exif-meteringmode-2' => 'Skarep maden',
+'exif-meteringmode-3' => 'Spot',
+'exif-meteringmode-4' => 'Multi-Spot',
+'exif-meteringmode-5' => 'Münster',
+'exif-meteringmode-6' => 'Bil-dial',
+'exif-meteringmode-255' => 'Ööder',
+
+'exif-lightsource-0' => 'Ünbekäänd',
+'exif-lightsource-1' => 'Dailaacht',
+'exif-lightsource-2' => 'Fluorescent',
+'exif-lightsource-3' => 'Konstlaacht',
+'exif-lightsource-4' => 'Laid',
+'exif-lightsource-9' => 'Smok weder',
+'exif-lightsource-10' => 'Betaanj',
+'exif-lightsource-11' => 'Skaad',
+'exif-lightsource-12' => 'Daylight fluorescent (D 5700 – 7100K)',
+'exif-lightsource-13' => 'Day white fluorescent (N 4600 – 5400K)',
+'exif-lightsource-14' => 'Cool white fluorescent (W 3900 – 4500K)',
+'exif-lightsource-15' => 'White fluorescent (WW 3200 – 3700K)',
+'exif-lightsource-17' => 'Standard light A',
+'exif-lightsource-18' => 'Standard light B',
+'exif-lightsource-19' => 'Standard light C',
+'exif-lightsource-24' => 'ISO studio konstlaacht',
+'exif-lightsource-255' => 'Ööder laacht',
+
+# Flash modes
+'exif-flash-fired-0' => 'Nään laid',
+'exif-flash-fired-1' => 'Laid ütjliaset',
+'exif-flash-return-0' => 'Laid schüürt nian dooten',
+'exif-flash-return-2' => 'Nään laid tu sen',
+'exif-flash-return-3' => 'Laid wiar tu sen',
+'exif-flash-mode-1' => 'Mä twüngen laid',
+'exif-flash-mode-2' => 'Laid ufsteld',
+'exif-flash-mode-3' => 'Automaatik',
+'exif-flash-function-1' => 'Nään laid mögelk',
+'exif-flash-redeye-1' => 'Nian ruad uugen muude',
+
+'exif-focalplaneresolutionunit-2' => 'tol',
+
+'exif-sensingmethod-1' => 'Ei bekäänd',
+'exif-sensingmethod-2' => 'One-chip color area sensor',
+'exif-sensingmethod-3' => 'Two-chip color area sensor',
+'exif-sensingmethod-4' => 'Three-chip color area sensor',
+'exif-sensingmethod-5' => 'Color sequential area sensor',
+'exif-sensingmethod-7' => 'Trilinear sensor',
+'exif-sensingmethod-8' => 'Color sequential linear sensor',
+
+'exif-filesource-3' => 'Digitaal stunbilknipser',
+
+'exif-scenetype-1' => 'Normool',
+
+'exif-customrendered-0' => 'Normool',
+'exif-customrendered-1' => 'Brüker-iinsteld',
+
+'exif-exposuremode-0' => 'Automaatisk belaachtang',
+'exif-exposuremode-1' => 'Manuel belaachtang',
+'exif-exposuremode-2' => 'Belaachtangsrä',
+
+'exif-whitebalance-0' => 'Automaatisk',
+'exif-whitebalance-1' => 'Manuel',
+
+'exif-scenecapturetype-0' => 'Normool',
+'exif-scenecapturetype-1' => 'Loonskap',
+'exif-scenecapturetype-2' => 'Portree',
+'exif-scenecapturetype-3' => 'Naacht',
+
+'exif-gaincontrol-0' => 'Nian',
+'exif-gaincontrol-1' => 'Letjet ap',
+'exif-gaincontrol-2' => 'Föl ap',
+'exif-gaincontrol-3' => 'Letjet deel',
+'exif-gaincontrol-4' => 'Föl deel',
+
+'exif-contrast-0' => 'Normool',
+'exif-contrast-1' => 'Swaak',
+'exif-contrast-2' => 'Stark',
+
+'exif-saturation-0' => 'Normool',
+'exif-saturation-1' => 'Letjet',
+'exif-saturation-2' => 'Huuch',
+
+'exif-sharpness-0' => 'Normool',
+'exif-sharpness-1' => 'Swaak',
+'exif-sharpness-2' => 'Stark',
+
+'exif-subjectdistancerange-0' => 'Ünbekäänd',
+'exif-subjectdistancerange-1' => 'Makro',
+'exif-subjectdistancerange-2' => 'Nai bi',
+'exif-subjectdistancerange-3' => 'Widj wech',
+
+# Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
+'exif-gpslatitude-n' => 'Nuurdelk breetje',
+'exif-gpslatitude-s' => 'Süüdelk breetje',
+
+# Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
+'exif-gpslongitude-e' => 'Uastelk lengde',
+'exif-gpslongitude-w' => 'Waastelk lengde',
+
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => '{{PLURAL:$1|Ään meeter|$1 meetern}} auer siapeegel',
+'exif-gpsaltitude-below-sealevel' => '{{PLURAL:$1|Ään meeter|$1 meetern}} oner siapeegel',
+
+'exif-gpsstatus-a' => 'Measurement in progress',
+'exif-gpsstatus-v' => 'Measurement interoperability',
+
+'exif-gpsmeasuremode-2' => '2-dimensional measurement',
+'exif-gpsmeasuremode-3' => '3-dimensional measurement',
+
+# Pseudotags used for GPSSpeedRef
+'exif-gpsspeed-k' => 'km/h',
+'exif-gpsspeed-m' => 'mph',
+'exif-gpsspeed-n' => 'kn',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilomeetern',
+'exif-gpsdestdistance-m' => 'Miilen',
+'exif-gpsdestdistance-n' => 'Siamiilen',
+
+'exif-gpsdop-excellent' => 'Auer a miaten ($1)',
+'exif-gpsdop-good' => 'Gud ($1)',
+'exif-gpsdop-moderate' => 'Madel ($1)',
+'exif-gpsdop-fair' => 'Gongt so ($1)',
+'exif-gpsdop-poor' => 'Ei so dol ($1)',
+
+'exif-objectcycle-a' => 'Bluas am maarlem',
+'exif-objectcycle-p' => 'Bluas am injem',
+'exif-objectcycle-b' => 'Eder am maarlam an am injem',
+
+# Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
+'exif-gpsdirection-t' => 'Rochtwisin kurs',
+'exif-gpsdirection-m' => 'Magneetisk kurs',
+
+'exif-ycbcrpositioning-1' => 'Sentriaret',
+'exif-ycbcrpositioning-2' => 'Uun naiberskap',
+
+'exif-dc-contributor' => 'Bidracher faan',
+'exif-dc-coverage' => 'Spatial or temporal scope of media',
+'exif-dc-date' => 'Dootem',
+'exif-dc-publisher' => 'Ütjden faan',
+'exif-dc-relation' => 'Ferbünjen meedien',
+'exif-dc-rights' => 'Rochten',
+'exif-dc-source' => 'Meeedienkwel',
+'exif-dc-type' => 'Meedienslach',
+
+'exif-rating-rejected' => 'Turagwiset',
+
+'exif-isospeedratings-overflow' => 'Grater üs 65535',
+
+'exif-iimcategory-ace' => 'Konst, kultüür an onerhualang',
+'exif-iimcategory-clj' => 'Rocht an ferbreegen',
+'exif-iimcategory-dis' => 'Katastroofen an ünfaaler',
+'exif-iimcategory-fin' => 'Wiartskap an bedriiwer',
+'exif-iimcategory-edu' => 'Onerracht',
+'exif-iimcategory-evn' => 'Natüür an amwelt',
+'exif-iimcategory-hth' => 'Sünjhaid',
+'exif-iimcategory-hum' => 'Persöönelk intresen',
+'exif-iimcategory-lab' => 'Werk',
+'exif-iimcategory-lif' => 'Freitidj an muude',
+'exif-iimcategory-pol' => 'Politik',
+'exif-iimcategory-rel' => 'Religioon an gluuw',
+'exif-iimcategory-sci' => 'Wedenskap an technologii',
+'exif-iimcategory-soi' => 'Mäenööder',
+'exif-iimcategory-spo' => 'Sport',
+'exif-iimcategory-war' => 'Kriich, stridj an ünrau',
+'exif-iimcategory-wea' => 'Weder',
+
+'exif-urgency-normal' => 'Normool ($1)',
+'exif-urgency-low' => 'Liach ($1)',
+'exif-urgency-high' => 'Huuch ($1)',
+'exif-urgency-other' => 'Faan a brüker fäästlaanj prioriteet ($1)',
 
 # External editor support
 'edit-externally' => 'Jüdeer dåtäi ma en äkstärn prugram beårbe',
@@ -2667,9 +3343,107 @@ Deeraw föliende sidelinke önj dåtseelwi ra definiire ütnååme, önj di kont
 'monthsall' => 'åle',
 'limitall' => 'åle',
 
+# Email address confirmation
+'confirmemail' => 'E-mail-adres gudkään',
+'confirmemail_noemail' => 'Dü heest nian gud e-mail-adres uun din [[Special:Preferences|persöönelk iinstelangen]] iindraanj.',
+'confirmemail_text' => '{{SITENAME}} ferlangt, dat dü din e-mail-adres gudkäänst, iar dü a ütjwidjet e-mail-funktjuunen brük könst. Trak üüb det fial „E-mail-code tusjüür“, am dat dü en e-mail tuschüürd feist, huar di code uun stäänt an en URL, am din adres gudtukäänen.',
+'confirmemail_pending' => 'Dü heest al en e-mail mä di e-mail-code tuschüürd füngen. Teew noch en uugenblak, det komt wel noch. Bluas wan det goorei loket, ferlang efter en neien code.',
+'confirmemail_send' => 'E-mail-code tuschüür',
+'confirmemail_sent' => 'E-mail-code as wechschüürd wurden.',
+'confirmemail_oncreate' => "En e-mail mä di e-mail-code as tu din e-mail-adres schüürd wurden. Hi as ei nuadag tu uunmeldin, oober hi woort brükt för ütjwidjet e-mail-funktjuunen uun't Wiki.",
+'confirmemail_sendfailed' => '{{SITENAME}} küd det e-mail mä di e-mail-code ei wechschüür.
+Luke noch ans, of dü det e-mail-adres rocht apskrewen heest.
+
+Di mail-server swaaret: $1',
+'confirmemail_invalid' => 'Di e-mail-code as ei gud. Ferlicht as hi tu ual.
+Ferschük det man noch ans.',
+'confirmemail_needlogin' => 'Dü skel di $1, am din e-mail-adres gudtukäänen.',
+'confirmemail_success' => 'Din e-mail-adres as gudkäänd wurden.
+Dü könst di nü [[Special:UserLogin|uunmelde]].',
+'confirmemail_loggedin' => 'Din e-mail-adres as gudkäänd wurden.',
+'confirmemail_error' => "Bi't gudkäänen faan din e-mail-adres as wat skiaf gingen.",
+'confirmemail_subject' => '[{{SITENAME}}] E-mail-adres gudkään',
+'confirmemail_body' => 'Gud dai,
+
+hoker mä det IP-adres $1 (woorskiinelk dü salew) hää det brükerkonto „$2“ bi {{SITENAME}} iinracht.
+
+Am a e-mail-funktjuunen faan {{SITENAME}} (weder) aktiif tu fun, an am seeker tu stelen, dat det brükerkonto uk würelk mä din e-mail-adres tuuphiart, gung tu detdiar ferwisang:
+
+$3
+
+Wan dü det brükerkonto *ei* iinracht hast, do gung tu detdiar ferwisang, am det gudkäänen uftubreegen:
+
+$5
+
+Didiar code täält bit $6, am a klook $7.',
+'confirmemail_body_changed' => 'Hoker mä det IP-adres $1 (woorskiinelk dü salew) hää det e-mail-adres faan det brükerkonto „$2“ bi {{SITENAME}} feranert.
+
+Am seeker tu stelen, dat det brükerkonto uk würelk di hiart, an am a e-mail-funktjuunen bi {{SITENAME}} weder uun a gang tu fun, gung tu detdiar ferwisang:
+
+$3
+
+Wan det *ei* din brükerkonto as, do gung tu detdiar ferwisang, am det gudkäänen uftubreegen:
+
+$5
+
+Didiar code täält bit $4.',
+'confirmemail_body_set' => "Hoker mä det IP-adres $1 (woorskiinelk dü salew) hää det e-mail-adres faan't brükerkonto „$2“ üüb {{SITENAME}} tu detdiar e-mail-adres amanert.
+
+Am seeker tu stelen, dat det brükerkonto würelk di hiart, an am a e-mail-funktjuunen üüb {{SITENAME}} weder uun a gang tu fun, gung tu detdiar ferwisang:
+
+$3
+
+Wan det *ei* din konto as, do gung tu detdiar ferwisang, am det gudkäänen uftubreegen:
+
+$5
+
+Didiar code täält bit $4.",
+'confirmemail_invalidated' => "Det gudkäänen faan't e-mail-adres as ufbreegen wurden.",
+'invalidateemail' => "Breeg gudkäänen faan't e-mail-adres uf",
+
+# Scary transclusion
+'scarytranscludedisabled' => '[Iinbinjen faan interwikis as ei aktiif]',
+'scarytranscludefailed' => '[Iinbinjen faan föörlaagen för $1 as skiaf gingen]',
+'scarytranscludefailed-httpstatus' => '[Ufrepen faan föörlaagen för $1 as skiaf gingen: HTTP  $2]',
+'scarytranscludetoolong' => '[URL as tu lung]',
+
+# Delete conflict
+'deletedwhileediting' => "'''Paase üüb:''' Det sidj as stregen wurden, üs dü diar jüst bi werket heest!
+Uun't [{{fullurl:{{#special:Log}}|type=delete&page={{FULLPAGENAMEE}}}} Strik-logbuk] fanjst dü di grünj för't striken. Wan dü det sidj seekerst, woort det nei uunlaanj.",
+'confirmrecreate' => "Di brüker [[User:$1|$1]] ([[User talk:$1|Diskusjuun]]) hää det sidj stregen, üs dü diar jüst bi werket heest. Di grünj wiar:
+:''$2''
+Ferseekre, dat dü det sidj würelk nei maage wel.",
+'confirmrecreate-noreason' => 'Di brüker [[User:$1|$1 ]] ([[User talk:$1|Diskusjuun]]) hää det sidj stregen, huar dü jüst bi werket heest. Ferseekre, dat dü det sidj würelk nei maage wel.',
+'recreate' => 'Nei maage',
+
+# action=purge
+'confirm_purge_button' => 'OK',
+'confirm-purge-top' => 'Det sidj ütj a cache strik?',
+'confirm-purge-bottom' => 'Maaget di cache leesag an wiset det neist werjuun uun.',
+
+# action=watch/unwatch
+'confirm-watch-button' => 'OK',
+'confirm-watch-top' => "Wel dü detdiar sidj uun't uug behual?",
+'confirm-unwatch-button' => 'OK',
+'confirm-unwatch-top' => "Wel dü detdiar sidj ei muar uun't uug behual?",
+
+# Multipage image navigation
+'imgmultipageprev' => '← leetst sidj (turag)',
+'imgmultipagenext' => 'naist sidj →',
+'imgmultigo' => 'Widjer',
+'imgmultigoto' => 'Gung tu sidj $1',
+
 # Table pager
 'ascending_abbrev' => 'ap',
 'descending_abbrev' => 'deel',
+'table_pager_next' => 'Naist sidj',
+'table_pager_prev' => 'Leetst sidj (turag)',
+'table_pager_first' => 'Iarst sidj',
+'table_pager_last' => 'Leetst sidj',
+'table_pager_limit' => 'Wise $1 iindracher per sidj',
+'table_pager_limit_label' => 'Iindracher per sidj:',
+'table_pager_limit_submit' => 'Widjer',
+'table_pager_empty' => 'Diar wiar niks',
 
 # Auto-summaries
 'autosumm-blank' => 'Det sidj as leesag maaget wurden.',
@@ -2677,25 +3451,127 @@ Deeraw föliende sidelinke önj dåtseelwi ra definiire ütnååme, önj di kont
 'autoredircomment' => 'Sidj tu [[$1]] widjerfeerd',
 'autosumm-new' => 'Det sidj as nei uunlaanj wurden: "$1"',
 
+# Live preview
+'livepreview-loading' => 'Loose ...',
+'livepreview-ready' => 'Loosin ... Klaar!',
+'livepreview-failed' => 'Live-preview wul ei!
+Ferschük det üüb di normool wai.',
+'livepreview-error' => 'Küd ei ferbinj: $1 "$2".
+Ferschük det üüb di normool wai.',
+
+# Friendlier slave lag warnings
+'lag-warn-normal' => 'Feranrangen faan {{PLURAL:$1|at leetst sekund|a leetst $1 sekunden}} kön noch ei uunwiset wurd.',
+'lag-warn-high' => 'Auer det huuch dootenbeenklääst kön a feranrangen faan {{PLURAL:$1|at leetst sekund|a leetst $1 sekunden}} noch ei uunwiset wurd.',
+
+# Watchlist editor
+'watchlistedit-numitems' => "Dü heest {{PLURAL:$1|ian sidj|$1 sidjen}} uun't uug. A diskusjuunssidjen wurd ei mätääld.",
+'watchlistedit-noitems' => "Dü heest nian sidjen, diar dü uun't uug behual wel.",
+'watchlistedit-normal-title' => "List mä sidjen, diar dü uun't uug behual wel, bewerke",
+'watchlistedit-normal-legend' => "Ei muar uun't uug behual",
+'watchlistedit-normal-explain' => "Jodiar sidjen wel dü uun't uug behual. Am iindracher tu striken, kääntiakne a kaschin üüb sidj faan di iindrach an trak oner üüb „{{int:Watchlistedit-normal-submit}}“. Dü könst det list uk uun't [[Special:EditWatchlist/raw|listenformoot]] bewerke.",
+'watchlistedit-normal-submit' => 'Iindracher wechnem',
+'watchlistedit-normal-done' => '{{PLURAL:$1|Ään iindrach as|$1 iindracher san}} faan det list wechnimen wurden:',
+'watchlistedit-raw-title' => "Uun't listenformoot bewerke",
+'watchlistedit-raw-legend' => "Uun't listenformoot bewerke",
+'watchlistedit-raw-explain' => "Jodiar sidjen, diar dü uun't uug behual wel, san uun't listenformoot apskrewen. A iindracher kön räwiis stregen of ütjwidjet wurd.
+Uun arke rä mut ään iindrach stun. Wan dü klaar beest, trak oner üüb „{{int:Watchlistedit-raw-submit}}“.
+Dü könst uk det [[Special:EditWatchlist|normool sidj]] tu bewerkin nem.",
+'watchlistedit-raw-titles' => 'Iindracher:',
+'watchlistedit-raw-submit' => "List mä sidjen, diar dü uun't uug behual wel, aktualisiare",
+'watchlistedit-raw-done' => "Det list mä sidjen, diar dü uun't uug behual wel, as nü üüb di neist stant.",
+'watchlistedit-raw-added' => '{{PLURAL:$1|Ään iindrach as|$1 iindracher san}} diartu skrewen wurden:',
+'watchlistedit-raw-removed' => '{{PLURAL:$1|Ään iindrach as|$1 iindracher san}} wechnimen wurden:',
+
 # Watchlist editing tools
 'watchlisttools-view' => 'Eefterkiiklist: änringe',
 'watchlisttools-edit' => 'normåål beårbe',
 'watchlisttools-raw' => 'Listeformoot beårbe (import/äksport)',
 
+# Signatures
+'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|Diskusjuun]])',
+
 # Core parser functions
+'unknown_extension_tag' => "Ünbekäänd ''tag'' „$1“",
 'duplicate-defaultsort' => '\'\'\'Paase üüb:\'\'\' Di sortiarkai "$2" auerskraft di ual sortiarkai "$1"',
 
 # Special:Version
+'version' => 'Werjuun',
+'version-extensions' => 'Instaliaret ütjwidjangen',
+'version-specialpages' => 'Spezial-sidjen',
+'version-parserhooks' => 'Ütjwidjet parserfunktjuunen',
+'version-variables' => 'Wariaabeln',
+'version-antispam' => "''Spam''seekerangen",
+'version-skins' => 'Brükerskaker',
+'version-other' => 'Ööders wat',
+'version-mediahandlers' => 'Ütjwidjet medien-funktjuunen',
+'version-hooks' => 'Hooks',
+'version-extension-functions' => 'Ütjwidjet funktjuunen',
+'version-parser-extensiontags' => 'Parser extension tags',
+'version-parser-function-hooks' => 'Parser function hooks',
+'version-hook-name' => 'Hook nööm',
+'version-hook-subscribedby' => 'Aprepen faan',
+'version-version' => '(Werjuun $1)',
+'version-license' => 'Lisens',
+'version-poweredby-credits' => "Detheer wääbsteed werket mä '''[//www.mediawiki.org/wiki/MediaWiki/de MediaWiki]''', Copyright © 2001–$1 $2.",
+'version-poweredby-others' => 'öödern',
+'version-credits-summary' => 'Wi besoonke üs bi jodiar persuunen för hör bidracher tu [[Special:Version|MediaWiki]].',
+'version-license-info' => 'MediaWiki is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
+
+MediaWiki is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received [{{SERVER}}{{SCRIPTPATH}}/COPYING a copy of the GNU General Public License] along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA or [//www.gnu.org/licenses/old-licenses/gpl-2.0.html read it online].',
 'version-software' => 'Instaliird software',
 'version-software-product' => 'Produkt',
 'version-software-version' => 'Färsjoon',
+'version-entrypoints' => 'URLs faan hüsdörsidjen',
+'version-entrypoints-header-entrypoint' => 'Hüsdörsidj',
+'version-entrypoints-header-url' => 'URL',
+
+# Special:Redirect
+'redirect' => 'Widjerfeerang üüb en brükersidj, sidjenwerjuun of datei.',
+'redirect-legend' => 'Widjerfeerang üüb en sidjenwerjuun of datei.',
+'redirect-summary' => 'Det spezial-sidj feert widjer üüb en brükersidj, sidjenwerjuun of datei.',
+'redirect-submit' => 'Widjer',
+'redirect-lookup' => 'Schük:',
+'redirect-value' => 'Käänang of dateinööm:',
+'redirect-user' => 'Brüker-ID',
+'redirect-revision' => 'Sidjenwerjuun',
+'redirect-file' => 'Dateinööm',
+'redirect-not-exists' => 'Wäärs ei fünjen',
 
 # Special:FileDuplicateSearch
+'fileduplicatesearch' => 'Schük dobelt datein',
+'fileduplicatesearch-summary' => 'Dobelt datein schük üüb grünjlaag faan hör hash-wäärs',
+'fileduplicatesearch-legend' => 'Dobelt datein schük',
+'fileduplicatesearch-filename' => 'Dateinööm:',
 'fileduplicatesearch-submit' => 'Sjük',
+'fileduplicatesearch-info' => '$1 × $2 pixel<br />Dateigrate: $3<br />MIME-typ: $4',
+'fileduplicatesearch-result-1' => 'Diar san nian dobelt datein faan „$1“.',
+'fileduplicatesearch-result-n' => 'Det datei „$1“ hää {{PLURAL:$2|1 dobelt ütjfeerang|$2 dobelt ütjfeerangen}}.',
+'fileduplicatesearch-noresults' => 'Nian datei mä di nööm „$1“ fünjen.',
 
 # Special:SpecialPages
 'specialpages' => 'Spetsjåålside',
+'specialpages-note' => '----
+* Normool spezial-sidjen
+* <span class="mw-specialpagerestricted">Spezial-sidjen mä tugripsrochten</span>
+* <span class="mw-specialpagecached">Spezial-sidjen uun a cache (As ferlicht ei muar aktuel.)</span>',
+'specialpages-group-maintenance' => 'Werksteedsidjen',
+'specialpages-group-other' => 'Ööder spezial-sidjen',
 'specialpages-group-login' => 'Melde di uun of skriiw di iin',
+'specialpages-group-changes' => 'Leetst feranrangen an logbuken',
+'specialpages-group-media' => 'Medien',
+'specialpages-group-users' => 'Brükern an rochten',
+'specialpages-group-highuse' => 'Flooksis brükt sidjen',
+'specialpages-group-pages' => 'Sidjen',
+'specialpages-group-pagetools' => 'Sidjenwerktjüch',
+'specialpages-group-wiki' => 'Dooten an werktjüch',
+'specialpages-group-redirects' => 'Spezial-sidjen, diar widjer feer',
+'specialpages-group-spam' => "''Spam'' werktjüch",
+
+# Special:BlankPage
+'blankpage' => 'Leesag sidj',
+'intentionallyblankpage' => 'Det sidj as mä walem leesag. Hat woort för benchmarks brükt.',
 
 # External image whitelist
 'external_image_whitelist' => " #Feranere detheer rä ei<pre>
@@ -2708,10 +3584,57 @@ Deeraw föliende sidelinke önj dåtseelwi ra definiire ütnååme, önj di kont
 #Skriiw dialen faan reguleer ütjdrüker auer detheer rä. Feranere detheer rä ei</pre>",
 
 # Special:Tags
+'tags' => 'Feranrangskääntiaken',
 'tag-filter' => '[[Special:Tags|Kääntiaken]] filter:',
+'tag-filter-submit' => 'Filter',
+'tags-title' => 'Kääntiaken',
+'tags-intro' => "Det sidj wiset kääntiaken, diar för't bewerkin brükt wurd, an wat jo men.",
+'tags-tag' => 'Kääntiaken-nööm',
+'tags-display-header' => 'Nööm üüb feranrangslisten',
+'tags-description-header' => 'Widjloftag beskriiwang',
+'tags-hitcount-header' => 'Kääntiakent feranrangen',
+'tags-edit' => 'bewerke',
+'tags-hitcount' => '$1 {{PLURAL:$1|feranrang|feranrangen}}',
+
+# Special:ComparePages
+'comparepages' => 'Sidjen ferglik',
+'compare-selector' => 'Sidjenwerjuunen ferglik',
+'compare-page1' => 'Sidj 1',
+'compare-page2' => 'Sidj 2',
+'compare-rev1' => 'Werjuun 1',
+'compare-rev2' => 'Werjuun 2',
+'compare-submit' => 'Ferglik',
+'compare-invalid-title' => 'Didiar sidjennööm gongt ei.',
+'compare-title-not-exists' => 'Son sidjennööm as diar ei.',
+'compare-revision-not-exists' => 'Son werjuun as diar ei.',
+
+# Database error messages
+'dberr-header' => 'Det Wiki hää komer.',
+'dberr-problems' => 'Dää mi iarag! Det sidj hää technisk komer.',
+'dberr-again' => 'Teew en uugenblak an ferschük det noch ans.',
+'dberr-info' => '(Koon ei mä a dootenbeenk-server ferbinj: $1)',
+'dberr-usegoogle' => 'Uun a teskentidj küdst dü det mä Google ferschük.',
+'dberr-outofdate' => 'Seenk diaram, dat Google ferlicht ual dooten uunwiset.',
+'dberr-cachederror' => 'Detheer komt ütj en cache an as ferlicht ei muar aktuel.',
 
 # HTML forms
+'htmlform-invalid-input' => 'Diar as wat skiaf gingen mä din uunfraag.',
+'htmlform-select-badoption' => 'Didiar wäärs as ei tuläät.',
+'htmlform-int-invalid' => 'Didiar wäärs as nian hial taal.',
+'htmlform-float-invalid' => 'Didiar wäärs as nian taal.',
+'htmlform-int-toolow' => 'Didiar wäärs as letjer üs det minimum faan $1.',
+'htmlform-int-toohigh' => 'Didiar wäärs as grater üs det maximum faan $1.',
+'htmlform-required' => 'Di wäärs woort brükt.',
+'htmlform-submit' => 'Auerdreeg',
+'htmlform-reset' => 'Feranrangen turagsaat.',
 'htmlform-selectorother-other' => 'Oudere',
+'htmlform-no' => 'Naan',
+'htmlform-yes' => 'Ja',
+'htmlform-chosen-placeholder' => 'Schük ütj',
+
+# SQLite database support
+'sqlite-has-fts' => "Werjuun $1 mä halep för't schüken uun di hialer tekst.",
+'sqlite-no-fts' => "Werjuun $1 saner halep för't schüken uun di hialer tekst.",
 
 # New logging system
 'logentry-delete-delete' => '$1 {{Gender:$2}} hää det sidj $3 stregen',
@@ -2725,7 +3648,11 @@ Deeraw föliende sidelinke önj dåtseelwi ra definiire ütnååme, önj di kont
 'logentry-suppress-revision' => '$1 {{GENDER:$2}} hää stalswigin det uunsicht feranert faan {{PLURAL:$5|ian werjuun|$5 werjuunen}} faan det sidj $3: $4',
 'logentry-suppress-event-legacy' => '$1 {{GENDER:$2}} hää stalswigin det uunsicht feranert faan logbuk iindracher üüb $3',
 'logentry-suppress-revision-legacy' => '$1 {{GENDER:$2}} hää stalswigin det uunlukin feranert faan werjuunen faan det sidj $3',
+'revdelete-content-hid' => 'Ferbürgen',
+'revdelete-summary-hid' => 'Ferbürgen tuupfaadang',
 'revdelete-uname-hid' => 'brükernoome ferstäägen',
+'revdelete-content-unhid' => 'Ei muar ferberag',
+'revdelete-summary-unhid' => 'Tuupfaadang ei muar ferberag',
 'revdelete-uname-unhid' => 'brükernoome frijääwen',
 'revdelete-restricted' => 'gränse jüle uk for administratoore',
 'revdelete-unrestricted' => 'gränse for administratoore wächnümen',
@@ -2733,13 +3660,80 @@ Deeraw föliende sidelinke önj dåtseelwi ra definiire ütnååme, önj di kont
 'logentry-move-move-noredirect' => '$1 {{GENDER:$2}} hää det sidj $3 efter $4 saner widjerfeerang fersköwen.',
 'logentry-move-move_redir' => '$1 {{GENDER:$2}} hää det sidj $3 efter $4 fersköwen an diarbi en widjerfeerang auerskrewen.',
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2}} hää det sidj $3 efter $4 fersköwen an diarbi en widjerfeerang auerskrewen saner salew en widjerfeerang uuntuleien.',
+'logentry-patrol-patrol' => '$1 {{GENDER:$2|hää}} det werjuun $4 faan sidj $3 üs kontroliaret kääntiakent.',
+'logentry-patrol-patrol-auto' => '$1 {{GENDER:$2|hää}} det werjuun $4 faan sidj $3 automaatisk üs kontroliaret kääntiakent.',
 'logentry-newusers-newusers' => 'Brükerkonto $1 as {{GENDER:$2|iinracht}} wurden',
+'logentry-newusers-create' => 'Brükerkonto as faan $1 {{GENDER:$2|iinracht}} wurden.',
 'logentry-newusers-create2' => 'Brükerkonto $3 as faan $1 {{GENDER:$2|iinracht}} wurden',
+'logentry-newusers-byemail' => 'Brükerkonto $3 as faan $1 {{GENDER:$2|iinracht}} wurden, an det paaswurd as per e-mail tuschüürd wurden.',
 'logentry-newusers-autocreate' => 'Brükerkonto $1 as automaatisk {{GENDER:$2|iinracht}} wurden',
+'logentry-rights-rights' => '$1 {{GENDER:$2|hää}} det brükerskööl för $3 faan $4 tu $5 feranert.',
+'logentry-rights-rights-legacy' => '$1 {{GENDER:$2|hää}} det brükerskööl för $3 feranert.',
+'logentry-rights-autopromote' => '$1 as automaatisk faan $4 tu $5 {{GENDER:$2|tuwiset}} wurden.',
 'rightsnone' => '(-)',
+
+# Feedback
+'feedback-bugornote' => 'Wan dü en technisk probleem beskriiw wel, wees so gud an skriiw [$1 am di feeler].
+Ööders könst dü uk det formulaar oner brük. Dan komentaar woort tuup mä dan brükernööm an det werjuun faan dan browser üüb det sidj „[$3 $2]“ skrewen.',
+'feedback-subject' => 'Teemo:',
+'feedback-message' => 'Mädialang:',
+'feedback-cancel' => 'Ufbreeg',
+'feedback-submit' => 'Komentaar ufsjüür',
+'feedback-adding' => 'Komentaar woort tu det sidj skrewen ...',
+'feedback-error1' => 'Feeler: Ünbekäänd API-bööd',
+'feedback-error2' => 'Feeler: Bewerkin as skiaf gingen.',
+'feedback-error3' => 'Feeler: Nian API-oonswaar',
+'feedback-thanks' => 'Föl soonk. Dan komentaar as üüb det sidj „[$2 $1]“ skrewen wurden.',
+'feedback-close' => 'Klaar',
+'feedback-bugcheck' => 'Gud! Luke noch ans efter, of det ei ferlicht en [$1 bekäänden feeler] as.',
+'feedback-bugnew' => 'Haa ik efterluket. Nei feeler melde.',
 
 # Search suggestions
 'searchsuggest-search' => 'Sjük',
+'searchsuggest-containing' => 'diar banen as ...',
+
+# API errors
+'api-error-badaccess-groups' => 'Dü mutst nian datein tu detdiar Wiki huuchschüür.',
+'api-error-badtoken' => 'Intern feeler: Token as ferkiard.',
+'api-error-copyuploaddisabled' => 'Det huuchschüüren auer URL as üüb didiar server ei aktiif.',
+'api-error-duplicate' => 'Uun det Wiki {{PLURAL:$1|as al [$2 en ööder datei]|san al [$2 muar datein]}} mä detsalew banen.',
+'api-error-duplicate-archive' => 'Diar wiar al {{PLURAL:$1|[$2 ööder datei]|[$2 ööder datein]}} mä detsalew banen. {{PLURAL:$1|Hat as |Jo san}} oober stregen wurden.',
+'api-error-duplicate-archive-popup-title' => 'Dobelt {{PLURAL:$1|datei, diar al stregen wurden as|datein, diar al stregen wurden san}}.',
+'api-error-duplicate-popup-title' => 'Dobelt {{PLURAL:$1|datei|datein}}',
+'api-error-empty-file' => 'Det datei, wat dü huuchsjüürd heest, as leesag.',
+'api-error-emptypage' => 'Dü mutst nian leesag sidjen nei iinstel.',
+'api-error-fetchfileerror' => "Intern feeler: Bi't ufrepen faan det datei as wat skiaf gingen.",
+'api-error-fileexists-forbidden' => 'En datei mä di nööm „$1“ as al diar. Hat koon ei auerskrewen wurd.',
+'api-error-fileexists-shared-forbidden' => "En date mä di nööm „$1“ as al uun't gemiansoom archiif an koon ei auerskrewen wurd.",
+'api-error-file-too-large' => 'Det datei, wat dü huuchsjüürd heest, as tu grat.',
+'api-error-filename-tooshort' => 'Di dateinööm as tu kurt.',
+'api-error-filetype-banned' => 'Son slach faan datei as ei tuläät.',
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|as nään tuläät slach faan datein|san nian tuläät slacher faan datein}}.
+{{PLURAL:$3|En tuläät slach as|Tuläät slacher san}} $2.',
+'api-error-filetype-missing' => 'Det datei, wat dü huuchschüür wel, hää nian dateiaanj.',
+'api-error-hookaborted' => 'Det feranerang, wat dü maage wulst, as ufbreegen wurden.',
+'api-error-http' => 'Intern feeler: Ferbinjang tu a server as skiaf gingen.',
+'api-error-illegal-filename' => 'Didiar dateinööm as ei tuläät.',
+'api-error-internal-error' => "Intern feeler: diar as wat skiaf gingen bi't huuchschüüren faan det datei tu det Wiki.",
+'api-error-invalid-file-key' => 'Intern feeler: Det datei as uun det tidjwiis archiif ei fünjen wurden.',
+'api-error-missingparam' => 'Intern feeler: Det uunfraag as ei hial uunkimen.',
+'api-error-missingresult' => 'Intern feeler: Küd ei luke, of det kopiarin loket hää.',
+'api-error-mustbeloggedin' => 'Dü skel di uunmelde, am datein huuchtuschüüren.',
+'api-error-mustbeposted' => 'Intern feeler: Ferkiard HTTP-muude.',
+'api-error-noimageinfo' => 'Det huuchschüüren hää loket, oober di server hää nian datei-dooten.',
+'api-error-nomodule' => 'Intern feeler: Diar as nian modul tu huuchsjüüren fäästlaanj wurden.',
+'api-error-ok-but-empty' => 'Intern feeler: Di server sait niks.',
+'api-error-overwrite' => 'Dü könst nian datei auerskriiw, wat al diar as.',
+'api-error-stashfailed' => 'Intern feeler: Di server küd nian tidjwiis datei seekre.',
+'api-error-publishfailed' => 'Intern feeler: Di server küd det tidjwiis datei ei widjer schüür.',
+'api-error-timeout' => 'Di server hää ei rochttidjag swaaret (time-out).',
+'api-error-unclassified' => 'Diar as irgentwat skiaf gingen.',
+'api-error-unknown-code' => 'Ünbekäänd feeler: „$1“',
+'api-error-unknown-error' => "Intern feeler: Bi't huuchschüüren faan det datei as wat skiaf gingen.",
+'api-error-unknown-warning' => 'Ünbekäänd wäärnang: $1',
+'api-error-unknownerror' => 'Ünbekäänd feeler: „$1“',
+'api-error-uploaddisabled' => 'Uun detdiar Wiki könst dü niks huuchschüür.',
+'api-error-verification-error' => 'Det datei, wat dü huuchschüür wel, as uunstaken of hää en ferkiard dateiaanj.',
 
 # Durations
 'duration-seconds' => '$1 {{PLURAL:$1|sekund|sekunden}}',
@@ -2751,5 +3745,8 @@ Deeraw föliende sidelinke önj dåtseelwi ra definiire ütnååme, önj di kont
 'duration-decades' => '$1 {{PLURAL:$1|juartjiint|juartjiinten}}',
 'duration-centuries' => '$1 {{PLURAL:$1|juarhunert|juarhunerten}}',
 'duration-millennia' => '$1 {{PLURAL:$1|juardüüsen|juardüüsenen}}',
+
+# Image rotation
+'rotate-comment' => 'Bil am $1 {{PLURAL:$1|graad}} mä a klook dreid.',
 
 );
