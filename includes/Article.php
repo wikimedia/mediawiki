@@ -1052,7 +1052,7 @@ class Article implements Page {
 	 * OutputPage::preventClickjacking() and load mediawiki.page.patrol.ajax.
 	 */
 	public function showPatrolFooter() {
-		global $wgUseRCPatrol, $wgUseNPPatrol, $wgRCMaxAge;
+		global $wgUseRCPatrol, $wgUseNPPatrol, $wgRCMaxAge, $wgEnableAPI, $wgEnableWriteAPI;
 
 		$request = $this->getContext()->getRequest();
 		$outputPage = $this->getContext()->getOutput();
@@ -1167,7 +1167,9 @@ class Article implements Page {
 		$token = $user->getEditToken( $rcid );
 
 		$outputPage->preventClickjacking();
-		$outputPage->addModules( 'mediawiki.page.patrol.ajax' );
+		if ( $wgEnableAPI && $wgEnableWriteAPI && $user->isAllowed( 'writeapi' ) ) {
+			$outputPage->addModules( 'mediawiki.page.patrol.ajax' );
+		}
 
 		$link = Linker::linkKnown(
 			$this->getTitle(),

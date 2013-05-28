@@ -112,6 +112,9 @@ production.
 * (bug 36641) Patrol page links no longer show on non-existent revisions.
 * (bug 35810) Pages not linked from Special:RecentChanges or Special:NewPages
   are patrollable now.
+* (bug 30213) JavaScript for search suggestions is now disabled when the API
+  is disabled, and AJAX patrolling and watching are now disabled when use of
+  the write API is not allowed.
 
 === API changes in 1.22 ===
 * (bug 46626) xmldoublequote parameter was removed. Because of a bug, the
