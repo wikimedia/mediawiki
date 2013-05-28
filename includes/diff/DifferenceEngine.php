@@ -410,7 +410,7 @@ class DifferenceEngine extends ContextSource {
 	 * @return String
 	 */
 	protected function markPatrolledLink() {
-		global $wgUseRCPatrol, $wgRCMaxAge;
+		global $wgUseRCPatrol, $wgRCMaxAge, $wgEnableAPI, $wgEnableWriteAPI;
 		$cache = wfGetMainCache();
 
 		if ( $this->mMarkPatrolledLink === null ) {
@@ -447,7 +447,11 @@ class DifferenceEngine extends ContextSource {
 				// Build the link
 				if ( $rcid ) {
 					$this->getOutput()->preventClickjacking();
-					$this->getOutput()->addModules( 'mediawiki.page.patrol.ajax' );
+					if ( $wgEnableAPI && $wgEnableWriteAPI
+						&& $this->getUser()->isAllowed( 'writeapi' )
+					) {
+						$this->getOutput()->addModules( 'mediawiki.page.patrol.ajax' );
+					}
 
 					$token = $this->getUser()->getEditToken( $rcid );
 					$this->mMarkPatrolledLink = ' <span class="patrollink">[' . Linker::linkKnown(

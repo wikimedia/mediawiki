@@ -2558,7 +2558,7 @@ $templates
 	 */
 	private function addDefaultModules() {
 		global $wgIncludeLegacyJavaScript, $wgPreloadJavaScriptMwUtil, $wgUseAjax,
-			$wgAjaxWatch, $wgResponsiveImages;
+			$wgAjaxWatch, $wgResponsiveImages, $wgEnableAPI, $wgEnableWriteAPI;
 
 		// Add base resources
 		$this->addModules( array(
@@ -2582,12 +2582,17 @@ $templates
 
 			wfRunHooks( 'AjaxAddScript', array( &$this ) );
 
-			if ( $wgAjaxWatch && $this->getUser()->isLoggedIn() ) {
-				$this->addModules( 'mediawiki.page.watch.ajax' );
-			}
+			if ( $wgEnableAPI ) {
+				$user = $this->getUser();
+				if ( $wgEnableWriteAPI && $wgAjaxWatch && $user->isLoggedIn()
+					&& $user->isAllowed( 'writeapi' )
+				) {
+					$this->addModules( 'mediawiki.page.watch.ajax' );
+				}
 
-			if ( !$this->getUser()->getOption( 'disablesuggest', false ) ) {
-				$this->addModules( 'mediawiki.searchSuggest' );
+				if ( !$this->getUser()->getOption( 'disablesuggest', false ) ) {
+					$this->addModules( 'mediawiki.searchSuggest' );
+				}
 			}
 		}
 
