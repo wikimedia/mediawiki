@@ -469,6 +469,18 @@ $messages = array(
 'oct' => '10.',
 'nov' => '11.',
 'dec' => '12.',
+'january-date' => '$1. ledna',
+'february-date' => '$1. února',
+'march-date' => '$1. března',
+'april-date' => '$1. dubna',
+'may-date' => '$1. května',
+'june-date' => '$1. června',
+'july-date' => '$1. července',
+'august-date' => '$1. srpna',
+'september-date' => '$1. září',
+'october-date' => '$1. října',
+'november-date' => '$1. listopadu',
+'december-date' => '$1. prosince',
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Kategorie|Kategorie|Kategorie}}',

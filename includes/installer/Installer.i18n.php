@@ -10164,6 +10164,7 @@ I seguenti collegamenti sono in lingua inglese:
 
 /** Japanese (日本語)
  * @author Aphaia
+ * @author Fryed-peach
  * @author Iwai.masaharu
  * @author Mizusumashi
  * @author Ninomy
@@ -10265,6 +10266,7 @@ Unicode を少しでも利用する可能性がある場合は、[//www.mediawik
 共有サーバーを使用している場合は、適切なデータベース ドライバーのインストールを、サーバーの管理者に依頼してください。
 PHP を自分でコンパイルした場合は、例えば <code>./configure --with-mysql</code> を実行して、データベース クライアントを使用できるように再設定してください。
 Debian または Ubuntu のパッケージから PHP をインストールした場合は、php5-mysql モジュールもインストールする必要があります。',
+	'config-outdated-sqlite' => "'''警告:''' あなたは SQLite $1 を使っていますが、最低限要求されるバージョンである $2 未満となっています。SQLite は利用できません。",
 	'config-no-fts3' => "'''警告:''' SQLite は [//sqlite.org/fts3.html FTS3] モジュールなしでコンパイルされており、このバックエンドでは検索機能は利用できなくなります。",
 	'config-register-globals' => "'''警告: PHP の <code>[http://php.net/register_globals register_globals]</code> オプションが有効になっています。'''
 '''可能なら無効化してください。'''
@@ -10528,7 +10530,7 @@ chmod a+w $3</pre>',
 	'config-optional-continue' => '私にもっと質問してください。',
 	'config-optional-skip' => 'もう飽きてしまったので、とにかくウィキをインストールしてください。',
 	'config-profile' => '利用者権限のプロファイル:',
-	'config-profile-wiki' => '伝統的なウィキ', # Fuzzy
+	'config-profile-wiki' => '公開ウィキ',
 	'config-profile-no-anon' => 'アカウントの作成が必要',
 	'config-profile-fishbowl' => '承認された編集者のみ',
 	'config-profile-private' => '非公開ウィキ',
@@ -17035,11 +17037,27 @@ $messages['roa-tara'] = array(
 	'config-information' => "'Mbormaziune",
 	'config-localsettings-key' => 'Chiave de aggiornamende:',
 	'config-localsettings-badkey' => "'A chiave ca è date non g'è corrette.",
+	'config-session-error' => "Errore facenne accumenzà 'a sessione: $1",
 	'config-your-language' => "'A lènga toje:",
 	'config-your-language-help' => "Scacchie 'na lènghe da ausà duranne 'u processe de installazzione:",
 	'config-wiki-language' => 'Lènga de Uicchi:',
+	'config-back' => '← Rrète',
+	'config-continue' => 'Condinue →',
 	'config-page-language' => 'Lènghe',
+	'config-page-welcome' => "Bovègne jndr'à MediaUicchi!",
+	'config-page-dbconnect' => "Collegate a 'u database",
+	'config-page-upgrade' => "Aggiorne l'installazzione esistende",
+	'config-page-dbsettings' => "'Mbostaziune d'u database",
 	'config-page-name' => 'Nome',
+	'config-page-options' => 'Opziune',
+	'config-page-install' => 'Installe',
+	'config-page-complete' => 'Combletate!',
+	'config-page-restart' => "Riavvie l'installazzione",
+	'config-page-readme' => 'Liggeme',
+	'config-page-releasenotes' => 'Note de rilasce',
+	'config-page-copying' => 'Stoche a copie',
+	'config-page-upgradedoc' => 'Aggiornamende',
+	'config-page-existingwiki' => 'Uicchi esistende',
 	'config-db-type' => 'Tipe de database:',
 	'config-db-charset' => "'Nzieme de carattere d'u database",
 	'config-charset-mysql5-binary' => 'MySQL 4.1/5.0 binary',

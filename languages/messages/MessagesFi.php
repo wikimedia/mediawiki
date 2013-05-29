@@ -420,6 +420,18 @@ $messages = array(
 'oct' => 'lokakuu',
 'nov' => 'marraskuu',
 'dec' => 'joulukuu',
+'january-date' => '$1. tammikuuta',
+'february-date' => '$1. helmikuuta',
+'march-date' => '$1. maaliskuuta',
+'april-date' => '$1. huhtikuuta',
+'may-date' => '$1. toukokuuta',
+'june-date' => '$1. kesäkuuta',
+'july-date' => '$1. heinäkuuta',
+'august-date' => '$1. elokuuta',
+'september-date' => '$1. syyskuuta',
+'october-date' => '$1. lokakuuta',
+'november-date' => '$1. marraskuuta',
+'december-date' => '$1. joulukuuta',
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Luokka|Luokat}}',
@@ -886,7 +898,7 @@ voit jättää tämän viestin huomiotta ja jatkaa vanhan salasanan käyttöä.'
 Väliaikainen salasana: $2',
 'passwordreset-emailsent' => 'Salasananpalautusviesti on lähetetty.',
 'passwordreset-emailsent-capture' => 'Salasananpalautusviesti on lähetetty, se näkyy myös alla.',
-'passwordreset-emailerror-capture' => 'Alla näytettävä sähköpostiviesti luotiin, mutta sen lähettäminen käyttäjälle epäonnistui: $1',
+'passwordreset-emailerror-capture' => 'Allaoleva sähköpostiviesti luotiin, mutta sen lähettäminen käyttäjälle epäonnistui: $1',
 
 # Special:ChangeEmail
 'changeemail' => 'Muuta sähköpostiosoitetta',
@@ -1366,6 +1378,7 @@ Kokeile lisätä haun alkuun ''all:'', niin haku kohdistuu kaikkeen sisältöön
 'powersearch-togglenone' => 'Poista valinnat',
 'search-external' => 'Ulkoinen haku',
 'searchdisabled' => 'Tekstihaku on poistettu toistaiseksi käytöstä suuren kuorman vuoksi. Voit käyttää alla olevaa Googlen hakukenttää sivujen etsimiseen, kunnes haku tulee taas käyttöön. <small>Huomaa, että ulkopuoliset kopiot {{GRAMMAR:genitive|{{SITENAME}}}} sisällöstä eivät välttämättä ole ajan tasalla.</small>',
+'search-error' => 'Virhe ilmaantui haettaessa: $1',
 
 # Preferences page
 'preferences' => 'Asetukset',
@@ -2313,7 +2326,7 @@ Tulevaisuudessa sivuun ja sen keskustelusivuun tehtävät muutokset listataan t�
 'notvisiblerev' => 'Versio on poistettu',
 'watchnochange' => 'Valittuna ajanjaksona yhtäkään tarkkailemistasi sivuista ei muokattu.',
 'watchlist-details' => 'Tarkkailulistalla on {{PLURAL:$1|$1 sivu|$1 sivua}} keskustelusivuja mukaan laskematta.',
-'wlheader-enotif' => 'Sähköposti-ilmoitukset ovat käytössä.',
+'wlheader-enotif' => 'Sähköposti-ilmoitus on käytössä.',
 'wlheader-showupdated' => "Sivut, joita on muokattu viimeisen käyntisi jälkeen, on '''lihavoitu'''.",
 'watchmethod-recent' => 'tarkistetaan tuoreimpia muutoksia tarkkailluille sivuille',
 'watchmethod-list' => 'tarkistetaan tarkkailtujen sivujen tuoreimmat muutokset',
@@ -2862,6 +2875,8 @@ Jos haluat muokata MediaWikin yleistä kotoistusta, käy [//www.mediawiki.org/wi
 'thumbnail-more' => 'Suurenna',
 'filemissing' => 'Tiedosto puuttuu',
 'thumbnail_error' => 'Pienoiskuvan luominen epäonnistui: $1',
+'thumbnail_error_remote' => 'Virheilmoitus kohteesta $1:
+$2',
 'djvu_page_error' => 'DjVu-tiedostossa ei ole pyydettyä sivua',
 'djvu_no_xml' => 'DjVu-tiedoston XML-vienti epäonnistui',
 'thumbnail-temp-create' => 'Väliaikaisen esikatselukuvan luonti epäonnistui',
@@ -3917,6 +3932,7 @@ Sinun olisi pitänyt saada [{{SERVER}}{{SCRIPTPATH}}/COPYING kopio GNU General P
 'htmlform-selectorother-other' => 'Muu',
 'htmlform-no' => 'Ei',
 'htmlform-yes' => 'Kyllä',
+'htmlform-chosen-placeholder' => 'Valitse vaihtoehto',
 
 # SQLite database support
 'sqlite-has-fts' => '$1, jossa on tuki kokotekstihaulle',
@@ -4030,5 +4046,8 @@ Muussa tapauksessa voit käyttää alla olevaa helpompaa lomaketta. Kommenttisi 
 'duration-decades' => '$1 {{PLURAL:$1|vuosikymmen|vuosikymmentä}}',
 'duration-centuries' => '$1 {{PLURAL:$1|vuosisata|vuosisataa}}',
 'duration-millennia' => '$1 {{PLURAL:$1|vuosituhat|vuosituhatta}}',
+
+# Image rotation
+'rotate-comment' => 'Kuvaa käännettiin $1 aste{{PLURAL:$1||tta}} myötäpäivään',
 
 );

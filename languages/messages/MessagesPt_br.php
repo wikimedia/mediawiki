@@ -428,6 +428,18 @@ $messages = array(
 'oct' => 'out.',
 'nov' => 'nov.',
 'dec' => 'dez.',
+'january-date' => '$1 de janeiro',
+'february-date' => '$1 de fevereiro',
+'march-date' => '$1 de março',
+'april-date' => '$1 de abril',
+'may-date' => '$1 de maio',
+'june-date' => '$1 de junho',
+'july-date' => '$1 de julho',
+'august-date' => '$1 de agosto',
+'september-date' => '$1 de setembro',
+'october-date' => '$1 de outubro',
+'november-date' => '$1 de novembro',
+'december-date' => '$1 de dezembro',
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Categoria|Categorias}}',

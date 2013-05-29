@@ -753,7 +753,7 @@ Nie zapomnij dostosować [[Special:Preferences|preferencji]].',
 'userlogout' => 'Wyloguj',
 'notloggedin' => 'Nie jesteś zalogowany',
 'userlogin-noaccount' => 'Nie masz konta?',
-'userlogin-joinproject' => 'Dołącz do {{SITENAME}}',
+'userlogin-joinproject' => 'Dołącz do {{GRAMMAR:D.lp|{{SITENAME}}}}',
 'nologin' => "Nie masz konta? '''$1'''.",
 'nologinlink' => 'Zarejestruj się',
 'createaccount' => 'Załóż nowe konto',
@@ -775,7 +775,7 @@ Nie zapomnij dostosować [[Special:Preferences|preferencji]].',
 'createacct-captcha' => 'Kontrola bezpieczeństwa',
 'createacct-imgcaptcha-ph' => 'Wpisz tekst widoczny powyżej',
 'createacct-submit' => 'Utwórz konto',
-'createacct-benefit-heading' => '{{grammar:4sg|{{SITENAME}}}} tworzą ludzie tacy jak ty.',
+'createacct-benefit-heading' => '{{grammar:B.lp|{{SITENAME}}}} tworzą ludzie tacy jak ty.',
 'createacct-benefit-body1' => '{{PLURAL:$1|edycja|edycje|edycji}}',
 'createacct-benefit-body2' => '{{PLURAL:$1|strona|strony|stron}}',
 'createacct-benefit-body3' => '{{PLURAL:$1|użytkownik|użytkowników}} w ostatnim czasie',
@@ -1549,7 +1549,7 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'userrights-groups-help' => 'Możesz zmienić przynależność tego użytkownika do podanych grup.
 * Zaznaczone pole oznacza przynależność użytkownika do danej grupy.
 * Niezaznaczone pole oznacza, że użytkownik nie należy do danej grupy.
-* Gwiazdka * informuje, że nie możesz usunąć z grupy po dodaniu do niej lub dodać po usunięciu z grupy.',
+* Gwiazdka * informuje, że nie możesz usunąć użytkownika z grupy po dodaniu do niej lub dodać po usunięciu z grupy.',
 'userrights-reason' => 'Powód',
 'userrights-no-interwiki' => 'Nie masz dostępu do edycji uprawnień na innych wiki.',
 'userrights-nodatabase' => 'Baza danych $1 nie istnieje lub nie jest lokalna.',
@@ -2965,7 +2965,7 @@ Odwiedź [//www.mediawiki.org/wiki/Localisation Tłumaczenie MediaWiki] oraz [//
 'thumbnail-more' => 'Powiększ',
 'filemissing' => 'Brak pliku',
 'thumbnail_error' => 'Błąd przy generowaniu miniatury $1',
-'thumbnail_error_remote' => 'Komunikat o błędzie z  $1 :
+'thumbnail_error_remote' => 'Komunikat o błędzie z {{grammar:2sg|$1}}:
 $2',
 'djvu_page_error' => 'Strona DjVu poza zakresem',
 'djvu_no_xml' => 'Nie można pobrać danych w formacie XML dla pliku DjVu',
@@ -3987,8 +3987,9 @@ Powinieneś otrzymać [{{SERVER}}{{SCRIPTPATH}}/COPYING kopię licencji GNU Gene
 'version-entrypoints-header-url' => 'URL',
 
 # Special:Redirect
-'redirect' => 'Przekierowanie przez identyfikator pliku, użytkownika lub zmiany',
+'redirect' => 'Przekierowanie według pliku, użytkownika albo identyfikatora wersji',
 'redirect-legend' => 'Przekieruj do pliku lub strony',
+'redirect-summary' => 'Ta strona specjalna przekierowuje do pliku (wg nazwy pliku), do strony (wg numeru wersji) albo do strony użytkownika (wg liczbowego identyfikatora użytkownika)',
 'redirect-submit' => 'Przejdź',
 'redirect-lookup' => 'Wyszukaj:',
 'redirect-value' => 'Wartość:',
