@@ -4523,6 +4523,7 @@ $wgDeleteRevisionsLimit = 0;
  * Number of accounts each IP address may create, 0 to disable.
  *
  * @warning Requires memcached
+ * @deprecated since 1.22 Use $wgRateLimits instead
  */
 $wgAccountCreationThrottle = 0;
 
@@ -4654,6 +4655,9 @@ $wgRateLimits = array(
 		'newbie' => null,
 		'ip' => null,
 		'subnet' => null,
+	),
+	'createaccount' => array(
+		'anon' => null,
 	),
 );
 
