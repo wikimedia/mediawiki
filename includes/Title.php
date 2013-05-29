@@ -2849,6 +2849,23 @@ class Title {
 	}
 
 	/**
+	 * Get the number of subpages this page has
+	 *
+	 * @return int The number of subpages
+	 */
+	public function getSubpagesCount() {
+		if ( !MWNamespace::hasSubpages( $this->getNamespace() ) ) {
+			return 0;
+		}
+
+		$dbr = wfGetDB( DB_SLAVE );
+		$conds['page_namespace'] = $this->getNamespace();
+		$conds[] = 'page_title ' . $dbr->buildLike( $this->getDBkey() . '/', $dbr->anyString() );
+
+		return (int)$dbr->selectField( 'page', 'COUNT(*)', $conds, __METHOD__ );
+	}
+
+	/**
 	 * Is there a version of this page in the deletion archive?
 	 *
 	 * @return Int the number of archived revisions

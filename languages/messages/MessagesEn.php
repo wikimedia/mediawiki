@@ -234,6 +234,7 @@ $magicWords = array(
 	'localtime'               => array( 1,    'LOCALTIME' ),
 	'localhour'               => array( 1,    'LOCALHOUR' ),
 	'numberofpages'           => array( 1,    'NUMBEROFPAGES' ),
+	'numberofsubpages'        => array( 1,    'NUMBEROFSUBPAGES' ),
 	'numberofarticles'        => array( 1,    'NUMBEROFARTICLES' ),
 	'numberoffiles'           => array( 1,    'NUMBEROFFILES' ),
 	'numberofusers'           => array( 1,    'NUMBEROFUSERS' ),

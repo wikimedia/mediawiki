@@ -58,6 +58,7 @@ class CoreParserFunctions {
 		$parser->setFunctionHook( 'gender',           array( __CLASS__, 'gender'           ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'plural',           array( __CLASS__, 'plural'           ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'numberofpages',    array( __CLASS__, 'numberofpages'    ), SFH_NO_HASH );
+		$parser->setFunctionHook( 'numberofsubpages', array( __CLASS__, 'numberofsubpages' ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'numberofusers',    array( __CLASS__, 'numberofusers'    ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'numberofactiveusers', array( __CLASS__, 'numberofactiveusers' ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'numberofarticles', array( __CLASS__, 'numberofarticles' ), SFH_NO_HASH );
@@ -686,6 +687,28 @@ class CoreParserFunctions {
 
 		$count = $cache[$name][$type];
 		return self::formatRaw( $count, $raw );
+	}
+
+	/**
+	 * Return the number of sub-pages a page has. This is an expensive parser
+	 * function and cannot be called too many times.
+	 */
+	static function numberofsubpages( $parser, $name = '', $raw = null ) {
+		static $cache = array();
+		$title = Title::newFromText( $name );
+
+		$length = 0;
+		if ( $title ) {
+			$key = $title->getPrefixedText();
+			if ( isset( $cache[$key] ) ) {
+				$length = $cache[$key];
+			} elseif ( $parser->incrementExpensiveFunctionCount() ) {
+				$length = $title->getSubpagesCount();
+				$cache[$key] = $length;
+			}
+		}
+
+		return self::formatRaw( $length, $raw );
 	}
 
 	/**
