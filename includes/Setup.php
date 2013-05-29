@@ -429,6 +429,12 @@ if ( $wgSecureLogin && substr( $wgServer, 0, 2 ) !== '//' ) {
 	wfWarn( 'Secure login was enabled on a server that only supports HTTP or HTTPS. Disabling secure login.' );
 }
 
+// If not overridden by $wgRateLimits, the $wgAccountCreationThrottle variables holds
+// the maximum number of accounts an IP can make in a day.
+if ( !isset( $wgRateLimits['createaccount']['ip-all'] ) && $wgAccountCreationThrottle > 0 ) {
+	$wgRateLimits['createaccount']['ip-all'] = array( $wgAccountCreationThrottle, 86400 );
+}
+
 # Now that GlobalFunctions is loaded, set defaults that depend
 # on it.
 if ( $wgTmpDirectory === false ) {

@@ -1524,6 +1524,7 @@ class User {
 		if ( isset( $limits['user'] ) && $id != 0 ) {
 			$userLimit = $limits['user'];
 		}
+
 		if ( $this->isNewbie() ) {
 			if ( isset( $limits['newbie'] ) && $id != 0 ) {
 				$keys[wfMemcKey( 'limiter', $action, 'user', $id )] = $limits['newbie'];
@@ -1548,6 +1549,28 @@ class User {
 				}
 			}
 		}
+
+		if ( isset( $limits['ip-all'] ) ) {
+			$ip = $this->getRequest()->getIP();
+			$keys[wfMemcKey('mediawiki', 'limiter', $action, 'ip', $ip)] = $limits['ip-all'];
+		}
+
+		if ( isset( $limits['subnet-all'] ) ) {
+			$ip = $this->getRequest()->getIP();
+			$matches = array();
+			$subnet = false;
+			if ( IP::isIPv6( $ip ) ) {
+				$parts = IP::parseRange( "$ip/64" );
+				$subnet = $parts[0];
+			} elseif ( preg_match( '/^(\d+\.\d+\.\d+)\.\d+$/', $ip, $matches ) ) {
+				// IPv4
+				$subnet = $matches[1];
+			}
+			if ( $subnet !== false ) {
+				$keys[wfMemcKey('mediawiki', 'limiter', $action, 'subnet', $subnet)] = $limits['subnet-all'];
+			}
+		}
+
 		// Check for group-specific permissions
 		// If more than one group applies, use the group with the highest limit
 		foreach ( $this->getGroups() as $group ) {

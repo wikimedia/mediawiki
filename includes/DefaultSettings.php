@@ -4523,6 +4523,7 @@ $wgDeleteRevisionsLimit = 0;
  * Number of accounts each IP address may create, 0 to disable.
  *
  * @warning Requires memcached
+ * @deprecated since 1.22 Use $wgRateLimits instead
  */
 $wgAccountCreationThrottle = 0;
 
@@ -4628,6 +4629,8 @@ $wgRateLimits = array(
 		'newbie' => null, // for each recent (autoconfirmed) account; overrides 'user'
 		'ip' => null, // for each anon and recent account
 		'subnet' => null, // ... within a /24 subnet in IPv4 or /64 in IPv6
+		'ip-all' => null, // for all users under a given IP address
+		'subnet-all' => null, // for all users within a /24 subnet in IPv4 or /64 in IPv6
 	),
 	'move' => array(
 		'user' => null,
@@ -4654,6 +4657,9 @@ $wgRateLimits = array(
 		'newbie' => null,
 		'ip' => null,
 		'subnet' => null,
+	),
+	'createaccount' => array(
+		'anon' => null,
 	),
 );
 
