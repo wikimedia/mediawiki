@@ -615,6 +615,7 @@ the user is redirected back to the page.
 
 'ArticleViewFooter': After showing the footer section of an ordinary page view
 $article: Article object
+$patrolFooterShown: boolean whether patrol footer is shown
 
 'ArticleViewHeader': Before the parser cache is about to be tried for article
 viewing.

@@ -93,6 +93,8 @@ production.
   propper connect string.
   More about DRCP can be found at:
   http://www.oracle-base.com/articles/11g/database-resident-connection-pool-11gr1.php
+* Add a new parameter $patrolFooterShown to hook ArticleViewFooter so the hook
+  handlers can take further action based on the status of the patrol footer
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
