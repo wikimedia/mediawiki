@@ -2593,11 +2593,11 @@ function in_string( $needle, $str, $insensitive = false ) {
  * @return Bool
  */
 function wfIniGetBool( $setting ) {
-	$val = ini_get( $setting );
+	$val = strtolower( ini_get( $setting ) );
 	// 'on' and 'true' can't have whitespace around them, but '1' can.
-	return strtolower( $val ) == 'on'
-		|| strtolower( $val ) == 'true'
-		|| strtolower( $val ) == 'yes'
+	return $val == 'on'
+		|| $val == 'true'
+		|| $val == 'yes'
 		|| preg_match( "/^\s*[+-]?0*[1-9]/", $val ); // approx C atoi() function
 }
 
