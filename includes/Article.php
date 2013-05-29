@@ -1038,9 +1038,9 @@ class Article implements Page {
 		}
 
 		// Show a footer allowing the user to patrol the shown revision or page if possible
-		$this->showPatrolFooter();
+		$patrolFooterShown = $this->showPatrolFooter();
 
-		wfRunHooks( 'ArticleViewFooter', array( $this ) );
+		wfRunHooks( 'ArticleViewFooter', array( $this, $patrolFooterShown ) );
 
 	}
 
@@ -1050,6 +1050,8 @@ class Article implements Page {
 	 * desired, does nothing.
 	 * Side effect: When the patrol link is build, this method will call
 	 * OutputPage::preventClickjacking() and load mediawiki.page.patrol.ajax.
+	 *
+	 * @return bool
 	 */
 	public function showPatrolFooter() {
 		global $wgUseRCPatrol, $wgUseNPPatrol, $wgRCMaxAge, $wgEnableAPI, $wgEnableWriteAPI;
@@ -1066,7 +1068,7 @@ class Article implements Page {
 
 		if ( !$this->getTitle()->quickUserCan( 'patrol', $user ) || ( !$wgUseNPPatrol && !$wgUseRCPatrol ) ) {
 			// Patrolling is fully disabled or the user isn't allowed to
-			return;
+			return false;
 		}
 
 		wfProfileIn( __METHOD__ );
@@ -1075,7 +1077,7 @@ class Article implements Page {
 			// Check for cached results
 			if ( $cache->get( wfMemcKey( 'NotPatrollableRevId', $this->getRevIdFetched() ) ) ) {
 				wfProfileOut( __METHOD__ );
-				return;
+				return false;
 			}
 
 			// We make use of a little index trick over here:
@@ -1091,7 +1093,7 @@ class Article implements Page {
 				// The revision is more than 6 hours older than the Max RC age
 				// no need to torture the DB any further (6h because the RC might not be cleaned out regularly)
 				wfProfileOut( __METHOD__ );
-				return;
+				return false;
 			}
 			$rc = RecentChange::newFromConds(
 				array(
@@ -1115,7 +1117,7 @@ class Article implements Page {
 			// Check for cached results
 			if ( $cache->get( wfMemcKey( 'NotPatrollablePage', $this->getTitle()->getArticleID() ) ) ) {
 				wfProfileOut( __METHOD__ );
-				return;
+				return false;
 			}
 
 			$dbr = wfGetDB( DB_SLAVE );
@@ -1130,7 +1132,7 @@ class Article implements Page {
 				// We either didn't find the oldest revision for the given page
 				// or it's to old for the RC table (with 6h tolerance)
 				wfProfileOut( __METHOD__ );
-				return;
+				return false;
 			}
 
 			$rc = RecentChange::newFromConds(
@@ -1159,7 +1161,7 @@ class Article implements Page {
 				$cache->set( wfMemcKey( 'NotPatrollablePage', $this->getTitle()->getArticleID() ), '1', $wgRCMaxAge );
 			}
 
-			return;
+			return false;
 		}
 
 		$rcid = $rc->getAttribute( 'rc_id' );
@@ -1187,6 +1189,8 @@ class Article implements Page {
 				wfMessage( 'markaspatrolledlink' )->rawParams( $link )->escaped() .
 			'</div>'
 		);
+
+		return true;
 	}
 
 	/**
