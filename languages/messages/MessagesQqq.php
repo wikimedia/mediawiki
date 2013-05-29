@@ -9883,6 +9883,7 @@ Parameters:
 'version' => '{{doc-special|Version}}
 {{Identical|Version}}',
 'version-extensions' => 'Header on [[Special:Version]].',
+'version-components' => 'Header on [[Special:Version]] for a section describing software components that are bundled with the software but are not an extension.',
 'version-specialpages' => 'Part of [[Special:Version]].
 {{Identical|Special page}}',
 'version-parserhooks' => 'This message is a heading at [[Special:Version]] for extensions that modifies the parser of wikitext.',
@@ -9949,6 +9950,14 @@ A short description of the script path entry point. Links to the mediawiki.org d
 'version-ext-colheader-license'         => '{{Identical|License}} Column header for describing an extensions license',
 'version-ext-colheader-description'     => 'Column header for the description of an extension',
 'version-ext-colheader-credits'         => 'Column header for the list of authors and credits for an extension',
+'version-component-name' => 'Column header for the name of a component',
+'version-component-version' => 'Column header for the version of a component',
+'version-component-license' => 'Column header for the name of the license a component is under',
+'version-component-authors' => 'Column header for the list of authors of a component',
+'license-gplv2' => 'Name of the GNU General Public License v2',
+'license-gplv3' => 'Name of the GNU General Public License v3',
+'license-apache' => 'Name of the Apache License',
+'license-mit' => 'Name of the MIT License',
 
 # Special:Redirect
 'redirect' => "{{doc-special|Redirect}}
