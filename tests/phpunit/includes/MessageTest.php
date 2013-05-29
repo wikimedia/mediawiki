@@ -30,9 +30,9 @@ class MessageTest extends MediaWikiLangTestCase {
 
 	function testInLanguage() {
 		$this->assertEquals( 'Main Page', wfMessage( 'mainpage' )->inLanguage( 'en' )->text() );
-		$this->assertEquals( 'Заглавная страница', wfMessage( 'mainpage' )->inLanguage( 'ru' )->text() );
+		$this->assertEquals( 'Кертера оаг|ув', wfMessage( 'mainpage' )->inLanguage( 'ru' )->text() );
 		$this->assertEquals( 'Main Page', wfMessage( 'mainpage' )->inLanguage( Language::factory( 'en' ) )->text() );
-		$this->assertEquals( 'Заглавная страница', wfMessage( 'mainpage' )->inLanguage( Language::factory( 'ru' ) )->text() );
+		$this->assertEquals( 'Кертера оаг|ув', wfMessage( 'mainpage' )->inLanguage( Language::factory( 'ru' ) )->text() );
 	}
 
 	function testMessageParams() {
