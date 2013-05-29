@@ -2674,38 +2674,38 @@ $wgLegacyEncoding = false;
  */
 $wgBrowserBlackList = array(
 	/**
-	 * Netscape 2-4 detection
-	 * The minor version may contain strings such as "Gold" or "SGoldC-SGI"
-	 * Lots of non-netscape user agents have "compatible", so it's useful to check for that
-	 * with a negative assertion. The [UIN] identifier specifies the level of security
-	 * in a Netscape/Mozilla browser, checking for it rules out a number of fakers.
-	 * The language string is unreliable, it is missing on NS4 Mac.
-	 *
-	 * Reference: http://www.psychedelix.com/agents/index.shtml
-	 */
+     * Netscape 2-4 detection
+     * The minor version may contain strings such as "Gold" or "SGoldC-SGI"
+     * Lots of non-netscape user agents have "compatible", so it's useful to check for that
+     * with a negative assertion. The [UIN] identifier specifies the level of security
+     * in a Netscape/Mozilla browser, checking for it rules out a number of fakers.
+     * The language string is unreliable, it is missing on NS4 Mac.
+     *
+     * Reference: http://www.psychedelix.com/agents/index.shtml
+     */
 	'/^Mozilla\/2\.[^ ]+ [^(]*?\((?!compatible).*; [UIN]/',
 	'/^Mozilla\/3\.[^ ]+ [^(]*?\((?!compatible).*; [UIN]/',
 	'/^Mozilla\/4\.[^ ]+ [^(]*?\((?!compatible).*; [UIN]/',
 
 	/**
-	 * MSIE on Mac OS 9 is teh sux0r, converts þ to <thorn>, ð to <eth>,
-	 * Þ to <THORN> and Ð to <ETH>
-	 *
-	 * Known useragents:
-	 * - Mozilla/4.0 (compatible; MSIE 5.0; Mac_PowerPC)
-	 * - Mozilla/4.0 (compatible; MSIE 5.15; Mac_PowerPC)
-	 * - Mozilla/4.0 (compatible; MSIE 5.23; Mac_PowerPC)
-	 * - [...]
-	 *
-	 * @link http://en.wikipedia.org/w/index.php?diff=12356041&oldid=12355864
-	 * @link http://en.wikipedia.org/wiki/Template%3AOS9
-	 */
+     * MSIE on Mac OS 9 is teh sux0r, converts þ to <thorn>, ð to <eth>,
+     * Þ to <THORN> and Ð to <ETH>
+     *
+     * Known useragents:
+     * - Mozilla/4.0 (compatible; MSIE 5.0; Mac_PowerPC)
+     * - Mozilla/4.0 (compatible; MSIE 5.15; Mac_PowerPC)
+     * - Mozilla/4.0 (compatible; MSIE 5.23; Mac_PowerPC)
+     * - [...]
+     *
+     * @link http://en.wikipedia.org/w/index.php?diff=12356041&oldid=12355864
+     * @link http://en.wikipedia.org/wiki/Template%3AOS9
+     */
 	'/^Mozilla\/4\.0 \(compatible; MSIE \d+\.\d+; Mac_PowerPC\)/',
 
 	/**
-	 * Google wireless transcoder, seems to eat a lot of chars alive
-	 * http://it.wikipedia.org/w/index.php?title=Luciano_Ligabue&diff=prev&oldid=8857361
-	 */
+     * Google wireless transcoder, seems to eat a lot of chars alive
+     * http://it.wikipedia.org/w/index.php?title=Luciano_Ligabue&diff=prev&oldid=8857361
+     */
 	'/^Mozilla\/4\.0 \(compatible; MSIE 6.0; Windows NT 5.0; Google Wireless Transcoder;\)/'
 );
 
@@ -4888,6 +4888,7 @@ $wgHideUserContribLimit = 1000;
  * Number of accounts each IP address may create, 0 to disable.
  *
  * @warning Requires memcached
+ * @deprecated since 1.22 Use $wgRateLimits instead
  */
 $wgAccountCreationThrottle = 0;
 
@@ -4981,6 +4982,8 @@ $wgRateLimits = array(
 		'newbie' => null, // for each recent (autoconfirmed) account; overrides 'user'
 		'ip' => null, // for each anon and recent account
 		'subnet' => null, // ... within a /24 subnet in IPv4 or /64 in IPv6
+		'ip-all' => null, // for all users under a given IP address
+		'subnet-all' => null, // for all users within a /24 subnet in IPv4 or /64 in IPv6
 	),
 	'move' => array(
 		'user' => null,
@@ -5021,7 +5024,10 @@ $wgRateLimits = array(
 		'newbie' => null,
 		'ip' => null,
 		'subnet' => null,
-	)
+	),
+	'createaccount' => array(
+		'anon' => null,
+	),
 );
 
 /**

@@ -105,7 +105,7 @@ $namespaceAliases = array();
  * Example:
  * @code
  * $namespaceGenderAliases = array(
- * 	NS_USER => array( 'male' => 'Male_user', 'female' => 'Female_user' ),
+ *  NS_USER => array( 'male' => 'Male_user', 'female' => 'Female_user' ),
  * );
  * @endcode
  */
@@ -642,4 +642,3 @@ $preloadedMessages = array(
 	'whatlinkshere',
 	'word-separator',
 );
-

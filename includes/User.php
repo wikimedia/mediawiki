@@ -38,43 +38,43 @@ define( 'EDIT_TOKEN_SUFFIX', '+\\' );
  */
 class User implements IDBAccessObject {
 	/**
-	 * @const int Number of characters in user_token field.
-	 */
+     * @const int Number of characters in user_token field.
+     */
 	const TOKEN_LENGTH = 32;
 
 	/**
-	 * Global constant made accessible as class constants so that autoloader
-	 * magic can be used.
-	 */
+     * Global constant made accessible as class constants so that autoloader
+     * magic can be used.
+     */
 	const EDIT_TOKEN_SUFFIX = EDIT_TOKEN_SUFFIX;
 
 	/**
-	 * @const int Serialized record version.
-	 */
+     * @const int Serialized record version.
+     */
 	const VERSION = 10;
 
 	/**
-	 * Maximum items in $mWatchedItems
-	 */
+     * Maximum items in $mWatchedItems
+     */
 	const MAX_WATCHED_ITEMS_CACHE = 100;
 
 	/**
-	 * Exclude user options that are set to their default value.
-	 * @since 1.25
-	 */
+     * Exclude user options that are set to their default value.
+     * @since 1.25
+     */
 	const GETOPTIONS_EXCLUDE_DEFAULTS = 1;
 
 	/**
-	 * @var PasswordFactory Lazily loaded factory object for passwords
-	 */
+     * @var PasswordFactory Lazily loaded factory object for passwords
+     */
 	private static $mPasswordFactory = null;
 
 	/**
-	 * Array of Strings List of member variables which are saved to the
-	 * shared cache (memcached). Any operation which changes the
-	 * corresponding database fields must call a cache-clearing function.
-	 * @showinitializer
-	 */
+     * Array of Strings List of member variables which are saved to the
+     * shared cache (memcached). Any operation which changes the
+     * corresponding database fields must call a cache-clearing function.
+     * @showinitializer
+     */
 	protected static $mCacheVars = array(
 		// user table
 		'mId',
@@ -95,11 +95,11 @@ class User implements IDBAccessObject {
 	);
 
 	/**
-	 * Array of Strings Core rights.
-	 * Each of these should have a corresponding message of the form
-	 * "right-$right".
-	 * @showinitializer
-	 */
+     * Array of Strings Core rights.
+     * Each of these should have a corresponding message of the form
+     * "right-$right".
+     * @showinitializer
+     */
 	protected static $mCoreRights = array(
 		'apihighlimits',
 		'autoconfirmed',
@@ -176,8 +176,8 @@ class User implements IDBAccessObject {
 	);
 
 	/**
-	 * String Cached results of getAllRights()
-	 */
+     * String Cached results of getAllRights()
+     */
 	protected static $mAllRights = false;
 
 	/** @name Cache variables */
@@ -189,15 +189,15 @@ class User implements IDBAccessObject {
 	public $mRealName;
 
 	/**
-	 * @todo Make this actually private
-	 * @private
-	 */
+     * @todo Make this actually private
+     * @private
+     */
 	public $mPassword;
 
 	/**
-	 * @todo Make this actually private
-	 * @private
-	 */
+     * @todo Make this actually private
+     * @private
+     */
 	public $mNewpassword;
 
 	public $mNewpassTime;
@@ -226,31 +226,31 @@ class User implements IDBAccessObject {
 	//@}
 
 	/**
-	 * Bool Whether the cache variables have been loaded.
-	 */
+     * Bool Whether the cache variables have been loaded.
+     */
 	//@{
 	public $mOptionsLoaded;
 
 	/**
-	 * Array with already loaded items or true if all items have been loaded.
-	 */
+     * Array with already loaded items or true if all items have been loaded.
+     */
 	protected $mLoadedItems = array();
 	//@}
 
 	/**
-	 * String Initialization data source if mLoadedItems!==true. May be one of:
-	 *  - 'defaults'   anonymous user initialised from class defaults
-	 *  - 'name'       initialise from mName
-	 *  - 'id'         initialise from mId
-	 *  - 'session'    log in from cookies or session if possible
-	 *
-	 * Use the User::newFrom*() family of functions to set this.
-	 */
+     * String Initialization data source if mLoadedItems!==true. May be one of:
+     *  - 'defaults'   anonymous user initialised from class defaults
+     *  - 'name'       initialise from mName
+     *  - 'id'         initialise from mId
+     *  - 'session'    log in from cookies or session if possible
+     *
+     * Use the User::newFrom*() family of functions to set this.
+     */
 	public $mFrom;
 
 	/**
-	 * Lazy-initialized variables, invalidated with clearInstanceCache
-	 */
+     * Lazy-initialized variables, invalidated with clearInstanceCache
+     */
 	protected $mNewtalk;
 
 	protected $mDatePreference;
@@ -278,8 +278,8 @@ class User implements IDBAccessObject {
 	public $mOptions;
 
 	/**
-	 * @var WebRequest
-	 */
+     * @var WebRequest
+     */
 	private $mRequest;
 
 	/** @var Block */
@@ -297,29 +297,29 @@ class User implements IDBAccessObject {
 	public static $idCacheByName = array();
 
 	/**
-	 * Lightweight constructor for an anonymous user.
-	 * Use the User::newFrom* factory functions for other kinds of users.
-	 *
-	 * @see newFromName()
-	 * @see newFromId()
-	 * @see newFromConfirmationCode()
-	 * @see newFromSession()
-	 * @see newFromRow()
-	 */
+     * Lightweight constructor for an anonymous user.
+     * Use the User::newFrom* factory functions for other kinds of users.
+     *
+     * @see newFromName()
+     * @see newFromId()
+     * @see newFromConfirmationCode()
+     * @see newFromSession()
+     * @see newFromRow()
+     */
 	public function __construct() {
 		$this->clearInstanceCache( 'defaults' );
 	}
 
 	/**
-	 * @return string
-	 */
+     * @return string
+     */
 	public function __toString() {
 		return $this->getName();
 	}
 
 	/**
-	 * Load the user table data for this object from the source given by mFrom.
-	 */
+     * Load the user table data for this object from the source given by mFrom.
+     */
 	public function load() {
 		if ( $this->mLoadedItems === true ) {
 			return;
@@ -360,9 +360,9 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Load user table data, given mId has already been set.
-	 * @return bool False if the ID does not exist, true otherwise
-	 */
+     * Load user table data, given mId has already been set.
+     * @return bool False if the ID does not exist, true otherwise
+     */
 	public function loadFromId() {
 		if ( $this->mId == 0 ) {
 			$this->loadDefaults();
@@ -387,11 +387,11 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Load user data from shared cache, given mId has already been set.
-	 *
-	 * @return bool false if the ID does not exist or data is invalid, true otherwise
-	 * @since 1.25
-	 */
+     * Load user data from shared cache, given mId has already been set.
+     *
+     * @return bool false if the ID does not exist or data is invalid, true otherwise
+     * @since 1.25
+     */
 	public function loadFromCache() {
 		global $wgMemc;
 
@@ -418,8 +418,8 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Save user data to the shared cache
-	 */
+     * Save user data to the shared cache
+     */
 	public function saveToCache() {
 		$this->load();
 		$this->loadGroups();
@@ -442,21 +442,21 @@ class User implements IDBAccessObject {
 	//@{
 
 	/**
-	 * Static factory method for creation from username.
-	 *
-	 * This is slightly less efficient than newFromId(), so use newFromId() if
-	 * you have both an ID and a name handy.
-	 *
-	 * @param string $name Username, validated by Title::newFromText()
-	 * @param string|bool $validate Validate username. Takes the same parameters as
-	 *  User::getCanonicalName(), except that true is accepted as an alias
-	 *  for 'valid', for BC.
-	 *
-	 * @return User|bool User object, or false if the username is invalid
-	 *  (e.g. if it contains illegal characters or is an IP address). If the
-	 *  username is not present in the database, the result will be a user object
-	 *  with a name, zero user ID and default settings.
-	 */
+     * Static factory method for creation from username.
+     *
+     * This is slightly less efficient than newFromId(), so use newFromId() if
+     * you have both an ID and a name handy.
+     *
+     * @param string $name Username, validated by Title::newFromText()
+     * @param string|bool $validate Validate username. Takes the same parameters as
+     *  User::getCanonicalName(), except that true is accepted as an alias
+     *  for 'valid', for BC.
+     *
+     * @return User|bool User object, or false if the username is invalid
+     *  (e.g. if it contains illegal characters or is an IP address). If the
+     *  username is not present in the database, the result will be a user object
+     *  with a name, zero user ID and default settings.
+     */
 	public static function newFromName( $name, $validate = 'valid' ) {
 		if ( $validate === true ) {
 			$validate = 'valid';
@@ -475,11 +475,11 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Static factory method for creation from a given user ID.
-	 *
-	 * @param int $id Valid user ID
-	 * @return User The corresponding User object
-	 */
+     * Static factory method for creation from a given user ID.
+     *
+     * @param int $id Valid user ID
+     * @return User The corresponding User object
+     */
 	public static function newFromId( $id ) {
 		$u = new User;
 		$u->mId = $id;
@@ -489,15 +489,15 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Factory method to fetch whichever user has a given email confirmation code.
-	 * This code is generated when an account is created or its e-mail address
-	 * has changed.
-	 *
-	 * If the code is invalid or has expired, returns NULL.
-	 *
-	 * @param string $code Confirmation code
-	 * @return User|null
-	 */
+     * Factory method to fetch whichever user has a given email confirmation code.
+     * This code is generated when an account is created or its e-mail address
+     * has changed.
+     *
+     * If the code is invalid or has expired, returns NULL.
+     *
+     * @param string $code Confirmation code
+     * @return User|null
+     */
 	public static function newFromConfirmationCode( $code ) {
 		$dbr = wfGetDB( DB_SLAVE );
 		$id = $dbr->selectField( 'user', 'user_id', array(
@@ -512,12 +512,12 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Create a new user object using data from session or cookies. If the
-	 * login credentials are invalid, the result is an anonymous user.
-	 *
-	 * @param WebRequest|null $request Object to use; $wgRequest will be used if omitted.
-	 * @return User
-	 */
+     * Create a new user object using data from session or cookies. If the
+     * login credentials are invalid, the result is an anonymous user.
+     *
+     * @param WebRequest|null $request Object to use; $wgRequest will be used if omitted.
+     * @return User
+     */
 	public static function newFromSession( WebRequest $request = null ) {
 		$user = new User;
 		$user->mFrom = 'session';
@@ -526,19 +526,19 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Create a new user object from a user row.
-	 * The row should have the following fields from the user table in it:
-	 * - either user_name or user_id to load further data if needed (or both)
-	 * - user_real_name
-	 * - all other fields (email, password, etc.)
-	 * It is useless to provide the remaining fields if either user_id,
-	 * user_name and user_real_name are not provided because the whole row
-	 * will be loaded once more from the database when accessing them.
-	 *
-	 * @param stdClass $row A row from the user table
-	 * @param array $data Further data to load into the object (see User::loadFromRow for valid keys)
-	 * @return User
-	 */
+     * Create a new user object from a user row.
+     * The row should have the following fields from the user table in it:
+     * - either user_name or user_id to load further data if needed (or both)
+     * - user_real_name
+     * - all other fields (email, password, etc.)
+     * It is useless to provide the remaining fields if either user_id,
+     * user_name and user_real_name are not provided because the whole row
+     * will be loaded once more from the database when accessing them.
+     *
+     * @param stdClass $row A row from the user table
+     * @param array $data Further data to load into the object (see User::loadFromRow for valid keys)
+     * @return User
+     */
 	public static function newFromRow( $row, $data = null ) {
 		$user = new User;
 		$user->loadFromRow( $row, $data );
@@ -548,29 +548,29 @@ class User implements IDBAccessObject {
 	//@}
 
 	/**
-	 * Get the username corresponding to a given user ID
-	 * @param int $id User ID
-	 * @return string|bool The corresponding username
-	 */
+     * Get the username corresponding to a given user ID
+     * @param int $id User ID
+     * @return string|bool The corresponding username
+     */
 	public static function whoIs( $id ) {
 		return UserCache::singleton()->getProp( $id, 'name' );
 	}
 
 	/**
-	 * Get the real name of a user given their user ID
-	 *
-	 * @param int $id User ID
-	 * @return string|bool The corresponding user's real name
-	 */
+     * Get the real name of a user given their user ID
+     *
+     * @param int $id User ID
+     * @return string|bool The corresponding user's real name
+     */
 	public static function whoIsReal( $id ) {
 		return UserCache::singleton()->getProp( $id, 'real_name' );
 	}
 
 	/**
-	 * Get database id given a user name
-	 * @param string $name Username
-	 * @return int|null The corresponding user's ID, or null if user is nonexistent
-	 */
+     * Get database id given a user name
+     * @param string $name Username
+     * @return int|null The corresponding user's ID, or null if user is nonexistent
+     */
 	public static function idFromName( $name ) {
 		$nt = Title::makeTitleSafe( NS_USER, $name );
 		if ( is_null( $nt ) ) {
@@ -606,44 +606,44 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Reset the cache used in idFromName(). For use in tests.
-	 */
+     * Reset the cache used in idFromName(). For use in tests.
+     */
 	public static function resetIdByNameCache() {
 		self::$idCacheByName = array();
 	}
 
 	/**
-	 * Does the string match an anonymous IPv4 address?
-	 *
-	 * This function exists for username validation, in order to reject
-	 * usernames which are similar in form to IP addresses. Strings such
-	 * as 300.300.300.300 will return true because it looks like an IP
-	 * address, despite not being strictly valid.
-	 *
-	 * We match "\d{1,3}\.\d{1,3}\.\d{1,3}\.xxx" as an anonymous IP
-	 * address because the usemod software would "cloak" anonymous IP
-	 * addresses like this, if we allowed accounts like this to be created
-	 * new users could get the old edits of these anonymous users.
-	 *
-	 * @param string $name Name to match
-	 * @return bool
-	 */
+     * Does the string match an anonymous IPv4 address?
+     *
+     * This function exists for username validation, in order to reject
+     * usernames which are similar in form to IP addresses. Strings such
+     * as 300.300.300.300 will return true because it looks like an IP
+     * address, despite not being strictly valid.
+     *
+     * We match "\d{1,3}\.\d{1,3}\.\d{1,3}\.xxx" as an anonymous IP
+     * address because the usemod software would "cloak" anonymous IP
+     * addresses like this, if we allowed accounts like this to be created
+     * new users could get the old edits of these anonymous users.
+     *
+     * @param string $name Name to match
+     * @return bool
+     */
 	public static function isIP( $name ) {
 		return preg_match( '/^\d{1,3}\.\d{1,3}\.\d{1,3}\.(?:xxx|\d{1,3})$/', $name )
 			|| IP::isIPv6( $name );
 	}
 
 	/**
-	 * Is the input a valid username?
-	 *
-	 * Checks if the input is a valid username, we don't want an empty string,
-	 * an IP address, anything that contains slashes (would mess up subpages),
-	 * is longer than the maximum allowed username size or doesn't begin with
-	 * a capital letter.
-	 *
-	 * @param string $name Name to match
-	 * @return bool
-	 */
+     * Is the input a valid username?
+     *
+     * Checks if the input is a valid username, we don't want an empty string,
+     * an IP address, anything that contains slashes (would mess up subpages),
+     * is longer than the maximum allowed username size or doesn't begin with
+     * a capital letter.
+     *
+     * @param string $name Name to match
+     * @return bool
+     */
 	public static function isValidUserName( $name ) {
 		global $wgContLang, $wgMaxNameChars;
 
@@ -689,16 +689,16 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Usernames which fail to pass this function will be blocked
-	 * from user login and new account registrations, but may be used
-	 * internally by batch processes.
-	 *
-	 * If an account already exists in this form, login will be blocked
-	 * by a failure to pass this function.
-	 *
-	 * @param string $name Name to match
-	 * @return bool
-	 */
+     * Usernames which fail to pass this function will be blocked
+     * from user login and new account registrations, but may be used
+     * internally by batch processes.
+     *
+     * If an account already exists in this form, login will be blocked
+     * by a failure to pass this function.
+     *
+     * @param string $name Name to match
+     * @return bool
+     */
 	public static function isUsableName( $name ) {
 		global $wgReservedUsernames;
 		// Must be a valid username, obviously ;)
@@ -725,17 +725,17 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Usernames which fail to pass this function will be blocked
-	 * from new account registrations, but may be used internally
-	 * either by batch processes or by user accounts which have
-	 * already been created.
-	 *
-	 * Additional blacklisting may be added here rather than in
-	 * isValidUserName() to avoid disrupting existing accounts.
-	 *
-	 * @param string $name String to match
-	 * @return bool
-	 */
+     * Usernames which fail to pass this function will be blocked
+     * from new account registrations, but may be used internally
+     * either by batch processes or by user accounts which have
+     * already been created.
+     *
+     * Additional blacklisting may be added here rather than in
+     * isValidUserName() to avoid disrupting existing accounts.
+     *
+     * @param string $name String to match
+     * @return bool
+     */
 	public static function isCreatableName( $name ) {
 		global $wgInvalidUsernameCharacters;
 
@@ -761,11 +761,11 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Is the input a valid password for this user?
-	 *
-	 * @param string $password Desired password
-	 * @return bool
-	 */
+     * Is the input a valid password for this user?
+     *
+     * @param string $password Desired password
+     * @return bool
+     */
 	public function isValidPassword( $password ) {
 		//simple boolean wrapper for getPasswordValidity
 		return $this->getPasswordValidity( $password ) === true;
@@ -773,11 +773,11 @@ class User implements IDBAccessObject {
 
 
 	/**
-	 * Given unvalidated password input, return error message on failure.
-	 *
-	 * @param string $password Desired password
-	 * @return bool|string|array True on success, string or array of error message on failure
-	 */
+     * Given unvalidated password input, return error message on failure.
+     *
+     * @param string $password Desired password
+     * @return bool|string|array True on success, string or array of error message on failure
+     */
 	public function getPasswordValidity( $password ) {
 		$result = $this->checkPasswordValidity( $password );
 		if ( $result->isGood() ) {
@@ -798,13 +798,13 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Check if this is a valid password for this user. Status will be good if
-	 * the password is valid, or have an array of error messages if not.
-	 *
-	 * @param string $password Desired password
-	 * @return Status
-	 * @since 1.23
-	 */
+     * Check if this is a valid password for this user. Status will be good if
+     * the password is valid, or have an array of error messages if not.
+     *
+     * @param string $password Desired password
+     * @return Status
+     * @since 1.23
+     */
 	public function checkPasswordValidity( $password ) {
 		global $wgMinimalPasswordLength, $wgContLang;
 
@@ -850,10 +850,10 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Expire a user's password
-	 * @since 1.23
-	 * @param int $ts Optional timestamp to convert, default 0 for the current time
-	 */
+     * Expire a user's password
+     * @since 1.23
+     * @param int $ts Optional timestamp to convert, default 0 for the current time
+     */
 	public function expirePassword( $ts = 0 ) {
 		$this->loadPasswords();
 		$timestamp = wfTimestamp( TS_MW, $ts );
@@ -862,10 +862,10 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Clear the password expiration for a user
-	 * @since 1.23
-	 * @param bool $load Ensure user object is loaded first
-	 */
+     * Clear the password expiration for a user
+     * @since 1.23
+     * @param bool $load Ensure user object is loaded first
+     */
 	public function resetPasswordExpiration( $load = true ) {
 		global $wgPasswordExpirationDays;
 		if ( $load ) {
@@ -884,14 +884,14 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Check if the user's password is expired.
-	 * TODO: Put this and password length into a PasswordPolicy object
-	 * @since 1.23
-	 * @return string|bool The expiration type, or false if not expired
-	 * 	hard: A password change is required to login
-	 *	soft: Allow login, but encourage password change
-	 *	false: Password is not expired
-	 */
+     * Check if the user's password is expired.
+     * TODO: Put this and password length into a PasswordPolicy object
+     * @since 1.23
+     * @return string|bool The expiration type, or false if not expired
+     *  hard: A password change is required to login
+     *	soft: Allow login, but encourage password change
+     *	false: Password is not expired
+     */
 	public function getPasswordExpired() {
 		global $wgPasswordExpireGrace;
 		$expired = false;
@@ -905,30 +905,30 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Get this user's password expiration date. Since this may be using
-	 * the cached User object, we assume that whatever mechanism is setting
-	 * the expiration date is also expiring the User cache.
-	 * @since 1.23
-	 * @return string|bool The datestamp of the expiration, or null if not set
-	 */
+     * Get this user's password expiration date. Since this may be using
+     * the cached User object, we assume that whatever mechanism is setting
+     * the expiration date is also expiring the User cache.
+     * @since 1.23
+     * @return string|bool The datestamp of the expiration, or null if not set
+     */
 	public function getPasswordExpireDate() {
 		$this->load();
 		return $this->mPasswordExpires;
 	}
 
 	/**
-	 * Given unvalidated user input, return a canonical username, or false if
-	 * the username is invalid.
-	 * @param string $name User input
-	 * @param string|bool $validate Type of validation to use:
-	 *   - false        No validation
-	 *   - 'valid'      Valid for batch processes
-	 *   - 'usable'     Valid for batch processes and login
-	 *   - 'creatable'  Valid for batch processes, login and account creation
-	 *
-	 * @throws MWException
-	 * @return bool|string
-	 */
+     * Given unvalidated user input, return a canonical username, or false if
+     * the username is invalid.
+     * @param string $name User input
+     * @param string|bool $validate Type of validation to use:
+     *   - false        No validation
+     *   - 'valid'      Valid for batch processes
+     *   - 'usable'     Valid for batch processes and login
+     *   - 'creatable'  Valid for batch processes, login and account creation
+     *
+     * @throws MWException
+     * @return bool|string
+     */
 	public static function getCanonicalName( $name, $validate = 'valid' ) {
 		// Force usernames to capital
 		global $wgContLang;
@@ -979,13 +979,13 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Count the number of edits of a user
-	 *
-	 * @param int $uid User ID to check
-	 * @return int The user's edit count
-	 *
-	 * @deprecated since 1.21 in favour of User::getEditCount
-	 */
+     * Count the number of edits of a user
+     *
+     * @param int $uid User ID to check
+     * @return int The user's edit count
+     *
+     * @deprecated since 1.21 in favour of User::getEditCount
+     */
 	public static function edits( $uid ) {
 		wfDeprecated( __METHOD__, '1.21' );
 		$user = self::newFromId( $uid );
@@ -993,10 +993,10 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Return a random password.
-	 *
-	 * @return string New random password
-	 */
+     * Return a random password.
+     *
+     * @return string New random password
+     */
 	public static function randomPassword() {
 		global $wgMinimalPasswordLength;
 		// Decide the final password length based on our min password length,
@@ -1011,13 +1011,13 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Set cached properties to default.
-	 *
-	 * @note This no longer clears uncached lazy-initialised properties;
-	 *       the constructor does that instead.
-	 *
-	 * @param string|bool $name
-	 */
+     * Set cached properties to default.
+     *
+     * @note This no longer clears uncached lazy-initialised properties;
+     *       the constructor does that instead.
+     *
+     * @param string|bool $name
+     */
 	public function loadDefaults( $name = false ) {
 		wfProfileIn( __METHOD__ );
 
@@ -1055,27 +1055,27 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Return whether an item has been loaded.
-	 *
-	 * @param string $item Item to check. Current possibilities:
-	 *   - id
-	 *   - name
-	 *   - realname
-	 * @param string $all 'all' to check if the whole object has been loaded
-	 *   or any other string to check if only the item is available (e.g.
-	 *   for optimisation)
-	 * @return bool
-	 */
+     * Return whether an item has been loaded.
+     *
+     * @param string $item Item to check. Current possibilities:
+     *   - id
+     *   - name
+     *   - realname
+     * @param string $all 'all' to check if the whole object has been loaded
+     *   or any other string to check if only the item is available (e.g.
+     *   for optimisation)
+     * @return bool
+     */
 	public function isItemLoaded( $item, $all = 'all' ) {
 		return ( $this->mLoadedItems === true && $all === 'all' ) ||
 			( isset( $this->mLoadedItems[$item] ) && $this->mLoadedItems[$item] === true );
 	}
 
 	/**
-	 * Set that an item has been loaded
-	 *
-	 * @param string $item
-	 */
+     * Set that an item has been loaded
+     *
+     * @param string $item
+     */
 	protected function setItemLoaded( $item ) {
 		if ( is_array( $this->mLoadedItems ) ) {
 			$this->mLoadedItems[$item] = true;
@@ -1083,9 +1083,9 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Load user data from the session or login cookie.
-	 * @return bool True if the user is logged in, false otherwise.
-	 */
+     * Load user data from the session or login cookie.
+     * @return bool True if the user is logged in, false otherwise.
+     */
 	private function loadFromSession() {
 		$result = null;
 		Hooks::run( 'UserLoadFromSession', array( $this, &$result ) );
@@ -1163,12 +1163,12 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Load user and user_group data from the database.
-	 * $this->mId must be set, this is how the user is identified.
-	 *
-	 * @param int $flags Supports User::READ_LOCKING
-	 * @return bool True if the user exists, false if the user is anonymous
-	 */
+     * Load user and user_group data from the database.
+     * $this->mId must be set, this is how the user is identified.
+     *
+     * @param int $flags Supports User::READ_LOCKING
+     * @return bool True if the user exists, false if the user is anonymous
+     */
 	public function loadFromDatabase( $flags = 0 ) {
 		// Paranoia
 		$this->mId = intval( $this->mId );
@@ -1207,14 +1207,14 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Initialize this object from a row from the user table.
-	 *
-	 * @param stdClass $row Row from the user table to load.
-	 * @param array $data Further user data to load into the object
-	 *
-	 *	user_groups		Array with groups out of the user_groups table
-	 *	user_properties		Array with properties out of the user_properties table
-	 */
+     * Initialize this object from a row from the user table.
+     *
+     * @param stdClass $row Row from the user table to load.
+     * @param array $data Further user data to load into the object
+     *
+     *	user_groups		Array with groups out of the user_groups table
+     *	user_properties		Array with properties out of the user_properties table
+     */
 	public function loadFromRow( $row, $data = null ) {
 		$all = true;
 		$passwordFactory = self::getPasswordFactory();
@@ -1305,10 +1305,10 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Load the data for this user object from another user object.
-	 *
-	 * @param User $user
-	 */
+     * Load the data for this user object from another user object.
+     *
+     * @param User $user
+     */
 	protected function loadFromUserObject( $user ) {
 		$user->load();
 		$user->loadGroups();
@@ -1319,8 +1319,8 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Load the groups from the database if they aren't already loaded.
-	 */
+     * Load the groups from the database if they aren't already loaded.
+     */
 	private function loadGroups() {
 		if ( is_null( $this->mGroups ) ) {
 			$dbr = wfGetDB( DB_MASTER );
@@ -1336,14 +1336,14 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Load the user's password hashes from the database
-	 *
-	 * This is usually called in a scenario where the actual User object was
-	 * loaded from the cache, and then password comparison needs to be performed.
-	 * Password hashes are not stored in memcached.
-	 *
-	 * @since 1.24
-	 */
+     * Load the user's password hashes from the database
+     *
+     * This is usually called in a scenario where the actual User object was
+     * loaded from the cache, and then password comparison needs to be performed.
+     * Password hashes are not stored in memcached.
+     *
+     * @since 1.24
+     */
 	private function loadPasswords() {
 		if ( $this->getId() !== 0 && ( $this->mPassword === null || $this->mNewpassword === null ) ) {
 			$this->loadFromRow( wfGetDB( DB_MASTER )->selectRow(
@@ -1356,19 +1356,19 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Add the user to the group if he/she meets given criteria.
-	 *
-	 * Contrary to autopromotion by \ref $wgAutopromote, the group will be
-	 *   possible to remove manually via Special:UserRights. In such case it
-	 *   will not be re-added automatically. The user will also not lose the
-	 *   group if they no longer meet the criteria.
-	 *
-	 * @param string $event Key in $wgAutopromoteOnce (each one has groups/criteria)
-	 *
-	 * @return array Array of groups the user has been promoted to.
-	 *
-	 * @see $wgAutopromoteOnce
-	 */
+     * Add the user to the group if he/she meets given criteria.
+     *
+     * Contrary to autopromotion by \ref $wgAutopromote, the group will be
+     *   possible to remove manually via Special:UserRights. In such case it
+     *   will not be re-added automatically. The user will also not lose the
+     *   group if they no longer meet the criteria.
+     *
+     * @param string $event Key in $wgAutopromoteOnce (each one has groups/criteria)
+     *
+     * @return array Array of groups the user has been promoted to.
+     *
+     * @see $wgAutopromoteOnce
+     */
 	public function addAutopromoteOnceGroups( $event ) {
 		global $wgAutopromoteOnceLogInRC, $wgAuth;
 
@@ -1403,12 +1403,12 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Clear various cached data stored in this object. The cache of the user table
-	 * data (i.e. self::$mCacheVars) is not cleared unless $reloadFrom is given.
-	 *
-	 * @param bool|string $reloadFrom Reload user and user_groups table data from a
-	 *   given source. May be "name", "id", "defaults", "session", or false for no reload.
-	 */
+     * Clear various cached data stored in this object. The cache of the user table
+     * data (i.e. self::$mCacheVars) is not cleared unless $reloadFrom is given.
+     *
+     * @param bool|string $reloadFrom Reload user and user_groups table data from a
+     *   given source. May be "name", "id", "defaults", "session", or false for no reload.
+     */
 	public function clearInstanceCache( $reloadFrom = false ) {
 		$this->mNewtalk = -1;
 		$this->mDatePreference = null;
@@ -1429,11 +1429,11 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Combine the language default options with any site-specific options
-	 * and add the default language variants.
-	 *
-	 * @return array Array of String options
-	 */
+     * Combine the language default options with any site-specific options
+     * and add the default language variants.
+     *
+     * @return array Array of String options
+     */
 	public static function getDefaultOptions() {
 		global $wgNamespacesToBeSearchedDefault, $wgDefaultUserOptions, $wgContLang, $wgDefaultSkin;
 
@@ -1462,11 +1462,11 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Get a given default option value.
-	 *
-	 * @param string $opt Name of option to retrieve
-	 * @return string Default option value
-	 */
+     * Get a given default option value.
+     *
+     * @param string $opt Name of option to retrieve
+     * @return string Default option value
+     */
 	public static function getDefaultOption( $opt ) {
 		$defOpts = self::getDefaultOptions();
 		if ( isset( $defOpts[$opt] ) ) {
@@ -1477,11 +1477,11 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Get blocking information
-	 * @param bool $bFromSlave Whether to check the slave database first.
-	 *   To improve performance, non-critical checks are done against slaves.
-	 *   Check when actually saving should be done against master.
-	 */
+     * Get blocking information
+     * @param bool $bFromSlave Whether to check the slave database first.
+     *   To improve performance, non-critical checks are done against slaves.
+     *   Check when actually saving should be done against master.
+     */
 	private function getBlockedStatus( $bFromSlave = true ) {
 		global $wgProxyWhitelist, $wgUser, $wgApplyIpBlocksToXff;
 
@@ -1568,12 +1568,12 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Whether the given IP is in a DNS blacklist.
-	 *
-	 * @param string $ip IP to check
-	 * @param bool $checkWhitelist Whether to check the whitelist first
-	 * @return bool True if blacklisted.
-	 */
+     * Whether the given IP is in a DNS blacklist.
+     *
+     * @param string $ip IP to check
+     * @param bool $checkWhitelist Whether to check the whitelist first
+     * @return bool True if blacklisted.
+     */
 	public function isDnsBlacklisted( $ip, $checkWhitelist = false ) {
 		global $wgEnableDnsBlacklist, $wgDnsBlacklistUrls, $wgProxyWhitelist;
 
@@ -1589,12 +1589,12 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Whether the given IP is in a given DNS blacklist.
-	 *
-	 * @param string $ip IP to check
-	 * @param string|array $bases Array of Strings: URL of the DNS blacklist
-	 * @return bool True if blacklisted.
-	 */
+     * Whether the given IP is in a given DNS blacklist.
+     *
+     * @param string $ip IP to check
+     * @param string|array $bases Array of Strings: URL of the DNS blacklist
+     * @return bool True if blacklisted.
+     */
 	public function inDnsBlacklist( $ip, $bases ) {
 		wfProfileIn( __METHOD__ );
 
@@ -1636,12 +1636,12 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Check if an IP address is in the local proxy list
-	 *
-	 * @param string $ip
-	 *
-	 * @return bool
-	 */
+     * Check if an IP address is in the local proxy list
+     *
+     * @param string $ip
+     *
+     * @return bool
+     */
 	public static function isLocallyBlockedProxy( $ip ) {
 		global $wgProxyList;
 
@@ -1670,10 +1670,10 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Is this user subject to rate limiting?
-	 *
-	 * @return bool True if rate limited
-	 */
+     * Is this user subject to rate limiting?
+     *
+     * @return bool True if rate limited
+     */
 	public function isPingLimitable() {
 		global $wgRateLimitsExcludedIPs;
 		if ( in_array( $this->getRequest()->getIP(), $wgRateLimitsExcludedIPs ) ) {
@@ -1686,76 +1686,113 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Primitive rate limits: enforce maximum actions per time period
-	 * to put a brake on flooding.
-	 *
-	 * The method generates both a generic profiling point and a per action one
-	 * (suffix being "-$action".
-	 *
-	 * @note When using a shared cache like memcached, IP-address
-	 * last-hit counters will be shared across wikis.
-	 *
-	 * @param string $action Action to enforce; 'edit' if unspecified
-	 * @param int $incrBy Positive amount to increment counter by [defaults to 1]
-	 * @return bool True if a rate limiter was tripped
-	 */
+     * Primitive rate limits: enforce maximum actions per time period
+     * to put a brake on flooding.
+     *
+     * The method generates both a generic profiling point and a per action one
+     * (suffix being "-$action".
+     *
+     * @note When using a shared cache like memcached, IP-address
+     * last-hit counters will be shared across wikis.
+     *
+     * @param string $action Action to enforce; 'edit' if unspecified
+     * @param int $incrBy Positive amount to increment counter by [defaults to 1]
+     *
+     * @return bool True if a rate limiter was tripped
+     */
 	public function pingLimiter( $action = 'edit', $incrBy = 1 ) {
+		global $wgMemc, $wgRateLimitLog, $wgRateLimits;
+
 		// Call the 'PingLimiter' hook
 		$result = false;
 		if ( !Hooks::run( 'PingLimiter', array( &$this, $action, &$result, $incrBy ) ) ) {
 			return $result;
 		}
 
-		global $wgRateLimits;
-		if ( !isset( $wgRateLimits[$action] ) ) {
+		// Shortcut if no rate limits are set or if user is exempt
+		if ( !isset( $wgRateLimits[$action] ) || !$this->isPingLimitable() ) {
 			return false;
 		}
 
-		// Some groups shouldn't trigger the ping limiter, ever
-		if ( !$this->isPingLimitable() ) {
-			return false;
-		}
-
-		global $wgMemc;
 		wfProfileIn( __METHOD__ );
 		wfProfileIn( __METHOD__ . '-' . $action );
 
-		$limits = $wgRateLimits[$action];
+        // Get limits for action
 		$keys = array();
-		$id = $this->getId();
-		$userLimit = false;
+		$limits = $wgRateLimits[$action];
+        // Set defaults of null to avoid isset() calls
+		$limits += array(
+			'user' => null,
+			'anon' => null,
+			'ip' => null,
+			'ip-all' => null,
+			'subnet' => null,
+			'subnet-all' => null,
+		);
 
-		if ( isset( $limits['anon'] ) && $id == 0 ) {
+		// Fetch some common information
+		$id = $this->getId();
+		$ip = $this->getRequest()->getIP();
+		$newbie = $this->isNewbie();
+		$anon = $this->isAnon();
+
+		// Per-user throttling
+		$userLimit = false;
+		if ( !$anon && isset( $limits['user'] ) && $id != 0 ) {
+			$userLimit = $limits['user'];
+		}
+
+		// Anonymous throttling
+		if ( $anon && isset( $limits['anon'] ) ) {
 			$keys[wfMemcKey( 'limiter', $action, 'anon' )] = $limits['anon'];
 		}
 
-		if ( isset( $limits['user'] ) && $id != 0 ) {
-			$userLimit = $limits['user'];
+		// Non-anonymous newbie throttling
+		if ( $newbie && !$anon && isset( $limits['newbie'] ) ) {
+			$keys[wfMemcKey( 'limiter', $action, 'user', $id )] = $limits['newbie'];
 		}
-		if ( $this->isNewbie() ) {
-			if ( isset( $limits['newbie'] ) && $id != 0 ) {
-				$keys[wfMemcKey( 'limiter', $action, 'user', $id )] = $limits['newbie'];
+
+		// IP throttling: both for newbies and for all users
+		if ( $newbie && isset( $limits['ip'] ) ) {
+			$ipLimit = min(
+				$limits['ip-all'] ?: INF,
+				$limits['ip'] ?: INF
+			);
+			$keys[wfMemcKey('mediawiki', 'limiter', $action, 'ip', $ip)] = $ipLimit;
+		} elseif ( isset( $limits['ip-all'] ) ) {
+			$keys[wfMemcKey('mediawiki', 'limiter', $action, 'ip', $ip)] = $limits['ip-all'];
+		}
+
+		// Subnet throttling: both for newbies and for all users
+		if ( isset( $limits['subnet-all'] ) || isset( $limits['subnet'] ) ) {
+            // Get subset from IP
+			$subnet = false;
+			if ( IP::isIPv6( $ip ) ) {
+				$parts = IP::parseRange( "$ip/64" );
+				$subnet = $parts[0];
+			} elseif ( IP::isIPv4( $ip ) ) {
+				$parts = IP::parseRange( "$ip/24" );
+				$subnet = $parts[0];
 			}
-			if ( isset( $limits['ip'] ) ) {
-				$ip = $this->getRequest()->getIP();
-				$keys["mediawiki:limiter:$action:ip:$ip"] = $limits['ip'];
-			}
-			if ( isset( $limits['subnet'] ) ) {
-				$ip = $this->getRequest()->getIP();
-				$matches = array();
-				$subnet = false;
-				if ( IP::isIPv6( $ip ) ) {
-					$parts = IP::parseRange( "$ip/64" );
-					$subnet = $parts[0];
-				} elseif ( preg_match( '/^(\d+\.\d+\.\d+)\.\d+$/', $ip, $matches ) ) {
-					// IPv4
-					$subnet = $matches[1];
-				}
-				if ( $subnet !== false ) {
-					$keys["mediawiki:limiter:$action:subnet:$subnet"] = $limits['subnet'];
+
+			if ( $subnet !== false ) {
+                // Check newbie and non-newbie restrictions separately
+				if ( $newbie && isset( $limits['subnet'] ) ) {
+                    // Choose lowest, i.e., most restrictive rate limit that applies
+					$subnetLimit = min(
+						$limits['subnet-all'] ?: INF,
+						$limits['subnet'] ?: INF
+					);
+					$keys[wfMemcKey('mediawiki', 'limiter', $action, 'subnet', $subnet)]
+                        = $subnetLimit;
+				} elseif ( isset( $limits['subnet-all'] ) ) {
+                    // Non-newbies only have one applicable limit
+					$keys[wfMemcKey('mediawiki', 'limiter', $action, 'subnet', $subnet)]
+                        = $limits['subnet-all'];
 				}
 			}
 		}
+
 		// Check for group-specific permissions
 		// If more than one group applies, use the group with the highest limit
 		foreach ( $this->getGroups() as $group ) {
@@ -1774,65 +1811,67 @@ class User implements IDBAccessObject {
 			$keys[wfMemcKey( 'limiter', $action, 'user', $id )] = $userLimit;
 		}
 
+        // Finally, check the throttles
 		$triggered = false;
+		$memcValues = $wgMemc->getMulti( array_keys( $keys ) );
 		foreach ( $keys as $key => $limit ) {
 			list( $max, $period ) = $limit;
 			$summary = "(limit $max in {$period}s)";
-			$count = $wgMemc->get( $key );
-			// Already pinged?
-			if ( $count ) {
-				if ( $count >= $max ) {
-					wfDebugLog( 'ratelimit', "User '{$this->getName()}' " .
-						"(IP {$this->getRequest()->getIP()}) tripped $key at $count $summary" );
-					$triggered = true;
-				} else {
-					wfDebug( __METHOD__ . ": ok. $key at $count $summary\n" );
-				}
-			} else {
+
+			// Set an initial value and expiry if key does not exist
+			if ( !isset( $memcValues[$key] ) ) {
 				wfDebug( __METHOD__ . ": adding record for $key $summary\n" );
-				if ( $incrBy > 0 ) {
-					$wgMemc->add( $key, 0, intval( $period ) ); // first ping
-				}
+				$wgMemc->add( $key, 0, (int)$period );
+				$memcValues[$key] = 0;
 			}
-			if ( $incrBy > 0 ) {
-				$wgMemc->incr( $key, $incrBy );
+
+			// Check if throttled
+			if ( $memcValues[$key] >= $max ) {
+                wfDebugLog( 'ratelimit', "User '{$this->getName()}' " .
+                            "(IP {$this->getRequest()->getIP()}) tripped $key at $count $summary" );
+                $triggered = true;
+			} else {
+				wfDebug( __METHOD__ . ": ok. $key at {$memcValues[$key]} $summary\n" );
 			}
+
+			$wgMemc->incr( $key, $incrBy );
 		}
 
 		wfProfileOut( __METHOD__ . '-' . $action );
 		wfProfileOut( __METHOD__ );
+
 		return $triggered;
 	}
 
 	/**
-	 * Check if user is blocked
-	 *
-	 * @param bool $bFromSlave Whether to check the slave database instead of
-	 *   the master. Hacked from false due to horrible probs on site.
-	 * @return bool True if blocked, false otherwise
-	 */
+     * Check if user is blocked
+     *
+     * @param bool $bFromSlave Whether to check the slave database instead of
+     *   the master. Hacked from false due to horrible probs on site.
+     * @return bool True if blocked, false otherwise
+     */
 	public function isBlocked( $bFromSlave = true ) {
 		return $this->getBlock( $bFromSlave ) instanceof Block && $this->getBlock()->prevents( 'edit' );
 	}
 
 	/**
-	 * Get the block affecting the user, or null if the user is not blocked
-	 *
-	 * @param bool $bFromSlave Whether to check the slave database instead of the master
-	 * @return Block|null
-	 */
+     * Get the block affecting the user, or null if the user is not blocked
+     *
+     * @param bool $bFromSlave Whether to check the slave database instead of the master
+     * @return Block|null
+     */
 	public function getBlock( $bFromSlave = true ) {
 		$this->getBlockedStatus( $bFromSlave );
 		return $this->mBlock instanceof Block ? $this->mBlock : null;
 	}
 
 	/**
-	 * Check if user is blocked from editing a particular article
-	 *
-	 * @param Title $title Title to check
-	 * @param bool $bFromSlave Whether to check the slave database instead of the master
-	 * @return bool
-	 */
+     * Check if user is blocked from editing a particular article
+     *
+     * @param Title $title Title to check
+     * @param bool $bFromSlave Whether to check the slave database instead of the master
+     * @return bool
+     */
 	public function isBlockedFrom( $title, $bFromSlave = false ) {
 		global $wgBlockAllowsUTEdit;
 		wfProfileIn( __METHOD__ );
@@ -1853,40 +1892,40 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * If user is blocked, return the name of the user who placed the block
-	 * @return string Name of blocker
-	 */
+     * If user is blocked, return the name of the user who placed the block
+     * @return string Name of blocker
+     */
 	public function blockedBy() {
 		$this->getBlockedStatus();
 		return $this->mBlockedby;
 	}
 
 	/**
-	 * If user is blocked, return the specified reason for the block
-	 * @return string Blocking reason
-	 */
+     * If user is blocked, return the specified reason for the block
+     * @return string Blocking reason
+     */
 	public function blockedFor() {
 		$this->getBlockedStatus();
 		return $this->mBlockreason;
 	}
 
 	/**
-	 * If user is blocked, return the ID for the block
-	 * @return int Block ID
-	 */
+     * If user is blocked, return the ID for the block
+     * @return int Block ID
+     */
 	public function getBlockId() {
 		$this->getBlockedStatus();
 		return ( $this->mBlock ? $this->mBlock->getId() : false );
 	}
 
 	/**
-	 * Check if user is blocked on all wikis.
-	 * Do not use for actual edit permission checks!
-	 * This is intended for quick UI checks.
-	 *
-	 * @param string $ip IP address, uses current client if none given
-	 * @return bool True if blocked, false otherwise
-	 */
+     * Check if user is blocked on all wikis.
+     * Do not use for actual edit permission checks!
+     * This is intended for quick UI checks.
+     *
+     * @param string $ip IP address, uses current client if none given
+     * @return bool True if blocked, false otherwise
+     */
 	public function isBlockedGlobally( $ip = '' ) {
 		if ( $this->mBlockedGlobally !== null ) {
 			return $this->mBlockedGlobally;
@@ -1904,10 +1943,10 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Check if user account is locked
-	 *
-	 * @return bool True if locked, false otherwise
-	 */
+     * Check if user account is locked
+     *
+     * @return bool True if locked, false otherwise
+     */
 	public function isLocked() {
 		if ( $this->mLocked !== null ) {
 			return $this->mLocked;
@@ -1919,10 +1958,10 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Check if user account is hidden
-	 *
-	 * @return bool True if hidden, false otherwise
-	 */
+     * Check if user account is hidden
+     *
+     * @return bool True if hidden, false otherwise
+     */
 	public function isHidden() {
 		if ( $this->mHideName !== null ) {
 			return $this->mHideName;
@@ -1937,9 +1976,9 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Get the user's ID.
-	 * @return int The user's ID; 0 if the user is anonymous or nonexistent
-	 */
+     * Get the user's ID.
+     * @return int The user's ID; 0 if the user is anonymous or nonexistent
+     */
 	public function getId() {
 		if ( $this->mId === null && $this->mName !== null && User::isIP( $this->mName ) ) {
 			// Special case, we know the user is anonymous
@@ -1952,18 +1991,18 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Set the user and reload all fields according to a given ID
-	 * @param int $v User ID to reload
-	 */
+     * Set the user and reload all fields according to a given ID
+     * @param int $v User ID to reload
+     */
 	public function setId( $v ) {
 		$this->mId = $v;
 		$this->clearInstanceCache( 'id' );
 	}
 
 	/**
-	 * Get the user name, or the IP of an anonymous user
-	 * @return string User's name or IP address
-	 */
+     * Get the user name, or the IP of an anonymous user
+     * @return string User's name or IP address
+     */
 	public function getName() {
 		if ( $this->isItemLoaded( 'name', 'only' ) ) {
 			// Special case optimisation
@@ -1979,35 +2018,35 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Set the user name.
-	 *
-	 * This does not reload fields from the database according to the given
-	 * name. Rather, it is used to create a temporary "nonexistent user" for
-	 * later addition to the database. It can also be used to set the IP
-	 * address for an anonymous user to something other than the current
-	 * remote IP.
-	 *
-	 * @note User::newFromName() has roughly the same function, when the named user
-	 * does not exist.
-	 * @param string $str New user name to set
-	 */
+     * Set the user name.
+     *
+     * This does not reload fields from the database according to the given
+     * name. Rather, it is used to create a temporary "nonexistent user" for
+     * later addition to the database. It can also be used to set the IP
+     * address for an anonymous user to something other than the current
+     * remote IP.
+     *
+     * @note User::newFromName() has roughly the same function, when the named user
+     * does not exist.
+     * @param string $str New user name to set
+     */
 	public function setName( $str ) {
 		$this->load();
 		$this->mName = $str;
 	}
 
 	/**
-	 * Get the user's name escaped by underscores.
-	 * @return string Username escaped by underscores.
-	 */
+     * Get the user's name escaped by underscores.
+     * @return string Username escaped by underscores.
+     */
 	public function getTitleKey() {
 		return str_replace( ' ', '_', $this->getName() );
 	}
 
 	/**
-	 * Check if the user has new messages.
-	 * @return bool True if the user has new messages
-	 */
+     * Check if the user has new messages.
+     * @return bool True if the user has new messages
+     */
 	public function getNewtalk() {
 		$this->load();
 
@@ -2044,18 +2083,18 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Return the data needed to construct links for new talk page message
-	 * alerts. If there are new messages, this will return an associative array
-	 * with the following data:
-	 *     wiki: The database name of the wiki
-	 *     link: Root-relative link to the user's talk page
-	 *     rev: The last talk page revision that the user has seen or null. This
-	 *         is useful for building diff links.
-	 * If there are no new messages, it returns an empty array.
-	 * @note This function was designed to accomodate multiple talk pages, but
-	 * currently only returns a single link and revision.
-	 * @return array
-	 */
+     * Return the data needed to construct links for new talk page message
+     * alerts. If there are new messages, this will return an associative array
+     * with the following data:
+     *     wiki: The database name of the wiki
+     *     link: Root-relative link to the user's talk page
+     *     rev: The last talk page revision that the user has seen or null. This
+     *         is useful for building diff links.
+     * If there are no new messages, it returns an empty array.
+     * @note This function was designed to accomodate multiple talk pages, but
+     * currently only returns a single link and revision.
+     * @return array
+     */
 	public function getNewMessageLinks() {
 		$talks = array();
 		if ( !Hooks::run( 'UserRetrieveNewTalks', array( &$this, &$talks ) ) ) {
@@ -2075,10 +2114,10 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Get the revision ID for the last talk page revision viewed by the talk
-	 * page owner.
-	 * @return int|null Revision ID or null
-	 */
+     * Get the revision ID for the last talk page revision viewed by the talk
+     * page owner.
+     * @return int|null Revision ID or null
+     */
 	public function getNewMessageRevisionId() {
 		$newMessageRevisionId = null;
 		$newMessageLinks = $this->getNewMessageLinks();
@@ -2098,14 +2137,14 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Internal uncached check for new messages
-	 *
-	 * @see getNewtalk()
-	 * @param string $field 'user_ip' for anonymous users, 'user_id' otherwise
-	 * @param string|int $id User's IP address for anonymous users, User ID otherwise
-	 * @param bool $fromMaster True to fetch from the master, false for a slave
-	 * @return bool True if the user has new messages
-	 */
+     * Internal uncached check for new messages
+     *
+     * @see getNewtalk()
+     * @param string $field 'user_ip' for anonymous users, 'user_id' otherwise
+     * @param string|int $id User's IP address for anonymous users, User ID otherwise
+     * @param bool $fromMaster True to fetch from the master, false for a slave
+     * @return bool True if the user has new messages
+     */
 	protected function checkNewtalk( $field, $id, $fromMaster = false ) {
 		if ( $fromMaster ) {
 			$db = wfGetDB( DB_MASTER );
@@ -2118,12 +2157,12 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Add or update the new messages flag
-	 * @param string $field 'user_ip' for anonymous users, 'user_id' otherwise
-	 * @param string|int $id User's IP address for anonymous users, User ID otherwise
-	 * @param Revision|null $curRev New, as yet unseen revision of the user talk page. Ignored if null.
-	 * @return bool True if successful, false otherwise
-	 */
+     * Add or update the new messages flag
+     * @param string $field 'user_ip' for anonymous users, 'user_id' otherwise
+     * @param string|int $id User's IP address for anonymous users, User ID otherwise
+     * @param Revision|null $curRev New, as yet unseen revision of the user talk page. Ignored if null.
+     * @return bool True if successful, false otherwise
+     */
 	protected function updateNewtalk( $field, $id, $curRev = null ) {
 		// Get timestamp of the talk page revision prior to the current one
 		$prevRev = $curRev ? $curRev->getPrevious() : false;
@@ -2144,11 +2183,11 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Clear the new messages flag for the given user
-	 * @param string $field 'user_ip' for anonymous users, 'user_id' otherwise
-	 * @param string|int $id User's IP address for anonymous users, User ID otherwise
-	 * @return bool True if successful, false otherwise
-	 */
+     * Clear the new messages flag for the given user
+     * @param string $field 'user_ip' for anonymous users, 'user_id' otherwise
+     * @param string|int $id User's IP address for anonymous users, User ID otherwise
+     * @return bool True if successful, false otherwise
+     */
 	protected function deleteNewtalk( $field, $id ) {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->delete( 'user_newtalk',
@@ -2164,11 +2203,11 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Update the 'You have new messages!' status.
-	 * @param bool $val Whether the user has new messages
-	 * @param Revision $curRev New, as yet unseen revision of the user talk
-	 *   page. Ignored if null or !$val.
-	 */
+     * Update the 'You have new messages!' status.
+     * @param bool $val Whether the user has new messages
+     * @param Revision $curRev New, as yet unseen revision of the user talk
+     *   page. Ignored if null or !$val.
+     */
 	public function setNewtalk( $val, $curRev = null ) {
 		if ( wfReadOnly() ) {
 			return;
@@ -2204,22 +2243,22 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Generate a current or new-future timestamp to be stored in the
-	 * user_touched field when we update things.
-	 * @return string Timestamp in TS_MW format
-	 */
+     * Generate a current or new-future timestamp to be stored in the
+     * user_touched field when we update things.
+     * @return string Timestamp in TS_MW format
+     */
 	private static function newTouchedTimestamp() {
 		global $wgClockSkewFudge;
 		return wfTimestamp( TS_MW, time() + $wgClockSkewFudge );
 	}
 
 	/**
-	 * Clear user data from memcached.
-	 * Use after applying fun updates to the database; caller's
-	 * responsibility to update user_touched if appropriate.
-	 *
-	 * Called implicitly from invalidateCache() and saveSettings().
-	 */
+     * Clear user data from memcached.
+     * Use after applying fun updates to the database; caller's
+     * responsibility to update user_touched if appropriate.
+     *
+     * Called implicitly from invalidateCache() and saveSettings().
+     */
 	public function clearSharedCache() {
 		$this->load();
 		if ( $this->mId ) {
@@ -2229,10 +2268,10 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Immediately touch the user data cache for this account.
-	 * Updates user_touched field, and removes account data from memcached
-	 * for reload on the next hit.
-	 */
+     * Immediately touch the user data cache for this account.
+     * Updates user_touched field, and removes account data from memcached
+     * for reload on the next hit.
+     */
 	public function invalidateCache() {
 		if ( wfReadOnly() ) {
 			return;
@@ -2263,28 +2302,28 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Validate the cache for this account.
-	 * @param string $timestamp A timestamp in TS_MW format
-	 * @return bool
-	 */
+     * Validate the cache for this account.
+     * @param string $timestamp A timestamp in TS_MW format
+     * @return bool
+     */
 	public function validateCache( $timestamp ) {
 		$this->load();
 		return ( $timestamp >= $this->mTouched );
 	}
 
 	/**
-	 * Get the user touched timestamp
-	 * @return string Timestamp
-	 */
+     * Get the user touched timestamp
+     * @return string Timestamp
+     */
 	public function getTouched() {
 		$this->load();
 		return $this->mTouched;
 	}
 
 	/**
-	 * @return Password
-	 * @since 1.24
-	 */
+     * @return Password
+     * @since 1.24
+     */
 	public function getPassword() {
 		$this->loadPasswords();
 
@@ -2292,9 +2331,9 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * @return Password
-	 * @since 1.24
-	 */
+     * @return Password
+     * @since 1.24
+     */
 	public function getTemporaryPassword() {
 		$this->loadPasswords();
 
@@ -2302,21 +2341,21 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Set the password and reset the random token.
-	 * Calls through to authentication plugin if necessary;
-	 * will have no effect if the auth plugin refuses to
-	 * pass the change through or if the legal password
-	 * checks fail.
-	 *
-	 * As a special case, setting the password to null
-	 * wipes it, so the account cannot be logged in until
-	 * a new password is set, for instance via e-mail.
-	 *
-	 * @param string $str New password to set
-	 * @throws PasswordError On failure
-	 *
-	 * @return bool
-	 */
+     * Set the password and reset the random token.
+     * Calls through to authentication plugin if necessary;
+     * will have no effect if the auth plugin refuses to
+     * pass the change through or if the legal password
+     * checks fail.
+     *
+     * As a special case, setting the password to null
+     * wipes it, so the account cannot be logged in until
+     * a new password is set, for instance via e-mail.
+     *
+     * @param string $str New password to set
+     * @throws PasswordError On failure
+     *
+     * @return bool
+     */
 	public function setPassword( $str ) {
 		global $wgAuth;
 
@@ -2351,12 +2390,12 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Set the password and reset the random token unconditionally.
-	 *
-	 * @param string|null $str New password to set or null to set an invalid
-	 *  password hash meaning that the user will not be able to log in
-	 *  through the web interface.
-	 */
+     * Set the password and reset the random token unconditionally.
+     *
+     * @param string|null $str New password to set or null to set an invalid
+     *  password hash meaning that the user will not be able to log in
+     *  through the web interface.
+     */
 	public function setInternalPassword( $str ) {
 		$this->setToken();
 
@@ -2368,11 +2407,11 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Get the user's current token.
-	 * @param bool $forceCreation Force the generation of a new token if the
-	 *   user doesn't have one (default=true for backwards compatibility).
-	 * @return string Token
-	 */
+     * Get the user's current token.
+     * @param bool $forceCreation Force the generation of a new token if the
+     *   user doesn't have one (default=true for backwards compatibility).
+     * @return string Token
+     */
 	public function getToken( $forceCreation = true ) {
 		$this->load();
 		if ( !$this->mToken && $forceCreation ) {
@@ -2382,11 +2421,11 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Set the random token (used for persistent authentication)
-	 * Called from loadDefaults() among other places.
-	 *
-	 * @param string|bool $token If specified, set the token to this value
-	 */
+     * Set the random token (used for persistent authentication)
+     * Called from loadDefaults() among other places.
+     *
+     * @param string|bool $token If specified, set the token to this value
+     */
 	public function setToken( $token = false ) {
 		$this->load();
 		if ( !$token ) {
@@ -2397,12 +2436,12 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Set the password for a password reminder or new account email
-	 *
-	 * @param string $str New password to set or null to set an invalid
-	 *  password hash meaning that the user will not be able to use it
-	 * @param bool $throttle If true, reset the throttle timestamp to the present
-	 */
+     * Set the password for a password reminder or new account email
+     *
+     * @param string $str New password to set or null to set an invalid
+     *  password hash meaning that the user will not be able to use it
+     * @param bool $throttle If true, reset the throttle timestamp to the present
+     */
 	public function setNewpassword( $str, $throttle = true ) {
 		$this->loadPasswords();
 
@@ -2415,10 +2454,10 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Has password reminder email been sent within the last
-	 * $wgPasswordReminderResendTime hours?
-	 * @return bool
-	 */
+     * Has password reminder email been sent within the last
+     * $wgPasswordReminderResendTime hours?
+     * @return bool
+     */
 	public function isPasswordReminderThrottled() {
 		global $wgPasswordReminderResendTime;
 		$this->load();
@@ -2430,9 +2469,9 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Get the user's e-mail address
-	 * @return string User's email address
-	 */
+     * Get the user's e-mail address
+     * @return string User's email address
+     */
 	public function getEmail() {
 		$this->load();
 		Hooks::run( 'UserGetEmail', array( $this, &$this->mEmail ) );
@@ -2440,9 +2479,9 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Get the timestamp of the user's e-mail authentication
-	 * @return string TS_MW timestamp
-	 */
+     * Get the timestamp of the user's e-mail authentication
+     * @return string TS_MW timestamp
+     */
 	public function getEmailAuthenticationTimestamp() {
 		$this->load();
 		Hooks::run( 'UserGetEmailAuthenticationTimestamp', array( $this, &$this->mEmailAuthenticated ) );
@@ -2450,9 +2489,9 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Set the user's e-mail address
-	 * @param string $str New e-mail address
-	 */
+     * Set the user's e-mail address
+     * @param string $str New e-mail address
+     */
 	public function setEmail( $str ) {
 		$this->load();
 		if ( $str == $this->mEmail ) {
@@ -2464,12 +2503,12 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Set the user's e-mail address and a confirmation mail if needed.
-	 *
-	 * @since 1.20
-	 * @param string $str New e-mail address
-	 * @return Status
-	 */
+     * Set the user's e-mail address and a confirmation mail if needed.
+     *
+     * @since 1.20
+     * @param string $str New e-mail address
+     * @return Status
+     */
 	public function setEmailWithConfirmation( $str ) {
 		global $wgEnableEmail, $wgEmailAuthentication;
 
@@ -2500,9 +2539,9 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Get the user's real name
-	 * @return string User's real name
-	 */
+     * Get the user's real name
+     * @return string User's real name
+     */
 	public function getRealName() {
 		if ( !$this->isItemLoaded( 'realname' ) ) {
 			$this->load();
@@ -2512,24 +2551,24 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Set the user's real name
-	 * @param string $str New real name
-	 */
+     * Set the user's real name
+     * @param string $str New real name
+     */
 	public function setRealName( $str ) {
 		$this->load();
 		$this->mRealName = $str;
 	}
 
 	/**
-	 * Get the user's current setting for a given option.
-	 *
-	 * @param string $oname The option to check
-	 * @param string $defaultOverride A default value returned if the option does not exist
-	 * @param bool $ignoreHidden Whether to ignore the effects of $wgHiddenPrefs
-	 * @return string User's current value for the option
-	 * @see getBoolOption()
-	 * @see getIntOption()
-	 */
+     * Get the user's current setting for a given option.
+     *
+     * @param string $oname The option to check
+     * @param string $defaultOverride A default value returned if the option does not exist
+     * @param bool $ignoreHidden Whether to ignore the effects of $wgHiddenPrefs
+     * @return string User's current value for the option
+     * @see getBoolOption()
+     * @see getIntOption()
+     */
 	public function getOption( $oname, $defaultOverride = null, $ignoreHidden = false ) {
 		global $wgHiddenPrefs;
 		$this->loadOptions();
@@ -2551,13 +2590,13 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Get all user's options
-	 *
-	 * @param int $flags Bitwise combination of:
-	 *   User::GETOPTIONS_EXCLUDE_DEFAULTS  Exclude user options that are set
-	 *                                      to the default value. (Since 1.25)
-	 * @return array
-	 */
+     * Get all user's options
+     *
+     * @param int $flags Bitwise combination of:
+     *   User::GETOPTIONS_EXCLUDE_DEFAULTS  Exclude user options that are set
+     *                                      to the default value. (Since 1.25)
+     * @return array
+     */
 	public function getOptions( $flags = 0 ) {
 		global $wgHiddenPrefs;
 		$this->loadOptions();
@@ -2583,24 +2622,24 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Get the user's current setting for a given option, as a boolean value.
-	 *
-	 * @param string $oname The option to check
-	 * @return bool User's current value for the option
-	 * @see getOption()
-	 */
+     * Get the user's current setting for a given option, as a boolean value.
+     *
+     * @param string $oname The option to check
+     * @return bool User's current value for the option
+     * @see getOption()
+     */
 	public function getBoolOption( $oname ) {
 		return (bool)$this->getOption( $oname );
 	}
 
 	/**
-	 * Get the user's current setting for a given option, as an integer value.
-	 *
-	 * @param string $oname The option to check
-	 * @param int $defaultOverride A default value returned if the option does not exist
-	 * @return int User's current value for the option
-	 * @see getOption()
-	 */
+     * Get the user's current setting for a given option, as an integer value.
+     *
+     * @param string $oname The option to check
+     * @param int $defaultOverride A default value returned if the option does not exist
+     * @return int User's current value for the option
+     * @see getOption()
+     */
 	public function getIntOption( $oname, $defaultOverride = 0 ) {
 		$val = $this->getOption( $oname );
 		if ( $val == '' ) {
@@ -2610,13 +2649,13 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Set the given option for a user.
-	 *
-	 * You need to call saveSettings() to actually write to the database.
-	 *
-	 * @param string $oname The option to set
-	 * @param mixed $val New value to set
-	 */
+     * Set the given option for a user.
+     *
+     * You need to call saveSettings() to actually write to the database.
+     *
+     * @param string $oname The option to set
+     * @param mixed $val New value to set
+     */
 	public function setOption( $oname, $val ) {
 		$this->loadOptions();
 
@@ -2629,14 +2668,14 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Get a token stored in the preferences (like the watchlist one),
-	 * resetting it if it's empty (and saving changes).
-	 *
-	 * @param string $oname The option name to retrieve the token from
-	 * @return string|bool User's current value for the option, or false if this option is disabled.
-	 * @see resetTokenFromOption()
-	 * @see getOption()
-	 */
+     * Get a token stored in the preferences (like the watchlist one),
+     * resetting it if it's empty (and saving changes).
+     *
+     * @param string $oname The option name to retrieve the token from
+     * @return string|bool User's current value for the option, or false if this option is disabled.
+     * @see resetTokenFromOption()
+     * @see getOption()
+     */
 	public function getTokenFromOption( $oname ) {
 		global $wgHiddenPrefs;
 		if ( in_array( $oname, $wgHiddenPrefs ) ) {
@@ -2652,14 +2691,14 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Reset a token stored in the preferences (like the watchlist one).
-	 * *Does not* save user's preferences (similarly to setOption()).
-	 *
-	 * @param string $oname The option name to reset the token in
-	 * @return string|bool New token value, or false if this option is disabled.
-	 * @see getTokenFromOption()
-	 * @see setOption()
-	 */
+     * Reset a token stored in the preferences (like the watchlist one).
+     * *Does not* save user's preferences (similarly to setOption()).
+     *
+     * @param string $oname The option name to reset the token in
+     * @return string|bool New token value, or false if this option is disabled.
+     * @see getTokenFromOption()
+     * @see setOption()
+     */
 	public function resetTokenFromOption( $oname ) {
 		global $wgHiddenPrefs;
 		if ( in_array( $oname, $wgHiddenPrefs ) ) {
@@ -2672,28 +2711,28 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Return a list of the types of user options currently returned by
-	 * User::getOptionKinds().
-	 *
-	 * Currently, the option kinds are:
-	 * - 'registered' - preferences which are registered in core MediaWiki or
-	 *                  by extensions using the UserGetDefaultOptions hook.
-	 * - 'registered-multiselect' - as above, using the 'multiselect' type.
-	 * - 'registered-checkmatrix' - as above, using the 'checkmatrix' type.
-	 * - 'userjs' - preferences with names starting with 'userjs-', intended to
-	 *              be used by user scripts.
-	 * - 'special' - "preferences" that are not accessible via User::getOptions
-	 *               or User::setOptions.
-	 * - 'unused' - preferences about which MediaWiki doesn't know anything.
-	 *              These are usually legacy options, removed in newer versions.
-	 *
-	 * The API (and possibly others) use this function to determine the possible
-	 * option types for validation purposes, so make sure to update this when a
-	 * new option kind is added.
-	 *
-	 * @see User::getOptionKinds
-	 * @return array Option kinds
-	 */
+     * Return a list of the types of user options currently returned by
+     * User::getOptionKinds().
+     *
+     * Currently, the option kinds are:
+     * - 'registered' - preferences which are registered in core MediaWiki or
+     *                  by extensions using the UserGetDefaultOptions hook.
+     * - 'registered-multiselect' - as above, using the 'multiselect' type.
+     * - 'registered-checkmatrix' - as above, using the 'checkmatrix' type.
+     * - 'userjs' - preferences with names starting with 'userjs-', intended to
+     *              be used by user scripts.
+     * - 'special' - "preferences" that are not accessible via User::getOptions
+     *               or User::setOptions.
+     * - 'unused' - preferences about which MediaWiki doesn't know anything.
+     *              These are usually legacy options, removed in newer versions.
+     *
+     * The API (and possibly others) use this function to determine the possible
+     * option types for validation purposes, so make sure to update this when a
+     * new option kind is added.
+     *
+     * @see User::getOptionKinds
+     * @return array Option kinds
+     */
 	public static function listOptionKinds() {
 		return array(
 			'registered',
@@ -2706,17 +2745,17 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Return an associative array mapping preferences keys to the kind of a preference they're
-	 * used for. Different kinds are handled differently when setting or reading preferences.
-	 *
-	 * See User::listOptionKinds for the list of valid option types that can be provided.
-	 *
-	 * @see User::listOptionKinds
-	 * @param IContextSource $context
-	 * @param array $options Assoc. array with options keys to check as keys.
-	 *   Defaults to $this->mOptions.
-	 * @return array The key => kind mapping data
-	 */
+     * Return an associative array mapping preferences keys to the kind of a preference they're
+     * used for. Different kinds are handled differently when setting or reading preferences.
+     *
+     * See User::listOptionKinds for the list of valid option types that can be provided.
+     *
+     * @see User::listOptionKinds
+     * @param IContextSource $context
+     * @param array $options Assoc. array with options keys to check as keys.
+     *   Defaults to $this->mOptions.
+     * @return array The key => kind mapping data
+     */
 	public function getOptionKinds( IContextSource $context, $options = null ) {
 		$this->loadOptions();
 		if ( $options === null ) {
@@ -2788,19 +2827,19 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Reset certain (or all) options to the site defaults
-	 *
-	 * The optional parameter determines which kinds of preferences will be reset.
-	 * Supported values are everything that can be reported by getOptionKinds()
-	 * and 'all', which forces a reset of *all* preferences and overrides everything else.
-	 *
-	 * @param array|string $resetKinds Which kinds of preferences to reset. Defaults to
-	 *  array( 'registered', 'registered-multiselect', 'registered-checkmatrix', 'unused' )
-	 *  for backwards-compatibility.
-	 * @param IContextSource|null $context Context source used when $resetKinds
-	 *  does not contain 'all', passed to getOptionKinds().
-	 *  Defaults to RequestContext::getMain() when null.
-	 */
+     * Reset certain (or all) options to the site defaults
+     *
+     * The optional parameter determines which kinds of preferences will be reset.
+     * Supported values are everything that can be reported by getOptionKinds()
+     * and 'all', which forces a reset of *all* preferences and overrides everything else.
+     *
+     * @param array|string $resetKinds Which kinds of preferences to reset. Defaults to
+     *  array( 'registered', 'registered-multiselect', 'registered-checkmatrix', 'unused' )
+     *  for backwards-compatibility.
+     * @param IContextSource|null $context Context source used when $resetKinds
+     *  does not contain 'all', passed to getOptionKinds().
+     *  Defaults to RequestContext::getMain() when null.
+     */
 	public function resetOptions(
 		$resetKinds = array( 'registered', 'registered-multiselect', 'registered-checkmatrix', 'unused' ),
 		IContextSource $context = null
@@ -2843,9 +2882,9 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Get the user's preferred date format.
-	 * @return string User's preferred date format
-	 */
+     * Get the user's preferred date format.
+     * @return string User's preferred date format
+     */
 	public function getDatePreference() {
 		// Important migration for old data rows
 		if ( is_null( $this->mDatePreference ) ) {
@@ -2861,11 +2900,11 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Determine based on the wiki configuration and the user's options,
-	 * whether this user must be over HTTPS no matter what.
-	 *
-	 * @return bool
-	 */
+     * Determine based on the wiki configuration and the user's options,
+     * whether this user must be over HTTPS no matter what.
+     *
+     * @return bool
+     */
 	public function requiresHTTPS() {
 		global $wgSecureLogin;
 		if ( !$wgSecureLogin ) {
@@ -2881,10 +2920,10 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Get the user preferred stub threshold
-	 *
-	 * @return int
-	 */
+     * Get the user preferred stub threshold
+     *
+     * @return int
+     */
 	public function getStubThreshold() {
 		global $wgMaxArticleSize; # Maximum article size, in Kb
 		$threshold = $this->getIntOption( 'stubthreshold' );
@@ -2897,9 +2936,9 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Get the permissions this user has.
-	 * @return array Array of String permission names
-	 */
+     * Get the permissions this user has.
+     * @return array Array of String permission names
+     */
 	public function getRights() {
 		if ( is_null( $this->mRights ) ) {
 			$this->mRights = self::getGroupPermissions( $this->getEffectiveGroups() );
@@ -2911,10 +2950,10 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Get the list of explicit group memberships this user has.
-	 * The implicit * and user groups are not included.
-	 * @return array Array of String internal group names
-	 */
+     * Get the list of explicit group memberships this user has.
+     * The implicit * and user groups are not included.
+     * @return array Array of String internal group names
+     */
 	public function getGroups() {
 		$this->load();
 		$this->loadGroups();
@@ -2922,12 +2961,12 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Get the list of implicit group memberships this user has.
-	 * This includes all explicit groups, plus 'user' if logged in,
-	 * '*' for all accounts, and autopromoted groups
-	 * @param bool $recache Whether to avoid the cache
-	 * @return array Array of String internal group names
-	 */
+     * Get the list of implicit group memberships this user has.
+     * This includes all explicit groups, plus 'user' if logged in,
+     * '*' for all accounts, and autopromoted groups
+     * @param bool $recache Whether to avoid the cache
+     * @return array Array of String internal group names
+     */
 	public function getEffectiveGroups( $recache = false ) {
 		if ( $recache || is_null( $this->mEffectiveGroups ) ) {
 			wfProfileIn( __METHOD__ );
@@ -2945,12 +2984,12 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Get the list of implicit group memberships this user has.
-	 * This includes 'user' if logged in, '*' for all accounts,
-	 * and autopromoted groups
-	 * @param bool $recache Whether to avoid the cache
-	 * @return array Array of String internal group names
-	 */
+     * Get the list of implicit group memberships this user has.
+     * This includes 'user' if logged in, '*' for all accounts,
+     * and autopromoted groups
+     * @param bool $recache Whether to avoid the cache
+     * @return array Array of String internal group names
+     */
 	public function getAutomaticGroups( $recache = false ) {
 		if ( $recache || is_null( $this->mImplicitGroups ) ) {
 			wfProfileIn( __METHOD__ );
@@ -2974,14 +3013,14 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Returns the groups the user has belonged to.
-	 *
-	 * The user may still belong to the returned groups. Compare with getGroups().
-	 *
-	 * The function will not return groups the user had belonged to before MW 1.17
-	 *
-	 * @return array Names of the groups the user has belonged to.
-	 */
+     * Returns the groups the user has belonged to.
+     *
+     * The user may still belong to the returned groups. Compare with getGroups().
+     *
+     * The function will not return groups the user had belonged to before MW 1.17
+     *
+     * @return array Names of the groups the user has belonged to.
+     */
 	public function getFormerGroups() {
 		if ( is_null( $this->mFormerGroups ) ) {
 			$dbr = wfGetDB( DB_MASTER );
@@ -2998,9 +3037,9 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Get the user's edit count.
-	 * @return int|null Null for anonymous users
-	 */
+     * Get the user's edit count.
+     * @return int|null Null for anonymous users
+     */
 	public function getEditCount() {
 		if ( !$this->getId() ) {
 			return null;
@@ -3028,10 +3067,10 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Add the user to the given group.
-	 * This takes immediate effect.
-	 * @param string $group Name of the group to add
-	 */
+     * Add the user to the given group.
+     * This takes immediate effect.
+     * @param string $group Name of the group to add
+     */
 	public function addGroup( $group ) {
 		if ( Hooks::run( 'UserAddGroup', array( $this, &$group ) ) ) {
 			$dbw = wfGetDB( DB_MASTER );
@@ -3060,10 +3099,10 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Remove the user from the given group.
-	 * This takes immediate effect.
-	 * @param string $group Name of the group to remove
-	 */
+     * Remove the user from the given group.
+     * This takes immediate effect.
+     * @param string $group Name of the group to remove
+     */
 	public function removeGroup( $group ) {
 		$this->load();
 		if ( Hooks::run( 'UserRemoveGroup', array( $this, &$group ) ) ) {
@@ -3094,27 +3133,27 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Get whether the user is logged in
-	 * @return bool
-	 */
+     * Get whether the user is logged in
+     * @return bool
+     */
 	public function isLoggedIn() {
 		return $this->getID() != 0;
 	}
 
 	/**
-	 * Get whether the user is anonymous
-	 * @return bool
-	 */
+     * Get whether the user is anonymous
+     * @return bool
+     */
 	public function isAnon() {
 		return !$this->isLoggedIn();
 	}
 
 	/**
-	 * Check if user is allowed to access a feature / make an action
-	 *
-	 * @param string $permissions,... Permissions to test
-	 * @return bool True if user is allowed to perform *any* of the given actions
-	 */
+     * Check if user is allowed to access a feature / make an action
+     *
+     * @param string $permissions,... Permissions to test
+     * @return bool True if user is allowed to perform *any* of the given actions
+     */
 	public function isAllowedAny( /*...*/ ) {
 		$permissions = func_get_args();
 		foreach ( $permissions as $permission ) {
@@ -3126,10 +3165,10 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 *
-	 * @param string $permissions,... Permissions to test
-	 * @return bool True if the user is allowed to perform *all* of the given actions
-	 */
+     *
+     * @param string $permissions,... Permissions to test
+     * @return bool True if the user is allowed to perform *all* of the given actions
+     */
 	public function isAllowedAll( /*...*/ ) {
 		$permissions = func_get_args();
 		foreach ( $permissions as $permission ) {
@@ -3141,10 +3180,10 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Internal mechanics of testing a permission
-	 * @param string $action
-	 * @return bool
-	 */
+     * Internal mechanics of testing a permission
+     * @param string $action
+     * @return bool
+     */
 	public function isAllowed( $action = '' ) {
 		if ( $action === '' ) {
 			return true; // In the spirit of DWIM
@@ -3162,18 +3201,18 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Check whether to enable recent changes patrol features for this user
-	 * @return bool True or false
-	 */
+     * Check whether to enable recent changes patrol features for this user
+     * @return bool True or false
+     */
 	public function useRCPatrol() {
 		global $wgUseRCPatrol;
 		return $wgUseRCPatrol && $this->isAllowedAny( 'patrol', 'patrolmarks' );
 	}
 
 	/**
-	 * Check whether to enable new pages patrol features for this user
-	 * @return bool True or false
-	 */
+     * Check whether to enable new pages patrol features for this user
+     * @return bool True or false
+     */
 	public function useNPPatrol() {
 		global $wgUseRCPatrol, $wgUseNPPatrol;
 		return (
@@ -3183,10 +3222,10 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Get the WebRequest object to use with this object
-	 *
-	 * @return WebRequest
-	 */
+     * Get the WebRequest object to use with this object
+     *
+     * @return WebRequest
+     */
 	public function getRequest() {
 		if ( $this->mRequest ) {
 			return $this->mRequest;
@@ -3197,25 +3236,25 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Get the current skin, loading it if required
-	 * @return Skin The current skin
-	 * @todo FIXME: Need to check the old failback system [AV]
-	 * @deprecated since 1.18 Use ->getSkin() in the most relevant outputting context you have
-	 */
+     * Get the current skin, loading it if required
+     * @return Skin The current skin
+     * @todo FIXME: Need to check the old failback system [AV]
+     * @deprecated since 1.18 Use ->getSkin() in the most relevant outputting context you have
+     */
 	public function getSkin() {
 		wfDeprecated( __METHOD__, '1.18' );
 		return RequestContext::getMain()->getSkin();
 	}
 
 	/**
-	 * Get a WatchedItem for this user and $title.
-	 *
-	 * @since 1.22 $checkRights parameter added
-	 * @param Title $title
-	 * @param int $checkRights Whether to check 'viewmywatchlist'/'editmywatchlist' rights.
-	 *     Pass WatchedItem::CHECK_USER_RIGHTS or WatchedItem::IGNORE_USER_RIGHTS.
-	 * @return WatchedItem
-	 */
+     * Get a WatchedItem for this user and $title.
+     *
+     * @since 1.22 $checkRights parameter added
+     * @param Title $title
+     * @param int $checkRights Whether to check 'viewmywatchlist'/'editmywatchlist' rights.
+     *     Pass WatchedItem::CHECK_USER_RIGHTS or WatchedItem::IGNORE_USER_RIGHTS.
+     * @return WatchedItem
+     */
 	public function getWatchedItem( $title, $checkRights = WatchedItem::CHECK_USER_RIGHTS ) {
 		$key = $checkRights . ':' . $title->getNamespace() . ':' . $title->getDBkey();
 
@@ -3232,49 +3271,49 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Check the watched status of an article.
-	 * @since 1.22 $checkRights parameter added
-	 * @param Title $title Title of the article to look at
-	 * @param int $checkRights Whether to check 'viewmywatchlist'/'editmywatchlist' rights.
-	 *     Pass WatchedItem::CHECK_USER_RIGHTS or WatchedItem::IGNORE_USER_RIGHTS.
-	 * @return bool
-	 */
+     * Check the watched status of an article.
+     * @since 1.22 $checkRights parameter added
+     * @param Title $title Title of the article to look at
+     * @param int $checkRights Whether to check 'viewmywatchlist'/'editmywatchlist' rights.
+     *     Pass WatchedItem::CHECK_USER_RIGHTS or WatchedItem::IGNORE_USER_RIGHTS.
+     * @return bool
+     */
 	public function isWatched( $title, $checkRights = WatchedItem::CHECK_USER_RIGHTS ) {
 		return $this->getWatchedItem( $title, $checkRights )->isWatched();
 	}
 
 	/**
-	 * Watch an article.
-	 * @since 1.22 $checkRights parameter added
-	 * @param Title $title Title of the article to look at
-	 * @param int $checkRights Whether to check 'viewmywatchlist'/'editmywatchlist' rights.
-	 *     Pass WatchedItem::CHECK_USER_RIGHTS or WatchedItem::IGNORE_USER_RIGHTS.
-	 */
+     * Watch an article.
+     * @since 1.22 $checkRights parameter added
+     * @param Title $title Title of the article to look at
+     * @param int $checkRights Whether to check 'viewmywatchlist'/'editmywatchlist' rights.
+     *     Pass WatchedItem::CHECK_USER_RIGHTS or WatchedItem::IGNORE_USER_RIGHTS.
+     */
 	public function addWatch( $title, $checkRights = WatchedItem::CHECK_USER_RIGHTS ) {
 		$this->getWatchedItem( $title, $checkRights )->addWatch();
 		$this->invalidateCache();
 	}
 
 	/**
-	 * Stop watching an article.
-	 * @since 1.22 $checkRights parameter added
-	 * @param Title $title Title of the article to look at
-	 * @param int $checkRights Whether to check 'viewmywatchlist'/'editmywatchlist' rights.
-	 *     Pass WatchedItem::CHECK_USER_RIGHTS or WatchedItem::IGNORE_USER_RIGHTS.
-	 */
+     * Stop watching an article.
+     * @since 1.22 $checkRights parameter added
+     * @param Title $title Title of the article to look at
+     * @param int $checkRights Whether to check 'viewmywatchlist'/'editmywatchlist' rights.
+     *     Pass WatchedItem::CHECK_USER_RIGHTS or WatchedItem::IGNORE_USER_RIGHTS.
+     */
 	public function removeWatch( $title, $checkRights = WatchedItem::CHECK_USER_RIGHTS ) {
 		$this->getWatchedItem( $title, $checkRights )->removeWatch();
 		$this->invalidateCache();
 	}
 
 	/**
-	 * Clear the user's notification timestamp for the given title.
-	 * If e-notif e-mails are on, they will receive notification mails on
-	 * the next change of the page if it's watched etc.
-	 * @note If the user doesn't have 'editmywatchlist', this will do nothing.
-	 * @param Title $title Title of the article to look at
-	 * @param int $oldid The revision id being viewed. If not given or 0, latest revision is assumed.
-	 */
+     * Clear the user's notification timestamp for the given title.
+     * If e-notif e-mails are on, they will receive notification mails on
+     * the next change of the page if it's watched etc.
+     * @note If the user doesn't have 'editmywatchlist', this will do nothing.
+     * @param Title $title Title of the article to look at
+     * @param int $oldid The revision id being viewed. If not given or 0, latest revision is assumed.
+     */
 	public function clearNotification( &$title, $oldid = 0 ) {
 		global $wgUseEnotif, $wgShowUpdatedMarker;
 
@@ -3331,11 +3370,11 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Resets all of the given user's page-change notification timestamps.
-	 * If e-notif e-mails are on, they will receive notification mails on
-	 * the next change of any watched page.
-	 * @note If the user doesn't have 'editmywatchlist', this will do nothing.
-	 */
+     * Resets all of the given user's page-change notification timestamps.
+     * If e-notif e-mails are on, they will receive notification mails on
+     * the next change of any watched page.
+     * @note If the user doesn't have 'editmywatchlist', this will do nothing.
+     */
 	public function clearAllNotifications() {
 		if ( wfReadOnly() ) {
 			return;
@@ -3365,44 +3404,44 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Set a cookie on the user's client. Wrapper for
-	 * WebResponse::setCookie
-	 * @param string $name Name of the cookie to set
-	 * @param string $value Value to set
-	 * @param int $exp Expiration time, as a UNIX time value;
-	 *                   if 0 or not specified, use the default $wgCookieExpiration
-	 * @param bool $secure
-	 *  true: Force setting the secure attribute when setting the cookie
-	 *  false: Force NOT setting the secure attribute when setting the cookie
-	 *  null (default): Use the default ($wgCookieSecure) to set the secure attribute
-	 * @param array $params Array of options sent passed to WebResponse::setcookie()
-	 */
+     * Set a cookie on the user's client. Wrapper for
+     * WebResponse::setCookie
+     * @param string $name Name of the cookie to set
+     * @param string $value Value to set
+     * @param int $exp Expiration time, as a UNIX time value;
+     *                   if 0 or not specified, use the default $wgCookieExpiration
+     * @param bool $secure
+     *  true: Force setting the secure attribute when setting the cookie
+     *  false: Force NOT setting the secure attribute when setting the cookie
+     *  null (default): Use the default ($wgCookieSecure) to set the secure attribute
+     * @param array $params Array of options sent passed to WebResponse::setcookie()
+     */
 	protected function setCookie( $name, $value, $exp = 0, $secure = null, $params = array() ) {
 		$params['secure'] = $secure;
 		$this->getRequest()->response()->setcookie( $name, $value, $exp, $params );
 	}
 
 	/**
-	 * Clear a cookie on the user's client
-	 * @param string $name Name of the cookie to clear
-	 * @param bool $secure
-	 *  true: Force setting the secure attribute when setting the cookie
-	 *  false: Force NOT setting the secure attribute when setting the cookie
-	 *  null (default): Use the default ($wgCookieSecure) to set the secure attribute
-	 * @param array $params Array of options sent passed to WebResponse::setcookie()
-	 */
+     * Clear a cookie on the user's client
+     * @param string $name Name of the cookie to clear
+     * @param bool $secure
+     *  true: Force setting the secure attribute when setting the cookie
+     *  false: Force NOT setting the secure attribute when setting the cookie
+     *  null (default): Use the default ($wgCookieSecure) to set the secure attribute
+     * @param array $params Array of options sent passed to WebResponse::setcookie()
+     */
 	protected function clearCookie( $name, $secure = null, $params = array() ) {
 		$this->setCookie( $name, '', time() - 86400, $secure, $params );
 	}
 
 	/**
-	 * Set the default cookies for this session on the user's client.
-	 *
-	 * @param WebRequest|null $request WebRequest object to use; $wgRequest will be used if null
-	 *        is passed.
-	 * @param bool $secure Whether to force secure/insecure cookies or use default
-	 * @param bool $rememberMe Whether to add a Token cookie for elongated sessions
-	 */
+     * Set the default cookies for this session on the user's client.
+     *
+     * @param WebRequest|null $request WebRequest object to use; $wgRequest will be used if null
+     *        is passed.
+     * @param bool $secure Whether to force secure/insecure cookies or use default
+     * @param bool $rememberMe Whether to add a Token cookie for elongated sessions
+     */
 	public function setCookies( $request = null, $secure = null, $rememberMe = false ) {
 		if ( $request === null ) {
 			$request = $this->getRequest();
@@ -3449,12 +3488,12 @@ class User implements IDBAccessObject {
 		}
 
 		/**
-		 * If wpStickHTTPS was selected, also set an insecure cookie that
-		 * will cause the site to redirect the user to HTTPS, if they access
-		 * it over HTTP. Bug 29898. Use an un-prefixed cookie, so it's the same
-		 * as the one set by centralauth (bug 53538). Also set it to session, or
-		 * standard time setting, based on if rememberme was set.
-		 */
+         * If wpStickHTTPS was selected, also set an insecure cookie that
+         * will cause the site to redirect the user to HTTPS, if they access
+         * it over HTTP. Bug 29898. Use an un-prefixed cookie, so it's the same
+         * as the one set by centralauth (bug 53538). Also set it to session, or
+         * standard time setting, based on if rememberme was set.
+         */
 		if ( $request->getCheck( 'wpStickHTTPS' ) || $this->requiresHTTPS() ) {
 			$this->setCookie(
 				'forceHTTPS',
@@ -3467,8 +3506,8 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Log this user out.
-	 */
+     * Log this user out.
+     */
 	public function logout() {
 		if ( Hooks::run( 'UserLogout', array( &$this ) ) ) {
 			$this->doLogout();
@@ -3476,9 +3515,9 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Clear the user's cookies and session, and reset the instance cache.
-	 * @see logout()
-	 */
+     * Clear the user's cookies and session, and reset the instance cache.
+     * @see logout()
+     */
 	public function doLogout() {
 		$this->clearInstanceCache( 'defaults' );
 
@@ -3493,9 +3532,9 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Save this user's settings into the database.
-	 * @todo Only rarely do all these fields need to be set!
-	 */
+     * Save this user's settings into the database.
+     * @todo Only rarely do all these fields need to be set!
+     */
 	public function saveSettings() {
 		global $wgAuth;
 
@@ -3541,9 +3580,9 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * If only this user's username is known, and it exists, return the user ID.
-	 * @return int
-	 */
+     * If only this user's username is known, and it exists, return the user ID.
+     * @return int
+     */
 	public function idForName() {
 		$s = trim( $this->getName() );
 		if ( $s === '' ) {
@@ -3559,24 +3598,24 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Add a user to the database, return the user object
-	 *
-	 * @param string $name Username to add
-	 * @param array $params Array of Strings Non-default parameters to save to
-	 *   the database as user_* fields:
-	 *   - password: The user's password hash. Password logins will be disabled
-	 *     if this is omitted.
-	 *   - newpassword: Hash for a temporary password that has been mailed to
-	 *     the user.
-	 *   - email: The user's email address.
-	 *   - email_authenticated: The email authentication timestamp.
-	 *   - real_name: The user's real name.
-	 *   - options: An associative array of non-default options.
-	 *   - token: Random authentication token. Do not set.
-	 *   - registration: Registration timestamp. Do not set.
-	 *
-	 * @return User|null User object, or null if the username already exists.
-	 */
+     * Add a user to the database, return the user object
+     *
+     * @param string $name Username to add
+     * @param array $params Array of Strings Non-default parameters to save to
+     *   the database as user_* fields:
+     *   - password: The user's password hash. Password logins will be disabled
+     *     if this is omitted.
+     *   - newpassword: Hash for a temporary password that has been mailed to
+     *     the user.
+     *   - email: The user's email address.
+     *   - email_authenticated: The email authentication timestamp.
+     *   - real_name: The user's real name.
+     *   - options: An associative array of non-default options.
+     *   - token: Random authentication token. Do not set.
+     *   - registration: Registration timestamp. Do not set.
+     *
+     * @return User|null User object, or null if the username already exists.
+     */
 	public static function createNew( $name, $params = array() ) {
 		$user = new User;
 		$user->load();
@@ -3616,31 +3655,31 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Add this existing user object to the database. If the user already
-	 * exists, a fatal status object is returned, and the user object is
-	 * initialised with the data from the database.
-	 *
-	 * Previously, this function generated a DB error due to a key conflict
-	 * if the user already existed. Many extension callers use this function
-	 * in code along the lines of:
-	 *
-	 *   $user = User::newFromName( $name );
-	 *   if ( !$user->isLoggedIn() ) {
-	 *       $user->addToDatabase();
-	 *   }
-	 *   // do something with $user...
-	 *
-	 * However, this was vulnerable to a race condition (bug 16020). By
-	 * initialising the user object if the user exists, we aim to support this
-	 * calling sequence as far as possible.
-	 *
-	 * Note that if the user exists, this function will acquire a write lock,
-	 * so it is still advisable to make the call conditional on isLoggedIn(),
-	 * and to commit the transaction after calling.
-	 *
-	 * @throws MWException
-	 * @return Status
-	 */
+     * Add this existing user object to the database. If the user already
+     * exists, a fatal status object is returned, and the user object is
+     * initialised with the data from the database.
+     *
+     * Previously, this function generated a DB error due to a key conflict
+     * if the user already existed. Many extension callers use this function
+     * in code along the lines of:
+     *
+     *   $user = User::newFromName( $name );
+     *   if ( !$user->isLoggedIn() ) {
+     *       $user->addToDatabase();
+     *   }
+     *   // do something with $user...
+     *
+     * However, this was vulnerable to a race condition (bug 16020). By
+     * initialising the user object if the user exists, we aim to support this
+     * calling sequence as far as possible.
+     *
+     * Note that if the user exists, this function will acquire a write lock,
+     * so it is still advisable to make the call conditional on isLoggedIn(),
+     * and to commit the transaction after calling.
+     *
+     * @throws MWException
+     * @return Status
+     */
 	public function addToDatabase() {
 		$this->load();
 		$this->loadPasswords();
@@ -3709,10 +3748,10 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * If this user is logged-in and blocked,
-	 * block any IP address they've successfully logged in from.
-	 * @return bool A block was spread
-	 */
+     * If this user is logged-in and blocked,
+     * block any IP address they've successfully logged in from.
+     * @return bool A block was spread
+     */
 	public function spreadAnyEditBlock() {
 		if ( $this->isLoggedIn() && $this->isBlocked() ) {
 			return $this->spreadBlock();
@@ -3721,10 +3760,10 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * If this (non-anonymous) user is blocked,
-	 * block the IP address they've successfully logged in from.
-	 * @return bool A block was spread
-	 */
+     * If this (non-anonymous) user is blocked,
+     * block the IP address they've successfully logged in from.
+     * @return bool A block was spread
+     */
 	protected function spreadBlock() {
 		wfDebug( __METHOD__ . "()\n" );
 		$this->load();
@@ -3741,9 +3780,9 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Get whether the user is explicitly blocked from account creation.
-	 * @return bool|Block
-	 */
+     * Get whether the user is explicitly blocked from account creation.
+     * @return bool|Block
+     */
 	public function isBlockedFromCreateAccount() {
 		$this->getBlockedStatus();
 		if ( $this->mBlock && $this->mBlock->prevents( 'createaccount' ) ) {
@@ -3763,55 +3802,55 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Get whether the user is blocked from using Special:Emailuser.
-	 * @return bool
-	 */
+     * Get whether the user is blocked from using Special:Emailuser.
+     * @return bool
+     */
 	public function isBlockedFromEmailuser() {
 		$this->getBlockedStatus();
 		return $this->mBlock && $this->mBlock->prevents( 'sendemail' );
 	}
 
 	/**
-	 * Get whether the user is allowed to create an account.
-	 * @return bool
-	 */
+     * Get whether the user is allowed to create an account.
+     * @return bool
+     */
 	public function isAllowedToCreateAccount() {
 		return $this->isAllowed( 'createaccount' ) && !$this->isBlockedFromCreateAccount();
 	}
 
 	/**
-	 * Get this user's personal page title.
-	 *
-	 * @return Title User's personal page title
-	 */
+     * Get this user's personal page title.
+     *
+     * @return Title User's personal page title
+     */
 	public function getUserPage() {
 		return Title::makeTitle( NS_USER, $this->getName() );
 	}
 
 	/**
-	 * Get this user's talk page title.
-	 *
-	 * @return Title User's talk page title
-	 */
+     * Get this user's talk page title.
+     *
+     * @return Title User's talk page title
+     */
 	public function getTalkPage() {
 		$title = $this->getUserPage();
 		return $title->getTalkPage();
 	}
 
 	/**
-	 * Determine whether the user is a newbie. Newbies are either
-	 * anonymous IPs, or the most recently created accounts.
-	 * @return bool
-	 */
+     * Determine whether the user is a newbie. Newbies are either
+     * anonymous IPs, or the most recently created accounts.
+     * @return bool
+     */
 	public function isNewbie() {
 		return !$this->isAllowed( 'autoconfirmed' );
 	}
 
 	/**
-	 * Check to see if the given clear-text password is one of the accepted passwords
-	 * @param string $password User password
-	 * @return bool True if the given password is correct, otherwise False
-	 */
+     * Check to see if the given clear-text password is one of the accepted passwords
+     * @param string $password User password
+     * @return bool True if the given password is correct, otherwise False
+     */
 	public function checkPassword( $password ) {
 		global $wgAuth, $wgLegacyEncoding;
 
@@ -3855,13 +3894,13 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Check if the given clear-text password matches the temporary password
-	 * sent by e-mail for password reset operations.
-	 *
-	 * @param string $plaintext
-	 *
-	 * @return bool True if matches, false otherwise
-	 */
+     * Check if the given clear-text password matches the temporary password
+     * sent by e-mail for password reset operations.
+     *
+     * @param string $plaintext
+     *
+     * @return bool True if matches, false otherwise
+     */
 	public function checkTemporaryPassword( $plaintext ) {
 		global $wgNewPasswordExpiry;
 
@@ -3879,27 +3918,27 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Alias for getEditToken.
-	 * @deprecated since 1.19, use getEditToken instead.
-	 *
-	 * @param string|array $salt Array of Strings Optional function-specific data for hashing
-	 * @param WebRequest|null $request WebRequest object to use or null to use $wgRequest
-	 * @return string The new edit token
-	 */
+     * Alias for getEditToken.
+     * @deprecated since 1.19, use getEditToken instead.
+     *
+     * @param string|array $salt Array of Strings Optional function-specific data for hashing
+     * @param WebRequest|null $request WebRequest object to use or null to use $wgRequest
+     * @return string The new edit token
+     */
 	public function editToken( $salt = '', $request = null ) {
 		wfDeprecated( __METHOD__, '1.19' );
 		return $this->getEditToken( $salt, $request );
 	}
 
 	/**
-	 * Internal implementation for self::getEditToken() and
-	 * self::matchEditToken().
-	 *
-	 * @param string|array $salt
-	 * @param WebRequest $request
-	 * @param string|int $timestamp
-	 * @return string
-	 */
+     * Internal implementation for self::getEditToken() and
+     * self::matchEditToken().
+     *
+     * @param string|array $salt
+     * @param WebRequest $request
+     * @param string|int $timestamp
+     * @return string
+     */
 	private function getEditTokenAtTimestamp( $salt, $request, $timestamp ) {
 		if ( $this->isAnon() ) {
 			return self::EDIT_TOKEN_SUFFIX;
@@ -3919,17 +3958,17 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Initialize (if necessary) and return a session token value
-	 * which can be used in edit forms to show that the user's
-	 * login credentials aren't being hijacked with a foreign form
-	 * submission.
-	 *
-	 * @since 1.19
-	 *
-	 * @param string|array $salt Array of Strings Optional function-specific data for hashing
-	 * @param WebRequest|null $request WebRequest object to use or null to use $wgRequest
-	 * @return string The new edit token
-	 */
+     * Initialize (if necessary) and return a session token value
+     * which can be used in edit forms to show that the user's
+     * login credentials aren't being hijacked with a foreign form
+     * submission.
+     *
+     * @since 1.19
+     *
+     * @param string|array $salt Array of Strings Optional function-specific data for hashing
+     * @param WebRequest|null $request WebRequest object to use or null to use $wgRequest
+     * @return string The new edit token
+     */
 	public function getEditToken( $salt = '', $request = null ) {
 		return $this->getEditTokenAtTimestamp(
 			$salt, $request ?: $this->getRequest(), wfTimestamp()
@@ -3937,28 +3976,28 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Generate a looking random token for various uses.
-	 *
-	 * @return string The new random token
-	 * @deprecated since 1.20: Use MWCryptRand for secure purposes or
-	 *   wfRandomString for pseudo-randomness.
-	 */
+     * Generate a looking random token for various uses.
+     *
+     * @return string The new random token
+     * @deprecated since 1.20: Use MWCryptRand for secure purposes or
+     *   wfRandomString for pseudo-randomness.
+     */
 	public static function generateToken() {
 		return MWCryptRand::generateHex( 32 );
 	}
 
 	/**
-	 * Check given value against the token value stored in the session.
-	 * A match should confirm that the form was submitted from the
-	 * user's own login session, not a form submission from a third-party
-	 * site.
-	 *
-	 * @param string $val Input value to compare
-	 * @param string $salt Optional function-specific data for hashing
-	 * @param WebRequest|null $request Object to use or null to use $wgRequest
-	 * @param int $maxage Fail tokens older than this, in seconds
-	 * @return bool Whether the token matches
-	 */
+     * Check given value against the token value stored in the session.
+     * A match should confirm that the form was submitted from the
+     * user's own login session, not a form submission from a third-party
+     * site.
+     *
+     * @param string $val Input value to compare
+     * @param string $salt Optional function-specific data for hashing
+     * @param WebRequest|null $request Object to use or null to use $wgRequest
+     * @param int $maxage Fail tokens older than this, in seconds
+     * @return bool Whether the token matches
+     */
 	public function matchEditToken( $val, $salt = '', $request = null, $maxage = null ) {
 		if ( $this->isAnon() ) {
 			return $val === self::EDIT_TOKEN_SUFFIX;
@@ -3987,27 +4026,27 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Check given value against the token value stored in the session,
-	 * ignoring the suffix.
-	 *
-	 * @param string $val Input value to compare
-	 * @param string $salt Optional function-specific data for hashing
-	 * @param WebRequest|null $request Object to use or null to use $wgRequest
-	 * @param int $maxage Fail tokens older than this, in seconds
-	 * @return bool Whether the token matches
-	 */
+     * Check given value against the token value stored in the session,
+     * ignoring the suffix.
+     *
+     * @param string $val Input value to compare
+     * @param string $salt Optional function-specific data for hashing
+     * @param WebRequest|null $request Object to use or null to use $wgRequest
+     * @param int $maxage Fail tokens older than this, in seconds
+     * @return bool Whether the token matches
+     */
 	public function matchEditTokenNoSuffix( $val, $salt = '', $request = null, $maxage = null ) {
 		$val = substr( $val, 0, strspn( $val, '0123456789abcdef' ) ) . self::EDIT_TOKEN_SUFFIX;
 		return $this->matchEditToken( $val, $salt, $request, $maxage );
 	}
 
 	/**
-	 * Generate a new e-mail confirmation token and send a confirmation/invalidation
-	 * mail to the user's given address.
-	 *
-	 * @param string $type Message to send, either "created", "changed" or "set"
-	 * @return Status
-	 */
+     * Generate a new e-mail confirmation token and send a confirmation/invalidation
+     * mail to the user's given address.
+     *
+     * @param string $type Message to send, either "created", "changed" or "set"
+     * @return Status
+     */
 	public function sendConfirmationMail( $type = 'created' ) {
 		global $wgLang;
 		$expiration = null; // gets passed-by-ref and defined in next line.
@@ -4037,16 +4076,16 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Send an e-mail to this user's account. Does not check for
-	 * confirmed status or validity.
-	 *
-	 * @param string $subject Message subject
-	 * @param string $body Message body
-	 * @param string $from Optional From address; if unspecified, default
-	 *   $wgPasswordSender will be used.
-	 * @param string $replyto Reply-To address
-	 * @return Status
-	 */
+     * Send an e-mail to this user's account. Does not check for
+     * confirmed status or validity.
+     *
+     * @param string $subject Message subject
+     * @param string $body Message body
+     * @param string $from Optional From address; if unspecified, default
+     *   $wgPasswordSender will be used.
+     * @param string $replyto Reply-To address
+     * @return Status
+     */
 	public function sendMail( $subject, $body, $from = null, $replyto = null ) {
 		if ( is_null( $from ) ) {
 			global $wgPasswordSender;
@@ -4061,15 +4100,15 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Generate, store, and return a new e-mail confirmation code.
-	 * A hash (unsalted, since it's used as a key) is stored.
-	 *
-	 * @note Call saveSettings() after calling this function to commit
-	 * this change to the database.
-	 *
-	 * @param string &$expiration Accepts the expiration time
-	 * @return string New token
-	 */
+     * Generate, store, and return a new e-mail confirmation code.
+     * A hash (unsalted, since it's used as a key) is stored.
+     *
+     * @note Call saveSettings() after calling this function to commit
+     * this change to the database.
+     *
+     * @param string &$expiration Accepts the expiration time
+     * @return string New token
+     */
 	protected function confirmationToken( &$expiration ) {
 		global $wgUserEmailConfirmationTokenExpiry;
 		$now = time();
@@ -4084,37 +4123,37 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Return a URL the user can use to confirm their email address.
-	 * @param string $token Accepts the email confirmation token
-	 * @return string New token URL
-	 */
+     * Return a URL the user can use to confirm their email address.
+     * @param string $token Accepts the email confirmation token
+     * @return string New token URL
+     */
 	protected function confirmationTokenUrl( $token ) {
 		return $this->getTokenUrl( 'ConfirmEmail', $token );
 	}
 
 	/**
-	 * Return a URL the user can use to invalidate their email address.
-	 * @param string $token Accepts the email confirmation token
-	 * @return string New token URL
-	 */
+     * Return a URL the user can use to invalidate their email address.
+     * @param string $token Accepts the email confirmation token
+     * @return string New token URL
+     */
 	protected function invalidationTokenUrl( $token ) {
 		return $this->getTokenUrl( 'InvalidateEmail', $token );
 	}
 
 	/**
-	 * Internal function to format the e-mail validation/invalidation URLs.
-	 * This uses a quickie hack to use the
-	 * hardcoded English names of the Special: pages, for ASCII safety.
-	 *
-	 * @note Since these URLs get dropped directly into emails, using the
-	 * short English names avoids insanely long URL-encoded links, which
-	 * also sometimes can get corrupted in some browsers/mailers
-	 * (bug 6957 with Gmail and Internet Explorer).
-	 *
-	 * @param string $page Special page
-	 * @param string $token Token
-	 * @return string Formatted URL
-	 */
+     * Internal function to format the e-mail validation/invalidation URLs.
+     * This uses a quickie hack to use the
+     * hardcoded English names of the Special: pages, for ASCII safety.
+     *
+     * @note Since these URLs get dropped directly into emails, using the
+     * short English names avoids insanely long URL-encoded links, which
+     * also sometimes can get corrupted in some browsers/mailers
+     * (bug 6957 with Gmail and Internet Explorer).
+     *
+     * @param string $page Special page
+     * @param string $token Token
+     * @return string Formatted URL
+     */
 	protected function getTokenUrl( $page, $token ) {
 		// Hack to bypass localization of 'Special:'
 		$title = Title::makeTitle( NS_MAIN, "Special:$page/$token" );
@@ -4122,12 +4161,12 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Mark the e-mail address confirmed.
-	 *
-	 * @note Call saveSettings() after calling this function to commit the change.
-	 *
-	 * @return bool
-	 */
+     * Mark the e-mail address confirmed.
+     *
+     * @note Call saveSettings() after calling this function to commit the change.
+     *
+     * @return bool
+     */
 	public function confirmEmail() {
 		// Check if it's already confirmed, so we don't touch the database
 		// and fire the ConfirmEmailComplete hook on redundant confirmations.
@@ -4139,12 +4178,12 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Invalidate the user's e-mail confirmation, and unauthenticate the e-mail
-	 * address if it was already confirmed.
-	 *
-	 * @note Call saveSettings() after calling this function to commit the change.
-	 * @return bool Returns true
-	 */
+     * Invalidate the user's e-mail confirmation, and unauthenticate the e-mail
+     * address if it was already confirmed.
+     *
+     * @note Call saveSettings() after calling this function to commit the change.
+     * @return bool Returns true
+     */
 	public function invalidateEmail() {
 		$this->load();
 		$this->mEmailToken = null;
@@ -4156,9 +4195,9 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Set the e-mail authentication timestamp.
-	 * @param string $timestamp TS_MW timestamp
-	 */
+     * Set the e-mail authentication timestamp.
+     * @param string $timestamp TS_MW timestamp
+     */
 	public function setEmailAuthenticationTimestamp( $timestamp ) {
 		$this->load();
 		$this->mEmailAuthenticated = $timestamp;
@@ -4166,10 +4205,10 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Is this user allowed to send e-mails within limits of current
-	 * site configuration?
-	 * @return bool
-	 */
+     * Is this user allowed to send e-mails within limits of current
+     * site configuration?
+     * @return bool
+     */
 	public function canSendEmail() {
 		global $wgEnableEmail, $wgEnableUserEmail;
 		if ( !$wgEnableEmail || !$wgEnableUserEmail || !$this->isAllowed( 'sendemail' ) ) {
@@ -4181,24 +4220,24 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Is this user allowed to receive e-mails within limits of current
-	 * site configuration?
-	 * @return bool
-	 */
+     * Is this user allowed to receive e-mails within limits of current
+     * site configuration?
+     * @return bool
+     */
 	public function canReceiveEmail() {
 		return $this->isEmailConfirmed() && !$this->getOption( 'disablemail' );
 	}
 
 	/**
-	 * Is this user's e-mail address valid-looking and confirmed within
-	 * limits of the current site configuration?
-	 *
-	 * @note If $wgEmailAuthentication is on, this may require the user to have
-	 * confirmed their address by returning a code or using a password
-	 * sent to the address from the wiki.
-	 *
-	 * @return bool
-	 */
+     * Is this user's e-mail address valid-looking and confirmed within
+     * limits of the current site configuration?
+     *
+     * @note If $wgEmailAuthentication is on, this may require the user to have
+     * confirmed their address by returning a code or using a password
+     * sent to the address from the wiki.
+     *
+     * @return bool
+     */
 	public function isEmailConfirmed() {
 		global $wgEmailAuthentication;
 		$this->load();
@@ -4220,9 +4259,9 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Check whether there is an outstanding request for e-mail confirmation.
-	 * @return bool
-	 */
+     * Check whether there is an outstanding request for e-mail confirmation.
+     * @return bool
+     */
 	public function isEmailConfirmationPending() {
 		global $wgEmailAuthentication;
 		return $wgEmailAuthentication &&
@@ -4232,12 +4271,12 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Get the timestamp of account creation.
-	 *
-	 * @return string|bool|null Timestamp of account creation, false for
-	 *  non-existent/anonymous user accounts, or null if existing account
-	 *  but information is not in database.
-	 */
+     * Get the timestamp of account creation.
+     *
+     * @return string|bool|null Timestamp of account creation, false for
+     *  non-existent/anonymous user accounts, or null if existing account
+     *  but information is not in database.
+     */
 	public function getRegistration() {
 		if ( $this->isAnon() ) {
 			return false;
@@ -4247,11 +4286,11 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Get the timestamp of the first edit
-	 *
-	 * @return string|bool Timestamp of first edit, or false for
-	 *  non-existent/anonymous user accounts.
-	 */
+     * Get the timestamp of the first edit
+     *
+     * @return string|bool Timestamp of first edit, or false for
+     *  non-existent/anonymous user accounts.
+     */
 	public function getFirstEditTimestamp() {
 		if ( $this->getId() == 0 ) {
 			return false; // anons
@@ -4269,11 +4308,11 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Get the permissions associated with a given list of groups
-	 *
-	 * @param array $groups Array of Strings List of internal group names
-	 * @return array Array of Strings List of permission key names for given groups combined
-	 */
+     * Get the permissions associated with a given list of groups
+     *
+     * @param array $groups Array of Strings List of internal group names
+     * @return array Array of Strings List of permission key names for given groups combined
+     */
 	public static function getGroupPermissions( $groups ) {
 		global $wgGroupPermissions, $wgRevokePermissions;
 		$rights = array();
@@ -4296,11 +4335,11 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Get all the groups who have a given permission
-	 *
-	 * @param string $role Role to check
-	 * @return array Array of Strings List of internal group names with the given permission
-	 */
+     * Get all the groups who have a given permission
+     *
+     * @param string $role Role to check
+     * @return array Array of Strings List of internal group names with the given permission
+     */
 	public static function getGroupsWithPermission( $role ) {
 		global $wgGroupPermissions;
 		$allowedGroups = array();
@@ -4313,17 +4352,17 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Check, if the given group has the given permission
-	 *
-	 * If you're wanting to check whether all users have a permission, use
-	 * User::isEveryoneAllowed() instead. That properly checks if it's revoked
-	 * from anyone.
-	 *
-	 * @since 1.21
-	 * @param string $group Group to check
-	 * @param string $role Role to check
-	 * @return bool
-	 */
+     * Check, if the given group has the given permission
+     *
+     * If you're wanting to check whether all users have a permission, use
+     * User::isEveryoneAllowed() instead. That properly checks if it's revoked
+     * from anyone.
+     *
+     * @since 1.21
+     * @param string $group Group to check
+     * @param string $role Role to check
+     * @return bool
+     */
 	public static function groupHasPermission( $group, $role ) {
 		global $wgGroupPermissions, $wgRevokePermissions;
 		return isset( $wgGroupPermissions[$group][$role] ) && $wgGroupPermissions[$group][$role]
@@ -4331,12 +4370,12 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Check if all users have the given permission
-	 *
-	 * @since 1.22
-	 * @param string $right Right to check
-	 * @return bool
-	 */
+     * Check if all users have the given permission
+     *
+     * @since 1.22
+     * @param string $right Right to check
+     * @return bool
+     */
 	public static function isEveryoneAllowed( $right ) {
 		global $wgGroupPermissions, $wgRevokePermissions;
 		static $cache = array();
@@ -4371,34 +4410,34 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Get the localized descriptive name for a group, if it exists
-	 *
-	 * @param string $group Internal group name
-	 * @return string Localized descriptive group name
-	 */
+     * Get the localized descriptive name for a group, if it exists
+     *
+     * @param string $group Internal group name
+     * @return string Localized descriptive group name
+     */
 	public static function getGroupName( $group ) {
 		$msg = wfMessage( "group-$group" );
 		return $msg->isBlank() ? $group : $msg->text();
 	}
 
 	/**
-	 * Get the localized descriptive name for a member of a group, if it exists
-	 *
-	 * @param string $group Internal group name
-	 * @param string $username Username for gender (since 1.19)
-	 * @return string Localized name for group member
-	 */
+     * Get the localized descriptive name for a member of a group, if it exists
+     *
+     * @param string $group Internal group name
+     * @param string $username Username for gender (since 1.19)
+     * @return string Localized name for group member
+     */
 	public static function getGroupMember( $group, $username = '#' ) {
 		$msg = wfMessage( "group-$group-member", $username );
 		return $msg->isBlank() ? $group : $msg->text();
 	}
 
 	/**
-	 * Return the set of defined explicit groups.
-	 * The implicit groups (by default *, 'user' and 'autoconfirmed')
-	 * are not included, as they are defined automatically, not in the database.
-	 * @return array Array of internal group names
-	 */
+     * Return the set of defined explicit groups.
+     * The implicit groups (by default *, 'user' and 'autoconfirmed')
+     * are not included, as they are defined automatically, not in the database.
+     * @return array Array of internal group names
+     */
 	public static function getAllGroups() {
 		global $wgGroupPermissions, $wgRevokePermissions;
 		return array_diff(
@@ -4408,9 +4447,9 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Get a list of all available permissions.
-	 * @return array Array of permission names
-	 */
+     * Get a list of all available permissions.
+     * @return array Array of permission names
+     */
 	public static function getAllRights() {
 		if ( self::$mAllRights === false ) {
 			global $wgAvailableRights;
@@ -4425,9 +4464,9 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Get a list of implicit groups
-	 * @return array Array of Strings Array of internal group names
-	 */
+     * Get a list of implicit groups
+     * @return array Array of Strings Array of internal group names
+     */
 	public static function getImplicitGroups() {
 		global $wgImplicitGroups;
 
@@ -4439,11 +4478,11 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Get the title of a page describing a particular group
-	 *
-	 * @param string $group Internal group name
-	 * @return Title|bool Title of the page if it exists, false otherwise
-	 */
+     * Get the title of a page describing a particular group
+     *
+     * @param string $group Internal group name
+     * @return Title|bool Title of the page if it exists, false otherwise
+     */
 	public static function getGroupPage( $group ) {
 		$msg = wfMessage( 'grouppage-' . $group )->inContentLanguage();
 		if ( $msg->exists() ) {
@@ -4456,13 +4495,13 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Create a link to the group in HTML, if available;
-	 * else return the group name.
-	 *
-	 * @param string $group Internal name of the group
-	 * @param string $text The text of the link
-	 * @return string HTML link to the group
-	 */
+     * Create a link to the group in HTML, if available;
+     * else return the group name.
+     *
+     * @param string $group Internal name of the group
+     * @param string $text The text of the link
+     * @return string HTML link to the group
+     */
 	public static function makeGroupLinkHTML( $group, $text = '' ) {
 		if ( $text == '' ) {
 			$text = self::getGroupName( $group );
@@ -4476,13 +4515,13 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Create a link to the group in Wikitext, if available;
-	 * else return the group name.
-	 *
-	 * @param string $group Internal name of the group
-	 * @param string $text The text of the link
-	 * @return string Wikilink to the group
-	 */
+     * Create a link to the group in Wikitext, if available;
+     * else return the group name.
+     *
+     * @param string $group Internal name of the group
+     * @param string $text The text of the link
+     * @return string Wikilink to the group
+     */
 	public static function makeGroupLinkWiki( $group, $text = '' ) {
 		if ( $text == '' ) {
 			$text = self::getGroupName( $group );
@@ -4497,14 +4536,14 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Returns an array of the groups that a particular group can add/remove.
-	 *
-	 * @param string $group The group to check for whether it can add/remove
-	 * @return array Array( 'add' => array( addablegroups ),
-	 *     'remove' => array( removablegroups ),
-	 *     'add-self' => array( addablegroups to self),
-	 *     'remove-self' => array( removable groups from self) )
-	 */
+     * Returns an array of the groups that a particular group can add/remove.
+     *
+     * @param string $group The group to check for whether it can add/remove
+     * @return array Array( 'add' => array( addablegroups ),
+     *     'remove' => array( removablegroups ),
+     *     'add-self' => array( addablegroups to self),
+     *     'remove-self' => array( removable groups from self) )
+     */
 	public static function changeableByGroup( $group ) {
 		global $wgAddGroups, $wgRemoveGroups, $wgGroupsAddToSelf, $wgGroupsRemoveFromSelf;
 
@@ -4572,12 +4611,12 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Returns an array of groups that this user can add and remove
-	 * @return array Array( 'add' => array( addablegroups ),
-	 *  'remove' => array( removablegroups ),
-	 *  'add-self' => array( addablegroups to self),
-	 *  'remove-self' => array( removable groups from self) )
-	 */
+     * Returns an array of groups that this user can add and remove
+     * @return array Array( 'add' => array( addablegroups ),
+     *  'remove' => array( removablegroups ),
+     *  'add-self' => array( addablegroups to self),
+     *  'remove-self' => array( removable groups from self) )
+     */
 	public function changeableGroups() {
 		if ( $this->isAllowed( 'userrights' ) ) {
 			// This group gives the right to modify everything (reverse-
@@ -4615,9 +4654,9 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Increment the user's edit-count field.
-	 * Will have no effect for anonymous users.
-	 */
+     * Increment the user's edit-count field.
+     * Will have no effect for anonymous users.
+     */
 	public function incEditCount() {
 		if ( !$this->isAnon() ) {
 			$dbw = wfGetDB( DB_MASTER );
@@ -4650,11 +4689,11 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Initialize user_editcount from data out of the revision table
-	 *
-	 * @param int $add Edits to add to the count from the revision table
-	 * @return int Number of edits
-	 */
+     * Initialize user_editcount from data out of the revision table
+     *
+     * @param int $add Edits to add to the count from the revision table
+     * @return int Number of edits
+     */
 	protected function initEditCount( $add = 0 ) {
 		// Pull from a slave to be less cruel to servers
 		// Accuracy isn't the point anyway here
@@ -4679,11 +4718,11 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Get the description of a given right
-	 *
-	 * @param string $right Right to query
-	 * @return string Localized description of the right
-	 */
+     * Get the description of a given right
+     *
+     * @param string $right Right to query
+     * @return string Localized description of the right
+     */
 	public static function getRightDescription( $right ) {
 		$key = "right-$right";
 		$msg = wfMessage( $key );
@@ -4691,14 +4730,14 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Make a new-style password hash
-	 *
-	 * @param string $password Plain-text password
-	 * @param bool|string $salt Optional salt, may be random or the user ID.
-	 *  If unspecified or false, will generate one automatically
-	 * @return string Password hash
-	 * @deprecated since 1.24, use Password class
-	 */
+     * Make a new-style password hash
+     *
+     * @param string $password Plain-text password
+     * @param bool|string $salt Optional salt, may be random or the user ID.
+     *  If unspecified or false, will generate one automatically
+     * @return string Password hash
+     * @deprecated since 1.24, use Password class
+     */
 	public static function crypt( $password, $salt = false ) {
 		wfDeprecated( __METHOD__, '1.24' );
 		$hash = self::getPasswordFactory()->newFromPlaintext( $password );
@@ -4706,16 +4745,16 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Compare a password hash with a plain-text password. Requires the user
-	 * ID if there's a chance that the hash is an old-style hash.
-	 *
-	 * @param string $hash Password hash
-	 * @param string $password Plain-text password to compare
-	 * @param string|bool $userId User ID for old-style password salt
-	 *
-	 * @return bool
-	 * @deprecated since 1.24, use Password class
-	 */
+     * Compare a password hash with a plain-text password. Requires the user
+     * ID if there's a chance that the hash is an old-style hash.
+     *
+     * @param string $hash Password hash
+     * @param string $password Plain-text password to compare
+     * @param string|bool $userId User ID for old-style password salt
+     *
+     * @return bool
+     * @deprecated since 1.24, use Password class
+     */
 	public static function comparePasswords( $hash, $password, $userId = false ) {
 		wfDeprecated( __METHOD__, '1.24' );
 
@@ -4735,26 +4774,26 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Add a newuser log entry for this user.
-	 * Before 1.19 the return value was always true.
-	 *
-	 * @param string|bool $action Account creation type.
-	 *   - String, one of the following values:
-	 *     - 'create' for an anonymous user creating an account for himself.
-	 *       This will force the action's performer to be the created user itself,
-	 *       no matter the value of $wgUser
-	 *     - 'create2' for a logged in user creating an account for someone else
-	 *     - 'byemail' when the created user will receive its password by e-mail
-	 *     - 'autocreate' when the user is automatically created (such as by CentralAuth).
-	 *   - Boolean means whether the account was created by e-mail (deprecated):
-	 *     - true will be converted to 'byemail'
-	 *     - false will be converted to 'create' if this object is the same as
-	 *       $wgUser and to 'create2' otherwise
-	 *
-	 * @param string $reason User supplied reason
-	 *
-	 * @return int|bool True if not $wgNewUserLog; otherwise ID of log item or 0 on failure
-	 */
+     * Add a newuser log entry for this user.
+     * Before 1.19 the return value was always true.
+     *
+     * @param string|bool $action Account creation type.
+     *   - String, one of the following values:
+     *     - 'create' for an anonymous user creating an account for himself.
+     *       This will force the action's performer to be the created user itself,
+     *       no matter the value of $wgUser
+     *     - 'create2' for a logged in user creating an account for someone else
+     *     - 'byemail' when the created user will receive its password by e-mail
+     *     - 'autocreate' when the user is automatically created (such as by CentralAuth).
+     *   - Boolean means whether the account was created by e-mail (deprecated):
+     *     - true will be converted to 'byemail'
+     *     - false will be converted to 'create' if this object is the same as
+     *       $wgUser and to 'create2' otherwise
+     *
+     * @param string $reason User supplied reason
+     *
+     * @return int|bool True if not $wgNewUserLog; otherwise ID of log item or 0 on failure
+     */
 	public function addNewUserLogEntry( $action = false, $reason = '' ) {
 		global $wgUser, $wgNewUserLog;
 		if ( empty( $wgNewUserLog ) ) {
@@ -4794,12 +4833,12 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Add an autocreate newuser log entry for this user
-	 * Used by things like CentralAuth and perhaps other authplugins.
-	 * Consider calling addNewUserLogEntry() directly instead.
-	 *
-	 * @return bool
-	 */
+     * Add an autocreate newuser log entry for this user
+     * Used by things like CentralAuth and perhaps other authplugins.
+     * Consider calling addNewUserLogEntry() directly instead.
+     *
+     * @return bool
+     */
 	public function addNewUserLogEntryAutoCreate() {
 		$this->addNewUserLogEntry( 'autocreate' );
 
@@ -4807,10 +4846,10 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Load the user options either from cache, the database or an array
-	 *
-	 * @param array $data Rows for the current user out of the user_properties table
-	 */
+     * Load the user options either from cache, the database or an array
+     *
+     * @param array $data Rows for the current user out of the user_properties table
+     */
 	protected function loadOptions( $data = null ) {
 		global $wgContLang;
 
@@ -4871,10 +4910,10 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Saves the non-default options for this user, as previously set e.g. via
-	 * setOption(), in the database's "user_properties" (preferences) table.
-	 * Usually used via saveSettings().
-	 */
+     * Saves the non-default options for this user, as previously set e.g. via
+     * setOption(), in the database's "user_properties" (preferences) table.
+     * Usually used via saveSettings().
+     */
 	protected function saveOptions() {
 		$this->loadOptions();
 
@@ -4936,10 +4975,10 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Lazily instantiate and return a factory object for making passwords
-	 *
-	 * @return PasswordFactory
-	 */
+     * Lazily instantiate and return a factory object for making passwords
+     *
+     * @return PasswordFactory
+     */
 	public static function getPasswordFactory() {
 		if ( self::$mPasswordFactory === null ) {
 			self::$mPasswordFactory = new PasswordFactory();
@@ -4950,28 +4989,28 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Provide an array of HTML5 attributes to put on an input element
-	 * intended for the user to enter a new password.  This may include
-	 * required, title, and/or pattern, depending on $wgMinimalPasswordLength.
-	 *
-	 * Do *not* use this when asking the user to enter his current password!
-	 * Regardless of configuration, users may have invalid passwords for whatever
-	 * reason (e.g., they were set before requirements were tightened up).
-	 * Only use it when asking for a new password, like on account creation or
-	 * ResetPass.
-	 *
-	 * Obviously, you still need to do server-side checking.
-	 *
-	 * NOTE: A combination of bugs in various browsers means that this function
-	 * actually just returns array() unconditionally at the moment.  May as
-	 * well keep it around for when the browser bugs get fixed, though.
-	 *
-	 * @todo FIXME: This does not belong here; put it in Html or Linker or somewhere
-	 *
-	 * @return array Array of HTML attributes suitable for feeding to
-	 *   Html::element(), directly or indirectly.  (Don't feed to Xml::*()!
-	 *   That will get confused by the boolean attribute syntax used.)
-	 */
+     * Provide an array of HTML5 attributes to put on an input element
+     * intended for the user to enter a new password.  This may include
+     * required, title, and/or pattern, depending on $wgMinimalPasswordLength.
+     *
+     * Do *not* use this when asking the user to enter his current password!
+     * Regardless of configuration, users may have invalid passwords for whatever
+     * reason (e.g., they were set before requirements were tightened up).
+     * Only use it when asking for a new password, like on account creation or
+     * ResetPass.
+     *
+     * Obviously, you still need to do server-side checking.
+     *
+     * NOTE: A combination of bugs in various browsers means that this function
+     * actually just returns array() unconditionally at the moment.  May as
+     * well keep it around for when the browser bugs get fixed, though.
+     *
+     * @todo FIXME: This does not belong here; put it in Html or Linker or somewhere
+     *
+     * @return array Array of HTML attributes suitable for feeding to
+     *   Html::element(), directly or indirectly.  (Don't feed to Xml::*()!
+     *   That will get confused by the boolean attribute syntax used.)
+     */
 	public static function passwordChangeInputAttribs() {
 		global $wgMinimalPasswordLength;
 
@@ -5008,10 +5047,10 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Return the list of user fields that should be selected to create
-	 * a new user object.
-	 * @return array
-	 */
+     * Return the list of user fields that should be selected to create
+     * a new user object.
+     * @return array
+     */
 	public static function selectFields() {
 		return array(
 			'user_id',
@@ -5029,12 +5068,12 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Factory function for fatal permission-denied errors
-	 *
-	 * @since 1.22
-	 * @param string $permission User right required
-	 * @return Status
-	 */
+     * Factory function for fatal permission-denied errors
+     *
+     * @since 1.22
+     * @param string $permission User right required
+     * @return Status
+     */
 	static function newFatalPermissionDeniedStatus( $permission ) {
 		global $wgLang;
 

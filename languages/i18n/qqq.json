@@ -634,7 +634,7 @@
 	"signupend": "{{notranslate}}",
 	"signupend-https": "{{notranslate}}",
 	"mailerror": "Used as error message in sending confirmation mail to user. Parameters:\n* $1 - new mail address",
-	"acct_creation_throttle_hit": "Error message at [[Special:CreateAccount]].\n\n\"in the last day\" precisely means: during the lasts 86400 seconds (24 hours) ending right now.\n\nParameters:\n* $1 - number of accounts",
+	"acct_creation_throttle_hit": "Error message at [[Special:CreateAccount]].",
 	"emailauthenticated": "In user preferences ([[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}) and on [[Special:ConfirmEmail]].\n\nParameters:\n* $1 - (Unused) obsolete, date and time\n* $2 - date\n* $3 - time",
 	"emailnotauthenticated": "Message in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.\n\nIt appears after saving your email address but before you confirm it.",
 	"noemailprefs": "Message appearing in the \"Email options\" section of the \"User profile\" page in [[Special:Preferences|Preferences]], when no user email address has been entered.",
