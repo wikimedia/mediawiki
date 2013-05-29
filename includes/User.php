@@ -1499,7 +1499,6 @@ class User {
 		$limits = $wgRateLimits[$action];
 		$keys = array();
 		$id = $this->getId();
-		$ip = $this->getRequest()->getIP();
 		$userLimit = false;
 
 		if ( isset( $limits['anon'] ) && $id == 0 ) {
@@ -1514,12 +1513,23 @@ class User {
 				$keys[wfMemcKey( 'limiter', $action, 'user', $id )] = $limits['newbie'];
 			}
 			if ( isset( $limits['ip'] ) ) {
+				$ip = $this->getRequest()->getIP();
 				$keys["mediawiki:limiter:$action:ip:$ip"] = $limits['ip'];
 			}
-			$matches = array();
-			if ( isset( $limits['subnet'] ) && preg_match( '/^(\d+\.\d+\.\d+)\.\d+$/', $ip, $matches ) ) {
-				$subnet = $matches[1];
-				$keys["mediawiki:limiter:$action:subnet:$subnet"] = $limits['subnet'];
+			if ( isset( $limits['subnet'] ) ) {
+				$ip = $this->getRequest()->getIP();
+				$matches = array();
+				$subnet = false;
+				if ( IP::isIPv6( $ip ) ) {
+					$parts = IP::parseRange( "$ip/64" );
+					$subnet = $parts[0];
+				} elseif ( preg_match( '/^(\d+\.\d+\.\d+)\.\d+$/', $ip, $matches ) ) {
+					// IPv4
+					$subnet = $matches[1];
+				}
+				if ( $subnet !== false ) {
+					$keys["mediawiki:limiter:$action:subnet:$subnet"] = $limits['subnet'];
+				}
 			}
 		}
 		// Check for group-specific permissions
