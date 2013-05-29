@@ -42,7 +42,7 @@ class CoreParserFunctions {
 			'ns', 'nse', 'urlencode', 'lcfirst', 'ucfirst', 'lc', 'uc',
 			'localurl', 'localurle', 'fullurl', 'fullurle', 'canonicalurl',
 			'canonicalurle', 'formatnum', 'grammar', 'gender', 'plural',
-			'numberofpages', 'numberofusers', 'numberofactiveusers',
+			'numberofpages', 'numberofsubpages', 'numberofusers', 'numberofactiveusers',
 			'numberofarticles', 'numberoffiles', 'numberofadmins',
 			'numberingroup', 'numberofedits', 'numberofviews', 'language',
 			'padleft', 'padright', 'anchorencode', 'defaultsort', 'filepath',
@@ -730,6 +730,28 @@ class CoreParserFunctions {
 
 		$count = $cache[$name][$type];
 		return self::formatRaw( $count, $raw );
+	}
+
+	/**
+	 * Return the number of sub-pages a page has. This is an expensive parser
+	 * function and cannot be called too many times.
+	 */
+	static function numberofsubpages( $parser, $name = '', $raw = null ) {
+		static $cache = array();
+		$title = Title::newFromText( $name );
+
+		$length = 0;
+		if ( $title ) {
+			$key = $title->getPrefixedText();
+			if ( isset( $cache[$key] ) ) {
+				$length = $cache[$key];
+			} elseif ( $parser->incrementExpensiveFunctionCount() ) {
+				$length = $title->getSubpagesCount();
+				$cache[$key] = $length;
+			}
+		}
+
+		return self::formatRaw( $length, $raw );
 	}
 
 	/**
