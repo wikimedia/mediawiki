@@ -205,7 +205,7 @@ abstract class Skin extends ContextSource {
 	 */
 	public function getDefaultModules() {
 		global $wgIncludeLegacyJavaScript, $wgPreloadJavaScriptMwUtil, $wgUseAjax,
-			$wgAjaxWatch;
+			$wgAjaxWatch, $wgEnableAPI, $wgEnableWriteAPI;
 
 		$out = $this->getOutput();
 		$user = $out->getUser();
@@ -235,12 +235,16 @@ abstract class Skin extends ContextSource {
 		if ( $wgUseAjax ) {
 			$modules['legacy'][] = 'mediawiki.legacy.ajax';
 
-			if ( $wgAjaxWatch && $user->isLoggedIn() ) {
-				$modules['watch'][] = 'mediawiki.page.watch.ajax';
-			}
+			if ( $wgEnableAPI ) {
+				if ( $wgEnableWriteAPI && $wgAjaxWatch && $user->isLoggedIn()
+					&& $user->isAllowed( 'writeapi' )
+				) {
+					$modules['watch'][] = 'mediawiki.page.watch.ajax';
+				}
 
-			if ( !$user->getOption( 'disablesuggest', false ) ) {
-				$modules['search'][] =  'mediawiki.searchSuggest';
+				if ( !$user->getOption( 'disablesuggest', false ) ) {
+					$modules['search'][] = 'mediawiki.searchSuggest';
+				}
 			}
 		}
 
