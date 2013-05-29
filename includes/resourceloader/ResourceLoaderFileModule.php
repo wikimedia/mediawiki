@@ -259,6 +259,9 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 				case 'raw':
 					$this->{$member} = (bool)$option;
 					break;
+				case 'license':
+					$this->setVersionInfoByArray( $option );
+					break;
 			}
 		}
 		// Make sure the remote base path is a complete valid URL,

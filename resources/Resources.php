@@ -193,6 +193,27 @@ return array(
 		'scripts' => 'resources/lib/jquery/jquery.js',
 		'debugRaw' => false,
 		'targets' => array( 'desktop', 'mobile' ),
+		'license' => array(
+			array(
+				'name' => 'jQuery',
+				'url' => '//jquery.com/',
+				'version' => '1.8.3',
+				'licenseName' => '{{int:license-mit}}',
+				'licenseUrl' => '//jquery.org/license',
+				'source' => '//github.com/jquery/jquery/tree/1.8.3',
+				'authors' => '//github.com/jquery/jquery/blob/1.8.3/AUTHORS.txt',
+			),
+			array(
+				'name' => 'Sizzle',
+				'url' => '//sizzlejs.com',
+				'version' => '1.8.3',
+				'licenseName' => '{{int:license-mit}}',
+				'licenseUrl' => '//github.com/jquery/sizzle/blob/1.8.3/MIT-LICENSE.txt',
+				'licenseGroup' => 'jquery-sizzle',
+				'source' => '//github.com/jquery/sizzle/tree/1.8.3',
+				'authors' => '//github.com/jquery/sizzle/blob/1.8.3/AUTHORS.txt',
+			),
+		),
 	),
 
 	/* jQuery Plugins */
@@ -391,6 +412,15 @@ return array(
 			),
 		),
 		'group' => 'jquery.ui',
+		'license' => array(
+			'name' => 'jQuery UI',
+			'url' => '//jqueryui.com/',
+			'version' => '1.8.24',
+			'licenseName' => '{{int:license-mit}}',
+			'licenseUrl' => '//github.com/jquery/jquery-ui/blob/1.8.24/MIT-LICENSE.txt',
+			'source' => '//github.com/jquery/jquery-ui/tree/1.8.24',
+			'authors' => '//github.com/jquery/jquery-ui/blob/1.8.24/AUTHORS.txt',
+		),
 	),
 	'jquery.ui.widget' => array(
 		'scripts' => 'resources/lib/jquery.ui/jquery.ui.widget.js',
