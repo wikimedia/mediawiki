@@ -864,6 +864,10 @@ $collationName: Name of the collation in question
 &$collationObject: Null. Replace with a subclass of the Collation class that
   implements the collation given in $collationName.
 
+'ComponentVersionListComplete': Called after the list of included component
+versions has been assembled but before sorting. Use to add to the list.
+&$components: SoftwareVersion[] of all registered components
+
 'ConfirmEmailComplete': Called after a user's email has been confirmed
 successfully.
 $user: user (object) whose email is being confirmed
