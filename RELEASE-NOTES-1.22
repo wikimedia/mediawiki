@@ -86,6 +86,8 @@ production.
   HTTP caches when a page is changed.
 * Changed the patrolling system to always show the link for patrolling in case the
   current revision is patrollable. This also removed the usage of the rcid URI parameters.
+* Add a new parameter $patrolFooterShown to hook ArticleViewFooter so the hook
+  handlers can take further action based on the status of the partrol footer
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
