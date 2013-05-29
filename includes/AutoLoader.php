@@ -227,6 +227,7 @@ $wgAutoloadLocalClasses = array(
 	'SiteStatsUpdate' => 'includes/SiteStats.php',
 	'Skin' => 'includes/Skin.php',
 	'SkinTemplate' => 'includes/SkinTemplate.php',
+	'SoftwareVersion' => 'includes/SoftwareVersion.php',
 	'SpecialCreateAccount' => 'includes/SpecialPage.php',
 	'SpecialListAdmins' => 'includes/SpecialPage.php',
 	'SpecialListBots' => 'includes/SpecialPage.php',
