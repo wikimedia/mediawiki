@@ -26,13 +26,13 @@
 require_once __DIR__ . '/Maintenance.php';
 
 /**
- * Maintenance script to create an account and grant it administrator rights.
+ * Maintenance script to create an account and grant it rights.
  *
  * @ingroup Maintenance
  */
 class CreateAndPromote extends Maintenance {
 
-	static $permitRoles = array( 'sysop', 'bureaucrat' );
+	static $permitRoles = array( 'sysop', 'bureaucrat', 'bot' );
 
 	public function __construct() {
 		parent::__construct();
