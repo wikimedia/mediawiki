@@ -851,6 +851,7 @@ future releases. Also note that since each list value is wrapped in a unique
 'create-this-page'   => 'Create this page',
 'delete'             => 'Delete',
 'deletethispage'     => 'Delete this page',
+'undeletethispage'   => 'Undelete this page',
 'undelete_short'     => 'Undelete {{PLURAL:$1|one edit|$1 edits}}',
 'viewdeleted_short'  => 'View {{PLURAL:$1|one deleted edit|$1 deleted edits}}',
 'protect'            => 'Protect',
