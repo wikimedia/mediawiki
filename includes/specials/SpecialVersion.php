@@ -121,9 +121,10 @@ class SpecialVersion extends SpecialPage {
 					$this->softwareInformation() .
 					$this->getEntryPointInfo()
 				);
-				$out->addHtml( $this->getExtensionCredits() );
-				$out->addHtml( $this->getParserTags() );
-				$out->addHtml( $this->getParserFunctionHooks() );
+				$out->addHTML( $this->getExtensionCredits() );
+				$out->addHTML( $this->getBundledComponents() );
+				$out->addHTML( $this->getParserTags() );
+				$out->addHTML( $this->getParserFunctionHooks() );
 				$out->addWikiText( $this->getWgHooks() );
 				$out->addHTML( $this->IPInfo() );
 
@@ -678,6 +679,96 @@ class SpecialVersion extends SpecialPage {
 		$html .= Html::closeElement( 'td' );
 
 		return $html;
+	}
+
+	private function getBundledComponents() {
+		/** @var SoftwareVersion[] $versions */
+		$versions = array();
+		
+		$output = $this->getOutput();
+		$rl = $output->getResourceLoader();
+
+		// Construct the list of components from ResourceLoader
+		foreach( $rl->getModuleNames() as $rlComponentName ) {
+			$versions = array_merge( $versions, $rl->getModule( $rlComponentName )->getVersionInfo() );
+		}
+
+		// Call the hook for PHP components or other things we might have missed
+		wfRunHooks( 'ComponentVersionListComplete', $versions );
+
+		if ( !count( $versions ) ) {
+			return '';
+		}
+
+		// Sort the list so that things appear alphabetically on screen
+		usort( $versions, function( SoftwareVersion $a, SoftwareVersion $b ) {
+			return strnatcasecmp( $a->getName(), $b->getName() );
+		} );
+
+		// Present the list
+		$makeLink = function( $url, $text, $id, OutputPage $out ) {
+			if ( $url ) {
+				if ( substr( $url, 0, 2 ) == '//' ) {
+					return Linker::makeExternalLink(
+						$url,
+						$out->parseInline( $text ),
+						true,
+						'',
+						array( 'class' => "mw-version-component-{$id}" )
+					);
+				} else {
+					return Linker::link(
+						Title::newFromText( $url ),
+						$out->parseInline( $text ),
+						array( 'class' => "mw-version-component-{$id}" )
+					);
+				}
+			} else {
+				return Html::rawElement(
+					'span',
+					array( 'class' => "mw-version-component-{$id}" ),
+					$out->parseInline( $text )
+				);
+			}
+		};
+
+		$out = array();
+		$out[] = $output->parse( '== Bundled Components == ' );
+		$out[] = Html::openElement(
+			'table',
+			array(
+				 'id' => 'sv-components',
+				 'class' => array( 'wikitable', 'plainlinks' )
+			)
+		);
+		$out[] = Html::rawElement( 'tr', array(),
+			Html::element( 'th', array(), $this->msg( 'version-component-name' )->text() ) .
+			Html::element( 'th', array(), $this->msg( 'version-component-version' )->parse() ) .
+			Html::element( 'th', array(), $this->msg( 'version-component-license' )->parse() ) .
+			Html::element( 'th', array(), $this->msg( 'version-component-authors' )->parse() )
+		);
+
+		foreach( $versions as $version ) {
+			$name = $makeLink( $version->getUrl(), $version->getName(), 'name', $output );
+			$versionHtml = $makeLink( $version->getSourceURL(), $version->getVersion(), 'version', $output );
+			$license = $makeLink( $version->getLicenseURL(), $version->getLicenseName(), 'license', $output );
+			$authors = $makeLink( $version->getAuthorsURL(), $version->getAuthors(), 'authors', $output );
+
+			$out[] = Html::rawElement(
+				'tr',
+				array(
+					 'id' => "mw-ver-components-{$version->getShortName()}",
+					 'class' => "mw-version-components"
+				),
+				Html::rawElement( 'td', array(), $name ) .
+				Html::rawElement( 'td', array(), $versionHtml ) .
+				Html::rawElement( 'td', array(), $license ) .
+				Html::rawElement( 'td', array(), $authors )
+			);
+		}
+
+		$out[] = Html::closeElement( 'table' );
+		return implode( "\n", $out );
 	}
 
 	/**
