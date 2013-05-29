@@ -48,7 +48,7 @@ class SpecialVersion extends SpecialPage {
 	 * main()
 	 */
 	public function execute( $par ) {
-		global $wgSpecialVersionShowHooks, $IP, $wgExtensionCredits;
+		global $IP, $wgExtensionCredits;
 
 		$this->setHeaders();
 		$this->outputHeader();
@@ -115,16 +115,18 @@ class SpecialVersion extends SpecialPage {
 				break;
 
 			default:
+				$out->addModules( 'mediawiki.special.version' );
 				$out->addWikiText(
 					$this->getMediaWikiCredits() .
 					$this->softwareInformation() .
 					$this->getEntryPointInfo()
 				);
-				$out->addHtml( $this->getExtensionCredits() );
-				if ( $wgSpecialVersionShowHooks ) {
-					$out->addWikiText( $this->getWgHooks() );
-				}
-
+				$out->addHtml(
+					$this->getExtensionCredits() .
+					$this->getParserTags() .
+					$this->getParserFunctionHooks()
+				);
+				$out->addWikiText( $this->getWgHooks() );
 				$out->addHTML( $this->IPInfo() );
 
 				break;
@@ -397,9 +399,9 @@ class SpecialVersion extends SpecialPage {
 	 * @return String: Wikitext
 	 */
 	function getExtensionCredits() {
-		global $wgExtensionCredits, $wgExtensionFunctions, $wgParser;
+		global $wgExtensionCredits;
 
-		if ( !count( $wgExtensionCredits ) && !count( $wgExtensionFunctions ) ) {
+		if ( !count( $wgExtensionCredits ) ) {
 			return '';
 		}
 
@@ -435,29 +437,58 @@ class SpecialVersion extends SpecialPage {
 		// We want the 'other' type to be last in the list.
 		$out .= $this->getExtensionCategory( 'other', $extensionTypes['other'] );
 
-		if ( count( $wgExtensionFunctions ) ) {
-			$out .= $this->openExtType( $this->msg( 'version-extension-functions' )->text(), 'extension-functions' );
-			$out .= '<tr><td colspan="4">' . $this->listToText( $wgExtensionFunctions ) . "</td></tr>\n";
-		}
+		$out .= Xml::closeElement( 'table' );
+
+		return $out;
+	}
+
+	/**
+	 * Obtains a list of installed parser tags and the associated H2 header
+	 *
+	 * @return string HTML output
+	 */
+	protected function getParserTags() {
+		global $wgParser;
 
 		$tags = $wgParser->getTags();
-		$cnt = count( $tags );
 
-		if ( $cnt ) {
-			for ( $i = 0; $i < $cnt; ++$i ) {
-				$tags[$i] = "&lt;{$tags[$i]}&gt;";
-			}
-			$out .= $this->openExtType( $this->msg( 'version-parser-extensiontags' )->text(), 'parser-tags' );
-			$out .= '<tr><td colspan="4">' . $this->listToText( $tags ) . "</td></tr>\n";
+		if ( count( $tags ) ) {
+			$out = Html::rawElement( 'h2', array( 'class' => 'mw-headline' ) , Linker::makeExternalLink(
+				'//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Tag_extensions',
+				$this->msg( 'version-parser-extensiontags' ),
+				false
+			) );
+
+			array_walk( $tags, function( &$value ) {
+				$value = "&lt;$value&gt;";
+			} );
+			$out .= $this->listToText( $tags );
+		} else {
+			$out = '';
 		}
+		return $out;
+	}
+
+	/**
+	 * Obtains a list of installed parser function hooks and the associated H2 header
+	 *
+	 * @return string HTML output
+	 */
+	protected function getParserFunctionHooks() {
+		global $wgParser;
 
 		$fhooks = $wgParser->getFunctionHooks();
 		if ( count( $fhooks ) ) {
-			$out .= $this->openExtType( $this->msg( 'version-parser-function-hooks' )->text(), 'parser-function-hooks' );
-			$out .= '<tr><td colspan="4">' . $this->listToText( $fhooks ) . "</td></tr>\n";
-		}
+			$out = Html::rawElement( 'h2', array( 'class' => 'mw-headline' ) , Linker::makeExternalLink(
+				'//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Parser_Functions',
+				$this->msg( 'version-parser-function-hooks' ),
+				false
+			) );
 
-		$out .= Xml::closeElement( 'table' );
+			$out .= $this->listToText( $fhooks );
+		} else {
+			$out = '';
+		}
 
 		return $out;
 	}
@@ -480,7 +511,14 @@ class SpecialVersion extends SpecialPage {
 		if ( array_key_exists( $type, $wgExtensionCredits ) && count( $wgExtensionCredits[$type] ) > 0 ) {
 			$out .= $this->openExtType( $message, 'credits-' . $type );
 
-			usort( $wgExtensionCredits[$type], array( $this, 'compare' ) );
+			$lang = $this->getLanguage();
+			usort( $wgExtensionCredits[$type], function( $a, $b ) use ( $lang ) {
+				if ( $a['name'] === $b['name'] ) {
+					return 0;
+				} else {
+					return $lang->lc( $a['name'] ) > $lang->lc( $b['name'] ) ? 1 : -1;
+				}
+			} );
 
 			foreach ( $wgExtensionCredits[$type] as $extension ) {
 				$out .= $this->getCreditsForExtension( $extension );
@@ -491,31 +529,15 @@ class SpecialVersion extends SpecialPage {
 	}
 
 	/**
-	 * Callback to sort extensions by type.
-	 * @param $a array
-	 * @param $b array
-	 * @return int
-	 */
-	function compare( $a, $b ) {
-		if ( $a['name'] === $b['name'] ) {
-			return 0;
-		} else {
-			return $this->getLanguage()->lc( $a['name'] ) > $this->getLanguage()->lc( $b['name'] )
-				? 1
-				: -1;
-		}
-	}
-
-	/**
 	 * Creates and formats a version line for a single extension.
 	 *
-	 * Information for four columns will be created. Parameters required in the
+	 * Information for five columns will be created. Parameters required in the
 	 * $extension array for part rendering are indicated in ()
 	 *  - The name of (name), and URL link to (url), the extension
-	 *   -- Also if available the short name of the license (license-name) and a linke
-	 *      to ((LICENSE)|(COPYING))(\.txt)? if it exists.
-	 *  - Official version number (version) and if available version control system
+	 * 	- Official version number (version) and if available version control system
 	 *    revision (path), link, and date
+	 *  - If available the short name of the license (license-name) and a linke
+	 *      to ((LICENSE)|(COPYING))(\.txt)? if it exists.
 	 *  - Description of extension (descriptionmsg or description)
 	 *  - List of authors (author) and link to a ((AUTHORS)|(CREDITS))(\.txt)? file if it exists
 	 *
@@ -572,7 +594,10 @@ class SpecialVersion extends SpecialPage {
 			}
 		}
 
-		$versionString = Html::element( 'span', array( 'class' => 'mw-version-ext-version' ), $canonicalVersion );
+		$versionString = Html::element( 'span',
+			array( 'class' => 'mw-version-ext-version' ),
+			$canonicalVersion
+		);
 		if ( $vcsVersion ) {
 			if ( $vcsLink ) {
 				$vcsVerString = Linker::makeExternalLink(
@@ -591,13 +616,16 @@ class SpecialVersion extends SpecialPage {
 			$versionString .= " {$vcsVerString}";
 
 			if ( $vcsDate ) {
-				$vcsTimeString = Html::element( 'br' ) .
-					Html::element( 'span',
+				$vcsTimeString = Html::element( 'span',
 						array( 'class' => 'mw-version-ext-vcs-timestamp'),
 						$this->getLanguage()->timeanddate( $vcsDate )
 					);
 				$versionString .= " {$vcsTimeString}";
 			}
+			$versionString = Html::rawElement( 'span',
+				array( 'class' => 'mw-version-ext-meta-version' ),
+				$versionString
+			);
 		}
 
 		/* --- Get license information if it exists --- */
@@ -641,14 +669,15 @@ class SpecialVersion extends SpecialPage {
 		$authors = isset( $extension['author'] ) ? $extension['author'] : array();
 		$authors = $this->listAuthors( $authors, $extensionName, $extensionPath );
 
-		/* === Create the five columned table === */
+		/* === Create the four columned table === */
 		$html = Html::openElement( 'tr', array(
 				'class' => 'mw-version-ext',
 				'id' => "mw-version-ext-{$extensionName}"
 			)
 		);
 
-		$html .= Html::rawElement( 'td', array(), '<b>' . $extensionNameLink . '</b><br />' . $versionString );
+		$html .= Html::rawElement( 'td', array(), $extensionNameLink );
+		$html .= Html::rawElement( 'td', array(), $versionString );
 		$html .= Html::rawElement( 'td', array(), $licenseLink );
 		$html .= Html::rawElement( 'td', array( 'class' => 'mw-version-ext-description' ), $description );
 		$html .= Html::rawElement( 'td', array( 'class' => 'mw-version-ext-authors' ), $authors );
@@ -664,35 +693,36 @@ class SpecialVersion extends SpecialPage {
 	 * @return String: wikitext
 	 */
 	private function getWgHooks() {
-		global $wgHooks;
+		global $wgSpecialVersionShowHooks, $wgHooks;
 
-		if ( count( $wgHooks ) ) {
+		if ( $wgSpecialVersionShowHooks && count( $wgHooks ) ) {
 			$myWgHooks = $wgHooks;
 			ksort( $myWgHooks );
 
-			$ret = Xml::element( 'h2', array( 'id' => 'mw-version-hooks' ), $this->msg( 'version-hooks' )->text() ) .
-				Xml::openElement( 'table', array( 'class' => 'wikitable', 'id' => 'sv-hooks' ) ) .
-				"<tr>
-					<th>" . $this->msg( 'version-hook-name' )->text() . "</th>
-					<th>" . $this->msg( 'version-hook-subscribedby' )->text() . "</th>
-				</tr>\n";
+			$ret = array();
+			$ret[] = '== {{int:version-hooks}} ==';
+			$ret[] = Html::openElement( 'table', array( 'class' => 'wikitable', 'id' => 'sv-hooks' ) );
+			$ret[] = Html::openElement( 'tr' );
+			$ret[] = Html::element( 'th', array(), $this->msg( 'version-hook-name' )->text() );
+			$ret[] = Html::element( 'th', array(), $this->msg( 'version-hook-subscribedby' )->text() );
+			$ret[] = Html::closeElement( 'tr' );
 
 			foreach ( $myWgHooks as $hook => $hooks ) {
-				$ret .= "<tr>
-						<td>$hook</td>
-						<td>" . $this->listToText( $hooks ) . "</td>
-					</tr>\n";
+				$ret[] = Html::openElement( 'tr' );
+				$ret[] = Html::element( 'td', array(), $hook );
+				$ret[] = Html::element( 'td', array(), $this->listToText( $hooks ) );
+				$ret[] = Html::closeElement( 'tr' );
 			}
 
-			$ret .= Xml::closeElement( 'table' );
-			return $ret;
+			$ret[] = Html::closeElement( 'table' );
+			return implode( "\n", $ret );
 		} else {
 			return '';
 		}
 	}
 
 	private function openExtType( $text, $name = null ) {
-		$opt = array( 'colspan' => 4 );
+		$opt = array( 'colspan' => 5 );
 		$out = '';
 
 		if ( $this->firstExtOpened ) {
