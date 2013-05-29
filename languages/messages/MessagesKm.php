@@ -368,6 +368,18 @@ $messages = array(
 'oct' => 'តុលា',
 'nov' => 'វិច្ឆិកា',
 'dec' => 'ធ្នូ',
+'january-date' => '$1 មករា',
+'february-date' => '$1 កុម្ភៈ',
+'march-date' => '$1 មីនា',
+'april-date' => '$1 មេសា',
+'may-date' => '$1 ឧសភា',
+'june-date' => '$1 មិថុនា',
+'july-date' => '$1 កក្កដា',
+'august-date' => '$1 សីហា',
+'september-date' => '$1 កញ្ញា',
+'october-date' => '$1 តុលា',
+'november-date' => '$1 វិច្ឆិកា',
+'december-date' => '$1 ធ្នូ',
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|ចំណាត់ថ្នាក់ក្រុម|ចំណាត់ថ្នាក់ក្រុម}}',

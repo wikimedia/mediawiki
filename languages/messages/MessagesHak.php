@@ -1369,18 +1369,18 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'deletereasonotherlist' => '其它理由',
 
 # Rollback
-'rollback' => '編寫打轉頭',
-'rollback_short' => '打轉頭',
+'rollback' => '編寫倒轉頭',
+'rollback_short' => '倒轉頭',
 'rollbacklink' => '打轉頭',
-'rollbackfailed' => '無法打轉頭',
+'rollbackfailed' => '無法倒轉頭',
 'cantrollback' => '編寫無法打轉頭；最後嘅貢獻者人本文嘅唯一作者。',
 'alreadyrolled' => 'Mò-fap fî-fu̍k yù [[User:$2|$2]] （[[User talk:$2|thó-lun]]） chin-hàng ke [[$1]] ke chui-heu phiên-si̍p; khì-thâ ngìn yí-kîn phiên-siá fe̍t-he fî-fu̍k liáu ke-hong. Chui-heu phiên-si̍p-chá: [[User:$3|$3]] （[[User talk:$3|Thó-lun]]）。',
 'editcomment' => "Phiên-siá sot-mìn he: \"''\$1''\"。",
 'revertpage' => 'Fî-fu̍k yù [[Special:Contributions/$2|$2]] （[[User talk:$2|tui-fa]]） ke phiên-cho; kiên-kói fì-fu̍k [[User:$1|$1]] ke chui-heu yit-ke pán-pún',
 
 # Edit tokens
-'sessionfailure' => '汝嘅登人會話好像有問題；
-為到防止會話劫持，邇個操作已經分取消。
+'sessionfailure' => '汝嘅登入會話好像有問題；
+為到防止會話劫持，邇次操作已經畀取消。
 請轉到先前嘅頁面，重新載入邇頁面，然後重試。',
 
 # Protect

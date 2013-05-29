@@ -20,6 +20,7 @@
  * @author Mayooranathan
  * @author Naveen
  * @author Planemad
+ * @author Sank
  * @author Shanmugamp7
  * @author Sodabottle
  * @author Sundar
@@ -1098,7 +1099,7 @@ $1",
 'search-interwiki-default' => '$1 தளத்தின் முடிவுகள்:',
 'search-interwiki-more' => '(மேலும்)',
 'search-relatedarticle' => 'தொடர்புடையவை',
-'mwsuggest-disable' => 'AJAX பரிந்துரைகளை முடக்கு',
+'mwsuggest-disable' => 'தேடல் பரிந்துரைகளை முடக்கு',
 'searcheverything-enable' => 'அனைத்துப் பெயர்வெளிகளிலும் தேடவும்',
 'searchrelated' => 'தொடர்புடையவை',
 'searchall' => 'அனைத்தும்',
@@ -1183,7 +1184,7 @@ $1",
 'timezoneregion-indian' => 'இந்தியப் பெருங்கடல்',
 'timezoneregion-pacific' => 'பசிபிக் பெருங்கடல்',
 'allowemail' => 'ஏனைய பயனர்களிடம் இருந்தான மின்னஞ்சல்களை அனுமதி',
-'prefs-searchoptions' => 'தேடுக',
+'prefs-searchoptions' => 'தேடல்',
 'prefs-namespaces' => 'பெயர்வெளிகள்',
 'defaultns' => 'அப்படியில்லையென்றால் இந்த பொயர்வெளிகளில் தேடவும்:',
 'default' => 'பொதுவானது',
@@ -1198,7 +1199,7 @@ $1",
 'youremail' => 'மின்னஞ்சல்:',
 'username' => '{{GENDER:$1|பயனர் பெயர்}}:',
 'uid' => '{{GENDER:$1|User}} ID:',
-'prefs-memberingroups' => 'பின்வரும் {{பன்மை:$1|குழு|குழுக்களில்}} {{பாலினம்:$2|உறுப்பினர்}}:',
+'prefs-memberingroups' => 'பின்வரும் {{PLURAL:$1|குழு|குழுக்களில்}} உறுப்பினர்:',
 'prefs-registration' => 'பதிவு செய்யும் நேரம்:',
 'yourrealname' => 'உண்மைப் பெயர்:',
 'yourlanguage' => 'மொழி:',

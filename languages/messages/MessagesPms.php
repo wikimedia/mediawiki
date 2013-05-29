@@ -192,10 +192,10 @@ $messages = array(
 'faqpage' => 'Project:Soèns An Ciamo',
 
 # Vector skin
-'vector-action-addsection' => 'Gionta argoment',
-'vector-action-delete' => 'Scancela',
-'vector-action-move' => 'Tramuda',
-'vector-action-protect' => 'Protegg',
+'vector-action-addsection' => "Gionté n'argoment",
+'vector-action-delete' => 'Scancelé',
+'vector-action-move' => 'Tramudé',
+'vector-action-protect' => 'Protege',
 'vector-action-undelete' => 'Arcùpera',
 'vector-action-unprotect' => 'Cangé la protession',
 'vector-simplesearch-preference' => "Abilité la bara d'arserca semplificà (mach për la pel Vector)",

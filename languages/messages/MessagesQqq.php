@@ -4244,8 +4244,7 @@ The other parts are {{msg-mw|Prevpage}} and {{msg-mw|Nextpage}}.
 
 # Special:Categories
 'categories' => 'The page name of [[Special:Categories]].
-
-{{Identical|Categories}}',
+{{Identical|Category}}',
 'categoriespagetext' => "{{doc-important|Do not translate or change links.}}
 Text displayed in [[Special:Categories]].
 
