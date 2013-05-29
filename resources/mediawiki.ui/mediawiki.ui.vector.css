@@ -307,7 +307,7 @@ a.mw-ui-button {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   font-size: 0.9em;
-  color: #7d7d7d;
+  color: #4a4a4a;
   width: auto;
   margin: 0 0 0.2em 0;
   padding: 0;
@@ -344,7 +344,7 @@ a.mw-ui-button {
 /* line 72, sourcefiles/scss/components/default/_forms.scss */
 .mw-ui-label {
   font-size: 0.9em;
-  color: #7d7d7d;
+  color: #4a4a4a;
 }
 /* line 34, sourcefiles/scss/mixins/_forms.scss */
 .mw-ui-label * {
