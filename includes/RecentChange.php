@@ -329,7 +329,7 @@ class RecentChange {
 	 * @return String
 	 */
 	public static function cleanupForIRC( $text ) {
-		return Sanitizer::decodeCharReferences( str_replace( array( "\n", "\r" ), array( "", "" ), $text ) );
+		return Sanitizer::decodeCharReferences( str_replace( array( "\n", "\r" ), array( " ", "" ), $text ) );
 	}
 
 	/**
