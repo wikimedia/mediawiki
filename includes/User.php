@@ -1489,65 +1489,94 @@ class User {
 	 * last-hit counters will be shared across wikis.
 	 *
 	 * @param string $action Action to enforce; 'edit' if unspecified
-	 * @param integer $incrBy Positive amount to increment counter by [defaults to 1]
+	 * @param int $incrBy Positive amount to increment counter by [defaults to 1]
+	 *
 	 * @return bool True if a rate limiter was tripped
 	 */
 	public function pingLimiter( $action = 'edit', $incrBy = 1 ) {
+		global $wgMemc, $wgRateLimitLog, $wgRateLimits;
+
+		$profile = new ProfileSection( __METHOD__ );
+
 		// Call the 'PingLimiter' hook
 		$result = false;
 		if ( !wfRunHooks( 'PingLimiter', array( &$this, $action, &$result, $incrBy ) ) ) {
 			return $result;
 		}
 
-		global $wgRateLimits;
-		if ( !isset( $wgRateLimits[$action] ) ) {
+		// Shortcut if no rate limits are set or if user is exempt
+		if ( !isset( $wgRateLimits[$action] ) || !$this->isPingLimitable() ) {
 			return false;
 		}
 
-		// Some groups shouldn't trigger the ping limiter, ever
-		if ( !$this->isPingLimitable() ) {
-			return false;
-		}
-
-		global $wgMemc, $wgRateLimitLog;
-		wfProfileIn( __METHOD__ );
-
-		$limits = $wgRateLimits[$action];
 		$keys = array();
-		$id = $this->getId();
-		$userLimit = false;
+		$limits = $wgRateLimits[$action];
+		$limits += array(
+			'user' => null,
+			'anon' => null,
+			'ip' => null,
+			'ip-all' => null,
+			'subnet' => null,
+			'subnet-all' => null,
+		);
 
-		if ( isset( $limits['anon'] ) && $id == 0 ) {
+		// Fetch some common information
+		$id = $this->getId();
+		$ip = $this->getRequest()->getIP();
+		$newbie = $this->isNewbie();
+		$anon = $this->isAnon();
+
+		// Per-user throttling
+		$userLimit = false;
+		if ( !$anon && isset( $limits['user'] ) && $id != 0 ) {
+			$userLimit = $limits['user'];
+		}
+
+		// Anonymous throttling
+		if ( $anon && isset( $limits['anon'] ) ) {
 			$keys[wfMemcKey( 'limiter', $action, 'anon' )] = $limits['anon'];
 		}
 
-		if ( isset( $limits['user'] ) && $id != 0 ) {
-			$userLimit = $limits['user'];
+		// Non-anonymous newbie throttling
+		if ( $newbie && !$anon && isset( $limits['newbie'] ) ) {
+			$keys[wfMemcKey( 'limiter', $action, 'user', $id )] = $limits['newbie'];
 		}
-		if ( $this->isNewbie() ) {
-			if ( isset( $limits['newbie'] ) && $id != 0 ) {
-				$keys[wfMemcKey( 'limiter', $action, 'user', $id )] = $limits['newbie'];
+
+		// IP throttling: both for newbies and for all users
+		if ( $newbie && isset( $limits['ip'] ) ) {
+			$ipLimit = min(
+				$limits['ip-all'] ?: INF,
+				$limits['ip'] ?: INF
+			);
+			$keys[wfMemcKey('mediawiki', 'limiter', $action, 'ip', $ip)] = $ipLimit;
+		} elseif ( isset( $limits['ip-all'] ) ) {
+			$keys[wfMemcKey('mediawiki', 'limiter', $action, 'ip', $ip)] = $limits['ip-all'];
+		}
+
+		// Subnet throttling: both for newbies and for all users
+		if ( isset( $limits['subnet-all'] ) || isset( $limits['subnet'] ) ) {
+			$subnet = false;
+			if ( IP::isIPv6( $ip ) ) {
+				$parts = IP::parseRange( "$ip/64" );
+				$subnet = $parts[0];
+			} elseif ( IP::isIPv4( $ip ) ) {
+				$parts = IP::parseRange( "$ip/24" );
+				$subnet = $parts[0];
 			}
-			if ( isset( $limits['ip'] ) ) {
-				$ip = $this->getRequest()->getIP();
-				$keys["mediawiki:limiter:$action:ip:$ip"] = $limits['ip'];
-			}
-			if ( isset( $limits['subnet'] ) ) {
-				$ip = $this->getRequest()->getIP();
-				$matches = array();
-				$subnet = false;
-				if ( IP::isIPv6( $ip ) ) {
-					$parts = IP::parseRange( "$ip/64" );
-					$subnet = $parts[0];
-				} elseif ( preg_match( '/^(\d+\.\d+\.\d+)\.\d+$/', $ip, $matches ) ) {
-					// IPv4
-					$subnet = $matches[1];
-				}
-				if ( $subnet !== false ) {
-					$keys["mediawiki:limiter:$action:subnet:$subnet"] = $limits['subnet'];
+
+			if ( $subnet !== false ) {
+				if ( $newbie && isset( $limits['subnet'] ) ) {
+					$subnetLimit = min(
+						$limits['subnet-all'] ?: INF,
+						$limits['subnet'] ?: INF
+					);
+					$keys[wfMemcKey('mediawiki', 'limiter', $action, 'subnet', $subnet)] = $subnetLimit;
+				} elseif ( isset( $limits['subnet-all'] ) ) {
+					$keys[wfMemcKey('mediawiki', 'limiter', $action, 'subnet', $subnet)] = $limits['subnet-all'];
 				}
 			}
 		}
+
 		// Check for group-specific permissions
 		// If more than one group applies, use the group with the highest limit
 		foreach ( $this->getGroups() as $group ) {
@@ -1565,35 +1594,42 @@ class User {
 		}
 
 		$triggered = false;
+		$memcValues = $wgMemc->getMulti( array_keys( $keys ) );
 		foreach ( $keys as $key => $limit ) {
 			list( $max, $period ) = $limit;
 			$summary = "(limit $max in {$period}s)";
-			$count = $wgMemc->get( $key );
-			// Already pinged?
-			if ( $count ) {
-				if ( $count >= $max ) {
-					wfDebug( __METHOD__ . ": tripped! $key at $count $summary\n" );
-					if ( $wgRateLimitLog ) {
-						wfSuppressWarnings();
-						file_put_contents( $wgRateLimitLog, wfTimestamp( TS_MW ) . ' ' . wfWikiID() . ': ' . $this->getName() . " tripped $key at $count $summary\n", FILE_APPEND );
-						wfRestoreWarnings();
-					}
-					$triggered = true;
-				} else {
-					wfDebug( __METHOD__ . ": ok. $key at $count $summary\n" );
+
+			// Set an initial value and expiry if key does not exist
+			if ( $memcValues[$key] === false ) {
+				wfDebug( __METHOD__ . ": adding record for $key $summary\n" );
+				$wgMemc->add( $key, 0, (int)$period );
+				$memcValues[$key] = 0;
+			}
+
+			// Check if throttled
+			if ( $memcValues[$key] >= $max ) {
+				wfDebug( __METHOD__ . ": tripped! $key at {$memcValues[$key]} $summary\n" );
+				$triggered = true;
+
+				if ( $wgRateLimitLog ) {
+					wfSuppressWarnings();
+					file_put_contents(
+						$wgRateLimitLog,
+						wfTimestamp( TS_MW ) .
+							' ' . wfWikiID() .
+							': ' . $this->getName() .
+							" tripped $key at {$memcValues[$key]} $summary\n",
+						FILE_APPEND
+					);
+					wfRestoreWarnings();
 				}
 			} else {
-				wfDebug( __METHOD__ . ": adding record for $key $summary\n" );
-				if ( $incrBy > 0 ) {
-					$wgMemc->add( $key, 0, intval( $period ) ); // first ping
-				}
+				wfDebug( __METHOD__ . ": ok. $key at {$memcValues[$key]} $summary\n" );
 			}
-			if ( $incrBy > 0 ) {
-				$wgMemc->incr( $key, $incrBy );
-			}
+
+			$wgMemc->incr( $key, $incrBy );
 		}
 
-		wfProfileOut( __METHOD__ );
 		return $triggered;
 	}
 
