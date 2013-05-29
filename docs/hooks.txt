@@ -1054,7 +1054,8 @@ $editToken: The user's edit token.
   OutputPage::showErrorPage.
 
 'ExemptFromAccountCreationThrottle': Exemption from the account creation
-throttle.
+throttle. Deprecated since 1.22. Use the PingLimiter hook instead with the
+createaccount action.
 $ip: The ip address of the user
 
 'ExtensionTypes': Called when generating the extensions credits, use this to

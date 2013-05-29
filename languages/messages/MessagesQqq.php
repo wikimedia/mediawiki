@@ -1291,9 +1291,7 @@ Parameters:
 * $1 - password reset email resend time (in hours)',
 'mailerror' => 'Used as error message in sending confirmation mail to user. Parameters:
 * $1 - new mail address',
-'acct_creation_throttle_hit' => 'Error message at [[Special:CreateAccount]].
-
-"in the last day" precisely means: during the lasts 86400 seconds (24 hours) ending right now.',
+'acct_creation_throttle_hit' => 'Error message at [[Special:CreateAccount]].',
 'emailauthenticated' => 'In user preferences ([[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}) and on [[Special:ConfirmEmail]].
 
 Parameters:
