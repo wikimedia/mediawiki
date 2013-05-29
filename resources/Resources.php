@@ -224,6 +224,9 @@ return array(
 	'jquery.placeholder' => array(
 		'scripts' => 'resources/jquery/jquery.placeholder.js',
 		'targets' => array( 'desktop', 'mobile' ),
+		'dependencies' => array(
+			'jquery.getAttrs',
+		),
 	),
 	'jquery.qunit' => array(
 		'scripts' => 'resources/jquery/jquery.qunit.js',
