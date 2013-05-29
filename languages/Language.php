@@ -2953,12 +2953,16 @@ class Language {
 	}
 
 	/**
+	 * Get all magic words from cache.
 	 * @return array
 	 */
 	function getMagicWords() {
 		return self::$dataCache->getItem( $this->mCode, 'magicWords' );
 	}
 
+	/**
+	 * Run the LanguageGetMagic hook once.
+	 */
 	protected function doMagicHook() {
 		if ( $this->mMagicHookDone ) {
 			return;
@@ -2975,17 +2979,15 @@ class Language {
 	 * @param $mw
 	 */
 	function getMagic( $mw ) {
-		$this->doMagicHook();
+		if( ! $this->mMagicHookDone ) {  // Saves a function call
+			$this->doMagicHook();
+		}
 
 		if ( isset( $this->mMagicExtensions[$mw->mId] ) ) {
 			$rawEntry = $this->mMagicExtensions[$mw->mId];
 		} else {
-			$magicWords = $this->getMagicWords();
-			if ( isset( $magicWords[$mw->mId] ) ) {
-				$rawEntry = $magicWords[$mw->mId];
-			} else {
-				$rawEntry = false;
-			}
+			$rawEntry = self::$dataCache->getSubItem(
+				$this->mCode, 'magicWords', $mw->mId );
 		}
 
 		if ( !is_array( $rawEntry ) ) {
