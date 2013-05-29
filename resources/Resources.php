@@ -1037,6 +1037,9 @@ return array(
 		'position' => 'top',
 		'targets' => array( 'desktop', 'mobile' ),
 	),
+	'mediawiki.special.version' => array(
+		'styles' => 'resources/mediawiki.special/mediawiki.special.version.css',
+	),
 
 	/* MediaWiki Tests */
 
