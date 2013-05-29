@@ -1,0 +1,14 @@
+/**
+ * Adds additional styling to the extension title/version list
+**/
+.mw-version-ext-name {
+	font-weight: bold;
+}
+
+.mw-version-ext-vcs-timestamp {
+	white-space: nowrap;
+}
+
+th.mw-version-ext-col-label {
+	font-size: 0.9em;
+}
