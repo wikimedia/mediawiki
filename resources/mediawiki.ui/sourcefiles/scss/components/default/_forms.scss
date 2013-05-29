@@ -31,7 +31,9 @@ $defaultFormWidth: $captchaContainerWidth;
             width: 100%;
         }
 
-        input {
+        // We exclude these because they'll generally use mw-ui-button.
+        // Otherwise, we'll unintentionally override that.
+        input:not([type=button]):not([type=submit]):not([type=file]), {
             @include agora-field-styling; // mixins/_forms.scss
         }
 

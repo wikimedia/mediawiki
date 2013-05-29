@@ -46,7 +46,7 @@
   background-image: -moz-linear-gradient(top, #dcdcdc, #c9c9c9);
   background-image: -o-linear-gradient(top, #dcdcdc, #c9c9c9);
   background-image: linear-gradient(top, #dcdcdc, #c9c9c9);
-  color: #4a4a4a;
+  color: black;
   text-shadow: 0 1px 1px rgba(201, 201, 201, 0.3);
   border: 1px solid #c4c4c4;
   -webkit-border-radius: 3px;
@@ -157,8 +157,8 @@ a.mw-ui-button {
   margin: 0;
   width: 100%;
 }
-/* line 34, sourcefiles/scss/components/default/_forms.scss */
-.mw-ui-vform > div input {
+/* line 36, sourcefiles/scss/components/default/_forms.scss */
+.mw-ui-vform > div input:not([type=button]):not([type=submit]):not([type=file]) {
   outline: 0;
   border-style: solid;
   border-width: 1px;
@@ -167,7 +167,7 @@ a.mw-ui-button {
   padding: 0.35em 0 0.35em 0.5em;
 }
 /* line 12, sourcefiles/scss/mixins/_forms.scss */
-.mw-ui-vform > div input:focus {
+.mw-ui-vform > div input:not([type=button]):not([type=submit]):not([type=file]):focus {
   box-shadow: #4091ed 0px 0px 5px;
   border-color: #4091ed;
 }
