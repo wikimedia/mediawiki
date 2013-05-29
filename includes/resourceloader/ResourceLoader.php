@@ -129,9 +129,10 @@ class ResourceLoader {
 	 *
 	 * @param string $filter Name of filter to run
 	 * @param string $data Text to filter, such as JavaScript or CSS text
+	 * @param string $comments Text to add in a comment to the start of the blob
 	 * @return String: Filtered data, or a comment containing an error message
 	 */
-	protected function filter( $filter, $data ) {
+	protected function filter( $filter, $data, $comments = '' ) {
 		global $wgResourceLoaderMinifierStatementsOnOwnLine, $wgResourceLoaderMinifierMaxLineLength;
 		wfProfileIn( __METHOD__ );
 
@@ -154,22 +155,25 @@ class ResourceLoader {
 			return $cacheEntry;
 		}
 
-		$result = '';
 		// Run the filter - we've already verified one of these will work
 		try {
+			$result = array();
+			if ( $comments ) {
+				$result[] = "/* {$comments} */";
+			}
 			switch ( $filter ) {
 				case 'minify-js':
-					$result = JavaScriptMinifier::minify( $data,
+					$result[] = JavaScriptMinifier::minify( $data,
 						$wgResourceLoaderMinifierStatementsOnOwnLine,
 						$wgResourceLoaderMinifierMaxLineLength
 					);
-					$result .= "\n/* cache key: $key */";
 					break;
 				case 'minify-css':
-					$result = CSSMin::minify( $data );
-					$result .= "\n/* cache key: $key */";
+					$result[] = CSSMin::minify( $data );
 					break;
 			}
+			$result[] = "/* cache key: $key */";
+			$result = implode( "\n", $result );
 
 			// Save filtered text to Memcached
 			$cache->set( $key, $result );
@@ -837,7 +841,13 @@ class ResourceLoader {
 			if ( $context->getOnly() === 'styles' ) {
 				$out = $this->filter( 'minify-css', $out );
 			} else {
-				$out = $this->filter( 'minify-js', $out );
+				$includedNames = array();
+				foreach( $modules as $module ) {
+					foreach( $module->getVersionInfo() as $version ) {
+						$includedNames[] = $version->getShortName();
+					}
+				}
+				$out = $this->filter( 'minify-js', $out, "@jslicense-labels: " . implode( ', ', $includedNames ) );
 			}
 		}
 

@@ -8620,6 +8620,14 @@ A short description of the script path entry point. Links to the mediawiki.org d
 'version-credits-title' => 'Page title for an about/credits page for a MediaWiki extension. $1 is the name of the extension.',
 'version-credits-not-found' => 'Descriptive error used when detailed about/credits for an extension are not available.',
 'version-ext-license' => '{{Identical|License}}',
+'version-component-name' => 'Column header for the name of a component',
+'version-component-version' => 'Column header for the version of a component',
+'version-component-license' => 'Column header for the name of the license a component is under',
+'version-component-authors' => 'Column header for the list of authors of a component',
+'license-gplv2' => 'Name of the GNU General Public License v2',
+'license-gplv3' => 'Name of the GNU General Public License v3',
+'license-apache' => 'Name of the Apache License',
+'license-mit' => 'Name of the MIT License',
 
 # Special:Redirect
 'redirect' => "{{doc-special|Redirect}}

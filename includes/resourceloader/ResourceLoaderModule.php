@@ -65,6 +65,9 @@ abstract class ResourceLoaderModule {
 	// In-object cache for message blob mtime
 	protected $msgBlobMtime = array();
 
+	/** @var SoftwareVersion[] */
+	protected $versionInfo = array();
+
 	/* Methods */
 
 	/**
@@ -372,6 +375,41 @@ abstract class ResourceLoaderModule {
 	 */
 	public function setMsgBlobMtime( $lang, $mtime ) {
 		$this->msgBlobMtime[$lang] = $mtime;
+	}
+
+	/**
+	 * Obtains the licensing information for this module
+	 *
+	 * @return SoftwareVersion[]
+	 */
+	public function getVersionInfo() {
+		foreach( $this->versionInfo as $info ) {
+			if ( !$info->getShortName() ) {
+				// Because name doesn't get set until register() is called we
+				// have to fill this is in after the constructor...
+				$info->setShortName( $this->name );
+			}
+		}
+		return $this->versionInfo;
+	}
+
+	/**
+	 * Sets the licensing information for this module by calling the
+	 * SoftwareVersion constructor for every array in $info
+	 *
+	 * @param $info Array or array of arrays compatible with SoftwareVersion::create
+	 */
+	public function setVersionInfoByArray( $info ) {
+		$this->versionInfo = array();
+		$info = is_array( reset( $info ) ) ? $info : array( $info );
+
+		foreach( $info as $infoMeta ) {
+			$shortName = $this->getGroup();
+			if ( !$shortName ) {
+				$shortName = $this->getName();
+			}
+			$this->versionInfo[] = SoftwareVersion::create( $shortName, $infoMeta );
+		}
 	}
 
 	/* Abstract Methods */

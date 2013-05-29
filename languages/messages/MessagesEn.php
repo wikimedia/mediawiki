@@ -4797,6 +4797,7 @@ You can also [[Special:EditWatchlist|use the standard editor]].',
 'version-license'                       => 'MediaWiki License',
 'version-license-title'                 => 'License for $1',
 'version-license-not-found'             => 'No detailed license information was found for this extension.',
+'version-ext-authors'                   => 'Authors',
 'version-credits-title'                 => 'Credits for $1',
 'version-credits-not-found'             => 'No detailed credits information was found for this extension.',
 'version-ext-license'                   => 'License',
@@ -4819,6 +4820,14 @@ You should have received [{{SERVER}}{{SCRIPTPATH}}/COPYING a copy of the GNU Gen
 'version-entrypoints-index-php'         => '[https://www.mediawiki.org/wiki/Manual:index.php index.php]', # do not translate or duplicate this message to other languages
 'version-entrypoints-api-php'           => '[https://www.mediawiki.org/wiki/Manual:api.php api.php]', # do not translate or duplicate this message to other languages
 'version-entrypoints-load-php'          => '[https://www.mediawiki.org/wiki/Manual:load.php load.php]', # do not translate or duplicate this message to other languages
+'version-component-name'                => 'Name',
+'version-component-version'             => 'Version',
+'version-component-license'             => 'License',
+'version-component-authors'             => 'Authors',
+'license-gplv2'                         => 'GNU General Public License v2',
+'license-gplv3'                         => 'GNU General Public License v3',
+'license-apache'                        => 'Apache License',
+'license-mit'                           => 'MIT License',
 
 # Special:Redirect
 'redirect'            => 'Redirect by file, user, or revision ID',
