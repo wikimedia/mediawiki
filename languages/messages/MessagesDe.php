@@ -1223,6 +1223,7 @@ Zu deiner Information folgt das Lösch- und Verschiebungs-Logbuch mit der Begrü
 Sie wurde anscheinend gelöscht.',
 'edit-conflict' => 'Bearbeitungskonflikt.',
 'edit-no-change' => 'Deine Bearbeitung wurde ignoriert, da keine Änderung an dem Text vorgenommen wurde.',
+'postedit-confirmation' => 'Deine Bearbeitung wurde gespeichert.',
 'edit-already-exists' => 'Die neue Seite konnte nicht erstellt werden, da sie bereits vorhanden ist.',
 'defaultmessagetext' => 'Standardtext',
 'content-failed-to-parse' => 'Parsen des Inhalts $2 für Modell $1 fehlgeschlagen: $3',

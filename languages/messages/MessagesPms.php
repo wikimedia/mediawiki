@@ -804,6 +804,8 @@ A-i é pa gnun-e spiegassion.",
 A smija che a sia stàita scancelà.',
 'edit-conflict' => "Conflit d'edission.",
 'edit-no-change' => "Toa modìfica a l'é stàita ignorà, përchè a l'é pa stàit fàit gnun cambiament al test.",
+'postedit-confirmation' => 'é stàita salvà!",
+',
 'edit-already-exists' => 'As peul nen creesse la pàgina.
 A esist già.',
 'defaultmessagetext' => "Test che a-i sarìa se a-i fusso pa 'd modìfiche",
