@@ -14,7 +14,7 @@ class StructureTest extends MediaWikiTestCase {
 		if ( wfIsWindows() ) {
 			$this->markTestSkipped( 'This test does not work on Windows' );
 		}
-		$rootPath = escapeshellarg( __DIR__ );
+		$rootPath = escapeshellarg( __DIR__ . '/..' );
 		$testClassRegex = implode( '|', array(
 			'ApiFormatTestBase',
 			'ApiTestCase',
@@ -58,6 +58,6 @@ class StructureTest extends MediaWikiTestCase {
 	 * Filter to remove testUnitTestFileNamesEndWithTest false positives.
 	 */
 	public function filterSuites( $filename ) {
-		return strpos( $filename, __DIR__ . '/suites/' ) !== 0;
+		return strpos( $filename, __DIR__ . '/../suites/' ) !== 0;
 	}
 }
