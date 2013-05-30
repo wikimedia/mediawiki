@@ -731,6 +731,7 @@ Məlumat üçün aşağıda bu səhifənin tarixçəsindən müvafiq silmə qeyd
 Çox güman ki, səhifə silinmişdir.',
 'edit-conflict' => 'Düzəlişlər münaqişəsi',
 'edit-no-change' => 'Sizin redaktələr qeydə alınmamışdır. Belə ki, mətndə heç bir düzəliş edilməmişdir.',
+'postedit-confirmation' => 'Redaktəniz qeyd edildi.',
 'edit-already-exists' => 'Yeni səhifəni yaratmaq mümkün deyil.
 Belə ki, bu adda səhifə artıq mövcuddur.',
 

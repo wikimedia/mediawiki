@@ -1060,6 +1060,7 @@ $2
 它可能剛剛被刪除。',
 'edit-conflict' => '編輯衝突。',
 'edit-no-change' => '您的編輯已經略過，因為文字無任何改動。',
+'postedit-confirmation' => '您的編輯已儲存。',
 'edit-already-exists' => '不可以建立一個新頁面。
 它已經存在。',
 'defaultmessagetext' => '預設訊息文字',

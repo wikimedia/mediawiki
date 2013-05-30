@@ -1092,6 +1092,7 @@ Harkitse, kannattaako sivua luoda uudelleen. Alla on tämän sivun poisto- ja si
 Se on ilmeisesti poistettu.',
 'edit-conflict' => 'Päällekkäinen muokkaus.',
 'edit-no-change' => 'Muokkauksesi sivuutettiin, koska tekstiin ei tehty mitään muutoksia.',
+'postedit-confirmation' => 'Muokkauksesi on tallennettu.',
 'edit-already-exists' => 'Uuden sivun luominen ei onnistunut.
 Se on jo olemassa.',
 'defaultmessagetext' => 'Viestin oletusteksti',

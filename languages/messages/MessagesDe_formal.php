@@ -267,6 +267,7 @@ Zu Ihrer Information folgt das Lösch- und Verschiebungs-Logbuch mit der Begrün
 'edit-no-change' => 'Ihre Bearbeitung wurde ignoriert, da keine Änderung an dem Text vorgenomme wurde.',
 
 # "Undo" feature
+'postedit-confirmation' => 'Ihre Bearbeitung wurde gespeichert.',
 'undo-success' => 'Die Bearbeitung kann rückgängig gemacht werden.
 Bitte prüfen Sie den Vergleich unten, um sicherzustellen, dass Sie dies tun möchten, und speichern Sie dann unten Ihre Änderungen, um die Bearbeitung rückgängig zu machen.',
 

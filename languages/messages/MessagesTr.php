@@ -1098,6 +1098,7 @@ Bir açıklama verilmedi.',
 Silinmiş görünüyor.',
 'edit-conflict' => 'Değişiklik çakışması.',
 'edit-no-change' => 'Değişikliğiniz yoksayıldı, çünkü metinde bir değişiklik yapılmadı.',
+'postedit-confirmation' => 'Değişikliğiniz kaydedildi.',
 'edit-already-exists' => 'Yeni sayfa oluşturulamıyor.
 Sayfa zaten mevcut.',
 'defaultmessagetext' => 'Varsayılan mesaj metni',

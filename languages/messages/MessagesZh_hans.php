@@ -1115,6 +1115,7 @@ $2
 它可能刚刚被删除。',
 'edit-conflict' => '编辑冲突。',
 'edit-no-change' => '因为没有文字更改，你的编辑已被忽略。',
+'postedit-confirmation' => '您的编辑已保存。',
 'edit-already-exists' => '不可以建立一个新页面。
 它已经存在。',
 'defaultmessagetext' => '默认消息文本',
