@@ -196,6 +196,8 @@ changes to languages because of Bugzilla reports.
   is_chrome, webkit_version, is_safari_win, is_safari, webkit_match, is_ff2,
   ff2_bugs, is_ff2_win, is_ff2_x11, opera95_bugs, opera7_bugs, opera6_bugs,
   is_opera_95, is_opera_preseven, is_opera, and ie6_bugs.
+* MediaWiki will now flash a confirmation message upon successfully editing a
+  page.
 
 == Compatibility ==
 

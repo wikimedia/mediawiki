@@ -895,6 +895,7 @@ Njejo žedno wujasnjenje.',
 Zda sem až jo wulašowany.',
 'edit-conflict' => 'Wobźěłański konflikt.',
 'edit-no-change' => 'Wašo wobźěłanje jo se ignorěrowało, dokulaž tekst njejo se změnił.',
+'postedit-confirmation' => 'Twója změna jo se składła.',
 'edit-already-exists' => 'Njejo móžno było nowy bok napóraś.
 Eksistěrujo južo.',
 'defaultmessagetext' => 'Standardny tekst powěźeńki',

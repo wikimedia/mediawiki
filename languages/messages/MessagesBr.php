@@ -947,6 +947,7 @@ Abeg dianav.",
 Diverket eo bet evit doare.',
 'edit-conflict' => 'Tabut kemmañ.',
 'edit-no-change' => "N'eo ket bet kemeret ho tegasadenn e kont rak ne oa ket bet kemmet netra en destenn.",
+'postedit-confirmation' => 'Enrollet eo bet ho kemmoù.',
 'edit-already-exists' => "N'eus ket bet gallet krouiñ ur bajenn nevez.
 Krouet e oa bet c'hoazh.",
 'defaultmessagetext' => 'Testenn dre ziouer',
