@@ -11,6 +11,10 @@
  */
 class ResourcesTest extends MediaWikiTestCase {
 
+	public function testThatIAmBeingRunByJenkins() {
+		$this->assertTrue( false, "Yeah I am really being run, ignore me" );
+	}
+
 	/**
 	 * @dataProvider provideResourceFiles
 	 */
