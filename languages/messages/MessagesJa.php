@@ -1215,6 +1215,7 @@ $1または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこのブロッ�
 既に削除されているようです。',
 'edit-conflict' => '編集が競合。',
 'edit-no-change' => '文章が変更されていないため、編集は無視されました。',
+'postedit-confirmation' => '編集を保存しました。',
 'edit-already-exists' => '新しいページを作成できませんでした。
 そのページは既に存在します。',
 'defaultmessagetext' => '既定のメッセージ文',
