@@ -2,7 +2,7 @@
 /**
  * @group Upload
  */
-class UploadTest extends MediaWikiTestCase {
+class UploadBaseTest extends MediaWikiTestCase {
 	protected $upload;
 
 
