@@ -178,6 +178,8 @@ changes to languages because of Bugzilla reports.
   to redirect through Special:Redirect.
 * Monobook: Removed the old conditional stylesheets for Opera 6, 7 and 9.
 * Support for XHTML 1.0 has been removed. MediaWiki now only outputs (X)HTML5.
+* (bug 48276) MediaWiki will now flash a confirmation message upon successfully
+  editing a page.
 
 == Compatibility ==
 
