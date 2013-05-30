@@ -11865,6 +11865,45 @@ subpage title=[[Subpage test/L1/L2/L3]]
 </p>
 !! end
 
+!! article
+Subpage test/L1/L2/L3Sibling
+!! text
+Sibling article
+!! endarticle
+
+!! test
+Transclusion of a sibling page (one level up)
+!! options
+subpage title=[[Subpage test/L1/L2/L3]]
+!! input
+{{../L3Sibling}}
+!! result
+<p>Sibling article
+</p>
+!! end
+
+!! test
+Transclusion of a child page
+!! options
+subpage title=[[Subpage test/L1/L2]]
+!! input
+{{/L3Sibling}}
+!! result
+<p>Sibling article
+</p>
+!! end
+
+!! test
+Non-transclusion because of too many up levels
+!! options
+subpage title=[[Subpage test/L1/L2/L3]]
+!! input
+{{../../../../More than parent}}
+!! result
+<p>{{../../../../More than parent}}
+</p>
+!! end
+
 !! test
 Definition list code coverage
 !! input
