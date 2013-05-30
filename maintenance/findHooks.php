@@ -12,7 +12,8 @@
  *
  * Any instance of wfRunHooks that doesn't meet these parameters will be noted.
  *
- * Copyright © Antoine Musso
+ * Copyright 2006,2013 © Antoine Musso
+ * Copyright 2013 © Wikimedia Foundation Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -129,7 +130,7 @@ class FindHooks extends Maintenance {
 	private function getHooksFromLocalDoc( $doc ) {
 			$m = array();
 			$content = file_get_contents( $doc );
-			preg_match_all( "/\n'(.*?)'/", $content, $m );
+			preg_match_all( "/subsection .+? (.+)/", $content, $m );
 			return array_unique( $m[1] );
 	}
 
