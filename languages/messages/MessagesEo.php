@@ -1108,6 +1108,7 @@ Jen la protokolo pri forigado kaj alinomigado por via referenco.',
 Verŝajne ĝi estis forigita.',
 'edit-conflict' => 'Redakto-konflikto.',
 'edit-no-change' => 'Via redakto estis ignorita, ĉar neniu ŝanĝo estis farita al la teksto.',
+'postedit-confirmation' => 'Via redakto estis konservita.',
 'edit-already-exists' => 'Ne eblis krei novan paĝon.
 Ĝi jam ekzistas.',
 'defaultmessagetext' => 'Defaŭlta teksto',

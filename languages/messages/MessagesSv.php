@@ -1127,6 +1127,7 @@ Den gav ingen förklaring.',
 Det verkar som att den har raderats.',
 'edit-conflict' => 'Redigeringskonflikt.',
 'edit-no-change' => 'Din redigering ignorerades, eftersom ingen ändring gjordes i texten.',
+'postedit-confirmation' => 'Din redigering sparades.',
 'edit-already-exists' => 'Sidan kunde inte skapas.
 Den finns redan.',
 'defaultmessagetext' => 'Standardtext för meddelande',
