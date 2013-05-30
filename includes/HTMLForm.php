@@ -1025,7 +1025,7 @@ class HTMLForm extends ContextSource {
 
 		$html = '';
 		$subsectionHtml = '';
-		$hasLabel = false;
+		$hasLabels = false;
 
 		switch( $displayFormat ) {
 			case 'table':
@@ -1046,11 +1046,11 @@ class HTMLForm extends ContextSource {
 					: $value->getDefault();
 				$html .= $value->$getFieldHtmlMethod( $v );
 
-				$labelValue = trim( $value->getLabel() );
-				if ( $labelValue != '&#160;' && $labelValue !== '' ) {
-					$hasLabel = true;
+				if ( ! HTMLFormField::isLabelBlank( $value->getLabel() ) ) {
+					$hasLabels = true;
 				}
 			} elseif ( is_array( $value ) ) {
+				// An array indicates a nested section.
 				$section = $this->displaySection( $value, "mw-htmlform-$key", "$fieldsetIDPrefix$key-" );
 				$legend = $this->getLegend( $key );
 				if ( isset( $this->mSectionHeaders[$key] ) ) {
@@ -1070,7 +1070,7 @@ class HTMLForm extends ContextSource {
 		if ( $displayFormat !== 'raw' ) {
 			$classes = array();
 
-			if ( !$hasLabel ) { // Avoid strange spacing when no labels exist
+			if ( !$hasLabels ) { // Avoid strange spacing when no labels exist
 				$classes[] = 'mw-htmlform-nolabel';
 			}
 
@@ -1570,7 +1570,12 @@ abstract class HTMLFormField {
 	}
 
 	function getLabel() {
-		return is_null( $this->mLabel ) ? '' : $this->mLabel;
+		$label = $this->mLabel;
+		if ( $this->mParent->isVForm() ) {
+			// Remove colon on the end, it's not appropriate for a 
+			$label = rtrim( $label, ':' );
+		}
+		return is_null( $label ) ? '' : $label;
 	}
 
 	function getLabelHtml( $cellAttributes = array() ) {
@@ -1583,11 +1588,7 @@ abstract class HTMLFormField {
 		}
 
 		$labelValue = trim( $this->getLabel() );
-		$hasLabel = false;
-		if ( $labelValue !== '&#160;' && $labelValue !== '' ) {
-			$hasLabel = true;
-		}
-
+		$hasLabel = ! HTMLFormField::isLabelBlank( $labelValue );
 		$displayFormat = $this->mParent->getDisplayFormat();
 		$html = '';
 
@@ -1679,6 +1680,16 @@ abstract class HTMLFormField {
 			return Html::rawElement( 'span', array( 'class' => 'error' ), $errors );
 		}
 	}
+	/**
+	 * Checks if a label is blank.
+	 * @param $labelValue String
+	 * @return Bool
+	 * @since 1.22
+	 */
+	public static function isLabelBlank( $labelValue ) {
+		$labelValue = trim( $labelValue );
+		return ( $labelValue === '&#160;' || $labelValue === '' );
+	}
 }
 
 class HTMLTextField extends HTMLFormField {
@@ -1743,9 +1754,28 @@ class HTMLTextField extends HTMLFormField {
 			}
 		}
 
+		// In a vform, the label appears as the placeholder.
+		if ( $this->mParent->isVForm() ) {
+			$labelValue = $this->getLabel();
+			if ( ! HTMLFormField::isLabelBlank( $labelValue ) ) {
+				$attribs['placeholder'] = $labelValue;
+			}
+		}
+
 		return Html::element( 'input', $attribs );
 	}
+
+	// In a vform, the label appears as the placeholder text,
+	// so no label.
+	function getLabelHtml( $cellAttributes = array() ) {
+		if ( $this->mParent->isVForm() ) {
+			return '';
+		} else {
+			return parent::getLabelHtml( $cellAttributes );
+		}
+	}
 }
+
 class HTMLTextAreaField extends HTMLFormField {
 	const DEFAULT_COLS = 80;
 	const DEFAULT_ROWS = 25;
