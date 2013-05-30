@@ -1191,6 +1191,7 @@ Cause inconnue',
 Il semble qu'elle ait été supprimée.",
 'edit-conflict' => 'Conflit de modification.',
 'edit-no-change' => "Votre modification a été ignorée car aucun changement n'a été fait au texte.",
+'postedit-confirmation' => 'Votre modification a été sauvegardée.',
 'edit-already-exists' => "La nouvelle page n'a pas pu être créée.
 Elle existe déjà.",
 'defaultmessagetext' => 'Message par défaut',

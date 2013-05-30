@@ -1123,6 +1123,7 @@ Wystąpił z nieokreślonej przyczyny.',
 Zdaje się, że została skasowana.',
 'edit-conflict' => 'Konflikt edycji.',
 'edit-no-change' => 'Twoja edycja została zignorowana, ponieważ nie zmienił{{GENDER:|eś|aś|eś(‐aś)}} niczego w tekście.',
+'postedit-confirmation' => 'Twoja edycja została zapisana.',
 'edit-already-exists' => 'Nie udało się stworzyć nowej strony.
 Strona już istnieje.',
 'defaultmessagetext' => 'Domyślny tekst komunikatu',

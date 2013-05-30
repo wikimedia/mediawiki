@@ -1083,6 +1083,7 @@ Non è stata restituita alcuna spiegazione.",
 Sembra che sia stata cancellata.',
 'edit-conflict' => 'Conflitto di edizione.',
 'edit-no-change' => 'La modifica è stata ignorata poiché non sono stati apportati cambiamenti al testo.',
+'postedit-confirmation' => 'La modifica è stata salvata.',
 'edit-already-exists' => 'Impossibile creare una nuova pagina.
 Esiste già.',
 'defaultmessagetext' => 'Testo predefinito',
