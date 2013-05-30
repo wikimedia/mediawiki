@@ -22,12 +22,27 @@
  */
 
 /**
- *
+ * MediaWiki message cache structure version.
+ * Bump this whenever the message cache format has changed.
+ */
+define( 'MSG_CACHE_VERSION', 1 );
+
+/**
+ * Memcached timeout when loading a key.
+ * See MessageCache::load()
  */
 define( 'MSG_LOAD_TIMEOUT', 60 );
+
+/**
+ * Memcached timeout when locking a key for a writing operation.
+ * See MessageCache::lock()
+ */
 define( 'MSG_LOCK_TIMEOUT', 30 );
+/**
+ * Number of times we will try to acquire a lock from Memcached.
+ * This comes in addition to MSG_LOCK_TIMEOUT.
+ */
 define( 'MSG_WAIT_TIMEOUT', 30 );
-define( 'MSG_CACHE_VERSION', 1 );
 
 /**
  * Message cache
@@ -44,10 +59,16 @@ class MessageCache {
 	 */
 	protected $mCache;
 
-	// Should  mean that database cannot be used, but check
+	/**
+	 * Should  mean that database cannot be used, but check
+	 * @var bool $mDisable
+	 */
 	protected $mDisable;
 
-	/// Lifetime for cache, used by object caching
+	/**
+	 * Lifetime for cache, used by object caching.
+	 * Set on construction, see __construct().
+	 */
 	protected $mExpiry;
 
 	/**
@@ -56,18 +77,21 @@ class MessageCache {
 	 */
 	protected $mParserOptions, $mParser;
 
-	/// Variable for tracking which variables are already loaded
+	/**
+	 * Variable for tracking which variables are already loaded
+	 * @var array $mLoadedLanguages
+	 */
 	protected $mLoadedLanguages = array();
 
 	/**
 	 * Singleton instance
 	 *
-	 * @var MessageCache
+	 * @var MessageCache $instance
 	 */
 	private static $instance;
 
 	/**
-	 * @var bool
+	 * @var bool $mInParser
 	 */
 	protected $mInParser = false;
 
@@ -98,6 +122,11 @@ class MessageCache {
 		self::$instance = null;
 	}
 
+	/**
+	 * @param ObjectCache $memCached A cache instance. If none, fall back to CACHE_NONE.
+	 * @param bool $useDB
+	 * @param int $expiry Lifetime for cache. @see $mExpiry.
+	 */
 	function __construct( $memCached, $useDB, $expiry ) {
 		if ( !$memCached ) {
 			$memCached = wfGetCache( CACHE_NONE );
@@ -592,7 +621,10 @@ class MessageCache {
 	}
 
 	/**
-	 * Represents a write lock on the messages key
+	 * Represents a write lock on the messages key.
+	 *
+	 * Will retry MessageCache::MSG_WAIT_TIMEOUT times, each operations having
+	 * a timeout of MessageCache::MSG_LOCK_TIMEOUT.
 	 *
 	 * @param string $key
 	 * @return Boolean: success

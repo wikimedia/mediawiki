@@ -1,6 +1,6 @@
 <?php
 /**
- * Debug toolbar related code
+ * Debug toolbar related code.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,7 +21,7 @@
  */
 
 /**
- * New debugger system that outputs a toolbar on page view
+ * New debugger system that outputs a toolbar on page view.
  *
  * By default, most methods do nothing ( self::$enabled = false ). You have
  * to explicitly call MWDebug::init() to enabled them.
@@ -35,28 +35,28 @@ class MWDebug {
 	/**
 	 * Log lines
 	 *
-	 * @var array
+	 * @var array $log
 	 */
 	protected static $log = array();
 
 	/**
-	 * Debug messages from wfDebug()
+	 * Debug messages from wfDebug().
 	 *
-	 * @var array
+	 * @var array $debug
 	 */
 	protected static $debug = array();
 
 	/**
-	 * Queries
+	 * SQL statements of the databses queries.
 	 *
-	 * @var array
+	 * @var array $query
 	 */
 	protected static $query = array();
 
 	/**
 	 * Is the debugger enabled?
 	 *
-	 * @var bool
+	 * @var bool $enabled
 	 */
 	protected static $enabled = false;
 
@@ -64,7 +64,7 @@ class MWDebug {
 	 * Array of functions that have already been warned, formatted
 	 * function-caller to prevent a buttload of warnings
 	 *
-	 * @var array
+	 * @var array $deprecationWarnings
 	 */
 	protected static $deprecationWarnings = array();
 
