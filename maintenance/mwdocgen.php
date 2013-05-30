@@ -57,7 +57,8 @@ class MWDocGen extends Maintenance {
 		$this->addOption( 'generate-man',
 			'Whether to generate man files' );
 		$this->addOption( 'file',
-			'Only process given file (relative to $IP)',
+			"Only process given file or directory. Multiple values " .
+			"accepted with comma separation. Path relative to \$IP.",
 			false, true );
 		$this->addOption( 'output',
 			'Path to write doc to',
@@ -75,7 +76,14 @@ class MWDocGen extends Maintenance {
 
 		$this->doxygen = $this->getOption( 'doxygen', 'doxygen' );
 		$this->mwVersion = $this->getOption( 'version', 'master' );
-		$this->input = $IP . '/' . $this->getOption( 'file', '' );
+
+		$this->input = '';
+		$inputs = explode( ',', $this->getOption( 'file', '' ) );
+		foreach( $inputs as $input ) {
+			# Doxygen inputs are space separted and double quoted
+			$this->input .= " \"$IP/$input\"";
+		}
+
 		$this->output = $this->getOption( 'output', "$IP/docs" );
 
 		$this->inputFilter = wfShellWikiCmd(
