@@ -1164,6 +1164,7 @@ Podrobnosti si můžete prohlédnout v níže zobrazeném seznamu provedených p
 Zřejmě byla smazána.',
 'edit-conflict' => 'Editační konflikt.',
 'edit-no-change' => 'Vaše editace byla ignorována, protože nedošlo k žádné změně textu.',
+'postedit-confirmation' => 'Vaše změny byly uloženy.',
 'edit-already-exists' => 'Nepodařilo se vytvořit novou stránku, protože již existuje.',
 'defaultmessagetext' => 'Výchozí text hlášení',
 'content-failed-to-parse' => 'Nepodařilo se zpracovat data $2 do modelu $1: $3',

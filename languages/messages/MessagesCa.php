@@ -982,6 +982,7 @@ No s'ha donat cap explicació.",
 Sembla haver estat esborrada.",
 'edit-conflict' => "Conflicte d'edició.",
 'edit-no-change' => 'La vostra modificació ha estat ignorada perquè no feia cap canvi al text.',
+'postedit-confirmation' => 'La modificació ha estat desada.',
 'edit-already-exists' => "No s'ha pogut crear una pàgina.
 Ja existeix.",
 'defaultmessagetext' => 'Missatge per defecte',

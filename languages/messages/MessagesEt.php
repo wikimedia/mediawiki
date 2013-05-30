@@ -1080,6 +1080,7 @@ Allpool on esitatud lehekülje kustutamis- ja teisaldamislogi.',
 Tundub, et see on kustutatud.',
 'edit-conflict' => 'Redigeerimiskonflikt.',
 'edit-no-change' => 'Sinu redigeerimist ignoreeriti, sest tekstile ei olnud tehtud muudatusi.',
+'postedit-confirmation' => 'Sinu muudatus on salvestatud.',
 'edit-already-exists' => 'Ei saanud alustada uut lehekülge.
 See on juba olemas.',
 'defaultmessagetext' => 'Sõnumi vaiketekst',
