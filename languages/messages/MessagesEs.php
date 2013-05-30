@@ -1171,6 +1171,7 @@ No se aportaron explicaciones.',
 Parece que ha sido borrada.',
 'edit-conflict' => 'Conflicto de edición.',
 'edit-no-change' => 'Se ignoró tu revisión, porque no se hizo ningún cambio al texto.',
+'postedit-confirmation' => 'Se ha guardado tu edición.',
 'edit-already-exists' => 'No se pudo crear una página nueva.
 Ya existe.',
 'defaultmessagetext' => 'Texto de mensaje predeterminado',

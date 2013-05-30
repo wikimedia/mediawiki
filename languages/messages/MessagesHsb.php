@@ -908,6 +908,7 @@ Njeje žane wujasnjenje podała.',
 Zda so, zo je hîžo wušmórnjena.',
 'edit-conflict' => 'Wobdźěłanski konflikt.',
 'edit-no-change' => 'Waše wobdźěłanje bu ignorowane, dokelž tekst njebu zm,ěnjeny.',
+'postedit-confirmation' => 'Twoja změna je so składowała.',
 'edit-already-exists' => 'Njebě móžno nowu stronu wutworić.
 Eksistuje hižo.',
 'defaultmessagetext' => 'Standardny tekst zdźělenki',

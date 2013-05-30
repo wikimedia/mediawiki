@@ -741,7 +741,11 @@ return array(
 	),
 	'mediawiki.action.view.postEdit' => array(
 		'scripts' => 'resources/mediawiki.action/mediawiki.action.view.postEdit.js',
-		'dependencies' => 'jquery.cookie'
+		'styles' => 'resources/mediawiki.action/mediawiki.action.view.postEdit.css',
+		'dependencies' => 'jquery.cookie',
+		'messages' => array(
+			'postedit-confirmation',
+		),
 	),
 	'mediawiki.action.view.rightClickEdit' => array(
 		'scripts' => 'resources/mediawiki.action/mediawiki.action.view.rightClickEdit.js',

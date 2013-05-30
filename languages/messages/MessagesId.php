@@ -1146,6 +1146,7 @@ tanpa ada keterangan.',
 Halaman kemungkinan telah dihapus.',
 'edit-conflict' => 'Konflik penyuntingan.',
 'edit-no-change' => 'Suntingan diabaikan, karena Anda tidak melakukan perubahan atas teks.',
+'postedit-confirmation' => 'Suntingan Anda tersimpan.',
 'edit-already-exists' => 'Tidak dapat membuat halaman baru
 karena telah ada.',
 'defaultmessagetext' => 'Teks baku',
