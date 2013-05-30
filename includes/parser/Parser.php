@@ -3296,8 +3296,9 @@ class Parser {
 			$ns = NS_TEMPLATE;
 			# Split the title into page and subpage
 			$subpage = '';
-			$part1 = $this->maybeDoSubpageLink( $part1, $subpage );
-			if ( $subpage !== '' ) {
+			$relative = $this->maybeDoSubpageLink( $part1, $subpage );
+			if ( $part1 !== $relative ) {
+				$part1 = $relative;
 				$ns = $this->mTitle->getNamespace();
 			}
 			$title = Title::newFromText( $part1, $ns );
