@@ -1202,6 +1202,7 @@ Er is geen toelichting beschikbaar.',
 Deze lijkt verwijderd te zijn.',
 'edit-conflict' => 'Bewerkingsconflict.',
 'edit-no-change' => 'Uw bewerking is genegeerd, omdat er geen wijziging aan de tekst is gemaakt.',
+'postedit-confirmation' => 'Uw bewerking is opgeslagen',
 'edit-already-exists' => 'De pagina is niet aangemaakt.
 Deze bestaat al.',
 'defaultmessagetext' => 'Standaardinhoud',

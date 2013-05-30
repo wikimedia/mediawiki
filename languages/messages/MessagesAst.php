@@ -895,6 +895,7 @@ Nun dio esplicación.',
 Paez que se desanició.',
 'edit-conflict' => "Conflictu d'edición.",
 'edit-no-change' => "S'inoró la to edición, porque nun se fizo nengún cambéu nel testu.",
+'postedit-confirmation' => 'Guardose la edición.',
 'edit-already-exists' => 'Nun pudo crease una páxina nueva.
 Esta yá esiste.',
 'defaultmessagetext' => 'Testu predetermináu',

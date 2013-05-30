@@ -1187,6 +1187,7 @@ IP 주소는 여러 사용자가 공유할 수 있습니다.
 문서가 삭제된 것 같습니다.',
 'edit-conflict' => '편집 충돌.',
 'edit-no-change' => '문서에 어떠한 바뀜도 없기 때문에 편집은 무시되었습니다.',
+'postedit-confirmation' => '편집을 저장했습니다.',
 'edit-already-exists' => '새 문서를 만들 수 없습니다.
 문서가 이미 존재합니다.',
 'defaultmessagetext' => '기본 메세지 내용',

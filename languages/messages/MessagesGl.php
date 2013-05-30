@@ -1083,6 +1083,7 @@ Este non deu ningunha explicación.',
 Semella que foi borrada.',
 'edit-conflict' => 'Conflito de edición.',
 'edit-no-change' => 'A súa edición foi ignorada dado que non fixo ningún cambio no texto.',
+'postedit-confirmation' => 'Gardouse a súa edición.',
 'edit-already-exists' => 'Non se pode crear a nova páxina.
 Esta xa existe.',
 'defaultmessagetext' => 'Texto predeterminado',

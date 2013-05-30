@@ -1123,6 +1123,7 @@ Không có lý do nào được đưa ra.',
 Dường như trang này đã bị xóa.',
 'edit-conflict' => 'Sửa đổi mâu thuẫn.',
 'edit-no-change' => 'Sửa đổi của bạn không được tính đến, vì nó không làm thay đổi nội dung.',
+'postedit-confirmation' => 'Sửa đổi của bạn đã được lưu.',
 'edit-already-exists' => 'Không thể tạo trang mới.
 Nó đã tồn tại.',
 'defaultmessagetext' => 'Nội dung mặc định',
