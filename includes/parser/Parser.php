@@ -5129,7 +5129,7 @@ class Parser {
 				'vertAlign' => array( 'baseline', 'sub', 'super', 'top', 'text-top', 'middle',
 					'bottom', 'text-bottom' ),
 				'frame' => array( 'thumbnail', 'manualthumb', 'framed', 'frameless',
-					'upright', 'border', 'link', 'alt', 'class' ),
+					'upright', 'border', 'link', 'alt', 'class', 'modal' ),
 			);
 			static $internalParamMap;
 			if ( !$internalParamMap ) {
@@ -5181,6 +5181,8 @@ class Parser {
 		#  * alt        Text for HTML alt attribute (defaults to empty)
 		#  * class      Set a class for img node
 		#  * link       Set the target of the image link. Can be external, interwiki, or local
+		#  * modal      open image/video in a modal viewer (currently only
+		#                   supported by TimedMediaHandler extension)
 		# vertical-align values (no % or length right now):
 		#  * baseline
 		#  * sub
@@ -5220,7 +5222,6 @@ class Parser {
 			$validated = false;
 			if ( isset( $paramMap[$magicName] ) ) {
 				list( $type, $paramName ) = $paramMap[$magicName];
-
 				# Special case; width and height come in one variable together
 				if ( $type === 'handler' && $paramName === 'width' ) {
 					$parsedWidthParam = $this->parseWidthParam( $value );
