@@ -27,6 +27,8 @@ production.
 * $wgJsMimeType is no longer used by core. Most usage has been removed since
   HTML output is now exclusively HTML5.
 * $wgDBOracleDRCP added. True enables persistent connection with DRCP on Oracle.
+* $wgLogAutopatrol added to allow disabling logging of autopatrol edits in the logging table.
+  default for $wgLogAutopatrol is true.
 
 === New features in 1.22 ===
 * (bug 44525) mediawiki.jqueryMsg can now parse (whitelisted) HTML elements and attributes.

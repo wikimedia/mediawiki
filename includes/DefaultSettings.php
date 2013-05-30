@@ -5147,6 +5147,9 @@ $wgUseRCPatrol = true;
 /** Use new page patrolling to check new pages on Special:Newpages */
 $wgUseNPPatrol = true;
 
+/** Log autopatrol actions to the log table */
+$wgLogAutopatrol = true;
+
 /** Provide syndication feeds (RSS, Atom) for, e.g., Recentchanges, Newpages */
 $wgFeed = true;
 
