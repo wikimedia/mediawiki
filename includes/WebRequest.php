@@ -1342,6 +1342,7 @@ class FauxRequest extends WebRequest {
 	 * @return bool|string
 	 */
 	public function getHeader( $name ) {
+		$name = strtoupper( $name );
 		return isset( $this->headers[$name] ) ? $this->headers[$name] : false;
 	}
 
@@ -1350,6 +1351,7 @@ class FauxRequest extends WebRequest {
 	 * @param $val string
 	 */
 	public function setHeader( $name, $val ) {
+		$name = strtoupper( $name );
 		$this->headers[$name] = $val;
 	}
 

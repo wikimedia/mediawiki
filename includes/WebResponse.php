@@ -116,6 +116,8 @@ class FauxResponse extends WebResponse {
 		} else {
 			list( $key, $val ) = array_map( 'trim', explode( ":", $string, 2 ) );
 
+			$key = strtoupper( $key );
+
 			if ( $replace || !isset( $this->headers[$key] ) ) {
 				$this->headers[$key] = $val;
 			}
@@ -131,6 +133,8 @@ class FauxResponse extends WebResponse {
 	 * @return string
 	 */
 	public function getheader( $key ) {
+		$key = strtoupper( $key );
+
 		if ( isset( $this->headers[$key] ) ) {
 			return $this->headers[$key];
 		}
