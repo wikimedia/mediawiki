@@ -2,5 +2,5 @@
 host=gerrit.wikimedia.org
 port=29418
 project=mediawiki/core.git
-defaultbranch=wmf/1.22wmf1
+defaultbranch=fundraising/1.22
 defaultrebase=0
