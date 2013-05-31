@@ -47,6 +47,9 @@ class FauxResponseTest extends MediaWikiTestCase {
 
 		$this->response->header( 'Location: http://127.0.0.2/', false );
 		$this->assertEquals( 'http://127.0.0.1/', $this->response->getheader( 'Location' ), 'Same header with override disabled' );
+
+		$this->response->header( 'Location: http://localhost/' );
+		$this->assertEquals( 'http://localhost/', $this->response->getheader( 'LOCATION' ), 'Get header case insensitive' );
 	}
 
 	function testResponseCode() {
