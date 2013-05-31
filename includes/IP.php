@@ -39,18 +39,11 @@ define( 'RE_IPV6_ADD',
 		':(?::|(?::' . RE_IPV6_WORD . '){1,7})' .
 	'|' . // ends with "::" (except "::")
 		RE_IPV6_WORD . '(?::' . RE_IPV6_WORD . '){0,6}::' .
-	'|' . // contains one "::" in the middle, ending in "::WORD"
-		RE_IPV6_WORD . '(?::' . RE_IPV6_WORD . '){0,5}' . '::' . RE_IPV6_WORD .
-	'|' . // contains one "::" in the middle, not ending in "::WORD" (regex for PCRE 4.0+)
-		RE_IPV6_WORD . '(?::(?P<abn>:(?P<iabn>))?' . RE_IPV6_WORD . '(?!:(?P=abn))){1,5}' .
-			':' . RE_IPV6_WORD . '(?P=iabn)' .
-		// NOTE: (?!(?P=abn)) fails iff "::" used twice; (?P=iabn) passes iff a "::" was found.
+	'|' . // contains one "::" in the middle (the ^ makes the test fail if none found)
+		RE_IPV6_WORD . '(?::((?(-1)|:))?' . RE_IPV6_WORD . '){1,6}(?(-2)|^)' .
 	'|' . // contains no "::"
 		RE_IPV6_WORD . '(?::' . RE_IPV6_WORD . '){7}' .
 	')'
-	// NOTE: With PCRE 7.2+, we can combine the two '"::" in the middle' cases into:
-	//		RE_IPV6_WORD . '(?::((?(-1)|:))?' . RE_IPV6_WORD . '){1,6}(?(-2)|^)'
-	// This also improves regex concatenation by using relative references.
 );
 // An IPv6 block is an IP address and a prefix (d1 to d128)
 define( 'RE_IPV6_BLOCK', RE_IPV6_ADD . '\/' . RE_IPV6_PREFIX );
