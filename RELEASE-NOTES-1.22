@@ -200,6 +200,9 @@ changes to languages because of Bugzilla reports.
   is_opera_95, is_opera_preseven, is_opera, and ie6_bugs.
 * (bug 48276) MediaWiki will now flash a confirmation message upon successfully
   editing a page.
+* (bug 40785) mediawiki.legacy.ajax has been marked as deprecated. The following
+  properties now emit mw.log.warn when accessed: sajax_debug, sajax_init_object,
+  sajax_do_call and wfSupportsAjax.
 
 == Compatibility ==
 
