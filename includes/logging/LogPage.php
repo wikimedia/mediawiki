@@ -518,7 +518,11 @@ class LogPage {
 	 * @return String
 	 */
 	public static function formatBlockFlags( $flags, $lang ) {
-		$flags = explode( ',', trim( $flags ) );
+		$flags = trim( $flags );
+		if ( $flags === '' ) {
+			return ''; //nothing to do
+		}
+		$flags = explode( ',', $flags );
 
 		if ( count( $flags ) > 0 ) {
 			for ( $i = 0; $i < count( $flags ); $i++ ) {
