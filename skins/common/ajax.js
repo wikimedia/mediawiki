@@ -179,16 +179,17 @@ function wfSupportsAjax() {
 	return supportsAjax;
 }
 
-// Expose
+// Expose + Mark as deprecated
+var deprecationNotice = 'Sajax is deprecated, use jQuery.ajax or mediawiki.api instead.';
 
 // Configuration
 window.sajax_debug_mode = false;
 window.sajax_request_type = 'GET';
 
 // Methods
-window.sajax_debug = debug;
-window.sajax_init_object = createXhr;
-window.sajax_do_call = doAjaxRequest;
-window.wfSupportsAjax = wfSupportsAjax;
+mw.log.deprecate( window, 'sajax_debug', debug, deprecationNotice );
+mw.log.deprecate( window, 'sajax_init_object', createXhr, deprecationNotice );
+mw.log.deprecate( window, 'sajax_do_call', doAjaxRequest, deprecationNotice );
+mw.log.deprecate( window, 'wfSupportsAjax', wfSupportsAjax, deprecationNotice );
 
 }( mediaWiki ) );
