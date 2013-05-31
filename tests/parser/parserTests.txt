@@ -6290,7 +6290,7 @@ parsoid=wt2html,wt2wt
 {{echo|Bar}}
 !!result
 <!-- foo -->
-<p typeof="mw:Object/Template">Bar
+<p typeof="mw:Transclusion">Bar
 </p>
 !!end
 
@@ -6682,7 +6682,7 @@ parsoid=wt2html,wt2wt
 !!input
 {{echo_with_span|''a}}{{echo_with_span|b''c''d}}{{echo_with_span|''e}}
 !!result
-<p><span typeof="mw:Object/Template"><i>a</i></span><i typeof="mw:Object/Template"><span>b</span></i><span>c</span><i>d</i><span>e</span></p>
+<p><span typeof="mw:Transclusion"><i>a</i></span><i typeof="mw:Transclusion"><span>b</span></i><span>c</span><i>d</i><span>e</span></p>
 !!end
 
 !!test
@@ -6693,9 +6693,9 @@ parsoid=wt2html,wt2wt
 !!input
 {{echo_with_div|''a}}{{echo_with_div|b''c''d}}{{echo_with_div|''e}}
 !!result
-<div typeof="mw:Object/Template"><i>a</i></div>
-<div typeof="mw:Object/Template"><i>b</i>c<i>d</i></div>
-<div typeof="mw:Object/Template">e</div>
+<div typeof="mw:Transclusion"><i>a</i></div>
+<div typeof="mw:Transclusion"><i>b</i>c<i>d</i></div>
+<div typeof="mw:Transclusion">e</div>
 !!end
 
 !!test
@@ -6718,7 +6718,7 @@ parsoid
 |bar
 |}
 !!result
-<table typeof="mw:Object/Template">
+<table typeof="mw:Transclusion">
 <tbody>
 <tr>
 <td>foo</td></tr></tbody></table><span>bar</span>
@@ -6750,7 +6750,7 @@ parsoid
   </tr>
 </table>
 !!result
-<table  about="#mwt1" typeof="mw:Object/Template">
+<table  about="#mwt1" typeof="mw:Transclusion">
   <tbody><tr >
     <td >
     <table >
@@ -13978,11 +13978,11 @@ parsoid=wt2html,wt2wt
 {{echo|#a}}
 {{echo|:a}}
 !!result
-<span about="#mwt1" typeof="mw:Object/Template">
+<span about="#mwt1" typeof="mw:Transclusion">
 </span><ul about="#mwt1"><li>a</li></ul>
-<span about="#mwt2" typeof="mw:Object/Template">
+<span about="#mwt2" typeof="mw:Transclusion">
 </span><ol about="#mwt2"><li>a</li></ol>
-<span about="#mwt3" typeof="mw:Object/Template">
+<span about="#mwt3" typeof="mw:Transclusion">
 </span><dl about="#mwt3"><dd>a</dd></dl>
 !!end
 
@@ -15077,7 +15077,7 @@ parsoid=wt2html,wt2wt
 <table>
 <tbody>
 <tr></tr>
-<tr typeof="mw:Object/Template">
+<tr typeof="mw:Transclusion">
 <td>foo</td></tr></tbody></table>
 !!end
 
