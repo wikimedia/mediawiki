@@ -1061,9 +1061,9 @@ class Article implements Page {
 		$user = $this->getContext()->getUser();
 		$cache = wfGetMainCache();
 
-		// Conditions to potentially patrol the current revision
-		// patrolPage is set in case we want to patrol the first
-		// revision and not the current one (set in Special:NewPages)
+		// Normally this makes a link to patrol the revision being viewed.
+		// Sometimes, the 'patrolpage' flag is set in case we want to patrol the first
+		// revision and not the one being viewed by the user (set in Special:NewPages).
 		$useRCPatrol = $wgUseRCPatrol && !$request->getBool( 'patrolpage' );
 
 		if ( !$this->getTitle()->quickUserCan( 'patrol', $user ) || ( !$wgUseNPPatrol && !$wgUseRCPatrol ) ) {
