@@ -176,7 +176,7 @@ class User {
 	var $mId, $mName, $mRealName, $mPassword, $mNewpassword, $mNewpassTime,
 		$mEmail, $mTouched, $mToken, $mEmailAuthenticated,
 		$mEmailToken, $mEmailTokenExpires, $mRegistration, $mEditCount,
-		$mGroups, $mOptionOverrides;
+		$mGroups, $mOptionOverrides, $mCSRFToken;
 	//@}
 
 	/**
@@ -3568,6 +3568,75 @@ class User {
 			}
 			return md5( $token . $salt ) . EDIT_TOKEN_SUFFIX;
 		}
+	}
+
+	/**
+	 * Initialize (if necessary) and return a session token value
+	 * for users or anons which can be used in forms to prevent
+	 * cross-site request forgery (CSRF) with a foreign form submission.
+	 *
+	 * @since 1.22
+	 *
+	 * @param string|array $salt of Strings Optional function-specific data for hashing
+	 * @param $request WebRequest object to use or null to use $wgRequest
+	 * @return String The new an CSRF token
+	 */
+	public function getCSRFToken( $salt = '', $request = null ) {
+		global $wgMainCacheType;
+
+		if ( $request == null ) {
+			$request = $this->getRequest();
+		}
+
+		$token = null;
+		if ( $this->mCSRFToken !== null ) {
+			$token = $this->mCSRFToken;
+		} elseif ( $request->checkSessionCookie() ) {
+			$token = $request->getSessionData( 'wsCSRFToken' );
+			if ( $token === null ) {
+				$token = MWCryptRand::generateHex( 32 );
+				$request->setSessionData( 'wsCSRFToken', $token );
+			}
+		} elseif ( $wgMainCacheType != CACHE_NONE ) {
+			global $wgMemc;
+			$memcKey = wfMemcKey( 'CSRFToken', $request->getIP() );
+			$token = $wgMemc->get( $memcKey );
+			if ( $token === false ) {
+				$token = MWCryptRand::generateHex( 32 );
+				$wgMemc->set( $memcKey, $token );
+			}
+		} else {
+			$token = EDIT_TOKEN_SUFFIX;
+		}
+
+		if ( $token === null ) {
+			wfDebug( "Edit token failed to be generated." );
+			return EDIT_TOKEN_SUFFIX;
+		} else {
+			$this->mCSRFToken = $token;
+			if ( is_array( $salt ) ) {
+				$salt = implode( '|', $salt );
+			}
+			return md5( $token . $salt ) . EDIT_TOKEN_SUFFIX;
+		}
+	}
+
+	/**
+	 * Alias for matchEditToken.
+	 *
+	 * @since 1.22
+	 *
+	 * @param string $val Input value to compare
+	 * @param string $salt Optional function-specific data for hashing
+	 * @param $request WebRequest object to use or null to use $wgRequest
+	 * @return Boolean: Whether the token matches
+	 */
+	public function matchCSRFToken( $val, $salt = '', $request = null ) {
+		$sessionToken = $this->getCSRFToken( $salt, $request );
+		if ( $val != $sessionToken ) {
+			wfDebug( "User::matchCSRFToken: broken session data\n" );
+		}
+		return $val == $sessionToken;
 	}
 
 	/**
