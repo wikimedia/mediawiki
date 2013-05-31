@@ -8,7 +8,7 @@ window.sajax_request_type = 'GET';
  * the element with id = sajax_debug; if no such element exists in the document, 
  * it is injected.
  */
-window.sajax_debug = function(text) {
+mw.log.deprecate( window, 'sajax_debug', function(text) {
 	if (!sajax_debug_mode) return false;
 
 	var e = document.getElementById( 'sajax_debug' );
@@ -33,12 +33,12 @@ window.sajax_debug = function(text) {
 	e.appendChild( m );
 
 	return true;
-};
+}, 'Sajax is deprecated - please see https://bugzilla.wikimedia.org/40785.' );
 
 /**
  * Compatibility wrapper for creating a new XMLHttpRequest object.
  */
-window.sajax_init_object = function() {
+mw.log.deprecate( window, 'sajax_init_object', function() {
 	sajax_debug( 'sajax_init_object() called..' );
 	var A;
 	try {
@@ -62,7 +62,7 @@ window.sajax_init_object = function() {
 	}
 
 	return A;
-};
+}, 'Sajax is deprecated - please see https://bugzilla.wikimedia.org/40785.' );
 
 /**
  * Perform an AJAX call to MediaWiki. Calls are handled by AjaxDispatcher.php
@@ -80,7 +80,7 @@ window.sajax_init_object = function() {
  * (1, 2, 3) as the parameter list, and will show the result in the element
  * with id = showFoo
  */
-window.sajax_do_call = function(func_name, args, target) {
+mw.log.deprecate( window, 'sajax_do_call', function(func_name, args, target) {
 	var i, x, n;
 	var uri;
 	var post_data;
@@ -160,14 +160,14 @@ window.sajax_do_call = function(func_name, args, target) {
 	delete x;
 
 	return true;
-};
+}, 'Sajax is deprecated - please see https://bugzilla.wikimedia.org/40785.' );
 
 /**
  * @return boolean whether the browser supports XMLHttpRequest
  */
-window.wfSupportsAjax = function() {
+mw.log.deprecate( window, 'wfSupportsAjax', function() {
 	var request = sajax_init_object();
 	var supportsAjax = request ? true : false;
 	delete request;
 	return supportsAjax;
-};
+}, 'Sajax is deprecated - please see https://bugzilla.wikimedia.org/40785.' );
