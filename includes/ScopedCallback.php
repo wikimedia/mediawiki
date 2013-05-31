@@ -31,8 +31,12 @@ class ScopedCallback {
 
 	/**
 	 * @param callable $callback
+	 * @throws MWException
 	 */
 	public function __construct( $callback ) {
+		if ( !is_callable( $callback ) ) {
+			throw new MWException( "Provided callback is not valid." );
+		}
 		$this->callback = $callback;
 	}
 
