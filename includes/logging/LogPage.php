@@ -518,17 +518,17 @@ class LogPage {
 	 * @return String
 	 */
 	public static function formatBlockFlags( $flags, $lang ) {
-		$flags = explode( ',', trim( $flags ) );
-
-		if ( count( $flags ) > 0 ) {
-			for ( $i = 0; $i < count( $flags ); $i++ ) {
-				$flags[$i] = self::formatBlockFlag( $flags[$i], $lang );
-			}
-			return wfMessage( 'parentheses' )->inLanguage( $lang )
-				->rawParams( $lang->commaList( $flags ) )->escaped();
-		} else {
-			return '';
+		$flags = trim( $flags );
+		if ( $flags === '' ) {
+			return ''; //nothing to do
 		}
+		$flags = explode( ',', $flags );
+
+		for ( $i = 0; $i < count( $flags ); $i++ ) {
+			$flags[$i] = self::formatBlockFlag( $flags[$i], $lang );
+		}
+		return wfMessage( 'parentheses' )->inLanguage( $lang )
+			->rawParams( $lang->commaList( $flags ) )->escaped();
 	}
 
 	/**
