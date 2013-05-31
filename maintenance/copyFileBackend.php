@@ -56,7 +56,7 @@ class CopyFileBackend extends Maintenance {
 		$src = FileBackendGroup::singleton()->get( $this->getOption( 'src' ) );
 		$dst = FileBackendGroup::singleton()->get( $this->getOption( 'dst' ) );
 		$containers = explode( '|', $this->getOption( 'containers' ) );
-		$subDir = $this->getOption( rtrim( 'subdir', '/' ), '' );
+		$subDir = rtrim( $this->getOption( 'subdir', '' ), '/' );
 
 		$rateFile = $this->getOption( 'ratefile' );
 
