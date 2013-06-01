@@ -27,7 +27,6 @@ resources/jquery.chosen/chosen.jquery.js
 
 # legacy scripts
 skins/common/IEFixes.js
-skins/common/ajax.js
 skins/common/config.js
 skins/common/protect.js
 skins/common/upload.js
