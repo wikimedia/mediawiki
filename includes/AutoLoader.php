@@ -94,6 +94,7 @@ $wgAutoloadLocalClasses = array(
 	'FatalError' => 'includes/Exception.php',
 	'FauxRequest' => 'includes/WebRequest.php',
 	'FauxResponse' => 'includes/WebResponse.php',
+	'FauxWebRequestUpload' => 'includes/WebRequest.php',
 	'FeedItem' => 'includes/Feed.php',
 	'FeedUtils' => 'includes/FeedUtils.php',
 	'FileDeleteForm' => 'includes/FileDeleteForm.php',
