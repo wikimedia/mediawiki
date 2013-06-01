@@ -1262,9 +1262,11 @@ class FauxRequest extends WebRequest {
 	private $session = array();
 
 	/**
-	 * @param array $data of *non*-urlencoded key => value pairs, the
-	 *   fake GET/POST values
-	 * @param bool $wasPosted whether to treat the data as POST
+	 * @param $data array of *non*-urlencoded key => value pairs, the
+	 *   fake GET/POST values.  Faux file uploads can be provided by 
+	 *   including them in $data, where the value is an array of data 
+	 *   just as it would be in $_FILES.
+	 * @param $wasPosted Bool: whether to treat the data as POST
 	 * @param $session Mixed: session array or null
 	 * @throws MWException
 	 */
@@ -1296,6 +1298,18 @@ class FauxRequest extends WebRequest {
 	public function getText( $name, $default = '' ) {
 		# Override; don't recode since we're using internal data
 		return (string)$this->getVal( $name, $default );
+	}
+
+	/**
+	 * @param $key string
+	 * @return WebRequestUpload
+	 */
+	public function getUpload( $key ) {
+		if (array_key_exists($key, $this->data)) {
+			return new FauxWebRequestUpload( $this, $this->data[$key] );
+		} else {
+			return new WebRequestUpload( $this, $key );
+		}
 	}
 
 	/**
@@ -1402,6 +1416,25 @@ class FauxRequest extends WebRequest {
 	 */
 	protected function getRawIP() {
 		return '127.0.0.1';
+	}
+}
+
+/**
+ * A fake WebRequestUpload that can be supplied by a FauxRequest.
+ */
+class FauxWebRequestUpload extends WebRequestUpload {
+	/**
+	 * Constructor. Should only be called by FauxRequest.
+	 *
+	 * @param $request WebRequest The associated request
+	 * @param array $data Data in the same format that would be found
+	 *          in the $_FILES array.  If provided, will be used
+	 *          instead of $_FILES[$key].
+	 */
+	public function __construct( $request, $data ) {
+		$this->request = $request;
+		$this->fileInfo = $data;
+		$this->doesExist = true;
 	}
 }
 
