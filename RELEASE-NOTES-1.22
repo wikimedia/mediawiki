@@ -97,6 +97,8 @@ production.
   http://www.oracle-base.com/articles/11g/database-resident-connection-pool-11gr1.php
 * Add a new parameter $patrolFooterShown to hook ArticleViewFooter so the hook
   handlers can take further action based on the status of the patrol footer
+* A new hook TitleQuickPermissions was added to allow overriding of quick
+  permissions in the Title class.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
