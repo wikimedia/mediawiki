@@ -31,7 +31,7 @@ class SiteConfigurationTest extends MediaWikiTestCase {
 
 		$this->mConf = new SiteConfiguration;
 
-		$this->mConf->suffixes = array( 'wiki' );
+		$this->mConf->suffixes = array( 'wikipedia' => 'wiki' );
 		$this->mConf->wikis = array( 'enwiki', 'dewiki', 'frwiki' );
 		$this->mConf->settings = array(
 			'simple' => array(
