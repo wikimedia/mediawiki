@@ -412,6 +412,7 @@ $wgAutoloadLocalClasses = array(
 	'FatalError' => __DIR__ . '/includes/exception/FatalError.php',
 	'FauxRequest' => __DIR__ . '/includes/WebRequest.php',
 	'FauxResponse' => __DIR__ . '/includes/WebResponse.php',
+	'FauxWebRequestUpload' => 'includes/WebRequest.php',
 	'FeedItem' => __DIR__ . '/includes/Feed.php',
 	'FeedUtils' => __DIR__ . '/includes/FeedUtils.php',
 	'FetchText' => __DIR__ . '/maintenance/fetchText.php',

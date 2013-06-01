@@ -1295,10 +1295,12 @@ class FauxRequest extends WebRequest {
 	private $requestUrl;
 
 	/**
-	 * @param array $data Array of *non*-urlencoded key => value pairs, the
-	 *   fake GET/POST values
-	 * @param bool $wasPosted Whether to treat the data as POST
-	 * @param array|null $session Session array or null
+	 * @param array $data *non*-urlencoded key => value pairs, the
+	 *   fake GET/POST values.  Faux file uploads can be provided by
+	 *   including them in $data, where the value is an array of data
+	 *   just as it would be in $_FILES.
+	 * @param bool $wasPosted whether to treat the data as POST
+	 * @param $session Mixed: session array or null
 	 * @param string $protocol 'http' or 'https'
 	 * @throws MWException
 	 */
@@ -1335,6 +1337,19 @@ class FauxRequest extends WebRequest {
 	public function getText( $name, $default = '' ) {
 		# Override; don't recode since we're using internal data
 		return (string)$this->getVal( $name, $default );
+	}
+
+	/**
+	 * @param $key string
+	 * @return WebRequestUpload
+	 * @since 1.22
+	 */
+	public function getUpload( $key ) {
+		if ( array_key_exists( $key, $this->data ) ) {
+			return new FauxWebRequestUpload( $this, $this->data[$key] );
+		}
+		# default behavior for backward compatibility: go to $_FILES
+		return parent::getUpload( $key );
 	}
 
 	/**
@@ -1465,6 +1480,27 @@ class FauxRequest extends WebRequest {
 	 */
 	protected function getRawIP() {
 		return '127.0.0.1';
+	}
+}
+
+/**
+ * A fake WebRequestUpload that can be supplied by a FauxRequest.
+ *
+ * @since 1.22
+ */
+class FauxWebRequestUpload extends WebRequestUpload {
+	/**
+	 * Constructor. Should only be called by FauxRequest.
+	 *
+	 * @param WebRequest $request The associated request
+	 * @param array $data Data in the same format that would be found
+	 *          in the $_FILES array.  If provided, will be used
+	 *          instead of $_FILES[$key].
+	 */
+	public function __construct( WebRequest $request, array $data ) {
+		$this->request = $request;
+		$this->fileInfo = $data;
+		$this->doesExist = true;
 	}
 }
 
