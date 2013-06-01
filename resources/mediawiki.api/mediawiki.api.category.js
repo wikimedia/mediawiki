@@ -7,8 +7,8 @@
 		/**
 		 * Determine if a category exists.
 		 * @param {mw.Title} title
-		 * @param {Function} [ok] Success callback (deprecated)
-		 * @param {Function} [err] Error callback (deprecated)
+		 * @param {Function} [ok] optional Success callback (deprecated, use done of the returned promise)
+		 * @param {Function} [err] optional Error callback (deprecated, use fail of the returned promise)
 		 * @return {jQuery.Promise}
 		 * @return {Function} return.done
 		 * @return {boolean} return.done.isCategory Whether the category exists.
@@ -17,8 +17,12 @@
 			var d = $.Deferred(),
 				apiPromise;
 			// Backwards compatibility (< MW 1.20)
-			d.done( ok );
-			d.fail( err );
+			if ( typeof ok === 'function' ) {
+				d.done( ok );
+			}
+			if ( typeof err === 'function' ) {
+				d.fail( err );
+			}
 
 			apiPromise = this.get( {
 					prop: 'categoryinfo',
@@ -44,8 +48,8 @@
 		 * Get a list of categories that match a certain prefix.
 		 *   e.g. given "Foo", return "Food", "Foolish people", "Foosball tables" ...
 		 * @param {string} prefix Prefix to match.
-		 * @param {Function} [ok] Success callback (deprecated)
-		 * @param {Function} [err] Error callback (deprecated)
+		 * @param {Function} [ok] optional Success callback (deprecated, use done of the returned promise)
+		 * @param {Function} [err] optional Error callback (deprecated, use fail of the returned promise)
 		 * @return {jQuery.Promise}
 		 * @return {Function} return.done
 		 * @return {String[]} return.done.categories Matched categories
@@ -54,8 +58,12 @@
 			var d = $.Deferred(),
 				apiPromise;
 			// Backwards compatibility (< MW 1.20)
-			d.done( ok );
-			d.fail( err );
+			if ( typeof ok === 'function' ) {
+				d.done( ok );
+			}
+			if ( typeof err === 'function' ) {
+				d.fail( err );
+			}
 
 			// Fetch with allpages to only get categories that have a corresponding description page.
 			apiPromise = this.get( {
@@ -81,8 +89,8 @@
 		/**
 		 * Get the categories that a particular page on the wiki belongs to
 		 * @param {mw.Title} title
-		 * @param {Function} [ok] Success callback (deprecated)
-		 * @param {Function} [err] Error callback (deprecated)
+		 * @param {Function} [ok] optional Success callback (deprecated, use done of the returned promise)
+		 * @param {Function} [err] optional Error callback (deprecated, use fail of the returned promise)
 		 * @param {boolean} [async=true] Asynchronousness
 		 * @return {jQuery.Promise}
 		 * @return {Function} return.done
@@ -93,8 +101,12 @@
 			var d = $.Deferred(),
 				apiPromise;
 			// Backwards compatibility (< MW 1.20)
-			d.done( ok );
-			d.fail( err );
+			if ( typeof ok === 'function' ) {
+				d.done( ok );
+			}
+			if ( typeof err === 'function' ) {
+				d.fail( err );
+			}
 
 			apiPromise = this.get( {
 					prop: 'categories',

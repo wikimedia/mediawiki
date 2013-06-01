@@ -8,8 +8,8 @@
 		 * Convinience method for 'action=parse'.
 		 *
 		 * @param {string} wikitext
-		 * @param {Function} [ok] Success callback (deprecated)
-		 * @param {Function} [err] Error callback (deprecated)
+		 * @param {Function} [ok] optional Success callback (deprecated, use done of the returned promise)
+		 * @param {Function} [err] optional Error callback (deprecated, use fail of the returned promise)
 		 * @return {jQuery.Promise}
 		 * @return {Function} return.done
 		 * @return {string} return.done.data Parsed HTML of `wikitext`.
@@ -18,8 +18,12 @@
 			var d = $.Deferred(),
 				apiPromise;
 			// Backwards compatibility (< MW 1.20)
-			d.done( ok );
-			d.fail( err );
+			if ( typeof ok === 'function' ) {
+				d.done( ok );
+			}
+			if ( typeof err === 'function' ) {
+				d.fail( err );
+			}
 
 			apiPromise = this.get( {
 					action: 'parse',
