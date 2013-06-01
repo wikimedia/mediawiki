@@ -477,13 +477,13 @@ class SiteConfiguration {
 
 		$site = null;
 		$lang = null;
-		foreach ( $this->suffixes as $suffix ) {
+		foreach ( $this->suffixes as $altSite => $suffix ) {
 			if ( $suffix === '' ) {
 				$site = '';
 				$lang = $db;
 				break;
 			} elseif ( substr( $db, -strlen( $suffix ) ) == $suffix ) {
-				$site = $suffix == 'wiki' ? 'wikipedia' : $suffix;
+				$site = is_numeric( $altSite ) ? $suffix : $altSite;
 				$lang = substr( $db, 0, strlen( $db ) - strlen( $suffix ) );
 				break;
 			}
