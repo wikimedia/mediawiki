@@ -9,8 +9,8 @@
 	 * @context mw.Api
 	 *
 	 * @param {String|mw.Title} page Full page name or instance of mw.Title
-	 * @param {Function} [ok] Success callback (deprecated)
-	 * @param {Function} [err] Error callback (deprecated)
+	 * @param {Function} [ok] optional Success callback (deprecated, use done of the returned promise)
+	 * @param {Function} [err] optional Error callback (deprecated, use fail of the returned promise)
 	 * @return {jQuery.Promise}
 	 * @return {Function} return.done
 	 * @return {Object} return.done.watch
@@ -23,8 +23,12 @@
 			d = $.Deferred(),
 			apiPromise;
 		// Backwards compatibility (< MW 1.20)
-		d.done( ok );
-		d.fail( err );
+		if ( typeof ok === 'function' ) {
+			d.done( ok );
+		}
+		if ( typeof err === 'function' ) {
+			d.fail( err );
+		}
 
 		params = {
 			action: 'watch',

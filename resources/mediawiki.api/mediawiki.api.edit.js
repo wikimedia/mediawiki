@@ -50,8 +50,8 @@
 		/**
 		 * Api helper to grab an edit token.
 		 *
-		 * @param {Function} [ok] Success callback
-		 * @param {Function} [err] Error callback
+		 * @param {Function} [ok] optional Success callback (deprecated, use done of the returned promise)
+		 * @param {Function} [err] optional Error callback (deprecated, use fail of the returned promise)
 		 * @return {jQuery.Promise}
 		 * @return {Function} return.done
 		 * @return {string} return.done.token Received token.
@@ -60,8 +60,12 @@
 			var d = $.Deferred(),
 				apiPromise;
 			// Backwards compatibility (< MW 1.20)
-			d.done( ok );
-			d.fail( err );
+			if ( typeof ok === 'function' ) {
+				d.done( ok );
+			}
+			if ( typeof err === 'function' ) {
+				d.fail( err );
+			}
 
 			apiPromise = this.get( {
 					action: 'tokens',
