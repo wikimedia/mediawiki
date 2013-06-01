@@ -119,6 +119,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			case self::EDIT_NORMAL:
 			default:
 				$out->setPageTitle( $this->msg( 'watchlistedit-normal-title' ) );
+				$out->addModules( 'mediawiki.special.editWatchlist' );
 				$form = $this->getNormalForm();
 				if ( $form->show() ) {
 					$out->addHTML( $this->successMessage );
