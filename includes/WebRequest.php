@@ -1151,12 +1151,20 @@ class WebRequestUpload {
 	 *
 	 * @param $request WebRequest The associated request
 	 * @param string $key Key in $_FILES array (name of form field)
+	 * @param array $data Data in the same format that would be found
+	 *          in $_FILES.  If provided, will be used instead of
+	 *          $_FILES[$key].
 	 */
-	public function __construct( $request, $key ) {
+	public function __construct( $request, $key, $data=null ) {
 		$this->request = $request;
-		$this->doesExist = isset( $_FILES[$key] );
-		if ( $this->doesExist ) {
-			$this->fileInfo = $_FILES[$key];
+		if ($data !== null) {
+			$this->doesExist = true;
+			$this->fileInfo = $data;
+		} else {
+			$this->doesExist = isset( $_FILES[$key] );
+			if ( $this->doesExist ) {
+				$this->fileInfo = $_FILES[$key];
+			}
 		}
 	}
 
@@ -1262,6 +1270,12 @@ class FauxRequest extends WebRequest {
 	private $session = array();
 
 	/**
+	 * FauxRequest is constructed by providing an array of key-value
+	 * pairs to be used in place of a WebRequest's key-value pairs.
+	 * Faux file uploads can be provided by including them in $data,
+	 * where the value is an array of data just as it would be in
+	 * $_FILES.
+	 *
 	 * @param array $data of *non*-urlencoded key => value pairs, the
 	 *   fake GET/POST values
 	 * @param bool $wasPosted whether to treat the data as POST
@@ -1296,6 +1310,18 @@ class FauxRequest extends WebRequest {
 	public function getText( $name, $default = '' ) {
 		# Override; don't recode since we're using internal data
 		return (string)$this->getVal( $name, $default );
+	}
+
+	/**
+	 * @param $key string
+	 * @return WebRequestUpload
+	 */
+	public function getUpload( $key ) {
+		if (array_key_exists($key, $this->data)) {
+			return new WebRequestUpload( $this, $key, $this->data[$key] );
+		} else {
+			return new WebRequestUpload( $this, $key );
+		}
 	}
 
 	/**
