@@ -1715,6 +1715,7 @@ See also:
 * {{msg-mw|edit-gone-missing}}
 * {{msg-mw|edit-conflict}}
 * {{msg-mw|edit-already-exists}}',
+'postedit-confirmation' => 'Confirmation message that is displayed upon successful edit. Parameter $1 is the current user, for GENDER support.',
 'edit-already-exists' => 'Used as error message.
 
 See also:
