@@ -44,7 +44,7 @@ QT_AUTOBRIEF           = NO
 MULTILINE_CPP_IS_BRIEF = NO
 INHERIT_DOCS           = YES
 SEPARATE_MEMBER_PAGES  = NO
-TAB_SIZE               = 8
+TAB_SIZE               = 4
 ALIASES =	"type{1}=<b> \1 </b>:" \
 		"types{2}=<b> \1 </b> or <b> \2 </b>:" \
 		"types{3}=<b> \1 </b>, <b> \2 </b>, or <b> \3 </b>:" \
