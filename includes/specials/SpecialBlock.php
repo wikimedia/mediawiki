@@ -726,8 +726,17 @@ class SpecialBlock extends FormSpecialPage {
 					return array( 'cant-see-hidden-user' );
 				}
 
-				$currentBlock->delete();
-				$status = $block->insert();
+				$currentBlock->isHardblock( $block->isHardblock() );
+				$currentBlock->prevents( 'createaccount', $block->prevents( 'createaccount' ) );
+				$currentBlock->mExpiry = $block->mExpiry;
+				$currentBlock->isAutoblocking( $block->isAutoblocking() );
+				$currentBlock->mHideName = $block->mHideName;
+				$currentBlock->prevents( 'sendemail', $block->prevents( 'sendemail' ) );
+				$currentBlock->prevents( 'editownusertalk', $block->prevents( 'editownusertalk' ) );
+				$currentBlock->mReason = $block->mReason;
+
+				$currentBlock->update();
+
 				$logaction = 'reblock';
 
 				# Unset _deleted fields if requested
