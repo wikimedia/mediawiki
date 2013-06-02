@@ -27,7 +27,7 @@
 				// an infinite loop. If this fresh token is bad, something else is very wrong.
 				useTokenToPost = function ( token ) {
 					params.token = token;
-					api.post( params, ok, err );
+					api.post( params, { ok : ok, err : err } );
 				};
 				return api.getEditToken( useTokenToPost, err );
 			} else {
