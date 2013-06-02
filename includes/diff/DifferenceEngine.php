@@ -431,7 +431,6 @@ class DifferenceEngine extends ContextSource {
 					array(
 						'rc_timestamp' => $db->timestamp( $this->mNewRev->getTimestamp() ),
 						'rc_this_oldid' => $this->mNewid,
-						'rc_last_oldid' => $this->mOldid,
 						'rc_patrolled' => 0
 					),
 					__METHOD__,
