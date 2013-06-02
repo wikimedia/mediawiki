@@ -40,16 +40,25 @@ class XmlTypeCheck {
 	public $rootElement = '';
 
 	/**
-	 * @param string $file filename
+	 * Idicates if the input is a filename. If true the input is a file. If 
+	 * false the input is a string.
+	 */
+	public $isFile = true;
+
+	/**
+	 * @param string $input a filename or string conaining the XML element
 	 * @param $filterCallback callable (optional)
 	 *        Function to call to do additional custom validity checks from the
 	 *        SAX element handler event. This gives you access to the element
 	 *        namespace, name, and attributes, but not to text contents.
 	 *        Filter should return 'true' to toggle on $this->filterMatch
+	 * @param bolean $isFile (optional) indicates if the first parameter is a 
+	 *        filename (default, true) or if it is a string (false)
 	 */
-	function __construct( $file, $filterCallback = null ) {
+	function __construct( $input, $filterCallback = null, $isFile = true ) {
 		$this->filterCallback = $filterCallback;
-		$this->run( $file );
+		$this->isFile = $isFile;
+		$this->run( $input );
 	}
 
 	/**
@@ -62,31 +71,39 @@ class XmlTypeCheck {
 	}
 
 	/**
-	 * @param $fname
+	 * @param $input
 	 */
-	private function run( $fname ) {
+	private function run( $input ) {
 		$parser = xml_parser_create_ns( 'UTF-8' );
 
 		// case folding violates XML standard, turn it off
 		xml_parser_set_option( $parser, XML_OPTION_CASE_FOLDING, false );
 
 		xml_set_element_handler( $parser, array( $this, 'rootElementOpen' ), false );
+		if( $this->isFile ) {
+			if ( file_exists( $input ) ) {
+				$file = fopen( $input, "rb" );
+				if ( $file ) {
+					do {
+						$chunk = fread( $file, 32768 );
+						$ret = xml_parse( $parser, $chunk, feof( $file ) );
+						if ( $ret == 0 ) {
+							// XML isn't well-formed!
+							fclose( $file );
+							xml_parser_free( $parser );
+							return;
+						}
+					} while ( !feof( $file ) );
 
-		if ( file_exists( $fname ) ) {
-			$file = fopen( $fname, "rb" );
-			if ( $file ) {
-				do {
-					$chunk = fread( $file, 32768 );
-					$ret = xml_parse( $parser, $chunk, feof( $file ) );
-					if ( $ret == 0 ) {
-						// XML isn't well-formed!
-						fclose( $file );
-						xml_parser_free( $parser );
-						return;
-					}
-				} while ( !feof( $file ) );
-
-				fclose( $file );
+					fclose( $file );
+				}
+			}
+		} else {
+			$ret = xml_parse( $parser, $input, true );
+			if ( $ret == 0 ) {
+				// XML isn't well-formed!
+				xml_parser_free( $parser );
+				return;
 			}
 		}
 
