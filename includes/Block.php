@@ -495,6 +495,8 @@ class Block {
 		wfDebug( "Block::update; timestamp {$this->mTimestamp}\n" );
 		$dbw = wfGetDB( DB_MASTER );
 
+		$dbw->startAtomic( __METHOD__ );
+
 		$dbw->update(
 			'ipblocks',
 			$this->getDatabaseArray( $dbw ),
@@ -502,7 +504,23 @@ class Block {
 			__METHOD__
 		);
 
-		return $dbw->affectedRows();
+		$affected = $dbw->affectedRows();
+
+		$dbw->update(
+			'ipblocks',
+			$this->getAutoblockUpdateArray(),
+			array( 'ipb_parent_block_id' => $this->getId() ),
+			__METHOD__
+		);
+
+		$dbw->endAtomic( __METHOD__ );
+
+		if ( $affected ) {
+			$auto_ipd_ids = $this->doRetroactiveAutoblock();
+			return array( 'id' => $this->mId, 'autoIds' => $auto_ipd_ids );
+		}
+
+		return false;
 	}
 
 	/**
@@ -543,6 +561,20 @@ class Block {
 		);
 
 		return $a;
+	}
+
+	/**
+	 * @return Array
+	 */
+	protected function getAutoblockUpdateArray() {
+		return array(
+			'ipb_by'               => $this->getBy(),
+			'ipb_by_text'          => $this->getByName(),
+			'ipb_reason'           => $this->mReason,
+			'ipb_create_account'   => $this->prevents( 'createaccount' ),
+			'ipb_deleted'          => (int)$this->mHideName, // typecast required for SQLite
+			'ipb_allow_usertalk'   => !$this->prevents( 'editownusertalk' ),
+		);
 	}
 
 	/**
