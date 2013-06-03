@@ -884,7 +884,7 @@ Vergiss nicht, deine [[Special:Preferences|{{SITENAME}}-Einstellungen]] zu ände
 'createacct-realname' => 'Bürgerlicher Name (optional)',
 'createaccountreason' => 'Grund:',
 'createacct-reason' => 'Begründung',
-'createacct-reason-ph' => 'Warum du ein anderes Benutzerkonto erstellst',
+'createacct-reason-ph' => 'Warum erstellst du ein anderes Benutzerkonto?',
 'createacct-captcha' => 'Sicherheitsprüfung',
 'createacct-imgcaptcha-ph' => 'Gib den Text ein, den du oben siehst.',
 'createacct-submit' => 'Dein Benutzerkonto erstellen',
@@ -984,11 +984,11 @@ Möglicherweise hast du dein Passwort bereits erfolgreich geändert oder ein neu
 
 # Special:PasswordReset
 'passwordreset' => 'Passwort zurücksetzen',
-'passwordreset-text' => 'Bitte dieses Formular ausfüllen, um dein Passwort zurückzusetzen.',
+'passwordreset-text-one' => 'Fülle dieses Formular aus, um dein Passwort zurückzusetzen.',
+'passwordreset-text-many' => '{{PLURAL:$1|Gib eines der Daten ein, um dein Passwort zurückzusetzen.}}',
 'passwordreset-legend' => 'Passwort zurücksetzen',
 'passwordreset-disabled' => 'Das Zurücksetzen von Passwörtern wurde in diesem Wiki deaktiviert.',
 'passwordreset-emaildisabled' => 'Die E-Mail-Funktionen wurden auf diesem Wiki deaktiviert.',
-'passwordreset-pretext' => '{{PLURAL:$1||Gib eines der folgenden Daten ein.}}',
 'passwordreset-username' => 'Benutzername:',
 'passwordreset-domain' => 'Domain:',
 'passwordreset-capture' => 'Die E-Mail-Nachricht ansehen?',
@@ -1223,13 +1223,14 @@ Zu deiner Information folgt das Lösch- und Verschiebungs-Logbuch mit der Begrü
 Sie wurde anscheinend gelöscht.',
 'edit-conflict' => 'Bearbeitungskonflikt.',
 'edit-no-change' => 'Deine Bearbeitung wurde ignoriert, da keine Änderung an dem Text vorgenommen wurde.',
+'postedit-confirmation' => 'Deine Bearbeitung wurde gespeichert.',
 'edit-already-exists' => 'Die neue Seite konnte nicht erstellt werden, da sie bereits vorhanden ist.',
 'defaultmessagetext' => 'Standardtext',
 'content-failed-to-parse' => 'Parsen des Inhalts $2 für Modell $1 fehlgeschlagen: $3',
 'invalid-content-data' => 'Ungültige Inhaltsdaten',
 'content-not-allowed-here' => 'Der Inhalt „$1“ ist auf der Seite [[$2]] nicht erlaubt',
 'editwarning-warning' => 'Das Verlassen dieser Seite kann dazu führen, dass deine Änderungen verloren gehen.
-Wenn du angemeldet bist, kannst du das Anzeigen dieser Warnung im „{{int:prefs-editing}}“-Bereich deiner Einstellungen abschalten.',
+Wenn du angemeldet bist, kannst du das Anzeigen dieser Warnung im Bereich „Bearbeiten“ deiner Einstellungen abschalten.',
 
 # Content models
 'content-model-wikitext' => 'Wikitext',

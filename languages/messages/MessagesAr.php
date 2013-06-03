@@ -40,6 +40,7 @@
  * @author Mido
  * @author Mimouni
  * @author Mo7amedsalim
+ * @author Nemo bis
  * @author Obayd
  * @author OsamaK
  * @author Ouda
@@ -547,7 +548,7 @@ $messages = array(
 'february' => 'فبراير',
 'march' => 'مارس',
 'april' => 'أبريل',
-'may_long' => 'مايو \\ أيار',
+'may_long' => 'مايو',
 'june' => 'يونيو',
 'july' => 'يوليو',
 'august' => 'أغسطس',
@@ -660,7 +661,7 @@ $messages = array(
 'go' => 'اذهب',
 'searcharticle' => 'اذهب',
 'history' => 'تاريخ الصفحة',
-'history_short' => 'تأريخ',
+'history_short' => 'تاريخ',
 'updatedmarker' => 'حُدِّثَت منذ زيارتي الأخيرة',
 'printableversion' => 'بتنسق للطباعة',
 'permalink' => 'رابط دائم',
@@ -1055,11 +1056,9 @@ $2',
 
 # Special:PasswordReset
 'passwordreset' => 'إعادة ضبط كلمة السر',
-'passwordreset-text' => 'أكمل هذا النموذج لإعادة ضبط كلمة السر الخاصة بك.',
 'passwordreset-legend' => 'إعادة تعيين كلمة السر',
 'passwordreset-disabled' => 'عُطّلت إعادة تعيين كلمة السر على هذه الويكي.',
 'passwordreset-emaildisabled' => 'تم تعطيل ميزات البريد الإلكتروني على هذه الويكي.',
-'passwordreset-pretext' => '{{PLURAL:$1||أدخل أحد أجزاء البيانات أدناه}}',
 'passwordreset-username' => 'اسم المستخدم:',
 'passwordreset-domain' => 'النطاق:',
 'passwordreset-capture' => 'أأعرض البريد الإلكتروني الناتج؟',

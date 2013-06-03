@@ -16,6 +16,7 @@
  * @author ITshnik
  * @author Kaganer
  * @author Malafaya
+ * @author Nemo bis
  * @author Nodar Kherkheulidze
  * @author Reedy
  * @author Sopho
@@ -737,10 +738,8 @@ $2',
 
 # Special:PasswordReset
 'passwordreset' => 'პაროლის აღდგენა',
-'passwordreset-text' => 'შეავსეთ ეს ფორმა, რათა კვლავ დააყენოთ თქვენი პაროლი.',
 'passwordreset-legend' => 'პაროლის აღდგენა',
 'passwordreset-disabled' => 'ამ ვიკიში პაროლის კვლავ დაყენების ფუნქცია გამორთულია.',
-'passwordreset-pretext' => '{{PLURAL:$1||შეიყვანეთ ქვემოთ მოცემულ მონაცემთა ერთ-ერთი ნაწილი.}}',
 'passwordreset-username' => 'მომხმარებლის სახელი:',
 'passwordreset-domain' => 'დომენი:',
 'passwordreset-capture' => 'გამოსული ელ-ფოსტის ხილვა?',
@@ -986,6 +985,7 @@ $2
 შესაძლოა, იგი წაიშალა.',
 'edit-conflict' => 'რედაქციების კონფლიქტი.',
 'edit-no-change' => 'თქვენი შესწორება არ იქნა შენახული, რადგანაც ტექსტის ცვლილება არ მოხდა.',
+'postedit-confirmation' => 'თქვენი რედაქტირება შენახულია.',
 'edit-already-exists' => 'ახალი გვერდის შექმნა არ მოხერხდა.
 ის უკვე არსებობს.',
 'defaultmessagetext' => 'შეტყობინების სტანდარტული ტექსტი',

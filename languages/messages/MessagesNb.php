@@ -37,6 +37,7 @@
  * @author Purodha
  * @author Qaqqalik
  * @author Samuelsen
+ * @author Simen47
  * @author Simny
  * @author Sjurhamre
  * @author Stigmj
@@ -423,6 +424,18 @@ $messages = array(
 'oct' => 'okt',
 'nov' => 'nov',
 'dec' => 'des',
+'january-date' => 'Januar $1',
+'february-date' => 'Februar $1',
+'march-date' => 'Mars $1',
+'april-date' => 'April $1',
+'may-date' => 'Mai $1',
+'june-date' => 'Juni $1',
+'july-date' => 'Juli $1',
+'august-date' => 'August $1',
+'september-date' => 'September $1',
+'october-date' => 'Oktober $1',
+'november-date' => 'November $1',
+'december-date' => 'Desember $1',
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Kategori|Kategorier}}',
@@ -734,9 +747,12 @@ Ikke glem å endre [[Special:Preferences|innstillingene dine]] på {{SITENAME}}.
 'yourpassword' => 'Passord:',
 'userlogin-yourpassword' => 'Passord',
 'userlogin-yourpassword-ph' => 'Skriv inn passordet ditt',
+'createacct-yourpassword-ph' => 'Skriv inn et passord',
 'yourpasswordagain' => 'Gjenta passord',
+'createacct-yourpasswordagain' => 'Bekreft passord',
+'createacct-yourpasswordagain-ph' => 'Skriv inn passordet igjen',
 'remembermypassword' => 'Husk meg på denne datamaskinen (i maks $1 {{PLURAL:$1|dag|dager}})',
-'userlogin-remembermypassword' => 'Husk brukernavn og passord',
+'userlogin-remembermypassword' => 'Hold meg innlogget',
 'userlogin-signwithsecure' => 'Logg inn med sikker tjener',
 'securelogin-stick-https' => 'Vær fortsatt koblet til HTTPS etter innlogging',
 'yourdomainname' => 'Ditt domene',
@@ -758,14 +774,30 @@ Ikke glem å endre [[Special:Preferences|innstillingene dine]] på {{SITENAME}}.
 'gotaccount' => 'Har du allerede en konto? $1.',
 'gotaccountlink' => 'Logg inn',
 'userlogin-resetlink' => 'Har du glemt påloggingsdetaljene dine?',
+'userlogin-resetpassword-link' => 'Tilbakestill passordet dit',
 'helplogin-url' => 'Help:Innlogging',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Hjelp med innlogging]]',
+'createacct-join' => 'Skriv inn informasjonen din under.',
+'createacct-emailrequired' => 'Email-adresse',
+'createacct-emailoptional' => 'Email-adresse (valgfritt)',
+'createacct-email-ph' => 'Skriv inn email-adressen din',
 'createaccountmail' => 'Bruk et midlertidig tilfeldig passord, og send det til e-postadressen nedenfor',
+'createacct-realname' => 'Virkelige navn (valgfritt)',
 'createaccountreason' => 'Årsak:',
+'createacct-reason' => 'Årsak',
+'createacct-reason-ph' => 'Hvorfor lager du en annen bruker',
+'createacct-captcha' => 'Sikkerhetssjekk',
+'createacct-imgcaptcha-ph' => 'Skriv inn teksten du ser ovenfor',
+'createacct-submit' => 'Lag deg en bruker',
+'createacct-benefit-heading' => '{{SITENAME}} er laget av personer som deg.',
+'createacct-benefit-body1' => '{{PLURAL:$1|edit|edits}}',
+'createacct-benefit-body2' => '{{PLURAL:$1|page|pages}}',
+'createacct-benefit-body3' => 'siste {{PLURAL:$1|contributor|contributors}}',
 'badretype' => 'Passordene samsvarte ikke.',
 'userexists' => 'Brukernavnet er allerede i bruk.
 Velg et annet brukernavn.',
 'loginerror' => 'Innloggingsfeil',
+'createacct-error' => 'Feil med kontoppretting',
 'createaccounterror' => 'Kunne ikke opprette konto: $1',
 'nocookiesnew' => 'Din brukerkonto er nå opprettet, men du har ikke logget på. {{SITENAME}} bruker informasjonskapsler («cookies») for å logge brukere på og du har slått dem av. Slå dem på for å kunne logge på med ditt nye brukernavn og passord.',
 'nocookieslogin' => '{{SITENAME}} bruker informasjonskapsler («cookies») for å logge brukere på og du har slått dem av. Slå dem på og prøv igjen.',
@@ -848,14 +880,13 @@ Du kan ignorere denne beskjeden dersom kontoen ble opprettet ved en feil.',
 'resetpass-wrong-oldpass' => 'Ugyldig midlertidig eller nåværende passord.
 Du kan ha allerede byttet passordet, eller bedt om et nytt midlertidig passord.',
 'resetpass-temp-password' => 'Midlertidig passord:',
+'resetpass-abort-generic' => 'Endring av passord har blitt avbrutt av en utvidelse.',
 
 # Special:PasswordReset
 'passwordreset' => 'Passordresetting',
-'passwordreset-text' => 'Fyll ut dette skjemaet for å tilbakestille passordet ditt.',
 'passwordreset-legend' => 'Nullstill passord',
 'passwordreset-disabled' => 'Nullstilling av passord er deaktivert på denne wikien.',
 'passwordreset-emaildisabled' => 'E-posttjenester er slått av på denne wikien.',
-'passwordreset-pretext' => '{{PLURAL:$1||Skriv inn en av datadelene nedenfor}}',
 'passwordreset-username' => 'Brukernavn:',
 'passwordreset-domain' => 'Domene:',
 'passwordreset-capture' => 'Vise resulterende e-post?',
@@ -1530,6 +1561,7 @@ Den kan maks inneholde $1 {{PLURAL:$1|tegn|tegn}}.',
 'userrights-changeable-col' => 'Grupper du kan endre',
 'userrights-unchangeable-col' => 'Grupper du ikke kan endre',
 'userrights-irreversible-marker' => '$1 *',
+'userrights-conflict' => 'En konflikt med brukerrettighetene! Vennligst legg til endringene dine igjen.',
 
 # Groups
 'group' => 'Gruppe:',
@@ -2914,6 +2946,8 @@ Besøk [//translatewiki.net translatewiki.net] om du ønsker å bidra med overse
 'thumbnail-more' => 'Forstørr',
 'filemissing' => 'Filen mangler',
 'thumbnail_error' => 'Feil under oppretting av miniatyrbilde: $1',
+'thumbnail_error_remote' => 'Feil-melding fra $1:
+$2',
 'djvu_page_error' => 'DjVu-side ute av rekkevidde',
 'djvu_no_xml' => 'Klarte ikke å hente XML for DjVu-fil',
 'thumbnail-temp-create' => 'Kan ikke opprette midlertidig miniatyrbildefil',
@@ -3223,10 +3257,24 @@ Ved å åpne den kan systemet ditt kompromitteres.",
 'minutes' => '{{PLURAL:$1|$1 minutt|$1 minutter}}',
 'hours' => '{{PLURAL:$1|$1 time|$1 timer}}',
 'days' => '{{PLURAL:$1|$1 dag|$1 dager}}',
+'weeks' => '{{FLERTALL:$1|$1 uke|$1 uker}}',
 'months' => '{{PLURAL:$1|$1 måned|$1 måneder}}',
 'years' => '{{PLURAL:$1|$1 år}}',
 'ago' => '$1 siden',
 'just-now' => 'nettopp',
+
+# Human-readable timestamps
+'hours-ago' => '$1 {{FLERTALL:$1|time|timer}} siden',
+'minutes-ago' => '$1 {{FLERTALL:$1|minutt|minutter}} siden',
+'seconds-ago' => '$1 {{FLERTALL:$1|sekund|sekunder}} siden',
+'monday-at' => 'Mandag på $1',
+'tuesday-at' => 'Tirsdag på $1',
+'wednesday-at' => 'Onsdag på $1',
+'thursday-at' => 'Torsdag på $1',
+'friday-at' => 'Fredag på $1',
+'saturday-at' => 'Lørdag på $1',
+'sunday-at' => 'Søndag på $1',
+'yesterday-at' => 'I går på $1',
 
 # Bad image list
 'bad_image_list' => 'Formatet er som følger:
@@ -3869,6 +3917,15 @@ Du skal ha mottatt [{{SERVER}}{{SCRIPTPATH}}/COPYING en kopi av GNU General Publ
 'version-entrypoints-header-entrypoint' => 'Inngangspunkt',
 'version-entrypoints-header-url' => 'URL',
 
+# Special:Redirect
+'redirect-submit' => 'Gå',
+'redirect-lookup' => 'Oppslag:',
+'redirect-value' => 'Verdi:',
+'redirect-user' => 'Bruker ID',
+'redirect-revision' => 'Side revisjon',
+'redirect-file' => 'Fil-navn',
+'redirect-not-exists' => 'Verdi er ikke funnet',
+
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Søk etter duplikatfiler',
 'fileduplicatesearch-summary' => 'Søk etter duplikatfiler basert på dets hash-verdi.',
@@ -3960,6 +4017,7 @@ Du skal ha mottatt [{{SERVER}}{{SCRIPTPATH}}/COPYING en kopi av GNU General Publ
 'htmlform-selectorother-other' => 'Andre',
 'htmlform-no' => 'Nei',
 'htmlform-yes' => 'Ja',
+'htmlform-chosen-placeholder' => 'Velg et alternativ',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 med støtte for fulltekstsøk',

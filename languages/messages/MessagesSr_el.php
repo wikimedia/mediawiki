@@ -744,6 +744,7 @@ Imajte na umu da neke stranice mogu nastaviti da se prikazuju kao da ste još pr
 'gotaccount' => 'Već imate nalog? Idite na stranicu „$1“.',
 'gotaccountlink' => 'Prijava',
 'userlogin-resetlink' => 'Zaboravili ste podatke za prijavu?',
+'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Pomoć pri prijavljivanju]]',
 'createaccountmail' => 'E-poštom',
 'createaccountreason' => 'Razlog:',
 'badretype' => 'Unete lozinke se ne poklapaju.',
@@ -842,10 +843,8 @@ Možda ste već promenili lozinku ili ste zatražili novu privremenu lozinku.',
 
 # Special:PasswordReset
 'passwordreset' => 'Obnavljanje lozinke',
-'passwordreset-text' => 'Popunite ovaj obrazac da biste primili e-poruku sa svojim podacima za prijavu.',
 'passwordreset-legend' => 'Poništi lozinku',
 'passwordreset-disabled' => 'Obnavljanje lozinke je onemogućeno na ovom vikiju.',
-'passwordreset-pretext' => '{{PLURAL:$1||Unesite jedan od delova podataka ispod}}',
 'passwordreset-username' => 'Korisničko ime:',
 'passwordreset-domain' => 'Domen:',
 'passwordreset-capture' => 'Pogledati krajnju poruku?',

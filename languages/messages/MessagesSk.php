@@ -16,6 +16,7 @@
  * @author Maros
  * @author Michawiki
  * @author Mormegil
+ * @author Nemo bis
  * @author Palica
  * @author Pitr2311
  * @author Ragimiri
@@ -820,11 +821,9 @@ Je možné, že sa vám už podarilo úspešne zmeniť svoje heslo alebo ste si 
 
 # Special:PasswordReset
 'passwordreset' => 'Reset hesla',
-'passwordreset-text' => 'Vyplnením tohto formulára si vytvoríte nové heslo.',
 'passwordreset-legend' => 'Obnoviť heslo',
 'passwordreset-disabled' => 'Obnovenie hesla bolo na tejto wiki zakázané.',
 'passwordreset-emaildisabled' => 'E-mailové funkcie boli na tejto wiki vypnuté.',
-'passwordreset-pretext' => '{{PLURAL:$1|Zadajte nižšie uvedený údaj|Zadajte jeden z nižšie uvedených údajov}}',
 'passwordreset-username' => 'Používateľské meno:',
 'passwordreset-domain' => 'Doména:',
 'passwordreset-capture' => 'Zobraziť výsledný e-mail?',

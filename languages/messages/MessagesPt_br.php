@@ -46,6 +46,7 @@
  * @author McDutchie
  * @author MetalBrasil
  * @author MisterSanderson
+ * @author Nemo bis
  * @author Opraco
  * @author Pedroca cerebral
  * @author Ppena
@@ -893,11 +894,9 @@ Você pode já ter alterado com sucesso a sua senha, ou solicitado uma nova senh
 
 # Special:PasswordReset
 'passwordreset' => 'Redefinir senha',
-'passwordreset-text' => 'Preencha este formulário para recuperar os dados da sua conta pelo e-mail.',
 'passwordreset-legend' => 'Reiniciar a senha',
 'passwordreset-disabled' => 'Redefinições de senha foram desabilitadas nesta wiki.',
 'passwordreset-emaildisabled' => 'Os recursos de e-mail foram desativados nesta wiki.',
-'passwordreset-pretext' => '{{PLURAL:$1||Introduza um dos dados abaixo}}',
 'passwordreset-username' => 'Nome de usuário:',
 'passwordreset-domain' => 'Domínio:',
 'passwordreset-capture' => 'Ver o e-mail resultante?',
@@ -1138,6 +1137,7 @@ Ele não deu nenhuma explicação.",
 Ela parece ter sido eliminada.',
 'edit-conflict' => 'Conflito de edição.',
 'edit-no-change' => 'A sua edição foi ignorada, uma vez que o texto não sofreu alterações.',
+'postedit-confirmation' => 'Sua edição foi salva',
 'edit-already-exists' => 'Não foi possível criar uma nova página.
 Ela já existia.',
 'defaultmessagetext' => 'Texto da mensagem padrão',

@@ -756,11 +756,9 @@ $2',
 
 # Special:PasswordReset
 'passwordreset' => 'গুপ্তশব্দ ন-কৈ বহুৱাওক',
-'passwordreset-text' => ' আপোনাৰ গুপ্তশব্দ ন-কৈ বহুৱাবলৈ তলৰ প্ৰপত্ৰ সম্পূৰ্ণ কৰক।',
 'passwordreset-legend' => 'গুপ্তশব্দ ন-কৈ বহাওক',
 'passwordreset-disabled' => 'এই ৱিকিত গুপ্তশব্দ নবীকৰণ নিষ্ক্ৰিয় কৰা হৈছে ।',
 'passwordreset-emaildisabled' => 'এই ৱিকিত ই-মেইল বৈশিষ্টসমূহ নিষ্ক্ৰিয় কৰা হৈছে।',
-'passwordreset-pretext' => '{{PLURAL:$1||তলত উল্লেখ কৰা তথ্যৰ কোনো অংশ ভৰাওক}}',
 'passwordreset-username' => 'সদস্যনাম',
 'passwordreset-domain' => 'ডমেইন :',
 'passwordreset-capture' => 'ফলাফল ই-মেইলখন চাবলৈ বিচাৰিছে ?',
@@ -2181,7 +2179,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization চাওক।",
 'listusers-blocked' => '(বাৰণ কৰা)',
 
 # Special:ActiveUsers
-'activeusers' => 'সক্ৰিয় ব্যবহাৰকাৰীৰ তালিকা',
+'activeusers' => 'সক্ৰিয় ব্যৱহাৰকাৰীৰ তালিকা',
 'activeusers-intro' => 'যোৱা  {{PLURAL:$1|দিন|দিন}}ৰ ভিতৰত অৱদান আগবঢ়োৱা ব্যৱহাৰকাৰীৰ তালিকা',
 'activeusers-count' => 'যোৱা {{PLURAL:$3|দিনত|$3 দিনত}} সৰ্বমুঠ $1 {{PLURAL:$1|টা কাম}}',
 'activeusers-from' => 'ইয়াৰে আৰম্ভ হোৱা ব্যৱহাৰকাৰী সকল দেখুৱাওক:',

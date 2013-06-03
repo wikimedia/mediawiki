@@ -12,6 +12,7 @@
  * @author Freakolowsky
  * @author Irena Plahuta
  * @author McDutchie
+ * @author Nemo bis
  * @author Smihael
  * @author Vadgt
  * @author XJamRastafire
@@ -681,7 +682,7 @@ Ker jih imate onemogočene, vas prosimo, da jih omogočite in se ponovno prijavi
 Poskrbite, da imate omogočene piškotke, osvežite to stran in poskusite znova.',
 'noname' => 'Niste vnesli veljavnega uporabniškega imena.',
 'loginsuccesstitle' => 'Uspešno ste se prijavili',
-'loginsuccess' => "'''Sedaj ste prijavljeni v {{GRAMMAR:tožilnik|{{SITENAME}}}} kot »$1«.'''",
+'loginsuccess' => "'''Zdaj ste prijavljeni v {{GRAMMAR:tožilnik|{{SITENAME}}}} kot »$1«.'''",
 'nosuchuser' => 'Uporabnik z imenom »$1« ne obstaja.
 Uporabniška imena so občutljiva na velikost črk.
 Preverite črkovanje ali pa si [[Special:UserLogin/signup|ustvarite nov uporabniški račun]].',
@@ -769,11 +770,9 @@ Morda ste že uspešno spremenili geslo ali pa ste zahtevali novo začasno geslo
 
 # Special:PasswordReset
 'passwordreset' => 'Ponastavitev gesla',
-'passwordreset-text' => 'Izpolnite obrazec, da ponastavite geslo.',
 'passwordreset-legend' => 'Ponastavitev gesla',
 'passwordreset-disabled' => 'Ponastavljanje gesla je na tem wikiju onemogočeno.',
 'passwordreset-emaildisabled' => 'Na tem wikiju so možnosti e-pošte onemogočene.',
-'passwordreset-pretext' => '{{PLURAL:$1||Vnesite enega od dela podatkov spodaj}}',
 'passwordreset-username' => 'Uporabniško ime:',
 'passwordreset-domain' => 'Domena:',
 'passwordreset-capture' => 'Ogled nastale e-pošte?',

@@ -740,7 +740,7 @@ Non dimenticare di personalizzare le [[Special:Preferences|preferenze di {{SITEN
 'userlogin-joinproject' => 'Registrati su {{SITENAME}}',
 'nologin' => 'Non hai ancora un accesso? $1.',
 'nologinlink' => 'Registrati',
-'createaccount' => "Crea un'utenza",
+'createaccount' => 'Registrati',
 'gotaccount' => 'Hai già un accesso? $1.',
 'gotaccountlink' => 'Entra',
 'userlogin-resetlink' => 'Hai dimenticato i tuoi dati di accesso?',
@@ -852,11 +852,9 @@ La password potrebbe essere stata già cambiata, oppure potrebbe essere stata ri
 
 # Special:PasswordReset
 'passwordreset' => 'Reimposta password',
-'passwordreset-text' => 'Compila questo modulo per reimpostare la tua password.',
 'passwordreset-legend' => 'Reimposta password',
 'passwordreset-disabled' => 'La reimpostazione delle password è stata disabilitata su questa wiki',
 'passwordreset-emaildisabled' => 'Le funzionalità di posta elettronica sono state disabilitate su questa wiki.',
-'passwordreset-pretext' => '{{PLURAL:$1||Immetti uno dei dati richiesti qui sotto}}',
 'passwordreset-username' => 'Nome utente:',
 'passwordreset-domain' => 'Dominio:',
 'passwordreset-capture' => 'Visualizzare il contenuto del messaggio e-mail?',
@@ -1083,14 +1081,15 @@ Non è stata restituita alcuna spiegazione.",
 Sembra che sia stata cancellata.',
 'edit-conflict' => 'Conflitto di edizione.',
 'edit-no-change' => 'La modifica è stata ignorata poiché non sono stati apportati cambiamenti al testo.',
+'postedit-confirmation' => 'La modifica è stata salvata.',
 'edit-already-exists' => 'Impossibile creare una nuova pagina.
 Esiste già.',
 'defaultmessagetext' => 'Testo predefinito',
 'content-failed-to-parse' => 'Impossibile analizzare $2 per il modello $1: $3',
 'invalid-content-data' => 'Dati contenuti non validi',
 'content-not-allowed-here' => 'Contenuto in "$1" non consentito nella pagine [[$2]]',
-'editwarning-warning' => 'Lasciare questa pagina potrebbe costarti la perdita di tutti i cambiamenti effettuati.
-Se sei loggato, puoi disattivare questo avviso nella sezione "{{int:prefs-editing}}" delle tue preferenze.',
+'editwarning-warning' => 'Lasciare questa pagina potrebbe causare la perdita di tutte le modifiche fatte.
+Se hai effettuato l\'accesso, puoi disattivare questo avviso nella sezione "Casella di modifica" delle tue preferenze.',
 
 # Content models
 'content-model-wikitext' => 'wikitesto',

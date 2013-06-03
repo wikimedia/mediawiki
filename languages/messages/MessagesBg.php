@@ -13,6 +13,7 @@
  * @author Daggerstab
  * @author Dimi z
  * @author Kaganer
+ * @author Simona
  * @author Spiritia
  * @author Stanqo
  * @author Termininja
@@ -776,10 +777,8 @@ $2',
 
 # Special:PasswordReset
 'passwordreset' => 'Възстановяване на парола',
-'passwordreset-text' => 'Попълването на формуляра ще доведе до възстановяване на паролата.',
 'passwordreset-legend' => 'Възстановяване на парола',
 'passwordreset-disabled' => 'Възстановяването на паролата е изключено в това уики.',
-'passwordreset-pretext' => '{{PLURAL:$1||Въведете някоя от информациите по-долу}}',
 'passwordreset-username' => 'Потребителско име:',
 'passwordreset-domain' => 'Домейн:',
 'passwordreset-capture' => 'Преглеждане на електронното писмо?',
@@ -1011,6 +1010,7 @@ $2
 Вероятно междувременно е била изтрита.',
 'edit-conflict' => 'Редакционен конфликт.',
 'edit-no-change' => 'Вашата редакция беше игнорирана, тъй като не съдържа промени по текста.',
+'postedit-confirmation' => 'Вашата редакция беше съхранена',
 'edit-already-exists' => 'Не можа да се създаде нова страница.
 Такава вече съществува.',
 'defaultmessagetext' => 'Текст на съобщението по подразбиране',

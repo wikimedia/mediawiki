@@ -313,7 +313,7 @@ $linkTrail = '/^([a-zäö]+)(.*)$/sDu';
 
 $messages = array(
 # User preference toggles
-'tog-underline' => 'Linkkien alleviivaus',
+'tog-underline' => 'Linkkien alleviivaus:',
 'tog-justify' => 'Tasaa kappaleet',
 'tog-hideminor' => 'Piilota pienet muutokset tuoreet muutokset -listasta',
 'tog-hidepatrolled' => 'Piilota tarkastetut muutokset tuoreet muutokset -listasta',
@@ -864,11 +864,10 @@ Olet saattanut jo onnistuneesti vaihtaa salasanasi tai pyytää uutta väliaikai
 
 # Special:PasswordReset
 'passwordreset' => 'Salasanan alustus',
-'passwordreset-text' => 'Täytä tämä lomake vaihtaaksesi salasanasi.',
+'passwordreset-text-one' => 'Täytä tämä lomake vaihtaaksesi salasanasi.',
 'passwordreset-legend' => 'Salasanan vaihto',
 'passwordreset-disabled' => 'Salasanojen alustus ei ole mahdollista tässä wikissä.',
 'passwordreset-emaildisabled' => 'Sähköpostitoiminnot on poistettu käytöstä tässä wikissä.',
-'passwordreset-pretext' => '{{PLURAL:$1||Kirjoita jokin jäljempänä pyydetty tieto}}',
 'passwordreset-username' => 'Käyttäjätunnus',
 'passwordreset-domain' => 'Verkkotunnus',
 'passwordreset-capture' => 'Näytä lähetettävä sähköpostiviesti',
@@ -898,7 +897,7 @@ voit jättää tämän viestin huomiotta ja jatkaa vanhan salasanan käyttöä.'
 Väliaikainen salasana: $2',
 'passwordreset-emailsent' => 'Salasananpalautusviesti on lähetetty.',
 'passwordreset-emailsent-capture' => 'Salasananpalautusviesti on lähetetty, se näkyy myös alla.',
-'passwordreset-emailerror-capture' => 'Allaoleva sähköpostiviesti luotiin, mutta sen lähettäminen käyttäjälle epäonnistui: $1',
+'passwordreset-emailerror-capture' => 'Allaoleva sähköpostiviesti luotiin, mutta sen lähettäminen {{GENDER:$2|käyttäjälle}} epäonnistui: $1',
 
 # Special:ChangeEmail
 'changeemail' => 'Muuta sähköpostiosoitetta',
@@ -1092,6 +1091,7 @@ Harkitse, kannattaako sivua luoda uudelleen. Alla on tämän sivun poisto- ja si
 Se on ilmeisesti poistettu.',
 'edit-conflict' => 'Päällekkäinen muokkaus.',
 'edit-no-change' => 'Muokkauksesi sivuutettiin, koska tekstiin ei tehty mitään muutoksia.',
+'postedit-confirmation' => 'Muokkauksesi on tallennettu.',
 'edit-already-exists' => 'Uuden sivun luominen ei onnistunut.
 Se on jo olemassa.',
 'defaultmessagetext' => 'Viestin oletusteksti',
@@ -1099,7 +1099,7 @@ Se on jo olemassa.',
 'invalid-content-data' => 'Virheellinen sisältö',
 'content-not-allowed-here' => 'Sivun [[$2]] sisältö ei voi olla tyyppiä $1.',
 'editwarning-warning' => 'Tältä sivulta poistuminen saattaa aiheuttaa kaikkien tekemiesi muutosten katoamisen.
-Jos olet kirjautuneena sisään, voit poistaa tämän varoituksen käytöstä asetuksissa osiossa ”{{int:prefs-editing}}”.',
+Jos olet kirjautuneena sisään, voit poistaa tämän varoituksen käytöstä asetuksissa osiossa »Muokkaus».',
 
 # Content models
 'content-model-wikitext' => 'wikiteksti',

@@ -39,6 +39,7 @@
  * @author Mskyrider
  * @author Myildirim2007
  * @author Nazif İLBEK
+ * @author Nemo bis
  * @author Reedy
  * @author Runningfridgesrule
  * @author Sadrettin
@@ -870,10 +871,8 @@ Girişi bitirmek için, burada yeni bir parola yazın:',
 
 # Special:PasswordReset
 'passwordreset' => 'Parola sıfırlama',
-'passwordreset-text' => 'Hesap bilgilerinizin e-posta ile hatırlatılması için bu formu doldurunuz.',
 'passwordreset-legend' => 'Şifreyi sıfırla',
 'passwordreset-disabled' => 'Parola sıfırlamaları bu wiki üzerinde devre dışı bırakıldı.',
-'passwordreset-pretext' => '{{PLURAL:$1||Aşağıdaki verilerden birini girin}}',
 'passwordreset-username' => 'Kullanıcı adı:',
 'passwordreset-domain' => 'Domain:',
 'passwordreset-capture' => 'Sonuç e-postasını görüntüle?',
@@ -1098,6 +1097,7 @@ Bir açıklama verilmedi.',
 Silinmiş görünüyor.',
 'edit-conflict' => 'Değişiklik çakışması.',
 'edit-no-change' => 'Değişikliğiniz yoksayıldı, çünkü metinde bir değişiklik yapılmadı.',
+'postedit-confirmation' => 'Değişikliğiniz kaydedildi.',
 'edit-already-exists' => 'Yeni sayfa oluşturulamıyor.
 Sayfa zaten mevcut.',
 'defaultmessagetext' => 'Varsayılan mesaj metni',

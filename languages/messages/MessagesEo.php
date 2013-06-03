@@ -28,6 +28,7 @@
  * @author Michawiki
  * @author Mihxil
  * @author MinuteElectron
+ * @author Nemo bis
  * @author Objectivesea
  * @author Omnipaedista
  * @author Pedroca cerebral
@@ -860,11 +861,9 @@ Vi eble jam ŝanĝis vian pasvorton aŭ petis novan provizoran pasvorton.',
 
 # Special:PasswordReset
 'passwordreset' => 'Restarigo de pasvorto',
-'passwordreset-text' => 'Plenigu ĉi tiun formularon por renovigi vian pasvorton.',
 'passwordreset-legend' => 'Refari pasvorton',
 'passwordreset-disabled' => 'Pasvortaj restarigoj estis malŝaltitaj en ĉi tiu vikio.',
 'passwordreset-emaildisabled' => 'Retpoŝtaj funkcioj estas malfunkciigitaj en tiu ĉi vikio.',
-'passwordreset-pretext' => '{{PLURAL:$1||Enigi unu el la jenaj datenoj}}',
 'passwordreset-username' => 'Salutnomo:',
 'passwordreset-domain' => 'Domajno:',
 'passwordreset-capture' => 'Vidi la rezultan retpoŝton?',
@@ -1108,6 +1107,7 @@ Jen la protokolo pri forigado kaj alinomigado por via referenco.',
 Verŝajne ĝi estis forigita.',
 'edit-conflict' => 'Redakto-konflikto.',
 'edit-no-change' => 'Via redakto estis ignorita, ĉar neniu ŝanĝo estis farita al la teksto.',
+'postedit-confirmation' => 'Via redakto estis konservita.',
 'edit-already-exists' => 'Ne eblis krei novan paĝon.
 Ĝi jam ekzistas.',
 'defaultmessagetext' => 'Defaŭlta teksto',

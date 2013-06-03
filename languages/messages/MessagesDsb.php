@@ -14,6 +14,7 @@
  * @author Kaganer
  * @author Michawiki
  * @author Murjarik
+ * @author Nemo bis
  * @author Nepl1
  * @author Pe7er
  * @author Qualia
@@ -673,10 +674,8 @@ Sy snaź swójo gronidło južo wuspěšnje změnił abo nowe nachylne gronidło
 
 # Special:PasswordReset
 'passwordreset' => 'Gronidło slědk stajiś',
-'passwordreset-text' => 'Wupołni toś ten formular, aby swójo gronidło anulěrował.',
 'passwordreset-legend' => 'Gronidło slědk stajiś',
 'passwordreset-disabled' => 'Slědkstajenja gronidłow su se znjemóžnili na toś tom wikiju.',
-'passwordreset-pretext' => '{{PLURAL:$1||Zapódaj dołojce jadne ze slědujucych datowych podaśow}}',
 'passwordreset-username' => 'Wužywarske mě:',
 'passwordreset-domain' => 'Domena:',
 'passwordreset-capture' => 'E-mail se woglědaś?',
@@ -895,6 +894,7 @@ Njejo žedno wujasnjenje.',
 Zda sem až jo wulašowany.',
 'edit-conflict' => 'Wobźěłański konflikt.',
 'edit-no-change' => 'Wašo wobźěłanje jo se ignorěrowało, dokulaž tekst njejo se změnił.',
+'postedit-confirmation' => 'Twója změna jo se składła.',
 'edit-already-exists' => 'Njejo móžno było nowy bok napóraś.
 Eksistěrujo južo.',
 'defaultmessagetext' => 'Standardny tekst powěźeńki',

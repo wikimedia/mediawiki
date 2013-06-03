@@ -880,11 +880,9 @@ Có thể bạn đã thay đổi thành công mật khẩu của mình hoặc đ
 
 # Special:PasswordReset
 'passwordreset' => 'Tái tạo mật khẩu',
-'passwordreset-text' => 'Hãy điền mẫu đơn này để tái tạo mật khẩu.',
 'passwordreset-legend' => 'Tái tạo mật khẩu',
 'passwordreset-disabled' => 'Chức năng tái tạo mật khẩu đã bị tắt trên wiki này.',
 'passwordreset-emaildisabled' => 'Tính năng gửi thư điện tử không được kích hoạt trên wiki này.',
-'passwordreset-pretext' => '{{PLURAL:$1||Nhập một trong những thông tin được yêu cầu ở dưới}}',
 'passwordreset-username' => 'Tên người dùng:',
 'passwordreset-domain' => 'Tên miền:',
 'passwordreset-capture' => 'Xem thư điện tử có mật khẩu tạm',
@@ -1123,6 +1121,7 @@ Không có lý do nào được đưa ra.',
 Dường như trang này đã bị xóa.',
 'edit-conflict' => 'Sửa đổi mâu thuẫn.',
 'edit-no-change' => 'Sửa đổi của bạn không được tính đến, vì nó không làm thay đổi nội dung.',
+'postedit-confirmation' => 'Sửa đổi của bạn đã được lưu.',
 'edit-already-exists' => 'Không thể tạo trang mới.
 Nó đã tồn tại.',
 'defaultmessagetext' => 'Nội dung mặc định',
@@ -1130,7 +1129,7 @@ Nó đã tồn tại.',
 'invalid-content-data' => 'Dữ liệu nội dung không hợp lệ',
 'content-not-allowed-here' => 'Không cho phép đưa nội dung “$1” vào trang [[$2]]',
 'editwarning-warning' => 'Rời khỏi trang này sẽ khiến bạn mất các sửa đổi đã thực hiện.
-Nếu đã đăng nhập, bạn có thể tắt cảnh báo này tại mục “{{int:prefs-editing}}” trong tùy chọn cá nhân.',
+Nếu đã đăng nhập, bạn có thể tắt cảnh báo này tại mục “Sửa đổi” trong tùy chọn cá nhân.',
 
 # Content models
 'content-model-wikitext' => 'mã wiki',

@@ -14,6 +14,7 @@
  * @author Malangali
  * @author Marcos
  * @author Muddyb Blast Producer
+ * @author Nemo bis
  * @author Robert Ullmann
  * @author Stephenwanjau
  * @author לערי ריינהארט
@@ -666,10 +667,8 @@ Inawezekana ikawa tayari umefaulu kubadilisha neno lako la siri au neno la siri 
 
 # Special:PasswordReset
 'passwordreset' => 'Seti upya neno la siri',
-'passwordreset-text' => 'Jaza fomu hii ili upate barua pepe inayotoa maelezo ya akaunti yako.',
 'passwordreset-legend' => 'Seti upya neno la siri',
 'passwordreset-disabled' => 'Kuweka neno la siri jipya kumeshitishwa katika wiki hii.',
-'passwordreset-pretext' => '{{PLURAL:$1||Ingiza moja kati ya data hizi hapo chini}}',
 'passwordreset-username' => 'Jina la mtumiaji:',
 'passwordreset-domain' => 'Miliki',
 'passwordreset-capture' => 'Ioneshe barua-pepe itakayotumwa?',

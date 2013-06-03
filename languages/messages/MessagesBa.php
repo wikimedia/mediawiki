@@ -672,10 +672,8 @@ $2',
 
 # Special:PasswordReset
 'passwordreset' => 'Паролде ташлатыу',
-'passwordreset-text' => 'Иҫәп яҙыуығыҙ мәғлүмәттәрен хат аша алыу өсөн киләһе форманы тултырығыҙ.',
 'passwordreset-legend' => 'Паролде ташлатыу',
 'passwordreset-disabled' => 'Был викила паролде ташлатыу ғәмәлдә түгел',
-'passwordreset-pretext' => '{{PLURAL:$1||аҫта күрһәтелгән мәғлүмәттәрҙең бер киҫәген керетегеҙ}}',
 'passwordreset-username' => 'Ҡулланыусы исеме:',
 'passwordreset-domain' => 'Домен:',
 'passwordreset-capture' => 'Хәбәрҙең һуңғы хәлен ҡарарғамы?',

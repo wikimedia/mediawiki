@@ -677,11 +677,9 @@ Gall fod eich bod wedi llwyddo newid eich cyfrinair eisoes neu eich bod wedi gof
 
 # Special:PasswordReset
 'passwordreset' => 'Ailosod cyfrinair',
-'passwordreset-text' => 'Cwblhewch y ffurflen hon er mwyn ailosod eich cyfrinair.',
 'passwordreset-legend' => 'Ailosod y cyfrinair',
 'passwordreset-disabled' => 'Analluogwyd ailosod cyfrineiriau ar y wici hwn.',
 'passwordreset-emaildisabled' => 'Analluogwyd offer e-bost ar y wici hwn.',
-'passwordreset-pretext' => "{{PLURAL:$1|||Rhowch un o'r darnau o ddata isod|Rhowch un o'r darnau o ddata isod|Rhowch un o'r darnau o ddata isod|Rhowch un o'r darnau o ddata isod|Rhowch un o'r darnau o ddata isod}}",
 'passwordreset-username' => 'Eich enw defnyddiwr:',
 'passwordreset-domain' => 'Parth:',
 'passwordreset-capture' => 'Gweld yr e-bost a gaiff ei anfon?',
@@ -917,7 +915,7 @@ Mae ar gael yn barod.',
 'invalid-content-data' => "Data annilys i'r cynnwys",
 'content-not-allowed-here' => 'Nid yw cynnwys ar ffurf "$1" yn cael ei ganiatau ar y dudalen [[$2]]',
 'editwarning-warning' => 'Os y gadewch y dudalen hon mae\'n bosib y collwch eich newidiadau iddi.
-Gallwch ddiddymu\'r rhybudd hwn yn yr adran "{{int:prefs-editing}}" yn eich dewisiadau.',
+Os ydych wedi mewngofnodi gallwch ddiddymu\'r rhybudd hwn yn yr adran "Golygu" yn eich dewisiadau.',
 
 # Content models
 'content-model-wikitext' => 'cystrawen wici',

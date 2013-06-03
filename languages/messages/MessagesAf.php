@@ -15,6 +15,7 @@
  * @author Kaganer
  * @author Manie
  * @author Naudefj
+ * @author Nemo bis
  * @author Purodha
  * @author Reedy
  * @author SPQRobin
@@ -769,11 +770,9 @@ U het moontlik reeds u wagwoord gewysig of 'n nuwe tydelike wagwoord aangevra.",
 
 # Special:PasswordReset
 'passwordreset' => 'Wagwoord herstel',
-'passwordreset-text' => 'Voltooi hierdie vorm om u wagwoord te herstel.',
 'passwordreset-legend' => 'Kry nuwe wagwoord',
 'passwordreset-disabled' => 'Die herskik van U wagwoord is gedeaktiveer op hierdie wiki.',
 'passwordreset-emaildisabled' => 'E-posfunksies is afgeskakel op hierdie wiki.',
-'passwordreset-pretext' => '{{PLURAL:$1| | Voer een van die onderstaande velde in}}',
 'passwordreset-username' => 'Gebruiker:',
 'passwordreset-domain' => 'Domein:',
 'passwordreset-capture' => 'Wys resulterende e-pos?',

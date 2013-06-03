@@ -759,11 +759,9 @@ Vläicht hutt Dir Äert Passwuert scho geännert oder en neit temporäert Passwu
 
 # Special:PasswordReset
 'passwordreset' => 'Passwuert zrécksetzen',
-'passwordreset-text' => 'Fëllt dëse Formulaire aus fir Äert Passwuert zréckzesetzen.',
 'passwordreset-legend' => 'Passwuert zrécksetzen',
 'passwordreset-disabled' => "D'Zerécksetze vum Passwuert ass op dëser Wiki ausgeschalt.",
 'passwordreset-emaildisabled' => "D'E-Mail-Fonctioune goufen op dëser Wiki ausgeschalt.",
-'passwordreset-pretext' => '{{PLURAL:$1||Gitt eng vun dësen Donnéeën an}}',
 'passwordreset-username' => 'Benotzernumm:',
 'passwordreset-domain' => 'Domaine:',
 'passwordreset-capture' => "D'Mail kucken?",
@@ -999,12 +997,13 @@ Hei ass den Extrait aus dem Logbuch vum Réckelen a Läsche fir déi Säit.',
 Si gouf anscheinend geläscht.",
 'edit-conflict' => 'Ännerungskonflikt.',
 'edit-no-change' => 'Är ännerung gouf ignoréiert, well Dir näischt um Text geännert hutt.',
+'postedit-confirmation' => 'Är Ännerung gouf gespäichert.',
 'edit-already-exists' => 'Déi nei Säit konnt net ugeluecht ginn, well et se scho gëtt.',
 'defaultmessagetext' => 'Standardtext',
 'invalid-content-data' => 'Donnéeë vum Inhalt sinn net valabel',
 'content-not-allowed-here' => '"$1"-Inhalt ass op der Säit [[$2]] net erlaabt',
 'editwarning-warning' => 'Wann Dir dës Säit verloosst kann dat dozou féieren datt Dir all Ännerungen, déi Dir gemaach hutt, verléiert.
-Wann Dir ageloggt sidd, kënnt Dir dës Warnung an der Sektioun "{{int:prefs-editing}}" vun Ären Astellungen ausschalten.',
+Wann Dir ageloggt sidd, kënnt Dir dës Warnung an der Sektioun "Änneren" vun Ären Astellungen ausschalten.',
 
 # Content models
 'content-model-wikitext' => 'Wikitext',

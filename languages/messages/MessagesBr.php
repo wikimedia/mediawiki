@@ -15,6 +15,7 @@
  * @author Gwenn-Ael
  * @author Kaganer
  * @author Malafaya
+ * @author Nemo bis
  * @author VIGNERON
  * @author Y-M D
  * @author לערי ריינהארט
@@ -710,10 +711,8 @@ Gortozit a-raok klask en-dro.",
 
 # Special:PasswordReset
 'passwordreset' => 'Adderaouekaat ar ger-tremen',
-'passwordreset-text' => "Leuniañ ar furmskrid-mañ da resev ur postel da zegas soñj deoc'h eus titouroù ho kont.",
 'passwordreset-legend' => 'Adsevel ar ger-tremen',
 'passwordreset-disabled' => 'Diweredekaet eo bet an adsevel gerioù-tremen war ar wiki-mañ.',
-'passwordreset-pretext' => '{{PLURAL:$1||Merkit unan eus an tammoù roadennoù dindan}}',
 'passwordreset-username' => 'Anv implijer :',
 'passwordreset-domain' => 'Domani :',
 'passwordreset-capture' => 'Gwelet ar postel ?',
@@ -947,6 +946,7 @@ Abeg dianav.",
 Diverket eo bet evit doare.',
 'edit-conflict' => 'Tabut kemmañ.',
 'edit-no-change' => "N'eo ket bet kemeret ho tegasadenn e kont rak ne oa ket bet kemmet netra en destenn.",
+'postedit-confirmation' => 'Enrollet eo bet ho kemmoù.',
 'edit-already-exists' => "N'eus ket bet gallet krouiñ ur bajenn nevez.
 Krouet e oa bet c'hoazh.",
 'defaultmessagetext' => 'Testenn dre ziouer',

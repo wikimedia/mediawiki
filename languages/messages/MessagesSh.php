@@ -8,6 +8,7 @@
  * @file
  *
  * @author Kaganer
+ * @author Nemo bis
  * @author OC Ripper
  * @author לערי ריינהארט
  */
@@ -783,11 +784,9 @@ Možda ste već uspješno promijenili Vašu lozinku ili ste tražili novu privre
 
 # Special:PasswordReset
 'passwordreset' => 'Ponovno postavi lozinku',
-'passwordreset-text' => 'Dovršite ovaj obrazac kako biste resetirali svoju lozinku/zaporku.',
 'passwordreset-legend' => 'Ponovno postavi lozinku',
 'passwordreset-disabled' => 'Ponovno postavljanje lozinke je onemogućeno na ovom wikiju.',
 'passwordreset-emaildisabled' => 'Postavke E-maila su deaktivirane na ovoj wiki.',
-'passwordreset-pretext' => '{{PLURAL:$1||Unesite jedan dio podataka ispod}}',
 'passwordreset-username' => 'Korisničko ime:',
 'passwordreset-domain' => 'Domena:',
 'passwordreset-capture' => 'Pogledati krajnji e-mail?',

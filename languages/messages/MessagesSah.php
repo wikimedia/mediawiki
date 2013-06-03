@@ -13,6 +13,7 @@
  * @author HalanTul
  * @author Kaganer
  * @author Meno25
+ * @author Nemo bis
  * @author Urhixidur
  */
 
@@ -582,10 +583,8 @@ $2',
 
 # Special:PasswordReset
 'passwordreset' => 'Киирии тылы саҥаттан',
-'passwordreset-text' => 'Урукку киирии тылы уларытарга бу форманы толор.',
 'passwordreset-legend' => 'Киирии тылы саҥаттан',
 'passwordreset-disabled' => 'Бу биикигэ киирии тылы саҥардыы бобуллубут.',
-'passwordreset-pretext' => '{{PLURAL:$1||Аллара көстөр дааннайдартан биирин талан суруй}}',
 'passwordreset-username' => 'Кыттааччы:',
 'passwordreset-domain' => 'Домен:',
 'passwordreset-capture' => 'Суруллубут суругу көрөҕүн дуо?',

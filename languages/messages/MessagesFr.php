@@ -958,11 +958,11 @@ Vous avez peut-être déjà changé votre mot de passe ou demandé un nouveau mo
 
 # Special:PasswordReset
 'passwordreset' => 'Remise à zéro du mot de passe',
-'passwordreset-text' => 'Remplissez ce formulaire pour réinitialiser votre mot de passe.',
+'passwordreset-text-one' => 'Remplissez ce formulaire pour réinitialiser votre mot de passe.',
+'passwordreset-text-many' => '{{PLURAL:$1|Entrez une de ces données pour réinitialiser votre mot de passe.}}',
 'passwordreset-legend' => 'Remise à zéro du mot de passe',
 'passwordreset-disabled' => 'La réinitialisation des mots de passe a été désactivée sur ce wiki.',
 'passwordreset-emaildisabled' => 'Les fonctionnalités e-mail ont été désactivées sur ce wiki.',
-'passwordreset-pretext' => '{{PLURAL:$1||Entrez un élément de données ci-dessous}}',
 'passwordreset-username' => "Nom d'utilisateur :",
 'passwordreset-domain' => 'Domaine :',
 'passwordreset-capture' => 'Voir le courriel résultant?',
@@ -1191,6 +1191,7 @@ Cause inconnue',
 Il semble qu'elle ait été supprimée.",
 'edit-conflict' => 'Conflit de modification.',
 'edit-no-change' => "Votre modification a été ignorée car aucun changement n'a été fait au texte.",
+'postedit-confirmation' => 'Votre modification a été sauvegardée.',
 'edit-already-exists' => "La nouvelle page n'a pas pu être créée.
 Elle existe déjà.",
 'defaultmessagetext' => 'Message par défaut',
@@ -1198,7 +1199,7 @@ Elle existe déjà.",
 'invalid-content-data' => 'Données du contenu non valides',
 'content-not-allowed-here' => 'Le contenu "$1" n\'est pas autorisé sur la page [[$2]]',
 'editwarning-warning' => 'Quitter cette page vous fera perdre toutes les modifications que vous avez faites.
-Si vous êtes connecté avec votre compte, vous pouvez retirer cet avertissement dans la section « {{int:prefs-editing}} » de vos préférences.',
+Si vous êtes connecté, vous pouvez désactiver cet avertissement dans la section « Modification » de vos préférences.',
 
 # Content models
 'content-model-wikitext' => 'wikitexte',

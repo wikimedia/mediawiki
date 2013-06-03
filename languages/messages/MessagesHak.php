@@ -569,11 +569,9 @@ $2',
 
 # Special:PasswordReset
 'passwordreset' => '重設密碼',
-'passwordreset-text' => '完成邇隻表格以重置汝嘅密碼。',
 'passwordreset-legend' => '重置密码',
 'passwordreset-disabled' => '邇隻維基上已禁止矣重設密碼。',
 'passwordreset-emaildisabled' => '電子郵件功能在此 wiki 上已禁用。',
-'passwordreset-pretext' => '{{PLURAL:$1||輸入下列其中一隻}}',
 'passwordreset-username' => '用戶名：',
 'passwordreset-domain' => '域名：',
 'passwordreset-capture' => '查看生成嘅電子郵件係無？',

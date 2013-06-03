@@ -872,10 +872,8 @@ Bıne vındere u newe ra dest pê bıkere.',
 
 # Special:PasswordReset
 'passwordreset' => 'Parola reset ke',
-'passwordreset-text' => 'Seba eyarkerdışê parolaya xo ra nê formi pır kerê.',
 'passwordreset-legend' => 'Parola reset ke',
 'passwordreset-disabled' => 'Parola reset kerdış ena viki sera qefılneyayo.',
-'passwordreset-pretext' => '{{PLURAL:$1||Enê cerenan ra jeweri defiye de}}',
 'passwordreset-username' => 'Nameyê karberi:',
 'passwordreset-domain' => 'Domain:',
 'passwordreset-capture' => 'neticey e-postay bımocne?',

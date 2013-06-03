@@ -33,6 +33,7 @@
  * @author Mikez
  * @author NH
  * @author Najami
+ * @author Nemo bis
  * @author Nghtwlkr
  * @author Ozp
  * @author Per
@@ -778,13 +779,13 @@ Glöm inte att justera dina [[Special:Preferences|{{SITENAME}}-inställningar]].
 'gotaccountlink' => 'Logga in',
 'userlogin-resetlink' => 'Har du glömt dina inloggningsuppgifter?',
 'userlogin-resetpassword-link' => 'Återställ ditt lösenord',
-'helplogin-url' => 'Help:Logging in',
+'helplogin-url' => 'Help:Logga in',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Hjälp med inloggning]]',
 'createacct-join' => 'Ange din information nedan.',
 'createacct-emailrequired' => 'E-postadress',
 'createacct-emailoptional' => 'E-postadress (valfritt)',
 'createacct-email-ph' => 'Bekräfta din e-postadress',
-'createaccountmail' => 'Använd ett tillfällig slumpartat lösenord och skicka den till e-postadressen som anges nedan',
+'createaccountmail' => 'Använd ett tillfälligt slumpvis valt lösenord och skicka det till e-postadressen som anges nedan',
 'createacct-realname' => 'Riktigt namn (valfritt)',
 'createaccountreason' => 'Orsak:',
 'createacct-reason' => 'Anledning',
@@ -888,11 +889,9 @@ Du kanske redan har lyckats ändra ditt lösenord eller begärt ett nytt tillfä
 
 # Special:PasswordReset
 'passwordreset' => 'Lösenordsåterställning',
-'passwordreset-text' => 'Fyll i detta formulär för att återställa ditt lösenord.',
 'passwordreset-legend' => 'Återställ lösenord',
 'passwordreset-disabled' => 'Lösenordsåterställning har inaktiverats på denna wiki.',
 'passwordreset-emaildisabled' => 'E-postfunktioner har inaktiverats på denna wiki.',
-'passwordreset-pretext' => '{{PLURAL:$1||Ange en av datadelarna nedan}}',
 'passwordreset-username' => 'Användarnamn:',
 'passwordreset-domain' => 'Domän:',
 'passwordreset-capture' => 'Visa resulterande e-post?',
@@ -1127,6 +1126,7 @@ Den gav ingen förklaring.',
 Det verkar som att den har raderats.',
 'edit-conflict' => 'Redigeringskonflikt.',
 'edit-no-change' => 'Din redigering ignorerades, eftersom ingen ändring gjordes i texten.',
+'postedit-confirmation' => 'Din redigering sparades.',
 'edit-already-exists' => 'Sidan kunde inte skapas.
 Den finns redan.',
 'defaultmessagetext' => 'Standardtext för meddelande',

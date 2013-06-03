@@ -12,6 +12,7 @@
  * @author EugeneZelenko
  * @author Jim-by
  * @author Kaganer
+ * @author Nemo bis
  * @author Red Winged Duck
  * @author Renessaince
  * @author Wizardist
@@ -818,11 +819,9 @@ $2',
 
 # Special:PasswordReset
 'passwordreset' => 'Ачыстка паролю',
-'passwordreset-text' => 'Запоўніце гэтую форму, каб скінуць пароль.',
 'passwordreset-legend' => 'Ачысьціць пароль',
 'passwordreset-disabled' => 'Магчымасьць ачысткі паролю была забароненая ў {{GRAMMAR:месны|{{SITENAME}}}}.',
 'passwordreset-emaildisabled' => 'Функцыі e-mail у гэтай вікі былі адключаныя.',
-'passwordreset-pretext' => '{{PLURAL:$1||Увядзіце ніжэй частку зьвестак}}',
 'passwordreset-username' => 'Імя ўдзельніка:',
 'passwordreset-domain' => 'Дамэн:',
 'passwordreset-capture' => 'Паказаць канчатковы электронны ліст?',
@@ -1057,6 +1056,7 @@ $2
 Падобна, што яна была выдаленая.',
 'edit-conflict' => 'Канфлікт рэдагаваньняў.',
 'edit-no-change' => 'Вашае рэдагаваньне было праігнараванае, таму што ў тэкст не былі ўнесеныя зьмены.',
+'postedit-confirmation' => 'Вашая праўка была захаваная.',
 'edit-already-exists' => 'Немагчыма стварыць новую старонку.
 Яна ўжо існуе.',
 'defaultmessagetext' => 'Перадвызначаны тэкст паведамленьня',

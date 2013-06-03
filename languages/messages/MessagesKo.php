@@ -394,7 +394,7 @@ $messages = array(
 'tog-showhiddencats' => '숨은 분류 보기',
 'tog-noconvertlink' => '링크 제목 변환을 비활성화',
 'tog-norollbackdiff' => '되돌리기 후 차이를 보이지 않기',
-'tog-useeditwarning' => '수정한 내용을 저장하지 않고 편집 양식을 닫거나 다른 페이지로 이동할 때 알림',
+'tog-useeditwarning' => '바꾼 내용을 저장하지 않고 편집 페이지를 벗어날 때 알림',
 
 'underline-always' => '항상',
 'underline-never' => '치지 않음',
@@ -934,11 +934,9 @@ $2',
 
 # Special:PasswordReset
 'passwordreset' => '비밀번호 재설정',
-'passwordreset-text' => '비밀번호를 재설정하려면 이 양식을 채워주세요.',
 'passwordreset-legend' => '비밀번호 재설정',
 'passwordreset-disabled' => '이 위키에서는 비밀번호를 재설정할 수 없습니다.',
 'passwordreset-emaildisabled' => '이 위키에서 이메일 기능이 비활성화되어 있습니다.',
-'passwordreset-pretext' => '{{PLURAL:$1||아래에 한 가지 정보를 입력하세요}}',
 'passwordreset-username' => '사용자 이름:',
 'passwordreset-domain' => '도메인:',
 'passwordreset-capture' => '발송 결과 이메일을 보시겠습니까?',
@@ -1187,14 +1185,15 @@ IP 주소는 여러 사용자가 공유할 수 있습니다.
 문서가 삭제된 것 같습니다.',
 'edit-conflict' => '편집 충돌.',
 'edit-no-change' => '문서에 어떠한 바뀜도 없기 때문에 편집은 무시되었습니다.',
+'postedit-confirmation' => '편집을 저장했습니다.',
 'edit-already-exists' => '새 문서를 만들 수 없습니다.
 문서가 이미 존재합니다.',
 'defaultmessagetext' => '기본 메세지 내용',
 'content-failed-to-parse' => '$1 모델에 대한 $2 내용을 구문 분석하는 데 실패했습니다: $3',
 'invalid-content-data' => '잘못된 내용 데이터입니다',
 'content-not-allowed-here' => '"$1" 내용은 [[$2]] 문서예 허용하지 않습니다',
-'editwarning-warning' => '이 창에서 벗어나면 저장하지 않은 편집이 모두 사라집니다.
-로그인한 경우, 환경 설정 ‘{{int:prefs-editing}}’란에서 이 경고창을 띄우지 않도록 설정할 수 있습니다.',
+'editwarning-warning' => '이 페이지에서 벗어나면 저장하지 않은 바뀜이 모두 사라집니다.
+로그인을 했다면, 환경 설정의 "편집 상자"에서 이 경고를 띄우지 않도록 설정할 수 있습니다.',
 
 # Content models
 'content-model-wikitext' => '위키텍스트',

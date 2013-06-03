@@ -670,11 +670,9 @@ Matriumpo mo nang nailaog an sekretong panlaog o nakua an bàgong temporaryong s
 
 # Special:PasswordReset
 'passwordreset' => 'Pakibago kan sekretong panlaog',
-'passwordreset-text' => 'Kumpletoha ining porma tangarig liwatong an saimong sekretong panlaog.',
 'passwordreset-legend' => 'Pakibago kan sekretong panlaog',
 'passwordreset-disabled' => 'An pagbago kan sekretong panlaog pinagpundo sa wiking ini.',
 'passwordreset-emaildisabled' => 'E-surat na mga estima pinag-uruntok sa wiking ini.',
-'passwordreset-pretext' => '{{PLURAL:$1||Pakilaog kan saro sa mga pedaso nin datos sa ibaba}}',
 'passwordreset-username' => 'Paragamit-ngaran:',
 'passwordreset-domain' => 'Kasakupan:',
 'passwordreset-capture' => 'Hilngon an kinaluwasang e-koreo?',

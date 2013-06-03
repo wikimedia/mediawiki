@@ -16,6 +16,7 @@
  * @author Kaganer
  * @author Kal-El
  * @author Malafaya
+ * @author Nemo bis
  * @author Palapa
  * @author Seha
  * @author Smooth O
@@ -689,9 +690,14 @@ Obratite pažnju da neke stranice mogu nastaviti da se prikazuju kao da ste još
 'welcomecreation-msg' => 'Vaš nalog je napravljen.
 Ne zaboravite da prilagodite sebi svoja [[Special:Preferences|{{SITENAME}} podešavanja]].',
 'yourname' => 'Korisničko ime:',
+'userlogin-yourname' => 'Korisničko ime',
+'userlogin-yourname-ph' => 'Unesite Vaše korisničko ime',
 'yourpassword' => 'Šifra:',
+'userlogin-yourpassword' => 'Šifra',
+'userlogin-yourpassword-ph' => 'Unesite Vašu šifru/lozinku',
 'yourpasswordagain' => 'Ponovite šifru:',
 'remembermypassword' => 'Zapamti moju šifru na ovom računaru (najviše $1 {{PLURAL:$1|dan|dana|dana}})',
+'userlogin-signwithsecure' => 'Koristite sigurnu konekciju',
 'securelogin-stick-https' => 'Ostani povezan na HTTPS nakon prijave',
 'yourdomainname' => 'Vaš domen:',
 'password-change-forbidden' => 'Ne možete da promjenite lozinku na ovom wikiju.',
@@ -704,12 +710,15 @@ Ne zaboravite da prilagodite sebi svoja [[Special:Preferences|{{SITENAME}} pode�
 'logout' => 'Odjavi me',
 'userlogout' => 'Odjavi me',
 'notloggedin' => 'Niste prijavljeni',
+'userlogin-noaccount' => 'Nemate korisničko ime?',
+'userlogin-joinproject' => 'Pridružite se {{SITENAME}}',
 'nologin' => "Nemate korisničko ime? '''$1'''.",
 'nologinlink' => 'Napravite nalog',
 'createaccount' => 'Napravi nalog',
 'gotaccount' => "Imate nalog? '''$1'''.",
 'gotaccountlink' => 'Prijavi se',
 'userlogin-resetlink' => 'Zaboravili ste detalje vaše prijave?',
+'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Pomoć pri prijavljivanju]]',
 'createaccountmail' => 'e-poštom',
 'createaccountreason' => 'Razlog:',
 'badretype' => 'Šifre koje ste unijeli se ne poklapaju.',
@@ -804,10 +813,8 @@ Možda ste već uspješno promijenili Vašu šifru ili ste tražili novu privrem
 
 # Special:PasswordReset
 'passwordreset' => 'Poništavanje šifre',
-'passwordreset-text' => 'Ispunite ovaj obrazac da biste dobili e-mail podsjetnik o vašim detaljima računa.',
 'passwordreset-legend' => 'Poništi šifru',
 'passwordreset-disabled' => 'Poništavanje šifre  je onemogućeno na ovoj wiki.',
-'passwordreset-pretext' => '{{PLURAL:$1||Unesite jedan dio podataka ispod}}',
 'passwordreset-username' => 'Korisničko ime:',
 'passwordreset-domain' => 'Domen:',
 'passwordreset-capture' => 'Pogledati krajnji e-mail?',

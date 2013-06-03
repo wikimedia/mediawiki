@@ -13,6 +13,7 @@
  * @author Frigotoni
  * @author GatoSelvadego
  * @author Kaganer
+ * @author Nemo bis
  * @author Nick1915
  * @author Omnipaedista
  * @author OrbiliusMagister
@@ -708,11 +709,9 @@ Forse te ghè zà canbià la to password o te ghè domandà na password tenporan
 
 # Special:PasswordReset
 'passwordreset' => 'Rinposta ła password',
-'passwordreset-text' => 'Conpleta sto moduło par resetar la to password.',
 'passwordreset-legend' => 'Rinposta ła password',
 'passwordreset-disabled' => 'Ła rinpostasion deła password xe stà dixabiłità so sto projeto wiki.',
 'passwordreset-emaildisabled' => 'Le funsionalità de posta eletrònega le xe stà disabilità su sta wiki.',
-'passwordreset-pretext' => '{{PLURAL:$1|| Inserisi una dełe porsion de dati cua soto}}',
 'passwordreset-username' => 'Nome utente:',
 'passwordreset-domain' => 'Dominio',
 'passwordreset-capture' => 'Vixuałixare el contenuto del mesajo de posta ełetronega?',
