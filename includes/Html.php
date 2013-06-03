@@ -47,6 +47,9 @@
  *
  * @since 1.16
  */
+
+use \MediaWiki\RDFa;
+
 class Html {
 	// List of void elements from HTML5, section 8.1.2 as of 2011-08-12
 	private static $voidElements = array(
@@ -99,6 +102,8 @@ class Html {
 		'typemustmatch',
 		// HTML5 Microdata
 		'itemscope',
+		// RDFa 1.1
+		'inlist',
 	);
 
 	/**
@@ -461,7 +466,15 @@ class Html {
 				// html4-spec doesn't document rel= as space-separated
 				// but has been used like that and is now documented as such
 				// in the html5-spec.
+				// It's also space separated in RDFa 1.1
 				'rel',
+				// Microdata's itemtype and itemref are space-separated URIs / IDs
+				'itemtype',
+				'itemref',
+				// RDFa 1.1 defines these RDFa attributes as space-separated lists
+				'property',
+				'rev',
+				'typeof',
 			);
 
 			// Specific features for attributes that allow a list of space-separated values
@@ -499,6 +512,13 @@ class Html {
 
 				// Remove duplicates and create the string
 				$value = implode( ' ', array_unique( $value ) );
+			}
+
+			# RDFa 1.1's prefix is a multiple key-value string.
+			# Permit using a key/value array to define the attribute.
+			if ( $key === 'prefix' && is_array( $value ) ) {
+				// If input wasn't an array, we can skip this step.
+				$value = RDFa\Utils::buildPrefixAttribute( $value );
 			}
 
 			// See the "Attributes" section in the HTML syntax part of HTML5,
@@ -799,7 +819,7 @@ class Html {
 	public static function htmlHeader( $attribs = array() ) {
 		$ret = '';
 
-		global $wgHtml5Version, $wgMimeType, $wgXhtmlNamespaces;
+		global $wgMimeType, $wgXhtmlNamespaces;
 
 		$isXHTML = self::isXmlMimeType( $wgMimeType );
 
@@ -818,10 +838,6 @@ class Html {
 		} else { // HTML5
 			// DOCTYPE
 			$ret .= "<!DOCTYPE html>\n";
-		}
-
-		if ( $wgHtml5Version ) {
-			$attribs['version'] = $wgHtml5Version;
 		}
 
 		$html = Html::openElement( 'html', $attribs );

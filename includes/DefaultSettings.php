@@ -2574,15 +2574,6 @@ $wgXhtmlDefaultNamespace = null;
 $wgHtml5 = true;
 
 /**
- * Defines the value of the version attribute in the &lt;html&gt; tag, if any.
- * If $wgAllowRdfaAttributes is true, and this evaluates to boolean false
- * (like if it's left at the default null value), it will be auto-initialized
- * to the correct value for RDFa+HTML5.  As such, you should have no reason to
- * ever actually set this to anything.
- */
-$wgHtml5Version = null;
-
-/**
  * Enabled RDFa attributes for use in wikitext.
  * NOTE: Interaction with HTML5 is somewhat underspecified.
  */

@@ -350,15 +350,6 @@ $wgHtml5 = true;
 $wgXhtmlDefaultNamespace = 'http://www.w3.org/1999/xhtml';
 $wgJsMimeType = 'text/javascript';
 
-if ( !$wgHtml5Version && $wgAllowRdfaAttributes ) {
-	# see http://www.w3.org/TR/rdfa-in-html/#document-conformance
-	if ( $wgMimeType == 'application/xhtml+xml' ) {
-		$wgHtml5Version = 'XHTML+RDFa 1.0';
-	} else {
-		$wgHtml5Version = 'HTML+RDFa 1.0';
-	}
-}
-
 # Blacklisted file extensions shouldn't appear on the "allowed" list
 $wgFileExtensions = array_values( array_diff ( $wgFileExtensions, $wgFileBlacklist ) );
 

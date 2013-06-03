@@ -66,4 +66,30 @@ class ArrayUtils {
 		}
 		return $i;
 	}
+
+	/**
+	 * Add an item to an array treating it like a set
+	 *
+	 * @param[in,out] array $array The array to modify like a set
+	 * @param[in] mixed $item The item to add
+	 * @since 1.22
+	 */
+	public static function setAdd( array &$array, $item ) {
+		if ( in_array( $item, $array ) ) {
+			return;
+		}
+		$array[] = $item;
+	}
+
+	/**
+	 * Remove an item from an array treating it like a set
+	 *
+	 * @param[in,out] array $array The array to modify like a set
+	 * @param[in] mixed $item The item to remove
+	 * @since 1.22
+	 */
+	public static function setRemove( array &$array, $item ) {
+		$array = array_values( array_diff( $array, array( $item ) ) );
+	}
+
 }

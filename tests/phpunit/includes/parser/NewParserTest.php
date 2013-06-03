@@ -85,6 +85,7 @@ class NewParserTest extends MediaWikiTestCase {
 		$tmpGlobals['wgAlwaysUseTidy'] = false;
 		$tmpGlobals['wgWellFormedXml'] = true;
 		$tmpGlobals['wgAllowMicrodataAttributes'] = true;
+		$tmpGlobals['wgAllowRdfaAttributes'] = true;
 		$tmpGlobals['wgExperimentalHtmlIds'] = false;
 		$tmpGlobals['wgAdaptiveMessageCache'] = true;
 		$tmpGlobals['wgUseDatabaseMessages'] = true;

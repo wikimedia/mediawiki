@@ -9850,25 +9850,27 @@ Something need to be done. foo-2 ?
 !! end
 
 !! test
-Sanitizer: Validating that <meta> and <link> work, but only for Microdata
+Sanitizer: Validating that <meta> and <link> work, but only for Microdata and RDFa
 !! input
 <div itemscope>
 	<meta itemprop="hello" content="world">
 	<meta http-equiv="refresh" content="5">
 	<meta itemprop="hello" http-equiv="refresh" content="5">
 	<link itemprop="hello" href="{{SERVER}}">
+	<link rel="rdf:type" href="{{SERVER}}">
 	<link rel="stylesheet" href="{{SERVER}}">
 	<link rel="stylesheet" itemprop="hello" href="{{SERVER}}">
 </div>
 !! result
-<div itemscope="itemscope">
+<div itemscope="">
 <p>	<meta itemprop="hello" content="world" />
 	&lt;meta http-equiv="refresh" content="5"&gt;
 	<meta itemprop="hello" content="5" />
 </p>
 	<link itemprop="hello" href="http&#58;//example.org" />
-	&lt;link rel="stylesheet" href="<a rel="nofollow" class="external free" href="http://example.org">http://example.org</a>"&gt;
-	<link itemprop="hello" href="http&#58;//example.org" />
+	<link rel="rdf:type" href="http&#58;//example.org" />
+	<link rel=":stylesheet" href="http&#58;//example.org" />
+	<link rel=":stylesheet" itemprop="hello" href="http&#58;//example.org" />
 </div>
 
 !! end

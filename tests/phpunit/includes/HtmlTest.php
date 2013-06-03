@@ -285,6 +285,21 @@ class HtmlTest extends MediaWikiTestCase {
 		);
 	}
 
+	/**
+	 * Html::expandAttributes has special features for the
+	 * RDFa prefix="" attribut which uses a key-value list and
+	 * allows key-value arrays to be used as values.
+	 */
+	function testExpandKeyValueAttributes() {
+		$this->assertEquals(
+			' prefix="dc: http://purl.org/dc/terms/ owl: http://www.w3.org/2002/07/owl#"',
+			Html::expandAttributes( array( 'prefix' => array(
+				'dc'  => "http://purl.org/dc/terms/",
+				'owl' => "http://www.w3.org/2002/07/owl#",
+			) ) )
+		);
+	}
+
 	function testNamespaceSelector() {
 		$this->assertEquals(
 			'<select id=namespace name=namespace>' . "\n" .
