@@ -16436,6 +16436,17 @@ Raw: -{R|zh:China;zh-tw:Taiwan}-
 !! end
 
 !! test
+Conversion rules from [numeric-only string] to [something else] (bug 46634)
+!! options
+language=zh variant=zh-cn
+!! input
+-{H|0=>zh-hans:A}--{H|0=>zh-cn:B}-012
+!! result
+<p>B12
+</p>
+!! end
+
+!! test
 Nested using of manual convert syntax
 !! options
 language=zh variant=zh-hk
