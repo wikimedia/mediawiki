@@ -27,7 +27,7 @@
 				// an infinite loop. If this fresh token is bad, something else is very wrong.
 				useTokenToPost = function ( token ) {
 					params.token = token;
-					api.post( params, ok, err );
+					api.post( params, { ok: ok, err: err } );
 				};
 				return api.getEditToken( useTokenToPost, err );
 			} else {
@@ -43,7 +43,7 @@
 						err( code, result );
 					}
 				};
-				return api.post( params, { ok : ok, err : getTokenIfBad });
+				return api.post( params, { ok: ok, err: getTokenIfBad } );
 			}
 		},
 
@@ -85,7 +85,7 @@
 					} else {
 						d.reject( 'token-missing', data );
 					}
-				})
+				} )
 				.fail( d.reject );
 
 			return d.promise( { abort: apiPromise.abort } );
