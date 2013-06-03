@@ -64,6 +64,8 @@
 	'ba' => 'башҡортса',	# Bashkir
 	'bar' => 'Boarisch',	# Bavarian (Austro-Bavarian and South Tyrolean)
 	'bat-smg' => 'žemaitėška', # Samogitian (deprecated code, 'sgs' in ISO 693-3 since 2010-06-30 )
+	'bbc' => 'Batak Toba', # Batak Toba (falls back to bbc-latn)
+	'bbc-latn' => 'Batak Toba', # Batak Toba
 	'bcc' => 'بلوچی مکرانی', # Southern Balochi
 	'bcl' => 'Bikol Central', # Bikol: Central Bicolano language
 	'be' => 'беларуская',	#  Belarusian normative
