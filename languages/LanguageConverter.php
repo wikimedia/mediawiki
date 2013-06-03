@@ -1268,14 +1268,14 @@ class ConverterRule {
 			$v = trim( $v[0] );
 			$u = explode( '=>', $v, 2 );
 			// if $to is empty, strtr() could return a wrong result
-			if ( count( $u ) == 1 && $to && in_array( $v, $variants ) ) {
+			if ( count( $u ) == 1 && $to !== '' && in_array( $v, $variants ) ) {
 				$bidtable[$v] = $to;
 			} elseif ( count( $u ) == 2 ) {
 				$from = trim( $u[0] );
 				$v = trim( $u[1] );
 				if ( array_key_exists( $v, $unidtable )
 					 && !is_array( $unidtable[$v] )
-					 && $to
+					 && $to !== ''
 					 && in_array( $v, $variants ) ) {
 					$unidtable[$v] = array( $from => $to );
 				} elseif ( $to && in_array( $v, $variants ) ) {
