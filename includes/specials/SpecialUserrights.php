@@ -110,6 +110,17 @@ class UserrightsPage extends SpecialPage {
 		}
 
 		if ( !$this->userCanChangeRights( $user, true ) ) {
+			if ( $this->isself && $request->getCheck( 'success' ) ) {
+				// bug 48609: if the user just removed its own rights, this would
+				// leads it in a "permissions error" page. In that case, show a
+				// message that it can't anymore use this page instead of an error
+				$this->setHeaders();
+				$out = $this->getOutput();
+				$out->wrapWikiMsg( "<div class=\"successbox\">\n$1\n</div>", 'userrights-removed-self' );
+				$out->returnToMain();
+				return;
+			}
+
 			// @todo FIXME: There may be intermediate groups we can mention.
 			$msg = $user->isAnon() ? 'userrights-nologin' : 'userrights-notallowed';
 			throw new PermissionsError( null, array( array( $msg ) ) );
@@ -163,7 +174,7 @@ class UserrightsPage extends SpecialPage {
 	}
 
 	function getSuccessURL() {
-		return $this->getTitle( $this->mTarget )->getFullURL();
+		return $this->getTitle( $this->mTarget )->getFullURL( array( 'success' => 1 ) );
 	}
 
 	/**
