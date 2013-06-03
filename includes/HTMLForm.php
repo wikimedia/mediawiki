@@ -588,8 +588,8 @@ class HTMLForm extends ContextSource {
 	}
 
 	/**
-	 * Display the form (sending to $wgOut), with an appropriate error
-	 * message or stack of messages, and any validation errors, etc.
+	 * Display the form (sending to the context's OutputPage object), with an
+	 * appropriate error message or stack of messages, and any validation errors, etc.
 	 *
 	 * @attention You should call prepareForm() before calling this function.
 	 * Moreover, when doing method chaining this should be the very last method
