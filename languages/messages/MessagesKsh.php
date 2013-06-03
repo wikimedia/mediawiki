@@ -8,6 +8,7 @@
  * @file
  *
  * @author Caesius noh en Idee vum Manes
+ * @author Nemo bis
  * @author Purodha
  * @author Reedy
  * @author Rentenirer
@@ -318,6 +319,18 @@ $messages = array(
 'oct' => 'Okt',
 'nov' => 'Nov',
 'dec' => 'Dez',
+'january-date' => '$1. Jannewaa',
+'february-date' => '$1. Fääbroaa',
+'march-date' => '$1. Määz',
+'april-date' => '$1. Aprell',
+'may-date' => '$1. Mai',
+'june-date' => '$1. Juuni',
+'july-date' => '$1. Juuli',
+'august-date' => '$1. Ojoßß',
+'september-date' => '$1. Säptämber',
+'october-date' => '$1. Oktoober',
+'november-date' => '$1. Novämber',
+'december-date' => '$1. Dezämber',
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Saachjrupp|Saachjruppe}}',
@@ -822,11 +835,9 @@ Do häs Der enzwesche e neu Zweschepaßwood jehollt.',
 
 # Special:PasswordReset
 'passwordreset' => 'Et Paßwoot zeröck säze',
-'passwordreset-text' => 'Donn dat Fommulaa heh ußfölle, öm e neu Paßwoot faßzelääje.',
 'passwordreset-legend' => 'Et Paßwoot zeröck säze',
 'passwordreset-disabled' => 'Et Paßwoot zeröck ze säze es heh em Wiki afjeschalldt.',
 'passwordreset-emaildisabled' => 'Heh dat Wiki määt nix met <i lang="en">e-mail</i>!',
-'passwordreset-pretext' => '{{PLURAL:$1||Jiff ein vun dä Saache heh dronger enn|}}',
 'passwordreset-username' => 'Metmaacher Name:',
 'passwordreset-domain' => 'Domähn:',
 'passwordreset-capture' => 'Wells De di <i lang="en">e-mail</i> beloore?',
@@ -2449,7 +2460,7 @@ Wann di Sigg udder ier Klaafsigg verändert weed, kütt dat af jäz heh en di Op
 'notvisiblerev' => 'Di Version es fottjeschmesse',
 'watchnochange' => 'Keine Atikkel en Dinger Oppassliss es en dä aanjezeichte Zick verändert woode.',
 'watchlist-details' => 'Do häs {{PLURAL:$1|<strong>ein</strong> Sigg|<strong>$1</strong> Sigge|<strong>kein</strong> Sigg}} en dä Oppassliss{{PLURAL:$1|, un di Klaafsigg dozo|, un de Klaafsigge dozo|}}.',
-'wlheader-enotif' => 'Et E-mail Schecke es enjeschalt.',
+'wlheader-enotif' => 'Et <i lang="en">e-mail</i> Schecke es enjeschalt.',
 'wlheader-showupdated' => 'Wann se Einer jeändert hätt, zickdäm De se et letzte Mol aanjeluurt häs, sin die Sigge <strong>extra markeet</strong>.',
 'watchmethod-recent' => 'Ben de letzte Änderunge jäje de Oppassliss am pröfe',
 'watchmethod-list' => 'Ben de Oppassliss am pröfe, noh de letzte Änderung',
@@ -3037,6 +3048,8 @@ Wenn De jenerell aan [//www.mediawiki.org/wiki/Localisation MediaWiki singe Öve
 'thumbnail-more' => 'Jrößer aanzeije',
 'filemissing' => 'Datei es nit do',
 'thumbnail_error' => 'Ene Fähler es opjetauch beim Maache vun enem Breefmarke/Thumbnail-Beldche: „$1“',
+'thumbnail_error_remote' => 'Ene Fähler es em $1 opjevalle:
+$2',
 'djvu_page_error' => 'De DjVu-Sgg es ußerhallef',
 'djvu_no_xml' => 'De XML-Date för di DjVu-Datei kunnte mer nit afrofe',
 'thumbnail-temp-create' => 'Mer kunnte kein Zweschedattei für Minnibeldscher aanlääje.',
@@ -3153,7 +3166,7 @@ Bes esu joot, un versök et noch ens.',
 'tooltip-t-recentchangeslinked' => 'De neuste Änderunge aan Sigge, wo vun heh dä Sigg uß Links drop jon',
 'tooltip-feed-rss' => 'Dä RSS-Abonnomang-Kannal (Feed) för heh di Sigg',
 'tooltip-feed-atom' => 'Dä Atom-Abonnomang-Kannal (Feed) för heh di Sigg',
-'tooltip-t-contributions' => 'Donn de Liß met Bedträch vun däm Metmaacher beloore',
+'tooltip-t-contributions' => 'Donn en Leß met dä Bedrähsch vun däm Medmaacher belooere',
 'tooltip-t-emailuser' => 'Scheck en E-Mail aan dä Metmaacher',
 'tooltip-t-upload' => 'Dateie huhlade',
 'tooltip-t-specialpages' => 'Liss met de {{int:nstab-special}}e',
@@ -4126,7 +4139,7 @@ Do sullts en [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie vun dä <i lang="en">GNU Ge
 'specialpages-group-pages' => 'Siggeliste',
 'specialpages-group-pagetools' => 'Werrekzüch för Sigge',
 'specialpages-group-wiki' => 'Werrekzüch un Daate vum Syßteem',
-'specialpages-group-redirects' => '{{int:nstab-special}}e, die ömleite, söke, un finge',
+'specialpages-group-redirects' => '{{int:nstab-special}}e, die ömleide, söhke, un fenge',
 'specialpages-group-spam' => 'Werrekzüch jäje SPÄM',
 
 # Special:BlankPage

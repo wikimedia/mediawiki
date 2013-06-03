@@ -847,7 +847,7 @@ Zvolte si prosím jiné jméno.',
 'nocookiesfornew' => 'Uživatelský účet nebyl založen, neboť jsme nebyli schopni potvrdit jeho původ.
 Ujistěte se, že máte povoleny cookies, obnovte tuto stránku a zkuste to znovu.',
 'noname' => 'Musíte uvést jméno svého účtu.',
-'loginsuccesstitle' => 'Přihlášení uspělo',
+'loginsuccesstitle' => 'Přihlášení bylo úspěšné',
 'loginsuccess' => 'Nyní jste přihlášen na {{grammar:6sg|{{SITENAME}}}} jako uživatel „$1“.',
 'nosuchuser' => 'Neexistuje uživatel se jménem „$1“. U uživatelských jmen se rozlišují malá/velká písmena. Zkontrolujte zápis, nebo si [[Special:UserLogin/signup|vytvořte nový účet]].',
 'nosuchusershort' => 'Neexistuje uživatel se jménem „$1“. Zkontrolujte zápis.',
@@ -928,11 +928,9 @@ Možná jste si již úspěšně heslo změnili, nebo jste si vyžádali nové d
 
 # Special:PasswordReset
 'passwordreset' => 'Reset hesla',
-'passwordreset-text' => 'Pro získání nového hesla vyplňte tento formulář.',
 'passwordreset-legend' => 'Znovu nastavit heslo',
 'passwordreset-disabled' => 'Znovunastavení hesla je na této wiki zakázáno.',
 'passwordreset-emaildisabled' => 'E-mailové funkce byly na této wiki vypnuty.',
-'passwordreset-pretext' => '{{PLURAL:$1||Zadejte jeden z údajů níže}}',
 'passwordreset-username' => 'Uživatelské jméno:',
 'passwordreset-domain' => 'Doména:',
 'passwordreset-capture' => 'Prohlédnout si výsledný e-mail?',
@@ -1164,13 +1162,14 @@ Podrobnosti si můžete prohlédnout v níže zobrazeném seznamu provedených p
 Zřejmě byla smazána.',
 'edit-conflict' => 'Editační konflikt.',
 'edit-no-change' => 'Vaše editace byla ignorována, protože nedošlo k žádné změně textu.',
+'postedit-confirmation' => 'Vaše změny byly uloženy.',
 'edit-already-exists' => 'Nepodařilo se vytvořit novou stránku, protože již existuje.',
 'defaultmessagetext' => 'Výchozí text hlášení',
 'content-failed-to-parse' => 'Nepodařilo se zpracovat data $2 do modelu $1: $3',
 'invalid-content-data' => 'Obsažená data jsou chybná',
 'content-not-allowed-here' => 'Obsah typu $1 není na stránce [[$2]] dovolen.',
 'editwarning-warning' => 'Opuštěním této stránky se mohou veškeré provedené změny ztratit.
-Pokud jste {{GENDER:|přihlášen|přihlášena|přihlášeni}}, můžete si toto varování vypnout na záložce „{{int:prefs-editing}}“ v uživatelském nastavení.',
+Pokud jste {{GENDER:|přihlášen|přihlášena|přihlášeni}}, můžete si toto varování vypnout na záložce „Editace“ v uživatelském nastavení.',
 
 # Content models
 'content-model-wikitext' => 'wikitext',

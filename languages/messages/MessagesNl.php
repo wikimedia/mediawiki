@@ -953,11 +953,11 @@ Mogelijk hebt u uw wachtwoord al gewijzigd of een nieuw tijdelijk wachtwoord aan
 
 # Special:PasswordReset
 'passwordreset' => 'Wachtwoord opnieuw instellen',
-'passwordreset-text' => 'Vul dit formulier in om uw wachtwoord opnieuw in te stellen.',
+'passwordreset-text-one' => 'Vul dit formulier in om uw wachtwoord opnieuw in te stellen.',
+'passwordreset-text-many' => '{{PLURAL:$1|Vul een van de gegevensvelden in om uw wachtwoord opnieuw in te stellen.}}',
 'passwordreset-legend' => 'Wachtwoord opnieuw instellen',
 'passwordreset-disabled' => 'Het is in deze wiki niet mogelijk uw wachtwoord opnieuw in te stellen.',
 'passwordreset-emaildisabled' => 'E-mailmogelijkheden zijn uitgeschakeld op deze wiki.',
-'passwordreset-pretext' => '{{PLURAL:$1||Voer één van de onderstaande velden in}}',
 'passwordreset-username' => 'Gebruiker:',
 'passwordreset-domain' => 'Domein:',
 'passwordreset-capture' => 'De resulterende e-mail bekijken?',
@@ -1202,6 +1202,7 @@ Er is geen toelichting beschikbaar.',
 Deze lijkt verwijderd te zijn.',
 'edit-conflict' => 'Bewerkingsconflict.',
 'edit-no-change' => 'Uw bewerking is genegeerd, omdat er geen wijziging aan de tekst is gemaakt.',
+'postedit-confirmation' => 'Uw bewerking is opgeslagen',
 'edit-already-exists' => 'De pagina is niet aangemaakt.
 Deze bestaat al.',
 'defaultmessagetext' => 'Standaardinhoud',

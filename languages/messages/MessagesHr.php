@@ -22,6 +22,7 @@
  * @author MayaSimFan
  * @author Meno25
  * @author Mvrban
+ * @author Nemo bis
  * @author Roberta F.
  * @author SpeedyGonsales
  * @author Tivek
@@ -833,10 +834,8 @@ Možda ste već uspješno promijenili Vašu lozinku ili ste zatražili novu priv
 
 # Special:PasswordReset
 'passwordreset' => 'Ponovno postavi lozinku',
-'passwordreset-text' => 'Ispunite ovaj obrazac da biste dobili e-mail podsjetnik o vašim detaljima računa.',
 'passwordreset-legend' => 'Poništi lozinku',
 'passwordreset-disabled' => 'Poništavanje lozinke je onemogućeno na ovom wikiju.',
-'passwordreset-pretext' => '{{PLURAL:$1||Unesite jedan od dijelova podataka u nastavku}}',
 'passwordreset-username' => 'Suradničko ime:',
 'passwordreset-domain' => 'Domena:',
 'passwordreset-capture' => 'Pogledati krajnju poruku?',

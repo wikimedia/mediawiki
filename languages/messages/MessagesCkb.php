@@ -664,7 +664,6 @@ $2',
 
 # Special:PasswordReset
 'passwordreset' => 'دووبارە ڕێکخستنەوەی تێپەڕوشە',
-'passwordreset-text' => 'ئەم فۆرمە پڕ بکەوە بۆ گرتنی ئیمەیلێکی بیرخەرەوەی وردەکارییەکانی ھەژمارەکەت.',
 'passwordreset-legend' => 'دووبارە ڕێکخستنەوەی تێپەڕوشە',
 'passwordreset-username' => 'ناوی بەکارھێنەری:',
 'passwordreset-domain' => 'پاوان:',
@@ -2361,8 +2360,8 @@ $1',
 'ipb-change-block' => 'دیسان بەربەست‌کردنەوەی ئەم بەکارهێنەرە بەم هەڵبژاردانە',
 'badipaddress' => 'ناونیشانی ئای‌پی نەگونجاو',
 'blockipsuccesssub' => 'بەربەست کردن سەرکەوتوو بوو',
-'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] بەربەستکراوە.<br />
-سەیری [[Special:BlockList|لیستی بەربەستن]] بکە بۆ بینینەوەی بەربەستنەکان.',
+'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] بەربەست کرا.<br />
+بڕوانە [[Special:BlockList|پێرستی بەربەستن]] بۆ بەسەرداچوونەوەی بەربەستنەکان.',
 'ipb-edit-dropdown' => 'دەستکاری هۆکارەکانی بەربەست',
 'ipb-unblock-addr' => 'لە بەربەست‌دەرهێنانی $1',
 'ipb-unblock' => 'لە بەربەست‌دەرهێنانی ناوی بەکارهێنەریەک یا ناونیشانێکی ئای‌پی',

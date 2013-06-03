@@ -11,6 +11,7 @@
  * @author Kaganer
  * @author Malafaya
  * @author McDutchie
+ * @author Nemo bis
  * @author Reedy
  * @author Yfdyh000
  * @author לערי ריינהארט
@@ -725,11 +726,9 @@ Es possibile que tu ha ja cambiate tu contrasigno o requestate un nove contrasig
 
 # Special:PasswordReset
 'passwordreset' => 'Reinitialisar contrasigno',
-'passwordreset-text' => 'Completa iste formulario pro reinitialisar tu contrasigno.',
 'passwordreset-legend' => 'Reinitialisar contrasigno',
 'passwordreset-disabled' => 'Le reinitialisation de contrasignos ha essite disactivate in iste wiki.',
 'passwordreset-emaildisabled' => 'Le functionalitate de e-mail ha essite disactivate in iste wiki.',
-'passwordreset-pretext' => '{{PLURAL:$1||Entra un del elementos de datos hic infra}}',
 'passwordreset-username' => 'Nomine de usator:',
 'passwordreset-domain' => 'Dominio:',
 'passwordreset-capture' => 'Vider le e-mail resultante?',

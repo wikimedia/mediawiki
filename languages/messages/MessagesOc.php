@@ -14,6 +14,7 @@
  * @author Jfblanc
  * @author Kaganer
  * @author McDutchie
+ * @author Nemo bis
  * @author Spacebirdy
  * @author Горан Анђелковић
  * @author לערי ריינהארט

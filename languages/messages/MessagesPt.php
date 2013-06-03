@@ -36,6 +36,7 @@
  * @author McDutchie
  * @author MetalBrasil
  * @author Minh Nguyen
+ * @author Nemo bis
  * @author Nuno Tavares
  * @author Opraco
  * @author Paulo Juntas
@@ -867,10 +868,8 @@ Pode ter já alterado com sucesso a sua palavra-chave ou solicitado uma nova pal
 
 # Special:PasswordReset
 'passwordreset' => 'Repor palavra-chave',
-'passwordreset-text' => 'Preencha este formulário para repor a sua palavra-passe.',
 'passwordreset-legend' => 'Reiniciar a palavra-chave',
 'passwordreset-disabled' => 'O reinício da palavra-chave foi impossibilitado nesta wiki.',
-'passwordreset-pretext' => '{{PLURAL:$1||Introduza um dos dados abaixo}}',
 'passwordreset-username' => 'Nome de utilizador:',
 'passwordreset-domain' => 'Domínio:',
 'passwordreset-capture' => 'Ver o email resultante?',
@@ -1112,6 +1111,7 @@ Não foi dada nenhuma explicação.',
 Ela parece ter sido eliminada.',
 'edit-conflict' => 'Conflito de edição.',
 'edit-no-change' => 'A sua edição foi ignorada, uma vez que o texto não sofreu alterações.',
+'postedit-confirmation' => 'Sua edição foi gravada',
 'edit-already-exists' => 'Não foi possível criar uma página nova.
 Ela já existia.',
 'defaultmessagetext' => 'Texto da mensagem padrão',

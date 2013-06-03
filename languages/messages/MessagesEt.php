@@ -18,6 +18,7 @@
  * @author Ker
  * @author Kyng
  * @author Morel
+ * @author Nemo bis
  * @author Oop
  * @author Pikne
  * @author Silvar
@@ -842,11 +843,9 @@ Võib-olla oled juba edukalt muudnud oma salasõna või taotlenud uut ajutist sa
 
 # Special:PasswordReset
 'passwordreset' => 'Parooli lähtestamine',
-'passwordreset-text' => 'Täida see vorm, et oma parool lähtestada.',
 'passwordreset-legend' => 'Parooli lähtestamine',
 'passwordreset-disabled' => 'Selles vikis on paroolide lähtestamine keelatud.',
 'passwordreset-emaildisabled' => 'E-posti funktsioonid on selles vikis keelatud.',
-'passwordreset-pretext' => '{{PLURAL:$1||Sisesta üks järgmistest andmeüksustest.}}',
 'passwordreset-username' => 'Kasutajanimi:',
 'passwordreset-domain' => 'Domeen:',
 'passwordreset-capture' => 'Näita lähetatavat e-kirja?',
@@ -1080,6 +1079,7 @@ Allpool on esitatud lehekülje kustutamis- ja teisaldamislogi.',
 Tundub, et see on kustutatud.',
 'edit-conflict' => 'Redigeerimiskonflikt.',
 'edit-no-change' => 'Sinu redigeerimist ignoreeriti, sest tekstile ei olnud tehtud muudatusi.',
+'postedit-confirmation' => 'Sinu muudatus on salvestatud.',
 'edit-already-exists' => 'Ei saanud alustada uut lehekülge.
 See on juba olemas.',
 'defaultmessagetext' => 'Sõnumi vaiketekst',

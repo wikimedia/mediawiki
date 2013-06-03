@@ -838,11 +838,9 @@ Du kan allereie ha byta passordet, eller ha bede om å få eit nytt mellombels p
 
 # Special:PasswordReset
 'passwordreset' => 'Attendestilling av passord',
-'passwordreset-text' => '↓Fyll ut dette skjemaet for å motta ei påminning om kontoopplysningane dine i ein e-post.',
 'passwordreset-legend' => '↓Nullstill passordet',
 'passwordreset-disabled' => '↓Tilbakestilling av passord er ikkje aktivert på denne wikien',
 'passwordreset-emaildisabled' => 'E-postfunksjonen er slegen av på wikien.',
-'passwordreset-pretext' => '↓{{PLURAL:$1||Tast inn ein av datadelane nedanfor}}',
 'passwordreset-username' => 'Brukarnamn:',
 'passwordreset-domain' => 'Domene:',
 'passwordreset-capture' => 'Vis resulterande epost',
@@ -1070,8 +1068,8 @@ Det ser ut til at ho er sletta.',
 'content-failed-to-parse' => 'Klarte ikkje å tolke innhaldet «$2» for innhaldsmodellen «$1»: $3',
 'invalid-content-data' => 'Ugyldig innhald',
 'content-not-allowed-here' => 'Innhaldsmodellen «$1» er ikkje tillaten på sida [[$2]]',
-'editwarning-warning' => 'Gjennom å navigera vekk frå denne sida vil du mista alle endringane du måtte ha gjort.
-Denne åtvaringa kan slåast av under {{int:prefs-editing}} i instillingane dine.',
+'editwarning-warning' => 'Ved å forlata denne sida kan du mista alle endringane du måtte ha gjort.
+Er du innlogga kan denne åtvaringa slåast av under bolken «Endring» i innstillingane dine.',
 
 # Content models
 'content-model-wikitext' => 'WikiTekst',

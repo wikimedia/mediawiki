@@ -20,6 +20,7 @@
  * @author Rotemliss
  * @author YaronSh
  * @author ערן
+ * @author פדיחה
  * @author שומבלע
  * @author תומר ט
  */
@@ -793,7 +794,7 @@ $2',
 'createacct-yourpasswordagain' => 'אימות הסיסמה',
 'createacct-yourpasswordagain-ph' => 'יש להקליד את הסיסמה שנית',
 'remembermypassword' => 'שמירת הכניסה שלי בדפדפן הזה (ל{{PLURAL:$1|יום אחד|יומיים|־$1 ימים}} לכל היותר)',
-'userlogin-remembermypassword' => 'להשאיר אותי מחובר',
+'userlogin-remembermypassword' => 'לזכור שנכנסתי',
 'userlogin-signwithsecure' => 'שימוש בחיבור מאובטח',
 'securelogin-stick-https' => 'המשך שימוש ב־HTTPS אחרי הכניסה',
 'yourdomainname' => 'המתחם שלך:',
@@ -830,7 +831,7 @@ $2',
 'createacct-captcha' => 'בדיקת אבטחה',
 'createacct-imgcaptcha-ph' => 'יש להקליד את הטקסט המופיע למעלה',
 'createacct-submit' => 'יצירת החשבון',
-'createacct-benefit-heading' => 'את האתר {{SITENAME}} יוצרים אנשים כמוך.',
+'createacct-benefit-heading' => 'אנשים כמוך יוצרים את {{SITENAME}}.',
 'createacct-benefit-body1' => '{{PLURAL:$1|עריכה|עריכות}}',
 'createacct-benefit-body2' => '{{PLURAL:$1|דף|דפים}}',
 'createacct-benefit-body3' => '{{PLURAL:$1|תורם|תורמים}} לאחרונה',
@@ -935,11 +936,9 @@ $2',
 
 # Special:PasswordReset
 'passwordreset' => 'איפוס סיסמה',
-'passwordreset-text' => 'מלאו טופס זה כדי לאפס את הסיסמה.',
 'passwordreset-legend' => 'איפוס סיסמה',
 'passwordreset-disabled' => 'איפוסי סיסמה בוטלו באתר ויקי זה.',
 'passwordreset-emaildisabled' => 'שירותי הדוא"ל בוטלו באתר ויקי זה.',
-'passwordreset-pretext' => '{{PLURAL:$1||הקלידו אחד מפריטי המידע למטה}}',
 'passwordreset-username' => 'שם משתמש:',
 'passwordreset-domain' => 'תחום:',
 'passwordreset-capture' => 'לצפות בדוא"ל הנשלח?',
@@ -1177,6 +1176,7 @@ $2
 נראה שהוא נמחק.',
 'edit-conflict' => 'התנגשות עריכה.',
 'edit-no-change' => 'המערכת התעלמה מעריכתכם, כיוון שלא נעשה שינוי בטקסט.',
+'postedit-confirmation' => 'עריכתך נשמרה.',
 'edit-already-exists' => 'לא ניתן ליצור דף חדש.
 הוא כבר קיים.',
 'defaultmessagetext' => 'טקסט ההודעה המקורי',

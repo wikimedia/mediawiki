@@ -16,6 +16,7 @@
  * @author MaxSem
  * @author Melancholie
  * @author MichaelFrey
+ * @author Nemo bis
  * @author Purodha
  * @author Remember the dot
  * @author Spacebirdy
@@ -653,10 +654,8 @@ Villicht hesch Dyy Passwort scho gänderet oder e nej temporär Passwort aagford
 
 # Special:PasswordReset
 'passwordreset' => 'Passwort zruggsetze',
-'passwordreset-text' => 'Bitte des Formular uusfille, ass De E-Mail e Erinnerig zue dr Aamäldeinformatione vu Dyym Benutzerkonto iberchunnsch.',
 'passwordreset-legend' => 'Passwort zrucksetze',
 'passwordreset-disabled' => 'S Zrucksetze vu Passwerter isch in däm Wiki deaktiviert wore.',
-'passwordreset-pretext' => '{{PLURAL:$1||Gib eis vu däne Daten aa}}',
 'passwordreset-username' => 'Benutzername:',
 'passwordreset-domain' => 'Domain:',
 'passwordreset-capture' => 'Die E-Mail aaluege?',

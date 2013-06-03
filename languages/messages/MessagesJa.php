@@ -956,11 +956,11 @@ Cookieを有効にしていることを確認して、このページを再読�
 
 # Special:PasswordReset
 'passwordreset' => 'パスワードの再設定',
-'passwordreset-text' => 'このフォームに記入すると、パスワードを再設定できます。',
+'passwordreset-text-one' => 'パスワードを再設定するにはこのフォームに記入してください。',
+'passwordreset-text-many' => '{{PLURAL:$1|パスワードを再設定するにはいずれかの情報を入力してください。}}',
 'passwordreset-legend' => 'パスワードの再設定',
 'passwordreset-disabled' => 'パスワードの再設定は、このウィキでは無効になっています。',
 'passwordreset-emaildisabled' => 'メール機能は、このウィキでは無効化されています。',
-'passwordreset-pretext' => '{{PLURAL:$1||下記のデータのいずれか 1 つを入力してください}}',
 'passwordreset-username' => '利用者名:',
 'passwordreset-domain' => 'ドメイン:',
 'passwordreset-capture' => 'お送りするメールの内容を表示しますか?',
@@ -1215,6 +1215,7 @@ $1または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこのブロッ�
 既に削除されているようです。',
 'edit-conflict' => '編集が競合。',
 'edit-no-change' => '文章が変更されていないため、編集は無視されました。',
+'postedit-confirmation' => '編集を保存しました。',
 'edit-already-exists' => '新しいページを作成できませんでした。
 そのページは既に存在します。',
 'defaultmessagetext' => '既定のメッセージ文',

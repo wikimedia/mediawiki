@@ -728,7 +728,6 @@ $1',
 
 # Special:PasswordReset
 'passwordreset' => 'ตั้งรหัสผ่านใหม่',
-'passwordreset-text' => 'กรอกแบบฟอร์มนี้เพื่อตั้งรหัสผ่านใหม่',
 'passwordreset-legend' => 'เปลี่ยนรหัสผ่าน',
 'passwordreset-disabled' => 'การตั้งรหัสผ่านใหม่ปิดใช้งานบนวิกินี้',
 'passwordreset-emaildisabled' => 'คุณลักษณะอีเมลถูกปิดใช้งานบนวิกินี้',

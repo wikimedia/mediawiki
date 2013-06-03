@@ -11,6 +11,7 @@
  * @author J budissin
  * @author Kaganer
  * @author Michawiki
+ * @author Nemo bis
  * @author Shirayuki
  * @author Tchoř
  * @author Tlustulimu
@@ -682,10 +683,8 @@ Snano sy swoje hesło hižo wuspěšnje změnił abo nowe nachwilne hesło poža
 
 # Special:PasswordReset
 'passwordreset' => 'Hesło wróćo stajić',
-'passwordreset-text' => 'Wupjelń tutón formular, zo by swoje hesło anulował.',
 'passwordreset-legend' => 'Hesło wróćo stajić',
 'passwordreset-disabled' => 'Wróćostajenje hesłow je so na  tutym wikiju znjemóžniło.',
-'passwordreset-pretext' => '{{PLURAL:$1||Zapodaj deleka jedne ze slědowacych datowych podaćow}}',
 'passwordreset-username' => 'Wužiwarske mjeno:',
 'passwordreset-domain' => 'Domena:',
 'passwordreset-capture' => 'E-mejlku sej wobhladać?',
@@ -908,6 +907,7 @@ Njeje žane wujasnjenje podała.',
 Zda so, zo je hîžo wušmórnjena.',
 'edit-conflict' => 'Wobdźěłanski konflikt.',
 'edit-no-change' => 'Waše wobdźěłanje bu ignorowane, dokelž tekst njebu zm,ěnjeny.',
+'postedit-confirmation' => 'Twoja změna je so składowała.',
 'edit-already-exists' => 'Njebě móžno nowu stronu wutworić.
 Eksistuje hižo.',
 'defaultmessagetext' => 'Standardny tekst zdźělenki',

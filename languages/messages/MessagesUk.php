@@ -30,6 +30,7 @@
  * @author KEL
  * @author Kalan
  * @author Microcell
+ * @author Nemo bis
  * @author NickK
  * @author Olvin
  * @author Prima klasy4na
@@ -937,11 +938,9 @@ $1',
 
 # Special:PasswordReset
 'passwordreset' => 'Скинути пароль',
-'passwordreset-text' => 'Заповніть цю форму для відновлення пароля.',
 'passwordreset-legend' => 'Перевстановити пароль',
 'passwordreset-disabled' => 'У цій вікі вимкнена можливість скидання пароля.',
 'passwordreset-emaildisabled' => 'Функції електронної пошти вимкнуто в цій вікі.',
-'passwordreset-pretext' => '{{PLURAL:$1||Введіть одну з частин даних}}',
 'passwordreset-username' => "Ім'я користувача:",
 'passwordreset-domain' => 'Домен:',
 'passwordreset-capture' => 'Продивитись результуючий електронний лист?',
@@ -1183,6 +1182,7 @@ $2
 Імовірно, вона була вилучена.',
 'edit-conflict' => 'Конфлікт редагувань.',
 'edit-no-change' => 'Ваше редагування відхилене, оскільки в тексті не було зроблено змін.',
+'postedit-confirmation' => 'Ваше редагування збережено',
 'edit-already-exists' => 'Неможливо створити нову сторінку.
 Вона вже існує.',
 'defaultmessagetext' => 'Текст «за замовчування»',

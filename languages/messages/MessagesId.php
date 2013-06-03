@@ -903,11 +903,9 @@ Anda mungkin telah berhasil mengganti kata sandi Anda atau telah meminta kata sa
 
 # Special:PasswordReset
 'passwordreset' => 'Setel ulang sandi',
-'passwordreset-text' => 'Lengkapi formulir ini untuk menyetel ulang kata sandi.',
 'passwordreset-legend' => 'Setel ulang sandi',
 'passwordreset-disabled' => 'Penyetelan ulang sandi telah dimatikan di wiki ini.',
 'passwordreset-emaildisabled' => 'Fitur surel telah dinonaktifkan pada wiki ini.',
-'passwordreset-pretext' => '{{PLURAL:$1||Masukkan salah satu data di bawah ini}}',
 'passwordreset-username' => 'Nama pengguna:',
 'passwordreset-domain' => 'Domain:',
 'passwordreset-capture' => 'Lihat surel yang dihasilkan?',
@@ -1146,6 +1144,7 @@ tanpa ada keterangan.',
 Halaman kemungkinan telah dihapus.',
 'edit-conflict' => 'Konflik penyuntingan.',
 'edit-no-change' => 'Suntingan diabaikan, karena Anda tidak melakukan perubahan atas teks.',
+'postedit-confirmation' => 'Suntingan Anda tersimpan.',
 'edit-already-exists' => 'Tidak dapat membuat halaman baru
 karena telah ada.',
 'defaultmessagetext' => 'Teks baku',
@@ -1153,7 +1152,7 @@ karena telah ada.',
 'invalid-content-data' => 'Data konten tidak sah',
 'content-not-allowed-here' => 'Konten "$1" tidak diizinkan di halaman [[$2]]',
 'editwarning-warning' => 'Meninggalkan halaman ini dapat menyebabkan semua perubahan yang belum tersimpan hilang.
-Jika Anda telah masuk log, Anda dapat mematikan peringatan ini lewat "{{int:prefs-editing}}" pada halaman preferensi Anda.',
+Jika Anda telah masuk log, Anda dapat mematikan peringatan ini lewat bagian "Penyuntingan" pada halaman preferensi Anda.',
 
 # Content models
 'content-model-wikitext' => 'teks wiki',

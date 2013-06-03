@@ -834,11 +834,11 @@ Pode ser que xa cambiase o seu contrasinal ou que solicitase un novo contrasinal
 
 # Special:PasswordReset
 'passwordreset' => 'Restablecer o contrasinal',
-'passwordreset-text' => 'Encha este formulario para restablecer o seu contrasinal.',
+'passwordreset-text-one' => 'Encha este formulario para restablecer o seu contrasinal.',
+'passwordreset-text-many' => '{{PLURAL:$1|Insira un dos datos para restablecer o seu contrasinal.}}',
 'passwordreset-legend' => 'Restablecer o contrasinal',
 'passwordreset-disabled' => 'O restablecemento de contrasinais está desactivado neste wiki.',
 'passwordreset-emaildisabled' => 'As funcións do correo electrónico están desactivadas neste wiki.',
-'passwordreset-pretext' => '{{PLURAL:$1||Introduza un dos datos a continuación}}',
 'passwordreset-username' => 'Nome de usuario:',
 'passwordreset-domain' => 'Dominio:',
 'passwordreset-capture' => 'Quere ollar o correo electrónico?',
@@ -1083,6 +1083,7 @@ Este non deu ningunha explicación.',
 Semella que foi borrada.',
 'edit-conflict' => 'Conflito de edición.',
 'edit-no-change' => 'A súa edición foi ignorada dado que non fixo ningún cambio no texto.',
+'postedit-confirmation' => 'Gardouse a súa edición.',
 'edit-already-exists' => 'Non se pode crear a nova páxina.
 Esta xa existe.',
 'defaultmessagetext' => 'Texto predeterminado',

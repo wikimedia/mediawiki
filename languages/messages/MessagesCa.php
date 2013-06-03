@@ -24,6 +24,7 @@
  * @author Marcmpujol
  * @author Martorell
  * @author McDutchie
+ * @author Nemo bis
  * @author Pasqual (ca)
  * @author Paucabot
  * @author PerroVerd
@@ -31,6 +32,7 @@
  * @author Pitort
  * @author Pérez
  * @author Qllach
+ * @author QuimGil
  * @author SMP
  * @author Smeira
  * @author Solde
@@ -610,7 +612,7 @@ Tingueu en compte que algunes pàgines poden continuar mostrant-se com si encara
 'welcomecreation-msg' => 'El vostre compte ha estat creat.
 No oblideu de canviar les vostres [[Special:Preferences|preferències de {{SITENAME}}]].',
 'yourname' => "Nom d'usuari",
-'userlogin-yourname' => "Nom d'usuari",
+'userlogin-yourname' => 'Usuari',
 'userlogin-yourname-ph' => "Introduïu el vostre nom d'usuari",
 'yourpassword' => 'Contrasenya',
 'userlogin-yourpassword' => 'Contrasenya',
@@ -621,7 +623,7 @@ No oblideu de canviar les vostres [[Special:Preferences|preferències de {{SITEN
 'createacct-yourpasswordagain-ph' => 'Introduïu de nou la contrasenya',
 'remembermypassword' => 'Recorda la contrasenya entre sessions (per un màxim de $1 {{PLURAL:$1|dia|dies}})',
 'userlogin-remembermypassword' => "Recorda'm",
-'userlogin-signwithsecure' => 'Inicia la sessió amb un servidor segur',
+'userlogin-signwithsecure' => 'Connexió segura',
 'securelogin-stick-https' => "Roman connectat via HTTPS desprès d'autenticar-se",
 'yourdomainname' => 'El vostre domini',
 'password-change-forbidden' => 'No podeu canviar les contrasenyes en aquest wiki.',
@@ -642,18 +644,21 @@ No oblideu de canviar les vostres [[Special:Preferences|preferències de {{SITEN
 'gotaccount' => 'Ja teniu un compte? $1.',
 'gotaccountlink' => 'Inicia una sessió',
 'userlogin-resetlink' => "Heu oblidat les vostres dades d'accés?",
+'userlogin-resetpassword-link' => 'Reinicia la contrasenya',
 'helplogin-url' => 'Help:Registrar-se',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Ajuda per registrar-se]]',
-'createacct-join' => 'Introduïu les dades a continuació.',
+'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Ajuda]]',
+'createacct-join' => 'Introduïu les vostres dades.',
 'createacct-emailrequired' => 'Adreça de correu electrònic',
 'createacct-emailoptional' => 'Adreça de correu electrònic (opcional)',
 'createacct-email-ph' => 'Introduïu la vostra adreça de correu electrònic',
-'createaccountmail' => "Utilitza una contrasenya aleatòria temporal i envia-la a l'adreça de correu electrònic especificat a continuació",
+'createaccountmail' => "Utilitza una contrasenya aleatòria temporal i envia-la a l'adreça de correu  especificada a continuació.",
 'createacct-realname' => 'Nom real (opcional)',
 'createaccountreason' => 'Motiu:',
 'createacct-reason' => 'Motiu',
+'createacct-reason-ph' => 'Per què creeu un altre compte',
 'createacct-captcha' => 'Control de seguretat',
 'createacct-imgcaptcha-ph' => 'Introduïu el text que apareix a dalt',
+'createacct-submit' => 'Crea el meu compte',
 'createacct-benefit-heading' => '{{SITENAME}} és feta per gent com tu.',
 'createacct-benefit-body1' => 'edicions',
 'createacct-benefit-body2' => 'pàgines',
@@ -744,14 +749,13 @@ Si us plau, esperi abans de tornar-ho a intentar.",
 'resetpass-wrong-oldpass' => 'Contrasenya actual o temporal no vàlida.
 Deveu haver canviat la vostra contrasenya o demanat una nova contrasenya temporal.',
 'resetpass-temp-password' => 'Contrasenya temporal:',
+'resetpass-abort-generic' => 'Una extensió ha interromput el canvi de contrasenya.',
 
 # Special:PasswordReset
 'passwordreset' => 'Restablir contrasenya',
-'passwordreset-text' => 'Completeu el següent formulari per reinicialitzar la vostra contrasenya',
 'passwordreset-legend' => 'Restablir contrasenya',
 'passwordreset-disabled' => "S'ha desactivat el restabliment de contranyes en aquest wiki.",
 'passwordreset-emaildisabled' => 'Les opcions de correu electrònic no estan habilitades en aquest wiki.',
-'passwordreset-pretext' => '{{PLURAL:$1||Introduïu un dels elements de dades següents}}',
 'passwordreset-username' => "Nom d'usuari:",
 'passwordreset-domain' => 'Domini',
 'passwordreset-capture' => 'Veure el missatge de correu electrònic?',
@@ -982,6 +986,7 @@ No s'ha donat cap explicació.",
 Sembla haver estat esborrada.",
 'edit-conflict' => "Conflicte d'edició.",
 'edit-no-change' => 'La vostra modificació ha estat ignorada perquè no feia cap canvi al text.',
+'postedit-confirmation' => 'La modificació ha estat desada.',
 'edit-already-exists' => "No s'ha pogut crear una pàgina.
 Ja existeix.",
 'defaultmessagetext' => 'Missatge per defecte',
@@ -2130,7 +2135,7 @@ Es necessita com a mínim un domini de primer nivell, per exemple "*.org".<br />
 # Special:ActiveUsers
 'activeusers' => "Llista d'usuaris actius",
 'activeusers-intro' => "Aquí hi ha una llista d'usuaris que han tingut algun tipus d'activitat en {{PLURAL:$1|el darrer dia|els darrers $1 dies}}.",
-'activeusers-count' => '$1 {{PLURAL:$1|modificació|modificacions}} en {{PLURAL:$3|el darrer dia|els $3 darrers dies}}',
+'activeusers-count' => '$1 {{PLURAL:$1|acció|accions}} en {{PLURAL:$3|el darrer dia|els $3 darrers dies}}',
 'activeusers-from' => 'Mostra els usuaris començant per:',
 'activeusers-hidebots' => 'Amaga bots',
 'activeusers-hidesysops' => 'Amaga administradors',
@@ -2320,7 +2325,7 @@ de l'usuari [[User:$2|$2]] ([[User talk:$2|Discussió]]{{int:pipe-separator}}[[S
 
 La darrera modificació ha estat feta per l'usuari [[User:$3|$3]] ([[User talk:$3|Discussió]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
 'editcomment' => "El resum d'edició ha estat: «$1».",
-'revertpage' => "Revertides les edicions de [[Special:Contributions/$2|$2]] ([[User talk:$2|discussió]]). S'ha recuperat la darrera versió de l'usuari [[User:$1|$1]]",
+'revertpage' => "Revertides les edicions de [[Special:Contributions/$2|$2]] ([[User talk:$2|discussió]]) a l'última versió de [[User:$1|$1]]",
 'revertpage-nouser' => "Desfetes les edicions de (nom d'usuari eliminat) a l'última revisió feta per [[User:$1|$1]]",
 'rollback-success' => "Edicions revertides de $1; s'ha canviat a la darrera versió de $2.",
 
@@ -3832,15 +3837,15 @@ Amb aquest programa heu d'haver rebut [{{SERVER}}{{SCRIPTPATH}}/COPYING una còp
 # New logging system
 'logentry-delete-delete' => '$1 ha esborrat $3',
 'logentry-delete-restore' => '$1 ha restaurat $3',
-'logentry-delete-event' => "$1 ha canviat la visibilitat {{PLURAL:$5|d'un esdeveniment al registre|de $5 esdeveniments al registre}} de $3: $4",
-'logentry-delete-revision' => "$1 ha canviat la visibilitat {{PLURAL:$5|d'una revisió|de $5 revisions}} a la pàgina $3: $4",
-'logentry-delete-event-legacy' => "$1 ha canviat la visibilitat d'esdeveniments al registre de $3",
-'logentry-delete-revision-legacy' => '$1 ha canviat la visibilitat de revisions a la pàgina $3',
+'logentry-delete-event' => "$1 {{GENDER:$2|ha canviat}} la visibilitat {{PLURAL:$5|d'un esdeveniment al registre|de $5 esdeveniments al registre}} de $3: $4",
+'logentry-delete-revision' => "$1 {{GENDER:$2|ha canviat}} la visibilitat {{PLURAL:$5|d'una revisió|de $5 revisions}} a la pàgina $3: $4",
+'logentry-delete-event-legacy' => "$1 {{GENDER:$2|ha canviat}} la visibilitat d'esdeveniments al registre de $3",
+'logentry-delete-revision-legacy' => '$1 {{GENDER:$2|ha canviat}} la visibilitat de revisions a la pàgina $3',
 'logentry-suppress-delete' => '$1 {{GENDER:$2|ha suprimit}} la pàgina $3',
-'logentry-suppress-event' => "$1 secretament ha canviat la visibilitat {{PLURAL:$5|d'un esdeveniment al registre|de $5 esdeveniments al registre}} de $3: $4",
-'logentry-suppress-revision' => "$1 secretament ha canviat la visibilitat {{PLURAL:$5|d'una revisió|de $5 revisions}} a la pàgina $3: $4",
-'logentry-suppress-event-legacy' => "$1 secretament ha canviat la visibilitat d'esdeveniments al registre de $3",
-'logentry-suppress-revision-legacy' => '$1 secretament ha canviat la visibilitat de revisions a la pàgina $3',
+'logentry-suppress-event' => "$1 secretament {{GENDER:$2|ha canviat}} la visibilitat {{PLURAL:$5|d'un esdeveniment al registre|de $5 esdeveniments al registre}} de $3: $4",
+'logentry-suppress-revision' => "$1 secretament {{GENDER:$2|ha canviat}} la visibilitat {{PLURAL:$5|d'una revisió|de $5 revisions}} a la pàgina $3: $4",
+'logentry-suppress-event-legacy' => "$1 secretament {{GENDER:$2|ha canviat}} la visibilitat d'esdeveniments al registre de $3",
+'logentry-suppress-revision-legacy' => '$1 secretament {{GENDER:$2|ha canviat}} la visibilitat de revisions a la pàgina $3',
 'revdelete-content-hid' => 'ha ocultat contingut',
 'revdelete-summary-hid' => "ha ocultat el resum d'edició",
 'revdelete-uname-hid' => "ha ocultat el nom d'usuari",
@@ -3852,9 +3857,9 @@ Amb aquest programa heu d'haver rebut [{{SERVER}}{{SCRIPTPATH}}/COPYING una còp
 'logentry-move-move' => '$1 ha mogut $3 a $4',
 'logentry-move-move-noredirect' => '$1 ha mogut $3 a $4 sense deixar una redirecció',
 'logentry-move-move_redir' => '$1 ha mogut $3 a $4 sobre una redirecció',
-'logentry-move-move_redir-noredirect' => '$1 ha desplaçat la pàgina $3 a $4 on hi havia una redirecció i sense crear una nova redirecció',
-'logentry-patrol-patrol' => '1 $ va marcar la revisió $ 4 de "$ 3" com a supervisada',
-'logentry-patrol-patrol-auto' => '$1 ha marcat automàticament la versió $4 de la pàgina $3 com a patrullada',
+'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|ha desplaçat}} la pàgina $3 a $4 on hi havia una redirecció i sense crear una nova redirecció',
+'logentry-patrol-patrol' => '1$ {{GENDER:$2|ha marcat}} la revisió $4 de la pàgina «$3» com a patrullada',
+'logentry-patrol-patrol-auto' => '$1 {{GENDER:$2|ha marcat}} automàticament la versió $4 de la pàgina $3 com a patrullada',
 'logentry-newusers-newusers' => "El compte d'usuari $1 {{GENDER:$2|ha estat creat}}",
 'logentry-newusers-create' => "El compte d'usuari $1 {{GENDER:$2|ha estat creat}}",
 'logentry-newusers-create2' => "El compte d'usuari $3 {{GENDER:$2|ha estat creat}} per $1",
@@ -3937,5 +3942,8 @@ Altrament, podeu fer servir un senzill formulari a continuació. El vostre comen
 'duration-decades' => '$1 {{PLURAL:$1|dècada|dècades}}',
 'duration-centuries' => '$1 {{PLURAL:$1|segle|segles}}',
 'duration-millennia' => '$1 {{PLURAL:$1|mil·leni|mil·lenis}}',
+
+# Image rotation
+'rotate-comment' => 'Imatge girada $1 {{PLURAL:$1|grau|graus}} en el sentit de les agulles del rellotge',
 
 );

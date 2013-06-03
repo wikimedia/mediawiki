@@ -60,9 +60,11 @@
  * @author KorneySan
  * @author Kv75
  * @author Lockal
+ * @author Matma Rex
  * @author MaxBioHazard
  * @author MaxSem
  * @author NBS
+ * @author Nemo bis
  * @author Ola
  * @author Ole Yves
  * @author Putnik
@@ -985,11 +987,9 @@ $2',
 
 # Special:PasswordReset
 'passwordreset' => 'Сброс пароля',
-'passwordreset-text' => 'Чтобы сбросить свой пароль, заполните эту форму.',
 'passwordreset-legend' => 'Сбросить пароль',
 'passwordreset-disabled' => 'Сбросы пароля отключены на этой вики.',
 'passwordreset-emaildisabled' => 'Функции электронной почты отключены в этой вики.',
-'passwordreset-pretext' => '{{PLURAL:$1||Введите одну из частей данных, показанных ниже}}',
 'passwordreset-username' => 'Имя участника:',
 'passwordreset-domain' => 'Домен:',
 'passwordreset-capture' => 'Просмотреть получившееся письмо?',

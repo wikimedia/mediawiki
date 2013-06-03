@@ -12,6 +12,7 @@
  * @author Daniyar
  * @author GaiJin
  * @author Kaztrans
+ * @author Nemo bis
  * @author Urhixidur
  */
 
@@ -870,10 +871,8 @@ $2',
 
 # Special:PasswordReset
 'passwordreset' => 'Құпия сөзді қайтару',
-'passwordreset-text' => 'Сіздің тіркелгіңіздің баптаулары туралы хабарламаларды алу үшін мына пішінді толтырыңыз.',
 'passwordreset-legend' => 'Құпия сөзді қайтару',
 'passwordreset-disabled' => 'Бұл уикиде құпия сөзді қайтару ажыратылған.',
-'passwordreset-pretext' => '{{PLURAL:$1||Төменде көрсетілгендердің ішіндегі біреуін жазыңыз}}',
 'passwordreset-username' => 'Қатысушы аты:',
 'passwordreset-domain' => 'Домен:',
 'passwordreset-capture' => 'Келген хатты қарау керек пе?',

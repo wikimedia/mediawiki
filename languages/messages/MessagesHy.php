@@ -8,6 +8,7 @@
  * @file
  *
  * @author Chaojoker
+ * @author Nemo bis
  * @author Pandukht
  * @author Reedy
  * @author Ruben Vardanyan (me@RubenVardanyan.com)
@@ -784,7 +785,6 @@ $2',
 
 # Special:PasswordReset
 'passwordreset' => 'Վերականգնել գաղտնաբառը',
-'passwordreset-text' => 'Լրացրեք ձևը՝ էլ-փոստով ձեր տվյալների մասին հիշեցում ստանալու համար։',
 'passwordreset-legend' => 'Վերականգնել գաղտնաբառը',
 'passwordreset-disabled' => 'Գաղտնաբառի վերականգնումը այս վիքիում թույլատրված չէ։',
 'passwordreset-username' => 'Մասնակցի անուն՝',

@@ -27,6 +27,7 @@
  * @author Kaganer
  * @author KossuthRad
  * @author Misibacsi
+ * @author Nemo bis
  * @author R-Joe
  * @author Samat
  * @author Sucy
@@ -588,7 +589,7 @@ További információkat a [[Special:Version|verzióinformációs lapon]] talál
 'youhavenewmessages' => '$1 a vitalapodon! ($2 külön is megtekintheted.)',
 'newmessageslink' => 'új üzenet vár',
 'newmessagesdifflink' => 'az utolsó üzenetet',
-'youhavenewmessagesfromusers' => "'''$2''' kaptál {{PLURAL:$3|egy|$3}} szerkesztőtől $1!",
+'youhavenewmessagesfromusers' => '$2 kaptál {{PLURAL:$3|egy|$3}} szerkesztőtől $1!',
 'youhavenewmessagesmanyusers' => '$1ed van több szerkesztőtől ($2).',
 'newmessageslinkplural' => 'a vitalapodon',
 'newmessagesdifflinkplural' => '{{PLURAL:$1|Új üzenetet|Új üzeneteket}}',
@@ -872,11 +873,9 @@ Lehet, hogy már sikeresen megváltoztattad a jelszavad, vagy pedig időközben 
 
 # Special:PasswordReset
 'passwordreset' => 'Jelszó törlése',
-'passwordreset-text' => 'Az alábbi űrlap kitöltése után egy jelszóemlékeztető e-mailt kapsz a fiókod adataival.',
 'passwordreset-legend' => 'Új jelszó kérése',
 'passwordreset-disabled' => 'Új jelszó kérése nem engedélyezett ezen a wikin.',
 'passwordreset-emaildisabled' => 'Az e-mail funkció le van tiltva ezen a wikin.',
-'passwordreset-pretext' => '{{PLURAL:$1||Írd be az alábbi adatok egyikét}}',
 'passwordreset-username' => 'Felhasználónév:',
 'passwordreset-domain' => 'Tartomány:',
 'passwordreset-capture' => 'Meg szeretnéd nézni az elkészült üzenetet?',

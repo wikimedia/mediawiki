@@ -12,6 +12,7 @@
  * @author Kaganer
  * @author Kiensvay
  * @author Lovekhmer
+ * @author Nemo bis
  * @author Sovichet
  * @author T-Rithy
  * @author Thearith
@@ -852,11 +853,9 @@ $2',
 
 # Special:PasswordReset
 'passwordreset' => 'កំណត់​ពាក្យសម្ងាត់​សាឡើងវិញ',
-'passwordreset-text' => 'បំពេញសំណុំបែបបទនេះដើម្បីស្ដារពាក្យសម្ងាត់របស់អ្នក។',
 'passwordreset-legend' => 'កំណត់​ពាក្យសម្ងាត់​សាឡើងវិញ',
 'passwordreset-disabled' => 'មុខងារប្ដូរទៅពាក្យសម្ងាត់ដើមត្រូវបានបិទមិនអោយប្រើនៅលើវិគីនេះ។',
 'passwordreset-emaildisabled' => 'មុខងារអ៊ីមែលត្រូវបានបិទមិនអោយប្រើនៅលើវិគីនេះ។',
-'passwordreset-pretext' => '{{PLURAL:$1||វាយបញ្ចូលផ្នែកមួយនៃទិន្នន័យខាងក្រោម}}',
 'passwordreset-username' => 'អត្តនាម៖',
 'passwordreset-domain' => 'ដូម៉ែន៖',
 'passwordreset-capture' => 'មើលអ៊ីមែលលទ្ធផល?',
@@ -3674,7 +3673,7 @@ $5
 'htmlform-reset' => 'ធ្វើដូចដើមវិញ',
 'htmlform-selectorother-other' => 'ផ្សេងទៀត',
 'htmlform-no' => 'ទេ',
-'htmlform-yes' => 'បាទ​ឬចាស',
+'htmlform-yes' => 'ព្រម',
 
 # New logging system
 'logentry-delete-delete' => '$1 បានលុបទំព័រ $3 ចោល',

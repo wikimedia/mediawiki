@@ -587,10 +587,8 @@ $2',
 
 # Special:PasswordReset
 'passwordreset' => 'Выслаць мне новы пароль',
-'passwordreset-text' => 'Запоўніце гэтую форму, каб атрымаць па электроннай пошце напамін вашага акаўнта.',
 'passwordreset-legend' => 'Пераўстанавіць пароль',
 'passwordreset-disabled' => 'Функцыя пераўсталёўкі пароля адключаная на гэтай вікі.',
-'passwordreset-pretext' => '{{PLURAL:$1||Калі ласка, увядзіце адзін з фрагментаў дадзеных ніжэй}}',
 'passwordreset-username' => 'Імя ўдзельніка',
 'passwordreset-domain' => 'Дамен:',
 'passwordreset-capture' => 'Праглядзець напісаны ліст?',
@@ -812,6 +810,7 @@ $2
 Здаецца, што яна была сцёртая.',
 'edit-conflict' => 'Канфлікт правак.',
 'edit-no-change' => 'Вашая праўка была праігнараваная, таму што не мяняўся тэкст.',
+'postedit-confirmation' => 'Вашая праўка была захаваная.',
 'edit-already-exists' => 'Не ўдалося стварыць новую старонку.
 Такая ўжо існуе.',
 'editwarning-warning' => 'Выхад з гэтай старонкі прывядзе да страты правак, якія вы зрабілі. 
@@ -1117,7 +1116,7 @@ $1",
 'recentchangesdays' => 'За колькі дзён паказваць {{lc:{{:{{ns:mediawiki}}:recentchanges/be}}}}:',
 'recentchangesdays-max' => '(найбольш $1 {{PLURAL:$1|дзень|дзён}})',
 'recentchangescount' => 'Прадвызначаная колькасць правак дзеля паказу:',
-'prefs-help-recentchangescount' => 'Гэта ўключае ў сябе нядаўнія змяненні, гісторыі старонак, журналы.',
+'prefs-help-recentchangescount' => 'Гэта ўключае ў сябе апошнія змены, гісторыі старонак, журналы.',
 'prefs-help-watchlist-token' => 'Упісанне сакрэтнага ключа ў гэтае поле створыць RSS-струмень з вашага спісу назіранага. 
 Кожны, каму вядомы гэты ключ, зможа чытаць ваш спіс назіранага, таму выбірайце бяспечныя ключы. 
 Вось аўта-згенераваны ключ, які можна выкарыстаць: $1',
@@ -1348,7 +1347,7 @@ $1",
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|змена|змены|зменаў}}',
-'recentchanges' => 'Нядаўнія змяненні',
+'recentchanges' => 'Апошнія змены',
 'recentchanges-legend' => 'Магчымасці паказу',
 'recentchanges-summary' => 'Гэта апошнія мены на пляцоўцы {{SITENAME}}.',
 'recentchanges-feed-description' => 'Сачыць за найбольш актуальнымі змяненнямі ў віксе праз гэты струмень навін.',
@@ -3402,7 +3401,7 @@ MediaWiki распаўсюджваецца, спадзеючыся на прыд
 'specialpages-group-maintenance' => 'Звесткі аб працы',
 'specialpages-group-other' => 'Іншыя адмысловыя старонкі',
 'specialpages-group-login' => 'Прадстаўленне / рэгістрацыя',
-'specialpages-group-changes' => 'Нядаўнія змяненні і журналы',
+'specialpages-group-changes' => 'Апошнія змены і журналы',
 'specialpages-group-media' => 'Укладзеныя файлы і звесткі пра іх',
 'specialpages-group-users' => 'Удзельнікі і дазволы',
 'specialpages-group-highuse' => 'Старонкі частага карыстання',

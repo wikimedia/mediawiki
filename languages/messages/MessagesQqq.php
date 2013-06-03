@@ -8,6 +8,7 @@
  * @file
  *
  * @author *Surak*
+ * @author 127.0.0.1
  * @author Abanima
  * @author Ahonc
  * @author Aleator
@@ -1138,19 +1139,19 @@ See example: [{{canonicalurl:Special:UserLogin|useNew=1}} Special:UserLogin?useN
 {{Identical|Do not have an account}}',
 'nologinlink' => 'Text of the link to the account creation form. Before that link, the message {{msg-mw|Nologin}} appears.
 {{Identical|Create an account}}',
-'createaccount' => '{{doc-special|CreateAccount}}
-The special page enables users to register a new account.
+'createaccount' => 'Used on the top of the page for logged out users, where it appears next to {{msg-mw|login}}, so consider making them similar.
 
-Used on the submit button in the form where you register a new account.
-
-It is also used on the top of the page for logged out users, where it appears next to {{msg-mw|login}}, so consider making them similar.
+It is also used on the submit button in the form/special page where you register a new account.
+{{doc-special|CreateAccount}}
 {{Identical|Create account}}',
 'gotaccount' => 'A message shown in the account creation form.
 * $1 - a link to the log in form, and the text of it is {{msg-mw|Gotaccountlink}}',
 'gotaccountlink' => 'Text of the link to the log in form. Before that link, the message {{msg-mw|Gotaccount}} appears.
 {{Identical|Log in}}',
 'userlogin-resetlink' => 'Used on the login page.',
-'userlogin-resetpassword-link' => 'Text of link to [[Special:PasswordReset]] on new vertical-layout create account form.
+'userlogin-resetpassword-link' => 'Used as link text on new vertical-layout create account form.
+
+The link points to [[Special:PasswordReset]].
 
 See example: [{{canonicalurl:Special:UserLogin|useNew=1}} Special:UserLogin?useNew=1]
 
@@ -1355,9 +1356,6 @@ See also:
 'passwordreset-legend' => '{{Identical|Reset password}}',
 'passwordreset-disabled' => 'Used as error message in changing password.',
 'passwordreset-emaildisabled' => "Used as error message in changing password when site's email feature is disabled.",
-'passwordreset-pretext' => 'These instructions are shown on the password reset dialogue, which can, in principle, take the user\'s email address as well as, or instead of, their username. This text displays above one or more fields, at least one of which needs to be completed, and the message does not know which routes are available, so it needs to refer to some vague noun rather than specifically "username".
-"One of the pieces of data" means "an info"/"a datum" (probably to be translatea with a singular noun in your language if available). Parameters:
-* $1 is the number of password reset routes. This is never 1, but always two or more. Thus, the first plural option is empty in English.',
 'passwordreset-username' => '{{Identical|Username}}',
 'passwordreset-domain' => 'A domain like used in Domain Name System (DNS) or more specifically like a domain component in the Lightweight Directory Access Protocol (LDAP)',
 'passwordreset-capture' => 'Label for checkbox asking the user whether they want to see the contents of the password reset email (only shown if they have the <tt>passwordreset</tt> permission',
@@ -8687,7 +8685,7 @@ See also:
 'specialpages-group-media' => '{{doc-special-group|like=[[Special:FilePath]], [[Special:MIMESearch]] and [[Special:Upload]]}}',
 'specialpages-group-users' => '{{doc-special-group|like=[[Special:ActiveUsers]], [[Special:Contributions]] and [[Special:ListGroupRights]]}}',
 'specialpages-group-highuse' => '{{doc-special-group|like=[[Special:MostCategories]], [[Special:MostLinked]] and [[Special:MostRevisions]]}}',
-'specialpages-group-pages' => '{{doc-special-group|like=[[Special:AllPages]], [[Special:PrefixIndex]], [[Special:Categories]],
+'specialpages-group-pages' => '{{doc-special-group|like=[[Special:AllPages]], [[Special:PrefixIndex]], [[Special:Categories]], 
 [[Special:Disambiguations]], etc}}',
 'specialpages-group-pagetools' => '{{doc-special-group|like=[[Special:MovePage]], [[Special:Undelete]], [[Special:WhatLinksHere]], [[Special:Export]] etc}}',
 'specialpages-group-wiki' => '{{doc-special-group|like=[[Special:Version]], [[Special:Statistics]], [[Special:LockDB]], etc}}',
