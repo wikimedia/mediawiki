@@ -91,6 +91,11 @@ if ( $IP === false ) {
 	}
 }
 
+# Load composer's autoloader if present
+if ( is_readable( "$IP/vendor/autoload.php" ) ) {
+	require_once "$IP/vendor/autoload.php";
+}
+
 # Get MWInit class
 require_once "$IP/includes/Init.php";
 
