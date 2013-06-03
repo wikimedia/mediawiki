@@ -53,9 +53,13 @@ $maintenance->setup();
 // to $maintenance->mSelf. Keep that here for b/c
 $self = $maintenance->getName();
 
-// Detect compiled mode
+# Load composer's autoloader if present
+if ( is_readable( "$IP/vendor/autoload.php" ) ) {
+	require_once "$IP/vendor/autoload.php";
+}
 # Get the MWInit class
 require_once "$IP/includes/Init.php";
+# Start the autoloader, so that extensions can derive classes from core files
 require_once "$IP/includes/AutoLoader.php";
 # Stub the profiler
 require_once "$IP/includes/profiler/Profiler.php";
