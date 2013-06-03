@@ -707,6 +707,7 @@ class ParserTest {
 			'wgHtml5' => true,
 			'wgWellFormedXml' => true,
 			'wgAllowMicrodataAttributes' => true,
+			'wgAllowRdfaAttributes' => true,
 			'wgAdaptiveMessageCache' => true,
 			'wgDisableLangConversion' => false,
 			'wgDisableTitleConversion' => false,

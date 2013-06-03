@@ -20,6 +20,8 @@
  * @file
  */
 
+use \MediaWiki\RDFa;
+
 /**
  * This class should be covered by a general architecture document which does
  * not exist as of January 2011.  This is one of the Core classes and should
@@ -259,6 +261,16 @@ class OutputPage extends ContextSource {
 	private $mTarget = null;
 
 	/**
+	 * @var RDFa\PrefixContext root <html> prefix context for prefixes used in RDFa in the <head>.
+	 */
+	private $mPrefixContext = null;
+
+	/**
+	 * @var array List of RDFa graph items in the head
+	 */
+	private $mGraphItems = array();
+
+	/**
 	 * Constructor for OutputPage. This should not be called directly.
 	 * Instead a new RequestContext should be created and it will implicitly create
 	 * a OutputPage tied to that context.
@@ -300,6 +312,82 @@ class OutputPage extends ContextSource {
 	 */
 	public function setStatusCode( $statusCode ) {
 		$this->mStatusCode = $statusCode;
+	}
+
+	/**
+	 * Return an RDFa PrefixContext that can be used to define RDFa prefixes
+	 * on <html> for use on RDFa defined in <head>.
+	 *
+	 * @return RDFa\PrefixContext
+	 */
+	public function getPrefixContext() {
+		if ( is_null( $this->mPrefixContext ) ) {
+			$this->mPrefixContext = new RDFa\PrefixContext();
+		}
+		return $this->mPrefixContext;
+	}
+
+	/**
+	 * Add a new %RDFa graph property in a <meta> tag in the <head>.
+	 * Should be used for RDF arcs pointing to literals.
+	 *
+	 * All prefixed CURIEs used MUST be made using the {@link RDFa\Prefix::curie}
+	 * method of the {@link RDFa\PrefixContext} returned by OutputPage::getPrefixContext.
+	 *
+	 * @param string $property The \@property for the item.
+	 * @param string $content The \@content value for the item.
+	 * @param array $attrs An array of extra %RDFa attributes such as lang and datatype.
+	 */
+	public function addGraphProperty( $property, $content, array $attrs = array() ) {
+		$this->mGraphItems[] = array(
+			'meta',
+			compact( 'property', 'content' ) + $attrs,
+		);
+	}
+
+	/**
+	 * Add a new %RDFa graph link in a <link> tag in the <head>.
+	 * Should be used for RDF arcs pointing to IRIs.
+	 *
+	 * All prefixed CURIEs used MUST be made using the {@link RDFa\Prefix::curie}
+	 * method of the {@link RDFa\PrefixContext} returned by OutputPage::getPrefixContext.
+	 *
+	 * @param string $rel The \@rel for the item.
+	 * @param string $href The \@href IRI for the item.
+	 * @param array $attrs An array of extra %RDFa attributes such as about.
+	 */
+	public function addGraphLink( $rel, $href, array $attrs = array() ) {
+		if ( !preg_match( '/^\s*([^:\s]*:[^\s]*\s*)*$/', $rel ) ) {
+			throw new Exception( 'We do not support TERMs in predicates added to the <head>.'
+				. ' ' . __METHOD__ . ' should not be used to add things like rel="stylesheet" to the head.' );
+		}
+		$this->mGraphItems[] = array(
+			'link',
+			compact( 'rel', 'href' ) + $attrs,
+		);
+	}
+
+	/**
+	 * Add a new %RDFa graph relation in a <link> tag in the <head>.
+	 * Should be used for RDF arcs pointing to another resource, especially those
+	 * defined by a CURIE, bnode, or with data of their own defined in the page.
+	 *
+	 * All prefixed CURIEs used MUST be made using the {@link RDFa\Prefix::curie}
+	 * method of the {@link RDFa\PrefixContext} returned by OutputPage::getPrefixContext.
+	 *
+	 * @param string $rel The \@rel for the item.
+	 * @param string $resource The \@resource IRI for the item.
+	 * @param array $attrs An array of extra %RDFa attributes such as about.
+	 */
+	public function addGraphRelation( $rel, $resource, array $attrs = array() ) {
+		if ( !preg_match( '/^\s*([^:\s]*:[^\s]*\s*)*$/', $rel ) ) {
+			throw new Exception( 'We do not support TERMs in predicates added to the <head>.'
+				. ' ' . __METHOD__ . ' should not be used to add things like rel="stylesheet" to the head.' );
+		}
+		$this->mGraphItems[] = array(
+			'link',
+			compact( 'rel', 'resource' ) + $attrs,
+		);
 	}
 
 	/**
@@ -2509,7 +2597,18 @@ $templates
 			$this->addModuleStyles( 'mediawiki.legacy.wikiprintable' );
 		}
 
-		$ret = Html::htmlHeader( array( 'lang' => $this->getLanguage()->getHtmlCode(), 'dir' => $userdir, 'class' => 'client-nojs' ) );
+		$htmlAttrs = array();
+		// Lang & Dir
+		$htmlAttrs['lang'] = $this->getLanguage()->getHtmlCode();
+		$htmlAttrs['dir'] = $userdir;
+		// Classes
+		$htmlAttrs['class'] = 'client-nojs';
+		// RDFa prefix if used
+		if ( !is_null( $this->mPrefixContext ) ) {
+			$htmlAttrs['prefix'] = $this->mPrefixContext->prefixAttribute();
+		}
+
+		$ret = Html::htmlHeader( $htmlAttrs );
 
 		if ( $this->getHTMLTitle() == '' ) {
 			$this->setHTMLTitle( $this->msg( 'pagetitle', $this->getPageTitle() ) );
@@ -3155,6 +3254,13 @@ $templates
 			) );
 		}
 
+		# RDFa properties
+		foreach ( $this->mGraphItems as $i => $item ) {
+			list( $tagName, $attributes ) = $item;
+			$tags["rdfagraph-$i"] = Html::element( $tagName, $attributes );
+		}
+
+		# Extra extension specified meta elements
 		foreach ( $this->mMetatags as $tag ) {
 			if ( 0 == strcasecmp( 'http:', substr( $tag[0], 0, 5 ) ) ) {
 				$a = 'http-equiv';

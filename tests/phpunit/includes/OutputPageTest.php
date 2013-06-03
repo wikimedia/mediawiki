@@ -130,4 +130,58 @@ class OutputPageTest extends MediaWikiTestCase {
 			'message' => 'On request with handheld querystring and media is screen, returns null'
 		) );
 	}
+
+	/**
+	 * Tests that OutputPage's handling of RDFa prefixes on the headElement is correct.
+	 */
+	public function testPrefixContext() {
+		if ( !class_exists( 'DOMDocument' ) ) {
+			$this->markTestSkipped( 'DOMDocument is required.' );
+			return;
+		}
+
+		// Setup a fake context with an OutputPage
+		$ctx = new RequestContext;
+		$ctx->setRequest( new FauxRequest() );
+		$ctx->setLanguage( 'en' );
+		$ctx->setTitle( Title::newMainPage() );
+		$out = $ctx->getOutput();
+
+		// Setup prefixes and data
+		$prefixContext = $out->getPrefixContext();
+		$og = $prefixContext->prefix( 'og', 'http://ogp.me/ns#' );
+		$schema = $prefixContext->prefix( 'schema', 'http://schema.org/' );
+		$out->addGraphProperty( $og->curie( 'title' ), 'FooBar' );
+		$out->addGraphLink( $schema->curie( 'url' ), 'http://example.org/' );
+		$out->addGraphRelation( $schema->curie( 'about' ), '_:' );
+
+		// Build the head element and then load it into a DOM
+		$doc = new DOMDocument;
+		$doc->loadHTML( $out->headElement( $ctx->getSkin() ) . '</body></html>' );
+		$xpath = new DOMXPath( $doc );
+
+		// Assert that the prefix is present and has the correct value.		
+		$this->assertEquals(
+			"og: http://ogp.me/ns# schema: http://schema.org/",
+			$xpath->evaluate( 'string(/html/@prefix)' ),
+			'Looking for the proper RDFa prefix attribute value.'
+		);
+
+		// Assert that the RDFa items are present.
+		$this->assertEquals(
+			"FooBar",
+			$xpath->evaluate( 'string(/html/head/meta[@property="og:title"]/@content)' ),
+			'Looking for <meta property="og:title" content="FooBar">'
+		);
+		$this->assertEquals(
+			"http://example.org/",
+			$xpath->evaluate( 'string(/html/head/link[@rel="schema:url"]/@href)' ),
+			'Looking for <link rel="schema:url" href="http://example.org/">'
+		);
+		$this->assertEquals(
+			"_:",
+			$xpath->evaluate( 'string(/html/head/link[@rel="schema:about"]/@resource)' ),
+			'Looking for <link rel="schema:about" resource="_:">'
+		);
+	}
 }

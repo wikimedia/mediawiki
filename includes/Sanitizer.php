@@ -24,6 +24,8 @@
  * @ingroup Parser
  */
 
+use \MediaWiki\RDFa;
+
 /**
  * HTML sanitizer for MediaWiki
  * @ingroup Parser
@@ -38,17 +40,6 @@ class Sanitizer {
 		 |&\#([0-9]+);
 		 |&\#[xX]([0-9A-Fa-f]+);
 		 |(&)/x';
-
-	/**
-	 * Blacklist for evil uris like javascript:
-	 * WARNING: DO NOT use this in any place that actually requires blacklisting
-	 * for security reasons. There are NUMEROUS[1] ways to bypass blacklisting, the
-	 * only way to be secure from javascript: uri based xss vectors is to whitelist
-	 * things that you know are safe and deny everything else.
-	 * [1]: http://ha.ckers.org/xss.html
-	 */
-	const EVIL_URI_PATTERN = '!(^|\s|\*/\s*)(javascript|vbscript)([^\w]|$)!i';
-	const XMLNS_ATTRIBUTE_PATTERN = "/^xmlns:[:A-Z_a-z-.0-9]+$/";
 
 	/**
 	 * List of all named character entities defined in HTML 4.01
@@ -364,7 +355,7 @@ class Sanitizer {
 	 * @return string
 	 */
 	static function removeHTMLtags( $text, $processCallback = null, $args = array(), $extratags = array(), $removetags = array() ) {
-		global $wgUseTidy, $wgAllowMicrodataAttributes, $wgAllowImageTag;
+		global $wgUseTidy, $wgAllowMicrodataAttributes, $wgAllowRdfaAttributes, $wgAllowImageTag;
 
 		static $htmlpairsStatic, $htmlsingle, $htmlsingleonly, $htmlnest, $tabletags,
 			$htmllist, $listtags, $htmlsingleallowed, $htmlelementsStatic, $staticInitialised;
@@ -373,7 +364,7 @@ class Sanitizer {
 
 		// Base our staticInitialised variable off of the global config state so that if the globals
 		// are changed (like in the screwed up test system) we will re-initialise the settings.
-		$globalContext = implode( '-', compact( 'wgAllowMicrodataAttributes', 'wgAllowImageTag' ) );
+		$globalContext = implode( '-', compact( 'wgAllowMicrodataAttributes', 'wgAllowRdfaAttributes', 'wgAllowImageTag' ) );
 		if ( !$staticInitialised || $staticInitialised != $globalContext ) {
 
 			$htmlpairsStatic = array( # Tags that must be closed
@@ -390,7 +381,7 @@ class Sanitizer {
 			$htmlsingleonly = array( # Elements that cannot have close tags
 				'br', 'hr'
 			);
-			if ( $wgAllowMicrodataAttributes ) {
+			if ( $wgAllowMicrodataAttributes || $wgAllowRdfaAttributes ) {
 				$htmlsingle[] = $htmlsingleonly[] = 'meta';
 				$htmlsingle[] = $htmlsingleonly[] = 'link';
 			}
@@ -539,12 +530,15 @@ class Sanitizer {
 							call_user_func_array( $processCallback, array( &$params, $args ) );
 						}
 
-						if ( !Sanitizer::validateTag( $params, $t ) ) {
-							$badtag = true;
-						}
-
 						# Strip non-approved attributes from the tag
 						$newparams = Sanitizer::fixTagAttributes( $params, $t );
+
+						# Validate that the tag is valid (some tags like <link> are only valid
+						# in special situations). This can depend on params which may be removed
+						# in fixTagAttributes so we do this last.
+						if ( !Sanitizer::validateTag( $newparams, $t ) ) {
+							$badtag = true;
+						}
 					}
 					if ( !$badtag ) {
 						$rest = str_replace( '>', '&gt;', $rest );
@@ -574,11 +568,15 @@ class Sanitizer {
 						call_user_func_array( $processCallback, array( &$params, $args ) );
 					}
 
-					if ( !Sanitizer::validateTag( $params, $t ) ) {
+					$newparams = Sanitizer::fixTagAttributes( $params, $t );
+
+					# Validate that the tag is valid (some tags like <link> are only valid
+					# in special situations). This can depend on params which may be removed
+					# in fixTagAttributes so we do this last.
+					if ( !Sanitizer::validateTag( $newparams, $t ) ) {
 						$badtag = true;
 					}
 
-					$newparams = Sanitizer::fixTagAttributes( $params, $t );
 					if ( !$badtag ) {
 						$rest = str_replace( '>', '&gt;', $rest );
 						$text .= "<$slash$t$newparams$brace$rest";
@@ -653,17 +651,38 @@ class Sanitizer {
 	static function validateTag( $params, $element ) {
 		$params = Sanitizer::decodeTagAttributes( $params );
 
-		if ( $element == 'meta' || $element == 'link' ) {
-			if ( !isset( $params['itemprop'] ) ) {
-				// <meta> and <link> must have an itemprop="" otherwise they are not valid or safe in content
+		if ( $element === 'meta' || $element === 'link' ) {
+			$requiredAttr = array();
+			// HTML requires a rel="" on link, which in this case still applies to the RDFa use of rel=""
+			if ( $element === 'link' ) {
+				$requiredAttr[] = 'rel';
+			}
+			// Microdata allows a <meta> without a required attribute or <link> a link without a rel=""
+			// but with an itemprop to be valid
+			$requiredAttr[] = 'itemprop';
+			// RDFa says <meta> doesn't need name="" and <link> doesn't need rel="" if there's a property=""
+			$requiredAttr[] = 'property';
+
+			$hasRequiredAttr = false;
+			foreach ( $requiredAttr as $attr ) {
+				if ( isset( $params[$attr] ) ) {
+					// One of the attributes was found
+					$hasRequiredAttr = true;
+					break;
+				}
+			}
+			// If none of the properties are found it's not valid
+			if ( !$hasRequiredAttr ) {
 				return false;
 			}
-			if ( $element == 'meta' && !isset( $params['content'] ) ) {
-				// <meta> must have a content="" for the itemprop
+
+			if ( $element === 'meta' && !isset( $params['content'] ) ) {
+				// <meta> must have a content="" in both Microdata and RDFa
 				return false;
 			}
-			if ( $element == 'link' && !isset( $params['href'] ) ) {
+			if ( $element === 'link' && !isset( $params['href'] ) && !isset( $params['resource'] ) ) {
 				// <link> must have an associated href=""
+				// However RDFa states href is not required if an RDFa resource="" is present
 				return false;
 			}
 		}
@@ -714,15 +733,6 @@ class Sanitizer {
 
 		$out = array();
 		foreach ( $attribs as $attribute => $value ) {
-			#allow XML namespace declaration if RDFa is enabled
-			if ( $wgAllowRdfaAttributes && preg_match( self::XMLNS_ATTRIBUTE_PATTERN, $attribute ) ) {
-				if ( !preg_match( self::EVIL_URI_PATTERN, $value ) ) {
-					$out[$attribute] = $value;
-				}
-
-				continue;
-			}
-
 			# Allow any attribute beginning with "data-"
 			if ( !preg_match( '/^data-/i', $attribute ) && !isset( $whitelist[$attribute] ) ) {
 				continue;
@@ -730,12 +740,25 @@ class Sanitizer {
 
 			# Strip javascript "expression" from stylesheets.
 			# http://msdn.microsoft.com/workshop/author/dhtml/overview/recalc.asp
-			if ( $attribute == 'style' ) {
+			if ( $attribute === 'style' ) {
 				$value = Sanitizer::checkCss( $value );
 			}
 
 			if ( $attribute === 'id' ) {
 				$value = Sanitizer::escapeId( $value, 'noninitial' );
+			}
+
+			# Microdata's itemref is a whitespace separated list of IDs, pass them through our
+			# normal escapeId handling.
+			if ( $attribute === 'itemref' ) {
+				$refs = array();
+				foreach ( preg_split( '/\s+/', trim( $value ) ) as $ref ) {
+					$refs[] = Sanitizer::escapeId( $ref, 'noninitial' );
+				}
+				$value = implode( ' ', $refs );
+				if ( !$value ) {
+					continue;
+				}
 			}
 
 			# WAI-ARIA
@@ -748,25 +771,96 @@ class Sanitizer {
 				continue;
 			}
 
-			//RDFa and microdata properties allow URLs, URIs and/or CURIs. check them for sanity
-			if ( $attribute === 'rel' || $attribute === 'rev' ||
-				$attribute === 'about' || $attribute === 'property' || $attribute === 'resource' || #RDFa
-				$attribute === 'datatype' || $attribute === 'typeof' ||                             #RDFa
-				$attribute === 'itemid' || $attribute === 'itemprop' || $attribute === 'itemref' || #HTML5 microdata
-				$attribute === 'itemscope' || $attribute === 'itemtype' ) {                         #HTML5 microdata
+			# For sanity, parse the prefix used in RDFa 1.1 and sanitize it only permitting allowed absolute url
+			if ( $attribute === 'prefix' ) {
+				$rdfaPrefixChars = RDFa\Utils::prefixCharsPattern();
+				$prefixExp = "<^({$rdfaPrefixChars}): +([^\s]+)(?:\s+|$)>u";
+				$tmpValue = trim( $value );
+				$prefixes = array();
+				while ( strlen( $tmpValue ) > 0 ) {
+					$m = null;
+					if ( !preg_match( $prefixExp, $tmpValue, $m ) ) {
+						wfDebug( __METHOD__, 'Part of a RDFa prefix value is malformed, discarding this portion of the attribute "' . substr( $tmpValue, 0, 255 ) . '\".' );
+						break;
+					}
+					$tmpValue = substr( $tmpValue, strlen( $m[0] ) );
 
-				//Paranoia. Allow "simple" values but suppress javascript
-				if ( preg_match( self::EVIL_URI_PATTERN, $value ) ) {
+					# Reject attempts to define a prefix for _ which is reserved for bnodes
+					if ( $m[1] === '_' ) {
+						continue;
+					}
+
+					# Reject IRIs that don't match our url restrictions.
+					if ( !preg_match( $hrefExp, $m[2] ) ) {
+						continue;
+					}
+
+					$prefixes[] = "{$m[1]}: {$m[2]}";
+				}
+
+				$value = implode( ' ', $prefixes );
+				if ( !$value ) {
+					continue;
+				}
+			}
+
+			# RDFa's inlist="" is a boolean attribute, drop any value inside of it
+			# Microdata's itemscope is also a boolean attribute.
+			if ( $attribute === 'inlist' || $attribute === 'itemscope' ) {
+				$value = '';
+			}
+
+			# RDFa has a number of attributes that accept varying relative and absolute
+			# IRIs, CURIEs, safe CURIEs, and TERMs. Pass these through a dedicated sanitizer
+			# defined in our RDFa Utils class.
+			if ( in_array( $attribute, array( 'about', 'datatype', 'property', 'resource', 'typeof', 'rel', 'rev' ) ) ) {
+				$value = RDFa\Utils::sanitizeAttr( $attribute, $value );
+				if ( is_null( $value ) ) {
 					continue;
 				}
 			}
 
 			# NOTE: even though elements using href/src are not allowed directly, supply
 			#       validation code that can be used by tag hook handlers, etc
-			if ( $attribute === 'href' || $attribute === 'src' ) {
+			#       RDFa's vocab also requires an IRI, we might as well restrict it to
+			#       absolute IRIs following our normal rules.
+			#       Microdata's itemid is also defined as a valid URL.
+			if ( in_array( $attribute, array( 'href', 'src', 'vocab', 'itemid' ) ) ) {
 				if ( !preg_match( $hrefExp, $value ) ) {
 					continue; //drop any href or src attributes not using an allowed protocol.
 						  //NOTE: this also drops all relative URLs
+				}
+			}
+
+			# Microdata's itemtype is defined as an unordered whitespace separated list of
+			# valid URLs that are absolute URLs.
+			if ( $attribute === 'itemtype' ) {
+				$itemtypes = array();
+				foreach ( preg_split( '/\s+/', trim( $value ) ) as $itemtype ) {
+					if ( !preg_match( $hrefExp, $itemtype ) ) {
+						continue;
+					}
+					$itemtypes[] = $itemtype;
+				}
+				$value = implode( ' ', $itemtypes );
+				if ( $value === '' ) {
+					continue;
+				}
+			}
+
+			# Microdata's itemprop is defined as a whitespace separated list of:
+			# - absolute URLs
+			# - text tokens that don't contain any .'s or :'s
+			if ( $attribute === 'itemprop' ) {
+				$itemprops = array();
+				foreach ( preg_split( '/\s+/', trim( $value ) ) as $itemprop ) {
+					if ( preg_match( $hrefExp, $itemprop ) || !preg_match( '/[.:]/', $itemprop ) ) {
+						$itemprops[] = $itemprop;
+					}
+				}
+				$value = implode( ' ', $itemprops );
+				if ( $value === '' ) {
+					continue;
 				}
 			}
 
@@ -781,6 +875,10 @@ class Sanitizer {
 				unset( $out['itemtype'] );
 				unset( $out['itemid'] );
 				unset( $out['itemref'] );
+			}
+			# itemid also isn't permitted when itemtype isn't set
+			if ( !array_key_exists( 'itemtype', $out ) ) {
+				unset( $out['itemid'] );
 			}
 			# TODO: Strip itemprop if we aren't descendants of an itemscope or pointed to by an itemref.
 		}
@@ -1459,11 +1557,29 @@ class Sanitizer {
 			'role',
 		);
 
+		$metadataOnly = array();
+
 		if ( $wgAllowRdfaAttributes ) {
-			#RDFa attributes as specified in section 9 of http://www.w3.org/TR/2008/REC-rdfa-syntax-20081014
-			$common = array_merge( $common, array(
-				'about', 'property', 'resource', 'datatype', 'typeof',
-			) );
+			# RDFa attributes as specified in http://www.w3.org/TR/2012/REC-rdfa-core-20120607/#s_syntax
+			# These attributes only make sense on non-void elements that may contain other elements
+			$rdfaWrapperOnly = array(
+				'prefix',
+				'vocab',
+			);
+			# These attributes work on any element.
+			$rdfaAttribs = array(
+				'about',
+				'content',
+				'datatype',
+				'inlist',
+				'property',
+				'resource',
+				'typeof',
+				'rel',
+				'rev',
+			);
+			$common = array_merge( $common, $rdfaWrapperOnly, $rdfaAttribs );
+			$metadataOnly = array_merge( $metadataOnly, $rdfaAttribs );
 		}
 
 		if ( $wgAllowMicrodataAttributes ) {
@@ -1471,6 +1587,7 @@ class Sanitizer {
 			$common = array_merge( $common, array(
 				'itemid', 'itemprop', 'itemref', 'itemscope', 'itemtype'
 			) );
+			$metadataOnly[] = 'itemprop';
 		}
 
 		$block = array_merge( $common, array( 'align' ) );
@@ -1580,7 +1697,7 @@ class Sanitizer {
 			'th'         => array_merge( $common, $tablecell, $tablealign ),
 
 			# 12.2 # NOTE: <a> is not allowed directly, but the attrib whitelist is used from the Parser object
-			'a'          => array_merge( $common, array( 'href', 'rel', 'rev' ) ), # rel/rev esp. for RDFa
+			'a'          => array_merge( $common, array( 'href', 'rel', 'rev' ) ),
 
 			# 13.2
 			# Not usually allowed, but may be used for extension-style hooks
@@ -1628,13 +1745,13 @@ class Sanitizer {
 			'time' => array_merge( $common, array( 'datetime' ) ),
 			'mark' => $common,
 
-			// meta and link are only permitted by removeHTMLtags when Microdata
+			// meta and link are only permitted by removeHTMLtags when Microdata or RDFa
 			// is enabled so we don't bother adding a conditional to hide these
-			// Also meta and link are only valid in WikiText as Microdata elements
-			// (ie: validateTag rejects tags missing the attributes needed for Microdata)
+			// Also meta and link are only valid in WikiText as Microdata / RDFa elements
+			// (ie: validateTag rejects tags missing the attributes needed for Microdata or RDFa)
 			// So we don't bother including $common attributes that have no purpose.
-			'meta' => array( 'itemprop', 'content' ),
-			'link' => array( 'itemprop', 'href' ),
+			'meta' => array_merge( $metadataOnly, array( 'content', 'lang' ) ),
+			'link' => array_merge( $metadataOnly, array( 'href' ) ),
 		);
 
 		$staticInitialised = $globalContext;

@@ -30,6 +30,7 @@ production.
 * $wgDBOracleDRCP added. True enables persistent connection with DRCP on Oracle.
 * $wgLogAutopatrol added to allow disabling logging of autopatrol edits in the logging table.
   default for $wgLogAutopatrol is true.
+* $wgHtml5Version was removed.
 
 === New features in 1.22 ===
 * (bug 44525) mediawiki.jqueryMsg can now parse (whitelisted) HTML elements and attributes.
@@ -101,6 +102,9 @@ production.
 * LinkCache singleton can now be altered or cleared, letting one to specify
   another instance that does not rely on a database backend.
 * MediaWiki's PHPUnit tests can now use PHPUnit installed using composer --dev.
+* OutputPage has a new family of methods getPrefixContext, addGraphProperty,
+  addGraphLink, and addGraphRelation which can be used to add RDFa data about the
+  page into the <head> such as Open Graph and Schema.org metadata.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
@@ -209,6 +213,20 @@ changes to languages because of Bugzilla reports.
 * (bug 40785) mediawiki.legacy.ajax has been marked as deprecated. The following
   properties now emit mw.log.warn when accessed: sajax_debug, sajax_init_object,
   sajax_do_call and wfSupportsAjax.
+* Our RDFa support has been overhauled to use RDFa 1.1 only and be more strict:
+** RDFa 1.0's version="" will no longer be outputted.
+** BREAKING CHANGE: xmlns:prefix="URI" will no longer be supported in WikiText
+   old RDFa inside wiki pages must be updated to use prefix="" instead.
+** <meta> and <link> will now be supported in WikiText for RDFa.
+** RDFa'a content, inlist, prefix, rel, rev, and vocab are now supported.
+** Where possible RDFa attributes accepting IRIs will only accept absolute
+   IRIs with a protocol in our URL whitelist.
+* BREAKING CHANGE: Microdata now strictly filters it's attributes:
+** itemref's ids will now be escaped the same way id="" is.
+** itemscope will act as a binary attribute and discard any value you give it.
+** URLs in itemtype, itemid, and itemprop will only accept absolute URLs with
+   protocols in our whitelist. All non-URL values in itemprop will be filtered
+   to reject invalid tokens containing full stops (.) or colons (:).
 
 == Compatibility ==
 

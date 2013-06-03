@@ -820,6 +820,11 @@ $wgAutoloadLocalClasses = array(
 	'ProfilerStub' => 'includes/profiler/ProfilerStub.php',
 	'ProfileSection' => 'includes/profiler/Profiler.php',
 
+	# includes/rdfa
+	'MediaWiki\RDFa\Prefix' => 'includes/rdfa/PrefixContext.php',
+	'MediaWiki\RDFa\PrefixContext' => 'includes/rdfa/PrefixContext.php',
+	'MediaWiki\RDFa\Utils' => 'includes/rdfa/Utils.php',
+
 	# includes/resourceloader
 	'ResourceLoader' => 'includes/resourceloader/ResourceLoader.php',
 	'ResourceLoaderContext' => 'includes/resourceloader/ResourceLoaderContext.php',
