@@ -362,9 +362,17 @@ class ChangesList extends ContextSource {
 	 * @param $watched
 	 */
 	public function insertArticleLink( &$s, &$rc, $unpatrolled, $watched ) {
-		# If it's a new article, there is no diff link, but if it hasn't been
-		# patrolled yet, we need to give users a way to do so
+		global $wgUseRCPatrol;
+
 		$params = array();
+
+		// In case we got a page creation which is yet unpatrolled and
+		// recent changes patrolling is enabled, the user probably rather
+		// wants to patrol the whole page (first revision) instead of seeing
+		// a patrollink for the current revision.
+		if ( $wgUseRCPatrol && $unpatrolled && $rc->getAttribute( 'rc_type' ) == RC_NEW ) {
+			$params['patrolpage'] = 1;
+		}
 
 		$articlelink = Linker::linkKnown(
 			$rc->getTitle(),
