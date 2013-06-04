@@ -24,6 +24,7 @@ production.
 * $wgXhtmlDefaultNamespace is no longer used by core. Setting it will no longer change the
   xmlns used by MediaWiki. Reliance on this variable by extensions is deprecated.
 * $wgHandheldStyle was removed.
+* $wgHandheldForIPhone was removed.
 * $wgJsMimeType is no longer used by core. Most usage has been removed since
   HTML output is now exclusively HTML5.
 * $wgDBOracleDRCP added. True enables persistent connection with DRCP on Oracle.
