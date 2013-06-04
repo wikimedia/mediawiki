@@ -4492,8 +4492,6 @@ class Title {
 	 * @return Bool true if the update succeeded
 	 */
 	public function invalidateCache() {
-		global $wgMemc;
-
 		if ( wfReadOnly() ) {
 			return false;
 		}
