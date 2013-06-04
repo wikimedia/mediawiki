@@ -293,6 +293,13 @@ if ( $wgMetaNamespace === false ) {
 	$wgMetaNamespace = str_replace( ' ', '_', $wgSitename );
 }
 
+
+// Default value is either the suhosin limit or -1 for unlimited
+if ( $wgResourceLoaderMaxQueryLength === false ) {
+	$maxValueLength = ini_get( 'suhosin.get.max_value_length' );
+	$wgResourceLoaderMaxQueryLength = $maxValueLength > 0 ? $maxValueLength : -1;
+}
+
 /**
  * Definitions of the NS_ constants are in Defines.php
  * @private
