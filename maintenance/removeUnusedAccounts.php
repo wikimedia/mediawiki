@@ -77,6 +77,9 @@ class RemoveUnusedAccounts extends Maintenance {
 			$this->output( "\nDeleting inactive accounts..." );
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->delete( 'user', array( 'user_id' => $del ), __METHOD__ );
+			$dbw->delete( 'user_groups', array( 'ug_user' => $del ), __METHOD__ );
+			$dbw->delete( 'user_former_groups', array( 'ufg_user' => $del ), __METHOD__ );
+			$dbw->delete( 'user_properties', array( 'up_user' => $del ), __METHOD__ );
 			$dbw->delete( 'logging', array( 'log_user' => $del ), __METHOD__ );
 			$dbw->delete( 'recentchanges', array( 'rc_user' => $del ), __METHOD__ );
 			$this->output( "done.\n" );
