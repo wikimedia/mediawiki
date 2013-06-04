@@ -826,6 +826,8 @@ $2',
 
 # Special:PasswordReset
 'passwordreset' => '重新設定密碼',
+'passwordreset-text-one' => '完成此表格以重新設定您的密碼。',
+'passwordreset-text-many' => '{{PLURAL:$1|輸入其中一項資料以重新設定您的密碼。}}',
 'passwordreset-legend' => '重設密碼',
 'passwordreset-disabled' => '此維基上已禁止了重設密碼。',
 'passwordreset-emaildisabled' => '電子郵件功能在此 wiki 上已禁用。',

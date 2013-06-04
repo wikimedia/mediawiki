@@ -759,11 +759,9 @@ Du har muligvis allerede skiftet din adgangskode eller anmodet om en ny midlerti
 
 # Special:PasswordReset
 'passwordreset' => 'Nulstil adgangskode',
-'passwordreset-text' => 'Udfyld denne formular for at nulstille din adgangskode.',
 'passwordreset-legend' => 'Nulstil adgangskode',
 'passwordreset-disabled' => 'Nulstilling af kodeord er slået fra på denne wiki.',
 'passwordreset-emaildisabled' => 'E-mailfunktioner er slået fra på denne wiki.',
-'passwordreset-pretext' => '{{PLURAL:$1||Indtast en af de nedenstående oplysninger}}',
 'passwordreset-username' => 'Brugernavn:',
 'passwordreset-domain' => 'Domæne:',
 'passwordreset-capture' => 'Se den resulterende email?',

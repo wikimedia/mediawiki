@@ -759,6 +759,8 @@ Vläicht hutt Dir Äert Passwuert scho geännert oder en neit temporäert Passwu
 
 # Special:PasswordReset
 'passwordreset' => 'Passwuert zrécksetzen',
+'passwordreset-text-one' => 'Fëllt dëse Formulaire aus fir Äert Passwuert zréckzesetzen.',
+'passwordreset-text-many' => '{{PLURAL:$1|Gitt eng vun dësen Donnéeën a fir Ärt Passwuert zréckzesetzen.}}',
 'passwordreset-legend' => 'Passwuert zrécksetzen',
 'passwordreset-disabled' => "D'Zerécksetze vum Passwuert ass op dëser Wiki ausgeschalt.",
 'passwordreset-emaildisabled' => "D'E-Mail-Fonctioune goufen op dëser Wiki ausgeschalt.",
@@ -1000,6 +1002,7 @@ Si gouf anscheinend geläscht.",
 'postedit-confirmation' => 'Är Ännerung gouf gespäichert.',
 'edit-already-exists' => 'Déi nei Säit konnt net ugeluecht ginn, well et se scho gëtt.',
 'defaultmessagetext' => 'Standardtext',
+'content-failed-to-parse' => 'Den $2-Inhalt fir den $1-Modell konnt net geparst ginn: $1',
 'invalid-content-data' => 'Donnéeë vum Inhalt sinn net valabel',
 'content-not-allowed-here' => '"$1"-Inhalt ass op der Säit [[$2]] net erlaabt',
 'editwarning-warning' => 'Wann Dir dës Säit verloosst kann dat dozou féieren datt Dir all Ännerungen, déi Dir gemaach hutt, verléiert.

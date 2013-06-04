@@ -936,6 +936,8 @@ $2',
 
 # Special:PasswordReset
 'passwordreset' => 'Менување на лозинка',
+'passwordreset-text-one' => 'Пополнете го образецов за да ја измените лозинката.',
+'passwordreset-text-many' => '{{PLURAL:$1|Внесете еден од податоците за да ја смените лозинката.}}',
 'passwordreset-legend' => 'Нова лозинка',
 'passwordreset-disabled' => 'На ова вики е оневозможено задавање на нова лозинка.',
 'passwordreset-emaildisabled' => 'Можностите за е-пошта се исклучени на ова вики',

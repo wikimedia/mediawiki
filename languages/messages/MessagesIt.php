@@ -852,6 +852,7 @@ La password potrebbe essere stata già cambiata, oppure potrebbe essere stata ri
 
 # Special:PasswordReset
 'passwordreset' => 'Reimposta password',
+'passwordreset-text-one' => 'Compila questo modulo per reimpostare la tua password.',
 'passwordreset-legend' => 'Reimposta password',
 'passwordreset-disabled' => 'La reimpostazione delle password è stata disabilitata su questa wiki',
 'passwordreset-emaildisabled' => 'Le funzionalità di posta elettronica sono state disabilitate su questa wiki.',

@@ -423,6 +423,18 @@ $messages = array(
 'oct' => 'Out.',
 'nov' => 'Nov.',
 'dec' => 'Dez.',
+'january-date' => '$1 de Janeiro',
+'february-date' => '$1 de Fevereiro',
+'march-date' => '$1 de Março',
+'april-date' => '$1 de Abril',
+'may-date' => '$1 de Maio',
+'june-date' => '$1 de Junho',
+'july-date' => '$1 de Julho',
+'august-date' => '$1 de Agosto',
+'september-date' => '$1 de Setembro',
+'october-date' => '$1 de Outubro',
+'november-date' => '$1 de Novembro',
+'december-date' => '$1 de Dezembro',
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Categoria|Categorias}}',
@@ -739,8 +751,8 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências]].'
 'createacct-yourpasswordagain' => 'Confirme a palavra-chave',
 'createacct-yourpasswordagain-ph' => 'Digite a palavra-chave novamente',
 'remembermypassword' => 'Recordar os meus dados neste computador (no máximo, por $1 {{PLURAL:$1|dia|dias}})',
-'userlogin-remembermypassword' => 'Memorizar neste computador',
-'userlogin-signwithsecure' => 'Inicie sessão com servidor seguro',
+'userlogin-remembermypassword' => 'Manter-me autenticado',
+'userlogin-signwithsecure' => 'Use uma ligação segura',
 'securelogin-stick-https' => 'Manter a ligação HTTPS após a autenticação',
 'yourdomainname' => 'O seu domínio:',
 'password-change-forbidden' => 'Não podes alterar senhas nesta wiki.',
@@ -761,6 +773,7 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências]].'
 'gotaccount' => "Já possui uma conta? '''$1'''.",
 'gotaccountlink' => 'Autentique-se',
 'userlogin-resetlink' => 'Esqueceu-se do seu nome de utilizador ou da palavra-chave?',
+'userlogin-resetpassword-link' => 'Recuperar palavra-chave',
 'helplogin-url' => 'Ajuda:login',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Ajuda a fazer login]]',
 'createacct-join' => 'Insira a sua informação abaixo.',
@@ -771,11 +784,19 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências]].'
 'createacct-realname' => 'Nome verdadeiro (opcional)',
 'createaccountreason' => 'Motivo:',
 'createacct-reason' => 'Razão',
+'createacct-reason-ph' => 'Porque está a criar outra conta',
 'createacct-captcha' => 'Verificar segurança',
+'createacct-imgcaptcha-ph' => 'Digite o texto que vê acima',
+'createacct-submit' => 'Crie a sua conta',
+'createacct-benefit-heading' => '{{SITENAME}} é feito por pessoas como você.',
+'createacct-benefit-body1' => '{{PLURAL:$1|edição|edições}}',
+'createacct-benefit-body2' => '{{PLURAL:$1|página|páginas}}',
+'createacct-benefit-body3' => '{{PLURAL:$1|contribuidor|contribuidores}} recentes',
 'badretype' => 'As palavras-chave que introduziu não são iguais.',
 'userexists' => 'O nome de utilizador introduzido já existe.
 Por favor escolha um nome diferente.',
 'loginerror' => 'Erro de autenticação',
+'createacct-error' => 'Erro na criação da conta',
 'createaccounterror' => 'Não foi possível criar a conta: $1',
 'nocookiesnew' => "A conta de utilizador foi criada, mas neste momento não está autenticado.
 A {{SITENAME}} utiliza ''cookies'' para autenticar os utilizadores.
@@ -846,6 +867,7 @@ Aguarde antes de tentar novamente, por favor.',
 # Email sending
 'php-mail-error-unknown' => 'Erro desconhecido na função mail() do PHP',
 'user-mail-no-addy' => 'Tentou enviar uma mensagem sem um endereço de correio electrónico',
+'user-mail-no-body' => 'Tentou mandar email sem conteúdo ou com conteúdo demasiado pequeno.',
 
 # Change password dialog
 'resetpass' => 'Alterar palavra-chave',
@@ -865,11 +887,15 @@ Para prosseguir, será necessário definir uma nova palavra-chave.',
 'resetpass-wrong-oldpass' => 'Palavra-chave temporária ou actual inválida.
 Pode ter já alterado com sucesso a sua palavra-chave ou solicitado uma nova palavra-chave temporária.',
 'resetpass-temp-password' => 'Palavra-chave temporária:',
+'resetpass-abort-generic' => 'Alteração de senha foi cancelada por uma extensão.',
 
 # Special:PasswordReset
 'passwordreset' => 'Repor palavra-chave',
+'passwordreset-text-one' => 'Preencha este formulário para repor a sua palavra-passe.',
+'passwordreset-text-many' => '{{PLURAL:$1|Digite uma parte dos dados para redefinir sua senha.}}',
 'passwordreset-legend' => 'Reiniciar a palavra-chave',
 'passwordreset-disabled' => 'O reinício da palavra-chave foi impossibilitado nesta wiki.',
+'passwordreset-emaildisabled' => 'Recursos de e-mail foram desactivados neste wiki.',
 'passwordreset-username' => 'Nome de utilizador:',
 'passwordreset-domain' => 'Domínio:',
 'passwordreset-capture' => 'Ver o email resultante?',
@@ -900,6 +926,7 @@ Palavra-chave temporária: $2',
 'changeemail-oldemail' => 'Correio electrónico actual:',
 'changeemail-newemail' => 'Correio electrónico novo:',
 'changeemail-none' => '(nenhum)',
+'changeemail-password' => 'A sua senha {{SITENAME}}:',
 'changeemail-submit' => 'Alterar correio electrónico',
 'changeemail-cancel' => 'Cancelar',
 
@@ -1115,6 +1142,8 @@ Ela parece ter sido eliminada.',
 'edit-already-exists' => 'Não foi possível criar uma página nova.
 Ela já existia.',
 'defaultmessagetext' => 'Texto da mensagem padrão',
+'content-failed-to-parse' => 'Falha ao analisar conteúdo $2 para modelo $1:$3',
+'invalid-content-data' => 'Dados de conteúdo inválidos',
 'content-not-allowed-here' => 'Conteúdo do tipo "$1" não é permitido na página [[$2]]',
 'editwarning-warning' => 'Sair desta página fará com que você perca todas as alterações feitas por você.
 Se você fez login, pode desabilitar este aviso na seção "{{int:prefs-editing}}" das suas preferências.',
@@ -1408,6 +1437,7 @@ Tente usar o prefixo ''all:'' para pesquisar todo o conteúdo (incluindo página
 'searchdisabled' => 'Foi impossibilitada a realização de pesquisas na {{SITENAME}}.
 Entretanto, pode realizar pesquisas através do Google.
 Note, no entanto, que a indexação da {{SITENAME}} neste motor de busca pode estar desactualizada.',
+'search-error' => 'Um erro ocorreu enquanto se efectuava a busca: $1',
 
 # Preferences page
 'preferences' => 'Preferências',
@@ -1552,6 +1582,7 @@ Esta informação será pública.',
 'userrights-notallowed' => 'A sua conta não tem permissão para adicionar ou remover privilégios a utilizadores.',
 'userrights-changeable-col' => 'Grupos que pode alterar',
 'userrights-unchangeable-col' => 'Grupos que não pode alterar',
+'userrights-conflict' => 'Conflito com os privilégios dos utilizadores! Por favor, aplique as suas mudanças novamente.',
 
 # Groups
 'group' => 'Grupo:',
@@ -1894,6 +1925,7 @@ Caso o problema persista, contacte um [[Special:ListUsers/sysop|administrador]].
 'backend-fail-notsame' => 'Já existe um ficheiro não idêntico em $1 .',
 'backend-fail-invalidpath' => '$1 não é um caminho de armazenamento válido.',
 'backend-fail-delete' => 'Não foi possível excluir o ficheiro $1.',
+'backend-fail-describe' => 'Não foi possível mudar metadados para o ficheiro "$1".',
 'backend-fail-alreadyexists' => 'O ficheiro $1 já existe.',
 'backend-fail-store' => 'Não foi possível armazenar o ficheiro $1 em $2.',
 'backend-fail-copy' => 'Não foi possível copiar o ficheiro $1 para $2.',
@@ -2126,6 +2158,12 @@ Talvez queira editar a descrição na [$2 página original de descrição do fic
 Estes links deviam ser desambiguados, apontando-os para uma página mais apropriada.<br />
 Considera-se que uma página é de desambiguação se nela for utilizada uma predefinição que esteja definida em [[MediaWiki:Disambiguationspage]].",
 
+'pageswithprop' => 'Páginas com uma propriedade',
+'pageswithprop-legend' => 'Páginas com uma propriedade',
+'pageswithprop-text' => 'Esta página lista páginas que usam uma propriedade em particular.',
+'pageswithprop-prop' => 'Nome da propriedade:',
+'pageswithprop-submit' => 'Avançar',
+
 'doubleredirects' => 'Redireccionamentos duplos',
 'doubleredirectstext' => 'Esta página lista todas as páginas que redireccionam para outras páginas de redireccionamento.
 Cada linha contém links para o primeiro e segundo redireccionamentos, bem como o destino do segundo redireccionamento, geralmente contendo a verdadeira página de destino, que devia ser o destino do primeiro redireccionamento.
@@ -2323,6 +2361,7 @@ Encontram-se disponíveis [[{{MediaWiki:Listgrouprights-helppage}}|informações
 'mailnologintext' => 'Precisa de estar [[Special:UserLogin|autenticado]] e possuir um endereço de correio válido nas suas [[Special:Preferences|preferências]], para poder enviar correio electrónico a outros utilizadores.',
 'emailuser' => 'Enviar correio electrónico a este utilizador',
 'emailuser-title-target' => 'Enviar correio eletrónico a {{GENDER:$1|este utilizador|esta utilizadora}}',
+'emailuser-title-notarget' => 'Enviar correio electrónico ao utilizador',
 'emailpage' => 'Enviar correio electrónico ao utilizador',
 'emailpagetext' => 'Pode usar o formulário abaixo para enviar uma mensagem por correio eletrónico para {{GENDER:$1|este utilizador|esta utilizadora}}.
 O endereço de correio que introduziu nas [[Special:Preferences|suas preferências]] irá aparecer no campo do remetente da mensagem "De:", para que o destinatário lhe possa responder diretamente.',
@@ -2394,6 +2433,16 @@ O nome desta página passará a aparecer a '''negrito''' na lista de [[Special:R
 'enotif_mailer' => 'Gerador de Notificações da {{SITENAME}}',
 'enotif_reset' => 'Marcar todas as páginas como visitadas',
 'enotif_impersonal_salutation' => 'Utilizador da "{{SITENAME}}"',
+'enotif_subject_deleted' => 'A página  $1 de {{SITENAME}} foi {{GENDER:$2|eliminada}} por $2',
+'enotif_subject_created' => 'A página $1 de {{SITENAME}} foi {{GENDER:$2|criada}} por $2',
+'enotif_subject_moved' => 'A página $1 de {{SITENAME}} foi {{GENDER:$2|movida}} por $2',
+'enotif_subject_restored' => 'A página $1 de {{SITENAME}} foi {{GENDER:$2|restaurada}} por $2',
+'enotif_subject_changed' => 'A página $1 de {{SITENAME}} foi {{GENDER:$2|alterada}} por $2',
+'enotif_body_intro_deleted' => 'A página $1 de {{SITENAME}} foi {{GENDER:$2|eliminada}} em $PAGEEDITDATE por $2, ver $3.',
+'enotif_body_intro_created' => 'A página $1 em {{SITENAME}} foi {{GENDER:$2| criada}} em $PAGEEDITDATE por $2, ver $3 para a versão actual.',
+'enotif_body_intro_moved' => 'A páginas $1 em {{SITENAME}} foi {{GENDER:$2|movida}} em $PAGEEDITDATE por $2, ver $3 para a versão actual.',
+'enotif_body_intro_restored' => 'A páginas $1 em {{SITENAME}} foi {{GENDER:$2|restaurada}} em $PAGEEDITDATE por $2, ver $3 para a versão actual.',
+'enotif_body_intro_changed' => 'A página $1 em {{SITENAME}} foi {{GENDER:$2|alterada}} em $PAGEEDITDATE por $2, ver $3 para a versão actual.',
 'enotif_lastvisited' => 'Consulte $1 para todas as alterações efectuadas desde a sua última visita.',
 'enotif_lastdiff' => 'Consulte $1 para ver esta alteração.',
 'enotif_anon_editor' => 'utilizador anónimo $1',
@@ -2497,6 +2546,8 @@ Consulte a [[Special:ProtectedPages|lista de páginas protegidas]] para ver as p
 'prot_1movedto2' => 'moveu [[$1]] para [[$2]]',
 'protect-badnamespace-title' => 'Espaço nominal não passível de protecção',
 'protect-badnamespace-text' => 'Páginas neste espaço nominal não podem ser protegidas.',
+'protect-norestrictiontypes-text' => 'Esta página não pode ser protegida porque não há nenhum tipo de restrição disponível.',
+'protect-norestrictiontypes-title' => 'Página não passível de protecção',
 'protect-legend' => 'Confirmar protecção',
 'protectcomment' => 'Motivo:',
 'protectexpiry' => 'Expiração:',
@@ -2778,6 +2829,7 @@ Contacte o seu fornecedor de internet ou o serviço de apoio técnico e informe-
 'proxyblocksuccess' => 'Concluído.',
 'sorbsreason' => "O seu endereço IP encontra-se listado como ''proxy'' aberto na DNSBL utilizada pela {{SITENAME}}.",
 'sorbs_create_account_reason' => "O seu endereço IP encontra-se listado como ''proxy'' aberto na DNSBL utilizada pela {{SITENAME}}. Não pode criar uma conta",
+'xffblockreason' => 'Um endereço IP presente no cabeçalho X-Forwardd-For, seja seu ou de um servidor de proxy que estiver a usar, foi bloqueado. A razão do bloqueio original foi: $1',
 'cant-block-while-blocked' => 'Não pode bloquear outros utilizadores enquanto estiver bloqueado.',
 'cant-see-hidden-user' => "O utilizador que está tentando bloquear já está bloqueado e oculto.
 Como não tem o privilégio para ocultar utilizadores ''(hideuser)'', não pode ver ou editar o bloqueio deste utilizador.",
@@ -2941,6 +2993,8 @@ Se deseja colaborar na localização genérica do MediaWiki, visite [//www.media
 'thumbnail-more' => 'Ampliar',
 'filemissing' => 'Ficheiro não encontrado',
 'thumbnail_error' => 'Erro ao criar miniatura: $1',
+'thumbnail_error_remote' => 'Mensagem de erro de $1 :
+$2',
 'djvu_page_error' => 'página DjVu inacessível',
 'djvu_no_xml' => 'Não foi possível aceder ao XML para o ficheiro DjVU',
 'thumbnail-temp-create' => 'Não foi possível criar o ficheiro temporário da miniatura',
@@ -2962,6 +3016,7 @@ Todas as acções de importação transwikis são registadas no [[Special:Log/im
 'import-interwiki-templates' => 'Incluir todas as predefinições',
 'import-interwiki-submit' => 'Importar',
 'import-interwiki-namespace' => 'Espaço nominal de destino:',
+'import-interwiki-rootpage' => 'Raiz da página de destino (opcional):',
 'import-upload-filename' => 'Nome do ficheiro:',
 'import-comment' => 'Comentário:',
 'importtext' => 'Exporte o ficheiro da wiki de origem utilizando a página especial [[Special:Export|exportação de páginas]].
@@ -2997,7 +3052,9 @@ Não há um directório temporário.',
 'import-error-interwiki' => 'A página "$1" não pode ser importada pois seu nome está reservado para um link externo (interwiki).',
 'import-error-special' => 'A página "$1" não pode ser importada porque ela pertence a um espaço nominal especial que não permite páginas.',
 'import-error-invalid' => 'A página "$1" não pode ser importada porque seu nome é inválido.',
+'import-error-unserialize' => 'Revisão $2 da página "$1" não pode ser desserializada. Foi relatado que a revisão usava o modelo de conteúdo $3 serializado como $4.',
 'import-options-wrong' => '{{PLURAL:$2|Opção errada|Opções erradas}}: <nowiki>$1</nowiki>',
+'import-rootpage-invalid' => 'A raiz da página dada é um título inválido.',
 
 # Import log
 'importlogpage' => 'Registo de importações',

@@ -645,11 +645,11 @@ Seique yá camudaras correutamente la contraseña o que pidieras una nueva contr
 
 # Special:PasswordReset
 'passwordreset' => 'Reaniciar contraseña',
-'passwordreset-text' => 'Complete esti formulariu pa reaniciar la contraseña.',
+'passwordreset-text-one' => 'Complete esti formulariu pa reaniciar la contraseña.',
+'passwordreset-text-many' => '{{PLURAL:$1|Escriba una de les partes de los datos pa reaniciar la contraseña.}}',
 'passwordreset-legend' => 'Reaniciar contraseña',
 'passwordreset-disabled' => 'Los reanicios de contraseña tán desactivaos nesta wiki.',
 'passwordreset-emaildisabled' => 'Les funciones de corréu electrónicu tan desactivaes nesta wiki.',
-'passwordreset-pretext' => "{{PLURAL:$1||Escribi unu de los elementos de los datos d'abaxo}}",
 'passwordreset-username' => "Nome d'usuariu:",
 'passwordreset-domain' => 'Dominiu:',
 'passwordreset-capture' => '¿Ver el corréu electrónicu resultante?',
@@ -895,6 +895,7 @@ Nun dio esplicación.',
 Paez que se desanició.',
 'edit-conflict' => "Conflictu d'edición.",
 'edit-no-change' => "S'inoró la to edición, porque nun se fizo nengún cambéu nel testu.",
+'postedit-confirmation' => 'Guardose la edición.',
 'edit-already-exists' => 'Nun pudo crease una páxina nueva.
 Esta yá esiste.',
 'defaultmessagetext' => 'Testu predetermináu',

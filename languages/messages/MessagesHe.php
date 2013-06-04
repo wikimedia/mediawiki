@@ -936,6 +936,8 @@ $2',
 
 # Special:PasswordReset
 'passwordreset' => 'איפוס סיסמה',
+'passwordreset-text-one' => 'מלאו טופס זה כדי לאפס את הסיסמה.',
+'passwordreset-text-many' => '{{PLURAL:$1||הקלידו אחד מפריטי המידע כדי לאפס את הסיסמה.}}',
 'passwordreset-legend' => 'איפוס סיסמה',
 'passwordreset-disabled' => 'איפוסי סיסמה בוטלו באתר ויקי זה.',
 'passwordreset-emaildisabled' => 'שירותי הדוא"ל בוטלו באתר ויקי זה.',

@@ -651,7 +651,8 @@ See also:
 * {{msg-mw|Tooltip-n-currentevents}}',
 'currentevents-url' => "Target page of ''CurrentEvents'' in the sidebar. See also {{msg-mw|currentevents}}.
 {{doc-important|Do not translate the \"<tt>Project:</tt>\" part.}}",
-'disclaimers' => 'Used as display name for the link to [[{{MediaWiki:Disclaimerpage}}]] shown at the bottom of every page on the wiki. Example [[{{MediaWiki:Disclaimerpage}}|{{MediaWiki:Disclaimers}}]].',
+'disclaimers' => 'Used as display name for the link to [[{{MediaWiki:Disclaimerpage}}]] shown at the bottom of every page on the wiki. Example [[{{MediaWiki:Disclaimerpage}}|{{MediaWiki:Disclaimers}}]].
+{{Identical|Disclaimer}}',
 'disclaimerpage' => 'Used as page for that contains the site disclaimer. Used at the bottom of every page on the wiki. Example: [[{{MediaWiki:Disclaimerpage}}|{{MediaWiki:Disclaimers}}]].
 {{doc-important|Do not change the "<tt>Project:</tt>" part.}}',
 'edithelp' => 'This is the text that appears on the editing help link that is near the bottom of the editing page',
@@ -7699,7 +7700,8 @@ This property can come from xmp:Label in XMP ( http://www.adobe.com/content/dam/
 'exif-pngfilecomment' => 'See also:
 * {{msg-mw|Exif-pngfilecomment}}
 * {{msg-mw|Exif-giffilecomment}}',
-'exif-disclaimer' => 'Disclaimer for the image.',
+'exif-disclaimer' => 'Disclaimer for the image.
+{{Identical|Disclaimer}}',
 'exif-contentwarning' => 'Content warning for the image. For example if the image/media contains violent, sexual or otherwise offensive content.
 
 This comes from the png warning textual chunk. See http://www.w3.org/TR/PNG/#11keywords',

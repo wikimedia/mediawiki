@@ -726,6 +726,7 @@ Es possibile que tu ha ja cambiate tu contrasigno o requestate un nove contrasig
 
 # Special:PasswordReset
 'passwordreset' => 'Reinitialisar contrasigno',
+'passwordreset-text-one' => 'Completa iste formulario pro reinitialisar tu contrasigno.',
 'passwordreset-legend' => 'Reinitialisar contrasigno',
 'passwordreset-disabled' => 'Le reinitialisation de contrasignos ha essite disactivate in iste wiki.',
 'passwordreset-emaildisabled' => 'Le functionalitate de e-mail ha essite disactivate in iste wiki.',

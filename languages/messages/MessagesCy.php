@@ -677,6 +677,8 @@ Gall fod eich bod wedi llwyddo newid eich cyfrinair eisoes neu eich bod wedi gof
 
 # Special:PasswordReset
 'passwordreset' => 'Ailosod cyfrinair',
+'passwordreset-text-one' => 'Cwblhewch y ffurflen hon er mwyn ailosod eich cyfrinair.',
+'passwordreset-text-many' => "{{PLURAL:$1|Rhowch un o'r dewis o fanylion derbyniol er mwyn ailosod eich cyfrinair.}}",
 'passwordreset-legend' => 'Ailosod y cyfrinair',
 'passwordreset-disabled' => 'Analluogwyd ailosod cyfrineiriau ar y wici hwn.',
 'passwordreset-emaildisabled' => 'Analluogwyd offer e-bost ar y wici hwn.',
@@ -908,6 +910,7 @@ Ni roddodd eglurhad.',
 Ymddengys iddi gael ei dileu.",
 'edit-conflict' => 'Cyd-ddigwyddiad golygu.',
 'edit-no-change' => 'Anwybyddwyd eich golygiad, gan na newidiwyd y testun.',
+'postedit-confirmation' => 'Rhoddwyd eich golygiad ar gadw.',
 'edit-already-exists' => 'Ni ellid creu tudalen newydd.
 Mae ar gael yn barod.',
 'defaultmessagetext' => 'Y testun rhagosodedig',

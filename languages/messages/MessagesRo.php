@@ -870,11 +870,11 @@ Este posibil să fi reușit deja schimbarea parolei sau să fi cerut o parolă t
 
 # Special:PasswordReset
 'passwordreset' => 'Resetare parolă',
-'passwordreset-text' => 'Completați acest formular pentru a vă reseta parola.',
+'passwordreset-text-one' => 'Completați acest formular pentru a vă reseta parola.',
+'passwordreset-text-many' => '{{PLURAL:$1|Introduceți una din aceste informații pentru a vă reseta parola.}}',
 'passwordreset-legend' => 'Resetare parolă',
 'passwordreset-disabled' => 'Resetarea parolei a fost dezactivată pe acest wiki.',
 'passwordreset-emaildisabled' => 'Funcțiile de e-mail au fost dezactivate de pe acest wiki.',
-'passwordreset-pretext' => '{{PLURAL:$1| | Introduceți mai jos o parte din informații}}',
 'passwordreset-username' => 'Nume de utilizator:',
 'passwordreset-domain' => 'Domeniu:',
 'passwordreset-capture' => 'Vizualizați e-mailul rezultat?',
@@ -1116,6 +1116,7 @@ Nicio explicație furnizată.',
 Se pare că a fost ștearsă.',
 'edit-conflict' => 'Conflict de modificare.',
 'edit-no-change' => 'Modificarea dvs. a fost ignorată deoarece nu s-a efectuat nicio schimbare.',
+'postedit-confirmation' => 'Modificarea dumneavoastră a fost salvată.',
 'edit-already-exists' => 'Pagina nouă nu a putut fi creată.
 Ea există deja.',
 'defaultmessagetext' => 'Textul implicit',

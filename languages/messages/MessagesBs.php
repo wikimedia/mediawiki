@@ -695,7 +695,9 @@ Ne zaboravite da prilagodite sebi svoja [[Special:Preferences|{{SITENAME}} pode�
 'yourpassword' => 'Šifra:',
 'userlogin-yourpassword' => 'Šifra',
 'userlogin-yourpassword-ph' => 'Unesite Vašu šifru/lozinku',
+'createacct-yourpassword-ph' => 'Unesite šifru/lozinku',
 'yourpasswordagain' => 'Ponovite šifru:',
+'createacct-yourpasswordagain-ph' => 'Unesite šifru/lozinku opet',
 'remembermypassword' => 'Zapamti moju šifru na ovom računaru (najviše $1 {{PLURAL:$1|dan|dana|dana}})',
 'userlogin-signwithsecure' => 'Koristite sigurnu konekciju',
 'securelogin-stick-https' => 'Ostani povezan na HTTPS nakon prijave',
@@ -719,8 +721,16 @@ Ne zaboravite da prilagodite sebi svoja [[Special:Preferences|{{SITENAME}} pode�
 'gotaccountlink' => 'Prijavi se',
 'userlogin-resetlink' => 'Zaboravili ste detalje vaše prijave?',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Pomoć pri prijavljivanju]]',
-'createaccountmail' => 'e-poštom',
+'createacct-join' => 'Unesite svoje podatke ispod.',
+'createacct-emailrequired' => 'Adresa e-pošte',
+'createacct-emailoptional' => 'Adresa e-pošte (opcionalno)',
+'createaccountmail' => 'Koristite privremenu, slučajno stvorenu šifru/lozinku i pošaljite na dole navedenu adrеsu e-pošte',
+'createacct-realname' => 'Pravo ime (opcionalno)',
 'createaccountreason' => 'Razlog:',
+'createacct-reason' => 'Razlog',
+'createacct-captcha' => 'Sigurnosna provjera',
+'createacct-imgcaptcha-ph' => 'Unesite tekst koji vidite iznad',
+'createacct-submit' => 'Napravite svoj korisnički račun',
 'badretype' => 'Šifre koje ste unijeli se ne poklapaju.',
 'userexists' => 'Korisničko ime koje ste unijeli je već u upotrebi.
 Molimo Vas da izaberete drugo ime.',
@@ -821,16 +831,12 @@ Možda ste već uspješno promijenili Vašu šifru ili ste tražili novu privrem
 'passwordreset-capture-help' => 'Ako označite ovu kućicu, e-poruka (s privremenom lozinkom) će biti prikazana i poslata korisniku.',
 'passwordreset-email' => 'E-mail adresa:',
 'passwordreset-emailtitle' => 'Detalji računa na {{SITENAME}}',
-'passwordreset-emailtext-ip' => 'Neto (vjerovatno Vi, s IP adrese $1) je zatražio podsjetnik Vaših detalja računa
-za {{SITENAME}} ($4). Sljedeći {{PLURAL:$3|račun korisnika je|računi korisnika su}}
-povezani s ovom e-mail adresom:
+'passwordreset-emailtext-ip' => 'Neko (vjerovatno Vi, s IP adrese $1) je zatražio podsjetnik Vaših detalja računa za {{SITENAME}} ($4). Sljedeći {{PLURAL:$3|račun korisnika je|računi korisnika su}} povezani s ovom e-mail adresom:
 
 $2
 
 {{PLURAL:$3|Ova privremena šifra|Ove privremene šifre}} će isteći za {{PLURAL:$5|jedan dan|$5 dana}}.
-Trebate se prijaviti i odabrati novu šifru. Ako je neko drugi napravio ovaj
-zahtjev, ili ako ste se sjetili Vaše početne šifre, a ne želite je promijeniti, 
-možete zanemariti ovu poruku i nastaviti koristiti staru šifru.',
+Trebate se prijaviti i odabrati novu šifru. Ako je neko drugi napravio ovaj zahtjev, ili ako ste se sjetili Vaše početne šifre, a ne želite je promijeniti, možete zanemariti ovu poruku i nastaviti koristiti staru šifru.',
 'passwordreset-emailtext-user' => 'Korisnik $1 na {{SITENAME}} je zatražio podsjetnik o detaljima Vašeg računa za {{SITENAME}}
 ($4). Sljedeći {{PLURAL:$3|korisnički račun je|korisnički računi su}} povezani s ovom e-mail adresom:
 

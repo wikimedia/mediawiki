@@ -880,6 +880,8 @@ Có thể bạn đã thay đổi thành công mật khẩu của mình hoặc đ
 
 # Special:PasswordReset
 'passwordreset' => 'Tái tạo mật khẩu',
+'passwordreset-text-one' => 'Hãy điền mẫu đơn này để tái tạo mật khẩu.',
+'passwordreset-text-many' => '{{PLURAL:$1|Nhập một trong những chi tiết sau để táo tạo mật khẩu.}}',
 'passwordreset-legend' => 'Tái tạo mật khẩu',
 'passwordreset-disabled' => 'Chức năng tái tạo mật khẩu đã bị tắt trên wiki này.',
 'passwordreset-emaildisabled' => 'Tính năng gửi thư điện tử không được kích hoạt trên wiki này.',

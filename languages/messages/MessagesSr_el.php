@@ -3166,6 +3166,7 @@ Ovo je verovatno izazvano vezom do spoljašnjeg sajta koji se nalazi na crnoj li
 'pageinfo-robot-noindex' => 'Ne može da se popiše',
 'pageinfo-views' => 'Broj pregleda',
 'pageinfo-watchers' => 'Broj nadgledača stranica',
+'pageinfo-few-watchers' => 'Manje od $1 {{PLURAL:$1|pratioca|pratilaca}}',
 'pageinfo-redirects-name' => 'Preusmeravanja na stranicu',
 'pageinfo-subpages-name' => 'Podstranice ove stranice',
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|preusmerenje|preusmerenja|preusmerenja}}; $3 {{PLURAL:$3|nepreusmerenje|nepreusmerenja|nepreusmerenja}})',
