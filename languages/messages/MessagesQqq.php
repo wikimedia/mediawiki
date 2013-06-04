@@ -533,6 +533,7 @@ See also:
 * {{msg-mw|Accesskey-ca-delete}}
 * {{msg-mw|Tooltip-ca-delete}}
 {{Identical|Delete}}',
+'undeletethispage' => 'In the Cologne Blue skin this is the text for link to undelete the page in admin view, at the bottom of the page.',
 'deletethispage' => 'In the Cologne Blue skin this is the text for link to delete the page in admin view, at the bottom of the page.
 {{Identical|Delete this page}}',
 'undelete_short' => "It is tab label. It's really can be named ''nstab-undelete''.",

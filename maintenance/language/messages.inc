@@ -237,6 +237,7 @@ $wgMessageStructure = array(
 		'create-this-page',
 		'delete',
 		'deletethispage',
+		'undeletethispage',
 		'undelete_short',
 		'viewdeleted_short',
 		'protect',
