@@ -194,7 +194,7 @@ class ChangesList extends ContextSource {
 		$this->rcCacheIndex = 0;
 		$this->lastdate = '';
 		$this->rclistOpen = false;
-		$this->getOutput()->addModuleStyles( 'mediawiki.special.changeslist' );
+		$this->getOutput()->addModules( 'mediawiki.special.changeslist' );
 		return '';
 	}
 
@@ -711,7 +711,7 @@ class EnhancedChangesList extends ChangesList {
 		$this->rcCacheIndex = 0;
 		$this->lastdate = '';
 		$this->rclistOpen = false;
-		$this->getOutput()->addModuleStyles( 'mediawiki.special.changeslist' );
+		$this->getOutput()->addModules( 'mediawiki.special.changeslist' );
 		return '';
 	}
 	/**
@@ -948,7 +948,7 @@ class EnhancedChangesList extends ChangesList {
 				implode( $this->message['semicolon-separator'], $users )
 			)->escaped() . '</span>';
 
-		$tl = '<span class="mw-collapsible-toggle mw-enhancedchanges-arrow mw-enhancedchanges-arrow-space"></span>';
+		$tl = '<span class="mw-collapsible-toggle mw-collapsible-arrow mw-enhancedchanges-arrow mw-enhancedchanges-arrow-space"></span>';
 		$r .= "<td>$tl</td>";
 
 		# Main line
