@@ -205,6 +205,41 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @dataProvider provideUpsert
+	 */
+	function testUpsert( $sql, $sqlText ) {
+		$this->database->upsert(
+			$sql['table'],
+			$sql['rows'],
+			$sql['uniqueIndexes'],
+			$sql['set'],
+			__METHOD__
+		);
+		$this->assertLastSql( $sqlText );
+	}
+
+	public static function provideUpsert() {
+		return array(
+			array(
+				array(
+					'table' => 'upsert_table',
+					'rows' => array( 'field' => 'text', 'field2' => 'text2' ),
+					'uniqueIndexes' => array( 'field' ),
+					'set' => array( 'field' => 'set' ),
+				),
+				"BEGIN; " .
+					"UPDATE upsert_table " .
+					"SET field = 'set' " .
+					"WHERE ((field = 'text')); " .
+					"INSERT IGNORE INTO upsert_table " .
+					"(field,field2) " .
+					"VALUES ('text','text2'); " .
+					"COMMIT"
+			),
+		);
+	}
+
+	/**
 	 * @dataProvider provideDeleteJoin
 	 */
 	function testDeleteJoin( $sql, $sqlText ) {

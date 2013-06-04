@@ -2565,7 +2565,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @since 1.22
 	 */
 	public function upsert(
-		$table, array $rows, array $uniqueIndexes, array $set, $fname = 'DatabaseBase::upsert'
+		$table, array $rows, array $uniqueIndexes, array $set, $fname = __METHOD__
 	) {
 		if ( !count( $rows ) ) {
 			return true; // nothing to do
@@ -2591,7 +2591,7 @@ abstract class DatabaseBase implements DatabaseType {
 
 		$useTrx = !$this->mTrxLevel;
 		if ( $useTrx ) {
-			$this->begin();
+			$this->begin( $fname );
 		}
 		try {
 			# Update any existing conflicting row(s)
@@ -2604,12 +2604,12 @@ abstract class DatabaseBase implements DatabaseType {
 			$ok = $this->insert( $table, $rows, $fname, array( 'IGNORE' ) ) && $ok;
 		} catch ( Exception $e ) {
 			if ( $useTrx ) {
-				$this->rollback();
+				$this->rollback( $fname );
 			}
 			throw $e;
 		}
 		if ( $useTrx ) {
-			$this->commit();
+			$this->commit( $fname );
 		}
 
 		return $ok;
