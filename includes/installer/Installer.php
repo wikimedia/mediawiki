@@ -1075,22 +1075,16 @@ abstract class Installer {
 	}
 
 	/**
-	 * Checks if suhosin.get.max_value_length is set, and if so, sets
-	 * $wgResourceLoaderMaxQueryLength to that value in the generated
-	 * LocalSettings file
+	 * Checks if suhosin.get.max_value_length is set, and if so generate
+	 * a warning because it decreases ResourceLoader performance.
 	 * @return bool
 	 */
 	protected function envCheckSuhosinMaxValueLength() {
 		$maxValueLength = ini_get( 'suhosin.get.max_value_length' );
-		if ( $maxValueLength > 0 ) {
-			if ( $maxValueLength < 1024 ) {
-				# Only warn if the value is below the sane 1024
-				$this->showMessage( 'config-suhosin-max-value-length', $maxValueLength );
-			}
-		} else {
-			$maxValueLength = -1;
+		if ( $maxValueLength > 0 &&  $maxValueLength < 1024 ) {
+			// Only warn if the value is below the sane 1024
+			$this->showMessage( 'config-suhosin-max-value-length', $maxValueLength );
 		}
-		$this->setVar( 'wgResourceLoaderMaxQueryLength', $maxValueLength );
 		return true;
 	}
 

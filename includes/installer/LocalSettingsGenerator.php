@@ -349,12 +349,6 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 # Path to the GNU diff3 utility. Used for conflict resolution.
 \$wgDiff3 = \"{$this->values['wgDiff3']}\";
 
-# Query string length limit for ResourceLoader. You should only set this if
-# your web server has a query string length limit (then set it to that limit),
-# or if you have suhosin.get.max_value_length set in php.ini (then set it to
-# that value)
-\$wgResourceLoaderMaxQueryLength = {$this->values['wgResourceLoaderMaxQueryLength']};
-
 {$groupRights}";
 	}
 
