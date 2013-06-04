@@ -3041,30 +3041,8 @@ class WikiPage implements Page, IDBAccessObject {
 			function() use ( $dbw, $that, $method, $added, $deleted ) {
 				$ns = $that->getTitle()->getNamespace();
 
-				// First make sure the rows exist.  If one of the "deleted" ones didn't
-				// exist, we might legitimately not create it, but it's simpler to just
-				// create it and then give it a negative value, since the value is bogus
-				// anyway.
-				//
-				// Sometimes I wish we had INSERT ... ON DUPLICATE KEY UPDATE.
-				$insertCats = array_merge( $added, $deleted );
-				if ( !$insertCats ) {
-					// Okay, nothing to do
-					return;
-				}
-
-				$insertRows = array();
-				foreach ( $insertCats as $cat ) {
-					$insertRows[] = array(
-						'cat_id' => $dbw->nextSequenceValue( 'category_cat_id_seq' ),
-						'cat_title' => $cat
-					);
-				}
-				$dbw->insert( 'category', $insertRows, $method, 'IGNORE' );
-
 				$addFields = array( 'cat_pages = cat_pages + 1' );
 				$removeFields = array( 'cat_pages = cat_pages - 1' );
-
 				if ( $ns == NS_CATEGORY ) {
 					$addFields[] = 'cat_subcats = cat_subcats + 1';
 					$removeFields[] = 'cat_subcats = cat_subcats - 1';
@@ -3073,16 +3051,26 @@ class WikiPage implements Page, IDBAccessObject {
 					$removeFields[] = 'cat_files = cat_files - 1';
 				}
 
-				if ( $added ) {
-					$dbw->update(
+				if ( count( $added ) ) {
+					$insertRows = array();
+					foreach ( $added as $cat ) {
+						$insertRows[] = array(
+							'cat_title'   => $cat,
+							'cat_pages'   => 1,
+							'cat_subcats' => ( $ns == NS_CATEGORY ) ? 1 : 0,
+							'cat_files'   => ( $ns == NS_FILE ) ? 1 : 0,
+						);
+					}
+					$dbw->upsert(
 						'category',
+						$insertRows,
+						array( 'cat_title' ),
 						$addFields,
-						array( 'cat_title' => $added ),
 						$method
 					);
 				}
 
-				if ( $deleted ) {
+				if ( count( $deleted ) ) {
 					$dbw->update(
 						'category',
 						$removeFields,
@@ -3095,6 +3083,7 @@ class WikiPage implements Page, IDBAccessObject {
 					$cat = Category::newFromName( $catName );
 					wfRunHooks( 'CategoryAfterPageAdded', array( $cat, $that ) );
 				}
+
 				foreach ( $deleted as $catName ) {
 					$cat = Category::newFromName( $catName );
 					wfRunHooks( 'CategoryAfterPageRemoved', array( $cat, $that ) );
