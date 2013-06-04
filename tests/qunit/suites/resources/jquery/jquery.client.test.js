@@ -1,16 +1,11 @@
 ( function ( $ ) {
-	var uacount, uas, testMap;
 
 	QUnit.module( 'jquery.client', QUnit.newMwEnvironment() );
 
-	/** Number of user-agent defined */
-	uacount = 0;
-
-	uas = ( function () {
-
+	var uacount = 0,
 		// Object keyed by userAgent. Value is an array (human-readable name, client-profile object, navigator.platform value)
 		// Info based on results from http://toolserver.org/~krinkle/testswarm/job/174/
-		var uas = {
+		uas = {
 			// Internet Explorer 6
 			// Internet Explorer 7
 			'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)': {
@@ -141,6 +136,24 @@
 					rtl: true
 				}
 			},
+			// Iceweasel 15.0.1
+			'Mozilla/5.0 (X11; Linux x86_64; rv:15.0) Gecko/20100101 Firefox/15.0.1 Iceweasel/15.0.1': {
+				title: 'Iceweasel 15.0.1',
+				platform: 'Linux',
+				profile: {
+					name: 'iceweasel',
+					layout: 'gecko',
+					layoutVersion: 20100101,
+					platform: 'linux',
+					version: '15.0.1',
+					versionBase: '15',
+					versionNumber: 15
+				},
+				wikiEditor: {
+					ltr: true,
+					rtl: true
+				}
+			},
 			// Firefox 5
 			// Safari 3
 			// Safari 4
@@ -179,6 +192,42 @@
 				}
 			},
 			// Safari 5
+			// Safari 6
+			'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3) AppleWebKit/536.29.13 (KHTML, like Gecko) Version/6.0.4 Safari/536.29.13': {
+				title: 'Safari 6',
+				platform: 'MacIntel',
+				profile: {
+					name: 'safari',
+					layout: 'webkit',
+					layoutVersion: 536,
+					platform: 'mac',
+					version: '6.0.4',
+					versionBase: '6',
+					versionNumber: 6
+				},
+				wikiEditor: {
+					ltr: true,
+					rtl: true
+				}
+			},
+			// Safari 6.0.5+ (doesn't have the comma in "KHTML, like Gecko")
+			'Mozilla/5.0 (Macintosh; Intel Mac OS X 1084) AppleWebKit/536.30.1 (KHTML like Gecko) Version/6.0.5 Safari/536.30.1': {
+				title: 'Safari 6',
+				platform: 'MacIntel',
+				profile: {
+					name: 'safari',
+					layout: 'webkit',
+					layoutVersion: 536,
+					platform: 'mac',
+					version: '6.0.5',
+					versionBase: '6',
+					versionNumber: 6
+				},
+				wikiEditor: {
+					ltr: true,
+					rtl: true
+				}
+			},
 			// Opera 10+
 			'Opera/9.80 (Windows NT 5.1)': {
 				title: 'Opera 10+ (exact version unspecified)',
@@ -257,6 +306,24 @@
 					rtl: true
 				}
 			},
+			// Android WebKit Browser 2.3
+			'Mozilla/5.0 (Linux; U; Android 2.3.5; en-us; HTC Vision Build/GRI40) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1': {
+				title: 'Android WebKit Browser 2.3',
+				platform: 'Linux armv7l',
+				profile: {
+					name: 'android',
+					layout: 'webkit',
+					layoutVersion: 533,
+					platform: 'linux',
+					version: '2.3.5',
+					versionBase: '2',
+					versionNumber: 2.3
+				},
+				wikiEditor: {
+					ltr: true,
+					rtl: true
+				}
+			},
 			// Bug #34924
 			'Mozilla/5.0 (X11; Linux i686) AppleWebKit/534.34 (KHTML, like Gecko) rekonq Safari/534.34': {
 				title: 'Rekonq',
@@ -275,28 +342,42 @@
 					rtl: true
 				}
 			}
-		};
-		$.each( uas, function () {
-			uacount++;
-		} );
-		return uas;
-	}() );
+		},
+		testMap = {
+			// Example from WikiEditor
+			// Make sure to use raw numbers, a string like "7.0" would fail on a
+			// version 10 browser since in string comparaison "10" is before "7.0" :)
+			'ltr': {
+				'msie': [['>=', 7.0]],
+				'firefox': [['>=', 2]],
+				'opera': [['>=', 9.6]],
+				'safari': [['>=', 3]],
+				'chrome': [['>=', 3]],
+				'netscape': [['>=', 9]],
+				'blackberry': false,
+				'ipod': false,
+				'iphone': false
+			},
+			'rtl': {
+				'msie': [['>=', 8]],
+				'firefox': [['>=', 2]],
+				'opera': [['>=', 9.6]],
+				'safari': [['>=', 3]],
+				'chrome': [['>=', 3]],
+				'netscape': [['>=', 9]],
+				'blackberry': false,
+				'ipod': false,
+				'iphone': false
+			}
+		}
+	;
 
-	QUnit.test( 'profile userAgent support', uacount, function ( assert ) {
-		// Generate a client profile object and compare recursively
-		var uaTest = function ( rawUserAgent, data ) {
-			var ret = $.client.profile( {
-				userAgent: rawUserAgent,
-				platform: data.platform
-			} );
-			assert.deepEqual( ret, data.profile, 'Client profile support check for ' + data.title + ' (' + data.platform + '): ' + rawUserAgent );
-		};
-
-		// Loop through and run tests
-		$.each( uas, uaTest );
+	// Count test cases
+	$.each( uas, function () {
+		uacount++;
 	} );
 
-	QUnit.test( 'profile return validation for current user agent', 7, function ( assert ) {
+	QUnit.test( 'profile( navObject )', 7, function ( assert ) {
 		var p = $.client.profile();
 
 		function unknownOrType( val, type, summary ) {
@@ -312,44 +393,58 @@
 		assert.equal( typeof p.versionNumber, 'number', 'p.versionNumber is a number' );
 	} );
 
-	// Example from WikiEditor
-	// Make sure to use raw numbers, a string like "7.0" would fail on a
-	// version 10 browser since in string comparaison "10" is before "7.0" :)
-	testMap = {
-		'ltr': {
-			'msie': [['>=', 7.0]],
-			'firefox': [['>=', 2]],
-			'opera': [['>=', 9.6]],
-			'safari': [['>=', 3]],
-			'chrome': [['>=', 3]],
-			'netscape': [['>=', 9]],
-			'blackberry': false,
-			'ipod': false,
-			'iphone': false
-		},
-		'rtl': {
-			'msie': [['>=', 8]],
-			'firefox': [['>=', 2]],
-			'opera': [['>=', 9.6]],
-			'safari': [['>=', 3]],
-			'chrome': [['>=', 3]],
-			'netscape': [['>=', 9]],
-			'blackberry': false,
-			'ipod': false,
-			'iphone': false
-		}
-	};
-
-	QUnit.test( 'test', 1, function ( assert ) {
-		// .test() uses eval, make sure no exceptions are thrown
-		// then do a basic return value type check
-		var testMatch = $.client.test( testMap );
-
-		assert.equal( typeof testMatch, 'boolean', 'test returns a boolean value' );
-
+	QUnit.test( 'profile( navObject ) - samples', uacount, function ( assert ) {
+		// Loop through and run tests
+		$.each( uas, function ( rawUserAgent, data ) {
+			// Generate a client profile object and compare recursively
+			var ret = $.client.profile( {
+				userAgent: rawUserAgent,
+				platform: data.platform
+			} );
+			assert.deepEqual( ret, data.profile, 'Client profile support check for ' + data.title + ' (' + data.platform + '): ' + rawUserAgent );
+		} );
 	} );
 
-	QUnit.test( 'User-agent matches against WikiEditor\'s compatibility map', uacount * 2, function ( assert ) {
+	QUnit.test( 'test( testMap )', 4, function ( assert ) {
+		// .test() uses eval, make sure no exceptions are thrown
+		// then do a basic return value type check
+		var testMatch = $.client.test( testMap ),
+			ie7Profile = $.client.profile( {
+				'userAgent': 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)',
+				'platform': ''
+			} );
+
+		assert.equal( typeof testMatch, 'boolean', 'map with ltr/rtl split returns a boolean value' );
+
+		testMatch = $.client.test( testMap.ltr );
+
+		assert.equal( typeof testMatch, 'boolean', 'simple map (without ltr/rtl split) returns a boolean value' );
+
+		assert.equal( $.client.test( {
+			'msie': null
+		}, ie7Profile ), true, 'returns true if any version of a browser are allowed (null)' );
+
+		assert.equal( $.client.test( {
+			'msie': false
+		}, ie7Profile ), false, 'returns false if all versions of a browser are not allowed (false)' );
+	} );
+
+	QUnit.test( 'test( testMap, exactMatchOnly )', 2, function ( assert ) {
+		var ie7Profile = $.client.profile( {
+			'userAgent': 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)',
+			'platform': ''
+		} );
+
+		assert.equal( $.client.test( {
+			'firefox': [['>=', 2]]
+		}, ie7Profile, false ), true, 'returns true if browser not found and exactMatchOnly not set' );
+
+		assert.equal( $.client.test( {
+			'firefox': [['>=', 2]]
+		}, ie7Profile, true ), false, 'returns false if browser not found and exactMatchOnly is set' );
+	} );
+
+	QUnit.test( 'test( testMap) - WikiEditor sample', uacount * 2, function ( assert ) {
 		var $body = $( 'body' ),
 			bodyClasses = $body.attr( 'class' );
 
