@@ -96,10 +96,12 @@ class RecentChange {
 	}
 
 	/**
+	 * @deprecated in 1.22 (cur table no longer exists)
 	 * @param $row
 	 * @return RecentChange
 	 */
 	public static function newFromCurRow( $row ) {
+		wfDeprecated( ___METHOD__ , '1.22' );
 		$rc = new RecentChange;
 		$rc->loadFromCurRow( $row );
 		$rc->notificationtimestamp = false;
@@ -657,9 +659,11 @@ class RecentChange {
 	/**
 	 * Makes a pseudo-RC entry from a cur row
 	 *
+	 * @deprected in 1.22 (cur table no longer exists)
 	 * @param $row
 	 */
 	public function loadFromCurRow( $row ) {
+		wfDeprecated( ___METHOD__ , '1.22' );
 		$this->mAttribs = array(
 			'rc_timestamp' => wfTimestamp( TS_MW, $row->rev_timestamp ),
 			'rc_cur_time' => $row->rev_timestamp,
