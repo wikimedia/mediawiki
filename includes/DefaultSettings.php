@@ -6361,6 +6361,14 @@ $wgSiteTypes = array(
 $wgCompiledFiles = array();
 
 /**
+ * Map of queue system names to JobQueue::factory() parameters
+ * for use by maintenance/copyJobQueue.php
+ *
+ * @since 1.22
+ */
+$wgJobQueueMigrationConfig = null;
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}
