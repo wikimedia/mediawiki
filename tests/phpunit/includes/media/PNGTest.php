@@ -100,6 +100,28 @@ class PNGHandlerTest extends MediaWikiTestCase {
 		);
 	}
 
+	/**
+	 * @param $filename String
+	 * @param $expected Array Expected standard metadata
+	 * @dataProvider provideGetIndependentMetaArray
+	 */
+	public function testGetIndependentMetaArray( $filename, $expected ) {
+		$file = $this->dataFile( $filename, 'image/png' );
+		$actual = $this->handler->getCommonMetaArray( $file );
+		$this->assertEquals( $expected, $actual );
+	}
+
+	public function provideGetIndependentMetaArray() {
+		return array(
+			array( 'rgb-na-png.png', array() ),
+			array( 'xmp.png',
+				array (
+					'SerialNumber' => '123456789',
+				)
+			),
+		);
+	}
+
 	private function dataFile( $name, $type ) {
 		return new UnregisteredLocalFile( false, $this->repo,
 			"mwstore://localtesting/data/$name", $type );
