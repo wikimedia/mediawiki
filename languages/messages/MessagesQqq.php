@@ -1057,48 +1057,45 @@ Parameters:
 * $1 - an URL to [[Special:Userlogin]] containing <code>returnto</code> and <code>returntoquery</code> parameters',
 'welcomeuser' => 'Text for a welcome heading that users see after registering a user account. $1 is the username of the new user. See [[bugzilla:42215]]',
 'welcomecreation-msg' => 'A welcome message users see after registering a user account, following a welcomeuser heading. $1 is the username of the new user. Replaces welcomecreation in 1.21wmf5,see [[bugzilla:42215]]',
-'yourname' => "{{doc-important|<nowiki>{{</nowiki>[[Gender|GENDER]]<nowiki>}}</nowiki> is '''NOT''' supported.}}
-In user preferences.
+'userlogin-yourname' => "In user login & create account forms, label for username field.
+{{doc-important|<nowiki>{{</nowiki>[[Gender|GENDER]]<nowiki>}}</nowiki> is '''NOT''' supported.}}
+
+See examples: [{{canonicalurl:Special:UserLogin}} Special:UserLogin] and [{{canonicalurl:Special:UserLogin}} Special:UserLogin]
 {{Identical|Username}}",
-'userlogin-yourname' => 'In new vertical user login & create account forms, label for username field.
+'userlogin-yourname-ph' => 'Placeholder text in login & create account form field.
 
-See examples: [{{canonicalurl:Special:UserLogin|useNew=1}} Special:UserLogin?useNew=1] and [{{canonicalurl:Special:UserLogin|type=signup&useNew=1}} Special:UserLogin?type=signup&useNew=1]
-{{Identical|Username}}',
-'userlogin-yourname-ph' => 'Placeholder text in new userlogin/create account form field.
-
-See example: [{{canonicalurl:Special:UserLogin|useNew=1}} Special:UserLogin?useNew=1] and [{{canonicalurl:Special:UserLogin|type=signup&useNew=1}} Special:UserLogin?type=signup&useNew=1]',
+See example: [{{canonicalurl:Special:UserLogin}} Special:UserLogin] and [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]',
 'yourpassword' => 'In user preferences
 
 {{Identical|Password}}',
-'userlogin-yourpassword' => 'In new vertical user login & create account forms, label for password field.
+'userlogin-yourpassword' => 'In login & create account forms, label for password field.
 
-See examples: [{{canonicalurl:Special:UserLogin|useNew=1}} Special:UserLogin?useNew=1] and [{{canonicalurl:Special:UserLogin|type=signup&useNew=1}} Special:UserLogin?type=signup&useNew=1]
+See examples: [{{canonicalurl:Special:UserLogin}} Special:UserLogin] and [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]
 {{Identical|Password}}',
-'userlogin-yourpassword-ph' => 'Placeholder text in new userlogin form for password field.
+'userlogin-yourpassword-ph' => 'Placeholder text in login form for password field.
 
-See examples: [{{canonicalurl:Special:UserLogin|useNew=1}} Special:UserLogin?useNew=1] and [{{canonicalurl:Special:UserLogin|type=signup&useNew=1}} Special:UserLogin?type=signup&useNew=1]
+See examples: [{{canonicalurl:Special:UserLogin}} Special:UserLogin] and [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]
 {{Identical|Enter password}}',
-'createacct-yourpassword-ph' => 'Placeholder text in new create account form for password field.
+'createacct-yourpassword-ph' => 'Placeholder text in create account form for password field.
 
-See example: [{{canonicalurl:Special:UserLogin|type=signup&useNew=1}} Special:UserLogin?type=signup&useNew=1]
+See example: [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]
 {{Identical|Enter password}}',
-'yourpasswordagain' => 'In user preferences',
-'createacct-yourpasswordagain' => 'In new create account form, label for field to re-enter password
+'createacct-yourpasswordagain' => 'In create account form, label for field to re-enter password
 
-See example: [{{canonicalurl:Special:UserLogin|type=signup&useNew=1}} Special:UserLogin?type=signup&useNew=1]
+See example: [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]
 {{Identical|Confirm password}}',
-'createacct-yourpasswordagain-ph' => 'Placeholder text in new create account form for re-enter password field.
+'createacct-yourpasswordagain-ph' => 'Placeholder text in create account form for re-enter password field.
 
-See example: [{{canonicalurl:Special:UserLogin|type=signup&useNew=1}} Special:UserLogin?type=signup&useNew=1]',
+See example: [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]',
 'remembermypassword' => 'A check box in [[Special:UserLogin]]
 
 {{Identical|Remember my login on this computer}}',
 'userlogin-remembermypassword' => 'The text for a check box in the new-style [[Special:UserLogin]].
 
-See example: [{{canonicalurl:Special:UserLogin|useNew=1}} Special:UserLogin?useNew=1]',
+See example: [{{canonicalurl:Special:UserLogin}} Special:UserLogin]',
 'userlogin-signwithsecure' => 'Text of link to HTTPS login form.
 
-See example: [{{canonicalurl:Special:UserLogin|useNew=1}} Special:UserLogin?useNew=1]',
+See example: [{{canonicalurl:Special:UserLogin}} Special:UserLogin]',
 'securelogin-stick-https' => 'Used as label for checkbox.',
 'yourdomainname' => 'Used as label for listbox.',
 'password-change-forbidden' => 'Error message shown when an external authentication source does not allow the password to be changed.',
@@ -1113,11 +1110,6 @@ See also:
 'nav-login-createaccount' => "Shown to anonymous users in the upper right corner of the page. When you can't create an account, the message {{msg-mw|login}} is shown.
 {{Identical|Log in / create account}}",
 'loginprompt' => 'A small notice in the log in form.',
-'userlogin' => 'Name of special page [[Special:UserLogin]] where a user can log in or click to create a user account.
-{{Identical|Log in / create account}}',
-'userloginnocreate' => 'A variant of {{msg-mw|Userlogin}} when the user is not allowed to create a new account.
-
-{{Identical|Log in}}',
 'logout' => 'Used as link text in your personal toolbox (upper right side).
 
 See also:
@@ -1131,33 +1123,23 @@ See also:
 'notloggedin' => 'This message is displayed in the standard skin when not logged in. The message is placed above the login link in the top right corner of pages.
 
 {{Identical|Not logged in}}',
-'userlogin-noaccount' => 'In the new-style [[Special:Userlogin]] form, this is the text prior to button inviting user to join project.
+'userlogin-noaccount' => 'In the [[Special:Userlogin]] form, this is the text prior to button inviting user to join project.
 
-See example: [{{canonicalurl:Special:UserLogin|useNew=1}} Special:UserLogin?useNew=1]
+See example: [{{canonicalurl:Special:UserLogin}} Special:UserLogin]
 {{Identical|Do not have an account}}',
 'userlogin-joinproject' => 'Text of button inviting user to create an account.
 
-See example: [{{canonicalurl:Special:UserLogin|useNew=1}} Special:UserLogin?useNew=1]',
-'nologin' => 'A message shown in the log in form. Parameters:
-* $1 - a link to the account creation form, and the text of it is {{msg-mw|Nologinlink}}
-{{Identical|Do not have an account}}',
-'nologinlink' => 'Text of the link to the account creation form. Before that link, the message {{msg-mw|Nologin}} appears.
-{{Identical|Create an account}}',
+See example: [{{canonicalurl:Special:UserLogin}} Special:UserLogin]',
 'createaccount' => 'Used on the top of the page for logged out users, where it appears next to {{msg-mw|login}}, so consider making them similar.
 
 It is also used on the submit button in the form/special page where you register a new account.
 {{doc-special|CreateAccount}}
 {{Identical|Create account}}',
-'gotaccount' => 'A message shown in the account creation form.
-* $1 - a link to the log in form, and the text of it is {{msg-mw|Gotaccountlink}}',
-'gotaccountlink' => 'Text of the link to the log in form. Before that link, the message {{msg-mw|Gotaccount}} appears.
-{{Identical|Log in}}',
-'userlogin-resetlink' => 'Used on the login page.',
-'userlogin-resetpassword-link' => 'Used as link text on new vertical-layout create account form.
+'userlogin-resetpassword-link' => 'Used as link text on login form.
 
 The link points to the local [[Special:PasswordReset]].
 
-See example: [{{canonicalurl:Special:UserLogin|useNew=1}} Special:UserLogin?useNew=1]
+See example: [{{canonicalurl:Special:UserLogin}} Special:UserLogin]
 
 userlogin-resetpassword-link may have to be shorter than the old {{msg-mw|userlogin-resetlink}}',
 'helplogin-url' => '{{doc-important|Do not translate the namespace name <code>Help</code>.}}
@@ -1167,13 +1149,13 @@ Used as a link target in the message {{msg-mw|Userlogin-helplink}}.',
 'userlogin-helplink' => '{{doc-important|Do not change <code><nowiki>{{MediaWiki:helplogin-url}}</nowiki></code>.}}
 Wikitext linking to login help.
 
-See example: [{{canonicalurl:Special:UserLogin|useNew=1}} Special:UserLogin?useNew=1]
+See example: [{{canonicalurl:Special:UserLogin}} Special:UserLogin]
 
 See also:
 * {{msg-mw|Helplogin-url}}',
 'createacct-join' => 'Subheading of vertical-layout create account form encouraging user to join the wiki.
 
-See example: [{{canonicalurl:Special:UserLogin|type=signup&useNew=1}} Special:UserLogin?type=signup&useNew=1]',
+See example: [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]',
 'createacct-emailrequired' => 'Label in vertical-layout create account form for email field when it is required.
 
 See also:
@@ -1181,50 +1163,49 @@ See also:
 {{Identical|E-mail address}}',
 'createacct-emailoptional' => 'Label in vertical-layout create account form for email field when it is optional.
 
-See example: [{{canonicalurl:Special:UserLogin|type=signup&useNew=1}} Special:UserLogin?type=signup&useNew=1]
+See example: [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]
 
 See also:
 * {{msg-mw|Createacct-emailrequired}}',
 'createacct-email-ph' => 'Placeholder in vertical-layout create account form for email field.
 
-See example: [{{canonicalurl:Special:UserLogin|type=signup&useNew=1}} Special:UserLogin?type=signup&useNew=1]',
+See example: [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]',
 'createaccountmail' => 'Used as label for the checkbox for creating a new account and sending the new password to the specified e-mail address directly, as used on [[Special:UserLogin/signup]] if creating accounts by e-mail is allowed.
 
-See example: [{{canonicalurl:Special:UserLogin|type=signup&useNew=1}} Special:UserLogin?type=signup&useNew=1]',
+See example: [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]',
 'createacct-realname' => 'In vertical-layout create account form, label for field to enter optional real name.',
-'createaccountreason' => '{{Identical|Reason}}',
-'createacct-reason' => 'In vertical-layout create account form, label for field to enter reason to create an account when already logged-in.
+'createacct-reason' => 'In create account form, label for field to enter reason to create an account when already logged-in.
 
-See example: [{{canonicalurl:Special:UserLogin|type=signup&useNew=1}} Special:UserLogin?type=signup&useNew=1]
+See example: [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]
 {{Identical|Reason}}',
 'createacct-reason-ph' => 'Placeholder in vertical-layout create account form for reason field.
 
-See example: [{{canonicalurl:Special:UserLogin|type=signup&useNew=1}} Special:UserLogin?type=signup&useNew=1]',
+See example: [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]',
 'createacct-captcha' => 'Label in vertical-layout create account form for CAPTCHA input field when repositioned by JavaScript.',
 'createacct-imgcaptcha-ph' => 'Placehodler text in vertical-layout create account form for image CAPTCHA input field when repositioned by JavaScript.',
 'createacct-submit' => 'Submit button on vertical-layout create account form.
 
-See example: [{{canonicalurl:Special:UserLogin|type=signup&useNew=1}} Special:UserLogin?type=signup&useNew=1]',
+See example: [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]',
 'createacct-benefit-heading' => 'In vertical-layout create account form, the heading for the section describing the benefits of creating an account.
 
-See example: [{{canonicalurl:Special:UserLogin|type=signup&useNew=1}} Special:UserLogin?type=signup&useNew=1]',
+See example: [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]',
 'createacct-benefit-body1' => 'In vertical-layout create account form, the text for the first benefit.
 
 Preceded by the message {{msg-mw|Createacct-benefit-head1}} (number of edits).
 
-See example: [{{canonicalurl:Special:UserLogin|type=signup&useNew=1}} Special:UserLogin?type=signup&useNew=1]
+See example: [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]
 {{Identical|Edit}}',
 'createacct-benefit-body2' => 'In vertical-layout create account form, the text for the second benefit.
 
 Preceded by the message {{msg-mw|Createacct-benefit-head2}} (number of pages).
 
-See example: [{{canonicalurl:Special:UserLogin|type=signup&useNew=1}} Special:UserLogin?type=signup&useNew=1]
+See example: [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]
 {{Identical|Page}}',
 'createacct-benefit-body3' => 'In vertical-layout create account form, the text for the third benefit.
 
 Preceded by the message {{msg-mw|Createacct-benefit-head3}} (number of contributors).
 
-See example: [{{canonicalurl:Special:UserLogin|type=signup&useNew=1}} Special:UserLogin?type=signup&useNew=1]',
+See example: [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]',
 'badretype' => 'Used as error message when the new password and its retype do not match.',
 'userexists' => 'Used as error message in creating a user account.',
 'loginerror' => 'Used as title of error message.
@@ -1263,7 +1244,7 @@ Parameters:
 $1 is the minimum number of characters in the password.',
 'password-name-match' => 'Used as error message when password validity check failed.',
 'password-login-forbidden' => 'Error message shown when the user has tried to log in using one of the special username/password combinations used for MediaWiki testing. (See [[mwr:75589]], [[mwr:75605]].)',
-'mailmypassword' => 'Shown at [[Special:UserLogin]]',
+'mailmypassword' => 'Heading in [[Special:PasswordReset]]',
 'passwordremindertitle' => 'Title of e-mail which contains temporary password',
 'passwordremindertext' => 'This text is used in an e-mail sent when a user requests a new temporary password (he has forgotten his password) or when an sysop creates a new user account choosing to have password and username sent to the new user by e-mail.
 * $1 is an IP address. Example: 123.123.123.123

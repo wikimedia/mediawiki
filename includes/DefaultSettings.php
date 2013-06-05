@@ -2821,23 +2821,6 @@ $wgVectorUseSimpleSearch = true;
 $wgVectorUseIconWatch = true;
 
 /**
- * Use compact vertical form ("VForm") design for Special:Userlogin.  This can
- * be overridden by a useNew bool in the query string.  For instance, if it is
- * globally false, you can try it with useNew=1.
- *
- * @since 1.22
- */
-$wgUseVFormUserLogin = false;
-
-/**
- * Use compact vertical form ("VForm") design for account creation
- * (Special:Userlogin?type=signup).
- *
- * @since 1.22
- */
-$wgUseVFormCreateAccount = false;
-
-/**
  * Display user edit counts in various prominent places.
  */
 $wgEdititis = false;
