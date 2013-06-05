@@ -367,6 +367,8 @@ $magicWords = array(
 	'pagesincategory_pages'   => array( 0,    'pages' ),
 	'pagesincategory_subcats' => array( 0,    'subcats' ),
 	'pagesincategory_files'   => array( 0,    'files' ),
+	'filemetadata'            => array( 0,    'filemetadata' ),
+	'filemetadata_file'       => array( 1,    'file=$1' ),
 );
 
 /**
@@ -4045,6 +4047,11 @@ Others will be hidden by default.
 * gpsaltitude',
 'metadata-langitem'         => "'''$2:''' $1", # only translate this message to other languages if you have to change it
 'metadata-langitem-default' => '$1', # only translate this message to other languages if you have to change it
+
+'filemetadata-notfile' => '[[:$1]] is not a file.',
+'filemetadata-unsupported' => 'The file [[:$1]] does not support <nowiki>{{#filemetadata:...}}</nowiki>',
+'filemetadata-noprop' => "[[:$1]] does not have the property ''$2''",
+'filemetadata-nosubprop' => "[[:$1]] does not contain the property ''$2''. However it does contain ''$3''.",
 
 # Exif tags
 'exif-imagewidth'                  => 'Width',

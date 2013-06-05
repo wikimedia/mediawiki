@@ -2944,6 +2944,12 @@ $wgMessageStructure = array(
 		'metadata-langitem',
 		'metadata-langitem-default',
 	),
+	'filemetadata' => array(
+		'filemetadata-notfile',
+		'filemetadata-unsupported',
+		'filemetadata-noprop',
+		'filemetadata-nosubprop',
+	),
 	'exif' => array(
 		'exif-imagewidth',
 		'exif-imagelength',

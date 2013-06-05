@@ -29,6 +29,18 @@
 class SvgHandler extends ImageHandler {
 	const SVG_METADATA_VERSION = 2;
 
+	/**
+	 * A list of metadata tags that can be converted
+	 * to the commonly used exif tags. This allows messages
+	 * to be reused, and consistent tag names for {{#formatmetadata:..}}
+	 */
+	private static $metaConversion = array(
+		'originalwidth' => 'ImageWidth',
+		'originalheight' => 'ImageLength',
+		'description' => 'ImageDescription',
+		'title' => 'ObjectName',
+	);
+
 	function isEnabled() {
 		global $wgSVGConverters, $wgSVGConverter;
 		if ( !isset( $wgSVGConverters[$wgSVGConverter] ) ) {
@@ -332,18 +344,10 @@ class SvgHandler extends ImageHandler {
 		// Sort fields into visible and collapsed
 		$visibleFields = $this->visibleMetadataFields();
 
-		// Rename fields to be compatible with exif, so that
-		// the labels for these fields work and reuse existing messages.
-		$conversion = array(
-			'originalwidth' => 'imagewidth',
-			'originalheight' => 'imagelength',
-			'description' => 'imagedescription',
-			'title' => 'objectname',
-		);
 		foreach ( $metadata as $name => $value ) {
 			$tag = strtolower( $name );
-			if ( isset( $conversion[$tag] ) ) {
-				$tag = $conversion[$tag];
+			if ( isset( self::$metaConversion[$tag] ) ) {
+				$tag = strtolower( self::$metaConversion[$tag] );
 			} else {
 				// Do not output other metadata not in list
 				continue;
@@ -356,5 +360,30 @@ class SvgHandler extends ImageHandler {
 			);
 		}
 		return $result;
+	}
+
+	public function getStandardMetaArray( $file ) {
+		$metadata = $file->getMetadata();
+		if ( !$metadata ) {
+			return false;
+		}
+		$metadata = $this->unpackMetadata( $metadata );
+		if ( !$metadata || isset( $metadata['error'] ) ) {
+			return false;
+		}
+		$stdMetadata = array();
+		foreach ( $metadata as $name => $value ) {
+			$tag = strtolower( $name );
+			if ( $tag === 'originalwidth' || $tag === 'originalheight' ) {
+				// Skip these. In the exif metadata stuff, it is assumed these
+				// are measured in px, which is not the case here.
+				continue;
+			}
+			if ( isset( self::$metaConversion[$tag] ) ) {
+				$tag = self::$metaConversion[$tag];
+				$stdMetadata[$tag] = $value;
+			}
+		}
+		return $stdMetadata;
 	}
 }
