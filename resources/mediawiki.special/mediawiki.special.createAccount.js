@@ -3,7 +3,19 @@
  */
 ( function ( mw, $ ) {
 
-	$( document ).ready( function( $ ) {
+	// When sending password by email, hide the password input fields.
+	// This function doesn't need to be loaded early by ResourceLoader, but is tiny.
+	function hidePasswordOnEmail( $ ) {
+		$( '#wpCreateaccountMail' )
+			.on( 'change', function() {
+				$( '.mw-row-password' ).toggle( !$( this ).attr( 'checked' ) );
+			} )
+			.trigger( 'change' );
+	}
+
+	// Move the FancyCaptcha image into a more attractive container.
+	// This function does need to be run early by ResourceLoader.
+	function adjustFancyCaptcha( $, mw ) {
 		var $content = $( '#mw-content-text' ),
 			$submit = $content.find( '#wpCreateaccount' ),
 			tabIndex,
@@ -71,7 +83,11 @@
 				.val( $captchaStuff.find( '#wpCaptchaWord' ).val() )
 				.after( $captchaStuff.find( '#wpCaptchaId' ) );
 		}
+	}
 
+	$( document ).ready( function( $ ) {
+		adjustFancyCaptcha( $, mw);
+		hidePasswordOnEmail( $ );
 	} );
 
 }( mediaWiki, jQuery ) );

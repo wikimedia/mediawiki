@@ -51,9 +51,6 @@ class LoginForm extends SpecialPage {
 	var $mAbortLoginErrorMsg = 'login-abort-generic';
 	private $mLoaded = false;
 	private $mSecureLoginUrl;
-	// TODO Remove old forms and mShowVForm gating after all WMF wikis have
-	// adapted messages and help links to new versions.
-	private $mShowVForm;
 
 	/**
 	 * @ var WebRequest
@@ -144,17 +141,10 @@ class LoginForm extends SpecialPage {
 	}
 
 	function getDescription() {
-		if ( !$this->getUser()->isAllowed( 'createaccount' ) ) {
-			return $this->msg( 'userloginnocreate' )->text();
-		}
-		if ( $this->mShowVForm ) {
-			if ( $this->mType === 'signup' ) {
-				return $this->msg( 'createaccount' )->text();
-			} else {
-				return $this->msg( 'login' )->text();
-			}
+		if ( $this->mType === 'signup' ) {
+			return $this->msg( 'createaccount' )->text();
 		} else {
-			return $this->msg( 'userlogin' )->text();
+			return $this->msg( 'login' )->text();
 		}
 	}
 
@@ -173,8 +163,6 @@ class LoginForm extends SpecialPage {
 		if ( $subPage == 'signup' ) {
 			$this->mType = 'signup';
 		}
-		$this->mShowVForm = $this->shouldShowVForm();
-
 		$this->setHeaders();
 
 		// If logging in and not on HTTPS, either redirect to it or offer a link.
@@ -1040,22 +1028,6 @@ class LoginForm extends SpecialPage {
 	}
 
 	/**
-	 * Whether to show new vertically laid out login form.
-	 * ?useNew=1 forces new style, ?useNew=0 forces old style,
-	 * otherwise consult $wgUseVFormUserLogin.
-	 * @return Boolean
-	 */
-	private function shouldShowVForm() {
-		global $wgUseVFormCreateAccount, $wgUseVFormUserLogin;
-
-		if ( $this->mType == 'signup' ) {
-			return $this->mRequest->getBool( 'useNew', $wgUseVFormCreateAccount );
-		} else {
-			return $this->mRequest->getBool( 'useNew', $wgUseVFormUserLogin );
-		}
-	}
-
-	/**
 	 * @private
 	 */
 	function mainLoginForm( $msg, $msgtype = 'error' ) {
@@ -1093,39 +1065,34 @@ class LoginForm extends SpecialPage {
 		}
 
 		if ( $this->mType == 'signup' ) {
-			$out->addModules( 'mediawiki.special.userlogin.signup' );
-			if ( $this->mShowVForm ) {
-				$template = new UsercreateTemplateVForm();
-				$out->addModuleStyles( array(
-					'mediawiki.ui',
-					'mediawiki.special.createaccount.vform'
-				) );
-				// XXX hack pending RL or JS parse() support for complex content messages
-				// https://bugzilla.wikimedia.org/show_bug.cgi?id=25349
-				$out->addJsConfigVars( 'wgCreateacctImgcaptchaHelp',
-					$this->msg( 'createacct-imgcaptcha-help' )->parse() );
-				$out->addModules( 'mediawiki.special.createaccount.vform.js' );
-				// Must match number of benefits defined in messages
-				$template->set( 'benefitCount', 3 );
-			} else {
-				$template = new UsercreateTemplate();
-			}
+			$template = new UsercreateTemplate();
+
+			$out->addModuleStyles( array(
+				'mediawiki.ui',
+				'mediawiki.special.createaccount'
+			) );
+			// XXX hack pending RL or JS parse() support for complex content messages
+			// https://bugzilla.wikimedia.org/show_bug.cgi?id=25349
+			$out->addJsConfigVars( 'wgCreateacctImgcaptchaHelp',
+				$this->msg( 'createacct-imgcaptcha-help' )->parse() );
+			$out->addModules( array(
+				'mediawiki.special.createaccount.js'
+			) );
+			// Must match number of benefits defined in messages
+			$template->set( 'benefitCount', 3 );
+
 			$q = 'action=submitlogin&type=signup';
 			$linkq = 'type=login';
-			$linkmsg = 'gotaccount';
 		} else {
-			if ( $this->mShowVForm ) {
-				$template = new UserloginTemplateVForm();
-				$out->addModuleStyles( array(
-					'mediawiki.ui',
-					'mediawiki.special.userlogin.vform'
-				) );
-			} else {
-				$template = new UserloginTemplate();
-			}
+			$template = new UserloginTemplate();
+
+			$out->addModuleStyles( array(
+				'mediawiki.ui',
+				'mediawiki.special.userlogin'
+			) );
+
 			$q = 'action=submitlogin&type=login';
 			$linkq = 'type=signup';
-			$linkmsg = 'nologin';
 		}
 
 		if ( $this->mReturnTo !== '' ) {
@@ -1144,17 +1111,8 @@ class LoginForm extends SpecialPage {
 			if ( $wgLoginLanguageSelector && $this->mLanguage ) {
 				$linkq .= '&uselang=' . $this->mLanguage;
 			}
-			if ( !$this->mShowVForm ) {
-				$link = Html::element( 'a', array( 'href' => $titleObj->getLocalURL( $linkq ) ),
-					$this->msg( $linkmsg . 'link' )->text() ); # Calling either 'gotaccountlink' or 'nologinlink'
-
-					$template->set( 'link', $this->msg( $linkmsg )->rawParams( $link )->parse() );
-
-			} else {
-				// Supply URL, login template creates the button.
-				// (The template 'link' key, passed above, is obsolete in the VForm design.)
-				$template->set( 'createOrLoginHref', $titleObj->getLocalURL( $linkq ) );
-			}
+			// Supply URL, login template creates the button.
+			$template->set( 'createOrLoginHref', $titleObj->getLocalURL( $linkq ) );
 		} else {
 			$template->set( 'link', '' );
 		}
