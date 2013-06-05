@@ -182,6 +182,18 @@
 		}
 	);
 	tableTest(
+		'Basic planet table: ascending by name (multiple clicks)',
+		header,
+		planets,
+		ascendingName,
+		function ( $table ) {
+			$table.tablesorter();
+			$table.find( '.headerSort:eq(0)' ).click();
+			$table.find( '.headerSort:eq(1)' ).click();
+			$table.find( '.headerSort:eq(0)' ).click();
+		}
+	);
+	tableTest(
 		'Basic planet table: descending by name',
 		header,
 		planets,
@@ -275,6 +287,35 @@
 			$table.data( 'tablesorter' ).sort();
 		}
 	);
+	tableTest(
+		'Sort via click event after having initialized the tablesorter with initial sorting',
+		header,
+		initial,
+		descasc,
+		function ( $table ) {
+			$table.tablesorter(
+				{ sortList: [ { 0: 'asc' }, { 1: 'asc' } ] }
+			);
+			$table.find( '.headerSort:eq(0)' ).click();
+		}
+	);
+	tableTest(
+		'Multi-sort via click event after having initialized the tablesorter with initial sorting',
+		header,
+		initial,
+		asc,
+		function ( $table ) {
+			$table.tablesorter(
+				{ sortList: [ { 0: 'desc' }, { 1: 'desc' } ] }
+			);
+			$table.find( '.headerSort:eq(0)' ).click();
+
+			// Pretend to click while pressing the multi-sort key
+			var event = $.Event( 'click' );
+			event[$table.data( 'tablesorter' ).config.sortMultiSortKey] = true;
+			$table.find( '.headerSort:eq(1)' ).trigger( event );
+		}
+	);
 	QUnit.test( 'Reset sorting making table appear unsorted', 3, function ( assert ) {
 		var $table = tableCreate( header, initial );
 		$table.tablesorter(
@@ -327,6 +368,20 @@
 			$table.find( '.headerSort:eq(0)' ).click();
 		}
 	);
+	tableTest( 'Sorting with colspanned headers: sort spanned column twice',
+		header,
+		initial,
+		[ caa4, bbc2, abc3, aab5, aaa1 ],
+		function ( $table ) {
+			// Make colspanned header for test
+			$table.find( 'tr:eq(0) th:eq(1), tr:eq(0) th:eq(2)' ).remove();
+			$table.find( 'tr:eq(0) th:eq(0)' ).prop( 'colspan', '3' );
+
+			$table.tablesorter();
+			$table.find( '.headerSort:eq(0)' ).click();
+			$table.find( '.headerSort:eq(0)' ).click();
+		}
+	);
 	tableTest( 'Sorting with colspanned headers: subsequent column',
 		header,
 		initial,
@@ -340,6 +395,21 @@
 			$table.find( '.headerSort:eq(1)' ).click();
 		}
 	);
+	tableTest( 'Sorting with colspanned headers: sort subsequent column twice',
+		header,
+		initial,
+		[ aab5, caa4, abc3, bbc2, aaa1 ],
+		function ( $table ) {
+			// Make colspanned header for test
+			$table.find( 'tr:eq(0) th:eq(1), tr:eq(0) th:eq(2)' ).remove();
+			$table.find( 'tr:eq(0) th:eq(0)' ).prop( 'colspan', '3' );
+
+			$table.tablesorter();
+			$table.find( '.headerSort:eq(1)' ).click();
+			$table.find( '.headerSort:eq(1)' ).click();
+		}
+	);
+
 
 	// Regression tests!
 	tableTest(
