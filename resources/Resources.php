@@ -1247,6 +1247,7 @@ return array(
 			'mediawiki.api',
 			'mediawiki.Title',
 			'mediawiki.util',
+			'jquery.spinner'
 		),
 	),
 	'mediawiki.legacy.wikibits' => array(
