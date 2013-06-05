@@ -100,6 +100,7 @@ class CoreParserFunctions {
 		$parser->setFunctionHook( 'subjectpagenamee', array( __CLASS__, 'subjectpagenamee' ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'tag',              array( __CLASS__, 'tagObj'           ), SFH_OBJECT_ARGS );
 		$parser->setFunctionHook( 'formatdate',       array( __CLASS__, 'formatDate'       ) );
+		$parser->setFunctionHook( 'filemetadata',     array( __CLASS__, 'filemetadata'     ) );
 
 		if ( $wgAllowDisplayTitle ) {
 			$parser->setFunctionHook( 'displaytitle', array( __CLASS__, 'displaytitle' ), SFH_NO_HASH );
@@ -944,5 +945,119 @@ class CoreParserFunctions {
 			'close' => "</$tagName>",
 		);
 		return $parser->extensionSubstitution( $params, $frame );
+	}
+
+	/**
+	 * Retrieve a property from the metadata of an uploaded file.
+	 *
+	 * This uses the "standard" (exif-like) metadata properties so that
+	 * consistent keys are used between different file handlers. Furthermore these
+	 * should be stable, where handler-specific metadata could change at the whim
+	 * of the handler. The handler must support getCommonMetaArray() for this
+	 * to work. The downside to this is the user can't access any handler specific
+	 * data.
+	 *
+	 * @param Parser $parser
+	 * @param String $property Property name. Can have a '/' to denote sub-property
+	 *  For example 'ImageDescription' or 'ImageDescription/en'
+	 */
+	public static function filemetadata( $parser, $property = '' ) {
+		$args = func_get_args();
+		array_shift( $args );
+		array_shift( $args );
+
+		$title = false;
+		$raw = false;
+
+		foreach( $args as $argument ) {
+			$mw = new MagicWordArray( array( 'filemetadata_file', 'rawsuffix' ) );
+			$result = $mw->matchVariableStartToEnd( $argument );
+			switch( $result[0] ) {
+			case 'filemetadata_file':
+				$title = Title::newFromText( $result[1], NS_FILE );
+				break;
+			case 'rawsuffix':
+				$raw = true;
+			// Future feature could be to allow specifying old version of file.
+			}
+		}
+
+		if ( !$title ) {
+			// Default to current page.
+			$title = $parser->getTitle();
+		}
+
+		static $metadataCache = array();
+		// Note, always in File namespace, so getDBKey is fine.
+		if ( !isset( $metadataCache[ $title->getDBKey() ] ) ) {
+			if ( $parser->incrementExpensiveFunctionCount() ) {
+				$file = wfFindFile( $title );
+			} else {
+				// The standard behaviour for exceeding expensive parser func
+				// count seems to be return nothing.
+				return '';
+			}
+
+			if ( !$file ) {
+				return '<span class="error">' .
+					wfMessage( 'filemetadata-notfile', $title->getFullText() )->inContentLanguage()->plain() .
+					'</span>';
+			}
+
+			$metadataCache[ $title->getDBKey() ] = $file->getCommonMetaArray();
+		}
+
+		$metadata = $metadataCache[ $title->getDBKey() ];
+
+		if ( !is_array( $metadata ) ) {
+			$error = '<span class="error">' .
+				wfMessage( 'filemetadata-unsupported', $title->getFullText(), $title->getText() )->inContentLanguage()->text() .
+				'</span>';
+			// We want to make sure the <nowiki> in the error message gets parsed.
+			// Hence using ->text and 'noparse', instead of just returning the error.
+			return array( $error, 'noparse' => false );
+		}
+
+		if ( !$raw ) {
+			// All the metadata formatting methods vary by user language.
+			// Which is not ideal. OTOH, from a commons use-case perspective,
+			// they would probably want things to vary by user language.
+			// Anyhow, signal that the page varies by user language.
+			$parser->getOptions()->getUserLangObj();
+			$metadata = FormatMetadata::getFormattedData( $metadata );
+		}
+
+		$splitProperty = explode( '/', $property, 2 );
+
+		if ( !isset( $metadata[$splitProperty[0]] ) ) {
+			return '<span class="error">' .
+				wfMessage( 'filemetadata-noprop', $title->getFullText(), $title->getText(), $splitProperty[0] )->inContentLanguage()->plain() .
+				'</span>';
+		}
+
+		$metadata = $metadata[$splitProperty[0]];
+
+		if ( !isset( $splitProperty[1] ) ) {
+			// No sub-property name.
+			// flattenArray converts it to a simple value if $metadata is compound.
+			// Last argument trigger content lang vs user language.
+			$metadata = FormatMetadata::flattenArray( $metadata, 'ul', false, $raw );
+		} else {
+			if ( !is_array( $metadata ) || !isset( $metadata[$splitProperty[1]] ) ) {
+				return '<span class="error">' .
+					wfMessage( 'filemetadata-nosubprop', $title->getFullText(), $title->getText(), $property, $splitProperty[0] )
+					->inContentLanguage()->plain() .
+					'</span>';
+			}
+			$metadata = $metadata[$splitProperty[1]];
+		}
+
+		if ( is_array( $metadata ) ) {
+			// This should hopefully never happen (hence lack of i18n).
+			// Maybe should be an exception.
+			wfDebug( __METHOD__ . ' Metadata fetched was an array? (to follow)\n' . print_r( $metadata, true ) );
+			return '<span class="error">Internal error when retrieving metadata.</span>';
+		}
+		return $metadata;
 	}
 }

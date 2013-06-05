@@ -47,20 +47,33 @@ class GIFHandler extends BitmapHandler {
 	 * @return array|bool
 	 */
 	function formatMetadata( $image ) {
+		$meta = $this->getCommonMetaArray( $image );
+		if ( !$meta || count( $meta ) === 0 ) {
+			return false;
+		}
+
+		return $this->formatMetadataHelper( $meta );
+	}
+
+	/**
+	 * Return the standard metadata elements for #filemetadata parser func.
+	 * @param File $image
+	 * @return array|bool
+	 */
+	public function getCommonMetaArray( $image ) {
 		$meta = $image->getMetadata();
 
 		if ( !$meta ) {
-			return false;
+			return array();
 		}
 		$meta = unserialize( $meta );
-		if ( !isset( $meta['metadata'] ) || count( $meta['metadata'] ) <= 1 ) {
-			return false;
+		if ( !isset( $meta['metadata'] ) ) {
+			return array();
 		}
-
 		if ( isset( $meta['metadata']['_MW_GIF_VERSION'] ) ) {
 			unset( $meta['metadata']['_MW_GIF_VERSION'] );
 		}
-		return $this->formatMetadataHelper( $meta['metadata'] );
+		return $meta['metadata'];
 	}
 
 	/**

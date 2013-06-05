@@ -7304,6 +7304,11 @@ $1 is the value of the property (in one language), $2 is the language name that 
 'metadata-langitem-default' => '{{optional}}
 Similar to "metadata-langitem" but for the case where a multilingual property has a default specified that does not specify what language the default is in. $1 is the value of the property.',
 
+'filemetadata-notfile' => 'Shown by the <code><nowiki>{{#filemetadata:</nowiki></code> parser function if the parser function is used with a page that is not a file. $1 is the name of the file (including namespace) that the parser function was used with.',
+'filemetadata-unsupported' => 'Shown when using <nowiki>{{#filemetadata:..}}</nowiki> parser function on a file that does not support metadata. This could be if we do not support extracting metadata from this type of file, or if there was some sort of error when attempting to extract the metadata (It is not shown if the file simply has no metadata). $1 is the full page name of the file in question. $2 is the file name not including namespace.',
+'filemetadata-noprop' => "Shown by <code><nowiki>{{#filemetadata:...}}</nowiki></code> if the metadata property being requested in not present in the file. See also {{mw-msg|filemetadata-noprop}}. $1 is the full page name of the file. $2 is the name of the file without its namespace. $3 is the name of the property.",
+'filemetadata-nosubprop' => "Similar to {{msg-mw|filemetadata-noprop}} but shown by <code><nowiki>{{#filemetadata:...}}</nowiki></code> if the base property exists (The part before the "/" in the property name), but not the specific sub property. $1 is the full page name of the file in question. $2 is the file name without its namespace. $3 is the full property name including the sub-property (example ImageDescription/en). $4 is only the base property name (example ImageDescription).",
+
 # Exif tags
 'exif-imagewidth' => 'Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 {{Identical|Width}}',
