@@ -1372,11 +1372,17 @@ class LocalFile extends File {
 		# Invalidate cache for all pages using this file
 		$update = new HTMLCacheUpdate( $this->getTitle(), 'imagelinks' );
 		$update->doUpdate();
+		if ( !$reupload ) {
+			LinksUpdate::queueRecursiveJobsForTable( $this->getTitle(), 'imagelinks' );
+		}
 
 		# Invalidate cache for all pages that redirects on this page
 		$redirs = $this->getTitle()->getRedirectsHere();
 
 		foreach ( $redirs as $redir ) {
+			if ( !$reupload && $redir->getNamespace() === NS_FILE ) {
+				LinksUpdate::queueRecursiveJobsForTable( $redir, 'imagelinks' );
+			}
 			$update = new HTMLCacheUpdate( $redir, 'imagelinks' );
 			$update->doUpdate();
 		}
