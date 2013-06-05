@@ -15,6 +15,7 @@ class MediaWikiParserTest {
 		global $wgParserTestFiles;
 
 		$suite = new PHPUnit_Framework_TestSuite;
+		$testList = array();
 
 		foreach ( $wgParserTestFiles as $fileName ) {
 			$testsName = basename( $fileName, '.txt' );
@@ -24,6 +25,12 @@ class MediaWikiParserTest {
 			 * but that didn't work with names like foo.tests.txt
 			 */
 			$parserTestClassName = str_replace( '.', '_', ucfirst( $testsName ) );
+			if ( isset( $testList[$parserTestClassName] ) ) {
+				// CharSpanRange was causing a conflict, which gives
+				// a very unclear error.
+				$parserTestClassName .= mt_rand();
+			}
+			$testList[$parserTestClassName] = true;
 			$parserTestClassDefinition = <<<EOT
 /**
  * @group Database
