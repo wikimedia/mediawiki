@@ -366,14 +366,6 @@ class ChangesList extends ContextSource {
 
 		$params = array();
 
-		// In case we got a page creation which is yet unpatrolled and
-		// recent changes patrolling is enabled, the user probably rather
-		// wants to patrol the whole page (first revision) instead of seeing
-		// a patrollink for the current revision.
-		if ( $wgUseRCPatrol && $unpatrolled && $rc->getAttribute( 'rc_type' ) == RC_NEW ) {
-			$params['patrolpage'] = 1;
-		}
-
 		$articlelink = Linker::linkKnown(
 			$rc->getTitle(),
 			null,
