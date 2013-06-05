@@ -6964,9 +6964,15 @@ See also:
 # Patrolling
 'markaspatrolleddiff' => '{{doc-actionlink}}
 See also:
-* {{msg-mw|Markaspatrolledtext}}',
+* {{msg-mw|Markaspatrolledtext}}
+* {{msg-mw|markaspatrolledrevision}}',
 'markaspatrolledtext' => '{{doc-actionlink}}
 See also:
+* {{msg-mw|markaspatrolledrevision}}
+* {{msg-mw|Markaspatrolleddiff}}',
+'markaspatrolledrevision' => '{{doc-actionlink}}
+See also:
+* {{msg-mw|Markaspatrolledtext}}
 * {{msg-mw|Markaspatrolleddiff}}',
 'markedaspatrolled' => 'Used as title of the message {{msg-mw|Markedaspatrolledtext}}, when marking a change as patrolled.
 {{Related|Markedaspatrolled}}',

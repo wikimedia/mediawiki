@@ -2787,6 +2787,7 @@ $wgMessageStructure = array(
 		'markaspatrolleddiff',
 		'markaspatrolledlink',
 		'markaspatrolledtext',
+		'markaspatrolledrevision',
 		'markedaspatrolled',
 		'markedaspatrolledtext',
 		'rcpatroldisabled',
