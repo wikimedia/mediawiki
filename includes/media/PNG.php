@@ -52,20 +52,34 @@ class PNGHandler extends BitmapHandler {
 	 * @return array|bool
 	 */
 	function formatMetadata( $image ) {
+		$meta = $this->getIndependentMetaArray( $image );
+		if ( !$meta || count( $meta ) === 0 ) {
+			return false;
+		}
+
+		return $this->formatMetadataHelper( $meta );
+	}
+
+	/**
+	 * Get a file type independent array of metadata.
+	 *
+	 * @param $image File
+	 * @return array The metadata array
+	 */
+	public function getIndependentMetaArray( $image ) {
 		$meta = $image->getMetadata();
 
 		if ( !$meta ) {
-			return false;
+			return array();
 		}
 		$meta = unserialize( $meta );
-		if ( !isset( $meta['metadata'] ) || count( $meta['metadata'] ) <= 1 ) {
-			return false;
+		if ( !isset( $meta['metadata'] ) ) {
+			return array();
 		}
-
 		if ( isset( $meta['metadata']['_MW_PNG_VERSION'] ) ) {
 			unset( $meta['metadata']['_MW_PNG_VERSION'] );
 		}
-		return $this->formatMetadataHelper( $meta['metadata'] );
+		return $meta['metadata'];
 	}
 
 	/**

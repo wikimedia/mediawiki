@@ -839,29 +839,29 @@ class FormatMetadata {
 	 * type can also come from the '_type' member of $vals.
 	 * @param $noHtml Boolean If to avoid returning anything resembling
 	 * html. (Ugly hack for backwards compatibility with old mediawiki).
+	 * @param $content Boolean Use content language instead of user language
 	 * @return String single value (in wiki-syntax).
 	 */
-	public static function flattenArray( $vals, $type = 'ul', $noHtml = false ) {
+	public static function flattenArray( $vals, $type = 'ul', $noHtml = false, $useContentLang = false ) {
+		if ( !is_array( $vals ) ) {
+			return $vals; // do nothing if not an array;
+		}
+
 		if ( isset( $vals['_type'] ) ) {
 			$type = $vals['_type'];
 			unset( $vals['_type'] );
 		}
 
-		if ( !is_array( $vals ) ) {
-			return $vals; // do nothing if not an array;
-		}
-		elseif ( count( $vals ) === 1 && $type !== 'lang' ) {
+		if ( count( $vals ) === 1 && $type !== 'lang' ) {
 			return $vals[0];
-		}
-		elseif ( count( $vals ) === 0 ) {
+		} elseif ( count( $vals ) === 0 ) {
 			wfDebug( __METHOD__ . " metadata array with 0 elements!\n" );
 			return ""; // paranoia. This should never happen
-		}
-		/* @todo FIXME: This should hide some of the list entries if there are
-		 * say more than four. Especially if a field is translated into 20
-		 * languages, we don't want to show them all by default
-		 */
-		else {
+		} else {
+			/* @todo FIXME: This should hide some of the list entries if there are
+			 * say more than four. Especially if a field is translated into 20
+			 * languages, we don't want to show them all by default
+			 */
 			global $wgContLang;
 			switch ( $type ) {
 			case 'lang':
@@ -897,7 +897,7 @@ class FormatMetadata {
 					}
 					$content .= self::langItem(
 						$vals[$cLang], $cLang,
-						$isDefault, $noHtml );
+						$isDefault, $noHtml, $useContentLang );
 
 					unset( $vals[$cLang] );
 				}
@@ -909,11 +909,11 @@ class FormatMetadata {
 						continue;
 					}
 					$content .= self::langItem( $item,
-						$lang, false, $noHtml );
+						$lang, false, $noHtml, $useContentLang );
 				}
 				if ( $defaultItem !== false ) {
 					$content = self::langItem( $defaultItem,
-						$defaultLang, true, $noHtml ) .
+						$defaultLang, true, $noHtml, $useContentLang ) .
 						$content;
 				}
 				if ( $noHtml ) {
@@ -943,11 +943,12 @@ class FormatMetadata {
 	 * @param string $lang lang code of item or false
 	 * @param $default Boolean if it is default value.
 	 * @param $noHtml Boolean If to avoid html (for back-compat)
+	 * @param $content Boolean Use content language
 	 * @throws MWException
 	 * @return string language item (Note: despite how this looks,
 	 * this is treated as wikitext not html).
 	 */
-	private static function langItem( $value, $lang, $default = false, $noHtml = false ) {
+	private static function langItem( $value, $lang, $default = false, $noHtml = false, $content = false ) {
 		if ( $lang === false && $default === false ) {
 			throw new MWException( '$lang and $default cannot both '
 				. 'be false.' );
@@ -961,13 +962,15 @@ class FormatMetadata {
 		}
 
 		if ( $lang === false ) {
+			$msg = wfMessage( 'metadata-langitem-default', $wrappedValue );
+			if ( $content ) {
+				$msg->inContentLanguage();
+			}
 			if ( $noHtml ) {
-				return wfMessage( 'metadata-langitem-default',
-					$wrappedValue )->text() . "\n\n";
+				return $msg->text() . "\n\n";
 			} /* else */
 			return '<li class="mw-metadata-lang-default">'
-				. wfMessage( 'metadata-langitem-default',
-					$wrappedValue )->text()
+				. $msg->text()
 				. "</li>\n";
 		}
 
@@ -984,9 +987,12 @@ class FormatMetadata {
 		}
 		// else we have a language specified
 
+		$msg = wfMessage( 'metadata-langitem', $wrappedValue, $langName, $lang );
+		if ( $content ) {
+			$msg->inContentLanguage();
+		}
 		if ( $noHtml ) {
-			return '*' . wfMessage( 'metadata-langitem',
-				$wrappedValue, $langName, $lang )->text();
+			return '*' . $msg->text();
 		} /* else: */
 
 		$item = '<li class="mw-metadata-lang-code-'
@@ -995,8 +1001,7 @@ class FormatMetadata {
 			$item .= ' mw-metadata-lang-default';
 		}
 		$item .= '" lang="' . $lang . '">';
-		$item .= wfMessage( 'metadata-langitem',
-			$wrappedValue, $langName, $lang )->text();
+		$item .= $msg->text();
 		$item .= "</li>\n";
 		return $item;
 	}
