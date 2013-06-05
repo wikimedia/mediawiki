@@ -953,25 +953,22 @@ return array(
 		),
 		'dependencies' => array( 'mediawiki.libs.jpegmeta', 'mediawiki.util' ),
 	),
-	'mediawiki.special.userlogin.signup' => array(
-		'scripts' => 'resources/mediawiki.special/mediawiki.special.userLogin.signup.js',
-	),
-	'mediawiki.special.userlogin.vform' => array(
+	'mediawiki.special.userlogin' => array(
 		'styles' => array(
 			'resources/mediawiki.special/mediawiki.special.vforms.css',
-			'resources/mediawiki.special/mediawiki.special.userLogin.vform.css',
+			'resources/mediawiki.special/mediawiki.special.userLogin.css',
 		),
 		'position' => 'top',
 	),
-	'mediawiki.special.createaccount.vform' => array(
+	'mediawiki.special.createaccount' => array(
 		'styles' => array(
 			'resources/mediawiki.special/mediawiki.special.vforms.css',
-			'resources/mediawiki.special/mediawiki.special.createAccount.vform.css',
+			'resources/mediawiki.special/mediawiki.special.createAccount.css',
 		),
 		'position' => 'top',
 	),
-	'mediawiki.special.createaccount.vform.js' => array(
-		'scripts' => 'resources/mediawiki.special/mediawiki.special.createAccount.vform.js',
+	'mediawiki.special.createaccount.js' => array(
+		'scripts' => 'resources/mediawiki.special/mediawiki.special.createAccount.js',
 		'messages' => array(
 			'createacct-captcha',
 			'createacct-imgcaptcha-ph'

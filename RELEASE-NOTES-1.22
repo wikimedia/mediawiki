@@ -11,9 +11,6 @@ production.
 === Configuration changes in 1.22 ===
 * $wgRedirectScript was removed. It was unused.
 * Removed $wgLocalMessageCacheSerialized, it is now always true.
-* When $wgUseVFormUserLogin is true, the redesign of Special:UserLogin is
-  activated; when $wgUseVFormCreateAccount is true, the redesign of
-  Special:UserLogin/signup is activated.
 * $wgVectorUseIconWatch is now enabled by default.
 * $wgCascadingRestrictionLevels was added.
 * ftps, ssh, sftp, xmpp, sip, sips, tel, sms, bitcoin, magnet, urn, and geo
@@ -43,9 +40,11 @@ production.
 * New 'mediawiki.ui' CSS module providing mw-ui-* styles for buttons and a
   compact vertical form layout.
 * New versions of login (Special:UserLogin) and create account
-  (Special:UserLogin/signup) forms. They are opt-in for now, controlled by
-  the $wgUseVFormUserLogin and $wgUseVFormCreateAccount settings or a 'useNew'
-  URL parameter trigger.
+  (Special:UserLogin/signup) forms using the "vform" compact vertical form layout.
+  These forms use new messages that assume a "Help logging in" link, see
+  https://www.mediawiki.org/wiki/Manual:Page_customizations;
+  https://www.mediawiki.org/wiki/Account_creation_user_experience/Strings lists the
+  message key changes.
 * (bug 23343) Implemented ability to apply IP blocks to the contents of X-Forwarded-For headers
   by adding a new configuration variable $wgApplyIpBlocksToXff (disabled by default).
 * The new hook 'APIGetPossibleErrors' to modify the list of possible errors was
