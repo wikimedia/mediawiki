@@ -27,6 +27,9 @@
  */
 class ResourceLoaderLanguageDataModule extends ResourceLoaderModule {
 
+	/**
+	 * @var Language
+	 */
 	protected $language;
 	protected $targets = array( 'desktop', 'mobile' );
 	/**
@@ -75,6 +78,32 @@ class ResourceLoaderLanguageDataModule extends ResourceLoaderModule {
 		return $this->language->separatorTransformTable();
 	}
 
+	protected function getMonthNames() {
+		return array(
+			'local' => array(
+				'nominative' => $this->language->getMonthNamesArray(),
+				'genitive' => $this->language->getMonthNamesGenArray(),
+			),
+			'hebrew' => array(
+				'nominative' => $this->language->getHebrewCalendarMonthNamesArray(),
+				'genitive' => $this->language->getHebrewCalendarMonthNamesGenArray(),
+			),
+			'iranian' => $this->language->getIranianCalendarMonthNamesArray(),
+			'hijri' => $this->language->getHijriCalendarMonthNamesArray(),
+		);
+	}
+
+	protected function getWeekdayAbbreviations() {
+		return $this->language->getWeekdayAbbreviationsArray();
+	}
+
+	protected function getWeekdayNames() {
+		return $this->language->getWeekdayNamesArray();
+	}
+
+	protected function getMonthAbbreviations() {
+		return $this->language->getMonthAbbreviationsArray();
+	}
 
 	/**
 	 * Get all the dynamic data for the content language to an array
@@ -88,6 +117,10 @@ class ResourceLoaderLanguageDataModule extends ResourceLoaderModule {
 			'grammarForms' => $this->getSiteLangGrammarForms(),
 			'pluralRules' => $this->getPluralRules(),
 			'digitGroupingPattern' => $this->getDigitGroupingPattern(),
+			'monthNames' => $this->getMonthNames(),
+			'weekdayNames' => $this->getWeekdayNames(),
+			'weekdayAbbreviations' => $this->getWeekdayAbbreviations(),
+			'monthAbbreviations' => $this->getMonthAbbreviations(),
 		);
 	}
 

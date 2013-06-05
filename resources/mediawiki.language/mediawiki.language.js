@@ -25,7 +25,7 @@ var language = {
 				return '';
 			}
 			// Restore the count into a Number ( if it got converted earlier )
-			var count = mw.language.convertNumber( template.title, true );
+			var count = mw.language.convertNumber( template.title, true, false );
 			// Do convertPlural call
 			return mw.language.convertPlural( parseInt( count, 10 ), template.parameters );
 		}

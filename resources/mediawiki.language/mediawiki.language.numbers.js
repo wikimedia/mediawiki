@@ -158,7 +158,7 @@
 		 * @param {boolean} integer Convert the return value to an integer
 		 * @return {Number|string} Formatted number
 		 */
-		convertNumber: function ( num, integer ) {
+		convertNumber: function ( num, integer, commafy ) {
 			var i, tmp, transformTable, numberString, convertedNumber, pattern;
 
 			pattern = mw.language.getData( mw.config.get( 'wgUserLanguage' ),
@@ -182,8 +182,10 @@
 				}
 				transformTable = tmp;
 				numberString = num + '';
-			} else {
+			} else if ( commafy ) {
 				numberString = mw.language.commafy( num, pattern );
+			} else {
+				numberString = num + '';
 			}
 
 			convertedNumber = '';

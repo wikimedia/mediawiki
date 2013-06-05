@@ -947,7 +947,7 @@ class Language {
 	 */
 	function getMonthNamesArray() {
 		$monthNames = array( '' );
-		for ( $i = 1; $i < 13; $i++ ) {
+		for ( $i = 1; $i <= 12; $i++ ) {
 			$monthNames[] = $this->getMonthName( $i );
 		}
 		return $monthNames;
@@ -959,6 +959,17 @@ class Language {
 	 */
 	function getMonthNameGen( $key ) {
 		return $this->getMessageFromDB( self::$mMonthGenMsgs[$key - 1] );
+	}
+
+	/**
+	 * @return array
+	 */
+	function getMonthNamesGenArray() {
+		$monthNames = array( '' );
+			for ( $i = 1; $i <= 12; $i++ ) {
+				$monthNames[] = $this->getMonthNameGen( $i );
+			}
+		return $monthNames;
 	}
 
 	/**
@@ -974,7 +985,7 @@ class Language {
 	 */
 	function getMonthAbbreviationsArray() {
 		$monthNames = array( '' );
-		for ( $i = 1; $i < 13; $i++ ) {
+		for ( $i = 1; $i <= 12; $i++ ) {
 			$monthNames[] = $this->getMonthAbbreviation( $i );
 		}
 		return $monthNames;
@@ -989,6 +1000,17 @@ class Language {
 	}
 
 	/**
+	 * @return array
+	 */
+	function getWeekdayNamesArray() {
+		$weekDays = array();
+		for( $i = 1; $i <= 7; $i++ ) {
+			$weekDays[] = $this->getWeekdayName( $i );
+		}
+		return $weekDays;
+	}
+
+	/**
 	 * @param $key string
 	 * @return string
 	 */
@@ -997,11 +1019,30 @@ class Language {
 	}
 
 	/**
+	 * @return array
+	 */
+	function getWeekdayAbbreviationsArray() {
+		$weekDays = array();
+		for ( $i = 1; $i <= 7; $i++ ) {
+			$weekDays[] = $this->getWeekdayAbbreviation( $i );
+		}
+		return $weekDays;
+	}
+
+	/**
 	 * @param $key string
 	 * @return string
 	 */
 	function getIranianCalendarMonthName( $key ) {
 		return $this->getMessageFromDB( self::$mIranianCalendarMonthMsgs[$key - 1] );
+	}
+
+	function getIranianCalendarMonthNamesArray() {
+		$monthNames = array( '' );
+		for ( $i = 1; $i <= 12; $i++ ) {
+			$monthNames[] = $this->getIranianCalendarMonthName( $i );
+		}
+		return $monthNames;
 	}
 
 	/**
@@ -1013,6 +1054,17 @@ class Language {
 	}
 
 	/**
+	 * @return array
+	 */
+	function getHebrewCalendarMonthNamesArray() {
+		$monthNames = array( '' );
+		for ( $i = 1; $i <= 14; $i++ ) {
+			$monthNames[] = $this->getHebrewCalendarMonthName( $i );
+		}
+		return $monthNames;
+	}
+
+	/**
 	 * @param $key string
 	 * @return string
 	 */
@@ -1021,11 +1073,30 @@ class Language {
 	}
 
 	/**
+	 * @return array
+	 */
+	function getHebrewCalendarMonthNamesGenArray() {
+		$monthNames = array( '' );
+		for ( $i = 1; $i <= 14; $i++ ) {
+			$monthNames[] = $this->getHebrewCalendarMonthNameGen( $i );
+		}
+		return $monthNames;
+	}
+
+	/**
 	 * @param $key string
 	 * @return string
 	 */
 	function getHijriCalendarMonthName( $key ) {
 		return $this->getMessageFromDB( self::$mHijriCalendarMonthMsgs[$key - 1] );
+	}
+
+	function getHijriCalendarMonthNamesArray() {
+		$monthNames = array( '' );
+		for ( $i = 1; $i <= 12; $i++ ) {
+			$monthNames[] = $this->getHijriCalendarMonthName( $i );
+		}
+		return $monthNames;
 	}
 
 	/**
@@ -1409,12 +1480,12 @@ class Language {
 	 *
 	 * @param $ts string
 	 *
-	 * @return string
+	 * @return array
 	 */
 	private static function tsToIranian( $ts ) {
-		$gy = substr( $ts, 0, 4 ) -1600;
-		$gm = substr( $ts, 4, 2 ) -1;
-		$gd = substr( $ts, 6, 2 ) -1;
+		$gy = substr( $ts, 0, 4 ) - 1600;
+		$gm = substr( $ts, 4, 2 ) - 1;
+		$gd = substr( $ts, 6, 2 ) - 1;
 
 		# Days passed from the beginning (including leap years)
 		$gDayNo = 365 * $gy
@@ -1467,7 +1538,7 @@ class Language {
 	 *
 	 * @param $ts string
 	 *
-	 * @return string
+	 * @return array
 	 */
 	private static function tsToHijri( $ts ) {
 		$year = substr( $ts, 0, 4 );
@@ -1518,7 +1589,7 @@ class Language {
 	 *
 	 * @param $ts string
 	 *
-	 * @return string
+	 * @return array
 	 */
 	private static function tsToHebrew( $ts ) {
 		# Parse date

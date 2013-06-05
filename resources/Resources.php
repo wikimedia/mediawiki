@@ -769,7 +769,8 @@ return array(
 	'mediawiki.language' => array(
 		'scripts' => array(
 			'resources/mediawiki.language/mediawiki.language.js',
-			'resources/mediawiki.language/mediawiki.language.numbers.js'
+			'resources/mediawiki.language/mediawiki.language.numbers.js',
+			'resources/mediawiki.language/mediawiki.language.datetime.js',
 		),
 		'languageScripts' => array(
 			'bs' => 'resources/mediawiki.language/languages/bs.js',
@@ -819,6 +820,11 @@ return array(
 		),
 		'targets' => array( 'desktop', 'mobile' ),
 	),
+
+	/*'mediawiki.language.datetime' => array(
+		'scripts' => 'resources/mediawiki/mediawiki.language.datetime.js',
+		'targets' => array( 'desktop', 'mobile' ),
+	),*/
 
 	/* MediaWiki Libs */
 

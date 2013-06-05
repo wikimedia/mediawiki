@@ -1052,7 +1052,7 @@
 		 */
 		plural: function ( nodes ) {
 			var forms, count;
-			count = parseFloat( this.language.convertNumber( nodes[0], true ) );
+			count = parseFloat( this.language.convertNumber( nodes[0], true, false ) );
 			forms = nodes.slice(1);
 			return forms.length ? this.language.convertPlural( count, forms ) : '';
 		},
@@ -1113,7 +1113,7 @@
 			var isInteger = ( nodes[1] && nodes[1] === 'R' ) ? true : false,
 				number = nodes[0];
 
-			return this.language.convertNumber( number, isInteger );
+			return this.language.convertNumber( number, isInteger, true );
 		}
 	};
 	// Deprecated! don't rely on gM existing.

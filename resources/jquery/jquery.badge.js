@@ -41,7 +41,7 @@
 			isImportant = true, displayBadge = true;
 
 		// If we're displaying zero, ensure style to be non-important
-		if ( mw.language.convertNumber( text, true ) === 0 ) {
+		if ( mw.language.convertNumber( text, true, false ) === 0 ) {
 			isImportant = false;
 			if ( !displayZero ) {
 				displayBadge = false;
