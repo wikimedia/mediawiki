@@ -220,7 +220,7 @@ class MWHttpRequest {
 	 * @param array $options (optional) extra params to pass (see Http::request())
 	 */
 	protected function __construct( $url, $options = array() ) {
-		global $wgHTTPTimeout;
+		global $wgHTTPTimeout, $wgHTTPConnectTimeout;
 
 		$this->url = wfExpandUrl( $url, PROTO_HTTP );
 		$this->parsedUrl = wfParseUrl( $this->url );
