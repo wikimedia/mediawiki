@@ -117,10 +117,19 @@ class ExifBitmapHandler extends BitmapHandler {
 	 * @return array|bool
 	 */
 	function formatMetadata( $image ) {
-		$metadata = $image->getMetadata();
+		$exif = $this->getStandardMetaArray( $image );
+		unset( $exif['MEDIAWIKI_EXIF_VERSION'] );
+		if ( count( $exif ) == 0 ) {
+			return false;
+		}
+		return $this->formatMetadataHelper( $exif );
+	}
+
+	public function getStandardMetaArray( $file ) {
+		$metadata = $file->getMetadata();
 		if ( $metadata === self::OLD_BROKEN_FILE ||
 			$metadata === self::BROKEN_FILE ||
-			$this->isMetadataValid( $image, $metadata ) === self::METADATA_BAD )
+			$this->isMetadataValid( $file, $metadata ) === self::METADATA_BAD )
 		{
 			// So we don't try and display metadata from PagedTiffHandler
 			// for example when using InstantCommons.
@@ -131,11 +140,7 @@ class ExifBitmapHandler extends BitmapHandler {
 		if ( !$exif ) {
 			return false;
 		}
-		unset( $exif['MEDIAWIKI_EXIF_VERSION'] );
-		if ( count( $exif ) == 0 ) {
-			return false;
-		}
-		return $this->formatMetadataHelper( $exif );
+		return $exif;
 	}
 
 	function getMetadataType( $image ) {
