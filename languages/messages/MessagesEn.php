@@ -3864,6 +3864,7 @@ This is probably caused by a link to a blacklisted external site.',
 'markaspatrolleddiff'                 => 'Mark as patrolled',
 'markaspatrolledlink'                 => '[$1]', # do not translate or duplicate this message to other languages
 'markaspatrolledtext'                 => 'Mark this page as patrolled',
+'markaspatrolledrevision'             => 'Mark this revision as patrolled',
 'markedaspatrolled'                   => 'Marked as patrolled',
 'markedaspatrolledtext'               => 'The selected revision of [[:$1]] has been marked as patrolled.',
 'rcpatroldisabled'                    => 'Recent changes patrol disabled',

@@ -6970,10 +6970,11 @@ See also:
 * {{msg-mw|Markaspatrolleddiff}}',
 'markedaspatrolled' => 'Used as title of the message {{msg-mw|Markedaspatrolledtext}}, when marking a change as patrolled.
 {{Related|Markedaspatrolled}}',
-'markedaspatrolledtext' => 'Used when marking a change as patrolled.
+'markedaspatrolledtext' => 'Used when marking a page as patrolled.
 
 The title for this message is {{msg-mw|Markedaspatrolled}}.
 {{Related|Markedaspatrolled}}',
+'markaspatrolledrevision' => 'Link text for marking a revision as patrolled.',
 'rcpatroldisabled' => 'Used as title of the error message {{msg-mw|Rcpatroldisabledtext}}, when marking a change as patrolled.
 {{Related|Markedaspatrolled}}',
 'rcpatroldisabledtext' => 'Used as the error message when marking a change as patrolled.
