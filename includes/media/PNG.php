@@ -52,6 +52,22 @@ class PNGHandler extends BitmapHandler {
 	 * @return array|bool
 	 */
 	function formatMetadata( $image ) {
+		$meta = $this->getStandardMetaArray( $image );
+		if ( !$meta ) {
+			return false;
+		}
+
+		if ( isset( $meta['_MW_PNG_VERSION'] ) ) {
+			unset( $meta['_MW_PNG_VERSION'] );
+		}
+		return $this->formatMetadataHelper( $meta );
+	}
+
+	/**
+	 * @param $image File
+	 * @return array|bool
+	 */
+	public function getStandardMetaArray( $image ) {
 		$meta = $image->getMetadata();
 
 		if ( !$meta ) {
@@ -61,11 +77,7 @@ class PNGHandler extends BitmapHandler {
 		if ( !isset( $meta['metadata'] ) || count( $meta['metadata'] ) <= 1 ) {
 			return false;
 		}
-
-		if ( isset( $meta['metadata']['_MW_PNG_VERSION'] ) ) {
-			unset( $meta['metadata']['_MW_PNG_VERSION'] );
-		}
-		return $this->formatMetadataHelper( $meta['metadata'] );
+		return $meta['metadata'];
 	}
 
 	/**

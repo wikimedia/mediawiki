@@ -101,6 +101,8 @@ production.
 * LinkCache singleton can now be altered or cleared, letting one to specify
   another instance that does not rely on a database backend.
 * MediaWiki's PHPUnit tests can now use PHPUnit installed using composer --dev.
+* (bug 41498) Add {{#filemetadata:...}} to retrieve metadata (i.e. Exif and friends)
+  for a file in wikitext.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
