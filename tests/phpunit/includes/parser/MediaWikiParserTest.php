@@ -15,15 +15,27 @@ class MediaWikiParserTest {
 		global $wgParserTestFiles;
 
 		$suite = new PHPUnit_Framework_TestSuite;
+		$testList = array();
+		$counter = 0;
 
 		foreach ( $wgParserTestFiles as $fileName ) {
-			$testsName = basename( $fileName, '.txt' );
+			$testsName = basename( dirname( $fileName ) ) . '⁄' . basename( $fileName, '.txt' );
 			$escapedFileName = strtr( $fileName, array( "'" => "\\'", '\\' => '\\\\' ) );
 			/* This used to be ucfirst( basename( dirname( $filename ) ) )
 			 * and then was ucfirst( basename( $filename, '.txt' )
 			 * but that didn't work with names like foo.tests.txt
+			 * and then was basename( $fileName, '.txt' )
 			 */
-			$parserTestClassName = str_replace( '.', '_', ucfirst( $testsName ) );
+			$parserTestClassName = ucfirst( $testsName );
+			// Official spec for class names: http://php.net/manual/en/language.oop5.basic.php
+			// Prepend 'PT_' to be paranoid about it not starting with a number
+			$parserTestClassName = 'PT_' . preg_replace( '/[^a-zA-Z0-9_\x7f-\xff]/', '_', $parserTestClassName );
+			if ( isset( $testList[$parserTestClassName] ) ) {
+				// If a conflict happens, gives a very unclear fatal.
+				$counter++;
+				$parserTestClassName .= $counter;
+			}
+			$testList[$parserTestClassName] = true;
 			$parserTestClassDefinition = <<<EOT
 /**
  * @group Database
