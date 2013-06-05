@@ -228,6 +228,10 @@ abstract class MediaHandler {
 
 	/**
 	 * Get the thumbnail extension and MIME type for a given source MIME type
+	 *
+	 * @param String $ext Extension of original file
+	 * @param String $mime Mime type of original file
+	 * @param Array $params Handler specific rendering parameters
 	 * @return array thumbnail extension and MIME type
 	 */
 	function getThumbType( $ext, $mime, $params = null ) {
