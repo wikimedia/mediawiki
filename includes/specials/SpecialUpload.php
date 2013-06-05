@@ -112,12 +112,22 @@ class SpecialUpload extends SpecialPage {
 		$this->mCancelUpload = $request->getCheck( 'wpCancelUpload' )
 			|| $request->getCheck( 'wpReUpload' ); // b/w compat
 
-		// If it was posted check for the token (no remote POST'ing with user credentials)
-		$token = $request->getVal( 'wpEditToken' );
-		$this->mTokenOk = $this->getUser()->matchEditToken( $token );
+		$this->checkToken( $request );
 
 		$this->uploadFormTextTop = '';
 		$this->uploadFormTextAfterSummary = '';
+	}
+
+	/**
+	 * Check for valid edit token, to protect against remote posting
+	 * with user credentials.
+	 *
+	 * @param $request WebRequest object
+	 * @since 1.22
+	 */
+	protected function checkToken( $request ) {
+		$token = $request->getVal( 'wpEditToken' );
+		$this->mTokenOk = $this->getUser()->matchEditToken( $token );
 	}
 
 	/**
@@ -159,6 +169,14 @@ class SpecialUpload extends SpecialPage {
 		# Check whether we actually want to allow changing stuff
 		$this->checkReadOnly();
 
+		$this->handleRequestData();
+	}
+
+	/**
+	 * Respond to submitted form data and/or display upload form
+	 * @since 1.22
+	 */
+	protected function handleRequestData() {
 		$this->loadRequest();
 
 		# Unsave the temporary file in case this was a cancelled upload
@@ -170,10 +188,7 @@ class SpecialUpload extends SpecialPage {
 		}
 
 		# Process upload or show a form
-		if (
-			$this->mTokenOk && !$this->mCancelUpload &&
-			( $this->mUpload && $this->mUploadClicked )
-		) {
+		if ( $this->shouldProcessUpload() ) {
 			$this->processUpload();
 		} else {
 			# Backwards compatibility hook
@@ -188,6 +203,16 @@ class SpecialUpload extends SpecialPage {
 		if ( $this->mUpload ) {
 			$this->mUpload->cleanupTempFile();
 		}
+	}
+
+	/**
+	 * Decide whether an upload has been requested
+	 * @return Bool
+	 * @since 1.22
+	 */
+	protected function shouldProcessUpload() {
+		return ( $this->mTokenOk && !$this->mCancelUpload &&
+			( $this->mUpload && $this->mUploadClicked ) );
 	}
 
 	/**
@@ -210,18 +235,14 @@ class SpecialUpload extends SpecialPage {
 	}
 
 	/**
-	 * Get an UploadForm instance with title and text properly set.
+	 * Assemble options array for constructing form data.
 	 *
-	 * @param string $message HTML string to add to the form
 	 * @param string $sessionKey session key in case this is a stashed upload
-	 * @param $hideIgnoreWarning Boolean: whether to hide "ignore warning" check box
-	 * @return UploadForm
+	 * @param $hideIgnoreWarning Boolean: Whether to hide "ignore warning" check box
+	 * @return Array
 	 */
-	protected function getUploadForm( $message = '', $sessionKey = '', $hideIgnoreWarning = false ) {
-		# Initialize form
-		$context = new DerivativeContext( $this->getContext() );
-		$context->setTitle( $this->getPageTitle() ); // Remove subpage
-		$form = new UploadForm( array(
+	protected function getFormOptions( $sessionKey = '', $hideIgnoreWarning = false ) {
+		return array(
 			'watch' => $this->getWatchCheck(),
 			'forreupload' => $this->mForReUpload,
 			'sessionkey' => $sessionKey,
@@ -232,7 +253,26 @@ class SpecialUpload extends SpecialPage {
 			'texttop' => $this->uploadFormTextTop,
 			'textaftersummary' => $this->uploadFormTextAfterSummary,
 			'destfile' => $this->mDesiredDestName,
-		), $context );
+			'sourcetype' => $this->mSourceType,
+		);
+	}
+
+	/**
+	 * Get an UploadForm instance with title and text properly set.
+	 *
+	 * @param string $message HTML string to add to the form
+	 * @param string $sessionKey session key in case this is a stashed upload
+	 * @param $hideIgnoreWarning Boolean: whether to hide "ignore warning" check box
+	 * @return UploadForm
+	 */
+	protected function getUploadForm( $message = '', $sessionKey = '', $hideIgnoreWarning = false ) {
+		$context = new DerivativeContext( $this->getContext() );
+		$context->setTitle( $this->getTitle() ); // Remove subpage
+		# Initialize form
+		$form = new UploadForm(
+			$this->getFormOptions( $sessionKey, $hideIgnoreWarning ),
+			$context );
+		$form->setTitle( $this->getTitle() );
 
 		# Check the token, but only if necessary
 		if (
@@ -275,9 +315,11 @@ class SpecialUpload extends SpecialPage {
 	}
 
 	/**
-	 * Shows the "view X deleted revivions link""
+	 * Assemble the text of the "view X deleted revisions" link
+	 * @return string
+	 * @since 1.22
 	 */
-	protected function showViewDeletedLinks() {
+	protected function getViewDeletedLinks() {
 		$title = Title::makeTitleSafe( NS_FILE, $this->mDesiredDestName );
 		$user = $this->getUser();
 		// Show a subtitle link to deleted revisions (to sysops et al only)
@@ -290,13 +332,38 @@ class SpecialUpload extends SpecialPage {
 				);
 				$link = $this->msg( $user->isAllowed( 'delete' ) ? 'thisisdeleted' : 'viewdeleted' )
 					->rawParams( $restorelink )->parseAsBlock();
-				$this->getOutput()->addHTML( "<div id=\"contentSub2\">{$link}</div>" );
+				return "<div id=\"contentSub2\">{$link}</div>";
 			}
+		}
+		return '';
+	}
+
+	/*
+	 * Show the "view X deleted revisions" link
+	 */
+	protected function showViewDeletedLinks() {
+		$html = $this->getViewDeletedLinks();
+		if ( $html !== '' ) {
+			$this->getOutput()->addHTML( $html );
 		}
 	}
 
 	/**
-	 * Stashes the upload and shows the main upload form.
+	 * Construct a recoverable error message.
+	 *
+	 * See showRecoverableUploaderror, below.
+	 *
+	 * @param string $message HTML message to be passed to mainUploadForm
+	 * @return string formatted HTML
+	 * @since 1.22
+	 */
+	protected function getRecoverableUploadError( $message ) {
+		return '<h2>' . $this->msg( 'uploaderror' )->escaped() . "</h2>\n" .
+			'<div class="error">' . $message . "</div>\n";
+	}
+
+	/**
+	 * Stash the upload and show the main upload form.
 	 *
 	 * Note: only errors that can be handled by changing the name or
 	 * description should be redirected here. It should be assumed that the
@@ -308,22 +375,23 @@ class SpecialUpload extends SpecialPage {
 	 */
 	protected function showRecoverableUploadError( $message ) {
 		$sessionKey = $this->mUpload->stashSession();
-		$message = '<h2>' . $this->msg( 'uploaderror' )->escaped() . "</h2>\n" .
-			'<div class="error">' . $message . "</div>\n";
-
-		$form = $this->getUploadForm( $message, $sessionKey );
+		$form = $this->getUploadForm(
+			$this->getRecoverableUploadError( $message ), $sessionKey );
 		$form->setSubmitText( $this->msg( 'upload-tryagain' )->escaped() );
 		$this->showUploadForm( $form );
 	}
+
 	/**
-	 * Stashes the upload, shows the main form, but adds a "continue anyway button".
-	 * Also checks whether there are actually warnings to display.
+	 * Construct a formatted list of upload warnings.
 	 *
 	 * @param $warnings Array
-	 * @return boolean true if warnings were displayed, false if there are no
+	 * @return mixed: a string if there are warnings to display, false if there are no
 	 *         warnings and it should continue processing
+	 * @param Array $warnings
+	 * @return string formatted HTML
+	 * @since 1.22
 	 */
-	protected function showUploadWarning( $warnings ) {
+	protected function getUploadWarning( $warnings ) {
 		# If there are no warnings, or warnings we can ignore, return early.
 		# mDestWarningAck is set when some javascript has shown the warning
 		# to the user. mForReUpload is set when the user clicks the "upload a
@@ -334,8 +402,6 @@ class SpecialUpload extends SpecialPage {
 		) {
 			return false;
 		}
-
-		$sessionKey = $this->mUpload->stashSession();
 
 		$warningHtml = '<h2>' . $this->msg( 'uploadwarning' )->escaped() . "</h2>\n"
 			. '<ul class="warning">';
@@ -364,6 +430,25 @@ class SpecialUpload extends SpecialPage {
 		$warningHtml .= "</ul>\n";
 		$warningHtml .= $this->msg( 'uploadwarning-text' )->parseAsBlock();
 
+		return $warningHtml;
+	}
+
+	/**
+	 * Stash the upload, show the main form, but add a "continue anyway" button.
+	 * Also check whether there are actually warnings to display.
+	 *
+	 * @param $warnings Array
+	 * @return boolean true if warnings were displayed, false if there are no
+	 *         warnings and it should continue processing
+	 */
+	protected function showUploadWarning( $warnings ) {
+		$warningHtml = $this->getUploadWarning( $warnings );
+		if ($warningHtml === false ) {
+			return false;
+		}
+
+		$sessionKey = $this->mUpload->stashSession();
+
 		$form = $this->getUploadForm( $warningHtml, $sessionKey, /* $hideIgnoreWarning */ true );
 		$form->setSubmitText( $this->msg( 'upload-tryagain' )->text() );
 		$form->addButton( 'wpUploadIgnoreWarning', $this->msg( 'ignorewarning' )->text() );
@@ -376,19 +461,30 @@ class SpecialUpload extends SpecialPage {
 	}
 
 	/**
+	 * Format an upload error message for display.
+	 *
+	 * @param string $message HTML string
+	 * @return string HTML message
+	 * @since 1.22
+	 */
+	protected function getUploadError( $message ) {
+		return '<h2>' . $this->msg( 'uploadwarning' )->escaped() . "</h2>\n" .
+			'<div class="error">' . $message . "</div>\n";
+	}
+
+	/**
 	 * Show the upload form with error message, but do not stash the file.
 	 *
 	 * @param string $message HTML string
 	 */
 	protected function showUploadError( $message ) {
-		$message = '<h2>' . $this->msg( 'uploadwarning' )->escaped() . "</h2>\n" .
-			'<div class="error">' . $message . "</div>\n";
-		$this->showUploadForm( $this->getUploadForm( $message ) );
+		$this->showUploadForm( $this->getUploadForm(
+			$this->getUploadError( $message ) ) );
 	}
 
 	/**
-	 * Do the upload.
-	 * Checks are made in SpecialUpload::execute()
+	 * Check various conditions and do the upload.
+	 * Other checks are made in SpecialUpload::execute()
 	 */
 	protected function processUpload() {
 		// Fetch the file if required
@@ -449,6 +545,14 @@ class SpecialUpload extends SpecialPage {
 		// Success, redirect to description page
 		$this->mUploadSuccessful = true;
 		wfRunHooks( 'SpecialUploadComplete', array( &$this ) );
+		$this->uploadSucceeded();
+	}
+
+	/**
+	 * Once upload is successful, redirect to the updated File: page
+	 * @since 1.22
+	 */
+	protected function uploadSucceeded() {
 		$this->getOutput()->redirect( $this->mLocalFile->getTitle()->getFullURL() );
 	}
 
@@ -622,11 +726,19 @@ class SpecialUpload extends SpecialPage {
 		}
 		$success = $this->mUpload->unsaveUploadedFile();
 		if ( !$success ) {
-			$this->getOutput()->showFileDeleteError( $this->mUpload->getTempPath() );
+			$this->showFileDeleteError();
 			return false;
 		} else {
 			return true;
 		}
+	}
+
+	/**
+	 * Produce error output if uploaded file can't be unsaved.
+	 * @since 1.22
+	 */
+	protected function showFileDeleteError() {
+		$this->getOutput()->showFileDeleteError( $this->mUpload->getTempPath() );
 	}
 
 	/*** Functions for formatting warnings ***/
@@ -726,13 +838,38 @@ class UploadForm extends HTMLForm {
 	protected $mTextTop;
 	protected $mTextAfterSummary;
 
+	protected $mSourceType;
+
 	protected $mSourceIds;
 
 	protected $mMaxFileSize = array();
 
 	protected $mMaxUploadSize = array();
 
+	/**
+	 * constructor: make upload form using options provided by SpecialUpload
+	 */
 	public function __construct( array $options = array(), IContextSource $context = null ) {
+		$this->constructData( $options, $context );
+		$this->constructForm( $context );
+
+		# Set some form properties
+		$this->setSubmitText( $this->msg( 'uploadbtn' )->text() );
+		$this->setSubmitName( 'wpUpload' );
+		# Used message keys: 'accesskey-upload', 'tooltip-upload'
+		$this->setSubmitTooltip( 'upload' );
+		$this->setId( 'mw-upload-form' );
+	}
+
+	/**
+	 * Initialize member data and form descriptors using options provided by SpecialUpload
+	 * @since 1.22
+	 */
+	protected function constructData( array $options = array(), IContextSource $context = null ) {
+		# setContext is called in the constructor, but it's needed
+		# before we get there
+		$this->setContext( $context );
+
 		$this->mWatch = !empty( $options['watch'] );
 		$this->mForReUpload = !empty( $options['forreupload'] );
 		$this->mSessionKey = isset( $options['sessionkey'] )
@@ -750,6 +887,11 @@ class UploadForm extends HTMLForm {
 		$this->mTextAfterSummary = isset( $options['textaftersummary'] )
 			? $options['textaftersummary'] : '';
 
+		$this->mSourceType = isset( $options['sourcetype'] )
+			? $options['sourcetype'] : '';
+	}
+
+	protected function constructForm( IContextSource $context ) {
 		$sourceDescriptor = $this->getSourceSection();
 		$descriptor = $sourceDescriptor
 			+ $this->getDescriptionSection()
@@ -758,13 +900,6 @@ class UploadForm extends HTMLForm {
 		wfRunHooks( 'UploadFormInitDescriptor', array( &$descriptor ) );
 		parent::__construct( $descriptor, $context, 'upload' );
 
-		# Set some form properties
-		$this->setSubmitText( $this->msg( 'uploadbtn' )->text() );
-		$this->setSubmitName( 'wpUpload' );
-		# Used message keys: 'accesskey-upload', 'tooltip-upload'
-		$this->setSubmitTooltip( 'upload' );
-		$this->setId( 'mw-upload-form' );
-
 		# Build a list of IDs for javascript insertion
 		$this->mSourceIds = array();
 		foreach ( $sourceDescriptor as $field ) {
@@ -772,7 +907,6 @@ class UploadForm extends HTMLForm {
 				$this->mSourceIds[] = $field['id'];
 			}
 		}
-
 	}
 
 	/**
@@ -801,7 +935,7 @@ class UploadForm extends HTMLForm {
 			&& UploadFromUrl::isAllowed( $this->getUser() )
 			&& $wgCopyUploadsFromSpecialUpload;
 		$radio = $canUploadByUrl;
-		$selectedSourceType = strtolower( $this->getRequest()->getText( 'wpSourceType', 'File' ) );
+		$selectedSourceType = strtolower( $this->mSourceType );
 
 		$descriptor = array();
 		if ( $this->mTextTop ) {
@@ -831,6 +965,7 @@ class UploadForm extends HTMLForm {
 			'label-message' => 'sourcefilename',
 			'upload-type' => 'File',
 			'radio' => &$radio,
+			'radio-name' => 'wpSourceType',
 			'help' => $this->msg( 'upload-maxfilesize',
 				$this->getContext()->getLanguage()->formatSize( $this->mMaxUploadSize['file'] ) )
 				->parse() .
@@ -848,6 +983,7 @@ class UploadForm extends HTMLForm {
 				'label-message' => 'sourceurl',
 				'upload-type' => 'url',
 				'radio' => &$radio,
+				'radio-name' => 'wpSourceType',
 				'help' => $this->msg( 'upload-maxfilesize',
 					$this->getContext()->getLanguage()->formatSize( $this->mMaxUploadSize['url'] ) )
 					->parse() .
@@ -1049,14 +1185,20 @@ class UploadForm extends HTMLForm {
 	 * Add the upload JS and show the form.
 	 */
 	public function show() {
-		$this->addUploadJS();
+		$this->addUploadJs();
 		parent::show();
 	}
 
 	/**
 	 * Add upload JS to the OutputPage
 	 */
-	protected function addUploadJS() {
+	protected function addUploadJs() {
+		$out = $this->getOutput();
+		$this->addJsConfigVars( $out );
+		$this->addRLModules( $out );
+	}
+
+	protected function addJsConfigVars( $out ) {
 		global $wgUseAjax, $wgAjaxUploadDestCheck, $wgAjaxLicensePreview, $wgEnableAPI, $wgStrictFileExtensions;
 
 		$useAjaxDestCheck = $wgUseAjax && $wgAjaxUploadDestCheck;
@@ -1076,9 +1218,10 @@ class UploadForm extends HTMLForm {
 			'wgMaxUploadSize' => $this->mMaxUploadSize,
 		);
 
-		$out = $this->getOutput();
 		$out->addJsConfigVars( $scriptVars );
+	}
 
+	protected function addRLModules( $out ) {
 		$out->addModules( array(
 			'mediawiki.action.edit', // For <charinsert> support
 			'mediawiki.legacy.upload', // Old form stuff...
@@ -1110,9 +1253,9 @@ class UploadSourceField extends HTMLTextField {
 		if ( !empty( $this->mParams['radio'] ) ) {
 			$id = "wpSourceType{$this->mParams['upload-type']}";
 			$attribs = array(
-				'name' => 'wpSourceType',
+				'name' => $radioname,
 				'type' => 'radio',
-				'id' => $id,
+				'id' => $radioname.$this->mParams['upload-type'],
 				'value' => $this->mParams['upload-type'],
 			);
 			if ( !empty( $this->mParams['checked'] ) ) {
