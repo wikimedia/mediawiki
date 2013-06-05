@@ -47,6 +47,23 @@ class GIFHandler extends BitmapHandler {
 	 * @return array|bool
 	 */
 	function formatMetadata( $image ) {
+		$meta = $this->getStandardMetaArray( $image );
+		if ( !$meta ) {
+			return false;
+		}
+
+		if ( isset( $meta['_MW_GIF_VERSION'] ) ) {
+			unset( $meta['_MW_GIF_VERSION'] );
+		}
+		return $this->formatMetadataHelper( $meta );
+	}
+
+	/**
+	 * Return the standard metadata elements for #filemetadata parser func.
+	 * @param File $image
+	 * @return array|bool
+	 */
+	public function getStandardMetaArray( $image ) {
 		$meta = $image->getMetadata();
 
 		if ( !$meta ) {
@@ -56,11 +73,7 @@ class GIFHandler extends BitmapHandler {
 		if ( !isset( $meta['metadata'] ) || count( $meta['metadata'] ) <= 1 ) {
 			return false;
 		}
-
-		if ( isset( $meta['metadata']['_MW_GIF_VERSION'] ) ) {
-			unset( $meta['metadata']['_MW_GIF_VERSION'] );
-		}
-		return $this->formatMetadataHelper( $meta['metadata'] );
+		return $meta['metadata'];
 	}
 
 	/**
