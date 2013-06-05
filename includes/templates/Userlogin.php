@@ -1,6 +1,6 @@
 <?php
 /**
- * Html form for user login.
+ * Html form for user login (since 1.22 with VForm appearance).
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,179 +21,171 @@
  * @ingroup Templates
  */
 
-/**
- * @defgroup Templates Templates
- */
+class UserloginTemplate extends BaseTemplate {
 
-/**
- * HTML template for Special:Userlogin form
- * @ingroup Templates
- */
-class UserloginTemplate extends QuickTemplate {
 	function execute() {
-		if ( $this->data['message'] ) {
+		global $wgCookieExpiration;
+		$expirationDays = ceil( $wgCookieExpiration / ( 3600 * 24 ) );
 ?>
-	<div class="<?php $this->text( 'messagetype' ); ?>box">
+<div class="mw-ui-container">
+	<?php
+	if ( $this->haveData( 'languages' ) ) {
+	?>
+		<div id="languagelinks">
+			<p><?php $this->html( 'languages' ); ?></p>
+		</div>
+	<?php
+	}
+	?>
+<div id="userloginForm">
+<form name="userlogin" class="mw-ui-vform" method="post" action="<?php $this->text( 'action' ); ?>">
+	<section class="mw-form-header">
+		<?php $this->html( 'header' ); /* extensions such as ConfirmEdit add form HTML here */ ?>
+	</section>
+	<?php
+
+	if ( $this->data['message'] ) {
+	?>
+		<div class="<?php $this->text( 'messagetype' ); ?>box">
 		<?php
 		if ( $this->data['messagetype'] == 'error' ) {
-			?><strong><?php $this->msg( 'loginerror' ); ?></strong><br /><?php
-		}
 		?>
-		<?php $this->html( 'message' ); ?>
-	</div>
-	<div class="visualClear"></div><?php
-
+			<strong><?php $this->msg( 'loginerror' ) ?></strong><br />
+		<?php
 		}
-?>
-<div id="loginstart"><?php $this->msgWiki( 'loginstart' ); ?></div>
-<div id="userloginForm">
-<form name="userlogin" method="post" action="<?php $this->text( 'action' ); ?>">
-	<h2><?php $this->msg( 'login' ); ?></h2>
-	<p id="userloginlink"><?php $this->html( 'link' ); ?></p>
-	<?php $this->html( 'header' ); /* pre-table point for form plugins... */ ?>
-	<div id="userloginprompt"><?php  $this->msgWiki( 'loginprompt' ); ?></div>
-<?php
-		if ( $this->haveData( 'languages' ) ) {
-			?><div id="languagelinks"><p><?php $this->html( 'languages' ); ?></p></div><?php
-		}
-?>
-	<table>
-		<tr>
-			<td class="mw-label"><label for='wpName1'><?php $this->msg( 'yourname' ); ?></label></td>
-			<td class="mw-input">
+		$this->html( 'message' );
+		?>
+		</div>
+	<?php
+	}
+	?>
+		<div>
+			<label for='wpName1'>
 				<?php
+				$this->msg( 'userlogin-yourname' );
+				if ( $this->data['secureLoginUrl'] ) {
+					echo Html::element( 'a', array(
+							'href' => $this->data['secureLoginUrl'],
+							'class' => 'mw-ui-flush-right mw-secure',
+						), $this->getMsg( 'userlogin-signwithsecure' )->text() );
+				} ?>
+			</label>
+			<?php
+			$extraAttrs = array();
+			// Set focus to this field if its blank.
+			if ( !$this->data['name'] ) {
+				$extraAttrs['autofocus'] = '';
+			}
 			echo Html::input( 'wpName', $this->data['name'], 'text', array(
 				'class' => 'loginText',
 				'id' => 'wpName1',
 				'tabindex' => '1',
 				'size' => '20',
-				'required'
-				# Can't do + array( 'autofocus' ) because + for arrays in PHP
-				# only works right for associative arrays!  Thanks, PHP.
-			) + ( $this->data['name'] ? array() : array( 'autofocus' => '' ) ) ); ?>
+				// 'required' is blacklisted for now in Html.php due to browser issues.
+				// Keeping here in case that changes
+				'required',
+				'placeholder' => $this->getMsg( 'userlogin-yourname-ph' )->text()
+			) + $extraAttrs );
+			?>
+		</div>
+		<div>
+			<label for='wpPassword1'>
+			<?php
+			$this->msg( 'userlogin-yourpassword' );
 
-			</td>
-		</tr>
-		<tr>
-			<td class="mw-label"><label for='wpPassword1'><?php $this->msg( 'yourpassword' ); ?></label></td>
-			<td class="mw-input">
-				<?php
+			if ( $this->data['useemail'] && $this->data['canreset'] && $this->data['resetlink'] === true ) {
+				echo Linker::link(
+					SpecialPage::getTitleFor( 'PasswordReset' ),
+					$this->getMsg( 'userlogin-resetpassword-link' )->parse(),
+					array( 'class' => 'mw-ui-flush-right' )
+					);
+			}
+			?>
+			</label>
+			<?php
+			$extraAttrs = array();
+			// Set focus to this field if username is filled in.
+			if ( $this->data['name'] ) {
+				$extraAttrs['autofocus'] = '';
+			}
 			echo Html::input( 'wpPassword', null, 'password', array(
 				'class' => 'loginPassword',
 				'id' => 'wpPassword1',
 				'tabindex' => '2',
-				'size' => '20'
-			) + ( $this->data['name'] ? array( 'autofocus' ) : array() ) ); ?>
-
-			</td>
-		</tr>
-<?php
-		if ( isset( $this->data['usedomain'] ) && $this->data['usedomain'] ) {
+				'size' => '20',
+				'placeholder' => $this->getMsg( 'userlogin-yourpassword-ph' )->text()
+			) + $extraAttrs );
+			?>
+		</div>
+	<?php
+	if ( isset( $this->data['usedomain'] ) && $this->data['usedomain'] ) {
 		$doms = "";
 		foreach ( $this->data['domainnames'] as $dom ) {
 			$doms .= "<option>" . htmlspecialchars( $dom ) . "</option>";
 		}
-?>
-		<tr id="mw-user-domain-section">
-			<td class="mw-label"><?php $this->msg( 'yourdomainname' ) ?></td>
-			<td class="mw-input">
-				<select name="wpDomain" value="<?php $this->text( 'domain' ) ?>"
+	?>
+		<div id="mw-user-domain-section">
+			<label for='wpDomain' class="pos-above"><?php $this->msg( 'yourdomain' ); ?></label>
+				<select name="wpDomain" value="<?php $this->text( 'domain' ); ?>"
 					tabindex="3">
 					<?php echo $doms ?>
 				</select>
-			</td>
-		</tr>
-<?php
-		}
+		</div>
+	<?php }
 
-		if ( $this->haveData( 'extrafields' ) ) {
-			echo $this->data['extrafields'];
-		}
+	if ( $this->haveData( 'extrafields' ) ) {
+		echo $this->data['extrafields'];
+	} ?>
 
-		if ( $this->data['canremember'] ) {
-?>
-		<tr>
-			<td></td>
-			<td class="mw-input">
-				<?php
-				global $wgCookieExpiration;
-				$expirationDays = ceil( $wgCookieExpiration / ( 3600 * 24 ) );
-				echo Xml::checkLabel(
-					wfMessage( 'remembermypassword' )->numParams( $expirationDays )->text(),
-					'wpRemember',
-					'wpRemember',
-					$this->data['remember'],
-					array( 'tabindex' => '8' )
-				)
-				?>
-			</td>
-		</tr>
-<?php
-		}
+		<div>
 
-		if ( $this->data['cansecurelogin'] ) {
-?>
-		<tr>
-			<td></td>
-			<td class="mw-input">
+	<?php if ( $this->data['canremember'] ) { ?>
+		<label class="mw-ui-checkbox-label">
+			<input name="wpRemember" type="checkbox" value="1" id="wpRemember" tabindex="4"
+				<?php if ( $this->data['remember'] ) {
+					echo 'checked="checked"';
+				} ?>
+			>
+			<?php echo $this->getMsg( 'userlogin-remembermypassword' )->numParams( $expirationDays )->escaped(); ?>
+		</label>
+	<?php } ?>
+		</div>
+
+	<?php if ( $this->data['cansecurelogin'] ) { ?>
+		<div>
+			<label class="mw-ui-checkbox-label">
+				<input name="wpStickHTTPS" type="checkbox" value="1" id="wpStickHTTPS" tabindex="5"
+					<?php if ( $this->data['stickHTTPS'] ) {
+						echo 'checked="checked"';
+					} ?>
+				>
+				<?php $this->msg( 'securelogin-stick-https' ); ?>
+			</label>
+		</div>
+	<?php } ?>
+		<div>
 			<?php
-			echo Xml::checkLabel(
-				wfMessage( 'securelogin-stick-https' )->text(),
-				'wpStickHTTPS',
-				'wpStickHTTPS',
-				$this->data['stickHTTPS'],
-				array( 'tabindex' => '9' )
-			);
-?>
-			</td>
-		</tr>
-<?php
-		}
-?>
-		<tr>
-			<td></td>
-			<td class="mw-submit">
-			<?php
-			echo Html::input( 'wpLoginAttempt', wfMessage( 'login' )->text(), 'submit', array(
+			echo Html::input( 'wpLoginAttempt', $this->getMsg( 'login' )->text(), 'submit', array(
 				'id' => 'wpLoginAttempt',
-				'tabindex' => '9'
+				'tabindex' => '6',
+				'class' => 'mw-ui-button mw-ui-big mw-ui-block mw-ui-primary'
 			) );
-		if ( $this->data['useemail'] && $this->data['canreset'] ) {
-			if ( $this->data['resetlink'] === true ) {
-				echo '&#160;';
-				echo Linker::link(
-					SpecialPage::getTitleFor( 'PasswordReset' ),
-					wfMessage( 'userlogin-resetlink' )
-				);
-			} elseif ( $this->data['resetlink'] === null ) {
-				echo '&#160;';
-				echo Html::input(
-					'wpMailmypassword',
-					wfMessage( 'mailmypassword' )->text(),
-					'submit', array(
-						'id' => 'wpMailmypassword',
-						'tabindex' => '10'
-					)
-				);
-			}
-		}
-?>
-			</td>
-		</tr>
-	</table>
-<?php
-	if ( $this->haveData( 'uselang' ) ) {
-		?><input type="hidden" name="uselang" value="<?php $this->text( 'uselang' ); ?>" /><?php
-	}
-
-	if ( $this->haveData( 'token' ) ) {
-		?><input type="hidden" name="wpLoginToken" value="<?php $this->text( 'token' ); ?>" /><?php
-	}
-?>
+			?>
+		</div>
+		<div id="mw-userlogin-help">
+			<?php echo $this->getMsg( 'userlogin-helplink' )->parse(); ?>
+		</div>
+		<?php if ( $this->haveData( 'createOrLoginHref' ) ) { ?>
+			<div id="mw-createaccount-cta">
+				<h3 id="mw-userloginlink"><?php $this->msg( 'userlogin-noaccount' ); ?><a href="<?php $this->text( 'createOrLoginHref' ); ?>" id="mw-createaccount-join" tabindex="7"  class="mw-ui-button mw-ui-constructive"><?php $this->msg( 'userlogin-joinproject' ); ?></a></h3>
+			</div>
+		<?php } ?>
+	<input type="hidden" id="mw-useNew" name="useNew" value="1" />
+<?php if ( $this->haveData( 'uselang' ) ) { ?><input type="hidden" name="uselang" value="<?php $this->text( 'uselang' ); ?>" /><?php } ?>
+<?php if ( $this->haveData( 'token' ) ) { ?><input type="hidden" name="wpLoginToken" value="<?php $this->text( 'token' ); ?>" /><?php } ?>
 </form>
 </div>
-<div id="loginend"><?php $this->html( 'loginend' ); ?></div>
+</div>
 <?php
-
 	}
 }
