@@ -97,6 +97,41 @@ class GIFHandlerTest extends MediaWikiTestCase {
 		);
 	}
 
+	/**
+	 * @param $filename String
+	 * @param $expected String Serialized array
+	 * @dataProvider provideGetIndependentMetaArray
+	 */
+	public function testGetIndependentMetaArray( $filename, $expected ) {
+		$file = $this->dataFile( $filename, 'image/gif' );
+		$actual = $this->handler->getCommonMetaArray( $file );
+		$this->assertEquals( $expected, $actual );
+	}
+
+	public function provideGetIndependentMetaArray() {
+		return array(
+			array( 'nonanimated.gif', array (
+				'GIFFileComment' => array (
+					'GIF test file ⁕ Created with GIMP',
+				),
+			) ),
+			array( 'animated-xmp.gif',
+				array (
+					'Artist' => 'Bawolff',
+					'ImageDescription' => array (
+						'x-default' => 'A file to test GIF',
+						'_type' => 'lang',
+					),
+					'SublocationDest' => 'The interwebs',
+					'GIFFileComment' =>
+					array (
+						'GIƒ·test·file',
+					),
+				)
+			),
+		);
+	}
+
 	private function dataFile( $name, $type ) {
 		return new UnregisteredLocalFile( false, $this->repo,
 			"mwstore://localtesting/data/$name", $type );
