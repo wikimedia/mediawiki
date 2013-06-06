@@ -121,8 +121,8 @@ class UsercreateTemplateVForm extends BaseTemplate {
 			$doms .= "<option>" . htmlspecialchars( $dom ) . "</option>";
 		}
 	?>
-		<div>
-			<label><?php $this->msg( 'yourdomainname' ); ?></label>
+		<div id="mw-user-domain-section">
+			<label for="wpDomain"><?php $this->msg( 'yourdomainname' ); ?></label>
 			<div class="mw-input">
 				<select name="wpDomain" value="<?php $this->text( 'domain' ); ?>"
 					tabindex="4">
