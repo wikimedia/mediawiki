@@ -1542,6 +1542,7 @@ It gave no explanation.',
 It appears to have been deleted.',
 'edit-conflict'                    => 'Edit conflict.',
 'edit-no-change'                   => 'Your edit was ignored because no change was made to the text.',
+'postedit-confirmation'            => 'Your edit was saved.',
 'edit-already-exists'              => 'Could not create a new page.
 It already exists.',
 'addsection-preload'               => '', # do not translate or duplicate this message to other languages
