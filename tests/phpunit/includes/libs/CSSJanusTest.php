@@ -151,14 +151,11 @@ class CSSJanusTest extends MediaWikiTestCase {
 				'#settings td p strong'
 			),
 			array(
-				# Not sure how 4+ values should behave,
-				# testing to make sure changes are detected
-				'.foo { x-unknown: 1 2 3 4 5; }',
-				'.foo { x-unknown: 1 4 3 2 5; }',
+				// Do not mangle 5 or more values
+				'.foo { -x-unknown: 1 2 3 4 5; }'
 			),
 			array(
-				'.foo { x-unknown: 1 2 3 4 5 6; }',
-				'.foo { x-unknown: 1 4 3 2 5 6; }',
+				'.foo { -x-unknown: 1 2 3 4 5 6; }'
 			),
 
 			// Shorthand / Three notation
