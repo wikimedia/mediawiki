@@ -2945,11 +2945,13 @@ class Title {
 		$linkCache = LinkCache::singleton();
 		$cached = $linkCache->getGoodLinkFieldObj( $this, 'redirect' );
 		if ( $cached === null ) {
-			// TODO: check the assumption that the cache actually knows about this title
-			// and handle this, such as get the title from the database.
-			// See https://bugzilla.wikimedia.org/show_bug.cgi?id=37209
-			wfDebug( "LinkCache doesn't currently know about this title: " . $this->getPrefixedDBkey() );
-			wfDebug( wfBacktrace() );
+			# Trust LinkCache's state over our own
+			# LinkCache is telling us that the page doesn't exist, despite there being cached
+			# data relating to an existing page in $this->mArticleID. Updaters should clear
+			# LinkCache as appropriate, or use $flags = Title::GAID_FOR_UPDATE. If that flag is
+			# set, then LinkCache will definitely be up to date here, since getArticleID() forces
+			# LinkCache to refresh its data from the master.
+			return $this->mRedirect = false;
 		}
 
 		$this->mRedirect = (bool)$cached;
@@ -2974,11 +2976,9 @@ class Title {
 		}
 		$linkCache = LinkCache::singleton();
 		$cached = $linkCache->getGoodLinkFieldObj( $this, 'length' );
-		if ( $cached === null ) { # check the assumption that the cache actually knows about this title
-			# XXX: this does apparently happen, see https://bugzilla.wikimedia.org/show_bug.cgi?id=37209
-			#      as a stop gap, perhaps log this, but don't throw an exception?
-			wfDebug( "LinkCache doesn't currently know about this title: " . $this->getPrefixedDBkey() );
-			wfDebug( wfBacktrace() );
+		if ( $cached === null ) {
+			# Trust LinkCache's state over our own, as for isRedirect()
+			return $this->mLength = 0;
 		}
 
 		$this->mLength = intval( $cached );
@@ -2990,7 +2990,6 @@ class Title {
 	 * What is the page_latest field for this page?
 	 *
 	 * @param int $flags a bit field; may be Title::GAID_FOR_UPDATE to select for update
-	 * @throws MWException
 	 * @return Int or 0 if the page doesn't exist
 	 */
 	public function getLatestRevID( $flags = 0 ) {
@@ -3004,10 +3003,9 @@ class Title {
 		$linkCache = LinkCache::singleton();
 		$linkCache->addLinkObj( $this );
 		$cached = $linkCache->getGoodLinkFieldObj( $this, 'revision' );
-		if ( $cached === null ) { # check the assumption that the cache actually knows about this title
-			# XXX: this does apparently happen, see https://bugzilla.wikimedia.org/show_bug.cgi?id=37209
-			#      as a stop gap, perhaps log this, but don't throw an exception?
-			throw new MWException( "LinkCache doesn't currently know about this title: " . $this->getPrefixedDBkey() );
+		if ( $cached === null ) {
+			# Trust LinkCache's state over our own, as for isRedirect()
+			return $this->mLatestID = 0;
 		}
 
 		$this->mLatestID = intval( $cached );
