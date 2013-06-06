@@ -137,10 +137,15 @@ class CSSJanusTest extends MediaWikiTestCase {
 				'.foo { padding: 1px inherit 3px auto; }',
 				'.foo { padding: 1px auto 3px inherit; }'
 			),
+			// border-radius assigns different meanings to the values
 			array(
 				'.foo { border-radius: .25em 15px 0pt 0ex; }',
-				'.foo { border-radius: .25em 0ex 0pt 15px; }'
+				'.foo { border-radius: 15px .25em 0ex 0pt; }'
 			),
+			array(
+				'.foo { border-radius: 0px 0px 5px 5px; }',
+			),
+			// Ensure the rule doesn't break other stuff
 			array(
 				'.foo { x-unknown: a b c d; }'
 			),
