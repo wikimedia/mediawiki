@@ -158,6 +158,7 @@ production.
 * prop=info now adds the content model and page language of the title.
 * New upload log entries will now contain information on the relavent
   image (sha1 and timestamp).
+* (bug 49239) action=parse now can parse in preview mode.
 
 === Languages updated in 1.22===
 

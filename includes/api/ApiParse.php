@@ -94,8 +94,7 @@ class ApiParse extends ApiBase {
 				$titleObj = $rev->getTitle();
 				$wgTitle = $titleObj;
 				$pageObj = WikiPage::factory( $titleObj );
-				$popts = $pageObj->makeParserOptions( $this->getContext() );
-				$popts->enableLimitReport( !$params['disablepp'] );
+				$popts = $this->makeParserOptions( $pageObj, $params );
 
 				// If for some reason the "oldid" is actually the current revision, it may be cached
 				if ( $rev->isCurrent() ) {
@@ -152,8 +151,7 @@ class ApiParse extends ApiBase {
 					$oldid = $pageObj->getLatest();
 				}
 
-				$popts = $pageObj->makeParserOptions( $this->getContext() );
-				$popts->enableLimitReport( !$params['disablepp'] );
+				$popts = $this->makeParserOptions( $pageObj, $params );
 
 				// Potentially cached
 				$p_result = $this->getParsedContent( $pageObj, $popts, $pageid,
@@ -170,8 +168,7 @@ class ApiParse extends ApiBase {
 			$wgTitle = $titleObj;
 			$pageObj = WikiPage::factory( $titleObj );
 
-			$popts = $pageObj->makeParserOptions( $this->getContext() );
-			$popts->enableLimitReport( !$params['disablepp'] );
+			$popts = $this->makeParserOptions( $pageObj, $params );
 
 			if ( is_null( $text ) ) {
 				$this->dieUsage( 'The text parameter should be passed with the title parameter. Should you be using the "page" parameter instead?', 'params' );
@@ -357,6 +354,26 @@ class ApiParse extends ApiBase {
 		if ( !is_null( $oldLang ) ) {
 			$this->getContext()->setLanguage( $oldLang ); // Reset language to $oldLang
 		}
+	}
+
+	/**
+	 * Constructs a ParserOptions object
+	 *
+	 * @param WikiPage $pageObj
+	 * @param array $params
+	 *
+	 * @return ParserOptions
+	 */
+	protected function makeParserOptions( WikiPage $pageObj, array $params ) {
+		wfProfileIn( __METHOD__ );
+
+		$popts = $pageObj->makeParserOptions( $this->getContext() );
+		$popts->enableLimitReport( !$params['disablepp'] );
+		$popts->setIsPreview( $params['preview'] );
+		$popts->setIsSectionPreview( $params['preview'] && $this->section !== false );
+
+		wfProfileOut( __METHOD__ );
+		return $popts;
 	}
 
 	/**
@@ -594,6 +611,7 @@ class ApiParse extends ApiBase {
 			'section' => null,
 			'disablepp' => false,
 			'generatexml' => false,
+			'preview' => false,
 			'contentformat' => array(
 				ApiBase::PARAM_TYPE => ContentHandler::getAllContentFormats(),
 			),
@@ -649,6 +667,7 @@ class ApiParse extends ApiBase {
 			'section' => 'Only retrieve the content of this section number',
 			'disablepp' => 'Disable the PP Report from the parser output',
 			'generatexml' => 'Generate XML parse tree (requires prop=wikitext)',
+			'preview' => 'Parse in preview mode',
 			'contentformat' => 'Content serialization format used for the input text',
 			'contentmodel' => 'Content model of the new content',
 		);
