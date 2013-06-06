@@ -30,6 +30,8 @@ production.
 * $wgDBOracleDRCP added. True enables persistent connection with DRCP on Oracle.
 * $wgLogAutopatrol added to allow disabling logging of autopatrol edits in the logging table.
   default for $wgLogAutopatrol is true.
+* $wgCopyUploadTimeout and $wgCopyUploadAsyncTimeout added to change the timeout times for
+  fetching the file during upload by url.
 
 === New features in 1.22 ===
 * (bug 44525) mediawiki.jqueryMsg can now parse (whitelisted) HTML elements and attributes.

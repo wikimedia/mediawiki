@@ -583,6 +583,27 @@ $wgCopyUploadsFromSpecialUpload = false;
 $wgCopyUploadProxy = false;
 
 /**
+ * Different timeout for upload by url
+ * This could be useful since when fetching large files, you may want a
+ * timeout longer than the default $wgHTTPTimeout.
+ *
+ * Default means use $wgHTTPTimeout
+ * @since 1.22
+ */
+$wgCopyUploadTimeout = 'default';
+
+/**
+ * Different timeout for upload by url when run as a background job
+ * This could be useful since when fetching large files via job queue,
+ * you may want a different timeout, especially because there is no
+ * http request being kept alive.
+ *
+ * false means fallback to $wgCopyUploadTimeout.
+ * @since 1.22
+ */
+$wgCopyUploadAsyncTimeout = false;
+
+/**
  * Max size for uploads, in bytes. If not set to an array, applies to all
  * uploads. If set to an array, per upload type maximums can be set, using the
  * file and url keys. If the * key is set this value will be used as maximum

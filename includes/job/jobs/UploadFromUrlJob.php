@@ -48,6 +48,7 @@ class UploadFromUrlJob extends Job {
 	}
 
 	public function run() {
+		global $wgCopyUploadAsyncTimeout;
 		# Initialize this object and the upload object
 		$this->upload = new UploadFromUrl();
 		$this->upload->initialize(
@@ -58,7 +59,11 @@ class UploadFromUrlJob extends Job {
 		$this->user = User::newFromName( $this->params['userName'] );
 
 		# Fetch the file
-		$status = $this->upload->fetchFile();
+		$opts = array();
+		if ( $wgCopyUploadAsyncTimeout ) {
+			$opts['timeout'] = $wgCopyUploadAsyncTimeout;
+		}
+		$status = $this->upload->fetchFile( $opts );
 		if ( !$status->isOk() ) {
 			$this->leaveMessage( $status );
 			return true;
