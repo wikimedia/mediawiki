@@ -151,6 +151,16 @@ class CSSJanusTest extends MediaWikiTestCase {
 				'#settings td p strong'
 			),
 			array(
+				// Test the colors regex
+				'.foo { border-color: red green blue white }',
+				'.foo { border-color: red white blue green }',
+			),
+			array(
+				// Test the colors regex harder
+				'.foo { border-color: red #f00 rgb(255, 0, 0%) rgba(100%, 0, 0, 0) }',
+				'.foo { border-color: red rgba(100%, 0, 0, 0) rgb(255, 0, 0%) #f00 }',
+			),
+			array(
 				// Do not mangle 5 or more values
 				'.foo { -x-unknown: 1 2 3 4 5; }'
 			),
