@@ -76,6 +76,7 @@ class CSSJanus {
 		'cursor_west' => null,
 		'four_notation_quantity' => null,
 		'four_notation_color' => null,
+		'border_radius' => null,
 		'bg_horizontal_percentage' => null,
 		'bg_horizontal_percentage_x' => null,
 	);
@@ -115,6 +116,7 @@ class CSSJanus {
 		$patterns['cursor_west'] = "/{$patterns['lookbehind_not_letter']}([ns]?)w-resize/";
 		$patterns['four_notation_quantity'] = "/(:\s*){$patterns['possibly_negative_quantity']}(\s+){$patterns['possibly_negative_quantity']}(\s+){$patterns['possibly_negative_quantity']}(\s+){$patterns['possibly_negative_quantity']}(\s*[;}])/i";
 		$patterns['four_notation_color'] = "/(-color\s*:\s*){$patterns['color']}(\s+){$patterns['color']}(\s+){$patterns['color']}(\s+){$patterns['color']}(\s*[;}])/i";
+		$patterns['border_radius'] = "/(border-radius\s*:\s*){$patterns['possibly_negative_quantity']}(\s+){$patterns['possibly_negative_quantity']}(\s+){$patterns['possibly_negative_quantity']}(\s+){$patterns['possibly_negative_quantity']}(\s*[;}])/i";
 		// The two regexes below are parenthesized differently then in the original implementation to make the
 		// callback's job more straightforward
 		$patterns['bg_horizontal_percentage'] = "/(background(?:-position)?\s*:\s*[^%]*?)(-?{$patterns['num']})(%\s*(?:{$patterns['quantity']}|{$patterns['ident']}))/";
@@ -160,6 +162,7 @@ class CSSJanus {
 		$css = self::fixLeftAndRight( $css );
 		$css = self::fixCursorProperties( $css );
 		$css = self::fixFourPartNotation( $css );
+		$css = self::fixBorderRadius( $css );
 		$css = self::fixBackgroundPosition( $css );
 
 		// Detokenize stuff we tokenized before
@@ -259,6 +262,22 @@ class CSSJanus {
 	private static function fixFourPartNotation( $css ) {
 		$css = preg_replace( self::$patterns['four_notation_quantity'], '$1$2$3$8$5$6$7$4$9', $css );
 		$css = preg_replace( self::$patterns['four_notation_color'], '$1$2$3$8$5$6$7$4$9', $css );
+
+		return $css;
+	}
+
+	/**
+	 * Swaps appropriate corners in four-part border-radius rules.
+	 * Needs to undo the effect of fixFourPartNotation() on those rules, too.
+	 *
+	 * @param $css string
+	 * @return string
+	 */
+	private static function fixBorderRadius( $css ) {
+		// Undo four_notation_quantity
+		$css = preg_replace( self::$patterns['border_radius'], '$1$2$3$8$5$6$7$4$9', $css );
+		// Do the real thing
+		$css = preg_replace( self::$patterns['border_radius'], '$1$4$3$2$5$8$7$6$9', $css );
 
 		return $css;
 	}

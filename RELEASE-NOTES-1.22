@@ -198,6 +198,7 @@ production.
 * CSSJanus now supports rgb, hsl, rgba, and hsla color syntaxes.
 * Special:Listfiles can no longer be sorted by image name when filtering
   by user in miser mode.
+* (bug 49074) CSSJanus: Handle values of border-radius correctly.
 
 === API changes in 1.22 ===
 * (bug 25553) The JSON output formatter now leaves forward slashes unescaped
