@@ -130,7 +130,7 @@ class UserloginTemplateVForm extends BaseTemplate {
 		}
 	?>
 		<div id="mw-user-domain-section">
-			<label for='wpDomain' class="pos-above"><?php $this->msg( 'yourdomain' ); ?></label>
+			<label for='wpDomain'><?php $this->msg( 'yourdomainname' ); ?></label>
 				<select name="wpDomain" value="<?php $this->text( 'domain' ); ?>"
 					tabindex="3">
 					<?php echo $doms ?>
