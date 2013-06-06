@@ -9,6 +9,7 @@ $form_dirs = array(
 	'gc' => $wgGlobalCollectGatewayHtmlFormDir,
 	'paypal' => $wgPaypalGatewayHtmlFormDir,
 //	'pfp' => $wgPayflowProGatewayHtmlFormDir,
+	'adyen' => $wgAdyenGatewayHtmlFormDir,
 );
 
 /**********
@@ -20,6 +21,17 @@ $forms_whitelist['amazon'] = array(
 	'currencies' => array( '+' => 'USD',),
 	'payment_methods' => array('amazon' => 'ALL'),
 	'redirect',
+);
+
+/**********
+ * Adyen *
+ **********/
+$forms_whitelist['adyen'] = array(
+	'file' => $form_dirs['adyen'] . '/adyen.html',
+	'gateway' => 'adyen',
+	'countries' => array( '+' => 'US',),
+	'currencies' => array( '+' => 'USD',),
+	'payment_methods' => array('card' => 'ALL'),
 );
 
 /****************************
