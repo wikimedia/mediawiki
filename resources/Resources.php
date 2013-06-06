@@ -922,6 +922,7 @@ return array(
 	'mediawiki.special.preferences' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.preferences.js',
 		'styles' => 'resources/mediawiki.special/mediawiki.special.preferences.css',
+		'position' => 'top',
 	),
 	'mediawiki.special.recentchanges' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.recentchanges.js',
