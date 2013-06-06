@@ -79,6 +79,7 @@ class CSSJanus {
 		'box_shadow' => null,
 		'text_shadow1' => null,
 		'text_shadow2' => null,
+		'border_radius' => null,
 		'bg_horizontal_percentage' => null,
 		'bg_horizontal_percentage_x' => null,
 	);
@@ -121,6 +122,7 @@ class CSSJanus {
 		$patterns['box_shadow'] = "/(box-shadow\s*:\s*(?:inset\s*)?){$patterns['possibly_negative_quantity']}/i";
 		$patterns['text_shadow1'] = "/(text-shadow\s*:\s*){$patterns['color']}(\s*){$patterns['possibly_negative_quantity']}/i";
 		$patterns['text_shadow2'] = "/(text-shadow\s*:\s*){$patterns['possibly_negative_quantity']}/i";
+		$patterns['border_radius'] = "/border-radius{$patterns['four_notation_quantity']}/i";
 		// The two regexes below are parenthesized differently then in the original implementation to make the
 		// callback's job more straightforward
 		$patterns['bg_horizontal_percentage'] = "/(background(?:-position)?\s*:\s*[^%]*?)(-?{$patterns['num']})(%\s*(?:{$patterns['quantity']}|{$patterns['ident']}))/";
@@ -166,6 +168,7 @@ class CSSJanus {
 		$css = self::fixLeftAndRight( $css );
 		$css = self::fixCursorProperties( $css );
 		$css = self::fixFourPartNotation( $css );
+		$css = self::fixBorderRadius( $css );
 		$css = self::fixBackgroundPosition( $css );
 		$css = self::fixShadows( $css );
 
@@ -301,6 +304,22 @@ class CSSJanus {
 		$css = preg_replace_callback( self::$patterns['text_shadow2'], function ( $matches ) use ( $flipSign ) {
 			return $matches[1] . $flipSign( $matches[2] );
 		}, $css );
+
+		return $css;
+	}
+
+	/**
+	 * Swaps appropriate corners in four-part border-radius rules.
+	 * Needs to undo the effect of fixFourPartNotation() on those rules, too.
+	 *
+	 * @param $css string
+	 * @return string
+	 */
+	private static function fixBorderRadius( $css ) {
+		// Undo four_notation_quantity
+		$css = preg_replace( self::$patterns['border_radius'], 'border-radius$1$2$3$8$5$6$7$4$9', $css );
+		// Do the real thing
+		$css = preg_replace( self::$patterns['border_radius'], 'border-radius$1$4$3$2$5$8$7$6$9', $css );
 
 		return $css;
 	}
