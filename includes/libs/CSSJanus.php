@@ -76,6 +76,9 @@ class CSSJanus {
 		'cursor_west' => null,
 		'four_notation_quantity' => null,
 		'four_notation_color' => null,
+		'box_shadow' => null,
+		'text_shadow1' => null,
+		'text_shadow2' => null,
 		'bg_horizontal_percentage' => null,
 		'bg_horizontal_percentage_x' => null,
 	);
@@ -115,6 +118,9 @@ class CSSJanus {
 		$patterns['cursor_west'] = "/{$patterns['lookbehind_not_letter']}([ns]?)w-resize/";
 		$patterns['four_notation_quantity'] = "/(:\s*){$patterns['possibly_negative_quantity']}(\s+){$patterns['possibly_negative_quantity']}(\s+){$patterns['possibly_negative_quantity']}(\s+){$patterns['possibly_negative_quantity']}(\s*[;}])/i";
 		$patterns['four_notation_color'] = "/(-color\s*:\s*){$patterns['color']}(\s+){$patterns['color']}(\s+){$patterns['color']}(\s+){$patterns['color']}(\s*[;}])/i";
+		$patterns['box_shadow'] = "/(box-shadow\s*:\s*(?:inset\s*)?){$patterns['possibly_negative_quantity']}/i";
+		$patterns['text_shadow1'] = "/(text-shadow\s*:\s*){$patterns['color']}(\s*){$patterns['possibly_negative_quantity']}/i";
+		$patterns['text_shadow2'] = "/(text-shadow\s*:\s*){$patterns['possibly_negative_quantity']}/i";
 		// The two regexes below are parenthesized differently then in the original implementation to make the
 		// callback's job more straightforward
 		$patterns['bg_horizontal_percentage'] = "/(background(?:-position)?\s*:\s*[^%]*?)(-?{$patterns['num']})(%\s*(?:{$patterns['quantity']}|{$patterns['ident']}))/";
@@ -161,6 +167,7 @@ class CSSJanus {
 		$css = self::fixCursorProperties( $css );
 		$css = self::fixFourPartNotation( $css );
 		$css = self::fixBackgroundPosition( $css );
+		$css = self::fixShadows( $css );
 
 		// Detokenize stuff we tokenized before
 		$css = $comments->detokenize( $css );
@@ -259,6 +266,41 @@ class CSSJanus {
 	private static function fixFourPartNotation( $css ) {
 		$css = preg_replace( self::$patterns['four_notation_quantity'], '$1$2$3$8$5$6$7$4$9', $css );
 		$css = preg_replace( self::$patterns['four_notation_color'], '$1$2$3$8$5$6$7$4$9', $css );
+
+		return $css;
+	}
+
+	/**
+	 * Negates horizontal offset in box-shadow and text-shadow rules.
+	 *
+	 * @param $css string
+	 * @return string
+	 */
+	private static function fixShadows( $css ) {
+		// Flips the sign of a CSS value, possibly with a unit.
+		// (We can't just negate the value with unary minus due to the units.)
+		$flipSign = function ( $cssValue ) {
+			// Don't mangle zeroes
+			if ( intval( $cssValue ) === 0 ) {
+				return $cssValue;
+			} elseif ( $cssValue[0] === '-' ) {
+				return substr( $cssValue, 1 );
+			} else {
+				return "-" . $cssValue;
+			}
+		};
+
+		$css = preg_replace_callback( self::$patterns['box_shadow'], function ( $matches ) use ( $flipSign ) {
+			return $matches[1] . $flipSign( $matches[2] );
+		}, $css );
+
+		$css = preg_replace_callback( self::$patterns['text_shadow1'], function ( $matches ) use ( $flipSign ) {
+			return $matches[1] . $matches[2] . $matches[3] . $flipSign( $matches[4] );
+		}, $css );
+
+		$css = preg_replace_callback( self::$patterns['text_shadow2'], function ( $matches ) use ( $flipSign ) {
+			return $matches[1] . $flipSign( $matches[2] );
+		}, $css );
 
 		return $css;
 	}
