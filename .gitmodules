@@ -460,3 +460,6 @@
 [submodule "extensions/Disambiguator"]
 	path = extensions/Disambiguator
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Disambiguator.git
+[submodule "extensions/Parsoid"]
+	path = extensions/Parsoid
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Parsoid.git
