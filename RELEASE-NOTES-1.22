@@ -169,6 +169,7 @@ production.
   backwards-compatible in all reasonable cases (uses of the __TOC__ magic word,
   the #toc CSS id and the .toc CSS class). However, particularly bad abuse of
   the id or the class can possibly break.
+* CSSJanus now supports rgb, hsl, rgba, and hsla color syntaxes.
 
 === API changes in 1.22 ===
 * (bug 25553) The JSON output formatter now leaves forward slashes unescaped
