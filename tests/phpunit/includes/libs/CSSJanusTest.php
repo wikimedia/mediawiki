@@ -186,6 +186,28 @@ class CSSJanusTest extends MediaWikiTestCase {
 				'.foo { padding: 1px; }'
 			),
 
+			// text-shadow and box-shadow
+			array(
+				'.foo { box-shadow: -6px 3px 8px 5px rgba(0, 0, 0, 0.25); }',
+				'.foo { box-shadow: 6px 3px 8px 5px rgba(0, 0, 0, 0.25); }',
+			),
+			array(
+				'.foo { box-shadow: inset -6px 3px 8px 5px rgba(0, 0, 0, 0.25); }',
+				'.foo { box-shadow: inset 6px 3px 8px 5px rgba(0, 0, 0, 0.25); }',
+			),
+			array(
+				'.foo { text-shadow: orange 2px 0; }',
+				'.foo { text-shadow: orange -2px 0; }',
+			),
+			array(
+				'.foo { text-shadow: 2px 0 orange; }',
+				'.foo { text-shadow: -2px 0 orange; }',
+			),
+			array(
+				// Don't mangle zeroes
+				'.foo { text-shadow: orange 0 2px; }'
+			),
+
 			// Direction
 			// Note: This differs from the Python implementation,
 			// see also CSSJanus::fixDirection for more info.
