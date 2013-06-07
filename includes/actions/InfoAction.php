@@ -66,8 +66,8 @@ class InfoAction extends FormlessAction {
 		// Clear page info.
 		$revision = WikiPage::factory( $title )->getRevision();
 		if ( $revision !== null ) {
-			$memcKey = wfMemcKey( 'infoaction', $title->getPrefixedText(), $revision->getId() );
-			$wgMemc->delete( $memcKey );
+			$key = wfMemcKey( 'infoaction', sha1( $title->getPrefixedText() ), $revision->getId() );
+			$wgMemc->delete( $key );
 		}
 	}
 
@@ -185,14 +185,16 @@ class InfoAction extends FormlessAction {
 	 * @return array
 	 */
 	protected function pageInfo() {
-		global $wgContLang, $wgRCMaxAge, $wgMemc, $wgUnwatchedPageThreshold, $wgPageInfoTransclusionLimit;
+		global $wgContLang, $wgRCMaxAge, $wgMemc,
+			$wgUnwatchedPageThreshold, $wgPageInfoTransclusionLimit;
 
 		$user = $this->getUser();
 		$lang = $this->getLanguage();
 		$title = $this->getTitle();
 		$id = $title->getArticleID();
 
-		$memcKey = wfMemcKey( 'infoaction', sha1( $title->getPrefixedText() ), $this->page->getLatest() );
+		$memcKey = wfMemcKey( 'infoaction',
+			sha1( $title->getPrefixedText() ), $this->page->getLatest() );
 		$pageCounts = $wgMemc->get( $memcKey );
 		if ( $pageCounts === false ) {
 			// Get page information that would be too "expensive" to retrieve by normal means
