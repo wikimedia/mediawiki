@@ -28,14 +28,14 @@
  * @ingroup SpecialPage
  */
 class MIMEsearchPage extends QueryPage {
-	protected $major, $minor;
+	protected $major, $minor, $mediaType = false;
 
 	function __construct( $name = 'MIMEsearch' ) {
 		parent::__construct( $name );
 	}
 
 	function isExpensive() {
-		return true;
+		return false;
 	}
 
 	function isSyndicated() {
@@ -51,12 +51,14 @@ class MIMEsearchPage extends QueryPage {
 	}
 
 	public function getQueryInfo() {
-		return array(
+		$qi = array(
 			'tables' => array( 'image' ),
 			'fields' => array(
 				'namespace' => NS_FILE,
 				'title' => 'img_name',
-				'value' => 'img_major_mime',
+				// Still have a value field just in case,
+				// but it isn't actually used for sorting.
+				'value' => 'img_name',
 				'img_size',
 				'img_width',
 				'img_height',
@@ -68,6 +70,60 @@ class MIMEsearchPage extends QueryPage {
 				'img_minor_mime' => $this->minor
 			)
 		);
+		if ( $this->mediaType ) {
+			$qi['conds']['img_media_type'] = $this->mediaType;
+		}
+		return $qi;
+	}
+
+	/**
+	 * The index is on (img_media_type, img_major_mime, img_minor_mime)
+	 * which unfortunately doesn't have img_name at the end for sorting.
+	 * So tell db to sort it however it wishes (Its not super important
+	 * that this report gives results in a logical order). As an aditional
+	 * note, mysql seems to by default order things by img_name ASC, which
+	 * is what we ideally want, so everything works out fine anyhow.
+	 */
+	function getOrderFields() {
+		return array();
+	}
+
+	/**
+	 * Work around the index structure of the db, where we
+	 * have to first search for img_media_type. Luckily there
+	 * is only a limitted number of such types, so we can
+	 * just do a bunch of indexed queries (most of which would
+	 * be quick 0 results).
+	 */
+	function reallyDoQuery( $limit, $offset = false ) {
+		$mediaTypes = array(
+			MEDIATYPE_BITMAP,
+			MEDIATYPE_DRAWING,
+			MEDIATYPE_AUDIO,
+			MEDIATYPE_VIDEO,
+			MEDIATYPE_MULTIMEDIA,
+			MEDIATYPE_UNKNOWN,
+			MEDIATYPE_OFFICE,
+			MEDIATYPE_TEXT,
+			MEDIATYPE_EXECUTABLE,
+			MEDIATYPE_ARCHIVE,
+		);
+		$results = array();
+		$curLimit = $limit; // Number of results left to fetch
+
+		foreach( $mediaTypes as $curMediaType ) {
+			$this->mediaType = $curMediaType;
+			$tmpResult = parent::reallyDoQuery( $curLimit, $offset );
+			foreach( $tmpResult as $row ) {
+				$results[] = $row;
+				$curLimit--;
+			}
+			if ( $curLimit <= 0 ) {
+				break;
+			}
+		}
+		$this->mediaType = false;
+		return new FakeResultWrapper( $results );
 	}
 
 	function execute( $par ) {
