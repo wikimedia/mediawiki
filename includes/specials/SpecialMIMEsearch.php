@@ -35,7 +35,7 @@ class MIMEsearchPage extends QueryPage {
 	}
 
 	function isExpensive() {
-		return true;
+		return false;
 	}
 
 	function isSyndicated() {
@@ -51,12 +51,14 @@ class MIMEsearchPage extends QueryPage {
 	}
 
 	public function getQueryInfo() {
-		return array(
+		$qi = array(
 			'tables' => array( 'image' ),
 			'fields' => array(
 				'namespace' => NS_FILE,
 				'title' => 'img_name',
-				'value' => 'img_major_mime',
+				// Still have a value field just in case,
+				// but it isn't actually used for sorting.
+				'value' => 'img_name',
 				'img_size',
 				'img_width',
 				'img_height',
@@ -65,9 +67,36 @@ class MIMEsearchPage extends QueryPage {
 			),
 			'conds' => array(
 				'img_major_mime' => $this->major,
-				'img_minor_mime' => $this->minor
-			)
+				'img_minor_mime' => $this->minor,
+				// This is in order to trigger using
+				// the img_media_mime index in "range" mode.
+				'img_media_type' => array(
+					MEDIATYPE_BITMAP,
+					MEDIATYPE_DRAWING,
+					MEDIATYPE_AUDIO,
+					MEDIATYPE_VIDEO,
+					MEDIATYPE_MULTIMEDIA,
+					MEDIATYPE_UNKNOWN,
+					MEDIATYPE_OFFICE,
+					MEDIATYPE_TEXT,
+					MEDIATYPE_EXECUTABLE,
+					MEDIATYPE_ARCHIVE,
+				),
+			),
 		);
+		return $qi;
+	}
+
+	/**
+	 * The index is on (img_media_type, img_major_mime, img_minor_mime)
+	 * which unfortunately doesn't have img_name at the end for sorting.
+	 * So tell db to sort it however it wishes (Its not super important
+	 * that this report gives results in a logical order). As an aditional
+	 * note, mysql seems to by default order things by img_name ASC, which
+	 * is what we ideally want, so everything works out fine anyhow.
+	 */
+	function getOrderFields() {
+		return array();
 	}
 
 	function execute( $par ) {
