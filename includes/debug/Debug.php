@@ -300,6 +300,28 @@ class MWDebug {
 	}
 
 	/**
+	 * Helper function to remove non UTF-8 chars from a string.
+	 * @param string $string the input string
+	 * @return string string without non valid UTF-8 chars
+	 */
+	private static function removeNonUtf8CharsFromString( $string ){
+		$regex = <<<'END'
+/
+  (
+    (?: [\x00-\x7F]                 # single-byte sequences   0xxxxxxx
+    |   [\xC0-\xDF][\x80-\xBF]      # double-byte sequences   110xxxxx 10xxxxxx
+    |   [\xE0-\xEF][\x80-\xBF]{2}   # triple-byte sequences   1110xxxx 10xxxxxx * 2
+    |   [\xF0-\xF7][\x80-\xBF]{3}   # quadruple-byte sequence 11110xxx 10xxxxxx * 3
+    ){1,100}                        # ...one or more times
+  )
+| .                                 # anything else
+/x
+END;
+	
+		return preg_replace($regex, '$1', $string);
+	}
+
+	/**
 	 * This is a method to pass messages from wfDebug to the pretty debugger.
 	 * Do NOT use this method, use MWDebug::log or wfDebug()
 	 *
@@ -310,7 +332,7 @@ class MWDebug {
 		global $wgDebugComments, $wgShowDebug;
 
 		if ( self::$enabled || $wgDebugComments || $wgShowDebug ) {
-			self::$debug[] = rtrim( $str );
+			self::$debug[] = rtrim( self::removeNonUtf8CharsFromString( $str ) );
 		}
 	}
 
