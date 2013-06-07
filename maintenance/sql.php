@@ -34,16 +34,42 @@ class MwSql extends Maintenance {
 		parent::__construct();
 		$this->mDescription = "Send SQL queries to a MediaWiki database";
 		$this->addOption( 'cluster', 'Use an external cluster by name', false, true );
+		$this->addOption( 'slave', 'Use a slave server (either "any" or by name)', false, true );
 	}
 
 	public function execute() {
-		// Get a DB handle (with this wiki's DB select) from the appropriate load balancer
+		// Get the appropriate load balancer (for this wiki)
 		if ( $this->hasOption( 'cluster' ) ) {
 			$lb = wfGetLBFactory()->getExternalLB( $this->getOption( 'cluster' ) );
-			$dbw = $lb->getConnection( DB_MASTER ); // master for external LB
 		} else {
-			$dbw = wfGetDB( DB_MASTER ); // master for primary LB for this wiki
+			$lb = wfGetLB();
 		}
+		// Figure out which server to use
+		if ( $this->hasOption( 'slave' ) ) {
+			$server = $this->getOption( 'slave' );
+			if ( $server === 'any' ) {
+				$index = DB_SLAVE;
+			} else {
+				$index = null;
+				for ( $i = 0; $i < $lb->getServerCount(); ++$i ) {
+					if ( $lb->getServerName( $i ) === $server ) {
+						$index = $i;
+						break;
+					}
+				}
+				if ( $index === null ) {
+					$this->error( "No slave server configured with the name '$server'.", 1 );
+				}
+			}
+		} else {
+			$index = DB_MASTER;
+		}
+		// Get a DB handle (with this wiki's DB selected) from the appropriate load balancer
+		$dbw = $lb->getConnection( $index );
+		if ( $this->hasOption( 'slave' ) && $dbw->getLBInfo( 'master' ) !== null ) {
+			$this->error( "The server selected ({$dbw->getServer()}) is not a slave.", 1 );
+		}
+
 		if ( $this->hasArg( 0 ) ) {
 			$file = fopen( $this->getArg( 0 ), 'r' );
 			if ( !$file ) {
