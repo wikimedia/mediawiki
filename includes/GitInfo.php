@@ -194,12 +194,13 @@ class GitInfo {
 		}
 		foreach ( self::getViewers() as $repo => $viewer ) {
 			$pattern = '#^' . $repo . '$#';
-			if ( preg_match( $pattern, $url ) ) {
+			if ( preg_match( $pattern, $url, $matches ) ) {
 				$viewerUrl = preg_replace( $pattern, $viewer, $url );
 				$headSHA1 = $this->getHeadSHA1();
 				$replacements = array(
 					'%h' => substr( $headSHA1, 0, 7 ),
-					'%H' => $headSHA1
+					'%H' => $headSHA1,
+					'%r' => urlencode( $matches[1] ),
 				);
 				return strtr( $viewerUrl, $replacements );
 			}

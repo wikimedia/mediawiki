@@ -48,7 +48,7 @@ grains of salt.
 
 There's an experimental PHP extension module which wraps the ICU library's
 normalization functions. This is *MUCH* faster than doing this work in pure
-PHP code. This is at https://gerrit.wikimedia.org/r/gitweb?p=mediawiki/extensions/normal.git;a=summary.
+PHP code. This is at https://git.wikimedia.org/summary/mediawiki%2Fextensions%2Fnormal.git.
 It is used by the WMF, which currently runs PHP 5.3.10 on Linux.  It hasn't been
 thoroughly tested on other configurations, but may work.
 
