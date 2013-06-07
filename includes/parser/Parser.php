@@ -3323,7 +3323,7 @@ class Parser {
 		if ( !$found && $title ) {
 			if ( !Profiler::instance()->isPersistent() ) {
 				# Too many unique items can kill profiling DBs/collectors
-				$titleProfileIn = __METHOD__ . "-title-" . $title->getDBkey();
+				$titleProfileIn = __METHOD__ . "-title-" . $title->getPrefixedDBkey();
 				wfProfileIn( $titleProfileIn ); // template in
 			}
 			wfProfileIn( __METHOD__ . '-loadtpl' );
