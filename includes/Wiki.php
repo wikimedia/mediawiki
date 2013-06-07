@@ -624,27 +624,34 @@ class MediaWiki {
 			wfShellExec( "$cmd &", $retVal );
 			wfProfileOut( __METHOD__ . '-exec' );
 		} else {
-			// Fallback to running the jobs here while the user waits
-			$group = JobQueueGroup::singleton();
-			do {
-				$job = $group->pop( JobQueueGroup::USE_CACHE ); // job from any queue
-				if ( $job ) {
-					$output = $job->toString() . "\n";
-					$t = - microtime( true );
-					wfProfileIn( __METHOD__ . '-' . get_class( $job ) );
-					$success = $job->run();
-					wfProfileOut( __METHOD__ . '-' . get_class( $job ) );
-					$group->ack( $job ); // done
-					$t += microtime( true );
-					$t = round( $t * 1000 );
-					if ( $success === false ) {
-						$output .= "Error: " . $job->getLastError() . ", Time: $t ms\n";
-					} else {
-						$output .= "Success, Time: $t ms\n";
+			try {
+				// Fallback to running the jobs here while the user waits
+				$group = JobQueueGroup::singleton();
+				do {
+					$job = $group->pop( JobQueueGroup::USE_CACHE ); // job from any queue
+					if ( $job ) {
+						$output = $job->toString() . "\n";
+						$t = - microtime( true );
+						wfProfileIn( __METHOD__ . '-' . get_class( $job ) );
+						$success = $job->run();
+						wfProfileOut( __METHOD__ . '-' . get_class( $job ) );
+						$group->ack( $job ); // done
+						$t += microtime( true );
+						$t = round( $t * 1000 );
+						if ( $success === false ) {
+							$output .= "Error: " . $job->getLastError() . ", Time: $t ms\n";
+						} else {
+							$output .= "Success, Time: $t ms\n";
+						}
+						wfDebugLog( 'jobqueue', $output );
 					}
-					wfDebugLog( 'jobqueue', $output );
-				}
-			} while ( --$n && $job );
+				} while ( --$n && $job );
+			} catch ( MWException $e ) {
+				// We don't want exceptions thrown during job execution to
+				// be reported to the user since the output is already sent.
+				// Instead we just log them.
+				wfDebugLog( 'exception', $e->getLogMessage() );
+			}
 		}
 	}
 }
