@@ -115,7 +115,8 @@ class Revision implements IDBAccessObject {
 			// Use a join to get the latest revision
 			$conds[] = 'rev_id=page_latest';
 		}
-		return self::newFromConds( $conds, (int)$flags );
+		$db = wfGetDB( ( $flags & self::READ_LATEST ) ? DB_MASTER : DB_SLAVE );
+		return self::loadFromConds( $db, $conds, $flags );
 	}
 
 	/**
