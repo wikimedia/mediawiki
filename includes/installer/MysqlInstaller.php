@@ -475,7 +475,7 @@ class MysqlInstaller extends DatabaseInstaller {
 		$conn = $status->value;
 		$dbName = $this->getVar( 'wgDBname' );
 		if ( !$conn->selectDB( $dbName ) ) {
-			$conn->query( "CREATE DATABASE " . $conn->addIdentifierQuotes( $dbName ), __METHOD__ );
+            $conn->query( "CREATE DATABASE " . $conn->addIdentifierQuotes( $dbName ) . "CHARACTER SET utf8", __METHOD__ );
 			$conn->selectDB( $dbName );
 		}
 		$this->setupSchemaVars();
