@@ -2,20 +2,20 @@
 /**
  * PHP port of CSSJanus.
  *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
+ * Copyright 2007-2008 Google Inc.
+ * Copyright 2010 Roan Kattouw
  *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * You should have received a copy of the GNU General Public License along
- * with this program; if not, write to the Free Software Foundation, Inc.,
- * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
- * http://www.gnu.org/copyleft/gpl.html
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  *
  * @file
  */
@@ -24,15 +24,11 @@
  * This is a PHP port of CSSJanus, a utility that transforms CSS style sheets
  * written for LTR to RTL.
  *
- * The original Python version of CSSJanus is Copyright 2008 by Google Inc. and
- * is distributed under the Apache license. This PHP port is Copyright 2010 by
- * Roan Kattouw and is dual-licensed under the GPL (as in the comment above) and
- * the Apache (as in the original code) licenses.
- *
  * Original code: http://code.google.com/p/cssjanus/source/browse/trunk/cssjanus.py
- * License of original code: http://code.google.com/p/cssjanus/source/browse/trunk/LICENSE
- * @author Roan Kattouw
  *
+ * @author Lindsey Simon <elsigh@google.com>
+ * @author Mike Samuel <msamuel@google.com>
+ * @author Roan Kattouw
  */
 class CSSJanus {
 	// Patterns defined as null are built dynamically by buildPatterns()
