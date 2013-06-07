@@ -5053,12 +5053,13 @@ $wgGitBin = '/usr/bin/git';
  * The value is the replacement for the key (it can contain $1, etc.)
  * %h will be replaced by the short SHA-1 (7 first chars) and %H by the
  * full SHA-1 of the HEAD revision.
+ * %r will be replaced with a URL-encoded version of $1.
  *
  * @since 1.20
  */
 $wgGitRepositoryViewers = array(
-	'https://gerrit.wikimedia.org/r/p/(.*)' => 'https://gerrit.wikimedia.org/r/gitweb?p=$1;h=%H',
-	'ssh://(?:[a-z0-9_]+@)?gerrit.wikimedia.org:29418/(.*)' => 'https://gerrit.wikimedia.org/r/gitweb?p=$1;h=%H',
+	'https://gerrit.wikimedia.org/r/p/(.*)' => 'https://git.wikimedia.org/commit/%r/%H',
+	'ssh://(?:[a-z0-9_]+@)?gerrit.wikimedia.org:29418/(.*)' => 'https://git.wikimedia.org/commit/%r/%H',
 );
 
 /** @} */ # End of maintenance }

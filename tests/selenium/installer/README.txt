@@ -1,6 +1,6 @@
 == Details==
 
-Automated Selenium test scripts written for MediaWiki Installer is available at https://gerrit.wikimedia.org/r/gitweb?p=mediawiki/core.git;a=tree;f=tests/selenium/installer;hb=HEAD.
+Automated Selenium test scripts written for MediaWiki Installer is available at https://git.wikimedia.org/tree/mediawiki%2Fcore.git/HEAD/tests%2Fselenium%2Finstaller.
 Detailed test cases available at http://www.mediawiki.org/wiki/New_installer/Test_plan.
 
 Version : MediaWiki 1.18alpha
