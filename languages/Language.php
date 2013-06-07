@@ -3934,6 +3934,25 @@ class Language {
 	}
 
 	/**
+	 * Get the "parent" language which has a converter to convert a "compatible" language
+	 * (in another variant) to this language (eg. zh for zh-cn, but not en for en-gb).
+	 *
+	 * @return Language|null
+	 * @since 1.22
+	 */
+	public function getParentLanguage() {
+		$code = explode( '-', $this->getCode() )[0];
+		if ( !in_array( $code, LanguageConverter::$languagesWithVariants ) ) {
+			return null;
+		}
+		$lang = Language::factory( $code );
+		if ( !in_array( $this->getCode(), $lang->getVariants() ) ) {
+			return null;
+		}
+		return $lang;
+	}
+
+	/**
 	 * Get the RFC 3066 code for this language object
 	 *
 	 * NOTE: The return value of this function is NOT HTML-safe and must be escaped with
