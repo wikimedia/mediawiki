@@ -61,7 +61,7 @@ class XmlTypeCheck {
 	/**
 	 * Alternative constructor: from filename
 	 *
-	 * @param string $input a filename or string containing the XML element
+	 * @param string $input the filename of an XML document
 	 * @param callable $filterCallback (optional)
 	 *        Function to call to do additional custom validity checks from the
 	 *        SAX element handler event. This gives you access to the element
@@ -76,7 +76,7 @@ class XmlTypeCheck {
 	/**
 	 * Alternative constructor: from string
 	 *
-	 * @param string $input a filename or string containing the XML element
+	 * @param string $input a string containing an XML element
 	 * @param callable $filterCallback (optional)
 	 *        Function to call to do additional custom validity checks from the
 	 *        SAX element handler event. This gives you access to the element
