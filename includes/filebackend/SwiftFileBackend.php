@@ -1111,7 +1111,11 @@ class SwiftFileBackend extends FileBackendStore {
 		$names = array();
 		$storageDir = rtrim( $params['dir'], '/' );
 		$suffixStart = ( $dir === '' ) ? 0 : strlen( $dir ) + 1; // size of "path/to/dir/"
-		foreach ( $cfObjects as $object ) {
+		// Iterate over the list *backwards* as this primes the stat cache, which is LRU.
+		// If this fills the cache and the caller stats an uncached file before stating
+		// the ones on the listing, there would be zero cache hits if this went forwards.
+		for ( end( $cfObjects ); key( $cfObjects ) !== null; prev( $cfObjects ) ) {
+			$object = current( $cfObjects );
 			$path = "{$storageDir}/" . substr( $object->name, $suffixStart );
 			$val = array(
 				// Convert dates like "Tue, 03 Jan 2012 22:01:04 GMT" to TS_MW
@@ -1122,7 +1126,7 @@ class SwiftFileBackend extends FileBackendStore {
 			$this->cheapCache->set( $path, 'stat', $val );
 			$names[] = $object->name;
 		}
-		return $names;
+		return array_reverse( $names ); // keep the paths in original order
 	}
 
 	/**
