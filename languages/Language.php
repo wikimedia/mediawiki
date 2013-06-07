@@ -81,7 +81,7 @@ class Language {
 
 	public $mVariants, $mCode, $mLoaded = false;
 	public $mMagicExtensions = array(), $mMagicHookDone = false;
-	private $mHtmlCode = null;
+	private $mHtmlCode = null, $mParentLanguage = false;
 
 	public $dateFormatStrings = array();
 	public $mExtendedSpecialPageAliases;
@@ -3934,6 +3934,34 @@ class Language {
 	}
 
 	/**
+	 * Get the "parent" language which has a converter to convert a "compatible" language
+	 * (in another variant) to this language (eg. zh for zh-cn, but not en for en-gb).
+	 *
+	 * @return Language|null
+	 * @since 1.22
+	 */
+	public function getParentLanguage() {
+		if ( $this->mParentLanguage !== false ) {
+			return $this->mParentLanguage;
+		}
+
+		$pieces = explode( '-', $this->getCode() );
+		$code = $pieces[0];
+		if ( !in_array( $code, LanguageConverter::$languagesWithVariants ) ) {
+			$this->mParentLanguage = null;
+			return null;
+		}
+		$lang = Language::factory( $code );
+		if ( !$lang->hasVariant( $this->getCode() ) ) {
+			$this->mParentLanguage = null;
+			return null;
+		}
+
+		$this->mParentLanguage = $lang;
+		return $lang;
+	}
+
+	/**
 	 * Get the RFC 3066 code for this language object
 	 *
 	 * NOTE: The return value of this function is NOT HTML-safe and must be escaped with
@@ -3967,8 +3995,9 @@ class Language {
 	 */
 	public function setCode( $code ) {
 		$this->mCode = $code;
-		// Ensure we don't leave an incorrect html code lying around
+		// Ensure we don't leave incorrect cached data lying around
 		$this->mHtmlCode = null;
+		$this->mParentLanguage = false;
 	}
 
 	/**
