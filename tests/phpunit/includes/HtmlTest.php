@@ -628,4 +628,14 @@ class HtmlTest extends MediaWikiTestCase {
 			'Allow special case "step=any".'
 		);
 	}
+
+	/**
+	 * Test to make sure that the \" pattern we use in edittokens
+	 * (or preferably in the future in a dedicated param)
+	 * is preserved by Html even when $wgWellFormedXml = false.
+	 */
+	public function testBackslashQuote() {
+		$this->assertRegExp( '/\\"/', Html::hidden( "wpEditToken", "+\\" ) );
+	}
+
 }
