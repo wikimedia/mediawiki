@@ -86,7 +86,7 @@ class ForeignAPIFile extends File {
 	 * @return string
 	 */
 	static function getProps() {
-		return 'timestamp|user|comment|url|size|sha1|metadata|mime';
+		return 'timestamp|user|comment|url|size|sha1|metadata|mime|mediatype';
 	}
 
 	// Dummy functions...
@@ -245,10 +245,12 @@ class ForeignAPIFile extends File {
 	}
 
 	/**
-	 * @todo FIXME: May guess wrong on file types that can be eg audio or video
 	 * @return int|string
 	 */
 	function getMediaType() {
+		if ( isset( $this->mInfo['mediatype'] ) ) {
+			return $this->mInfo['mediatype'];
+		}
 		$magic = MimeMagic::singleton();
 		return $magic->getMediaType( null, $this->getMimeType() );
 	}
