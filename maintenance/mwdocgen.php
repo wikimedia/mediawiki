@@ -82,6 +82,7 @@ class MWDocGen extends Maintenance {
 			$IP . '/maintenance/mwdoc-filter.php' );
 		$this->template = $IP . '/maintenance/Doxyfile';
 		$this->excludes = array(
+			'vendor',
 			'images',
 			'static',
 		);
