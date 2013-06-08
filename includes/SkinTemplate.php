@@ -394,6 +394,7 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'disclaimer', $this->disclaimerLink() );
 		$tpl->set( 'privacy', $this->privacyLink() );
 		$tpl->set( 'about', $this->aboutLink() );
+		$tpl->set( 'developer', $this->developerLink() );
 
 		$tpl->set( 'footerlinks', array(
 			'info' => array(
@@ -407,6 +408,7 @@ class SkinTemplate extends Skin {
 				'privacy',
 				'about',
 				'disclaimer',
+				'developer',
 			),
 		) );
 

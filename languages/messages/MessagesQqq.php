@@ -656,6 +656,10 @@ See also:
 {{Identical|Disclaimer}}',
 'disclaimerpage' => 'Used as page for that contains the site disclaimer. Used at the bottom of every page on the wiki. Example: [[{{MediaWiki:Disclaimerpage}}|{{MediaWiki:Disclaimers}}]].
 {{doc-important|Do not change the "<tt>Project:</tt>" part.}}',
+'developer' => 'Used as display name for the link to [[{{Mediawiki:Developerpage}}]] shown at the bottom of every page on the wiki. Example [[{{Mediawiki:Developerpage}}|{{Mediawiki:Developer}}]].
++{{Identical|Developer}}',
+'developerpage' => 'Used as page for that contains the site developer. Used at the bottom of every page on the wiki. Example: [[{{MediaWiki:Developerpage}}|{{MediaWiki:Developer}}]].
++{{doc-important|Do not change the "<tt>Project:</tt>" part.}}',
 'edithelp' => 'This is the text that appears on the editing help link that is near the bottom of the editing page',
 'edithelppage' => 'The help page displayed when a user clicks on editing help link which is present on the right of Show changes button.
 {{doc-important|Do not change the "<tt>Help:</tt>" part.}}',

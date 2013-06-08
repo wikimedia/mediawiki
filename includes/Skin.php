@@ -959,12 +959,18 @@ abstract class Skin extends ContextSource {
 			// Otherwise, we display the link for the user, described in their
 			// language (which may or may not be the same as the default language),
 			// but we make the link target be the one site-wide page.
+			$link = $this->msg( $page )->inContentLanguage()->text();
+			$linkText = $this->msg( $desc )->escaped();
 			$title = Title::newFromText( $this->msg( $page )->inContentLanguage()->text() );
-
-			return Linker::linkKnown(
-				$title,
-				$this->msg( $desc )->escaped()
-			);
+			if ( preg_match( '/^(?i:'.wfUrlProtocols() .')/', $link) ) {
+			   return Linker::makeExternalLink( $link, $linkText, false, '', array(), $this->getRelevantTitle() );   
+			}
+			else {
+			    return Linker::linkKnown(
+				    $title,
+				    $this->msg( $desc )->escaped()
+			    );
+			}
 		}
 	}
 
@@ -991,6 +997,14 @@ abstract class Skin extends ContextSource {
 	function disclaimerLink() {
 		return $this->footerLink( 'disclaimers', 'disclaimerpage' );
 	}
+
+    /**
+     * Gets the link to the How to become Mediawiki Hacker's page.
+     * @return String HTML
+     */
+    function developerLink() {
+        return $this->footerLink( 'developer', 'developerpage' );
+    }
 
 	/**
 	 * Return URL options for the 'edit page' link.

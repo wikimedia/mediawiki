@@ -288,6 +288,8 @@ $wgMessageStructure = array(
 		'currentevents-url',
 		'disclaimers',
 		'disclaimerpage',
+		'developer',
+		'developerpage',
 		'edithelp',
 		'edithelppage',
 		'help',
