@@ -1128,6 +1128,7 @@ $wgGalleryOptions = array(
 	'imageHeight' => 120, // Height of the cells containing images in galleries (in "px")
 	'captionLength' => 25, // Length of caption to truncate (in characters)
 	'showBytes' => true, // Show the filesize in bytes in categories
+	'mode' => 'standard',
 );
 
 /**
