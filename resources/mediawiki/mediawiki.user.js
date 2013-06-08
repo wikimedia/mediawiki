@@ -124,12 +124,12 @@
 		};
 
 		/**
-		 * Gets a random session ID automatically generated and kept in a cookie.
+		 * Gets a random ID automatically generated and stored in a session cookie.
 		 *
 		 * This ID is ephemeral for everyone, staying in their browser only until they close
 		 * their browser.
 		 *
-		 * @return String: User name or random session ID
+		 * @return String: random session ID
 		 */
 		this.sessionId = function () {
 			var sessionId = $.cookie( 'mediaWiki.user.sessionId' );
