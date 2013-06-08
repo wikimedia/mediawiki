@@ -847,6 +847,54 @@ div.gallerytext {
 	word-wrap: break-word;
 }
 
+/* new gallery stuff */
+ul.mw-gallery-nolines li.gallerybox div.thumb {
+	background-color: transparent;
+	border: none;
+}
+ul.mw-gallery-nolines li.gallerybox div.thumb img {
+	margin: 0;
+}
+
+
+/* height constrained gallery */
+
+ul.mw-gallery-height-constrained li.gallerybox div.thumb, ul.mw-gallery-height-constrained-overlay li.gallerybox div.thumb {
+	background-color: transparent;
+	border: none;
+}
+ul.mw-gallery-height-constrained li.gallerybox div.thumb img, ul.mw-gallery-height-constrained-overlay li.gallerybox div.thumb img {
+	margin: 0;
+}
+
+ul.mw-gallery-height-constrained-overlay li.gallerybox {
+	position:relative;
+}
+
+ul.mw-gallery-height-constrained-overlay div.gallerytextwrapper {
+	display:none;
+}
+
+ul.mw-gallery-height-constrained-overlay li.gallerybox:hover div.gallerytextwrapper {
+	position:absolute;
+	opacity:.8;
+	background-color:white;
+	padding: 5px 10px;
+	bottom: 0;
+	display:block;
+	font-weight: bold;
+	margin: 2px; /* correspond to style on div.thumb */
+}
+
+ul.mw-gallery-height-constrained-overlay {
+	text-align: center;
+}
+
+ul.mw-gallery-height-constrained-overlay div.gallerytext {
+	opacity: 1;
+}
+
+
 .mw-ajax-loader {
 	/* @embed */
 	background-image: url(images/ajax-loader.gif);

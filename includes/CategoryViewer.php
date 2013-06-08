@@ -141,7 +141,7 @@ class CategoryViewer extends ContextSource {
 		$this->children = array();
 		$this->children_start_char = array();
 		if ( $this->showGallery ) {
-			$this->gallery = new ImageGallery();
+			$this->gallery = new ImageGalleryBase::factory();
 			$this->gallery->setHideBadImages();
 		} else {
 			$this->imgsNoGallery = array();
