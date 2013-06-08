@@ -39,9 +39,6 @@ class OutputPage extends ContextSource {
 	/// Should be private. Used with addMeta() which adds "<meta>"
 	var $mMetatags = array();
 
-	/// "<meta keywords='stuff'>" most of the time the first 10 links to an article
-	var $mKeywords = array();
-
 	var $mLinktags = array();
 	var $mCanonicalUrl = false;
 
@@ -311,19 +308,6 @@ class OutputPage extends ContextSource {
 	 */
 	function addMeta( $name, $val ) {
 		array_push( $this->mMetatags, array( $name, $val ) );
-	}
-
-	/**
-	 * Add a keyword or a list of keywords in the page header
-	 *
-	 * @param string $text or array of strings
-	 */
-	function addKeyword( $text ) {
-		if ( is_array( $text ) ) {
-			$this->mKeywords = array_merge( $this->mKeywords, $text );
-		} else {
-			array_push( $this->mKeywords, $text );
-		}
 	}
 
 	/**
@@ -3137,21 +3121,6 @@ $templates
 			$tags['meta-robots'] = Html::element( 'meta', array(
 				'name' => 'robots',
 				'content' => $p,
-			) );
-		}
-
-		if ( count( $this->mKeywords ) > 0 ) {
-			$strip = array(
-				"/<.*?" . ">/" => '',
-				"/_/" => ' '
-			);
-			$tags['meta-keywords'] = Html::element( 'meta', array(
-				'name' => 'keywords',
-				'content' => preg_replace(
-					array_keys( $strip ),
-					array_values( $strip ),
-					implode( ',', $this->mKeywords )
-				)
 			) );
 		}
 

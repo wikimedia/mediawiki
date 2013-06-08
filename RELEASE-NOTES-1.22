@@ -209,6 +209,8 @@ changes to languages because of Bugzilla reports.
 * (bug 40785) mediawiki.legacy.ajax has been marked as deprecated. The following
   properties now emit mw.log.warn when accessed: sajax_debug, sajax_init_object,
   sajax_do_call and wfSupportsAjax.
+* BREAKING CHANGE: meta keywords are no longer supported. A <meta name="keywords"
+  will no longer be output and OutputPage::addKeyword no longer exists.
 
 == Compatibility ==
 
