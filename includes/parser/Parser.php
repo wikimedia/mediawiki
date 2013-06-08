@@ -5016,7 +5016,19 @@ class Parser {
 	 * @return string HTML
 	 */
 	function renderImageGallery( $text, $params ) {
-		$ig = new ImageGallery();
+
+		$mode = false;
+		if ( isset( $params['mode'] ) ) {
+			$mode = $params['mode'];
+		}
+
+		try {
+			$ig = ImageGalleryBase::factory( $mode );
+		} catch ( MWException $e ) {
+			// FIXME i18n? Should be in ImageGallery?
+			return '<span class="Error"> Unrecognized mode for gallery </span>';
+		}
+
 		$ig->setContextTitle( $this->mTitle );
 		$ig->setShowBytes( false );
 		$ig->setShowFilename( false );
