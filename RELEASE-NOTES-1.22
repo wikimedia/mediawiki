@@ -39,6 +39,9 @@ production.
   page protection levels. The rights 'editprotected' and 'editsemiprotected'
   are now used for this purpose instead.
 * (bug 40866) wgOldChangeTagsIndex removed.
+* New key added to $wgGalleryOptions - $wgGalleryOptions['mode'] to set
+  default gallery mode.
+* New hook 'GalleryGetModes' to allow extensions to make new gallery modes.
 
 === New features in 1.22 ===
 * (bug 44525) mediawiki.jqueryMsg can now parse (whitelisted) HTML elements and attributes.
@@ -165,6 +168,8 @@ production.
 * (bug 30713) New mw.hook "wikipage.content".
 * (bug 40430) jquery.placeholder gets a new parameter to set the attribute value
   to be used.
+* Add a mode parameter to <gallery> tag with potential options of "traditional",
+  "nolines", "packed", "packed-overlay", or "packed-hover".
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one

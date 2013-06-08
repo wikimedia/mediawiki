@@ -5002,7 +5002,19 @@ class Parser {
 	 */
 	function renderImageGallery( $text, $params ) {
 		wfProfileIn( __METHOD__ );
-		$ig = new ImageGallery();
+
+		$mode = false;
+		if ( isset( $params['mode'] ) ) {
+			$mode = $params['mode'];
+		}
+
+		try {
+			$ig = ImageGalleryBase::factory( $mode );
+		} catch ( MWException $e ) {
+			// If invalid type set, fallback to default.
+			$ig = ImageGalleryBase::factory( false );
+		}
+
 		$ig->setContextTitle( $this->mTitle );
 		$ig->setShowBytes( false );
 		$ig->setShowFilename( false );
@@ -5030,6 +5042,7 @@ class Parser {
 		if ( isset( $params['heights'] ) ) {
 			$ig->setHeights( $params['heights'] );
 		}
+		$ig->setAdditionalOptions( $params );
 
 		wfRunHooks( 'BeforeParserrenderImageGallery', array( &$this, &$ig ) );
 
