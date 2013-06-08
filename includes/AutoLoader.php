@@ -136,7 +136,6 @@ $wgAutoloadLocalClasses = array(
 	'ICacheHelper' => 'includes/CacheHelper.php',
 	'IcuCollation' => 'includes/Collation.php',
 	'IdentityCollation' => 'includes/Collation.php',
-	'ImageGallery' => 'includes/ImageGallery.php',
 	'ImageHistoryList' => 'includes/ImagePage.php',
 	'ImageHistoryPseudoPager' => 'includes/ImagePage.php',
 	'ImagePage' => 'includes/ImagePage.php',
@@ -714,6 +713,16 @@ $wgAutoloadLocalClasses = array(
 	'PatrolLogFormatter' => 'includes/logging/PatrolLogFormatter.php',
 	'RCDatabaseLogEntry' => 'includes/logging/LogEntry.php',
 	'RightsLogFormatter' => 'includes/logging/RightsLogFormatter.php',
+
+	# Image gallery
+
+	'ImageGallery' => 'includes/gallery/TraditionalImageGallery.php',
+	'ImageGalleryBase' => 'includes/gallery/ImageGalleryBase.php',
+	'NolinesImageGallery' => 'includes/gallery/NolinesImageGallery.php',
+	'TraditionalImageGallery' => 'includes/gallery/TraditionalImageGallery.php',
+	'PackedImageGallery' => 'includes/gallery/PackedImageGallery.php',
+	'PackedHoverImageGallery' => 'includes/gallery/PackedOverlayImageGallery.php',
+	'PackedOverlayImageGallery' => 'includes/gallery/PackedOverlayImageGallery.php',
 
 	# includes/media
 	'BitmapHandler' => 'includes/media/Bitmap.php',

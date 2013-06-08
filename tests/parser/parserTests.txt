@@ -11425,40 +11425,40 @@ image4    |300px| centre
 * image6
 </gallery>
 !! result
-<ul class="gallery">
+<ul class="gallery mw-gallery-traditional">
 		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
-			<div style="height: 150px;">Image1.png</div>
+			<div class="thumb" style="height: 150px;">Image1.png</div>
 			<div class="gallerytext">
 			</div>
 		</div></li>
 		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
-			<div style="height: 150px;">Image2.gif</div>
+			<div class="thumb" style="height: 150px;">Image2.gif</div>
 			<div class="gallerytext">
 <p>||||
 </p>
 			</div>
 		</div></li>
 		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
-			<div style="height: 150px;">Image3</div>
+			<div class="thumb" style="height: 150px;">Image3</div>
 			<div class="gallerytext">
 			</div>
 		</div></li>
 		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
-			<div style="height: 150px;">Image4</div>
+			<div class="thumb" style="height: 150px;">Image4</div>
 			<div class="gallerytext">
 <p>300px| centre
 </p>
 			</div>
 		</div></li>
 		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
-			<div style="height: 150px;">Image5.svg</div>
+			<div class="thumb" style="height: 150px;">Image5.svg</div>
 			<div class="gallerytext">
 <p><a rel="nofollow" class="external free" href="http://///////">http://///////</a>
 </p>
 			</div>
 		</div></li>
 		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
-			<div style="height: 150px;">* image6</div>
+			<div class="thumb" style="height: 150px;">* image6</div>
 			<div class="gallerytext">
 			</div>
 		</div></li>
@@ -11477,17 +11477,17 @@ image:foobar.jpg
 image:foobar.jpg|Blabla|alt=This is a foo-bar.|blabla.
 </gallery>
 !! result
-<ul class="gallery" style="max-width: 226px;_width: 226px;">
+<ul class="gallery mw-gallery-traditional" style="max-width: 226px;_width: 226px;">
 	<li class='gallerycaption'>Foo <a href="/wiki/Main_Page" title="Main Page">Main Page</a></li>
 		<li class="gallerybox" style="width: 105px"><div style="width: 105px">
-			<div style="height: 70px;">Nonexistant.jpg</div>
+			<div class="thumb" style="height: 70px;">Nonexistant.jpg</div>
 			<div class="gallerytext">
 <p>caption
 </p>
 			</div>
 		</div></li>
 		<li class="gallerybox" style="width: 105px"><div style="width: 105px">
-			<div style="height: 70px;">Nonexistant.jpg</div>
+			<div class="thumb" style="height: 70px;">Nonexistant.jpg</div>
 			<div class="gallerytext">
 			</div>
 		</div></li>
@@ -11522,7 +11522,7 @@ File:foobar.jpg|[[File:foobar.jpg|20px|desc|alt=inneralt]]|alt=galleryalt
 File:foobar.jpg|{{Test|unamedParam|alt=param}}|alt=galleryalt
 </gallery>
 !! result
-<ul class="gallery">
+<ul class="gallery mw-gallery-traditional">
 		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
 			<div class="thumb" style="width: 150px;"><div style="margin:68px auto;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="galleryalt" src="http://example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" width="120" height="14" /></a></div></div>
 			<div class="gallerytext">
@@ -11551,9 +11551,9 @@ image:foobar.jpg|some '''caption''' [[Main Page]]
 File:Foobar.jpg
 </gallery>
 !! result
-<ul class="gallery">
+<ul class="gallery mw-gallery-traditional">
 		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
-			<div style="height: 150px;">Nonexistant.jpg</div>
+			<div class="thumb" style="height: 150px;">Nonexistant.jpg</div>
 			<div class="gallerytext">
 <p><a href="/wiki/File:Nonexistant.jpg" title="File:Nonexistant.jpg">Nonexistant.jpg</a><br />
 caption
@@ -11561,7 +11561,7 @@ caption
 			</div>
 		</div></li>
 		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
-			<div style="height: 150px;">Nonexistant.jpg</div>
+			<div class="thumb" style="height: 150px;">Nonexistant.jpg</div>
 			<div class="gallerytext">
 <p><a href="/wiki/File:Nonexistant.jpg" title="File:Nonexistant.jpg">Nonexistant.jpg</a><br />
 </p>
@@ -11596,14 +11596,14 @@ image:foobar.jpg
 foobar.jpg
 </gallery>
 !! result
-<ul class="gallery">
+<ul class="gallery mw-gallery-traditional">
 		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
-			<div style="height: 150px;">Nonexistant.jpg</div>
+			<div class="thumb" style="height: 150px;">Nonexistant.jpg</div>
 			<div class="gallerytext">
 			</div>
 		</div></li>
 		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
-			<div style="height: 150px;">Nonexistant.jpg</div>
+			<div class="thumb" style="height: 150px;">Nonexistant.jpg</div>
 			<div class="gallerytext">
 			</div>
 		</div></li>
@@ -13882,7 +13882,7 @@ Gallery override link with WikiLink (bug 34852)
 File:foobar.jpg|caption|alt=galleryalt|link=InterWikiLink
 </gallery>
 !! result
-<ul class="gallery">
+<ul class="gallery mw-gallery-traditional">
 		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
 			<div class="thumb" style="width: 150px;"><div style="margin:68px auto;"><a href="/wiki/InterWikiLink"><img alt="galleryalt" src="http://example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" width="120" height="14" /></a></div></div>
 			<div class="gallerytext">
@@ -13901,7 +13901,7 @@ Gallery override link with absolute external link (bug 34852)
 File:foobar.jpg|caption|alt=galleryalt|link=http://www.example.org
 </gallery>
 !! result
-<ul class="gallery">
+<ul class="gallery mw-gallery-traditional">
 		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
 			<div class="thumb" style="width: 150px;"><div style="margin:68px auto;"><a href="http://www.example.org"><img alt="galleryalt" src="http://example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" width="120" height="14" /></a></div></div>
 			<div class="gallerytext">
@@ -13920,7 +13920,7 @@ Gallery override link with malicious javascript (bug 34852)
 File:foobar.jpg|caption|alt=galleryalt|link=" onclick="alert('malicious javascript code!');
 </gallery>
 !! result
-<ul class="gallery">
+<ul class="gallery mw-gallery-traditional">
 		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
 			<div class="thumb" style="width: 150px;"><div style="margin:68px auto;"><a href="/wiki/%22_onclick%3D%22alert(%27malicious_javascript_code!%27);"><img alt="galleryalt" src="http://example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" width="120" height="14" /></a></div></div>
 			<div class="gallerytext">
@@ -13939,7 +13939,7 @@ Gallery with invalid title as link (bug 43964)
 File:foobar.jpg|link=<
 </gallery>
 !! result
-<ul class="gallery">
+<ul class="gallery mw-gallery-traditional">
 		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
 			<div class="thumb" style="width: 150px;"><div style="margin:68px auto;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" width="120" height="14" /></a></div></div>
 			<div class="gallerytext">

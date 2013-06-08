@@ -1126,6 +1126,12 @@ $reason: reason
  $title: An optional title object used to links to sections. Can be null.
  $local: Boolean indicating whether section links should refer to local page.
 
+'GalleryGetModes': Get list of classes that can render different modes of a
+   gallery
+ $modeArray: An associative array mapping mode names to classes that implement
+   that mode. Its expected all registered classes are a subclass of
+   ImageGalleryBase.
+
 'GetAutoPromoteGroups': When determining which autopromote groups a user is
 entitled to be in.
 &$user: user to promote.
