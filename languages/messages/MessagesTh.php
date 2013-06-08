@@ -194,7 +194,7 @@ $dateFormats = array(
 	'ISO 8601 both' => 'xnY-xnm-xnd"T"xnH:xni:xns',
 );
 
-$linkTrail = '/^([a-z]+)(.*)\$/sD';
+$linkTrail = '/^([a-z]+)(.*)$/sD';
 
 $messages = array(
 # User preference toggles
