@@ -843,6 +843,9 @@ return array(
 
 	/* MediaWiki Page */
 
+	'mediawiki.page.gallery' => array(
+		'scripts' => 'resources/mediawiki.page/mediawiki.page.gallery.js',
+	),
 	'mediawiki.page.ready' => array(
 		'scripts' => 'resources/mediawiki.page/mediawiki.page.ready.js',
 		'dependencies' => array(
