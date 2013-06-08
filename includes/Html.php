@@ -102,6 +102,29 @@ class Html {
 	);
 
 	/**
+	 * Escape text for inclusion into chunks of html NOT attributes.
+	 * This method is less strict than htmlspecialchars and doesn't escape
+	 * things that don't need to be escaped in a html body.
+	 *
+	 * @param string $text The text to escape.
+	 * @return string Escaped text for inclusion into html.
+	 */
+	public static function escape( $text ) {
+		static $map = array(
+			// There's no point in escaping quotes, >, etc. in the contents
+			// of elements.
+			'&' => '&amp;',
+			'<' => '&lt;',
+		);
+		static $keys, $values;
+		if ( is_null( $keys ) ) {
+			$keys = array_keys( $map );
+			$values = array_values( $map );
+		}
+		return str_replace( $keys, $values, $text );
+	}
+
+	/**
 	 * Returns an HTML element in a string.  The major advantage here over
 	 * manually typing out the HTML is that it will escape all attribute
 	 * values.  If you're hardcoding all the attributes, or there are none, you
@@ -146,12 +169,7 @@ class Html {
 	 * @return string
 	 */
 	public static function element( $element, $attribs = array(), $contents = '' ) {
-		return self::rawElement( $element, $attribs, strtr( $contents, array(
-			// There's no point in escaping quotes, >, etc. in the contents of
-			// elements.
-			'&' => '&amp;',
-			'<' => '&lt;'
-		) ) );
+		return self::rawElement( $element, $attribs, Html::escape( $contents ) );
 	}
 
 	/**
@@ -529,7 +547,7 @@ class Html {
 				}
 			} else {
 				// Apparently we need to entity-encode \n, \r, \t, although the
-				// spec doesn't mention that.  Since we're doing strtr() anyway,
+				// spec doesn't mention that.  Since we're doing a replace anyway,
 				// and we don't need <> escaped here, we may as well not call
 				// htmlspecialchars().
 				// @todo FIXME: Verify that we actually need to
@@ -551,7 +569,7 @@ class Html {
 					// @todo FIXME: Is this really true?
 					$map['<'] = '&lt;';
 				}
-				$ret .= " $key=$quote" . strtr( $value, $map ) . $quote;
+				$ret .= " $key=$quote" . str_replace( array_keys( $map ), array_values( $map ), $value ) . "$quote";
 			}
 		}
 		return $ret;

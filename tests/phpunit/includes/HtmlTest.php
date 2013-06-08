@@ -41,6 +41,33 @@ class HtmlTest extends MediaWikiTestCase {
 		) );
 	}
 
+	/**
+	 * Test the Html::escape method to ensure it does not leave
+	 * dangerous html alone and round trips correctly.
+	 */
+	public function testEscape() {
+		if ( !class_exists( 'DOMDocument' ) ) {
+			$this->markTestSkipped( 'DOMDocument is required.' );
+			return;
+		}
+
+		$text = "Foo<script>Bar";
+		$escaped = Html::escape( $text );
+
+		// Test the escaped text by creating a real DOM out of if and
+		// then checking to ensure that reading the plaintxt from the
+		// node the escaped text is inside round trips back to the
+		// original unescaped text.
+		$doc = new DOMDocument;
+		@$doc->loadHTML( "<div>$escaped</div>" );
+		$xpath = new DOMXPath( $doc );
+
+		$this->assertEquals(
+			$text,
+			$xpath->evaluate( 'string(//div/text())' )
+		);
+	}
+
 	public function testElementBasics() {
 		$this->assertEquals(
 			'<img>',
@@ -58,6 +85,18 @@ class HtmlTest extends MediaWikiTestCase {
 			'<element></element>',
 			Html::element( 'element', array(), '' ),
 			'Close tag for empty element (array, string)'
+		);
+
+		$this->assertEquals(
+			'<element>&lt;script>&amp;</element>',
+			Html::element( 'element', array(), '<script>&' ),
+			'Html escaped contents for element'
+		);
+
+		$this->assertEquals(
+			'<element attr="value<>&quot;&#10;&#9;"></element>',
+			Html::element( 'element', array( 'attr' => "value<>\"\n\t"), '' ),
+			'escaped attributes for element'
 		);
 
 		$this->setMwGlobals( 'wgWellFormedXml', true );
