@@ -27,8 +27,8 @@
  *
  * @ingroup Media
  */
-class ImageGallery {
-	var $mImages, $mShowBytes, $mShowFilename;
+abstract class ImageGalleryBase extends ContextSource {
+	var $mImages, $mShowBytes, $mShowFilename, $mMode;
 	var $mCaption = false;
 
 	/**
@@ -50,18 +50,40 @@ class ImageGallery {
 
 	protected $mAttribs = array();
 
-	/**
-	 * Fixed margins
-	 */
-	const THUMB_PADDING = 30;
-	const GB_PADDING = 5;
-	// 2px borders on each side + 2px implied padding on each side
-	const GB_BORDERS = 8;
+	static private $modeMapping = false;
+
+	static function factory( $mode = false ) {
+		global $wgGalleryOptions;
+		self::loadModes();
+		if ( !$mode ) {
+			$mode = $wgGalleryOptions['mode'];
+		}
+
+		if ( isset( self::$modeMapping[$mode] ) ) {
+			return new self::$modeMapping[$mode]( $mode );
+		} else {
+			throw new MWException( "No gallery class registered for mode $mode" );
+		}
+	}
+
+	static private function loadModes() {
+		if ( self::$modeMapping === false ) {
+			self::$modeMapping = array(
+				'standard' => 'StandardImageGallery',
+				'nolines' => 'StandardImageGallery',
+				'height-constrained' => 'HeightConstrainedImageGallery',
+				'height-constrained-overlay' => 'HeightConstrainedOverlayGallery',
+				'height-constrained-static' => 'HeightConstrainedStaticGallery',
+				// Packed, even bordered, one that is boxy but overlay like facebook.
+			);
+			wfRunHooks( 'GalleryGetModes', self::$modeMapping );
+		}
+	}
 
 	/**
 	 * Create a new image gallery object.
 	 */
-	function __construct() {
+	function __construct( $mode = 'standard' ) {
 		global $wgGalleryOptions;
 		$this->mImages = array();
 		$this->mShowBytes = $wgGalleryOptions['showBytes'];
@@ -72,10 +94,13 @@ class ImageGallery {
 		$this->mWidths = $wgGalleryOptions['imageWidth'];
 		$this->mHeights = $wgGalleryOptions['imageHeight'];
 		$this->mCaptionLength = $wgGalleryOptions['captionLength'];
+		$this->mMode = $mode;
 	}
 
 	/**
-	 * Register a parser object
+	 * Register a parser object. If you do not set this
+	 * and the output of this gallery ends up in parser
+	 * cache, the javascript will break!
 	 *
 	 * @param $parser Parser
 	 */
@@ -227,6 +252,63 @@ class ImageGallery {
 	}
 
 	/**
+	 * Display an html representation of the gallery
+	 *
+	 * @return String The html
+	 */
+	abstract public function toHTML();
+
+	/**
+	 * @return Integer: number of images in the gallery
+	 */
+	public function count() {
+		return count( $this->mImages );
+	}
+
+	/**
+	 * Set the contextual title
+	 *
+	 * @param $title Title: contextual title
+	 */
+	public function setContextTitle( $title ) {
+		$this->contextTitle = $title;
+	}
+
+	/**
+	 * Get the contextual title, if applicable
+	 *
+	 * @return mixed Title or false
+	 */
+	public function getContextTitle() {
+		return is_object( $this->contextTitle ) && $this->contextTitle instanceof Title
+			? $this->contextTitle
+			: false;
+	}
+
+	/**
+	 * Determines the correct language to be used for this image gallery
+	 * @return Language object
+	 */
+	protected function getRenderLang() {
+		global $wgLang;
+		return $this->mParser
+			? $this->mParser->getTargetLanguage()
+			: $wgLang;
+	}
+
+	/* Old constants no longer used.
+	const THUMB_PADDING = 30;
+	const GB_PADDING = 5;
+	const GB_BORDERS = 8;
+	*/
+
+} //class
+
+
+class StandardImageGallery extends ImageGalleryBase {
+
+
+	/**
 	 * Return a HTML representation of the image gallery
 	 *
 	 * For each image in the gallery, display
@@ -239,25 +321,29 @@ class ImageGallery {
 	 */
 	function toHTML() {
 		if ( $this->mPerRow > 0 ) {
-			$maxwidth = $this->mPerRow * ( $this->mWidths + self::THUMB_PADDING + self::GB_PADDING + self::GB_BORDERS );
+			$maxwidth = $this->mPerRow * ( $this->mWidths + $this->getAllPadding() );
 			$oldStyle = isset( $this->mAttribs['style'] ) ? $this->mAttribs['style'] : '';
 			# _width is ignored by any sane browser. IE6 doesn't know max-width so it uses _width instead
 			$this->mAttribs['style'] = "max-width: {$maxwidth}px;_width: {$maxwidth}px;" . $oldStyle;
 		}
 
 		$attribs = Sanitizer::mergeAttributes(
-			array( 'class' => 'gallery' ), $this->mAttribs );
+			array( 'class' => 'gallery mw-gallery-' . $this->mMode ), $this->mAttribs );
+
+		$modules = $this->getModules();
+
+		if ( $this->mParser ) {
+			$this->mParser->getOutput()->addModules( $modules );
+		} else {
+			$this->getOutput()->addModules( $modules );
+		}
 
 		$output = Xml::openElement( 'ul', $attribs );
 		if ( $this->mCaption ) {
 			$output .= "\n\t<li class='gallerycaption'>{$this->mCaption}</li>";
 		}
 
-		$lang = $this->getLang();
-		$params = array(
-			'width' => $this->mWidths,
-			'height' => $this->mHeights
-		);
+		$lang = $this->getRenderLang();
 		# Output each image...
 		foreach ( $this->mImages as $pair ) {
 			$nt = $pair[0];
@@ -282,13 +368,17 @@ class ImageGallery {
 				$img = false;
 			}
 
+			$params = $this->getThumbParams( $img );
+
+			$thumb = false;
+
 			if ( !$img ) {
 				# We're dealing with a non-image, spit out the name and be done with it.
-				$thumbhtml = "\n\t\t\t" . '<div style="height: ' . ( self::THUMB_PADDING + $this->mHeights ) . 'px;">'
+				$thumbhtml = "\n\t\t\t" . '<div class="thumb" style="height: ' . ( $this->getThumbPadding() + $this->mHeights ) . 'px;">'
 					. htmlspecialchars( $nt->getText() ) . '</div>';
 			} elseif ( $this->mHideBadImages && wfIsBadImage( $nt->getDBkey(), $this->getContextTitle() ) ) {
 				# The image is blacklisted, just show it as a text link.
-				$thumbhtml = "\n\t\t\t" . '<div style="height: ' . ( self::THUMB_PADDING + $this->mHeights ) . 'px;">' .
+				$thumbhtml = "\n\t\t\t" . '<div class="thumb" style="height: ' . ( $this->getThumbPadding() + $this->mHeights ) . 'px;">' .
 					Linker::link(
 						$nt,
 						htmlspecialchars( $nt->getText() ),
@@ -299,10 +389,10 @@ class ImageGallery {
 					'</div>';
 			} elseif ( !( $thumb = $img->transform( $params ) ) ) {
 				# Error generating thumbnail.
-				$thumbhtml = "\n\t\t\t" . '<div style="height: ' . ( self::THUMB_PADDING + $this->mHeights ) . 'px;">'
+				$thumbhtml = "\n\t\t\t" . '<div class="thumb" style="height: ' . ( self::THUMB_PADDING + $this->mHeights ) . 'px;">'
 					. htmlspecialchars( $img->getLastError() ) . '</div>';
 			} else {
-				$vpad = ( self::THUMB_PADDING + $this->mHeights - $thumb->height ) / 2;
+				$vpad = $this->getVPad( $this->mHeights, $thumb->height );
 
 				$imageParameters = array(
 					'desc-link' => true,
@@ -315,9 +405,11 @@ class ImageGallery {
 					$imageParameters['alt'] = $nt->getText();
 				}
 
+				$this->adjustImageParameters( $thumb, $imageParameters );
+
 				# Set both fixed width and min-height.
 				$thumbhtml = "\n\t\t\t" .
-					'<div class="thumb" style="width: ' . ( $this->mWidths + self::THUMB_PADDING ) . 'px;">'
+					'<div class="thumb" style="width: ' . $this->getThumbDivWidth( $thumb->width ) . 'px;">'
 					# Auto-margin centering for block-level elements. Needed now that we have video
 					# handlers since they may emit block-level elements as opposed to simple <img> tags.
 					# ref http://css-discuss.incutio.com/?page=CenteringBlockElement
@@ -355,19 +447,17 @@ class ImageGallery {
 				) . "<br />\n" :
 				'';
 
-			# ATTENTION: The newline after <div class="gallerytext"> is needed to accommodate htmltidy which
-			# in version 4.8.6 generated crackpot html in its absence, see:
-			# http://bugzilla.wikimedia.org/show_bug.cgi?id=1765 -Ævar
+
+			$galleryText  = $textlink . $text . $fileSize;
+			$galleryText = $this->wrapGalleryText( $galleryText, $thumb );
 
 			# Weird double wrapping (the extra div inside the li) needed due to FF2 bug
 			# Can be safely removed if FF2 falls completely out of existence
 			$output .=
-				"\n\t\t" . '<li class="gallerybox" style="width: ' . ( $this->mWidths + self::THUMB_PADDING + self::GB_PADDING ) . 'px">'
-					. '<div style="width: ' . ( $this->mWidths + self::THUMB_PADDING + self::GB_PADDING ) . 'px">'
+				"\n\t\t" . '<li class="gallerybox" style="width: ' . $this->getGBWidth( $thumb ) . 'px">'
+					. '<div style="width: ' . $this->getGBWidth( $thumb ) . 'px">'
 					. $thumbhtml
-					. "\n\t\t\t" . '<div class="gallerytext">' . "\n"
-					. $textlink . $text . $fileSize
-					. "\n\t\t\t</div>"
+					. $galleryText
 					. "\n\t\t</div></li>";
 		}
 		$output .= "\n</ul>";
@@ -375,42 +465,195 @@ class ImageGallery {
 		return $output;
 	}
 
-	/**
-	 * @return Integer: number of images in the gallery
-	 */
-	public function count() {
-		return count( $this->mImages );
-	}
 
 	/**
-	 * Set the contextual title
+	 * Add the wrapper html around the thumb's caption
 	 *
-	 * @param $title Title: contextual title
+	 * @param String $galleryText The caption
+	 * @param MTO?|boolean FIXME $thumb The thumb this caption is for or false for bad image.
 	 */
-	public function setContextTitle( $title ) {
-		$this->contextTitle = $title;
+	protected function wrapGalleryText( $galleryText, $thumb ) {
+		# ATTENTION: The newline after <div class="gallerytext"> is needed to accommodate htmltidy which
+		# in version 4.8.6 generated crackpot html in its absence, see:
+		# http://bugzilla.wikimedia.org/show_bug.cgi?id=1765 -Ævar
+
+		return "\n\t\t\t" . '<div class="gallerytext">' . "\n"
+					. $galleryText
+					. "\n\t\t\t</div>";
+		
+	}
+
+	protected function getThumbPadding() {
+		switch( $this->mMode ) {
+		case 'standard':
+		default:
+			return 30;
+		case 'nolines':
+			return 0;
+		}
+	}
+	protected function getGBPadding() {
+		return 5;
+	}
+	// 2px borders on each side + 2px implied padding on each side
+	protected function getGBBorders() {
+		switch ($this->mMode) {
+		case 'nolines':
+			return 0;
+		case 'standard':
+		default:
+			return 8;
+		}
+	}
+	protected function getAllPadding() {
+		return $this->getThumbPadding() + $this->getGBPadding() + $this->getGBBorders();
+	}
+	protected function getVPad( $boxHeight, $thumbHeight ) {
+		switch ($this->mMode) {
+		case 'standard':
+		default:
+			return ( $this->getThumbPadding() + $boxHeight - $thumbHeight ) / 2;
+		case 'nolines':
+			return 0;
+		}
 	}
 
 	/**
-	 * Get the contextual title, if applicable
+	 * Get the transform parameters for a thumbnail.
 	 *
-	 * @return mixed Title or false
+	 * @param File $img The file in question. May be false for invalid image
 	 */
-	public function getContextTitle() {
-		return is_object( $this->contextTitle ) && $this->contextTitle instanceof Title
-			? $this->contextTitle
-			: false;
+	protected function getThumbParams( $img ) {
+		return array(
+			'width' => $this->mWidths,
+			'height' => $this->mHeights
+		);
+	}
+
+	protected function getThumbDivWidth( $thumbWidth ) {
+		return $this->mWidths + $this->getThumbPadding();
+	}
+	/**
+	 * Imporant: parameter will be false if no thumb used.
+	 * @param MTO??(FIXME) $thumb thumb object or false.
+	 */
+	protected function getGBWidth( $thumb ) {
+		return $this->mWidths + $this->getThumbPadding() + $this->getGBPadding();
 	}
 
 	/**
-	 * Determines the correct language to be used for this image gallery
-	 * @return Language object
+	 * Get a list of modules to include in the page.
+	 *
+	 * @return Array modules to include
 	 */
-	private function getLang() {
-		global $wgLang;
-		return $this->mParser
-			? $this->mParser->getTargetLanguage()
-			: $wgLang;
+	protected function getModules() {
+		return array();
 	}
 
-} //class
+	/**
+	 * Adjust the image parameters for a thumbnail
+	 * @param MediaTransformOutput $thumb The thumbnail
+	 * @param Array $imageParameters Array of options
+	 */
+	protected function adjustImageParameters( $thumb, &$imageParameters ) { }
+}
+
+class HeightConstrainedImageGallery extends StandardImageGallery {
+
+	protected function getVPad( $boxHeight, $thumbHeight ) {
+		return ( $this->getThumbPadding() + $boxHeight - $thumbHeight/1.5 ) / 2;
+	}
+
+
+	protected function getThumbPadding() {
+		return 0;
+	}
+	protected function getGBPadding() {
+		return 2;
+	}
+	/**
+	 * @param File $img The file being transformed. May be false
+	 */
+	protected function getThumbParams( $img ) {
+		if ( $img && $img->getMediaType() === MEDIATYPE_AUDIO ) {
+			$width = $this->mWidths;
+		} else {
+			// We want the width not to be the constraining
+			// factor, so use random big number.
+			$width = $this->mHeights*10 + 100;
+			
+		}
+		// *1.5 so the js has some room to manipulate sizes.
+		return array(
+			'width' => $width*1.5,
+			'height' => $this->mHeights*1.5,
+		);
+	}
+
+	protected function getThumbDivWidth( $thumbWidth ) {
+		return $thumbWidth/1.5 + $this->getThumbPadding();
+	}
+	/**
+	 * important, $thumb may be false
+	 */
+	protected function getGBWidth( $thumb ) {
+		$thumbWidth = $thumb ? $thumb->getWidth()/1.5 : $this->mWidths;
+		return $thumbWidth + $this->getThumbPadding() + $this->getGBPadding();
+	}
+	protected function adjustImageParameters( $thumb, &$imageParameters ) {
+		// Re-adjust back to normal size.
+		$imageParameters['override-width'] = intval( $thumb->getWidth() / 1.5 );
+		$imageParameters['override-height'] = intval( $thumb->getHeight() / 1.5 );
+	}
+}
+
+class HeightConstrainedOverlayGallery extends HeightConstrainedStaticGallery {
+	// Needed so captions are shown on tab.
+	protected function getModules() {
+		return array( 'mediawiki.page.gallery' );
+		return parent::toHTML();
+	}
+
+}
+class HeightConstrainedStaticGallery extends HeightConstrainedImageGallery {
+	/**
+	 * Add the wrapper html around the thumb's caption
+	 *
+	 * @param String $galleryText The caption
+	 * @param MediaTransformOutput|boolean $thumb The thumb this caption is for or false for bad image.
+	 */
+	protected function wrapGalleryText( $galleryText, $thumb ) {
+
+		// If we have no text, do not output anything to avoid
+		// ugly white overlay.
+		if ( trim( $galleryText ) === '' ) {
+			return '';
+		}
+
+		# ATTENTION: The newline after <div class="gallerytext"> is needed to accommodate htmltidy which
+		# in version 4.8.6 generated crackpot html in its absence, see:
+		# http://bugzilla.wikimedia.org/show_bug.cgi?id=1765 -Ævar
+
+		$thumbWidth = $thumb ? $thumb->width/1.5 : $this->mWidths;
+		$captionWidth = intval( $thumbWidth - 20 );
+
+		$outerWrapper = '<div class="gallerytextwrapper" style="width: ' . $captionWidth . 'px">';
+		return "\n\t\t\t" . $outerWrapper . '<div class="gallerytext">' . "\n"
+					. $galleryText
+					. "\n\t\t\t</div>";
+		
+	}
+	
+}
+
+/**
+ * Backwards compatibility.
+ *
+ * @deprecated 1.22 Use ImageGalleryBase::factory instead.
+ */
+class ImageGallery extends StandardImageGallery {
+	function __construct( $mode = 'standard' ) {
+		wfDeprecated( __METHOD__, '1.22' );
+		parent::__construct( $mode );		
+	}
+}
