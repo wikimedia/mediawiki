@@ -27,8 +27,8 @@
  *
  * @ingroup Media
  */
-class ImageGallery {
-	var $mImages, $mShowBytes, $mShowFilename;
+abstract class ImageGalleryBase extends ContextSource {
+	var $mImages, $mShowBytes, $mShowFilename, $mMode;
 	var $mCaption = false;
 
 	/**
@@ -50,18 +50,51 @@ class ImageGallery {
 
 	protected $mAttribs = array();
 
+	static private $modeMapping = false;
+
 	/**
-	 * Fixed margins
+	 * Get a new image gallery. This is the method other callers
+	 * should use to get a gallery.
+	 *
+	 * @param String|bool $mode Mode to use. False to use the default.
 	 */
-	const THUMB_PADDING = 30;
-	const GB_PADDING = 5;
-	// 2px borders on each side + 2px implied padding on each side
-	const GB_BORDERS = 8;
+	static function factory( $mode = false ) {
+		global $wgGalleryOptions, $wgContLang;
+		self::loadModes();
+		if ( !$mode ) {
+			$mode = $wgGalleryOptions['mode'];
+		}
+
+		$mode = $wgContLang->lc( $mode );
+
+		if ( isset( self::$modeMapping[$mode] ) ) {
+			return new self::$modeMapping[$mode]( $mode );
+		} else {
+			throw new MWException( "No gallery class registered for mode $mode" );
+		}
+	}
+
+	static private function loadModes() {
+		if ( self::$modeMapping === false ) {
+			self::$modeMapping = array(
+				'traditional' => 'TraditionalImageGallery',
+				'nolines' => 'NolinesImageGallery',
+				'packed' => 'PackedImageGallery',
+				'packed-hover' => 'PackedHoverImageGallery',
+				'packed-overlay' => 'PackedOverlayImageGallery',
+			);
+			// Allow extensions to make a new gallery format.
+			wfRunHooks( 'GalleryGetModes', self::$modeMapping );
+		}
+	}
 
 	/**
 	 * Create a new image gallery object.
+	 *
+	 * You should not call this directly, but instead use
+	 * ImageGalleryBase::factory().
 	 */
-	function __construct() {
+	function __construct( $mode = 'traditional' ) {
 		global $wgGalleryOptions;
 		$this->mImages = array();
 		$this->mShowBytes = $wgGalleryOptions['showBytes'];
@@ -72,10 +105,16 @@ class ImageGallery {
 		$this->mWidths = $wgGalleryOptions['imageWidth'];
 		$this->mHeights = $wgGalleryOptions['imageHeight'];
 		$this->mCaptionLength = $wgGalleryOptions['captionLength'];
+		$this->mMode = $mode;
 	}
 
 	/**
-	 * Register a parser object
+	 * Register a parser object. If you do not set this
+	 * and the output of this gallery ends up in parser
+	 * cache, the javascript will break!
+	 *
+	 * @note This also triggers using the page's target
+	 *  language instead of the user language.
 	 *
 	 * @param $parser Parser
 	 */
@@ -141,6 +180,15 @@ class ImageGallery {
 			$this->mHeights = (int)$num;
 		}
 	}
+
+	/**
+	 * Allow setting additional options. This is meant
+	 * to allow extensions to add additional parameters to
+	 * <gallery> parser tag.
+	 *
+	 * @param Array $options Attributes of gallery tag.
+	 */
+	public function setAdditionalOptions( $options ) { }
 
 	/**
 	 * Instruct the class to use a specific skin for rendering
@@ -230,159 +278,11 @@ class ImageGallery {
 	}
 
 	/**
-	 * Return a HTML representation of the image gallery
+	 * Display an html representation of the gallery
 	 *
-	 * For each image in the gallery, display
-	 * - a thumbnail
-	 * - the image name
-	 * - the additional text provided when adding the image
-	 * - the size of the image
-	 *
-	 * @return string
+	 * @return String The html
 	 */
-	function toHTML() {
-		if ( $this->mPerRow > 0 ) {
-			$maxwidth = $this->mPerRow * ( $this->mWidths + self::THUMB_PADDING + self::GB_PADDING + self::GB_BORDERS );
-			$oldStyle = isset( $this->mAttribs['style'] ) ? $this->mAttribs['style'] : '';
-			# _width is ignored by any sane browser. IE6 doesn't know max-width so it uses _width instead
-			$this->mAttribs['style'] = "max-width: {$maxwidth}px;_width: {$maxwidth}px;" . $oldStyle;
-		}
-
-		$attribs = Sanitizer::mergeAttributes(
-			array( 'class' => 'gallery' ), $this->mAttribs );
-
-		$output = Xml::openElement( 'ul', $attribs );
-		if ( $this->mCaption ) {
-			$output .= "\n\t<li class='gallerycaption'>{$this->mCaption}</li>";
-		}
-
-		$lang = $this->getLang();
-		$params = array(
-			'width' => $this->mWidths,
-			'height' => $this->mHeights
-		);
-		# Output each image...
-		foreach ( $this->mImages as $pair ) {
-			$nt = $pair[0];
-			$text = $pair[1]; # "text" means "caption" here
-			$alt = $pair[2];
-			$link = $pair[3];
-			// $pair[4] is per image handler options
-			$transformOptions = $params + $pair[4];
-
-			$descQuery = false;
-			if ( $nt->getNamespace() == NS_FILE ) {
-				# Get the file...
-				if ( $this->mParser instanceof Parser ) {
-					# Give extensions a chance to select the file revision for us
-					$options = array();
-					wfRunHooks( 'BeforeParserFetchFileAndTitle',
-						array( $this->mParser, $nt, &$options, &$descQuery ) );
-					# Fetch and register the file (file title may be different via hooks)
-					list( $img, $nt ) = $this->mParser->fetchFileAndTitle( $nt, $options );
-				} else {
-					$img = wfFindFile( $nt );
-				}
-			} else {
-				$img = false;
-			}
-
-			if ( !$img ) {
-				# We're dealing with a non-image, spit out the name and be done with it.
-				$thumbhtml = "\n\t\t\t" . '<div style="height: ' . ( self::THUMB_PADDING + $this->mHeights ) . 'px;">'
-					. htmlspecialchars( $nt->getText() ) . '</div>';
-
-				if ( $this->mParser instanceof Parser ) {
-					$this->mParser->addTrackingCategory( 'broken-file-category' );
-				}
-			} elseif ( $this->mHideBadImages && wfIsBadImage( $nt->getDBkey(), $this->getContextTitle() ) ) {
-				# The image is blacklisted, just show it as a text link.
-				$thumbhtml = "\n\t\t\t" . '<div style="height: ' . ( self::THUMB_PADDING + $this->mHeights ) . 'px;">' .
-					Linker::link(
-						$nt,
-						htmlspecialchars( $nt->getText() ),
-						array(),
-						array(),
-						array( 'known', 'noclasses' )
-					) .
-					'</div>';
-			} elseif ( !( $thumb = $img->transform( $transformOptions ) ) ) {
-				# Error generating thumbnail.
-				$thumbhtml = "\n\t\t\t" . '<div style="height: ' . ( self::THUMB_PADDING + $this->mHeights ) . 'px;">'
-					. htmlspecialchars( $img->getLastError() ) . '</div>';
-			} else {
-				$vpad = ( self::THUMB_PADDING + $this->mHeights - $thumb->height ) / 2;
-
-				$imageParameters = array(
-					'desc-link' => true,
-					'desc-query' => $descQuery,
-					'alt' => $alt,
-					'custom-url-link' => $link
-				);
-				# In the absence of both alt text and caption, fall back on providing screen readers with the filename as alt text
-				if ( $alt == '' && $text == '' ) {
-					$imageParameters['alt'] = $nt->getText();
-				}
-
-				# Set both fixed width and min-height.
-				$thumbhtml = "\n\t\t\t" .
-					'<div class="thumb" style="width: ' . ( $this->mWidths + self::THUMB_PADDING ) . 'px;">'
-					# Auto-margin centering for block-level elements. Needed now that we have video
-					# handlers since they may emit block-level elements as opposed to simple <img> tags.
-					# ref http://css-discuss.incutio.com/?page=CenteringBlockElement
-					. '<div style="margin:' . $vpad . 'px auto;">'
-					. $thumb->toHtml( $imageParameters ) . '</div></div>';
-
-				// Call parser transform hook
-				if ( $this->mParser && $img->getHandler() ) {
-					$img->getHandler()->parserTransformHook( $this->mParser, $img );
-				}
-			}
-
-			//TODO
-			// $linkTarget = Title::newFromText( $wgContLang->getNsText( MWNamespace::getUser() ) . ":{$ut}" );
-			// $ul = Linker::link( $linkTarget, $ut );
-
-			if ( $this->mShowBytes ) {
-				if ( $img ) {
-					$fileSize = htmlspecialchars( $lang->formatSize( $img->getSize() ) );
-				} else {
-					$fileSize = wfMessage( 'filemissing' )->escaped();
-				}
-				$fileSize = "$fileSize<br />\n";
-			} else {
-				$fileSize = '';
-			}
-
-			$textlink = $this->mShowFilename ?
-				Linker::link(
-					$nt,
-					htmlspecialchars( $lang->truncate( $nt->getText(), $this->mCaptionLength ) ),
-					array(),
-					array(),
-					array( 'known', 'noclasses' )
-				) . "<br />\n" :
-				'';
-
-			# ATTENTION: The newline after <div class="gallerytext"> is needed to accommodate htmltidy which
-			# in version 4.8.6 generated crackpot html in its absence, see:
-			# http://bugzilla.wikimedia.org/show_bug.cgi?id=1765 -Ævar
-
-			# Weird double wrapping (the extra div inside the li) needed due to FF2 bug
-			# Can be safely removed if FF2 falls completely out of existence
-			$output .=
-				"\n\t\t" . '<li class="gallerybox" style="width: ' . ( $this->mWidths + self::THUMB_PADDING + self::GB_PADDING ) . 'px">'
-					. '<div style="width: ' . ( $this->mWidths + self::THUMB_PADDING + self::GB_PADDING ) . 'px">'
-					. $thumbhtml
-					. "\n\t\t\t" . '<div class="gallerytext">' . "\n"
-					. $textlink . $text . $fileSize
-					. "\n\t\t\t</div>"
-					. "\n\t\t</div></li>";
-		}
-		$output .= "\n</ul>";
-
-		return $output;
-	}
+	abstract public function toHTML();
 
 	/**
 	 * @return Integer: number of images in the gallery
@@ -415,11 +315,17 @@ class ImageGallery {
 	 * Determines the correct language to be used for this image gallery
 	 * @return Language object
 	 */
-	private function getLang() {
-		global $wgLang;
+	protected function getRenderLang() {
 		return $this->mParser
 			? $this->mParser->getTargetLanguage()
-			: $wgLang;
+			: $this->getLanguage();
 	}
 
-} //class
+	/* Old constants no longer used.
+	const THUMB_PADDING = 30;
+	const GB_PADDING = 5;
+	const GB_BORDERS = 8;
+	*/
+
+}
+
