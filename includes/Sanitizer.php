@@ -1606,7 +1606,7 @@ class Sanitizer {
 			'hr'         => array_merge( $common, array( 'noshade', 'size', 'width' ) ),
 
 			# HTML Ruby annotation text module, simple ruby only.
-			# http://www.whatwg.org/specs/web-apps/current-work/multipage/text-level-semantics.html#the-ruby-element
+			# http://www.whatwg.org/html/text-level-semantics.html#the-ruby-element
 			'ruby'       => $common,
 			# rbc
 			# rtc

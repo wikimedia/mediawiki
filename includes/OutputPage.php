@@ -2528,8 +2528,8 @@ $templates
 			// The spec recommends defining XHTML5's charset using the XML declaration
 			// instead of meta.
 			// Our XML declaration is output by Html::htmlHeader.
-			// http://www.whatwg.org/specs/web-apps/current-work/multipage/semantics.html#attr-meta-http-equiv-content-type
-			// http://www.whatwg.org/specs/web-apps/current-work/multipage/semantics.html#charset
+			// http://www.whatwg.org/html/semantics.html#attr-meta-http-equiv-content-type
+			// http://www.whatwg.org/html/semantics.html#charset
 			$ret .= Html::element( 'meta', array( 'charset' => 'UTF-8' ) );
 		}
 

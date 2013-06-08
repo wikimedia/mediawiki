@@ -842,7 +842,7 @@ class Html {
 	 * @return Boolean
 	 */
 	public static function isXmlMimeType( $mimetype ) {
-		# http://www.whatwg.org/specs/web-apps/current-work/multipage/infrastructure.html#xml-mime-type
+		# http://www.whatwg.org/html/infrastructure.html#xml-mime-type
 		# * text/xml
 		# * application/xml
 		# * Any mimetype with a subtype ending in +xml (this implicitly includes application/xhtml+xml)
