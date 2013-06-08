@@ -2102,7 +2102,7 @@ class OutputPage extends ContextSource {
 	 * Actually output something with print.
 	 *
 	 * @param string $ins the string to output
-	 * @deprecated since 1.20 Use echo yourself.
+	 * @deprecated since 1.22 Use echo yourself.
 	 */
 	public function out( $ins ) {
 		wfDeprecated( __METHOD__, '1.22' );
